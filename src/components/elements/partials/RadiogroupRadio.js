@@ -28,6 +28,7 @@ export default {
     const {
       el$,
       form$,
+      $size,
       classes,
       mainClass,
       defaultClasses,
@@ -54,6 +55,7 @@ export default {
     return {
       el$,
       form$,
+      $size,
       classes,
       mainClass,
       defaultClasses,

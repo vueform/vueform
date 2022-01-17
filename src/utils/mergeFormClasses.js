@@ -52,7 +52,27 @@ export default class MergeFormClasses
   get classes () {
     return new Proxy(this.componentClasses, {
       get: (target, prop) => {
-        return typeof prop === 'string' && target[`$${prop}`] ? target[`$${prop}`](target, this.component$.value) : target[prop]
+        let classes = target[prop]
+
+        if (typeof prop !== 'string') {
+          return classes
+        }
+
+        if (target[`$${prop}`]) {
+          return target[`$${prop}`](target, this.component$.value)
+        }
+
+        if (_.isPlainObject(classes)) {
+          classes = _.cloneDeep(classes)
+
+          _.each(classes, (classList, className) => {
+            classes[className] = classes[`$${className}`]
+              ? classes[`$${className}`](target, this.component$.value)
+              : classList
+          })
+        }
+
+        return classes
       }
     })
   }
@@ -241,12 +261,12 @@ export default class MergeFormClasses
         return
       }
 
-      let name = componentClasses[`$${className}`] !== undefined ? `$${className}` : className
+      // let name = componentClasses[`$${className}`] !== undefined ? `$${className}` : className
 
       if (_.isPlainObject(classes)) {
         classHelpers[className] = this.getClassHelpers(componentClasses[className], path.concat([className]))
       } else {
-        classHelpers[className] = [`==${path.join('.')}.${name}==>`]
+        classHelpers[className] = [`==${path.join('.')}.${className}==>`]
       }
     })
 

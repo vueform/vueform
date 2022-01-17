@@ -89,6 +89,7 @@ export default {
 
     const {
       form$,
+      $size,
       theme,
       classes,
       templates,
@@ -341,6 +342,7 @@ export default {
 
     return {
       form$,
+      $size,
       theme,
       elements$,
       index,

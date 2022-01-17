@@ -1,32 +1,40 @@
 // prefix
 
 const checkbox = {
-  input: 'flex-shrink-0 appearance-none bg-white transition duration-200 ease-in-out cursor-pointer form-w-checkbox form-h-checkbox form-rounded form-border form-border-color mt-1 mr-1.5 focus:form-ring checked:form-bg-check-white checked:border-0',
+  input: 'flex-shrink-0 appearance-none bg-white transition duration-200 ease-in-out cursor-pointer form-border form-border-color mr-1.5 focus:form-ring checked:form-bg-check-white checked:border-0',
   input_enabled: 'checked:form-bg-primary',
   input_disabled: 'form-bg-disabled checked:form-border checked:form-border-color',
-  $input: (classes, { isDisabled }) => ([
+  input_sm: 'form-w-checkbox-sm form-h-checkbox-sm form-rounded-sm mt-0.75',
+  input_md: 'form-w-checkbox form-h-checkbox form-rounded mt-1',
+  input_lg: 'form-w-checkbox-lg form-h-checkbox-lg form-rounded-lg mt-1',
+  $input: (classes, { isDisabled, $size }) => ([
     classes.input,
+    classes[`input_${$size}`],
     isDisabled ? classes.input_disabled : classes.input_enabled
   ]),
 }
 
 const radio = {
-  input: 'flex-shrink-0 appearance-none bg-white transition duration-200 ease-in-out cursor-pointer form-w-checkbox form-h-checkbox rounded-full form-border form-border-color mt-1 mr-1.5 focus:form-ring checked:form-bg-radio-white checked:border-0',
+  input: 'flex-shrink-0 appearance-none bg-white transition duration-200 ease-in-out cursor-pointer rounded-full form-border form-border-color mr-1.5 focus:form-ring checked:form-bg-radio-white checked:border-0',
   input_enabled: 'checked:form-bg-primary',
   input_disabled: 'form-bg-disabled checked:form-border checked:form-border-color',
-  $input: (classes, { isDisabled }) => ([
+  input_sm: 'form-w-checkbox-sm form-h-checkbox-sm mt-0.75',
+  input_md: 'form-w-checkbox form-h-checkbox mt-1',
+  input_lg: 'form-w-checkbox-lg form-h-checkbox-lg mt-1',
+  $input: (classes, { isDisabled, $size }) => ([
     classes.input,
+    classes[`input_${$size}`],
     isDisabled ? classes.input_disabled : classes.input_enabled
   ]),
 }
 
 const text = {
-  input: 'w-full form-border form-border-color z-1 transition-shadow addon-before:form-rounded-l-none addon-before:form-border-l-none outline-none addon-after:form-rounded-r-none addon-after:form-border-r-none',
+  input: 'w-full form-border form-border-color z-1 transition-shadow addon-before:form-rounded-l-none outline-none addon-after:form-rounded-r-none',
   input_enabled: 'focus:form-ring',
   input_disabled: 'form-bg-disabled form-text-disabled',
-  input_sm: 'form-p-input-sm rounded',
-  input_md: 'form-p-input rounded',
-  input_lg: 'form-p-input-lg rounded',
+  input_sm: 'form-p-input-sm form-rounded-sm form-text-sm',
+  input_md: 'form-p-input form-rounded',
+  input_lg: 'form-p-input-lg form-rounded-lg form-text-lg with-floating:form-p-input-floating-lg',
   $input: (classes, { isDisabled, $size }) => ([
     classes.input,
     classes[`input_${$size}`],
@@ -35,25 +43,52 @@ const text = {
 }
 
 const select = {
-  container: 'relative mx-auto w-full flex items-center justify-end box-border cursor-pointer form-border form-border-color form-rounded bg-white text-base leading-snug outline-none',
+  container: 'relative mx-auto w-full flex items-center justify-end box-border cursor-pointer form-border form-border-color bg-white text-base leading-snug outline-none',
+  container_sm: 'form-rounded-sm',
+  container_md: 'form-rounded',
+  container_lg: 'form-rounded-lg',
   containerDisabled: 'cursor-default form-bg-disabled text-gray-400',
   containerOpen: '!rounded-b-none',
   containerOpenTop: '!rounded-t-none',
   containerActive: 'form-ring',
-  search: 'w-full absolute inset-0 outline-none appearance-none box-border border-0 text-base font-sans bg-white form-rounded form-pl-input',
-  placeholder: 'flex items-center h-full absolute left-0 top-0 pointer-events-none bg-transparent leading-snug form-pl-input text-gray-500',
-  caret: 'mask-bg mask-form-caret bg-gray-500 w-2.5 h-4 py-px box-content form-mr-input relative z-10 flex-shrink-0 flex-grow-0 transition-transform transform pointer-events-none',
+  search: 'w-full absolute inset-0 outline-none appearance-none box-border border-0 font-sans bg-white',
+  search_sm: 'form-text-sm form-rounded-sm form-pl-input-sm',
+  search_md: 'form-rounded form-pl-input',
+  search_lg: 'form-text-lg form-rounded-lg form-pl-input-lg with-floating:form-p-input-floating-lg',
+  placeholder: 'flex items-center h-full absolute left-0 top-0 pointer-events-none bg-transparent leading-snug text-gray-500',
+  placeholder_sm: 'form-pl-input-sm',
+  placeholder_md: 'form-pl-input',
+  placeholder_lg: 'form-pl-input-lg',
+  caret: 'mask-bg mask-form-caret bg-gray-500 w-2.5 h-4 py-px box-content relative z-10 flex-shrink-0 flex-grow-0 transition-transform transform pointer-events-none',
+  caret_sm: 'form-mr-input-sm',
+  caret_md: 'form-mr-input',
+  caret_lg: 'form-mr-input-lg',
   caretOpen: 'rotate-180 pointer-events-auto',
-  clear: 'form-pr-input relative z-10 opacity-40 transition duration-300 flex-shrink-0 flex-grow-0 flex hover:opacity-80',
+  clear: 'relative z-10 opacity-40 transition duration-300 flex-shrink-0 flex-grow-0 flex hover:opacity-80',
+  clear_sm: 'form-pr-input-sm',
+  clear_md: 'form-pr-input',
+  clear_lg: 'form-pr-input-lg',
   clearIcon: 'mask-bg mask-form-remove bg-black w-2.5 h-4 py-px box-content inline-block',
-  spinner: 'mask-bg mask-form-spinner form-bg-primary w-4 h-4 z-10 form-mr-input animate-spin flex-shrink-0 flex-grow-0',
-  dropdown: 'max-h-60 absolute -left-px -right-px bottom-0 transform translate-y-full form-border form-border-color form-rounded-b -mt-px overflow-y-scroll z-50 bg-white flex flex-col',
-  dropdownTop: '-translate-y-full top-px bottom-auto flex-col-reverse !rounded-b-none form-rounded-t',
+  spinner: 'mask-bg mask-form-spinner form-bg-primary w-4 h-4 z-10 animate-spin flex-shrink-0 flex-grow-0',
+  spinner_sm: 'form-mr-input-sm',
+  spinner_md: 'form-mr-input',
+  spinner_lg: 'form-mr-input-lg',
+  dropdown: 'max-h-60 absolute -left-px -right-px bottom-0 transform translate-y-full form-border form-border-color -mt-px overflow-y-scroll z-50 bg-white flex flex-col',
+  dropdown_sm: 'form-rounded-b-sm',
+  dropdown_md: 'form-rounded-b',
+  dropdown_lg: 'form-rounded-b-lg',
+  dropdownTop: '-translate-y-full top-px bottom-auto flex-col-reverse !rounded-b-none',
+  dropdownTop_sm: 'form-rounded-t-sm',
+  dropdownTop_md: 'form-rounded-t',
+  dropdownTop_lg: 'form-rounded-t-lg',
   dropdownHidden: 'hidden',
   options: 'flex flex-col p-0 m-0 list-none',
   optionsTop: 'flex-col-reverse',
   group: 'p-0 m-0',
-  groupLabel: 'flex text-sm box-border items-center justify-start text-left py-1 px-3 font-semibold bg-gray-200 cursor-default leading-normal',
+  groupLabel: 'flex text-sm box-border items-center justify-start text-left py-1 font-semibold bg-gray-200 cursor-default leading-normal',
+  groupLabel_sm: 'form-px-input-sm',
+  groupLabel_md: 'form-px-input',
+  groupLabel_lg: 'form-px-input-lg',
   groupLabelPointable: 'cursor-pointer',
   groupLabelPointed: 'bg-gray-300 text-gray-700',
   groupLabelSelected: 'form-bg-primary-darker text-white',
@@ -61,28 +96,96 @@ const select = {
   groupLabelSelectedPointed: 'form-bg-primary-darker text-white opacity-90',
   groupLabelSelectedDisabled: 'text-white form-bg-primary-darker bg-opacity-50 cursor-not-allowed',
   groupOptions: 'p-0 m-0',
-  option: 'flex items-center justify-start box-border text-left cursor-pointer text-base leading-snug form-px-input form-py-input-border',
+  option: 'flex items-center justify-start box-border text-left cursor-pointer leading-snug',
+  option_sm: 'form-px-input-sm form-py-input-border-sm',
+  option_md: 'form-px-input form-py-input-border',
+  option_lg: 'form-px-input-lg form-py-input-border-lg',
   optionPointed: 'text-gray-800 bg-gray-100',
   optionSelected: 'text-white form-bg-primary',
   optionDisabled: 'form-text-disabled cursor-not-allowed',
   optionSelectedPointed: 'text-white form-bg-primary opacity-90',
   optionSelectedDisabled: 'text-white form-bg-primary bg-opacity-50 cursor-not-allowed',
   fakeInput: 'bg-transparent absolute left-0 right-0 -bottom-px w-full h-px border-0 p-0 appearance-none outline-none text-transparent',
-  spacer: 'form-h-input-height-inner box-content',
-  noOptions: 'text-base leading-normal form-p-input text-gray-600 bg-white',
-  noResults: 'text-base leading-normal form-p-input text-gray-600 bg-white',
+  spacer: 'box-content',
+  spacer_sm: 'form-h-input-height-inner-sm',
+  spacer_md: 'form-h-input-height-inner',
+  spacer_lg: 'form-h-input-height-inner-lg',
+  noOptions: 'leading-normal text-gray-600 bg-white',
+  noOptions_sm: 'form-p-input-sm form-text-sm',
+  noOptions_md: 'form-p-input',
+  noOptions_lg: 'form-p-input-lg form-text-lg',
+  noResults: 'leading-normal text-gray-600 bg-white',
+  noResults_sm: 'form-p-input-sm form-text-sm',
+  noResults_md: 'form-p-input',
+  noResults_lg: 'form-p-input-lg form-text-lg',
+  $container: (classes, { $size }) => ([
+    classes.select.container,
+    classes.select[`container_${$size}`],
+  ]),
+  $search: (classes, { $size }) => ([
+    classes.select.search,
+    classes.select[`search_${$size}`],
+  ]),
+  $placeholder: (classes, { $size }) => ([
+    classes.select.placeholder,
+    classes.select[`placeholder_${$size}`],
+  ]),
+  $caret: (classes, { $size }) => ([
+    classes.select.caret,
+    classes.select[`caret_${$size}`],
+  ]),
+  $clear: (classes, { $size }) => ([
+    classes.select.clear,
+    classes.select[`clear_${$size}`],
+  ]),
+  $spinner: (classes, { $size }) => ([
+    classes.select.spinner,
+    classes.select[`spinner_${$size}`],
+  ]),
+  $dropdown: (classes, { $size }) => ([
+    classes.select.dropdown,
+    classes.select[`dropdown_${$size}`],
+  ]),
+  $dropdownTop: (classes, { $size }) => ([
+    classes.select.dropdownTop,
+    classes.select[`dropdownTop_${$size}`],
+  ]),
+  $groupLabel: (classes, { $size }) => ([
+    classes.select.groupLabel,
+    classes.select[`groupLabel_${$size}`],
+  ]),
+  $option: (classes, { $size }) => ([
+    classes.select.option,
+    classes.select[`option_${$size}`],
+  ]),
+  $spacer: (classes, { $size }) => ([
+    classes.select.spacer,
+    classes.select[`spacer_${$size}`],
+  ]),
+  $noOptions: (classes, { $size }) => ([
+    classes.select.noOptions,
+    classes.select[`noOptions_${$size}`],
+  ]),
+  $noResults: (classes, { $size }) => ([
+    classes.select.noResults,
+    classes.select[`noResults_${$size}`],
+  ]),
 }
 
 export default {
   // Elements
   ButtonElement: {
     container: '',
-    button: 'inline-block form-p-button leading-snug form-rounded transition form-bg-primary text-white focus:outline-none',
+    button: 'inline-block transition form-bg-primary text-white focus:outline-none',
     button_enabled: 'cursor-pointer hover:form-bg-primary-darker focus:form-ring',
     button_disabled: 'opacity-60 cursor-not-allowed',
     button_loading: 'form-bg-primary text-white form-bg-spinner-white opacity-60 cursor-not-allowed',
-    $button: (classes, { isDisabled, isLoading, buttonClass }) => ([
+    button_sm: 'form-p-button-sm form-rounded-sm',
+    button_md: 'form-p-button form-rounded',
+    button_lg: 'form-p-button-lg form-rounded-lg',
+    $button: (classes, { isDisabled, isLoading, buttonClass, $size }) => ([
       classes.button,
+      classes[`button_${$size}`],
       isDisabled ? classes.input_disabled : null,
       !isDisabled && !isLoading ? classes.button_enabled : null,
       isLoading ? classes.button_loading : null,
@@ -91,9 +194,16 @@ export default {
   },
   CheckboxElement: {
     container: '',
-    wrapper: 'flex align-start form-pt-input-border',
+    wrapper: 'flex align-start',
+    wrapper_sm: 'form-pt-input-border-sm',
+    wrapper_md: 'form-pt-input-border',
+    wrapper_lg: 'form-pt-input-border-lg',
     text: 'cursor-pointer',
     ...checkbox,
+    $wrapper: (classes, { $size }) => ([
+      classes.wrapper,
+      classes[`wrapper_${$size}`]
+    ]),
   },
   CheckboxgroupElement: {
     container: '',
@@ -161,7 +271,6 @@ export default {
   LocationElement: {
     container: '',
     inputContainer: 'w-full flex',
-    input: 'w-full form-p-input form-border form-border-color form-rounded',
     ...text,
   },
   MultifileElement: {
@@ -221,7 +330,14 @@ export default {
     inputWrapper: '',
     select: {
       ...select,
-      multipleLabel: 'flex items-center h-full absolute left-0 top-0 pointer-events-none bg-transparent leading-snug form-pl-input',
+      multipleLabel: 'flex items-center h-full absolute left-0 top-0 pointer-events-none bg-transparent leading-snug',
+      multipleLabel_sm: 'form-pl-input-sm',
+      multipleLabel_md: 'form-pl-input',
+      multipleLabel_lg: 'form-pl-input-lg with-floating:form-p-input-floating-lg',
+      $multipleLabel: (classes, { $size }) => ([
+        classes.select.multipleLabel,
+        classes.select[`multipleLabel_${$size}`],
+      ]),
     },
     $input: (classes, { isDisabled }) => ([
       classes.input,
@@ -244,19 +360,37 @@ export default {
   },
   SelectElement: {
     container: '',
-    input: 'w-full form-p-input form-border form-border-color form-rounded',
+    input: 'w-full form-border form-border-color',
     input_enabled: 'focus:form-ring',
     input_disabled: 'form-bg-disabled form-text-disabled',
+    input_sm: 'form-p-input-sm form-rounded-sm form-text-sm',
+    input_md: 'form-p-input form-rounded',
+    input_lg: 'form-p-input-lg form-rounded-lg form-text-lg with-floating:form-p-input-floating-lg',
     inputWrapper: 'relative',
-    inputPlaceholder: 'absolute left-0 top-0 form-pt-input form-pl-input ml-px text-gray-500 pointer-events-none',
+    inputPlaceholder: 'absolute left-0 top-0 text-gray-500 pointer-events-none',
+    inputPlaceholder_sm: 'form-p-input-border-sm',
+    inputPlaceholder_md: 'form-p-input-border',
+    inputPlaceholder_lg: 'form-p-input-border-lg',
     select: {
       ...select,
-      singleLabel: 'flex items-center h-full max-w-full absolute left-0 top-0 pointer-events-none bg-transparent leading-snug form-pl-input pr-16 box-border',
+      singleLabel: 'flex items-center h-full max-w-full absolute left-0 top-0 pointer-events-none bg-transparent leading-snug pr-16 box-border',
+      singleLabel_sm: 'form-pl-input-sm',
+      singleLabel_md: 'form-pl-input',
+      singleLabel_lg: 'form-pl-input-lg with-floating:form-p-input-floating-lg',
       singleLabelText: 'overflow-ellipsis overflow-hidden block whitespace-nowrap max-w-full',
+      $singleLabel: (classes, { $size }) => ([
+        classes.select.singleLabel,
+        classes.select[`singleLabel_${$size}`],
+      ]),
     },
-    $input: (classes, { isDisabled }) => ([
+    $input: (classes, { isDisabled, $size }) => ([
       classes.input,
+      classes[`input_${$size}`],
       isDisabled ? classes.input_disabled : classes.input_enabled,
+    ]),
+    $inputPlaceholder: (classes, { $size }) => ([
+      classes.inputPlaceholder,
+      classes[`inputPlaceholder_${$size}`],
     ]),
   },
   SliderElement: {
@@ -293,20 +427,42 @@ export default {
   },
   StaticElement: {
     container: '',
-    content: 'form-pt-input-border',
+    content: '',
+    content_sm: 'form-pt-input-border-sm',
+    content_md: 'form-pt-input-border',
+    content_lg: 'form-pt-input-border-lg',
+    $content: (classes, { $size }) => ([
+      classes.content,
+      classes[`content_${$size}`],
+    ]),
   },
   TagsElement: {
     container: '',
     select: {
       ...select,
-      tags: 'flex-grow flex-shrink flex flex-wrap items-center mt-1 form-pl-input-y',
-      tag: 'form-bg-primary text-white text-sm font-semibold py-px pl-2 rounded mr-1 mb-1 flex items-center whitespace-nowrap',
+      tags: 'flex-grow flex-shrink flex flex-wrap items-center mt-1',
+      tags_sm: 'form-pl-input-y-sm',
+      tags_md: 'form-pl-input-y',
+      tags_lg: 'form-pl-input-y-lg with-floating:form-p-input-floating-lg',
+      tag: 'form-bg-primary text-white font-semibold py-px pl-2 rounded mr-1 mb-1 flex items-center whitespace-nowrap',
+      tag_sm: 'text-0.5sm',
+      tag_md: 'text-sm',
+      tag_lg: 'text-sm',
       tagDisabled: 'pr-2 opacity-50',
       tagRemove: 'flex items-center justify-center p-1 mx-0.5 rounded-sm hover:bg-black hover:bg-opacity-10 group',
       tagRemoveIcon: 'mask-bg mask-form-remove bg-current inline-block w-3 h-3',
       tagsSearchWrapper: 'inline-block relative mx-1 mb-1 flex-grow flex-shrink h-full',
       tagsSearch: 'absolute inset-0 border-0 outline-none appearance-none p-0 text-base font-sans box-border w-full',
       tagsSearchCopy: 'invisible whitespace-pre-wrap inline-block h-px',
+      singleLabelText: 'overflow-ellipsis overflow-hidden block whitespace-nowrap max-w-full',
+      $tags: (classes, { $size }) => ([
+        classes.select.tags,
+        classes.select[`tags_${$size}`],
+      ]),
+      $tag: (classes, { $size }) => ([
+        classes.select.tag,
+        classes.select[`tag_${$size}`],
+      ]),
     }
   },
   TextareaElement: {
@@ -392,20 +548,45 @@ export default {
     ]),
   },
   ElementAddon: {
-    container: 'form-p-input form-border form-border-color bg-gray-100 flex items-center',
-    container_before: 'form-addon-before !border-r-0 form-rounded-l',
-    container_after: 'form-addon-after !border-l-0 form-rounded-r order-2',
+    container: 'form-border form-border-color bg-gray-100 flex items-center',
+    container_before: 'form-addon-before !border-r-0',
+    container_after: 'form-addon-after !border-l-0 order-2',
+    container_sm: 'form-p-input-sm',
+    container_md: 'form-p-input',
+    container_lg: 'form-p-input-lg',
+    container_before_sm: 'form-rounded-l-sm',
+    container_before_md: 'form-rounded-l',
+    container_before_lg: 'form-rounded-l-lg',
+    container_after_sm: 'form-rounded-r-sm',
+    container_after_md: 'form-rounded-r',
+    container_after_lg: 'form-rounded-r-lg',
     wrapper: '',
-    $container: (classes, { type }) => ([
+    $container: (classes, { type, $size }) => ([
       classes.container,
-      classes[`container_${type}`]
+      classes[`container_${$size}`],
+      classes[`container_${type}`],
+      classes[`container_${type}_${$size}`],
     ]),
   },
   ElementDescription: {
-    container: 'text-gray-500 text-sm mt-1',
+    container: 'text-gray-500',
+    container_sm: 'text-0.5sm mt-0.5',
+    container_md: 'text-sm mt-1',
+    container_lg: 'text-sm mt-1',
+    $container: (classes, { type, $size }) => ([
+      classes.container,
+      classes[`container_${$size}`],
+    ]),
   },
   ElementError: {
-    container: 'text-sm text-red-500 block mt-1',
+    container: 'text-red-500 block',
+    container_sm: 'text-0.5sm mt-0.5',
+    container_md: 'text-sm mt-1',
+    container_lg: 'text-sm mt-1',
+    $container: (classes, { type, $size }) => ([
+      classes.container,
+      classes[`container_${$size}`],
+    ]),
   },
   ElementInfo: {
     container: 'inline-block w-3.5 h-3.5 form-bg-info relative ml-2 top-px cursor-pointer group',
@@ -413,19 +594,27 @@ export default {
     content: 'bg-black bg-opacity-90 text-white rounded-md text-sm py-1 px-2.5 not-italic inline-block relative',
   },
   ElementLabel: {
-    container: 'form-col form-py-input-border pr-4',
-    $container: (classes, { el$ }) => ([
+    container: 'form-col pr-4',
+    container_sm: 'form-py-input-border-sm',
+    container_md: 'form-py-input-border',
+    container_lg: 'form-py-input-border-lg',
+    $container: (classes, { el$, $size }) => ([
       classes.container,
+      classes[`container_${$size}`],
       !el$.inline ? el$.columnsClasses.label : null,
     ]),
   },
   ElementLabelFloating: {
-    container: 'relative',
-    label: 'absolute z-10 left-2.5 leading-px leading-none form-text-0.5xs text-gray-500 bg-white px-px transition whitespace-nowrap',
+    container: 'label-floating relative',
+    label: 'absolute z-10 leading-px leading-none text-0.5xs text-gray-500 bg-white px-px transition whitespace-nowrap',
+    label_sm: 'form-left-input-sm',
+    label_md: 'form-left-input',
+    label_lg: 'form-left-input-lg top-2.5',
     label_invisible: 'opacity-0 invisible',
     label_visible: 'opacity-100 visible',
-    $label: (classes, { visible }) => ([
+    $label: (classes, { visible, $size }) => ([
       classes.label,
+      classes[`label_${$size}`],
       visible ? classes.label_visible : classes.label_invisible
     ]),
   },
@@ -433,11 +622,20 @@ export default {
     container: 'form-col',
     container_error: 'has-error',
     outerWrapper: 'form-row flex flex-wrap',
-    outerWrapper_single: 'form-mb-gutter',
+    outerWrapper_single: '',
+    outerWrapper_single_sm: 'form-mb-gutter-sm',
+    outerWrapper_single_md: 'form-mb-gutter',
+    outerWrapper_single_lg: 'form-mb-gutter-lg',
     outerWrapper_multiple: '',
+    outerWrapper_multiple_sm: '',
+    outerWrapper_multiple_md: '',
+    outerWrapper_multiple_lg: '',
     innerContainer: 'flex-1',
     innerWrapperBefore: 'form-col w-full',
     innerWrapper: 'form-col',
+    innerWrapper_sm: 'form-text-sm',
+    innerWrapper_md: '',
+    innerWrapper_lg: 'form-text-lg',
     innerWrapperAfter: 'form-col w-full',
     $container: (classes, { el$ }) => ([
       classes.container,
@@ -449,13 +647,15 @@ export default {
       classes.innerContainer,
       el$.columnsClasses.innerContainer,
     ]),
-    $innerWrapper:  (classes, { el$ }) => ([
+    $innerWrapper:  (classes, { el$, $size }) => ([
       classes.innerWrapper,
+      classes[`innerWrapper_${$size}`],
       el$.columnsClasses.wrapper,
     ]),
-    $outerWrapper:  (classes, { multiple }) => ([
+    $outerWrapper:  (classes, { multiple, $size }) => ([
       classes.outerWrapper,
       multiple.value ? classes.outerWrapper_multiple : classes.outerWrapper_single,
+      multiple.value ? classes[`outerWrapper_multiple_${$size}`] : classes[`outerWrapper_single_${$size}`],
     ]),
   },
   ElementLayoutInline: {
@@ -468,10 +668,24 @@ export default {
   },
   ElementLoader: {
     container: 'relative z-10 order-1',
-    loader: 'absolute w-4 h-4 form-mr-input right-full form-top-input mt-1 mask-bg mask-form-spinner form-bg-primary animate-spin',
+    loader: 'absolute w-4 h-4 form-mr-input right-full mask-bg mask-form-spinner form-bg-primary animate-spin',
+    loader_sm: 'form-top-input-border-sm mt-0.5',
+    loader_md: 'form-top-input-border mt-1',
+    loader_lg: 'form-top-input-border-lg mt-1',
+    $loader: (classes, { $size }) => ([
+      classes.loader,
+      classes[`loader_${$size}`],
+    ]),
   },
   ElementMessage: {
-    container: 'text-sm text-green-500 block mt-1',
+    container: 'text-green-500 block',
+    container_sm: 'text-0.5sm mt-0.5',
+    container_md: 'text-sm mt-1',
+    container_lg: 'text-sm mt-1',
+    $container: (classes, { type, $size }) => ([
+      classes.container,
+      classes[`container_${$size}`],
+    ]),
   },
   ElementText: {
     container: '',
@@ -578,10 +792,6 @@ export default {
     ...checkbox,
     container: 'flex align-start cursor-pointer',
     text: '',
-    $input: (classes, { isDisabled }) => ([
-      classes.input,
-      isDisabled ? classes.input_disabled : classes.input_enabled
-    ]),
   },
   FilePreview: {
     container: 'form-py-input flex justify-start flex-row group relative',
@@ -645,12 +855,8 @@ export default {
     ]),
   },
   RadiogroupRadio: {
+    ...radio,
     container: 'flex align-start cursor-pointer',
     text: '',
-    ...radio,
-    $input: (classes, { isDisabled }) => ([
-      classes.input,
-      isDisabled ? classes.input_disabled : classes.input_enabled
-    ]),
   },
 }

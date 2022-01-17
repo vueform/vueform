@@ -148,10 +148,20 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
   const sizes = ['', 'sm', 'lg']
 
   let plain = {}
+  let withFloating = {}
 
   sizes.forEach((s) => {
     let suffix = s?'-'+s:''
     let size = s.toUpperCase()
+
+    // font-size
+    if (s) {
+      plain[`.form-text${suffix}`] = {
+        fontSize: theme(`form.fontSize${size}`)[0],
+        lineHeight: theme(`form.fontSize${size}`)[1].lineHeight,
+        letterSpacing: theme(`form.fontSize${size}`)[1].letterSpacing || 0,
+      }
+    }
 
     // grid
     plain[`.form-row${suffix}`] = {
@@ -242,6 +252,13 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
       marginBottom: `-${theme(`form.pyInput${size}`)}`,
     }
 
+    withFloating[`.form-p-input-floating${suffix}`] = {
+      paddingLeft: theme(`form.pxInput${size}`),
+      paddingRight: theme(`form.pxInput${size}`),
+      paddingTop: `calc(${theme(`form.pyInput${size}`)} + (${theme(`fontSize`)['0.5xs'][0]} / 2))`,
+      paddingBottom: `calc(${theme(`form.pyInput${size}`)} - (${theme(`fontSize`)['0.5xs'][0]} / 2))`,
+    }
+
     // top, right, bottom, left
     let sides = ['top', 'right', 'bottom', 'left']
     sides.forEach((side) => {
@@ -249,6 +266,11 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
         [side]: ['top', 'bottom'].indexOf(side) !== -1
           ? theme(`form.pyInput${size}`)
           : theme(`form.pxInput${size}`)
+      }
+      plain[`.form-${side}-input-border${suffix}`] = {
+        [side]: `calc(${theme('form.borderWidth')} + ${['top', 'bottom'].indexOf(side) !== -1
+          ? theme(`form.pyInput${size}`)
+          : theme(`form.pxInput${size}`)})`
       }
     })
 
@@ -260,6 +282,7 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
       paddingLeft: theme(`form.pyInput${size}`)
     }
 
+    // gutters
     let gutters = ['', '0.5', '2']
     sides = [
       'mt', 'mr', 'mb', 'ml',
@@ -279,11 +302,11 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
           left: 'left',
         }
 
-        plain[`.${e(`form-${side}-${gutterSize}gutter`)}`] = {
+        plain[`.${e(`form-${side}-${gutterSize}gutter${suffix}`)}`] = {
           [`${attr[side]}`]: `calc(${theme(`form.gutter${size}`)} * ${gutterSize||1})`
         }
         
-        plain[`.${e(`-form-${side}-${gutterSize}gutter`)}`] = {
+        plain[`.${e(`-form-${side}-${gutterSize}gutter${suffix}`)}`] = {
           [`${attr[side]}`]: `calc(${theme(`form.gutter${size}`)} * (-${gutterSize||1}))`
         }
       })
@@ -357,9 +380,6 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
     },
     '.form-border-primary': {
       borderColor: `${theme('form.primary')}`
-    },
-    [`.${e('form-text-0.5xs')}`]: {
-      fontSize: '0.6875rem',
     },
     '.form-text-primary': {
       color: theme('form.primary'),
@@ -810,6 +830,7 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
   addUtilities(important, ['important'])
   addUtilities(addonBefore, ['addon-before'])
   addUtilities(addonAfter, ['addon-after'])
+  addUtilities(withFloating, ['with-floating'])
 
   addVariant('h', ({ modifySelectors, separator }) => {
     modifySelectors(({ className }) => {
@@ -921,6 +942,14 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
     })
   })
 
+  addVariant('with-floating', ({ modifySelectors, separator }) => {
+    modifySelectors(({ className }) => {
+      return `${prefix('.label-floating')} ~ .${e(`with-floating${separator}${className}`)},
+              ${prefix('.label-floating')} ~ div .${e(`with-floating${separator}${className}`)},
+              ${prefix('.label-floating')} ~ span .${e(`with-floating${separator}${className}`)}`
+    })
+  })
+
   addVariant('ghost', ({ modifySelectors, separator }) => {
     modifySelectors(({ className }) => {
       return `${prefix('.sortable-ghost')}.${e(`ghost${separator}${className}`)}`
@@ -949,9 +978,12 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
     form: (theme) => ({
       primary: theme('colors.green.500'),
 
+      fontSizeSM: theme('fontSize.sm'),
+      fontSizeLG: theme('fontSize.base'),
+
       gutter: theme('width.4'),
       gutterSM: theme('width.2'),
-      gutterLG: theme('width.6'),
+      gutterLG: theme('width.5'),
       inputMinHeight: theme('height')['9.5'],
       inputMinHeightSM: theme('height')['8.5'],
       inputMinHeightLG: theme('height')['11.5'],
@@ -965,8 +997,8 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
       borderWidth: theme('borderWidth.DEFAULT'),
       borderColor: theme('borderColor.gray.300'),
       borderRadius: theme('borderRadius.DEFAULT'),
-      borderRadiusSM: theme('borderRadius.sm'),
-      borderRadiusLG: theme('borderRadius.lg'),
+      borderRadiusSM: theme('borderRadius.DEFAULT'),
+      borderRadiusLG: theme('borderRadius.DEFAULT'),
 
       ring: true,
       ringWidth: theme('ringWidth.2'),
@@ -974,20 +1006,20 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
 
       pyInput: theme('padding')['1.5'],
       pxInput: theme('padding.3'),
-      pyInputSM: theme('padding')['1'],
-      pxInputSM: theme('padding')['2.5'],
+      pyInputSM: theme('padding')['1.5'],
+      pxInputSM: theme('padding')['2'],
       pyInputLG: theme('padding')['2.5'],
       pxInputLG: theme('padding')['3.5'],
-      pyButton: theme('padding.2'),
+      pyButton: theme('padding')['1.75'],
       pxButton: theme('padding.4'),
-      pyButtonSM: theme('padding.1'),
-      pxButtonSM: theme('padding')['2.5'],
-      pyButtonLG: theme('padding.3'),
+      pyButtonSM: theme('padding')['1.75'],
+      pxButtonSM: theme('padding')['3'],
+      pyButtonLG: theme('padding')['2.75'],
       pxButtonLG: theme('padding.6'),
 
       checkboxSize: theme('width.4'),
-      checkboxSizeSM: theme('width.3'),
-      checkboxSizeLG: theme('width.5'),
+      checkboxSizeSM: theme('width')['3.5'],
+      checkboxSizeLG: theme('width.4'),
       gallerySize: theme('width.24'),
       gallerySizeSM: theme('width.16'),
       gallerySizeLG: theme('width.32'),
@@ -999,10 +1031,20 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
       zIndex: {
         1: 1,
       },
+      margin: {
+        '0.75': '0.1875rem',
+        '1\/10': '10%',
+      },
+      padding: {
+        '1.75': '0.4375rem',
+        '2.75': '0.6875rem',
+      },
       width: {
+        '3.5': '0.875rem',
         '1\/10': '10%',
       },
       height: {
+        '3.5': '0.875rem',
         '8.5': '2.125rem',
         '9.5': '2.375rem',
         '11.5': '2.875rem',
@@ -1021,6 +1063,10 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
       },
       lineHeight: {
         px: '1px',
+      },
+      fontSize: {
+        '0.5xs': ['0.6875rem', '0.875rem'],
+        '0.5sm': ['0.8125rem', '1.125rem'],
       },
       maskImage: (theme) => ({
         'form-radio': `url("${svgToDataUri(

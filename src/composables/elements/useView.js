@@ -1,4 +1,4 @@
-import { computed, ref, toRefs } from 'composition-api'
+import { computed, ref, toRefs, provide } from 'composition-api'
 
 const base = function(props, context, dependencies)
 {
@@ -71,6 +71,10 @@ const base = function(props, context, dependencies)
   const show = () => {
     hidden.value = false
   }
+
+  // ============== PROVIDES ==============
+  
+  provide('$size', $size)
 
   return {
     hidden,

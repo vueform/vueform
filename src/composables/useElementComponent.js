@@ -3,6 +3,7 @@ import { computed, toRefs, ref, getCurrentInstance } from 'composition-api'
 import useForm$ from './useForm$'
 import useEl$ from './useEl$'
 import useTheme from './useTheme'
+import use$Size from './use$Size'
 import MergeFormClasses from './../utils/mergeFormClasses'
 
 const base = function(props, context, dependencies, options = {})
@@ -26,6 +27,10 @@ const base = function(props, context, dependencies, options = {})
   const {
     theme
   } = useTheme(props, context)
+
+  const {
+    $size
+  } = use$Size(props, context)
   
   const template = el$.value.templates[componentName.value]
   
@@ -107,6 +112,7 @@ const base = function(props, context, dependencies, options = {})
     el$,
     form$,
     theme,
+    $size,
     classes,
     templates,
     mainClass,

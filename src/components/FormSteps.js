@@ -15,6 +15,7 @@ export default {
 
     const {
       form$,
+      $size,
       theme,
       classes,
       mainClass,
@@ -523,6 +524,7 @@ export default {
 
     return {
       form$,
+      $size,
       theme,
       steps,
       elements$,

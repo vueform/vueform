@@ -11,6 +11,7 @@ export default {
     const {
       form$,
       el$,
+      $size,
       classes,
       templates,
       mainClass,
@@ -37,6 +38,7 @@ export default {
     return {
       el$,
       form$,
+      $size,
       theme,
       templates,
       defaultClasses,
