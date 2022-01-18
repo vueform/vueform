@@ -1,9 +1,12 @@
+import { ref } from 'composition-api'
+
 
 const config = {
   /**
    * General
    */
   env: 'development',
+  plugins: [],
 
   /**
    * Theme & layout

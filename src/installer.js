@@ -1,6 +1,7 @@
 import 'regenerator-runtime/runtime'
 import _ from 'lodash'
 import flatten from 'flat'
+import shouldApplyPlugin from './utils/shouldApplyPlugin'
 
 import axios from './services/axios/index'
 import validation from './services/validation/index'
@@ -17,12 +18,13 @@ export default function(config, components) {
     constructor() {
       this.options = {
         config: _.omit(config, [
-          'theme', 'templates', 'locales', 'rules',
+          'theme', 'templates', 'locales', 'rules', 'plugins',
         ]),
         templates: config.templates || {},
         theme: config.theme || {},
         rules: config.rules || {},
         locales: config.locales || {},
+        plugins: config.plugins || [],
         services: {
           validation,
           axios,
@@ -42,6 +44,15 @@ export default function(config, components) {
       ], (attr) => {
           if (config[attr] !== undefined) {
             this.options[attr] = Object.assign({}, this.options[attr], config[attr])
+          }
+      })
+
+      // replace
+      _.each([
+        'plugins',
+      ], (attr) => {
+          if (config[attr] !== undefined) {
+            this.options[attr] = config[attr]
           }
       })
 
@@ -68,7 +79,7 @@ export default function(config, components) {
       _.each([
         'columns', 'forceLabels', 'displayErrors', 'floatPlaceholders', 'displayErrors', 'displayMessages',
         'language', 'locale', 'fallbackLocale', 'orderFrom', 'validateOn', 'formData', 'beforeSend', 'axios',
-        'locationProvider', 'classHelpers', 'env', 'usePresets',
+        'locationProvider', 'classHelpers', 'env', 'usePresets', 'plugins',
       ], (attr) => {
           if (config[attr] !== undefined) {
             this.options.config[attr] = config[attr]
@@ -100,7 +111,15 @@ export default function(config, components) {
             emits: component.emits,
           })
 
-          return comp.setup(props, context)
+          let setup = comp.setup(props, context)
+
+          this.options.plugins.forEach((plugin) => {
+            if (shouldApplyPlugin(name, plugin.apply)) {
+              setup = plugin.setup(setup, props, context)
+            }
+          })
+
+          return setup
         }
 
         component.components = this.options.theme.templates[name].components || {}
@@ -112,6 +131,21 @@ export default function(config, components) {
         component.staticRenderFns = function() {
           return this.template.staticRenderFns
         }
+
+        this.options.plugins.forEach((plugin) => {
+          _.each(_.without(Object.keys(plugin), 'setup', 'apply', 'config'), (key) => {
+            if (plugin[key] && shouldApplyPlugin(name, plugin.apply)) {
+              if (Array.isArray(plugin[key])) {
+                let base = component[key] || []
+                component[key] = base.concat(plugin[key])
+              } else if (_.isPlainObject(plugin[key])) {
+                component[key] = Object.assign({}, component[key] || {}, plugin[key])
+              } else {
+                component[key] = plugin[key]
+              }
+            }
+          })
+        })
 
         appOrVue.component(name, component)
       })

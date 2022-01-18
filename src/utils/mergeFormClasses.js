@@ -91,11 +91,19 @@ export default class MergeFormClasses
         case 'addClasses':
         case 'prependClasses':
         case 'overrideClasses':
+          if (mergables[this.component] === undefined) {
+            return
+          }
+
           this.mergeComponentClasses(this.toArray(mergables[this.component]), key)
           break
 
         case 'removeClasses':
         case 'replaceClasses':
+          if (mergables[this.component] === undefined) {
+            return
+          }
+
           this.mergeComponentClasses(mergables[this.component], key)
           break
 
