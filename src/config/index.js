@@ -7,6 +7,7 @@ const config = {
    */
   env: 'development',
   plugins: [],
+  elements: [],
 
   /**
    * Theme & layout
@@ -15,9 +16,9 @@ const config = {
   size: 'md',
   templates: {},
   addClasses: {},
-  overrideClasses: {},
   removeClasses: {},
   replaceClasses: {},
+  overrideClasses: {},
   presets: {},
   usePresets: [],
   classHelpers: true,

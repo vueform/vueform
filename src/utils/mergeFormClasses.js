@@ -24,12 +24,15 @@ export default class MergeFormClasses
       ? options.templates[`${this.component}_${options.view}`]
       : options.templates[this.component]
 
-    let templateData = this.template.data()
+    let merge = typeof this.template.data === 'function' && this.template.data().merge !== undefined
+      ? this.template.data().merge
+      : this.component$.value.merge
+
     let themeClasses = _.cloneDeep(this.toArray(options.view && options.theme.classes[`${this.component}_${options.view}`]
       ? options.theme.classes[`${this.component}_${options.view}`]
       : options.theme.classes[this.component]))
-    let templateClasses = _.cloneDeep(this.toArray(templateData.defaultClasses))
-    let templateMerge = templateData.merge !== undefined ? templateData.merge : true
+    let templateClasses = _.cloneDeep(this.toArray(this.defaultClasses))
+    let templateMerge = merge !== undefined ? merge : true
 
     this.componentClasses = templateMerge ? templateClasses : themeClasses
     this.merge({ overrideClasses: {
@@ -81,8 +84,18 @@ export default class MergeFormClasses
     })
   }
 
+  get defaultClasses () {
+    return typeof this.template.data === 'function' && this.template.data().defaultClasses
+      ? this.template.data().defaultClasses
+      : this.component$.value.defaultClasses
+  }
+
   get mainClass () {
-    return Object.keys(this.template.data().defaultClasses)[0]
+    let defaultClasses = typeof this.template.data === 'function' && this.template.data().defaultClasses
+      ? this.template.data().defaultClasses
+      : this.component$.value.defaultClasses
+
+    return Object.keys(defaultClasses)[0]
   }
 
   merge(merge, locals = false) {

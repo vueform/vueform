@@ -86,16 +86,14 @@ export default function(config, components) {
           }
       })
 
-      // Adding elements to theme components
-      if (config.elements !== undefined) {
-        this.options.theme.components = {
-          ...this.options.theme.components,
-        }
+      if (config.elements) {
+        config.elements.forEach((element) => {
+          components[element.name] = _.omit(element, ['render', 'staticRenderFns', 'components'])
+        })
 
-        Object.values(config.elements).forEach((element) => {
-          this.options.theme.components = {
-            ...this.options.theme.components,
-            ...element.components,
+        config.elements.forEach((element) => {
+          if (this.options.templates[element.name] === undefined) {
+            this.options.templates[element.name] = _.pick(element, ['render', 'staticRenderFns', 'components'])
           }
         })
       }
@@ -122,7 +120,9 @@ export default function(config, components) {
           return setup
         }
 
-        component.components = this.options.theme.templates[name].components || {}
+        if (component.components === undefined) {
+          component.components = this.options.templates[name]?.components || this.options.theme.templates[name]?.components || {}
+        }
 
         component.render = function() {
           return this.template.render.apply(this, arguments)

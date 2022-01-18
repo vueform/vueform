@@ -3,10 +3,6 @@ import { toRefs } from 'composition-api'
 
 const base = function(props, context, dependencies)
 {
-  const {
-    items,
-  } = toRefs(props)
-
   // ============ DEPENDENCIES ============
 
   const value = dependencies.value
