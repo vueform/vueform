@@ -10,9 +10,8 @@ export default {
       form$,
       $size,
       classes,
-      mainClass,
-      defaultClasses,
       templates,
+      template,
       theme,
     } = useElementComponent(props, context)
 
@@ -40,9 +39,8 @@ export default {
       form$,
       $size,
       classes,
-      mainClass,
-      defaultClasses,
       templates,
+      template,
       theme,
       visible,
       hasLink,

@@ -24,11 +24,11 @@ import useHandleChange from './../../composables/elements/useHandleChange'
 import useWatchValue from './../../composables/elements/useWatchValue'
 import useDefault from './../../composables/elements/useDefault'
 import useFloating from './../../composables/elements/useFloating'
+import useClasses from './../../composables/elements/useClasses'
 
 import { date as useData } from './../../composables/elements/useData'
 import { date as useValue } from './../../composables/elements/useValue'
 import { date as useOptions } from './../../composables/elements/useOptions'
-import { input as useClasses } from './../../composables/elements/useClasses'
 
 import BaseElement from './../../mixins/BaseElement'
 import HasView from './../../mixins/HasView'

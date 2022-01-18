@@ -47,10 +47,9 @@ export default {
       showSteps,
       showTabs,
       showStepsControls,
-      mainClass,
-      defaultClasses,
       classes,
       templates,
+      template,
       extendedTheme,
       $size,
       form$,
@@ -119,10 +118,9 @@ export default {
       showSteps,
       showTabs,
       showStepsControls,
-      mainClass,
-      defaultClasses,
       classes,
       templates,
+      template,
       extendedTheme,
       $size,
       form$,
@@ -281,11 +279,6 @@ export default {
       required: false,
       default: null
     },
-    size: {
-      required: false,
-      type: [String],
-      default: undefined,
-    },
     addClass: {
       required: false,
       type: [Array, Object, String],
@@ -330,6 +323,16 @@ export default {
       required: false,
       type: [Array],
       default: () => ([])
+    },
+    view: {
+      required: false,
+      type: [String],
+      default: undefined,
+    },
+    size: {
+      required: false,
+      type: [String],
+      default: undefined,
     },
     replaceTemplates: {
       type: Object,

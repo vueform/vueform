@@ -669,23 +669,14 @@ const base = function(props, context, dependencies = {})
   })
 
   /**
-  * The class name of the form's outermost DOM.
-  * 
-  * @type {string}
-  * @private
-  */
-  const mainClass = computed(() => {
-    return _.keys(defaultClasses.value)[0]
-  })
-
-  /**
-  * The default classes for the form defined by theme.
+  * The component's template.
   * 
   * @type {object}
-  * @private
   */
-  const defaultClasses = computed(() => {
-    return extendedTheme.value.templates.Vueform.data().defaultClasses
+  const template = computed(() => {
+    return options.value.view && templates.value[`Vueform_${options.value.view}`]
+            ? templates.value[`Vueform_${options.value.view}`]
+            : templates.value.Vueform
   })
 
   /**
@@ -1169,10 +1160,9 @@ const base = function(props, context, dependencies = {})
     showSteps,
     showTabs,
     showStepsControls,
-    mainClass,
-    defaultClasses,
     classes,
     templates,
+    template,
     extendedTheme,
     $size,
     form$,

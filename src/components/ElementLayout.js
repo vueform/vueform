@@ -21,9 +21,8 @@ export default {
       $size,
       classes,
       templates,
-      mainClass,
+      template,
       theme,
-      defaultClasses,
     } = useElementComponent(props, context)
 
     // ============== COMPUTED ==============
@@ -43,9 +42,8 @@ export default {
       $size,
       theme,
       templates,
+      template,
       classes,
-      mainClass,
-      defaultClasses,
       visible,
     }
   },

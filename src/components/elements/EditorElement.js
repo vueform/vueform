@@ -24,9 +24,9 @@ import useEditor from './../../composables/elements/useEditor'
 import useHandleError from './../../composables/elements/useHandleError'
 import useHandleAlert from './../../composables/elements/useHandleAlert'
 import useWatchValue from './../../composables/elements/useWatchValue'
+import useClasses from './../../composables/elements/useClasses'
 
 import { editor as useData } from './../../composables/elements/useData'
-import { editor as useClasses } from './../../composables/elements/useClasses'
 import { text as useValidation } from './../../composables/elements/useValidation'
 
 import BaseElement from './../../mixins/BaseElement'

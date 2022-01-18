@@ -29,17 +29,12 @@ export default {
       el$,
       form$,
       $size,
+      view,
       classes,
-      mainClass,
-      defaultClasses,
       templates,
+      template,
       theme,
-    } = useElementComponent(props, context, {}, {
-      addClasses: [
-        ['input', 'input_enabled', computed(() => !isDisabled.value)],
-        ['input', 'input_disabled', computed(() => isDisabled.value)],
-      ]
-    })
+    } = useElementComponent(props, context)
 
     // ============== COMPUTED ==============
 
@@ -52,16 +47,36 @@ export default {
       return el$.value.disabledItems.map(i=>String(i)).indexOf(String(value.value)) !== -1 || el$.value.isDisabled
     })
 
+    /**
+     * The `id` attribute of the input.
+     * 
+     * @type {boolean}
+     */
+    const id = computed(() => {
+      return el$.value.path
+    })
+
+    /**
+     * The `name` attribute of the input.
+     * 
+     * @type {boolean}
+     */
+    const name = computed(() => {
+      return `${el$.value.fieldId}-${value.value}`
+    })
+
     return {
       el$,
       form$,
       $size,
+      view,
       classes,
-      mainClass,
-      defaultClasses,
       templates,
+      template,
       theme,
       isDisabled,
+      id,
+      name,
     }
   },
 }

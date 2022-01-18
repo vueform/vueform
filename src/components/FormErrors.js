@@ -12,9 +12,8 @@ export default {
       $size,
       theme,
       classes,
-      mainClass,
       templates,
-      defaultClasses,
+      template,
     } = useFormComponent(props, context)
 
     // ============== COMPUTED ==============
@@ -34,9 +33,8 @@ export default {
       $size,
       theme,
       classes,
-      mainClass,
-      defaultClasses,
       templates,
+      template,
       errors,
     }
   },

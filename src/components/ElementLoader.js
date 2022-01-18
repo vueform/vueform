@@ -11,10 +11,9 @@ export default {
       form$,
       $size,
       classes,
-      mainClass,
       templates,
+      template,
       theme,
-      defaultClasses,
     } = useElementComponent(props, context)
 
     return {
@@ -23,9 +22,8 @@ export default {
       $size,
       theme,
       classes,
-      mainClass,
-      defaultClasses,
       templates,
+      template,
     }
   },
 }

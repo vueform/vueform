@@ -93,17 +93,8 @@ export default {
       theme,
       classes,
       templates,
-      mainClass,
-      defaultClasses,
-    } = useFormComponent(props, context, {}, {
-      addClasses: [
-        ['container', computed(() => addClass.value || null), ref(true)],
-        ['wrapper', 'wrapper_active', computed(() => active.value)],
-        ['wrapper', 'wrapper_inactive', computed(() => !active.value)],
-        ['wrapper', 'wrapper_valid', computed(() => !invalid.value)],
-        ['wrapper', 'wrapper_invalid', computed(() => invalid.value)],
-      ]
-    })
+      template,
+    } = useFormComponent(props, context)
 
     const {
       available,
@@ -353,9 +344,8 @@ export default {
       visible,
       invalid,
       classes,
-      mainClass,
-      defaultClasses,
       templates,
+      template,
       available,
       isLabelComponent,
       tabLabel,

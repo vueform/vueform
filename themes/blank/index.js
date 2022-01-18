@@ -59,11 +59,14 @@ import TTextElement from './templates/elements/TTextElement.vue'
 import TEditorElement from './templates/elements/TEditorElement.vue'
 
 import CheckboxgroupCheckbox from './templates/elements/partials/CheckboxgroupCheckbox.vue'
-import CheckboxgroupCheckbox_tabs from './templates/elements/partials/CheckboxgroupCheckbox_tabs.vue'
+import CheckboxgroupCheckbox_pills from './templates/elements/partials/CheckboxgroupCheckbox_pills.vue'
+import CheckboxgroupCheckbox_blocks from './templates/elements/partials/CheckboxgroupCheckbox_blocks.vue'
 import FilePreview from './templates/elements/partials/FilePreview.vue'
 import ImagePreview from './templates/elements/partials/ImagePreview.vue'
 import GalleryPreview from './templates/elements/partials/GalleryPreview.vue'
 import RadiogroupRadio from './templates/elements/partials/RadiogroupRadio.vue'
+import RadiogroupRadio_pills from './templates/elements/partials/RadiogroupRadio_pills.vue'
+import RadiogroupRadio_blocks from './templates/elements/partials/RadiogroupRadio_blocks.vue'
 
 import columns from './columns.js'
 import classes from './classes.js'
@@ -123,11 +126,14 @@ export default {
     TEditorElement,
 
     CheckboxgroupCheckbox,
-    CheckboxgroupCheckbox_tabs,
+    CheckboxgroupCheckbox_pills,
+    CheckboxgroupCheckbox_blocks,
     FilePreview,
     ImagePreview,
     GalleryPreview,
     RadiogroupRadio,
+    RadiogroupRadio_pills,
+    RadiogroupRadio_blocks,
 
     DatepickerWrapper,
     EditorWrapper,

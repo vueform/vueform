@@ -4,7 +4,10 @@ const base = function(props, context, dependencies)
 {
   const {
     replaceTemplates,
+    view,
   } = toRefs(props)
+  
+  const componentName = context.name
 
   // ============ DEPENDENCIES ============
 
@@ -26,8 +29,20 @@ const base = function(props, context, dependencies)
     )
   })
 
+  /**
+   * The component's template.
+   * 
+   * @type {object}
+   */
+  const template = computed(() => {
+    return view.value && templates.value[`${componentName.value}_${view.value}`]
+            ? templates.value[`${componentName.value}_${view.value}`]
+            : templates.value[componentName.value]
+  })
+
   return {
     templates,
+    template,
   }
 }
 

@@ -22,16 +22,9 @@ export default {
       $size,
       classes,
       templates,
-      mainClass,
+      template,
       theme,
-      defaultClasses,
-    } = useElementComponent(props, context, {}, {
-      addClasses: [
-        ['container', 'container_before', computed(() => type.value == 'before')],
-        ['container', 'container_between', computed(() => type.value == 'between')],
-        ['container', 'container_after', computed(() => type.value == 'after')],
-      ]
-    })
+    } = useElementComponent(props, context)
 
     // ============== COMPUTED ==============
 
@@ -61,9 +54,8 @@ export default {
       $size,
       theme,
       classes,
-      mainClass,
-      defaultClasses,
       templates,
+      template,
       content,
       isSlot,
     }

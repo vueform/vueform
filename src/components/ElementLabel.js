@@ -14,15 +14,10 @@ export default {
       form$,
       $size,
       classes,
-      mainClass,
       templates,
+      template,
       theme,
-      defaultClasses,
-    } = useElementComponent(props, context, {}, {
-      addClasses: [
-        ['container', computed(() => el$.value.columnsClasses.label ), computed(() => !el$.value.inline)]
-      ]
-    })
+    } = useElementComponent(props, context)
 
     const {
       label,
@@ -70,9 +65,8 @@ export default {
       $size,
       theme,
       classes,
-      mainClass,
-      defaultClasses,
       templates,
+      template,
       label,
       isLabelComponent,
       name,

@@ -4,6 +4,7 @@ const base = function(props, context, dependencies)
 {
   const {
     size,
+    view,
   } = toRefs(props)
 
   // ============ DEPENDENCIES ============
@@ -51,7 +52,6 @@ const base = function(props, context, dependencies)
 
     return form$.value.$size
   })
-
   // =============== METHODS ==============
 
   /**
@@ -75,6 +75,7 @@ const base = function(props, context, dependencies)
   // ============== PROVIDES ==============
   
   provide('$size', $size)
+  provide('view', view)
 
   return {
     hidden,

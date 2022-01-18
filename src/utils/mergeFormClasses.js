@@ -20,10 +20,14 @@ export default class MergeFormClasses
   constructor(options = {}) {
     this.component = options.component
     this.component$ = options.component$
-    this.template = options.templates[this.component]
+    this.template = options.view && options.templates[`${this.component}_${options.view}`]
+      ? options.templates[`${this.component}_${options.view}`]
+      : options.templates[this.component]
 
-    let templateData = options.templates[this.component].data()
-    let themeClasses = _.cloneDeep(this.toArray(options.theme.classes[this.component]))
+    let templateData = this.template.data()
+    let themeClasses = _.cloneDeep(this.toArray(options.view && options.theme.classes[`${this.component}_${options.view}`]
+      ? options.theme.classes[`${this.component}_${options.view}`]
+      : options.theme.classes[this.component]))
     let templateClasses = _.cloneDeep(this.toArray(templateData.defaultClasses))
     let templateMerge = templateData.merge !== undefined ? templateData.merge : true
 

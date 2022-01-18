@@ -1,10 +1,10 @@
 <template>
   <label :class="classes.container">
     <slot
-      v-bind="{ name: el$.path }"
+      v-bind="{ name }"
       :classes="classes"
       :is-disabled="isDisabled"
-      :id="`${el$.fieldId}-${value}`"
+      :id="id"
       :item="item"
       :value="value"
       :items="items"
@@ -15,10 +15,10 @@
         v-model="el$.value"
         :value="value"
         :class="classes.input"
-        :name="el$.path"
-        :id="`${el$.fieldId}-${value}`"
+        :name="name"
+        :id="id"
         :disabled="isDisabled"
-     />
+      />
 
       <span 
         :class="classes.text"

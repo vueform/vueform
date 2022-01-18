@@ -40,9 +40,8 @@ export default {
       $size,
       classes,
       templates,
+      template,
       theme,
-      defaultClasses,
-      mainClass,
     } = useElementComponent(props, context)
 
     // ================ DATA ================
@@ -187,9 +186,8 @@ export default {
       $size,
       theme,
       classes,
-      defaultClasses,
-      mainClass,
       templates,
+      template,
       datepicker$,
       input,
       config,

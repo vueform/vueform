@@ -24,11 +24,11 @@ import useHandleError from './../../composables/elements/useHandleError'
 import useValue from './../../composables/elements/useValue'
 import useWatchValue from './../../composables/elements/useWatchValue'
 import useSlots from './../../composables/elements/useSlots'
+import useClasses from './../../composables/elements/useClasses'
 
 import { file as useBaseElement } from './../../composables/elements/useBaseElement'
 import { file as useValidation } from './../../composables/elements/useValidation'
 import { file as useGenericName } from './../../composables/elements/useGenericName'
-import { file as useClasses } from './../../composables/elements/useClasses'
 
 import BaseElement from './../../mixins/BaseElement'
 import HasView from './../../mixins/HasView'

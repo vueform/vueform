@@ -22,16 +22,10 @@ export default {
       el$,
       $size,
       classes,
-      mainClass,
       templates,
+      template,
       theme,
-      defaultClasses,
-    } = useElementComponent(props, context, {}, {
-      addClasses: [
-        ['container', 'container_before', computed(() => type.value === 'before')],
-        ['container', 'container_after', computed(() => type.value === 'after')],
-      ],
-    })
+    } = useElementComponent(props, context)
 
     // ============== COMPUTED ==============
 
@@ -93,9 +87,8 @@ export default {
       theme,
       $size,
       templates,
+      template,
       classes,
-      mainClass,
-      defaultClasses,
       addon,
       isAddonComponent,
       isSlot,

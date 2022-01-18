@@ -25,6 +25,7 @@ import useEmpty from './../../composables/elements/useEmpty'
 import useAutogrow from './../../composables/elements/useAutogrow'
 import useWatchValue from './../../composables/elements/useWatchValue'
 import useFloating from './../../composables/elements/useFloating'
+import useClasses from './../../composables/elements/useClasses'
 
 import BaseElement from './../../mixins/BaseElement'
 import HasView from './../../mixins/HasView'
@@ -32,7 +33,6 @@ import HasChange from './../../mixins/HasChange'
 import HasData from './../../mixins/HasData'
 import HasValidation from './../../mixins/HasValidation'
 
-import { input as useClasses } from './../../composables/elements/useClasses'
 import { text as useValidation } from './../../composables/elements/useValidation'
 
 export default {

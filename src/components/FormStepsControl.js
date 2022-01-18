@@ -31,16 +31,9 @@ export default {
       $size,
       theme,
       classes,
-      mainClass,
       templates,
-      defaultClasses,
-    } = useFormComponent(props, context, {}, {
-      addClasses: [
-        ['button', `button_${type.value}_enabled`, computed(() => !isDisabled.value)],
-        ['button', `button_${type.value}_disabled`, computed(() => isDisabled.value)],
-        ['button', `button_${type.value}_loading`, computed(() => isLoading.value)],
-      ]
-    })
+      template,
+    } = useFormComponent(props, context)
 
     // ============== COMPUTED ==============
 
@@ -221,9 +214,8 @@ export default {
       theme,
       steps$,
       classes,
-      mainClass,
-      defaultClasses,
       templates,
+      template,
       visible,
       isDisabled,
       isLoading,

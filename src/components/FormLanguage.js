@@ -25,15 +25,9 @@ export default {
       $size,
       theme,
       classes,
-      mainClass,
       templates,
-      defaultClasses,
-    } = useFormComponent(props, context, {}, {
-      addClasses: [
-        ['wrapper', 'wrapper_active', computed(() => selected.value)],
-        ['wrapper', 'wrapper_inactive', computed(() => !selected.value)],
-      ]
-    })
+      template,
+    } = useFormComponent(props, context)
 
     // ============== COMPUTED ==============
 
@@ -73,9 +67,8 @@ export default {
       selectedLanguage,
       selected,
       classes,
-      mainClass,
-      defaultClasses,
       templates,
+      template,
       select,
     }
   },

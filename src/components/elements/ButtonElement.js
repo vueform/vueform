@@ -9,9 +9,9 @@ import useSlots from './../../composables/elements/useSlots'
 import useButton from './../../composables/elements/useButton'
 import useLayout from './../../composables/elements/useLayout'
 import useEvents from './../../composables/useEvents'
+import useClasses from './../../composables/elements/useClasses'
 
 import { button as useDisabled } from './../../composables/elements/useDisabled'
-import { button as useClasses } from './../../composables/elements/useClasses'
 import { static_ as useBaseElement } from './../../composables/elements/useBaseElement'
 import { static_ as usePath } from './../../composables/elements/usePath'
 

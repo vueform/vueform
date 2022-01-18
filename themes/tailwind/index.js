@@ -58,11 +58,14 @@ import TTextElement from './../blank/templates/elements/TTextElement.vue'
 import TEditorElement from './../blank/templates/elements/TEditorElement.vue'
 
 import CheckboxgroupCheckbox from './../blank/templates/elements/partials/CheckboxgroupCheckbox.vue'
-import CheckboxgroupCheckbox_tabs from './../blank/templates/elements/partials/CheckboxgroupCheckbox_tabs.vue'
+import CheckboxgroupCheckbox_pills from './../blank/templates/elements/partials/CheckboxgroupCheckbox_pills.vue'
+import CheckboxgroupCheckbox_blocks from './../blank/templates/elements/partials/CheckboxgroupCheckbox_blocks.vue'
 import FilePreview from './../blank/templates/elements/partials/FilePreview.vue'
 import ImagePreview from './../blank/templates/elements/partials/ImagePreview.vue'
 import GalleryPreview from './../blank/templates/elements/partials/GalleryPreview.vue'
 import RadiogroupRadio from './../blank/templates/elements/partials/RadiogroupRadio.vue'
+import RadiogroupRadio_pills from './../blank/templates/elements/partials/RadiogroupRadio_pills.vue'
+import RadiogroupRadio_blocks from './../blank/templates/elements/partials/RadiogroupRadio_blocks.vue'
 
 import DatepickerWrapper from './templates/wrappers/DatepickerWrapper.vue'
 import EditorWrapper from './templates/wrappers/EditorWrapper.vue'
@@ -125,11 +128,14 @@ const theme = {
     TEditorElement,
 
     CheckboxgroupCheckbox,
-    CheckboxgroupCheckbox_tabs,
+    CheckboxgroupCheckbox_pills,
+    CheckboxgroupCheckbox_blocks,
     FilePreview,
     ImagePreview,
     GalleryPreview,
     RadiogroupRadio,
+    RadiogroupRadio_pills,
+    RadiogroupRadio_blocks,
 
     DatepickerWrapper,
     EditorWrapper,

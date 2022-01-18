@@ -14,15 +14,9 @@ export default {
       $size,
       classes,
       templates,
-      mainClass,
+      template,
       theme,
-      defaultClasses,
-    } = useElementComponent(props, context, {}, {
-      addClasses: [
-        ['container', computed(() => el$.value.classes.container), ref(true)],
-        ['container', 'container_error', computed(() => !el$.value.isStatic && el$.value.errors && !!el$.value.errors.length)],
-      ]
-    })
+    } = useElementComponent(props, context)
 
     // ============== COMPUTED ==============
 
@@ -41,9 +35,8 @@ export default {
       $size,
       theme,
       templates,
-      defaultClasses,
+      template,
       classes,
-      mainClass,
       visible,
       // hasLabel,
     }

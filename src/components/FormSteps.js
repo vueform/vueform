@@ -18,9 +18,8 @@ export default {
       $size,
       theme,
       classes,
-      mainClass,
       templates,
-      defaultClasses,
+      template,
     } = useFormComponent(props, context)
 
     const {
@@ -533,9 +532,8 @@ export default {
       listeners,
       exists,
       classes,
-      mainClass,
-      defaultClasses,
       templates,
+      template,
       steps$,
       pending,
       debouncing,

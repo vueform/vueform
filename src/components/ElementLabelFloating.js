@@ -11,25 +11,17 @@ export default {
   },
   setup(props, context)
   {    
-    const { visible } = toRefs(props)
-
     // ============ DEPENDENCIES ============
 
     const {
-    el$,
-    form$,
-    $size,
-    classes,
-    templates,
-    mainClass,
-    theme,
-    defaultClasses,
-  } = useElementComponent(props, context, {}, {
-    addClasses: [
-      ['label', 'label_invisible', computed(() => !visible.value)],
-      ['label', 'label_visible', computed(() => visible.value)],
-    ]
-  })
+      el$,
+      form$,
+      $size,
+      classes,
+      templates,
+      template,
+      theme,
+    } = useElementComponent(props, context)
 
     // ============== COMPUTED ==============
 
@@ -48,9 +40,8 @@ export default {
       $size,
       theme,
       classes,
-      mainClass,
-      defaultClasses,
       templates,
+      template,
       floating,
     }
   },

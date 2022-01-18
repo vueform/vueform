@@ -22,8 +22,7 @@ import useEvents from './../../composables/useEvents'
 import useRadio from './../../composables/elements/useRadio'
 import useValue from './../../composables/elements/useValue'
 import useWatchValue from './../../composables/elements/useWatchValue'
-
-import { input as useClasses } from './../../composables/elements/useClasses'
+import useClasses from './../../composables/elements/useClasses'
 
 import BaseElement from './../../mixins/BaseElement'
 import HasView from './../../mixins/HasView'

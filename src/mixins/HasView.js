@@ -56,6 +56,11 @@ export default {
       type: [Array],
       default: () => ([])
     },
+    view: {
+      required: false,
+      type: [String],
+      default: undefined,
+    },
     size: {
       required: false,
       type: [String],

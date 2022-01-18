@@ -32,17 +32,9 @@ export default {
       $size,
       classes,
       templates,
-      mainClass,
+      template,
       theme,
-      defaultClasses,
-    } = useElementComponent(props, context, {}, {
-      addClasses: [
-        ['container', 'container_active', computed(() => dragging.value)],
-        ['container', 'container_inactive', computed(() => !dragging.value)],
-        ['container', 'container_enabled', computed(() => !disabled.value)],
-        ['container', 'container_disabled', computed(() => disabled.value)],
-      ],
-    })
+    } = useElementComponent(props, context)
 
     // ================ DATA ================
 
@@ -127,9 +119,8 @@ export default {
       form$,
       $size,
       classes,
-      mainClass,
-      defaultClasses,
       templates,
+      template,
       theme,
       dragging,
       area,

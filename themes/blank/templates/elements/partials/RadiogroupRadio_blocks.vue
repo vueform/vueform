@@ -10,30 +10,33 @@
       :items="items"
       :index="index"
     >
-      <input
-        type="checkbox"
-        v-model="el$.model"
-        :value="value"
-        :class="classes.input"
-        :name="name"
-        :id="id"
-        :disabled="isDisabled"
-     />
-      <span 
-        :class="classes.text"
-        v-html="item.label"
-      />
+      <div :class="classes.wrapper">
+        <input
+          type="radio"
+          v-model="el$.model"
+          :value="value"
+          :class="classes.input"
+          :name="name"
+          :id="id"
+          :disabled="isDisabled"
+        />
+        <div :class="classes.text_wrapper">
+          <div :class="classes.text" v-html="item.name" />
+          <div :class="classes.description" v-html="item.description" />
+        </div>
+      </div>
     </slot>
   </label>
 </template>
 
 <script>
   export default {
-    name: 'CheckboxgroupCheckbox',
+    name: 'CheckboxgroupCheckbox_pills',
     data() {
       return {
         defaultClasses: {
           container: '',
+          wrapper: '',
           input: '',
           input_enabled: '',
           input_disabled: '',

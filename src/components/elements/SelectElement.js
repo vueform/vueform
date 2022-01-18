@@ -26,9 +26,9 @@ import useValue from './../../composables/elements/useValue'
 import useWatchValue from './../../composables/elements/useWatchValue'
 import useFloating from './../../composables/elements/useFloating'
 import useLoading from './../../composables/elements/useLoading'
+import useClasses from './../../composables/elements/useClasses'
 
 import { select as useOptions } from './../../composables/elements/useOptions'
-import { input as useClasses } from './../../composables/elements/useClasses'
 
 import BaseElement from './../../mixins/BaseElement'
 import HasView from './../../mixins/HasView'

@@ -115,23 +115,9 @@ export default {
       $size,
       theme,
       classes,
-      mainClass,
       templates,
-      defaultClasses,
-    } = useFormComponent(props, context, {}, {
-      addClasses: [
-        ['container', 'container_active', computed(() => active.value)],
-        ['container', 'container_inactive', computed(() => !active.value)],
-        ['container', 'container_disabled', computed(() => isDisabled.value)],
-        ['container', 'container_enabled', computed(() => !isDisabled.value)],
-        ['container', 'container_completed', computed(() => completed.value)],
-        ['container', 'container_incompleted', computed(() => !completed.value)],
-        ['container', 'container_valid', computed(() => !invalid.value)],
-        ['container', 'container_invalid', computed(() => invalid.value)],
-        ['container', 'container_pending', computed(() => pending.value)],
-        ['container', computed(() => addClass.value || null), ref(true)],
-      ]
-    })
+      template,
+    } = useFormComponent(props, context)
 
     const {
       available,
@@ -551,9 +537,8 @@ export default {
       invalid,
       pending,
       classes,
-      mainClass,
-      defaultClasses,
       templates,
+      template,
       available,
       baseLabel,
       debouncing,

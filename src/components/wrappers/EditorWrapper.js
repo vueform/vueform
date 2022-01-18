@@ -69,6 +69,7 @@ export default {
       $size,
       classes,
       templates,
+      template,
       theme
     } = useElementComponent(props, context)
 
@@ -224,6 +225,7 @@ export default {
       theme,
       classes,
       templates,
+      template,
       editor$,
       update,
       setOption,

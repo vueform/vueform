@@ -3,6 +3,7 @@ import { computed, toRefs, ref, getCurrentInstance } from 'composition-api'
 import useForm$ from './useForm$'
 import useTheme from './useTheme'
 import use$Size from './use$Size'
+import useView from './useView'
 import MergeFormClasses from './../utils/mergeFormClasses'
 
 const base = function(props, context, dependencies, options = {})
@@ -23,17 +24,9 @@ const base = function(props, context, dependencies, options = {})
     $size
   } = use$Size(props, context)
 
-  const template = theme.value.templates[componentName.value]
-  
-  // ================ DATA =================
-
-  /**
-  * The default classes for the component defined by theme.
-  * 
-  * @type {object}
-  * @private
-  */
-  const defaultClasses = ref(template.data ? template.data().defaultClasses : {})
+  const {
+    view
+  } = useView(props, context)
   
   // ============== COMPUTED ===============
 
@@ -59,6 +52,7 @@ const base = function(props, context, dependencies, options = {})
       theme: theme.value,
       config: form$.value.$vueform.config,
       templates: templates.value,
+      view: view.value,
       merge: [
         form$.value,
       ],
@@ -89,23 +83,24 @@ const base = function(props, context, dependencies, options = {})
   })
 
   /**
-  * The class name of the components's outermost DOM.
-  * 
-  * @type {string}
-  * @private
-  */
-  const mainClass = computed(() => {
-    return _.keys(defaultClasses.value)[0]
+   * The component's template.
+   * 
+   * @type {object}
+   */
+  const template = computed(() => {
+    return view.value && templates.value[`${componentName.value}_${view.value}`]
+            ? templates.value[`${componentName.value}_${view.value}`]
+            : templates.value[componentName.value]
   })
 
   return {
     form$,
     theme,
     $size,
+    view,
     classes,
     templates,
-    mainClass,
-    defaultClasses,
+    template,
   }
 }
 

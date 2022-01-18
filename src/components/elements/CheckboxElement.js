@@ -20,9 +20,9 @@ import useEvents from './../../composables/useEvents'
 import useValue from './../../composables/elements/useValue'
 import useWatchValue from './../../composables/elements/useWatchValue'
 import useSlots from './../../composables/elements/useSlots'
+import useClasses from './../../composables/elements/useClasses'
 
 import { boolean as useNullValue } from './../../composables/elements/useNullValue'
-import { input as useClasses } from './../../composables/elements/useClasses'
 import { checkbox as useToggle } from './../../composables/elements/useToggle'
 
 import BaseElement from './../../mixins/BaseElement'

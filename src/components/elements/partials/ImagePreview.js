@@ -11,16 +11,10 @@ export default {
       form$,
       $size,
       classes,
-      mainClass,
-      defaultClasses,
       templates,
+      template,
       theme,
-    } = useElementComponent(props, context, {}, {
-      addClasses: [
-        ['image', 'image_link', computed(() => hasLink.value)],
-        ['image', 'image_static', computed(() => !hasLink.value)],
-      ]
-    })
+    } = useElementComponent(props, context)
 
     const {
       visible,
@@ -57,9 +51,8 @@ export default {
       form$,
       $size,
       classes,
-      mainClass,
-      defaultClasses,
       templates,
+      template,
       theme,
       visible,
       hasLink,

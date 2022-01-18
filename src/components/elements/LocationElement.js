@@ -22,11 +22,11 @@ import useEmpty from './../../composables/elements/useEmpty'
 import useValue from './../../composables/elements/useValue'
 import useLocation from './../../composables/elements/useLocation'
 import useFloating from './../../composables/elements/useFloating'
+import useClasses from './../../composables/elements/useClasses'
 
 import { location as useWatchValue } from './../../composables/elements/useWatchValue'
 import { location as useNullValue } from './../../composables/elements/useNullValue' 
 import { location as useValidation } from './../../composables/elements/useValidation'
-import { input as useClasses } from './../../composables/elements/useClasses'
 
 import BaseElement from './../../mixins/BaseElement'
 import HasView from './../../mixins/HasView'
