@@ -57,7 +57,7 @@ const base = function(props, context, dependencies, options = {})
         value = internalValue.value
       }
 
-      return value !== undefined ? value : defaultValue.value
+      return value !== undefined ? value : _.cloneDeep(defaultValue.value)
     },
     set(val) {
       if (form$.value.isSync) {
@@ -92,12 +92,12 @@ const base = function(props, context, dependencies, options = {})
   if (options.init === undefined || options.init !== false) {
     // If element's value was undefined initially (not found in v-model/data) then we need to set it's value
     if (initialValue.value === undefined) {
-      value.value = defaultValue.value
+      value.value = _.cloneDeep(defaultValue.value)
     }
   }
 
   watch(type, () => {
-    value.value = defaultValue.value
+    value.value = _.cloneDeep(defaultValue.value)
   })
 
   return {

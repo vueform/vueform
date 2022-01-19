@@ -1,3 +1,5 @@
+import { ref } from 'composition-api'
+
 import { onMounted } from 'composition-api'
 import useForm$ from './composables/useForm$'
 import useTheme from './composables/useTheme'
@@ -7,7 +9,6 @@ import useConditions from './composables/useConditions'
 import useValue from './composables/elements/useValue'
 import useData from './composables/elements/useData'
 import useDefault from './composables/elements/useDefault'
-import useNullValue from './composables/elements/useNullValue'
 import useLabel from './composables/elements/useLabel'
 import useColumns from './composables/elements/useColumns'
 import useBaseElement from './composables/elements/useBaseElement'
@@ -38,14 +39,15 @@ const ElementMixin = function() {
   ]
 }
 
-const useElement = function(props, context, options) {
+const useElement = function(props, context, dependencies, options) {
+  const nullValue = ref(options.nullValue !== undefined ? options.nullValue : null)
+
   const form$ = useForm$(props, context)
   const theme = useTheme(props, context)
   const layout = useLayout(props, context)
   const input = useInput(props, context)
   const path = usePath(props, context)
   const disabled = useDisabled(props, context)
-  const nullValue = useNullValue(props, context)
 
   const fieldId = useFieldId(props, context, {
     path: path.path,
@@ -54,7 +56,7 @@ const useElement = function(props, context, options) {
   const floating = useFloating(props, context, {
     form$: form$.form$,
   })
-console.log(context.emits)
+  
   const events = useEvents(props, context, {}, {
     events: context.emits,
   })
@@ -65,7 +67,7 @@ console.log(context.emits)
   })
 
   const default_ = useDefault(props, context, {
-    nullValue: nullValue.nullValue,
+    nullValue,
     form$: form$.form$,
     parent: path.parent,
   })
@@ -93,12 +95,12 @@ console.log(context.emits)
     value: value.value,
     resetValidators: validation.resetValidators,
     defaultValue: default_.defaultValue,
-    nullValue: nullValue.nullValue,
+    nullValue,
   })
 
   const empty = useEmpty(props, context, {
     value: value.value,
-    nullValue: nullValue.nullValue,
+    nullValue,
   })
 
   const label = useLabel(props, context, {
@@ -145,7 +147,7 @@ console.log(context.emits)
     slots: [
       'label', 'info', 'description', 'before',
       'between', 'after',
-    ]
+    ].concat(options.slots||[])
   })
 
   const handleInput = useHandleInput(props, context, {
@@ -173,7 +175,6 @@ console.log(context.emits)
     ...input,
     ...path,
     ...disabled,
-    ...nullValue,
     ...baseElement,
     ...default_,
     ...value,
@@ -191,6 +192,7 @@ console.log(context.emits)
     ...empty,
     ...handleInput,
     ...floating,
+    nullValue,
   }
 }
 
@@ -202,15 +204,25 @@ export default function (options, component = {}) {
   let name = options.name
   let ComponentName = `${_.upperFirst(_.camelCase(name))}Element`
 
-  return Object.assign({}, {
+  let emits = ['change', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'].concat(component.emits||[])
+
+  return {
     name: ComponentName,
     mixins: [].concat(ElementMixin(options)).concat(component.mixins||[]),
-    emits: ['change', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'].concat(component.emits||[]),
+    emits,
     setup(props, context) {
-      context.element = useElement(props, context, options)
-      return component.setup ? component.setup(props, context) : context.element
+      context.emits = emits
+      context.name = ref(ComponentName)
+      const element = useElement(props, context, setup, options)
+      context.element = element
+      const setup = component.setup ? component.setup(props, context) : {}
+      
+      return {
+        ...element,
+        ...setup,
+      }
     },
-    props: Object.assign({}, {
+    props: {
       type: {
         required: false,
         type: [String],
@@ -219,7 +231,7 @@ export default function (options, component = {}) {
       default: {
         required: false,
         type: [String, Number],
-        default: null
+        default: undefined
       },
       disabled: {
         required: false,
@@ -241,6 +253,8 @@ export default function (options, component = {}) {
         type: [String],
         default: null
       },
-    }, options.props||{})
-  }, _.omit(component, ['setup', 'mixins', 'emits', 'props']))
+      ...(options.props||{}),
+    },
+    ...(_.omit(component, ['setup', 'mixins', 'emits', 'props']))
+  }
 }
