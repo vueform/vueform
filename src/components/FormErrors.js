@@ -3,6 +3,13 @@ import useFormComponent from './../composables/useFormComponent'
 
 export default {
   name: 'FormErrors',
+  props: {
+    view: {
+      required: false,
+      type: [String],
+      default: undefined,
+    },
+  },
   setup(props, context)
   {  
     // ============ DEPENDENCIES ============
@@ -10,6 +17,7 @@ export default {
     const {
       form$,
       $size,
+      $view,
       theme,
       classes,
       templates,
@@ -31,6 +39,7 @@ export default {
     return {
       form$,
       $size,
+      $view,
       theme,
       classes,
       templates,

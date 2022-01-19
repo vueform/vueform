@@ -61,6 +61,11 @@ export default {
       type: [String],
       default: undefined,
     },
+    views: {
+      required: false,
+      type: [Object],
+      default: () => ({}),
+    },
     size: {
       required: false,
       type: [String],

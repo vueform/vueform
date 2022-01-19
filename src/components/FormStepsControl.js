@@ -16,6 +16,11 @@ export default {
       default: true,
       private: true,
     },
+    view: {
+      required: false,
+      type: [String],
+      default: undefined,
+    },
   },
   setup(props, context)
   {  
@@ -29,6 +34,7 @@ export default {
     const {
       form$,
       $size,
+      $view,
       theme,
       classes,
       templates,
@@ -211,6 +217,7 @@ export default {
     return {
       form$,
       $size,
+      $view,
       theme,
       steps$,
       classes,

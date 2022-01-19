@@ -144,18 +144,6 @@ export default {
       label: label.label,
       form$: form$.form$,
     })
-    
-    const templates = useTemplates(props, context, {
-      theme: theme.theme,
-      form$: form$.form$
-    })
-
-    const classes = useClasses(props, context, {
-      form$: form$.form$,
-      theme: theme.theme,
-      templates: templates.templates,
-      el$: baseElement.el$,
-    })
 
     const columns = useColumns(props, context, {
       form$: form$.form$,
@@ -168,6 +156,20 @@ export default {
       active: baseElement.active,
       form$: form$.form$,
       parent: path.parent,
+    })
+    
+    const templates = useTemplates(props, context, {
+      theme: theme.theme,
+      form$: form$.form$,
+      $view: view.$view,
+    })
+
+    const classes = useClasses(props, context, {
+      form$: form$.form$,
+      theme: theme.theme,
+      templates: templates.templates,
+      el$: baseElement.el$,
+      $view: view.$view,
     })
 
     const slots = useSlots(props, context, {

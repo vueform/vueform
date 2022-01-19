@@ -1,9 +1,9 @@
 import _ from 'lodash'
-import { computed, toRefs, ref, getCurrentInstance } from 'composition-api'
+import { computed, getCurrentInstance } from 'composition-api'
 import useForm$ from './useForm$'
 import useTheme from './useTheme'
 import use$Size from './use$Size'
-import useView from './useView'
+import use$View from './use$View'
 import MergeFormClasses from './../utils/mergeFormClasses'
 
 const base = function(props, context, dependencies, options = {})
@@ -25,8 +25,8 @@ const base = function(props, context, dependencies, options = {})
   } = use$Size(props, context)
 
   const {
-    view
-  } = useView(props, context)
+    $view
+  } = use$View(props, context)
   
   // ============== COMPUTED ===============
 
@@ -52,7 +52,7 @@ const base = function(props, context, dependencies, options = {})
       theme: theme.value,
       config: form$.value.$vueform.config,
       templates: templates.value,
-      view: view.value,
+      view: $view.value,
       merge: [
         form$.value,
       ],
@@ -88,8 +88,8 @@ const base = function(props, context, dependencies, options = {})
    * @type {object}
    */
   const template = computed(() => {
-    return view.value && templates.value[`${componentName.value}_${view.value}`]
-            ? templates.value[`${componentName.value}_${view.value}`]
+    return $view.value && templates.value[`${componentName.value}_${$view.value}`]
+            ? templates.value[`${componentName.value}_${$view.value}`]
             : templates.value[componentName.value]
   })
 
@@ -97,7 +97,7 @@ const base = function(props, context, dependencies, options = {})
     form$,
     theme,
     $size,
-    view,
+    $view,
     classes,
     templates,
     template,

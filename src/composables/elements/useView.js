@@ -5,7 +5,10 @@ const base = function(props, context, dependencies)
   const {
     size,
     view,
+    views,
   } = toRefs(props)
+  
+  const componentName = context.name
 
   // ============ DEPENDENCIES ============
 
@@ -52,6 +55,33 @@ const base = function(props, context, dependencies)
 
     return form$.value.$size
   })
+
+  /**
+   * The calculated view of the element.
+   *
+   * @returns {string}
+   */
+  const $view = computed(() => {
+    if (view.value) {
+      return view.value
+    }
+
+    if (views.value[componentName.value]) {
+      return views.value[componentName.value]
+    }
+
+    return form$.value.$views[componentName.value]
+  })
+
+  /**
+   * The calculated views of the element.
+   *
+   * @returns {object}
+   */
+  const $views = computed(() => {
+    return Object.assign({}, form$.value.$views, views.value)
+  })
+
   // =============== METHODS ==============
 
   /**
@@ -75,12 +105,14 @@ const base = function(props, context, dependencies)
   // ============== PROVIDES ==============
   
   provide('$size', $size)
-  provide('view', view)
+  provide('$view', $view)
+  provide('$views', $views)
 
   return {
     hidden,
     visible,
     $size,
+    $view,
     hide,
     show,
   }

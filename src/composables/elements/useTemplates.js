@@ -4,7 +4,6 @@ const base = function(props, context, dependencies)
 {
   const {
     replaceTemplates,
-    view,
   } = toRefs(props)
   
   const componentName = context.name
@@ -12,6 +11,7 @@ const base = function(props, context, dependencies)
   // ============ DEPENDENCIES ============
 
   const theme = dependencies.theme
+  const $view = dependencies.$view
 
 
   // ============== COMPUTED ==============
@@ -35,8 +35,8 @@ const base = function(props, context, dependencies)
    * @type {object}
    */
   const template = computed(() => {
-    return view.value && templates.value[`${componentName.value}_${view.value}`]
-            ? templates.value[`${componentName.value}_${view.value}`]
+    return $view.value && templates.value[`${componentName.value}_${$view.value}`]
+            ? templates.value[`${componentName.value}_${$view.value}`]
             : templates.value[componentName.value]
   })
 

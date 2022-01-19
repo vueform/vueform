@@ -58,6 +58,11 @@ export default {
       type: [Array, Object, String],
       default: null
     },
+    view: {
+      required: false,
+      type: [String],
+      default: undefined,
+    },
 
     onActivate: {
       type: [Function],
@@ -90,6 +95,7 @@ export default {
     const {
       form$,
       $size,
+      $view,
       theme,
       classes,
       templates,
@@ -334,6 +340,7 @@ export default {
     return {
       form$,
       $size,
+      $view,
       theme,
       elements$,
       index,

@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import { ref, computed, toRefs, watch, onMounted, onBeforeMount, onBeforeUnmount, onBeforeUpdate, nextTick, getCurrentInstance } from 'composition-api'
+import { ref, computed, provide, watch, onMounted, onBeforeMount, onBeforeUnmount, nextTick, getCurrentInstance } from 'composition-api'
 import useFormComponent from './../composables/useFormComponent'
 import useEvents from './../composables/useEvents'
 import normalize from './../utils/normalize'
@@ -7,6 +7,13 @@ import normalize from './../utils/normalize'
 export default {
   name: 'FormTabs',
   emits: ['select'],
+  props: {
+    view: {
+      required: false,
+      type: [String],
+      default: undefined,
+    },
+  },
   setup(props, context)
   {  
     const $this = getCurrentInstance().proxy
@@ -16,6 +23,7 @@ export default {
     const {
       form$,
       $size,
+      $view,
       theme,
       classes,
       templates,
@@ -233,6 +241,10 @@ export default {
       }
     }
 
+    // ============== PROVIDE ===============
+
+    provide('$view', $view)
+
     // ============== WATCHERS ==============
 
     watch(elements$, (newValue, oldValue) => {
@@ -285,6 +297,7 @@ export default {
     return {
       form$,
       $size,
+      $view,
       theme,
       tabs,
       elements$,

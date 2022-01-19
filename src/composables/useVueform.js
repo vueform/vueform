@@ -18,6 +18,8 @@ const base = function(props, context, dependencies = {})
     tabs,
     steps,
     size,
+    view,
+    views,
     addClass,
     removeClass,
     replaceClass,
@@ -222,7 +224,11 @@ const base = function(props, context, dependencies = {})
       messages, formKey, multilingual, formatLoad, formatData, prepare, default: default_, formData, replaceTemplates,
       addClass, removeClass, replaceClass, overrideClass,
       addClasses, removeClasses, replaceClasses, overrideClasses, presets,
-      size,
+      size, view,
+    }
+
+    const merge = {
+      views,
     }
 
     const ifNotUndefined = {
@@ -257,6 +263,8 @@ const base = function(props, context, dependencies = {})
       formData: baseConfig.value.config.formData,
       theme: baseConfig.value.theme,
       size: baseConfig.value.config.size,
+      view: baseConfig.value.config.view,
+      views: baseConfig.value.config.views,
       addClass: null,
       removeClass: null,
       replaceClass: null,
@@ -281,6 +289,16 @@ const base = function(props, context, dependencies = {})
 
     _.each(override, (val, key) => {
       options[key] = userConfig.value[key] !== undefined ?  userConfig.value[key] : ((val && val.value ? val.value : undefined) || defaults[key])
+    })
+
+    _.each(merge, (val, key) => {
+      if (userConfig.value[key] !== undefined) {
+        options[key] = Object.assign({}, defaults[key], userConfig.value[key])
+      } else if (val && Object.keys(val.value).length) {
+        options[key] = Object.assign({}, defaults[key], val.value)
+      } else {
+        options[key] = Object.assign({}, defaults[key])
+      }
     })
 
     _.each(ifNotUndefined, (val, key) => {
@@ -691,6 +709,7 @@ const base = function(props, context, dependencies = {})
       theme: extendedTheme.value,
       config: baseConfig.value.config,
       templates: templates.value,
+      view: $view.value,
       merge: [
         options.value,
       ],
@@ -704,6 +723,26 @@ const base = function(props, context, dependencies = {})
    */
   const $size = computed(() => {
     return options.value.size
+  })
+
+
+  /**
+   * The calculated views of the form.
+   *
+   * @returns {object}
+   */
+  const $views = computed(() => {
+    return options.value.views
+  })
+
+
+  /**
+   * The calculated view of the form.
+   *
+   * @returns {object}
+   */
+  const $view = computed(() => {
+    return options.value.view
   })
 
   // =============== METHODS ==============
@@ -1072,6 +1111,7 @@ const base = function(props, context, dependencies = {})
   provide('form$', form$)
   provide('theme', extendedTheme)
   provide('$size', $size)
+  provide('$views', $views)
 
   // ================ HOOKS ===============
 
@@ -1165,6 +1205,8 @@ const base = function(props, context, dependencies = {})
     template,
     extendedTheme,
     $size,
+    $view,
+    $views,
     form$,
     model,
     intermediaryValue,

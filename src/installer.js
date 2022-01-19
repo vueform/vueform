@@ -59,7 +59,7 @@ export default function(config, components) {
       // merge (config)
       _.each([
         'languages', 'services', 'addClasses', 'removeClasses',
-        'replaceClasses', 'overrideClasses', 'presets',
+        'replaceClasses', 'overrideClasses', 'presets', 'views',
       ], (attr) => {
           if (config[attr] !== undefined) {
             this.options.config[attr] = Object.assign({}, this.options.config[attr], config[attr])
@@ -79,7 +79,7 @@ export default function(config, components) {
       _.each([
         'columns', 'forceLabels', 'displayErrors', 'floatPlaceholders', 'displayErrors', 'displayMessages',
         'language', 'locale', 'fallbackLocale', 'orderFrom', 'validateOn', 'formData', 'beforeSend', 'axios',
-        'locationProvider', 'classHelpers', 'env', 'usePresets', 'plugins',
+        'locationProvider', 'classHelpers', 'env', 'usePresets', 'plugins', 'size',
       ], (attr) => {
           if (config[attr] !== undefined) {
             this.options.config[attr] = config[attr]

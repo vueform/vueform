@@ -113,6 +113,7 @@ export default {
     const {
       form$,
       $size,
+      $view,
       theme,
       classes,
       templates,
@@ -524,6 +525,7 @@ export default {
     return {
       form$,
       $size,
+      $view,
       theme,
       steps$,
       elements$,

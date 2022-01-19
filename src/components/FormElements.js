@@ -5,6 +5,13 @@ import useElements from './../composables/useElements'
 export default {
   name: 'FormElements',
   slots: ['default'],
+  props: {
+    view: {
+      required: false,
+      type: [String],
+      default: undefined,
+    },
+  },
   setup(props, context)
   {  
     // ============ DEPENDENCIES ============
@@ -12,6 +19,7 @@ export default {
     const {
       form$,
       $size,
+      $view,
       theme,
       classes,
       templates,
@@ -37,6 +45,7 @@ export default {
     return {
       form$,
       $size,
+      $view,
       theme,
       classes,
       templates,
