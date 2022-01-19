@@ -262,9 +262,9 @@ const base = function(props, context, dependencies = {})
       floatPlaceholders: baseConfig.value.config.floatPlaceholders,
       formData: baseConfig.value.config.formData,
       theme: baseConfig.value.theme,
-      size: baseConfig.value.config.size,
       view: baseConfig.value.config.view,
       views: baseConfig.value.config.views,
+      size: null,
       addClass: null,
       removeClass: null,
       replaceClass: null,
@@ -667,11 +667,24 @@ const base = function(props, context, dependencies = {})
    * @type {object}
    */
   const extendedTheme = computed(() => {
+    let presetTemplates = {}
+
+    _.each(baseConfig.value.config.usePresets.concat(options.value.presets), (presetName) => {
+      let preset = baseConfig.value.config.presets[presetName]
+
+      if (!preset.templates) {
+        return
+      }
+
+      presetTemplates = Object.assign({}, presetTemplates, preset.templates)
+    })
+
     return Object.assign({}, options.value.theme, {
       // Add registered component to theme (or overwrite)
       templates: Object.assign({},
         options.value.theme.templates,
         baseConfig.value.templates,
+        presetTemplates,
         options.value.replaceTemplates || {},
       ),
     })
@@ -692,8 +705,8 @@ const base = function(props, context, dependencies = {})
   * @type {object}
   */
   const template = computed(() => {
-    return options.value.view && templates.value[`Vueform_${options.value.view}`]
-            ? templates.value[`Vueform_${options.value.view}`]
+    return $view.value && templates.value[`Vueform_${$view.value}`]
+            ? templates.value[`Vueform_${$view.value}`]
             : templates.value.Vueform
   })
 
@@ -722,7 +735,27 @@ const base = function(props, context, dependencies = {})
    * @returns {string}
    */
   const $size = computed(() => {
-    return options.value.size
+    let $size
+
+    if (options.value.size) {
+      $size = options.value.size
+    } else {
+      _.each(baseConfig.value.config.usePresets.concat(options.value.presets), (presetName) => {
+        let preset = baseConfig.value.config.presets[presetName]
+
+        if (!preset.size) {
+          return
+        } 
+
+        $size = preset.size
+      })
+    }
+
+    if (!$size) {
+      $size = baseConfig.value.config.size
+    }
+
+    return $size
   })
 
 
@@ -732,7 +765,19 @@ const base = function(props, context, dependencies = {})
    * @returns {object}
    */
   const $views = computed(() => {
-    return options.value.views
+    let $views = options.value.views
+
+    _.each(baseConfig.value.config.usePresets.concat(options.value.presets), (presetName) => {
+      let preset = baseConfig.value.config.presets[presetName]
+      
+      if (!preset.views) {
+        return
+      }
+
+      $views = Object.assign({}, $views, preset.views)
+    })
+
+    return $views
   })
 
 
@@ -742,7 +787,11 @@ const base = function(props, context, dependencies = {})
    * @returns {object}
    */
   const $view = computed(() => {
-    return options.value.view
+    if (options.value.view) {
+      return options.value.view
+    }
+    
+    return $views.value.Vueform
   })
 
   // =============== METHODS ==============

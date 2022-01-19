@@ -191,10 +191,18 @@ export default {
       label: label.label,
       form$: form$.form$,
     })
+
+    const view = useView(props, context, {
+      available: conditions.available,
+      active: baseElement.active,
+      form$: form$.form$,
+      parent: path.parent,
+    })
     
     const templates = useTemplates(props, context, {
       theme: theme.theme,
-      form$: form$.form$
+      form$: form$.form$,
+      $view: view.$view,
     })
 
     const editor = useEditor(props, context, {
@@ -209,19 +217,13 @@ export default {
       focused: editor.focused,
       templates: templates.templates,
       el$: baseElement.el$,
+      $view: view.$view,
     })
 
     const columns = useColumns(props, context, {
       form$: form$.form$,
       theme: theme.theme,
       hasLabel: label.hasLabel,
-    })
-
-    const view = useView(props, context, {
-      available: conditions.available,
-      active: baseElement.active,
-      form$: form$.form$,
-      parent: path.parent,
     })
 
     const slots = useSlots(props, context, {

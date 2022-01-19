@@ -30,7 +30,7 @@ const base = function(props, context, dependencies, options = {})
   } = use$Size(props, context)
 
   const {
-    $view
+    $view,
   } = use$View(props, context)
 
   // ============== COMPUTED ===============

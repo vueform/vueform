@@ -4,6 +4,7 @@ const base = function(props, context, dependencies)
 {
   const {
     replaceTemplates,
+    presets,
   } = toRefs(props)
   
   const componentName = context.name
@@ -12,6 +13,7 @@ const base = function(props, context, dependencies)
 
   const theme = dependencies.theme
   const $view = dependencies.$view
+  const form$ = dependencies.form$
 
 
   // ============== COMPUTED ==============
@@ -22,7 +24,19 @@ const base = function(props, context, dependencies)
    * @type {object}
    */
   const templates = computed(() => {
-    return Object.assign({}, theme.value.templates,
+    let presetTemplates = {}
+
+    _.each(presets.value, (presetName) => {
+      let preset = form$.value.$vueform.config.presets[presetName]
+
+      if (!preset.templates) {
+        return
+      }
+
+      presetTemplates = Object.assign({}, presetTemplates, preset.templates)
+    })
+
+    return Object.assign({}, theme.value.templates, presetTemplates,
       replaceTemplates && replaceTemplates.value && Object.keys(replaceTemplates.value).length > 0
         ? replaceTemplates.value 
         : {}

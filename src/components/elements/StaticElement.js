@@ -68,20 +68,8 @@ export default {
     
     const templates = useTemplates(props, context, {
       theme: theme.theme,
-      form$: form$.form$
-    })
-
-    const classes = useClasses(props, context, {
       form$: form$.form$,
-      theme: theme.theme,
-      templates: templates.templates,
-      el$: baseElement.el$,
-    })
-
-    const columns = useColumns(props, context, {
-      form$: form$.form$,
-      theme: theme.theme,
-      hasLabel: label.hasLabel,
+      $view: view.$view,
     })
 
     const view = useView(props, context, {
@@ -89,6 +77,20 @@ export default {
       active: baseElement.active,
       form$: form$.form$,
       parent: path.parent,
+    })
+
+    const classes = useClasses(props, context, {
+      form$: form$.form$,
+      theme: theme.theme,
+      templates: templates.templates,
+      el$: baseElement.el$,
+      $view: view.$view,
+    })
+
+    const columns = useColumns(props, context, {
+      form$: form$.form$,
+      theme: theme.theme,
+      hasLabel: label.hasLabel,
     })
 
     const slots = useSlots(props, context, {

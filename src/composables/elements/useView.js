@@ -6,6 +6,7 @@ const base = function(props, context, dependencies)
     size,
     view,
     views,
+    presets,
   } = toRefs(props)
   
   const componentName = context.name
@@ -45,15 +46,31 @@ const base = function(props, context, dependencies)
    * @returns {string}
    */
   const $size = computed(() => {
+    let $size
+    
     if (size.value) {
-      return size.value
+      $size = size.value
+    } else {
+      _.each(presets.value, (presetName) => {
+        let preset = form$.value.$vueform.config.presets[presetName]
+
+        if (!preset.size) {
+          return
+        } 
+
+        $size = preset.size
+      })
     }
 
-    if (parent.value) {
-      return parent.value.$size
+    if (!$size) {
+      if (parent.value) {
+        $size = parent.value.$size
+      } else {
+        $size = form$.value.$size
+      }
     }
 
-    return form$.value.$size
+    return $size
   })
 
   /**
@@ -66,11 +83,7 @@ const base = function(props, context, dependencies)
       return view.value
     }
 
-    if (views.value[componentName.value]) {
-      return views.value[componentName.value]
-    }
-
-    return form$.value.$views[componentName.value]
+    return $views.value[componentName.value]
   })
 
   /**
@@ -79,7 +92,19 @@ const base = function(props, context, dependencies)
    * @returns {object}
    */
   const $views = computed(() => {
-    return Object.assign({}, form$.value.$views, views.value)
+    let $views = Object.assign({}, form$.value.$views, views.value)
+
+    _.each(presets.value, (presetName) => {
+      let preset = form$.value.$vueform.config.presets[presetName]
+
+      if (!preset.views) {
+        return
+      }
+
+      $views = Object.assign({}, $views, preset.views)
+    })
+
+    return $views
   })
 
   // =============== METHODS ==============
@@ -113,6 +138,7 @@ const base = function(props, context, dependencies)
     visible,
     $size,
     $view,
+    $views,
     hide,
     show,
   }

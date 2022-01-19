@@ -227,7 +227,18 @@ export default {
 
     const templates = useTemplates(props, context, {
       theme: theme.theme,
-      form$: form$.form$
+      form$: form$.form$,
+      $view: view.$view,
+    })
+
+    const classes = useClasses(props, context, {
+      form$: form$.form$,
+      theme: theme.theme,
+      isDisabled: disabled.isDisabled,
+      sorting: sorting.sorting,
+      templates: templates.templates,
+      el$: baseElement.el$,
+      $view: view.$view,
     })
 
     const slots = useSlots(props, context, {
@@ -257,15 +268,6 @@ export default {
       nullValue: nullValue.nullValue,
       defaultValue: default_.defaultValue,
       fire: events.fire,
-    })
-
-    const classes = useClasses(props, context, {
-      form$: form$.form$,
-      theme: theme.theme,
-      isDisabled: disabled.isDisabled,
-      sorting: sorting.sorting,
-      templates: templates.templates,
-      el$: baseElement.el$,
     })
 
     const sort = useSort(props, context, {

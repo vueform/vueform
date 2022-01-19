@@ -110,10 +110,18 @@ export default {
       form$: form$.form$,
       el$: baseElement.el$,
     })
+
+    const view = useView(props, context, {
+      available: conditions.available,
+      active: baseElement.active,
+      form$: form$.form$,
+      parent: path.parent,
+    })
     
     const templates = useTemplates(props, context, {
       theme: theme.theme,
-      form$: form$.form$
+      form$: form$.form$,
+      $view: view.$view,
     })
 
     const button = useButton(props, context, {
@@ -129,19 +137,13 @@ export default {
       isDisabled: disabled.isDisabled,
       templates: templates.templates,
       el$: baseElement.el$,
+      $view: view.$view,
     })
 
     const columns = useColumns(props, context, {
       form$: form$.form$,
       theme: theme.theme,
       hasLabel: label.hasLabel,
-    })
-
-    const view = useView(props, context, {
-      available: conditions.available,
-      active: baseElement.active,
-      form$: form$.form$,
-      parent: path.parent,
     })
 
     const slots = useSlots(props, context, {
