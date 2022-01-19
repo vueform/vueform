@@ -61,8 +61,8 @@ import CheckboxgroupCheckbox from './../blank/templates/elements/partials/Checkb
 import CheckboxgroupCheckbox_pills from './../blank/templates/elements/partials/CheckboxgroupCheckbox_pills.vue'
 import CheckboxgroupCheckbox_blocks from './../blank/templates/elements/partials/CheckboxgroupCheckbox_blocks.vue'
 import FilePreview from './../blank/templates/elements/partials/FilePreview.vue'
-import ImagePreview from './../blank/templates/elements/partials/ImagePreview.vue'
-import GalleryPreview from './../blank/templates/elements/partials/GalleryPreview.vue'
+import FilePreview_image from './../blank/templates/elements/partials/FilePreview_image.vue'
+import FilePreview_gallery from './../blank/templates/elements/partials/FilePreview_gallery.vue'
 import RadiogroupRadio from './../blank/templates/elements/partials/RadiogroupRadio.vue'
 import RadiogroupRadio_pills from './../blank/templates/elements/partials/RadiogroupRadio_pills.vue'
 import RadiogroupRadio_blocks from './../blank/templates/elements/partials/RadiogroupRadio_blocks.vue'
@@ -131,8 +131,8 @@ const theme = {
     CheckboxgroupCheckbox_pills,
     CheckboxgroupCheckbox_blocks,
     FilePreview,
-    ImagePreview,
-    GalleryPreview,
+    FilePreview_image,
+    FilePreview_gallery,
     RadiogroupRadio,
     RadiogroupRadio_pills,
     RadiogroupRadio_blocks,

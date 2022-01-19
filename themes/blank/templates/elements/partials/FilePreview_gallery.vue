@@ -37,7 +37,7 @@
 
 <script>
   export default {
-    name: 'GalleryPreview',
+    name: 'FilePreview_gallery',
     data() {
       return {
         defaultClasses: {

@@ -1014,7 +1014,7 @@ export default {
       classes[`container_${$size}`],
     ])
   },
-  GalleryPreview: {
+  FilePreview_gallery: {
     container: 'flex justify-start flex-col transition duration-500 relative group',
     container_sm: 'form-w-gallery-sm form-h-gallery-sm',
     container_md: 'form-w-gallery form-h-gallery',
@@ -1059,7 +1059,7 @@ export default {
       classes[`overlay_${$size}`],
     ]),
   },
-  ImagePreview: {
+  FilePreview_image: {
     container: 'flex justify-start flex-row group relative',
     wrapper: 'flex justify-between items-center w-full',
     image: 'flex items-center bg-gray-100 flex-grow-0 flex-shrink-0',

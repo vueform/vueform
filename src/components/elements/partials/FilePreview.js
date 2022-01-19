@@ -1,3 +1,4 @@
+import { computed } from 'composition-api'
 import useElementComponent from './../../../composables/useElementComponent'
 import usePreview from './../../../composables/usePreview'
 
@@ -34,6 +35,17 @@ export default {
       el$,
     })
 
+    // ============== COMPUTED ==============
+    
+    /**
+     * The image's preview when [`view`](#option-view) is `image` or `gallery`. Equals to the `link` if the file is already uploaded and `base64` if only selected or temporarily uploaded.
+     * 
+     * @type {string}
+     */
+    const preview = computed(() => {
+      return el$.value.preview
+    })
+
     return {
       el$,
       form$,
@@ -54,6 +66,7 @@ export default {
       canRemove,
       canUploadTemp,
       uploadText,
+      preview,
       upload,
       remove,
     }

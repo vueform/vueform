@@ -46,7 +46,7 @@
 
 <script>
   export default {
-    name: 'ImagePreview',
+    name: 'FilePreview_image',
     data() {
       return {
         defaultClasses: {

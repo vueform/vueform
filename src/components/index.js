@@ -55,8 +55,6 @@ import TEditorElement from './elements/TEditorElement'
 
 import CheckboxgroupCheckbox from './elements/partials/CheckboxgroupCheckbox'
 import FilePreview from './elements/partials/FilePreview'
-import ImagePreview from './elements/partials/ImagePreview'
-import GalleryPreview from './elements/partials/GalleryPreview'
 import RadiogroupRadio from './elements/partials/RadiogroupRadio'
 
 export default {
@@ -114,7 +112,5 @@ export default {
   TEditorElement,
   CheckboxgroupCheckbox,
   FilePreview,
-  ImagePreview,
-  GalleryPreview,
   RadiogroupRadio,
 }
