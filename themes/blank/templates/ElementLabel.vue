@@ -26,6 +26,7 @@
     name: 'ElementLabel',
     data() {
       return {
+        merge: true,
         defaultClasses: {
           container: '',
         }

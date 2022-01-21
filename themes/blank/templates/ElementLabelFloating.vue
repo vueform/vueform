@@ -12,6 +12,7 @@
     name: 'ElementLabelFloating',
     data() {
       return {
+        merge: true,
         defaultClasses: {
           container: '',
           label: '',

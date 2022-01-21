@@ -7,6 +7,7 @@ import DateElement from './DateElement.vue'
     staticRenderFns: DateElement.staticRenderFns,
     data() {
       return {
+        merge: true,
         defaultClasses: {
           container: '',
           inputContainer: '',

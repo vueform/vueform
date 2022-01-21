@@ -28,6 +28,7 @@
     name: 'EditorElement',
     data() {
       return {
+        merge: true,
         defaultClasses: {
           container: '',
           input: '',

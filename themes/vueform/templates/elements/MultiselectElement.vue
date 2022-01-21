@@ -10,6 +10,7 @@
     render: MultiselectElement.render,
     data() {
       return {
+        merge: true,
         defaultClasses: {
           container: '',
           input: 'vf-input',

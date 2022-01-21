@@ -61,6 +61,7 @@
     name: 'MultifileElement',
     data() {
       return {
+        merge: true,
         defaultClasses: {
           container: '',
           list: '',

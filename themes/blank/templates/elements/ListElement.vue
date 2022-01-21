@@ -54,6 +54,7 @@
     name: 'ListElement',
     data() {
       return {
+        merge: true,
         defaultClasses: {
           container: '',
           list: '',

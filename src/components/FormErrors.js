@@ -16,8 +16,8 @@ export default {
 
     const {
       form$,
-      $size,
-      $view,
+      Size,
+      View,
       theme,
       classes,
       templates,
@@ -38,8 +38,8 @@ export default {
 
     return {
       form$,
-      $size,
-      $view,
+      Size,
+      View,
       theme,
       classes,
       templates,

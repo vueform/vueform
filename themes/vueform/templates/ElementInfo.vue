@@ -6,6 +6,7 @@
     render: ElementInfo.render,
     data() {
       return {
+        merge: true,
         defaultClasses: {
           container: 'vf-element-info',
           wrapper: 'vf-element-info-wrapper',

@@ -6,6 +6,7 @@
     render: DragAndDrop.render,
     data() {
       return {
+        merge: true,
         defaultClasses: {
           container: 'vf-dnd',
           container_inactive: '',

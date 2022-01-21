@@ -6,6 +6,7 @@
     render: StaticElement.render,
     data() {
       return {
+        merge: true,
         defaultClasses: {
           container: '',
           content: 'vf-static-element-content',

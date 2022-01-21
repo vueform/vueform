@@ -6,6 +6,7 @@
     render: CheckboxgroupCheckbox.render,
     data() {
       return {
+        merge: true,
         defaultClasses: {
           container: 'vf-checkbox-wrapper',
           input: 'vf-checkbox',

@@ -33,6 +33,7 @@
     name: 'RadiogroupRadio',
     data() {
       return {
+        merge: true,
         defaultClasses: {
           container: '',
           input: '',

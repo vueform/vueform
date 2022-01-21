@@ -6,6 +6,7 @@
     render: ObjectElement.render,
     data() {
       return {
+        merge: true,
         defaultClasses: {
           container: '',
           wrapper: 'vf-row-group',

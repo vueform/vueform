@@ -32,6 +32,7 @@
     name: 'TextElement',
     data() {
       return {
+        merge: true,
         defaultClasses: {
           container: '',
           inputContainer: '',

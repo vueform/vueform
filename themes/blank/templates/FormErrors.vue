@@ -16,6 +16,7 @@
     name: 'FormErrors',
     data() {
       return {
+        merge: true,
         defaultClasses: {
           container: '',
           error: '',

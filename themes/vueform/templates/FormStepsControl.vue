@@ -6,6 +6,7 @@
     render: FormStepsControl.render,
     data() {
       return {
+        merge: true,
         defaultClasses: {
           button: 'vf-btn',
           button_previous_enabled: 'vf-btn-secondary',

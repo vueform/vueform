@@ -6,6 +6,7 @@
     render: FormMessages.render,
     data() {
       return {
+        merge: true,
         defaultClasses: {
           container: 'vf-messages',
           message: '',

@@ -6,6 +6,7 @@
     render: RadiogroupElement.render,
     data() {
       return {
+        merge: true,
         defaultClasses: {
           container: '',
           wrapper: 'vf-radiogroup-wrapper',

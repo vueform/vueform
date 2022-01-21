@@ -6,6 +6,7 @@
     render: FormElements.render,
     data() {
       return {
+        merge: true,
         defaultClasses: {
           container: 'vf-row',
         }

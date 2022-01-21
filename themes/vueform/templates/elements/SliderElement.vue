@@ -10,6 +10,7 @@
     },
     data() {
       return {
+        merge: true,
         defaultClasses: {
           container: '',
           wrapper: 'vf-slider-wrapper',

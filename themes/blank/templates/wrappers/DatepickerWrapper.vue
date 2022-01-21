@@ -13,6 +13,7 @@
     name: 'DatepickerWrapper',
     data() {
       return {
+        merge: true,
         defaultClasses: {
           datepicker: '',
           calendarContainer: ''

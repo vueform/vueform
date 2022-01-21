@@ -16,6 +16,7 @@
     name: 'FormSteps',
     data() {
       return {
+        merge: true,
         defaultClasses: {
           container: '',
         }

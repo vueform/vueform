@@ -17,6 +17,7 @@
     name: 'FormElements',
     data() {
       return {
+        merge: true,
         defaultClasses: {
           container: '',
         }

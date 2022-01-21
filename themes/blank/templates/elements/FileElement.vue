@@ -46,6 +46,7 @@
     name: 'FileElement',
     data() {
       return {
+        merge: true,
         defaultClasses: {
           container: '',
           container_removing: '',

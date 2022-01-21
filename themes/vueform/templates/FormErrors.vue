@@ -6,6 +6,7 @@
     render: FormErrors.render,
     data() {
       return {
+        merge: true,
         defaultClasses: {
           container: 'vf-errors',
           error: '',

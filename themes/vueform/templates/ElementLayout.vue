@@ -6,6 +6,7 @@
     render: ElementLayout.render,
     data() {
       return {
+        merge: true,
         defaultClasses: {
           container: '',
           container_error: 'has-error',

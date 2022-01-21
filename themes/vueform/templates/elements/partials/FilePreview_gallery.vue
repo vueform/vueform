@@ -1,11 +1,12 @@
 <script>
-  import GalleryPreview from './../../../../blank/templates/elements/partials/GalleryPreview.vue'
+  import GalleryPreview from './../../../../blank/templates/elements/partials/FilePreview_gallery.vue'
 
   export default {
     name: 'GalleryPreview',
     render: GalleryPreview.render,
     data() {
       return {
+        merge: true,
         defaultClasses: { 
           container: 'vf-file-preview-gallery',
           image: 'vf-file-preview-gallery-image',

@@ -6,6 +6,7 @@
     render: ElementDescription.render,
     data() {
       return {
+        merge: true,
         defaultClasses: {
           container: 'vf-description',
         }

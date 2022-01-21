@@ -29,6 +29,7 @@
     name: 'CheckboxgroupElement',
     data() {
       return {
+        merge: true,
         defaultClasses: {
           container: '',
           wrapper: '',

@@ -10,6 +10,7 @@
     },
     data() {
       return {
+        merge: true,
         defaultClasses: {
           container: '',
           input: 'vf-input vf-native-select',

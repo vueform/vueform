@@ -7,6 +7,7 @@ import TextareaElement from './TextareaElement.vue'
     staticRenderFns: TextareaElement.staticRenderFns,
     data() {
       return {
+        merge: true,
         defaultClasses: {
           container: '',
           inputContainer: '',

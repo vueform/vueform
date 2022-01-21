@@ -6,6 +6,7 @@
     render: FormStep.render,
     data() {
       return {
+        merge: true,
         defaultClasses: {
           container: 'vf-step',
           wrapper: '',

@@ -9,10 +9,10 @@ const base = function(props, context, dependencies)
   * 
   * @type {component}
   */
-  let $size = inject('$size')
+  let Size = inject('Size')
 
   return {
-    $size,
+    Size,
   }
 }
 

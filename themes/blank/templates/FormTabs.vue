@@ -17,6 +17,7 @@
     name: 'FormTabs',
     data() {
       return {
+        merge: true,
         defaultClasses: {
           container: ''
         }

@@ -6,6 +6,7 @@
     render: ListElement.render,
     data() {
       return {
+        merge: true,
         defaultClasses: {
           container: '',
           list: 'vf-rowset',

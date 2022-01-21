@@ -30,6 +30,7 @@
     name: 'ElementLayout',
     data() {
       return {
+        merge: true,
         defaultClasses: {
           container: '',
           container_error: '',

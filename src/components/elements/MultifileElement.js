@@ -240,7 +240,7 @@ export default {
     const templates = useTemplates(props, context, {
       theme: theme.theme,
       form$: form$.form$,
-      $view: view.$view,
+      View: view.View,
     })
 
     const slots = useSlots(props, context, {
@@ -307,7 +307,7 @@ export default {
       preparing: multifile.preparing,
       templates: templates.templates,
       el$: baseElement.el$,
-      $view: view.$view,
+      View: view.View,
     })
 
     const sort = useSort(props, context, {

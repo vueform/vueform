@@ -672,7 +672,7 @@ const base = function(props, context, dependencies = {})
     _.each(baseConfig.value.config.usePresets.concat(options.value.presets), (presetName) => {
       let preset = baseConfig.value.config.presets[presetName]
 
-      if (!preset.templates) {
+      if (!preset || !preset.templates) {
         return
       }
 
@@ -705,8 +705,8 @@ const base = function(props, context, dependencies = {})
   * @type {object}
   */
   const template = computed(() => {
-    return $view.value && templates.value[`Vueform_${$view.value}`]
-            ? templates.value[`Vueform_${$view.value}`]
+    return View.value && templates.value[`Vueform_${View.value}`]
+            ? templates.value[`Vueform_${View.value}`]
             : templates.value.Vueform
   })
 
@@ -722,7 +722,7 @@ const base = function(props, context, dependencies = {})
       theme: extendedTheme.value,
       config: baseConfig.value.config,
       templates: templates.value,
-      view: $view.value,
+      view: View.value,
       merge: [
         options.value,
       ],
@@ -734,28 +734,28 @@ const base = function(props, context, dependencies = {})
    *
    * @returns {string}
    */
-  const $size = computed(() => {
-    let $size
+  const Size = computed(() => {
+    let Size
 
     if (options.value.size) {
-      $size = options.value.size
+      Size = options.value.size
     } else {
       _.each(baseConfig.value.config.usePresets.concat(options.value.presets), (presetName) => {
         let preset = baseConfig.value.config.presets[presetName]
 
-        if (!preset.size) {
+        if (!preset || !preset.size) {
           return
         } 
 
-        $size = preset.size
+        Size = preset.size
       })
     }
 
-    if (!$size) {
-      $size = baseConfig.value.config.size
+    if (!Size) {
+      Size = baseConfig.value.config.size
     }
 
-    return $size
+    return Size
   })
 
 
@@ -764,20 +764,20 @@ const base = function(props, context, dependencies = {})
    *
    * @returns {object}
    */
-  const $views = computed(() => {
-    let $views = options.value.views
+  const Views = computed(() => {
+    let Views = options.value.views
 
     _.each(baseConfig.value.config.usePresets.concat(options.value.presets), (presetName) => {
       let preset = baseConfig.value.config.presets[presetName]
       
-      if (!preset.views) {
+      if (!preset || !preset.views) {
         return
       }
 
-      $views = Object.assign({}, $views, preset.views)
+      Views = Object.assign({}, Views, preset.views)
     })
 
-    return $views
+    return Views
   })
 
 
@@ -786,12 +786,12 @@ const base = function(props, context, dependencies = {})
    *
    * @returns {object}
    */
-  const $view = computed(() => {
+  const View = computed(() => {
     if (options.value.view) {
       return options.value.view
     }
     
-    return $views.value.Vueform
+    return Views.value.Vueform
   })
 
   // =============== METHODS ==============
@@ -1159,8 +1159,8 @@ const base = function(props, context, dependencies = {})
 
   provide('form$', form$)
   provide('theme', extendedTheme)
-  provide('$size', $size)
-  provide('$views', $views)
+  provide('Size', Size)
+  provide('Views', Views)
 
   // ================ HOOKS ===============
 
@@ -1253,9 +1253,9 @@ const base = function(props, context, dependencies = {})
     templates,
     template,
     extendedTheme,
-    $size,
-    $view,
-    $views,
+    Size,
+    View,
+    Views,
     form$,
     model,
     intermediaryValue,

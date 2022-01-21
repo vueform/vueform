@@ -6,6 +6,7 @@
     render: FormTab.render,
     data() {
       return {
+        merge: true,
         defaultClasses: {
           container: 'vf-tab',
           wrapper: 'vf-tab-link',

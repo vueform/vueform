@@ -15,6 +15,7 @@
     name: 'DragAndDrop',
     data() {
       return {
+        merge: true,
         defaultClasses: {
           container: '',
           container_inactive: '',

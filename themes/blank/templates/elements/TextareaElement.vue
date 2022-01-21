@@ -44,6 +44,7 @@
     name: 'TextareaElement',
     data() {
       return {
+        merge: true,
         defaultClasses: {
           container: '',
           inputContainer: '',

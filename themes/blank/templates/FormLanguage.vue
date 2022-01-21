@@ -15,6 +15,7 @@
     name: 'FormLanguage',
     data() {
       return {
+        merge: true,
         defaultClasses: {
           container: '',
           wrapper: '',

@@ -6,6 +6,7 @@
     render: CheckboxElement.render,
     data() {
       return {
+        merge: true,
         defaultClasses: {
           container: '',
           wrapper: 'vf-checkbox-wrapper',

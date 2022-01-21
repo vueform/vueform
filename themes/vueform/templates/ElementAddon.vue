@@ -6,6 +6,7 @@
     render: ElementAddon.render,
     data() {
       return {
+        merge: true,
         defaultClasses: {
           container: 'vf-addon',
           container_before: 'vf-addon-before',

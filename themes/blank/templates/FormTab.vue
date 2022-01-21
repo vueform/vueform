@@ -23,6 +23,7 @@
     name: 'FormTab',
     data() {
       return {
+        merge: true,
         defaultClasses: {
           container: '',
           wrapper: '',

@@ -6,6 +6,7 @@
     render: HiddenElement.render,
     data() {
       return {
+        merge: true,
         defaultClasses: {
         }
       }

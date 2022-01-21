@@ -39,6 +39,7 @@
     name: 'DateElement',
     data() {
       return {
+        merge: true,
         defaultClasses: {
           container: '',
           inputContainer: '',

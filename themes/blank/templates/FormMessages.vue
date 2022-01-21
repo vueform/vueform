@@ -15,6 +15,7 @@
     name: 'FormMessages',
     data() {
       return {
+        merge: true,
         defaultClasses: {
           container: '',
           message: '',

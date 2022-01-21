@@ -6,6 +6,7 @@
     render: ElementLoader.render,
     data() {
       return {
+        merge: true,
         defaultClasses: {
           container: 'vf-element-loader-wrapper',
           loader: 'vf-element-loader',

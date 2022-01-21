@@ -6,6 +6,7 @@
     render: EditorElement.render,
     data() {
       return {
+        merge: true,
         defaultClasses: {
           container: '',
           input: 'vf-editor',

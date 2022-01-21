@@ -7,6 +7,7 @@
     name: 'ElementMessage',
     data() {
       return {
+        merge: true,
         defaultClasses: {
           container: ''
         }

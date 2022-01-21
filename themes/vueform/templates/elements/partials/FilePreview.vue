@@ -6,6 +6,7 @@
     render: FilePreview.render,
     data() {
       return {
+        merge: true,
         defaultClasses: {
           container: 'vf-file-preview-file',
           wrapper: 'vf-file-preview-file-wrapper',

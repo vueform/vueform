@@ -6,6 +6,7 @@
     render: AddressElement.render,
     data() {
       return {
+        merge: true,
         defaultClasses: {
           container: '',
           childrenContainer: 'vf-row-group',

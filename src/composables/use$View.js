@@ -16,7 +16,7 @@ const base = function(props, context, dependencies)
   * @type {component}
   * @private
   */
-  const $views = inject('$views') || ref({})
+  const Views = inject('Views') || ref({})
 
   /**
   * The view.
@@ -24,24 +24,24 @@ const base = function(props, context, dependencies)
   * @type {string}
   * @private
   */
-  const $viewInject = inject('$view') || ref(undefined)
+  const $viewInject = inject('View', ref(undefined))
 
   // ============== COMPUTED ==============
 
-  const $view = computed(() => {
+  const View = computed(() => {
     if (view && view.value) {
       return view.value
     }
 
-    if ($views.value[componentName.value]) {
-      return $views.value[componentName.value]
+    if (Views.value[componentName.value]) {
+      return Views.value[componentName.value]
     }
 
     return $viewInject.value
   })
 
   return {
-    $view,
+    View,
   }
 }
 

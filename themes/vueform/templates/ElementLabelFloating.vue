@@ -6,6 +6,7 @@
     render: ElementLabelFloating.render,
     data() {
       return {
+        merge: true,
         defaultClasses: {
           container: 'vf-floating-wrapper',
           label: 'vf-floating-label',

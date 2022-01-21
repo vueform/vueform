@@ -21,6 +21,7 @@
     name: 'EditorWrapper',
     data() {
       return {
+        merge: true,
         defaultClasses: {
           container: '',
         }

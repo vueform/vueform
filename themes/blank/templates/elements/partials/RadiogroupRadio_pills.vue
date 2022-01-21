@@ -34,6 +34,7 @@
     name: 'CheckboxgroupCheckbox_pills',
     data() {
       return {
+        merge: true,
         defaultClasses: {
           container: '',
           wrapper: '',

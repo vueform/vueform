@@ -6,6 +6,7 @@
     render: DatesElement.render,
     data() {
       return {
+        merge: true,
         defaultClasses: {
           container: '',
           inputContainer: 'vf-input-group',

@@ -6,6 +6,7 @@
     render: ElementText.render,
     data() {
       return {
+        merge: true,
         defaultClasses: {
           container: '',
           container_before: '',

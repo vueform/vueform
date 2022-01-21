@@ -15,6 +15,7 @@
     name: 'HiddenElement',
     data() {
       return {
+        merge: true,
         defaultClasses: {}
       }
     },

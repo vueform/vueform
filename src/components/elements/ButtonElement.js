@@ -121,7 +121,7 @@ export default {
     const templates = useTemplates(props, context, {
       theme: theme.theme,
       form$: form$.form$,
-      $view: view.$view,
+      View: view.View,
     })
 
     const button = useButton(props, context, {
@@ -137,7 +137,7 @@ export default {
       isDisabled: disabled.isDisabled,
       templates: templates.templates,
       el$: baseElement.el$,
-      $view: view.$view,
+      View: view.View,
     })
 
     const columns = useColumns(props, context, {

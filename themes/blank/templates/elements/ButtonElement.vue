@@ -78,6 +78,7 @@
     name: 'ButtonElement',
     data() {
       return {
+        merge: true,
         defaultClasses: {
           container: '',
           button: '',

@@ -7,9 +7,9 @@ const checkbox = {
   input_sm: 'form-w-checkbox-sm form-h-checkbox-sm form-rounded-sm mt-0.75',
   input_md: 'form-w-checkbox form-h-checkbox form-rounded mt-1',
   input_lg: 'form-w-checkbox-lg form-h-checkbox-lg form-rounded-lg mt-1',
-  $input: (classes, { isDisabled, $size }) => ([
+  $input: (classes, { isDisabled, Size }) => ([
     classes.input,
-    classes[`input_${$size}`],
+    classes[`input_${Size}`],
     isDisabled ? classes.input_disabled : classes.input_enabled
   ]),
 }
@@ -21,9 +21,9 @@ const radio = {
   input_sm: 'form-w-checkbox-sm form-h-checkbox-sm mt-0.75',
   input_md: 'form-w-checkbox form-h-checkbox mt-1',
   input_lg: 'form-w-checkbox-lg form-h-checkbox-lg mt-1',
-  $input: (classes, { isDisabled, $size }) => ([
+  $input: (classes, { isDisabled, Size }) => ([
     classes.input,
-    classes[`input_${$size}`],
+    classes[`input_${Size}`],
     isDisabled ? classes.input_disabled : classes.input_enabled
   ]),
 }
@@ -35,9 +35,9 @@ const text = {
   input_sm: 'form-p-input-sm form-rounded-sm form-text-sm',
   input_md: 'form-p-input form-rounded',
   input_lg: 'form-p-input-lg form-rounded-lg form-text-lg with-floating:form-p-input-floating-lg',
-  $input: (classes, { isDisabled, $size }) => ([
+  $input: (classes, { isDisabled, Size }) => ([
     classes.input,
-    classes[`input_${$size}`],
+    classes[`input_${Size}`],
     isDisabled ? classes.input_disabled : classes.input_enabled
   ]),
 }
@@ -50,9 +50,9 @@ const editor = {
   input_sm: 'form-editor-sm',
   input_md: '',
   input_lg: 'form-editor-lg',
-  $input: (classes, { isDisabled, focused, $size }) => ([
+  $input: (classes, { isDisabled, focused, Size }) => ([
     classes.input,
-    classes[`input_${$size}`],
+    classes[`input_${Size}`],
     isDisabled ? classes.input_disabled : classes.input_enabled,
     focused ? classes.input_focused : null,
   ]),
@@ -134,57 +134,57 @@ const select = {
   noResults_sm: 'form-p-input-sm form-text-sm',
   noResults_md: 'form-p-input',
   noResults_lg: 'form-p-input-lg form-text-lg',
-  $container: (classes, { $size }) => ([
+  $container: (classes, { Size }) => ([
     classes.select.container,
-    classes.select[`container_${$size}`],
+    classes.select[`container_${Size}`],
   ]),
-  $search: (classes, { $size }) => ([
+  $search: (classes, { Size }) => ([
     classes.select.search,
-    classes.select[`search_${$size}`],
+    classes.select[`search_${Size}`],
   ]),
-  $placeholder: (classes, { $size }) => ([
+  $placeholder: (classes, { Size }) => ([
     classes.select.placeholder,
-    classes.select[`placeholder_${$size}`],
+    classes.select[`placeholder_${Size}`],
   ]),
-  $caret: (classes, { $size }) => ([
+  $caret: (classes, { Size }) => ([
     classes.select.caret,
-    classes.select[`caret_${$size}`],
+    classes.select[`caret_${Size}`],
   ]),
-  $clear: (classes, { $size }) => ([
+  $clear: (classes, { Size }) => ([
     classes.select.clear,
-    classes.select[`clear_${$size}`],
+    classes.select[`clear_${Size}`],
   ]),
-  $spinner: (classes, { $size }) => ([
+  $spinner: (classes, { Size }) => ([
     classes.select.spinner,
-    classes.select[`spinner_${$size}`],
+    classes.select[`spinner_${Size}`],
   ]),
-  $dropdown: (classes, { $size }) => ([
+  $dropdown: (classes, { Size }) => ([
     classes.select.dropdown,
-    classes.select[`dropdown_${$size}`],
+    classes.select[`dropdown_${Size}`],
   ]),
-  $dropdownTop: (classes, { $size }) => ([
+  $dropdownTop: (classes, { Size }) => ([
     classes.select.dropdownTop,
-    classes.select[`dropdownTop_${$size}`],
+    classes.select[`dropdownTop_${Size}`],
   ]),
-  $groupLabel: (classes, { $size }) => ([
+  $groupLabel: (classes, { Size }) => ([
     classes.select.groupLabel,
-    classes.select[`groupLabel_${$size}`],
+    classes.select[`groupLabel_${Size}`],
   ]),
-  $option: (classes, { $size }) => ([
+  $option: (classes, { Size }) => ([
     classes.select.option,
-    classes.select[`option_${$size}`],
+    classes.select[`option_${Size}`],
   ]),
-  $spacer: (classes, { $size }) => ([
+  $spacer: (classes, { Size }) => ([
     classes.select.spacer,
-    classes.select[`spacer_${$size}`],
+    classes.select[`spacer_${Size}`],
   ]),
-  $noOptions: (classes, { $size }) => ([
+  $noOptions: (classes, { Size }) => ([
     classes.select.noOptions,
-    classes.select[`noOptions_${$size}`],
+    classes.select[`noOptions_${Size}`],
   ]),
-  $noResults: (classes, { $size }) => ([
+  $noResults: (classes, { Size }) => ([
     classes.select.noResults,
-    classes.select[`noResults_${$size}`],
+    classes.select[`noResults_${Size}`],
   ]),
 }
 
@@ -199,9 +199,9 @@ export default {
     button_sm: 'form-p-button-sm form-rounded-sm',
     button_md: 'form-p-button form-rounded',
     button_lg: 'form-p-button-lg form-rounded-lg',
-    $button: (classes, { isDisabled, isLoading, buttonClass, $size }) => ([
+    $button: (classes, { isDisabled, isLoading, buttonClass, Size }) => ([
       classes.button,
-      classes[`button_${$size}`],
+      classes[`button_${Size}`],
       isDisabled ? classes.input_disabled : null,
       !isDisabled && !isLoading ? classes.button_enabled : null,
       isLoading ? classes.button_loading : null,
@@ -216,9 +216,9 @@ export default {
     wrapper_lg: 'form-pt-input-border-lg',
     text: 'cursor-pointer',
     ...checkbox,
-    $wrapper: (classes, { $size }) => ([
+    $wrapper: (classes, { Size }) => ([
       classes.wrapper,
-      classes[`wrapper_${$size}`]
+      classes[`wrapper_${Size}`]
     ]),
   },
   CheckboxgroupElement: {
@@ -260,9 +260,9 @@ export default {
       classes.container,
       removing ? classes.container_removing : null,
     ]),
-    $button: (classes, { isDisabled, preparing, $size }) => ([
+    $button: (classes, { isDisabled, preparing, Size }) => ([
       classes.button,
-      classes[`button_${$size}`],
+      classes[`button_${Size}`],
       !isDisabled && !preparing ? classes.button_enabled : null,
       isDisabled || preparing ? classes.button_disabled : null,
     ]),
@@ -293,13 +293,13 @@ export default {
       isDisabled ? classes.list_disabled : null,
       sorting ? classes.list_sorting : null,
     ]),
-    $handle: (classes, { $size }) => ([
+    $handle: (classes, { Size }) => ([
       classes.handle,
-      classes[`handle_${$size}`],
+      classes[`handle_${Size}`],
     ]),
-    $add: (classes, { $size }) => ([
+    $add: (classes, { Size }) => ([
       classes.add,
-      classes[`add_${$size}`],
+      classes[`add_${Size}`],
     ]),
   },
   LocationElement: {
@@ -368,38 +368,38 @@ export default {
     button_sm: 'form-mb-0.5gutter-sm form-p-button-sm form-rounded-sm',
     button_md: 'form-mb-0.5gutter form-p-button form-rounded',
     button_lg: 'form-mb-0.5gutter-lg form-p-button-lg form-rounded-lg',
-    $list: (classes, { isDisabled, sorting, view, $size }) => ([
+    $list: (classes, { isDisabled, sorting, view, Size }) => ([
       classes.list,
       isDisabled ? classes.list_disabled : null,
       sorting ? classes.list_sorting : null,
       classes[`list_${view}`],
-      classes[`list_${view}_${$size}`],
+      classes[`list_${view}_${Size}`],
     ]),
-    $spacer: (classes, { $size }) => ([
+    $spacer: (classes, { Size }) => ([
       classes.spacer,
-      classes[`spacer_${$size}`],
+      classes[`spacer_${Size}`],
     ]),
-    $listItem: (classes, { view, $size }) => ([
+    $listItem: (classes, { view, Size }) => ([
       classes.listItem,
       classes[`listItem_${view}`],
-      classes[`listItem_${view}_${$size}`],
+      classes[`listItem_${view}_${Size}`],
     ]),
-    $handle: (classes, { view, $size }) => ([
+    $handle: (classes, { view, Size }) => ([
       classes.handle,
       classes[`handle_${view}`],
-      classes[`handle_${view}_${$size}`],
+      classes[`handle_${view}_${Size}`],
     ]),
     $handleIcon: (classes, { view }) => ([
       classes.handleIcon,
       classes[`handleIcon_${view}`],
     ]),
-    $dnd: (classes, { $size }) => ([
+    $dnd: (classes, { Size }) => ([
       classes.dnd,
-      classes[`dnd_${$size}`],
+      classes[`dnd_${Size}`],
     ]),
-    $button: (classes, { isDisabled, preparing, $size }) => ([
+    $button: (classes, { isDisabled, preparing, Size }) => ([
       classes.button,
-      classes[`button_${$size}`],
+      classes[`button_${Size}`],
       !isDisabled && !preparing ? classes.button_enabled : null,
       isDisabled || preparing ? classes.button_disabled : null,
     ]),
@@ -416,9 +416,9 @@ export default {
       multipleLabel_sm: 'form-pl-input-sm',
       multipleLabel_md: 'form-pl-input',
       multipleLabel_lg: 'form-pl-input-lg with-floating:form-p-input-floating-lg',
-      $multipleLabel: (classes, { $size }) => ([
+      $multipleLabel: (classes, { Size }) => ([
         classes.select.multipleLabel,
-        classes.select[`multipleLabel_${$size}`],
+        classes.select[`multipleLabel_${Size}`],
       ]),
     },
     $input: (classes, { isDisabled }) => ([
@@ -468,19 +468,19 @@ export default {
       singleLabel_md: 'form-pl-input',
       singleLabel_lg: 'form-pl-input-lg with-floating:form-p-input-floating-lg',
       singleLabelText: 'overflow-ellipsis overflow-hidden block whitespace-nowrap max-w-full',
-      $singleLabel: (classes, { $size }) => ([
+      $singleLabel: (classes, { Size }) => ([
         classes.select.singleLabel,
-        classes.select[`singleLabel_${$size}`],
+        classes.select[`singleLabel_${Size}`],
       ]),
     },
-    $input: (classes, { isDisabled, $size }) => ([
+    $input: (classes, { isDisabled, Size }) => ([
       classes.input,
-      classes[`input_${$size}`],
+      classes[`input_${Size}`],
       isDisabled ? classes.input_disabled : classes.input_enabled,
     ]),
-    $inputPlaceholder: (classes, { $size }) => ([
+    $inputPlaceholder: (classes, { Size }) => ([
       classes.inputPlaceholder,
-      classes[`inputPlaceholder_${$size}`],
+      classes[`inputPlaceholder_${Size}`],
     ]),
   },
   SliderElement: {
@@ -521,9 +521,9 @@ export default {
     content_sm: 'form-pt-input-border-sm',
     content_md: 'form-pt-input-border',
     content_lg: 'form-pt-input-border-lg',
-    $content: (classes, { $size }) => ([
+    $content: (classes, { Size }) => ([
       classes.content,
-      classes[`content_${$size}`],
+      classes[`content_${Size}`],
     ]),
   },
   TagsElement: {
@@ -545,13 +545,13 @@ export default {
       tagsSearch: 'absolute inset-0 border-0 outline-none appearance-none p-0 text-base font-sans box-border w-full',
       tagsSearchCopy: 'invisible whitespace-pre-wrap inline-block h-px',
       singleLabelText: 'overflow-ellipsis overflow-hidden block whitespace-nowrap max-w-full',
-      $tags: (classes, { $size }) => ([
+      $tags: (classes, { Size }) => ([
         classes.select.tags,
-        classes.select[`tags_${$size}`],
+        classes.select[`tags_${Size}`],
       ]),
-      $tag: (classes, { $size }) => ([
+      $tag: (classes, { Size }) => ([
         classes.select.tag,
-        classes.select[`tag_${$size}`],
+        classes.select[`tag_${Size}`],
       ]),
     }
   },
@@ -596,17 +596,17 @@ export default {
       label_sm: 'w-7',
       label_md: 'w-8',
       label_lg: 'w-9',
-      $toggle: (classes, { $size }) => ([
+      $toggle: (classes, { Size }) => ([
         classes.toggle.toggle,
-        classes.toggle[`toggle_${$size}`],
+        classes.toggle[`toggle_${Size}`],
       ]),
-      $handle: (classes, { $size }) => ([
+      $handle: (classes, { Size }) => ([
         classes.toggle.handle,
-        classes.toggle[`handle_${$size}`],
+        classes.toggle[`handle_${Size}`],
       ]),
-      $label: (classes, { $size }) => ([
+      $label: (classes, { Size }) => ([
         classes.toggle.label,
-        classes.toggle[`label_${$size}`],
+        classes.toggle[`label_${Size}`],
       ]),
     }
   },
@@ -664,11 +664,11 @@ export default {
     container_after_md: 'form-rounded-r',
     container_after_lg: 'form-rounded-r-lg',
     wrapper: '',
-    $container: (classes, { type, $size }) => ([
+    $container: (classes, { type, Size }) => ([
       classes.container,
-      classes[`container_${$size}`],
+      classes[`container_${Size}`],
       classes[`container_${type}`],
-      classes[`container_${type}_${$size}`],
+      classes[`container_${type}_${Size}`],
     ]),
   },
   ElementDescription: {
@@ -676,9 +676,9 @@ export default {
     container_sm: 'text-0.5sm mt-0.5',
     container_md: 'text-sm mt-1',
     container_lg: 'text-sm mt-1',
-    $container: (classes, { $size }) => ([
+    $container: (classes, { Size }) => ([
       classes.container,
-      classes[`container_${$size}`],
+      classes[`container_${Size}`],
     ]),
   },
   ElementError: {
@@ -686,9 +686,9 @@ export default {
     container_sm: 'text-0.5sm mt-0.5',
     container_md: 'text-sm mt-1',
     container_lg: 'text-sm mt-1',
-    $container: (classes, { type, $size }) => ([
+    $container: (classes, { type, Size }) => ([
       classes.container,
-      classes[`container_${$size}`],
+      classes[`container_${Size}`],
     ]),
   },
   ElementInfo: {
@@ -701,9 +701,9 @@ export default {
     container_sm: 'form-py-input-border-sm',
     container_md: 'form-py-input-border',
     container_lg: 'form-py-input-border-lg',
-    $container: (classes, { el$, $size }) => ([
+    $container: (classes, { el$, Size }) => ([
       classes.container,
-      classes[`container_${$size}`],
+      classes[`container_${Size}`],
       !el$.inline ? el$.columnsClasses.label : null,
     ]),
   },
@@ -715,9 +715,9 @@ export default {
     label_lg: 'form-left-input-lg top-2.5',
     label_invisible: 'opacity-0 invisible',
     label_visible: 'opacity-100 visible',
-    $label: (classes, { visible, $size }) => ([
+    $label: (classes, { visible, Size }) => ([
       classes.label,
-      classes[`label_${$size}`],
+      classes[`label_${Size}`],
       visible ? classes.label_visible : classes.label_invisible
     ]),
   },
@@ -751,10 +751,10 @@ export default {
       classes.innerWrapper,
       el$.columnsClasses.wrapper,
     ]),
-    $outerWrapper:  (classes, { multiple, $size }) => ([
+    $outerWrapper:  (classes, { multiple, Size }) => ([
       classes.outerWrapper,
       multiple.value ? classes.outerWrapper_multiple : classes.outerWrapper_single,
-      multiple.value ? classes[`outerWrapper_multiple_${$size}`] : classes[`outerWrapper_single_${$size}`],
+      multiple.value ? classes[`outerWrapper_multiple_${Size}`] : classes[`outerWrapper_single_${Size}`],
     ]),
   },
   ElementLayoutInline: {
@@ -771,9 +771,9 @@ export default {
     loader_sm: 'form-top-input-border-sm mt-0.5',
     loader_md: 'form-top-input-border mt-1',
     loader_lg: 'form-top-input-border-lg mt-1',
-    $loader: (classes, { $size }) => ([
+    $loader: (classes, { Size }) => ([
       classes.loader,
-      classes[`loader_${$size}`],
+      classes[`loader_${Size}`],
     ]),
   },
   ElementMessage: {
@@ -781,9 +781,9 @@ export default {
     container_sm: 'text-0.5sm mt-0.5',
     container_md: 'text-sm mt-1',
     container_lg: 'text-sm mt-1',
-    $container: (classes, { type, $size }) => ([
+    $container: (classes, { type, Size }) => ([
       classes.container,
-      classes[`container_${$size}`],
+      classes[`container_${Size}`],
     ]),
   },
   ElementText: {
@@ -811,9 +811,9 @@ export default {
     wrapper_lg: 'form-rounded-lg',
     wrapper_inactive: 'form-text-primary',
     wrapper_active: 'text-white form-bg-primary',
-    $wrapper: (classes, { selected, $size }) => ([
+    $wrapper: (classes, { selected, Size }) => ([
       classes.wrapper,
-      classes[`wrapper_${$size}`],
+      classes[`wrapper_${Size}`],
       selected ? classes.wrapper_active : classes.wrapper_inactive
     ]),
   },
@@ -822,9 +822,9 @@ export default {
     container_sm: 'form-mb-gutter form-text-sm',
     container_md: 'form-mb-gutter-lg',
     container_lg: 'form-mb-gutter-lg form-text-lg',
-    $container: (classes, { $size }) => ([
+    $container: (classes, { Size }) => ([
       classes.container,
-      classes[`container_${$size}`],
+      classes[`container_${Size}`],
     ]),
   },
   FormMessages: {
@@ -857,9 +857,9 @@ export default {
     container_sm: 'form-mb-gutter form-text-sm',
     container_md: 'form-mb-gutter-lg',
     container_lg: 'form-mb-gutter-lg form-text-lg',
-    $container: (classes, { $size }) => ([
+    $container: (classes, { Size }) => ([
       classes.container,
-      classes[`container_${$size}`],
+      classes[`container_${Size}`],
     ]),
   },
   FormStepsControl: {
@@ -875,9 +875,9 @@ export default {
     button_sm: 'form-p-button-sm form-rounded-sm',
     button_md: 'form-p-button form-rounded',
     button_lg: 'form-p-button-lg form-rounded-lg',
-    $button: (classes, { isDisabled, isLoading, type, $size }) => ([
+    $button: (classes, { isDisabled, isLoading, type, Size }) => ([
       classes.button,
-      classes[`button_${$size}`],
+      classes[`button_${Size}`],
       isDisabled ? classes[`button_${type}_disabled`] : classes[`button_${type}_enabled`],
       isLoading ? classes[`button_${type}_loading`] : null,
     ]),
@@ -887,9 +887,9 @@ export default {
     container_sm: 'form-mt-gutter form-text-sm',
     container_md: 'form-mt-gutter-lg',
     container_lg: 'form-mt-gutter-lg form-text-lg',
-    $container: (classes, { $size }) => ([
+    $container: (classes, { Size }) => ([
       classes.container,
-      classes[`container_${$size}`],
+      classes[`container_${Size}`],
     ]),
   },
   FormTab: {
@@ -905,9 +905,9 @@ export default {
     $container: (classes, {}) => ([
       classes.container,
     ]),
-    $wrapper: (classes, { active, invalid, $size }) => ([
+    $wrapper: (classes, { active, invalid, Size }) => ([
       classes.wrapper,
-      classes[`wrapper_${$size}`],
+      classes[`wrapper_${Size}`],
       active ? classes.wrapper_active : classes.wrapper_inactive,
       invalid ? classes.wrapper_invalid : classes.wrapper_valid,
     ]),
@@ -917,9 +917,9 @@ export default {
     container_sm: 'form-mb-gutter form-text-sm',
     container_md: 'form-mb-gutter-lg',
     container_lg: 'form-mb-gutter-lg form-text-lg',
-    $container: (classes, { $size }) => ([
+    $container: (classes, { Size }) => ([
       classes.container,
-      classes[`container_${$size}`],
+      classes[`container_${Size}`],
     ]),
   },
   Vueform: {
@@ -946,9 +946,9 @@ export default {
     wrapper_lg: 'form-p-input-lg form-text-lg',
     input: 'hidden',
     text: '',
-    $wrapper: (classes, { index, items, el$, value, isDisabled, $size }) => ([
+    $wrapper: (classes, { index, items, el$, value, isDisabled, Size }) => ([
       classes.wrapper,
-      classes[`wrapper_${$size}`],
+      classes[`wrapper_${Size}`],
       index < Object.keys(items).length - 1 ? classes.wrapper_not_last : null,
       index === 0 ? classes.wrapper_first : null,
       index === Object.keys(items).length - 1 ? classes.wrapper_last : null,
@@ -975,18 +975,18 @@ export default {
     description_sm: 'text-0.5sm -mt-0.5',
     description_md: 'text-sm -mt-0.5',
     description_lg: 'text-sm -mt-0.5',
-    $wrapper: (classes, { index, items, el$, value, isDisabled, $size }) => ([
+    $wrapper: (classes, { index, items, el$, value, isDisabled, Size }) => ([
       classes.wrapper,
-      classes[`wrapper_${$size}`],
+      classes[`wrapper_${Size}`],
       index < Object.keys(items).length - 1 ? classes.wrapper_not_last : null,
       index === 0 ? classes.wrapper_first : null,
       index === Object.keys(items).length - 1 ? classes.wrapper_last : null,
       el$.value.indexOf(value) !== -1 ? classes.wrapper_selected : classes.wrapper_unselected,
       isDisabled ? classes.wrapper_disabled : null,
     ]),
-    $description: (classes, { $size }) => ([
+    $description: (classes, { Size }) => ([
       classes.description,
-      classes[`description_${$size}`],
+      classes[`description_${Size}`],
     ]),
   },
   FilePreview: {
@@ -1009,9 +1009,9 @@ export default {
     uploadedIcon: 'mask-bg mask-form-check-solid bg-green-500 mask-size-2.5 block w-full h-full',
     remove: 'flex w-4 h-4 items-center justify-center bg-gray-200 rounded-full transition hover:bg-gray-300 form-hidden group-hover:form-inline-block',
     removeIcon: 'mask-bg mask-form-remove-light bg-black mask-size-3 block w-full h-full',
-    $container: (classes, { $size }) => ([
+    $container: (classes, { Size }) => ([
       classes.container,
-      classes[`container_${$size}`],
+      classes[`container_${Size}`],
     ])
   },
   FilePreview_gallery: {
@@ -1042,21 +1042,21 @@ export default {
     uploadedIcon: 'mask-bg mask-form-check-solid bg-green-500 mask-size-2.5 block w-full h-full',
     remove: 'flex w-4 h-4 items-center justify-center bg-gray-200 absolute top-0.5 right-0.5 mt-px mr-px form-hidden rounded-full transition hover:bg-gray-300 group-hover:form-inline-block ',
     removeIcon: 'mask-bg mask-form-remove-light bg-black mask-size-3 block w-full h-full',
-    $container: (classes, { $size }) => ([
+    $container: (classes, { Size }) => ([
       classes.container,
-      classes[`container_${$size}`],
+      classes[`container_${Size}`],
     ]),
-    $image: (classes, { $size }) => ([
+    $image: (classes, { Size }) => ([
       classes.image,
-      classes[`image_${$size}`],
+      classes[`image_${Size}`],
     ]),
-    $img: (classes, { $size }) => ([
+    $img: (classes, { Size }) => ([
       classes.img,
-      classes[`img_${$size}`],
+      classes[`img_${Size}`],
     ]),
-    $overlay: (classes, { $size }) => ([
+    $overlay: (classes, { Size }) => ([
       classes.overlay,
-      classes[`overlay_${$size}`],
+      classes[`overlay_${Size}`],
     ]),
   },
   FilePreview_image: {
@@ -1086,14 +1086,14 @@ export default {
     uploadedIcon: 'mask-bg mask-form-check-solid bg-green-500 mask-size-2.5 block w-full h-full',
     remove: 'flex w-4 h-4 items-center justify-center bg-gray-200 rounded-full transition hover:bg-gray-300 form-hidden group-hover:form-inline-block',
     removeIcon: 'mask-bg mask-form-remove-light bg-black mask-size-3 block w-full h-full',
-    $image: (classes, { hasLink, $size }) => ([
+    $image: (classes, { hasLink, Size }) => ([
       classes.image,
-      classes[`image_${$size}`],
+      classes[`image_${Size}`],
       hasLink ? classes.image_link : classes.image_static
     ]),
-    $img: (classes, { $size }) => ([
+    $img: (classes, { Size }) => ([
       classes.img,
-      classes[`img_${$size}`],
+      classes[`img_${Size}`],
     ])
   },
   RadiogroupRadio: {
@@ -1115,9 +1115,9 @@ export default {
     wrapper_lg: 'form-p-input-lg form-text-lg',
     input: 'hidden',
     text: '',
-    $wrapper: (classes, { index, items, el$, value, isDisabled, $size }) => ([
+    $wrapper: (classes, { index, items, el$, value, isDisabled, Size }) => ([
       classes.wrapper,
-      classes[`wrapper_${$size}`],
+      classes[`wrapper_${Size}`],
       index < Object.keys(items).length - 1 ? classes.wrapper_not_last : null,
       index === 0 ? classes.wrapper_first : null,
       index === Object.keys(items).length - 1 ? classes.wrapper_last : null,
@@ -1144,18 +1144,18 @@ export default {
     description_sm: 'text-0.5sm -mt-0.5',
     description_md: 'text-sm -mt-0.5',
     description_lg: 'text-sm -mt-0.5',
-    $wrapper: (classes, { index, items, el$, value, isDisabled, $size }) => ([
+    $wrapper: (classes, { index, items, el$, value, isDisabled, Size }) => ([
       classes.wrapper,
-      classes[`wrapper_${$size}`],
+      classes[`wrapper_${Size}`],
       index < Object.keys(items).length - 1 ? classes.wrapper_not_last : null,
       index === 0 ? classes.wrapper_first : null,
       index === Object.keys(items).length - 1 ? classes.wrapper_last : null,
       el$.value == value ? classes.wrapper_selected : classes.wrapper_unselected,
       isDisabled ? classes.wrapper_disabled : null,
     ]),
-    $description: (classes, { $size }) => ([
+    $description: (classes, { Size }) => ([
       classes.description,
-      classes[`description_${$size}`],
+      classes[`description_${Size}`],
     ]),
   },
 }

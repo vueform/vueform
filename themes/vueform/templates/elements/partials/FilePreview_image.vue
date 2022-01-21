@@ -1,11 +1,12 @@
 <script>
-  import ImagePreview from './../../../../blank/templates/elements/partials/ImagePreview.vue'
+  import ImagePreview from './../../../../blank/templates/elements/partials/FilePreview_image.vue'
 
   export default {
     name: 'ImagePreview',
     render: ImagePreview.render,
     data() {
       return {
+        merge: true,
         defaultClasses: {
           container: 'vf-file-preview-image',
           wrapper: 'vf-file-preview-image-wrapper',

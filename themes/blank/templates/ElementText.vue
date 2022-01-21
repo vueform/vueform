@@ -11,6 +11,7 @@
     name: 'ElementText',
     data() {
       return {
+        merge: true,
         defaultClasses: {
           container: '',
           container_before: '',

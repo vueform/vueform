@@ -23,6 +23,7 @@
     name: 'FormStep',
     data() {
       return {
+        merge: true,
         defaultClasses: {
           container: '',
           container_active: '',

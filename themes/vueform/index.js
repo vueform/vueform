@@ -57,8 +57,8 @@ import TEditorElement from './templates/elements/TEditorElement.vue'
 
 import CheckboxgroupCheckbox from './templates/elements/partials/CheckboxgroupCheckbox.vue'
 import FilePreview from './templates/elements/partials/FilePreview.vue'
-import ImagePreview from './templates/elements/partials/ImagePreview.vue'
-import GalleryPreview from './templates/elements/partials/GalleryPreview.vue'
+import FilePreview_image from './templates/elements/partials/FilePreview_image.vue'
+import FilePreview_gallery from './templates/elements/partials/FilePreview_gallery.vue'
 import RadiogroupRadio from './templates/elements/partials/RadiogroupRadio.vue'
 
 import DatepickerWrapper from './templates/wrappers/DatepickerWrapper.vue'
@@ -123,8 +123,8 @@ export default {
 
     CheckboxgroupCheckbox,
     FilePreview,
-    ImagePreview,
-    GalleryPreview,
+    FilePreview_image,
+    FilePreview_gallery,
     RadiogroupRadio,
 
     DatepickerWrapper,

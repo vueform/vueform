@@ -6,6 +6,7 @@
     render: ElementLayoutInline.render,
     data() {
       return {
+        merge: true,
         defaultClasses: {
           container: 'vf-inline-layout',
           container_error: 'has-error',

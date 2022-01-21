@@ -7,6 +7,7 @@
     render: EditorWrapper.render,
     data() {
       return {
+        merge: true,
         defaultClasses: {
           container: '',
         }

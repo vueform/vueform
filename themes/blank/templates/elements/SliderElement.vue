@@ -30,6 +30,7 @@ import Slider from '@vueform/slider/src/Slider.vue'
     },
     data() {
       return {
+        merge: true,
         defaultClasses: {
           container: '',
           wrapper: '',

@@ -12,7 +12,7 @@ const base = function(props, context, dependencies)
   // ============ DEPENDENCIES ============
 
   const theme = dependencies.theme
-  const $view = dependencies.$view
+  const View = dependencies.View
   const form$ = dependencies.form$
 
 
@@ -49,8 +49,8 @@ const base = function(props, context, dependencies)
    * @type {object}
    */
   const template = computed(() => {
-    return $view.value && templates.value[`${componentName.value}_${$view.value}`]
-            ? templates.value[`${componentName.value}_${$view.value}`]
+    return View.value && templates.value[`${componentName.value}_${View.value}`]
+            ? templates.value[`${componentName.value}_${View.value}`]
             : templates.value[componentName.value]
   })
 

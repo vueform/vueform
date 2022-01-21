@@ -45,32 +45,32 @@ const base = function(props, context, dependencies)
    *
    * @returns {string}
    */
-  const $size = computed(() => {
-    let $size
+  const Size = computed(() => {
+    let Size
     
     if (size.value) {
-      $size = size.value
+      Size = size.value
     } else {
       _.each(presets.value, (presetName) => {
         let preset = form$.value.$vueform.config.presets[presetName]
 
-        if (!preset.size) {
+        if (!preset || !preset.size) {
           return
         } 
 
-        $size = preset.size
+        Size = preset.size
       })
     }
 
-    if (!$size) {
+    if (!Size) {
       if (parent.value) {
-        $size = parent.value.$size
+        Size = parent.value.Size
       } else {
-        $size = form$.value.$size
+        Size = form$.value.Size
       }
     }
 
-    return $size
+    return Size
   })
 
   /**
@@ -78,12 +78,12 @@ const base = function(props, context, dependencies)
    *
    * @returns {string}
    */
-  const $view = computed(() => {
+  const View = computed(() => {
     if (view.value) {
       return view.value
     }
 
-    return $views.value[componentName.value]
+    return Views.value[componentName.value]
   })
 
   /**
@@ -91,20 +91,20 @@ const base = function(props, context, dependencies)
    *
    * @returns {object}
    */
-  const $views = computed(() => {
-    let $views = Object.assign({}, form$.value.$views, views.value)
+  const Views = computed(() => {
+    let Views = Object.assign({}, form$.value.Views, views.value)
 
     _.each(presets.value, (presetName) => {
       let preset = form$.value.$vueform.config.presets[presetName]
 
-      if (!preset.views) {
+      if (!preset || !preset.views) {
         return
       }
 
-      $views = Object.assign({}, $views, preset.views)
+      Views = Object.assign({}, Views, preset.views)
     })
 
-    return $views
+    return Views
   })
 
   // =============== METHODS ==============
@@ -129,16 +129,16 @@ const base = function(props, context, dependencies)
 
   // ============== PROVIDES ==============
   
-  provide('$size', $size)
-  provide('$view', $view)
-  provide('$views', $views)
+  provide('Size', Size)
+  provide('View', View)
+  provide('Views', Views)
 
   return {
     hidden,
     visible,
-    $size,
-    $view,
-    $views,
+    Size,
+    View,
+    Views,
     hide,
     show,
   }

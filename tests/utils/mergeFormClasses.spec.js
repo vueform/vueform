@@ -1,9 +1,9 @@
 import MergeFormClasses from './../../src/utils/mergeFormClasses'
 import { computed, ref } from 'composition-api'
 
-const $container = (classes, { $size }) => ([
+const $container = (classes, { Size }) => ([
   classes.container,
-  classes[`container_${$size}`],
+  classes[`container_${Size}`],
 ])
 
 const $container2 = (classes, { $size2 }) => ([
@@ -123,7 +123,7 @@ const defaultClasses = {
 
 const component$ = {
   value: {
-    $size: 'md',
+    Size: 'md',
     $size2: 'sm',
     merge: false,
     open: false,

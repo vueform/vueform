@@ -16,6 +16,7 @@
     name: 'ElementLayoutInline',
     data() {
       return {
+        merge: true,
         defaultClasses: {
           container: '',
           container_error: '',

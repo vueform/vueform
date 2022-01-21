@@ -6,6 +6,7 @@
     render: FileElement.render,
     data() {
       return {
+        merge: true,
         defaultClasses: {
           container: '',
           container_removing: 'is-removing',

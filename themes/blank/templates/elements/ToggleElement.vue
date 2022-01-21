@@ -33,6 +33,7 @@ import Toggle from '@vueform/toggle/src/Toggle.vue'
     },
     data() {
       return {
+        merge: true,
         defaultClasses: {
           container: '',
           wrapper: '',

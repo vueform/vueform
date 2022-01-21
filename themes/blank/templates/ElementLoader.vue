@@ -9,6 +9,7 @@
     name: 'ElementLoader',
     data() {
       return {
+        merge: true,
         defaultClasses: {
           container: '',
           loader: '',

@@ -11,6 +11,7 @@
     name: 'ElementDescription',
     data() {
       return {
+        merge: true,
         defaultClasses: {
           container: '',
         }

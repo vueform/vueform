@@ -26,11 +26,11 @@ const base = function(props, context, dependencies, options = {})
   } = useTheme(props, context)
 
   const {
-    $size
+    Size
   } = use$Size(props, context)
 
   const {
-    $view,
+    View,
   } = use$View(props, context)
 
   // ============== COMPUTED ===============
@@ -57,7 +57,7 @@ const base = function(props, context, dependencies, options = {})
       theme: theme.value,
       config: form$.value.$vueform.config,
       templates: templates.value,
-      view: $view.value,
+      view: View.value,
       merge: [
         form$.value,
         el$.value,
@@ -94,8 +94,8 @@ const base = function(props, context, dependencies, options = {})
    * @type {object}
    */
   const template = computed(() => {
-    return $view.value && templates.value[`${componentName.value}_${$view.value}`]
-            ? templates.value[`${componentName.value}_${$view.value}`]
+    return View.value && templates.value[`${componentName.value}_${View.value}`]
+            ? templates.value[`${componentName.value}_${View.value}`]
             : templates.value[componentName.value]
   })
 
@@ -103,8 +103,8 @@ const base = function(props, context, dependencies, options = {})
     el$,
     form$,
     theme,
-    $size,
-    $view,
+    Size,
+    View,
     classes,
     templates,
     template,

@@ -32,6 +32,7 @@
     name: 'FormStepsControl',
     data() {
       return {
+        merge: true,
         defaultClasses: {
           button: '',
           button_previous_enabled: '',

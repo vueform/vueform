@@ -6,6 +6,7 @@
     render: ElementError.render,
     data() {
       return {
+        merge: true,
         defaultClasses: {
           container: 'vf-element-error',
         }

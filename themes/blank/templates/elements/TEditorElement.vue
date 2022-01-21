@@ -7,6 +7,7 @@ import EditorElement from './EditorElement.vue'
     staticRenderFns: EditorElement.staticRenderFns,
     data() {
       return {
+        merge: true,
         defaultClasses: {
           container: '',
           input: '',

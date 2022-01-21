@@ -29,6 +29,7 @@
     name: 'StaticElement',
     data() {
       return {
+        merge: true,
         defaultClasses: {
           container: '',
           content: '',

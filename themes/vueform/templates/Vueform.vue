@@ -6,6 +6,7 @@
     render: Vueform.render,
     data() {
       return {
+        merge: true,
         defaultClasses: {
           form: '',
         }
@@ -566,9 +567,9 @@
     }
   }
   
-  @mixin make-col($size, $columns: $grid-columns) {
-    flex: 0 0 calc((#{$size} / #{$columns}) * 100%);
-    max-width: calc((#{$size} / #{$columns}) * 100%);
+  @mixin make-col(Size, $columns: $grid-columns) {
+    flex: 0 0 calc((#{Size} / #{$columns}) * 100%);
+    max-width: calc((#{Size} / #{$columns}) * 100%);
   }
   
   @mixin make-grid-columns($columns: $grid-columns, $gutter: $grid-gutter-width, $breakpoints: $grid-breakpoints) {

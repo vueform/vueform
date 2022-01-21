@@ -23,6 +23,7 @@ module.exports = {
       "^composition-api$": "<rootDir>/node_modules/vue-prev-composition-api",
       "^@vue/test-utils$": "<rootDir>/node_modules/vue-prev-test-utils",
       "^vue$": "<rootDir>/node_modules/vue-prev",
+      "^@vueform/vueform/(.*)": "<rootDir>/$1",
       '^test-helpers$': "<rootDir>/tests/helpers/vue2/index.js",
       '^vue-jest$': "<rootDir>/node_modules/vue-prev-jest"
   },

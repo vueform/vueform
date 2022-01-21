@@ -6,6 +6,7 @@
     render: RadiogroupRadio.render,
     data() {
       return {
+        merge: true,
         defaultClasses: {
           container: 'vf-radio-wrapper',
           input: 'vf-radio',

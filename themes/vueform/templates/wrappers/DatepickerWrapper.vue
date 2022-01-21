@@ -6,6 +6,7 @@
     render: DatepickerWrapper.render,
     data() {
       return {
+        merge: true,
         defaultClasses: {
           datepicker: '',
           calendarContainer: 'flatpickr-calendar-container'

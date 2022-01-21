@@ -7,6 +7,7 @@ import TextElement from './TextElement.vue'
     staticRenderFns: TextElement.staticRenderFns,
     data() {
       return {
+        merge: true,
         defaultClasses: {
           container: '',
           inputContainer: '',

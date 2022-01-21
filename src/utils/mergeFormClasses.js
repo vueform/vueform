@@ -23,7 +23,7 @@ export default class MergeFormClasses
         }
       })
     } else {
-      this.componentClasses = this.templateClasses
+      this.componentClasses = this.templateClassesö
     }
 
     this.merge(this.config)
@@ -122,12 +122,12 @@ export default class MergeFormClasses
   }
 
   merge(merge, locals = false) {
-    _.each(_.pick(merge, locals ? LOCALS_KEYS : MERGE_KEYS), (mergables, key) => {
+    _.each(this.pick(merge, locals ? LOCALS_KEYS : MERGE_KEYS), (mergables, key) => {
       switch (key) {
         case 'addClasses':
         case 'prependClasses':
         case 'overrideClasses':
-          if (mergables[this.component] === undefined) {
+          if (!mergables || mergables[this.component] === undefined) {
             return
           }
 
@@ -355,5 +355,21 @@ export default class MergeFormClasses
     })
 
     return classHelpers
+  }
+
+  pick(from, picks) {
+    let picked = {}
+
+    if (!from) {
+      return picked
+    }
+
+    _.each(picks, (pick) => {
+      if (pick in from) {
+        picked[pick] = from[pick]
+      }
+    })
+
+    return picked
   }
 }

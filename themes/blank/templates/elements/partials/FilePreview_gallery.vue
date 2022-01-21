@@ -40,6 +40,7 @@
     name: 'FilePreview_gallery',
     data() {
       return {
+        merge: true,
         defaultClasses: {
           container: '',
           image: '',

@@ -82,6 +82,7 @@ import Multiselect from '@vueform/multiselect/src/Multiselect.vue'
     },
     data() {
       return {
+        merge: true,
         defaultClasses: {
           container: '',
           input: '',

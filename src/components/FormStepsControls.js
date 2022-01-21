@@ -22,8 +22,8 @@ export default {
 
     const {
       form$,
-      $size,
-      $view,
+      Size,
+      View,
       theme,
       classes,
       templates,
@@ -32,12 +32,12 @@ export default {
 
     // ============== PROVIDE ===============
 
-    provide('$view', $view)
+    provide('View', View)
 
     return {
       form$,
-      $size,
-      $view,
+      Size,
+      View,
       theme,
       classes,
       templates,

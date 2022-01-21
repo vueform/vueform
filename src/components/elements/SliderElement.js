@@ -195,7 +195,7 @@ export default {
     const templates = useTemplates(props, context, {
       theme: theme.theme,
       form$: form$.form$,
-      $view: view.$view,
+      View: view.View,
     })
 
     const classes = useClasses(props, context, {
@@ -203,7 +203,7 @@ export default {
       theme: theme.theme,
       templates: templates.templates,
       el$: baseElement.el$,
-      $view: view.$view,
+      View: view.View,
     })
 
     const columns = useColumns(props, context, {

@@ -6,6 +6,7 @@
     render: ButtonElement.render,
     data() {
       return {
+        merge: true,
         defaultClasses: {
           container: '',
           button: 'vf-btn',

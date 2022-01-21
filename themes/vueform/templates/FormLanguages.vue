@@ -6,6 +6,7 @@
     render: FormLanguages.render,
     data() {
       return {
+        merge: true,
         defaultClasses: {
           container: 'vf-languages',
         }

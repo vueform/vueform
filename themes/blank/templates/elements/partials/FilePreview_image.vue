@@ -49,6 +49,7 @@
     name: 'FilePreview_image',
     data() {
       return {
+        merge: true,
         defaultClasses: {
           container: '',
           wrapper: '',
