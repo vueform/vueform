@@ -11,35 +11,22 @@ const LOCALS_KEYS = [
 
 export default class MergeFormClasses
 {
-  component = null
-  component$ = {}
-  componentClasses = {}
-  presets = {}
-  template = {}
-
   constructor(options = {}) {
-    this.component = options.component
-    this.component$ = options.component$
-    this.template = options.view && options.templates[`${this.component}_${options.view}`]
-      ? options.templates[`${this.component}_${options.view}`]
-      : options.templates[this.component]
+    this.options = options
 
-    let merge = typeof this.template.data === 'function' && this.template.data().merge !== undefined
-      ? this.template.data().merge
-      : this.component$.value.merge
+    if (this.shouldMergeTemplateClasses) {
+      this.componentClasses = this.templateClasses
 
-    let themeClasses = _.cloneDeep(this.toArray(options.view && options.theme.classes[`${this.component}_${options.view}`]
-      ? options.theme.classes[`${this.component}_${options.view}`]
-      : options.theme.classes[this.component]))
-    let templateClasses = _.cloneDeep(this.toArray(this.defaultClasses))
-    let templateMerge = merge !== undefined ? merge : true
+      this.merge({
+        overrideClasses: {
+          [this.component]: this.themeClasses
+        }
+      })
+    } else {
+      this.componentClasses = this.templateClasses
+    }
 
-    this.componentClasses = templateMerge ? templateClasses : themeClasses
-    this.merge({ overrideClasses: {
-      [this.component]: templateMerge ? themeClasses : templateClasses
-    }})
-
-    this.presets = options.config.presets
+    this.merge(this.config)
 
     _.each(options.merge, (merge) => {
       this.merge(merge)
@@ -47,7 +34,7 @@ export default class MergeFormClasses
 
     this.merge(this.component$.value, true)
 
-    if (options.config.classHelpers) {
+    if (this.config.classHelpers) {
       this.merge({
         prependClasses: {
           [this.component]: this.getClassHelpers(this.componentClasses, [this.component])
@@ -59,29 +46,65 @@ export default class MergeFormClasses
   get classes () {
     return new Proxy(this.componentClasses, {
       get: (target, prop) => {
-        let classes = target[prop]
-
         if (typeof prop !== 'string') {
-          return classes
+          return target[prop]
         }
 
-        if (target[`$${prop}`]) {
-          return target[`$${prop}`](target, this.component$.value)
-        }
-
-        if (_.isPlainObject(classes)) {
-          classes = _.cloneDeep(classes)
-
-          _.each(classes, (classList, className) => {
-            classes[className] = classes[`$${className}`]
-              ? classes[`$${className}`](target, this.component$.value)
-              : classList
-          })
-        }
-
-        return classes
+        return this.getDynamicClasses(target, prop)
       }
     })
+  }
+
+  get config () {
+    return this.options.config || {}
+  }
+
+  get component () {
+    return this.options.component
+  }
+  
+  get component$ () {
+    return this.options.component$
+  }
+
+  get view () {
+    return this.options.view
+  }
+
+  get theme () {
+    return this.options.theme
+  }
+
+  get presets () {
+    return this.config.presets
+  }
+
+  get templates () {
+    return this.options.templates || {}
+  }
+
+  get template () {
+    return this.view && this.templates[`${this.component}_${this.view}`]
+      ? this.templates[`${this.component}_${this.view}`]
+      : (this.templates[this.component] || {})
+  }
+
+  get themeClasses () {
+    return _.cloneDeep(this.toArray(this.view && this.theme.classes[`${this.component}_${this.view}`]
+      ? this.theme.classes[`${this.component}_${this.view}`]
+      : this.theme.classes[this.component]))
+  }
+
+  get templateClasses () {
+     return _.cloneDeep(this.toArray(this.defaultClasses))
+  }
+
+  get shouldMergeTemplateClasses () {
+    let merge = typeof this.template.data === 'function' && this.template.data().merge !== undefined
+      ? this.template.data().merge
+      : this.component$.value.merge
+
+    return merge !== undefined ? merge : true
   }
 
   get defaultClasses () {
@@ -136,6 +159,8 @@ export default class MergeFormClasses
             this.mergeComponentClasses({
               [this.mainClass]: mergables
             }, `${key}es`)
+          } else if (key === 'replaceClass') {
+              this.mergeComponentClasses(mergables, `${key}es`)
           } else if (_.isPlainObject(mergables)) {
             this.mergeComponentClasses(this.toArray(mergables), `${key}es`)
           } else {
@@ -217,6 +242,19 @@ export default class MergeFormClasses
   replaceClasses(replace, levels) {
     let base = _.get(this.componentClasses, levels.join('.'))
 
+    if (Array.isArray(replace)) {
+      let tempReplace = {}
+
+      replace.forEach((r) => {
+        tempReplace = {
+          ...tempReplace,
+          ...r,
+        }
+      })
+
+      replace = tempReplace
+    }
+
     if (_.isPlainObject(base)) {
       _.each(replace, (subclasses, subclassName) => {
         this.replaceClasses(subclasses, levels.concat(subclassName))
@@ -259,7 +297,6 @@ export default class MergeFormClasses
     if (typeof classes === 'string') {
       arrayClasses = classes.length > 0 ? classes.split(' ') : []
     } else if (_.isPlainObject(classes)) {
-
       if (base && Array.isArray(base)) {
         arrayClasses = [classes]
       } else if (!base || _.isPlainObject(base)) {
@@ -272,10 +309,32 @@ export default class MergeFormClasses
     } else if (typeof classes === 'boolean' || (typeof classes === 'object' && [
       'ComputedRefImpl', 'RefImpl'
     ].indexOf(classes?.constructor?.name) !== -1)) {
-      throw Error(`Cannot add conditional class to ${path.join('.')}`)
+      throw Error(`Cannot add conditional class to ${this.component}: '${path.join('.')}'`)
     }
 
     return arrayClasses
+  }
+
+  getDynamicClasses(target, prop, mainTarget) {
+    if (!mainTarget) {
+      mainTarget = target
+    }
+
+    let classes = Array.isArray(target[prop]) ? _.flattenDeep(target[prop]) : target[prop]
+
+    if (target[`$${prop}`]) {
+      return _.flattenDeep(target[`$${prop}`](mainTarget, this.component$.value))
+    }
+
+    if (_.isPlainObject(classes)) {
+      classes = _.cloneDeep(classes)
+
+      _.each(classes, (classList, className) => {
+        classes[className] = this.getDynamicClasses(classes, className, target)
+      })
+    }
+
+    return classes
   }
 
   getClassHelpers (componentClasses, path) {
