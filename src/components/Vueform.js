@@ -306,37 +306,37 @@ export default {
     addClasses: {
       required: false,
       type: [Object],
-      default: () => ({})
+      default: null
     },
     removeClasses: {
       required: false,
       type: [Object],
-      default: () => ({})
+      default: null
     },
     replaceClasses: {
       required: false,
       type: [Object],
-      default: () => ({})
+      default: null
     },
     overrideClasses: {
       required: false,
       type: [Object],
-      default: () => ({})
+      default: null
     },
     presets: {
       required: false,
       type: [Array],
-      default: () => ([])
+      default: null
     },
     view: {
       required: false,
       type: [String],
-      default: undefined,
+      default: null,
     },
     views: {
       required: false,
       type: [Object],
-      default: () => ({}),
+      default: null,
     },
     size: {
       required: false,
@@ -445,7 +445,7 @@ export default {
     },
   },
   render() {
-    return this.templates.Vueform.render.apply(this, arguments)
+    return this.template.render.apply(this, arguments)
   },
   // staticRenderFns() {
   //   return this.templates.Vueform.staticRenderFns

@@ -1,5 +1,6 @@
 import change from './../change'
 import check from './../check'
+import classesToArray from './../classesToArray'
 import confirmSelectOptions from './../confirmSelectOptions'
 import createEditor from './../createEditor'
 import listChild from './../listChild'
@@ -47,6 +48,7 @@ window.c = console.log
 export {
   change,
   check,
+  classesToArray,
   confirmSelectOptions,
   createElement,
   createForm,

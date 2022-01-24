@@ -23,7 +23,7 @@ export default class MergeFormClasses
         }
       })
     } else {
-      this.componentClasses = this.templateClassesö
+      this.componentClasses = this.templateClasses
     }
 
     this.merge(this.config)
@@ -32,7 +32,7 @@ export default class MergeFormClasses
       this.merge(merge)
     })
 
-    this.merge(this.component$.value, true)
+    this.merge(this.locals || this.component$.value, true)
 
     if (this.config.classHelpers) {
       this.merge({
@@ -65,6 +65,10 @@ export default class MergeFormClasses
   
   get component$ () {
     return this.options.component$
+  }
+
+  get locals () {
+    return this.options.locals
   }
 
   get view () {
@@ -136,7 +140,7 @@ export default class MergeFormClasses
 
         case 'removeClasses':
         case 'replaceClasses':
-          if (mergables[this.component] === undefined) {
+          if (!mergables || mergables[this.component] === undefined) {
             return
           }
 
@@ -149,7 +153,7 @@ export default class MergeFormClasses
         case 'overrideClass':
           if (!mergables) {
             return
-          } 
+          }
 
           if (typeof mergables === 'string' || Array.isArray(mergables)) {
             if (!Array.isArray(mergables)) {

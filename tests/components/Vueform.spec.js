@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import { findAllComponents, createElement } from 'test-helpers'
+import { findAllComponents, createElement, classesToArray, createInlineForm } from 'test-helpers'
 import { ref, markRaw, nextTick } from 'composition-api'
 import flushPromises from 'flush-promises'
 import defaultTheme from './../../themes/vueform'
@@ -1065,312 +1065,150 @@ describe('Vueform', () => {
     })
   })
 
-  describe('defaultClasses', () => {
-    // it('should be equal to theme\'s Vueform component\'s defaultClasses', async () => {
-    //   let form = createForm({
-    //     schema: {
-    //       el: { type: 'text' }
-    //     }
-    //   })
+  describe('extendedTheme', () => {
+    it('should merge templates from theme, config, presets & local', async () => {
+      let TextElement1 = {
+        render(h) {
+          return createElement(h, 'div', 'TextElement1')
+        },
+        data: () => ({
+          defaultClasses: {
+            container: 'text-element-1'
+          }
+        })
+      } 
 
-    //   expect(form.vm.defaultClasses).toStrictEqual(form.vm.extendedTheme.templates.Vueform.data().defaultClasses)
-    // })
-  })
+      let TextElement2 = {
+        render(h) {
+          return createElement(h, 'div', 'TextElement2')
+        },
+        data: () => ({
+          defaultClasses: {
+            container: 'text-element-2'
+          }
+        })
+      }
 
-  describe('classes', () => {
-    // let defaultClasses = defaultTheme.templates.Vueform.data().defaultClasses
-    // let mainClass = _.keys(defaultClasses)[0]
+      let TextElement3 = {
+        render(h) {
+          return createElement(h, 'div', 'TextElement3')
+        },
+        data: () => ({
+          defaultClasses: {
+            container: 'text-element-3'
+          }
+        })
+      }
 
-    // it('should equal to defaultClasses by default', async () => {
-    //   let form = createForm({})
+      let TextElement4 = {
+        render(h) {
+          return createElement(h, 'div', 'TextElement4')
+        },
+        data: () => ({
+          defaultClasses: {
+            container: 'text-element-4'
+          }
+        })
+      }
 
-    //   expect(form.vm.classes).toStrictEqual(form.vm.defaultClasses)
-    // })
-
-    // it('should have classes in theme overwrite defaultClasses', async () => {
-    //   let overwriteClasses1 = {
-    //     [mainClass]: 'theme-overwrite-class'
-    //   }
-
-    //   let form = createForm({}, {
-    //     theme: Object.assign({}, defaultTheme, {
-    //       classes: {
-    //         Vueform: overwriteClasses1
-    //       }
-    //     })
-    //   })
-
-    //   expect(form.vm.classes).toStrictEqual(Object.assign({}, defaultClasses, overwriteClasses1))
-    // })
-
-    // // Form classes
-    // it('should have classes in form overwrite defaultClasses, even when changes using Options API', async () => {
-    //   let overwriteClasses1 = {
-    //     [mainClass]: 'form-overwrite-class'
-    //   }
-    //   let overwriteClasses2 = {
-    //     [mainClass]: 'form-overwrite-class2'
-    //   }
-
-    //   let form = createForm({
-    //     replaceClasses: {
-    //       Vueform: overwriteClasses1
-    //     }
-    //   })
-
-    //   expect(form.vm.classes).toStrictEqual(Object.assign({}, defaultClasses, overwriteClasses1))
-
-    //   form.vm.vueform.replaceClasses.Vueform = overwriteClasses2
-
-    //   expect(form.vm.classes).toStrictEqual(Object.assign({}, defaultClasses, overwriteClasses2))
-    // })
-
-    // it('should have classes in form overwrite defaultClasses, even when changes using Composition API', async () => {
-    //   let overwriteClasses1 = {
-    //     [mainClass]: 'form-overwrite-class'
-    //   }
-    //   let overwriteClasses2 = {
-    //     [mainClass]: 'form-overwrite-class2'
-    //   }
-
-    //   let form = createForm({}, {
-    //     setup() {
-    //       return {
-    //         vueform: {
-    //           replaceClasses: ref({
-    //             Vueform: overwriteClasses1
-    //           })
-    //         }
-    //       }
-    //     }
-    //   })
-
-    //   await nextTick()
-
-    //   expect(form.vm.classes).toStrictEqual(Object.assign({}, defaultClasses, overwriteClasses1))
-
-    //   form.vm.options.replaceClasses.Vueform = overwriteClasses2
-
-    //   expect(form.vm.classes).toStrictEqual(Object.assign({}, defaultClasses, overwriteClasses2))
-    // })
-
-    // it('should have classes in form overwrite defaultClasses, even when changes using :form prop', async () => {
-    //   let overwriteClasses1 = {
-    //     [mainClass]: 'form-overwrite-class'
-    //   }
-    //   let overwriteClasses2 = {
-    //     [mainClass]: 'form-overwrite-class2'
-    //   }
-
-    //   let form = createForm({}, {
-    //     propsData: {
-    //       replaceClasses: {
-    //         Vueform: overwriteClasses1
-    //       }
-    //     }
-    //   })
-
-    //   expect(form.vm.classes).toStrictEqual(Object.assign({}, defaultClasses, overwriteClasses1))
-
-    //   form.vm.options.replaceClasses.Vueform = overwriteClasses2
-
-    //   expect(form.vm.classes).toStrictEqual(Object.assign({}, defaultClasses, overwriteClasses2))
-    // })
-
-    // it('should have classes in form overwrite theme classes, even when changes', async () => {
-    //   let overwriteClasses1 = {
-    //     [mainClass]: 'form-overwrite-class'
-    //   }
-    //   let overwriteClasses2 = {
-    //     [mainClass]: 'form-overwrite-class2'
-    //   }
-
-    //   let form = createForm({
-    //     replaceClasses: {
-    //       Vueform: overwriteClasses1
-    //     }
-    //   }, {
-    //     theme: Object.assign({}, defaultTheme, {
-    //       classes: {
-    //         Vueform: {
-    //           [mainClass]: 'theme-overwrite-class'
-    //         }
-    //       }
-    //     })
-    //   })
-
-    //   expect(form.vm.classes).toStrictEqual(Object.assign({}, defaultClasses, overwriteClasses1))
-
-    //   form.vm.options.replaceClasses.Vueform = overwriteClasses2
-
-    //   expect(form.vm.classes).toStrictEqual(Object.assign({}, defaultClasses, overwriteClasses2))
-    // })
-
-    // it('should have extendClasses in form add classes, even when changes using Options API', async () => {
-    //   let extendClasses1 = {
-    //     [mainClass]: 'form-add-class'
-    //   }
-    //   let extendClasses2 = {
-    //     [mainClass]: 'form-add-class2'
-    //   }
-
-    //   let form = createForm({
-    //     extendClasses: {
-    //       Vueform: extendClasses1
-    //     }
-    //   })
-
-    //   expect(form.vm.classes[mainClass]).toStrictEqual(mergeClass(defaultClasses[mainClass], extendClasses1[mainClass]))
-
-    //   form.vm.options.extendClasses.Vueform = extendClasses2
-
-    //   expect(form.vm.classes[mainClass]).toStrictEqual(mergeClass(defaultClasses[mainClass], extendClasses2[mainClass]))
-    // })
-
-    // it('should have extendClasses in form add classes, even when changes using Composition API', async () => {
-    //   let extendClasses1 = {
-    //     [mainClass]: 'form-add-class'
-    //   }
-    //   let extendClasses2 = {
-    //     [mainClass]: 'form-add-class2'
-    //   }
-
-    //   let form = createForm({}, {
-    //     setup() {
-    //       return {
-    //         vueform: {
-    //           extendClasses: ref({
-    //             Vueform: extendClasses1
-    //           })
-    //         }
-    //       }
-    //     }
-    //   })
-
-    //   expect(form.vm.classes[mainClass]).toStrictEqual(mergeClass(defaultClasses[mainClass], extendClasses1[mainClass]))
-
-    //   form.vm.options.extendClasses.Vueform = extendClasses2
-
-    //   expect(form.vm.classes[mainClass]).toStrictEqual(mergeClass(defaultClasses[mainClass], extendClasses2[mainClass]))
-    // })
-
-    // it('should have extendClasses in form add classes, even when changes using :form prop', async () => {
-    //   let extendClasses1 = {
-    //     [mainClass]: 'form-add-class'
-    //   }
-    //   let extendClasses2 = {
-    //     [mainClass]: 'form-add-class2'
-    //   }
-
-    //   let form = createForm({}, {
-    //     propsData: {
-    //       extendClasses: {
-    //         Vueform: extendClasses1
-    //       }
-    //     }
-    //   })
-
-    //   expect(form.vm.classes[mainClass]).toStrictEqual(mergeClass(defaultClasses[mainClass], extendClasses1[mainClass]))
-
-    //   form.vm.options.extendClasses.Vueform = extendClasses2
-
-    //   expect(form.vm.classes[mainClass]).toStrictEqual(mergeClass(defaultClasses[mainClass], extendClasses2[mainClass]))
-    // })
-
-    // it('should have class add classes, even when changes', async () => {
-    //   let class1 = 'form-class'
-
-    //   let class2 = ['form-class2-a', 'form-class2-b']
-
-    //   let form = createForm({
-    //     addClass: class1
-    //   })
-
-    //   expect(form.vm.classes).toStrictEqual(mergeComponentClasses(Object.assign({}, defaultClasses), { [mainClass]: class1 }))
-
-    //   form.vm.$set(form.vm.vueform, 'addClass', class2)
-
-    //   expect(form.vm.classes).toStrictEqual(mergeComponentClasses(Object.assign({}, defaultClasses), { [mainClass]: class2 }))
-    // })
-
-    // it('should have class add classes, even when changes using Composition API', async () => {
-    //   let class1 = 'form-class'
-
-    //   let class2 = ['form-class2-a', 'form-class2-b']
-
-    //   let form = createForm({}, {
-    //     setup() {
-    //       return {
-    //         vueform: ref({
-    //           addClass: class1
-    //         })
-    //       }
-    //     }
-    //   })
-
-    //   expect(form.vm.classes).toStrictEqual(mergeComponentClasses(Object.assign({}, defaultClasses), { [mainClass]: class1 }))
-
-    //   form.vm.$set(form.vm.vueform, 'addClass', class2)
-
-    //   expect(form.vm.classes).toStrictEqual(mergeComponentClasses(Object.assign({}, defaultClasses), { [mainClass]: class2 }))
-    // })
-
-    // it('should have class add classes when using :form prop', async () => {
-    //   let class1 = 'form-class'
-
-    //   let class2 = ['form-class2-a', 'form-class2-b']
-
-    //   let form = createForm({}, {
-    //     propsData: {
-    //       addClass: class1,
-    //     }
-    //   })
-
-    //   expect(form.vm.classes).toStrictEqual(mergeComponentClasses(Object.assign({}, defaultClasses), { [mainClass]: class1 }))
-    // })
-
-    // // Rendering
-    // it('should mainClass to the container DOM', async () => {
-    //   let themeClasses = {
-    //     Vueform: {
-    //       [mainClass]: 'theme-classes'
-    //     }
-    //   }
-
-    //   let form = createForm({
-    //     replaceClasses: {
-    //       Vueform: {
-    //         [mainClass]: 'form-classes'
-    //       }
-    //     },
-    //     addClass: 'form-class',
-    //     extendClasses: {
-    //       Vueform: {
-    //         [mainClass]: 'form-add-classes'
-    //       }
-    //     },
-    //   }, {
-    //     theme: Object.assign({}, defaultTheme, {
-    //       classes: themeClasses
-    //     })
-    //   })
-
-    //   expect(form.classes('form-classes')).toBe(true)
-    //   expect(form.classes('theme-classes')).toBe(false)
-    //   expect(form.classes('form-add-classes')).toBe(true)
-    //   expect(form.classes('form-class')).toBe(true)
-    // })
-  })
-
-  describe('templates', () => {
-    it('should be equal to theme\'s templates', async () => {
       let form = createForm({
-        schema: {
-          el: { type: 'text' }
+        schema: { el: { type: 'text' } },
+      }, {
+        config: {
+          templates: {
+            TextElement: TextElement1
+          }
         }
       })
 
-      expect(form.vm.templates).toStrictEqual(Object.assign({}, form.vm.extendedTheme.templates))
+      expect(form.vm.extendedTheme.templates).toStrictEqual({
+        ...defaultTheme.templates,
+        TextElement: TextElement1
+      })
+
+      form = createForm({
+        schema: { el: { type: 'text' } },
+      }, {
+        config: {
+          templates: {
+            TextElement: TextElement1
+          },
+          presets: {
+            templates: {
+              templates: {
+                TextElement: TextElement2
+              }
+            }
+          },
+          usePresets: ['templates']
+        }
+      })
+
+      expect(form.vm.extendedTheme.templates).toStrictEqual({
+        ...defaultTheme.templates,
+        TextElement: TextElement2
+      })
+
+      form = createForm({
+        schema: { el: { type: 'text' } },
+        presets: ['templates2']
+      }, {
+        config: {
+          templates: {
+            TextElement: TextElement1
+          },
+          presets: {
+            templates: {
+              templates: {
+                TextElement: TextElement2
+              }
+            },
+            templates2: {
+              templates: {
+                TextElement: TextElement3
+              }
+            },
+          },
+          usePresets: ['templates']
+        }
+      })
+
+      expect(form.vm.extendedTheme.templates).toStrictEqual({
+        ...defaultTheme.templates,
+        TextElement: TextElement3
+      })
+
+      form = createForm({
+        schema: { el: { type: 'text' } },
+        presets: ['templates2'],
+        replaceTemplates: {
+          TextElement: TextElement4
+        }
+      }, {
+        config: {
+          templates: {
+            TextElement: TextElement1
+          },
+          presets: {
+            templates: {
+              templates: {
+                TextElement: TextElement2
+              }
+            },
+            templates2: {
+              templates: {
+                TextElement: TextElement3
+              }
+            },
+          },
+          usePresets: ['templates']
+        }
+      })
+
+      expect(form.vm.extendedTheme.templates).toStrictEqual({
+        ...defaultTheme.templates,
+        TextElement: TextElement4
+      })
     })
   })
 
@@ -1414,47 +1252,501 @@ describe('Vueform', () => {
       expect(form.vm.extendedTheme.templates.ElementText.name).toBe('FormElementText')
       expect(form.vm.extendedTheme.templates.FormTab.name).toBe('ConfigFormTab')
     })
+  })
 
-    it('should merge ', async () => {
+  describe('template', () => {
+    it('should be base template', async () => {
+      let form = createForm({
+        schema: {
+          el: { type: 'text' }
+        }
+      })
 
+      expect(form.vm.template).toStrictEqual(form.vm.extendedTheme.templates.Vueform)
     })
 
-    // it('should merge deep theme classes with local classes', async () => {
-    //   let form = createForm({
-    //     replaceClasses: {
-    //       Vueform: {
-    //         form: 'form-form',
-    //         buttons: 'form-button',
-    //       },
-    //       ElementLabel: {
-    //         container: 'form-label',
-    //       },
-    //     }
-    //   }, {
-    //     config: {
-    //       theme: Object.assign({}, defaultTheme, {
-    //         classes: {
-    //           Vueform: {
-    //             form: 'theme-form',
-    //             label: 'theme-label',
-    //           },
-    //           ElementText: {
-    //             container: 'theme-element-text',
-    //           },
-    //         }
-    //       })
-    //     }
-    //   })
+    it('should be base template if view does not exist', async () => {
+      let form = createForm({
+        schema: {
+          el: { type: 'text' },
+        },
+        view: 'dark'
+      })
 
-    //   expect(form.vm.extendedTheme.classes.Vueform).toStrictEqual({
-    //     form: 'form-form',
-    //     buttons: 'form-button',
-    //     label: 'theme-label',
-    //   })
+      expect(form.vm.template).toStrictEqual(form.vm.extendedTheme.templates.Vueform)
+    })
 
-    //   expect(form.vm.extendedTheme.classes.ElementLabel.container).toStrictEqual('form-label')
-    //   expect(form.vm.extendedTheme.classes.ElementText.container).toStrictEqual('theme-element-text')
-    // })
+    it('should be view template', async () => {
+      let dark = {
+        render(h) {
+          return createElement(h, 'div', 'hello')
+        }
+      }
+
+      let form = createForm({
+        schema: {
+          el: { type: 'text' },
+        },
+        view: 'dark',
+      }, {
+        config: {
+          templates: {
+            Vueform_dark: dark
+          }
+        }
+      })
+
+      expect(form.vm.template).toEqual(dark)
+    })
+  })
+
+  describe('classes', () => {
+    it('should merge template, theme, config preset, config, local preset, local singular, local plural classes', () => {
+      let form = createForm({
+        schema: { el: { type: 'text' } },
+      }, {
+        config: {
+          classHelpers: false,
+        }
+      })
+
+      expect(form.vm.classes).toEqual(classesToArray(defaultTheme.templates.Vueform.data().defaultClasses))
+    })
+
+    it('should have template classes by default', () => {
+      let form = createForm({
+        schema: { el: { type: 'text' } },
+      }, {
+        config: {
+          classHelpers: false,
+        }
+      })
+
+      expect(form.vm.classes).toEqual(classesToArray(defaultTheme.templates.Vueform.data().defaultClasses))
+    })
+
+    it('should override template classes with theme classes', () => {
+      let form = createForm({
+        schema: { el: { type: 'text' } },
+        theme: tailwindTheme,
+      }, {
+        config: {
+          classHelpers: false,
+        }
+      })
+
+      expect(form.vm.classes).toEqual(classesToArray(tailwindTheme.classes.Vueform))
+    })
+
+    it('should merge base classes with config preset classes', () => {
+      let form = createForm({
+        schema: { el: { type: 'text' } },
+        theme: tailwindTheme,
+      }, {
+        config: {
+          classHelpers: false,
+          presets: {
+            preset: {
+              overrideClasses: {
+                Vueform: {
+                  form: 'not-empty'
+                }
+              }
+            }
+          },
+          usePresets: ['preset'],
+        }
+      })
+
+      expect(form.vm.classes).toEqual(classesToArray({
+        ...tailwindTheme.classes.Vueform,
+        form: 'not-empty'
+      }))
+    })
+
+    it('should merge base classes with config classes', () => {
+      let form = createForm({
+        schema: { el: { type: 'text' } },
+        theme: tailwindTheme,
+      }, {
+        config: {
+          classHelpers: false,
+          presets: {
+            preset: {
+              overrideClasses: {
+                Vueform: {
+                  form: 'not-empty2'
+                }
+              }
+            }
+          },
+          usePresets: ['preset'],
+          overrideClasses: {
+            Vueform: {
+              form: 'not-empty2'
+            }
+          }
+        }
+      })
+
+      expect(form.vm.classes).toEqual(classesToArray({
+        ...tailwindTheme.classes.Vueform,
+        form: 'not-empty2'
+      }))
+    })
+
+    it('should merge base classes with local preset classes', () => {
+      let form = createForm({
+        schema: { el: { type: 'text' } },
+        theme: tailwindTheme,
+        presets: ['preset2']
+      }, {
+        config: {
+          classHelpers: false,
+          presets: {
+            preset: {
+              overrideClasses: {
+                Vueform: {
+                  form: 'not-empty2'
+                }
+              }
+            },
+            preset2: {
+              overrideClasses: {
+                Vueform: {
+                  form: 'not-empty3'
+                }
+              }
+            }
+          },
+          usePresets: ['preset'],
+          overrideClasses: {
+            Vueform: {
+              form: 'not-empty2'
+            }
+          }
+        }
+      })
+
+      expect(form.vm.classes).toEqual(classesToArray({
+        ...tailwindTheme.classes.Vueform,
+        form: 'not-empty3'
+      }))
+    })
+
+    it('should merge base classes with local plular classes', () => {
+      let form = createForm({
+        schema: { el: { type: 'text' } },
+        theme: tailwindTheme,
+        presets: ['preset2'],
+        overrideClasses: {
+          Vueform: {
+            form: 'not-empty4'
+          }
+        },
+      }, {
+        config: {
+          classHelpers: false,
+          presets: {
+            preset: {
+              overrideClasses: {
+                Vueform: {
+                  form: 'not-empty2'
+                }
+              }
+            },
+            preset2: {
+              overrideClasses: {
+                Vueform: {
+                  form: 'not-empty3'
+                }
+              }
+            }
+          },
+          usePresets: ['preset'],
+          overrideClasses: {
+            Vueform: {
+              form: 'not-empty2'
+            }
+          }
+        }
+      })
+
+      expect(form.vm.classes).toEqual(classesToArray({
+        ...tailwindTheme.classes.Vueform,
+        form: 'not-empty4'
+      }))
+    })
+
+    it('should merge base classes with local singular classes', () => {
+      let vueform = {
+        schema: { el: { type: 'text' } },
+        theme: tailwindTheme,
+        presets: ['preset2'],
+        overrideClasses: {
+          Vueform: {
+            form: 'not-empty4'
+          }
+        },
+        overrideClass: {
+          form: 'not-empty5'
+        },
+      }
+
+      let form = createForm(vueform, {
+        config: {
+          classHelpers: false,
+          presets: {
+            preset: {
+              overrideClasses: {
+                Vueform: {
+                  form: 'not-empty2'
+                }
+              }
+            },
+            preset2: {
+              overrideClasses: {
+                Vueform: {
+                  form: 'not-empty3'
+                }
+              }
+            }
+          },
+          usePresets: ['preset'],
+          overrideClasses: {
+            Vueform: {
+              form: 'not-empty2'
+            }
+          }
+        }
+      })
+
+      expect(form.vm.classes).toEqual(classesToArray({
+        ...tailwindTheme.classes.Vueform,
+        form: 'not-empty5'
+      }))
+    })
+  })
+
+  describe('Size', () => {
+    it('should return size defined as prop', () => {
+      let form = createForm({
+        schema: { el: { type: 'text' } },
+        size: 'sm',
+      }, {
+        config: {
+          size: 'md'
+        }
+      })
+
+      expect(form.vm.Size).toBe('sm')
+    })
+
+    it('should return size from config preset', () => {
+      let form = createForm({
+        schema: { el: { type: 'text' } },
+      }, {
+        config: {
+          usePresets: ['size'],
+          presets: {
+            size: {
+              size: 'sm'
+            }
+          },
+          size: 'md'
+        }
+      })
+
+      expect(form.vm.Size).toBe('sm')
+    })
+
+    it('should return size from config preset', () => {
+      let form = createForm({
+        schema: { el: { type: 'text' } },
+        presets: ['size2']
+      }, {
+        config: {
+          usePresets: ['size'],
+          presets: {
+            size: {
+              size: 'sm'
+            },
+            size2: {
+              size: 'xl'
+            },
+          },
+          size: 'md'
+        }
+      })
+
+      expect(form.vm.Size).toBe('xl')
+    })
+
+    it('should return size from config preset', () => {
+      let form = createForm({
+        schema: { el: { type: 'text' } },
+      }, {
+        config: {
+          size: 'sm'
+        }
+      })
+
+      expect(form.vm.Size).toBe('sm')
+    })
+  })
+
+  describe('Views', () => {
+    it('should have config views', () => {
+      let ElementError = 'error'
+      let ElementMessage = 'message'
+
+      let form = createForm({
+        schema: { el: { type: 'text' } },
+      }, {
+        config: {
+          views: {
+            ElementError,
+            ElementMessage,
+          }
+        }
+      })
+
+      expect(form.vm.Views.ElementError).toEqual(ElementError)
+      expect(form.vm.Views.ElementMessage).toEqual(ElementMessage)
+    })
+
+    it('should merge base views with config preset views', () => {
+      let ElementError = 'error'
+      let ElementMessage = 'message'
+      let ElementMessage2 = 'message2'
+
+      let form = createForm({
+        schema: { el: { type: 'text' } },
+      }, {
+        config: {
+          views: {
+            ElementError,
+            ElementMessage,
+          },
+          presets: {
+            preset: {
+              views: {
+                ElementMessage: ElementMessage2
+              }
+            },
+          },
+          usePresets: ['preset']
+        }
+      })
+
+      expect(form.vm.Views.ElementError).toEqual(ElementError)
+      expect(form.vm.Views.ElementMessage).toEqual(ElementMessage2)
+    })
+
+    it('should merge base views with form preset views', () => {
+      let ElementMessage = 'message'
+      let ElementMessage2 = 'message2'
+      let ElementMessage3 = 'message3'
+
+      let form = createForm({
+        schema: { el: { type: 'text' } },
+        presets: ['preset2']
+      }, {
+        config: {
+          views: {
+            ElementMessage,
+          },
+          presets: {
+            preset: {
+              views: {
+                ElementMessage: ElementMessage2
+              }
+            },
+            preset2: {
+              views: {
+                ElementMessage: ElementMessage3
+              }
+            },
+          },
+          usePresets: ['preset']
+        }
+      })
+
+      expect(form.vm.Views.ElementMessage).toEqual(ElementMessage3)
+    })
+
+    it('should merge base views with form views', () => {
+      let ElementMessage = 'message'
+      let ElementMessage2 = 'message2'
+      let ElementMessage3 = 'message3'
+      let ElementMessage4 = 'message4'
+
+      let form = createForm({
+        schema: { el: { type: 'text' } },
+        presets: ['preset2'],
+        views: {
+          ElementMessage: ElementMessage4
+        }
+      }, {
+        config: {
+          views: {
+            ElementMessage,
+          },
+          presets: {
+            preset: {
+              views: {
+                ElementMessage: ElementMessage2
+              }
+            },
+            preset2: {
+              views: {
+                ElementMessage: ElementMessage3
+              }
+            },
+          },
+          usePresets: ['preset']
+        }
+      })
+
+      expect(form.vm.Views.ElementMessage).toEqual(ElementMessage4)
+    })
+  })
+
+  describe('View', () => {
+    it('should be the view defined as prop', () => {
+      let form = createForm({
+        schema: { el: { type: 'text' } },
+        view: 'dark',
+        views: {
+          Vueform: 'light'
+        }
+      })
+
+      expect(form.vm.View).toBe('dark')
+    })
+
+    it('should be the value from Views if not defined as prop', () => {
+      let form = createForm({
+        schema: { el: { type: 'text' } },
+        views: {
+          Vueform: 'dark'
+        }
+      })
+
+      expect(form.vm.View).toBe('dark')
+    })
+  })
+
+  describe('templates', () => {
+    it('should be equal to theme\'s templates', async () => {
+      let form = createForm({
+        schema: {
+          el: { type: 'text' }
+        }
+      })
+
+      expect(form.vm.templates).toStrictEqual(Object.assign({}, form.vm.extendedTheme.templates))
+    })
   })
 
   describe('update', () => {

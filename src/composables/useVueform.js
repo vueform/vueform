@@ -219,19 +219,18 @@ const base = function(props, context, dependencies = {})
       steps: formSteps.value,
     }
 
+    // Prop options will override Component.data() options
     const override = {
       columns, languages, language, theme, method, validateOn,
       messages, formKey, multilingual, formatLoad, formatData, prepare, default: default_, formData, replaceTemplates,
       addClass, removeClass, replaceClass, overrideClass,
       addClasses, removeClasses, replaceClasses, overrideClasses, presets,
-      size, view,
+      size, view, views,
     }
 
-    const merge = {
-      views,
-    }
-
-    const ifNotUndefined = {
+    // Only set from prop option if it is not `null` - means the prop is set
+    // (otherwise will use the value defined in `defaults` or `undefined` if not)
+    const ifPropSet = {
       stepsControls, displayErrors, displayMessages, forceLabels, disabled, loading,
       floatPlaceholders, endpoint,
       onChange: _onChange.value,
@@ -263,7 +262,7 @@ const base = function(props, context, dependencies = {})
       formData: baseConfig.value.config.formData,
       theme: baseConfig.value.theme,
       view: baseConfig.value.config.view,
-      views: baseConfig.value.config.views,
+      views: {},
       size: null,
       addClass: null,
       removeClass: null,
@@ -291,17 +290,7 @@ const base = function(props, context, dependencies = {})
       options[key] = userConfig.value[key] !== undefined ?  userConfig.value[key] : ((val && val.value ? val.value : undefined) || defaults[key])
     })
 
-    _.each(merge, (val, key) => {
-      if (userConfig.value[key] !== undefined) {
-        options[key] = Object.assign({}, defaults[key], userConfig.value[key])
-      } else if (val && Object.keys(val.value).length) {
-        options[key] = Object.assign({}, defaults[key], val.value)
-      } else {
-        options[key] = Object.assign({}, defaults[key])
-      }
-    })
-
-    _.each(ifNotUndefined, (val, key) => {
+    _.each(ifPropSet, (val, key) => {
       options[key] = userConfig.value[key] !== undefined ? userConfig.value[key] : (val && val.value !== null ? val.value : defaults[key])
     })
 
@@ -723,8 +712,9 @@ const base = function(props, context, dependencies = {})
       config: baseConfig.value.config,
       templates: templates.value,
       view: View.value,
+      locals: options.value,
       merge: [
-        options.value,
+        options.value
       ],
     })).classes
   })
@@ -765,7 +755,7 @@ const base = function(props, context, dependencies = {})
    * @returns {object}
    */
   const Views = computed(() => {
-    let Views = options.value.views
+    let Views = baseConfig.value.config.views
 
     _.each(baseConfig.value.config.usePresets.concat(options.value.presets), (presetName) => {
       let preset = baseConfig.value.config.presets[presetName]
@@ -776,6 +766,8 @@ const base = function(props, context, dependencies = {})
 
       Views = Object.assign({}, Views, preset.views)
     })
+
+    Views = Object.assign({},Views, options.value.views)
 
     return Views
   })
