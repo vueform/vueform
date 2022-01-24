@@ -10,6 +10,8 @@ export default {
       el$,
       form$,
       Size,
+      View,
+      classesInstance,
       classes,
       templates,
       template,
@@ -43,13 +45,15 @@ export default {
      * @type {string}
      */
     const preview = computed(() => {
-      return el$.value.preview
+      return ['image', 'gallery'].indexOf(View.value) !== -1 ? el$.value.preview : null
     })
 
     return {
       el$,
       form$,
       Size,
+      View,
+      classesInstance,
       classes,
       templates,
       template,

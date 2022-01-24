@@ -1210,9 +1210,7 @@ describe('Vueform', () => {
         TextElement: TextElement4
       })
     })
-  })
-
-  describe('extendedTheme', () => {
+    
     it('should merge theme elements, with global elements and local elements', async () => {
       let form = createForm({
         replaceTemplates: {
@@ -1301,18 +1299,6 @@ describe('Vueform', () => {
   })
 
   describe('classes', () => {
-    it('should merge template, theme, config preset, config, local preset, local singular, local plural classes', () => {
-      let form = createForm({
-        schema: { el: { type: 'text' } },
-      }, {
-        config: {
-          classHelpers: false,
-        }
-      })
-
-      expect(form.vm.classes).toEqual(classesToArray(defaultTheme.templates.Vueform.data().defaultClasses))
-    })
-
     it('should have template classes by default', () => {
       let form = createForm({
         schema: { el: { type: 'text' } },

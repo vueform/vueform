@@ -3,22 +3,7 @@ import { nextTick, markRaw } from 'composition-api'
 import useElementComponent from './../composables/useElementComponent'
 
 describe('ElementLabel', () => {
-  let form = createForm({
-    schema: {
-      el: {
-        type: 'text',
-        label: 'El'
-      }
-    }
-  })
-
-  let el = form.vm.el$('el')
-
-  useElementComponent('text', 'ElementLabel', { label: 'label' }, {
-    mergeWith: {
-      container: el.columnsClasses.label,
-    }
-  })
+  useElementComponent('text', 'ElementLabel', { label: 'label' })
 
   describe('rendering', () => {
     it('should render as a string', () => {

@@ -116,8 +116,47 @@ module.exports = {
         required: 'false',
         default: 'null',
         types: [
-          'string',
           'array',
+          'object',
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
+      removeClass: {
+        required: 'false',
+        default: 'null',
+        types: [
+          'array',
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      replaceClass: {
+        required: 'false',
+        default: 'null',
+        types: [
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      overrideClass: {
+        required: 'false',
+        default: 'null',
+        types: [
+          'array',
+          'object',
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
+      addClasses: {
+        required: 'false',
+        default: '{}',
+        types: [
           'object',
         ],
         required: false,
@@ -132,11 +171,56 @@ module.exports = {
         required: false,
         private: false,
       },
-      extendClasses: {
+      removeClasses: {
         required: 'false',
         default: '{}',
         types: [
           'object',
+        ],
+        required: false,
+        private: false,
+      },
+      overrideClasses: {
+        required: 'false',
+        default: '{}',
+        types: [
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      presets: {
+        required: 'false',
+        default: '[]',
+        types: [
+          'array',
+        ],
+        required: false,
+        private: false,
+      },
+      view: {
+        required: 'false',
+        default: 'undefined',
+        types: [
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
+      views: {
+        required: 'false',
+        default: '{}',
+        types: [
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      size: {
+        required: 'false',
+        default: 'undefined',
+        types: [
+          'string',
         ],
         required: false,
         private: false,
@@ -355,13 +439,6 @@ module.exports = {
         default: 'true',
         private: false,
       },
-      defaultClasses: {
-        types: [
-          'object',
-        ],
-        description: 'The default classes for the element defined by theme.',
-        private: true,
-      },
       events: {
         types: [
           'array',
@@ -455,15 +532,8 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'The selected theme&apos;s classes merged with [`extendClasses`](#option-extend-classes) and [`replaceClasses`](#option-replace-classes) options.',
+        description: 'The selected theme&apos;s classes merged with [`addClasses`](#option-extend-classes) and [`overrideClasses`](#option-replace-classes) options.',
         private: false,
-      },
-      mainClass: {
-        types: [
-          'string',
-        ],
-        description: 'The class name of the element&apos;s outermost DOM.',
-        private: true,
       },
       columnsClasses: {
         types: [
@@ -543,11 +613,33 @@ module.exports = {
         description: 'The component templates to use for the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
         private: false,
       },
+      template: {
+        types: [
+          'object',
+        ],
+        description: 'The component&apos;s template.',
+        private: false,
+      },
       visible: {
         types: [
           'boolean',
         ],
         description: 'Whether the element is visible. It&apos;s `false` when `available` or `active` is `false` or `hidden` is `true`.',
+        private: false,
+      },
+      Size: {
+        description: 'The calculated size of the element. If [`size`](#option-size) is not defined for the element the closest parent&apos;s size will be used, which can be either the [`Vueform`](vueform) component or a nested element.',
+        returns: 'string',
+        private: false,
+      },
+      View: {
+        description: 'The calculated view of the element.',
+        returns: 'string',
+        private: false,
+      },
+      Views: {
+        description: 'The calculated views of the element.',
+        returns: 'object',
         private: false,
       },
     },
@@ -631,7 +723,7 @@ module.exports = {
         private: false,
       },
       show: {
-        description: 'Shows the element if it was hidden with [`hide()`](#hide) method.',
+        description: 'Shows the element if it was hidden with [`hide()`](#method-hide) method.',
         returns: 'void',
         private: false,
       },
@@ -939,8 +1031,47 @@ module.exports = {
         required: 'false',
         default: 'null',
         types: [
-          'string',
           'array',
+          'object',
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
+      removeClass: {
+        required: 'false',
+        default: 'null',
+        types: [
+          'array',
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      replaceClass: {
+        required: 'false',
+        default: 'null',
+        types: [
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      overrideClass: {
+        required: 'false',
+        default: 'null',
+        types: [
+          'array',
+          'object',
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
+      addClasses: {
+        required: 'false',
+        default: '{}',
+        types: [
           'object',
         ],
         required: false,
@@ -955,11 +1086,56 @@ module.exports = {
         required: false,
         private: false,
       },
-      extendClasses: {
+      removeClasses: {
         required: 'false',
         default: '{}',
         types: [
           'object',
+        ],
+        required: false,
+        private: false,
+      },
+      overrideClasses: {
+        required: 'false',
+        default: '{}',
+        types: [
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      presets: {
+        required: 'false',
+        default: '[]',
+        types: [
+          'array',
+        ],
+        required: false,
+        private: false,
+      },
+      view: {
+        required: 'false',
+        default: 'undefined',
+        types: [
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
+      views: {
+        required: 'false',
+        default: '{}',
+        types: [
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      size: {
+        required: 'false',
+        default: 'undefined',
+        types: [
+          'string',
         ],
         required: false,
         private: false,
@@ -1207,13 +1383,6 @@ module.exports = {
         default: 'true',
         private: false,
       },
-      defaultClasses: {
-        types: [
-          'object',
-        ],
-        description: 'The default classes for the element defined by theme.',
-        private: true,
-      },
       localDisabled: {
         types: [
           'boolean',
@@ -1340,15 +1509,8 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'The selected theme&apos;s classes merged with [`extendClasses`](#option-extend-classes) and [`replaceClasses`](#option-replace-classes) options.',
+        description: 'The selected theme&apos;s classes merged with [`addClasses`](#option-extend-classes) and [`overrideClasses`](#option-replace-classes) options.',
         private: false,
-      },
-      mainClass: {
-        types: [
-          'string',
-        ],
-        description: 'The class name of the element&apos;s outermost DOM.',
-        private: true,
       },
       columnsClasses: {
         types: [
@@ -1477,6 +1639,13 @@ module.exports = {
         description: 'The component templates to use for the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
         private: false,
       },
+      template: {
+        types: [
+          'object',
+        ],
+        description: 'The component&apos;s template.',
+        private: false,
+      },
       dirty: {
         types: [
           'boolean',
@@ -1553,6 +1722,21 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element is visible. It&apos;s `false` when `available` or `active` is `false` or `hidden` is `true`.',
+        private: false,
+      },
+      Size: {
+        description: 'The calculated size of the element. If [`size`](#option-size) is not defined for the element the closest parent&apos;s size will be used, which can be either the [`Vueform`](vueform) component or a nested element.',
+        returns: 'string',
+        private: false,
+      },
+      View: {
+        description: 'The calculated view of the element.',
+        returns: 'string',
+        private: false,
+      },
+      Views: {
+        description: 'The calculated views of the element.',
+        returns: 'object',
         private: false,
       },
     },
@@ -1723,7 +1907,7 @@ module.exports = {
         private: false,
       },
       show: {
-        description: 'Shows the element if it was hidden with [`hide()`](#hide) method.',
+        description: 'Shows the element if it was hidden with [`hide()`](#method-hide) method.',
         returns: 'void',
         private: false,
       },
@@ -2048,8 +2232,47 @@ module.exports = {
         required: 'false',
         default: 'null',
         types: [
-          'string',
           'array',
+          'object',
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
+      removeClass: {
+        required: 'false',
+        default: 'null',
+        types: [
+          'array',
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      replaceClass: {
+        required: 'false',
+        default: 'null',
+        types: [
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      overrideClass: {
+        required: 'false',
+        default: 'null',
+        types: [
+          'array',
+          'object',
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
+      addClasses: {
+        required: 'false',
+        default: '{}',
+        types: [
           'object',
         ],
         required: false,
@@ -2064,11 +2287,56 @@ module.exports = {
         required: false,
         private: false,
       },
-      extendClasses: {
+      removeClasses: {
         required: 'false',
         default: '{}',
         types: [
           'object',
+        ],
+        required: false,
+        private: false,
+      },
+      overrideClasses: {
+        required: 'false',
+        default: '{}',
+        types: [
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      presets: {
+        required: 'false',
+        default: '[]',
+        types: [
+          'array',
+        ],
+        required: false,
+        private: false,
+      },
+      view: {
+        required: 'false',
+        default: 'undefined',
+        types: [
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
+      views: {
+        required: 'false',
+        default: '{}',
+        types: [
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      size: {
+        required: 'false',
+        default: 'undefined',
+        types: [
+          'string',
         ],
         required: false,
         private: false,
@@ -2303,13 +2571,6 @@ module.exports = {
         default: 'true',
         private: false,
       },
-      defaultClasses: {
-        types: [
-          'object',
-        ],
-        description: 'The default classes for the element defined by theme.',
-        private: true,
-      },
       disabledItems: {
         types: [
           'array',
@@ -2435,15 +2696,8 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'The selected theme&apos;s classes merged with [`extendClasses`](#option-extend-classes) and [`replaceClasses`](#option-replace-classes) options.',
+        description: 'The selected theme&apos;s classes merged with [`addClasses`](#option-extend-classes) and [`overrideClasses`](#option-replace-classes) options.',
         private: false,
-      },
-      mainClass: {
-        types: [
-          'string',
-        ],
-        description: 'The class name of the element&apos;s outermost DOM.',
-        private: true,
       },
       columnsClasses: {
         types: [
@@ -2572,6 +2826,13 @@ module.exports = {
         description: 'The component templates to use for the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
         private: false,
       },
+      template: {
+        types: [
+          'object',
+        ],
+        description: 'The component&apos;s template.',
+        private: false,
+      },
       dirty: {
         types: [
           'boolean',
@@ -2648,6 +2909,21 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element is visible. It&apos;s `false` when `available` or `active` is `false` or `hidden` is `true`.',
+        private: false,
+      },
+      Size: {
+        description: 'The calculated size of the element. If [`size`](#option-size) is not defined for the element the closest parent&apos;s size will be used, which can be either the [`Vueform`](vueform) component or a nested element.',
+        returns: 'string',
+        private: false,
+      },
+      View: {
+        description: 'The calculated view of the element.',
+        returns: 'string',
+        private: false,
+      },
+      Views: {
+        description: 'The calculated views of the element.',
+        returns: 'object',
         private: false,
       },
     },
@@ -2896,7 +3172,7 @@ module.exports = {
         private: false,
       },
       show: {
-        description: 'Shows the element if it was hidden with [`hide()`](#hide) method.',
+        description: 'Shows the element if it was hidden with [`hide()`](#method-hide) method.',
         returns: 'void',
         private: false,
       },
@@ -3269,8 +3545,47 @@ module.exports = {
         required: 'false',
         default: 'null',
         types: [
-          'string',
           'array',
+          'object',
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
+      removeClass: {
+        required: 'false',
+        default: 'null',
+        types: [
+          'array',
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      replaceClass: {
+        required: 'false',
+        default: 'null',
+        types: [
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      overrideClass: {
+        required: 'false',
+        default: 'null',
+        types: [
+          'array',
+          'object',
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
+      addClasses: {
+        required: 'false',
+        default: '{}',
+        types: [
           'object',
         ],
         required: false,
@@ -3285,11 +3600,56 @@ module.exports = {
         required: false,
         private: false,
       },
-      extendClasses: {
+      removeClasses: {
         required: 'false',
         default: '{}',
         types: [
           'object',
+        ],
+        required: false,
+        private: false,
+      },
+      overrideClasses: {
+        required: 'false',
+        default: '{}',
+        types: [
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      presets: {
+        required: 'false',
+        default: '[]',
+        types: [
+          'array',
+        ],
+        required: false,
+        private: false,
+      },
+      view: {
+        required: 'false',
+        default: 'undefined',
+        types: [
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
+      views: {
+        required: 'false',
+        default: '{}',
+        types: [
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      size: {
+        required: 'false',
+        default: 'undefined',
+        types: [
+          'string',
         ],
         required: false,
         private: false,
@@ -3643,13 +4003,6 @@ module.exports = {
         default: 'true',
         private: false,
       },
-      defaultClasses: {
-        types: [
-          'object',
-        ],
-        description: 'The default classes for the element defined by theme.',
-        private: true,
-      },
       localDisabled: {
         types: [
           'boolean',
@@ -3762,15 +4115,8 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'The selected theme&apos;s classes merged with [`extendClasses`](#option-extend-classes) and [`replaceClasses`](#option-replace-classes) options.',
+        description: 'The selected theme&apos;s classes merged with [`addClasses`](#option-extend-classes) and [`overrideClasses`](#option-replace-classes) options.',
         private: false,
-      },
-      mainClass: {
-        types: [
-          'string',
-        ],
-        description: 'The class name of the element&apos;s outermost DOM.',
-        private: true,
       },
       columnsClasses: {
         types: [
@@ -3934,6 +4280,13 @@ module.exports = {
         description: 'The component templates to use for the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
         private: false,
       },
+      template: {
+        types: [
+          'object',
+        ],
+        description: 'The component&apos;s template.',
+        private: false,
+      },
       dirty: {
         types: [
           'boolean',
@@ -4010,6 +4363,21 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element is visible. It&apos;s `false` when `available` or `active` is `false` or `hidden` is `true`.',
+        private: false,
+      },
+      Size: {
+        description: 'The calculated size of the element. If [`size`](#option-size) is not defined for the element the closest parent&apos;s size will be used, which can be either the [`Vueform`](vueform) component or a nested element.',
+        returns: 'string',
+        private: false,
+      },
+      View: {
+        description: 'The calculated view of the element.',
+        returns: 'string',
+        private: false,
+      },
+      Views: {
+        description: 'The calculated views of the element.',
+        returns: 'object',
         private: false,
       },
     },
@@ -4184,7 +4552,7 @@ module.exports = {
         private: false,
       },
       show: {
-        description: 'Shows the element if it was hidden with [`hide()`](#hide) method.',
+        description: 'Shows the element if it was hidden with [`hide()`](#method-hide) method.',
         returns: 'void',
         private: false,
       },
@@ -4520,8 +4888,47 @@ module.exports = {
         required: 'false',
         default: 'null',
         types: [
-          'string',
           'array',
+          'object',
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
+      removeClass: {
+        required: 'false',
+        default: 'null',
+        types: [
+          'array',
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      replaceClass: {
+        required: 'false',
+        default: 'null',
+        types: [
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      overrideClass: {
+        required: 'false',
+        default: 'null',
+        types: [
+          'array',
+          'object',
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
+      addClasses: {
+        required: 'false',
+        default: '{}',
+        types: [
           'object',
         ],
         required: false,
@@ -4536,11 +4943,56 @@ module.exports = {
         required: false,
         private: false,
       },
-      extendClasses: {
+      removeClasses: {
         required: 'false',
         default: '{}',
         types: [
           'object',
+        ],
+        required: false,
+        private: false,
+      },
+      overrideClasses: {
+        required: 'false',
+        default: '{}',
+        types: [
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      presets: {
+        required: 'false',
+        default: '[]',
+        types: [
+          'array',
+        ],
+        required: false,
+        private: false,
+      },
+      view: {
+        required: 'false',
+        default: 'undefined',
+        types: [
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
+      views: {
+        required: 'false',
+        default: '{}',
+        types: [
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      size: {
+        required: 'false',
+        default: 'undefined',
+        types: [
+          'string',
         ],
         required: false,
         private: false,
@@ -4867,13 +5319,6 @@ module.exports = {
         default: 'true',
         private: false,
       },
-      defaultClasses: {
-        types: [
-          'object',
-        ],
-        description: 'The default classes for the element defined by theme.',
-        private: true,
-      },
       localDisabled: {
         types: [
           'boolean',
@@ -4986,15 +5431,8 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'The selected theme&apos;s classes merged with [`extendClasses`](#option-extend-classes) and [`replaceClasses`](#option-replace-classes) options.',
+        description: 'The selected theme&apos;s classes merged with [`addClasses`](#option-extend-classes) and [`overrideClasses`](#option-replace-classes) options.',
         private: false,
-      },
-      mainClass: {
-        types: [
-          'string',
-        ],
-        description: 'The class name of the element&apos;s outermost DOM.',
-        private: true,
       },
       columnsClasses: {
         types: [
@@ -5158,6 +5596,13 @@ module.exports = {
         description: 'The component templates to use for the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
         private: false,
       },
+      template: {
+        types: [
+          'object',
+        ],
+        description: 'The component&apos;s template.',
+        private: false,
+      },
       dirty: {
         types: [
           'boolean',
@@ -5234,6 +5679,21 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element is visible. It&apos;s `false` when `available` or `active` is `false` or `hidden` is `true`.',
+        private: false,
+      },
+      Size: {
+        description: 'The calculated size of the element. If [`size`](#option-size) is not defined for the element the closest parent&apos;s size will be used, which can be either the [`Vueform`](vueform) component or a nested element.',
+        returns: 'string',
+        private: false,
+      },
+      View: {
+        description: 'The calculated view of the element.',
+        returns: 'string',
+        private: false,
+      },
+      Views: {
+        description: 'The calculated views of the element.',
+        returns: 'object',
         private: false,
       },
     },
@@ -5408,7 +5868,7 @@ module.exports = {
         private: false,
       },
       show: {
-        description: 'Shows the element if it was hidden with [`hide()`](#hide) method.',
+        description: 'Shows the element if it was hidden with [`hide()`](#method-hide) method.',
         returns: 'void',
         private: false,
       },
@@ -5744,8 +6204,47 @@ module.exports = {
         required: 'false',
         default: 'null',
         types: [
-          'string',
           'array',
+          'object',
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
+      removeClass: {
+        required: 'false',
+        default: 'null',
+        types: [
+          'array',
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      replaceClass: {
+        required: 'false',
+        default: 'null',
+        types: [
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      overrideClass: {
+        required: 'false',
+        default: 'null',
+        types: [
+          'array',
+          'object',
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
+      addClasses: {
+        required: 'false',
+        default: '{}',
+        types: [
           'object',
         ],
         required: false,
@@ -5760,11 +6259,56 @@ module.exports = {
         required: false,
         private: false,
       },
-      extendClasses: {
+      removeClasses: {
         required: 'false',
         default: '{}',
         types: [
           'object',
+        ],
+        required: false,
+        private: false,
+      },
+      overrideClasses: {
+        required: 'false',
+        default: '{}',
+        types: [
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      presets: {
+        required: 'false',
+        default: '[]',
+        types: [
+          'array',
+        ],
+        required: false,
+        private: false,
+      },
+      view: {
+        required: 'false',
+        default: 'undefined',
+        types: [
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
+      views: {
+        required: 'false',
+        default: '{}',
+        types: [
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      size: {
+        required: 'false',
+        default: 'undefined',
+        types: [
+          'string',
         ],
         required: false,
         private: false,
@@ -6052,13 +6596,6 @@ module.exports = {
         default: 'true',
         private: false,
       },
-      defaultClasses: {
-        types: [
-          'object',
-        ],
-        description: 'The default classes for the element defined by theme.',
-        private: true,
-      },
       localDisabled: {
         types: [
           'boolean',
@@ -6192,15 +6729,8 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'The selected theme&apos;s classes merged with [`extendClasses`](#option-extend-classes) and [`replaceClasses`](#option-replace-classes) options.',
+        description: 'The selected theme&apos;s classes merged with [`addClasses`](#option-extend-classes) and [`overrideClasses`](#option-replace-classes) options.',
         private: false,
-      },
-      mainClass: {
-        types: [
-          'string',
-        ],
-        description: 'The class name of the element&apos;s outermost DOM.',
-        private: true,
       },
       columnsClasses: {
         types: [
@@ -6352,6 +6882,13 @@ module.exports = {
         description: 'The component templates to use for the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
         private: false,
       },
+      template: {
+        types: [
+          'object',
+        ],
+        description: 'The component&apos;s template.',
+        private: false,
+      },
       dirty: {
         types: [
           'boolean',
@@ -6435,6 +6972,21 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element is visible. It&apos;s `false` when `available` or `active` is `false` or `hidden` is `true`.',
+        private: false,
+      },
+      Size: {
+        description: 'The calculated size of the element. If [`size`](#option-size) is not defined for the element the closest parent&apos;s size will be used, which can be either the [`Vueform`](vueform) component or a nested element.',
+        returns: 'string',
+        private: false,
+      },
+      View: {
+        description: 'The calculated view of the element.',
+        returns: 'string',
+        private: false,
+      },
+      Views: {
+        description: 'The calculated views of the element.',
+        returns: 'object',
         private: false,
       },
     },
@@ -6637,7 +7189,7 @@ module.exports = {
         private: false,
       },
       show: {
-        description: 'Shows the element if it was hidden with [`hide()`](#hide) method.',
+        description: 'Shows the element if it was hidden with [`hide()`](#method-hide) method.',
         returns: 'void',
         private: false,
       },
@@ -6973,8 +7525,47 @@ module.exports = {
         required: 'false',
         default: 'null',
         types: [
-          'string',
           'array',
+          'object',
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
+      removeClass: {
+        required: 'false',
+        default: 'null',
+        types: [
+          'array',
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      replaceClass: {
+        required: 'false',
+        default: 'null',
+        types: [
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      overrideClass: {
+        required: 'false',
+        default: 'null',
+        types: [
+          'array',
+          'object',
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
+      addClasses: {
+        required: 'false',
+        default: '{}',
+        types: [
           'object',
         ],
         required: false,
@@ -6989,11 +7580,56 @@ module.exports = {
         required: false,
         private: false,
       },
-      extendClasses: {
+      removeClasses: {
         required: 'false',
         default: '{}',
         types: [
           'object',
+        ],
+        required: false,
+        private: false,
+      },
+      overrideClasses: {
+        required: 'false',
+        default: '{}',
+        types: [
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      presets: {
+        required: 'false',
+        default: '[]',
+        types: [
+          'array',
+        ],
+        required: false,
+        private: false,
+      },
+      view: {
+        required: 'false',
+        default: 'file',
+        types: [
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
+      views: {
+        required: 'false',
+        default: '{}',
+        types: [
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      size: {
+        required: 'false',
+        default: 'undefined',
+        types: [
+          'string',
         ],
         required: false,
         private: false,
@@ -7210,15 +7846,6 @@ module.exports = {
         required: false,
         private: true,
       },
-      view: {
-        required: 'false',
-        default: 'file',
-        types: [
-          'string',
-        ],
-        required: false,
-        private: false,
-      },
       drop: {
         required: 'false',
         default: 'false',
@@ -7336,13 +7963,6 @@ module.exports = {
         description: 'Whether the element has been already mounted.',
         default: 'true',
         private: false,
-      },
-      defaultClasses: {
-        types: [
-          'object',
-        ],
-        description: 'The default classes for the element defined by theme.',
-        private: true,
       },
       localDisabled: {
         types: [
@@ -7523,15 +8143,8 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'The selected theme&apos;s classes merged with [`extendClasses`](#option-extend-classes) and [`replaceClasses`](#option-replace-classes) options.',
+        description: 'The selected theme&apos;s classes merged with [`addClasses`](#option-extend-classes) and [`overrideClasses`](#option-replace-classes) options.',
         private: false,
-      },
-      mainClass: {
-        types: [
-          'string',
-        ],
-        description: 'The class name of the element&apos;s outermost DOM.',
-        private: true,
       },
       columnsClasses: {
         types: [
@@ -7789,6 +8402,13 @@ module.exports = {
         description: 'The component templates to use for the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
         private: false,
       },
+      template: {
+        types: [
+          'object',
+        ],
+        description: 'The component&apos;s template.',
+        private: false,
+      },
       dirty: {
         types: [
           'boolean',
@@ -7865,6 +8485,21 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element is visible. It&apos;s `false` when `available` or `active` is `false` or `hidden` is `true`.',
+        private: false,
+      },
+      Size: {
+        description: 'The calculated size of the element. If [`size`](#option-size) is not defined for the element the closest parent&apos;s size will be used, which can be either the [`Vueform`](vueform) component or a nested element.',
+        returns: 'string',
+        private: false,
+      },
+      View: {
+        description: 'The calculated view of the element.',
+        returns: 'string',
+        private: false,
+      },
+      Views: {
+        description: 'The calculated views of the element.',
+        returns: 'object',
         private: false,
       },
     },
@@ -8102,7 +8737,7 @@ module.exports = {
         private: false,
       },
       show: {
-        description: 'Shows the element if it was hidden with [`hide()`](#hide) method.',
+        description: 'Shows the element if it was hidden with [`hide()`](#method-hide) method.',
         returns: 'void',
         private: false,
       },
@@ -8436,8 +9071,47 @@ module.exports = {
         required: 'false',
         default: 'null',
         types: [
-          'string',
           'array',
+          'object',
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
+      removeClass: {
+        required: 'false',
+        default: 'null',
+        types: [
+          'array',
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      replaceClass: {
+        required: 'false',
+        default: 'null',
+        types: [
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      overrideClass: {
+        required: 'false',
+        default: 'null',
+        types: [
+          'array',
+          'object',
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
+      addClasses: {
+        required: 'false',
+        default: '{}',
+        types: [
           'object',
         ],
         required: false,
@@ -8452,11 +9126,56 @@ module.exports = {
         required: false,
         private: false,
       },
-      extendClasses: {
+      removeClasses: {
         required: 'false',
         default: '{}',
         types: [
           'object',
+        ],
+        required: false,
+        private: false,
+      },
+      overrideClasses: {
+        required: 'false',
+        default: '{}',
+        types: [
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      presets: {
+        required: 'false',
+        default: '[]',
+        types: [
+          'array',
+        ],
+        required: false,
+        private: false,
+      },
+      view: {
+        required: 'false',
+        default: 'undefined',
+        types: [
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
+      views: {
+        required: 'false',
+        default: '{}',
+        types: [
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      size: {
+        required: 'false',
+        default: 'undefined',
+        types: [
+          'string',
         ],
         required: false,
         private: false,
@@ -8641,13 +9360,6 @@ module.exports = {
         default: '[children<component>]',
         private: true,
       },
-      defaultClasses: {
-        types: [
-          'object',
-        ],
-        description: 'The default classes for the element defined by theme.',
-        private: true,
-      },
       events: {
         types: [
           'array',
@@ -8742,15 +9454,8 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'The selected theme&apos;s classes merged with [`extendClasses`](#option-extend-classes) and [`replaceClasses`](#option-replace-classes) options.',
+        description: 'The selected theme&apos;s classes merged with [`addClasses`](#option-extend-classes) and [`overrideClasses`](#option-replace-classes) options.',
         private: false,
-      },
-      mainClass: {
-        types: [
-          'string',
-        ],
-        description: 'The class name of the element&apos;s outermost DOM.',
-        private: true,
       },
       columnsClasses: {
         types: [
@@ -8858,6 +9563,13 @@ module.exports = {
         description: 'The component templates to use for the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
         private: false,
       },
+      template: {
+        types: [
+          'object',
+        ],
+        description: 'The component&apos;s template.',
+        private: false,
+      },
       dirty: {
         types: [
           'boolean',
@@ -8919,6 +9631,21 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element is visible. It&apos;s `false` when `available` or `active` is `false` or `hidden` is `true`.',
+        private: false,
+      },
+      Size: {
+        description: 'The calculated size of the element. If [`size`](#option-size) is not defined for the element the closest parent&apos;s size will be used, which can be either the [`Vueform`](vueform) component or a nested element.',
+        returns: 'string',
+        private: false,
+      },
+      View: {
+        description: 'The calculated view of the element.',
+        returns: 'string',
+        private: false,
+      },
+      Views: {
+        description: 'The calculated views of the element.',
+        returns: 'object',
         private: false,
       },
     },
@@ -9073,7 +9800,7 @@ module.exports = {
         private: false,
       },
       show: {
-        description: 'Shows the element if it was hidden with [`hide()`](#hide) method.',
+        description: 'Shows the element if it was hidden with [`hide()`](#method-hide) method.',
         returns: 'void',
         private: false,
       },
@@ -9679,6 +10406,13 @@ module.exports = {
         description: 'The component templates to use for the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
         private: false,
       },
+      template: {
+        types: [
+          'object',
+        ],
+        description: 'The component&apos;s template.',
+        private: false,
+      },
       dirty: {
         types: [
           'boolean',
@@ -10136,8 +10870,47 @@ module.exports = {
         required: 'false',
         default: 'null',
         types: [
-          'string',
           'array',
+          'object',
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
+      removeClass: {
+        required: 'false',
+        default: 'null',
+        types: [
+          'array',
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      replaceClass: {
+        required: 'false',
+        default: 'null',
+        types: [
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      overrideClass: {
+        required: 'false',
+        default: 'null',
+        types: [
+          'array',
+          'object',
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
+      addClasses: {
+        required: 'false',
+        default: '{}',
+        types: [
           'object',
         ],
         required: false,
@@ -10152,11 +10925,56 @@ module.exports = {
         required: false,
         private: false,
       },
-      extendClasses: {
+      removeClasses: {
         required: 'false',
         default: '{}',
         types: [
           'object',
+        ],
+        required: false,
+        private: false,
+      },
+      overrideClasses: {
+        required: 'false',
+        default: '{}',
+        types: [
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      presets: {
+        required: 'false',
+        default: '[]',
+        types: [
+          'array',
+        ],
+        required: false,
+        private: false,
+      },
+      view: {
+        required: 'false',
+        default: 'undefined',
+        types: [
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
+      views: {
+        required: 'false',
+        default: '{}',
+        types: [
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      size: {
+        required: 'false',
+        default: 'undefined',
+        types: [
+          'string',
         ],
         required: false,
         private: false,
@@ -10496,13 +11314,6 @@ module.exports = {
         default: '[children<component>]',
         private: true,
       },
-      defaultClasses: {
-        types: [
-          'object',
-        ],
-        description: 'The default classes for the element defined by theme.',
-        private: true,
-      },
       localDisabled: {
         types: [
           'boolean',
@@ -10650,15 +11461,8 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'The selected theme&apos;s classes merged with [`extendClasses`](#option-extend-classes) and [`replaceClasses`](#option-replace-classes) options.',
+        description: 'The selected theme&apos;s classes merged with [`addClasses`](#option-extend-classes) and [`overrideClasses`](#option-replace-classes) options.',
         private: false,
-      },
-      mainClass: {
-        types: [
-          'string',
-        ],
-        description: 'The class name of the element&apos;s outermost DOM.',
-        private: true,
       },
       columnsClasses: {
         types: [
@@ -10843,6 +11647,13 @@ module.exports = {
         description: 'The component templates to use for the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
         private: false,
       },
+      template: {
+        types: [
+          'object',
+        ],
+        description: 'The component&apos;s template.',
+        private: false,
+      },
       dirty: {
         types: [
           'boolean',
@@ -10933,6 +11744,21 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element is visible. It&apos;s `false` when `available` or `active` is `false` or `hidden` is `true`.',
+        private: false,
+      },
+      Size: {
+        description: 'The calculated size of the element. If [`size`](#option-size) is not defined for the element the closest parent&apos;s size will be used, which can be either the [`Vueform`](vueform) component or a nested element.',
+        returns: 'string',
+        private: false,
+      },
+      View: {
+        description: 'The calculated view of the element.',
+        returns: 'string',
+        private: false,
+      },
+      Views: {
+        description: 'The calculated views of the element.',
+        returns: 'object',
         private: false,
       },
     },
@@ -11201,7 +12027,7 @@ module.exports = {
         private: false,
       },
       show: {
-        description: 'Shows the element if it was hidden with [`hide()`](#hide) method.',
+        description: 'Shows the element if it was hidden with [`hide()`](#method-hide) method.',
         returns: 'void',
         private: false,
       },
@@ -11566,8 +12392,47 @@ module.exports = {
         required: 'false',
         default: 'null',
         types: [
-          'string',
           'array',
+          'object',
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
+      removeClass: {
+        required: 'false',
+        default: 'null',
+        types: [
+          'array',
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      replaceClass: {
+        required: 'false',
+        default: 'null',
+        types: [
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      overrideClass: {
+        required: 'false',
+        default: 'null',
+        types: [
+          'array',
+          'object',
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
+      addClasses: {
+        required: 'false',
+        default: '{}',
+        types: [
           'object',
         ],
         required: false,
@@ -11582,11 +12447,56 @@ module.exports = {
         required: false,
         private: false,
       },
-      extendClasses: {
+      removeClasses: {
         required: 'false',
         default: '{}',
         types: [
           'object',
+        ],
+        required: false,
+        private: false,
+      },
+      overrideClasses: {
+        required: 'false',
+        default: '{}',
+        types: [
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      presets: {
+        required: 'false',
+        default: '[]',
+        types: [
+          'array',
+        ],
+        required: false,
+        private: false,
+      },
+      view: {
+        required: 'false',
+        default: 'undefined',
+        types: [
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
+      views: {
+        required: 'false',
+        default: '{}',
+        types: [
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      size: {
+        required: 'false',
+        default: 'undefined',
+        types: [
+          'string',
         ],
         required: false,
         private: false,
@@ -11873,13 +12783,6 @@ module.exports = {
         default: 'true',
         private: false,
       },
-      defaultClasses: {
-        types: [
-          'object',
-        ],
-        description: 'The default classes for the element defined by theme.',
-        private: true,
-      },
       localDisabled: {
         types: [
           'boolean',
@@ -12022,15 +12925,8 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'The selected theme&apos;s classes merged with [`extendClasses`](#option-extend-classes) and [`replaceClasses`](#option-replace-classes) options.',
+        description: 'The selected theme&apos;s classes merged with [`addClasses`](#option-extend-classes) and [`overrideClasses`](#option-replace-classes) options.',
         private: false,
-      },
-      mainClass: {
-        types: [
-          'string',
-        ],
-        description: 'The class name of the element&apos;s outermost DOM.',
-        private: true,
       },
       columnsClasses: {
         types: [
@@ -12174,6 +13070,13 @@ module.exports = {
         description: 'The component templates to use for the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
         private: false,
       },
+      template: {
+        types: [
+          'object',
+        ],
+        description: 'The component&apos;s template.',
+        private: false,
+      },
       dirty: {
         types: [
           'boolean',
@@ -12257,6 +13160,21 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element is visible. It&apos;s `false` when `available` or `active` is `false` or `hidden` is `true`.',
+        private: false,
+      },
+      Size: {
+        description: 'The calculated size of the element. If [`size`](#option-size) is not defined for the element the closest parent&apos;s size will be used, which can be either the [`Vueform`](vueform) component or a nested element.',
+        returns: 'string',
+        private: false,
+      },
+      View: {
+        description: 'The calculated view of the element.',
+        returns: 'string',
+        private: false,
+      },
+      Views: {
+        description: 'The calculated views of the element.',
+        returns: 'object',
         private: false,
       },
     },
@@ -12446,7 +13364,7 @@ module.exports = {
         private: false,
       },
       show: {
-        description: 'Shows the element if it was hidden with [`hide()`](#hide) method.',
+        description: 'Shows the element if it was hidden with [`hide()`](#method-hide) method.',
         returns: 'void',
         private: false,
       },
@@ -12782,8 +13700,47 @@ module.exports = {
         required: 'false',
         default: 'null',
         types: [
-          'string',
           'array',
+          'object',
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
+      removeClass: {
+        required: 'false',
+        default: 'null',
+        types: [
+          'array',
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      replaceClass: {
+        required: 'false',
+        default: 'null',
+        types: [
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      overrideClass: {
+        required: 'false',
+        default: 'null',
+        types: [
+          'array',
+          'object',
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
+      addClasses: {
+        required: 'false',
+        default: '{}',
+        types: [
           'object',
         ],
         required: false,
@@ -12798,11 +13755,56 @@ module.exports = {
         required: false,
         private: false,
       },
-      extendClasses: {
+      removeClasses: {
         required: 'false',
         default: '{}',
         types: [
           'object',
+        ],
+        required: false,
+        private: false,
+      },
+      overrideClasses: {
+        required: 'false',
+        default: '{}',
+        types: [
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      presets: {
+        required: 'false',
+        default: '[]',
+        types: [
+          'array',
+        ],
+        required: false,
+        private: false,
+      },
+      view: {
+        required: 'false',
+        default: 'file',
+        types: [
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
+      views: {
+        required: 'false',
+        default: '{}',
+        types: [
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      size: {
+        required: 'false',
+        default: 'undefined',
+        types: [
+          'string',
         ],
         required: false,
         private: false,
@@ -13026,15 +14028,6 @@ module.exports = {
         required: false,
         private: true,
       },
-      view: {
-        required: 'false',
-        default: 'file',
-        types: [
-          'string',
-        ],
-        required: false,
-        private: false,
-      },
       drop: {
         required: 'false',
         default: 'false',
@@ -13168,13 +14161,6 @@ module.exports = {
         ],
         description: 'List of child element components.',
         default: '[children<component>]',
-        private: true,
-      },
-      defaultClasses: {
-        types: [
-          'object',
-        ],
-        description: 'The default classes for the element defined by theme.',
         private: true,
       },
       localDisabled: {
@@ -13331,15 +14317,8 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'The selected theme&apos;s classes merged with [`extendClasses`](#option-extend-classes) and [`replaceClasses`](#option-replace-classes) options.',
+        description: 'The selected theme&apos;s classes merged with [`addClasses`](#option-extend-classes) and [`overrideClasses`](#option-replace-classes) options.',
         private: false,
-      },
-      mainClass: {
-        types: [
-          'string',
-        ],
-        description: 'The class name of the element&apos;s outermost DOM.',
-        private: true,
       },
       columnsClasses: {
         types: [
@@ -13545,6 +14524,13 @@ module.exports = {
         description: 'The component templates to use for the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
         private: false,
       },
+      template: {
+        types: [
+          'object',
+        ],
+        description: 'The component&apos;s template.',
+        private: false,
+      },
       dirty: {
         types: [
           'boolean',
@@ -13635,6 +14621,21 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element is visible. It&apos;s `false` when `available` or `active` is `false` or `hidden` is `true`.',
+        private: false,
+      },
+      Size: {
+        description: 'The calculated size of the element. If [`size`](#option-size) is not defined for the element the closest parent&apos;s size will be used, which can be either the [`Vueform`](vueform) component or a nested element.',
+        returns: 'string',
+        private: false,
+      },
+      View: {
+        description: 'The calculated view of the element.',
+        returns: 'string',
+        private: false,
+      },
+      Views: {
+        description: 'The calculated views of the element.',
+        returns: 'object',
         private: false,
       },
     },
@@ -13936,7 +14937,7 @@ module.exports = {
         private: false,
       },
       show: {
-        description: 'Shows the element if it was hidden with [`hide()`](#hide) method.',
+        description: 'Shows the element if it was hidden with [`hide()`](#method-hide) method.',
         returns: 'void',
         private: false,
       },
@@ -14301,8 +15302,47 @@ module.exports = {
         required: 'false',
         default: 'null',
         types: [
-          'string',
           'array',
+          'object',
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
+      removeClass: {
+        required: 'false',
+        default: 'null',
+        types: [
+          'array',
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      replaceClass: {
+        required: 'false',
+        default: 'null',
+        types: [
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      overrideClass: {
+        required: 'false',
+        default: 'null',
+        types: [
+          'array',
+          'object',
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
+      addClasses: {
+        required: 'false',
+        default: '{}',
+        types: [
           'object',
         ],
         required: false,
@@ -14317,11 +15357,56 @@ module.exports = {
         required: false,
         private: false,
       },
-      extendClasses: {
+      removeClasses: {
         required: 'false',
         default: '{}',
         types: [
           'object',
+        ],
+        required: false,
+        private: false,
+      },
+      overrideClasses: {
+        required: 'false',
+        default: '{}',
+        types: [
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      presets: {
+        required: 'false',
+        default: '[]',
+        types: [
+          'array',
+        ],
+        required: false,
+        private: false,
+      },
+      view: {
+        required: 'false',
+        default: 'undefined',
+        types: [
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
+      views: {
+        required: 'false',
+        default: '{}',
+        types: [
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      size: {
+        required: 'false',
+        default: 'undefined',
+        types: [
+          'string',
         ],
         required: false,
         private: false,
@@ -14947,13 +16032,6 @@ module.exports = {
         default: 'true',
         private: false,
       },
-      defaultClasses: {
-        types: [
-          'object',
-        ],
-        description: 'The default classes for the element defined by theme.',
-        private: true,
-      },
       localDisabled: {
         types: [
           'boolean',
@@ -15087,15 +16165,8 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'The selected theme&apos;s classes merged with [`extendClasses`](#option-extend-classes) and [`replaceClasses`](#option-replace-classes) options.',
+        description: 'The selected theme&apos;s classes merged with [`addClasses`](#option-extend-classes) and [`overrideClasses`](#option-replace-classes) options.',
         private: false,
-      },
-      mainClass: {
-        types: [
-          'string',
-        ],
-        description: 'The class name of the element&apos;s outermost DOM.',
-        private: true,
       },
       columnsClasses: {
         types: [
@@ -15245,6 +16316,13 @@ module.exports = {
         description: 'The component templates to use for the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
         private: false,
       },
+      template: {
+        types: [
+          'object',
+        ],
+        description: 'The component&apos;s template.',
+        private: false,
+      },
       dirty: {
         types: [
           'boolean',
@@ -15321,6 +16399,21 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element is visible. It&apos;s `false` when `available` or `active` is `false` or `hidden` is `true`.',
+        private: false,
+      },
+      Size: {
+        description: 'The calculated size of the element. If [`size`](#option-size) is not defined for the element the closest parent&apos;s size will be used, which can be either the [`Vueform`](vueform) component or a nested element.',
+        returns: 'string',
+        private: false,
+      },
+      View: {
+        description: 'The calculated view of the element.',
+        returns: 'string',
+        private: false,
+      },
+      Views: {
+        description: 'The calculated views of the element.',
+        returns: 'object',
         private: false,
       },
     },
@@ -15610,7 +16703,7 @@ module.exports = {
         private: false,
       },
       show: {
-        description: 'Shows the element if it was hidden with [`hide()`](#hide) method.',
+        description: 'Shows the element if it was hidden with [`hide()`](#method-hide) method.',
         returns: 'void',
         private: false,
       },
@@ -16128,8 +17221,47 @@ module.exports = {
         required: 'false',
         default: 'null',
         types: [
-          'string',
           'array',
+          'object',
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
+      removeClass: {
+        required: 'false',
+        default: 'null',
+        types: [
+          'array',
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      replaceClass: {
+        required: 'false',
+        default: 'null',
+        types: [
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      overrideClass: {
+        required: 'false',
+        default: 'null',
+        types: [
+          'array',
+          'object',
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
+      addClasses: {
+        required: 'false',
+        default: '{}',
+        types: [
           'object',
         ],
         required: false,
@@ -16144,11 +17276,56 @@ module.exports = {
         required: false,
         private: false,
       },
-      extendClasses: {
+      removeClasses: {
         required: 'false',
         default: '{}',
         types: [
           'object',
+        ],
+        required: false,
+        private: false,
+      },
+      overrideClasses: {
+        required: 'false',
+        default: '{}',
+        types: [
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      presets: {
+        required: 'false',
+        default: '[]',
+        types: [
+          'array',
+        ],
+        required: false,
+        private: false,
+      },
+      view: {
+        required: 'false',
+        default: 'undefined',
+        types: [
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
+      views: {
+        required: 'false',
+        default: '{}',
+        types: [
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      size: {
+        required: 'false',
+        default: 'undefined',
+        types: [
+          'string',
         ],
         required: false,
         private: false,
@@ -16351,13 +17528,6 @@ module.exports = {
         default: '[children<component>]',
         private: true,
       },
-      defaultClasses: {
-        types: [
-          'object',
-        ],
-        description: 'The default classes for the element defined by theme.',
-        private: true,
-      },
       events: {
         types: [
           'array',
@@ -16459,15 +17629,8 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'The selected theme&apos;s classes merged with [`extendClasses`](#option-extend-classes) and [`replaceClasses`](#option-replace-classes) options.',
+        description: 'The selected theme&apos;s classes merged with [`addClasses`](#option-extend-classes) and [`overrideClasses`](#option-replace-classes) options.',
         private: false,
-      },
-      mainClass: {
-        types: [
-          'string',
-        ],
-        description: 'The class name of the element&apos;s outermost DOM.',
-        private: true,
       },
       columnsClasses: {
         types: [
@@ -16575,6 +17738,13 @@ module.exports = {
         description: 'The component templates to use for the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
         private: false,
       },
+      template: {
+        types: [
+          'object',
+        ],
+        description: 'The component&apos;s template.',
+        private: false,
+      },
       dirty: {
         types: [
           'boolean',
@@ -16636,6 +17806,21 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element is visible. It&apos;s `false` when `available` or `active` is `false` or `hidden` is `true`.',
+        private: false,
+      },
+      Size: {
+        description: 'The calculated size of the element. If [`size`](#option-size) is not defined for the element the closest parent&apos;s size will be used, which can be either the [`Vueform`](vueform) component or a nested element.',
+        returns: 'string',
+        private: false,
+      },
+      View: {
+        description: 'The calculated view of the element.',
+        returns: 'string',
+        private: false,
+      },
+      Views: {
+        description: 'The calculated views of the element.',
+        returns: 'object',
         private: false,
       },
     },
@@ -16790,7 +17975,7 @@ module.exports = {
         private: false,
       },
       show: {
-        description: 'Shows the element if it was hidden with [`hide()`](#hide) method.',
+        description: 'Shows the element if it was hidden with [`hide()`](#method-hide) method.',
         returns: 'void',
         private: false,
       },
@@ -17107,8 +18292,47 @@ module.exports = {
         required: 'false',
         default: 'null',
         types: [
-          'string',
           'array',
+          'object',
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
+      removeClass: {
+        required: 'false',
+        default: 'null',
+        types: [
+          'array',
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      replaceClass: {
+        required: 'false',
+        default: 'null',
+        types: [
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      overrideClass: {
+        required: 'false',
+        default: 'null',
+        types: [
+          'array',
+          'object',
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
+      addClasses: {
+        required: 'false',
+        default: '{}',
+        types: [
           'object',
         ],
         required: false,
@@ -17123,11 +18347,56 @@ module.exports = {
         required: false,
         private: false,
       },
-      extendClasses: {
+      removeClasses: {
         required: 'false',
         default: '{}',
         types: [
           'object',
+        ],
+        required: false,
+        private: false,
+      },
+      overrideClasses: {
+        required: 'false',
+        default: '{}',
+        types: [
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      presets: {
+        required: 'false',
+        default: '[]',
+        types: [
+          'array',
+        ],
+        required: false,
+        private: false,
+      },
+      view: {
+        required: 'false',
+        default: 'undefined',
+        types: [
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
+      views: {
+        required: 'false',
+        default: '{}',
+        types: [
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      size: {
+        required: 'false',
+        default: 'undefined',
+        types: [
+          'string',
         ],
         required: false,
         private: false,
@@ -17372,13 +18641,6 @@ module.exports = {
         default: 'true',
         private: false,
       },
-      defaultClasses: {
-        types: [
-          'object',
-        ],
-        description: 'The default classes for the element defined by theme.',
-        private: true,
-      },
       localDisabled: {
         types: [
           'boolean',
@@ -17505,15 +18767,8 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'The selected theme&apos;s classes merged with [`extendClasses`](#option-extend-classes) and [`replaceClasses`](#option-replace-classes) options.',
+        description: 'The selected theme&apos;s classes merged with [`addClasses`](#option-extend-classes) and [`overrideClasses`](#option-replace-classes) options.',
         private: false,
-      },
-      mainClass: {
-        types: [
-          'string',
-        ],
-        description: 'The class name of the element&apos;s outermost DOM.',
-        private: true,
       },
       columnsClasses: {
         types: [
@@ -17649,6 +18904,13 @@ module.exports = {
         description: 'The component templates to use for the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
         private: false,
       },
+      template: {
+        types: [
+          'object',
+        ],
+        description: 'The component&apos;s template.',
+        private: false,
+      },
       dirty: {
         types: [
           'boolean',
@@ -17725,6 +18987,21 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element is visible. It&apos;s `false` when `available` or `active` is `false` or `hidden` is `true`.',
+        private: false,
+      },
+      Size: {
+        description: 'The calculated size of the element. If [`size`](#option-size) is not defined for the element the closest parent&apos;s size will be used, which can be either the [`Vueform`](vueform) component or a nested element.',
+        returns: 'string',
+        private: false,
+      },
+      View: {
+        description: 'The calculated view of the element.',
+        returns: 'string',
+        private: false,
+      },
+      Views: {
+        description: 'The calculated views of the element.',
+        returns: 'object',
         private: false,
       },
     },
@@ -17895,7 +19172,7 @@ module.exports = {
         private: false,
       },
       show: {
-        description: 'Shows the element if it was hidden with [`hide()`](#hide) method.',
+        description: 'Shows the element if it was hidden with [`hide()`](#method-hide) method.',
         returns: 'void',
         private: false,
       },
@@ -18220,8 +19497,47 @@ module.exports = {
         required: 'false',
         default: 'null',
         types: [
-          'string',
           'array',
+          'object',
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
+      removeClass: {
+        required: 'false',
+        default: 'null',
+        types: [
+          'array',
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      replaceClass: {
+        required: 'false',
+        default: 'null',
+        types: [
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      overrideClass: {
+        required: 'false',
+        default: 'null',
+        types: [
+          'array',
+          'object',
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
+      addClasses: {
+        required: 'false',
+        default: '{}',
+        types: [
           'object',
         ],
         required: false,
@@ -18236,11 +19552,56 @@ module.exports = {
         required: false,
         private: false,
       },
-      extendClasses: {
+      removeClasses: {
         required: 'false',
         default: '{}',
         types: [
           'object',
+        ],
+        required: false,
+        private: false,
+      },
+      overrideClasses: {
+        required: 'false',
+        default: '{}',
+        types: [
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      presets: {
+        required: 'false',
+        default: '[]',
+        types: [
+          'array',
+        ],
+        required: false,
+        private: false,
+      },
+      view: {
+        required: 'false',
+        default: 'undefined',
+        types: [
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
+      views: {
+        required: 'false',
+        default: '{}',
+        types: [
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      size: {
+        required: 'false',
+        default: 'undefined',
+        types: [
+          'string',
         ],
         required: false,
         private: false,
@@ -18476,13 +19837,6 @@ module.exports = {
         default: 'true',
         private: false,
       },
-      defaultClasses: {
-        types: [
-          'object',
-        ],
-        description: 'The default classes for the element defined by theme.',
-        private: true,
-      },
       disabledItems: {
         types: [
           'array',
@@ -18608,15 +19962,8 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'The selected theme&apos;s classes merged with [`extendClasses`](#option-extend-classes) and [`replaceClasses`](#option-replace-classes) options.',
+        description: 'The selected theme&apos;s classes merged with [`addClasses`](#option-extend-classes) and [`overrideClasses`](#option-replace-classes) options.',
         private: false,
-      },
-      mainClass: {
-        types: [
-          'string',
-        ],
-        description: 'The class name of the element&apos;s outermost DOM.',
-        private: true,
       },
       columnsClasses: {
         types: [
@@ -18745,6 +20092,13 @@ module.exports = {
         description: 'The component templates to use for the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
         private: false,
       },
+      template: {
+        types: [
+          'object',
+        ],
+        description: 'The component&apos;s template.',
+        private: false,
+      },
       dirty: {
         types: [
           'boolean',
@@ -18821,6 +20175,21 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element is visible. It&apos;s `false` when `available` or `active` is `false` or `hidden` is `true`.',
+        private: false,
+      },
+      Size: {
+        description: 'The calculated size of the element. If [`size`](#option-size) is not defined for the element the closest parent&apos;s size will be used, which can be either the [`Vueform`](vueform) component or a nested element.',
+        returns: 'string',
+        private: false,
+      },
+      View: {
+        description: 'The calculated view of the element.',
+        returns: 'string',
+        private: false,
+      },
+      Views: {
+        description: 'The calculated views of the element.',
+        returns: 'object',
         private: false,
       },
     },
@@ -19027,7 +20396,7 @@ module.exports = {
         private: false,
       },
       show: {
-        description: 'Shows the element if it was hidden with [`hide()`](#hide) method.',
+        description: 'Shows the element if it was hidden with [`hide()`](#method-hide) method.',
         returns: 'void',
         private: false,
       },
@@ -19400,8 +20769,47 @@ module.exports = {
         required: 'false',
         default: 'null',
         types: [
-          'string',
           'array',
+          'object',
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
+      removeClass: {
+        required: 'false',
+        default: 'null',
+        types: [
+          'array',
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      replaceClass: {
+        required: 'false',
+        default: 'null',
+        types: [
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      overrideClass: {
+        required: 'false',
+        default: 'null',
+        types: [
+          'array',
+          'object',
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
+      addClasses: {
+        required: 'false',
+        default: '{}',
+        types: [
           'object',
         ],
         required: false,
@@ -19416,11 +20824,56 @@ module.exports = {
         required: false,
         private: false,
       },
-      extendClasses: {
+      removeClasses: {
         required: 'false',
         default: '{}',
         types: [
           'object',
+        ],
+        required: false,
+        private: false,
+      },
+      overrideClasses: {
+        required: 'false',
+        default: '{}',
+        types: [
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      presets: {
+        required: 'false',
+        default: '[]',
+        types: [
+          'array',
+        ],
+        required: false,
+        private: false,
+      },
+      view: {
+        required: 'false',
+        default: 'undefined',
+        types: [
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
+      views: {
+        required: 'false',
+        default: '{}',
+        types: [
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      size: {
+        required: 'false',
+        default: 'undefined',
+        types: [
+          'string',
         ],
         required: false,
         private: false,
@@ -20007,13 +21460,6 @@ module.exports = {
         default: 'true',
         private: false,
       },
-      defaultClasses: {
-        types: [
-          'object',
-        ],
-        description: 'The default classes for the element defined by theme.',
-        private: true,
-      },
       localDisabled: {
         types: [
           'boolean',
@@ -20147,15 +21593,8 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'The selected theme&apos;s classes merged with [`extendClasses`](#option-extend-classes) and [`replaceClasses`](#option-replace-classes) options.',
+        description: 'The selected theme&apos;s classes merged with [`addClasses`](#option-extend-classes) and [`overrideClasses`](#option-replace-classes) options.',
         private: false,
-      },
-      mainClass: {
-        types: [
-          'string',
-        ],
-        description: 'The class name of the element&apos;s outermost DOM.',
-        private: true,
       },
       columnsClasses: {
         types: [
@@ -20305,6 +21744,13 @@ module.exports = {
         description: 'The component templates to use for the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
         private: false,
       },
+      template: {
+        types: [
+          'object',
+        ],
+        description: 'The component&apos;s template.',
+        private: false,
+      },
       dirty: {
         types: [
           'boolean',
@@ -20381,6 +21827,21 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element is visible. It&apos;s `false` when `available` or `active` is `false` or `hidden` is `true`.',
+        private: false,
+      },
+      Size: {
+        description: 'The calculated size of the element. If [`size`](#option-size) is not defined for the element the closest parent&apos;s size will be used, which can be either the [`Vueform`](vueform) component or a nested element.',
+        returns: 'string',
+        private: false,
+      },
+      View: {
+        description: 'The calculated view of the element.',
+        returns: 'string',
+        private: false,
+      },
+      Views: {
+        description: 'The calculated views of the element.',
+        returns: 'object',
         private: false,
       },
     },
@@ -20640,7 +22101,7 @@ module.exports = {
         private: false,
       },
       show: {
-        description: 'Shows the element if it was hidden with [`hide()`](#hide) method.',
+        description: 'Shows the element if it was hidden with [`hide()`](#method-hide) method.',
         returns: 'void',
         private: false,
       },
@@ -21158,8 +22619,47 @@ module.exports = {
         required: 'false',
         default: 'null',
         types: [
-          'string',
           'array',
+          'object',
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
+      removeClass: {
+        required: 'false',
+        default: 'null',
+        types: [
+          'array',
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      replaceClass: {
+        required: 'false',
+        default: 'null',
+        types: [
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      overrideClass: {
+        required: 'false',
+        default: 'null',
+        types: [
+          'array',
+          'object',
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
+      addClasses: {
+        required: 'false',
+        default: '{}',
+        types: [
           'object',
         ],
         required: false,
@@ -21174,11 +22674,56 @@ module.exports = {
         required: false,
         private: false,
       },
-      extendClasses: {
+      removeClasses: {
         required: 'false',
         default: '{}',
         types: [
           'object',
+        ],
+        required: false,
+        private: false,
+      },
+      overrideClasses: {
+        required: 'false',
+        default: '{}',
+        types: [
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      presets: {
+        required: 'false',
+        default: '[]',
+        types: [
+          'array',
+        ],
+        required: false,
+        private: false,
+      },
+      view: {
+        required: 'false',
+        default: 'undefined',
+        types: [
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
+      views: {
+        required: 'false',
+        default: '{}',
+        types: [
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      size: {
+        required: 'false',
+        default: 'undefined',
+        types: [
+          'string',
         ],
         required: false,
         private: false,
@@ -21494,13 +23039,6 @@ module.exports = {
         default: 'true',
         private: false,
       },
-      defaultClasses: {
-        types: [
-          'object',
-        ],
-        description: 'The default classes for the element defined by theme.',
-        private: true,
-      },
       localDisabled: {
         types: [
           'boolean',
@@ -21627,15 +23165,8 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'The selected theme&apos;s classes merged with [`extendClasses`](#option-extend-classes) and [`replaceClasses`](#option-replace-classes) options.',
+        description: 'The selected theme&apos;s classes merged with [`addClasses`](#option-extend-classes) and [`overrideClasses`](#option-replace-classes) options.',
         private: false,
-      },
-      mainClass: {
-        types: [
-          'string',
-        ],
-        description: 'The class name of the element&apos;s outermost DOM.',
-        private: true,
       },
       columnsClasses: {
         types: [
@@ -21764,6 +23295,13 @@ module.exports = {
         description: 'The component templates to use for the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
         private: false,
       },
+      template: {
+        types: [
+          'object',
+        ],
+        description: 'The component&apos;s template.',
+        private: false,
+      },
       dirty: {
         types: [
           'boolean',
@@ -21840,6 +23378,21 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element is visible. It&apos;s `false` when `available` or `active` is `false` or `hidden` is `true`.',
+        private: false,
+      },
+      Size: {
+        description: 'The calculated size of the element. If [`size`](#option-size) is not defined for the element the closest parent&apos;s size will be used, which can be either the [`Vueform`](vueform) component or a nested element.',
+        returns: 'string',
+        private: false,
+      },
+      View: {
+        description: 'The calculated view of the element.',
+        returns: 'string',
+        private: false,
+      },
+      Views: {
+        description: 'The calculated views of the element.',
+        returns: 'object',
         private: false,
       },
     },
@@ -22014,7 +23567,7 @@ module.exports = {
         private: false,
       },
       show: {
-        description: 'Shows the element if it was hidden with [`hide()`](#hide) method.',
+        description: 'Shows the element if it was hidden with [`hide()`](#method-hide) method.',
         returns: 'void',
         private: false,
       },
@@ -22328,8 +23881,47 @@ module.exports = {
         required: 'false',
         default: 'null',
         types: [
-          'string',
           'array',
+          'object',
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
+      removeClass: {
+        required: 'false',
+        default: 'null',
+        types: [
+          'array',
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      replaceClass: {
+        required: 'false',
+        default: 'null',
+        types: [
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      overrideClass: {
+        required: 'false',
+        default: 'null',
+        types: [
+          'array',
+          'object',
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
+      addClasses: {
+        required: 'false',
+        default: '{}',
+        types: [
           'object',
         ],
         required: false,
@@ -22344,11 +23936,56 @@ module.exports = {
         required: false,
         private: false,
       },
-      extendClasses: {
+      removeClasses: {
         required: 'false',
         default: '{}',
         types: [
           'object',
+        ],
+        required: false,
+        private: false,
+      },
+      overrideClasses: {
+        required: 'false',
+        default: '{}',
+        types: [
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      presets: {
+        required: 'false',
+        default: '[]',
+        types: [
+          'array',
+        ],
+        required: false,
+        private: false,
+      },
+      view: {
+        required: 'false',
+        default: 'undefined',
+        types: [
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
+      views: {
+        required: 'false',
+        default: '{}',
+        types: [
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      size: {
+        required: 'false',
+        default: 'undefined',
+        types: [
+          'string',
         ],
         required: false,
         private: false,
@@ -22490,13 +24127,6 @@ module.exports = {
         default: 'true',
         private: false,
       },
-      defaultClasses: {
-        types: [
-          'object',
-        ],
-        description: 'The default classes for the element defined by theme.',
-        private: true,
-      },
       events: {
         types: [
           'array',
@@ -22569,15 +24199,8 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'The selected theme&apos;s classes merged with [`extendClasses`](#option-extend-classes) and [`replaceClasses`](#option-replace-classes) options.',
+        description: 'The selected theme&apos;s classes merged with [`addClasses`](#option-extend-classes) and [`overrideClasses`](#option-replace-classes) options.',
         private: false,
-      },
-      mainClass: {
-        types: [
-          'string',
-        ],
-        description: 'The class name of the element&apos;s outermost DOM.',
-        private: true,
       },
       columnsClasses: {
         types: [
@@ -22657,11 +24280,33 @@ module.exports = {
         description: 'The component templates to use for the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
         private: false,
       },
+      template: {
+        types: [
+          'object',
+        ],
+        description: 'The component&apos;s template.',
+        private: false,
+      },
       visible: {
         types: [
           'boolean',
         ],
         description: 'Whether the element is visible. It&apos;s `false` when `available` or `active` is `false` or `hidden` is `true`.',
+        private: false,
+      },
+      Size: {
+        description: 'The calculated size of the element. If [`size`](#option-size) is not defined for the element the closest parent&apos;s size will be used, which can be either the [`Vueform`](vueform) component or a nested element.',
+        returns: 'string',
+        private: false,
+      },
+      View: {
+        description: 'The calculated view of the element.',
+        returns: 'string',
+        private: false,
+      },
+      Views: {
+        description: 'The calculated views of the element.',
+        returns: 'object',
         private: false,
       },
     },
@@ -22731,7 +24376,7 @@ module.exports = {
         private: false,
       },
       show: {
-        description: 'Shows the element if it was hidden with [`hide()`](#hide) method.',
+        description: 'Shows the element if it was hidden with [`hide()`](#method-hide) method.',
         returns: 'void',
         private: false,
       },
@@ -23039,8 +24684,47 @@ module.exports = {
         required: 'false',
         default: 'null',
         types: [
-          'string',
           'array',
+          'object',
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
+      removeClass: {
+        required: 'false',
+        default: 'null',
+        types: [
+          'array',
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      replaceClass: {
+        required: 'false',
+        default: 'null',
+        types: [
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      overrideClass: {
+        required: 'false',
+        default: 'null',
+        types: [
+          'array',
+          'object',
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
+      addClasses: {
+        required: 'false',
+        default: '{}',
+        types: [
           'object',
         ],
         required: false,
@@ -23055,11 +24739,56 @@ module.exports = {
         required: false,
         private: false,
       },
-      extendClasses: {
+      removeClasses: {
         required: 'false',
         default: '{}',
         types: [
           'object',
+        ],
+        required: false,
+        private: false,
+      },
+      overrideClasses: {
+        required: 'false',
+        default: '{}',
+        types: [
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      presets: {
+        required: 'false',
+        default: '[]',
+        types: [
+          'array',
+        ],
+        required: false,
+        private: false,
+      },
+      view: {
+        required: 'false',
+        default: 'undefined',
+        types: [
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
+      views: {
+        required: 'false',
+        default: '{}',
+        types: [
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      size: {
+        required: 'false',
+        default: 'undefined',
+        types: [
+          'string',
         ],
         required: false,
         private: false,
@@ -23348,13 +25077,6 @@ module.exports = {
         default: 'true',
         private: false,
       },
-      defaultClasses: {
-        types: [
-          'object',
-        ],
-        description: 'The default classes for the element defined by theme.',
-        private: true,
-      },
       localDisabled: {
         types: [
           'boolean',
@@ -23474,15 +25196,8 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'The selected theme&apos;s classes merged with [`extendClasses`](#option-extend-classes) and [`replaceClasses`](#option-replace-classes) options.',
+        description: 'The selected theme&apos;s classes merged with [`addClasses`](#option-extend-classes) and [`overrideClasses`](#option-replace-classes) options.',
         private: false,
-      },
-      mainClass: {
-        types: [
-          'string',
-        ],
-        description: 'The class name of the element&apos;s outermost DOM.',
-        private: true,
       },
       columnsClasses: {
         types: [
@@ -23648,6 +25363,13 @@ module.exports = {
         description: 'The component templates to use for the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
         private: false,
       },
+      template: {
+        types: [
+          'object',
+        ],
+        description: 'The component&apos;s template.',
+        private: false,
+      },
       dirty: {
         types: [
           'boolean',
@@ -23731,6 +25453,21 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element is visible. It&apos;s `false` when `available` or `active` is `false` or `hidden` is `true`.',
+        private: false,
+      },
+      Size: {
+        description: 'The calculated size of the element. If [`size`](#option-size) is not defined for the element the closest parent&apos;s size will be used, which can be either the [`Vueform`](vueform) component or a nested element.',
+        returns: 'string',
+        private: false,
+      },
+      View: {
+        description: 'The calculated view of the element.',
+        returns: 'string',
+        private: false,
+      },
+      Views: {
+        description: 'The calculated views of the element.',
+        returns: 'object',
         private: false,
       },
     },
@@ -23952,7 +25689,7 @@ module.exports = {
         private: false,
       },
       show: {
-        description: 'Shows the element if it was hidden with [`hide()`](#hide) method.',
+        description: 'Shows the element if it was hidden with [`hide()`](#method-hide) method.',
         returns: 'void',
         private: false,
       },
@@ -24288,8 +26025,47 @@ module.exports = {
         required: 'false',
         default: 'null',
         types: [
-          'string',
           'array',
+          'object',
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
+      removeClass: {
+        required: 'false',
+        default: 'null',
+        types: [
+          'array',
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      replaceClass: {
+        required: 'false',
+        default: 'null',
+        types: [
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      overrideClass: {
+        required: 'false',
+        default: 'null',
+        types: [
+          'array',
+          'object',
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
+      addClasses: {
+        required: 'false',
+        default: '{}',
+        types: [
           'object',
         ],
         required: false,
@@ -24304,11 +26080,56 @@ module.exports = {
         required: false,
         private: false,
       },
-      extendClasses: {
+      removeClasses: {
         required: 'false',
         default: '{}',
         types: [
           'object',
+        ],
+        required: false,
+        private: false,
+      },
+      overrideClasses: {
+        required: 'false',
+        default: '{}',
+        types: [
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      presets: {
+        required: 'false',
+        default: '[]',
+        types: [
+          'array',
+        ],
+        required: false,
+        private: false,
+      },
+      view: {
+        required: 'false',
+        default: 'undefined',
+        types: [
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
+      views: {
+        required: 'false',
+        default: '{}',
+        types: [
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      size: {
+        required: 'false',
+        default: 'undefined',
+        types: [
+          'string',
         ],
         required: false,
         private: false,
@@ -24598,13 +26419,6 @@ module.exports = {
         default: 'true',
         private: false,
       },
-      defaultClasses: {
-        types: [
-          'object',
-        ],
-        description: 'The default classes for the element defined by theme.',
-        private: true,
-      },
       localDisabled: {
         types: [
           'boolean',
@@ -24717,15 +26531,8 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'The selected theme&apos;s classes merged with [`extendClasses`](#option-extend-classes) and [`replaceClasses`](#option-replace-classes) options.',
+        description: 'The selected theme&apos;s classes merged with [`addClasses`](#option-extend-classes) and [`overrideClasses`](#option-replace-classes) options.',
         private: false,
-      },
-      mainClass: {
-        types: [
-          'string',
-        ],
-        description: 'The class name of the element&apos;s outermost DOM.',
-        private: true,
       },
       columnsClasses: {
         types: [
@@ -24889,6 +26696,13 @@ module.exports = {
         description: 'The component templates to use for the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
         private: false,
       },
+      template: {
+        types: [
+          'object',
+        ],
+        description: 'The component&apos;s template.',
+        private: false,
+      },
       dirty: {
         types: [
           'boolean',
@@ -24972,6 +26786,21 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element is visible. It&apos;s `false` when `available` or `active` is `false` or `hidden` is `true`.',
+        private: false,
+      },
+      Size: {
+        description: 'The calculated size of the element. If [`size`](#option-size) is not defined for the element the closest parent&apos;s size will be used, which can be either the [`Vueform`](vueform) component or a nested element.',
+        returns: 'string',
+        private: false,
+      },
+      View: {
+        description: 'The calculated view of the element.',
+        returns: 'string',
+        private: false,
+      },
+      Views: {
+        description: 'The calculated views of the element.',
+        returns: 'object',
         private: false,
       },
     },
@@ -25165,7 +26994,7 @@ module.exports = {
         private: false,
       },
       show: {
-        description: 'Shows the element if it was hidden with [`hide()`](#hide) method.',
+        description: 'Shows the element if it was hidden with [`hide()`](#method-hide) method.',
         returns: 'void',
         private: false,
       },
@@ -25501,8 +27330,47 @@ module.exports = {
         required: 'false',
         default: 'null',
         types: [
-          'string',
           'array',
+          'object',
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
+      removeClass: {
+        required: 'false',
+        default: 'null',
+        types: [
+          'array',
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      replaceClass: {
+        required: 'false',
+        default: 'null',
+        types: [
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      overrideClass: {
+        required: 'false',
+        default: 'null',
+        types: [
+          'array',
+          'object',
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
+      addClasses: {
+        required: 'false',
+        default: '{}',
+        types: [
           'object',
         ],
         required: false,
@@ -25517,11 +27385,56 @@ module.exports = {
         required: false,
         private: false,
       },
-      extendClasses: {
+      removeClasses: {
         required: 'false',
         default: '{}',
         types: [
           'object',
+        ],
+        required: false,
+        private: false,
+      },
+      overrideClasses: {
+        required: 'false',
+        default: '{}',
+        types: [
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      presets: {
+        required: 'false',
+        default: '[]',
+        types: [
+          'array',
+        ],
+        required: false,
+        private: false,
+      },
+      view: {
+        required: 'false',
+        default: 'undefined',
+        types: [
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
+      views: {
+        required: 'false',
+        default: '{}',
+        types: [
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      size: {
+        required: 'false',
+        default: 'undefined',
+        types: [
+          'string',
         ],
         required: false,
         private: false,
@@ -25801,13 +27714,6 @@ module.exports = {
         default: 'true',
         private: false,
       },
-      defaultClasses: {
-        types: [
-          'object',
-        ],
-        description: 'The default classes for the element defined by theme.',
-        private: true,
-      },
       localDisabled: {
         types: [
           'boolean',
@@ -25920,15 +27826,8 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'The selected theme&apos;s classes merged with [`extendClasses`](#option-extend-classes) and [`replaceClasses`](#option-replace-classes) options.',
+        description: 'The selected theme&apos;s classes merged with [`addClasses`](#option-extend-classes) and [`overrideClasses`](#option-replace-classes) options.',
         private: false,
-      },
-      mainClass: {
-        types: [
-          'string',
-        ],
-        description: 'The class name of the element&apos;s outermost DOM.',
-        private: true,
       },
       columnsClasses: {
         types: [
@@ -26085,6 +27984,13 @@ module.exports = {
         description: 'The component templates to use for the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
         private: false,
       },
+      template: {
+        types: [
+          'object',
+        ],
+        description: 'The component&apos;s template.',
+        private: false,
+      },
       dirty: {
         types: [
           'boolean',
@@ -26168,6 +28074,21 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element is visible. It&apos;s `false` when `available` or `active` is `false` or `hidden` is `true`.',
+        private: false,
+      },
+      Size: {
+        description: 'The calculated size of the element. If [`size`](#option-size) is not defined for the element the closest parent&apos;s size will be used, which can be either the [`Vueform`](vueform) component or a nested element.',
+        returns: 'string',
+        private: false,
+      },
+      View: {
+        description: 'The calculated view of the element.',
+        returns: 'string',
+        private: false,
+      },
+      Views: {
+        description: 'The calculated views of the element.',
+        returns: 'object',
         private: false,
       },
     },
@@ -26366,7 +28287,7 @@ module.exports = {
         private: false,
       },
       show: {
-        description: 'Shows the element if it was hidden with [`hide()`](#hide) method.',
+        description: 'Shows the element if it was hidden with [`hide()`](#method-hide) method.',
         returns: 'void',
         private: false,
       },
@@ -26702,8 +28623,47 @@ module.exports = {
         required: 'false',
         default: 'null',
         types: [
-          'string',
           'array',
+          'object',
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
+      removeClass: {
+        required: 'false',
+        default: 'null',
+        types: [
+          'array',
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      replaceClass: {
+        required: 'false',
+        default: 'null',
+        types: [
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      overrideClass: {
+        required: 'false',
+        default: 'null',
+        types: [
+          'array',
+          'object',
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
+      addClasses: {
+        required: 'false',
+        default: '{}',
+        types: [
           'object',
         ],
         required: false,
@@ -26718,11 +28678,56 @@ module.exports = {
         required: false,
         private: false,
       },
-      extendClasses: {
+      removeClasses: {
         required: 'false',
         default: '{}',
         types: [
           'object',
+        ],
+        required: false,
+        private: false,
+      },
+      overrideClasses: {
+        required: 'false',
+        default: '{}',
+        types: [
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      presets: {
+        required: 'false',
+        default: '[]',
+        types: [
+          'array',
+        ],
+        required: false,
+        private: false,
+      },
+      view: {
+        required: 'false',
+        default: 'undefined',
+        types: [
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
+      views: {
+        required: 'false',
+        default: '{}',
+        types: [
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      size: {
+        required: 'false',
+        default: 'undefined',
+        types: [
+          'string',
         ],
         required: false,
         private: false,
@@ -27373,13 +29378,6 @@ module.exports = {
         default: 'true',
         private: false,
       },
-      defaultClasses: {
-        types: [
-          'object',
-        ],
-        description: 'The default classes for the element defined by theme.',
-        private: true,
-      },
       localDisabled: {
         types: [
           'boolean',
@@ -27506,15 +29504,8 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'The selected theme&apos;s classes merged with [`extendClasses`](#option-extend-classes) and [`replaceClasses`](#option-replace-classes) options.',
+        description: 'The selected theme&apos;s classes merged with [`addClasses`](#option-extend-classes) and [`overrideClasses`](#option-replace-classes) options.',
         private: false,
-      },
-      mainClass: {
-        types: [
-          'string',
-        ],
-        description: 'The class name of the element&apos;s outermost DOM.',
-        private: true,
       },
       columnsClasses: {
         types: [
@@ -27664,6 +29655,13 @@ module.exports = {
         description: 'The component templates to use for the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
         private: false,
       },
+      template: {
+        types: [
+          'object',
+        ],
+        description: 'The component&apos;s template.',
+        private: false,
+      },
       dirty: {
         types: [
           'boolean',
@@ -27740,6 +29738,21 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element is visible. It&apos;s `false` when `available` or `active` is `false` or `hidden` is `true`.',
+        private: false,
+      },
+      Size: {
+        description: 'The calculated size of the element. If [`size`](#option-size) is not defined for the element the closest parent&apos;s size will be used, which can be either the [`Vueform`](vueform) component or a nested element.',
+        returns: 'string',
+        private: false,
+      },
+      View: {
+        description: 'The calculated view of the element.',
+        returns: 'string',
+        private: false,
+      },
+      Views: {
+        description: 'The calculated views of the element.',
+        returns: 'object',
         private: false,
       },
     },
@@ -28043,7 +30056,7 @@ module.exports = {
         private: false,
       },
       show: {
-        description: 'Shows the element if it was hidden with [`hide()`](#hide) method.',
+        description: 'Shows the element if it was hidden with [`hide()`](#method-hide) method.',
         returns: 'void',
         private: false,
       },
@@ -28584,8 +30597,47 @@ module.exports = {
         required: 'false',
         default: 'null',
         types: [
-          'string',
           'array',
+          'object',
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
+      removeClass: {
+        required: 'false',
+        default: 'null',
+        types: [
+          'array',
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      replaceClass: {
+        required: 'false',
+        default: 'null',
+        types: [
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      overrideClass: {
+        required: 'false',
+        default: 'null',
+        types: [
+          'array',
+          'object',
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
+      addClasses: {
+        required: 'false',
+        default: '{}',
+        types: [
           'object',
         ],
         required: false,
@@ -28600,11 +30652,56 @@ module.exports = {
         required: false,
         private: false,
       },
-      extendClasses: {
+      removeClasses: {
         required: 'false',
         default: '{}',
         types: [
           'object',
+        ],
+        required: false,
+        private: false,
+      },
+      overrideClasses: {
+        required: 'false',
+        default: '{}',
+        types: [
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      presets: {
+        required: 'false',
+        default: '[]',
+        types: [
+          'array',
+        ],
+        required: false,
+        private: false,
+      },
+      view: {
+        required: 'false',
+        default: 'undefined',
+        types: [
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
+      views: {
+        required: 'false',
+        default: '{}',
+        types: [
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      size: {
+        required: 'false',
+        default: 'undefined',
+        types: [
+          'string',
         ],
         required: false,
         private: false,
@@ -28893,13 +30990,6 @@ module.exports = {
         default: 'true',
         private: false,
       },
-      defaultClasses: {
-        types: [
-          'object',
-        ],
-        description: 'The default classes for the element defined by theme.',
-        private: true,
-      },
       localDisabled: {
         types: [
           'boolean',
@@ -29026,15 +31116,8 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'The selected theme&apos;s classes merged with [`extendClasses`](#option-extend-classes) and [`replaceClasses`](#option-replace-classes) options.',
+        description: 'The selected theme&apos;s classes merged with [`addClasses`](#option-extend-classes) and [`overrideClasses`](#option-replace-classes) options.',
         private: false,
-      },
-      mainClass: {
-        types: [
-          'string',
-        ],
-        description: 'The class name of the element&apos;s outermost DOM.',
-        private: true,
       },
       columnsClasses: {
         types: [
@@ -29184,6 +31267,13 @@ module.exports = {
         description: 'The component templates to use for the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
         private: false,
       },
+      template: {
+        types: [
+          'object',
+        ],
+        description: 'The component&apos;s template.',
+        private: false,
+      },
       dirty: {
         types: [
           'boolean',
@@ -29267,6 +31357,21 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element is visible. It&apos;s `false` when `available` or `active` is `false` or `hidden` is `true`.',
+        private: false,
+      },
+      Size: {
+        description: 'The calculated size of the element. If [`size`](#option-size) is not defined for the element the closest parent&apos;s size will be used, which can be either the [`Vueform`](vueform) component or a nested element.',
+        returns: 'string',
+        private: false,
+      },
+      View: {
+        description: 'The calculated view of the element.',
+        returns: 'string',
+        private: false,
+      },
+      Views: {
+        description: 'The calculated views of the element.',
+        returns: 'object',
         private: false,
       },
     },
@@ -29441,7 +31546,7 @@ module.exports = {
         private: false,
       },
       show: {
-        description: 'Shows the element if it was hidden with [`hide()`](#hide) method.',
+        description: 'Shows the element if it was hidden with [`hide()`](#method-hide) method.',
         returns: 'void',
         private: false,
       },
@@ -29777,8 +31882,47 @@ module.exports = {
         required: 'false',
         default: 'null',
         types: [
-          'string',
           'array',
+          'object',
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
+      removeClass: {
+        required: 'false',
+        default: 'null',
+        types: [
+          'array',
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      replaceClass: {
+        required: 'false',
+        default: 'null',
+        types: [
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      overrideClass: {
+        required: 'false',
+        default: 'null',
+        types: [
+          'array',
+          'object',
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
+      addClasses: {
+        required: 'false',
+        default: '{}',
+        types: [
           'object',
         ],
         required: false,
@@ -29793,11 +31937,56 @@ module.exports = {
         required: false,
         private: false,
       },
-      extendClasses: {
+      removeClasses: {
         required: 'false',
         default: '{}',
         types: [
           'object',
+        ],
+        required: false,
+        private: false,
+      },
+      overrideClasses: {
+        required: 'false',
+        default: '{}',
+        types: [
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      presets: {
+        required: 'false',
+        default: '[]',
+        types: [
+          'array',
+        ],
+        required: false,
+        private: false,
+      },
+      view: {
+        required: 'false',
+        default: 'undefined',
+        types: [
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
+      views: {
+        required: 'false',
+        default: '{}',
+        types: [
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      size: {
+        required: 'false',
+        default: 'undefined',
+        types: [
+          'string',
         ],
         required: false,
         private: false,
@@ -30076,13 +32265,6 @@ module.exports = {
         default: 'true',
         private: false,
       },
-      defaultClasses: {
-        types: [
-          'object',
-        ],
-        description: 'The default classes for the element defined by theme.',
-        private: true,
-      },
       localDisabled: {
         types: [
           'boolean',
@@ -30209,15 +32391,8 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'The selected theme&apos;s classes merged with [`extendClasses`](#option-extend-classes) and [`replaceClasses`](#option-replace-classes) options.',
+        description: 'The selected theme&apos;s classes merged with [`addClasses`](#option-extend-classes) and [`overrideClasses`](#option-replace-classes) options.',
         private: false,
-      },
-      mainClass: {
-        types: [
-          'string',
-        ],
-        description: 'The class name of the element&apos;s outermost DOM.',
-        private: true,
       },
       columnsClasses: {
         types: [
@@ -30360,6 +32535,13 @@ module.exports = {
         description: 'The component templates to use for the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
         private: false,
       },
+      template: {
+        types: [
+          'object',
+        ],
+        description: 'The component&apos;s template.',
+        private: false,
+      },
       dirty: {
         types: [
           'boolean',
@@ -30443,6 +32625,21 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element is visible. It&apos;s `false` when `available` or `active` is `false` or `hidden` is `true`.',
+        private: false,
+      },
+      Size: {
+        description: 'The calculated size of the element. If [`size`](#option-size) is not defined for the element the closest parent&apos;s size will be used, which can be either the [`Vueform`](vueform) component or a nested element.',
+        returns: 'string',
+        private: false,
+      },
+      View: {
+        description: 'The calculated view of the element.',
+        returns: 'string',
+        private: false,
+      },
+      Views: {
+        description: 'The calculated views of the element.',
+        returns: 'object',
         private: false,
       },
     },
@@ -30622,7 +32819,7 @@ module.exports = {
         private: false,
       },
       show: {
-        description: 'Shows the element if it was hidden with [`hide()`](#hide) method.',
+        description: 'Shows the element if it was hidden with [`hide()`](#method-hide) method.',
         returns: 'void',
         private: false,
       },
@@ -30958,8 +33155,47 @@ module.exports = {
         required: 'false',
         default: 'null',
         types: [
-          'string',
           'array',
+          'object',
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
+      removeClass: {
+        required: 'false',
+        default: 'null',
+        types: [
+          'array',
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      replaceClass: {
+        required: 'false',
+        default: 'null',
+        types: [
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      overrideClass: {
+        required: 'false',
+        default: 'null',
+        types: [
+          'array',
+          'object',
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
+      addClasses: {
+        required: 'false',
+        default: '{}',
+        types: [
           'object',
         ],
         required: false,
@@ -30974,11 +33210,56 @@ module.exports = {
         required: false,
         private: false,
       },
-      extendClasses: {
+      removeClasses: {
         required: 'false',
         default: '{}',
         types: [
           'object',
+        ],
+        required: false,
+        private: false,
+      },
+      overrideClasses: {
+        required: 'false',
+        default: '{}',
+        types: [
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      presets: {
+        required: 'false',
+        default: '[]',
+        types: [
+          'array',
+        ],
+        required: false,
+        private: false,
+      },
+      view: {
+        required: 'false',
+        default: 'undefined',
+        types: [
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
+      views: {
+        required: 'false',
+        default: '{}',
+        types: [
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      size: {
+        required: 'false',
+        default: 'undefined',
+        types: [
+          'string',
         ],
         required: false,
         private: false,
@@ -31244,13 +33525,6 @@ module.exports = {
         default: 'true',
         private: false,
       },
-      defaultClasses: {
-        types: [
-          'object',
-        ],
-        description: 'The default classes for the element defined by theme.',
-        private: true,
-      },
       localDisabled: {
         types: [
           'boolean',
@@ -31377,15 +33651,8 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'The selected theme&apos;s classes merged with [`extendClasses`](#option-extend-classes) and [`replaceClasses`](#option-replace-classes) options.',
+        description: 'The selected theme&apos;s classes merged with [`addClasses`](#option-extend-classes) and [`overrideClasses`](#option-replace-classes) options.',
         private: false,
-      },
-      mainClass: {
-        types: [
-          'string',
-        ],
-        description: 'The class name of the element&apos;s outermost DOM.',
-        private: true,
       },
       columnsClasses: {
         types: [
@@ -31514,6 +33781,13 @@ module.exports = {
         description: 'The component templates to use for the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
         private: false,
       },
+      template: {
+        types: [
+          'object',
+        ],
+        description: 'The component&apos;s template.',
+        private: false,
+      },
       dirty: {
         types: [
           'boolean',
@@ -31590,6 +33864,21 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element is visible. It&apos;s `false` when `available` or `active` is `false` or `hidden` is `true`.',
+        private: false,
+      },
+      Size: {
+        description: 'The calculated size of the element. If [`size`](#option-size) is not defined for the element the closest parent&apos;s size will be used, which can be either the [`Vueform`](vueform) component or a nested element.',
+        returns: 'string',
+        private: false,
+      },
+      View: {
+        description: 'The calculated view of the element.',
+        returns: 'string',
+        private: false,
+      },
+      Views: {
+        description: 'The calculated views of the element.',
+        returns: 'object',
         private: false,
       },
     },
@@ -31774,7 +34063,7 @@ module.exports = {
         private: false,
       },
       show: {
-        description: 'Shows the element if it was hidden with [`hide()`](#hide) method.',
+        description: 'Shows the element if it was hidden with [`hide()`](#method-hide) method.',
         returns: 'void',
         private: false,
       },

@@ -2,29 +2,10 @@ import { createForm, findAllComponents} from 'test-helpers'
 import useElementComponent from './../composables/useElementComponent'
 
 describe('DragAndDrop', () => {
-  useElementComponent('file', 'DragAndDrop', { drop: true })
-
-  describe('classes', () => {
-    it('should add active class to container when dragging', async () => {
-      let form = createForm({
-        schema: {
-          el: {
-            type: 'file',
-            drop: true,
-          }
-        }
-      })
-
-      let component = findAllComponents(form, { name: 'DragAndDrop' }).at(0).vm
-
-      expect(component.classes.container).not.toContain(component.classes.container_active)
-
-      component.dragging = true
-
-      expect(component.classes.container).toContain(component.classes.container_active)
-      
-    // destroy(form) // teardown
-    })
+  useElementComponent('file', 'DragAndDrop', {
+    drop: true,
+  }, {
+    defaultView: 'file',
   })
 
   describe('rendering', () => {
@@ -42,9 +23,9 @@ describe('DragAndDrop', () => {
 
       expect(Drag.exists()).toBe(true)
 
-      expect(Drag.find('.' + Drag.vm.defaultClasses.icon).exists()).toBe(true)
-      expect(Drag.find('.' + Drag.vm.defaultClasses.title).html()).toContain(form.vm.__('vueform.elements.file.dndTitle'))
-      expect(Drag.find('.' + Drag.vm.defaultClasses.description).html()).toContain(form.vm.__('vueform.elements.file.dndDescription'))
+      expect(Drag.find('.' + Drag.vm.template.data().defaultClasses.icon).exists()).toBe(true)
+      expect(Drag.find('.' + Drag.vm.template.data().defaultClasses.title).html()).toContain(form.vm.__('vueform.elements.file.dndTitle'))
+      expect(Drag.find('.' + Drag.vm.template.data().defaultClasses.description).html()).toContain(form.vm.__('vueform.elements.file.dndDescription'))
     })
   })
   

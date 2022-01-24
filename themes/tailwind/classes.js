@@ -686,7 +686,7 @@ export default {
     container_sm: 'text-0.5sm mt-0.5',
     container_md: 'text-sm mt-1',
     container_lg: 'text-sm mt-1',
-    $container: (classes, { type, Size }) => ([
+    $container: (classes, { Size }) => ([
       classes.container,
       classes[`container_${Size}`],
     ]),
@@ -781,7 +781,7 @@ export default {
     container_sm: 'text-0.5sm mt-0.5',
     container_md: 'text-sm mt-1',
     container_lg: 'text-sm mt-1',
-    $container: (classes, { type, Size }) => ([
+    $container: (classes, { Size }) => ([
       classes.container,
       classes[`container_${Size}`],
     ]),

@@ -26,7 +26,7 @@ const base = function(props, context, dependencies)
   const templates = computed(() => {
     let presetTemplates = {}
 
-    _.each(presets.value, (presetName) => {
+    _.each(presets ? presets.value : [], (presetName) => {
       let preset = form$.value.$vueform.config.presets[presetName]
 
       if (!preset.templates) {
@@ -36,11 +36,11 @@ const base = function(props, context, dependencies)
       presetTemplates = Object.assign({}, presetTemplates, preset.templates)
     })
 
-    return Object.assign({}, theme.value.templates, presetTemplates,
-      replaceTemplates && replaceTemplates.value && Object.keys(replaceTemplates.value).length > 0
-        ? replaceTemplates.value 
-        : {}
-    )
+    return {
+      ...theme.value.templates,
+      ...presetTemplates,
+      ...(replaceTemplates ? replaceTemplates.value : {})
+    }
   })
 
   /**
@@ -49,7 +49,7 @@ const base = function(props, context, dependencies)
    * @type {object}
    */
   const template = computed(() => {
-    return View.value && templates.value[`${componentName.value}_${View.value}`]
+    return View && View.value && templates.value[`${componentName.value}_${View.value}`]
             ? templates.value[`${componentName.value}_${View.value}`]
             : templates.value[componentName.value]
   })

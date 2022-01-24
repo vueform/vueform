@@ -6,36 +6,47 @@ import useFormComponent from './../composables/useFormComponent'
 expect.extend({toBeVisible})
 
 describe('FormTab', () => {
-  let form = createForm({
-    tabs: {
-      a: {
-        label: 'a',
-        elements: ['el']
+  useFormComponent({
+    tabs:{
+      a:{
+        label:'a',
+        elements:['el']
       }
     },
-    schema: {
-      el: {
-        type: 'text',
-      }
+    schema:{
+      el:{type:'text'}
     }
-  })
-
-  let FormTab = findAllComponents(form, { name: 'FormTab' }).at(0)
-
-  let mergeWith = {
-    wrapper: [
-      FormTab.vm.classes.wrapper_active, 
-    ],
-    container: 'tab-class'
-  }
-
-  if (!_.isEmpty(FormTab.vm.classes.wrapper_valid)) {
-    mergeWith.wrapper.push(FormTab.vm.classes.wrapper_valid)
-  }
-
-  useFormComponent({tabs:{a:{label:'a',elements:['el'],addClass:'tab-class'}},schema:{el:{type:'text'}}}, 'FormTab', {
-    execute() {},
-    mergeWith,
+  }, 'FormTab', {
+    withView: {
+      schema: {
+        tabs: {
+          a:{
+            label: 'a',
+            elements: ['el'],
+            view: 'custom',
+          }
+        },
+        schema: {
+          el: { type:'text'}
+        }
+      },
+      view: 'custom'
+    },
+    withLocals: {
+      schema: {
+        tabs: {
+          a:{
+            label: 'a',
+            elements: ['el'],
+            overrideClass: 'custom',
+          }
+        },
+        schema: {
+          el: { type:'text'}
+        }
+      },
+      class: 'custom'
+    }
   })
 
   describe('label', () => {

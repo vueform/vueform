@@ -686,7 +686,7 @@ export const handleAdd = function (elementType, elementName, options) {
 
       await nextTick()
 
-      elWrapper.find(`[class="${el.defaultClasses.add}"]`).trigger('click')
+      elWrapper.find(`[class="${el.template.data().defaultClasses.add}"]`).trigger('click')
 
       expect(el.value.length).toBe(1)
     
@@ -733,7 +733,7 @@ export const handleRemove = function (elementType, elementName, options) {
 
       await nextTick()
 
-      elWrapper.find(`.${el.defaultClasses.remove}`).trigger('click')
+      elWrapper.find(`.${el.template.data().defaultClasses.remove}`).trigger('click')
 
       expect(el.value.length).toBe(2)
 

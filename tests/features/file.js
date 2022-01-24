@@ -52,7 +52,7 @@ export const preview = function (elementType, elementName, options) {
           type: elementType,
           view: 'image',
           replaceTemplates: {
-            ImagePreview: markRaw({
+            FilePreview_image: markRaw({
               props: ['previewOptions'],
               render() {
                 return '<div>Preview</div>'
@@ -66,7 +66,6 @@ export const preview = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
 
     el.base64 = 'base64'
-
     expect(el.preview).toBe(el.base64)
     
     // destroy(form) // teardown
@@ -80,7 +79,7 @@ export const preview = function (elementType, elementName, options) {
           auto: false,
           view: 'image',
           replaceTemplates: {
-            ImagePreview: markRaw({
+            FilePreview_image: markRaw({
               props: ['previewOptions'],
               render() {
                 return '<div>Preview</div>'
@@ -1993,7 +1992,7 @@ export const handleClick = function (elementType, elementName, options) {
 
     expect(clickMock).not.toHaveBeenCalled()
 
-    elWrapper.find(`[class="${el.classes.button}"]`).trigger('click')
+    elWrapper.find(`[class="${el.template.data().defaultClasses.button}"]`).trigger('click')
 
     await nextTick()
 
@@ -2124,7 +2123,7 @@ export const handleAbort = function (elementType, elementName, options) {
 
     expect(cancelMock).not.toHaveBeenCalled()
 
-    elWrapper.find(`[class="${FilePreview.vm.classes.remove}"]`).trigger('click')
+    elWrapper.find(`[class="${FilePreview.vm.template.data().defaultClasses.remove}"]`).trigger('click')
 
     await nextTick()
 
@@ -2292,7 +2291,7 @@ export const rendering = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
     let elWrapper = findAllComponents(form, { name: elementName }).at(0)
 
-    expect(elWrapper.html()).toContain(el.classes.button)
+    expect(elWrapper.html()).toContain(el.template.data().defaultClasses.button)
     
     // destroy(form) // teardown
   })
@@ -2309,7 +2308,7 @@ export const rendering = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    expect(el.$el.querySelectorAll(`.${el.classes.button.replace(' ', '.')}`).length).toBe(1)
+    expect(el.$el.querySelectorAll(`.${el.template.data().defaultClasses.button.replace(' ', '.')}`).length).toBe(1)
     
     // destroy(form) // teardown
   })
@@ -2326,7 +2325,7 @@ export const rendering = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    expect(el.$el.querySelectorAll(`.${el.classes.button.replace(' ', '.')}`).length).toBe(0)
+    expect(el.$el.querySelectorAll(`.${el.template.data().defaultClasses.button.replace(' ', '.')}`).length).toBe(0)
     
     // destroy(form) // teardown
   })
@@ -2346,7 +2345,7 @@ export const rendering = function (elementType, elementName, options) {
 
     await nextTick()
 
-    expect(elWrapper.find(`[class="${el.classes.selectButton}"]`).exists()).toBe(false)
+    expect(elWrapper.find(`[class="${el.template.data().defaultClasses.selectButton}"]`).exists()).toBe(false)
     
     // destroy(form) // teardown
   })
@@ -2367,7 +2366,7 @@ export const rendering = function (elementType, elementName, options) {
 
     await nextTick()
 
-    expect(elWrapper.find(`[class="${el.classes.selectButton}"]`).exists()).toBe(false)
+    expect(elWrapper.find(`[class="${el.template.data().defaultClasses.selectButton}"]`).exists()).toBe(false)
     
     // destroy(form) // teardown
   })

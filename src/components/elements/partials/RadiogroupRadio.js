@@ -29,7 +29,8 @@ export default {
       el$,
       form$,
       Size,
-      view,
+      View,
+      classesInstance,
       classes,
       templates,
       template,
@@ -53,7 +54,7 @@ export default {
      * @type {boolean}
      */
     const id = computed(() => {
-      return el$.value.path
+      return `${el$.value.fieldId}-${value.value}`
     })
 
     /**
@@ -62,14 +63,15 @@ export default {
      * @type {boolean}
      */
     const name = computed(() => {
-      return `${el$.value.fieldId}-${value.value}`
+      return el$.value.path
     })
 
     return {
       el$,
       form$,
       Size,
-      view,
+      View,
+      classesInstance,
       classes,
       templates,
       template,

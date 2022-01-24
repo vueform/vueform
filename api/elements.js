@@ -3,7 +3,7 @@ export default {
     "features": [
       "baseElement_static",
       "button",
-      "classes_button",
+      "classes",
       "columns",
       "conditions",
       "disabled_button",
@@ -40,7 +40,7 @@ export default {
   "checkbox": {
     "features": [
       "baseElement",
-      "classes_input",
+      "classes",
       "columns",
       "conditions",
       "data",
@@ -137,7 +137,7 @@ export default {
     "features": [
       "addons",
       "baseElement",
-      "classes_input",
+      "classes",
       "columns",
       "conditions",
       "data_date",
@@ -191,7 +191,7 @@ export default {
     "features": [
       "addons",
       "baseElement_dates",
-      "classes_input",
+      "classes",
       "columns",
       "conditions",
       "data_dates",
@@ -244,7 +244,7 @@ export default {
   "file": {
     "features": [
       "baseElement_file",
-      "classes_file",
+      "classes",
       "columns",
       "conditions",
       "data",
@@ -376,7 +376,7 @@ export default {
     "features": [
       "baseElement_list",
       "children",
-      "classes_list",
+      "classes",
       "columns",
       "conditions",
       "controls",
@@ -431,7 +431,7 @@ export default {
     "features": [
       "addons",
       "baseElement",
-      "classes_input",
+      "classes",
       "columns",
       "conditions",
       "data",
@@ -482,7 +482,7 @@ export default {
     "features": [
       "baseElement_list",
       "children",
-      "classes_multifile",
+      "classes",
       "columns",
       "conditions",
       "controls_multifile",
@@ -540,7 +540,7 @@ export default {
     "features": [
       "asyncItems",
       "baseElement_multiselect",
-      "classes_input",
+      "classes",
       "columns",
       "conditions",
       "data",
@@ -655,7 +655,7 @@ export default {
   "radio": {
     "features": [
       "baseElement",
-      "classes_input",
+      "classes",
       "columns",
       "conditions",
       "data",
@@ -751,7 +751,7 @@ export default {
     "features": [
       "asyncItems",
       "baseElement",
-      "classes_input",
+      "classes",
       "columns",
       "conditions",
       "data",
@@ -980,7 +980,7 @@ export default {
       "addons",
       "autogrow",
       "baseElement",
-      "classes_input",
+      "classes",
       "columns",
       "conditions",
       "data",
@@ -1032,7 +1032,7 @@ export default {
     "features": [
       "addons",
       "baseElement",
-      "classes_input",
+      "classes",
       "columns",
       "conditions",
       "data",
@@ -1134,7 +1134,7 @@ export default {
   "editor": {
     "features": [
       "baseElement",
-      "classes_editor",
+      "classes",
       "columns",
       "conditions",
       "data_editor",
@@ -1189,7 +1189,7 @@ export default {
       "addons",
       "autogrow_multilingual",
       "baseElement",
-      "classes_input",
+      "classes",
       "columns",
       "conditions",
       "data_multilingual",
@@ -1242,7 +1242,7 @@ export default {
     "features": [
       "addons",
       "baseElement",
-      "classes_input",
+      "classes",
       "columns",
       "conditions",
       "data_multilingual",
@@ -1295,7 +1295,7 @@ export default {
   "tEditor": {
     "features": [
       "baseElement",
-      "classes_editor",
+      "classes",
       "columns",
       "conditions",
       "data_teditor",

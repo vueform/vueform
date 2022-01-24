@@ -1,4 +1,30 @@
 export default {
+  "$Size": {
+    "base": {
+      "inject": {
+        "Size": {
+          "public": true,
+          "types": [
+            "component"
+          ],
+          "description": "The computed size of the component."
+        }
+      }
+    }
+  },
+  "$View": {
+    "base": {
+      "inject": {
+        "View": {
+          "public": false,
+          "types": [
+            "string"
+          ],
+          "description": "The view."
+        }
+      }
+    }
+  },
   "conditions": {
     "base": {
       "computed": {
@@ -48,6 +74,20 @@ export default {
             "object"
           ],
           "description": "The global theme object, which contains all the default templates and classes."
+        },
+        "Size": {
+          "public": true,
+          "types": [
+            "component"
+          ],
+          "description": "The computed size of the component."
+        },
+        "View": {
+          "public": false,
+          "types": [
+            "string"
+          ],
+          "description": "The view."
         }
       },
       "computed": {
@@ -56,7 +96,7 @@ export default {
           "types": [
             "object"
           ],
-          "description": "The selected theme's classes merged with element's `extendClasses` and `replaceClasses` options."
+          "description": "The selected theme's classes merged with element's `addClasses` and `overrideClasses` options."
         },
         "templates": {
           "public": true,
@@ -65,21 +105,12 @@ export default {
           ],
           "description": "Returns the component templates used by the parent element."
         },
-        "mainClass": {
-          "public": false,
-          "types": [
-            "string"
-          ],
-          "description": "The class name of the components's outermost DOM."
-        }
-      },
-      "data": {
-        "defaultClasses": {
-          "public": false,
+        "template": {
+          "public": true,
           "types": [
             "object"
           ],
-          "description": "The default classes for the component defined by theme."
+          "description": "The component's template."
         }
       }
     }
@@ -206,6 +237,20 @@ export default {
             "object"
           ],
           "description": "The global theme object, which contains all the default templates and classes."
+        },
+        "Size": {
+          "public": true,
+          "types": [
+            "component"
+          ],
+          "description": "The computed size of the component."
+        },
+        "View": {
+          "public": false,
+          "types": [
+            "string"
+          ],
+          "description": "The view."
         }
       },
       "computed": {
@@ -214,7 +259,7 @@ export default {
           "types": [
             "object"
           ],
-          "description": "The selected theme's classes merged with the form's [`extendClasses`](vueform#option-extend-classes) and [`replaceClasses`](vueform#option-replace-classes) options."
+          "description": "The selected theme's classes merged with the form's [`addClasses`](vueform#option-add-classes) and [`overrideClasses`](vueform#option-override-classes) options."
         },
         "templates": {
           "public": true,
@@ -223,21 +268,12 @@ export default {
           ],
           "description": "Returns the component templates used by the form."
         },
-        "mainClass": {
-          "public": false,
-          "types": [
-            "string"
-          ],
-          "description": "The class name of the components's outermost DOM."
-        }
-      },
-      "data": {
-        "defaultClasses": {
-          "public": false,
+        "template": {
+          "public": true,
           "types": [
             "object"
           ],
-          "description": "The default classes for the component defined by theme."
+          "description": "The component's template."
         }
       }
     }
@@ -767,26 +803,12 @@ export default {
           ],
           "description": "Whether the form should display steps controls below form with [`FormStepsControls`](form-steps-control) component when it has [`steps`](#option-steps). Can be disabled with [`stepsControls`](#option-steps-controls)."
         },
-        "mainClass": {
-          "public": false,
-          "types": [
-            "string"
-          ],
-          "description": "The class name of the form's outermost DOM."
-        },
-        "defaultClasses": {
-          "public": false,
-          "types": [
-            "object"
-          ],
-          "description": "The default classes for the form defined by theme."
-        },
         "classes": {
           "public": true,
           "types": [
             "object"
           ],
-          "description": "The selected theme's classes merged with [`extendClasses`](#option-extend-classes) and [`replaceClasses`](#option-replace-classes) options."
+          "description": "The selected theme's classes merged with [`addClasses`](#option-add-classes) and [`replaceClasses`](#option-replace-classes) options."
         },
         "templates": {
           "public": true,
@@ -795,12 +817,34 @@ export default {
           ],
           "description": "The selected theme's templates, extended by local overrides. The [`replaceTemplates`](#option-replace-templates) option can be used to override templates provided by the theme."
         },
+        "template": {
+          "public": true,
+          "types": [
+            "object"
+          ],
+          "description": "The component's template."
+        },
         "extendedTheme": {
           "public": true,
           "types": [
             "object"
           ],
-          "description": "The selected theme, extended by local template and class overrides, using [`replaceTemplates`](#option-replace-templates), [`extendClasses`](#option-extend-classes) and [`replaceClasses`](#option-replace-classes)."
+          "description": "The selected theme, extended by local template and class overrides, using [`replaceTemplates`](#option-replace-templates), [`addClasses`](#option-add-classes) and [`replaceClasses`](#option-replace-classes)."
+        },
+        "Size": {
+          "public": true,
+          "returns": "string",
+          "description": "The calculated size of the form. If [`size`](#option-size) is not defined `config.size` will be used."
+        },
+        "View": {
+          "public": true,
+          "returns": "object",
+          "description": "The calculated view of the form."
+        },
+        "Views": {
+          "public": true,
+          "returns": "object",
+          "description": "The calculated views of the form."
         },
         "form$": {
           "public": true,

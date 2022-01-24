@@ -1,5 +1,4 @@
 import MergeFormClasses from './../../src/utils/mergeFormClasses'
-import { computed, ref } from 'composition-api'
 
 const $container = (classes, { Size }) => ([
   classes.container,
@@ -1072,9 +1071,7 @@ describe('mergeFormClasses', () => {
           {
             addClasses: {
               SelectElement: {
-                conditional: computed(() => {
-                  return true
-                })
+                conditional: new function ComputedRefImpl() {}
               }
             }
           }
@@ -1091,7 +1088,7 @@ describe('mergeFormClasses', () => {
             addClasses: {
               SelectElement: {
                 deep: {
-                  conditional: ref(true)
+                  conditional: new function RefImpl() {}
                 },
               }
             }
@@ -1122,8 +1119,8 @@ describe('mergeFormClasses', () => {
   })
 
   it('should not throw an error on addClasses when conditional classes are merged to class list', () => {
-    let computedTrue = computed(() => { return true })
-    let refTrue = ref(true)
+    let computedTrue = new function ComputedRefImpl() {}
+    let refTrue = new function RefImpl() {}
 
     let classes = new MergeFormClasses({
       component: 'SelectElement',

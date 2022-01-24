@@ -10,10 +10,12 @@
         defaultClasses: {
           container: '',
           inputContainer: 'vf-input-group',
-          input: (el$) => ([
-            'vf-input',
-            { 'vf-input-enabled': !el$.isDisabled },
-            { 'vf-input-disabled': el$.isDisabled },
+          input: 'vf-input',
+          input_enabled: 'vf-input-enabled',
+          input_disabled: 'vf-input-disabled',
+          $input: (classes, { isDisabled }) => ([
+            classes.input,
+            isDisabled ? classes.input_disabled : classes.input_enables,
           ])
         }
       }

@@ -65,18 +65,18 @@ export default {
       form$: form$.form$,
       el$: baseElement.el$,
     })
-    
-    const templates = useTemplates(props, context, {
-      theme: theme.theme,
-      form$: form$.form$,
-      View: view.View,
-    })
 
     const view = useView(props, context, {
       available: conditions.available,
       active: baseElement.active,
       form$: form$.form$,
       parent: path.parent,
+    })
+    
+    const templates = useTemplates(props, context, {
+      theme: theme.theme,
+      form$: form$.form$,
+      View: view.View,
     })
 
     const classes = useClasses(props, context, {

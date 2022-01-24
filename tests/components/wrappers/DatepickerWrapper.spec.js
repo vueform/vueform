@@ -243,7 +243,9 @@ describe('DatepickerWrapper', () => {
       let el = form.vm.el$('el')
       let DatepickerWrapper = findAllComponents(form, { name: 'DatepickerWrapper' }).at(0)
 
-      expect(el.input.datepicker$.calendarContainer.className).toContain(DatepickerWrapper.vm.defaultClasses.calendarContainer)
+      DatepickerWrapper.vm.classesInstance.classes.calendarContainer.forEach((c) => {
+        expect(el.input.datepicker$.calendarContainer.className).toContain(c)
+      })
     })
 
     it('should update value if datepicker value changes', async () => {

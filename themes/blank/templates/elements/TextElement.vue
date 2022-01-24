@@ -39,6 +39,10 @@
           input: '',
           input_enabled: '',
           input_disabled: '',
+          $input: (classes, { isDisabled }) => ([
+            classes.input,
+            isDisabled ? classes.input_disabled : classes.input_enables,
+          ])
         },
       }
     },

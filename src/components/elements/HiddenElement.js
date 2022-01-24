@@ -67,7 +67,6 @@ export default {
     const templates = useTemplates(props, context, {
       theme: theme.theme,
       form$: form$.form$,
-      View: view.View,
     })
 
     const events = useEvents(props, context, {}, {

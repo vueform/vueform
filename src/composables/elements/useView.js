@@ -92,7 +92,7 @@ const base = function(props, context, dependencies)
    * @returns {object}
    */
   const Views = computed(() => {
-    let Views = Object.assign({}, form$.value.Views, views.value)
+    let Views = form$.value.Views
 
     _.each(presets.value, (presetName) => {
       let preset = form$.value.$vueform.config.presets[presetName]
@@ -103,6 +103,8 @@ const base = function(props, context, dependencies)
 
       Views = Object.assign({}, Views, preset.views)
     })
+
+    Views = Object.assign({}, Views, views.value)
 
     return Views
   })

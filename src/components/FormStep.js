@@ -67,6 +67,11 @@ export default {
       type: [Array, Object, String],
       default: null
     },
+    view: {
+      required: false,
+      type: [String],
+      default: undefined,
+    },
 
     onActivate: {
       type: [Function],
@@ -114,6 +119,7 @@ export default {
       form$,
       Size,
       View,
+      classesInstance,
       theme,
       classes,
       templates,
@@ -526,6 +532,7 @@ export default {
       form$,
       Size,
       View,
+      classesInstance,
       theme,
       steps$,
       elements$,

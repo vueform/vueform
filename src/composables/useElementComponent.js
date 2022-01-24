@@ -3,8 +3,8 @@ import { computed, toRefs, ref, getCurrentInstance } from 'composition-api'
 import useForm$ from './useForm$'
 import useEl$ from './useEl$'
 import useTheme from './useTheme'
-import use$Size from './use$Size'
-import use$View from './use$View'
+import useSize from './useSize'
+import useView from './useView'
 import MergeFormClasses from './../utils/mergeFormClasses'
 
 const base = function(props, context, dependencies, options = {})
@@ -27,11 +27,11 @@ const base = function(props, context, dependencies, options = {})
 
   const {
     Size
-  } = use$Size(props, context)
+  } = useSize(props, context)
 
   const {
     View,
-  } = use$View(props, context)
+  } = useView(props, context)
 
   // ============== COMPUTED ===============
 
@@ -45,12 +45,12 @@ const base = function(props, context, dependencies, options = {})
   })
 
   /**
-   * An object containaing all the component's classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides.
+   * The classes instance (for testing purpose).
    * 
-   * @type {object}
+   * @type {MergeFormClasses}
    * @private
    */
-  const mergedClasses = computed(() => {
+  const classesInstance = computed(() => {
     return (new MergeFormClasses({
       component: componentName.value,
       component$: component$,
@@ -59,10 +59,10 @@ const base = function(props, context, dependencies, options = {})
       templates: templates.value,
       view: View.value,
       merge: [
-        form$.value,
+        form$.value.options,
         el$.value,
       ],
-    })).classes
+    }))
   })
 
   /**
@@ -70,13 +70,8 @@ const base = function(props, context, dependencies, options = {})
    * 
    * @type {object}
    */
-  const classes = computed({
-    get() {
-      return mergedClasses.value
-    },
-    set(val) {
-      schema.value.classes = val
-    }
+  const classes = computed(() => {
+    return classesInstance.value.classes
   })
 
   /**
@@ -105,6 +100,7 @@ const base = function(props, context, dependencies, options = {})
     theme,
     Size,
     View,
+    classesInstance,
     classes,
     templates,
     template,

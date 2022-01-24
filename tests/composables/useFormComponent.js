@@ -1,13 +1,12 @@
-import { createForm, findAllComponents, findAll } from 'test-helpers'
+import { createForm, findAllComponents, findAll, createElement, classesToArray } from 'test-helpers'
 import defaultTheme from './../../themes/vueform'
+import tailwindTheme from './../../themes/tailwind'
 import { mergeComponentClasses, mergeClass } from './../../src/utils/mergeClasses'
 import { nextTick } from 'composition-api'
 import flushPromises from 'flush-promises'
 
 export default function (schema, componentName, options = {}) {
   let defaultClasses = defaultTheme.templates[componentName].data().defaultClasses
-  let mainClass = _.keys(defaultClasses)[0]
-  let mergeWith = options.mergeWith || {}
   let execute = options.execute || null
 
   describe('form$', () => {
@@ -46,9 +45,12 @@ export default function (schema, componentName, options = {}) {
     })
   })
 
-  describe('templates', () => {
-    it('should equal to form templates', async () => {
-      let form = createForm(Object.assign({}, schema))
+  describe('Size', () => {
+    it('should be injected from form', async () => {
+      let form = createForm({
+        ...schema,
+        size: 'sm',
+      })
 
       let el = form.vm.el$('el')
 
@@ -60,13 +62,16 @@ export default function (schema, componentName, options = {}) {
 
       let Component = findAllComponents(form, { name: componentName }).at(0)
 
-      expect(Component.vm.templates).toStrictEqual(form.vm.extendedTheme.templates)
+      expect(Component.vm.Size).toBe('sm')
     })
   })
 
-  describe('mainClass', () => {
-    it('should equal to first class name of defaultClasses', async () => {
-      let form = createForm(Object.assign({}, schema))
+  describe('View', () => {
+    it('should not be injected from form', async () => {
+      let form = createForm({
+        ...schema,
+        view: 'dark',
+      })
 
       let el = form.vm.el$('el')
 
@@ -78,41 +83,179 @@ export default function (schema, componentName, options = {}) {
 
       let Component = findAllComponents(form, { name: componentName }).at(0)
 
-      expect(Component.vm.mainClass).toStrictEqual(_.keys(Component.vm.defaultClasses)[0])
+      expect(Component.vm.View).toBe(undefined)
+    })
+
+    it('should be overwritten by form views', async () => {
+      let form = createForm({
+        ...schema,
+        view: 'dark',
+        views: {
+          [componentName]: 'light'
+        }
+      })
+
+      let el = form.vm.el$('el')
+
+      if (execute) {
+        execute(el)
+        await flushPromises()
+        await nextTick()
+      }
+
+      let Component = findAllComponents(form, { name: componentName }).at(0)
+
+      expect(Component.vm.View).toBe('light')
+    })
+
+    it('should be overwritten by `view` prop', async () => {
+      if (!options.withView) {
+        return
+      }
+
+      let form = createForm({
+        ...options.withView.schema,
+        view: 'dark',
+        views: {
+          [componentName]: 'light'
+        }
+      })
+
+      let el = form.vm.el$('el')
+
+      if (execute) {
+        execute(el)
+        await flushPromises()
+        await nextTick()
+      }
+
+      let Component = findAllComponents(form, { name: componentName }).at(0)
+
+      expect(Component.vm.View).toBe(options.withView.view)
+    })
+  })
+
+  describe('templates', () => {
+    it('should equal to theme templates', async () => {
+      let template = {
+        ...defaultTheme.templates[componentName],
+      }
+
+      let form = createForm({
+        ...schema,
+      }, {
+        config: {
+          templates: {
+            [componentName]: template
+          }
+        }
+      })
+
+      let el = form.vm.el$('el')
+
+      if (execute) {
+        execute(el)
+        await flushPromises()
+        await nextTick()
+      }
+
+      let Component = findAllComponents(form, { name: componentName }).at(0)
+
+      expect(Component.vm.templates).toEqual({
+        ...defaultTheme.templates,
+        [componentName]: template,
+      })
+    })
+  })
+
+  describe('template', () => {
+    it('should be base template', async () => {
+      let form = createForm({
+        ...schema,
+      })
+
+      let el = form.vm.el$('el')
+
+      if (execute) {
+        execute(el)
+        await flushPromises()
+        await nextTick()
+      }
+
+      let Component = findAllComponents(form, { name: componentName }).at(0)
+
+      expect(Component.vm.template).toEqual(defaultTheme.templates[componentName])
+    })
+
+    it('should be base template if view does not exist', async () => {
+      let form = createForm({
+        ...schema,
+        views: {
+          [componentName]: 'dark'
+        }
+      })
+
+      let el = form.vm.el$('el')
+
+      if (execute) {
+        execute(el)
+        await flushPromises()
+        await nextTick()
+      }
+
+      let Component = findAllComponents(form, { name: componentName }).at(0)
+
+      expect(Component.vm.template).toEqual(defaultTheme.templates[componentName])
+    })
+
+    it('should be view template', async () => {
+      let dark = {
+        ...defaultTheme.templates[componentName],
+      }
+
+      let form = createForm({
+        ...schema,
+        views: {
+          [componentName]: 'dark'
+        }
+      }, {
+        config: {
+          templates: {
+            [`${componentName}_dark`]: dark
+          }
+        }
+      })
+
+      let el = form.vm.el$('el')
+
+      if (execute) {
+        execute(el)
+        await flushPromises()
+        await nextTick()
+      }
+
+      let Component = findAllComponents(form, { name: componentName }).at(0)
+
+      expect(Component.vm.template).toEqual(dark)
     })
   })
 
   describe('classes', () => {
-    it('should `classes` equal to defaultClasses by default', async () => {
-      let form = createForm(Object.assign({}, schema))
+  //   // it('should merge template, theme, config presets, config, form presets, form, local singular', async () => {})
 
-      let el = form.vm.el$('el')
-
-      if (execute) {
-        execute(el)
-        await flushPromises()
-        await nextTick()
-      }
-
-      let Component = findAllComponents(form, { name: componentName }).at(0)
-
-      expect(Component.vm.classes).toStrictEqual(mergeComponentClasses(Component.vm.defaultClasses, mergeWith))
+    let form = createForm({
+      ...schema,
     })
 
-    it('should classes in theme overwrite defaultClasses in `classes`, even when changes', async () => {
-      let overwriteClasses1 = {
-        [mainClass]: 'theme-overwrite-class'
-      }
-      let overwriteClasses2 = {
-        [mainClass]: 'theme-overwrite-class2'
-      }
+    let mainClass = Object.keys(form.vm.templates[componentName].data().defaultClasses)[0]
 
-      let form = createForm(Object.assign({}, schema), {
-        theme: Object.assign({}, defaultTheme, {
-          classes: {
-            [componentName]: overwriteClasses1
-          }
-        })
+    it('should have template classes by default', async () => {
+      let form = createForm({
+        ...schema,
+      }, {
+        config: {
+          classHelpers: false,
+        }
       })
 
       let el = form.vm.el$('el')
@@ -125,27 +268,20 @@ export default function (schema, componentName, options = {}) {
 
       let Component = findAllComponents(form, { name: componentName }).at(0)
 
-      expect(Component.vm.classes).toStrictEqual(mergeComponentClasses(Object.assign({}, defaultClasses, overwriteClasses1), mergeWith))
-
-      // This also works but running tests with Vue2 fails for some reason
-      // el.$vueform.config.themes.default.classes[elementName] = overwriteClasses2
-      // expect(Component.vm.classes).toStrictEqual(Object.assign({}, defaultClasses, overwriteClasses2))
+      expect(Component.vm.classesInstance.componentClasses).toEqual(
+        classesToArray(defaultTheme.templates[componentName].data().defaultClasses)
+      )
     })
 
-    // Form classes
-    it('should classes in form overwrite defaultClasses in `classes`, even when changes', async () => {
-      let overwriteClasses1 = {
-        [mainClass]: 'form-overwrite-class'
-      }
-      let overwriteClasses2 = {
-        [mainClass]: 'form-overwrite-class2'
-      }
-
-      let form = createForm(Object.assign({}, schema, {
-        replaceClasses: {
-          [componentName]: overwriteClasses1
+    it('should override template classes with theme classes', async () => {
+      let form = createForm({
+        ...schema,
+        theme: tailwindTheme,
+      }, {
+        config: {
+          classHelpers: false,
         }
-      }))
+      })
 
       let el = form.vm.el$('el')
 
@@ -157,33 +293,70 @@ export default function (schema, componentName, options = {}) {
 
       let Component = findAllComponents(form, { name: componentName }).at(0)
 
-      expect(Component.vm.classes).toStrictEqual(mergeComponentClasses(Object.assign({}, defaultClasses, overwriteClasses1), mergeWith))
-
-      el.form$.options.replaceClasses[componentName] = overwriteClasses2
-
-      expect(Component.vm.classes).toStrictEqual(mergeComponentClasses(Object.assign({}, defaultClasses, overwriteClasses2), mergeWith))
+      expect(Component.vm.classesInstance.componentClasses).toEqual(
+        classesToArray(tailwindTheme.classes[componentName])
+      )
     })
 
-    it('should classes in form overwrite theme classes in `classes`, even when changes', async () => {
-      let overwriteClasses1 = {
-        [mainClass]: 'form-overwrite-class'
-      }
-      let overwriteClasses2 = {
-        [mainClass]: 'form-overwrite-class2'
-      }
-
-      let form = createForm(Object.assign({}, schema, {
-        replaceClasses: {
-          [componentName]: overwriteClasses1
+    it('should merge base classes with config preset classes', async () => {
+      let form = createForm({
+        ...schema,
+        theme: tailwindTheme,
+      }, {
+        config: {
+          classHelpers: false,
+          presets: {
+            preset: {
+              overrideClasses: {
+                [componentName]: {
+                  [mainClass]: 'not-empty'
+                }
+              }
+            }
+          },
+          usePresets: ['preset'],
         }
-      }), {
-        theme: Object.assign({}, defaultTheme, {
-          classes: {
+      })
+
+      let el = form.vm.el$('el')
+
+      if (execute) {
+        execute(el)
+        await flushPromises()
+        await nextTick()
+      }
+      
+      let Component = findAllComponents(form, { name: componentName }).at(0)
+
+      expect(Component.vm.classesInstance.componentClasses).toEqual(classesToArray({
+        ...tailwindTheme.classes[componentName],
+        [mainClass]: 'not-empty'
+      }))
+    })
+
+    it('should merge base classes with config classes', async () => {
+      let form = createForm({
+        ...schema,
+        theme: tailwindTheme,
+      }, {
+        config: {
+          classHelpers: false,
+          presets: {
+            preset: {
+              overrideClasses: {
+                [componentName]: {
+                  [mainClass]: 'not-empty'
+                }
+              }
+            }
+          },
+          usePresets: ['preset'],
+          overrideClasses: {
             [componentName]: {
-              [mainClass]: 'theme-overwrite-class'
+              [mainClass]: 'not-empty2'
             }
           }
-        })
+        }
       })
 
       let el = form.vm.el$('el')
@@ -193,70 +366,46 @@ export default function (schema, componentName, options = {}) {
         await flushPromises()
         await nextTick()
       }
-
+      
       let Component = findAllComponents(form, { name: componentName }).at(0)
 
-      expect(Component.vm.classes).toStrictEqual(mergeComponentClasses(Object.assign({}, defaultClasses, overwriteClasses1), mergeWith))
-
-      el.form$.options.replaceClasses[componentName] = overwriteClasses2
-
-      expect(Component.vm.classes).toStrictEqual(mergeComponentClasses(Object.assign({}, defaultClasses, overwriteClasses2), mergeWith))
-    })
-
-    it('should `extendClasses` in form add classes in `classes`, even when changes', async () => {
-      let extendClasses1 = {
-        [mainClass]: 'form-add-class'
-      }
-      let extendClasses2 = {
-        [mainClass]: 'form-add-class2'
-      }
-
-      let form = createForm(Object.assign({}, schema, {
-        extendClasses: {
-          [componentName]: extendClasses1
-        }
+      expect(Component.vm.classesInstance.componentClasses).toEqual(classesToArray({
+        ...tailwindTheme.classes[componentName],
+        [mainClass]: 'not-empty2'
       }))
-
-      let el = form.vm.el$('el')
-
-      if (execute) {
-        execute(el)
-        await flushPromises()
-        await nextTick()
-      }
-      
-      let Component = findAllComponents(form, { name: componentName }).at(0)
-
-      expect(Component.vm.classes[mainClass]).toStrictEqual(mergeClass(defaultClasses[mainClass], mergeClass(mergeWith[mainClass], extendClasses1[mainClass])))
-
-      el.form$.options.extendClasses[componentName] = extendClasses2
-
-      expect(Component.vm.classes[mainClass]).toStrictEqual(mergeClass(defaultClasses[mainClass], mergeClass(mergeWith[mainClass], extendClasses2[mainClass])))
     })
 
-    // Rendering
-    it('should add mainClass to the container DOM', async () => {
-      let themeClasses = {
-        [componentName]: {
-          [mainClass]: 'theme-classes'
+    it('should merge base classes with form preset classes', async () => {
+      let form = createForm({
+        ...schema,
+        theme: tailwindTheme,
+        presets: ['preset2']
+      }, {
+        config: {
+          classHelpers: false,
+          presets: {
+            preset: {
+              overrideClasses: {
+                [componentName]: {
+                  [mainClass]: 'not-empty'
+                }
+              }
+            },
+            preset2: {
+              overrideClasses: {
+                [componentName]: {
+                  [mainClass]: 'not-empty3'
+                }
+              }
+            }
+          },
+          usePresets: ['preset'],
+          overrideClasses: {
+            [componentName]: {
+              [mainClass]: 'not-empty2'
+            }
+          }
         }
-      }
-
-      let form = createForm(Object.assign({}, schema, {
-        replaceClasses: {
-          [componentName]: {
-            [mainClass]: 'form-classes'
-          }
-        },
-        extendClasses: {
-          [componentName]: {
-            [mainClass]: 'form-add-classes'
-          }
-        },
-      }), {
-        theme: Object.assign({}, defaultTheme, {
-          classes: themeClasses
-        })
       })
 
       let el = form.vm.el$('el')
@@ -266,19 +415,132 @@ export default function (schema, componentName, options = {}) {
         await flushPromises()
         await nextTick()
       }
-
-      await nextTick()
-      await nextTick()
-
+      
       let Component = findAllComponents(form, { name: componentName }).at(0)
 
-      if (Component.vm.$el.parentNode.classList.value === Component.classes().join(' ')) {
-        Component = findAll(Component, 'button').at(0)
+      expect(Component.vm.classesInstance.componentClasses).toEqual(classesToArray({
+        ...tailwindTheme.classes[componentName],
+        [mainClass]: 'not-empty3'
+      }))
+    })
+
+    it('should merge base classes with form classes', async () => {
+      let form = createForm({
+        ...schema,
+        theme: tailwindTheme,
+        presets: ['preset2'],
+        overrideClasses: {
+          [componentName]: {
+            [mainClass]: 'not-empty4'
+          }
+        }
+      }, {
+        config: {
+          classHelpers: false,
+          presets: {
+            preset: {
+              overrideClasses: {
+                [componentName]: {
+                  [mainClass]: 'not-empty'
+                }
+              }
+            },
+            preset2: {
+              overrideClasses: {
+                [componentName]: {
+                  [mainClass]: 'not-empty3'
+                }
+              }
+            }
+          },
+          usePresets: ['preset'],
+          overrideClasses: {
+            [componentName]: {
+              [mainClass]: 'not-empty2'
+            }
+          }
+        }
+      })
+
+      let el = form.vm.el$('el')
+
+      if (execute) {
+        execute(el)
+        await flushPromises()
+        await nextTick()
       }
       
-      expect(Component.classes('form-classes')).toBe(true)
-      expect(Component.classes('theme-classes')).toBe(false)
-      expect(Component.classes('form-add-classes')).toBe(true)
+      let Component = findAllComponents(form, { name: componentName }).at(0)
+
+      expect(Component.vm.classesInstance.componentClasses).toEqual(classesToArray({
+        ...tailwindTheme.classes[componentName],
+        [mainClass]: 'not-empty4'
+      }))
+    })
+
+    it('should merge base classes with local singular classes', async () => {
+      if (!options.withLocals) {
+        return
+      }
+
+      let form = createForm({
+        ...options.withLocals.schema,
+        theme: tailwindTheme,
+        presets: ['preset2'],
+        overrideClasses: {
+          [componentName]: {
+            [mainClass]: 'not-empty4'
+          }
+        }
+      }, {
+        config: {
+          classHelpers: false,
+          presets: {
+            preset: {
+              overrideClasses: {
+                [componentName]: {
+                  [mainClass]: 'not-empty'
+                }
+              }
+            },
+            preset2: {
+              overrideClasses: {
+                [componentName]: {
+                  [mainClass]: 'not-empty3'
+                }
+              }
+            },
+            preset3: {
+              overrideClasses: {
+                [componentName]: {
+                  [mainClass]: 'not-empty5'
+                }
+              }
+            },
+          },
+          usePresets: ['preset'],
+          overrideClasses: {
+            [componentName]: {
+              [mainClass]: 'not-empty2'
+            }
+          }
+        }
+      })
+
+      let el = form.vm.el$('el')
+
+      if (execute) {
+        execute(el)
+        await flushPromises()
+        await nextTick()
+      }
+      
+      let Component = findAllComponents(form, { name: componentName }).at(0)
+
+      expect(Component.vm.classesInstance.componentClasses).toEqual(classesToArray({
+        ...tailwindTheme.classes[componentName],
+        [mainClass]: options.withLocals.class,
+      }))
     })
   })
 }

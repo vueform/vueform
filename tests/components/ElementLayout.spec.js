@@ -2,33 +2,7 @@ import { createForm, findAllComponents} from 'test-helpers'
 import useElementComponent from './../composables/useElementComponent'
 
 describe('ElementLayout', () => {
-  let form = createForm({
-    schema: {
-      el: {
-        type: 'text',
-      }
-    }
-  })
-
-  let el = form.vm.el$('el')
-  let ElementLayout = findAllComponents(form, { name: 'ElementLayout' }).at(0).vm
-
-  let mergeWith = {
-    container: [el.columnsClasses.container[0]],
-    outerWrapper: [ElementLayout.classes.outerWrapper_single],
-    innerContainer: [el.columnsClasses.innerContainer[0]],
-    innerWrapper: [el.columnsClasses.wrapper[0]],
-  }
-
-  if (!_.isEmpty(el.classes.container)) {
-    mergeWith.container.push(el.classes.container)
-  }
-
-  mergeWith.container.push('element-class')
-
-  useElementComponent('text', 'ElementLayout', { addClass: 'element-class' }, {
-    mergeWith,
-  })
+  useElementComponent('text', 'ElementLayout', { addClass: 'element-class' })
 
   describe('rendering', () => {
     it('should render label if config.forceLabels is false, but element has label', () => {

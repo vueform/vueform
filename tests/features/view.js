@@ -114,6 +114,220 @@ export const visible = function (elementType, elementName, options) {
   })
 }
 
+export const Size = function(elementType, elementName, options) {
+  it('should be equal to form size', () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+        }
+      },
+      size: 'sm'
+    })
+
+    let el = form.vm.el$('el')
+
+    expect(el.Size).toBe('sm')
+  })
+
+  it('should be equal to parent size', () => {
+    let form = createForm({
+      schema: {
+        parent: {
+          type: 'object',
+          size: 'sm',
+          schema: {
+            el: {
+              type: elementType,
+            }
+          }
+        }
+      },
+      size: 'md'
+    })
+
+    let el = form.vm.el$('parent.el')
+
+    expect(el.Size).toBe('sm')
+  })
+  
+  it('should be equal to preset size', () => {
+    let form = createForm({
+      schema: {
+        parent: {
+          type: 'object',
+          size: 'lg',
+          schema: {
+            el: {
+              type: elementType,
+              presets: ['preset']
+            }
+          }
+        }
+      },
+      size: 'md'
+    }, {
+      config: {
+        presets: {
+          preset: {
+            size: 'sm'
+          }
+        }
+      }
+    })
+
+    let el = form.vm.el$('parent.el')
+
+    expect(el.Size).toBe('sm')
+  })
+
+  it('should be equal to props size', () => {
+    let form = createForm({
+      schema: {
+        parent: {
+          type: 'object',
+          size: 'lg',
+          schema: {
+            el: {
+              type: elementType,
+              presets: ['preset'],
+              size: 'xl'
+            }
+          }
+        }
+      },
+      size: 'md'
+    }, {
+      config: {
+        presets: {
+          preset: {
+            size: 'sm'
+          }
+        }
+      }
+    })
+
+    let el = form.vm.el$('parent.el')
+
+    expect(el.Size).toBe('xl')
+  })
+}
+
+export const View = function(elementType, elementName, options) {
+  it('should be equal to value from views', () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+        }
+      },
+      views: {
+        [elementName]: 'dark'
+      }
+    })
+
+    let el = form.vm.el$('el')
+
+    expect(el.View).toBe('dark')
+  })
+
+  it('should be equal to props value', () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          view: 'light'
+        }
+      },
+      views: {
+        [elementName]: 'dark'
+      }
+    })
+
+    let el = form.vm.el$('el')
+
+    expect(el.View).toBe('light')
+  })
+}
+
+export const Views = function(elementType, elementName, options) {
+  it('should be equal to form value', () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+        }
+      },
+      views: {
+        [elementName]: 'dark'
+      }
+    })
+
+    let el = form.vm.el$('el')
+
+    expect(el.Views[elementName]).toBe('dark')
+  })
+  
+  it('should be merged with preset value', () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          presets: ['preset'],
+        }
+      },
+      views: {
+        [elementName]: 'dark'
+      }
+    }, {
+      config: {
+        presets: {
+          preset: {
+            views: {
+              [elementName]: 'light'
+            }
+          }
+        }
+      }
+    })
+
+    let el = form.vm.el$('el')
+
+    expect(el.Views[elementName]).toBe('light')
+  })
+  
+  it('should be merged with props value', () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          presets: ['preset'],
+          views: {
+            [elementName]: 'not-light'
+          }
+        }
+      },
+      views: {
+        [elementName]: 'dark'
+      }
+    }, {
+      config: {
+        presets: {
+          preset: {
+            views: {
+              [elementName]: 'light'
+            }
+          }
+        }
+      }
+    })
+
+    let el = form.vm.el$('el')
+
+    expect(el.Views[elementName]).toBe('not-light')
+  })
+}
+
 export const hide = function (elementType, elementName, options) {
   it('should set hidden to "true" on `hide`', () => {
     let form = createForm({

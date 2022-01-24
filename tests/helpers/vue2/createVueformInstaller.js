@@ -10,7 +10,10 @@ import en from './../../../locales/en'
 export default function createVueformInstaller (options = {}) {
   let theme = options.theme || defaultTheme
 
-  let finalConfig = Object.assign({}, config, {
+  let finalConfig = Object.assign({}, {
+    ...config,
+    classHelpers: false,
+  }, {
     theme: theme,
     templates: options.templates || {},
     rules: options.rules || {},

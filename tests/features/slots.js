@@ -142,6 +142,12 @@ const setups = {
     await nextTick()
     await nextTick()
   },
+  'spinner': async (el) => {
+    el.vm.input.isActive = true
+    await nextTick()
+    await nextTick()
+    await nextTick()
+  },
 }
 
 export const slots = function (elementType, elementName, options) {
@@ -191,6 +197,8 @@ const testSchemaSlot = function(it, elementName, elementType, slot) {
       schema: {
         el: config
       }
+    }, {
+      attach: true
     })
 
     elWrapper = findAllComponents(form, { name: elementName }).at(0)
@@ -199,6 +207,8 @@ const testSchemaSlot = function(it, elementName, elementType, slot) {
     await (setups[slot] || setups.default)(elWrapper)
 
     expect(elWrapper.html()).toContain('from schema slot')
+
+    destroy(form)
   })
 }
 

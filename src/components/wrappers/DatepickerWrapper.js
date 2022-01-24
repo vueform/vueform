@@ -39,6 +39,7 @@ export default {
       form$,
       Size,
       View,
+      classesInstance,
       classes,
       templates,
       template,
@@ -160,8 +161,9 @@ export default {
       }))
 
       if (datepicker$.value.calendarContainer) {
-        if (typeof classes.value.calendarContainer !== 'string' || classes.value.calendarContainer.length > 0)
-        datepicker$.value.calendarContainer.classList.add(classes.value.calendarContainer)
+        classes.value.calendarContainer.forEach((c) => {
+          datepicker$.value.calendarContainer.classList.add(c)
+        })
       }
 
       setDatepickerId()
@@ -186,6 +188,7 @@ export default {
       form$,
       Size,
       View,
+      classesInstance,
       theme,
       classes,
       templates,

@@ -1003,7 +1003,7 @@ export default {
       }
     }
   },
-  "classes": {
+  "classes copy": {
     "base": {
       "computed": {
         "classes": {
@@ -1011,7 +1011,7 @@ export default {
           "types": [
             "object"
           ],
-          "description": "The selected theme's classes merged with [`extendClasses`](#option-extend-classes) and [`replaceClasses`](#option-replace-classes) options."
+          "description": "The selected theme's classes merged with [`addClasses`](#option-extend-classes) and [`overrideClasses`](#option-replace-classes) options."
         },
         "mainClass": {
           "public": false,
@@ -1038,7 +1038,7 @@ export default {
           "types": [
             "object"
           ],
-          "description": "The selected theme's classes merged with [`extendClasses`](#option-extend-classes) and [`replaceClasses`](#option-replace-classes) options."
+          "description": "The selected theme's classes merged with [`addClasses`](#option-extend-classes) and [`overrideClasses`](#option-replace-classes) options."
         },
         "mainClass": {
           "public": false,
@@ -1065,7 +1065,7 @@ export default {
           "types": [
             "object"
           ],
-          "description": "The selected theme's classes merged with [`extendClasses`](#option-extend-classes) and [`replaceClasses`](#option-replace-classes) options."
+          "description": "The selected theme's classes merged with [`addClasses`](#option-extend-classes) and [`overrideClasses`](#option-replace-classes) options."
         },
         "mainClass": {
           "public": false,
@@ -1092,7 +1092,7 @@ export default {
           "types": [
             "object"
           ],
-          "description": "The selected theme's classes merged with [`extendClasses`](#option-extend-classes) and [`replaceClasses`](#option-replace-classes) options."
+          "description": "The selected theme's classes merged with [`addClasses`](#option-extend-classes) and [`overrideClasses`](#option-replace-classes) options."
         },
         "mainClass": {
           "public": false,
@@ -1119,7 +1119,7 @@ export default {
           "types": [
             "object"
           ],
-          "description": "The selected theme's classes merged with [`extendClasses`](#option-extend-classes) and [`replaceClasses`](#option-replace-classes) options."
+          "description": "The selected theme's classes merged with [`addClasses`](#option-extend-classes) and [`overrideClasses`](#option-replace-classes) options."
         },
         "mainClass": {
           "public": false,
@@ -1146,7 +1146,7 @@ export default {
           "types": [
             "object"
           ],
-          "description": "The selected theme's classes merged with [`extendClasses`](#option-extend-classes) and [`replaceClasses`](#option-replace-classes) options."
+          "description": "The selected theme's classes merged with [`addClasses`](#option-extend-classes) and [`overrideClasses`](#option-replace-classes) options."
         },
         "mainClass": {
           "public": false,
@@ -1173,7 +1173,7 @@ export default {
           "types": [
             "object"
           ],
-          "description": "The selected theme's classes merged with [`extendClasses`](#option-extend-classes) and [`replaceClasses`](#option-replace-classes) options."
+          "description": "The selected theme's classes merged with [`addClasses`](#option-extend-classes) and [`overrideClasses`](#option-replace-classes) options."
         },
         "mainClass": {
           "public": false,
@@ -1190,6 +1190,19 @@ export default {
             "object"
           ],
           "description": "The default classes for the element defined by theme."
+        }
+      }
+    }
+  },
+  "classes": {
+    "base": {
+      "computed": {
+        "classes": {
+          "public": true,
+          "types": [
+            "object"
+          ],
+          "description": "The selected theme's classes merged with [`addClasses`](#option-extend-classes) and [`overrideClasses`](#option-replace-classes) options."
         }
       }
     }
@@ -3565,6 +3578,13 @@ export default {
             "object"
           ],
           "description": "The component templates to use for the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme's default templates."
+        },
+        "template": {
+          "public": true,
+          "types": [
+            "object"
+          ],
+          "description": "The component's template."
         }
       }
     }
@@ -4829,6 +4849,21 @@ export default {
             "boolean"
           ],
           "description": "Whether the element is visible. It's `false` when `available` or `active` is `false` or `hidden` is `true`."
+        },
+        "Size": {
+          "public": true,
+          "returns": "string",
+          "description": "The calculated size of the element. If [`size`](#option-size) is not defined for the element the closest parent's size will be used, which can be either the [`Vueform`](vueform) component or a nested element."
+        },
+        "View": {
+          "public": true,
+          "returns": "string",
+          "description": "The calculated view of the element."
+        },
+        "Views": {
+          "public": true,
+          "returns": "object",
+          "description": "The calculated views of the element."
         }
       },
       "methods": {
@@ -4840,7 +4875,7 @@ export default {
         "show": {
           "public": true,
           "returns": "void",
-          "description": "Shows the element if it was hidden with [`hide()`](#hide) method."
+          "description": "Shows the element if it was hidden with [`hide()`](#method-hide) method."
         }
       }
     }

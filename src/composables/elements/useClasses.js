@@ -17,11 +17,12 @@ const base = function(props, context, dependencies, options = {})
   // ============== COMPUTED ==============
 
   /**
-   * The selected theme's classes merged with [`addClasses`](#option-extend-classes) and [`overrideClasses`](#option-replace-classes) options.
+   * The classes instance (for testing purpose).
    * 
-   * @type {object}
+   * @type {MergeFormClasses}
+   * @private
    */
-  const classes = computed(() => {
+  const classesInstance = computed(() => {
     return (new MergeFormClasses({
       component: componentName.value,
       component$: el$,
@@ -30,14 +31,24 @@ const base = function(props, context, dependencies, options = {})
       templates: templates.value,
       view: View.value,
       merge: [
-        form$.value,
+        form$.value.options,
         el$.value,
       ],
-    })).classes
+    }))
+  })
+
+  /**
+   * The selected theme's classes merged with [`addClasses`](#option-extend-classes) and [`overrideClasses`](#option-replace-classes) options.
+   * 
+   * @type {object}
+   */
+  const classes = computed(() => {
+    return classesInstance.value.classes
   })
 
   return {
     classes,
+    classesInstance,
   }
 }
 

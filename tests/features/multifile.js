@@ -118,7 +118,7 @@ export const handleClick = function (elementType, elementName, options) {
 
     expect(clickMock).not.toHaveBeenCalled()
 
-    elWrapper.find(`[class="${el.classes.button}"]`).trigger('click')
+    elWrapper.find(`[class="${el.template.data().defaultClasses.button}"]`).trigger('click')
 
     await nextTick()
 

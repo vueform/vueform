@@ -15,6 +15,20 @@ module.exports = {
         ],
         "description": "The root form's component."
       },
+      "Size": {
+        "public": true,
+        "types": [
+          "component"
+        ],
+        "description": "The computed size of the component."
+      },
+      "View": {
+        "public": false,
+        "types": [
+          "string"
+        ],
+        "description": "The view."
+      },
       "theme": {
         "public": true,
         "types": [
@@ -29,14 +43,7 @@ module.exports = {
         "types": [
           "object"
         ],
-        "description": "The selected theme's classes merged with element's `extendClasses` and `replaceClasses` options."
-      },
-      "mainClass": {
-        "public": false,
-        "types": [
-          "string"
-        ],
-        "description": "The class name of the components's outermost DOM."
+        "description": "The selected theme's classes merged with element's `addClasses` and `overrideClasses` options."
       },
       "templates": {
         "public": true,
@@ -44,16 +51,16 @@ module.exports = {
           "object"
         ],
         "description": "Returns the component templates used by the parent element."
-      }
-    },
-    "data": {
-      "defaultClasses": {
-        "public": false,
+      },
+      "template": {
+        "public": true,
         "types": [
           "object"
         ],
-        "description": "The default classes for the component defined by theme."
-      },
+        "description": "The component's template."
+      }
+    },
+    "data": {
       "dragging": {
         "public": true,
         "default": "falyse",
@@ -139,6 +146,20 @@ module.exports = {
           "object"
         ],
         "description": "The global theme object, which contains all the default templates and classes."
+      },
+      "Size": {
+        "public": true,
+        "types": [
+          "component"
+        ],
+        "description": "The computed size of the component."
+      },
+      "View": {
+        "public": false,
+        "types": [
+          "string"
+        ],
+        "description": "The view."
       }
     },
     "computed": {
@@ -149,19 +170,19 @@ module.exports = {
         ],
         "description": "Returns the component templates used by the parent element."
       },
+      "template": {
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "The component's template."
+      },
       "classes": {
         "public": true,
         "types": [
           "object"
         ],
-        "description": "The selected theme's classes merged with element's `extendClasses` and `replaceClasses` options."
-      },
-      "mainClass": {
-        "public": false,
-        "types": [
-          "string"
-        ],
-        "description": "The class name of the components's outermost DOM."
+        "description": "The selected theme's classes merged with element's `addClasses` and `overrideClasses` options."
       },
       "addon": {
         "public": true,
@@ -184,15 +205,6 @@ module.exports = {
           "boolean"
         ],
         "description": "Whether the label is provided as a slot."
-      }
-    },
-    "data": {
-      "defaultClasses": {
-        "public": false,
-        "types": [
-          "object"
-        ],
-        "description": "The default classes for the component defined by theme."
       }
     },
     "props": {
@@ -226,6 +238,20 @@ module.exports = {
         ],
         "description": "The root form's component."
       },
+      "Size": {
+        "public": true,
+        "types": [
+          "component"
+        ],
+        "description": "The computed size of the component."
+      },
+      "View": {
+        "public": false,
+        "types": [
+          "string"
+        ],
+        "description": "The view."
+      },
       "theme": {
         "public": true,
         "types": [
@@ -240,14 +266,7 @@ module.exports = {
         "types": [
           "object"
         ],
-        "description": "The selected theme's classes merged with element's `extendClasses` and `replaceClasses` options."
-      },
-      "mainClass": {
-        "public": false,
-        "types": [
-          "string"
-        ],
-        "description": "The class name of the components's outermost DOM."
+        "description": "The selected theme's classes merged with element's `addClasses` and `overrideClasses` options."
       },
       "templates": {
         "public": true,
@@ -255,6 +274,13 @@ module.exports = {
           "object"
         ],
         "description": "Returns the component templates used by the parent element."
+      },
+      "template": {
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "The component's template."
       },
       "description": {
         "public": true,
@@ -269,15 +295,6 @@ module.exports = {
           "boolean"
         ],
         "description": "Whether the description is provided as a slot."
-      }
-    },
-    "data": {
-      "defaultClasses": {
-        "public": false,
-        "types": [
-          "object"
-        ],
-        "description": "The default classes for the component defined by theme."
       }
     },
     "props": {},
@@ -304,6 +321,20 @@ module.exports = {
         ],
         "description": "The root form's component."
       },
+      "Size": {
+        "public": true,
+        "types": [
+          "component"
+        ],
+        "description": "The computed size of the component."
+      },
+      "View": {
+        "public": false,
+        "types": [
+          "string"
+        ],
+        "description": "The view."
+      },
       "theme": {
         "public": true,
         "types": [
@@ -318,14 +349,7 @@ module.exports = {
         "types": [
           "object"
         ],
-        "description": "The selected theme's classes merged with element's `extendClasses` and `replaceClasses` options."
-      },
-      "mainClass": {
-        "public": false,
-        "types": [
-          "string"
-        ],
-        "description": "The class name of the components's outermost DOM."
+        "description": "The selected theme's classes merged with element's `addClasses` and `overrideClasses` options."
       },
       "templates": {
         "public": true,
@@ -334,21 +358,19 @@ module.exports = {
         ],
         "description": "Returns the component templates used by the parent element."
       },
+      "template": {
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "The component's template."
+      },
       "error": {
         "public": true,
         "types": [
           "string"
         ],
         "description": "The first error of the element."
-      }
-    },
-    "data": {
-      "defaultClasses": {
-        "public": false,
-        "types": [
-          "object"
-        ],
-        "description": "The default classes for the component defined by theme."
       }
     },
     "props": {},
@@ -371,6 +393,20 @@ module.exports = {
         ],
         "description": "The root form's component."
       },
+      "Size": {
+        "public": true,
+        "types": [
+          "component"
+        ],
+        "description": "The computed size of the component."
+      },
+      "View": {
+        "public": false,
+        "types": [
+          "string"
+        ],
+        "description": "The view."
+      },
       "theme": {
         "public": true,
         "types": [
@@ -385,14 +421,7 @@ module.exports = {
         "types": [
           "object"
         ],
-        "description": "The selected theme's classes merged with element's `extendClasses` and `replaceClasses` options."
-      },
-      "mainClass": {
-        "public": false,
-        "types": [
-          "string"
-        ],
-        "description": "The class name of the components's outermost DOM."
+        "description": "The selected theme's classes merged with element's `addClasses` and `overrideClasses` options."
       },
       "templates": {
         "public": true,
@@ -400,6 +429,13 @@ module.exports = {
           "object"
         ],
         "description": "Returns the component templates used by the parent element."
+      },
+      "template": {
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "The component's template."
       },
       "info": {
         "public": true,
@@ -414,15 +450,6 @@ module.exports = {
           "boolean"
         ],
         "description": "Whether the info is provided as a slot."
-      }
-    },
-    "data": {
-      "defaultClasses": {
-        "public": false,
-        "types": [
-          "object"
-        ],
-        "description": "The default classes for the component defined by theme."
       }
     },
     "props": {},
@@ -449,6 +476,20 @@ module.exports = {
         ],
         "description": "The root form's component."
       },
+      "Size": {
+        "public": true,
+        "types": [
+          "component"
+        ],
+        "description": "The computed size of the component."
+      },
+      "View": {
+        "public": false,
+        "types": [
+          "string"
+        ],
+        "description": "The view."
+      },
       "theme": {
         "public": true,
         "types": [
@@ -463,14 +504,7 @@ module.exports = {
         "types": [
           "object"
         ],
-        "description": "The selected theme's classes merged with element's `extendClasses` and `replaceClasses` options."
-      },
-      "mainClass": {
-        "public": false,
-        "types": [
-          "string"
-        ],
-        "description": "The class name of the components's outermost DOM."
+        "description": "The selected theme's classes merged with element's `addClasses` and `overrideClasses` options."
       },
       "templates": {
         "public": true,
@@ -478,6 +512,13 @@ module.exports = {
           "object"
         ],
         "description": "Returns the component templates used by the parent element."
+      },
+      "template": {
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "The component's template."
       },
       "label": {
         "public": true,
@@ -516,15 +557,6 @@ module.exports = {
         "description": "Whether the label is provided as a slot."
       }
     },
-    "data": {
-      "defaultClasses": {
-        "public": false,
-        "types": [
-          "object"
-        ],
-        "description": "The default classes for the component defined by theme."
-      }
-    },
     "props": {},
     "events": {},
     "slots": {
@@ -552,6 +584,20 @@ module.exports = {
         ],
         "description": "The root form's component."
       },
+      "Size": {
+        "public": true,
+        "types": [
+          "component"
+        ],
+        "description": "The computed size of the component."
+      },
+      "View": {
+        "public": false,
+        "types": [
+          "string"
+        ],
+        "description": "The view."
+      },
       "theme": {
         "public": true,
         "types": [
@@ -566,14 +612,7 @@ module.exports = {
         "types": [
           "object"
         ],
-        "description": "The selected theme's classes merged with element's `extendClasses` and `replaceClasses` options."
-      },
-      "mainClass": {
-        "public": false,
-        "types": [
-          "string"
-        ],
-        "description": "The class name of the components's outermost DOM."
+        "description": "The selected theme's classes merged with element's `addClasses` and `overrideClasses` options."
       },
       "templates": {
         "public": true,
@@ -582,21 +621,19 @@ module.exports = {
         ],
         "description": "Returns the component templates used by the parent element."
       },
+      "template": {
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "The component's template."
+      },
       "floating": {
         "public": true,
         "types": [
           "string"
         ],
         "description": "The floating label of the element, defined via `floating` prop."
-      }
-    },
-    "data": {
-      "defaultClasses": {
-        "public": false,
-        "types": [
-          "object"
-        ],
-        "description": "The default classes for the component defined by theme."
       }
     },
     "props": {
@@ -627,6 +664,20 @@ module.exports = {
         ],
         "description": "The root form's component."
       },
+      "Size": {
+        "public": true,
+        "types": [
+          "component"
+        ],
+        "description": "The computed size of the component."
+      },
+      "View": {
+        "public": false,
+        "types": [
+          "string"
+        ],
+        "description": "The view."
+      },
       "theme": {
         "public": true,
         "types": [
@@ -643,19 +694,19 @@ module.exports = {
         ],
         "description": "Returns the component templates used by the parent element."
       },
+      "template": {
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "The component's template."
+      },
       "classes": {
         "public": true,
         "types": [
           "object"
         ],
-        "description": "The selected theme's classes merged with element's `extendClasses` and `replaceClasses` options."
-      },
-      "mainClass": {
-        "public": false,
-        "types": [
-          "string"
-        ],
-        "description": "The class name of the components's outermost DOM."
+        "description": "The selected theme's classes merged with element's `addClasses` and `overrideClasses` options."
       },
       "visible": {
         "public": true,
@@ -663,15 +714,6 @@ module.exports = {
           "boolean"
         ],
         "description": "Whether the element should be visible."
-      }
-    },
-    "data": {
-      "defaultClasses": {
-        "public": false,
-        "types": [
-          "object"
-        ],
-        "description": "The default classes for the component defined by theme."
       }
     },
     "props": {
@@ -724,6 +766,20 @@ module.exports = {
         ],
         "description": "The root form's component."
       },
+      "Size": {
+        "public": true,
+        "types": [
+          "component"
+        ],
+        "description": "The computed size of the component."
+      },
+      "View": {
+        "public": false,
+        "types": [
+          "string"
+        ],
+        "description": "The view."
+      },
       "theme": {
         "public": true,
         "types": [
@@ -740,19 +796,19 @@ module.exports = {
         ],
         "description": "Returns the component templates used by the parent element."
       },
+      "template": {
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "The component's template."
+      },
       "classes": {
         "public": true,
         "types": [
           "object"
         ],
-        "description": "The selected theme's classes merged with element's `extendClasses` and `replaceClasses` options."
-      },
-      "mainClass": {
-        "public": false,
-        "types": [
-          "string"
-        ],
-        "description": "The class name of the components's outermost DOM."
+        "description": "The selected theme's classes merged with element's `addClasses` and `overrideClasses` options."
       },
       "visible": {
         "public": true,
@@ -760,15 +816,6 @@ module.exports = {
           "boolean"
         ],
         "description": "Whether the element should be visible."
-      }
-    },
-    "data": {
-      "defaultClasses": {
-        "public": false,
-        "types": [
-          "object"
-        ],
-        "description": "The default classes for the component defined by theme."
       }
     },
     "props": {},
@@ -813,6 +860,20 @@ module.exports = {
         ],
         "description": "The root form's component."
       },
+      "Size": {
+        "public": true,
+        "types": [
+          "component"
+        ],
+        "description": "The computed size of the component."
+      },
+      "View": {
+        "public": false,
+        "types": [
+          "string"
+        ],
+        "description": "The view."
+      },
       "theme": {
         "public": true,
         "types": [
@@ -827,14 +888,7 @@ module.exports = {
         "types": [
           "object"
         ],
-        "description": "The selected theme's classes merged with element's `extendClasses` and `replaceClasses` options."
-      },
-      "mainClass": {
-        "public": false,
-        "types": [
-          "string"
-        ],
-        "description": "The class name of the components's outermost DOM."
+        "description": "The selected theme's classes merged with element's `addClasses` and `overrideClasses` options."
       },
       "templates": {
         "public": true,
@@ -842,15 +896,13 @@ module.exports = {
           "object"
         ],
         "description": "Returns the component templates used by the parent element."
-      }
-    },
-    "data": {
-      "defaultClasses": {
-        "public": false,
+      },
+      "template": {
+        "public": true,
         "types": [
           "object"
         ],
-        "description": "The default classes for the component defined by theme."
+        "description": "The component's template."
       }
     },
     "props": {},
@@ -873,6 +925,20 @@ module.exports = {
         ],
         "description": "The root form's component."
       },
+      "Size": {
+        "public": true,
+        "types": [
+          "component"
+        ],
+        "description": "The computed size of the component."
+      },
+      "View": {
+        "public": false,
+        "types": [
+          "string"
+        ],
+        "description": "The view."
+      },
       "theme": {
         "public": true,
         "types": [
@@ -887,14 +953,7 @@ module.exports = {
         "types": [
           "object"
         ],
-        "description": "The selected theme's classes merged with element's `extendClasses` and `replaceClasses` options."
-      },
-      "mainClass": {
-        "public": false,
-        "types": [
-          "string"
-        ],
-        "description": "The class name of the components's outermost DOM."
+        "description": "The selected theme's classes merged with element's `addClasses` and `overrideClasses` options."
       },
       "templates": {
         "public": true,
@@ -903,21 +962,19 @@ module.exports = {
         ],
         "description": "Returns the component templates used by the parent element."
       },
+      "template": {
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "The component's template."
+      },
       "message": {
         "public": true,
         "types": [
           "string"
         ],
         "description": "The first message of the element."
-      }
-    },
-    "data": {
-      "defaultClasses": {
-        "public": false,
-        "types": [
-          "object"
-        ],
-        "description": "The default classes for the component defined by theme."
       }
     },
     "props": {},
@@ -940,6 +997,20 @@ module.exports = {
         ],
         "description": "The root form's component."
       },
+      "Size": {
+        "public": true,
+        "types": [
+          "component"
+        ],
+        "description": "The computed size of the component."
+      },
+      "View": {
+        "public": false,
+        "types": [
+          "string"
+        ],
+        "description": "The view."
+      },
       "theme": {
         "public": true,
         "types": [
@@ -954,14 +1025,7 @@ module.exports = {
         "types": [
           "object"
         ],
-        "description": "The selected theme's classes merged with element's `extendClasses` and `replaceClasses` options."
-      },
-      "mainClass": {
-        "public": false,
-        "types": [
-          "string"
-        ],
-        "description": "The class name of the components's outermost DOM."
+        "description": "The selected theme's classes merged with element's `addClasses` and `overrideClasses` options."
       },
       "templates": {
         "public": true,
@@ -969,6 +1033,13 @@ module.exports = {
           "object"
         ],
         "description": "Returns the component templates used by the parent element."
+      },
+      "template": {
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "The component's template."
       },
       "content": {
         "public": false,
@@ -983,15 +1054,6 @@ module.exports = {
           "boolean"
         ],
         "description": "Whether the contents are provided as a slot."
-      }
-    },
-    "data": {
-      "defaultClasses": {
-        "public": false,
-        "types": [
-          "object"
-        ],
-        "description": "The default classes for the component defined by theme."
       }
     },
     "props": {
@@ -1018,6 +1080,20 @@ module.exports = {
         ],
         "description": "The root form's component."
       },
+      "Size": {
+        "public": true,
+        "types": [
+          "component"
+        ],
+        "description": "The computed size of the component."
+      },
+      "View": {
+        "public": false,
+        "types": [
+          "string"
+        ],
+        "description": "The view."
+      },
       "theme": {
         "public": true,
         "types": [
@@ -1032,14 +1108,7 @@ module.exports = {
         "types": [
           "object"
         ],
-        "description": "The selected theme's classes merged with the form's [`extendClasses`](vueform#option-extend-classes) and [`replaceClasses`](vueform#option-replace-classes) options."
-      },
-      "mainClass": {
-        "public": false,
-        "types": [
-          "string"
-        ],
-        "description": "The class name of the components's outermost DOM."
+        "description": "The selected theme's classes merged with the form's [`addClasses`](vueform#option-add-classes) and [`overrideClasses`](vueform#option-override-classes) options."
       },
       "templates": {
         "public": true,
@@ -1048,21 +1117,19 @@ module.exports = {
         ],
         "description": "Returns the component templates used by the form."
       },
+      "template": {
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "The component's template."
+      },
       "schema": {
         "public": false,
         "types": [
           "object"
         ],
         "description": "The form schema."
-      }
-    },
-    "data": {
-      "defaultClasses": {
-        "public": false,
-        "types": [
-          "object"
-        ],
-        "description": "The default classes for the component defined by theme."
       }
     },
     "methods": {
@@ -1081,7 +1148,14 @@ module.exports = {
         }
       }
     },
-    "props": {},
+    "props": {
+      "view": {
+        "required": false,
+        "types": [
+          "string"
+        ]
+      }
+    },
     "events": {},
     "slots": {
       "default": {
@@ -1098,6 +1172,20 @@ module.exports = {
         ],
         "description": "The root form's component."
       },
+      "Size": {
+        "public": true,
+        "types": [
+          "component"
+        ],
+        "description": "The computed size of the component."
+      },
+      "View": {
+        "public": false,
+        "types": [
+          "string"
+        ],
+        "description": "The view."
+      },
       "theme": {
         "public": true,
         "types": [
@@ -1112,14 +1200,7 @@ module.exports = {
         "types": [
           "object"
         ],
-        "description": "The selected theme's classes merged with the form's [`extendClasses`](vueform#option-extend-classes) and [`replaceClasses`](vueform#option-replace-classes) options."
-      },
-      "mainClass": {
-        "public": false,
-        "types": [
-          "string"
-        ],
-        "description": "The class name of the components's outermost DOM."
+        "description": "The selected theme's classes merged with the form's [`addClasses`](vueform#option-add-classes) and [`overrideClasses`](vueform#option-override-classes) options."
       },
       "templates": {
         "public": true,
@@ -1127,6 +1208,13 @@ module.exports = {
           "object"
         ],
         "description": "Returns the component templates used by the form."
+      },
+      "template": {
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "The component's template."
       },
       "errors": {
         "public": true,
@@ -1136,16 +1224,14 @@ module.exports = {
         "description": "Form errors including element errors and the ones added to `messageBag` manually."
       }
     },
-    "data": {
-      "defaultClasses": {
-        "public": false,
+    "props": {
+      "view": {
+        "required": false,
         "types": [
-          "object"
-        ],
-        "description": "The default classes for the component defined by theme."
+          "string"
+        ]
       }
     },
-    "props": {},
     "events": {},
     "slots": {}
   },
@@ -1157,6 +1243,20 @@ module.exports = {
           "component"
         ],
         "description": "The root form's component."
+      },
+      "Size": {
+        "public": true,
+        "types": [
+          "component"
+        ],
+        "description": "The computed size of the component."
+      },
+      "View": {
+        "public": false,
+        "types": [
+          "string"
+        ],
+        "description": "The view."
       },
       "theme": {
         "public": true,
@@ -1186,14 +1286,7 @@ module.exports = {
         "types": [
           "object"
         ],
-        "description": "The selected theme's classes merged with the form's [`extendClasses`](vueform#option-extend-classes) and [`replaceClasses`](vueform#option-replace-classes) options."
-      },
-      "mainClass": {
-        "public": false,
-        "types": [
-          "string"
-        ],
-        "description": "The class name of the components's outermost DOM."
+        "description": "The selected theme's classes merged with the form's [`addClasses`](vueform#option-add-classes) and [`overrideClasses`](vueform#option-override-classes) options."
       },
       "templates": {
         "public": true,
@@ -1201,15 +1294,13 @@ module.exports = {
           "object"
         ],
         "description": "Returns the component templates used by the form."
-      }
-    },
-    "data": {
-      "defaultClasses": {
-        "public": false,
+      },
+      "template": {
+        "public": true,
         "types": [
           "object"
         ],
-        "description": "The default classes for the component defined by theme."
+        "description": "The component's template."
       }
     },
     "methods": {
@@ -1227,6 +1318,12 @@ module.exports = {
       },
       "code": {
         "required": true,
+        "types": [
+          "string"
+        ]
+      },
+      "view": {
+        "required": false,
         "types": [
           "string"
         ]
@@ -1256,6 +1353,20 @@ module.exports = {
         ],
         "description": "The root form's component."
       },
+      "Size": {
+        "public": true,
+        "types": [
+          "component"
+        ],
+        "description": "The computed size of the component."
+      },
+      "View": {
+        "public": false,
+        "types": [
+          "string"
+        ],
+        "description": "The view."
+      },
       "theme": {
         "public": true,
         "types": [
@@ -1270,14 +1381,7 @@ module.exports = {
         "types": [
           "object"
         ],
-        "description": "The selected theme's classes merged with the form's [`extendClasses`](vueform#option-extend-classes) and [`replaceClasses`](vueform#option-replace-classes) options."
-      },
-      "mainClass": {
-        "public": false,
-        "types": [
-          "string"
-        ],
-        "description": "The class name of the components's outermost DOM."
+        "description": "The selected theme's classes merged with the form's [`addClasses`](vueform#option-add-classes) and [`overrideClasses`](vueform#option-override-classes) options."
       },
       "templates": {
         "public": true,
@@ -1285,6 +1389,13 @@ module.exports = {
           "object"
         ],
         "description": "Returns the component templates used by the form."
+      },
+      "template": {
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "The component's template."
       },
       "language": {
         "public": true,
@@ -1299,15 +1410,6 @@ module.exports = {
           "object"
         ],
         "description": "The available languages."
-      }
-    },
-    "data": {
-      "defaultClasses": {
-        "public": false,
-        "types": [
-          "object"
-        ],
-        "description": "The default classes for the component defined by theme."
       }
     },
     "methods": {
@@ -1340,7 +1442,14 @@ module.exports = {
         }
       }
     },
-    "props": {},
+    "props": {
+      "view": {
+        "required": false,
+        "types": [
+          "string"
+        ]
+      }
+    },
     "events": {},
     "slots": {}
   },
@@ -1352,6 +1461,20 @@ module.exports = {
           "component"
         ],
         "description": "The root form's component."
+      },
+      "Size": {
+        "public": true,
+        "types": [
+          "component"
+        ],
+        "description": "The computed size of the component."
+      },
+      "View": {
+        "public": false,
+        "types": [
+          "string"
+        ],
+        "description": "The view."
       },
       "theme": {
         "public": true,
@@ -1367,14 +1490,7 @@ module.exports = {
         "types": [
           "object"
         ],
-        "description": "The selected theme's classes merged with the form's [`extendClasses`](vueform#option-extend-classes) and [`replaceClasses`](vueform#option-replace-classes) options."
-      },
-      "mainClass": {
-        "public": false,
-        "types": [
-          "string"
-        ],
-        "description": "The class name of the components's outermost DOM."
+        "description": "The selected theme's classes merged with the form's [`addClasses`](vueform#option-add-classes) and [`overrideClasses`](vueform#option-override-classes) options."
       },
       "templates": {
         "public": true,
@@ -1382,6 +1498,13 @@ module.exports = {
           "object"
         ],
         "description": "Returns the component templates used by the form."
+      },
+      "template": {
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "The component's template."
       },
       "messages": {
         "public": true,
@@ -1391,16 +1514,14 @@ module.exports = {
         "description": "Form messages including element messages and the ones added to `messageBag` manually."
       }
     },
-    "data": {
-      "defaultClasses": {
-        "public": false,
+    "props": {
+      "view": {
+        "required": false,
         "types": [
-          "object"
-        ],
-        "description": "The default classes for the component defined by theme."
+          "string"
+        ]
       }
     },
-    "props": {},
     "events": {},
     "slots": {}
   },
@@ -1412,6 +1533,20 @@ module.exports = {
           "component"
         ],
         "description": "The root form's component."
+      },
+      "Size": {
+        "public": true,
+        "types": [
+          "component"
+        ],
+        "description": "The computed size of the component."
+      },
+      "View": {
+        "public": false,
+        "types": [
+          "string"
+        ],
+        "description": "The view."
       },
       "theme": {
         "public": true,
@@ -1469,14 +1604,7 @@ module.exports = {
         "types": [
           "object"
         ],
-        "description": "The selected theme's classes merged with the form's [`extendClasses`](vueform#option-extend-classes) and [`replaceClasses`](vueform#option-replace-classes) options."
-      },
-      "mainClass": {
-        "public": false,
-        "types": [
-          "string"
-        ],
-        "description": "The class name of the components's outermost DOM."
+        "description": "The selected theme's classes merged with the form's [`addClasses`](vueform#option-add-classes) and [`overrideClasses`](vueform#option-override-classes) options."
       },
       "templates": {
         "public": true,
@@ -1484,6 +1612,13 @@ module.exports = {
           "object"
         ],
         "description": "Returns the component templates used by the form."
+      },
+      "template": {
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "The component's template."
       },
       "available": {
         "public": true,
@@ -1589,13 +1724,6 @@ module.exports = {
           "object"
         ],
         "description": "Helper property used to store listeners for events."
-      },
-      "defaultClasses": {
-        "public": false,
-        "types": [
-          "object"
-        ],
-        "description": "The default classes for the component defined by theme."
       },
       "stepLabel": {
         "public": true,
@@ -1752,9 +1880,33 @@ module.exports = {
         "required": false,
         "default": null,
         "types": [
-          "string",
+          "array",
+          "object",
+          "string"
+        ]
+      },
+      "removeClass": {
+        "required": false,
+        "default": null,
+        "types": [
           "array",
           "object"
+        ]
+      },
+      "replaceClass": {
+        "required": false,
+        "default": null,
+        "types": [
+          "object"
+        ]
+      },
+      "overrideClass": {
+        "required": false,
+        "default": null,
+        "types": [
+          "array",
+          "object",
+          "string"
         ]
       },
       "onActivate": {
@@ -1822,6 +1974,20 @@ module.exports = {
         ],
         "description": "The root form's component."
       },
+      "Size": {
+        "public": true,
+        "types": [
+          "component"
+        ],
+        "description": "The computed size of the component."
+      },
+      "View": {
+        "public": false,
+        "types": [
+          "string"
+        ],
+        "description": "The view."
+      },
       "theme": {
         "public": true,
         "types": [
@@ -1850,14 +2016,7 @@ module.exports = {
         "types": [
           "object"
         ],
-        "description": "The selected theme's classes merged with the form's [`extendClasses`](vueform#option-extend-classes) and [`replaceClasses`](vueform#option-replace-classes) options."
-      },
-      "mainClass": {
-        "public": false,
-        "types": [
-          "string"
-        ],
-        "description": "The class name of the components's outermost DOM."
+        "description": "The selected theme's classes merged with the form's [`addClasses`](vueform#option-add-classes) and [`overrideClasses`](vueform#option-override-classes) options."
       },
       "templates": {
         "public": true,
@@ -1865,6 +2024,13 @@ module.exports = {
           "object"
         ],
         "description": "Returns the component templates used by the form."
+      },
+      "template": {
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "The component's template."
       },
       "steps$": {
         "public": true,
@@ -2010,13 +2176,6 @@ module.exports = {
           "boolean"
         ],
         "description": "Helper prop used for checking if the component exists."
-      },
-      "defaultClasses": {
-        "public": false,
-        "types": [
-          "object"
-        ],
-        "description": "The default classes for the component defined by theme."
       }
     },
     "methods": {
@@ -2173,7 +2332,14 @@ module.exports = {
         }
       }
     },
-    "props": {},
+    "props": {
+      "view": {
+        "required": false,
+        "types": [
+          "string"
+        ]
+      }
+    },
     "events": {
       "select": {
         "description": "Triggered when a step becomes active.",
@@ -2229,6 +2395,20 @@ module.exports = {
         ],
         "description": "The root form's component."
       },
+      "Size": {
+        "public": true,
+        "types": [
+          "component"
+        ],
+        "description": "The computed size of the component."
+      },
+      "View": {
+        "public": false,
+        "types": [
+          "string"
+        ],
+        "description": "The view."
+      },
       "theme": {
         "public": true,
         "types": [
@@ -2247,14 +2427,7 @@ module.exports = {
         "types": [
           "object"
         ],
-        "description": "The selected theme's classes merged with the form's [`extendClasses`](vueform#option-extend-classes) and [`replaceClasses`](vueform#option-replace-classes) options."
-      },
-      "mainClass": {
-        "public": false,
-        "types": [
-          "string"
-        ],
-        "description": "The class name of the components's outermost DOM."
+        "description": "The selected theme's classes merged with the form's [`addClasses`](vueform#option-add-classes) and [`overrideClasses`](vueform#option-override-classes) options."
       },
       "templates": {
         "public": true,
@@ -2262,6 +2435,13 @@ module.exports = {
           "object"
         ],
         "description": "Returns the component templates used by the form."
+      },
+      "template": {
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "The component's template."
       },
       "visible": {
         "public": true,
@@ -2304,15 +2484,6 @@ module.exports = {
         "description": "Whether label is provided as a Vue component."
       }
     },
-    "data": {
-      "defaultClasses": {
-        "public": false,
-        "types": [
-          "object"
-        ],
-        "description": "The default classes for the component defined by theme."
-      }
-    },
     "methods": {
       "previous": {
         "public": true,
@@ -2349,6 +2520,12 @@ module.exports = {
           "boolean"
         ],
         "private": true
+      },
+      "view": {
+        "required": false,
+        "types": [
+          "string"
+        ]
       }
     },
     "events": {},
@@ -2367,6 +2544,20 @@ module.exports = {
         ],
         "description": "The root form's component."
       },
+      "Size": {
+        "public": true,
+        "types": [
+          "component"
+        ],
+        "description": "The computed size of the component."
+      },
+      "View": {
+        "public": false,
+        "types": [
+          "string"
+        ],
+        "description": "The view."
+      },
       "theme": {
         "public": true,
         "types": [
@@ -2381,14 +2572,7 @@ module.exports = {
         "types": [
           "object"
         ],
-        "description": "The selected theme's classes merged with the form's [`extendClasses`](vueform#option-extend-classes) and [`replaceClasses`](vueform#option-replace-classes) options."
-      },
-      "mainClass": {
-        "public": false,
-        "types": [
-          "string"
-        ],
-        "description": "The class name of the components's outermost DOM."
+        "description": "The selected theme's classes merged with the form's [`addClasses`](vueform#option-add-classes) and [`overrideClasses`](vueform#option-override-classes) options."
       },
       "templates": {
         "public": true,
@@ -2396,15 +2580,13 @@ module.exports = {
           "object"
         ],
         "description": "Returns the component templates used by the form."
-      }
-    },
-    "data": {
-      "defaultClasses": {
-        "public": false,
+      },
+      "template": {
+        "public": true,
         "types": [
           "object"
         ],
-        "description": "The default classes for the component defined by theme."
+        "description": "The component's template."
       }
     },
     "props": {
@@ -2413,6 +2595,12 @@ module.exports = {
         "default": true,
         "types": [
           "boolean"
+        ]
+      },
+      "view": {
+        "required": false,
+        "types": [
+          "string"
         ]
       }
     },
@@ -2437,6 +2625,20 @@ module.exports = {
           "component"
         ],
         "description": "The root form's component."
+      },
+      "Size": {
+        "public": true,
+        "types": [
+          "component"
+        ],
+        "description": "The computed size of the component."
+      },
+      "View": {
+        "public": false,
+        "types": [
+          "string"
+        ],
+        "description": "The view."
       },
       "theme": {
         "public": true,
@@ -2487,14 +2689,7 @@ module.exports = {
         "types": [
           "object"
         ],
-        "description": "The selected theme's classes merged with the form's [`extendClasses`](vueform#option-extend-classes) and [`replaceClasses`](vueform#option-replace-classes) options."
-      },
-      "mainClass": {
-        "public": false,
-        "types": [
-          "string"
-        ],
-        "description": "The class name of the components's outermost DOM."
+        "description": "The selected theme's classes merged with the form's [`addClasses`](vueform#option-add-classes) and [`overrideClasses`](vueform#option-override-classes) options."
       },
       "templates": {
         "public": true,
@@ -2502,6 +2697,13 @@ module.exports = {
           "object"
         ],
         "description": "Returns the component templates used by the form."
+      },
+      "template": {
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "The component's template."
       },
       "available": {
         "public": true,
@@ -2549,13 +2751,6 @@ module.exports = {
           "object"
         ],
         "description": "Helper property used to store listeners for events."
-      },
-      "defaultClasses": {
-        "public": false,
-        "types": [
-          "object"
-        ],
-        "description": "The default classes for the component defined by theme."
       },
       "tabLabel": {
         "public": true,
@@ -2668,9 +2863,39 @@ module.exports = {
         "required": false,
         "default": null,
         "types": [
-          "string",
+          "array",
+          "object",
+          "string"
+        ]
+      },
+      "removeClass": {
+        "required": false,
+        "default": null,
+        "types": [
           "array",
           "object"
+        ]
+      },
+      "replaceClass": {
+        "required": false,
+        "default": null,
+        "types": [
+          "object"
+        ]
+      },
+      "overrideClass": {
+        "required": false,
+        "default": null,
+        "types": [
+          "array",
+          "object",
+          "string"
+        ]
+      },
+      "view": {
+        "required": false,
+        "types": [
+          "string"
         ]
       },
       "onActivate": {
@@ -2713,6 +2938,20 @@ module.exports = {
         ],
         "description": "The root form's component."
       },
+      "Size": {
+        "public": true,
+        "types": [
+          "component"
+        ],
+        "description": "The computed size of the component."
+      },
+      "View": {
+        "public": false,
+        "types": [
+          "string"
+        ],
+        "description": "The view."
+      },
       "theme": {
         "public": true,
         "types": [
@@ -2741,14 +2980,7 @@ module.exports = {
         "types": [
           "object"
         ],
-        "description": "The selected theme's classes merged with the form's [`extendClasses`](vueform#option-extend-classes) and [`replaceClasses`](vueform#option-replace-classes) options."
-      },
-      "mainClass": {
-        "public": false,
-        "types": [
-          "string"
-        ],
-        "description": "The class name of the components's outermost DOM."
+        "description": "The selected theme's classes merged with the form's [`addClasses`](vueform#option-add-classes) and [`overrideClasses`](vueform#option-override-classes) options."
       },
       "templates": {
         "public": true,
@@ -2756,6 +2988,13 @@ module.exports = {
           "object"
         ],
         "description": "Returns the component templates used by the form."
+      },
+      "template": {
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "The component's template."
       },
       "tabs$": {
         "public": true,
@@ -2831,13 +3070,6 @@ module.exports = {
           "boolean"
         ],
         "description": "Helper prop used for checking if the component exists."
-      },
-      "defaultClasses": {
-        "public": false,
-        "types": [
-          "object"
-        ],
-        "description": "The default classes for the component defined by theme."
       }
     },
     "methods": {
@@ -2938,7 +3170,14 @@ module.exports = {
         }
       }
     },
-    "props": {},
+    "props": {
+      "view": {
+        "required": false,
+        "types": [
+          "string"
+        ]
+      }
+    },
     "events": {
       "select": {
         "description": "Triggered when a tab becomes active.",
@@ -3244,26 +3483,12 @@ module.exports = {
         ],
         "description": "Whether the form should display steps controls below form with [`FormStepsControls`](form-steps-control) component when it has [`steps`](#option-steps). Can be disabled with [`stepsControls`](#option-steps-controls)."
       },
-      "mainClass": {
-        "public": false,
-        "types": [
-          "string"
-        ],
-        "description": "The class name of the form's outermost DOM."
-      },
-      "defaultClasses": {
-        "public": false,
-        "types": [
-          "object"
-        ],
-        "description": "The default classes for the form defined by theme."
-      },
       "classes": {
         "public": true,
         "types": [
           "object"
         ],
-        "description": "The selected theme's classes merged with [`extendClasses`](#option-extend-classes) and [`replaceClasses`](#option-replace-classes) options."
+        "description": "The selected theme's classes merged with [`addClasses`](#option-add-classes) and [`replaceClasses`](#option-replace-classes) options."
       },
       "templates": {
         "public": true,
@@ -3272,12 +3497,34 @@ module.exports = {
         ],
         "description": "The selected theme's templates, extended by local overrides. The [`replaceTemplates`](#option-replace-templates) option can be used to override templates provided by the theme."
       },
+      "template": {
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "The component's template."
+      },
       "extendedTheme": {
         "public": true,
         "types": [
           "object"
         ],
-        "description": "The selected theme, extended by local template and class overrides, using [`replaceTemplates`](#option-replace-templates), [`extendClasses`](#option-extend-classes) and [`replaceClasses`](#option-replace-classes)."
+        "description": "The selected theme, extended by local template and class overrides, using [`replaceTemplates`](#option-replace-templates), [`addClasses`](#option-add-classes) and [`replaceClasses`](#option-replace-classes)."
+      },
+      "Size": {
+        "public": true,
+        "returns": "string",
+        "description": "The calculated size of the form. If [`size`](#option-size) is not defined `config.size` will be used."
+      },
+      "View": {
+        "public": true,
+        "returns": "object",
+        "description": "The calculated view of the form."
+      },
+      "Views": {
+        "public": true,
+        "returns": "object",
+        "description": "The calculated views of the form."
       },
       "form$": {
         "public": true,
@@ -3699,12 +3946,43 @@ module.exports = {
         "required": false,
         "default": null,
         "types": [
-          "string",
+          "array",
+          "object",
+          "string"
+        ]
+      },
+      "removeClass": {
+        "required": false,
+        "default": null,
+        "types": [
           "array",
           "object"
         ]
       },
-      "extendClasses": {
+      "replaceClass": {
+        "required": false,
+        "default": null,
+        "types": [
+          "object"
+        ]
+      },
+      "overrideClass": {
+        "required": false,
+        "default": null,
+        "types": [
+          "array",
+          "object",
+          "string"
+        ]
+      },
+      "addClasses": {
+        "required": false,
+        "default": null,
+        "types": [
+          "object"
+        ]
+      },
+      "removeClasses": {
         "required": false,
         "default": null,
         "types": [
@@ -3716,6 +3994,41 @@ module.exports = {
         "default": null,
         "types": [
           "object"
+        ]
+      },
+      "overrideClasses": {
+        "required": false,
+        "default": null,
+        "types": [
+          "object"
+        ]
+      },
+      "presets": {
+        "required": false,
+        "default": null,
+        "types": [
+          "array"
+        ]
+      },
+      "view": {
+        "required": false,
+        "default": null,
+        "types": [
+          "string"
+        ]
+      },
+      "views": {
+        "required": false,
+        "default": null,
+        "types": [
+          "object"
+        ]
+      },
+      "size": {
+        "required": false,
+        "default": null,
+        "types": [
+          "string"
         ]
       },
       "replaceTemplates": {
@@ -4074,6 +4387,20 @@ module.exports = {
         ],
         "description": "The root form's component."
       },
+      "Size": {
+        "public": true,
+        "types": [
+          "component"
+        ],
+        "description": "The computed size of the component."
+      },
+      "View": {
+        "public": false,
+        "types": [
+          "string"
+        ],
+        "description": "The view."
+      },
       "theme": {
         "public": true,
         "types": [
@@ -4088,14 +4415,7 @@ module.exports = {
         "types": [
           "object"
         ],
-        "description": "The selected theme's classes merged with element's `extendClasses` and `replaceClasses` options."
-      },
-      "mainClass": {
-        "public": false,
-        "types": [
-          "string"
-        ],
-        "description": "The class name of the components's outermost DOM."
+        "description": "The selected theme's classes merged with element's `addClasses` and `overrideClasses` options."
       },
       "templates": {
         "public": true,
@@ -4103,6 +4423,13 @@ module.exports = {
           "object"
         ],
         "description": "Returns the component templates used by the parent element."
+      },
+      "template": {
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "The component's template."
       },
       "config": {
         "public": true,
@@ -4120,13 +4447,6 @@ module.exports = {
       }
     },
     "data": {
-      "defaultClasses": {
-        "public": false,
-        "types": [
-          "object"
-        ],
-        "description": "The default classes for the component defined by theme."
-      },
       "datepicker$": {
         "public": true,
         "default": "null",
@@ -4225,6 +4545,20 @@ module.exports = {
         ],
         "description": "The root form's component."
       },
+      "Size": {
+        "public": true,
+        "types": [
+          "component"
+        ],
+        "description": "The computed size of the component."
+      },
+      "View": {
+        "public": false,
+        "types": [
+          "string"
+        ],
+        "description": "The view."
+      },
       "theme": {
         "public": true,
         "types": [
@@ -4239,7 +4573,7 @@ module.exports = {
         "types": [
           "object"
         ],
-        "description": "The selected theme's classes merged with element's `extendClasses` and `replaceClasses` options."
+        "description": "The selected theme's classes merged with element's `addClasses` and `overrideClasses` options."
       },
       "templates": {
         "public": true,
@@ -4247,6 +4581,13 @@ module.exports = {
           "object"
         ],
         "description": "Returns the component templates used by the parent element."
+      },
+      "template": {
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "The component's template."
       }
     },
     "data": {
@@ -4450,6 +4791,20 @@ module.exports = {
         ],
         "description": "The root form's component."
       },
+      "Size": {
+        "public": true,
+        "types": [
+          "component"
+        ],
+        "description": "The computed size of the component."
+      },
+      "View": {
+        "public": false,
+        "types": [
+          "string"
+        ],
+        "description": "The view."
+      },
       "theme": {
         "public": true,
         "types": [
@@ -4464,14 +4819,7 @@ module.exports = {
         "types": [
           "object"
         ],
-        "description": "The selected theme's classes merged with element's `extendClasses` and `replaceClasses` options."
-      },
-      "mainClass": {
-        "public": false,
-        "types": [
-          "string"
-        ],
-        "description": "The class name of the components's outermost DOM."
+        "description": "The selected theme's classes merged with element's `addClasses` and `overrideClasses` options."
       },
       "templates": {
         "public": true,
@@ -4480,21 +4828,33 @@ module.exports = {
         ],
         "description": "Returns the component templates used by the parent element."
       },
+      "template": {
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "The component's template."
+      },
       "isDisabled": {
         "public": true,
         "types": [
           "boolean"
         ],
         "description": "Whether the checkbox should be disabled."
-      }
-    },
-    "data": {
-      "defaultClasses": {
-        "public": false,
+      },
+      "id": {
+        "public": true,
         "types": [
-          "object"
+          "boolean"
         ],
-        "description": "The default classes for the component defined by theme."
+        "description": "The `id` attribute of the input."
+      },
+      "name": {
+        "public": true,
+        "types": [
+          "boolean"
+        ],
+        "description": "The `name` attribute of the input."
       }
     },
     "props": {
@@ -4545,6 +4905,13 @@ module.exports = {
         ],
         "description": "The root form's component."
       },
+      "Size": {
+        "public": true,
+        "types": [
+          "component"
+        ],
+        "description": "The computed size of the component."
+      },
       "theme": {
         "public": true,
         "types": [
@@ -4559,14 +4926,7 @@ module.exports = {
         "types": [
           "object"
         ],
-        "description": "The selected theme's classes merged with element's `extendClasses` and `replaceClasses` options."
-      },
-      "mainClass": {
-        "public": false,
-        "types": [
-          "string"
-        ],
-        "description": "The class name of the components's outermost DOM."
+        "description": "The selected theme's classes merged with element's `addClasses` and `overrideClasses` options."
       },
       "templates": {
         "public": true,
@@ -4574,6 +4934,13 @@ module.exports = {
           "object"
         ],
         "description": "Returns the component templates used by the parent element."
+      },
+      "template": {
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "The component's template."
       },
       "visible": {
         "public": true,
@@ -4658,341 +5025,13 @@ module.exports = {
           "string"
         ],
         "description": "The text for upload button. Can be also changed in the locale file: `vueform.elements.file.upload`"
-      }
-    },
-    "data": {
-      "defaultClasses": {
-        "public": false,
-        "types": [
-          "object"
-        ],
-        "description": "The default classes for the component defined by theme."
-      }
-    },
-    "methods": {
-      "upload": {
-        "public": true,
-        "returns": "void",
-        "description": "Upload the currently selected file as temporary."
-      },
-      "remove": {
-        "public": true,
-        "returns": "void",
-        "description": "Remove the file."
-      }
-    },
-    "props": {},
-    "events": {},
-    "slots": {}
-  },
-  "GalleryPreview": {
-    "inject": {
-      "el$": {
-        "public": true,
-        "types": [
-          "component"
-        ],
-        "description": "The parent element's component."
-      },
-      "form$": {
-        "public": true,
-        "types": [
-          "component"
-        ],
-        "description": "The root form's component."
-      },
-      "theme": {
-        "public": true,
-        "types": [
-          "object"
-        ],
-        "description": "The global theme object, which contains all the default templates and classes."
-      }
-    },
-    "computed": {
-      "classes": {
-        "public": true,
-        "types": [
-          "object"
-        ],
-        "description": "The selected theme's classes merged with element's `extendClasses` and `replaceClasses` options."
-      },
-      "mainClass": {
-        "public": false,
-        "types": [
-          "string"
-        ],
-        "description": "The class name of the components's outermost DOM."
-      },
-      "templates": {
-        "public": true,
-        "types": [
-          "object"
-        ],
-        "description": "Returns the component templates used by the parent element."
-      },
-      "visible": {
-        "public": true,
-        "types": [
-          "boolean"
-        ],
-        "description": "Whether the preview component should be visible."
-      },
-      "hasLink": {
-        "public": true,
-        "types": [
-          "boolean"
-        ],
-        "description": "Whether the file has link and should be clickable."
-      },
-      "hasError": {
-        "public": true,
-        "types": [
-          "boolean"
-        ],
-        "description": "Whether the preview has upload error."
-      },
-      "link": {
-        "public": true,
-        "types": [
-          "string"
-        ],
-        "description": "The link for the file."
-      },
-      "filename": {
-        "public": true,
-        "types": [
-          "string"
-        ],
-        "description": "The filename to display."
-      },
-      "clickable": {
-        "public": true,
-        "types": [
-          "boolean"
-        ],
-        "description": "Whether the file should be clickable if it is already permantently uploaded."
       },
       "preview": {
         "public": true,
         "types": [
           "string"
         ],
-        "description": "The image's preview. Equals to the `link` if the file is already uploaded and `base64` if only selected or temporarily uploaded."
-      },
-      "uploaded": {
-        "public": true,
-        "types": [
-          "boolean"
-        ],
-        "description": "Whether the temporary or permanent file is uploaded."
-      },
-      "uploading": {
-        "public": true,
-        "types": [
-          "boolean"
-        ],
-        "description": "Whether the file is currently uploading."
-      },
-      "progress": {
-        "public": true,
-        "types": [
-          "number"
-        ],
-        "description": "The percentage of progress when the file is being temporarily uploaded (0-100)."
-      },
-      "canRemove": {
-        "public": true,
-        "types": [
-          "boolean"
-        ],
-        "description": "Whether the file can be removed."
-      },
-      "canUploadTemp": {
-        "public": true,
-        "types": [
-          "boolean"
-        ],
-        "description": "Whether temporary file can be uploaded."
-      },
-      "uploadText": {
-        "public": true,
-        "types": [
-          "string"
-        ],
-        "description": "The text for upload button. Can be also changed in the locale file: `vueform.elements.file.upload`"
-      }
-    },
-    "data": {
-      "defaultClasses": {
-        "public": false,
-        "types": [
-          "object"
-        ],
-        "description": "The default classes for the component defined by theme."
-      }
-    },
-    "methods": {
-      "upload": {
-        "public": true,
-        "returns": "void",
-        "description": "Upload the currently selected file as temporary."
-      },
-      "remove": {
-        "public": true,
-        "returns": "void",
-        "description": "Remove the file."
-      }
-    },
-    "props": {},
-    "events": {},
-    "slots": {}
-  },
-  "ImagePreview": {
-    "inject": {
-      "el$": {
-        "public": true,
-        "types": [
-          "component"
-        ],
-        "description": "The parent element's component."
-      },
-      "form$": {
-        "public": true,
-        "types": [
-          "component"
-        ],
-        "description": "The root form's component."
-      },
-      "theme": {
-        "public": true,
-        "types": [
-          "object"
-        ],
-        "description": "The global theme object, which contains all the default templates and classes."
-      }
-    },
-    "computed": {
-      "classes": {
-        "public": true,
-        "types": [
-          "object"
-        ],
-        "description": "The selected theme's classes merged with element's `extendClasses` and `replaceClasses` options."
-      },
-      "mainClass": {
-        "public": false,
-        "types": [
-          "string"
-        ],
-        "description": "The class name of the components's outermost DOM."
-      },
-      "templates": {
-        "public": true,
-        "types": [
-          "object"
-        ],
-        "description": "Returns the component templates used by the parent element."
-      },
-      "visible": {
-        "public": true,
-        "types": [
-          "boolean"
-        ],
-        "description": "Whether the preview component should be visible."
-      },
-      "hasLink": {
-        "public": true,
-        "types": [
-          "boolean"
-        ],
-        "description": "Whether the file has link and should be clickable."
-      },
-      "hasError": {
-        "public": true,
-        "types": [
-          "boolean"
-        ],
-        "description": "Whether the preview has upload error."
-      },
-      "link": {
-        "public": true,
-        "types": [
-          "string"
-        ],
-        "description": "The link for the file."
-      },
-      "filename": {
-        "public": true,
-        "types": [
-          "string"
-        ],
-        "description": "The filename to display."
-      },
-      "clickable": {
-        "public": true,
-        "types": [
-          "boolean"
-        ],
-        "description": "Whether the file should be clickable if it is already permantently uploaded."
-      },
-      "preview": {
-        "public": true,
-        "types": [
-          "string"
-        ],
-        "description": "The image's preview. Equals to the `link` if the file is already uploaded and `base64` if only selected or temporarily uploaded."
-      },
-      "uploaded": {
-        "public": true,
-        "types": [
-          "boolean"
-        ],
-        "description": "Whether the temporary or permanent file is uploaded."
-      },
-      "uploading": {
-        "public": true,
-        "types": [
-          "boolean"
-        ],
-        "description": "Whether the file is currently uploading."
-      },
-      "progress": {
-        "public": true,
-        "types": [
-          "number"
-        ],
-        "description": "The percentage of progress when the file is being temporarily uploaded (0-100)."
-      },
-      "canRemove": {
-        "public": true,
-        "types": [
-          "boolean"
-        ],
-        "description": "Whether the file can be removed."
-      },
-      "canUploadTemp": {
-        "public": true,
-        "types": [
-          "boolean"
-        ],
-        "description": "Whether temporary file can be uploaded."
-      },
-      "uploadText": {
-        "public": true,
-        "types": [
-          "string"
-        ],
-        "description": "The text for upload button. Can be also changed in the locale file: `vueform.elements.file.upload`"
-      }
-    },
-    "data": {
-      "defaultClasses": {
-        "public": false,
-        "types": [
-          "object"
-        ],
-        "description": "The default classes for the component defined by theme."
+        "description": "The image's preview when [`view`](#option-view) is `image` or `gallery`. Equals to the `link` if the file is already uploaded and `base64` if only selected or temporarily uploaded."
       }
     },
     "methods": {
@@ -5027,6 +5066,13 @@ module.exports = {
         ],
         "description": "The root form's component."
       },
+      "Size": {
+        "public": true,
+        "types": [
+          "component"
+        ],
+        "description": "The computed size of the component."
+      },
       "theme": {
         "public": true,
         "types": [
@@ -5041,14 +5087,7 @@ module.exports = {
         "types": [
           "object"
         ],
-        "description": "The selected theme's classes merged with element's `extendClasses` and `replaceClasses` options."
-      },
-      "mainClass": {
-        "public": false,
-        "types": [
-          "string"
-        ],
-        "description": "The class name of the components's outermost DOM."
+        "description": "The selected theme's classes merged with element's `addClasses` and `overrideClasses` options."
       },
       "templates": {
         "public": true,
@@ -5057,21 +5096,33 @@ module.exports = {
         ],
         "description": "Returns the component templates used by the parent element."
       },
+      "template": {
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "The component's template."
+      },
       "isDisabled": {
         "public": true,
         "types": [
           "boolean"
         ],
         "description": "Whether the radio should be disabled."
-      }
-    },
-    "data": {
-      "defaultClasses": {
-        "public": false,
+      },
+      "id": {
+        "public": true,
         "types": [
-          "object"
+          "boolean"
         ],
-        "description": "The default classes for the component defined by theme."
+        "description": "The `id` attribute of the input."
+      },
+      "name": {
+        "public": true,
+        "types": [
+          "boolean"
+        ],
+        "description": "The `name` attribute of the input."
       }
     },
     "props": {

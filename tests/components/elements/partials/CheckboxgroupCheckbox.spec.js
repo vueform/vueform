@@ -56,10 +56,16 @@ describe('CheckboxgroupCheckbox', () => {
       let text = findAll(slot, 'span').at(0)
       let input = findAll(slot, 'input').at(0)
 
-      expect(slot.attributes('class')).toStrictEqual(slot.vm.classes.container)
+      slot.vm.classes.container.forEach((c) => {
+        expect(slot.attributes('class')).toContain(c)
+      })
 
       expect(input.attributes('value')).toStrictEqual('value')
-      expect(input.attributes('class')).toStrictEqual(slot.vm.classes.input)
+
+      slot.vm.classes.input.forEach((c) => {
+        expect(input.attributes('class')).toContain(c)
+      })
+
       expect(input.attributes('name')).toStrictEqual('el-value')
       expect(input.attributes('id')).toStrictEqual('el-value')
       expect(input.attributes('disabled')).toStrictEqual(undefined)

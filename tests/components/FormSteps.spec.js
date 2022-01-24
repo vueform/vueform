@@ -5,7 +5,17 @@ import flushPromises from 'flush-promises'
 import useFormComponent from './../composables/useFormComponent'
 
 describe('FormSteps', () => {
-  useFormComponent({steps:{a:{label:'a',elements:['el']}},schema:{el:{type:'text'}}}, 'FormSteps')
+  useFormComponent({
+    steps: {
+      a:{
+        label: 'a',
+        elements: ['el'],
+      }
+    },
+    schema: {
+      el: { type:'text'}
+    }
+  }, 'FormSteps')
 
   describe('rendering', () => {
     it('should render steps', () => {

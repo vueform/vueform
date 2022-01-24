@@ -7,271 +7,47 @@ import useFormComponent from './../composables/useFormComponent'
 expect.extend({toBeVisible})
 
 describe('FormStep', () => {
-  let form = createForm({
-    steps: {
-      a: {
-        label: 'a',
-        elements: ['el']
+  useFormComponent({
+    steps:{
+      a:{
+        label:'a',
+        elements:['el'],
       }
     },
-    schema: {
-      el: {
-        type: 'text',
-      }
+    schema:{
+      el:{type:'text'}
     }
-  })
-
-  let FormStep = findAllComponents(form, { name: 'FormStep' }).at(0)
-
-  let mergeWith = {
-    container: [
-      FormStep.vm.classes.container_active, 
-    ]
-  }
-
-  if (!_.isEmpty(FormStep.vm.classes.container_enabled)) {
-    mergeWith.container.push(FormStep.vm.classes.container_enabled)
-  }
-
-  if (!_.isEmpty(FormStep.vm.classes.container_incompleted)) {
-    mergeWith.container.push(FormStep.vm.classes.container_incompleted)
-  }
-
-  if (!_.isEmpty(FormStep.vm.classes.container_valid)) {
-    mergeWith.container.push(FormStep.vm.classes.container_valid)
-  }
-
-  mergeWith.container.push('step-class')
-
-  useFormComponent({steps:{a:{label:'a',elements:['el'],addClass:'step-class'}},schema:{el:{type:'text'}}}, 'FormStep', {
-    execute() {},
-    mergeWith,
-  })
-
-  describe('classes', () => {
-    it('should add inactive class but not active to container when inactive', async () => {
-      let form = createForm({
+  }, 'FormStep', {
+    withView: {
+      schema: {
         steps: {
-          one: {
-            label: 'One',
-            element: ['el']
-          },
-          two: {
-            label: 'Two',
-            element: ['el2']
-          },
-        },
-        schema: {
-          el: {
-            type: 'text',
-          },
-          el2: {
-            type: 'text',
-          },
-        },
-        replaceClasses: {
-          FormStep: {
-            active: 'active',
-            inactive: 'inactive',
+          a:{
+            label: 'a',
+            elements: ['el'],
+            view: 'custom',
           }
         },
-      })
-
-      await nextTick()
-
-      let component = findAllComponents(form, { name: 'FormStep' }).at(0).vm
-
-      expect(component.classes.container).not.toContain(component.classes.container_inactive)
-      expect(component.classes.container).toContain(component.classes.container_active)
-
-      form.vm.steps$.next()
-
-      await nextTick()
-
-      component = findAllComponents(form, { name: 'FormStep' }).at(0).vm
-
-      expect(component.classes.container).toContain(component.classes.container_inactive)
-      expect(component.classes.container).not.toContain(component.classes.container_active)
-      
-    // destroy(form) // teardown
-    })
-    
-    it('should add disabled class but not enabled to container when disabled', async () => {
-      let form = createForm({
-        steps: {
-          one: {
-            label: 'One',
-            element: ['el']
-          },
-          two: {
-            label: 'Two',
-            element: ['el2']
-          },
-        },
         schema: {
-          el: {
-            type: 'text',
-          },
-          el2: {
-            type: 'text',
-          },
-        },
-        replaceClasses: {
-          FormStep: {
-            container_disabled: 'disabled',
-            container_enabled: 'enabled',
+          el: { type:'text'}
+        }
+      },
+      view: 'custom'
+    },
+    withLocals: {
+      schema: {
+        steps: {
+          a:{
+            label: 'a',
+            elements: ['el'],
+            overrideClass: 'custom',
           }
         },
-      })
-
-      await nextTick()
-
-      let component = findAllComponents(form, { name: 'FormStep' }).at(1).vm
-
-      expect(component.classes.container).not.toContain(component.classes.container_enabled)
-      expect(component.classes.container).toContain(component.classes.container_disabled)
-
-      form.vm.steps$.next()
-
-      await nextTick()
-
-      component = findAllComponents(form, { name: 'FormStep' }).at(1).vm
-
-      expect(component.classes.container).toContain(component.classes.container_enabled)
-      expect(component.classes.container).not.toContain(component.classes.container_disabled)
-      
-    // destroy(form) // teardown
-    })
-    
-    it('should add inactive class but not active to container when inactive', async () => {
-      let form = createForm({
-        steps: {
-          one: {
-            label: 'One',
-            element: ['el']
-          },
-          two: {
-            label: 'Two',
-            element: ['el2']
-          },
-        },
         schema: {
-          el: {
-            type: 'text',
-          },
-          el2: {
-            type: 'text',
-          },
-        },
-        replaceClasses: {
-          FormStep: {
-            container_completed: 'completed',
-            container_incompleted: 'incompleted',
-          }
-        },
-      })
-
-      await nextTick()
-
-      let component = findAllComponents(form, { name: 'FormStep' }).at(0)
-
-      expect(component.vm.classes.container).not.toContain(component.vm.classes.container_completed)
-      expect(component.vm.classes.container).toContain(component.vm.classes.container_incompleted)
-
-      component.vm.complete()
-
-      await nextTick()
-
-      expect(component.vm.classes.container).toContain(component.vm.classes.container_completed)
-      expect(component.vm.classes.container).not.toContain(component.vm.classes.container_incompleted)
-      
-    // destroy(form) // teardown
-    })
-    
-    it('should add invalid class but not valid to container when invalid', async () => {
-      let form = createForm({
-        steps: {
-          one: {
-            label: 'One',
-            elements: ['el']
-          },
-          two: {
-            label: 'Two',
-            elements: ['el2']
-          },
-        },
-        schema: {
-          el: {
-            type: 'text',
-            rules: 'required'
-          },
-          el2: {
-            type: 'text',
-          },
-        },
-        replaceClasses: {
-          FormStep: {
-            container_valid: 'valid',
-            container_invalid: 'invalid',
-          }
-        },
-      })
-
-      await nextTick()
-
-      let component = findAllComponents(form, { name: 'FormStep' }).at(0)
-
-      expect(component.vm.classes.container).not.toContain(component.vm.classes.container_invalid)
-      expect(component.vm.classes.container).toContain(component.vm.classes.container_valid)
-
-      form.vm.el$('el').validate()
-
-      await flushPromises()
-      await nextTick()
-
-      expect(component.vm.classes.container).toContain(component.vm.classes.container_invalid)
-      expect(component.vm.classes.container).not.toContain(component.vm.classes.container_valid)
-      
-    // destroy(form) // teardown
-    })
-    
-    it('should add pending class to container when pending', async () => {
-      let form = createForm({
-        steps: {
-          one: {
-            label: 'One',
-            elements: ['el']
-          },
-          two: {
-            label: 'Two',
-            elements: ['el2']
-          },
-        },
-        schema: {
-          el: {
-            type: 'text',
-            rules: 'required'
-          },
-          el2: {
-            type: 'text',
-          },
-        },
-      })
-
-      await nextTick()
-
-      let component = findAllComponents(form, { name: 'FormStep' }).at(0)
-
-      expect(component.vm.classes.container).not.toContain(component.vm.classes.container_pending)
-
-      form.vm.el$('el').Validators[0].pending = true
-
-      await nextTick()
-
-      expect(component.vm.classes.container).toContain(component.vm.classes.container_pending)
-      
-    // destroy(form) // teardown
-    })
+          el: { type:'text'}
+        }
+      },
+      class: 'custom'
+    }
   })
 
   describe('label', () => {

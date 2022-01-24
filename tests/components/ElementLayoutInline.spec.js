@@ -2,34 +2,7 @@ import { createForm, findAllComponents} from 'test-helpers'
 import useElementComponent from './../composables/useElementComponent'
 
 describe('ElementLayoutInline', () => {
-  let form = createForm({
-    schema: {
-      el: {
-        type: 'text',
-        inline: true,
-      }
-    }
-  })
-
-  let el = form.vm.el$('el')
-
-  let mergeWith = {
-    container: [],
-  }
-
-  if (!_.isEmpty(el.classes.container)) {
-    mergeWith.container.push(el.classes.container)
-  }
-
-  if (mergeWith.container.length) {
-    mergeWith.container.push('element-class')
-  } else {
-    mergeWith.container = 'element-class'
-  }
-
-  useElementComponent('text', 'ElementLayoutInline', { addClass: 'element-class', inline: true }, {
-    mergeWith,
-  })
+  useElementComponent('text', 'ElementLayoutInline', { addClass: 'element-class', inline: true })
 
   describe('rendering', () => {
     it('should render label if config.labels is false, but element has label', () => {

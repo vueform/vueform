@@ -22,8 +22,8 @@ export const rendering = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
     let elWrapper = findAllComponents(form, { name: elementName }).at(0)
 
-    expect(elWrapper.vm.$el.querySelectorAll(`[class="${el.defaultClasses.add}"]`).length).toBe(1)
-    expect(elWrapper.vm.$el.querySelectorAll(`[class="${el.defaultClasses.remove}"]`).length).toBe(1)
+    expect(elWrapper.vm.$el.querySelectorAll(`[class="${el.template.data().defaultClasses.add}"]`).length).toBe(1)
+    expect(elWrapper.vm.$el.querySelectorAll(`[class="${el.template.data().defaultClasses.remove}"]`).length).toBe(1)
   })
   
   it('should not render `add` and `remove` if disabled', () => {
@@ -41,8 +41,8 @@ export const rendering = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
     let elWrapper = findAllComponents(form, { name: elementName }).at(0)
 
-    expect(elWrapper.vm.$el.querySelectorAll(`.${el.defaultClasses.add}`).length).toBe(0)
-    expect(elWrapper.vm.$el.querySelectorAll(`.${el.defaultClasses.remove}`).length).toBe(0)
+    expect(elWrapper.vm.$el.querySelectorAll(`.${el.template.data().defaultClasses.add}`).length).toBe(0)
+    expect(elWrapper.vm.$el.querySelectorAll(`.${el.template.data().defaultClasses.remove}`).length).toBe(0)
 
     // destroy() // teardown
   })

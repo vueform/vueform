@@ -24,7 +24,7 @@ const base = function(props, context, dependencies)
   * @type {string}
   * @private
   */
-  const $viewInject = inject('View', ref(undefined))
+  const ViewInject = inject('View', ref(undefined))
 
   // ============== COMPUTED ==============
 
@@ -37,7 +37,7 @@ const base = function(props, context, dependencies)
       return Views.value[componentName.value]
     }
 
-    return $viewInject.value
+    return ViewInject.value
   })
 
   return {

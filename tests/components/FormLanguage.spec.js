@@ -3,60 +3,7 @@ import useFormComponent from './../composables/useFormComponent'
 import { nextTick } from 'composition-api'
 
 describe('FormLanguage', () => { 
-  let form = createForm({
-    multilingual: true,
-    schema: {
-      el: {
-        type: 'text',
-      }
-    }
-  })
-
-  let FormLanguage = findAllComponents(form, { name: 'FormLanguage' }).at(0)
-
-  useFormComponent({multilingual:true,schema:{el:{type:'text'}}}, 'FormLanguage', {
-    mergeWith: {
-      wrapper: FormLanguage.vm.classes.wrapper_active
-    }
-  })
-
-  describe('classes', () => {
-    it('should add inactive class but not active to wrapper when inactive', async () => {
-      let form = createForm({
-        multilingual: true,
-        languages: {en: 'English', de: 'German'},
-        language: 'en',
-        replaceClasses: {
-          FormLanguage: {
-            inactive: 'inactive'
-          }
-        },
-        schema: {
-          el: {
-            type: 'text',
-          }
-        }
-      })
-
-      await nextTick()
-
-      let component = findAllComponents(form, { name: 'FormLanguage' }).at(0).vm
-
-      expect(component.classes.wrapper).not.toContain(component.classes.wrapper_inactive)
-      expect(component.classes.wrapper).toContain(component.classes.wrapper_active)
-
-      form.vm.selectedLanguage = 'de'
-
-      await nextTick()
-
-      component = findAllComponents(form, { name: 'FormLanguage' }).at(0).vm
-
-      expect(component.classes.wrapper).toContain(component.classes.wrapper_inactive)
-      expect(component.classes.wrapper).not.toContain(component.classes.wrapper_active)
-      
-    // destroy(form) // teardown
-    })
-  })
+  useFormComponent({multilingual:true,schema:{el:{type:'text'}}}, 'FormLanguage')
 
   describe('select', () => {
     it('should emit select event on select', () => {

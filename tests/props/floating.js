@@ -6,7 +6,9 @@ export const rendering = function (elementType, elementName, options) {
       schema: {
         el: {
           type: elementType,
-          floating: 'Floating'
+          floating: 'Floating',
+          default: options.default,
+          items: options.items
         }
       }
     })

@@ -7,53 +7,7 @@ import useElementComponent from './../composables/useElementComponent'
 expect.extend({toBeVisible})
 
 describe('ElementAddon', () => {
-  let form = createForm({
-    schema: {
-      el: {
-        type: 'text',
-        addons: {
-          before: 'before'
-        }
-      }
-    }
-  })
-
-  let ElementAddon = findAllComponents(form, { name: 'ElementAddon' }).at(0)
-
-  useElementComponent('text', 'ElementAddon', { addons:{before:'before'} }, {
-    mergeWith: {
-      container: ElementAddon.vm.classes.container_before
-    }
-  })
-
-  describe('classes', () => {
-    it('should add after class to container when type=after', async () => {
-      let form = createForm({
-        schema: {
-          el: {
-            type: 'text',
-            addons: {
-              before: 'before'
-            }
-          }
-        }
-      })
-
-      let component = findAllComponents(form, { name: 'ElementAddon' }).at(0).vm
-
-      expect(component.classes.container).not.toContain(component.classes.container_after)
-
-      form.vm.$set(form.vm.vueform.schema.el, 'addons', { after: 'after' })
-
-      await nextTick()
-
-      component = findAllComponents(form, { name: 'ElementAddon' }).at(0).vm
-
-      expect(component.classes.container).toContain(component.classes.container_after)
-      
-    // destroy(form) // teardown
-    })
-  })
+  useElementComponent('text', 'ElementAddon', { addons:{before:'before'} })
 
   describe('rendering', () => {
     it('should render as a string', async () => {
