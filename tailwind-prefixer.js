@@ -1,11 +1,11 @@
 module.exports = function (content, prefix, sizes = ['sm', 'md', 'lg', 'xl', '2xl']) {
   if (content.match('^// prefix')) {
-    content = content.replace(/'(.*)'/g, function(match) {
-      return `'${match.match(/'(.*)'/)[1].split(' ').map((c) => {
+    content = content.replace(/(['`])(.*)\1/g, function(match) {
+      return `${match.match(/(['`])/)[1]}${match.match(/(['`])(.*)\1/)[2].split(' ').map((c) => {
         return c.match(/:/)
           ? c.replace(':', `:${prefix}`)
           : (c.length ? `${prefix}${c}` : c)
-      }).join(' ')}'`
+      }).join(' ')}${match.match(/(['`])/)[1]}`
     })
 
     Object.values(sizes).forEach((size) => {

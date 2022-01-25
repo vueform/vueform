@@ -146,7 +146,7 @@ const theme = {
 
 export default theme
 
-export function prefix (prefix) {
+const prefixer = function (classes, prefix) {
   let prefixedClasses = {}
 
   const prefixClass = (class_) => {
@@ -167,16 +167,27 @@ export function prefix (prefix) {
         _.each(class_, (subclass, subclassName) => {
           prefixedClasses[componentName][className][subclassName] = prefixClass(subclass)
         })
-      } else {
+      } else if (typeof class_ !== 'function') {
         prefixedClasses[componentName][className] = prefixClass(class_)
+      } else {
+        prefixedClasses[componentName][className] = class_
       }
     })
   })
 
+  return prefixedClasses
+}
+
+const prefix = function (prefix) {
   return Object.assign({}, theme, {
-    classes: prefixedClasses,
+    classes: prefixer(classes, prefix),
     columns: (breakpoint, size) => {
       return columns(breakpoint, size, prefix)
     }
   })
+}
+
+export {
+  prefixer,
+  prefix,
 }
