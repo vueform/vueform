@@ -14,10 +14,29 @@
           list_sorting: 'is-sorting',
           listItem: 'vf-row',
           handle: 'vf-list-handle',
+          handle_sm: '',
+          handle_md: '',
+          handle_lg: '',
           handleIcon: 'vf-list-handle-icon',
           remove: 'vf-list-remove',
           removeIcon: 'vf-list-remove-icon',
           add: 'vf-btn vf-btn-primary vf-btn-sm',
+          add_sm: '',
+          add_md: '',
+          add_lg: '',
+          $list: (classes, { isDisabled, sorting }) => ([
+            classes.list,
+            isDisabled ? classes.list_disabled : null,
+            sorting ? classes.list_sorting : null,
+          ]),
+          $handle: (classes, { Size }) => ([
+            classes.handle,
+            classes[`handle_${Size}`],
+          ]),
+          $add: (classes, { Size }) => ([
+            classes.add,
+            classes[`add_${Size}`],
+          ]),
         }
       }
     }

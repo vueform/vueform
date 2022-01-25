@@ -12,7 +12,15 @@
           input: 'vf-radio',
           input_enabled: '',
           input_disabled: '',
+          input_sm: '',
+          input_md: '',
+          input_lg: '',
           text: 'vf-radio-text',
+          $input: (classes, { isDisabled, Size }) => ([
+            classes.input,
+            classes[`input_${Size}`],
+            isDisabled ? classes.input_disabled : classes.input_enabled
+          ]),
         }
       }
     }

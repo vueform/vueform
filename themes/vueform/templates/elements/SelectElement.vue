@@ -16,9 +16,24 @@
           input: 'vf-input vf-native-select',
           input_enabled: '',
           input_disabled: '',
+          input_sm: '',
+          input_md: '',
+          input_lg: '',
           inputWrapper: 'vf-native-select-wrapper',
           inputPlaceholder: 'vf-native-select-placeholder',
+          inputPlaceholder_sm: '',
+          inputPlaceholder_md: '',
+          inputPlaceholder_lg: '',
           select: {},
+          $input: (classes, { isDisabled, Size }) => ([
+            classes.input,
+            classes[`input_${Size}`],
+            isDisabled ? classes.input_disabled : classes.input_enabled,
+          ]),
+          $inputPlaceholder: (classes, { Size }) => ([
+            classes.inputPlaceholder,
+            classes[`inputPlaceholder_${Size}`],
+          ]),
         }
       }
     }

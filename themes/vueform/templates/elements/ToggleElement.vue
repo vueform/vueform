@@ -14,7 +14,41 @@
         defaultClasses: {
           container: '',
           wrapper: 'vf-toggle-wrapper',
-          toggle: {},
+          toggle: {
+            container: 'vf-toggle-container',
+            toggle: 'vf-toggle',
+            toggle_sm: '',
+            toggle_md: '',
+            toggle_lg: '',
+            toggleOn: 'vf-toggle-on',
+            toggleOff: 'vf-toggle-off',
+            toggleOnDisabled: 'vf-toggle-on-disabled',
+            toggleOffDisabled: 'vf-toggle-off-disabled',
+            handle: 'vf-toggle-handle',
+            handle_sm: '',
+            handle_md: '',
+            handle_lg: '',
+            handleOn: 'vf-toggle-handle-on',
+            handleOff: 'vf-toggle-handle-off',
+            handleOnDisabled: 'vf-toggle-handle-on-disabled',
+            handleOffDisabled: 'vf-toggle-handle-off-disabled',
+            label: 'vf-toggle-label',
+            label_sm: '',
+            label_md: '',
+            label_lg: '',
+            $toggle: (classes, { Size }) => ([
+              classes.toggle.toggle,
+              classes.toggle[`toggle_${Size}`],
+            ]),
+            $handle: (classes, { Size }) => ([
+              classes.toggle.handle,
+              classes.toggle[`handle_${Size}`],
+            ]),
+            $label: (classes, { Size }) => ([
+              classes.toggle.label,
+              classes.toggle[`label_${Size}`],
+            ]),
+          },
           text: 'vf-toggle-text',
         }
       }
@@ -35,7 +69,7 @@
   }
 
   // @vueform/toggle styles
-  .toggle-container {
+  .vf-toggle-container {
     display: inline-block;
     outline: none;
     border-radius: 9999px;
@@ -45,7 +79,7 @@
     }
   }
 
-  .toggle {
+  .vf-toggle {
     display: flex;
     width: var(--vf-toggle-width);
     height: var(--vf-toggle-height);
@@ -60,21 +94,21 @@
     line-height: 1;
   }
 
-  .toggle-on {
+  .vf-toggle-on {
     background: var(--vf-toggle-bg-on);
     border-color: var(--vf-toggle-border-on);
     justify-content: flex-start;
     color: var(--vf-toggle-text-on);
   }
 
-  .toggle-off {
+  .vf-toggle-off {
     background: var(--vf-toggle-bg-off);
     border-color: var(--vf-toggle-border-off);
     justify-content: flex-end;
     color: var(--vf-toggle-text-off);
   }
 
-  .toggle-on-disabled {
+  .vf-toggle-on-disabled {
     background: var(--vf-toggle-bg-on-disabled);
     border-color: var(--vf-toggle-border-on-disabled);
     justify-content: flex-start;
@@ -83,7 +117,7 @@
     opacity: var(--vf-toggle-opacity-on-disabled);
   }
 
-  .toggle-off-disabled {
+  .vf-toggle-off-disabled {
     background: var(--vf-toggle-bg-off-disabled);
     border-color: var(--vf-toggle-border-off-disabled);
     justify-content: flex-end;
@@ -92,7 +126,7 @@
     opacity: var(--vf-toggle-opacity-off-disabled);
   }
 
-  .toggle-handle {
+  .vf-toggle-handle {
     display: inline-block;
     background: var(--vf-toggle-handle-enabled);
     width: 1.25rem;
@@ -105,27 +139,27 @@
     transition-duration: var(--vf-toggle-duration);
   }
 
-  .toggle-handle-on {
+  .vf-toggle-handle-on {
     left: 100%;
     transform: translateX(-100%);
   }
 
-  .toggle-handle-off {
+  .vf-toggle-handle-off {
     left: 0%;
   }
 
-  .toggle-handle-on-disabled {
+  .vf-toggle-handle-on-disabled {
     left: 100%;
     transform: translateX(-100%);
     background: var(--vf-toggle-handle-disabled);
   }
 
-  .toggle-handle-off-disabled {
+  .vf-toggle-handle-off-disabled {
     left: 0%;
     background: var(--vf-toggle-handle-disabled);
   }
 
-  .toggle-label {
+  .vf-toggle-label {
     text-align: center;
     width: calc(var(--vf-toggle-width) - var(--vf-toggle-height));
     box-sizing: border-box;

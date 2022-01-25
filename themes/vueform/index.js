@@ -31,6 +31,8 @@ import ElementAddon from './templates/ElementAddon.vue'
 import ButtonElement from './templates/elements/ButtonElement.vue'
 import CheckboxElement from './templates/elements/CheckboxElement.vue'
 import CheckboxgroupElement from './templates/elements/CheckboxgroupElement.vue'
+import CheckboxgroupElement_pills from './templates/elements/CheckboxgroupElement_pills.vue'
+import CheckboxgroupElement_blocks from './templates/elements/CheckboxgroupElement_blocks.vue'
 import DateElement from './templates/elements/DateElement.vue'
 import DatesElement from './templates/elements/DatesElement.vue'
 import FileElement from './templates/elements/FileElement.vue'
@@ -43,6 +45,8 @@ import MultiselectElement from './templates/elements/MultiselectElement.vue'
 import ObjectElement from './templates/elements/ObjectElement.vue'
 import RadioElement from './templates/elements/RadioElement.vue'
 import RadiogroupElement from './templates/elements/RadiogroupElement.vue'
+import RadiogroupElement_pills from './templates/elements/RadiogroupElement_pills.vue'
+import RadiogroupElement_blocks from './templates/elements/RadiogroupElement_blocks.vue'
 import SelectElement from './templates/elements/SelectElement.vue'
 import SliderElement from './templates/elements/SliderElement.vue'
 import StaticElement from './templates/elements/StaticElement.vue'
@@ -56,10 +60,14 @@ import TTextElement from './templates/elements/TTextElement.vue'
 import TEditorElement from './templates/elements/TEditorElement.vue'
 
 import CheckboxgroupCheckbox from './templates/elements/partials/CheckboxgroupCheckbox.vue'
+import CheckboxgroupCheckbox_pills from './templates/elements/partials/CheckboxgroupCheckbox_pills.vue'
+import CheckboxgroupCheckbox_blocks from './templates/elements/partials/CheckboxgroupCheckbox_blocks.vue'
 import FilePreview from './templates/elements/partials/FilePreview.vue'
 import FilePreview_image from './templates/elements/partials/FilePreview_image.vue'
 import FilePreview_gallery from './templates/elements/partials/FilePreview_gallery.vue'
 import RadiogroupRadio from './templates/elements/partials/RadiogroupRadio.vue'
+import RadiogroupRadio_pills from './templates/elements/partials/RadiogroupRadio_pills.vue'
+import RadiogroupRadio_blocks from './templates/elements/partials/RadiogroupRadio_blocks.vue'
 
 import DatepickerWrapper from './templates/wrappers/DatepickerWrapper.vue'
 import EditorWrapper from './templates/wrappers/EditorWrapper.vue'
@@ -97,6 +105,8 @@ export default {
     ButtonElement,
     CheckboxElement,
     CheckboxgroupElement,
+    CheckboxgroupElement_pills,
+    CheckboxgroupElement_blocks,
     DateElement,
     DatesElement,
     FileElement,
@@ -109,6 +119,8 @@ export default {
     ObjectElement,
     RadioElement,
     RadiogroupElement,
+    RadiogroupElement_pills,
+    RadiogroupElement_blocks,
     SelectElement,
     SliderElement,
     StaticElement,
@@ -122,10 +134,14 @@ export default {
     TEditorElement,
 
     CheckboxgroupCheckbox,
+    CheckboxgroupCheckbox_pills,
+    CheckboxgroupCheckbox_blocks,
     FilePreview,
     FilePreview_image,
     FilePreview_gallery,
     RadiogroupRadio,
+    RadiogroupRadio_pills,
+    RadiogroupRadio_blocks,
 
     DatepickerWrapper,
     EditorWrapper,

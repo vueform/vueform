@@ -10,8 +10,16 @@
         defaultClasses: {
           container: 'vf-language',
           wrapper: 'vf-language-link',
+          wrapper_sm: '',
+          wrapper_md: '',
+          wrapper_lg: '',
           wrapper_active: 'is-active',
           wrapper_inactive: '',
+          $wrapper: (classes, { selected, Size }) => ([
+            classes.wrapper,
+            classes[`wrapper_${Size}`],
+            selected ? classes.wrapper_active : classes.wrapper_inactive
+          ]),
         }
       }
     }

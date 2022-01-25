@@ -9,6 +9,9 @@
         merge: true,
         defaultClasses: {
           container: 'vf-file-preview-file',
+          container_sm: '',
+          container_md: '',
+          container_lg: '',
           wrapper: 'vf-file-preview-file-wrapper',
           file: 'vf-file-preview-file-file',
           filenameLink: 'vf-file-preview-file-filename-link',
@@ -24,6 +27,10 @@
           uploadedIcon: 'vf-file-preview-file-uploaded-icon',
           remove: 'vf-file-preview-file-remove',
           removeIcon: 'vf-file-preview-file-remove-icon',
+          $container: (classes, { Size }) => ([
+            classes.container,
+            classes[`container_${Size}`],
+          ])
         }
       }
     }

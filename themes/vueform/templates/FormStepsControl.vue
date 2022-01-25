@@ -17,6 +17,15 @@
           button_finish_enabled: 'vf-btn-primary',
           button_finish_disabled: 'vf-btn-primary is-disabled',
           button_finish_loading: 'is-loading',
+          button_sm: '',
+          button_md: '',
+          button_lg: '',
+          $button: (classes, { isDisabled, isLoading, type, Size }) => ([
+            classes.button,
+            classes[`button_${Size}`],
+            isDisabled ? classes[`button_${type}_disabled`] : classes[`button_${type}_enabled`],
+            isLoading ? classes[`button_${type}_loading`] : null,
+          ]),
         }
       }
     }

@@ -9,11 +9,23 @@
         merge: true,
         defaultClasses: { 
           container: 'vf-file-preview-gallery',
+          container_sm: '',
+          container_md: '',
+          container_lg: '',
           image: 'vf-file-preview-gallery-image',
+          image_sm: '',
+          image_md: '',
+          image_lg: '',
           image_link: '',
           image_static: '',
           img: 'vf-file-preview-gallery-img',
+          img_sm: '',
+          img_md: '',
+          img_lg: '',
           overlay: 'vf-file-preview-gallery-overlay',
+          overlay_sm: '',
+          overlay_md: '',
+          overlay_lg: '',
           upload: 'vf-file-preview-gallery-upload',
           progressBar: 'vf-file-preview-gallery-progress-bar',
           progress: 'vf-file-preview-gallery-progress',
@@ -23,6 +35,22 @@
           uploadedIcon: 'vf-file-preview-gallery-uploaded-icon',
           remove: 'vf-file-preview-gallery-remove',
           removeIcon: 'vf-file-preview-gallery-remove-icon',
+          $container: (classes, { Size }) => ([
+            classes.container,
+            classes[`container_${Size}`],
+          ]),
+          $image: (classes, { Size }) => ([
+            classes.image,
+            classes[`image_${Size}`],
+          ]),
+          $img: (classes, { Size }) => ([
+            classes.img,
+            classes[`img_${Size}`],
+          ]),
+          $overlay: (classes, { Size }) => ([
+            classes.overlay,
+            classes[`overlay_${Size}`],
+          ]),
         }
       }
     }

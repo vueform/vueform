@@ -9,6 +9,13 @@
         merge: true,
         defaultClasses: {
           container: 'vf-steps-controls',
+          container_sm: '',
+          container_md: '',
+          container_lg: '',
+          $container: (classes, { Size }) => ([
+            classes.container,
+            classes[`container_${Size}`],
+          ]),
         }
       }
     }

@@ -10,6 +10,13 @@
         defaultClasses: {
           container: 'vf-element-loader-wrapper',
           loader: 'vf-element-loader',
+          loader_sm: '',
+          loader_md: '',
+          loader_lg: '',
+          $loader: (classes, { Size }) => ([
+            classes.loader,
+            classes[`loader_${Size}`],
+          ]),
         }
       }
     }

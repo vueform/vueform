@@ -16,6 +16,11 @@
           icon: 'vf-dnd-icon-upload',
           title: 'vf-dnd-title',
           description: 'vf-dnd-description',
+          $container: (classes, { dragging, disabled }) => ([
+            classes.container,
+            dragging ? classes.container_active : classes.container_inactive,
+            disabled ? classes.container_disabled : classes.container_enabled,
+          ]),
         }
       }
     }

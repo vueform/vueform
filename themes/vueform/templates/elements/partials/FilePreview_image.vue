@@ -13,7 +13,13 @@
           image: 'vf-file-preview-image-image',
           image_link: '',
           image_static: '',
+          image_sm: '',
+          image_md: '',
+          image_lg: '',
           img: 'vf-file-preview-image-img',
+          img_sm: '',
+          img_md: '',
+          img_lg: '',
           file: 'vf-file-preview-image-file',
           filenameLink: 'vf-file-preview-image-filename-link',
           filenameStatic: 'vf-file-preview-image-filename',
@@ -28,6 +34,15 @@
           uploadedIcon: 'vf-file-preview-image-uploaded-icon',
           remove: 'vf-file-preview-image-remove',
           removeIcon: 'vf-file-preview-image-remove-icon',
+          $image: (classes, { hasLink, Size }) => ([
+            classes.image,
+            classes[`image_${Size}`],
+            hasLink ? classes.image_link : classes.image_static
+          ]),
+          $img: (classes, { Size }) => ([
+            classes.img,
+            classes[`img_${Size}`],
+          ])
         }
       }
     }

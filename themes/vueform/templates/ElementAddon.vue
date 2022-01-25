@@ -11,7 +11,22 @@
           container: 'vf-addon',
           container_before: 'vf-addon-before',
           container_after: 'vf-addon-after',
+          container_sm: '',
+          container_md: '',
+          container_lg: '',
+          container_before_sm: '',
+          container_before_md: '',
+          container_before_lg: '',
+          container_after_sm: '',
+          container_after_md: '',
+          container_after_lg: '',
           wrapper: 'vf-addon-wrapper',
+          $container: (classes, { type, Size }) => ([
+            classes.container,
+            classes[`container_${Size}`],
+            classes[`container_${type}`],
+            classes[`container_${type}_${Size}`],
+          ]),
         }
       }
     }

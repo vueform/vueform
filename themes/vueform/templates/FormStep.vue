@@ -19,6 +19,14 @@
           container_completed: 'is-completed',
           container_incompleted: '',
           container_pending: 'is-pending',
+          $container: (classes, { active, isDisabled, completed, invalid, pending }) => ([
+            classes.container,
+            active ? classes.container_active : classes.container_inactive,
+            isDisabled ? classes.container_disabled : classes.container_enabled,
+            completed ? classes.container_completed : classes.container_incompleted,
+            invalid ? classes.container_invalid : classes.container_valid,
+            pending ? classes.container_pending : null,
+          ]),
         }
       }
     }
