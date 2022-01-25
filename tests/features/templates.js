@@ -15,7 +15,7 @@ export const templates = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    expect(el.templates).toEqual(el.theme.templates)
+    expect(el.Templates).toEqual(el.theme.templates)
   })
 
   it('should be merged with preset templates', () => {
@@ -44,7 +44,7 @@ export const templates = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    expect(el.templates).toEqual({
+    expect(el.Templates).toEqual({
       ...el.theme.templates,
       [elementName]: template
     })
@@ -76,13 +76,13 @@ export const templates = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    expect(el.templates).toEqual({
+    expect(el.Templates).toEqual({
       ...el.theme.templates,
       [elementName]: template
     })
   })
 
-  it('should be merged with replaceTemplates', () => {
+  it('should be merged with templates', () => {
     let template = {
       ...defaultTheme.templates[elementName],
     }
@@ -97,7 +97,7 @@ export const templates = function (elementType, elementName, options) {
         el: {
           type: elementType,
           presets: ['preset'],
-          replaceTemplates: {
+          templates: {
             ElementLabel: template2
           }
         }
@@ -116,7 +116,7 @@ export const templates = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    expect(el.templates).toEqual({
+    expect(el.Templates).toEqual({
       ...defaultTheme.templates,
       [elementName]: template,
       ElementLabel: template2,
@@ -134,7 +134,7 @@ export const template = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    expect(el.template).toStrictEqual(el.templates[elementName])
+    expect(el.template).toStrictEqual(el.Templates[elementName])
   })
 
   it('should be base template if view does not exist', async () => {
@@ -146,7 +146,7 @@ export const template = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    expect(el.template).toStrictEqual(el.templates[elementName])
+    expect(el.template).toStrictEqual(el.Templates[elementName])
   })
 
   it('should be view template', async () => {
@@ -168,13 +168,13 @@ export const template = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    expect(el.template).toStrictEqual(el.templates[`${elementName}_dark`])
+    expect(el.template).toStrictEqual(el.Templates[`${elementName}_dark`])
   })
 }
 
 export const rendering = function (elementType, elementName, options) {
-  it('should replace component in template when `replaceTemplates` is defined', () => {
-    let replaceTemplates = {
+  it('should replace component in template when `templates` is defined', () => {
+    let templates = {
       ElementLabel: markRaw({
         name: 'CustomElementLabel',
         render(h) {
@@ -188,7 +188,7 @@ export const rendering = function (elementType, elementName, options) {
         el: {
           type: elementType,
           label: 'Element Label',
-          replaceTemplates,
+          templates,
         }
       }
     })

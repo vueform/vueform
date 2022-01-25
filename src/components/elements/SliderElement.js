@@ -201,7 +201,7 @@ export default {
     const classes = useClasses(props, context, {
       form$: form$.form$,
       theme: theme.theme,
-      templates: templates.templates,
+      Templates: templates.Templates,
       el$: baseElement.el$,
       View: view.View,
     })
@@ -215,7 +215,7 @@ export default {
     const slots = useSlots(props, context, {
       form$: form$.form$,
       el$: baseElement.el$,
-      templates: templates.templates,
+      Templates: templates.Templates,
     }, {
       slots: [
         'label', 'info', 'description',

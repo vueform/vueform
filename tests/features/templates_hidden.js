@@ -13,7 +13,7 @@ export const templates = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    expect(el.templates).toStrictEqual(el.theme.templates)
+    expect(el.Templates).toStrictEqual(el.theme.templates)
     
     // destroy(form) // teardown
   })

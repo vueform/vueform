@@ -48,7 +48,7 @@ export default {
       showTabs,
       showStepsControls,
       classes,
-      templates,
+      Templates,
       template,
       extendedTheme,
       Size,
@@ -121,7 +121,7 @@ export default {
       showTabs,
       showStepsControls,
       classes,
-      templates,
+      Templates,
       template,
       extendedTheme,
       Size,
@@ -343,7 +343,7 @@ export default {
       type: [String],
       default: null,
     },
-    replaceTemplates: {
+    templates: {
       type: Object,
       required: false,
       default: null

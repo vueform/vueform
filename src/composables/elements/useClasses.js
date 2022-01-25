@@ -11,7 +11,7 @@ const base = function(props, context, dependencies, options = {})
   const form$ = dependencies.form$
   const el$ = dependencies.el$
   const theme = dependencies.theme
-  const templates = dependencies.templates
+  const Templates = dependencies.Templates
   const View = dependencies.View
 
   // ============== COMPUTED ==============
@@ -28,7 +28,7 @@ const base = function(props, context, dependencies, options = {})
       component$: el$,
       theme: theme.value,
       config: form$.value.$vueform.config,
-      templates: templates.value,
+      templates: Templates.value,
       view: View.value,
       merge: [
         form$.value.options,

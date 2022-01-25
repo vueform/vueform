@@ -3,7 +3,7 @@ import { computed, toRefs } from 'composition-api'
 const base = function(props, context, dependencies)
 {
   const {
-    replaceTemplates,
+    templates,
     presets,
   } = toRefs(props)
   
@@ -19,11 +19,11 @@ const base = function(props, context, dependencies)
   // ============== COMPUTED ==============
 
   /**
-   * The component templates to use for the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme's default templates.
+   * The component templates to use for the element. Use [`templates`](#option-templates) option to override any of the theme's default templates.
    * 
    * @type {object}
    */
-  const templates = computed(() => {
+  const Templates = computed(() => {
     let presetTemplates = {}
 
     _.each(presets ? presets.value : [], (presetName) => {
@@ -39,7 +39,7 @@ const base = function(props, context, dependencies)
     return {
       ...theme.value.templates,
       ...presetTemplates,
-      ...(replaceTemplates ? replaceTemplates.value : {})
+      ...(templates ? templates.value : {})
     }
   })
 
@@ -49,13 +49,13 @@ const base = function(props, context, dependencies)
    * @type {object}
    */
   const template = computed(() => {
-    return View && View.value && templates.value[`${componentName.value}_${View.value}`]
-            ? templates.value[`${componentName.value}_${View.value}`]
-            : templates.value[componentName.value]
+    return View && View.value && Templates.value[`${componentName.value}_${View.value}`]
+            ? Templates.value[`${componentName.value}_${View.value}`]
+            : Templates.value[componentName.value]
   })
 
   return {
-    templates,
+    Templates,
     template,
   }
 }

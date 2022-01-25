@@ -12,7 +12,7 @@ export const component = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
     
-    expect(el.component({ label: 'Button' })).toStrictEqual(el.templates.FormButton)    
+    expect(el.component({ label: 'Button' })).toStrictEqual(el.Templates.FormButton)    
     
     // destroy(form) // teardown
   })
@@ -31,12 +31,12 @@ export const component = function (elementType, elementName, options) {
     expect(el.component({
       label: 'Button',
       type: 'anchor'
-    })).toStrictEqual(el.templates.FormButtonAnchor)
+    })).toStrictEqual(el.Templates.FormButtonAnchor)
     
     expect(el.component({
       label: 'Button',
       type: 'submit'
-    })).toStrictEqual(el.templates.FormButtonSubmit)    
+    })).toStrictEqual(el.Templates.FormButtonSubmit)    
     
     // destroy(form) // teardown
   })

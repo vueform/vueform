@@ -25,6 +25,9 @@ export default {
       }
     }
   },
+  "element": {
+    "base": {}
+  },
   "elementComponent": {
     "base": {
       "inject": {
@@ -829,7 +832,7 @@ export default {
           "types": [
             "object"
           ],
-          "description": "The selected theme's templates, extended by local overrides. The [`replaceTemplates`](#option-replace-templates) option can be used to override templates provided by the theme."
+          "description": "The selected theme's templates, extended by local overrides. The [`templates`](#option-templates) option can be used to override templates provided by the theme."
         },
         "template": {
           "public": true,
@@ -843,7 +846,7 @@ export default {
           "types": [
             "object"
           ],
-          "description": "The selected theme, extended by local template and class overrides, using [`replaceTemplates`](#option-replace-templates), [`addClasses`](#option-add-classes) and [`replaceClasses`](#option-replace-classes)."
+          "description": "The selected theme, extended by local template and class overrides, using [`templates`](#option-templates), [`addClasses`](#option-add-classes) and [`replaceClasses`](#option-replace-classes)."
         },
         "Size": {
           "public": true,

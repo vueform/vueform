@@ -236,7 +236,7 @@ module.exports = {
         required: false,
         private: false,
       },
-      replaceTemplates: {
+      templates: {
         required: 'false',
         default: '{}',
         types: [
@@ -617,7 +617,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'The component templates to use for the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
+        description: 'The component templates to use for the element. Use [`templates`](#option-templates) option to override any of the theme&apos;s default templates.',
         private: false,
       },
       template: {
@@ -1158,7 +1158,7 @@ module.exports = {
         required: false,
         private: false,
       },
-      replaceTemplates: {
+      templates: {
         required: 'false',
         default: '{}',
         types: [
@@ -1650,7 +1650,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'The component templates to use for the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
+        description: 'The component templates to use for the element. Use [`templates`](#option-templates) option to override any of the theme&apos;s default templates.',
         private: false,
       },
       template: {
@@ -2366,7 +2366,7 @@ module.exports = {
         required: false,
         private: false,
       },
-      replaceTemplates: {
+      templates: {
         required: 'false',
         default: '{}',
         types: [
@@ -2844,7 +2844,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'The component templates to use for the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
+        description: 'The component templates to use for the element. Use [`templates`](#option-templates) option to override any of the theme&apos;s default templates.',
         private: false,
       },
       template: {
@@ -3686,7 +3686,7 @@ module.exports = {
         required: false,
         private: false,
       },
-      replaceTemplates: {
+      templates: {
         required: 'false',
         default: '{}',
         types: [
@@ -4305,7 +4305,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'The component templates to use for the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
+        description: 'The component templates to use for the element. Use [`templates`](#option-templates) option to override any of the theme&apos;s default templates.',
         private: false,
       },
       template: {
@@ -5036,7 +5036,7 @@ module.exports = {
         required: false,
         private: false,
       },
-      replaceTemplates: {
+      templates: {
         required: 'false',
         default: '{}',
         types: [
@@ -5628,7 +5628,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'The component templates to use for the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
+        description: 'The component templates to use for the element. Use [`templates`](#option-templates) option to override any of the theme&apos;s default templates.',
         private: false,
       },
       template: {
@@ -6359,7 +6359,7 @@ module.exports = {
         required: false,
         private: false,
       },
-      replaceTemplates: {
+      templates: {
         required: 'false',
         default: '{}',
         types: [
@@ -6921,7 +6921,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'The component templates to use for the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
+        description: 'The component templates to use for the element. Use [`templates`](#option-templates) option to override any of the theme&apos;s default templates.',
         private: false,
       },
       template: {
@@ -7687,7 +7687,7 @@ module.exports = {
         required: false,
         private: false,
       },
-      replaceTemplates: {
+      templates: {
         required: 'false',
         default: '{}',
         types: [
@@ -8448,7 +8448,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'The component templates to use for the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
+        description: 'The component templates to use for the element. Use [`templates`](#option-templates) option to override any of the theme&apos;s default templates.',
         private: false,
       },
       template: {
@@ -9240,7 +9240,7 @@ module.exports = {
         required: false,
         private: false,
       },
-      replaceTemplates: {
+      templates: {
         required: 'false',
         default: '{}',
         types: [
@@ -9616,7 +9616,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'The component templates to use for the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
+        description: 'The component templates to use for the element. Use [`templates`](#option-templates) option to override any of the theme&apos;s default templates.',
         private: false,
       },
       template: {
@@ -10459,7 +10459,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'The component templates to use for the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
+        description: 'The component templates to use for the element. Use [`templates`](#option-templates) option to override any of the theme&apos;s default templates.',
         private: false,
       },
       template: {
@@ -11046,7 +11046,7 @@ module.exports = {
         required: false,
         private: false,
       },
-      replaceTemplates: {
+      templates: {
         required: 'false',
         default: '{}',
         types: [
@@ -11707,7 +11707,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'The component templates to use for the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
+        description: 'The component templates to use for the element. Use [`templates`](#option-templates) option to override any of the theme&apos;s default templates.',
         private: false,
       },
       template: {
@@ -12575,7 +12575,7 @@ module.exports = {
         required: false,
         private: false,
       },
-      replaceTemplates: {
+      templates: {
         required: 'false',
         default: '{}',
         types: [
@@ -13137,7 +13137,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'The component templates to use for the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
+        description: 'The component templates to use for the element. Use [`templates`](#option-templates) option to override any of the theme&apos;s default templates.',
         private: false,
       },
       template: {
@@ -13890,7 +13890,7 @@ module.exports = {
         required: false,
         private: false,
       },
-      replaceTemplates: {
+      templates: {
         required: 'false',
         default: '{}',
         types: [
@@ -14598,7 +14598,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'The component templates to use for the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
+        description: 'The component templates to use for the element. Use [`templates`](#option-templates) option to override any of the theme&apos;s default templates.',
         private: false,
       },
       template: {
@@ -15499,7 +15499,7 @@ module.exports = {
         required: false,
         private: false,
       },
-      replaceTemplates: {
+      templates: {
         required: 'false',
         default: '{}',
         types: [
@@ -16397,7 +16397,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'The component templates to use for the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
+        description: 'The component templates to use for the element. Use [`templates`](#option-templates) option to override any of the theme&apos;s default templates.',
         private: false,
       },
       template: {
@@ -17425,7 +17425,7 @@ module.exports = {
         required: false,
         private: false,
       },
-      replaceTemplates: {
+      templates: {
         required: 'false',
         default: '{}',
         types: [
@@ -17826,7 +17826,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'The component templates to use for the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
+        description: 'The component templates to use for the element. Use [`templates`](#option-templates) option to override any of the theme&apos;s default templates.',
         private: false,
       },
       template: {
@@ -18503,7 +18503,7 @@ module.exports = {
         required: false,
         private: false,
       },
-      replaceTemplates: {
+      templates: {
         required: 'false',
         default: '{}',
         types: [
@@ -18999,7 +18999,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'The component templates to use for the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
+        description: 'The component templates to use for the element. Use [`templates`](#option-templates) option to override any of the theme&apos;s default templates.',
         private: false,
       },
       template: {
@@ -19715,7 +19715,7 @@ module.exports = {
         required: false,
         private: false,
       },
-      replaceTemplates: {
+      templates: {
         required: 'false',
         default: '{}',
         types: [
@@ -20194,7 +20194,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'The component templates to use for the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
+        description: 'The component templates to use for the element. Use [`templates`](#option-templates) option to override any of the theme&apos;s default templates.',
         private: false,
       },
       template: {
@@ -20994,7 +20994,7 @@ module.exports = {
         required: false,
         private: false,
       },
-      replaceTemplates: {
+      templates: {
         required: 'false',
         default: '{}',
         types: [
@@ -21853,7 +21853,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'The component templates to use for the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
+        description: 'The component templates to use for the element. Use [`templates`](#option-templates) option to override any of the theme&apos;s default templates.',
         private: false,
       },
       template: {
@@ -22851,7 +22851,7 @@ module.exports = {
         required: false,
         private: false,
       },
-      replaceTemplates: {
+      templates: {
         required: 'false',
         default: '{}',
         types: [
@@ -23411,7 +23411,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'The component templates to use for the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
+        description: 'The component templates to use for the element. Use [`templates`](#option-templates) option to override any of the theme&apos;s default templates.',
         private: false,
       },
       template: {
@@ -24120,7 +24120,7 @@ module.exports = {
         required: false,
         private: false,
       },
-      replaceTemplates: {
+      templates: {
         required: 'false',
         default: '{}',
         types: [
@@ -24403,7 +24403,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'The component templates to use for the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
+        description: 'The component templates to use for the element. Use [`templates`](#option-templates) option to override any of the theme&apos;s default templates.',
         private: false,
       },
       template: {
@@ -24930,7 +24930,7 @@ module.exports = {
         required: false,
         private: false,
       },
-      replaceTemplates: {
+      templates: {
         required: 'false',
         default: '{}',
         types: [
@@ -25493,7 +25493,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'The component templates to use for the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
+        description: 'The component templates to use for the element. Use [`templates`](#option-templates) option to override any of the theme&apos;s default templates.',
         private: false,
       },
       template: {
@@ -26278,7 +26278,7 @@ module.exports = {
         required: false,
         private: false,
       },
-      replaceTemplates: {
+      templates: {
         required: 'false',
         default: '{}',
         types: [
@@ -26833,7 +26833,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'The component templates to use for the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
+        description: 'The component templates to use for the element. Use [`templates`](#option-templates) option to override any of the theme&apos;s default templates.',
         private: false,
       },
       template: {
@@ -27590,7 +27590,7 @@ module.exports = {
         required: false,
         private: false,
       },
-      replaceTemplates: {
+      templates: {
         required: 'false',
         default: '{}',
         types: [
@@ -28128,7 +28128,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'The component templates to use for the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
+        description: 'The component templates to use for the element. Use [`templates`](#option-templates) option to override any of the theme&apos;s default templates.',
         private: false,
       },
       template: {
@@ -28890,7 +28890,7 @@ module.exports = {
         required: false,
         private: false,
       },
-      replaceTemplates: {
+      templates: {
         required: 'false',
         default: '{}',
         types: [
@@ -29806,7 +29806,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'The component templates to use for the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
+        description: 'The component templates to use for the element. Use [`templates`](#option-templates) option to override any of the theme&apos;s default templates.',
         private: false,
       },
       template: {
@@ -30871,7 +30871,7 @@ module.exports = {
         required: false,
         private: false,
       },
-      replaceTemplates: {
+      templates: {
         required: 'false',
         default: '{}',
         types: [
@@ -31425,7 +31425,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'The component templates to use for the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
+        description: 'The component templates to use for the element. Use [`templates`](#option-templates) option to override any of the theme&apos;s default templates.',
         private: false,
       },
       template: {
@@ -32163,7 +32163,7 @@ module.exports = {
         required: false,
         private: false,
       },
-      replaceTemplates: {
+      templates: {
         required: 'false',
         default: '{}',
         types: [
@@ -32700,7 +32700,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'The component templates to use for the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
+        description: 'The component templates to use for the element. Use [`templates`](#option-templates) option to override any of the theme&apos;s default templates.',
         private: false,
       },
       template: {
@@ -33443,7 +33443,7 @@ module.exports = {
         required: false,
         private: false,
       },
-      replaceTemplates: {
+      templates: {
         required: 'false',
         default: '{}',
         types: [
@@ -33953,7 +33953,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'The component templates to use for the element. Use [`replaceTemplates`](#option-replace-templates) option to override any of the theme&apos;s default templates.',
+        description: 'The component templates to use for the element. Use [`templates`](#option-templates) option to override any of the theme&apos;s default templates.',
         private: false,
       },
       template: {

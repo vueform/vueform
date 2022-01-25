@@ -28,7 +28,7 @@ const base = function(props, context, dependencies = {})
     replaceClasses,
     overrideClasses,
     presets,
-    replaceTemplates,
+    templates,
     theme,
     messages,
     columns,
@@ -221,7 +221,7 @@ const base = function(props, context, dependencies = {})
     // Prop options will override Component.data() options
     const override = {
       columns, languages, language, theme, method, validateOn,
-      messages, formKey, multilingual, formatLoad, formatData, prepare, default: default_, formData, replaceTemplates,
+      messages, formKey, multilingual, formatLoad, formatData, prepare, default: default_, formData, templates,
       addClass, removeClass, replaceClass, overrideClass,
       addClasses, removeClasses, replaceClasses, overrideClasses, presets,
       size, view, views,
@@ -272,7 +272,7 @@ const base = function(props, context, dependencies = {})
       replaceClasses: {},
       overrideClasses: {},
       presets: [],
-      replaceTemplates: {},
+      templates: {},
       messages: {},
       default: {},
       formKey: null,
@@ -650,7 +650,7 @@ const base = function(props, context, dependencies = {})
   })
 
   /**
-   * The selected theme, extended by local template and class overrides, using [`replaceTemplates`](#option-replace-templates), [`addClasses`](#option-add-classes) and [`replaceClasses`](#option-replace-classes).
+   * The selected theme, extended by local template and class overrides, using [`templates`](#option-templates), [`addClasses`](#option-add-classes) and [`replaceClasses`](#option-replace-classes).
    * 
    * @type {object}
    */
@@ -673,17 +673,17 @@ const base = function(props, context, dependencies = {})
         options.value.theme.templates,
         baseConfig.value.templates,
         presetTemplates,
-        options.value.replaceTemplates || {},
+        options.value.templates || {},
       ),
     })
   })
 
   /**
-  * The selected theme's templates, extended by local overrides. The [`replaceTemplates`](#option-replace-templates) option can be used to override templates provided by the theme.
+  * The selected theme's templates, extended by local overrides. The [`templates`](#option-templates) option can be used to override templates provided by the theme.
   * 
   * @type {object}
   */
-  const templates = computed(() => {
+  const Templates = computed(() => {
     return extendedTheme.value.templates
   })
 
@@ -693,9 +693,9 @@ const base = function(props, context, dependencies = {})
   * @type {object}
   */
   const template = computed(() => {
-    return View.value && templates.value[`Vueform_${View.value}`]
-            ? templates.value[`Vueform_${View.value}`]
-            : templates.value.Vueform
+    return View.value && Templates.value[`Vueform_${View.value}`]
+            ? Templates.value[`Vueform_${View.value}`]
+            : Templates.value.Vueform
   })
 
   /**
@@ -709,7 +709,7 @@ const base = function(props, context, dependencies = {})
       component$: form$,
       theme: extendedTheme.value,
       config: baseConfig.value.config,
-      templates: templates.value,
+      templates: Templates.value,
       view: View.value,
       locals: options.value,
       merge: [
@@ -1241,7 +1241,7 @@ const base = function(props, context, dependencies = {})
     showTabs,
     showStepsControls,
     classes,
-    templates,
+    Templates,
     template,
     extendedTheme,
     Size,

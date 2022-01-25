@@ -24,7 +24,7 @@ export default {
       View,
       classesInstance,
       classes,
-      templates,
+      Templates,
       template,
       theme,
     } = useElementComponent(props, context)
@@ -90,7 +90,7 @@ export default {
       Size,
       View,
       classesInstance,
-      templates,
+      Templates,
       template,
       classes,
       addon,

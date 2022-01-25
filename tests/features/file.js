@@ -51,7 +51,7 @@ export const preview = function (elementType, elementName, options) {
         el: {
           type: elementType,
           view: 'image',
-          replaceTemplates: {
+          templates: {
             FilePreview_image: markRaw({
               props: ['previewOptions'],
               render() {
@@ -78,7 +78,7 @@ export const preview = function (elementType, elementName, options) {
           type: elementType,
           auto: false,
           view: 'image',
-          replaceTemplates: {
+          templates: {
             FilePreview_image: markRaw({
               props: ['previewOptions'],
               render() {

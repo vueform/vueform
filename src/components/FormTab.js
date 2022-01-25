@@ -99,7 +99,7 @@ export default {
       classesInstance,
       theme,
       classes,
-      templates,
+      Templates,
       template,
     } = useFormComponent(props, context)
 
@@ -353,7 +353,7 @@ export default {
       visible,
       invalid,
       classes,
-      templates,
+      Templates,
       template,
       available,
       isLabelComponent,

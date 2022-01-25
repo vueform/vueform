@@ -27,13 +27,13 @@ import useWatchValue from './../../composables/elements/useWatchValue'
 import useFloating from './../../composables/elements/useFloating'
 import useClasses from './../../composables/elements/useClasses'
 
+import { text as useValidation } from './../../composables/elements/useValidation'
+
 import BaseElement from './../../mixins/BaseElement'
 import HasView from './../../mixins/HasView'
 import HasChange from './../../mixins/HasChange'
 import HasData from './../../mixins/HasData'
 import HasValidation from './../../mixins/HasValidation'
-
-import { text as useValidation } from './../../composables/elements/useValidation'
 
 export default {
   name: 'TextareaElement',
@@ -192,7 +192,7 @@ export default {
       form$: form$.form$,
       theme: theme.theme,
       isDisabled: disabled.isDisabled,
-      templates: templates.templates,
+      Templates: templates.Templates,
       el$: baseElement.el$,
       View: view.View,
     })
@@ -206,7 +206,7 @@ export default {
     const slots = useSlots(props, context, {
       form$: form$.form$,
       el$: baseElement.el$,
-      templates: templates.templates,
+      Templates: templates.Templates,
     }, {
       slots: [
         'label', 'info', 'description', 'before',

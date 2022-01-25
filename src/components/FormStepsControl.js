@@ -38,7 +38,7 @@ export default {
       classesInstance,
       theme,
       classes,
-      templates,
+      Templates,
       template,
     } = useFormComponent(props, context)
 
@@ -223,7 +223,7 @@ export default {
       theme,
       steps$,
       classes,
-      templates,
+      Templates,
       template,
       visible,
       isDisabled,

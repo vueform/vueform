@@ -76,7 +76,7 @@ export default {
       type: [Object, String, Number],
       default: null
     },
-    replaceTemplates: {
+    templates: {
       required: false,
       type: [Object],
       default: () => ({})

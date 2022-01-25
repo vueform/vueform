@@ -69,8 +69,11 @@ class Generator {
         if (line.match(/^import { ([^ ]*)/)) {
           feature += '_' + line.match(/^import { ([^ ]*)/)[1].replace(/_$/, '')
         }
+
+        if (['element'].indexOf(feature) === -1) {
+          features[element].push(feature)
+        }
         
-        features[element].push(feature)
       })
 
       features[element].sort()

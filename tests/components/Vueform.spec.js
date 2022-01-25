@@ -285,7 +285,7 @@ describe('Vueform', () => {
     view: [undefined, 'dark', 'light'],
     views: [{}, { FormErrors: 'dark' }, { FormErrors: 'light' }],
     size: [null, 'sm', 'lg'],
-    replaceTemplates: [{}, { FormButton: {} }, { FormButton: {name:'NotFormButton'} }],
+    templates: [{}, { FormButton: {} }, { FormButton: {name:'NotFormButton'} }],
     messages: [{}, { required: 'Required' }, { required: 'Not required' }],
     default: [{}, { el: 1 }, { el: 2 }],
     formKey: [null, '1234', '12345'],
@@ -1180,7 +1180,7 @@ describe('Vueform', () => {
       form = createForm({
         schema: { el: { type: 'text' } },
         presets: ['templates2'],
-        replaceTemplates: {
+        templates: {
           TextElement: TextElement4
         }
       }, {
@@ -1212,7 +1212,7 @@ describe('Vueform', () => {
     
     it('should merge theme elements, with global elements and local elements', async () => {
       let form = createForm({
-        replaceTemplates: {
+        templates: {
           SelectElement: markRaw({name:'FormSelectElement'}),
           TextareaElement: markRaw({name:'FormTextareaElement'}),
         }
@@ -1232,7 +1232,7 @@ describe('Vueform', () => {
 
     it('should merge theme templates, with global templates and local templates', async () => {
       let form = createForm({
-        replaceTemplates: {
+        templates: {
           ElementText: markRaw({name:'FormElementText'}),
           FormButton: markRaw({name:'FormFormButton'}),
         }
@@ -1730,7 +1730,7 @@ describe('Vueform', () => {
         }
       })
 
-      expect(form.vm.templates).toStrictEqual(Object.assign({}, form.vm.extendedTheme.templates))
+      expect(form.vm.Templates).toStrictEqual(Object.assign({}, form.vm.extendedTheme.templates))
     })
   })
 

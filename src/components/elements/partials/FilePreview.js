@@ -13,7 +13,7 @@ export default {
       View,
       classesInstance,
       classes,
-      templates,
+      Templates,
       template,
       theme,
     } = useElementComponent(props, context)
@@ -55,7 +55,7 @@ export default {
       View,
       classesInstance,
       classes,
-      templates,
+      Templates,
       template,
       theme,
       visible,

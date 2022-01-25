@@ -237,7 +237,7 @@ export default function (elementType, componentName, schema = {}, options = {}) 
     })
   })
 
-  describe('templates', () => {
+  describe('Templates', () => {
     it('should equal to element templates', async () => {
       let template = {
         ...defaultTheme.templates[componentName],
@@ -267,7 +267,7 @@ export default function (elementType, componentName, schema = {}, options = {}) 
 
       let Component = findAllComponents(form, { name: componentName }).at(0)
 
-      expect(Component.vm.templates).toEqual({
+      expect(Component.vm.Templates).toEqual({
         ...defaultTheme.templates,
         [componentName]: template,
       })
@@ -368,7 +368,7 @@ export default function (elementType, componentName, schema = {}, options = {}) 
       },
     })
 
-    let mainClass = Object.keys(form.vm.templates[componentName].data().defaultClasses)[0]
+    let mainClass = Object.keys(form.vm.Templates[componentName].data().defaultClasses)[0]
 
     it('should have template classes by default', async () => {
       let form = createForm({
