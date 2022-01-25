@@ -535,6 +535,13 @@ module.exports = {
         description: 'The selected theme&apos;s classes merged with [`addClasses`](#option-extend-classes) and [`overrideClasses`](#option-replace-classes) options.',
         private: false,
       },
+      classesInstance: {
+        types: [
+          'MergeClasses',
+        ],
+        description: 'The classes instance (for testing purpose).',
+        private: true,
+      },
       columnsClasses: {
         types: [
           'object',
@@ -1511,6 +1518,13 @@ module.exports = {
         ],
         description: 'The selected theme&apos;s classes merged with [`addClasses`](#option-extend-classes) and [`overrideClasses`](#option-replace-classes) options.',
         private: false,
+      },
+      classesInstance: {
+        types: [
+          'MergeClasses',
+        ],
+        description: 'The classes instance (for testing purpose).',
+        private: true,
       },
       columnsClasses: {
         types: [
@@ -2698,6 +2712,13 @@ module.exports = {
         ],
         description: 'The selected theme&apos;s classes merged with [`addClasses`](#option-extend-classes) and [`overrideClasses`](#option-replace-classes) options.',
         private: false,
+      },
+      classesInstance: {
+        types: [
+          'MergeClasses',
+        ],
+        description: 'The classes instance (for testing purpose).',
+        private: true,
       },
       columnsClasses: {
         types: [
@@ -4118,6 +4139,13 @@ module.exports = {
         description: 'The selected theme&apos;s classes merged with [`addClasses`](#option-extend-classes) and [`overrideClasses`](#option-replace-classes) options.',
         private: false,
       },
+      classesInstance: {
+        types: [
+          'MergeClasses',
+        ],
+        description: 'The classes instance (for testing purpose).',
+        private: true,
+      },
       columnsClasses: {
         types: [
           'object',
@@ -5434,6 +5462,13 @@ module.exports = {
         description: 'The selected theme&apos;s classes merged with [`addClasses`](#option-extend-classes) and [`overrideClasses`](#option-replace-classes) options.',
         private: false,
       },
+      classesInstance: {
+        types: [
+          'MergeClasses',
+        ],
+        description: 'The classes instance (for testing purpose).',
+        private: true,
+      },
       columnsClasses: {
         types: [
           'object',
@@ -6731,6 +6766,13 @@ module.exports = {
         ],
         description: 'The selected theme&apos;s classes merged with [`addClasses`](#option-extend-classes) and [`overrideClasses`](#option-replace-classes) options.',
         private: false,
+      },
+      classesInstance: {
+        types: [
+          'MergeClasses',
+        ],
+        description: 'The classes instance (for testing purpose).',
+        private: true,
       },
       columnsClasses: {
         types: [
@@ -8146,6 +8188,13 @@ module.exports = {
         description: 'The selected theme&apos;s classes merged with [`addClasses`](#option-extend-classes) and [`overrideClasses`](#option-replace-classes) options.',
         private: false,
       },
+      classesInstance: {
+        types: [
+          'MergeClasses',
+        ],
+        description: 'The classes instance (for testing purpose).',
+        private: true,
+      },
       columnsClasses: {
         types: [
           'object',
@@ -9456,6 +9505,13 @@ module.exports = {
         ],
         description: 'The selected theme&apos;s classes merged with [`addClasses`](#option-extend-classes) and [`overrideClasses`](#option-replace-classes) options.',
         private: false,
+      },
+      classesInstance: {
+        types: [
+          'MergeClasses',
+        ],
+        description: 'The classes instance (for testing purpose).',
+        private: true,
       },
       columnsClasses: {
         types: [
@@ -11464,6 +11520,13 @@ module.exports = {
         description: 'The selected theme&apos;s classes merged with [`addClasses`](#option-extend-classes) and [`overrideClasses`](#option-replace-classes) options.',
         private: false,
       },
+      classesInstance: {
+        types: [
+          'MergeClasses',
+        ],
+        description: 'The classes instance (for testing purpose).',
+        private: true,
+      },
       columnsClasses: {
         types: [
           'object',
@@ -12928,6 +12991,13 @@ module.exports = {
         description: 'The selected theme&apos;s classes merged with [`addClasses`](#option-extend-classes) and [`overrideClasses`](#option-replace-classes) options.',
         private: false,
       },
+      classesInstance: {
+        types: [
+          'MergeClasses',
+        ],
+        description: 'The classes instance (for testing purpose).',
+        private: true,
+      },
       columnsClasses: {
         types: [
           'object',
@@ -14319,6 +14389,13 @@ module.exports = {
         ],
         description: 'The selected theme&apos;s classes merged with [`addClasses`](#option-extend-classes) and [`overrideClasses`](#option-replace-classes) options.',
         private: false,
+      },
+      classesInstance: {
+        types: [
+          'MergeClasses',
+        ],
+        description: 'The classes instance (for testing purpose).',
+        private: true,
       },
       columnsClasses: {
         types: [
@@ -16168,6 +16245,13 @@ module.exports = {
         description: 'The selected theme&apos;s classes merged with [`addClasses`](#option-extend-classes) and [`overrideClasses`](#option-replace-classes) options.',
         private: false,
       },
+      classesInstance: {
+        types: [
+          'MergeClasses',
+        ],
+        description: 'The classes instance (for testing purpose).',
+        private: true,
+      },
       columnsClasses: {
         types: [
           'object',
@@ -17632,6 +17716,13 @@ module.exports = {
         description: 'The selected theme&apos;s classes merged with [`addClasses`](#option-extend-classes) and [`overrideClasses`](#option-replace-classes) options.',
         private: false,
       },
+      classesInstance: {
+        types: [
+          'MergeClasses',
+        ],
+        description: 'The classes instance (for testing purpose).',
+        private: true,
+      },
       columnsClasses: {
         types: [
           'object',
@@ -18769,6 +18860,13 @@ module.exports = {
         ],
         description: 'The selected theme&apos;s classes merged with [`addClasses`](#option-extend-classes) and [`overrideClasses`](#option-replace-classes) options.',
         private: false,
+      },
+      classesInstance: {
+        types: [
+          'MergeClasses',
+        ],
+        description: 'The classes instance (for testing purpose).',
+        private: true,
       },
       columnsClasses: {
         types: [
@@ -19964,6 +20062,13 @@ module.exports = {
         ],
         description: 'The selected theme&apos;s classes merged with [`addClasses`](#option-extend-classes) and [`overrideClasses`](#option-replace-classes) options.',
         private: false,
+      },
+      classesInstance: {
+        types: [
+          'MergeClasses',
+        ],
+        description: 'The classes instance (for testing purpose).',
+        private: true,
       },
       columnsClasses: {
         types: [
@@ -21596,6 +21701,13 @@ module.exports = {
         description: 'The selected theme&apos;s classes merged with [`addClasses`](#option-extend-classes) and [`overrideClasses`](#option-replace-classes) options.',
         private: false,
       },
+      classesInstance: {
+        types: [
+          'MergeClasses',
+        ],
+        description: 'The classes instance (for testing purpose).',
+        private: true,
+      },
       columnsClasses: {
         types: [
           'object',
@@ -23168,6 +23280,13 @@ module.exports = {
         description: 'The selected theme&apos;s classes merged with [`addClasses`](#option-extend-classes) and [`overrideClasses`](#option-replace-classes) options.',
         private: false,
       },
+      classesInstance: {
+        types: [
+          'MergeClasses',
+        ],
+        description: 'The classes instance (for testing purpose).',
+        private: true,
+      },
       columnsClasses: {
         types: [
           'object',
@@ -24202,6 +24321,13 @@ module.exports = {
         description: 'The selected theme&apos;s classes merged with [`addClasses`](#option-extend-classes) and [`overrideClasses`](#option-replace-classes) options.',
         private: false,
       },
+      classesInstance: {
+        types: [
+          'MergeClasses',
+        ],
+        description: 'The classes instance (for testing purpose).',
+        private: true,
+      },
       columnsClasses: {
         types: [
           'object',
@@ -25198,6 +25324,13 @@ module.exports = {
         ],
         description: 'The selected theme&apos;s classes merged with [`addClasses`](#option-extend-classes) and [`overrideClasses`](#option-replace-classes) options.',
         private: false,
+      },
+      classesInstance: {
+        types: [
+          'MergeClasses',
+        ],
+        description: 'The classes instance (for testing purpose).',
+        private: true,
       },
       columnsClasses: {
         types: [
@@ -26534,6 +26667,13 @@ module.exports = {
         description: 'The selected theme&apos;s classes merged with [`addClasses`](#option-extend-classes) and [`overrideClasses`](#option-replace-classes) options.',
         private: false,
       },
+      classesInstance: {
+        types: [
+          'MergeClasses',
+        ],
+        description: 'The classes instance (for testing purpose).',
+        private: true,
+      },
       columnsClasses: {
         types: [
           'object',
@@ -27828,6 +27968,13 @@ module.exports = {
         ],
         description: 'The selected theme&apos;s classes merged with [`addClasses`](#option-extend-classes) and [`overrideClasses`](#option-replace-classes) options.',
         private: false,
+      },
+      classesInstance: {
+        types: [
+          'MergeClasses',
+        ],
+        description: 'The classes instance (for testing purpose).',
+        private: true,
       },
       columnsClasses: {
         types: [
@@ -29507,6 +29654,13 @@ module.exports = {
         description: 'The selected theme&apos;s classes merged with [`addClasses`](#option-extend-classes) and [`overrideClasses`](#option-replace-classes) options.',
         private: false,
       },
+      classesInstance: {
+        types: [
+          'MergeClasses',
+        ],
+        description: 'The classes instance (for testing purpose).',
+        private: true,
+      },
       columnsClasses: {
         types: [
           'object',
@@ -31119,6 +31273,13 @@ module.exports = {
         description: 'The selected theme&apos;s classes merged with [`addClasses`](#option-extend-classes) and [`overrideClasses`](#option-replace-classes) options.',
         private: false,
       },
+      classesInstance: {
+        types: [
+          'MergeClasses',
+        ],
+        description: 'The classes instance (for testing purpose).',
+        private: true,
+      },
       columnsClasses: {
         types: [
           'object',
@@ -32394,6 +32555,13 @@ module.exports = {
         description: 'The selected theme&apos;s classes merged with [`addClasses`](#option-extend-classes) and [`overrideClasses`](#option-replace-classes) options.',
         private: false,
       },
+      classesInstance: {
+        types: [
+          'MergeClasses',
+        ],
+        description: 'The classes instance (for testing purpose).',
+        private: true,
+      },
       columnsClasses: {
         types: [
           'object',
@@ -33653,6 +33821,13 @@ module.exports = {
         ],
         description: 'The selected theme&apos;s classes merged with [`addClasses`](#option-extend-classes) and [`overrideClasses`](#option-replace-classes) options.',
         private: false,
+      },
+      classesInstance: {
+        types: [
+          'MergeClasses',
+        ],
+        description: 'The classes instance (for testing purpose).',
+        private: true,
       },
       columnsClasses: {
         types: [

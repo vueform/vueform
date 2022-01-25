@@ -4,7 +4,7 @@ import useForm$ from './useForm$'
 import useTheme from './useTheme'
 import useSize from './useSize'
 import useView from './useView'
-import MergeFormClasses from './../utils/mergeFormClasses'
+import MergeClasses from './../utils/mergeClasses'
 
 const base = function(props, context, dependencies, options = {})
 {
@@ -46,7 +46,7 @@ const base = function(props, context, dependencies, options = {})
    * @private
    */
   const classesInstance = computed(() => {
-    return (new MergeFormClasses({
+    return (new MergeClasses({
       component: componentName.value,
       component$: component$,
       theme: theme.value,

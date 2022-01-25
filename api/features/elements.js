@@ -1203,6 +1203,13 @@ export default {
             "object"
           ],
           "description": "The selected theme's classes merged with [`addClasses`](#option-extend-classes) and [`overrideClasses`](#option-replace-classes) options."
+        },
+        "classesInstance": {
+          "public": false,
+          "types": [
+            "MergeClasses"
+          ],
+          "description": "The classes instance (for testing purpose)."
         }
       }
     }

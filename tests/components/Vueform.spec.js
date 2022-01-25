@@ -4,7 +4,6 @@ import { ref, markRaw, nextTick } from 'composition-api'
 import flushPromises from 'flush-promises'
 import defaultTheme from './../../themes/vueform'
 import tailwindTheme from './../../themes/tailwind'
-import { mergeComponentClasses, mergeClass } from './../../src/utils/mergeClasses'
 import fs from 'fs'
 
 jest.useFakeTimers()

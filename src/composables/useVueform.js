@@ -3,13 +3,12 @@ import {
   computed, ref, toRefs, getCurrentInstance, onBeforeMount, onMounted, onBeforeUpdate,
   onUpdated, onBeforeUnmount, onUnmounted, provide, watch
 } from 'composition-api'
-import MergeFormClasses from './../utils/mergeFormClasses'
+import MergeClasses from './../utils/mergeClasses'
 import convertFormDataUtil from './../utils/convertFormData'
 import asyncForEach from './../utils/asyncForEach'
 import dataEquals from './../utils/dataEquals'
 import useEvents from './useEvents'
 import useModel from './useModel'
-import MergeComponentClasses from '../utils/mergeComponentClasses'
 
 const base = function(props, context, dependencies = {})
 {
@@ -705,7 +704,7 @@ const base = function(props, context, dependencies = {})
    * @type {object}
    */
   const classes = computed(() => {
-    return (new MergeFormClasses({
+    return (new MergeClasses({
       component: 'Vueform',
       component$: form$,
       theme: extendedTheme.value,

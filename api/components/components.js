@@ -38,6 +38,13 @@ module.exports = {
       }
     },
     "computed": {
+      "classesInstance": {
+        "public": false,
+        "types": [
+          "MergeClasses"
+        ],
+        "description": "The classes instance (for testing purpose)."
+      },
       "classes": {
         "public": true,
         "types": [
@@ -163,6 +170,13 @@ module.exports = {
       }
     },
     "computed": {
+      "classesInstance": {
+        "public": false,
+        "types": [
+          "MergeClasses"
+        ],
+        "description": "The classes instance (for testing purpose)."
+      },
       "templates": {
         "public": true,
         "types": [
@@ -261,6 +275,13 @@ module.exports = {
       }
     },
     "computed": {
+      "classesInstance": {
+        "public": false,
+        "types": [
+          "MergeClasses"
+        ],
+        "description": "The classes instance (for testing purpose)."
+      },
       "classes": {
         "public": true,
         "types": [
@@ -344,6 +365,13 @@ module.exports = {
       }
     },
     "computed": {
+      "classesInstance": {
+        "public": false,
+        "types": [
+          "MergeClasses"
+        ],
+        "description": "The classes instance (for testing purpose)."
+      },
       "classes": {
         "public": true,
         "types": [
@@ -416,6 +444,13 @@ module.exports = {
       }
     },
     "computed": {
+      "classesInstance": {
+        "public": false,
+        "types": [
+          "MergeClasses"
+        ],
+        "description": "The classes instance (for testing purpose)."
+      },
       "classes": {
         "public": true,
         "types": [
@@ -499,6 +534,13 @@ module.exports = {
       }
     },
     "computed": {
+      "classesInstance": {
+        "public": false,
+        "types": [
+          "MergeClasses"
+        ],
+        "description": "The classes instance (for testing purpose)."
+      },
       "classes": {
         "public": true,
         "types": [
@@ -607,6 +649,13 @@ module.exports = {
       }
     },
     "computed": {
+      "classesInstance": {
+        "public": false,
+        "types": [
+          "MergeClasses"
+        ],
+        "description": "The classes instance (for testing purpose)."
+      },
       "classes": {
         "public": true,
         "types": [
@@ -687,6 +736,13 @@ module.exports = {
       }
     },
     "computed": {
+      "classesInstance": {
+        "public": false,
+        "types": [
+          "MergeClasses"
+        ],
+        "description": "The classes instance (for testing purpose)."
+      },
       "templates": {
         "public": true,
         "types": [
@@ -789,6 +845,13 @@ module.exports = {
       }
     },
     "computed": {
+      "classesInstance": {
+        "public": false,
+        "types": [
+          "MergeClasses"
+        ],
+        "description": "The classes instance (for testing purpose)."
+      },
       "templates": {
         "public": true,
         "types": [
@@ -883,6 +946,13 @@ module.exports = {
       }
     },
     "computed": {
+      "classesInstance": {
+        "public": false,
+        "types": [
+          "MergeClasses"
+        ],
+        "description": "The classes instance (for testing purpose)."
+      },
       "classes": {
         "public": true,
         "types": [
@@ -948,6 +1018,13 @@ module.exports = {
       }
     },
     "computed": {
+      "classesInstance": {
+        "public": false,
+        "types": [
+          "MergeClasses"
+        ],
+        "description": "The classes instance (for testing purpose)."
+      },
       "classes": {
         "public": true,
         "types": [
@@ -1020,6 +1097,13 @@ module.exports = {
       }
     },
     "computed": {
+      "classesInstance": {
+        "public": false,
+        "types": [
+          "MergeClasses"
+        ],
+        "description": "The classes instance (for testing purpose)."
+      },
       "classes": {
         "public": true,
         "types": [
@@ -1103,6 +1187,13 @@ module.exports = {
       }
     },
     "computed": {
+      "classesInstance": {
+        "public": false,
+        "types": [
+          "object"
+        ],
+        "description": "An object containaing all the component's classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides."
+      },
       "classes": {
         "public": true,
         "types": [
@@ -1195,6 +1286,13 @@ module.exports = {
       }
     },
     "computed": {
+      "classesInstance": {
+        "public": false,
+        "types": [
+          "object"
+        ],
+        "description": "An object containaing all the component's classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides."
+      },
       "classes": {
         "public": true,
         "types": [
@@ -1267,6 +1365,13 @@ module.exports = {
       }
     },
     "computed": {
+      "classesInstance": {
+        "public": false,
+        "types": [
+          "object"
+        ],
+        "description": "An object containaing all the component's classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides."
+      },
       "selectedLanguage": {
         "public": true,
         "types": [
@@ -1376,6 +1481,13 @@ module.exports = {
       }
     },
     "computed": {
+      "classesInstance": {
+        "public": false,
+        "types": [
+          "object"
+        ],
+        "description": "An object containaing all the component's classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides."
+      },
       "classes": {
         "public": true,
         "types": [
@@ -1485,6 +1597,13 @@ module.exports = {
       }
     },
     "computed": {
+      "classesInstance": {
+        "public": false,
+        "types": [
+          "object"
+        ],
+        "description": "An object containaing all the component's classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides."
+      },
       "classes": {
         "public": true,
         "types": [
@@ -1557,6 +1676,13 @@ module.exports = {
       }
     },
     "computed": {
+      "classesInstance": {
+        "public": false,
+        "types": [
+          "object"
+        ],
+        "description": "An object containaing all the component's classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides."
+      },
       "steps$": {
         "public": true,
         "types": [
@@ -1909,6 +2035,12 @@ module.exports = {
           "string"
         ]
       },
+      "view": {
+        "required": false,
+        "types": [
+          "string"
+        ]
+      },
       "onActivate": {
         "required": false,
         "default": null,
@@ -1997,6 +2129,13 @@ module.exports = {
       }
     },
     "computed": {
+      "classesInstance": {
+        "public": false,
+        "types": [
+          "object"
+        ],
+        "description": "An object containaing all the component's classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides."
+      },
       "steps": {
         "public": true,
         "types": [
@@ -2418,6 +2557,13 @@ module.exports = {
       }
     },
     "computed": {
+      "classesInstance": {
+        "public": false,
+        "types": [
+          "object"
+        ],
+        "description": "An object containaing all the component's classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides."
+      },
       "steps$": {
         "public": false,
         "description": "The [`FormSteps`](form-steps) component."
@@ -2567,6 +2713,13 @@ module.exports = {
       }
     },
     "computed": {
+      "classesInstance": {
+        "public": false,
+        "types": [
+          "object"
+        ],
+        "description": "An object containaing all the component's classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides."
+      },
       "classes": {
         "public": true,
         "types": [
@@ -2649,6 +2802,13 @@ module.exports = {
       }
     },
     "computed": {
+      "classesInstance": {
+        "public": false,
+        "types": [
+          "object"
+        ],
+        "description": "An object containaing all the component's classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides."
+      },
       "elements$": {
         "public": true,
         "types": [
@@ -2961,6 +3121,13 @@ module.exports = {
       }
     },
     "computed": {
+      "classesInstance": {
+        "public": false,
+        "types": [
+          "object"
+        ],
+        "description": "An object containaing all the component's classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides."
+      },
       "tabs": {
         "public": true,
         "types": [
@@ -4410,6 +4577,13 @@ module.exports = {
       }
     },
     "computed": {
+      "classesInstance": {
+        "public": false,
+        "types": [
+          "MergeClasses"
+        ],
+        "description": "The classes instance (for testing purpose)."
+      },
       "classes": {
         "public": true,
         "types": [
@@ -4568,6 +4742,13 @@ module.exports = {
       }
     },
     "computed": {
+      "classesInstance": {
+        "public": false,
+        "types": [
+          "MergeClasses"
+        ],
+        "description": "The classes instance (for testing purpose)."
+      },
       "classes": {
         "public": true,
         "types": [
@@ -4814,6 +4995,13 @@ module.exports = {
       }
     },
     "computed": {
+      "classesInstance": {
+        "public": false,
+        "types": [
+          "MergeClasses"
+        ],
+        "description": "The classes instance (for testing purpose)."
+      },
       "classes": {
         "public": true,
         "types": [
@@ -4912,6 +5100,13 @@ module.exports = {
         ],
         "description": "The computed size of the component."
       },
+      "View": {
+        "public": false,
+        "types": [
+          "string"
+        ],
+        "description": "The view."
+      },
       "theme": {
         "public": true,
         "types": [
@@ -4921,6 +5116,13 @@ module.exports = {
       }
     },
     "computed": {
+      "classesInstance": {
+        "public": false,
+        "types": [
+          "MergeClasses"
+        ],
+        "description": "The classes instance (for testing purpose)."
+      },
       "classes": {
         "public": true,
         "types": [
@@ -5073,6 +5275,13 @@ module.exports = {
         ],
         "description": "The computed size of the component."
       },
+      "View": {
+        "public": false,
+        "types": [
+          "string"
+        ],
+        "description": "The view."
+      },
       "theme": {
         "public": true,
         "types": [
@@ -5082,6 +5291,13 @@ module.exports = {
       }
     },
     "computed": {
+      "classesInstance": {
+        "public": false,
+        "types": [
+          "MergeClasses"
+        ],
+        "description": "The classes instance (for testing purpose)."
+      },
       "classes": {
         "public": true,
         "types": [

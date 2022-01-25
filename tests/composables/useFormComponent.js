@@ -1,7 +1,6 @@
 import { createForm, findAllComponents, findAll, createElement, classesToArray } from 'test-helpers'
 import defaultTheme from './../../themes/vueform'
 import tailwindTheme from './../../themes/tailwind'
-import { mergeComponentClasses, mergeClass } from './../../src/utils/mergeClasses'
 import { nextTick } from 'composition-api'
 import flushPromises from 'flush-promises'
 

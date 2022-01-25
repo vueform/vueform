@@ -1,4 +1,4 @@
-import MergeFormClasses from './../../src/utils/mergeFormClasses'
+import MergeClasses from './../../src/utils/mergeClasses'
 
 const $container = (classes, { Size }) => ([
   classes.container,
@@ -131,9 +131,9 @@ const component$ = {
   }
 }
 
-describe('mergeFormClasses', () => {
+describe('mergeClasses', () => {
   it('should convert template classes to array', () => {
-    let classes = new MergeFormClasses({
+    let classes = new MergeClasses({
       component: 'SelectElement',
       component$,
     })
@@ -166,7 +166,7 @@ describe('mergeFormClasses', () => {
   })
 
   it('should convert theme classes to array', () => {
-    let classes = new MergeFormClasses({
+    let classes = new MergeClasses({
       component: 'SelectElement',
       component$: {
         value: {
@@ -234,7 +234,7 @@ describe('mergeFormClasses', () => {
       $container,
     })
     
-    classes = new MergeFormClasses({
+    classes = new MergeClasses({
       component: 'SelectElement',
       component$: {
         value: {
@@ -280,7 +280,7 @@ describe('mergeFormClasses', () => {
   })
 
   it('should return dynamic classes', () => {
-    let classes = new MergeFormClasses({
+    let classes = new MergeClasses({
       component: 'SelectElement',
       component$,
     })
@@ -291,7 +291,7 @@ describe('mergeFormClasses', () => {
   })
 
   it('should addClasses', () => {
-    let classes = new MergeFormClasses({
+    let classes = new MergeClasses({
       component: 'SelectElement',
       component$,
       merge: [
@@ -343,7 +343,7 @@ describe('mergeFormClasses', () => {
   })
 
   it('should addClass', () => {
-    let classes = new MergeFormClasses({
+    let classes = new MergeClasses({
       component: 'SelectElement',
       component$: {
         value: {
@@ -391,7 +391,7 @@ describe('mergeFormClasses', () => {
       ['deep-clear', {'deep-clear-add':true}]
     )
 
-    classes = new MergeFormClasses({
+    classes = new MergeClasses({
       component: 'SelectElement',
       component$: {
         value: {
@@ -429,7 +429,7 @@ describe('mergeFormClasses', () => {
   })
 
   it('should removeClasses', () => {
-    let classes = new MergeFormClasses({
+    let classes = new MergeClasses({
       component: 'SelectElement',
       component$,
       merge: [
@@ -483,7 +483,7 @@ describe('mergeFormClasses', () => {
   })
 
   it('should removeClass', () => {
-    let classes = new MergeFormClasses({
+    let classes = new MergeClasses({
       component: 'SelectElement',
       component$: {
         value: {
@@ -531,7 +531,7 @@ describe('mergeFormClasses', () => {
       $container,
     })
 
-    classes = new MergeFormClasses({
+    classes = new MergeClasses({
       component: 'SelectElement',
       component$: {
         value: {
@@ -569,7 +569,7 @@ describe('mergeFormClasses', () => {
   })
 
   it('should replaceClasses', () => {
-    let classes = new MergeFormClasses({
+    let classes = new MergeClasses({
       component: 'SelectElement',
       component$,
       merge: [
@@ -622,7 +622,7 @@ describe('mergeFormClasses', () => {
   })
 
   it('should replaceClass', () => {
-    let classes = new MergeFormClasses({
+    let classes = new MergeClasses({
       component: 'SelectElement',
       component$: {
         value: {
@@ -671,7 +671,7 @@ describe('mergeFormClasses', () => {
       $container,
     })
 
-    classes = new MergeFormClasses({
+    classes = new MergeClasses({
       component: 'SelectElement',
       component$: {
         value: {
@@ -709,7 +709,7 @@ describe('mergeFormClasses', () => {
   })
 
   it('should overrideClasses', () => {
-    let classes = new MergeFormClasses({
+    let classes = new MergeClasses({
       component: 'SelectElement',
       component$,
       merge: [
@@ -773,7 +773,7 @@ describe('mergeFormClasses', () => {
   })
 
   it('should overrideClass', () => {
-    let classes = new MergeFormClasses({
+    let classes = new MergeClasses({
       component: 'SelectElement',
       component$: {
         value: {
@@ -835,7 +835,7 @@ describe('mergeFormClasses', () => {
   })
 
   it('should merge presets', () => {
-    let classes = new MergeFormClasses({
+    let classes = new MergeClasses({
       component: 'SelectElement',
       component$,
       config: {
@@ -882,7 +882,7 @@ describe('mergeFormClasses', () => {
   })
 
   it('should add class helpers', () => {
-    let classes = new MergeFormClasses({
+    let classes = new MergeClasses({
       component: 'SelectElement',
       component$,
       config: {
@@ -918,7 +918,7 @@ describe('mergeFormClasses', () => {
   })
 
   it('should template & theme classes', () => {
-    let classes = new MergeFormClasses({
+    let classes = new MergeClasses({
       component: 'SelectElement',
       component$: {
         value: {
@@ -998,7 +998,7 @@ describe('mergeFormClasses', () => {
   })
 
   it('should merge add/remove/replace/overrideClasses & usePresets from config', () => {
-    let classes = new MergeFormClasses({
+    let classes = new MergeClasses({
       component: 'SelectElement',
       component$,
       config: {
@@ -1064,7 +1064,7 @@ describe('mergeFormClasses', () => {
 
   it('should throw an error on addClasses when conditional classes are merged to an object class', () => {
     expect(() => {
-      new MergeFormClasses({
+      new MergeClasses({
         component: 'SelectElement',
         component$,
         merge: [
@@ -1080,7 +1080,7 @@ describe('mergeFormClasses', () => {
     }).toThrowError('Cannot add conditional class to SelectElement: \'conditional\'')
 
     expect(() => {
-      new MergeFormClasses({
+      new MergeClasses({
         component: 'SelectElement',
         component$,
         merge: [
@@ -1098,7 +1098,7 @@ describe('mergeFormClasses', () => {
     }).toThrowError('Cannot add conditional class to SelectElement: \'deep.conditional\'')
 
     expect(() => {
-      new MergeFormClasses({
+      new MergeClasses({
         component: 'SelectElement',
         component$,
         merge: [
@@ -1122,7 +1122,7 @@ describe('mergeFormClasses', () => {
     let computedTrue = new function ComputedRefImpl() {}
     let refTrue = new function RefImpl() {}
 
-    let classes = new MergeFormClasses({
+    let classes = new MergeClasses({
       component: 'SelectElement',
       component$,
       merge: [
@@ -1172,7 +1172,7 @@ describe('mergeFormClasses', () => {
   })
   
   it('should use view classes from theme if available', () => {
-    let classes = new MergeFormClasses({
+    let classes = new MergeClasses({
       component: 'SelectElement',
       view: 'alt',
       component$: {
@@ -1218,7 +1218,7 @@ describe('mergeFormClasses', () => {
       container: ['container-theme-alt']
     })
 
-    classes = new MergeFormClasses({
+    classes = new MergeClasses({
       component: 'SelectElement',
       view: 'alt2',
       component$: {
@@ -1266,7 +1266,7 @@ describe('mergeFormClasses', () => {
   })
   
   it('should use view classes from template if available', () => {
-    let classes = new MergeFormClasses({
+    let classes = new MergeClasses({
       component: 'SelectElement',
       view: 'alt',
       templates: {
@@ -1302,7 +1302,7 @@ describe('mergeFormClasses', () => {
       container: ['container-template-alt']
     })
 
-    classes = new MergeFormClasses({
+    classes = new MergeClasses({
       component: 'SelectElement',
       view: 'alt2',
       component$: {

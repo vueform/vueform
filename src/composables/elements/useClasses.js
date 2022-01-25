@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import { computed, toRefs, ref } from 'composition-api'
-import MergeFormClasses from './../../utils/mergeFormClasses'
+import MergeClasses from './../../utils/mergeClasses'
 
 const base = function(props, context, dependencies, options = {})
 {
@@ -19,11 +19,11 @@ const base = function(props, context, dependencies, options = {})
   /**
    * The classes instance (for testing purpose).
    * 
-   * @type {MergeFormClasses}
+   * @type {MergeClasses}
    * @private
    */
   const classesInstance = computed(() => {
-    return (new MergeFormClasses({
+    return (new MergeClasses({
       component: componentName.value,
       component$: el$,
       theme: theme.value,

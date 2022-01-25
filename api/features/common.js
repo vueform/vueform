@@ -1,30 +1,4 @@
 export default {
-  "$Size": {
-    "base": {
-      "inject": {
-        "Size": {
-          "public": true,
-          "types": [
-            "component"
-          ],
-          "description": "The computed size of the component."
-        }
-      }
-    }
-  },
-  "$View": {
-    "base": {
-      "inject": {
-        "View": {
-          "public": false,
-          "types": [
-            "string"
-          ],
-          "description": "The view."
-        }
-      }
-    }
-  },
   "conditions": {
     "base": {
       "computed": {
@@ -91,6 +65,13 @@ export default {
         }
       },
       "computed": {
+        "classesInstance": {
+          "public": false,
+          "types": [
+            "MergeClasses"
+          ],
+          "description": "The classes instance (for testing purpose)."
+        },
         "classes": {
           "public": true,
           "types": [
@@ -254,6 +235,13 @@ export default {
         }
       },
       "computed": {
+        "classesInstance": {
+          "public": false,
+          "types": [
+            "object"
+          ],
+          "description": "An object containaing all the component's classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides."
+        },
         "classes": {
           "public": true,
           "types": [
@@ -505,6 +493,19 @@ export default {
       }
     }
   },
+  "size": {
+    "base": {
+      "inject": {
+        "Size": {
+          "public": true,
+          "types": [
+            "component"
+          ],
+          "description": "The computed size of the component."
+        }
+      }
+    }
+  },
   "theme": {
     "base": {
       "inject": {
@@ -514,6 +515,19 @@ export default {
             "object"
           ],
           "description": "The global theme object, which contains all the default templates and classes."
+        }
+      }
+    }
+  },
+  "view": {
+    "base": {
+      "inject": {
+        "View": {
+          "public": false,
+          "types": [
+            "string"
+          ],
+          "description": "The view."
         }
       }
     }
