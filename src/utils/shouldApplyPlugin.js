@@ -1,6 +1,12 @@
 import _ from 'lodash'
 
-export default function (name, apply) {
+export default function (name, plugin) {
+  if (!plugin.apply && _.difference(Object.keys(plugin), ['config', 'install']).length > 0) {
+    return true
+  }
+
+  let apply = plugin.apply
+
   if (!Array.isArray(apply)) {
     apply = [apply]
   }

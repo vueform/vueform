@@ -63,6 +63,7 @@ export default function createForm (data, options = {}, render = null) {
     templates: finalConfig.templates,
     rules: finalConfig.rules,
     theme: finalConfig.theme,
+    plugins: finalConfig.plugins,
     locales: options.locales || {
       en: en
     },

@@ -112,8 +112,8 @@ export default function(config, components) {
           let setup = comp.setup(props, context)
 
           this.options.plugins.forEach((plugin) => {
-            if (shouldApplyPlugin(name, plugin.apply)) {
-              setup = plugin.setup(setup, props, context)
+            if (plugin.setup && shouldApplyPlugin(name, plugin)) {
+              setup = plugin.setup(props, context, setup)
             }
           })
 
@@ -133,8 +133,8 @@ export default function(config, components) {
         }
 
         this.options.plugins.forEach((plugin) => {
-          _.each(_.without(Object.keys(plugin), 'setup', 'apply', 'config'), (key) => {
-            if (plugin[key] && shouldApplyPlugin(name, plugin.apply)) {
+          _.each(_.without(Object.keys(plugin), 'setup', 'apply', 'config', 'install'), (key) => {
+            if (plugin[key] && shouldApplyPlugin(name, plugin)) {
               if (Array.isArray(plugin[key])) {
                 let base = component[key] || []
                 component[key] = base.concat(plugin[key])
@@ -210,6 +210,16 @@ export default function(config, components) {
         this.config(options)
       }
 
+      this.options.plugins.forEach((plugin) => {
+        if (plugin.config) {
+          let config = plugin.config(this.options)
+
+          if (config) {
+            this.options = config
+          }
+        }
+      })
+
       this.initAxios()
       this.initI18n()
       this.registerComponents(appOrVue)
@@ -269,6 +279,12 @@ export default function(config, components) {
           })
           break
       }
+
+      this.options.plugins.forEach((plugin) => {
+        if (plugin.install) {
+          plugin.install(appOrVue, this.options)
+        }
+      })
     }
   }
 
