@@ -1,4 +1,5 @@
-import { onMounted, watch } from 'composition-api'
+import { onMounted } from 'composition-api'
+import useElement from './../../composables/useElement'
 import useForm$ from './../../composables/useForm$'
 import useTheme from './../../composables/useTheme'
 import useLayout from './../../composables/elements/useLayout'
@@ -50,135 +51,45 @@ export default {
     },
   },
   setup(props, context) {
-    const form$ = useForm$(props, context)
-    const theme = useTheme(props, context)
-    const layout = useLayout(props, context)
-    const path = usePath(props, context)
-    const nullValue = useNullValue(props, context)
+    context.features = [
+      useForm$,
+      useTheme,
+      useLayout,
+      usePath,
+      useNullValue,
+      useEvents,
+      useBaseElement,
+      useChildren,
+      useDefault,
+      useLabel,
+      useValidation,
+      useValue,
+      useElements,
+      useConditions,
+      useView,
+      useTemplates,
+      useClasses,
+      useColumns,
+      useSlots,
+      useData,
+    ]
+    context.slots = [
+      'label', 'info', 'description',
+      'before', 'between', 'after',
+    ]
+    context.watchValue = false
+    context.initValidation = false
 
-    const events = useEvents(props, context, {}, {
-      events: context.emits,
-    })
+    const element = useElement(props, context)
 
-    const baseElement = useBaseElement(props, context, {
-      form$: form$.form$,
-      fire: events.fire,
-    })
-
-    const children = useChildren(props, context, {
-      form$: form$.form$,
-    })
-
-    const default_ = useDefault(props, context, {
-      form$: form$.form$,
-      parent: path.parent,
-    })
-
-    const label = useLabel(props, context, {
-      form$: form$.form$,
-      el$: baseElement.el$,
-    })
-
-    const validation = useValidation(props, context, {
-      form$: form$.form$,
-      children$: children.children$,
-      path: path.path,
-    })
-
-    const value = useValue(props, context, {
-      dataPath: path.dataPath,
-      form$: form$.form$,
-      children$Array: children.children$Array,
-      parent: path.parent,
-    })
-
-    const elements = useElements(props, context, {
-      theme: theme.theme,
-    })
-
-    const conditions = useConditions(props, context, {
-      form$: form$.form$,
-      path: path.path,
-    })
-
-    const view = useView(props, context, {
-      available: conditions.available,
-      active: baseElement.active,
-      form$: form$.form$,
-      parent: path.parent,
-    })
-
-    const templates = useTemplates(props, context, {
-      theme: theme.theme,
-      form$: form$.form$,
-      View: view.View,
-    })
-
-    const classes = useClasses(props, context, {
-      form$: form$.form$,
-      theme: theme.theme,
-      Templates: templates.Templates,
-      el$: baseElement.el$,
-      View: view.View,
-    })
-
-    const columns = useColumns(props, context, {
-      form$: form$.form$,
-      theme: theme.theme,
-      hasLabel: label.hasLabel,
-    })
-
-    const slots = useSlots(props, context, {
-      form$: form$.form$,
-      el$: baseElement.el$,
-      Templates: templates.Templates,
-    }, {
-      slots: [
-        'label', 'info', 'description',
-        'before', 'between', 'after',
-      ]
-    })
-
-    const data = useData(props, context, {
-      form$: form$.form$,
-      available: conditions.available,
-      value: value.value,
-      clean: validation.clean,
-      validate: validation.validate,
-      resetValidators: validation.resetValidators,
-      children$: children.children$,
-    })
-
-    useWatchValue(props, context, {
-      fire: events.fire,
-      value: value.value,
-    })
+    useWatchValue(props, context, element)
     
     onMounted(() => {
-      validation.initMessageBag()  
+      element.initMessageBag()  
     })
 
     return {
-      ...form$,
-      ...theme,
-      ...layout,
-      ...path,
-      ...conditions,
-      ...value,
-      ...label,
-      ...classes,
-      ...columns,
-      ...baseElement,
-      ...view,
-      ...templates,
-      ...slots,
-      ...data,
-      ...children,
-      ...elements,
-      ...validation,
-      ...events,
-      ...nullValue,
-      ...default_,
+      ...element
     }
-  } 
+  },
 }

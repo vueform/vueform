@@ -12,11 +12,12 @@ const base = function (props, context, dependencies, options_ = {})
   const form$ = dependencies.form$
   const value = dependencies.value
   const clear = dependencies.clear
+  const input = dependencies.input
 
   // ============== PRIVATE ===============
 
   const inputElement = () => {
-    return options_.input.value
+    return options_.input ? options_.input.value : input.value
   }
 
   // ================ DATA ================

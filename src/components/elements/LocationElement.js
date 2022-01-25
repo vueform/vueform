@@ -1,4 +1,5 @@
-import { toRefs, onMounted, watch } from 'composition-api'
+import { toRefs, onMounted } from 'composition-api'
+import useElement from './../../composables/useElement'
 import useForm$ from './../../composables/useForm$'
 import useFieldId from './../../composables/elements/useFieldId'
 import useTheme from './../../composables/useTheme'
@@ -115,179 +116,52 @@ export default {
   setup(props, context) {
     const { displayKey } = toRefs(props)
 
-    const form$ = useForm$(props, context)
-    const theme = useTheme(props, context)
-    const layout = useLayout(props, context)
-    const input = useInput(props, context)
-    const path = usePath(props, context)
-    const disabled = useDisabled(props, context)
-    const nullValue = useNullValue(props, context)
-
-    const fieldId = useFieldId(props, context, {
-      path: path.path,
-    })
-
-    const floating = useFloating(props, context, {
-      form$: form$.form$,
-    })
-
-    const events = useEvents(props, context, {}, {
-      events: context.emits,
-    })
-
-    const baseElement = useBaseElement(props, context, {
-      form$: form$.form$,
-      fire: events.fire,
-    })
+    context.features = [
+      useForm$,
+      useTheme,
+      useLayout,
+      useInput,
+      usePath,
+      useDisabled,
+      useNullValue,
+      useFieldId,
+      useFloating,
+      useEvents,
+      useBaseElement,
+      useAddons,
+      useDefault,
+      useValue,
+      useValidation,
+      useConditions,
+      useData,
+      useLocation,
+      useEmpty,
+      useLabel,
+      useGenericName,
+      useView,
+      useTemplates,
+      useClasses,
+      useColumns,
+      useSlots,
+    ]
+    context.slots = [
+      'label', 'info', 'description', 'before',
+      'between', 'after', 'addon-before', 'addon-after'
+    ]
+    context.watchValue = false
     
-    const addons = useAddons(props, context, {
-      el$: baseElement.el$,
-    })
-
-    const default_ = useDefault(props, context, {
-      nullValue: nullValue.nullValue,
-      form$: form$.form$,
-      dataPath: path.dataPath,
-      parent: path.parent,
-    })
-
-    const value = useValue(props, context, {
-      defaultValue: default_.defaultValue,
-      dataPath: path.dataPath,
-      form$: form$.form$,
-      parent: path.parent,
-    })
-
-    const validation = useValidation(props, context, {
-      form$: form$.form$,
-      path: path.path,
-      value: value.value,
-    })
-
-    const conditions = useConditions(props, context, {
-      form$: form$.form$,
-      path: path.path,
-    })
-
-    const data = useData(props, context, {
-      form$: form$.form$,
-      available: conditions.available,
-      value: value.value,
-      resetValidators: validation.resetValidators,
-      defaultValue: default_.defaultValue,
-      nullValue: nullValue.nullValue,
-    })
-
-    const location = useLocation(props, context, {
-      form$: form$.form$,
-      value: value.value,
-      input: input.input,
-      clear: data.clear,
-    }, {
-      input: input.input,
-    })
-
-    const empty = useEmpty(props, context, {
-      value: value.value,
-      nullValue: nullValue.nullValue,
-    })
-
-    const label = useLabel(props, context, {
-      form$: form$.form$,
-      el$: baseElement.el$,
-    })
-
-    const genericName = useGenericName(props, context, {
-      label: label.label,
-      form$: form$.form$,
-    })
-
-    const view = useView(props, context, {
-      available: conditions.available,
-      active: baseElement.active,
-      form$: form$.form$,
-      parent: path.parent,
-    })
-    
-    const templates = useTemplates(props, context, {
-      theme: theme.theme,
-      form$: form$.form$,
-      View: view.View,
-    })
-
-    const classes = useClasses(props, context, {
-      form$: form$.form$,
-      theme: theme.theme,
-      isDisabled: disabled.isDisabled,
-      Templates: templates.Templates,
-      el$: baseElement.el$,
-      View: view.View,
-    })
-
-    const columns = useColumns(props, context, {
-      form$: form$.form$,
-      theme: theme.theme,
-      hasLabel: label.hasLabel,
-    })
-
-    const slots = useSlots(props, context, {
-      form$: form$.form$,
-      el$: baseElement.el$,
-      Templates: templates.Templates,
-    }, {
-      slots: [
-        'label', 'info', 'description', 'before',
-        'between', 'after', 'addon-before', 'addon-after'
-      ]
-    })
+    const element = useElement(props, context)
 
     onMounted(() => {
-      if (value.value.value[displayKey.value]) {
-        input.input.value.value = value.value.value[displayKey.value]
+      if (element.value.value[displayKey.value]) {
+        element.input.value.value = element.value.value[displayKey.value]
       }
     })
 
-    useWatchValue(props, context, {
-      form$: form$.form$,
-      value: value.value,
-      fire: events.fire,
-      dirt: validation.dirt,
-      validate: validation.validate,
-      input: input.input,
-    })
+    useWatchValue(props, context, element)
 
-    onMounted(() => {
-      validation.initMessageBag()
-      validation.initValidation()
-    })
-
-    return {
-      ...form$,
-      ...fieldId,
-      ...theme,
-      ...layout,
-      ...input,
-      ...addons,
-      ...path,
-      ...conditions,
-      ...value,
-      ...validation,
-      ...label,
-      ...classes,
-      ...columns,
-      ...baseElement,
-      ...genericName,
-      ...view,
-      ...templates,
-      ...slots,
-      ...disabled,
-      ...events,
-      ...data,
-      ...empty,
-      ...default_,
-      ...nullValue,
-      ...location,
-      ...floating,
+    return { 
+      ...element
     }
-  }
+  },
 }

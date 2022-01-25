@@ -1,4 +1,5 @@
 import { onMounted } from 'composition-api'
+import useElement from './../../composables/useElement'
 import useForm$ from './../../composables/useForm$'
 import useTheme from './../../composables/useTheme'
 import useLayout from './../../composables/elements/useLayout'
@@ -29,7 +30,7 @@ import HasView from './../../mixins/HasView'
 import HasChange from './../../mixins/HasChange'
 import HasData from './../../mixins/HasData'
 
-const element = {
+export default {
   name: 'AddressElement',
   mixins: [BaseElement, HasView, HasChange, HasData],
   emits: ['beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
@@ -77,153 +78,47 @@ const element = {
     },
   },
   setup(props, context) {
-    const form$ = useForm$(props, context)
-    const theme = useTheme(props, context)
-    const layout = useLayout(props, context)
-    const path = usePath(props, context)
-    const disabled = useDisabled(props, context)
-    const nullValue = useNullValue(props, context)
-    
-    const events = useEvents(props, context, {}, {
-      events: context.emits,
-    })
+    context.features = [
+      useForm$,
+      useTheme,
+      useLayout,
+      usePath,
+      useDisabled,
+      useNullValue,
+      useEvents,
+      useBaseElement,
+      useDefault,
+      useValue,
+      useLabel,
+      useChildren,
+      useElements,
+      useConditions,
+      useValidation,
+      useTemplates,
+      useClasses,
+      useColumns,
+      useView,
+      useSlots,
+      useData,
+      useLocation,
+    ]
+    context.slots = [
+      'label',  'info', 'description',
+      'before', 'between', 'after', 'default',
+    ]
+    context.watchValue = false
+    context.initValidation = false
 
-    const baseElement = useBaseElement(props, context, {
-      form$: form$.form$,
-      fire: events.fire,
-    })
+    const element = useElement(props, context)
 
-    const default_ = useDefault(props, context, {
-      nullValue: nullValue.nullValue,
-      form$: form$.form$,
-      parent: path.parent,
-    })
-
-    const value = useValue(props, context, {
-      defaultValue: default_.defaultValue,
-      dataPath: path.dataPath,
-      form$: form$.form$,
-      parent: path.parent,
-    })
-
-    const label = useLabel(props, context, {
-      form$: form$.form$,
-      el$: baseElement.el$,
-    })
-
-    const children = useChildren(props, context, {
-      form$: form$.form$,
-      path: path.path,
-    })
-
-    const elements = useElements(props, context, {
-      theme: theme.theme,
-    })
-
-    const conditions = useConditions(props, context, {
-      form$: form$.form$,
-      path: path.path,
-    })
-
-    const validation = useValidation(props, context, {
-      form$: form$.form$,
-      value: value.value,
-      children$: children.children$,
-    })
-
-    const templates = useTemplates(props, context, {
-      theme: theme.theme,
-      form$: form$.form$
-    })
-
-    const classes = useClasses(props, context, {
-      form$: form$.form$,
-      theme: theme.theme,
-      Templates: templates.Templates,
-      el$: baseElement.el$,
-    })
-
-    const columns = useColumns(props, context, {
-      form$: form$.form$,
-      theme: theme.theme,
-      hasLabel: label.hasLabel,
-    })
-
-    const view = useView(props, context, {
-      available: conditions.available,
-      active: baseElement.active,
-      form$: form$.form$,
-      parent: path.parent,
-    })
-
-    const slots = useSlots(props, context, {
-      form$: form$.form$,
-      el$: baseElement.el$,
-      Templates: templates.Templates,
-    }, {
-      slots: [
-        'label',  'info', 'description',
-        'before', 'between', 'after',
-      ]
-    })
-
-    const data = useData(props, context, {
-      form$: form$.form$,
-      available: conditions.available,
-      value: value.value,
-      clean: validation.clean,
-      validate: validation.validate,
-      resetValidators: validation.resetValidators,
-      children$: children.children$,
-    })
-
-    const location = useLocation(props, context, {
-      form$: form$.form$,
-      value: value.value,
-      fields: children.fields,
-      children$: children.children$,
-    })
-    
-    useWatchValue(props, context, {
-      form$: form$.form$,
-      value: value.value,
-      fire: events.fire,
-      dirt: validation.dirt,
-      validate: validation.validate,
-    })
+    useWatchValue(props, context, element)
 
     onMounted(() => {
-      validation.initMessageBag()  
+      element.initMessageBag()  
     })
 
     return {
-      ...form$,
-      ...theme,
-      ...layout,
-      ...layout,
-      ...path,
-      ...conditions,
-      ...value,
-      ...label,
-      ...classes,
-      ...columns,
-      ...baseElement,
-      ...view,
-      ...templates,
-      ...slots,
-      ...data,
-      ...children,
-      ...elements,
-      ...validation,
-      ...location,
-      ...disabled,
-      ...default_,
-      ...events,
-      ...nullValue,
+      ...element
     }
-  }
+  },
 }
-
-export default element
-
-export { element }

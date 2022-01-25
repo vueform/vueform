@@ -1,4 +1,4 @@
-import { onMounted, watch } from 'composition-api'
+import useElement from './../../composables/useElement'
 import useForm$ from './../../composables/useForm$'
 import useTheme from './../../composables/useTheme'
 import useLayout from './../../composables/elements/useLayout'
@@ -156,214 +156,51 @@ export default {
     },
   },
   setup(props, context) {
-    const form$ = useForm$(props, context)
-    const theme = useTheme(props, context)
-    const layout = useLayout(props, context)
-    const path = usePath(props, context)
-    const disabled = useDisabled(props, context)
-    const nullValue = useNullValue(props, context)
-    const children = useChildren(props, context)
-    const input = useInput(props, context)
-    const sorting = useSorting(props, context)
+    context.features = [
+      useForm$,
+      useTheme,
+      useLayout,
+      usePath,
+      useDisabled,
+      useNullValue,
+      useChildren,
+      useInput,
+      useSorting,
+      usePrototype,
+      useEvents,
+      useBaseElement,
+      useDefault,
+      useLabel,
+      useGenericName,
+      useValidation,
+      useValue,
+      useEmpty,
+      useElements,
+      useConditions,
+      useColumns,
+      useView,
+      useTemplates,
+      useSlots,
+      useOrder,
+      useData,
+      useMultifile,
+      useControls,
+      useDrop,
+      useClasses,
+      useSort,
+    ]
+    context.slots = [
+      'label', 'info', 'description',
+      'before', 'between', 'after'
+    ]
+    context.watchValue = false
 
-    const prototype = usePrototype(props, context, {
-      isDisabled: disabled.isDisabled,
-    })
+    const element = useElement(props, context)
 
-    const events = useEvents(props, context, {}, {
-      events: context.emits,
-    })
-
-    const baseElement = useBaseElement(props, context, {
-      form$: form$.form$,
-      fire: events.fire,
-    })
-
-    const default_ = useDefault(props, context, {
-      nullValue: nullValue.nullValue,
-      form$: form$.form$,
-      dataPath: path.dataPath,
-      parent: path.parent,
-    })
-
-    const label = useLabel(props, context, {
-      form$: form$.form$,
-      el$: baseElement.el$,
-    })
-
-    const genericName = useGenericName(props, context, {
-      label: label.label,
-      form$: form$.form$,
-    })
-
-    const validation = useValidation(props, context, {
-      form$: form$.form$,
-      children$: children.children$,
-      form$: form$.form$,
-      path: path.path,
-    })
-
-    const value = useValue(props, context, {
-      defaultValue: default_.defaultValue,
-      dataPath: path.dataPath,
-      form$: form$.form$,
-      parent: path.parent,
-    }, { init: false })
-
-    const empty = useEmpty(props, context, {
-      value: value.value,
-      nullValue: nullValue.nullValue,
-    })
-
-    const elements = useElements(props, context, {
-      theme: theme.theme,
-    })
-
-    const conditions = useConditions(props, context, {
-      form$: form$.form$,
-      path: path.path,
-    })
-
-    const columns = useColumns(props, context, {
-      form$: form$.form$,
-      theme: theme.theme,
-      hasLabel: label.hasLabel,
-    })
-
-    const view = useView(props, context, {
-      available: conditions.available,
-      active: baseElement.active,
-      form$: form$.form$,
-      parent: path.parent,
-    })
-
-    const templates = useTemplates(props, context, {
-      theme: theme.theme,
-      form$: form$.form$,
-      View: view.View,
-    })
-
-    const slots = useSlots(props, context, {
-      form$: form$.form$,
-      el$: baseElement.el$,
-      Templates: templates.Templates,
-    }, {
-      slots: [
-        'label', 'info', 'description',
-        'before', 'between', 'after'
-      ]
-    })
-
-    const order = useOrder(props, context, {
-      isObject: prototype.isObject,
-      children$: children.children$,
-      form$: form$.form$,
-    })
-
-    const data = useData(props, context, {
-      form$: form$.form$,
-      available: conditions.available,
-      value: value.value,
-      resetValidators: validation.resetValidators,
-      defaultValue: default_.defaultValue,
-      nullValue: nullValue.nullValue,
-      children$: children.children$,
-      isDisabled: disabled.isDisabled,
-      orderByName: order.orderByName,
-      refreshOrderStore: order.refreshOrderStore,
-      dataPath: path.dataPath,
-      nullValue: nullValue.nullValue,
-      defaultValue: default_.defaultValue,
-      fire: events.fire,
-    })
-
-    const multifile = useMultifile(props, context, {
-      isDisabled: disabled.isDisabled,
-      input: input.input,
-      add: data.add,
-      isObject: prototype.isObject,
-      storeFileName: prototype.storeFileName,
-      children$: children.children$,
-    })
-
-    const controls = useControls(props, context, {
-      isDisabled: disabled.isDisabled,
-      hasUploading: multifile.hasUploading,
-    })
-
-    const drop = useDrop(props, context, {
-      add: data.add,
-      isDisabled: disabled.isDisabled,
-      isObject: prototype.isObject,
-      storeFileName: prototype.storeFileName,
-      accept: multifile.accept,
-    })
-
-    const classes = useClasses(props, context, {
-      form$: form$.form$,
-      theme: theme.theme,
-      isDisabled: disabled.isDisabled,
-      sorting: sorting.sorting,
-      preparing: multifile.preparing,
-      Templates: templates.Templates,
-      el$: baseElement.el$,
-      View: view.View,
-    })
-
-    const sort = useSort(props, context, {
-      isDisabled: disabled.isDisabled,
-      fire: events.fire,
-      refreshOrderStore: order.refreshOrderStore,
-      value: value.value,
-      sorting: sorting.sorting,
-      classes: classes.classes,
-    })
-
-    useWatchValue(props, context, {
-      form$: form$.form$,
-      value: value.value,
-      fire: events.fire,
-      dirt: validation.dirt,
-      validateValidators: validation.validateValidators,
-    })
-
-    onMounted(() => {
-      validation.initMessageBag()
-      validation.initValidation()
-    })
+    useWatchValue(props, context, element)
 
     return {
-      ...form$,
-      ...theme,
-      ...layout,
-      ...path,
-      ...disabled,
-      ...nullValue,
-      ...label,
-      ...baseElement,
-      ...genericName,
-      ...children,
-      ...value,
-      ...elements,
-      ...conditions,
-      ...validation,
-      ...classes,
-      ...columns,
-      ...view,
-      ...templates,
-      ...slots,
-      ...data,
-      ...events,
-      ...sort,
-      ...sorting,
-      ...default_,
-      ...order,
-      ...prototype,
-      ...multifile,
-      ...input,
-      ...drop,
-      ...empty,
-      ...controls,
+      ...element
     }
-  } 
+  },
 }

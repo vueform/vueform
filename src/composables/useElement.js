@@ -1,12 +1,13 @@
 import { onMounted } from 'composition-api'
 import useWatchValue from './elements/useWatchValue'
 
-const base = function(props, context)
+const base = function(props, context, options_ = {})
 {
   // =============== INJECT ===============
 
   let deps = {}
   let options = {
+    ...options_,
     events: context.emits,
     slots: context.slots,
   }
@@ -19,13 +20,7 @@ const base = function(props, context)
   })
 
   if (context.watchValue !== false) {
-    useWatchValue(props, context, {
-      form$: deps.form$,
-      value: deps.value,
-      fire: deps.fire,
-      dirt: deps.dirt,
-      validate: deps.validate,
-    })
+    useWatchValue(props, context, deps)
   }
 
   if (context.initValidation !== false) {

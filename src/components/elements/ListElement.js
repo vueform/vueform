@@ -1,4 +1,4 @@
-import { onMounted, watch, ref } from 'composition-api'
+import useElement from './../../composables/useElement'
 import useForm$ from './../../composables/useForm$'
 import useTheme from './../../composables/useTheme'
 import useLayout from './../../composables/elements/useLayout'
@@ -138,192 +138,50 @@ export default {
     },
   },
   setup(props, context) {
-    const form$ = useForm$(props, context)
-    const theme = useTheme(props, context)
-    const layout = useLayout(props, context)
-    const path = usePath(props, context)
-    const disabled = useDisabled(props, context)
-    const nullValue = useNullValue(props, context)
-    const prototype = usePrototype(props, context)
-    const children = useChildren(props, context)
-    const sorting = useSorting(props, context)
-    
-    const order = useOrder(props, context, {
-      form$: form$.form$,
+    context.features = [
+      useForm$,
+      useTheme,
+      useLayout,
+      usePath,
+      useDisabled,
+      useNullValue,
+      usePrototype,
+      useChildren,
+      useSorting,
+      useOrder,
+      useEvents,
+      useBaseElement,
+      useDefault,
+      useLabel,
+      useGenericName,
+      useElements,
+      useConditions,
+      useValidation,
+      useValue,
+      useControls,
+      useEmpty,
+      useColumns,
+      useView,
+      useTemplates,
+      useClasses,
+      useSlots,
+      useData,
+      useSort,
+    ]
+    context.slots = [
+      'label', 'info', 'description',
+      'before', 'between', 'after',
+    ]
+    context.watchValue = false
+
+    const element = useElement(props, context, {
+      init: false,
     })
 
-    const events = useEvents(props, context, {}, {
-      events: context.emits,
-    })
-
-    const baseElement = useBaseElement(props, context, {
-      form$: form$.form$,
-      fire: events.fire,
-    })
-
-    const default_ = useDefault(props, context, {
-      nullValue: nullValue.nullValue,
-      form$: form$.form$,
-      dataPath: path.dataPath,
-      parent: path.parent,
-    })
-
-    const label = useLabel(props, context, {
-      form$: form$.form$,
-      el$: baseElement.el$,
-    })
-
-    const genericName = useGenericName(props, context, {
-      label: label.label,
-      form$: form$.form$,
-    })
-
-    const elements = useElements(props, context, {
-      theme: theme.theme,
-    })
-
-    const conditions = useConditions(props, context, {
-      form$: form$.form$,
-      path: path.path,
-    })
-
-    const validation = useValidation(props, context, {
-      form$: form$.form$,
-      children$: children.children$,
-      form$: form$.form$,
-      path: path.path,
-    })
-
-    const value = useValue(props, context, {
-      defaultValue: default_.defaultValue,
-      dataPath: path.dataPath,
-      form$: form$.form$,
-      parent: path.parent,
-    }, { init: false })
-
-    const controls = useControls(props, context, {
-      isDisabled: disabled.isDisabled,
-      value: value.value,
-      form$: form$.form$,
-    })
-
-    const empty = useEmpty(props, context, {
-      value: value.value,
-      nullValue: nullValue.nullValue,
-    })
-
-    const columns = useColumns(props, context, {
-      form$: form$.form$,
-      theme: theme.theme,
-      hasLabel: label.hasLabel,
-    })
-
-    const view = useView(props, context, {
-      available: conditions.available,
-      active: baseElement.active,
-      form$: form$.form$,
-      parent: path.parent,
-    })
-
-    const templates = useTemplates(props, context, {
-      theme: theme.theme,
-      form$: form$.form$,
-      View: view.View,
-    })
-
-    const classes = useClasses(props, context, {
-      form$: form$.form$,
-      theme: theme.theme,
-      isDisabled: disabled.isDisabled,
-      sorting: sorting.sorting,
-      Templates: templates.Templates,
-      el$: baseElement.el$,
-      View: view.View,
-    })
-
-    const slots = useSlots(props, context, {
-      form$: form$.form$,
-      el$: baseElement.el$,
-      Templates: templates.Templates,
-    }, {
-      slots: [
-        'label', 'info', 'description',
-        'before', 'between', 'after',
-      ]
-    })
-
-    const data = useData(props, context, {
-      form$: form$.form$,
-      available: conditions.available,
-      value: value.value,
-      resetValidators: validation.resetValidators,
-      defaultValue: default_.defaultValue,
-      nullValue: nullValue.nullValue,
-      children$: children.children$,
-      isDisabled: disabled.isDisabled,
-      orderByName: order.orderByName,
-      refreshOrderStore: order.refreshOrderStore,
-      dataPath: path.dataPath,
-      parent: path.parent,
-      nullValue: nullValue.nullValue,
-      defaultValue: default_.defaultValue,
-      fire: events.fire,
-    })
-
-    const sort = useSort(props, context, {
-      isDisabled: disabled.isDisabled,
-      fire: events.fire,
-      refreshOrderStore: order.refreshOrderStore,
-      value: value.value,
-      classes: classes.classes,
-      sorting: sorting.sorting,
-    })
-
-    useWatchValue(props, context, {
-      form$: form$.form$,
-      value: value.value,
-      fire: events.fire,
-      dirt: validation.dirt,
-      validateValidators: validation.validateValidators,
-    })
-
-    onMounted(() => {
-      validation.initMessageBag()
-      validation.initValidation()
-    })
+    useWatchValue(props, context, element)
 
     return {
-      ...form$,
-      ...theme,
-      ...layout,
-      ...path,
-      ...disabled,
-      ...nullValue,
-      ...label,
-      ...baseElement,
-      ...genericName,
-      ...children,
-      ...value,
-      ...elements,
-      ...conditions,
-      ...validation,
-      ...classes,
-      ...columns,
-      ...view,
-      ...templates,
-      ...slots,
-      ...data,
-      ...events,
-      ...sort,
-      ...sorting,
-      ...default_,
-      ...order,
-      ...prototype,
-      ...empty,
-      ...controls,
-      log: () => {
-        console.log('log')
-      },
+      ...element
     }
-  } 
+  },
 }

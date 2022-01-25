@@ -1059,7 +1059,16 @@ export default {
       "view",
       "watchValue"
     ],
-    "slots": [],
+    "slots": [
+      "label",
+      "info",
+      "description",
+      "before",
+      "between",
+      "after",
+      "addon-before",
+      "addon-after"
+    ],
     "events": [
       "change",
       "beforeCreate",
@@ -1261,7 +1270,16 @@ export default {
       "view",
       "watchValue_multilingual"
     ],
-    "slots": [],
+    "slots": [
+      "label",
+      "info",
+      "description",
+      "before",
+      "between",
+      "after",
+      "addon-before",
+      "addon-after"
+    ],
     "events": [
       "change",
       "beforeCreate",

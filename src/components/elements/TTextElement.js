@@ -144,14 +144,7 @@ export default {
 
     const element = useElement(props, context)
 
-    useWatchValue(props, context, {
-      form$: element.form$,
-      value: element.value,
-      fire: element.fire,
-      dirt: element.dirt,
-      validateLanguage: element.validateLanguage,
-      language: element.language,
-    })
+    useWatchValue(props, context, element)
 
     onMounted(() => {
       element.initState()

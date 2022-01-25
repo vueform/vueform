@@ -1,4 +1,4 @@
-import { onMounted, watch } from 'composition-api'
+import useElement from './../../composables/useElement'
 import useForm$ from './../../composables/useForm$'
 import useTheme from './../../composables/useTheme'
 import useLayout from './../../composables/elements/useLayout'
@@ -41,84 +41,31 @@ export default {
     },
   },
   setup(props, context) {
-    const form$ = useForm$(props, context)
-    const theme = useTheme(props, context)
-    const layout = useLayout(props, context)
-    const path = usePath(props, context)
-    const static_ = useStatic(props, context)
-
-    const events = useEvents(props, context, {}, {
-      events: context.emits,
-    })
-
-    const baseElement = useBaseElement(props, context, {
-      form$: form$.form$,
-      fire: events.fire,
-    })
-
-    const conditions = useConditions(props, context, {
-      form$: form$.form$,
-      path: path.path,
-    })
-
-    const label = useLabel(props, context, {
-      form$: form$.form$,
-      el$: baseElement.el$,
-    })
-
-    const view = useView(props, context, {
-      available: conditions.available,
-      active: baseElement.active,
-      form$: form$.form$,
-      parent: path.parent,
-    })
-    
-    const templates = useTemplates(props, context, {
-      theme: theme.theme,
-      form$: form$.form$,
-      View: view.View,
-    })
-
-    const classes = useClasses(props, context, {
-      form$: form$.form$,
-      theme: theme.theme,
-      Templates: templates.Templates,
-      el$: baseElement.el$,
-      View: view.View,
-    })
-
-    const columns = useColumns(props, context, {
-      form$: form$.form$,
-      theme: theme.theme,
-      hasLabel: label.hasLabel,
-    })
-
-    const slots = useSlots(props, context, {
-      form$: form$.form$,
-      el$: baseElement.el$,
-      Templates: templates.Templates,
-    }, {
-      slots: [
-        'default', 'label', 'info', 'description',
-        'before', 'between', 'after',
-      ]
-    })
+    context.features = [
+      useForm$,
+      useTheme,
+      useLayout,
+      usePath,
+      useStatic,
+      useEvents,
+      useBaseElement,
+      useConditions,
+      useLabel,
+      useView,
+      useTemplates,
+      useClasses,
+      useColumns,
+      useSlots,
+    ]
+    context.slots = [
+      'default', 'label', 'info', 'description',
+      'before', 'between', 'after',
+    ]
+    context.watchValue = false
+    context.initValidation = false
 
     return {
-      ...form$,
-      ...theme,
-      ...layout,
-      ...path,
-      ...conditions,
-      ...label,
-      ...classes,
-      ...columns,
-      ...baseElement,
-      ...view,
-      ...templates,
-      ...slots,
-      ...events,
-      ...static_,
+      ...useElement(props, context)
     }
-  } 
+  },
 }

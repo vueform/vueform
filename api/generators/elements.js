@@ -91,7 +91,7 @@ class Generator {
       let lines = this.getLines(element)
 
       lines.forEach((line, i) => {
-        if (line.match(/slots:\s?\[/)) {
+        if (line.match(/slots\s?=\s?\[/)) {
           let l = i
 
           while(lines[l].match(/\]/) === null) {

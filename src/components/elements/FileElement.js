@@ -1,4 +1,4 @@
-import { onMounted, toRefs, watch } from 'composition-api'
+import useElement from './../../composables/useElement'
 import useForm$ from './../../composables/useForm$'
 import useFieldId from './../../composables/elements/useFieldId'
 import useTheme from './../../composables/useTheme'
@@ -49,7 +49,7 @@ export default {
     },
     default: {
       required: false,
-      type: [String, Object, File],
+      type: [String, Object],
       default: null
     },
     disabled: {
@@ -137,201 +137,43 @@ export default {
     },
   },
   setup(props, context) {
-    const form$ = useForm$(props, context)
-    const theme = useTheme(props, context)
-    const layout = useLayout(props, context)
-    const input = useInput(props, context)
-    const path = usePath(props, context)
-    const disabled = useDisabled(props, context)
-    const nullValue = useNullValue(props, context)
-    const removing = useRemoving(props, context)
-
-    const fieldId = useFieldId(props, context, {
-      path: path.path,
-    })
-
-    const events = useEvents(props, context, {}, {
-      events: context.emits,
-    })
-
-    const baseElement = useBaseElement(props, context, {
-      form$: form$.form$,
-      fire: events.fire,
-    })
-
-    const request = useRequest(props, context, {
-      form$: form$.form$,
-    })
-
-    const default_ = useDefault(props, context, {
-      nullValue: nullValue.nullValue,
-      form$: form$.form$,
-      dataPath: path.dataPath,
-      parent: path.parent,
-    })
-
-    const conditions = useConditions(props, context, {
-      form$: form$.form$,
-      path: path.path,
-    })
-
-    const value = useValue(props, context, {
-      defaultValue: default_.defaultValue,
-      dataPath: path.dataPath,
-      form$: form$.form$,
-      parent: path.parent,
-    })
-
-    const validation = useValidation(props, context, {
-      form$: form$.form$,
-      path: path.path,
-      uploading: request.uploading,
-      removing: removing.removing,
-      value: value.value,
-    })
-
-    const data = useData(props, context, {
-      form$: form$.form$,
-      available: conditions.available,
-      value: value.value,
-      resetValidators: validation.resetValidators,
-      defaultValue: default_.defaultValue,
-      nullValue: nullValue.nullValue,
-    })
-
-    const handleError = useHandleError(props, context, {
-      fire: events.fire,
-      listeners: events.listeners,
-    })
-
-    const file = useFile(props, context, {
-      form$: form$.form$,
-      value: value.value,
-      isDisabled: disabled.isDisabled,
-      validate: validation.validate,
-      invalid: validation.invalid,
-      path: path.path,
-      input: input.input,
-      load: data.load,
-      update: data.update,
-      updated: data.updated,
-      fire: events.fire,
-      listeners: events.listeners,
-      uploading: request.uploading,
-      request: request.request,
-      axios: request.axios,
-      isImageType: baseElement.isImageType,
-      removing: removing.removing,
-      handleError: handleError.handleError,
-      el$: baseElement.el$,
-    })
-    
-    const drop = useDrop(props, context, {
-      update: data.update,
-      isDisabled: disabled.isDisabled,
-      accept: file.accept,
-    })
-
-    const empty = useEmpty(props, context, {
-      value: value.value,
-      nullValue: nullValue.nullValue,
-    })
-
-    const label = useLabel(props, context, {
-      form$: form$.form$,
-      el$: baseElement.el$,
-    })
-
-    const genericName = useGenericName(props, context, {
-      form$: form$.form$,
-      filename: file.filename,
-      label: label.label,
-    })
-
-    const view = useView(props, context, {
-      available: conditions.available,
-      active: baseElement.active,
-      form$: form$.form$,
-      parent: path.parent,
-    })
-    
-    const templates = useTemplates(props, context, {
-      theme: theme.theme,
-      form$: form$.form$,
-      View: view.View,
-    })
-
-    const classes = useClasses(props, context, {
-      form$: form$.form$,
-      theme: theme.theme,
-      removing: removing.removing,
-      isDisabled: disabled.isDisabled,
-      preparing: file.preparing,
-      Templates: templates.Templates,
-      el$: baseElement.el$,
-      View: view.View,
-    })
-
-    const columns = useColumns(props, context, {
-      form$: form$.form$,
-      theme: theme.theme,
-      hasLabel: label.hasLabel,
-    })
-
-    const slots = useSlots(props, context, {
-      form$: form$.form$,
-      el$: baseElement.el$,
-      Templates: templates.Templates,
-    }, {
-      slots: [
-        'label', 'info', 'description',
-        'before', 'between', 'after',
-      ]
-    })
-
-    useWatchValue(props, context, {
-      form$: form$.form$,
-      value: value.value,
-      fire: events.fire,
-      dirt: validation.dirt,
-      validate: validation.validate,
-    })
-
-    onMounted(() => {
-      validation.initMessageBag()
-      validation.initValidation()
-    })
+    context.features = [
+      useForm$,
+      useTheme,
+      useLayout,
+      useInput,
+      usePath,
+      useDisabled,
+      useNullValue,
+      useRemoving,
+      useFieldId,
+      useEvents,
+      useBaseElement,
+      useRequest,
+      useDefault,
+      useConditions,
+      useValue,
+      useValidation,
+      useData,
+      useHandleError,
+      useFile,
+      useDrop,
+      useEmpty,
+      useLabel,
+      useGenericName,
+      useView,
+      useTemplates,
+      useClasses,
+      useColumns,
+      useSlots,
+    ]
+    context.slots = [
+      'label', 'info', 'description',
+      'before', 'between', 'after',
+    ]
 
     return {
-      ...form$,
-      ...fieldId,
-      ...theme,
-      ...layout,
-      ...input,
-      ...path,
-      ...conditions,
-      ...value,
-      ...validation,
-      ...label,
-      ...classes,
-      ...columns,
-      ...baseElement,
-      ...genericName,
-      ...genericName,
-      ...view,
-      ...templates,
-      ...slots,
-      ...disabled,
-      ...events,
-      ...data,
-      ...empty,
-      ...default_,
-      ...nullValue,
-      ...file,
-      ...request,
-      ...drop,
-      ...removing,
-      ...handleError,
+      ...useElement(props, context)
     }
-  } 
+  },
 }
