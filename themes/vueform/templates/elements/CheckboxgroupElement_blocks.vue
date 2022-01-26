@@ -9,7 +9,7 @@
         merge: true,
         defaultClasses: {
           container: '',
-          wrapper: 'vf-checkboxgroup-wrapper-blocks',
+          wrapper: 'vf-checkboxgroup-blocks-wrapper',
         }
       }
     }
@@ -17,7 +17,9 @@
 </script>
 
 <style lang="scss">
-  .vf-checkboxgroup-wrapper-blocks {
+  .vf-checkboxgroup-blocks-wrapper {
     display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
   }
 </style>

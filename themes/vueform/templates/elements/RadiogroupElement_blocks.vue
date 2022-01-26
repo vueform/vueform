@@ -9,7 +9,7 @@
         merge: true,
         defaultClasses: {
           container: '',
-          wrapper: 'vf-radiogroup-wrapper-blocks',
+          wrapper: 'vf-radiogroup-blocks-wrapper',
         }
       }
     }
@@ -17,7 +17,9 @@
 </script>
 
 <style lang="scss">
-  .vf-radiogroup-wrapper-blocks {
+  .vf-radiogroup-blocks-wrapper {
     display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
   }
 </style>

@@ -9,7 +9,7 @@
         merge: true,
         defaultClasses: {
           container: '',
-          wrapper: 'vf-radiogroup-wrapper-pills',
+          wrapper: 'vf-radiogroup-pills-wrapper',
         }
       }
     }
@@ -17,7 +17,8 @@
 </script>
 
 <style lang="scss">
-  .vf-radiogroup-wrapper-pills {
+  .vf-radiogroup-pills-wrapper {
     display: grid;
+    grid-auto-flow: column;
   }
 </style>

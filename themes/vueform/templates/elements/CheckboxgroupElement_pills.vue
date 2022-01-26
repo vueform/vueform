@@ -9,7 +9,7 @@
         merge: true,
         defaultClasses: {
           container: '',
-          wrapper: 'vf-checkboxgroup-wrapper-pills',
+          wrapper: 'vf-checkboxgroup-pills-wrapper',
         }
       }
     }
@@ -17,7 +17,8 @@
 </script>
 
 <style lang="scss">
-  .vf-checkboxgroup-wrapper-pills {
+  .vf-checkboxgroup-pills-wrapper {
     display: grid;
+    grid-auto-flow: column;
   }
 </style>

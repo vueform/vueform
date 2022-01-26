@@ -8,19 +8,19 @@
       return {
         merge: true,
         defaultClasses: {
-          container: 'vf-checkbox-container',
-          wrapper: '',
-          wrapper_not_last: '',
-          wrapper_first: '',
-          wrapper_last: '',
-          wrapper_selected: '',
-          wrapper_unselected: '',
-          wrapper_disabled: '',
-          wrapper_sm: '',
+          container: 'vf-checkbox-pills-container',
+          wrapper: 'vf-checkbox-pills',
+          wrapper_not_last: 'vf-checkbox-pills-not-last',
+          wrapper_first: 'vf-checkbox-pills-first',
+          wrapper_last: 'vf-checkbox-pills-last',
+          wrapper_selected: 'vf-checkbox-pills-selected',
+          wrapper_unselected: 'vf-checkbox-pills-unselected',
+          wrapper_disabled: 'vf-checkbox-pills-disabled',
+          wrapper_sm: 'vf-checkbox-pills-sm',
           wrapper_md: '',
-          wrapper_lg: '',
-          input: 'vf-checkbox',
-          text: 'vf-checkbox-text',
+          wrapper_lg: 'vf-checkbox-pills-lg',
+          input: 'vf-checkbox-pills-input',
+          text: '',
           $wrapper: (classes, { index, items, el$, value, isDisabled, Size }) => ([
             classes.wrapper,
             classes[`wrapper_${Size}`],
@@ -38,4 +38,61 @@
 
 <style lang="scss">
   // Some styles are contained in Vueform.vue & CheckboxgroupElement.vue
+  .vf-checkbox-pills-container {
+    display: flex;
+    align-items: flex-start;
+    cursor: pointer;
+  }
+
+  .vf-checkbox-pills {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: solid var(--vf-border-width);
+    padding: 0.375rem 0;
+    width: fill;
+    background: #fff;
+
+    &.vf-checkbox-pills-not-last {
+      border-right: 0;
+    }
+
+    &.vf-checkbox-pills-first {
+      border-top-left-radius: 0.375rem;
+      border-bottom-left-radius: 0.375rem;
+    }
+
+    &.vf-checkbox-pills-last {
+      border-top-right-radius: 0.375rem;
+      border-bottom-right-radius: 0.375rem;
+    }
+
+    &.vf-checkbox-pills-selected {
+      background-color: var(--vf-primary);
+      border-color: var(--vf-primary);
+      border-left-color: rgba(0,0,0,0.15);
+      border-right-color: #ffffff;
+      color: #ffffff;
+    }
+
+    &.vf-checkbox-pills-unselected {
+      border-color: var(--vf-border-color);
+    }
+
+    &.vf-checkbox-pills-disabled {
+      opacity: 0.5;
+    }
+
+    &.vf-checkbox-pills-sm {
+      padding: var(--vf-input-py-sm) var(--vf-input-px-sm);
+    }
+
+    &.vf-checkbox-pills-lg {
+      padding: var(--vf-input-py-lg) var(--vf-input-px-lg);
+    }
+  }
+
+  .vf-checkbox-pills-input {
+    display: none;
+  }
 </style>

@@ -234,7 +234,7 @@ export default {
   },
   CheckboxgroupElement_pills: {
     container: '',
-    wrapper: 'grid grid-flow-col grid',
+    wrapper: 'grid grid-flow-col',
   },
   CheckboxgroupElement_blocks: {
     container: '',
@@ -990,7 +990,7 @@ export default {
     wrapper_first: 'rounded-t-lg',
     wrapper_last: 'rounded-b-lg',
     wrapper_selected: 'bg-gray-100',
-    wrapper_unselected: 'border-gray-300',
+    wrapper_unselected: '',
     wrapper_disabled: 'opacity-50',
     wrapper_sm: 'px-4 py-2.5 form-text-sm',
     wrapper_md: 'px-4 py-3',
