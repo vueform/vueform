@@ -44,6 +44,9 @@
         merge: true,
         defaultClasses: {
           container: '',
+          container_sm: '',
+          container_md: '',
+          container_lg: '',
           wrapper: '',
           file: '',
           filenameLink: '',
@@ -59,6 +62,10 @@
           uploadedIcon: '',
           remove: '',
           removeIcon: '',
+          $container: (classes, { Size }) => ([
+            classes.container,
+            classes[`container_${Size}`],
+          ])
         }
       }
     }

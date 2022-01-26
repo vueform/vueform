@@ -33,6 +33,13 @@
         defaultClasses: {
           container: '',
           content: '',
+          content_sm: '',
+          content_md: '',
+          content_lg: '',
+          $content: (classes, { Size }) => ([
+            classes.content,
+            classes[`content_${Size}`],
+          ]),
         }
       }
     }

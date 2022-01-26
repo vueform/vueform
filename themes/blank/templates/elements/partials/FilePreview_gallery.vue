@@ -43,11 +43,23 @@
         merge: true,
         defaultClasses: {
           container: '',
+          container_sm: '',
+          container_md: '',
+          container_lg: '',
           image: '',
+          image_sm: '',
+          image_md: '',
+          image_lg: '',
           image_link: '',
           image_static: '',
           img: '',
+          img_sm: '',
+          img_md: '',
+          img_lg: '',
           overlay: '',
+          overlay_sm: '',
+          overlay_md: '',
+          overlay_lg: '',
           upload: '',
           progressBar: '',
           progress: '',
@@ -57,6 +69,22 @@
           uploadedIcon: '',
           remove: '',
           removeIcon: '',
+          $container: (classes, { Size }) => ([
+            classes.container,
+            classes[`container_${Size}`],
+          ]),
+          $image: (classes, { Size }) => ([
+            classes.image,
+            classes[`image_${Size}`],
+          ]),
+          $img: (classes, { Size }) => ([
+            classes.img,
+            classes[`img_${Size}`],
+          ]),
+          $overlay: (classes, { Size }) => ([
+            classes.overlay,
+            classes[`overlay_${Size}`],
+          ]),
         }
       }
     }

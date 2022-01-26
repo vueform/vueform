@@ -16,8 +16,16 @@
         defaultClasses: {
           container: '',
           label: '',
-          label_visible: '',
+          label_sm: '',
+          label_md: '',
+          label_lg: '',
           label_invisible: '',
+          label_visible: '',
+          $label: (classes, { visible, Size }) => ([
+            classes.label,
+            classes[`label_${Size}`],
+            visible ? classes.label_visible : classes.label_invisible
+          ]),
         }
       }
     }

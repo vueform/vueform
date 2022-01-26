@@ -7,8 +7,7 @@
     data() {
       return {
         merge: true,
-        defaultClasses: {
-        }
+        defaultClasses: {}
       }
     }
   }

@@ -29,6 +29,14 @@
         merge: true,
         defaultClasses: {
           container: '',
+          container_sm: '',
+          container_md: '',
+          container_lg: '',
+          $container: (classes, { el$, Size }) => ([
+            classes.container,
+            classes[`container_${Size}`],
+            !el$.inline ? el$.columnsClasses.label : null,
+          ]),
         }
       }
     }

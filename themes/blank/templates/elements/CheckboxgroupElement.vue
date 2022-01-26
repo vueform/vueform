@@ -33,6 +33,13 @@
         defaultClasses: {
           container: '',
           wrapper: '',
+          wrapper_sm: '',
+          wrapper_md: '',
+          wrapper_lg: '',
+          $wrapper: (classes, { Size }) => ([
+            classes.wrapper,
+            classes[`wrapper_${Size}`]
+          ]),
         }
       }
     }

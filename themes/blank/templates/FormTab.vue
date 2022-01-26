@@ -31,6 +31,18 @@
           wrapper_inactive: '',
           wrapper_valid: '',
           wrapper_invalid: '',
+          wrapper_sm: '',
+          wrapper_md: '',
+          wrapper_lg: '',
+          $container: (classes, {}) => ([
+            classes.container,
+          ]),
+          $wrapper: (classes, { active, invalid, Size }) => ([
+            classes.wrapper,
+            classes[`wrapper_${Size}`],
+            active ? classes.wrapper_active : classes.wrapper_inactive,
+            invalid ? classes.wrapper_invalid : classes.wrapper_valid,
+          ]),
         },
       }
     }

@@ -59,15 +59,15 @@
           handleIcon_image: 'vf-multifile-handle-icon-image',
           handleIcon_gallery: 'vf-multifile-handle-icon-gallery',
           dnd: 'vf-multifile-dnd',
-          dnd_sm: '',
+          dnd_sm: 'vf-multifile-dnd-sm',
           dnd_md: '',
-          dnd_lg: '',
+          dnd_lg: 'vf-multifile-dnd-lg',
           button: 'vf-btn vf-btn-light vf-btn-upload',
           button_enabled: '',
           button_disabled: 'vf-btn-disabled',
-          button_sm: '',
+          button_sm: 'vf-btn-sm vf-btn-upload-sm',
           button_md: '',
-          button_lg: '',
+          button_lg: 'vf-btn-sm vf-btn-upload-sm',
           $list: (classes, { isDisabled, sorting, view, Size }) => ([
             classes.list,
             isDisabled ? classes.list_disabled : null,
@@ -114,10 +114,26 @@
 
   .vf-btn-upload {
     margin-bottom: calc(var(--vf-gutter) / 2);
+
+    &.vf-btn-upload-sm {
+      margin-bottom: calc(var(--vf-gutter-sm) / 2);
+    }
+
+    &.vf-btn-upload-lg {
+      margin-bottom: calc(var(--vf-gutter-lg) / 2);
+    }
   }
 
   .vf-multifile-dnd {
     margin-bottom: var(--vf-gutter);
+
+    &.vf-multifile-dnd-sm {
+      margin-bottom: var(--vf-gutter-sm);
+    }
+
+    &.vf-multifile-dnd-lg {
+      margin-bottom: var(--vf-gutter-lg);
+    }
   }
 
   .vf-multifile-spacer {

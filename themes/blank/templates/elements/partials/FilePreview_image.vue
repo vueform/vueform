@@ -56,7 +56,13 @@
           image: '',
           image_link: '',
           image_static: '',
+          image_sm: '',
+          image_md: '',
+          image_lg: '',
           img: '',
+          img_sm: '',
+          img_md: '',
+          img_lg: '',
           file: '',
           filenameLink: '',
           filenameStatic: '',
@@ -71,6 +77,15 @@
           uploadedIcon: '',
           remove: '',
           removeIcon: '',
+          $image: (classes, { hasLink, Size }) => ([
+            classes.image,
+            classes[`image_${Size}`],
+            hasLink ? classes.image_link : classes.image_static
+          ]),
+          $img: (classes, { Size }) => ([
+            classes.img,
+            classes[`img_${Size}`],
+          ])
         }
       }
     }

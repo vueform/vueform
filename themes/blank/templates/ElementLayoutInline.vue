@@ -20,6 +20,10 @@
         defaultClasses: {
           container: '',
           container_error: '',
+          $container: (classes, { el$ }) => ([
+            classes.container,
+            !el$.isStatic && el$.errors && !!el$.errors.length ? classes.container_error : null
+          ]),
         },
       }
     },

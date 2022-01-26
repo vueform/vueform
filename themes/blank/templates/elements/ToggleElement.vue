@@ -37,7 +37,41 @@ import Toggle from '@vueform/toggle/src/Toggle.vue'
         defaultClasses: {
           container: '',
           wrapper: '',
-          toggle: {},
+          toggle: {
+            container: '',
+            toggle: '',
+            toggle_sm: '',
+            toggle_md: '',
+            toggle_lg: '',
+            toggleOn: '',
+            toggleOff: '',
+            toggleOnDisabled: '',
+            toggleOffDisabled: '',
+            handle: '',
+            handle_sm: '',
+            handle_md: '',
+            handle_lg: '',
+            handleOn: '',
+            handleOff: '',
+            handleOnDisabled: '',
+            handleOffDisabled: '',
+            label: '',
+            label_sm: '',
+            label_md: '',
+            label_lg: '',
+            $toggle: (classes, { Size }) => ([
+              classes.toggle.toggle,
+              classes.toggle[`toggle_${Size}`],
+            ]),
+            $handle: (classes, { Size }) => ([
+              classes.toggle.handle,
+              classes.toggle[`handle_${Size}`],
+            ]),
+            $label: (classes, { Size }) => ([
+              classes.toggle.label,
+              classes.toggle[`label_${Size}`],
+            ]),
+          },
           text: '',
         }
       }

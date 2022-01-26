@@ -43,6 +43,15 @@
           button_finish_enabled: '',
           button_finish_disabled: '',
           button_finish_loading: '',
+          button_sm: '',
+          button_md: '',
+          button_lg: '',
+          $button: (classes, { isDisabled, isLoading, type, Size }) => ([
+            classes.button,
+            classes[`button_${Size}`],
+            isDisabled ? classes[`button_${type}_disabled`] : classes[`button_${type}_enabled`],
+            isLoading ? classes[`button_${type}_loading`] : null,
+          ]),
         }
       }
     }
