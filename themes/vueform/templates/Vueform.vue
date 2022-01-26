@@ -77,10 +77,10 @@
     --vf-button-px-lg: 1.25rem;
     
     --vf-element-text-font-size: 0.875rem;
-    --vf-element-text-font-size-sm: 0.875rem;
+    --vf-element-text-font-size-sm: 0.75rem;
     --vf-element-text-font-size-lg: 0.875rem;
     --vf-element-text-line-height: 1.25rem;
-    --vf-element-text-line-height-sm: 1.25rem;
+    --vf-element-text-line-height-sm: 1rem;
     --vf-element-text-line-height-lg: 1.25rem;
 
     --vf-checkbox-size: 1rem;
