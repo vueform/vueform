@@ -9,11 +9,11 @@
         merge: true,
         defaultClasses: {
           container: 'vf-language',
-          wrapper: 'vf-language-link',
-          wrapper_sm: '',
+          wrapper: 'vf-language-wrapper',
+          wrapper_sm: 'vf-language-wrapper-sm',
           wrapper_md: '',
-          wrapper_lg: '',
-          wrapper_active: 'is-active',
+          wrapper_lg: 'vf-language-wrapper-lg',
+          wrapper_active: 'vf-language-wrapper-active',
           wrapper_inactive: '',
           $wrapper: (classes, { selected, Size }) => ([
             classes.wrapper,
@@ -33,7 +33,7 @@
     width: 100%;
   }
 
-  .vf-language-link {
+  .vf-language-wrapper {
     border-radius: var(--vf-border-radius);
     text-align: center;
     padding: 0.5rem 1rem;
@@ -45,7 +45,15 @@
       text-decoration: none;
     }
 
-    &.is-active {
+    &.vf-language-wrapper-sm {
+      border-radius: var(--vf-border-radius-sm);
+    }
+
+    &.vf-language-wrapper-lg {
+      border-radius: var(--vf-border-radius-lg);
+    }
+
+    &.vf-language-wrapper-active {
       color: #FFFFFF;
       background: var(--vf-primary);
     }

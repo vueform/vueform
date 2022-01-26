@@ -10,11 +10,11 @@
         defaultClasses: {
           container: 'vf-floating-wrapper',
           label: 'vf-floating-label',
-          label_sm: '',
+          label_sm: 'vf-floating-label-sm',
           label_md: '',
-          label_lg: '',
+          label_lg: 'vf-floating-label-lg',
           label_invisible: '',
-          label_visible: 'is-visible',
+          label_visible: 'vf-floating-label-visible',
           $label: (classes, { visible, Size }) => ([
             classes.label,
             classes[`label_${Size}`],
@@ -34,7 +34,7 @@
   .vf-floating-label {
     position: absolute;
     z-index: 5;
-    left: 0.625rem;
+    left: var(--vf-input-px);
     font-size: 70%;
     background: #FFFFFF;
     padding: 0 1px;
@@ -44,9 +44,18 @@
     visibility: hidden;
     white-space: nowrap;
 
-    &.is-visible {
+    &.vf-floating-label-visible {
       opacity: 1;
       visibility: visible;
+    }
+
+    &.vf-floating-label-sm {
+      left: var(--vf-input-px-sm);
+    }
+
+    &.vf-floating-label-lg {
+      left: var(--vf-input-px-lg);
+      top: 0.625rem;
     }
   }
 </style>

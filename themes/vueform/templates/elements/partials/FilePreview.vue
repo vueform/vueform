@@ -197,7 +197,7 @@
     background-color: var(--vf-error-color);
   }
 
-  .is-removing {
+  .vf-file-removing {
     .vf-file-preview-file {
       opacity: 0.6;
     }

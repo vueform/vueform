@@ -13,9 +13,9 @@
           input: 'vf-input',
           input_enabled: '',
           input_disabled: '',
-          input_sm: '',
+          input_sm: 'vf-input-sm',
           input_md: '',
-          input_lg: '',
+          input_lg: 'vf-input-lg',
           $input: (classes, { isDisabled, Size }) => ([
             classes.input,
             classes[`input_${Size}`],

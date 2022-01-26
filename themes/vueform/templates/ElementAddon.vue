@@ -11,9 +11,9 @@
           container: 'vf-addon',
           container_before: 'vf-addon-before',
           container_after: 'vf-addon-after',
-          container_sm: '',
+          container_sm: 'vf-addon-sm',
           container_md: '',
-          container_lg: '',
+          container_lg: 'vf-addon-lg',
           container_before_sm: '',
           container_before_md: '',
           container_before_lg: '',
@@ -42,12 +42,28 @@
     border-radius: var(--vf-border-radius);
     background: var(--vf-addon-bg);
     color: var(--vf-addon-color);
+
+    &.vf-addon-sm {
+      padding: var(--vf-input-py-sm) var(--vf-input-px-sm);
+      border-radius: var(--vf-border-radius-sm);
+    }
+
+    &.vf-addon-lg {
+      padding: var(--vf-input-py-lg) var(--vf-input-px-lg);
+      border-radius: var(--vf-border-radius-lg);
+    }
   }
 
   .vf-addon-before {
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
     border-right: 0;
+
+    &.vf-addon-sm,
+    &.vf-addon-lg {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
 
     & ~ .vf-input,
     & ~ div .vf-input,
@@ -62,6 +78,12 @@
     border-bottom-left-radius: 0;
     border-left: 0;
     order: 2;
+
+    &.vf-addon-sm,
+    &.vf-addon-lg {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
 
     & ~ .vf-input,
     & ~ div .vf-input,

@@ -140,6 +140,14 @@
       & > div > .vf-group {
         margin-bottom: calc(var(--vf-gutter) / 2);
       }
+
+      & > div > .vf-group-sm {
+        margin-bottom: calc(var(--vf-gutter-sm) / 2);
+      }
+
+      & > div > .vf-group-lg {
+        margin-bottom: calc(var(--vf-gutter-lg) / 2);
+      }
     }
 
     &.is-sorting {

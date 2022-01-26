@@ -40,25 +40,56 @@
     --vf-gray-900: #111827;
 
     --vf-gutter: 1rem;
+    --vf-gutter-sm: 0.5rem;
+    --vf-gutter-lg: 1.25rem;
+
+    --vf-font-size: 1rem;
+    --vf-font-size-sm: 0.875rem;
+    --vf-font-size-lg: 1rem;
+    --vf-line-height: 1.5rem;
+    --vf-line-height-sm: 1.25rem;
+    --vf-line-height-lg: 1.5rem;
+
     --vf-input-min-height: 2.375rem;
+    --vf-input-min-height-sm: 2.125rem;
+    --vf-input-min-height-lg: 2.875rem;
 
     --vf-border-width: 1px;
     --vf-border-color: var(--vf-gray-300);
     --vf-border-radius: 0.25rem;
+    --vf-border-radius-sm: 0.25rem;
+    --vf-border-radius-lg: 0.25rem;
 
     --vf-ring-width: 0.125rem;
     --vf-ring-color: rgba(16, 185, 129, 0.4);
 
     --vf-input-py: 0.375rem;
+    --vf-input-py-sm: 0.375rem;
+    --vf-input-py-lg: 0.625rem;
     --vf-input-px: 0.75rem;
+    --vf-input-px-sm: 0.5rem;
+    --vf-input-px-lg: 0.875rem;
     --vf-button-py: 0.4375rem;
+    --vf-button-py-sm: 0.4375rem;
+    --vf-button-py-lg: 0.6875rem;
     --vf-button-px: 1rem;
+    --vf-button-px-sm: 0.75rem;
+    --vf-button-px-lg: 1.25rem;
     
     --vf-element-text-font-size: 0.875rem;
+    --vf-element-text-font-size-sm: 0.875rem;
+    --vf-element-text-font-size-lg: 0.875rem;
     --vf-element-text-line-height: 1.25rem;
+    --vf-element-text-line-height-sm: 1.25rem;
+    --vf-element-text-line-height-lg: 1.25rem;
 
     --vf-checkbox-size: 1rem;
+    --vf-checkbox-size-sm: 0.875rem;
+    --vf-checkbox-size-lg: 1rem;
     --vf-gallery-size: 6rem;
+    --vf-gallery-size-sm: 5rem;
+    --vf-gallery-size-lg: 7rem;
+
     --vf-bg-disabled: var(--vf-gray-200);
     --vf-color-disabled: var(--vf-gray-400);
 
@@ -74,9 +105,17 @@
     --vf-date-head-color: var(--vf-gray-700);
 
     --vf-toggle-width: 3rem;
+    --vf-toggle-width-sm: 2.75rem;
+    --vf-toggle-width-lg: 3.5rem;
     --vf-toggle-height: 1.25rem;
-    --vf-toggle-border: 0.125rem;
+    --vf-toggle-height-sm: 1.125rem;
+    --vf-toggle-height-lg: 1.6rem;
+
     --vf-toggle-font-size: 0.75rem;
+    --vf-toggle-font-size-sm: 0.75rem;
+    --vf-toggle-font-size-lg: 0.8125rem;
+
+    --vf-toggle-border: 0.125rem;
     --vf-toggle-duration: 150ms;
     --vf-toggle-bg-on: var(--vf-primary);
     --vf-toggle-bg-off: var(--vf-gray-300);
@@ -127,52 +166,97 @@
     --vf-slider-tooltip-arrow-size: 0.3125rem;
     --vf-slider-tooltip-distance: 0.1875rem;
 
-    --vf-select-font-size: inherit;
-    --vf-select-line-height: inherit;
+    // Select
     --vf-select-bg: #FFFFFF;
     --vf-select-bg-disabled: var(--vf-bg-disabled);
     --vf-select-border-color: var(--vf-border-color);
     --vf-select-border-width: var(--vf-border-width);
-    --vf-select-radius: var(--vf-border-radius);
-    --vf-select-py: var(--vf-input-py);
-    --vf-select-px: var(--vf-input-px);
     --vf-select-ring-width: var(--vf-ring-width);
     --vf-select-ring-color: var(--vf-ring-color);
     --vf-select-placeholder-color: var(--vf-placeholder-color);
     --vf-select-max-height: 10rem;
 
+    --vf-select-py: var(--vf-input-py);
+    --vf-select-py-sm: var(--vf-input-py-sm);
+    --vf-select-py-lg: var(--vf-input-py-lg);
+    --vf-select-px: var(--vf-input-px);
+    --vf-select-px-sm: var(--vf-input-px-sm);
+    --vf-select-px-lg: var(--vf-input-px-lg);
+    --vf-select-radius: var(--vf-border-radius);
+    --vf-select-radius-sm: var(--vf-border-radius-sm);
+    --vf-select-radius-lg: var(--vf-border-radius-lg);
+
     --vf-select-spinner-color: var(--vf-primary);
     --vf-select-caret-color: var(--vf-gray-400);
     --vf-select-clear-color: var(--vf-gray-400);
     --vf-select-clear-color-hover: #000000;
+
+    --vf-select-tag-py: 0.0625rem;
+    --vf-select-tag-py-sm: 0.0625rem;
+    --vf-select-tag-py-lg: 0.0625rem;
+    --vf-select-tag-px: 0.5rem;
+    --vf-select-tag-px-sm: 0.5rem;
+    --vf-select-tag-px-lg: 0.5rem;
+    --vf-select-tag-my: 0.25rem;
+    --vf-select-tag-my-sm: 0.25rem;
+    --vf-select-tag-my-lg: 0.25rem;
+    --vf-select-tag-mx: 0.25rem;
+    --vf-select-tag-mx-sm: 0.25rem;
+    --vf-select-tag-mx-lg: 0.25rem;
+    --vf-select-tag-radius: var(--vf-border-radius);
+    --vf-select-tag-radius-sm: var(--vf-border-radius-sm);
+    --vf-select-tag-radius-lg: var(--vf-border-radius-lg);
       
     --vf-select-tag-font-size: 0.875rem;
+    --vf-select-tag-font-size-sm: 0.75rem;
+    --vf-select-tag-font-size-lg: 0.875rem;
     --vf-select-tag-line-height: 1.25rem;
+    --vf-select-tag-line-heigh-sm: 1rem;
+    --vf-select-tag-line-height-lg: 1.25rem;
+    
     --vf-select-tag-font-weight: 600;
     --vf-select-tag-bg: var(--vf-primary);
     --vf-select-tag-bg-disabled: var(--vf-color-disabled);
     --vf-select-tag-color: #FFFFFF;
     --vf-select-tag-color-disabled: #FFFFFF;
-    --vf-select-tag-radius: var(--vf-border-radius);
-    --vf-select-tag-py: 0.0625rem;
-    --vf-select-tag-px: 0.5rem;
-    --vf-select-tag-my: 0.25rem;
-    --vf-select-tag-mx: 0.25rem;
 
-    --vf-select-tag-remove-radius: var(--vf-border-radius);
     --vf-select-tag-remove-py: 0.25rem;
+    --vf-select-tag-remove-py-sm: 0.25rem;
+    --vf-select-tag-remove-py-lg: 0.25rem;
     --vf-select-tag-remove-px: 0.25rem;
+    --vf-select-tag-remove-px-sm: 0.25rem;
+    --vf-select-tag-remove-px-lg: 0.25rem;
     --vf-select-tag-remove-my: 0rem;
+    --vf-select-tag-remove-my-sm: 0rem;
+    --vf-select-tag-remove-my-lg: 0rem;
     --vf-select-tag-remove-mx: 0.125rem;
+    --vf-select-tag-remove-mx-sm: 0.125rem;
+    --vf-select-tag-remove-mx-lg: 0.125rem;
+    --vf-select-tag-remove-radius: var(--vf-border-radius);
+    --vf-select-tag-remove-radius-sm: var(--vf-border-radius-sm);
+    --vf-select-tag-remove-radius-lg: var(--vf-border-radius-lg);
 
     --vf-select-dropdown-bg: #FFFFFF;
     --vf-select-dropdown-border-color: var(--vf-border-color);
     --vf-select-dropdown-border-width: var(--vf-border-width);
     --vf-select-dropdown-radius: var(--vf-border-radius);
+    --vf-select-dropdown-radius-sm: var(--vf-border-radius-sm);
+    --vf-select-dropdown-radius-lg: var(--vf-border-radius-lg);
 
-    --vf-select-group-label-py: 0.3rem;
-    --vf-select-group-label-px: 0.75rem;
+    --vf-select-group-label-py: calc(var(--vf-input-py) * 0.75);
+    --vf-select-group-label-py-sm: calc(var(--vf-input-py-sm) * 0.75);
+    --vf-select-group-label-py-lg: calc(var(--vf-input-py-lg) * 0.75);
+    --vf-select-group-label-px: var(--vf-input-px);
+    --vf-select-group-label-px-sm: var(--vf-input-px-sm);
+    --vf-select-group-label-px-lg: var(--vf-input-px-lg);
+    
+    --vf-select-group-label-font-size: 87.5%;
+    --vf-select-group-label-font-size-sm: 87.5%;
+    --vf-select-group-label-font-size-lg: 87.5%;
     --vf-select-group-label-line-height: 1.375;
+    --vf-select-group-label-line-height-sm: 1.375;
+    --vf-select-group-label-line-height-lg: 1.375;
+
     --vf-select-group-label-bg: var(--vf-gray-200);
     --vf-select-group-label-color: var(--vf-gray-700);
     --vf-select-group-label-bg-pointed: var(--vf-gray-300);
@@ -188,8 +272,13 @@
     --vf-select-group-label-color-selected-disabled: #FFFFFF;
     --vf-select-group-label-opacity-selected-disabled: 0.5;
 
-    --vf-select-option-font-size: inherit;
-    --vf-select-option-line-height: inherit;
+    --vf-select-option-py: calc(var(--vf-input-py) + var(--vf-border-width));
+    --vf-select-option-py-sm: calc(var(--vf-input-py-sm) + var(--vf-border-width));
+    --vf-select-option-py-lg: calc(var(--vf-input-py-lg) + var(--vf-border-width));
+    --vf-select-option-px: var(--vf-input-px);
+    --vf-select-option-px-sm: var(--vf-input-px-sm);
+    --vf-select-option-px-lg: var(--vf-input-px-lg);
+
     --vf-select-option-bg-pointed: var(--vf-gray-100);
     --vf-select-option-color-pointed: var(--vf-gray-800);
     --vf-select-option-bg-selected: var(--vf-primary);
@@ -202,8 +291,6 @@
     --vf-select-option-bg-selected-disabled: var(--vf-primary);
     --vf-select-option-color-selected-disabled: #FFFFFF;
     --vf-select-option-opacity-selected-disabled: 0.5;
-    --vf-select-option-py: calc(var(--vf-input-py) + var(--vf-border-width));
-    --vf-select-option-px: var(--vf-input-px);
 
     --vf-select-empty-color: var(--vf-gray-600);
   }
@@ -254,6 +341,14 @@
 
   .vf-group {
     margin-bottom: var(--vf-gutter);
+
+    &.vf-group-sm {
+      margin-bottom: var(--vf-gutter-sm);
+    }
+
+    &.vf-group-lg {
+      margin-bottom: var(--vf-gutter-lg);
+    }
   }
 
   // General input
@@ -270,11 +365,14 @@
     font-family: inherit;
     margin: 0;
     width: 100%;
-    padding: var(--vf-input-py) var(--vf-input-px);
     border: var(--vf-border-width) solid var(--vf-border-color);
     outline: none;
+    padding: var(--vf-input-py) var(--vf-input-px);
     border-radius: var(--vf-border-radius);
     min-height: var(--vf-input-min-height);
+    font-size: var(--vf-font-size);
+    line-height: var(--vf-line-height);
+    z-index: 1;
 
     &:focus {
       box-shadow: 0px 0px 0px var(--vf-ring-width) var(--vf-ring-color);
@@ -285,9 +383,49 @@
       background-color: var(--vf-bg-disabled);
       color: var(--vf-color-disabled);
     }
+
+    &.vf-input-sm {
+      padding: var(--vf-input-py-sm) var(--vf-input-px-sm);
+      border-radius: var(--vf-border-radius-sm);
+      min-height: var(--vf-input-min-height-sm);
+      font-size: var(--vf-font-size-sm);
+      line-height: var(--vf-line-height-sm);
+    }
+
+    &.vf-input-lg {
+      padding: var(--vf-input-py-lg) var(--vf-input-px-lg);
+      border-radius: var(--vf-border-radius-lg);
+      min-height: var(--vf-input-min-height-lg);
+      font-size: var(--vf-font-size-lg);
+      line-height: var(--vf-line-height-lg);
+    }
+  }
+
+  .vf-floating-wrapper ~ .vf-input-lg,
+  .vf-floating-wrapper ~ div .vf-input-lg,
+  .vf-floating-wrapper ~ span .vf-input-lg {
+    padding: calc(var(--vf-input-py-lg) + var(--vf-font-size-lg) * 0.35) var(--vf-input-px-lg) calc(var(--vf-input-py-lg) - var(--vf-font-size-lg) * 0.35);
   }
 
   // Checkbox
+  .vf-checkbox-container,
+  .vf-checkbox-wrapper {
+    display: flex;
+    align-items: flex-start;
+    width: 100%;
+    padding-top: calc(var(--vf-input-py) + var(--vf-border-width));
+  }
+
+  .vf-checkbox-wrapper {
+    &.vf-checkbox-wrapper-sm {
+      padding-top: calc(var(--vf-input-py-sm) + var(--vf-border-width));
+    }
+
+    &.vf-checkbox-wrapper-lg {
+      padding-top: calc(var(--vf-input-py-lg) + var(--vf-border-width));
+    }
+  }
+  
   .vf-checkbox {
     appearance: none;
     transition: all .2s ease-in-out;
@@ -342,13 +480,39 @@
         }
       }
     }
-  }
 
-  .vf-checkbox-wrapper {
-    display: flex;
-    align-items: flex-start;
-    width: 100%;
-    padding-top: calc(var(--vf-input-py) + var(--vf-border-width));
+    &.vf-checkbox-sm {
+      width: var(--vf-checkbox-size-sm);
+      height: var(--vf-checkbox-size-sm);
+      border-radius: var(--vf-border-radius-sm);
+      margin-top: 0.1875rem;
+
+      &:checked {
+        &:after {
+          content: " ";
+          width: calc(var(--vf-checkbox-size-sm) - 0.25rem);
+          height: calc(var(--vf-checkbox-size-sm) - 0.25rem);
+          top: 0.125rem;
+          left: 0.125rem;
+        }
+      }
+    }
+
+    &.vf-checkbox-lg {
+      width: var(--vf-checkbox-size-lg);
+      height: var(--vf-checkbox-size-lg);
+      border-radius: var(--vf-border-radius-lg);
+
+      &:checked {
+        &:after {
+          content: " ";
+          width: calc(var(--vf-checkbox-size-lg) - 0.375rem);
+          height: calc(var(--vf-checkbox-size-lg) - 0.375rem);
+          top: 0.1875rem;
+          left: 0.1875rem;
+        }
+      }
+    }
   }
 
   .vf-checkbox-text {
@@ -356,6 +520,24 @@
   }
 
   // Radio
+  .vf-radio-container,
+  .vf-radio-wrapper {
+    display: flex;
+    align-items: flex-start;
+    width: 100%;
+    padding-top: calc(var(--vf-input-py) + var(--vf-border-width));
+  }
+
+  .vf-radio-wrapper {
+    &.vf-radio-wrapper-sm {
+      padding-top: calc(var(--vf-input-py-sm) + var(--vf-border-width));
+    }
+    
+    &.vf-radio-wrapper-lg {
+      padding-top: calc(var(--vf-input-py-lg) + var(--vf-border-width));
+    }
+  }
+
   .vf-radio {
     position: relative;
     appearance: none;
@@ -418,13 +600,33 @@
       left: calc(0.3125rem - 1px);
       top: calc(0.3125rem - 1px);
     }
-  }
 
-  .vf-radio-wrapper {
-    display: flex;
-    align-items: flex-start;
-    width: 100%;
-    padding-top: calc(var(--vf-input-py) + var(--vf-border-width));
+    &.vf-radio-sm {
+      width: var(--vf-checkbox-size-sm);
+      height: var(--vf-checkbox-size-sm);
+      margin-top: 0.1875rem;
+
+      &:checked {
+        &:after {
+          width: calc(var(--vf-checkbox-size-sm) - 0.5rem);
+          height: calc(var(--vf-checkbox-size-sm) - 0.5rem);
+          left: 0.25rem;
+          top: 0.25rem;
+        }
+      }
+    }
+
+    &.vf-radio-lg {
+      width: var(--vf-checkbox-size-lg);
+      height: var(--vf-checkbox-size-lg);
+
+      &:checked {
+        &:after {
+          width: calc(var(--vf-checkbox-size-lg) - 0.625rem);
+          height: calc(var(--vf-checkbox-size-lg) - 0.625rem);
+        }
+      }
+    }
   }
 
   .vf-radio-text {
@@ -432,7 +634,8 @@
   }
 
   // Button
-  .vf-btn {
+  .vf-btn,
+  .vf-small-btn {
     padding: var(--vf-button-py) var(--vf-button-px);
     border-radius: var(--vf-border-radius);
     transition: .15s;
@@ -455,12 +658,12 @@
     }
 
     &[disabled],
-    &.is-disabled {
+    &.vf-btn-disabled {
       opacity: 0.6;
       cursor: not-allowed;
     }
 
-    &.is-loading {
+    &.vf-btn-loading {
       position: relative;
       color: transparent !important;
       opacity: 0.6;
@@ -486,10 +689,30 @@
       }
     }
   }
+  
+  .vf-btn {
+    &.vf-btn-sm {
+      padding: var(--vf-button-py-sm) var(--vf-button-px-sm);
+      border-radius: var(--vf-border-radius-sm);
+    }
 
-  .vf-btn-sm {
-    padding: calc(var(--vf-button-py) * 0.625) calc(var(--vf-button-px) * 0.625);
-    font-size: 0.875rem;
+    &.vf-btn-lg {
+      padding: var(--vf-button-py-lg) var(--vf-button-px-lg);
+      border-radius: var(--vf-border-radius-lg);
+    }
+  }
+
+  .vf-small-btn {
+    padding: calc(var(--vf-button-py) * 0.5) calc(var(--vf-button-px) * 0.625);
+    font-size: 82.5%;
+
+    &.vf-small-btn-sm {
+      padding: calc(var(--vf-button-py-sm) * 0.5) calc(var(--vf-button-px-sm) * 0.625);
+    }
+
+    &.vf-small-btn-lg {
+      padding: calc(var(--vf-button-py-lg) * 0.5) calc(var(--vf-button-px-lg) * 0.625);
+    }
   }
 
   .vf-btn-primary {

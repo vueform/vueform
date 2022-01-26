@@ -9,14 +9,14 @@
         merge: true,
         defaultClasses: {
           container: 'vf-tab',
-          wrapper: 'vf-tab-link',
-          wrapper_active: 'is-active',
+          wrapper: 'vf-tab-wrapper',
+          wrapper_active: 'vf-tab-wrapper-active',
           wrapper_inactive: '',
           wrapper_valid: '',
-          wrapper_invalid: 'has-error',
-          wrapper_sm: '',
+          wrapper_invalid: 'vf-tab-wrapper-invalid',
+          wrapper_sm: 'vf-tab-wrapper-sm',
           wrapper_md: '',
-          wrapper_lg: '',
+          wrapper_lg: 'vf-tab-wrapper-lg',
           $container: (classes, {}) => ([
             classes.container,
           ]),
@@ -33,7 +33,7 @@
 </script>
 
 <style lang="scss">
-  .vf-tab-link {
+  .vf-tab-wrapper {
     padding: 0.5rem 1rem;
     display: block;
     background: white;
@@ -46,11 +46,19 @@
       text-decoration: none;
     }
 
-    &.has-error {
+    &.vf-tab-wrapper-sm {
+      padding: 0.375rem 0.875rem;
+    }
+
+    &.vf-tab-wrapper-lg {
+      padding: 0.5rem 1rem;
+    }
+
+    &.vf-tab-wrapper-invalid {
       color: var(--vf-error-color);
     }
 
-    &.is-active {
+    &.vf-tab-wrapper-active {
       border: 1px solid var(--vf-border-color);
       border-bottom: 1px solid #FFFFFF;
       border-top-left-radius: var(--vf-border-radius);

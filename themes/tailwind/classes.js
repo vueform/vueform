@@ -223,7 +223,14 @@ export default {
   },
   CheckboxgroupElement: {
     container: '',
-    wrapper: 'flex flex-col justify-start form-pt-input-border',
+    wrapper: 'flex flex-col justify-start',
+    wrapper_sm: 'form-pt-input-border-sm',
+    wrapper_md: 'form-pt-input-border',
+    wrapper_lg: 'form-pt-input-border-lg',
+    $wrapper: (classes, { Size }) => ([
+      classes.wrapper,
+      classes[`wrapper_${Size}`]
+    ]),
   },
   CheckboxgroupElement_pills: {
     container: '',
@@ -409,6 +416,9 @@ export default {
     input: 'w-full form-p-input form-border form-border-color form-rounded',
     input_enabled: 'focus:form-ring',
     input_disabled: 'form-bg-disabled form-text-disabled',
+    input_sm: 'form-p-input-sm form-rounded-sm form-text-sm',
+    input_md: 'form-p-input form-rounded',
+    input_lg: 'form-p-input-lg form-rounded-lg form-text-lg with-floating:form-p-input-floating-lg',
     inputWrapper: '',
     select: {
       ...select,
@@ -421,8 +431,9 @@ export default {
         classes.select[`multipleLabel_${Size}`],
       ]),
     },
-    $input: (classes, { isDisabled }) => ([
+    $input: (classes, { isDisabled, Size }) => ([
       classes.input,
+      classes[`input_${Size}`],
       isDisabled ? classes.input_disabled : classes.input_enabled,
     ]),
   },
@@ -438,7 +449,14 @@ export default {
   },
   RadiogroupElement: {
     container: '',
-    wrapper: 'flex flex-col justify-start form-pt-input-border',
+    wrapper: 'flex flex-col justify-start',
+    wrapper_sm: 'form-pt-input-border-sm',
+    wrapper_md: 'form-pt-input-border',
+    wrapper_lg: 'form-pt-input-border-lg',
+    $wrapper: (classes, { Size }) => ([
+      classes.wrapper,
+      classes[`wrapper_${Size}`]
+    ]),
   },
   RadiogroupElement_pills: {
     container: '',
@@ -477,6 +495,10 @@ export default {
       classes.input,
       classes[`input_${Size}`],
       isDisabled ? classes.input_disabled : classes.input_enabled,
+    ]),
+    $inputWrapper: (classes, { Size }) => ([
+      classes.inputWrapper,
+      classes[`inputWrapper_${Size}`],
     ]),
     $inputPlaceholder: (classes, { Size }) => ([
       classes.inputPlaceholder,
@@ -723,22 +745,26 @@ export default {
   },
   ElementLayout: {
     container: 'form-col',
+    container_sm: 'form-text-sm',
+    container_md: '',
+    container_lg: 'form-text-lg',
     container_error: 'has-error',
     outerWrapper: 'form-row flex flex-wrap',
     outerWrapper_single: '',
-    outerWrapper_single_sm: 'form-mb-gutter-sm form-text-sm',
+    outerWrapper_single_sm: 'form-mb-gutter-sm',
     outerWrapper_single_md: 'form-mb-gutter',
-    outerWrapper_single_lg: 'form-mb-gutter-lg form-text-lg',
+    outerWrapper_single_lg: 'form-mb-gutter-lg',
     outerWrapper_multiple: '',
-    outerWrapper_multiple_sm: 'form-text-sm',
+    outerWrapper_multiple_sm: '',
     outerWrapper_multiple_md: '',
-    outerWrapper_multiple_lg: 'form-text-lg',
+    outerWrapper_multiple_lg: '',
     innerContainer: 'flex-1',
     innerWrapperBefore: 'form-col w-full',
     innerWrapper: 'form-col',
     innerWrapperAfter: 'form-col w-full',
-    $container: (classes, { el$ }) => ([
+    $container: (classes, { el$, Size }) => ([
       classes.container,
+      classes[`container_${Size}`],
       el$.columnsClasses.container,
       el$.classes.container,
       !el$.isStatic && el$.errors && !!el$.errors.length ? classes.container_error : null
@@ -767,10 +793,10 @@ export default {
   },
   ElementLoader: {
     container: 'relative z-10 order-1',
-    loader: 'absolute w-4 h-4 form-mr-input right-full mask-bg mask-form-spinner form-bg-primary animate-spin',
-    loader_sm: 'form-top-input-border-sm mt-0.5',
-    loader_md: 'form-top-input-border mt-1',
-    loader_lg: 'form-top-input-border-lg mt-1',
+    loader: 'absolute w-4 h-4 right-full mask-bg mask-form-spinner form-bg-primary animate-spin',
+    loader_sm: 'form-top-input-border-sm form-mr-input-sm mt-0.5',
+    loader_md: 'form-top-input-border form-mr-input mt-1',
+    loader_lg: 'form-top-input-border-lg form-mr-input-lg mt-1',
     $loader: (classes, { Size }) => ([
       classes.loader,
       classes[`loader_${Size}`],

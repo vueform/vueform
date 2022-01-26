@@ -1,14 +1,14 @@
 <script>
-  import CheckboxgroupCheckbox from './../../../../blank/templates/elements/partials/CheckboxgroupCheckbox.vue'
+  import CheckboxgroupCheckbox_blocks from './../../../../blank/templates/elements/partials/CheckboxgroupCheckbox_blocks.vue'
 
   export default {
     name: 'CheckboxgroupCheckbox_blocks',
-    render: CheckboxgroupCheckbox.render,
+    render: CheckboxgroupCheckbox_blocks.render,
     data() {
       return {
         merge: true,
         defaultClasses: {
-          container: 'vf-checkbox-wrapper',
+          container: 'vf-checkbox-container',
           wrapper: '',
           wrapper_not_last: '',
           wrapper_first: '',

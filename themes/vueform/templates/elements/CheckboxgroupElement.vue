@@ -10,6 +10,13 @@
         defaultClasses: {
           container: '',
           wrapper: 'vf-checkboxgroup-wrapper',
+          wrapper_sm: 'vf-checkboxgroup-wrapper-sm',
+          wrapper_md: '',
+          wrapper_lg: 'vf-checkboxgroup-wrapper-lg',
+          $wrapper: (classes, { Size }) => ([
+            classes.wrapper,
+            classes[`wrapper_${Size}`]
+          ]),
         }
       }
     }
@@ -20,6 +27,14 @@
   .vf-checkboxgroup-wrapper {
     padding-top: calc(var(--vf-input-py) + var(--vf-border-width));
     cursor: pointer;
+
+    &.vf-checkboxgroup-wrapper-sm {
+      padding-top: calc(var(--vf-input-py-sm) + var(--vf-border-width));
+    }
+
+    &.vf-checkboxgroup-wrapper-lg {
+      padding-top: calc(var(--vf-input-py-lg) + var(--vf-border-width));
+    }
 
     .vf-checkbox-container {
       padding-top: 0;

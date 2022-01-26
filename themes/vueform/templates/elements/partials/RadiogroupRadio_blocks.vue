@@ -1,14 +1,14 @@
 <script>
-  import RadiogroupRadio from './../../../../blank/templates/elements/partials/RadiogroupRadio.vue'
+  import RadiogroupRadio_blocks from './../../../../blank/templates/elements/partials/RadiogroupRadio_blocks.vue'
 
   export default {
     name: 'RadiogroupRadio_blocks',
-    render: RadiogroupRadio.render,
+    render: RadiogroupRadio_blocks.render,
     data() {
       return {
         merge: true,
         defaultClasses: {
-          container: 'vf-radio-wrapper',
+          container: 'vf-radio-container',
           wrapper: '',
           wrapper_not_last: '',
           wrapper_first: '',

@@ -10,20 +10,20 @@
         defaultClasses: {
           container: '',
           list: 'vf-rowset',
-          list_disabled: 'is-disabled',
-          list_sorting: 'is-sorting',
+          list_disabled: 'vf-list-disabled',
+          list_sorting: 'vf-list-sorting',
           listItem: 'vf-row',
           handle: 'vf-list-handle',
-          handle_sm: '',
+          handle_sm: 'vf-list-handle-sm',
           handle_md: '',
-          handle_lg: '',
+          handle_lg: 'vf-list-handle-lg',
           handleIcon: 'vf-list-handle-icon',
           remove: 'vf-list-remove',
           removeIcon: 'vf-list-remove-icon',
-          add: 'vf-btn vf-btn-primary vf-btn-sm',
-          add_sm: '',
+          add: 'vf-small-btn vf-btn-primary',
+          add_sm: 'vf-small-btn-sm',
           add_md: '',
-          add_lg: '',
+          add_lg: 'vf-small-btn-lg',
           $list: (classes, { isDisabled, sorting }) => ([
             classes.list,
             isDisabled ? classes.list_disabled : null,
@@ -58,7 +58,7 @@
       }
     }
 
-    &.is-sorting {
+    &.vf-list-sorting {
       & > div:hover {
         .vf-list-handle, .vf-list-remove {
           visibility: hidden;
@@ -130,6 +130,20 @@
     mask-repeat: no-repeat;
     mask-position: center center;
     background-color: #000000;
+  }
+
+  .vf-list-handle-sm {
+    .vf-list-handle-icon {
+      width: var(--vf-input-min-height-sm);
+      height: var(--vf-input-min-height-sm);
+    }
+  }
+
+  .vf-list-handle-lg {
+    .vf-list-handle-icon {
+      width: var(--vf-input-min-height-lg);
+      height: var(--vf-input-min-height-lg);
+    }
   }
 
   .sortable-ghost {

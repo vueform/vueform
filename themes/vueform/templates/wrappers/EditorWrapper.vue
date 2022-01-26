@@ -751,4 +751,40 @@
       }
     }
   }
+
+  .vf-editor-sm {
+    trix-editor {
+      padding-left: var(--vf-input-px-sm);
+      padding-right:  var(--vf-input-px-sm);
+      padding-bottom:  var(--vf-input-py-sm);
+      border-radius:  var(--vf-border-radius-sm);
+      min-height: 5rem;
+    }
+
+    .trix-content,
+    trix-editor {
+      h1 {
+        font-size: 1.625rem;
+        font-weight: 700;
+        line-height: 1.25;
+      }
+    }
+    
+    trix-toolbar {
+      padding:  var(--vf-input-py-sm)  var(--vf-input-px-sm);
+
+      .trix-button--icon {
+        width: 2.25rem;
+      }
+    }
+  }
+
+  .vf-editor-lg {
+    trix-editor {
+      padding-left: var(--vf-input-px-lg);
+      padding-right: var(--vf-input-px-lg);
+      padding-bottom: var(--vf-input-py-lg);
+      border-radius: var(--vf-border-radius-lg);
+    }
+  }
 </style>

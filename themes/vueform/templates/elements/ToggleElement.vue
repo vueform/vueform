@@ -17,25 +17,25 @@
           toggle: {
             container: 'vf-toggle-container',
             toggle: 'vf-toggle',
-            toggle_sm: '',
+            toggle_sm: 'vf-toggle-sm',
             toggle_md: '',
-            toggle_lg: '',
+            toggle_lg: 'vf-toggle-lg',
             toggleOn: 'vf-toggle-on',
             toggleOff: 'vf-toggle-off',
             toggleOnDisabled: 'vf-toggle-on-disabled',
             toggleOffDisabled: 'vf-toggle-off-disabled',
             handle: 'vf-toggle-handle',
-            handle_sm: '',
+            handle_sm: 'vf-toggle-handle-sm',
             handle_md: '',
-            handle_lg: '',
+            handle_lg: 'vf-toggle-handle-lg',
             handleOn: 'vf-toggle-handle-on',
             handleOff: 'vf-toggle-handle-off',
             handleOnDisabled: 'vf-toggle-handle-on-disabled',
             handleOffDisabled: 'vf-toggle-handle-off-disabled',
             label: 'vf-toggle-label',
-            label_sm: '',
+            label_sm: 'vf-toggle-label-sm',
             label_md: '',
-            label_lg: '',
+            label_lg: 'vf-toggle-label-lg',
             $toggle: (classes, { Size }) => ([
               classes.toggle.toggle,
               classes.toggle[`toggle_${Size}`],
@@ -81,8 +81,6 @@
 
   .vf-toggle {
     display: flex;
-    width: var(--vf-toggle-width);
-    height: var(--vf-toggle-height);
     border-radius: 999px;
     position: relative;
     cursor: pointer;
@@ -91,7 +89,21 @@
     box-sizing: content-box;
     border: var(--vf-toggle-border) solid;
     font-size: var(--vf-toggle-font-size);
+    width: var(--vf-toggle-width);
+    height: var(--vf-toggle-height);
     line-height: 1;
+
+    &.vf-toggle-sm {
+      width: var(--vf-toggle-width-sm);
+      height: var(--vf-toggle-height-sm);
+      font-size: var(--vf-toggle-font-size-sm);
+    }
+
+    &.vf-toggle-lg {
+      width: var(--vf-toggle-width-lg);
+      height: var(--vf-toggle-height-lg);
+      font-size: var(--vf-toggle-font-size-lg);
+    }
   }
 
   .vf-toggle-on {
@@ -129,14 +141,24 @@
   .vf-toggle-handle {
     display: inline-block;
     background: var(--vf-toggle-handle-enabled);
-    width: 1.25rem;
-    height: 1.25rem;
+    width: var(--vf-toggle-height);
+    height: var(--vf-toggle-height);
     top: 0;
     border-radius: 50%;
     position: absolute;
     transition-property: all;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     transition-duration: var(--vf-toggle-duration);
+
+    &.vf-toggle-handle-sm {
+      width: var(--vf-toggle-height-sm);
+      height: var(--vf-toggle-height-sm);
+    }
+
+    &.vf-toggle-handle-lg {
+      width: var(--vf-toggle-height-lg);
+      height: var(--vf-toggle-height-lg);
+    }
   }
 
   .vf-toggle-handle-on {
@@ -165,5 +187,13 @@
     box-sizing: border-box;
     white-space: nowrap;
     user-select: none;
+
+    &.vf-toggle-label-sm {
+      width: calc(var(--vf-toggle-width-sm) - var(--vf-toggle-height-sm));
+    }
+
+    &.vf-toggle-label-lg {
+      width: calc(var(--vf-toggle-width-lg) - var(--vf-toggle-height-lg));
+    }
   }
 </style>

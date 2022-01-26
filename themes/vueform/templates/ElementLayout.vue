@@ -8,23 +8,27 @@
       return {
         merge: true,
         defaultClasses: {
-          container: '',
-          container_error: 'has-error',
+          container: 'vf-element-layout',
+          container_sm: 'vf-element-layout-sm',
+          container_md: '',
+          container_lg: 'vf-element-layout-lg',
+          container_error: 'vf-element-layout-error',
           outerWrapper: 'vf-row',
           outerWrapper_single: 'vf-group',
-          outerWrapper_single_sm: '',
+          outerWrapper_single_sm: 'vf-group-sm',
           outerWrapper_single_md: '',
-          outerWrapper_single_lg: '',
+          outerWrapper_single_lg: 'vf-group-lg',
           outerWrapper_multiple: '',
-          outerWrapper_multiple_sm: '',
+          outerWrapper_multiple_sm: 'vf-group-sm',
           outerWrapper_multiple_md: '',
-          outerWrapper_multiple_lg: '',
+          outerWrapper_multiple_lg: 'vf-group-lg',
           innerContainer: 'vf-layout-inner-container',
           innerWrapperBefore: 'vf-layout-inner-wrapper-before',
           innerWrapper: 'vf-layout-inner-wrapper',
           innerWrapperAfter: 'vf-layout-inner-wrapper-after',
-          $container: (classes, { el$ }) => ([
+          $container: (classes, { el$, Size }) => ([
             classes.container,
+            classes[`container_${Size}`],
             el$.columnsClasses.container,
             el$.classes.container,
             !el$.isStatic && el$.errors && !!el$.errors.length ? classes.container_error : null
@@ -50,6 +54,21 @@
 
 <style lang="scss">
   // Some styles are contained in Vueform.vue
+
+  .vf-element-layout {
+    font-size: var(--vf-font-size);
+    line-height: var(--vf-line-height);
+
+    &.vf-element-layout-sm {
+      font-size: var(--vf-font-size-sm);
+      line-height: var(--vf-line-height-sm);
+    }
+
+    &.vf-element-layout-lg {
+      font-size: var(--vf-font-size-lg);
+      line-height: var(--vf-line-height-lg);
+    }
+  }
 
   .vf-layout-inner-container {
     flex: 1 1 0%;

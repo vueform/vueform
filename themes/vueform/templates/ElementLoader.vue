@@ -8,11 +8,11 @@
       return {
         merge: true,
         defaultClasses: {
-          container: 'vf-element-loader-wrapper',
+          container: 'vf-element-loader-container',
           loader: 'vf-element-loader',
-          loader_sm: '',
+          loader_sm: 'vf-element-loader-sm',
           loader_md: '',
-          loader_lg: '',
+          loader_lg: 'vf-element-loader-lg',
           $loader: (classes, { Size }) => ([
             classes.loader,
             classes[`loader_${Size}`],
@@ -24,7 +24,7 @@
 </script>
 
 <style lang="scss">
-  .vf-element-loader-wrapper {
+  .vf-element-loader-container {
     position: relative;
     z-index: 4;
     order: 1;
@@ -36,7 +36,6 @@
     height: 1rem;
     background: #FFFFFF;
     display: block;
-
     right: var(--vf-input-px);
     top: 50%;
     transform: translateY(-50%);
@@ -63,6 +62,14 @@
 
     &:after {
       animation: vf-element-loader 2.4s infinite cubic-bezier(0.51, 0.09, 0.21, 0.8);
+    }
+
+    &.vf-element-loader-sm {
+      right: var(--vf-input-px-sm);
+    }
+
+    &.vf-element-loader-lg {
+      right: var(--vf-input-px-lg);
     }
   }
 

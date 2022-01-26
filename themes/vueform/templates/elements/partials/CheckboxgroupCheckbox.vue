@@ -8,13 +8,13 @@
       return {
         merge: true,
         defaultClasses: {
-          container: 'vf-checkbox-wrapper',
+          container: 'vf-checkbox-container',
           input: 'vf-checkbox',
           input_enabled: '',
           input_disabled: '',
-          input_sm: '',
+          input_sm: 'vf-checkbox-sm',
           input_md: '',
-          input_lg: '',
+          input_lg: 'vf-checkbox-lg',
           text: 'vf-checkbox-text',
           $input: (classes, { isDisabled, Size }) => ([
             classes.input,

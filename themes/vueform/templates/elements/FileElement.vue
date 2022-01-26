@@ -8,14 +8,14 @@
       return {
         merge: true,
         defaultClasses: {
-          container: '',
-          container_removing: 'is-removing',
+          container: 'vf-file',
+          container_removing: 'vf-file-removing',
           button: 'vf-btn vf-btn-light',
           button_enabled: '',
-          button_disabled: 'is-disabled',
-          button_sm: '',
+          button_disabled: 'vf-btn-disabled',
+          button_sm: 'vf-btn-sm',
           button_md: '',
-          button_lg: '',
+          button_lg: 'vf-btn-lg',
           $container: (classes, { removing }) => ([
             classes.container,
             removing ? classes.container_removing : null,

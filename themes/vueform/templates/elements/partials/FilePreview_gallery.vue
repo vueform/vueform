@@ -232,7 +232,7 @@
     background-color: var(--vf-error-color);
   }
 
-  .is-removing {
+  .vf-file-removing {
     .vf-file-preview-gallery {
       opacity: 0.6;
     }

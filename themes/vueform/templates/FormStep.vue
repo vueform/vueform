@@ -10,15 +10,15 @@
         defaultClasses: {
           container: 'vf-step',
           wrapper: '',
-          container_active: 'is-active',
+          container_active: 'vf-step-active',
           container_inactive: '',
-          container_invalid: 'has-errors',
+          container_invalid: 'vf-step-invalid',
           container_valid: '',
-          container_disabled: 'is-disabled',
+          container_disabled: 'vf-step-disabled',
           container_enabled: '',
-          container_completed: 'is-completed',
+          container_completed: 'vf-step-completed',
           container_incompleted: '',
-          container_pending: 'is-pending',
+          container_pending: 'vf-step-pending',
           $container: (classes, { active, isDisabled, completed, invalid, pending }) => ([
             classes.container,
             active ? classes.container_active : classes.container_inactive,
@@ -167,7 +167,7 @@
       }
     }
 
-    &.is-disabled {
+    &.vf-step-disabled {
       &:before {
         background: var(--vf-bg-disabled);
         left: -100%;
@@ -182,7 +182,7 @@
       }
     }
 
-    &.is-completed {
+    &.vf-step-completed {
       a {
         &:after {
           background: url('data:image/svg+xml;utf8,<svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" class="svg-inline--fa fa-check fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="white" d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"></path></svg>');
@@ -195,7 +195,7 @@
       }
     }
 
-    &.is-active {
+    &.vf-step-active {
       a {
         &:after {
           background: #FFFFFF;
@@ -206,7 +206,7 @@
       }
     }
 
-    &.has-errors {
+    &.vf-step-invalid {
       a {
         color: var(--vf-error-color);
 
@@ -227,7 +227,7 @@
       }
     }
 
-    &.is-pending {
+    &.vf-step-pending {
       a {
         &:after {
           animation: 1s linear infinite step-loading;

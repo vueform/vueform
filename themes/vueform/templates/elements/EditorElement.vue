@@ -11,11 +11,11 @@
           container: '',
           input: 'vf-editor',
           input_enabled: '',
-          input_disabled: 'is-disabled',
-          input_focused: 'is-focused',
-          input_sm: '',
+          input_disabled: 'vf-editor-disabled',
+          input_focused: 'vf-editor-focused',
+          input_sm: 'vf-editor-sm',
           input_md: '',
-          input_lg: '',
+          input_lg: 'vf-editor-lg',
           $input: (classes, { isDisabled, focused, Size }) => ([
             classes.input,
             classes[`input_${Size}`],
@@ -33,12 +33,12 @@
     border: var(--vf-border-width) solid var(--vf-border-color);
     border-radius: var(--vf-border-radius);
 
-    &.is-focused {
+    &.vf-editor-focused {
       border-color: var(--vf-primary);
       box-shadow: 0px 0px 0px var(--vf-ring-width) var(--vf-ring-color);
     }
 
-    &.is-disabled {
+    &.vf-editor-disabled {
       background: var(--vf-bg-disabled);
       color: var(--vf-color-disabled);
     }

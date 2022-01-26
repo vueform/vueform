@@ -8,13 +8,13 @@
       return {
         merge: true,
         defaultClasses: {
-          container: 'vf-radio-wrapper',
+          container: 'vf-radio-container',
           input: 'vf-radio',
           input_enabled: '',
           input_disabled: '',
-          input_sm: '',
+          input_sm: 'vf-radio-sm',
           input_md: '',
-          input_lg: '',
+          input_lg: 'vf-radio-lg',
           text: 'vf-radio-text',
           $input: (classes, { isDisabled, Size }) => ([
             classes.input,
