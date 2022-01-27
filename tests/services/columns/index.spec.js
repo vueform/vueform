@@ -407,13 +407,8 @@ describe('Bootstrap Columns Util', () => {
     })
   })
 
-  it('should merge form breakpoints to config', async () => {
+  it('should merge breakpoints from config presets', async () => {
      let form = createForm({
-      columns: {
-        container: 12,
-        label: 2,
-        wrapper: 10,
-      },
       schema: {
         el: {
           type: 'text',
@@ -421,16 +416,243 @@ describe('Bootstrap Columns Util', () => {
         },
       }
     }, {
-      config: { columns: { container: 12, label: 12, wrapper: 12 } },
+      config: {
+        presets: {
+          preset: {
+            columns: {
+              container: 1, label: 1, wrapper: 1
+            },
+          }
+        },
+        usePresets: ['preset'],
+      },
     })
     
     let el = form.vm.el$('el')
 
     expect(el.columnsClasses).toStrictEqual({
-      container: ['vf-col-12'],
+      container: ['vf-col-1'],
+      innerContainer: ['vf-col-11'],
+      label: ['vf-col-1'],
+      wrapper: ['vf-col-1'],
+    })
+  })
+
+  it('should merge breakpoints from config', async () => {
+     let form = createForm({
+      schema: {
+        el: {
+          type: 'text',
+          label: 'El',
+        },
+      }
+    }, {
+      config: {
+        columns: {
+          container: 2, label: 2, wrapper: 2
+        },
+        presets: {
+          preset: {
+            columns: {
+              container: 1, label: 1, wrapper: 1
+            },
+          }
+        },
+        usePresets: ['preset'],
+      },
+    })
+    
+    let el = form.vm.el$('el')
+
+    expect(el.columnsClasses).toStrictEqual({
+      container: ['vf-col-2'],
       innerContainer: ['vf-col-10'],
       label: ['vf-col-2'],
-      wrapper: ['vf-col-10'],
+      wrapper: ['vf-col-2'],
+    })
+  })
+
+  it('should merge breakpoints from form presets', async () => {
+     let form = createForm({
+      schema: {
+        el: {
+          type: 'text',
+          label: 'El',
+        },
+      },
+      presets: ['preset2'],
+    }, {
+      config: {
+        columns: {
+          container: 2, label: 2, wrapper: 2
+        },
+        presets: {
+          preset: {
+            columns: {
+              container: 1, label: 1, wrapper: 1
+            },
+          },
+          preset2: {
+            columns: {
+              container: 3, label: 3, wrapper: 3
+            },
+          },
+        },
+        usePresets: ['preset'],
+      },
+    })
+    
+    let el = form.vm.el$('el')
+
+    expect(el.columnsClasses).toStrictEqual({
+      container: ['vf-col-3'],
+      innerContainer: ['vf-col-9'],
+      label: ['vf-col-3'],
+      wrapper: ['vf-col-3'],
+    })
+  })
+
+  it('should merge breakpoints from form', async () => {
+     let form = createForm({
+      schema: {
+        el: {
+          type: 'text',
+          label: 'El',
+        },
+      },
+      presets: ['preset2'],
+      columns: {
+        container: 4, label: 4, wrapper: 4
+      },
+    }, {
+      config: {
+        columns: {
+          container: 2, label: 2, wrapper: 2
+        },
+        presets: {
+          preset: {
+            columns: {
+              container: 1, label: 1, wrapper: 1
+            },
+          },
+          preset2: {
+            columns: {
+              container: 3, label: 3, wrapper: 3
+            },
+          },
+        },
+        usePresets: ['preset'],
+      },
+    })
+    
+    let el = form.vm.el$('el')
+
+    expect(el.columnsClasses).toStrictEqual({
+      container: ['vf-col-4'],
+      innerContainer: ['vf-col-8'],
+      label: ['vf-col-4'],
+      wrapper: ['vf-col-4'],
+    })
+  })
+
+  it('should merge breakpoints from element presets', async () => {
+     let form = createForm({
+      schema: {
+        el: {
+          type: 'text',
+          label: 'El',
+          presets: ['preset3'],
+        },
+      },
+      presets: ['preset2'],
+      columns: {
+        container: 4, label: 4, wrapper: 4
+      },
+    }, {
+      config: {
+        columns: {
+          container: 2, label: 2, wrapper: 2
+        },
+        presets: {
+          preset: {
+            columns: {
+              container: 1, label: 1, wrapper: 1
+            },
+          },
+          preset2: {
+            columns: {
+              container: 3, label: 3, wrapper: 3
+            },
+          },
+          preset3: {
+            columns: {
+              container: 5, label: 5, wrapper: 5
+            },
+          },
+        },
+        usePresets: ['preset'],
+      },
+    })
+    
+    let el = form.vm.el$('el')
+
+    expect(el.columnsClasses).toStrictEqual({
+      container: ['vf-col-5'],
+      innerContainer: ['vf-col-7'],
+      label: ['vf-col-5'],
+      wrapper: ['vf-col-5'],
+    })
+  })
+
+  it('should merge breakpoints from element', async () => {
+     let form = createForm({
+      schema: {
+        el: {
+          type: 'text',
+          label: 'El',
+          presets: ['preset3'],
+          columns: {
+            container: 6, label: 6, wrapper: 6
+          },
+        },
+      },
+      presets: ['preset2'],
+      columns: {
+        container: 4, label: 4, wrapper: 4
+      },
+    }, {
+      config: {
+        columns: {
+          container: 2, label: 2, wrapper: 2
+        },
+        presets: {
+          preset: {
+            columns: {
+              container: 1, label: 1, wrapper: 1
+            },
+          },
+          preset2: {
+            columns: {
+              container: 3, label: 3, wrapper: 3
+            },
+          },
+          preset3: {
+            columns: {
+              container: 5, label: 5, wrapper: 5
+            },
+          },
+        },
+        usePresets: ['preset'],
+      },
+    })
+    
+    let el = form.vm.el$('el')
+
+    expect(el.columnsClasses).toStrictEqual({
+      container: ['vf-col-6'],
+      innerContainer: ['vf-col-6'],
+      label: ['vf-col-6'],
+      wrapper: ['vf-col-6'],
     })
   })
 

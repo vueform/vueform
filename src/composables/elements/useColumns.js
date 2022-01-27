@@ -4,6 +4,7 @@ const base = function(props, context, dependencies)
 {
   const {
     columns,
+    presets,
   } = toRefs(props)
 
   // ============ DEPENDENCIES ============
@@ -21,13 +22,16 @@ const base = function(props, context, dependencies)
    * @private
    */
   const columnsClasses = computed(() => {
-    return (new form$.value.$vueform.services.columns(
-      columns.value,
-      form$.value.options.columns,
-      form$.value.$vueform.config.columns,
-      hasLabel.value,
-      theme.value.columns,
-    )).classes
+    let config = form$.value.$vueform.config
+
+    return (new form$.value.$vueform.services.columns({
+      configPresetColumns: config.usePresets,
+      configColumns: config.columns,
+      formPresetColumns: form$.value.options.presets,
+      formColumns: form$.value.options.columns,
+      elementPresetColumns: presets.value,
+      elementColumns: columns.value,
+    }, hasLabel.value, theme.value.columns, config.presets)).classes
   })
 
   return {

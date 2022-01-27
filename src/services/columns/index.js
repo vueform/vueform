@@ -3,10 +3,16 @@ export default class Columns
 {
   defaultBreakpoint = 'default'
 
-  constructor (columns, formColumns, configColumns, hasLabel, getClass) {
-    this.columns = this.serialize(columns || {})
-    this.formColumns = this.serialize(formColumns || {})
-    this.configColumns = this.serialize(configColumns || {})
+  constructor (options, hasLabel, getClass, presets) {
+    this.presets = presets
+
+    this.configPresetColumns = this.serialize(this.columnsFromPresets(options.configPresetColumns) || {})
+    this.configColumns = this.serialize(options.configColumns || {})
+    this.formPresetColumns = this.serialize(this.columnsFromPresets(options.formPresetColumns) || {})
+    this.formColumns = this.serialize(options.formColumns || {})
+    this.presetColumns = this.serialize(this.columnsFromPresets(options.elementPresetColumns) || {})
+    this.columns = this.serialize(options.elementColumns || {})
+
     this.hasLabel = hasLabel
     this.getClass = getClass
 
@@ -81,6 +87,22 @@ export default class Columns
     }
   }
 
+  columnsFromPresets(presets) {
+    let columns
+
+    _.each(presets, (presetName) => {
+      let preset = this.presets[presetName]
+
+      if (!preset.columns) {
+        return
+      }
+
+      columns = preset.columns
+    })
+
+    return columns
+  } 
+
   getNullClass () {
     return [this.getClass(this.defaultBreakpoint, 0)]
   }
@@ -121,9 +143,12 @@ export default class Columns
   getCols() {
     return _.merge({},
       { [this.defaultBreakpoint]: { container: 12, label: 12, wrapper: 12 } },
+      this.configPresetColumns || {},
       this.configColumns || {},
+      this.formPresetColumns || {},
       this.formColumns || {},
-      this.columns || {}
+      this.presetColumns || {},
+      this.columns || {},
     )
   }
 }

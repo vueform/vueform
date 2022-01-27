@@ -248,7 +248,6 @@ const base = function(props, context, dependencies = {})
     }
 
     const defaults = {
-      columns: baseConfig.value.config.columns,
       languages: baseConfig.value.config.languages,
       language: baseConfig.value.config.language,
       endpoint: baseConfig.value.config.endpoints.submit.url,
@@ -262,6 +261,7 @@ const base = function(props, context, dependencies = {})
       theme: baseConfig.value.theme,
       view: baseConfig.value.config.view,
       views: {},
+      columns: {},
       size: null,
       addClass: null,
       removeClass: null,
@@ -650,7 +650,7 @@ const base = function(props, context, dependencies = {})
   })
 
   /**
-   * The selected theme, extended by local template and class overrides, using [`templates`](#option-templates), [`addClasses`](#option-add-classes) and [`replaceClasses`](#option-replace-classes).
+   * The selected theme, extended by local template and class overrides, using [`templates`](#option-replace-templates), [`addClasses`](#option-add-classes) and [`replaceClasses`](#option-replace-classes).
    * 
    * @type {object}
    */
@@ -679,7 +679,7 @@ const base = function(props, context, dependencies = {})
   })
 
   /**
-  * The selected theme's templates, extended by local overrides. The [`templates`](#option-templates) option can be used to override templates provided by the theme.
+  * The selected theme's templates, extended by local overrides. The [`templates`](#option-replace-templates) option can be used to override templates provided by the theme.
   * 
   * @type {object}
   */

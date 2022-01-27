@@ -23,11 +23,7 @@ const config = {
   presets: {},
   usePresets: [],
   classHelpers: true,
-  columns: {
-    container: 12,
-    label: 12,
-    wrapper: 12,
-  },
+  columns: {},
   forceLabels: false,
   floatPlaceholders: true,
   displayErrors: true,
