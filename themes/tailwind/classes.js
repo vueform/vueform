@@ -507,7 +507,10 @@ export default {
   },
   SliderElement: {
     container: '',
-    wrapper: 'mt-4',
+    wrapper: '',
+    wrapper_sm: 'mt-3.5',
+    wrapper_md: 'mt-4',
+    wrapper_lg: 'mt-5',
     slider: {
       target: 'relative box-border user-select-none touch-none tap-highlight-transparent touch-callout-none disabled:cursor-not-allowed',
       focused: 'slider-focused',
@@ -535,7 +538,11 @@ export default {
       draggable: 'cursor-ew-resize v:cursor-ns-resize',
       tap: 'slider-state-tap',
       drag: 'slider-state-drag',
-    }
+    },
+    $wrapper: (classes, { Size }) => ([
+      classes.wrapper,
+      classes[`wrapper_${Size}`],
+    ])
   },
   StaticElement: {
     container: '',

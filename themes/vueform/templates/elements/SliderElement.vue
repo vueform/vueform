@@ -14,6 +14,9 @@
         defaultClasses: {
           container: '',
           wrapper: 'vf-slider-wrapper',
+          wrapper_sm: 'vf-slider-wrapper-sm',
+          wrapper_md: '',
+          wrapper_lg: 'vf-slider-wrapper-lg',
           slider: {
             target: 'vf-slider-target',
             focused: 'vf-slider-focused',
@@ -42,6 +45,10 @@
             tap: 'vf-slider-state-tap',
             drag: 'vf-slider-state-drag',
           },
+          $wrapper: (classes, { Size }) => ([
+            classes.wrapper,
+            classes[`wrapper_${Size}`],
+          ])
         }
       }
     }
@@ -50,7 +57,16 @@
 
 <style lang="scss">
   .vf-slider-wrapper {
-    margin-top: calc((var(--vf-input-min-height) - var(--vf-slider-height)) / 2)
+    margin-top: calc((var(--vf-input-min-height) - var(--vf-slider-height)) / 2);
+
+    &.vf-slider-wrapper-sm {
+      margin-top: calc((var(--vf-input-min-height-sm) - var(--vf-slider-height)) / 2);
+      margin-bottom: 0.25rem;
+    }
+
+    &.vf-slider-wrapper-lg {
+      margin-top: calc((var(--vf-input-min-height-lg) - var(--vf-slider-height)) / 2);
+    }
   }
 
   // @vueform/slider styles

@@ -50,7 +50,7 @@
     justify-content: center;
     border: solid var(--vf-border-width);
     padding: 0.375rem 0;
-    width: fill;
+    width: 100%;
     background: #fff;
 
     &.vf-radio-pills-not-last {
