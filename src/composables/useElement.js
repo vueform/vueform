@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import { onMounted } from 'composition-api'
 import useWatchValue from './elements/useWatchValue'
 
@@ -5,7 +6,7 @@ const base = function(props, context, options_ = {})
 {
   // =============== INJECT ===============
 
-  let deps = {}
+  let deps = options_.deps || {}
   let options = {
     ...options_,
     events: context.emits,

@@ -1,5 +1,5 @@
 <script>
-import EditorWrapper from '@vueform/vueform/themes/blank/templates/wrappers/EditorWrapper.vue'
+import EditorWrapper from './../../../blank/templates/wrappers/EditorWrapper.vue'
 
   export default {
     name: 'EditorWrapper',

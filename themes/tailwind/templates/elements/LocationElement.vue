@@ -1,5 +1,5 @@
 <script>
-  import LocationElement from '@vueform/vueform/themes/blank/templates/elements/LocationElement.vue'
+  import LocationElement from './../../../blank/templates/elements/LocationElement.vue'
 
   export default {
     name: 'LocationElement',

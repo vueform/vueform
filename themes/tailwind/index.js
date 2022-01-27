@@ -150,11 +150,19 @@ const prefixer = function (classes, prefix) {
   let prefixedClasses = {}
 
   const prefixClass = (class_) => {
-    return class_.split(' ').map((c) => {
-      return c.match(/:/)
-        ? c.replace(':', `:${prefix}`)
-        : (c.length ? `${prefix}${c}` : c)
-    }).join(' ')
+    let res
+
+    try {
+      res = class_.split(' ').map((c) => {
+        return c.match(/:/)
+          ? c.replace(':', `:${prefix}`)
+          : (c.length ? `${prefix}${c}` : c)
+      }).join(' ')
+    } catch (e) {
+      console.error('Couldn\'t prefix class: ', class_, e)
+    }
+
+    return res
   } 
 
   _.each(classes, (classList, componentName) => {
@@ -165,7 +173,11 @@ const prefixer = function (classes, prefix) {
         prefixedClasses[componentName][className] = {}
         
         _.each(class_, (subclass, subclassName) => {
-          prefixedClasses[componentName][className][subclassName] = prefixClass(subclass)
+          if (typeof subclass !== 'function') {
+            prefixedClasses[componentName][className][subclassName] = prefixClass(subclass)
+          } else {
+            prefixedClasses[componentName][className][subclassName] = subclass
+          }
         })
       } else if (typeof class_ !== 'function') {
         prefixedClasses[componentName][className] = prefixClass(class_)

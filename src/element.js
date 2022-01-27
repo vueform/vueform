@@ -1,6 +1,6 @@
 import { ref } from 'composition-api'
-
 import { onMounted } from 'composition-api'
+import useElementBase from './composables/useElement'
 import useForm$ from './composables/useForm$'
 import useTheme from './composables/useTheme'
 import useLayout from './composables/elements/useLayout'
@@ -42,157 +42,45 @@ const ElementMixin = function() {
 const useElement = function(props, context, dependencies, options) {
   const nullValue = ref(options.nullValue !== undefined ? options.nullValue : null)
 
-  const form$ = useForm$(props, context)
-  const theme = useTheme(props, context)
-  const layout = useLayout(props, context)
-  const input = useInput(props, context)
-  const path = usePath(props, context)
-  const disabled = useDisabled(props, context)
-
-  const fieldId = useFieldId(props, context, {
-    path: path.path,
-  })
-
-  const floating = useFloating(props, context, {
-    form$: form$.form$,
-  })
+  context.features = [
+    useForm$,
+    useTheme,
+    useLayout,
+    useInput,
+    usePath,
+    useDisabled,
+    useFieldId,
+    useFloating,
+    useEvents,
+    useBaseElement,
+    useDefault,
+    useConditions,
+    useValidation,
+    useValue,
+    useData,
+    useEmpty,
+    useLabel,
+    useGenericName,
+    useColumns,
+    useView,
+    useTemplates,
+    useClasses,
+    useSlots,
+    useHandleInput,
+  ]
+  context.slots = [
+    'label', 'info', 'description', 'before',
+    'between', 'after',
+  ]
   
-  const events = useEvents(props, context, {}, {
-    events: context.emits,
+  const element = useElementBase(props, context, {
+    deps: {
+      nullValue,
+    }
   })
 
-  const baseElement = useBaseElement(props, context, {
-    form$: form$.form$,
-    fire: events.fire,
-  })
-
-  const default_ = useDefault(props, context, {
-    nullValue,
-    form$: form$.form$,
-    parent: path.parent,
-  })
-
-  const conditions = useConditions(props, context, {
-    form$: form$.form$,
-    path: path.path,
-  })
-
-  const validation = useValidation(props, context, {
-    form$: form$.form$,
-    path: path.path,
-  })
-
-  const value = useValue(props, context, {
-    defaultValue: default_.defaultValue,
-    dataPath: path.dataPath,
-    form$: form$.form$,
-    parent: path.parent,
-  })
-
-  const data = useData(props, context, {
-    form$: form$.form$,
-    available: conditions.available,
-    value: value.value,
-    resetValidators: validation.resetValidators,
-    defaultValue: default_.defaultValue,
-    nullValue,
-  })
-
-  const empty = useEmpty(props, context, {
-    value: value.value,
-    nullValue,
-  })
-
-  const label = useLabel(props, context, {
-    form$: form$.form$,
-    el$: baseElement.el$,
-  })
-
-  const genericName = useGenericName(props, context, {
-    label: label.label,
-    form$: form$.form$,
-  })
-  
-  const templates = useTemplates(props, context, {
-    theme: theme.theme,
-    form$: form$.form$
-  })
-
-  const classes = useClasses(props, context, {
-    form$: form$.form$,
-    theme: theme.theme,
-    isDisabled: disabled.isDisabled,
-    Templates: templates.Templates,
-    el$: baseElement.el$,
-  })
-
-  const columns = useColumns(props, context, {
-    form$: form$.form$,
-    theme: theme.theme,
-    hasLabel: label.hasLabel,
-  })
-
-  const view = useView(props, context, {
-    available: conditions.available,
-    active: baseElement.active,
-    form$: form$.form$,
-    parent: path.parent,
-  })
-
-  const slots = useSlots(props, context, {
-    form$: form$.form$,
-    el$: baseElement.el$,
-    Templates: templates.Templates,
-  }, {
-    slots: [
-      'label', 'info', 'description', 'before',
-      'between', 'after',
-    ].concat(options.slots||[])
-  })
-
-  const handleInput = useHandleInput(props, context, {
-    model: value.model,
-  })
-
-  useWatchValue(props, context, {
-    form$: form$.form$,
-    value: value.value,
-    fire: events.fire,
-    dirt: validation.dirt,
-    validate: validation.validate,
-  })
-
-  onMounted(() => {
-    validation.initMessageBag()
-    validation.initValidation()
-  })
-
-  return {
-    ...form$,
-    ...fieldId,
-    ...theme,
-    ...layout,
-    ...input,
-    ...path,
-    ...disabled,
-    ...baseElement,
-    ...default_,
-    ...value,
-    ...conditions,
-    ...validation,
-    ...label,
-    ...classes,
-    ...columns,
-    ...genericName,
-    ...view,
-    ...templates,
-    ...slots,
-    ...events,
-    ...data,
-    ...empty,
-    ...handleInput,
-    ...floating,
-    nullValue,
+  return { 
+    ...element,
   }
 }
 
