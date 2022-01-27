@@ -250,13 +250,15 @@ describe('Plugin', () => {
   it('should apply other props', async () => {
     let a = 0
 
-    createForm({
+    let form = createForm({
       schema: {
         el: {
-          type: 'text'
+          type: 'text',
+          format: 'value',
+          format2: 'value2',
         },
         el2: {
-          type: 'textarea'
+          type: 'textarea',
         },
       }
     }, {
@@ -264,6 +266,22 @@ describe('Plugin', () => {
         plugins: [
           {
             apply: 'TextElement',
+            mixins: [
+              {
+                props: {
+                  format2: {
+                    type: String,
+                    required: false,
+                  }
+                }
+              }
+            ],
+            props: {
+              format: {
+                type: String,
+                required: false,
+              }
+            },
             created() {
               a++
             }
@@ -272,6 +290,10 @@ describe('Plugin', () => {
       }
     })
 
+    let el = form.vm.el$('el')
+
     expect(a).toBe(1)
+    expect(el.format).toBe('value')
+    expect(el.format2).toBe('value2')
   })
 })
