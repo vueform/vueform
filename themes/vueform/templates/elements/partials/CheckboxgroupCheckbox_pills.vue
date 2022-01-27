@@ -69,9 +69,7 @@
 
     &.vf-checkbox-pills-selected {
       background-color: var(--vf-primary);
-      border-color: var(--vf-primary);
-      border-left-color: rgba(0,0,0,0.15);
-      border-right-color: #ffffff;
+      border-color: rgba(0,0,0,0.15);
       color: #ffffff;
     }
 

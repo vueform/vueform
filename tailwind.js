@@ -720,6 +720,9 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
     '.form-border-color': {
       borderColor: `${theme('form.borderColor')}`
     },
+    '.form-border-primary': {
+      borderColor: `${theme('form.borderColor')}`
+    },
     '.form-bg-check-white': {
       '&::after': {
         content: '""',
@@ -1065,6 +1068,9 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
       },
       lineHeight: {
         px: '1px',
+      },
+      borderOpacity: {
+        '15': '0.15',
       },
       fontSize: {
         '0.5xs': ['0.6875rem', '0.875rem'],
