@@ -332,6 +332,10 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
       height: theme(`form.gallerySize${size}`),
     }
 
+    plain[`.form-h-input${suffix}`] = {
+      height: theme(`form.inputMinHeight${size}`),
+    }
+
     plain[`.form-h-input-height${suffix}`] = {
       height: theme(`form.inputMinHeight${size}`),
     }
