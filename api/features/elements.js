@@ -1011,7 +1011,7 @@ export default {
           "types": [
             "object"
           ],
-          "description": "The selected theme's classes merged with [`addClasses`](#option-extend-classes) and [`overrideClasses`](#option-replace-classes) options."
+          "description": "The component's classes."
         },
         "classesInstance": {
           "public": false,
@@ -3388,12 +3388,12 @@ export default {
   "templates": {
     "base": {
       "computed": {
-        "templates": {
-          "public": true,
+        "Templates": {
+          "public": false,
           "types": [
             "object"
           ],
-          "description": "The component templates to use for the element. Use [`templates`](#option-templates) option to override any of the theme's default templates."
+          "description": "The list of templates available to the element."
         },
         "template": {
           "public": true,
@@ -4668,18 +4668,24 @@ export default {
         },
         "Size": {
           "public": true,
-          "returns": "string",
-          "description": "The calculated size of the element. If [`size`](#option-size) is not defined for the element the closest parent's size will be used, which can be either the [`Vueform`](vueform) component or a nested element."
+          "types": [
+            "string"
+          ],
+          "description": "The size of the element and all of its child components."
         },
         "View": {
           "public": true,
-          "returns": "string",
-          "description": "The calculated view of the element."
+          "types": [
+            "string"
+          ],
+          "description": "The name of the view to be used for the element and by default for its child components. If `undefined` the default view will be used. Child component views can be overridden with [`views`](#option-views) option."
         },
         "Views": {
-          "public": true,
-          "returns": "object",
-          "description": "The calculated views of the element."
+          "public": false,
+          "types": [
+            "object"
+          ],
+          "description": "The name of the views for the components."
         }
       },
       "methods": {

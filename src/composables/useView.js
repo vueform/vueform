@@ -11,15 +11,15 @@ const base = function(props, context, dependencies)
   // =============== INJECT ===============
 
   /**
-  * The views object.
+  * The name of the views for the components.
   * 
-  * @type {component}
+  * @type {object}
   * @private
   */
   const Views = inject('Views') || ref({})
 
   /**
-  * The view.
+  * The injected view.
   * 
   * @type {string}
   * @private
@@ -28,6 +28,11 @@ const base = function(props, context, dependencies)
 
   // ============== COMPUTED ==============
 
+  /**
+   * The name of the view to be used for the component. If `undefined` or the view is not registered the default view will be used.
+   * 
+   * @type {string}
+   */
   const View = computed(() => {
     if (view && view.value) {
       return view.value

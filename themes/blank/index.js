@@ -25,7 +25,6 @@ import ElementDescription from './templates/ElementDescription.vue'
 import ElementError from './templates/ElementError.vue'
 import ElementMessage from './templates/ElementMessage.vue'
 import ElementText from './templates/ElementText.vue'
-import DragAndDrop from './templates/DragAndDrop.vue'
 import ElementAddon from './templates/ElementAddon.vue'
 
 import DatepickerWrapper from './templates/wrappers/DatepickerWrapper.vue'
@@ -59,13 +58,14 @@ import TTextElement from './templates/elements/TTextElement.vue'
 import TEditorElement from './templates/elements/TEditorElement.vue'
 
 import CheckboxgroupCheckbox from './templates/elements/partials/CheckboxgroupCheckbox.vue'
-import CheckboxgroupCheckbox_pills from './templates/elements/partials/CheckboxgroupCheckbox_pills.vue'
+import CheckboxgroupCheckbox_tabs from './templates/elements/partials/CheckboxgroupCheckbox_tabs.vue'
 import CheckboxgroupCheckbox_blocks from './templates/elements/partials/CheckboxgroupCheckbox_blocks.vue'
+import DragAndDrop from './templates/elements/partials/DragAndDrop.vue'
 import FilePreview from './templates/elements/partials/FilePreview.vue'
 import FilePreview_image from './templates/elements/partials/FilePreview_image.vue'
 import FilePreview_gallery from './templates/elements/partials/FilePreview_gallery.vue'
 import RadiogroupRadio from './templates/elements/partials/RadiogroupRadio.vue'
-import RadiogroupRadio_pills from './templates/elements/partials/RadiogroupRadio_pills.vue'
+import RadiogroupRadio_tabs from './templates/elements/partials/RadiogroupRadio_tabs.vue'
 import RadiogroupRadio_blocks from './templates/elements/partials/RadiogroupRadio_blocks.vue'
 
 import columns from './columns.js'
@@ -95,7 +95,6 @@ export default {
     ElementError,
     ElementMessage,
     ElementText,
-    DragAndDrop,
     ElementAddon,
 
     ButtonElement,
@@ -126,13 +125,14 @@ export default {
     TEditorElement,
 
     CheckboxgroupCheckbox,
-    CheckboxgroupCheckbox_pills,
+    CheckboxgroupCheckbox_tabs,
     CheckboxgroupCheckbox_blocks,
+    DragAndDrop,
     FilePreview,
     FilePreview_image,
     FilePreview_gallery,
     RadiogroupRadio,
-    RadiogroupRadio_pills,
+    RadiogroupRadio_tabs,
     RadiogroupRadio_blocks,
 
     DatepickerWrapper,

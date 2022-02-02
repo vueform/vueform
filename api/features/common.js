@@ -57,17 +57,17 @@ export default {
           "types": [
             "component"
           ],
-          "description": "The computed size of the component."
-        },
-        "View": {
-          "public": false,
-          "types": [
-            "string"
-          ],
-          "description": "The view."
+          "description": "The size of the component."
         }
       },
       "computed": {
+        "View": {
+          "public": true,
+          "types": [
+            "string"
+          ],
+          "description": "The name of the view to be used for the component. If `undefined` or the view is not registered the default view will be used."
+        },
         "classesInstance": {
           "public": false,
           "types": [
@@ -80,14 +80,14 @@ export default {
           "types": [
             "object"
           ],
-          "description": "The selected theme's classes merged with element's `addClasses` and `overrideClasses` options."
+          "description": "The component's classes."
         },
-        "templates": {
-          "public": true,
+        "Templates": {
+          "public": false,
           "types": [
             "object"
           ],
-          "description": "Returns the component templates used by the parent element."
+          "description": "The list of templates available to the component."
         },
         "template": {
           "public": true,
@@ -227,17 +227,17 @@ export default {
           "types": [
             "component"
           ],
-          "description": "The computed size of the component."
-        },
-        "View": {
-          "public": false,
-          "types": [
-            "string"
-          ],
-          "description": "The view."
+          "description": "The size of the component."
         }
       },
       "computed": {
+        "View": {
+          "public": true,
+          "types": [
+            "string"
+          ],
+          "description": "The name of the view to be used for the component. If `undefined` or the view is not registered the default view will be used."
+        },
         "classesInstance": {
           "public": false,
           "types": [
@@ -250,14 +250,14 @@ export default {
           "types": [
             "object"
           ],
-          "description": "The selected theme's classes merged with the form's [`addClasses`](vueform#option-add-classes) and [`overrideClasses`](vueform#option-override-classes) options."
+          "description": "The component's classes."
         },
-        "templates": {
-          "public": true,
+        "Templates": {
+          "public": false,
           "types": [
             "object"
           ],
-          "description": "Returns the component templates used by the form."
+          "description": "The list of templates available to the component."
         },
         "template": {
           "public": true,
@@ -504,7 +504,7 @@ export default {
           "types": [
             "component"
           ],
-          "description": "The computed size of the component."
+          "description": "The size of the component."
         }
       }
     }
@@ -524,13 +524,13 @@ export default {
   },
   "view": {
     "base": {
-      "inject": {
+      "computed": {
         "View": {
-          "public": false,
+          "public": true,
           "types": [
             "string"
           ],
-          "description": "The view."
+          "description": "The name of the view to be used for the component. If `undefined` or the view is not registered the default view will be used."
         }
       }
     }
@@ -825,14 +825,14 @@ export default {
           "types": [
             "object"
           ],
-          "description": "The selected theme's classes merged with [`addClasses`](#option-add-classes) and [`replaceClasses`](#option-replace-classes) options."
+          "description": "The component's classes."
         },
-        "templates": {
-          "public": true,
+        "Templates": {
+          "public": false,
           "types": [
             "object"
           ],
-          "description": "The selected theme's templates, extended by local overrides. The [`templates`](#option-templates) option can be used to override templates provided by the theme."
+          "description": "The default list of templates available to the form components."
         },
         "template": {
           "public": true,
@@ -846,22 +846,28 @@ export default {
           "types": [
             "object"
           ],
-          "description": "The selected theme, extended by local template and class overrides, using [`templates`](#option-templates), [`addClasses`](#option-add-classes) and [`replaceClasses`](#option-replace-classes)."
+          "description": "The selected theme, extended by local template and class overrides, using [`templates`](#option-replace-templates), [`addClasses`](#option-add-classes) and [`replaceClasses`](#option-replace-classes)."
         },
         "Size": {
           "public": true,
-          "returns": "string",
-          "description": "The calculated size of the form. If [`size`](#option-size) is not defined `config.size` will be used."
+          "types": [
+            "string"
+          ],
+          "description": "The default size for each element and component within the form."
         },
         "View": {
           "public": true,
-          "returns": "object",
-          "description": "The calculated view of the form."
+          "types": [
+            "string"
+          ],
+          "description": "The name of the view to be used for the form. If `undefined` or the view is not registered the default view will be used."
         },
         "Views": {
-          "public": true,
-          "returns": "object",
-          "description": "The calculated views of the form."
+          "public": false,
+          "types": [
+            "object"
+          ],
+          "description": "The name of the views for the components within the form."
         },
         "form$": {
           "public": true,

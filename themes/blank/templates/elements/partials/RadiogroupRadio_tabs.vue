@@ -31,7 +31,7 @@
 
 <script>
   export default {
-    name: 'CheckboxgroupCheckbox_pills',
+    name: 'CheckboxgroupCheckbox_tabs',
     data() {
       return {
         merge: true,

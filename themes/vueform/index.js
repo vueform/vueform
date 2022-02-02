@@ -25,13 +25,12 @@ import ElementDescription from './templates/ElementDescription.vue'
 import ElementError from './templates/ElementError.vue'
 import ElementMessage from './templates/ElementMessage.vue'
 import ElementText from './templates/ElementText.vue'
-import DragAndDrop from './templates/DragAndDrop.vue'
 import ElementAddon from './templates/ElementAddon.vue'
 
 import ButtonElement from './templates/elements/ButtonElement.vue'
 import CheckboxElement from './templates/elements/CheckboxElement.vue'
 import CheckboxgroupElement from './templates/elements/CheckboxgroupElement.vue'
-import CheckboxgroupElement_pills from './templates/elements/CheckboxgroupElement_pills.vue'
+import CheckboxgroupElement_tabs from './templates/elements/CheckboxgroupElement_tabs.vue'
 import CheckboxgroupElement_blocks from './templates/elements/CheckboxgroupElement_blocks.vue'
 import DateElement from './templates/elements/DateElement.vue'
 import DatesElement from './templates/elements/DatesElement.vue'
@@ -45,7 +44,7 @@ import MultiselectElement from './templates/elements/MultiselectElement.vue'
 import ObjectElement from './templates/elements/ObjectElement.vue'
 import RadioElement from './templates/elements/RadioElement.vue'
 import RadiogroupElement from './templates/elements/RadiogroupElement.vue'
-import RadiogroupElement_pills from './templates/elements/RadiogroupElement_pills.vue'
+import RadiogroupElement_tabs from './templates/elements/RadiogroupElement_tabs.vue'
 import RadiogroupElement_blocks from './templates/elements/RadiogroupElement_blocks.vue'
 import SelectElement from './templates/elements/SelectElement.vue'
 import SliderElement from './templates/elements/SliderElement.vue'
@@ -60,13 +59,14 @@ import TTextElement from './templates/elements/TTextElement.vue'
 import TEditorElement from './templates/elements/TEditorElement.vue'
 
 import CheckboxgroupCheckbox from './templates/elements/partials/CheckboxgroupCheckbox.vue'
-import CheckboxgroupCheckbox_pills from './templates/elements/partials/CheckboxgroupCheckbox_pills.vue'
+import CheckboxgroupCheckbox_tabs from './templates/elements/partials/CheckboxgroupCheckbox_tabs.vue'
 import CheckboxgroupCheckbox_blocks from './templates/elements/partials/CheckboxgroupCheckbox_blocks.vue'
+import DragAndDrop from './templates/elements/partials/DragAndDrop.vue'
 import FilePreview from './templates/elements/partials/FilePreview.vue'
 import FilePreview_image from './templates/elements/partials/FilePreview_image.vue'
 import FilePreview_gallery from './templates/elements/partials/FilePreview_gallery.vue'
 import RadiogroupRadio from './templates/elements/partials/RadiogroupRadio.vue'
-import RadiogroupRadio_pills from './templates/elements/partials/RadiogroupRadio_pills.vue'
+import RadiogroupRadio_tabs from './templates/elements/partials/RadiogroupRadio_tabs.vue'
 import RadiogroupRadio_blocks from './templates/elements/partials/RadiogroupRadio_blocks.vue'
 
 import DatepickerWrapper from './templates/wrappers/DatepickerWrapper.vue'
@@ -99,13 +99,12 @@ export default {
     ElementError,
     ElementMessage,
     ElementText,
-    DragAndDrop,
     ElementAddon,
 
     ButtonElement,
     CheckboxElement,
     CheckboxgroupElement,
-    CheckboxgroupElement_pills,
+    CheckboxgroupElement_tabs,
     CheckboxgroupElement_blocks,
     DateElement,
     DatesElement,
@@ -119,7 +118,7 @@ export default {
     ObjectElement,
     RadioElement,
     RadiogroupElement,
-    RadiogroupElement_pills,
+    RadiogroupElement_tabs,
     RadiogroupElement_blocks,
     SelectElement,
     SliderElement,
@@ -134,13 +133,14 @@ export default {
     TEditorElement,
 
     CheckboxgroupCheckbox,
-    CheckboxgroupCheckbox_pills,
+    CheckboxgroupCheckbox_tabs,
     CheckboxgroupCheckbox_blocks,
+    DragAndDrop,
     FilePreview,
     FilePreview_image,
     FilePreview_gallery,
     RadiogroupRadio,
-    RadiogroupRadio_pills,
+    RadiogroupRadio_tabs,
     RadiogroupRadio_blocks,
 
     DatepickerWrapper,

@@ -20,9 +20,10 @@ const base = function(props, context, dependencies)
   // ============== COMPUTED ==============
 
   /**
-   * The component templates to use for the element. Use [`templates`](#option-templates) option to override any of the theme's default templates.
+   * The list of templates available to the element.
    * 
    * @type {object}
+   * @private
    */
   const Templates = computed(() => {
     let presetTemplates = {}

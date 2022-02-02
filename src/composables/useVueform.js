@@ -679,19 +679,20 @@ const base = function(props, context, dependencies = {})
   })
 
   /**
-  * The selected theme's templates, extended by local overrides. The [`templates`](#option-replace-templates) option can be used to override templates provided by the theme.
-  * 
-  * @type {object}
-  */
+   * The default list of templates available to the form components.
+   * 
+   * @type {object}
+   * @private
+   */
   const Templates = computed(() => {
     return extendedTheme.value.templates
   })
 
   /**
-  * The component's template.
-  * 
-  * @type {object}
-  */
+   * The component's template.
+   * 
+   * @type {object}
+   */
   const template = computed(() => {
     return View.value && Templates.value[`Vueform_${View.value}`]
             ? Templates.value[`Vueform_${View.value}`]
@@ -699,7 +700,7 @@ const base = function(props, context, dependencies = {})
   })
 
   /**
-   * The selected theme's classes merged with [`addClasses`](#option-add-classes) and [`replaceClasses`](#option-replace-classes) options.
+   * The component's classes.
    * 
    * @type {object}
    */
@@ -719,9 +720,9 @@ const base = function(props, context, dependencies = {})
   })
 
   /**
-   * The calculated size of the form. If [`size`](#option-size) is not defined `config.size` will be used. 
+   * The default size for each element and component within the form.
    *
-   * @returns {string}
+   * @type {string}
    */
   const Size = computed(() => {
     let Size
@@ -749,9 +750,10 @@ const base = function(props, context, dependencies = {})
 
 
   /**
-   * The calculated views of the form.
+   * The name of the views for the components within the form.
    *
-   * @returns {object}
+   * @type {object}
+   * @private
    */
   const Views = computed(() => {
     let Views = baseConfig.value.config.views
@@ -773,9 +775,9 @@ const base = function(props, context, dependencies = {})
 
 
   /**
-   * The calculated view of the form.
+   * The name of the view to be used for the form. If `undefined` or the view is not registered the default view will be used.
    *
-   * @returns {object}
+   * @type {string}
    */
   const View = computed(() => {
     if (options.value.view) {

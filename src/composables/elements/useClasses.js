@@ -38,7 +38,7 @@ const base = function(props, context, dependencies, options = {})
   })
 
   /**
-   * The selected theme's classes merged with [`addClasses`](#option-extend-classes) and [`overrideClasses`](#option-replace-classes) options.
+   * The component's classes.
    * 
    * @type {object}
    */

@@ -42,9 +42,9 @@ const base = function(props, context, dependencies)
   })
 
   /**
-   * The calculated size of the element. If [`size`](#option-size) is not defined for the element the closest parent's size will be used, which can be either the [`Vueform`](vueform) component or a nested element. 
+   * The size of the element and all of its child components.
    *
-   * @returns {string}
+   * @type {string}
    */
   const Size = computed(() => {
     let Size
@@ -75,9 +75,9 @@ const base = function(props, context, dependencies)
   })
 
   /**
-   * The calculated view of the element.
+   * The name of the view to be used for the element and by default for its child components. If `undefined` the default view will be used. Child component views can be overridden with [`views`](#option-views) option.
    *
-   * @returns {string}
+   * @type {string}
    */
   const View = computed(() => {
     if (view.value) {
@@ -88,9 +88,10 @@ const base = function(props, context, dependencies)
   })
 
   /**
-   * The calculated views of the element.
+   * The name of the views for the components.
    *
-   * @returns {object}
+   * @type {object}
+   * @private
    */
   const Views = computed(() => {
     let Views = form$.value.Views

@@ -5,6 +5,7 @@ require('module-alias/register')
 const elementsInfo = require('./../../elements').default
 const eventsInfo = require('./../../events').default
 const slotsInfo = require('./../../slots').default
+const viewsInfo = require('./../../views').default
 
 const elements = {}
 const skipPrivate = false
@@ -47,6 +48,7 @@ const generate = () => {
     contents = addFeatureAsset('inject', contents, elementName)
     contents = addEvents(contents, elementName)
     contents = addSlots(contents, elementName)
+    contents = addViews(contents, elementName)
 
     contents += `  },\n`
   })
@@ -171,6 +173,19 @@ const addSlots = (contents, elementName) => {
   })
 
   contents += `    },\n`
+
+  return contents
+}
+
+const addViews = (contents, elementName) => {
+  const views = viewsInfo[elementName]
+
+  if (!views) {
+    contents += `    views: [],\n`
+    return contents
+  }
+
+  contents += `    views: ['${views.join("', '")}'],\n`
 
   return contents
 }

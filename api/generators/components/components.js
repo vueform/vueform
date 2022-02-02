@@ -11,6 +11,7 @@ const partialsPath = process.cwd() + '/src/components/elements/partials/'
 const outputPath = process.cwd() + '/api/components/components.js'
 const eventsInfo = require('./../../events').default
 const slotsInfo = require('./../../slots').default
+const viewsInfo = require('./../../views').default
 
 const Components = {}
 const skipPrivate = false
@@ -49,7 +50,7 @@ _.each([
   })
 })
 
-console.log(Object.keys(Components))
+// console.log(Object.keys(Components))
 
 
 const addProps = (final, Component) => {
@@ -160,6 +161,12 @@ const addSlots = (final, Component, componentName) => {
   return final
 }
 
+const addViews = (final, Component, componentName) => {
+  final.views = viewsInfo[componentName] || []
+
+  return final
+}
+
 _.each(files, (file) => {
   let path = filesPath
 
@@ -190,6 +197,7 @@ _.each(files, (file) => {
     components[name] = addProps(components[name], Components[name])
     components[name] = addEvents(components[name], Components[name], name)
     components[name] = addSlots(components[name], Components[name], name)
+    components[name] = addViews(components[name], Components[name], name)
   } catch (e) {
     console.log(name, components)
     throw e

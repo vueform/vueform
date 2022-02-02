@@ -46,7 +46,7 @@ export default {
       description: 'Renders the content of the static element.',
     },
     Vueform: {
-      description: `@require content/reference/1.x/examples/slots/default/vueform`,
+      description: ``,
     },
     ElementAddon: {
       description: 'Renders the content of the addon if the [`type`](#option-type) is not defined in the parent element\'s the `addons` option.',
@@ -84,7 +84,7 @@ export default {
   },
   'empty': {
     Vueform: {
-      description: `@require content/reference/1.x/examples/slots/empty/vueform`,
+      description: ``,
     },
   },
   'label': {

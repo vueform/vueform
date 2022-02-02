@@ -24,12 +24,16 @@ const parse = (classes) => {
 }
 
 const parseTemplate = (template, componentName) => {
-  let classesObject
+  let classesObject = {}
 
   try {
-    let parsed = template.match(/<script>[\s\S]*<\/script>/)?.[0].match(/defaultClasses: ({[\S\s]+\s\s\s\s\s\s\s\s})/)[1]
-    classesObject = {}
-    eval(`classesObject = ${parsed}`)
+    let parsed = {}
+
+    if (!template.match(/<script>[\s\S]*<\/script>/)?.[0].match(/defaultClasses: {}/)) {
+      parsed = template.match(/<script>[\s\S]*<\/script>/)?.[0].match(/defaultClasses: ({[\S\s]+\s\s\s\s\s\s\s\s})/)[1]
+      classesObject = {}
+      eval(`classesObject = ${parsed}`)
+    }
   } catch (e) {
     console.log(componentName)
     throw e

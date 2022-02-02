@@ -532,7 +532,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'The selected theme&apos;s classes merged with [`addClasses`](#option-extend-classes) and [`overrideClasses`](#option-replace-classes) options.',
+        description: 'The component&apos;s classes.',
         private: false,
       },
       classesInstance: {
@@ -613,12 +613,12 @@ module.exports = {
         description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `singlelabel` for `SelectElement`.',
         private: true,
       },
-      templates: {
+      Templates: {
         types: [
           'object',
         ],
-        description: 'The component templates to use for the element. Use [`templates`](#option-templates) option to override any of the theme&apos;s default templates.',
-        private: false,
+        description: 'The list of templates available to the element.',
+        private: true,
       },
       template: {
         types: [
@@ -635,19 +635,25 @@ module.exports = {
         private: false,
       },
       Size: {
-        description: 'The calculated size of the element. If [`size`](#option-size) is not defined for the element the closest parent&apos;s size will be used, which can be either the [`Vueform`](vueform) component or a nested element.',
-        returns: 'string',
+        types: [
+          'string',
+        ],
+        description: 'The size of the element and all of its child components.',
         private: false,
       },
       View: {
-        description: 'The calculated view of the element.',
-        returns: 'string',
+        types: [
+          'string',
+        ],
+        description: 'The name of the view to be used for the element and by default for its child components. If `undefined` the default view will be used. Child component views can be overridden with [`views`](#option-views) option.',
         private: false,
       },
       Views: {
-        description: 'The calculated views of the element.',
-        returns: 'object',
-        private: false,
+        types: [
+          'object',
+        ],
+        description: 'The name of the views for the components.',
+        private: true,
       },
     },
     methods: {
@@ -920,6 +926,7 @@ module.exports = {
         },
       },
     },
+    views: [],
   },
   CheckboxElement: {
     props: {
@@ -1516,7 +1523,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'The selected theme&apos;s classes merged with [`addClasses`](#option-extend-classes) and [`overrideClasses`](#option-replace-classes) options.',
+        description: 'The component&apos;s classes.',
         private: false,
       },
       classesInstance: {
@@ -1646,12 +1653,12 @@ module.exports = {
         description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `singlelabel` for `SelectElement`.',
         private: true,
       },
-      templates: {
+      Templates: {
         types: [
           'object',
         ],
-        description: 'The component templates to use for the element. Use [`templates`](#option-templates) option to override any of the theme&apos;s default templates.',
-        private: false,
+        description: 'The list of templates available to the element.',
+        private: true,
       },
       template: {
         types: [
@@ -1739,19 +1746,25 @@ module.exports = {
         private: false,
       },
       Size: {
-        description: 'The calculated size of the element. If [`size`](#option-size) is not defined for the element the closest parent&apos;s size will be used, which can be either the [`Vueform`](vueform) component or a nested element.',
-        returns: 'string',
+        types: [
+          'string',
+        ],
+        description: 'The size of the element and all of its child components.',
         private: false,
       },
       View: {
-        description: 'The calculated view of the element.',
-        returns: 'string',
+        types: [
+          'string',
+        ],
+        description: 'The name of the view to be used for the element and by default for its child components. If `undefined` the default view will be used. Child component views can be overridden with [`views`](#option-views) option.',
         private: false,
       },
       Views: {
-        description: 'The calculated views of the element.',
-        returns: 'object',
-        private: false,
+        types: [
+          'object',
+        ],
+        description: 'The name of the views for the components.',
+        private: true,
       },
     },
     methods: {
@@ -2128,6 +2141,7 @@ module.exports = {
         },
       },
     },
+    views: [],
   },
   CheckboxgroupElement: {
     props: {
@@ -2710,7 +2724,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'The selected theme&apos;s classes merged with [`addClasses`](#option-extend-classes) and [`overrideClasses`](#option-replace-classes) options.',
+        description: 'The component&apos;s classes.',
         private: false,
       },
       classesInstance: {
@@ -2840,12 +2854,12 @@ module.exports = {
         description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `singlelabel` for `SelectElement`.',
         private: true,
       },
-      templates: {
+      Templates: {
         types: [
           'object',
         ],
-        description: 'The component templates to use for the element. Use [`templates`](#option-templates) option to override any of the theme&apos;s default templates.',
-        private: false,
+        description: 'The list of templates available to the element.',
+        private: true,
       },
       template: {
         types: [
@@ -2933,19 +2947,25 @@ module.exports = {
         private: false,
       },
       Size: {
-        description: 'The calculated size of the element. If [`size`](#option-size) is not defined for the element the closest parent&apos;s size will be used, which can be either the [`Vueform`](vueform) component or a nested element.',
-        returns: 'string',
+        types: [
+          'string',
+        ],
+        description: 'The size of the element and all of its child components.',
         private: false,
       },
       View: {
-        description: 'The calculated view of the element.',
-        returns: 'string',
+        types: [
+          'string',
+        ],
+        description: 'The name of the view to be used for the element and by default for its child components. If `undefined` the default view will be used. Child component views can be overridden with [`views`](#option-views) option.',
         private: false,
       },
       Views: {
-        description: 'The calculated views of the element.',
-        returns: 'object',
-        private: false,
+        types: [
+          'object',
+        ],
+        description: 'The name of the views for the components.',
+        private: true,
       },
     },
     methods: {
@@ -3448,6 +3468,7 @@ module.exports = {
         },
       },
     },
+    views: ['blocks', 'tabs'],
   },
   DateElement: {
     props: {
@@ -4136,7 +4157,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'The selected theme&apos;s classes merged with [`addClasses`](#option-extend-classes) and [`overrideClasses`](#option-replace-classes) options.',
+        description: 'The component&apos;s classes.',
         private: false,
       },
       classesInstance: {
@@ -4301,12 +4322,12 @@ module.exports = {
         description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `singlelabel` for `SelectElement`.',
         private: true,
       },
-      templates: {
+      Templates: {
         types: [
           'object',
         ],
-        description: 'The component templates to use for the element. Use [`templates`](#option-templates) option to override any of the theme&apos;s default templates.',
-        private: false,
+        description: 'The list of templates available to the element.',
+        private: true,
       },
       template: {
         types: [
@@ -4394,19 +4415,25 @@ module.exports = {
         private: false,
       },
       Size: {
-        description: 'The calculated size of the element. If [`size`](#option-size) is not defined for the element the closest parent&apos;s size will be used, which can be either the [`Vueform`](vueform) component or a nested element.',
-        returns: 'string',
+        types: [
+          'string',
+        ],
+        description: 'The size of the element and all of its child components.',
         private: false,
       },
       View: {
-        description: 'The calculated view of the element.',
-        returns: 'string',
+        types: [
+          'string',
+        ],
+        description: 'The name of the view to be used for the element and by default for its child components. If `undefined` the default view will be used. Child component views can be overridden with [`views`](#option-views) option.',
         private: false,
       },
       Views: {
-        description: 'The calculated views of the element.',
-        returns: 'object',
-        private: false,
+        types: [
+          'object',
+        ],
+        description: 'The name of the views for the components.',
+        private: true,
       },
     },
     methods: {
@@ -4798,6 +4825,7 @@ module.exports = {
         },
       },
     },
+    views: [],
   },
   DatesElement: {
     props: {
@@ -5459,7 +5487,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'The selected theme&apos;s classes merged with [`addClasses`](#option-extend-classes) and [`overrideClasses`](#option-replace-classes) options.',
+        description: 'The component&apos;s classes.',
         private: false,
       },
       classesInstance: {
@@ -5624,12 +5652,12 @@ module.exports = {
         description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `singlelabel` for `SelectElement`.',
         private: true,
       },
-      templates: {
+      Templates: {
         types: [
           'object',
         ],
-        description: 'The component templates to use for the element. Use [`templates`](#option-templates) option to override any of the theme&apos;s default templates.',
-        private: false,
+        description: 'The list of templates available to the element.',
+        private: true,
       },
       template: {
         types: [
@@ -5717,19 +5745,25 @@ module.exports = {
         private: false,
       },
       Size: {
-        description: 'The calculated size of the element. If [`size`](#option-size) is not defined for the element the closest parent&apos;s size will be used, which can be either the [`Vueform`](vueform) component or a nested element.',
-        returns: 'string',
+        types: [
+          'string',
+        ],
+        description: 'The size of the element and all of its child components.',
         private: false,
       },
       View: {
-        description: 'The calculated view of the element.',
-        returns: 'string',
+        types: [
+          'string',
+        ],
+        description: 'The name of the view to be used for the element and by default for its child components. If `undefined` the default view will be used. Child component views can be overridden with [`views`](#option-views) option.',
         private: false,
       },
       Views: {
-        description: 'The calculated views of the element.',
-        returns: 'object',
-        private: false,
+        types: [
+          'object',
+        ],
+        description: 'The name of the views for the components.',
+        private: true,
       },
     },
     methods: {
@@ -6121,6 +6155,7 @@ module.exports = {
         },
       },
     },
+    views: [],
   },
   EditorElement: {
     props: {
@@ -6764,7 +6799,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'The selected theme&apos;s classes merged with [`addClasses`](#option-extend-classes) and [`overrideClasses`](#option-replace-classes) options.',
+        description: 'The component&apos;s classes.',
         private: false,
       },
       classesInstance: {
@@ -6917,12 +6952,12 @@ module.exports = {
         description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `singlelabel` for `SelectElement`.',
         private: true,
       },
-      templates: {
+      Templates: {
         types: [
           'object',
         ],
-        description: 'The component templates to use for the element. Use [`templates`](#option-templates) option to override any of the theme&apos;s default templates.',
-        private: false,
+        description: 'The list of templates available to the element.',
+        private: true,
       },
       template: {
         types: [
@@ -7017,19 +7052,25 @@ module.exports = {
         private: false,
       },
       Size: {
-        description: 'The calculated size of the element. If [`size`](#option-size) is not defined for the element the closest parent&apos;s size will be used, which can be either the [`Vueform`](vueform) component or a nested element.',
-        returns: 'string',
+        types: [
+          'string',
+        ],
+        description: 'The size of the element and all of its child components.',
         private: false,
       },
       View: {
-        description: 'The calculated view of the element.',
-        returns: 'string',
+        types: [
+          'string',
+        ],
+        description: 'The name of the view to be used for the element and by default for its child components. If `undefined` the default view will be used. Child component views can be overridden with [`views`](#option-views) option.',
         private: false,
       },
       Views: {
-        description: 'The calculated views of the element.',
-        returns: 'object',
-        private: false,
+        types: [
+          'object',
+        ],
+        description: 'The name of the views for the components.',
+        private: true,
       },
     },
     methods: {
@@ -7449,6 +7490,7 @@ module.exports = {
         },
       },
     },
+    views: [],
   },
   FileElement: {
     props: {
@@ -7847,7 +7889,6 @@ module.exports = {
         types: [
           'string',
           'object',
-          'File',
         ],
         required: false,
         private: false,
@@ -8185,7 +8226,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'The selected theme&apos;s classes merged with [`addClasses`](#option-extend-classes) and [`overrideClasses`](#option-replace-classes) options.',
+        description: 'The component&apos;s classes.',
         private: false,
       },
       classesInstance: {
@@ -8444,12 +8485,12 @@ module.exports = {
         description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `singlelabel` for `SelectElement`.',
         private: true,
       },
-      templates: {
+      Templates: {
         types: [
           'object',
         ],
-        description: 'The component templates to use for the element. Use [`templates`](#option-templates) option to override any of the theme&apos;s default templates.',
-        private: false,
+        description: 'The list of templates available to the element.',
+        private: true,
       },
       template: {
         types: [
@@ -8537,19 +8578,25 @@ module.exports = {
         private: false,
       },
       Size: {
-        description: 'The calculated size of the element. If [`size`](#option-size) is not defined for the element the closest parent&apos;s size will be used, which can be either the [`Vueform`](vueform) component or a nested element.',
-        returns: 'string',
+        types: [
+          'string',
+        ],
+        description: 'The size of the element and all of its child components.',
         private: false,
       },
       View: {
-        description: 'The calculated view of the element.',
-        returns: 'string',
+        types: [
+          'string',
+        ],
+        description: 'The name of the view to be used for the element and by default for its child components. If `undefined` the default view will be used. Child component views can be overridden with [`views`](#option-views) option.',
         private: false,
       },
       Views: {
-        description: 'The calculated views of the element.',
-        returns: 'object',
-        private: false,
+        types: [
+          'object',
+        ],
+        description: 'The name of the views for the components.',
+        private: true,
       },
     },
     methods: {
@@ -9002,6 +9049,7 @@ module.exports = {
         },
       },
     },
+    views: ['image', 'gallery'],
   },
   GroupElement: {
     props: {
@@ -9503,7 +9551,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'The selected theme&apos;s classes merged with [`addClasses`](#option-extend-classes) and [`overrideClasses`](#option-replace-classes) options.',
+        description: 'The component&apos;s classes.',
         private: false,
       },
       classesInstance: {
@@ -9612,12 +9660,12 @@ module.exports = {
         description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `singlelabel` for `SelectElement`.',
         private: true,
       },
-      templates: {
+      Templates: {
         types: [
           'object',
         ],
-        description: 'The component templates to use for the element. Use [`templates`](#option-templates) option to override any of the theme&apos;s default templates.',
-        private: false,
+        description: 'The list of templates available to the element.',
+        private: true,
       },
       template: {
         types: [
@@ -9690,19 +9738,25 @@ module.exports = {
         private: false,
       },
       Size: {
-        description: 'The calculated size of the element. If [`size`](#option-size) is not defined for the element the closest parent&apos;s size will be used, which can be either the [`Vueform`](vueform) component or a nested element.',
-        returns: 'string',
+        types: [
+          'string',
+        ],
+        description: 'The size of the element and all of its child components.',
         private: false,
       },
       View: {
-        description: 'The calculated view of the element.',
-        returns: 'string',
+        types: [
+          'string',
+        ],
+        description: 'The name of the view to be used for the element and by default for its child components. If `undefined` the default view will be used. Child component views can be overridden with [`views`](#option-views) option.',
         private: false,
       },
       Views: {
-        description: 'The calculated views of the element.',
-        returns: 'object',
-        private: false,
+        types: [
+          'object',
+        ],
+        description: 'The name of the views for the components.',
+        private: true,
       },
     },
     methods: {
@@ -10052,6 +10106,7 @@ module.exports = {
         },
       },
     },
+    views: [],
   },
   HiddenElement: {
     props: {
@@ -10455,12 +10510,12 @@ module.exports = {
         description: 'Whether the element is just a container of children but not nested on data level (eg. [`GroupElement`](group-element))',
         private: true,
       },
-      templates: {
+      Templates: {
         types: [
           'object',
         ],
-        description: 'The component templates to use for the element. Use [`templates`](#option-templates) option to override any of the theme&apos;s default templates.',
-        private: false,
+        description: 'The list of templates available to the element.',
+        private: true,
       },
       template: {
         types: [
@@ -10808,6 +10863,7 @@ module.exports = {
     },
     slots: {
     },
+    views: [],
   },
   ListElement: {
     props: {
@@ -11517,7 +11573,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'The selected theme&apos;s classes merged with [`addClasses`](#option-extend-classes) and [`overrideClasses`](#option-replace-classes) options.',
+        description: 'The component&apos;s classes.',
         private: false,
       },
       classesInstance: {
@@ -11703,12 +11759,12 @@ module.exports = {
         description: 'Whether the list is sortable. Can be enabled with [`sort`](#option-sort) option, but it will disabled if [`isDisabled`](#property-is-disabled) is `true`.',
         private: false,
       },
-      templates: {
+      Templates: {
         types: [
           'object',
         ],
-        description: 'The component templates to use for the element. Use [`templates`](#option-templates) option to override any of the theme&apos;s default templates.',
-        private: false,
+        description: 'The list of templates available to the element.',
+        private: true,
       },
       template: {
         types: [
@@ -11810,19 +11866,25 @@ module.exports = {
         private: false,
       },
       Size: {
-        description: 'The calculated size of the element. If [`size`](#option-size) is not defined for the element the closest parent&apos;s size will be used, which can be either the [`Vueform`](vueform) component or a nested element.',
-        returns: 'string',
+        types: [
+          'string',
+        ],
+        description: 'The size of the element and all of its child components.',
         private: false,
       },
       View: {
-        description: 'The calculated view of the element.',
-        returns: 'string',
+        types: [
+          'string',
+        ],
+        description: 'The name of the view to be used for the element and by default for its child components. If `undefined` the default view will be used. Child component views can be overridden with [`views`](#option-views) option.',
         private: false,
       },
       Views: {
-        description: 'The calculated views of the element.',
-        returns: 'object',
-        private: false,
+        types: [
+          'object',
+        ],
+        description: 'The name of the views for the components.',
+        private: true,
       },
     },
     methods: {
@@ -12337,6 +12399,7 @@ module.exports = {
         },
       },
     },
+    views: [],
   },
   LocationElement: {
     props: {
@@ -12988,7 +13051,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'The selected theme&apos;s classes merged with [`addClasses`](#option-extend-classes) and [`overrideClasses`](#option-replace-classes) options.',
+        description: 'The component&apos;s classes.',
         private: false,
       },
       classesInstance: {
@@ -13133,12 +13196,12 @@ module.exports = {
         description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `singlelabel` for `SelectElement`.',
         private: true,
       },
-      templates: {
+      Templates: {
         types: [
           'object',
         ],
-        description: 'The component templates to use for the element. Use [`templates`](#option-templates) option to override any of the theme&apos;s default templates.',
-        private: false,
+        description: 'The list of templates available to the element.',
+        private: true,
       },
       template: {
         types: [
@@ -13233,19 +13296,25 @@ module.exports = {
         private: false,
       },
       Size: {
-        description: 'The calculated size of the element. If [`size`](#option-size) is not defined for the element the closest parent&apos;s size will be used, which can be either the [`Vueform`](vueform) component or a nested element.',
-        returns: 'string',
+        types: [
+          'string',
+        ],
+        description: 'The size of the element and all of its child components.',
         private: false,
       },
       View: {
-        description: 'The calculated view of the element.',
-        returns: 'string',
+        types: [
+          'string',
+        ],
+        description: 'The name of the view to be used for the element and by default for its child components. If `undefined` the default view will be used. Child component views can be overridden with [`views`](#option-views) option.',
         private: false,
       },
       Views: {
-        description: 'The calculated views of the element.',
-        returns: 'object',
-        private: false,
+        types: [
+          'object',
+        ],
+        description: 'The name of the views for the components.',
+        private: true,
       },
     },
     methods: {
@@ -13652,6 +13721,7 @@ module.exports = {
         },
       },
     },
+    views: [],
   },
   MultifileElement: {
     props: {
@@ -14387,7 +14457,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'The selected theme&apos;s classes merged with [`addClasses`](#option-extend-classes) and [`overrideClasses`](#option-replace-classes) options.',
+        description: 'The component&apos;s classes.',
         private: false,
       },
       classesInstance: {
@@ -14594,12 +14664,12 @@ module.exports = {
         description: 'Whether the list is sortable. Can be enabled with [`sort`](#option-sort) option, but it will disabled if [`isDisabled`](#property-is-disabled) is `true`.',
         private: false,
       },
-      templates: {
+      Templates: {
         types: [
           'object',
         ],
-        description: 'The component templates to use for the element. Use [`templates`](#option-templates) option to override any of the theme&apos;s default templates.',
-        private: false,
+        description: 'The list of templates available to the element.',
+        private: true,
       },
       template: {
         types: [
@@ -14701,19 +14771,25 @@ module.exports = {
         private: false,
       },
       Size: {
-        description: 'The calculated size of the element. If [`size`](#option-size) is not defined for the element the closest parent&apos;s size will be used, which can be either the [`Vueform`](vueform) component or a nested element.',
-        returns: 'string',
+        types: [
+          'string',
+        ],
+        description: 'The size of the element and all of its child components.',
         private: false,
       },
       View: {
-        description: 'The calculated view of the element.',
-        returns: 'string',
+        types: [
+          'string',
+        ],
+        description: 'The name of the view to be used for the element and by default for its child components. If `undefined` the default view will be used. Child component views can be overridden with [`views`](#option-views) option.',
         private: false,
       },
       Views: {
-        description: 'The calculated views of the element.',
-        returns: 'object',
-        private: false,
+        types: [
+          'object',
+        ],
+        description: 'The name of the views for the components.',
+        private: true,
       },
     },
     methods: {
@@ -15261,6 +15337,7 @@ module.exports = {
         },
       },
     },
+    views: ['image', 'gallery'],
   },
   MultiselectElement: {
     props: {
@@ -16242,7 +16319,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'The selected theme&apos;s classes merged with [`addClasses`](#option-extend-classes) and [`overrideClasses`](#option-replace-classes) options.',
+        description: 'The component&apos;s classes.',
         private: false,
       },
       classesInstance: {
@@ -16393,12 +16470,12 @@ module.exports = {
         description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `singlelabel` for `SelectElement`.',
         private: true,
       },
-      templates: {
+      Templates: {
         types: [
           'object',
         ],
-        description: 'The component templates to use for the element. Use [`templates`](#option-templates) option to override any of the theme&apos;s default templates.',
-        private: false,
+        description: 'The list of templates available to the element.',
+        private: true,
       },
       template: {
         types: [
@@ -16486,19 +16563,25 @@ module.exports = {
         private: false,
       },
       Size: {
-        description: 'The calculated size of the element. If [`size`](#option-size) is not defined for the element the closest parent&apos;s size will be used, which can be either the [`Vueform`](vueform) component or a nested element.',
-        returns: 'string',
+        types: [
+          'string',
+        ],
+        description: 'The size of the element and all of its child components.',
         private: false,
       },
       View: {
-        description: 'The calculated view of the element.',
-        returns: 'string',
+        types: [
+          'string',
+        ],
+        description: 'The name of the view to be used for the element and by default for its child components. If `undefined` the default view will be used. Child component views can be overridden with [`views`](#option-views) option.',
         private: false,
       },
       Views: {
-        description: 'The calculated views of the element.',
-        returns: 'object',
-        private: false,
+        types: [
+          'object',
+        ],
+        description: 'The name of the views for the components.',
+        private: true,
       },
     },
     methods: {
@@ -17187,6 +17270,7 @@ module.exports = {
         },
       },
     },
+    views: [],
   },
   ObjectElement: {
     props: {
@@ -17713,7 +17797,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'The selected theme&apos;s classes merged with [`addClasses`](#option-extend-classes) and [`overrideClasses`](#option-replace-classes) options.',
+        description: 'The component&apos;s classes.',
         private: false,
       },
       classesInstance: {
@@ -17822,12 +17906,12 @@ module.exports = {
         description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `singlelabel` for `SelectElement`.',
         private: true,
       },
-      templates: {
+      Templates: {
         types: [
           'object',
         ],
-        description: 'The component templates to use for the element. Use [`templates`](#option-templates) option to override any of the theme&apos;s default templates.',
-        private: false,
+        description: 'The list of templates available to the element.',
+        private: true,
       },
       template: {
         types: [
@@ -17900,19 +17984,25 @@ module.exports = {
         private: false,
       },
       Size: {
-        description: 'The calculated size of the element. If [`size`](#option-size) is not defined for the element the closest parent&apos;s size will be used, which can be either the [`Vueform`](vueform) component or a nested element.',
-        returns: 'string',
+        types: [
+          'string',
+        ],
+        description: 'The size of the element and all of its child components.',
         private: false,
       },
       View: {
-        description: 'The calculated view of the element.',
-        returns: 'string',
+        types: [
+          'string',
+        ],
+        description: 'The name of the view to be used for the element and by default for its child components. If `undefined` the default view will be used. Child component views can be overridden with [`views`](#option-views) option.',
         private: false,
       },
       Views: {
-        description: 'The calculated views of the element.',
-        returns: 'object',
-        private: false,
+        types: [
+          'object',
+        ],
+        description: 'The name of the views for the components.',
+        private: true,
       },
     },
     methods: {
@@ -18265,6 +18355,7 @@ module.exports = {
         },
       },
     },
+    views: [],
   },
   RadioElement: {
     props: {
@@ -18858,7 +18949,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'The selected theme&apos;s classes merged with [`addClasses`](#option-extend-classes) and [`overrideClasses`](#option-replace-classes) options.',
+        description: 'The component&apos;s classes.',
         private: false,
       },
       classesInstance: {
@@ -18995,12 +19086,12 @@ module.exports = {
         description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `singlelabel` for `SelectElement`.',
         private: true,
       },
-      templates: {
+      Templates: {
         types: [
           'object',
         ],
-        description: 'The component templates to use for the element. Use [`templates`](#option-templates) option to override any of the theme&apos;s default templates.',
-        private: false,
+        description: 'The list of templates available to the element.',
+        private: true,
       },
       template: {
         types: [
@@ -19088,19 +19179,25 @@ module.exports = {
         private: false,
       },
       Size: {
-        description: 'The calculated size of the element. If [`size`](#option-size) is not defined for the element the closest parent&apos;s size will be used, which can be either the [`Vueform`](vueform) component or a nested element.',
-        returns: 'string',
+        types: [
+          'string',
+        ],
+        description: 'The size of the element and all of its child components.',
         private: false,
       },
       View: {
-        description: 'The calculated view of the element.',
-        returns: 'string',
+        types: [
+          'string',
+        ],
+        description: 'The name of the view to be used for the element and by default for its child components. If `undefined` the default view will be used. Child component views can be overridden with [`views`](#option-views) option.',
         private: false,
       },
       Views: {
-        description: 'The calculated views of the element.',
-        returns: 'object',
-        private: false,
+        types: [
+          'object',
+        ],
+        description: 'The name of the views for the components.',
+        private: true,
       },
     },
     methods: {
@@ -19477,6 +19574,7 @@ module.exports = {
         },
       },
     },
+    views: [],
   },
   RadiogroupElement: {
     props: {
@@ -20060,7 +20158,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'The selected theme&apos;s classes merged with [`addClasses`](#option-extend-classes) and [`overrideClasses`](#option-replace-classes) options.',
+        description: 'The component&apos;s classes.',
         private: false,
       },
       classesInstance: {
@@ -20190,12 +20288,12 @@ module.exports = {
         description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `singlelabel` for `SelectElement`.',
         private: true,
       },
-      templates: {
+      Templates: {
         types: [
           'object',
         ],
-        description: 'The component templates to use for the element. Use [`templates`](#option-templates) option to override any of the theme&apos;s default templates.',
-        private: false,
+        description: 'The list of templates available to the element.',
+        private: true,
       },
       template: {
         types: [
@@ -20283,19 +20381,25 @@ module.exports = {
         private: false,
       },
       Size: {
-        description: 'The calculated size of the element. If [`size`](#option-size) is not defined for the element the closest parent&apos;s size will be used, which can be either the [`Vueform`](vueform) component or a nested element.',
-        returns: 'string',
+        types: [
+          'string',
+        ],
+        description: 'The size of the element and all of its child components.',
         private: false,
       },
       View: {
-        description: 'The calculated view of the element.',
-        returns: 'string',
+        types: [
+          'string',
+        ],
+        description: 'The name of the view to be used for the element and by default for its child components. If `undefined` the default view will be used. Child component views can be overridden with [`views`](#option-views) option.',
         private: false,
       },
       Views: {
-        description: 'The calculated views of the element.',
-        returns: 'object',
-        private: false,
+        types: [
+          'object',
+        ],
+        description: 'The name of the views for the components.',
+        private: true,
       },
     },
     methods: {
@@ -20756,6 +20860,7 @@ module.exports = {
         },
       },
     },
+    views: ['blocks', 'tabs'],
   },
   SelectElement: {
     props: {
@@ -21698,7 +21803,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'The selected theme&apos;s classes merged with [`addClasses`](#option-extend-classes) and [`overrideClasses`](#option-replace-classes) options.',
+        description: 'The component&apos;s classes.',
         private: false,
       },
       classesInstance: {
@@ -21849,12 +21954,12 @@ module.exports = {
         description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `singlelabel` for `SelectElement`.',
         private: true,
       },
-      templates: {
+      Templates: {
         types: [
           'object',
         ],
-        description: 'The component templates to use for the element. Use [`templates`](#option-templates) option to override any of the theme&apos;s default templates.',
-        private: false,
+        description: 'The list of templates available to the element.',
+        private: true,
       },
       template: {
         types: [
@@ -21942,19 +22047,25 @@ module.exports = {
         private: false,
       },
       Size: {
-        description: 'The calculated size of the element. If [`size`](#option-size) is not defined for the element the closest parent&apos;s size will be used, which can be either the [`Vueform`](vueform) component or a nested element.',
-        returns: 'string',
+        types: [
+          'string',
+        ],
+        description: 'The size of the element and all of its child components.',
         private: false,
       },
       View: {
-        description: 'The calculated view of the element.',
-        returns: 'string',
+        types: [
+          'string',
+        ],
+        description: 'The name of the view to be used for the element and by default for its child components. If `undefined` the default view will be used. Child component views can be overridden with [`views`](#option-views) option.',
         private: false,
       },
       Views: {
-        description: 'The calculated views of the element.',
-        returns: 'object',
-        private: false,
+        types: [
+          'object',
+        ],
+        description: 'The name of the views for the components.',
+        private: true,
       },
     },
     methods: {
@@ -22613,6 +22724,7 @@ module.exports = {
         },
       },
     },
+    views: [],
   },
   SliderElement: {
     props: {
@@ -23277,7 +23389,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'The selected theme&apos;s classes merged with [`addClasses`](#option-extend-classes) and [`overrideClasses`](#option-replace-classes) options.',
+        description: 'The component&apos;s classes.',
         private: false,
       },
       classesInstance: {
@@ -23407,12 +23519,12 @@ module.exports = {
         description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `singlelabel` for `SelectElement`.',
         private: true,
       },
-      templates: {
+      Templates: {
         types: [
           'object',
         ],
-        description: 'The component templates to use for the element. Use [`templates`](#option-templates) option to override any of the theme&apos;s default templates.',
-        private: false,
+        description: 'The list of templates available to the element.',
+        private: true,
       },
       template: {
         types: [
@@ -23500,19 +23612,25 @@ module.exports = {
         private: false,
       },
       Size: {
-        description: 'The calculated size of the element. If [`size`](#option-size) is not defined for the element the closest parent&apos;s size will be used, which can be either the [`Vueform`](vueform) component or a nested element.',
-        returns: 'string',
+        types: [
+          'string',
+        ],
+        description: 'The size of the element and all of its child components.',
         private: false,
       },
       View: {
-        description: 'The calculated view of the element.',
-        returns: 'string',
+        types: [
+          'string',
+        ],
+        description: 'The name of the view to be used for the element and by default for its child components. If `undefined` the default view will be used. Child component views can be overridden with [`views`](#option-views) option.',
         private: false,
       },
       Views: {
-        description: 'The calculated views of the element.',
-        returns: 'object',
-        private: false,
+        types: [
+          'object',
+        ],
+        description: 'The name of the views for the components.',
+        private: true,
       },
     },
     methods: {
@@ -23882,6 +24000,7 @@ module.exports = {
         },
       },
     },
+    views: [],
   },
   StaticElement: {
     props: {
@@ -24318,7 +24437,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'The selected theme&apos;s classes merged with [`addClasses`](#option-extend-classes) and [`overrideClasses`](#option-replace-classes) options.',
+        description: 'The component&apos;s classes.',
         private: false,
       },
       classesInstance: {
@@ -24399,12 +24518,12 @@ module.exports = {
         description: 'Determines if HTML content should be rendered for the element.',
         private: true,
       },
-      templates: {
+      Templates: {
         types: [
           'object',
         ],
-        description: 'The component templates to use for the element. Use [`templates`](#option-templates) option to override any of the theme&apos;s default templates.',
-        private: false,
+        description: 'The list of templates available to the element.',
+        private: true,
       },
       template: {
         types: [
@@ -24421,19 +24540,25 @@ module.exports = {
         private: false,
       },
       Size: {
-        description: 'The calculated size of the element. If [`size`](#option-size) is not defined for the element the closest parent&apos;s size will be used, which can be either the [`Vueform`](vueform) component or a nested element.',
-        returns: 'string',
+        types: [
+          'string',
+        ],
+        description: 'The size of the element and all of its child components.',
         private: false,
       },
       View: {
-        description: 'The calculated view of the element.',
-        returns: 'string',
+        types: [
+          'string',
+        ],
+        description: 'The name of the view to be used for the element and by default for its child components. If `undefined` the default view will be used. Child component views can be overridden with [`views`](#option-views) option.',
         private: false,
       },
       Views: {
-        description: 'The calculated views of the element.',
-        returns: 'object',
-        private: false,
+        types: [
+          'object',
+        ],
+        description: 'The name of the views for the components.',
+        private: true,
       },
     },
     methods: {
@@ -24692,6 +24817,7 @@ module.exports = {
         },
       },
     },
+    views: [],
   },
   TEditorElement: {
     props: {
@@ -25322,7 +25448,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'The selected theme&apos;s classes merged with [`addClasses`](#option-extend-classes) and [`overrideClasses`](#option-replace-classes) options.',
+        description: 'The component&apos;s classes.',
         private: false,
       },
       classesInstance: {
@@ -25489,12 +25615,12 @@ module.exports = {
         description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `singlelabel` for `SelectElement`.',
         private: true,
       },
-      templates: {
+      Templates: {
         types: [
           'object',
         ],
-        description: 'The component templates to use for the element. Use [`templates`](#option-templates) option to override any of the theme&apos;s default templates.',
-        private: false,
+        description: 'The list of templates available to the element.',
+        private: true,
       },
       template: {
         types: [
@@ -25589,19 +25715,25 @@ module.exports = {
         private: false,
       },
       Size: {
-        description: 'The calculated size of the element. If [`size`](#option-size) is not defined for the element the closest parent&apos;s size will be used, which can be either the [`Vueform`](vueform) component or a nested element.',
-        returns: 'string',
+        types: [
+          'string',
+        ],
+        description: 'The size of the element and all of its child components.',
         private: false,
       },
       View: {
-        description: 'The calculated view of the element.',
-        returns: 'string',
+        types: [
+          'string',
+        ],
+        description: 'The name of the view to be used for the element and by default for its child components. If `undefined` the default view will be used. Child component views can be overridden with [`views`](#option-views) option.',
         private: false,
       },
       Views: {
-        description: 'The calculated views of the element.',
-        returns: 'object',
-        private: false,
+        types: [
+          'object',
+        ],
+        description: 'The name of the views for the components.',
+        private: true,
       },
     },
     methods: {
@@ -26040,6 +26172,7 @@ module.exports = {
         },
       },
     },
+    views: [],
   },
   TTextElement: {
     props: {
@@ -26664,7 +26797,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'The selected theme&apos;s classes merged with [`addClasses`](#option-extend-classes) and [`overrideClasses`](#option-replace-classes) options.',
+        description: 'The component&apos;s classes.',
         private: false,
       },
       classesInstance: {
@@ -26829,12 +26962,12 @@ module.exports = {
         description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `singlelabel` for `SelectElement`.',
         private: true,
       },
-      templates: {
+      Templates: {
         types: [
           'object',
         ],
-        description: 'The component templates to use for the element. Use [`templates`](#option-templates) option to override any of the theme&apos;s default templates.',
-        private: false,
+        description: 'The list of templates available to the element.',
+        private: true,
       },
       template: {
         types: [
@@ -26929,19 +27062,25 @@ module.exports = {
         private: false,
       },
       Size: {
-        description: 'The calculated size of the element. If [`size`](#option-size) is not defined for the element the closest parent&apos;s size will be used, which can be either the [`Vueform`](vueform) component or a nested element.',
-        returns: 'string',
+        types: [
+          'string',
+        ],
+        description: 'The size of the element and all of its child components.',
         private: false,
       },
       View: {
-        description: 'The calculated view of the element.',
-        returns: 'string',
+        types: [
+          'string',
+        ],
+        description: 'The name of the view to be used for the element and by default for its child components. If `undefined` the default view will be used. Child component views can be overridden with [`views`](#option-views) option.',
         private: false,
       },
       Views: {
-        description: 'The calculated views of the element.',
-        returns: 'object',
-        private: false,
+        types: [
+          'object',
+        ],
+        description: 'The name of the views for the components.',
+        private: true,
       },
     },
     methods: {
@@ -27352,6 +27491,7 @@ module.exports = {
         },
       },
     },
+    views: [],
   },
   TTextareaElement: {
     props: {
@@ -27966,7 +28106,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'The selected theme&apos;s classes merged with [`addClasses`](#option-extend-classes) and [`overrideClasses`](#option-replace-classes) options.',
+        description: 'The component&apos;s classes.',
         private: false,
       },
       classesInstance: {
@@ -28124,12 +28264,12 @@ module.exports = {
         description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `singlelabel` for `SelectElement`.',
         private: true,
       },
-      templates: {
+      Templates: {
         types: [
           'object',
         ],
-        description: 'The component templates to use for the element. Use [`templates`](#option-templates) option to override any of the theme&apos;s default templates.',
-        private: false,
+        description: 'The list of templates available to the element.',
+        private: true,
       },
       template: {
         types: [
@@ -28224,19 +28364,25 @@ module.exports = {
         private: false,
       },
       Size: {
-        description: 'The calculated size of the element. If [`size`](#option-size) is not defined for the element the closest parent&apos;s size will be used, which can be either the [`Vueform`](vueform) component or a nested element.',
-        returns: 'string',
+        types: [
+          'string',
+        ],
+        description: 'The size of the element and all of its child components.',
         private: false,
       },
       View: {
-        description: 'The calculated view of the element.',
-        returns: 'string',
+        types: [
+          'string',
+        ],
+        description: 'The name of the view to be used for the element and by default for its child components. If `undefined` the default view will be used. Child component views can be overridden with [`views`](#option-views) option.',
         private: false,
       },
       Views: {
-        description: 'The calculated views of the element.',
-        returns: 'object',
-        private: false,
+        types: [
+          'object',
+        ],
+        description: 'The name of the views for the components.',
+        private: true,
       },
     },
     methods: {
@@ -28652,6 +28798,7 @@ module.exports = {
         },
       },
     },
+    views: [],
   },
   TagsElement: {
     props: {
@@ -29651,7 +29798,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'The selected theme&apos;s classes merged with [`addClasses`](#option-extend-classes) and [`overrideClasses`](#option-replace-classes) options.',
+        description: 'The component&apos;s classes.',
         private: false,
       },
       classesInstance: {
@@ -29802,12 +29949,12 @@ module.exports = {
         description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `singlelabel` for `SelectElement`.',
         private: true,
       },
-      templates: {
+      Templates: {
         types: [
           'object',
         ],
-        description: 'The component templates to use for the element. Use [`templates`](#option-templates) option to override any of the theme&apos;s default templates.',
-        private: false,
+        description: 'The list of templates available to the element.',
+        private: true,
       },
       template: {
         types: [
@@ -29895,19 +30042,25 @@ module.exports = {
         private: false,
       },
       Size: {
-        description: 'The calculated size of the element. If [`size`](#option-size) is not defined for the element the closest parent&apos;s size will be used, which can be either the [`Vueform`](vueform) component or a nested element.',
-        returns: 'string',
+        types: [
+          'string',
+        ],
+        description: 'The size of the element and all of its child components.',
         private: false,
       },
       View: {
-        description: 'The calculated view of the element.',
-        returns: 'string',
+        types: [
+          'string',
+        ],
+        description: 'The name of the view to be used for the element and by default for its child components. If `undefined` the default view will be used. Child component views can be overridden with [`views`](#option-views) option.',
         private: false,
       },
       Views: {
-        description: 'The calculated views of the element.',
-        returns: 'object',
-        private: false,
+        types: [
+          'object',
+        ],
+        description: 'The name of the views for the components.',
+        private: true,
       },
     },
     methods: {
@@ -30633,6 +30786,7 @@ module.exports = {
         },
       },
     },
+    views: [],
   },
   TextElement: {
     props: {
@@ -31270,7 +31424,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'The selected theme&apos;s classes merged with [`addClasses`](#option-extend-classes) and [`overrideClasses`](#option-replace-classes) options.',
+        description: 'The component&apos;s classes.',
         private: false,
       },
       classesInstance: {
@@ -31421,12 +31575,12 @@ module.exports = {
         description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `singlelabel` for `SelectElement`.',
         private: true,
       },
-      templates: {
+      Templates: {
         types: [
           'object',
         ],
-        description: 'The component templates to use for the element. Use [`templates`](#option-templates) option to override any of the theme&apos;s default templates.',
-        private: false,
+        description: 'The list of templates available to the element.',
+        private: true,
       },
       template: {
         types: [
@@ -31521,19 +31675,25 @@ module.exports = {
         private: false,
       },
       Size: {
-        description: 'The calculated size of the element. If [`size`](#option-size) is not defined for the element the closest parent&apos;s size will be used, which can be either the [`Vueform`](vueform) component or a nested element.',
-        returns: 'string',
+        types: [
+          'string',
+        ],
+        description: 'The size of the element and all of its child components.',
         private: false,
       },
       View: {
-        description: 'The calculated view of the element.',
-        returns: 'string',
+        types: [
+          'string',
+        ],
+        description: 'The name of the view to be used for the element and by default for its child components. If `undefined` the default view will be used. Child component views can be overridden with [`views`](#option-views) option.',
         private: false,
       },
       Views: {
-        description: 'The calculated views of the element.',
-        returns: 'object',
-        private: false,
+        types: [
+          'object',
+        ],
+        description: 'The name of the views for the components.',
+        private: true,
       },
     },
     methods: {
@@ -31925,6 +32085,7 @@ module.exports = {
         },
       },
     },
+    views: [],
   },
   TextareaElement: {
     props: {
@@ -32552,7 +32713,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'The selected theme&apos;s classes merged with [`addClasses`](#option-extend-classes) and [`overrideClasses`](#option-replace-classes) options.',
+        description: 'The component&apos;s classes.',
         private: false,
       },
       classesInstance: {
@@ -32696,12 +32857,12 @@ module.exports = {
         description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `singlelabel` for `SelectElement`.',
         private: true,
       },
-      templates: {
+      Templates: {
         types: [
           'object',
         ],
-        description: 'The component templates to use for the element. Use [`templates`](#option-templates) option to override any of the theme&apos;s default templates.',
-        private: false,
+        description: 'The list of templates available to the element.',
+        private: true,
       },
       template: {
         types: [
@@ -32796,19 +32957,25 @@ module.exports = {
         private: false,
       },
       Size: {
-        description: 'The calculated size of the element. If [`size`](#option-size) is not defined for the element the closest parent&apos;s size will be used, which can be either the [`Vueform`](vueform) component or a nested element.',
-        returns: 'string',
+        types: [
+          'string',
+        ],
+        description: 'The size of the element and all of its child components.',
         private: false,
       },
       View: {
-        description: 'The calculated view of the element.',
-        returns: 'string',
+        types: [
+          'string',
+        ],
+        description: 'The name of the view to be used for the element and by default for its child components. If `undefined` the default view will be used. Child component views can be overridden with [`views`](#option-views) option.',
         private: false,
       },
       Views: {
-        description: 'The calculated views of the element.',
-        returns: 'object',
-        private: false,
+        types: [
+          'object',
+        ],
+        description: 'The name of the views for the components.',
+        private: true,
       },
     },
     methods: {
@@ -33205,6 +33372,7 @@ module.exports = {
         },
       },
     },
+    views: [],
   },
   ToggleElement: {
     props: {
@@ -33819,7 +33987,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'The selected theme&apos;s classes merged with [`addClasses`](#option-extend-classes) and [`overrideClasses`](#option-replace-classes) options.',
+        description: 'The component&apos;s classes.',
         private: false,
       },
       classesInstance: {
@@ -33949,12 +34117,12 @@ module.exports = {
         description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `singlelabel` for `SelectElement`.',
         private: true,
       },
-      templates: {
+      Templates: {
         types: [
           'object',
         ],
-        description: 'The component templates to use for the element. Use [`templates`](#option-templates) option to override any of the theme&apos;s default templates.',
-        private: false,
+        description: 'The list of templates available to the element.',
+        private: true,
       },
       template: {
         types: [
@@ -34042,19 +34210,25 @@ module.exports = {
         private: false,
       },
       Size: {
-        description: 'The calculated size of the element. If [`size`](#option-size) is not defined for the element the closest parent&apos;s size will be used, which can be either the [`Vueform`](vueform) component or a nested element.',
-        returns: 'string',
+        types: [
+          'string',
+        ],
+        description: 'The size of the element and all of its child components.',
         private: false,
       },
       View: {
-        description: 'The calculated view of the element.',
-        returns: 'string',
+        types: [
+          'string',
+        ],
+        description: 'The name of the view to be used for the element and by default for its child components. If `undefined` the default view will be used. Child component views can be overridden with [`views`](#option-views) option.',
         private: false,
       },
       Views: {
-        description: 'The calculated views of the element.',
-        returns: 'object',
-        private: false,
+        types: [
+          'object',
+        ],
+        description: 'The name of the views for the components.',
+        private: true,
       },
     },
     methods: {
@@ -34445,5 +34619,6 @@ module.exports = {
         },
       },
     },
+    views: [],
   },
 }

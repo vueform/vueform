@@ -66,7 +66,7 @@ const base = function(props, context, dependencies, options = {})
   })
 
   /**
-   * The selected theme's classes merged with element's `addClasses` and `overrideClasses` options.
+   * The component's classes.
    * 
    * @type {object}
    */
@@ -75,9 +75,10 @@ const base = function(props, context, dependencies, options = {})
   })
 
   /**
-   * Returns the component templates used by the parent element.
+   * The list of templates available to the component.
    * 
    * @type {object}
+   * @private
    */
   const Templates = computed(() => {
     return el$.value.Templates

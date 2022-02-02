@@ -34,7 +34,7 @@ export default class MergeClasses
 
     this.merge(this.locals || this.component$.value, true)
 
-    if (this.config.classHelpers) {
+    if (this.config.classHelpers && this.config.env !== 'production') {
       this.merge({
         prependClasses: {
           [this.component]: this.getClassHelpers(this.componentClasses, [this.component])
@@ -108,7 +108,7 @@ export default class MergeClasses
       ? this.template.data().merge
       : this.component$.value.merge
 
-    return merge !== undefined ? merge : true
+    return merge !== undefined ? merge : false
   }
 
   get defaultClasses () {

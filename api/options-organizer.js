@@ -18,5 +18,8 @@ module.exports = [
   'columns', 'inline',
 
   // Styling
-  'addClass', 'extendClasses', 'replaceClasses', 'templates', 'slots',
+  'size', 'view', 'views',
+  'addClasses', 'addClass', 'removeClasses', 'removeClass', 'replaceClasses', 'replaceClass',
+  'overrideClasses', 'overrideClass', 'templates', 'presets',
+  'slots',
 ]

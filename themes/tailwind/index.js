@@ -27,7 +27,6 @@ import ElementDescription from './../blank/templates/ElementDescription.vue'
 import ElementError from './../blank/templates/ElementError.vue'
 import ElementMessage from './../blank/templates/ElementMessage.vue'
 import ElementText from './../blank/templates/ElementText.vue'
-import DragAndDrop from './../blank/templates/DragAndDrop.vue'
 import ElementAddon from './../blank/templates/ElementAddon.vue'
 
 import ButtonElement from './../blank/templates/elements/ButtonElement.vue'
@@ -58,13 +57,14 @@ import TTextElement from './../blank/templates/elements/TTextElement.vue'
 import TEditorElement from './../blank/templates/elements/TEditorElement.vue'
 
 import CheckboxgroupCheckbox from './../blank/templates/elements/partials/CheckboxgroupCheckbox.vue'
-import CheckboxgroupCheckbox_pills from './../blank/templates/elements/partials/CheckboxgroupCheckbox_pills.vue'
+import CheckboxgroupCheckbox_tabs from './../blank/templates/elements/partials/CheckboxgroupCheckbox_tabs.vue'
 import CheckboxgroupCheckbox_blocks from './../blank/templates/elements/partials/CheckboxgroupCheckbox_blocks.vue'
+import DragAndDrop from './../blank/templates/elements/partials/DragAndDrop.vue'
 import FilePreview from './../blank/templates/elements/partials/FilePreview.vue'
 import FilePreview_image from './../blank/templates/elements/partials/FilePreview_image.vue'
 import FilePreview_gallery from './../blank/templates/elements/partials/FilePreview_gallery.vue'
 import RadiogroupRadio from './../blank/templates/elements/partials/RadiogroupRadio.vue'
-import RadiogroupRadio_pills from './../blank/templates/elements/partials/RadiogroupRadio_pills.vue'
+import RadiogroupRadio_tabs from './../blank/templates/elements/partials/RadiogroupRadio_tabs.vue'
 import RadiogroupRadio_blocks from './../blank/templates/elements/partials/RadiogroupRadio_blocks.vue'
 
 import DatepickerWrapper from './templates/wrappers/DatepickerWrapper.vue'
@@ -97,7 +97,6 @@ const theme = {
     ElementError,
     ElementMessage,
     ElementText,
-    DragAndDrop,
     ElementAddon,
 
     ButtonElement,
@@ -128,13 +127,14 @@ const theme = {
     TEditorElement,
 
     CheckboxgroupCheckbox,
-    CheckboxgroupCheckbox_pills,
+    CheckboxgroupCheckbox_tabs,
     CheckboxgroupCheckbox_blocks,
+    DragAndDrop,
     FilePreview,
     FilePreview_image,
     FilePreview_gallery,
     RadiogroupRadio,
-    RadiogroupRadio_pills,
+    RadiogroupRadio_tabs,
     RadiogroupRadio_blocks,
 
     DatepickerWrapper,

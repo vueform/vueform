@@ -13,7 +13,7 @@ const config = {
    * Theme & layout
    */
   theme: {},
-  Templates: {},
+  templates: {},
   views: {},
   size: 'md',
   addClasses: {},

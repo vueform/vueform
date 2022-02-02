@@ -1,5 +1,8 @@
 module.exports = [
 
+  'id',
+  'name',
+
   'step$',
   'tab$',
   'stepLabel',
@@ -95,8 +98,12 @@ module.exports = [
   'hasLabel',
   'hasFloating',
   
+  'Size',
+  'View',
+  'Views',
+  'Templates',
+  'template',
   'classes',
-  'templates',
   'theme',
 
   'form$',

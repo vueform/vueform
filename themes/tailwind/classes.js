@@ -232,7 +232,7 @@ export default {
       classes[`wrapper_${Size}`]
     ]),
   },
-  CheckboxgroupElement_pills: {
+  CheckboxgroupElement_tabs: {
     container: '',
     wrapper: 'grid grid-flow-col',
   },
@@ -458,7 +458,7 @@ export default {
       classes[`wrapper_${Size}`]
     ]),
   },
-  RadiogroupElement_pills: {
+  RadiogroupElement_tabs: {
     container: '',
     wrapper: 'grid grid-flow-col grid',
   },
@@ -664,21 +664,6 @@ export default {
   },
 
   // Components
-  DragAndDrop: {
-    container: 'w-full border border-dashed transition inline-flex flex-col items-center justify-center p-6 cursor-pointer',
-    container_inactive: 'form-border-color',
-    container_active: 'form-border-primary form-bg-primary bg-opacity-20',
-    container_enabled: '',
-    container_disabled: 'opacity-50 bg-gray-50 cursor-not-allowed',
-    icon: 'inline-block w-9 h-8 mask-bg mask-form-inbox-in form-bg-primary bg-opacity-100',
-    title: 'font-semibold mt-3',
-    description: '',
-    $container: (classes, { dragging, disabled }) => ([
-      classes.container,
-      dragging ? classes.container_active : classes.container_inactive,
-      disabled ? classes.container_disabled : classes.container_enabled,
-    ]),
-  },
   ElementAddon: {
     container: 'form-border form-border-color bg-gray-100 flex items-center',
     container_before: 'form-addon-before !border-r-0',
@@ -965,7 +950,7 @@ export default {
     container: 'flex align-start cursor-pointer',
     text: '',
   },
-  CheckboxgroupCheckbox_pills: {
+  CheckboxgroupCheckbox_tabs: {
     container: 'flex align-start cursor-pointer',
     wrapper: 'flex items-center justify-center border py-1.5 w-full bg-white',
     wrapper_not_last: 'border-r-0',
@@ -1020,6 +1005,21 @@ export default {
     $description: (classes, { Size }) => ([
       classes.description,
       classes[`description_${Size}`],
+    ]),
+  },
+  DragAndDrop: {
+    container: 'w-full border border-dashed transition inline-flex flex-col items-center justify-center p-6 cursor-pointer',
+    container_inactive: 'form-border-color',
+    container_active: 'form-border-primary form-bg-primary bg-opacity-20',
+    container_enabled: '',
+    container_disabled: 'opacity-50 bg-gray-50 cursor-not-allowed',
+    icon: 'inline-block w-9 h-8 mask-bg mask-form-inbox-in form-bg-primary bg-opacity-100',
+    title: 'font-semibold mt-3',
+    description: '',
+    $container: (classes, { dragging, disabled }) => ([
+      classes.container,
+      dragging ? classes.container_active : classes.container_inactive,
+      disabled ? classes.container_disabled : classes.container_enabled,
     ]),
   },
   FilePreview: {
@@ -1134,7 +1134,7 @@ export default {
     container: 'flex align-start cursor-pointer',
     text: '',
   },
-  RadiogroupRadio_pills: {
+  RadiogroupRadio_tabs: {
     container: 'flex align-start cursor-pointer',
     wrapper: 'flex items-center justify-center border py-1.5 w-full bg-white',
     wrapper_not_last: 'border-r-0',

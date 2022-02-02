@@ -2,7 +2,7 @@
   import CheckboxgroupElement from './../../../blank/templates/elements/CheckboxgroupElement.vue'
 
   export default {
-    name: 'CheckboxgroupElement_pills',
+    name: 'CheckboxgroupElement_tabs',
     render: CheckboxgroupElement.render,
     data() {
       return {

@@ -60,7 +60,7 @@ const base = function(props, context, dependencies, options = {})
   })
 
   /**
-   The selected theme's classes merged with the form's [`addClasses`](vueform#option-add-classes) and [`overrideClasses`](vueform#option-override-classes) options.
+   * The component's classes.
    * 
    * @type {object}
    */
@@ -69,9 +69,10 @@ const base = function(props, context, dependencies, options = {})
   })
 
   /**
-   * Returns the component templates used by the form.
+   * The list of templates available to the component.
    * 
    * @type {object}
+   * @private
    */
   const Templates = computed(() => {
     return theme.value.templates
