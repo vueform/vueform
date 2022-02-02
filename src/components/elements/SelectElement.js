@@ -155,6 +155,26 @@ export default {
       default: true,
       native: false,
     },
+
+    create: {
+      required: false,
+      type: [Boolean],
+      default: false,
+      native: false,
+    },
+    appendNewOption: {
+      type: [Boolean],
+      required: false,
+      default: true,
+      native: false,
+    },
+    addOptionOn: {
+      type: [Array],
+      required: false,
+      default: () => (['enter']),
+      native: false,
+    },
+
     object: {
       type: [Boolean],
       required: false,

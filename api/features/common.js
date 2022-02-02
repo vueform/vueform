@@ -66,7 +66,7 @@ export default {
           "types": [
             "string"
           ],
-          "description": "The name of the view to be used for the component. If `undefined` or the view is not registered the default view will be used."
+          "description": "The name of the resolved view for the component. This one should be used to determine the component's view in class functions."
         },
         "classesInstance": {
           "public": false,
@@ -236,7 +236,7 @@ export default {
           "types": [
             "string"
           ],
-          "description": "The name of the view to be used for the component. If `undefined` or the view is not registered the default view will be used."
+          "description": "The name of the resolved view for the component. This one should be used to determine the component's view in class functions."
         },
         "classesInstance": {
           "public": false,
@@ -530,7 +530,7 @@ export default {
           "types": [
             "string"
           ],
-          "description": "The name of the view to be used for the component. If `undefined` or the view is not registered the default view will be used."
+          "description": "The name of the resolved view for the component. This one should be used to determine the component's view in class functions."
         }
       }
     }
@@ -853,14 +853,14 @@ export default {
           "types": [
             "string"
           ],
-          "description": "The default size for each element and component within the form."
+          "description": "The resolved default size for each element and component within the form."
         },
         "View": {
           "public": true,
           "types": [
             "string"
           ],
-          "description": "The name of the view to be used for the form. If `undefined` or the view is not registered the default view will be used."
+          "description": "The name of the resolved view for Vueform component. This one should be used to determine the component's view in class functions."
         },
         "Views": {
           "public": false,

@@ -42,7 +42,7 @@ const base = function(props, context, dependencies)
   })
 
   /**
-   * The size of the element and all of its child components.
+   * The resolved size of the element and all of its child components.
    *
    * @type {string}
    */
@@ -75,7 +75,7 @@ const base = function(props, context, dependencies)
   })
 
   /**
-   * The name of the view to be used for the element and by default for its child components. If `undefined` the default view will be used. Child component views can be overridden with [`views`](#option-views) option.
+   * The name of the resolved view for the component and the default view for its child components. Child component views can be overridden with [`views`](#option-views) option. This one should be used to determine the component's view in class functions.
    *
    * @type {string}
    */

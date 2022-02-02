@@ -36,7 +36,7 @@ module.exports = {
         "types": [
           "string"
         ],
-        "description": "The name of the view to be used for the component. If `undefined` or the view is not registered the default view will be used."
+        "description": "The name of the resolved view for the component. This one should be used to determine the component's view in class functions."
       },
       "classesInstance": {
         "public": false,
@@ -169,7 +169,7 @@ module.exports = {
         "types": [
           "string"
         ],
-        "description": "The name of the view to be used for the component. If `undefined` or the view is not registered the default view will be used."
+        "description": "The name of the resolved view for the component. This one should be used to determine the component's view in class functions."
       },
       "classesInstance": {
         "public": false,
@@ -275,7 +275,7 @@ module.exports = {
         "types": [
           "string"
         ],
-        "description": "The name of the view to be used for the component. If `undefined` or the view is not registered the default view will be used."
+        "description": "The name of the resolved view for the component. This one should be used to determine the component's view in class functions."
       },
       "classesInstance": {
         "public": false,
@@ -366,7 +366,7 @@ module.exports = {
         "types": [
           "string"
         ],
-        "description": "The name of the view to be used for the component. If `undefined` or the view is not registered the default view will be used."
+        "description": "The name of the resolved view for the component. This one should be used to determine the component's view in class functions."
       },
       "classesInstance": {
         "public": false,
@@ -446,7 +446,7 @@ module.exports = {
         "types": [
           "string"
         ],
-        "description": "The name of the view to be used for the component. If `undefined` or the view is not registered the default view will be used."
+        "description": "The name of the resolved view for the component. This one should be used to determine the component's view in class functions."
       },
       "classesInstance": {
         "public": false,
@@ -537,7 +537,7 @@ module.exports = {
         "types": [
           "string"
         ],
-        "description": "The name of the view to be used for the component. If `undefined` or the view is not registered the default view will be used."
+        "description": "The name of the resolved view for the component. This one should be used to determine the component's view in class functions."
       },
       "classesInstance": {
         "public": false,
@@ -653,7 +653,7 @@ module.exports = {
         "types": [
           "string"
         ],
-        "description": "The name of the view to be used for the component. If `undefined` or the view is not registered the default view will be used."
+        "description": "The name of the resolved view for the component. This one should be used to determine the component's view in class functions."
       },
       "classesInstance": {
         "public": false,
@@ -741,7 +741,7 @@ module.exports = {
         "types": [
           "string"
         ],
-        "description": "The name of the view to be used for the component. If `undefined` or the view is not registered the default view will be used."
+        "description": "The name of the resolved view for the component. This one should be used to determine the component's view in class functions."
       },
       "classesInstance": {
         "public": false,
@@ -851,7 +851,7 @@ module.exports = {
         "types": [
           "string"
         ],
-        "description": "The name of the view to be used for the component. If `undefined` or the view is not registered the default view will be used."
+        "description": "The name of the resolved view for the component. This one should be used to determine the component's view in class functions."
       },
       "classesInstance": {
         "public": false,
@@ -953,7 +953,7 @@ module.exports = {
         "types": [
           "string"
         ],
-        "description": "The name of the view to be used for the component. If `undefined` or the view is not registered the default view will be used."
+        "description": "The name of the resolved view for the component. This one should be used to determine the component's view in class functions."
       },
       "classesInstance": {
         "public": false,
@@ -1026,7 +1026,7 @@ module.exports = {
         "types": [
           "string"
         ],
-        "description": "The name of the view to be used for the component. If `undefined` or the view is not registered the default view will be used."
+        "description": "The name of the resolved view for the component. This one should be used to determine the component's view in class functions."
       },
       "classesInstance": {
         "public": false,
@@ -1106,7 +1106,7 @@ module.exports = {
         "types": [
           "string"
         ],
-        "description": "The name of the view to be used for the component. If `undefined` or the view is not registered the default view will be used."
+        "description": "The name of the resolved view for the component. This one should be used to determine the component's view in class functions."
       },
       "classesInstance": {
         "public": false,
@@ -1197,7 +1197,7 @@ module.exports = {
         "types": [
           "string"
         ],
-        "description": "The name of the view to be used for the component. If `undefined` or the view is not registered the default view will be used."
+        "description": "The name of the resolved view for the component. This one should be used to determine the component's view in class functions."
       },
       "classesInstance": {
         "public": false,
@@ -1297,7 +1297,7 @@ module.exports = {
         "types": [
           "string"
         ],
-        "description": "The name of the view to be used for the component. If `undefined` or the view is not registered the default view will be used."
+        "description": "The name of the resolved view for the component. This one should be used to determine the component's view in class functions."
       },
       "classesInstance": {
         "public": false,
@@ -1377,7 +1377,7 @@ module.exports = {
         "types": [
           "string"
         ],
-        "description": "The name of the view to be used for the component. If `undefined` or the view is not registered the default view will be used."
+        "description": "The name of the resolved view for the component. This one should be used to determine the component's view in class functions."
       },
       "classesInstance": {
         "public": false,
@@ -1494,7 +1494,7 @@ module.exports = {
         "types": [
           "string"
         ],
-        "description": "The name of the view to be used for the component. If `undefined` or the view is not registered the default view will be used."
+        "description": "The name of the resolved view for the component. This one should be used to determine the component's view in class functions."
       },
       "classesInstance": {
         "public": false,
@@ -1611,7 +1611,7 @@ module.exports = {
         "types": [
           "string"
         ],
-        "description": "The name of the view to be used for the component. If `undefined` or the view is not registered the default view will be used."
+        "description": "The name of the resolved view for the component. This one should be used to determine the component's view in class functions."
       },
       "classesInstance": {
         "public": false,
@@ -1691,7 +1691,7 @@ module.exports = {
         "types": [
           "string"
         ],
-        "description": "The name of the view to be used for the component. If `undefined` or the view is not registered the default view will be used."
+        "description": "The name of the resolved view for the component. This one should be used to determine the component's view in class functions."
       },
       "classesInstance": {
         "public": false,
@@ -2145,7 +2145,7 @@ module.exports = {
         "types": [
           "string"
         ],
-        "description": "The name of the view to be used for the component. If `undefined` or the view is not registered the default view will be used."
+        "description": "The name of the resolved view for the component. This one should be used to determine the component's view in class functions."
       },
       "classesInstance": {
         "public": false,
@@ -2574,7 +2574,7 @@ module.exports = {
         "types": [
           "string"
         ],
-        "description": "The name of the view to be used for the component. If `undefined` or the view is not registered the default view will be used."
+        "description": "The name of the resolved view for the component. This one should be used to determine the component's view in class functions."
       },
       "classesInstance": {
         "public": false,
@@ -2731,7 +2731,7 @@ module.exports = {
         "types": [
           "string"
         ],
-        "description": "The name of the view to be used for the component. If `undefined` or the view is not registered the default view will be used."
+        "description": "The name of the resolved view for the component. This one should be used to determine the component's view in class functions."
       },
       "classesInstance": {
         "public": false,
@@ -2821,7 +2821,7 @@ module.exports = {
         "types": [
           "string"
         ],
-        "description": "The name of the view to be used for the component. If `undefined` or the view is not registered the default view will be used."
+        "description": "The name of the resolved view for the component. This one should be used to determine the component's view in class functions."
       },
       "classesInstance": {
         "public": false,
@@ -3141,7 +3141,7 @@ module.exports = {
         "types": [
           "string"
         ],
-        "description": "The name of the view to be used for the component. If `undefined` or the view is not registered the default view will be used."
+        "description": "The name of the resolved view for the component. This one should be used to determine the component's view in class functions."
       },
       "classesInstance": {
         "public": false,
@@ -3706,14 +3706,14 @@ module.exports = {
         "types": [
           "string"
         ],
-        "description": "The default size for each element and component within the form."
+        "description": "The resolved default size for each element and component within the form."
       },
       "View": {
         "public": true,
         "types": [
           "string"
         ],
-        "description": "The name of the view to be used for the form. If `undefined` or the view is not registered the default view will be used."
+        "description": "The name of the resolved view for Vueform component. This one should be used to determine the component's view in class functions."
       },
       "Views": {
         "public": false,
@@ -4138,72 +4138,11 @@ module.exports = {
           "boolean"
         ]
       },
-      "addClass": {
+      "size": {
         "required": false,
         "default": null,
         "types": [
-          "array",
-          "object",
           "string"
-        ]
-      },
-      "removeClass": {
-        "required": false,
-        "default": null,
-        "types": [
-          "array",
-          "object"
-        ]
-      },
-      "replaceClass": {
-        "required": false,
-        "default": null,
-        "types": [
-          "object"
-        ]
-      },
-      "overrideClass": {
-        "required": false,
-        "default": null,
-        "types": [
-          "array",
-          "object",
-          "string"
-        ]
-      },
-      "addClasses": {
-        "required": false,
-        "default": null,
-        "types": [
-          "object"
-        ]
-      },
-      "removeClasses": {
-        "required": false,
-        "default": null,
-        "types": [
-          "object"
-        ]
-      },
-      "replaceClasses": {
-        "required": false,
-        "default": null,
-        "types": [
-          "object"
-        ]
-      },
-      "overrideClasses": {
-        "required": false,
-        "default": null,
-        "types": [
-          "object"
-        ]
-      },
-      "presets": {
-        "required": false,
-        "default": null,
-        "types": [
-          "array"
         ]
       },
       "view": {
@@ -4220,10 +4159,64 @@ module.exports = {
           "object"
         ]
       },
-      "size": {
+      "addClasses": {
         "required": false,
         "default": null,
         "types": [
+          "object"
+        ]
+      },
+      "addClass": {
+        "required": false,
+        "default": null,
+        "types": [
+          "array",
+          "object",
+          "string"
+        ]
+      },
+      "removeClasses": {
+        "required": false,
+        "default": null,
+        "types": [
+          "object"
+        ]
+      },
+      "removeClass": {
+        "required": false,
+        "default": null,
+        "types": [
+          "array",
+          "object"
+        ]
+      },
+      "replaceClasses": {
+        "required": false,
+        "default": null,
+        "types": [
+          "object"
+        ]
+      },
+      "replaceClass": {
+        "required": false,
+        "default": null,
+        "types": [
+          "object"
+        ]
+      },
+      "overrideClasses": {
+        "required": false,
+        "default": null,
+        "types": [
+          "object"
+        ]
+      },
+      "overrideClass": {
+        "required": false,
+        "default": null,
+        "types": [
+          "array",
+          "object",
           "string"
         ]
       },
@@ -4232,6 +4225,13 @@ module.exports = {
         "default": null,
         "types": [
           "object"
+        ]
+      },
+      "presets": {
+        "required": false,
+        "default": null,
+        "types": [
+          "array"
         ]
       },
       "multilingual": {
@@ -4605,7 +4605,7 @@ module.exports = {
         "types": [
           "string"
         ],
-        "description": "The name of the view to be used for the component. If `undefined` or the view is not registered the default view will be used."
+        "description": "The name of the resolved view for the component. This one should be used to determine the component's view in class functions."
       },
       "classesInstance": {
         "public": false,
@@ -4771,7 +4771,7 @@ module.exports = {
         "types": [
           "string"
         ],
-        "description": "The name of the view to be used for the component. If `undefined` or the view is not registered the default view will be used."
+        "description": "The name of the resolved view for the component. This one should be used to determine the component's view in class functions."
       },
       "classesInstance": {
         "public": false,
@@ -5025,7 +5025,7 @@ module.exports = {
         "types": [
           "string"
         ],
-        "description": "The name of the view to be used for the component. If `undefined` or the view is not registered the default view will be used."
+        "description": "The name of the resolved view for the component. This one should be used to determine the component's view in class functions."
       },
       "classesInstance": {
         "public": false,
@@ -5150,7 +5150,7 @@ module.exports = {
         "types": [
           "string"
         ],
-        "description": "The name of the view to be used for the component. If `undefined` or the view is not registered the default view will be used."
+        "description": "The name of the resolved view for the component. This one should be used to determine the component's view in class functions."
       },
       "classesInstance": {
         "public": false,
@@ -5329,7 +5329,7 @@ module.exports = {
         "types": [
           "string"
         ],
-        "description": "The name of the view to be used for the component. If `undefined` or the view is not registered the default view will be used."
+        "description": "The name of the resolved view for the component. This one should be used to determine the component's view in class functions."
       },
       "classesInstance": {
         "public": false,

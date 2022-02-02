@@ -164,12 +164,12 @@ export default {
       type: [Boolean],
       default: false
     },
-    appendNewTag: {
+    appendNewOption: {
       type: [Boolean],
       required: false,
       default: true,
     },
-    addTagOn: {
+    addOptionOn: {
       type: [Array],
       required: false,
       default: () => (['enter']),

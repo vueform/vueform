@@ -720,7 +720,7 @@ const base = function(props, context, dependencies = {})
   })
 
   /**
-   * The default size for each element and component within the form.
+   * The resolved default size for each element and component within the form.
    *
    * @type {string}
    */
@@ -775,7 +775,7 @@ const base = function(props, context, dependencies = {})
 
 
   /**
-   * The name of the view to be used for the form. If `undefined` or the view is not registered the default view will be used.
+   * The name of the resolved view for Vueform component. This one should be used to determine the component's view in class functions.
    *
    * @type {string}
    */

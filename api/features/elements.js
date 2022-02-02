@@ -4671,14 +4671,14 @@ export default {
           "types": [
             "string"
           ],
-          "description": "The size of the element and all of its child components."
+          "description": "The resolved size of the element and all of its child components."
         },
         "View": {
           "public": true,
           "types": [
             "string"
           ],
-          "description": "The name of the view to be used for the element and by default for its child components. If `undefined` the default view will be used. Child component views can be overridden with [`views`](#option-views) option."
+          "description": "The name of the resolved view for the component and the default view for its child components. Child component views can be overridden with [`views`](#option-views) option. This one should be used to determine the component's view in class functions."
         },
         "Views": {
           "public": false,

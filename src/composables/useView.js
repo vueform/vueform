@@ -29,7 +29,7 @@ const base = function(props, context, dependencies)
   // ============== COMPUTED ==============
 
   /**
-   * The name of the view to be used for the component. If `undefined` or the view is not registered the default view will be used.
+   * The name of the resolved view for the component. This one should be used to determine the component's view in class functions.
    * 
    * @type {string}
    */

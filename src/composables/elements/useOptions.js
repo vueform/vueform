@@ -218,6 +218,9 @@ const select = function (props, context, dependencies)
     groupOptions,
     groupHideEmpty,
     inputType,
+    create,
+    appendNewOption,
+    addOptionOn,
   } = toRefs(props)
 
   // ============ DEPENDENCIES ============
@@ -246,7 +249,7 @@ const select = function (props, context, dependencies)
   const defaultOptions = computed(() => {
     return {
       mode: 'single',
-      searchable: search.value,
+      searchable: search.value || create.value,
       noOptionsText: noOptionsText.value || form$.value.__('vueform.multiselect.noOptions'),
       noResultsText: noResultsText.value || form$.value.__('vueform.multiselect.noResults'),
       label: labelProp.value,
@@ -272,6 +275,9 @@ const select = function (props, context, dependencies)
       groupOptions: groupOptions.value,
       groupHideEmpty: groupHideEmpty.value,
       inputType: inputType.value,
+      createOption: create.value,
+      appendNewOption: appendNewOption.value,
+      addOptionOn: addOptionOn.value,
     }
   })
 
@@ -324,6 +330,9 @@ const multiselect = function (props, context, dependencies)
     inputType,
     hideSelected,
     multipleLabel,
+    create,
+    appendNewOption,
+    addOptionOn,
   } = toRefs(props)
 
   // ============ DEPENDENCIES ============
@@ -352,7 +361,7 @@ const multiselect = function (props, context, dependencies)
   const defaultOptions = computed(() => {
     return {
       mode: 'multiple',
-      searchable: search.value,
+      searchable: search.value || create.value,
       noOptionsText: noOptionsText.value || form$.value.__('vueform.multiselect.noOptions'),
       noResultsText: noResultsText.value || form$.value.__('vueform.multiselect.noResults'),
       multipleLabel: multipleLabel.value || ((val) => {
@@ -387,6 +396,9 @@ const multiselect = function (props, context, dependencies)
       groupSelect: groupSelect.value,
       inputType: inputType.value,
       hideSelected: hideSelected.value,
+      createOption: create.value,
+      appendNewOption: appendNewOption.value,
+      addOptionOn: addOptionOn.value,
     }
   })
 
@@ -439,8 +451,8 @@ const tags = function (props, context, dependencies)
     inputType,
     hideSelected,
     create,
-    appendNewTag,
-    addTagOn,
+    appendNewOption,
+    addOptionOn,
   } = toRefs(props)
 
   // ============ DEPENDENCIES ============
@@ -481,7 +493,6 @@ const tags = function (props, context, dependencies)
     return {
       mode: 'tags',
       searchable: search.value || create.value,
-      createTag: create.value,
       noOptionsText: noOptionsText.value || form$.value.__('vueform.multiselect.noOptions'),
       noResultsText: noResultsText.value || form$.value.__('vueform.multiselect.noResults'),
       label: labelProp.value,
@@ -511,8 +522,9 @@ const tags = function (props, context, dependencies)
       groupSelect: groupSelect.value,
       inputType: inputType.value,
       hideSelected: hideSelected.value,
-      appendNewTag: appendNewTag.value,
-      addTagOn: addTagOn.value,
+      createTag: create.value,
+      appendNewOption: appendNewOption.value,
+      addOptionOn: addOptionOn.value,
     }
   })
 

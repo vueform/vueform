@@ -638,14 +638,14 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The size of the element and all of its child components.',
+        description: 'The resolved size of the element and all of its child components.',
         private: false,
       },
       View: {
         types: [
           'string',
         ],
-        description: 'The name of the view to be used for the element and by default for its child components. If `undefined` the default view will be used. Child component views can be overridden with [`views`](#option-views) option.',
+        description: 'The name of the resolved view for the component and the default view for its child components. Child component views can be overridden with [`views`](#option-views) option. This one should be used to determine the component&apos;s view in class functions.',
         private: false,
       },
       Views: {
@@ -1749,14 +1749,14 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The size of the element and all of its child components.',
+        description: 'The resolved size of the element and all of its child components.',
         private: false,
       },
       View: {
         types: [
           'string',
         ],
-        description: 'The name of the view to be used for the element and by default for its child components. If `undefined` the default view will be used. Child component views can be overridden with [`views`](#option-views) option.',
+        description: 'The name of the resolved view for the component and the default view for its child components. Child component views can be overridden with [`views`](#option-views) option. This one should be used to determine the component&apos;s view in class functions.',
         private: false,
       },
       Views: {
@@ -2950,14 +2950,14 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The size of the element and all of its child components.',
+        description: 'The resolved size of the element and all of its child components.',
         private: false,
       },
       View: {
         types: [
           'string',
         ],
-        description: 'The name of the view to be used for the element and by default for its child components. If `undefined` the default view will be used. Child component views can be overridden with [`views`](#option-views) option.',
+        description: 'The name of the resolved view for the component and the default view for its child components. Child component views can be overridden with [`views`](#option-views) option. This one should be used to determine the component&apos;s view in class functions.',
         private: false,
       },
       Views: {
@@ -4418,14 +4418,14 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The size of the element and all of its child components.',
+        description: 'The resolved size of the element and all of its child components.',
         private: false,
       },
       View: {
         types: [
           'string',
         ],
-        description: 'The name of the view to be used for the element and by default for its child components. If `undefined` the default view will be used. Child component views can be overridden with [`views`](#option-views) option.',
+        description: 'The name of the resolved view for the component and the default view for its child components. Child component views can be overridden with [`views`](#option-views) option. This one should be used to determine the component&apos;s view in class functions.',
         private: false,
       },
       Views: {
@@ -5748,14 +5748,14 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The size of the element and all of its child components.',
+        description: 'The resolved size of the element and all of its child components.',
         private: false,
       },
       View: {
         types: [
           'string',
         ],
-        description: 'The name of the view to be used for the element and by default for its child components. If `undefined` the default view will be used. Child component views can be overridden with [`views`](#option-views) option.',
+        description: 'The name of the resolved view for the component and the default view for its child components. Child component views can be overridden with [`views`](#option-views) option. This one should be used to determine the component&apos;s view in class functions.',
         private: false,
       },
       Views: {
@@ -7055,14 +7055,14 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The size of the element and all of its child components.',
+        description: 'The resolved size of the element and all of its child components.',
         private: false,
       },
       View: {
         types: [
           'string',
         ],
-        description: 'The name of the view to be used for the element and by default for its child components. If `undefined` the default view will be used. Child component views can be overridden with [`views`](#option-views) option.',
+        description: 'The name of the resolved view for the component and the default view for its child components. Child component views can be overridden with [`views`](#option-views) option. This one should be used to determine the component&apos;s view in class functions.',
         private: false,
       },
       Views: {
@@ -8581,14 +8581,14 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The size of the element and all of its child components.',
+        description: 'The resolved size of the element and all of its child components.',
         private: false,
       },
       View: {
         types: [
           'string',
         ],
-        description: 'The name of the view to be used for the element and by default for its child components. If `undefined` the default view will be used. Child component views can be overridden with [`views`](#option-views) option.',
+        description: 'The name of the resolved view for the component and the default view for its child components. Child component views can be overridden with [`views`](#option-views) option. This one should be used to determine the component&apos;s view in class functions.',
         private: false,
       },
       Views: {
@@ -9741,14 +9741,14 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The size of the element and all of its child components.',
+        description: 'The resolved size of the element and all of its child components.',
         private: false,
       },
       View: {
         types: [
           'string',
         ],
-        description: 'The name of the view to be used for the element and by default for its child components. If `undefined` the default view will be used. Child component views can be overridden with [`views`](#option-views) option.',
+        description: 'The name of the resolved view for the component and the default view for its child components. Child component views can be overridden with [`views`](#option-views) option. This one should be used to determine the component&apos;s view in class functions.',
         private: false,
       },
       Views: {
@@ -11869,14 +11869,14 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The size of the element and all of its child components.',
+        description: 'The resolved size of the element and all of its child components.',
         private: false,
       },
       View: {
         types: [
           'string',
         ],
-        description: 'The name of the view to be used for the element and by default for its child components. If `undefined` the default view will be used. Child component views can be overridden with [`views`](#option-views) option.',
+        description: 'The name of the resolved view for the component and the default view for its child components. Child component views can be overridden with [`views`](#option-views) option. This one should be used to determine the component&apos;s view in class functions.',
         private: false,
       },
       Views: {
@@ -13299,14 +13299,14 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The size of the element and all of its child components.',
+        description: 'The resolved size of the element and all of its child components.',
         private: false,
       },
       View: {
         types: [
           'string',
         ],
-        description: 'The name of the view to be used for the element and by default for its child components. If `undefined` the default view will be used. Child component views can be overridden with [`views`](#option-views) option.',
+        description: 'The name of the resolved view for the component and the default view for its child components. Child component views can be overridden with [`views`](#option-views) option. This one should be used to determine the component&apos;s view in class functions.',
         private: false,
       },
       Views: {
@@ -14774,14 +14774,14 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The size of the element and all of its child components.',
+        description: 'The resolved size of the element and all of its child components.',
         private: false,
       },
       View: {
         types: [
           'string',
         ],
-        description: 'The name of the view to be used for the element and by default for its child components. If `undefined` the default view will be used. Child component views can be overridden with [`views`](#option-views) option.',
+        description: 'The name of the resolved view for the component and the default view for its child components. Child component views can be overridden with [`views`](#option-views) option. This one should be used to determine the component&apos;s view in class functions.',
         private: false,
       },
       Views: {
@@ -15919,6 +15919,36 @@ module.exports = {
         required: false,
         private: false,
       },
+      create: {
+        required: 'false',
+        default: 'false',
+        types: [
+          'boolean',
+        ],
+        native: false,
+        required: false,
+        private: false,
+      },
+      appendNewOption: {
+        required: 'false',
+        default: 'true',
+        types: [
+          'boolean',
+        ],
+        native: false,
+        required: false,
+        private: false,
+      },
+      addOptionOn: {
+        required: 'false',
+        default: '["enter"]',
+        types: [
+          'array',
+        ],
+        native: false,
+        required: false,
+        private: false,
+      },
       object: {
         required: 'false',
         default: 'false',
@@ -16566,14 +16596,14 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The size of the element and all of its child components.',
+        description: 'The resolved size of the element and all of its child components.',
         private: false,
       },
       View: {
         types: [
           'string',
         ],
-        description: 'The name of the view to be used for the element and by default for its child components. If `undefined` the default view will be used. Child component views can be overridden with [`views`](#option-views) option.',
+        description: 'The name of the resolved view for the component and the default view for its child components. Child component views can be overridden with [`views`](#option-views) option. This one should be used to determine the component&apos;s view in class functions.',
         private: false,
       },
       Views: {
@@ -17987,14 +18017,14 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The size of the element and all of its child components.',
+        description: 'The resolved size of the element and all of its child components.',
         private: false,
       },
       View: {
         types: [
           'string',
         ],
-        description: 'The name of the view to be used for the element and by default for its child components. If `undefined` the default view will be used. Child component views can be overridden with [`views`](#option-views) option.',
+        description: 'The name of the resolved view for the component and the default view for its child components. Child component views can be overridden with [`views`](#option-views) option. This one should be used to determine the component&apos;s view in class functions.',
         private: false,
       },
       Views: {
@@ -19182,14 +19212,14 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The size of the element and all of its child components.',
+        description: 'The resolved size of the element and all of its child components.',
         private: false,
       },
       View: {
         types: [
           'string',
         ],
-        description: 'The name of the view to be used for the element and by default for its child components. If `undefined` the default view will be used. Child component views can be overridden with [`views`](#option-views) option.',
+        description: 'The name of the resolved view for the component and the default view for its child components. Child component views can be overridden with [`views`](#option-views) option. This one should be used to determine the component&apos;s view in class functions.',
         private: false,
       },
       Views: {
@@ -20384,14 +20414,14 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The size of the element and all of its child components.',
+        description: 'The resolved size of the element and all of its child components.',
         private: false,
       },
       View: {
         types: [
           'string',
         ],
-        description: 'The name of the view to be used for the element and by default for its child components. If `undefined` the default view will be used. Child component views can be overridden with [`views`](#option-views) option.',
+        description: 'The name of the resolved view for the component and the default view for its child components. Child component views can be overridden with [`views`](#option-views) option. This one should be used to determine the component&apos;s view in class functions.',
         private: false,
       },
       Views: {
@@ -21433,6 +21463,36 @@ module.exports = {
         required: false,
         private: false,
       },
+      create: {
+        required: 'false',
+        default: 'false',
+        types: [
+          'boolean',
+        ],
+        native: false,
+        required: false,
+        private: false,
+      },
+      appendNewOption: {
+        required: 'false',
+        default: 'true',
+        types: [
+          'boolean',
+        ],
+        native: false,
+        required: false,
+        private: false,
+      },
+      addOptionOn: {
+        required: 'false',
+        default: '["enter"]',
+        types: [
+          'array',
+        ],
+        native: false,
+        required: false,
+        private: false,
+      },
       object: {
         required: 'false',
         default: 'false',
@@ -22050,14 +22110,14 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The size of the element and all of its child components.',
+        description: 'The resolved size of the element and all of its child components.',
         private: false,
       },
       View: {
         types: [
           'string',
         ],
-        description: 'The name of the view to be used for the element and by default for its child components. If `undefined` the default view will be used. Child component views can be overridden with [`views`](#option-views) option.',
+        description: 'The name of the resolved view for the component and the default view for its child components. Child component views can be overridden with [`views`](#option-views) option. This one should be used to determine the component&apos;s view in class functions.',
         private: false,
       },
       Views: {
@@ -23615,14 +23675,14 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The size of the element and all of its child components.',
+        description: 'The resolved size of the element and all of its child components.',
         private: false,
       },
       View: {
         types: [
           'string',
         ],
-        description: 'The name of the view to be used for the element and by default for its child components. If `undefined` the default view will be used. Child component views can be overridden with [`views`](#option-views) option.',
+        description: 'The name of the resolved view for the component and the default view for its child components. Child component views can be overridden with [`views`](#option-views) option. This one should be used to determine the component&apos;s view in class functions.',
         private: false,
       },
       Views: {
@@ -24543,14 +24603,14 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The size of the element and all of its child components.',
+        description: 'The resolved size of the element and all of its child components.',
         private: false,
       },
       View: {
         types: [
           'string',
         ],
-        description: 'The name of the view to be used for the element and by default for its child components. If `undefined` the default view will be used. Child component views can be overridden with [`views`](#option-views) option.',
+        description: 'The name of the resolved view for the component and the default view for its child components. Child component views can be overridden with [`views`](#option-views) option. This one should be used to determine the component&apos;s view in class functions.',
         private: false,
       },
       Views: {
@@ -25718,14 +25778,14 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The size of the element and all of its child components.',
+        description: 'The resolved size of the element and all of its child components.',
         private: false,
       },
       View: {
         types: [
           'string',
         ],
-        description: 'The name of the view to be used for the element and by default for its child components. If `undefined` the default view will be used. Child component views can be overridden with [`views`](#option-views) option.',
+        description: 'The name of the resolved view for the component and the default view for its child components. Child component views can be overridden with [`views`](#option-views) option. This one should be used to determine the component&apos;s view in class functions.',
         private: false,
       },
       Views: {
@@ -27065,14 +27125,14 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The size of the element and all of its child components.',
+        description: 'The resolved size of the element and all of its child components.',
         private: false,
       },
       View: {
         types: [
           'string',
         ],
-        description: 'The name of the view to be used for the element and by default for its child components. If `undefined` the default view will be used. Child component views can be overridden with [`views`](#option-views) option.',
+        description: 'The name of the resolved view for the component and the default view for its child components. Child component views can be overridden with [`views`](#option-views) option. This one should be used to determine the component&apos;s view in class functions.',
         private: false,
       },
       Views: {
@@ -28367,14 +28427,14 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The size of the element and all of its child components.',
+        description: 'The resolved size of the element and all of its child components.',
         private: false,
       },
       View: {
         types: [
           'string',
         ],
-        description: 'The name of the view to be used for the element and by default for its child components. If `undefined` the default view will be used. Child component views can be overridden with [`views`](#option-views) option.',
+        description: 'The name of the resolved view for the component and the default view for its child components. Child component views can be overridden with [`views`](#option-views) option. This one should be used to determine the component&apos;s view in class functions.',
         private: false,
       },
       Views: {
@@ -29378,7 +29438,7 @@ module.exports = {
         required: false,
         private: false,
       },
-      appendNewTag: {
+      appendNewOption: {
         required: 'false',
         default: 'true',
         types: [
@@ -29387,7 +29447,7 @@ module.exports = {
         required: false,
         private: false,
       },
-      addTagOn: {
+      addOptionOn: {
         required: 'false',
         default: '["enter"]',
         types: [
@@ -30045,14 +30105,14 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The size of the element and all of its child components.',
+        description: 'The resolved size of the element and all of its child components.',
         private: false,
       },
       View: {
         types: [
           'string',
         ],
-        description: 'The name of the view to be used for the element and by default for its child components. If `undefined` the default view will be used. Child component views can be overridden with [`views`](#option-views) option.',
+        description: 'The name of the resolved view for the component and the default view for its child components. Child component views can be overridden with [`views`](#option-views) option. This one should be used to determine the component&apos;s view in class functions.',
         private: false,
       },
       Views: {
@@ -31678,14 +31738,14 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The size of the element and all of its child components.',
+        description: 'The resolved size of the element and all of its child components.',
         private: false,
       },
       View: {
         types: [
           'string',
         ],
-        description: 'The name of the view to be used for the element and by default for its child components. If `undefined` the default view will be used. Child component views can be overridden with [`views`](#option-views) option.',
+        description: 'The name of the resolved view for the component and the default view for its child components. Child component views can be overridden with [`views`](#option-views) option. This one should be used to determine the component&apos;s view in class functions.',
         private: false,
       },
       Views: {
@@ -32960,14 +33020,14 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The size of the element and all of its child components.',
+        description: 'The resolved size of the element and all of its child components.',
         private: false,
       },
       View: {
         types: [
           'string',
         ],
-        description: 'The name of the view to be used for the element and by default for its child components. If `undefined` the default view will be used. Child component views can be overridden with [`views`](#option-views) option.',
+        description: 'The name of the resolved view for the component and the default view for its child components. Child component views can be overridden with [`views`](#option-views) option. This one should be used to determine the component&apos;s view in class functions.',
         private: false,
       },
       Views: {
@@ -34213,14 +34273,14 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The size of the element and all of its child components.',
+        description: 'The resolved size of the element and all of its child components.',
         private: false,
       },
       View: {
         types: [
           'string',
         ],
-        description: 'The name of the view to be used for the element and by default for its child components. If `undefined` the default view will be used. Child component views can be overridden with [`views`](#option-views) option.',
+        description: 'The name of the resolved view for the component and the default view for its child components. Child component views can be overridden with [`views`](#option-views) option. This one should be used to determine the component&apos;s view in class functions.',
         private: false,
       },
       Views: {

@@ -283,50 +283,11 @@ export default {
       required: false,
       default: null
     },
-    addClass: {
+
+    size: {
       required: false,
-      type: [Array, Object, String],
+      type: [String],
       default: null,
-    },
-    removeClass: {
-      required: false,
-      type: [Array, Object],
-      default: null,
-    },
-    replaceClass: {
-      required: false,
-      type: [Object],
-      default: null
-    },
-    overrideClass: {
-      required: false,
-      type: [Array, Object, String],
-      default: null
-    },
-    addClasses: {
-      required: false,
-      type: [Object],
-      default: null
-    },
-    removeClasses: {
-      required: false,
-      type: [Object],
-      default: null
-    },
-    replaceClasses: {
-      required: false,
-      type: [Object],
-      default: null
-    },
-    overrideClasses: {
-      required: false,
-      type: [Object],
-      default: null
-    },
-    presets: {
-      required: false,
-      type: [Array],
-      default: null
     },
     view: {
       required: false,
@@ -338,14 +299,54 @@ export default {
       type: [Object],
       default: null,
     },
-    size: {
+    addClasses: {
       required: false,
-      type: [String],
+      type: [Object],
+      default: null
+    },
+    addClass: {
+      required: false,
+      type: [Array, Object, String],
       default: null,
+    },
+    removeClasses: {
+      required: false,
+      type: [Object],
+      default: null
+    },
+    removeClass: {
+      required: false,
+      type: [Array, Object],
+      default: null,
+    },
+    replaceClasses: {
+      required: false,
+      type: [Object],
+      default: null
+    },
+    replaceClass: {
+      required: false,
+      type: [Object],
+      default: null
+    },
+    overrideClasses: {
+      required: false,
+      type: [Object],
+      default: null
+    },
+    overrideClass: {
+      required: false,
+      type: [Array, Object, String],
+      default: null
     },
     templates: {
       type: Object,
       required: false,
+      default: null
+    },
+    presets: {
+      required: false,
+      type: [Array],
       default: null
     },
 
