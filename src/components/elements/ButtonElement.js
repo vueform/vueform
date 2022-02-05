@@ -81,6 +81,16 @@ export default {
       type: [Boolean],
       default: false
     },
+    secondary: {
+      required: false,
+      type: [Boolean],
+      default: false
+    },
+    danger: {
+      required: false,
+      type: [Boolean],
+      default: false
+    },
   },
   setup(props, context) {
     context.features = [

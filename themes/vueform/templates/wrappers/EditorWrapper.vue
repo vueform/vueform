@@ -313,7 +313,7 @@
       }
       
       &.validate:invalid {
-        border-color: var(--vf-error-color);
+        border-color: var(--vf-color-danger);
       }
     }
     

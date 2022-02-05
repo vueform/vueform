@@ -51,7 +51,7 @@ import EditorWrapper from './../../../blank/templates/wrappers/EditorWrapper.vue
     .trix-button {
       position: relative;
       margin-bottom: 0.25rem;
-      color: theme('colors.gray.700');
+      color: var(--vf-gray-700);
       padding-left: 0.5rem;
       padding-right: 0.5rem;
       outline: none;
@@ -64,11 +64,11 @@ import EditorWrapper from './../../../blank/templates/wrappers/EditorWrapper.vue
       }
 
       &.trix-active {
-        background-color: theme('colors.gray.200');
+        background-color: var(--vf-gray-200);
       }
 
       &:not(.trix-active):hover {
-        background-color: theme('colors.gray.100');
+        background-color: var(--vf-gray-100);
 
         .is-disabled & {
           background: transparent;
@@ -108,7 +108,7 @@ import EditorWrapper from './../../../blank/templates/wrappers/EditorWrapper.vue
         mask-repeat: no-repeat;
         mask-position: center center;
         mask-size: contain;
-        background-color: theme('colors.gray.900');
+        background-color: var(--vf-gray-900);
         top: 0.125rem;
         bottom: 0.125rem;
         margin-top: 0.125rem;
@@ -214,14 +214,14 @@ import EditorWrapper from './../../../blank/templates/wrappers/EditorWrapper.vue
       background-color: white;
       box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
       border-top-width: 2px;
-      border-color: theme('colors.gray.300');
+      border-color: var(--vf-gray-300);
       border-radius: 0.25rem;
       z-index: 10;
     }
 
     .trix-input--dialog {
       padding: 0.375rem 0.75rem;
-      border: 1px solid theme('colors.gray.300');
+      border: 1px solid var(--vf-gray-300);
       border-radius: 0.25rem;
       margin-right: 0.5rem;
       font-size: 0.75rem;
@@ -233,14 +233,14 @@ import EditorWrapper from './../../../blank/templates/wrappers/EditorWrapper.vue
       }
 
       &.validate:invalid {
-        border-color: theme('colors.red.500');
+        border-color: var(--vf-color-danger);
       }
     }
 
     .trix-button--dialog {
       padding: 0.5rem;
       border-left-width: 1px;
-      border-color: theme('colors.gray.300');
+      border-color: var(--vf-gray-300);
       background-color: transparent;
       border-radius: 0;
 
@@ -274,10 +274,10 @@ import EditorWrapper from './../../../blank/templates/wrappers/EditorWrapper.vue
   }
 
   trix-editor {
-    padding-left: theme('form.pxInput');
-    padding-right: theme('form.pxInput');
-    padding-bottom: theme('form.pyInput');
-    border-radius: theme('form.borderRadius');
+    padding-left: var(--vf-input-px);
+    padding-right: var(--vf-input-px);
+    padding-bottom: var(--vf-input-py);
+    border-radius: var(--vf-large-radius);
     outline: none;
     min-height: 6rem;
 
@@ -306,7 +306,7 @@ import EditorWrapper from './../../../blank/templates/wrappers/EditorWrapper.vue
     }
 
     [data-trix-mutable].attachment.attachment--file {
-      background-color: theme('colors.gray.100');
+      background-color: var(--vf-gray-100);
     }
 
     [data-trix-mutable].attachment img {
@@ -359,7 +359,7 @@ import EditorWrapper from './../../../blank/templates/wrappers/EditorWrapper.vue
       outline: 0;
 
       &:focus {
-        border-color: theme('colors.gray.200');
+        border-color: var(--vf-gray-200);
         box-shadow: none;
       }
     }
@@ -386,7 +386,7 @@ import EditorWrapper from './../../../blank/templates/wrappers/EditorWrapper.vue
       padding-right: 0.75rem;
       margin: 0;
       background-color: transparent;
-      color: theme('colors.gray.500');
+      color: var(--vf-gray-500);
       font-size: 0.875rem;
       line-height: 1.25rem;
       white-space: nowrap;
@@ -395,12 +395,12 @@ import EditorWrapper from './../../../blank/templates/wrappers/EditorWrapper.vue
       outline: 0;
 
       &.trix-active {
-        color: theme('colors.black');
-        background-color: theme('colors.gray.200')
+        color: #000000;
+        background-color: var(--vf-gray-200);
       }
 
       &:not(.trix-active):hover {
-        background-color: theme('colors.gray.100')
+        background-color: var(--vf-gray-100);
       }
 
       &:not(:disabled) {
@@ -412,17 +412,17 @@ import EditorWrapper from './../../../blank/templates/wrappers/EditorWrapper.vue
       display: inline-block;
       overflow-x: hidden;
       padding: 0;
-      background-color: theme('colors.white');
+      background-color: #ffffff;
       line-height: 1.75rem;
       border-radius: 9999px;
       border-width: 1px;
-      border-color: theme('colors.gray.400');
+      border-color: var(--vf-gray-400);
       border-style: solid;
       outline: 0;
       text-indent: -9999px;
 
       &:not(.trix-active):hover {
-        background-color: theme('colors.gray.100');
+        background-color: var(--vf-gray-100);
       }
 
       &::before {
@@ -433,7 +433,7 @@ import EditorWrapper from './../../../blank/templates/wrappers/EditorWrapper.vue
         right: 0.25rem;
         bottom: 0.25rem;
         left: 0.25rem;
-        background-color: theme('colors.gray.900');
+        background-color: var(--vf-gray-900);
         opacity: 0.7;
         background-position: center;
         background-repeat: no-repeat;
@@ -443,7 +443,7 @@ import EditorWrapper from './../../../blank/templates/wrappers/EditorWrapper.vue
         mask-image: theme('maskImage.form-remove-light');
 
         &:hover {
-          border-color: theme('colors.gray.700');
+          border-color: var(--vf-gray-700);
 
           &::before {
             opacity: 1;
@@ -464,10 +464,10 @@ import EditorWrapper from './../../../blank/templates/wrappers/EditorWrapper.vue
       padding-bottom: 0.125rem;
       padding-left: 0.5rem;
       padding-right: 0.5rem;
-      background-color: theme('colors.black');
+      background-color: #000000;
       opacity: 0.7;
       transform: translateX(-50%);
-      color: theme('colors.white');
+      color: #ffffff;
       font-size: 0.875rem;
       line-height: 1.25rem;
       border-radius: 0.25rem;
@@ -498,7 +498,7 @@ import EditorWrapper from './../../../blank/templates/wrappers/EditorWrapper.vue
     }
 
     a {
-      color: theme('form.primary')
+      color: var(--vf-primary);
     }
 
     ul {
@@ -524,21 +524,21 @@ import EditorWrapper from './../../../blank/templates/wrappers/EditorWrapper.vue
     blockquote {
       padding-left: 0.625rem;
       border-left-width: 4px;
-      border-color: theme('colors.gray.300');
+      border-color: var(--vf-gray-300);
     }
 
     [dir=rtl] blockquote,
     blockquote[dir=rtl] {
       padding-left: 0.625rem;
       border-left-width: 4px;
-      border-color: theme('colors.gray.300');
+      border-color: var(--vf-gray-300);
     }
 
     pre {
       display: inline-block;
       overscroll-behavior-x: auto;
       padding: 0.5rem;
-      background-color: theme('colors.gray.50');
+      background-color: var(--vf-gray-50);
       font-family: theme('fontFamily.mono');
       font-size: 0.875rem;
       line-height: 1.25rem;
@@ -585,7 +585,7 @@ import EditorWrapper from './../../../blank/templates/wrappers/EditorWrapper.vue
       width: 100%;
       
       .attachment__caption {
-        color: theme('colors.gray.500');
+        color: var(--vf-gray-500);
         font-size: 0.875rem;
         line-height: 1.25rem;
       }
@@ -598,11 +598,11 @@ import EditorWrapper from './../../../blank/templates/wrappers/EditorWrapper.vue
       padding-right: 1rem;
       margin: 0.125rem;
       margin-top: 0;
-      color: theme('colors.gray.700');
+      color: var(--vf-gray-700);
       line-height: 1;
       border-radius: 0.25rem;
       border-width: 1px;
-      border-color: theme('colors.gray.300');
+      border-color: var(--vf-gray-300);
     }
 
     .attachment-gallery {
@@ -634,10 +634,10 @@ import EditorWrapper from './../../../blank/templates/wrappers/EditorWrapper.vue
 
   .form-editor-sm {
     trix-editor {
-      padding-left: theme('form.pxInputSM');
-      padding-right: theme('form.pxInputSM');
-      padding-bottom: theme('form.pyInputSM');
-      border-radius: theme('form.borderRadiusSM');
+      padding-left: var(--vf-input-px-sm);
+      padding-right: var(--vf-input-px-sm);
+      padding-bottom: var(--vf-input-py-sm);
+      border-radius: var(--vf-large-radius-sm);
       min-height: 5rem;
     }
 
@@ -651,7 +651,7 @@ import EditorWrapper from './../../../blank/templates/wrappers/EditorWrapper.vue
     }
     
     trix-toolbar {
-      padding: theme('form.pyInputSM') theme('form.pxInputSM');
+      padding: var(--vf-input-py-sm) var(--vf-input-py-sm);
 
       .trix-button--icon {
         width: 2.25rem;
@@ -661,10 +661,10 @@ import EditorWrapper from './../../../blank/templates/wrappers/EditorWrapper.vue
 
   .form-editor-lg {
     trix-editor {
-      padding-left: theme('form.pxInputLG');
-      padding-right: theme('form.pxInputLG');
-      padding-bottom: theme('form.pyInputLG');
-      border-radius: theme('form.borderRadiusLG');
+      padding-left: var(--vf-input-px-lg);
+      padding-right: var(--vf-input-px-lg);
+      padding-bottom: var(--vf-input-py-lg);
+      border-radius: var(--vf-large-radius-lg);
     }
   }
 </style>

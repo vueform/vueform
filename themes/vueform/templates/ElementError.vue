@@ -26,7 +26,7 @@
   .vf-element-error {
     font-size: var(--vf-element-text-font-size);
     line-height: var(--vf-element-text-line-height);
-    color: var(--vf-error-color);
+    color: var(--vf-color-danger);
     margin-top: 0.25rem;
 
     &.vf-element-error-sm {

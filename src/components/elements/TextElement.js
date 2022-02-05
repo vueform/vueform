@@ -87,6 +87,11 @@ export default {
       type: [String],
       default: 'text'
     },
+    attributes: {
+      required: false,
+      type: [Object],
+      default: () => ({}),
+    },
     addons: {
       required: false,
       type: [Object],

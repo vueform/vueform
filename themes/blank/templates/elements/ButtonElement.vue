@@ -91,7 +91,7 @@
           $button: (classes, { isDisabled, isLoading, buttonClass, Size }) => ([
             classes.button,
             classes[`button_${Size}`],
-            isDisabled ? classes.input_disabled : null,
+            isDisabled ? classes.button_disabled : null,
             !isDisabled && !isLoading ? classes.button_enabled : null,
             isLoading ? classes.button_loading : null,
             buttonClass,

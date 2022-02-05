@@ -16,6 +16,7 @@
           :autocomplete="autocomplete"
           :disabled="isDisabled"
           :readonly="readonly"
+          v-bind="attributes"
           @input="handleInput"
           @select="handleInput"
           ref="input"

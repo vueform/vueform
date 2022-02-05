@@ -10,6 +10,7 @@
           :classes="classes.slider"
           :id="fieldId"
           ref="input"
+          @update="handleUpdate"
           @change="handleChange"
        />
       </div>

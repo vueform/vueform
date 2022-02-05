@@ -18,8 +18,8 @@
 
 <style lang="scss">
   .vf-messages {
-    background: var(--vf-success-bg);
-    color: var(--vf-success-color);
+    background: var(--vf-bg-success);
+    color: var(--vf-color-success);
     padding: 0.75rem 1.25rem;
     border-radius: 0.25rem;
     margin-bottom: var(--vf-gutter);

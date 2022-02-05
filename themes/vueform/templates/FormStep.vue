@@ -208,10 +208,10 @@
 
     &.vf-step-invalid {
       a {
-        color: var(--vf-error-color);
+        color: var(--vf-color-danger);
 
         &:before {
-          background-color: var(--vf-error-color);
+          background-color: var(--vf-color-danger);
         }
 
         &:after {

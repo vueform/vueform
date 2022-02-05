@@ -88,6 +88,11 @@ export default {
       type: [String],
       default: 'text'
     },
+    attributes: {
+      required: false,
+      type: [Object],
+      default: () => ({}),
+    },
     placeholder: {
       required: false,
       type: [String],

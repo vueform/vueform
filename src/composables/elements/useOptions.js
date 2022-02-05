@@ -558,6 +558,7 @@ const slider = function (props, context, dependencies)
     extendOptions,
     showTooltip,
     tooltipPosition,
+    lazy,
   } = toRefs(props)
 
   // ============ DEPENDENCIES ============
@@ -585,6 +586,7 @@ const slider = function (props, context, dependencies)
       disabled: isDisabled.value,
       showTooltip: showTooltip.value,
       tooltipPosition: tooltipPosition.value,
+      lazy: lazy.value,
     }
   })
 

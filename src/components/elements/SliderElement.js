@@ -21,6 +21,7 @@ import useDisabled from './../../composables/elements/useDisabled'
 import useEvents from './../../composables/useEvents'
 import useWatchValue from './../../composables/elements/useWatchValue'
 import useHandleChange from './../../composables/elements/useHandleChange'
+import useHandleUpdate from './../../composables/elements/useHandleUpdate'
 
 import { slider as useValidation } from './../../composables/elements/useValidation'
 import { slider as useOptions } from './../../composables/elements/useOptions'
@@ -108,6 +109,11 @@ export default {
       type: [String],
       default: 'ltr'
     },
+    lazy: {
+      required: false,
+      type: [Boolean],
+      default: true
+    },
     extendOptions: {
       required: false,
       type: [Object],
@@ -140,6 +146,7 @@ export default {
       useColumns,
       useSlots,
       useHandleChange,
+      useHandleUpdate,
     ]
     context.slots = [
       'label', 'info', 'description',

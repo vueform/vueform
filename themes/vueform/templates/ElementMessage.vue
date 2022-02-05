@@ -26,7 +26,7 @@
   .vf-element-message {
     font-size: var(--vf-element-text-font-size);
     line-height: var(--vf-element-text-line-height);
-    color: var(--vf-success-color);
+    color: var(--vf-color-success);
     margin-top: 0.25rem;
 
     &.vf-element-message-sm {

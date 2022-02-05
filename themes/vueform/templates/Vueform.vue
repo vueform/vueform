@@ -24,10 +24,12 @@
   :root {
     --vf-primary: #10B981;
 
-    --vf-error-bg: #FEE2E2;
-    --vf-error-color: #EF4444;
-    --vf-success-bg: #D1FAE5;
-    --vf-success-color: #10B981;
+    --vf-bg-danger: #FEE2E2;
+    --vf-color-danger: #EF4444;
+    --vf-bg-success: #D1FAE5;
+    --vf-color-success: #10B981;
+    --vf-bg-disabled: var(--vf-gray-200);
+    --vf-color-disabled: var(--vf-gray-400);
 
     --vf-gray-100: #F3F4F6;
     --vf-gray-200: #E5E7EB;
@@ -89,9 +91,6 @@
     --vf-gallery-size: 6rem;
     --vf-gallery-size-sm: 5rem;
     --vf-gallery-size-lg: 7rem;
-
-    --vf-bg-disabled: var(--vf-gray-200);
-    --vf-color-disabled: var(--vf-gray-400);
 
     --vf-placeholder-color: var(--vf-gray-400);
     --vf-placeholder-opacity: 1;

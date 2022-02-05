@@ -55,7 +55,7 @@
     }
 
     &.vf-tab-wrapper-invalid {
-      color: var(--vf-error-color);
+      color: var(--vf-color-danger);
     }
 
     &.vf-tab-wrapper-active {
