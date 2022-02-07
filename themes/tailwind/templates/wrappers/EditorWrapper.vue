@@ -101,14 +101,11 @@ import EditorWrapper from './../../../blank/templates/wrappers/EditorWrapper.vue
         left: 0px;
         display: inline-block;
         opacity: 0.6;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: contain;
         content: "";
         mask-repeat: no-repeat;
         mask-position: center center;
         mask-size: contain;
-        background-color: var(--vf-gray-900);
+        background-color: var(--vf-bg-icon);
         top: 0.125rem;
         bottom: 0.125rem;
         margin-top: 0.125rem;
@@ -211,7 +208,7 @@ import EditorWrapper from './../../../blank/templates/wrappers/EditorWrapper.vue
       font-size: 0.75rem;
       line-height: 1rem;
       padding: 1rem 0.625rem;
-      background-color: white;
+      background-color: var(--vf-bg-input);
       box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
       border-top-width: 2px;
       border-color: var(--vf-gray-300);
@@ -280,6 +277,10 @@ import EditorWrapper from './../../../blank/templates/wrappers/EditorWrapper.vue
     border-radius: var(--vf-large-radius);
     outline: none;
     min-height: 6rem;
+
+    &:empty:not(:focus)::before {
+      color: var(--vf-color-placeholder);
+    }
 
     [data-trix-mutable]:not(.attachment__caption-editor) {
       user-select: none;
@@ -412,7 +413,7 @@ import EditorWrapper from './../../../blank/templates/wrappers/EditorWrapper.vue
       display: inline-block;
       overflow-x: hidden;
       padding: 0;
-      background-color: #ffffff;
+      background-color: var(--vf-bg-input);
       line-height: 1.75rem;
       border-radius: 9999px;
       border-width: 1px;

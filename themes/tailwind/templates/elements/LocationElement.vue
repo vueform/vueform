@@ -10,15 +10,23 @@
 
 <style lang="scss">
   // Google
+  .pac-container {
+    border-color: var(--vf-border-color-input);
+    background: var(--vf-bg-input);
+  }
+
   .pac-item {
     display: flex;
     align-items: center;
     padding: 0.375rem 0.75rem;
-    border-color: theme('colors.gray.200');
+    border-color: var(--vf-border-color-input);
+    background: var(--vf-bg-input);
+    color: var(--vf-color-input);
 
-   & > span:last-of-type {
-     font-size: 0.75rem;
-   } 
+    & > span:last-of-type {
+      font-size: 0.75rem;
+      color: var(--vf-color-muted);
+    } 
   }
 
   .pac-item-query {
@@ -33,9 +41,9 @@
     mask-position: center center;
     mask-size: contain;
     mask-image: theme('maskImage.form-map-marker');
-    background: theme('colors.gray.400');
-    width: 1rem;
-    width: 1rem;
+    background: var(--vf-bg-icon);
+    width: 0.875rem;
+    width: 0.875rem;
     margin-right: 0.75rem;
     margin-top: 0;
     padding-top: 1px;

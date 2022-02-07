@@ -25,6 +25,7 @@
           </option>
         </select>
         <span v-if="placeholder && empty && !isDisabled && type == 'select'" :class="classes.inputPlaceholder">{{ placeholder }}</span>
+        <span :class="classes.inputCaret"></span>
       </div>
       <!-- @vueform/multiselect copmonent -->
       <Multiselect
@@ -98,6 +99,7 @@ import Multiselect from '@vueform/multiselect/src/Multiselect.vue'
           inputPlaceholder_sm: '',
           inputPlaceholder_md: '',
           inputPlaceholder_lg: '',
+          inputCaret: '',
           select: {
             container: '',
             container_sm: '',
