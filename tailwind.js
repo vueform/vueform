@@ -131,57 +131,57 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
         '--vf-font-size-sm': Array.isArray(theme('form.fontSize.sm')) ? theme('form.fontSize.sm')[0] : theme('form.fontSize.sm'),
         '--vf-font-size-lg': Array.isArray(theme('form.fontSize.lg')) ? theme('form.fontSize.lg')[0] : theme('form.fontSize.lg'),
 
-        '--vf-small-font-size': Array.isArray(theme('form.smallFontSize.base')) ? theme('form.smallFontSize.base')[0] : theme('form.smallFontSize.base'),
-        '--vf-small-font-size-sm': Array.isArray(theme('form.smallFontSize.sm')) ? theme('form.smallFontSize.sm')[0] : theme('form.smallFontSize.sm'),
-        '--vf-small-font-size-lg': Array.isArray(theme('form.smallFontSize.lg')) ? theme('form.smallFontSize.lg')[0] : theme('form.smallFontSize.lg'),
+        '--vf-font-size-small': Array.isArray(theme('form.smallFontSize.base')) ? theme('form.smallFontSize.base')[0] : theme('form.smallFontSize.base'),
+        '--vf-font-size-small-sm': Array.isArray(theme('form.smallFontSize.sm')) ? theme('form.smallFontSize.sm')[0] : theme('form.smallFontSize.sm'),
+        '--vf-font-size-small-lg': Array.isArray(theme('form.smallFontSize.lg')) ? theme('form.smallFontSize.lg')[0] : theme('form.smallFontSize.lg'),
 
         '--vf-line-height': theme('form.lineHeight.base'),
         '--vf-line-height-sm': theme('form.lineHeight.sm'),
         '--vf-line-height-lg': theme('form.lineHeight.lg'),
 
-        '--vf-small-line-height': theme('form.smallLineHeight.base'),
-        '--vf-small-line-height-sm': theme('form.smallLineHeight.sm'),
-        '--vf-small-line-height-lg': theme('form.smallLineHeight.lg'),
+        '--vf-line-height-small': theme('form.smallLineHeight.base'),
+        '--vf-line-height-small-sm': theme('form.smallLineHeight.sm'),
+        '--vf-line-height-small-lg': theme('form.smallLineHeight.lg'),
 
         '--vf-letter-spacing': theme('form.letterSpacing.base'),
         '--vf-letter-spacing-sm': theme('form.letterSpacing.sm'),
         '--vf-letter-spacing-lg': theme('form.letterSpacing.lg'),
 
-        '--vf-small-letter-spacing': theme('form.smallLetterSpacing.base'),
-        '--vf-small-letter-spacing-sm': theme('form.smallLetterSpacing.sm'),
-        '--vf-small-letter-spacing-lg': theme('form.smallLetterSpacing.lg'),
+        '--vf-letter-spacing-small': theme('form.smallLetterSpacing.base'),
+        '--vf-letter-spacing-small-sm': theme('form.smallLetterSpacing.sm'),
+        '--vf-letter-spacing-small-lg': theme('form.smallLetterSpacing.lg'),
 
         '--vf-gutter': theme('form.gutter.base'),
         '--vf-gutter-sm': theme('form.gutter.sm'),
         '--vf-gutter-lg': theme('form.gutter.lg'),
 
-        '--vf-input-min-height': theme('form.inputMinHeight.base'),
-        '--vf-input-min-height-sm': theme('form.inputMinHeight.sm'),
-        '--vf-input-min-height-lg': theme('form.inputMinHeight.lg'),
+        '--vf-min-height-input': theme('form.inputMinHeight.base'),
+        '--vf-min-height-input-sm': theme('form.inputMinHeight.sm'),
+        '--vf-min-height-input-lg': theme('form.inputMinHeight.lg'),
 
-        '--vf-input-py': theme('form.inputPy.base'),
-        '--vf-input-py-sm': theme('form.inputPy.sm'),
-        '--vf-input-py-lg': theme('form.inputPy.lg'),
+        '--vf-py-input': theme('form.inputPy.base'),
+        '--vf-py-input-sm': theme('form.inputPy.sm'),
+        '--vf-py-input-lg': theme('form.inputPy.lg'),
 
-        '--vf-input-px': theme('form.inputPx.base'),
-        '--vf-input-px-sm': theme('form.inputPx.sm'),
-        '--vf-input-px-lg': theme('form.inputPx.lg'),
+        '--vf-px-input': theme('form.inputPx.base'),
+        '--vf-px-input-sm': theme('form.inputPx.sm'),
+        '--vf-px-input-lg': theme('form.inputPx.lg'),
 
-        '--vf-btn-py': theme('form.btnPy.base'),
-        '--vf-btn-py-sm': theme('form.btnPy.sm'),
-        '--vf-btn-py-lg': theme('form.btnPy.lg'),
+        '--vf-py-btn': theme('form.btnPy.base'),
+        '--vf-py-btn-sm': theme('form.btnPy.sm'),
+        '--vf-py-btn-lg': theme('form.btnPy.lg'),
 
-        '--vf-btn-px': theme('form.btnPx.base'),
-        '--vf-btn-px-sm': theme('form.btnPx.sm'),
-        '--vf-btn-px-lg': theme('form.btnPx.lg'),
+        '--vf-px-btn': theme('form.btnPx.base'),
+        '--vf-px-btn-sm': theme('form.btnPx.sm'),
+        '--vf-px-btn-lg': theme('form.btnPx.lg'),
 
-        '--vf-tag-py': theme('form.tagPy.base'),
-        '--vf-tag-py-sm': theme('form.tagPy.sm'),
-        '--vf-tag-py-lg': theme('form.tagPy.lg'),
+        '--vf-py-tag': theme('form.tagPy.base'),
+        '--vf-py-tag-sm': theme('form.tagPy.sm'),
+        '--vf-py-tag-lg': theme('form.tagPy.lg'),
 
-        '--vf-tag-px': theme('form.tagPx.base'),
-        '--vf-tag-px-sm': theme('form.tagPx.sm'),
-        '--vf-tag-px-lg': theme('form.tagPx.lg'),
+        '--vf-px-tag': theme('form.tagPx.base'),
+        '--vf-px-tag-sm': theme('form.tagPx.sm'),
+        '--vf-px-tag-lg': theme('form.tagPx.lg'),
 
         '--vf-bg-input': theme('form.bgColors.input'),
         '--vf-bg-disabled': theme('form.bgColors.disabled'),
@@ -230,39 +230,39 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
         '--vf-radius-sm': Array.isArray(theme('form.radius.sm')) ? theme('form.radius.sm').join(' ') : theme('form.radius.sm'),
         '--vf-radius-lg': Array.isArray(theme('form.radius.lg')) ? theme('form.radius.lg').join(' ') : theme('form.radius.lg'),
         
-        '--vf-btn-radius': Array.isArray(theme('form.btnRadius.base')) ? theme('form.btnRadius.base').join(' ') : theme('form.btnRadius.base'),
-        '--vf-btn-radius-sm': Array.isArray(theme('form.btnRadius.sm')) ? theme('form.btnRadius.sm').join(' ') : theme('form.btnRadius.sm'),
-        '--vf-btn-radius-lg': Array.isArray(theme('form.btnRadius.lg')) ? theme('form.btnRadius.lg').join(' ') : theme('form.btnRadius.lg'),
+        '--vf-radius-btn': Array.isArray(theme('form.btnRadius.base')) ? theme('form.btnRadius.base').join(' ') : theme('form.btnRadius.base'),
+        '--vf-radius-btn-sm': Array.isArray(theme('form.btnRadius.sm')) ? theme('form.btnRadius.sm').join(' ') : theme('form.btnRadius.sm'),
+        '--vf-radius-btn-lg': Array.isArray(theme('form.btnRadius.lg')) ? theme('form.btnRadius.lg').join(' ') : theme('form.btnRadius.lg'),
 
-        '--vf-small-radius': Array.isArray(theme('form.smallRadius.base')) ? theme('form.smallRadius.base').join(' ') : theme('form.smallRadius.base'),
-        '--vf-small-radius-sm': Array.isArray(theme('form.smallRadius.sm')) ? theme('form.smallRadius.sm').join(' ') : theme('form.smallRadius.sm'),
-        '--vf-small-radius-lg': Array.isArray(theme('form.smallRadius.lg')) ? theme('form.smallRadius.lg').join(' ') : theme('form.smallRadius.lg'),
+        '--vf-radius-small': Array.isArray(theme('form.smallRadius.base')) ? theme('form.smallRadius.base').join(' ') : theme('form.smallRadius.base'),
+        '--vf-radius-small-sm': Array.isArray(theme('form.smallRadius.sm')) ? theme('form.smallRadius.sm').join(' ') : theme('form.smallRadius.sm'),
+        '--vf-radius-small-lg': Array.isArray(theme('form.smallRadius.lg')) ? theme('form.smallRadius.lg').join(' ') : theme('form.smallRadius.lg'),
 
-        '--vf-large-radius': Array.isArray(theme('form.largeRadius.base')) ? theme('form.largeRadius.base').join(' ') : theme('form.largeRadius.base'),
-        '--vf-large-radius-sm': Array.isArray(theme('form.largeRadius.sm')) ? theme('form.largeRadius.sm').join(' ') : theme('form.largeRadius.sm'),
-        '--vf-large-radius-lg': Array.isArray(theme('form.largeRadius.lg')) ? theme('form.largeRadius.lg').join(' ') : theme('form.largeRadius.lg'),
+        '--vf-radius-large': Array.isArray(theme('form.largeRadius.base')) ? theme('form.largeRadius.base').join(' ') : theme('form.largeRadius.base'),
+        '--vf-radius-large-sm': Array.isArray(theme('form.largeRadius.sm')) ? theme('form.largeRadius.sm').join(' ') : theme('form.largeRadius.sm'),
+        '--vf-radius-large-lg': Array.isArray(theme('form.largeRadius.lg')) ? theme('form.largeRadius.lg').join(' ') : theme('form.largeRadius.lg'),
 
-        '--vf-tag-radius': Array.isArray(theme('form.tagRadius.base')) ? theme('form.tagRadius.base').join(' ') : theme('form.tagRadius.base'),
-        '--vf-tag-radius-sm': Array.isArray(theme('form.tagRadius.sm')) ? theme('form.tagRadius.sm').join(' ') : theme('form.tagRadius.sm'),
-        '--vf-tag-radius-lg': Array.isArray(theme('form.tagRadius.lg')) ? theme('form.tagRadius.lg').join(' ') : theme('form.tagRadius.lg'),
+        '--vf-radius-tag': Array.isArray(theme('form.tagRadius.base')) ? theme('form.tagRadius.base').join(' ') : theme('form.tagRadius.base'),
+        '--vf-radius-tag-sm': Array.isArray(theme('form.tagRadius.sm')) ? theme('form.tagRadius.sm').join(' ') : theme('form.tagRadius.sm'),
+        '--vf-radius-tag-lg': Array.isArray(theme('form.tagRadius.lg')) ? theme('form.tagRadius.lg').join(' ') : theme('form.tagRadius.lg'),
 
-        '--vf-checkbox-radius': Array.isArray(theme('form.checkboxRadius.base')) ? theme('form.checkboxRadius.base').join(' ') : theme('form.checkboxRadius.base'),
-        '--vf-checkbox-radius-sm': Array.isArray(theme('form.checkboxRadius.sm')) ? theme('form.checkboxRadius.sm').join(' ') : theme('form.checkboxRadius.sm'),
-        '--vf-checkbox-radius-lg': Array.isArray(theme('form.checkboxRadius.lg')) ? theme('form.checkboxRadius.lg').join(' ') : theme('form.checkboxRadius.lg'),
+        '--vf-radius-checkbox': Array.isArray(theme('form.checkboxRadius.base')) ? theme('form.checkboxRadius.base').join(' ') : theme('form.checkboxRadius.base'),
+        '--vf-radius-checkbox-sm': Array.isArray(theme('form.checkboxRadius.sm')) ? theme('form.checkboxRadius.sm').join(' ') : theme('form.checkboxRadius.sm'),
+        '--vf-radius-checkbox-lg': Array.isArray(theme('form.checkboxRadius.lg')) ? theme('form.checkboxRadius.lg').join(' ') : theme('form.checkboxRadius.lg'),
 
-        '--vf-image-radius': Array.isArray(theme('form.imageRadius.base')) ? theme('form.imageRadius.base').join(' ') : theme('form.imageRadius.base'),
-        '--vf-image-radius-sm': Array.isArray(theme('form.imageRadius.sm')) ? theme('form.imageRadius.sm').join(' ') : theme('form.imageRadius.sm'),
-        '--vf-image-radius-lg': Array.isArray(theme('form.imageRadius.lg')) ? theme('form.imageRadius.lg').join(' ') : theme('form.imageRadius.lg'),
+        '--vf-radius-image': Array.isArray(theme('form.imageRadius.base')) ? theme('form.imageRadius.base').join(' ') : theme('form.imageRadius.base'),
+        '--vf-radius-image-sm': Array.isArray(theme('form.imageRadius.sm')) ? theme('form.imageRadius.sm').join(' ') : theme('form.imageRadius.sm'),
+        '--vf-radius-image-lg': Array.isArray(theme('form.imageRadius.lg')) ? theme('form.imageRadius.lg').join(' ') : theme('form.imageRadius.lg'),
 
-        '--vf-gallery-radius': Array.isArray(theme('form.galleryRadius.base')) ? theme('form.galleryRadius.base').join(' ') : theme('form.galleryRadius.base'),
-        '--vf-gallery-radius-sm': Array.isArray(theme('form.galleryRadius.sm')) ? theme('form.galleryRadius.sm').join(' ') : theme('form.galleryRadius.sm'),
-        '--vf-gallery-radius-lg': Array.isArray(theme('form.galleryRadius.lg')) ? theme('form.galleryRadius.lg').join(' ') : theme('form.radius.lg'),
+        '--vf-radius-gallery': Array.isArray(theme('form.galleryRadius.base')) ? theme('form.galleryRadius.base').join(' ') : theme('form.galleryRadius.base'),
+        '--vf-radius-gallery-sm': Array.isArray(theme('form.galleryRadius.sm')) ? theme('form.galleryRadius.sm').join(' ') : theme('form.galleryRadius.sm'),
+        '--vf-radius-gallery-lg': Array.isArray(theme('form.galleryRadius.lg')) ? theme('form.galleryRadius.lg').join(' ') : theme('form.radius.lg'),
 
         '--vf-ring-color': theme('form.ringColor') === null ? Color(theme('form.primary')).alpha(0.4).toString() : theme('form.ringColor'),
         '--vf-ring-width': theme('form.ringWidth'),
 
-        '--vf-input-shadow': theme('form.inputShadow'),
-        '--vf-btn-shadow': theme('form.btnShadow'),
+        '--vf-shadow-input': theme('form.inputShadow'),
+        '--vf-shadow-btn': theme('form.btnShadow'),
 
         '--vf-checkbox-size': theme('form.checkboxSize.base'),
         '--vf-checkbox-size-sm': theme('form.checkboxSize.sm'),
@@ -300,10 +300,10 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
       letterSpacing: `var(--vf-letter-spacing${size})`,
     }
 
-    plain[`.form-small-text${suffix}`] = {
-      fontSize: `var(--vf-small-font-size${size})`,
-      lineHeight: `var(--vf-small-line-height${size})`,
-      letterSpacing: `var(--vf-small-letter-spacing${size})`,
+    plain[`.form-text-small${suffix}`] = {
+      fontSize: `var(--vf-font-size-small${size})`,
+      lineHeight: `var(--vf-line-height-small${size})`,
+      letterSpacing: `var(--vf-letter-spacing-small${size})`,
     }
 
     // grid
@@ -355,104 +355,104 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
       borderBottomRightRadius: 0,
     }
 
-    plain[`.form-btn-rounded${suffix}`] = {
-      borderRadius: `var(--vf-btn-radius${size})`,
+    plain[`.form-rounded-btn${suffix}`] = {
+      borderRadius: `var(--vf-radius-btn${size})`,
     }
 
-    plain[`.form-btn-rounded-t${suffix}`] = {
-      borderRadius: `var(--vf-btn-radius${size})`,
+    plain[`.form-rounded-btn-t${suffix}`] = {
+      borderRadius: `var(--vf-radius-btn${size})`,
       borderBottomLeftRadius: 0,
       borderBottomRightRadius: 0,
     }
 
-    plain[`.form-btn-rounded-r${suffix}`] = {
-      borderRadius: `var(--vf-btn-radius${size})`,
+    plain[`.form-rounded-btn-r${suffix}`] = {
+      borderRadius: `var(--vf-radius-btn${size})`,
       borderBottomLeftRadius: 0,
       borderTopLeftRadius: 0,
     }
 
-    plain[`.form-btn-rounded-b${suffix}`] = {
-      borderRadius: `var(--vf-btn-radius${size})`,
+    plain[`.form-rounded-btn-b${suffix}`] = {
+      borderRadius: `var(--vf-radius-btn${size})`,
       borderTopLeftRadius: 0,
       borderTopRightRadius: 0,
     }
 
-    plain[`.form-btn-rounded-l${suffix}`] = {
-      borderRadius: `var(--vf-btn-radius${size})`,
+    plain[`.form-rounded-btn-l${suffix}`] = {
+      borderRadius: `var(--vf-radius-btn${size})`,
       borderTopRightRadius: 0,
       borderBottomRightRadius: 0,
     }
 
-    plain[`.form-small-rounded${suffix}`] = {
-      borderRadius: `var(--vf-small-radius${size})`,
+    plain[`.form-rounded-small${suffix}`] = {
+      borderRadius: `var(--vf-radius-small${size})`,
     }
 
-    plain[`.form-small-rounded-t${suffix}`] = {
-      borderRadius: `var(--vf-small-radius${size})`,
+    plain[`.form-rounded-small-t${suffix}`] = {
+      borderRadius: `var(--vf-radius-small${size})`,
       borderBottomLeftRadius: 0,
       borderBottomRightRadius: 0,
     }
 
-    plain[`.form-small-rounded-r${suffix}`] = {
-      borderRadius: `var(--vf-small-radius${size})`,
+    plain[`.form-rounded-small-r${suffix}`] = {
+      borderRadius: `var(--vf-radius-small${size})`,
       borderBottomLeftRadius: 0,
       borderTopLeftRadius: 0,
     }
 
-    plain[`.form-small-rounded-b${suffix}`] = {
-      borderRadius: `var(--vf-small-radius${size})`,
+    plain[`.form-rounded-small-b${suffix}`] = {
+      borderRadius: `var(--vf-radius-small${size})`,
       borderTopLeftRadius: 0,
       borderTopRightRadius: 0,
     }
 
-    plain[`.form-small-rounded-l${suffix}`] = {
-      borderRadius: `var(--vf-small-radius${size})`,
+    plain[`.form-rounded-small-l${suffix}`] = {
+      borderRadius: `var(--vf-radius-small${size})`,
       borderTopRightRadius: 0,
       borderBottomRightRadius: 0,
     }
 
-    plain[`.form-large-rounded${suffix}`] = {
-      borderRadius: `var(--vf-large-radius${size})`,
+    plain[`.form-rounded-large${suffix}`] = {
+      borderRadius: `var(--vf-radius-large${size})`,
     }
 
-    plain[`.form-large-rounded-t${suffix}`] = {
-      borderRadius: `var(--vf-large-radius${size})`,
+    plain[`.form-rounded-large-t${suffix}`] = {
+      borderRadius: `var(--vf-radius-large${size})`,
       borderBottomLeftRadius: 0,
       borderBottomRightRadius: 0,
     }
 
-    plain[`.form-large-rounded-r${suffix}`] = {
-      borderRadius: `var(--vf-large-radius${size})`,
+    plain[`.form-rounded-large-r${suffix}`] = {
+      borderRadius: `var(--vf-radius-large${size})`,
       borderBottomLeftRadius: 0,
       borderTopLeftRadius: 0,
     }
 
-    plain[`.form-large-rounded-b${suffix}`] = {
-      borderRadius: `var(--vf-large-radius${size})`,
+    plain[`.form-rounded-large-b${suffix}`] = {
+      borderRadius: `var(--vf-radius-large${size})`,
       borderTopLeftRadius: 0,
       borderTopRightRadius: 0,
     }
 
-    plain[`.form-large-rounded-l${suffix}`] = {
-      borderRadius: `var(--vf-large-radius${size})`,
+    plain[`.form-rounded-large-l${suffix}`] = {
+      borderRadius: `var(--vf-radius-large${size})`,
       borderTopRightRadius: 0,
       borderBottomRightRadius: 0,
     }
 
-    plain[`.form-tag-rounded${suffix}`] = {
-      borderRadius: `var(--vf-tag-radius${size})`,
+    plain[`.form-rounded-tag${suffix}`] = {
+      borderRadius: `var(--vf-radius-tag${size})`,
     }
 
-    plain[`.form-checkbox-rounded${suffix}`] = {
-      borderRadius: `var(--vf-checkbox-radius${size})`,
+    plain[`.form-rounded-checkbox${suffix}`] = {
+      borderRadius: `var(--vf-radius-checkbox${size})`,
     }
 
-    plain[`.form-image-rounded${suffix}`] = {
-      borderRadius: `var(--vf-image-radius${size})`,
+    plain[`.form-rounded-image${suffix}`] = {
+      borderRadius: `var(--vf-radius-image${size})`,
     }
 
-    plain[`.form-gallery-rounded${suffix}`] = {
-      borderRadius: `var(--vf-gallery-radius${size})`,
+    plain[`.form-rounded-gallery${suffix}`] = {
+      borderRadius: `var(--vf-radius-gallery${size})`,
     }
 
     // paddings, margins
@@ -474,10 +474,10 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
         sides = ['bottom']
       }
 
-      let Y = `var(--vf-input-py${size})`
-      let X = `var(--vf-input-px${size})`
-      let YBorder = `calc(var(--vf-border-width-input) + var(--vf-input-py${size}))`
-      let XBorder = `calc(var(--vf-border-width-input) + var(--vf-input-px${size}))`
+      let Y = `var(--vf-py-input${size})`
+      let X = `var(--vf-px-input${size})`
+      let YBorder = `calc(var(--vf-border-width-input) + var(--vf-py-input${size}))`
+      let XBorder = `calc(var(--vf-border-width-input) + var(--vf-px-input${size}))`
       let key = `.form-${pm}-input${suffix}`
       let keyBorder = `.form-${pm}-input-border${suffix}`
 
@@ -496,14 +496,14 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
     })
 
     plain[`.-form-mb-input${suffix}`] = {
-      marginBottom: `calc(var(--vf-input-py${size}) * (-1))`,
+      marginBottom: `calc(var(--vf-py-input${size}) * (-1))`,
     }
 
     withFloating[`.form-p-input-floating${suffix}`] = {
-      paddingLeft: `var(--vf-input-px${size})`,
-      paddingRight: `var(--vf-input-px${size})`,
-      paddingTop: `calc(var(--vf-input-py${size}) + (${theme(`fontSize`)['0.5xs'][0]} / 2))`,
-      paddingBottom: `calc(var(--vf-input-py${size}) - (${theme(`fontSize`)['0.5xs'][0]} / 2))`,
+      paddingLeft: `var(--vf-px-input${size})`,
+      paddingRight: `var(--vf-px-input${size})`,
+      paddingTop: `calc(var(--vf-py-input${size}) + (${theme(`fontSize`)['0.5xs'][0]} / 2))`,
+      paddingBottom: `calc(var(--vf-py-input${size}) - (${theme(`fontSize`)['0.5xs'][0]} / 2))`,
     }
 
     // top, right, bottom, left
@@ -511,40 +511,40 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
     sides.forEach((side) => {
       plain[`.form-${side}-input${suffix}`] = {
         [side]: ['top', 'bottom'].indexOf(side) !== -1
-          ? `var(--vf-input-py${size})`
-          : `var(--vf-input-px${size})`
+          ? `var(--vf-py-input${size})`
+          : `var(--vf-px-input${size})`
       }
       plain[`.form-${side}-input-border${suffix}`] = {
         [side]: `calc(var(--vf-border-width-input) + ${['top', 'bottom'].indexOf(side) !== -1
-          ? `var(--vf-input-py${size})`
-          : `var(--vf-input-px${size})`})`
+          ? `var(--vf-py-input${size})`
+          : `var(--vf-px-input${size})`})`
       }
     })
 
     plain[`.form-pl-tag${suffix}`] = {
-      paddingLeft: `var(--vf-tag-px${size})`
+      paddingLeft: `var(--vf-px-tag${size})`
     }
 
     plain[`.form-pr-tag${suffix}`] = {
-      paddingRight: `var(--vf-tag-px${size})`
+      paddingRight: `var(--vf-px-tag${size})`
     }
 
     plain[`.form-py-tag${suffix}`] = {
-      paddingBottom: `var(--vf-tag-py${size})`,
-      paddingTop: `var(--vf-tag-py${size})`,
+      paddingBottom: `var(--vf-py-tag${size})`,
+      paddingTop: `var(--vf-py-tag${size})`,
     }
 
     plain[`.form-px-tag${suffix}`] = {
-      paddingLeft: `var(--vf-tag-px${size})`,
-      paddingRight: `var(--vf-tag-px${size})`,
+      paddingLeft: `var(--vf-px-tag${size})`,
+      paddingRight: `var(--vf-px-tag${size})`,
     }
 
     plain[`.form-p-button${suffix}`] = {
-      padding: `var(--vf-btn-py${size}) var(--vf-btn-px${size})`
+      padding: `var(--vf-py-btn${size}) var(--vf-px-btn${size})`
     }
 
     plain[`.form-pl-input-y${suffix}`] = {
-      paddingLeft: `var(--vf-input-py${size})`
+      paddingLeft: `var(--vf-py-input${size})`
     }
 
     // gutters
@@ -586,7 +586,7 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
     }
 
     plain[`.form-w-input-height${suffix}`] = {
-      width: `var(--vf-input-min-height${size})`,
+      width: `var(--vf-min-height-input${size})`,
     }
 
     plain[`.form-h-checkbox${suffix}`] = {
@@ -598,23 +598,23 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
     }
 
     plain[`.form-h-input${suffix}`] = {
-      height: `var(--vf-input-min-height${size})`,
+      height: `var(--vf-min-height-input${size})`,
     }
 
     plain[`.form-h-input-height${suffix}`] = {
-      height: `var(--vf-input-min-height${size})`,
+      height: `var(--vf-min-height-input${size})`,
     }
 
     plain[`.form-h-input-height-inner${suffix}`] = {
-      height: `calc(var(--vf-input-min-height${size}) - (var(--vf-border-width-input) * 2))`,
+      height: `calc(var(--vf-min-height-input${size}) - (var(--vf-border-width-input) * 2))`,
     }
 
     plain[`.form-min-h-input-height${suffix}`] = {
-      minHeight: `var(--vf-input-min-height${size})`,
+      minHeight: `var(--vf-min-height-input${size})`,
     }
 
     plain[`.form-left-input-height${suffix}`] = {
-      left: `var(--vf-input-min-height${size})`,
+      left: `var(--vf-min-height-input${size})`,
     }
 
     plain[`.form-bg-spinner-white${suffix}`] = {
@@ -626,10 +626,10 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
         left: '50%',
         top: '50%',
         display: 'inline-block',
-        width: `calc(var(--vf-input-min-height${size}) * 0.4)`,
-        height: `calc(var(--vf-input-min-height${size}) * 0.4)`,
-        marginLeft: `calc(var(--vf-input-min-height${size}) * (-0.2))`,
-        marginTop: `calc(var(--vf-input-min-height${size}) * (-0.2))`,
+        width: `calc(var(--vf-min-height-input${size}) * 0.4)`,
+        height: `calc(var(--vf-min-height-input${size}) * 0.4)`,
+        marginLeft: `calc(var(--vf-min-height-input${size}) * (-0.2))`,
+        marginTop: `calc(var(--vf-min-height-input${size}) * (-0.2))`,
         animation: 'spin 1s linear infinite',
         maskImage: theme('maskImage.form-spinner'),
         maskPosition: 'center center',
@@ -648,10 +648,10 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
         left: '50%',
         top: '50%',
         display: 'inline-block',
-        width: `calc(var(--vf-input-min-height${size}) * 0.4)`,
-        height: `calc(var(--vf-input-min-height${size}) * 0.4)`,
-        marginLeft: `calc(var(--vf-input-min-height${size}) * (-0.2))`,
-        marginTop: `calc(var(--vf-input-min-height${size}) * (-0.2))`,
+        width: `calc(var(--vf-min-height-input${size}) * 0.4)`,
+        height: `calc(var(--vf-min-height-input${size}) * 0.4)`,
+        marginLeft: `calc(var(--vf-min-height-input${size}) * (-0.2))`,
+        marginTop: `calc(var(--vf-min-height-input${size}) * (-0.2))`,
         animation: 'spin 1s linear infinite',
         maskImage: theme('maskImage.form-spinner'),
         maskPosition: 'center center',
@@ -787,10 +787,10 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
       borderStyle: 'solid',
     },
 
-    '.form-input-shadow': {
+    '.form-shadow-input': {
       boxShadow: 'var(--vf-input-shadow)',
     },
-    '.form-btn-shadow': {
+    '.form-shadow-btn': {
       boxShadow: 'var(--vf-btn-shadow)',
     },
 
@@ -1171,11 +1171,11 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
       borderColor: 'var(--vf-border-color-input-focus)',
     },
     '.form-ring-input-shadow': {
-      boxShadow: '0px 0px 0px var(--vf-ring-width) var(--vf-ring-color), var(--vf-input-shadow)',
+      boxShadow: '0px 0px 0px var(--vf-ring-width) var(--vf-ring-color), var(--vf-shadow-input)',
       borderColor: 'var(--vf-border-color-input-focus)',
     },
     '.form-ring-btn-shadow': {
-      boxShadow: '0px 0px 0px var(--vf-ring-width) var(--vf-ring-color), var(--vf-btn-shadow)',
+      boxShadow: '0px 0px 0px var(--vf-ring-width) var(--vf-ring-color), var(--vf-shadow-btn)',
     },
   }
 
