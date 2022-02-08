@@ -146,6 +146,25 @@ const base = function(props, context, dependencies)
     return messageBag.value.error || null
   })
 
+  /**
+   * Whether the field has errors.
+   * 
+   * @type {boolean}
+   */
+  const isDanger = computed(() => {
+    return error.value !== null
+  })
+
+  /**
+   * Whether the field has been filled in successfully.
+   * 
+   * @type {boolean}
+   */
+  const isSuccess = computed(() => {
+    return (validationRules.value && validationRules.value.length > 0 && state.value.validated && !invalid.value) ||
+           ((!validationRules.value || !validationRules.value.length) && dirty.value)
+  })
+
   // =============== METHODS ===============
 
   /**
@@ -247,6 +266,8 @@ const base = function(props, context, dependencies)
     errors,
     error,
     validationRules,
+    isDanger,
+    isSuccess,
     validate,
     dirt,
     clean,
@@ -269,6 +290,8 @@ const text = function(props, context, dependencies)
     errors,
     error,
     validationRules,
+    isDanger,
+    isSuccess,
     validate,
     dirt,
     clean,
@@ -310,6 +333,8 @@ const text = function(props, context, dependencies)
     errors,
     error,
     validationRules,
+    isDanger,
+    isSuccess,
     validate,
     dirt,
     clean,

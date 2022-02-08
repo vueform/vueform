@@ -109,7 +109,7 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
       },
     },
     {
-      base: [':root'],
+      base: [':root', '*', '::before', '::after'],
       styles: {
         '--vf-primary': theme('form.primary'),
         '--vf-primary-darker': theme('form.primaryDarker') === null
@@ -167,13 +167,13 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
         '--vf-px-input-sm': theme('form.inputPx.sm'),
         '--vf-px-input-lg': theme('form.inputPx.lg'),
 
-        '--vf-py-btn': theme('form.btnPy.base'),
-        '--vf-py-btn-sm': theme('form.btnPy.sm'),
-        '--vf-py-btn-lg': theme('form.btnPy.lg'),
+        '--vf-py-btn': theme('form.btnPy.base') === null ? 'var(--vf-py-input)' : theme('form.btnPy.base'),
+        '--vf-py-btn-sm': theme('form.btnPy.sm') === null ? 'var(--vf-py-input-sm)' : theme('form.btnPy.sm'),
+        '--vf-py-btn-lg': theme('form.btnPy.lg') === null ? 'var(--vf-py-input-lg)' : theme('form.btnPy.lg'),
 
-        '--vf-px-btn': theme('form.btnPx.base'),
-        '--vf-px-btn-sm': theme('form.btnPx.sm'),
-        '--vf-px-btn-lg': theme('form.btnPx.lg'),
+        '--vf-px-btn': theme('form.btnPx.base') === null ? 'var(--vf-px-input)' : theme('form.btnPx.base'),
+        '--vf-px-btn-sm': theme('form.btnPx.sm') === null ? 'var(--vf-px-input-sm)' : theme('form.btnPx.sm'),
+        '--vf-px-btn-lg': theme('form.btnPx.lg') === null ? 'var(--vf-px-input-lg)' : theme('form.btnPx.lg'),
 
         '--vf-py-tag': theme('form.tagPy.base'),
         '--vf-py-tag-sm': theme('form.tagPy.sm'),
@@ -184,8 +184,12 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
         '--vf-px-tag-lg': theme('form.tagPx.lg'),
 
         '--vf-bg-input': theme('form.bgColors.input'),
+        '--vf-bg-input-focus': theme('form.bgColors.inputFocus') === null ? 'var(--vf-bg-input)' : theme('form.bgColors.inputFocus'),
+        '--vf-bg-input-hover': theme('form.bgColors.inputHover') === null ? 'var(--vf-bg-input)' : theme('form.bgColors.inputHover'),
+        '--vf-bg-input-danger': theme('form.bgColors.inputDanger') === null ? 'var(--vf-bg-input)' : theme('form.bgColors.inputDanger'),
+        '--vf-bg-input-Success': theme('form.bgColors.inputSuccess') === null ? 'var(--vf-bg-input)' : theme('form.bgColors.inputSuccess'),
         '--vf-bg-disabled': theme('form.bgColors.disabled'),
-        '--vf-bg-active': theme('form.bgColors.active'),
+        '--vf-bg-selected': theme('form.bgColors.selected'),
         '--vf-bg-passive': theme('form.bgColors.passive'),
         '--vf-bg-icon': theme('form.bgColors.icon'),
         '--vf-bg-danger': theme('form.bgColors.danger'),
@@ -200,6 +204,10 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
         '--vf-bg-btn-secondary': theme('form.bgColors.btnSecondary'),
 
         '--vf-color-input': theme('form.textColors.input'),
+        '--vf-color-input-focus': theme('form.textColors.inputFocus') === null ? 'var(--vf-color-input)' : theme('form.textColors.inputFocus'),
+        '--vf-color-input-hover': theme('form.textColors.inputHover') === null ? 'var(--vf-color-input)' : theme('form.textColors.inputHover'),
+        '--vf-color-input-danger': theme('form.textColors.inputDanger') === null ? 'var(--vf-color-input)' : theme('form.textColors.inputDanger'),
+        '--vf-color-input-success': theme('form.textColors.inputSuccess') === null ? 'var(--vf-color-input)' : theme('form.textColors.inputSuccess'),
         '--vf-color-placeholder': theme('form.textColors.placeholder'),
         '--vf-color-disabled': theme('form.textColors.disabled'),
         '--vf-color-passive': theme('form.textColors.passive'),
@@ -215,58 +223,76 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
         '--vf-color-btn-secondary': theme('form.textColors.btnSecondary'),
 
         '--vf-border-color-input': theme('form.borderColors.input'),
-        '--vf-border-color-passive': theme('form.borderColors.passive'),
         '--vf-border-color-input-focus': theme('form.borderColors.inputFocus') === null ? 'var(--vf-primary)' : theme('form.borderColors.inputFocus'),
+        '--vf-border-color-input-hover': theme('form.borderColors.inputHover') === null ? 'var(--vf-border-color-input)' : theme('form.borderColors.inputHover'),
+        '--vf-border-color-input-danger': theme('form.borderColors.inputDanger') === null ? 'var(--vf-border-color-input)' : theme('form.borderColors.inputDanger'),
+        '--vf-border-color-input-success': theme('form.borderColors.inputSuccess') === null ? 'var(--vf-border-color-input)' : theme('form.borderColors.inputSuccess'),
+        '--vf-border-color-checked': theme('form.borderColors.checked') === null ? 'var(--vf-primary)' : theme('form.borderColors.checked'),
+        '--vf-border-color-passive': theme('form.borderColors.passive'),
         '--vf-border-color-tag': theme('form.borderColors.tag') === null ? 'var(--vf-primary)' : theme('form.borderColors.tag'),
         '--vf-border-color-btn': theme('form.borderColors.btn') === null ? 'var(--vf-primary)' : theme('form.borderColors.btn'),
         '--vf-border-color-btn-danger': theme('form.borderColors.btnDanger'),
         '--vf-border-color-btn-secondary': theme('form.borderColors.btnSecondary'),
 
-        '--vf-border-width-input': Array.isArray(theme('form.borderWidths.input')) ? theme('form.borderWidths.input').join(' ') : theme('form.borderWidths.input'),
+        '--vf-border-width-input-t': Array.isArray(theme('form.borderWidths.input')) ? theme('form.borderWidths.input')[0] : theme('form.borderWidths.input'),
+        '--vf-border-width-input-r': Array.isArray(theme('form.borderWidths.input')) ? theme('form.borderWidths.input')[1] : theme('form.borderWidths.input'),
+        '--vf-border-width-input-b': Array.isArray(theme('form.borderWidths.input')) ? theme('form.borderWidths.input')[2] : theme('form.borderWidths.input'),
+        '--vf-border-width-input-l': Array.isArray(theme('form.borderWidths.input')) ? theme('form.borderWidths.input')[3] : theme('form.borderWidths.input'),
+
+        '--vf-border-width-dropdown': theme('form.borderWidths.dropdown') === null ? 'var(--vf-border-width-input-t) var(--vf-border-width-input-r) var(--vf-border-width-input-b) var(--vf-border-width-input-l)' : (Array.isArray(theme('form.borderWidths.dropdown')) ? theme('form.borderWidths.dropdown').join(' ') : theme('form.borderWidths.dropdown')),
+        '--vf-border-width-radio': theme('form.borderWidths.radio') === null ? 'var(--vf-border-width-input-t) var(--vf-border-width-input-r) var(--vf-border-width-input-b) var(--vf-border-width-input-l)' : (Array.isArray(theme('form.borderWidths.radio')) ? theme('form.borderWidths.radio').join(' ') : theme('form.borderWidths.radio')),
+        '--vf-border-width-checkbox': theme('form.borderWidths.checkbox') === null ? 'var(--vf-border-width-input-t) var(--vf-border-width-input-r) var(--vf-border-width-input-b) var(--vf-border-width-input-l)' : (Array.isArray(theme('form.borderWidths.checkbox')) ? theme('form.borderWidths.checkbox').join(' ') : theme('form.borderWidths.checkbox')),
         '--vf-border-width-btn': Array.isArray(theme('form.borderWidths.btn')) ? theme('form.borderWidths.btn').join(' ') : theme('form.borderWidths.btn'),
         '--vf-border-width-tag': Array.isArray(theme('form.borderWidths.tag')) ? theme('form.borderWidths.tag').join(' ') : theme('form.borderWidths.tag'),
         
         '--vf-radius': Array.isArray(theme('form.radius.base')) ? theme('form.radius.base').join(' ') : theme('form.radius.base'),
-        '--vf-radius-sm': Array.isArray(theme('form.radius.sm')) ? theme('form.radius.sm').join(' ') : theme('form.radius.sm'),
-        '--vf-radius-lg': Array.isArray(theme('form.radius.lg')) ? theme('form.radius.lg').join(' ') : theme('form.radius.lg'),
+        '--vf-radius-sm': theme('form.radius.sm') === null ? 'var(--vf-radius)' : (Array.isArray(theme('form.radius.sm')) ? theme('form.radius.sm').join(' ') : theme('form.radius.sm')),
+        '--vf-radius-lg': theme('form.radius.lg') === null ? 'var(--vf-radius)' : (Array.isArray(theme('form.radius.lg')) ? theme('form.radius.lg').join(' ') : theme('form.radius.lg')),
         
-        '--vf-radius-btn': Array.isArray(theme('form.btnRadius.base')) ? theme('form.btnRadius.base').join(' ') : theme('form.btnRadius.base'),
-        '--vf-radius-btn-sm': Array.isArray(theme('form.btnRadius.sm')) ? theme('form.btnRadius.sm').join(' ') : theme('form.btnRadius.sm'),
-        '--vf-radius-btn-lg': Array.isArray(theme('form.btnRadius.lg')) ? theme('form.btnRadius.lg').join(' ') : theme('form.btnRadius.lg'),
+        '--vf-radius-btn': theme('form.btnRadius.base') === null ? 'var(--vf-radius)' : (Array.isArray(theme('form.btnRadius.base')) ? theme('form.btnRadius.base').join(' ') : theme('form.btnRadius.base')),
+        '--vf-radius-btn-sm': theme('form.btnRadius.sm') === null ? 'var(--vf-radius-sm)' : (Array.isArray(theme('form.btnRadius.sm')) ? theme('form.btnRadius.sm').join(' ') : theme('form.btnRadius.sm')),
+        '--vf-radius-btn-lg': theme('form.btnRadius.base') === null ? 'var(--vf-radius-lg)' : (Array.isArray(theme('form.btnRadius.lg')) ? theme('form.btnRadius.lg').join(' ') : theme('form.btnRadius.lg')),
 
-        '--vf-radius-small': Array.isArray(theme('form.smallRadius.base')) ? theme('form.smallRadius.base').join(' ') : theme('form.smallRadius.base'),
-        '--vf-radius-small-sm': Array.isArray(theme('form.smallRadius.sm')) ? theme('form.smallRadius.sm').join(' ') : theme('form.smallRadius.sm'),
-        '--vf-radius-small-lg': Array.isArray(theme('form.smallRadius.lg')) ? theme('form.smallRadius.lg').join(' ') : theme('form.smallRadius.lg'),
+        '--vf-radius-small': theme('form.smallRadius.base') === null ? 'var(--vf-radius)' : (Array.isArray(theme('form.smallRadius.base')) ? theme('form.smallRadius.base').join(' ') : theme('form.smallRadius.base')),
+        '--vf-radius-small-sm': theme('form.smallRadius.sm') === null ? 'var(--vf-radius-sm)' : (Array.isArray(theme('form.smallRadius.sm')) ? theme('form.smallRadius.sm').join(' ') : theme('form.smallRadius.sm')),
+        '--vf-radius-small-lg': theme('form.smallRadius.base') === null ? 'var(--vf-radius-lg)' : (Array.isArray(theme('form.smallRadius.lg')) ? theme('form.smallRadius.lg').join(' ') : theme('form.smallRadius.lg')),
 
-        '--vf-radius-large': Array.isArray(theme('form.largeRadius.base')) ? theme('form.largeRadius.base').join(' ') : theme('form.largeRadius.base'),
-        '--vf-radius-large-sm': Array.isArray(theme('form.largeRadius.sm')) ? theme('form.largeRadius.sm').join(' ') : theme('form.largeRadius.sm'),
-        '--vf-radius-large-lg': Array.isArray(theme('form.largeRadius.lg')) ? theme('form.largeRadius.lg').join(' ') : theme('form.largeRadius.lg'),
+        '--vf-radius-large': theme('form.largeRadius.base') === null ? 'var(--vf-radius)' : (Array.isArray(theme('form.largeRadius.base')) ? theme('form.largeRadius.base').join(' ') : theme('form.largeRadius.base')),
+        '--vf-radius-large-sm': theme('form.largeRadius.sm') === null ? 'var(--vf-radius-sm)' : (Array.isArray(theme('form.largeRadius.sm')) ? theme('form.largeRadius.sm').join(' ') : theme('form.largeRadius.sm')),
+        '--vf-radius-large-lg': theme('form.largeRadius.base') === null ? 'var(--vf-radius-lg)' : (Array.isArray(theme('form.largeRadius.lg')) ? theme('form.largeRadius.lg').join(' ') : theme('form.largeRadius.lg')),
 
-        '--vf-radius-tag': Array.isArray(theme('form.tagRadius.base')) ? theme('form.tagRadius.base').join(' ') : theme('form.tagRadius.base'),
-        '--vf-radius-tag-sm': Array.isArray(theme('form.tagRadius.sm')) ? theme('form.tagRadius.sm').join(' ') : theme('form.tagRadius.sm'),
-        '--vf-radius-tag-lg': Array.isArray(theme('form.tagRadius.lg')) ? theme('form.tagRadius.lg').join(' ') : theme('form.tagRadius.lg'),
+        '--vf-radius-tag': theme('form.tagRadius.base') === null ? 'var(--vf-radius)' : (Array.isArray(theme('form.tagRadius.base')) ? theme('form.tagRadius.base').join(' ') : theme('form.tagRadius.base')),
+        '--vf-radius-tag-sm': theme('form.tagRadius.sm') === null ? 'var(--vf-radius-sm)' : (Array.isArray(theme('form.tagRadius.sm')) ? theme('form.tagRadius.sm').join(' ') : theme('form.tagRadius.sm')),
+        '--vf-radius-tag-lg': theme('form.tagRadius.base') === null ? 'var(--vf-radius-lg)' : (Array.isArray(theme('form.tagRadius.lg')) ? theme('form.tagRadius.lg').join(' ') : theme('form.tagRadius.lg')),
 
-        '--vf-radius-checkbox': Array.isArray(theme('form.checkboxRadius.base')) ? theme('form.checkboxRadius.base').join(' ') : theme('form.checkboxRadius.base'),
-        '--vf-radius-checkbox-sm': Array.isArray(theme('form.checkboxRadius.sm')) ? theme('form.checkboxRadius.sm').join(' ') : theme('form.checkboxRadius.sm'),
-        '--vf-radius-checkbox-lg': Array.isArray(theme('form.checkboxRadius.lg')) ? theme('form.checkboxRadius.lg').join(' ') : theme('form.checkboxRadius.lg'),
+        '--vf-radius-checkbox': theme('form.checkboxRadius.base') === null ? 'var(--vf-radius)' : (Array.isArray(theme('form.checkboxRadius.base')) ? theme('form.checkboxRadius.base').join(' ') : theme('form.checkboxRadius.base')),
+        '--vf-radius-checkbox-sm': theme('form.checkboxRadius.sm') === null ? 'var(--vf-radius-sm)' : (Array.isArray(theme('form.checkboxRadius.sm')) ? theme('form.checkboxRadius.sm').join(' ') : theme('form.checkboxRadius.sm')),
+        '--vf-radius-checkbox-lg': theme('form.checkboxRadius.base') === null ? 'var(--vf-radius-lg)' : (Array.isArray(theme('form.checkboxRadius.lg')) ? theme('form.checkboxRadius.lg').join(' ') : theme('form.checkboxRadius.lg')),
 
-        '--vf-radius-image': Array.isArray(theme('form.imageRadius.base')) ? theme('form.imageRadius.base').join(' ') : theme('form.imageRadius.base'),
-        '--vf-radius-image-sm': Array.isArray(theme('form.imageRadius.sm')) ? theme('form.imageRadius.sm').join(' ') : theme('form.imageRadius.sm'),
-        '--vf-radius-image-lg': Array.isArray(theme('form.imageRadius.lg')) ? theme('form.imageRadius.lg').join(' ') : theme('form.imageRadius.lg'),
+        '--vf-radius-image': theme('form.imageRadius.base') === null ? 'var(--vf-radius)' : (Array.isArray(theme('form.imageRadius.base')) ? theme('form.imageRadius.base').join(' ') : theme('form.imageRadius.base')),
+        '--vf-radius-image-sm': theme('form.imageRadius.sm') === null ? 'var(--vf-radius-sm)' : (Array.isArray(theme('form.imageRadius.sm')) ? theme('form.imageRadius.sm').join(' ') : theme('form.imageRadius.sm')),
+        '--vf-radius-image-lg': theme('form.imageRadius.base') === null ? 'var(--vf-radius-lg)' : (Array.isArray(theme('form.imageRadius.lg')) ? theme('form.imageRadius.lg').join(' ') : theme('form.imageRadius.lg')),
 
-        '--vf-radius-gallery': Array.isArray(theme('form.galleryRadius.base')) ? theme('form.galleryRadius.base').join(' ') : theme('form.galleryRadius.base'),
-        '--vf-radius-gallery-sm': Array.isArray(theme('form.galleryRadius.sm')) ? theme('form.galleryRadius.sm').join(' ') : theme('form.galleryRadius.sm'),
-        '--vf-radius-gallery-lg': Array.isArray(theme('form.galleryRadius.lg')) ? theme('form.galleryRadius.lg').join(' ') : theme('form.radius.lg'),
+        '--vf-radius-gallery': theme('form.galleryRadius.base') === null ? 'var(--vf-radius)' : (Array.isArray(theme('form.galleryRadius.base')) ? theme('form.galleryRadius.base').join(' ') : theme('form.galleryRadius.base')),
+        '--vf-radius-gallery-sm': theme('form.galleryRadius.sm') === null ? 'var(--vf-radius-sm)' : (Array.isArray(theme('form.galleryRadius.sm')) ? theme('form.galleryRadius.sm').join(' ') : theme('form.galleryRadius.sm')),
+        '--vf-radius-gallery-lg': theme('form.galleryRadius.base') === null ? 'var(--vf-radius-lg)' : (Array.isArray(theme('form.galleryRadius.lg')) ? theme('form.galleryRadius.lg').join(' ') : theme('form.galleryRadius.lg')),
 
         '--vf-ring-color': theme('form.ringColor') === null ? Color(theme('form.primary')).alpha(0.4).toString() : theme('form.ringColor'),
         '--vf-ring-width': theme('form.ringWidth'),
 
-        '--vf-shadow-input': theme('form.inputShadow'),
-        '--vf-shadow-btn': theme('form.btnShadow'),
+        '--vf-shadow-input': theme('form.shadows.input'),
+        '--vf-shadow-input-hover': theme('form.shadows.inputHover'),
+        '--vf-shadow-input-focus': theme('form.shadows.inputFocus'),
+        '--vf-shadow-btn': theme('form.shadows.btn'),
+        '--vf-shadow-slider-handle': theme('form.shadows.sliderHandle'),
 
         '--vf-checkbox-size': theme('form.checkboxSize.base'),
         '--vf-checkbox-size-sm': theme('form.checkboxSize.sm'),
         '--vf-checkbox-size-lg': theme('form.checkboxSize.lg'),
+
+        '--vf-radio-size': theme('form.radioSize.base') === null ? 'var(--vf-checkbox-size)' : theme('form.radioSize.base'),
+        '--vf-radio-size-sm': theme('form.radioSize.sm') === null ? 'var(--vf-checkbox-size-sm)' : theme('form.radioSize.sm'),
+        '--vf-radio-size-lg': theme('form.radioSize.lg') === null ? 'var(--vf-checkbox-size-lg)' : theme('form.radioSize.lg'),
 
         '--vf-gallery-size': theme('form.gallerySize.base'),
         '--vf-gallery-size-sm': theme('form.gallerySize.sm'),
@@ -476,8 +502,10 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
 
       let Y = `var(--vf-py-input${size})`
       let X = `var(--vf-px-input${size})`
-      let YBorder = `calc(var(--vf-border-width-input) + var(--vf-py-input${size}))`
-      let XBorder = `calc(var(--vf-border-width-input) + var(--vf-px-input${size}))`
+      let TopBorder = `calc(var(--vf-border-width-input-t) + var(--vf-py-input${size}))`
+      let BottomBorder = `calc(var(--vf-border-width-input-b) + var(--vf-py-input${size}))`
+      let LeftBorder = `calc(var(--vf-border-width-input-l) + var(--vf-px-input${size}))`
+      let RightBorder = `calc(var(--vf-border-width-input-r) + var(--vf-px-input${size}))`
       let key = `.form-${pm}-input${suffix}`
       let keyBorder = `.form-${pm}-input-border${suffix}`
 
@@ -486,11 +514,14 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
 
       if (sides.length === 4) {
         plain[key][type] = `${Y} ${X}`
-        plain[keyBorder][type] = `${YBorder} ${XBorder}`
+        plain[keyBorder][type] = `${TopBorder} ${RightBorder} ${BottomBorder} ${LeftBorder}`
       } else {
         sides.forEach((side) => {
           plain[key][`${type}${upperFirst(side)}`] = ['top', 'bottom'].indexOf(side) !== -1 ? Y : X
-          plain[keyBorder][`${type}${upperFirst(side)}`] = ['top', 'bottom'].indexOf(side) !== -1 ? YBorder : XBorder
+          plain[keyBorder][`${type}${upperFirst(side)}`] = side === 'top'
+            ? TopBorder :
+            (side === 'right' ? RightBorder : 
+            (side === 'bottom' ? BottomBorder : LeftBorder))
         })
       }
     })
@@ -515,7 +546,7 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
           : `var(--vf-px-input${size})`
       }
       plain[`.form-${side}-input-border${suffix}`] = {
-        [side]: `calc(var(--vf-border-width-input) + ${['top', 'bottom'].indexOf(side) !== -1
+        [side]: `calc(var(--vf-border-width-input-${side.charAt(0)}) + ${['top', 'bottom'].indexOf(side) !== -1
           ? `var(--vf-py-input${size})`
           : `var(--vf-px-input${size})`})`
       }
@@ -581,6 +612,10 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
       width: `var(--vf-checkbox-size${size})`,
     }
 
+    plain[`.form-w-radio${suffix}`] = {
+      width: `var(--vf-radio-size${size})`,
+    }
+
     plain[`.form-w-gallery${suffix}`] = {
       width: `var(--vf-gallery-size${size})`,
     }
@@ -591,6 +626,10 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
 
     plain[`.form-h-checkbox${suffix}`] = {
       height: `var(--vf-checkbox-size${size})`,
+    }
+
+    plain[`.form-h-radio${suffix}`] = {
+      height: `var(--vf-radio-size${size})`,
     }
 
     plain[`.form-h-gallery${suffix}`] = {
@@ -606,7 +645,7 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
     }
 
     plain[`.form-h-input-height-inner${suffix}`] = {
-      height: `calc(var(--vf-min-height-input${size}) - (var(--vf-border-width-input) * 2))`,
+      height: `calc(var(--vf-min-height-input${size}) - (var(--vf-border-width-input-t) + var(--vf-border-width-input-b)))`,
     }
 
     plain[`.form-min-h-input-height${suffix}`] = {
@@ -666,18 +705,66 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
     '.form-color-primary': {
       color: 'var(--vf-primary)',
     },
+    '.form-color-input': {
+      color: 'var(--vf-color-input)'
+    },
+    '.form-color-input-danger': {
+      color: 'var(--vf-color-input-danger)'
+    },
+    '.form-color-input-success': {
+      color: 'var(--vf-color-input-success)'
+    },
     '.form-color-muted': {
       color: 'var(--vf-color-muted)',
     },
     '.form-color-placeholder': {
       color: 'var(--vf-color-placeholder)',
     },
+    '.form-color-disabled': {
+      color: 'var(--vf-color-disabled)'
+    },
+    '.form-color-danger': {
+      color: 'var(--vf-color-danger)'
+    },
+    '.form-color-success': {
+      color: 'var(--vf-color-success)'
+    },
+    '.form-color-tag': {
+      color: 'var(--vf-color-tag)'
+    },
+    '.form-color-addon': {
+      color: 'var(--vf-color-addon)'
+    },
+    '.form-color-date-head': {
+      color: 'var(--vf-color-date-head)'
+    },
+    '.form-color-btn': {
+      color: 'var(--vf-color-btn)'
+    },
+    '.form-color-btn-secondary': {
+      color: 'var(--vf-color-btn-secondary)'
+    },
+    '.form-color-btn-danger': {
+      color: 'var(--vf-color-btn-danger)'
+    },
     '.form-color-transparent': {
       color: 'transparent !important',
     },
-    
-    '.form-bg-active': {
-      backgroundColor: 'var(--vf-bg-active)'
+
+    '.form-bg-input': {
+      backgroundColor: 'var(--vf-bg-input)'
+    },
+    '.form-bg-input-danger': {
+      backgroundColor: 'var(--vf-bg-input-danger)'
+    },
+    '.form-bg-input-success': {
+      backgroundColor: 'var(--vf-bg-input-success)'
+    },
+    '.form-bg-disabled': {
+      backgroundColor: 'var(--vf-bg-disabled)'
+    },
+    '.form-bg-selected': {
+      backgroundColor: 'var(--vf-bg-selected)'
     },
     '.form-bg-passive': {
       backgroundColor: 'var(--vf-bg-passive)'
@@ -694,27 +781,11 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
     '.form-bg-toggle-handle': {
       backgroundColor: 'var(--vf-bg-toggle-handle)'
     },
-
-    '.form-bg-input': {
-      backgroundColor: 'var(--vf-bg-input)'
-    },
-    '.form-color-input': {
-      color: 'var(--vf-color-input)'
-    },
-    '.form-bg-disabled': {
-      backgroundColor: 'var(--vf-bg-disabled)'
-    },
-    '.form-color-disabled': {
-      color: 'var(--vf-color-disabled)'
-    },
     '.form-bg-danger': {
       backgroundColor: 'var(--vf-bg-danger)'
     },
     '.form-bg-danger-color': {
       backgroundColor: 'var(--vf-color-danger)'
-    },
-    '.form-color-danger': {
-      color: 'var(--vf-color-danger)'
     },
     '.form-bg-success': {
       backgroundColor: 'var(--vf-bg-success)'
@@ -722,48 +793,39 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
     '.form-bg-success-color': {
       backgroundColor: 'var(--vf-color-success)'
     },
-    '.form-color-success': {
-      color: 'var(--vf-color-success)'
-    },
     '.form-bg-tag': {
       backgroundColor: 'var(--vf-bg-tag)'
-    },
-    '.form-color-tag': {
-      color: 'var(--vf-color-tag)'
     },
     '.form-bg-addon': {
       backgroundColor: 'var(--vf-bg-addon)'
     },
-    '.form-color-addon': {
-      color: 'var(--vf-color-addon)'
-    },
     '.form-bg-date-head': {
       backgroundColor: 'var(--vf-bg-date-head)'
-    },
-    '.form-color-date-head': {
-      color: 'var(--vf-color-date-head)'
     },
     '.form-bg-btn': {
       backgroundColor: 'var(--vf-bg-btn)'
     },
-    '.form-color-btn': {
-      color: 'var(--vf-color-btn)'
-    },
     '.form-bg-btn-secondary': {
       backgroundColor: 'var(--vf-bg-btn-secondary)'
-    },
-    '.form-color-btn-secondary': {
-      color: 'var(--vf-color-btn-secondary)'
     },
     '.form-bg-btn-danger': {
       backgroundColor: 'var(--vf-bg-btn-danger)'
     },
-    '.form-color-btn-danger': {
-      color: 'var(--vf-color-btn-danger)'
-    },
 
     '.form-border-b-color-input': {
       borderBottomColor: 'var(--vf-border-color-input)'
+    },
+    '.form-border-color-input-danger': {
+      borderColor: 'var(--vf-border-color-input-danger)'
+    },
+    '.form-border-color-input-success': {
+      borderColor: 'var(--vf-border-color-input-success)'
+    },
+    '.form-border-color-danger': {
+      borderColor: 'var(--vf-border-color-danger)'
+    },
+    '.form-border-color-success': {
+      borderColor: 'var(--vf-border-color-success)'
     },
     '.form-border-color-btn': {
       borderColor: 'var(--vf-border-color-btn)'
@@ -788,10 +850,13 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
     },
 
     '.form-shadow-input': {
-      boxShadow: 'var(--vf-input-shadow)',
+      boxShadow: 'var(--vf-shadow-input)',
     },
     '.form-shadow-btn': {
-      boxShadow: 'var(--vf-btn-shadow)',
+      boxShadow: 'var(--vf-shadow-btn)',
+    },
+    '.form-shadow-slider-handle': {
+      boxShadow: 'var(--vf-shadow-slider-handle)',
     },
 
     '.form-hide-empty-img': {
@@ -1120,44 +1185,55 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
     },
 
     '.form-border-input': {
-      borderWidth: `var(--vf-border-width-input)`,
-      borderStyle: 'solid',
+      borderWidth: `var(--vf-border-width-input-t) var(--vf-border-width-input-r) var(--vf-border-width-input-b) var(--vf-border-width-input-l)`,
+    },
+    '.form-border-dropdown': {
+      borderWidth: `var(--vf-border-width-dropdown)`,
+    },
+    '.form-border-checkbox': {
+      borderWidth: `var(--vf-border-width-checkbox)`,
+    },
+    '.form-border-radio': {
+      borderWidth: `var(--vf-border-width-radio)`,
     },
     '.border-0': {
       border: '0'
     },
 
+    '.form-border-color-primary': {
+      borderColor: 'var(--vf-primary)'
+    },
     '.form-border-color-input': {
       borderColor: 'var(--vf-border-color-input)'
     },
-    '.form-border-color-primary': {
-      borderColor: 'var(--vf-primary)'
+    '.form-border-color-checked': {
+      borderColor: `var(--vf-border-color-checked)`,
     },
     '.form-border-color-passive': {
       borderColor: 'var(--vf-border-color-passive)'
     },
     
-    '.form-bg-check-white': {
+    '.form-bg-icon-check': {
       '&::after': {
         content: '""',
         maskImage: theme('maskImage.form-check'),
         maskPosition: 'center center',
         maskSize: 'contain',
         maskRepeat: 'no-repeat',
-        backgroundColor: '#FFFFFF',
+        backgroundColor: 'var(--vf-color-on-primary)',
         display: 'block',
         width: '100%',
         height: '100%',
       }
     },
-    '.form-bg-radio-white': {
+    '.form-bg-icon-radio': {
       '&::after': {
         content: '""',
         maskImage: theme('maskImage.form-radio'),
         maskPosition: 'center center',
         maskSize: 'contain',
         maskRepeat: 'no-repeat',
-        backgroundColor: '#FFFFFF',
+        backgroundColor: 'var(--vf-color-on-primary)',
         display: 'block',
         width: '100%',
         height: '100%',
@@ -1166,22 +1242,38 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
   }
 
   const focusable = {
+    '.form-color-input-focus': {
+      color: 'var(--vf-color-input-focus)'
+    },
+    '.form-bg-input-focus': {
+      backgroundColor: 'var(--vf-bg-input-focus)'
+    },
+    '.form-border-color-input-focus': {
+      borderColor: 'var(--vf-border-color-input-focus)'
+    },
     '.form-ring': {
-      boxShadow: '0px 0px 0px var(--vf-ring-width) var(--vf-ring-color)',
-      borderColor: 'var(--vf-border-color-input-focus)',
+      outline: 'var(--vf-ring-width) solid var(--vf-ring-color)',
     },
-    '.form-ring-input-shadow': {
-      boxShadow: '0px 0px 0px var(--vf-ring-width) var(--vf-ring-color), var(--vf-shadow-input)',
-      borderColor: 'var(--vf-border-color-input-focus)',
-    },
-    '.form-ring-btn-shadow': {
-      boxShadow: '0px 0px 0px var(--vf-ring-width) var(--vf-ring-color), var(--vf-shadow-btn)',
+    '.form-shadow-input-focus': {
+      boxShadow: 'var(--vf-shadow-input-focus)',
     },
   }
 
   const hoverable = {
+    '.form-color-input-hover': {
+      color: 'var(--vf-color-input-hover)'
+    },
     '.form-bg-primary-darker': {
       backgroundColor: 'var(--vf-primary-darker)'
+    },
+    '.form-bg-input-hover': {
+      backgroundColor: 'var(--vf-bg-input-hover)'
+    },
+    '.form-border-color-input-hover': {
+      borderColor: 'var(--vf-border-color-input-hover)'
+    },
+    '.form-shadow-input-hover': {
+      boxShadow: 'var(--vf-shadow-input-hover)',
     },
   }
 
@@ -1403,6 +1495,9 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
 
         grays: theme('colors.gray'),
 
+        ringWidth: theme('ringWidth.2'),
+        ringColor: null,
+
         fontSize: {
           base: theme('fontSize.base'),
           sm: theme('fontSize.sm'),
@@ -1464,15 +1559,15 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
         },
 
         btnPy: {
-          base: theme('padding')['1.5'],
-          sm: theme('padding')['1.5'],
-          lg: theme('padding')['2.5'],
+          base: null, // defaults to `inputPy` value
+          sm: null, // defaults to `inputPy` value
+          lg: null, // defaults to `inputPy` value
         },
 
         btnPx: {
-          base: theme('padding.3'),
-          sm: theme('padding')['2'],
-          lg: theme('padding')['3.5'],
+          base: null, // defaults to `inputPx` value
+          sm: null, // defaults to `inputPx` value
+          lg: null, // defaults to `inputPx` value
         },
 
         tagPy: {
@@ -1487,27 +1582,92 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
           lg: theme('padding')['1.75'],
         },
 
+        borderWidths: {
+          input: theme('borderWidth.DEFAULT'), // can be array
+          dropdown: null, // defaults to `input`, can be array
+          checkbox: null, // defaults to `input`, can be array
+          radio: null, // defaults to `input`, can be array
+          btn: theme('borderWidth.DEFAULT'), // can be array
+          tag: theme('borderWidth.DEFAULT'), // can be array
+        },
+        
+        radius: {
+          base: theme('borderRadius.DEFAULT'), // can be array
+          sm: null, // defaults to `base`, can be array
+          lg: null, // defaults to `base`, can be array
+        },
+        
+        btnRadius: { // buttons
+          base: null, // defaults to `radius`, can be array
+          sm: null, // defaults to `radius`, can be array
+          lg: null, // defaults to `radius`, can be array
+        },
+        
+        smallRadius: { // checkbox, tags, tooltips
+          base: null, // defaults to `radius`, can be array
+          sm: null, // defaults to `radius`, can be array
+          lg: null, // defaults to `radius`, can be array
+        },
+        
+        largeRadius: { // DragAndDrop, Checkbox/Radio Blocks, Textarea, native multiselect
+          base: null, // defaults to `radius`, can be array
+          sm: null, // defaults to `radius`, can be array
+          lg: null, // defaults to `radius`, can be array
+        },
+        
+        tagRadius: {
+          base: null, // defaults to `radius`, can be array
+          sm: null, // defaults to `radius`, can be array
+          lg: null, // defaults to `radius`, can be array
+        },
+        
+        checkboxRadius: {
+          base: null, // defaults to `radius`, can be array
+          sm: null, // defaults to `radius`, can be array
+          lg: null, // defaults to `radius`, can be array
+        },
+        
+        imageRadius: {
+          base: null, // defaults to `radius`, can be array
+          sm: null, // defaults to `radius`, can be array
+          lg: null, // defaults to `radius`, can be array
+        },
+        
+        galleryRadius: {
+          base: null, // defaults to `radius`, can be array
+          sm: null, // defaults to `radius`, can be array
+          lg: null, // defaults to `radius`, can be array
+        },
+
         bgColors: {
           input: theme('colors.white'),
+          inputHover: null, // defaults to `input`
+          inputFocus: null, // defaults to `input`
+          inputDanger: null, // defaults to `input`
+          inputSuccess: null, // defaults to `input`
           disabled: theme('colors.gray.200'),
-          active: theme('colors.gray.100'), // Option hover, cbgroup blocks selected
+          selected: theme('colors.gray.100'), // Option hover, cbgroup blocks selected
           passive: theme('colors.gray.300'),
           icon: theme('colors.gray.500'),
           danger: theme('colors.red.100'),
           success: theme('colors.green.100'),
           addon: theme('colors.gray.100'),
-          tag: null, // Defaults to primary
+          tag: null, // defaults to primary
           sliderHandle: theme('colors.white'),
           toggleHandle: theme('colors.white'),
           dateHead: theme('colors.gray.100'),
-          btn: null, // Defaults to primary
+          btn: null, // defaults to primary
           btnDanger: theme('colors.red.500'),
-          btnSecondary: theme('colors.gray.300'),
+          btnSecondary: theme('colors.gray.200'),
         },
 
         textColors: {
           onPrimary: theme('colors.white'),
-          input: theme('colors.current'),
+          input: theme('colors.gray.800'),
+          inputHover: null, // defaults to `input`
+          inputFocus: null, // defaults to `input`
+          inputDanger: null, // defaults to `input`
+          inputSuccess: null, // defaults to `input`
           placeholder: theme('placeholderColor.gray.300'),
           disabled: theme('colors.gray.400'),
           passive: theme('colors.gray.700'),
@@ -1524,78 +1684,36 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
 
         borderColors: {
           input: theme('colors.gray.300'),
-          inputFocus: null, // Defaults to primary
-          btn: null, // Defaults to primary
-          tag: null, // Defaults to primary
+          inputFocus: null, // defaults to primary
+          inputHover: null, // defaults to `input`
+          inputDanger: null, // defaults to `input`
+          inputSuccess: null, // defaults to `input`
+          checked: null, // defaults to primary, applies to checkbox & radio
+          btn: null, // defaults to primary
+          tag: null, // defaults to primary
           passive: theme('colors.gray.300'),
           btnDanger: theme('colors.red.500'),
-          btnSecondary: theme('colors.gray.300'),
+          btnSecondary: theme('colors.gray.200'),
         },
 
-        inputShadow: 'none',
-        btnShadow: 'none',
-
-        ringWidth: theme('ringWidth.2'),
-        ringColor: null,
-
-        borderWidths: {
-          input: theme('borderWidth.DEFAULT'), // can be array
-          btn: theme('borderWidth.DEFAULT'), // can be array
-          tag: theme('borderWidth.DEFAULT'), // can be array
-        },
-        
-        radius: {
-          base: theme('borderRadius.DEFAULT'), // can be array
-          sm: theme('borderRadius.DEFAULT'), // can be array
-          lg: theme('borderRadius.DEFAULT'), // can be array
-        },
-        
-        btnRadius: { // buttons
-          base: theme('borderRadius.DEFAULT'), // can be array
-          sm: theme('borderRadius.DEFAULT'), // can be array
-          lg: theme('borderRadius.DEFAULT'), // can be array
-        },
-        
-        smallRadius: { // checkbox, tags, tooltips
-          base: theme('borderRadius.DEFAULT'), // can be array
-          sm: theme('borderRadius.DEFAULT'), // can be array
-          lg: theme('borderRadius.DEFAULT'), // can be array
-        },
-        
-        largeRadius: { // DragAndDrop, Checkbox/Radio Blocks, Textarea, native multiselect
-          base: theme('borderRadius.lg'), // can be array
-          sm: theme('borderRadius.lg'), // can be array
-          lg: theme('borderRadius.lg'), // can be array
-        },
-        
-        tagRadius: {
-          base: theme('borderRadius.DEFAULT'), // can be array
-          sm: theme('borderRadius.DEFAULT'), // can be array
-          lg: theme('borderRadius.DEFAULT'), // can be array
-        },
-        
-        checkboxRadius: {
-          base: theme('borderRadius.DEFAULT'), // can be array
-          sm: theme('borderRadius.DEFAULT'), // can be array
-          lg: theme('borderRadius.DEFAULT'), // can be array
-        },
-        
-        imageRadius: {
-          base: theme('borderRadius.DEFAULT'), // can be array
-          sm: theme('borderRadius.DEFAULT'), // can be array
-          lg: theme('borderRadius.DEFAULT'), // can be array
-        },
-        
-        galleryRadius: {
-          base: theme('borderRadius.DEFAULT'), // can be array
-          sm: theme('borderRadius.DEFAULT'), // can be array
-          lg: theme('borderRadius.DEFAULT'), // can be array
+        shadows: {
+          input: 'none',
+          inputHover: 'none',
+          inputFocus: 'none',
+          btn: 'none',
+          sliderHandle: '0.5px 0.5px 2px 1px rgba(0,0,0,.32)',
         },
 
         checkboxSize: {
           base: theme('width.4'),
           sm: theme('width')['3.5'],
           lg: theme('width.4'),
+        },
+
+        radioSize: {
+          base: null, // defaults to `checkboxSize`
+          sm: null, // defaults to `checkboxSize`
+          lg: null, // defaults to `checkboxSize`
         },
 
         gallerySize: {
@@ -1637,9 +1755,8 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
       inset: {
         '-1.25': '-0.3125rem'
       },
-      boxShadow: {
-        slider: '0.5px 0.5px 2px 1px rgba(0,0,0,.32)',
-        'slider-active': '0.5px 0.5px 2px 1px rgba(0,0,0,.42)',
+      outline: {
+        zero: ['none', '0px']
       },
       lineHeight: {
         px: '1px',

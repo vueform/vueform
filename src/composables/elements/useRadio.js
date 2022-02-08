@@ -13,6 +13,7 @@ const base = function (props, context, dependencies)
   const nullValue = dependencies.nullValue
   const fieldId = dependencies.fieldId
   const path = dependencies.path
+  const value = dependencies.value
   const form$ = dependencies.form$
 
   // ============== COMPUTED ==============
@@ -25,7 +26,6 @@ const base = function (props, context, dependencies)
   const inputName = computed(() => {
     return radioName.value || path.value
   })
-
 
   // =============== METHODS ==============
 
@@ -60,9 +60,9 @@ const base = function (props, context, dependencies)
   })
 
   return {
+    inputName,
     check,
     uncheck,
-    inputName,
   }
 }
 

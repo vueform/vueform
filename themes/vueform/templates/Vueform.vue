@@ -21,7 +21,7 @@
    *
    * Variables used across different templates.
    */
-  :root {
+  *, ::before, ::after, :root {
     --vf-primary: #10B981;
 
     --vf-bg-danger: #FEE2E2;

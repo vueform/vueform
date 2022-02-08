@@ -64,11 +64,12 @@ import EditorWrapper from './../../../blank/templates/wrappers/EditorWrapper.vue
       }
 
       &.trix-active {
-        background-color: var(--vf-gray-200);
+        background-color: var(--vf-bg-active);
+        filter: brightness(0.95);
       }
 
       &:not(.trix-active):hover {
-        background-color: var(--vf-gray-100);
+        background-color: var(--vf-bg-active);
 
         .is-disabled & {
           background: transparent;
@@ -100,7 +101,6 @@ import EditorWrapper from './../../../blank/templates/wrappers/EditorWrapper.vue
         bottom: 0px;
         left: 0px;
         display: inline-block;
-        opacity: 0.6;
         content: "";
         mask-repeat: no-repeat;
         mask-position: center center;
@@ -117,7 +117,7 @@ import EditorWrapper from './../../../blank/templates/wrappers/EditorWrapper.vue
       }
 
       &:disabled::before {
-        opacity: 0.1;
+        opacity: 0.4;
       }
     }
 
@@ -271,10 +271,10 @@ import EditorWrapper from './../../../blank/templates/wrappers/EditorWrapper.vue
   }
 
   trix-editor {
-    padding-left: var(--vf-input-px);
-    padding-right: var(--vf-input-px);
-    padding-bottom: var(--vf-input-py);
-    border-radius: var(--vf-large-radius);
+    padding-left: var(--vf-px-input);
+    padding-right: var(--vf-px-input);
+    padding-bottom: var(--vf-py-input);
+    border-radius: var(--vf-radius-large);
     outline: none;
     min-height: 6rem;
 
@@ -635,10 +635,10 @@ import EditorWrapper from './../../../blank/templates/wrappers/EditorWrapper.vue
 
   .form-editor-sm {
     trix-editor {
-      padding-left: var(--vf-input-px-sm);
-      padding-right: var(--vf-input-px-sm);
-      padding-bottom: var(--vf-input-py-sm);
-      border-radius: var(--vf-large-radius-sm);
+      padding-left: var(--vf-px-input-sm);
+      padding-right: var(--vf-px-input-sm);
+      padding-bottom: var(--vf-py-input-sm);
+      border-radius: var(--vf-radius-large-sm);
       min-height: 5rem;
     }
 
@@ -652,7 +652,7 @@ import EditorWrapper from './../../../blank/templates/wrappers/EditorWrapper.vue
     }
     
     trix-toolbar {
-      padding: var(--vf-input-py-sm) var(--vf-input-py-sm);
+      padding: var(--vf-py-input-sm) var(--vf-py-input-sm);
 
       .trix-button--icon {
         width: 2.25rem;
@@ -662,10 +662,10 @@ import EditorWrapper from './../../../blank/templates/wrappers/EditorWrapper.vue
 
   .form-editor-lg {
     trix-editor {
-      padding-left: var(--vf-input-px-lg);
-      padding-right: var(--vf-input-px-lg);
-      padding-bottom: var(--vf-input-py-lg);
-      border-radius: var(--vf-large-radius-lg);
+      padding-left: var(--vf-px-input-lg);
+      padding-right: var(--vf-px-input-lg);
+      padding-bottom: var(--vf-py-input-lg);
+      border-radius: var(--vf-radius-large-lg);
     }
   }
 </style>
