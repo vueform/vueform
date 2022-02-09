@@ -118,12 +118,12 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
 
         '--vf-danger': theme('form.danger'),
         '--vf-danger-lighter': theme('form.dangerLighter') === null
-          ? hslToRgba(Color(theme('form.danger')).lighten(0.5).toString(), 1)
+          ? Color(theme('form.danger')).alpha(0.2).toString()
           : theme('form.dangerLighter'),
 
         '--vf-success': theme('form.success'),
         '--vf-success-lighter': theme('form.successLighter') === null
-          ? hslToRgba(Color(theme('form.success')).lighten(0.5).toString(), 1)
+          ? Color(theme('form.success')).alpha(0.2).toString()
           : theme('form.successLighter'),
 
         '--vf-ring-color': theme('form.ringColor') === null ? Color(theme('form.primary')).alpha(theme('form.ringOpacity')).toString() : theme('form.ringColor'),
@@ -1639,10 +1639,10 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
         primaryDarker: null, // defaults to 10% darker primary
 
         danger: theme('colors.red.500'),
-        dangerLighter: null, // defaults to 50% lighter danger
+        dangerLighter: null, // defaults to danger with 0.2 alpha
 
         success: theme('colors.green.500'),
-        successLighter: null, // defaults to 50% lighter success
+        successLighter: null, // defaults to success with 0.2 alpha
 
         ringColor: null, // defaults to primary with ringOpacity alpha
         ringWidth: theme('ringWidth.2'),
