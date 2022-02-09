@@ -64,12 +64,12 @@ import EditorWrapper from './../../../blank/templates/wrappers/EditorWrapper.vue
       }
 
       &.trix-active {
-        background-color: var(--vf-bg-active);
+        background-color: var(--vf-bg-selected);
         filter: brightness(0.95);
       }
 
       &:not(.trix-active):hover {
-        background-color: var(--vf-bg-active);
+        background-color: var(--vf-bg-selected);
 
         .is-disabled & {
           background: transparent;
