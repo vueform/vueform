@@ -34,9 +34,8 @@
     position: absolute;
     width: 1rem;
     height: 1rem;
-    background: #FFFFFF;
     display: block;
-    right: var(--vf-input-px);
+    right: var(--vf-px-input);
     top: 50%;
     transform: translateY(-50%);
 
@@ -65,11 +64,11 @@
     }
 
     &.vf-element-loader-sm {
-      right: var(--vf-input-px-sm);
+      right: var(--vf-px-input-sm);
     }
 
     &.vf-element-loader-lg {
-      right: var(--vf-input-px-lg);
+      right: var(--vf-px-input-lg);
     }
   }
 

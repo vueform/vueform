@@ -14,38 +14,21 @@ import EditorWrapper from './../../../blank/templates/wrappers/EditorWrapper.vue
     border-radius: 0.25rem;
     flex-wrap: wrap;
 
-    @media (min-width: 768px) {
-      flex-wrap: nowrap;
-    }
-
     .trix-button-row {
       display: block;
       margin-bottom: -0.25rem;
       flex-wrap: nowrap;
       justify-content: space-between;
       overflow-x: auto;
-
-      @media (min-width: 768px) {
-        display: flex;
-        margin-bottom: 0;
-      }
     }
 
     .trix-button-group {
       display: inline;
-
-      @media (min-width: 768px) {
-        display: flex;
-      }
     }
 
     .trix-button-group-spacer {
       display: hidden;
       flex-grow: 1;
-
-      @media (min-width: 768px) {
-        display: block;
-      }
     }
 
     .trix-button {
@@ -59,13 +42,9 @@ import EditorWrapper from './../../../blank/templates/wrappers/EditorWrapper.vue
       white-space: nowrap;
       float: left;
 
-      @media (min-width: 768px) {
-        margin-bottom: 0;
-      }
-
       &.trix-active {
         background-color: var(--vf-bg-selected);
-        filter: brightness(0.95);
+        filter: brightness(0.9);
       }
 
       &:not(.trix-active):hover {
@@ -666,6 +645,12 @@ import EditorWrapper from './../../../blank/templates/wrappers/EditorWrapper.vue
       padding-right: var(--vf-px-input-lg);
       padding-bottom: var(--vf-py-input-lg);
       border-radius: var(--vf-radius-large-lg);
+    }
+  }
+
+  .form-editor-disabled {
+    trix-toolbar {
+      pointer-events: none;
     }
   }
 </style>

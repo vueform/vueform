@@ -27,17 +27,22 @@
     display: flex;
     justify-content: space-between;
     margin: var(--vf-gutter-lg) 0 0 0;
+    font-size: var(--vf-font-size);
+    line-height: var(--vf-line-height);
+    letter-spacing: var(--vf-letter-spacing);
 
     &.vf-steps-controls-sm {
       margin: var(--vf-gutter) 0 0 0;
       font-size: var(--vf-font-size-sm);
-      line-height: var(--var-line-height-sm);
+      line-height: var(--vf-line-height-sm);
+      letter-spacing: var(--vf-letter-spacing-md);
     }
 
     &.vf-steps-controls-lg {
       margin: var(--vf-gutter-lg) 0 0 0;
       font-size: var(--vf-font-size-lg);
-      line-height: var(--var-line-height-lg);
+      line-height: var(--vf-line-height-lg);
+      letter-spacing: var(--vf-letter-spacing-lg);
     }
   }
 </style>

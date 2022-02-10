@@ -10,16 +10,28 @@
         defaultClasses: {
           container: '',
           inputContainer: 'vf-input-group',
+          inputContainer_sm: 'vf-input-group-sm',
+          inputContainer_md: '',
+          inputContainer_lg: 'vf-input-group-lg',
           input: 'vf-input',
           input_enabled: '',
           input_disabled: '',
+          input_success: 'vf-input-success',
+          input_danger: 'vf-input-danger',
           input_sm: 'vf-input-sm',
           input_md: '',
           input_lg: 'vf-input-lg',
-          $input: (classes, { isDisabled, Size }) => ([
+          $inputContainer: (classes, { Size }) => ([
+            classes.inputContainer,
+            classes[`inputContainer_${Size}`],
+          ]),
+          $input: (classes, { isDisabled, Size, isSuccess, isDanger }) => ([
             classes.input,
             classes[`input_${Size}`],
-            isDisabled ? classes.input_disabled : classes.input_enabled
+            isDisabled ? classes.input_disabled : null,
+            !isDisabled && !isSuccess && !isDanger ? classes.input_enabled : null,
+            !isDisabled && isDanger ? classes.input_danger : null,
+            !isDisabled && isSuccess ? classes.input_success : null,
           ]),
         }
       }
@@ -29,24 +41,27 @@
 
 <style lang="scss">
   // Google
-  .pac-item {
-    border-color: var(--vf-border-color);
-    display: flex;
-    align-items: center;
-    padding-top: 0.75rem;
-    padding-bottom: 0.75rem;
-    padding-left: 0.75rem;
-    padding-right: 0.75rem;
+  .pac-container {
+    border-color: var(--vf-border-color-input);
+    background: var(--vf-bg-input);
   }
 
-  .pac-item > span:last-of-type {
-    font-size: 0.75rem;
-    line-height: 1rem;
+  .pac-item {
+    display: flex;
+    align-items: center;
+    padding: 0.375rem 0.75rem;
+    border-color: var(--vf-border-color-input);
+    background: var(--vf-bg-input);
+    color: var(--vf-color-input);
+
+    & > span:last-of-type {
+      font-size: 0.75rem;
+      color: var(--vf-color-muted);
+    } 
   }
 
   .pac-item-query {
     font-size: 0.875rem;
-    line-height: 1.25rem;
     line-height: 1;
     margin-right: 0.25rem;
     padding-right: 0.25rem;
@@ -54,27 +69,30 @@
 
   .pac-icon-marker {
     mask-image: url("data:image/svg+xml,%3csvg viewBox='0 0 384 512' fill='currentColor' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M172.268 501.67C26.97 291.031 0 269.413 0 192 0 85.961 85.961 0 192 0s192 85.961 192 192c0 77.413-26.97 99.031-172.268 309.67-9.535 13.774-29.93 13.773-39.464 0zM192 272c44.183 0 80-35.817 80-80s-35.817-80-80-80-80 35.817-80 80 35.817 80 80 80z'%3e%3c/path%3e%3c/svg%3e");
-    mask-size: contain;
     mask-repeat: no-repeat;
     mask-position: center center;
-    background-color: var(--vf-gray-400);
-    box-sizing: content-box;
-    height: 1rem;
-    margin-top: 0px;
+    mask-size: contain;
+    mask-image: theme('maskImage.form-map-marker');
+    background: var(--vf-bg-icon);
+    width: 0.875rem;
+    width: 0.875rem;
     margin-right: 0.75rem;
-    padding-top: 0.0625rem;
-    padding-bottom: 0.0625rem;
-    width: 1rem;
+    margin-top: 0;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    box-sizing: content-box;
     flex-shrink: 0;
   }
 
-  .pac-logo:after {
-    margin-left: 0.625rem;
-    margin-right: 0.625rem;
-    margin-bottom: 0.625rem;
+  .pac-logo {
+    &:after {
+      margin-left: 0.625rem;
+      margin-right: 0.625rem;
+      margin-bottom: 0.625rem;
+    }
   }
 
-  .hdpi .pac-icon, .pac-icon {
+  .pac-icon, .hdpi .pac-icon {
     background-image: none;
   }
 
@@ -103,56 +121,50 @@
   }
 
   .ap-footer-osm {
-    display: flex;
     margin-left: 0.25rem;
-  }
+    display: flex;
 
-  .ap-footer-osm svg {
-    margin-right: 0.25rem;
+    svg {
+      margin-right: 0.25rem;
+    }
   }
 
   .ap-suggestion {
-    border-bottom: 1px solid var(--vf-border-color);
-    display: flex;
-    align-items: center;
-    height: auto;
-    font-size: 0.875rem;
-    line-height: 1.25rem;
-    line-height: 1;
     padding-top: 0.75rem;
     padding-bottom: 0.75rem;
-    padding-left: 0.75rem;
-    padding-right: 0.75rem;
-    flex-shrink: 0;
-  }
+    border-bottom: 1px solid theme('colors.gray.200');
+    display: flex;
+    align-items: center;
+    font-size: 0.875rem;
+    line-height: 1;
+    height: auto;
 
-  .ap-suggestion svg {
-    display: none;
-  }
+    svg {
+      display: none;
+    }
 
-  .ap-suggestion:last-of-type {
-    border-width: 0px;
-    border: 0px;
+    &:last-of-type {
+      border: 0;
+    }
   }
 
   .ap-suggestion-icon {
-    mask-image: url("data:image/svg+xml,%3csvg viewBox='0 0 384 512' fill='currentColor' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M172.268 501.67C26.97 291.031 0 269.413 0 192 0 85.961 85.961 0 192 0s192 85.961 192 192c0 77.413-26.97 99.031-172.268 309.67-9.535 13.774-29.93 13.773-39.464 0zM192 272c44.183 0 80-35.817 80-80s-35.817-80-80-80-80 35.817-80 80 35.817 80 80 80z'%3e%3c/path%3e%3c/svg%3e");
-    mask-size: contain;
     mask-repeat: no-repeat;
     mask-position: center center;
-    background-color: var(--vf-gray-400);
-    box-sizing: content-box;
-    height: 1rem;
-    margin-top: 0px;
-    margin-right: 0.75rem;
-    padding-top: 0.0625rem;
-    padding-bottom: 0.0625rem;
+    mask-size: contain;
+    mask-image: theme('maskImage.form-map-marker');
+    background: theme('colors.gray.400');
     width: 1rem;
+    width: 1rem;
+    margin-right: 0.75rem;
+    margin-top: 0;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    box-sizing: content-box;
   }
 
   .ap-address {
     font-size: 0.75rem;
-    line-height: 1rem;
     line-height: 1;
     margin-left: 0.5rem;
   }

@@ -22,7 +22,7 @@ const config = {
   overrideClasses: {},
   presets: {},
   usePresets: [],
-  classHelpers: true,
+  classHelpers: false,
   columns: {},
   forceLabels: false,
   floatPlaceholders: true,

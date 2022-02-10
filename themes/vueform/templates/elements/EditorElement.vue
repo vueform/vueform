@@ -12,15 +12,24 @@
           input: 'vf-editor',
           input_enabled: '',
           input_disabled: 'vf-editor-disabled',
+          input_success: 'vf-editor-success',
+          input_danger: 'vf-editor-danger',
           input_focused: 'vf-editor-focused',
+          input_focused_success: '',
+          input_focused_danger: '',
           input_sm: 'vf-editor-sm',
           input_md: '',
           input_lg: 'vf-editor-lg',
-          $input: (classes, { isDisabled, focused, Size }) => ([
+          $input: (classes, { isDisabled, focused, Size, isSuccess, isDanger }) => ([
             classes.input,
             classes[`input_${Size}`],
-            isDisabled ? classes.input_disabled : classes.input_enabled,
-            focused ? classes.input_focused : null,
+            isDisabled ? classes.input_disabled : null,
+            !isDisabled && !isSuccess && !isDanger && !focused ? classes.input_enabled : null,
+            !isDisabled && isDanger ? classes.input_danger : null,
+            !isDisabled && isSuccess ? classes.input_success : null,
+            focused && !isDanger && !isSuccess ? classes.input_focused : null,
+            focused && isSuccess ? classes.input_focused_success : null,
+            focused && isDanger ? classes.input_focused_danger : null,
           ]),
         }
       }
@@ -30,17 +39,63 @@
 
 <style lang="scss">
   .vf-editor {
-    border: var(--vf-border-width) solid var(--vf-border-color);
-    border-radius: var(--vf-border-radius);
+    outline: 0px solid var(--vf-ring-color);
+    outline-offset: 0;
+    border-style: solid;
+    transition: box-shadow .2s ease-in-out,
+                color .2s ease-in-out,
+                background-color .2s ease-in-out,
+                border-color .2s ease-in-out;
 
-    &.vf-editor-focused {
-      border-color: var(--vf-primary);
-      box-shadow: 0px 0px 0px var(--vf-ring-width) var(--vf-ring-color);
-    }
+    font-size: var(--vf-font-size);
+    line-height: var(--vf-line-height);
+    letter-spacing: var(--vf-letter-spacing);
+
+    background-color: var(--vf-bg-input);
+    color: var(--vf-color-input);
+    border-color: var(--vf-border-color-input);
+    box-shadow: var(--vf-shadow-input);
+
+    border-width: var(--vf-border-width-input);
+    border-radius: var(--vf-radius);
 
     &.vf-editor-disabled {
-      background: var(--vf-bg-disabled);
+      background-color: var(--vf-bg-disabled);
       color: var(--vf-color-disabled);
+    }
+
+    &.vf-editor-success {
+      background-color: var(--vf-bg-input-success);
+      color: var(--vf-color-input-success);
+      border-color: var(--vf-border-color-input-success);
+    }
+
+    &.vf-editor-danger {
+      background-color: var(--vf-bg-input-danger);
+      color: var(--vf-color-input-danger);
+      border-color: var(--vf-border-color-input-danger);
+    }
+
+    &:hover:not(.vf-editor-disabled) {
+      box-shadow: var(--vf-shadow-input-hover);
+    }
+
+    &:hover:not(.vf-editor-disabled):not(.vf-editor-success):not(.vf-editor-danger) {
+      background-color: var(--vf-bg-input-hover);
+      color: var(--vf-color-input-hover);
+      border-color: var(--vf-border-color-input-hover);
+    }
+
+    &.vf-editor-focused {
+      box-shadow: var(--vf-shadow-input-focus);
+      outline: var(--vf-ring-width) solid var(--vf-ring-color);
+    }
+
+    &:focus:not(.vf-editor-success):not(.vf-editor-danger),
+    &:focus:not(.vf-editor-disabled):not(.vf-editor-success):not(.vf-editor-danger) {
+      background-color: var(--vf-bg-input-focus);
+      color: var(--vf-color-input-focus);
+      border-color: var(--vf-border-color-input-focus);
     }
   }
 </style>

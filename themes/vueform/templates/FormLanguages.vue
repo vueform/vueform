@@ -30,17 +30,22 @@
     list-style: none;
     padding: 0;
     margin: 0 0 var(--vf-gutter-lg) 0;
+    font-size: var(--vf-font-size);
+    line-height: var(--vf-line-height);
+    letter-spacing: var(--vf-letter-spacing);
 
     &.vf-languages-sm {
       margin: 0 0 var(--vf-gutter) 0;
       font-size: var(--vf-font-size-sm);
-      line-height: var(--var-line-height-sm);
+      line-height: var(--vf-line-height-sm);
+      letter-spacing: var(--vf-letter-spacing-sm);
     }
 
     &.vf-languages-lg {
       margin: 0 0 var(--vf-gutter-lg) 0;
       font-size: var(--vf-font-size-lg);
-      line-height: var(--var-line-height-lg);
+      line-height: var(--vf-line-height-lg);
+      letter-spacing: var(--vf-letter-spacing-lg);
     }
   }
 </style>

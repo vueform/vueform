@@ -188,6 +188,14 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
         '--vf-px-btn-sm': theme('form.btnPx.sm'),
         '--vf-px-btn-lg': theme('form.btnPx.lg'),
 
+        '--vf-py-btn-small': theme('form.btnSmallPy.base'),
+        '--vf-py-btn-small-sm': theme('form.btnSmallPy.sm'),
+        '--vf-py-btn-small-lg': theme('form.btnSmallPy.lg'),
+
+        '--vf-px-btn-small': theme('form.btnSmallPx.base'),
+        '--vf-px-btn-small-sm': theme('form.btnSmallPx.sm'),
+        '--vf-px-btn-small-lg': theme('form.btnSmallPx.lg'),
+
         '--vf-py-tag': theme('form.tagPy.base'),
         '--vf-py-tag-sm': theme('form.tagPy.sm'),
         '--vf-py-tag-lg': theme('form.tagPy.lg'),
@@ -267,6 +275,12 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
         '--vf-border-width-checkbox': theme('form.borderWidths.checkbox'),
         '--vf-border-width-btn': Array.isArray(theme('form.borderWidths.btn')) ? theme('form.borderWidths.btn').join(' ') : theme('form.borderWidths.btn'),
         '--vf-border-width-tag': Array.isArray(theme('form.borderWidths.tag')) ? theme('form.borderWidths.tag').join(' ') : theme('form.borderWidths.tag'),
+
+        '--vf-shadow-input': theme('form.shadows.input'),
+        '--vf-shadow-input-hover': theme('form.shadows.inputHover'),
+        '--vf-shadow-input-focus': theme('form.shadows.inputFocus'),
+        '--vf-shadow-btn': theme('form.shadows.btn'),
+        '--vf-shadow-slider-handle': theme('form.shadows.sliderHandle'),
         
         '--vf-radius': Array.isArray(theme('form.radius.base')) ? theme('form.radius.base').join(' ') : theme('form.radius.base'),
         '--vf-radius-sm': theme('form.radius.sm'),
@@ -303,12 +317,6 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
         '--vf-radius-gallery': theme('form.galleryRadius.base'),
         '--vf-radius-gallery-sm': theme('form.galleryRadius.sm'),
         '--vf-radius-gallery-lg': theme('form.galleryRadius.base'),
-
-        '--vf-shadow-input': theme('form.shadows.input'),
-        '--vf-shadow-input-hover': theme('form.shadows.inputHover'),
-        '--vf-shadow-input-focus': theme('form.shadows.inputFocus'),
-        '--vf-shadow-btn': theme('form.shadows.btn'),
-        '--vf-shadow-slider-handle': theme('form.shadows.sliderHandle'),
 
         '--vf-checkbox-size': theme('form.checkboxSize.base'),
         '--vf-checkbox-size-sm': theme('form.checkboxSize.sm'),
@@ -632,8 +640,12 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
       paddingRight: `var(--vf-px-slider-tooltip${size})`,
     }
 
-    plain[`.form-p-button${suffix}`] = {
+    plain[`.form-p-btn${suffix}`] = {
       padding: `var(--vf-py-btn${size}) var(--vf-px-btn${size})`
+    }
+
+    plain[`.form-p-btn-small${suffix}`] = {
+      padding: `var(--vf-py-btn-small${size}) var(--vf-px-btn-small${size})`
     }
 
     plain[`.form-pl-input-y${suffix}`] = {
@@ -810,6 +822,28 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
       }
     }
 
+    plain[`.form-bg-spinner-on-primary${suffix}`] = {
+      position: 'relative',
+      color: 'transparent',
+      '&::after': {
+        content: '""',
+        position: 'absolute',
+        left: '50%',
+        top: '50%',
+        display: 'inline-block',
+        width: `calc(var(--vf-min-height-input${size}) * 0.4)`,
+        height: `calc(var(--vf-min-height-input${size}) * 0.4)`,
+        marginLeft: `calc(var(--vf-min-height-input${size}) * (-0.2))`,
+        marginTop: `calc(var(--vf-min-height-input${size}) * (-0.2))`,
+        animation: 'spin 1s linear infinite',
+        maskImage: theme('maskImage.form-spinner'),
+        maskPosition: 'center center',
+        maskSize: 'contain',
+        maskRepeat: 'no-repeat',
+        backgroundColor: 'var(--vf-color-on-primary)'
+      }
+    }
+
     plain[`.form-bg-spinner-btn-secondary${suffix}`] = {
       position: 'relative',
       color: 'transparent',
@@ -886,9 +920,6 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
     '.form-bg-input': {
       backgroundColor: 'var(--vf-bg-input)'
     },
-    '.form-bg-input-danger': {
-      backgroundColor: 'var(--vf-bg-input-danger)'
-    },
     '.form-bg-input-success': {
       backgroundColor: 'var(--vf-bg-input-success)'
     },
@@ -946,9 +977,6 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
 
     '.form-border-b-color-input': {
       borderBottomColor: 'var(--vf-border-color-input)'
-    },
-    '.form-border-color-input-danger': {
-      borderColor: 'var(--vf-border-color-input-danger)'
     },
     '.form-border-color-input-success': {
       borderColor: 'var(--vf-border-color-input-success)'
@@ -1132,13 +1160,13 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
       },
       '&.form-step-disabled': {
         '&:before': {
-          background: 'var(--vf-bg-passive)',
+          background: 'var(--vf-bg-disabled)',
           left: '-100%',
         },
         a: {
-          color: 'var(--vf-gray-500)',
+          color: 'var(--vf-color-disabled)',
           '&:before': {
-            background: 'var(--vf-bg-passive)',
+            background: 'var(--vf-bg-disabled)',
           }
         },
       },
@@ -1146,9 +1174,9 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
         a: {
           '&:after': {
             maskImage: theme('maskImage.form-check-solid'),
-            backgroundColor: '#FFFFFF',
-            maskPosition: '0px 0px',
-            maskSize: '8px 8px',
+            backgroundColor: 'var(--vf-color-on-primary)',
+            maskPosition: '0 0',
+            maskSize: '0.5rem 0.5rem',
             maskRepeat: 'no-repeat',
             borderRadius: '0',
             transform: 'scale(1)',
@@ -1159,8 +1187,8 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
         a: {
           '&:after': {
             maskImage: 'none',
-            background: '#ffffff',
-            top: '-14px',
+            background: 'var(--vf-color-on-primary)',
+            top: '-0.875rem',
             transform: 'scale(1)',
             borderRadius: '50%',
           }
@@ -1168,19 +1196,19 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
       },
       '&.has-errors': {
         a: {
-          color: 'var(--vf-color-danger)',
+          color: 'var(--vf-bg-btn-danger)',
           '&:before': {
-            backgroundColor: 'var(--vf-color-danger)',
+            backgroundColor: 'var(--vf-bg-btn-danger)',
           },
           '&:after': {
             maskImage: theme('maskImage.form-exclamation-solid'),
-            maskSize: '8px 8px',
-            maskPosition: '0px 0px',
+            maskSize: '0.5rem 0.5rem',
+            maskPosition: '0 0',
             maskRepeat: 'no-repeat',
-            backgroundColor: '#FFFFFF',
-            width: '8px',
-            height: '8px',
-            top: '-14px',
+            backgroundColor: 'var(--vf-color-btn-danger)',
+            width: '0.5rem',
+            height: '0.5rem',
+            top: '-0.875rem',
             borderRadius: '0',
           },
         }
@@ -1189,7 +1217,7 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
         a: {
           '&:after': {
             animation: '1s linear infinite step-loading',
-            background: '#ffffff',
+            background: 'var(--vf-color-btn-danger)',
             top: '-14px',
             borderRadius: '50%',
           }
@@ -1357,22 +1385,35 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
         maskRepeat: 'no-repeat',
         backgroundColor: 'var(--vf-color-on-primary)',
         display: 'block',
-        width: '100%',
-        height: '100%',
+        width: '66.666%',
+        height: '66.666%',
+        marginTop: '16.666%',
+        marginLeft: '16.666%',
       }
     },
     '.form-bg-icon-radio': {
       '&::after': {
-        content: '""',
-        maskImage: theme('maskImage.form-radio'),
-        maskPosition: 'center center',
-        maskSize: 'contain',
-        maskRepeat: 'no-repeat',
+        content: '" "',
         backgroundColor: 'var(--vf-color-on-primary)',
-        display: 'block',
-        width: '100%',
-        height: '100%',
+        display: 'inline-block',
+        width: '48%',
+        height: '48%',
+        borderRadius: '50%',
+        opacity: '0',
+        transition: 'all .2s ease-in-out .1s',
+        transform: 'scale(.2)',
+        opacity: '1',
+        transform: 'scale(1)',
       }
+    },
+  }
+
+  const notCheckable = {
+    '.form-border-color-input-danger': {
+      borderColor: 'var(--vf-border-color-input-danger)'
+    },
+    '.form-bg-input-danger': {
+      backgroundColor: 'var(--vf-bg-input-danger)'
     },
   }
 
@@ -1475,6 +1516,7 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
   addUtilities(hoverable, ['hover'])
   addUtilities(groupHoverable, ['group-hover'])
   addUtilities(checkable, ['checked'])
+  addUtilities(notCheckable, ['not-checked'])
   addUtilities(focusable, ['focus'])
   addUtilities(activable, ['active'])
   addUtilities(disableable, ['disabled'])
@@ -1532,6 +1574,12 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
   addVariant('hover-not-disabled', ({ modifySelectors, separator }) => {
     modifySelectors(({ className }) => {
       return `.${e(`hover-not-disabled${separator}${className}`)}:not([disabled]):hover`
+    })
+  })
+
+  addVariant('not-checked', ({ modifySelectors, separator }) => {
+    modifySelectors(({ className }) => {
+      return `.${e(`not-checked${separator}${className}`)}:not(:checked)`
     })
   })
 
@@ -1644,7 +1692,7 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
         success: theme('colors.green.500'),
         successLighter: null, // defaults to success with 0.2 alpha
 
-        ringColor: null, // defaults to primary with ringOpacity alpha
+        ringColor: null, // defaults to primary with `ringOpacity` alpha
         ringWidth: theme('ringWidth.2'),
         ringOpacity: 0.4,
 
@@ -1720,6 +1768,18 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
           base: 'var(--vf-px-input)',
           sm: 'var(--vf-px-input-sm)',
           lg: 'var(--vf-px-input-lg)',
+        },
+
+        btnSmallPy: {
+          base: theme('padding')['1'],
+          sm: theme('padding')['1'],
+          lg: theme('padding')['1.5'],
+        },
+
+        btnSmallPx: {
+          base: theme('padding')['2.5'],
+          sm: theme('padding')['2.5'],
+          lg: theme('padding')['3'],
         },
 
         tagPy: {
@@ -1816,7 +1876,7 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
           inputDanger: 'var(--vf-bg-input)',
           inputSuccess: 'var(--vf-bg-input)',
           disabled: 'var(--vf-gray-200)',
-          selected: 'var(--vf-gray-100)', // Option hover, cbgroup blocks selected
+          selected: 'rgba(17,24,39,0.05)', // Option hover, cbgroup blocks selected
           passive: 'var(--vf-gray-300)',
           icon: 'var(--vf-gray-500)',
           danger: 'var(--vf-danger-lighter)',
@@ -1869,9 +1929,9 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
 
         shadows: {
           input: '0px 0px 0px 0px rgba(0,0,0,0)',
-          inputHover: '0px 0px 0px 0px rgba(0,0,0,0)',
-          inputFocus: '0px 0px 0px 0px rgba(0,0,0,0)',
-          btn: '0px 0px 0px 0px rgba(0,0,0,0)',
+          inputHover: 'var(--vf-shadow-input)',
+          inputFocus: 'var(--vf-shadow-input)',
+          btn: 'var(--vf-shadow-input)',
           sliderHandle: '0.5px 0.5px 2px 1px rgba(0,0,0,.32)',
         },
 
@@ -1958,7 +2018,7 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
         '-1.25': '-0.3125rem'
       },
       outline: {
-        zero: ['none', '0px']
+        zero: ['0px solid var(--vf-ring-color)', '0px']
       },
       lineHeight: {
         px: '1px',
@@ -1979,7 +2039,7 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
           `<svg viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="8" cy="8" r="3"/></svg>`,
         )}")`,
         'form-check': `url("${svgToDataUri(
-          `<svg viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z"/></svg>`,
+          `<svg viewBox="0 0 512 399" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M19.0982946,271.314063 C12.7710159,264.986784 -19.5640449,226.028684 17.5157021,188.948937 C54.5954492,151.869189 93.8002056,183.954281 100.125569,190.280783 L170.333604,260.487679 L411.436495,19.3859275 C417.154189,13.6670939 456.071057,-20.2835775 494.205994,17.8513602 C532.340932,55.9862978 498.18569,94.6972864 492.466202,100.416774 L209.646939,383.237176 C189.916526,402.965616 152.615587,404.508998 130.297151,382.512919 L19.0982946,271.314063 Z"></path></svg>`,
         )}")`,
         'form-check-solid': `url("${svgToDataUri(
           `<svg viewBox="0 0 512 512" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"></path></svg>`,

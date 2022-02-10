@@ -93,7 +93,7 @@ export default class Columns
     _.each(presets, (presetName) => {
       let preset = this.presets[presetName]
 
-      if (!preset.columns) {
+      if (!preset || !preset.columns) {
         return
       }
 

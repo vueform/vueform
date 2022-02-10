@@ -24,20 +24,23 @@
 
 <style lang="scss">
   .vf-element-message {
-    font-size: var(--vf-element-text-font-size);
-    line-height: var(--vf-element-text-line-height);
+    font-size: var(--vf-font-size-small);
+    line-height: var(--vf-font-size-small-height);
+    letter-spacing: var(--vf-letter-spacing-small);
     color: var(--vf-color-success);
     margin-top: 0.25rem;
 
     &.vf-element-message-sm {
-      font-size: var(--vf-element-text-font-size-sm);
-      line-height: var(--vf-element-text-line-height-sm);
+      font-size: var(--vf-font-size-small-sm);
+      line-height: var(--vf-font-size-small-height-sm);
+      letter-spacing: var(--vf-letter-spacing-small-sm);
       margin-top: 0.125rem;
     }
 
     &.vf-element-message-lg {
-      font-size: var(--vf-element-text-font-size-lg);
-      line-height: var(--vf-element-text-line-height-lg);
+      font-size: var(--vf-font-size-small-lg);
+      line-height: var(--vf-font-size-small-height-lg);
+      letter-spacing: var(--vf-letter-spacing-small-lg);
     }
   }
 </style>

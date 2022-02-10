@@ -34,28 +34,34 @@
   }
 
   .vf-language-wrapper {
-    border-radius: var(--vf-border-radius);
-    text-align: center;
     padding: 0.5rem 1rem;
     display: block;
-    color: var(--vf-primary);
+    margin-left: 1px;
+    margin-right: 1px;
     text-decoration: none;
+    border-bottom: 2px solid transparent;
+    color: var(--vf-color-input);
+    text-align: center;
 
-    &:hover { 
+    &:hover {
       text-decoration: none;
     }
 
     &.vf-language-wrapper-sm {
-      border-radius: var(--vf-border-radius-sm);
+      padding: 0.375rem 0.875rem;
     }
 
     &.vf-language-wrapper-lg {
-      border-radius: var(--vf-border-radius-lg);
+      padding: 0.5rem 1rem;
     }
 
     &.vf-language-wrapper-active {
-      color: #FFFFFF;
-      background: var(--vf-primary);
+      border-color: var(--vf-primary);
+    }
+
+    &.vf-language-wrapper-invalid {
+      border-color: var(--vf-danger);
+      color: var(--vf-color-danger);
     }
   }
 </style>

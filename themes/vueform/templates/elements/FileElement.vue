@@ -10,7 +10,7 @@
         defaultClasses: {
           container: 'vf-file',
           container_removing: 'vf-file-removing',
-          button: 'vf-btn vf-btn-light',
+          button: 'vf-btn vf-btn-secondary',
           button_enabled: '',
           button_disabled: 'vf-btn-disabled',
           button_sm: 'vf-btn-sm',

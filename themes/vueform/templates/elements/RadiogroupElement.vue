@@ -25,15 +25,15 @@
 
 <style lang="scss">
   .vf-radiogroup-wrapper {
-    padding-top: calc(var(--vf-input-py) + var(--vf-border-width));
+    padding-top: calc(var(--vf-py-input) + var(--vf-border-width));
     cursor: pointer;
 
     &.vf-radiogroup-wrapper-sm {
-      padding-top: calc(var(--vf-input-py-sm) + var(--vf-border-width));
+      padding-top: calc(var(--vf-py-input-sm) + var(--vf-border-width));
     }
 
     &.vf-radiogroup-wrapper-lg {
-      padding-top: calc(var(--vf-input-py-lg) + var(--vf-border-width));
+      padding-top: calc(var(--vf-py-input-lg) + var(--vf-border-width));
     }
 
     .vf-radio-container {

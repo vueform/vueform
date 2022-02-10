@@ -35,22 +35,25 @@
 
 <style lang="scss">
   .vf-addon {
-    align-items: center;
     display: flex;
-    padding: var(--vf-input-py) var(--vf-input-px);
-    border: var(--vf-border-width) solid var(--vf-border-color);
-    border-radius: var(--vf-border-radius);
-    background: var(--vf-addon-bg);
-    color: var(--vf-addon-color);
+    align-items: center;
+    justify-content: center;
+    padding: var(--vf-py-input) var(--vf-px-input);
+    border-width: var(--vf-border-width-input);
+    border-color: var(--vf-border-color-input);
+    border-style: solid;
+    border-radius: var(--vf-radius);
+    background-color: var(--vf-bg-addon);
+    color: var(--vf-color-addon);
 
     &.vf-addon-sm {
-      padding: var(--vf-input-py-sm) var(--vf-input-px-sm);
-      border-radius: var(--vf-border-radius-sm);
+      padding: var(--vf-py-input-sm) var(--vf-px-input-sm);
+      border-radius: var(--vf-radius-sm);
     }
 
     &.vf-addon-lg {
-      padding: var(--vf-input-py-lg) var(--vf-input-px-lg);
-      border-radius: var(--vf-border-radius-lg);
+      padding: var(--vf-py-input-lg) var(--vf-px-input-lg);
+      border-radius: var(--vf-radius-lg);
     }
   }
 
@@ -91,5 +94,12 @@
       border-top-right-radius: 0;
       border-bottom-right-radius: 0;
     }
+  }
+
+  .vf-addon-wrapper {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
   }
 </style>

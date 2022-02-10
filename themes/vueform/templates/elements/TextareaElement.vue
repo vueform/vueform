@@ -10,16 +10,28 @@
         defaultClasses: {
           container: '',
           inputContainer: 'vf-input-group',
-          input: 'vf-input',
+          inputContainer_sm: 'vf-input-group-sm',
+          inputContainer_md: '',
+          inputContainer_lg: 'vf-input-group-lg',
+          input: 'vf-input vf-textarea',
           input_enabled: '',
           input_disabled: '',
+          input_success: 'vf-input-success',
+          input_danger: 'vf-input-danger',
           input_sm: 'vf-input-sm',
           input_md: '',
           input_lg: 'vf-input-lg',
-          $input: (classes, { isDisabled, Size }) => ([
+          $inputContainer: (classes, { Size }) => ([
+            classes.inputContainer,
+            classes[`inputContainer_${Size}`],
+          ]),
+          $input: (classes, { isDisabled, Size, isSuccess, isDanger }) => ([
             classes.input,
             classes[`input_${Size}`],
-            isDisabled ? classes.input_disabled : classes.input_enabled
+            isDisabled ? classes.input_disabled : null,
+            !isDisabled && !isSuccess && !isDanger ? classes.input_enabled : null,
+            !isDisabled && isDanger ? classes.input_danger : null,
+            !isDisabled && isSuccess ? classes.input_success : null,
           ]),
         }
       }

@@ -36,11 +36,11 @@
   .vf-tab-wrapper {
     padding: 0.5rem 1rem;
     display: block;
-    background: white;
     margin-left: 1px;
     margin-right: 1px;
-    color: inherit;
     text-decoration: none;
+    border-bottom: 2px solid transparent;
+    color: var(--vf-color-input);
 
     &:hover {
       text-decoration: none;
@@ -54,19 +54,13 @@
       padding: 0.5rem 1rem;
     }
 
-    &.vf-tab-wrapper-invalid {
-      color: var(--vf-color-danger);
+    &.vf-tab-wrapper-active {
+      border-color: var(--vf-primary);
     }
 
-    &.vf-tab-wrapper-active {
-      border: 1px solid var(--vf-border-color);
-      border-bottom: 1px solid #FFFFFF;
-      border-top-left-radius: var(--vf-border-radius);
-      border-top-right-radius: var(--vf-border-radius);
-      margin-bottom: -1px;
-      margin-left: 0;
-      margin-right: 0;
+    &.vf-tab-wrapper-invalid {
+      border-color: var(--vf-danger);
+      color: var(--vf-color-danger);
     }
   }
-  
 </style>

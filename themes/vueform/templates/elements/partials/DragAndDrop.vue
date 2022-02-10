@@ -9,6 +9,9 @@
         merge: true,
         defaultClasses: {
           container: 'vf-dnd',
+          container_sm: 'vf-dnd-sm',
+          container_md: '',
+          container_lg: 'vf-dnd-lg',
           container_inactive: '',
           container_active: 'is-active',
           container_enabled: '',
@@ -16,8 +19,9 @@
           icon: 'vf-dnd-icon-upload',
           title: 'vf-dnd-title',
           description: 'vf-dnd-description',
-          $container: (classes, { dragging, disabled }) => ([
+          $container: (classes, { dragging, disabled, Size }) => ([
             classes.container,
+            classes[`container_${Size}`],
             dragging ? classes.container_active : classes.container_inactive,
             disabled ? classes.container_disabled : classes.container_enabled,
           ]),
@@ -31,7 +35,9 @@
   .vf-dnd {
     background-color: #FFFFFF;
     transition: .3s;
-    border: var(--vf-border-width) dashed var(--vf-border-color);
+    border-width: var(--vf-border-width-input);
+    border-style: dashed;
+    border-color: var(--vf-border-color-input);
     padding: 1.5rem;
     display: flex;
     flex-direction: column;
@@ -46,31 +52,26 @@
     text-align: center;
     position: relative;
     transition: .3s;
-    border-radius: var(--vf-border-radius);
+    background-color: var(--vf-bg-input);
+    color: var(--vf-color-input);
+    border-radius: var(--vf-radius-large);
+    box-shadow: var(--vf-shadow-input);
 
-    &:after {
-      content: "";
-      position: absolute;
-      left: 0;
-      right: 0;
-      top: 0;
-      bottom: 0;
-      background: var(--vf-primary);
-      opacity: 0;
+    &.vf-dnd-sm {
+      border-radius: var(--vf-radius-large);
+    }
+
+    &.vf-dnd-lg {
+
     }
 
     &.is-disabled {
-      background: var(--vf-bg-disabled);
       opacity: 0.5;
       cursor: not-allowed;
     }
 
     &.is-active {
       border-color: var(--vf-primary);
-
-      &:after {
-        opacity: 0.1;
-      }
     }
   }
 

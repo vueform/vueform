@@ -25,18 +25,18 @@
 
 <style lang="scss">
   .vf-label {
-    padding-top: calc(var(--vf-input-py) + var(--vf-border-width));
-    padding-bottom: calc(var(--vf-input-py) + var(--vf-border-width));
+    padding-top: calc(var(--vf-py-input) + var(--vf-border-width-input-t));
+    padding-bottom: calc(var(--vf-py-input) + var(--vf-border-width-input-b));
     margin-bottom: 0;
 
     &.vf-label-sm {
-      padding-top: calc(var(--vf-input-py-sm) + var(--vf-border-width));
-      padding-bottom: calc(var(--vf-input-py-sm) + var(--vf-border-width));
+      padding-top: calc(var(--vf-py-input-sm) + var(--vf-border-width-input-t));
+      padding-bottom: calc(var(--vf-py-input-sm) + var(--vf-border-width-input-b));
     }
 
     &.vf-label-lg {
-      padding-top: calc(var(--vf-input-py-lg) + var(--vf-border-width));
-      padding-bottom: calc(var(--vf-input-py-lg) + var(--vf-border-width));
+      padding-top: calc(var(--vf-py-input-lg) + var(--vf-border-width-input-t));
+      padding-bottom: calc(var(--vf-py-input-lg) + var(--vf-border-width-input-b));
     }
   }
 </style>

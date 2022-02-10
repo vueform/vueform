@@ -31,7 +31,7 @@ const base = function(props, context, dependencies)
     _.each(presets ? presets.value : [], (presetName) => {
       let preset = form$.value.$vueform.config.presets[presetName]
 
-      if (!preset.templates) {
+      if (!preset || !preset.templates) {
         return
       }
 

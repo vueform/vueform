@@ -13,10 +13,6 @@ import DatepickerWrapper from './../../../blank/templates/wrappers/DatepickerWra
     
   }
 
-  .flatpickr-wrapper {
-    width: 100%;
-  }
-
   .flatpickr-calendar {
     background: transparent;
     opacity: 0;
@@ -80,8 +76,8 @@ import DatepickerWrapper from './../../../blank/templates/wrappers/DatepickerWra
   }
 
   .flatpickr-calendar.multiMonth .flatpickr-days .dayContainer:nth-child(n+2) .flatpickr-day.inRange:nth-child(7n+1) {
-    -webkit-box-shadow: -2px 0 0 #e6e6e6, 5px 0 0 #e6e6e6;
-            box-shadow: -2px 0 0 #e6e6e6, 5px 0 0 #e6e6e6;
+    -webkit-box-shadow: -2px 0 0 var(--vf-gray-200), 5px 0 0 var(--vf-gray-200);
+            box-shadow: -2px 0 0 var(--vf-gray-200), 5px 0 0 var(--vf-gray-200);
   }
 
   .flatpickr-calendar .hasWeeks .dayContainer,
@@ -137,11 +133,13 @@ import DatepickerWrapper from './../../../blank/templates/wrappers/DatepickerWra
   .flatpickr-calendar:before {
     border-width: 5px;
     margin: 0 -5px;
+    box-sizing: border-box;
   }
 
   .flatpickr-calendar:after {
     border-width: 4px;
     margin: 0 -4px;
+    box-sizing: border-box;
   }
 
   .flatpickr-calendar.arrowTop:before,
@@ -151,10 +149,12 @@ import DatepickerWrapper from './../../../blank/templates/wrappers/DatepickerWra
 
   .flatpickr-calendar.arrowTop:before {
     border-bottom-color: var(--vf-bg-date-head);
+    box-sizing: border-box;
   }
 
   .flatpickr-calendar.arrowTop:after {
     border-bottom-color: var(--vf-bg-date-head);
+    box-sizing: border-box;
   }
 
   .flatpickr-calendar.arrowBottom:before,
@@ -254,6 +254,7 @@ import DatepickerWrapper from './../../../blank/templates/wrappers/DatepickerWra
     width: 14px;
     height: 14px;
     opacity: 0.7;
+    display: block;
   }
 
   .flatpickr-months .flatpickr-prev-month svg path,
@@ -296,17 +297,17 @@ import DatepickerWrapper from './../../../blank/templates/wrappers/DatepickerWra
     line-height: 50%;
     opacity: 0;
     cursor: pointer;
-    border: 1px solid rgba(72,72,72,0.15);
+    border: 1px solid var(--vf-gray-200);
     -webkit-box-sizing: border-box;
             box-sizing: border-box;
   }
 
   .numInputWrapper span:hover {
-    background: rgba(0,0,0,0.1);
+    background: var(--vf-gray-100);
   }
 
   .numInputWrapper span:active {
-    background: rgba(0,0,0,0.2);
+    background: var(--vf-gray-200);
   }
 
   .numInputWrapper span:after {
@@ -323,8 +324,9 @@ import DatepickerWrapper from './../../../blank/templates/wrappers/DatepickerWra
   .numInputWrapper span.arrowUp:after {
     border-left: 4px solid transparent;
     border-right: 4px solid transparent;
-    border-bottom: 4px solid rgba(72,72,72,0.6);
+    border-bottom: 4px solid var(--vf-gray-700);
     top: 26%;
+    box-sizing: border-box;
   }
 
   .numInputWrapper span.arrowDown {
@@ -334,8 +336,9 @@ import DatepickerWrapper from './../../../blank/templates/wrappers/DatepickerWra
   .numInputWrapper span.arrowDown:after {
     border-left: 4px solid transparent;
     border-right: 4px solid transparent;
-    border-top: 4px solid rgba(72,72,72,0.6);
+    border-top: 4px solid var(--vf-gray-700);
     top: 40%;
+    box-sizing: border-box;
   }
 
   .numInputWrapper span svg {
@@ -344,7 +347,7 @@ import DatepickerWrapper from './../../../blank/templates/wrappers/DatepickerWra
   }
 
   .numInputWrapper span svg path {
-    fill: rgba(90,97,113,0.5);
+    fill: var(--vf-gray-300);
   }
 
   .numInputWrapper:hover {
@@ -428,7 +431,7 @@ import DatepickerWrapper from './../../../blank/templates/wrappers/DatepickerWra
   .flatpickr-current-month input.cur-year[disabled],
   .flatpickr-current-month input.cur-year[disabled]:hover {
     font-size: 100%;
-    color: rgba(90,97,113,0.5);
+    color: var(--vf-gray-300);
     background: transparent;
     pointer-events: none;
   }
@@ -463,7 +466,7 @@ import DatepickerWrapper from './../../../blank/templates/wrappers/DatepickerWra
   }
 
   .flatpickr-current-month .flatpickr-monthDropdown-months:hover {
-    background: rgba(0,0,0,0.05);
+    background: var(--vf-gray-100);
   }
 
   .flatpickr-current-month .flatpickr-monthDropdown-months .flatpickr-monthDropdown-month {
@@ -564,8 +567,8 @@ import DatepickerWrapper from './../../../blank/templates/wrappers/DatepickerWra
   }
 
   .dayContainer + .dayContainer {
-    -webkit-box-shadow: -1px 0 0 rgba(0,0,0,0.1);
-            box-shadow: -1px 0 0 rgba(0,0,0,0.1);
+    -webkit-box-shadow: -1px 0 0 var(--vf-gray-200);
+            box-shadow: -1px 0 0 var(--vf-gray-200);
   }
 
   .flatpickr-day {
@@ -582,7 +585,7 @@ import DatepickerWrapper from './../../../blank/templates/wrappers/DatepickerWra
             flex-basis: 14.2857143%;
     max-width: 39px;
     height: 39px;
-    line-height: 39px;
+    line-height: 38px;
     margin: 0;
     display: inline-block;
     position: relative;
@@ -693,7 +696,7 @@ import DatepickerWrapper from './../../../blank/templates/wrappers/DatepickerWra
   .flatpickr-day.flatpickr-disabled,
   .flatpickr-day.flatpickr-disabled:hover {
     cursor: not-allowed;
-    color: var(--vf-color-disabled);;
+    color: var(--vf-color-disabled);
   }
 
   .flatpickr-day.week.selected {
@@ -729,7 +732,7 @@ import DatepickerWrapper from './../../../blank/templates/wrappers/DatepickerWra
     display: block;
     width: 100%;
     max-width: none;
-    color: rgba(72,72,72,0.3);
+    color: var(--vf-gray-300);
     background: transparent;
     cursor: default;
     border: none;
@@ -789,11 +792,13 @@ import DatepickerWrapper from './../../../blank/templates/wrappers/DatepickerWra
   }
 
   .flatpickr-time .numInputWrapper span.arrowUp:after {
-    border-bottom-color: #484848;
+    border-bottom-color: var(--vf-gray-600);
+    box-sizing: border-box;
   }
 
   .flatpickr-time .numInputWrapper span.arrowDown:after {
-    border-top-color: #484848;
+    border-top-color: var(--vf-gray-600);
+    box-sizing: border-box;
   }
 
   .flatpickr-time.hasSeconds .numInputWrapper {

@@ -30,7 +30,7 @@
       mask-position: center center;
       mask-repeat: no-repeat;
       mask-size: contain;
-      background-color: var(--vf-gray-400);
+      background-color: var(--vf-bg-passive);
       width: 0.875rem;
       height: 0.875rem;
       display: inline-block;
@@ -58,8 +58,10 @@
   .vf-element-info-content {
     background: rgba(0,0,0,0.85);
     color: #FFFFFF;
-    border-radius: var(--vf-border-radius);
-    font-size: 80%;
+    border-radius: var(--vf-radius-small);
+    font-size: var(--vf-font-size);
+    line-height: var(--vf-line-height);
+    letter-spacing: var(--vf-letter-spacing);
     padding: 0.3125rem 0.625rem;
     font-style: normal;
     display: inline-block;

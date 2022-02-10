@@ -12,7 +12,13 @@
           wrapper: 'vf-checkbox-blocks',
           wrapper_not_last: 'vf-checkbox-blocks-not-last',
           wrapper_first: 'vf-checkbox-blocks-first',
+          wrapper_first_sm: 'vf-checkbox-blocks-first-sm',
+          wrapper_first_md: '',
+          wrapper_first_lg: 'vf-checkbox-blocks-first-lg',
           wrapper_last: 'vf-checkbox-blocks-last',
+          wrapper_last_sm: 'vf-checkbox-blocks-last-sm',
+          wrapper_last_md: '',
+          wrapper_last_lg: 'vf-checkbox-blocks-last-lg',
           wrapper_selected: 'vf-checkbox-blocks-selected',
           wrapper_unselected: 'vf-checkbox-blocks-unselected',
           wrapper_disabled: 'vf-checkbox-blocks-disabled',
@@ -22,6 +28,7 @@
           input: 'vf-checkbox',
           input_enabled: '',
           input_disabled: '',
+          input_danger: 'vf-checkbox-danger',
           input_sm: 'vf-checkbox-sm',
           input_md: '',
           input_lg: 'vf-checkbox-lg',
@@ -36,14 +43,17 @@
             classes[`wrapper_${Size}`],
             index < Object.keys(items).length - 1 ? classes.wrapper_not_last : null,
             index === 0 ? classes.wrapper_first : null,
+            index === 0 ? classes[`wrapper_first_${Size}`] : null,
             index === Object.keys(items).length - 1 ? classes.wrapper_last : null,
+            index === Object.keys(items).length - 1 ? classes[`wrapper_last_${Size}`] : null,
             el$.value.indexOf(value) !== -1 ? classes.wrapper_selected : classes.wrapper_unselected,
             isDisabled ? classes.wrapper_disabled : null,
           ]),
-          $input: (classes, { isDisabled, Size }) => ([
+          $input: (classes, { isDisabled, Size, isDanger }) => ([
             classes.input,
             classes[`input_${Size}`],
-            isDisabled ? classes.input_disabled : classes.input_enabled
+            isDisabled ? classes.input_disabled : classes.input_enabled,
+            !isDisabled && isDanger ? classes.input_danger : null,
           ]),
           $description: (classes, { Size }) => ([
             classes.description,
@@ -66,27 +76,59 @@
   .vf-checkbox-blocks {
     display: flex;
     align-items: center;
-    border: var(--vf-border-width) solid var(--vf-border-color);
+    border-style: solid;
+    border-width: var(--vf-border-width-input);
+    border-color: var(--vf-border-color-input);
     width: 100%;
     padding: 0.75rem 1rem;
-    background: #ffffff;
+    background: var(--vf-bg-input);
+    color: var(--vf-color-input);
+    font-size: var(--vf-font-size);
+    line-height: var(--vf-line-height);
+    letter-spacing: var(--vf-letter-spacing);
 
     &.vf-checkbox-blocks-not-last {
       border-bottom: 0;
     }
 
     &.vf-checkbox-blocks-first {
-      border-top-left-radius: 0.5rem;
-      border-top-right-radius: 0.5rem;
+      border-radius: var(--vf-radius-large);
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+
+      &.vf-checkbox-blocks-first-sm {
+        border-radius: var(--vf-radius-large-sm);
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+      }
+
+      &.vf-checkbox-blocks-first-lg {
+        border-radius: var(--vf-radius-large-lg);
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+      }
     }
 
     &.vf-checkbox-blocks-last {
-      border-bottom-left-radius: 0.5rem;
-      border-bottom-right-radius: 0.5rem;
+      border-radius: var(--vf-radius-large);
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+
+      &.vf-checkbox-blocks-last-sm {
+      border-radius: var(--vf-radius-large-sm);
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+      }
+
+      &.vf-checkbox-blocks-last-lg {
+      border-radius: var(--vf-radius-large-lg);
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+      }
     }
 
     &.vf-checkbox-blocks-selected {
-      background-color: var(--vf-gray-100);
+      background-color: var(--vf-bg-selected);
     }
 
     &.vf-checkbox-blocks-disabled {
@@ -95,10 +137,16 @@
 
     &.vf-checkbox-blocks-sm {
       padding: 0.625rem 1rem;
+      font-size: var(--vf-font-size-sm);
+      line-height: var(--vf-line-height-sm);
+      letter-spacing: var(--vf-letter-spacing-sm);
     }
 
     &.vf-checkbox-blocks-lg {
       padding: 0.875rem 1rem;
+      font-size: var(--vf-font-size-lg);
+      line-height: var(--vf-line-height-lg);
+      letter-spacing: var(--vf-letter-spacing-lg);
     }
   }
 
@@ -107,17 +155,23 @@
   }
 
   .vf-checkbox-blocks-description {
-    color: var(--vf-gray-500);
-    font-size: 87.5%;
+    color: var(--vf-color-muted);
+    font-size: var(--vf-font-size-small);
+    line-height: var(--vf-line-height-small);
+    letter-spacing: var(--vf-letter-spacing-small);
     margin-top: -0.125rem;
 
     &.vf-checkbox-blocks-description-sm {
-      font-size: 87.5%;
+      font-size: var(--vf-font-size-small-sm);
+      line-height: var(--vf-line-height-small-sm);
+      letter-spacing: var(--vf-letter-spacing-small-sm);
       margin-top: -0.125rem;
     }
 
     &.vf-checkbox-blocks-description-lg {
-      font-size: 87.5%;
+      font-size: var(--vf-font-size-small-lg);
+      line-height: var(--vf-line-height-small-lg);
+      letter-spacing: var(--vf-letter-spacing-small-lg);
       margin-top: -0.125rem;
     }
   }

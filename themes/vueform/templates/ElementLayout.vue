@@ -43,8 +43,8 @@
           ]),
           $outerWrapper:  (classes, { multiple, Size }) => ([
             classes.outerWrapper,
-            multiple.value ? classes.outerWrapper_multiple : classes.outerWrapper_single,
-            multiple.value ? classes[`outerWrapper_multiple_${Size}`] : classes[`outerWrapper_single_${Size}`],
+            multiple ? classes.outerWrapper_multiple : classes.outerWrapper_single,
+            multiple ? classes[`outerWrapper_multiple_${Size}`] : classes[`outerWrapper_single_${Size}`],
           ]),
         }
       }
@@ -58,15 +58,18 @@
   .vf-element-layout {
     font-size: var(--vf-font-size);
     line-height: var(--vf-line-height);
+    letter-spacing: var(--vf-letter-spacing);
 
     &.vf-element-layout-sm {
       font-size: var(--vf-font-size-sm);
       line-height: var(--vf-line-height-sm);
+      letter-spacing: var(--vf-letter-spacing-sm);
     }
 
     &.vf-element-layout-lg {
       font-size: var(--vf-font-size-lg);
       line-height: var(--vf-line-height-lg);
+      letter-spacing: var(--vf-letter-spacing-lg);
     }
   }
 

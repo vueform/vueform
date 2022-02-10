@@ -7,6 +7,7 @@
         <button
           v-if="buttonLabel && isButtonLabelComponent"
           v-bind="button"
+          :tabindex="isDisabled || isLoading ? -1 : undefined"
           :disabled="isDisabled"
           :class="classes.button"
           @click.prevent="handleClick"
@@ -19,6 +20,7 @@
           v-else-if="buttonLabel"
           v-bind="button"
           v-html="buttonLabel"
+          :tabindex="isDisabled || isLoading ? -1 : undefined"
           :class="classes.button"
           :disabled="isDisabled"
           @click.prevent="handleClick" 
@@ -28,6 +30,7 @@
         <button
           v-else
           v-bind="button"
+          :tabindex="isDisabled || isLoading ? -1 : undefined"
           :class="classes.button"
           :disabled="isDisabled"
           @click.prevent="handleClick" 
