@@ -14,8 +14,11 @@
         defaultClasses: {
           container: '',
           wrapper: 'vf-toggle-wrapper',
+          text: 'vf-toggle-text',
           toggle: {
             container: 'vf-toggle-container',
+            container_enabled: '',
+            container_disabled: 'vf-toggle-container-disabled',
             toggle: 'vf-toggle',
             toggle_sm: 'vf-toggle-sm',
             toggle_md: '',
@@ -36,6 +39,11 @@
             label_sm: 'vf-toggle-label-sm',
             label_md: '',
             label_lg: 'vf-toggle-label-lg',
+            $container: (classes, { Size, isDisabled }) => ([
+              classes.toggle.container,
+              classes.toggle[`container_${Size}`],
+              !isDisabled ? classes.toggle.container_enabled : classes.toggle.container_disabled,
+            ]),
             $toggle: (classes, { Size }) => ([
               classes.toggle.toggle,
               classes.toggle[`toggle_${Size}`],
@@ -49,7 +57,6 @@
               classes.toggle[`label_${Size}`],
             ]),
           },
-          text: 'vf-toggle-text',
         }
       }
     }
@@ -61,7 +68,7 @@
     display: flex;
     align-items: center;
     width: 100%;
-    padding-top: calc(var(--vf-input-py) + var(--vf-border-width));
+    padding-top: calc(var(--vf-py-input) + var(--vf-border-width-input-t));
   }
 
   .vf-toggle-text {
@@ -71,11 +78,27 @@
   // @vueform/toggle styles
   .vf-toggle-container {
     display: inline-block;
-    outline: none;
+    outline: 0px solid var(--vf-ring-color);
+    outline-offset: 0;
     border-radius: 9999px;
+    transition: box-shadow .15s ease-in-out,
+                color .15s ease-in-out,
+                background-color .15s ease-in-out,
+                border-color .15s ease-in-out;
+    box-shadow: var(--vf-shadow-input);
+
+    &:hover:not(.vf-toggle-container-disabled) {
+      box-shadow: var(--vf-shadow-input), var(--vf-shadow-input-hover);
+    }
 
     &:focus {
-      box-shadow: 0px 0px 0px var(--vf-ring-width) var(--vf-ring-color);
+      box-shadow: var(--vf-shadow-input), var(--vf-shadow-input-focus);
+      outline: var(--vf-ring-width) solid var(--vf-ring-color);
+    }
+
+    &.vf-toggle-container-disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
     }
   }
 
@@ -87,8 +110,9 @@
     transition: .3s all;
     align-items: center;
     box-sizing: content-box;
-    border: var(--vf-toggle-border) solid;
-    font-size: var(--vf-toggle-font-size);
+    border-width: 2px;
+    border-style: solid;
+    font-size: 0.75rem;
     width: var(--vf-toggle-width);
     height: var(--vf-toggle-height);
     line-height: 1;
@@ -96,51 +120,47 @@
     &.vf-toggle-sm {
       width: var(--vf-toggle-width-sm);
       height: var(--vf-toggle-height-sm);
-      font-size: var(--vf-toggle-font-size-sm);
+      font-size: 0.75rem;
     }
 
     &.vf-toggle-lg {
       width: var(--vf-toggle-width-lg);
       height: var(--vf-toggle-height-lg);
-      font-size: var(--vf-toggle-font-size-lg);
+      font-size: 0.8125rem;
     }
   }
 
   .vf-toggle-on {
-    background: var(--vf-toggle-bg-on);
-    border-color: var(--vf-toggle-border-on);
+    background: var(--vf-primary);
+    border-color: var(--vf-primary);
     justify-content: flex-start;
-    color: var(--vf-toggle-text-on);
+    color: var(--vf-color-on-primary);
   }
 
   .vf-toggle-off {
-    background: var(--vf-toggle-bg-off);
-    border-color: var(--vf-toggle-border-off);
+    background: var(--vf-bg-passive);
+    border-color: var(--vf-bg-passive);
     justify-content: flex-end;
-    color: var(--vf-toggle-text-off);
+    color: var(--vf-color-passive);
   }
 
   .vf-toggle-on-disabled {
-    background: var(--vf-toggle-bg-on-disabled);
-    border-color: var(--vf-toggle-border-on-disabled);
+    background: var(--vf-primary);
+    border-color: var(--vf-primary);
     justify-content: flex-start;
-    color: var(--vf-toggle-text-on-disabled);
-    cursor: not-allowed;
-    opacity: var(--vf-toggle-opacity-on-disabled);
+    color: var(--vf-color-on-primary);
   }
 
   .vf-toggle-off-disabled {
-    background: var(--vf-toggle-bg-off-disabled);
-    border-color: var(--vf-toggle-border-off-disabled);
+    background: var(--vf-bg-passive);
+    border-color: var(--vf-bg-passive);
     justify-content: flex-end;
-    color: var(--vf-toggle-text-off-disabled);
-    cursor: not-allowed;
-    opacity: var(--vf-toggle-opacity-off-disabled);
+    color: var(--vf-color-passive);
   }
 
   .vf-toggle-handle {
     display: inline-block;
-    background: var(--vf-toggle-handle-enabled);
+    background: var(--vf-bg-toggle-handle);
     width: var(--vf-toggle-height);
     height: var(--vf-toggle-height);
     top: 0;
@@ -148,7 +168,7 @@
     position: absolute;
     transition-property: all;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    transition-duration: var(--vf-toggle-duration);
+    transition-duration: 150ms;
 
     &.vf-toggle-handle-sm {
       width: var(--vf-toggle-height-sm);
@@ -173,12 +193,12 @@
   .vf-toggle-handle-on-disabled {
     left: 100%;
     transform: translateX(-100%);
-    background: var(--vf-toggle-handle-disabled);
+    background: var(--vf-bg-toggle-handle);
   }
 
   .vf-toggle-handle-off-disabled {
     left: 0%;
-    background: var(--vf-toggle-handle-disabled);
+    background: var(--vf-bg-toggle-handle);
   }
 
   .vf-toggle-label {
