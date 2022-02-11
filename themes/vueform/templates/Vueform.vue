@@ -21,7 +21,7 @@
    *
    * Variables used across different templates.
    */
-  :root {
+  *, :before, :after, :root {
     --vf-primary: #07BF9B;
     --vf-primary-darker: rgba(6,172,139,1);
     --vf-danger: #ef4444;
@@ -107,11 +107,11 @@
     --vf-px-tag-sm: var(--vf-px-tag);
     --vf-px-tag-lg: var(--vf-px-tag);
 
-    --vf-py-slider-tooltip: 0.25rem;
+    --vf-py-slider-tooltip: 0.125rem;
     --vf-py-slider-tooltip-sm: var(--vf-py-slider-tooltip);
     --vf-py-slider-tooltip-lg: var(--vf-py-slider-tooltip);
 
-    --vf-px-slider-tooltip: 0.375rem;
+    --vf-px-slider-tooltip: 0.5rem;
     --vf-px-slider-tooltip-sm: var(--vf-px-slider-tooltip);
     --vf-px-slider-tooltip-lg: var(--vf-px-slider-tooltip);
     
@@ -237,6 +237,7 @@
     --vf-toggle-width: 3rem;
     --vf-toggle-width-sm: 2.75rem;
     --vf-toggle-width-lg: 3.5rem;
+
     --vf-toggle-height: 1.25rem;
     --vf-toggle-height-sm: 1.125rem;
     --vf-toggle-height-lg: 1.5rem;
@@ -244,6 +245,10 @@
     --vf-slider-height: 0.375rem;
     --vf-slider-height-sm: var(--vf-slider-height);
     --vf-slider-height-lg: var(--vf-slider-height);
+
+    --vf-slider-height-vertical: 20rem;
+    --vf-slider-height-vertical-sm: var(--vf-slider-height-vertical);
+    --vf-slider-height-vertical-lg: var(--vf-slider-height-vertical);
 
     --vf-slider-handle-size: 1rem;
     --vf-slider-handle-size-sm: var(--vf-slider-handle-size);

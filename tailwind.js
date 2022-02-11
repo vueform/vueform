@@ -338,6 +338,10 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
         '--vf-slider-height-sm': theme('form.sliderHeight.sm'),
         '--vf-slider-height-lg': theme('form.sliderHeight.lg'),
 
+        '--vf-slider-height-vertical': theme('form.sliderHeightVertical.base'),
+        '--vf-slider-height-vertical-sm': theme('form.sliderHeightVertical.sm'),
+        '--vf-slider-height-vertical-lg': theme('form.sliderHeightVertical.lg'),
+
         '--vf-slider-handle-size': theme('form.sliderHandleSize.base'),
         '--vf-slider-handle-size-sm': theme('form.sliderHandleSize.sm'),
         '--vf-slider-handle-size-lg': theme('form.sliderHandleSize.lg'),
@@ -669,19 +673,19 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
     }
 
     plain[`.form-bottom-slider-tooltip-top${suffix}`] = {
-      bottom: `calc(var(--vf-slider-handle-size${size}) + var(--vf-slider-tooltip-distance))`
+      bottom: `calc(var(--vf-slider-handle-size${size}) + var(--vf-slider-tooltip-distance${size}))`
     }
 
     plain[`.form-top-slider-tooltip-bottom${suffix}`] = {
-      top: `calc(var(--vf-slider-handle-size${size}) + var(--vf-slider-tooltip-distance))`
+      top: `calc(var(--vf-slider-handle-size${size}) + var(--vf-slider-tooltip-distance${size}))`
     }
 
     plain[`.form-right-slider-tooltip-left${suffix}`] = {
-      right: `calc(var(--vf-slider-handle-size${size}) + var(--vf-slider-tooltip-distance))`
+      right: `calc(var(--vf-slider-handle-size${size}) + var(--vf-slider-tooltip-distance${size}))`
     }
 
     plain[`.form-left-slider-tooltip-right${suffix}`] = {
-      left: `calc(var(--vf-slider-handle-size${size}) + var(--vf-slider-tooltip-distance))`
+      left: `calc(var(--vf-slider-handle-size${size}) + var(--vf-slider-tooltip-distance${size}))`
     }
 
     mergeH[`.form-bottom-slider-tooltip-top-merged${suffix}`] = {
@@ -768,6 +772,10 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
     
     plain[`.form-h-slider-horizontal${suffix}`] = {
       height: `var(--vf-slider-height${size})`,
+    }
+    
+    plain[`.form-h-slider-vertical${suffix}`] = {
+      height: `var(--vf-slider-height-vertical${size})`,
     }
 
     plain[`.form-h-input${suffix}`] = {
@@ -1431,7 +1439,7 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
       outline: 'var(--vf-ring-width) solid var(--vf-ring-color)',
     },
     '.form-shadow-input-focus': {
-      boxShadow: 'var(--vf-shadow-input-focus)',
+      boxShadow: 'var(--vf-shadow-input), var(--vf-shadow-input-focus)',
     },
     '.form-shadow-slider-handle-focus': {
       boxShadow: 'var(--vf-shadow-slider-handle), var(--vf-shadow-input-focus)',
@@ -1452,7 +1460,7 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
       borderColor: 'var(--vf-border-color-input-hover)'
     },
     '.form-shadow-input-hover': {
-      boxShadow: 'var(--vf-shadow-input-hover)',
+      boxShadow: 'var(--vf-shadow-input), var(--vf-shadow-input-hover)',
     },
     '.form-shadow-slider-handle-hover': {
       boxShadow: 'var(--vf-shadow-slider-handle), var(--vf-shadow-input-hover)',
@@ -1795,13 +1803,13 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
         },
 
         sliderTooltipPy: {
-          base: theme('padding')['1'],
+          base: theme('padding')['0.5'],
           sm: 'var(--vf-py-slider-tooltip)',
           lg: 'var(--vf-py-slider-tooltip)',
         },
 
         sliderTooltipPx: {
-          base: theme('padding')['1.5'],
+          base: theme('padding')['2'],
           sm: 'var(--vf-px-slider-tooltip)',
           lg: 'var(--vf-px-slider-tooltip)',
         },
@@ -1965,6 +1973,12 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
           lg: 'var(--vf-slider-height)',
         },
 
+        sliderHeightVertical: {
+          base: theme('height')['80'],
+          sm: 'var(--vf-slider-height-vertical)',
+          lg: 'var(--vf-slider-height-vertical)',
+        },
+
         sliderHandleSize: {
           base: theme('height')['4'],
           sm: 'var(--vf-slider-handle-size)',
@@ -2022,6 +2036,9 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
       },
       lineHeight: {
         px: '1px',
+      },
+      transitionProperty: {
+        input: 'box-shadow, color, background-color, border-color'
       },
       borderOpacity: {
         '15': '0.15',
