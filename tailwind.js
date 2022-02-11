@@ -601,6 +601,15 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
       paddingBottom: `calc(var(--vf-py-input${size}) - (${theme(`fontSize`)['0.5xs'][0]} / 2))`,
     }
 
+    plain[`.${e(`form-py-0.5input${suffix}`)}`] = {
+      paddingBottom: `calc(var(--vf-py-input${size}) * 0.5)`,
+      paddingTop: `calc(var(--vf-py-input${size}) * 0.5)`,
+    }
+
+    plain[`.${e(`form-pr-select-label${suffix}`)}`] = {
+      paddingRight: `calc(1.25rem + var(--vf-px-input${size}) * 3)`,
+    }
+
     // top, right, bottom, left
     let sides = ['top', 'right', 'bottom', 'left']
     sides.forEach((side) => {
@@ -1725,9 +1734,9 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
         },
 
         smallLineHeight: {
-          base: theme('fontSize.base')[1].lineHeight,
+          base: theme('fontSize.sm')[1].lineHeight,
           sm: theme('fontSize')['0.5sm'][1].lineHeight,
-          lg: theme('fontSize.base')[1].lineHeight,
+          lg: theme('fontSize.sm')[1].lineHeight,
         },
 
         letterSpacing: {

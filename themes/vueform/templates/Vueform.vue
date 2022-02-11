@@ -55,9 +55,9 @@
     --vf-line-height-sm: 1.25rem;
     --vf-line-height-lg: 1.5rem;
 
-    --vf-line-height-small: 1.5rem;
+    --vf-line-height-small: 1.25rem;
     --vf-line-height-small-sm: 1.125rem;
-    --vf-line-height-small-lg: 1.5rem;
+    --vf-line-height-small-lg: 1.25rem;
 
     --vf-letter-spacing: 0;
     --vf-letter-spacing-sm: 0;

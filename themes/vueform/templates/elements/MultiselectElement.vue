@@ -16,23 +16,31 @@
           input: 'vf-input',
           input_enabled: '',
           input_disabled: '',
+          input_success: 'vf-input-success',
+          input_danger: 'vf-input-danger',
           input_sm: 'vf-input-sm',
           input_md: '',
           input_lg: 'vf-input-lg',
           inputWrapper: '',
           select: {
-            container: 'vf-multiselect',
-            container_sm: 'vf-multiselect-sm',
-            container_md: '',
-            container_lg: 'vf-multiselect-lg',
-            containerDisabled: 'vf-multiselect-disabled',
-            containerOpen: 'vf-multiselect-open',
-            containerOpenTop: 'vf-multiselect-open-top',
-            containerActive: 'vf-multiselect-active',
             multipleLabel: 'vf-multiselect-multiple-label',
             multipleLabel_sm: 'vf-multiselect-multiple-label-sm',
             multipleLabel_md: '',
             multipleLabel_lg: 'vf-multiselect-multiple-label-lg',
+            
+            container: 'vf-multiselect',
+            container_enabled: '',
+            container_disabled: 'vf-multiselect-disabled',
+            container_success: 'vf-multiselect-success',
+            container_danger: 'vf-multiselect-danger',
+            container_sm: 'vf-multiselect-sm',
+            container_md: '',
+            container_lg: 'vf-multiselect-lg',
+            containerDisabled: '',
+            containerOpen: 'vf-multiselect-open',
+            containerOpenTop: 'vf-multiselect-open-top',
+            containerActive: 'vf-multiselect-active',
+            containerActive_enabled: '',
             search: 'vf-multiselect-search',
             search_sm: 'vf-multiselect-search-sm',
             search_md: '',
@@ -100,9 +108,18 @@
             spacer_sm: 'vf-multiselect-spacer-sm',
             spacer_md: '',
             spacer_lg: 'vf-multiselect-spacer-lg',
-            $container: (classes, { Size }) => ([
+            $container: (classes, { Size, isDanger, isSuccess, isDisabled }) => ([
               classes.select.container,
               classes.select[`container_${Size}`],
+              isDisabled ? classes.select.container_disabled : null,
+              !isDisabled && !isSuccess && !isDanger ? classes.select.container_enabled : null,
+              !isDisabled && isDanger ? classes.select.container_danger : null,
+              !isDisabled && isSuccess ? classes.select.container_success : null,
+            ]),
+            $containerActive: (classes, { Size, isDanger, isSuccess, isDisabled }) => ([
+              classes.select.containerActive,
+              classes.select[`container_${Size}`],
+              !isDisabled && !isSuccess && !isDanger ? classes.select.containerActive_enabled : null,
             ]),
             $search: (classes, { Size }) => ([
               classes.select.search,
@@ -152,15 +169,19 @@
               classes.select.noResults,
               classes.select[`noResults_${Size}`],
             ]),
+            
             $multipleLabel: (classes, { Size }) => ([
               classes.select.multipleLabel,
               classes.select[`multipleLabel_${Size}`],
             ]),
           },
-          $input: (classes, { isDisabled, Size }) => ([
+          $input: (classes, { isDisabled, Size, isDanger, isSuccess }) => ([
             classes.input,
             classes[`input_${Size}`],
-            isDisabled ? classes.input_disabled : classes.input_enabled,
+            isDisabled ? classes.input_disabled : null,
+            !isDisabled && !isSuccess && !isDanger ? classes.input_enabled : null,
+            !isDisabled && isDanger ? classes.input_danger : null,
+            !isDisabled && isSuccess ? classes.input_success : null,
           ]),
         }
       }
@@ -180,19 +201,25 @@
     top: 0;
     pointer-events: none;
     background: transparent;
-    padding-left: var(--vf-select-px);
+    padding-left: var(--vf-px-input);
+    padding-right: calc(1.25rem + var(--vf-px-input) * 3);
 
     &.vf-multiselect-multiple-label-sm {
-      padding-left: var(--vf-select-px-sm);
+      padding-left: var(--vf-px-input-sm);
+      padding-right: calc(1.25rem + var(--vf-px-input-sm) * 3);
     }
     &.vf-multiselect-multiple-label-lg {
-      padding-left: var(--vf-select-px-lg);
+      padding-left: var(--vf-px-input-lg);
+      padding-right: calc(1.25rem + var(--vf-px-input-lg) * 3);
     }
   }
 
   .vf-floating-wrapper ~ .vf-multiselect-multiple-label-lg,
   .vf-floating-wrapper ~ div .vf-multiselect-multiple-label-lg,
   .vf-floating-wrapper ~ span .vf-multiselect-multiple-label-lg {
-    padding: calc(var(--vf-input-py-lg) + var(--vf-font-size-lg) * 0.35) var(--vf-input-px-lg) calc(var(--vf-input-py-lg) - var(--vf-font-size-lg) * 0.35);
+    padding-left: var(--vf-px-input-lg);
+    padding-right: var(--vf-px-input-lg);
+    padding-top: calc(var(--vf-py-input-lg) + (0.875rem / 2));
+    padding-bottom: calc(var(--vf-py-input-lg) - (0.875rem / 2));
   }
 </style>

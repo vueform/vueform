@@ -25,7 +25,7 @@
 <style lang="scss">
   .vf-element-message {
     font-size: var(--vf-font-size-small);
-    line-height: var(--vf-font-size-small-height);
+    line-height: var(--vf-line-height-small);
     letter-spacing: var(--vf-letter-spacing-small);
     color: var(--vf-color-success);
     margin-top: 0.25rem;
