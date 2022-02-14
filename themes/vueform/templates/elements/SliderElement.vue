@@ -368,14 +368,14 @@
     line-height: var(--vf-line-height-small);
     letter-spacing: var(--vf-letter-spacing-small);
     padding: var(--vf-py-slider-tooltip) var(--vf-px-slider-tooltip);
-    border-radius: var(--vf-radius-slider-tooltip);
+    border-radius: var(--vf-radius-small);
 
     &.vf-slider-tooltip-sm {
       font-size: var(--vf-font-size-small-sm);
       line-height: var(--vf-line-height-small-sm);
       letter-spacing: var(--vf-letter-spacing-small-sm);
       padding: var(--vf-py-slider-tooltip-sm) var(--vf-px-slider-tooltip-sm);
-      border-radius: var(--vf-radius-slider-tooltip-sm);
+      border-radius: var(--vf-radius-small-sm);
     }
 
     &.vf-slider-tooltip-lg {
@@ -383,7 +383,7 @@
       line-height: var(--vf-line-height-small-lg);
       letter-spacing: var(--vf-letter-spacing-small-lg);
       padding: var(--vf-py-slider-tooltip-lg) var(--vf-px-slider-tooltip-lg);
-      border-radius: var(--vf-radius-slider-tooltip-lg);
+      border-radius: var(--vf-radius-small-lg);
     }
   }
 

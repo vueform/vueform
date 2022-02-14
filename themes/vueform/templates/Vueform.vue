@@ -111,7 +111,7 @@
     --vf-py-slider-tooltip-sm: var(--vf-py-slider-tooltip);
     --vf-py-slider-tooltip-lg: var(--vf-py-slider-tooltip);
 
-    --vf-px-slider-tooltip: 0.5rem;
+    --vf-px-slider-tooltip: 0.375rem;
     --vf-px-slider-tooltip-sm: var(--vf-px-slider-tooltip);
     --vf-px-slider-tooltip-lg: var(--vf-px-slider-tooltip);
     
@@ -302,20 +302,28 @@
     display: grid;
     grid-template-columns: repeat(12, minmax(0, 1fr));
     column-gap: var(--vf-gutter);
+
+    &.vf-row-sm {
+      column-gap: var(--vf-gutter-sm);
+    }
+
+    &.vf-row-lg {
+      column-gap: var(--vf-gutter-lg);
+    }
   }
 
-  .vf-group {
-    margin-bottom: var(--vf-gutter);
-    column-gap: 0;
+  .vf-rowset {
+    display: grid;
+    row-gap: var(--vf-gutter);
 
-    &.vf-group-sm {
-      margin-bottom: var(--vf-gutter-sm);
+    &.vf-rowset-sm {
+      row-gap: var(--vf-gutter-sm);
     }
 
-    &.vf-group-lg {
-      margin-bottom: var(--vf-gutter-lg);
+    &.vf-rowset-lg {
+      row-gap: var(--vf-gutter-lg);
     }
-  }  
+  }
 
   // General input
   .vf-input-group {
@@ -694,11 +702,17 @@
     &.vf-btn-sm {
       padding: var(--vf-py-btn-sm) var(--vf-px-btn-sm);
       border-radius: var(--vf-radius-btn-sm);
+      font-size: var(--vf-font-size-sm);
+      line-height: var(--vf-line-height-sm);
+      letter-spacing: var(--vf-letter-spacing-sm);
     }
 
     &.vf-btn-lg {
       padding: var(--vf-py-btn-lg) var(--vf-px-btn-lg);
       border-radius: var(--vf-radius-btn-lg);
+      font-size: var(--vf-font-size-lg);
+      line-height: var(--vf-line-height-lg);
+      letter-spacing: var(--vf-letter-spacing-lg);
     }
 
     &.vf-btn-small {

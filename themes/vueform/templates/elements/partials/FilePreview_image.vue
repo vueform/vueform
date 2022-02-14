@@ -27,6 +27,9 @@
           percent: 'vf-file-preview-image-percent',
           upload: 'vf-file-preview-image-upload',
           progressBar: 'vf-file-preview-image-progress-bar',
+          progressBar_sm: 'vf-file-preview-image-progress-bar-sm',
+          progressBar_md: '',
+          progressBar_lg: 'vf-file-preview-image-progress-bar-lg',
           progress: 'vf-file-preview-image-progress',
           warning: 'vf-file-preview-image-warning',
           warningIcon: 'vf-file-preview-image-warning-icon',
@@ -42,6 +45,10 @@
           $img: (classes, { Size }) => ([
             classes.img,
             classes[`img_${Size}`],
+          ]),
+          $progressBar: (classes, { Size }) => ([
+            classes.progressBar,
+            classes[`progressBar_${Size}`],
           ])
         }
       }
@@ -60,9 +67,6 @@
     justify-content: flex-start;
     flex-direction: row;
     position: relative;
-    font-size: var(--vf-font-size);
-    line-height: var(--vf-line-height);
-    letter-spacing: var(--vf-letter-spacing);
 
     &:hover {
       .vf-file-preview-image-uploaded,
@@ -193,6 +197,14 @@
     bottom: 0;
     left: calc(var(--vf-min-height-input) + 0.625rem);
     right: 0;
+
+    &.vf-file-preview-image-progress-bar-sm {
+      left: calc(var(--vf-min-height-input-sm) + 0.625rem);
+    }
+
+    &.vf-file-preview-image-progress-bar-lg {
+      left: calc(var(--vf-min-height-input-lg) + 0.625rem);
+    }
   }
 
   .vf-file-preview-image-progress {

@@ -10,9 +10,12 @@
         defaultClasses: {
           container: '',
           list: 'vf-rowset',
+          list_sm: 'vf-rowset-sm',
+          list_md: '',
+          list_lg: 'vf-rowset-lg',
           list_disabled: 'vf-list-disabled',
           list_sorting: 'vf-list-sorting',
-          listItem: 'vf-row',
+          listItem: '',
           handle: 'vf-list-handle',
           handle_sm: 'vf-list-handle-sm',
           handle_md: '',
@@ -20,12 +23,13 @@
           handleIcon: 'vf-list-handle-icon',
           remove: 'vf-list-remove',
           removeIcon: 'vf-list-remove-icon',
-          add: 'vf-btn vf-btn-primary',
-          add_sm: 'vf-btn-small-sm',
-          add_md: 'vf-btn-small',
-          add_lg: 'vf-btn-small-lg',
-          $list: (classes, { isDisabled, sorting }) => ([
+          add: 'vf-btn vf-btn-primary vf-btn-small vf-btn-list-add',
+          add_sm: 'vf-btn-small-sm vf-btn-list-add-sm',
+          add_md: '',
+          add_lg: 'vf-btn-small-lg vf-btn-list-add-lg',
+          $list: (classes, { isDisabled, sorting, Size }) => ([
             classes.list,
+            classes[`list_${Size}`],
             isDisabled ? classes.list_disabled : null,
             sorting ? classes.list_sorting : null,
           ]),
@@ -143,6 +147,18 @@
     .vf-list-handle-icon {
       width: var(--vf-min-height-input-lg);
       height: var(--vf-min-height-input-lg);
+    }
+  }
+
+  .vf-btn-list-add {
+    margin-top: var(--vf-gutter);
+
+    &.vf-btn-list-add-sm {
+      margin-top: var(--vf-gutter-sm);
+    }
+
+    &.vf-btn-list-add-lg {
+      margin-top: var(--vf-gutter-lg);
     }
   }
 

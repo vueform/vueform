@@ -378,11 +378,17 @@
     &.vf-multiselect-sm {
       min-height: var(--vf-min-height-input-sm);
       border-radius: var(--vf-radius-sm);
+      font-size: var(--vf-font-size-sm);
+      line-height: var(--vf-line-height-sm);
+      letter-spacing: var(--vf-letter-spacing-sm);
     }
 
     &.vf-multiselect-lg {
       min-height: var(--vf-min-height-input-lg);
       border-radius: var(--vf-radius-lg);
+      font-size: var(--vf-font-size-lg);
+      line-height: var(--vf-line-height-lg);
+      letter-spacing: var(--vf-letter-spacing-lg);
     }
   }
 

@@ -48,7 +48,6 @@
           </span>
         </div>
       </div>
-      <div :class="classes.spacer"></div>
     </template>
 
     <!-- Default element slots -->

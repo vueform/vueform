@@ -1831,7 +1831,7 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
         },
 
         sliderTooltipPx: {
-          base: theme('padding')['2'],
+          base: theme('padding')['1.5'],
           sm: 'var(--vf-px-slider-tooltip)',
           lg: 'var(--vf-px-slider-tooltip)',
         },

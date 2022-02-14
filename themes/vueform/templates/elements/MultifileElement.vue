@@ -9,7 +9,10 @@
         merge: true,
         defaultClasses: {
           container: '',
-          list: '',
+          list: 'vf-multifile-list',
+    list_sm: 'vf-multifile-list-sm',
+    list_md: '',
+    list_lg: 'vf-multifile-list-lg',
           list_file: 'vf-multifile-list-file',
           list_file_sm: '',
           list_file_md: '',
@@ -24,16 +27,12 @@
           list_gallery_lg: 'vf-multifile-list-gallery-lg',
           list_disabled: 'vf-multifile-list-disabled',
           list_sorting: 'vf-multifile-list-sorting',
-          spacer: 'vf-multifile-spacer',
-          spacer_sm: 'vf-multifile-spacer-sm',
-          spacer_md: '',
-          spacer_lg: 'vf-multifile-spacer-lg',
           listItem: '',
-          listItem_file: 'vf-row',
+          listItem_file: '',
           listItem_file_sm: '',
           listItem_file_md: '',
           listItem_file_lg: '',
-          listItem_image: 'vf-row',
+          listItem_image: '',
           listItem_image_sm: '',
           listItem_image_md: '',
           listItem_image_lg: '',
@@ -58,26 +57,23 @@
           handleIcon_file: 'vf-multifile-handle-icon-file',
           handleIcon_image: 'vf-multifile-handle-icon-image',
           handleIcon_gallery: 'vf-multifile-handle-icon-gallery',
-          dnd: 'vf-multifile-dnd',
-          dnd_sm: 'vf-multifile-dnd-sm',
+          dnd: '',
+          dnd_sm: '',
           dnd_md: '',
-          dnd_lg: 'vf-multifile-dnd-lg',
-          button: 'vf-btn vf-btn-secondary vf-btn-upload',
+          dnd_lg: '',
+          button: 'vf-btn vf-btn-secondary',
           button_enabled: '',
           button_disabled: 'vf-btn-disabled',
-          button_sm: 'vf-btn-sm vf-btn-upload-sm',
+          button_sm: 'vf-btn-sm',
           button_md: '',
-          button_lg: 'vf-btn-sm vf-btn-upload-sm',
+          button_lg: 'vf-btn-lg',
           $list: (classes, { isDisabled, sorting, view, Size }) => ([
             classes.list,
+            classes[`list_${Size}`],
             isDisabled ? classes.list_disabled : null,
             sorting ? classes.list_sorting : null,
             classes[`list_${view}`],
             classes[`list_${view}_${Size}`],
-          ]),
-          $spacer: (classes, { Size }) => ([
-            classes.spacer,
-            classes[`spacer_${Size}`],
           ]),
           $listItem: (classes, { view, Size }) => ([
             classes.listItem,
@@ -112,27 +108,15 @@
 <style lang="scss">
   // Some styles are contained in Vueform.vue
 
-  .vf-btn-upload {
-    margin-bottom: calc(var(--vf-gutter) / 2);
+  .vf-multifile-list {
+    margin-top: calc(var(--vf-gutter) / 2);
 
-    &.vf-btn-upload-sm {
-      margin-bottom: calc(var(--vf-gutter-sm) / 2);
+    &.vf-multifile-list-sm {
+      margin-top: calc(var(--vf-gutter-sm) / 2);
     }
 
-    &.vf-btn-upload-lg {
-      margin-bottom: calc(var(--vf-gutter-lg) / 2);
-    }
-  }
-
-  .vf-multifile-dnd {
-    margin-bottom: var(--vf-gutter);
-
-    &.vf-multifile-dnd-sm {
-      margin-bottom: var(--vf-gutter-sm);
-    }
-
-    &.vf-multifile-dnd-lg {
-      margin-bottom: var(--vf-gutter-lg);
+    &.vf-multifile-list-lg {
+      margin-top: calc(var(--vf-gutter-lg) / 2);
     }
   }
 
@@ -150,6 +134,8 @@
 
   .vf-multifile-list-file,
   .vf-multifile-list-image {
+    display: grid;
+
     & > .vf-row {
       position: relative;
 
@@ -160,18 +146,6 @@
           opacity: 1;
         }
       }
-
-      & > div > .vf-group {
-        margin-bottom: calc(var(--vf-gutter) / 2);
-      }
-
-      & > div > .vf-group-sm {
-        margin-bottom: calc(var(--vf-gutter-sm) / 2);
-      }
-
-      & > div > .vf-group-lg {
-        margin-bottom: calc(var(--vf-gutter-lg) / 2);
-      }
     }
 
     &.vf-multifile-list-sorting {
@@ -185,23 +159,33 @@
     }
   }
 
+  .vf-multifile-list-file {
+    row-gap: calc(var(--vf-gutter) / 2);
+
+    &.vf-multifile-list-file-sm {
+      row-gap: calc(var(--vf-gutter-sm) / 2);
+    }
+
+    &.vf-multifile-list-file-lg {
+      row-gap: calc(var(--vf-gutter-lg) / 2);
+    }
+  }
+
   .vf-multifile-list-image {
-    margin-top: calc(var(--vf-gutter) / 2);
+    row-gap: calc(var(--vf-gutter) / 2);
 
     &.vf-multifile-list-image-sm {
-      margin-top: calc(var(--vf-gutter-sm) / 2);
+      row-gap: calc(var(--vf-gutter-sm) / 2);
     }
 
     &.vf-multifile-list-image-lg {
-      margin-top: calc(var(--vf-gutter-lg) / 2);
+      row-gap: calc(var(--vf-gutter-lg) / 2);
     }
   }
 
   .vf-multifile-list-gallery {
     display: flex;
     flex-wrap: wrap;
-    margin-top: calc(var(--vf-gutter) / 2);
-    margin-bottom: calc(var(--vf-gutter) / 2);
 
     &.vf-multifile-list-sorting {
       & > div:hover {
@@ -210,16 +194,6 @@
           opacity: 0;
         }
       }
-    }
-
-    &.vf-multifile-list-gallery-sm {
-      margin-top: calc(var(--vf-gutter-sm) / 2);
-      margin-bottom: calc(var(--vf-gutter-sm) / 2);
-    }
-
-    &.vf-multifile-list-gallery-lg {
-      margin-top: calc(var(--vf-gutter-lg) / 2);
-      margin-bottom: calc(var(--vf-gutter-lg) / 2);
     }
 
     & > div {

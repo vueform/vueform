@@ -27,21 +27,29 @@
   .vf-errors {
     background: var(--vf-bg-danger);
     color: var(--vf-color-danger);
-    padding: 0.75rem 1.25rem;
     border-radius: var(--vf-radius);
     margin-bottom: var(--vf-gutter);
     font-size: var(--vf-font-size);
     line-height: var(--vf-line-height);
     letter-spacing: var(--vf-letter-spacing);
+    padding: 0.5rem 0.75rem;
 
     &.vf-errors-sm {
       border-radius: var(--vf-radius-sm);
       margin-bottom: var(--vf-gutter-sm);
+      font-size: var(--vf-font-size-sm);
+      line-height: var(--vf-line-height-sm);
+      letter-spacing: var(--vf-letter-spacing-sm);
+      padding: 0.5rem 0.75rem;
     }
 
     &.vf-errors-lg {
       border-radius: var(--vf-radius-lg);
       margin-bottom: var(--vf-gutter-lg);
+      font-size: var(--vf-font-size-lg);
+      line-height: var(--vf-line-height-lg);
+      letter-spacing: var(--vf-letter-spacing-lg);
+      padding: 0.75rem 1rem;
     }
   }
 </style>
