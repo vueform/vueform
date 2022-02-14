@@ -172,9 +172,20 @@
     --vf-border-width-input-b: 1px;
     --vf-border-width-input-l: 1px;
     --vf-border-width-input: var(--vf-border-width-input-t) var(--vf-border-width-input-r) var(--vf-border-width-input-b) var(--vf-border-width-input-l);
+
+    --vf-border-width-radio-t: var(--vf-border-width-input-t);
+    --vf-border-width-radio-r: var(--vf-border-width-input-r);
+    --vf-border-width-radio-b: var(--vf-border-width-input-b);
+    --vf-border-width-radio-l: var(--vf-border-width-input-l);
+    --vf-border-width-radio: var(--vf-border-width-radio-t) var(--vf-border-width-radio-r) var(--vf-border-width-radio-b) var(--vf-border-width-radio-l);
+
+    --vf-border-width-checkbox-t: var(--vf-border-width-input-t);
+    --vf-border-width-checkbox-r: var(--vf-border-width-input-r);
+    --vf-border-width-checkbox-b: var(--vf-border-width-input-b);
+    --vf-border-width-checkbox-l: var(--vf-border-width-input-l);
+    --vf-border-width-checkbox: var(--vf-border-width-checkbox-t) var(--vf-border-width-checkbox-r) var(--vf-border-width-checkbox-b) var(--vf-border-width-checkbox-l);
+
     --vf-border-width-dropdown: var(--vf-border-width-input);
-    --vf-border-width-radio: var(--vf-border-width-input);
-    --vf-border-width-checkbox: var(--vf-border-width-input);
     --vf-border-width-btn: var(--vf-border-width-input);
     --vf-border-width-tag: var(--vf-border-width-input);
 
@@ -288,26 +299,14 @@
    * Reusable general style definitions.
    */
   .vf-row {
-    display: flex;
-    flex-wrap: wrap;
-    margin-left: calc(var(--vf-gutter) * -1);
-    margin-right: calc(var(--vf-gutter) * -1);
-  }
-
-  .vf-row-group {
-    display: flex;
-    flex-wrap: wrap;
-    margin-left: calc(var(--vf-gutter) * -0.5);
-    margin-right: calc(var(--vf-gutter) * -0.5);
-
-    & > [class*="vf-col"] {
-      padding-left: calc(var(--vf-gutter) / 2);
-      padding-right: calc(var(--vf-gutter) / 2);
-    }
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: var(--vf-gutter);
   }
 
   .vf-group {
     margin-bottom: var(--vf-gutter);
+    column-gap: 0;
 
     &.vf-group-sm {
       margin-bottom: var(--vf-gutter-sm);
@@ -316,7 +315,7 @@
     &.vf-group-lg {
       margin-bottom: var(--vf-gutter-lg);
     }
-  }
+  }  
 
   // General input
   .vf-input-group {
@@ -515,16 +514,17 @@
 
       &:after {
         content: " ";
-        mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 399' fill='currentColor' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M19.0982946,271.314063 C12.7710159,264.986784 -19.5640449,226.028684 17.5157021,188.948937 C54.5954492,151.869189 93.8002056,183.954281 100.125569,190.280783 L170.333604,260.487679 L411.436495,19.3859275 C417.154189,13.6670939 456.071057,-20.2835775 494.205994,17.8513602 C532.340932,55.9862978 498.18569,94.6972864 492.466202,100.416774 L209.646939,383.237176 C189.916526,402.965616 152.615587,404.508998 130.297151,382.512919 L19.0982946,271.314063 Z'%3E%3C/path%3E%3C/svg%3E");
+        mask-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='currentColor' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z'/%3e%3c/svg%3e");
         mask-position: center center;
         mask-size: contain;
         mask-repeat: no-repeat;
         background-color: var(--vf-color-on-primary);
         display: block;
-        width: 66.666%;
-        height: 66.666%;
-        margin-top: 16.666%;
-        margin-left: 16.666%;
+        position: relative;
+        width: calc(100% + var(--vf-border-width-checkbox-l) + var(--vf-border-width-checkbox-r));
+        height: calc(100% + var(--vf-border-width-checkbox-t) + var(--vf-border-width-checkbox-b));
+        left: calc(var(--vf-border-width-checkbox-l) * (-1));
+        top: calc(var(--vf-border-width-checkbox-t) * (-1));
       }
 
       &[disabled] {
@@ -629,17 +629,15 @@
       border-color: var(--vf-border-color-checked);
 
       &:after {
-        content: " ";
-        background: var(--vf-color-on-primary);
-        width: 48%;
-        height: 48%;
-        border-radius: 50%;
-        opacity: 0;
-        transition: all .2s ease-in-out .1s;
-        transform: scale(.2);
-        display: inline-block;
-        opacity: 1;
-        transform: scale(1);
+        content: "";
+        mask-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='currentColor' xmlns='http://www.w3.org/2000/svg'%3e%3ccircle cx='8' cy='8' r='3.5'/%3e%3c/svg%3e");
+        mask-position: center center;
+        mask-size: contain;
+        mask-repeat: no-repeat;
+        background-color: var(--vf-color-on-primary);
+        display: block;
+        width: 100%;
+        height: 100%;
       }
 
       &[disabled] {
@@ -803,13 +801,13 @@
    */
   $grid-breakpoints: (
     xs: 0,
-    sm: 576px,
+    sm: 640px,
     md: 768px,
-    lg: 992px,
-    xl: 1200px
+    lg: 1024px,
+    xl: 1280px,
+    2xl: 1536px
   ) !default;
   $grid-columns:                12 !default;
-  $grid-gutter-width:           2rem !default;
   $grid-row-columns:            6 !default;
 
   @function breakpoint-min($name, $breakpoints: $grid-breakpoints) {
@@ -833,38 +831,16 @@
   }
   
   @mixin make-col($size, $columns: $grid-columns) {
-    flex: 0 0 calc((#{$size} / #{$columns}) * 100%);
-    max-width: calc((#{$size} / #{$columns}) * 100%);
+    grid-column: span #{$size} / span #{$size};
   }
   
-  @mixin make-grid-columns($columns: $grid-columns, $gutter: $grid-gutter-width, $breakpoints: $grid-breakpoints) {
-    %grid-column {
-      position: relative;
-      width: 100%;
-      padding-left: var(--vf-gutter);
-      padding-right: var(--vf-gutter);
-    }
-
+  @mixin make-grid-columns($columns: $grid-columns, $breakpoints: $grid-breakpoints) {
     @each $breakpoint in map-keys($breakpoints) {
       $infix: breakpoint-infix($breakpoint, $breakpoints);
 
-      @if $columns > 0 {
-        @for $i from 1 through $columns {
-          .vf-col#{$infix}-#{$i} {
-            @extend %grid-column;
-          }
-        }
-      }
-
-      .vf-col#{$infix} {
-        @extend %grid-column;
-      }
-
       @include media-breakpoint-up($breakpoint, $breakpoints) {
         .vf-col#{$infix} {
-          flex-basis: 0;
-          flex-grow: 1;
-          max-width: 100%;
+          grid-column: span 12 / span 12;
         }
 
         @if $columns > 0 {

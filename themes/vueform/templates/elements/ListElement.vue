@@ -84,7 +84,7 @@
 
   .vf-list-remove {
     position: absolute;
-    left: var(--vf-gutter);
+    left: 0;
     transform: translateX(-50%) translateY(-50%);
     top: 0;
     z-index: 3;
@@ -112,7 +112,7 @@
 
   .vf-list-handle {
     position: absolute;
-    left: var(--vf-gutter);
+    left: 0;
     transform: translateX(-100%);
     top: 0;
     cursor: grab;

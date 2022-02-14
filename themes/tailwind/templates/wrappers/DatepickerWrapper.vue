@@ -177,6 +177,7 @@ import DatepickerWrapper from './../../../blank/templates/wrappers/DatepickerWra
   .flatpickr-wrapper {
     position: relative;
     display: inline-block;
+    width: 100%;
   }
 
   .flatpickr-months {

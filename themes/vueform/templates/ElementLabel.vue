@@ -25,18 +25,17 @@
 
 <style lang="scss">
   .vf-label {
-    padding-top: calc(var(--vf-py-input) + var(--vf-border-width-input-t));
-    padding-bottom: calc(var(--vf-py-input) + var(--vf-border-width-input-b));
     margin-bottom: 0;
+    display: flex;
+    align-items: center;
+    padding-right: var(--vf-gutter);
 
     &.vf-label-sm {
-      padding-top: calc(var(--vf-py-input-sm) + var(--vf-border-width-input-t));
-      padding-bottom: calc(var(--vf-py-input-sm) + var(--vf-border-width-input-b));
+      padding-right: var(--vf-gutter-sm);
     }
 
     &.vf-label-lg {
-      padding-top: calc(var(--vf-py-input-lg) + var(--vf-border-width-input-t));
-      padding-bottom: calc(var(--vf-py-input-lg) + var(--vf-border-width-input-b));
+      padding-right: var(--vf-gutter-lg);
     }
   }
 </style>

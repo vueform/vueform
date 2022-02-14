@@ -9,7 +9,7 @@
         merge: true,
         defaultClasses: {
           container: '',
-          wrapper: 'vf-row-group',
+          wrapper: 'vf-row',
         }
       }
     }

@@ -270,6 +270,18 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
         '--vf-border-width-input-l': Array.isArray(theme('form.borderWidths.input')) ? theme('form.borderWidths.input')[3] : theme('form.borderWidths.input'),
         '--vf-border-width-input': 'var(--vf-border-width-input-t) var(--vf-border-width-input-r) var(--vf-border-width-input-b) var(--vf-border-width-input-l)',
 
+        '--vf-border-width-radio-t': Array.isArray(theme('form.borderWidths.radio')) ? theme('form.borderWidths.radio')[0] : theme('form.borderWidths.radio'),
+        '--vf-border-width-radio-r': Array.isArray(theme('form.borderWidths.radio')) ? theme('form.borderWidths.radio')[1] : theme('form.borderWidths.radio'),
+        '--vf-border-width-radio-b': Array.isArray(theme('form.borderWidths.radio')) ? theme('form.borderWidths.radio')[2] : theme('form.borderWidths.radio'),
+        '--vf-border-width-radio-l': Array.isArray(theme('form.borderWidths.radio')) ? theme('form.borderWidths.radio')[3] : theme('form.borderWidths.radio'),
+        '--vf-border-width-radio': 'var(--vf-border-width-radio-t) var(--vf-border-width-radio-r) var(--vf-border-width-radio-b) var(--vf-border-width-radio-l)',
+
+        '--vf-border-width-checkbox-t': Array.isArray(theme('form.borderWidths.checkbox')) ? theme('form.borderWidths.checkbox')[0] : theme('form.borderWidths.checkbox'),
+        '--vf-border-width-checkbox-r': Array.isArray(theme('form.borderWidths.checkbox')) ? theme('form.borderWidths.checkbox')[1] : theme('form.borderWidths.checkbox'),
+        '--vf-border-width-checkbox-b': Array.isArray(theme('form.borderWidths.checkbox')) ? theme('form.borderWidths.checkbox')[2] : theme('form.borderWidths.checkbox'),
+        '--vf-border-width-checkbox-l': Array.isArray(theme('form.borderWidths.checkbox')) ? theme('form.borderWidths.checkbox')[3] : theme('form.borderWidths.checkbox'),
+        '--vf-border-width-checkbox': 'var(--vf-border-width-checkbox-t) var(--vf-border-width-checkbox-r) var(--vf-border-width-checkbox-b) var(--vf-border-width-checkbox-l)',
+
         '--vf-border-width-dropdown': theme('form.borderWidths.dropdown'),
         '--vf-border-width-radio': theme('form.borderWidths.radio'),
         '--vf-border-width-checkbox': theme('form.borderWidths.checkbox'),
@@ -393,23 +405,16 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
     }
 
     // grid
-    plain[`.form-row${suffix}`] = {
-      marginLeft: `calc(var(--vf-gutter${size}) * -1)`,
-      marginRight: `calc(var(--vf-gutter${size}) * -1)`,
+    plain[`.form-gap-x-gutter${suffix}`] = {
+      columnGap: `var(--vf-gutter${size})`,
     }
 
-    plain[`.form-row-group${suffix}`] = {
-      marginLeft: `calc(var(--vf-gutter${size}) * -0.5)`,
-      marginRight: `calc(var(--vf-gutter${size}) * -0.5)`,
-      '& > .form-col': {
-        paddingLeft: `calc(var(--vf-gutter${size}) * 0.5)`,
-        paddingRight: `calc(var(--vf-gutter${size}) * 0.5)`,
-      }
+    plain[`.form-gap-y-gutter${suffix}`] = {
+      rowGap: `var(--vf-gutter${size})`,
     }
 
-    plain[`.form-col${suffix}`] = {
-      paddingLeft: `var(--vf-gutter${size})`,
-      paddingRight: `var(--vf-gutter${size})`,
+    plain[`.${e(`form-gap-y-0.5gutter${suffix}`)}`] = {
+      rowGap: `calc(var(--vf-gutter${size}) * 0.5)`,
     }
 
     // border radius
@@ -717,7 +722,7 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
     let gutters = ['', '0.5', '2']
     sides = [
       'mt', 'mr', 'mb', 'ml',
-      'top', 'right', 'bottom', 'left'
+      'top', 'right', 'bottom', 'left',
     ]
 
     sides.forEach((side) => {
@@ -742,6 +747,14 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
         }
       })
     })
+
+    plain[`.${e(`form-pb-gutter/3${suffix}`)}`] = {
+      paddingBottom: `calc(var(--vf-gutter${size}) / 3)`
+    }
+
+    plain[`.form-pr-gutter${suffix}`] = {
+      paddingRight: `var(--vf-gutter${size})`,
+    }
 
     plain[`.form-w-checkbox${suffix}`] = {
       width: `var(--vf-checkbox-size${size})`,
@@ -1402,25 +1415,24 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
         maskRepeat: 'no-repeat',
         backgroundColor: 'var(--vf-color-on-primary)',
         display: 'block',
-        width: '66.666%',
-        height: '66.666%',
-        marginTop: '16.666%',
-        marginLeft: '16.666%',
+        position: 'relative',
+        width: 'calc(100% + var(--vf-border-width-checkbox-l) + var(--vf-border-width-checkbox-r))',
+        height: 'calc(100% + var(--vf-border-width-checkbox-t) + var(--vf-border-width-checkbox-b))',
+        left: 'calc(var(--vf-border-width-checkbox-l) * (-1))',
+        top: 'calc(var(--vf-border-width-checkbox-t) * (-1))',
       }
     },
     '.form-bg-icon-radio': {
       '&::after': {
-        content: '" "',
+        content: '""',
+        maskImage: theme('maskImage.form-radio'),
+        maskPosition: 'center center',
+        maskSize: 'contain',
+        maskRepeat: 'no-repeat',
         backgroundColor: 'var(--vf-color-on-primary)',
-        display: 'inline-block',
-        width: '48%',
-        height: '48%',
-        borderRadius: '50%',
-        opacity: '0',
-        transition: 'all .2s ease-in-out .1s',
-        transform: 'scale(.2)',
-        opacity: '1',
-        transform: 'scale(1)',
+        display: 'block',
+        width: '100%',
+        height: '100%',
       }
     },
   }
@@ -1695,6 +1707,7 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
       transform: ['focus'],
       scale: ['focus'],
       brightness: ['hover'],
+      gap: ['important'],
     }
   },
   theme: {
@@ -1826,8 +1839,18 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
         borderWidths: { // can be array
           input: theme('borderWidth.DEFAULT'), 
           dropdown: 'var(--vf-border-width-input)',
-          checkbox: 'var(--vf-border-width-input)',
-          radio: 'var(--vf-border-width-input)',
+          checkbox: [
+            'var(--vf-border-width-input-t)',
+            'var(--vf-border-width-input-r)',
+            'var(--vf-border-width-input-b)',
+            'var(--vf-border-width-input-l)',
+          ],
+          radio: [
+            'var(--vf-border-width-input-t)',
+            'var(--vf-border-width-input-r)',
+            'var(--vf-border-width-input-b)',
+            'var(--vf-border-width-input-l)',
+          ],
           btn: 'var(--vf-border-width-input)',
           tag: 'var(--vf-border-width-input)',
         },
@@ -2062,10 +2085,10 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
       },
       maskImage: (theme) => ({
         'form-radio': `url("${svgToDataUri(
-          `<svg viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="8" cy="8" r="3"/></svg>`,
+          `<svg viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="8" cy="8" r="3.5"/></svg>`,
         )}")`,
         'form-check': `url("${svgToDataUri(
-          `<svg viewBox="0 0 512 399" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M19.0982946,271.314063 C12.7710159,264.986784 -19.5640449,226.028684 17.5157021,188.948937 C54.5954492,151.869189 93.8002056,183.954281 100.125569,190.280783 L170.333604,260.487679 L411.436495,19.3859275 C417.154189,13.6670939 456.071057,-20.2835775 494.205994,17.8513602 C532.340932,55.9862978 498.18569,94.6972864 492.466202,100.416774 L209.646939,383.237176 C189.916526,402.965616 152.615587,404.508998 130.297151,382.512919 L19.0982946,271.314063 Z"></path></svg>`,
+          `<svg viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z"/></svg>`,
         )}")`,
         'form-check-solid': `url("${svgToDataUri(
           `<svg viewBox="0 0 512 512" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"></path></svg>`,
