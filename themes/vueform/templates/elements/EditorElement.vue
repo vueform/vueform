@@ -15,8 +15,8 @@
           input_success: 'vf-editor-success',
           input_danger: 'vf-editor-danger',
           input_focused: 'vf-editor-focused',
-          input_focused_success: '',
-          input_focused_danger: '',
+          input_focused_success: 'vf-editor-focused vf-editor-success',
+          input_focused_danger: 'vf-editor-focused vf-editor-danger',
           input_sm: 'vf-editor-sm',
           input_md: '',
           input_lg: 'vf-editor-lg',
@@ -57,7 +57,7 @@
     box-shadow: var(--vf-shadow-input);
 
     border-width: var(--vf-border-width-input-t) var(--vf-border-width-input-r) var(--vf-border-width-input-b) var(--vf-border-width-input-l);
-    border-radius: var(--vf-radius);
+    border-radius: var(--vf-radius-input);
 
     &.vf-editor-disabled {
       background-color: var(--vf-bg-disabled);
@@ -89,13 +89,13 @@
     &.vf-editor-focused {
       box-shadow: var(--vf-shadow-input-focus);
       outline: var(--vf-ring-width) solid var(--vf-ring-color);
+      border-color: var(--vf-border-color-input-focus);
     }
 
     &.vf-editor-focused:not(.vf-editor-success):not(.vf-editor-danger),
     &.vf-editor-focused:not(.vf-editor-disabled):not(.vf-editor-success):not(.vf-editor-danger) {
       background-color: var(--vf-bg-input-focus);
       color: var(--vf-color-input-focus);
-      border-color: var(--vf-border-color-input-focus);
     }
   }
 </style>

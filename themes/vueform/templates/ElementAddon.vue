@@ -37,7 +37,7 @@
   .vf-addon {
     background: var(--vf-bg-addon);
     color: var(--vf-color-addon);
-    border-radius: var(--vf-radius);
+    border-radius: var(--vf-radius-input);
     display: flex;
     align-items: center;
     justify-content: center;

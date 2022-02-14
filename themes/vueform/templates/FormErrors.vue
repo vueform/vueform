@@ -27,7 +27,7 @@
   .vf-errors {
     background: var(--vf-bg-danger);
     color: var(--vf-color-danger);
-    border-radius: var(--vf-radius);
+    border-radius: var(--vf-radius-input);
     margin-bottom: var(--vf-gutter);
     font-size: var(--vf-font-size);
     line-height: var(--vf-line-height);
@@ -35,7 +35,7 @@
     padding: 0.5rem 0.75rem;
 
     &.vf-errors-sm {
-      border-radius: var(--vf-radius-sm);
+      border-radius: var(--vf-radius-input-sm);
       margin-bottom: var(--vf-gutter-sm);
       font-size: var(--vf-font-size-sm);
       line-height: var(--vf-line-height-sm);
@@ -44,7 +44,7 @@
     }
 
     &.vf-errors-lg {
-      border-radius: var(--vf-radius-lg);
+      border-radius: var(--vf-radius-input-lg);
       margin-bottom: var(--vf-gutter-lg);
       font-size: var(--vf-font-size-lg);
       line-height: var(--vf-line-height-lg);

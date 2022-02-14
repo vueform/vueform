@@ -51,7 +51,7 @@
     opacity: 0;
     visibility: hidden;
     white-space: nowrap;
-    color: var(--vf-color-muted);
+    color: var(--vf-color-floating);
 
     &.vf-floating-label-visible {
       opacity: 1;
@@ -73,10 +73,12 @@
 
     &.vf-floating-label-danger {
       background-color: var(--vf-bg-input-danger);
+      color: var(--vf-color-floating-danger);
     }
 
     &.vf-floating-label-success {
       background-color: var(--vf-bg-input-success);
+      color: var(--vf-color-floating-success);
     }
   }
 

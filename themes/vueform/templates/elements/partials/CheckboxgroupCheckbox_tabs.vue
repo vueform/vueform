@@ -72,36 +72,36 @@
     }
 
     &.vf-checkbox-tabs-first {
-      border-radius: var(--vf-radius);
+      border-radius: var(--vf-radius-input);
       border-top-right-radius: 0;
       border-bottom-right-radius: 0;
 
       &.vf-checkbox-tabs-first-sm {
-        border-radius: var(--vf-radius-sm);
+        border-radius: var(--vf-radius-input-sm);
         border-top-right-radius: 0;
         border-bottom-right-radius: 0;
       }
 
       &.vf-checkbox-tabs-first-lg {
-        border-radius: var(--vf-radius-lg);
+        border-radius: var(--vf-radius-input-lg);
         border-top-right-radius: 0;
         border-bottom-right-radius: 0;
       }
     }
 
     &.vf-checkbox-tabs-last {
-      border-radius: var(--vf-radius-lg);
+      border-radius: var(--vf-radius-input-lg);
       border-top-left-radius: 0;
       border-bottom-left-radius: 0;
 
       &.vf-checkbox-tabs-last-sm {
-        border-radius: var(--vf-radius-sm);
+        border-radius: var(--vf-radius-input-sm);
         border-top-left-radius: 0;
         border-bottom-left-radius: 0;
       }
 
       &.vf-checkbox-tabs-last-lg {
-        border-radius: var(--vf-radius-lg);
+        border-radius: var(--vf-radius-input-lg);
         border-top-left-radius: 0;
         border-bottom-left-radius: 0;
       }

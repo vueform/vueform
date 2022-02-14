@@ -156,6 +156,9 @@
     --vf-color-disabled: var(--vf-gray-400);
     --vf-color-passive: var(--vf-gray-700);
     --vf-color-muted: var(--vf-gray-500);
+    --vf-color-floating: var(--vf-gray-500);
+    --vf-color-floating-success: var(--vf-color-floating);
+    --vf-color-floating-danger: var(--vf-color-floating);
     --vf-color-on-primary: #ffffff;
     --vf-color-danger: var(--vf-danger);
     --vf-color-success: var(--vf-success);
@@ -204,41 +207,41 @@
     --vf-shadow-btn: 0px 0px 0px 0px rgba(0,0,0,0);
     --vf-shadow-slider-handle: 0.5px 0.5px 2px 1px rgba(0,0,0,.32);
 
-    --vf-radius: 0.25rem;
-    --vf-radius-sm: var(--vf-radius);
-    --vf-radius-lg: var(--vf-radius);
+    --vf-radius-input: 0.25rem;
+    --vf-radius-input-sm: var(--vf-radius-input);
+    --vf-radius-input-lg: var(--vf-radius-input);
 
-    --vf-radius-btn: var(--vf-radius);
-    --vf-radius-btn-sm: var(--vf-radius-sm);
-    --vf-radius-btn-lg: var(--vf-radius);
+    --vf-radius-btn: var(--vf-radius-input);
+    --vf-radius-btn-sm: var(--vf-radius-input-sm);
+    --vf-radius-btn-lg: var(--vf-radius-input);
 
-    --vf-radius-small: var(--vf-radius);
-    --vf-radius-small-sm: var(--vf-radius-sm);
-    --vf-radius-small-lg: var(--vf-radius);
+    --vf-radius-small: var(--vf-radius-input);
+    --vf-radius-small-sm: var(--vf-radius-input-sm);
+    --vf-radius-small-lg: var(--vf-radius-input);
 
-    --vf-radius-large: var(--vf-radius);
-    --vf-radius-large-sm: var(--vf-radius-sm);
-    --vf-radius-large-lg: var(--vf-radius);
+    --vf-radius-large: var(--vf-radius-input);
+    --vf-radius-large-sm: var(--vf-radius-input-sm);
+    --vf-radius-large-lg: var(--vf-radius-input);
 
-    --vf-radius-tag: var(--vf-radius);
-    --vf-radius-tag-sm: var(--vf-radius-sm);
-    --vf-radius-tag-lg: var(--vf-radius);
+    --vf-radius-tag: var(--vf-radius-input);
+    --vf-radius-tag-sm: var(--vf-radius-input-sm);
+    --vf-radius-tag-lg: var(--vf-radius-input);
 
-    --vf-radius-checkbox: var(--vf-radius);
-    --vf-radius-checkbox-sm: var(--vf-radius-sm);
-    --vf-radius-checkbox-lg: var(--vf-radius);
+    --vf-radius-checkbox: var(--vf-radius-input);
+    --vf-radius-checkbox-sm: var(--vf-radius-input-sm);
+    --vf-radius-checkbox-lg: var(--vf-radius-input);
 
-    --vf-radius-slider: var(--vf-radius);
-    --vf-radius-slider-sm: var(--vf-radius-sm);
-    --vf-radius-slider-lg: var(--vf-radius);
+    --vf-radius-slider: var(--vf-radius-input);
+    --vf-radius-slider-sm: var(--vf-radius-input-sm);
+    --vf-radius-slider-lg: var(--vf-radius-input);
 
-    --vf-radius-image: var(--vf-radius);
-    --vf-radius-image-sm: var(--vf-radius-sm);
-    --vf-radius-image-lg: var(--vf-radius);
+    --vf-radius-image: var(--vf-radius-input);
+    --vf-radius-image-sm: var(--vf-radius-input-sm);
+    --vf-radius-image-lg: var(--vf-radius-input);
 
-    --vf-radius-gallery: var(--vf-radius);
-    --vf-radius-gallery-sm: var(--vf-radius-sm);
-    --vf-radius-gallery-lg: var(--vf-radius);
+    --vf-radius-gallery: var(--vf-radius-input);
+    --vf-radius-gallery-sm: var(--vf-radius-input-sm);
+    --vf-radius-gallery-lg: var(--vf-radius-input);
 
     --vf-shadow-input: 0px 0px 0px 0px rgba(0,0,0,0);
     --vf-shadow-input-hover: var(--vf-shadow-input);
@@ -355,7 +358,7 @@
     border-color: var(--vf-border-color-input);
     box-shadow: var(--vf-shadow-input);
 
-    border-radius: var(--vf-radius);
+    border-radius: var(--vf-radius-input);
     border-width: var(--vf-border-width-input-t) var(--vf-border-width-input-r) var(--vf-border-width-input-b) var(--vf-border-width-input-l);
     border-style: solid;
 
@@ -482,7 +485,7 @@
     }
 
     &.vf-input-group-sm {
-      border-radius: var(--vf-radius-sm);
+      border-radius: var(--vf-radius-input-sm);
 
       input:not(.numInput), textarea {
         font-size: var(--vf-font-size-sm);
@@ -498,7 +501,7 @@
     }
 
     &.vf-input-group-lg {
-      border-radius: var(--vf-radius-lg);
+      border-radius: var(--vf-radius-input-lg);
 
       input:not(.numInput), textarea {
         font-size: var(--vf-font-size-lg);
@@ -538,7 +541,7 @@
 
     padding: var(--vf-py-input) var(--vf-px-input);
     min-height: var(--vf-min-height-input);
-    border-radius: var(--vf-radius);
+    border-radius: var(--vf-radius-input);
     border-width: var(--vf-border-width-input-t) var(--vf-border-width-input-r) var(--vf-border-width-input-b) var(--vf-border-width-input-l);
     border-style: solid;
 
@@ -584,7 +587,7 @@
 
     &.vf-input-sm {
       padding: var(--vf-py-input-sm) var(--vf-px-input-sm);
-      border-radius: var(--vf-radius-sm);
+      border-radius: var(--vf-radius-input-sm);
       min-height: var(--vf-min-height-input-sm);
       font-size: var(--vf-font-size-sm);
       line-height: var(--vf-line-height-sm);
@@ -593,7 +596,7 @@
 
     &.vf-input-lg {
       padding: var(--vf-py-input-lg) var(--vf-px-input-lg);
-      border-radius: var(--vf-radius-lg);
+      border-radius: var(--vf-radius-input-lg);
       min-height: var(--vf-min-height-input-lg);
       font-size: var(--vf-font-size-lg);
       line-height: var(--vf-line-height-lg);

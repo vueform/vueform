@@ -249,6 +249,9 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
         '--vf-color-disabled': theme('form.textColors.disabled'),
         '--vf-color-passive': theme('form.textColors.passive'),
         '--vf-color-muted': theme('form.textColors.muted'),
+        '--vf-color-floating': theme('form.textColors.floating'),
+        '--vf-color-floating-success': theme('form.textColors.floatingSuccess'),
+        '--vf-color-floating-danger': theme('form.textColors.floatingDanger'),
         '--vf-color-on-primary': theme('form.textColors.onPrimary'),
         '--vf-color-danger': theme('form.textColors.danger'),
         '--vf-color-success': theme('form.textColors.success'),
@@ -297,17 +300,17 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
         '--vf-shadow-btn': theme('form.shadows.btn'),
         '--vf-shadow-slider-handle': theme('form.shadows.sliderHandle'),
         
-        '--vf-radius': Array.isArray(theme('form.radius.base')) ? theme('form.radius.base').join(' ') : theme('form.radius.base'),
-        '--vf-radius-sm': theme('form.radius.sm'),
-        '--vf-radius-lg': theme('form.radius.lg'),
+        '--vf-radius-input': Array.isArray(theme('form.inputRadius.base')) ? theme('form.inputRadius.base').join(' ') : theme('form.inputRadius.base'),
+        '--vf-radius-input-sm': theme('form.inputRadius.sm'),
+        '--vf-radius-input-lg': theme('form.inputRadius.lg'),
         
         '--vf-radius-btn': theme('form.btnRadius.base'),
         '--vf-radius-btn-sm': theme('form.btnRadius.sm'),
         '--vf-radius-btn-lg': theme('form.btnRadius.base'),
 
-        '--vf-radius-small': theme('form.smallRadius.base'),
-        '--vf-radius-small-sm': theme('form.smallRadius.sm'),
-        '--vf-radius-small-lg': theme('form.smallRadius.base'),
+        '--vf-radius-input-small': theme('form.smallRadius.base'),
+        '--vf-radius-input-small-sm': theme('form.smallRadius.sm'),
+        '--vf-radius-input-small-lg': theme('form.smallRadius.base'),
 
         '--vf-radius-large': theme('form.largeRadius.base'),
         '--vf-radius-large-sm': theme('form.largeRadius.sm'),
@@ -421,135 +424,135 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
     }
 
     // border radius
-    plain[`.form-rounded${suffix}`] = {
-      borderRadius: `var(--vf-radius${size})`,
+    plain[`.form-radius-input${suffix}`] = {
+      borderRadius: `var(--vf-radius-input${size})`,
     }
 
-    plain[`.form-rounded-t${suffix}`] = {
-      borderRadius: `var(--vf-radius${size})`,
+    plain[`.form-radius-input-t${suffix}`] = {
+      borderRadius: `var(--vf-radius-input${size})`,
       borderBottomLeftRadius: 0,
       borderBottomRightRadius: 0,
     }
 
-    plain[`.form-rounded-r${suffix}`] = {
-      borderRadius: `var(--vf-radius${size})`,
+    plain[`.form-radius-input-r${suffix}`] = {
+      borderRadius: `var(--vf-radius-input${size})`,
       borderBottomLeftRadius: 0,
       borderTopLeftRadius: 0,
     }
 
-    plain[`.form-rounded-b${suffix}`] = {
-      borderRadius: `var(--vf-radius${size})`,
+    plain[`.form-radius-input-b${suffix}`] = {
+      borderRadius: `var(--vf-radius-input${size})`,
       borderTopLeftRadius: 0,
       borderTopRightRadius: 0,
     }
 
-    plain[`.form-rounded-l${suffix}`] = {
-      borderRadius: `var(--vf-radius${size})`,
+    plain[`.form-radius-input-l${suffix}`] = {
+      borderRadius: `var(--vf-radius-input${size})`,
       borderTopRightRadius: 0,
       borderBottomRightRadius: 0,
     }
 
-    plain[`.form-rounded-btn${suffix}`] = {
+    plain[`.form-radius-btn${suffix}`] = {
       borderRadius: `var(--vf-radius-btn${size})`,
     }
 
-    plain[`.form-rounded-btn-t${suffix}`] = {
+    plain[`.form-radius-btn-t${suffix}`] = {
       borderRadius: `var(--vf-radius-btn${size})`,
       borderBottomLeftRadius: 0,
       borderBottomRightRadius: 0,
     }
 
-    plain[`.form-rounded-btn-r${suffix}`] = {
+    plain[`.form-radius-btn-r${suffix}`] = {
       borderRadius: `var(--vf-radius-btn${size})`,
       borderBottomLeftRadius: 0,
       borderTopLeftRadius: 0,
     }
 
-    plain[`.form-rounded-btn-b${suffix}`] = {
+    plain[`.form-radius-btn-b${suffix}`] = {
       borderRadius: `var(--vf-radius-btn${size})`,
       borderTopLeftRadius: 0,
       borderTopRightRadius: 0,
     }
 
-    plain[`.form-rounded-btn-l${suffix}`] = {
+    plain[`.form-radius-btn-l${suffix}`] = {
       borderRadius: `var(--vf-radius-btn${size})`,
       borderTopRightRadius: 0,
       borderBottomRightRadius: 0,
     }
 
-    plain[`.form-rounded-small${suffix}`] = {
-      borderRadius: `var(--vf-radius-small${size})`,
+    plain[`.form-radius-small${suffix}`] = {
+      borderRadius: `var(--vf-radius-input-small${size})`,
     }
 
-    plain[`.form-rounded-small-t${suffix}`] = {
-      borderRadius: `var(--vf-radius-small${size})`,
+    plain[`.form-radius-small-t${suffix}`] = {
+      borderRadius: `var(--vf-radius-input-small${size})`,
       borderBottomLeftRadius: 0,
       borderBottomRightRadius: 0,
     }
 
-    plain[`.form-rounded-small-r${suffix}`] = {
-      borderRadius: `var(--vf-radius-small${size})`,
+    plain[`.form-radius-small-r${suffix}`] = {
+      borderRadius: `var(--vf-radius-input-small${size})`,
       borderBottomLeftRadius: 0,
       borderTopLeftRadius: 0,
     }
 
-    plain[`.form-rounded-small-b${suffix}`] = {
-      borderRadius: `var(--vf-radius-small${size})`,
+    plain[`.form-radius-small-b${suffix}`] = {
+      borderRadius: `var(--vf-radius-input-small${size})`,
       borderTopLeftRadius: 0,
       borderTopRightRadius: 0,
     }
 
-    plain[`.form-rounded-small-l${suffix}`] = {
-      borderRadius: `var(--vf-radius-small${size})`,
+    plain[`.form-radius-small-l${suffix}`] = {
+      borderRadius: `var(--vf-radius-input-small${size})`,
       borderTopRightRadius: 0,
       borderBottomRightRadius: 0,
     }
 
-    plain[`.form-rounded-large${suffix}`] = {
+    plain[`.form-radius-large${suffix}`] = {
       borderRadius: `var(--vf-radius-large${size})`,
     }
 
-    plain[`.form-rounded-large-t${suffix}`] = {
+    plain[`.form-radius-large-t${suffix}`] = {
       borderRadius: `var(--vf-radius-large${size})`,
       borderBottomLeftRadius: 0,
       borderBottomRightRadius: 0,
     }
 
-    plain[`.form-rounded-large-r${suffix}`] = {
+    plain[`.form-radius-large-r${suffix}`] = {
       borderRadius: `var(--vf-radius-large${size})`,
       borderBottomLeftRadius: 0,
       borderTopLeftRadius: 0,
     }
 
-    plain[`.form-rounded-large-b${suffix}`] = {
+    plain[`.form-radius-large-b${suffix}`] = {
       borderRadius: `var(--vf-radius-large${size})`,
       borderTopLeftRadius: 0,
       borderTopRightRadius: 0,
     }
 
-    plain[`.form-rounded-large-l${suffix}`] = {
+    plain[`.form-radius-large-l${suffix}`] = {
       borderRadius: `var(--vf-radius-large${size})`,
       borderTopRightRadius: 0,
       borderBottomRightRadius: 0,
     }
 
-    plain[`.form-rounded-tag${suffix}`] = {
+    plain[`.form-radius-input-tag${suffix}`] = {
       borderRadius: `var(--vf-radius-tag${size})`,
     }
 
-    plain[`.form-rounded-checkbox${suffix}`] = {
+    plain[`.form-radius-checkbox${suffix}`] = {
       borderRadius: `var(--vf-radius-checkbox${size})`,
     }
 
-    plain[`.form-rounded-slider${suffix}`] = {
+    plain[`.form-radius-slider${suffix}`] = {
       borderRadius: `var(--vf-radius-slider${size})`,
     }
 
-    plain[`.form-rounded-image${suffix}`] = {
+    plain[`.form-radius-image${suffix}`] = {
       borderRadius: `var(--vf-radius-image${size})`,
     }
 
-    plain[`.form-rounded-gallery${suffix}`] = {
+    plain[`.form-radius-gallery${suffix}`] = {
       borderRadius: `var(--vf-radius-gallery${size})`,
     }
 
@@ -1002,6 +1005,15 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
     '.form-color-muted': {
       color: 'var(--vf-color-muted)',
     },
+    '.form-color-floating': {
+      color: 'var(--vf-color-floating)',
+    },
+    '.form-color-floating-success': {
+      color: 'var(--vf-color-floating-success)',
+    },
+    '.form-color-floating-danger': {
+      color: 'var(--vf-color-floating-danger)',
+    },
     '.form-color-placeholder': {
       color: 'var(--vf-color-placeholder)',
     },
@@ -1122,11 +1134,11 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
       borderColor: 'var(--vf-border-color-btn-danger)'
     },
 
-    '.form-border-btn': {
+    '.form-border-width-btn': {
       borderWidth: `var(--vf-border-width-btn)`,
       borderStyle: 'solid',
     },
-    '.form-border-tag': {
+    '.form-border-width-tag': {
       borderWidth: `var(--vf-border-width-tag)`,
       borderStyle: 'solid',
     },
@@ -1422,16 +1434,16 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
       backgroundColor: 'var(--vf-primary)'
     },
 
-    '.form-border-input': {
+    '.form-border-width-input': {
       borderWidth: `var(--vf-border-width-input-t) var(--vf-border-width-input-r) var(--vf-border-width-input-b) var(--vf-border-width-input-l)`,
     },
-    '.form-border-dropdown': {
+    '.form-border-width-dropdown': {
       borderWidth: `var(--vf-border-width-dropdown)`,
     },
-    '.form-border-checkbox': {
+    '.form-border-width-checkbox': {
       borderWidth: `var(--vf-border-width-checkbox-t) var(--vf-border-width-checkbox-r) var(--vf-border-width-checkbox-b) var(--vf-border-width-checkbox-l)`,
     },
-    '.form-border-radio': {
+    '.form-border-width-radio': {
       borderWidth: `var(--vf-border-width-radio-t) var(--vf-border-width-radio-r) var(--vf-border-width-radio-b) var(--vf-border-width-radio-l)`,
     },
     '.border-0': {
@@ -1533,6 +1545,14 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
     },
   }
 
+  const hoverNoFocusNoActive = {
+    ...hoverable,
+  }
+
+  const activeOrFocusable = {
+    ...focusable,
+  }
+
   const groupHoverable = {
     '.form-hidden': {
       display: 'none',
@@ -1567,7 +1587,7 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
   }
 
   const addonBefore = {
-    '.form-rounded-l-none': { 
+    '.form-radius-input-l-none': { 
       borderTopLeftRadius: 0,
       borderBottomLeftRadius: 0,
     },
@@ -1577,7 +1597,7 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
   }
 
   const addonAfter = {
-    '.form-rounded-r-none': { 
+    '.form-radius-input-r-none': { 
       borderTopRightRadius: 0,
       borderBottomRightRadius: 0,
     },
@@ -1594,10 +1614,12 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
 
   addUtilities(plain)
   addUtilities(hoverable, ['hover'])
+  addUtilities(hoverNoFocusNoActive, ['hover-no-focus-no-active'])
   addUtilities(groupHoverable, ['group-hover'])
   addUtilities(checkable, ['checked'])
   addUtilities(notCheckable, ['not-checked'])
   addUtilities(focusable, ['focus'])
+  addUtilities(activeOrFocusable, ['active-or-focus'])
   addUtilities(activable, ['active'])
   addUtilities(disableable, ['disabled'])
   addUtilities(important, ['important'])
@@ -1655,6 +1677,19 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
   addVariant('hover-not-disabled', ({ modifySelectors, separator }) => {
     modifySelectors(({ className }) => {
       return `.${e(`hover-not-disabled${separator}${className}`)}:not([disabled]):hover`
+    })
+  })
+  
+  addVariant('hover-no-focus-no-active', ({ modifySelectors, separator }) => {
+    modifySelectors(({ className }) => {
+      return `.${e(`hover-no-focus-no-active${separator}${className}`)}:not(:focus):not(.form-active):hover`
+    })
+  })
+  
+  addVariant('active-or-focus', ({ modifySelectors, separator }) => {
+    modifySelectors(({ className }) => {
+      return `.${e(`active-or-focus${separator}${className}`)}:focus,
+              .${e(`active-or-focus${separator}${className}`)}.form-active`
     })
   })
 
@@ -1945,58 +1980,58 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
           ],
         },
         
-        radius: { // can be array
+        inputRadius: { // can be array
           base: theme('borderRadius.DEFAULT'),
-          sm: 'var(--vf-radius)',
-          lg: 'var(--vf-radius)',
+          sm: 'var(--vf-radius-input)',
+          lg: 'var(--vf-radius-input)',
         },
         
         btnRadius: {  // can be array
-          base: 'var(--vf-radius)',
-          sm: 'var(--vf-radius-sm)',
-          lg: 'var(--vf-radius-lg)',
+          base: 'var(--vf-radius-input)',
+          sm: 'var(--vf-radius-input-sm)',
+          lg: 'var(--vf-radius-input-lg)',
         },
         
         smallRadius: {  // can be array, applies to: checkbox, tags, slider tooltips
-          base: 'var(--vf-radius)',
-          sm: 'var(--vf-radius-sm)',
-          lg: 'var(--vf-radius-lg)',
+          base: 'var(--vf-radius-input)',
+          sm: 'var(--vf-radius-input-sm)',
+          lg: 'var(--vf-radius-input-lg)',
         },
         
         largeRadius: { //  // can be array, applies to: drag and drop, checkbox & radio group blocks, textarea, native multiselect
-          base: 'var(--vf-radius)',
-          sm: 'var(--vf-radius-sm)',
-          lg: 'var(--vf-radius-lg)',
+          base: 'var(--vf-radius-input)',
+          sm: 'var(--vf-radius-input-sm)',
+          lg: 'var(--vf-radius-input-lg)',
         },
         
         tagRadius: {
-          base: 'var(--vf-radius)',
-          sm: 'var(--vf-radius-sm)',
-          lg: 'var(--vf-radius-lg)',
+          base: 'var(--vf-radius-input)',
+          sm: 'var(--vf-radius-input-sm)',
+          lg: 'var(--vf-radius-input-lg)',
         },
         
         checkboxRadius: { // can be array
-          base: 'var(--vf-radius)',
-          sm: 'var(--vf-radius-sm)',
-          lg: 'var(--vf-radius-lg)',
+          base: 'var(--vf-radius-input)',
+          sm: 'var(--vf-radius-input-sm)',
+          lg: 'var(--vf-radius-input-lg)',
         },
         
         sliderRadius: { // can be array
-          base: 'var(--vf-radius)',
-          sm: 'var(--vf-radius-sm)',
-          lg: 'var(--vf-radius-lg)',
+          base: 'var(--vf-radius-input)',
+          sm: 'var(--vf-radius-input-sm)',
+          lg: 'var(--vf-radius-input-lg)',
         },
         
         imageRadius: { // can be array
-          base: 'var(--vf-radius)',
-          sm: 'var(--vf-radius-sm)',
-          lg: 'var(--vf-radius-lg)',
+          base: 'var(--vf-radius-input)',
+          sm: 'var(--vf-radius-input-sm)',
+          lg: 'var(--vf-radius-input-lg)',
         },
         
         galleryRadius: { // can be array
-          base: 'var(--vf-radius)',
-          sm: 'var(--vf-radius-sm)',
-          lg: 'var(--vf-radius-lg)',
+          base: 'var(--vf-radius-input)',
+          sm: 'var(--vf-radius-input-sm)',
+          lg: 'var(--vf-radius-input-lg)',
         },
 
         bgColors: {
@@ -2032,6 +2067,9 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
           disabled: 'var(--vf-gray-400)',
           passive: 'var(--vf-gray-700)',
           muted: 'var(--vf-gray-500)',
+          floating: 'var(--vf-gray-500)',
+          floatingSuccess: 'var(--vf-color-floating)',
+          floatingDanger: 'var(--vf-color-floating)',
           danger: 'var(--vf-danger)',
           success: 'var(--vf-success)',
           addon: 'inherit',

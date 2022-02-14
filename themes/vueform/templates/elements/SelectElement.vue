@@ -322,7 +322,7 @@
     box-shadow: var(--vf-shadow-input);
 
     min-height: var(--vf-min-height-input);
-    border-radius: var(--vf-radius);
+    border-radius: var(--vf-radius-input);
     border-width: var(--vf-border-width-input-t) var(--vf-border-width-input-r) var(--vf-border-width-input-b) var(--vf-border-width-input-l);
     border-style: solid;
 
@@ -367,17 +367,17 @@
     &.vf-multiselect-active {
       box-shadow: var(--vf-shadow-input-focus);
       outline: var(--vf-ring-width) solid var(--vf-ring-color);
+      border-color: var(--vf-border-color-input-focus);
 
       &:not(.vf-multiselect-disabled):not(.vf-multiselect-success):not(.vf-multiselect-danger) {
         background-color: var(--vf-bg-input-focus);
         color: var(--vf-color-input-focus);
-        border-color: var(--vf-border-color-input-focus);
       }
     }
 
     &.vf-multiselect-sm {
       min-height: var(--vf-min-height-input-sm);
-      border-radius: var(--vf-radius-sm);
+      border-radius: var(--vf-radius-input-sm);
       font-size: var(--vf-font-size-sm);
       line-height: var(--vf-line-height-sm);
       letter-spacing: var(--vf-letter-spacing-sm);
@@ -385,7 +385,7 @@
 
     &.vf-multiselect-lg {
       min-height: var(--vf-min-height-input-lg);
-      border-radius: var(--vf-radius-lg);
+      border-radius: var(--vf-radius-input-lg);
       font-size: var(--vf-font-size-lg);
       line-height: var(--vf-line-height-lg);
       letter-spacing: var(--vf-letter-spacing-lg);
@@ -465,7 +465,7 @@
     line-height: var(--vf-line-height);
     letter-spacing: var(--vf-letter-spacing);
 
-    border-radius: var(--vf-radius);
+    border-radius: var(--vf-radius-input);
     padding-left: var(--vf-px-input);
     color: var(--vf-color-input);
 
@@ -477,7 +477,7 @@
     }
 
     &.vf-multiselect-search-sm {
-      border-radius: var(--vf-radius-sm);
+      border-radius: var(--vf-radius-input-sm);
       padding-left: var(--vf-px-input-sm);
       font-size: var(--vf-font-size-sm);
       line-height: var(--vf-line-height-sm);
@@ -485,7 +485,7 @@
     }
 
     &.vf-multiselect-search-lg {
-      border-radius: var(--vf-radius-lg);
+      border-radius: var(--vf-radius-input-lg);
       padding-left: var(--vf-px-input-lg);
       font-size: var(--vf-font-size-lg);
       line-height: var(--vf-line-height-lg);
@@ -614,7 +614,7 @@
     background: var(--vf-bg-input);
     display: flex;
     flex-direction: column;
-    border-radius: var(--vf-radius);
+    border-radius: var(--vf-radius-input);
     border-top-left-radius: 0;
     border-top-right-radius: 0;
     outline: none;
@@ -625,7 +625,7 @@
       margin-top: 0;
       bottom: auto;
       flex-direction: column-reverse;
-      border-radius: var(--vf-radius);
+      border-radius: var(--vf-radius-input);
       border-bottom-left-radius: 0;
       border-bottom-right-radius: 0;
     }
@@ -635,24 +635,24 @@
     }v
 
     &.vf-multiselect-dropdown-sm {
-      border-radius: var(--vf-radius-sm);
+      border-radius: var(--vf-radius-input-sm);
       border-top-left-radius: 0;
       border-top-right-radius: 0;
 
       &.vf-multiselect-dropdown-top-sm {
-        border-radius: var(--vf-radius-sm);
+        border-radius: var(--vf-radius-input-sm);
         border-bottom-left-radius: 0;
         border-bottom-right-radius: 0;
       }
     }
 
     &.vf-multiselect-dropdown-lg {
-      border-radius: var(--vf-radius-lg);
+      border-radius: var(--vf-radius-input-lg);
       border-top-left-radius: 0;
       border-top-right-radius: 0;
 
       &.vf-multiselect-dropdown-top-lg {
-        border-radius: var(--vf-radius-lg);
+        border-radius: var(--vf-radius-input-lg);
         border-bottom-left-radius: 0;
         border-bottom-right-radius: 0;
       }
