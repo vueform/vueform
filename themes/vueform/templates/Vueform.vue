@@ -359,7 +359,7 @@
     border-width: var(--vf-border-width-input-t) var(--vf-border-width-input-r) var(--vf-border-width-input-b) var(--vf-border-width-input-l);
     border-style: solid;
 
-    input, textarea {
+    input:not(.numInput), textarea {
       font-size: var(--vf-font-size);
       line-height: var(--vf-line-height);
       letter-spacing: var(--vf-letter-spacing);
@@ -393,7 +393,7 @@
       background-color: var(--vf-bg-disabled);
       color: var(--vf-color-disabled);
 
-      input, textarea {
+      input:not(.numInput), textarea {
         color: var(--vf-color-disabled);
       }
     }
@@ -403,7 +403,7 @@
       color: var(--vf-color-input-success);
       border-color: var(--vf-border-color-input-success);
 
-      input, textarea {
+      input:not(.numInput), textarea {
         color: var(--vf-color-input-success);
 
         &:-webkit-autofill, &:-webkit-autofill:hover, &:-webkit-autofill:focus, &:-webkit-autofill:active {
@@ -421,7 +421,7 @@
       color: var(--vf-color-input-danger);
       border-color: var(--vf-border-color-input-danger);
 
-      input, textarea {
+      input:not(.numInput), textarea {
         color: var(--vf-color-input-danger);
 
         &:-webkit-autofill, &:-webkit-autofill:hover, &:-webkit-autofill:focus, &:-webkit-autofill:active {
@@ -443,7 +443,7 @@
       color: var(--vf-color-input-hover);
       border-color: var(--vf-border-color-input-hover);
 
-      input, textarea {
+      input:not(.numInput), textarea {
         color: var(--vf-color-input-hover);
 
         &:-webkit-autofill, &:-webkit-autofill:hover, &:-webkit-autofill:focus, &:-webkit-autofill:active {
@@ -468,7 +468,7 @@
       background-color: var(--vf-bg-input-focus);
       color: var(--vf-color-input-focus);
 
-      input, textarea {
+      input:not(.numInput), textarea {
         color: var(--vf-color-input-focus);
 
         &:-webkit-autofill, &:-webkit-autofill:hover, &:-webkit-autofill:focus, &:-webkit-autofill:active {
@@ -484,7 +484,7 @@
     &.vf-input-group-sm {
       border-radius: var(--vf-radius-sm);
 
-      input, textarea {
+      input:not(.numInput), textarea {
         font-size: var(--vf-font-size-sm);
         line-height: var(--vf-line-height-sm);
         letter-spacing: var(--vf-letter-spacing-sm);
@@ -500,7 +500,7 @@
     &.vf-input-group-lg {
       border-radius: var(--vf-radius-lg);
 
-      input, textarea {
+      input:not(.numInput), textarea {
         font-size: var(--vf-font-size-lg);
         line-height: var(--vf-line-height-lg);
         letter-spacing: var(--vf-letter-spacing-lg);

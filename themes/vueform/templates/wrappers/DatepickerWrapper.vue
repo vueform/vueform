@@ -43,6 +43,7 @@
         touch-action: manipulation;
     -webkit-box-shadow: 0 3px 13px rgba(0,0,0,0.08);
             box-shadow: 0 3px 13px rgba(0,0,0,0.08);
+    color: var(--vf-color-input);
   }
 
   .flatpickr-calendar.open,
@@ -781,6 +782,7 @@
     display: flex;
     background: #fff;
     border-radius: 0 0 5px 5px;
+    color: var(--vf-color-input);
   }
 
   .flatpickr-time:after {
@@ -835,6 +837,7 @@
     -webkit-appearance: textfield;
     -moz-appearance: textfield;
     appearance: textfield;
+    color: var(--vf-color-input);
   }
 
   .flatpickr-time input.flatpickr-hour {
