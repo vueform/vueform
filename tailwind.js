@@ -212,6 +212,14 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
         '--vf-space-addon-sm': theme('form.spaceAddon.sm'),
         '--vf-space-addon-lg': theme('form.spaceAddon.lg'),
 
+        '--vf-space-checkbox': theme('form.spaceCheckbox.base'),
+        '--vf-space-checkbox-sm': theme('form.spaceCheckbox.sm'),
+        '--vf-space-checkbox-lg': theme('form.spaceCheckbox.lg'),
+
+        '--vf-space-tags': theme('form.spaceTags.base'),
+        '--vf-space-tags-sm': theme('form.spaceTags.sm'),
+        '--vf-space-tags-lg': theme('form.spaceTags.lg'),
+
         '--vf-bg-input': theme('form.bgColors.input'),
         '--vf-bg-input-focus': theme('form.bgColors.inputFocus'),
         '--vf-bg-input-hover': theme('form.bgColors.inputHover'),
@@ -601,6 +609,12 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
       paddingBottom: `calc(var(--vf-py-input${size}) - (${theme(`fontSize`)['0.5xs'][0]} / 2))`,
     }
 
+    withFloating[`.form-p-tags-floating${suffix}`] = {
+      paddingLeft: `var(--vf-px-input${size})`,
+      paddingTop: `calc(var(--vf-py-input${size}) + (${theme(`fontSize`)['0.5xs'][0]} / 2))`,
+      paddingBottom: `calc(var(--vf-py-input${size}) - (${theme(`fontSize`)['0.5xs'][0]} / 2))`,
+    }
+
     plain[`.${e(`form-py-0.5input${suffix}`)}`] = {
       paddingBottom: `calc(var(--vf-py-input${size}) * 0.5)`,
       paddingTop: `calc(var(--vf-py-input${size}) * 0.5)`,
@@ -667,6 +681,30 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
 
     plain[`.form-pl-space-addon${suffix}`] = {
       paddingLeft: `var(--vf-space-addon${size})`
+    }
+
+    plain[`.form-mt-checkbox${suffix}`] = {
+      marginTop: `calc((var(--vf-line-height${size}) - var(--vf-checkbox-size${size})) / 2)`
+    }
+
+    plain[`.form-mr-space-checkbox${suffix}`] = {
+      marginRight: `var(--vf-space-checkbox${size})`
+    }
+
+    plain[`.form-mt-space-tags${suffix}`] = {
+      marginTop: `var(--vf-space-tags${size})`
+    }
+
+    plain[`.form-mr-space-tags${suffix}`] = {
+      marginRight: `var(--vf-space-tags${size})`
+    }
+
+    plain[`.form-mb-space-tags${suffix}`] = {
+      marginBottom: `var(--vf-space-tags${size})`
+    }
+
+    plain[`.form-ml-space-tags${suffix}`] = {
+      marginLeft: `var(--vf-space-tags${size})`
     }
 
     plain[`.form-pr-space-addon${suffix}`] = {
@@ -898,6 +936,54 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
         backgroundColor: 'var(--vf-color-btn-secondary)'
       }
     }
+
+    plain[`.slider-vertical .${e(`v:arrow-right${suffix}`)}:before`] = {
+      content: '""',
+      position: 'absolute',
+      right: `calc(var(--vf-slider-tooltip-arrow-size${size}) * (-2))`,
+      top: '50%',
+      width: '0',
+      height: '0',
+      border: `var(--vf-slider-tooltip-arrow-size${size}) solid transparent`,
+      borderLeftColor: 'inherit',
+      transform: 'translateY(-50%)',
+    }
+
+    plain[`.slider-vertical .${e(`v:arrow-left${suffix}`)}:before`] = {
+      content: '""',
+      position: 'absolute',
+      left: `calc(var(--vf-slider-tooltip-arrow-size${size}) * (-2))`,
+      top: '50%',
+      width: '0',
+      height: '0',
+      border: `var(--vf-slider-tooltip-arrow-size${size}) solid transparent`,
+      borderRightColor: 'inherit',
+      transform: 'translateY(-50%)',
+    }
+
+    plain[`.slider-horizontal .${e(`h:arrow-bottom${suffix}`)}:before`] = {
+      content: '""',
+      position: 'absolute',
+      bottom: `calc(var(--vf-slider-tooltip-arrow-size${size}) * (-2))`,
+      left: '50%',
+      width: '0',
+      height: '0',
+      border: `var(--vf-slider-tooltip-arrow-size${size}) solid transparent`,
+      borderTopColor: 'inherit',
+      transform: 'translate(-50%)',
+    }
+    
+    plain[`.slider-horizontal .${e(`h:arrow-top${suffix}`)}:before`] = {
+      content: '""',
+      position: 'absolute',
+      top: `calc(var(--vf-slider-tooltip-arrow-size${size}) * (-2))`,
+      left: '50%',
+      width: '0',
+      height: '0',
+      border: `var(--vf-slider-tooltip-arrow-size${size}) solid transparent`,
+      borderBottomColor: 'inherit',
+      transform: 'translate(-50%)',
+    }
   })
 
   plain = Object.assign({}, plain, {
@@ -1043,10 +1129,6 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
     '.form-border-tag': {
       borderWidth: `var(--vf-border-width-tag)`,
       borderStyle: 'solid',
-    },
-
-    '.-form-top-border-width-input-t': {
-      top: 'calc(var(--vf-border-width-input-t) * (-1))'
     },
 
     '.form-shadow-input': {
@@ -1309,50 +1391,6 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
     [`.slider-vertical .${e('v:cursor-ns-resize')}`]: {
       cursor: 'ns-resize',
     },
-    [`.slider-vertical .${e('v:arrow-right')}:before`]: {
-      content: '""',
-      position: 'absolute',
-      right: 'calc(var(--vf-slider-tooltip-arrow-size) * (-2))',
-      top: '50%',
-      width: '0',
-      height: '0',
-      border: 'var(--vf-slider-tooltip-arrow-size) solid transparent',
-      borderLeftColor: 'inherit',
-      transform: 'translateY(-50%)',
-    },
-    [`.slider-vertical .${e('v:arrow-left')}:before`]: {
-      content: '""',
-      position: 'absolute',
-      left: 'calc(var(--vf-slider-tooltip-arrow-size) * (-2))',
-      top: '50%',
-      width: '0',
-      height: '0',
-      border: 'var(--vf-slider-tooltip-arrow-size) solid transparent',
-      borderRightColor: 'inherit',
-      transform: 'translateY(-50%)',
-    },
-    [`.slider-horizontal .${e('h:arrow-bottom')}:before`]: {
-      content: '""',
-      position: 'absolute',
-      bottom: 'calc(var(--vf-slider-tooltip-arrow-size) * (-2))',
-      left: '50%',
-      width: '0',
-      height: '0',
-      border: 'var(--vf-slider-tooltip-arrow-size) solid transparent',
-      borderTopColor: 'inherit',
-      transform: 'translate(-50%)',
-    },
-    [`.slider-horizontal .${e('h:arrow-top')}:before`]: {
-      content: '""',
-      position: 'absolute',
-      top: 'calc(var(--vf-slider-tooltip-arrow-size) * (-2))',
-      left: '50%',
-      width: '0',
-      height: '0',
-      border: 'var(--vf-slider-tooltip-arrow-size) solid transparent',
-      borderBottomColor: 'inherit',
-      transform: 'translate(-50%)',
-    },
 
     // Mask things
     '.mask-bg': {
@@ -1548,6 +1586,12 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
     },
   }
 
+  const inInputGroup = {
+    '.-form-top-border-width-input-t': {
+      top: 'calc(var(--vf-border-width-input-t) * (-1))'
+    }
+  }
+
   addUtilities(plain)
   addUtilities(hoverable, ['hover'])
   addUtilities(groupHoverable, ['group-hover'])
@@ -1560,6 +1604,7 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
   addUtilities(addonBefore, ['addon-before'])
   addUtilities(addonAfter, ['addon-after'])
   addUtilities(withFloating, ['with-floating'])
+  addUtilities(inInputGroup, ['in-input-group'])
   addUtilities(h, ['h'])
   addUtilities(v, ['v'])
   addUtilities(mergeH, ['merge-h'])
@@ -1688,6 +1733,11 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
               ${prefix('.label-floating')} ~ span .${e(`with-floating${separator}${className}`)}`
     })
   })
+  addVariant('in-input-group', ({ modifySelectors, separator }) => {
+    modifySelectors(({ className }) => {
+      return `${prefix('.form-input-group')} .${e(`in-input-group${separator}${className}`)}`
+    })
+  })
 
   addVariant('ghost', ({ modifySelectors, separator }) => {
     modifySelectors(({ className }) => {
@@ -1772,9 +1822,9 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
         },
 
         gutter: {
-          base: theme('width.4'),
-          sm: theme('width.2'),
-          lg: theme('width.5'),
+          base: theme('width')['4'],
+          sm: theme('width')['2'],
+          lg: theme('width')['5'],
         },
 
         inputMinHeight: {
@@ -1790,21 +1840,21 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
         },
 
         inputPx: {
-          base: theme('padding.3'),
+          base: theme('padding')['3'],
           sm: theme('padding')['2'],
           lg: theme('padding')['3.5'],
         },
 
         btnPy: {
-          base: 'var(--vf-py-input)',
-          sm: 'var(--vf-py-input-sm)',
-          lg: 'var(--vf-py-input-lg)',
+          base: theme('padding')['1.5'],
+          sm: theme('padding')['1.5'],
+          lg: theme('padding')['2.5'],
         },
 
         btnPx: {
-          base: 'var(--vf-px-input)',
-          sm: 'var(--vf-px-input-sm)',
-          lg: 'var(--vf-px-input-lg)',
+          base: theme('padding')['3.5'],
+          sm: theme('padding')['3'],
+          lg: theme('padding')['5'],
         },
 
         btnSmallPy: {
@@ -1847,6 +1897,18 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
           base: 0,
           sm: 'var(--vf-space-addon)',
           lg: 'var(--vf-space-addon)',
+        },
+
+        spaceCheckbox: {
+          base: theme('padding')['1.5'],
+          sm: 'var(--vf-space-checkbox)',
+          lg: 'var(--vf-space-checkbox)',
+        },
+
+        spaceTags: {
+          base: theme('padding')['1'],
+          sm: 'var(--vf-space-tags)',
+          lg: 'var(--vf-space-tags)',
         },
         
         borderWidths: { // can be array
@@ -2004,21 +2066,21 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
         },
 
         checkboxSize: {
-          base: theme('width.4'),
+          base: theme('width')['4'],
           sm: theme('width')['3.5'],
-          lg: theme('width.4'),
+          lg: theme('width')['4'],
         },
 
         gallerySize: {
-          base: theme('width.24'),
-          sm: theme('width.20'),
-          lg: theme('width.28'),
+          base: theme('width')['24'],
+          sm: theme('width')['20'],
+          lg: theme('width')['28'],
         },
 
         toggleWidth: {
-          base: theme('width.12'),
-          sm: theme('width.11'),
-          lg: theme('width.14'),
+          base: theme('width')['12'],
+          sm: theme('width')['11'],
+          lg: theme('width')['14'],
         },
 
         toggleHeight: {

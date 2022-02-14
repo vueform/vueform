@@ -71,6 +71,10 @@
     display: flex;
     align-items: flex-start;
     cursor: pointer;
+
+    .vf-checkbox {
+      margin-top: 0;
+    }
   }
 
   .vf-checkbox-blocks {

@@ -51,7 +51,6 @@
     opacity: 0;
     visibility: hidden;
     white-space: nowrap;
-    top: calc(var(--vf-border-width-input-t) * (-1));
     color: var(--vf-color-muted);
 
     &.vf-floating-label-visible {
@@ -78,6 +77,12 @@
 
     &.vf-floating-label-success {
       background-color: var(--vf-bg-input-success);
+    }
+  }
+
+  .vf-input-group {
+    .vf-floating-label {
+      top: calc(var(--vf-border-width-input-t) * (-1));
     }
   }
 </style>

@@ -32,6 +32,9 @@
             tagRemove_lg: 'vf-multiselect-tag-remove-lg',
             tagRemoveIcon: 'vf-multiselect-tag-remove-icon',
             tagsSearchWrapper: 'vf-multiselect-tags-search-wrapper',
+            tagsSearchWrapper_sm: '',
+            tagsSearchWrapper_md: '',
+            tagsSearchWrapper_lg: '',
             tagsSearch: 'vf-multiselect-tags-search',
             tagsSearch_sm: 'vf-multiselect-tags-search-sm',
             tagsSearch_md: '',
@@ -196,6 +199,10 @@
               classes.select.tagRemove,
               classes.select[`tagRemove_${Size}`],
             ]),
+            $tagsSearchWrapper: (classes, { Size }) => ([
+              classes.select.tagsSearchWrapper,
+              classes.select[`tagsSearchWrapper_${Size}`],
+            ]),
             $tagsSearch: (classes, { Size }) => ([
               classes.select.tagsSearch,
               classes.select[`tagsSearch_${Size}`],
@@ -227,7 +234,7 @@
     flex-shrink: 1;
     display: flex;
     flex-wrap: wrap;
-    margin: 0.25rem 0 0;
+    margin: var(--vf-space-tags) 0 0;
     padding-left: var(--vf-py-input);
     align-items: center;
 
@@ -244,7 +251,6 @@
   .vf-floating-wrapper ~ div .vf-multiselect-tags-lg,
   .vf-floating-wrapper ~ span .vf-multiselect-tags-lg {
     padding-left: var(--vf-px-input-lg);
-    padding-right: var(--vf-px-input-lg);
     padding-top: calc(var(--vf-py-input-lg) + (0.6875rem / 2));
     padding-bottom: calc(var(--vf-py-input-lg) - (0.6875rem / 2));
   }
@@ -261,8 +267,8 @@
     font-weight: 600;
     padding: var(--vf-py-tag) 0 var(--vf-py-tag) var(--vf-px-tag);
     border-radius: var(--vf-radius-tag);
-    margin-right: 0.25rem;
-    margin-bottom: 0.25rem;
+    margin-right: var(--vf-space-tags);
+    margin-bottom: var(--vf-space-tags);
     display: flex;
     align-items: center;
     white-space: nowrap;
@@ -332,7 +338,7 @@
   .vf-multiselect-tags-search-wrapper {
     display: inline-block;
     position: relative;
-    margin: 0 0.25rem 0.25rem;
+    margin: 0 var(--vf-space-tags) var(--vf-space-tags);
     flex-grow: 1;
     flex-shrink: 1;
     height: 100%;

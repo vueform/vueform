@@ -32,14 +32,14 @@
 
     &.vf-element-error-sm {
       font-size: var(--vf-font-size-small-sm);
-      line-height: var(--vf-font-size-small-height-sm);
+      line-height: var(--vf-line-height-small-sm);
       letter-spacing: var(--vf-letter-spacing-small-sm);
       margin-top: 0.125rem;
     }
 
     &.vf-element-error-lg {
       font-size: var(--vf-font-size-small-lg);
-      line-height: var(--vf-font-size-small-height-lg);
+      line-height: var(--vf-line-height-small-lg);
       letter-spacing: var(--vf-letter-spacing-small-lg);
     }
   }

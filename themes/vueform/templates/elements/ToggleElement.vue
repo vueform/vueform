@@ -68,7 +68,6 @@
     display: flex;
     align-items: center;
     width: 100%;
-    padding-top: calc(var(--vf-py-input) + var(--vf-border-width-input-t));
   }
 
   .vf-toggle-text {

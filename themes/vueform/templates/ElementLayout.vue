@@ -97,6 +97,10 @@
   }
 
   .vf-element-layout-outer-wrapper-single {
-    column-gap: 0;
+    &.vf-row,
+    &.vf-row.vf-row-sm,
+    &.vf-row.vf-row-lg {
+      column-gap: 0;
+    }
   }
 </style>

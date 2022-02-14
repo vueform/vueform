@@ -83,13 +83,13 @@
     --vf-px-input-sm: 0.5rem;
     --vf-px-input-lg: 0.875rem;
 
-    --vf-py-btn: var(--vf-py-input);
-    --vf-py-btn-sm: var(--vf-py-input-sm);
-    --vf-py-btn-lg: var(--vf-py-input-lg);
+    --vf-py-btn: 0.375rem;
+    --vf-py-btn-sm: 0.375rem;
+    --vf-py-btn-lg: 0.625rem;
 
-    --vf-px-btn: var(--vf-px-input);
-    --vf-px-btn-sm: var(--vf-px-input-sm);
-    --vf-px-btn-lg: var(--vf-px-input-lg);
+    --vf-px-btn: 0.875rem;
+    --vf-px-btn-sm: 0.75rem;
+    --vf-px-btn-lg: 1.25rem;
 
     --vf-py-btn-small: 0.25rem;
     --vf-py-btn-small-sm: 0.25rem;
@@ -118,6 +118,14 @@
     --vf-space-addon: 0px;
     --vf-space-addon-sm: var(--vf-space-addon);
     --vf-space-addon-lg: var(--vf-space-addon);
+
+    --vf-space-checkbox: 0.375rem;
+    --vf-space-checkbox-sm: var(--vf-space-checkbox);
+    --vf-space-checkbox-lg: var(--vf-space-checkbox);
+
+    --vf-space-tags: 0.25rem;
+    --vf-space-tags-sm: var(--vf-space-tags);
+    --vf-space-tags-lg: var(--vf-space-tags);
     
     --vf-bg-input: #ffffff;
     --vf-bg-input-focus: var(--vf-bg-input);
@@ -448,16 +456,17 @@
       }
     }
 
-    &.vf-input-group-focused {
+    &.vf-input-group-focused,
+    &.vf-input-group-focused:not(.vf-input-group-disabled):not(.vf-input-group-success):not(.vf-input-group-danger) {
       box-shadow: var(--vf-shadow-input-focus);
       outline: var(--vf-ring-width) solid var(--vf-ring-color);
+      border-color: var(--vf-border-color-input-focus);
     }
 
     &.vf-input-group-focused:not(.vf-input-group-success):not(.vf-input-group-danger),
     &.vf-input-group-focused:not(.vf-input-group-disabled):not(.vf-input-group-success):not(.vf-input-group-danger) {
       background-color: var(--vf-bg-input-focus);
       color: var(--vf-color-input-focus);
-      border-color: var(--vf-border-color-input-focus);
 
       input, textarea {
         color: var(--vf-color-input-focus);
@@ -560,16 +569,17 @@
       border-color: var(--vf-border-color-input-hover);
     }
 
-    &:focus {
+    &:focus,
+    &:focus:not([disabled]):not(.vf-input-success):not(.vf-input-danger) {
       box-shadow: var(--vf-shadow-input-focus);
       outline: var(--vf-ring-width) solid var(--vf-ring-color);
+      border-color: var(--vf-border-color-input-focus);
     }
 
     &:focus:not(.vf-input-success):not(.vf-input-danger),
     &:focus:not([disabled]):not(.vf-input-success):not(.vf-input-danger) {
       background-color: var(--vf-bg-input-focus);
       color: var(--vf-color-input-focus);
-      border-color: var(--vf-border-color-input-focus);
     }
 
     &.vf-input-sm {
@@ -600,8 +610,6 @@
   .vf-input-group.vf-input-group-lg .vf-floating-wrapper ~ textarea,
   .vf-input-group.vf-input-group-lg .vf-floating-wrapper ~ div textarea,
   .vf-input-group.vf-input-group-lg .vf-floating-wrapper ~ span textarea {
-    padding-left: var(--vf-px-input-lg);
-    padding-right: var(--vf-px-input-lg);
     padding-top: calc(var(--vf-py-input-lg) + (0.6875rem / 2));
     padding-bottom: calc(var(--vf-py-input-lg) - (0.6875rem / 2));
   }
@@ -612,17 +620,6 @@
     display: flex;
     align-items: flex-start;
     width: 100%;
-    padding-top: calc(var(--vf-py-input) + var(--vf-border-width));
-  }
-
-  .vf-checkbox-wrapper {
-    &.vf-checkbox-wrapper-sm {
-      padding-top: calc(var(--vf-py-input-sm) + var(--vf-border-width));
-    }
-
-    &.vf-checkbox-wrapper-lg {
-      padding-top: calc(var(--vf-py-input-lg) + var(--vf-border-width));
-    }
   }
   
   .vf-checkbox {
@@ -632,7 +629,9 @@
                 background-color .2s ease-in-out,
                 border-color .2s ease-in-out;
     cursor: pointer;
-    margin: 0.25rem 0.375rem 0 0;
+    margin: 0;
+    margin-right: var(--vf-space-checkbox);
+    margin-top: calc((var(--vf-line-height) - var(--vf-checkbox-size)) / 2);
     flex-shrink: 0;
     border-style: solid;
     outline: 0px solid var(--vf-ring-color);
@@ -705,13 +704,16 @@
       width: var(--vf-checkbox-size-sm);
       height: var(--vf-checkbox-size-sm);
       border-radius: var(--vf-radius-checkbox-sm);
-      margin-top: 0.1875rem;
+      margin-right: var(--vf-space-checkbox-sm);
+      margin-top: calc((var(--vf-line-height-sm) - var(--vf-checkbox-size-sm)) / 2);
     }
 
     &.vf-checkbox-lg {
       width: var(--vf-checkbox-size-lg);
       height: var(--vf-checkbox-size-lg);
       border-radius: var(--vf-radius-checkbox-lg);
+      margin-right: var(--vf-space-checkbox-lg);
+      margin-top: calc((var(--vf-line-height-lg) - var(--vf-checkbox-size-lg)) / 2);
     }
   }
 
@@ -725,17 +727,6 @@
     display: flex;
     align-items: flex-start;
     width: 100%;
-    padding-top: calc(var(--vf-py-input) + var(--vf-border-width));
-  }
-
-  .vf-radio-wrapper {
-    &.vf-radio-wrapper-sm {
-      padding-top: calc(var(--vf-py-input-sm) + var(--vf-border-width));
-    }
-    
-    &.vf-radio-wrapper-lg {
-      padding-top: calc(var(--vf-py-input-lg) + var(--vf-border-width));
-    }
   }
 
   .vf-radio {
@@ -745,7 +736,9 @@
                 background-color .2s ease-in-out,
                 border-color .2s ease-in-out;
     cursor: pointer;
-    margin: 0.25rem 0.375rem 0 0;
+    margin: 0;
+    margin-right: var(--vf-space-checkbox);
+    margin-top: calc((var(--vf-line-height) - var(--vf-checkbox-size)) / 2);
     flex-shrink: 0;
     border-style: solid;
     outline: 0px solid var(--vf-ring-color);
@@ -817,12 +810,15 @@
     &.vf-radio-sm {
       width: var(--vf-checkbox-size-sm);
       height: var(--vf-checkbox-size-sm);
-      margin-top: 0.1875rem;
+      margin-right: var(--vf-space-checkbox-sm);
+      margin-top: calc((var(--vf-line-height-sm) - var(--vf-checkbox-size-sm)) / 2);
     }
 
     &.vf-radio-lg {
       width: var(--vf-checkbox-size-lg);
       height: var(--vf-checkbox-size-lg);
+      margin-right: var(--vf-space-checkbox-lg);
+      margin-top: calc((var(--vf-line-height-lg) - var(--vf-checkbox-size-lg)) / 2);
     }
   }
 

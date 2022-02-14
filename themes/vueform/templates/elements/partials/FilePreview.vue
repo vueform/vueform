@@ -43,7 +43,6 @@
     font-size: inherit;
     line-height: inherit;
     color: inherit;
-    padding-top: calc(var(--vf-py-input) + var(--vf-border-width-input-t));
     min-height: var(--vf-min-height-input);
     display: flex;
     justify-content: flex-start;

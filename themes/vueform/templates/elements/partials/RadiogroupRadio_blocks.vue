@@ -71,6 +71,10 @@
     display: flex;
     align-items: flex-start;
     cursor: pointer;
+
+    .vf-radio {
+      margin-top: 0;
+    }
   }
 
   .vf-radio-blocks {
