@@ -40,6 +40,9 @@
             connects_md: 'vf-slider-connects-md',
             connects_lg: 'vf-slider-connects-lg',
             connect: 'vf-slider-connect',
+            connect_sm: 'vf-slider-connect-sm',
+            connect_md: 'vf-slider-connect-md',
+            connect_lg: 'vf-slider-connect-lg',
             origin: 'vf-slider-origin',
             handle: 'vf-slider-handle',
             handle_sm: 'vf-slider-handle-sm',
@@ -84,6 +87,10 @@
             $connects: (classes, { Size }) => ([
               classes.slider.connects,
               classes.slider[`connects_${Size}`],
+            ]),
+            $connect: (classes, { Size }) => ([
+              classes.slider.connect,
+              classes.slider[`connect_${Size}`],
             ]),
             $handle: (classes, { Size }) => ([
               classes.slider.handle,
@@ -202,6 +209,8 @@
   }
 
   .vf-slider-connects {
+    overflow: hidden;
+    z-index: 0;
     border-radius: var(--vf-radius-slider);
 
     &.vf-slider-connects-sm {
@@ -211,12 +220,6 @@
     &.vf-slider-connects-lg {
       border-radius: var(--vf-radius-slider-lg);
     }
-  }
-
-  .vf-slider-connects {
-    border-radius: var(--vf-slider-radius);
-    overflow: hidden;
-    z-index: 0;
   }
 
   .vf-slider-connect,
@@ -237,7 +240,16 @@
 
   .vf-slider-connect {
     background: var(--vf-primary);
+    border-radius: var(--vf-radius-slider);
     cursor: pointer;
+
+    &.vf-slider-connect-sm {
+      border-radius: var(--vf-radius-slider-sm);
+    }
+
+    &.vf-slider-connect-lg {
+      border-radius: var(--vf-radius-slider-lg);
+    }
   }
 
   [disabled] .vf-slider-connect {

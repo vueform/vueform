@@ -57,7 +57,7 @@
     align-items: center;
     justify-content: center;
     border-style: solid;
-    border-width: var(--vf-border-width-input);
+    border-width: var(--vf-border-width-input-t) var(--vf-border-width-input-r) var(--vf-border-width-input-b) var(--vf-border-width-input-l);
     border-color: var(--vf-border-color-input);
     padding: 0.375rem 0;
     width: 100%;

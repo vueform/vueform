@@ -56,7 +56,7 @@
     border-color: var(--vf-border-color-input);
     box-shadow: var(--vf-shadow-input);
 
-    border-width: var(--vf-border-width-input);
+    border-width: var(--vf-border-width-input-t) var(--vf-border-width-input-r) var(--vf-border-width-input-b) var(--vf-border-width-input-l);
     border-radius: var(--vf-radius);
 
     &.vf-editor-disabled {
@@ -91,8 +91,8 @@
       outline: var(--vf-ring-width) solid var(--vf-ring-color);
     }
 
-    &:focus:not(.vf-editor-success):not(.vf-editor-danger),
-    &:focus:not(.vf-editor-disabled):not(.vf-editor-success):not(.vf-editor-danger) {
+    &.vf-editor-focused:not(.vf-editor-success):not(.vf-editor-danger),
+    &.vf-editor-focused:not(.vf-editor-disabled):not(.vf-editor-success):not(.vf-editor-danger) {
       background-color: var(--vf-bg-input-focus);
       color: var(--vf-color-input-focus);
       border-color: var(--vf-border-color-input-focus);

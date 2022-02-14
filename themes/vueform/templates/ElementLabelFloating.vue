@@ -47,10 +47,12 @@
     background-color: var(--vf-bg-input);
     padding: 0 1px;
     line-height: 1px;
-    transition: .3s;
+    transition: all .2s ease-in-out;
     opacity: 0;
     visibility: hidden;
     white-space: nowrap;
+    top: calc(var(--vf-border-width-input-t) * (-1));
+    color: var(--vf-color-muted);
 
     &.vf-floating-label-visible {
       opacity: 1;
@@ -63,7 +65,7 @@
 
     &.vf-floating-label-lg {
       left: var(--vf-px-input-lg);
-      top: 0.625rem;
+      margin-top: 0.625rem;
     }
 
     &.vf-floating-label-disabled {

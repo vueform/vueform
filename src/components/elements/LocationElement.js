@@ -24,6 +24,7 @@ import useValue from './../../composables/elements/useValue'
 import useLocation from './../../composables/elements/useLocation'
 import useFloating from './../../composables/elements/useFloating'
 import useClasses from './../../composables/elements/useClasses'
+import useFocused from './../../composables/elements/useFocused'
 
 import { location as useWatchValue } from './../../composables/elements/useWatchValue'
 import { location as useNullValue } from './../../composables/elements/useNullValue' 
@@ -143,6 +144,7 @@ export default {
       useClasses,
       useColumns,
       useSlots,
+      useFocused,
     ]
     context.slots = [
       'label', 'info', 'description', 'before',

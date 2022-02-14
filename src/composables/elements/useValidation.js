@@ -741,6 +741,25 @@ const multilingual = function(props, context, dependencies)
     return _.head(errors)
   })
 
+  /**
+   * Whether the field has errors.
+   * 
+   * @type {boolean}
+   */
+  const isDanger = computed(() => {
+    return error.value !== null && error.value !== undefined
+  })
+
+  /**
+   * Whether the field has been filled in successfully.
+   * 
+   * @type {boolean}
+   */
+  const isSuccess = computed(() => {
+    return (validationRules.value[language.value] && validationRules.value[language.value].length > 0 && state.value.validated[language.value] && !_.some(Validators.value[language.value], { invalid: true })) ||
+           ((!validationRules.value[language.value] || !validationRules.value[language.value].length) && state.value.dirty[language.value])
+  })
+
   // =============== METHODS ===============
 
   /**
@@ -869,6 +888,8 @@ const multilingual = function(props, context, dependencies)
     errors,
     error,
     validationRules,
+    isDanger,
+    isSuccess,
     validate,
     validateLanguage,
     dirt,
@@ -1232,6 +1253,8 @@ const location = function(props, context, dependencies)
     errors,
     error,
     validationRules,
+    isSuccess,
+    isDanger,
     dirt,
     clean,
     resetValidators,
@@ -1275,6 +1298,8 @@ const location = function(props, context, dependencies)
     errors,
     error,
     validationRules,
+    isSuccess,
+    isDanger,
     validate,
     dirt,
     clean,

@@ -26,6 +26,7 @@ import useAutogrow from './../../composables/elements/useAutogrow'
 import useWatchValue from './../../composables/elements/useWatchValue'
 import useFloating from './../../composables/elements/useFloating'
 import useClasses from './../../composables/elements/useClasses'
+import useFocused from './../../composables/elements/useFocused'
 
 import { text as useValidation } from './../../composables/elements/useValidation'
 
@@ -126,6 +127,7 @@ export default {
       useSlots,
       useHandleInput,
       useAutogrow,
+      useFocused,
     ]
     context.slots = [
       'label', 'info', 'description', 'before',

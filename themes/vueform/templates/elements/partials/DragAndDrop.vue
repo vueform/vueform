@@ -35,7 +35,7 @@
   .vf-dnd {
     background-color: #FFFFFF;
     transition: .3s;
-    border-width: var(--vf-border-width-input);
+    border-width: var(--vf-border-width-input-t) var(--vf-border-width-input-r) var(--vf-border-width-input-b) var(--vf-border-width-input-l);
     border-style: dashed;
     border-color: var(--vf-border-color-input);
     padding: 1.5rem;

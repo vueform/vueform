@@ -117,14 +117,10 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
           : theme('form.primaryDarker'),
 
         '--vf-danger': theme('form.danger'),
-        '--vf-danger-lighter': theme('form.dangerLighter') === null
-          ? Color(theme('form.danger')).alpha(0.2).toString()
-          : theme('form.dangerLighter'),
+        '--vf-danger-lighter': theme('form.dangerLighter'),
 
         '--vf-success': theme('form.success'),
-        '--vf-success-lighter': theme('form.successLighter') === null
-          ? Color(theme('form.success')).alpha(0.2).toString()
-          : theme('form.successLighter'),
+        '--vf-success-lighter': theme('form.successLighter'),
 
         '--vf-ring-color': theme('form.ringColor') === null ? Color(theme('form.primary')).alpha(theme('form.ringOpacity')).toString() : theme('form.ringColor'),
         '--vf-ring-width': theme('form.ringWidth'),
@@ -212,6 +208,10 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
         '--vf-px-slider-tooltip-sm': theme('form.sliderTooltipPx.sm'),
         '--vf-px-slider-tooltip-lg': theme('form.sliderTooltipPx.lg'),
 
+        '--vf-space-addon': theme('form.spaceAddon.base'),
+        '--vf-space-addon-sm': theme('form.spaceAddon.sm'),
+        '--vf-space-addon-lg': theme('form.spaceAddon.lg'),
+
         '--vf-bg-input': theme('form.bgColors.input'),
         '--vf-bg-input-focus': theme('form.bgColors.inputFocus'),
         '--vf-bg-input-hover': theme('form.bgColors.inputHover'),
@@ -268,23 +268,18 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
         '--vf-border-width-input-r': Array.isArray(theme('form.borderWidths.input')) ? theme('form.borderWidths.input')[1] : theme('form.borderWidths.input'),
         '--vf-border-width-input-b': Array.isArray(theme('form.borderWidths.input')) ? theme('form.borderWidths.input')[2] : theme('form.borderWidths.input'),
         '--vf-border-width-input-l': Array.isArray(theme('form.borderWidths.input')) ? theme('form.borderWidths.input')[3] : theme('form.borderWidths.input'),
-        '--vf-border-width-input': 'var(--vf-border-width-input-t) var(--vf-border-width-input-r) var(--vf-border-width-input-b) var(--vf-border-width-input-l)',
 
         '--vf-border-width-radio-t': Array.isArray(theme('form.borderWidths.radio')) ? theme('form.borderWidths.radio')[0] : theme('form.borderWidths.radio'),
         '--vf-border-width-radio-r': Array.isArray(theme('form.borderWidths.radio')) ? theme('form.borderWidths.radio')[1] : theme('form.borderWidths.radio'),
         '--vf-border-width-radio-b': Array.isArray(theme('form.borderWidths.radio')) ? theme('form.borderWidths.radio')[2] : theme('form.borderWidths.radio'),
         '--vf-border-width-radio-l': Array.isArray(theme('form.borderWidths.radio')) ? theme('form.borderWidths.radio')[3] : theme('form.borderWidths.radio'),
-        '--vf-border-width-radio': 'var(--vf-border-width-radio-t) var(--vf-border-width-radio-r) var(--vf-border-width-radio-b) var(--vf-border-width-radio-l)',
 
         '--vf-border-width-checkbox-t': Array.isArray(theme('form.borderWidths.checkbox')) ? theme('form.borderWidths.checkbox')[0] : theme('form.borderWidths.checkbox'),
         '--vf-border-width-checkbox-r': Array.isArray(theme('form.borderWidths.checkbox')) ? theme('form.borderWidths.checkbox')[1] : theme('form.borderWidths.checkbox'),
         '--vf-border-width-checkbox-b': Array.isArray(theme('form.borderWidths.checkbox')) ? theme('form.borderWidths.checkbox')[2] : theme('form.borderWidths.checkbox'),
         '--vf-border-width-checkbox-l': Array.isArray(theme('form.borderWidths.checkbox')) ? theme('form.borderWidths.checkbox')[3] : theme('form.borderWidths.checkbox'),
-        '--vf-border-width-checkbox': 'var(--vf-border-width-checkbox-t) var(--vf-border-width-checkbox-r) var(--vf-border-width-checkbox-b) var(--vf-border-width-checkbox-l)',
 
         '--vf-border-width-dropdown': theme('form.borderWidths.dropdown'),
-        '--vf-border-width-radio': theme('form.borderWidths.radio'),
-        '--vf-border-width-checkbox': theme('form.borderWidths.checkbox'),
         '--vf-border-width-btn': Array.isArray(theme('form.borderWidths.btn')) ? theme('form.borderWidths.btn').join(' ') : theme('form.borderWidths.btn'),
         '--vf-border-width-tag': Array.isArray(theme('form.borderWidths.tag')) ? theme('form.borderWidths.tag').join(' ') : theme('form.borderWidths.tag'),
 
@@ -670,6 +665,14 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
       paddingLeft: `var(--vf-py-input${size})`
     }
 
+    plain[`.form-pl-space-addon${suffix}`] = {
+      paddingLeft: `var(--vf-space-addon${size})`
+    }
+
+    plain[`.form-pr-space-addon${suffix}`] = {
+      paddingRight: `var(--vf-space-addon${size})`
+    }
+
     h[`.form-top-slider-handle-horizontal${suffix}`] = {
       top: `calc((var(--vf-slider-handle-size${size}) - var(--vf-slider-height${size})) / 2 * (-1))`
     }
@@ -1042,6 +1045,10 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
       borderStyle: 'solid',
     },
 
+    '.-form-top-border-width-input-t': {
+      top: 'calc(var(--vf-border-width-input-t) * (-1))'
+    },
+
     '.form-shadow-input': {
       boxShadow: 'var(--vf-shadow-input)',
     },
@@ -1384,10 +1391,10 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
       borderWidth: `var(--vf-border-width-dropdown)`,
     },
     '.form-border-checkbox': {
-      borderWidth: `var(--vf-border-width-checkbox)`,
+      borderWidth: `var(--vf-border-width-checkbox-t) var(--vf-border-width-checkbox-r) var(--vf-border-width-checkbox-b) var(--vf-border-width-checkbox-l)`,
     },
     '.form-border-radio': {
-      borderWidth: `var(--vf-border-width-radio)`,
+      borderWidth: `var(--vf-border-width-radio-t) var(--vf-border-width-radio-r) var(--vf-border-width-radio-b) var(--vf-border-width-radio-l)`,
     },
     '.border-0': {
       border: '0'
@@ -1713,14 +1720,14 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
   theme: {
     form: (theme) => {
       return {
-        primary: theme('colors.green.500'),
+        primary: theme('colors.blue.500'),
         primaryDarker: null, // defaults to 10% darker primary
 
         danger: theme('colors.red.500'),
-        dangerLighter: null, // defaults to danger with 0.2 alpha
+        dangerLighter: theme('colors.red.100'),
 
         success: theme('colors.green.500'),
-        successLighter: null, // defaults to success with 0.2 alpha
+        successLighter: theme('colors.green.100'),
 
         ringColor: null, // defaults to primary with `ringOpacity` alpha
         ringWidth: theme('ringWidth.2'),
@@ -1835,10 +1842,21 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
           sm: 'var(--vf-px-slider-tooltip)',
           lg: 'var(--vf-px-slider-tooltip)',
         },
+
+        spaceAddon: {
+          base: 0,
+          sm: 'var(--vf-space-addon)',
+          lg: 'var(--vf-space-addon)',
+        },
         
         borderWidths: { // can be array
           input: theme('borderWidth.DEFAULT'), 
-          dropdown: 'var(--vf-border-width-input)',
+          dropdown: [
+            'var(--vf-border-width-input-t)',
+            'var(--vf-border-width-input-r)',
+            'var(--vf-border-width-input-b)',
+            'var(--vf-border-width-input-l)'
+          ],
           checkbox: [
             'var(--vf-border-width-input-t)',
             'var(--vf-border-width-input-r)',
@@ -1851,8 +1869,18 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
             'var(--vf-border-width-input-b)',
             'var(--vf-border-width-input-l)',
           ],
-          btn: 'var(--vf-border-width-input)',
-          tag: 'var(--vf-border-width-input)',
+          btn: [
+            'var(--vf-border-width-input-t)',
+            'var(--vf-border-width-input-r)',
+            'var(--vf-border-width-input-b)',
+            'var(--vf-border-width-input-l)',
+          ],
+          tag: [
+            'var(--vf-border-width-input-t)',
+            'var(--vf-border-width-input-r)',
+            'var(--vf-border-width-input-b)',
+            'var(--vf-border-width-input-l)',
+          ],
         },
         
         radius: { // can be array
@@ -1921,7 +1949,7 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
           icon: 'var(--vf-gray-500)',
           danger: 'var(--vf-danger-lighter)',
           success: 'var(--vf-success-lighter)',
-          addon: 'var(--vf-gray-100)',
+          addon: 'transparent',
           tag: 'var(--vf-primary)',
           sliderHandle: '#ffffff',
           toggleHandle: '#ffffff',
@@ -1944,10 +1972,10 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
           muted: 'var(--vf-gray-500)',
           danger: 'var(--vf-danger)',
           success: 'var(--vf-success)',
-          addon: 'var(--vf-gray-100)',
-          tag: '#ffffff',
+          addon: 'inherit',
+          tag: 'var(--vf-color-on-primary)',
           dateHead: 'var(--vf-gray-700)',
-          btn: '#ffffff',
+          btn: 'var(--vf-color-on-primary)',
           btnDanger: '#ffffff',
           btnSecondary: 'var(--vf-gray-700)',
         },

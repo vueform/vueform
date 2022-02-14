@@ -29,6 +29,7 @@ import { dates as useOptions } from './../../composables/elements/useOptions'
 import { array as useNullValue } from './../../composables/elements/useNullValue'
 import { dates as useBaseElement } from './../../composables/elements/useBaseElement'
 import { dates as useDateFormat } from './../../composables/elements/useDateFormat'
+import { dates as useFocused } from './../../composables/elements/useFocused'
 
 import BaseElement from './../../mixins/BaseElement'
 import HasView from './../../mixins/HasView'
@@ -153,6 +154,7 @@ export default {
       useColumns,
       useSlots,
       useHandleChange,
+      useFocused,
     ]
     context.slots = [
       'label', 'info', 'description', 'before',

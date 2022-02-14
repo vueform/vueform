@@ -219,7 +219,7 @@
   .vf-floating-wrapper ~ span .vf-multiselect-multiple-label-lg {
     padding-left: var(--vf-px-input-lg);
     padding-right: var(--vf-px-input-lg);
-    padding-top: calc(var(--vf-py-input-lg) + (0.875rem / 2));
-    padding-bottom: calc(var(--vf-py-input-lg) - (0.875rem / 2));
+    padding-top: calc(var(--vf-py-input-lg) + (0.6875rem / 2));
+    padding-bottom: calc(var(--vf-py-input-lg) - (0.6875rem / 2));
   }
 </style>

@@ -21,6 +21,7 @@ import useHandleInput from './../../composables/elements/useHandleInput'
 import useLanguages from './../../composables/elements/useLanguages'
 import useFloating from './../../composables/elements/useFloating'
 import useClasses from './../../composables/elements/useClasses'
+import useFocused from './../../composables/elements/useFocused'
 
 import { multilingual as useValue } from './../../composables/elements/useValue'
 import { multilingual as useData } from './../../composables/elements/useData'
@@ -129,6 +130,7 @@ export default {
       useSlots,
       useHandleInput,
       useAutogrow,
+      useFocused,
     ]
     context.slots = [
       'label', 'info', 'description', 'before',

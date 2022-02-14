@@ -22,6 +22,7 @@ import useLanguages from './../../composables/elements/useLanguages'
 import useFloating from './../../composables/elements/useFloating'
 import useLoading from './../../composables/elements/useLoading'
 import useClasses from './../../composables/elements/useClasses'
+import useFocused from './../../composables/elements/useFocused'
 
 import { multilingual as useValue } from './../../composables/elements/useValue'
 import { multilingual as useData } from './../../composables/elements/useData'
@@ -139,6 +140,7 @@ export default {
       useColumns,
       useSlots,
       useHandleInput,
+      useFocused,
     ]
     context.slots = [
       'label', 'info', 'description', 'before',

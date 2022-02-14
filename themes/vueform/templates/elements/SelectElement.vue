@@ -323,7 +323,7 @@
 
     min-height: var(--vf-min-height-input);
     border-radius: var(--vf-radius);
-    border-width: var(--vf-border-width-input);
+    border-width: var(--vf-border-width-input-t) var(--vf-border-width-input-r) var(--vf-border-width-input-b) var(--vf-border-width-input-l);
     border-style: solid;
 
     &.vf-multiselect-open {
@@ -424,8 +424,8 @@
   .vf-floating-wrapper ~ span .vf-multiselect-single-label-lg {
     padding-left: var(--vf-px-input-lg);
     padding-right: var(--vf-px-input-lg);
-    padding-top: calc(var(--vf-py-input-lg) + (0.875rem / 2));
-    padding-bottom: calc(var(--vf-py-input-lg) - (0.875rem / 2));
+    padding-top: calc(var(--vf-py-input-lg) + (0.6875rem / 2));
+    padding-bottom: calc(var(--vf-py-input-lg) - (0.6875rem / 2));
   }
 
   .vf-multiselect-placeholder {
@@ -500,8 +500,8 @@
   .vf-floating-wrapper ~ span .vf-multiselect-search-lg {
     padding-left: var(--vf-px-input-lg);
     padding-right: var(--vf-px-input-lg);
-    padding-top: calc(var(--vf-py-input-lg) + (0.875rem / 2));
-    padding-bottom: calc(var(--vf-py-input-lg) - (0.875rem / 2));
+    padding-top: calc(var(--vf-py-input-lg) + (0.6875rem / 2));
+    padding-bottom: calc(var(--vf-py-input-lg) - (0.6875rem / 2));
   }
 
 
@@ -605,7 +605,7 @@
     right: calc(var(--vf-border-width-input-r) * (-1));
     bottom: 0;
     transform: translateY(100%);
-    border-width: var(--vf-border-width-input);
+    border-width: var(--vf-border-width-input-t) var(--vf-border-width-input-r) var(--vf-border-width-input-b) var(--vf-border-width-input-l);
     border-style: solid;
     border-color: var(--vf-border-color-input);
     margin-top: calc(var(--vf-border-width-input-t) * (-1));

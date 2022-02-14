@@ -25,6 +25,7 @@ import useEmpty from './../../composables/elements/useEmpty'
 import useLoading from './../../composables/elements/useLoading'
 import useFloating from './../../composables/elements/useFloating'
 import useClasses from './../../composables/elements/useClasses'
+import useFocused from './../../composables/elements/useFocused'
 import useWatchValue from './../../composables/elements/useWatchValue'
 
 import { text as useValidation } from './../../composables/elements/useValidation'
@@ -137,6 +138,7 @@ export default {
       useColumns,
       useSlots,
       useHandleInput,
+      useFocused,
     ]
     context.slots = [
       'label', 'info', 'description', 'before',

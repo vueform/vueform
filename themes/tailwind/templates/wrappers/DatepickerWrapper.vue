@@ -176,7 +176,7 @@ import DatepickerWrapper from './../../../blank/templates/wrappers/DatepickerWra
 
   .flatpickr-wrapper {
     position: relative;
-    display: inline-block;
+    display: flex;
     width: 100%;
   }
 
