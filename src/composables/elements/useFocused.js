@@ -9,7 +9,7 @@ const base = function (props, context, dependencies)
   // ================ DATA ================
 
   /**
-   * Whether the editor is focused.
+   * Whether the element is focused.
    * 
    * @type {boolean}
    */
@@ -42,7 +42,7 @@ const date = function (props, context, dependencies)
   // ================ DATA ================
 
   /**
-   * Whether the editor is focused.
+   * Whether the element is focused.
    * 
    * @type {boolean}
    */

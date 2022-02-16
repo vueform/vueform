@@ -1,6 +1,6 @@
 module.exports = [
   // Attributes
-  'name', 'id', 'readonly', 'disabled',
+  'name', 'id', 'readonly', 'disabled', 'attrs',
 
   // Texts
   'label', 'placeholder', 'floating', 'info', 'description', 'before', 'between', 'after',

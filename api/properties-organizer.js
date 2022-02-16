@@ -89,9 +89,12 @@ module.exports = [
   'available',
   'hidden',
   'visible',
+  'focused',
   'isActive',
   'isDisabled',
   'isLoading',
+  'isSuccess',
+  'isDanger',
 
   'input',
   'fieldId',

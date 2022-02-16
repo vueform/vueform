@@ -147,7 +147,7 @@ const base = function(props, context, dependencies)
   })
 
   /**
-   * Whether the field has errors.
+   * Whether the element has errors.
    * 
    * @type {boolean}
    */
@@ -156,7 +156,7 @@ const base = function(props, context, dependencies)
   })
 
   /**
-   * Whether the field has been filled in successfully.
+   * Whether the element has been filled in successfully.
    * 
    * @type {boolean}
    */

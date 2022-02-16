@@ -421,6 +421,24 @@ module.exports = {
         required: false,
         private: false,
       },
+      secondary: {
+        required: 'false',
+        default: 'false',
+        types: [
+          'boolean',
+        ],
+        required: false,
+        private: false,
+      },
+      danger: {
+        required: 'false',
+        default: 'false',
+        types: [
+          'boolean',
+        ],
+        required: false,
+        private: false,
+      },
     },
     data: {
       active: {
@@ -1724,6 +1742,20 @@ module.exports = {
         description: 'The element&apos;s validation rules.',
         private: true,
       },
+      isDanger: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element has errors.',
+        private: false,
+      },
+      isSuccess: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element has been filled in successfully.',
+        private: false,
+      },
       value: {
         types: [
           'any',
@@ -2925,6 +2957,20 @@ module.exports = {
         description: 'The element&apos;s validation rules.',
         private: true,
       },
+      isDanger: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element has errors.',
+        private: false,
+      },
+      isSuccess: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element has been filled in successfully.',
+        private: false,
+      },
       value: {
         types: [
           'any',
@@ -4070,6 +4116,13 @@ module.exports = {
         default: '{}',
         private: true,
       },
+      focused: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is focused.',
+        private: false,
+      },
       input: {
         types: [
           'HTMLElement',
@@ -4392,6 +4445,20 @@ module.exports = {
         ],
         description: 'The element&apos;s validation rules.',
         private: true,
+      },
+      isDanger: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element has errors.',
+        private: false,
+      },
+      isSuccess: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element has been filled in successfully.',
+        private: false,
       },
       value: {
         types: [
@@ -5400,6 +5467,13 @@ module.exports = {
         default: '{}',
         private: true,
       },
+      focused: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is focused.',
+        private: false,
+      },
       input: {
         types: [
           'HTMLElement',
@@ -5722,6 +5796,20 @@ module.exports = {
         ],
         description: 'The element&apos;s validation rules.',
         private: true,
+      },
+      isDanger: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element has errors.',
+        private: false,
+      },
+      isSuccess: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element has been filled in successfully.',
+        private: false,
       },
       value: {
         types: [
@@ -7029,6 +7117,20 @@ module.exports = {
         ],
         description: 'The element&apos;s validation rules.',
         private: true,
+      },
+      isDanger: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element has errors.',
+        private: false,
+      },
+      isSuccess: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element has been filled in successfully.',
+        private: false,
       },
       value: {
         types: [
@@ -10581,6 +10683,20 @@ module.exports = {
         description: 'The element&apos;s validation rules.',
         private: true,
       },
+      isDanger: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element has errors.',
+        private: false,
+      },
+      isSuccess: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element has been filled in successfully.',
+        private: false,
+      },
       value: {
         types: [
           'any',
@@ -12855,6 +12971,15 @@ module.exports = {
         required: false,
         private: false,
       },
+      attrs: {
+        required: 'false',
+        default: '{}',
+        types: [
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
       addons: {
         required: 'false',
         default: '{}',
@@ -12933,6 +13058,13 @@ module.exports = {
         description: 'Helper property used to store listeners for events.',
         default: '{}',
         private: true,
+      },
+      focused: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is focused.',
+        private: false,
       },
       input: {
         types: [
@@ -13273,6 +13405,20 @@ module.exports = {
         ],
         description: 'The element&apos;s validation rules.',
         private: true,
+      },
+      isSuccess: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element has been filled in successfully.',
+        private: false,
+      },
+      isDanger: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element has errors.',
+        private: false,
       },
       value: {
         types: [
@@ -15776,6 +15922,15 @@ module.exports = {
         required: false,
         private: false,
       },
+      attrs: {
+        required: 'false',
+        default: '{}',
+        types: [
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
       onSelect: {
         required: 'false',
         default: 'null',
@@ -16570,6 +16725,20 @@ module.exports = {
         ],
         description: 'The element&apos;s validation rules.',
         private: true,
+      },
+      isDanger: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element has errors.',
+        private: false,
+      },
+      isSuccess: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element has been filled in successfully.',
+        private: false,
       },
       value: {
         types: [
@@ -19187,6 +19356,20 @@ module.exports = {
         description: 'The element&apos;s validation rules.',
         private: true,
       },
+      isDanger: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element has errors.',
+        private: false,
+      },
+      isSuccess: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element has been filled in successfully.',
+        private: false,
+      },
       value: {
         types: [
           'any',
@@ -20389,6 +20572,20 @@ module.exports = {
         description: 'The element&apos;s validation rules.',
         private: true,
       },
+      isDanger: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element has errors.',
+        private: false,
+      },
+      isSuccess: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element has been filled in successfully.',
+        private: false,
+      },
       value: {
         types: [
           'any',
@@ -21330,6 +21527,15 @@ module.exports = {
         required: false,
         private: false,
       },
+      attrs: {
+        required: 'false',
+        default: '{}',
+        types: [
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
       onSelect: {
         required: 'false',
         default: 'null',
@@ -22084,6 +22290,20 @@ module.exports = {
         ],
         description: 'The element&apos;s validation rules.',
         private: true,
+      },
+      isDanger: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element has errors.',
+        private: false,
+      },
+      isSuccess: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element has been filled in successfully.',
+        private: false,
       },
       value: {
         types: [
@@ -23296,6 +23516,15 @@ module.exports = {
         required: false,
         private: false,
       },
+      lazy: {
+        required: 'false',
+        default: 'true',
+        types: [
+          'boolean',
+        ],
+        required: false,
+        private: false,
+      },
       extendOptions: {
         required: 'false',
         default: '{}',
@@ -23816,6 +24045,20 @@ module.exports = {
       },
       handleChange: {
         description: 'Handles `change` event.',
+        returns: 'void',
+        params: {
+          val: {
+            types: [
+              'string',
+            ],
+            required: 'true',
+            description: 'value of the element',
+          },
+        },
+        private: true,
+      },
+      handleUpdate: {
+        description: 'Handles `update` event if not lazy.',
         returns: 'void',
         params: {
           val: {
@@ -25753,6 +25996,20 @@ module.exports = {
         description: 'The element&apos;s validation rules.',
         private: true,
       },
+      isDanger: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the field has errors.',
+        private: false,
+      },
+      isSuccess: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the field has been filled in successfully.',
+        private: false,
+      },
       value: {
         types: [
           'any',
@@ -26700,6 +26957,15 @@ module.exports = {
         required: false,
         private: false,
       },
+      attrs: {
+        required: 'false',
+        default: '{}',
+        types: [
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
       placeholder: {
         required: 'false',
         default: 'null',
@@ -26769,6 +27035,13 @@ module.exports = {
         description: 'Helper property used to store listeners for events.',
         default: '{}',
         private: true,
+      },
+      focused: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is focused.',
+        private: false,
       },
       input: {
         types: [
@@ -27099,6 +27372,20 @@ module.exports = {
         ],
         description: 'The element&apos;s validation rules.',
         private: true,
+      },
+      isDanger: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the field has errors.',
+        private: false,
+      },
+      isSuccess: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the field has been filled in successfully.',
+        private: false,
       },
       value: {
         types: [
@@ -28036,6 +28323,15 @@ module.exports = {
         required: false,
         private: false,
       },
+      attrs: {
+        required: 'false',
+        default: '{}',
+        types: [
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
     },
     data: {
       active: {
@@ -28078,6 +28374,13 @@ module.exports = {
         description: 'Helper property used to store listeners for events.',
         default: '{}',
         private: true,
+      },
+      focused: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is focused.',
+        private: false,
       },
       input: {
         types: [
@@ -28401,6 +28704,20 @@ module.exports = {
         ],
         description: 'The element&apos;s validation rules.',
         private: true,
+      },
+      isDanger: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the field has errors.',
+        private: false,
+      },
+      isSuccess: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the field has been filled in successfully.',
+        private: false,
       },
       value: {
         types: [
@@ -29296,6 +29613,15 @@ module.exports = {
         required: false,
         private: false,
       },
+      attrs: {
+        required: 'false',
+        default: '{}',
+        types: [
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
       onSelect: {
         required: 'false',
         default: 'null',
@@ -30079,6 +30405,20 @@ module.exports = {
         ],
         description: 'The element&apos;s validation rules.',
         private: true,
+      },
+      isDanger: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element has errors.',
+        private: false,
+      },
+      isSuccess: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element has been filled in successfully.',
+        private: false,
       },
       value: {
         types: [
@@ -31312,6 +31652,15 @@ module.exports = {
         required: false,
         private: false,
       },
+      attrs: {
+        required: 'false',
+        default: '{}',
+        types: [
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
       addons: {
         required: 'false',
         default: '{}',
@@ -31382,6 +31731,13 @@ module.exports = {
         description: 'Helper property used to store listeners for events.',
         default: '{}',
         private: true,
+      },
+      focused: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is focused.',
+        private: false,
       },
       input: {
         types: [
@@ -31712,6 +32068,20 @@ module.exports = {
         ],
         description: 'The element&apos;s validation rules.',
         private: true,
+      },
+      isDanger: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element has errors.',
+        private: false,
+      },
+      isSuccess: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element has been filled in successfully.',
+        private: false,
       },
       value: {
         types: [
@@ -32629,6 +32999,15 @@ module.exports = {
         required: false,
         private: false,
       },
+      attrs: {
+        required: 'false',
+        default: '{}',
+        types: [
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
     },
     data: {
       active: {
@@ -32671,6 +33050,13 @@ module.exports = {
         description: 'Helper property used to store listeners for events.',
         default: '{}',
         private: true,
+      },
+      focused: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is focused.',
+        private: false,
       },
       input: {
         types: [
@@ -32994,6 +33380,20 @@ module.exports = {
         ],
         description: 'The element&apos;s validation rules.',
         private: true,
+      },
+      isDanger: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element has errors.',
+        private: false,
+      },
+      isSuccess: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element has been filled in successfully.',
+        private: false,
       },
       value: {
         types: [
@@ -34247,6 +34647,20 @@ module.exports = {
         ],
         description: 'The element&apos;s validation rules.',
         private: true,
+      },
+      isDanger: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element has errors.',
+        private: false,
+      },
+      isSuccess: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element has been filled in successfully.',
+        private: false,
       },
       value: {
         types: [

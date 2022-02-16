@@ -2408,6 +2408,41 @@ export default {
       }
     }
   },
+  "focused": {
+    "base": {
+      "data": {
+        "focused": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is focused."
+        }
+      }
+    },
+    "date": {
+      "data": {
+        "focused": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is focused."
+        }
+      }
+    },
+    "dates": {
+      "data": {
+        "focused": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is focused."
+        }
+      }
+    }
+  },
   "genericName": {
     "base": {
       "computed": {
@@ -2617,6 +2652,26 @@ export default {
               ],
               "required": true,
               "description": "the current search query."
+            }
+          }
+        }
+      }
+    }
+  },
+  "handleUpdate": {
+    "base": {
+      "methods": {
+        "handleUpdate": {
+          "public": false,
+          "returns": "void",
+          "description": "Handles `update` event if not lazy.",
+          "params": {
+            "val": {
+              "types": [
+                "string"
+              ],
+              "required": true,
+              "description": "value of the element"
             }
           }
         }
@@ -3187,6 +3242,15 @@ export default {
   },
   "radio": {
     "base": {
+      "computed": {
+        "inputName": {
+          "public": true,
+          "types": [
+            "string"
+          ],
+          "description": "The `name` attribute of the element. If [`id`](#option-id) is not provided [`name`](#option-name) will be used."
+        }
+      },
       "methods": {
         "check": {
           "public": true,
@@ -3197,15 +3261,6 @@ export default {
           "public": true,
           "returns": "void",
           "description": "Unhecks the radio."
-        }
-      },
-      "computed": {
-        "inputName": {
-          "public": true,
-          "types": [
-            "string"
-          ],
-          "description": "The `name` attribute of the element. If [`id`](#option-id) is not provided [`name`](#option-name) will be used."
         }
       }
     }
@@ -3523,6 +3578,20 @@ export default {
             "array"
           ],
           "description": "The element's validation rules."
+        },
+        "isDanger": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element has errors."
+        },
+        "isSuccess": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element has been filled in successfully."
         }
       },
       "methods": {
@@ -3652,6 +3721,20 @@ export default {
             "array"
           ],
           "description": "The element's validation rules."
+        },
+        "isDanger": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element has errors."
+        },
+        "isSuccess": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element has been filled in successfully."
         }
       },
       "methods": {
@@ -3927,6 +4010,20 @@ export default {
             "array"
           ],
           "description": "The element's validation rules."
+        },
+        "isDanger": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the field has errors."
+        },
+        "isSuccess": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the field has been filled in successfully."
         }
       },
       "methods": {
@@ -4404,6 +4501,20 @@ export default {
             "array"
           ],
           "description": "The element's validation rules."
+        },
+        "isSuccess": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element has been filled in successfully."
+        },
+        "isDanger": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element has errors."
         }
       },
       "methods": {
