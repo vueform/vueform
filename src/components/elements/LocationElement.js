@@ -93,6 +93,11 @@ export default {
       type: [Boolean],
       default: false
     },
+    attrs: {
+      required: false,
+      type: [Object],
+      default: () => ({}),
+    },
     addons: {
       required: false,
       type: [Object],

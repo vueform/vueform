@@ -1,50 +1,120 @@
 // prefix
 
+const inputStates = {
+  default: ``
+    + `form-bg-input `
+    + `form-color-input `
+    + `form-border-color-input `
+    + `hover:form-bg-input-hover `
+    + `hover:form-color-input-hover `
+    + `hover:form-border-color-input-hover `
+    + `hover:form-shadow-input-hover `
+    + `focused:form-bg-input-focus `
+    + `focused:form-color-input-focus `
+    + `focused:form-border-color-input-focus `
+    + `focused:form-shadow-input-focus `
+    + `focused:form-ring `
+    + `focused-hover:form-shadow-input-hover`,
+  disabled: ``
+    + `form-bg-disabled `
+    + `form-color-disabled `
+    + `form-border-color-input`,
+  success: ``
+    + `form-bg-input-success `
+    + `form-color-input-success `
+    + `form-border-color-input-success `
+    + `hover:form-shadow-input-hover `
+    + `focused:form-shadow-input-focus `
+    + `focused:form-border-color-input-focus `
+    + `focused:form-ring `
+    + `focused-hover:form-shadow-input-hover`,
+  danger: ``
+    + `form-bg-input-danger `
+    + `form-color-input-danger `
+    + `form-border-color-input-danger `
+    + `hover:form-shadow-input-hover `
+    + `focused:form-shadow-input-focus `
+    + `focused:form-border-color-input-focus `
+    + `focused:form-ring `
+    + `focused-hover:form-shadow-input-hover`,
+}
+
+const checkboxStates = {
+  default: ``
+    + `form-bg-input `
+    + `form-border-color-input `
+    + `hover:form-bg-input-hover `
+    + `hover:form-border-color-input-hover `
+    + `hover:form-shadow-input-hover `
+    + `focused:form-bg-input-focus `
+    + `focused:form-border-color-input-focus `
+    + `focused:form-shadow-input-focus `
+    + `focused-hover:form-shadow-input-hover `
+    + `checked:form-bg-primary `
+    + `checked:form-border-color-checked `
+    + `checked-focused:form-bg-primary`,
+  disabled: ``
+    + `form-bg-disabled `
+    + `form-border-color-input `
+    + `checked:form-bg-primary `
+    + `checked:form-border-color-checked `
+    + `checked:opacity-50`,
+  danger: ``
+    + `form-bg-input-danger `
+    + `form-border-color-input-danger `
+    + `hover:form-shadow-input-hover `
+    + `focused:form-border-color-input-focus `
+    + `focused:form-shadow-input-focus `
+    + `focused-hover:form-shadow-input-hover `
+    + `checked:form-bg-primary `
+    + `checked:form-border-color-checked`,
+}
+
 const checkbox = {
-  input: 'flex-shrink-0 appearance-none duration-200 ease-in-out cursor-pointer outline-zero transition-shadow transition-colors border-solid form-border-width-checkbox form-border-color-input form-bg-input checked:form-bg-icon-check focus:form-ring',
-  input_enabled: ' hover:form-shadow-input-hover hover:form-border-color-input-hover hover:form-bg-input-hover focus:form-shadow-input-focus checked:form-bg-primary checked:form-border-color-checked',
-  input_disabled: 'form-bg-disabled form-border-color-input',
-  input_danger: 'not-checked:form-border-color-input-danger not-checked:form-bg-input-danger',
+  input: 'flex-shrink-0 appearance-none duration-200 ease-in-out cursor-pointer outline-zero transition-input duration-200 border-solid form-border-width-checkbox focus:form-ring checked:form-bg-icon-check',
+  input_default: checkboxStates.default,
+  input_disabled: checkboxStates.disabled,
+  input_danger:checkboxStates.danger,
   input_sm: 'form-w-checkbox-sm form-h-checkbox-sm form-radius-checkbox-sm form-mr-space-checkbox-sm',
   input_md: 'form-w-checkbox form-h-checkbox form-radius-checkbox form-mr-space-checkbox',
   input_lg: 'form-w-checkbox-lg form-h-checkbox-lg form-radius-checkbox-lg form-mr-space-checkbox-lg',
   $input: (classes, { isDisabled, Size, isDanger }) => ([
     classes.input,
     classes[`input_${Size}`],
-    isDisabled ? classes.input_disabled : classes.input_enabled,
-    !isDisabled && isDanger ? classes.input_danger : null,
+    !isDisabled && !isDanger ? classes.input_default : null,
+    isDisabled ? classes.input_disabled : null,
+    isDanger ? classes.input_danger : null,
   ]),
 }
 
 const radio = {
-  input: 'flex items-center justify-center flex-shrink-0 appearance-none duration-200 ease-in-out cursor-pointer rounded-full outline-zero transition-shadow transition-colors border-solid form-border-width-radio form-border-color-input form-bg-input checked:form-bg-icon-radio focus:form-ring',
-  input_enabled: ' hover:form-shadow-input-hover hover:form-border-color-input-hover hover:form-bg-input-hover focus:form-shadow-input-focus checked:form-bg-primary checked:form-border-color-checked',
-  input_disabled: 'form-bg-disabled form-border-color-input',
-  input_danger: 'not-checked:form-border-color-input-danger not-checked:form-bg-input-danger',
+  input: 'flex items-center justify-center flex-shrink-0 appearance-none duration-200 ease-in-out cursor-pointer rounded-full outline-zero transition-input duration-200 border-solid form-border-width-radio form-shadow-input focus:form-ring checked:form-bg-icon-radio',
+  input_default: checkboxStates.default,
+  input_disabled: checkboxStates.disabled,
+  input_danger:checkboxStates.danger,
   input_sm: 'form-w-checkbox-sm form-h-checkbox-sm form-mr-space-checkbox-sm',
   input_md: 'form-w-checkbox form-h-checkbox form-mr-space-checkbox',
   input_lg: 'form-w-checkbox-lg form-h-checkbox-lg form-mr-space-checkbox-lg',
   $input: (classes, { isDisabled, Size, isDanger }) => ([
     classes.input,
     classes[`input_${Size}`],
-    isDisabled ? classes.input_disabled : classes.input_enabled,
-    !isDisabled && isDanger ? classes.input_danger : null,
+    !isDisabled && !isDanger ? classes.input_default : null,
+    isDisabled ? classes.input_disabled : null,
+    isDanger ? classes.input_danger : null,
   ]),
 }
 
 const text = {
   container: '',
-  inputContainer: 'w-full flex flex-1 transition-colors transition-shadow border-solid form-border-width-input form-shadow-input form-input-group group',
+  inputContainer: 'w-full flex flex-1 transition-input duration-200 border-solid form-border-width-input form-shadow-input form-input-group group',
   inputContainer_sm: 'form-radius-input-sm',
   inputContainer_md: 'form-radius-input',
   inputContainer_lg: 'form-radius-input-lg',
-  inputContainer_enabled: 'form-bg-input form-color-input form-border-color-input hover:form-bg-input-hover hover:form-color-input-hover hover:form-border-color-input-hover hover:form-shadow-input-hover',
-  inputContainer_disabled: 'form-bg-disabled form-color-disabled form-border-color-input',
-  inputContainer_focused: 'form-bg-input-focus form-color-input-focus form-border-color-input-focus form-shadow-input-focus form-ring hover:form-shadow-input-hover',
-  inputContainer_success: 'form-bg-input-success form-color-input-success form-border-color-input-success hover:form-shadow-input-hover',
-  inputContainer_success_focused: 'form-bg-input-success form-color-input-success form-border-color-input-focus hover:form-shadow-input-hover form-shadow-input-focus form-ring',
-  inputContainer_danger: 'form-bg-input-danger form-color-input-danger form-border-color-input-danger hover:form-shadow-input-hover',
-  inputContainer_danger_focused: 'form-bg-input-danger form-color-input-danger form-border-color-input-focus hover:form-shadow-input-hover form-shadow-input-focus form-ring',
+  inputContainer_focused: 'form-focus',
+  inputContainer_default: inputStates.default,
+  inputContainer_disabled: inputStates.disabled,
+  inputContainer_success: inputStates.success,
+  inputContainer_danger: inputStates.danger,
   input: 'w-full z-1 bg-transparent ',
   input_sm: 'form-p-input-sm form-text-sm form-h-input-height-sm',
   input_md: 'form-p-input form-text form-h-input-height',
@@ -58,12 +128,10 @@ const text = {
     classes.inputContainer,
     classes[`inputContainer_${Size}`],
     isDisabled ? classes.inputContainer_disabled : null,
-    !isDisabled && !isSuccess && !isDanger && !focused ? classes.inputContainer_enabled : null,
-    !isDisabled && focused && !isSuccess && !isDanger ? classes.inputContainer_focused : null,
-    !isDisabled && isSuccess && !focused ? classes.inputContainer_success : null,
-    !isDisabled && isSuccess && focused ? classes.inputContainer_success_focused : null,
-    !isDisabled && isDanger && !focused ? classes.inputContainer_danger : null,
-    !isDisabled && isDanger && focused ? classes.inputContainer_danger_focused : null,
+    !isDisabled && !isSuccess && !isDanger ? classes.inputContainer_default : null,
+    !isDisabled && focused ? classes.inputContainer_focused : null,
+    !isDisabled && isSuccess ? classes.inputContainer_success : null,
+    !isDisabled && isDanger ? classes.inputContainer_danger : null,
   ]),
   $input: (classes, { isDisabled, Size, isSuccess, isDanger, focused }) => ([
     classes.input,
@@ -88,14 +156,12 @@ const textarea = {
 
 const editor = {
   container: '',
-  input: 'border-solid form-border-width-input form-shadow-input',
-  input_enabled: 'form-bg-input form-color-input form-border-color-input hover:form-bg-input-hover hover:form-color-input-hover hover:form-border-color-input-hover hover:form-shadow-input-hover',
-  input_disabled: 'form-editor-disabled form-bg-disabled form-color-disabled',
-  input_success: 'form-bg-input-success form-color-input-success form-border-color-input-success hover:form-shadow-input-hover',
-  input_danger: 'form-bg-input-danger form-color-input-danger form-border-color-input-danger hover:form-shadow-input-hover',
-  input_focused: 'form-color-input-focus form-border-color-input-focus form-bg-input-focus form-shadow-input-focus form-ring',
-  input_focused_success: 'form-bg-input-success form-color-input-success form-border-color-input-focus hover:form-shadow-input-hover form-shadow-input-focus form-ring',
-  input_focused_danger: 'form-bg-input-danger form-color-input-danger form-border-color-input-focus hover:form-shadow-input-hover form-shadow-input-focus form-ring',
+  input: 'border-solid transition-input duration-200 form-border-width-input form-shadow-input',
+  input_focused: 'form-focus',
+  input_default: inputStates.default,
+  input_disabled: inputStates.disabled,
+  input_success: inputStates.success,
+  input_danger: inputStates.danger,
   input_sm: 'form-radius-large-sm form-editor-sm',
   input_md: ' form-radius-large',
   input_lg: 'form-radius-large-lg form-editor-lg',
@@ -103,29 +169,26 @@ const editor = {
     classes.input,
     classes[`input_${Size}`],
     isDisabled ? classes.input_disabled : null,
-    !isDisabled && !isSuccess && !isDanger && !focused ? classes.input_enabled : null,
-    !isDisabled && isDanger ? classes.input_danger : null,
+    !isDisabled && !isSuccess && !isDanger ? classes.input_default : null,
+    !isDisabled && focused ? classes.input_focused : null,
     !isDisabled && isSuccess ? classes.input_success : null,
-    focused && !isDanger && !isSuccess ? classes.input_focused : null,
-    focused && isSuccess ? classes.input_focused_success : null,
-    focused && isDanger ? classes.input_focused_danger : null,
+    !isDisabled && isDanger ? classes.input_danger : null,
   ]),
 }
 
 const select = {
-  container: 'relative mx-auto w-full flex items-center justify-end box-border cursor-pointer outline-zero transition-shadow transition-colors border-solid form-border-width-input form-shadow-input',
-  container_enabled: 'form-bg-input form-color-input form-border-color-input hover-no-focus-no-active:form-border-color-input-hover hover:form-shadow-input-hover active-or-focus:form-color-input-focus active-or-focus:form-border-color-input-focus active-or-focus:form-bg-input-focus',
-  container_disabled: 'form-bg-disabled form-color-disabled cursor-default',
-  container_success: 'form-bg-input-success form-color-input-success form-border-color-input-success hover:form-shadow-input-hover active-or-focus:form-border-color-input-focus',
-  container_danger: 'form-bg-input-danger form-color-input-danger form-border-color-input-danger hover:form-shadow-input-hover active-or-focus:form-border-color-input-focus',
+  container: 'relative mx-auto w-full flex items-center justify-end box-border cursor-pointer outline-zero transition-input duration-200 border-solid form-border-width-input form-shadow-input',
+  container_default: inputStates.default,
+  container_disabled: inputStates.disabled,
+  container_success: inputStates.success,
+  container_danger: inputStates.danger,
   container_sm: 'form-text-sm form-radius-input-sm form-min-h-input-height-sm',
   container_md: 'form-text form-radius-input form-min-h-input-height',
   container_lg: 'form-text-lg form-radius-input-lg form-min-h-input-height-lg',
   containerDisabled: '',
   containerOpen: '!rounded-b-none',
   containerOpenTop: '!rounded-t-none',
-  containerActive: 'form-active form-shadow-input-focus form-ring',
-  containerActive_enabled: 'form-bg-input-hover form-color-input-hover form-border-color-input-hover',
+  containerActive: 'form-focus',
   search: 'w-full absolute inset-0 outline-zero appearance-none box-border border-0 font-sans bg-transparent form-color-input',
   search_sm: 'form-text-sm form-radius-input-sm form-pl-input-sm',
   search_md: 'form-text form-radius-input form-pl-input',
@@ -197,14 +260,9 @@ const select = {
     classes.select.container,
     classes.select[`container_${Size}`],
     isDisabled ? classes.select.container_disabled : null,
-    !isDisabled && !isSuccess && !isDanger ? classes.select.container_enabled : null,
+    !isDisabled && !isSuccess && !isDanger ? classes.select.container_default : null,
     !isDisabled && isDanger ? classes.select.container_danger : null,
     !isDisabled && isSuccess ? classes.select.container_success : null,
-  ]),
-  $containerActive: (classes, { Size, isDanger, isSuccess, isDisabled }) => ([
-    classes.select.containerActive,
-    classes.select[`container_${Size}`],
-    !isDisabled && !isSuccess && !isDanger ? classes.select.containerActive_enabled : null,
   ]),
   $search: (classes, { Size }) => ([
     classes.select.search,
@@ -559,11 +617,11 @@ export default {
   },
   MultiselectElement: {
     container: '',
-    input: 'w-full form-p-input transition-colors transition-shadow border-solid form-border-width-input form-shadow-input',
-    input_enabled: 'form-bg-input form-color-input form-border-color-input hover:form-bg-input-hover hover:form-color-input-hover hover:form-border-color-input-hover focus:form-color-input-focus focus:form-border-color-input-focus focus:form-bg-input-focus hover:form-shadow-input-hover focus:form-shadow-input-focus focus:form-ring',
-    input_disabled: 'form-bg-disabled form-color-disabled',
-    input_success: 'form-bg-input-success form-color-input-success form-border-color-input-success hover:form-shadow-input-hover focus:form-shadow-input-focus focus:form-ring',
-    input_danger: 'form-bg-input-danger form-color-input-danger form-border-color-input-danger hover:form-shadow-input-hover focus:form-shadow-input-focus focus:form-ring',
+    input: 'w-full form-p-input transition-input duration-200 border-solid form-border-width-input form-shadow-input',
+    input_default: inputStates.default,
+    input_disabled: inputStates.disabled,
+    input_success: inputStates.success,
+    input_danger: inputStates.danger,
     input_sm: 'form-p-input-sm form-radius-large-sm form-text-sm',
     input_md: 'form-p-input form-radius-large form-text',
     input_lg: 'form-p-input-lg form-radius-large-lg form-text-lg with-floating:form-p-input-floating-lg',
@@ -583,7 +641,7 @@ export default {
       classes.input,
       classes[`input_${Size}`],
       isDisabled ? classes.input_disabled : null,
-      !isDisabled && !isSuccess && !isDanger ? classes.input_enabled : null,
+      !isDisabled && !isSuccess && !isDanger ? classes.input_default : null,
       !isDisabled && isDanger ? classes.input_danger : null,
       !isDisabled && isSuccess ? classes.input_success : null,
     ]),
@@ -651,11 +709,11 @@ export default {
   },
   SelectElement: {
     container: '',
-    input: 'w-full transition-colors transition-shadow border-solid form-border-width-input form-shadow-input',
-    input_enabled: 'form-bg-input form-color-input form-border-color-input hover:form-bg-input-hover hover:form-color-input-hover hover:form-border-color-input-hover focus:form-color-input-focus focus:form-border-color-input-focus focus:form-bg-input-focus hover:form-shadow-input-hover focus:form-shadow-input-focus focus:form-ring',
-    input_disabled: 'form-bg-disabled form-color-disabled',
-    input_success: 'form-bg-input-success form-color-input-success form-border-color-input-success hover:form-shadow-input-hover focus:form-shadow-input-focus focus:form-ring',
-    input_danger: 'form-bg-input-danger form-color-input-danger form-border-color-input-danger hover:form-shadow-input-hover focus:form-shadow-input-focus focus:form-ring',
+    input: 'w-full transition-input duration-200 border-solid form-border-width-input form-shadow-input',
+    input_default: inputStates.default,
+    input_disabled: inputStates.disabled,
+    input_success: inputStates.success,
+    input_danger: inputStates.danger,
     input_sm: 'form-p-input-sm form-radius-input-sm form-text-sm',
     input_md: 'form-p-input form-radius-input form-text',
     input_lg: 'form-p-input-lg form-radius-input-lg form-text-lg with-floating:form-p-input-floating-lg',
@@ -684,7 +742,7 @@ export default {
       classes.input,
       classes[`input_${Size}`],
       isDisabled ? classes.input_disabled : null,
-      !isDisabled && !isSuccess && !isDanger ? classes.input_enabled : null,
+      !isDisabled && !isSuccess && !isDanger ? classes.input_default : null,
       !isDisabled && isDanger ? classes.input_danger : null,
       !isDisabled && isSuccess ? classes.input_success : null,
     ]),
@@ -890,7 +948,7 @@ export default {
     wrapper: 'flex items-center',
     text: 'ml-2',
     toggle: {
-      container: 'form-shadow-input inline-block rounded-full outline-zero transition-input ease-in-out focus:form-ring',
+      container: 'form-shadow-input inline-block rounded-full outline-zero transition-input duration-200 ease-in-out focus:form-ring',
       container_enabled: 'hover:form-shadow-input-hover focus:form-shadow-input-focus',
       container_disabled: 'cursor-not-allowed opacity-50',
       toggle: 'flex rounded-full relative cursor-pointer transition-colors items-center box-content border-2 leading-none',
@@ -1116,12 +1174,12 @@ export default {
   },
   FormElements: {
     container: 'grid grid-cols-12',
-    container_sm: 'form-gap-x-gutter-sm',
-    container_md: 'form-gap-x-gutter',
-    container_lg: 'form-gap-x-gutter-lg',
-    $container: (classes, { type }) => ([
+    container_sm: 'form-gap-x-gutter-sm form-gap-y-gutter-sm',
+    container_md: 'form-gap-x-gutter form-gap-y-gutter',
+    container_lg: 'form-gap-x-gutter-lg form-gap-y-gutter-lg',
+    $container: (classes, { Size }) => ([
       classes.container,
-      classes[`container_${type}`]
+      classes[`container_${Size}`]
     ]),
   },
   FormErrors: {
@@ -1272,7 +1330,7 @@ export default {
     ...checkbox,
     container: 'flex align-start cursor-pointer',
     text: '',
-    input: checkbox.input + ' form-shadow-input focus:form-ring',
+    input: checkbox.input + ' form-shadow-input',
     input_sm: checkbox.input_sm + ' form-mt-checkbox-sm',
     input_md: checkbox.input_md + ' form-mt-checkbox',
     input_lg: checkbox.input_lg + ' form-mt-checkbox-lg',
@@ -1447,7 +1505,7 @@ export default {
     ...radio,
     container: 'flex align-start cursor-pointer',
     text: '',
-    input: radio.input + ' form-shadow-input focus:form-ring',
+    input: radio.input + ' form-shadow-input',
     input_sm: radio.input_sm + ' form-mt-checkbox-sm',
     input_md: radio.input_md + ' form-mt-checkbox',
     input_lg: radio.input_lg + ' form-mt-checkbox-lg',

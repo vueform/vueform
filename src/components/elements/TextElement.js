@@ -88,7 +88,7 @@ export default {
       type: [String],
       default: 'text'
     },
-    attributes: {
+    attrs: {
       required: false,
       type: [Object],
       default: () => ({}),

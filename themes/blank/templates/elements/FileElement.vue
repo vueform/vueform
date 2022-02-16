@@ -49,23 +49,7 @@
         merge: true,
         defaultClasses: {
           container: '',
-          container_removing: '',
           button: '',
-          button_enabled: '',
-          button_disabled: '',
-          button_sm: '',
-          button_md: '',
-          button_lg: '',
-          $container: (classes, { removing }) => ([
-            classes.container,
-            removing ? classes.container_removing : null,
-          ]),
-          $button: (classes, { isDisabled, preparing, Size }) => ([
-            classes.button,
-            classes[`button_${Size}`],
-            !isDisabled && !preparing ? classes.button_enabled : null,
-            isDisabled || preparing ? classes.button_disabled : null,
-          ]),
         }
       }
     }

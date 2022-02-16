@@ -152,8 +152,8 @@
     --vf-color-input-hover: var(--vf-color-input);
     --vf-color-input-danger: var(--vf-color-input);
     --vf-color-input-success: var(--vf-color-input);
-    --vf-color-placeholder: var(--vf-gray-300);
     --vf-color-disabled: var(--vf-gray-400);
+    --vf-color-placeholder: var(--vf-gray-300);
     --vf-color-passive: var(--vf-gray-700);
     --vf-color-muted: var(--vf-gray-500);
     --vf-color-floating: var(--vf-gray-500);
@@ -202,9 +202,9 @@
     --vf-border-width-tag: var(--vf-border-width-input-t) var(--vf-border-width-input-r) var(--vf-border-width-input-b) var(--vf-border-width-input-l);
 
     --vf-shadow-input: 0px 0px 0px 0px rgba(0,0,0,0);
-    --vf-shadow-input-hover: 0px 0px 0px 0px rgba(0,0,0,0);
-    --vf-shadow-input-focus: 0px 0px 0px 0px rgba(0,0,0,0);
-    --vf-shadow-btn: 0px 0px 0px 0px rgba(0,0,0,0);
+    --vf-shadow-input-hover: var(--vf-shadow-input);
+    --vf-shadow-input-focus: var(--vf-shadow-input);
+    --vf-shadow-btn: var(--vf-shadow-input);
     --vf-shadow-slider-handle: 0.5px 0.5px 2px 1px rgba(0,0,0,.32);
 
     --vf-radius-input: 0.25rem;
@@ -242,12 +242,6 @@
     --vf-radius-gallery: var(--vf-radius-input);
     --vf-radius-gallery-sm: var(--vf-radius-input-sm);
     --vf-radius-gallery-lg: var(--vf-radius-input);
-
-    --vf-shadow-input: 0px 0px 0px 0px rgba(0,0,0,0);
-    --vf-shadow-input-hover: var(--vf-shadow-input);
-    --vf-shadow-input-focus: var(--vf-shadow-input);
-    --vf-shadow-btn: var(--vf-shadow-input);
-    --vf-shadow-slider-handle: 0.5px 0.5px 2px 1px rgba(0,0,0,.32);
 
     --vf-checkbox-size: 1rem;
     --vf-checkbox-size-sm: 0.875rem;
@@ -348,10 +342,9 @@
     cursor: text;
     outline: 0px solid var(--vf-ring-color);
     outline-offset: 0;
-    transition: box-shadow .2s ease-in-out,
-                color .2s ease-in-out,
-                background-color .2s ease-in-out,
-                border-color .2s ease-in-out;
+    transition-property: box-shadow, color, background-color, border-color;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 200ms;
 
     background-color: var(--vf-bg-input);
     color: var(--vf-color-input);
@@ -525,10 +518,9 @@
     z-index: 1;
     outline: 0px solid var(--vf-ring-color);
     outline-offset: 0;
-    transition: box-shadow .2s ease-in-out,
-                color .2s ease-in-out,
-                background-color .2s ease-in-out,
-                border-color .2s ease-in-out;
+    transition-property: box-shadow, color, background-color, border-color;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 200ms;
 
     font-size: var(--vf-font-size);
     line-height: var(--vf-line-height);
@@ -627,10 +619,9 @@
   
   .vf-checkbox {
     appearance: none;
-    transition: box-shadow .2s ease-in-out,
-                color .2s ease-in-out,
-                background-color .2s ease-in-out,
-                border-color .2s ease-in-out;
+    transition-property: box-shadow, color, background-color, border-color;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 200ms;
     cursor: pointer;
     margin: 0;
     margin-right: var(--vf-space-checkbox);
@@ -641,7 +632,7 @@
     outline-offset: 0;
 
     border-color: var(--vf-border-color-input);
-    box-shadow: inset 0 0 0 0 var(--vf-primary), var(--vf-shadow-input);
+    box-shadow: var(--vf-shadow-input);
     background-color: var(--vf-bg-input);
 
     width: var(--vf-checkbox-size);
@@ -673,9 +664,12 @@
       outline: var(--vf-ring-width) solid var(--vf-ring-color);
     }
 
+    &:focus:not(:checked) {
+      border-color: var(--vf-border-color-input-focus);
+    }
+
     &:focus:not([disabled]):not(.vf-checkbox-danger):not(:checked) {
       background-color: var(--vf-bg-input-focus);
-      border-color: var(--vf-border-color-input-focus);
     }
 
     &:checked {
@@ -734,10 +728,9 @@
 
   .vf-radio {
     appearance: none;
-    transition: box-shadow .2s ease-in-out,
-                color .2s ease-in-out,
-                background-color .2s ease-in-out,
-                border-color .2s ease-in-out;
+    transition-property: box-shadow, color, background-color, border-color;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 200ms;
     cursor: pointer;
     margin: 0;
     margin-right: var(--vf-space-checkbox);
@@ -783,9 +776,12 @@
       outline: var(--vf-ring-width) solid var(--vf-ring-color);
     }
 
+    &:focus:not(:checked) {
+      border-color: var(--vf-border-color-input-focus);
+    }
+
     &:focus:not([disabled]):not(.vf-radio-danger):not(:checked) {
       background-color: var(--vf-bg-input-focus);
-      border-color: var(--vf-border-color-input-focus);
     }
 
     &:checked {

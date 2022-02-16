@@ -1087,6 +1087,9 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
     '.form-bg-success-color': {
       backgroundColor: 'var(--vf-color-success)'
     },
+    '.form-bg-input-danger': {
+      backgroundColor: 'var(--vf-bg-input-danger)'
+    },
     '.form-bg-tag': {
       backgroundColor: 'var(--vf-bg-tag)'
     },
@@ -1111,6 +1114,9 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
     },
     '.form-border-color-input-success': {
       borderColor: 'var(--vf-border-color-input-success)'
+    },
+    '.form-border-color-input-danger': {
+      borderColor: 'var(--vf-border-color-input-danger)'
     },
     '.form-border-color-danger': {
       borderColor: 'var(--vf-border-color-danger)'
@@ -1494,15 +1500,6 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
     },
   }
 
-  const notCheckable = {
-    '.form-border-color-input-danger': {
-      borderColor: 'var(--vf-border-color-input-danger)'
-    },
-    '.form-bg-input-danger': {
-      backgroundColor: 'var(--vf-bg-input-danger)'
-    },
-  }
-
   const focusable = {
     '.form-color-input-focus': {
       color: 'var(--vf-color-input-focus)'
@@ -1545,12 +1542,16 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
     },
   }
 
-  const hoverNoFocusNoActive = {
+  const formFocusable = {
+    ...focusable,
+  }
+
+  const formFocusHoverable = {
     ...hoverable,
   }
 
-  const activeOrFocusable = {
-    ...focusable,
+  const checkedFocusable = {
+    ...checkable,
   }
 
   const groupHoverable = {
@@ -1614,12 +1615,12 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
 
   addUtilities(plain)
   addUtilities(hoverable, ['hover'])
-  addUtilities(hoverNoFocusNoActive, ['hover-no-focus-no-active'])
   addUtilities(groupHoverable, ['group-hover'])
   addUtilities(checkable, ['checked'])
-  addUtilities(notCheckable, ['not-checked'])
   addUtilities(focusable, ['focus'])
-  addUtilities(activeOrFocusable, ['active-or-focus'])
+  addUtilities(formFocusable, ['focused'])
+  addUtilities(formFocusHoverable, ['focused-hover'])
+  addUtilities(checkedFocusable, ['checked-focused'])
   addUtilities(activable, ['active'])
   addUtilities(disableable, ['disabled'])
   addUtilities(important, ['important'])
@@ -1673,29 +1674,24 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
       return `[disabled] .${e(`disabled${separator}${className}`)}, .${e(`disabled${separator}${className}`)}[disabled]`
     })
   })
-
-  addVariant('hover-not-disabled', ({ modifySelectors, separator }) => {
+  
+  addVariant('focused', ({ modifySelectors, separator }) => {
     modifySelectors(({ className }) => {
-      return `.${e(`hover-not-disabled${separator}${className}`)}:not([disabled]):hover`
+      return `.${e(`focused${separator}${className}`)}.form-focus,
+              .${e(`focused${separator}${className}`)}:focus`
     })
   })
   
-  addVariant('hover-no-focus-no-active', ({ modifySelectors, separator }) => {
+  addVariant('focused-hover', ({ modifySelectors, separator }) => {
     modifySelectors(({ className }) => {
-      return `.${e(`hover-no-focus-no-active${separator}${className}`)}:not(:focus):not(.form-active):hover`
+      return `.${e(`focused-hover${separator}${className}`)}.form-focus:hover,
+              .${e(`focused-hover${separator}${className}`)}:focus:hover`
     })
   })
   
-  addVariant('active-or-focus', ({ modifySelectors, separator }) => {
+  addVariant('checked-focused', ({ modifySelectors, separator }) => {
     modifySelectors(({ className }) => {
-      return `.${e(`active-or-focus${separator}${className}`)}:focus,
-              .${e(`active-or-focus${separator}${className}`)}.form-active`
-    })
-  })
-
-  addVariant('not-checked', ({ modifySelectors, separator }) => {
-    modifySelectors(({ className }) => {
-      return `.${e(`not-checked${separator}${className}`)}:not(:checked)`
+      return `.${e(`checked-focused${separator}${className}`)}:checked:focus`
     })
   })
 
@@ -1782,7 +1778,7 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
 }, {
   variants: {
     extend: {
-      backgroundColor: ['disabled', 'hover-not-disabled'],
+      backgroundColor: ['disabled'],
       cursor: ['disabled', 'important'],
       borderColor: ['disabled'],
       height: ['h', 'v'],
@@ -1792,7 +1788,7 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
       transitionProperty: ['tap'],
       transitionDuration: ['tap'],
       display: ['tt-focus', 'tt-focused', 'tt-drag', 'tt-dragging'],
-      opacity: ['ghost', 'disabled'],
+      opacity: ['ghost', 'disabled', 'checked'],
       pointerEvents: ['disabled'],
       borderRadius: ['important'],
       borderWidth: ['important'],
@@ -2300,3 +2296,4 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
 })
 
 module.exports = vueform
+ 

@@ -35,23 +35,6 @@
         merge: true,
         defaultClasses: {
           button: '',
-          button_previous_enabled: '',
-          button_previous_disabled: '',
-          button_next_enabled: '',
-          button_next_disabled: '',
-          button_next_loading: '',
-          button_finish_enabled: '',
-          button_finish_disabled: '',
-          button_finish_loading: '',
-          button_sm: '',
-          button_md: '',
-          button_lg: '',
-          $button: (classes, { isDisabled, isLoading, type, Size }) => ([
-            classes.button,
-            classes[`button_${Size}`],
-            isDisabled ? classes[`button_${type}_disabled`] : classes[`button_${type}_enabled`],
-            isLoading ? classes[`button_${type}_loading`] : null,
-          ]),
         }
       }
     }

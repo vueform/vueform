@@ -18,18 +18,9 @@
         merge: true,
         defaultClasses: {
           container: '',
-          container_inactive: '',
-          container_active: '',
-          container_enabled: '',
-          container_disabled: '',
           icon: '',
           title: '',
           description: '',
-          $container: (classes, { dragging, disabled }) => ([
-            classes.container,
-            dragging ? classes.container_active : classes.container_inactive,
-            disabled ? classes.container_disabled : classes.container_enabled,
-          ]),
         }
       }
     }

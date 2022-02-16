@@ -14,13 +14,6 @@
         merge: true,
         defaultClasses: {
           container: '',
-          container_before: '',
-          container_between: '',
-          container_after: '',
-          $container: (classes, { type }) => ([
-            classes.container,
-            classes[`container_${type}`]
-          ]),
         }
       }
     }

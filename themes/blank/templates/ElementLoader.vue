@@ -13,13 +13,6 @@
         defaultClasses: {
           container: '',
           loader: '',
-          loader_sm: '',
-          loader_md: '',
-          loader_lg: '',
-          $loader: (classes, { Size }) => ([
-            classes.loader,
-            classes[`loader_${Size}`],
-          ]),
         }
       }
     }

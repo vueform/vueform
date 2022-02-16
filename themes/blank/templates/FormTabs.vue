@@ -20,13 +20,6 @@
         merge: true,
         defaultClasses: {
           container: '',
-          container_sm: '',
-          container_md: '',
-          container_lg: '',
-          $container: (classes, { Size }) => ([
-            classes.container,
-            classes[`container_${Size}`],
-          ]),
         }
       }
     },

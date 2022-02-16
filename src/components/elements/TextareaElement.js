@@ -97,6 +97,11 @@ export default {
       type: [Boolean],
       default: false
     },
+    attrs: {
+      required: false,
+      type: [Object],
+      default: () => ({}),
+    },
   },
   setup(props, context) {
     context.features = [

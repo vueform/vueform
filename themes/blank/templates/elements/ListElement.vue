@@ -58,33 +58,12 @@
         defaultClasses: {
           container: '',
           list: '',
-          list_disabled: '',
-          list_sorting: '',
           listItem: '',
           handle: '',
-          handle_sm: '',
-          handle_md: '',
-          handle_lg: '',
           handleIcon: '',
           remove: '',
           removeIcon: '',
           add: '',
-          add_sm: '',
-          add_md: '',
-          add_lg: '',
-          $list: (classes, { isDisabled, sorting }) => ([
-            classes.list,
-            isDisabled ? classes.list_disabled : null,
-            sorting ? classes.list_sorting : null,
-          ]),
-          $handle: (classes, { Size }) => ([
-            classes.handle,
-            classes[`handle_${Size}`],
-          ]),
-          $add: (classes, { Size }) => ([
-            classes.add,
-            classes[`add_${Size}`],
-          ]),
         },
       }
     },

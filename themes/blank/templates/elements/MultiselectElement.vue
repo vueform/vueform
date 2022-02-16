@@ -15,6 +15,7 @@
           :id="fieldId"
           :multiple="true"
           :disabled="isDisabled"
+          v-bind="attrs"
           ref="input"
         >
           <option
@@ -38,6 +39,7 @@
         :options="items"
         :disabled="isDisabled"
         :placeholder="placeholder"
+        :attrs="attrs"
         @select="handleSelect"
         @deselect="handleDeselect"
         @search-change="handleSearchChange"
@@ -86,63 +88,28 @@ import Multiselect from '@vueform/multiselect/src/Multiselect.vue'
         defaultClasses: {
           container: '',
           input: '',
-          input_enabled: '',
-          input_disabled: '',
-          input_sm: '',
-          input_md: '',
-          input_lg: '',
           inputWrapper: '',
           select: {
             container: '',
-            container_sm: '',
-            container_md: '',
-            container_lg: '',
             containerDisabled: '',
             containerOpen: '',
             containerOpenTop: '',
             containerActive: '',
             multipleLabel: '',
-            multipleLabel_sm: '',
-            multipleLabel_md: '',
-            multipleLabel_lg: '',
             search: '',
-            search_sm: '',
-            search_md: '',
-            search_lg: '',
             placeholder: '',
-            placeholder_sm: '',
-            placeholder_md: '',
-            placeholder_lg: '',
             caret: '',
-            caret_sm: '',
-            caret_md: '',
-            caret_lg: '',
             caretOpen: '',
             clear: '',
-            clear_sm: '',
-            clear_md: '',
-            clear_lg: '',
             clearIcon: '',
             spinner: '',
-            spinner_sm: '',
-            spinner_md: '',
-            spinner_lg: '',
             dropdown: '',
-            dropdown_sm: '',
-            dropdown_md: '',
-            dropdown_lg: '',
             dropdownTop: '',
-            dropdownTop_sm: '',
-            dropdownTop_md: '',
-            dropdownTop_lg: '',
             dropdownHidden: '',
             options: '',
             optionsTop: '',
             group: '',
             groupLabel: '',
-            groupLabel_sm: '',
-            groupLabel_md: '',
-            groupLabel_lg: '',
             groupLabelPointable: '',
             groupLabelPointed: '',
             groupLabelSelected: '',
@@ -151,89 +118,16 @@ import Multiselect from '@vueform/multiselect/src/Multiselect.vue'
             groupLabelSelectedDisabled: '',
             groupOptions: '',
             option: '',
-            option_sm: '',
-            option_md: '',
-            option_lg: '',
             optionPointed: '',
             optionSelected: '',
             optionDisabled: '',
             optionSelectedPointed: '',
             optionSelectedDisabled: '',
             noOptions: '',
-            noOptions_sm: '',
-            noOptions_md: '',
-            noOptions_lg: '',
             noResults: '',
-            noResults_sm: '',
-            noResults_md: '',
-            noResults_lg: '',
             fakeInput: '',
             spacer: '',
-            spacer_sm: '',
-            spacer_md: '',
-            spacer_lg: '',
-            $container: (classes, { Size }) => ([
-              classes.select.container,
-              classes.select[`container_${Size}`],
-            ]),
-            $search: (classes, { Size }) => ([
-              classes.select.search,
-              classes.select[`search_${Size}`],
-            ]),
-            $placeholder: (classes, { Size }) => ([
-              classes.select.placeholder,
-              classes.select[`placeholder_${Size}`],
-            ]),
-            $caret: (classes, { Size }) => ([
-              classes.select.caret,
-              classes.select[`caret_${Size}`],
-            ]),
-            $clear: (classes, { Size }) => ([
-              classes.select.clear,
-              classes.select[`clear_${Size}`],
-            ]),
-            $spinner: (classes, { Size }) => ([
-              classes.select.spinner,
-              classes.select[`spinner_${Size}`],
-            ]),
-            $dropdown: (classes, { Size }) => ([
-              classes.select.dropdown,
-              classes.select[`dropdown_${Size}`],
-            ]),
-            $dropdownTop: (classes, { Size }) => ([
-              classes.select.dropdownTop,
-              classes.select[`dropdownTop_${Size}`],
-            ]),
-            $groupLabel: (classes, { Size }) => ([
-              classes.select.groupLabel,
-              classes.select[`groupLabel_${Size}`],
-            ]),
-            $option: (classes, { Size }) => ([
-              classes.select.option,
-              classes.select[`option_${Size}`],
-            ]),
-            $spacer: (classes, { Size }) => ([
-              classes.select.spacer,
-              classes.select[`spacer_${Size}`],
-            ]),
-            $noOptions: (classes, { Size }) => ([
-              classes.select.noOptions,
-              classes.select[`noOptions_${Size}`],
-            ]),
-            $noResults: (classes, { Size }) => ([
-              classes.select.noResults,
-              classes.select[`noResults_${Size}`],
-            ]),
-            $multipleLabel: (classes, { Size }) => ([
-              classes.select.multipleLabel,
-              classes.select[`multipleLabel_${Size}`],
-            ]),
           },
-          $input: (classes, { isDisabled, Size }) => ([
-            classes.input,
-            classes[`input_${Size}`],
-            isDisabled ? classes.input_disabled : classes.input_enabled,
-          ]),
         }
       }
     }

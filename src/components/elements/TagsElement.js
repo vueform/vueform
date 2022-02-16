@@ -74,6 +74,11 @@ export default {
       type: [String],
       default: null
     },
+    attrs: {
+      required: false,
+      type: [Object],
+      default: () => ({}),
+    },
     onSelect: {
       required: false,
       type: [Function],
