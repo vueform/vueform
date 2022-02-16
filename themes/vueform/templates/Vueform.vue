@@ -159,6 +159,7 @@
     --vf-color-floating: var(--vf-gray-500);
     --vf-color-floating-success: var(--vf-color-floating);
     --vf-color-floating-danger: var(--vf-color-floating);
+    --vf-color-floating-focus: var(--vf-color-floating);
     --vf-color-on-primary: #ffffff;
     --vf-color-danger: var(--vf-danger);
     --vf-color-success: var(--vf-success);
@@ -307,14 +308,14 @@
   .vf-row {
     display: grid;
     grid-template-columns: repeat(12, minmax(0, 1fr));
-    column-gap: var(--vf-gutter);
+    gap: var(--vf-gutter);
 
     &.vf-row-sm {
-      column-gap: var(--vf-gutter-sm);
+      gap: var(--vf-gutter-sm);
     }
 
     &.vf-row-lg {
-      column-gap: var(--vf-gutter-lg);
+      gap: var(--vf-gutter-lg);
     }
   }
 

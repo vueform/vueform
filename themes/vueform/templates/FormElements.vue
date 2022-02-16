@@ -8,10 +8,10 @@
       return {
         merge: true,
         defaultClasses: {
-          container: 'vf-row vf-rowset',
-          container_sm: 'vf-row-sm vf-rowset-sm',
+          container: 'vf-row',
+          container_sm: 'vf-row-sm',
           container_md: '',
-          container_lg: 'vf-row-lg vf-rowset-lg',
+          container_lg: 'vf-row-lg',
           $container: (classes, { type }) => ([
             classes.container,
             classes[`container_${type}`]

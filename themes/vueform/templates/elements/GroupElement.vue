@@ -9,10 +9,10 @@
         merge: true,
         defaultClasses: {
           container: '',
-          wrapper: 'vf-row vf-rowset',
-          wrapper_sm: 'vf-row-sm vf-rowset-sm',
+          wrapper: 'vf-row',
+          wrapper_sm: 'vf-row-sm',
           wrapper_md: '',
-          wrapper_lg: 'vf-row-lg vf-rowset-lg',
+          wrapper_lg: 'vf-row-lg',
           $wrapper: (classes, { Size }) => ([
             classes.wrapper,
             classes[`wrapper_${Size}`]

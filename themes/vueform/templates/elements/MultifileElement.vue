@@ -10,9 +10,9 @@
         defaultClasses: {
           container: '',
           list: 'vf-multifile-list',
-    list_sm: 'vf-multifile-list-sm',
-    list_md: '',
-    list_lg: 'vf-multifile-list-lg',
+          list_sm: 'vf-multifile-list-sm',
+          list_md: '',
+          list_lg: 'vf-multifile-list-lg',
           list_file: 'vf-multifile-list-file',
           list_file_sm: '',
           list_file_md: '',
@@ -28,18 +28,6 @@
           list_disabled: 'vf-multifile-list-disabled',
           list_sorting: 'vf-multifile-list-sorting',
           listItem: '',
-          listItem_file: '',
-          listItem_file_sm: '',
-          listItem_file_md: '',
-          listItem_file_lg: '',
-          listItem_image: '',
-          listItem_image_sm: '',
-          listItem_image_md: '',
-          listItem_image_lg: '',
-          listItem_gallery: 'vf-multifile-list-item-gallery',
-          listItem_gallery_sm: 'vf-multifile-list-item-gallery-sm',
-          listItem_gallery_md: '',
-          listItem_gallery_lg: 'vf-multifile-list-item-gallery-lg',
           handle: '',
           handle_file: 'vf-multifile-handle-file',
           handle_file_sm: 'vf-multifile-handle-file-sm',
@@ -58,9 +46,6 @@
           handleIcon_image: 'vf-multifile-handle-icon-image',
           handleIcon_gallery: 'vf-multifile-handle-icon-gallery',
           dnd: '',
-          dnd_sm: '',
-          dnd_md: '',
-          dnd_lg: '',
           button: 'vf-btn vf-btn-secondary',
           button_enabled: '',
           button_disabled: 'vf-btn-disabled',
@@ -75,11 +60,6 @@
             classes[`list_${view}`],
             classes[`list_${view}_${Size}`],
           ]),
-          $listItem: (classes, { view, Size }) => ([
-            classes.listItem,
-            classes[`listItem_${view}`],
-            classes[`listItem_${view}_${Size}`],
-          ]),
           $handle: (classes, { view, Size }) => ([
             classes.handle,
             classes[`handle_${view}`],
@@ -88,10 +68,6 @@
           $handleIcon: (classes, { view }) => ([
             classes.handleIcon,
             classes[`handleIcon_${view}`],
-          ]),
-          $dnd: (classes, { Size }) => ([
-            classes.dnd,
-            classes[`dnd_${Size}`],
           ]),
           $button: (classes, { isDisabled, preparing, Size }) => ([
             classes.button,
@@ -109,14 +85,14 @@
   // Some styles are contained in Vueform.vue
 
   .vf-multifile-list {
-    margin-top: calc(var(--vf-gutter) / 2);
+    margin-top: var(--vf-gutter);
 
     &.vf-multifile-list-sm {
-      margin-top: calc(var(--vf-gutter-sm) / 2);
+      margin-top: var(--vf-gutter-sm);
     }
 
     &.vf-multifile-list-lg {
-      margin-top: calc(var(--vf-gutter-lg) / 2);
+      margin-top: var(--vf-gutter-lg);
     }
   }
 
@@ -186,6 +162,7 @@
   .vf-multifile-list-gallery {
     display: flex;
     flex-wrap: wrap;
+    gap: calc(var(--vf-gutter) / 2);
 
     &.vf-multifile-list-sorting {
       & > div:hover {
@@ -306,21 +283,6 @@
     mask-repeat: no-repeat;
     mask-position: center center;
     background-color: var(--vf-gray-600);
-  }
-
-  .vf-multifile-list-item-gallery {
-    margin-right: calc(var(--vf-gutter) / 2);
-    margin-bottom: calc(var(--vf-gutter) / 2);
-
-    &.vf-multifile-list-item-gallery-sm {
-      margin-right: calc(var(--vf-gutter-sm) / 2);
-      margin-bottom: calc(var(--vf-gutter-sm) / 2);
-    }
-
-    &.vf-multifile-list-item-gallery-lg {
-      margin-right: calc(var(--vf-gutter-lg) / 2);
-      margin-bottom: calc(var(--vf-gutter-lg) / 2);
-    }
   }
 
   .sortable-ghost {

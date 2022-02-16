@@ -15,7 +15,10 @@
           list_lg: 'vf-rowset-lg',
           list_disabled: 'vf-list-disabled',
           list_sorting: 'vf-list-sorting',
-          listItem: '',
+          listItem: 'vf-row',
+          listItem_sm: 'vf-row-sm',
+          listItem_md: '',
+          listItem_lg: 'vf-row-lg',
           handle: 'vf-list-handle',
           handle_sm: 'vf-list-handle-sm',
           handle_md: '',
@@ -32,6 +35,10 @@
             classes[`list_${Size}`],
             isDisabled ? classes.list_disabled : null,
             sorting ? classes.list_sorting : null,
+          ]),
+          $listItem: (classes, { Size }) => ([
+            classes.listItem,
+            classes[`listItem_${Size}`],
           ]),
           $handle: (classes, { Size }) => ([
             classes.handle,

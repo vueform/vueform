@@ -146,7 +146,7 @@
     width: 100%;
     height: 100%;
     font-size: 0;
-    background: var(--vf-gray-100);
+    background: var(--vf-bg-passive);
     border-radius: var(--vf-radius-gallery);
     outline: none;
 

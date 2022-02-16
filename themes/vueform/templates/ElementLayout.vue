@@ -13,18 +13,7 @@
           container_md: '',
           container_lg: 'vf-element-layout-lg',
           container_error: 'vf-element-layout-error',
-          outerWrapper: 'vf-row',
-          outerWrapper_sm: 'vf-row-sm',
-          outerWrapper_md: '',
-          outerWrapper_lg: 'vf-row-lg',
-          outerWrapper_single: 'vf-element-layout-outer-wrapper-single',
-          outerWrapper_single_sm: '',
-          outerWrapper_single_md: '',
-          outerWrapper_single_lg: '',
-          outerWrapper_multiple: '',
-          outerWrapper_multiple_sm: '',
-          outerWrapper_multiple_md: '',
-          outerWrapper_multiple_lg: '',
+          outerWrapper: 'vf-element-layout-outer-wrapper',
           innerContainer: 'vf-layout-inner-container',
           innerWrapperBefore: 'vf-layout-inner-wrapper-before',
           innerWrapper: 'vf-layout-inner-wrapper',
@@ -43,12 +32,6 @@
           $innerWrapper:  (classes, { el$ }) => ([
             classes.innerWrapper,
             el$.columnsClasses.wrapper,
-          ]),
-          $outerWrapper:  (classes, { multiple, Size }) => ([
-            classes.outerWrapper,
-            classes[`outerWrapper_${Size}`],
-            multiple ? classes.outerWrapper_multiple : classes.outerWrapper_single,
-            multiple ? classes[`outerWrapper_multiple_${Size}`] : classes[`outerWrapper_single_${Size}`],
           ]),
         }
       }
@@ -96,11 +79,9 @@
     padding-right: var(--vf-gutter);
   }
 
-  .vf-element-layout-outer-wrapper-single {
-    &.vf-row,
-    &.vf-row.vf-row-sm,
-    &.vf-row.vf-row-lg {
-      column-gap: 0;
-    }
+  .vf-element-layout-outer-wrapper {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
   }
+
 </style>

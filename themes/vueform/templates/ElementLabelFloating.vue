@@ -14,6 +14,7 @@
           label_disabled: 'vf-floating-label-disabled',
           label_danger: 'vf-floating-label-danger',
           label_success: 'vf-floating-label-success',
+          label_focused: 'vf-floating-label-focus',
           label_sm: 'vf-floating-label-sm',
           label_md: '',
           label_lg: 'vf-floating-label-lg',
@@ -27,6 +28,7 @@
             el$.isDisabled ? classes.label_disabled : null,
             el$.isDanger ? classes.label_danger : null,
             el$.isSuccess ? classes.label_success : null,
+            el$.focused ? classes.label_focused : null,
           ]),
         }
       }
@@ -65,6 +67,7 @@
     &.vf-floating-label-lg {
       left: var(--vf-px-input-lg);
       margin-top: 0.625rem;
+      background-color: transparent !important;
     }
 
     &.vf-floating-label-disabled {
@@ -79,6 +82,11 @@
     &.vf-floating-label-success {
       background-color: var(--vf-bg-input-success);
       color: var(--vf-color-floating-success);
+    }
+
+    &.vf-floating-label-focus {
+      background-color: var(--vf-bg-input-focus);
+      color: var(--vf-color-floating-focus);
     }
   }
 

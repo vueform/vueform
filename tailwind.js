@@ -252,6 +252,7 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
         '--vf-color-floating': theme('form.textColors.floating'),
         '--vf-color-floating-success': theme('form.textColors.floatingSuccess'),
         '--vf-color-floating-danger': theme('form.textColors.floatingDanger'),
+        '--vf-color-floating-focus': theme('form.textColors.floatingFocus'),
         '--vf-color-on-primary': theme('form.textColors.onPrimary'),
         '--vf-color-danger': theme('form.textColors.danger'),
         '--vf-color-success': theme('form.textColors.success'),
@@ -411,6 +412,10 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
     }
 
     // grid
+    plain[`.form-gap-gutter${suffix}`] = {
+      gap: `var(--vf-gutter${size})`,
+    }
+
     plain[`.form-gap-x-gutter${suffix}`] = {
       columnGap: `var(--vf-gutter${size})`,
     }
@@ -419,8 +424,16 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
       rowGap: `var(--vf-gutter${size})`,
     }
 
+    plain[`.${e(`form-gap-0.5gutter${suffix}`)}`] = {
+      gap: `calc(var(--vf-gutter${size}) * 0.5)`,
+    }
+
     plain[`.${e(`form-gap-y-0.5gutter${suffix}`)}`] = {
       rowGap: `calc(var(--vf-gutter${size}) * 0.5)`,
+    }
+
+    plain[`.${e(`form-gap-x-0.5gutter${suffix}`)}`] = {
+      columnGap: `calc(var(--vf-gutter${size}) * 0.5)`,
     }
 
     // border radius
@@ -1014,6 +1027,9 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
     '.form-color-floating-danger': {
       color: 'var(--vf-color-floating-danger)',
     },
+    '.form-color-floating-focus': {
+      color: 'var(--vf-color-floating-focus)',
+    },
     '.form-color-placeholder': {
       color: 'var(--vf-color-placeholder)',
     },
@@ -1331,7 +1347,7 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
           }
         },
       },
-      '&.has-errors': {
+      '&.form-step-has-errors': {
         a: {
           color: 'var(--vf-bg-btn-danger)',
           '&:before': {
@@ -1579,6 +1595,9 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
   }
 
   const important = {
+    '.form-bg-transparent': {
+      backgroundColor: 'transparent',
+    },
     '.form-border-b-white': {
       borderBottomColor: '#ffffff',
     },
@@ -2066,6 +2085,7 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
           floating: 'var(--vf-gray-500)',
           floatingSuccess: 'var(--vf-color-floating)',
           floatingDanger: 'var(--vf-color-floating)',
+          floatingFocus: 'var(--vf-color-floating)',
           danger: 'var(--vf-danger)',
           success: 'var(--vf-success)',
           addon: 'inherit',
