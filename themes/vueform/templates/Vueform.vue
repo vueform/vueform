@@ -23,11 +23,11 @@
    */
   *, :before, :after, :root {
     --vf-primary: #3b82f6;
-    --vf-primary-darker: #1d4ed8;
+    --vf-primary-darker: #1e6ff5;
     --vf-danger: #ef4444;
     --vf-danger-lighter: #fee2e2;
-    --vf-success: #22c55e;
-    --vf-success-lighter: #dcfce7;
+    --vf-success: #10b981;
+    --vf-success-lighter: #d1fae5;
 
     --vf-ring-color: #3b82f666;
     --vf-ring-width: 2px;
@@ -115,7 +115,7 @@
     --vf-px-slider-tooltip-sm: var(--vf-px-slider-tooltip);
     --vf-px-slider-tooltip-lg: var(--vf-px-slider-tooltip);
 
-    --vf-space-addon: 0px;
+    --vf-space-addon: 0;
     --vf-space-addon-sm: var(--vf-space-addon);
     --vf-space-addon-lg: var(--vf-space-addon);
 
@@ -126,7 +126,7 @@
     --vf-space-tags: 0.25rem;
     --vf-space-tags-sm: var(--vf-space-tags);
     --vf-space-tags-lg: var(--vf-space-tags);
-    
+
     --vf-bg-input: #ffffff;
     --vf-bg-input-focus: var(--vf-bg-input);
     --vf-bg-input-hover: var(--vf-bg-input);
@@ -162,7 +162,7 @@
     --vf-color-on-primary: #ffffff;
     --vf-color-danger: var(--vf-danger);
     --vf-color-success: var(--vf-success);
-    --vf-color-tag: #ffffff;
+    --vf-color-tag: var(--vf-color-on-primary);
     --vf-color-addon: inherit;
     --vf-color-date-head: var(--vf-gray-700);
     --vf-color-btn: var(--vf-color-on-primary);
@@ -274,7 +274,7 @@
     --vf-slider-tooltip-distance: 0.5rem;
     --vf-slider-tooltip-distance-sm: var(--vf-slider-tooltip-distance);
     --vf-slider-tooltip-distance-lg: var(--vf-slider-tooltip-distance);
-    
+
     --vf-slider-tooltip-arrow-size: 0.3125rem;
     --vf-slider-tooltip-arrow-size-sm: var(--vf-slider-tooltip-arrow-size);
     --vf-slider-tooltip-arrow-size-lg: var(--vf-slider-tooltip-arrow-size);
@@ -844,6 +844,8 @@
     padding: var(--vf-py-btn) var(--vf-px-btn);
     border-radius: var(--vf-radius-btn);
     box-shadow: var(--vf-shadow-btn);
+    border-width: var(--vf-border-width-btn);
+    border-style: solid;
 
     &:focus {
       box-shadow: 0px 0px 0px var(--vf-ring-width) var(--vf-ring-color);
@@ -897,16 +899,19 @@
     &.vf-btn-primary {
       background-color: var(--vf-primary);
       color: var(--vf-color-on-primary);
+      border-color: var(--vf-border-color-btn);
     }
 
     &.vf-btn-secondary {
       background-color: var(--vf-bg-btn-secondary);
       color: var(--vf-color-btn-secondary);
+      border-color: var(--vf-border-color-btn-secondary);
     }
 
     &.vf-btn-danger {
       background-color: var(--vf-bg-btn-danger);
       color: var(--vf-color-btn-danger);
+      border-color: var(--vf-border-color-btn-danger);
     }
 
     &.vf-btn-loading {

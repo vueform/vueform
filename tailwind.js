@@ -224,7 +224,7 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
         '--vf-bg-input-focus': theme('form.bgColors.inputFocus'),
         '--vf-bg-input-hover': theme('form.bgColors.inputHover'),
         '--vf-bg-input-danger': theme('form.bgColors.inputDanger'),
-        '--vf-bg-input-Success': theme('form.bgColors.inputSuccess'),
+        '--vf-bg-input-success': theme('form.bgColors.inputSuccess'),
         '--vf-bg-disabled': theme('form.bgColors.disabled'),
         '--vf-bg-selected': theme('form.bgColors.selected'),
         '--vf-bg-passive': theme('form.bgColors.passive'),
@@ -245,8 +245,8 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
         '--vf-color-input-hover': theme('form.textColors.inputHover'),
         '--vf-color-input-danger': theme('form.textColors.inputDanger'),
         '--vf-color-input-success': theme('form.textColors.inputSuccess'),
-        '--vf-color-placeholder': theme('form.textColors.placeholder'),
         '--vf-color-disabled': theme('form.textColors.disabled'),
+        '--vf-color-placeholder': theme('form.textColors.placeholder'),
         '--vf-color-passive': theme('form.textColors.passive'),
         '--vf-color-muted': theme('form.textColors.muted'),
         '--vf-color-floating': theme('form.textColors.floating'),
@@ -290,7 +290,7 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
         '--vf-border-width-checkbox-b': Array.isArray(theme('form.borderWidths.checkbox')) ? theme('form.borderWidths.checkbox')[2] : theme('form.borderWidths.checkbox'),
         '--vf-border-width-checkbox-l': Array.isArray(theme('form.borderWidths.checkbox')) ? theme('form.borderWidths.checkbox')[3] : theme('form.borderWidths.checkbox'),
 
-        '--vf-border-width-dropdown': theme('form.borderWidths.dropdown'),
+        '--vf-border-width-dropdown': Array.isArray(theme('form.borderWidths.dropdown')) ? theme('form.borderWidths.dropdown').join(' ') : theme('form.borderWidths.dropdown'),
         '--vf-border-width-btn': Array.isArray(theme('form.borderWidths.btn')) ? theme('form.borderWidths.btn').join(' ') : theme('form.borderWidths.btn'),
         '--vf-border-width-tag': Array.isArray(theme('form.borderWidths.tag')) ? theme('form.borderWidths.tag').join(' ') : theme('form.borderWidths.tag'),
 
@@ -308,9 +308,9 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
         '--vf-radius-btn-sm': theme('form.btnRadius.sm'),
         '--vf-radius-btn-lg': theme('form.btnRadius.base'),
 
-        '--vf-radius-input-small': theme('form.smallRadius.base'),
-        '--vf-radius-input-small-sm': theme('form.smallRadius.sm'),
-        '--vf-radius-input-small-lg': theme('form.smallRadius.base'),
+        '--vf-radius-small': theme('form.smallRadius.base'),
+        '--vf-radius-small-sm': theme('form.smallRadius.sm'),
+        '--vf-radius-small-lg': theme('form.smallRadius.base'),
 
         '--vf-radius-large': theme('form.largeRadius.base'),
         '--vf-radius-large-sm': theme('form.largeRadius.sm'),
@@ -481,29 +481,29 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
     }
 
     plain[`.form-radius-small${suffix}`] = {
-      borderRadius: `var(--vf-radius-input-small${size})`,
+      borderRadius: `var(--vf-radius-small${size})`,
     }
 
     plain[`.form-radius-small-t${suffix}`] = {
-      borderRadius: `var(--vf-radius-input-small${size})`,
+      borderRadius: `var(--vf-radius-small${size})`,
       borderBottomLeftRadius: 0,
       borderBottomRightRadius: 0,
     }
 
     plain[`.form-radius-small-r${suffix}`] = {
-      borderRadius: `var(--vf-radius-input-small${size})`,
+      borderRadius: `var(--vf-radius-small${size})`,
       borderBottomLeftRadius: 0,
       borderTopLeftRadius: 0,
     }
 
     plain[`.form-radius-small-b${suffix}`] = {
-      borderRadius: `var(--vf-radius-input-small${size})`,
+      borderRadius: `var(--vf-radius-small${size})`,
       borderTopLeftRadius: 0,
       borderTopRightRadius: 0,
     }
 
     plain[`.form-radius-small-l${suffix}`] = {
-      borderRadius: `var(--vf-radius-input-small${size})`,
+      borderRadius: `var(--vf-radius-small${size})`,
       borderTopRightRadius: 0,
       borderBottomRightRadius: 0,
     }
