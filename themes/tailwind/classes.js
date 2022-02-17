@@ -25,7 +25,6 @@ const inputStates = {
     + `form-border-color-input-success `
     + `hover:form-shadow-input-hover `
     + `focused:form-shadow-input-focus `
-    + `focused:form-border-color-input-focus `
     + `focused:form-ring `
     + `focused-hover:form-shadow-input-hover`,
   danger: ``
@@ -34,7 +33,6 @@ const inputStates = {
     + `form-border-color-input-danger `
     + `hover:form-shadow-input-hover `
     + `focused:form-shadow-input-focus `
-    + `focused:form-border-color-input-focus `
     + `focused:form-ring `
     + `focused-hover:form-shadow-input-hover`,
 }
@@ -45,11 +43,11 @@ const checkboxStates = {
     + `form-border-color-input `
     + `hover:form-bg-input-hover `
     + `hover:form-border-color-input-hover `
-    + `hover:form-shadow-input-hover `
+    + `hover:form-shadow-handles-hover `
     + `focused:form-bg-input-focus `
     + `focused:form-border-color-input-focus `
-    + `focused:form-shadow-input-focus `
-    + `focused-hover:form-shadow-input-hover `
+    + `focused:form-shadow-handles-focus `
+    + `focused-hover:form-shadow-handles-hover `
     + `checked:form-bg-primary `
     + `checked:form-border-color-checked `
     + `checked-focused:form-bg-primary`,
@@ -62,16 +60,15 @@ const checkboxStates = {
   danger: ``
     + `form-bg-input-danger `
     + `form-border-color-input-danger `
-    + `hover:form-shadow-input-hover `
-    + `focused:form-border-color-input-focus `
-    + `focused:form-shadow-input-focus `
-    + `focused-hover:form-shadow-input-hover `
+    + `hover:form-shadow-handles-hover `
+    + `focused:form-shadow-handles-focus `
+    + `focused-hover:form-shadow-handles-hover `
     + `checked:form-bg-primary `
     + `checked:form-border-color-checked`,
 }
 
 const checkbox = {
-  input: 'flex-shrink-0 appearance-none duration-200 ease-in-out cursor-pointer outline-zero transition-input duration-200 border-solid form-border-width-checkbox focus:form-ring checked:form-bg-icon-check',
+  input: 'flex-shrink-0 appearance-none cursor-pointer outline-zero transition-input duration-200 border-solid form-border-width-checkbox focus:form-ring checked:form-bg-icon-check',
   input_default: checkboxStates.default,
   input_disabled: checkboxStates.disabled,
   input_danger:checkboxStates.danger,
@@ -88,7 +85,7 @@ const checkbox = {
 }
 
 const radio = {
-  input: 'flex items-center justify-center flex-shrink-0 appearance-none duration-200 ease-in-out cursor-pointer rounded-full outline-zero transition-input duration-200 border-solid form-border-width-radio form-shadow-input focus:form-ring checked:form-bg-icon-radio',
+  input: 'flex items-center justify-center flex-shrink-0 appearance-none cursor-pointer rounded-full outline-zero transition-input duration-200 border-solid form-border-width-radio form-shadow-input focus:form-ring checked:form-bg-icon-radio',
   input_default: checkboxStates.default,
   input_disabled: checkboxStates.disabled,
   input_danger:checkboxStates.danger,
@@ -107,23 +104,23 @@ const radio = {
 const text = {
   container: '',
   inputContainer: 'w-full flex flex-1 transition-input duration-200 border-solid form-border-width-input form-shadow-input form-input-group group',
-  inputContainer_sm: 'form-radius-input-sm',
-  inputContainer_md: 'form-radius-input',
-  inputContainer_lg: 'form-radius-input-lg',
+  inputContainer_sm: 'form-radius-input-sm form-h-input-height-sm',
+  inputContainer_md: 'form-radius-input form-h-input-height',
+  inputContainer_lg: 'form-radius-input-lg form-h-input-height-lg',
   inputContainer_focused: 'form-focus',
   inputContainer_default: inputStates.default,
   inputContainer_disabled: inputStates.disabled,
   inputContainer_success: inputStates.success,
   inputContainer_danger: inputStates.danger,
-  input: 'w-full z-1 bg-transparent ',
-  input_sm: 'form-p-input-sm form-text-sm form-h-input-height-sm',
-  input_md: 'form-p-input form-text form-h-input-height',
-  input_lg: 'form-p-input-lg form-text-lg form-h-input-height-lg with-floating:form-p-input-floating-lg',
-  input_enabled: 'border-0 form-color-input group-hover:form-color-input-hover',
+  input: 'w-full z-1 bg-transparent h-full',
+  input_sm: 'form-p-input-sm form-text-sm with-floating:form-p-input-floating-sm',
+  input_md: 'form-p-input form-text with-floating:form-p-input-floating',
+  input_lg: 'form-p-input-lg form-text-lg with-floating:form-p-input-floating-lg',
+  input_enabled: 'border-0 form-color-input group-hover:form-color-input-hover form-autofill-default',
   input_disabled: 'form-color-disabled',
-  input_focused: 'form-color-input-focus',
-  input_success: 'form-color-input-success',
-  input_danger: 'form-color-input-danger',
+  input_focused: 'form-color-input-focus form-autofill-focus',
+  input_success: 'form-color-input-success form-autofill-success',
+  input_danger: 'form-color-input-danger form-autofill-danger',
   $inputContainer: (classes, { isDisabled, Size, isSuccess, isDanger, focused }) => ([
     classes.inputContainer,
     classes[`inputContainer_${Size}`],
@@ -149,8 +146,8 @@ const textarea = {
   inputContainer_sm: 'form-radius-large-sm',
   inputContainer_md: 'form-radius-large',
   inputContainer_lg: 'form-radius-large-lg',
-  input_sm: 'form-p-input-sm form-radius-large-sm form-text-sm',
-  input_md: 'form-p-input form-radius-large form-text',
+  input_sm: 'form-p-input-sm form-radius-large-sm form-text-sm with-floating:form-p-input-floating-sm',
+  input_md: 'form-p-input form-radius-large form-text with-floating:form-p-input-floating',
   input_lg: 'form-p-input-lg form-radius-large-lg form-text-lg with-floating:form-p-input-floating-lg',
 }
 
@@ -190,8 +187,8 @@ const select = {
   containerOpenTop: '!rounded-t-none',
   containerActive: 'form-focus',
   search: 'w-full absolute inset-0 outline-zero appearance-none box-border border-0 font-sans bg-transparent form-color-input',
-  search_sm: 'form-text-sm form-radius-input-sm form-pl-input-sm',
-  search_md: 'form-text form-radius-input form-pl-input',
+  search_sm: 'form-text-sm form-radius-input-sm form-pl-input-sm with-floating:form-p-input-floating-sm',
+  search_md: 'form-text form-radius-input form-pl-input with-floating:form-p-input-floating',
   search_lg: 'form-text-lg form-radius-input-lg form-pl-input-lg with-floating:form-p-input-floating-lg',
   placeholder: 'flex items-center h-full absolute left-0 top-0 pointer-events-none bg-transparent form-color-placeholder',
   placeholder_sm: 'form-pl-input-sm',
@@ -211,7 +208,7 @@ const select = {
   spinner_sm: 'form-mr-input-sm',
   spinner_md: 'form-mr-input',
   spinner_lg: 'form-mr-input-lg',
-  dropdown: 'max-h-60 absolute -left-px -right-px bottom-0 transform translate-y-full form-border-width-dropdown border-solid form-border-color-input form-bg-input -mt-px overflow-y-scroll z-50 flex flex-col',
+  dropdown: 'max-h-60 absolute -left-px -right-px bottom-0 transform translate-y-full form-shadow-dropdown form-border-width-dropdown border-solid form-border-color-input form-bg-input -mt-px overflow-y-scroll z-50 flex flex-col',
   dropdown_sm: 'form-radius-input-b-sm',
   dropdown_md: 'form-radius-input-b',
   dropdown_lg: 'form-radius-input-b-lg',
@@ -316,7 +313,7 @@ const select = {
 
 const groupTabs = {
   container: 'flex align-start cursor-pointer',
-  wrapper: 'flex items-center justify-center py-1.5 w-full border-solid form-border-width-input',
+  wrapper: 'flex items-center justify-center w-full border-solid form-border-width-input',
   wrapper_not_last: '!border-r-0',
   wrapper_first: '',
   wrapper_first_sm: 'form-radius-input-l-sm',
@@ -329,15 +326,18 @@ const groupTabs = {
   wrapper_selected: 'form-bg-primary form-color-on-primary border-black border-opacity-15',
   wrapper_unselected: 'form-bg-input form-color-input form-border-color-input hover:form-bg-input-hover hover:form-color-input-hover',
   wrapper_disabled: 'opacity-50',
-  wrapper_sm: 'form-p-input-sm form-text-sm',
-  wrapper_md: 'form-p-input form-text',
-  wrapper_lg: 'form-p-input-lg form-text-lg',
+  wrapper_sm: 'form-p-input-sm form-text-sm form-p-group-tabs-sm',
+  wrapper_md: 'form-p-input form-text form-p-group-tabs',
+  wrapper_lg: 'form-p-input-lg form-text-lg form-p-group-tabs-lg',
   input: 'hidden',
   text: '',
 }
 
 const groupBlocks = {
-  container: 'flex align-start cursor-pointer',
+  container: 'flex align-start cursor-pointer form-bg-input',
+  container_sm: 'form-radius-large-sm',
+  container_md: 'form-radius-large',
+  container_lg: 'form-radius-large',
   wrapper: 'flex items-center w-full border-solid form-border-width-input form-border-color-input form-color-input',
   wrapper_not_last: '!border-b-0',
   wrapper_first: '',
@@ -351,15 +351,19 @@ const groupBlocks = {
   wrapper_selected: 'form-bg-selected',
   wrapper_unselected: 'form-bg-input',
   wrapper_disabled: 'opacity-50',
-  wrapper_sm: 'px-4 py-2.5 form-text-sm',
-  wrapper_md: 'px-4 py-3 form-text',
-  wrapper_lg: 'px-4 py-3.5 form-text-lg',
+  wrapper_sm: 'px-4 py-2.5 form-text-sm form-p-group-blocks-sm',
+  wrapper_md: 'px-4 py-3 form-text form-p-group-blocks',
+  wrapper_lg: 'px-4 py-3.5 form-text-lg form-p-group-blocks-lg',
   text_wrapper: 'ml-2',
   text: '',
   description: 'form-color-muted',
   description_sm: 'form-text-small-sm -mt-0.5',
   description_md: 'form-text-small -mt-0.5',
   description_lg: 'form-text-small-lg -mt-0.5',
+  $container: (classes, { Size }) => ([
+    classes.container,
+    classes[`container_${Size}`],
+  ]),
 }
 
 export default {
@@ -401,7 +405,7 @@ export default {
     wrapper_sm: 'form-text-sm',
     wrapper_md: 'form-text',
     wrapper_lg: 'form-text-lg',
-    input: checkbox.input + ' form-shadow-input',
+    input: checkbox.input + ' form-shadow-handles',
     input_sm: checkbox.input_sm + ' form-mt-checkbox-sm',
     input_md: checkbox.input_md + ' form-mt-checkbox',
     input_lg: checkbox.input_lg + ' form-mt-checkbox-lg',
@@ -445,9 +449,11 @@ export default {
     ]),
   },
   DateElement: {
+    inputWrapper: 'block w-full h-full',
     ...text,
   },
   DatesElement: {
+    inputWrapper: 'block w-full h-full',
     ...text,
   },
   EditorElement: {
@@ -605,15 +611,15 @@ export default {
     input_disabled: inputStates.disabled,
     input_success: inputStates.success,
     input_danger: inputStates.danger,
-    input_sm: 'form-p-input-sm form-radius-large-sm form-text-sm',
-    input_md: 'form-p-input form-radius-large form-text',
+    input_sm: 'form-p-input-sm form-radius-large-sm form-text-sm with-floating:form-p-input-floating-sm',
+    input_md: 'form-p-input form-radius-large form-text with-floating:form-p-input-floating',
     input_lg: 'form-p-input-lg form-radius-large-lg form-text-lg with-floating:form-p-input-floating-lg',
     inputWrapper: '',
     select: {
       ...select,
       multipleLabel: 'flex items-center h-full absolute left-0 top-0 pointer-events-none bg-transparent',
-      multipleLabel_sm: 'form-pl-input-sm form-pr-select-label-sm',
-      multipleLabel_md: 'form-pl-input form-pr-select-label',
+      multipleLabel_sm: 'form-pl-input-sm form-pr-select-label-sm with-floating:form-p-input-floating',
+      multipleLabel_md: 'form-pl-input form-pr-select-label with-floating:form-p-input-floating-sm',
       multipleLabel_lg: 'form-pl-input-lg form-pr-select-label-lg with-floating:form-p-input-floating-lg',
       $multipleLabel: (classes, { Size }) => ([
         classes.select.multipleLabel,
@@ -647,7 +653,7 @@ export default {
     wrapper_sm: 'form-text-sm',
     wrapper_md: 'form-text',
     wrapper_lg: 'form-text-lg',
-    input: radio.input + ' form-shadow-input',
+    input: radio.input + ' form-shadow-handles',
     input_sm: radio.input_sm + ' form-mt-checkbox-sm',
     input_md: radio.input_md + ' form-mt-checkbox',
     input_lg: radio.input_lg + ' form-mt-checkbox-lg',
@@ -697,8 +703,8 @@ export default {
     input_disabled: inputStates.disabled,
     input_success: inputStates.success,
     input_danger: inputStates.danger,
-    input_sm: 'form-p-input-sm form-radius-input-sm form-text-sm',
-    input_md: 'form-p-input form-radius-input form-text',
+    input_sm: 'form-p-input-sm form-radius-input-sm form-text-sm with-floating:form-p-input-floating-sm',
+    input_md: 'form-p-input form-radius-input form-text with-floating:form-p-input-floating',
     input_lg: 'form-p-input-lg form-radius-input-lg form-text-lg with-floating:form-p-input-floating-lg',
     inputWrapper: 'relative',
     inputPlaceholder: 'absolute left-0 top-0 form-color-placeholder pointer-events-none',
@@ -712,8 +718,8 @@ export default {
     select: {
       ...select,
       singleLabel: 'flex items-center h-full max-w-full absolute left-0 top-0 pointer-events-none bg-transparent box-border',
-      singleLabel_sm: 'form-pl-input-sm form-pr-select-label-sm',
-      singleLabel_md: 'form-pl-input form-pr-select-label',
+      singleLabel_sm: 'form-pl-input-sm form-pr-select-label-sm with-floating:form-p-input-floating-sm',
+      singleLabel_md: 'form-pl-input form-pr-select-label with-floating:form-p-input-floating',
       singleLabel_lg: 'form-pl-input-lg form-pr-select-label-lg with-floating:form-p-input-floating-lg',
       singleLabelText: 'overflow-ellipsis overflow-hidden block whitespace-nowrap max-w-full',
       $singleLabel: (classes, { Size }) => ([
@@ -755,11 +761,14 @@ export default {
       tooltipDrag: 'slider-tooltip-drag',
       ltr: 'slider-ltr',
       rtl: 'slider-rtl',
-      horizontal: 'slider-horizontal form-h-slider-horizontal',
-      vertical: 'slider-vertical form-w-slider-vertical',
-      vertical_sm: 'form-h-slider-vertical-sm',
-      vertical_md: 'form-h-slider-vertical',
-      vertical_lg: 'form-h-slider-vertical-lg',
+      horizontal: 'slider-horizontal',
+      horizontal_sm: 'form-h-slider-horizontal-sm',
+      horizontal_md: 'form-h-slider-horizontal',
+      horizontal_lg: 'form-h-slider-horizontal-lg',
+      vertical: 'slider-vertical',
+      vertical_sm: 'form-h-slider-vertical-sm form-w-slider-vertical-sm',
+      vertical_md: 'form-h-slider-vertical form-w-slider-vertical',
+      vertical_lg: 'form-h-slider-vertical-lg form-w-slider-vertical-lg',
       textDirectionRtl: 'slider-txt-rtl',
       textDirectionLtr: 'slider-txt-ltr',
       base: 'form-shadow-input w-full h-full relative z-1 form-bg-passive',
@@ -775,7 +784,7 @@ export default {
       connect_md: 'form-radius-slider',
       connect_lg: 'form-radius-slider-lg',
       origin: 'slider-origin absolute z-1 top-0 right-0 transform-origin-0 transform-style-flat h-full w-full h:h-0 v:-top-full txt-rtl-h:left-0 txt-rtl-h:right-auto v:w-0 tap:duration-300 tap:transition-transform',
-      handle: 'absolute rounded-full transition-shadow border-0 cursor-grab txt-rtl-h:-left-2 txt-rtl-h:right-auto disabled:cursor-not-allowed disabled:pointer-events-none form-bg-slider-handle form-shadow-slider-handle hover:form-shadow-slider-handle-hover focus:form-shadow-slider-handle-focus focus:outline-zero focus:form-ring',
+      handle: 'absolute rounded-full transition-shadow border-0 cursor-grab txt-rtl-h:-left-2 txt-rtl-h:right-auto disabled:cursor-not-allowed disabled:pointer-events-none form-bg-slider-handle form-shadow-handles hover:form-shadow-handles-hover focus:form-shadow-handles-focus focused-hover:form-shadow-handles-hover focus:outline-zero focus:form-ring',
       handle_sm: 'form-size-slider-handle-sm h:form-top-slider-handle-horizontal-sm h:form-right-slider-handle-horizontal-sm v:form-bottom-slider-handle-vertical-sm v:form-right-slider-handle-vertical-sm',
       handle_md: 'form-size-slider-handle h:form-top-slider-handle-horizontal h:form-right-slider-handle-horizontal v:form-bottom-slider-handle-vertical v:form-right-slider-handle-vertical',
       handle_lg: 'form-size-slider-handle-lg h:form-top-slider-handle-horizontal-lg h:form-right-slider-handle-horizontal-lg v:form-bottom-slider-handle-vertical-lg v:form-right-slider-handle-vertical-lg',
@@ -807,6 +816,10 @@ export default {
       draggable: 'cursor-ew-resize v:cursor-ns-resize',
       tap: 'slider-state-tap',
       drag: 'slider-state-drag',
+      $horizontal: (classes, { Size }) => ([
+        classes.slider.horizontal,
+        classes.slider[`horizontal_${Size}`],
+      ]),
       $vertical: (classes, { Size }) => ([
         classes.slider.vertical,
         classes.slider[`vertical_${Size}`],
@@ -869,8 +882,8 @@ export default {
     select: {
       ...select,
       tags: 'flex-grow flex-shrink flex flex-wrap items-center',
-      tags_sm: 'form-pl-input-y-sm form-mt-space-tags-sm',
-      tags_md: 'form-pl-input-y form-mt-space-tags',
+      tags_sm: 'form-pl-input-y-sm form-mt-space-tags-sm with-floating:form-p-input-floating-sm',
+      tags_md: 'form-pl-input-y form-mt-space-tags with-floating:form-p-input-floating',
       tags_lg: 'form-pl-input-y-lg form-mt-space-tags-lg with-floating:form-p-tags-floating-lg',
       tag: 'form-bg-tag form-color-tag form-border-width-tag form-border-color-tag font-semibold  flex items-center whitespace-nowrap',
       tag_sm: 'form-radius-input-tag-sm form-text-small-sm form-py-tag-sm form-pl-tag-sm form-mr-space-tags-sm form-mb-space-tags-sm',
@@ -929,15 +942,15 @@ export default {
   ToggleElement: {
     container: '',
     wrapper: 'flex items-center',
-    text: 'ml-2',
+    text: '',
     toggle: {
-      container: 'form-shadow-input inline-block rounded-full outline-zero transition-input duration-200 ease-in-out focus:form-ring',
-      container_enabled: 'hover:form-shadow-input-hover focus:form-shadow-input-focus',
+      container: 'form-shadow-handles inline-block rounded-full outline-zero transition-input duration-200 ease-in-out focus:form-ring',
+      container_enabled: 'hover:form-shadow-handles-hover focus:form-shadow-handles-focus focused-hover:form-shadow-handles-hover',
       container_disabled: 'cursor-not-allowed opacity-50',
-      toggle: 'flex rounded-full relative cursor-pointer transition-colors items-center box-content border-2 leading-none',
-      toggle_sm: 'form-w-toggle-sm form-h-toggle-sm text-xs',
-      toggle_md: 'form-w-toggle form-h-toggle text-xs',
-      toggle_lg: 'form-w-toggle-lg form-h-toggle-lg text-0.5sm',
+      toggle: 'flex rounded-full relative cursor-pointer transition-colors items-center box-content form-border-width-toggle leading-none',
+      toggle_sm: 'form-w-toggle-sm form-h-toggle-sm text-xs form-mr-space-checkbox-sm',
+      toggle_md: 'form-w-toggle form-h-toggle text-xs form-mr-space-checkbox',
+      toggle_lg: 'form-w-toggle-lg form-h-toggle-lg text-0.5sm form-mr-space-checkbox-lg',
       toggleOn: 'form-bg-primary form-border-color-primary justify-start form-color-on-primary',
       toggleOff: 'form-bg-passive form-border-color-passive form-color-passive justify-end',
       toggleOnDisabled: 'form-bg-primary form-border-color-primary justify-start form-color-on-primary',
@@ -1052,26 +1065,26 @@ export default {
   },
   ElementLabelFloating: {
     container: 'label-floating relative pointer-events-none',
-    label: 'absolute z-10 leading-px text-0.5xs px-px transition whitespace-nowrap in-input-group:-form-top-border-width-input-t',
+    label: 'absolute z-10 leading-px text-0.5xs px-px transition-input duration-200 ease-in-out whitespace-nowrap in-input-group:-form-top-border-width-input-t',
     label_enabled: 'form-bg-input form-color-floating',
     label_disabled: 'form-bg-disabled form-color-floating',
     label_danger: 'form-bg-input-danger form-color-floating-danger',
     label_success: 'form-bg-input-success form-color-floating-success',
     label_focused: 'form-bg-input-focus form-color-floating-focus',
-    label_sm: 'form-left-input-sm',
-    label_md: 'form-left-input',
-    label_lg: '!form-bg-transparent form-left-input-lg mt-2.5',
+    label_sm: 'form-left-input-sm form-mt-floating-sm',
+    label_md: 'form-left-input form-mt-floating',
+    label_lg: 'form-left-input-lg form-mt-floating-lg',
     label_invisible: 'opacity-0 invisible',
     label_visible: 'opacity-100 visible',
     $label: (classes, { visible, Size, el$ }) => ([
       classes.label,
       classes[`label_${Size}`],
       visible ? classes.label_visible : classes.label_invisible,
+      el$.focused && !el$.isDanger && !el$.isSuccess ? classes.label_focused : null,
       !el$.isDisabled && !el$.isDanger && !el$.isSuccess ? classes.label_enabled : null,
       el$.isDisabled ? classes.label_disabled : null,
       el$.isDanger ? classes.label_danger : null,
       el$.isSuccess ? classes.label_success : null,
-      el$.focused ? classes.label_focused : null,
     ]),
   },
   ElementLayout: {
@@ -1240,7 +1253,7 @@ export default {
     button_finish_disabled: 'form-bg-primary form-color-on-primary form-border-color-btn opacity-60 pointer-events-none cursor-not-allowed',
     button_finish_loading: 'form-bg-primary form-color-on-primary form-border-color-btn form-bg-spinner-on-primary',
     button_sm: 'form-p-btn-sm form-radius-btn-sm form-text-sm',
-    button_md: 'form-p-btn form-radius-btn form-tex',
+    button_md: 'form-p-btn form-radius-btn form-text',
     button_lg: 'form-p-btn-lg form-radius-btn-lg form-text-lg',
     $button: (classes, { isDisabled, isLoading, type, Size }) => ([
       classes.button,
@@ -1298,7 +1311,7 @@ export default {
     ...checkbox,
     container: 'flex align-start cursor-pointer',
     text: '',
-    input: checkbox.input + ' form-shadow-input',
+    input: checkbox.input + ' form-shadow-handles',
     input_sm: checkbox.input_sm + ' form-mt-checkbox-sm',
     input_md: checkbox.input_md + ' form-mt-checkbox',
     input_lg: checkbox.input_lg + ' form-mt-checkbox-lg',
@@ -1473,7 +1486,7 @@ export default {
     ...radio,
     container: 'flex align-start cursor-pointer',
     text: '',
-    input: radio.input + ' form-shadow-input',
+    input: radio.input + ' form-shadow-handles',
     input_sm: radio.input_sm + ' form-mt-checkbox-sm',
     input_md: radio.input_md + ' form-mt-checkbox',
     input_lg: radio.input_lg + ' form-mt-checkbox-lg',

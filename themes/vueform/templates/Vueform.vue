@@ -69,7 +69,7 @@
 
     --vf-gutter: 1rem;
     --vf-gutter-sm: 0.5rem;
-    --vf-gutter-lg: 1.25rem;
+    --vf-gutter-lg: 1rem;
 
     --vf-min-height-input: 2.375rem;
     --vf-min-height-input-sm: 2.125rem;
@@ -99,6 +99,22 @@
     --vf-px-btn-small-sm: 0.625rem;
     --vf-px-btn-small-lg: 0.75rem;
 
+    --vf-py-group-tabs: var(--vf-py-input);
+    --vf-py-group-tabs-sm: var(--vf-py-input-sm);
+    --vf-py-group-tabs-lg: var(--vf-py-input-lg);
+
+    --vf-px-group-tabs: var(--vf-px-input);
+    --vf-px-group-tabs-sm: var(--vf-px-input-sm);
+    --vf-px-group-tabs-lg: var(--vf-px-input-lg);
+
+    --vf-py-group-blocks: 0.75rem;
+    --vf-py-group-blocks-sm: 0.625rem;
+    --vf-py-group-blocks-lg: 0.875rem;
+
+    --vf-px-group-blocks: 1rem;
+    --vf-px-group-blocks-sm: 1rem;
+    --vf-px-group-blocks-lg: 1rem;
+
     --vf-py-tag: 0;
     --vf-py-tag-sm: var(--vf-py-tag);
     --vf-py-tag-lg: var(--vf-py-tag);
@@ -127,6 +143,10 @@
     --vf-space-tags-sm: var(--vf-space-tags);
     --vf-space-tags-lg: var(--vf-space-tags);
 
+    --vf-floating-top: 0rem;
+    --vf-floating-top-sm: 0rem;
+    --vf-floating-top-lg: 0.6875rem;
+
     --vf-bg-input: #ffffff;
     --vf-bg-input-focus: var(--vf-bg-input);
     --vf-bg-input-hover: var(--vf-bg-input);
@@ -139,7 +159,7 @@
     --vf-bg-danger: var(--vf-danger-lighter);
     --vf-bg-success: var(--vf-success-lighter);
     --vf-bg-tag: var(--vf-primary);
-    --vf-bg-slider-handle: #ffffff;
+    --vf-bg-slider-handle: var(--vf-primary);
     --vf-bg-toggle-handle: #ffffff;
     --vf-bg-date-head: var(--vf-gray-100);
     --vf-bg-addon: transparent;
@@ -156,7 +176,7 @@
     --vf-color-placeholder: var(--vf-gray-300);
     --vf-color-passive: var(--vf-gray-700);
     --vf-color-muted: var(--vf-gray-500);
-    --vf-color-floating: var(--vf-gray-500);
+    --vf-color-floating: var(--vf-color-muted);
     --vf-color-floating-success: var(--vf-color-floating);
     --vf-color-floating-danger: var(--vf-color-floating);
     --vf-color-floating-focus: var(--vf-color-floating);
@@ -200,13 +220,17 @@
 
     --vf-border-width-dropdown: var(--vf-border-width-input-t) var(--vf-border-width-input-r) var(--vf-border-width-input-b) var(--vf-border-width-input-l);
     --vf-border-width-btn: var(--vf-border-width-input-t) var(--vf-border-width-input-r) var(--vf-border-width-input-b) var(--vf-border-width-input-l);
-    --vf-border-width-tag: var(--vf-border-width-input-t) var(--vf-border-width-input-r) var(--vf-border-width-input-b) var(--vf-border-width-input-l);
+    --vf-border-width-toggle: 0.125rem;
+    --vf-border-width-tag: 1px;
 
     --vf-shadow-input: 0px 0px 0px 0px rgba(0,0,0,0);
     --vf-shadow-input-hover: var(--vf-shadow-input);
     --vf-shadow-input-focus: var(--vf-shadow-input);
+    --vf-shadow-handles: 0px 0px 0px 0px rgba(0,0,0,0);
+    --vf-shadow-handles-hover: var(--vf-shadow-input-hover);
+    --vf-shadow-handles-focus: var(--vf-shadow-input-focus);
     --vf-shadow-btn: var(--vf-shadow-input);
-    --vf-shadow-slider-handle: 0.5px 0.5px 2px 1px rgba(0,0,0,.32);
+    --vf-shadow-dropdown: 0px 0px 0px 0px rgba(0,0,0,0);
 
     --vf-radius-input: 0.25rem;
     --vf-radius-input-sm: var(--vf-radius-input);
@@ -254,11 +278,11 @@
 
     --vf-toggle-width: 3rem;
     --vf-toggle-width-sm: 2.75rem;
-    --vf-toggle-width-lg: 3.5rem;
+    --vf-toggle-width-lg: 3rem;
 
     --vf-toggle-height: 1.25rem;
     --vf-toggle-height-sm: 1.125rem;
-    --vf-toggle-height-lg: 1.5rem;
+    --vf-toggle-height-lg: 1.25rem;
 
     --vf-slider-height: 0.375rem;
     --vf-slider-height-sm: var(--vf-slider-height);
@@ -346,6 +370,7 @@
     transition-property: box-shadow, color, background-color, border-color;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     transition-duration: 200ms;
+    min-height: var(--vf-min-height-input);
 
     background-color: var(--vf-bg-input);
     color: var(--vf-color-input);
@@ -356,11 +381,10 @@
     border-width: var(--vf-border-width-input-t) var(--vf-border-width-input-r) var(--vf-border-width-input-b) var(--vf-border-width-input-l);
     border-style: solid;
 
-    input:not(.numInput), textarea {
+    .vf-input-field {
       font-size: var(--vf-font-size);
       line-height: var(--vf-line-height);
       letter-spacing: var(--vf-letter-spacing);
-      min-height: var(--vf-min-height-input);
       padding: var(--vf-py-input) var(--vf-px-input);
       background: transparent;
       border: 0;
@@ -369,6 +393,8 @@
       flex: 1 1 0%;
       font-family: inherit;
       transition: color .2s ease-in-out;
+      min-height: 100%;
+      border-radius: var(--vf-radius-input);
 
       &:-webkit-autofill,
       &:-webkit-autofill:hover, 
@@ -382,15 +408,16 @@
       }
     }
 
-    textarea {
+    textarea.vf-input-field {
       border-radius: var(--vf-radius-large);
     }
 
     &.vf-input-group-disabled {
       background-color: var(--vf-bg-disabled);
       color: var(--vf-color-disabled);
+      pointer-events: none;
 
-      input:not(.numInput), textarea {
+      .vf-input-field {
         color: var(--vf-color-disabled);
       }
     }
@@ -400,7 +427,7 @@
       color: var(--vf-color-input-success);
       border-color: var(--vf-border-color-input-success);
 
-      input:not(.numInput), textarea {
+      .vf-input-field {
         color: var(--vf-color-input-success);
 
         &:-webkit-autofill, &:-webkit-autofill:hover, &:-webkit-autofill:focus, &:-webkit-autofill:active {
@@ -418,7 +445,7 @@
       color: var(--vf-color-input-danger);
       border-color: var(--vf-border-color-input-danger);
 
-      input:not(.numInput), textarea {
+      .vf-input-field {
         color: var(--vf-color-input-danger);
 
         &:-webkit-autofill, &:-webkit-autofill:hover, &:-webkit-autofill:focus, &:-webkit-autofill:active {
@@ -431,82 +458,88 @@
       }
     }
 
-    &:hover:not(.vf-input-group-disabled) {
-      box-shadow: var(--vf-shadow-input-hover);
-    }
+    &.vf-input-group-focused {
+      box-shadow: var(--vf-shadow-input-focus);
+      outline: var(--vf-ring-width) solid var(--vf-ring-color);
 
-    &:hover:not(.vf-input-group-disabled):not(.vf-input-group-success):not(.vf-input-group-danger) {
-      background-color: var(--vf-bg-input-hover);
-      color: var(--vf-color-input-hover);
-      border-color: var(--vf-border-color-input-hover);
+      &:not(.vf-input-group-success):not(.vf-input-group-danger) {
+        border-color: var(--vf-border-color-input-focus);
+        background-color: var(--vf-bg-input-focus);
+        color: var(--vf-color-input-focus);
 
-      input:not(.numInput), textarea {
-        color: var(--vf-color-input-hover);
+        .vf-input-field {
+          color: var(--vf-color-input-focus);
 
-        &:-webkit-autofill, &:-webkit-autofill:hover, &:-webkit-autofill:focus, &:-webkit-autofill:active {
-          -webkit-box-shadow: 0 0 0 99px var(--vf-bg-input-hover) inset !important;
-        }
+          &:-webkit-autofill, &:-webkit-autofill:hover, &:-webkit-autofill:focus, &:-webkit-autofill:active {
+            -webkit-box-shadow: 0 0 0 99px var(--vf-bg-input-focus) inset !important;
+          }
 
-        &:-webkit-autofill{
-          -webkit-text-fill-color: var(--vf-color-input-hover) !important;
+          &:-webkit-autofill{
+            -webkit-text-fill-color: var(--vf-color-input-focus) !important;
+          }
         }
       }
     }
 
-    &.vf-input-group-focused,
-    &.vf-input-group-focused:not(.vf-input-group-disabled):not(.vf-input-group-success):not(.vf-input-group-danger) {
-      box-shadow: var(--vf-shadow-input-focus);
-      outline: var(--vf-ring-width) solid var(--vf-ring-color);
-      border-color: var(--vf-border-color-input-focus);
-    }
+    &:hover {
+      box-shadow: var(--vf-shadow-input-hover);
 
-    &.vf-input-group-focused:not(.vf-input-group-success):not(.vf-input-group-danger),
-    &.vf-input-group-focused:not(.vf-input-group-disabled):not(.vf-input-group-success):not(.vf-input-group-danger) {
-      background-color: var(--vf-bg-input-focus);
-      color: var(--vf-color-input-focus);
+      &:not(.vf-input-group-success):not(.vf-input-group-danger):not(.vf-input-group-focused) {
+        background-color: var(--vf-bg-input-hover);
+        color: var(--vf-color-input-hover);
+        border-color: var(--vf-border-color-input-hover);
 
-      input:not(.numInput), textarea {
-        color: var(--vf-color-input-focus);
-
-        &:-webkit-autofill, &:-webkit-autofill:hover, &:-webkit-autofill:focus, &:-webkit-autofill:active {
-          -webkit-box-shadow: 0 0 0 99px var(--vf-bg-input-focus) inset !important;
-        }
-
-        &:-webkit-autofill{
-          -webkit-text-fill-color: var(--vf-color-input-focus) !important;
+        .vf-input-field {
+          color: var(--vf-color-input-hover);
         }
       }
     }
 
     &.vf-input-group-sm {
       border-radius: var(--vf-radius-input-sm);
+      min-height: var(--vf-min-height-input-sm);
 
-      input:not(.numInput), textarea {
+      .vf-input-field {
         font-size: var(--vf-font-size-sm);
         line-height: var(--vf-line-height-sm);
         letter-spacing: var(--vf-letter-spacing-sm);
-        min-height: var(--vf-min-height-input-sm);
         padding: var(--vf-py-input-sm) var(--vf-px-input-sm);
+        border-radius: var(--vf-radius-input-sm);
       }
 
-      textarea {
+      &.vf-input-group-textarea {
+        border-radius: var(--vf-radius-large-sm);
         border-radius: var(--vf-radius-large-sm);
       }
     }
 
     &.vf-input-group-lg {
       border-radius: var(--vf-radius-input-lg);
+      min-height: var(--vf-min-height-input-lg);
 
-      input:not(.numInput), textarea {
+      .vf-input-field {
         font-size: var(--vf-font-size-lg);
         line-height: var(--vf-line-height-lg);
         letter-spacing: var(--vf-letter-spacing-lg);
-        min-height: var(--vf-min-height-input-lg);
         padding: var(--vf-py-input-lg) var(--vf-px-input-lg);
+        border-radius: var(--vf-radius-input-lg);
       }
 
-      textarea {
+      &.vf-input-group-textarea {
         border-radius: var(--vf-radius-large-lg);
+        border-radius: var(--vf-radius-large-lg);
+      }
+    }
+
+    .vf-floating-label {
+      left: calc(var(--vf-px-input) - var(--vf-border-width-input-l));
+
+      &.vf-floating-label-lg {
+        left: calc(var(--vf-px-input-lg) - var(--vf-border-width-input-l));
+      }
+
+      &.vf-floating-label-sm {
+        left: calc(var(--vf-px-input-sm) - var(--vf-border-width-input-l));
       }
     }
   }
@@ -541,6 +574,7 @@
     &[disabled] {
       background-color: var(--vf-bg-disabled);
       color: var(--vf-color-disabled);
+      pointer-events: none;
     }
 
     &.vf-input-success {
@@ -555,27 +589,25 @@
       border-color: var(--vf-border-color-input-danger);
     }
 
-    &:hover:not([disabled]) {
+    &:hover {
       box-shadow: var(--vf-shadow-input-hover);
+
+      &:not(.vf-input-success):not(.vf-input-danger) {
+        background-color: var(--vf-bg-input-hover);
+        color: var(--vf-color-input-hover);
+        border-color: var(--vf-border-color-input-hover);
+      }
     }
 
-    &:hover:not([disabled]):not(.vf-input-success):not(.vf-input-danger) {
-      background-color: var(--vf-bg-input-hover);
-      color: var(--vf-color-input-hover);
-      border-color: var(--vf-border-color-input-hover);
-    }
-
-    &:focus,
-    &:focus:not([disabled]):not(.vf-input-success):not(.vf-input-danger) {
+    &:focus {
       box-shadow: var(--vf-shadow-input-focus);
       outline: var(--vf-ring-width) solid var(--vf-ring-color);
-      border-color: var(--vf-border-color-input-focus);
-    }
 
-    &:focus:not(.vf-input-success):not(.vf-input-danger),
-    &:focus:not([disabled]):not(.vf-input-success):not(.vf-input-danger) {
-      background-color: var(--vf-bg-input-focus);
-      color: var(--vf-color-input-focus);
+      &:not(.vf-input-success):not(.vf-input-danger) {
+        border-color: var(--vf-border-color-input-focus);
+        background-color: var(--vf-bg-input-focus);
+        color: var(--vf-color-input-focus);
+      }
     }
 
     &.vf-input-sm {
@@ -597,17 +629,28 @@
     }
   }
 
+  .vf-floating-wrapper ~ .vf-input,
+  .vf-floating-wrapper ~ div .vf-input,
+  .vf-input-group.vf-input-group .vf-floating-wrapper ~ .vf-input-field,
+  .vf-input-group.vf-input-group .vf-floating-wrapper ~ div .vf-input-field {
+    padding-top: calc(var(--vf-py-input) + (var(--vf-floating-top) / 2));
+    padding-bottom: calc(var(--vf-py-input) - (var(--vf-floating-top) / 2));
+  }
+
+  .vf-floating-wrapper ~ .vf-input-sm,
+  .vf-floating-wrapper ~ div .vf-input-sm,
+  .vf-input-group.vf-input-group-sm .vf-floating-wrapper ~ .vf-input-field,
+  .vf-input-group.vf-input-group-sm .vf-floating-wrapper ~ div .vf-input-field {
+    padding-top: calc(var(--vf-py-input-sm) + (var(--vf-floating-top-sm) / 2));
+    padding-bottom: calc(var(--vf-py-input-sm) - (var(--vf-floating-top-sm) / 2));
+  }
+
   .vf-floating-wrapper ~ .vf-input-lg,
   .vf-floating-wrapper ~ div .vf-input-lg,
-  .vf-floating-wrapper ~ span .vf-input-lg,
-  .vf-input-group.vf-input-group-lg .vf-floating-wrapper ~ input,
-  .vf-input-group.vf-input-group-lg .vf-floating-wrapper ~ div input,
-  .vf-input-group.vf-input-group-lg .vf-floating-wrapper ~ span input,
-  .vf-input-group.vf-input-group-lg .vf-floating-wrapper ~ textarea,
-  .vf-input-group.vf-input-group-lg .vf-floating-wrapper ~ div textarea,
-  .vf-input-group.vf-input-group-lg .vf-floating-wrapper ~ span textarea {
-    padding-top: calc(var(--vf-py-input-lg) + (0.6875rem / 2));
-    padding-bottom: calc(var(--vf-py-input-lg) - (0.6875rem / 2));
+  .vf-input-group.vf-input-group-lg .vf-floating-wrapper ~ .vf-input-field,
+  .vf-input-group.vf-input-group-lg .vf-floating-wrapper ~ div .vf-input-field {
+    padding-top: calc(var(--vf-py-input-lg) + (var(--vf-floating-top-lg) / 2));
+    padding-bottom: calc(var(--vf-py-input-lg) - (var(--vf-floating-top-lg) / 2));
   }
 
   // Checkbox
@@ -633,7 +676,7 @@
     outline-offset: 0;
 
     border-color: var(--vf-border-color-input);
-    box-shadow: var(--vf-shadow-input);
+    box-shadow: var(--vf-shadow-handles);
     background-color: var(--vf-bg-input);
 
     width: var(--vf-checkbox-size);
@@ -642,8 +685,8 @@
     border-width: var(--vf-border-width-checkbox-t) var(--vf-border-width-checkbox-r) var(--vf-border-width-checkbox-b) var(--vf-border-width-checkbox-l);
 
     &[disabled] {
-      background-color: var(--vf-bg-disabled);
-      border-color: var(--vf-border-color-input);
+      opacity: 0.5;
+      pointer-events: none;
     }
 
     &.vf-checkbox-danger:not(:checked) {
@@ -651,26 +694,23 @@
       background-color: var(--vf-bg-input-danger);
     }
 
-    &:hover:not([disabled]) {
-      box-shadow: var(--vf-shadow-input-hover);
-    }
+    &:hover {
+      box-shadow: var(--vf-shadow-handles-hover);
 
-    &:hover:not([disabled]):not(.vf-checkbox-danger):not(:checked) {
-      background-color: var(--vf-bg-input-hover);
-      border-color: var(--vf-border-color-input-hover);
+      &:not(.vf-checkbox-danger):not(:checked):not(:focus) {
+        background-color: var(--vf-bg-input-hover);
+        border-color: var(--vf-border-color-input-hover);
+      }
     }
 
     &:focus {
-      box-shadow: var(--vf-shadow-input-focus);
+      box-shadow: var(--vf-shadow-handles-focus);
       outline: var(--vf-ring-width) solid var(--vf-ring-color);
-    }
 
-    &:focus:not(:checked) {
-      border-color: var(--vf-border-color-input-focus);
-    }
-
-    &:focus:not([disabled]):not(.vf-checkbox-danger):not(:checked) {
-      background-color: var(--vf-bg-input-focus);
+      &:not(.vf-checkbox-danger):not(:checked) {
+        border-color: var(--vf-border-color-input-focus);
+        background-color: var(--vf-bg-input-focus);
+      }
     }
 
     &:checked {
@@ -690,11 +730,6 @@
         height: calc(100% + var(--vf-border-width-checkbox-t) + var(--vf-border-width-checkbox-b));
         left: calc(var(--vf-border-width-checkbox-l) * (-1));
         top: calc(var(--vf-border-width-checkbox-t) * (-1));
-      }
-
-      &[disabled] {
-        background-color: var(--vf-bg-disabled);
-        border-color: var(--vf-border-color-input);
       }
     }
 
@@ -746,7 +781,7 @@
     border-radius: 999px;
 
     border-color: var(--vf-border-color-input);
-    box-shadow: inset 0 0 0 0 var(--vf-primary), var(--vf-shadow-input);
+    box-shadow: var(--vf-shadow-handles);
     background-color: var(--vf-bg-input);
 
     width: var(--vf-checkbox-size);
@@ -754,8 +789,8 @@
     border-width: var(--vf-border-width-radio-t) var(--vf-border-width-radio-r) var(--vf-border-width-radio-b) var(--vf-border-width-radio-l);
 
     &[disabled] {
-      background-color: var(--vf-bg-disabled);
-      border-color: var(--vf-border-color-input);
+      opacity: 0.5;
+      pointer-events: none;
     }
 
     &.vf-radio-danger:not(:checked) {
@@ -763,26 +798,23 @@
       background-color: var(--vf-bg-input-danger);
     }
 
-    &:hover:not([disabled]) {
-      box-shadow: var(--vf-shadow-input-hover);
-    }
+    &:hover {
+      box-shadow: var(--vf-shadow-handles-hover);
 
-    &:hover:not([disabled]):not(.vf-radio-danger):not(:checked) {
-      background-color: var(--vf-bg-input-hover);
-      border-color: var(--vf-border-color-input-hover);
+      &:not(.vf-radio-danger):not(:checked):not(:focus) {
+        background-color: var(--vf-bg-input-hover);
+        border-color: var(--vf-border-color-input-hover);
+      }
     }
 
     &:focus {
-      box-shadow: var(--vf-shadow-input-focus);
+      box-shadow: var(--vf-shadow-handles-focus);
       outline: var(--vf-ring-width) solid var(--vf-ring-color);
-    }
 
-    &:focus:not(:checked) {
-      border-color: var(--vf-border-color-input-focus);
-    }
-
-    &:focus:not([disabled]):not(.vf-radio-danger):not(:checked) {
-      background-color: var(--vf-bg-input-focus);
+      &:not(.vf-radio-danger):not(:checked) {
+        border-color: var(--vf-border-color-input-focus);
+        background-color: var(--vf-bg-input-focus);
+      }
     }
 
     &:checked {
@@ -799,11 +831,6 @@
         display: block;
         width: 100%;
         height: 100%;
-      }
-
-      &[disabled] {
-        background-color: var(--vf-bg-disabled);
-        border-color: var(--vf-border-color-input);
       }
     }
 
@@ -836,7 +863,9 @@
     line-height: inherit;
     text-decoration: none;
     color: inherit;
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     outline: 0px solid var(--vf-ring-color);
     outline-offset: 0;
     font-size: var(--vf-font-size);
