@@ -57,7 +57,7 @@
     border-style: solid;
     border-width: var(--vf-border-width-input-t) var(--vf-border-width-input-r) var(--vf-border-width-input-b) var(--vf-border-width-input-l);
     border-color: var(--vf-border-color-input);
-    padding: 0.375rem 0;
+    padding: var(--vf-py-group-tabs) var(--vf-px-group-tabs);
     width: 100%;
     background: var(--vf-bg-input);
     color: var(--vf-color-input);
@@ -114,7 +114,7 @@
     &.vf-radio-tabs-unselected {
       border-color: var(--vf-border-color-input);
 
-      &:hover {
+      &:hover:not(.vf-radio-tabs-disabled) {
         background-color: var(--vf-bg-input-hover);
         color: var(--vf-color-input-hover);
       }
@@ -125,14 +125,14 @@
     }
 
     &.vf-radio-tabs-sm {
-      padding: var(--vf-py-input-sm) var(--vf-px-input-sm);
+      padding: var(--vf-py-group-tabs-sm) var(--vf-px-group-tabs-sm);
       font-size: var(--vf-font-size-sm);
       line-height: var(--vf-line-height-sm);
       letter-spacing: var(--vf-letter-spacing-sm);
     }
 
     &.vf-radio-tabs-lg {
-      padding: var(--vf-py-input-lg) var(--vf-px-input-lg);
+      padding: var(--vf-py-group-tabs-lg) var(--vf-px-group-tabs-lg);
       font-size: var(--vf-font-size-lg);
       line-height: var(--vf-line-height-lg);
       letter-spacing: var(--vf-letter-spacing-lg);

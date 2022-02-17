@@ -71,7 +71,7 @@
   }
 
   .vf-toggle-text {
-    margin-left: 0.5rem;
+    margin-left: var(--vf-space-checkbox);
   }
 
   // @vueform/toggle styles
@@ -84,14 +84,14 @@
                 color .15s ease-in-out,
                 background-color .15s ease-in-out,
                 border-color .15s ease-in-out;
-    box-shadow: var(--vf-shadow-input);
+    box-shadow: var(--vf-shadow-handles);
 
     &:hover:not(.vf-toggle-container-disabled) {
-      box-shadow: var(--vf-shadow-input), var(--vf-shadow-input-hover);
+      box-shadow: var(--vf-shadow-handles-hover);
     }
 
     &:focus {
-      box-shadow: var(--vf-shadow-input), var(--vf-shadow-input-focus);
+      box-shadow: var(--vf-shadow-handles-focus);
       outline: var(--vf-ring-width) solid var(--vf-ring-color);
     }
 
@@ -109,7 +109,7 @@
     transition: .3s all;
     align-items: center;
     box-sizing: content-box;
-    border-width: 2px;
+    border-width: var(--vf-border-width-toggle);
     border-style: solid;
     font-size: 0.75rem;
     width: var(--vf-toggle-width);

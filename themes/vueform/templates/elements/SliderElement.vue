@@ -25,6 +25,9 @@
             ltr: 'vf-slider-ltr',
             rtl: 'vf-slider-rtl',
             horizontal: 'vf-slider-horizontal',
+            horizontal_sm: 'vf-slider-horizontal-sm',
+            horizontal_md: 'vf-slider-horizontal-md',
+            horizontal_lg: 'vf-slider-horizontal-lg',
             vertical: 'vf-slider-vertical',
             vertical_sm: 'vf-slider-vertical-sm',
             vertical_md: 'vf-slider-vertical-md',
@@ -76,6 +79,10 @@
             draggable: 'vf-slider-draggable',
             tap: 'vf-slider-state-tap',
             drag: 'vf-slider-state-drag',
+            $horizontal: (classes, { Size }) => ([
+              classes.slider.horizontal,
+              classes.slider[`horizontal_${Size}`],
+            ]),
             $vertical: (classes, { Size }) => ([
               classes.slider.vertical,
               classes.slider[`vertical_${Size}`],
@@ -166,6 +173,14 @@
 
     &.vf-slider-horizontal {
       height: var(--vf-slider-height);
+
+      &.vf-slider-horizontal-sm {
+        height: var(--vf-slider-height-sm);
+      }
+
+      &.vf-slider-horizontal-lg {
+        height: var(--vf-slider-height-lg);
+      }
     }
 
     &.vf-slider-vertical {
@@ -173,10 +188,12 @@
       height: var(--vf-slider-height-vertical);
 
       &.vf-slider-vertical-sm {
+        width: var(--vf-slider-height-sm);
         height: var(--vf-slider-height-vertical-sm);
       }
 
       &.vf-slider-vertical-lg {
+        width: var(--vf-slider-height-lg);
         height: var(--vf-slider-height-vertical-lg);
       }
     }
@@ -284,7 +301,7 @@
     height: var(--vf-slider-handle-size);
     background-color: var(--vf-bg-slider-handle);
     border-radius: 999px;
-    box-shadow: var(--vf-shadow-slider-handle);
+    box-shadow: var(--vf-shadow-handles);
     outline: 0px solid var(--vf-ring-color);
     outline-offset: 0;
     cursor: grab;
@@ -293,20 +310,22 @@
                 background-color .2s ease-in-out,
                 border-color .2s ease-in-out;
 
-    &:hover {
-      box-shadow: var(--vf-shadow-slider-handle), var(--vf-shadow-input-hover);
-    }
-
     &:focus {
-      box-shadow: var(--vf-shadow-slider-handle), var(--vf-shadow-input-focus);
+      box-shadow: var(--vf-shadow-handles-focus);
       outline: var(--vf-ring-width) solid var(--vf-ring-color);
     }
 
+    &:hover {
+      box-shadow: var(--vf-shadow-handles-hover);
+    }
+
     &.vf-slider-handle-sm {
+      height: var(--vf-slider-handle-size-sm);
       width: var(--vf-slider-handle-size-sm);
     }
 
     &.vf-slider-handle-lg {
+      height: var(--vf-slider-handle-size-lg);
       width: var(--vf-slider-handle-size-lg);
     }
   }

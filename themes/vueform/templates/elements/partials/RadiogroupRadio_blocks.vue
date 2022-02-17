@@ -9,6 +9,9 @@
         merge: true,
         defaultClasses: {
           container: 'vf-radio-blocks-container',
+          container_sm: 'vf-radio-blocks-container-sm',
+          container_md: '',
+          container_lg: 'vf-radio-blocks-container-lg',
           wrapper: 'vf-radio-blocks',
           wrapper_not_last: 'vf-radio-blocks-not-last',
           wrapper_first: 'vf-radio-blocks-first',
@@ -38,6 +41,10 @@
           description_sm: 'vf-radio-blocks-description-sm',
           description_md: '',
           description_lg: 'vf-radio-blocks-description-lg',
+          $container: (classes, { Size }) => ([
+            classes.container,
+            classes[`container_${Size}`],
+          ]),
           $wrapper: (classes, { index, items, el$, value, isDisabled, Size }) => ([
             classes.wrapper,
             classes[`wrapper_${Size}`],
@@ -71,9 +78,19 @@
     display: flex;
     align-items: flex-start;
     cursor: pointer;
+    background: var(--vf-bg-input);
+    border-radius: var(--vf-radius-large);
 
     .vf-radio {
       margin-top: 0;
+    }
+
+    &.vf-radio-blocks-container-sm {
+      border-radius: var(--vf-radius-large-sm);
+    }
+
+    &.vf-radio-blocks-container-lg {
+      border-radius: var(--vf-radius-large-lg);
     }
   }
 
@@ -84,7 +101,7 @@
     border-width: var(--vf-border-width-input-t) var(--vf-border-width-input-r) var(--vf-border-width-input-b) var(--vf-border-width-input-l);
     border-color: var(--vf-border-color-input);
     width: 100%;
-    padding: 0.75rem 1rem;
+    padding: var(--vf-py-group-blocks) var(--vf-px-group-blocks);
     background: var(--vf-bg-input);
     color: var(--vf-color-input);
     font-size: var(--vf-font-size);
@@ -140,14 +157,14 @@
     }
 
     &.vf-radio-blocks-sm {
-      padding: 0.625rem 1rem;
+      padding: var(--vf-py-group-blocks-sm) var(--vf-px-group-blocks-sm);
       font-size: var(--vf-font-size-sm);
       line-height: var(--vf-line-height-sm);
       letter-spacing: var(--vf-letter-spacing-sm);
     }
 
     &.vf-radio-blocks-lg {
-      padding: 0.875rem 1rem;
+      padding: var(--vf-py-group-blocks-lg) var(--vf-px-group-blocks-lg);
       font-size: var(--vf-font-size-lg);
       line-height: var(--vf-line-height-lg);
       letter-spacing: var(--vf-letter-spacing-lg);
