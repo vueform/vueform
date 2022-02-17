@@ -340,6 +340,7 @@
       cursor: default;
       background-color: var(--vf-bg-disabled);
       color: var(--vf-color-disabled);
+      pointer-events: none;
     }
 
     &.vf-multiselect-success {
@@ -354,22 +355,22 @@
       border-color: var(--vf-border-color-input-danger);
     }
     
-    &:hover:not(.vf-multiselect-disabled) {
+    &:hover {
       box-shadow: var(--vf-shadow-input-hover);
-    }
 
-    &:hover:not(.vf-multiselect-disabled):not(.vf-multiselect-success):not(.vf-multiselect-danger) {
-      background-color: var(--vf-bg-input-hover);
-      color: var(--vf-color-input-hover);
-      border-color: var(--vf-border-color-input-hover);
+      &:not(.vf-multiselect-success):not(.vf-multiselect-danger) {
+        background-color: var(--vf-bg-input-hover);
+        color: var(--vf-color-input-hover);
+        border-color: var(--vf-border-color-input-hover);
+      }
     }
 
     &.vf-multiselect-active {
       box-shadow: var(--vf-shadow-input-focus);
       outline: var(--vf-ring-width) solid var(--vf-ring-color);
-      border-color: var(--vf-border-color-input-focus);
 
-      &:not(.vf-multiselect-disabled):not(.vf-multiselect-success):not(.vf-multiselect-danger) {
+      &:not(.vf-multiselect-success):not(.vf-multiselect-danger) {
+        border-color: var(--vf-border-color-input-focus);
         background-color: var(--vf-bg-input-focus);
         color: var(--vf-color-input-focus);
       }
@@ -419,11 +420,22 @@
     }
   }
 
+  .vf-floating-wrapper ~ .vf-multiselect-single-label,
+  .vf-floating-wrapper ~ div .vf-multiselect-single-label {
+    padding-top: calc(var(--vf-py-input) + (var(--vf-floating-top) / 2));
+    padding-bottom: calc(var(--vf-py-input) - (var(--vf-floating-top) / 2));
+  }
+
+  .vf-floating-wrapper ~ .vf-multiselect-single-label-sm,
+  .vf-floating-wrapper ~ div .vf-multiselect-single-label-sm {
+    padding-top: calc(var(--vf-py-input-sm) + (var(--vf-floating-top-sm) / 2));
+    padding-bottom: calc(var(--vf-py-input-sm) - (var(--vf-floating-top-sm) / 2));
+  }
+
   .vf-floating-wrapper ~ .vf-multiselect-single-label-lg,
-  .vf-floating-wrapper ~ div .vf-multiselect-single-label-lg,
-  .vf-floating-wrapper ~ span .vf-multiselect-single-label-lg {
-    padding-top: calc(var(--vf-py-input-lg) + (0.6875rem / 2));
-    padding-bottom: calc(var(--vf-py-input-lg) - (0.6875rem / 2));
+  .vf-floating-wrapper ~ div .vf-multiselect-single-label-lg {
+    padding-top: calc(var(--vf-py-input-lg) + (var(--vf-floating-top-lg) / 2));
+    padding-bottom: calc(var(--vf-py-input-lg) - (var(--vf-floating-top-lg) / 2));
   }
 
   .vf-multiselect-placeholder {
@@ -603,7 +615,7 @@
     right: calc(var(--vf-border-width-input-r) * (-1));
     bottom: 0;
     transform: translateY(100%);
-    border-width: var(--vf-border-width-input-t) var(--vf-border-width-input-r) var(--vf-border-width-input-b) var(--vf-border-width-input-l);
+    border-width: var(--vf-border-width-dropdown);
     border-style: solid;
     border-color: var(--vf-border-color-input);
     margin-top: calc(var(--vf-border-width-input-t) * (-1));
@@ -618,6 +630,7 @@
     border-top-left-radius: 0;
     border-top-right-radius: 0;
     outline: none;
+    box-shadow: var(--vf-shadow-dropdown);
 
     &.vf-multiselect-dropdown-top {
       transform: translateY(-100%);

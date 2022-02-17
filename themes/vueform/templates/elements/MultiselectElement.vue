@@ -214,10 +214,21 @@
     }
   }
 
+  .vf-floating-wrapper ~ .vf-multiselect-multiple-label,
+  .vf-floating-wrapper ~ div .vf-multiselect-multiple-label {
+    padding-top: calc(var(--vf-py-input) + (var(--vf-floating-top) / 2));
+    padding-bottom: calc(var(--vf-py-input) - (var(--vf-floating-top) / 2));
+  }
+
+  .vf-floating-wrapper ~ .vf-multiselect-multiple-label-sm,
+  .vf-floating-wrapper ~ div .vf-multiselect-multiple-label-sm {
+    padding-top: calc(var(--vf-py-input-sm) + (var(--vf-floating-top-sm) / 2));
+    padding-bottom: calc(var(--vf-py-input-sm) - (var(--vf-floating-top-sm) / 2));
+  }
+
   .vf-floating-wrapper ~ .vf-multiselect-multiple-label-lg,
-  .vf-floating-wrapper ~ div .vf-multiselect-multiple-label-lg,
-  .vf-floating-wrapper ~ span .vf-multiselect-multiple-label-lg {
-    padding-top: calc(var(--vf-py-input-lg) + (0.6875rem / 2));
-    padding-bottom: calc(var(--vf-py-input-lg) - (0.6875rem / 2));
+  .vf-floating-wrapper ~ div .vf-multiselect-multiple-label-lg{
+    padding-top: calc(var(--vf-py-input-lg) + (var(--vf-floating-top-lg) / 2));
+    padding-bottom: calc(var(--vf-py-input-lg) - (var(--vf-floating-top-lg) / 2));
   }
 </style>
