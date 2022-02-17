@@ -169,15 +169,15 @@
 
     &.vf-step-disabled {
       &:before {
-        background: var(--vf-bg-disabled);
+        background: var(--vf-bg-passive);
         left: -100%;
       }
 
       a {
-        color: var(--vf-color-disabled);
+        color: var(--vf-color-passive);
 
         &:before {
-          background: var(--vf-bg-disabled);
+          background: var(--vf-bg-passive);
         }
       }
     }

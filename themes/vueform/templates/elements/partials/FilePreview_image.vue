@@ -62,7 +62,6 @@
     font-size: inherit;
     line-height: inherit;
     color: inherit;
-    min-height: var(--vf-min-height-input);
     display: flex;
     justify-content: flex-start;
     flex-direction: row;

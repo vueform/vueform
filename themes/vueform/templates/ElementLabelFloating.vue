@@ -24,11 +24,11 @@
             classes.label,
             classes[`label_${Size}`],
             visible ? classes.label_visible : classes.label_invisible,
+            el$.focused ? classes.label_focused : null,
             !el$.isDisabled && !el$.isDanger && !el$.isSuccess ? classes.label_enabled : null,
             el$.isDisabled ? classes.label_disabled : null,
             el$.isDanger ? classes.label_danger : null,
             el$.isSuccess ? classes.label_success : null,
-            el$.focused ? classes.label_focused : null,
           ]),
         }
       }
@@ -49,11 +49,14 @@
     background-color: var(--vf-bg-input);
     padding: 0 1px;
     line-height: 1px;
-    transition: all .2s ease-in-out;
+    transition-property: box-shadow, color, background-color, border-color;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 200ms;
     opacity: 0;
     visibility: hidden;
     white-space: nowrap;
     color: var(--vf-color-floating);
+    margin-top: var(--vf-floating-top);
 
     &.vf-floating-label-visible {
       opacity: 1;
@@ -62,16 +65,22 @@
 
     &.vf-floating-label-sm {
       left: var(--vf-px-input-sm);
+      margin-top: var(--vf-floating-top-sm);
     }
 
     &.vf-floating-label-lg {
       left: var(--vf-px-input-lg);
-      margin-top: 0.625rem;
+      margin-top: var(--vf-floating-top-lg);
       background-color: transparent !important;
     }
 
     &.vf-floating-label-disabled {
-      background-color: var(--vf-bg-input-disabled);
+      background-color: var(--vf-bg-disabled);
+    }
+
+    &.vf-floating-label-focus {
+      background-color: var(--vf-bg-input-focus);
+      color: var(--vf-color-floating-focus);
     }
 
     &.vf-floating-label-danger {
@@ -82,11 +91,6 @@
     &.vf-floating-label-success {
       background-color: var(--vf-bg-input-success);
       color: var(--vf-color-floating-success);
-    }
-
-    &.vf-floating-label-focus {
-      background-color: var(--vf-bg-input-focus);
-      color: var(--vf-color-floating-focus);
     }
   }
 

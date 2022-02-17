@@ -19,6 +19,7 @@
 <style lang="scss">
   .flatpickr-wrapper {
     width: 100%;
+    height: 100%;
   }
 
   .flatpickr-calendar {
