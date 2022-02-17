@@ -34,7 +34,7 @@
         "build": "rollup --config build/base.config.js",
         "build:public": "rollup --config build/public.config.js",
         "release": "npm run build ; node scripts/release.js",
-        "to:web": "node scripts/toVueformWeb.js ; rollup --config build/instance.config.js --configDomains=vueform.loc",
+        "to:web": "node scripts/toVueformWeb.js ; rollup --config build/instance.config.js",
         "to:web:ob": "rollup --config build/instance.config.js"
     },
     "devDependencies": {

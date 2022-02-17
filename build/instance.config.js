@@ -8,6 +8,11 @@ export default (commandLineArgs) => {
       output: path.resolve(__dirname, '../../vueform-web/packages/vueform-production/dist/installer.js'),
       lock: true,
     },
+    {
+      input: path.resolve(__dirname, '../dist/element.js'),
+      output: path.resolve(__dirname, '../../vueform-web/packages/vueform-production/dist/element.js'),
+      lock: true,
+    },
   ]
 
   return files.map((file) => {

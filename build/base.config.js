@@ -13,6 +13,10 @@ const files = [
     output: 'dist/index.js',
   },
   {
+    input: 'bundles/dist/element.js',
+    output: 'dist/element.js',
+  },
+  {
     input: 'bundles/dist/installer.js',
     output: 'dist/installer.js',
   },

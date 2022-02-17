@@ -40,7 +40,7 @@
       return {
         merge: true,
         defaultClasses: {
-          ontainer: '',
+          container: '',
           wrapper: '',
           input: '',
           text: '',
