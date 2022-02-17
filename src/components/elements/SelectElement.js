@@ -28,6 +28,7 @@ import useFloating from './../../composables/elements/useFloating'
 import useLoading from './../../composables/elements/useLoading'
 import useClasses from './../../composables/elements/useClasses'
 
+import { select as useFocused } from './../../composables/elements/useFocused'
 import { select as useOptions } from './../../composables/elements/useOptions'
 
 import BaseElement from './../../mixins/BaseElement'
@@ -347,6 +348,7 @@ export default {
       useColumns,
       useSlots,
       useHandleSelectEvents,
+      useFocused,
     ]
     context.slots = [
       'option',

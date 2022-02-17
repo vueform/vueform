@@ -26,6 +26,7 @@ import useFloating from './../../composables/elements/useFloating'
 import useLoading from './../../composables/elements/useLoading'
 import useClasses from './../../composables/elements/useClasses'
 
+import { multiselect as useFocused } from './../../composables/elements/useFocused'
 import { multiselect as useOptions } from './../../composables/elements/useOptions'
 import { multiselect as useBaseElement } from './../../composables/elements/useBaseElement'
 import { array as useNullValue } from './../../composables/elements/useNullValue'
@@ -373,6 +374,7 @@ export default {
       useSlots,
       useHandleSelectEvents,
       useSelect,
+      useFocused,
     ]
     context.slots = [
       'option',

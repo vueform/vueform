@@ -31,6 +31,7 @@ import { array as useEmpty } from './../../composables/elements/useEmpty'
 import { tags as useOptions } from './../../composables/elements/useOptions'
 import { tags as useBaseElement } from './../../composables/elements/useBaseElement'
 import { tags as useAsyncItems } from './../../composables/elements/useAsyncItems'
+import { tags as useFocused } from './../../composables/elements/useFocused'
 
 import BaseElement from './../../mixins/BaseElement'
 import HasView from './../../mixins/HasView'
@@ -373,6 +374,7 @@ export default {
       useHandleSelectEvents,
       useHandleTag,
       useSelect,
+      useFocused,
     ]
     context.slots = [
       'tag',
