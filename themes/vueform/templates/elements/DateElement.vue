@@ -13,12 +13,13 @@
           inputContainer_sm: 'vf-input-group-sm',
           inputContainer_md: '',
           inputContainer_lg: 'vf-input-group-lg',
-          inputContainer_enabled: '',
+          inputContainer_default: '',
           inputContainer_disabled: 'vf-input-group-disabled',
           inputContainer_focused: 'vf-input-group-focused',
           inputContainer_success: 'vf-input-group-success',
           inputContainer_danger: 'vf-input-group-danger',
-          input: '',
+          inputWrapper: 'vf-datepicker-wrapper',
+          input: 'vf-input-field',
           input_sm: '',
           input_md: '',
           input_lg: '',
@@ -53,4 +54,10 @@
 
 <style lang="scss">
   // Some styles are contained in Vueform.vue & DatepickerWrapper.vue
+
+  .vf-datepicker-wrapper {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
 </style>

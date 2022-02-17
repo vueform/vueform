@@ -2,6 +2,7 @@
   <component :is="elementLayout">
     <template #element>
       <div :class="classes.inputContainer">
+
         <ElementAddon v-if="hasAddonBefore" type="before">
           <slot name="addon-before"/>
         </ElementAddon>
@@ -13,19 +14,21 @@
         <ElementLabelFloating
           v-if="hasFloating && !empty"
           :visible="!empty"
-       />
+        />
 
-        <DatepickerWrapper
-          :value="model"
-          :options="fieldOptions"
-          :id="fieldId"
-          :class="classes.input"
-          :placeholder="placeholder"
-          :disabled="isDisabled"
-          :readonly="readonly"
-          @change="handleChange"
-          ref="input"
-       />
+        <div :class="classes.inputWrapper">
+          <DatepickerWrapper
+            :value="model"
+            :options="fieldOptions"
+            :id="fieldId"
+            :class="classes.input"
+            :placeholder="placeholder"
+            :disabled="isDisabled"
+            :readonly="readonly"
+            @change="handleChange"
+            ref="input"
+          />
+        </div>
       </div>
     </template>
 
@@ -43,6 +46,7 @@
         defaultClasses: {
           container: '',
           inputContainer: '',
+          inputWrapper: '',
           input: '',
         }
       }
