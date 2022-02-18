@@ -741,6 +741,10 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
       marginRight: `var(--vf-space-checkbox${size})`
     }
 
+    plain[`.form-ml-space-checkbox${suffix}`] = {
+      marginLeft: `var(--vf-space-checkbox${size})`
+    }
+
     plain[`.form-mt-space-tags${suffix}`] = {
       marginTop: `var(--vf-space-tags${size})`
     }
@@ -1216,10 +1220,16 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
       boxShadow: 'var(--vf-shadow-handles)',
     },
 
-    '.form-hide-empty-img': {
-      '&[src=""], &[src="data:"], &:not([src])': {
-        opacity: 0,
-      }
+    '.form-hide-empty-img:not([src])': {
+      opacity: 0,
+    },
+
+    '.form-hide-empty-img[src=""]': {
+      opacity: 0,
+    },
+
+    '.form-hide-empty-img[src="data:"]': {
+      opacity: 0,
     },
 
     '.form-autofill-default': {
@@ -1390,13 +1400,13 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
       },
       '&.form-step-disabled': {
         '&:before': {
-          background: 'var(--vf-bg-disabled)',
+          background: 'var(--vf-bg-passive)',
           left: '-100%',
         },
         a: {
-          color: 'var(--vf-color-disabled)',
+          color: 'var(--vf-color-passive)',
           '&:before': {
-            background: 'var(--vf-bg-disabled)',
+            background: 'var(--vf-bg-passive)',
           }
         },
       },
@@ -1962,7 +1972,7 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
         },
 
         tagPy: {
-          base: 0,
+          base: '0px',
           sm: 'var(--vf-py-tag)',
           lg: 'var(--vf-py-tag)',
         },
@@ -1999,18 +2009,18 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
 
         sliderTooltipPy: {
           base: theme('padding')['0.5'],
-          sm: 'var(--vf-py-slider-tooltip)',
-          lg: 'var(--vf-py-slider-tooltip)',
+          sm: theme('padding')['0.25'],
+          lg: theme('padding')['0.75'],
         },
 
         sliderTooltipPx: {
           base: theme('padding')['1.5'],
-          sm: 'var(--vf-px-slider-tooltip)',
-          lg: 'var(--vf-px-slider-tooltip)',
+          sm: theme('padding')['1.25'],
+          lg: theme('padding')['2'],
         },
 
         spaceAddon: {
-          base: 0,
+          base: '0px',
           sm: 'var(--vf-space-addon)',
           lg: 'var(--vf-space-addon)',
         },
@@ -2028,8 +2038,8 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
         },
 
         floatingTop: {
-          base: 0,
-          sm: 0,
+          base: '0px',
+          sm: '0px',
           lg: theme('padding')['2.75'],
         },
         
@@ -2216,8 +2226,8 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
 
         sliderHeight: {
           base: theme('height')['1.5'],
-          sm: 'var(--vf-slider-height)',
-          lg: 'var(--vf-slider-height)',
+          sm: theme('height')['1.25'],
+          lg: theme('height')['2'],
         },
 
         sliderHeightVertical: {
@@ -2228,14 +2238,14 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
 
         sliderHandleSize: {
           base: theme('height')['4'],
-          sm: 'var(--vf-slider-handle-size)',
-          lg: 'var(--vf-slider-handle-size)',
+          sm: theme('height')['3.5'],
+          lg: theme('height')['5'],
         },
 
         sliderTooltipDistance: {
           base: theme('width')['2'],
-          sm: 'var(--vf-slider-tooltip-distance)',
-          lg: 'var(--vf-slider-tooltip-distance)',
+          sm: theme('width')['1.5'],
+          lg: theme('width')['2'],
         },
 
         sliderTooltipArrowSize: {
@@ -2254,16 +2264,31 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
         '1\/10': '10%',
       },
       padding: {
+        '0.25': '0.0625rem',
+        '0.75': '0.1875rem',
+        '1.25': '0.3125rem',
         '1.75': '0.4375rem',
+        '2.25': '0.5625rem',
         '2.75': '0.6875rem',
       },
       width: {
+        '0.25': '0.0625rem',
+        '0.75': '0.1875rem',
         '1.25': '0.3125rem',
+        '1.75': '0.4375rem',
+        '2.25': '0.5625rem',
+        '2.75': '0.6875rem',
         '3.5': '0.875rem',
         '4.5': '1.125rem',
         '1\/10': '10%',
       },
       height: {
+        '0.25': '0.0625rem',
+        '0.75': '0.1875rem',
+        '1.25': '0.3125rem',
+        '1.75': '0.4375rem',
+        '2.25': '0.5625rem',
+        '2.75': '0.6875rem',
         '3.5': '0.875rem',
         '4.5': '1.125rem',
         '8.5': '2.125rem',

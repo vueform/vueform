@@ -15,6 +15,9 @@
           container: '',
           wrapper: 'vf-toggle-wrapper',
           text: 'vf-toggle-text',
+          text_sm: 'vf-toggle-text-sm',
+          text_md: '',
+          text_lg: 'vf-toggle-text-lg',
           toggle: {
             container: 'vf-toggle-container',
             container_enabled: '',
@@ -57,6 +60,10 @@
               classes.toggle[`label_${Size}`],
             ]),
           },
+          $text: (classes, { Size }) => ([
+            classes.text,
+            classes[`text_${Size}`],
+          ]),
         }
       }
     }
@@ -72,6 +79,14 @@
 
   .vf-toggle-text {
     margin-left: var(--vf-space-checkbox);
+
+    &.vf-toggle-text-sm {
+      margin-left: var(--vf-space-checkbox-sm);
+    }
+
+    &.vf-toggle-text-lg {
+      margin-left: var(--vf-space-checkbox-lg);
+    }
   }
 
   // @vueform/toggle styles

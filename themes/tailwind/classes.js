@@ -71,16 +71,13 @@ const checkbox = {
   input: 'flex-shrink-0 appearance-none cursor-pointer outline-zero transition-input duration-200 border-solid form-border-width-checkbox focus:form-ring checked:form-bg-icon-check',
   input_default: checkboxStates.default,
   input_disabled: checkboxStates.disabled,
-  input_danger:checkboxStates.danger,
   input_sm: 'form-w-checkbox-sm form-h-checkbox-sm form-radius-checkbox-sm form-mr-space-checkbox-sm',
   input_md: 'form-w-checkbox form-h-checkbox form-radius-checkbox form-mr-space-checkbox',
   input_lg: 'form-w-checkbox-lg form-h-checkbox-lg form-radius-checkbox-lg form-mr-space-checkbox-lg',
-  $input: (classes, { isDisabled, Size, isDanger }) => ([
+  $input: (classes, { isDisabled, Size }) => ([
     classes.input,
     classes[`input_${Size}`],
-    !isDisabled && !isDanger ? classes.input_default : null,
-    isDisabled ? classes.input_disabled : null,
-    isDanger ? classes.input_danger : null,
+    !isDisabled  ? classes.input_default : classes.input_disabled,
   ]),
 }
 
@@ -88,16 +85,13 @@ const radio = {
   input: 'flex items-center justify-center flex-shrink-0 appearance-none cursor-pointer rounded-full outline-zero transition-input duration-200 border-solid form-border-width-radio form-shadow-input focus:form-ring checked:form-bg-icon-radio',
   input_default: checkboxStates.default,
   input_disabled: checkboxStates.disabled,
-  input_danger:checkboxStates.danger,
   input_sm: 'form-w-checkbox-sm form-h-checkbox-sm form-mr-space-checkbox-sm',
   input_md: 'form-w-checkbox form-h-checkbox form-mr-space-checkbox',
   input_lg: 'form-w-checkbox-lg form-h-checkbox-lg form-mr-space-checkbox-lg',
-  $input: (classes, { isDisabled, Size, isDanger }) => ([
+  $input: (classes, { isDisabled, Size }) => ([
     classes.input,
     classes[`input_${Size}`],
-    !isDisabled && !isDanger ? classes.input_default : null,
-    isDisabled ? classes.input_disabled : null,
-    isDanger ? classes.input_danger : null,
+    !isDisabled  ? classes.input_default : classes.input_disabled,
   ]),
 }
 
@@ -325,7 +319,7 @@ const groupTabs = {
   wrapper_last_lg: 'form-radius-input-r-lg',
   wrapper_selected: 'form-bg-primary form-color-on-primary border-black border-opacity-15',
   wrapper_unselected: 'form-bg-input form-color-input form-border-color-input hover:form-bg-input-hover hover:form-color-input-hover',
-  wrapper_disabled: 'opacity-50',
+  wrapper_disabled: 'opacity-50 pointer-events-none',
   wrapper_sm: 'form-p-input-sm form-text-sm form-p-group-tabs-sm',
   wrapper_md: 'form-p-input form-text form-p-group-tabs',
   wrapper_lg: 'form-p-input-lg form-text-lg form-p-group-tabs-lg',
@@ -406,10 +400,18 @@ export default {
     wrapper_md: 'form-text',
     wrapper_lg: 'form-text-lg',
     input: checkbox.input + ' form-shadow-handles',
+    input_danger: checkboxStates.danger,
     input_sm: checkbox.input_sm + ' form-mt-checkbox-sm',
     input_md: checkbox.input_md + ' form-mt-checkbox',
     input_lg: checkbox.input_lg + ' form-mt-checkbox-lg',
     text: 'cursor-pointer',
+    $input: (classes, { isDisabled, Size, isDanger }) => ([
+      classes.input,
+      classes[`input_${Size}`],
+      !isDisabled && !isDanger ? classes.input_default : null,
+      isDisabled ? classes.input_disabled : null,
+      isDanger ? classes.input_danger : null,
+    ]),
     $wrapper: (classes, { Size }) => ([
       classes.wrapper,
       classes[`wrapper_${Size}`],
@@ -618,8 +620,8 @@ export default {
     select: {
       ...select,
       multipleLabel: 'flex items-center h-full absolute left-0 top-0 pointer-events-none bg-transparent',
-      multipleLabel_sm: 'form-pl-input-sm form-pr-select-label-sm with-floating:form-p-input-floating',
-      multipleLabel_md: 'form-pl-input form-pr-select-label with-floating:form-p-input-floating-sm',
+      multipleLabel_sm: 'form-pl-input-sm form-pr-select-label-sm with-floating:form-p-input-floating-sm',
+      multipleLabel_md: 'form-pl-input form-pr-select-label with-floating:form-p-input-floating',
       multipleLabel_lg: 'form-pl-input-lg form-pr-select-label-lg with-floating:form-p-input-floating-lg',
       $multipleLabel: (classes, { Size }) => ([
         classes.select.multipleLabel,
@@ -654,10 +656,18 @@ export default {
     wrapper_md: 'form-text',
     wrapper_lg: 'form-text-lg',
     input: radio.input + ' form-shadow-handles',
+    input_danger: checkboxStates.danger,
     input_sm: radio.input_sm + ' form-mt-checkbox-sm',
     input_md: radio.input_md + ' form-mt-checkbox',
     input_lg: radio.input_lg + ' form-mt-checkbox-lg',
     text: 'cursor-pointer',
+    $input: (classes, { isDisabled, Size, isDanger }) => ([
+      classes.input,
+      classes[`input_${Size}`],
+      !isDisabled && !isDanger ? classes.input_default : null,
+      isDisabled ? classes.input_disabled : null,
+      isDanger ? classes.input_danger : null,
+    ]),
     $wrapper: (classes, { Size }) => ([
       classes.wrapper,
       classes[`wrapper_${Size}`],
@@ -943,14 +953,17 @@ export default {
     container: '',
     wrapper: 'flex items-center',
     text: '',
+    text_sm: 'form-ml-space-checkbox-sm',
+    text_md: 'form-ml-space-checkbox',
+    text_lg: 'form-ml-space-checkbox-lg',
     toggle: {
       container: 'form-shadow-handles inline-block rounded-full outline-zero transition-input duration-200 ease-in-out focus:form-ring',
       container_enabled: 'hover:form-shadow-handles-hover focus:form-shadow-handles-focus focused-hover:form-shadow-handles-hover',
       container_disabled: 'cursor-not-allowed opacity-50',
       toggle: 'flex rounded-full relative cursor-pointer transition-colors items-center box-content form-border-width-toggle leading-none',
-      toggle_sm: 'form-w-toggle-sm form-h-toggle-sm text-xs form-mr-space-checkbox-sm',
-      toggle_md: 'form-w-toggle form-h-toggle text-xs form-mr-space-checkbox',
-      toggle_lg: 'form-w-toggle-lg form-h-toggle-lg text-0.5sm form-mr-space-checkbox-lg',
+      toggle_sm: 'form-w-toggle-sm form-h-toggle-sm text-xs',
+      toggle_md: 'form-w-toggle form-h-toggle text-xs',
+      toggle_lg: 'form-w-toggle-lg form-h-toggle-lg text-0.5sm',
       toggleOn: 'form-bg-primary form-border-color-primary justify-start form-color-on-primary',
       toggleOff: 'form-bg-passive form-border-color-passive form-color-passive justify-end',
       toggleOnDisabled: 'form-bg-primary form-border-color-primary justify-start form-color-on-primary',
@@ -984,7 +997,11 @@ export default {
         classes.toggle.label,
         classes.toggle[`label_${Size}`],
       ]),
-    }
+    },
+    $text: (classes, { Size }) => ([
+      classes.text,
+      classes[`text_${Size}`],
+    ]),
   },
   TTextareaElement: {
     ...textarea,
@@ -1019,7 +1036,7 @@ export default {
     container_after_sm: 'form-radius-input-r-sm form-pr-input-sm form-pl-space-addon-sm',
     container_after_md: 'form-radius-input-r form-pr-input form-pl-space-addon',
     container_after_lg: 'form-radius-input-r-lg form-pr-input-lg form-pl-space-addon-lg',
-    wrapper: 'flex items-center justify-center',
+    wrapper: 'contents items-center justify-center',
     $container: (classes, { type, Size }) => ([
       classes.container,
       classes[`container_${Size}`],
@@ -1503,7 +1520,7 @@ export default {
       index === Object.keys(items).length - 1 ? classes[`wrapper_last_${Size}`] : null,
       el$.value == value ? classes.wrapper_selected : classes.wrapper_unselected,
       isDisabled ? classes.wrapper_disabled : null,
-    ])
+    ]),
   },
   RadiogroupRadio_blocks: {
     ...radio,

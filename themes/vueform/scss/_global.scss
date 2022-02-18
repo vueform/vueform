@@ -1,0 +1,19 @@
+/*
+ * Global styles
+ *
+ * Global base styles. 
+ */
+  
+form {
+  * {
+    box-sizing: border-box;
+  }
+
+  label {
+    margin: 0;
+  }
+}
+
+::placeholder {
+  color: var(--vf-color-placeholder);
+}
