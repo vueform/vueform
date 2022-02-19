@@ -4,7 +4,7 @@ import postcss from 'rollup-plugin-postcss'
 import autoprefixer from 'autoprefixer'
 
 const themes = [
-  'vueform'
+  'vueform', 'material', 'tailwind-material',
 ]
 
 export default themes.reduce((all, theme) => {

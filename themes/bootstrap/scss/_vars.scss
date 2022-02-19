@@ -1,40 +1,40 @@
 *, :before, :after, :root {
-  --vf-primary: #3b82f6;
-  --vf-primary-darker: #1e6ff5;
-  --vf-danger: #ef4444;
-  --vf-danger-lighter: #fee2e2;
-  --vf-success: #10b981;
-  --vf-success-lighter: #d1fae5;
+  --vf-primary: #{$primary};
+  --vf-primary-darker: #{darken($danger, 15%)};
+  --vf-danger: #{$danger};
+  --vf-danger-lighter: #{lighten($danger, 38.5%)};
+  --vf-success: #{$success};
+  --vf-success-lighter: #{lighten($success, 45%)};
 
-  --vf-ring-width: 2px;
-  --vf-ring-color: #3b82f666;
+  --vf-ring-width: #{$input-focus-width};
+  --vf-ring-color: #{rgba(red($primary), green($primary), blue($primary), 0.4)};
 
   --vf-gray-50: #f9fafb;
-  --vf-gray-100: #f3f4f6;
-  --vf-gray-200: #e5e7eb;
-  --vf-gray-300: #d1d5db;
-  --vf-gray-400: #9ca3af;
-  --vf-gray-500: #6b7280;
-  --vf-gray-600: #4b5563;
-  --vf-gray-700: #374151;
-  --vf-gray-800: #1f2937;
-  --vf-gray-900: #111827;
+  --vf-gray-100: #{$gray-100};
+  --vf-gray-200: #{$gray-200};
+  --vf-gray-300: #{$gray-300};
+  --vf-gray-400: #{$gray-400};
+  --vf-gray-500: #{$gray-500};
+  --vf-gray-600: #{$gray-600};
+  --vf-gray-700: #{$gray-700};
+  --vf-gray-800: #{$gray-800};
+  --vf-gray-900: #{$gray-900};
 
-  --vf-font-size: 1rem;
-  --vf-font-size-sm: 0.875rem;
-  --vf-font-size-lg: 1rem;
+  --vf-font-size: #{$font-size-base};
+  --vf-font-size-sm: #{$font-size-sm};
+  --vf-font-size-lg: #{$font-size-lg};
 
-  --vf-font-size-small: 0.875rem;
-  --vf-font-size-small-sm: 0.8125rem;
-  --vf-font-size-small-lg: 0.875rem;
+  --vf-font-size-small: #{$small-font-size};
+  --vf-font-size-small-sm: #{$small-font-size};
+  --vf-font-size-small-lg: #{$small-font-size};
 
-  --vf-line-height: 1.5rem;
-  --vf-line-height-sm: 1.25rem;
-  --vf-line-height-lg: 1.5rem;
+  --vf-line-height: #{$line-height-base}rem;
+  --vf-line-height-sm: #{$line-height-sm}rem;
+  --vf-line-height-lg: #{$line-height-lg}rem;
 
-  --vf-line-height-small: 1.25rem;
-  --vf-line-height-small-sm: 1.125rem;
-  --vf-line-height-small-lg: 1.25rem;
+  --vf-line-height-small: #{$line-height-base}rem;
+  --vf-line-height-small-sm: #{$line-height-sm}rem;
+  --vf-line-height-small-lg: #{$line-height-lg}rem;
 
   --vf-letter-spacing: 0;
   --vf-letter-spacing-sm: 0;
@@ -44,37 +44,37 @@
   --vf-letter-spacing-small-sm: 0;
   --vf-letter-spacing-small-lg: 0;
 
-  --vf-gutter: 1rem;
-  --vf-gutter-sm: 0.5rem;
-  --vf-gutter-lg: 1rem;
+  --vf-gutter: calc(#{$grid-gutter-width} / 2);
+  --vf-gutter-sm: calc(#{$grid-gutter-width} / 4);
+  --vf-gutter-lg: calc(#{$grid-gutter-width} / 2);
 
-  --vf-min-height-input: 2.375rem;
-  --vf-min-height-input-sm: 2.125rem;
-  --vf-min-height-input-lg: 2.875rem;
+  --vf-min-height-input: #{$input-height};
+  --vf-min-height-input-sm: #{$input-height-sm};
+  --vf-min-height-input-lg: #{$input-height-lg};
 
-  --vf-py-input: 0.375rem;
-  --vf-py-input-sm: 0.375rem;
-  --vf-py-input-lg: 0.625rem;
+  --vf-py-input: #{$input-padding-y};
+  --vf-py-input-sm: #{$input-padding-y-sm};
+  --vf-py-input-lg: #{$input-padding-y-lg};
 
-  --vf-px-input: 0.75rem;
-  --vf-px-input-sm: 0.5rem;
-  --vf-px-input-lg: 0.875rem;
+  --vf-px-input: #{$input-padding-x};
+  --vf-px-input-sm: #{$input-padding-x-sm};
+  --vf-px-input-lg: #{$input-padding-x-lg};
 
-  --vf-py-btn: 0.375rem;
-  --vf-py-btn-sm: 0.375rem;
-  --vf-py-btn-lg: 0.625rem;
+  --vf-py-btn: #{$btn-padding-y};
+  --vf-py-btn-sm: #{$btn-padding-y-sm};
+  --vf-py-btn-lg: #{$btn-padding-y-lg};
 
-  --vf-px-btn: 0.875rem;
-  --vf-px-btn-sm: 0.75rem;
-  --vf-px-btn-lg: 1.25rem;
+  --vf-px-btn: #{$btn-padding-x};
+  --vf-px-btn-sm: #{$btn-padding-x-sm};
+  --vf-px-btn-lg: #{$btn-padding-x-lg};
 
-  --vf-py-btn-small: 0.25rem;
-  --vf-py-btn-small-sm: 0.25rem;
-  --vf-py-btn-small-lg: 0.375rem;
+  --vf-py-btn-small: calc(#{$btn-padding-y} * 0.75);
+  --vf-py-btn-small-sm: calc(#{$btn-padding-y-sm} * 0.75);
+  --vf-py-btn-small-lg: calc(#{$btn-padding-y-lg} * 0.75);
 
-  --vf-px-btn-small: 0.625rem;
-  --vf-px-btn-small-sm: 0.625rem;
-  --vf-px-btn-small-lg: 0.75rem;
+  --vf-px-btn-small: calc(#{$btn-padding-x} * 0.75);
+  --vf-px-btn-small-sm: calc(#{$btn-padding-x-sm} * 0.75);
+  --vf-px-btn-small-lg: calc(#{$btn-padding-x-lg} * 0.75);
 
   --vf-py-group-tabs: var(--vf-py-input);
   --vf-py-group-tabs-sm: var(--vf-py-input-sm);
@@ -108,11 +108,11 @@
   --vf-px-slider-tooltip-sm: 0.3125rem;
   --vf-px-slider-tooltip-lg: 0.5rem;
 
-  --vf-space-addon: 0;
+  --vf-space-addon: #{$input-padding-x};
   --vf-space-addon-sm: var(--vf-space-addon);
   --vf-space-addon-lg: var(--vf-space-addon);
 
-  --vf-space-checkbox: 0.375rem;
+  --vf-space-checkbox: #{$form-check-input-margin-x};
   --vf-space-checkbox-sm: var(--vf-space-checkbox);
   --vf-space-checkbox-lg: var(--vf-space-checkbox);
 
@@ -124,12 +124,12 @@
   --vf-floating-top-sm: 0rem;
   --vf-floating-top-lg: 0.6875rem;
 
-  --vf-bg-input: #ffffff;
-  --vf-bg-input-focus: var(--vf-bg-input);
+  --vf-bg-input: #{$input-bg};
+  --vf-bg-input-focus: #{$input-focus-bg};
   --vf-bg-input-hover: var(--vf-bg-input);
   --vf-bg-input-danger: var(--vf-bg-input);
   --vf-bg-input-success: var(--vf-bg-input);
-  --vf-bg-disabled: var(--vf-gray-200);
+  --vf-bg-disabled: #{$input-disabled-bg};
   --vf-bg-selected: rgba(17,24,39,0.05);
   --vf-bg-passive: var(--vf-gray-300);
   --vf-bg-icon: var(--vf-gray-500);
@@ -139,20 +139,20 @@
   --vf-bg-slider-handle: var(--vf-primary);
   --vf-bg-toggle-handle: #ffffff;
   --vf-bg-date-head: var(--vf-gray-100);
-  --vf-bg-addon: transparent;
+  --vf-bg-addon: #{$input-group-addon-bg};
   --vf-bg-btn: var(--vf-primary);
   --vf-bg-btn-danger: var(--vf-danger);
   --vf-bg-btn-secondary: var(--vf-gray-200);
 
-  --vf-color-input: var(--vf-gray-800);
-  --vf-color-input-focus: var(--vf-color-input);
+  --vf-color-input: #{$input-color};
+  --vf-color-input-focus: #{$input-focus-color};
   --vf-color-input-hover: var(--vf-color-input);
   --vf-color-input-danger: var(--vf-color-input);
   --vf-color-input-success: var(--vf-color-input);
-  --vf-color-disabled: var(--vf-gray-400);
-  --vf-color-placeholder: var(--vf-gray-300);
+  --vf-color-disabled: #{$input-color};
+  --vf-color-placeholder: #{$input-placeholder-color};
   --vf-color-passive: var(--vf-gray-700);
-  --vf-color-muted: var(--vf-gray-500);
+  --vf-color-muted: #{$text-muted};
   --vf-color-floating: var(--vf-color-muted);
   --vf-color-floating-success: var(--vf-color-floating);
   --vf-color-floating-danger: var(--vf-color-floating);
@@ -161,14 +161,14 @@
   --vf-color-danger: var(--vf-danger);
   --vf-color-success: var(--vf-success);
   --vf-color-tag: var(--vf-color-on-primary);
-  --vf-color-addon: inherit;
+  --vf-color-addon: #{$input-group-addon-color};
   --vf-color-date-head: var(--vf-gray-700);
   --vf-color-btn: var(--vf-color-on-primary);
   --vf-color-btn-danger: #ffffff;
   --vf-color-btn-secondary: var(--vf-gray-700);
 
-  --vf-border-color-input: var(--vf-gray-300);
-  --vf-border-color-input-focus: var(--vf-primary);
+  --vf-border-color-input: #{$input-border-color};
+  --vf-border-color-input-focus: #{$input-focus-border-color};
   --vf-border-color-input-hover: var(--vf-border-color-input);
   --vf-border-color-input-danger: var(--vf-border-color-input);
   --vf-border-color-input-success: var(--vf-border-color-input);
@@ -180,10 +180,10 @@
   --vf-border-color-btn-danger: var(--vf-danger);
   --vf-border-color-btn-secondary: var(--vf-gray-200);
 
-  --vf-border-width-input-t: 1px;
-  --vf-border-width-input-r: 1px;
-  --vf-border-width-input-b: 1px;
-  --vf-border-width-input-l: 1px;
+  --vf-border-width-input-t: #{$input-border-width};
+  --vf-border-width-input-r: #{$input-border-width};
+  --vf-border-width-input-b: #{$input-border-width};
+  --vf-border-width-input-l: #{$input-border-width};
 
   --vf-border-width-radio-t: var(--vf-border-width-input-t);
   --vf-border-width-radio-r: var(--vf-border-width-input-r);
@@ -200,22 +200,22 @@
   --vf-border-width-toggle: 0.125rem;
   --vf-border-width-tag: 1px;
 
-  --vf-shadow-input: 0px 0px 0px 0px rgba(0,0,0,0);
+  --vf-shadow-input: #{$input-box-shadow};
   --vf-shadow-input-hover: var(--vf-shadow-input);
-  --vf-shadow-input-focus: var(--vf-shadow-input);
+  --vf-shadow-input-focus: #{$input-focus-box-shadow};
   --vf-shadow-handles: 0px 0px 0px 0px rgba(0,0,0,0);
   --vf-shadow-handles-hover: var(--vf-shadow-input-hover);
   --vf-shadow-handles-focus: var(--vf-shadow-input-focus);
-  --vf-shadow-btn: var(--vf-shadow-input);
+  --vf-shadow-btn: #{$btn-box-shadow};
   --vf-shadow-dropdown: 0px 0px 0px 0px rgba(0,0,0,0);
 
-  --vf-radius-input: 0.25rem;
-  --vf-radius-input-sm: var(--vf-radius-input);
-  --vf-radius-input-lg: var(--vf-radius-input);
+  --vf-radius-input: #{$input-border-radius};
+  --vf-radius-input-sm: #{$input-border-radius-sm};
+  --vf-radius-input-lg: #{$input-border-radius-lg};
 
-  --vf-radius-btn: var(--vf-radius-input);
-  --vf-radius-btn-sm: var(--vf-radius-input-sm);
-  --vf-radius-btn-lg: var(--vf-radius-input);
+  --vf-radius-btn: #{$btn-border-radius};
+  --vf-radius-btn-sm: #{$btn-border-radius-sm};
+  --vf-radius-btn-lg: #{$btn-border-radius-lg};
 
   --vf-radius-small: var(--vf-radius-input);
   --vf-radius-small-sm: var(--vf-radius-input-sm);
