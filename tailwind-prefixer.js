@@ -2,9 +2,14 @@ module.exports = function (content, prefix, sizes = ['sm', 'md', 'lg', 'xl', '2x
   if (content.match('^// prefix')) {
     content = content.replace(/(['`])(.*)\1/g, function(match) {
       return `${match.match(/(['`])/)[1]}${match.match(/(['`])(.*)\1/)[2].split(' ').map((c) => {
-        return c.match(/:/)
-          ? c.replace(':', `:${prefix}`)
-          : (c.length ? `${prefix}${c}` : c)
+        if (c.match(/:/)) {
+          return c.replace(':', `:${prefix}`)
+        }
+        if (c.match(/!/)) {
+          return c.replace('!', `!${prefix}`)
+        }
+        
+        return (c.length ? `${prefix}${c}` : c)
       }).join(' ')}${match.match(/(['`])/)[1]}`
     })
 

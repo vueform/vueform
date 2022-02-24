@@ -341,7 +341,7 @@
     background-color: var(--vf-bg-input-danger);
   }
 
-  &:hover {
+  &:hover:not([disabled]) {
     box-shadow: var(--vf-shadow-handles-hover);
 
     &:not(.vf-checkbox-danger):not(:checked):not(:focus) {
@@ -444,7 +444,7 @@
     background-color: var(--vf-bg-input-danger);
   }
 
-  &:hover {
+  &:hover:not([disabled]) {
     box-shadow: var(--vf-shadow-handles-hover);
 
     &:not(.vf-radio-danger):not(:checked):not(:focus) {

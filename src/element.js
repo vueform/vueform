@@ -1,5 +1,5 @@
+import _ from 'lodash'
 import { ref } from 'composition-api'
-import { onMounted } from 'composition-api'
 import useElementBase from './composables/useElement'
 import useForm$ from './composables/useForm$'
 import useTheme from './composables/useTheme'
@@ -20,12 +20,13 @@ import useDisabled from './composables/elements/useDisabled'
 import useEvents from './composables/useEvents'
 import useHandleInput from './composables/elements/useHandleInput'
 import useEmpty from './composables/elements/useEmpty'
-import useWatchValue from './composables/elements/useWatchValue'
 import useFloating from './composables/elements/useFloating'
 import useClasses from './composables/elements/useClasses'
 import useFieldId from './composables/elements/useFieldId'
 import useInput from './composables/elements/useInput'
 import useValidation from './composables/elements/useValidation'
+import useFocused from './composables/elements/useFocused'
+import useWatchValue from './composables/elements/useWatchValue'
 
 import BaseElement from './mixins/BaseElement'
 import HasView from './mixins/HasView'
@@ -67,6 +68,7 @@ const useElement = function(props, context, dependencies, options) {
     useClasses,
     useSlots,
     useHandleInput,
+    useFocused,
   ]
   context.slots = [
     'label', 'info', 'description', 'before',
@@ -90,7 +92,7 @@ export default function (options, component = {}) {
   }
 
   let name = options.name
-  let ComponentName = `${_.upperFirst(_.camelCase(name))}Element`
+  let ComponentName = `${_.upperFirst(_.camelCase(name))}`
 
   let emits = ['change', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'].concat(component.emits||[])
 

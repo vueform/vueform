@@ -25,6 +25,7 @@ export default function(config, components) {
         rules: config.rules || {},
         locales: config.locales || {},
         plugins: config.plugins || [],
+        i18n: null,
         services: {
           validation,
           axios,
@@ -206,17 +207,19 @@ export default function(config, components) {
     install(appOrVue, options) {
       const version = parseInt(appOrVue.version.split('.')[0])
 
+      this.options.plugins.forEach((plugin) => {
+        if (plugin.config) {
+          plugin.config(config)
+        }
+      })
+
       if (options) {
         this.config(options)
       }
 
       this.options.plugins.forEach((plugin) => {
-        if (plugin.config) {
-          let config = plugin.config(this.options)
-
-          if (config) {
-            this.options = config
-          }
+        if (plugin.install) {
+          plugin.install(appOrVue, this.options)
         }
       })
 
@@ -250,6 +253,8 @@ export default function(config, components) {
                     templates: $vueform.templates,
                     rules: $vueform.rules,
                     services: $vueform.services,
+                    locales: $vueform.locales,
+                    plugins: $vueform.plugins,
                     theme: $vueform.theme,
                   }
                 }
@@ -279,12 +284,6 @@ export default function(config, components) {
           })
           break
       }
-
-      this.options.plugins.forEach((plugin) => {
-        if (plugin.install) {
-          plugin.install(appOrVue, this.options)
-        }
-      })
     }
   }
 

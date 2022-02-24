@@ -45,7 +45,7 @@
     color: inherit;
     min-height: var(--vf-min-height-input);
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     flex-direction: column;
     position: relative;
 

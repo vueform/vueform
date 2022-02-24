@@ -19,13 +19,15 @@ const base = function (props, context, dependencies)
   // =============== HOOKS ================
 
   onMounted(() => {
-    input.value.addEventListener('focus', () => {
-      focused.value = true
-    })
+    if (input && input.value && input.value.addEventListener) {
+      input.value.addEventListener('focus', () => {
+        focused.value = true
+      })
 
-    input.value.addEventListener('blur', () => {
-      focused.value = false
-    })
+      input.value.addEventListener('blur', () => {
+        focused.value = false
+      })
+    }
   })
 
   return {

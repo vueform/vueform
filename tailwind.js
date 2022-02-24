@@ -49,7 +49,10 @@ const upperFirst = (string) => {
   return string.charAt(0).toUpperCase() + string.slice(1)
 }
 
-const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix }) => {
+const vueform = plugin((context) => {
+  const { theme, addBase, addUtilities, addVariant, e } = context
+  const prefix = context.addUserCss === undefined ? context.prefix : s => s
+
   const rules = [
     {
       base: [
@@ -241,8 +244,8 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
         '--vf-floating-top-lg': theme('form.floatingTop.lg'),
 
         '--vf-bg-input': theme('form.bgColors.input'),
-        '--vf-bg-input-focus': theme('form.bgColors.inputFocus'),
         '--vf-bg-input-hover': theme('form.bgColors.inputHover'),
+        '--vf-bg-input-focus': theme('form.bgColors.inputFocus'),
         '--vf-bg-input-danger': theme('form.bgColors.inputDanger'),
         '--vf-bg-input-success': theme('form.bgColors.inputSuccess'),
         '--vf-bg-disabled': theme('form.bgColors.disabled'),
@@ -261,8 +264,8 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
         '--vf-bg-btn-secondary': theme('form.bgColors.btnSecondary'),
 
         '--vf-color-input': theme('form.textColors.input'),
-        '--vf-color-input-focus': theme('form.textColors.inputFocus'),
         '--vf-color-input-hover': theme('form.textColors.inputHover'),
+        '--vf-color-input-focus': theme('form.textColors.inputFocus'),
         '--vf-color-input-danger': theme('form.textColors.inputDanger'),
         '--vf-color-input-success': theme('form.textColors.inputSuccess'),
         '--vf-color-disabled': theme('form.textColors.disabled'),
@@ -270,9 +273,9 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
         '--vf-color-passive': theme('form.textColors.passive'),
         '--vf-color-muted': theme('form.textColors.muted'),
         '--vf-color-floating': theme('form.textColors.floating'),
+        '--vf-color-floating-focus': theme('form.textColors.floatingFocus'),
         '--vf-color-floating-success': theme('form.textColors.floatingSuccess'),
         '--vf-color-floating-danger': theme('form.textColors.floatingDanger'),
-        '--vf-color-floating-focus': theme('form.textColors.floatingFocus'),
         '--vf-color-on-primary': theme('form.textColors.onPrimary'),
         '--vf-color-danger': theme('form.textColors.danger'),
         '--vf-color-success': theme('form.textColors.success'),
@@ -284,8 +287,8 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
         '--vf-color-btn-secondary': theme('form.textColors.btnSecondary'),
 
         '--vf-border-color-input': theme('form.borderColors.input'),
-        '--vf-border-color-input-focus': theme('form.borderColors.inputFocus'),
         '--vf-border-color-input-hover': theme('form.borderColors.inputHover'),
+        '--vf-border-color-input-focus': theme('form.borderColors.inputFocus'),
         '--vf-border-color-input-danger': theme('form.borderColors.inputDanger'),
         '--vf-border-color-input-success': theme('form.borderColors.inputSuccess'),
         '--vf-border-color-checked': theme('form.borderColors.checked'),
@@ -2161,9 +2164,9 @@ const vueform = plugin(({ theme, addBase, addUtilities, addVariant, e, prefix })
           passive: 'var(--vf-gray-700)',
           muted: 'var(--vf-gray-500)',
           floating: 'var(--vf-color-muted)',
+          floatingFocus: 'var(--vf-color-floating)',
           floatingSuccess: 'var(--vf-color-floating)',
           floatingDanger: 'var(--vf-color-floating)',
-          floatingFocus: 'var(--vf-color-floating)',
           danger: 'var(--vf-danger)',
           success: 'var(--vf-success)',
           addon: 'inherit',

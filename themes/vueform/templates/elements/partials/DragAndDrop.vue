@@ -56,6 +56,7 @@
     color: var(--vf-color-input);
     border-radius: var(--vf-radius-large);
     box-shadow: var(--vf-shadow-input);
+    text-align: center;
 
     &.vf-dnd-sm {
       border-radius: var(--vf-radius-large);

@@ -154,9 +154,14 @@ const prefixer = function (classes, prefix) {
 
     try {
       res = class_.split(' ').map((c) => {
-        return c.match(/:/)
-          ? c.replace(':', `:${prefix}`)
-          : (c.length ? `${prefix}${c}` : c)
+        if (c.match(/:/)) {
+          return c.replace(':', `:${prefix}`)
+        }
+        if (c.match(/!/)) {
+          return c.replace('!', `!${prefix}`)
+        }
+        
+        return (c.length ? `${prefix}${c}` : c)
       }).join(' ')
     } catch (e) {
       console.error('Couldn\'t prefix class: ', class_, e)

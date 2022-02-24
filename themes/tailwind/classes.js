@@ -54,9 +54,9 @@ const checkboxStates = {
   disabled: ``
     + `form-bg-disabled `
     + `form-border-color-input `
+    + `opacity-50 `
     + `checked:form-bg-primary `
-    + `checked:form-border-color-checked `
-    + `checked:opacity-50`,
+    + `checked:form-border-color-checked`,
   danger: ``
     + `form-bg-input-danger `
     + `form-border-color-input-danger `
@@ -320,9 +320,9 @@ const groupTabs = {
   wrapper_selected: 'form-bg-primary form-color-on-primary border-black border-opacity-15',
   wrapper_unselected: 'form-bg-input form-color-input form-border-color-input hover:form-bg-input-hover hover:form-color-input-hover',
   wrapper_disabled: 'opacity-50 pointer-events-none',
-  wrapper_sm: 'form-p-input-sm form-text-sm form-p-group-tabs-sm',
-  wrapper_md: 'form-p-input form-text form-p-group-tabs',
-  wrapper_lg: 'form-p-input-lg form-text-lg form-p-group-tabs-lg',
+  wrapper_sm: 'form-text-sm form-p-group-tabs-sm',
+  wrapper_md: 'form-text form-p-group-tabs',
+  wrapper_lg: 'form-text-lg form-p-group-tabs-lg',
   input: 'hidden',
   text: '',
 }
@@ -1367,7 +1367,7 @@ export default {
     ]),
   },
   DragAndDrop: {
-    container: 'form-shadow-input form-bg-input form-color-input form-border-width-input border-dashed w-full transition inline-flex flex-col items-center justify-center p-6 cursor-pointer',
+    container: 'form-shadow-input form-bg-input form-color-input form-border-width-input border-dashed w-full transition inline-flex flex-col items-center justify-center p-6 cursor-pointer text-center',
     container_sm: 'form-radius-large-sm',
     container_md: 'form-radius-large',
     container_lg: 'form-radius-large-lg',
@@ -1386,7 +1386,7 @@ export default {
     ]),
   },
   FilePreview: {
-    container: 'flex justify-start flex-row group relative',
+    container: 'flex justify-center flex-row group relative',
     container_sm: 'form-h-input-height-sm',
     container_md: 'form-h-input-height',
     container_lg: 'form-h-input-height',
