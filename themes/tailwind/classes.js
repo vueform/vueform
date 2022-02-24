@@ -1116,10 +1116,10 @@ export default {
     container_lg: 'form-text-lg',
     container_error: 'has-error',
     outerWrapper: 'grid grid-cols-12',
-    innerContainer: 'flex-1',
-    innerWrapperBefore: 'w-full',
+    innerContainer: 'flex-1 grid grid-cols-12',
+    innerWrapperBefore: 'grid-cols-12',
     innerWrapper: '',
-    innerWrapperAfter: 'w-full',
+    innerWrapperAfter: 'grid-cols-12',
     $container: (classes, { el$, Size }) => ([
       classes.container,
       classes[`container_${Size}`],

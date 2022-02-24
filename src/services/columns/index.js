@@ -123,13 +123,13 @@ export default class Columns
           size = 0
         }
 
-        if (type === 'wrapper' && !this.hasLabel) {
-          size += this.cols[breakpoint].label || 0
+        // if (type === 'wrapper' && !this.hasLabel) {
+        //   size += this.cols[breakpoint].label || 0
 
-          if (size > 12) {
-            size = 12
-          }
-        }
+        //   if (size > 12) {
+        //     size = 12
+        //   }
+        // }
       }
         
       if (size !== undefined && !isNaN(size)) {

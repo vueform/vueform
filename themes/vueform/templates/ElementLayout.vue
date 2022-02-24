@@ -62,6 +62,8 @@
 
   .vf-layout-inner-container {
     flex: 1 1 0%;
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
     
     .vf-layout-inner-wrapper,
     .vf-layout-inner-wrapper-before,
@@ -74,7 +76,7 @@
 
   .vf-layout-inner-wrapper-before,
   .vf-layout-inner-wrapper-after {
-    width: 100%;
+    grid-column: span 12 / span 12;
     padding-left: var(--vf-gutter);
     padding-right: var(--vf-gutter);
   }
