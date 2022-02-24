@@ -144,7 +144,7 @@
   .ap-suggestion {
     padding-top: 0.75rem;
     padding-bottom: 0.75rem;
-    border-bottom: 1px solid theme('colors.gray.200');
+    border-bottom: 1px solid var(--vf-gray-200);
     display: flex;
     align-items: center;
     font-size: 0.875rem;
@@ -164,8 +164,8 @@
     mask-repeat: no-repeat;
     mask-position: center center;
     mask-size: contain;
-    mask-image: theme('maskImage.form-map-marker');
-    background: theme('colors.gray.400');
+    mask-image: url("data:image/svg+xml,%3csvg viewBox='0 0 384 512' fill='currentColor' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M172.268 501.67C26.97 291.031 0 269.413 0 192 0 85.961 85.961 0 192 0s192 85.961 192 192c0 77.413-26.97 99.031-172.268 309.67-9.535 13.774-29.93 13.773-39.464 0zM192 272c44.183 0 80-35.817 80-80s-35.817-80-80-80-80 35.817-80 80 35.817 80 80 80z'%3e%3c/path%3e%3c/svg%3e");
+    background: var(--vf-gray-400);
     width: 1rem;
     width: 1rem;
     margin-right: 0.75rem;

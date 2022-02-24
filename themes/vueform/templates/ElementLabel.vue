@@ -27,15 +27,21 @@
   .vf-label {
     margin-bottom: 0;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     padding-right: var(--vf-gutter);
+    padding-top: calc(var(--vf-border-width-input-t) + var(--vf-py-input));
+    padding-bottom: calc(var(--vf-gutter) / 3);
 
     &.vf-label-sm {
       padding-right: var(--vf-gutter-sm);
+      padding-top: calc(var(--vf-border-width-input-t) + var(--vf-py-input-sm));
+      padding-bottom: calc(var(--vf-gutter-sm) / 3);
     }
 
     &.vf-label-lg {
       padding-right: var(--vf-gutter-lg);
+      padding-top: calc(var(--vf-border-width-input-t) + var(--vf-py-input-lg));
+      padding-bottom: calc(var(--vf-gutter-lg) / 3);
     }
   }
 </style>

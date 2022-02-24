@@ -82,7 +82,7 @@ const multifile = function(props, context, dependencies)
    * @type {boolean}
    */
   const hasAdd = computed(() => {
-    return !isDisabled.value && (controls.value.add || controls.value.add === undefined)
+    return (controls.value.add || controls.value.add === undefined)
   })
 
   /**

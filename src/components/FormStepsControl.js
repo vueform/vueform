@@ -151,7 +151,7 @@ export default {
      * @type {boolean}
      */
     const isLoading = computed(() => {
-      return type.value === 'previous' ? false : form$.value.isLoading
+      return type.value === 'previous' ? false : (form$.value.isLoading || form$.value.submitting)
     })
 
     // =============== METHODS ==============

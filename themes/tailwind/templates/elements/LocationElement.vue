@@ -100,7 +100,7 @@
   .ap-suggestion {
     padding-top: 0.75rem;
     padding-bottom: 0.75rem;
-    border-bottom: 1px solid theme('colors.gray.200');
+    border-bottom: 1px solid var(--vf-gray-200);
     display: flex;
     align-items: center;
     font-size: 0.875rem;
@@ -121,7 +121,7 @@
     mask-position: center center;
     mask-size: contain;
     mask-image: theme('maskImage.form-map-marker');
-    background: theme('colors.gray.400');
+    background: var(--vf-gray-400);
     width: 1rem;
     width: 1rem;
     margin-right: 0.75rem;

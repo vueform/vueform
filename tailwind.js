@@ -76,8 +76,9 @@ const vueform = plugin((context) => {
       ],
       styles: {
         appearance: 'none',
-        fontSize: Array.isArray(theme('form.fontSize.base')) ? theme('form.fontSize.base')[0] : theme('form.fontSize.base'),
-        lineHeight: Array.isArray(theme('form.fontSize.base')) ? (theme('form.fontSize.base')[1].lineHeight || theme('lineHeight.normal')) : theme('lineHeight.normal'),
+        fontSize: 'var(--vf-font-size)',
+        lineHeight: 'var(--vf-line-height)',
+        letterSpacing: 'var(--vf-letter-spacing)',
         '&:focus': {
           outline: 'none',
         },
@@ -420,6 +421,7 @@ const vueform = plugin((context) => {
   let mergeH = {}
   let mergeV = {}
   let withFloating = {}
+  let fullWidth = {}
 
   sizes.forEach((s) => {
     let suffix = s?'-'+s:''
@@ -846,7 +848,7 @@ const vueform = plugin((context) => {
       })
     })
 
-    plain[`.${e(`form-pb-gutter/3${suffix}`)}`] = {
+    fullWidth[`.${e(`form-pb-gutter/3${suffix}`)}`] = {
       paddingBottom: `calc(var(--vf-gutter${size}) / 3)`
     }
 
@@ -941,7 +943,7 @@ const vueform = plugin((context) => {
         height: `calc(var(--vf-min-height-input${size}) * 0.4)`,
         marginLeft: `calc(var(--vf-min-height-input${size}) * (-0.2))`,
         marginTop: `calc(var(--vf-min-height-input${size}) * (-0.2))`,
-        animation: 'spin 1s linear infinite',
+        animation: 'form-spin 1s linear infinite',
         maskImage: theme('maskImage.form-spinner'),
         maskPosition: 'center center',
         maskSize: 'contain',
@@ -963,7 +965,7 @@ const vueform = plugin((context) => {
         height: `calc(var(--vf-min-height-input${size}) * 0.4)`,
         marginLeft: `calc(var(--vf-min-height-input${size}) * (-0.2))`,
         marginTop: `calc(var(--vf-min-height-input${size}) * (-0.2))`,
-        animation: 'spin 1s linear infinite',
+        animation: 'form-spin 1s linear infinite',
         maskImage: theme('maskImage.form-spinner'),
         maskPosition: 'center center',
         maskSize: 'contain',
@@ -985,7 +987,7 @@ const vueform = plugin((context) => {
         height: `calc(var(--vf-min-height-input${size}) * 0.4)`,
         marginLeft: `calc(var(--vf-min-height-input${size}) * (-0.2))`,
         marginTop: `calc(var(--vf-min-height-input${size}) * (-0.2))`,
-        animation: 'spin 1s linear infinite',
+        animation: 'form-spin 1s linear infinite',
         maskImage: theme('maskImage.form-spinner'),
         maskPosition: 'center center',
         maskSize: 'contain',
@@ -1044,6 +1046,14 @@ const vueform = plugin((context) => {
   })
 
   plain = Object.assign({}, plain, {
+    '@keyframes form-spin': {
+      'from': {
+        transform: 'rotate(0deg)',
+      },
+      'to': {
+        transform: 'rotate(360deg)',
+      }
+    },
     '.form-color-primary': {
       color: 'var(--vf-primary)',
     },
@@ -1722,6 +1732,7 @@ const vueform = plugin((context) => {
   addUtilities(v, ['v'])
   addUtilities(mergeH, ['merge-h'])
   addUtilities(mergeV, ['merge-v'])
+  addUtilities(fullWidth, ['full-width'])
 
   addVariant('h', ({ modifySelectors, separator }) => {
     modifySelectors(({ className }) => {
@@ -1849,6 +1860,12 @@ const vueform = plugin((context) => {
       return `${prefix('.sortable-ghost')}.${e(`ghost${separator}${className}`)}`
     })
   })
+
+  addVariant('full-width', ({ modifySelectors, separator }) => {
+    modifySelectors(({ className }) => {
+      return `${prefix('.col-span-12')}.${e(`full-width${separator}${className}`)}`
+    })
+  })
 }, {
   variants: {
     extend: {
@@ -1870,6 +1887,7 @@ const vueform = plugin((context) => {
       scale: ['focus'],
       brightness: ['hover'],
       gap: ['important'],
+      padding: ['full-width'],
     }
   },
   theme: {
