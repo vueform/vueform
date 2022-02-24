@@ -2431,7 +2431,40 @@ export default {
         }
       }
     },
+    "select": {
+      "data": {
+        "focused": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is focused."
+        }
+      }
+    },
     "dates": {
+      "data": {
+        "focused": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is focused."
+        }
+      }
+    },
+    "multiselect": {
+      "data": {
+        "focused": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is focused."
+        }
+      }
+    },
+    "tags": {
       "data": {
         "focused": {
           "public": true,

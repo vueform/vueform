@@ -16396,6 +16396,13 @@ module.exports = {
         default: '{}',
         private: true,
       },
+      focused: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is focused.',
+        private: false,
+      },
       input: {
         types: [
           'HTMLElement',
@@ -21859,6 +21866,16 @@ module.exports = {
         required: false,
         private: false,
       },
+      truncate: {
+        required: 'false',
+        default: 'true',
+        types: [
+          'boolean',
+        ],
+        native: false,
+        required: false,
+        private: false,
+      },
       loading: {
         required: 'false',
         default: 'false',
@@ -21960,6 +21977,13 @@ module.exports = {
         description: 'Helper property used to store listeners for events.',
         default: '{}',
         private: true,
+      },
+      focused: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is focused.',
+        private: false,
       },
       input: {
         types: [
@@ -30082,6 +30106,13 @@ module.exports = {
         description: 'Helper property used to store listeners for events.',
         default: '{}',
         private: true,
+      },
+      focused: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is focused.',
+        private: false,
       },
       input: {
         types: [

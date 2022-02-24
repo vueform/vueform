@@ -667,8 +667,8 @@ const vueform = plugin((context) => {
       paddingTop: `calc(var(--vf-py-input${size}) * 0.5)`,
     }
 
-    plain[`.${e(`form-pr-select-label${suffix}`)}`] = {
-      paddingRight: `calc(1.25rem + var(--vf-px-input${size}) * 3)`,
+    plain[`.${e(`form-pr-input-height${suffix}`)}`] = {
+      paddingRight: `var(--vf-min-height-input${size})`,
     }
 
     // top, right, bottom, left

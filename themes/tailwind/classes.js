@@ -620,9 +620,9 @@ export default {
     select: {
       ...select,
       multipleLabel: 'flex items-center h-full absolute left-0 top-0 pointer-events-none bg-transparent',
-      multipleLabel_sm: 'form-pl-input-sm form-pr-select-label-sm with-floating:form-p-input-floating-sm',
-      multipleLabel_md: 'form-pl-input form-pr-select-label with-floating:form-p-input-floating',
-      multipleLabel_lg: 'form-pl-input-lg form-pr-select-label-lg with-floating:form-p-input-floating-lg',
+      multipleLabel_sm: 'form-pl-input-sm form-pr-input-height-sm with-floating:form-p-input-floating-sm',
+      multipleLabel_md: 'form-pl-input form-pr-input-height with-floating:form-p-input-floating',
+      multipleLabel_lg: 'form-pl-input-lg form-pr-input-height-lg with-floating:form-p-input-floating-lg',
       $multipleLabel: (classes, { Size }) => ([
         classes.select.multipleLabel,
         classes.select[`multipleLabel_${Size}`],
@@ -728,13 +728,18 @@ export default {
     select: {
       ...select,
       singleLabel: 'flex items-center h-full max-w-full absolute left-0 top-0 pointer-events-none bg-transparent box-border',
-      singleLabel_sm: 'form-pl-input-sm form-pr-select-label-sm with-floating:form-p-input-floating-sm',
-      singleLabel_md: 'form-pl-input form-pr-select-label with-floating:form-p-input-floating',
-      singleLabel_lg: 'form-pl-input-lg form-pr-select-label-lg with-floating:form-p-input-floating-lg',
-      singleLabelText: 'overflow-ellipsis overflow-hidden block whitespace-nowrap max-w-full',
+      singleLabel_sm: 'form-pl-input-sm form-pr-input-height-sm with-floating:form-p-input-floating-sm',
+      singleLabel_md: 'form-pl-input form-pr-input-height with-floating:form-p-input-floating',
+      singleLabel_lg: 'form-pl-input-lg form-pr-input-height-lg with-floating:form-p-input-floating-lg',
+      singleLabelText: 'overflow-hidden block whitespace-nowrap max-w-full',
+      singleLabelText_truncate: 'overflow-ellipsis',
       $singleLabel: (classes, { Size }) => ([
         classes.select.singleLabel,
         classes.select[`singleLabel_${Size}`],
+      ]),
+      $singleLabelText: (classes, { truncate }) => ([
+        classes.select.singleLabelText,
+        truncate ? classes.select[`singleLabelText_truncate`] : null,
       ]),
     },
     $input: (classes, { isDisabled, Size, isSuccess, isDanger }) => ([

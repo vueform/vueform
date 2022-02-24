@@ -39,6 +39,7 @@
             singleLabel_md: '',
             singleLabel_lg: 'vf-multiselect-single-label-lg',
             singleLabelText: 'vf-multiselect-single-label-text',
+            singleLabelText_truncate: 'vf-multiselect-single-label-text-truncate',
             
             container: 'vf-multiselect',
             container_enabled: '',
@@ -185,6 +186,10 @@
             $singleLabel: (classes, { Size }) => ([
               classes.select.singleLabel,
               classes.select[`singleLabel_${Size}`],
+            ]),
+            $singleLabelText: (classes, { truncate }) => ([
+              classes.select.singleLabelText,
+              truncate ? classes.select[`singleLabelText_truncate`] : null,
             ]),
           },
           $input: (classes, { isDisabled, Size, isDanger, isSuccess }) => ([
@@ -406,17 +411,17 @@
     box-sizing: border-box;
     max-width: 100%;
     padding-left: var(--vf-px-input);
-    padding-right: calc(1.25rem + var(--vf-px-input) * 3);
+    padding-right: var(--vf-min-height-input);
   }
 
   .vf-multiselect-single-label {
     &.vf-multiselect-single-label-sm {
       padding-left: var(--vf-px-input-sm);
-      padding-right: calc(1.25rem + var(--vf-px-input-sm) * 3);
+      padding-right: var(--vf-min-height-input-sm);
     }
     &.vf-multiselect-single-label-lg {
       padding-left: var(--vf-px-input-lg);
-      padding-right: calc(1.25rem + var(--vf-px-input-lg) * 3);
+      padding-right: var(--vf-min-height-input-lg);
     }
   }
 
@@ -455,8 +460,11 @@
     overflow: hidden;
     display: block;
     white-space: nowrap;
-    text-overflow: ellipsis;
     max-width: 100%;
+  }
+
+  .vf-multiselect-single-label-text-truncate {
+    text-overflow: ellipsis;
   }
 
   .vf-multiselect-search {

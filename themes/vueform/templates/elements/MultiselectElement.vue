@@ -202,15 +202,15 @@
     pointer-events: none;
     background: transparent;
     padding-left: var(--vf-px-input);
-    padding-right: calc(1.25rem + var(--vf-px-input) * 3);
+    padding-right: var(--vf-min-height-input);
 
     &.vf-multiselect-multiple-label-sm {
       padding-left: var(--vf-px-input-sm);
-      padding-right: calc(1.25rem + var(--vf-px-input-sm) * 3);
+      padding-right: var(--vf-min-height-input-sm);
     }
     &.vf-multiselect-multiple-label-lg {
       padding-left: var(--vf-px-input-lg);
-      padding-right: calc(1.25rem + var(--vf-px-input-lg) * 3);
+      padding-right: var(--vf-min-height-input-lg);
     }
   }
 

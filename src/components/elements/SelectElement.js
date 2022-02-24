@@ -280,6 +280,12 @@ export default {
       default: true,
       native: false,
     },
+    truncate: {
+      type: [Boolean],
+      required: false,
+      default: true,
+      native: false,
+    },
     loading: {
       type: [Boolean],
       required: false,
