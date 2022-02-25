@@ -8,7 +8,7 @@
       return {
         merge: true,
         defaultClasses: {
-          container: '',
+          container: 'vf-text-type',
           inputContainer: 'vf-input-group vf-input-group-textarea',
           inputContainer_sm: 'vf-input-group-sm',
           inputContainer_md: '',

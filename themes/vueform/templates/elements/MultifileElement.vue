@@ -8,7 +8,7 @@
       return {
         merge: true,
         defaultClasses: {
-          container: '',
+          container: 'vf-text-type',
           list: 'vf-multifile-list',
           list_sm: 'vf-multifile-list-sm',
           list_md: '',

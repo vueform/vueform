@@ -12,7 +12,7 @@
       return {
         merge: true,
         defaultClasses: {
-          container: '',
+          container: 'vf-text-type',
           select: {
             tags: 'vf-multiselect-tags',
             tags_sm: 'vf-multiselect-tags-sm',

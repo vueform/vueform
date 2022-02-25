@@ -8,7 +8,7 @@
       return {
         merge: true,
         defaultClasses: {
-          container: '',
+          container: 'vf-text-type',
           input: 'vf-editor',
           input_enabled: '',
           input_disabled: 'vf-editor-disabled',

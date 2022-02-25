@@ -96,7 +96,7 @@ const radio = {
 }
 
 const text = {
-  container: '',
+  container: 'form-text-type',
   inputContainer: 'w-full flex flex-1 transition-input duration-200 border-solid form-border-width-input form-shadow-input form-input-group group',
   inputContainer_sm: 'form-radius-input-sm form-h-input-height-sm',
   inputContainer_md: 'form-radius-input form-h-input-height',
@@ -146,7 +146,7 @@ const textarea = {
 }
 
 const editor = {
-  container: '',
+  container: 'form-text-type',
   input: 'border-solid transition-input duration-200 form-border-width-input form-shadow-input',
   input_focused: 'form-focus',
   input_default: inputStates.default,
@@ -363,7 +363,7 @@ const groupBlocks = {
 export default {
   // Elements
   ButtonElement: {
-    container: '',
+    container: 'form-text-type',
     button: 'inline-block transition form-border-width-btn form-shadow-btn focus:outline-zero',
     button_enabled: 'cursor-pointer transition-transform ease-linear focus:form-ring transform hover:scale-105',
     button_disabled: 'opacity-60 cursor-not-allowed',
@@ -462,7 +462,7 @@ export default {
     ...editor,
   },
   FileElement: {
-    container: '',
+    container: 'form-text-type',
     container_removing: 'opacity-50',
     button: 'form-border-width-btn form-shadow-btn inline-block transition focus:outline-zero',
     button_enabled: 'form-bg-btn-secondary form-color-btn-secondary form-border-color-btn-secondary cursor-pointer transition-transform transform hover:scale-105 focus:form-ring',
@@ -538,7 +538,7 @@ export default {
     ...text,
   },
   MultifileElement: {
-    container: '',
+    container: 'form-text-type',
     list: '',
     list_sm: 'form-mt-gutter-sm',
     list_md: 'form-mt-gutter',
@@ -607,7 +607,7 @@ export default {
     ]),
   },
   MultiselectElement: {
-    container: '',
+    container: 'form-text-type',
     input: 'w-full form-p-input transition-input duration-200 border-solid form-border-width-input form-shadow-input',
     input_default: inputStates.default,
     input_disabled: inputStates.disabled,
@@ -707,7 +707,7 @@ export default {
     ]),
   },
   SelectElement: {
-    container: '',
+    container: 'form-text-type',
     input: 'w-full transition-input duration-200 border-solid form-border-width-input form-shadow-input',
     input_default: inputStates.default,
     input_disabled: inputStates.disabled,
@@ -766,11 +766,14 @@ export default {
   SliderElement: {
     container: '',
     wrapper: '',
-    wrapper_sm: 'mt-3.5',
-    wrapper_md: 'mt-4',
-    wrapper_lg: 'mt-5',
+    wrapper_sm: '',
+    wrapper_md: '',
+    wrapper_lg: '',
     slider: {
       target: 'relative box-border user-select-none touch-none tap-highlight-transparent touch-callout-none disabled:cursor-not-allowed disabled:opacity-50',
+      target_sm: 'form-my-slider-sm',
+      target_md: 'form-my-slider',
+      target_lg: 'form-my-slider-lg',
       focused: 'slider-focused',
       tooltipFocus: 'slider-tooltip-focus',
       tooltipDrag: 'slider-tooltip-drag',
@@ -831,6 +834,10 @@ export default {
       draggable: 'cursor-ew-resize v:cursor-ns-resize',
       tap: 'slider-state-tap',
       drag: 'slider-state-drag',
+      $target: (classes, { Size }) => ([
+        classes.slider.target,
+        classes.slider[`target_${Size}`],
+      ]),
       $horizontal: (classes, { Size }) => ([
         classes.slider.horizontal,
         classes.slider[`horizontal_${Size}`],
@@ -893,7 +900,7 @@ export default {
     ]),
   },
   TagsElement: {
-    container: '',
+    container: 'form-text-type',
     select: {
       ...select,
       tags: 'flex-grow flex-shrink flex flex-wrap items-center',
@@ -956,7 +963,7 @@ export default {
   },
   ToggleElement: {
     container: '',
-    wrapper: 'flex items-center',
+    wrapper: 'flex items-start',
     text: '',
     text_sm: 'form-ml-space-checkbox-sm',
     text_md: 'form-ml-space-checkbox',
@@ -1076,9 +1083,9 @@ export default {
   },
   ElementLabel: {
     container: 'flex items-start',
-    container_sm: 'form-pr-gutter-sm form-pt-input-border-sm form-pb-gutter/3-sm',
-    container_md: 'form-pr-gutter form-pt-input-border form-pb-gutter/3',
-    container_lg: 'form-pr-gutter-lg form-pt-input-border-lg form-pb-gutter/3-lg',
+    container_sm: 'form-pr-gutter-sm form-pb-gutter/3-sm',
+    container_md: 'form-pr-gutter form-pb-gutter/3',
+    container_lg: 'form-pr-gutter-lg form-pb-gutter/3-lg',
     $container: (classes, { el$, Size }) => ([
       classes.container,
       classes[`container_${Size}`],

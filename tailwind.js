@@ -422,6 +422,7 @@ const vueform = plugin((context) => {
   let mergeV = {}
   let withFloating = {}
   let fullWidth = {}
+  let textType = {}
 
   sizes.forEach((s) => {
     let suffix = s?'-'+s:''
@@ -635,13 +636,21 @@ const vueform = plugin((context) => {
       } else {
         sides.forEach((side) => {
           plain[key][`${type}${upperFirst(side)}`] = ['top', 'bottom'].indexOf(side) !== -1 ? Y : X
-          plain[keyBorder][`${type}${upperFirst(side)}`] = side === 'top'
-            ? TopBorder :
-            (side === 'right' ? RightBorder : 
-            (side === 'bottom' ? BottomBorder : LeftBorder))
+
+          if (pm !== 'pt') {
+            plain[keyBorder][`${type}${upperFirst(side)}`] = side === 'top'
+              ? TopBorder :
+              (side === 'right' ? RightBorder : 
+              (side === 'bottom' ? BottomBorder : LeftBorder))
+          }
         })
       }
     })
+
+    plain[`.form-my-slider${suffix}`] = {
+      marginTop: `calc((var(--vf-line-height${size}) - var(--vf-slider-height${size})) / 2)`,
+      marginBottom: `calc((var(--vf-line-height${size}) - var(--vf-slider-height${size})) / 2)`,
+    }
 
     plain[`.form-mt-floating${suffix}`] = {
       marginTop: `var(--vf-floating-top${size})`,
@@ -649,6 +658,10 @@ const vueform = plugin((context) => {
 
     plain[`.-form-mb-input${suffix}`] = {
       marginBottom: `calc(var(--vf-py-input${size}) * (-1))`,
+    }
+
+    textType[`.form-pt-input-border${suffix}`] = {
+      paddingTop: `calc(var(--vf-py-input${size}) + (var(--vf-border-width-input-t${size}) / 2))`,
     }
 
     withFloating[`.form-p-input-floating${suffix}`] = {
@@ -1733,6 +1746,7 @@ const vueform = plugin((context) => {
   addUtilities(mergeH, ['merge-h'])
   addUtilities(mergeV, ['merge-v'])
   addUtilities(fullWidth, ['full-width'])
+  addUtilities(textType, ['text-type'])
 
   addVariant('h', ({ modifySelectors, separator }) => {
     modifySelectors(({ className }) => {
@@ -1864,6 +1878,12 @@ const vueform = plugin((context) => {
   addVariant('full-width', ({ modifySelectors, separator }) => {
     modifySelectors(({ className }) => {
       return `${prefix('.col-span-12')}.${e(`full-width${separator}${className}`)}`
+    })
+  })
+
+  addVariant('text-type', ({ modifySelectors, separator }) => {
+    modifySelectors(({ className }) => {
+      return `${prefix('.form-text-type')} .${e(`text-type${separator}${className}`)}`
     })
   })
 }, {
@@ -2241,7 +2261,7 @@ const vueform = plugin((context) => {
 
         toggleHeight: {
           base: theme('height')['5'],
-          sm: theme('height')['4.5'],
+          sm: theme('height')['4'],
           lg: theme('height')['5'],
         },
 

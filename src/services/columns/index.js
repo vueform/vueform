@@ -34,7 +34,7 @@ export default class Columns
       return { [this.defaultBreakpoint]: { container: columns } }
     }
 
-    // columns: { container: 8, container: { default: 8, lg: 8 } }
+    // columns: { container: 8, wrapper: { default: 8, lg: 8 } }
     if (typeof columns === 'object' && ['container', 'label', 'wrapper'].indexOf(Object.keys(columns)[0]) !== -1) {
       let serialized = {}
 
@@ -63,7 +63,7 @@ export default class Columns
       return serialized
     }
 
-    // columns: { lg: 8, lg: { container: 8 } }
+    // columns: { lg: 8, md: { container: 8 } }
     else {
       let serialized = {}
 
@@ -77,7 +77,7 @@ export default class Columns
           serialized[breakpoint].container = size
         }
         
-        // columns: { lg: { container: 8 } }
+        // columns: { md: { container: 8 } }
         else {
           serialized[breakpoint] = size
         }

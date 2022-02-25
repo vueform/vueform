@@ -19,6 +19,9 @@
           wrapper_lg: 'vf-slider-wrapper-lg',
           slider: {
             target: 'vf-slider-target',
+            target_sm: 'vf-slider-target-sm',
+            target_md: 'vf-slider-target-md',
+            target_lg: 'vf-slider-target-lg',
             focused: 'vf-slider-focused',
             tooltipFocus: 'vf-slider-tooltip-focus',
             tooltipDrag: 'vf-slider-tooltip-drag',
@@ -79,6 +82,10 @@
             draggable: 'vf-slider-draggable',
             tap: 'vf-slider-state-tap',
             drag: 'vf-slider-state-drag',
+            $slider: (classes, { Size }) => ([
+              classes.slider.slider,
+              classes.slider[`slider_${Size}`],
+            ]),
             $horizontal: (classes, { Size }) => ([
               classes.slider.horizontal,
               classes.slider[`horizontal_${Size}`],
@@ -165,10 +172,19 @@
 
   .vf-slider-target {
     position: relative;
+    margin: calc((var(--vf-line-height) - var(--vf-slider-height)) / 2) 0;
 
     &[disabled] {
       opacity: 0.5;
       cursor: not-allowed;
+    }
+
+    &.vf-slider-target-sm {
+      margin: calc((var(--vf-line-height-sm) - var(--vf-slider-height-sm)) / 2) 0;
+    }
+
+    &.vf-slider-target-lg {
+      margin: calc((var(--vf-line-height-lg) - var(--vf-slider-height-lg)) / 2) 0;
     }
 
     &.vf-slider-horizontal {

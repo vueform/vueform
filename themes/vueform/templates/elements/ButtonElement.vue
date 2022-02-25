@@ -8,7 +8,7 @@
       return {
         merge: true,
         defaultClasses: {
-          container: '',
+          container: 'vf-text-type',
           button: 'vf-btn',
           button_enabled: '',
           button_disabled: 'vf-btn-disabled',

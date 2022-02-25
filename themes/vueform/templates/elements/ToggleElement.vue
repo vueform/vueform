@@ -73,7 +73,7 @@
 <style lang="scss">
   .vf-toggle-wrapper {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     width: 100%;
   }
 

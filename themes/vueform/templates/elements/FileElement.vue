@@ -8,7 +8,7 @@
       return {
         merge: true,
         defaultClasses: {
-          container: 'vf-file',
+          container: 'vf-file vf-text-type',
           container_removing: 'vf-file-removing',
           button: 'vf-btn vf-btn-secondary',
           button_enabled: '',

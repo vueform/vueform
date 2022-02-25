@@ -12,7 +12,7 @@
       return {
         merge: true,
         defaultClasses: {
-          container: '',
+          container: 'vf-text-type',
           input: 'vf-input vf-native-select',
           input_enabled: '',
           input_disabled: '',

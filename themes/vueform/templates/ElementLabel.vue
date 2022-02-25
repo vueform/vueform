@@ -29,19 +29,35 @@
     display: flex;
     align-items: flex-start;
     padding-right: var(--vf-gutter);
-    padding-top: calc(var(--vf-border-width-input-t) + var(--vf-py-input));
     padding-bottom: calc(var(--vf-gutter) / 3);
 
     &.vf-label-sm {
       padding-right: var(--vf-gutter-sm);
-      padding-top: calc(var(--vf-border-width-input-t) + var(--vf-py-input-sm));
       padding-bottom: calc(var(--vf-gutter-sm) / 3);
     }
 
     &.vf-label-lg {
       padding-right: var(--vf-gutter-lg);
-      padding-top: calc(var(--vf-border-width-input-t) + var(--vf-py-input-lg));
       padding-bottom: calc(var(--vf-gutter-lg) / 3);
+    }
+  }
+
+  .vf-form-horizontal {
+    .vf-text-type {
+      .vf-label {
+        padding-top: calc(var(--vf-border-width-input-t) + var(--vf-py-input));
+        padding-bottom: 0;
+
+        &.vf-label-sm {
+          padding-top: calc(var(--vf-border-width-input-t) + var(--vf-py-input-sm));
+          padding-bottom: 0;
+        }
+
+        &.vf-label-lg {
+          padding-top: calc(var(--vf-border-width-input-t) + var(--vf-py-input-lg));
+          padding-bottom: 0;
+        }
+      }
     }
   }
 </style>
