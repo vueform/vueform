@@ -1117,9 +1117,9 @@ export default {
     container_error: 'has-error',
     outerWrapper: 'grid grid-cols-12',
     innerContainer: 'flex-1 grid grid-cols-12',
-    innerWrapperBefore: 'grid-cols-12',
+    innerWrapperBefore: 'col-span-12',
     innerWrapper: '',
-    innerWrapperAfter: 'grid-cols-12',
+    innerWrapperAfter: 'col-span-12',
     $container: (classes, { el$, Size }) => ([
       classes.container,
       classes[`container_${Size}`],

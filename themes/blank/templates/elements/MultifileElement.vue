@@ -64,7 +64,6 @@
         defaultClasses: {
           container: '',
           list: '',
-          spacer: '',
           listItem: '',
           handle: '',
           handleIcon: '',

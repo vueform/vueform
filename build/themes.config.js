@@ -36,7 +36,7 @@ const files = [
   },
   {
     minimize: true,
-    input: 'themes/bootstrap/css/index.ccss',
+    input: 'themes/bootstrap/css/index.css',
     output: 'themes/bootstrap/css/index.min.css',
   },
 ]

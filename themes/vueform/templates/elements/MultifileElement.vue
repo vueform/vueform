@@ -96,18 +96,6 @@
     }
   }
 
-  .vf-multifile-spacer {
-    margin-bottom: calc(var(--vf-gutter) / 2);
-
-    &.vf-multifile-spacer-sm {
-      margin-bottom: calc(var(--vf-gutter-sm) / 2);
-    }
-
-    &.vf-multifile-spacer-lg {
-      margin-bottom: calc(var(--vf-gutter-lg) / 2);
-    }
-  }
-
   .vf-multifile-list-file,
   .vf-multifile-list-image {
     display: grid;

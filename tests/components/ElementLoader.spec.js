@@ -16,7 +16,7 @@ describe('ElementLoader', () => {
         schema: {
           el: {
             type: 'text',
-            rules: 'required'
+            rules: 'required',
           }
         }
       }, {
@@ -24,13 +24,14 @@ describe('ElementLoader', () => {
       })
       
       let el = form.vm.el$('el')
-      let ElementLoader = findAllComponents(form, { name: 'ElementLoader' }).at(0)
 
-      expect(ElementLoader.vm.$el).not.toBeVisible()
+      expect(findAllComponents(form, { name: 'ElementLoader' }).length).toBe(0)
 
       el.Validators[0].pending = true
 
       await nextTick()
+
+      ElementLoader = findAllComponents(form, { name: 'ElementLoader' }).at(0)
       
       expect(ElementLoader.vm.$el).toBeVisible()
 

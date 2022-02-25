@@ -27,6 +27,7 @@ export const fieldOptions = function (elementType, elementName, options) {
       disabled: el.isDisabled,
       showTooltip: el.showTooltip,
       tooltipPosition: el.tooltipPosition,
+      lazy: el.lazy,
     })
   })
   
@@ -59,6 +60,7 @@ export const fieldOptions = function (elementType, elementName, options) {
       disabled: el.isDisabled,
       showTooltip: el.showTooltip,
       tooltipPosition: el.tooltipPosition,
+      lazy: el.lazy,
       custom: 'option'
     })
   })

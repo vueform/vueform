@@ -68,6 +68,9 @@ export const fieldOptions = function (elementType, elementName, options) {
       groupOptions: el.groupOptions,
       groupHideEmpty: el.groupHideEmpty,
       inputType: el.inputType,
+      createOption: el.create,
+      appendNewOption: el.appendNewOption,
+      addOptionOn: el.addOptionOn,
     })
   })
   
@@ -113,6 +116,9 @@ export const fieldOptions = function (elementType, elementName, options) {
       groupOptions: el.groupOptions,
       groupHideEmpty: el.groupHideEmpty,
       inputType: el.inputType,
+      createOption: el.create,
+      appendNewOption: el.appendNewOption,
+      addOptionOn: el.addOptionOn,
       custom: 'option'
     })
   })

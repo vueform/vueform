@@ -72,7 +72,6 @@ export const fieldOptions = function (elementType, elementName, options) {
     expect(el.fieldOptions).toStrictEqual({
       mode: 'tags',
       searchable: el.search || el.create,
-      createTag: el.create,
       noOptionsText: el.form$.__('vueform.multiselect.noOptions'),
       noResultsText: el.form$.__('vueform.multiselect.noResults'),
       label: el.labelProp,
@@ -102,8 +101,9 @@ export const fieldOptions = function (elementType, elementName, options) {
       groupSelect: el.groupSelect,
       inputType: el.inputType,
       hideSelected: el.hideSelected,
-      appendNewTag: el.appendNewTag,
-      addTagOn: el.addTagOn,
+      createOption: el.create,
+      appendNewOption: el.appendNewOption,
+      addOptionOn: el.addOptionOn,
     })
   })
   
@@ -124,7 +124,6 @@ export const fieldOptions = function (elementType, elementName, options) {
     expect(el.fieldOptions).toStrictEqual({
       mode: 'tags',
       searchable: el.search || el.create,
-      createTag: el.create,
       noOptionsText: el.form$.__('vueform.multiselect.noOptions'),
       noResultsText: el.form$.__('vueform.multiselect.noResults'),
       label: el.labelProp,
@@ -154,8 +153,9 @@ export const fieldOptions = function (elementType, elementName, options) {
       groupSelect: el.groupSelect,
       inputType: el.inputType,
       hideSelected: el.hideSelected,
-      appendNewTag: el.appendNewTag,
-      addTagOn: el.addTagOn,
+      createOption: el.create,
+      appendNewOption: el.appendNewOption,
+      addOptionOn: el.addOptionOn,
       custom: 'option'
     })
   })

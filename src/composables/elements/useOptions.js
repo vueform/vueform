@@ -522,7 +522,7 @@ const tags = function (props, context, dependencies)
       groupSelect: groupSelect.value,
       inputType: inputType.value,
       hideSelected: hideSelected.value,
-      createTag: create.value,
+      createOption: create.value,
       appendNewOption: appendNewOption.value,
       addOptionOn: addOptionOn.value,
     }

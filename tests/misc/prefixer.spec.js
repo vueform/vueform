@@ -8,9 +8,9 @@ describe('Tailwind Prefixer', () => {
 
       export default function (breakpoint, size, prefix = '') {
         const safelist = [
-          'w-1/12',
-          'w-2/12',
-          'hover:w-3/12',
+          'col-span-1',
+          'col-span-2',
+          'hover:col-span-3',
         ]
 
         const checkbox = {
@@ -27,9 +27,9 @@ describe('Tailwind Prefixer', () => {
 
       export default function (breakpoint, size, prefix = '') {
         const safelist = [
-          'tw-w-1/12',
-          'tw-w-2/12',
-          'hover:tw-w-3/12',
+          'tw-col-span-1',
+          'tw-col-span-2',
+          'hover:tw-col-span-3',
         ]
 
         const checkbox = {
@@ -43,71 +43,66 @@ describe('Tailwind Prefixer', () => {
           ]),
         }
       }
-sm:tw-w-1/12
-sm:tw-w-2/12
-sm:tw-w-3/12
-sm:tw-w-4/12
-sm:tw-w-5/12
-sm:tw-w-6/12
-sm:tw-w-7/12
-sm:tw-w-8/12
-sm:tw-w-9/12
-sm:tw-w-10/12
-sm:tw-w-11/12
-sm:tw-w-12/12
-sm:tw-w-full
-md:tw-w-1/12
-md:tw-w-2/12
-md:tw-w-3/12
-md:tw-w-4/12
-md:tw-w-5/12
-md:tw-w-6/12
-md:tw-w-7/12
-md:tw-w-8/12
-md:tw-w-9/12
-md:tw-w-10/12
-md:tw-w-11/12
-md:tw-w-12/12
-md:tw-w-full
-lg:tw-w-1/12
-lg:tw-w-2/12
-lg:tw-w-3/12
-lg:tw-w-4/12
-lg:tw-w-5/12
-lg:tw-w-6/12
-lg:tw-w-7/12
-lg:tw-w-8/12
-lg:tw-w-9/12
-lg:tw-w-10/12
-lg:tw-w-11/12
-lg:tw-w-12/12
-lg:tw-w-full
-xl:tw-w-1/12
-xl:tw-w-2/12
-xl:tw-w-3/12
-xl:tw-w-4/12
-xl:tw-w-5/12
-xl:tw-w-6/12
-xl:tw-w-7/12
-xl:tw-w-8/12
-xl:tw-w-9/12
-xl:tw-w-10/12
-xl:tw-w-11/12
-xl:tw-w-12/12
-xl:tw-w-full
-2xl:tw-w-1/12
-2xl:tw-w-2/12
-2xl:tw-w-3/12
-2xl:tw-w-4/12
-2xl:tw-w-5/12
-2xl:tw-w-6/12
-2xl:tw-w-7/12
-2xl:tw-w-8/12
-2xl:tw-w-9/12
-2xl:tw-w-10/12
-2xl:tw-w-11/12
-2xl:tw-w-12/12
-2xl:tw-w-full`)
+sm:tw-col-span-1
+sm:tw-col-span-2
+sm:tw-col-span-3
+sm:tw-col-span-4
+sm:tw-col-span-5
+sm:tw-col-span-6
+sm:tw-col-span-7
+sm:tw-col-span-8
+sm:tw-col-span-9
+sm:tw-col-span-10
+sm:tw-col-span-11
+sm:tw-col-span-12
+md:tw-col-span-1
+md:tw-col-span-2
+md:tw-col-span-3
+md:tw-col-span-4
+md:tw-col-span-5
+md:tw-col-span-6
+md:tw-col-span-7
+md:tw-col-span-8
+md:tw-col-span-9
+md:tw-col-span-10
+md:tw-col-span-11
+md:tw-col-span-12
+lg:tw-col-span-1
+lg:tw-col-span-2
+lg:tw-col-span-3
+lg:tw-col-span-4
+lg:tw-col-span-5
+lg:tw-col-span-6
+lg:tw-col-span-7
+lg:tw-col-span-8
+lg:tw-col-span-9
+lg:tw-col-span-10
+lg:tw-col-span-11
+lg:tw-col-span-12
+xl:tw-col-span-1
+xl:tw-col-span-2
+xl:tw-col-span-3
+xl:tw-col-span-4
+xl:tw-col-span-5
+xl:tw-col-span-6
+xl:tw-col-span-7
+xl:tw-col-span-8
+xl:tw-col-span-9
+xl:tw-col-span-10
+xl:tw-col-span-11
+xl:tw-col-span-12
+2xl:tw-col-span-1
+2xl:tw-col-span-2
+2xl:tw-col-span-3
+2xl:tw-col-span-4
+2xl:tw-col-span-5
+2xl:tw-col-span-6
+2xl:tw-col-span-7
+2xl:tw-col-span-8
+2xl:tw-col-span-9
+2xl:tw-col-span-10
+2xl:tw-col-span-11
+2xl:tw-col-span-12`)
   })
 
   it('should prefix tailwind classes', () => {
@@ -135,9 +130,9 @@ xl:tw-w-full
   })
 
   it('should prefix tailwind columns', () => {
-    expect(columns('md', '8', 'tw-')).toBe('md:tw-w-8/12')
-    expect(columns('default', '8', 'tw-')).toBe('tw-w-8/12')
-    expect(columns('default', '12', 'tw-')).toBe('tw-w-full')
-    expect(columns('sm', '12', 'tw-')).toBe('sm:tw-w-full')
+    expect(columns('md', '8', 'tw-')).toBe('md:tw-col-span-8')
+    expect(columns('default', '8', 'tw-')).toBe('tw-col-span-8')
+    expect(columns('default', '12', 'tw-')).toBe('tw-col-span-12')
+    expect(columns('sm', '12', 'tw-')).toBe('sm:tw-col-span-12')
   })
 })

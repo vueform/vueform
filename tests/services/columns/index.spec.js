@@ -688,7 +688,7 @@ describe('Bootstrap Columns Util', () => {
   })
 
   it('should merge element breakpoints to form breakpoints when does not have label', async () => {
-     let form = createForm({
+    let form = createForm({
       columns: {
         container: { default: 12, lg: 12, md: 6 },
         label: { default: 2, lg: 2, md: 6, sm: 12 },
@@ -713,7 +713,7 @@ describe('Bootstrap Columns Util', () => {
       container: ['vf-col-6', 'vf-col-lg-6', 'vf-col-md-6'],
       innerContainer: ['vf-col-12', 'vf-col-lg-12', 'vf-col-md-12', 'vf-col-sm-12'],
       label: ['vf-col-0', 'vf-col-lg-0', 'vf-col-md-0', 'vf-col-sm-0'],
-      wrapper: ['vf-col-12', 'vf-col-lg-12', 'vf-col-md-12', 'vf-col-sm-12'],
+      wrapper: ['vf-col-6', 'vf-col-lg-10', 'vf-col-md-6', 'vf-col-sm-12'],
     })
   })
 })

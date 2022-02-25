@@ -26,7 +26,7 @@ export const classes = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
     _.each(el.classesInstance.componentClasses, (c, k) => {
-      if (!k.match(/^\$/)) {
+      if (!k.match(/^\$/) && !_.isPlainObject(c)) {
         expect(c).toEqual(classesToArray(defaultTheme.templates[elementName].data().defaultClasses)[k])
       }
     })

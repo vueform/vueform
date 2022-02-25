@@ -12,9 +12,9 @@
           container_sm: 'vf-row-sm',
           container_md: '',
           container_lg: 'vf-row-lg',
-          $container: (classes, { type }) => ([
+          $container: (classes, { Size }) => ([
             classes.container,
-            classes[`container_${type}`]
+            classes[`container_${Size}`]
           ]),
         }
       }

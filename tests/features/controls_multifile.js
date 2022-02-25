@@ -31,7 +31,7 @@ export const hasAdd = function (elementType, elementName, options) {
 
     form.vm.$set(form.vm.vueform.schema.el, 'disabled', true)
     await nextTick()
-    expect(el.hasAdd).toBe(false)
+    expect(el.hasAdd).toBe(true)
   })
 }
 

@@ -394,9 +394,11 @@ export default function (elementType, componentName, schema = {}, options = {}) 
 
       let Component = findAllComponents(form, { name: componentName }).at(0)
 
-      expect(Component.vm.classesInstance.componentClasses).toEqual(
-        classesToArray(defaultTheme.templates[componentName].data().defaultClasses)
-      )
+      _.each(Component.vm.classesInstance.componentClasses, (c, k) => {
+        if (!k.match(/^\$/) && !_.isPlainObject(c)) {
+          expect(c).toEqual(classesToArray(defaultTheme.templates[componentName].data().defaultClasses)[k])
+        }
+      })
     })
 
     it('should override template classes with theme classes', async () => {

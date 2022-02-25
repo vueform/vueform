@@ -47,6 +47,9 @@ export const fieldOptions = function (elementType, elementName, options) {
     expect(el.fieldOptions.groupSelect).toStrictEqual(el.groupSelect)
     expect(el.fieldOptions.inputType).toStrictEqual(el.inputType)
     expect(el.fieldOptions.hideSelected).toStrictEqual(el.hideSelected)
+    expect(el.fieldOptions.createOption).toStrictEqual(el.create)
+    expect(el.fieldOptions.appendNewOption).toStrictEqual(el.appendNewOption)
+    expect(el.fieldOptions.addOptionOn).toStrictEqual(el.addOptionOn)
   })
   
   it('should extend `options` from schema', () => {
@@ -95,6 +98,9 @@ export const fieldOptions = function (elementType, elementName, options) {
     expect(el.fieldOptions.groupSelect).toStrictEqual(el.groupSelect)
     expect(el.fieldOptions.inputType).toStrictEqual(el.inputType)
     expect(el.fieldOptions.hideSelected).toStrictEqual(el.hideSelected)
+    expect(el.fieldOptions.createOption).toStrictEqual(el.create)
+    expect(el.fieldOptions.appendNewOption).toStrictEqual(el.appendNewOption)
+    expect(el.fieldOptions.addOptionOn).toStrictEqual(el.addOptionOn)
     expect(el.fieldOptions.custom).toStrictEqual('option')
   })
   
