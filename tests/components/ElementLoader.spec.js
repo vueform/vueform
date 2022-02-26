@@ -31,7 +31,7 @@ describe('ElementLoader', () => {
 
       await nextTick()
 
-      ElementLoader = findAllComponents(form, { name: 'ElementLoader' }).at(0)
+      let ElementLoader = findAllComponents(form, { name: 'ElementLoader' }).at(0)
       
       expect(ElementLoader.vm.$el).toBeVisible()
 

@@ -112,7 +112,8 @@ export default {
     lazy: {
       required: false,
       type: [Boolean],
-      default: true
+      default: true,
+      private: true,
     },
     extendOptions: {
       required: false,

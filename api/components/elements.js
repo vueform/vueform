@@ -23547,7 +23547,7 @@ module.exports = {
           'boolean',
         ],
         required: false,
-        private: false,
+        private: true,
       },
       extendOptions: {
         required: 'false',
