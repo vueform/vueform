@@ -113,8 +113,10 @@ export default function(config, components) {
           let setup = comp.setup(props, context)
 
           this.options.plugins.forEach((plugin) => {
-            if (plugin.setup && shouldApplyPlugin(name, plugin)) {
-              setup = plugin.setup(props, context, setup)
+            const pluginOptions = plugin()
+
+            if (pluginOptions.setup && shouldApplyPlugin(name, pluginOptions)) {
+              setup = pluginOptions.setup(props, context, setup)
             }
           })
 
@@ -134,15 +136,17 @@ export default function(config, components) {
         }
 
         this.options.plugins.forEach((plugin) => {
-          _.each(_.without(Object.keys(plugin), 'setup', 'apply', 'config', 'install'), (key) => {
-            if (plugin[key] && shouldApplyPlugin(name, plugin)) {
-              if (Array.isArray(plugin[key])) {
+          const pluginOptions = plugin()
+
+          _.each(_.without(Object.keys(pluginOptions), 'setup', 'apply', 'config', 'install'), (key) => {
+            if (pluginOptions[key] && shouldApplyPlugin(name, pluginOptions)) {
+              if (Array.isArray(pluginOptions[key])) {
                 let base = component[key] || []
-                component[key] = base.concat(plugin[key])
-              } else if (_.isPlainObject(plugin[key])) {
-                component[key] = Object.assign({}, component[key] || {}, plugin[key])
+                component[key] = base.concat(pluginOptions[key])
+              } else if (_.isPlainObject(pluginOptions[key])) {
+                component[key] = Object.assign({}, component[key] || {}, pluginOptions[key])
               } else {
-                component[key] = plugin[key]
+                component[key] = pluginOptions[key]
               }
             }
           })
