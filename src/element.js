@@ -1,3 +1,4 @@
+import 'regenerator-runtime/runtime'
 import _ from 'lodash'
 import { ref } from 'composition-api'
 import useElementBase from './composables/useElement'
@@ -100,7 +101,8 @@ export default function (options, component = {}) {
     name: ComponentName,
     mixins: [].concat(ElementMixin(options)).concat(component.mixins||[]),
     emits,
-    setup(props, context) {
+    setup(props, ctx) {
+      const context = { ...ctx }
       context.emits = emits
       context.name = ref(ComponentName)
       const element = useElement(props, context, setup, options)
