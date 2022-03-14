@@ -114,7 +114,7 @@
   --vf-space-addon-lg: var(--vf-space-addon);
 
   // Space between checkboxes & radios and their labels
-  --vf-space-checkbox: #{$form-check-input-margin-x};
+  --vf-space-checkbox: .25rem;
   --vf-space-checkbox-sm: var(--vf-space-checkbox);
   --vf-space-checkbox-lg: var(--vf-space-checkbox);
 
