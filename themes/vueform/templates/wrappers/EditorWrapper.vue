@@ -10,6 +10,23 @@
         merge: true,
         defaultClasses: {
           container: '',
+          container_hideBold: 'vf-editor-hide-bold',
+          container_hideItalic: 'vf-editor-hide-italic',
+          container_hideStrike: 'vf-editor-hide-strike',
+          container_hideLink: 'vf-editor-hide-link',
+          container_hideHeading: 'vf-editor-hide-heading',
+          container_hideQuote: 'vf-editor-hide-quote',
+          container_hideCode: 'vf-editor-hide-code',
+          container_hideBulletList: 'vf-editor-hide-bullet-list',
+          container_hideNumberList: 'vf-editor-hide-number-list',
+          container_hideDecreaseNesting: 'vf-editor-hide-decrease-nesting',
+          container_hideIncreaseNesting: 'vf-editor-hide-increase-nesting',
+          container_hideAttach: 'vf-editor-hide-attach',
+          container_hideUndo: 'vf-editor-hide-undo',
+          container_hideRedo: 'vf-editor-hide-redo',
+          $container: (classes, { hideTools }) => ([
+            classes.container,
+          ].concat(hideTools.map(t => classes[`container_hide${t.split('-').map(s=>s.charAt(0).toUpperCase()+s.slice(1)).join('')}`])))
         }
       }
     }
@@ -661,6 +678,90 @@
   .vf-editor-disabled {
     trix-toolbar {
       pointer-events: none;
+    }
+  }
+
+  .vf-editor-hide-bold {
+    .trix-button--icon-bold {
+      display: none;
+    }
+  }
+
+  .vf-editor-hide-italic {
+    .trix-button--icon-italic {
+      display: none;
+    }
+  }
+
+  .vf-editor-hide-strike {
+    .trix-button--icon-strike {
+      display: none;
+    }
+  }
+
+  .vf-editor-hide-link {
+    .trix-button--icon-link {
+      display: none;
+    }
+  }
+
+  .vf-editor-hide-heading {
+    .trix-button--icon-heading-1 {
+      display: none;
+    }
+  }
+
+  .vf-editor-hide-quote {
+    .trix-button--icon-quote {
+      display: none;
+    }
+  }
+
+  .vf-editor-hide-code {
+    .trix-button--icon-code {
+      display: none;
+    }
+  }
+
+  .vf-editor-hide-bullet-list {
+    .trix-button--icon-bullet-list {
+      display: none;
+    }
+  }
+
+  .vf-editor-hide-number-list {
+    .trix-button--icon-number-list {
+      display: none;
+    }
+  }
+
+  .vf-editor-hide-decrease-nesting {
+    .trix-button--icon-decrease-nesting-level {
+      display: none;
+    }
+  }
+
+  .vf-editor-hide-increase-nesting {
+    .trix-button--icon-increase-nesting-level {
+      display: none;
+    }
+  }
+
+  .vf-editor-hide-attach {
+    .trix-button--icon-attach {
+      display: none;
+    }
+  }
+
+  .vf-editor-hide-undo {
+    .trix-button--icon-undo {
+      display: none;
+    }
+  }
+
+  .vf-editor-hide-redo {
+    .trix-button--icon-redo {
+      display: none;
     }
   }
 </style>

@@ -6736,6 +6736,15 @@ module.exports = {
         required: false,
         private: false,
       },
+      hideTools: {
+        required: 'false',
+        default: '[]',
+        types: [
+          'array',
+        ],
+        required: false,
+        private: false,
+      },
     },
     data: {
       active: {
@@ -25634,6 +25643,15 @@ module.exports = {
         default: 'config.endpoints.attachment.method',
         types: [
           'string',
+        ],
+        required: false,
+        private: false,
+      },
+      hideTools: {
+        required: 'false',
+        default: '[]',
+        types: [
+          'array',
         ],
         required: false,
         private: false,

@@ -612,7 +612,7 @@ import EditorWrapper from './../../../blank/templates/wrappers/EditorWrapper.vue
     }
   }
 
-  .form-editor-sm {
+  [class*="form-editor-sm"] {
     trix-editor {
       padding-left: var(--vf-px-input-sm);
       padding-right: var(--vf-px-input-sm);
@@ -639,7 +639,7 @@ import EditorWrapper from './../../../blank/templates/wrappers/EditorWrapper.vue
     }
   }
 
-  .form-editor-lg {
+  [class*="form-editor-lg"] {
     trix-editor {
       padding-left: var(--vf-px-input-lg);
       padding-right: var(--vf-px-input-lg);
@@ -648,9 +648,93 @@ import EditorWrapper from './../../../blank/templates/wrappers/EditorWrapper.vue
     }
   }
 
-  .form-editor-disabled {
+  [class*="form-editor-disabled"] {
     trix-toolbar {
       pointer-events: none;
+    }
+  }
+
+  [class*="form-editor-hide-bold"] {
+    .trix-button--icon-bold {
+      display: none;
+    }
+  }
+
+  [class*="form-editor-hide-italic"] {
+    .trix-button--icon-italic {
+      display: none;
+    }
+  }
+
+  [class*="form-editor-hide-strike"] {
+    .trix-button--icon-strike {
+      display: none;
+    }
+  }
+
+  [class*="form-editor-hide-link"] {
+    .trix-button--icon-link {
+      display: none;
+    }
+  }
+
+  [class*="form-editor-hide-heading"] {
+    .trix-button--icon-heading-1 {
+      display: none;
+    }
+  }
+
+  [class*="form-editor-hide-quote"] {
+    .trix-button--icon-quote {
+      display: none;
+    }
+  }
+
+  [class*="form-editor-hide-code"] {
+    .trix-button--icon-code {
+      display: none;
+    }
+  }
+
+  [class*="form-editor-hide-bullet-list"] {
+    .trix-button--icon-bullet-list {
+      display: none;
+    }
+  }
+
+  [class*="form-editor-hide-number-list"] {
+    .trix-button--icon-number-list {
+      display: none;
+    }
+  }
+
+  [class*="form-editor-hide-decrease-nesting"] {
+    .trix-button--icon-decrease-nesting-level {
+      display: none;
+    }
+  }
+
+  [class*="form-editor-hide-increase-nesting"] {
+    .trix-button--icon-increase-nesting-level {
+      display: none;
+    }
+  }
+
+  [class*="form-editor-hide-attach"] {
+    .trix-button--icon-attach {
+      display: none;
+    }
+  }
+
+  [class*="form-editor-hide-undo"] {
+    .trix-button--icon-undo {
+      display: none;
+    }
+  }
+
+  [class*="form-editor-hide-redo"] {
+    .trix-button--icon-redo {
+      display: none;
     }
   }
 </style>

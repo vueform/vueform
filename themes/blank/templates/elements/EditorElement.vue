@@ -10,6 +10,7 @@
         :endpoint="editorEndpoint"
         :method="editorMethod"
         :disabled="isDisabled"
+        :hide-tools="hideTools"
         :class="classes.input"
         @input="handleInput"
         @alert="handleAlert"

@@ -1032,6 +1032,23 @@ export default {
   },
   EditorWrapper: {
     container: 'form-bg-input form-color-input',
+    container_hideBold: 'form-editor-hide-bold',
+    container_hideItalic: 'form-editor-hide-italic',
+    container_hideStrike: 'form-editor-hide-strike',
+    container_hideLink: 'form-editor-hide-link',
+    container_hideHeading: 'form-editor-hide-heading',
+    container_hideQuote: 'form-editor-hide-quote',
+    container_hideCode: 'form-editor-hide-code',
+    container_hideBulletList: 'form-editor-hide-bullet-list',
+    container_hideNumberList: 'form-editor-hide-number-list',
+    container_hideDecreaseNesting: 'form-editor-hide-decrease-nesting',
+    container_hideIncreaseNesting: 'form-editor-hide-increase-nesting',
+    container_hideAttach: 'form-editor-hide-attach',
+    container_hideUndo: 'form-editor-hide-undo',
+    container_hideRedo: 'form-editor-hide-redo',
+    $container: (classes, { hideTools }) => ([
+      classes.container,
+    ].concat(hideTools.map(t => classes[`container_hide${t.split('-').map(s=>s.charAt(0).toUpperCase()+s.slice(1)).join('')}`])))
   },
 
   // Components

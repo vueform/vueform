@@ -49,6 +49,11 @@ export default {
       type: Boolean,
       default: false
     },
+    hideTools: {
+      required: false,
+      type: [Array],
+      default: () => ([])
+    },
   },
   setup(props, context)
   {

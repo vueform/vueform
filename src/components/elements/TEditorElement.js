@@ -107,6 +107,11 @@ export default {
       default: null,
       '@default': 'config.endpoints.attachment.method',
     },
+    hideTools: {
+      required: false,
+      type: [Array],
+      default: () => ([])
+    },
   },
   setup(props, context) {
     context.features = [

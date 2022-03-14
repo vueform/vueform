@@ -4948,6 +4948,13 @@ module.exports = {
         "types": [
           "boolean"
         ]
+      },
+      "hideTools": {
+        "required": false,
+        "default": "[]",
+        "types": [
+          "array"
+        ]
       }
     },
     "events": {
