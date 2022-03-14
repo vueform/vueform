@@ -55,12 +55,10 @@ const date = function (props, context, dependencies)
 
   onMounted(() => {
     input.value.input.addEventListener('focus', () => {
-      console.log('focused')
       focused.value = true
     })
 
     input.value.input.addEventListener('blur', () => {
-      console.log('blured')
       focused.value = false
     })
   })
