@@ -2230,53 +2230,12 @@ export default {
         }
       },
       "computed": {
-        "uploadTempFileUrl": {
+        "endpoints": {
           "public": false,
-          "default": "config.endpoints.uploadTempFile.url",
           "types": [
             "object"
           ],
-          "description": "The url where the temp file should be submitted."
-        },
-        "removeTempFileUrl": {
-          "public": false,
-          "default": "config.endpoints.removeTempFile.url",
-          "types": [
-            "object"
-          ],
-          "description": "The url where the remove temp file request should be submitted."
-        },
-        "removeFileUrl": {
-          "public": false,
-          "default": "config.endpoints.removeFile.url",
-          "types": [
-            "object"
-          ],
-          "description": "The url where the remove file request should be submitted."
-        },
-        "uploadTempFileMethod": {
-          "public": false,
-          "default": "config.endpoints.uploadTempFile.method",
-          "types": [
-            "object"
-          ],
-          "description": "The method where the temp file should be submitted."
-        },
-        "removeTempFileMethod": {
-          "public": false,
-          "default": "config.endpoints.removeTempFile.method",
-          "types": [
-            "object"
-          ],
-          "description": "The method where the remove temp file request should be submitted."
-        },
-        "removeFileMethod": {
-          "public": false,
-          "default": "config.endpoints.removeFile.method",
-          "types": [
-            "object"
-          ],
-          "description": "The method where the remove file request should be submitted."
+          "description": "The HTTP request endpoints."
         },
         "fileUrl": {
           "public": false,

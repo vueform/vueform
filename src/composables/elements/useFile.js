@@ -10,6 +10,9 @@ const base = function (props, context, dependencies)
     auto,
     methods,
     urls,
+    uploadTempFileEndpoint,
+    removeTempFileEndpoint,
+    removeFileEndpoint,
     url,
     previewUrl,
     params,
@@ -73,69 +76,57 @@ const base = function (props, context, dependencies)
   // ============== COMPUTED ==============
 
   /**
-   * The url where the temp file should be submitted.
+   * The HTTP request endpoints.
    * 
    * @type {object}
-   * @default config.endpoints.uploadTempFile.url
    * @private
    */
-  const uploadTempFileUrl = computed(() => {
-    return urls.value.uploadTempFile || form$.value.$vueform.config.endpoints.uploadTempFile.url
-  })
+  const endpoints = computed(() => {
+    const configEndpoints = form$.value.$vueform.config.endpoints
+    const propEndpoints = {
+      uploadTempFile: uploadTempFileEndpoint.value,
+      removeTempFile: removeTempFileEndpoint.value,
+      removeFile: removeFileEndpoint.value,
+    }
+    const endpoints = {}
 
-  /**
-   * The url where the remove temp file request should be submitted.
-   * 
-   * @type {object}
-   * @default config.endpoints.removeTempFile.url
-   * @private
-   */
-  const removeTempFileUrl = computed(() => {
-    return urls.value.removeTempFile || form$.value.$vueform.config.endpoints.removeTempFile.url
-  })
+    Object.keys(propEndpoints).forEach((name) => {
+      let endpoint = configEndpoints[name]
 
-  /**
-   * The url where the remove file request should be submitted.
-   * 
-   * @type {object}
-   * @default config.endpoints.removeFile.url
-   * @private
-   */
-  const removeFileUrl = computed(() => {
-    return urls.value.removeFile || form$.value.$vueform.config.endpoints.removeFile.url
-  })
+      if (urls.value[name]) {
+        endpoint = {
+          url: urls.value[name],
+          method: 'POST',
+        }
+      }
 
-  /**
-   * The method where the temp file should be submitted.
-   * 
-   * @type {object}
-   * @default config.endpoints.uploadTempFile.method
-   * @private
-   */
-  const uploadTempFileMethod = computed(() => {
-    return methods.value.uploadTempFile || form$.value.$vueform.config.endpoints.uploadTempFile.method
-  })
+      if (methods.value[name] && typeof endpoint === 'object') {
+        endpoint.method = methods.value[name]
+      }
 
-  /**
-   * The method where the remove temp file request should be submitted.
-   * 
-   * @type {object}
-   * @default config.endpoints.removeTempFile.method
-   * @private
-   */
-  const removeTempFileMethod = computed(() => {
-    return methods.value.removeTempFile || form$.value.$vueform.config.endpoints.removeTempFile.method
-  })
+      if (typeof propEndpoints[name] === 'string') {
+        if (configEndpoints[propEndpoints[name]] !== undefined) {
+          endpoint = configEndpoints[propEndpoints[name]]
+        } else {
+          endpoint.url = propEndpoints[name]
+        }
+      }
 
-  /**
-   * The method where the remove file request should be submitted.
-   * 
-   * @type {object}
-   * @default config.endpoints.removeFile.method
-   * @private
-   */
-  const removeFileMethod = computed(() => {
-    return methods.value.removeFile || form$.value.$vueform.config.endpoints.removeFile.method
+      if (typeof propEndpoints[name] === 'function') {
+        endpoint = propEndpoints[name]
+      }
+
+      if (typeof propEndpoints[name] === 'object') {
+        endpoint = {
+          url: propEndpoints[name].url || propEndpoints[name].endpoint,
+          method: propEndpoints[name].method,
+        }
+      }
+
+      endpoints[name] = endpoint
+    })
+
+    return endpoints
   })
 
   /**
@@ -341,12 +332,23 @@ const base = function (props, context, dependencies)
 
       hasUploadError.value = false
 
-      let response = await axios.value[uploadTempFileMethod.value](uploadTempFileUrl.value, data, {
-        onUploadProgress: (e) => {
-          progress.value = Math.round((e.loaded * 100) / e.total)
-        },
-        cancelToken: request.value.token,
-      })
+      let response
+
+      if (typeof endpoints.value.uploadTempFile === 'function') {
+        response = await endpoints.value.uploadTempFile(value.value, el$.value)
+      } else { 
+        const method = endpoints.value.uploadTempFile.method.toLowerCase()
+
+        response = await axios.value.request({
+          url: endpoints.value.uploadTempFile.url,
+          method,
+          [method === 'get' ? 'params' : 'data']: data,
+          onUploadProgress: (e) => {
+            progress.value = Math.round((e.loaded * 100) / e.total)
+          },
+          cancelToken: request.value.token,
+        })
+      }
       
       update(response.data)
     }
@@ -384,23 +386,39 @@ const base = function (props, context, dependencies)
           return false
         }
 
-        await axios.value[removeFileMethod.value](removeFileUrl.value,
-          Object.assign({}, params.value, {
-            file: value.value,
-            formKey: form$.value.options.formKey,
-            path: path.value,
+        if (typeof endpoints.value.removeFile === 'function') {
+          await endpoints.value.removeFile(value.value, el$.value)
+        } else { 
+          const method = endpoints.value.removeFile.method.toLowerCase()
+
+          await axios.value.request({
+            method,
+            url: endpoints.value.removeFile.url,
+            [method === 'get' ? 'params' : 'data']: Object.assign({}, params.value, {
+              file: value.value,
+              formKey: form$.value.options.formKey,
+              path: path.value,
+            }),
           })
-        )
+        }
       }
 
       else if (stage.value === 2 && !softRemove.value) {
-        await axios.value[removeTempFileMethod.value](removeTempFileUrl.value,
-          Object.assign({}, params.value, {
-            file: value.value.tmp,
-            formKey: form$.value.options.formKey,
-            path: path.value,
+        if (typeof endpoints.value.removeTempFile === 'function') {
+          await endpoints.value.removeTempFile(value.value, el$.value)
+        } else { 
+          const method = endpoints.value.removeTempFile.method.toLowerCase()
+
+          await axios.value.request({
+            method,
+            url: endpoints.value.removeTempFile.url,
+            [method === 'get' ? 'params' : 'data']: Object.assign({}, params.value, {
+              file: value.value.tmp,
+              formKey: form$.value.options.formKey,
+              path: path.value,
+            }),
           })
-        )
+        }
       }
     } catch (error) {
       handleError(error)
@@ -539,12 +557,7 @@ const base = function (props, context, dependencies)
     base64,
     progress,
     preparing,
-    uploadTempFileUrl,
-    removeTempFileUrl,
-    removeFileUrl,
-    uploadTempFileMethod,
-    removeTempFileMethod,
-    removeFileMethod,
+    endpoints,
     fileUrl,
     stage,
     filename,

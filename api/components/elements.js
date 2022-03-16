@@ -6723,6 +6723,7 @@ module.exports = {
         default: 'config.endpoints.attachment.url',
         types: [
           'string',
+          'function',
         ],
         required: false,
         private: false,
@@ -8113,6 +8114,39 @@ module.exports = {
         required: false,
         private: false,
       },
+      uploadTempFileEndpoint: {
+        required: 'false',
+        default: 'config.endpoints.uploadTempFile',
+        types: [
+          'object',
+          'string',
+          'function',
+        ],
+        required: false,
+        private: false,
+      },
+      removeTempFileEndpoint: {
+        required: 'false',
+        default: 'config.endpoints.removeTempFile',
+        types: [
+          'object',
+          'string',
+          'function',
+        ],
+        required: false,
+        private: false,
+      },
+      removeFileEndpoint: {
+        required: 'false',
+        default: 'config.endpoints.removeFile',
+        types: [
+          'object',
+          'string',
+          'function',
+        ],
+        required: false,
+        private: false,
+      },
       params: {
         required: 'false',
         default: '{}',
@@ -8410,52 +8444,11 @@ module.exports = {
         description: 'The `id` of the <%field%>. If [`id`](#option-id) is not provided [`path`](#option-path) will be used.',
         private: false,
       },
-      uploadTempFileUrl: {
+      endpoints: {
         types: [
           'object',
         ],
-        description: 'The url where the temp file should be submitted.',
-        default: 'config.endpoints.uploadTempFile.url',
-        private: true,
-      },
-      removeTempFileUrl: {
-        types: [
-          'object',
-        ],
-        description: 'The url where the remove temp file request should be submitted.',
-        default: 'config.endpoints.removeTempFile.url',
-        private: true,
-      },
-      removeFileUrl: {
-        types: [
-          'object',
-        ],
-        description: 'The url where the remove file request should be submitted.',
-        default: 'config.endpoints.removeFile.url',
-        private: true,
-      },
-      uploadTempFileMethod: {
-        types: [
-          'object',
-        ],
-        description: 'The method where the temp file should be submitted.',
-        default: 'config.endpoints.uploadTempFile.method',
-        private: true,
-      },
-      removeTempFileMethod: {
-        types: [
-          'object',
-        ],
-        description: 'The method where the remove temp file request should be submitted.',
-        default: 'config.endpoints.removeTempFile.method',
-        private: true,
-      },
-      removeFileMethod: {
-        types: [
-          'object',
-        ],
-        description: 'The method where the remove file request should be submitted.',
-        default: 'config.endpoints.removeFile.method',
+        description: 'The HTTP request endpoints.',
         private: true,
       },
       fileUrl: {
@@ -25634,6 +25627,7 @@ module.exports = {
         default: 'config.endpoints.attachment.url',
         types: [
           'string',
+          'function',
         ],
         required: false,
         private: false,

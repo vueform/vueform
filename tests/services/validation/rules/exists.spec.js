@@ -57,6 +57,35 @@ describe('Exists Rule', () => {
     expect(a.vm.invalid).toBe(true)
   })
 
+  it('should work with function endpoint', async () => {
+    let existsMock = jest.fn(() => ({data: false}))
+
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'text',
+          default: 'value',
+          rules: 'exists:check'
+        },
+      }
+    }, {
+      config: {
+        endpoints: {
+          exists: existsMock,
+        }
+      }
+    })
+
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
+
+    a.vm.validate()
+
+    await flushPromises()
+
+    expect(existsMock).toHaveBeenCalledWith('value', 'a', {'0': 'check'}, a.vm, form.vm)
+    expect(a.vm.invalid).toBe(true)
+  })
+
   it('should replace params with field values after first param', async () => {
     let form = createForm({
       schema: {
@@ -93,7 +122,9 @@ describe('Exists Rule', () => {
           "2": 'c',
         },
         a: 'aaa',
-        vueformFieldName: 'a'
+        vueformFieldName: 'a',
+        value: 'aaa',
+        name: 'a',
       }
     })
   })

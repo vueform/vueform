@@ -120,6 +120,24 @@ export default {
       type: [Object],
       default: () => ({})
     },
+    uploadTempFileEndpoint: {
+      required: false,
+      type: [Object, String, Function],
+      default: undefined,
+      '@default': 'config.endpoints.uploadTempFile',
+    },
+    removeTempFileEndpoint: {
+      required: false,
+      type: [Object, String, Function],
+      default: undefined,
+      '@default': 'config.endpoints.removeTempFile',
+    },
+    removeFileEndpoint: {
+      required: false,
+      type: [Object, String, Function],
+      default: undefined,
+      '@default': 'config.endpoints.removeFile',
+    },
     params: {
       required: false,
       type: [Object],

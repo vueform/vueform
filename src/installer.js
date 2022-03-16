@@ -212,8 +212,10 @@ export default function(config, components) {
       const version = parseInt(appOrVue.version.split('.')[0])
 
       this.options.plugins.forEach((plugin) => {
-        if (plugin.config) {
-          plugin.config(config)
+        const pluginOptions = plugin()
+
+        if (pluginOptions.config) {
+          pluginOptions.config(config)
         }
       })
 
@@ -222,8 +224,10 @@ export default function(config, components) {
       }
 
       this.options.plugins.forEach((plugin) => {
-        if (plugin.install) {
-          plugin.install(appOrVue, this.options)
+        const pluginOptions = plugin()
+        
+        if (pluginOptions.install) {
+          pluginOptions.install(appOrVue, this.options)
         }
       })
 

@@ -155,8 +155,8 @@ export const preparing = function (elementType, elementName, options) {
   })
 }
 
-export const uploadTempFileUrl = function (elementType, elementName, options) {
-  it('should default to config.endpoints.uploadTempFile.url', () => {
+export const endpoints = function (elementType, elementName, options) {
+  it('should return default from config for uploadTempFile', () => {
     let form = createForm({
       schema: {
         el: {
@@ -167,129 +167,47 @@ export const uploadTempFileUrl = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    expect(el.uploadTempFileUrl).toBe(el.$vueform.config.endpoints.uploadTempFile.url)
-
-    // destroy() // teardown
+    expect(el.endpoints.uploadTempFile).toEqual(form.vm.$vueform.config.endpoints.uploadTempFile)
   })
 
-  it('should override default uploadTempFile url', () => {
+  it('should return default from config form removeTempFile', () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+        }
+      }
+    })
+
+    let el = form.vm.el$('el')
+
+    expect(el.endpoints.removeTempFile).toEqual(form.vm.$vueform.config.endpoints.removeTempFile)
+  })
+
+  it('should return default from config form removeFile', () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+        }
+      }
+    })
+
+    let el = form.vm.el$('el')
+
+    expect(el.endpoints.removeFile).toEqual(form.vm.$vueform.config.endpoints.removeFile)
+  })
+
+  it('should return custom from urls & methods', () => {
     let form = createForm({
       schema: {
         el: {
           type: elementType,
           urls: {
-            uploadTempFile: '/not',
+            uploadTempFile: '/upload-temp'
           },
-        }
-      }
-    })
-
-    let el = form.vm.el$('el')
-
-    expect(el.uploadTempFileUrl).toBe('/not')
-
-    // destroy() // teardown
-  })
-}
-
-export const removeTempFileUrl = function (elementType, elementName, options) {
-  it('should default to config.endpoints.removeTempFile.url', () => {
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType,
-        }
-      }
-    })
-
-    let el = form.vm.el$('el')
-
-    expect(el.removeTempFileUrl).toBe(el.$vueform.config.endpoints.removeTempFile.url)
-
-    // destroy() // teardown
-  })
-
-  it('should override default removeTempFile url', () => {
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType,
-          urls: {
-            removeTempFile: '/not',
-          },
-        }
-      }
-    })
-
-    let el = form.vm.el$('el')
-
-    expect(el.removeTempFileUrl).toBe('/not')
-
-    // destroy() // teardown
-  })
-}
-
-export const removeFileUrl = function (elementType, elementName, options) {
-  it('should default to config.endpoints.removeFile.url', () => {
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType,
-        }
-      }
-    })
-
-    let el = form.vm.el$('el')
-
-    expect(el.removeFileUrl).toBe(el.$vueform.config.endpoints.removeFile.url)
-
-    // destroy() // teardown
-  })
-
-  it('should override default removeFile url', () => {
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType,
-          urls: {
-            removeFile: '/not',
-          },
-        }
-      }
-    })
-
-    let el = form.vm.el$('el')
-
-    expect(el.removeFileUrl).toBe('/not')
-
-    // destroy() // teardown
-  })
-}
-
-export const uploadTempFileMethod = function (elementType, elementName, options) {
-  it('should default to config.endpoints.uploadTempFile.method', () => {
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType,
-        }
-      }
-    })
-
-    let el = form.vm.el$('el')
-
-    expect(el.uploadTempFileMethod).toBe(el.$vueform.config.endpoints.uploadTempFile.method)
-
-    // destroy() // teardown
-  })
-
-  it('should override default uploadTempFile method', () => {
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType,
           methods: {
-            uploadTempFile: 'put',
+            uploadTempFile: 'method'
           },
         }
       }
@@ -297,36 +215,20 @@ export const uploadTempFileMethod = function (elementType, elementName, options)
 
     let el = form.vm.el$('el')
 
-    expect(el.uploadTempFileMethod).toBe('put')
-
-    // destroy() // teardown
-  })
-}
-
-export const removeTempFileMethod = function (elementType, elementName, options) {
-  it('should default to config.endpoints.removeTempFile.method', () => {
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType,
-        }
-      }
+    expect(el.endpoints.uploadTempFile).toEqual({
+      url: '/upload-temp',
+      method: 'method',
     })
-
-    let el = form.vm.el$('el')
-
-    expect(el.removeTempFileMethod).toBe(el.$vueform.config.endpoints.removeTempFile.method)
-
-    // destroy() // teardown
   })
 
-  it('should override default removeTempFile method', () => {
+  it('should return custom from uploadTempFileEndpoint object', () => {
     let form = createForm({
       schema: {
         el: {
           type: elementType,
-          methods: {
-            removeTempFile: 'put',
+          uploadTempFileEndpoint: {
+            url: '/upload-temp',
+            method: 'method'
           },
         }
       }
@@ -334,46 +236,100 @@ export const removeTempFileMethod = function (elementType, elementName, options)
 
     let el = form.vm.el$('el')
 
-    expect(el.removeTempFileMethod).toBe('put')
-
-    // destroy() // teardown
+    expect(el.endpoints.uploadTempFile).toEqual({
+      url: '/upload-temp',
+      method: 'method',
+    })
   })
-}
 
-export const removeFileMethod = function (elementType, elementName, options) {
-  it('should default to config.endpoints.removeFile.method', () => {
+  it('should return custom from uploadTempFileEndpoint string url', () => {
     let form = createForm({
       schema: {
         el: {
           type: elementType,
+          uploadTempFileEndpoint: '/upload-temp',
         }
       }
     })
 
     let el = form.vm.el$('el')
 
-    expect(el.removeFileMethod).toBe(el.$vueform.config.endpoints.removeFile.method)
-
-    // destroy() // teardown
+    expect(el.endpoints.uploadTempFile).toEqual({
+      url: '/upload-temp',
+      method: form.vm.$vueform.config.endpoints.uploadTempFile.method,
+    })
   })
 
-  it('should override default removeFile method', () => {
+  it('should return custom from uploadTempFileEndpoint named endpoint', () => {
     let form = createForm({
       schema: {
         el: {
           type: elementType,
-          methods: {
-            removeFile: 'put',
-          },
+          uploadTempFileEndpoint: 'custom',
+        }
+      }
+    }, {
+      config: {
+        endpoints: {
+          custom: {
+            url: '/custom',
+            method: 'custom'
+          }
         }
       }
     })
 
     let el = form.vm.el$('el')
 
-    expect(el.removeFileMethod).toBe('put')
+    expect(el.endpoints.uploadTempFile).toEqual({
+      url: '/custom',
+      method: 'custom',
+    })
+  })
 
-    // destroy() // teardown
+  it('should return custom from uploadTempFileEndpoint function', () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          uploadTempFileEndpoint: (a, b) => a + b,
+        }
+      }
+    })
+
+    let el = form.vm.el$('el')
+
+    expect(el.endpoints.uploadTempFile(1,2)).toEqual(3)
+  })
+
+  it('should return custom from removeTempFileEndpoint function', () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          removeTempFileEndpoint: (a, b) => a + b,
+        }
+      }
+    })
+
+    let el = form.vm.el$('el')
+
+    expect(el.endpoints.removeTempFile(1,2)).toEqual(3)
+  })
+
+  it('should return custom from removeFileEndpoint function', () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          removeFileEndpoint: (a, b) => a + b,
+        }
+      }
+    })
+
+    let el = form.vm.el$('el')
+
+    expect(el.endpoints.removeFile(1,2)).toEqual(3)
   })
 }
 
@@ -970,7 +926,7 @@ export const uploadTemp = function (elementType, elementName, options) {
     // destroy(form) // teardown
   })
 
-  it('should send file to upload endpoint with params & update with return value in `uploadTemp`', async () => {
+  it('should send file to default endpoint with params & update with return value in `uploadTemp`', async () => {
     let form = createForm({
       formKey: 'key',
       schema: {
@@ -998,7 +954,7 @@ export const uploadTemp = function (elementType, elementName, options) {
       }
     })
 
-    el.axios.post = axiosMock
+    el.axios.request = axiosMock
 
     let file = new File([''], 'filename')
 
@@ -1016,11 +972,121 @@ export const uploadTemp = function (elementType, elementName, options) {
 
     expect(axiosMock).toHaveBeenCalled()
 
-    expect(axiosMock.mock.calls[0][1] instanceof FormData).toBe(true)
-    expect(axiosMock.mock.calls[0][1].get('file')).toStrictEqual(file)
-    expect(axiosMock.mock.calls[0][1].get('formKey')).toStrictEqual('key')
-    expect(axiosMock.mock.calls[0][1].get('path')).toStrictEqual('el')
-    expect(axiosMock.mock.calls[0][1].get('param')).toStrictEqual('value')
+    expect(axiosMock.mock.calls[0][0].data instanceof FormData).toBe(true)
+    expect(axiosMock.mock.calls[0][0].data.get('file')).toStrictEqual(file)
+    expect(axiosMock.mock.calls[0][0].data.get('formKey')).toStrictEqual('key')
+    expect(axiosMock.mock.calls[0][0].data.get('path')).toStrictEqual('el')
+    expect(axiosMock.mock.calls[0][0].data.get('param')).toStrictEqual('value')
+    expect(axiosMock.mock.calls[0][0].url).toBe(form.vm.$vueform.config.endpoints.uploadTempFile.url)
+    expect(axiosMock.mock.calls[0][0].method).toBe(form.vm.$vueform.config.endpoints.uploadTempFile.method)
+
+    expect(el.value).toStrictEqual(tmp)
+    axiosMock.mockRestore()
+    
+    // destroy(form) // teardown
+  })
+
+  it('should send file to default function endpoint', async () => {
+    let tmp = {
+      tmp: 'tmp123',
+      originalName: 'filename.jpg'
+    }
+
+    let uploadMock = jest.fn(() => {
+      return {
+        data: tmp
+      }
+    })
+
+    let form = createForm({
+      formKey: 'key',
+      schema: {
+        el: {
+          type: elementType,
+          auto: false,
+          rules: 'required',
+          params: {
+            param: 'value'
+          }
+        }
+      }
+    }, {
+      config: {
+        endpoints: {
+          uploadTempFile: uploadMock
+        }
+      }
+    })
+
+    let el = form.vm.el$('el')
+
+    let file = new File([''], 'filename')
+
+    el.load(file)
+    el.uploadTemp()
+
+    await flushPromises()
+
+    expect(uploadMock.mock.calls[0][0]).toBe(file)
+    expect(uploadMock.mock.calls[0][1]).toEqual(el)
+    expect(el.value).toStrictEqual(tmp)
+
+    uploadMock.mockRestore()
+    
+    // destroy(form) // teardown
+  })
+
+  it('should send file', async () => {
+    let form = createForm({
+      formKey: 'key',
+      schema: {
+        el: {
+          type: elementType,
+          auto: false,
+          rules: 'required',
+          params: {
+            param: 'value'
+          }
+        }
+      }
+    })
+
+    let el = form.vm.el$('el')
+
+    let tmp = {
+      tmp: 'tmp123',
+      originalName: 'filename.jpg'
+    }
+
+    let axiosMock = jest.fn(() => {
+      return {
+        data: tmp
+      }
+    })
+
+    el.axios.request = axiosMock
+
+    let file = new File([''], 'filename')
+
+    el.load(file)
+
+    expect(el.stage).toBe(1)
+
+    expect(axiosMock).not.toHaveBeenCalled()
+
+    expect(el.value).toStrictEqual(file)
+
+    el.uploadTemp()
+
+    await flushPromises()
+
+    expect(axiosMock).toHaveBeenCalled()
+
+    expect(axiosMock.mock.calls[0][0].data instanceof FormData).toBe(true)
+    expect(axiosMock.mock.calls[0][0].data.get('file')).toStrictEqual(file)
+    expect(axiosMock.mock.calls[0][0].data.get('formKey')).toStrictEqual('key')
+    expect(axiosMock.mock.calls[0][0].data.get('path')).toStrictEqual('el')
+    expect(axiosMock.mock.calls[0][0].data.get('param')).toStrictEqual('value')
 
     expect(el.value).toStrictEqual(tmp)
     axiosMock.mockRestore()
@@ -1047,7 +1113,7 @@ export const uploadTemp = function (elementType, elementName, options) {
       originalName: 'filename.jpg'
     }
 
-    let axiosMock = jest.fn((url,data,options) => {
+    let axiosMock = jest.fn((options) => {
       if (options && options.onUploadProgress) {
         options.onUploadProgress({
           loaded: 80,
@@ -1060,7 +1126,7 @@ export const uploadTemp = function (elementType, elementName, options) {
       }
     })
 
-    el.axios.post = axiosMock
+    el.axios.request = axiosMock
 
     let file = new File([''], 'filename')
 
@@ -1092,7 +1158,7 @@ export const uploadTemp = function (elementType, elementName, options) {
 
     let axiosMock = jest.fn((url,data,options) => {})
 
-    el.axios.post = axiosMock
+    el.axios.request = axiosMock
 
     let file = new File([''], 'filename')
 
@@ -1131,7 +1197,7 @@ export const uploadTemp = function (elementType, elementName, options) {
       originalName: 'filename.jpg'
     }
 
-    el.axios.post = jest.fn(() => {
+    el.axios.request = jest.fn(() => {
       return {
         data: tmp
       }
@@ -1140,6 +1206,8 @@ export const uploadTemp = function (elementType, elementName, options) {
     let file = new File([''], 'filename')
 
     el.value = file
+
+    await nextTick()
 
     el.uploadTemp()
 
@@ -1271,7 +1339,7 @@ export const remove = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    el.axios.post = jest.fn(() => Promise.reject({ data: 'value' }))
+    el.axios.request = jest.fn(() => Promise.reject({ data: 'value' }))
 
     el.load({
       tmp: 'tmp123',
@@ -1286,7 +1354,7 @@ export const remove = function (elementType, elementName, options) {
 
     expect(el.removing).toBe(false)
 
-    el.axios.post = jest.fn(() => Promise.resolve({ data: 'value' }))
+    el.axios.request = jest.fn(() => Promise.resolve({ data: 'value' }))
 
     el.remove()
 
@@ -1341,7 +1409,7 @@ export const remove = function (elementType, elementName, options) {
       originalName: 'filename.jpg'
     }
 
-    el.axios.post = axiosMock
+    el.axios.request = axiosMock
 
     el.load(tmp)
 
@@ -1351,12 +1419,57 @@ export const remove = function (elementType, elementName, options) {
 
     await flushPromises()
 
-    expect(axiosMock).toHaveBeenLastCalledWith(el.removeTempFileUrl, {
+    expect(axiosMock.mock.calls[0][0].url).toEqual(el.endpoints.removeTempFile.url)
+    expect(axiosMock.mock.calls[0][0].method).toEqual(el.endpoints.removeTempFile.method)
+    expect(axiosMock.mock.calls[0][0].data).toEqual({
       file: tmp.tmp,
       formKey: null,
       path: 'el',
       param: 'value'
     })
+    
+    // destroy(form) // teardown
+  })
+
+  it('should call remove temp function endpoint with params when removed in stage 2', async () => {
+
+    let endpointMock = jest.fn()
+
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          auto: false,
+          params: {
+            param: 'value'
+          }
+        }
+      }
+    }, {
+      config: {
+        endpoints: {
+          removeTempFile: endpointMock
+        }
+      }
+    })
+
+    let el = form.vm.el$('el')
+
+    let tmp = {
+      tmp: 'tmp123',
+      originalName: 'filename.jpg'
+    }
+
+    el.load(tmp)
+
+    expect(el.stage).toBe(2)
+
+    el.remove()
+
+    await flushPromises()
+
+    expect(endpointMock.mock.calls[0][0]).toEqual(tmp)
+    expect(endpointMock.mock.calls[0][1]).toEqual(el)
     
     // destroy(form) // teardown
   })
@@ -1381,7 +1494,7 @@ export const remove = function (elementType, elementName, options) {
       originalName: 'filename.jpg'
     }
 
-    el.axios.post = axiosMock
+    el.axios.request = axiosMock
 
     el.load(tmp)
 
@@ -1420,7 +1533,7 @@ export const remove = function (elementType, elementName, options) {
       originalName: 'filename.jpg'
     }
 
-    el.axios.post = axiosMock
+    el.axios.request = axiosMock
 
     el.progress = 100
     el.load(tmp)
@@ -1458,7 +1571,7 @@ export const remove = function (elementType, elementName, options) {
 
     let file = 'filename.jpg'
 
-    el.axios.post = axiosMock
+    el.axios.request = axiosMock
 
     el.load(file)
 
@@ -1466,12 +1579,44 @@ export const remove = function (elementType, elementName, options) {
 
     el.remove()
 
-    expect(axiosMock).toHaveBeenLastCalledWith(el.removeFileUrl, {
-      file: file,
-      formKey: null,
-      path: 'el',
-      param: 'value'
+    expect(axiosMock.mock.calls[0][0].url).toEqual(el.endpoints.removeFile.url)
+    expect(axiosMock.mock.calls[0][0].method).toEqual(el.endpoints.removeFile.method)
+    expect(axiosMock.mock.calls[0][0].data.file).toEqual(file)
+    expect(axiosMock.mock.calls[0][0].data.formKey).toEqual(null)
+    expect(axiosMock.mock.calls[0][0].data.path).toEqual('el')
+    expect(axiosMock.mock.calls[0][0].data.param).toEqual('value')
+    
+    // destroy(form) // teardown
+  })
+
+  it('should call remove file function endpoint with params when removed in stage 3', () => {
+    let endpointMock = jest.fn()
+
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          auto: false,
+          params: {
+            param: 'value'
+          },
+          removeFileEndpoint: endpointMock,
+        }
+      }
     })
+
+    let el = form.vm.el$('el')
+
+    let file = 'filename.jpg'
+
+    el.load(file)
+
+    expect(el.stage).toBe(3)
+
+    el.remove()
+
+    expect(endpointMock.mock.calls[0][0]).toEqual(file)
+    expect(endpointMock.mock.calls[0][1]).toEqual(el)
     
     // destroy(form) // teardown
   })
@@ -1496,7 +1641,7 @@ export const remove = function (elementType, elementName, options) {
 
     let file = 'filename.jpg'
 
-    el.axios.post = axiosMock
+    el.axios.request = axiosMock
 
     el.load(file)
 
@@ -1529,7 +1674,7 @@ export const remove = function (elementType, elementName, options) {
 
     let file = 'filename.jpg'
 
-    el.axios.post = axiosMock
+    el.axios.request = axiosMock
 
     el.load(file)
 
@@ -1561,7 +1706,7 @@ export const remove = function (elementType, elementName, options) {
 
     let tmp = 'filename.jpg'
 
-    el.axios.post = axiosMock
+    el.axios.request = axiosMock
 
     el.progress = 100
     el.load(tmp)
@@ -1778,16 +1923,14 @@ export const prepare = function (elementType, elementName, options) {
         }
       })
 
-      el.axios = {
-        post: axiosPostMock,
-        isCancel: () => true,
-        CancelToken: {
-          source: () => {
-            return {
-              token: 'asdf',
-              cancel: () => {
-                throw new Error('Cancelled')
-              }
+      el.axios.request = axiosPostMock
+      el.axios.isCancel = () => true
+      el.axios.CancelToken = {
+        source: () => {
+          return {
+            token: 'asdf',
+            cancel: () => {
+              throw new Error('Cancelled')
             }
           }
         }
@@ -2152,25 +2295,19 @@ export const handleAbort = function (elementType, elementName, options) {
       }
     })
 
-    let axiosSubmitMock = jest.fn(() => { return { data: {} } })
-
-    el.axios.post = axiosPostMock
-
-    form.vm.$vueform.services.axios.request = axiosSubmitMock
+    form.vm.$vueform.services.axios.request = axiosPostMock
 
     let file = new File([''], 'filename')
 
     el.load(file)
 
     expect(axiosPostMock).not.toHaveBeenCalled()
-    expect(axiosSubmitMock).not.toHaveBeenCalled()
 
     form.vm.submit()
 
     await flushPromises()
 
-    expect(axiosPostMock).toHaveBeenCalled()
-    expect(axiosSubmitMock).toHaveBeenCalled()
+    expect(axiosPostMock).toHaveBeenCalledTimes(2)
     
     // destroy(form) // teardown
   })
@@ -2198,16 +2335,14 @@ export const handleAbort = function (elementType, elementName, options) {
         }
       })
 
-      el.axios = {
-        post: axiosPostMock,
-        isCancel: () => true,
-        CancelToken: {
-          source: () => {
-            return {
-              token: 'asdf',
-              cancel: () => {
-                throw new Error('Cancelled')
-              }
+      el.axios.request = axiosPostMock
+      el.axios.isCancel = () => true
+      el.axios.CancelToken = {
+        source: () => {
+          return {
+            token: 'asdf',
+            cancel: () => {
+              throw new Error('Cancelled')
             }
           }
         }

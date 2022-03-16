@@ -250,8 +250,8 @@ const base = function(props, context, dependencies = {})
     const defaults = {
       languages: baseConfig.value.config.languages,
       language: baseConfig.value.config.language,
-      endpoint: baseConfig.value.config.endpoints.submit.url,
-      method: baseConfig.value.config.endpoints.submit.method,
+      endpoint: typeof baseConfig.value.config.endpoints.submit === 'function' ? baseConfig.value.config.endpoints.submit : baseConfig.value.config.endpoints.submit.url,
+      method: typeof baseConfig.value.config.endpoints.submit === 'function' ? null : baseConfig.value.config.endpoints.submit.method,
       validateOn: baseConfig.value.config.validateOn,
       displayErrors: baseConfig.value.config.displayErrors,
       displayMessages: baseConfig.value.config.displayMessages,
@@ -999,14 +999,25 @@ const base = function(props, context, dependencies = {})
     try {
       resetValidators()
 
-      response = await services.value.axios.request({
-        url: options.value.endpoint.toLowerCase(),
-        method: options.value.method.toLowerCase(),
-        data: convertFormData(options.value.formData(form$.value)),
-      })
+      const data = options.value.formData(form$.value)
 
-      if (response.data.payload && response.data.payload.updates) {
-        update(response.data.payload.updates)
+      if (typeof options.value.endpoint === 'function') {
+        response = await options.value.endpoint(data, form$.value)
+      } else {
+        let url = $this.$vueform.config.endpoints[options.value.endpoint]?.url || options.value.endpoint
+        let method = $this.$vueform.config.endpoints[options.value.endpoint]?.method || options.value.method
+
+        response = await services.value.axios.request({
+          url,
+          method: method.toLowerCase(),
+          [method.toLowerCase() === 'get' ? 'params' : 'data']: convertFormData(data),
+        })
+      }
+
+      if (response && !(response instanceof Promise)) {
+        if (response?.data?.payload?.updates) {
+          update(response.data.payload.updates)
+        }
       }
 
       fire('success', response)

@@ -5,7 +5,7 @@ import TrixEditor from './../../mocks/TrixEditor'
 import flushPromises from 'flush-promises'
 import defaultTheme from './../../../themes/vueform'
 
-const createEditor = (details) => {
+const createEditor = (details, options = {}) => {
   const originalConsoleError = console.error
 
   console.error = (e) => { if (!e.toString().includes('Unknown custom element: <trix-editor>')) throw new Error(e) }
@@ -18,7 +18,8 @@ const createEditor = (details) => {
     config: {
       themes: {
         default: defaultTheme,
-      }
+      },
+      ...(options.config || {})
     }
   })
   
@@ -415,63 +416,8 @@ describe('Editor Element Rendering', () => {
     expect(axiosPostMock.mock.calls.length).toBe(0)
   })
 
-  it('should throw error in `handleAttachmentAdd` if endpoint does not exist', async () => {
-    let axiosPostMock = jest.fn()
-
-    let axiosMock = {
-      post: axiosPostMock,
-    }
-
-    let form = createEditor({
-      schema: {
-        a: {
-          type: 'editor',
-        }
-      }
-    })
-
-    form.vm.$vueform.services.axios = axiosMock
-
-    let a = findAllComponents(form, { name: 'EditorElement' }).at(0)
-
-    form.vm.$set(form.vm.vueform.schema.a, 'endpoint', null)
-
-    await nextTick()
-    let editor$ = a.vm.input
-    let editorInstnace$ = a.vm.input.$refs.editor$
-
-    expect(() => {
-      const originalConsoleError = console.error
-
-      console.error = (e) => {  }
-
-      editor$.handleAttachmentAdd({
-        attachment: {
-          file: {}
-        }
-      })
-
-      console.error = originalConsoleError
-    }).toThrowError()
-  })
-
-  it('should call axios.post on `handleAttachmentAdd`', async () => {
-    let axiosPostMock = jest.fn(() => {
-      return new Promise((resolve, reject) => {
-        setTimeout(function(){
-          resolve({
-            data: {
-              url: 'url',
-              href: 'href',
-            }
-          })
-        }, 1)
-      })
-    })
-
-    let axiosMock = {
-      post: axiosPostMock,
-    }
+  it('should call default endpoint on `handleAttachmentAdd`', async () => {
+    let requestMock = jest.fn(() => ({ url: 'url', href: 'href' }))
 
     let form = createEditor({
       schema: {
@@ -483,11 +429,11 @@ describe('Editor Element Rendering', () => {
 
     let a = findAllComponents(form, { name: 'EditorElement' }).at(0)
 
-    a.vm.$vueform.services.axios = axiosMock
+    a.vm.$vueform.services.axios.request = requestMock
 
     await nextTick()
+
     let editor$ = a.vm.input
-    let editorInstnace$ = a.vm.input.$refs.editor$
 
     editor$.handleAttachmentAdd({
       attachment: {
@@ -496,8 +442,146 @@ describe('Editor Element Rendering', () => {
       }
     })
 
+    await flushPromises()
+
+    expect(requestMock.mock.calls[0][0].url).toBe(form.vm.$vueform.config.endpoints.attachment.url)
+    expect(requestMock.mock.calls[0][0].method).toBe(form.vm.$vueform.config.endpoints.attachment.method)
+  })
+
+  it('should call default function endpoint on `handleAttachmentAdd`', async () => {
+    let requestMock = jest.fn(() => ({ url: 'url', href: 'href' }))
+
+    let form = createEditor({
+      schema: {
+        a: {
+          type: 'editor',
+        }
+      }
+    }, {
+      config: {
+        endpoints: {
+          attachment: requestMock,
+        }
+      }
+    })
+
+    let a = findAllComponents(form, { name: 'EditorElement' }).at(0)
+
+    a.vm.$vueform.services.axios.request = requestMock
+
     await nextTick()
 
-    expect(axiosPostMock.mock.calls.length).toBe(1)
+    let editor$ = a.vm.input
+
+    editor$.handleAttachmentAdd({
+      attachment: {
+        file: {},
+        setUploadProgress: jest.fn()
+      }
+    })
+
+    await flushPromises()
+
+    expect(requestMock.mock.calls[0][1]).toEqual(form.vm.el$('a'))
+  })
+
+  it('should call custom endpoint & method on `handleAttachmentAdd`', async () => {
+    let requestMock = jest.fn(() => ({ url: 'url', href: 'href' }))
+
+    let form = createEditor({
+      schema: {
+        a: {
+          type: 'editor',
+          endpoint: '/endpoint',
+          method: 'method',
+        }
+      }
+    })
+
+    let a = findAllComponents(form, { name: 'EditorElement' }).at(0)
+
+    a.vm.$vueform.services.axios.request = requestMock
+
+    await nextTick()
+
+    let editor$ = a.vm.input
+
+    editor$.handleAttachmentAdd({
+      attachment: {
+        file: {},
+        setUploadProgress: jest.fn()
+      }
+    })
+
+    await flushPromises()
+
+    expect(requestMock.mock.calls[0][0].url).toBe('/endpoint')
+    expect(requestMock.mock.calls[0][0].method).toBe('method')
+  })
+
+  it('should call custom function endpoint on `handleAttachmentAdd`', async () => {
+    let requestMock = jest.fn(() => ({ url: 'url', href: 'href' }))
+
+    let form = createEditor({
+      schema: {
+        a: {
+          type: 'editor',
+          endpoint: requestMock,
+        }
+      }
+    })
+
+    let a = findAllComponents(form, { name: 'EditorElement' }).at(0)
+
+    await nextTick()
+
+    let editor$ = a.vm.input
+
+    editor$.handleAttachmentAdd({
+      attachment: {
+        file: {},
+        setUploadProgress: jest.fn()
+      }
+    })
+
+    await flushPromises()
+
+    expect(requestMock.mock.calls[0][1]).toEqual(form.vm.el$('a'))
+  })
+
+  it('should call custom named endpoint on `handleAttachmentAdd`', async () => {
+    let requestMock = jest.fn(() => ({ url: 'url', href: 'href' }))
+
+    let form = createEditor({
+      schema: {
+        a: {
+          type: 'editor',
+          endpoint: 'endpoint',
+        }
+      }
+    }, {
+      config: {
+        endpoints: {
+          endpoint: requestMock
+        }
+      }
+    })
+
+    let a = findAllComponents(form, { name: 'EditorElement' }).at(0)
+
+    await nextTick()
+
+    let editor$ = a.vm.input
+
+    editor$.handleAttachmentAdd({
+      attachment: {
+        file: {},
+        setUploadProgress: jest.fn()
+      }
+    })
+
+    await flushPromises()
+
+    expect(requestMock.mock.calls[0][1]).toEqual(form.vm.el$('a'))
   })
 })

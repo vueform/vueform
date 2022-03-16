@@ -56,6 +56,35 @@ describe('Active URL Rule', () => {
     expect(a.vm.invalid).toBe(true)
   })
 
+  it('should work with function endpoint', async () => {
+    let activeUrlMock = jest.fn(() => ({data: false}))
+
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'text',
+          default: 'value',
+          rules: 'active_url'
+        },
+      }
+    }, {
+      config: {
+        endpoints: {
+          activeUrl: activeUrlMock,
+        }
+      }
+    })
+
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
+
+    a.vm.validate()
+
+    await flushPromises()
+
+    expect(activeUrlMock).toHaveBeenCalledWith('value', a.vm, form.vm)
+    expect(a.vm.invalid).toBe(true)
+  })
+
   it('should submit right data', async () => {
     let form = createForm({
       schema: {

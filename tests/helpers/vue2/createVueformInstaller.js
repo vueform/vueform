@@ -21,7 +21,12 @@ export default function createVueformInstaller (options = {}) {
       en,
     }),
     languages: {en:'English',fr:'French'},
-  }, options.config || {})
+  }, options.config || {}, {
+    endpoints: {
+      ...config.endpoints,
+      ...(options.config?.endpoints || {})
+    }
+  })
 
   const VueformInstaller = installer(finalConfig, components)
 

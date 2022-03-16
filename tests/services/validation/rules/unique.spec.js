@@ -55,6 +55,35 @@ describe('Unique Rule', () => {
     expect(a.vm.invalid).toBe(true)
   })
 
+  it('should work with function endpoint', async () => {
+    let uniqueMock = jest.fn(() => ({data: false}))
+
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'text',
+          default: 'value',
+          rules: 'unique:check'
+        },
+      }
+    }, {
+      config: {
+        endpoints: {
+          unique: uniqueMock,
+        }
+      }
+    })
+
+    let a = findAllComponents(form, { name: 'TextElement' }).at(0)
+
+    a.vm.validate()
+
+    await flushPromises()
+
+    expect(uniqueMock).toHaveBeenCalledWith('value', 'a', {'0': 'check'}, a.vm, form.vm)
+    expect(a.vm.invalid).toBe(true)
+  })
+
   it('should replace params with field values after first param', async () => {
     let form = createForm({
       schema: {
@@ -90,6 +119,7 @@ describe('Unique Rule', () => {
           "1": 'bbb',
           "2": 'c',
         },
+        name: 'a',
         value: 'aaa'
       }
     })

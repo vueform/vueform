@@ -37,18 +37,20 @@ describe('Plugin', () => {
     }, {
       config: {
         plugins: [
-          {
-            install(app) {
-              app.mixin({
-                data() {
-                  return {
-                    $something: null
+          function(){
+            return {
+              install(app) {
+                app.mixin({
+                  data() {
+                    return {
+                      $something: null
+                    }
+                  },
+                  beforeCreate() {
+                    this.$something = 'something'
                   }
-                },
-                beforeCreate() {
-                  this.$something = 'something'
-                }
-              })
+                })
+              }
             }
           }
         ]
@@ -57,7 +59,7 @@ describe('Plugin', () => {
 
     expect(form.vm.$something).toBe('something')
   })
-
+ 
   it('should apply setup', async () => {
     let form = createForm({
       schema: {
@@ -68,12 +70,14 @@ describe('Plugin', () => {
     }, {
       config: {
         plugins: [
-          {
-            apply: 'TextElement',
-            setup(props, context, component) {
-              component.ref = ref('value')
+          function() {
+            return {
+              apply: 'TextElement',
+              setup(props, context, component) {
+                component.ref = ref('value')
 
-              return component
+                return component
+              }
             }
           }
         ]
@@ -98,12 +102,14 @@ describe('Plugin', () => {
     }, {
       config: {
         plugins: [
-          {
-            apply: ['TextElement', 'TextareaElement'],
-            setup(props, context, component) {
-              component.ref = ref('value')
+          function() {
+            return {
+              apply: ['TextElement', 'TextareaElement'],
+              setup(props, context, component) {
+                component.ref = ref('value')
 
-              return component
+                return component
+              }
             }
           }
         ]
@@ -133,12 +139,14 @@ describe('Plugin', () => {
     }, {
       config: {
         plugins: [
-          {
-            apply: /Text[a-z]*Element/,
-            setup(props, context, component) {
-              component.ref = ref('value')
+          function() {
+            return {
+              apply: /Text[a-z]*Element/,
+              setup(props, context, component) {
+                component.ref = ref('value')
 
-              return component
+                return component
+              }
             }
           }
         ]
@@ -176,12 +184,14 @@ describe('Plugin', () => {
     }, {
       config: {
         plugins: [
-          {
-            apply: [/Text[a-z]*Element/, /[Ss]electElement/],
-            setup(props, context, component) {
-              component.ref = ref('value')
+          function() {
+            return {
+              apply: [/Text[a-z]*Element/, /[Ss]electElement/],
+              setup(props, context, component) {
+                component.ref = ref('value')
 
-              return component
+                return component
+              }
             }
           }
         ]
@@ -223,11 +233,13 @@ describe('Plugin', () => {
     }, {
       config: {
         plugins: [
-          {
-            setup(props, context, component) {
-              component.ref = ref('value')
+          function() {
+            return {
+              setup(props, context, component) {
+                component.ref = ref('value')
 
-              return component
+                return component
+              }
             }
           }
         ]
@@ -264,26 +276,28 @@ describe('Plugin', () => {
     }, {
       config: {
         plugins: [
-          {
-            apply: 'TextElement',
-            mixins: [
-              {
-                props: {
-                  format2: {
-                    type: String,
-                    required: false,
+          function() {
+            return {
+              apply: 'TextElement',
+              mixins: [
+                {
+                  props: {
+                    format2: {
+                      type: String,
+                      required: false,
+                    }
                   }
                 }
+              ],
+              props: {
+                format: {
+                  type: String,
+                  required: false,
+                }
+              },
+              created() {
+                a++
               }
-            ],
-            props: {
-              format: {
-                type: String,
-                required: false,
-              }
-            },
-            created() {
-              a++
             }
           }
         ]

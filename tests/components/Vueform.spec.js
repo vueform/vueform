@@ -2432,7 +2432,7 @@ describe('Vueform', () => {
 
       el.load(new File([''], 'filename.jpg'))
 
-      form.vm.$vueform.services.axios.post = () => ({
+      form.vm.$vueform.services.axios.request = () => ({
         data: {
           tmp: 'tmp123',
           originalName: 'filename'
@@ -2611,6 +2611,171 @@ describe('Vueform', () => {
       expect(postMock).toHaveBeenCalledWith({data:form.vm.convertFormData(form.vm.options.formData(form.vm)), url:'/endpoint', method:form.vm.options.method})
     })
 
+    it('should submit to default endpoint & method', async () => {
+      let postMock = jest.fn(() => ({ data: {} }))
+
+      let form = createForm({
+        schema: {
+          el: { type: 'text', default: 'value' },
+        }
+      })
+
+      form.vm.$vueform.services.axios.request = postMock
+
+      await nextTick()
+
+      form.vm.send()
+
+      await flushPromises()
+
+      expect(postMock.mock.calls[0][0].url).toBe(form.vm.$vueform.config.endpoints.submit.url)
+      expect(postMock.mock.calls[0][0].method).toBe(form.vm.$vueform.config.endpoints.submit.method)
+    })
+
+    it('should submit to default function endpoint', async () => {
+      let postMock = jest.fn(() => ({ data: {} }))
+      let endpointMock = jest.fn(() => {})
+
+      let form = createForm({
+        schema: {
+          el: { type: 'text', default: 'value' },
+        }
+      }, {
+        config: {
+          endpoints: {
+            submit: endpointMock
+          }
+        }
+      })
+
+      form.vm.$vueform.services.axios.request = postMock
+
+      await nextTick()
+
+      form.vm.send()
+
+      await flushPromises()
+
+      expect(postMock).not.toHaveBeenCalled()
+      expect(endpointMock).toHaveBeenCalledWith(
+        form.vm.options.formData(form.vm),
+        form.vm
+      )
+    })
+
+    it('should submit to custom named endpoint', async () => {
+      let postMock = jest.fn(() => ({ data: {} }))
+
+      let form = createForm({
+        endpoint: 'custom',
+        schema: {
+          el: { type: 'text', default: 'value' },
+        }
+      }, {
+        config: {
+          endpoints: {
+            custom: {
+              url: '/url',
+              method: 'method',
+            },
+          }
+        }
+      })
+
+      form.vm.$vueform.services.axios.request = postMock
+
+      await nextTick()
+
+      form.vm.send()
+
+      await flushPromises()
+
+      expect(postMock.mock.calls[0][0].url).toBe('/url')
+      expect(postMock.mock.calls[0][0].method).toBe('method')
+    })
+
+    it('should submit to custom endpoint & method', async () => {
+      let postMock = jest.fn(() => ({ data: {} }))
+
+      let form = createForm({
+        endpoint: '/url',
+        method: 'method',
+        schema: {
+          el: { type: 'text', default: 'value' },
+        }
+      })
+
+      form.vm.$vueform.services.axios.request = postMock
+
+      await nextTick()
+
+      form.vm.send()
+
+      await flushPromises()
+
+      expect(postMock.mock.calls[0][0].url).toBe('/url')
+      expect(postMock.mock.calls[0][0].method).toBe('method')
+    })
+
+    it('should submit to custom function endpoint', async () => {
+      let postMock = jest.fn(() => ({ data: {} }))
+      let endpointMock = jest.fn(() => {})
+
+      let form = createForm({
+        endpoint: endpointMock,
+        schema: {
+          el: { type: 'text', default: 'value' },
+        }
+      })
+
+      form.vm.$vueform.services.axios.request = postMock
+
+      await nextTick()
+
+      form.vm.send()
+
+      await flushPromises()
+
+      expect(postMock).not.toHaveBeenCalled()
+      expect(endpointMock).toHaveBeenCalledWith(
+        form.vm.options.formData(form.vm),
+        form.vm
+      )
+    })
+
+    it('should set data & fire success after function endpoint', async () => {
+      let postMock = jest.fn(() => ({ data: {} }))
+      let endpointMock = jest.fn(async () => ({
+        data: {
+          payload: {
+            updates: {
+              el: 'value'
+            }
+          }
+        }
+      }))
+      let onSuccessMock = jest.fn(() => {})
+
+      let form = createForm({
+        endpoint: endpointMock,
+        schema: {
+          el: { type: 'text' },
+        },
+        onSuccess: onSuccessMock,
+      })
+
+      form.vm.$vueform.services.axios.request = postMock
+
+      await nextTick()
+
+      form.vm.send()
+
+      await flushPromises()
+
+      expect(form.vm.el$('el').value).toBe('value')
+      expect(onSuccessMock).toHaveBeenCalled()
+    })
+
     it('should update form with payload updates data', async () => {
       let postMock = jest.fn(() => ({ data: { payload: { updates: { el: 'not-value' }} } }))
 
@@ -2653,7 +2818,7 @@ describe('Vueform', () => {
     })
 
     it('should fire error when fails and set submitting false', async () => {
-      let postMock = jest.fn(() => (() => { }))
+      let postMock = jest.fn(() => Promise.reject(new Error('fail')))
       let failMock = jest.fn()
 
       let form = createForm({

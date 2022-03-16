@@ -97,7 +97,7 @@ export default {
     },
     endpoint: {
       required: false,
-      type: [String],
+      type: [String, Function],
       default: null,
       '@default': 'config.endpoints.attachment.url',
     },

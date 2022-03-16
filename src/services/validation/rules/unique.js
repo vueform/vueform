@@ -30,17 +30,25 @@ export default class unique extends Validator {
   }
   
   async check(value) {
+    const name = this.element$.name
     const endpoint = this.form$.$vueform.config.endpoints.unique
-    const method = endpoint.method
+    const method = typeof endpoint !== 'function' ? endpoint.method : null
 
-    const res = await this.form$.$vueform.services.axios.request({
-      url: endpoint.url,
-      method,
-      [method.toLowerCase() === 'get' ? 'params' : 'data']: {
-        params: this.requestParams,
-        value: value,
-      },
-    })
+    let res
+
+    if (typeof endpoint === 'function') {
+      res = await(endpoint(value, name, this.requestParams, this.element$, this.form$))
+    } else {
+      res = await this.form$.$vueform.services.axios.request({
+        url: endpoint.url,
+        method,
+        [method.toLowerCase() === 'get' ? 'params' : 'data']: {
+          params: this.requestParams,
+          name,
+          value,
+        },
+      })
+    }
 
     return res.data
   }

@@ -4932,7 +4932,8 @@ module.exports = {
         "required": false,
         "default": null,
         "types": [
-          "string"
+          "string",
+          "function"
         ]
       },
       "method": {

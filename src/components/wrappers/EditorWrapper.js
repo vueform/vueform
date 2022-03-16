@@ -1,4 +1,4 @@
-import { ref, watch, onMounted, toRefs } from 'composition-api'
+import { ref, watch, onMounted, toRefs, computed } from 'composition-api'
 import useElementComponent from './../../composables/useElementComponent'
 
 export default {
@@ -36,7 +36,7 @@ export default {
     },
     endpoint: {
       required: false,
-      type: String,
+      type: [String, Function],
       default: null
     },
     method: {
@@ -89,6 +89,30 @@ export default {
      * @default null
      */
     const editor$ = ref(null)
+
+    // ============== COMPUTED ==============
+
+    const resolvedEndpoint = computed(() => {
+      if (endpoint.value) {
+        return typeof endpoint.value === 'function' ? endpoint.value : (form$.value.$vueform.config.endpoints[endpoint.value] || endpoint.value)
+      }
+
+      return typeof form$.value.$vueform.config.endpoints.attachment === 'function'
+        ? form$.value.$vueform.config.endpoints.attachment
+        : form$.value.$vueform.config.endpoints.attachment.url
+    })
+
+    const resolvedMethod = computed(() => {
+      if (typeof resolvedEndpoint.value === 'function') {
+        return null
+      }
+
+      if (endpoint.value && form$.value.$vueform.config.endpoints[endpoint.value]) {
+        return form$.value.$vueform.config.endpoints[endpoint.value]
+      }
+
+      return method.value || form$.value.$vueform.config.endpoints.attachment.method
+    })
 
     // =============== METHODS ==============
 
@@ -179,13 +203,9 @@ export default {
      * @returns {void}
      * @private
      */
-    const handleAttachmentAdd = (e) => {
+    const handleAttachmentAdd = async (e) => {
       if (!e.attachment.file) {
         return
-      }
-
-      if (!endpoint.value) {
-        throw new Error('Property `endpoint` must be defined to upload')
       }
 
       const data = new FormData()
@@ -193,22 +213,31 @@ export default {
       data.append('Content-Type', e.attachment.file.type)
       data.append('file', e.attachment.file)
 
-      el$.value.$vueform.services.axios[method.value](endpoint.value, data, {
-        onUploadProgress: (progress) => {
-          e.attachment.setUploadProgress(
-            Math.round((progress.loaded * 100) / progress.total)
-          )
+      let response
+
+      try {
+        if (typeof resolvedEndpoint.value === 'function') {
+          response = await resolvedEndpoint.value(e.attachment, el$.value)
+        } else {
+          response = await el$.value.$vueform.services.axios.request({
+            url: resolvedEndpoint.value,
+            method: resolvedMethod.value,
+            [resolvedMethod.value.toLowerCase() === 'get' ? 'params' : 'data']: data,
+            onUploadProgress: (progress) => {
+              e.attachment.setUploadProgress(
+                Math.round((progress.loaded * 100) / progress.total)
+              )
+            },
+          })
         }
-      })
-      .then((response) => {
-        return e.attachment.setAttributes({
+
+        e.attachment.setAttributes({
           url: response.data.url,
           href: response.data.href,
         })
-      })
-      .catch((error) => {
+      } catch (error) {
         context.emit('error', error)
-      })
+      }
     }
 
     // ============== WATCHERS ==============
@@ -231,6 +260,7 @@ export default {
       Size,
       View,
       classesInstance,
+      resolvedEndpoint,
       theme,
       classes,
       Templates,
