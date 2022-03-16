@@ -229,11 +229,13 @@ export default {
               )
             },
           })
+
+          response = response.data
         }
 
         e.attachment.setAttributes({
-          url: response.data.url,
-          href: response.data.href,
+          url: response.url,
+          href: response.href,
         })
       } catch (error) {
         context.emit('error', error)

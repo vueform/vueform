@@ -74,10 +74,10 @@ export const off = function (elementType, elementName, options) {
 export const onCreated = function (elementType, elementName, options) {
   it('should subscribe to element `events`', () => {
     let schema = {
-        el: {
-          type: elementType,
-        }
+      el: {
+        type: elementType,
       }
+    }
 
     let form = createForm({
       schema,
@@ -92,7 +92,11 @@ export const onCreated = function (elementType, elementName, options) {
       schema.el[`on${_.upperFirst(_.camelCase(event))}`] = mocks[event]
     })
 
-    form = createForm({schema})
+    destroy(form) // teardown
+
+    form = createForm({
+      schema: schema,
+    })
 
     el = form.vm.el$('el')
 

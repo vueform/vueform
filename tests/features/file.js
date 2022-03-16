@@ -221,12 +221,12 @@ export const endpoints = function (elementType, elementName, options) {
     })
   })
 
-  it('should return custom from uploadTempFileEndpoint object', () => {
+  it('should return custom from uploadTempEndpoint object', () => {
     let form = createForm({
       schema: {
         el: {
           type: elementType,
-          uploadTempFileEndpoint: {
+          uploadTempEndpoint: {
             url: '/upload-temp',
             method: 'method'
           },
@@ -242,12 +242,12 @@ export const endpoints = function (elementType, elementName, options) {
     })
   })
 
-  it('should return custom from uploadTempFileEndpoint string url', () => {
+  it('should return custom from uploadTempEndpoint string url', () => {
     let form = createForm({
       schema: {
         el: {
           type: elementType,
-          uploadTempFileEndpoint: '/upload-temp',
+          uploadTempEndpoint: '/upload-temp',
         }
       }
     })
@@ -260,12 +260,12 @@ export const endpoints = function (elementType, elementName, options) {
     })
   })
 
-  it('should return custom from uploadTempFileEndpoint named endpoint', () => {
+  it('should return custom from uploadTempEndpoint named endpoint', () => {
     let form = createForm({
       schema: {
         el: {
           type: elementType,
-          uploadTempFileEndpoint: 'custom',
+          uploadTempEndpoint: 'custom',
         }
       }
     }, {
@@ -287,12 +287,12 @@ export const endpoints = function (elementType, elementName, options) {
     })
   })
 
-  it('should return custom from uploadTempFileEndpoint function', () => {
+  it('should return custom from uploadTempEndpoint function', () => {
     let form = createForm({
       schema: {
         el: {
           type: elementType,
-          uploadTempFileEndpoint: (a, b) => a + b,
+          uploadTempEndpoint: (a, b) => a + b,
         }
       }
     })
@@ -302,12 +302,12 @@ export const endpoints = function (elementType, elementName, options) {
     expect(el.endpoints.uploadTempFile(1,2)).toEqual(3)
   })
 
-  it('should return custom from removeTempFileEndpoint function', () => {
+  it('should return custom from removeTempEndpoint function', () => {
     let form = createForm({
       schema: {
         el: {
           type: elementType,
-          removeTempFileEndpoint: (a, b) => a + b,
+          removeTempEndpoint: (a, b) => a + b,
         }
       }
     })
@@ -317,12 +317,12 @@ export const endpoints = function (elementType, elementName, options) {
     expect(el.endpoints.removeTempFile(1,2)).toEqual(3)
   })
 
-  it('should return custom from removeFileEndpoint function', () => {
+  it('should return custom from removeEndpoint function', () => {
     let form = createForm({
       schema: {
         el: {
           type: elementType,
-          removeFileEndpoint: (a, b) => a + b,
+          removeEndpoint: (a, b) => a + b,
         }
       }
     })
@@ -993,9 +993,7 @@ export const uploadTemp = function (elementType, elementName, options) {
     }
 
     let uploadMock = jest.fn(() => {
-      return {
-        data: tmp
-      }
+      return tmp
     })
 
     let form = createForm({
@@ -1600,7 +1598,7 @@ export const remove = function (elementType, elementName, options) {
           params: {
             param: 'value'
           },
-          removeFileEndpoint: endpointMock,
+          removeEndpoint: endpointMock,
         }
       }
     })

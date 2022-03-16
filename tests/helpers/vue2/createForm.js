@@ -56,7 +56,7 @@ export default function createForm (data, options = {}, render = null) {
     render,
   } : {}))
 
-  let finalConfig = Object.assign({}, config, options.config || {})
+  let finalConfig = Object.assign({}, config)
 
   let $vueform = {
     test: true,
