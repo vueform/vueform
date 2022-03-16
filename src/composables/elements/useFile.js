@@ -10,9 +10,9 @@ const base = function (props, context, dependencies)
     auto,
     methods,
     urls,
-    uploadTempFileEndpoint,
-    removeTempFileEndpoint,
-    removeFileEndpoint,
+    uploadTempEndpoint,
+    removeTempEndpoint,
+    removeEndpoint,
     url,
     previewUrl,
     params,
@@ -84,9 +84,9 @@ const base = function (props, context, dependencies)
   const endpoints = computed(() => {
     const configEndpoints = form$.value.$vueform.config.endpoints
     const propEndpoints = {
-      uploadTempFile: uploadTempFileEndpoint.value,
-      removeTempFile: removeTempFileEndpoint.value,
-      removeFile: removeFileEndpoint.value,
+      uploadTempFile: uploadTempEndpoint.value,
+      removeTempFile: removeTempEndpoint.value,
+      removeFile: removeEndpoint.value,
     }
     const endpoints = {}
 
@@ -351,6 +351,8 @@ const base = function (props, context, dependencies)
 
         response = response.data
       }
+
+      console.log(response)
       
       update(response)
     }

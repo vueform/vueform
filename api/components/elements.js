@@ -8114,7 +8114,7 @@ module.exports = {
         required: false,
         private: false,
       },
-      uploadTempFileEndpoint: {
+      uploadTempEndpoint: {
         required: 'false',
         default: 'config.endpoints.uploadTempFile',
         types: [
@@ -8125,7 +8125,7 @@ module.exports = {
         required: false,
         private: false,
       },
-      removeTempFileEndpoint: {
+      removeTempEndpoint: {
         required: 'false',
         default: 'config.endpoints.removeTempFile',
         types: [
@@ -8136,7 +8136,7 @@ module.exports = {
         required: false,
         private: false,
       },
-      removeFileEndpoint: {
+      removeEndpoint: {
         required: 'false',
         default: 'config.endpoints.removeFile',
         types: [
