@@ -45,7 +45,7 @@ export default {
       date: 'DD.MM.YYYY',
     },
     multiselect: {
-      multipleLabelOne: ':options optionen ausgewählt',
+      multipleLabelOne: '1 option ausgewählt',
       multipleLabelMore: ':options optionen ausgewählt',
       noResults: 'Keine Optionen gefunden',
       noOptions: 'Liste ist leer.',
