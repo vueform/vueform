@@ -159,8 +159,10 @@ export const slots = function (elementType, elementName, options) {
     }
   })
 
-  const defaultSlots = findAllComponents(defaultForm, { name: elementName }).at(0).vm.elementSlots
-  const fieldSlots = findAllComponents(defaultForm, { name: elementName }).at(0).vm.fieldSlots
+  const defaultSlots = { ...findAllComponents(defaultForm, { name: elementName }).at(0).vm.elementSlots }
+  const fieldSlots = { ...findAllComponents(defaultForm, { name: elementName }).at(0).vm.fieldSlots }
+
+  destroy(defaultForm)
 
   // Slots
   _.each(_.keys(defaultSlots), (slot) => {

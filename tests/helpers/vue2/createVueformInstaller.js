@@ -7,6 +7,8 @@ import components from './../../../src/components'
 import defaultTheme from './../../../themes/vueform'
 import en from './../../../locales/en'
 
+components.FileElement.props.default.type = [String, Object, File]
+
 export default function createVueformInstaller (options = {}) {
   let theme = options.theme || defaultTheme
 

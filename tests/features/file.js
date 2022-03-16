@@ -993,9 +993,7 @@ export const uploadTemp = function (elementType, elementName, options) {
     }
 
     let uploadMock = jest.fn(() => {
-      return {
-        data: tmp
-      }
+      return tmp
     })
 
     let form = createForm({

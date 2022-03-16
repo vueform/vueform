@@ -348,9 +348,11 @@ const base = function (props, context, dependencies)
           },
           cancelToken: request.value.token,
         })
+
+        response = response.data
       }
       
-      update(response.data)
+      update(response)
     }
     catch (error) {
       progress.value = 0
