@@ -661,7 +661,7 @@ const vueform = plugin((context) => {
     }
 
     textType[`.form-pt-input-border${suffix}`] = {
-      paddingTop: `calc(var(--vf-py-input${size}) + (var(--vf-border-width-input-t${size}) / 2))`,
+      paddingTop: `calc(var(--vf-py-input${size}) + var(--vf-border-width-input-t))`,
     }
 
     withFloating[`.form-p-input-floating${suffix}`] = {
@@ -915,6 +915,10 @@ const vueform = plugin((context) => {
 
     plain[`.form-h-input${suffix}`] = {
       height: `var(--vf-min-height-input${size})`,
+    }
+
+    plain[`.form-h-input-border${suffix}`] = {
+      height: `calc(var(--vf-min-height-input${size}) + var(--vf-border-width-input-t) + var(--vf-border-width-input-b))`,
     }
 
     plain[`.form-h-input-height${suffix}`] = {
@@ -1683,6 +1687,10 @@ const vueform = plugin((context) => {
     ...checkable,
   }
 
+  const checkedHoverable = {
+    ...hoverable,
+  }
+
   const groupHoverable = {
     '.form-hidden': {
       display: 'none',
@@ -1736,6 +1744,7 @@ const vueform = plugin((context) => {
   addUtilities(formFocusable, ['focused'])
   addUtilities(formFocusHoverable, ['focused-hover'])
   addUtilities(checkedFocusable, ['checked-focused'])
+  addUtilities(checkedHoverable, ['checked-hover'])
   addUtilities(activable, ['active'])
   addUtilities(disableable, ['disabled'])
   addUtilities(important, ['important'])
@@ -1807,6 +1816,12 @@ const vueform = plugin((context) => {
   addVariant('checked-focused', ({ modifySelectors, separator }) => {
     modifySelectors(({ className }) => {
       return `.${e(`checked-focused${separator}${className}`)}:checked:focus`
+    })
+  })
+  
+  addVariant('checked-hover', ({ modifySelectors, separator }) => {
+    modifySelectors(({ className }) => {
+      return `.${e(`checked-hover${separator}${className}`)}:checked:hover`
     })
   })
 
