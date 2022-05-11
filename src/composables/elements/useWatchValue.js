@@ -6,6 +6,7 @@ const base = function(props, context, dependencies, options = {})
   // ============ DEPENDENCIES =============
 
   const form$ = dependencies.form$
+  const el$ = dependencies.el$
   const fire = dependencies.fire
   const dirt = dependencies.dirt
   const validate = dependencies.validate
@@ -19,7 +20,7 @@ const base = function(props, context, dependencies, options = {})
         return
       }
 
-      fire('change', n, o)
+      fire('change', n, o, el$.value)
 
       if (dirt) {
         dirt()
@@ -37,6 +38,7 @@ const multilingual = function(props, context, dependencies, options = {})
   // ============ DEPENDENCIES =============
 
   const form$ = dependencies.form$
+  const el$ = dependencies.el$
   const fire = dependencies.fire
   const dirt = dependencies.dirt
   const value = dependencies.value
@@ -51,7 +53,7 @@ const multilingual = function(props, context, dependencies, options = {})
         return
       }
 
-      fire('change', n, o)
+      fire('change', n, o, el$.value)
 
       if (dirt) {
         dirt()
@@ -69,6 +71,7 @@ const list = function(props, context, dependencies, options = {})
   // ============ DEPENDENCIES =============
 
   const form$ = dependencies.form$
+  const el$ = dependencies.el$
   const fire = dependencies.fire
   const dirt = dependencies.dirt
   const validateValidators = dependencies.validateValidators
@@ -82,7 +85,7 @@ const list = function(props, context, dependencies, options = {})
         return
       }
 
-      fire('change', n, o)
+      fire('change', n, o, el$.value)
 
       if (dirt) {
         dirt()
@@ -101,6 +104,7 @@ const object = function(props, context, dependencies, options = {})
 
   const fire = dependencies.fire
   const value = dependencies.value
+  const el$ = dependencies.el$
 
   // ============== WATCHERS ===============
 
@@ -110,7 +114,7 @@ const object = function(props, context, dependencies, options = {})
         return
       }
 
-      fire('change', n, o)
+      fire('change', n, o, el$.value)
     }, { immediate: false, deep: true })
   })
 }
@@ -122,6 +126,7 @@ const location = function(props, context, dependencies, options = {})
   // ============ DEPENDENCIES =============
 
   const form$ = dependencies.form$
+  const el$ = dependencies.el$
   const fire = dependencies.fire
   const dirt = dependencies.dirt
   const validate = dependencies.validate
@@ -136,7 +141,7 @@ const location = function(props, context, dependencies, options = {})
         return
       }
 
-      fire('change', n, o)
+      fire('change', n, o, el$.value)
 
       dirt()
 
