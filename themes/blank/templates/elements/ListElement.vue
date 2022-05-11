@@ -27,6 +27,7 @@
             href=""
             v-if="hasRemove"
             :class="classes.remove"
+            :id="`${path}-${i}-remove-button`"
             @click.prevent="handleRemove(i)"
           >
             <span :class="classes.removeIcon"></span>
@@ -39,6 +40,7 @@
         href=""
         v-if="hasAdd"
         :class="classes.add"
+        :id="`${path}-add-button`"
         @click.prevent="handleAdd"
         v-html="addLabel"
       ></a>
