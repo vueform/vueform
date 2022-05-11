@@ -32,7 +32,7 @@
 
       <!-- Preview -->
       <slot name="preview">
-        <FilePreview/>
+        <FilePreview :key="view" />
       </slot>
     </template>
 
