@@ -19,7 +19,7 @@ const base = function(props, context, dependencies)
    * @type {boolean}
    */
   const hasFloating = computed(() => {
-    return !!(!!floating.value || (placeholder.value && form$.value.options.floatPlaceholders))
+    return !!(!!floating.value || (placeholder.value && form$.value.options.floatPlaceholders)) && floating.value !== false
   })
 
   return {
