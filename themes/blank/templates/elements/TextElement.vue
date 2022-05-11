@@ -19,6 +19,7 @@
           v-bind="attrs"
           @input="handleInput"
           @select="handleInput"
+          @blur="handleBlur"
           ref="input"
        />
       </div>
