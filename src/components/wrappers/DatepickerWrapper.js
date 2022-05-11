@@ -122,25 +122,13 @@ export default {
       datepicker$.value.input.parentElement.id = 'datepicker-' + id.value
     }
 
-    // ============== WATCHERS ==============
-
-    watch(value, (n,o) => {
-      datepicker$.value.setDate(n, false)
-    })
-
-    watch(id, (n,o) => {
-      setDatepickerId()
-    }, { immediate: false })
-
-    watch(options, (n,o) => {
-      _.each(config.value, (val, option) => {
-        datepicker$.value.set(option, val)
-      })
-    }, { deep: true })
-
-    // ================ HOOKS ===============
-
-    onMounted(() => {
+    /**
+     * Initalizes the flatpickr.
+     * 
+     * @returns {void}
+     * @private
+     */
+    const init = () => {
       datepicker$.value = flatpickr(input.value, Object.assign({}, config.value, {
         onChange: (val) => {
           update(val)
@@ -171,6 +159,26 @@ export default {
       if (value.value !== null) {
         datepicker$.value.setDate(value.value, false)
       }
+    }
+
+    // ============== WATCHERS ==============
+
+    watch(value, (n,o) => {
+      datepicker$.value?.setDate(n, false)
+    })
+
+    watch(id, (n,o) => {
+      setDatepickerId()
+    }, { immediate: false })
+
+    watch(options, (n,o) => {
+      init()
+    }, { deep: true })
+
+    // ================ HOOKS ===============
+
+    onMounted(() => {
+      init()
     })
 
     // // Required because if static == true the picker does
