@@ -5,9 +5,9 @@ import compare from './../../utils/compare'
 
 // condition - condition information [otherPath, operator, expectedValue]
 // elementPath - current
-const check = (condition, elementPath, form$) => {
+const check = (condition, elementPath, form$, el$) => {
   let checkFunction = () => {
-    return condition(form$)
+    return condition(form$, el$)
   }
 
   let checkArray = () => {
