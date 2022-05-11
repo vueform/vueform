@@ -19,7 +19,7 @@
 
   <component v-else-if="content" :is="content" :el$="el$" />
 
-  <div v-else>
+  <div v-else :class="classes.container">
     <slot :el$="el$"><component :is="fieldSlots.default" :el$="el$"/></slot>
   </div>
 </template>
