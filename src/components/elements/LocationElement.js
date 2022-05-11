@@ -75,7 +75,7 @@ export default {
     },
     floating: {
       required: false,
-      type: [String],
+      type: [String, Boolean],
       default: null
     },
     id: {
