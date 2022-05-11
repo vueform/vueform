@@ -91,6 +91,11 @@ export default {
       type: [String],
       default: null
     },
+    infoPosition: {
+      required: false,
+      type: [String],
+      default: 'right'
+    },
     label: {
       required: false,
       type: [String, Object, Function],
