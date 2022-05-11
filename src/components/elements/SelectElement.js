@@ -60,7 +60,7 @@ export default {
     },
     floating: {
       required: false,
-      type: [String],
+      type: [String, Boolean],
       default: null
     },
     id: {
@@ -128,20 +128,18 @@ export default {
     },
     items: {
       required: false,
-      type: [Object, Array, Function],
+      type: [Object, Array, Function, String],
       default: () => ({})
     },
     labelProp: {
       type: [String],
       required: false,
       default: 'label',
-      native: false,
     },
     valueProp: {
       type: [String],
       required: false,
       default: 'value',
-      native: false,
     },
     search: {
       required: false,
