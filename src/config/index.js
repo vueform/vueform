@@ -1,6 +1,3 @@
-import { ref } from 'composition-api'
-
-
 const config = {
   /**
    * General
@@ -89,7 +86,12 @@ const config = {
     },
   },
   formData(form$) {
-    return form$.requestData
+    return form$.convertFormData({
+      ...form$.requestData,
+      ...(form$.formKey ? {
+        formKey: form$.formKey
+      } : {})
+    })
   },
   beforeSend: null,
   axios: {},
