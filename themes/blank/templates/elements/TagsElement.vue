@@ -13,7 +13,7 @@
         :classes="classes.select"
         :id="fieldId"
         :name="name"
-        :options="items"
+        :options="resolvedOptions"
         :disabled="isDisabled"
         :placeholder="placeholder"
         :attrs="attrs"

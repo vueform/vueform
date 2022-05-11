@@ -18,7 +18,7 @@
           ref="input"
         >
           <option
-            v-for="(option, index) in nativeItems" 
+            v-for="(option, index) in resolvedOptions" 
             :value="option.value"
             :key="index"
           >
@@ -36,7 +36,7 @@
         :classes="classes.select"
         :id="fieldId"
         :name="name"
-        :options="items"
+        :options="resolvedOptions"
         :disabled="isDisabled"
         :placeholder="placeholder"
         :attrs="attrs"
