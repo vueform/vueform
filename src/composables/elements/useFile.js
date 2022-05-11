@@ -118,8 +118,8 @@ const base = function (props, context, dependencies)
 
       if (typeof propEndpoints[name] === 'object') {
         endpoint = {
-          url: propEndpoints[name].url || propEndpoints[name].endpoint,
-          method: propEndpoints[name].method,
+          url: propEndpoints[name].url || propEndpoints[name].endpoint || configEndpoints[name].url,
+          method: propEndpoints[name].method || configEndpoints[name].method,
         }
       }
 
@@ -458,6 +458,16 @@ const base = function (props, context, dependencies)
     }
   }
 
+  const resolveBase64 = () => {
+    let reader = new FileReader()
+  
+    reader.onload = (e) => {
+      base64.value = e.target.result
+    }
+
+    reader.readAsDataURL(value.value)
+  }
+
   /**
    * Handles `change` event.
    * 
@@ -541,14 +551,14 @@ const base = function (props, context, dependencies)
       return
     }
 
-    let reader = new FileReader()
-  
-    reader.onload = (e) => {
-      base64.value = e.target.result
-    }
-
-    reader.readAsDataURL(value.value)
+    resolveBase64()
   }, { immediate: true })
+
+  watch(view, (v) => {
+    if (['image', 'gallery'].indexOf(v) !== -1 && !base64.value && value.value instanceof File) {
+      resolveBase64()
+    }
+  })
 
   if (value.value instanceof File && auto.value) {
     nextTick(() => {
