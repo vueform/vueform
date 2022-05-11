@@ -12,6 +12,7 @@ const base = function(props, context, dependencies)
 
   const form$ = dependencies.form$
   const path = dependencies.path || ref(null)
+  const el$ = dependencies.el$ || ref(undefined)
 
   // ================ DATA ================
 
@@ -31,6 +32,10 @@ const base = function(props, context, dependencies)
    * @type {boolean}
    */
   const available = computed(() => {
+    if (!form$.value.conditions) {
+      return true
+    } 
+
     if (parent && parent.value && parent.value.available !== undefined && !parent.value.available) {
       return false
     }
@@ -40,12 +45,22 @@ const base = function(props, context, dependencies)
     }
 
     return !_.some(conditions.value, (condition) => {
-      return !form$.value.$vueform.services.condition.check(condition, path.value, form$.value)
+      return !form$.value.$vueform.services.condition.check(condition, path.value, form$.value, el$.value)
     })
   })
 
+  /**
+   * Updates element conditions after they have been changed.
+   * 
+   * @returns {void}
+   */
+  const updateConditions = () => {
+    conditions.value = conditionList.value
+  }
+
   return {
     available,
+    updateConditions,
   }
 }
 
