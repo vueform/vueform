@@ -25,12 +25,12 @@ import useValue from './../../composables/elements/useValue'
 import useWatchValue from './../../composables/elements/useWatchValue'
 import useFloating from './../../composables/elements/useFloating'
 import useLoading from './../../composables/elements/useLoading'
+import useAsyncItems from './../../composables/elements/useAsyncItems'
 
 import { array as useNullValue } from './../../composables/elements/useNullValue'
 import { array as useEmpty } from './../../composables/elements/useEmpty'
 import { tags as useOptions } from './../../composables/elements/useOptions'
 import { tags as useBaseElement } from './../../composables/elements/useBaseElement'
-import { tags as useAsyncItems } from './../../composables/elements/useAsyncItems'
 import { tags as useFocused } from './../../composables/elements/useFocused'
 
 import BaseElement from './../../mixins/BaseElement'
@@ -62,7 +62,7 @@ export default {
     },
     floating: {
       required: false,
-      type: [String],
+      type: [String, Boolean],
       default: null
     },
     id: {
@@ -131,7 +131,7 @@ export default {
 
     items: {
       required: false,
-      type: [Object, Array, Function],
+      type: [Object, Array, Function, String],
       default: () => ({})
     },
     labelProp: {
