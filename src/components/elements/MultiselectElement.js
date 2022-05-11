@@ -61,7 +61,7 @@ export default {
     },
     floating: {
       required: false,
-      type: [String],
+      type: [String, Boolean],
       default: null
     },
     id: {
@@ -130,7 +130,7 @@ export default {
     },
     items: {
       required: false,
-      type: [Object, Array, Function],
+      type: [Object, Array, Function, String],
       default: () => ({})
     },
     labelProp: {
@@ -167,6 +167,18 @@ export default {
       type: [Function],
       required: false,
       native: false,
+    },
+    multipleLabelSingle: {
+      type: String,
+      required: false,
+      native: false,
+      '@deault': 'locale.vueform.multiselect.multipleLabelOne',
+    },
+    multipleLabelMultiple: {
+      type: String,
+      required: false,
+      native: false,
+      '@deault': 'locale.vueform.multiselect.multipleLabelMore',
     },
 
     create: {
