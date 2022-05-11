@@ -1937,7 +1937,7 @@ const vueform = plugin((context) => {
         success: theme('colors.green.500'),
         successLighter: theme('colors.green.100'),
 
-        ringColor: null, // defaults to primary with `ringOpacity` alpha
+        ringColor: '#07bf9b66', // defaults to primary with `ringOpacity` alpha
         ringWidth: theme('ringWidth.2'),
         ringOpacity: 0.4,
 
