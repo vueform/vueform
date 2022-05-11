@@ -3,11 +3,11 @@
     <template #element>
       <div :class="classes.wrapper">
         <CheckboxgroupCheckbox
-          v-for="(item, value, key) in resolvedItems"
-          :items="resolvedItems"
-          :index="key"
+          v-for="(item, index, key) in resolvedOptions"
+          :items="resolvedOptions"
+          :index="index"
           :item="item"
-          :value="value"
+          :value="item.value"
           :key="key"
         >
           <template #default="scope">
