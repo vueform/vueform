@@ -165,7 +165,7 @@
   --vf-color-danger: var(--vf-danger);
   --vf-color-success: var(--vf-success);
   --vf-color-tag: var(--vf-color-on-primary);
-  --vf-color-addon: inherit;
+  --vf-color-addon: var(--vf-color-input);
   --vf-color-date-head: var(--vf-gray-700);
   --vf-color-btn: var(--vf-color-on-primary);
   --vf-color-btn-danger: #ffffff;
@@ -199,18 +199,18 @@
   --vf-border-width-checkbox-b: var(--vf-border-width-input-b);
   --vf-border-width-checkbox-l: var(--vf-border-width-input-l);
 
-  --vf-border-width-dropdown: var(--vf-border-width-input-t) var(--vf-border-width-input-r) var(--vf-border-width-input-b) var(--vf-border-width-input-l);
-  --vf-border-width-btn: var(--vf-border-width-input-t) var(--vf-border-width-input-r) var(--vf-border-width-input-b) var(--vf-border-width-input-l);
+  --vf-border-width-dropdown: 1px;
+  --vf-border-width-btn: 1px;
   --vf-border-width-toggle: 0.125rem;
   --vf-border-width-tag: 1px;
 
   --vf-shadow-input: 0px 0px 0px 0px rgba(0,0,0,0);
-  --vf-shadow-input-hover: var(--vf-shadow-input);
-  --vf-shadow-input-focus: var(--vf-shadow-input);
+  --vf-shadow-input-hover: 0px 0px 0px 0px rgba(0,0,0,0);
+  --vf-shadow-input-focus: 0px 0px 0px 0px rgba(0,0,0,0);
   --vf-shadow-handles: 0px 0px 0px 0px rgba(0,0,0,0);
-  --vf-shadow-handles-hover: var(--vf-shadow-input-hover);
-  --vf-shadow-handles-focus: var(--vf-shadow-input-focus);
-  --vf-shadow-btn: var(--vf-shadow-input);
+  --vf-shadow-handles-hover: 0px 0px 0px 0px rgba(0,0,0,0);
+  --vf-shadow-handles-focus: 0px 0px 0px 0px rgba(0,0,0,0);
+  --vf-shadow-btn: 0px 0px 0px 0px rgba(0,0,0,0);
   --vf-shadow-dropdown: 0px 0px 0px 0px rgba(0,0,0,0);
 
   --vf-radius-input: 0.25rem;
