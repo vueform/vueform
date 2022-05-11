@@ -50,6 +50,8 @@ const checkboxStates = {
     + `focused-hover:form-shadow-handles-hover `
     + `checked:form-bg-primary `
     + `checked:form-border-color-checked `
+    + `checked-hover:form-bg-primary `
+    + `checked-hover:form-border-color-checked `
     + `checked-focused:form-bg-primary`,
   disabled: ``
     + `form-bg-disabled `
@@ -559,15 +561,15 @@ export default {
     list_sorting: '',
     listItem: 'relative group ghost:opacity-60',
     handle: '',
-    handle_file: 'absolute left-4 top-0 transform -translate-x-full cursor-grab active:cursor-grabbing opacity-0 transition group-hover:opacity-100',
+    handle_file: 'absolute left-0 top-0 transform -translate-x-full cursor-grab active:cursor-grabbing opacity-0 transition group-hover:opacity-100',
     handle_file_sm: 'form-w-input-height-sm form-h-input-height-sm',
     handle_file_md: 'form-w-input-height form-h-input-height',
     handle_file_lg: 'form-w-input-height-lg form-h-input-height-lg',
-    handle_image: 'absolute left-4 top-0 transform -translate-x-full cursor-grab active:cursor-grabbing opacity-0 transition group-hover:opacity-100',
+    handle_image: 'absolute left-0 top-0 transform -translate-x-full cursor-grab active:cursor-grabbing opacity-0 transition group-hover:opacity-100',
     handle_image_sm: 'form-w-input-height-sm form-h-input-height-sm',
     handle_image_md: 'form-w-input-height form-h-input-height',
     handle_image_lg: 'form-w-input-height-lg form-h-input-height-lg',
-    handle_gallery: 'absolute w-4 h-4 box-content top-0.5 left-0.5 mt-px ml-px form-bg-passve bg-center bg-no-repeat rounded-full transition opacity-0 group-hover:opacity-100 cursor-grab active:cursor-grabbing filter hover:brightness-90',
+    handle_gallery: 'absolute w-4 h-4 box-content top-0.5 left-0.5 mt-px ml-px form-bg-passive bg-center bg-no-repeat rounded-full transition opacity-0 group-hover:opacity-100 cursor-grab active:cursor-grabbing filter hover:brightness-90',
     handle_gallery_sm: '',
     handle_gallery_md: '',
     handle_gallery_lg: '',
@@ -1095,14 +1097,23 @@ export default {
   },
   ElementInfo: {
     container: 'inline-block w-3.5 h-3.5 form-bg-info relative ml-1 top-px cursor-pointer group h-full',
-    wrapper: 'absolute left-5 -top-0.5 -mt-px opacity-0 invisible group-hover:opacity-100 group-hover:form-visible transition z-20 w-52',
+    wrapper: 'absolute -mt-px opacity-0 invisible group-hover:opacity-100 group-hover:form-visible transition-opacity z-20 w-52',
+    wrapper_left: 'right-5 -top-0.5',
+    wrapper_right: 'left-5 -top-0.5',
+    wrapper_top: 'left-1/2 transform -translate-x-1/2 bottom-5',
+    wrapper_bottom: 'left-1/2 transform -translate-x-1/2 top-5',
     content: 'bg-black bg-opacity-90 text-white rounded-md form-small-font-size py-1 px-2.5 not-italic inline-block relative',
+    $wrapper: (classes, { position }) => ([
+      classes.wrapper,
+      classes[`wrapper_${position}`],
+    ]),
   },
   ElementLabel: {
     container: 'flex items-start',
-    container_sm: 'form-pr-gutter-sm form-pb-gutter/3-sm',
-    container_md: 'form-pr-gutter form-pb-gutter/3',
-    container_lg: 'form-pr-gutter-lg form-pb-gutter/3-lg',
+    container_sm: 'form-text-sm form-pr-gutter-sm form-pb-gutter/3-sm',
+    container_md: 'form-text form-pr-gutter form-pb-gutter/3',
+    container_lg: 'form-text-lg form-pr-gutter-lg form-pb-gutter/3-lg',
+    wrapper: '',
     $container: (classes, { el$, Size }) => ([
       classes.container,
       classes[`container_${Size}`],
