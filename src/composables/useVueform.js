@@ -136,6 +136,14 @@ const base = function(props, context, dependencies = {})
   const validation = ref(true)
 
   /**
+   * Enables/disables conditions for the form globally.
+   * 
+   * @type {boolean}
+   * @default true
+   */
+  const conditions = ref(true)
+
+  /**
    * Instance of MessageBag service. It can be used to add [custom errors and messages](/docs/1.x/validating-elements#custom-errors-and-messages).
    * 
    * @type {MessageBag}
@@ -175,6 +183,14 @@ const base = function(props, context, dependencies = {})
    * @private
    */
   const userConfig = ref({})
+
+  /**
+   * Whether the form has been mounted.
+   * 
+   * @type {boolean}
+   * @default false
+   */
+  const mounted = ref(false)
 
   // ============== COMPUTED ==============
 
@@ -1010,7 +1026,7 @@ const base = function(props, context, dependencies = {})
         response = await services.value.axios.request({
           url,
           method: method.toLowerCase(),
-          [method.toLowerCase() === 'get' ? 'params' : 'data']: convertFormData(data),
+          [method.toLowerCase() === 'get' ? 'params' : 'data']: data,
         })
       }
 
@@ -1066,6 +1082,24 @@ const base = function(props, context, dependencies = {})
    */
   const enableValidation = () => {
     validation.value = true
+  }
+
+  /**
+  * Enables conditions globally.
+  * 
+  * @returns {void}
+  */
+  const enableConditions = () => {
+    conditions.value = true
+  }
+
+  /**
+  * Disables conditions globally.
+  * 
+  * @returns {void}
+  */
+  const disableConditions = () => {
+    conditions.value = false
   }
 
   /**
@@ -1187,13 +1221,15 @@ const base = function(props, context, dependencies = {})
   })
 
   onMounted(() => {
+    mounted.value = true
+    
     // Watching model to track old/new values
     watch(data, (n, o) => {
       if (dataEquals(n, o)) {
         return
       }
 
-      fire('change', n, o)
+      fire('change', n, o, $this)
       
       if (externalValue && externalValue.value !== undefined) {
         context.emit('input', n)
@@ -1221,6 +1257,7 @@ const base = function(props, context, dependencies = {})
     elements$,
     options,
     validation,
+    conditions,
     messageBag,
     selectedLanguage,
     submitting,
@@ -1278,6 +1315,8 @@ const base = function(props, context, dependencies = {})
     send,
     disableValidation,
     enableValidation,
+    enableConditions,
+    disableConditions,
     setLanguage,
     handleSubmit,
     el$,
