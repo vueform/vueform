@@ -1928,8 +1928,8 @@ const vueform = plugin((context) => {
   theme: {
     form: (theme) => {
       return {
-        primary: theme('colors.blue.500'),
-        primaryDarker: null, // defaults to 10% darker primary
+        primary: '#07bf9b',
+        primaryDarker: '#06ac8b', // defaults to 10% darker primary
 
         danger: theme('colors.red.500'),
         dangerLighter: theme('colors.red.100'),
