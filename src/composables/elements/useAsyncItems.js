@@ -4,7 +4,7 @@ import { toRefs, ref, computed, watch } from 'composition-api'
 const base = function(props, context, dependencies)
 {
   const {
-    items
+    items, valueProp, labelProp
   } = toRefs(props)
 
   // ============ DEPENDENCIES ============
@@ -14,6 +14,7 @@ const base = function(props, context, dependencies)
   const enable = dependencies.enable
   const input = dependencies.input
   const el$ = dependencies.el$
+  const form$ = dependencies.form$
 
   // ================ DATA ================
 
@@ -24,7 +25,7 @@ const base = function(props, context, dependencies)
    * @default null
    * @private
    */
-  const resolvedItems = ref(null)
+  const options = ref(null)
 
   // ============== COMPUTED ==============
   
@@ -33,24 +34,28 @@ const base = function(props, context, dependencies)
    * 
    * @type {array}
    */
-  const nativeItems = computed(() => {
+  const resolvedOptions = computed(() => {
+    if (!isNative.value) {
+      return options.value
+    }
+
     let nativeItems = []
     
-    _.each(resolvedItems.value, (item, key) => {
+    _.each(options.value, (item, key) => {
       if ([null, undefined].indexOf(item) !== -1) {
         return
       }
       
-      if (Array.isArray(resolvedItems.value) && typeof item === 'object') {
-        if (item.value === undefined) {
-          throw new Error('You must define `value` property for each option when using an array of objects options for select element')
+      if (Array.isArray(options.value) && typeof item === 'object') {
+        if (item[valueProp.value] === undefined) {
+          console.warn('You must define `value` property for each option when using an array of objects options for select element')
         }
 
         nativeItems.push({
-          value: item.value,
-          label: item.label
+          value: item[valueProp.value],
+          label: item[labelProp.value]
         })
-      } else if (Array.isArray(resolvedItems.value)) {
+      } else if (Array.isArray(options.value)) {
         nativeItems.push({
           value: item,
           label: item,
@@ -74,9 +79,9 @@ const base = function(props, context, dependencies)
    * @param {boolean} disable* whether the input field should be disabled while fetching options
    * @returns {void} 
    */
-  const updateItems = (shouldDisable = true) => {
+  const updateItems = async (shouldDisable = true) => {
     if (!isNative.value) {
-      input.value.resolveOptions()
+      await input.value?.resolveOptions()
       return
     }
 
@@ -84,13 +89,53 @@ const base = function(props, context, dependencies)
       disable()
     }
 
-    items.value(el$.value).then((response) => {
-      resolvedItems.value = response
+    await resolveOptionsFromFunction()
       
-      if (shouldDisable) {
-        enable()
-      }
-    })
+    if (shouldDisable) {
+      enable()
+    }
+  }
+
+  /**
+   * Resolves options from url.
+   * 
+   * @return {void}
+   * @private
+   */
+  const resolveOptionsFromUrl = async () => {
+    try {
+      options.value = (await form$.value.$vueform.services.axios.get(items.value))?.data || []
+    } catch (e) {
+      options.value = []
+      console.error(`Couldn\'t resolve items from ${items.value}`, e)
+    }
+  }
+
+  /**
+   * Creates an async function returning options from url.
+   * 
+   * @return {void}
+   * @private
+   */
+  const createAsyncOptionsFromUrl = () => {
+    return async (query) => {
+      return (await form$.value.$vueform.services.axios.get(`${items.value}?query=${query||''}`))?.data || []
+    }
+  }
+
+  /**
+   * Resolves options from function.
+   * 
+   * @return {void}
+   * @private
+   */
+  const resolveOptionsFromFunction = async () => {
+    try {
+      options.value = await items.value(el$.value) || []
+    } catch (e) {
+      options.value = []
+      console.error(`Couldn\'t resolve items from async function`, e)
+    }
   }
 
   /**
@@ -99,35 +144,30 @@ const base = function(props, context, dependencies)
    * @return {void}
    * @private
    */
-  const resolveItems = () => {
-    if (typeof items.value !== 'function') {
-      resolvedItems.value = items.value
-    } else {
-      updateItems()
+  const resolveOptions = async (n, o) => {
+    if (typeof items.value === 'function' && isNative.value) {
+      // console.log('async items resolve', el$.value.name)
+      await resolveOptionsFromFunction()
+    } else if (!_.isEqual(n, o) || (n === undefined && o === undefined)) {
+      // console.log('async items resolve', el$.value.name, items.value)
+      if (typeof items.value === 'string' && isNative.value) {
+        await resolveOptionsFromUrl()
+      } else if (typeof items.value === 'string' && !isNative.value) {
+        options.value = createAsyncOptionsFromUrl()
+      } else {
+        options.value = items.value
+      }
     }
   }
 
   // ================ HOOKS ===============
 
-  if (isNative.value) {
-    resolveItems()
-
-    watch(items, resolveItems)
-  }
-
+  resolveOptions()
+  watch(items, resolveOptions)
+  watch(isNative, resolveOptions)
 
   return {
-    nativeItems,
-    updateItems,
-  }
-}
-
-const tags = function(props, context, dependencies) {
-  const {
-    updateItems
-  } = base(props, context, dependencies)
-
-  return {
+    resolvedOptions,
     updateItems,
   }
 }
@@ -142,6 +182,7 @@ const checkboxgroup = function(props, context, dependencies) {
   const disableAll = dependencies.disableAll
   const enableAll = dependencies.enableAll
   const el$ = dependencies.el$
+  const form$ = dependencies.form$
 
   // ================ DATA ================
 
@@ -152,7 +193,7 @@ const checkboxgroup = function(props, context, dependencies) {
    * @default null
    * @private
    */
-  const resolvedItemList = ref(null)
+  const options = ref(null)
 
   // ============== COMPUTED ==============
   
@@ -161,28 +202,40 @@ const checkboxgroup = function(props, context, dependencies) {
    * 
    * @type {array}
    */
-  const resolvedItems = computed(() => {
-    let resolvedItems = {}
+  const resolvedOptions = computed(() => {
+    let resolvedOptions = []
     
-    _.each(resolvedItemList.value, (item, key) => {
+    _.each(options.value, (item, key) => {
       if ([null, undefined].indexOf(item) !== -1) {
         return
       }
 
-      if (Array.isArray(resolvedItemList.value) && typeof item === 'object') {
+      // [{a:1},{b:2}]
+      if (Array.isArray(options.value) && typeof item === 'object') {
         if (item.value === undefined) {
-          throw new Error('You must define `value` property for each item when using an array of objects options')
+          console.warn('You must define `value` property for each item when using an array of objects options')
         }
 
-        resolvedItems[item.value] = item
-      } else if (Array.isArray(resolvedItemList.value)) {
-        resolvedItems[item] = typeof item === 'object' ? item : { label: item }
-      } else {
-        resolvedItems[key] = typeof item === 'object' ? item : { label: item }
+        resolvedOptions.push(item)
+      }
+
+      // ['a', 'b']
+      else if (Array.isArray(options.value)) {
+        resolvedOptions.push({ value: item, label: item })
+      }
+
+      // {a:{label:1},b:{label:2}}
+      else if (typeof item === 'object') {
+        resolvedOptions.push({ ...item, value: key })
+      }
+
+      // {a:1,b:2}
+      else {
+        resolvedOptions.push({ label: item, value: key })
       }
     })
 
-    return resolvedItems
+    return resolvedOptions
   })
 
   // =============== METHODS ==============
@@ -193,18 +246,46 @@ const checkboxgroup = function(props, context, dependencies) {
    * @param {boolean} disable* whether the input field should be disabled while fetching options
    * @returns {void} 
    */
-  const updateItems = (shouldDisable = true) => {
+  const updateItems = async (shouldDisable = true) => {
     if (shouldDisable) {
       disableAll()
     }
 
-    items.value(el$.value).then((response) => {
-      resolvedItemList.value = response
-      
-      if (shouldDisable) {
-        enableAll()
-      }
-    })
+    await resolveOptionsFromFunction()
+
+    if (shouldDisable) {
+      enableAll()
+    }
+  }
+
+  /**
+   * Resolves options from url.
+   * 
+   * @return {void}
+   * @private
+   */
+  const resolveOptionsFromUrl = async () => {
+    try {
+      options.value = (await form$.value.$vueform.services.axios.get(items.value))?.data || []
+    } catch (e) {
+      options.value = []
+      console.error(`Couldn\'t resolve items from ${items.value}`, e)
+    }
+  }
+
+  /**
+   * Resolves options from function.
+   * 
+   * @return {void}
+   * @private
+   */
+  const resolveOptionsFromFunction = async () => {
+    try {
+      options.value = await items.value(el$.value) || []
+    } catch (e) {
+      options.value = []
+      console.error(`Couldn\'t resolve items from async function`, e)
+    }
   }
 
   /**
@@ -213,22 +294,23 @@ const checkboxgroup = function(props, context, dependencies) {
    * @return {void}
    * @private
    */
-  const resolveItems = () => {
-    if (typeof items.value !== 'function') {
-      resolvedItemList.value = items.value
+  const resolveOptions = async () => {
+    if (typeof items.value === 'function') {
+      await resolveOptionsFromFunction()
+    } else if (typeof items.value === 'string') {
+      await resolveOptionsFromUrl()
     } else {
-      updateItems()
+      options.value = items.value
     }
   }
 
   // ================ HOOKS ===============
 
-  resolveItems()
-
-  watch(items, resolveItems)
+  resolveOptions()
+  watch(items, resolveOptions)
 
   return {
-    resolvedItems,
+    resolvedOptions,
     updateItems,
   }
 }
@@ -236,7 +318,6 @@ const checkboxgroup = function(props, context, dependencies) {
 const radiogroup = checkboxgroup
 
 export {
-  tags,
   checkboxgroup,
   radiogroup,
 }
