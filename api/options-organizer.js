@@ -3,7 +3,7 @@ module.exports = [
   'name', 'id', 'readonly', 'disabled', 'attrs',
 
   // Texts
-  'label', 'placeholder', 'floating', 'info', 'description', 'before', 'between', 'after',
+  'label', 'placeholder', 'floating', 'info', 'infoPosition', 'description', 'before', 'between', 'after',
 
   // Data
   'default', 'formatData', 'formatLoad', 'submit',

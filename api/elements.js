@@ -8,6 +8,7 @@ export default {
       "conditions",
       "disabled_button",
       "events",
+      "fieldId",
       "form$",
       "label",
       "layout",
@@ -910,7 +911,7 @@ export default {
   },
   "tags": {
     "features": [
-      "asyncItems_tags",
+      "asyncItems",
       "baseElement_tags",
       "classes",
       "columns",
@@ -1053,6 +1054,7 @@ export default {
       "focused",
       "form$",
       "genericName",
+      "handleBlur",
       "handleInput",
       "input",
       "label",
@@ -1080,6 +1082,7 @@ export default {
     ],
     "events": [
       "change",
+      "blur",
       "beforeCreate",
       "created",
       "beforeMount",
@@ -1265,6 +1268,7 @@ export default {
       "focused",
       "form$",
       "genericName",
+      "handleBlur",
       "handleInput",
       "input",
       "label",
@@ -1293,6 +1297,7 @@ export default {
     ],
     "events": [
       "change",
+      "blur",
       "beforeCreate",
       "created",
       "beforeMount",

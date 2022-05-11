@@ -1,7 +1,8 @@
 import { createForm, findAllComponents, findAll, destroy } from 'test-helpers'
+import { nextTick } from 'composition-api'
 import flushPromises from 'flush-promises'
 
-export const nativeItems = function (elementType, elementName, options) {
+export const resolvedOptions = function (elementType, elementName, options) {
   it('should render select options when items are an array', async () => {
     let form = createForm({
       schema: {
@@ -113,6 +114,44 @@ export const nativeItems = function (elementType, elementName, options) {
 
     // destroy() // teardown
   })
+
+  it('should render select options when items are string', async () => {
+    let getMock = jest.fn(() => ({data:[1,2,3]}))
+    
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          native: true,
+          items: '/url'
+        }
+      }
+    })
+
+    form.vm.$vueform.services.axios.get = getMock
+
+    await flushPromises()
+
+    form.vm.el$('el').updateItems()
+
+    await flushPromises()
+
+    console.log(form.vm.el$('el').resolvedOptions)
+
+    let elWrapper = findAllComponents(form, { name: elementName }).at(0)
+    let options = findAll(elWrapper, `option`)
+
+    expect(options.at(0).attributes('value')).toBe('1')
+    expect(options.at(0).element.innerHTML.trim()).toBe('1')
+    expect(options.at(1).attributes('value')).toBe('2')
+    expect(options.at(1).element.innerHTML.trim()).toBe('2')
+    expect(options.at(2).attributes('value')).toBe('3')
+    expect(options.at(2).element.innerHTML.trim()).toBe('3')
+    
+    // destroy(form) // teardown
+
+    // destroy() // teardown
+  })
 }
 
 export const updateItems = function (elementType, elementName, options) {
@@ -137,7 +176,7 @@ export const updateItems = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
     
-    expect(el.nativeItems).toStrictEqual([
+    expect(el.resolvedOptions).toStrictEqual([
       { value: 1, label: 1 },
       { value: 2, label: 2 },
       { value: 3, label: 3 }
@@ -149,7 +188,7 @@ export const updateItems = function (elementType, elementName, options) {
 
     await flushPromises()
     
-    expect(el.nativeItems).toStrictEqual([
+    expect(el.resolvedOptions).toStrictEqual([
       { value: 1, label: 1 },
       { value: 2, label: 2 },
       { value: 4, label: 4 }

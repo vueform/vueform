@@ -491,6 +491,31 @@ module.exports = {
         "description": "Whether the info is provided as a slot."
       }
     },
+    "data": {
+      "position": {
+        "public": false,
+        "default": "false",
+        "types": [
+          "boolean"
+        ],
+        "description": "The position of the info."
+      }
+    },
+    "methods": {
+      "handleMouseOver": {
+        "public": false,
+        "description": "Handles the info hover.",
+        "params": {
+          "e": {
+            "types": [
+              "Event"
+            ],
+            "required": false,
+            "description": ""
+          }
+        }
+      }
+    },
     "props": {},
     "events": {},
     "slots": {
@@ -3421,6 +3446,14 @@ module.exports = {
         ],
         "description": "Enables/disables validation for the form globally."
       },
+      "conditions": {
+        "public": true,
+        "default": "true",
+        "types": [
+          "boolean"
+        ],
+        "description": "Enables/disables conditions for the form globally."
+      },
       "messageBag": {
         "public": true,
         "default": "MessageBag",
@@ -3867,6 +3900,16 @@ module.exports = {
         "returns": "void",
         "description": "Enables form validation globally."
       },
+      "enableConditions": {
+        "public": true,
+        "returns": "void",
+        "description": "Enables conditions globally."
+      },
+      "disableConditions": {
+        "public": true,
+        "returns": "void",
+        "description": "Disables conditions globally."
+      },
       "setLanguage": {
         "public": true,
         "returns": "void",
@@ -3976,6 +4019,14 @@ module.exports = {
         "types": [
           "object"
         ]
+      },
+      "name": {
+        "required": false,
+        "default": null,
+        "types": [
+          "string"
+        ],
+        "private": true
       },
       "tabs": {
         "required": false,

@@ -33,4 +33,5 @@ module.exports = [
   'show',
   'activate',
   'deactivate',
+  'updateConditions',
 ]

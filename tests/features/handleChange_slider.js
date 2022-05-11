@@ -191,7 +191,7 @@ export const handleChange = function (elementType, elementName, options) {
 
     await nextTick()
 
-    expect(onChangeMock).toHaveBeenCalledWith(10, 5)
+    expect(onChangeMock).toHaveBeenCalledWith(10, 5, el)
     
     // destroy(form) // teardown
   })
@@ -215,7 +215,7 @@ export const handleChange = function (elementType, elementName, options) {
 
     await nextTick()
 
-    expect(onChangeMock).toHaveBeenCalledWith([15, 20], [5, 10])
+    expect(onChangeMock).toHaveBeenCalledWith([15, 20], [5, 10], el)
     
     // destroy(form) // teardown
   })

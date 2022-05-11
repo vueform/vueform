@@ -1,1 +1,1 @@
-export { resolvedItems, updateItems } from './asyncItems_checkboxgroup'
+export { resolvedOptions, updateItems } from './asyncItems_checkboxgroup'

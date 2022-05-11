@@ -44,7 +44,7 @@ export const isDisabled = function (elementType, elementName, options) {
       schema: {
         el: {
           type: elementType,
-          disabled(form$) {
+          disabled(el$, form$) {
             return form$.vueform.isTrue
           }
         }

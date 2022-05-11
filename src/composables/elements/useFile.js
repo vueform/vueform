@@ -352,8 +352,6 @@ const base = function (props, context, dependencies)
         response = response.data
       }
 
-      console.log(response)
-      
       update(response)
     }
     catch (error) {

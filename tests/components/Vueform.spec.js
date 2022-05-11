@@ -307,7 +307,9 @@ describe('Vueform', () => {
       it('should have correct default value', () => {
         let form = createForm({})
 
-        if (typeof form.vm.options[key] === 'function') {
+        if (key === 'formData') {
+          expect(form.vm.options[key](form.vm)).toStrictEqual(form.vm.convertFormData(values[0](form.vm)))
+        } else if (typeof form.vm.options[key] === 'function') {
           expect(form.vm.options[key](form.vm)).toStrictEqual(values[0](form.vm))
         } else {
           expect(form.vm.options[key]).toStrictEqual(values[0])
@@ -647,7 +649,7 @@ describe('Vueform', () => {
 
       await nextTick()
       
-      expect(form.vm.convertFormData(form.vm.options.formData(form.vm))).toStrictEqual(formData)
+      expect(form.vm.options.formData(form.vm)).toStrictEqual(formData)
     })
   })
 
@@ -2608,7 +2610,7 @@ describe('Vueform', () => {
 
       await flushPromises()
 
-      expect(postMock).toHaveBeenCalledWith({data:form.vm.convertFormData(form.vm.options.formData(form.vm)), url:'/endpoint', method:form.vm.options.method})
+      expect(postMock).toHaveBeenCalledWith({data:form.vm.options.formData(form.vm), url:'/endpoint', method:form.vm.options.method})
     })
 
     it('should submit to default endpoint & method', async () => {

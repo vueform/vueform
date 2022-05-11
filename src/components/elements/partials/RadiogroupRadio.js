@@ -13,7 +13,7 @@ export default {
       required: true
     },
     items: {
-      type: [Object],
+      type: [Object, Array],
       required: true
     },
     index: {

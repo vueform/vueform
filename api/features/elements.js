@@ -5,12 +5,12 @@ export default {
   "asyncItems": {
     "base": {
       "computed": {
-        "nativeItems": {
+        "resolvedOptions": {
           "public": true,
           "types": [
             "array"
           ],
-          "description": "Contains select options for native select."
+          "description": "Contains the resolved options."
         }
       },
       "methods": {
@@ -30,27 +30,9 @@ export default {
         }
       }
     },
-    "tags": {
-      "methods": {
-        "updateItems": {
-          "public": true,
-          "returns": "void",
-          "description": "Fetches & updates select options when using `async` options. Receives [`el$`](#property-el) as first param.",
-          "params": {
-            "disable": {
-              "types": [
-                "boolean"
-              ],
-              "required": true,
-              "description": "whether the input field should be disabled while fetching options"
-            }
-          }
-        }
-      }
-    },
     "checkboxgroup": {
       "computed": {
-        "resolvedItems": {
+        "resolvedOptions": {
           "public": true,
           "types": [
             "array"
@@ -77,7 +59,7 @@ export default {
     },
     "radiogroup": {
       "computed": {
-        "resolvedItems": {
+        "resolvedOptions": {
           "public": true,
           "types": [
             "array"
@@ -2479,6 +2461,17 @@ export default {
       }
     }
   },
+  "handleBlur": {
+    "base": {
+      "methods": {
+        "handleBlur": {
+          "public": false,
+          "returns": "void",
+          "description": "Handles `blur` event."
+        }
+      }
+    }
+  },
   "handleChange": {
     "base": {
       "methods": {
@@ -4728,6 +4721,22 @@ export default {
           ],
           "description": "Intermediary value between element's value and field's `v-model`. It is required when we need to transform the value format between the element and its field."
         }
+      },
+      "data": {
+        "initialValue": {
+          "public": false,
+          "types": [
+            "any"
+          ],
+          "description": "The initial value of the element."
+        },
+        "internalValue": {
+          "public": false,
+          "types": [
+            "any"
+          ],
+          "description": "The store for the value of the element when we're not using external data (form's `v-model`)."
+        }
       }
     },
     "dates": {
@@ -4745,6 +4754,22 @@ export default {
             "any"
           ],
           "description": "Intermediary value between element's value and field's `v-model`. It is required when we need to transform the value format between the element and its field."
+        }
+      },
+      "data": {
+        "initialValue": {
+          "public": false,
+          "types": [
+            "any"
+          ],
+          "description": "The initial value of the element."
+        },
+        "internalValue": {
+          "public": false,
+          "types": [
+            "any"
+          ],
+          "description": "The store for the value of the element when we're not using external data (form's `v-model`)."
         }
       }
     }

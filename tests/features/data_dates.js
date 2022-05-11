@@ -42,29 +42,6 @@ export const load = function (elementType, elementName, options) {
     // destroy(form) // teardown
   })
 
-  it('should throw an error on `load` when value not being provided according to loadFormat', async () => {
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType,
-          loadFormat: 'DD-MM-YYYY'
-        }
-      }
-    })
-
-    let el = form.vm.el$('el')
-
-    expect(() => {
-      el.load(['2020-12-30'])
-    }).toThrowError()
-
-    expect(() => {
-      el.load(['30-12-2020'])
-    }).not.toThrowError()    
-    
-    // destroy(form) // teardown
-  })
-
   it('should should format data if "formatLoad" is set on `load`', async () => {
     let form = createForm({
       schema: {
@@ -125,31 +102,6 @@ export const update = function (elementType, elementName, options) {
     expect(el.value).toStrictEqual(['2020-12-30'])    
     
     // destroy(form) // teardown
-  })
-
-  it('should throw an error on `update` when value not being provided according to valueFormat', async () => {
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType,
-          valueFormat: 'DD-MM-YYYY'
-        }
-      }
-    })
-
-    let el = form.vm.el$('el')
-
-    expect(() => {
-      el.update(['2020-12-30'])
-    }).toThrowError()
-
-    expect(() => {
-      el.update(['30-12-2020'])
-    }).not.toThrowError()
-    
-    // destroy(form) // teardown
-
-    // destroy() // teardown
   })
 }
 

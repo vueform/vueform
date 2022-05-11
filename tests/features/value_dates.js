@@ -43,29 +43,6 @@ export const value = function (elementType, elementName, options) {
     
     // destroy(form) // teardown
   })
-
-  it('should throw error when setting `value` with string date that does not have valueFormat', () => {
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType,
-          valueFormat: 'DD-MM-YYYY'
-        }
-      }
-    })
-
-    let el = form.vm.el$('el')
-
-    expect(() => {
-      el.value = ['2020-11-20']
-    }).toThrowError()
-
-    expect(() => {
-      el.value = ['20-11-2020']
-    }).not.toThrowError()
-
-    // destroy() // teardown
-  })
 }
 
 export const model = function (elementType, elementName, options) {

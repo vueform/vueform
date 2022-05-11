@@ -40,29 +40,6 @@ export const load = function (elementType, elementName, options) {
     // destroy(form) // teardown
   })
 
-  it('should throw an error on `load` when value not being provided according to loadFormat', async () => {
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType,
-          loadFormat: 'DD-MM-YYYY'
-        }
-      }
-    })
-
-    let el = form.vm.el$('el')
-
-    expect(() => {
-      el.load('2020-11-20')
-    }).toThrowError()
-
-    expect(() => {
-      el.load('20-11-2020')
-    }).not.toThrowError()    
-    
-    // destroy(form) // teardown
-  })
-
   it('should should format data if "formatLoad" is set on `load`', async () => {
     let formatLoadMock = jest.fn()
 

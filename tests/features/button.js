@@ -142,7 +142,8 @@ export const button = function (elementType, elementName, options) {
 
     expect(el.button).toStrictEqual({
       href: 'href',
-      target: 'target'
+      target: 'target',
+      id: 'el',
     })
     expect(findAll(form, 'a').at(0).element.href).toContain('href')
     expect(findAll(form, 'a').at(0).element.target).toBe('target')
@@ -175,7 +176,8 @@ export const button = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
 
     expect(el.button).toStrictEqual({
-      disabled: true
+      disabled: true,
+      id: 'el',
     })
     expect(findAll(form, 'button').at(0).element.disabled).toBeTruthy()
 
@@ -256,7 +258,8 @@ export const handleClick = function (elementType, elementName, options) {
     await nextTick()
     el.handleClick({ preventDefault: preventMock, })
     expect(preventMock).toHaveBeenCalledTimes(3)
-    expect(onClickMock).toHaveBeenCalledWith(el.form$)  
+    expect(onClickMock.mock.calls[0][0].$options.name).toBe('Vueform')
+    expect(onClickMock.mock.calls[0][1].$options.name).toBe('ButtonElement')
     
     // destroy(form) // teardown
   })

@@ -36,6 +36,17 @@ export default {
       }
     },
   },
+  blur: {
+    default: {
+      description: 'Triggered when the input is blurred.',
+      params: {
+        el$: {
+          description: 'the element\'s component',
+          types: ['component']
+        },
+      }
+    }
+  },
   reset: {
     Vueform: {
       description: 'Triggered when the form is reseted using [`reset()`](#method-reset).'

@@ -132,11 +132,11 @@ export const value = function (elementType, elementName, options) {
       form.vm.el$('el2.1').on('change', el2Child1ChangeMock)
 
       expect(formChangeMock).toHaveBeenCalledTimes(1)
-      expect(formChangeMock).toHaveBeenNthCalledWith(1, { el: ['a', 'b'], el2: ['c', 'd'] }, { el: [], el2: [] })
+      expect(formChangeMock).toHaveBeenNthCalledWith(1, { el: ['a', 'b'], el2: ['c', 'd'] }, { el: [], el2: [] }, form.vm)
       expect(elChangeMock).toHaveBeenCalledTimes(1)
-      expect(elChangeMock).toHaveBeenNthCalledWith(1, ['a', 'b'], [])
+      expect(elChangeMock).toHaveBeenNthCalledWith(1, ['a', 'b'], [], el)
       expect(el2ChangeMock).toHaveBeenCalledTimes(1)
-      expect(el2ChangeMock).toHaveBeenNthCalledWith(1, ['c', 'd'], [])
+      expect(el2ChangeMock).toHaveBeenNthCalledWith(1, ['c', 'd'], [], el2)
       expect(elChildChangeMock).not.toHaveBeenCalled()
       expect(el2ChildChangeMock).not.toHaveBeenCalled()
       expect(elChild0ChangeMock).not.toHaveBeenCalled()
@@ -151,17 +151,19 @@ export const value = function (elementType, elementName, options) {
       await flushPromises()
       
       expect(formChangeMock).toHaveBeenCalledTimes(2)
-      expect(formChangeMock).toHaveBeenNthCalledWith(2, { el: ['not-a', 'b'], el2: ['c', 'd'] }, { el: ['a', 'b'], el2: ['c', 'd'] })
+      expect(formChangeMock).toHaveBeenNthCalledWith(2, { el: ['not-a', 'b'], el2: ['c', 'd'] }, { el: ['a', 'b'], el2: ['c', 'd'] }, form.vm)
       expect(elChangeMock).toHaveBeenCalledTimes(2)
-      expect(elChangeMock).toHaveBeenNthCalledWith(2, ['not-a', 'b'], ['a', 'b'])
+      expect(elChangeMock).toHaveBeenNthCalledWith(2, ['not-a', 'b'], ['a', 'b'], el)
       expect(el2ChangeMock).toHaveBeenCalledTimes(1)
       expect(elChildChangeMock).toHaveBeenCalledTimes(1)
 
-      expect(elChildChangeMock).toHaveBeenNthCalledWith(1, 'not-a', 'a')
+      expect(elChildChangeMock.mock.calls[0][0]).toEqual('not-a')
+      expect(elChildChangeMock.mock.calls[0][1]).toEqual('a')
       expect(el2ChildChangeMock).not.toHaveBeenCalled()
 
       expect(elChild0ChangeMock).toHaveBeenCalledTimes(1)
-      expect(elChild0ChangeMock).toHaveBeenNthCalledWith(1, 'not-a', 'a')
+      expect(elChild0ChangeMock.mock.calls[0][0]).toEqual('not-a')
+      expect(elChild0ChangeMock.mock.calls[0][1]).toEqual('a')
 
       expect(elChild1ChangeMock).not.toHaveBeenCalled()
       expect(el2Child0ChangeMock).not.toHaveBeenCalled()
@@ -285,12 +287,13 @@ export const value = function (elementType, elementName, options) {
           el: [{ child: 'a', child2: 'b' }, { child: 'c', child2: 'd' }],
           el2: [{ child: 'e', child2: 'f' }, { child: 'g', child2: 'h' }]
         },
-        { el: [], el2: [] }
+        { el: [], el2: [] },
+        form.vm
       )
       expect(elChangeMock).toHaveBeenCalledTimes(1)
-      expect(elChangeMock).toHaveBeenNthCalledWith(1, [{ child: 'a', child2: 'b' }, { child: 'c', child2: 'd' }], [])
+      expect(elChangeMock).toHaveBeenNthCalledWith(1, [{ child: 'a', child2: 'b' }, { child: 'c', child2: 'd' }], [], el)
       expect(el2ChangeMock).toHaveBeenCalledTimes(1)
-      expect(el2ChangeMock).toHaveBeenNthCalledWith(1, [{ child: 'e', child2: 'f' }, { child: 'g', child2: 'h' }], [])
+      expect(el2ChangeMock).toHaveBeenNthCalledWith(1, [{ child: 'e', child2: 'f' }, { child: 'g', child2: 'h' }], [], el2)
 
       // Abstract child
       expect(elChildChangeMock).not.toHaveBeenCalled()
@@ -334,42 +337,42 @@ export const value = function (elementType, elementName, options) {
           el: [{ child: 'a', child2: 'b' }, { child: 'c', child2: 'd' }],
           el2: [{ child: 'e', child2: 'f' }, { child: 'g', child2: 'h' }]
         },
+        form.vm
       )
       expect(elChangeMock).toHaveBeenCalledTimes(2)
       expect(elChangeMock).toHaveBeenNthCalledWith(2,
         [{ child: 'not-a', child2: 'b' }, { child: 'c', child2: 'd' }],
         [{ child: 'a', child2: 'b' }, { child: 'c', child2: 'd' }],
+        el
       )
       expect(el2ChangeMock).toHaveBeenCalledTimes(1)
 
       // Abstract child
       expect(elChildChangeMock).toHaveBeenCalledTimes(1)
-      expect(elChildChangeMock).toHaveBeenNthCalledWith(1,
-        { child: 'not-a', child2: 'b' },
-        { child: 'a', child2: 'b' },
-      )
+      expect(elChildChangeMock.mock.calls[0][0]).toEqual({ child: 'not-a', child2: 'b' })
+      expect(elChildChangeMock.mock.calls[0][1]).toEqual({ child: 'a', child2: 'b' },)
       expect(el2ChildChangeMock).not.toHaveBeenCalled()
 
       // Abstract sub-child
       expect(elChildTextChangeMock).toHaveBeenCalledTimes(1)
-      expect(elChildTextChangeMock).toHaveBeenNthCalledWith(1, 'not-a', 'a')
+      expect(elChildTextChangeMock.mock.calls[0][0]).toEqual('not-a')
+      expect(elChildTextChangeMock.mock.calls[0][1]).toEqual('a')
       expect(elChildText2ChangeMock).not.toHaveBeenCalled()
       expect(el2ChildTextChangeMock).not.toHaveBeenCalled()
       expect(el2ChildText2ChangeMock).not.toHaveBeenCalled()
 
       // Concrete child
       expect(elChild0ChangeMock).toHaveBeenCalledTimes(1)
-      expect(elChild0ChangeMock).toHaveBeenNthCalledWith(1,
-        { child: 'not-a', child2: 'b' },
-        { child: 'a', child2: 'b' },
-      )
+      expect(elChild0ChangeMock.mock.calls[0][0]).toEqual({ child: 'not-a', child2: 'b' })
+      expect(elChild0ChangeMock.mock.calls[0][1]).toEqual({ child: 'a', child2: 'b' },)
       expect(elChild1ChangeMock).not.toHaveBeenCalled()
       expect(el2Child0ChangeMock).not.toHaveBeenCalled()
       expect(el2Child1ChangeMock).not.toHaveBeenCalled()
 
       // Concrete sub-child
       expect(elChild0TextChangeMock).toHaveBeenCalledTimes(1)
-      expect(elChild0TextChangeMock).toHaveBeenNthCalledWith(1, 'not-a', 'a')
+      expect(elChild0TextChangeMock.mock.calls[0][0]).toEqual('not-a')
+      expect(elChild0TextChangeMock.mock.calls[0][1]).toEqual('a')
       expect(elChild0Text2ChangeMock).not.toHaveBeenCalled()
       expect(elChild1TextChangeMock).not.toHaveBeenCalled()
       expect(elChild1Text2ChangeMock).not.toHaveBeenCalled()
@@ -397,63 +400,65 @@ export const value = function (elementType, elementName, options) {
           el: [{ child: 'not-a', child2: 'b' }, { child: 'c', child2: 'd' }],
           el2: [{ child: 'e', child2: 'f' }, { child: 'g', child2: 'h' }]
         },
+        form.vm
       )
       expect(elChangeMock).toHaveBeenCalledTimes(3)
       expect(elChangeMock).toHaveBeenNthCalledWith(3,
         [{ child: 'c', child2: 'd' }, { child: 'not-a', child2: 'b' }],
         [{ child: 'not-a', child2: 'b' }, { child: 'c', child2: 'd' }],
+        el
       )
       expect(el2ChangeMock).toHaveBeenCalledTimes(1)
 
       // Abstract child
       expect(elChildChangeMock).toHaveBeenCalledTimes(3)
-      expect(elChild0ChangeMock).toHaveBeenNthCalledWith(2,
-        { child: 'c', child2: 'd' },
-        { child: 'not-a', child2: 'b' },
-      )
-      expect(elChild1ChangeMock).toHaveBeenNthCalledWith(1,
-        { child: 'not-a', child2: 'b' },
-        { child: 'c', child2: 'd' },
-      )
+      expect(elChild0ChangeMock.mock.calls[1][0]).toEqual({ child: 'c', child2: 'd' })
+      expect(elChild0ChangeMock.mock.calls[1][1]).toEqual({ child: 'not-a', child2: 'b' },)
+      expect(elChild1ChangeMock.mock.calls[0][0]).toEqual({ child: 'not-a', child2: 'b' })
+      expect(elChild1ChangeMock.mock.calls[0][1]).toEqual({ child: 'c', child2: 'd' },)
       expect(el2ChildChangeMock).not.toHaveBeenCalled()
 
       // Abstract sub-child
       expect(elChildTextChangeMock).toHaveBeenCalledTimes(3)
       
-      expect(elChild0TextChangeMock).toHaveBeenNthCalledWith(2, 'c', 'not-a')
-      expect(elChild1TextChangeMock).toHaveBeenNthCalledWith(1, 'not-a', 'c')
+      expect(elChild0TextChangeMock.mock.calls[1][0]).toEqual('c')
+      expect(elChild0TextChangeMock.mock.calls[1][1]).toEqual('not-a')
+      expect(elChild1TextChangeMock.mock.calls[0][0]).toEqual('not-a')
+      expect(elChild1TextChangeMock.mock.calls[0][1]).toEqual('c')
 
       expect(elChildText2ChangeMock).toHaveBeenCalledTimes(2)
 
-      expect(elChild0Text2ChangeMock).toHaveBeenNthCalledWith(1, 'd', 'b')
-      expect(elChild1Text2ChangeMock).toHaveBeenNthCalledWith(1, 'b', 'd')
+      expect(elChild0Text2ChangeMock.mock.calls[0][0]).toEqual('d')
+      expect(elChild0Text2ChangeMock.mock.calls[0][1]).toEqual('b')
+      expect(elChild1Text2ChangeMock.mock.calls[0][0]).toEqual('b')
+      expect(elChild1Text2ChangeMock.mock.calls[0][1]).toEqual('d')
 
       expect(el2ChildTextChangeMock).not.toHaveBeenCalled()
       expect(el2ChildText2ChangeMock).not.toHaveBeenCalled()
 
       // Concrete child
       expect(elChild0ChangeMock).toHaveBeenCalledTimes(2)
-      expect(elChild0ChangeMock).toHaveBeenNthCalledWith(2,
-        { child: 'c', child2: 'd' },
-        { child: 'not-a', child2: 'b' },
-      )
+      expect(elChild0ChangeMock.mock.calls[1][0]).toEqual({ child: 'c', child2: 'd' })
+      expect(elChild0ChangeMock.mock.calls[1][1]).toEqual({ child: 'not-a', child2: 'b' },)
       expect(elChild1ChangeMock).toHaveBeenCalledTimes(1)
-      expect(elChild1ChangeMock).toHaveBeenNthCalledWith(1,
-        { child: 'not-a', child2: 'b' },
-        { child: 'c', child2: 'd' },
-      )
+      expect(elChild1ChangeMock.mock.calls[0][0]).toEqual({ child: 'not-a', child2: 'b' })
+      expect(elChild1ChangeMock.mock.calls[0][1]).toEqual({ child: 'c', child2: 'd' },)
       expect(el2Child0ChangeMock).not.toHaveBeenCalled()
       expect(el2Child1ChangeMock).not.toHaveBeenCalled()
 
       // Concrete sub-child
       expect(elChild0TextChangeMock).toHaveBeenCalledTimes(2)
-      expect(elChild0TextChangeMock).toHaveBeenNthCalledWith(2, 'c', 'not-a')
+      expect(elChild0TextChangeMock.mock.calls[1][0]).toEqual('c')
+      expect(elChild0TextChangeMock.mock.calls[1][1]).toEqual('not-a')
       expect(elChild0Text2ChangeMock).toHaveBeenCalledTimes(1)
-      expect(elChild0Text2ChangeMock).toHaveBeenNthCalledWith(1, 'd', 'b')
+      expect(elChild0Text2ChangeMock.mock.calls[0][0]).toEqual('d')
+      expect(elChild0Text2ChangeMock.mock.calls[0][1]).toEqual('b')
       expect(elChild1TextChangeMock).toHaveBeenCalledTimes(1)
-      expect(elChild1TextChangeMock).toHaveBeenNthCalledWith(1, 'not-a', 'c')
+      expect(elChild1TextChangeMock.mock.calls[0][0]).toEqual('not-a')
+      expect(elChild1TextChangeMock.mock.calls[0][1]).toEqual('c')
       expect(elChild1Text2ChangeMock).toHaveBeenCalledTimes(1)
-      expect(elChild1Text2ChangeMock).toHaveBeenNthCalledWith(1, 'b', 'd')
+      expect(elChild1Text2ChangeMock.mock.calls[0][0]).toEqual('b')
+      expect(elChild1Text2ChangeMock.mock.calls[0][1]).toEqual('d')
       expect(el2Child0TextChangeMock).not.toHaveBeenCalled()
       expect(el2Child0Text2ChangeMock).not.toHaveBeenCalled()
       expect(el2Child1TextChangeMock).not.toHaveBeenCalled()
@@ -526,9 +531,9 @@ const testChanges = async (form, mocks, options, updateModel, initial, hasModel,
   await nextTick()
 
   expect(formChangeMock).toHaveBeenCalledTimes(1)
-  expect(formChangeMock).toHaveBeenNthCalledWith(1, { el: value(), el2: initial.el2, }, { el: initial.el, el2: initial.el2, })
+  expect(formChangeMock).toHaveBeenNthCalledWith(1, { el: value(), el2: initial.el2, }, { el: initial.el, el2: initial.el2, }, form.vm)
   expect(elChangeMock).toHaveBeenCalledTimes(1)
-  expect(elChangeMock).toHaveBeenNthCalledWith(1, value(), initial.el)
+  expect(elChangeMock).toHaveBeenNthCalledWith(1, value(), initial.el, el)
   expect(el2ChangeMock).not.toHaveBeenCalled()
 
   // Wait an other tick to make sure everything settles down
@@ -566,11 +571,11 @@ const testChanges = async (form, mocks, options, updateModel, initial, hasModel,
 
   // Events should trigger accordingly
   expect(formChangeMock).toHaveBeenCalledTimes(2)
-  expect(formChangeMock).toHaveBeenNthCalledWith(2, { el: value2(), el2: value(), }, { el: value(), el2: initial.el2, })
+  expect(formChangeMock).toHaveBeenNthCalledWith(2, { el: value2(), el2: value(), }, { el: value(), el2: initial.el2, }, form.vm)
   expect(elChangeMock).toHaveBeenCalledTimes(2)
-  expect(elChangeMock).toHaveBeenNthCalledWith(2, value2(), value())
+  expect(elChangeMock).toHaveBeenNthCalledWith(2, value2(), value(), el)
   expect(el2ChangeMock).toHaveBeenCalledTimes(1)
-  expect(el2ChangeMock).toHaveBeenNthCalledWith(1, value(), initial.el2)
+  expect(el2ChangeMock).toHaveBeenNthCalledWith(1, value(), initial.el2, el2)
 }
 
 const objectSchema = (mocks, elementType) => {

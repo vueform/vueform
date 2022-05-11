@@ -110,6 +110,12 @@ export default {
       required: false,
       default: false,
     },
+    onBlur: {
+      required: false,
+      type: [Function],
+      default: null,
+      private: true,
+    },
   },
   setup(props, context) {
     context.features = [

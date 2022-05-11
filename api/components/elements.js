@@ -263,6 +263,15 @@ module.exports = {
         required: false,
         private: false,
       },
+      infoPosition: {
+        required: 'false',
+        default: 'right',
+        types: [
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
       label: {
         required: 'false',
         default: 'null',
@@ -352,6 +361,15 @@ module.exports = {
           'string',
           'array',
           'object',
+        ],
+        required: false,
+        private: false,
+      },
+      id: {
+        required: 'false',
+        default: 'null',
+        types: [
+          'string',
         ],
         required: false,
         private: false,
@@ -581,6 +599,13 @@ module.exports = {
         description: 'Whether the button is disabled.',
         private: false,
       },
+      fieldId: {
+        types: [
+          'string',
+        ],
+        description: 'The `id` of the <%field%>. If [`id`](#option-id) is not provided [`path`](#option-path) will be used.',
+        private: false,
+      },
       hasLabel: {
         types: [
           'boolean',
@@ -697,6 +722,11 @@ module.exports = {
             description: 'event',
           },
         },
+        private: true,
+      },
+      updateConditions: {
+        description: 'Updates element conditions after they have been changed.',
+        returns: 'void',
         private: true,
       },
       on: {
@@ -1204,6 +1234,15 @@ module.exports = {
       info: {
         required: 'false',
         default: 'null',
+        types: [
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
+      infoPosition: {
+        required: 'false',
+        default: 'right',
         types: [
           'string',
         ],
@@ -1807,6 +1846,11 @@ module.exports = {
       },
       deactivate: {
         description: 'Sets the `active` property of the element to `false`.',
+        returns: 'void',
+        private: true,
+      },
+      updateConditions: {
+        description: 'Updates element conditions after they have been changed.',
         returns: 'void',
         private: true,
       },
@@ -2439,6 +2483,15 @@ module.exports = {
         required: false,
         private: false,
       },
+      infoPosition: {
+        required: 'false',
+        default: 'right',
+        types: [
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
       label: {
         required: 'false',
         default: 'null',
@@ -2591,6 +2644,7 @@ module.exports = {
           'object',
           'array',
           'function',
+          'string',
         ],
         required: false,
         private: false,
@@ -2703,7 +2757,7 @@ module.exports = {
       },
     },
     computed: {
-      resolvedItems: {
+      resolvedOptions: {
         types: [
           'array',
         ],
@@ -3080,6 +3134,11 @@ module.exports = {
         description: 'Unchecks all checkboxes.',
         returns: 'void',
         private: false,
+      },
+      updateConditions: {
+        description: 'Updates element conditions after they have been changed.',
+        returns: 'void',
+        private: true,
       },
       load: {
         description: 'Loads value to the element using optional [`formatLoad`](#option-format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.',
@@ -3780,6 +3839,15 @@ module.exports = {
         required: false,
         private: false,
       },
+      infoPosition: {
+        required: 'false',
+        default: 'right',
+        types: [
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
       label: {
         required: 'false',
         default: 'null',
@@ -3940,6 +4008,7 @@ module.exports = {
         default: 'null',
         types: [
           'string',
+          'boolean',
         ],
         required: false,
         private: false,
@@ -4153,6 +4222,20 @@ module.exports = {
         description: 'Instance of MessageBag service. Custom errors and messages [can be added](/docs/1.x/validating-elements#custom-errors-and-messages).',
         default: 'MessageBag',
         private: false,
+      },
+      initialValue: {
+        types: [
+          'any',
+        ],
+        description: 'The initial value of the element.',
+        private: true,
+      },
+      internalValue: {
+        types: [
+          'any',
+        ],
+        description: 'The store for the value of the element when we&apos;re not using external data (form&apos;s `v-model`).',
+        private: true,
       },
       hidden: {
         types: [
@@ -4511,6 +4594,11 @@ module.exports = {
       },
       deactivate: {
         description: 'Sets the `active` property of the element to `false`.',
+        returns: 'void',
+        private: true,
+      },
+      updateConditions: {
+        description: 'Updates element conditions after they have been changed.',
         returns: 'void',
         private: true,
       },
@@ -5158,6 +5246,15 @@ module.exports = {
         required: false,
         private: false,
       },
+      infoPosition: {
+        required: 'false',
+        default: 'right',
+        types: [
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
       label: {
         required: 'false',
         default: 'null',
@@ -5317,6 +5414,7 @@ module.exports = {
         default: 'null',
         types: [
           'string',
+          'boolean',
         ],
         required: false,
         private: false,
@@ -5504,6 +5602,20 @@ module.exports = {
         description: 'Instance of MessageBag service. Custom errors and messages [can be added](/docs/1.x/validating-elements#custom-errors-and-messages).',
         default: 'MessageBag',
         private: false,
+      },
+      initialValue: {
+        types: [
+          'any',
+        ],
+        description: 'The initial value of the element.',
+        private: true,
+      },
+      internalValue: {
+        types: [
+          'any',
+        ],
+        description: 'The store for the value of the element when we&apos;re not using external data (form&apos;s `v-model`).',
+        private: true,
       },
       hidden: {
         types: [
@@ -5862,6 +5974,11 @@ module.exports = {
       },
       deactivate: {
         description: 'Sets the `active` property of the element to `false`.',
+        returns: 'void',
+        private: true,
+      },
+      updateConditions: {
+        description: 'Updates element conditions after they have been changed.',
         returns: 'void',
         private: true,
       },
@@ -6503,6 +6620,15 @@ module.exports = {
       info: {
         required: 'false',
         default: 'null',
+        types: [
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
+      infoPosition: {
+        required: 'false',
+        default: 'right',
         types: [
           'string',
         ],
@@ -7196,6 +7322,11 @@ module.exports = {
         returns: 'void',
         private: true,
       },
+      updateConditions: {
+        description: 'Updates element conditions after they have been changed.',
+        returns: 'void',
+        private: true,
+      },
       load: {
         description: 'Loads value to the element using optional [`formatLoad`](#option-format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.',
         returns: 'void',
@@ -7862,6 +7993,15 @@ module.exports = {
       info: {
         required: 'false',
         default: 'null',
+        types: [
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
+      infoPosition: {
+        required: 'false',
+        default: 'right',
         types: [
           'string',
         ],
@@ -8714,6 +8854,11 @@ module.exports = {
         returns: 'void',
         private: true,
       },
+      updateConditions: {
+        description: 'Updates element conditions after they have been changed.',
+        returns: 'void',
+        private: true,
+      },
       load: {
         description: 'Loads value to the element using optional [`formatLoad`](#option-format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.',
         returns: 'void',
@@ -9419,6 +9564,15 @@ module.exports = {
         required: false,
         private: false,
       },
+      infoPosition: {
+        required: 'false',
+        default: 'right',
+        types: [
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
       label: {
         required: 'false',
         default: 'null',
@@ -9871,6 +10025,11 @@ module.exports = {
       },
       deactivate: {
         description: 'Sets the `active` property of the element to `false`.',
+        returns: 'void',
+        private: true,
+      },
+      updateConditions: {
+        description: 'Updates element conditions after they have been changed.',
         returns: 'void',
         private: true,
       },
@@ -10725,6 +10884,11 @@ module.exports = {
         returns: 'void',
         private: true,
       },
+      updateConditions: {
+        description: 'Updates element conditions after they have been changed.',
+        returns: 'void',
+        private: true,
+      },
       load: {
         description: 'Loads value to the element using optional [`formatLoad`](#option-format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.',
         returns: 'void',
@@ -11241,6 +11405,15 @@ module.exports = {
       info: {
         required: 'false',
         default: 'null',
+        types: [
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
+      infoPosition: {
+        required: 'false',
+        default: 'right',
         types: [
           'string',
         ],
@@ -12016,6 +12189,11 @@ module.exports = {
         returns: 'void',
         private: true,
       },
+      updateConditions: {
+        description: 'Updates element conditions after they have been changed.',
+        returns: 'void',
+        private: true,
+      },
       add: {
         description: 'Appends a new item.',
         returns: 'integer',
@@ -12783,6 +12961,15 @@ module.exports = {
         required: false,
         private: false,
       },
+      infoPosition: {
+        required: 'false',
+        default: 'right',
+        types: [
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
       label: {
         required: 'false',
         default: 'null',
@@ -12942,6 +13129,7 @@ module.exports = {
         default: 'null',
         types: [
           'string',
+          'boolean',
         ],
         required: false,
         private: false,
@@ -13473,6 +13661,11 @@ module.exports = {
       },
       deactivate: {
         description: 'Sets the `active` property of the element to `false`.',
+        returns: 'void',
+        private: true,
+      },
+      updateConditions: {
+        description: 'Updates element conditions after they have been changed.',
         returns: 'void',
         private: true,
       },
@@ -14129,6 +14322,15 @@ module.exports = {
       info: {
         required: 'false',
         default: 'null',
+        types: [
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
+      infoPosition: {
+        required: 'false',
+        default: 'right',
         types: [
           'string',
         ],
@@ -14951,6 +15153,11 @@ module.exports = {
         returns: 'void',
         private: true,
       },
+      updateConditions: {
+        description: 'Updates element conditions after they have been changed.',
+        returns: 'void',
+        private: true,
+      },
       add: {
         description: 'Appends a new item.',
         returns: 'integer',
@@ -15751,6 +15958,15 @@ module.exports = {
         required: false,
         private: false,
       },
+      infoPosition: {
+        required: 'false',
+        default: 'right',
+        types: [
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
       label: {
         required: 'false',
         default: 'null',
@@ -15901,6 +16117,7 @@ module.exports = {
         default: 'null',
         types: [
           'string',
+          'boolean',
         ],
         required: false,
         private: false,
@@ -16012,6 +16229,7 @@ module.exports = {
           'object',
           'array',
           'function',
+          'string',
         ],
         required: false,
         private: false,
@@ -16071,6 +16289,24 @@ module.exports = {
         default: 'undefined',
         types: [
           'function',
+        ],
+        native: false,
+        required: false,
+        private: false,
+      },
+      multipleLabelSingle: {
+        required: 'false',
+        default: 'undefined',
+        types: [
+        ],
+        native: false,
+        required: false,
+        private: false,
+      },
+      multipleLabelMultiple: {
+        required: 'false',
+        default: 'undefined',
+        types: [
         ],
         native: false,
         required: false,
@@ -16460,11 +16696,11 @@ module.exports = {
       },
     },
     computed: {
-      nativeItems: {
+      resolvedOptions: {
         types: [
           'array',
         ],
-        description: 'Contains select options for native select.',
+        description: 'Contains the resolved options.',
         private: false,
       },
       el$: {
@@ -16814,6 +17050,11 @@ module.exports = {
       },
       deactivate: {
         description: 'Sets the `active` property of the element to `false`.',
+        returns: 'void',
+        private: true,
+      },
+      updateConditions: {
+        description: 'Updates element conditions after they have been changed.',
         returns: 'void',
         private: true,
       },
@@ -17744,6 +17985,15 @@ module.exports = {
         required: false,
         private: false,
       },
+      infoPosition: {
+        required: 'false',
+        default: 'right',
+        types: [
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
       label: {
         required: 'false',
         default: 'null',
@@ -18221,6 +18471,11 @@ module.exports = {
       },
       deactivate: {
         description: 'Sets the `active` property of the element to `false`.',
+        returns: 'void',
+        private: true,
+      },
+      updateConditions: {
+        description: 'Updates element conditions after they have been changed.',
         returns: 'void',
         private: true,
       },
@@ -18829,6 +19084,15 @@ module.exports = {
         required: false,
         private: false,
       },
+      infoPosition: {
+        required: 'false',
+        default: 'right',
+        types: [
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
       label: {
         required: 'false',
         default: 'null',
@@ -19430,6 +19694,11 @@ module.exports = {
       },
       deactivate: {
         description: 'Sets the `active` property of the element to `false`.',
+        returns: 'void',
+        private: true,
+      },
+      updateConditions: {
+        description: 'Updates element conditions after they have been changed.',
         returns: 'void',
         private: true,
       },
@@ -20062,6 +20331,15 @@ module.exports = {
         required: false,
         private: false,
       },
+      infoPosition: {
+        required: 'false',
+        default: 'right',
+        types: [
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
       label: {
         required: 'false',
         default: 'null',
@@ -20224,6 +20502,7 @@ module.exports = {
           'object',
           'array',
           'function',
+          'string',
         ],
         required: false,
         private: false,
@@ -20327,7 +20606,7 @@ module.exports = {
       },
     },
     computed: {
-      resolvedItems: {
+      resolvedOptions: {
         types: [
           'array',
         ],
@@ -20660,6 +20939,11 @@ module.exports = {
       },
       deactivate: {
         description: 'Sets the `active` property of the element to `false`.',
+        returns: 'void',
+        private: true,
+      },
+      updateConditions: {
+        description: 'Updates element conditions after they have been changed.',
         returns: 'void',
         private: true,
       },
@@ -21362,6 +21646,15 @@ module.exports = {
         required: false,
         private: false,
       },
+      infoPosition: {
+        required: 'false',
+        default: 'right',
+        types: [
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
       label: {
         required: 'false',
         default: 'null',
@@ -21514,6 +21807,7 @@ module.exports = {
         default: 'null',
         types: [
           'string',
+          'boolean',
         ],
         required: false,
         private: false,
@@ -21624,6 +21918,7 @@ module.exports = {
           'object',
           'array',
           'function',
+          'string',
         ],
         required: false,
         private: false,
@@ -21634,7 +21929,6 @@ module.exports = {
         types: [
           'string',
         ],
-        native: false,
         required: false,
         private: false,
       },
@@ -21644,7 +21938,6 @@ module.exports = {
         types: [
           'string',
         ],
-        native: false,
         required: false,
         private: false,
       },
@@ -22042,11 +22335,11 @@ module.exports = {
       },
     },
     computed: {
-      nativeItems: {
+      resolvedOptions: {
         types: [
           'array',
         ],
-        description: 'Contains select options for native select.',
+        description: 'Contains the resolved options.',
         private: false,
       },
       el$: {
@@ -22396,6 +22689,11 @@ module.exports = {
       },
       deactivate: {
         description: 'Sets the `active` property of the element to `false`.',
+        returns: 'void',
+        private: true,
+      },
+      updateConditions: {
+        description: 'Updates element conditions after they have been changed.',
         returns: 'void',
         private: true,
       },
@@ -23296,6 +23594,15 @@ module.exports = {
         required: false,
         private: false,
       },
+      infoPosition: {
+        required: 'false',
+        default: 'right',
+        types: [
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
       label: {
         required: 'false',
         default: 'null',
@@ -23959,6 +24266,11 @@ module.exports = {
         returns: 'void',
         private: true,
       },
+      updateConditions: {
+        description: 'Updates element conditions after they have been changed.',
+        returns: 'void',
+        private: true,
+      },
       load: {
         description: 'Loads value to the element using optional [`formatLoad`](#option-format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.',
         returns: 'void',
@@ -24595,6 +24907,15 @@ module.exports = {
         required: false,
         private: false,
       },
+      infoPosition: {
+        required: 'false',
+        default: 'right',
+        types: [
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
       label: {
         required: 'false',
         default: 'null',
@@ -24898,6 +25219,11 @@ module.exports = {
       },
       deactivate: {
         description: 'Sets the `active` property of the element to `false`.',
+        returns: 'void',
+        private: true,
+      },
+      updateConditions: {
+        description: 'Updates element conditions after they have been changed.',
         returns: 'void',
         private: true,
       },
@@ -25406,6 +25732,15 @@ module.exports = {
       info: {
         required: 'false',
         default: 'null',
+        types: [
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
+      infoPosition: {
+        required: 'false',
+        default: 'right',
         types: [
           'string',
         ],
@@ -26100,6 +26435,11 @@ module.exports = {
         returns: 'void',
         private: true,
       },
+      updateConditions: {
+        description: 'Updates element conditions after they have been changed.',
+        returns: 'void',
+        private: true,
+      },
       load: {
         description: 'Loads value to the element using optional [`formatLoad`](#option-format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.',
         returns: 'void',
@@ -26791,6 +27131,15 @@ module.exports = {
         required: false,
         private: false,
       },
+      infoPosition: {
+        required: 'false',
+        default: 'right',
+        types: [
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
       label: {
         required: 'false',
         default: 'null',
@@ -26971,6 +27320,7 @@ module.exports = {
         default: 'null',
         types: [
           'string',
+          'boolean',
         ],
         required: false,
         private: false,
@@ -27477,6 +27827,11 @@ module.exports = {
         returns: 'void',
         private: true,
       },
+      updateConditions: {
+        description: 'Updates element conditions after they have been changed.',
+        returns: 'void',
+        private: true,
+      },
       load: {
         description: 'Loads value to the element using optional [`formatLoad`](#option-format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.',
         returns: 'void',
@@ -27587,6 +27942,11 @@ module.exports = {
         },
         private: false,
       },
+      handleBlur: {
+        description: 'Handles `blur` event.',
+        returns: 'void',
+        private: true,
+      },
       handleInput: {
         description: 'Handles `input` event.',
         returns: 'void',
@@ -27691,6 +28051,17 @@ module.exports = {
             description: 'the old value',
             types: [
               'string',
+            ]
+          },
+       },
+      },
+      'blur': {
+        description: 'Triggered when the input is blurred.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
             ]
           },
        },
@@ -28140,6 +28511,15 @@ module.exports = {
         required: false,
         private: false,
       },
+      infoPosition: {
+        required: 'false',
+        default: 'right',
+        types: [
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
       label: {
         required: 'false',
         default: 'null',
@@ -28328,6 +28708,7 @@ module.exports = {
         default: 'null',
         types: [
           'string',
+          'boolean',
         ],
         required: false,
         private: false,
@@ -28811,6 +29192,11 @@ module.exports = {
       },
       deactivate: {
         description: 'Sets the `active` property of the element to `false`.',
+        returns: 'void',
+        private: true,
+      },
+      updateConditions: {
+        description: 'Updates element conditions after they have been changed.',
         returns: 'void',
         private: true,
       },
@@ -29477,6 +29863,15 @@ module.exports = {
         required: false,
         private: false,
       },
+      infoPosition: {
+        required: 'false',
+        default: 'right',
+        types: [
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
       label: {
         required: 'false',
         default: 'null',
@@ -29627,6 +30022,7 @@ module.exports = {
         default: 'null',
         types: [
           'string',
+          'boolean',
         ],
         required: false,
         private: false,
@@ -29737,6 +30133,7 @@ module.exports = {
           'object',
           'array',
           'function',
+          'string',
         ],
         required: false,
         private: false,
@@ -30181,6 +30578,13 @@ module.exports = {
       },
     },
     computed: {
+      resolvedOptions: {
+        types: [
+          'array',
+        ],
+        description: 'Contains the resolved options.',
+        private: false,
+      },
       el$: {
         types: [
           'component',
@@ -30528,6 +30932,11 @@ module.exports = {
       },
       deactivate: {
         description: 'Sets the `active` property of the element to `false`.',
+        returns: 'void',
+        private: true,
+      },
+      updateConditions: {
+        description: 'Updates element conditions after they have been changed.',
         returns: 'void',
         private: true,
       },
@@ -31495,6 +31904,15 @@ module.exports = {
         required: false,
         private: false,
       },
+      infoPosition: {
+        required: 'false',
+        default: 'right',
+        types: [
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
       label: {
         required: 'false',
         default: 'null',
@@ -31655,6 +32073,7 @@ module.exports = {
         default: 'null',
         types: [
           'string',
+          'boolean',
         ],
         required: false,
         private: false,
@@ -32180,6 +32599,11 @@ module.exports = {
         returns: 'void',
         private: true,
       },
+      updateConditions: {
+        description: 'Updates element conditions after they have been changed.',
+        returns: 'void',
+        private: true,
+      },
       load: {
         description: 'Loads value to the element using optional [`formatLoad`](#option-format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.',
         returns: 'void',
@@ -32290,6 +32714,11 @@ module.exports = {
         },
         private: false,
       },
+      handleBlur: {
+        description: 'Handles `blur` event.',
+        returns: 'void',
+        private: true,
+      },
       handleInput: {
         description: 'Handles `input` event.',
         returns: 'void',
@@ -32375,6 +32804,17 @@ module.exports = {
             description: 'the old value',
             types: [
               'string',
+            ]
+          },
+       },
+      },
+      'blur': {
+        description: 'Triggered when the input is blurred.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
             ]
           },
        },
@@ -32824,6 +33264,15 @@ module.exports = {
         required: false,
         private: false,
       },
+      infoPosition: {
+        required: 'false',
+        default: 'right',
+        types: [
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
       label: {
         required: 'false',
         default: 'null',
@@ -33011,6 +33460,7 @@ module.exports = {
         default: 'null',
         types: [
           'string',
+          'boolean',
         ],
         required: false,
         private: false,
@@ -33494,6 +33944,11 @@ module.exports = {
       },
       deactivate: {
         description: 'Sets the `active` property of the element to `false`.',
+        returns: 'void',
+        private: true,
+      },
+      updateConditions: {
+        description: 'Updates element conditions after they have been changed.',
         returns: 'void',
         private: true,
       },
@@ -34141,6 +34596,15 @@ module.exports = {
         required: false,
         private: false,
       },
+      infoPosition: {
+        required: 'false',
+        default: 'right',
+        types: [
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
       label: {
         required: 'false',
         default: 'null',
@@ -34756,6 +35220,11 @@ module.exports = {
       },
       deactivate: {
         description: 'Sets the `active` property of the element to `false`.',
+        returns: 'void',
+        private: true,
+      },
+      updateConditions: {
+        description: 'Updates element conditions after they have been changed.',
         returns: 'void',
         private: true,
       },

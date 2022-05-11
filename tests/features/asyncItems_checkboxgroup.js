@@ -1,7 +1,8 @@
 import { createForm, findAllComponents, findAll, destroy } from 'test-helpers'
+import { nextTick } from 'composition-api'
 import flushPromises from 'flush-promises'
 
-export const resolvedItems = function (elementType, elementName, options) {
+export const resolvedOptions = function (elementType, elementName, options) {
   it('should resolve items when items are an array', async () => {
     let form = createForm({
       schema: {
@@ -14,17 +15,20 @@ export const resolvedItems = function (elementType, elementName, options) {
 
     let elWrapper = findAllComponents(form, { name: elementName }).at(0)
     
-    expect(elWrapper.vm.resolvedItems).toStrictEqual({
-      '1': {
+    expect(elWrapper.vm.resolvedOptions).toStrictEqual([
+      {
+        value: 1,
         label: 1,
       },
-      '2': {
+      {
+        value: 2,
         label: 2,
       },
-      '3': {
+      {
+        value: 3,
         label: 3,
       },
-    })
+    ])
     
     // destroy(form) // teardown
   })
@@ -45,17 +49,20 @@ export const resolvedItems = function (elementType, elementName, options) {
 
     let elWrapper = findAllComponents(form, { name: elementName }).at(0)
     
-    expect(elWrapper.vm.resolvedItems).toStrictEqual({
-      '0': {
+    expect(elWrapper.vm.resolvedOptions).toStrictEqual([
+      {
+        value: '0',
         label: 1,
       },
-      '1': {
+      {
+        value: '1',
         label: 2,
       },
-      '2': {
+      {
+        value: '2',
         label: 3,
       },
-    })
+    ])
     
     // destroy(form) // teardown
   })
@@ -76,20 +83,20 @@ export const resolvedItems = function (elementType, elementName, options) {
 
     let elWrapper = findAllComponents(form, { name: elementName }).at(0)
 
-    expect(elWrapper.vm.resolvedItems).toStrictEqual({
-      '0': {
+    expect(elWrapper.vm.resolvedOptions).toStrictEqual([
+      {
         value: 0,
         label: 1,
       },
-      '1': {
+      {
         value: 1,
         label: 2,
       },
-      '2': {
+      {
         value: 2,
         label: 3,
       },
-    })
+    ])
     
     // destroy(form) // teardown
   })
@@ -112,17 +119,60 @@ export const resolvedItems = function (elementType, elementName, options) {
 
     let elWrapper = findAllComponents(form, { name: elementName }).at(0)
     
-    expect(elWrapper.vm.resolvedItems).toStrictEqual({
-      '1': {
+    expect(elWrapper.vm.resolvedOptions).toStrictEqual([
+      {
+        value: 1,
         label: 1,
       },
-      '2': {
+      {
+        value: 2,
         label: 2,
       },
-      '3': {
+      {
+        value: 3,
         label: 3,
       },
+    ])
+    
+    // destroy(form) // teardown
+  })
+
+  it('should resolve items from url', async () => {
+    let getMock = jest.fn(() => ({data:[1,2,3]}))
+
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          items: '/url',
+        }
+      }
     })
+
+    form.vm.$vueform.services.axios.get = getMock
+
+    await flushPromises()
+
+    form.vm.el$('el').updateItems()
+
+    await flushPromises()
+
+    let elWrapper = findAllComponents(form, { name: elementName }).at(0)
+    
+    expect(elWrapper.vm.resolvedOptions).toStrictEqual([
+      {
+        value: 1,
+        label: 1,
+      },
+      {
+        value: 2,
+        label: 2,
+      },
+      {
+        value: 3,
+        label: 3,
+      },
+    ])
     
     // destroy(form) // teardown
   })
@@ -149,17 +199,20 @@ export const updateItems = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
     
-    expect(el.resolvedItems).toStrictEqual({
-      '1': {
+    expect(el.resolvedOptions).toStrictEqual([
+      {
+        value: 1,
         label: 1,
       },
-      '2': {
+      {
+        value: 2,
         label: 2,
       },
-      '3': {
+      {
+        value: 3,
         label: 3,
-      },
-    })
+      }
+    ])
 
     option3 = 4
 
@@ -167,17 +220,20 @@ export const updateItems = function (elementType, elementName, options) {
 
     await flushPromises()
     
-    expect(el.resolvedItems).toStrictEqual({
-      '1': {
+    expect(el.resolvedOptions).toStrictEqual([
+      {
+        value: 1,
         label: 1,
       },
-      '2': {
+      {
+        value: 2,
         label: 2,
       },
-      '4': {
+      {
+        value: 4,
         label: 4,
       },
-    })    
+    ])    
     
     // destroy(form) // teardown
   })

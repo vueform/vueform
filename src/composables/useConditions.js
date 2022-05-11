@@ -53,6 +53,7 @@ const base = function(props, context, dependencies)
    * Updates element conditions after they have been changed.
    * 
    * @returns {void}
+   * @private
    */
   const updateConditions = () => {
     conditions.value = conditionList.value

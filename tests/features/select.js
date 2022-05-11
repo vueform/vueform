@@ -59,7 +59,7 @@ export const select = function (elementType, elementName, options) {
 
     await nextTick()
 
-    expect(onChangeMock).toHaveBeenCalledWith(options.value, [])
+    expect(onChangeMock).toHaveBeenCalledWith(options.value, [], el)
     expect(el.dirty).toBe(true)
     
     // destroy(form) // teardown
@@ -171,7 +171,7 @@ export const deselect = function (elementType, elementName, options) {
     await nextTick()
 
     expect(el.dirty).toBe(true)
-    expect(onChangeMock).toHaveBeenCalledWith([0,3,5], [0,1,2,3,4,5])
+    expect(onChangeMock).toHaveBeenCalledWith([0,3,5], [0,1,2,3,4,5], el)
 
     // destroy() // teardown
   })

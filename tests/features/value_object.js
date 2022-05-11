@@ -402,19 +402,19 @@ const testChanges = async (form, mocks, options, updateModel, initial, hasModel,
   expect(formChangeMock).toHaveBeenCalledTimes(1)
   expect(formChangeMock).toHaveBeenNthCalledWith(1, {
     el: { child: 'el_child_value', child2: initial.el.child2 },
-    el2: { child: initial.el2.child, child2: initial.el2.child2 }
+    el2: { child: initial.el2.child, child2: initial.el2.child2 },
   }, {
     el: { child: initial.el.child, child2: initial.el.child2 },
     el2: { child: initial.el2.child, child2: initial.el2.child2 }
-  })
+  }, form.vm)
   expect(elChangeMock).toHaveBeenCalledTimes(1)
   expect(elChangeMock).toHaveBeenNthCalledWith(1, {
     child: 'el_child_value', child2: initial.el.child2
   }, {
     child: initial.el.child, child2: initial.el.child2
-  })
+  }, el)
   expect(el2ChangeMock).not.toHaveBeenCalled()
-  expect(elChildChangeMock).toHaveBeenNthCalledWith(1, 'el_child_value', initial.el.child)
+  expect(elChildChangeMock).toHaveBeenNthCalledWith(1, 'el_child_value', initial.el.child, el_child)
   expect(elChild2ChangeMock).not.toHaveBeenCalled()
   expect(el2ChildChangeMock).not.toHaveBeenCalled()
   expect(el2Child2ChangeMock).not.toHaveBeenCalled()
@@ -465,25 +465,25 @@ const testChanges = async (form, mocks, options, updateModel, initial, hasModel,
   }, {
     el: { child: 'el_child_value', child2: initial.el.child2 },
     el2: { child: initial.el2.child, child2: initial.el2.child2 }
-  })
+  }, form.vm)
   expect(elChangeMock).toHaveBeenCalledTimes(2)
   expect(elChangeMock).toHaveBeenNthCalledWith(2, {
     child: 'el_child_value2', child2: initial.el.child2
   }, {
     child: 'el_child_value', child2: initial.el.child2
-  })
+  }, el)
   expect(el2ChangeMock).toHaveBeenCalledTimes(1)
   expect(el2ChangeMock).toHaveBeenNthCalledWith(1, {
     child: initial.el2.child, child2: 'el2_child2_value'
   }, {
     child: initial.el2.child, child2: initial.el2.child2
-  })
+  }, el2)
   expect(elChildChangeMock).toHaveBeenCalledTimes(2)
-  expect(elChildChangeMock).toHaveBeenNthCalledWith(2, 'el_child_value2', 'el_child_value')
+  expect(elChildChangeMock).toHaveBeenNthCalledWith(2, 'el_child_value2', 'el_child_value', el_child)
   expect(elChild2ChangeMock).not.toHaveBeenCalled()
   expect(el2ChildChangeMock).not.toHaveBeenCalled()
   expect(el2Child2ChangeMock).toHaveBeenCalledTimes(1)
-  expect(el2Child2ChangeMock).toHaveBeenNthCalledWith(1, 'el2_child2_value', initial.el2.child2)
+  expect(el2Child2ChangeMock).toHaveBeenNthCalledWith(1, 'el2_child2_value', initial.el2.child2, el2_child2)
 
   // Wait an other tick to make sure everything settles down
   await nextTick()
@@ -544,27 +544,27 @@ const testChanges = async (form, mocks, options, updateModel, initial, hasModel,
   }, {
     el: { child: 'el_child_value2', child2: initial.el.child2 },
     el2: { child: initial.el2.child, child2: 'el2_child2_value' }
-  })
+  }, form.vm)
   expect(elChangeMock).toHaveBeenCalledTimes(3)
   expect(elChangeMock).toHaveBeenNthCalledWith(3, {
     child: 'el_child_value2', child2: 'el_child2_value',
   }, {
     child: 'el_child_value2', child2: initial.el.child2
-  })
+  }, el)
   expect(el2ChangeMock).toHaveBeenCalledTimes(2)
   expect(el2ChangeMock).toHaveBeenNthCalledWith(2, {
     child: 'el2_child_value', child2: 'el2_child2_value',
   }, {
     child: initial.el2.child, child2: 'el2_child2_value'
-  })
+  }, el2)
 
   expect(elChildChangeMock).toHaveBeenCalledTimes(2)
 
   expect(elChild2ChangeMock).toHaveBeenCalledTimes(1)
-  expect(elChild2ChangeMock).toHaveBeenNthCalledWith(1, 'el_child2_value', initial.el.child2)
+  expect(elChild2ChangeMock).toHaveBeenNthCalledWith(1, 'el_child2_value', initial.el.child2, el_child2)
 
   expect(el2ChildChangeMock).toHaveBeenCalledTimes(1)
-  expect(el2ChildChangeMock).toHaveBeenNthCalledWith(1, 'el2_child_value', initial.el2.child)
+  expect(el2ChildChangeMock).toHaveBeenNthCalledWith(1, 'el2_child_value', initial.el2.child, el2_child)
 
   expect(el2Child2ChangeMock).toHaveBeenCalledTimes(1)
 }

@@ -89,7 +89,7 @@ export const checkAll = function (elementType, elementName, options) {
 
     el.checkAll()
     
-    expect(el.value).toStrictEqual(['1','2','3'])
+    expect(el.value).toStrictEqual([1,2,3])
     
     // destroy(form) // teardown
 
@@ -114,7 +114,7 @@ export const checkAll = function (elementType, elementName, options) {
 
     el.checkAll()
     
-    expect(el.value).toStrictEqual(['1','2','3'])
+    expect(el.value).toStrictEqual([1,2,3])
     
     // destroy(form) // teardown
 
@@ -163,7 +163,7 @@ export const uncheckAll = function (elementType, elementName, options) {
 
     el.checkAll()
     
-    expect(el.value).toStrictEqual(['1','2','3'])
+    expect(el.value).toStrictEqual([1,2,3])
 
     el.uncheckAll()
 
@@ -192,7 +192,7 @@ export const uncheckAll = function (elementType, elementName, options) {
 
     el.checkAll()
     
-    expect(el.value).toStrictEqual(['1','2','3'])
+    expect(el.value).toStrictEqual([1,2,3])
 
     el.uncheckAll()
 

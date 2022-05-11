@@ -381,6 +381,7 @@ const testSort = async (from, to, value, elementType) => {
   expect(formChangeMock).toHaveBeenLastCalledWith(
     {el:value},
     {el:[{child:'a',order:1},{child:'b',order:2},{child:'c',order:3}]},
+    form.vm,
   )
 
   checkChildNode(el, 0)

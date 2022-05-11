@@ -1211,7 +1211,7 @@ export const uploadTemp = function (elementType, elementName, options) {
 
     await flushPromises()
 
-    expect(onChangeMock).toHaveBeenCalledWith(tmp, file)
+    expect(onChangeMock).toHaveBeenCalledWith(tmp, file, el)
 
     // destroy() // teardown
   })
@@ -1748,7 +1748,7 @@ export const remove = function (elementType, elementName, options) {
 
     await nextTick()
 
-    expect(onChangeMock).toHaveBeenLastCalledWith(null, file)
+    expect(onChangeMock).toHaveBeenLastCalledWith(null, file, el)
     
     // destroy(form) // teardown
   })
@@ -2105,7 +2105,7 @@ export const handleChange = function (elementType, elementName, options) {
 
     await nextTick()
 
-    expect(onChangeMock).toHaveBeenCalledWith(file, null)
+    expect(onChangeMock).toHaveBeenCalledWith(file, null, el)
 
     // destroy() // teardown
   })

@@ -30,7 +30,7 @@ const base = function(props, context, dependencies)
   // ============== COMPUTED ==============
   
   /**
-   * Contains select options for native select. 
+   * Contains the resolved options. 
    * 
    * @type {array}
    */
@@ -89,7 +89,11 @@ const base = function(props, context, dependencies)
       disable()
     }
 
-    await resolveOptionsFromFunction()
+    if (typeof items.value === 'string') {
+      await resolveOptionsFromUrl()
+    } else {
+      await resolveOptionsFromFunction()
+    }
       
     if (shouldDisable) {
       enable()
@@ -107,7 +111,7 @@ const base = function(props, context, dependencies)
       options.value = (await form$.value.$vueform.services.axios.get(items.value))?.data || []
     } catch (e) {
       options.value = []
-      console.error(`Couldn\'t resolve items from ${items.value}`, e)
+      console.warn(`Couldn\'t resolve items from ${items.value}`, e)
     }
   }
 
@@ -134,7 +138,7 @@ const base = function(props, context, dependencies)
       options.value = await items.value(el$.value) || []
     } catch (e) {
       options.value = []
-      console.error(`Couldn\'t resolve items from async function`, e)
+      console.warn(`Couldn\'t resolve items from async function`, e)
     }
   }
 
@@ -241,7 +245,7 @@ const checkboxgroup = function(props, context, dependencies) {
   // =============== METHODS ==============
 
   /**
-   * Fetches & updates items when using `async` items. Receives [`el$`](#property-el) as first param.
+   * Fetches & updates items when using `async` items.
    * 
    * @param {boolean} disable* whether the input field should be disabled while fetching options
    * @returns {void} 
@@ -251,7 +255,11 @@ const checkboxgroup = function(props, context, dependencies) {
       disableAll()
     }
 
-    await resolveOptionsFromFunction()
+    if (typeof items.value === 'string') {
+      await resolveOptionsFromUrl()
+    } else {
+      await resolveOptionsFromFunction()
+    }
 
     if (shouldDisable) {
       enableAll()
@@ -269,12 +277,12 @@ const checkboxgroup = function(props, context, dependencies) {
       options.value = (await form$.value.$vueform.services.axios.get(items.value))?.data || []
     } catch (e) {
       options.value = []
-      console.error(`Couldn\'t resolve items from ${items.value}`, e)
+      console.warn(`Couldn\'t resolve items from ${items.value}`, e)
     }
   }
 
   /**
-   * Resolves options from function.
+   * Resolves options from function. Receives [`el$`](#property-el) as first param.
    * 
    * @return {void}
    * @private
@@ -284,7 +292,7 @@ const checkboxgroup = function(props, context, dependencies) {
       options.value = await items.value(el$.value) || []
     } catch (e) {
       options.value = []
-      console.error(`Couldn\'t resolve items from async function`, e)
+      console.warn(`Couldn\'t resolve items from async function`, e)
     }
   }
 

@@ -88,9 +88,9 @@ const testChanges = async (form, mocks, options, updateModel, initial, hasModel,
   await nextTick()
 
   expect(formChangeMock).toHaveBeenCalledTimes(1)
-  expect(formChangeMock).toHaveBeenNthCalledWith(1, { el: options.value, el2: initial.el2, }, { el: initial.el, el2: initial.el2, })
+  expect(formChangeMock).toHaveBeenNthCalledWith(1, { el: options.value, el2: initial.el2, }, { el: initial.el, el2: initial.el2, }, form.vm)
   expect(elChangeMock).toHaveBeenCalledTimes(1)
-  expect(elChangeMock).toHaveBeenNthCalledWith(1, options.value, initial.el)
+  expect(elChangeMock).toHaveBeenNthCalledWith(1, options.value, initial.el, el)
   expect(el2ChangeMock).not.toHaveBeenCalled()
 
   // Wait an other tick to make sure everything settles down
@@ -127,11 +127,11 @@ const testChanges = async (form, mocks, options, updateModel, initial, hasModel,
 
   // Events should trigger accordingly
   expect(formChangeMock).toHaveBeenCalledTimes(2)
-  expect(formChangeMock).toHaveBeenNthCalledWith(2, { el: options.value2, el2: options.value, }, { el: options.value, el2: initial.el2, })
+  expect(formChangeMock).toHaveBeenNthCalledWith(2, { el: options.value2, el2: options.value, }, { el: options.value, el2: initial.el2, }, form.vm)
   expect(elChangeMock).toHaveBeenCalledTimes(2)
-  expect(elChangeMock).toHaveBeenNthCalledWith(2, options.value2, options.value)
+  expect(elChangeMock).toHaveBeenNthCalledWith(2, options.value2, options.value, el)
   expect(el2ChangeMock).toHaveBeenCalledTimes(1)
-  expect(el2ChangeMock).toHaveBeenNthCalledWith(1, options.value, initial.el2)
+  expect(el2ChangeMock).toHaveBeenNthCalledWith(1, options.value, initial.el2, el2)
 }
 
 const baseSchema = (mocks, elementType) => {

@@ -9,6 +9,13 @@ export default {
           ],
           "description": "Whether no [`conditions`](#option-conditions) are defined or they are all fulfilled."
         }
+      },
+      "methods": {
+        "updateConditions": {
+          "public": false,
+          "returns": "void",
+          "description": "Updates element conditions after they have been changed."
+        }
       }
     }
   },
@@ -568,6 +575,14 @@ export default {
           ],
           "description": "Enables/disables validation for the form globally."
         },
+        "conditions": {
+          "public": true,
+          "default": "true",
+          "types": [
+            "boolean"
+          ],
+          "description": "Enables/disables conditions for the form globally."
+        },
         "messageBag": {
           "public": true,
           "default": "MessageBag",
@@ -1013,6 +1028,16 @@ export default {
           "public": true,
           "returns": "void",
           "description": "Enables form validation globally."
+        },
+        "enableConditions": {
+          "public": true,
+          "returns": "void",
+          "description": "Enables conditions globally."
+        },
+        "disableConditions": {
+          "public": true,
+          "returns": "void",
+          "description": "Disables conditions globally."
         },
         "setLanguage": {
           "public": true,
