@@ -1,5 +1,6 @@
-import { computed } from 'composition-api'
+import { computed, ref, nextTick } from 'composition-api'
 import useElementComponent from './../composables/useElementComponent'
+import isInViewport from './../utils/isInViewport'
 
 export default {
   name: 'ElementInfo',
@@ -19,6 +20,17 @@ export default {
       template,
       theme,
     } = useElementComponent(props, context)
+
+    // ================ DATA ================
+
+    /**
+     * The position of the info.
+     * 
+     * @type {boolean}
+     * @default false
+     * @private
+     */
+    const position = ref(el$.value.infoPosition)
 
     // ============== COMPUTED ==============
 
@@ -41,6 +53,51 @@ export default {
       return !!(el$.value.slots?.info || el$.value.$slots?.info || (context.expose === undefined && el$.value.$scopedSlots?.info))
     })
 
+    // =============== METHODS ==============
+
+    /**
+     * Handles the info hover.
+     * 
+     * @param {Event} e 
+     * @return {void}
+     * @private
+     */
+    const handleMouseOver = async (e) => {
+      if (position.value !== el$.value.infoPosition) {
+        return
+      }
+      
+      await nextTick()
+
+      let wrapper = e.target.querySelector('div')
+
+      if (!wrapper) {
+        return
+      }
+      
+      if (!isInViewport(wrapper)) {
+        position.value = 'right'
+      }
+
+      await nextTick()
+
+      if (!isInViewport(wrapper)) {
+        position.value = 'top'
+      }
+
+      await nextTick()
+
+      if (!isInViewport(wrapper)) {
+        position.value = 'left'
+      }
+
+      await nextTick()
+      
+      if (!isInViewport(wrapper)) {
+        position.value = 'bottom'
+      }
+    }
+
     return {
       el$,
       form$,
@@ -53,6 +110,8 @@ export default {
       template,
       info,
       isSlot,
+      position,
+      handleMouseOver,
     }
   },
 }

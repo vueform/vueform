@@ -10,7 +10,15 @@
         defaultClasses: {
           container: 'vf-element-info',
           wrapper: 'vf-element-info-wrapper',
+          wrapper_left: 'vf-element-info-wrapper-left',
+          wrapper_right: 'vf-element-info-wrapper-right',
+          wrapper_top: 'vf-element-info-wrapper-top',
+          wrapper_bottom: 'vf-element-info-wrapper-bottom',
           content: 'vf-element-info-content',
+          $wrapper: (classes, { position }) => ([
+            classes.wrapper,
+            classes[`wrapper_${position}`],
+          ]),
         }
       }
     }
@@ -46,13 +54,33 @@
 
   .vf-element-info-wrapper {
     position: absolute;
-    left: 1.375rem;
     opacity: 0;
-    top: -0.5625rem;
     visibility: hidden;
     transition: .3s;
     z-index: 20;
     width: 12.5rem;
+
+    &.vf-element-info-wrapper-left {
+      top: -0.5625rem;
+      right: 1.375rem;
+    }
+
+    &.vf-element-info-wrapper-right {
+      top: -0.5625rem;
+      left: 1.375rem;
+    }
+
+    &.vf-element-info-wrapper-top {
+      bottom: 1.375rem;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    &.vf-element-info-wrapper-bottom {
+      top: 1.375rem;
+      left: 50%;
+      transform: translateX(-50%);
+    }
   }
 
   .vf-element-info-content {
