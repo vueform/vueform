@@ -21,7 +21,7 @@
           :disabled="isDisabled"
         />
         <div :class="classes.text_wrapper">
-          <div :class="classes.text" v-html="item.name" />
+          <div :class="classes.text" v-html="item.label" />
           <div :class="classes.description" v-html="item.description" />
         </div>
       </div>
