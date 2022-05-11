@@ -11,6 +11,7 @@ import useButton from './../../composables/elements/useButton'
 import useLayout from './../../composables/elements/useLayout'
 import useEvents from './../../composables/useEvents'
 import useClasses from './../../composables/elements/useClasses'
+import useFieldId from './../../composables/elements/useFieldId'
 
 import { button as useDisabled } from './../../composables/elements/useDisabled'
 import { static_ as useBaseElement } from './../../composables/elements/useBaseElement'
@@ -43,6 +44,11 @@ export default {
     buttonClass: {
       required: false,
       type: [String, Array, Object],
+      default: null
+    },
+    id: {
+      required: false,
+      type: [String],
       default: null
     },
     disabled: {
@@ -105,6 +111,7 @@ export default {
       useLabel,
       useView,
       useTemplates,
+      useFieldId,
       useButton,
       useClasses,
       useColumns,
