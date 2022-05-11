@@ -86,7 +86,7 @@ const date = function(props, context, dependencies)
       dateFormat: displayDateFormat.value,
       minDate: minDate.value,
       maxDate: maxDate.value,
-      disable: disables.value,
+      disable: disabledDates.value,
       clickOpens: !isDisabled.value && !readonly.value,
       time_24hr: hour24.value,
       enableTime: time.value,
@@ -330,6 +330,8 @@ const multiselect = function (props, context, dependencies)
     inputType,
     hideSelected,
     multipleLabel,
+    multipleLabelMultiple,
+    multipleLabelSingle,
     create,
     appendNewOption,
     addOptionOn,
@@ -338,6 +340,7 @@ const multiselect = function (props, context, dependencies)
   // ============ DEPENDENCIES ============
 
   const form$ = dependencies.form$
+  const el$ = dependencies.el$
   const isLoading = dependencies.isLoading
 
 
@@ -364,10 +367,13 @@ const multiselect = function (props, context, dependencies)
       searchable: search.value || create.value,
       noOptionsText: noOptionsText.value || form$.value.__('vueform.multiselect.noOptions'),
       noResultsText: noResultsText.value || form$.value.__('vueform.multiselect.noResults'),
-      multipleLabel: multipleLabel.value || ((val) => {
+      multipleLabel: multipleLabel.value || ((val, select$) => {
         return val && val.length > 1
-          ? form$.value.__('vueform.multiselect.multipleLabelMore', { options: val.length })
-          : form$.value.__('vueform.multiselect.multipleLabelOne') 
+          ? (multipleLabelMultiple.value
+              ? multipleLabelMultiple.value.replace(':x:', val.length)
+              : form$.value.__('vueform.multiselect.multipleLabelMore', { options: val.length })
+            )
+          : multipleLabelSingle.value || form$.value.__('vueform.multiselect.multipleLabelOne') 
       }),
 
       label: labelProp.value,
