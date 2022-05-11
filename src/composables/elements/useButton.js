@@ -17,6 +17,7 @@ const base = function (props, context, dependencies)
 
   const form$ = dependencies.form$
   const isDisabled = dependencies.isDisabled
+  const fieldId = dependencies.fieldId
   const el$ = dependencies.el$
 
   // ============== COMPUTED ==============
@@ -55,7 +56,9 @@ const base = function (props, context, dependencies)
    * @private
    */
   const button = computed(() => {
-    const button = {}
+    const button = {
+      id: fieldId.value,
+    }
 
     switch (buttonType.value) {
       case 'anchor':
@@ -103,7 +106,7 @@ const base = function (props, context, dependencies)
     }
 
     if (typeof onClick.value == 'function') {
-      onClick.value(form$.value)
+      onClick.value(form$.value, el$.value, e)
     }
   }
 
