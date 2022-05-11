@@ -97,7 +97,7 @@ const select = function (props, context, dependencies)
         focused.value = false
       })
     } else {
-      watch(computed(() => input.value.isOpen), (open) => {
+      watch(computed(() => input.value?.isOpen), (open) => {
         focused.value = open
       })
     }
