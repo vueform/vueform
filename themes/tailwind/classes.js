@@ -1097,11 +1097,11 @@ export default {
   },
   ElementInfo: {
     container: 'inline-block w-3.5 h-3.5 form-bg-info relative ml-1 top-px cursor-pointer group h-full',
-    wrapper: 'absolute -mt-px opacity-0 invisible group-hover:opacity-100 group-hover:form-visible transition-opacity z-20 w-52',
-    wrapper_left: 'right-5 -top-0.5',
-    wrapper_right: 'left-5 -top-0.5',
-    wrapper_top: 'left-1/2 transform -translate-x-1/2 bottom-5',
-    wrapper_bottom: 'left-1/2 transform -translate-x-1/2 top-5',
+    wrapper: 'absolute -mt-px opacity-0 invisible group-hover:opacity-100 group-hover:form-visible transition-opacity z-20 w-52 flex',
+    wrapper_left: 'right-5 -top-0.5 justify-end',
+    wrapper_right: 'left-5 -top-0.5 justify-start',
+    wrapper_top: 'left-1/2 transform -translate-x-1/2 bottom-8 justify-center',
+    wrapper_bottom: 'left-1/2 transform -translate-x-1/2 top-6 justify-center',
     content: 'bg-black bg-opacity-90 text-white rounded-md form-small-font-size py-1 px-2.5 not-italic inline-block relative',
     $wrapper: (classes, { position }) => ([
       classes.wrapper,

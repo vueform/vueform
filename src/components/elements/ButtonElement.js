@@ -23,7 +23,7 @@ import HasView from './../../mixins/HasView'
 export default {
   name: 'ButtonElement',
   mixins: [BaseElement, HasView],
-  emits: ['beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
+  emits: ['click', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
   props: {
     type: {
       required: false,

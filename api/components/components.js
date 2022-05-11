@@ -4450,6 +4450,12 @@ module.exports = {
             "types": [
               "string"
             ]
+          },
+          "form$": {
+            "description": "the form's component",
+            "types": [
+              "component"
+            ]
           }
         }
       },
@@ -4777,6 +4783,12 @@ module.exports = {
             "description": "the old value",
             "types": [
               "string"
+            ]
+          },
+          "el$": {
+            "description": "the element's component",
+            "types": [
+              "component"
             ]
           }
         }
@@ -5155,7 +5167,8 @@ module.exports = {
       "items": {
         "required": true,
         "types": [
-          "object"
+          "object",
+          "array"
         ]
       },
       "index": {
@@ -5459,7 +5472,8 @@ module.exports = {
       "items": {
         "required": true,
         "types": [
-          "object"
+          "object",
+          "array"
         ]
       },
       "index": {

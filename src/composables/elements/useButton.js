@@ -18,6 +18,7 @@ const base = function (props, context, dependencies)
   const form$ = dependencies.form$
   const isDisabled = dependencies.isDisabled
   const fieldId = dependencies.fieldId
+  const fire = dependencies.fire
   const el$ = dependencies.el$
 
   // ============== COMPUTED ==============
@@ -106,7 +107,7 @@ const base = function (props, context, dependencies)
     }
 
     if (typeof onClick.value == 'function') {
-      onClick.value(form$.value, el$.value, e)
+      fire('click', form$.value, el$.value, e)
     }
   }
 

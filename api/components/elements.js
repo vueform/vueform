@@ -2047,6 +2047,12 @@ module.exports = {
               'string',
             ]
           },
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
        },
       },
       'beforeCreate': {
@@ -3070,7 +3076,7 @@ module.exports = {
     },
     methods: {
       updateItems: {
-        description: 'Fetches & updates items when using `async` items. Receives [`el$`](#property-el) as first param.',
+        description: 'Fetches & updates items when using `async` items.',
         returns: 'void',
         params: {
           disable: {
@@ -3353,6 +3359,12 @@ module.exports = {
             description: 'the old value',
             types: [
               'string',
+            ]
+          },
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
             ]
           },
        },
@@ -4799,6 +4811,12 @@ module.exports = {
               'string',
             ]
           },
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
        },
       },
       'beforeCreate': {
@@ -6179,6 +6197,12 @@ module.exports = {
               'string',
             ]
           },
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
        },
       },
       'beforeCreate': {
@@ -7550,6 +7574,12 @@ module.exports = {
             description: 'the old value',
             types: [
               'string',
+            ]
+          },
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
             ]
           },
        },
@@ -9119,6 +9149,12 @@ module.exports = {
               'string',
             ]
           },
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
        },
       },
       'remove': {
@@ -10210,6 +10246,12 @@ module.exports = {
               'string',
             ]
           },
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
        },
       },
       'beforeCreate': {
@@ -11050,6 +11092,12 @@ module.exports = {
             description: 'the old value',
             types: [
               'string',
+            ]
+          },
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
             ]
           },
        },
@@ -12485,6 +12533,12 @@ module.exports = {
               'string',
             ]
           },
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
        },
       },
       'add': {
@@ -13879,6 +13933,12 @@ module.exports = {
             description: 'the old value',
             types: [
               'string',
+            ]
+          },
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
             ]
           },
        },
@@ -15482,6 +15542,12 @@ module.exports = {
               'string',
             ]
           },
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
        },
       },
       'add': {
@@ -16296,8 +16362,9 @@ module.exports = {
       },
       multipleLabelSingle: {
         required: 'false',
-        default: 'undefined',
+        default: 'locale.vueform.multiselect.multipleLabelOne',
         types: [
+          'string',
         ],
         native: false,
         required: false,
@@ -16305,8 +16372,9 @@ module.exports = {
       },
       multipleLabelMultiple: {
         required: 'false',
-        default: 'undefined',
+        default: 'locale.vueform.multiselect.multipleLabelMore',
         types: [
+          'string',
         ],
         native: false,
         required: false,
@@ -17354,6 +17422,12 @@ module.exports = {
             description: 'the old value',
             types: [
               'string',
+            ]
+          },
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
             ]
           },
        },
@@ -18656,6 +18730,12 @@ module.exports = {
               'string',
             ]
           },
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
        },
       },
       'remove': {
@@ -19895,6 +19975,12 @@ module.exports = {
               'string',
             ]
           },
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
        },
       },
       'beforeCreate': {
@@ -20919,7 +21005,7 @@ module.exports = {
     },
     methods: {
       updateItems: {
-        description: 'Fetches & updates items when using `async` items. Receives [`el$`](#property-el) as first param.',
+        description: 'Fetches & updates items when using `async` items.',
         returns: 'void',
         params: {
           disable: {
@@ -21160,6 +21246,12 @@ module.exports = {
             description: 'the old value',
             types: [
               'string',
+            ]
+          },
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
             ]
           },
        },
@@ -22965,6 +23057,12 @@ module.exports = {
               'string',
             ]
           },
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
        },
       },
       'select': {
@@ -24480,6 +24578,12 @@ module.exports = {
             description: 'the old value',
             types: [
               'string',
+            ]
+          },
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
             ]
           },
        },
@@ -26684,6 +26788,12 @@ module.exports = {
               'string',
             ]
           },
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
        },
       },
       'alert': {
@@ -27379,6 +27489,15 @@ module.exports = {
         required: false,
         private: false,
       },
+      onBlur: {
+        required: 'false',
+        default: 'null',
+        types: [
+          'function',
+        ],
+        required: false,
+        private: true,
+      },
     },
     data: {
       active: {
@@ -28051,6 +28170,12 @@ module.exports = {
             description: 'the old value',
             types: [
               'string',
+            ]
+          },
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
             ]
           },
        },
@@ -29414,6 +29539,12 @@ module.exports = {
             description: 'the old value',
             types: [
               'string',
+            ]
+          },
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
             ]
           },
        },
@@ -31252,6 +31383,12 @@ module.exports = {
               'string',
             ]
           },
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
        },
       },
       'select': {
@@ -32151,6 +32288,15 @@ module.exports = {
         required: false,
         private: false,
       },
+      onBlur: {
+        required: 'false',
+        default: 'null',
+        types: [
+          'function',
+        ],
+        required: false,
+        private: true,
+      },
     },
     data: {
       active: {
@@ -32804,6 +32950,12 @@ module.exports = {
             description: 'the old value',
             types: [
               'string',
+            ]
+          },
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
             ]
           },
        },
@@ -34149,6 +34301,12 @@ module.exports = {
               'string',
             ]
           },
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
        },
       },
       'beforeCreate': {
@@ -35433,6 +35591,12 @@ module.exports = {
             description: 'the old value',
             types: [
               'string',
+            ]
+          },
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
             ]
           },
        },

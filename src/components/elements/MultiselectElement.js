@@ -169,16 +169,16 @@ export default {
       native: false,
     },
     multipleLabelSingle: {
-      type: String,
+      type: [String],
       required: false,
       native: false,
-      '@deault': 'locale.vueform.multiselect.multipleLabelOne',
+      '@default': 'locale.vueform.multiselect.multipleLabelOne',
     },
     multipleLabelMultiple: {
-      type: String,
+      type: [String],
       required: false,
       native: false,
-      '@deault': 'locale.vueform.multiselect.multipleLabelMore',
+      '@default': 'locale.vueform.multiselect.multipleLabelMore',
     },
 
     create: {

@@ -28,6 +28,7 @@ export default {
       "default"
     ],
     "events": [
+      "click",
       "beforeCreate",
       "created",
       "beforeMount",

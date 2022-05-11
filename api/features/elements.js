@@ -44,7 +44,7 @@ export default {
         "updateItems": {
           "public": true,
           "returns": "void",
-          "description": "Fetches & updates items when using `async` items. Receives [`el$`](#property-el) as first param.",
+          "description": "Fetches & updates items when using `async` items.",
           "params": {
             "disable": {
               "types": [
@@ -71,7 +71,7 @@ export default {
         "updateItems": {
           "public": true,
           "returns": "void",
-          "description": "Fetches & updates items when using `async` items. Receives [`el$`](#property-el) as first param.",
+          "description": "Fetches & updates items when using `async` items.",
           "params": {
             "disable": {
               "types": [

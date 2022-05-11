@@ -11,6 +11,10 @@ export default {
           description: 'the old value',
           types: ['string']
         },
+        el$: {
+          description: 'the element\'s component',
+          types: ['component']
+        },
       }
     },
     Vueform: {
@@ -23,6 +27,10 @@ export default {
         oldValue: {
           description: 'the old value',
           types: ['string']
+        },
+        form$: {
+          description: 'the form\'s component',
+          types: ['component']
         },
       }
     },
@@ -43,6 +51,25 @@ export default {
         el$: {
           description: 'the element\'s component',
           types: ['component']
+        },
+      }
+    }
+  },
+  click: {
+    default: {
+      description: 'Triggered when the button is clicked.',
+      params: {
+        el$: {
+          description: 'the element\'s component',
+          types: ['component']
+        },
+        form$: {
+          description: 'the form component',
+          types: ['component']
+        },
+        Event: {
+          description: 'the Event object',
+          types: ['Event']
         },
       }
     }

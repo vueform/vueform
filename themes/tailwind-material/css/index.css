@@ -131,7 +131,7 @@
   --vf-color-danger: var(--vf-danger);
   --vf-color-success: var(--vf-success);
   --vf-color-tag: var(--vf-color-on-primary);
-  --vf-color-addon: inherit;
+  --vf-color-addon: var(--vf-color-input);
   --vf-color-date-head: var(--vf-gray-700);
   --vf-color-btn: var(--vf-color-on-primary);
   --vf-color-btn-danger: #ffffff;
@@ -165,8 +165,8 @@
   --vf-border-width-btn: 1px;
   --vf-border-width-tag: 1px;
   --vf-shadow-input: 0px 0px 0px 0px rgba(0,0,0,0);
-  --vf-shadow-input-hover: var(--vf-shadow-input);
-  --vf-shadow-input-focus: var(--vf-shadow-input);
+  --vf-shadow-input-hover: 0px 0px 0px 0px rgba(0,0,0,0);
+  --vf-shadow-input-focus: 0px 0px 0px 0px rgba(0,0,0,0);
   --vf-shadow-handles: 0px 0px 0px 0px rgba(0,0,0,0);
   --vf-shadow-handles-hover: 0px 0px 0px 9px rgba(0,0,0,0.15);
   --vf-shadow-handles-focus: 0px 0px 0px 9px rgba(0,0,0,0.15);
