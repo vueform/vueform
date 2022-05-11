@@ -10,7 +10,7 @@
     "authors": [
         {
             "name": "Adam Berecz",
-            "email": "adam@vueform.comr"
+            "email": "adam@vueform.com"
         }
     ],
     "main": "src/index.js",
