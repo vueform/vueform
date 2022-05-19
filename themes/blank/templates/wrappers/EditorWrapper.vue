@@ -7,6 +7,7 @@
       :id="id"
       :input="`editor-input-${id}`"
       @trix-change="handleChange"
+      @trix-blur="handleBlur"
       @trix-file-accept="handleFileAccept"
       @trix-attachment-add="handleAttachmentAdd"
       ref="editor$"

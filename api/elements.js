@@ -1002,6 +1002,7 @@ export default {
       "focused",
       "form$",
       "genericName",
+      "handleBlur",
       "handleInput",
       "input",
       "label",
@@ -1028,6 +1029,7 @@ export default {
     ],
     "events": [
       "change",
+      "blur",
       "beforeCreate",
       "created",
       "beforeMount",
@@ -1160,6 +1162,7 @@ export default {
       "form$",
       "genericName",
       "handleAlert",
+      "handleBlur",
       "handleError",
       "handleInput",
       "input",
@@ -1185,6 +1188,7 @@ export default {
     ],
     "events": [
       "change",
+      "blur",
       "alert",
       "error",
       "beforeCreate",
@@ -1215,6 +1219,7 @@ export default {
       "focused",
       "form$",
       "genericName",
+      "handleBlur",
       "handleInput",
       "input",
       "label",
@@ -1242,6 +1247,7 @@ export default {
     ],
     "events": [
       "change",
+      "blur",
       "beforeCreate",
       "created",
       "beforeMount",
@@ -1325,6 +1331,7 @@ export default {
       "form$",
       "genericName",
       "handleAlert",
+      "handleBlur",
       "handleError",
       "handleInput",
       "input",
@@ -1351,6 +1358,7 @@ export default {
     ],
     "events": [
       "change",
+      "blur",
       "alert",
       "error",
       "beforeCreate",

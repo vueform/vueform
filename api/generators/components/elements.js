@@ -73,44 +73,44 @@ const addEvents = (contents, elementName) => {
     
     try {
       eventInfo = eventsInfo[eventName][elementName] || eventsInfo[eventName].default;
+
+      contents += `      '${eventName}': {\n`
+
+      if (eventInfo.description) {
+        contents += `        description: '${eventInfo.description.split('').map(c=>c==='\''?'&apos;':c).join('')}',\n`
+      }
+
+      if (eventInfo.private !== undefined) {
+        contents += `        private: ${eventInfo.private},\n`
+      }
+
+      if (eventInfo.params) {
+        contents += `        params: {\n`
+
+        _.forEach(eventInfo.params, (param, paramName) => {
+          contents += `          ${paramName}: {\n`
+
+          if (param.description) {
+            contents += `            description: '${param.description.split('').map(c=>c==='\''?'&apos;':c).join('')}',\n`
+          }
+
+          if (param.types) {
+            contents += `            types: [\n`
+
+            _.forEach(param.types, (type) => {
+              contents += `              '${type}',\n`
+            })
+            contents += `            ]\n`
+          }
+
+          contents += `          },\n`
+        })
+
+        contents += `       },\n`
+      }
     } catch (e) {
       console.log(elementName, elementKey, eventName)
       throw e
-    }
-
-    contents += `      '${eventName}': {\n`
-
-    if (eventInfo.description) {
-      contents += `        description: '${eventInfo.description.split('').map(c=>c==='\''?'&apos;':c).join('')}',\n`
-    }
-
-    if (eventInfo.private !== undefined) {
-      contents += `        private: ${eventInfo.private},\n`
-    }
-
-    if (eventInfo.params) {
-      contents += `        params: {\n`
-
-      _.forEach(eventInfo.params, (param, paramName) => {
-        contents += `          ${paramName}: {\n`
-
-        if (param.description) {
-          contents += `            description: '${param.description.split('').map(c=>c==='\''?'&apos;':c).join('')}',\n`
-        }
-
-        if (param.types) {
-          contents += `            types: [\n`
-
-          _.forEach(param.types, (type) => {
-            contents += `              '${type}',\n`
-          })
-          contents += `            ]\n`
-        }
-
-        contents += `          },\n`
-      })
-
-      contents += `       },\n`
     }
 
     contents += `      },\n`

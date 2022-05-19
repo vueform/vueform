@@ -3,6 +3,7 @@ const base = function (props, context, dependencies)
   // ============ DEPENDENCIES ============
 
   const fire = dependencies.fire
+  const el$ = dependencies.el$
 
   // =============== METHODS ==============
 
@@ -14,7 +15,7 @@ const base = function (props, context, dependencies)
    * @private
    */
   const handleSelect = (option) => {
-    fire('select', option)
+    fire('select', option, el$.value)
   }
 
   /**
@@ -25,7 +26,7 @@ const base = function (props, context, dependencies)
    * @private
    */
   const handleDeselect = (option) => {
-    fire('deselect', option)
+    fire('deselect', option, el$.value)
   }
 
   /**
@@ -36,7 +37,7 @@ const base = function (props, context, dependencies)
    * @private
    */
   const handleSearchChange = (searchQuery) => {
-    fire('search-change', searchQuery)
+    fire('search-change', searchQuery, el$.value)
   }
 
   /**
@@ -46,7 +47,7 @@ const base = function (props, context, dependencies)
    * @private
    */
   const handleOpen = () => {
-    fire('open')
+    fire('open', el$.value)
   }
 
   /**
@@ -56,7 +57,7 @@ const base = function (props, context, dependencies)
    * @private
    */
   const handleClose = () => {
-    fire('close')
+    fire('close', el$.value)
   }
 
   /**
@@ -66,7 +67,7 @@ const base = function (props, context, dependencies)
    * @private
    */
   const handleClear = () => {
-    fire('clear')
+    fire('clear', el$.value)
   }
 
   /**
@@ -77,7 +78,7 @@ const base = function (props, context, dependencies)
    * @private
    */
   const handlePaste = (e) => {
-    fire('paste', e)
+    fire('paste', e, el$.value)
   }
 
   /**

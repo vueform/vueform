@@ -150,10 +150,8 @@ const base = function(props, context, dependencies)
    */
   const resolveOptions = async (n, o) => {
     if (typeof items.value === 'function' && isNative.value) {
-      // console.log('async items resolve', el$.value.name)
       await resolveOptionsFromFunction()
     } else if (!_.isEqual(n, o) || (n === undefined && o === undefined)) {
-      // console.log('async items resolve', el$.value.name, items.value)
       if (typeof items.value === 'string' && isNative.value) {
         await resolveOptionsFromUrl()
       } else if (typeof items.value === 'string' && !isNative.value) {

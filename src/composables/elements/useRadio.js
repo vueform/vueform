@@ -1,4 +1,4 @@
-import { toRefs, onMounted, computed } from 'composition-api'
+import { ref, watch, toRefs, onMounted, computed } from 'composition-api'
 
 const base = function (props, context, dependencies)
 {
@@ -13,8 +13,18 @@ const base = function (props, context, dependencies)
   const nullValue = dependencies.nullValue
   const fieldId = dependencies.fieldId
   const path = dependencies.path
-  const value = dependencies.value
   const form$ = dependencies.form$
+
+  // ================ DATA ================
+
+  /**
+   * The list of listeners.
+   * 
+   * @type {array}
+   * @default []
+   * @private
+   */
+  const listeners = ref([])
 
   // ============== COMPUTED ==============
   
@@ -47,17 +57,43 @@ const base = function (props, context, dependencies)
     update(nullValue.value)
   }
 
-  // =============== HOOKS ================
+  /**
+   * Watches radio name change.
+   *
+   * @returns {void}
+   * @private
+   */
+  const watchChange = (value, old) => {
+    if (old) {
+      form$.value.$el.querySelectorAll(`input[name="${value}"`).forEach((element, i) => {
+        if (listeners.value[i]) {
+          element.removeEventListener('change', listeners.value[i])
+        }
+      })
+    }
 
-  onMounted(() => {
-    form$.value.$el.querySelectorAll(`input[name="${inputName.value}"`).forEach((element) => {
-      element.addEventListener('change', () => {
+    form$.value.$el.querySelectorAll(`input[name="${value}"`).forEach((element) => {
+      let listener = () => {
         if (element.id != fieldId.value) {
           update(nullValue.value)
         }
-      })
+      }
+
+      listeners.value.push(listener)
+
+      element.addEventListener('change', listener)
     })
+  }
+
+  // =============== HOOKS ================
+
+  onMounted(() => {
+    watchChange(inputName.value)
   })
+
+  // ============= WATCTHERS ==============
+
+  watch(inputName, watchChange)
 
   return {
     inputName,

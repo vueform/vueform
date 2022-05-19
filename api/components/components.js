@@ -2366,12 +2366,12 @@ module.exports = {
         "returns": "void",
         "description": "Go to a step and enable it. Optionally enable all steps up to it.",
         "params": {
-          "index": {
+          "name": {
             "types": [
-              "object"
+              "string"
             ],
             "required": true,
-            "description": "index of step to go to"
+            "description": "name of step to go to"
           },
           "enableUntil": {
             "types": [
@@ -2402,12 +2402,12 @@ module.exports = {
         "returns": "component",
         "description": "Returns a specific [`FormStep`](form-step) component by index.",
         "params": {
-          "index": {
+          "name": {
             "types": [
-              "object"
+              "string"
             ],
             "required": true,
-            "description": "index of the step"
+            "description": "name of the step"
           }
         }
       },
@@ -3292,12 +3292,12 @@ module.exports = {
         "returns": "void",
         "description": "Go to a tab.",
         "params": {
-          "index": {
+          "name": {
             "types": [
-              "object"
+              "string"
             ],
             "required": true,
-            "description": "index of tab to go to"
+            "description": "name of tab to go to"
           }
         }
       },
@@ -3320,12 +3320,12 @@ module.exports = {
         "returns": "component",
         "description": "Returns a specific [`FormTab`](form-tab) by index.",
         "params": {
-          "index": {
+          "tab": {
             "types": [
-              "object"
+              "string"
             ],
             "required": true,
-            "description": "index of the tab"
+            "description": "name of the tab"
           }
         }
       },
@@ -4484,6 +4484,12 @@ module.exports = {
             "types": [
               "Response"
             ]
+          },
+          "form$": {
+            "description": "the form's component",
+            "types": [
+              "component"
+            ]
           }
         }
       },
@@ -4501,6 +4507,12 @@ module.exports = {
             "types": [
               "object"
             ]
+          },
+          "form$": {
+            "description": "the form's component",
+            "types": [
+              "component"
+            ]
           }
         }
       },
@@ -4511,6 +4523,12 @@ module.exports = {
             "description": "axios [Response](https://axios-http.com/docs/res_schema) object",
             "types": [
               "Response"
+            ]
+          },
+          "form$": {
+            "description": "the form's component",
+            "types": [
+              "component"
             ]
           }
         }
@@ -4943,6 +4961,11 @@ module.exports = {
             "description": "event"
           }
         }
+      },
+      "handleBlur": {
+        "public": false,
+        "returns": "void",
+        "description": "Handles `blur` event."
       }
     },
     "props": {
@@ -5051,6 +5074,17 @@ module.exports = {
             "description": "the Error object",
             "types": [
               "Error"
+            ]
+          }
+        }
+      },
+      "blur": {
+        "description": "Triggered when the input is blurred.",
+        "params": {
+          "el$": {
+            "description": "the element's component",
+            "types": [
+              "component"
             ]
           }
         }

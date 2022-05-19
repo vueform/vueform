@@ -986,7 +986,7 @@ const base = function(props, context, dependencies = {})
         await $this.$vueform.config.beforeSend(form$.value)
       }
     } catch (error) {
-      fire('error', error, { type: 'prepare' })
+      fire('error', error, { type: 'prepare' }, form$.value)
       console.error(error)
       return
     } finally {
@@ -1036,14 +1036,18 @@ const base = function(props, context, dependencies = {})
         }
       }
 
-      fire('success', response)
+      if (response?.status >= 200 && response?.status < 300) {
+        fire('success', response, form$.value)
+      } else {
+        fire('error', null, { type: 'submit' }, form$.value)
+      }
     }
     catch (error) {
-      fire('error', error, { type: 'submit' })
+      fire('error', error, { type: 'submit' }, form$.value)
       console.error(error)
     }
     finally {
-      fire('response', response)
+      fire('response', response, form$.value)
       submitting.value = false
     }
   }

@@ -136,8 +136,6 @@ export const resolvedOptions = function (elementType, elementName, options) {
 
     await flushPromises()
 
-    console.log(form.vm.el$('el').resolvedOptions)
-
     let elWrapper = findAllComponents(form, { name: elementName }).at(0)
     let options = findAll(elWrapper, `option`)
 

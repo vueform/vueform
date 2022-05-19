@@ -1,4 +1,4 @@
-export default function (value) {
+const normalize = function (value) {
   if (value === undefined || typeof value != 'string') {
     return value
   }
@@ -7,12 +7,14 @@ export default function (value) {
   if (value.match(/^-*\d+$/)) {
     return parseInt(value, 10)
 
-    // is float
+  // is float
   } else if (value.match(/^\d+\.\d+$/)) {
     return parseFloat(value)
 
-    // everything else
+  // everything else
   } else {
     return value
   }
 }
+
+export default normalize

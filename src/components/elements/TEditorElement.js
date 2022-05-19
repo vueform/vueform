@@ -22,6 +22,7 @@ import useLanguages from './../../composables/elements/useLanguages'
 import useEditor from './../../composables/elements/useEditor'
 import useHandleAlert from './../../composables/elements/useHandleAlert'
 import useClasses from './../../composables/elements/useClasses'
+import useHandleBlur from './../../composables/elements/useHandleBlur'
 
 import { teditor as useData } from './../../composables/elements/useData'
 import { multilingual as useNullValue } from './../../composables/elements/useNullValue'
@@ -40,7 +41,7 @@ import HasValidation from './../../mixins/HasValidation'
 export default {
   name: 'TEditorElement',
   mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
-  emits: ['change', 'alert', 'error', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
+  emits: ['change', 'blur', 'alert', 'error', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
   props: {
     type: {
       required: false,
@@ -143,6 +144,7 @@ export default {
       useHandleInput,
       useHandleAlert,
       useHandleError,
+      useHandleBlur,
     ]
     context.slots = [
       'label', 'info', 'description',

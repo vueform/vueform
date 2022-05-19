@@ -112,12 +112,20 @@ export default function(config, components) {
 
           let setup = comp.setup(props, context)
 
-          this.options.plugins.forEach((plugin) => {
-            const pluginOptions = plugin()
-
-            if (pluginOptions.setup && shouldApplyPlugin(name, pluginOptions)) {
-              setup = pluginOptions.setup(props, context, setup)
+          this.options.plugins.forEach((p) => {
+            if (typeof p === 'function') {
+              p = p()
             }
+
+            p = Array.isArray(p) ? p : [p]
+
+            p.forEach((plugin) => {
+              const pluginOptions = typeof plugin === 'function' ? plugin() : plugin
+
+              if (pluginOptions.setup && shouldApplyPlugin(name, pluginOptions)) {
+                setup = pluginOptions.setup(props, context, setup)
+              }
+            })
           })
 
           return setup
@@ -135,20 +143,28 @@ export default function(config, components) {
           return this.template.staticRenderFns
         }
 
-        this.options.plugins.forEach((plugin) => {
-          const pluginOptions = plugin()
+        this.options.plugins.forEach((p) => {
+          if (typeof p === 'function') {
+            p = p()
+          }
 
-          _.each(_.without(Object.keys(pluginOptions), 'setup', 'apply', 'config', 'install'), (key) => {
-            if (pluginOptions[key] && shouldApplyPlugin(name, pluginOptions)) {
-              if (Array.isArray(pluginOptions[key])) {
-                let base = component[key] || []
-                component[key] = base.concat(pluginOptions[key])
-              } else if (_.isPlainObject(pluginOptions[key])) {
-                component[key] = Object.assign({}, component[key] || {}, pluginOptions[key])
-              } else {
-                component[key] = pluginOptions[key]
+          p = Array.isArray(p) ? p : [p]
+
+          p.forEach((plugin) => {
+            const pluginOptions = typeof plugin === 'function' ? plugin() : plugin
+
+            _.each(_.without(Object.keys(pluginOptions), 'setup', 'apply', 'config', 'install'), (key) => {
+              if (pluginOptions[key] && shouldApplyPlugin(name, pluginOptions)) {
+                if (Array.isArray(pluginOptions[key])) {
+                  let base = component[key] || []
+                  component[key] = base.concat(pluginOptions[key])
+                } else if (_.isPlainObject(pluginOptions[key])) {
+                  component[key] = Object.assign({}, component[key] || {}, pluginOptions[key])
+                } else {
+                  component[key] = pluginOptions[key]
+                }
               }
-            }
+            })
           })
         })
 
@@ -208,27 +224,45 @@ export default function(config, components) {
       })
     }
 
-    install(appOrVue, options) {
+    install(appOrVue, options = {}) {
       const version = parseInt(appOrVue.version.split('.')[0])
 
-      this.options.plugins.forEach((plugin) => {
-        const pluginOptions = plugin()
-
-        if (pluginOptions.config) {
-          pluginOptions.config(config)
+      const plugins = options.plugins || []
+      
+      plugins.forEach((p) => {
+        if (typeof p === 'function') {
+          p = p()
         }
+
+        p = Array.isArray(p) ? p : [p]
+
+        p.forEach((plugin) => {
+          const pluginOptions = typeof plugin === 'function' ? plugin() : plugin
+
+          if (pluginOptions.config) {
+            pluginOptions.config(options)
+          }
+        })
       })
 
       if (options) {
         this.config(options)
       }
 
-      this.options.plugins.forEach((plugin) => {
-        const pluginOptions = plugin()
-        
-        if (pluginOptions.install) {
-          pluginOptions.install(appOrVue, this.options)
+      this.options.plugins.forEach((p) => {
+        if (typeof p === 'function') {
+          p = p()
         }
+
+        p = Array.isArray(p) ? p : [p]
+
+        p.forEach((plugin) => {
+          const pluginOptions = typeof plugin === 'function' ? plugin() : plugin
+          
+          if (pluginOptions.install) {
+            pluginOptions.install(appOrVue, this.options)
+          }
+        })
       })
 
       this.initAxios()

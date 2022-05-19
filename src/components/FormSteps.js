@@ -265,12 +265,12 @@ export default {
     /**
      * Go to a step and enable it. Optionally enable all steps up to it.
      *
-     * @param {object} index* index of step to go to
+     * @param {string} name* name of step to go to
      * @param {boolean} enableUntil whether steps should be enabled up to the selected step (default: `false`)
      * @returns {void}
      */
-    const goTo = (index, enableUntil = false) => {
-      var step = visible$.value[index]
+    const goTo = (name, enableUntil = false) => {
+      var step = visible$.value[name]
       
       step.enable()
       step.select()
@@ -319,11 +319,11 @@ export default {
     /**
      * Returns a specific [`FormStep`](form-step) component by index.
      *
-     * @param {object} index* index of the step
+     * @param {string} name* name of the step
      * @returns {component}
      */
-    const step$ = (index) => {
-      return _.find(visible$.value, { name: index })
+    const step$ = (name) => {
+      return _.find(visible$.value, { name: name })
     }
 
     /**

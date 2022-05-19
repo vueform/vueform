@@ -30,6 +30,7 @@
           :rows="rows"
           v-bind="attrs"
           @input="handleInput"
+          @blur="handleBlur"
           ref="input"
        />
       </div>

@@ -6,12 +6,14 @@ const base = function(props, context, dependencies)
 {
   const {
     accept,
+    auto,
   } = toRefs(props)
 
   // ============ DEPENDENCIES =============
 
   const update = dependencies.update
   const isDisabled = dependencies.isDisabled
+  const uploadTemp = dependencies.uploadTemp
   
   // ============== COMPUTED ==============
 
@@ -51,6 +53,11 @@ const base = function(props, context, dependencies)
     }
 
     update(file || null)
+
+    if (auto.value) {
+      uploadTemp()
+    }
+
     file.value = null
   }
 

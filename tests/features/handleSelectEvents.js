@@ -24,7 +24,7 @@ export const select = function (elementType, elementName, options) {
 
     el.input.select(valueOptions(options.value, el))
 
-    expect(onSelectMock).toHaveBeenCalledWith(options.value)
+    expect(onSelectMock).toHaveBeenCalledWith(options.value, el)
 
     // destroy() // teardown
   })
@@ -50,7 +50,7 @@ export const deselect = function (elementType, elementName, options) {
 
     el.input.deselect(valueOptions(options.value, el))
 
-    expect(onDeselectMock).toHaveBeenCalledWith(options.value)
+    expect(onDeselectMock).toHaveBeenCalledWith(options.value, el)
 
     // destroy() // teardown
   })
@@ -77,7 +77,7 @@ export const searchChange = function (elementType, elementName, options) {
 
     await nextTick()
 
-    expect(onSearchChangeMock).toHaveBeenCalledWith('query')
+    expect(onSearchChangeMock).toHaveBeenCalledWith('query', el)
 
     // destroy() // teardown
   })
@@ -104,7 +104,7 @@ export const open = function (elementType, elementName, options) {
 
     el.input.open()
 
-    expect(onOpenMock).toHaveBeenCalled()
+    expect(onOpenMock).toHaveBeenCalledWith(el)
 
     destroy(form)
 
@@ -134,7 +134,7 @@ export const close = function (elementType, elementName, options) {
     el.input.open()
     el.input.close()
 
-    expect(onCloseMock).toHaveBeenCalled()
+    expect(onCloseMock).toHaveBeenCalledWith(el)
 
     destroy(form)
 

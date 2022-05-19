@@ -2754,7 +2754,8 @@ describe('Vueform', () => {
               el: 'value'
             }
           }
-        }
+        },
+        status: 200
       }))
       let onSuccessMock = jest.fn(() => {})
 
@@ -2799,7 +2800,7 @@ describe('Vueform', () => {
     })
 
     it('should fire success with response', async () => {
-      let postMock = jest.fn(() => ({ data: { this: 'that' } }))
+      let postMock = jest.fn(() => ({ data: { this: 'that', }, status: 200 }))
       let successMock = jest.fn()
 
       let form = createForm({
@@ -2816,7 +2817,31 @@ describe('Vueform', () => {
 
       await flushPromises()
 
-      expect(successMock).toHaveBeenCalledWith({ data: { this: 'that' }})
+      expect(successMock).toHaveBeenCalledWith({ data: { this: 'that' }, status: 200}, form.vm)
+    })
+
+    it('should fire error with 4xx response but not success', async () => {
+      let postMock = jest.fn(() => ({ data: { this: 'that', }, status: 422 }))
+      let successMock = jest.fn()
+      let errorMock = jest.fn()
+
+      let form = createForm({
+        schema: {
+          el: { type: 'text', default: 'value' },
+        }
+      })
+
+      form.vm.on('success', successMock)
+      form.vm.on('error', errorMock)
+
+      form.vm.$vueform.services.axios.request = postMock
+
+      form.vm.send()
+
+      await flushPromises()
+
+      expect(successMock).not.toHaveBeenCalled()
+      expect(errorMock).toHaveBeenCalledWith(null, { type: 'submit' }, form.vm)
     })
 
     it('should fire error when fails and set submitting false', async () => {

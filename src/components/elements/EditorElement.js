@@ -25,6 +25,7 @@ import useHandleError from './../../composables/elements/useHandleError'
 import useHandleAlert from './../../composables/elements/useHandleAlert'
 import useWatchValue from './../../composables/elements/useWatchValue'
 import useClasses from './../../composables/elements/useClasses'
+import useHandleBlur from './../../composables/elements/useHandleBlur'
 
 import { editor as useData } from './../../composables/elements/useData'
 import { text as useValidation } from './../../composables/elements/useValidation'
@@ -38,7 +39,7 @@ import HasValidation from './../../mixins/HasValidation'
 export default {
   name: 'EditorElement',
   mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
-  emits: ['change', 'alert', 'error', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
+  emits: ['change', 'blur', 'alert', 'error', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
   props: {
     type: {
       required: false,
@@ -140,6 +141,7 @@ export default {
       useHandleInput,
       useHandleAlert,
       useHandleError,
+      useHandleBlur,
     ]
     context.slots = [
       'label', 'info', 'description',

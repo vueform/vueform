@@ -97,6 +97,10 @@ export default {
         response: {
           description: 'axios [Response](https://axios-http.com/docs/res_schema) object',
           types: ['Response']
+        },
+        form$: {
+          description: 'the form\'s component',
+          types: ['component'],
         }
       }
     }
@@ -108,6 +112,10 @@ export default {
         response: {
           description: 'axios [Response](https://axios-http.com/docs/res_schema) object',
           types: ['Response']
+        },
+        form$: {
+          description: 'the form\'s component',
+          types: ['component'],
         }
       }
     }
@@ -201,6 +209,10 @@ export default {
           description: 'additional information for the error, including `stage` property (`"prepare\|submit"`) which indicates when the error was thrown.',
           types: ['object']
         },
+        form$: {
+          description: 'the form\'s component',
+          types: ['component'],
+        }
       }
     },
     EditorWrapper: {
@@ -289,7 +301,11 @@ export default {
         option: {
           description: 'the selected option',
           types: ['object'],
-        }
+        },
+        el$: {
+          description: 'the element\'s component',
+          types: ['component']
+        },
       }
     },
     TagsElement: {
@@ -298,7 +314,11 @@ export default {
         option: {
           description: 'the selected option',
           types: ['object'],
-        }
+        },
+        el$: {
+          description: 'the element\'s component',
+          types: ['component']
+        },
       }
     },
     FormLanguage: {
@@ -344,7 +364,11 @@ export default {
         option: {
           description: 'the deselected option',
           types: ['object'],
-        }
+        },
+        el$: {
+          description: 'the element\'s component',
+          types: ['component']
+        },
       }
     },
     TagsElement: {
@@ -353,7 +377,11 @@ export default {
         option: {
           description: 'the deselected option',
           types: ['object'],
-        }
+        },
+        el$: {
+          description: 'the element\'s component',
+          types: ['component']
+        },
       }
     },
   },
@@ -364,24 +392,52 @@ export default {
         searchQuery: {
           description: 'the search value',
           types: ['string|null'],
-        }
+        },
+        el$: {
+          description: 'the element\'s component',
+          types: ['component']
+        },
       }
     },
   },
   open: {
     default: {
       description: 'Triggered when the dropdown list is opened when using [`native: false`](#option-native).',
+      params: {
+        el$: {
+          description: 'the element\'s component',
+          types: ['component']
+        },
+      }
     },
     TagsElement: {
       description: 'Triggered when the dropdown list is opened.',
+      params: {
+        el$: {
+          description: 'the element\'s component',
+          types: ['component']
+        },
+      }
     },
   },
   close: {
     default: {
       description: 'Triggered when the dropdown list is closed when using [`native: false`](#option-native).',
+      params: {
+        el$: {
+          description: 'the element\'s component',
+          types: ['component']
+        },
+      }
     },
     TagsElement: {
       description: 'Triggered when the dropdown list is closed.',
+      params: {
+        el$: {
+          description: 'the element\'s component',
+          types: ['component']
+        },
+      }
     },
   },
   tag: {
@@ -391,7 +447,11 @@ export default {
         tag: {
           description: 'the tag value',
           types: ['string'],
-        }
+        },
+        el$: {
+          description: 'the element\'s component',
+          types: ['component']
+        },
       }
     }
   },
@@ -403,15 +463,31 @@ export default {
           description: 'the paste Event',
           types: ['Event'],
         },
+        el$: {
+          description: 'the element\'s component',
+          types: ['component']
+        },
       }
     }
   },
   clear: {
     default: {
       description: 'Triggered when the value is cleared when using [`native: true`](#option-native).',
+      params: {
+        el$: {
+          description: 'the element\'s component',
+          types: ['component']
+        },
+      }
     },
     TagsElement: {
       description: 'Triggered when the value is cleared.',
+      params: {
+        el$: {
+          description: 'the element\'s component',
+          types: ['component']
+        },
+      }
     },
     Vueform: {
       description: 'Triggered when the form is cleared using [`clear()`](#method-clear).',
@@ -613,6 +689,23 @@ export default {
   click: {
     DragAndDrop: {
       description: 'Triggered when the drag and drop area is clicked.',
+    },
+    ButtonElement: {
+      description: 'Triggered when the button is clicked.',
+      params: {
+        form$: {
+          description: 'the form\'s component',
+          types: ['component']
+        },
+        el$: {
+          description: 'the element\'s component',
+          types: ['component']
+        },
+        event: {
+          description: 'the click Event',
+          types: ['Event'],
+        }
+      },
     },
   },
   drop: {

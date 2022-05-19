@@ -18,7 +18,7 @@ export const handleTag = function (elementType, elementName, options) {
 
     el.input.$emit('tag', 'query')
 
-    expect(onTagMock).toHaveBeenCalledWith('query')
+    expect(onTagMock).toHaveBeenCalledWith('query', el)
 
     // destroy() // teardown
   })

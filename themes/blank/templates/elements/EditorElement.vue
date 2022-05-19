@@ -15,6 +15,7 @@
         @input="handleInput"
         @alert="handleAlert"
         @error="handleError"
+        @blur="handleBlur"
         ref="input"
      />
     </template>

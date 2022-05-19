@@ -160,11 +160,11 @@ export default {
     /**
      * Go to a tab.
      *
-     * @param {object} index* index of tab to go to
+     * @param {string} name* name of tab to go to
      * @returns {void}
      */
-    const goTo = (index) => {
-      let tab$ = visible$.value[index]
+    const goTo = (name) => {
+      let tab$ = visible$.value[name]
       
       tab$.select()
     }
@@ -193,11 +193,11 @@ export default {
     /**
      * Returns a specific [`FormTab`](form-tab) by index.
      *
-     * @param {object} index* index of the tab
+     * @param {string} tab* name of the tab
      * @returns {component}
      */
-    const tab$ = (tab) => {
-      return _.find(tabs$.value, { name: tab })
+    const tab$ = (name) => {
+      return _.find(tabs$.value, { name: name })
     }
 
     /**

@@ -3,7 +3,7 @@ import useElementComponent from './../../composables/useElementComponent'
 
 export default {
   name: 'EditorWrapper',
-  emits: ['input', 'alert', 'error'],
+  emits: ['input', 'alert', 'error', 'blur'],
   props: {
     value: {
       required: false,
@@ -242,6 +242,16 @@ export default {
       }
     }
 
+    /**
+     * Handles `blur` event.
+     * 
+     * @returns {void}
+     * @private
+     */
+    const handleBlur = () => {
+      context.emit('blur')
+    }
+
     // ============== WATCHERS ==============
 
     watch(disabled, (val) => {
@@ -273,6 +283,7 @@ export default {
       handleChange,
       handleFileAccept,
       handleAttachmentAdd,
+      handleBlur,
     }
   },
 }

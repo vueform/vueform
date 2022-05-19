@@ -806,6 +806,29 @@ module.exports = {
       },
     },
     events: {
+      'click': {
+        description: 'Triggered when the button is clicked.',
+        params: {
+          form$: {
+            description: 'the form&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+          event: {
+            description: 'the click Event',
+            types: [
+              'Event',
+            ]
+          },
+       },
+      },
       'beforeCreate': {
         description: 'Triggered in beforeCreate hook.',
         params: {
@@ -7475,6 +7498,11 @@ module.exports = {
         },
         private: true,
       },
+      handleBlur: {
+        description: 'Handles `blur` event.',
+        returns: 'void',
+        private: true,
+      },
       handleError: {
         description: 'Handles `error` event.',
         returns: 'void',
@@ -7576,6 +7604,17 @@ module.exports = {
               'string',
             ]
           },
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'blur': {
+        description: 'Triggered when the input is blurred.',
+        params: {
           el$: {
             description: 'the element&apos;s component',
             types: [
@@ -8342,7 +8381,7 @@ module.exports = {
           'boolean',
         ],
         required: false,
-        private: false,
+        private: true,
       },
     },
     data: {
@@ -17441,6 +17480,12 @@ module.exports = {
               'object',
             ]
           },
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
        },
       },
       'deselect': {
@@ -17450,6 +17495,12 @@ module.exports = {
             description: 'the deselected option',
             types: [
               'object',
+            ]
+          },
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
             ]
           },
        },
@@ -17463,16 +17514,46 @@ module.exports = {
               'string|null',
             ]
           },
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
        },
       },
       'open': {
         description: 'Triggered when the dropdown list is opened when using [`native: false`](#option-native).',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
       },
       'close': {
         description: 'Triggered when the dropdown list is closed when using [`native: false`](#option-native).',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
       },
       'clear': {
         description: 'Triggered when the value is cleared when using [`native: true`](#option-native).',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
       },
       'paste': {
         description: 'Triggered when text is pasted to the search input when using [`search: true`](#option-search).',
@@ -17481,6 +17562,12 @@ module.exports = {
             description: 'the paste Event',
             types: [
               'Event',
+            ]
+          },
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
             ]
           },
        },
@@ -23074,6 +23161,12 @@ module.exports = {
               'object',
             ]
           },
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
        },
       },
       'deselect': {
@@ -23083,6 +23176,12 @@ module.exports = {
             description: 'the deselected option',
             types: [
               'object',
+            ]
+          },
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
             ]
           },
        },
@@ -23096,16 +23195,46 @@ module.exports = {
               'string|null',
             ]
           },
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
        },
       },
       'open': {
         description: 'Triggered when the dropdown list is opened when using [`native: false`](#option-native).',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
       },
       'close': {
         description: 'Triggered when the dropdown list is closed when using [`native: false`](#option-native).',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
       },
       'clear': {
         description: 'Triggered when the value is cleared when using [`native: true`](#option-native).',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
       },
       'paste': {
         description: 'Triggered when text is pasted to the search input when using [`search: true`](#option-search).',
@@ -23114,6 +23243,12 @@ module.exports = {
             description: 'the paste Event',
             types: [
               'Event',
+            ]
+          },
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
             ]
           },
        },
@@ -26668,6 +26803,11 @@ module.exports = {
         },
         private: true,
       },
+      handleBlur: {
+        description: 'Handles `blur` event.',
+        returns: 'void',
+        private: true,
+      },
       handleError: {
         description: 'Handles `error` event.',
         returns: 'void',
@@ -26788,6 +26928,17 @@ module.exports = {
               'string',
             ]
           },
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'blur': {
+        description: 'Triggered when the input is blurred.',
+        params: {
           el$: {
             description: 'the element&apos;s component',
             types: [
@@ -29435,6 +29586,11 @@ module.exports = {
         },
         private: false,
       },
+      handleBlur: {
+        description: 'Handles `blur` event.',
+        returns: 'void',
+        private: true,
+      },
       handleInput: {
         description: 'Handles `input` event.',
         returns: 'void',
@@ -29541,6 +29697,17 @@ module.exports = {
               'string',
             ]
           },
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'blur': {
+        description: 'Triggered when the input is blurred.',
+        params: {
           el$: {
             description: 'the element&apos;s component',
             types: [
@@ -31400,6 +31567,12 @@ module.exports = {
               'object',
             ]
           },
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
        },
       },
       'deselect': {
@@ -31409,6 +31582,12 @@ module.exports = {
             description: 'the deselected option',
             types: [
               'object',
+            ]
+          },
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
             ]
           },
        },
@@ -31422,13 +31601,35 @@ module.exports = {
               'string|null',
             ]
           },
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
        },
       },
       'open': {
         description: 'Triggered when the dropdown list is opened.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
       },
       'close': {
         description: 'Triggered when the dropdown list is closed.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
       },
       'tag': {
         description: 'Triggered when a new tag is created when using [`create: true`](#optons-create).',
@@ -31439,10 +31640,24 @@ module.exports = {
               'string',
             ]
           },
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
        },
       },
       'clear': {
         description: 'Triggered when the value is cleared.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
       },
       'paste': {
         description: 'Triggered when text is pasted to the search input when using [`search: true`](#option-search).',
@@ -31451,6 +31666,12 @@ module.exports = {
             description: 'the paste Event',
             types: [
               'Event',
+            ]
+          },
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
             ]
           },
        },
@@ -34214,6 +34435,11 @@ module.exports = {
         },
         private: false,
       },
+      handleBlur: {
+        description: 'Handles `blur` event.',
+        returns: 'void',
+        private: true,
+      },
       handleInput: {
         description: 'Handles `input` event.',
         returns: 'void',
@@ -34301,6 +34527,17 @@ module.exports = {
               'string',
             ]
           },
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'blur': {
+        description: 'Triggered when the input is blurred.',
+        params: {
           el$: {
             description: 'the element&apos;s component',
             types: [

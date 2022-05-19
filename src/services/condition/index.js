@@ -47,8 +47,8 @@ const check = (condition, elementPath, form$, el$) => {
   }
 
   let compareValues = (actual, expected, operator) => {
-    actual = normalize(actual)
-    expected = normalize(expected)
+    actual = Array.isArray(actual) ? actual.map(e => normalize(e)) : normalize(actual)
+    expected = Array.isArray(expected) ? expected.map(e => normalize(e)) : normalize(expected)
 
     if (_.isArray(expected)) {
       if (operator.toLowerCase() === 'not_in') {
