@@ -145,6 +145,16 @@ export default {
       default: 'value',
       native: false,
     },
+    dataKey: {
+      type: [String],
+      required: false,
+      default: undefined,
+    },
+    searchParam: {
+      type: [String],
+      required: false,
+      default: 'query',
+    },
     search: {
       required: false,
       type: [Boolean],

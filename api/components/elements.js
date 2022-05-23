@@ -16359,6 +16359,24 @@ module.exports = {
         required: false,
         private: false,
       },
+      dataKey: {
+        required: 'false',
+        default: 'undefined',
+        types: [
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
+      searchParam: {
+        required: 'false',
+        default: 'query',
+        types: [
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
       search: {
         required: 'false',
         default: 'false',
@@ -22114,6 +22132,24 @@ module.exports = {
       valueProp: {
         required: 'false',
         default: 'value',
+        types: [
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
+      dataKey: {
+        required: 'false',
+        default: 'undefined',
+        types: [
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
+      searchParam: {
+        required: 'false',
+        default: 'query',
         types: [
           'string',
         ],
@@ -30453,6 +30489,24 @@ module.exports = {
           'string',
         ],
         native: false,
+        required: false,
+        private: false,
+      },
+      dataKey: {
+        required: 'false',
+        default: 'undefined',
+        types: [
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
+      searchParam: {
+        required: 'false',
+        default: 'query',
+        types: [
+          'string',
+        ],
         required: false,
         private: false,
       },

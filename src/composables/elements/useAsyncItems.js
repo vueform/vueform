@@ -4,7 +4,7 @@ import { toRefs, ref, computed, watch } from 'composition-api'
 const base = function(props, context, dependencies)
 {
   const {
-    items, valueProp, labelProp
+    items, valueProp, labelProp, dataKey, searchParam,
   } = toRefs(props)
 
   // ============ DEPENDENCIES ============
@@ -108,7 +108,13 @@ const base = function(props, context, dependencies)
    */
   const resolveOptionsFromUrl = async () => {
     try {
-      options.value = (await form$.value.$vueform.services.axios.get(items.value))?.data || []
+      let optionList = (await form$.value.$vueform.services.axios.get(items.value))?.data || []
+
+      if (dataKey && dataKey.value && Object.keys(optionList).length) {
+        optionList = _.get(optionList, dataKey.value) || []
+      }
+
+      options.value = optionList
     } catch (e) {
       options.value = []
       console.warn(`Couldn\'t resolve items from ${items.value}`, e)
@@ -123,7 +129,13 @@ const base = function(props, context, dependencies)
    */
   const createAsyncOptionsFromUrl = () => {
     return async (query) => {
-      return (await form$.value.$vueform.services.axios.get(`${items.value}?query=${query||''}`))?.data || []
+      let optionList = (await form$.value.$vueform.services.axios.get(`${items.value}?${searchParam.value}=${query||''}`))?.data || []
+
+      if (dataKey && dataKey.value && Object.keys(optionList).length) {
+        optionList = _.get(optionList, dataKey.value) || []
+      }
+
+      return optionList
     }
   }
 

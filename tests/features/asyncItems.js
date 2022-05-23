@@ -150,6 +150,43 @@ export const resolvedOptions = function (elementType, elementName, options) {
 
     // destroy() // teardown
   })
+
+  it('should render select options when items are string using dataKey & native', async () => {
+    let getMock = jest.fn(() => ({data:{options:[1,2,3]}}))
+    
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          native: true,
+          items: '/url',
+          dataKey: 'options'
+        }
+      }
+    })
+
+    form.vm.$vueform.services.axios.get = getMock
+
+    await flushPromises()
+
+    form.vm.el$('el').updateItems()
+
+    await flushPromises()
+
+    let elWrapper = findAllComponents(form, { name: elementName }).at(0)
+    let options = findAll(elWrapper, `option`)
+
+    expect(options.at(0).attributes('value')).toBe('1')
+    expect(options.at(0).element.innerHTML.trim()).toBe('1')
+    expect(options.at(1).attributes('value')).toBe('2')
+    expect(options.at(1).element.innerHTML.trim()).toBe('2')
+    expect(options.at(2).attributes('value')).toBe('3')
+    expect(options.at(2).element.innerHTML.trim()).toBe('3')
+    
+    // destroy(form) // teardown
+
+    // destroy() // teardown
+  })
 }
 
 export const updateItems = function (elementType, elementName, options) {

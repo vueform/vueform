@@ -141,6 +141,16 @@ export default {
       required: false,
       default: 'value',
     },
+    dataKey: {
+      type: [String],
+      required: false,
+      default: undefined,
+    },
+    searchParam: {
+      type: [String],
+      required: false,
+      default: 'query',
+    },
     search: {
       required: false,
       type: [Boolean],
