@@ -52,6 +52,7 @@ const upperFirst = (string) => {
 const vueform = plugin((context) => {
   const { theme, addBase, addUtilities, addVariant, e } = context
   const prefix = context.addUserCss === undefined ? context.prefix : s => s
+  const version = context.addUserCss === undefined ? 2 : 3
 
   const rules = [
     {
@@ -1911,6 +1912,14 @@ const vueform = plugin((context) => {
       return `${prefix('.form-text-type')} .${e(`text-type${separator}${className}`)}`
     })
   })
+
+  if (version === 2) {
+    addVariant('rtl', ({ modifySelectors, separator }) => {
+      modifySelectors(({ className }) => {
+        return `[dir="rtl"] .${e(`rtl${separator}${className}`)}`
+      })
+    })
+  }
 }, {
   variants: {
     extend: {
