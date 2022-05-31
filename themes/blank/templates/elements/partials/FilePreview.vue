@@ -25,7 +25,7 @@
         <a href="" :class="classes.upload" v-if="canUploadTemp" @click.prevent="upload">{{ uploadText }}</a>
 
         <!-- Success -->
-        <span v-else-if="uploaded" :class="classes.uploaded">
+        <span v-else-if="stage > 1" :class="classes.uploaded">
           <span :class="classes.uploadedIcon"></span>
         </span>
       </div>
