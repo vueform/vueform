@@ -84,7 +84,6 @@
     mask-repeat: no-repeat;
     mask-position: center center;
     mask-size: contain;
-    mask-image: theme('maskImage.form-map-marker');
     background: var(--vf-bg-icon);
     width: 0.875rem;
     width: 0.875rem;
