@@ -76,6 +76,11 @@
             spinner_sm: 'vf-multiselect-spinner-sm',
             spinner_md: '',
             spinner_lg: 'vf-multiselect-spinner-lg',
+            infinite: 'vf-multiselect-infinite',
+            infinite_sm: 'vf-multiselect-infinite-sm',
+            infinite_md: '',
+            infinite_lg: 'vf-multiselect-infinite-lg',
+            infiniteSpinner: 'vf-multiselect-infinite-spinner',
             dropdown: 'vf-multiselect-dropdown',
             dropdown_sm: 'vf-multiselect-dropdown-sm',
             dropdown_md: '',
@@ -153,6 +158,10 @@
             $spinner: (classes, { Size }) => ([
               classes.select.spinner,
               classes.select[`spinner_${Size}`],
+            ]),
+            $infinite: (classes, { Size }) => ([
+              classes.select.infinite,
+              classes.select[`infinite_${Size}`],
             ]),
             $dropdown: (classes, { Size }) => ([
               classes.select.dropdown,
@@ -402,6 +411,49 @@
       font-size: var(--vf-font-size-lg);
       line-height: var(--vf-line-height-lg);
       letter-spacing: var(--vf-letter-spacing-lg);
+    }
+  }
+
+  [dir="rtl"] {
+    .vf-multiselect-tags {
+      padding-left: 0;
+      padding-right: var(--vf-py-input);
+
+      &.vf-multiselect-tags-sm {
+        padding-right: var(--vf-py-input-sm);
+      }
+
+      &.vf-multiselect-tags-lg {
+        padding-right: var(--vf-py-input-lg);
+      }
+    }
+
+    .vf-floating-wrapper ~ .vf-multiselect-tags,
+    .vf-floating-wrapper ~ div .vf-multiselect-tags {
+      padding-left: 0;
+      padding-right: var(--vf-px-input);
+    }
+
+    .vf-floating-wrapper ~ .vf-multiselect-tags-sm,
+    .vf-floating-wrapper ~ div .vf-multiselect-tags-sm {
+      padding-left: 0;
+      padding-right: var(--vf-px-input-sm);
+    }
+
+    .vf-floating-wrapper ~ .vf-multiselect-tags-lg,
+    .vf-floating-wrapper ~ div .vf-multiselect-tags-lg{
+      padding-left: 0;
+      padding-right: var(--vf-px-input-lg);
+    }
+
+    .vf-multiselect-tag {
+      padding: var(--vf-py-tag) var(--vf-px-tag) var(--vf-py-tag) 0;
+      margin-right: 0;
+      margin-left: var(--vf-space-tags);
+
+      &.is-disabled {
+        padding-left: ar(--vf-px-tag);
+      }
     }
   }
 </style>

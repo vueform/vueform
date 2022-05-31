@@ -416,6 +416,7 @@ const vueform = plugin((context) => {
   const sizes = ['', 'sm', 'lg']
 
   let plain = {}
+  let rtl = {}
   let h = {}
   let v = {}
   let mergeH = {}
@@ -627,18 +628,18 @@ const vueform = plugin((context) => {
       let key = `.form-${pm}-input${suffix}`
       let keyBorder = `.form-${pm}-input-border${suffix}`
 
-      plain[key] = {}
-      plain[keyBorder] = {}
+      rtl[key] = {}
+      rtl[keyBorder] = {}
 
       if (sides.length === 4) {
-        plain[key][type] = `${Y} ${X}`
-        plain[keyBorder][type] = `${TopBorder} ${RightBorder} ${BottomBorder} ${LeftBorder}`
+        rtl[key][type] = `${Y} ${X}`
+        rtl[keyBorder][type] = `${TopBorder} ${RightBorder} ${BottomBorder} ${LeftBorder}`
       } else {
         sides.forEach((side) => {
-          plain[key][`${type}${upperFirst(side)}`] = ['top', 'bottom'].indexOf(side) !== -1 ? Y : X
+          rtl[key][`${type}${upperFirst(side)}`] = ['top', 'bottom'].indexOf(side) !== -1 ? Y : X
 
           if (pm !== 'pt') {
-            plain[keyBorder][`${type}${upperFirst(side)}`] = side === 'top'
+            rtl[keyBorder][`${type}${upperFirst(side)}`] = side === 'top'
               ? TopBorder :
               (side === 'right' ? RightBorder : 
               (side === 'bottom' ? BottomBorder : LeftBorder))
@@ -680,8 +681,12 @@ const vueform = plugin((context) => {
       paddingTop: `calc(var(--vf-py-input${size}) * 0.5)`,
     }
 
-    plain[`.${e(`form-pr-input-height${suffix}`)}`] = {
+    rtl[`.${e(`form-pr-input-height${suffix}`)}`] = {
       paddingRight: `var(--vf-min-height-input${size})`,
+    }
+
+    rtl[`.${e(`form-pl-input-height${suffix}`)}`] = {
+      paddingLeft: `var(--vf-min-height-input${size})`,
     }
 
     // top, right, bottom, left
@@ -699,11 +704,11 @@ const vueform = plugin((context) => {
       }
     })
 
-    plain[`.form-pl-tag${suffix}`] = {
+    rtl[`.form-pl-tag${suffix}`] = {
       paddingLeft: `var(--vf-px-tag${size})`
     }
 
-    plain[`.form-pr-tag${suffix}`] = {
+    rtl[`.form-pr-tag${suffix}`] = {
       paddingRight: `var(--vf-px-tag${size})`
     }
 
@@ -743,8 +748,12 @@ const vueform = plugin((context) => {
       padding: `var(--vf-py-group-blocks${size}) var(--vf-px-group-blocks${size})`
     }
 
-    plain[`.form-pl-input-y${suffix}`] = {
+    rtl[`.form-pl-input-y${suffix}`] = {
       paddingLeft: `var(--vf-py-input${size})`
+    }
+
+    rtl[`.form-pr-input-y${suffix}`] = {
+      paddingRight: `var(--vf-py-input${size})`
     }
 
     plain[`.form-pl-space-addon${suffix}`] = {
@@ -775,7 +784,7 @@ const vueform = plugin((context) => {
       marginBottom: `var(--vf-space-tags${size})`
     }
 
-    plain[`.form-ml-space-tags${suffix}`] = {
+    rtl[`.form-ml-space-tags${suffix}`] = {
       marginLeft: `var(--vf-space-tags${size})`
     }
 
@@ -1756,6 +1765,7 @@ const vueform = plugin((context) => {
   addUtilities(mergeV, ['merge-v'])
   addUtilities(fullWidth, ['full-width'])
   addUtilities(textType, ['text-type'])
+  addUtilities(rtl, ['rtl'])
 
   addVariant('h', ({ modifySelectors, separator }) => {
     modifySelectors(({ className }) => {
@@ -1907,9 +1917,9 @@ const vueform = plugin((context) => {
       backgroundColor: ['disabled'],
       cursor: ['disabled', 'important'],
       borderColor: ['disabled'],
-      height: ['h', 'v'],
-      width: ['h', 'v'],
-      inset: ['h', 'v', 'h-txt-rtl', 'merge-h', 'merge-v'],
+      height: ['h', 'v', 'rtl'],
+      width: ['h', 'v', 'rtl'],
+      inset: ['h', 'v', 'h-txt-rtl', 'merge-h', 'merge-v', 'rtl'],
       translate: ['h', 'v', 'merge-h', 'merge-v'],
       transitionProperty: ['tap'],
       transitionDuration: ['tap'],
@@ -1923,6 +1933,8 @@ const vueform = plugin((context) => {
       brightness: ['hover'],
       gap: ['important'],
       padding: ['full-width'],
+      margin: ['rtl'],
+      padding: ['rtl'],
     }
   },
   theme: {

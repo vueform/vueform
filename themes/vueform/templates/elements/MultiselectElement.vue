@@ -63,6 +63,11 @@
             spinner_sm: 'vf-multiselect-spinner-sm',
             spinner_md: '',
             spinner_lg: 'vf-multiselect-spinner-lg',
+            infinite: 'vf-multiselect-infinite',
+            infinite_sm: 'vf-multiselect-infinite-sm',
+            infinite_md: '',
+            infinite_lg: 'vf-multiselect-infinite-lg',
+            infiniteSpinner: 'vf-multiselect-infinite-spinner',
             dropdown: 'vf-multiselect-dropdown',
             dropdown_sm: 'vf-multiselect-dropdown-sm',
             dropdown_md: '',
@@ -140,6 +145,10 @@
             $spinner: (classes, { Size }) => ([
               classes.select.spinner,
               classes.select[`spinner_${Size}`],
+            ]),
+            $infinite: (classes, { Size }) => ([
+              classes.select.infinite,
+              classes.select[`infinite_${Size}`],
             ]),
             $dropdown: (classes, { Size }) => ([
               classes.select.dropdown,
@@ -230,5 +239,23 @@
   .vf-floating-wrapper ~ div .vf-multiselect-multiple-label-lg{
     padding-top: calc(var(--vf-py-input-lg) + (var(--vf-floating-top-lg) / 2));
     padding-bottom: calc(var(--vf-py-input-lg) - (var(--vf-floating-top-lg) / 2));
+  }
+  
+  [dir="rtl"] {
+    .vf-multiselect-multiple-label {
+      padding-left: var(--vf-min-height-input);
+      padding-right: var(--vf-px-input);
+      left: auto;
+      right: 0;
+
+      &.vf-multiselect-multiple-label-sm {
+        padding-left: var(--vf-min-height-input-sm);
+        padding-right: var(--vf-px-input-sm);
+      }
+      &.vf-multiselect-multiple-label-lg {
+        padding-left: var(--vf-min-height-input-lg);
+        padding-right: var(--vf-px-input-lg);
+      }
+    }
   }
 </style>

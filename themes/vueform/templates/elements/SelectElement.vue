@@ -76,6 +76,11 @@
             spinner_sm: 'vf-multiselect-spinner-sm',
             spinner_md: '',
             spinner_lg: 'vf-multiselect-spinner-lg',
+            infinite: 'vf-multiselect-infinite',
+            infinite_sm: 'vf-multiselect-infinite-sm',
+            infinite_md: '',
+            infinite_lg: 'vf-multiselect-infinite-lg',
+            infiniteSpinner: 'vf-multiselect-infinite-spinner',
             dropdown: 'vf-multiselect-dropdown',
             dropdown_sm: 'vf-multiselect-dropdown-sm',
             dropdown_md: '',
@@ -153,6 +158,10 @@
             $spinner: (classes, { Size }) => ([
               classes.select.spinner,
               classes.select[`spinner_${Size}`],
+            ]),
+            $infinite: (classes, { Size }) => ([
+              classes.select.infinite,
+              classes.select[`infinite_${Size}`],
             ]),
             $dropdown: (classes, { Size }) => ([
               classes.select.dropdown,
@@ -469,6 +478,7 @@
 
   .vf-multiselect-search {
     width: 100%;
+    height: 100%; // for FF
     position: absolute;
     top: 0px;
     bottom: 0px;
@@ -522,16 +532,11 @@
     padding-bottom: calc(var(--vf-py-input-lg) - (0.6875rem / 2));
   }
 
-
   .vf-multiselect-spinner {
-    -webkit-mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' fill='currentColor' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M456.433 371.72l-27.79-16.045c-7.192-4.152-10.052-13.136-6.487-20.636 25.82-54.328 23.566-118.602-6.768-171.03-30.265-52.529-84.802-86.621-144.76-91.424C262.35 71.922 256 64.953 256 56.649V24.56c0-9.31 7.916-16.609 17.204-15.96 81.795 5.717 156.412 51.902 197.611 123.408 41.301 71.385 43.99 159.096 8.042 232.792-4.082 8.369-14.361 11.575-22.424 6.92z'%3E%3C/path%3E%3C/svg%3E");
-            mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' fill='currentColor' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M456.433 371.72l-27.79-16.045c-7.192-4.152-10.052-13.136-6.487-20.636 25.82-54.328 23.566-118.602-6.768-171.03-30.265-52.529-84.802-86.621-144.76-91.424C262.35 71.922 256 64.953 256 56.649V24.56c0-9.31 7.916-16.609 17.204-15.96 81.795 5.717 156.412 51.902 197.611 123.408 41.301 71.385 43.99 159.096 8.042 232.792-4.082 8.369-14.361 11.575-22.424 6.92z'%3E%3C/path%3E%3C/svg%3E");
-    -webkit-mask-position: center;
-            mask-position: center;
-    -webkit-mask-repeat: no-repeat;
-            mask-repeat: no-repeat;
-    -webkit-mask-size: contain;
-            mask-size: contain;
+    mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' fill='currentColor' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M456.433 371.72l-27.79-16.045c-7.192-4.152-10.052-13.136-6.487-20.636 25.82-54.328 23.566-118.602-6.768-171.03-30.265-52.529-84.802-86.621-144.76-91.424C262.35 71.922 256 64.953 256 56.649V24.56c0-9.31 7.916-16.609 17.204-15.96 81.795 5.717 156.412 51.902 197.611 123.408 41.301 71.385 43.99 159.096 8.042 232.792-4.082 8.369-14.361 11.575-22.424 6.92z'%3E%3C/path%3E%3C/svg%3E");
+    mask-position: center;
+    mask-repeat: no-repeat;
+    mask-size: contain;
     background-color: var(--vf-primary);
     width: 1rem;
     height: 1rem;
@@ -548,6 +553,36 @@
     &.vf-multiselect-spinner-lg {
       margin: 0 var(--vf-px-input-lg) 0 0;
     }
+  }
+
+  .vf-multiselect-inifite {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    height: var(--vf-min-height-input);
+
+    &.vf-multiselect-inifite-sm {
+      height: var(--vf-min-height-input-sm);
+    }
+
+    &.vf-multiselect-inifite-lg {
+      height: var(--vf-min-height-input-lg);
+    }
+  }
+
+  .vf-multiselect-inifite-spinner {
+    mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' fill='currentColor' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M456.433 371.72l-27.79-16.045c-7.192-4.152-10.052-13.136-6.487-20.636 25.82-54.328 23.566-118.602-6.768-171.03-30.265-52.529-84.802-86.621-144.76-91.424C262.35 71.922 256 64.953 256 56.649V24.56c0-9.31 7.916-16.609 17.204-15.96 81.795 5.717 156.412 51.902 197.611 123.408 41.301 71.385 43.99 159.096 8.042 232.792-4.082 8.369-14.361 11.575-22.424 6.92z'%3E%3C/path%3E%3C/svg%3E");
+    mask-position: center;
+    mask-repeat: no-repeat;
+    mask-size: contain;
+    background-color: var(--vf-primary);
+    width: 1rem;
+    height: 1rem;
+    z-index: 10;
+    animation: multiselect-spin 1s linear infinite;
+    flex-shrink: 0;
+    flex-grow: 0;
   }
 
   .vf-multiselect-clear {
@@ -645,7 +680,6 @@
       top: 0;
       margin-top: 0;
       bottom: auto;
-      flex-direction: column-reverse;
       border-radius: var(--vf-radius-input);
       border-bottom-left-radius: 0;
       border-bottom-right-radius: 0;
@@ -687,10 +721,6 @@
     display: flex;
     flex-direction: column;
     color: var(--vf-color-input);
-
-    &.vf-multiselect-options-top {
-      flex-direction: column-reverse;
-    }
   }
 
   .vf-multiselect-group {
@@ -854,6 +884,67 @@
   .vf-multiselect-spacer {
     display: none;
   }
+
+[dir="rtl"] {
+  .vf-multiselect-single-label {
+    padding-left: var(--vf-min-height-input);
+    padding-right: var(--vf-px-input);
+    left: auto;
+    right: 0;
+
+    &.vf-multiselect-single-label-sm {
+      padding-left: var(--vf-min-height-input-sm);
+      padding-right: var(--vf-px-input-sm);
+    }
+    &.vf-multiselect-single-label-lg {
+      padding-left: var(--vf-min-height-input-lg);
+      padding-right: var(--vf-px-input-lg);
+    }
+  }
+
+  .vf-multiselect-placeholder {
+    padding-left: var(--vf-min-height-input);
+    padding-right: var(--vf-px-input);
+    left: auto;
+    right: 0;
+
+    &.vf-multiselect-placeholder-sm {
+      padding-left: calc(1.25rem + var(--vf-px-input-sm) * 3);
+      padding-right: var(--vf-px-input-sm);
+    }
+    &.vf-multiselect-placeholder-lg {
+      padding-left: calc(1.25rem + var(--vf-px-input-lg) * 3);
+      padding-right: var(--vf-px-input-lg);
+    }
+  }
+
+  .vf-multiselect-search {
+    padding-left: 0;
+    padding-right: var(--vf-px-input);
+
+    &.vf-multiselect-search-sm {
+      padding-left: 0;
+      padding-right: var(--vf-px-input-sm);
+    }
+
+    &.vf-multiselect-search-lg {
+      padding-left: 0;
+      padding-right: var(--vf-px-input-lg);
+    }
+  }
+
+  .vf-multiselect-spinner {
+    margin: 0 0 0 var(--vf-px-input);
+  }
+
+  .vf-multiselect-caret {
+    margin: 0 0 0 var(--vf-px-input);
+  }
+
+  .vf-multiselect-clear {
+    padding: 0 0 0 var(--vf-px-input);
+  }
+}
 
   @keyframes multiselect-spin {
     from {
