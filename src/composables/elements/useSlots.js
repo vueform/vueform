@@ -66,7 +66,10 @@ const base = function(props, context, dependencies, options = {})
 
       // Add `el$` prop to `default` slot
       if (typeof slot === 'object') {
-        if (slot.props && slot.props.indexOf('el$') === -1) {
+        if (slot.props && (
+          (Array.isArray(slot.props) && slot.props.indexOf('el$') === -1) || 
+          (!Array.isArray(slot.props) && Object.keys(slot.props).indexOf('el$') === -1)
+        )) {
           slot.props.push('el$')
         } else if (!slot.props) {
           slot.props = ['el$']
