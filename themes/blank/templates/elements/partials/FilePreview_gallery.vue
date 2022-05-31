@@ -19,7 +19,7 @@
     </span>
 
     <!-- Success -->
-    <span v-else-if="stage > 1" :class="classes.uploaded">
+    <span v-else-if="el$.stage > 1" :class="classes.uploaded">
       <span :class="classes.uploadedIcon"></span>
     </span>
 
