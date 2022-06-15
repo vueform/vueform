@@ -36,6 +36,7 @@
         "build:themes": "rollup --config build/themes.config.js",
         "release": "node scripts/release.js",
         "to:web": "node scripts/toVueformWeb.js ; rollup --config build/instance.config.js",
+        "to:builder": "node scripts/toVueformBuilder.js ; rollup --config build/instance.config.js",
         "to:web:ob": "rollup --config build/instance.config.js"
     },
     "devDependencies": {
@@ -110,9 +111,9 @@
     "dependencies": {
         "@babel/plugin-transform-runtime": "^7.16.4",
         "@babel/runtime": "^7.16.3",
-        "@vueform/multiselect": "file:../vueform-multiselect",
-        "@vueform/slider": "file:../vueform-slider",
-        "@vueform/toggle": "file:../vueform-toggle",
+        "@vueform/multiselect": "file:./../vueform-multiselect",
+        "@vueform/slider": "file:./../vueform-slider",
+        "@vueform/toggle": "file:./../vueform-toggle",
         "autosize": "^4.0.2",
         "axios": "^0.19.2",
         "bootstrap": "^4.4.1",

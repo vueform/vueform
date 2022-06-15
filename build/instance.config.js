@@ -23,7 +23,7 @@ export default (commandLineArgs) => {
     if (file.lock) {
       globalOptions = {
         ...globalOptions,
-        domainLock: ['vueform.com', 'www.vueform.com', 'new.vueform.com', 'vueform.loc'],
+        domainLock: ['vueform.com', 'www.vueform.com', 'new.vueform.com', 'vueform.loc', 'builder.vueform.com', 'builder.vueform.loc'],
         domainLockRedirectUrl: 'https://vueform.com/not-allowed?k=vueform'
       }
     }
