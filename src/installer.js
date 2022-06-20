@@ -321,6 +321,7 @@ export default function(config, components) {
                     locales: $vueform.locales,
                     plugins: $vueform.plugins,
                     theme: $vueform.theme,
+                    i18n: $vueform.i18n,
                   }
                 }
               }
@@ -329,7 +330,7 @@ export default function(config, components) {
           break
 
         case 3:
-          appOrVue.config.isCustomElement = (tag) => ['trix-editor'].indexOf(tag) !== -1
+          // appOrVue.config.isCustomElement = (tag) => ['trix-editor'].indexOf(tag) !== -1
           appOrVue.config.compilerOptions.isCustomElement = (tag) => ['trix-editor'].indexOf(tag) !== -1
 
           appOrVue.config.unwrapInjectedRef = true
