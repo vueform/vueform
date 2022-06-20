@@ -11,6 +11,7 @@ import location from './services/location/index'
 import condition from './services/condition/index'
 import i18n from './services/i18n/index'
 import columns from './services/columns/index'
+import verifyApiKey from './utils/verifyApiKey'
 import { ref } from 'composition-api'
 
 export default function(config, components) {
@@ -34,7 +35,7 @@ export default function(config, components) {
           location,
           condition,
           columns,
-        }
+        },
       }
     }
 
@@ -226,6 +227,28 @@ export default function(config, components) {
 
     install(appOrVue, options = {}) {
       const version = parseInt(appOrVue.version.split('.')[0])
+
+      const PRO_AK = 'VUEFORM_API_KEY'
+
+      const apikey = PRO_AK && PRO_AK.length !== 7 && PRO_AK.charAt(0) !== 'V' && PRO_AK.charAt(7) !== '_' ? PRO_AK : options.apiKey
+
+      if (!apikey) {
+        console.error('[Vueform]: API key is missing. More info: https://vueform.com/docs/1.x/installation#api-key')
+        return
+      }
+
+      if (!verifyApiKey(apikey.toUpperCase())) {
+        console.error('[Vueform]: Invalid API key. More info: https://vueform.com/docs/1.x/installation#api-key')
+        return
+      }
+
+      if (navigator && navigator.onLine) {
+        axios.get(`http://api.vueform.loc/check?key=${apikey}`).then((resp) => {
+          if (resp.data.valid !== true) {
+            console.error('[Vueform]: Invalid API key. More info: https://vueform.com/docs/1.x/installation#api-key')
+          }
+        }).catch(() => {})
+      }
 
       const plugins = options.plugins || []
       
