@@ -298,6 +298,7 @@ export default function(config, components) {
                     locales: $vueform.locales,
                     plugins: $vueform.plugins,
                     theme: $vueform.theme,
+                    i18n: $vueform.i18n,
                   }
                 }
               }
