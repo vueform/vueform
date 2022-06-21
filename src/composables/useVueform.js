@@ -918,6 +918,10 @@ const base = function(props, context, dependencies = {})
    */
   const clean = () => {
     _.each(elements$.value, (e$) => {
+      if (e$.isStatic) {
+        return
+      }
+      
       e$.clean()
     })
   }

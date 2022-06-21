@@ -520,6 +520,10 @@ const list = function(props, context, dependencies)
 
   const clean = () => {
     _.each(children$.value, (element$) => {
+      if (element$.isStatic) {
+        return
+      }
+
       element$.clean()
     })
 
