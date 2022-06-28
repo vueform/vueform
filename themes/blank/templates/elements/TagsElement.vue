@@ -52,7 +52,7 @@
 </template>
 
 <script>
-  import Multiselect from '@vueform/multiselect'
+  import Multiselect from '@vueform/multiselect/src/Multiselect.vue'
 
   export default {
     name: 'TagsElement',
