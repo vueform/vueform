@@ -41,7 +41,7 @@ const ElementMixin = function() {
   ]
 }
 
-const useElement = function(props, context, dependencies, options) {
+const useElement = function(props, context, options) {
   const nullValue = ref(options.nullValue !== undefined ? options.nullValue : null)
 
   context.features = [
@@ -106,7 +106,7 @@ export default function (options, component = {}) {
       const context = { ...ctx }
       context.emits = emits
       context.name = ref(ComponentName)
-      const element = useElement(props, context, setup, options)
+      const element = useElement(props, context, options)
       context.element = element
       const setup = component.setup ? component.setup(props, context) : {}
       
