@@ -4,7 +4,7 @@
       <ElementLabelFloating
         v-if="hasFloating && !empty"
         :visible="!empty"
-     />
+      />
 
       <!-- Native select -->
       <div v-if="isNative" :class="classes.inputWrapper">

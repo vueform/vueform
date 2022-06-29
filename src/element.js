@@ -100,6 +100,7 @@ export default function (options, component = {}) {
   return {
     name: ComponentName,
     mixins: [].concat(ElementMixin(options)).concat(component.mixins||[]),
+    components: component.components || {},
     emits,
     setup(props, ctx) {
       const context = { ...ctx }
