@@ -75,7 +75,7 @@
 </template>
 
 <script>
-import Multiselect from '@vueform/multiselect/src/Multiselect.vue'
+  import Multiselect from '@vueform/multiselect/src/Multiselect.vue'
 
   export default {
     name: 'SelectElement',
