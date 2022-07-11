@@ -80,7 +80,7 @@ export default {
      * @private
      */
     const isSlot = computed(() => {
-      return !!(el$.value.slots?.[`addon-${type.value}`] || el$.value.$slots?.[`addon-${type.value}`] || (context.expose === undefined && el$.value.$scopedSlots?.[`addon-${type.value}`]) || el$.value.slots[`addon-${type.value}`])
+      return !!(el$.value.slots?.[`addon-${type.value}`] || el$.value.$slots?.[`addon-${type.value}`] || (form$.value.$vueform.vueVersion === 2 && el$.value.$scopedSlots?.[`addon-${type.value}`]) || el$.value.slots[`addon-${type.value}`])
     })
 
     return {

@@ -47,7 +47,7 @@ export default {
      * @private
      */
     const isSlot = computed(() => {
-      return !!(el$.value.slots?.[type.value] || el$.value.$slots?.[type.value] || (context.expose === undefined && el$.value.$scopedSlots?.[type.value]))
+      return !!(el$.value.slots?.[type.value] || el$.value.$slots?.[type.value] || (form$.value.$vueform.vueVersion === 2 && el$.value.$scopedSlots?.[type.value]))
     })
 
     return {

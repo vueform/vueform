@@ -20,7 +20,7 @@ const base = function(props, context, dependencies)
    * 
    */
   const hasLabel = computed(() => {
-    return !!(form$.value.options.forceLabels || label.value || el$.value.slots.label || el$.value.$slots?.label || (context.expose === undefined && el$.value.$scopedSlots?.label))
+    return !!(form$.value.options.forceLabels || label.value || el$.value.slots.label || el$.value.$slots?.label || (form$.value.$vueform.vueVersion === 2 && el$.value.$scopedSlots?.label))
   })
 
   return {

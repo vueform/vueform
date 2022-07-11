@@ -27,6 +27,7 @@ export default function(config, components) {
         locales: config.locales || {},
         plugins: config.plugins || [],
         i18n: null,
+        vueVersion: null,
         services: {
           validation,
           axios,
@@ -227,6 +228,8 @@ export default function(config, components) {
 
     install(appOrVue, options = {}) {
       const version = parseInt(appOrVue.version.split('.')[0])
+
+      this.options.vueVersion = version
 
       const PRO_AK = 'VUEFORM_API_KEY'
 

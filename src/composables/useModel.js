@@ -18,7 +18,7 @@ export default function (props, context, dependencies)
    * @type {object}
    * @private
    */
-  const externalValue = context.expose !== undefined ? mv : v
+  const externalValue = $this.$vueform.vueVersion === 3 ? mv : v
 
   // ================ DATA =================
 

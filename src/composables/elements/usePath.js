@@ -5,7 +5,12 @@ const base = function(props, context, dependencies)
   const {
     name
   } = toRefs(props)
+  
   const currentInstance = getCurrentInstance()
+
+  // ============ DEPENDENCIES ============
+
+  const { form$ } = dependencies
 
   // ============== COMPUTED ==============
 
@@ -17,7 +22,7 @@ const base = function(props, context, dependencies)
    */
   const parent = computed(() => {
     const getParent = (parent, getParent) => {
-      if (parent && ((context.expose !== undefined && parent.$options.name && parent.$options.name.match(/^[a-zA-Z\-]*Element$/)) || (context.expose === undefined && parent.hasOwnProperty('el$') && typeof parent.el$ !== 'function'))) {
+      if (parent && ((form$.value.$vueform.vueVersion === 3 && parent.$options.name && parent.$options.name.match(/^[a-zA-Z\-]*Element$/)) || (form$.value.$vueform.vueVersion === 2 && parent.hasOwnProperty('el$') && typeof parent.el$ !== 'function'))) {
         return parent.el$
       } else if (parent.$parent) {
         return getParent(parent.$parent, getParent)
@@ -26,7 +31,7 @@ const base = function(props, context, dependencies)
       }
     }
 
-    return getParent(currentInstance.parent.proxy, getParent)
+    return getParent(form$.value.$vueform.vueVersion === 3 ? currentInstance.parent.proxy : currentInstance.proxy.$parent, getParent)
   })
 
   /**

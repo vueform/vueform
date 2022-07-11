@@ -50,7 +50,7 @@ export default {
      * @private
      */
     const isSlot = computed(() => {
-      return !!(el$.value.slots?.info || el$.value.$slots?.info || (context.expose === undefined && el$.value.$scopedSlots?.info))
+      return !!(el$.value.slots?.info || el$.value.$slots?.info || (form$.value.$vueform.vueVersion === 2 && el$.value.$scopedSlots?.info))
     })
 
     // =============== METHODS ==============
