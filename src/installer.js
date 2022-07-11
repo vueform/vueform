@@ -226,6 +226,32 @@ export default function(config, components) {
       })
     }
 
+    createApiKeyError(message = '=== Vueform API Key Missing ===') {
+      let error = ``
+      error += `\n`
+      error += ` .....................  ......\n`
+      error += `  ..................   ......\n`
+      error += `   ................  .......\n` 
+      error += `     ......         ......\n`
+      error += `      ..........  .......\n`
+      error += `       ........  ......\n`   
+      error += `                ......\n`
+      error += `          ...........\n`
+      error += `            .......\n`
+      error += `             .....\n`
+      error += `               .\n`
+      error += `\n`
+      error += `===============================\n`
+      error += `${message}\n`
+      error += `===============================\n`
+      error += `\n`
+      error += `Please create a free API Key at:\n`
+      error += `https://vueform.com/docs/1.x/installtion#api-key\n`
+      error += `\n`
+
+      return error
+    }
+
     install(appOrVue, options = {}) {
       const version = parseInt(appOrVue.version.split('.')[0])
 
@@ -236,20 +262,20 @@ export default function(config, components) {
       const apikey = PRO_AK && PRO_AK.length !== 7 && PRO_AK.charAt(0) !== 'V' && PRO_AK.charAt(7) !== '_' ? PRO_AK : options.apiKey
 
       if (!apikey) {
-        console.error('[Vueform]: API key is missing. More info: https://vueform.com/docs/1.x/installation#api-key')
+        console.error(this.createApiKeyError('=== Vueform API Key Missing ==='))
         return
       }
 
       if (!verifyApiKey(apikey.toUpperCase())) {
-        console.error('[Vueform]: Invalid API key. More info: https://vueform.com/docs/1.x/installation#api-key')
+        console.error(this.createApiKeyError('=== Invalid Vueform API Key ==='))
         return
       }
 
-      if (navigator && navigator.onLine) {
-        axios.get(`http://api.vueform.loc/check?key=${apikey}`).then((resp) => {
-          if (resp.data.valid !== true) {
-            console.error('[Vueform]: Invalid API key. More info: https://vueform.com/docs/1.x/installation#api-key')
-          }
+      if (navigator && navigator.onLine && window && window.location && ['http:', 'https:'].indexOf(window.location.protocol) !== -1) {
+        axios.get(`${window.location.protocol}//api.vueform.com/check?key=${apikey}`).then((resp) => {
+          // if (resp.data?.valid !== true) {
+          //   console.error(this.createApiKeyError('======= Invalid API Key ======='))
+          // }
         }).catch(() => {})
       }
 
