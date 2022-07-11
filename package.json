@@ -36,7 +36,8 @@
         "build:themes": "rollup --config build/themes.config.js",
         "release": "node scripts/release.js",
         "to:web": "node scripts/toVueformWeb.js ; rollup --config build/instance.config.js",
-        "to:builder": "node scripts/toVueformBuilder.js ; rollup --config build/instance.config.js",
+        "to:builder": "node scripts/toVueformBuilder.js ; rollup --config build/builder.config.js",
+        "to:trial": "rollup --config build/trial.config.js",
         "to:web:ob": "rollup --config build/instance.config.js"
     },
     "devDependencies": {
