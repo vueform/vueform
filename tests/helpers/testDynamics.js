@@ -1,5 +1,5 @@
 import { createForm, findAllComponents } from 'test-helpers'
-import { nextTick } from 'composition-api'
+import { nextTick } from 'vue'
 import asyncForEach from './../../src/utils/asyncForEach'
 
 export default async function testDynamics (options, type) {

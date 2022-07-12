@@ -1,6 +1,6 @@
 import _ from 'lodash'
 // @todo: check required schema (eg. `elements` property) here and everywhere
-import { computed, ref, toRefs, watch, onMounted, onBeforeMount, onBeforeUnmount, nextTick, getCurrentInstance, markRaw } from 'composition-api'
+import { computed, ref, toRefs, watch, onMounted, onBeforeMount, onBeforeUnmount, nextTick, getCurrentInstance, markRaw } from 'vue'
 import useFormComponent from './../composables/useFormComponent'
 import useConditions from './../composables/useConditions'
 import useLabel from './../composables/useLabel'

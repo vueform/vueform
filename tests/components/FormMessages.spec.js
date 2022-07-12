@@ -1,5 +1,5 @@
 import { createForm } from 'test-helpers'
-import { nextTick } from 'composition-api'
+import { nextTick } from 'vue'
 import useFormComponent from './../composables/useFormComponent'
 
 describe('FormMessages', () => {

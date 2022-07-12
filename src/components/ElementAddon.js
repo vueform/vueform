@@ -1,4 +1,4 @@
-import { computed, toRefs } from 'composition-api'
+import { computed, toRefs } from 'vue'
 import useElementComponent from './../composables/useElementComponent'
 import isVueComponent from './../utils/isVueComponent'
 

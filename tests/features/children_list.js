@@ -1,6 +1,6 @@
 import { createForm, prototypeChildType, destroy } from 'test-helpers'
 import asyncForEach from './../../src/utils/asyncForEach'
-import { nextTick } from 'composition-api'
+import { nextTick } from 'vue'
 
 export const children$Array = function (elementType, elementName, options) {
   const prototypes = options.prototypes

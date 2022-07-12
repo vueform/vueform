@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import { toRefs, ref, computed, onMounted, nextTick, watch, onBeforeMount, onBeforeUnmount, getCurrentInstance, markRaw } from 'composition-api'
+import { toRefs, ref, computed, onMounted, nextTick, watch, onBeforeMount, onBeforeUnmount, getCurrentInstance, markRaw } from 'vue'
 import useFormComponent from './../composables/useFormComponent'
 import useConditions from './../composables/useConditions'
 import useLabel from './../composables/useLabel'

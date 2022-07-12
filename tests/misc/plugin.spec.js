@@ -1,5 +1,5 @@
 import { createForm } from 'test-helpers'
-import { nextTick, ref } from 'composition-api'
+import { nextTick, ref } from 'vue'
 
 describe('Plugin', () => {
   // @todo: Could not test in Vue2 because of global $vueform obj setting for tests

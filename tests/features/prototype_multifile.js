@@ -1,5 +1,5 @@
 import { createForm, testPropDefault, destroy } from 'test-helpers'
-import { nextTick } from 'composition-api'
+import { nextTick } from 'vue'
 
 export const storeFileName = function (elementType, elementName, options) {
   it('should have "file" as `storeFileName` by default if object is true', () => {

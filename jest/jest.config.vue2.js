@@ -20,7 +20,6 @@ module.exports = {
   ],
   "moduleNameMapper": {
       "^.+\\.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$": "jest-transform-stub",
-      "^composition-api$": "<rootDir>/node_modules/vue-prev-composition-api",
       "^@vue/test-utils$": "<rootDir>/node_modules/vue-prev-test-utils",
       "^vue$": "<rootDir>/node_modules/vue-prev",
       "^@vueform/vueform/(.*)": "<rootDir>/$1",

@@ -1,4 +1,4 @@
-import { onMounted, nextTick, watch, toRefs } from 'composition-api'
+import { onMounted, nextTick, watch, toRefs } from 'vue'
 
 const base = function(props, context, dependencies)
 {

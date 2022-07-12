@@ -1,5 +1,5 @@
 import { createForm, findAllComponents, testPropDefault, destroy } from 'test-helpers'
-import { nextTick } from 'composition-api'
+import { nextTick } from 'vue'
 
 export const locationService = function (elementType, elementName, options) { 
   it('should init `locationService` with google', async () => {

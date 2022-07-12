@@ -1,6 +1,6 @@
 import { createForm, findAllComponents, findAll } from 'test-helpers'
 import useFormComponent from './../composables/useFormComponent'
-import { nextTick } from 'composition-api'
+import { nextTick } from 'vue'
 
 describe('FormLanguages', () => { 
   useFormComponent({multilingual:true,schema:{el:{type:'text'}}}, 'FormLanguages')

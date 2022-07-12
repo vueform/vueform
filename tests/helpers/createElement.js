@@ -1,4 +1,4 @@
-import { h, withDirectives, resolveDirective, resolveComponent } from 'composition-api'
+import { h, withDirectives, resolveDirective, resolveComponent } from 'vue'
 
 export default function createElement () {
   let args = _.values(arguments)

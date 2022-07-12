@@ -1,4 +1,4 @@
-import { inject } from 'composition-api'
+import { inject } from 'vue'
 
 const base = function(props, context, dependencies)
 {

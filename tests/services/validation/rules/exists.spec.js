@@ -1,6 +1,6 @@
 import flushPromises from 'flush-promises'
 import { createForm, findAllComponents, change } from 'test-helpers'
-import { nextTick } from 'composition-api'
+import { nextTick } from 'vue'
 
 jest.mock("axios", () => ({
   get: () => Promise.resolve({ data: true }),

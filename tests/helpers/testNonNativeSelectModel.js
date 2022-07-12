@@ -1,4 +1,4 @@
-import { nextTick } from 'composition-api'
+import { nextTick } from 'vue'
 
 export default async function testNonNativeSelectModel (form, values = [0,1,2]) {
   let el = form.findAllComponents({ name: 'SelectElement' }).at(0)

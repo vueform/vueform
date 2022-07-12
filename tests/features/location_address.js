@@ -1,5 +1,5 @@
 export { locationService, location, provider, providerOptions } from './location'
-import { nextTick } from 'composition-api'
+import { nextTick } from 'vue'
 
 export const handleAddressChange = function (elementType, elementName, options) { 
   it('should set location, update fields & input field value on `handleAddressChange`', async () => {

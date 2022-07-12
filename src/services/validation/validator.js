@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import { watch, computed } from 'composition-api'
+import { watch, computed } from 'vue'
 import dataEquals from './../../utils/dataEquals'
 
 const Validator = class {

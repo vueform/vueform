@@ -1,5 +1,5 @@
 import { createForm, testPropDefault, destroy } from 'test-helpers'
-import { nextTick } from 'composition-api'
+import { nextTick } from 'vue'
 
 export { isNative, } from './options_select'
 

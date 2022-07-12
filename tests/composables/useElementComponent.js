@@ -2,7 +2,7 @@ import { createForm, findAllComponents, findAll, createElement, classesToArray }
 import defaultTheme from './../../themes/vueform'
 import tailwindTheme from './../../themes/tailwind'
 import { mergeComponentClasses, mergeClass } from './../../src/utils/mergeClasses'
-import { nextTick } from 'composition-api'
+import { nextTick } from 'vue'
 import flushPromises from 'flush-promises'
 
 export default function (elementType, componentName, schema = {}, options = {}) {

@@ -1,5 +1,5 @@
 import { testPropDefault, createForm, destroy } from 'test-helpers'
-import { nextTick } from 'composition-api'
+import { nextTick } from 'vue'
 
 const testDefinition = (elementType, inputFormat, requestDataFormat) => {
   it('should equal to displayFormat if defined', () => {

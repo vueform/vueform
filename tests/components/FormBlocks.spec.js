@@ -1,5 +1,5 @@
 import { createForm, findAllComponents, testDynamics } from 'test-helpers'
-import { nextTick } from 'composition-api'
+import { nextTick } from 'vue'
 
 describe('Form Blocks', () => {
   it('helper spec to test steps & tabs collectively', async () => {

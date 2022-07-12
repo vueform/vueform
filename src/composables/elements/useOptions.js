@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import moment from 'moment'
 import checkDateFormat from './../../utils/checkDateFormat'
-import { computed, toRefs, ref } from 'composition-api'
+import { computed, toRefs, ref } from 'vue'
 
 const date = function(props, context, dependencies)
 {

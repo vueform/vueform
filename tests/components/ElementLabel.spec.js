@@ -1,5 +1,5 @@
 import { createForm, createElement } from 'test-helpers'
-import { nextTick, markRaw } from 'composition-api'
+import { nextTick, markRaw } from 'vue'
 import useElementComponent from './../composables/useElementComponent'
 
 describe('ElementLabel', () => {

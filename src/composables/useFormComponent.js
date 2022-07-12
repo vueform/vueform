@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import { computed, getCurrentInstance } from 'composition-api'
+import { computed, getCurrentInstance } from 'vue'
 import useForm$ from './useForm$'
 import useTheme from './useTheme'
 import useSize from './useSize'

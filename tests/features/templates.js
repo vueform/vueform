@@ -1,5 +1,5 @@
 import { nextTick } from 'vue'
-import { markRaw } from 'composition-api'
+import { markRaw } from 'vue'
 import { createForm, findAllComponents, createElement, testPropDefault, destroy } from 'test-helpers'
 import defaultTheme from './../../themes/vueform'
 

@@ -1,6 +1,6 @@
 import { createForm, findAllComponents, findAll, destroy } from 'test-helpers'
 import { toBeVisible } from '@testing-library/jest-dom/matchers'
-import { nextTick, markRaw } from 'composition-api'
+import { nextTick, markRaw } from 'vue'
 import flushPromises from 'flush-promises'
 
 expect.extend({toBeVisible})

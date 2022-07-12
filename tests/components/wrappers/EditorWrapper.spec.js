@@ -1,6 +1,6 @@
 import { createLocalVue, mount } from '@vue/test-utils'
 import { createForm, findAllComponents, installVueform, createElement } from 'test-helpers'
-import { markRaw, nextTick } from 'composition-api'
+import { markRaw, nextTick } from 'vue'
 import TrixEditor from './../../mocks/TrixEditor'
 import flushPromises from 'flush-promises'
 import defaultTheme from './../../../themes/vueform'

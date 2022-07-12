@@ -1,4 +1,4 @@
-import { computed, ref } from 'composition-api'
+import { computed, ref } from 'vue'
 import useElementComponent from './../composables/useElementComponent'
 import useLabel from './../composables/useLabel'
 

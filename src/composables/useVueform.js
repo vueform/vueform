@@ -2,7 +2,7 @@ import _ from 'lodash'
 import {
   computed, ref, toRefs, getCurrentInstance, onBeforeMount, onMounted, onBeforeUpdate,
   onUpdated, onBeforeUnmount, onUnmounted, provide, watch
-} from 'composition-api'
+} from 'vue'
 import MergeClasses from './../utils/mergeClasses'
 import convertFormDataUtil from './../utils/convertFormData'
 import asyncForEach from './../utils/asyncForEach'

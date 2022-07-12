@@ -1,4 +1,4 @@
-import { computed } from 'composition-api'
+import { computed } from 'vue'
 import useElementComponent from './../composables/useElementComponent'
 
 export default {

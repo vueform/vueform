@@ -1,5 +1,5 @@
 import { createForm } from 'test-helpers'
-import { nextTick } from 'composition-api'
+import { nextTick } from 'vue'
 import flushPromises from 'flush-promises'
 import useFormComponent from './../composables/useFormComponent'
 

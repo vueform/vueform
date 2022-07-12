@@ -1,5 +1,5 @@
 import { createForm, destroy } from 'test-helpers'
-import { nextTick } from 'composition-api'
+import { nextTick } from 'vue'
 
 const valueOptions = (value, el) => {
   return _.isArray(value) ? _.map(value, (v) => el.input.getOption(v)) : el.input.getOption(value)

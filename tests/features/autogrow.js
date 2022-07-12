@@ -1,5 +1,5 @@
 import { createForm, testPropDefault, destroy } from 'test-helpers'
-import { nextTick } from 'composition-api'
+import { nextTick } from 'vue'
 
 export const autosize = function (elementType, elementName, options) {
   it('should invoke autosize\'s "updated" method on `autosize` if "autogrow" is true', async () => {

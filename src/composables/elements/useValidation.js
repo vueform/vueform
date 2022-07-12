@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import { computed, reactive, toRefs, ref, } from 'composition-api'
+import { computed, reactive, toRefs, ref, } from 'vue'
 import asyncForEach from './../../utils/asyncForEach'
 
 const base = function(props, context, dependencies)

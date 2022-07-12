@@ -1,5 +1,5 @@
 import { createForm, findAllComponents } from 'test-helpers'
-import { nextTick } from 'composition-api'
+import { nextTick } from 'vue'
 
 export default function (data, options, name) {
   it(`should render steps when defined with ${name}`, async () => {

@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import moment from 'moment'
-import { toRefs, watch, computed, ref, onMounted } from 'composition-api'
+import { toRefs, watch, computed, ref, onMounted } from 'vue'
 import useElementComponent from '../../composables/useElementComponent'
 import flatpickr from 'flatpickr'
 

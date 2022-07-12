@@ -1,7 +1,7 @@
 import flushPromises from 'flush-promises'
 import { createForm } from 'test-helpers'
 import useElementComponent from './../composables/useElementComponent'
-import { nextTick } from 'composition-api'
+import { nextTick } from 'vue'
 
 describe('ElementMessage', () => {
   useElementComponent('text', 'ElementMessage', { }, {

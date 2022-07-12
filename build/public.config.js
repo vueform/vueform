@@ -47,11 +47,6 @@ _.each(files, (file) => {
       }),
       nodePolyfills(),
       json(),
-      alias({
-        entries: [
-          { find: 'composition-api', replacement: 'vue' },
-        ]
-      }),
       babel({
         babelHelpers: 'runtime',
         skipPreflightCheck: true,

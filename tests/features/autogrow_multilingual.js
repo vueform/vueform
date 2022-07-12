@@ -1,4 +1,4 @@
-import { nextTick } from 'composition-api'
+import { nextTick } from 'vue'
 import { autosize as baseAutosize } from './autogrow'
 
 export const autosize = function (elementType, elementName, options) {

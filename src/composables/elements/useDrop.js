@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import checkFileType from './../../utils/checkFileType'
-import { computed, toRefs } from 'composition-api'
+import { computed, toRefs } from 'vue'
 
 const base = function(props, context, dependencies)
 {

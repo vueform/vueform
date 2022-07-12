@@ -1,4 +1,4 @@
-import { toRefs } from 'composition-api'
+import { toRefs } from 'vue'
 
 const base = function(props, context, dependencies)
 {

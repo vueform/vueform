@@ -1,5 +1,5 @@
 import { createForm, findAllComponents, testPropDefault, createElement, destroy } from 'test-helpers'
-import { defineComponent, markRaw, nextTick, h } from 'composition-api'
+import { defineComponent, markRaw, nextTick, h } from 'vue'
 
 const slotTemplates = {
   default: markRaw(defineComponent({

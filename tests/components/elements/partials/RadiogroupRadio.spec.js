@@ -1,6 +1,6 @@
 import { createForm, findAllComponents, findAll } from 'test-helpers'
 import useElementComponent from './../../../composables/useElementComponent'
-import { nextTick } from 'composition-api'
+import { nextTick } from 'vue'
 
 describe('RadiogroupRadio', () => {
   useElementComponent('radiogroup', 'RadiogroupRadio', { items: [1,2,3] })

@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import { onMounted } from 'composition-api'
+import { onMounted } from 'vue'
 import useWatchValue from './elements/useWatchValue'
 
 const base = function(props, context, options_ = {})

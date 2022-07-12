@@ -1,5 +1,5 @@
 import { createForm, destroy } from 'test-helpers'
-import { nextTick } from 'composition-api'
+import { nextTick } from 'vue'
 import flushPromises from 'flush-promises'
 
 export { data, requestData, } from './data'

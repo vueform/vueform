@@ -1,5 +1,5 @@
 import { testPropDefault, createForm, destroy } from 'test-helpers'
-import { nextTick } from 'composition-api'
+import { nextTick } from 'vue'
 
 export const displayDateFormat = function (elementType, elementName, options) {
   it('should equal to displayFormat if defined', () => {

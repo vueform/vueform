@@ -1,6 +1,6 @@
 import flushPromises from 'flush-promises'
 import { createForm, findAllComponents, change, setInstances } from 'test-helpers'
-import { nextTick } from 'composition-api'
+import { nextTick } from 'vue'
 
 describe('Greater Than Rule', () => {
   it('should validate if the element\'s value is greater than an other field\'s if value is string', async () => {

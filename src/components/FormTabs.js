@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import { ref, computed, provide, watch, onMounted, onBeforeMount, onBeforeUnmount, nextTick, getCurrentInstance } from 'composition-api'
+import { ref, computed, provide, watch, onMounted, onBeforeMount, onBeforeUnmount, nextTick, getCurrentInstance } from 'vue'
 import useFormComponent from './../composables/useFormComponent'
 import useEvents from './../composables/useEvents'
 import normalize from './../utils/normalize'

@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils'
-import { h, resolveComponent, ref } from 'composition-api'
+import { h, resolveComponent, ref } from 'vue'
 
 // Core
 import { Vueform, useVueform } from './../../src/index'

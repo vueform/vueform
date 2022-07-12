@@ -1,5 +1,5 @@
 import { createForm, createElement, findAllComponents } from 'test-helpers'
-import { nextTick, markRaw } from 'composition-api'
+import { nextTick, markRaw } from 'vue'
 import useFormComponent from './../composables/useFormComponent'
 
 describe('FormElement', () => {

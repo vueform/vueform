@@ -1,5 +1,5 @@
 import { createForm, findAllComponents } from 'test-helpers'
-import { nextTick } from 'composition-api'
+import { nextTick } from 'vue'
 
 describe('Condition Service', () => {
   it('should `checkFunction` condition', () => {

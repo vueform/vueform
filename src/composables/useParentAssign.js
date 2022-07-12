@@ -1,4 +1,4 @@
-import { toRefs, getCurrentInstance } from 'composition-api'
+import { toRefs, getCurrentInstance } from 'vue'
 import normalize from './../utils/normalize'
 
 const base = function(props, context, dependencies, options = {})

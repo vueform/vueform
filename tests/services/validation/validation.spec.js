@@ -2,7 +2,7 @@ import { createForm, findAllComponents } from 'test-helpers'
 import Validator from './../../../src/services/validation/validator'
 import en from './../../../locales/en'
 import flushPromises from 'flush-promises'
-import { nextTick } from 'composition-api'
+import { nextTick } from 'vue'
 
 jest.useFakeTimers()
 

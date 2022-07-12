@@ -88,12 +88,6 @@ module.exports = {
       amd: 'vue',
       root: 'vue'
     },
-    "composition-api": {
-      commonjs: 'composition-api',
-      commonjs2: 'composition-api',
-      amd: 'composition-api',
-      root: 'composition-api'
-    },
   },
   resolve: {
 		extensions: ['.tsx', '.ts', '.json', '.js', '.vue'],

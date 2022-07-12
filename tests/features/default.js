@@ -1,5 +1,5 @@
 import { testPropDefault, createForm, destroy } from 'test-helpers'
-import { nextTick } from 'composition-api'
+import { nextTick } from 'vue'
 
 export const defaultValue = function (elementType, elementName, options) {
   it('should be equal to defaultValue if default is defined', () => {

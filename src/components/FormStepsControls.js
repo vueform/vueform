@@ -1,4 +1,4 @@
-import { provide } from 'composition-api'
+import { provide } from 'vue'
 import useFormComponent from './../composables/useFormComponent'
 
 export default {

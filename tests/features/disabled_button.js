@@ -1,6 +1,6 @@
 import { createForm, findAll, createElement, destroy } from 'test-helpers'
 import { toBeVisible } from '@testing-library/jest-dom/matchers'
-import { nextTick, markRaw } from 'composition-api'
+import { nextTick, markRaw } from 'vue'
 
 expect.extend({toBeVisible})
 

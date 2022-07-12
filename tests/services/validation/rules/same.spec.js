@@ -1,6 +1,6 @@
 import flushPromises from 'flush-promises'
 import { createForm, findAllComponents, change } from 'test-helpers'
-import { nextTick } from 'composition-api'
+import { nextTick } from 'vue'
 
 describe('Same Rule', () => {
   it('should be invalid if values do not match', async () => {

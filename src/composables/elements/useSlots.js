@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import { computed,  toRefs, markRaw } from 'composition-api'
+import { computed,  toRefs, markRaw } from 'vue'
 
 const base = function(props, context, dependencies, options = {})
 {

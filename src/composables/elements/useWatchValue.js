@@ -1,4 +1,4 @@
-import { watch, onMounted, toRefs } from 'composition-api'
+import { watch, onMounted, toRefs } from 'vue'
 import dataEquals from './../../utils/dataEquals'
 
 const base = function(props, context, dependencies, options = {})

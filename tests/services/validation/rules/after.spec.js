@@ -1,5 +1,5 @@
 import flushPromises from 'flush-promises'
-import { nextTick } from 'composition-api'
+import { nextTick } from 'vue'
 import { createForm, findAllComponents, change, setDate } from 'test-helpers'
 import moment from 'moment'
 

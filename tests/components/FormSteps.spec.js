@@ -1,5 +1,5 @@
 import { createForm, findAllComponents, findAll } from 'test-helpers'
-import { nextTick } from 'composition-api'
+import { nextTick } from 'vue'
 import { dynamicsTesting } from './FormBlocks.spec' 
 import flushPromises from 'flush-promises'
 import useFormComponent from './../composables/useFormComponent'

@@ -1,5 +1,5 @@
 import computedOption from './../../utils/computedOption'
-import { computed, toRefs } from 'composition-api'
+import { computed, toRefs } from 'vue'
 
 export default function (props, context, dependencies)
 {

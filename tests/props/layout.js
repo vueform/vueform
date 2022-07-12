@@ -1,5 +1,5 @@
 import { nextTick } from 'vue'
-import { defineComponent, markRaw } from 'composition-api'
+import { defineComponent, markRaw } from 'vue'
 import { createForm, findAllComponents, createElement } from 'test-helpers'
 
 export const layout = function (elementType, elementName, options) {

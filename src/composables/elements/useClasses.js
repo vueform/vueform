@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import { computed, toRefs, ref } from 'composition-api'
+import { computed, toRefs, ref } from 'vue'
 import MergeClasses from './../../utils/mergeClasses'
 
 const base = function(props, context, dependencies, options = {})

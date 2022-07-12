@@ -1,5 +1,5 @@
 import { createForm, findAllComponents, findAll, destroy } from 'test-helpers'
-import { nextTick } from 'composition-api'
+import { nextTick } from 'vue'
 import flushPromises from 'flush-promises'
 
 import { value as baseValue } from './value'

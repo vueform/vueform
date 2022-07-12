@@ -1,6 +1,6 @@
 import flushPromises from 'flush-promises'
 import { createForm, destroy } from 'test-helpers'
-import { nextTick } from 'composition-api'
+import { nextTick } from 'vue'
 
 export { messageBag, } from './validation'
 

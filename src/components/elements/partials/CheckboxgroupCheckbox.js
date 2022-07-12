@@ -1,4 +1,4 @@
-import { computed, toRefs, inject } from 'composition-api'
+import { computed, toRefs, inject } from 'vue'
 import useElementComponent from './../../../composables/useElementComponent'
 
 export default {

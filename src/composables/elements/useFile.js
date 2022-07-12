@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import { computed, toRefs, ref, watch, nextTick } from 'composition-api'
+import { computed, toRefs, ref, watch, nextTick } from 'vue'
 import convertFormData from './../../utils/convertFormData'
 
 const base = function (props, context, dependencies)

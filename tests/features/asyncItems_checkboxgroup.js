@@ -1,5 +1,5 @@
 import { createForm, findAllComponents, findAll, destroy } from 'test-helpers'
-import { nextTick } from 'composition-api'
+import { nextTick } from 'vue'
 import flushPromises from 'flush-promises'
 
 export const resolvedOptions = function (elementType, elementName, options) {

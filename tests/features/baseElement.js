@@ -1,5 +1,5 @@
 import { createForm, destroy } from 'test-helpers'
-import { nextTick } from 'composition-api'
+import { nextTick } from 'vue'
 
 export const isStatic = function (elementType, elementName, options) {
   it('should return `isStatic` false', () => {

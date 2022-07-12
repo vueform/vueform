@@ -41,7 +41,7 @@ export default (commandLineArgs) => {
           globalOptions,
         }),
       ],
-      external: ['composition-api', 'axios', 'lodash', 'moment'],
+      external: ['vue', 'axios', 'lodash', 'moment'],
     }
   })
 }

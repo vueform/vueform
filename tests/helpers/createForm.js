@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils'
-import { onMounted } from 'composition-api'
+import { onMounted } from 'vue'
 
 // Core
 import { Vueform, useVueform } from './../../src/index'

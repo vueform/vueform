@@ -1,5 +1,5 @@
 import { createForm, testPropDefault, createElement, destroy } from 'test-helpers'
-import { markRaw } from 'composition-api'
+import { markRaw } from 'vue'
 
 export const rendering = function (elementType, elementName, options) {
   it('should render html `content` in wrapper by default', () => {

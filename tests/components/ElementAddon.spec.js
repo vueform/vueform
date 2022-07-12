@@ -1,6 +1,6 @@
 import { createForm, findAllComponents, findAll, createElement } from 'test-helpers'
 import { toBeVisible } from '@testing-library/jest-dom/matchers'
-import { nextTick, markRaw } from 'composition-api'
+import { nextTick, markRaw } from 'vue'
 import flushPromises from 'flush-promises'
 import useElementComponent from './../composables/useElementComponent'
 

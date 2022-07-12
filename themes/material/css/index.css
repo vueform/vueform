@@ -359,10 +359,6 @@ select::-webkit-search-results-decoration {
   color: var(--vf-color-placeholder);
 }
 
-:-ms-input-placeholder {
-  color: var(--vf-color-placeholder);
-}
-
 ::placeholder {
   color: var(--vf-color-placeholder);
 }

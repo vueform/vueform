@@ -1,6 +1,6 @@
 import { createForm } from 'test-helpers'
 import useElementComponent from './../composables/useElementComponent'
-import { nextTick } from 'composition-api'
+import { nextTick } from 'vue'
 
 describe('ElementLabelFloating', () => {
   useElementComponent('text', 'ElementLabelFloating', { floating: 'floating', default: 'value' },)

@@ -1,5 +1,5 @@
 import { createForm, testPropDefault, findAllComponents, destroy } from 'test-helpers'
-import { nextTick } from 'composition-api'
+import { nextTick } from 'vue'
 
 export { canDrop, rendering } from './drop'
 

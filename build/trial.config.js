@@ -75,7 +75,7 @@ export default (commandLineArgs) => {
     let globalOptions = {
       identifierNamesGenerator: 'mangled-shuffled',
       forceTransformStrings: [
-        'http://api.vueform.loc/check?key=',
+        'https://api.vueform.com/check?key=',
       ],
       splitStrings: true,
       stringArrayCallsTransform: true,
@@ -103,7 +103,7 @@ export default (commandLineArgs) => {
           globalOptions,
         }),
       ],
-      external: ['composition-api', 'axios', 'lodash', 'moment'],
+      external: ['vue', 'axios', 'lodash', 'moment'],
     }
   })
 }

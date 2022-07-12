@@ -1,5 +1,5 @@
 import { createForm, findAllComponents, testPropDefault, destroy } from 'test-helpers'
-import { nextTick } from 'composition-api'
+import { nextTick } from 'vue'
 
 export const accept = function (elementType, elementName, options) {
   testPropDefault(it, elementType, 'accept', null, ['.jpg', '.png'])

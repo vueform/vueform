@@ -1,5 +1,5 @@
 import { createForm, testPropDefault, findAllComponents, destroy } from 'test-helpers'
-import { nextTick } from 'composition-api'
+import { nextTick } from 'vue'
 
 export const canDrop = function (elementType, elementName, options) {
   it('should return true for `canDrop` if browser supports dragging', () => {

@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import { findAllComponents, createElement, classesToArray, createInlineForm } from 'test-helpers'
-import { ref, markRaw, nextTick } from 'composition-api'
+import { ref, markRaw, nextTick } from 'vue'
 import flushPromises from 'flush-promises'
 import defaultTheme from './../../themes/vueform'
 import tailwindTheme from './../../themes/tailwind'

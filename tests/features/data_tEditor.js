@@ -1,6 +1,6 @@
 import { createForm, testPropDefault, destroy } from 'test-helpers'
 import flushPromises from 'flush-promises'
-import { nextTick } from 'composition-api'
+import { nextTick } from 'vue'
 import { update as baseUpdate, clear as baseClear, reset as baseReset, } from './data_multilingual'
 
 export { data, requestData } from './data_multilingual'

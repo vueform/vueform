@@ -1,6 +1,6 @@
 import flushPromises from 'flush-promises'
 import { createForm, findAllComponents, change } from 'test-helpers'
-import { nextTick } from 'composition-api'
+import { nextTick } from 'vue'
 
 const setRule = async function (form, rule) {
   form.vm.elements$.a.Validators.splice(0)

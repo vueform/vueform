@@ -1,4 +1,4 @@
-import { computed, ref, nextTick } from 'composition-api'
+import { computed, ref, nextTick } from 'vue'
 import useElementComponent from './../composables/useElementComponent'
 import isInViewport from './../utils/isInViewport'
 

@@ -1,6 +1,6 @@
 import { createForm, findAllComponents, findAll } from 'test-helpers'
 import { dynamicsTesting } from './FormBlocks.spec.js' 
-import { nextTick } from 'composition-api'
+import { nextTick } from 'vue'
 import useFormComponent from './../composables/useFormComponent'
 
 describe('FormTabs', () => {

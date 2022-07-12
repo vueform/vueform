@@ -1,4 +1,4 @@
-import { ref, watch, onMounted, toRefs, computed } from 'composition-api'
+import { ref, watch, onMounted, toRefs, computed } from 'vue'
 import useElementComponent from './../../composables/useElementComponent'
 
 export default {

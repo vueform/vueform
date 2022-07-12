@@ -1,4 +1,4 @@
-import { computed, ref } from 'composition-api'
+import { computed, ref } from 'vue'
 import isVueComponent from './../utils/isVueComponent'
 
 const base = function(props, context, dependencies)

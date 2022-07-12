@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import moment from 'moment'
-import { computed, nextTick, toRefs, watch, ref, onMounted, onBeforeUpdate, onUnmounted } from 'composition-api'
+import { computed, nextTick, toRefs, watch, ref, onMounted, onBeforeUpdate, onUnmounted } from 'vue'
 import checkDateFormat from './../../utils/checkDateFormat'
 
 const base = function(props, context, dependencies, options = {})

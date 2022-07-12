@@ -12,7 +12,7 @@ import condition from './services/condition/index'
 import i18n from './services/i18n/index'
 import columns from './services/columns/index'
 import verifyApiKey from './utils/verifyApiKey'
-import { ref } from 'composition-api'
+import { ref } from 'vue'
 
 export default function(config, components) {
   const Vueform = class {

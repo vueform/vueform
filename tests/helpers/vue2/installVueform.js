@@ -1,6 +1,6 @@
 import { createLocalVue } from '@vue/test-utils'
 import Vuex from 'vuex'
-import CompositionApi from 'composition-api'
+import CompositionApi from 'vue'
 
 import { createVueformInstaller } from './index'
 

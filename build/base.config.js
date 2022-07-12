@@ -66,7 +66,7 @@ _.each(files, (file) => {
       nodeResolve(),
       terser(),
     ],
-    external: ['composition-api', 'vue', 'axios', 'lodash', 'moment']
+    external: ['vue', 'axios', 'lodash', 'moment']
   })
 })
 

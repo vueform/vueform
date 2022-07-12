@@ -1,4 +1,4 @@
-import { computed, toRefs, getCurrentInstance } from 'composition-api'
+import { computed, toRefs, getCurrentInstance } from 'vue'
 
 const base = function(props, context, dependencies)
 {

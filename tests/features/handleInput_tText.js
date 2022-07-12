@@ -1,6 +1,6 @@
 import flushPromises from 'flush-promises'
 import { createForm, findAllComponents, destroy } from 'test-helpers'
-import { nextTick } from 'composition-api'
+import { nextTick } from 'vue'
 
 export const handleInput = function (elementType, elementName, options) {
   it('should set model on input', () => {

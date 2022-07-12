@@ -1,4 +1,4 @@
-import { ref } from 'composition-api'
+import { ref } from 'vue'
 import useVueform from './../composables/useVueform'
 
 export default {

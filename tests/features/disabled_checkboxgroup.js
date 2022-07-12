@@ -1,6 +1,6 @@
 import { createForm, testPropDefault, findAll, findAllComponents, destroy } from 'test-helpers'
 import { toBeVisible } from '@testing-library/jest-dom/matchers'
-import { nextTick } from 'composition-api'
+import { nextTick } from 'vue'
 
 expect.extend({toBeVisible})
 

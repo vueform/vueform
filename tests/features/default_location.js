@@ -1,6 +1,6 @@
 import { defaultValue as baseDefaultValue } from './default'
 
-import { nextTick } from 'composition-api'
+import { nextTick } from 'vue'
 
 export const defaultValue = function (elementType, elementName, options) {
   baseDefaultValue(elementType, elementName, options)
