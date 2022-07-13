@@ -230,7 +230,6 @@ const testInlineSlot = function(it, elementName, elementType, slot) {
       return createElement(h, 'form', [
         createElement(h, elementName, {
           props: _.merge({}, {
-            type: elementType,
             name: 'el',
           }, configs[slot]?.[elementType] || configs[slot]?.default || {}),
           scopedSlots: {

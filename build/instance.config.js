@@ -5,12 +5,12 @@ export default (commandLineArgs) => {
   const files = [
     {
       input: path.resolve(__dirname, '../dist/installer.js'),
-      output: path.resolve(__dirname, '../../vueform-web/packages/vueform-production/dist/installer.js'),
+      output: path.resolve(__dirname, '../../vueform-web/packages/vueform-production/installer.js'),
       lock: true,
     },
     {
       input: path.resolve(__dirname, '../dist/element.js'),
-      output: path.resolve(__dirname, '../../vueform-web/packages/vueform-production/dist/element.js'),
+      output: path.resolve(__dirname, '../../vueform-web/packages/vueform-production/element.js'),
       lock: true,
     },
   ]
@@ -23,7 +23,7 @@ export default (commandLineArgs) => {
     if (file.lock) {
       globalOptions = {
         ...globalOptions,
-        domainLock: ['vueform.com', 'www.vueform.com', 'new.vueform.com', 'vueform.loc', 'builder.vueform.com', 'builder.vueform.loc'],
+        domainLock: ['localhost', 'vueform.com', 'www.vueform.com', 'new.vueform.com', 'vueform.loc', 'builder.vueform.com', 'builder.vueform.loc'],
         domainLockRedirectUrl: 'https://vueform.com/not-allowed?k=vueform'
       }
     }

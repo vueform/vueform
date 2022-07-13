@@ -207,7 +207,7 @@ export default function(config, components) {
                 reject(error)
               })
             } else if (axiosConfig.onUnauthenticated) {
-              axiosConfig.onUnauthenticated()
+              axiosConfig.onUnauthenticated(originalRequest)
             } else {
               reject(error)
             }
@@ -245,8 +245,8 @@ export default function(config, components) {
       error += `${message}\n`
       error += `===============================\n`
       error += `\n`
-      error += `Please create a free API Key at:\n`
-      error += `https://vueform.com/docs/1.x/installtion#api-key\n`
+      error += `Create a free API Key at:\n`
+      error += `https://vueform.com/docs/1.x/installation#api-key\n`
       error += `\n`
 
       return error
@@ -271,12 +271,15 @@ export default function(config, components) {
         return
       }
 
-      if (navigator && navigator.onLine && window && window.location && ['http:', 'https:'].indexOf(window.location.protocol) !== -1) {
-        axios.get(`${window.location.protocol}//api.vueform.com/check?key=${apikey}`).then((resp) => {
-          // if (resp.data?.valid !== true) {
-          //   console.error(this.createApiKeyError('======= Invalid API Key ======='))
-          // }
-        }).catch(() => {})
+      if (navigator && navigator.onLine && window && window.location && ['http:', 'https:'].indexOf(window.location.protocol) !== -1 && typeof fetch !== 'undefined') {
+        fetch(`${window.location.protocol}//api.vueform.com/check?key=${apikey}`)
+          .then(response => response.json())
+          .then((data) => {
+            // if (data?.valid !== true) {
+            //   console.error(this.createApiKeyError('======= Invalid API Key ======='))
+            // }
+          })
+          .catch(() => {})
       }
 
       const plugins = options.plugins || []
@@ -351,6 +354,7 @@ export default function(config, components) {
                     plugins: $vueform.plugins,
                     theme: $vueform.theme,
                     i18n: $vueform.i18n,
+                    vueVersion: $vueform.vueVersion,
                   }
                 }
               }

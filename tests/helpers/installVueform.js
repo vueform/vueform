@@ -5,8 +5,6 @@ export default function installVueform (options = {}) {
 
   // const LocalVue = createLocalVue()
 
-  // LocalVue.use(CompositionApi)
-
   let store = null
 
   // if (options.vuex) {

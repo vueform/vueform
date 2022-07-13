@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils'
-import { h, resolveComponent, ref } from 'vue'
+import { ref } from 'vue-prev'
 
 // Core
 import { Vueform, useVueform } from './../../../src/index'
@@ -78,6 +78,7 @@ export default function createForm (data, options = {}, render = null) {
     locales: options.locales || {
       en: en
     },
+    vueVersion: 2,
     services: {
       condition,
       validation,

@@ -180,7 +180,11 @@ const Validator = class {
 
   init() {}
 
-  async validate(value = this.element$.value) {
+  async validate(value) {
+    if (value === undefined) {
+      value = this.element$?.value
+    }
+
     if (!this.form$.validation) {
       return
     }

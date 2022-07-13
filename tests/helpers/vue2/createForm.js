@@ -69,6 +69,7 @@ export default function createForm (data, options = {}, render = null) {
     locales: options.locales || {
       en: en
     },
+    vueVersion: 2,
     services: {
       condition,
       validation,

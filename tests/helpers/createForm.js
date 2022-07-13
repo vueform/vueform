@@ -67,6 +67,7 @@ export default function createForm (data, options = {}, render = null) {
     locales: options.locales || {
       en: en
     },
+    vueVersion: 3,
     services: {
       condition,
       validation,
@@ -90,7 +91,11 @@ export default function createForm (data, options = {}, render = null) {
     propsData: options.propsData || {},
     global: {
       mixins: [$vueformMixin],
-      plugins: [VueformInstaller],
+      plugins: [
+        [VueformInstaller, {
+          apiKey: 'dvzr-74zl-w99t-dmdv-syr7',
+        }]
+      ],
       components: {
         TrixEditor
       },

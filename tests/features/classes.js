@@ -1,4 +1,3 @@
-import { nextTick } from 'vue'
 import { createForm, findAllComponents, testPropDefault, destroy, classesToArray } from 'test-helpers'
 import defaultTheme from './../../themes/vueform'
 import tailwindTheme from './../../themes/tailwind'

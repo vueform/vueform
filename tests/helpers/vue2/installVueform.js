@@ -1,6 +1,5 @@
 import { createLocalVue } from '@vue/test-utils'
 import Vuex from 'vuex'
-import CompositionApi from 'vue'
 
 import { createVueformInstaller } from './index'
 
@@ -8,8 +7,6 @@ export default function installVueform (options = {}) {
   const { VueformInstaller, config } = createVueformInstaller(options)
 
   const LocalVue = createLocalVue()
-
-  LocalVue.use(CompositionApi)
 
   let store = null
 
@@ -25,7 +22,9 @@ export default function installVueform (options = {}) {
     }
   }
 
-  LocalVue.use(VueformInstaller)
+  LocalVue.use(VueformInstaller, {
+    apiKey: 'dvzr-74zl-w99t-dmdv-syr7',
+  })
 
   return {
     LocalVue,
