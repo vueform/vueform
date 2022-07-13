@@ -38,9 +38,13 @@
 
   .pac-icon-marker {
     mask-repeat: no-repeat;
+    -webkit-mask-repeat: no-repeat;
     mask-position: center center;
+    -webkit-mask-position: center center;
     mask-size: contain;
+    -webkit-mask-size: contain;
     mask-image: theme('maskImage.form-map-marker');
+    -webkit-mask-image: theme('maskImage.form-map-marker');
     background: var(--vf-bg-icon);
     width: 0.875rem;
     width: 0.875rem;
@@ -118,9 +122,13 @@
 
   .ap-suggestion-icon {
     mask-repeat: no-repeat;
+    -webkit-mask-repeat: no-repeat;
     mask-position: center center;
+    -webkit-mask-position: center center;
     mask-size: contain;
+    -webkit-mask-size: contain;
     mask-image: theme('maskImage.form-map-marker');
+    -webkit-mask-image: theme('maskImage.form-map-marker');
     background: var(--vf-gray-400);
     width: 1rem;
     width: 1rem;

@@ -82,8 +82,11 @@ import EditorWrapper from './../../../blank/templates/wrappers/EditorWrapper.vue
         display: inline-block;
         content: "";
         mask-repeat: no-repeat;
+        -webkit-mask-repeat: no-repeat;
         mask-position: center center;
+        -webkit-mask-position: center center;
         mask-size: contain;
+        -webkit-mask-size: contain;
         background-color: var(--vf-bg-icon);
         top: 0.125rem;
         bottom: 0.125rem;
@@ -102,26 +105,32 @@ import EditorWrapper from './../../../blank/templates/wrappers/EditorWrapper.vue
 
     .trix-button--icon-attach::before {
       mask-image: theme('maskImage.form-trix-attach');
+      -webkit-mask-image: theme('maskImage.form-trix-attach');
     }
 
     .trix-button--icon-bold::before {
       mask-image: theme('maskImage.form-trix-bold');
+      -webkit-mask-image: theme('maskImage.form-trix-bold');
     }
 
     .trix-button--icon-italic::before {
       mask-image: theme('maskImage.form-trix-italic');
+      -webkit-mask-image: theme('maskImage.form-trix-italic');
     }
 
     .trix-button--icon-link::before {
       mask-image: theme('maskImage.form-trix-link');
+      -webkit-mask-image: theme('maskImage.form-trix-link');
     }
 
     .trix-button--icon-strike::before {
       mask-image: theme('maskImage.form-trix-strike');
+      -webkit-mask-image: theme('maskImage.form-trix-strike');
     }
 
     .trix-button--icon-quote::before {
       mask-image: theme('maskImage.form-trix-quote');
+      -webkit-mask-image: theme('maskImage.form-trix-quote');
       top: 0.25rem;
       bottom: 0.25rem;
       margin-top: 1px;
@@ -130,10 +139,12 @@ import EditorWrapper from './../../../blank/templates/wrappers/EditorWrapper.vue
 
     .trix-button--icon-heading-1::before {
       mask-image: theme('maskImage.form-trix-heading');
+      -webkit-mask-image: theme('maskImage.form-trix-heading');
     }
 
     .trix-button--icon-code::before {
       mask-image: theme('maskImage.form-trix-code');
+      -webkit-mask-image: theme('maskImage.form-trix-code');
       top: 0.375rem;
       bottom: 0.375rem;
       margin-top: 1px;
@@ -142,35 +153,41 @@ import EditorWrapper from './../../../blank/templates/wrappers/EditorWrapper.vue
 
     .trix-button--icon-bullet-list::before {
       mask-image: theme('maskImage.form-trix-ul');
+      -webkit-mask-image: theme('maskImage.form-trix-ul');
       margin-top: 1px;
       margin-bottom: 1px;
     }
 
     .trix-button--icon-number-list::before {
       mask-image: theme('maskImage.form-trix-ol');
+      -webkit-mask-image: theme('maskImage.form-trix-ol');
       margin-top: 1px;
       margin-bottom: 1px;
     }
 
     .trix-button--icon-undo::before {
       mask-image: theme('maskImage.form-trix-undo');
+      -webkit-mask-image: theme('maskImage.form-trix-undo');
       top: 0.25rem;
       bottom: 0.25rem;
     }
 
     .trix-button--icon-redo::before {
       mask-image: theme('maskImage.form-trix-redo');
+      -webkit-mask-image: theme('maskImage.form-trix-redo');
       top: 0.25rem;
       bottom: 0.25rem;
     }
 
     .trix-button--icon-decrease-nesting-level::before {
       mask-image: theme('maskImage.form-trix-decrease-indent');
+      -webkit-mask-image: theme('maskImage.form-trix-decrease-indent');
       margin-bottom: 0;
     }
 
     .trix-button--icon-increase-nesting-level::before {
       mask-image: theme('maskImage.form-trix-increase-indent');
+      -webkit-mask-image: theme('maskImage.form-trix-increase-indent');
       margin-top: 1px;
       margin-bottom: 1px;
     }
@@ -418,9 +435,13 @@ import EditorWrapper from './../../../blank/templates/wrappers/EditorWrapper.vue
         background-position: center;
         background-repeat: no-repeat;
         mask-repeat: no-repeat;
+        -webkit-mask-repeat: no-repeat;
         mask-position: center center;
+        -webkit-mask-position: center center;
         mask-size: contain;
+        -webkit-mask-size: contain;
         mask-image: theme('maskImage.form-remove-light');
+        -webkit-mask-image: theme('maskImage.form-remove-light');
 
         &:hover {
           border-color: var(--vf-gray-700);
