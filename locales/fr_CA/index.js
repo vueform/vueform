@@ -1,0 +1,150 @@
+export default {
+  "vueform": {
+    "elements": {
+      "list": {
+        "add": "+ Ajoutez le ficher",
+        "remove": "&times;"
+      },
+      "file": {
+        "defaultName": "Fichier",
+        "dndTitle": "Téléchargez le fichier",
+        "dndDescription": "Déposez le ficher ou cliquez ici pour le télécharger.",
+        "removeConfirm": "En supprimant le fichier, il sera définitivement supprimé. Êtes-vous sûr de vouloir procéder ?",
+        "select": "Télécharger les fichiers.",
+        "upload": "Télécharger"
+      },
+      "multifile": {
+        "uploadButton": "Télécharger les fichiers.",
+        "dndTitle": "Télécharger les fichiers.",
+        "dndDescription": "Déposer les fichiers ou cliquer ici pour les télécharger. Télécharger des images."
+      },
+      "gallery": {
+        "uploadButton": "Importer des images",
+        "dndTitle": "Importer des images",
+        "dndDescription": "Glisser des images ou cliquer ici pour les télécharger"
+      }
+    },
+    "steps": {
+      "finish": "Terminer",
+      "next": "Suivant",
+      "previous": "Précédent"
+    },
+    "editor": {
+      "acceptedMimesError": "Les mimes acceptés sont: :mimes",
+      "acceptedExtensionsError": "Les extensions acceptées sont: :extensions"
+    },
+    "multiselect": {
+      "multipleLabelOne": "1 option sélectionnée",
+      "multipleLabelMore": ":options options sélectionnées",
+      "noResults": "Aucunes options trouvées",
+      "noOptions": "La liste est vide"
+    },
+    "defaultMessage": "Champ invalide",
+    "dateFormats": {
+      "datetimeSeconds24": "DD/MM/YYYY, HH:mm:ss",
+      "datetimeSeconds12": "DD/MM/YYYY, hh:mm:ss a",
+      "datetime24": "DD/MM/YYYY, HH:mm",
+      "datetime12": "DD/MM/YYYY, hh:mm a",
+      "timeSeconds24": "HH:mm:ss",
+      "timeSeconds12": "hh:mm:ss a",
+      "time24": "HH:mm",
+      "time12": "hh:mm a",
+      "date": "DD/MM/YYYY"
+    }
+  },
+  "validation": {
+    "accepted": ":attribute ha de ser acceptat.",
+    "active_url": ":attribute no és un URL vàlid.",
+    "after": ":attribute ha de ser una data posterior a :date.",
+    "after_or_equal": ":attribute ha de ser una data posterior o igual a :date.",
+    "alpha": ":attribute només pot contenir lletres.",
+    "alpha_dash": ":attribute només pot contenir lletres, números i guions.",
+    "alpha_num": ":attribute només pot contenir lletres i números.",
+    "array": ":attribute ha de ser una matriu.",
+    "before": ":attribute ha de ser una data anterior a :date.",
+    "before_or_equal": ":attribute ha de ser una data anterior o igual a :date.",
+    "between": {
+      "numeric": ":attribute ha destar entre :min - :max.",
+      "file": ":attribute ha de pesar entre :min - :max kilobytes.",
+      "string": ":attribute ha de tenir entre :min - :max caràcters.",
+      "array": ":attribute ha de tenir entre :min - :max ítems."
+    },
+    "boolean": "El camp :attribute ha de ser verdader o fals",
+    "confirmed": "La confirmació de :attribute no coincideix.",
+    "date": ":attribute no és una data vàlida.",
+    "date_format": "El camp :attribute no concorda amb el format :format.",
+    "date_equals": "El :attribute ha de ser una data igual a :date.",
+    "different": ":attribute i :other han de ser diferents.",
+    "digits": ":attribute ha de tenir :digits dígits.",
+    "digits_between": ":attribute ha de tenir entre :min i :max dígits.",
+    "dimensions": "Les dimensions de la imatge :attribute no són vàlides.",
+    "distinct": "El camp :attribute té un valor duplicat.",
+    "email": ":attribute no és un e-mail vàlid",
+    "exists": ":attribute és invàlid.",
+    "file": "El camp :attribute ha de ser un arxiu.",
+    "filled": "El camp :attribute és obligatori.",
+    "gt": {
+      "numeric": "El :attribute ha de ser superior a :value.",
+      "file": "El :attribute ha de ser superior a :value kilobytes.",
+      "string": "El :attribute ha de superar els :value caràcters.",
+      "array": "El :attribute ha de tenir més de :value ítems."
+    },
+    "gte": {
+      "numeric": "El :attribute ha de ser igual o superior a :value.",
+      "file": "El :attribute ha de ser igual o superior a :value kilobytes.",
+      "string": "El :attribute ha de ser igual o superior a :value caràcters.",
+      "array": "El :attribute ha de tenir :value ítems o més."
+    },
+    "image": ":attribute ha de ser una imatge.",
+    "in": ":attribute és invàlid",
+    "in_array": "El camp :attribute no existeix dintre de :other.",
+    "integer": ":attribute ha de ser un nombre enter.",
+    "ip": ":attribute ha de ser una adreça IP vàlida.",
+    "ipv4": ":attribute ha de ser una adreça IPv4 vàlida.",
+    "ipv6": ":attribute ha de ser una adreça IPv6 vàlida.",
+    "json": "El camp :attribute ha de ser una cadena JSON vàlida.",
+    "lt": {
+      "numeric": "El :attribute ha de ser inferior a :value.",
+      "file": "El :attribute ha de ser inferior a :value kilobytes.",
+      "string": "El :attribute no ha de superar els :value caràcters.",
+      "array": "El :attribute ha de tenir menys de :value ítems."
+    },
+    "lte": {
+      "numeric": "El :attribute ha de ser igual o inferior a :value.",
+      "file": "El :attribute ha de ser igual o inferior a :value kilobytes.",
+      "string": "El :attribute ha de ser igual o inferior a :value caràcters.",
+      "array": "El :attribute no ha de tenir més de :value ítems."
+    },
+    "max": {
+      "numeric": ":attribute no pot ser més gran que :max.",
+      "file": ":attribute no pot ser més gran que :max kilobytes.",
+      "string": ":attribute no pot ser més gran que :max caràcters.",
+      "array": ":attribute no pot tenir més de :max ítems."
+    },
+    "mimes": ":attribute ha de ser un arxiu amb format: :values.",
+    "mimetypes": ":attribute ha de ser un arxiu amb format: :values.",
+    "min": {
+      "numeric": "El tamany de :attribute ha de ser dalmenys :min.",
+      "file": "El tamany de :attribute ha de ser dalmenys :min kilobytes.",
+      "string": ":attribute ha de contenir almenys :min caràcters.",
+      "array": ":attribute ha de tenir almenys :min ítems."
+    },
+    "not_in": ":attribute és invàlid.",
+    "not_regex": "El format de :attribute no és vàlid.",
+    "numeric": ":attribute ha de ser numèric.",
+    "regex": "El format de :attribute és invàlid.",
+    "required": "El camp :attribute és obligatori.",
+    "same": ":attribute i :other han de coincidir.",
+    "size": {
+      "numeric": "El tamany de :attribute ha de ser :size.",
+      "file": "El tamany de :attribute ha de ser :size kilobytes.",
+      "string": ":attribute ha de contenir :size caràcters.",
+      "array": ":attribute ha de contenir :size ítems."
+    },
+    "string": "El camp :attribute ha de ser una cadena.",
+    "timezone": "El camp :attribute ha de ser una zona vàlida.",
+    "unique": ":attribute ja està registrat i no es pot repetir.",
+    "url": ":attribute no és una adreça web vàlida.",
+    "uuid": "El :attribute ha de ser un indentificador únic universal (UUID) vàlid."
+  }
+}

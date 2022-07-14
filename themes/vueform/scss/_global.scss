@@ -1,0 +1,53 @@
+/*
+ * Global styles
+ *
+ * Global base styles. 
+ */
+  
+form {
+  * {
+    box-sizing: border-box;
+  }
+
+  label {
+    margin: 0;
+  }
+}
+
+[type="text"],
+[type="email"],
+[type="url"],
+[type="password"],
+[type="number"],
+[type="date"],
+[type="datetime-local"],
+[type="month"],
+[type="search"],
+[type="tel"],
+[type="time"],
+[type="week"],
+[type="checkbox"],
+[type="radio"],
+[multiple],
+textarea,
+select {
+  appearance: none;
+  font-size: var(--vf-font-size);
+  line-height: var(--vf-line-height);
+  letter-spacing: var(--vf-letter-spacing);
+  
+  &:focus {
+    outline: none;
+  }
+
+  &::-webkit-search-decoration,
+  &::-webkit-search-cancel-button,
+  &::-webkit-search-results-button,
+  &::-webkit-search-results-decoration {
+    -webkit-appearance: none,
+  }
+}
+
+::placeholder {
+  color: var(--vf-color-placeholder);
+}

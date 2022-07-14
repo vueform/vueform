@@ -1,0 +1,8 @@
+Evaluation License - Non-Commercial License
+
+For commercial use obtain a license at vueform.com.
+
+Commercial license terms can be found at:
+https://vueform.com/license-agreement
+
+Valid for the following domains: localhost

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="45px" height="39px" viewBox="0 0 45 39" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.6 (67491) - http://www.bohemiancoding.com/sketch -->
+    <title>icon-vue</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="landing-6" transform="translate(-1191.000000, -2513.000000)">
+            <g id="Group-18" transform="translate(1171.349243, 2487.623923)">
+                <g id="Group-15" transform="translate(0.658169, 0.707105)">
+                    <g id="icon-vue" transform="translate(19.825311, 25.394473)">
+                        <polygon id="Path" fill="#41B883" points="34.9701298 0 43.7126623 0 21.8563311 37.7021712 0 0 8.6332508 0 16.7200933 0 21.8563311 8.74253246 26.8832873 0"></polygon>
+                        <polygon id="Path" fill="#41B883" points="0 0 21.8563311 37.7021712 43.7126623 0 34.9701298 0 21.8563311 22.6213027 8.6332508 0"></polygon>
+                        <polygon id="Path" fill="#35495E" points="8.6332508 0 21.8563311 22.7305844 34.9701298 0 26.8832873 0 21.8563311 8.74253246 16.7200933 0"></polygon>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

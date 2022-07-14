@@ -1,0 +1,88 @@
+/*
+ * Grid system
+ *
+ * Creating the vf-col-(breakpoint-)?\d grid system.
+ */
+
+$grid-breakpoints: (
+  xs: 0,
+  sm: 640px,
+  md: 768px,
+  lg: 1024px,
+  xl: 1280px,
+  2xl: 1536px
+) !default;
+$grid-columns: 12 !default;
+
+.vf-row {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: var(--vf-gutter);
+
+  &.vf-row-sm {
+    gap: var(--vf-gutter-sm);
+  }
+
+  &.vf-row-lg {
+    gap: var(--vf-gutter-lg);
+  }
+}
+
+.vf-rowset {
+  display: grid;
+  row-gap: var(--vf-gutter);
+
+  &.vf-rowset-sm {
+    row-gap: var(--vf-gutter-sm);
+  }
+
+  &.vf-rowset-lg {
+    row-gap: var(--vf-gutter-lg);
+  }
+}
+
+@function breakpoint-min($name, $breakpoints: $grid-breakpoints) {
+  $min: map-get($breakpoints, $name);
+  @return if($min != 0, $min, null);
+}
+
+@function breakpoint-infix($name, $breakpoints: $grid-breakpoints) {
+  @return if(breakpoint-min($name, $breakpoints) == null, "", "-#{$name}");
+}
+
+@mixin media-breakpoint-up($name, $breakpoints: $grid-breakpoints) {
+  $min: breakpoint-min($name, $breakpoints);
+  @if $min {
+    @media (min-width: $min) {
+      @content;
+    }
+  } @else {
+    @content;
+  }
+}
+
+@mixin make-col($size, $columns: $grid-columns) {
+  grid-column: span #{$size} / span #{$columns};
+}
+
+@mixin make-grid-columns($columns: $grid-columns, $breakpoints: $grid-breakpoints) {
+  @each $breakpoint in map-keys($breakpoints) {
+    $infix: breakpoint-infix($breakpoint, $breakpoints);
+
+    @include media-breakpoint-up($breakpoint, $breakpoints) {
+      .vf-col#{$infix} {
+        grid-column: span #{$columns} / span #{$columns};
+      }
+
+      @if $columns > 0 {
+        @for $i from 1 through $columns {
+          .vf-col#{$infix}-#{$i} {
+            @include make-col($i, $columns);
+          }
+        }
+      }
+    }
+  }
+}
+
+@include make-grid-columns();
