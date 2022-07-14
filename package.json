@@ -132,5 +132,10 @@
         "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.0",
         "trix": "^1.0.0",
         "vue-i18n": "^8.18.2"
-    }
+    },
+    "browserslist": [
+      "> 1%",
+      "last 2 versions",
+      "not dead"
+    ]
 }
