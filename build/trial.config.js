@@ -8,11 +8,8 @@ const _ = require('lodash')
 const outputDir = path.resolve(__dirname, '../../@vueform')
 
 const copyFiles = {
-  'dist': '',
   'themes': 'themes',
   'locales': 'locales',
-  'LICENSE.txt': 'LICENSE.txt',
-  'README.md': 'README.md',
   'tailwind.js': 'tailwind.js',
   'tailwind-prefixer.js': 'tailwind-prefixer.js',
   'src/plugins.js': 'plugin.js',
@@ -85,7 +82,7 @@ export default (commandLineArgs) => {
     if (file.lock) {
       globalOptions = {
         ...globalOptions,
-        domainLock: ['localhost'],
+        domainLock: ['localhost', 'codesandbox.io'],
         domainLockRedirectUrl: 'https://vueform.com/not-allowed?k=trial'
       }
     }
