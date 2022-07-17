@@ -1,5 +1,5 @@
 {
-    "private": true,
+    "private": false,
     "name": "@vueform/vueform",
     "version": "1.2.7",
     "description": "Form builder for Vue.js",
