@@ -184,7 +184,7 @@ Get started with Vueform in an instant using one of our boilerplates.
         <h4><img src="/assets/icon-laravel.svg" height="21" /> Laravel (Vue 2)</h4>
       </td>
       <td>
-         <h4><a href=https://github.com/vueform/laravel-vue2-starter">@vueform/laravel-vue2-starter</a></h4>
+         <h4><a href="https://github.com/vueform/laravel-vue2-starter">@vueform/laravel-vue2-starter</a></h4>
       </td>
     </tr>
   </tbody>
