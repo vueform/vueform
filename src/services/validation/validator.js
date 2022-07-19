@@ -1,3 +1,4 @@
+import 'regenerator-runtime/runtime'
 import _ from 'lodash'
 import { watch, computed } from 'vue'
 import dataEquals from './../../utils/dataEquals'
