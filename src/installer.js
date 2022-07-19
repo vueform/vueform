@@ -272,7 +272,7 @@ export default function(config, components) {
       }
 
       if (navigator && navigator.onLine && window && window.location && ['http:', 'https:'].indexOf(window.location.protocol) !== -1 && typeof fetch !== 'undefined') {
-        fetch(`${window.location.protocol}//api.vueform.com/check?key=${apikey}`)
+        fetch(`https://api.vueform.com/check?key=${apikey}`)
           .then(response => response.json())
           .then((data) => {
             // if (data?.valid !== true) {
