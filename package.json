@@ -113,9 +113,9 @@
     "dependencies": {
         "@babel/plugin-transform-runtime": "^7.16.4",
         "@babel/runtime": "^7.16.3",
-        "@vueform/multiselect": "file:./../vueform-multiselect",
-        "@vueform/slider": "file:./../vueform-slider",
-        "@vueform/toggle": "file:./../vueform-toggle",
+        "@vueform/multiselect": "file:/Users/adamberecz/Code/vueform-multiselect",
+        "@vueform/slider": "file:/Users/adamberecz/Code/vueform-slider",
+        "@vueform/toggle": "file:/Users/adamberecz/Code/vueform-toggle",
         "autosize": "^4.0.2",
         "axios": "^0.19.2",
         "bootstrap": "^4.4.1",
