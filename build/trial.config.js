@@ -26,6 +26,7 @@ export default (commandLineArgs) => {
     let packageJson = fs.readFileSync(path.resolve(__dirname, '../', 'dist.package.json'), 'UTF-8')
 
     packageJson = packageJson.replace(/"\d\.\d\.\d"/, `"${version}"`)
+    packageJson = packageJson.replace('"private": true', '"private": false')
 
     fs.writeFileSync(path.resolve(outputDir, 'package.json'), packageJson)
   }
