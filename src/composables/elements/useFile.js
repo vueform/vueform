@@ -132,12 +132,16 @@ const base = function (props, context, dependencies)
   /**
    * URL to file using the [`url`](#url) option without including the filename. If `url` is not defined it will default to `'/'`.
    * 
-   * @type {string}
+   * @type {string|boolean}
    * @private
    */
   const fileUrl = computed(() => {
     if (url.value === undefined) {
       return '/'
+    }
+
+    if (url.value === false) {
+      return ''
     }
 
     let fileUrl = url.value

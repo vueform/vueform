@@ -97,7 +97,7 @@ export default {
     },
     url: {
       required: false,
-      type: [String],
+      type: [String, Boolean],
       default: '/'
     },
     previewUrl: {

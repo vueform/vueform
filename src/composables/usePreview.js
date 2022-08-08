@@ -49,7 +49,7 @@ const base = function(props, context, dependencies)
    * @type {string}
    */
   const filename = computed(() => {
-    return el$.value.filename
+    return el$.value.filename.split('\\').pop().split('/').pop()
   })
 
   /**
