@@ -2222,7 +2222,8 @@ export default {
         "fileUrl": {
           "public": false,
           "types": [
-            "string"
+            "string",
+            "boolean"
           ],
           "description": "URL to file using the [`url`](#url) option without including the filename. If `url` is not defined it will default to `'/'`."
         },

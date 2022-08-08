@@ -6919,6 +6919,15 @@ module.exports = {
         required: false,
         private: false,
       },
+      onBlur: {
+        required: 'false',
+        default: 'null',
+        types: [
+          'function',
+        ],
+        required: false,
+        private: true,
+      },
     },
     data: {
       active: {
@@ -8283,6 +8292,7 @@ module.exports = {
         default: '/',
         types: [
           'string',
+          'boolean',
         ],
         required: false,
         private: false,
@@ -8663,6 +8673,7 @@ module.exports = {
       fileUrl: {
         types: [
           'string',
+          'boolean',
         ],
         description: 'URL to file using the [`url`](#url) option without including the filename. If `url` is not defined it will default to `&apos;/&apos;`.',
         private: true,
@@ -26260,6 +26271,15 @@ module.exports = {
         required: false,
         private: false,
       },
+      onBlur: {
+        required: 'false',
+        default: 'null',
+        types: [
+          'function',
+        ],
+        required: false,
+        private: true,
+      },
     },
     data: {
       active: {
@@ -29060,6 +29080,15 @@ module.exports = {
         ],
         required: false,
         private: false,
+      },
+      onBlur: {
+        required: 'false',
+        default: 'null',
+        types: [
+          'function',
+        ],
+        required: false,
+        private: true,
       },
     },
     data: {
@@ -33927,6 +33956,15 @@ module.exports = {
         ],
         required: false,
         private: false,
+      },
+      onBlur: {
+        required: 'false',
+        default: 'null',
+        types: [
+          'function',
+        ],
+        required: false,
+        private: true,
       },
     },
     data: {
