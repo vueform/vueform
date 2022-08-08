@@ -81,7 +81,7 @@ export default function(config, components) {
       // replace
       _.each([
         'columns', 'forceLabels', 'displayErrors', 'floatPlaceholders', 'displayErrors', 'displayMessages',
-        'language', 'locale', 'fallbackLocale', 'orderFrom', 'validateOn', 'formData', 'beforeSend', 'axios',
+        'language', 'locale', 'fallbackLocale', 'orderFrom', 'validateOn', 'formData', 'beforeSend',
         'locationProvider', 'classHelpers', 'env', 'usePresets', 'plugins', 'size',
       ], (attr) => {
           if (config[attr] !== undefined) {
@@ -99,6 +99,14 @@ export default function(config, components) {
             this.options.templates[element.name] = _.pick(element, ['render', 'staticRenderFns', 'components'])
           }
         })
+      }
+
+      if (config.axios !== undefined) {
+        if (typeof config.axios === 'function') {
+          this.options.services.axios = axios
+        } else {
+          this.options.config.axios = config.axios
+        }
       }
     }
 
@@ -320,7 +328,10 @@ export default function(config, components) {
         })
       })
 
-      this.initAxios()
+      if (typeof config.axios !== 'function') {
+        this.initAxios()
+      }
+      
       this.initI18n()
       this.registerComponents(appOrVue)
 
