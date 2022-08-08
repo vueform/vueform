@@ -129,7 +129,7 @@ const base = function(props, context, dependencies)
    */
   const createAsyncOptionsFromUrl = () => {
     return async (query) => {
-      let optionList = (await form$.value.$vueform.services.axios.get(`${items.value}?${searchParam.value}=${query||''}`))?.data || []
+      let optionList = (await form$.value.$vueform.services.axios.get(`${items.value}${items.value.match(/\?/)?'&':'?'}${searchParam.value}=${query||''}`))?.data || []
 
       if (dataKey && dataKey.value && Object.keys(optionList).length) {
         optionList = _.get(optionList, dataKey.value) || []
