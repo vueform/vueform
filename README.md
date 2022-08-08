@@ -1,7 +1,7 @@
 <div align="center">
   <br>
   <a href="https://vueform.com?ref=github" target="_blank">
-    <img align="center" src="/assets/logo-horizontal.svg" width="240">
+    <img align="center" src="https://github.com/vueform/vueform/raw/main/assets/logo-horizontal.svg" width="240">
   </a>
   <br>
   <br>
@@ -19,7 +19,7 @@
   <br>
   <a href="https://vueform.com?ref=github" target="_blank">
     <br>
-    <img align="center" src="/assets/elements.png" width="609">
+    <img align="center" src="https://github.com/vueform/vueform/raw/main/assets/elements.png" width="609">
     <br>
   </a>
 </div>
@@ -141,7 +141,7 @@ Get started with Vueform in an instant using one of our boilerplates.
   <tbody>
     <tr>
       <td>
-        <h4><img src="/assets/icon-vite.svg" height="21" /> Vite</h4>
+        <h4><img src="https://github.com/vueform/vueform/raw/main/assets/icon-vite.svg" height="21" /> Vite</h4>
       </td>
       <td>
          <h4><a href="https://github.com/vueform/vite-starter">@vueform/vite-starter</a></h4>
@@ -149,7 +149,7 @@ Get started with Vueform in an instant using one of our boilerplates.
     </tr>
     <tr>
       <td>
-        <h4><img src="/assets/icon-nuxt.svg" height="21" /> Nuxt</h4>
+        <h4><img src="https://github.com/vueform/vueform/raw/main/assets/icon-nuxt.svg" height="21" /> Nuxt</h4>
       </td>
       <td>
          <h4><a href="https://github.com/vueform/nuxt-starter">@vueform/nuxt-starter</a></h4>
@@ -157,7 +157,7 @@ Get started with Vueform in an instant using one of our boilerplates.
     </tr>
     <tr>
       <td>
-        <h4><img src="/assets/icon-vue.svg" height="21" /> VueCLI</h4>
+        <h4><img src="https://github.com/vueform/vueform/raw/main/assets/icon-vue.svg" height="21" /> VueCLI</h4>
       </td>
       <td>
          <h4><a href="https://github.com/vueform/vuecli3-starter">@vueform/vuecli3-starter</a></h4>
@@ -165,7 +165,7 @@ Get started with Vueform in an instant using one of our boilerplates.
     </tr>
     <tr>
       <td>
-        <h4><img src="/assets/icon-vue.svg" height="21" /> VueCLI (Vue 2)</h4>
+        <h4><img src="https://github.com/vueform/vueform/raw/main/assets/icon-vue.svg" height="21" /> VueCLI (Vue 2)</h4>
       </td>
       <td>
          <h4><a href="https://github.com/vueform/vuecli2-starter">@vueform/vuecli2-starter</a></h4>
@@ -173,7 +173,7 @@ Get started with Vueform in an instant using one of our boilerplates.
     </tr>
     <tr>
       <td>
-        <h4><img src="/assets/icon-laravel.svg" height="21" /> Laravel</h4>
+        <h4><img src="https://github.com/vueform/vueform/raw/main/assets/icon-laravel.svg" height="21" /> Laravel</h4>
       </td>
       <td>
          <h4><a href="https://github.com/vueform/laravel-starter">@vueform/laravel-starter</a></h4>
@@ -181,7 +181,7 @@ Get started with Vueform in an instant using one of our boilerplates.
     </tr>
     <tr>
       <td>
-        <h4><img src="/assets/icon-laravel.svg" height="21" /> Laravel (Vue 2)</h4>
+        <h4><img src="https://github.com/vueform/vueform/raw/main/assets/icon-laravel.svg" height="21" /> Laravel (Vue 2)</h4>
       </td>
       <td>
          <h4><a href="https://github.com/vueform/laravel-vue2-starter">@vueform/laravel-vue2-starter</a></h4>
@@ -198,7 +198,7 @@ If you don't want to use a starter kit you might set it up in your project manua
 
 It's recommended to use are environment-aware installation wizard to get started with Vueform.
 
-[![Installation wizard](/assets/button-installation-wizard.svg)](https://vueform.com/docs/1.x/installation)
+[![Installation wizard](https://github.com/vueform/vueform/raw/main/assets/button-installation-wizard.svg)](https://vueform.com/docs/1.x/installation)
 
 ### Manual installation
 
@@ -285,13 +285,13 @@ To start learning about Vueform head to our [Essentials](https://vueform.com/doc
 - [Plugins](https://vueform.com/docs/1.x/plugins)
 - [Creating Elements](https://vueform.com/docs/1.x/creating-elements)
 
-[![Go to Guide](/assets/button-guide.svg)](https://vueform.com/docs/1.x/rendering-forms)
+[![Go to Guide](https://github.com/vueform/vueform/raw/main/assets/button-guide.svg)](https://vueform.com/docs/1.x/rendering-forms)
 
 ## API Docs
 
 Dig deeper into Vueform API using our [API Reference](https://vueform.com/reference).
 
-[![Go to API Docs](/assets/button-api.svg)](https://vueform.com/reference)
+[![Go to API Docs](https://github.com/vueform/vueform/raw/main/assets/button-api.svg)](https://vueform.com/reference)
 
 ## Examples
 
@@ -302,7 +302,7 @@ Dig deeper into Vueform API using our [API Reference](https://vueform.com/refere
 
 *More examples coming soon.*
 
-[![Go to Examples](/assets/button-examples.svg)](https://vueform.com/examples)
+[![Go to Examples](https://github.com/vueform/vueform/raw/main/assets/button-examples.svg)](https://vueform.com/examples)
 
 ## Support
 
@@ -312,7 +312,7 @@ Join our [Discord](https://discord.gg/WhX2nG6GTQ) or [open an issue](https://git
 
 # Vueform Builder
 
-![/assets/builder.png](/assets/builder.png)
+![https://github.com/vueform/vueform/raw/main/assets/builder.png](https://github.com/vueform/vueform/raw/main/assets/builder.png)
 
 ### Try out our drag and drop form builder!
 

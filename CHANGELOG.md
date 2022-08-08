@@ -1,3 +1,15 @@
+## v1.2.9
+
+> `2022-08-08`
+
+### 🎉 Feature
+  - Allow `false` value for `FileElement`'s `url` option.
+  - If a filename contains url only the filename is displayed.
+  - Can pass an axios instance to `axios` option in `vueform.config.js`.
+
+### 🐞 Bug Fixes
+  - Select endpoint will add search param with `&` if it already contains `?`.
+
 ## v1.2.8
 
 > `2022-07-19`
