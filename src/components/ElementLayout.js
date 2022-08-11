@@ -10,6 +10,11 @@ export default {
       required: false,
       default: false,
     },
+    view: {
+      type: [String],
+      required: false,
+      default: undefined,
+    },
   },
   setup(props, context)
   {

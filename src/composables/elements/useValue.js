@@ -26,7 +26,7 @@ const base = function(props, context, dependencies, options = {})
 
   if (form$.value.isSync) {
     initialValue.value = _.get(form$.value.model, dataPath.value)
-  } else if (parent.value && ['object', 'list', 'multifile'].indexOf(parent.value.type) !== -1) {
+  } else if (parent.value && ['group', 'object', 'list', 'multifile'].indexOf(parent.value.type) !== -1) {
     initialValue.value = parent.value.value[name.value]
   }
 
@@ -51,7 +51,7 @@ const base = function(props, context, dependencies, options = {})
 
       if (form$.value.isSync) {
         value = _.get(form$.value.model, dataPath.value)
-      } else if (parent.value && ['object', 'list', 'multifile'].indexOf(parent.value.type) !== -1) {
+      } else if (parent.value && ['group', 'object', 'list', 'multifile'].indexOf(parent.value.type) !== -1) {
         value = parent.value.value[name.value]
       } else {
         value = internalValue.value
@@ -65,7 +65,7 @@ const base = function(props, context, dependencies, options = {})
       } else if (parent.value && ['list', 'multifile'].indexOf(parent.value.type) !== -1) {
         const newValue = parent.value.value.map((v,k) => k == name.value ? val : v)
         parent.value.update(newValue)
-      } else if (parent.value && ['object'].indexOf(parent.value.type) !== -1) {
+      } else if (parent.value && ['group', 'object'].indexOf(parent.value.type) !== -1) {
         parent.value.value = Object.assign({}, parent.value.value, {
           [name.value]: val
         })
@@ -142,32 +142,81 @@ const group = function(props, context, dependencies, options = {})
 {
   // ============ DEPENDENCIES =============
 
+  const parent = dependencies.parent
   const dataPath = dependencies.dataPath
+  const defaultValue = dependencies.defaultValue
   const children$Array = dependencies.children$Array
   const form$ = dependencies.form$
+
+  // ================ DATA =================
+
+  /**
+   * The store for the value of the element when we're not using external data (form's `v-model`).
+   * 
+   * @type {any}
+   * @private
+   */
+  const internalValue = ref(_.cloneDeep(defaultValue.value))
 
   // ============== COMPUTED ===============
 
   const value = computed(options.value || {
     get() {
-      let value = {}
+      let value
 
-      _.each(children$Array.value, (child$) => {
-        if (child$.isStatic) {
-          return
+      if (form$.value.isSync) {
+        value = dataPath.value ? _.get(form$.value.model, dataPath.value) : form$.value.model
+      } else if (parent.value && ['group', 'object'].indexOf(parent.value.type) !== -1) {
+        value = parent.value.value
+      } else {
+        value = internalValue.value
+      }
+
+      // Filter out children values that parent has but not among group elements
+      let childKeys = children$Array.value.reduce((all, child$) => {
+        if (child$.isStatic || !child$) {
+          return all
         }
-        
-        if (child$.flat) {
-          value = Object.assign({}, value, child$.value)
+
+        let keys = []
+
+        if (!child$.flat) {
+          keys.push(child$.name)
         } else {
-          value[child$.name] = child$.value
+          const addGroupKeys = (children$Array) => {
+            children$Array.forEach((child$) => {
+              if (!child$.isStatic && child$.flat) {
+                addGroupKeys(child$.children$Array)
+              } else if (!child$.isStatic) {
+                keys.push(child$.name)
+              }
+            })
+          }
+          
+          addGroupKeys(child$.children$Array)
+        }
+
+        return all.concat(keys)
+      }, [])
+
+      let tempValue = {}
+      childKeys.forEach((key) => {
+        if (value[key] !== undefined) {
+          tempValue[key] = value[key]
         }
       })
+      value = tempValue
 
-      return value
+      return value !== undefined ? value : _.cloneDeep(defaultValue.value)
     },
     set(val) {
-      form$.value.updateModel(dataPath.value, val)
+      if (form$.value.isSync) {
+        form$.value.updateModel(dataPath.value, val)
+      } else if (parent.value && ['group', 'object'].indexOf(parent.value.type) !== -1) {
+        parent.value.value = Object.assign({}, parent.value.value, val)
+      } else {
+        internalValue.value = val
+      }
     }
   })
 

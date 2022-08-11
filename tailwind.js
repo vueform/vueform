@@ -110,7 +110,7 @@ const vueform = plugin((context) => {
         'background-position': 'initial',
         'background-repeat': 'unset',
         'background-size': 'initial',
-        'color-adjust': 'unset',
+        'print-color-adjust': 'unset',
       },
     },
     {
