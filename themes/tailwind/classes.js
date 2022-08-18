@@ -182,7 +182,7 @@ const select = {
   containerOpen: '!rounded-b-none',
   containerOpenTop: '!rounded-t-none',
   containerActive: 'form-focus',
-  search: 'w-full h-full absolute inset-0 outline-zero appearance-none box-border border-0 font-sans bg-transparent form-color-input',
+  search: 'w-full h-full absolute inset-0 outline-zero appearance-none box-border border-0 bg-transparent form-color-input',
   search_sm: 'form-text-sm form-radius-input-sm form-pl-input-sm with-floating:form-p-input-floating-sm',
   search_md: 'form-text form-radius-input form-pl-input with-floating:form-p-input-floating',
   search_lg: 'form-text-lg form-radius-input-lg form-pl-input-lg with-floating:form-p-input-floating-lg',
