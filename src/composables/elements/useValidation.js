@@ -1051,6 +1051,23 @@ const object = function(props, context, dependencies)
     messageBag.value = new form$.value.$vueform.services.messageBag(childrenErrors)
   }
 
+  /**
+   * Initalizes children validators.
+   * 
+   * @returns {void}
+   * @private
+   */
+  const initValidation = () => {
+    _.each(children$.value, (element$) => {
+      if (element$.isStatic) {
+        return
+      }
+
+      element$.initValidation()
+    })
+  }
+
+
   return {
     messageBag,
     dirty,
@@ -1064,6 +1081,7 @@ const object = function(props, context, dependencies)
     clean,
     resetValidators,
     initMessageBag,
+    initValidation,
   }
 }
 
