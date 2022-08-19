@@ -22,7 +22,7 @@ export default {
         "uploadButton": "Képek feltöltése",
         "dndTitle": "Képek feltöltése",
         "dndDescription": "Képek feltöltéshez kattints ide vagy húzd ide a képeket"
-      }
+      },
     },
     "steps": {
       "finish": "Befejezés",
@@ -38,6 +38,58 @@ export default {
       "multipleLabelMore": ":options opció van kiválasztva",
       "noResults": "Nincs kiválasztva egy opció sem",
       "noOptions": "A lista üres"
+    },
+    "datepicker": {
+      "weekdays": {
+        "shorthand": ["V", "H", "K", "Sz", "Cs", "P", "Szo"],
+        "longhand": [
+          "Vasárnap",
+          "Hétfő",
+          "Kedd",
+          "Szerda",
+          "Csütörtök",
+          "Péntek",
+          "Szombat",
+        ],
+      },
+      "months": {
+        "shorthand": [
+          "Jan",
+          "Feb",
+          "Már",
+          "Ápr",
+          "Máj",
+          "Jún",
+          "Júl",
+          "Aug",
+          "Szep",
+          "Okt",
+          "Nov",
+          "Dec",
+        ],
+        "longhand": [
+          "Január",
+          "Február",
+          "Március",
+          "Április",
+          "Május",
+          "Június",
+          "Július",
+          "Augusztus",
+          "Szeptember",
+          "Október",
+          "November",
+          "December",
+        ],
+      },
+      "ordinal": function () {
+        return ".";
+      },
+      "weekAbbreviation": "Hét",
+      "scrollTitle": "Görgessen",
+      "toggleTitle": "Kattintson a váltáshoz",
+      "rangeSeparator": " - ",
+      "firstDayOfWeek": 1,
     },
     "defaultMessage": "Érvénytelen mező",
     "dateFormats": {

@@ -22,7 +22,7 @@ export default {
         "uploadButton": " 上傳圖像",
         "dndTitle": " 上傳圖像",
         "dndDescription": "拖曳圖像或點擊此處上傳"
-      }
+      },
     },
     "steps": {
       "finish": "完成",
@@ -38,6 +38,54 @@ export default {
       "multipleLabelMore": ":options 選項已選擇",
       "noResults": "未找到選項",
       "noOptions": "列表為空"
+    },
+    "datepicker": {
+      "weekdays": {
+        "shorthand": ["週日", "週一", "週二", "週三", "週四", "週五", "週六"],
+        "longhand": [
+          "星期日",
+          "星期一",
+          "星期二",
+          "星期三",
+          "星期四",
+          "星期五",
+          "星期六",
+        ],
+      },
+      "months": {
+        "shorthand": [
+          "一月",
+          "二月",
+          "三月",
+          "四月",
+          "五月",
+          "六月",
+          "七月",
+          "八月",
+          "九月",
+          "十月",
+          "十一月",
+          "十二月",
+        ],
+        "longhand": [
+          "一月",
+          "二月",
+          "三月",
+          "四月",
+          "五月",
+          "六月",
+          "七月",
+          "八月",
+          "九月",
+          "十月",
+          "十一月",
+          "十二月",
+        ],
+      },
+      "rangeSeparator": " 至 ",
+      "weekAbbreviation": "週",
+      "scrollTitle": "滾動切換",
+      "toggleTitle": "點擊切換 12/24 小時時制",
     },
     "defaultMessage": "無效欄位",
     "dateFormats": {

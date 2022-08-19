@@ -22,7 +22,7 @@ export default {
         "uploadButton": "Carica immagini",
         "dndTitle": "Carica immagini",
         "dndDescription": "Rilascia le immagini o clicca qui per caricarle"
-      }
+      },
     },
     "steps": {
       "finish": "Finire",
@@ -50,7 +50,57 @@ export default {
       "time24": "HH:mm",
       "time12": "hh:mm a",
       "date": "DD/MM/YYYY"
-    }
+    },
+    "datepicker": {
+      "weekdays": {
+        "shorthand": ["Dom", "Lun", "Mar", "Mer", "Gio", "Ven", "Sab"],
+        "longhand": [
+          "Domenica",
+          "Lunedì",
+          "Martedì",
+          "Mercoledì",
+          "Giovedì",
+          "Venerdì",
+          "Sabato",
+        ],
+      },
+      "months": {
+        "shorthand": [
+          "Gen",
+          "Feb",
+          "Mar",
+          "Apr",
+          "Mag",
+          "Giu",
+          "Lug",
+          "Ago",
+          "Set",
+          "Ott",
+          "Nov",
+          "Dic",
+        ],
+        "longhand": [
+          "Gennaio",
+          "Febbraio",
+          "Marzo",
+          "Aprile",
+          "Maggio",
+          "Giugno",
+          "Luglio",
+          "Agosto",
+          "Settembre",
+          "Ottobre",
+          "Novembre",
+          "Dicembre",
+        ],
+      },
+      "ordinal": () => "°",
+      "firstDayOfWeek": 1,
+      "rangeSeparator": " al ",
+      "weekAbbreviation": "Se",
+      "scrollTitle": "Scrolla per aumentare",
+      "toggleTitle": "Clicca per cambiare",
+    },
   },
   "validation": {
     "accepted": ":attribute deve essere accettato.",

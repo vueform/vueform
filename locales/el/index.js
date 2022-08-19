@@ -22,7 +22,7 @@ export default {
         "uploadButton": "Μεταφόρτωση εικόνων",
         "dndTitle": "Μεταφόρτωση εικόνων",
         "dndDescription": "Αποθέστε εικόνες ή κάντε κλικ εδώ για μεταφόρτωση"
-      }
+      },
     },
     "steps": {
       "finish": "Ολοκλήρωση",
@@ -39,7 +39,63 @@ export default {
       "noResults": "Δεν βρέθηκαν επιλογές",
       "noOptions": "Η λίστα είναι κενή"
     },
-    "defaultMessage": "Μη έγκυρο πεδίο",
+    "datepicker": {
+      "weekdays": {
+        "shorthand": ["Κυ", "Δε", "Τρ", "Τε", "Πέ", "Πα", "Σά"],
+        "longhand": [
+          "Κυριακή",
+          "Δευτέρα",
+          "Τρίτη",
+          "Τετάρτη",
+          "Πέμπτη",
+          "Παρασκευή",
+          "Σάββατο",
+        ],
+      },
+      "months": {
+        "shorthand": [
+          "Ιαν",
+          "Φεβ",
+          "Μάρ",
+          "Απρ",
+          "Μάι",
+          "Ιούν",
+          "Ιούλ",
+          "Αύγ",
+          "Σεπ",
+          "Οκτ",
+          "Νοέ",
+          "Δεκ",
+        ],
+        "longhand": [
+          "Ιανουάριος",
+          "Φεβρουάριος",
+          "Μάρτιος",
+          "Απρίλιος",
+          "Μάιος",
+          "Ιούνιος",
+          "Ιούλιος",
+          "Αύγουστος",
+          "Σεπτέμβριος",
+          "Οκτώβριος",
+          "Νοέμβριος",
+          "Δεκέμβριος",
+        ],
+      },
+      "firstDayOfWeek": 1,
+      "ordinal": function () {
+        return "";
+      },
+      "weekAbbreviation": "Εβδ",
+      "rangeSeparator": " έως ",
+      "scrollTitle": "Μετακυλήστε για προσαύξηση",
+      "toggleTitle": "Κάντε κλικ για αλλαγή",
+      "amPM": ["ΠΜ", "ΜΜ"],
+      "yearAriaLabel": "χρόνος",
+      "monthAriaLabel": "μήνας",
+      "hourAriaLabel": "ώρα",
+      "minuteAriaLabel": "λεπτό",
+    },
     "dateFormats": {
       "datetimeSeconds24": "DD/MM/YYYY, HH:mm:ss a",
       "datetimeSeconds12": "DD/MM/YYYY, hh:mm:ss a",
@@ -50,7 +106,8 @@ export default {
       "time24": "HH:mm a",
       "time12": "hh:mm a",
       "date": "DD/MM/YYYY"
-    }
+    },
+    "defaultMessage": "Μη έγκυρο πεδίο",
   },
   "validation": {
     "accepted": "Το πεδίο :attribute πρέπει να γίνει αποδεκτό.",

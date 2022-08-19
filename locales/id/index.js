@@ -22,7 +22,7 @@ export default {
         "uploadButton": "Unggah gambar",
         "dndTitle": "Unggah gambar",
         "dndDescription": "Jatuhkan gambar atau klik di sini untuk mengunggah"
-      }
+      },
     },
     "steps": {
       "finish": "Menyelesaikan",
@@ -38,6 +38,47 @@ export default {
       "multipleLabelMore": ":options opsi dipilih",
       "noResults": "Tidak ada opsi yang ditemukan",
       "noOptions": "Daftarnya kosong"
+    },
+    "datepicker": {
+      "weekdays": {
+        "shorthand": ["Min", "Sen", "Sel", "Rab", "Kam", "Jum", "Sab"],
+        "longhand": ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"],
+      },
+      "months": {
+        "shorthand": [
+          "Jan",
+          "Feb",
+          "Mar",
+          "Apr",
+          "Mei",
+          "Jun",
+          "Jul",
+          "Agu",
+          "Sep",
+          "Okt",
+          "Nov",
+          "Des",
+        ],
+        "longhand": [
+          "Januari",
+          "Februari",
+          "Maret",
+          "April",
+          "Mei",
+          "Juni",
+          "Juli",
+          "Agustus",
+          "September",
+          "Oktober",
+          "November",
+          "Desember",
+        ],
+      },
+      "ordinal": () => {
+        return "";
+      },
+      "firstDayOfWeek": 1,
+      "rangeSeparator": " - ",
     },
     "defaultMessage": "Bidang tidak valid",
     "dateFormats": {

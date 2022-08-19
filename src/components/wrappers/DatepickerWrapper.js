@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import moment from 'moment'
-import { toRefs, watch, computed, ref, onMounted } from 'vue'
+import { toRefs, watch, computed, ref, onMounted, getCurrentInstance } from 'vue'
 import useElementComponent from '../../composables/useElementComponent'
 import flatpickr from 'flatpickr'
 
@@ -46,6 +46,8 @@ export default {
       theme,
     } = useElementComponent(props, context)
 
+    const $this = getCurrentInstance().proxy
+
     // ================ DATA ================
 
     /**
@@ -63,7 +65,18 @@ export default {
      */
     const input = ref(null)
 
-    // ============== COMPITED ==============
+    // ============== COMPUTED ==============
+
+    /**
+     * The current locale object for flatpickr.
+     * 
+     * @type {object}
+     * @private
+     */
+    const locale = computed(() => {
+      return $this.$vueform.i18n.locales[$this.$vueform.locale]?.vueform?.datepicker ||
+             $this.$vueform.i18n.locales[$this.$vueform.i18n.fallbackLocale]?.vueform?.datepicker || {}
+    })
 
     /**
      * The current `options.mode`.
@@ -145,7 +158,8 @@ export default {
         // creating a date string according to displayFormat (to display)
         formatDate: (date, format) => {
           return moment(date).format(format)
-        }
+        },
+        locale: locale.value,
       }))
 
       if (datepicker$.value.calendarContainer) {
@@ -172,6 +186,10 @@ export default {
     }, { immediate: false })
 
     watch(options, (n,o) => {
+      init()
+    }, { deep: true })
+
+    watch(locale, (n,o) => {
       init()
     }, { deep: true })
 
@@ -205,6 +223,7 @@ export default {
       input,
       config,
       mode,
+      locale,
       update,
     }
   },

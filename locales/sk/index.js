@@ -22,7 +22,7 @@ export default {
         "uploadButton": "Nahrajte obrázky",
         "dndTitle": "Nahrajte obrázky",
         "dndDescription": "Presuňte obrázky alebo ich nahrajte kliknutím sem"
-      }
+      },
     },
     "steps": {
       "finish": "Skončiť",
@@ -38,6 +38,55 @@ export default {
       "multipleLabelMore": ":options vybrané možnosti",
       "noResults": "Nenašli sa žiadne možnosti",
       "noOptions": "Zoznam je prázdny"
+    },
+    "datepicker": {
+      "weekdays": {
+        "shorthand": ["Ned", "Pon", "Ut", "Str", "Štv", "Pia", "Sob"],
+        "longhand": [
+          "Nedeľa",
+          "Pondelok",
+          "Utorok",
+          "Streda",
+          "Štvrtok",
+          "Piatok",
+          "Sobota",
+        ],
+      },
+      "months": {
+        "shorthand": [
+          "Jan",
+          "Feb",
+          "Mar",
+          "Apr",
+          "Máj",
+          "Jún",
+          "Júl",
+          "Aug",
+          "Sep",
+          "Okt",
+          "Nov",
+          "Dec",
+        ],
+        "longhand": [
+          "Január",
+          "Február",
+          "Marec",
+          "Apríl",
+          "Máj",
+          "Jún",
+          "Júl",
+          "August",
+          "September",
+          "Október",
+          "November",
+          "December",
+        ],
+      },
+      "firstDayOfWeek": 1,
+      "rangeSeparator": " do ",
+      "ordinal": function () {
+        return ".";
+      },
     },
     "defaultMessage": "Neplatné pole",
     "dateFormats": {
