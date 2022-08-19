@@ -22,7 +22,7 @@ export default {
         "uploadButton": "画像をアップロードする",
         "dndTitle": "画像をアップロードする",
         "dndDescription": "画像をドロップするか、ここをクリックしてアップロードしてください"
-      }
+      },
     },
     "steps": {
       "finish": "終了",
@@ -38,6 +38,57 @@ export default {
       "multipleLabelMore": ":options オプションが選択されました",
       "noResults": "オプションが見つかりません",
       "noOptions": "リストは空です"
+    },
+    "datepicker": {
+      "weekdays": {
+        "shorthand": ["日", "月", "火", "水", "木", "金", "土"],
+        "longhand": [
+          "日曜日",
+          "月曜日",
+          "火曜日",
+          "水曜日",
+          "木曜日",
+          "金曜日",
+          "土曜日",
+        ],
+      },
+
+      "months": {
+        "shorthand": [
+          "1月",
+          "2月",
+          "3月",
+          "4月",
+          "5月",
+          "6月",
+          "7月",
+          "8月",
+          "9月",
+          "10月",
+          "11月",
+          "12月",
+        ],
+        "longhand": [
+          "1月",
+          "2月",
+          "3月",
+          "4月",
+          "5月",
+          "6月",
+          "7月",
+          "8月",
+          "9月",
+          "10月",
+          "11月",
+          "12月",
+        ],
+      },
+      "rangeSeparator": " から ",
+      "monthAriaLabel": "月",
+      "amPM": ["午前", "午後"],
+      "yearAriaLabel": "年",
+      "hourAriaLabel": "時間",
+      "minuteAriaLabel": "分",
     },
     "defaultMessage": "無効なフィールド",
     "dateFormats": {

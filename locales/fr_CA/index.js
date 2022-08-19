@@ -22,7 +22,7 @@ export default {
         "uploadButton": "Importer des images",
         "dndTitle": "Importer des images",
         "dndDescription": "Glisser des images ou cliquer ici pour les télécharger"
-      }
+      },
     },
     "steps": {
       "finish": "Terminer",
@@ -38,6 +38,60 @@ export default {
       "multipleLabelMore": ":options options sélectionnées",
       "noResults": "Aucunes options trouvées",
       "noOptions": "La liste est vide"
+    },
+    "datepicker": {
+      "weekdays": {
+        "shorthand": ["dim", "lun", "mar", "mer", "jeu", "ven", "sam"],
+        "longhand": [
+          "dimanche",
+          "lundi",
+          "mardi",
+          "mercredi",
+          "jeudi",
+          "vendredi",
+          "samedi",
+        ],
+      },
+      "months": {
+        "shorthand": [
+          "janv",
+          "févr",
+          "mars",
+          "avr",
+          "mai",
+          "juin",
+          "juil",
+          "août",
+          "sept",
+          "oct",
+          "nov",
+          "déc",
+        ],
+        "longhand": [
+          "janvier",
+          "février",
+          "mars",
+          "avril",
+          "mai",
+          "juin",
+          "juillet",
+          "août",
+          "septembre",
+          "octobre",
+          "novembre",
+          "décembre",
+        ],
+      },
+      "ordinal": (nth) => {
+        if (nth > 1) return "";
+
+        return "er";
+      },
+      "firstDayOfWeek": 1,
+      "rangeSeparator": " au ",
+      "weekAbbreviation": "Sem",
+      "scrollTitle": "Défiler pour augmenter la valeur",
+      "toggleTitle": "Cliquer pour basculer",
     },
     "defaultMessage": "Champ invalide",
     "dateFormats": {

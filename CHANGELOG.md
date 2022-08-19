@@ -1,3 +1,14 @@
+## v1.2.10
+
+> `2022-08-19`
+
+### 🐞 Bug Fixes
+  - Added datepicker locales.
+  - Mobile datepicker fix.
+  - Removed `font-sans` from select elements' search input in Tailwind.
+  - Tailwind 3 lg input floating label positioning fix.
+  - `GroupElement` can now be placed in an `ObjectElement`.
+
 ## v1.2.9
 
 > `2022-08-08`

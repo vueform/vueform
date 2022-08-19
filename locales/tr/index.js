@@ -22,7 +22,7 @@ export default {
         "uploadButton": "Resim yükle",
         "dndTitle": "Resim yükle",
         "dndDescription": "Resimleri bırakın veya yüklemek için buraya tıklayın"
-      }
+      },
     },
     "steps": {
       "finish": "Bitiş",
@@ -38,6 +38,59 @@ export default {
       "multipleLabelMore": ":options seçenekleri seçildi",
       "noResults": "Seçenek bulunamadı",
       "noOptions": "Liste boş"
+    },
+    "datepicker": {
+      "weekdays": {
+        "shorthand": ["Paz", "Pzt", "Sal", "Çar", "Per", "Cum", "Cmt"],
+        "longhand": [
+          "Pazar",
+          "Pazartesi",
+          "Salı",
+          "Çarşamba",
+          "Perşembe",
+          "Cuma",
+          "Cumartesi",
+        ],
+      },
+      "months": {
+        "shorthand": [
+          "Oca",
+          "Şub",
+          "Mar",
+          "Nis",
+          "May",
+          "Haz",
+          "Tem",
+          "Ağu",
+          "Eyl",
+          "Eki",
+          "Kas",
+          "Ara",
+        ],
+        "longhand": [
+          "Ocak",
+          "Şubat",
+          "Mart",
+          "Nisan",
+          "Mayıs",
+          "Haziran",
+          "Temmuz",
+          "Ağustos",
+          "Eylül",
+          "Ekim",
+          "Kasım",
+          "Aralık",
+        ],
+      },
+      "firstDayOfWeek": 1,
+      "ordinal": () => {
+        return ".";
+      },
+      "rangeSeparator": " - ",
+      "weekAbbreviation": "Hf",
+      "scrollTitle": "Artırmak için kaydırın",
+      "toggleTitle": "Aç/Kapa",
+      "amPM": ["ÖÖ", "ÖS"],
     },
     "defaultMessage": "Geçersiz alan",
     "dateFormats": {

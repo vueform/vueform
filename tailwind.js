@@ -1,6 +1,8 @@
 const svgToDataUri = require('mini-svg-data-uri')
 const Color = require('color')
 const plugin = require('tailwindcss/plugin')
+const fs = require('fs')
+const path = require('path')
 
 /**
  * Converts an HSL color value to RGB. Conversion formula
@@ -51,8 +53,12 @@ const upperFirst = (string) => {
 
 const vueform = plugin((context) => {
   const { theme, addBase, addUtilities, addVariant, e } = context
-  const prefix = context.addUserCss === undefined ? context.prefix : s => s
-  const version = context.addUserCss === undefined ? 2 : 3
+  const prefix = context.matchComponents === undefined ? context.prefix : s => s
+  const version = context.matchComponents === undefined ? 2 : 3
+
+  // Testing output
+  // const file = fs.readFileSync(path.resolve(__dirname, './tw.txt'))
+  // fs.writeFileSync(path.resolve(__dirname, './tw.txt'), file + '\n' + version.toString() + '\n' + JSON.stringify(Object.keys(context).sort()))
 
   const rules = [
     {
@@ -110,7 +116,7 @@ const vueform = plugin((context) => {
         'background-position': 'initial',
         'background-repeat': 'unset',
         'background-size': 'initial',
-        'color-adjust': 'unset',
+        'print-color-adjust': 'unset',
       },
     },
     {
@@ -1810,20 +1816,6 @@ const vueform = plugin((context) => {
     })
   })
   
-  addVariant('focused', ({ modifySelectors, separator }) => {
-    modifySelectors(({ className }) => {
-      return `.${e(`focused${separator}${className}`)}.form-focus,
-              .${e(`focused${separator}${className}`)}:focus`
-    })
-  })
-  
-  addVariant('focused-hover', ({ modifySelectors, separator }) => {
-    modifySelectors(({ className }) => {
-      return `.${e(`focused-hover${separator}${className}`)}.form-focus:hover,
-              .${e(`focused-hover${separator}${className}`)}:focus:hover`
-    })
-  })
-  
   addVariant('checked-focused', ({ modifySelectors, separator }) => {
     modifySelectors(({ className }) => {
       return `.${e(`checked-focused${separator}${className}`)}:checked:focus`
@@ -1882,12 +1874,33 @@ const vueform = plugin((context) => {
     })
   })
 
-  addVariant('with-floating', ({ modifySelectors, separator }) => {
-    modifySelectors(({ className }) => {
-      return `${prefix('.label-floating')} ~ .${e(`with-floating${separator}${className}`)},
-              ${prefix('.label-floating')} ~ div .${e(`with-floating${separator}${className}`)}`
+  if (version === 2) {
+    addVariant('with-floating', ({ modifySelectors, separator }) => {
+      modifySelectors(({ className }) => {
+        return `${prefix('.label-floating')} ~ .${e(`with-floating${separator}${className}`)},
+                ${prefix('.label-floating')} ~ div .${e(`with-floating${separator}${className}`)}`
+      })
     })
-  })
+  
+    addVariant('focused', ({ modifySelectors, separator }) => {
+      modifySelectors(({ className }) => {
+        return `.${e(`focused${separator}${className}`)}.form-focus,
+                .${e(`focused${separator}${className}`)}:focus`
+      })
+    })
+    
+    addVariant('focused-hover', ({ modifySelectors, separator }) => {
+      modifySelectors(({ className }) => {
+        return `.${e(`focused-hover${separator}${className}`)}.form-focus:hover,
+                .${e(`focused-hover${separator}${className}`)}:focus:hover`
+      })
+    })
+  } else {
+    addVariant('with-floating', ['.label-floating ~ &', '.label-floating ~ div &'])
+    addVariant('focused', ['&.form-focus', '&:focus'])
+    addVariant('focused-hover', ['&.form-focus:hover', '&:focus:hover'])
+  }
+
   
   addVariant('in-input-group', ({ modifySelectors, separator }) => {
     modifySelectors(({ className }) => {

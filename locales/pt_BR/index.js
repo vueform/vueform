@@ -22,7 +22,7 @@ export default {
         "uploadButton": "Carregar imagens",
         "dndTitle": "Carregar imagens",
         "dndDescription": "Soltar imagens ou clicar aqui para carregar"
-      }
+      },
     },
     "steps": {
       "finish": "Terminar",
@@ -38,6 +38,51 @@ export default {
       "multipleLabelMore": ":options opções selecionadas",
       "noResults": "Nenhuma opção encontrada",
       "noOptions": "A lista está vazia"
+    },
+    "datepicker": {
+      "weekdays": {
+        "shorthand": ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sáb"],
+        "longhand": [
+          "Domingo",
+          "Segunda-feira",
+          "Terça-feira",
+          "Quarta-feira",
+          "Quinta-feira",
+          "Sexta-feira",
+          "Sábado",
+        ],
+      },
+      "months": {
+        "shorthand": [
+          "Jan",
+          "Fev",
+          "Mar",
+          "Abr",
+          "Mai",
+          "Jun",
+          "Jul",
+          "Ago",
+          "Set",
+          "Out",
+          "Nov",
+          "Dez",
+        ],
+        "longhand": [
+          "Janeiro",
+          "Fevereiro",
+          "Março",
+          "Abril",
+          "Maio",
+          "Junho",
+          "Julho",
+          "Agosto",
+          "Setembro",
+          "Outubro",
+          "Novembro",
+          "Dezembro",
+        ],
+      },
+      "rangeSeparator": " até ",
     },
     "defaultMessage": "Campo inválido",
     "dateFormats": {

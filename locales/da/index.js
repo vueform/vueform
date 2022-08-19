@@ -22,7 +22,7 @@ export default {
         "uploadButton": "Upload billeder",
         "dndTitle": "Upload billeder",
         "dndDescription": "Slip billeder eller klik her for at uploade"
-      }
+      },
     },
     "steps": {
       "finish": "Afslut",
@@ -39,7 +39,56 @@ export default {
       "noResults": "Ingen indstillinger fundet",
       "noOptions": "Listen er tom"
     },
-    "defaultMessage": "Ugyldigt felt",
+    "datepicker": {
+      "weekdays": {
+        "shorthand": ["søn", "man", "tir", "ons", "tors", "fre", "lør"],
+        "longhand": [
+          "søndag",
+          "mandag",
+          "tirsdag",
+          "onsdag",
+          "torsdag",
+          "fredag",
+          "lørdag",
+        ],
+      },
+      "months": {
+        "shorthand": [
+          "jan",
+          "feb",
+          "mar",
+          "apr",
+          "maj",
+          "jun",
+          "jul",
+          "aug",
+          "sep",
+          "okt",
+          "nov",
+          "dec",
+        ],
+        "longhand": [
+          "januar",
+          "februar",
+          "marts",
+          "april",
+          "maj",
+          "juni",
+          "juli",
+          "august",
+          "september",
+          "oktober",
+          "november",
+          "december",
+        ],
+      },
+      "ordinal": () => {
+        return ".";
+      },
+      "firstDayOfWeek": 1,
+      "rangeSeparator": " til ",
+      "weekAbbreviation": "uge",
+    },
     "dateFormats": {
       "datetimeSeconds24": "DD.MM.YYYY HH.mm.ss",
       "datetimeSeconds12": "DD.MM.YYYY hh.mm.ss a",
@@ -50,7 +99,8 @@ export default {
       "time24": "HH.mm",
       "time12": "hh.mm a",
       "date": "DD.MM.YYYY"
-    }
+    },
+    "defaultMessage": "Ugyldigt felt",
   },
   "validation": {
     "accepted": ":attribute skal accepteres.",
