@@ -3,9 +3,9 @@
     <div
       v-for="(message, key, index) in messages"
       :class="classes.message"
+      v-html="message"
       :key="index"
     >
-      {{ message }}
     </div>
   </div>
 </template>
