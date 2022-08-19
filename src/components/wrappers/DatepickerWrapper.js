@@ -159,6 +159,7 @@ export default {
         formatDate: (date, format) => {
           return moment(date).format(format)
         },
+        disableMobile: true,
         locale: locale.value,
       }))
 
