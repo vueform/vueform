@@ -152,7 +152,7 @@ Get started with Vueform in an instant using one of our boilerplates.
         <h4><img src="https://github.com/vueform/vueform/raw/main/assets/icon-nuxt.svg" height="21" /> Nuxt</h4>
       </td>
       <td>
-         <h4><a href="https://github.com/vueform/nuxt-starter">@vueform/nuxt-starter</a></h4>
+         <h4><a href="https://github.com/vueform/nuxt2-starter">@vueform/nuxt2-starter</a></h4>
       </td>
     </tr>
     <tr>
