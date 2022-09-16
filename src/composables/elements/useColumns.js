@@ -1,4 +1,5 @@
-import { computed, toRefs } from 'vue'
+import _ from 'lodash'
+import { computed, toRefs, ref, watch } from 'vue'
 
 const base = function(props, context, dependencies)
 {
@@ -12,6 +13,11 @@ const base = function(props, context, dependencies)
   const form$ = dependencies.form$
   const theme = dependencies.theme
   const hasLabel = dependencies.hasLabel
+
+  // ================ DATA ================
+
+  const Columns = ref(_.cloneDeep(columns.value))
+
 
   // ============== COMPUTED ==============
 
@@ -30,12 +36,29 @@ const base = function(props, context, dependencies)
       formPresetColumns: form$.value.options.presets,
       formColumns: form$.value.options.columns,
       elementPresetColumns: presets.value,
-      elementColumns: columns.value,
+      elementColumns: Columns.value,
     }, hasLabel.value, theme.value.columns, config.presets)).classes
   })
 
+  // =============== METHODS ==============
+
+  /**
+   * Update columns programmatically.
+   * 
+   * @param {number|array} value* the new value for columns option
+   * @private
+   */
+  const updateColumns = (v) => {
+    Columns.value = _.cloneDeep(v)
+  }
+
+  watch(columns, (v) => {
+    Columns.value = _.cloneDeep(v)
+  }, { immediate: false, deep: true })
+
   return {
     columnsClasses,
+    updateColumns,
   }
 }
 
