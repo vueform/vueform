@@ -170,16 +170,6 @@ export default {
       type: [Boolean],
       default: true
     },
-    urls: {
-      required: false,
-      type: [Object],
-      default: () => ({})
-    },
-    methods: {
-      required: false,
-      type: [Object],
-      default: () => ({})
-    },
     uploadTempEndpoint: {
       required: false,
       type: [Object, String, Function],
