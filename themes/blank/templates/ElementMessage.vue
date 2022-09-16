@@ -1,5 +1,5 @@
 <template>
-  <div v-if="message" :class="classes.container">{{ message }}</div>
+  <div v-if="message" :class="classes.container" v-html="message"></div>
 </template>
 
 <script>

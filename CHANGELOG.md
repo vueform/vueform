@@ -1,3 +1,15 @@
+## v1.2.11
+
+> `2022-09-16`
+
+### 🐞 Bug Fixes
+  - Removed unused import from `tailwind.js`.
+
+### 🎉 Feature
+  - Added `updateColumns` API method.
+  - Multifile inherits file props.
+  - Errors and messages can now display HTML.
+
 ## v1.2.10
 
 > `2022-08-19`

@@ -1,8 +1,8 @@
 const svgToDataUri = require('mini-svg-data-uri')
 const Color = require('color')
 const plugin = require('tailwindcss/plugin')
-const fs = require('fs')
-const path = require('path')
+// const fs = require('fs')
+// const path = require('path')
 
 /**
  * Converts an HSL color value to RGB. Conversion formula
