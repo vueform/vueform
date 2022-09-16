@@ -48,6 +48,17 @@ const multifile = function(props, context, dependencies, options = {})
     storeFile,
     storeOrder,
     view,
+
+    clickable,
+    url,
+    previewUrl,
+    urls,
+    methods,
+    uploadTempEndpoint,
+    removeTempEndpoint,
+    removeEndpoint,
+    params,
+    softRemove,
    } = toRefs(props)
 
   // ============ DEPENDENCIES ============
@@ -81,27 +92,35 @@ const multifile = function(props, context, dependencies, options = {})
   })
 
   const prototype = computed(() => {
+    let fileSchema = {
+      type: type.value,
+      auto: auto.value,
+      view: view.value,
+      layout: view.value === 'gallery' ? 'ElementLayoutInline' : 'ElementLayout',
+      disabled: isDisabled.value,
+
+      clickable: clickable.value,
+      url: url.value,
+      previewUrl: previewUrl.value,
+      urls: urls.value,
+      methods: methods.value,
+      uploadTempEndpoint: uploadTempEndpoint.value,
+      removeTempEndpoint: removeTempEndpoint.value,
+      removeEndpoint: removeEndpoint.value,
+      params: params.value,
+      softRemove: softRemove.value,
+    }
+
     if (!isObject.value) {
-      return Object.assign({}, {
-        type: type.value,
-        auto: auto.value,
-        view: view.value,
-        layout: view.value === 'gallery' ? 'ElementLayoutInline' : 'ElementLayout',
-        disabled: isDisabled.value,
-      }, file.value)
+      return Object.assign({}, fileSchema, file.value)
     }
 
     return {
       type: 'object',
       schema: Object.assign({},
         // File
-        {[storeFileName.value]: Object.assign({}, {
-          type: type.value,
-          auto: auto.value,
-          view: view.value,
-          layout: view.value === 'gallery' ? 'ElementLayoutInline' : 'ElementLayout',
-          embed: true,
-          disabled: isDisabled.value,
+        {[storeFileName.value]: Object.assign({}, fileSchema , {
+          embed: true
         }, file.value)},
 
         // Order

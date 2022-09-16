@@ -95,21 +95,6 @@ export default {
       type: [Boolean],
       default: false
     },
-    accept: {
-      required: false,
-      type: [String, Array],
-      default: null
-    },
-    auto: {
-      required: false,
-      type: [Boolean],
-      default: true
-    },
-    file: {
-      required: false,
-      type: [Object],
-      default: () => ({})
-    },
     sort: {
       required: false,
       type: [Boolean],
@@ -153,6 +138,75 @@ export default {
       required: false,
       type: [String],
       default: null
+    },
+
+    file: {
+      required: false,
+      type: [Object],
+      default: () => ({})
+    },
+    accept: {
+      required: false,
+      type: [String, Array],
+      default: null
+    },
+    clickable: {
+      required: false,
+      type: [Boolean],
+      default: true
+    },
+    url: {
+      required: false,
+      type: [String, Boolean],
+      default: '/'
+    },
+    previewUrl: {
+      required: false,
+      type: [String],
+      default: undefined
+    },
+    auto: {
+      required: false,
+      type: [Boolean],
+      default: true
+    },
+    urls: {
+      required: false,
+      type: [Object],
+      default: () => ({})
+    },
+    methods: {
+      required: false,
+      type: [Object],
+      default: () => ({})
+    },
+    uploadTempEndpoint: {
+      required: false,
+      type: [Object, String, Function],
+      default: undefined,
+      '@default': 'config.endpoints.uploadTempFile',
+    },
+    removeTempEndpoint: {
+      required: false,
+      type: [Object, String, Function],
+      default: undefined,
+      '@default': 'config.endpoints.removeTempFile',
+    },
+    removeEndpoint: {
+      required: false,
+      type: [Object, String, Function],
+      default: undefined,
+      '@default': 'config.endpoints.removeFile',
+    },
+    params: {
+      required: false,
+      type: [Object],
+      default: () => ({})
+    },
+    softRemove: {
+      required: false,
+      type: [Boolean],
+      default: false
     },
   },
   setup(props, context) {
