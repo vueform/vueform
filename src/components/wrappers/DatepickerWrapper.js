@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import moment from 'moment'
-import { toRefs, watch, computed, ref, onMounted, getCurrentInstance } from 'vue'
+import { toRefs, watch, computed, ref, nextTick, onMounted, getCurrentInstance } from 'vue'
 import useElementComponent from '../../composables/useElementComponent'
 import flatpickr from 'flatpickr'
 
@@ -141,7 +141,11 @@ export default {
      * @returns {void}
      * @private
      */
-    const init = () => {
+    const init = async () => {
+      if (!input.value) {
+        await nextTick()
+      }
+
       datepicker$.value = flatpickr(input.value, Object.assign({}, config.value, {
         onChange: (val) => {
           update(val)
@@ -187,6 +191,10 @@ export default {
     }, { immediate: false })
 
     watch(options, (n,o) => {
+      if (_.isEqual(n, o)) {
+        return
+      }
+      
       init()
     }, { deep: true })
 
