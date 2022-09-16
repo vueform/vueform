@@ -724,6 +724,20 @@ module.exports = {
         },
         private: true,
       },
+      updateColumns: {
+        description: 'Update columns programmatically.',
+        params: {
+          value: {
+            types: [
+              'number',
+              'array',
+            ],
+            required: 'true',
+            description: 'the new value for columns option',
+          },
+        },
+        private: true,
+      },
       updateConditions: {
         description: 'Updates element conditions after they have been changed.',
         returns: 'void',
@@ -1870,6 +1884,20 @@ module.exports = {
       deactivate: {
         description: 'Sets the `active` property of the element to `false`.',
         returns: 'void',
+        private: true,
+      },
+      updateColumns: {
+        description: 'Update columns programmatically.',
+        params: {
+          value: {
+            types: [
+              'number',
+              'array',
+            ],
+            required: 'true',
+            description: 'the new value for columns option',
+          },
+        },
         private: true,
       },
       updateConditions: {
@@ -3163,6 +3191,20 @@ module.exports = {
         description: 'Unchecks all checkboxes.',
         returns: 'void',
         private: false,
+      },
+      updateColumns: {
+        description: 'Update columns programmatically.',
+        params: {
+          value: {
+            types: [
+              'number',
+              'array',
+            ],
+            required: 'true',
+            description: 'the new value for columns option',
+          },
+        },
+        private: true,
       },
       updateConditions: {
         description: 'Updates element conditions after they have been changed.',
@@ -4632,6 +4674,20 @@ module.exports = {
         returns: 'void',
         private: true,
       },
+      updateColumns: {
+        description: 'Update columns programmatically.',
+        params: {
+          value: {
+            types: [
+              'number',
+              'array',
+            ],
+            required: 'true',
+            description: 'the new value for columns option',
+          },
+        },
+        private: true,
+      },
       updateConditions: {
         description: 'Updates element conditions after they have been changed.',
         returns: 'void',
@@ -6018,6 +6074,20 @@ module.exports = {
         returns: 'void',
         private: true,
       },
+      updateColumns: {
+        description: 'Update columns programmatically.',
+        params: {
+          value: {
+            types: [
+              'number',
+              'array',
+            ],
+            required: 'true',
+            description: 'the new value for columns option',
+          },
+        },
+        private: true,
+      },
       updateConditions: {
         description: 'Updates element conditions after they have been changed.',
         returns: 'void',
@@ -7376,6 +7446,20 @@ module.exports = {
       deactivate: {
         description: 'Sets the `active` property of the element to `false`.',
         returns: 'void',
+        private: true,
+      },
+      updateColumns: {
+        description: 'Update columns programmatically.',
+        params: {
+          value: {
+            types: [
+              'number',
+              'array',
+            ],
+            required: 'true',
+            description: 'the new value for columns option',
+          },
+        },
         private: true,
       },
       updateConditions: {
@@ -8934,6 +9018,20 @@ module.exports = {
         returns: 'void',
         private: true,
       },
+      updateColumns: {
+        description: 'Update columns programmatically.',
+        params: {
+          value: {
+            types: [
+              'number',
+              'array',
+            ],
+            required: 'true',
+            description: 'the new value for columns option',
+          },
+        },
+        private: true,
+      },
       updateConditions: {
         description: 'Updates element conditions after they have been changed.',
         returns: 'void',
@@ -10114,6 +10212,20 @@ module.exports = {
         returns: 'void',
         private: true,
       },
+      updateColumns: {
+        description: 'Update columns programmatically.',
+        params: {
+          value: {
+            types: [
+              'number',
+              'array',
+            ],
+            required: 'true',
+            description: 'the new value for columns option',
+          },
+        },
+        private: true,
+      },
       updateConditions: {
         description: 'Updates element conditions after they have been changed.',
         returns: 'void',
@@ -10250,6 +10362,11 @@ module.exports = {
       },
       initMessageBag: {
         description: 'Initalizes MessageBag service.',
+        returns: 'void',
+        private: true,
+      },
+      initValidation: {
+        description: 'Initalizes children validators.',
         returns: 'void',
         private: true,
       },
@@ -12287,6 +12404,20 @@ module.exports = {
         returns: 'void',
         private: true,
       },
+      updateColumns: {
+        description: 'Update columns programmatically.',
+        params: {
+          value: {
+            types: [
+              'number',
+              'array',
+            ],
+            required: 'true',
+            description: 'the new value for columns option',
+          },
+        },
+        private: true,
+      },
       updateConditions: {
         description: 'Updates element conditions after they have been changed.',
         returns: 'void',
@@ -13768,6 +13899,20 @@ module.exports = {
         returns: 'void',
         private: true,
       },
+      updateColumns: {
+        description: 'Update columns programmatically.',
+        params: {
+          value: {
+            types: [
+              'number',
+              'array',
+            ],
+            required: 'true',
+            description: 'the new value for columns option',
+          },
+        },
+        private: true,
+      },
       updateConditions: {
         description: 'Updates element conditions after they have been changed.',
         returns: 'void',
@@ -14637,34 +14782,6 @@ module.exports = {
         required: false,
         private: false,
       },
-      accept: {
-        required: 'false',
-        default: 'null',
-        types: [
-          'string',
-          'array',
-        ],
-        required: false,
-        private: false,
-      },
-      auto: {
-        required: 'false',
-        default: 'true',
-        types: [
-          'boolean',
-        ],
-        required: false,
-        private: false,
-      },
-      file: {
-        required: 'false',
-        default: '{}',
-        types: [
-          'object',
-        ],
-        required: false,
-        private: false,
-      },
       sort: {
         required: 'false',
         default: 'false',
@@ -14733,6 +14850,113 @@ module.exports = {
         default: 'null',
         types: [
           'string',
+        ],
+        required: false,
+        private: false,
+      },
+      file: {
+        required: 'false',
+        default: '{}',
+        types: [
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      accept: {
+        required: 'false',
+        default: 'null',
+        types: [
+          'string',
+          'array',
+        ],
+        required: false,
+        private: false,
+      },
+      clickable: {
+        required: 'false',
+        default: 'true',
+        types: [
+          'boolean',
+        ],
+        required: false,
+        private: false,
+      },
+      url: {
+        required: 'false',
+        default: '/',
+        types: [
+          'string',
+          'boolean',
+        ],
+        required: false,
+        private: false,
+      },
+      previewUrl: {
+        required: 'false',
+        default: 'undefined',
+        types: [
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
+      auto: {
+        required: 'false',
+        default: 'true',
+        types: [
+          'boolean',
+        ],
+        required: false,
+        private: false,
+      },
+      uploadTempEndpoint: {
+        required: 'false',
+        default: 'config.endpoints.uploadTempFile',
+        types: [
+          'object',
+          'string',
+          'function',
+        ],
+        required: false,
+        private: false,
+      },
+      removeTempEndpoint: {
+        required: 'false',
+        default: 'config.endpoints.removeTempFile',
+        types: [
+          'object',
+          'string',
+          'function',
+        ],
+        required: false,
+        private: false,
+      },
+      removeEndpoint: {
+        required: 'false',
+        default: 'config.endpoints.removeFile',
+        types: [
+          'object',
+          'string',
+          'function',
+        ],
+        required: false,
+        private: false,
+      },
+      params: {
+        required: 'false',
+        default: '{}',
+        types: [
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      softRemove: {
+        required: 'false',
+        default: 'false',
+        types: [
+          'boolean',
         ],
         required: false,
         private: false,
@@ -15261,6 +15485,20 @@ module.exports = {
       deactivate: {
         description: 'Sets the `active` property of the element to `false`.',
         returns: 'void',
+        private: true,
+      },
+      updateColumns: {
+        description: 'Update columns programmatically.',
+        params: {
+          value: {
+            types: [
+              'number',
+              'array',
+            ],
+            required: 'true',
+            description: 'the new value for columns option',
+          },
+        },
         private: true,
       },
       updateConditions: {
@@ -17189,6 +17427,20 @@ module.exports = {
         returns: 'void',
         private: true,
       },
+      updateColumns: {
+        description: 'Update columns programmatically.',
+        params: {
+          value: {
+            types: [
+              'number',
+              'array',
+            ],
+            required: 'true',
+            description: 'the new value for columns option',
+          },
+        },
+        private: true,
+      },
       updateConditions: {
         description: 'Updates element conditions after they have been changed.',
         returns: 'void',
@@ -18664,6 +18916,20 @@ module.exports = {
         returns: 'void',
         private: true,
       },
+      updateColumns: {
+        description: 'Update columns programmatically.',
+        params: {
+          value: {
+            types: [
+              'number',
+              'array',
+            ],
+            required: 'true',
+            description: 'the new value for columns option',
+          },
+        },
+        private: true,
+      },
       updateConditions: {
         description: 'Updates element conditions after they have been changed.',
         returns: 'void',
@@ -18800,6 +19066,11 @@ module.exports = {
       },
       initMessageBag: {
         description: 'Initalizes MessageBag service.',
+        returns: 'void',
+        private: true,
+      },
+      initValidation: {
+        description: 'Initalizes children validators.',
         returns: 'void',
         private: true,
       },
@@ -19891,6 +20162,20 @@ module.exports = {
       deactivate: {
         description: 'Sets the `active` property of the element to `false`.',
         returns: 'void',
+        private: true,
+      },
+      updateColumns: {
+        description: 'Update columns programmatically.',
+        params: {
+          value: {
+            types: [
+              'number',
+              'array',
+            ],
+            required: 'true',
+            description: 'the new value for columns option',
+          },
+        },
         private: true,
       },
       updateConditions: {
@@ -21142,6 +21427,20 @@ module.exports = {
       deactivate: {
         description: 'Sets the `active` property of the element to `false`.',
         returns: 'void',
+        private: true,
+      },
+      updateColumns: {
+        description: 'Update columns programmatically.',
+        params: {
+          value: {
+            types: [
+              'number',
+              'array',
+            ],
+            required: 'true',
+            description: 'the new value for columns option',
+          },
+        },
         private: true,
       },
       updateConditions: {
@@ -22918,6 +23217,20 @@ module.exports = {
         returns: 'void',
         private: true,
       },
+      updateColumns: {
+        description: 'Update columns programmatically.',
+        params: {
+          value: {
+            types: [
+              'number',
+              'array',
+            ],
+            required: 'true',
+            description: 'the new value for columns option',
+          },
+        },
+        private: true,
+      },
       updateConditions: {
         description: 'Updates element conditions after they have been changed.',
         returns: 'void',
@@ -24546,6 +24859,20 @@ module.exports = {
         returns: 'void',
         private: true,
       },
+      updateColumns: {
+        description: 'Update columns programmatically.',
+        params: {
+          value: {
+            types: [
+              'number',
+              'array',
+            ],
+            required: 'true',
+            description: 'the new value for columns option',
+          },
+        },
+        private: true,
+      },
       updateConditions: {
         description: 'Updates element conditions after they have been changed.',
         returns: 'void',
@@ -25506,6 +25833,20 @@ module.exports = {
       deactivate: {
         description: 'Sets the `active` property of the element to `false`.',
         returns: 'void',
+        private: true,
+      },
+      updateColumns: {
+        description: 'Update columns programmatically.',
+        params: {
+          value: {
+            types: [
+              'number',
+              'array',
+            ],
+            required: 'true',
+            description: 'the new value for columns option',
+          },
+        },
         private: true,
       },
       updateConditions: {
@@ -26728,6 +27069,20 @@ module.exports = {
       deactivate: {
         description: 'Sets the `active` property of the element to `false`.',
         returns: 'void',
+        private: true,
+      },
+      updateColumns: {
+        description: 'Update columns programmatically.',
+        params: {
+          value: {
+            types: [
+              'number',
+              'array',
+            ],
+            required: 'true',
+            description: 'the new value for columns option',
+          },
+        },
         private: true,
       },
       updateConditions: {
@@ -28153,6 +28508,20 @@ module.exports = {
         returns: 'void',
         private: true,
       },
+      updateColumns: {
+        description: 'Update columns programmatically.',
+        params: {
+          value: {
+            types: [
+              'number',
+              'array',
+            ],
+            required: 'true',
+            description: 'the new value for columns option',
+          },
+        },
+        private: true,
+      },
       updateConditions: {
         description: 'Updates element conditions after they have been changed.',
         returns: 'void',
@@ -29534,6 +29903,20 @@ module.exports = {
       deactivate: {
         description: 'Sets the `active` property of the element to `false`.',
         returns: 'void',
+        private: true,
+      },
+      updateColumns: {
+        description: 'Update columns programmatically.',
+        params: {
+          value: {
+            types: [
+              'number',
+              'array',
+            ],
+            required: 'true',
+            description: 'the new value for columns option',
+          },
+        },
         private: true,
       },
       updateConditions: {
@@ -31316,6 +31699,20 @@ module.exports = {
         returns: 'void',
         private: true,
       },
+      updateColumns: {
+        description: 'Update columns programmatically.',
+        params: {
+          value: {
+            types: [
+              'number',
+              'array',
+            ],
+            required: 'true',
+            description: 'the new value for columns option',
+          },
+        },
+        private: true,
+      },
       updateConditions: {
         description: 'Updates element conditions after they have been changed.',
         returns: 'void',
@@ -33049,6 +33446,20 @@ module.exports = {
         returns: 'void',
         private: true,
       },
+      updateColumns: {
+        description: 'Update columns programmatically.',
+        params: {
+          value: {
+            types: [
+              'number',
+              'array',
+            ],
+            required: 'true',
+            description: 'the new value for columns option',
+          },
+        },
+        private: true,
+      },
       updateConditions: {
         description: 'Updates element conditions after they have been changed.',
         returns: 'void',
@@ -34412,6 +34823,20 @@ module.exports = {
         returns: 'void',
         private: true,
       },
+      updateColumns: {
+        description: 'Update columns programmatically.',
+        params: {
+          value: {
+            types: [
+              'number',
+              'array',
+            ],
+            required: 'true',
+            description: 'the new value for columns option',
+          },
+        },
+        private: true,
+      },
       updateConditions: {
         description: 'Updates element conditions after they have been changed.',
         returns: 'void',
@@ -35708,6 +36133,20 @@ module.exports = {
       deactivate: {
         description: 'Sets the `active` property of the element to `false`.',
         returns: 'void',
+        private: true,
+      },
+      updateColumns: {
+        description: 'Update columns programmatically.',
+        params: {
+          value: {
+            types: [
+              'number',
+              'array',
+            ],
+            required: 'true',
+            description: 'the new value for columns option',
+          },
+        },
         private: true,
       },
       updateConditions: {

@@ -811,6 +811,12 @@ module.exports = {
         "types": [
           "boolean"
         ]
+      },
+      "view": {
+        "required": false,
+        "types": [
+          "string"
+        ]
       }
     },
     "events": {},
@@ -4723,6 +4729,13 @@ module.exports = {
           "string"
         ],
         "description": "The current `options.mode`."
+      },
+      "locale": {
+        "public": false,
+        "types": [
+          "object"
+        ],
+        "description": "The current locale object for flatpickr."
       }
     },
     "data": {

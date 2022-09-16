@@ -1015,6 +1015,22 @@ export default {
           ],
           "description": "Calulated column sizes and classes for the element."
         }
+      },
+      "methods": {
+        "updateColumns": {
+          "public": false,
+          "description": "Update columns programmatically.",
+          "params": {
+            "value": {
+              "types": [
+                "number",
+                "array"
+              ],
+              "required": true,
+              "description": "the new value for columns option"
+            }
+          }
+        }
       }
     }
   },
@@ -4146,6 +4162,11 @@ export default {
           "public": false,
           "returns": "void",
           "description": "Initalizes MessageBag service."
+        },
+        "initValidation": {
+          "public": false,
+          "returns": "void",
+          "description": "Initalizes children validators."
         }
       }
     },
@@ -4618,6 +4639,11 @@ export default {
           "public": false,
           "returns": "void",
           "description": "Initalizes MessageBag service."
+        },
+        "initValidation": {
+          "public": false,
+          "returns": "void",
+          "description": "Initalizes children validators."
         }
       }
     }
