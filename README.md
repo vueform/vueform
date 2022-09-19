@@ -149,7 +149,15 @@ Get started with Vueform in an instant using one of our boilerplates.
     </tr>
     <tr>
       <td>
-        <h4><img src="https://github.com/vueform/vueform/raw/main/assets/icon-nuxt.svg" height="21" /> Nuxt</h4>
+        <h4><img src="https://github.com/vueform/vueform/raw/main/assets/icon-nuxt.svg" height="21" /> Nuxt 3</h4>
+      </td>
+      <td>
+         <h4><a href="https://github.com/vueform/nuxt3-starter">@vueform/nuxt3-starter</a></h4>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <h4><img src="https://github.com/vueform/vueform/raw/main/assets/icon-nuxt.svg" height="21" /> Nuxt 2</h4>
       </td>
       <td>
          <h4><a href="https://github.com/vueform/nuxt2-starter">@vueform/nuxt2-starter</a></h4>
@@ -157,7 +165,7 @@ Get started with Vueform in an instant using one of our boilerplates.
     </tr>
     <tr>
       <td>
-        <h4><img src="https://github.com/vueform/vueform/raw/main/assets/icon-vue.svg" height="21" /> VueCLI</h4>
+        <h4><img src="https://github.com/vueform/vueform/raw/main/assets/icon-vue.svg" height="21" /> VueCLI (Vue 3)</h4>
       </td>
       <td>
          <h4><a href="https://github.com/vueform/vuecli3-starter">@vueform/vuecli3-starter</a></h4>
@@ -173,7 +181,7 @@ Get started with Vueform in an instant using one of our boilerplates.
     </tr>
     <tr>
       <td>
-        <h4><img src="https://github.com/vueform/vueform/raw/main/assets/icon-laravel.svg" height="21" /> Laravel</h4>
+        <h4><img src="https://github.com/vueform/vueform/raw/main/assets/icon-laravel.svg" height="21" /> Laravel (Vue 3)</h4>
       </td>
       <td>
          <h4><a href="https://github.com/vueform/laravel-starter">@vueform/laravel-starter</a></h4>
