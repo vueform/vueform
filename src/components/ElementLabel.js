@@ -38,7 +38,17 @@ export default {
      * @private
      */
     const name = computed(() => {
-      return el$.value.name
+      return el$.value.fieldId
+    })
+
+    /**
+     * The name of the element.
+     * 
+     * @type {string}
+     * @private
+     */
+    const id = computed(() => {
+      return el$.value.labelId
     })
 
     /**
@@ -74,6 +84,7 @@ export default {
       label,
       isLabelComponent,
       name,
+      id,
       hasLabel,
       isSlot,
     }

@@ -570,6 +570,7 @@ const slider = function (props, context, dependencies)
   // ============ DEPENDENCIES ============
   
   const isDisabled = dependencies.isDisabled
+  const labelId = dependencies.labelId
 
   // ============== COMPUTED ==============
 
@@ -593,6 +594,7 @@ const slider = function (props, context, dependencies)
       showTooltip: showTooltip.value,
       tooltipPosition: tooltipPosition.value,
       lazy: lazy.value,
+      ariaLabelledby: labelId.value,
     }
   })
 
