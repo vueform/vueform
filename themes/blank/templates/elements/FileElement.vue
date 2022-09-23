@@ -14,8 +14,6 @@
       <!-- Upload button -->
       <button
         v-else-if="canSelect"
-        href=""
-        :id="fieldId"
         :class="classes.button"
         :aria-labelledby="labelId"
         :aria-placeholder="__(`vueform.elements.${type}.select`)"
@@ -26,6 +24,7 @@
       <input
         v-if="canSelect && !isDisabled && !preparing"
         v-show="false"
+        :id="fieldId"
         type="file"
         :accept="accept"
         @change="handleChange"

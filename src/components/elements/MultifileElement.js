@@ -21,6 +21,7 @@ import useMultifile from './../../composables/elements/useMultifile'
 import useChildren from './../../composables/elements/useChildren'
 import useValue from './../../composables/elements/useValue'
 import useClasses from './../../composables/elements/useClasses'
+import useFieldId from './../../composables/elements/useFieldId'
 
 import { array as useNullValue } from './../../composables/elements/useNullValue'
 import { array as useEmpty } from './../../composables/elements/useEmpty'
@@ -65,6 +66,11 @@ export default {
       required: false,
       type: [Boolean],
       default: false
+    },
+    id: {
+      required: false,
+      type: [String],
+      default: null
     },
     onAdd: {
       required: false,
@@ -211,6 +217,7 @@ export default {
       useInput,
       useSorting,
       usePrototype,
+      useFieldId,
       useEvents,
       useBaseElement,
       useDefault,

@@ -13,17 +13,19 @@
      />
 
       <!-- Upload button -->
-      <a
+      <button
         v-else-if="hasAdd"
-        href=""
         :class="classes.button"
+        :aria-labelledby="labelId"
+        :aria-placeholder="__('vueform.elements.multifile.uploadButton')"
         @click.prevent="handleClick"
-      >{{ __('vueform.elements.multifile.uploadButton') }}</a>
+      >{{ __('vueform.elements.multifile.uploadButton') }}</button>
       
       <!-- Actual input field -->
       <input
         v-show="false"
         multiple
+        :id="fieldId"
         type="file"
         @change="handleChange"
         :accept="accept"

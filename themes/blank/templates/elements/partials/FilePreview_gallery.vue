@@ -6,15 +6,15 @@
     role="button"
     :aria-labelledby="ariaLabelledby"
     :aria-placeholder="ariaPlaceholder"
-    aria-roledescription="❎"
+    :aria-role="ariaRoledescription"
     @keyup="handleKeyup"
   >
     <!-- Image  -->
     <a v-if="uploaded && hasLink && clickable" :class="classes.image" :href="link" target="_blank">
-      <img :src="preview" :class="classes.img" :alt="filename" :title="filename"/>
+      <img :src="preview" :class="classes.img" :alt="filename" :title="filename" aria-hidden="true"/>
     </a>
     <div v-else :class="classes.image">
-      <img :class="classes.img" :src="preview" :alt="filename" :title="filename"/>
+      <img :class="classes.img" :src="preview" :alt="filename" :title="filename" aria-hidden="true"/>
     </div>
 
     <!-- Overlay -->
@@ -23,7 +23,7 @@
         v-if="canUploadTemp"
         :class="classes.upload"
         @click.prevent="upload"
-        :aria-placeholder="hasError ? 'error' : undefined"
+        tabindex="-1"
       >{{ uploadText }}</button>
     </div>
 

@@ -32,7 +32,6 @@ export default {
       canUploadTemp,
       uploadText,
       ariaLabelledby,
-      ariaPlaceholder,
       upload,
       remove,
       handleKeyup,
@@ -49,6 +48,34 @@ export default {
      */
     const preview = computed(() => {
       return ['image', 'gallery'].indexOf(el$.value.View) !== -1 ? el$.value.preview : null
+    })
+
+    /**
+     * The `aria-placeholder` attribute of the preview.
+     * 
+     * @type {string}
+     */
+    const ariaPlaceholder = computed(() => {
+      let text = el$.value.embed && el$.value.View !== 'gallery' ? undefined : filename.value
+
+      if (hasError.value) {
+        if (text) {
+          text += ', error'
+        } else {
+          text = 'error'
+        }
+      }
+
+      return text
+    })
+
+    /**
+     * The `aria-roledescription` attribute of the preview.
+     * 
+     * @type {string}
+     */
+    const ariaRoledescription = computed(() => {
+      return (el$.value.embed && el$.value.View !== 'gallery') || uploaded.value || el$.value.auto ? undefined : uploadText.value
     })
 
     return {
@@ -76,6 +103,7 @@ export default {
       preview,
       ariaLabelledby,
       ariaPlaceholder,
+      ariaRoledescription,
       upload,
       remove,
       handleKeyup,

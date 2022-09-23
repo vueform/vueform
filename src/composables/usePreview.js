@@ -123,16 +123,7 @@ const base = function(props, context, dependencies)
    * @type {string}
    */
   const ariaLabelledby = computed(() => {
-    return el$.value.labelId
-  })
-
-  /**
-   * The `aria-placeholder` attribute of the preview.
-   * 
-   * @type {string}
-   */
-  const ariaPlaceholder = computed(() => {
-    return filename.value
+    return el$.value.embed ? undefined : el$.value.labelId
   })
 
   // =============== METHODS ==============
@@ -165,7 +156,8 @@ const base = function(props, context, dependencies)
    */
   const handleKeyup = async (e) => {
     switch (e.key) {
-      case 'Enter':
+      case 'Backspace':
+      case 'Delete':
         remove()
 
         if (!el$.value.canSelect) {
@@ -174,6 +166,14 @@ const base = function(props, context, dependencies)
 
         await nextTick()
         document.querySelector(`#${el$.value.fieldId}`).focus()
+        break
+
+      case 'Enter':
+        if (el$.value.auto) {
+          return
+        }
+
+        upload()
         break
     }
   }
@@ -194,7 +194,6 @@ const base = function(props, context, dependencies)
     canUploadTemp,
     uploadText,
     ariaLabelledby,
-    ariaPlaceholder,
     upload,
     remove,
     handleKeyup,

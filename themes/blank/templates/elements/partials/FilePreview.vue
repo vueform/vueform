@@ -6,7 +6,6 @@
     role="button"
     :aria-labelledby="ariaLabelledby"
     :aria-placeholder="ariaPlaceholder"
-    aria-roledescription="❎"
     @keyup="handleKeyup"
   >
     <div :class="classes.wrapper">
@@ -35,7 +34,7 @@
           v-if="canUploadTemp"
           :class="classes.upload"
           @click.prevent="upload"
-          :aria-placeholder="hasError ? 'error' : undefined"
+          tabindex="-1"
         >{{ uploadText }}</button>
 
 
