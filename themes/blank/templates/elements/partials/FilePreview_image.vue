@@ -1,12 +1,21 @@
 <template>
-  <div :class="classes.container" v-show="visible">
+  <div
+    :class="classes.container"
+    v-show="visible"
+    tabindex="0"
+    role="button"
+    :aria-labelledby="ariaLabelledby"
+    :aria-placeholder="ariaPlaceholder"
+    aria-roledescription="❎"
+    @keyup="handleKeyup"
+  >
     <div :class="classes.wrapper">
       <!-- Image -->
       <a :href="link" v-if="uploaded && hasLink && clickable" :class="classes.image" target="_blank">
-        <img :class="classes.img" :src="preview"/>
+        <img :class="classes.img" :src="preview" :alt="filename" :title="filename"/>
       </a>
       <span v-else :class="classes.image">
-        <img :class="classes.img" :src="preview"/>
+        <img :class="classes.img" :src="preview" :alt="filename" :title="filename"/>
       </span>
 
       <div :class="classes.file">
@@ -17,9 +26,9 @@
       
       <div :class="classes.actions">
         <!-- Remove -->
-        <a href="" :class="classes.remove" v-if="canRemove" @click.prevent="remove">
+        <button :class="classes.remove" v-if="canRemove" @click.prevent="remove" aria-roledescription="❎">
           <span :class="classes.removeIcon"></span>
-        </a>
+        </button>
 
         <!-- Progress -->
         <div v-if="uploading" :class="classes.percent">{{ progress }}%</div>
@@ -28,9 +37,14 @@
         <span v-if="hasError" :class="classes.warning">
           <span :class="classes.warningIcon"></span>
         </span>
-
+        
         <!-- Upload button -->
-        <a href="" :class="classes.upload" v-if="canUploadTemp" @click.prevent="upload">{{ uploadText }}</a>
+        <button
+          v-if="canUploadTemp"
+          :class="classes.upload"
+          @click.prevent="upload"
+          :aria-placeholder="hasError ? 'error' : undefined"
+        >{{ uploadText }}</button>
 
         <!-- Success -->
         <span v-else-if="el$.stage > 1" :class="classes.uploaded">

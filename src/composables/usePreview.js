@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import { computed } from 'vue'
+import { computed, nextTick } from 'vue'
 
 const base = function(props, context, dependencies)
 {
@@ -117,6 +117,24 @@ const base = function(props, context, dependencies)
     return el$.value.__('vueform.elements.file.upload')
   })
 
+  /**
+   * The `aria-labelledby` attribute of the preview.
+   * 
+   * @type {string}
+   */
+  const ariaLabelledby = computed(() => {
+    return el$.value.labelId
+  })
+
+  /**
+   * The `aria-placeholder` attribute of the preview.
+   * 
+   * @type {string}
+   */
+  const ariaPlaceholder = computed(() => {
+    return filename.value
+  })
+
   // =============== METHODS ==============
 
   /**
@@ -142,6 +160,26 @@ const base = function(props, context, dependencies)
     }
   }
 
+  /**
+   * Handle the keyup event of the preview.
+   */
+  const handleKeyup = async (e) => {
+    switch (e.key) {
+      case 'Enter':
+        remove()
+
+        if (!el$.value.canSelect) {
+          return
+        }
+
+        await nextTick()
+        document.querySelector(`#${el$.value.fieldId}`).focus()
+        break
+    }
+  }
+
+  // =============== HOOKS ================
+
   return {
     visible,
     hasLink,
@@ -155,8 +193,11 @@ const base = function(props, context, dependencies)
     canRemove,
     canUploadTemp,
     uploadText,
+    ariaLabelledby,
+    ariaPlaceholder,
     upload,
     remove,
+    handleKeyup,
   }
 }
 

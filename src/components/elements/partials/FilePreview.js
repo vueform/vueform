@@ -31,8 +31,11 @@ export default {
       canRemove,
       canUploadTemp,
       uploadText,
+      ariaLabelledby,
+      ariaPlaceholder,
       upload,
       remove,
+      handleKeyup,
     } = usePreview(props, context, {
       el$,
     })
@@ -71,8 +74,11 @@ export default {
       canUploadTemp,
       uploadText,
       preview,
+      ariaLabelledby,
+      ariaPlaceholder,
       upload,
       remove,
+      handleKeyup,
     }
   },
 }
