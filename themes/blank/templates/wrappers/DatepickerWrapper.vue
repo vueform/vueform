@@ -4,6 +4,7 @@
     :class="classes.datepicker"
     :id="id"
     :placeholder="placeholder"
+    :aria-labelledby="labelId"
     ref="input"
  />
 </template>

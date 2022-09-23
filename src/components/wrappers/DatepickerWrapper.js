@@ -112,6 +112,15 @@ export default {
       return config
     })
 
+    /**
+     * The `id` of related label.
+     * 
+     * @type {string}
+     */
+    const labelId = computed(() => {
+      return el$.value.labelId
+    })
+
     // =============== METHODS ==============
 
     /**
@@ -163,6 +172,7 @@ export default {
         formatDate: (date, format) => {
           return moment(date).format(format)
         },
+        ariaDateFormat: 'MMMM D, YYYY',
         disableMobile: true,
         locale: locale.value,
       }))
@@ -233,6 +243,7 @@ export default {
       config,
       mode,
       locale,
+      labelId,
       update,
     }
   },
