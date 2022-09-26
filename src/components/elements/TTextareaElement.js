@@ -123,7 +123,6 @@ export default {
       usePath,
       useDisabled,
       useFieldId,
-      useA11y,
       useFloating,
       useEvents,
       useBaseElement,
@@ -147,6 +146,7 @@ export default {
       useAutogrow,
       useFocused,
       useHandleBlur,
+      useA11y,
     ]
     context.slots = [
       'label', 'info', 'description', 'before',

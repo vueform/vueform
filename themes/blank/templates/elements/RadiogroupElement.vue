@@ -9,6 +9,7 @@
           :item="item"
           :value="item.value"
           :key="key"
+          :attrs="aria"
         >
           <template #default="scope">
             <slot name="radio" v-bind="scope" :el$="el$">

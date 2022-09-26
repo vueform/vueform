@@ -14,6 +14,7 @@
       <!-- Upload button -->
       <button
         v-else-if="canSelect"
+        v-bind="aria"
         :class="classes.button"
         :aria-labelledby="labelId"
         :aria-placeholder="__(`vueform.elements.${type}.select`)"
@@ -33,7 +34,7 @@
 
       <!-- Preview -->
       <slot name="preview">
-        <FilePreview :key="view" />
+        <FilePreview :key="view" :attrs="aria" />
       </slot>
     </template>
 

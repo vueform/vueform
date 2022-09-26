@@ -64,7 +64,6 @@ export default {
       useLayout,
       usePath,
       useFieldId,
-      useA11y,
       useNullValue,
       useEvents,
       useBaseElement,
@@ -81,6 +80,7 @@ export default {
       useColumns,
       useSlots,
       useData,
+      useA11y,
     ]
     context.slots = [
       'label', 'info', 'description',

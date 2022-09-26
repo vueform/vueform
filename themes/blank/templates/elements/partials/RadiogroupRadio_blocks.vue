@@ -14,6 +14,7 @@
         <input
           type="radio"
           v-model="el$.model"
+          v-bind="attrs"
           :value="value"
           :class="classes.input"
           :name="name"

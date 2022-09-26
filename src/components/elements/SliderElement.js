@@ -132,7 +132,6 @@ export default {
       useDisabled,
       useNullValue,
       useFieldId,
-      useA11y,
       useEvents,
       useBaseElement,
       useDefault,
@@ -150,6 +149,7 @@ export default {
       useSlots,
       useHandleChange,
       useHandleUpdate,
+      useA11y,
     ]
     context.slots = [
       'label', 'info', 'description',

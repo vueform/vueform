@@ -363,7 +363,6 @@ export default {
       useDisabled,
       useNullValue,
       useFieldId,
-      useA11y,
       useFloating,
       useEvents,
       useBaseElement,
@@ -387,6 +386,7 @@ export default {
       useHandleTag,
       useSelect,
       useFocused,
+      useA11y,
     ]
     context.slots = [
       'tag',

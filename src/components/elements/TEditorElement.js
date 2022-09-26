@@ -131,7 +131,6 @@ export default {
       usePath,
       useDisabled,
       useFieldId,
-      useA11y,
       useEvents,
       useBaseElement,
       useLanguages,
@@ -154,6 +153,7 @@ export default {
       useHandleAlert,
       useHandleError,
       useHandleBlur,
+      useA11y,
     ]
     context.slots = [
       'label', 'info', 'description',

@@ -13,11 +13,13 @@
       <input
         type="radio"
         v-model="el$.value"
+        v-bind="attrs"
         :value="value"
         :class="classes.input"
         :name="name"
         :id="id"
         :disabled="isDisabled"
+        :aria-label="item.label"
       />
 
       <span 

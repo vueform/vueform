@@ -19,12 +19,12 @@ import useFieldId from './../../composables/elements/useFieldId'
 import useValue from './../../composables/elements/useValue'
 import useWatchValue from './../../composables/elements/useWatchValue'
 import useSlots from './../../composables/elements/useSlots'
-import useA11y from './../../composables/elements/useA11y'
 
 import { array as useNullValue } from './../../composables/elements/useNullValue'
 import { checkboxgroup as useDisabled } from './../../composables/elements/useDisabled'
 import { checkboxgroup as useBaseElement } from './../../composables/elements/useBaseElement'
 import { checkboxgroup as useAsyncItems } from './../../composables/elements/useAsyncItems'
+import { checkboxgroup as useA11y } from './../../composables/elements/useA11y'
 
 import BaseElement from './../../mixins/BaseElement'
 import HasView from './../../mixins/HasView'
@@ -77,7 +77,6 @@ export default {
       usePath,
       useNullValue,
       useFieldId,
-      useA11y,
       useEvents,
       useBaseElement,
       useDisabled,
@@ -95,6 +94,7 @@ export default {
       useTemplates,
       useClasses,
       useSlots,
+      useA11y,
     ]
     context.slots = [
       'checkbox', 'label', 'info', 'description', 'before',

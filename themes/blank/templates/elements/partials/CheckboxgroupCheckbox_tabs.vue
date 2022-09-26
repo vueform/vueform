@@ -1,10 +1,11 @@
 <template>
   <label
+    v-bind="attrs"
     :class="classes.container"
     tabindex="0"
     role="checkbox"
     :aria-checked="checked"
-    @keyup.space="el$.toggle(value)"
+    @keypress.space.prevent="el$.toggle(value)"
   >
     <slot
       v-bind="{ name }"

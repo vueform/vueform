@@ -151,7 +151,6 @@ export default {
       useLayout,
       usePath,
       useFieldId,
-      useA11y,
       useDisabled,
       useNullValue,
       usePrototype,
@@ -176,6 +175,7 @@ export default {
       useSlots,
       useData,
       useSort,
+      useA11y,
     ]
     context.slots = [
       'label', 'info', 'description',

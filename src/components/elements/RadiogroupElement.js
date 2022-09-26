@@ -20,10 +20,10 @@ import useSlots from './../../composables/elements/useSlots'
 import useEvents from './../../composables/useEvents'
 import useFieldId from './../../composables/elements/useFieldId'
 import useWatchValue from './../../composables/elements/useWatchValue'
-import useA11y from './../../composables/elements/useA11y'
 
 import { radiogroup as useDisabled } from './../../composables/elements/useDisabled'
 import { radiogroup as useAsyncItems } from './../../composables/elements/useAsyncItems'
+import { radiogroup as useA11y } from './../../composables/elements/useA11y'
 
 import BaseElement from './../../mixins/BaseElement'
 import HasView from './../../mixins/HasView'
@@ -76,7 +76,6 @@ export default {
       usePath,
       useNullValue,
       useFieldId,
-      useA11y,
       useEvents,
       useBaseElement,
       useDisabled,
@@ -93,6 +92,7 @@ export default {
       useClasses,
       useColumns,
       useSlots,
+      useA11y,
     ]
     context.slots = [
       'radio', 'label', 'info', 'description', 'before',

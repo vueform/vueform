@@ -1,10 +1,13 @@
-import { computed } from 'vue'
+import { computed, toRefs } from 'vue'
 
 const base = function(props, context, dependencies)
 {
   // ============ DEPENDENCIES ============
 
   const fieldId = dependencies.fieldId
+  const invalid = dependencies.invalid
+  const isDisabled = dependencies.isDisabled
+  const busy = dependencies.busy
 
   // ============== COMPUTED ==============
   
@@ -41,25 +44,154 @@ const base = function(props, context, dependencies)
    * @type {string}
    */
   const errorId = computed(() => {
-    return `${fieldId.value}__info`
+    return `${fieldId.value}__error`
   })
 
   /**
-   * The `aria-describedby` attribute of the input.
+   * The `aria-*` attributes of the input.
    * 
-   * @type {string}
+   * @type {object}
    */
-  const ariaDescribedby = computed(() => {
-    return `${descriptionId.value} ${infoId.value}`
+  const aria = computed(() => {
+    return {
+      'aria-labelledby': labelId.value,
+      'aria-describedby': `${descriptionId.value} ${infoId.value}`,
+      'aria-invalid': invalid.value,
+      'aria-errormessage': errorId.value,
+      'aria-disabled': isDisabled.value,
+      'aria-busy': busy.value,
+    }
   })
 
   return {
-    ariaDescribedby,
     descriptionId,
     labelId,
     infoId,
     errorId,
+    aria,
   }
+}
+
+const checkbox = function(props, context, dependencies)
+{
+  const { text } = toRefs(props)
+
+  const {
+    descriptionId,
+    labelId,
+    infoId,
+    errorId,
+  } = base(props, context, dependencies)
+
+  // ============ DEPENDENCIES ============
+
+  const invalid = dependencies.invalid
+  const isDisabled = dependencies.isDisabled
+  const busy = dependencies.busy
+
+  // ============== COMPUTED ==============
+
+  const aria = computed(() => {
+    return {
+      'aria-label': text.value,
+      'aria-describedby': `${labelId.value} ${descriptionId.value} ${infoId.value}`,
+      'aria-invalid': invalid.value,
+      'aria-errormessage': errorId.value,
+      'aria-disabled': isDisabled.value,
+      'aria-busy': busy.value,
+    }
+  })
+
+  return {
+    descriptionId,
+    labelId,
+    infoId,
+    errorId,
+    aria,
+  }
+}
+
+const checkboxgroup = function(props, context, dependencies)
+{
+  const {
+    descriptionId,
+    labelId,
+    infoId,
+    errorId,
+  } = base(props, context, dependencies)
+
+  // ============ DEPENDENCIES ============
+
+  const invalid = dependencies.invalid
+  const isDisabled = dependencies.isDisabled
+  const busy = dependencies.busy
+
+  // ============== COMPUTED ==============
+
+  const aria = computed(() => {
+    return {
+      'aria-describedby': `${descriptionId.value} ${infoId.value}`,
+      'aria-invalid': invalid.value,
+      'aria-errormessage': errorId.value,
+      'aria-disabled': isDisabled.value,
+      'aria-busy': busy.value,
+    }
+  })
+
+  return {
+    descriptionId,
+    labelId,
+    infoId,
+    errorId,
+    aria,
+  }
+}
+
+const static_ = function(props, context, dependencies)
+{
+  const {
+    descriptionId,
+    labelId,
+    infoId,
+    errorId,
+  } = base(props, context, dependencies)
+
+  // ============ DEPENDENCIES ============
+
+  const isDisabled = dependencies.isDisabled
+
+  // ============== COMPUTED ==============
+
+  const aria = computed(() => {
+    return {
+      'aria-labelledby': labelId.value,
+      'aria-describedby': `${descriptionId.value} ${infoId.value}`,
+      'aria-disabled': isDisabled.value,
+    }
+  })
+
+  return {
+    descriptionId,
+    labelId,
+    infoId,
+    errorId,
+    aria,
+  }
+}
+
+const radiogroup = checkboxgroup
+const radio = checkbox
+const toggle = checkbox
+const file = checkboxgroup
+
+export {
+  checkboxgroup,
+  radiogroup,
+  checkbox,
+  radio,
+  toggle,
+  file,
+  static_,
 }
 
 export default base

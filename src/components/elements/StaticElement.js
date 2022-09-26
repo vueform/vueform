@@ -12,10 +12,10 @@ import useSlots from './../../composables/elements/useSlots'
 import useEvents from './../../composables/useEvents'
 import useStatic from './../../composables/elements/useStatic'
 import useFieldId from './../../composables/elements/useFieldId'
-import useA11y from './../../composables/elements/useA11y'
 
 import { static_ as useBaseElement } from './../../composables/elements/useBaseElement'
 import { static_ as usePath } from './../../composables/elements/usePath'
+import { static_ as useA11y } from './../../composables/elements/useA11y'
 
 import BaseElement from './../../mixins/BaseElement'
 import HasView from './../../mixins/HasView'

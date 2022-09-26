@@ -1,10 +1,11 @@
 <template>
   <label
+    v-bind="attrs"
     :class="classes.container"
     tabindex="0"
     role="radio"
     :aria-checked="checked"
-    @keyup.space="el$.update(value)"
+    @keypress.space.prevent="el$.update(value)"
   >
     <slot
       v-bind="{ name }"

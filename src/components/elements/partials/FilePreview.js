@@ -4,6 +4,13 @@ import usePreview from './../../../composables/usePreview'
 
 export default {
   name: 'FilePreview',
+  props: {
+    attrs: {
+      required: false,
+      type: [Object],
+      default: () => ({})
+    },
+  },
   setup(props, context)
   {
     const {

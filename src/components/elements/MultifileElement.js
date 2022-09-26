@@ -219,7 +219,6 @@ export default {
       useSorting,
       usePrototype,
       useFieldId,
-      useA11y,
       useEvents,
       useBaseElement,
       useDefault,
@@ -241,6 +240,7 @@ export default {
       useDrop,
       useClasses,
       useSort,
+      useA11y,
     ]
     context.slots = [
       'label', 'info', 'description',

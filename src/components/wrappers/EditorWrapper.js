@@ -54,6 +54,11 @@ export default {
       type: [Array],
       default: () => ([])
     },
+    attrs: {
+      required: false,
+      type: [Object],
+      default: () => ({})
+    },
   },
   setup(props, context)
   {

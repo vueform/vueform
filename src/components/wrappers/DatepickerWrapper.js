@@ -23,6 +23,11 @@ export default {
       type: [Number, String],
       required: false
     },
+    attrs: {
+      required: false,
+      type: [Object],
+      default: () => ({})
+    },
   },
   setup(props, context)
   {
@@ -110,15 +115,6 @@ export default {
       config.static = true
 
       return config
-    })
-
-    /**
-     * The `id` of related label.
-     * 
-     * @type {string}
-     */
-    const labelId = computed(() => {
-      return el$.value.labelId
     })
 
     // =============== METHODS ==============
@@ -243,7 +239,6 @@ export default {
       config,
       mode,
       locale,
-      labelId,
       update,
     }
   },

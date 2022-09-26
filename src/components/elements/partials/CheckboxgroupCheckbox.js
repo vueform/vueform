@@ -20,6 +20,11 @@ export default {
       type: [Number],
       required: true
     },
+    attrs: {
+      required: false,
+      type: [Object],
+      default: () => ({})
+    },
   },
   setup(props, context)
   {

@@ -10,6 +10,7 @@
           :classes="classes.toggle"
           :name="name"
           :id="fieldId"
+          :aria="aria"
           @input="handleChange"
           ref="input"
        />

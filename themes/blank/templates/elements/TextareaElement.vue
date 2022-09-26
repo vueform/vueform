@@ -28,16 +28,13 @@
           :disabled="isDisabled"
           :readonly="readonly"
           :rows="rows"
-          v-bind="attrs"
+          v-bind="{
+            ...attrs,
+            ...aria,
+          }"
           @input="handleInput"
           @blur="handleBlur"
           ref="input"
-          
-          :aria-describedby="ariaDescribedby"
-          :aria-busy="busy"
-          :aria-disabled="isDisabled"
-          :aria-invalid="invalid"
-          :aria-errormessage="errorId"
        />
       </div>
     </template>

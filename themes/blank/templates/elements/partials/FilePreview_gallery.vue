@@ -4,6 +4,7 @@
     v-show="visible"
     tabindex="0"
     role="button"
+    v-bind="attrs"
     :aria-labelledby="ariaLabelledby"
     :aria-placeholder="ariaPlaceholder"
     :aria-role="ariaRoledescription"

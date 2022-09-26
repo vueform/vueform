@@ -16,17 +16,14 @@
           :autocomplete="autocomplete"
           :disabled="isDisabled"
           :readonly="readonly"
-          v-bind="attrs"
+          v-bind="{
+            ...attrs,
+            ...aria,
+          }"
           @input="handleInput"
           @select="handleInput"
           @blur="handleBlur"
           ref="input"
-          
-          :aria-describedby="ariaDescribedby"
-          :aria-busy="busy"
-          :aria-disabled="isDisabled"
-          :aria-invalid="invalid"
-          :aria-errormessage="errorId"
        />
       </div>
     </template>

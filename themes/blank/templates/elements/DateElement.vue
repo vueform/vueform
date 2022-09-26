@@ -25,6 +25,7 @@
             :placeholder="placeholder"
             :disabled="isDisabled"
             :readonly="readonly"
+            :attrs="aria"
             @change="handleChange"
             ref="input"
           />

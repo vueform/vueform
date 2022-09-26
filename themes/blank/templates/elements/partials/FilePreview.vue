@@ -2,6 +2,7 @@
   <div
     :class="classes.container"
     v-show="visible"
+    v-bind="attrs"
     tabindex="0"
     role="button"
     :aria-labelledby="ariaLabelledby"

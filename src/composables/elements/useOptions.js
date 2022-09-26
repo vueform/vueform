@@ -594,7 +594,6 @@ const slider = function (props, context, dependencies)
       showTooltip: showTooltip.value,
       tooltipPosition: tooltipPosition.value,
       lazy: lazy.value,
-      ariaLabelledby: labelId.value,
     }
   })
 

@@ -9,6 +9,7 @@
           :item="item"
           :value="item.value"
           :key="key"
+          :attrs="aria"
         >
           <template #default="scope">
             <slot name="checkbox" v-bind="scope" :el$="el$">

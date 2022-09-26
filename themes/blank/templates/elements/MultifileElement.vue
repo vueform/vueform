@@ -15,6 +15,7 @@
       <!-- Upload button -->
       <button
         v-else-if="hasAdd"
+        v-bind="aria"
         :class="classes.button"
         :aria-labelledby="labelId"
         :aria-placeholder="__('vueform.elements.multifile.uploadButton')"

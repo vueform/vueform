@@ -12,11 +12,11 @@ import useLayout from './../../composables/elements/useLayout'
 import useEvents from './../../composables/useEvents'
 import useClasses from './../../composables/elements/useClasses'
 import useFieldId from './../../composables/elements/useFieldId'
-import useA11y from './../../composables/elements/useA11y'
 
 import { button as useDisabled } from './../../composables/elements/useDisabled'
 import { static_ as useBaseElement } from './../../composables/elements/useBaseElement'
 import { static_ as usePath } from './../../composables/elements/usePath'
+import { static_ as useA11y } from './../../composables/elements/useA11y'
 
 import BaseElement from './../../mixins/BaseElement'
 import HasView from './../../mixins/HasView'
@@ -113,11 +113,11 @@ export default {
       useView,
       useTemplates,
       useFieldId,
-      useA11y,
       useButton,
       useClasses,
       useColumns,
       useSlots,
+      useA11y,
     ]
     context.slots = [
       'label',  'info', 'description',
