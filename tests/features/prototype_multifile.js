@@ -42,6 +42,14 @@ export const prototype = function (elementType, elementName, options) {
       view: el.view,
       layout: 'ElementLayout',
       disabled: el.disabled,
+      clickable: true,
+      params: {},
+      previewUrl: undefined,
+      removeEndpoint: undefined,
+      removeTempEndpoint: undefined,
+      softRemove: false,
+      uploadTempEndpoint: undefined,
+      url: '/uploads/',
     })
     
     // destroy(form) // teardown
@@ -69,6 +77,14 @@ export const prototype = function (elementType, elementName, options) {
           view: el.view,
           layout: 'ElementLayout',
           disabled: el.disabled,
+          clickable: true,
+          params: {},
+          previewUrl: undefined,
+          removeEndpoint: undefined,
+          removeTempEndpoint: undefined,
+          softRemove: false,
+          uploadTempEndpoint: undefined,
+          url: '/',
         }
       }
     })
@@ -99,6 +115,14 @@ export const prototype = function (elementType, elementName, options) {
           view: el.view,
           layout: 'ElementLayout',
           disabled: el.disabled,
+          clickable: true,
+          params: {},
+          previewUrl: undefined,
+          removeEndpoint: undefined,
+          removeTempEndpoint: undefined,
+          softRemove: false,
+          uploadTempEndpoint: undefined,
+          url: '/',
         }
       }
     })
@@ -132,6 +156,14 @@ export const prototype = function (elementType, elementName, options) {
           view: el.view,
           layout: 'ElementLayout',
           disabled: el.disabled,
+          clickable: true,
+          params: {},
+          previewUrl: undefined,
+          removeEndpoint: undefined,
+          removeTempEndpoint: undefined,
+          softRemove: false,
+          uploadTempEndpoint: undefined,
+          url: '/uploads/',
         }
       }
     })
@@ -162,6 +194,14 @@ export const prototype = function (elementType, elementName, options) {
           view: el.view,
           layout: 'ElementLayout',
           disabled: el.disabled,
+          clickable: true,
+          params: {},
+          previewUrl: undefined,
+          removeEndpoint: undefined,
+          removeTempEndpoint: undefined,
+          softRemove: false,
+          uploadTempEndpoint: undefined,
+          url: '/',
         },
         order: {
           type: 'hidden',
@@ -200,6 +240,14 @@ export const prototype = function (elementType, elementName, options) {
           view: el.view,
           layout: 'ElementLayout',
           disabled: el.disabled,
+          clickable: true,
+          params: {},
+          previewUrl: undefined,
+          removeEndpoint: undefined,
+          removeTempEndpoint: undefined,
+          softRemove: false,
+          uploadTempEndpoint: undefined,
+          url: '/',
         },
         label: {
           type: 'text'
