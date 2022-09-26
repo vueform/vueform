@@ -22,6 +22,7 @@ import useDefault from './../../composables/elements/useDefault'
 import useValue from './../../composables/elements/useValue'
 import useControls from './../../composables/elements/useControls'
 import useClasses from './../../composables/elements/useClasses'
+import useFieldId from './../../composables/elements/useFieldId'
 
 import { list as useData } from './../../composables/elements/useData'
 import { list as useValidation } from './../../composables/elements/useValidation'
@@ -51,6 +52,11 @@ export default {
       required: false,
       type: [Array],
       default: undefined,
+    },
+    id: {
+      required: false,
+      type: [String],
+      default: null
     },
     disabled: {
       required: false,
@@ -143,6 +149,7 @@ export default {
       useTheme,
       useLayout,
       usePath,
+      useFieldId,
       useDisabled,
       useNullValue,
       usePrototype,

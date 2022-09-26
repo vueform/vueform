@@ -1,7 +1,7 @@
 <template>
   <component :is="elementLayout" :multiple="true">
     <template #element>
-      <div :class="classes.wrapper">
+      <div :class="classes.wrapper" role="group" :aria-labelledby="labelId">
         <slot>
           <component :is="component(element)"
             v-for="(element, name) in children"

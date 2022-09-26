@@ -516,7 +516,7 @@ export default {
     handle_md: 'form-w-input-height form-h-input-height',
     handle_lg: 'form-w-input-height-lg form-h-input-height-lg',
     handleIcon: 'mask-bg mask-form-sort-handle form-bg-passive-color mask-size-2.8 block w-full h-full',
-    remove: 'absolute z-1 w-4 h-4 box-content p-0.5 top-px left-0 form-bg-passive rounded-full transform -translate-x-1/2 -translate-y-1/2 transition opacity-0 filter hover:brightness-90 group-hover:opacity-100',
+    remove: 'absolute z-1 w-4 h-4 box-content p-0.5 top-px left-0 form-bg-passive rounded-full transform -translate-x-1/2 -translate-y-1/2 transition opacity-0 filter hover:brightness-90 group-hover:opacity-100 focus:opacity-100',
     removeIcon: 'mask-bg mask-form-remove-light form-bg-passive-color mask-size-3 block w-full h-full',
     add: 'inline-block form-bg-primary form-border-width-btn form-border-color-primary form-color-on-primary form-shadow-btn ease-linear transition-transform transform hover:scale-105 focus:form-ring',
     add_sm: 'form-mt-gutter-sm form-radius-small-sm form-text-small-sm form-p-btn-small-sm',

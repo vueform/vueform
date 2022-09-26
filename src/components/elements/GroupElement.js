@@ -11,6 +11,7 @@ import useBaseElement from './../../composables/elements/useBaseElement'
 import useView from './../../composables/elements/useView'
 import useTemplates from './../../composables/elements/useTemplates'
 import useSlots from './../../composables/elements/useSlots'
+import useFieldId from './../../composables/elements/useFieldId'
 import useElements from './../../composables/useElements'
 import useEvents from './../../composables/useEvents'
 
@@ -44,6 +45,11 @@ export default {
       type: [Object],
       default: () => ({})
     },
+    id: {
+      required: false,
+      type: [String],
+      default: null
+    },
     schema: {
       required: false,
       type: [Object],
@@ -56,6 +62,7 @@ export default {
       useTheme,
       useLayout,
       usePath,
+      useFieldId,
       useNullValue,
       useEvents,
       useBaseElement,

@@ -316,6 +316,7 @@ const list = function(props, context, dependencies, options)
 
   const form$ = dependencies.form$
   const children$ = dependencies.children$
+  const children$Array = dependencies.children$Array
   const available = dependencies.available
   const isDisabled = dependencies.isDisabled
   const value = dependencies.value
@@ -369,7 +370,7 @@ const list = function(props, context, dependencies, options)
    * @param {any} value value of the appended element (optional)
    * @returns {integer} the index of the appended item
    */
-  const add = (val = undefined) => {
+  const add = (val = undefined, focus = false) => {
     let newValue = storeOrder.value ? Object.assign({}, val || {}, {
       [storeOrder.value]: val ? val[storeOrder.value] : undefined
     }) : val
@@ -381,6 +382,19 @@ const list = function(props, context, dependencies, options)
     let index = value.value.length - 1
 
     fire('add', index, newValue, value.value)
+
+    if (focus) {
+      nextTick(() => {
+        let lastChild = children$Array.value[children$Array.value.length-1]
+        let last = lastChild.type !== 'object'
+          ? lastChild
+          : lastChild.children$Array.find(c => c.input)
+
+        if (last?.input) {
+          last.input.focus()
+        }
+      })
+    }
     
     return index
   }
@@ -453,7 +467,7 @@ const list = function(props, context, dependencies, options)
       return
     }
 
-    add()
+    add(undefined, true)
   }
 
   /**
