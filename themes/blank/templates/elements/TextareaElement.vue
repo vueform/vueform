@@ -28,7 +28,10 @@
           :disabled="isDisabled"
           :readonly="readonly"
           :rows="rows"
-          v-bind="attrs"
+          v-bind="{
+            ...attrs,
+            ...aria,
+          }"
           @input="handleInput"
           @blur="handleBlur"
           ref="input"

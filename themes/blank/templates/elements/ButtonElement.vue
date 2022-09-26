@@ -6,7 +6,10 @@
         <!-- Use it as a component -->
         <button
           v-if="buttonLabel && isButtonLabelComponent"
-          v-bind="button"
+          v-bind="{
+            ...button,
+            ...aria,
+          }"
           :tabindex="isDisabled || isLoading ? -1 : undefined"
           :disabled="isDisabled"
           :class="classes.button"
@@ -18,7 +21,10 @@
         <!-- Use it as HTML -->
         <button
           v-else-if="buttonLabel"
-          v-bind="button"
+          v-bind="{
+            ...button,
+            ...aria,
+          }"
           v-html="buttonLabel"
           :tabindex="isDisabled || isLoading ? -1 : undefined"
           :class="classes.button"
@@ -29,7 +35,10 @@
         <!-- Use it as slot -->
         <button
           v-else
-          v-bind="button"
+          v-bind="{
+            ...button,
+            ...aria,
+          }"
           :tabindex="isDisabled || isLoading ? -1 : undefined"
           :class="classes.button"
           :disabled="isDisabled"

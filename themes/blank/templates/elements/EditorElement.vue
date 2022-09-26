@@ -12,6 +12,7 @@
         :disabled="isDisabled"
         :hide-tools="hideTools"
         :class="classes.input"
+        :attrs="aria"
         @input="handleInput"
         @alert="handleAlert"
         @error="handleError"

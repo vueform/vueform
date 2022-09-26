@@ -16,7 +16,10 @@
           :autocomplete="autocomplete"
           :disabled="isDisabled"
           :readonly="readonly"
-          v-bind="attrs"
+          v-bind="{
+            ...attrs,
+            ...aria,
+          }"
           @input="handleInput"
           @select="handleInput"
           @blur="handleBlur"

@@ -1,16 +1,31 @@
 <template>
-  <div :class="classes.container" v-show="visible">
+  <div
+    :class="classes.container"
+    v-show="visible"
+    tabindex="0"
+    role="button"
+    v-bind="attrs"
+    :aria-labelledby="ariaLabelledby"
+    :aria-placeholder="ariaPlaceholder"
+    :aria-role="ariaRoledescription"
+    @keyup="handleKeyup"
+  >
     <!-- Image  -->
     <a v-if="uploaded && hasLink && clickable" :class="classes.image" :href="link" target="_blank">
-      <img :src="preview" :class="classes.img"/>
+      <img :src="preview" :class="classes.img" :alt="filename" :title="filename" aria-hidden="true"/>
     </a>
     <div v-else :class="classes.image">
-      <img :class="classes.img" :src="preview"/>
+      <img :class="classes.img" :src="preview" :alt="filename" :title="filename" aria-hidden="true"/>
     </div>
 
     <!-- Overlay -->
     <div v-if="!uploaded && !uploading" :class="classes.overlay">
-      <a v-if="canUploadTemp" @click.prevent="upload" href="" :class="classes.upload">{{ uploadText }}</a>
+      <button
+        v-if="canUploadTemp"
+        :class="classes.upload"
+        @click.prevent="upload"
+        tabindex="-1"
+      >{{ uploadText }}</button>
     </div>
 
     <!-- Error -->
@@ -24,9 +39,9 @@
     </span>
 
     <!-- Remove -->
-    <a v-if="canRemove" @click.prevent="remove" href="" :class="classes.remove">
+    <button v-if="canRemove" @click.prevent="remove" :class="classes.remove" aria-roledescription="❎">
       <span :class="classes.removeIcon"></span>
-    </a>
+    </button>
 
     <!-- Progress -->
     <div v-if="uploading" :class="classes.progressBar">

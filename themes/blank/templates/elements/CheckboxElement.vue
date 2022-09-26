@@ -5,6 +5,7 @@
         <input
           type="checkbox"
           v-model="value"
+          v-bind="aria"
           :class="classes.input"
           :name="path"
           :id="fieldId"

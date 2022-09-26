@@ -12,19 +12,21 @@
      />
       
       <!-- Upload button -->
-      <a
+      <button
         v-else-if="canSelect"
-        href=""
+        v-bind="aria"
         :class="classes.button"
+        :aria-labelledby="labelId"
+        :aria-placeholder="__(`vueform.elements.${type}.select`)"
         @click.prevent="handleClick"
-      >{{ __(`vueform.elements.${type}.select`) }}</a>
+      >{{ __(`vueform.elements.${type}.select`) }}</button>
       
       <!-- Hidden file input -->
       <input
         v-if="canSelect && !isDisabled && !preparing"
         v-show="false"
-        type="file"
         :id="fieldId"
+        type="file"
         :accept="accept"
         @change="handleChange"
         ref="input"
@@ -32,7 +34,7 @@
 
       <!-- Preview -->
       <slot name="preview">
-        <FilePreview :key="view" />
+        <FilePreview :key="view" :attrs="aria" />
       </slot>
     </template>
 

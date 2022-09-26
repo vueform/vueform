@@ -17,6 +17,7 @@
         :disabled="isDisabled"
         :placeholder="placeholder"
         :attrs="attrs"
+        :aria="aria"
         @select="handleSelect"
         @deselect="handleDeselect"
         @search-change="handleSearchChange"

@@ -23,6 +23,7 @@
           :placeholder="placeholder"
           :disabled="isDisabled"
           :readonly="readonly"
+          :aria-labelledby="labelId"
           autocomplete="off"
           v-bind="attrs"
           ref="input"

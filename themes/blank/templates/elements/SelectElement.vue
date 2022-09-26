@@ -14,7 +14,10 @@
           :name="name"
           :id="fieldId"
           :disabled="isDisabled"
-          v-bind="attrs"
+          v-bind="{
+            ...attrs,
+            ...aria,
+          }"
           ref="input"
         >
           <option
@@ -40,6 +43,7 @@
         :disabled="isDisabled"
         :placeholder="placeholder"
         :attrs="attrs"
+        :aria="aria"
         @select="handleSelect"
         @deselect="handleDeselect"
         @search-change="handleSearchChange"

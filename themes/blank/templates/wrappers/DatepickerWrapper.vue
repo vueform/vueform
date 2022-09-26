@@ -4,6 +4,7 @@
     :class="classes.datepicker"
     :id="id"
     :placeholder="placeholder"
+    v-bind="attrs"
     ref="input"
  />
 </template>

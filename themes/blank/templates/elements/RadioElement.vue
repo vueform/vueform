@@ -5,6 +5,7 @@
         <input
           type="radio"
           v-model="value"
+          v-bind="aria"
           :value="radioValue"
           :class="classes.input"
           :name="inputName"

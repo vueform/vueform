@@ -2,8 +2,8 @@
   <component :is="elementLayout">
     <template #element>
       <!-- Sorting container -->
-      <div :class="classes.list" ref="list">
-        <div v-for="(val, i) in value" :key="i" :class="classes.listItem">
+      <div :class="classes.list" role="list" :aria-labelledby="labelId" ref="list">
+        <div v-for="(val, i) in value" :key="i" :class="classes.listItem" role="listitem">
           <slot :index="i">
             <component
               :is="component(prototype)"
@@ -23,27 +23,26 @@
           </span>
 
           <!-- Remove button -->
-          <a
-            href=""
+          <button
             v-if="hasRemove"
+            aria-roledescription="❎"
             :class="classes.remove"
             :id="`${path}-${i}-remove-button`"
             @click.prevent="handleRemove(i)"
           >
             <span :class="classes.removeIcon"></span>
-          </a>
+          </button>
         </div>
       </div>
 
       <!-- Add button -->
-      <a
-        href=""
+      <button
         v-if="hasAdd"
         :class="classes.add"
         :id="`${path}-add-button`"
         @click.prevent="handleAdd"
         v-html="addLabel"
-      ></a>
+      />
     </template>
 
     <!-- Default element slots -->

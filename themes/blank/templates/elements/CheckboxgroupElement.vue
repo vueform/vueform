@@ -1,7 +1,7 @@
 <template>
   <component :is="elementLayout">
     <template #element>
-      <div :class="classes.wrapper">
+      <div :class="classes.wrapper" :aria-labelledby="labelId" role="group">
         <CheckboxgroupCheckbox
           v-for="(item, index, key) in resolvedOptions"
           :items="resolvedOptions"
@@ -9,6 +9,7 @@
           :item="item"
           :value="item.value"
           :key="key"
+          :attrs="aria"
         >
           <template #default="scope">
             <slot name="checkbox" v-bind="scope" :el$="el$">

@@ -106,6 +106,10 @@
     &:hover {
       filter: brightness(0.9);
     }
+
+    &:focus {
+      opacity: 1;
+    }
   }
 
   .vf-list-remove-icon {

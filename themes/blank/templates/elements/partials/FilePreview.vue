@@ -1,5 +1,14 @@
 <template>
-  <div :class="classes.container" v-show="visible">
+  <div
+    :class="classes.container"
+    v-show="visible"
+    v-bind="attrs"
+    tabindex="0"
+    role="button"
+    :aria-labelledby="ariaLabelledby"
+    :aria-placeholder="ariaPlaceholder"
+    @keyup="handleKeyup"
+  >
     <div :class="classes.wrapper">
       <div :class="classes.file">
         <!-- Filename -->
@@ -9,9 +18,9 @@
       
       <div :class="classes.actions">
         <!-- Remove -->
-        <a href="" :class="classes.remove" v-if="canRemove" @click.prevent="remove">
+        <button :class="classes.remove" v-if="canRemove" @click.prevent="remove" aria-roledescription="❎">
           <span :class="classes.removeIcon"></span>
-        </a>
+        </button>
 
         <!-- Progress -->
         <div v-if="uploading" :class="classes.percent">{{ progress }}%</div>
@@ -22,7 +31,13 @@
         </span>
 
         <!-- Upload button -->
-        <a href="" :class="classes.upload" v-if="canUploadTemp" @click.prevent="upload">{{ uploadText }}</a>
+        <button
+          v-if="canUploadTemp"
+          :class="classes.upload"
+          @click.prevent="upload"
+          tabindex="-1"
+        >{{ uploadText }}</button>
+
 
         <!-- Success -->
         <span v-else-if="el$.stage > 1" :class="classes.uploaded">

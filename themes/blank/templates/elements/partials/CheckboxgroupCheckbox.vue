@@ -13,12 +13,14 @@
       <input
         type="checkbox"
         v-model="el$.model"
+        v-bind="attrs"
         :value="value"
         :class="classes.input"
         :name="name"
         :id="id"
         :disabled="isDisabled"
-     />
+        :aria-label="item.label"
+      />
       <span 
         :class="classes.text"
         v-html="item.label"

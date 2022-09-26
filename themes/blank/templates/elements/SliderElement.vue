@@ -7,6 +7,7 @@
           :value="value"
           :modelValue="value"
           v-bind="fieldOptions"
+          :aria="aria"
           :classes="classes.slider"
           :id="fieldId"
           ref="input"
