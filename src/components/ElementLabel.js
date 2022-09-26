@@ -42,10 +42,9 @@ export default {
     })
 
     /**
-     * The name of the element.
+     * The `id` attribute of the container.
      * 
      * @type {string}
-     * @private
      */
     const id = computed(() => {
       return el$.value.labelId

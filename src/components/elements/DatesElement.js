@@ -22,6 +22,7 @@ import useDefault from './../../composables/elements/useDefault'
 import useHandleChange from './../../composables/elements/useHandleChange'
 import useFloating from './../../composables/elements/useFloating'
 import useClasses from './../../composables/elements/useClasses'
+import useA11y from './../../composables/elements/useA11y'
 
 import { dates as useValue } from './../../composables/elements/useValue'
 import { dates as useData } from './../../composables/elements/useData'
@@ -134,6 +135,7 @@ export default {
       useDisabled,
       useNullValue,
       useFieldId,
+      useA11y,
       useFloating,
       useEvents,
       useBaseElement,

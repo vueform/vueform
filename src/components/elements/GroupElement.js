@@ -14,6 +14,7 @@ import useSlots from './../../composables/elements/useSlots'
 import useFieldId from './../../composables/elements/useFieldId'
 import useElements from './../../composables/useElements'
 import useEvents from './../../composables/useEvents'
+import useA11y from './../../composables/elements/useA11y'
 
 import { group as useValue } from './../../composables/elements/useValue'
 import { group as useDefault } from './../../composables/elements/useDefault'
@@ -63,6 +64,7 @@ export default {
       useLayout,
       usePath,
       useFieldId,
+      useA11y,
       useNullValue,
       useEvents,
       useBaseElement,

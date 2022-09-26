@@ -32,6 +32,15 @@ export default {
     })
 
     /**
+     * The `id` attribute of the container.
+     * 
+     * @type {string}
+     */
+    const id = computed(() => {
+      return el$.value.descriptionId
+    })
+
+    /**
      * Whether the description is provided as a slot.
      * 
      * @type {boolean}
@@ -53,6 +62,7 @@ export default {
       template,
       description,
       isSlot,
+      id,
     }
   },
 }

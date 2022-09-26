@@ -23,6 +23,7 @@ import useToggle from './../../composables/elements/useToggle'
 import useValue from './../../composables/elements/useValue'
 import useHandleChange from './../../composables/elements/useHandleChange'
 import useWatchValue from './../../composables/elements/useWatchValue'
+import useA11y from './../../composables/elements/useA11y'
 
 import { toggle as useOptions } from './../../composables/elements/useOptions'
 import { boolean as useNullValue } from './../../composables/elements/useNullValue'
@@ -95,6 +96,7 @@ export default {
       useDisabled,
       useNullValue,
       useFieldId,
+      useA11y,
       useEvents,
       useBaseElement,
       useOptions,

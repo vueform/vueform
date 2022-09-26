@@ -20,19 +20,9 @@ const base = function (props, context, dependencies)
   const fieldId = computed(() => {
     return id.value || path.value
   })
-  
-  /**
-   * The `id` of the related label component.
-   * 
-   * @type {string}
-   */
-  const labelId = computed(() => {
-    return `${fieldId.value}__label`
-  })
 
   return {
     fieldId,
-    labelId,
   }
 }
 

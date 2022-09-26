@@ -42,6 +42,15 @@ export default {
     const info = computed(() => {
       return el$.value.info
     })
+
+    /**
+     * The `id` attribute of the container.
+     * 
+     * @type {string}
+     */
+    const id = computed(() => {
+      return el$.value.infoId
+    })
   
     /**
      * Whether the info is provided as a slot.
@@ -111,6 +120,7 @@ export default {
       info,
       isSlot,
       position,
+      id,
       handleMouseOver,
     }
   },

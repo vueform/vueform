@@ -1,5 +1,11 @@
 <template>
-  <label :class="classes.container">
+  <label
+    :class="classes.container"
+    tabindex="0"
+    role="checkbox"
+    :aria-checked="checked"
+    @keyup.space="el$.toggle(value)"
+  >
     <slot
       v-bind="{ name }"
       :classes="classes"
@@ -15,9 +21,9 @@
           type="checkbox"
           v-model="el$.model"
           :value="value"
+          :id="id"
           :class="classes.input"
           :name="name"
-          :id="id"
           :disabled="isDisabled"
         />
         <span 

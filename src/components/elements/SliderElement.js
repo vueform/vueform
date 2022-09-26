@@ -22,6 +22,7 @@ import useEvents from './../../composables/useEvents'
 import useWatchValue from './../../composables/elements/useWatchValue'
 import useHandleChange from './../../composables/elements/useHandleChange'
 import useHandleUpdate from './../../composables/elements/useHandleUpdate'
+import useA11y from './../../composables/elements/useA11y'
 
 import { slider as useValidation } from './../../composables/elements/useValidation'
 import { slider as useOptions } from './../../composables/elements/useOptions'
@@ -131,6 +132,7 @@ export default {
       useDisabled,
       useNullValue,
       useFieldId,
+      useA11y,
       useEvents,
       useBaseElement,
       useDefault,

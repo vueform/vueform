@@ -26,6 +26,7 @@ import useHandleAlert from './../../composables/elements/useHandleAlert'
 import useWatchValue from './../../composables/elements/useWatchValue'
 import useClasses from './../../composables/elements/useClasses'
 import useHandleBlur from './../../composables/elements/useHandleBlur'
+import useA11y from './../../composables/elements/useA11y'
 
 import { editor as useData } from './../../composables/elements/useData'
 import { text as useValidation } from './../../composables/elements/useValidation'
@@ -129,6 +130,7 @@ export default {
       useDisabled,
       useNullValue,
       useFieldId,
+      useA11y,
       useEvents,
       useBaseElement,
       useDefault,

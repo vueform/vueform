@@ -25,6 +25,7 @@ import useValue from './../../composables/elements/useValue'
 import useWatchValue from './../../composables/elements/useWatchValue'
 import useSlots from './../../composables/elements/useSlots'
 import useClasses from './../../composables/elements/useClasses'
+import useA11y from './../../composables/elements/useA11y'
 
 import { file as useBaseElement } from './../../composables/elements/useBaseElement'
 import { file as useValidation } from './../../composables/elements/useValidation'
@@ -166,6 +167,7 @@ export default {
       useNullValue,
       useRemoving,
       useFieldId,
+      useA11y,
       useEvents,
       useBaseElement,
       useRequest,

@@ -25,6 +25,7 @@ import useWatchValue from './../../composables/elements/useWatchValue'
 import useDefault from './../../composables/elements/useDefault'
 import useFloating from './../../composables/elements/useFloating'
 import useClasses from './../../composables/elements/useClasses'
+import useA11y from './../../composables/elements/useA11y'
 
 import { date as useData } from './../../composables/elements/useData'
 import { date as useValue } from './../../composables/elements/useValue'
@@ -152,6 +153,7 @@ export default {
       useDisabled,
       useNullValue,
       useFieldId,
+      useA11y,
       useFloating,
       useEvents,
       useBaseElement,

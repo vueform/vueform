@@ -25,6 +25,7 @@ import useLocation from './../../composables/elements/useLocation'
 import useFloating from './../../composables/elements/useFloating'
 import useClasses from './../../composables/elements/useClasses'
 import useFocused from './../../composables/elements/useFocused'
+import useA11y from './../../composables/elements/useA11y'
 
 import { location as useWatchValue } from './../../composables/elements/useWatchValue'
 import { location as useNullValue } from './../../composables/elements/useNullValue' 
@@ -131,6 +132,7 @@ export default {
       useDisabled,
       useNullValue,
       useFieldId,
+      useA11y,
       useFloating,
       useEvents,
       useBaseElement,

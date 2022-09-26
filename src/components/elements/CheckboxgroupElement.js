@@ -19,6 +19,7 @@ import useFieldId from './../../composables/elements/useFieldId'
 import useValue from './../../composables/elements/useValue'
 import useWatchValue from './../../composables/elements/useWatchValue'
 import useSlots from './../../composables/elements/useSlots'
+import useA11y from './../../composables/elements/useA11y'
 
 import { array as useNullValue } from './../../composables/elements/useNullValue'
 import { checkboxgroup as useDisabled } from './../../composables/elements/useDisabled'
@@ -76,6 +77,7 @@ export default {
       usePath,
       useNullValue,
       useFieldId,
+      useA11y,
       useEvents,
       useBaseElement,
       useDisabled,

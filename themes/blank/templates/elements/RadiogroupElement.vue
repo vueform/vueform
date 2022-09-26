@@ -1,7 +1,7 @@
 <template>
   <component :is="elementLayout">
     <template #element>
-      <div :class="classes.wrapper"> 
+      <div :class="classes.wrapper" :aria-labelledby="labelId" role="radiogroup"> 
         <RadiogroupRadio
           v-for="(item, index, key) in resolvedOptions"
           :items="resolvedOptions"

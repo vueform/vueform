@@ -26,6 +26,7 @@ import useWatchValue from './../../composables/elements/useWatchValue'
 import useFloating from './../../composables/elements/useFloating'
 import useLoading from './../../composables/elements/useLoading'
 import useAsyncItems from './../../composables/elements/useAsyncItems'
+import useA11y from './../../composables/elements/useA11y'
 
 import { array as useNullValue } from './../../composables/elements/useNullValue'
 import { array as useEmpty } from './../../composables/elements/useEmpty'
@@ -362,6 +363,7 @@ export default {
       useDisabled,
       useNullValue,
       useFieldId,
+      useA11y,
       useFloating,
       useEvents,
       useBaseElement,

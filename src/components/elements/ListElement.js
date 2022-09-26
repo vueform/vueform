@@ -23,6 +23,7 @@ import useValue from './../../composables/elements/useValue'
 import useControls from './../../composables/elements/useControls'
 import useClasses from './../../composables/elements/useClasses'
 import useFieldId from './../../composables/elements/useFieldId'
+import useA11y from './../../composables/elements/useA11y'
 
 import { list as useData } from './../../composables/elements/useData'
 import { list as useValidation } from './../../composables/elements/useValidation'
@@ -150,6 +151,7 @@ export default {
       useLayout,
       usePath,
       useFieldId,
+      useA11y,
       useDisabled,
       useNullValue,
       usePrototype,

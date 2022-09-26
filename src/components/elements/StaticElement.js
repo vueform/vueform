@@ -11,6 +11,8 @@ import useTemplates from './../../composables/elements/useTemplates'
 import useSlots from './../../composables/elements/useSlots'
 import useEvents from './../../composables/useEvents'
 import useStatic from './../../composables/elements/useStatic'
+import useFieldId from './../../composables/elements/useFieldId'
+import useA11y from './../../composables/elements/useA11y'
 
 import { static_ as useBaseElement } from './../../composables/elements/useBaseElement'
 import { static_ as usePath } from './../../composables/elements/usePath'
@@ -28,6 +30,11 @@ export default {
       type: [String],
       default: 'static',
       private: true,
+    },
+    id: {
+      required: false,
+      type: [String],
+      default: null
     },
     content: {
       required: false,
@@ -56,6 +63,8 @@ export default {
       useClasses,
       useColumns,
       useSlots,
+      useFieldId,
+      useA11y,
     ]
     context.slots = [
       'default', 'label', 'info', 'description',

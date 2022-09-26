@@ -49,6 +49,15 @@ export default {
     })
 
     /**
+     * Whether the checkbox is checked.
+     * 
+     * @type {boolean}
+     */
+    const checked = computed(() => {
+      return el$.value.value === String(value.value) || el$.value.value === Number(value.value)
+    })
+
+    /**
      * The `id` attribute of the input.
      * 
      * @type {boolean}
@@ -79,6 +88,7 @@ export default {
       isDisabled,
       id,
       name,
+      checked,
     }
   },
 }

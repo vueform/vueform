@@ -28,6 +28,7 @@ import useClasses from './../../composables/elements/useClasses'
 import useFocused from './../../composables/elements/useFocused'
 import useHandleBlur from './../../composables/elements/useHandleBlur'
 import useWatchValue from './../../composables/elements/useWatchValue'
+import useA11y from './../../composables/elements/useA11y'
 
 import { text as useValidation } from './../../composables/elements/useValidation'
 
@@ -127,6 +128,7 @@ export default {
       useDisabled,
       useNullValue,
       useFieldId,
+      useA11y,
       useFloating,
       useEvents,
       useBaseElement,

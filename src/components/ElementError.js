@@ -30,6 +30,15 @@ export default {
       return el$.value.error
     })
 
+    /**
+     * The `id` attribute of the container.
+     * 
+     * @type {string}
+     */
+    const id = computed(() => {
+      return el$.value.errorId
+    })
+
     return {
       el$,
       form$,
@@ -41,6 +50,7 @@ export default {
       Templates,
       template,
       error,
+      id,
     }
   },
 }

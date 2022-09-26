@@ -25,6 +25,7 @@ import useWatchValue from './../../composables/elements/useWatchValue'
 import useFloating from './../../composables/elements/useFloating'
 import useLoading from './../../composables/elements/useLoading'
 import useClasses from './../../composables/elements/useClasses'
+import useA11y from './../../composables/elements/useA11y'
 
 import { multiselect as useFocused } from './../../composables/elements/useFocused'
 import { multiselect as useOptions } from './../../composables/elements/useOptions'
@@ -375,6 +376,7 @@ export default {
       useDisabled,
       useNullValue,
       useFieldId,
+      useA11y,
       useFloating,
       useEvents,
       useBaseElement,

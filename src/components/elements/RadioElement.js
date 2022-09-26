@@ -23,6 +23,7 @@ import useRadio from './../../composables/elements/useRadio'
 import useValue from './../../composables/elements/useValue'
 import useWatchValue from './../../composables/elements/useWatchValue'
 import useClasses from './../../composables/elements/useClasses'
+import useA11y from './../../composables/elements/useA11y'
 
 import BaseElement from './../../mixins/BaseElement'
 import HasView from './../../mixins/HasView'
@@ -81,6 +82,7 @@ export default {
       usePath,
       useDisabled,
       useFieldId,
+      useA11y,
       useEvents,
       useBaseElement,
       useNullValue,

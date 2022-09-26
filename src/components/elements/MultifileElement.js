@@ -22,6 +22,7 @@ import useChildren from './../../composables/elements/useChildren'
 import useValue from './../../composables/elements/useValue'
 import useClasses from './../../composables/elements/useClasses'
 import useFieldId from './../../composables/elements/useFieldId'
+import useA11y from './../../composables/elements/useA11y'
 
 import { array as useNullValue } from './../../composables/elements/useNullValue'
 import { array as useEmpty } from './../../composables/elements/useEmpty'
@@ -218,6 +219,7 @@ export default {
       useSorting,
       usePrototype,
       useFieldId,
+      useA11y,
       useEvents,
       useBaseElement,
       useDefault,

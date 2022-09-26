@@ -1,5 +1,11 @@
 <template>
-  <label :class="classes.container">
+  <label
+    :class="classes.container"
+    tabindex="0"
+    role="radio"
+    :aria-checked="checked"
+    @keyup.space="el$.update(value)"
+  >
     <slot
       v-bind="{ name }"
       :classes="classes"

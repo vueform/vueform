@@ -23,6 +23,7 @@ import useEditor from './../../composables/elements/useEditor'
 import useHandleAlert from './../../composables/elements/useHandleAlert'
 import useClasses from './../../composables/elements/useClasses'
 import useHandleBlur from './../../composables/elements/useHandleBlur'
+import useA11y from './../../composables/elements/useA11y'
 
 import { teditor as useData } from './../../composables/elements/useData'
 import { multilingual as useNullValue } from './../../composables/elements/useNullValue'
@@ -130,6 +131,7 @@ export default {
       usePath,
       useDisabled,
       useFieldId,
+      useA11y,
       useEvents,
       useBaseElement,
       useLanguages,

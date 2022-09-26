@@ -24,6 +24,7 @@ import useLoading from './../../composables/elements/useLoading'
 import useClasses from './../../composables/elements/useClasses'
 import useFocused from './../../composables/elements/useFocused'
 import useHandleBlur from './../../composables/elements/useHandleBlur'
+import useA11y from './../../composables/elements/useA11y'
 
 import { multilingual as useValue } from './../../composables/elements/useValue'
 import { multilingual as useData } from './../../composables/elements/useData'
@@ -126,6 +127,7 @@ export default {
       usePath,
       useDisabled,
       useFieldId,
+      useA11y,
       useFloating,
       useEvents,
       useBaseElement,

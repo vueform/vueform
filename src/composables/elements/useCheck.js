@@ -11,6 +11,20 @@ const base = function(props, context, dependencies)
   // =============== METHODS ==============
 
   /**
+   * Toggle's a checkbox's value.
+   *
+   * @param {string|number} value* value to toggle
+   * @returns {void}
+   */
+  const toggle = (val) => {
+    if (value.value.indexOf(String(val)) === -1 && value.value.indexOf(Number(val)) === -1) {
+      check(val)
+    } else {
+      uncheck(val)
+    }
+  }
+
+  /**
    * Checks one or more checkboxes.
    *
    * @param {array|string|number} values* value(s) to check
@@ -79,6 +93,7 @@ const base = function(props, context, dependencies)
   }
 
   return {
+    toggle,
     check,
     uncheck,
     checkAll,

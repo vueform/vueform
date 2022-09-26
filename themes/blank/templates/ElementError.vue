@@ -1,5 +1,11 @@
 <template>
-  <div v-if="error" :class="classes.container" v-html="error"></div>
+  <div
+    v-if="error"
+    :class="classes.container"
+    :id="id"
+    aria-live="assertive"
+    v-html="error"
+  ></div>
 </template>
 
 <script>
