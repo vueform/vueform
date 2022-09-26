@@ -15,6 +15,7 @@ const base = function(props, context, dependencies)
    * The `id` of the related label component.
    * 
    * @type {string}
+   * @private
    */
   const labelId = computed(() => {
     return `${fieldId.value}__label`
@@ -24,6 +25,7 @@ const base = function(props, context, dependencies)
    * The `id` of the related description component.
    * 
    * @type {string}
+   * @private
    */
   const descriptionId = computed(() => {
     return `${fieldId.value}__description`
@@ -33,6 +35,7 @@ const base = function(props, context, dependencies)
    * The `id` of the related description component.
    * 
    * @type {string}
+   * @private
    */
   const infoId = computed(() => {
     return `${fieldId.value}__info`
@@ -42,6 +45,7 @@ const base = function(props, context, dependencies)
    * The `id` of the related error component.
    * 
    * @type {string}
+   * @private
    */
   const errorId = computed(() => {
     return `${fieldId.value}__error`

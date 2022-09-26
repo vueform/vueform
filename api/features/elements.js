@@ -1,4 +1,318 @@
 export default {
+  "a11y": {
+    "base": {
+      "computed": {
+        "descriptionId": {
+          "public": false,
+          "types": [
+            "string"
+          ],
+          "description": "The `id` of the related description component."
+        },
+        "labelId": {
+          "public": false,
+          "types": [
+            "string"
+          ],
+          "description": "The `id` of the related label component."
+        },
+        "infoId": {
+          "public": false,
+          "types": [
+            "string"
+          ],
+          "description": "The `id` of the related description component."
+        },
+        "errorId": {
+          "public": false,
+          "types": [
+            "string"
+          ],
+          "description": "The `id` of the related error component."
+        },
+        "aria": {
+          "public": true,
+          "types": [
+            "object"
+          ],
+          "description": "The `aria-*` attributes of the input."
+        }
+      }
+    },
+    "checkbox": {
+      "computed": {
+        "descriptionId": {
+          "public": false,
+          "types": [
+            "string"
+          ],
+          "description": "The `id` of the related description component."
+        },
+        "labelId": {
+          "public": false,
+          "types": [
+            "string"
+          ],
+          "description": "The `id` of the related label component."
+        },
+        "infoId": {
+          "public": false,
+          "types": [
+            "string"
+          ],
+          "description": "The `id` of the related description component."
+        },
+        "errorId": {
+          "public": false,
+          "types": [
+            "string"
+          ],
+          "description": "The `id` of the related error component."
+        },
+        "aria": {
+          "public": true,
+          "types": [
+            "object"
+          ],
+          "description": "The `aria-*` attributes of the input."
+        }
+      }
+    },
+    "checkboxgroup": {
+      "computed": {
+        "descriptionId": {
+          "public": false,
+          "types": [
+            "string"
+          ],
+          "description": "The `id` of the related description component."
+        },
+        "labelId": {
+          "public": false,
+          "types": [
+            "string"
+          ],
+          "description": "The `id` of the related label component."
+        },
+        "infoId": {
+          "public": false,
+          "types": [
+            "string"
+          ],
+          "description": "The `id` of the related description component."
+        },
+        "errorId": {
+          "public": false,
+          "types": [
+            "string"
+          ],
+          "description": "The `id` of the related error component."
+        },
+        "aria": {
+          "public": true,
+          "types": [
+            "object"
+          ],
+          "description": "The `aria-*` attributes of the input."
+        }
+      }
+    },
+    "static": {
+      "computed": {
+        "descriptionId": {
+          "public": false,
+          "types": [
+            "string"
+          ],
+          "description": "The `id` of the related description component."
+        },
+        "labelId": {
+          "public": false,
+          "types": [
+            "string"
+          ],
+          "description": "The `id` of the related label component."
+        },
+        "infoId": {
+          "public": false,
+          "types": [
+            "string"
+          ],
+          "description": "The `id` of the related description component."
+        },
+        "errorId": {
+          "public": false,
+          "types": [
+            "string"
+          ],
+          "description": "The `id` of the related error component."
+        },
+        "aria": {
+          "public": true,
+          "types": [
+            "object"
+          ],
+          "description": "The `aria-*` attributes of the input."
+        }
+      }
+    },
+    "radiogroup": {
+      "computed": {
+        "descriptionId": {
+          "public": false,
+          "types": [
+            "string"
+          ],
+          "description": "The `id` of the related description component."
+        },
+        "labelId": {
+          "public": false,
+          "types": [
+            "string"
+          ],
+          "description": "The `id` of the related label component."
+        },
+        "infoId": {
+          "public": false,
+          "types": [
+            "string"
+          ],
+          "description": "The `id` of the related description component."
+        },
+        "errorId": {
+          "public": false,
+          "types": [
+            "string"
+          ],
+          "description": "The `id` of the related error component."
+        },
+        "aria": {
+          "public": true,
+          "types": [
+            "object"
+          ],
+          "description": "The `aria-*` attributes of the input."
+        }
+      }
+    },
+    "radio": {
+      "computed": {
+        "descriptionId": {
+          "public": false,
+          "types": [
+            "string"
+          ],
+          "description": "The `id` of the related description component."
+        },
+        "labelId": {
+          "public": false,
+          "types": [
+            "string"
+          ],
+          "description": "The `id` of the related label component."
+        },
+        "infoId": {
+          "public": false,
+          "types": [
+            "string"
+          ],
+          "description": "The `id` of the related description component."
+        },
+        "errorId": {
+          "public": false,
+          "types": [
+            "string"
+          ],
+          "description": "The `id` of the related error component."
+        },
+        "aria": {
+          "public": true,
+          "types": [
+            "object"
+          ],
+          "description": "The `aria-*` attributes of the input."
+        }
+      }
+    },
+    "toggle": {
+      "computed": {
+        "descriptionId": {
+          "public": false,
+          "types": [
+            "string"
+          ],
+          "description": "The `id` of the related description component."
+        },
+        "labelId": {
+          "public": false,
+          "types": [
+            "string"
+          ],
+          "description": "The `id` of the related label component."
+        },
+        "infoId": {
+          "public": false,
+          "types": [
+            "string"
+          ],
+          "description": "The `id` of the related description component."
+        },
+        "errorId": {
+          "public": false,
+          "types": [
+            "string"
+          ],
+          "description": "The `id` of the related error component."
+        },
+        "aria": {
+          "public": true,
+          "types": [
+            "object"
+          ],
+          "description": "The `aria-*` attributes of the input."
+        }
+      }
+    },
+    "file": {
+      "computed": {
+        "descriptionId": {
+          "public": false,
+          "types": [
+            "string"
+          ],
+          "description": "The `id` of the related description component."
+        },
+        "labelId": {
+          "public": false,
+          "types": [
+            "string"
+          ],
+          "description": "The `id` of the related label component."
+        },
+        "infoId": {
+          "public": false,
+          "types": [
+            "string"
+          ],
+          "description": "The `id` of the related description component."
+        },
+        "errorId": {
+          "public": false,
+          "types": [
+            "string"
+          ],
+          "description": "The `id` of the related error component."
+        },
+        "aria": {
+          "public": true,
+          "types": [
+            "object"
+          ],
+          "description": "The `aria-*` attributes of the input."
+        }
+      }
+    }
+  },
   "addons": {
     "base": {}
   },
@@ -761,6 +1075,21 @@ export default {
   "check": {
     "base": {
       "methods": {
+        "toggle": {
+          "public": true,
+          "returns": "void",
+          "description": "Toggle's a checkbox's value.",
+          "params": {
+            "value": {
+              "types": [
+                "string",
+                "number"
+              ],
+              "required": true,
+              "description": "value to toggle"
+            }
+          }
+        },
         "check": {
           "public": true,
           "returns": "void",

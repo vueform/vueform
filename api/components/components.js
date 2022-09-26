@@ -318,6 +318,13 @@ module.exports = {
           "boolean"
         ],
         "description": "Whether the description is provided as a slot."
+      },
+      "id": {
+        "public": true,
+        "types": [
+          "string"
+        ],
+        "description": "The `id` attribute of the container."
       }
     },
     "props": {},
@@ -402,6 +409,13 @@ module.exports = {
           "string"
         ],
         "description": "The first error of the element."
+      },
+      "id": {
+        "public": true,
+        "types": [
+          "string"
+        ],
+        "description": "The `id` attribute of the container."
       }
     },
     "props": {},
@@ -489,6 +503,13 @@ module.exports = {
           "boolean"
         ],
         "description": "Whether the info is provided as a slot."
+      },
+      "id": {
+        "public": true,
+        "types": [
+          "string"
+        ],
+        "description": "The `id` attribute of the container."
       }
     },
     "data": {
@@ -613,6 +634,13 @@ module.exports = {
           "string"
         ],
         "description": "The name of the element."
+      },
+      "id": {
+        "public": true,
+        "types": [
+          "string"
+        ],
+        "description": "The `id` attribute of the container."
       },
       "hasLabel": {
         "public": true,
@@ -4798,6 +4826,13 @@ module.exports = {
           "number",
           "string"
         ]
+      },
+      "attrs": {
+        "required": false,
+        "default": "{}",
+        "types": [
+          "object"
+        ]
       }
     },
     "events": {
@@ -5055,6 +5090,13 @@ module.exports = {
         "types": [
           "array"
         ]
+      },
+      "attrs": {
+        "required": false,
+        "default": "{}",
+        "types": [
+          "object"
+        ]
       }
     },
     "events": {
@@ -5193,6 +5235,13 @@ module.exports = {
           "boolean"
         ],
         "description": "The `name` attribute of the input."
+      },
+      "checked": {
+        "public": true,
+        "types": [
+          "boolean"
+        ],
+        "description": "Whether the checkbox is checked."
       }
     },
     "props": {
@@ -5222,6 +5271,13 @@ module.exports = {
         "required": true,
         "types": [
           "number"
+        ]
+      },
+      "attrs": {
+        "required": false,
+        "default": "{}",
+        "types": [
+          "object"
         ]
       }
     },
@@ -5389,6 +5445,27 @@ module.exports = {
           "string"
         ],
         "description": "The image's preview when [`view`](#option-view) is `image` or `gallery`. Equals to the `link` if the file is already uploaded and `base64` if only selected or temporarily uploaded."
+      },
+      "ariaLabelledby": {
+        "public": true,
+        "types": [
+          "string"
+        ],
+        "description": "The `aria-labelledby` attribute of the preview."
+      },
+      "ariaPlaceholder": {
+        "public": true,
+        "types": [
+          "string"
+        ],
+        "description": "The `aria-placeholder` attribute of the preview."
+      },
+      "ariaRoledescription": {
+        "public": true,
+        "types": [
+          "string"
+        ],
+        "description": "The `aria-roledescription` attribute of the preview."
       }
     },
     "methods": {
@@ -5401,9 +5478,31 @@ module.exports = {
         "public": true,
         "returns": "void",
         "description": "Remove the file."
+      },
+      "handleKeyup": {
+        "public": false,
+        "returns": "void",
+        "description": "Handle the keyup event of the preview.",
+        "params": {
+          "event": {
+            "types": [
+              "Event"
+            ],
+            "required": false,
+            "description": "the keyup Event"
+          }
+        }
       }
     },
-    "props": {},
+    "props": {
+      "attrs": {
+        "required": false,
+        "default": "{}",
+        "types": [
+          "object"
+        ]
+      }
+    },
     "events": {},
     "slots": {},
     "views": [
@@ -5498,6 +5597,13 @@ module.exports = {
           "boolean"
         ],
         "description": "The `name` attribute of the input."
+      },
+      "checked": {
+        "public": true,
+        "types": [
+          "boolean"
+        ],
+        "description": "Whether the radio is checked."
       }
     },
     "props": {
@@ -5527,6 +5633,13 @@ module.exports = {
         "required": true,
         "types": [
           "number"
+        ]
+      },
+      "attrs": {
+        "required": false,
+        "default": "{}",
+        "types": [
+          "object"
         ]
       }
     },

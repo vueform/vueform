@@ -54,7 +54,7 @@ export default {
     })
 
     /**
-     * Whether the checkbox is checked.
+     * Whether the radio is checked.
      * 
      * @type {boolean}
      */

@@ -487,6 +487,13 @@ export default {
             "string"
           ],
           "description": "The text for upload button. Can be also changed in the locale file: `vueform.elements.file.upload`"
+        },
+        "ariaLabelledby": {
+          "public": true,
+          "types": [
+            "string"
+          ],
+          "description": "The `aria-labelledby` attribute of the preview."
         }
       },
       "methods": {
@@ -499,6 +506,20 @@ export default {
           "public": true,
           "returns": "void",
           "description": "Remove the file."
+        },
+        "handleKeyup": {
+          "public": false,
+          "returns": "void",
+          "description": "Handle the keyup event of the preview.",
+          "params": {
+            "event": {
+              "types": [
+                "Event"
+              ],
+              "required": false,
+              "description": "the keyup Event"
+            }
+          }
         }
       }
     }

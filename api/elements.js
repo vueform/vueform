@@ -1,6 +1,7 @@
 export default {
   "button": {
     "features": [
+      "a11y_static",
       "baseElement_static",
       "button",
       "classes",
@@ -41,6 +42,7 @@ export default {
   },
   "checkbox": {
     "features": [
+      "a11y_checkbox",
       "baseElement",
       "classes",
       "columns",
@@ -89,6 +91,7 @@ export default {
   },
   "checkboxgroup": {
     "features": [
+      "a11y_checkboxgroup",
       "asyncItems_checkboxgroup",
       "baseElement_checkboxgroup",
       "check",
@@ -137,6 +140,7 @@ export default {
   },
   "date": {
     "features": [
+      "a11y",
       "addons",
       "baseElement",
       "classes",
@@ -192,6 +196,7 @@ export default {
   },
   "dates": {
     "features": [
+      "a11y",
       "addons",
       "baseElement_dates",
       "classes",
@@ -247,6 +252,7 @@ export default {
   },
   "file": {
     "features": [
+      "a11y_file",
       "baseElement_file",
       "classes",
       "columns",
@@ -301,6 +307,7 @@ export default {
   },
   "group": {
     "features": [
+      "a11y",
       "baseElement",
       "children_group",
       "classes",
@@ -310,6 +317,7 @@ export default {
       "default_group",
       "elements",
       "events",
+      "fieldId",
       "form$",
       "label",
       "layout",
@@ -378,6 +386,7 @@ export default {
   },
   "list": {
     "features": [
+      "a11y",
       "baseElement_list",
       "children",
       "classes",
@@ -390,6 +399,7 @@ export default {
       "elements",
       "empty_array",
       "events",
+      "fieldId",
       "form$",
       "genericName",
       "label",
@@ -433,6 +443,7 @@ export default {
   },
   "location": {
     "features": [
+      "a11y",
       "addons",
       "baseElement",
       "classes",
@@ -485,6 +496,7 @@ export default {
   },
   "multifile": {
     "features": [
+      "a11y",
       "baseElement_list",
       "children",
       "classes",
@@ -498,6 +510,7 @@ export default {
       "elements",
       "empty_array",
       "events",
+      "fieldId",
       "form$",
       "genericName",
       "input",
@@ -543,6 +556,7 @@ export default {
   },
   "multiselect": {
     "features": [
+      "a11y",
       "asyncItems",
       "baseElement_multiselect",
       "classes",
@@ -615,6 +629,7 @@ export default {
   },
   "object": {
     "features": [
+      "a11y",
       "baseElement",
       "children_object",
       "classes",
@@ -624,6 +639,7 @@ export default {
       "default_object",
       "elements",
       "events",
+      "fieldId",
       "form$",
       "label",
       "layout",
@@ -660,6 +676,7 @@ export default {
   },
   "radio": {
     "features": [
+      "a11y_radio",
       "baseElement",
       "classes",
       "columns",
@@ -708,6 +725,7 @@ export default {
   },
   "radiogroup": {
     "features": [
+      "a11y_radiogroup",
       "asyncItems_radiogroup",
       "baseElement",
       "classes",
@@ -755,6 +773,7 @@ export default {
   },
   "select": {
     "features": [
+      "a11y",
       "asyncItems",
       "baseElement",
       "classes",
@@ -826,6 +845,7 @@ export default {
   },
   "slider": {
     "features": [
+      "a11y",
       "baseElement",
       "classes",
       "columns",
@@ -875,11 +895,13 @@ export default {
   },
   "static": {
     "features": [
+      "a11y_static",
       "baseElement_static",
       "classes",
       "columns",
       "conditions",
       "events",
+      "fieldId",
       "form$",
       "label",
       "layout",
@@ -912,6 +934,7 @@ export default {
   },
   "tags": {
     "features": [
+      "a11y",
       "asyncItems",
       "baseElement_tags",
       "classes",
@@ -986,6 +1009,7 @@ export default {
   },
   "textarea": {
     "features": [
+      "a11y",
       "addons",
       "autogrow",
       "baseElement",
@@ -1042,6 +1066,7 @@ export default {
   },
   "text": {
     "features": [
+      "a11y",
       "addons",
       "baseElement",
       "classes",
@@ -1098,6 +1123,7 @@ export default {
   },
   "toggle": {
     "features": [
+      "a11y_toggle",
       "baseElement",
       "classes",
       "columns",
@@ -1148,6 +1174,7 @@ export default {
   },
   "editor": {
     "features": [
+      "a11y",
       "baseElement",
       "classes",
       "columns",
@@ -1203,6 +1230,7 @@ export default {
   },
   "tTextarea": {
     "features": [
+      "a11y",
       "addons",
       "autogrow_multilingual",
       "baseElement",
@@ -1260,6 +1288,7 @@ export default {
   },
   "tText": {
     "features": [
+      "a11y",
       "addons",
       "baseElement",
       "classes",
@@ -1317,6 +1346,7 @@ export default {
   },
   "tEditor": {
     "features": [
+      "a11y",
       "baseElement",
       "classes",
       "columns",

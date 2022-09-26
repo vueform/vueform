@@ -501,6 +501,41 @@ module.exports = {
       },
     },
     computed: {
+      descriptionId: {
+        types: [
+          'string',
+        ],
+        description: 'The `id` of the related description component.',
+        private: true,
+      },
+      labelId: {
+        types: [
+          'string',
+        ],
+        description: 'The `id` of the related label component.',
+        private: true,
+      },
+      infoId: {
+        types: [
+          'string',
+        ],
+        description: 'The `id` of the related description component.',
+        private: true,
+      },
+      errorId: {
+        types: [
+          'string',
+        ],
+        description: 'The `id` of the related error component.',
+        private: true,
+      },
+      aria: {
+        types: [
+          'object',
+        ],
+        description: 'The `aria-*` attributes of the input.',
+        private: false,
+      },
       el$: {
         types: [
           'component',
@@ -1571,6 +1606,41 @@ module.exports = {
       },
     },
     computed: {
+      descriptionId: {
+        types: [
+          'string',
+        ],
+        description: 'The `id` of the related description component.',
+        private: true,
+      },
+      labelId: {
+        types: [
+          'string',
+        ],
+        description: 'The `id` of the related label component.',
+        private: true,
+      },
+      infoId: {
+        types: [
+          'string',
+        ],
+        description: 'The `id` of the related description component.',
+        private: true,
+      },
+      errorId: {
+        types: [
+          'string',
+        ],
+        description: 'The `id` of the related error component.',
+        private: true,
+      },
+      aria: {
+        types: [
+          'object',
+        ],
+        description: 'The `aria-*` attributes of the input.',
+        private: false,
+      },
       el$: {
         types: [
           'component',
@@ -2814,6 +2884,41 @@ module.exports = {
       },
     },
     computed: {
+      descriptionId: {
+        types: [
+          'string',
+        ],
+        description: 'The `id` of the related description component.',
+        private: true,
+      },
+      labelId: {
+        types: [
+          'string',
+        ],
+        description: 'The `id` of the related label component.',
+        private: true,
+      },
+      infoId: {
+        types: [
+          'string',
+        ],
+        description: 'The `id` of the related description component.',
+        private: true,
+      },
+      errorId: {
+        types: [
+          'string',
+        ],
+        description: 'The `id` of the related error component.',
+        private: true,
+      },
+      aria: {
+        types: [
+          'object',
+        ],
+        description: 'The `aria-*` attributes of the input.',
+        private: false,
+      },
       resolvedOptions: {
         types: [
           'array',
@@ -3149,6 +3254,21 @@ module.exports = {
         description: 'Sets the `active` property of the element to `false`.',
         returns: 'void',
         private: true,
+      },
+      toggle: {
+        description: 'Toggle&apos;s a checkbox&apos;s value.',
+        returns: 'void',
+        params: {
+          value: {
+            types: [
+              'string',
+              'number',
+            ],
+            required: 'true',
+            description: 'value to toggle',
+          },
+        },
+        private: false,
       },
       check: {
         description: 'Checks one or more checkboxes.',
@@ -4324,6 +4444,41 @@ module.exports = {
       },
     },
     computed: {
+      descriptionId: {
+        types: [
+          'string',
+        ],
+        description: 'The `id` of the related description component.',
+        private: true,
+      },
+      labelId: {
+        types: [
+          'string',
+        ],
+        description: 'The `id` of the related label component.',
+        private: true,
+      },
+      infoId: {
+        types: [
+          'string',
+        ],
+        description: 'The `id` of the related description component.',
+        private: true,
+      },
+      errorId: {
+        types: [
+          'string',
+        ],
+        description: 'The `id` of the related error component.',
+        private: true,
+      },
+      aria: {
+        types: [
+          'object',
+        ],
+        description: 'The `aria-*` attributes of the input.',
+        private: false,
+      },
       el$: {
         types: [
           'component',
@@ -5724,6 +5879,41 @@ module.exports = {
       },
     },
     computed: {
+      descriptionId: {
+        types: [
+          'string',
+        ],
+        description: 'The `id` of the related description component.',
+        private: true,
+      },
+      labelId: {
+        types: [
+          'string',
+        ],
+        description: 'The `id` of the related label component.',
+        private: true,
+      },
+      infoId: {
+        types: [
+          'string',
+        ],
+        description: 'The `id` of the related description component.',
+        private: true,
+      },
+      errorId: {
+        types: [
+          'string',
+        ],
+        description: 'The `id` of the related error component.',
+        private: true,
+      },
+      aria: {
+        types: [
+          'object',
+        ],
+        description: 'The `aria-*` attributes of the input.',
+        private: false,
+      },
       el$: {
         types: [
           'component',
@@ -7103,6 +7293,41 @@ module.exports = {
       },
     },
     computed: {
+      descriptionId: {
+        types: [
+          'string',
+        ],
+        description: 'The `id` of the related description component.',
+        private: true,
+      },
+      labelId: {
+        types: [
+          'string',
+        ],
+        description: 'The `id` of the related label component.',
+        private: true,
+      },
+      infoId: {
+        types: [
+          'string',
+        ],
+        description: 'The `id` of the related description component.',
+        private: true,
+      },
+      errorId: {
+        types: [
+          'string',
+        ],
+        description: 'The `id` of the related error component.',
+        private: true,
+      },
+      aria: {
+        types: [
+          'object',
+        ],
+        description: 'The `aria-*` attributes of the input.',
+        private: false,
+      },
       el$: {
         types: [
           'component',
@@ -8628,6 +8853,41 @@ module.exports = {
       },
     },
     computed: {
+      descriptionId: {
+        types: [
+          'string',
+        ],
+        description: 'The `id` of the related description component.',
+        private: true,
+      },
+      labelId: {
+        types: [
+          'string',
+        ],
+        description: 'The `id` of the related label component.',
+        private: true,
+      },
+      infoId: {
+        types: [
+          'string',
+        ],
+        description: 'The `id` of the related description component.',
+        private: true,
+      },
+      errorId: {
+        types: [
+          'string',
+        ],
+        description: 'The `id` of the related error component.',
+        private: true,
+      },
+      aria: {
+        types: [
+          'object',
+        ],
+        description: 'The `aria-*` attributes of the input.',
+        private: false,
+      },
       el$: {
         types: [
           'component',
@@ -9864,6 +10124,15 @@ module.exports = {
         required: false,
         private: false,
       },
+      id: {
+        required: 'false',
+        default: 'null',
+        types: [
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
       schema: {
         required: 'false',
         default: '{}',
@@ -9933,6 +10202,41 @@ module.exports = {
       },
     },
     computed: {
+      descriptionId: {
+        types: [
+          'string',
+        ],
+        description: 'The `id` of the related description component.',
+        private: true,
+      },
+      labelId: {
+        types: [
+          'string',
+        ],
+        description: 'The `id` of the related label component.',
+        private: true,
+      },
+      infoId: {
+        types: [
+          'string',
+        ],
+        description: 'The `id` of the related description component.',
+        private: true,
+      },
+      errorId: {
+        types: [
+          'string',
+        ],
+        description: 'The `id` of the related error component.',
+        private: true,
+      },
+      aria: {
+        types: [
+          'object',
+        ],
+        description: 'The `aria-*` attributes of the input.',
+        private: false,
+      },
       el$: {
         types: [
           'component',
@@ -10037,6 +10341,13 @@ module.exports = {
         ],
         description: 'The default value of the element.',
         private: true,
+      },
+      fieldId: {
+        types: [
+          'string',
+        ],
+        description: 'The `id` of the <%field%>. If [`id`](#option-id) is not provided [`path`](#option-path) will be used.',
+        private: false,
       },
       hasLabel: {
         types: [
@@ -11771,6 +12082,15 @@ module.exports = {
         required: false,
         private: false,
       },
+      id: {
+        required: 'false',
+        default: 'null',
+        types: [
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
       disabled: {
         required: 'false',
         default: 'false',
@@ -12026,6 +12346,41 @@ module.exports = {
       },
     },
     computed: {
+      descriptionId: {
+        types: [
+          'string',
+        ],
+        description: 'The `id` of the related description component.',
+        private: true,
+      },
+      labelId: {
+        types: [
+          'string',
+        ],
+        description: 'The `id` of the related label component.',
+        private: true,
+      },
+      infoId: {
+        types: [
+          'string',
+        ],
+        description: 'The `id` of the related description component.',
+        private: true,
+      },
+      errorId: {
+        types: [
+          'string',
+        ],
+        description: 'The `id` of the related error component.',
+        private: true,
+      },
+      aria: {
+        types: [
+          'object',
+        ],
+        description: 'The `aria-*` attributes of the input.',
+        private: false,
+      },
       el$: {
         types: [
           'component',
@@ -12164,6 +12519,13 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element has no value filled in.',
+        private: false,
+      },
+      fieldId: {
+        types: [
+          'string',
+        ],
+        description: 'The `id` of the <%field%>. If [`id`](#option-id) is not provided [`path`](#option-path) will be used.',
         private: false,
       },
       genericName: {
@@ -13562,6 +13924,41 @@ module.exports = {
       },
     },
     computed: {
+      descriptionId: {
+        types: [
+          'string',
+        ],
+        description: 'The `id` of the related description component.',
+        private: true,
+      },
+      labelId: {
+        types: [
+          'string',
+        ],
+        description: 'The `id` of the related label component.',
+        private: true,
+      },
+      infoId: {
+        types: [
+          'string',
+        ],
+        description: 'The `id` of the related description component.',
+        private: true,
+      },
+      errorId: {
+        types: [
+          'string',
+        ],
+        description: 'The `id` of the related error component.',
+        private: true,
+      },
+      aria: {
+        types: [
+          'object',
+        ],
+        description: 'The `aria-*` attributes of the input.',
+        private: false,
+      },
       el$: {
         types: [
           'component',
@@ -14746,6 +15143,15 @@ module.exports = {
         required: false,
         private: false,
       },
+      id: {
+        required: 'false',
+        default: 'null',
+        types: [
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
       onAdd: {
         required: 'false',
         default: 'null',
@@ -15088,6 +15494,41 @@ module.exports = {
       },
     },
     computed: {
+      descriptionId: {
+        types: [
+          'string',
+        ],
+        description: 'The `id` of the related description component.',
+        private: true,
+      },
+      labelId: {
+        types: [
+          'string',
+        ],
+        description: 'The `id` of the related label component.',
+        private: true,
+      },
+      infoId: {
+        types: [
+          'string',
+        ],
+        description: 'The `id` of the related description component.',
+        private: true,
+      },
+      errorId: {
+        types: [
+          'string',
+        ],
+        description: 'The `id` of the related error component.',
+        private: true,
+      },
+      aria: {
+        types: [
+          'object',
+        ],
+        description: 'The `aria-*` attributes of the input.',
+        private: false,
+      },
       el$: {
         types: [
           'component',
@@ -15226,6 +15667,13 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element has no value filled in.',
+        private: false,
+      },
+      fieldId: {
+        types: [
+          'string',
+        ],
+        description: 'The `id` of the <%field%>. If [`id`](#option-id) is not provided [`path`](#option-path) will be used.',
         private: false,
       },
       genericName: {
@@ -17070,6 +17518,41 @@ module.exports = {
       },
     },
     computed: {
+      descriptionId: {
+        types: [
+          'string',
+        ],
+        description: 'The `id` of the related description component.',
+        private: true,
+      },
+      labelId: {
+        types: [
+          'string',
+        ],
+        description: 'The `id` of the related label component.',
+        private: true,
+      },
+      infoId: {
+        types: [
+          'string',
+        ],
+        description: 'The `id` of the related description component.',
+        private: true,
+      },
+      errorId: {
+        types: [
+          'string',
+        ],
+        description: 'The `id` of the related error component.',
+        private: true,
+      },
+      aria: {
+        types: [
+          'object',
+        ],
+        description: 'The `aria-*` attributes of the input.',
+        private: false,
+      },
       resolvedOptions: {
         types: [
           'array',
@@ -18543,6 +19026,15 @@ module.exports = {
         required: false,
         private: false,
       },
+      id: {
+        required: 'false',
+        default: 'null',
+        types: [
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
       schema: {
         required: 'false',
         default: '{}',
@@ -18637,6 +19129,41 @@ module.exports = {
       },
     },
     computed: {
+      descriptionId: {
+        types: [
+          'string',
+        ],
+        description: 'The `id` of the related description component.',
+        private: true,
+      },
+      labelId: {
+        types: [
+          'string',
+        ],
+        description: 'The `id` of the related label component.',
+        private: true,
+      },
+      infoId: {
+        types: [
+          'string',
+        ],
+        description: 'The `id` of the related description component.',
+        private: true,
+      },
+      errorId: {
+        types: [
+          'string',
+        ],
+        description: 'The `id` of the related error component.',
+        private: true,
+      },
+      aria: {
+        types: [
+          'object',
+        ],
+        description: 'The `aria-*` attributes of the input.',
+        private: false,
+      },
       el$: {
         types: [
           'component',
@@ -18741,6 +19268,13 @@ module.exports = {
         ],
         description: 'The default value of the element.',
         private: true,
+      },
+      fieldId: {
+        types: [
+          'string',
+        ],
+        description: 'The `id` of the <%field%>. If [`id`](#option-id) is not provided [`path`](#option-path) will be used.',
+        private: false,
       },
       hasLabel: {
         types: [
@@ -19842,6 +20376,41 @@ module.exports = {
       },
     },
     computed: {
+      descriptionId: {
+        types: [
+          'string',
+        ],
+        description: 'The `id` of the related description component.',
+        private: true,
+      },
+      labelId: {
+        types: [
+          'string',
+        ],
+        description: 'The `id` of the related label component.',
+        private: true,
+      },
+      infoId: {
+        types: [
+          'string',
+        ],
+        description: 'The `id` of the related description component.',
+        private: true,
+      },
+      errorId: {
+        types: [
+          'string',
+        ],
+        description: 'The `id` of the related error component.',
+        private: true,
+      },
+      aria: {
+        types: [
+          'object',
+        ],
+        description: 'The `aria-*` attributes of the input.',
+        private: false,
+      },
       el$: {
         types: [
           'component',
@@ -21093,6 +21662,41 @@ module.exports = {
       },
     },
     computed: {
+      descriptionId: {
+        types: [
+          'string',
+        ],
+        description: 'The `id` of the related description component.',
+        private: true,
+      },
+      labelId: {
+        types: [
+          'string',
+        ],
+        description: 'The `id` of the related label component.',
+        private: true,
+      },
+      infoId: {
+        types: [
+          'string',
+        ],
+        description: 'The `id` of the related description component.',
+        private: true,
+      },
+      errorId: {
+        types: [
+          'string',
+        ],
+        description: 'The `id` of the related error component.',
+        private: true,
+      },
+      aria: {
+        types: [
+          'object',
+        ],
+        description: 'The `aria-*` attributes of the input.',
+        private: false,
+      },
       resolvedOptions: {
         types: [
           'array',
@@ -22860,6 +23464,41 @@ module.exports = {
       },
     },
     computed: {
+      descriptionId: {
+        types: [
+          'string',
+        ],
+        description: 'The `id` of the related description component.',
+        private: true,
+      },
+      labelId: {
+        types: [
+          'string',
+        ],
+        description: 'The `id` of the related label component.',
+        private: true,
+      },
+      infoId: {
+        types: [
+          'string',
+        ],
+        description: 'The `id` of the related description component.',
+        private: true,
+      },
+      errorId: {
+        types: [
+          'string',
+        ],
+        description: 'The `id` of the related error component.',
+        private: true,
+      },
+      aria: {
+        types: [
+          'object',
+        ],
+        description: 'The `aria-*` attributes of the input.',
+        private: false,
+      },
       resolvedOptions: {
         types: [
           'array',
@@ -24558,6 +25197,41 @@ module.exports = {
       },
     },
     computed: {
+      descriptionId: {
+        types: [
+          'string',
+        ],
+        description: 'The `id` of the related description component.',
+        private: true,
+      },
+      labelId: {
+        types: [
+          'string',
+        ],
+        description: 'The `id` of the related label component.',
+        private: true,
+      },
+      infoId: {
+        types: [
+          'string',
+        ],
+        description: 'The `id` of the related description component.',
+        private: true,
+      },
+      errorId: {
+        types: [
+          'string',
+        ],
+        description: 'The `id` of the related error component.',
+        private: true,
+      },
+      aria: {
+        types: [
+          'object',
+        ],
+        description: 'The `aria-*` attributes of the input.',
+        private: false,
+      },
       el$: {
         types: [
           'component',
@@ -25591,6 +26265,15 @@ module.exports = {
         required: false,
         private: true,
       },
+      id: {
+        required: 'false',
+        default: 'null',
+        types: [
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
       content: {
         required: 'false',
         default: '',
@@ -25654,6 +26337,41 @@ module.exports = {
       },
     },
     computed: {
+      descriptionId: {
+        types: [
+          'string',
+        ],
+        description: 'The `id` of the related description component.',
+        private: true,
+      },
+      labelId: {
+        types: [
+          'string',
+        ],
+        description: 'The `id` of the related label component.',
+        private: true,
+      },
+      infoId: {
+        types: [
+          'string',
+        ],
+        description: 'The `id` of the related description component.',
+        private: true,
+      },
+      errorId: {
+        types: [
+          'string',
+        ],
+        description: 'The `id` of the related error component.',
+        private: true,
+      },
+      aria: {
+        types: [
+          'object',
+        ],
+        description: 'The `aria-*` attributes of the input.',
+        private: false,
+      },
       el$: {
         types: [
           'component',
@@ -25722,6 +26440,13 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether no [`conditions`](#option-conditions) are defined or they are all fulfilled.',
+        private: false,
+      },
+      fieldId: {
+        types: [
+          'string',
+        ],
+        description: 'The `id` of the <%field%>. If [`id`](#option-id) is not provided [`path`](#option-path) will be used.',
         private: false,
       },
       hasLabel: {
@@ -26712,6 +27437,41 @@ module.exports = {
       },
     },
     computed: {
+      descriptionId: {
+        types: [
+          'string',
+        ],
+        description: 'The `id` of the related description component.',
+        private: true,
+      },
+      labelId: {
+        types: [
+          'string',
+        ],
+        description: 'The `id` of the related label component.',
+        private: true,
+      },
+      infoId: {
+        types: [
+          'string',
+        ],
+        description: 'The `id` of the related description component.',
+        private: true,
+      },
+      errorId: {
+        types: [
+          'string',
+        ],
+        description: 'The `id` of the related error component.',
+        private: true,
+      },
+      aria: {
+        types: [
+          'object',
+        ],
+        description: 'The `aria-*` attributes of the input.',
+        private: false,
+      },
       el$: {
         types: [
           'component',
@@ -28151,6 +28911,41 @@ module.exports = {
       },
     },
     computed: {
+      descriptionId: {
+        types: [
+          'string',
+        ],
+        description: 'The `id` of the related description component.',
+        private: true,
+      },
+      labelId: {
+        types: [
+          'string',
+        ],
+        description: 'The `id` of the related label component.',
+        private: true,
+      },
+      infoId: {
+        types: [
+          'string',
+        ],
+        description: 'The `id` of the related description component.',
+        private: true,
+      },
+      errorId: {
+        types: [
+          'string',
+        ],
+        description: 'The `id` of the related error component.',
+        private: true,
+      },
+      aria: {
+        types: [
+          'object',
+        ],
+        description: 'The `aria-*` attributes of the input.',
+        private: false,
+      },
       el$: {
         types: [
           'component',
@@ -29550,6 +30345,41 @@ module.exports = {
       },
     },
     computed: {
+      descriptionId: {
+        types: [
+          'string',
+        ],
+        description: 'The `id` of the related description component.',
+        private: true,
+      },
+      labelId: {
+        types: [
+          'string',
+        ],
+        description: 'The `id` of the related label component.',
+        private: true,
+      },
+      infoId: {
+        types: [
+          'string',
+        ],
+        description: 'The `id` of the related description component.',
+        private: true,
+      },
+      errorId: {
+        types: [
+          'string',
+        ],
+        description: 'The `id` of the related error component.',
+        private: true,
+      },
+      aria: {
+        types: [
+          'object',
+        ],
+        description: 'The `aria-*` attributes of the input.',
+        private: false,
+      },
       el$: {
         types: [
           'component',
@@ -31342,6 +32172,41 @@ module.exports = {
       },
     },
     computed: {
+      descriptionId: {
+        types: [
+          'string',
+        ],
+        description: 'The `id` of the related description component.',
+        private: true,
+      },
+      labelId: {
+        types: [
+          'string',
+        ],
+        description: 'The `id` of the related label component.',
+        private: true,
+      },
+      infoId: {
+        types: [
+          'string',
+        ],
+        description: 'The `id` of the related description component.',
+        private: true,
+      },
+      errorId: {
+        types: [
+          'string',
+        ],
+        description: 'The `id` of the related error component.',
+        private: true,
+      },
+      aria: {
+        types: [
+          'object',
+        ],
+        description: 'The `aria-*` attributes of the input.',
+        private: false,
+      },
       resolvedOptions: {
         types: [
           'array',
@@ -33103,6 +33968,41 @@ module.exports = {
       },
     },
     computed: {
+      descriptionId: {
+        types: [
+          'string',
+        ],
+        description: 'The `id` of the related description component.',
+        private: true,
+      },
+      labelId: {
+        types: [
+          'string',
+        ],
+        description: 'The `id` of the related label component.',
+        private: true,
+      },
+      infoId: {
+        types: [
+          'string',
+        ],
+        description: 'The `id` of the related description component.',
+        private: true,
+      },
+      errorId: {
+        types: [
+          'string',
+        ],
+        description: 'The `id` of the related error component.',
+        private: true,
+      },
+      aria: {
+        types: [
+          'object',
+        ],
+        description: 'The `aria-*` attributes of the input.',
+        private: false,
+      },
       el$: {
         types: [
           'component',
@@ -34482,6 +35382,41 @@ module.exports = {
       },
     },
     computed: {
+      descriptionId: {
+        types: [
+          'string',
+        ],
+        description: 'The `id` of the related description component.',
+        private: true,
+      },
+      labelId: {
+        types: [
+          'string',
+        ],
+        description: 'The `id` of the related label component.',
+        private: true,
+      },
+      infoId: {
+        types: [
+          'string',
+        ],
+        description: 'The `id` of the related description component.',
+        private: true,
+      },
+      errorId: {
+        types: [
+          'string',
+        ],
+        description: 'The `id` of the related error component.',
+        private: true,
+      },
+      aria: {
+        types: [
+          'object',
+        ],
+        description: 'The `aria-*` attributes of the input.',
+        private: false,
+      },
       el$: {
         types: [
           'component',
@@ -35820,6 +36755,41 @@ module.exports = {
       },
     },
     computed: {
+      descriptionId: {
+        types: [
+          'string',
+        ],
+        description: 'The `id` of the related description component.',
+        private: true,
+      },
+      labelId: {
+        types: [
+          'string',
+        ],
+        description: 'The `id` of the related label component.',
+        private: true,
+      },
+      infoId: {
+        types: [
+          'string',
+        ],
+        description: 'The `id` of the related description component.',
+        private: true,
+      },
+      errorId: {
+        types: [
+          'string',
+        ],
+        description: 'The `id` of the related error component.',
+        private: true,
+      },
+      aria: {
+        types: [
+          'object',
+        ],
+        description: 'The `aria-*` attributes of the input.',
+        private: false,
+      },
       el$: {
         types: [
           'component',
