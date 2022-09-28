@@ -1900,7 +1900,12 @@ const vueform = plugin((context) => {
     addVariant('focused', ['&.form-focus', '&:focus'])
     addVariant('focused-hover', ['&.form-focus:hover', '&:focus:hover'])
   }
-
+  
+  addVariant('info-group-hover', ({ modifySelectors, separator }) => {
+    modifySelectors(({ className }) => {
+      return `${prefix('.form-info-group')}:hover .${e(`info-group-hover${separator}${className}`)}`
+    })
+  })
   
   addVariant('in-input-group', ({ modifySelectors, separator }) => {
     modifySelectors(({ className }) => {
