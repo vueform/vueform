@@ -7,6 +7,7 @@ import MergeClasses from './../utils/mergeClasses'
 import convertFormDataUtil from './../utils/convertFormData'
 import asyncForEach from './../utils/asyncForEach'
 import dataEquals from './../utils/dataEquals'
+import { flatten as flattrenTree, collect as collectTree } from './../utils/tree'
 import useEvents from './useEvents'
 import useModel from './useModel'
 
@@ -379,6 +380,26 @@ const base = function(props, context, dependencies = {})
    */
   const formSteps = computed(() => {
     return _.merge({}, steps && steps.value ? steps.value : {}, userConfig.value.steps || {})
+  })
+
+  /**
+   * The tree representation of the form schema.
+   * 
+   * @type {array}
+   * @private
+   */
+  const tree = computed(() => {
+    return collectTree(formSchema.value)
+  })
+
+  /**
+   * The flat tree representation of the form schema.
+   * 
+   * @type {array}
+   * @private
+   */
+  const flatTree = computed(() => {
+    return flattrenTree(tree.value)
   })
 
   /**
@@ -1310,6 +1331,8 @@ const base = function(props, context, dependencies = {})
     intermediaryValue,
     userConfig,
     isSync,
+    tree,
+    flatTree,
     updateModel,
     update,
     load,
