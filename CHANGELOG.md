@@ -1,3 +1,10 @@
+## v1.2.13
+
+> `2022-10-07`
+
+### 🎉 Feature
+  - Added `tree` and `flatTree` props to `Vueform` component.
+
 ## v1.2.12
 
 > `2022-09-26`
