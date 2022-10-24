@@ -356,6 +356,8 @@ const base = function (props, context, dependencies)
         response = response.data
       }
 
+      response.file = value.value
+
       update(response)
     }
     catch (error) {
@@ -460,14 +462,14 @@ const base = function (props, context, dependencies)
     }
   }
 
-  const resolveBase64 = () => {
+  const resolveBase64 = (source = value.value) => {
     let reader = new FileReader()
   
     reader.onload = (e) => {
       base64.value = e.target.result
     }
 
-    reader.readAsDataURL(value.value)
+    reader.readAsDataURL(source)
   }
 
   /**
@@ -549,11 +551,17 @@ const base = function (props, context, dependencies)
       return
     }
 
-    if (!isImageType.value || !(value.value instanceof File) || view.value === 'file') {
+    if (!isImageType.value || view.value === 'file') {
       return
     }
 
-    resolveBase64()
+    if (!(value.value instanceof File) && !value.value?.file) {
+      return
+    }
+
+    resolveBase64(value.value instanceof File
+      ? value.value
+      : value.value?.file)
   }, { immediate: true })
 
   watch(view, (v) => {

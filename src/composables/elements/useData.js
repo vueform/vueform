@@ -770,6 +770,150 @@ const teditor = function(props, context, dependencies)
   }
 }
 
+const file = function(props, context, dependencies)
+{
+  const {
+    load,
+    update,
+    clear,
+    reset,
+    prepare,
+  } = base(props, context, dependencies)
+
+  const {
+    submit,
+    formatData,
+    name,
+  } = toRefs(props)
+
+  // ============ DEPENDENCIES =============
+
+  const form$ = dependencies.form$
+  const available = dependencies.available
+  const value = dependencies.value
+
+  // ============== COMPUTED ===============
+  
+  const data = computed(() => {
+    let v = value.value
+
+    if (typeof v === 'object' && v.file) {
+      v = { ...v }
+      delete v.file
+    }
+
+    return {[name.value]: v}
+  })
+  
+  const requestData = computed(() => {
+    if (!available.value || !submit.value) {
+      return {}
+    }
+
+    let v = value.value
+
+    if (typeof v === 'object' && v.file) {
+      v = { ...v }
+      delete v.file
+    }
+
+    return formatData.value ? formatData.value(name.value, v, form$.value) : {[name.value]: v}
+  })
+  
+  return {
+    data,
+    requestData,
+    load,
+    update,
+    clear,
+    reset,
+    prepare,
+  }
+}
+
+const multifile = function(props, context, dependencies)
+{
+  const {
+    add,
+    remove,
+    load,
+    update,
+    clear,
+    reset,
+    handleAdd,
+    handleRemove,
+    prepare,
+  } = list(props, context, dependencies)
+
+  const {
+    submit,
+    formatData,
+    name,
+  } = toRefs(props)
+
+  // ============ DEPENDENCIES =============
+
+  const form$ = dependencies.form$
+  const available = dependencies.available
+  const value = dependencies.value
+
+  // ============== COMPUTED ===============
+  
+  const data = computed(() => {
+    let val = value.value
+    
+    val = val.map((file) => {
+      if (typeof file === 'object' && file.file) {
+        let v = { ...file }
+        delete v.file
+        return v
+      }
+
+      return file
+    })
+
+    return {[name.value]: val}
+  })
+  
+  const requestData = computed(() => {
+    if (!available.value || !submit.value) {
+      return {}
+    }
+    
+    let requestData = []
+
+    _.each(children$.value, (element$) => {
+      let val = element$.requestData[element$.name]
+
+      if (val !== undefined) {
+        if (typeof val === 'object' && val.file) {
+          let v = { ...file }
+          delete v.file
+          val = v
+        }
+
+        requestData.push(val)
+      }
+    })
+
+    return formatData.value ? formatData.value(name.value, requestData, form$.value) : {[name.value]: requestData}
+  })
+
+  return {
+    requestData,
+    data,
+    add,
+    remove,
+    load,
+    update,
+    clear,
+    reset,
+    handleAdd,
+    handleRemove,
+    prepare,
+  }
+}
+
 export {
   date,
   dates,
@@ -779,6 +923,8 @@ export {
   multilingual,
   editor,
   teditor,
+  file,
+  multifile,
 }
 
 export default base
