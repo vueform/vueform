@@ -307,7 +307,6 @@ const list = function(props, context, dependencies, options)
   const {
     update,
     clear,
-    reset,
     prepare,
     data,
   } = base(props, context, dependencies)
@@ -327,6 +326,7 @@ const list = function(props, context, dependencies, options)
   const nullValue = dependencies.nullValue
   const defaultValue = dependencies.defaultValue
   const fire = dependencies.fire
+  const resetValidators = dependencies.resetValidators
 
   // ================ DATA =================
 
@@ -429,6 +429,30 @@ const list = function(props, context, dependencies, options)
 
     _.each(children$.value, (child$, i) => {
       child$.load(values[i], format)
+    })
+  }
+
+  const reset = () => {
+    value.value = _.cloneDeep(defaultValue.value)
+
+    resetValidators()
+
+    if (!value.value.length && initial.value > 0) {
+      for (let i = 0; i < initial.value; i++) {
+        add()
+      }
+
+      // Making sure child lists are reset as well
+      // so initial instances can be set
+      nextTick(() => {
+        children$Array.value.forEach((child$) => {
+          child$.reset()
+        })
+      })
+    }
+    
+    nextTick(() => {
+      refreshOrderStore(value.value)
     })
   }
 
