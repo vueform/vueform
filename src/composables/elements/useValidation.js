@@ -254,6 +254,15 @@ const base = function(props, context, dependencies)
     })
   }
 
+  /**
+   * Re-initalizes validators when rules have changed.
+   * 
+   * @returns {void}
+   */
+  const reinitValidation = () => {
+    initValidation()
+  }
+
   return {
     state,
     Validators,
@@ -274,6 +283,7 @@ const base = function(props, context, dependencies)
     resetValidators,
     initMessageBag,
     initValidation,
+    reinitValidation,
   }
 }
 
@@ -298,6 +308,7 @@ const text = function(props, context, dependencies)
     resetValidators,
     initMessageBag,
     initValidation,
+    reinitValidation,
   } = base(props, context, dependencies)
 
   // ============== COMPUTED ===============
@@ -341,6 +352,7 @@ const text = function(props, context, dependencies)
     resetValidators,
     initMessageBag,
     initValidation,
+    reinitValidation,
   }
 }
 
@@ -550,6 +562,18 @@ const list = function(props, context, dependencies)
     messageBag.value = new form$.value.$vueform.services.messageBag(baseErrors)
   }
 
+  const reinitValidation = () => {
+    initValidation()
+
+    _.each(children$.value, (element$) => {
+      if (element$.isStatic) {
+        return
+      }
+
+      element$.reinitValidation()
+    })
+  }
+
   return {
     state,
     Validators,
@@ -573,6 +597,7 @@ const list = function(props, context, dependencies)
     resetValidators,
     initMessageBag,
     initValidation,
+    reinitValidation,
   }
 }
 
@@ -879,6 +904,10 @@ const multilingual = function(props, context, dependencies)
     }) 
   }
 
+  const reinitValidation = () => {
+    initValidation()
+  }
+
   return {
     state,
     Validators,
@@ -902,6 +931,7 @@ const multilingual = function(props, context, dependencies)
     initState,
     initMessageBag,
     initValidation,
+    reinitValidation,
   }
 }
 
@@ -1067,6 +1097,9 @@ const object = function(props, context, dependencies)
     })
   }
 
+  const reinitValidation = () => {
+    initValidation()
+  }
 
   return {
     messageBag,
@@ -1082,6 +1115,7 @@ const object = function(props, context, dependencies)
     resetValidators,
     initMessageBag,
     initValidation,
+    reinitValidation,
   }
 }
 
@@ -1108,6 +1142,7 @@ const slider = function(props, context, dependencies)
     resetValidators,
     initMessageBag,
     initValidation,
+    reinitValidation,
   } = base(props, context, dependencies)
 
   // =============== METHODS ==============
@@ -1157,6 +1192,7 @@ const slider = function(props, context, dependencies)
     resetValidators,
     initMessageBag,
     initValidation,
+    reinitValidation,
   }
 }
 
@@ -1185,6 +1221,7 @@ const file = function(props, context, dependencies)
     resetValidators,
     initMessageBag,
     initValidation,
+    reinitValidation,
   } = base(props, context, dependencies)
 
   // ============== COMPUTED ==============
@@ -1248,6 +1285,7 @@ const file = function(props, context, dependencies)
     resetValidators,
     initMessageBag,
     initValidation,
+    reinitValidation,
   }
 }
 
@@ -1282,6 +1320,7 @@ const location = function(props, context, dependencies)
     resetValidators,
     initMessageBag,
     initValidation,
+    reinitValidation,
   } = text(props, context, dependencies)
 
   // =============== METHODS ==============
@@ -1328,6 +1367,7 @@ const location = function(props, context, dependencies)
     resetValidators,
     initMessageBag,
     initValidation,
+    reinitValidation,
   }
 }
 

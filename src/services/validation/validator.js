@@ -248,10 +248,10 @@ const Validator = class {
   watchOther() {
     this.form$.$nextTick(() => {
       if (!this.other$) {
-        throw new Error(this.otherPath + ' element does not exist')
+        return
       }
-
-      this.form$.$watch(() => { return this.other$.value }, () => {
+      
+      this.form$.$watch(() => { return this.other$?.value }, () => {
         if (this.element$.validated) {
           this.element$.validate()
         }
