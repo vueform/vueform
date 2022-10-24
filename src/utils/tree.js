@@ -31,6 +31,10 @@ export const collect = (elements, prefix = '') => {
       member.children = collect(element.schema, path)
     }
 
+    if (element.type === 'list' && Object.keys(element?.element || {}).length) {
+      member.children = collect({ 0: element.element }, path)
+    }
+
     children.push(member)
   })
 
