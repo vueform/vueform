@@ -103,7 +103,7 @@ export default function(config, components) {
 
       if (config.axios !== undefined) {
         if (typeof config.axios === 'function') {
-          this.options.services.axios = axios
+          this.options.services.axios = config.axios
         } else {
           this.options.config.axios = config.axios
         }
