@@ -1,5 +1,4 @@
 import { onMounted } from 'vue'
-import useElement from './../../composables/useElement'
 import useForm$ from './../../composables/useForm$'
 import useFieldId from './../../composables/elements/useFieldId'
 import useTheme from './../../composables/useTheme'
@@ -32,6 +31,7 @@ import { multilingual as useDefault } from './../../composables/elements/useDefa
 import { multilingual as useNullValue } from './../../composables/elements/useNullValue'
 import { multilingual as useValidation } from './../../composables/elements/useValidation'
 import { multilingual as useEmpty } from './../../composables/elements/useEmpty'
+import { multilingual as useElement } from './../../composables/useElement'
 import { multilingual as useWatchValue } from './../../composables/elements/useWatchValue'
 
 import BaseElement from './../../mixins/BaseElement'
@@ -156,21 +156,9 @@ export default {
       'label', 'info', 'description', 'before',
       'between', 'after', 'addon-before', 'addon-after',
     ]
-    context.watchValue = false
-    context.initValidation = false
-
-    const element = useElement(props, context)
-
-    useWatchValue(props, context, element)
-
-    onMounted(() => {
-      element.initState()
-      element.initMessageBag()
-      element.initValidation()
-    })
 
     return {
-      ...element,
+      ...useElement(props, context),
     }
   },
 }

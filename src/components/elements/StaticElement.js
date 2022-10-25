@@ -1,4 +1,3 @@
-import useElement from './../../composables/useElement'
 import useForm$ from './../../composables/useForm$'
 import useTheme from './../../composables/useTheme'
 import useLayout from './../../composables/elements/useLayout'
@@ -16,6 +15,7 @@ import useFieldId from './../../composables/elements/useFieldId'
 import { static_ as useBaseElement } from './../../composables/elements/useBaseElement'
 import { static_ as usePath } from './../../composables/elements/usePath'
 import { static_ as useA11y } from './../../composables/elements/useA11y'
+import { static_ as useElement } from './../../composables/useElement'
 
 import BaseElement from './../../mixins/BaseElement'
 import HasView from './../../mixins/HasView'
@@ -70,8 +70,6 @@ export default {
       'default', 'label', 'info', 'description',
       'before', 'between', 'after',
     ]
-    context.watchValue = false
-    context.initValidation = false
 
     return {
       ...useElement(props, context)

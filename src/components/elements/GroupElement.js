@@ -29,10 +29,11 @@ import BaseElement from './../../mixins/BaseElement'
 import HasView from './../../mixins/HasView'
 import HasChange from './../../mixins/HasChange'
 import HasData from './../../mixins/HasData'
+import HasValidation from './../../mixins/HasValidation'
 
 export default {
   name: 'GroupElement',
-  mixins: [BaseElement, HasView, HasChange, HasData],
+  mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
   emits: ['change', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
   props: {
     type: {
@@ -86,19 +87,9 @@ export default {
       'label', 'info', 'description',
       'before', 'between', 'after',
     ]
-    context.watchValue = false
-    context.initValidation = false
-
-    const element = useElement(props, context)
-
-    useWatchValue(props, context, element)
-    
-    onMounted(() => {
-      element.initMessageBag()  
-    })
 
     return {
-      ...element
+      ...useElement(props, context)
     }
   },
 }

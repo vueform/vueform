@@ -157,20 +157,9 @@ export default {
       'label', 'info', 'description', 'before',
       'between', 'after', 'addon-before', 'addon-after'
     ]
-    context.watchValue = false
-    
-    const element = useElement(props, context)
-
-    onMounted(() => {
-      if (element.value.value[displayKey.value]) {
-        element.input.value.value = element.value.value[displayKey.value]
-      }
-    })
-
-    useWatchValue(props, context, element)
 
     return { 
-      ...element
+      ...useElement(props, context),
     }
   },
 }

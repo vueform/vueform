@@ -181,16 +181,9 @@ export default {
       'label', 'info', 'description',
       'before', 'between', 'after',
     ]
-    context.watchValue = false
-
-    const element = useElement(props, context, {
-      init: false,
-    })
-
-    useWatchValue(props, context, element)
 
     return {
-      ...element
+      ...useElement(props, context),
     }
   },
 }

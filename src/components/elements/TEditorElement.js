@@ -159,21 +159,9 @@ export default {
       'label', 'info', 'description',
       'before', 'between', 'after',
     ]
-    context.initValidation = false
-    context.watchValue = false
-
-    const element = useElement(props, context)
-
-    useWatchValue(props, context, element)
-
-    onMounted(() => {
-      element.initState()
-      element.initMessageBag()
-      element.initValidation()
-    })
 
     return {
-      ...element
+      ...useElement(props, context),
     }
   },
 }

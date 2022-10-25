@@ -1,0 +1,18 @@
+import _ from 'lodash'
+
+export default function resolveDeps (props, context, options) {
+  let deps = options.deps || {}
+  options = {
+    ...options,
+    events: context.emits,
+    slots: context.slots,
+  }
+
+  context.features.forEach((feature) => {
+    _.each(feature(props, context, deps, options), (featureDep, key) => {
+      deps[key] = featureDep
+    })
+  })
+
+  return deps
+}

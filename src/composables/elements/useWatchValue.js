@@ -102,9 +102,12 @@ const object = function(props, context, dependencies, options = {})
 {
   // ============ DEPENDENCIES =============
 
+  const form$ = dependencies.form$
   const fire = dependencies.fire
   const value = dependencies.value
   const el$ = dependencies.el$
+  const dirt = dependencies.dirt
+  const validateValidators = dependencies.validateValidators
 
   // ============== WATCHERS ===============
 
@@ -115,6 +118,14 @@ const object = function(props, context, dependencies, options = {})
       }
 
       fire('change', n, o, el$.value)
+
+      if (dirt) {
+        dirt()
+      }
+
+      if (validateValidators && form$.value.shouldValidateOnChange) {
+        validateValidators()
+      }
     }, { immediate: false, deep: true })
   })
 }

@@ -1,4 +1,3 @@
-import useElement from './../../composables/useElement'
 import useForm$ from './../../composables/useForm$'
 import useTheme from './../../composables/useTheme'
 import useConditions from './../../composables/useConditions'
@@ -17,6 +16,7 @@ import { button as useDisabled } from './../../composables/elements/useDisabled'
 import { static_ as useBaseElement } from './../../composables/elements/useBaseElement'
 import { static_ as usePath } from './../../composables/elements/usePath'
 import { static_ as useA11y } from './../../composables/elements/useA11y'
+import { static_ as useElement } from './../../composables/useElement'
 
 import BaseElement from './../../mixins/BaseElement'
 import HasView from './../../mixins/HasView'
@@ -123,8 +123,6 @@ export default {
       'label',  'info', 'description',
       'before', 'between', 'after', 'default',
     ]
-    context.watchValue = false
-    context.initValidation = false
 
     return {
       ...useElement(props, context)
