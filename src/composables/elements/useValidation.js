@@ -526,7 +526,9 @@ const list = function(props, context, dependencies)
     }
 
     await asyncForEach(children$.value, async (element$) => {
-      await element$.validate()
+      if (!element$.isStatic) {
+        await element$.validate()
+      }
     })
   }
 

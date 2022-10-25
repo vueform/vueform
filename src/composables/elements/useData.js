@@ -797,7 +797,7 @@ const file = function(props, context, dependencies)
   const data = computed(() => {
     let v = value.value
 
-    if (typeof v === 'object' && v.file) {
+    if (typeof v === 'object' && v?.file) {
       v = { ...v }
       delete v.file
     }
@@ -812,7 +812,7 @@ const file = function(props, context, dependencies)
 
     let v = value.value
 
-    if (typeof v === 'object' && v.file) {
+    if (typeof v === 'object' && v?.file) {
       v = { ...v }
       delete v.file
     }
@@ -863,7 +863,7 @@ const multifile = function(props, context, dependencies)
     let val = value.value
     
     val = val.map((file) => {
-      if (typeof file === 'object' && file.file) {
+      if (typeof file === 'object' && file?.file) {
         let v = { ...file }
         delete v.file
         return v
@@ -886,7 +886,7 @@ const multifile = function(props, context, dependencies)
       let val = element$.requestData[element$.name]
 
       if (val !== undefined) {
-        if (typeof val === 'object' && val.file) {
+        if (typeof val === 'object' && val?.file) {
           let v = { ...file }
           delete v.file
           val = v
