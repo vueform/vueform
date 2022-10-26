@@ -2,6 +2,7 @@ import 'regenerator-runtime/runtime'
 import _ from 'lodash'
 import flatten from 'flat'
 import shouldApplyPlugin from './utils/shouldApplyPlugin'
+import packageJson from './../package.json'
 
 import axios from './services/axios/index'
 import validation from './services/validation/index'
@@ -37,6 +38,7 @@ export default function(config, components) {
           condition,
           columns,
         },
+        version: packageJson.version,
       }
     }
 
