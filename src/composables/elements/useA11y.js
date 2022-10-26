@@ -62,7 +62,7 @@ const base = function(props, context, dependencies)
       'aria-describedby': `${descriptionId.value} ${infoId.value}`,
       'aria-invalid': invalid.value,
       'aria-errormessage': errorId.value,
-      'aria-disabled': isDisabled.value,
+      'aria-disabled': isDisabled?.value,
       'aria-busy': busy.value,
     }
   })
