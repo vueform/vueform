@@ -375,9 +375,9 @@ const list = function(props, context, dependencies, options)
       [storeOrder.value]: val ? val[storeOrder.value] : undefined
     }) : val
 
-    value.value = value.value.concat([newValue])
+    value.value = refreshOrderStore(value.value.concat([newValue]))
 
-    value.value = refreshOrderStore(value.value)
+    // value.value = refreshOrderStore(value.value)
 
     let index = value.value.length - 1
 
