@@ -1,5 +1,3 @@
-import { onMounted } from 'vue'
-import useElement from './../../composables/useElement'
 import useForm$ from './../../composables/useForm$'
 import useFieldId from './../../composables/elements/useFieldId'
 import useTheme from './../../composables/useTheme'
@@ -33,6 +31,7 @@ import { multilingual as useValidation } from './../../composables/elements/useV
 import { multilingual as useEmpty } from './../../composables/elements/useEmpty'
 import { multilingual as useAutogrow } from './../../composables/elements/useAutogrow'
 import { multilingual as useWatchValue } from './../../composables/elements/useWatchValue'
+import { multilingual as useElement } from './../../composables/useElement'
 
 import BaseElement from './../../mixins/BaseElement'
 import HasView from './../../mixins/HasView'
@@ -147,6 +146,7 @@ export default {
       useFocused,
       useHandleBlur,
       useA11y,
+      useWatchValue,
     ]
     context.slots = [
       'label', 'info', 'description', 'before',

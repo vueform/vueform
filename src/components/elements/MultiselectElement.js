@@ -399,6 +399,7 @@ export default {
       useSelect,
       useFocused,
       useA11y,
+      useWatchValue,
     ]
     context.slots = [
       'option',

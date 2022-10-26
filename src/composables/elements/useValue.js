@@ -108,6 +108,25 @@ const base = function(props, context, dependencies, options = {})
   }
 }
 
+const list = function(props, context, dependencies, options = {})
+{
+  const {
+    initialValue,
+    internalValue,
+    value,
+    model,
+  } = base(props, context, dependencies, {
+   init: false,
+  })
+
+  return {
+    initialValue,
+    internalValue,
+    value,
+    model,
+  }
+}
+
 const object = function(props, context, dependencies, options = {})
 {
   const {
@@ -427,6 +446,7 @@ export {
   multilingual,
   object,
   group,
+  list,
 }
 
 

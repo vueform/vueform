@@ -151,6 +151,7 @@ export default {
       useHandleError,
       useHandleBlur,
       useA11y,
+      useWatchValue,
     ]
     context.slots = [
       'label', 'info', 'description',

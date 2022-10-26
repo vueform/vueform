@@ -19,17 +19,17 @@ import usePrototype from './../../composables/elements/usePrototype'
 import usePath from './../../composables/elements/usePath'
 import useChildren from './../../composables/elements/useChildren'
 import useDefault from './../../composables/elements/useDefault'
-import useValue from './../../composables/elements/useValue'
 import useControls from './../../composables/elements/useControls'
 import useClasses from './../../composables/elements/useClasses'
 import useFieldId from './../../composables/elements/useFieldId'
 import useA11y from './../../composables/elements/useA11y'
 
+import { array as useNullValue } from './../../composables/elements/useNullValue'
+import { array as useEmpty } from './../../composables/elements/useEmpty'
 import { list as useData } from './../../composables/elements/useData'
 import { list as useValidation } from './../../composables/elements/useValidation'
 import { list as useBaseElement } from './../../composables/elements/useBaseElement'
-import { array as useNullValue } from './../../composables/elements/useNullValue'
-import { array as useEmpty } from './../../composables/elements/useEmpty'
+import { list as useValue } from './../../composables/elements/useValue'
 import { list as useWatchValue } from './../../composables/elements/useWatchValue'
 
 import BaseElement from './../../mixins/BaseElement'
@@ -156,6 +156,7 @@ export default {
       usePrototype,
       useChildren,
       useSorting,
+      useOrder,
       useEvents,
       useBaseElement,
       useDefault,
@@ -165,7 +166,6 @@ export default {
       useConditions,
       useValidation,
       useValue,
-      useOrder,
       useControls,
       useEmpty,
       useColumns,
@@ -176,6 +176,7 @@ export default {
       useData,
       useSort,
       useA11y,
+      useWatchValue,
     ]
     context.slots = [
       'label', 'info', 'description',
@@ -183,7 +184,7 @@ export default {
     ]
 
     return {
-      ...useElement(props, context),
+      ...useElement(props, context)
     }
   },
 }

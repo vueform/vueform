@@ -856,6 +856,7 @@ const multifile = function(props, context, dependencies)
   const form$ = dependencies.form$
   const available = dependencies.available
   const value = dependencies.value
+  const children$ = dependencies.children$
 
   // ============== COMPUTED ===============
   

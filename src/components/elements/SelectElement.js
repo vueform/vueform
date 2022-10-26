@@ -365,6 +365,7 @@ export default {
       useHandleSelectEvents,
       useFocused,
       useA11y,
+      useWatchValue,
     ]
     context.slots = [
       'option',

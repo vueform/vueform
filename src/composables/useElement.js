@@ -1,15 +1,13 @@
 import _ from 'lodash'
-import { onMounted } from 'vue'
-import useWatchValue from './elements/useWatchValue'
+import { onMounted, toRefs } from 'vue'
 import resolveDeps from './../utils/resolveDeps'
 
 const base = function(props, context, options = {})
 {
   let deps = resolveDeps(props, context, options)
 
-  useWatchValue(props, context, deps)
-
   onMounted(() => {
+    deps.initWatcher()
     deps.initMessageBag()
     deps.initValidation()
   })
@@ -32,10 +30,9 @@ const multilingual = function(props, context, options = {})
 {
   let deps = resolveDeps(props, context, options)
 
-  useWatchValue(props, context, deps)
-
   onMounted(() => {
-    element.initState()
+    deps.initWatcher()
+    deps.initState()
     deps.initMessageBag()
     deps.initValidation()
   })
@@ -47,6 +44,8 @@ const multilingual = function(props, context, options = {})
 
 const location = function(props, context, options = {})
 {
+  const { displayKey } = toRefs(props)
+
   let deps = resolveDeps(props, context, options)
 
   onMounted(() => {
@@ -55,9 +54,8 @@ const location = function(props, context, options = {})
     }
   })
 
-  useWatchValue(props, context, deps)
-
   onMounted(() => {
+    deps.initWatcher()
     deps.initMessageBag()
     deps.initValidation()
   })

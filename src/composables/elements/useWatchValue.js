@@ -12,9 +12,9 @@ const base = function(props, context, dependencies, options = {})
   const validate = dependencies.validate
   const value = dependencies.value
 
-  // ============== WATCHERS ===============
+  // =============== METHODS ===============
 
-  onMounted(() => {
+  const initWatcher = () => {
     watch(value, (n, o) => {
       if (dataEquals(n,o)) {
         return
@@ -30,7 +30,11 @@ const base = function(props, context, dependencies, options = {})
         validate()
       }
     }, { immediate: false, deep: true })
-  })
+  }
+
+  return {
+    initWatcher,
+  }
 }
 
 const multilingual = function(props, context, dependencies, options = {})
@@ -45,9 +49,9 @@ const multilingual = function(props, context, dependencies, options = {})
   const language = dependencies.language
   const validateLanguage = dependencies.validateLanguage
 
-  // ============== WATCHERS ===============
+  // =============== METHODS ===============
 
-  onMounted(() => {
+  const initWatcher = () => {
     watch(value, (n, o) => {
       if (dataEquals(n,o)) {
         return
@@ -63,7 +67,11 @@ const multilingual = function(props, context, dependencies, options = {})
         validateLanguage(language.value)
       }
     }, { immediate: false, deep: true })
-  })
+  }
+
+  return {
+    initWatcher,
+  }
 }
 
 const list = function(props, context, dependencies, options = {})
@@ -77,9 +85,9 @@ const list = function(props, context, dependencies, options = {})
   const validateValidators = dependencies.validateValidators
   const value = dependencies.value
 
-  // ============== WATCHERS ===============
+  // =============== METHODS ===============
 
-  onMounted(() => {
+  const initWatcher = () => {
     watch(value, (n, o) => {
       if (dataEquals(n,o)) {
         return
@@ -95,7 +103,11 @@ const list = function(props, context, dependencies, options = {})
         validateValidators()
       }
     }, { immediate: false, deep: true })
-  })
+  }
+
+  return {
+    initWatcher,
+  }
 }
 
 const object = function(props, context, dependencies, options = {})
@@ -109,9 +121,9 @@ const object = function(props, context, dependencies, options = {})
   const dirt = dependencies.dirt
   const validateValidators = dependencies.validateValidators
 
-  // ============== WATCHERS ===============
+  // =============== METHODS ===============
 
-  onMounted(() => {
+  const initWatcher = () => {
     watch(value, (n, o) => {
       if (dataEquals(n,o)) {
         return
@@ -127,7 +139,11 @@ const object = function(props, context, dependencies, options = {})
         validateValidators()
       }
     }, { immediate: false, deep: true })
-  })
+  }
+
+  return {
+    initWatcher,
+  }
 }
 
 const location = function(props, context, dependencies, options = {})
@@ -144,9 +160,9 @@ const location = function(props, context, dependencies, options = {})
   const value = dependencies.value
   const input = dependencies.input
 
-  // ============== WATCHERS ===============
+  // =============== METHODS ===============
 
-  onMounted(() => {
+  const initWatcher = () => {
     watch(value, (n, o) => {
       if (dataEquals(n,o)) {
         return
@@ -162,7 +178,11 @@ const location = function(props, context, dependencies, options = {})
         validate()
       }
     }, { immediate: false, deep: true })
-  })
+  }
+
+  return {
+    initWatcher,
+  }
 }
 
 const multifile = list

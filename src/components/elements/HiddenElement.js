@@ -67,6 +67,7 @@ export default {
       useValue,
       useData,
       useEmpty,
+      useWatchValue,
     ]
 
     return {

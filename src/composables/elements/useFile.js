@@ -356,7 +356,9 @@ const base = function (props, context, dependencies)
         response = response.data
       }
 
-      response.file = value.value
+      if (response && typeof response === 'object') {
+        response.file = value.value
+      }
 
       update(response)
     }

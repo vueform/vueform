@@ -95,6 +95,7 @@ export default {
       useClasses,
       useSlots,
       useA11y,
+      useWatchValue,
     ]
     context.slots = [
       'checkbox', 'label', 'info', 'description', 'before',

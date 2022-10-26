@@ -1,4 +1,3 @@
-import { onMounted } from 'vue'
 import useForm$ from './../../composables/useForm$'
 import useFieldId from './../../composables/elements/useFieldId'
 import useTheme from './../../composables/useTheme'
@@ -151,6 +150,7 @@ export default {
       useFocused,
       useHandleBlur,
       useA11y,
+      useWatchValue,
     ]
     context.slots = [
       'label', 'info', 'description', 'before',

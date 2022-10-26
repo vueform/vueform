@@ -187,6 +187,7 @@ export default {
       useColumns,
       useSlots,
       useA11y,
+      useWatchValue,
     ]
     context.slots = [
       'label', 'info', 'description',

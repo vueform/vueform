@@ -241,6 +241,7 @@ export default {
       useClasses,
       useSort,
       useA11y,
+      useWatchValue,
     ]
     context.slots = [
       'label', 'info', 'description',

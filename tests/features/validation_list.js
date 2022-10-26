@@ -226,9 +226,8 @@ export const pending = function (elementType, elementName, options) {
       child0.$vueform.services.axios.request = axiosPostMock
       child1.$vueform.services.axios.request = axiosPostMock
 
-      el.validate()
+      child0.validate()
 
-      await nextTick()
       await nextTick()
 
       expect(el.pending).toBe(true)
@@ -299,9 +298,8 @@ export const busy = function (elementType, elementName, options) {
       child0.$vueform.services.axios.request = axiosPostMock
       child1.$vueform.services.axios.request = axiosPostMock
 
-      el.validate()
+      child0.validate()
 
-      await nextTick()
       await nextTick()
 
       expect(el.busy).toBe(true)

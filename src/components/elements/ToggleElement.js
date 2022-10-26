@@ -115,6 +115,7 @@ export default {
       useHandleChange,
       useToggle,
       useA11y,
+      useWatchValue,
     ]
     context.slots = [
       'default', 'label', 'info', 'description',

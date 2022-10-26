@@ -191,6 +191,8 @@ export const pending = function (elementType, elementName, options) {
 
     el.validate()
 
+    await nextTick()
+
     expect(el.pending).toBe(true)
 
     await flushPromises()
@@ -251,6 +253,8 @@ export const busy = function (elementType, elementName, options) {
     el.$vueform.services.axios.request = axiosRequestMock
 
     el.validate()
+
+    await nextTick()
 
     expect(el.busy).toBe(true)
 

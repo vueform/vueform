@@ -144,6 +144,7 @@ export default {
       useFocused,
       useHandleBlur,
       useA11y,
+      useWatchValue,
     ]
     context.slots = [
       'label', 'info', 'description', 'before',

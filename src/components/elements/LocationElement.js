@@ -1,5 +1,3 @@
-import { toRefs, onMounted } from 'vue'
-import useElement from './../../composables/useElement'
 import useForm$ from './../../composables/useForm$'
 import useFieldId from './../../composables/elements/useFieldId'
 import useTheme from './../../composables/useTheme'
@@ -30,6 +28,7 @@ import useA11y from './../../composables/elements/useA11y'
 import { location as useWatchValue } from './../../composables/elements/useWatchValue'
 import { location as useNullValue } from './../../composables/elements/useNullValue' 
 import { location as useValidation } from './../../composables/elements/useValidation'
+import { location as useElement } from './../../composables/useElement'
 
 import BaseElement from './../../mixins/BaseElement'
 import HasView from './../../mixins/HasView'
@@ -121,8 +120,6 @@ export default {
     },
   },
   setup(props, context) {
-    const { displayKey } = toRefs(props)
-
     context.features = [
       useForm$,
       useTheme,
@@ -152,6 +149,7 @@ export default {
       useSlots,
       useFocused,
       useA11y,
+      useWatchValue,
     ]
     context.slots = [
       'label', 'info', 'description', 'before',

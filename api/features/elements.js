@@ -2108,6 +2108,195 @@ export default {
           "description": "Prepares the element."
         }
       }
+    },
+    "file": {
+      "computed": {
+        "data": {
+          "public": true,
+          "types": [
+            "object"
+          ],
+          "description": "The value of the element in `{[name]: value}` value format. This gets merged with the parent component's data."
+        },
+        "requestData": {
+          "public": true,
+          "types": [
+            "object"
+          ],
+          "description": "Same as `data` property except that it only includes the element's value if [`submit`](#option-submit) is not disabled and [`available`](#property-available) is `true` (has no [`conditions`](#option-conditions) or they are fulfilled)."
+        }
+      },
+      "methods": {
+        "load": {
+          "public": true,
+          "returns": "void",
+          "description": "Loads value to the element using optional [`formatLoad`](#option-format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.",
+          "params": {
+            "value": {
+              "types": [
+                "string"
+              ],
+              "required": true,
+              "description": "the value to be loaded"
+            },
+            "format": {
+              "types": [
+                "boolean"
+              ],
+              "required": false,
+              "description": "whether the loaded value should be formatted with [`formatLoad`](#option-format-load) before setting the value of the element (default: `false`)"
+            }
+          }
+        },
+        "update": {
+          "public": true,
+          "returns": "void",
+          "description": "Updates the value of the element similarly to [`load`](#method-load), only that it can\\'t format data.",
+          "params": {
+            "value": {
+              "types": [
+                "string",
+                ""
+              ],
+              "required": true,
+              "description": "the value to be set"
+            }
+          }
+        },
+        "clear": {
+          "public": true,
+          "returns": "void",
+          "description": "Clears the element's value."
+        },
+        "reset": {
+          "public": true,
+          "returns": "void",
+          "description": "Resets the element's value to [`default`](#option-default) (or empty if `default` is not provided). Also resets all the validation state for the element."
+        },
+        "prepare": {
+          "public": false,
+          "returns": "void",
+          "description": "Prepares the element."
+        }
+      }
+    },
+    "multifile": {
+      "computed": {
+        "requestData": {
+          "public": true,
+          "types": [
+            "object"
+          ],
+          "description": "Same as `data` property except that it only includes the element's value if [`submit`](#option-submit) is not disabled and [`available`](#property-available) is `true` (has no [`conditions`](#option-conditions) or they are fulfilled)."
+        },
+        "data": {
+          "public": true,
+          "types": [
+            "object"
+          ],
+          "description": "The value of the element in `{[name]: value}` value format. This gets merged with the parent component's data."
+        }
+      },
+      "methods": {
+        "add": {
+          "public": true,
+          "returns": "integer",
+          "description": "Appends a new item.",
+          "params": {
+            "value": {
+              "types": [
+                "any"
+              ],
+              "required": false,
+              "description": "value of the appended element (optional)"
+            }
+          }
+        },
+        "remove": {
+          "public": true,
+          "returns": "void",
+          "description": "Removes an items by its index.",
+          "params": {
+            "index": {
+              "types": [
+                "number"
+              ],
+              "required": true,
+              "description": "index of items to be removed"
+            }
+          }
+        },
+        "load": {
+          "public": true,
+          "returns": "void",
+          "description": "Loads value to the element using optional [`formatLoad`](#option-format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.",
+          "params": {
+            "value": {
+              "types": [
+                "string"
+              ],
+              "required": true,
+              "description": "the value to be loaded"
+            },
+            "format": {
+              "types": [
+                "boolean"
+              ],
+              "required": false,
+              "description": "whether the loaded value should be formatted with [`formatLoad`](#option-format-load) before setting the value of the element (default: `false`)"
+            }
+          }
+        },
+        "update": {
+          "public": true,
+          "returns": "void",
+          "description": "Updates the value of the element similarly to [`load`](#method-load), only that it can\\'t format data.",
+          "params": {
+            "value": {
+              "types": [
+                "string",
+                ""
+              ],
+              "required": true,
+              "description": "the value to be set"
+            }
+          }
+        },
+        "clear": {
+          "public": true,
+          "returns": "void",
+          "description": "Clears the element's value."
+        },
+        "reset": {
+          "public": true,
+          "returns": "void",
+          "description": "Resets the element's value to [`default`](#option-default) (or empty if `default` is not provided). Also resets all the validation state for the element."
+        },
+        "handleAdd": {
+          "public": false,
+          "returns": "void",
+          "description": "Handles the `add` event."
+        },
+        "handleRemove": {
+          "public": false,
+          "returns": "void",
+          "description": "Handles the `remove` event.",
+          "params": {
+            "index": {
+              "types": [
+                "number"
+              ],
+              "required": true,
+              "description": "index of child to be removed"
+            }
+          }
+        },
+        "prepare": {
+          "public": false,
+          "returns": "void",
+          "description": "Prepares the element."
+        }
+      }
     }
   },
   "dateFormat": {
@@ -3955,6 +4144,11 @@ export default {
           "public": false,
           "returns": "void",
           "description": "Initalizes validators."
+        },
+        "reinitValidation": {
+          "public": true,
+          "returns": "void",
+          "description": "Re-initalizes validators when rules have changed."
         }
       }
     },
@@ -4098,6 +4292,11 @@ export default {
           "public": false,
           "returns": "void",
           "description": "Initalizes validators."
+        },
+        "reinitValidation": {
+          "public": true,
+          "returns": "void",
+          "description": "Re-initalizes validators when rules have changed."
         }
       }
     },
@@ -4244,6 +4443,11 @@ export default {
           "public": false,
           "returns": "void",
           "description": "Initalizes validators."
+        },
+        "reinitValidation": {
+          "public": true,
+          "returns": "void",
+          "description": "Re-initalizes validators when rules have changed."
         }
       }
     },
@@ -4406,96 +4610,11 @@ export default {
           "public": false,
           "returns": "void",
           "description": "Initalizes validators."
-        }
-      }
-    },
-    "object": {
-      "data": {
-        "messageBag": {
-          "public": true,
-          "default": "MessageBag",
-          "types": [
-            "MessageBag"
-          ],
-          "description": "Instance of MessageBag service. Custom errors and messages [can be added](/docs/1.x/validating-elements#custom-errors-and-messages)."
-        }
-      },
-      "computed": {
-        "dirty": {
-          "public": true,
-          "types": [
-            "boolean"
-          ],
-          "description": "Whether the element has any child with modified value."
         },
-        "validated": {
-          "public": true,
-          "types": [
-            "boolean"
-          ],
-          "description": "Whether all the children were validated at least once."
-        },
-        "invalid": {
-          "public": true,
-          "types": [
-            "boolean"
-          ],
-          "description": "Whether the element has any child with failing rules."
-        },
-        "pending": {
-          "public": true,
-          "types": [
-            "boolean"
-          ],
-          "description": "Whether the element has any child with async rules in progress."
-        },
-        "debouncing": {
-          "public": true,
-          "types": [
-            "boolean"
-          ],
-          "description": "Whether the element has any child with validation rule with pending debounce."
-        },
-        "busy": {
-          "public": true,
-          "types": [
-            "boolean"
-          ],
-          "description": "Whether the element has any `busy` child."
-        },
-        "errors": {
-          "public": true,
-          "types": [
-            "array"
-          ],
-          "description": "All the errors of `MessageBag`."
-        }
-      },
-      "methods": {
-        "validate": {
+        "reinitValidation": {
           "public": true,
           "returns": "void",
-          "description": "Validates every child (async)."
-        },
-        "clean": {
-          "public": true,
-          "returns": "void",
-          "description": "Removes every child's `dirty` state."
-        },
-        "resetValidators": {
-          "public": true,
-          "returns": "void",
-          "description": "Sets the validators of children to default state."
-        },
-        "initMessageBag": {
-          "public": false,
-          "returns": "void",
-          "description": "Initalizes MessageBag service."
-        },
-        "initValidation": {
-          "public": false,
-          "returns": "void",
-          "description": "Initalizes children validators."
+          "description": "Re-initalizes validators when rules have changed."
         }
       }
     },
@@ -4618,6 +4737,11 @@ export default {
           "public": false,
           "returns": "void",
           "description": "Initalizes validators."
+        },
+        "reinitValidation": {
+          "public": true,
+          "returns": "void",
+          "description": "Re-initalizes validators when rules have changed."
         }
       }
     },
@@ -4740,6 +4864,11 @@ export default {
           "public": false,
           "returns": "void",
           "description": "Initalizes validators."
+        },
+        "reinitValidation": {
+          "public": true,
+          "returns": "void",
+          "description": "Re-initalizes validators when rules have changed."
         }
       }
     },
@@ -4883,11 +5012,35 @@ export default {
           "public": false,
           "returns": "void",
           "description": "Initalizes validators."
+        },
+        "reinitValidation": {
+          "public": true,
+          "returns": "void",
+          "description": "Re-initalizes validators when rules have changed."
         }
       }
     },
     "group": {
       "data": {
+        "state": {
+          "public": false,
+          "default": "{ dirty: false, validate: true }",
+          "types": [
+            "object"
+          ],
+          "description": "Helper property used to store the element states."
+        },
+        "Validators": {
+          "public": false,
+          "default": "[]",
+          "types": [
+            [
+              "array",
+              "Validator"
+            ]
+          ],
+          "description": "An array containing all the validators of the element."
+        },
         "messageBag": {
           "public": true,
           "default": "MessageBag",
@@ -4903,42 +5056,49 @@ export default {
           "types": [
             "boolean"
           ],
-          "description": "Whether the element has any child with modified value."
+          "description": "Whether the element's or any of its children's value was modified."
         },
         "validated": {
           "public": true,
           "types": [
             "boolean"
           ],
-          "description": "Whether all the children were validated at least once."
+          "description": "Whether the element and all of its children was already validated at least once."
         },
         "invalid": {
           "public": true,
           "types": [
             "boolean"
           ],
-          "description": "Whether the element has any child with failing rules."
+          "description": "Whether the element or any of its children has any failing rules."
         },
         "pending": {
           "public": true,
           "types": [
             "boolean"
           ],
-          "description": "Whether the element has any child with async rules in progress."
+          "description": "Whether the element or any of its children has any async rules in progress."
         },
         "debouncing": {
           "public": true,
           "types": [
             "boolean"
           ],
-          "description": "Whether the element has any child with validation rule with pending debounce."
+          "description": "Whether the element or any of its chilren has a validation rule with pending debounce."
         },
         "busy": {
           "public": true,
           "types": [
             "boolean"
           ],
-          "description": "Whether the element has any `busy` child."
+          "description": "Whether the element or any of its children is `pending` or `debouncing`."
+        },
+        "childrenErrors": {
+          "public": false,
+          "types": [
+            "array"
+          ],
+          "description": "The list of errors collected from children."
         },
         "errors": {
           "public": true,
@@ -4946,23 +5106,53 @@ export default {
             "array"
           ],
           "description": "All the errors of `MessageBag`."
+        },
+        "error": {
+          "public": true,
+          "types": [
+            "string"
+          ],
+          "description": "The first error of `MessageBag`."
+        },
+        "validationRules": {
+          "public": false,
+          "types": [
+            "string",
+            "array"
+          ],
+          "description": "The element's validation rules."
         }
       },
       "methods": {
         "validate": {
           "public": true,
           "returns": "void",
+          "description": "Checks each validation rule for the element and validates children (async)."
+        },
+        "validateValidators": {
+          "public": true,
+          "returns": "void",
+          "description": "Checks each validation rule for the element (async)."
+        },
+        "validateChildren": {
+          "public": true,
+          "returns": "void",
           "description": "Validates every child (async)."
+        },
+        "dirt": {
+          "public": false,
+          "returns": "void",
+          "description": "Flag the element as dirty."
         },
         "clean": {
           "public": true,
           "returns": "void",
-          "description": "Removes every child's `dirty` state."
+          "description": "Removes the element's `dirty` state."
         },
         "resetValidators": {
           "public": true,
           "returns": "void",
-          "description": "Sets the validators of children to default state."
+          "description": "Sets the validators to default state."
         },
         "initMessageBag": {
           "public": false,
@@ -4972,7 +5162,163 @@ export default {
         "initValidation": {
           "public": false,
           "returns": "void",
-          "description": "Initalizes children validators."
+          "description": "Initalizes validators."
+        },
+        "reinitValidation": {
+          "public": true,
+          "returns": "void",
+          "description": "Re-initalizes validators when rules have changed."
+        }
+      }
+    },
+    "object": {
+      "data": {
+        "state": {
+          "public": false,
+          "default": "{ dirty: false, validate: true }",
+          "types": [
+            "object"
+          ],
+          "description": "Helper property used to store the element states."
+        },
+        "Validators": {
+          "public": false,
+          "default": "[]",
+          "types": [
+            [
+              "array",
+              "Validator"
+            ]
+          ],
+          "description": "An array containing all the validators of the element."
+        },
+        "messageBag": {
+          "public": true,
+          "default": "MessageBag",
+          "types": [
+            "MessageBag"
+          ],
+          "description": "Instance of MessageBag service. Custom errors and messages [can be added](/docs/1.x/validating-elements#custom-errors-and-messages)."
+        }
+      },
+      "computed": {
+        "dirty": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element's or any of its children's value was modified."
+        },
+        "validated": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element and all of its children was already validated at least once."
+        },
+        "invalid": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element or any of its children has any failing rules."
+        },
+        "pending": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element or any of its children has any async rules in progress."
+        },
+        "debouncing": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element or any of its chilren has a validation rule with pending debounce."
+        },
+        "busy": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element or any of its children is `pending` or `debouncing`."
+        },
+        "childrenErrors": {
+          "public": false,
+          "types": [
+            "array"
+          ],
+          "description": "The list of errors collected from children."
+        },
+        "errors": {
+          "public": true,
+          "types": [
+            "array"
+          ],
+          "description": "All the errors of `MessageBag`."
+        },
+        "error": {
+          "public": true,
+          "types": [
+            "string"
+          ],
+          "description": "The first error of `MessageBag`."
+        },
+        "validationRules": {
+          "public": false,
+          "types": [
+            "string",
+            "array"
+          ],
+          "description": "The element's validation rules."
+        }
+      },
+      "methods": {
+        "validate": {
+          "public": true,
+          "returns": "void",
+          "description": "Checks each validation rule for the element and validates children (async)."
+        },
+        "validateValidators": {
+          "public": true,
+          "returns": "void",
+          "description": "Checks each validation rule for the element (async)."
+        },
+        "validateChildren": {
+          "public": true,
+          "returns": "void",
+          "description": "Validates every child (async)."
+        },
+        "dirt": {
+          "public": false,
+          "returns": "void",
+          "description": "Flag the element as dirty."
+        },
+        "clean": {
+          "public": true,
+          "returns": "void",
+          "description": "Removes the element's `dirty` state."
+        },
+        "resetValidators": {
+          "public": true,
+          "returns": "void",
+          "description": "Sets the validators to default state."
+        },
+        "initMessageBag": {
+          "public": false,
+          "returns": "void",
+          "description": "Initalizes MessageBag service."
+        },
+        "initValidation": {
+          "public": false,
+          "returns": "void",
+          "description": "Initalizes validators."
+        },
+        "reinitValidation": {
+          "public": true,
+          "returns": "void",
+          "description": "Re-initalizes validators when rules have changed."
         }
       }
     }

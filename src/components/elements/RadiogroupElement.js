@@ -93,6 +93,7 @@ export default {
       useColumns,
       useSlots,
       useA11y,
+      useWatchValue,
     ]
     context.slots = [
       'radio', 'label', 'info', 'description', 'before',
