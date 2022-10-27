@@ -29,6 +29,7 @@ module.exports = [
   'validateChildren',
   'clean',
   'resetValidators',
+  'reinitValidation',
   'hide',
   'show',
   'activate',
