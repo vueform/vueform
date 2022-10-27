@@ -357,10 +357,12 @@ export default {
      *
      * @returns {void}
      */
-    const submit = () => {
-      // manually triggering form's submit event
-      let form = form$.value.$el.nodeName === 'FORM' ? form$.value.$el : form$.value.$el.querySelector('form')
-      form.dispatchEvent(new Event('submit'))
+    const submit = async () => {
+      // Replaced with next because Vue didn't handle component's submit event in FFX
+      // let form = form$.value.$el.nodeName === 'FORM' ? form$.value.$el : form$.value.$el.querySelector('form')
+      // form.dispatchEvent(new Event('submit'))
+
+      await form$.value.submit()
 
       if (invalid.value) {
         firstInvalid$.value.select()
