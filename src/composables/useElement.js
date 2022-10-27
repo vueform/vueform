@@ -7,9 +7,17 @@ const base = function(props, context, options = {})
   let deps = resolveDeps(props, context, options)
 
   onMounted(() => {
-    deps.initWatcher()
-    deps.initMessageBag()
-    deps.initValidation()
+    if (deps.initWatcher) {
+      deps.initWatcher()
+    }
+
+    if (deps.initMessageBag) {
+      deps.initMessageBag()
+    }
+
+    if (deps.initValidation) {
+      deps.initValidation()
+    }
   })
 
   return {
