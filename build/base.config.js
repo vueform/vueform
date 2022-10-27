@@ -1,6 +1,7 @@
 import ncp from 'ncp'
 import babel from '@rollup/plugin-babel'
 import commonjs from '@rollup/plugin-commonjs'
+import json from '@rollup/plugin-json'
 import { nodeResolve } from '@rollup/plugin-node-resolve'
 import { terser } from 'rollup-plugin-terser'
 import path from 'path'
@@ -58,6 +59,7 @@ _.each(files, (file) => {
       sourcemap: false,
     },
     plugins: [
+      json(),
       commonjs(),
       babel({
         babelHelpers: 'bundled',
