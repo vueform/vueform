@@ -3809,6 +3809,20 @@ module.exports = {
           "boolean"
         ],
         "description": "Whether form data should be synced when the external value changes (when external value is used)."
+      },
+      "tree": {
+        "public": false,
+        "types": [
+          "array"
+        ],
+        "description": "The tree representation of the form schema."
+      },
+      "flatTree": {
+        "public": false,
+        "types": [
+          "array"
+        ],
+        "description": "The flat tree representation of the form schema."
       }
     },
     "methods": {

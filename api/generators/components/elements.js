@@ -17,7 +17,7 @@ _.each(fs.readdirSync(__dirname + '/../../../src/components/elements'), (filenam
     return
   }
 
-  console.log(filename, 'loaded')
+  // console.log(filename, 'loaded')
 
   const element = filename.replace('.js', '')
 

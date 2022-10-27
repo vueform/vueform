@@ -5358,6 +5358,40 @@ export default {
         }
       }
     },
+    "list": {
+      "data": {
+        "initialValue": {
+          "public": false,
+          "types": [
+            "any"
+          ],
+          "description": "The initial value of the element."
+        },
+        "internalValue": {
+          "public": false,
+          "types": [
+            "any"
+          ],
+          "description": "The store for the value of the element when we're not using external data (form's `v-model`)."
+        }
+      },
+      "computed": {
+        "value": {
+          "public": true,
+          "types": [
+            "any"
+          ],
+          "description": "The value of the element."
+        },
+        "model": {
+          "public": true,
+          "types": [
+            "any"
+          ],
+          "description": "Intermediary value between element's value and field's `v-model`. It is required when we need to transform the value format between the element and its field."
+        }
+      }
+    },
     "object": {
       "data": {
         "internalValue": {
@@ -5532,5 +5566,13 @@ export default {
       }
     }
   },
-  "watchValue": {}
+  "watchValue": {
+    "base": {},
+    "multilingual": {},
+    "list": {},
+    "object": {},
+    "location": {},
+    "multifile": {},
+    "group": {}
+  }
 }

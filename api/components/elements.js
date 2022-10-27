@@ -2125,6 +2125,11 @@ module.exports = {
         returns: 'void',
         private: true,
       },
+      reinitValidation: {
+        description: 'Re-initalizes validators when rules have changed.',
+        returns: 'void',
+        private: false,
+      },
       hide: {
         description: 'Hides the element.',
         returns: 'void',
@@ -3502,6 +3507,11 @@ module.exports = {
         description: 'Initalizes validators.',
         returns: 'void',
         private: true,
+      },
+      reinitValidation: {
+        description: 'Re-initalizes validators when rules have changed.',
+        returns: 'void',
+        private: false,
       },
       hide: {
         description: 'Hides the element.',
@@ -5002,6 +5012,11 @@ module.exports = {
         returns: 'void',
         private: true,
       },
+      reinitValidation: {
+        description: 'Re-initalizes validators when rules have changed.',
+        returns: 'void',
+        private: false,
+      },
       hide: {
         description: 'Hides the element.',
         returns: 'void',
@@ -6436,6 +6451,11 @@ module.exports = {
         description: 'Initalizes validators.',
         returns: 'void',
         private: true,
+      },
+      reinitValidation: {
+        description: 'Re-initalizes validators when rules have changed.',
+        returns: 'void',
+        private: false,
       },
       hide: {
         description: 'Hides the element.',
@@ -7878,6 +7898,11 @@ module.exports = {
         description: 'Initalizes validators.',
         returns: 'void',
         private: true,
+      },
+      reinitValidation: {
+        description: 'Re-initalizes validators when rules have changed.',
+        returns: 'void',
+        private: false,
       },
       hide: {
         description: 'Hides the element.',
@@ -9514,6 +9539,11 @@ module.exports = {
         returns: 'void',
         private: true,
       },
+      reinitValidation: {
+        description: 'Re-initalizes validators when rules have changed.',
+        returns: 'void',
+        private: false,
+      },
       hide: {
         description: 'Hides the element.',
         returns: 'void',
@@ -10106,6 +10136,35 @@ module.exports = {
         required: false,
         private: false,
       },
+      rules: {
+        required: 'false',
+        default: 'null',
+        types: [
+          'array',
+          'string',
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      messages: {
+        required: 'false',
+        default: '{}',
+        types: [
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      fieldName: {
+        required: 'false',
+        default: 'name|label',
+        types: [
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
       type: {
         required: 'false',
         default: 'group',
@@ -10182,6 +10241,22 @@ module.exports = {
         ],
         description: 'Helper property used to store listeners for events.',
         default: '{}',
+        private: true,
+      },
+      state: {
+        types: [
+          'object',
+        ],
+        description: 'Helper property used to store the element states.',
+        default: '{ dirty: false, validate: true }',
+        private: true,
+      },
+      Validators: {
+        types: [
+          'array,Validator',
+        ],
+        description: 'An array containing all the validators of the element.',
+        default: '[]',
         private: true,
       },
       messageBag: {
@@ -10431,43 +10506,50 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has any child with modified value.',
+        description: 'Whether the element&apos;s or any of its children&apos;s value was modified.',
         private: false,
       },
       validated: {
         types: [
           'boolean',
         ],
-        description: 'Whether all the children were validated at least once.',
+        description: 'Whether the element and all of its children was already validated at least once.',
         private: false,
       },
       invalid: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has any child with failing rules.',
+        description: 'Whether the element or any of its children has any failing rules.',
         private: false,
       },
       pending: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has any child with async rules in progress.',
+        description: 'Whether the element or any of its children has any async rules in progress.',
         private: false,
       },
       debouncing: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has any child with validation rule with pending debounce.',
+        description: 'Whether the element or any of its chilren has a validation rule with pending debounce.',
         private: false,
       },
       busy: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has any `busy` child.',
+        description: 'Whether the element or any of its children is `pending` or `debouncing`.',
         private: false,
+      },
+      childrenErrors: {
+        types: [
+          'array',
+        ],
+        description: 'The list of errors collected from children.',
+        private: true,
       },
       errors: {
         types: [
@@ -10475,6 +10557,21 @@ module.exports = {
         ],
         description: 'All the errors of `MessageBag`.',
         private: false,
+      },
+      error: {
+        types: [
+          'string',
+        ],
+        description: 'The first error of `MessageBag`.',
+        private: false,
+      },
+      validationRules: {
+        types: [
+          'string',
+          'array',
+        ],
+        description: 'The element&apos;s validation rules.',
+        private: true,
       },
       value: {
         types: [
@@ -10657,17 +10754,32 @@ module.exports = {
         private: false,
       },
       validate: {
+        description: 'Checks each validation rule for the element and validates children (async).',
+        returns: 'void',
+        private: false,
+      },
+      validateValidators: {
+        description: 'Checks each validation rule for the element (async).',
+        returns: 'void',
+        private: false,
+      },
+      validateChildren: {
         description: 'Validates every child (async).',
         returns: 'void',
         private: false,
       },
+      dirt: {
+        description: 'Flag the element as dirty.',
+        returns: 'void',
+        private: true,
+      },
       clean: {
-        description: 'Removes every child&apos;s `dirty` state.',
+        description: 'Removes the element&apos;s `dirty` state.',
         returns: 'void',
         private: false,
       },
       resetValidators: {
-        description: 'Sets the validators of children to default state.',
+        description: 'Sets the validators to default state.',
         returns: 'void',
         private: false,
       },
@@ -10677,9 +10789,14 @@ module.exports = {
         private: true,
       },
       initValidation: {
-        description: 'Initalizes children validators.',
+        description: 'Initalizes validators.',
         returns: 'void',
         private: true,
+      },
+      reinitValidation: {
+        description: 'Re-initalizes validators when rules have changed.',
+        returns: 'void',
+        private: false,
       },
       hide: {
         description: 'Hides the element.',
@@ -11538,6 +11655,11 @@ module.exports = {
         description: 'Initalizes validators.',
         returns: 'void',
         private: true,
+      },
+      reinitValidation: {
+        description: 'Re-initalizes validators when rules have changed.',
+        returns: 'void',
+        private: false,
       },
     },
     inject: {
@@ -13033,6 +13155,11 @@ module.exports = {
         returns: 'void',
         private: true,
       },
+      reinitValidation: {
+        description: 'Re-initalizes validators when rules have changed.',
+        returns: 'void',
+        private: false,
+      },
       hide: {
         description: 'Hides the element.',
         returns: 'void',
@@ -14483,6 +14610,11 @@ module.exports = {
         description: 'Initalizes validators.',
         returns: 'void',
         private: true,
+      },
+      reinitValidation: {
+        description: 'Re-initalizes validators when rules have changed.',
+        returns: 'void',
+        private: false,
       },
       hide: {
         description: 'Hides the element.',
@@ -16234,6 +16366,11 @@ module.exports = {
         description: 'Initalizes validators.',
         returns: 'void',
         private: true,
+      },
+      reinitValidation: {
+        description: 'Re-initalizes validators when rules have changed.',
+        returns: 'void',
+        private: false,
       },
       hide: {
         description: 'Hides the element.',
@@ -18184,6 +18321,11 @@ module.exports = {
         returns: 'void',
         private: true,
       },
+      reinitValidation: {
+        description: 'Re-initalizes validators when rules have changed.',
+        returns: 'void',
+        private: false,
+      },
       hide: {
         description: 'Hides the element.',
         returns: 'void',
@@ -19008,6 +19150,35 @@ module.exports = {
         required: false,
         private: false,
       },
+      rules: {
+        required: 'false',
+        default: 'null',
+        types: [
+          'array',
+          'string',
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      messages: {
+        required: 'false',
+        default: '{}',
+        types: [
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      fieldName: {
+        required: 'false',
+        default: 'name|label',
+        types: [
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
       type: {
         required: 'false',
         default: 'object',
@@ -19102,6 +19273,22 @@ module.exports = {
         ],
         description: 'Helper property used to store listeners for events.',
         default: '{}',
+        private: true,
+      },
+      state: {
+        types: [
+          'object',
+        ],
+        description: 'Helper property used to store the element states.',
+        default: '{ dirty: false, validate: true }',
+        private: true,
+      },
+      Validators: {
+        types: [
+          'array,Validator',
+        ],
+        description: 'An array containing all the validators of the element.',
+        default: '[]',
         private: true,
       },
       messageBag: {
@@ -19358,43 +19545,50 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has any child with modified value.',
+        description: 'Whether the element&apos;s or any of its children&apos;s value was modified.',
         private: false,
       },
       validated: {
         types: [
           'boolean',
         ],
-        description: 'Whether all the children were validated at least once.',
+        description: 'Whether the element and all of its children was already validated at least once.',
         private: false,
       },
       invalid: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has any child with failing rules.',
+        description: 'Whether the element or any of its children has any failing rules.',
         private: false,
       },
       pending: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has any child with async rules in progress.',
+        description: 'Whether the element or any of its children has any async rules in progress.',
         private: false,
       },
       debouncing: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has any child with validation rule with pending debounce.',
+        description: 'Whether the element or any of its chilren has a validation rule with pending debounce.',
         private: false,
       },
       busy: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element has any `busy` child.',
+        description: 'Whether the element or any of its children is `pending` or `debouncing`.',
         private: false,
+      },
+      childrenErrors: {
+        types: [
+          'array',
+        ],
+        description: 'The list of errors collected from children.',
+        private: true,
       },
       errors: {
         types: [
@@ -19402,6 +19596,21 @@ module.exports = {
         ],
         description: 'All the errors of `MessageBag`.',
         private: false,
+      },
+      error: {
+        types: [
+          'string',
+        ],
+        description: 'The first error of `MessageBag`.',
+        private: false,
+      },
+      validationRules: {
+        types: [
+          'string',
+          'array',
+        ],
+        description: 'The element&apos;s validation rules.',
+        private: true,
       },
       value: {
         types: [
@@ -19584,17 +19793,32 @@ module.exports = {
         private: false,
       },
       validate: {
+        description: 'Checks each validation rule for the element and validates children (async).',
+        returns: 'void',
+        private: false,
+      },
+      validateValidators: {
+        description: 'Checks each validation rule for the element (async).',
+        returns: 'void',
+        private: false,
+      },
+      validateChildren: {
         description: 'Validates every child (async).',
         returns: 'void',
         private: false,
       },
+      dirt: {
+        description: 'Flag the element as dirty.',
+        returns: 'void',
+        private: true,
+      },
       clean: {
-        description: 'Removes every child&apos;s `dirty` state.',
+        description: 'Removes the element&apos;s `dirty` state.',
         returns: 'void',
         private: false,
       },
       resetValidators: {
-        description: 'Sets the validators of children to default state.',
+        description: 'Sets the validators to default state.',
         returns: 'void',
         private: false,
       },
@@ -19604,9 +19828,14 @@ module.exports = {
         private: true,
       },
       initValidation: {
-        description: 'Initalizes children validators.',
+        description: 'Initalizes validators.',
         returns: 'void',
         private: true,
+      },
+      reinitValidation: {
+        description: 'Re-initalizes validators when rules have changed.',
+        returns: 'void',
+        private: false,
       },
       hide: {
         description: 'Hides the element.',
@@ -20901,6 +21130,11 @@ module.exports = {
         description: 'Initalizes validators.',
         returns: 'void',
         private: true,
+      },
+      reinitValidation: {
+        description: 'Re-initalizes validators when rules have changed.',
+        returns: 'void',
+        private: false,
       },
       hide: {
         description: 'Hides the element.',
@@ -22223,6 +22457,11 @@ module.exports = {
         description: 'Initalizes validators.',
         returns: 'void',
         private: true,
+      },
+      reinitValidation: {
+        description: 'Re-initalizes validators when rules have changed.',
+        returns: 'void',
+        private: false,
       },
       hide: {
         description: 'Hides the element.',
@@ -24100,6 +24339,11 @@ module.exports = {
         returns: 'void',
         private: true,
       },
+      reinitValidation: {
+        description: 'Re-initalizes validators when rules have changed.',
+        returns: 'void',
+        private: false,
+      },
       hide: {
         description: 'Hides the element.',
         returns: 'void',
@@ -25719,6 +25963,11 @@ module.exports = {
         description: 'Initalizes validators.',
         returns: 'void',
         private: true,
+      },
+      reinitValidation: {
+        description: 'Re-initalizes validators when rules have changed.',
+        returns: 'void',
+        private: false,
       },
       hide: {
         description: 'Hides the element.',
@@ -28056,6 +28305,11 @@ module.exports = {
         returns: 'void',
         private: true,
       },
+      reinitValidation: {
+        description: 'Re-initalizes validators when rules have changed.',
+        returns: 'void',
+        private: false,
+      },
       hide: {
         description: 'Hides the element.',
         returns: 'void',
@@ -29500,6 +29754,11 @@ module.exports = {
         returns: 'void',
         private: true,
       },
+      reinitValidation: {
+        description: 'Re-initalizes validators when rules have changed.',
+        returns: 'void',
+        private: false,
+      },
       hide: {
         description: 'Hides the element.',
         returns: 'void',
@@ -30931,6 +31190,11 @@ module.exports = {
         description: 'Initalizes validators.',
         returns: 'void',
         private: true,
+      },
+      reinitValidation: {
+        description: 'Re-initalizes validators when rules have changed.',
+        returns: 'void',
+        private: false,
       },
       hide: {
         description: 'Hides the element.',
@@ -32852,6 +33116,11 @@ module.exports = {
         returns: 'void',
         private: true,
       },
+      reinitValidation: {
+        description: 'Re-initalizes validators when rules have changed.',
+        returns: 'void',
+        private: false,
+      },
       hide: {
         description: 'Hides the element.',
         returns: 'void',
@@ -34524,6 +34793,11 @@ module.exports = {
         returns: 'void',
         private: true,
       },
+      reinitValidation: {
+        description: 'Re-initalizes validators when rules have changed.',
+        returns: 'void',
+        private: false,
+      },
       hide: {
         description: 'Hides the element.',
         returns: 'void',
@@ -35936,6 +36210,11 @@ module.exports = {
         returns: 'void',
         private: true,
       },
+      reinitValidation: {
+        description: 'Re-initalizes validators when rules have changed.',
+        returns: 'void',
+        private: false,
+      },
       hide: {
         description: 'Hides the element.',
         returns: 'void',
@@ -37287,6 +37566,11 @@ module.exports = {
         description: 'Initalizes validators.',
         returns: 'void',
         private: true,
+      },
+      reinitValidation: {
+        description: 'Re-initalizes validators when rules have changed.',
+        returns: 'void',
+        private: false,
       },
       hide: {
         description: 'Hides the element.',

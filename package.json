@@ -15,7 +15,7 @@
     ],
     "main": "src/index.js",
     "_moduleAliases": {
-        "composition-api": "node_modules/vue-prev-composition-api"
+        "vue": "node_modules/vue-next"
     },
     "scripts": {
         "dev": "cross-env node_modules/webpack/bin/webpack.js --progress --config webpack.config.js --watch",

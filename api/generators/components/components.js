@@ -44,7 +44,7 @@ _.each([
       return
     }
 
-    console.log(filename, 'loaded')
+    // console.log(filename, 'loaded')
 
     Components[component] = require(path + '/' + filename).default
   })
