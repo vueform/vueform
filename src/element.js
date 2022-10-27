@@ -70,6 +70,7 @@ const useElement = function(props, context, options) {
     useSlots,
     useHandleInput,
     useFocused,
+    useWatchValue,
   ]
   context.slots = [
     'label', 'info', 'description', 'before',
