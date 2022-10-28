@@ -1,3 +1,23 @@
+## v1.2.14
+
+> `2022-10-28`
+
+### 🎉 Feature
+  - Added current Vueform version to `$vueform.version`.
+  - Added `rules` & related options to `GroupElement` & `ObjectElement`.
+  - Added `reinitValidation()` method to elements.
+  - Added `tree` & `flatTree` props to `<Vueform>`.
+  
+### 🐞 Bug Fixes
+  - Submit steps on Finish in FFX broke in some versions.
+  - List first instance didn't display instantly when a prototype got defined on the flight if list was in a group.
+  - Aria didn't display for certain elements eg. Group, Object.
+  - Element's container class is now added to inline layout's container.
+  - Multifile resort images in stage 2 refresh fix.
+  - Axios now works with an instance provided to config.
+  - Refresh order fields in object lists when `storeOrder` changes or reseted.
+  - Reset list children when directly resetting lists.
+
 ## v1.2.13
 
 > `2022-10-07`

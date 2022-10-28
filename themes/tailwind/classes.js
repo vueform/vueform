@@ -1181,7 +1181,8 @@ export default {
     container_error: 'has-error',
     $container: (classes, { el$ }) => ([
       classes.container,
-      !el$.isStatic && el$.errors && !!el$.errors.length ? classes.container_error : null
+      !el$.isStatic && el$.errors && !!el$.errors.length ? classes.container_error : null,
+      el$.classes.container,
     ]),
   },
   ElementLoader: {
