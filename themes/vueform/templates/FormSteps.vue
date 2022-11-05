@@ -37,10 +37,10 @@
       display: inline-block;
       background: var(--vf-bg-passive);
       position: absolute;
-      top: 6px;
-      left: 0px;
-      right: 0px;
-      height: 4px;
+      top: 0.375rem;
+      left: 0.125rem;
+      right: 0.125rem;
+      height: 0.25rem;
     }
 
     &.vf-steps-container-sm {

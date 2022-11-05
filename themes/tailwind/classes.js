@@ -1296,7 +1296,7 @@ export default {
     ]),
   },
   FormSteps: {
-    container: 'w-full relative form-steps',
+    container: 'form-steps',
     container_sm: 'form-mb-gutter form-text-sm',
     container_md: 'form-mb-gutter-lg form-text',
     container_lg: 'form-mb-gutter-lg form-text-lg',

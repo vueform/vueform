@@ -1331,14 +1331,16 @@ const vueform = plugin((context) => {
 
     // Steps
     '.form-steps': {
+      width: '100%',
+      position: 'relative',
       '&:before': {
         content: '" "',
         display: 'inline-block',
         background: 'var(--vf-bg-passive)',
         position: 'absolute',
         top: '0.375rem',
-        left: '0px',
-        right: '0px',
+        left: '0.125rem',
+        right: '0.125rem',
         height: '0.25rem',
       },
     },
