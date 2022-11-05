@@ -176,6 +176,15 @@ export default {
     })
 
     /**
+     * The last visible [`FormStep`](form-step) component.
+     * 
+     * @type {component}
+     */
+    const last$ = computed(() => {
+      return Object.values(visible$.value).pop()
+    })
+
+    /**
      * The current [`FormStep`](form-step) component.
      * 
      * @type {component}
@@ -559,6 +568,7 @@ export default {
       busy,
       visible$,
       first$,
+      last$,
       current$,
       next$,
       previous$,

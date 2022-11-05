@@ -134,6 +134,15 @@ export default {
     })
 
     /**
+     * The last visible [`FormTab`](form-tab) component.
+     * 
+     * @type {component}
+     */
+    const last$ = computed(() => {
+      return Object.values(visible$.value).pop()
+    })
+
+    /**
      * The next visible [`FormTab`](form-tab) component.
      * 
      * @type {component}
@@ -314,6 +323,7 @@ export default {
       visible$,
       current$,
       first$,
+      last$,
       next$,
       previous$,
       goTo,
