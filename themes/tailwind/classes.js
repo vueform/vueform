@@ -1276,7 +1276,6 @@ export default {
   },
   FormStep: {
     container: 'form-step',
-    wrapper: '',
     container_active: 'form-step-active',
     container_inactive: '',
     container_invalid: 'form-step-has-errors',
@@ -1286,6 +1285,7 @@ export default {
     container_completed: 'form-step-completed',
     container_incompleted: '',
     container_pending: 'form-step-pending',
+    wrapper: '',
     $container: (classes, { active, isDisabled, completed, invalid, pending }) => ([
       classes.container,
       active ? classes.container_active : classes.container_inactive,
@@ -1296,10 +1296,11 @@ export default {
     ]),
   },
   FormSteps: {
-    container: 'flex justify-between overflow-x-auto pt-5',
+    container: 'w-full relative form-steps',
     container_sm: 'form-mb-gutter form-text-sm',
     container_md: 'form-mb-gutter-lg form-text',
     container_lg: 'form-mb-gutter-lg form-text-lg',
+    wrapper: 'flex justify-between overflow-x-auto',
     $container: (classes, { Size }) => ([
       classes.container,
       classes[`container_${Size}`],
