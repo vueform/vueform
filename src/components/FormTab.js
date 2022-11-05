@@ -166,7 +166,7 @@ export default {
      * @type {number}
      */
     const index = computed(() => {
-      return Object.keys(tabs$.value.tabs$).indexOf(name.value)
+      return Object.keys(tabs$?.value?.tabs$||{}).indexOf(name.value)
     })
 
     /**
@@ -359,6 +359,7 @@ export default {
       isLabelComponent,
       tabLabel,
       tab$,
+      tabs$,
       select,
       activate,
       deactivate,

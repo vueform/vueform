@@ -215,11 +215,7 @@ export default {
      * @type {number}
      */
     const index = computed(() => {
-      if (!steps$.value || !steps$.value.steps$) {
-        return undefined
-      }
-
-      return Object.keys(steps$.value.steps$).indexOf(name.value)
+      return Object.keys(steps$?.value?.steps$||{}).indexOf(name.value)
     })
 
     /**
