@@ -386,7 +386,6 @@ const base = function(props, context, dependencies = {})
    * The tree representation of the form schema.
    * 
    * @type {array}
-   * @private
    */
   const tree = computed(() => {
     return collectTree(formSchema.value)
@@ -396,7 +395,6 @@ const base = function(props, context, dependencies = {})
    * The flat tree representation of the form schema.
    * 
    * @type {array}
-   * @private
    */
   const flatTree = computed(() => {
     return flattrenTree(tree.value)
