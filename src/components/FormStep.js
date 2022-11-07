@@ -219,6 +219,24 @@ export default {
     })
 
     /**
+     * Whether the step is the first.
+     * 
+     * @type {boolean}
+     */
+    const isFirst = computed(() => {
+      return index.value === 0
+    })
+
+    /**
+     * Whether the step is the first.
+     * 
+     * @type {boolean}
+     */
+    const isLast = computed(() => {
+      return steps$.value.last$.name === name.value
+    })
+
+    /**
      * The elements' components in the step.
      * 
      * @type {object}
@@ -301,7 +319,7 @@ export default {
      * @type {component}
      */
     const step$ = computed(() => {
-      return form$.value.steps$.steps$[name.value]
+      return form$.value.steps$?.steps$[name.value]
     })
 
     // =============== METHODS ==============
@@ -534,6 +552,8 @@ export default {
       elements$,
       active,
       isDisabled,
+      isFirst,
+      isLast,
       completed,
       events,
       listeners,
