@@ -107,8 +107,6 @@ export default {
       name,
       label,
       elements,
-      conditions,
-      addClass,
     } = toRefs(props)
 
     const $this = getCurrentInstance().proxy
@@ -128,6 +126,8 @@ export default {
 
     const {
       available,
+      conditionList,
+      updateConditions,
     } = useConditions(props, context, { form$ })
 
     const {
@@ -439,7 +439,7 @@ export default {
         return
       }
 
-      steps$.value.select(step$.value)
+      steps$.value?.select(step$.value)
 
       _.each(children$.value, (element$) => {
         element$.activate()
@@ -454,16 +454,37 @@ export default {
       * @returns {void}
       * @private
       */
-    const forwardConditions = () => {
-      if (conditions.value.length == 0) {
+    const addChildConditions = () => {
+      if (conditionList.value.length == 0) {
         return
       }
 
-      _.each(children$.value, (element$) => {
-        _.each(conditions.value, (condition) => {
-          element$.conditions.push(condition)
-        })
+      Object.values(children$.value).forEach((element$) => {
+        element$.addConditions('step', conditionList.value)
       })
+    }
+
+    /**
+      * Remove conditions of the elements of the step.
+      * 
+      * @returns {void}
+      * @private
+      */
+    const removeChildConditions = () => {
+      Object.values(children$.value).forEach((element$) => {
+        element$.removeConditions('step')
+      })
+    }
+
+    /**
+      * Resets conditions of the elements of the step.
+      * 
+      * @returns {void}
+      * @private
+      */
+    const resetChildConditions = () => {
+      removeChildConditions()
+      addChildConditions()
     }
 
     /**
@@ -523,6 +544,14 @@ export default {
       stepLabel.value = stepLabel_.value && typeof stepLabel_.value === 'object' ? markRaw(stepLabel_.value) : stepLabel_.value
     })
 
+    watch(conditionList, (n, o) => {
+      if (!n?.length) {
+        removeChildConditions()
+      } else {
+        addChildConditions()
+      }
+    })
+
     // ================ HOOKS ===============
 
     onMounted(() => {
@@ -530,7 +559,7 @@ export default {
       // only available after form is mounted,
       // which is later than the steps mount
       nextTick(() => {
-        forwardConditions()
+        addChildConditions()
       })
     })
     
@@ -539,6 +568,7 @@ export default {
     })
 
     onBeforeUnmount(() => {
+      removeChildConditions()
       removeFromParent($this.$parent, removeFromParent)
     })
 
@@ -582,10 +612,13 @@ export default {
       complete,
       uncomplete,
       select,
-      forwardConditions,
       on,
       off,
       fire,
+      addChildConditions,
+      removeChildConditions,
+      resetChildConditions,
+      updateConditions,
     }
   },
 }

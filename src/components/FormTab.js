@@ -84,8 +84,6 @@ export default {
       name,
       label,
       elements,
-      conditions,
-      addClass,
     } = toRefs(props)
 
     const $this = getCurrentInstance().proxy
@@ -105,6 +103,8 @@ export default {
 
     const {
       available,
+      conditionList,
+      updateConditions,
     } = useConditions(props, context, { form$ })
 
     const {
@@ -170,6 +170,24 @@ export default {
     })
 
     /**
+     * Whether the tab is the first.
+     * 
+     * @type {boolean}
+     */
+    const isFirst = computed(() => {
+      return index.value === 0
+    })
+
+    /**
+     * Whether the tab is the first.
+     * 
+     * @type {boolean}
+     */
+    const isLast = computed(() => {
+      return tabs$.value.last$.name === name.value
+    })
+
+    /**
      * The components of form elements within the tab.
      * 
      * @type {object}
@@ -219,7 +237,7 @@ export default {
         return
       }
 
-      tabs$.value.select(tab$.value)
+      tabs$.value?.select(tab$.value)
 
       activate()
     }
@@ -260,6 +278,45 @@ export default {
       })
 
       fire('inactivate')
+    }
+
+    /**
+      * Apply conditions of the tab to its elements.
+      * 
+      * @returns {void}
+      * @private
+      */
+    const addChildConditions = () => {
+      if (conditionList.value.length == 0) {
+        return
+      }
+
+      Object.values(children$.value).forEach((element$) => {
+        element$.addConditions('tab', conditionList.value)
+      })
+    }
+
+    /**
+      * Remove conditions of the elements of the tab.
+      * 
+      * @returns {void}
+      * @private
+      */
+    const removeChildConditions = () => {
+      Object.values(children$.value).forEach((element$) => {
+        element$.removeConditions('tab')
+      })
+    }
+
+    /**
+      * Resets conditions of the elements of the tab.
+      * 
+      * @returns {void}
+      * @private
+      */
+    const resetChildConditions = () => {
+      removeChildConditions()
+      addChildConditions()
     }
 
     /**
@@ -311,6 +368,14 @@ export default {
       tabLabel.value = tabLabel_.value && typeof tabLabel_.value === 'object' ? markRaw(tabLabel_.value) : tabLabel_.value
     })
 
+    watch(conditionList, (n, o) => {
+      if (!n?.length) {
+        removeChildConditions()
+      } else {
+        addChildConditions()
+      }
+    })
+
     // ================ HOOKS ===============
 
     onMounted(() => {
@@ -318,15 +383,7 @@ export default {
       // only available after form is mounted,
       // which is later than the tab mount
       nextTick(() => {
-        if (conditions.value.length == 0) {
-          return
-        }
-
-        _.each(children$.value, (element$) => {
-          _.each(conditions.value, (condition) => {
-            element$.conditions.push(condition)
-          })
-        })
+        addChildConditions()
       })
     })
     
@@ -335,6 +392,7 @@ export default {
     })
 
     onBeforeUnmount(() => {
+      removeChildConditions()
       removeFromParent($this.$parent, removeFromParent)
     })
 
@@ -346,6 +404,8 @@ export default {
       theme,
       elements$,
       index,
+      isFirst,
+      isLast,
       active,
       events,
       listeners,
@@ -366,6 +426,10 @@ export default {
       on,
       off,
       fire,
+      addChildConditions,
+      removeChildConditions,
+      resetChildConditions,
+      updateConditions,
     }
   },
 }
