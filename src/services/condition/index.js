@@ -10,8 +10,8 @@ const check = (condition, elementPath, form$, el$) => {
     return condition(form$, el$)
   }
 
-  let checkArray = () => {
-    let { conditionPath, operator, expected } = details()
+  let checkArray = (condition) => {
+    let { conditionPath, operator, expected } = details(condition)
 
     // other
     let element$ = form$.el$(conditionPath)
@@ -38,7 +38,7 @@ const check = (condition, elementPath, form$, el$) => {
     return compareValues(element$.value, expected, operator)
   }
 
-  let details = () => {
+  let details = (condition) => {
     return {
       conditionPath: elementPath ? replaceWildcards(condition[0], elementPath) : condition[0],
       operator: condition.length == 3 ? condition[1] : '==',
@@ -79,8 +79,14 @@ const check = (condition, elementPath, form$, el$) => {
     return checkFunction()
   }
 
+  else if (_.isArray(condition) && _.isArray(condition[0])) {
+    return condition.reduce((prev, curr) => {
+      return prev ? prev : checkArray(curr)
+    }, false)
+  }
+
   else if (_.isArray(condition)) {
-    return checkArray()
+    return checkArray(condition)
   }
 
   throw new Error('Condition must be a function or an array')
