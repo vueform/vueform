@@ -1308,8 +1308,8 @@ export default {
   },
   FormStepsControl: {
     button: 'form-border-width-btn form-shadow-btn focus:form-ring focus:outline-zero disabled:pointer-events-none disabled:opacity-60 disabled:cursor-not-allowed',
-    button_previous_enabled: 'form-bg-btn-secondary form-color-secondary form-border-color-btn-secondary transition-transform transform hover:scale-105',
-    button_previous_disabled: 'form-bg-btn-secondary form-color-secondary form-border-color-btn-secondary opacity-60 pointer-events-none',
+    button_previous_enabled: 'form-bg-btn-secondary form-color-btn-secondary form-border-color-btn-secondary transition-transform transform hover:scale-105',
+    button_previous_disabled: 'form-bg-btn-secondary form-color-btn-secondary form-border-color-btn-secondary opacity-60 pointer-events-none',
     button_next_enabled: 'form-bg-primary form-color-on-primary form-border-color-btn transition-transform transform hover:scale-105',
     button_next_disabled: 'form-bg-primary form-color-on-primary form-border-color-btn opacity-60 pointer-events-none cursor-not-allowed',
     button_next_loading: 'text-transparent form-bg-primary form-border-color-btn form-bg-spinner-on-primary opacity-60 pointer-events-none cursor-not-allowed',
