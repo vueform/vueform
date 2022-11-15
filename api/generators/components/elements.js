@@ -31,6 +31,7 @@ const ignore = ['AddressElement']
 const include = []
 
 const output = __dirname + '/../../components/elements.js'
+const output2 = __dirname + '/../../../tests/api/element-components.js'
 
 const generate = () => {
   let contents = `module.exports = {\n`
@@ -360,4 +361,7 @@ const getFeature = (featureName) => {
   return elementFeatures[base] ? elementFeatures[base][variant] : commonFeatures[base][variant]
 }
 
-fs.writeFileSync(output, generate())
+let result = generate()
+
+fs.writeFileSync(output, result)
+fs.writeFileSync(output2, result)

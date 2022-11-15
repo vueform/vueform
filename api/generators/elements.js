@@ -210,6 +210,7 @@ class Generator {
     contents += JSON.stringify(this.getElements(), null, 2)
 
     fs.writeFileSync(__dirname + '/../elements.js', contents)
+    fs.writeFileSync(__dirname + '/../../tests/api/elements.js', contents)
   }
 }
 

@@ -26,6 +26,7 @@ const files = {
   'locales': 'locales',
   'LICENSE.txt': 'LICENSE.txt',
   'README.md': 'README.md',
+  'CHANGELOG.md': 'CHANGELOG.md',
   'tailwind.js': 'tailwind.js',
   'tailwind-prefixer.js': 'tailwind-prefixer.js',
 }

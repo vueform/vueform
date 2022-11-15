@@ -930,14 +930,14 @@ export default {
           "description": "Whether form data should be synced when the external value changes (when external value is used)."
         },
         "tree": {
-          "public": false,
+          "public": true,
           "types": [
             "array"
           ],
           "description": "The tree representation of the form schema."
         },
         "flatTree": {
-          "public": false,
+          "public": true,
           "types": [
             "array"
           ],

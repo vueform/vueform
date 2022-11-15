@@ -12,12 +12,6 @@ module.exports = {
       "^.+\\.js$": "babel-jest"
   },
   "testEnvironmentOptions": { "resources": "usable" },
-  "transformIgnorePatterns": [
-      "/node_modules/(?!vue-js-toggle-button|vueform-multiselect)"
-  ],
-  "modulePathIgnorePatterns": [
-    "<rootDir>/old_tests/",
-  ],
   "moduleNameMapper": {
       "^.+\\.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$": "jest-transform-stub",
       "^@vue/test-utils$": "<rootDir>/node_modules/vue-prev-test-utils",
@@ -26,6 +20,9 @@ module.exports = {
       '^test-helpers$': "<rootDir>/tests/helpers/vue2/index.js",
       '^vue-jest$': "<rootDir>/node_modules/vue-prev-jest"
   },
+  "transformIgnorePatterns": [
+      "/node_modules/(?!@vueform)"
+  ],
   "setupFilesAfterEnv": ["<rootDir>/jest/jest.setup.js"],
   "collectCoverage": false,
   "collectCoverageFrom": [
@@ -35,8 +32,6 @@ module.exports = {
       "!**/coverage/**",
       "!**/config/**",
       "!**/dist/**",
-      "!**/ignore/**",
-      "!**/old_tests/**",
       "!**/tests/**",
       "!**/jest/**",
       "!**/api/**",

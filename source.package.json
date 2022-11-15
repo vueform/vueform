@@ -1,0 +1,28 @@
+{
+    "name": "@vueform/vueform",
+    "version": "1.2.14",
+    "description": "Form builder for Vue.js",
+    "homepage": "https://vueform.com",
+    "bugs": {
+        "url": "https://github.com/vueform/issues/issues"
+    },
+    "license": "custom",
+    "authors": [
+        {
+            "name": "Adam Berecz",
+            "email": "adam@vueform.com"
+        }
+    ],
+    "main": "src/index.js",
+    "scripts": {
+        "build": "rollup -c build/rollup.config.js",
+        "test": "NODE_OPTIONS=\"--max_old_space_size=5120 --no-experimental-fetch\" VUE=3 jest --watchAll --maxWorkers=4 --verbose"
+    },
+    "devDependencies": {},
+    "dependencies": {},
+    "browserslist": [
+        "> 1%",
+        "last 2 versions",
+        "not dead"
+    ]
+}

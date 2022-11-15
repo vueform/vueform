@@ -1,5 +1,5 @@
-import elementsApi from './../../api/elements'
-import elementsComponentApi from './../../api/components/elements'
+import elementsApi from './../api/elements'
+import elementsComponentApi from './../api/element-components'
 import features from './../features'
 import props from './../props'
 import elements from './../elements'

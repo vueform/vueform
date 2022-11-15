@@ -1,10 +1,6 @@
 import 'regenerator-runtime/runtime'
-import useVueform from './composables/useVueform'
-import Vueform from './components/VueformBlank'
-import Validator from './services/validation/validator'
-
-export {
-  Vueform,
-  useVueform,
-  Validator,
-} 
+export { default as config } from './config'
+export { default as components } from './components'
+export { default as useVueform } from './composables/useVueform'
+export { default as Vueform } from './components/Vueform'
+export { default as Validator } from './services/validation/validator'

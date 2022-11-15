@@ -1773,6 +1773,20 @@ module.exports = {
         ],
         "description": "The form elements' components."
       },
+      "isFirst": {
+        "public": true,
+        "types": [
+          "boolean"
+        ],
+        "description": "Whether the step is the first."
+      },
+      "isLast": {
+        "public": true,
+        "types": [
+          "boolean"
+        ],
+        "description": "Whether the step is the first."
+      },
       "children$": {
         "public": true,
         "types": [
@@ -2303,6 +2317,13 @@ module.exports = {
           "component"
         ],
         "description": "The first visible [`FormStep`](form-step) component."
+      },
+      "last$": {
+        "public": true,
+        "types": [
+          "component"
+        ],
+        "description": "The last visible [`FormStep`](form-step) component."
       },
       "current$": {
         "public": true,
@@ -2965,6 +2986,13 @@ module.exports = {
           "component"
         ],
         "description": "The tab's component."
+      },
+      "tabs$": {
+        "public": true,
+        "types": [
+          "component"
+        ],
+        "description": "The parent [`FormTabs`](form-tabs) component."
       }
     },
     "data": {
@@ -3271,6 +3299,13 @@ module.exports = {
           "component"
         ],
         "description": "The first visible [`FormTab`](form-tab) component."
+      },
+      "last$": {
+        "public": true,
+        "types": [
+          "component"
+        ],
+        "description": "The last visible [`FormTab`](form-tab) component."
       },
       "next$": {
         "public": true,
@@ -3811,14 +3846,14 @@ module.exports = {
         "description": "Whether form data should be synced when the external value changes (when external value is used)."
       },
       "tree": {
-        "public": false,
+        "public": true,
         "types": [
           "array"
         ],
         "description": "The tree representation of the form schema."
       },
       "flatTree": {
-        "public": false,
+        "public": true,
         "types": [
           "array"
         ],
