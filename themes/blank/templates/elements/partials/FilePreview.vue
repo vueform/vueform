@@ -18,9 +18,9 @@
       
       <div :class="classes.actions">
         <!-- Remove -->
-        <button :class="classes.remove" v-if="canRemove" @click.prevent="remove" aria-roledescription="❎">
+        <div :class="classes.remove" v-if="canRemove" @click.prevent="remove" aria-roledescription="❎" role="button" tabindex="0">
           <span :class="classes.removeIcon"></span>
-        </button>
+        </div>
 
         <!-- Progress -->
         <div v-if="uploading" :class="classes.percent">{{ progress }}%</div>
@@ -31,12 +31,12 @@
         </span>
 
         <!-- Upload button -->
-        <button
+        <div
           v-if="canUploadTemp"
           :class="classes.upload"
           @click.prevent="upload"
           tabindex="-1"
-        >{{ uploadText }}</button>
+        >{{ uploadText }}</div>
 
 
         <!-- Success -->

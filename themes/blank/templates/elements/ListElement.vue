@@ -23,25 +23,29 @@
           </span>
 
           <!-- Remove button -->
-          <button
+          <div
             v-if="hasRemove"
             aria-roledescription="❎"
             :class="classes.remove"
             :id="`${path}-${i}-remove-button`"
             @click.prevent="handleRemove(i)"
+            role="button"
+            tabindex="0"
           >
             <span :class="classes.removeIcon"></span>
-          </button>
+          </div>
         </div>
       </div>
 
       <!-- Add button -->
-      <button
+      <div
         v-if="hasAdd"
         :class="classes.add"
         :id="`${path}-add-button`"
         @click.prevent="handleAdd"
         v-html="addLabel"
+        role="button"
+        tabindex="0"
       />
     </template>
 

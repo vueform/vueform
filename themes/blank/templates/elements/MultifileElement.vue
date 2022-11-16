@@ -13,14 +13,16 @@
      />
 
       <!-- Upload button -->
-      <button
+      <div
         v-else-if="hasAdd"
         v-bind="aria"
         :class="classes.button"
         :aria-labelledby="labelId"
         :aria-placeholder="__('vueform.elements.multifile.uploadButton')"
         @click.prevent="handleClick"
-      >{{ __('vueform.elements.multifile.uploadButton') }}</button>
+        role="button"
+        tabindex="0"
+      >{{ __('vueform.elements.multifile.uploadButton') }}</div>
       
       <!-- Actual input field -->
       <input
