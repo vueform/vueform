@@ -5,7 +5,7 @@ import asyncForEach from './../../utils/asyncForEach'
 const base = function(props, context, dependencies)
 {
   const {
-    rules
+    rules,
   } = toRefs(props)
 
    // ============ DEPENDENCIES ============
@@ -221,6 +221,17 @@ const base = function(props, context, dependencies)
   }
 
   /**
+   * Clears the manually added messages from the [`messageBag`](#property-message-bag).
+   * 
+   * @returns {void}
+   */
+  const clearMessages = () => {
+    if (messageBag.value) {
+      messageBag.value.clear()
+    }
+  }
+
+  /**
    * Initalizes MessageBag service.
    * 
    * @returns {void}
@@ -280,6 +291,7 @@ const base = function(props, context, dependencies)
     validate,
     dirt,
     clean,
+    clearMessages,
     resetValidators,
     initMessageBag,
     initValidation,
@@ -305,6 +317,7 @@ const text = function(props, context, dependencies)
     validate,
     dirt,
     clean,
+    clearMessages,
     resetValidators,
     initMessageBag,
     initValidation,
@@ -349,6 +362,7 @@ const text = function(props, context, dependencies)
     validate,
     dirt,
     clean,
+    clearMessages,
     resetValidators,
     initMessageBag,
     initValidation,
@@ -544,6 +558,20 @@ const list = function(props, context, dependencies)
     state.value.dirty = false
   }
 
+  const clearMessages = () => {
+    if (messageBag.value) {
+      messageBag.value.clear()
+    }
+
+    _.each(children$.value, (element$) => {
+      if (element$.isStatic) {
+        return
+      }
+
+      element$.clearMessages()
+    })
+  }
+
   const resetValidators = () => {
     _.each(children$.value, (element$) => {
       if (element$.isStatic) {
@@ -596,6 +624,7 @@ const list = function(props, context, dependencies)
     validateChildren,
     dirt,
     clean,
+    clearMessages,
     resetValidators,
     initMessageBag,
     initValidation,
@@ -619,6 +648,7 @@ const multilingual = function(props, context, dependencies)
 
   const {
     messageBag,
+    clearMessages,
   } = text(props, context, dependencies)
 
   // ================ DATA ================
@@ -929,6 +959,7 @@ const multilingual = function(props, context, dependencies)
     validateLanguage,
     dirt,
     clean,
+    clearMessages,
     resetValidators,
     initState,
     initMessageBag,
@@ -957,6 +988,7 @@ const slider = function(props, context, dependencies)
     validationRules,
     dirt,
     clean,
+    clearMessages,
     resetValidators,
     initMessageBag,
     initValidation,
@@ -1007,6 +1039,7 @@ const slider = function(props, context, dependencies)
     validate,
     dirt,
     clean,
+    clearMessages,
     resetValidators,
     initMessageBag,
     initValidation,
@@ -1036,6 +1069,7 @@ const file = function(props, context, dependencies)
     validationRules,
     dirt,
     clean,
+    clearMessages,
     resetValidators,
     initMessageBag,
     initValidation,
@@ -1100,6 +1134,7 @@ const file = function(props, context, dependencies)
     validate,
     dirt,
     clean,
+    clearMessages,
     resetValidators,
     initMessageBag,
     initValidation,
@@ -1135,6 +1170,7 @@ const location = function(props, context, dependencies)
     isDanger,
     dirt,
     clean,
+    clearMessages,
     resetValidators,
     initMessageBag,
     initValidation,
@@ -1182,6 +1218,7 @@ const location = function(props, context, dependencies)
     validate,
     dirt,
     clean,
+    clearMessages,
     resetValidators,
     initMessageBag,
     initValidation,
