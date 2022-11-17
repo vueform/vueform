@@ -547,7 +547,6 @@
     background-color: var(--vf-primary);
     width: 1rem;
     height: 1rem;
-    z-index: 10;
     margin: 0 var(--vf-px-input) 0 0;
     animation: multiselect-spin 1s linear infinite;
     flex-shrink: 0;
@@ -590,7 +589,6 @@
     background-color: var(--vf-primary);
     width: 1rem;
     height: 1rem;
-    z-index: 10;
     animation: multiselect-spin 1s linear infinite;
     flex-shrink: 0;
     flex-grow: 0;
@@ -599,7 +597,6 @@
   .vf-multiselect-clear {
     padding: 0 var(--vf-px-input) 0 0px;
     position: relative;
-    z-index: 10;
     opacity: 1;
     transition: .3s;
     flex-shrink: 0;
@@ -652,7 +649,6 @@
     height: 1.125rem;
     margin: 0 var(--vf-px-input) 0 0;
     position: relative;
-    z-index: 10;
     flex-shrink: 0;
     flex-grow: 0;
     pointer-events: none;
@@ -684,7 +680,7 @@
     max-height: 15rem;
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
-    z-index: 100;
+    z-index: 999;
     background: var(--vf-bg-input);
     display: flex;
     flex-direction: column;

@@ -26,7 +26,7 @@
 <style lang="scss">
   .vf-element-loader-container {
     position: relative;
-    z-index: 4;
+    z-index: 1;
     order: 1;
   }
 
