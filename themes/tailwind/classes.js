@@ -108,7 +108,7 @@ const text = {
   inputContainer_disabled: inputStates.disabled,
   inputContainer_success: inputStates.success,
   inputContainer_danger: inputStates.danger,
-  input: 'w-full z-1 bg-transparent h-full',
+  input: 'w-full bg-transparent h-full',
   input_sm: 'form-p-input-sm form-text-sm with-floating:form-p-input-floating-sm',
   input_md: 'form-p-input form-text with-floating:form-p-input-floating',
   input_lg: 'form-p-input-lg form-text-lg with-floating:form-p-input-floating-lg',
