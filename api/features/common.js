@@ -1,6 +1,15 @@
 export default {
   "conditions": {
     "base": {
+      "data": {
+        "conditionList": {
+          "public": false,
+          "types": [
+            "array"
+          ],
+          "description": "The current conditions of the element."
+        }
+      },
       "computed": {
         "available": {
           "public": true,
@@ -1022,6 +1031,11 @@ export default {
           "public": true,
           "returns": "void",
           "description": "Sets all elements' `dirty` to `false`."
+        },
+        "clearMessages": {
+          "public": true,
+          "returns": "void",
+          "description": "Clears the manually added messages from the form's and each element's `messageBag`."
         },
         "validate": {
           "public": true,

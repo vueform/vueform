@@ -475,6 +475,13 @@ module.exports = {
         default: 'true',
         private: false,
       },
+      conditionList: {
+        types: [
+          'array',
+        ],
+        description: 'The current conditions of the element.',
+        private: true,
+      },
       events: {
         types: [
           'array',
@@ -1526,6 +1533,13 @@ module.exports = {
         default: 'true',
         private: false,
       },
+      conditionList: {
+        types: [
+          'array',
+        ],
+        description: 'The current conditions of the element.',
+        private: true,
+      },
       localDisabled: {
         types: [
           'boolean',
@@ -2107,6 +2121,11 @@ module.exports = {
       },
       clean: {
         description: 'Removes the element&apos;s `dirty` state.',
+        returns: 'void',
+        private: false,
+      },
+      clearMessages: {
+        description: 'Clears the manually added messages from the [`messageBag`](#property-message-bag).',
         returns: 'void',
         private: false,
       },
@@ -2817,6 +2836,13 @@ module.exports = {
         default: 'true',
         private: false,
       },
+      conditionList: {
+        types: [
+          'array',
+        ],
+        description: 'The current conditions of the element.',
+        private: true,
+      },
       disabledItems: {
         types: [
           'array',
@@ -3490,6 +3516,11 @@ module.exports = {
       },
       clean: {
         description: 'Removes the element&apos;s `dirty` state.',
+        returns: 'void',
+        private: false,
+      },
+      clearMessages: {
+        description: 'Clears the manually added messages from the [`messageBag`](#property-message-bag).',
         returns: 'void',
         private: false,
       },
@@ -4367,6 +4398,13 @@ module.exports = {
         default: 'true',
         private: false,
       },
+      conditionList: {
+        types: [
+          'array',
+        ],
+        description: 'The current conditions of the element.',
+        private: true,
+      },
       localDisabled: {
         types: [
           'boolean',
@@ -4994,6 +5032,11 @@ module.exports = {
       },
       clean: {
         description: 'Removes the element&apos;s `dirty` state.',
+        returns: 'void',
+        private: false,
+      },
+      clearMessages: {
+        description: 'Clears the manually added messages from the [`messageBag`](#property-message-bag).',
         returns: 'void',
         private: false,
       },
@@ -5807,6 +5850,13 @@ module.exports = {
         default: 'true',
         private: false,
       },
+      conditionList: {
+        types: [
+          'array',
+        ],
+        description: 'The current conditions of the element.',
+        private: true,
+      },
       localDisabled: {
         types: [
           'boolean',
@@ -6434,6 +6484,11 @@ module.exports = {
       },
       clean: {
         description: 'Removes the element&apos;s `dirty` state.',
+        returns: 'void',
+        private: false,
+      },
+      clearMessages: {
+        description: 'Clears the manually added messages from the [`messageBag`](#property-message-bag).',
         returns: 'void',
         private: false,
       },
@@ -7226,6 +7281,13 @@ module.exports = {
         default: 'true',
         private: false,
       },
+      conditionList: {
+        types: [
+          'array',
+        ],
+        description: 'The current conditions of the element.',
+        private: true,
+      },
       localDisabled: {
         types: [
           'boolean',
@@ -7881,6 +7943,11 @@ module.exports = {
       },
       clean: {
         description: 'Removes the element&apos;s `dirty` state.',
+        returns: 'void',
+        private: false,
+      },
+      clearMessages: {
+        description: 'Clears the manually added messages from the [`messageBag`](#property-message-bag).',
         returns: 'void',
         private: false,
       },
@@ -8745,6 +8812,13 @@ module.exports = {
         default: 'true',
         private: false,
       },
+      conditionList: {
+        types: [
+          'array',
+        ],
+        description: 'The current conditions of the element.',
+        private: true,
+      },
       localDisabled: {
         types: [
           'boolean',
@@ -9524,6 +9598,11 @@ module.exports = {
         returns: 'void',
         private: false,
       },
+      clearMessages: {
+        description: 'Clears the manually added messages from the [`messageBag`](#property-message-bag).',
+        returns: 'void',
+        private: false,
+      },
       resetValidators: {
         description: 'Sets the validators to default state.',
         returns: 'void',
@@ -10227,6 +10306,13 @@ module.exports = {
         default: '[children<component>]',
         private: true,
       },
+      conditionList: {
+        types: [
+          'array',
+        ],
+        description: 'The current conditions of the element.',
+        private: true,
+      },
       events: {
         types: [
           'array',
@@ -10778,6 +10864,11 @@ module.exports = {
         returns: 'void',
         private: false,
       },
+      clearMessages: {
+        description: 'Clears the manually added messages from the [`messageBag`](#property-message-bag).',
+        returns: 'void',
+        private: false,
+      },
       resetValidators: {
         description: 'Sets the validators to default state.',
         returns: 'void',
@@ -11221,6 +11312,13 @@ module.exports = {
         default: 'true',
         private: false,
       },
+      conditionList: {
+        types: [
+          'array',
+        ],
+        description: 'The current conditions of the element.',
+        private: true,
+      },
       events: {
         types: [
           'array',
@@ -11638,6 +11736,11 @@ module.exports = {
       },
       clean: {
         description: 'Removes the element&apos;s `dirty` state.',
+        returns: 'void',
+        private: false,
+      },
+      clearMessages: {
+        description: 'Clears the manually added messages from the [`messageBag`](#property-message-bag).',
         returns: 'void',
         private: false,
       },
@@ -12372,6 +12475,13 @@ module.exports = {
         ],
         description: 'List of child element components.',
         default: '[children<component>]',
+        private: true,
+      },
+      conditionList: {
+        types: [
+          'array',
+        ],
+        description: 'The current conditions of the element.',
         private: true,
       },
       localDisabled: {
@@ -13137,6 +13247,11 @@ module.exports = {
       },
       clean: {
         description: 'Removes the element&apos;s `dirty` state.',
+        returns: 'void',
+        private: false,
+      },
+      clearMessages: {
+        description: 'Clears the manually added messages from the [`messageBag`](#property-message-bag).',
         returns: 'void',
         private: false,
       },
@@ -13948,6 +14063,13 @@ module.exports = {
         default: 'true',
         private: false,
       },
+      conditionList: {
+        types: [
+          'array',
+        ],
+        description: 'The current conditions of the element.',
+        private: true,
+      },
       localDisabled: {
         types: [
           'boolean',
@@ -14593,6 +14715,11 @@ module.exports = {
       },
       clean: {
         description: 'Removes the element&apos;s `dirty` state.',
+        returns: 'void',
+        private: false,
+      },
+      clearMessages: {
+        description: 'Clears the manually added messages from the [`messageBag`](#property-message-bag).',
         returns: 'void',
         private: false,
       },
@@ -15525,6 +15652,13 @@ module.exports = {
         default: '[children<component>]',
         private: true,
       },
+      conditionList: {
+        types: [
+          'array',
+        ],
+        description: 'The current conditions of the element.',
+        private: true,
+      },
       localDisabled: {
         types: [
           'boolean',
@@ -16349,6 +16483,11 @@ module.exports = {
       },
       clean: {
         description: 'Removes the element&apos;s `dirty` state.',
+        returns: 'void',
+        private: false,
+      },
+      clearMessages: {
+        description: 'Clears the manually added messages from the [`messageBag`](#property-message-bag).',
         returns: 'void',
         private: false,
       },
@@ -17568,6 +17707,13 @@ module.exports = {
         default: 'true',
         private: false,
       },
+      conditionList: {
+        types: [
+          'array',
+        ],
+        description: 'The current conditions of the element.',
+        private: true,
+      },
       localDisabled: {
         types: [
           'boolean',
@@ -18303,6 +18449,11 @@ module.exports = {
       },
       clean: {
         description: 'Removes the element&apos;s `dirty` state.',
+        returns: 'void',
+        private: false,
+      },
+      clearMessages: {
+        description: 'Clears the manually added messages from the [`messageBag`](#property-message-bag).',
         returns: 'void',
         private: false,
       },
@@ -19259,6 +19410,13 @@ module.exports = {
         default: '[children<component>]',
         private: true,
       },
+      conditionList: {
+        types: [
+          'array',
+        ],
+        description: 'The current conditions of the element.',
+        private: true,
+      },
       events: {
         types: [
           'array',
@@ -19814,6 +19972,11 @@ module.exports = {
       },
       clean: {
         description: 'Removes the element&apos;s `dirty` state.',
+        returns: 'void',
+        private: false,
+      },
+      clearMessages: {
+        description: 'Clears the manually added messages from the [`messageBag`](#property-message-bag).',
         returns: 'void',
         private: false,
       },
@@ -20525,6 +20688,13 @@ module.exports = {
         default: 'true',
         private: false,
       },
+      conditionList: {
+        types: [
+          'array',
+        ],
+        description: 'The current conditions of the element.',
+        private: true,
+      },
       localDisabled: {
         types: [
           'boolean',
@@ -21113,6 +21283,11 @@ module.exports = {
       },
       clean: {
         description: 'Removes the element&apos;s `dirty` state.',
+        returns: 'void',
+        private: false,
+      },
+      clearMessages: {
+        description: 'Clears the manually added messages from the [`messageBag`](#property-message-bag).',
         returns: 'void',
         private: false,
       },
@@ -21824,6 +21999,13 @@ module.exports = {
         default: 'true',
         private: false,
       },
+      conditionList: {
+        types: [
+          'array',
+        ],
+        description: 'The current conditions of the element.',
+        private: true,
+      },
       disabledItems: {
         types: [
           'array',
@@ -22440,6 +22622,11 @@ module.exports = {
       },
       clean: {
         description: 'Removes the element&apos;s `dirty` state.',
+        returns: 'void',
+        private: false,
+      },
+      clearMessages: {
+        description: 'Clears the manually added messages from the [`messageBag`](#property-message-bag).',
         returns: 'void',
         private: false,
       },
@@ -23616,6 +23803,13 @@ module.exports = {
         default: 'true',
         private: false,
       },
+      conditionList: {
+        types: [
+          'array',
+        ],
+        description: 'The current conditions of the element.',
+        private: true,
+      },
       localDisabled: {
         types: [
           'boolean',
@@ -24321,6 +24515,11 @@ module.exports = {
       },
       clean: {
         description: 'Removes the element&apos;s `dirty` state.',
+        returns: 'void',
+        private: false,
+      },
+      clearMessages: {
+        description: 'Clears the manually added messages from the [`messageBag`](#property-message-bag).',
         returns: 'void',
         private: false,
       },
@@ -25361,6 +25560,13 @@ module.exports = {
         default: 'true',
         private: false,
       },
+      conditionList: {
+        types: [
+          'array',
+        ],
+        description: 'The current conditions of the element.',
+        private: true,
+      },
       localDisabled: {
         types: [
           'boolean',
@@ -25946,6 +26152,11 @@ module.exports = {
       },
       clean: {
         description: 'Removes the element&apos;s `dirty` state.',
+        returns: 'void',
+        private: false,
+      },
+      clearMessages: {
+        description: 'Clears the manually added messages from the [`messageBag`](#property-message-bag).',
         returns: 'void',
         private: false,
       },
@@ -26559,6 +26770,13 @@ module.exports = {
         description: 'Whether the element has been already mounted.',
         default: 'true',
         private: false,
+      },
+      conditionList: {
+        types: [
+          'array',
+        ],
+        description: 'The current conditions of the element.',
+        private: true,
       },
       events: {
         types: [
@@ -27613,6 +27831,13 @@ module.exports = {
         default: 'true',
         private: false,
       },
+      conditionList: {
+        types: [
+          'array',
+        ],
+        description: 'The current conditions of the element.',
+        private: true,
+      },
       localDisabled: {
         types: [
           'boolean',
@@ -28282,6 +28507,11 @@ module.exports = {
       },
       clean: {
         description: 'Removes the element&apos;s `dirty` state.',
+        returns: 'void',
+        private: false,
+      },
+      clearMessages: {
+        description: 'Clears the manually added messages from the [`messageBag`](#property-message-bag).',
         returns: 'void',
         private: false,
       },
@@ -29092,6 +29322,13 @@ module.exports = {
         default: 'true',
         private: false,
       },
+      conditionList: {
+        types: [
+          'array',
+        ],
+        description: 'The current conditions of the element.',
+        private: true,
+      },
       localDisabled: {
         types: [
           'boolean',
@@ -29731,6 +29968,11 @@ module.exports = {
       },
       clean: {
         description: 'Removes the element&apos;s `dirty` state.',
+        returns: 'void',
+        private: false,
+      },
+      clearMessages: {
+        description: 'Clears the manually added messages from the [`messageBag`](#property-message-bag).',
         returns: 'void',
         private: false,
       },
@@ -30531,6 +30773,13 @@ module.exports = {
         default: 'true',
         private: false,
       },
+      conditionList: {
+        types: [
+          'array',
+        ],
+        description: 'The current conditions of the element.',
+        private: true,
+      },
       localDisabled: {
         types: [
           'boolean',
@@ -31168,6 +31417,11 @@ module.exports = {
       },
       clean: {
         description: 'Removes the element&apos;s `dirty` state.',
+        returns: 'void',
+        private: false,
+      },
+      clearMessages: {
+        description: 'Clears the manually added messages from the [`messageBag`](#property-message-bag).',
         returns: 'void',
         private: false,
       },
@@ -32349,6 +32603,13 @@ module.exports = {
         default: 'true',
         private: false,
       },
+      conditionList: {
+        types: [
+          'array',
+        ],
+        description: 'The current conditions of the element.',
+        private: true,
+      },
       localDisabled: {
         types: [
           'boolean',
@@ -33098,6 +33359,11 @@ module.exports = {
       },
       clean: {
         description: 'Removes the element&apos;s `dirty` state.',
+        returns: 'void',
+        private: false,
+      },
+      clearMessages: {
+        description: 'Clears the manually added messages from the [`messageBag`](#property-message-bag).',
         returns: 'void',
         private: false,
       },
@@ -34150,6 +34416,13 @@ module.exports = {
         default: 'true',
         private: false,
       },
+      conditionList: {
+        types: [
+          'array',
+        ],
+        description: 'The current conditions of the element.',
+        private: true,
+      },
       localDisabled: {
         types: [
           'boolean',
@@ -34775,6 +35048,11 @@ module.exports = {
       },
       clean: {
         description: 'Removes the element&apos;s `dirty` state.',
+        returns: 'void',
+        private: false,
+      },
+      clearMessages: {
+        description: 'Clears the manually added messages from the [`messageBag`](#property-message-bag).',
         returns: 'void',
         private: false,
       },
@@ -35569,6 +35847,13 @@ module.exports = {
         default: 'true',
         private: false,
       },
+      conditionList: {
+        types: [
+          'array',
+        ],
+        description: 'The current conditions of the element.',
+        private: true,
+      },
       localDisabled: {
         types: [
           'boolean',
@@ -36192,6 +36477,11 @@ module.exports = {
       },
       clean: {
         description: 'Removes the element&apos;s `dirty` state.',
+        returns: 'void',
+        private: false,
+      },
+      clearMessages: {
+        description: 'Clears the manually added messages from the [`messageBag`](#property-message-bag).',
         returns: 'void',
         private: false,
       },
@@ -36954,6 +37244,13 @@ module.exports = {
         default: 'true',
         private: false,
       },
+      conditionList: {
+        types: [
+          'array',
+        ],
+        description: 'The current conditions of the element.',
+        private: true,
+      },
       localDisabled: {
         types: [
           'boolean',
@@ -37549,6 +37846,11 @@ module.exports = {
       },
       clean: {
         description: 'Removes the element&apos;s `dirty` state.',
+        returns: 'void',
+        private: false,
+      },
+      clearMessages: {
+        description: 'Clears the manually added messages from the [`messageBag`](#property-message-bag).',
         returns: 'void',
         private: false,
       },

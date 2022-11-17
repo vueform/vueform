@@ -1992,11 +1992,6 @@ module.exports = {
         "returns": "void",
         "description": "Deactivate all other steps and set the current one as active."
       },
-      "forwardConditions": {
-        "public": false,
-        "returns": "void",
-        "description": "Apply conditions of the step to its elements."
-      },
       "on": {
         "public": true,
         "returns": "void",
@@ -2045,6 +2040,26 @@ module.exports = {
             "description": "list of arguments to pass over to the event callback "
           }
         }
+      },
+      "addChildConditions": {
+        "public": false,
+        "returns": "void",
+        "description": "Apply conditions of the step to its elements."
+      },
+      "removeChildConditions": {
+        "public": false,
+        "returns": "void",
+        "description": "Remove conditions of the elements of the step."
+      },
+      "resetChildConditions": {
+        "public": false,
+        "returns": "void",
+        "description": "Resets conditions of the elements of the step."
+      },
+      "updateConditions": {
+        "public": false,
+        "returns": "void",
+        "description": "Updates element conditions after they have been changed."
       }
     },
     "props": {
@@ -2924,6 +2939,20 @@ module.exports = {
         ],
         "description": "Index of this tab among the other tabs which are not hidden by unmet conditions."
       },
+      "isFirst": {
+        "public": true,
+        "types": [
+          "boolean"
+        ],
+        "description": "Whether the tab is the first."
+      },
+      "isLast": {
+        "public": true,
+        "types": [
+          "boolean"
+        ],
+        "description": "Whether the tab is the first."
+      },
       "children$": {
         "public": true,
         "types": [
@@ -3094,6 +3123,26 @@ module.exports = {
             "description": "list of arguments to pass over to the event callback "
           }
         }
+      },
+      "addChildConditions": {
+        "public": false,
+        "returns": "void",
+        "description": "Apply conditions of the tab to its elements."
+      },
+      "removeChildConditions": {
+        "public": false,
+        "returns": "void",
+        "description": "Remove conditions of the elements of the tab."
+      },
+      "resetChildConditions": {
+        "public": false,
+        "returns": "void",
+        "description": "Resets conditions of the elements of the tab."
+      },
+      "updateConditions": {
+        "public": false,
+        "returns": "void",
+        "description": "Updates element conditions after they have been changed."
       }
     },
     "props": {
@@ -3938,6 +3987,11 @@ module.exports = {
         "public": true,
         "returns": "void",
         "description": "Sets all elements' `dirty` to `false`."
+      },
+      "clearMessages": {
+        "public": true,
+        "returns": "void",
+        "description": "Clears the manually added messages from the form's and each element's `messageBag`."
       },
       "validate": {
         "public": true,

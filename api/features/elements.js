@@ -4130,6 +4130,11 @@ export default {
           "returns": "void",
           "description": "Removes the element's `dirty` state."
         },
+        "clearMessages": {
+          "public": true,
+          "returns": "void",
+          "description": "Clears the manually added messages from the [`messageBag`](#property-message-bag)."
+        },
         "resetValidators": {
           "public": true,
           "returns": "void",
@@ -4277,6 +4282,11 @@ export default {
           "public": true,
           "returns": "void",
           "description": "Removes the element's `dirty` state."
+        },
+        "clearMessages": {
+          "public": true,
+          "returns": "void",
+          "description": "Clears the manually added messages from the [`messageBag`](#property-message-bag)."
         },
         "resetValidators": {
           "public": true,
@@ -4428,6 +4438,11 @@ export default {
           "public": true,
           "returns": "void",
           "description": "Removes the element's `dirty` state."
+        },
+        "clearMessages": {
+          "public": true,
+          "returns": "void",
+          "description": "Clears the manually added messages from the [`messageBag`](#property-message-bag)."
         },
         "resetValidators": {
           "public": true,
@@ -4591,6 +4606,11 @@ export default {
           "returns": "void",
           "description": "Removes the element's `dirty` state."
         },
+        "clearMessages": {
+          "public": true,
+          "returns": "void",
+          "description": "Clears the manually added messages from the [`messageBag`](#property-message-bag)."
+        },
         "resetValidators": {
           "public": true,
           "returns": "void",
@@ -4723,6 +4743,11 @@ export default {
           "returns": "void",
           "description": "Removes the element's `dirty` state."
         },
+        "clearMessages": {
+          "public": true,
+          "returns": "void",
+          "description": "Clears the manually added messages from the [`messageBag`](#property-message-bag)."
+        },
         "resetValidators": {
           "public": true,
           "returns": "void",
@@ -4849,6 +4874,11 @@ export default {
           "public": true,
           "returns": "void",
           "description": "Removes the element's `dirty` state."
+        },
+        "clearMessages": {
+          "public": true,
+          "returns": "void",
+          "description": "Clears the manually added messages from the [`messageBag`](#property-message-bag)."
         },
         "resetValidators": {
           "public": true,
@@ -4997,6 +5027,11 @@ export default {
           "public": true,
           "returns": "void",
           "description": "Removes the element's `dirty` state."
+        },
+        "clearMessages": {
+          "public": true,
+          "returns": "void",
+          "description": "Clears the manually added messages from the [`messageBag`](#property-message-bag)."
         },
         "resetValidators": {
           "public": true,
@@ -5149,6 +5184,11 @@ export default {
           "returns": "void",
           "description": "Removes the element's `dirty` state."
         },
+        "clearMessages": {
+          "public": true,
+          "returns": "void",
+          "description": "Clears the manually added messages from the [`messageBag`](#property-message-bag)."
+        },
         "resetValidators": {
           "public": true,
           "returns": "void",
@@ -5299,6 +5339,11 @@ export default {
           "public": true,
           "returns": "void",
           "description": "Removes the element's `dirty` state."
+        },
+        "clearMessages": {
+          "public": true,
+          "returns": "void",
+          "description": "Clears the manually added messages from the [`messageBag`](#property-message-bag)."
         },
         "resetValidators": {
           "public": true,

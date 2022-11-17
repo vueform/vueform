@@ -1,3 +1,21 @@
+## v1.2.15
+
+> `2022-11-18`
+
+### 🎉 Feature
+  - Z-index optimization thought the whole library. New rule is that everything has z-index 999 that intended to be brought to top (eg. tooltip, dropdown) and everything else got the lowest possible (1) z-index where relative z-indexing was needed.
+  - Added `clearMessage` method to clear all messages manually added to `messageBag`.
+  - Refactored tabs & steps CSS.
+  - Form steps are now using `v-if` instead of `v-show`.
+  - Auto update conditions when changed.
+  - Added `isLast`, `isFirst`, `last$` props steps & tabs.
+  - Finish step now also recognizes `next` label (for ease of configuration).
+  
+### 🐞 Bug Fixes
+  - Multifile object gallery rendered images in rows.
+  - Remove query param from uploaded filename.
+  - Pressing enter in certain elements caused removing or adding list elements.
+
 ## v1.2.14
 
 > `2022-10-28`
