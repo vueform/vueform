@@ -98,7 +98,7 @@
     left: 0;
     transform: translateX(-50%) translateY(-50%);
     top: 0;
-    z-index: 3;
+    z-index: 999;
     background-color: var(--vf-bg-passive);
     border-radius: 999px;
     transition: .15s;
@@ -135,6 +135,7 @@
     transform: translateX(-100%);
     top: 0;
     cursor: grab;
+    z-index: 999;
 
     &:active {
       cursor: grabbing;
