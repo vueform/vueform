@@ -111,8 +111,6 @@ const multifile = function(props, context, dependencies, options = {})
       return Object.assign({}, fileSchema, file.value)
     }
 
-    delete fileSchema.layout
-
     return {
       type: 'object',
       schema: Object.assign({},
