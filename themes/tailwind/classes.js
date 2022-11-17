@@ -650,9 +650,11 @@ export default {
     wrapper_sm: 'form-gap-gutter-sm',
     wrapper_md: 'form-gap-gutter',
     wrapper_lg: 'form-gap-gutter-lg',
-    $wrapper: (classes, { Size }) => ([
+    wrapper_embed: '!block',
+    $wrapper: (classes, { Size, embed }) => ([
       classes.wrapper,
-      classes[`wrapper_${Size}`]
+      classes[`wrapper_${Size}`],
+      embed ? classes.wrapper_embed : null,
     ]),
   },
   RadioElement: {

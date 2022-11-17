@@ -111,12 +111,14 @@ const multifile = function(props, context, dependencies, options = {})
       return Object.assign({}, fileSchema, file.value)
     }
 
+    delete fileSchema.layout
+
     return {
       type: 'object',
       schema: Object.assign({},
         // File
         {[storeFileName.value]: Object.assign({}, fileSchema , {
-          embed: true
+          embed: true,
         }, file.value)},
 
         // Order
@@ -128,7 +130,7 @@ const multifile = function(props, context, dependencies, options = {})
         } : {},
 
         // Other fields
-        fields.value
+        fields.value,
       )
     }
   })
