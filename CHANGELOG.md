@@ -10,6 +10,7 @@
   - Auto update conditions when changed.
   - Added `isLast`, `isFirst`, `last$` props steps & tabs.
   - Finish step now also recognizes `next` label (for ease of configuration).
+  - A11y improvements.
   
 ### 🐞 Bug Fixes
   - Multifile object gallery rendered images in rows.
