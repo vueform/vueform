@@ -63,7 +63,9 @@ export default {
         case 'next':
           return stepLabels && stepLabels.next ? stepLabels.next : form$.value.__('vueform.steps.next')
         case 'finish':
-          return stepLabels && stepLabels.finish ? stepLabels.finish : form$.value.__('vueform.steps.finish')
+          return stepLabels && stepLabels.finish ? stepLabels.finish : (
+            stepLabels && stepLabels.next ? stepLabels.next : form$.value.__('vueform.steps.finish')
+          )
       }
     })
 

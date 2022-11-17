@@ -20,12 +20,13 @@
 
     <!-- Overlay -->
     <div v-if="!uploaded && !uploading" :class="classes.overlay">
-      <button
+      <div
         v-if="canUploadTemp"
         :class="classes.upload"
         @click.prevent="upload"
         tabindex="-1"
-      >{{ uploadText }}</button>
+        role="button"
+      >{{ uploadText }}</div>
     </div>
 
     <!-- Error -->
@@ -39,9 +40,9 @@
     </span>
 
     <!-- Remove -->
-    <button v-if="canRemove" @click.prevent="remove" :class="classes.remove" aria-roledescription="❎">
+    <div v-if="canRemove" @click.prevent="remove" :class="classes.remove" aria-roledescription="❎" role="button" tabindex="0">
       <span :class="classes.removeIcon"></span>
-    </button>
+    </div>
 
     <!-- Progress -->
     <div v-if="uploading" :class="classes.progressBar">

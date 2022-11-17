@@ -62,7 +62,6 @@
         left: 50%;
         transform: translateX(-50%);
         top: 0px;
-        z-index: 3;
       }
 
       &:after {
@@ -76,7 +75,6 @@
         left: calc(50% - 0.25rem);
         transform: scale(0);
         top: 0.25rem;
-        z-index: 4;
         transition: transform .3s ease-in-out;
       }
     }

@@ -12,14 +12,16 @@
      />
       
       <!-- Upload button -->
-      <button
+      <div
         v-else-if="canSelect"
         v-bind="aria"
         :class="classes.button"
         :aria-labelledby="labelId"
         :aria-placeholder="__(`vueform.elements.${type}.select`)"
         @click.prevent="handleClick"
-      >{{ __(`vueform.elements.${type}.select`) }}</button>
+        role="button"
+        tabindex="0"
+      >{{ __(`vueform.elements.${type}.select`) }}</div>
       
       <!-- Hidden file input -->
       <input

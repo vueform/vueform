@@ -1367,7 +1367,6 @@ const vueform = plugin((context) => {
           left: '50%',
           transform: 'translateX(-50%)',
           top: '0px',
-          zIndex: '3',
         },
         '&:after': {
           content: '" "',
@@ -1380,7 +1379,6 @@ const vueform = plugin((context) => {
           left: 'calc(50% - 0.25rem)',
           transform: 'scale(0)',
           top: '0.25rem',
-          zIndex: '4',
           transition: 'transform .3s ease-in-out',
         },
       },
@@ -2371,6 +2369,15 @@ const vueform = plugin((context) => {
     extend: {
       zIndex: {
         1: 1,
+        2: 2,
+        3: 3,
+        4: 4,
+        5: 5,
+        6: 6,
+        7: 7,
+        8: 8,
+        9: 9,
+        999: 999,
       },
       margin: {
         '0.75': '0.1875rem',

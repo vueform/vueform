@@ -61,7 +61,7 @@
     opacity: 0;
     visibility: hidden;
     transition: .3s;
-    z-index: 20;
+    z-index: 999;
     width: 12.5rem;
 
     &.vf-element-info-wrapper-left {
@@ -91,9 +91,9 @@
     background: rgba(0,0,0,0.85);
     color: #FFFFFF;
     border-radius: var(--vf-radius-small);
-    font-size: var(--vf-font-size);
-    line-height: var(--vf-line-height);
-    letter-spacing: var(--vf-letter-spacing);
+    font-size: var(--vf-font-size-small);
+    line-height: var(--vf-line-height-small);
+    letter-spacing: var(--vf-letter-spacing-small);
     padding: 0.3125rem 0.625rem;
     font-style: normal;
     display: inline-block;

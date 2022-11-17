@@ -944,6 +944,25 @@ const base = function(props, context, dependencies = {})
       e$.clean()
     })
   }
+  
+  /**
+   * Clears the manually added messages from the form's and each element's `messageBag`.
+   * 
+   * @returns {void}
+   */
+  const clearMessages = () => {
+    if (messageBag.value) {
+      messageBag.value.clear()
+    }
+
+    _.each(elements$.value, (e$) => {
+      if (e$.isStatic) {
+        return
+      }
+      
+      e$.clearMessages()
+    })
+  }
 
   /**
    * Validates all elements (async).
@@ -1337,6 +1356,7 @@ const base = function(props, context, dependencies = {})
     reset,
     clear,
     clean,
+    clearMessages,
     validate,
     resetValidators,
     convertFormData,

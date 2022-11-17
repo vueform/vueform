@@ -11,7 +11,6 @@
   margin: 0;
   appearance: none;
   font-family: inherit;
-  z-index: 1;
   cursor: text;
   outline: 0px solid var(--vf-ring-color);
   outline-offset: 0;
@@ -197,7 +196,6 @@
   margin: 0;
   appearance: none;
   font-family: inherit;
-  z-index: 1;
   outline: 0px solid var(--vf-ring-color);
   outline-offset: 0;
   transition-property: box-shadow, color, background-color, border-color;

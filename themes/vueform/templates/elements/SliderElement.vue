@@ -224,13 +224,13 @@
     width: 100%;
     height: 100%;
     position: relative;
-    z-index: 1;
   }
 
   .vf-slider-base {
     box-shadow: var(--vf-shadow-input);
     background-color: var(--vf-bg-passive);
     border-radius: var(--vf-radius-slider);
+    z-index: 1;
 
     &.vf-slider-base-sm {
       border-radius: var(--vf-radius-slider-sm);

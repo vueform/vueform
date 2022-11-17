@@ -49,9 +49,15 @@ const base = function(props, context, dependencies)
    * @type {string}
    */
   const filename = computed(() => {
-    return el$.value.filename && typeof el$.value.filename === 'string'
+    let filename = el$.value.filename && typeof el$.value.filename === 'string'
       ? el$.value.filename.split('\\').pop().split('/').pop()
       : el$.value.filename
+
+    if (filename) {
+      filename = filename.split('?')[0]
+    }
+
+    return filename
   })
 
   /**

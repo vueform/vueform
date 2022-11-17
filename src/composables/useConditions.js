@@ -1,11 +1,11 @@
 import _ from 'lodash'
-import { computed, toRefs, ref } from 'vue'
+import { computed, toRefs, ref, watch } from 'vue'
 
 const base = function(props, context, dependencies)
 {
   const {
     parent,
-    conditions: conditionList,
+    conditions,
   } = toRefs(props)
 
   // ============ DEPENDENCIES ============
@@ -17,12 +17,14 @@ const base = function(props, context, dependencies)
   // ================ DATA ================
 
   /**
-   * The frozen conditions of the element.
+   * The current conditions of the element.
    * 
    * @type {array}
    * @private
    */
-  const conditions = ref(conditionList.value)
+  const conditionList = ref(conditions.value)
+
+  const additionalConditions = ref({})
   
   // ============== COMPUTED ==============
 
@@ -40,11 +42,11 @@ const base = function(props, context, dependencies)
       return false
     }
 
-    if (!conditions.value || !conditions.value.length) {
+    if (!conditionList.value || !conditionList.value.length) {
       return true
     }
 
-    return !_.some(conditions.value, (condition) => {
+    return !_.some(conditionList.value, (condition) => {
       return !form$.value.$vueform.services.condition.check(condition, path.value, form$.value, el$.value)
     })
   })
@@ -56,12 +58,33 @@ const base = function(props, context, dependencies)
    * @private
    */
   const updateConditions = () => {
-    conditions.value = conditionList.value
+    conditionList.value = Object.values(additionalConditions.value).reduce((prev, curr) => {
+      return prev.concat(curr)
+    }, conditions.value)
   }
 
+  const addConditions = (key, conditions) => {
+    additionalConditions.value[key] = conditions
+
+    updateConditions()
+  }
+
+  const removeConditions = (key) => {
+    delete additionalConditions.value[key]
+
+    updateConditions()
+  }
+
+  watch(conditions, () => {
+    updateConditions()
+  }, { immediate: false, deep: true })
+
   return {
+    conditionList,
     available,
     updateConditions,
+    addConditions,
+    removeConditions,
   }
 }
 
