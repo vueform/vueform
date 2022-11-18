@@ -16,6 +16,7 @@
           button_sm: 'vf-btn-sm',
           button_md: '',
           button_lg: 'vf-btn-lg',
+          assertiveText: 'vf-assertive-text',
           $container: (classes, { removing }) => ([
             classes.container,
             removing ? classes.container_removing : null,

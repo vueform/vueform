@@ -1455,6 +1455,7 @@ export default {
     uploadedIcon: 'mask-bg mask-form-check-solid form-bg-success-color mask-size-2.5 block w-full h-full',
     remove: 'flex w-4 h-4 items-center justify-center form-bg-passive form-color-passive rounded-full transition filter hover:brightness-90 form-hidden group-hover:form-inline-block',
     removeIcon: 'mask-bg mask-form-remove-light bg-black mask-size-3 block w-full h-full',
+    assistiveText: 'form-assistive-text',
     $container: (classes, { Size }) => ([
       classes.container,
       classes[`container_${Size}`],
@@ -1490,6 +1491,7 @@ export default {
     uploadedIcon: 'mask-bg mask-form-check-solid form-bg-success-color mask-size-2.5 block w-full h-full',
     remove: 'flex w-4 h-4 items-center justify-center form-bg-passive form-color-passive rounded-full transition filter hover:brightness-90 form-hidden group-hover:form-inline-block',
     removeIcon: 'mask-bg mask-form-remove-light bg-black mask-size-3 block w-full h-full',
+    assistiveText: 'form-assistive-text',
     $image: (classes, { hasLink, Size }) => ([
       classes.image,
       classes[`image_${Size}`],
@@ -1532,6 +1534,7 @@ export default {
     uploadedIcon: 'mask-bg mask-form-check-solid form-bg-success-color mask-size-2.5 block w-full h-full',
     remove: 'flex w-4 h-4 items-center justify-center form-bg-passive form-color-passive absolute top-0.5 right-0.5 mt-px mr-px form-hidden rounded-full transition filter hover:brightness-90 group-hover:form-inline-block ',
     removeIcon: 'mask-bg mask-form-remove-light bg-black mask-size-3 block w-full h-full',
+    assistiveText: 'form-assistive-text',
     $container: (classes, { Size }) => ([
       classes.container,
       classes[`container_${Size}`],

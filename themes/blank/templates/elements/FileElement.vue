@@ -19,6 +19,7 @@
         :aria-labelledby="labelId"
         :aria-placeholder="__(`vueform.elements.${type}.select`)"
         @click.prevent="handleClick"
+        @keypress.enter.space="handleClick"
         role="button"
         tabindex="0"
       >{{ __(`vueform.elements.${type}.select`) }}</div>

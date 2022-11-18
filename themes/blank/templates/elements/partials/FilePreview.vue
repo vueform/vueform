@@ -7,8 +7,11 @@
     role="button"
     :aria-labelledby="ariaLabelledby"
     :aria-placeholder="ariaPlaceholder"
+    :aria-describedby="`${el$.fieldId}-file-description`"
     @keyup="handleKeyup"
   >
+    <span :id="`${el$.fieldId}-file-description`" :class="classes.assistiveText" aria-hidden="">{{ __('vueform.a11y.file.description') }}</span>
+
     <div :class="classes.wrapper">
       <div :class="classes.file">
         <!-- Filename -->
@@ -18,7 +21,15 @@
       
       <div :class="classes.actions">
         <!-- Remove -->
-        <div :class="classes.remove" v-if="canRemove" @click.prevent="remove" aria-roledescription="❎" role="button" tabindex="0">
+        <div
+          v-if="canRemove"
+          :class="classes.remove"
+          @click.prevent="remove"
+          @keypress.enter.space="remove"
+          aria-roledescription="❎"
+          role="button"
+          tabindex="0"
+        >
           <span :class="classes.removeIcon"></span>
         </div>
 
@@ -74,6 +85,7 @@
           uploadedIcon: '',
           remove: '',
           removeIcon: '',
+          assistiveText: '',
         }
       }
     }

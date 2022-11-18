@@ -20,6 +20,7 @@
         :aria-labelledby="labelId"
         :aria-placeholder="__('vueform.elements.multifile.uploadButton')"
         @click.prevent="handleClick"
+        @keypress.enter.space="handleClick"
         role="button"
         tabindex="0"
       >{{ __('vueform.elements.multifile.uploadButton') }}</div>

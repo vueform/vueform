@@ -1314,6 +1314,15 @@ const vueform = plugin((context) => {
       }
     },
 
+    '.form-assistive-text': {
+      position: 'absolute',
+      margin: '-1px',
+      width: '1px',
+      height: '1px',
+      overflow: 'hidden',
+      clip: 'rect(0 0 0 0)',
+    },
+
     // Info
     '.form-bg-info': {
       '&::before': {
