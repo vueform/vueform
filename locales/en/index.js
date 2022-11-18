@@ -124,6 +124,9 @@ export default {
       "file": {
         "description": "Press Backspace to remove",
       },
+      "list": {
+        "remove": "Remove item button",
+      },
     },
   },
   "validation": {

@@ -25,10 +25,11 @@
           <!-- Remove button -->
           <div
             v-if="hasRemove"
-            aria-roledescription="❎"
+            :aria-roledescription="__('vueform.a11y.list.remove')"
             :class="classes.remove"
             :id="`${path}-${i}-remove-button`"
             @click.prevent="handleRemove(i)"
+            @keypress.space.enter="handleRemove(i)"
             role="button"
             tabindex="0"
           >
@@ -43,6 +44,7 @@
         :class="classes.add"
         :id="`${path}-add-button`"
         @click.prevent="handleAdd"
+        @keypress.enter.space="handleAdd"
         v-html="addLabel"
         role="button"
         tabindex="0"

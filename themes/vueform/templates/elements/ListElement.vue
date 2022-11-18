@@ -80,7 +80,6 @@
   }
 
   .vf-list-remove, .vf-list-handle {
-    visibility: hidden;
     opacity: 0;
     transition: .3s;
 
