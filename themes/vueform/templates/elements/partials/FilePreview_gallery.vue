@@ -35,6 +35,7 @@
           uploadedIcon: 'vf-file-preview-gallery-uploaded-icon',
           remove: 'vf-file-preview-gallery-remove',
           removeIcon: 'vf-file-preview-gallery-remove-icon',
+          assistiveText: 'vf-assistive-text',
           $container: (classes, { Size }) => ([
             classes.container,
             classes[`container_${Size}`],

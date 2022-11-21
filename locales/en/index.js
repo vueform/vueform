@@ -120,6 +120,14 @@ export default {
       "noOptions": "The list is empty",
     },
     "defaultMessage": "Invalid field",
+    "a11y": {
+      "file": {
+        "description": "Press Backspace to remove",
+      },
+      "list": {
+        "remove": "Remove item button",
+      },
+    },
   },
   "validation": {
     "accepted": "The :attribute must be accepted.",

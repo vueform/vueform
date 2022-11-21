@@ -13,9 +13,11 @@
           wrapper_sm: 'vf-row-sm',
           wrapper_md: '',
           wrapper_lg: 'vf-row-lg',
-          $wrapper: (classes, { Size }) => ([
+          wrapper_embed: 'vf-row-embed',
+          $wrapper: (classes, { Size, embed }) => ([
             classes.wrapper,
-            classes[`wrapper_${Size}`]
+            classes[`wrapper_${Size}`],
+            embed ? classes.wrapper_embed : null,
           ]),
         }
       }

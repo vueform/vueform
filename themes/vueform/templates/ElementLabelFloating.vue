@@ -43,7 +43,7 @@
 
   .vf-floating-label {
     position: absolute;
-    z-index: 5;
+    z-index: 1;
     left: var(--vf-px-input);
     font-size: 0.6875rem;
     background-color: var(--vf-bg-input);

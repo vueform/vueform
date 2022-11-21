@@ -47,7 +47,7 @@ import DatepickerWrapper from './../../../blank/templates/wrappers/DatepickerWra
 
   .flatpickr-calendar.open {
     display: inline-block;
-    z-index: 99999;
+    z-index: 999;
   }
 
   .flatpickr-calendar.animate.open {
@@ -61,7 +61,7 @@ import DatepickerWrapper from './../../../blank/templates/wrappers/DatepickerWra
     top: 2px;
   }
 
-  .flatpickr-calendar:not(.rightMost) {
+  .flatpickr-calendar.rightMost {
     left: auto;
     right: 0;
   }
@@ -222,7 +222,7 @@ import DatepickerWrapper from './../../../blank/templates/wrappers/DatepickerWra
     top: 0;
     height: 34px;
     padding: 10px;
-    z-index: 3;
+    z-index: 1;
     color: var(--vf-color-date-head);
     fill: var(--vf-color-date-head);
   }

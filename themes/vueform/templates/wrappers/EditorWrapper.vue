@@ -236,7 +236,7 @@
       border-top-width: 2px;
       border-color: var(--vf-gray-300);
       border-radius: 0.25rem;
-      z-index: 10;
+      z-index: 1;
     }
 
     .trix-input--dialog {
@@ -351,7 +351,6 @@
 
     .attachment__progress {
       position: absolute;
-      z-index: 10;
       height: 1.25rem;
       top: 50%;
       left: 0;
@@ -359,7 +358,7 @@
       width: 100%;
       padding-left: 1rem;
       padding-right: 1rem;
-      opacity: 0.9;
+      opacity: 0.2;
       transition-property: opacity;
       transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
       transition-duration: 150ms;
@@ -392,7 +391,7 @@
       position: absolute;
       top: 0;
       left: 0;
-      z-index: 10;
+      z-index: 1;
       transform: translateY(-50%);
       text-align: center;
       width: 100%;

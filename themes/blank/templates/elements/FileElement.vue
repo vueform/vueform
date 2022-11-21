@@ -1,5 +1,5 @@
 <template>
-  <component :is="elementLayout">
+  <component :is="elementLayout" ref="container">
     <template #element>
       <!-- Drag n drop -->
       <DragAndDrop
@@ -12,14 +12,17 @@
      />
       
       <!-- Upload button -->
-      <button
+      <div
         v-else-if="canSelect"
         v-bind="aria"
         :class="classes.button"
         :aria-labelledby="labelId"
         :aria-placeholder="__(`vueform.elements.${type}.select`)"
         @click.prevent="handleClick"
-      >{{ __(`vueform.elements.${type}.select`) }}</button>
+        @keypress.enter.space="handleClick"
+        role="button"
+        tabindex="0"
+      >{{ __(`vueform.elements.${type}.select`) }}</div>
       
       <!-- Hidden file input -->
       <input

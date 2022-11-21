@@ -54,6 +54,10 @@
             containerOpenTop: 'vf-multiselect-open-top',
             containerActive: 'vf-multiselect-active',
             containerActive_enabled: '',
+            wrapper: 'vf-multiselect-wrapper',
+            wrapper_sm: 'vf-multiselect-wrapper-sm',
+            wrapper_md: '',
+            wrapper_lg: 'vf-multiselect-wrapper-lg',
             search: 'vf-multiselect-search',
             search_sm: 'vf-multiselect-search-sm',
             search_md: '',
@@ -122,6 +126,7 @@
             noResults_md: '',
             noResults_lg: 'vf-multiselect-no-results-lg',
             fakeInput: 'vf-multiselect-fake-input',
+            assist: 'vf-assistive-text',
             spacer: 'vf-multiselect-spacer',
             spacer_sm: 'vf-multiselect-spacer-sm',
             spacer_md: '',
@@ -138,6 +143,10 @@
               classes.select.containerActive,
               classes.select[`container_${Size}`],
               !isDisabled && !isSuccess && !isDanger ? classes.select.containerActive_enabled : null,
+            ]),
+            $wrapper: (classes, { Size }) => ([
+              classes.select.wrapper,
+              classes.select[`wrapper_${Size}`],
             ]),
             $search: (classes, { Size }) => ([
               classes.select.search,
@@ -410,6 +419,27 @@
     }
   }
 
+  .vf-multiselect-wrapper {
+    position: relative;
+    margin: 0 auto;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    box-sizing: border-box;
+    cursor: pointer;
+    outline: none;
+    min-height: var(--vf-min-height-input-sm);
+
+    &.vf-multiselect-wrapper-sm {
+      min-height: var(--vf-min-height-input-sm);
+    }
+
+    &.vf-multiselect-wrapper-lg {
+      min-height: var(--vf-min-height-input-lg);
+    }
+  }
+
   .vf-multiselect-single-label,
   .vf-multiselect-placeholder {
     display: flex;
@@ -547,7 +577,6 @@
     background-color: var(--vf-primary);
     width: 1rem;
     height: 1rem;
-    z-index: 10;
     margin: 0 var(--vf-px-input) 0 0;
     animation: multiselect-spin 1s linear infinite;
     flex-shrink: 0;
@@ -590,16 +619,14 @@
     background-color: var(--vf-primary);
     width: 1rem;
     height: 1rem;
-    z-index: 10;
     animation: multiselect-spin 1s linear infinite;
     flex-shrink: 0;
     flex-grow: 0;
   }
 
   .vf-multiselect-clear {
-    padding: 0 var(--vf-px-input) 0 0px;
+    margin: 0 var(--vf-px-input) 0 0px;
     position: relative;
-    z-index: 10;
     opacity: 1;
     transition: .3s;
     flex-shrink: 0;
@@ -611,11 +638,11 @@
     }
 
     &.vf-multiselect-clear-sm {
-      padding: 0 var(--vf-px-input-sm) 0 0px;
+      margin: 0 var(--vf-px-input-sm) 0 0px;
     }
 
     &.vf-multiselect-clear-lg {
-      padding: 0 var(--vf-px-input-lg) 0 0px;
+      margin: 0 var(--vf-px-input-lg) 0 0px;
     }
   }
 
@@ -652,7 +679,6 @@
     height: 1.125rem;
     margin: 0 var(--vf-px-input) 0 0;
     position: relative;
-    z-index: 10;
     flex-shrink: 0;
     flex-grow: 0;
     pointer-events: none;
@@ -684,7 +710,7 @@
     max-height: 15rem;
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
-    z-index: 100;
+    z-index: 999;
     background: var(--vf-bg-input);
     display: flex;
     flex-direction: column;

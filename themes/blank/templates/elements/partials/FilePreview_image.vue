@@ -7,8 +7,11 @@
     v-bind="attrs"
     :aria-labelledby="ariaLabelledby"
     :aria-placeholder="ariaPlaceholder"
+    :aria-describedby="`${el$.fieldId}-file-description`"
     @keyup="handleKeyup"
   >
+    <span :id="`${el$.fieldId}-file-description`" :class="classes.assistiveText" aria-hidden="">{{ __('vueform.a11y.file.description') }}</span>
+    
     <div :class="classes.wrapper">
       <!-- Image -->
       <a :href="link" v-if="uploaded && hasLink && clickable" :class="classes.image" target="_blank">
@@ -26,9 +29,17 @@
       
       <div :class="classes.actions">
         <!-- Remove -->
-        <button :class="classes.remove" v-if="canRemove" @click.prevent="remove" aria-roledescription="❎">
+        <div
+          v-if="canRemove"
+          :class="classes.remove"
+          @click.prevent="remove"
+          @keypress.enter.space="remove"
+          aria-roledescription="❎"
+          role="button"
+          tabindex="0"
+        >
           <span :class="classes.removeIcon"></span>
-        </button>
+        </div>
 
         <!-- Progress -->
         <div v-if="uploading" :class="classes.percent">{{ progress }}%</div>
@@ -39,12 +50,14 @@
         </span>
         
         <!-- Upload button -->
-        <button
+        <div
           v-if="canUploadTemp"
           :class="classes.upload"
           @click.prevent="upload"
+          @keypress.enter.space="upload"
           tabindex="-1"
-        >{{ uploadText }}</button>
+          role="button"
+        >{{ uploadText }}</div>
 
         <!-- Success -->
         <span v-else-if="el$.stage > 1" :class="classes.uploaded">

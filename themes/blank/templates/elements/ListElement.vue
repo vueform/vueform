@@ -1,5 +1,5 @@
 <template>
-  <component :is="elementLayout">
+  <component :is="elementLayout" ref="container">
     <template #element>
       <!-- Sorting container -->
       <div :class="classes.list" role="list" :aria-labelledby="labelId" ref="list">
@@ -23,25 +23,31 @@
           </span>
 
           <!-- Remove button -->
-          <button
+          <div
             v-if="hasRemove"
-            aria-roledescription="❎"
+            :aria-roledescription="__('vueform.a11y.list.remove')"
             :class="classes.remove"
             :id="`${path}-${i}-remove-button`"
             @click.prevent="handleRemove(i)"
+            @keypress.space.enter="handleRemove(i)"
+            role="button"
+            tabindex="0"
           >
             <span :class="classes.removeIcon"></span>
-          </button>
+          </div>
         </div>
       </div>
 
       <!-- Add button -->
-      <button
+      <div
         v-if="hasAdd"
         :class="classes.add"
         :id="`${path}-add-button`"
         @click.prevent="handleAdd"
+        @keypress.enter.space="handleAdd"
         v-html="addLabel"
+        role="button"
+        tabindex="0"
       />
     </template>
 

@@ -383,6 +383,10 @@ form ::placeholder {
   gap: var(--vf-gutter-lg);
 }
 
+.vf-row.vf-row-embed {
+  display: block;
+}
+
 .vf-rowset {
   display: grid;
   row-gap: var(--vf-gutter);
@@ -733,7 +737,6 @@ form ::placeholder {
   -moz-appearance: none;
   appearance: none;
   font-family: inherit;
-  z-index: 1;
   cursor: text;
   outline: 0px solid var(--vf-ring-color);
   outline-offset: 0;
@@ -916,7 +919,6 @@ form ::placeholder {
   -moz-appearance: none;
   appearance: none;
   font-family: inherit;
-  z-index: 1;
   outline: 0px solid var(--vf-ring-color);
   outline-offset: 0;
   transition-property: box-shadow, color, background-color, border-color;
@@ -1364,4 +1366,13 @@ form ::placeholder {
   to {
     transform: rotate(1turn);
   }
+}
+
+.vf-assistive-text {
+  position: absolute;
+  margin: -1px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
 }

@@ -1314,6 +1314,15 @@ const vueform = plugin((context) => {
       }
     },
 
+    '.form-assistive-text': {
+      position: 'absolute',
+      margin: '-1px',
+      width: '1px',
+      height: '1px',
+      overflow: 'hidden',
+      clip: 'rect(0 0 0 0)',
+    },
+
     // Info
     '.form-bg-info': {
       '&::before': {
@@ -1330,43 +1339,27 @@ const vueform = plugin((context) => {
     },
 
     // Steps
+    '.form-steps': {
+      width: '100%',
+      position: 'relative',
+      '&:before': {
+        content: '" "',
+        display: 'inline-block',
+        background: 'var(--vf-bg-passive)',
+        position: 'absolute',
+        top: '0.375rem',
+        left: '0.125rem',
+        right: '0.125rem',
+        height: '0.25rem',
+      },
+    },
     '.form-step': {
       display: 'block',
       position: 'relative',
       whiteSpace: 'nowrap',
       flex: '1 1',
       textAlign: 'center',
-      padding: '0 10px',
-      '&:nth-child(1):before, &:nth-child(1) a:before, &:nth-child(1) a:after': { zIndex: 10 },
-      '&:nth-child(2):before, &:nth-child(2) a:before, &:nth-child(2) a:after': { zIndex: 9 },
-      '&:nth-child(3):before, &:nth-child(3) a:before, &:nth-child(3) a:after': { zIndex: 8 },
-      '&:nth-child(4):before, &:nth-child(4) a:before, &:nth-child(4) a:after': { zIndex: 7 },
-      '&:nth-child(5):before, &:nth-child(5) a:before, &:nth-child(5) a:after': { zIndex: 6 },
-      '&:nth-child(6):before, &:nth-child(6) a:before, &:nth-child(6) a:after': { zIndex: 5 },
-      '&:nth-child(7):before, &:nth-child(7) a:before, &:nth-child(7) a:after': { zIndex: 4 },
-      '&:nth-child(8):before, &:nth-child(8) a:before, &:nth-child(8) a:after': { zIndex: 3 },
-      '&:before': {
-        content: '" "',
-        display: 'inline-block',
-        height: '4px',
-        background: 'var(--vf-primary)',
-        position: 'absolute',
-        top: '-12px',
-        left: '-1px',
-        right: '50%',
-        transition: '.3s',
-      },
-      '&:after': {
-        content: '" "',
-        display: 'inline-block',
-        height: '4px',
-        background: 'var(--vf-primary)',
-        position: 'absolute',
-        top: '-12px',
-        left: '50%',
-        right: '0',
-        transition: '.3s',
-      },
+      padding: '1.25rem 0.625rem 0',
       a: {
         textDecoration: 'none !important',
         '&:hover, &:focus, &:active': {
@@ -1375,28 +1368,26 @@ const vueform = plugin((context) => {
         '&:before': {
           content: '" "',
           display: 'inline-block',
-          width: '16px',
-          height: '16px',
+          width: '1rem',
+          height: '1rem',
           position: 'absolute',
           background: 'var(--vf-primary)',
           borderRadius: '50%',
           left: '50%',
           transform: 'translateX(-50%)',
-          top: '-18px',
-          zIndex: '3',
+          top: '0px',
         },
         '&:after': {
           content: '" "',
           display: 'inline-block',
-          width: '8px',
-          height: '8px',
+          width: '0.5rem',
+          height: '0.5rem',
           position: 'absolute',
           background: '#ffffff',
           borderRadius: '50%',
-          left: 'calc(50% - 4px)',
+          left: 'calc(50% - 0.25rem)',
           transform: 'scale(0)',
-          top: '-14px',
-          zIndex: '4',
+          top: '0.25rem',
           transition: 'transform .3s ease-in-out',
         },
       },
@@ -1415,7 +1406,7 @@ const vueform = plugin((context) => {
             transform: 'none',
           },
           '&:after': {
-            left: '4px',
+            left: '0.25rem',
             transform: 'scale(0)',
           },
         }
@@ -1440,7 +1431,7 @@ const vueform = plugin((context) => {
             left: 'auto',
             left: 'initial',
             transform: 'scale(0)',
-            right: '4px',
+            right: '0.25rem',
           },
         },
       },
@@ -1457,6 +1448,29 @@ const vueform = plugin((context) => {
         },
       },
       '&.form-step-completed': {
+        '& + .form-step:not(.form-step-completed):before': {
+          content: '" "',
+          display: 'inline-block',
+          background: 'var(--vf-primary)',
+          position: 'absolute',
+          top: '0.375rem',
+          left: '0px',
+          right: '50%',
+          height: '0.25rem',
+        },
+        '& + .form-step:last-of-type:before': {
+          right: '0px',
+        },
+        '&:before': {
+          content: '" "',
+          display: 'inline-block',
+          background: 'var(--vf-primary)',
+          position: 'absolute',
+          top: '0.375rem',
+          left: '0px',
+          right: '0px',
+          height: '0.25rem',
+        },
         a: {
           '&:after': {
             maskImage: theme('maskImage.form-check-solid'),
@@ -1474,7 +1488,7 @@ const vueform = plugin((context) => {
           '&:after': {
             maskImage: 'none',
             background: 'var(--vf-color-on-primary)',
-            top: '-0.875rem',
+            top: '0.25rem',
             transform: 'scale(1)',
             borderRadius: '50%',
           }
@@ -1494,17 +1508,28 @@ const vueform = plugin((context) => {
             backgroundColor: 'var(--vf-color-btn-danger)',
             width: '0.5rem',
             height: '0.5rem',
-            top: '-0.875rem',
+            top: '0.25rem',
             borderRadius: '0',
           },
-        }
+        },
+        '&.form-step-active': {
+          a: {
+            '&:after': {
+              maskImage: 'none',
+              background: 'var(--vf-color-on-primary)',
+              top: '0.25rem',
+              transform: 'scale(1)',
+              borderRadius: '50%',
+            }
+          },
+        },
       },
       '&.form-step-pending': {
         a: {
           '&:after': {
             animation: '1s linear infinite step-loading',
             background: 'var(--vf-color-btn-danger)',
-            top: '-14px',
+            top: '0.25rem',
             borderRadius: '50%',
           }
         }
@@ -2353,6 +2378,15 @@ const vueform = plugin((context) => {
     extend: {
       zIndex: {
         1: 1,
+        2: 2,
+        3: 3,
+        4: 4,
+        5: 5,
+        6: 6,
+        7: 7,
+        8: 8,
+        9: 9,
+        999: 999,
       },
       margin: {
         '0.75': '0.1875rem',

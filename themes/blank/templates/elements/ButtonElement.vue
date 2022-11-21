@@ -1,5 +1,5 @@
 <template>
-  <component :is="elementLayout">
+  <component :is="elementLayout" ref="container">
     <template #element>
       <!-- Use `button` tag -->
       <template v-if="buttonType === 'button'">
@@ -42,7 +42,7 @@
           :tabindex="isDisabled || isLoading ? -1 : undefined"
           :class="classes.button"
           :disabled="isDisabled"
-          @click.prevent="handleClick" 
+          @click.prevent="handleClick"
         ><slot :el$="el$"><component :is="fieldSlots.default" :el$="el$"/></slot></button>
       </template>
 

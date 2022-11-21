@@ -37,6 +37,7 @@
           uploadedIcon: 'vf-file-preview-image-uploaded-icon',
           remove: 'vf-file-preview-image-remove',
           removeIcon: 'vf-file-preview-image-remove-icon',
+          assistiveText: 'vf-assistive-text',
           $image: (classes, { hasLink, Size }) => ([
             classes.image,
             classes[`image_${Size}`],

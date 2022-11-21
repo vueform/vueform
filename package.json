@@ -1,7 +1,7 @@
 {
     "private": false,
     "name": "@vueform/vueform",
-    "version": "1.2.14",
+    "version": "1.2.15",
     "description": "Form builder for Vue.js",
     "homepage": "https://vueform.com",
     "license": "SEE LICENSE IN LICENSE.txt",

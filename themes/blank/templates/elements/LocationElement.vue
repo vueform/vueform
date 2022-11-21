@@ -1,5 +1,5 @@
 <template>
-  <component :is="elementLayout">
+  <component :is="elementLayout" ref="container">
     <template #element>
       <div :class="classes.inputContainer">
         <ElementAddon v-if="hasAddonBefore" type="before">

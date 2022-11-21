@@ -8,8 +8,11 @@
     :aria-labelledby="ariaLabelledby"
     :aria-placeholder="ariaPlaceholder"
     :aria-role="ariaRoledescription"
+    :aria-describedby="`${el$.fieldId}-file-description`"
     @keyup="handleKeyup"
   >
+    <span :id="`${el$.fieldId}-file-description`" :class="classes.assistiveText" aria-hidden="">{{ __('vueform.a11y.file.description') }}</span>
+
     <!-- Image  -->
     <a v-if="uploaded && hasLink && clickable" :class="classes.image" :href="link" target="_blank">
       <img :src="preview" :class="classes.img" :alt="filename" :title="filename" aria-hidden="true"/>
@@ -20,12 +23,14 @@
 
     <!-- Overlay -->
     <div v-if="!uploaded && !uploading" :class="classes.overlay">
-      <button
+      <div
         v-if="canUploadTemp"
         :class="classes.upload"
         @click.prevent="upload"
+        @keypress.enter.space="upload"
         tabindex="-1"
-      >{{ uploadText }}</button>
+        role="button"
+      >{{ uploadText }}</div>
     </div>
 
     <!-- Error -->
@@ -39,9 +44,17 @@
     </span>
 
     <!-- Remove -->
-    <button v-if="canRemove" @click.prevent="remove" :class="classes.remove" aria-roledescription="❎">
+    <div
+      v-if="canRemove"
+      :class="classes.remove"
+      @click.prevent="remove"
+      @keypress.enter.space="remove"
+      aria-roledescription="❎"
+      role="button"
+      tabindex="0"
+    >
       <span :class="classes.removeIcon"></span>
-    </button>
+    </div>
 
     <!-- Progress -->
     <div v-if="uploading" :class="classes.progressBar">

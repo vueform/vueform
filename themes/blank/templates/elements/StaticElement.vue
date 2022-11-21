@@ -1,5 +1,5 @@
 <template>
-  <component v-if="wrap" :is="elementLayout">
+  <component v-if="wrap" :is="elementLayout" ref="container">
     <template #element>
       <!-- If content is HTML -->
       <div v-if="content && isHtml" :class="classes.content" v-html="content"></div>
@@ -17,9 +17,9 @@
 
   <div v-else-if="content && isHtml" :class="classes.content" v-html="content"></div>
 
-  <component v-else-if="content" :is="content" :el$="el$" />
+  <component v-else-if="content" :is="content" :el$="el$" ref="container" />
 
-  <div v-else :class="classes.container">
+  <div v-else :class="classes.container" ref="container">
     <slot :el$="el$"><component :is="fieldSlots.default" :el$="el$"/></slot>
   </div>
 </template>

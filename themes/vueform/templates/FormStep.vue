@@ -35,44 +35,12 @@
 
 <style lang="scss">
   .vf-step {
+    display: block;
     position: relative;
     white-space: nowrap;
-    flex: 1;
+    flex: 1 1;
     text-align: center;
-    padding: 0 0.625rem;
-
-    &:nth-child(1):before, &:nth-child(1) a:before, &:nth-child(1) a:after { z-index: 10; }
-    &:nth-child(2):before, &:nth-child(2) a:before, &:nth-child(2) a:after { z-index: 9; }
-    &:nth-child(3):before, &:nth-child(3) a:before, &:nth-child(3) a:after { z-index: 8; }
-    &:nth-child(4):before, &:nth-child(4) a:before, &:nth-child(4) a:after { z-index: 7; }
-    &:nth-child(5):before, &:nth-child(5) a:before, &:nth-child(5) a:after { z-index: 6; }
-    &:nth-child(6):before, &:nth-child(6) a:before, &:nth-child(6) a:after { z-index: 5; }
-    &:nth-child(7):before, &:nth-child(7) a:before, &:nth-child(7) a:after { z-index: 4; }
-    &:nth-child(8):before, &:nth-child(8) a:before, &:nth-child(8) a:after { z-index: 3; }
-
-    &:before {
-      content: " ";
-      display: inline-block;
-      height: 0.25rem;
-      background: var(--vf-primary);
-      position: absolute;
-      top: -0.75rem;
-      left: 0;
-      right: 50%;
-      transition: .3s;
-    }
-
-    &:after {
-      content: " ";
-      display: inline-block;
-      height: 0.25rem;
-      background: var(--vf-primary);
-      position: absolute;
-      top: -0.75rem;
-      left: 50%;
-      right: 0;
-      transition: .3s;
-    }
+    padding: 1.25rem 0.625rem 0;
 
     a {
       text-decoration: none !important;
@@ -93,8 +61,7 @@
         border-radius: 50%;
         left: 50%;
         transform: translateX(-50%);
-        top: -1.125rem;
-        z-index: 3;
+        top: 0px;
       }
 
       &:after {
@@ -107,8 +74,7 @@
         border-radius: 50%;
         left: calc(50% - 0.25rem);
         transform: scale(0);
-        top: -0.875rem;
-        z-index: 4;
+        top: 0.25rem;
         transition: transform .3s ease-in-out;
       }
     }
@@ -183,6 +149,32 @@
     }
 
     &.vf-step-completed {
+      & + .vf-step:not(.vf-step-completed):before {
+        content: " ";
+        display: inline-block;
+        background: var(--vf-primary);
+        position: absolute;
+        top: 0.375rem;
+        left: 0px;
+        right: 50%;
+        height: 0.25rem;
+      }
+
+      & + .vf-step:last-of-type:before {
+        right: 0px;
+      }
+
+      &:before {
+        content: " ";
+        display: inline-block;
+        background: var(--vf-primary);
+        position: absolute;
+        top: 0.375rem;
+        left: 0px;
+        right: 0px;
+        height: 0.25rem;
+      }
+      
       a {
         &:after {
           mask-image: url('data:image/svg+xml;utf8,<svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" class="svg-inline--fa fa-check fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="white" d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"></path></svg>');
@@ -203,8 +195,10 @@
     &.vf-step-active {
       a {
         &:after {
+          mask-image: none;
+          -webkit-mask-image: none;
           background-color: var(--vf-color-on-primary);
-          top: -0.875rem;
+          top: 0.25rem;
           transform: scale(1);
           border-radius: 50%;
         }
@@ -231,8 +225,20 @@
           background-color: var(--vf-color-btn-danger);
           width: 0.5rem;
           height: 0.5rem;
-          top: -0.875rem;
+          top: 0.25rem;
           border-radius: 0;
+        }
+      }
+
+      &.vf-step-active {
+        a {
+          &:after {
+            mask-image: none;
+            -webkit-mask-image: none;
+            background-color: var(--vf-color-on-primary);
+            transform: scale(1);
+            border-radius: 50%;
+          }
         }
       }
     }
@@ -242,7 +248,7 @@
         &:after {
           animation: 1s linear infinite step-loading;
           background: var(--vf-color-btn-danger);
-          top: -0.875rem;
+          top: 0.25rem;
           border-radius: 50%;
         }
       }
