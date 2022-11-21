@@ -1,5 +1,5 @@
 <template>
-  <component :is="elementLayout">
+  <component :is="elementLayout" ref="container">
     <template #element>
       <!-- Sorting container -->
       <div :class="classes.list" role="list" :aria-labelledby="labelId" ref="list">

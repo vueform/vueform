@@ -1,5 +1,5 @@
 <template>
-  <component :is="elementLayout">
+  <component :is="elementLayout" ref="container">
     <template #element>
       <EditorWrapper
         :value="model"

@@ -1,5 +1,5 @@
 <template>
-  <span v-if="!meta">
+  <span v-if="!meta" ref="container">
     <input
       v-model="value"
       type="hidden"

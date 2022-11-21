@@ -1,5 +1,5 @@
 <template>
-  <component :is="elementLayout">
+  <component :is="elementLayout" ref="container">
     <template #element>
       <!-- Use `button` tag -->
       <template v-if="buttonType === 'button'">
@@ -14,6 +14,7 @@
           :disabled="isDisabled"
           :class="classes.button"
           @click.prevent="handleClick"
+          ref="input"
         >
           <component :is="buttonLabel"/>
         </button>
@@ -30,6 +31,7 @@
           :class="classes.button"
           :disabled="isDisabled"
           @click.prevent="handleClick" 
+          ref="input"
         ></button>
 
         <!-- Use it as slot -->
@@ -42,7 +44,8 @@
           :tabindex="isDisabled || isLoading ? -1 : undefined"
           :class="classes.button"
           :disabled="isDisabled"
-          @click.prevent="handleClick" 
+          @click.prevent="handleClick"
+          ref="input"
         ><slot :el$="el$"><component :is="fieldSlots.default" :el$="el$"/></slot></button>
       </template>
 
@@ -55,6 +58,7 @@
           :tabindex="isDisabled || isLoading ? -1 : undefined"
           :class="classes.button"
           @click="handleClick"
+          ref="input"
         >
           <component :is="buttonLabel"/>
         </a>
@@ -67,6 +71,7 @@
           :tabindex="isDisabled || isLoading ? -1 : undefined"
           :class="classes.button"
           @click="handleClick"
+          ref="input"
        />
 
         <!-- Use it as slot -->
@@ -76,6 +81,7 @@
           :tabindex="isDisabled || isLoading ? -1 : undefined"
           :class="classes.button"
           @click="handleClick"
+          ref="input"
         ><slot :el$="el$"><component :is="fieldSlots.default" :el$="el$"/></slot></a>
       </template>
     </template>

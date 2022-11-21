@@ -28,6 +28,7 @@ import useFloating from './../../composables/elements/useFloating'
 import useLoading from './../../composables/elements/useLoading'
 import useClasses from './../../composables/elements/useClasses'
 import useA11y from './../../composables/elements/useA11y'
+import useFocus from './../../composables/elements/useFocus'
 
 import { select as useFocused } from './../../composables/elements/useFocused'
 import { select as useOptions } from './../../composables/elements/useOptions'
@@ -366,6 +367,7 @@ export default {
       useFocused,
       useA11y,
       useWatchValue,
+      useFocus,
     ]
     context.slots = [
       'option',

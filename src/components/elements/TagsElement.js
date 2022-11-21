@@ -27,6 +27,7 @@ import useFloating from './../../composables/elements/useFloating'
 import useLoading from './../../composables/elements/useLoading'
 import useAsyncItems from './../../composables/elements/useAsyncItems'
 import useA11y from './../../composables/elements/useA11y'
+import useFocus from './../../composables/elements/useFocus'
 
 import { array as useNullValue } from './../../composables/elements/useNullValue'
 import { array as useEmpty } from './../../composables/elements/useEmpty'
@@ -388,6 +389,7 @@ export default {
       useFocused,
       useA11y,
       useWatchValue,
+      useFocus,
     ]
     context.slots = [
       'tag',

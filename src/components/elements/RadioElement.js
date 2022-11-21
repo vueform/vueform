@@ -23,6 +23,7 @@ import useRadio from './../../composables/elements/useRadio'
 import useValue from './../../composables/elements/useValue'
 import useWatchValue from './../../composables/elements/useWatchValue'
 import useClasses from './../../composables/elements/useClasses'
+import useFocus from './../../composables/elements/useFocus'
 
 import { radio as useA11y } from './../../composables/elements/useA11y'
 
@@ -101,6 +102,7 @@ export default {
       useRadio,
       useA11y,
       useWatchValue,
+      useFocus,
     ]
     context.slots = [
       'default', 'label', 'info', 'description',

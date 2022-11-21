@@ -38,6 +38,13 @@ const base = function(props, context, dependencies)
   // ================= DATA ================
 
   /**
+   * The ref to the outermost DOM of the element.
+   * 
+   * @type {HTMLElement}
+   */
+  const container = ref(null)
+
+  /**
    * Whether the element has been already mounted.
    * 
    * @type {boolean}
@@ -179,6 +186,7 @@ const base = function(props, context, dependencies)
     isActive,
     active,
     mounted,
+    container,
     activate,
     deactivate,
   }
@@ -194,6 +202,7 @@ const list = function(props, context, dependencies)
     isActive,
     active,
     mounted,
+    container,
     activate,
     deactivate,
   } = base(props, context, dependencies)
@@ -213,6 +222,7 @@ const list = function(props, context, dependencies)
     isActive,
     active,
     mounted,
+    container,
     activate,
     deactivate,
   }
@@ -231,6 +241,7 @@ const file = function(props, context, dependencies)
     isActive,
     active,
     mounted,
+    container,
     activate,
     deactivate,
   } = base(props, context, dependencies)
@@ -254,6 +265,7 @@ const file = function(props, context, dependencies)
     isActive,
     active,
     mounted,
+    container,
     activate,
     deactivate,
   }
@@ -269,6 +281,7 @@ const static_ = function(props, context, dependencies)
     isActive,
     active,
     mounted,
+    container,
     activate,
     deactivate,
   } = base(props, context, dependencies)
@@ -288,6 +301,7 @@ const static_ = function(props, context, dependencies)
     isActive,
     active,
     mounted,
+    container,
     activate,
     deactivate,
   }

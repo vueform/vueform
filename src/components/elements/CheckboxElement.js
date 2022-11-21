@@ -21,6 +21,7 @@ import useValue from './../../composables/elements/useValue'
 import useWatchValue from './../../composables/elements/useWatchValue'
 import useSlots from './../../composables/elements/useSlots'
 import useClasses from './../../composables/elements/useClasses'
+import useFocus from './../../composables/elements/useFocus'
 
 import { boolean as useNullValue } from './../../composables/elements/useNullValue'
 import { checkbox as useToggle } from './../../composables/elements/useToggle'
@@ -101,6 +102,7 @@ export default {
       useToggle,
       useA11y,
       useWatchValue,
+      useFocus,
     ]
     context.slots = [
       'default', 'label', 'info', 'description',

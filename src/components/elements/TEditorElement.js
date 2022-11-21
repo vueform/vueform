@@ -22,6 +22,7 @@ import useHandleAlert from './../../composables/elements/useHandleAlert'
 import useClasses from './../../composables/elements/useClasses'
 import useHandleBlur from './../../composables/elements/useHandleBlur'
 import useA11y from './../../composables/elements/useA11y'
+import useFocus from './../../composables/elements/useFocus'
 
 import { teditor as useData } from './../../composables/elements/useData'
 import { multilingual as useNullValue } from './../../composables/elements/useNullValue'
@@ -154,6 +155,7 @@ export default {
       useHandleBlur,
       useA11y,
       useWatchValue,
+      useFocus,
     ]
     context.slots = [
       'label', 'info', 'description',

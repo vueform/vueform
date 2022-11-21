@@ -29,6 +29,7 @@ import useClasses from './../../composables/elements/useClasses'
 import useFocused from './../../composables/elements/useFocused'
 import useHandleBlur from './../../composables/elements/useHandleBlur'
 import useA11y from './../../composables/elements/useA11y'
+import useFocus from './../../composables/elements/useFocus'
 
 import { text as useValidation } from './../../composables/elements/useValidation'
 
@@ -145,6 +146,7 @@ export default {
       useHandleBlur,
       useA11y,
       useWatchValue,
+      useFocus,
     ]
     context.slots = [
       'label', 'info', 'description', 'before',

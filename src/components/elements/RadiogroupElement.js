@@ -20,6 +20,7 @@ import useSlots from './../../composables/elements/useSlots'
 import useEvents from './../../composables/useEvents'
 import useFieldId from './../../composables/elements/useFieldId'
 import useWatchValue from './../../composables/elements/useWatchValue'
+import useFocus from './../../composables/elements/useFocus'
 
 import { radiogroup as useDisabled } from './../../composables/elements/useDisabled'
 import { radiogroup as useAsyncItems } from './../../composables/elements/useAsyncItems'
@@ -94,6 +95,7 @@ export default {
       useSlots,
       useA11y,
       useWatchValue,
+      useFocus,
     ]
     context.slots = [
       'radio', 'label', 'info', 'description', 'before',

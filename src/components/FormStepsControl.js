@@ -210,19 +210,17 @@ export default {
           break
         case 'next':
           next()
-            nextTick(() => {
+          nextTick(() => {
             nextTick(() => {
               let firstEl$ = current$?.value.children$?.find(el$ => el$.name === current$?.value.elements?.[0])
 
-              console.log(firstEl$)
-
-              if (!firstEl$ || firstEl$.isStatic) {
+              if (!firstEl$) {
                 return
               }
 
-              firstEl$.input.focus()
+              firstEl$.focus()
             })
-            })
+          })
           break
         case 'finish':
           finish()

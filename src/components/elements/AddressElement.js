@@ -15,6 +15,7 @@ import useDisabled from './../../composables/elements/useDisabled'
 import useElements from './../../composables/useElements'
 import useEvents from './../../composables/useEvents'
 import useWatchValue from './../../composables/elements/useWatchValue'
+import useFocus from './../../composables/elements/useFocus'
 
 import { address as useLocation } from './../../composables/elements/useLocation'
 import { address as useChildren } from './../../composables/elements/useChildren'
@@ -101,6 +102,7 @@ export default {
       useData,
       useLocation,
       useWatchValue,
+      useFocus,
     ]
     context.slots = [
       'label',  'info', 'description',

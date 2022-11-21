@@ -23,9 +23,9 @@ import useToggle from './../../composables/elements/useToggle'
 import useValue from './../../composables/elements/useValue'
 import useHandleChange from './../../composables/elements/useHandleChange'
 import useWatchValue from './../../composables/elements/useWatchValue'
+import useFocus from './../../composables/elements/useFocus'
 
 import { toggle as useA11y } from './../../composables/elements/useA11y'
-
 import { toggle as useOptions } from './../../composables/elements/useOptions'
 import { boolean as useNullValue } from './../../composables/elements/useNullValue'
 
@@ -116,6 +116,7 @@ export default {
       useToggle,
       useA11y,
       useWatchValue,
+      useFocus,
     ]
     context.slots = [
       'default', 'label', 'info', 'description',

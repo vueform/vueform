@@ -16,6 +16,7 @@ import useEvents from './../../composables/useEvents'
 import useEmpty from './../../composables/elements/useEmpty'
 import useTemplates from './../../composables/elements/useTemplates'
 import useWatchValue from './../../composables/elements/useWatchValue'
+import useFocus from './../../composables/elements/useFocus'
 
 import BaseElement from './../../mixins/BaseElement'
 import HasChange from './../../mixins/HasChange'
@@ -68,6 +69,7 @@ export default {
       useData,
       useEmpty,
       useWatchValue,
+      useFocus,
     ]
 
     return {

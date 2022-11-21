@@ -1,5 +1,5 @@
 <template>
-  <component :is="elementLayout" :multiple="true">
+  <component :is="elementLayout" :multiple="true" ref="container">
     <template #element>
       <!-- Drag n drop -->
       <DragAndDrop

@@ -23,6 +23,7 @@ import useValue from './../../composables/elements/useValue'
 import useClasses from './../../composables/elements/useClasses'
 import useFieldId from './../../composables/elements/useFieldId'
 import useA11y from './../../composables/elements/useA11y'
+import useFocus from './../../composables/elements/useFocus'
 
 import { array as useNullValue } from './../../composables/elements/useNullValue'
 import { array as useEmpty } from './../../composables/elements/useEmpty'
@@ -242,6 +243,7 @@ export default {
       useSort,
       useA11y,
       useWatchValue,
+      useFocus,
     ]
     context.slots = [
       'label', 'info', 'description',

@@ -23,6 +23,7 @@ import useWatchValue from './../../composables/elements/useWatchValue'
 import useHandleChange from './../../composables/elements/useHandleChange'
 import useHandleUpdate from './../../composables/elements/useHandleUpdate'
 import useA11y from './../../composables/elements/useA11y'
+import useFocus from './../../composables/elements/useFocus'
 
 import { slider as useValidation } from './../../composables/elements/useValidation'
 import { slider as useOptions } from './../../composables/elements/useOptions'
@@ -151,6 +152,7 @@ export default {
       useHandleUpdate,
       useA11y,
       useWatchValue,
+      useFocus,
     ]
     context.slots = [
       'label', 'info', 'description',

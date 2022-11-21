@@ -26,6 +26,7 @@ import useDefault from './../../composables/elements/useDefault'
 import useFloating from './../../composables/elements/useFloating'
 import useClasses from './../../composables/elements/useClasses'
 import useA11y from './../../composables/elements/useA11y'
+import useFocus from './../../composables/elements/useFocus'
 
 import { date as useData } from './../../composables/elements/useData'
 import { date as useValue } from './../../composables/elements/useValue'
@@ -176,6 +177,7 @@ export default {
       useFocused,
       useA11y,
       useWatchValue,
+      useFocus,
     ]
     context.slots = [
       'label', 'info', 'description', 'before',

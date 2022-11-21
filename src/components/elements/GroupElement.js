@@ -14,6 +14,7 @@ import useFieldId from './../../composables/elements/useFieldId'
 import useElements from './../../composables/useElements'
 import useEvents from './../../composables/useEvents'
 import useA11y from './../../composables/elements/useA11y'
+import useFocus from './../../composables/elements/useFocus'
 
 import { group as useValue } from './../../composables/elements/useValue'
 import { group as useDefault } from './../../composables/elements/useDefault'
@@ -82,6 +83,7 @@ export default {
       useData,
       useA11y,
       useWatchValue,
+      useFocus,
     ]
     context.slots = [
       'label', 'info', 'description',
