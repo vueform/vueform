@@ -8,6 +8,8 @@ module.exports = [
   'stepLabel',
   'tabLabel',
   'index',
+  'isFirst',
+  'isLast',
   'active',
 
   'steps',
@@ -19,6 +21,7 @@ module.exports = [
   'tabs$',
   'visible$',
   'first$',
+  'last$',
   'current$',
   'next$',
   'previous$',
