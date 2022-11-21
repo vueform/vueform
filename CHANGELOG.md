@@ -7,10 +7,9 @@
   - Added `clearMessage` method to clear all messages manually added to `messageBag`.
   - Refactored tabs & steps CSS.
   - Form steps are now using `v-if` instead of `v-show`.
-  - Auto update conditions when changed.
   - Added `isLast`, `isFirst`, `last$` props steps & tabs.
   - Finish step now also recognizes `next` label (for ease of configuration).
-  - Focus first element on next step.
+  - Focus first element on next step if stepped with keyboard.
   - A11y improvements.
   
 ### 🐞 Bug Fixes
