@@ -385,14 +385,7 @@ const list = function(props, context, dependencies, options)
 
     if (focus) {
       nextTick(() => {
-        let lastChild = children$Array.value[children$Array.value.length-1]
-        let last = lastChild.type !== 'object'
-          ? lastChild
-          : lastChild.children$Array.find(c => c.input)
-
-        if (last?.input) {
-          last.input.focus()
-        }
+        children$Array.value[children$Array.value.length-1].focus()
       })
     }
     
