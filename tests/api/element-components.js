@@ -505,13 +505,6 @@ module.exports = {
         default: '{}',
         private: true,
       },
-      input: {
-        types: [
-          'HTMLElement',
-        ],
-        description: 'The main input field of the element.',
-        private: false,
-      },
       hidden: {
         types: [
           'boolean',

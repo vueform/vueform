@@ -13,7 +13,6 @@ export default {
       "fieldId",
       "focus",
       "form$",
-      "input",
       "label",
       "layout",
       "path_static",
