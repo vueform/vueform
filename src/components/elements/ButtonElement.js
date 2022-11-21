@@ -11,7 +11,6 @@ import useLayout from './../../composables/elements/useLayout'
 import useEvents from './../../composables/useEvents'
 import useClasses from './../../composables/elements/useClasses'
 import useFieldId from './../../composables/elements/useFieldId'
-import useInput from './../../composables/elements/useInput'
 import useFocus from './../../composables/elements/useFocus'
 
 import { button as useDisabled } from './../../composables/elements/useDisabled'
@@ -120,7 +119,6 @@ export default {
       useColumns,
       useSlots,
       useA11y,
-      useInput,
       useFocus,
     ]
     context.slots = [
