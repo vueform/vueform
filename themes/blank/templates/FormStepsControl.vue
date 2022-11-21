@@ -5,6 +5,7 @@
   	:disabled="isDisabled"
     :class="classes.button"
   	@click.prevent="handleClick"
+  	@keypress.enter.space.prevent="handleClick"
   >
     <component :is="label" :step$="current$"/>
   </button>
@@ -16,6 +17,7 @@
   	:disabled="isDisabled"
     :class="classes.button"
   	@click.prevent="handleClick"
+  	@keypress.enter.space.prevent="handleClick"
   ></button>
 
   <!-- If label is a slot -->
@@ -24,6 +26,7 @@
   	:disabled="isDisabled"
     :class="classes.button"
   	@click.prevent="handleClick"
+  	@keypress.enter.space.prevent="handleClick"
   ><slot/></button>
 </template>
 
