@@ -1,5 +1,5 @@
 <template>
-  <div :class="classes.container">
+  <div :class="classes.container" role="tablist">
     <ul :class="classes.wrapper">
       <slot>
         <FormStep

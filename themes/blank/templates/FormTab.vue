@@ -1,9 +1,12 @@
 <template>
   <li v-show="visible" :class="classes.container">
-    <a
-      href=""
+    <div
       :class="classes.wrapper"
+      tabindex="0"
+      role="tab"
+      :aria-selected="active"
       @click.prevent="select"
+      @keypress.enter.space.prevent="select"
     >
       <slot>
         <!-- If label is a component -->
@@ -14,7 +17,7 @@
         <!-- If label is HTML -->
         <span v-else v-html="tabLabel"></span>
       </slot>
-    </a>
+    </div>
   </li>
 </template>
 

@@ -1,4 +1,4 @@
-import { computed, toRefs, ref } from 'vue'
+import { computed, toRefs, nextTick } from 'vue'
 import useFormComponent from './../composables/useFormComponent'
 import useLabel from './../composables/useLabel'
 
@@ -210,6 +210,19 @@ export default {
           break
         case 'next':
           next()
+            nextTick(() => {
+            nextTick(() => {
+              let firstEl$ = current$?.value.children$?.find(el$ => el$.name === current$?.value.elements?.[0])
+
+              console.log(firstEl$)
+
+              if (!firstEl$ || firstEl$.isStatic) {
+                return
+              }
+
+              firstEl$.input.focus()
+            })
+            })
           break
         case 'finish':
           finish()

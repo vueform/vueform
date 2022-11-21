@@ -1,5 +1,5 @@
 <template>
-  <ul :class="classes.container">
+  <ul :class="classes.container" role="tablist">
     <slot>
       <FormTab
         v-for="(tab, name, i) in tabs"
