@@ -130,7 +130,7 @@ const copyJest = function(){
   jestConfig.moduleNameMapper['^vue$'] = '<rootDir>/node_modules/vue'
   jestConfig.setupFilesAfterEnv = ['<rootDir>/jest.setup.js']
   jestConfig.collectCoverage = false
-  jestConfig.testTimeout = 5000
+  jestConfig.testTimeout = 20000
 
   fs.writeFileSync(
     path.resolve(outputDir, 'jest.config.js'),
