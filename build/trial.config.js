@@ -10,6 +10,7 @@ const outputDir = path.resolve(__dirname, '../../@vueform')
 const copyFiles = {
   'themes': 'themes',
   'locales': 'locales',
+  'CHANGELOG.md': 'CHANGELOG.md',
   'tailwind.js': 'tailwind.js',
   'tailwind-prefixer.js': 'tailwind-prefixer.js',
   'src/plugins.js': 'plugin.js',
