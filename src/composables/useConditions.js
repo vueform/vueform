@@ -75,9 +75,11 @@ const base = function(props, context, dependencies)
     updateConditions()
   }
 
-  watch(conditions, () => {
-    updateConditions()
-  }, { immediate: false, deep: true })
+  // Conditions should not be watched, because if they
+  // are defined inline they will trigger infinite updates
+  // watch(conditions, () => {
+  //   updateConditions()
+  // }, { immediate: false, deep: true })
 
   return {
     conditionList,
