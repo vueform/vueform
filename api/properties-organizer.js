@@ -96,6 +96,7 @@ module.exports = [
   'isSuccess',
   'isDanger',
 
+  'container',
   'input',
   'fieldId',
   'hasLabel',
