@@ -70,6 +70,11 @@
     top: 2px;
   }
 
+  .flatpickr-calendar.rightMost {
+    left: auto;
+    right: 0;
+  }
+
   .flatpickr-calendar.static {
     position: absolute;
     top: calc(100% + 2px);

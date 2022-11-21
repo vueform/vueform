@@ -61,7 +61,7 @@ import DatepickerWrapper from './../../../blank/templates/wrappers/DatepickerWra
     top: 2px;
   }
 
-  .flatpickr-calendar:not(.rightMost) {
+  .flatpickr-calendar.rightMost {
     left: auto;
     right: 0;
   }
