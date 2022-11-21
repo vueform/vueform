@@ -203,24 +203,27 @@ export default {
      * @returns {void}
      * @private
      */
-    const handleClick = () => {
+    const handleClick = (e) => {
       switch (type.value) {
         case 'previous':
           previous()
           break
         case 'next':
           next()
-          nextTick(() => {
+
+          if (e.key === 'Enter' || e.key === ' ') {
             nextTick(() => {
-              let firstEl$ = current$?.value.children$?.find(el$ => el$.name === current$?.value.elements?.[0])
+              nextTick(() => {
+                let firstEl$ = current$?.value.children$?.find(el$ => el$.name === current$?.value.elements?.[0])
 
-              if (!firstEl$) {
-                return
-              }
+                if (!firstEl$) {
+                  return
+                }
 
-              firstEl$.focus()
+                firstEl$.focus()
+              })
             })
-          })
+          }
           break
         case 'finish':
           finish()
