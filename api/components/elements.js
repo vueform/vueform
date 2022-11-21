@@ -475,6 +475,13 @@ module.exports = {
         default: 'true',
         private: false,
       },
+      container: {
+        types: [
+          'HTMLElement',
+        ],
+        description: 'The ref to the outermost DOM of the element.',
+        private: false,
+      },
       conditionList: {
         types: [
           'array',
@@ -497,6 +504,13 @@ module.exports = {
         description: 'Helper property used to store listeners for events.',
         default: '{}',
         private: true,
+      },
+      input: {
+        types: [
+          'HTMLElement',
+        ],
+        description: 'The main input field of the element.',
+        private: false,
       },
       hidden: {
         types: [
@@ -833,6 +847,11 @@ module.exports = {
           },
         },
         private: false,
+      },
+      focus: {
+        description: 'Focuses the first focusable part of the element.',
+        returns: 'void',
+        private: true,
       },
       hide: {
         description: 'Hides the element.',
@@ -1533,6 +1552,13 @@ module.exports = {
         default: 'true',
         private: false,
       },
+      container: {
+        types: [
+          'HTMLElement',
+        ],
+        description: 'The ref to the outermost DOM of the element.',
+        private: false,
+      },
       conditionList: {
         types: [
           'array',
@@ -2098,6 +2124,11 @@ module.exports = {
           },
         },
         private: false,
+      },
+      focus: {
+        description: 'Focuses the first focusable part of the element.',
+        returns: 'void',
+        private: true,
       },
       check: {
         description: 'Checks the checkbox.',
@@ -2836,6 +2867,13 @@ module.exports = {
         default: 'true',
         private: false,
       },
+      container: {
+        types: [
+          'HTMLElement',
+        ],
+        description: 'The ref to the outermost DOM of the element.',
+        private: false,
+      },
       conditionList: {
         types: [
           'array',
@@ -3503,6 +3541,11 @@ module.exports = {
           },
         },
         private: false,
+      },
+      focus: {
+        description: 'Focuses the first focusable part of the element.',
+        returns: 'void',
+        private: true,
       },
       validate: {
         description: 'Checks each validation rule for the element (async).',
@@ -4398,6 +4441,13 @@ module.exports = {
         default: 'true',
         private: false,
       },
+      container: {
+        types: [
+          'HTMLElement',
+        ],
+        description: 'The ref to the outermost DOM of the element.',
+        private: false,
+      },
       conditionList: {
         types: [
           'array',
@@ -5005,6 +5055,11 @@ module.exports = {
           },
         },
         private: false,
+      },
+      focus: {
+        description: 'Focuses the first focusable part of the element.',
+        returns: 'void',
+        private: true,
       },
       handleChange: {
         description: 'Handles `change` event.',
@@ -5850,6 +5905,13 @@ module.exports = {
         default: 'true',
         private: false,
       },
+      container: {
+        types: [
+          'HTMLElement',
+        ],
+        description: 'The ref to the outermost DOM of the element.',
+        private: false,
+      },
       conditionList: {
         types: [
           'array',
@@ -6457,6 +6519,11 @@ module.exports = {
           },
         },
         private: false,
+      },
+      focus: {
+        description: 'Focuses the first focusable part of the element.',
+        returns: 'void',
+        private: true,
       },
       handleChange: {
         description: 'Handles `change` event.',
@@ -7281,6 +7348,13 @@ module.exports = {
         default: 'true',
         private: false,
       },
+      container: {
+        types: [
+          'HTMLElement',
+        ],
+        description: 'The ref to the outermost DOM of the element.',
+        private: false,
+      },
       conditionList: {
         types: [
           'array',
@@ -7883,6 +7957,11 @@ module.exports = {
           },
         },
         private: false,
+      },
+      focus: {
+        description: 'Focuses the first focusable part of the element.',
+        returns: 'void',
+        private: true,
       },
       handleAlert: {
         description: 'Handles `alert` event.',
@@ -8812,6 +8891,13 @@ module.exports = {
         default: 'true',
         private: false,
       },
+      container: {
+        types: [
+          'HTMLElement',
+        ],
+        description: 'The ref to the outermost DOM of the element.',
+        private: false,
+      },
       conditionList: {
         types: [
           'array',
@@ -9569,6 +9655,11 @@ module.exports = {
         returns: 'void',
         private: true,
       },
+      focus: {
+        description: 'Focuses the first focusable part of the element.',
+        returns: 'void',
+        private: true,
+      },
       handleError: {
         description: 'Handles `error` event.',
         returns: 'void',
@@ -10298,6 +10389,13 @@ module.exports = {
         default: 'true',
         private: false,
       },
+      container: {
+        types: [
+          'HTMLElement',
+        ],
+        description: 'The ref to the outermost DOM of the element.',
+        private: false,
+      },
       children$Array: {
         types: [
           'array,component',
@@ -10839,6 +10937,11 @@ module.exports = {
         },
         private: false,
       },
+      focus: {
+        description: 'Focuses the first focusable part of the element.',
+        returns: 'void',
+        private: true,
+      },
       validate: {
         description: 'Checks each validation rule for the element and validates children (async).',
         returns: 'void',
@@ -11312,6 +11415,13 @@ module.exports = {
         default: 'true',
         private: false,
       },
+      container: {
+        types: [
+          'HTMLElement',
+        ],
+        description: 'The ref to the outermost DOM of the element.',
+        private: false,
+      },
       conditionList: {
         types: [
           'array',
@@ -11723,6 +11833,11 @@ module.exports = {
           },
         },
         private: false,
+      },
+      focus: {
+        description: 'Focuses the first focusable part of the element.',
+        returns: 'void',
+        private: true,
       },
       validate: {
         description: 'Checks each validation rule for the element (async).',
@@ -12469,6 +12584,13 @@ module.exports = {
         default: 'true',
         private: false,
       },
+      container: {
+        types: [
+          'HTMLElement',
+        ],
+        description: 'The ref to the outermost DOM of the element.',
+        private: false,
+      },
       children$Array: {
         types: [
           'array,component',
@@ -13187,6 +13309,11 @@ module.exports = {
           },
         },
         private: false,
+      },
+      focus: {
+        description: 'Focuses the first focusable part of the element.',
+        returns: 'void',
+        private: true,
       },
       refreshOrderStore: {
         description: 'Sets the value of `storeOrder` field within a list of items to match the order.',
@@ -14063,6 +14190,13 @@ module.exports = {
         default: 'true',
         private: false,
       },
+      container: {
+        types: [
+          'HTMLElement',
+        ],
+        description: 'The ref to the outermost DOM of the element.',
+        private: false,
+      },
       conditionList: {
         types: [
           'array',
@@ -14673,6 +14807,11 @@ module.exports = {
           },
         },
         private: false,
+      },
+      focus: {
+        description: 'Focuses the first focusable part of the element.',
+        returns: 'void',
+        private: true,
       },
       handleAddressChange: {
         description: 'Handles location service&apos;s address change.',
@@ -15644,6 +15783,13 @@ module.exports = {
         default: 'true',
         private: false,
       },
+      container: {
+        types: [
+          'HTMLElement',
+        ],
+        description: 'The ref to the outermost DOM of the element.',
+        private: false,
+      },
       children$Array: {
         types: [
           'array,component',
@@ -16404,6 +16550,11 @@ module.exports = {
           },
         },
         private: false,
+      },
+      focus: {
+        description: 'Focuses the first focusable part of the element.',
+        returns: 'void',
+        private: true,
       },
       handleChange: {
         description: 'Handles `change` event.',
@@ -17707,6 +17858,13 @@ module.exports = {
         default: 'true',
         private: false,
       },
+      container: {
+        types: [
+          'HTMLElement',
+        ],
+        description: 'The ref to the outermost DOM of the element.',
+        private: false,
+      },
       conditionList: {
         types: [
           'array',
@@ -18321,6 +18479,11 @@ module.exports = {
           },
         },
         private: false,
+      },
+      focus: {
+        description: 'Focuses the first focusable part of the element.',
+        returns: 'void',
+        private: true,
       },
       handleSelect: {
         description: 'Handles `select` event.',
@@ -19402,6 +19565,13 @@ module.exports = {
         default: 'true',
         private: false,
       },
+      container: {
+        types: [
+          'HTMLElement',
+        ],
+        description: 'The ref to the outermost DOM of the element.',
+        private: false,
+      },
       children$Array: {
         types: [
           'array,component',
@@ -19949,6 +20119,11 @@ module.exports = {
           },
         },
         private: false,
+      },
+      focus: {
+        description: 'Focuses the first focusable part of the element.',
+        returns: 'void',
+        private: true,
       },
       validate: {
         description: 'Checks each validation rule for the element and validates children (async).',
@@ -20688,6 +20863,13 @@ module.exports = {
         default: 'true',
         private: false,
       },
+      container: {
+        types: [
+          'HTMLElement',
+        ],
+        description: 'The ref to the outermost DOM of the element.',
+        private: false,
+      },
       conditionList: {
         types: [
           'array',
@@ -21260,6 +21442,11 @@ module.exports = {
           },
         },
         private: false,
+      },
+      focus: {
+        description: 'Focuses the first focusable part of the element.',
+        returns: 'void',
+        private: true,
       },
       check: {
         description: 'Checks the radio.',
@@ -21999,6 +22186,13 @@ module.exports = {
         default: 'true',
         private: false,
       },
+      container: {
+        types: [
+          'HTMLElement',
+        ],
+        description: 'The ref to the outermost DOM of the element.',
+        private: false,
+      },
       conditionList: {
         types: [
           'array',
@@ -22609,6 +22803,11 @@ module.exports = {
           },
         },
         private: false,
+      },
+      focus: {
+        description: 'Focuses the first focusable part of the element.',
+        returns: 'void',
+        private: true,
       },
       validate: {
         description: 'Checks each validation rule for the element (async).',
@@ -23803,6 +24002,13 @@ module.exports = {
         default: 'true',
         private: false,
       },
+      container: {
+        types: [
+          'HTMLElement',
+        ],
+        description: 'The ref to the outermost DOM of the element.',
+        private: false,
+      },
       conditionList: {
         types: [
           'array',
@@ -24417,6 +24623,11 @@ module.exports = {
           },
         },
         private: false,
+      },
+      focus: {
+        description: 'Focuses the first focusable part of the element.',
+        returns: 'void',
+        private: true,
       },
       handleSelect: {
         description: 'Handles `select` event.',
@@ -25560,6 +25771,13 @@ module.exports = {
         default: 'true',
         private: false,
       },
+      container: {
+        types: [
+          'HTMLElement',
+        ],
+        description: 'The ref to the outermost DOM of the element.',
+        private: false,
+      },
       conditionList: {
         types: [
           'array',
@@ -26111,6 +26329,11 @@ module.exports = {
           },
         },
         private: false,
+      },
+      focus: {
+        description: 'Focuses the first focusable part of the element.',
+        returns: 'void',
+        private: true,
       },
       handleChange: {
         description: 'Handles `change` event.',
@@ -26771,6 +26994,13 @@ module.exports = {
         default: 'true',
         private: false,
       },
+      container: {
+        types: [
+          'HTMLElement',
+        ],
+        description: 'The ref to the outermost DOM of the element.',
+        private: false,
+      },
       conditionList: {
         types: [
           'array',
@@ -27094,6 +27324,11 @@ module.exports = {
           },
         },
         private: false,
+      },
+      focus: {
+        description: 'Focuses the first focusable part of the element.',
+        returns: 'void',
+        private: true,
       },
       hide: {
         description: 'Hides the element.',
@@ -27831,6 +28066,13 @@ module.exports = {
         default: 'true',
         private: false,
       },
+      container: {
+        types: [
+          'HTMLElement',
+        ],
+        description: 'The ref to the outermost DOM of the element.',
+        private: false,
+      },
       conditionList: {
         types: [
           'array',
@@ -28433,6 +28675,11 @@ module.exports = {
           },
         },
         private: false,
+      },
+      focus: {
+        description: 'Focuses the first focusable part of the element.',
+        returns: 'void',
+        private: true,
       },
       handleAlert: {
         description: 'Handles `alert` event.',
@@ -29322,6 +29569,13 @@ module.exports = {
         default: 'true',
         private: false,
       },
+      container: {
+        types: [
+          'HTMLElement',
+        ],
+        description: 'The ref to the outermost DOM of the element.',
+        private: false,
+      },
       conditionList: {
         types: [
           'array',
@@ -29922,6 +30176,11 @@ module.exports = {
           },
         },
         private: false,
+      },
+      focus: {
+        description: 'Focuses the first focusable part of the element.',
+        returns: 'void',
+        private: true,
       },
       handleBlur: {
         description: 'Handles `blur` event.',
@@ -30773,6 +31032,13 @@ module.exports = {
         default: 'true',
         private: false,
       },
+      container: {
+        types: [
+          'HTMLElement',
+        ],
+        description: 'The ref to the outermost DOM of the element.',
+        private: false,
+      },
       conditionList: {
         types: [
           'array',
@@ -31371,6 +31637,11 @@ module.exports = {
           },
         },
         private: false,
+      },
+      focus: {
+        description: 'Focuses the first focusable part of the element.',
+        returns: 'void',
+        private: true,
       },
       handleBlur: {
         description: 'Handles `blur` event.',
@@ -32603,6 +32874,13 @@ module.exports = {
         default: 'true',
         private: false,
       },
+      container: {
+        types: [
+          'HTMLElement',
+        ],
+        description: 'The ref to the outermost DOM of the element.',
+        private: false,
+      },
       conditionList: {
         types: [
           'array',
@@ -33217,6 +33495,11 @@ module.exports = {
           },
         },
         private: false,
+      },
+      focus: {
+        description: 'Focuses the first focusable part of the element.',
+        returns: 'void',
+        private: true,
       },
       handleSelect: {
         description: 'Handles `select` event.',
@@ -34416,6 +34699,13 @@ module.exports = {
         default: 'true',
         private: false,
       },
+      container: {
+        types: [
+          'HTMLElement',
+        ],
+        description: 'The ref to the outermost DOM of the element.',
+        private: false,
+      },
       conditionList: {
         types: [
           'array',
@@ -35016,6 +35306,11 @@ module.exports = {
           },
         },
         private: false,
+      },
+      focus: {
+        description: 'Focuses the first focusable part of the element.',
+        returns: 'void',
+        private: true,
       },
       handleBlur: {
         description: 'Handles `blur` event.',
@@ -35847,6 +36142,13 @@ module.exports = {
         default: 'true',
         private: false,
       },
+      container: {
+        types: [
+          'HTMLElement',
+        ],
+        description: 'The ref to the outermost DOM of the element.',
+        private: false,
+      },
       conditionList: {
         types: [
           'array',
@@ -36445,6 +36747,11 @@ module.exports = {
           },
         },
         private: false,
+      },
+      focus: {
+        description: 'Focuses the first focusable part of the element.',
+        returns: 'void',
+        private: true,
       },
       handleBlur: {
         description: 'Handles `blur` event.',
@@ -37244,6 +37551,13 @@ module.exports = {
         default: 'true',
         private: false,
       },
+      container: {
+        types: [
+          'HTMLElement',
+        ],
+        description: 'The ref to the outermost DOM of the element.',
+        private: false,
+      },
       conditionList: {
         types: [
           'array',
@@ -37809,6 +38123,11 @@ module.exports = {
           },
         },
         private: false,
+      },
+      focus: {
+        description: 'Focuses the first focusable part of the element.',
+        returns: 'void',
+        private: true,
       },
       handleChange: {
         description: 'Handles `change` event.',

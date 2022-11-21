@@ -481,6 +481,13 @@ export default {
             "boolean"
           ],
           "description": "Whether the element has been already mounted."
+        },
+        "container": {
+          "public": true,
+          "types": [
+            "HTMLElement"
+          ],
+          "description": "The ref to the outermost DOM of the element."
         }
       },
       "methods": {
@@ -557,6 +564,13 @@ export default {
             "boolean"
           ],
           "description": "Whether the element has been already mounted."
+        },
+        "container": {
+          "public": true,
+          "types": [
+            "HTMLElement"
+          ],
+          "description": "The ref to the outermost DOM of the element."
         }
       },
       "methods": {
@@ -633,6 +647,13 @@ export default {
             "boolean"
           ],
           "description": "Whether the element has been already mounted."
+        },
+        "container": {
+          "public": true,
+          "types": [
+            "HTMLElement"
+          ],
+          "description": "The ref to the outermost DOM of the element."
         }
       },
       "methods": {
@@ -709,6 +730,13 @@ export default {
             "boolean"
           ],
           "description": "Whether the element has been already mounted."
+        },
+        "container": {
+          "public": true,
+          "types": [
+            "HTMLElement"
+          ],
+          "description": "The ref to the outermost DOM of the element."
         }
       },
       "methods": {
@@ -785,6 +813,13 @@ export default {
             "boolean"
           ],
           "description": "Whether the element has been already mounted."
+        },
+        "container": {
+          "public": true,
+          "types": [
+            "HTMLElement"
+          ],
+          "description": "The ref to the outermost DOM of the element."
         }
       },
       "methods": {
@@ -861,6 +896,13 @@ export default {
             "boolean"
           ],
           "description": "Whether the element has been already mounted."
+        },
+        "container": {
+          "public": true,
+          "types": [
+            "HTMLElement"
+          ],
+          "description": "The ref to the outermost DOM of the element."
         }
       },
       "methods": {
@@ -937,6 +979,13 @@ export default {
             "boolean"
           ],
           "description": "Whether the element has been already mounted."
+        },
+        "container": {
+          "public": true,
+          "types": [
+            "HTMLElement"
+          ],
+          "description": "The ref to the outermost DOM of the element."
         }
       },
       "methods": {
@@ -1013,6 +1062,13 @@ export default {
             "boolean"
           ],
           "description": "Whether the element has been already mounted."
+        },
+        "container": {
+          "public": true,
+          "types": [
+            "HTMLElement"
+          ],
+          "description": "The ref to the outermost DOM of the element."
         }
       },
       "methods": {
@@ -2880,6 +2936,26 @@ export default {
             "boolean"
           ],
           "description": "Whether the element floating label."
+        }
+      }
+    }
+  },
+  "focus": {
+    "base": {
+      "methods": {
+        "focus": {
+          "public": false,
+          "returns": "void",
+          "description": "Focuses the first focusable part of the element."
+        }
+      }
+    },
+    "editor": {
+      "methods": {
+        "focus": {
+          "public": false,
+          "returns": "void",
+          "description": "Focuses the first focusable part of the element."
         }
       }
     }

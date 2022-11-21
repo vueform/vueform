@@ -1,6 +1,6 @@
 ## v1.2.15
 
-> `2022-11-18`
+> `2022-11-21`
 
 ### 🎉 Feature
   - Z-index optimization thought the whole library. New rule is that everything has z-index 999 that intended to be brought to top (eg. tooltip, dropdown) and everything else got the lowest possible (1) z-index where relative z-indexing was needed.
@@ -10,12 +10,14 @@
   - Auto update conditions when changed.
   - Added `isLast`, `isFirst`, `last$` props steps & tabs.
   - Finish step now also recognizes `next` label (for ease of configuration).
+  - Focus first element on next step.
   - A11y improvements.
   
 ### 🐞 Bug Fixes
   - Multifile object gallery rendered images in rows.
   - Remove query param from uploaded filename.
   - Pressing enter in certain elements caused removing or adding list elements.
+  - Datepicker was aligned to right in `tailwind` theme.
 
 ## v1.2.14
 
