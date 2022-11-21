@@ -63,7 +63,7 @@ describe('FormTabs', () => {
 
       expect(second.vm.name).toBe('second')
 
-      findAll(second, 'a').last().trigger('click')
+      findAll(second, '[role="tab"]').last().trigger('click')
 
       expect(tabs.vm.current$.name).toBe('second')
     })
@@ -218,7 +218,7 @@ describe('FormTabs', () => {
 
       expect(onChangeMock.mock.calls.length).toBe(0)
 
-      findAll(second, 'a').last().trigger('click')
+      findAll(second, '[role="tab"]').last().trigger('click')
 
       expect(onChangeMock.mock.calls.length).toBe(1)
     })

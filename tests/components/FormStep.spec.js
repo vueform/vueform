@@ -416,7 +416,7 @@ describe('FormStep', () => {
 
       await nextTick()
 
-        second.get('a').trigger('click')
+      second.get('[role="tab"]').trigger('click')
       expect(steps.vm.current$.name).toBe('first')
     })
     
@@ -454,7 +454,7 @@ describe('FormStep', () => {
 
       await nextTick()
 
-      findAll(second, 'a').last().trigger('click')
+      findAll(second, '[role="tab"]').last().trigger('click')
       
       expect(steps.vm.current$.name).toBe('second')
     })
@@ -671,8 +671,8 @@ describe('FormStep', () => {
 
       await nextTick()
 
-      expect(c.vm.conditions).toStrictEqual(conditions)
-      expect(d.vm.conditions).toStrictEqual(_.concat([['c', 3]], conditions))
+      expect(c.vm.conditionList).toStrictEqual(conditions)
+      expect(d.vm.conditionList).toStrictEqual(_.concat([['c', 3]], conditions))
     })
 
     it('should hide step if its conditions aren\'t met', async () => {
@@ -700,11 +700,13 @@ describe('FormStep', () => {
         }
       })
 
+      await nextTick()
+
       let second = findAllComponents(form, { name: 'FormStep' }).at(1)
 
       expect(second.vm.name).toBe('second')
 
-      expect(second.element).not.toBeVisible()
+      expect(second.element.textContent).not.toBe('Second')
     })
 
     it('should show step if its conditions are met', async () => {

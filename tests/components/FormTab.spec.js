@@ -219,7 +219,7 @@ describe('FormTab', () => {
       expect(first.vm.active).toBe(true)
       expect(second.vm.active).toBe(false)
 
-      findAll(second, 'a').last().trigger('click')
+      findAll(second, '[role="tab"]').last().trigger('click')
 
       expect(first.vm.active).toBe(false)
       expect(second.vm.active).toBe(true)
@@ -274,7 +274,7 @@ describe('FormTab', () => {
       expect(c.vm.$el).not.toBeVisible()
       expect(d.vm.$el).not.toBeVisible()
 
-      findAll(second, 'a').last().trigger('click')
+      findAll(second, '[role="tab"]').last().trigger('click')
 
       await nextTick()
       expect(a.vm.$el).not.toBeVisible()
@@ -329,8 +329,8 @@ describe('FormTab', () => {
       expect(d.vm.name).toBe('d')
 
       await nextTick()
-      expect(c.vm.conditions).toStrictEqual(conditions)
-      expect(d.vm.conditions).toStrictEqual(_.concat([['c', 3]], conditions))
+      expect(c.vm.conditionList).toStrictEqual(conditions)
+      expect(d.vm.conditionList).toStrictEqual(_.concat([['c', 3]], conditions))
     })
 
     it('should hide tab if its conditions aren\'t met', async () => {
@@ -437,7 +437,7 @@ describe('FormTab', () => {
 
       expect(onActiveMock.mock.calls.length).toBe(0)
 
-      findAll(second, 'a').last().trigger('click')
+      findAll(second, '[role="tab"]').last().trigger('click')
 
       await nextTick()
       await nextTick()
@@ -477,7 +477,7 @@ describe('FormTab', () => {
       expect(onInactiveMock.mock.calls.length).toBe(0)
 
       await nextTick()
-      findAll(second, 'a').last().trigger('click')
+      findAll(second, '[role="tab"]').last().trigger('click')
 
       await nextTick()
       
