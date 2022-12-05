@@ -233,7 +233,7 @@ export default {
      * @returns {void}
      */
     const select = () => {
-      if (active.value) {
+      if (active.value || !tabs$.value?.select) {
         return
       }
 

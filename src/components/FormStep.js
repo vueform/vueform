@@ -435,7 +435,7 @@ export default {
      * @returns {void}
      */
     const select = () => {
-      if (isDisabled.value) {
+      if (isDisabled.value || !steps$.value?.select) {
         return
       }
 
