@@ -14,10 +14,8 @@ export const flatten = (source) => {
   return collection
 }
 
-export const collect = (elements, prefix = '') => {
-  let children = []
-
-  Object.keys(elements).forEach((name) => {
+export const collect = (elements, pages, prefix = '') => {
+  const createMember = (name) => {
     let element = elements[name]
     let path = prefix.length ? `${prefix}.${name}` : name
 
@@ -28,15 +26,29 @@ export const collect = (elements, prefix = '') => {
     }
 
     if (['group', 'object'].indexOf(element.type) !== -1 && Object.keys(element.schema || {}).length) {
-      member.children = collect(element.schema, path)
+      member.children = collect(element.schema, null, path)
     }
 
     if (element.type === 'list' && Object.keys(element?.element || {}).length) {
-      member.children = collect({ 0: element.element }, path)
+      member.children = collect({ 0: element.element }, null, path)
     }
 
-    children.push(member)
-  })
+    return member
+  }
 
-  return children
+  let children = []
+
+  if (pages && Object.keys(pages).length) {
+    Object.values(pages).forEach((page) => {
+      page.elements.forEach((name) => {
+        children.push(createMember(name))
+      })
+    })
+  } else {
+    Object.keys(elements).forEach((name) => {
+      children.push(createMember(name))
+    })
+  }
+
+    return children
 }

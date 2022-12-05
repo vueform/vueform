@@ -388,7 +388,7 @@ const base = function(props, context, dependencies = {})
    * @type {array}
    */
   const tree = computed(() => {
-    return collectTree(formSchema.value)
+    return collectTree(formSchema.value, formTabs.value || formSteps.value)
   })
 
   /**
