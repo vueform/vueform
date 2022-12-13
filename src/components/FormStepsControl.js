@@ -133,7 +133,7 @@ export default {
             // changed to valid, but still marked as invalid
             (
               (current$.value.invalid && form$.value.shouldValidateOnChange) ||  
-              current$.value.busy || form$.value.isDisabled || form$.value.isLoading
+              current$.value.busy || form$.value.isLoading
             )
 
         case 'finish':
