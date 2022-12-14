@@ -15,6 +15,8 @@ const Validator = class {
     this.form$ = props.element$?.form$ || {}
     this.numeric = props.numeric || false
 
+    this.elementMessages = props.element$.messages
+
     this.invalid = false
     this.pending = false
 
@@ -42,6 +44,14 @@ const Validator = class {
       })
     }
 
+    watch(computed(() => props.element$.messages), (n, o) => {
+      if (_.isEqual(n, o)) {
+        return
+      }
+
+      this.elementMessages = props.element$.messages
+    }, { deep: true })
+
     this.init()
   }
 
@@ -60,8 +70,8 @@ const Validator = class {
   get message() {
     let message = ''
 
-    if (this.element$.messages[this.name]) {
-      message = this.element$.messages[this.name]
+    if (this.elementMessages[this.name]) {
+      message = this.elementMessages[this.name]
     }
     else if (this.form$.options.messages[this.name]) {
       message = this.form$.options.messages[this.name]
