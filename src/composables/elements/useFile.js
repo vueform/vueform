@@ -357,7 +357,7 @@ const base = function (props, context, dependencies)
       }
 
       if (response && typeof response === 'object') {
-        response.file = value.value
+        response.__file__ = value.value
       }
 
       update(response)
@@ -557,13 +557,13 @@ const base = function (props, context, dependencies)
       return
     }
 
-    if (!(value.value instanceof File) && !value.value?.file) {
+    if (!(value.value instanceof File) && !value.value?.__file__) {
       return
     }
 
     resolveBase64(value.value instanceof File
       ? value.value
-      : value.value?.file)
+      : value.value?.__file__)
   }, { immediate: true })
 
   watch(view, (v) => {

@@ -790,9 +790,9 @@ const file = function(props, context, dependencies)
   const data = computed(() => {
     let v = value.value
 
-    if (typeof v === 'object' && v?.file) {
+    if (typeof v === 'object' && v?.__file__) {
       v = { ...v }
-      delete v.file
+      delete v.__file__
     }
 
     return {[name.value]: v}
@@ -805,9 +805,9 @@ const file = function(props, context, dependencies)
 
     let v = value.value
 
-    if (typeof v === 'object' && v?.file) {
+    if (typeof v === 'object' && v?.__file__) {
       v = { ...v }
-      delete v.file
+      delete v.__file__
     }
 
     return formatData.value ? formatData.value(name.value, v, form$.value) : {[name.value]: v}
@@ -857,9 +857,9 @@ const multifile = function(props, context, dependencies)
     let val = value.value
     
     val = val.map((file) => {
-      if (typeof file === 'object' && file?.file) {
+      if (typeof file === 'object' && file?.__file__) {
         let v = { ...file }
-        delete v.file
+        delete v.__file__
         return v
       }
 
@@ -876,13 +876,14 @@ const multifile = function(props, context, dependencies)
     
     let requestData = []
 
+
     _.each(children$.value, (element$) => {
       let val = element$.requestData[element$.name]
 
       if (val !== undefined) {
-        if (typeof val === 'object' && val?.file) {
+        if (typeof val === 'object' && val?.__file__) {
           let v = { ...file }
-          delete v.file
+          delete v.__file__
           val = v
         }
 
