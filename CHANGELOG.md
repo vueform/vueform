@@ -1,3 +1,15 @@
+## v1.2.16
+
+> `2022-12-14`
+
+### 🎉 Feature
+  - Tree now include tabs/steps with correct element order.
+  
+### 🐞 Bug Fixes
+  - Multifile data & requestData fixes.
+  - Got into infinite loop in production if custom element level error messages were defined as inline objects.
+  - Don't disable the Next button on a valid step.
+
 ## v1.2.15
 
 > `2022-11-21`
