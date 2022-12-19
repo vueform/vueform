@@ -96,7 +96,7 @@ const checkbox = function(props, context, dependencies)
   // ============== COMPUTED ==============
 
   const aria = computed(() => {
-    return {
+    let aria = {
       'aria-label': text.value,
       'aria-describedby': `${labelId.value} ${descriptionId.value} ${infoId.value}`,
       'aria-invalid': invalid.value,
@@ -104,6 +104,12 @@ const checkbox = function(props, context, dependencies)
       'aria-disabled': isDisabled.value,
       'aria-busy': busy.value,
     }
+
+    if (!aria['aria-label']) {
+      aria['aria-labelledby'] = labelId.value
+    }
+
+    return aria
   })
 
   return {

@@ -42,7 +42,7 @@
       <div
         v-if="hasAdd"
         :class="classes.add"
-        :id="`${path}-add-button`"
+        :id="`${fieldId}-add-button`"
         @click.prevent="handleAdd"
         @keypress.enter.space="handleAdd"
         v-html="addLabel"
