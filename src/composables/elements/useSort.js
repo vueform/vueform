@@ -71,7 +71,7 @@ const base = function(props, context, dependencies, options)
    * @private
    */
   const destroySortable = () => {
-    sortable.value.destroy()
+    sortable.value?.destroy()
     sortable.value = null
   }
 
@@ -121,6 +121,10 @@ const base = function(props, context, dependencies, options)
   })
 
   watch(length, () => {
+    if (!isSortable.value) {
+      return
+    }
+
     destroySortable()
 
     nextTick(() => {
