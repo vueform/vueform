@@ -15,6 +15,7 @@ const base = function(props, context, dependencies, options)
   const refreshOrderStore = dependencies.refreshOrderStore
   const value = dependencies.value
   const sorting = dependencies.sorting
+  const length = dependencies.length
 
   // ================ DATA ================
 
@@ -117,6 +118,14 @@ const base = function(props, context, dependencies, options)
     if (isSortable.value) {
       initSortable()
     }
+  })
+
+  watch(length, () => {
+    destroySortable()
+
+    nextTick(() => {
+      initSortable()
+    })
   })
 
   return {

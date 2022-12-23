@@ -894,9 +894,20 @@ const multifile = function(props, context, dependencies)
     return formatData.value ? formatData.value(name.value, requestData, form$.value) : {[name.value]: requestData}
   })
 
+  /**
+   * Number of children.
+   * 
+   * @type {number}
+   * @private
+   */
+  const length = computed(() => {
+    return Object.keys(value.value || {}).length
+  })
+
   return {
     requestData,
     data,
+    length,
     add,
     remove,
     load,
