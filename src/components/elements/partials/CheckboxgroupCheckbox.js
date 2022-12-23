@@ -80,6 +80,35 @@ export default {
       return `${el$.value.path}-${value.value}`
     })
 
+    // =============== METHODS ==============
+
+    /**
+     * Handles `keydown` event.
+     * 
+     * @param {Event} e* 
+     * @returns {void}
+     * @private
+     */
+    const handleKeydown = (e) => {
+      if (['ArrowRight', 'ArrowDown'].indexOf(e.key) !== -1) {
+        e.preventDefault()
+
+        let next = e.target.nextElementSibling
+
+        if (next?.getAttribute('role') === 'checkbox') {
+          next.focus()
+        }
+      } else if (['ArrowLeft', 'ArrowUp'].indexOf(e.key) !== -1) {
+        e.preventDefault()
+
+        let previous = e.target.previousElementSibling
+
+        if (previous?.getAttribute('role') === 'checkbox') {
+          previous.focus()
+        }
+      }
+    }
+
     return {
       el$,
       form$,
@@ -94,6 +123,7 @@ export default {
       id,
       name,
       checked,
+      handleKeydown,
     }
   },
 }
