@@ -362,6 +362,16 @@ const list = function(props, context, dependencies, options)
     return formatData.value ? formatData.value(name.value, requestData, form$.value) : {[name.value]: requestData}
   })
 
+  /**
+   * Number of children.
+   * 
+   * @type {number}
+   * @private
+   */
+  const length = computed(() => {
+    return Object.keys(value.value || {}).length
+  })
+
   // =============== METHODS ===============
 
   /**
@@ -519,6 +529,7 @@ const list = function(props, context, dependencies, options)
   return {
     requestData,
     data,
+    length,
     add,
     remove,
     load,
@@ -827,6 +838,7 @@ const file = function(props, context, dependencies)
 const multifile = function(props, context, dependencies)
 {
   const {
+    length,
     add,
     remove,
     load,
@@ -892,16 +904,6 @@ const multifile = function(props, context, dependencies)
     })
 
     return formatData.value ? formatData.value(name.value, requestData, form$.value) : {[name.value]: requestData}
-  })
-
-  /**
-   * Number of children.
-   * 
-   * @type {number}
-   * @private
-   */
-  const length = computed(() => {
-    return Object.keys(value.value || {}).length
   })
 
   return {
