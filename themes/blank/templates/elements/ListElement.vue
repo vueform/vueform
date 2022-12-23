@@ -2,7 +2,7 @@
   <component :is="elementLayout" ref="container">
     <template #element>
       <!-- Sorting container -->
-      <div :class="classes.list" role="list" :aria-labelledby="labelId" ref="list">
+      <div :class="classes.list" role="list" :aria-labelledby="labelId" :key="`${fieldId}-${length}`" ref="list">
         <div v-for="(val, i) in value" :key="i" :class="classes.listItem" role="listitem">
           <slot :index="i">
             <component
@@ -42,7 +42,7 @@
       <div
         v-if="hasAdd"
         :class="classes.add"
-        :id="`${path}-add-button`"
+        :id="`${fieldId}-add-button`"
         @click.prevent="handleAdd"
         @keypress.enter.space="handleAdd"
         v-html="addLabel"

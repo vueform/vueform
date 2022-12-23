@@ -6,6 +6,7 @@
     role="radio"
     :aria-checked="checked"
     @keypress.space.prevent="el$.update(value)"
+    @keydown="handleKeydown"
   >
     <slot
       v-bind="{ name }"

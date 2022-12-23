@@ -6,6 +6,7 @@
     role="checkbox"
     :aria-checked="checked"
     @keypress.space.prevent="el$.toggle(value)"
+    @keydown="handleKeydown"
   >
     <slot
       v-bind="{ name }"

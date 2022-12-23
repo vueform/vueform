@@ -37,7 +37,7 @@
         ref="input" 
      />
 
-      <div v-show="!empty" :class="classes.list" ref="list">
+      <div v-show="!empty" :class="classes.list" :key="`${fieldId}-${length}`" ref="list">
         <div v-for="(val, i) in value" :key="i" :class="classes.listItem">
           <component
             :is="component(prototype)"

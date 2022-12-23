@@ -1,3 +1,11 @@
+## v1.2.17
+
+> `2022-12-23`
+
+### 🐞 Bug Fixes
+  - Adding element after resorting a list / multifile should add as last.
+  - Change radiogroup / checkbox group tabs with arrows.
+
 ## v1.2.16
 
 > `2022-12-14`
