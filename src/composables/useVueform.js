@@ -1226,7 +1226,7 @@ const base = function(props, context, dependencies = {})
       return elements$.value
     }
     
-    return el$(path.match(/.*(?=\.)/)[0]).children$
+    return el$(path.match(/.*(?=\.)/)[0])?.children$ || {}
   }
 
   /**
