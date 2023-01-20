@@ -39,8 +39,18 @@ const base = function(props, context, dependencies, options = {})
       const slot = el$.value.slots[s] || el$.value.slots[_.camelCase(s)]
 
       if (typeof slot === 'object') {
-        if (slot.props && slot.props.indexOf('el$') === -1) {
-          slot.props.push('el$')
+        if (slot.props && (
+          (Array.isArray(slot.props) && slot.props.indexOf('el$') === -1) || 
+          (!Array.isArray(slot.props) && Object.keys(slot.props).indexOf('el$') === -1)
+        )) {
+          if (Array.isArray(slot.props)) {
+            slot.props.push('el$')
+          } else {
+            slot.props.el$ = {
+              type: Object,
+              required: true,
+            }
+          }
         } else if (!slot.props) {
           slot.props = ['el$']
         }
@@ -70,7 +80,14 @@ const base = function(props, context, dependencies, options = {})
           (Array.isArray(slot.props) && slot.props.indexOf('el$') === -1) || 
           (!Array.isArray(slot.props) && Object.keys(slot.props).indexOf('el$') === -1)
         )) {
-          slot.props.push('el$')
+          if (Array.isArray(slot.props)) {
+            slot.props.push('el$')
+          } else {
+            slot.props.el$ = {
+              type: Object,
+              required: true,
+            }
+          }
         } else if (!slot.props) {
           slot.props = ['el$']
         }
