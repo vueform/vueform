@@ -2,7 +2,6 @@ import _ from 'lodash'
 import parse from './parse'
 import replaceWildcards from './../../utils/replaceWildcards'
 import compare from './../../utils/compare'
-import Validator from './../../../src/services/validation/validator'
  
 const Factory = class {
 
@@ -62,23 +61,49 @@ const Factory = class {
   }
 
   parseConditional(rule) {
-    let condition = _.values(rule)[0]
-    let parsed = parse(_.keys(rule)[0])
+    let conditions = _.values(rule)[0]
 
-    // simplified condition
-    if (_.isArray(condition)) {
-      parsed = Object.assign({}, parsed, {
-        dependent: replaceWildcards(condition[0], this.element$.path),
-        condition: this.createConditionFromArray(condition),
-      })
-
-    // custom condition callback
-    } else {
-      parsed = Object.assign({}, parsed, {
-        dependent: null,
-        condition: condition,
-      })
+    if (!Array.isArray(conditions[0])) {
+      conditions = [conditions]
     }
+
+    let parsed = {
+      ...parse(_.keys(rule)[0]),
+      conditions: (form$, Validator, el$) => {
+        return conditions.every((condition) => {
+          if (_.isArray(condition)) {
+            if (_.isArray(condition[0])) {
+              return condition.some((subcondition) => {
+                if (_.isArray(subcondition)) {
+                  return this.createConditionFromArray(subcondition)(form$, Validator, el$)
+                } else {
+                  return condition(form$, Validator, el$)
+                }
+              })
+            } else {
+              return this.createConditionFromArray(condition)(form$, Validator, el$)
+            }
+          } else {
+            return condition(form$, Validator, el$)
+          }
+        })
+      },
+      dependents: [],
+    }
+
+    conditions.forEach((condition) => {
+      if (_.isArray(condition)) {
+        if (_.isArray(condition[0])) {
+          condition.forEach((subcondition) => {
+            if (_.isArray(subcondition)) {
+              parsed.dependents.push(replaceWildcards(subcondition[0], this.element$.path))
+            }
+          })
+        } else {
+          parsed.dependents.push(replaceWildcards(condition[0], this.element$.path))
+        }
+      }
+    })
 
     return parsed
   } 
@@ -88,23 +113,11 @@ const Factory = class {
     let operator = condition.length == 3 ? condition[1] : '=='
     let value = condition.length == 3 ? condition[2] : condition[1]
 
-    return () => {
-      var actual = _.get(this.form$.requestData, field)
+    return (form$, Validator, el$) => {
+      var actual = _.get(form$.requestData, field)
       var expected = value
 
-      if (_.isArray(expected)) {
-        if (operator === '!=') {
-          if (expected.indexOf(actual) !== -1) {
-            return false
-          }
-        } else if (expected.indexOf(actual) === -1) {
-          return false
-        }
-      } else {
-        return compare(actual, expected, operator)
-      }
-
-      return true
+      return compare(actual, operator, expected)
     }
   }
 }

@@ -8,8 +8,8 @@ const Validator = class {
   constructor(rule, props) {
     this.rule = rule
     this.attributes = rule.attributes || {}
-    this.condition = rule.condition || null
-    this.dependent = rule.dependent || null
+    this.conditions = rule.conditions || []
+    this.dependents = rule.dependents || []
 
     this.element$ = props.element$
     this.form$ = props.element$?.form$ || {}
@@ -24,8 +24,8 @@ const Validator = class {
     this.lastValue = null
     this.watchers = {}
     
-    if (this.condition && this.dependent) {
-      watch(computed(() => _.get(this.form$.data, this.dependent)), () => {
+    this.dependents.forEach((dependent) => {
+      watch(computed(() => _.get(this.form$.data, dependent)), () => {
         if (this.element$.validated) {
 
           // we need to revalidate the whole element
@@ -42,7 +42,7 @@ const Validator = class {
           }
         }
       })
-    }
+    })
 
     watch(computed(() => props.element$.messages), (n, o) => {
       if (_.isEqual(n, o)) {
@@ -150,12 +150,12 @@ const Validator = class {
         return
       }
 
-      if(Validator.condition === null) {
+      if(!Validator.conditions.length) {
         nullable = true
         return
       }
       
-      nullable = Validator.condition(this.form$, this)
+      nullable = Validator.conditions(this.form$, this, this.element$)
     })
 
     return nullable
@@ -205,8 +205,8 @@ const Validator = class {
       return
     }
 
-    if (this.condition !== null) {
-      if (!this.condition(this.form$, this)) {
+    if (this.conditions.length) {
+      if (!this.conditions(this.form$, this, this.element$)) {
         this.invalid = false
         return
       }
