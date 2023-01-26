@@ -471,7 +471,9 @@
     max-width: 100%;
     padding-left: var(--vf-px-input);
     padding-right: calc(var(--vf-px-input) * 2.5 + 20px);
+  }
 
+  .vf-multiselect-single-label {
     &.vf-multiselect-single-label-no-caret,
     &.vf-multiselect-single-label-no-clear {
       padding-right: calc(var(--vf-px-input) * 1.5 + 10px);
@@ -480,9 +482,6 @@
     &.vf-multiselect-single-label-no-caret.vf-multiselect-single-label-no-clear {
       padding-right: var(--vf-px-input);
     }
-  }
-
-  .vf-multiselect-single-label {
     &.vf-multiselect-single-label-sm {
       padding-left: var(--vf-px-input-sm);
       padding-right: calc(var(--vf-px-input-sm) * 2.5 + 20px);
@@ -576,6 +575,7 @@
 
     border-radius: var(--vf-radius-input);
     padding-left: var(--vf-px-input);
+    padding-right: calc(var(--vf-px-input) * 2.5 + 20px);
     color: var(--vf-color-input);
 
     &::-webkit-search-decoration,
@@ -588,6 +588,7 @@
     &.vf-multiselect-search-sm {
       border-radius: var(--vf-radius-input-sm);
       padding-left: var(--vf-px-input-sm);
+      padding-right: calc(var(--vf-px-input-sm) * 2.5 + 20px);
       font-size: var(--vf-font-size-sm);
       line-height: var(--vf-line-height-sm);
       letter-spacing: var(--vf-letter-spacing-sm);
@@ -596,6 +597,7 @@
     &.vf-multiselect-search-lg {
       border-radius: var(--vf-radius-input-lg);
       padding-left: var(--vf-px-input-lg);
+      padding-right: calc(var(--vf-px-input-lg) * 2.5 + 20px);
       font-size: var(--vf-font-size-lg);
       line-height: var(--vf-line-height-lg);
       letter-spacing: var(--vf-letter-spacing-lg);
