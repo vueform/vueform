@@ -38,6 +38,8 @@
             singleLabel_sm: 'vf-multiselect-single-label-sm',
             singleLabel_md: '',
             singleLabel_lg: 'vf-multiselect-single-label-lg',
+            singleLabel_noClear: 'vf-multiselect-single-label-no-clear',
+            singleLabel_noCaret: 'vf-multiselect-single-label-no-caret',
             singleLabelText: 'vf-multiselect-single-label-text',
             singleLabelText_truncate: 'vf-multiselect-single-label-text-truncate',
             
@@ -201,16 +203,18 @@
               classes.select[`noResults_${Size}`],
             ]),
             
-            $singleLabel: (classes, { Size }) => ([
+            $singleLabel: (classes, { Size, canClear, caret }) => ([
               classes.select.singleLabel,
               classes.select[`singleLabel_${Size}`],
+              !canClear ? classes.select[`singleLabel_noClear`] : null,
+              !caret ? classes.select[`singleLabel_noCaret`] : null,
             ]),
             $singleLabelText: (classes, { truncate }) => ([
               classes.select.singleLabelText,
               truncate ? classes.select[`singleLabelText_truncate`] : null,
             ]),
           },
-          $input: (classes, { isDisabled, Size, isDanger, isSuccess }) => ([
+          $input: (classes, { isDisabled, Size, isDanger, isSuccess, caret }) => ([
             classes.input,
             classes[`input_${Size}`],
             isDisabled ? classes.input_disabled : null,
@@ -246,6 +250,18 @@
     &::-webkit-search-results-decoration {
       -webkit-appearance: none;
     }
+  }
+
+  .vf-input.vf-native-select {
+    padding-right: calc(var(--vf-px-input) * 2);
+  }
+
+  .vf-input-sm.vf-native-select {
+    padding-right: calc(var(--vf-px-input-sm) * 2);
+  }
+
+  .vf-input-lg.vf-native-select {
+    padding-right: calc(var(--vf-px-input-lg) * 2);
   }
 
   .vf-native-select-wrapper {
@@ -429,14 +445,14 @@
     box-sizing: border-box;
     cursor: pointer;
     outline: none;
-    min-height: var(--vf-min-height-input-sm);
+    min-height: calc(var(--vf-min-height-input) - var(--vf-border-width-input-t) - var(--vf-border-width-input-b));
 
     &.vf-multiselect-wrapper-sm {
-      min-height: var(--vf-min-height-input-sm);
+      min-height: calc(var(--vf-min-height-input-sm) - var(--vf-border-width-input-t) - var(--vf-border-width-input-b));
     }
 
     &.vf-multiselect-wrapper-lg {
-      min-height: var(--vf-min-height-input-lg);
+      min-height: calc(var(--vf-min-height-input-lg) - var(--vf-border-width-input-t) - var(--vf-border-width-input-b));
     }
   }
 
@@ -453,17 +469,45 @@
     box-sizing: border-box;
     max-width: 100%;
     padding-left: var(--vf-px-input);
-    padding-right: var(--vf-min-height-input);
+    padding-right: calc(var(--vf-px-input) * 3.5);
   }
 
   .vf-multiselect-single-label {
+    &.vf-multiselect-single-label-no-caret,
+    &.vf-multiselect-single-label-no-clear {
+      padding-right: calc(var(--vf-px-input) * 2);
+    }
+
+    &.vf-multiselect-single-label-no-caret.vf-multiselect-single-label-no-clear {
+      padding-right: var(--vf-px-input);
+    }
+
     &.vf-multiselect-single-label-sm {
       padding-left: var(--vf-px-input-sm);
       padding-right: var(--vf-min-height-input-sm);
+
+      &.vf-multiselect-single-label-no-caret,
+      &.vf-multiselect-single-label-no-clear {
+        padding-right: calc(var(--vf-min-height-input-sm) / 2);
+      }
+
+      &.vf-multiselect-single-label-no-caret.vf-multiselect-single-label-no-clear {
+        padding-right: var(--vf-px-input-sm);
+      }
     }
+
     &.vf-multiselect-single-label-lg {
       padding-left: var(--vf-px-input-lg);
       padding-right: var(--vf-min-height-input-lg);
+
+      &.vf-multiselect-single-label-no-caret,
+      &.vf-multiselect-single-label-no-clear {
+        padding-right: calc(var(--vf-min-height-input-lg) / 2);
+      }
+
+      &.vf-multiselect-single-label-no-caret.vf-multiselect-single-label-no-clear {
+        padding-right: var(--vf-px-input-lg);
+      }
     }
   }
 
@@ -561,8 +605,8 @@
   .vf-floating-wrapper ~ span .vf-multiselect-search-lg {
     padding-left: var(--vf-px-input-lg);
     padding-right: var(--vf-px-input-lg);
-    padding-top: calc(var(--vf-py-input-lg) + (0.6875rem / 2));
-    padding-bottom: calc(var(--vf-py-input-lg) - (0.6875rem / 2));
+    padding-top: calc(var(--vf-py-input-lg) + (var(--vf-floating-top-lg) / 2));
+    padding-bottom: calc(var(--vf-py-input-lg) - (var(--vf-floating-top-lg) / 2));
   }
 
   .vf-multiselect-spinner {

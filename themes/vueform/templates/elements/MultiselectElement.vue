@@ -27,6 +27,8 @@
             multipleLabel_sm: 'vf-multiselect-multiple-label-sm',
             multipleLabel_md: '',
             multipleLabel_lg: 'vf-multiselect-multiple-label-lg',
+            multipleLabel_noClear: 'vf-multiselect-multiple-label-no-clear',
+            multipleLabel_noCaret: 'vf-multiselect-multiple-label-no-caret',
             
             container: 'vf-multiselect',
             container_enabled: '',
@@ -188,9 +190,11 @@
               classes.select[`noResults_${Size}`],
             ]),
             
-            $multipleLabel: (classes, { Size }) => ([
+            $multipleLabel: (classes, { Size, canClear, caret }) => ([
               classes.select.multipleLabel,
               classes.select[`multipleLabel_${Size}`],
+              !canClear ? classes.select[`multipleLabel_noClear`] : null,
+              !caret ? classes.select[`multipleLabel_noCaret`] : null,
             ]),
           },
           $input: (classes, { isDisabled, Size, isDanger, isSuccess }) => ([
@@ -222,13 +226,40 @@
     padding-left: var(--vf-px-input);
     padding-right: var(--vf-min-height-input);
 
+    &.vf-multiselect-multiple-label-no-caret,
+    &.vf-multiselect-multiple-label-no-clear {
+      padding-right: calc(var(--vf-min-height-input) / 2);
+    }
+
+    &.vf-multiselect-multiple-label-no-caret.vf-multiselect-multiple-label-no-clear {
+      padding-right: var(--vf-px-input);
+    }
+
     &.vf-multiselect-multiple-label-sm {
       padding-left: var(--vf-px-input-sm);
       padding-right: var(--vf-min-height-input-sm);
+
+      &.vf-multiselect-multiple-label-no-caret,
+      &.vf-multiselect-multiple-label-no-clear {
+        padding-right: calc(var(--vf-min-height-input-sm) / 2);
+      }
+
+      &.vf-multiselect-multiple-label-no-caret.vf-multiselect-multiple-label-no-clear {
+        padding-right: var(--vf-px-input-sm);
+      }
     }
     &.vf-multiselect-multiple-label-lg {
       padding-left: var(--vf-px-input-lg);
       padding-right: var(--vf-min-height-input-lg);
+
+      &.vf-multiselect-multiple-label-no-caret,
+      &.vf-multiselect-multiple-label-no-clear {
+        padding-right: calc(var(--vf-min-height-input-lg) / 2);
+      }
+
+      &.vf-multiselect-multiple-label-no-caret.vf-multiselect-multiple-label-no-clear {
+        padding-right: var(--vf-px-input-lg);
+      }
     }
   }
 
