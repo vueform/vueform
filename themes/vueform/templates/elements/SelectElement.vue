@@ -284,8 +284,11 @@
 
   .vf-native-select-placeholder {
     position: absolute;
-    top: var(--vf-py-input);
+    top: 0;
     left: var(--vf-px-input);
+    bottom: 0;
+    display: flex;
+    align-items: center;
     margin-left: 1px;
     font-family: inherit;
     font-size: inherit;
@@ -296,12 +299,10 @@
     pointer-events: none;
 
     &.vf-native-select-placeholder-sm {
-      top: var(--vf-py-input-sm);
       left: var(--vf-px-input-sm);
     }
 
     &.vf-native-select-placeholder-lg {
-      top: var(--vf-py-input-lg);
       left: var(--vf-px-input-lg);
     }
   }
@@ -975,6 +976,43 @@
   }
 
 [dir="rtl"] {
+  .vf-input.vf-native-select {
+    padding-right: var(--vf-px-input);
+    padding-left: calc(var(--vf-px-input) * 2);
+  }
+
+  .vf-input-sm.vf-native-select {
+    padding-right: var(--vf-px-input);
+    padding-left: calc(var(--vf-px-input-sm) * 2);
+  }
+
+  .vf-input-lg.vf-native-select {
+    padding-right: var(--vf-px-input);
+    padding-left: calc(var(--vf-px-input-lg) * 2);
+  }
+
+  .vf-native-select-placeholder {
+    left: auto;
+    right: var(--vf-px-input);
+  }
+
+  .vf-native-select-caret {
+    right: auto;
+    left: 0;
+    margin-right: 0;
+    margin-left: var(--vf-px-input);
+
+    &.vf-native-select-caret-sm {
+      margin-right: 0;
+      margin-left: var(--vf-px-input-sm);
+    }
+
+    &.vf-native-select-caret-lg {
+      margin-right: 0;
+      margin-left: var(--vf-px-input-lg);
+    }
+  }
+
   .vf-multiselect-single-label {
     padding-left: var(--vf-min-height-input);
     padding-right: var(--vf-px-input);

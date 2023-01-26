@@ -99,4 +99,21 @@
       top: calc(var(--vf-border-width-input-t) * (-1));
     }
   }
+
+  [dir="rtl"] {
+    .vf-floating-label {
+      left: auto;
+      right: var(--vf-px-input);
+
+      &.vf-floating-label-sm {
+        left: auto;
+        right: var(--vf-px-input-sm);
+      }
+
+      &.vf-floating-label-lg {
+        left: auto;
+        right: var(--vf-px-input-lg);
+      }
+    }
+  }
 </style>
