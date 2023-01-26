@@ -268,22 +268,19 @@
   .vf-floating-wrapper ~ .vf-multiselect-tags,
   .vf-floating-wrapper ~ div .vf-multiselect-tags {
     padding-left: var(--vf-px-input);
-    padding-top: calc(var(--vf-floating-top) / 2);
-    margin-bottom: calc(var(--vf-floating-top) * -1);
+    margin: calc(var(--vf-space-tags) + var(--vf-floating-top) + 0.34375rem - 1px) 0 0;
   }
 
   .vf-floating-wrapper ~ .vf-multiselect-tags-sm,
   .vf-floating-wrapper ~ div .vf-multiselect-tags-sm {
     padding-left: var(--vf-px-input-sm);
-    padding-top: calc(var(--vf-floating-top-sm) / 2);
-    margin-bottom: calc(var(--vf-floating-top-sm) * -1);
+    margin: calc(var(--vf-space-tags-sm) + var(--vf-floating-top-sm) + 0.34375rem - 1px) 0 0;
   }
 
   .vf-floating-wrapper ~ .vf-multiselect-tags-lg,
   .vf-floating-wrapper ~ div .vf-multiselect-tags-lg{
     padding-left: var(--vf-px-input-lg);
-    padding-top: calc(var(--vf-floating-top-lg) / 2);
-    margin-bottom: calc(var(--vf-floating-top-lg) * -1);
+    margin: calc(var(--vf-space-tags-lg) + var(--vf-floating-top-lg) + 0.34375rem - 1px) 0 0;
   }
 
   .vf-multiselect-tag {

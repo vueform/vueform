@@ -470,26 +470,26 @@
     box-sizing: border-box;
     max-width: 100%;
     padding-left: var(--vf-px-input);
-    padding-right: calc(var(--vf-px-input) * 3.5);
-  }
+    padding-right: calc(var(--vf-px-input) * 2.5 + 20px);
 
-  .vf-multiselect-single-label {
     &.vf-multiselect-single-label-no-caret,
     &.vf-multiselect-single-label-no-clear {
-      padding-right: calc(var(--vf-px-input) * 2);
+      padding-right: calc(var(--vf-px-input) * 1.5 + 10px);
     }
 
     &.vf-multiselect-single-label-no-caret.vf-multiselect-single-label-no-clear {
       padding-right: var(--vf-px-input);
     }
+  }
 
+  .vf-multiselect-single-label {
     &.vf-multiselect-single-label-sm {
       padding-left: var(--vf-px-input-sm);
-      padding-right: var(--vf-min-height-input-sm);
+      padding-right: calc(var(--vf-px-input-sm) * 2.5 + 20px);
 
       &.vf-multiselect-single-label-no-caret,
       &.vf-multiselect-single-label-no-clear {
-        padding-right: calc(var(--vf-min-height-input-sm) / 2);
+        padding-right: calc(var(--vf-px-input-sm) * 1.5 + 10px);
       }
 
       &.vf-multiselect-single-label-no-caret.vf-multiselect-single-label-no-clear {
@@ -499,11 +499,11 @@
 
     &.vf-multiselect-single-label-lg {
       padding-left: var(--vf-px-input-lg);
-      padding-right: var(--vf-min-height-input-lg);
+      padding-right: calc(var(--vf-px-input-lg) * 2.5 + 20px);
 
       &.vf-multiselect-single-label-no-caret,
       &.vf-multiselect-single-label-no-clear {
-        padding-right: calc(var(--vf-min-height-input-lg) / 2);
+        padding-right: calc(var(--vf-px-input-lg) * 1.5 + 10px);
       }
 
       &.vf-multiselect-single-label-no-caret.vf-multiselect-single-label-no-clear {
@@ -535,11 +535,12 @@
 
     &.vf-multiselect-placeholder-sm {
       padding-left: var(--vf-px-input-sm);
-      padding-right: calc(1.25rem + var(--vf-px-input-sm) * 3);
+      padding-right: calc(var(--vf-px-input-sm) * 2.5 + 20px);
     }
+    
     &.vf-multiselect-placeholder-lg {
       padding-left: var(--vf-px-input-lg);
-      padding-right: calc(1.25rem + var(--vf-px-input-lg) * 3);
+      padding-right: calc(var(--vf-px-input-lg) * 2.5 + 20px);
     }
   }
 
@@ -1014,7 +1015,7 @@
   }
 
   .vf-multiselect-single-label {
-    padding-left: calc(var(--vf-px-input) * 3.5);
+    padding-left: calc(var(--vf-px-input) * 4);
     padding-right: var(--vf-px-input);
     left: auto;
     right: 0;
@@ -1031,7 +1032,7 @@
     }
 
     &.vf-multiselect-single-label-sm {
-      padding-left: calc(var(--vf-px-input-sm) * 3.5);
+      padding-left: calc(var(--vf-px-input-sm) * 4);
       padding-right: var(--vf-px-input-sm);
 
       &.vf-multiselect-single-label-no-caret,
@@ -1047,7 +1048,7 @@
     }
 
     &.vf-multiselect-single-label-lg {
-      padding-left: calc(var(--vf-px-input-lg) * 3.5);
+      padding-left: calc(var(--vf-px-input-lg) * 4);
       padding-right: var(--vf-px-input-lg);
 
       &.vf-multiselect-single-label-no-caret,

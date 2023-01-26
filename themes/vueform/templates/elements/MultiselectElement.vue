@@ -224,11 +224,11 @@
     pointer-events: none;
     background: transparent;
     padding-left: var(--vf-px-input);
-    padding-right: var(--vf-min-height-input);
+    padding-right: calc(var(--vf-px-input) * 2.5 + 20px);
 
     &.vf-multiselect-multiple-label-no-caret,
     &.vf-multiselect-multiple-label-no-clear {
-      padding-right: calc(var(--vf-min-height-input) / 2);
+      padding-right: calc(var(--vf-px-input) * 1.5 + 10px);
     }
 
     &.vf-multiselect-multiple-label-no-caret.vf-multiselect-multiple-label-no-clear {
@@ -237,11 +237,11 @@
 
     &.vf-multiselect-multiple-label-sm {
       padding-left: var(--vf-px-input-sm);
-      padding-right: var(--vf-min-height-input-sm);
+      padding-right: calc(var(--vf-px-input-sm) * 1.5 + 20px);
 
       &.vf-multiselect-multiple-label-no-caret,
       &.vf-multiselect-multiple-label-no-clear {
-        padding-right: calc(var(--vf-min-height-input-sm) / 2);
+        padding-right: calc(var(--vf-px-input-sm) * 1.5 + 10px);
       }
 
       &.vf-multiselect-multiple-label-no-caret.vf-multiselect-multiple-label-no-clear {
@@ -250,11 +250,11 @@
     }
     &.vf-multiselect-multiple-label-lg {
       padding-left: var(--vf-px-input-lg);
-      padding-right: var(--vf-min-height-input-lg);
+      padding-right: calc(var(--vf-px-input-lg) * 2.5 + 20px);
 
       &.vf-multiselect-multiple-label-no-caret,
       &.vf-multiselect-multiple-label-no-clear {
-        padding-right: calc(var(--vf-min-height-input-lg) / 2);
+        padding-right: calc(var(--vf-px-input-lg) * 1.5 + 10px);
       }
 
       &.vf-multiselect-multiple-label-no-caret.vf-multiselect-multiple-label-no-clear {
@@ -283,14 +283,14 @@
   
   [dir="rtl"] {
     .vf-multiselect-multiple-label {
-      padding-left: calc(var(--vf-px-input) * 3.5);
+      padding-left: calc(var(--vf-px-input) * 2.5 + 20px);
       padding-right: var(--vf-px-input);
       left: auto;
       right: 0;
 
       &.vf-multiselect-multiple-label-no-caret,
       &.vf-multiselect-multiple-label-no-clear {
-        padding-left: calc(var(--vf-px-input) * 2);
+        padding-left: calc(var(--vf-px-input) * 1.5 + 10px);
         padding-right: var(--vf-px-input);
       }
 
@@ -300,12 +300,12 @@
       }
 
       &.vf-multiselect-multiple-label-sm {
-        padding-left: calc(var(--vf-px-inpu-sm) * 3.5);
+        padding-left: calc(var(--vf-px-input-sm) * 2.5 + 20px);
         padding-right: var(--vf-px-input-sm);
 
         &.vf-multiselect-multiple-label-no-caret,
         &.vf-multiselect-multiple-label-no-clear {
-          padding-left: calc(var(--vf-px-input-sm) * 2);
+          padding-left: calc(var(--vf-px-input-sm) * 1.5 + 10px);
           padding-right: var(--vf-px-input-sm);
         }
 
@@ -315,12 +315,12 @@
         }
       }
       &.vf-multiselect-multiple-label-lg {
-        padding-left: calc(var(--vf-px-input-lg) * 3.5);
+        padding-left: calc(var(--vf-px-input-lg) * 2.5 + 20px);
         padding-right: var(--vf-px-input-lg);
 
         &.vf-multiselect-multiple-label-no-caret,
         &.vf-multiselect-multiple-label-no-clear {
-          padding-left: calc(var(--vf-px-input-lg) * 2);
+          padding-left: calc(var(--vf-px-input-lg) * 1.5 + 10px);
           padding-right: var(--vf-px-input-lg);
         }
 
