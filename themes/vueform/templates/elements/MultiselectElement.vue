@@ -283,7 +283,7 @@
   
   [dir="rtl"] {
     .vf-multiselect-multiple-label {
-      padding-left: var(--vf-min-height-input);
+      padding-left: calc(var(--vf-px-input) * 3.5);
       padding-right: var(--vf-px-input);
       left: auto;
       right: 0;
@@ -300,7 +300,7 @@
       }
 
       &.vf-multiselect-multiple-label-sm {
-        padding-left: var(--vf-min-height-input-sm);
+        padding-left: calc(var(--vf-px-inpu-sm) * 3.5);
         padding-right: var(--vf-px-input-sm);
 
         &.vf-multiselect-multiple-label-no-caret,
@@ -315,7 +315,7 @@
         }
       }
       &.vf-multiselect-multiple-label-lg {
-        padding-left: var(--vf-min-height-input-lg);
+        padding-left: calc(var(--vf-px-input-lg) * 3.5);
         padding-right: var(--vf-px-input-lg);
 
         &.vf-multiselect-multiple-label-no-caret,
