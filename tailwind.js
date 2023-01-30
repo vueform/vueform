@@ -1957,6 +1957,12 @@ const vueform = plugin((context) => {
     addVariant('focused-hover', ['&.form-focus:hover', '&:focus:hover'])
   }
   
+  addVariant('list-group-hover', ({ modifySelectors, separator }) => {
+    modifySelectors(({ className }) => {
+      return `${prefix('.form-list-group')}:hover > .${e(`list-group-hover${separator}${className}`)}`
+    })
+  })
+  
   addVariant('info-group-hover', ({ modifySelectors, separator }) => {
     modifySelectors(({ className }) => {
       return `${prefix('.form-info-group')}:hover .${e(`info-group-hover${separator}${className}`)}`
