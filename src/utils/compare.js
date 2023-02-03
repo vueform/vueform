@@ -13,22 +13,22 @@ export default function(actual, operator, expected, el$) {
   switch (operator.toLowerCase()) {
     case '>':
       return _.isArray(actual)
-        ? actual.length > expected
+        ? _.isArray(expected) ? actual.every(a => a > expected[0]) : actual.length > expected
         : actual > expected
 
     case '>=':
       return _.isArray(actual)
-        ? actual.length >= expected
+        ? _.isArray(expected) ? actual.every(a => a >= expected[0]) : actual.length >= expected
         : actual >= expected
 
     case '<':
       return _.isArray(actual)
-        ? actual.length < expected
+        ? _.isArray(expected) ? actual.every(a => a < expected[0]) : actual.length < expected
         : actual < expected
 
     case '<=':
       return _.isArray(actual)
-        ? actual.length <= expected
+        ? _.isArray(expected) ? actual.every(a => a <= expected[0]) : actual.length <= expected
         : actual <= expected
 
     case '==':
