@@ -117,7 +117,7 @@ const Factory = class {
       var actual = _.get(form$.requestData, field)
       var expected = value
 
-      return compare(actual, operator, expected)
+      return compare(actual, operator, expected, this.element$)
     }
   }
 }

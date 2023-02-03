@@ -2,7 +2,7 @@ import _ from 'lodash'
 import moment from 'moment'
 import normalize from './normalize'
 
-export default function(actual, operator, expected) {
+export default function(actual, operator, expected, el$) {
   if (!operator) {
     return false
   }
@@ -36,7 +36,9 @@ export default function(actual, operator, expected) {
       if (_.isArray(expected)) {
         if (_.isArray(actual)) {
           // ['checkboxes', [1,2,3]]
-          return actual.filter(e => _.includes(expected, e)).length > 0
+          return !expected.length
+            ? !actual.length
+            : actual.filter(e => _.includes(expected, e)).length > 0
         } else {
           // ['text', [1,2,3]]
           return expected.indexOf(actual) !== -1
@@ -56,7 +58,9 @@ export default function(actual, operator, expected) {
       if (_.isArray(expected)) {
         if (_.isArray(actual)) {
           // ['checkboxes', 'not_in', [1,2,3]]
-          return actual.filter(e => _.includes(expected, e)).length == 0
+          return !expected.length
+            ? !!actual.length
+            : actual.filter(e => _.includes(expected, e)).length == 0
         } else {
           // ['text', 'not_in', [1,2,3]]
           return expected.indexOf(actual) === -1
@@ -76,14 +80,14 @@ export default function(actual, operator, expected) {
         actual = [actual]
       }
 
-      return actual.some(a => moment(a, el$.valueDateFormat).isSame(moment(), 'day'))
+      return actual.length && actual.every(a => moment(a, el$.valueDateFormat).isSame(moment(), 'day'))
 
     case 'before':
       if (!_.isArray(actual)) {
         actual = [actual]
       }
 
-      return actual.every((a) => {
+      return actual.length && actual.every((a) => {
         let date = moment(a, el$.valueDateFormat)
 
         return date.isValid() && date.isBefore(moment(expected === 'today' ? undefined : expected), 'day')
@@ -94,7 +98,7 @@ export default function(actual, operator, expected) {
         actual = [actual]
       }
 
-      return actual.every((a) => {
+      return actual.length && actual.every((a) => {
         let date = moment(a, el$.valueDateFormat)
 
         return date.isValid() && date.isAfter(moment(expected === 'today' ? undefined : expected), 'day')

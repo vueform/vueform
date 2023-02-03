@@ -46,7 +46,7 @@ const check = (condition, elementPath, form$, el$) => {
   }
 
   let compareValues = (actual, expected, operator) => {
-    return compare(actual, operator, expected)
+    return compare(actual, operator, expected, el$)
   }
   
   if (typeof condition == 'function') {
