@@ -38,7 +38,9 @@ export default function(actual, operator, expected, el$) {
           // ['checkboxes', [1,2,3]]
           return !expected.length
             ? !actual.length
-            : actual.filter(e => _.includes(expected, e)).length > 0
+            : actual.filter(a => _.includes(expected, a)).length > 0
+        } else if (actual && typeof actual === 'object') {
+          return Object.values(actual).every(a => _.includes(expected, a))
         } else {
           // ['text', [1,2,3]]
           return expected.indexOf(actual) !== -1
@@ -61,6 +63,8 @@ export default function(actual, operator, expected, el$) {
           return !expected.length
             ? !!actual.length
             : actual.filter(e => _.includes(expected, e)).length == 0
+        } else if (actual && typeof actual === 'object') {
+          return Object.values(actual).some(a => !_.includes(expected, a))
         } else {
           // ['text', 'not_in', [1,2,3]]
           return expected.indexOf(actual) === -1
