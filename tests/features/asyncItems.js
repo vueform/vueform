@@ -98,6 +98,8 @@ export const resolvedOptions = function (elementType, elementName, options) {
       }
     })
 
+    // await nextTick()
+
     await flushPromises()
 
     let elWrapper = findAllComponents(form, { name: elementName }).at(0)
@@ -110,7 +112,7 @@ export const resolvedOptions = function (elementType, elementName, options) {
     expect(options.at(2).attributes('value')).toBe('3')
     expect(options.at(2).element.innerHTML.trim()).toBe('3')
     
-    // destroy(form) // teardown
+    destroy(form) // teardown
 
     // destroy() // teardown
   })
@@ -123,14 +125,14 @@ export const resolvedOptions = function (elementType, elementName, options) {
         el: {
           type: elementType,
           native: true,
-          items: '/url'
+          items: '/method'
         }
       }
     })
 
     form.vm.$vueform.services.axios.get = getMock
 
-    await flushPromises()
+    // await flushPromises()
 
     form.vm.el$('el').updateItems()
 

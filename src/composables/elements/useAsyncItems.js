@@ -40,7 +40,7 @@ const base = function(props, context, dependencies)
     }
 
     let nativeItems = []
-    
+
     _.each(options.value, (item, key) => {
       if ([null, undefined].indexOf(item) !== -1) {
         return
@@ -91,8 +91,10 @@ const base = function(props, context, dependencies)
 
     if (typeof items.value === 'string') {
       await resolveOptionsFromUrl()
-    } else {
+    } else if (typeof items.value === 'function') {
       await resolveOptionsFromFunction()
+    } else {
+      options.value = items.value
     }
       
     if (shouldDisable) {

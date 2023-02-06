@@ -151,7 +151,7 @@ export const resolvedOptions = function (elementType, elementName, options) {
 
     form.vm.$vueform.services.axios.get = getMock
 
-    await flushPromises()
+    // await flushPromises()
 
     form.vm.el$('el').updateItems()
 
