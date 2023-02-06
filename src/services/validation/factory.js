@@ -110,8 +110,10 @@ const Factory = class {
 
   createConditionFromArray(condition) {
     let field = replaceWildcards(condition[0], this.element$.path)
-    let operator = condition.length == 3 ? condition[1] : '=='
-    let value = condition.length == 3 ? condition[2] : condition[1]
+    let operator = condition.length == 3 || ['empty', 'not_empty', 'today'].indexOf(condition[1]) !== -1 ? condition[1] : '=='
+    let value = condition.length == 3 ? condition[2] : (
+      ['empty', 'not_empty', 'today'].indexOf(condition[1]) === -1 ? condition[1] : true
+    )
 
     return (form$, Validator, el$) => {
       var actual = _.get(form$.requestData, field)

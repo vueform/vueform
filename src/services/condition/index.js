@@ -40,8 +40,10 @@ const check = (condition, elementPath, form$, el$) => {
   let details = (condition) => {
     return {
       conditionPath: elementPath ? replaceWildcards(condition[0], elementPath) : condition[0],
-      operator: condition.length == 3 ? condition[1] : '==',
-      expected: condition.length == 3 ? condition[2] : condition[1],
+      operator: condition.length == 3 || ['empty', 'not_empty', 'today'].indexOf(condition[1]) !== -1 ? condition[1] : '==',
+      expected: condition.length == 3 ? condition[2] : (
+        ['empty', 'not_empty', 'today'].indexOf(condition[1]) === -1 ? condition[1] : true
+      )
     }
   }
 

@@ -31,6 +31,32 @@ export default function(actual, operator, expected, el$) {
         ? actual.length && actual.every(a => a <= expected)
         : actual <= expected
 
+    case 'empty':
+      if (_.isArray(actual)) {
+        return !actual.length
+      } else if (actual && actual instanceof File) {
+        return false
+      } else if (actual && typeof actual === 'object') {
+        let values = Object.values(actual)
+
+        return !values.length || values.every(v => !v)
+      } else {
+        return !actual
+      }
+
+    case 'not_empty':
+      if (_.isArray(actual)) {
+        return !!actual.length
+      } else if (actual && actual instanceof File) {
+        return true
+      } else if (actual && typeof actual === 'object') {
+        let values = Object.values(actual)
+
+        return values.length && values.some(v => !!v)
+      } else {
+        return !!actual
+      }
+
     case '==':
     case 'in':
       if (_.isArray(expected)) {
@@ -39,8 +65,6 @@ export default function(actual, operator, expected, el$) {
           return !expected.length
             ? !actual.length
             : actual.filter(a => _.includes(expected, a)).length > 0
-        } else if (actual && typeof actual === 'object') {
-          return Object.values(actual).every(a => _.includes(expected, a))
         } else {
           // ['text', [1,2,3]]
           return expected.indexOf(actual) !== -1
@@ -63,8 +87,6 @@ export default function(actual, operator, expected, el$) {
           return !expected.length
             ? !!actual.length
             : actual.filter(e => _.includes(expected, e)).length == 0
-        } else if (actual && typeof actual === 'object') {
-          return Object.values(actual).some(a => !_.includes(expected, a))
         } else {
           // ['text', 'not_in', [1,2,3]]
           return expected.indexOf(actual) === -1
