@@ -16,6 +16,7 @@ const base = function(props, context, dependencies, options)
   const value = dependencies.value
   const sorting = dependencies.sorting
   const length = dependencies.length
+  const path = dependencies.path
 
   // ================ DATA ================
 
@@ -120,17 +121,16 @@ const base = function(props, context, dependencies, options)
     }
   })
 
-  watch(length, () => {
+  watch(length, (n) => {
     if (!isSortable.value) {
       return
     }
 
-    destroySortable()
-
-    nextTick(() => {
-      initSortable()
-    })
-  })
+    sortable.value.sort(Array.from(Array(n).keys()).reduce((a,b,i) => {
+      a.push(`${path.value}-${i}`)
+      return a
+    }, []))
+  }, { flush: 'post' })
 
   return {
     list,
