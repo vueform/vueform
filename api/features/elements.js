@@ -1707,6 +1707,13 @@ export default {
             "object"
           ],
           "description": "The value of the element in `{[name]: value}` value format. This gets merged with the parent component's data."
+        },
+        "length": {
+          "public": false,
+          "types": [
+            "number"
+          ],
+          "description": "Number of children."
         }
       },
       "methods": {
@@ -2251,6 +2258,13 @@ export default {
             "object"
           ],
           "description": "The value of the element in `{[name]: value}` value format. This gets merged with the parent component's data."
+        },
+        "length": {
+          "public": false,
+          "types": [
+            "number"
+          ],
+          "description": "Number of children."
         }
       },
       "methods": {

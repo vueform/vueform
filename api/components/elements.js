@@ -12847,6 +12847,13 @@ module.exports = {
         description: 'The value of the element in `{[name]: value}` value format. This gets merged with the parent component&apos;s data.',
         private: false,
       },
+      length: {
+        types: [
+          'number',
+        ],
+        description: 'Number of children.',
+        private: true,
+      },
       defaultValue: {
         types: [
           'any',
@@ -16045,6 +16052,13 @@ module.exports = {
         ],
         description: 'The value of the element in `{[name]: value}` value format. This gets merged with the parent component&apos;s data.',
         private: false,
+      },
+      length: {
+        types: [
+          'number',
+        ],
+        description: 'Number of children.',
+        private: true,
       },
       defaultValue: {
         types: [

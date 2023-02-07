@@ -5347,6 +5347,22 @@ module.exports = {
         "description": "Whether the checkbox is checked."
       }
     },
+    "methods": {
+      "handleKeydown": {
+        "public": false,
+        "returns": "void",
+        "description": "Handles `keydown` event.",
+        "params": {
+          "e": {
+            "types": [
+              "Event"
+            ],
+            "required": true,
+            "description": ""
+          }
+        }
+      }
+    },
     "props": {
       "item": {
         "required": true,
@@ -5707,6 +5723,22 @@ module.exports = {
           "boolean"
         ],
         "description": "Whether the radio is checked."
+      }
+    },
+    "methods": {
+      "handleKeydown": {
+        "public": false,
+        "returns": "void",
+        "description": "Handles `keydown` event.",
+        "params": {
+          "e": {
+            "types": [
+              "Event"
+            ],
+            "required": true,
+            "description": ""
+          }
+        }
       }
     },
     "props": {
