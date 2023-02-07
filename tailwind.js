@@ -1778,6 +1778,12 @@ const vueform = plugin((context) => {
     },
   }
 
+  const infoGroupHoverable = {
+    '.form-visible': {
+      visibility: 'visible',
+    },
+  }
+
   const activable = {
     '.cursor-grabbing': {
       cursor: 'grabbing',
@@ -1829,6 +1835,7 @@ const vueform = plugin((context) => {
   addUtilities(fullWidth, ['full-width'])
   addUtilities(textType, ['text-type'])
   addUtilities(rtl, ['rtl'])
+  addUtilities(infoGroupHoverable, ['info-group-hover'])
 
   addVariant('h', ({ modifySelectors, separator }) => {
     modifySelectors(({ className }) => {
@@ -2013,7 +2020,7 @@ const vueform = plugin((context) => {
       transitionProperty: ['tap'],
       transitionDuration: ['tap'],
       display: ['tt-focus', 'tt-focused', 'tt-drag', 'tt-dragging'],
-      opacity: ['ghost', 'disabled', 'checked'],
+      opacity: ['ghost', 'disabled', 'checked', 'info-group-hover', 'list-group-hover'],
       pointerEvents: ['disabled'],
       borderRadius: ['important'],
       borderWidth: ['important'],
