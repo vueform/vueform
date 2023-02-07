@@ -157,7 +157,7 @@ const checkboxgroup = function(props, context, dependencies)
   }
 }
 
-const static_ = function(props, context, dependencies)
+const button = function(props, context, dependencies)
 {
   const {
     descriptionId,
@@ -189,6 +189,33 @@ const static_ = function(props, context, dependencies)
   }
 }
 
+const static_ = function(props, context, dependencies)
+{
+  const {
+    descriptionId,
+    labelId,
+    infoId,
+    errorId,
+  } = base(props, context, dependencies)
+
+  // ============== COMPUTED ==============
+
+  const aria = computed(() => {
+    return {
+      'aria-labelledby': labelId.value,
+      'aria-describedby': `${descriptionId.value} ${infoId.value}`,
+    }
+  })
+
+  return {
+    descriptionId,
+    labelId,
+    infoId,
+    errorId,
+    aria,
+  }
+}
+
 const radiogroup = checkboxgroup
 const radio = checkbox
 const toggle = checkbox
@@ -202,6 +229,7 @@ export {
   toggle,
   file,
   static_,
+  button,
 }
 
 export default base

@@ -14,9 +14,9 @@ import useFieldId from './../../composables/elements/useFieldId'
 import useFocus from './../../composables/elements/useFocus'
 
 import { button as useDisabled } from './../../composables/elements/useDisabled'
+import { button as useA11y } from './../../composables/elements/useA11y'
 import { static_ as useBaseElement } from './../../composables/elements/useBaseElement'
 import { static_ as usePath } from './../../composables/elements/usePath'
-import { static_ as useA11y } from './../../composables/elements/useA11y'
 import { static_ as useElement } from './../../composables/useElement'
 
 import BaseElement from './../../mixins/BaseElement'
