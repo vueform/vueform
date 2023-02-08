@@ -3,8 +3,13 @@
 > `2023-02-08`
 
 ### 🎉 Feature
+- OR type conditions.
+- New condition operators: `empty`, `not_empty`, `today`, `before`, `after`, `^`, `$`, `*`.
 
 ### 🐞 Bug Fixes
+- Incorrectly displaying disabled `aria` for static element.
+- UI fix for list remove buttons.
+- UI fix for select, multiselect & tags elements.
 
 ## v1.2.17
 
