@@ -2,14 +2,15 @@
   <component :is="elementLayout" ref="container">
     <template #element>
       <!-- Sorting container -->
-      <div :class="classes.list" role="list" :aria-labelledby="labelId" :key="`${fieldId}-${length}`" ref="list">
-        <div v-for="(val, i) in value" :key="i" :class="classes.listItem" role="listitem">
+      <div :class="classes.list" role="list" :aria-labelledby="labelId" ref="list">
+        <div v-for="(val, i) in value" :key="i" :class="classes.listItem" role="listitem" :data-id="`${path}-${i}`">
           <slot :index="i">
             <component
               :is="component(prototype)"
               v-if="prototype.type"
               v-bind="prototype"
               :name="i"
+              :key="i"
            />
           </slot>
 

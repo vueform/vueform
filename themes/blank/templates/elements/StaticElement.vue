@@ -17,7 +17,7 @@
 
   <div v-else-if="content && isHtml" :class="classes.content" v-html="content"></div>
 
-  <component v-else-if="content" :is="content" :el$="el$" ref="container" />
+  <component v-else-if="content" :is="content" ref="container" />
 
   <div v-else :class="classes.container" ref="container">
     <slot :el$="el$"><component :is="fieldSlots.default" :el$="el$"/></slot>

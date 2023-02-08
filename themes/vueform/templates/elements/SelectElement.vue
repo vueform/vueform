@@ -38,6 +38,8 @@
             singleLabel_sm: 'vf-multiselect-single-label-sm',
             singleLabel_md: '',
             singleLabel_lg: 'vf-multiselect-single-label-lg',
+            singleLabel_noClear: 'vf-multiselect-single-label-no-clear',
+            singleLabel_noCaret: 'vf-multiselect-single-label-no-caret',
             singleLabelText: 'vf-multiselect-single-label-text',
             singleLabelText_truncate: 'vf-multiselect-single-label-text-truncate',
             
@@ -201,16 +203,18 @@
               classes.select[`noResults_${Size}`],
             ]),
             
-            $singleLabel: (classes, { Size }) => ([
+            $singleLabel: (classes, { Size, canClear, caret }) => ([
               classes.select.singleLabel,
               classes.select[`singleLabel_${Size}`],
+              !canClear ? classes.select[`singleLabel_noClear`] : null,
+              !caret ? classes.select[`singleLabel_noCaret`] : null,
             ]),
             $singleLabelText: (classes, { truncate }) => ([
               classes.select.singleLabelText,
               truncate ? classes.select[`singleLabelText_truncate`] : null,
             ]),
           },
-          $input: (classes, { isDisabled, Size, isDanger, isSuccess }) => ([
+          $input: (classes, { isDisabled, Size, isDanger, isSuccess, caret }) => ([
             classes.input,
             classes[`input_${Size}`],
             isDisabled ? classes.input_disabled : null,
@@ -248,6 +252,18 @@
     }
   }
 
+  .vf-input.vf-native-select {
+    padding-right: calc(var(--vf-px-input) * 2);
+  }
+
+  .vf-input-sm.vf-native-select {
+    padding-right: calc(var(--vf-px-input-sm) * 2);
+  }
+
+  .vf-input-lg.vf-native-select {
+    padding-right: calc(var(--vf-px-input-lg) * 2);
+  }
+
   .vf-native-select-wrapper {
     position: relative;
 
@@ -268,8 +284,11 @@
 
   .vf-native-select-placeholder {
     position: absolute;
-    top: var(--vf-py-input);
+    top: 0;
     left: var(--vf-px-input);
+    bottom: 0;
+    display: flex;
+    align-items: center;
     margin-left: 1px;
     font-family: inherit;
     font-size: inherit;
@@ -280,12 +299,10 @@
     pointer-events: none;
 
     &.vf-native-select-placeholder-sm {
-      top: var(--vf-py-input-sm);
       left: var(--vf-px-input-sm);
     }
 
     &.vf-native-select-placeholder-lg {
-      top: var(--vf-py-input-lg);
       left: var(--vf-px-input-lg);
     }
   }
@@ -429,14 +446,14 @@
     box-sizing: border-box;
     cursor: pointer;
     outline: none;
-    min-height: var(--vf-min-height-input-sm);
+    min-height: calc(var(--vf-min-height-input) - var(--vf-border-width-input-t) - var(--vf-border-width-input-b));
 
     &.vf-multiselect-wrapper-sm {
-      min-height: var(--vf-min-height-input-sm);
+      min-height: calc(var(--vf-min-height-input-sm) - var(--vf-border-width-input-t) - var(--vf-border-width-input-b));
     }
 
     &.vf-multiselect-wrapper-lg {
-      min-height: var(--vf-min-height-input-lg);
+      min-height: calc(var(--vf-min-height-input-lg) - var(--vf-border-width-input-t) - var(--vf-border-width-input-b));
     }
   }
 
@@ -453,17 +470,44 @@
     box-sizing: border-box;
     max-width: 100%;
     padding-left: var(--vf-px-input);
-    padding-right: var(--vf-min-height-input);
+    padding-right: calc(var(--vf-px-input) * 2.5 + 20px);
   }
 
   .vf-multiselect-single-label {
+    &.vf-multiselect-single-label-no-caret,
+    &.vf-multiselect-single-label-no-clear {
+      padding-right: calc(var(--vf-px-input) * 1.5 + 10px);
+    }
+
+    &.vf-multiselect-single-label-no-caret.vf-multiselect-single-label-no-clear {
+      padding-right: var(--vf-px-input);
+    }
     &.vf-multiselect-single-label-sm {
       padding-left: var(--vf-px-input-sm);
-      padding-right: var(--vf-min-height-input-sm);
+      padding-right: calc(var(--vf-px-input-sm) * 2.5 + 20px);
+
+      &.vf-multiselect-single-label-no-caret,
+      &.vf-multiselect-single-label-no-clear {
+        padding-right: calc(var(--vf-px-input-sm) * 1.5 + 10px);
+      }
+
+      &.vf-multiselect-single-label-no-caret.vf-multiselect-single-label-no-clear {
+        padding-right: var(--vf-px-input-sm);
+      }
     }
+
     &.vf-multiselect-single-label-lg {
       padding-left: var(--vf-px-input-lg);
-      padding-right: var(--vf-min-height-input-lg);
+      padding-right: calc(var(--vf-px-input-lg) * 2.5 + 20px);
+
+      &.vf-multiselect-single-label-no-caret,
+      &.vf-multiselect-single-label-no-clear {
+        padding-right: calc(var(--vf-px-input-lg) * 1.5 + 10px);
+      }
+
+      &.vf-multiselect-single-label-no-caret.vf-multiselect-single-label-no-clear {
+        padding-right: var(--vf-px-input-lg);
+      }
     }
   }
 
@@ -490,11 +534,12 @@
 
     &.vf-multiselect-placeholder-sm {
       padding-left: var(--vf-px-input-sm);
-      padding-right: calc(1.25rem + var(--vf-px-input-sm) * 3);
+      padding-right: calc(var(--vf-px-input-sm) * 2.5 + 20px);
     }
+    
     &.vf-multiselect-placeholder-lg {
       padding-left: var(--vf-px-input-lg);
-      padding-right: calc(1.25rem + var(--vf-px-input-lg) * 3);
+      padding-right: calc(var(--vf-px-input-lg) * 2.5 + 20px);
     }
   }
 
@@ -530,6 +575,7 @@
 
     border-radius: var(--vf-radius-input);
     padding-left: var(--vf-px-input);
+    padding-right: calc(var(--vf-px-input) * 2.5 + 20px);
     color: var(--vf-color-input);
 
     &::-webkit-search-decoration,
@@ -542,6 +588,7 @@
     &.vf-multiselect-search-sm {
       border-radius: var(--vf-radius-input-sm);
       padding-left: var(--vf-px-input-sm);
+      padding-right: calc(var(--vf-px-input-sm) * 2.5 + 20px);
       font-size: var(--vf-font-size-sm);
       line-height: var(--vf-line-height-sm);
       letter-spacing: var(--vf-letter-spacing-sm);
@@ -550,6 +597,7 @@
     &.vf-multiselect-search-lg {
       border-radius: var(--vf-radius-input-lg);
       padding-left: var(--vf-px-input-lg);
+      padding-right: calc(var(--vf-px-input-lg) * 2.5 + 20px);
       font-size: var(--vf-font-size-lg);
       line-height: var(--vf-line-height-lg);
       letter-spacing: var(--vf-letter-spacing-lg);
@@ -561,8 +609,8 @@
   .vf-floating-wrapper ~ span .vf-multiselect-search-lg {
     padding-left: var(--vf-px-input-lg);
     padding-right: var(--vf-px-input-lg);
-    padding-top: calc(var(--vf-py-input-lg) + (0.6875rem / 2));
-    padding-bottom: calc(var(--vf-py-input-lg) - (0.6875rem / 2));
+    padding-top: calc(var(--vf-py-input-lg) + (var(--vf-floating-top-lg) / 2));
+    padding-bottom: calc(var(--vf-py-input-lg) - (var(--vf-floating-top-lg) / 2));
   }
 
   .vf-multiselect-spinner {
@@ -931,19 +979,90 @@
   }
 
 [dir="rtl"] {
+  .vf-input.vf-native-select {
+    padding-right: var(--vf-px-input);
+    padding-left: calc(var(--vf-px-input) * 2);
+  }
+
+  .vf-input-sm.vf-native-select {
+    padding-right: var(--vf-px-input);
+    padding-left: calc(var(--vf-px-input-sm) * 2);
+  }
+
+  .vf-input-lg.vf-native-select {
+    padding-right: var(--vf-px-input);
+    padding-left: calc(var(--vf-px-input-lg) * 2);
+  }
+
+  .vf-native-select-placeholder {
+    left: auto;
+    right: var(--vf-px-input);
+  }
+
+  .vf-native-select-caret {
+    right: auto;
+    left: 0;
+    margin-right: 0;
+    margin-left: var(--vf-px-input);
+
+    &.vf-native-select-caret-sm {
+      margin-right: 0;
+      margin-left: var(--vf-px-input-sm);
+    }
+
+    &.vf-native-select-caret-lg {
+      margin-right: 0;
+      margin-left: var(--vf-px-input-lg);
+    }
+  }
+
   .vf-multiselect-single-label {
-    padding-left: var(--vf-min-height-input);
+    padding-left: calc(var(--vf-px-input) * 4);
     padding-right: var(--vf-px-input);
     left: auto;
     right: 0;
 
-    &.vf-multiselect-single-label-sm {
-      padding-left: var(--vf-min-height-input-sm);
-      padding-right: var(--vf-px-input-sm);
+    &.vf-multiselect-single-label-no-caret,
+    &.vf-multiselect-single-label-no-clear {
+      padding-left: calc(var(--vf-px-input) * 2);
+      padding-right: var(--vf-px-input);
     }
+
+    &.vf-multiselect-single-label-no-caret.vf-multiselect-single-label-no-clear {
+      padding-left: var(--vf-px-input);
+      padding-right: var(--vf-px-input);
+    }
+
+    &.vf-multiselect-single-label-sm {
+      padding-left: calc(var(--vf-px-input-sm) * 4);
+      padding-right: var(--vf-px-input-sm);
+
+      &.vf-multiselect-single-label-no-caret,
+      &.vf-multiselect-single-label-no-clear {
+        padding-left: calc(var(--vf-px-input-sm) * 2);
+        padding-right: var(--vf-px-input-sm);
+      }
+
+      &.vf-multiselect-single-label-no-caret.vf-multiselect-single-label-no-clear {
+        padding-left: var(--vf-px-input-sm);
+        padding-right: var(--vf-px-input-sm);
+      }
+    }
+
     &.vf-multiselect-single-label-lg {
-      padding-left: var(--vf-min-height-input-lg);
+      padding-left: calc(var(--vf-px-input-lg) * 4);
       padding-right: var(--vf-px-input-lg);
+
+      &.vf-multiselect-single-label-no-caret,
+      &.vf-multiselect-single-label-no-clear {
+        padding-left: calc(var(--vf-px-input-lg) * 2);
+        padding-right: var(--vf-px-input-lg);
+      }
+
+      &.vf-multiselect-single-label-no-caret.vf-multiselect-single-label-no-clear {
+        padding-left: var(--vf-px-input-lg);
+        padding-right: var(--vf-px-input-lg);
+      }
     }
   }
 

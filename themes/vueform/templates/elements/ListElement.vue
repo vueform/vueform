@@ -62,7 +62,7 @@
       position: relative;
 
       &:hover {
-        .vf-list-remove, .vf-list-handle {
+        & > .vf-list-remove, & > .vf-list-handle {
           visibility: visible;
           opacity: 1;
         }

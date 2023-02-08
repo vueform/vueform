@@ -672,15 +672,42 @@ const vueform = plugin((context) => {
       paddingTop: `calc(var(--vf-py-input${size}) + var(--vf-border-width-input-t))`,
     }
 
+    plain[`.form-p-select-caret${suffix}`] = {
+      padding: `var(--vf-py-input${size}) calc(var(--vf-px-input${size}) * 1.5 + 10px) var(--vf-py-input${size}) var(--vf-px-input${size})`,
+    }
+
+    plain[`.form-pr-select${suffix}`] = {
+      paddingRight: `calc(var(--vf-px-input${size}) * 2.5 + 20px)`,
+    }
+
+    plain[`.form-pr-select-no-clear${suffix}`] = {
+      paddingRight: `calc(var(--vf-px-input${size}) * 1.5 + 10px)`,
+    }
+
+    plain[`.form-pr-select-no-caret${suffix}`] = {
+      paddingRight: `calc(var(--vf-px-input${size}) * 1.5 + 10px)`,
+    }
+
+    rtl[`.form-pl-select${suffix}`] = {
+      paddingLeft: `calc(var(--vf-px-input${size}) * 2.5 + 20px)`,
+    }
+
+    rtl[`.form-pl-select-no-caret${suffix}`] = {
+      paddingLeft: `calc(var(--vf-px-input${size}) * 1.5 + 10px)`,
+    }
+
+    rtl[`.form-pl-select-no-clear${suffix}`] = {
+      paddingLeft: `calc(var(--vf-px-input${size}) * 1.5 + 10px)`,
+    }
+
     withFloating[`.form-p-input-floating${suffix}`] = {
       paddingTop: `calc(var(--vf-py-input${size}) + (var(--vf-floating-top${size}) / 2))`,
       paddingBottom: `calc(var(--vf-py-input${size}) - (var(--vf-floating-top${size}) / 2))`,
     }
 
     withFloating[`.form-p-tags-floating${suffix}`] = {
-      paddingLeft: `var(--vf-px-input${size})`,
-      paddingTop: `calc(var(--vf-py-input${size}) + (var(--vf-floating-top${size}) / 2))`,
-      paddingBottom: `calc(var(--vf-py-input${size}) - (var(--vf-floating-top${size}) / 2))`,
+      paddingLeft: `var(--vf-px-input${suffix})`,
+      margin: `calc(var(--vf-space-tags${suffix}) + var(--vf-floating-top${suffix}) + 0.34375rem - 1px) 0 0`,
     }
 
     plain[`.${e(`form-py-0.5input${suffix}`)}`] = {
@@ -943,6 +970,10 @@ const vueform = plugin((context) => {
 
     plain[`.form-h-input-height-inner${suffix}`] = {
       height: `calc(var(--vf-min-height-input${size}) - (var(--vf-border-width-input-t) + var(--vf-border-width-input-b)))`,
+    }
+
+    plain[`.form-min-h-input-height-inner${suffix}`] = {
+      minHeight: `calc(var(--vf-min-height-input${size}) - (var(--vf-border-width-input-t) + var(--vf-border-width-input-b)))`,
     }
 
     plain[`.form-min-h-input-height${suffix}`] = {
@@ -1747,6 +1778,12 @@ const vueform = plugin((context) => {
     },
   }
 
+  const infoGroupHoverable = {
+    '.form-visible': {
+      visibility: 'visible',
+    },
+  }
+
   const activable = {
     '.cursor-grabbing': {
       cursor: 'grabbing',
@@ -1798,6 +1835,7 @@ const vueform = plugin((context) => {
   addUtilities(fullWidth, ['full-width'])
   addUtilities(textType, ['text-type'])
   addUtilities(rtl, ['rtl'])
+  addUtilities(infoGroupHoverable, ['info-group-hover'])
 
   addVariant('h', ({ modifySelectors, separator }) => {
     modifySelectors(({ className }) => {
@@ -1926,6 +1964,12 @@ const vueform = plugin((context) => {
     addVariant('focused-hover', ['&.form-focus:hover', '&:focus:hover'])
   }
   
+  addVariant('list-group-hover', ({ modifySelectors, separator }) => {
+    modifySelectors(({ className }) => {
+      return `${prefix('.form-list-group')}:hover > .${e(`list-group-hover${separator}${className}`)}`
+    })
+  })
+  
   addVariant('info-group-hover', ({ modifySelectors, separator }) => {
     modifySelectors(({ className }) => {
       return `${prefix('.form-info-group')}:hover .${e(`info-group-hover${separator}${className}`)}`
@@ -1976,7 +2020,7 @@ const vueform = plugin((context) => {
       transitionProperty: ['tap'],
       transitionDuration: ['tap'],
       display: ['tt-focus', 'tt-focused', 'tt-drag', 'tt-dragging'],
-      opacity: ['ghost', 'disabled', 'checked'],
+      opacity: ['ghost', 'disabled', 'checked', 'info-group-hover', 'list-group-hover'],
       pointerEvents: ['disabled'],
       borderRadius: ['important'],
       borderWidth: ['important'],
@@ -2152,7 +2196,7 @@ const vueform = plugin((context) => {
         },
 
         spaceTags: {
-          base: theme('padding')['1'],
+          base: theme('padding')['0.75'],
           sm: 'var(--vf-space-tags)',
           lg: 'var(--vf-space-tags)',
         },
@@ -2160,7 +2204,7 @@ const vueform = plugin((context) => {
         floatingTop: {
           base: '0px',
           sm: '0px',
-          lg: theme('padding')['2.75'],
+          lg: theme('padding')['2.25'],
         },
         
         borderWidths: { // can be array

@@ -89,12 +89,12 @@
   --vf-space-checkbox: 0.375rem;
   --vf-space-checkbox-sm: var(--vf-space-checkbox);
   --vf-space-checkbox-lg: var(--vf-space-checkbox);
-  --vf-space-tags: 0.25rem;
+  --vf-space-tags: 0.1875rem;
   --vf-space-tags-sm: var(--vf-space-tags);
   --vf-space-tags-lg: var(--vf-space-tags);
   --vf-floating-top: 0rem;
   --vf-floating-top-sm: 0rem;
-  --vf-floating-top-lg: 0.6875rem;
+  --vf-floating-top-lg: 0.5625rem;
   --vf-bg-input: #ffffff;
   --vf-bg-input-hover: var(--vf-bg-input);
   --vf-bg-input-focus: var(--vf-bg-input);
