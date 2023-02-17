@@ -1,10 +1,3 @@
-## v1.2.19
-
-> `2023-02-17`
-
-### 🎉 Feature
-- Added `keydown`, `keyup` and `keypress` events for texts and textareas.
-
 ## v1.2.18
 
 > `2023-02-08`
