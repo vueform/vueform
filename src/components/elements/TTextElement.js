@@ -24,6 +24,7 @@ import useFocused from './../../composables/elements/useFocused'
 import useHandleBlur from './../../composables/elements/useHandleBlur'
 import useA11y from './../../composables/elements/useA11y'
 import useFocus from './../../composables/elements/useFocus'
+import useHandleKeyEvents from './../../composables/elements/useHandleKeyEvents'
 
 import { multilingual as useValue } from './../../composables/elements/useValue'
 import { multilingual as useData } from './../../composables/elements/useData'
@@ -43,7 +44,7 @@ import HasValidation from './../../mixins/HasValidation'
 export default {
   name: 'TTextElement',
   mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
-  emits: ['change', 'blur', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
+  emits: ['change', 'blur', 'keydown', 'keyup', 'keypress', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
   props: {
     type: {
       required: false,
@@ -153,6 +154,7 @@ export default {
       useA11y,
       useWatchValue,
       useFocus,
+      useHandleKeyEvents,
     ]
     context.slots = [
       'label', 'info', 'description', 'before',
