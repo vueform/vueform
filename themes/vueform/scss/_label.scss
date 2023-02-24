@@ -1,0 +1,123 @@
+/*
+ * Label styles.
+ *
+ * Creating labels styles with responsive horizontal alternatives.
+ */
+
+
+.vf-label {
+  margin-bottom: 0;
+  display: flex;
+  align-items: flex-start;
+  font-size: var(--vf-font-size);
+  line-height: var(--vf-line-height);
+  letter-spacing: var(--vf-letter-spacing);
+}
+
+.vf-label-sm {
+  font-size: var(--vf-font-size-sm);
+  line-height: var(--vf-line-height-sm);
+  letter-spacing: var(--vf-letter-spacing-sm);
+}
+
+.vf-label-lg {
+  font-size: var(--vf-font-size-lg);
+  line-height: var(--vf-line-height-lg);
+  letter-spacing: var(--vf-letter-spacing-lg);
+}
+
+.vf-vertical-label {
+  padding-top: 0;
+  padding-right: 0;
+  padding-bottom: calc(var(--vf-gutter) / 3);
+}
+
+.vf-vertical-label-sm {
+  padding-top: 0;
+  padding-right: 0;
+  padding-bottom: calc(var(--vf-gutter-sm) / 3);
+}
+
+.vf-vertical-label-lg {
+  padding-top: 0;
+  padding-right: 0;
+  padding-bottom: calc(var(--vf-gutter-lg) / 3);
+}
+
+.vf-text-type {
+  .vf-horizontal-label {
+    padding-top: calc(var(--vf-border-width-input-t) + var(--vf-py-input));
+    padding-right: var(--vf-gutter);
+    padding-bottom: 0;
+  }
+
+  .vf-horizontal-label-sm {
+    padding-top: calc(var(--vf-border-width-input-t) + var(--vf-py-input-sm));
+    padding-right: var(--vf-gutter-sm);
+    padding-bottom: 0;
+  }
+
+  .vf-horizontal-label-lg {
+    padding-top: calc(var(--vf-border-width-input-t) + var(--vf-py-input-lg));
+    padding-right: var(--vf-gutter-lg);
+    padding-bottom: 0;
+  }
+}
+
+@mixin make-responsive-labels($breakpoints: $grid-breakpoints) {
+  @each $breakpoint in map-keys($breakpoints) {
+    @include media-breakpoint-up($breakpoint, $breakpoints) {
+      .vf-text-type,
+      :not(.vf-text-type) {
+        .vf-#{$breakpoint}\:vf-vertical-label {
+          padding-top: 0;
+          padding-right: 0;
+          padding-bottom: calc(var(--vf-gutter) / 3);
+        }
+
+        .vf-#{$breakpoint}\:vf-vertical-label-sm {
+          padding-top: 0;
+          padding-right: 0;
+          padding-bottom: calc(var(--vf-gutter-sm) / 3);
+        }
+
+        .vf-#{$breakpoint}\:vf-vertical-label-lg {
+          padding-top: 0;
+          padding-right: 0;
+          padding-bottom: calc(var(--vf-gutter-lg) / 3);
+        }
+      }
+
+      .vf-#{$breakpoint}\:vf-horizontal-label {
+        padding-bottom: 0;
+      }
+
+      .vf-#{$breakpoint}\:vf-horizontal-label-sm {
+        padding-bottom: 0;
+      }
+
+      .vf-#{$breakpoint}\:vf-horizontal-label-lg {
+        padding-bottom: 0;
+      }
+
+      .vf-text-type {
+        .vf-#{$breakpoint}\:vf-horizontal-label {
+          padding-top: calc(var(--vf-border-width-input-t) + var(--vf-py-input));
+          padding-right: var(--vf-gutter);
+        }
+
+        .vf-#{$breakpoint}\:vf-horizontal-label-sm {
+          padding-top: calc(var(--vf-border-width-input-t) + var(--vf-py-input-sm));
+          padding-right: var(--vf-gutter-sm);
+        }
+
+        .vf-#{$breakpoint}\:vf-horizontal-label-lg {
+          padding-top: calc(var(--vf-border-width-input-t) + var(--vf-py-input-lg));
+          padding-right: var(--vf-gutter-lg);
+        }
+      }
+    }
+  }
+}
+
+@include make-responsive-labels();

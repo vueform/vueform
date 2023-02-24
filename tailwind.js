@@ -668,6 +668,14 @@ const vueform = plugin((context) => {
       marginBottom: `calc(var(--vf-py-input${size}) * (-1))`,
     }
 
+    plain['.form-pt-0'] = {
+      paddingTop: '0px'
+    }
+
+    plain['.form-text-type .form-pt-0'] = {
+      paddingTop: '0px'
+    }
+
     textType[`.form-pt-input-border${suffix}`] = {
       paddingTop: `calc(var(--vf-py-input${size}) + var(--vf-border-width-input-t))`,
     }
@@ -910,6 +918,10 @@ const vueform = plugin((context) => {
 
     plain[`.form-pr-gutter${suffix}`] = {
       paddingRight: `var(--vf-gutter${size})`,
+    }
+
+    plain['.form-pr-0'] = {
+      paddingRight: '0px'
     }
 
     plain[`.form-w-checkbox${suffix}`] = {

@@ -22,12 +22,12 @@ const base = function(props, context, dependencies)
   // ============== COMPUTED ==============
 
   /**
-   * Calulated column sizes and classes for the element.
+   * The classes service instance.
    * 
-   * @type {object}
+   * @type {Columns}
    * @private
    */
-  const columnsClasses = computed(() => {
+  const columnsClassesService = computed(() => {
     let config = form$.value.$vueform.config
 
     return (new form$.value.$vueform.services.columns({
@@ -37,7 +37,27 @@ const base = function(props, context, dependencies)
       formColumns: form$.value.options.columns,
       elementPresetColumns: presets.value,
       elementColumns: Columns.value,
-    }, hasLabel.value, theme.value.columns, config.presets)).classes
+    }, hasLabel.value, theme.value.columns, config.presets))
+  })
+
+  /**
+   * Calulated column sizes and classes for the element.
+   * 
+   * @type {object}
+   * @private
+   */
+  const columnsClasses = computed(() => {
+    return columnsClassesService.value.classes
+  })
+
+  /**
+   * The `cols` property of the Columns service instance.
+   * 
+   * @type {object}
+   * @private
+   */
+  const cols = computed(() => {
+    return columnsClassesService.value.cols
   })
 
   // =============== METHODS ==============
@@ -57,6 +77,8 @@ const base = function(props, context, dependencies)
   }, { immediate: false, deep: true })
 
   return {
+    cols,
+    columnsClassesService,
     columnsClasses,
     updateColumns,
   }

@@ -1144,7 +1144,7 @@ export default {
     ]),
   },
   ElementInfo: {
-    container: 'inline-block w-3.5 h-3.5 form-bg-info relative ml-1 top-px cursor-pointer form-info-group h-full',
+    container: 'inline-block w-3.5 h-3.5 form-bg-info relative ml-1 cursor-pointer form-info-group',
     wrapper: 'absolute z-999 -mt-px opacity-0 invisible info-group-hover:opacity-100 info-group-hover:form-visible transition-opacity w-52 flex',
     wrapper_left: 'right-5 -top-0.5 justify-end',
     wrapper_right: 'left-5 -top-0.5 justify-start',
@@ -1158,14 +1158,60 @@ export default {
   },
   ElementLabel: {
     container: 'flex items-start',
-    container_sm: 'form-text-sm form-pr-gutter-sm form-pb-gutter/3-sm',
-    container_md: 'form-text form-pr-gutter form-pb-gutter/3',
-    container_lg: 'form-text-lg form-pr-gutter-lg form-pb-gutter/3-lg',
+    container_sm: 'form-text-sm',
+    container_md: 'form-text',
+    container_lg: 'form-text-lg',
+    container_vertical_sm: 'form-pb-gutter/3-sm form-pt-0 form-pr-0',
+    container_vertical_md: 'form-pb-gutter/3 form-pt-0 form-pr-0',
+    container_vertical_lg: 'form-pb-gutter/3-lg form-pt-0 form-pr-0',
+    container_vertical_sm_SM: 'sm:form-pb-gutter/3-sm sm:form-pt-0 sm:form-pr-0',
+    container_vertical_md_SM: 'sm:form-pb-gutter/3 sm:form-pt-0 sm:form-pr-0',
+    container_vertical_lg_SM: 'sm:form-pb-gutter/3-lg sm:form-pt-0 sm:form-pr-0',
+    container_vertical_sm_MD: 'md:form-pb-gutter/3-sm md:form-pt-0 md:form-pr-0',
+    container_vertical_md_MD: 'md:form-pb-gutter/3 md:form-pt-0 md:form-pr-0',
+    container_vertical_lg_MD: 'md:form-pb-gutter/3-lg md:form-pt-0 md:form-pr-0',
+    container_vertical_sm_LG: 'lg:form-pb-gutter/3-sm lg:form-pt-0 lg:form-pr-0',
+    container_vertical_md_LG: 'lg:form-pb-gutter/3 lg:form-pt-0 lg:form-pr-0',
+    container_vertical_lg_LG: 'lg:form-pb-gutter/3-lg lg:form-pt-0 lg:form-pr-0',
+    container_vertical_sm_XL: 'xl:form-pb-gutter/3-sm xl:form-pt-0 xl:form-pr-0',
+    container_vertical_md_XL: 'xl:form-pb-gutter/3 xl:form-pt-0 xl:form-pr-0',
+    container_vertical_lg_XL: 'xl:form-pb-gutter/3-lg xl:form-pt-0 xl:form-pr-0',
+    container_vertical_sm_2XL: '22xl:form-pb-gutter/3-sm 2xl:form-pt-0 2xl:form-pr-0',
+    container_vertical_md_2XL: '2xl:form-pb-gutter/3 2xl:form-pt-0 2xl:form-pr-0',
+    container_vertical_lg_2XL: '2xl:form-pb-gutter/3-lg 2xl:form-pt-0 2xl:form-pr-0',
+    container_horizontal_sm: 'form-pr-gutter-sm text-type:form-pt-input-border-sm pb-0',
+    container_horizontal_md: 'form-pr-gutter text-type:form-pt-input-border pb-0',
+    container_horizontal_lg: 'form-pr-gutter-lg text-type:form-pt-input-border-lg pb-0',
+    container_horizontal_sm_SM: 'sm:form-pr-gutter-sm sm:text-type:form-pt-input-border-sm sm:pb-0',
+    container_horizontal_md_SM: 'sm:form-pr-gutter sm:text-type:form-pt-input-border sm:pb-0',
+    container_horizontal_lg_SM: 'sm:form-pr-gutter-lg sm:text-type:form-pt-input-border-lg sm:pb-0',
+    container_horizontal_sm_MD: 'md:form-pr-gutter-sm md:text-type:form-pt-input-border-sm md:pb-0',
+    container_horizontal_md_MD: 'md:form-pr-gutter md:text-type:form-pt-input-border md:pb-0',
+    container_horizontal_lg_MD: 'md:form-pr-gutter-lg md:text-type:form-pt-input-border-lg md:pb-0',
+    container_horizontal_sm_LG: 'lg:form-pr-gutter-sm lg:text-type:form-pt-input-border-sm lg:pb-0',
+    container_horizontal_md_LG: 'lg:form-pr-gutter lg:text-type:form-pt-input-border lg:pb-0',
+    container_horizontal_lg_LG: 'lg:form-pr-gutter-lg lg:text-type:form-pt-input-border-lg lg:pb-0',
+    container_horizontal_sm_XL: 'xl:form-pr-gutter-sm xl:text-type:form-pt-input-border-sm xl:pb-0',
+    container_horizontal_md_XL: 'xl:form-pr-gutter xl:text-type:form-pt-input-border xl:pb-0',
+    container_horizontal_lg_XL: 'xl:form-pr-gutter-lg xl:text-type:form-pt-input-border-lg xl:pb-0',
+    container_horizontal_sm_2XL: '2xl:form-pr-gutter-sm 2xl:text-type:form-pt-input-border-sm 2xl:pb-0',
+    container_horizontal_md_2XL: '2xl:form-pr-gutter 2xl:text-type:form-pt-input-border 2xl:pb-0',
+    container_horizontal_lg_2XL: '2xl:form-pr-gutter-lg 2xl:text-type:form-pt-input-border-lg 2xl:pb-0',
     wrapper: '',
     $container: (classes, { el$, Size }) => ([
       classes.container,
       classes[`container_${Size}`],
       !el$.inline ? el$.columnsClasses.label : null,
+      el$.cols.default.label < 12 ? classes[`container_horizontal_${Size}`] : classes[`container_vertical_${Size}`],
+      ...(Object.keys(el$.cols).length > 1 ? (el$.$vueform.config.breakpoints||['sm', 'md', 'lg', 'xl', '2xl']).map((breakpoint) => {
+        if (!el$.cols[breakpoint]?.label) {
+          return null
+        }
+
+        return el$.cols[breakpoint].label < 12
+          ? classes[`container_horizontal_${Size}_${breakpoint.toUpperCase()}`].join(' ')
+          : classes[`container_vertical_${Size}_${breakpoint.toUpperCase()}`].join(' ')
+      }) : []),
     ]),
   },
   ElementLabelFloating: {

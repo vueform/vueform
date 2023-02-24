@@ -25,6 +25,7 @@ const config = {
   floatPlaceholders: true,
   displayErrors: true,
   displayMessages: true,
+  breakpoints: ['sm', 'md', 'lg', 'xl', '2xl'],
 
   /**
    * Localization
