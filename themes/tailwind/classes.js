@@ -1176,7 +1176,7 @@ export default {
     container_vertical_sm_XL: 'xl:form-pb-gutter/3-sm xl:form-pt-0 xl:form-pr-0',
     container_vertical_md_XL: 'xl:form-pb-gutter/3 xl:form-pt-0 xl:form-pr-0',
     container_vertical_lg_XL: 'xl:form-pb-gutter/3-lg xl:form-pt-0 xl:form-pr-0',
-    container_vertical_sm_2XL: '22xl:form-pb-gutter/3-sm 2xl:form-pt-0 2xl:form-pr-0',
+    container_vertical_sm_2XL: '2xl:form-pb-gutter/3-sm 2xl:form-pt-0 2xl:form-pr-0',
     container_vertical_md_2XL: '2xl:form-pb-gutter/3 2xl:form-pt-0 2xl:form-pr-0',
     container_vertical_lg_2XL: '2xl:form-pb-gutter/3-lg 2xl:form-pt-0 2xl:form-pr-0',
     container_horizontal_sm: 'form-pr-gutter-sm text-type:form-pt-input-border-sm pb-0',
