@@ -445,7 +445,7 @@ export default {
     ]),
   },
   CheckboxgroupElement_tabs: {
-    container: '',
+    container: 'form-text-type',
     wrapper: 'grid grid-flow-col form-shadow-input',
     wrapper_sm: 'form-radius-large-sm',
     wrapper_md: 'form-radius-large',
@@ -719,7 +719,7 @@ export default {
     ]),
   },
   RadiogroupElement_tabs: {
-    container: '',
+    container: ' form-text-type',
     wrapper: 'grid grid-flow-col grid form-shadow-input',
     wrapper_sm: 'form-radius-large-sm',
     wrapper_md: 'form-radius-large',
