@@ -170,7 +170,7 @@ const editor = {
 }
 
 const select = {
-  container: 'relative mx-auto w-full flex items-center justify-end box-border cursor-pointer outline-zero transition-input duration-200 border-solid form-border-width-input form-shadow-input',
+  container: 'relative mx-auto w-full flex items-center justify-end box-border cursor-pointer outline-zero transition-input duration-200 border-solid form-border-width-input form-shadow-input form-text-type',
   container_default: inputStates.default,
   container_disabled: inputStates.disabled,
   container_success: inputStates.success,
