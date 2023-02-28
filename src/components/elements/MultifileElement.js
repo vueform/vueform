@@ -61,7 +61,7 @@ export default {
     initial: {
       required: false,
       type: [Number],
-      default: 1,
+      default: 0,
       private: true,
     },
     disabled: {
