@@ -1040,7 +1040,7 @@ export default {
         "validate": {
           "public": true,
           "returns": "void",
-          "description": "Validates all elements (async)."
+          "description": "Validates all elements (async) which weren't validated before. If [`validateOn`](#option-validate-on) does not contain `change` it will validate all elements on each call."
         },
         "resetValidators": {
           "public": true,

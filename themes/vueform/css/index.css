@@ -1376,3 +1376,364 @@ form ::placeholder {
   overflow: hidden;
   clip: rect(0 0 0 0);
 }
+
+/*
+ * Label styles.
+ *
+ * Creating labels styles with responsive horizontal alternatives.
+ */
+
+.vf-label {
+  margin-bottom: 0;
+  display: flex;
+  align-items: flex-start;
+  font-size: var(--vf-font-size);
+  line-height: var(--vf-line-height);
+  letter-spacing: var(--vf-letter-spacing);
+}
+
+.vf-label-sm {
+  font-size: var(--vf-font-size-sm);
+  line-height: var(--vf-line-height-sm);
+  letter-spacing: var(--vf-letter-spacing-sm);
+}
+
+.vf-label-lg {
+  font-size: var(--vf-font-size-lg);
+  line-height: var(--vf-line-height-lg);
+  letter-spacing: var(--vf-letter-spacing-lg);
+}
+
+.vf-vertical-label {
+  padding-top: 0;
+  padding-right: 0;
+  padding-bottom: calc(var(--vf-gutter) / 3);
+}
+
+.vf-vertical-label-sm {
+  padding-top: 0;
+  padding-right: 0;
+  padding-bottom: calc(var(--vf-gutter-sm) / 3);
+}
+
+.vf-vertical-label-lg {
+  padding-top: 0;
+  padding-right: 0;
+  padding-bottom: calc(var(--vf-gutter-lg) / 3);
+}
+
+.vf-text-type .vf-horizontal-label {
+  padding-top: calc(var(--vf-border-width-input-t) + var(--vf-py-input));
+  padding-right: var(--vf-gutter);
+  padding-bottom: 0;
+}
+
+.vf-text-type .vf-horizontal-label-sm {
+  padding-top: calc(var(--vf-border-width-input-t) + var(--vf-py-input-sm));
+  padding-right: var(--vf-gutter-sm);
+  padding-bottom: 0;
+}
+
+.vf-text-type .vf-horizontal-label-lg {
+  padding-top: calc(var(--vf-border-width-input-t) + var(--vf-py-input-lg));
+  padding-right: var(--vf-gutter-lg);
+  padding-bottom: 0;
+}
+
+.vf-text-type .vf-xs\:vf-vertical-label,
+:not(.vf-text-type) .vf-xs\:vf-vertical-label {
+  padding-top: 0;
+  padding-right: 0;
+  padding-bottom: calc(var(--vf-gutter) / 3);
+}
+
+.vf-text-type .vf-xs\:vf-vertical-label-sm,
+:not(.vf-text-type) .vf-xs\:vf-vertical-label-sm {
+  padding-top: 0;
+  padding-right: 0;
+  padding-bottom: calc(var(--vf-gutter-sm) / 3);
+}
+
+.vf-text-type .vf-xs\:vf-vertical-label-lg,
+:not(.vf-text-type) .vf-xs\:vf-vertical-label-lg {
+  padding-top: 0;
+  padding-right: 0;
+  padding-bottom: calc(var(--vf-gutter-lg) / 3);
+}
+
+.vf-xs\:vf-horizontal-label {
+  padding-bottom: 0;
+}
+
+.vf-xs\:vf-horizontal-label-sm {
+  padding-bottom: 0;
+}
+
+.vf-xs\:vf-horizontal-label-lg {
+  padding-bottom: 0;
+}
+
+.vf-text-type .vf-xs\:vf-horizontal-label {
+  padding-top: calc(var(--vf-border-width-input-t) + var(--vf-py-input));
+  padding-right: var(--vf-gutter);
+}
+
+.vf-text-type .vf-xs\:vf-horizontal-label-sm {
+  padding-top: calc(var(--vf-border-width-input-t) + var(--vf-py-input-sm));
+  padding-right: var(--vf-gutter-sm);
+}
+
+.vf-text-type .vf-xs\:vf-horizontal-label-lg {
+  padding-top: calc(var(--vf-border-width-input-t) + var(--vf-py-input-lg));
+  padding-right: var(--vf-gutter-lg);
+}
+
+@media (min-width: 640px) {
+  .vf-text-type .vf-sm\:vf-vertical-label,
+  :not(.vf-text-type) .vf-sm\:vf-vertical-label {
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: calc(var(--vf-gutter) / 3);
+  }
+
+  .vf-text-type .vf-sm\:vf-vertical-label-sm,
+  :not(.vf-text-type) .vf-sm\:vf-vertical-label-sm {
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: calc(var(--vf-gutter-sm) / 3);
+  }
+
+  .vf-text-type .vf-sm\:vf-vertical-label-lg,
+  :not(.vf-text-type) .vf-sm\:vf-vertical-label-lg {
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: calc(var(--vf-gutter-lg) / 3);
+  }
+
+  .vf-sm\:vf-horizontal-label {
+    padding-bottom: 0;
+  }
+
+  .vf-sm\:vf-horizontal-label-sm {
+    padding-bottom: 0;
+  }
+
+  .vf-sm\:vf-horizontal-label-lg {
+    padding-bottom: 0;
+  }
+
+  .vf-text-type .vf-sm\:vf-horizontal-label {
+    padding-top: calc(var(--vf-border-width-input-t) + var(--vf-py-input));
+    padding-right: var(--vf-gutter);
+  }
+
+  .vf-text-type .vf-sm\:vf-horizontal-label-sm {
+    padding-top: calc(var(--vf-border-width-input-t) + var(--vf-py-input-sm));
+    padding-right: var(--vf-gutter-sm);
+  }
+
+  .vf-text-type .vf-sm\:vf-horizontal-label-lg {
+    padding-top: calc(var(--vf-border-width-input-t) + var(--vf-py-input-lg));
+    padding-right: var(--vf-gutter-lg);
+  }
+}
+
+@media (min-width: 768px) {
+  .vf-text-type .vf-md\:vf-vertical-label,
+  :not(.vf-text-type) .vf-md\:vf-vertical-label {
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: calc(var(--vf-gutter) / 3);
+  }
+
+  .vf-text-type .vf-md\:vf-vertical-label-sm,
+  :not(.vf-text-type) .vf-md\:vf-vertical-label-sm {
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: calc(var(--vf-gutter-sm) / 3);
+  }
+
+  .vf-text-type .vf-md\:vf-vertical-label-lg,
+  :not(.vf-text-type) .vf-md\:vf-vertical-label-lg {
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: calc(var(--vf-gutter-lg) / 3);
+  }
+
+  .vf-md\:vf-horizontal-label {
+    padding-bottom: 0;
+  }
+
+  .vf-md\:vf-horizontal-label-sm {
+    padding-bottom: 0;
+  }
+
+  .vf-md\:vf-horizontal-label-lg {
+    padding-bottom: 0;
+  }
+
+  .vf-text-type .vf-md\:vf-horizontal-label {
+    padding-top: calc(var(--vf-border-width-input-t) + var(--vf-py-input));
+    padding-right: var(--vf-gutter);
+  }
+
+  .vf-text-type .vf-md\:vf-horizontal-label-sm {
+    padding-top: calc(var(--vf-border-width-input-t) + var(--vf-py-input-sm));
+    padding-right: var(--vf-gutter-sm);
+  }
+
+  .vf-text-type .vf-md\:vf-horizontal-label-lg {
+    padding-top: calc(var(--vf-border-width-input-t) + var(--vf-py-input-lg));
+    padding-right: var(--vf-gutter-lg);
+  }
+}
+
+@media (min-width: 1024px) {
+  .vf-text-type .vf-lg\:vf-vertical-label,
+  :not(.vf-text-type) .vf-lg\:vf-vertical-label {
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: calc(var(--vf-gutter) / 3);
+  }
+
+  .vf-text-type .vf-lg\:vf-vertical-label-sm,
+  :not(.vf-text-type) .vf-lg\:vf-vertical-label-sm {
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: calc(var(--vf-gutter-sm) / 3);
+  }
+
+  .vf-text-type .vf-lg\:vf-vertical-label-lg,
+  :not(.vf-text-type) .vf-lg\:vf-vertical-label-lg {
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: calc(var(--vf-gutter-lg) / 3);
+  }
+
+  .vf-lg\:vf-horizontal-label {
+    padding-bottom: 0;
+  }
+
+  .vf-lg\:vf-horizontal-label-sm {
+    padding-bottom: 0;
+  }
+
+  .vf-lg\:vf-horizontal-label-lg {
+    padding-bottom: 0;
+  }
+
+  .vf-text-type .vf-lg\:vf-horizontal-label {
+    padding-top: calc(var(--vf-border-width-input-t) + var(--vf-py-input));
+    padding-right: var(--vf-gutter);
+  }
+
+  .vf-text-type .vf-lg\:vf-horizontal-label-sm {
+    padding-top: calc(var(--vf-border-width-input-t) + var(--vf-py-input-sm));
+    padding-right: var(--vf-gutter-sm);
+  }
+
+  .vf-text-type .vf-lg\:vf-horizontal-label-lg {
+    padding-top: calc(var(--vf-border-width-input-t) + var(--vf-py-input-lg));
+    padding-right: var(--vf-gutter-lg);
+  }
+}
+
+@media (min-width: 1280px) {
+  .vf-text-type .vf-xl\:vf-vertical-label,
+  :not(.vf-text-type) .vf-xl\:vf-vertical-label {
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: calc(var(--vf-gutter) / 3);
+  }
+
+  .vf-text-type .vf-xl\:vf-vertical-label-sm,
+  :not(.vf-text-type) .vf-xl\:vf-vertical-label-sm {
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: calc(var(--vf-gutter-sm) / 3);
+  }
+
+  .vf-text-type .vf-xl\:vf-vertical-label-lg,
+  :not(.vf-text-type) .vf-xl\:vf-vertical-label-lg {
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: calc(var(--vf-gutter-lg) / 3);
+  }
+
+  .vf-xl\:vf-horizontal-label {
+    padding-bottom: 0;
+  }
+
+  .vf-xl\:vf-horizontal-label-sm {
+    padding-bottom: 0;
+  }
+
+  .vf-xl\:vf-horizontal-label-lg {
+    padding-bottom: 0;
+  }
+
+  .vf-text-type .vf-xl\:vf-horizontal-label {
+    padding-top: calc(var(--vf-border-width-input-t) + var(--vf-py-input));
+    padding-right: var(--vf-gutter);
+  }
+
+  .vf-text-type .vf-xl\:vf-horizontal-label-sm {
+    padding-top: calc(var(--vf-border-width-input-t) + var(--vf-py-input-sm));
+    padding-right: var(--vf-gutter-sm);
+  }
+
+  .vf-text-type .vf-xl\:vf-horizontal-label-lg {
+    padding-top: calc(var(--vf-border-width-input-t) + var(--vf-py-input-lg));
+    padding-right: var(--vf-gutter-lg);
+  }
+}
+
+@media (min-width: 1536px) {
+  .vf-text-type .vf-2xl\:vf-vertical-label,
+  :not(.vf-text-type) .vf-2xl\:vf-vertical-label {
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: calc(var(--vf-gutter) / 3);
+  }
+
+  .vf-text-type .vf-2xl\:vf-vertical-label-sm,
+  :not(.vf-text-type) .vf-2xl\:vf-vertical-label-sm {
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: calc(var(--vf-gutter-sm) / 3);
+  }
+
+  .vf-text-type .vf-2xl\:vf-vertical-label-lg,
+  :not(.vf-text-type) .vf-2xl\:vf-vertical-label-lg {
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: calc(var(--vf-gutter-lg) / 3);
+  }
+
+  .vf-2xl\:vf-horizontal-label {
+    padding-bottom: 0;
+  }
+
+  .vf-2xl\:vf-horizontal-label-sm {
+    padding-bottom: 0;
+  }
+
+  .vf-2xl\:vf-horizontal-label-lg {
+    padding-bottom: 0;
+  }
+
+  .vf-text-type .vf-2xl\:vf-horizontal-label {
+    padding-top: calc(var(--vf-border-width-input-t) + var(--vf-py-input));
+    padding-right: var(--vf-gutter);
+  }
+
+  .vf-text-type .vf-2xl\:vf-horizontal-label-sm {
+    padding-top: calc(var(--vf-border-width-input-t) + var(--vf-py-input-sm));
+    padding-right: var(--vf-gutter-sm);
+  }
+
+  .vf-text-type .vf-2xl\:vf-horizontal-label-lg {
+    padding-top: calc(var(--vf-border-width-input-t) + var(--vf-py-input-lg));
+    padding-right: var(--vf-gutter-lg);
+  }
+}

@@ -55,6 +55,51 @@ export default {
       }
     }
   },
+  keydown: {
+    default: {
+      description: 'Triggered when on keydown.',
+      params: {
+        Event: {
+          description: 'the Event object',
+          types: ['Event']
+        },
+        el$: {
+          description: 'the element\'s component',
+          types: ['component']
+        },
+      }
+    }
+  },
+  keyup: {
+    default: {
+      description: 'Triggered when on keyup.',
+      params: {
+        Event: {
+          description: 'the Event object',
+          types: ['Event']
+        },
+        el$: {
+          description: 'the element\'s component',
+          types: ['component']
+        },
+      }
+    }
+  },
+  keypress: {
+    default: {
+      description: 'Triggered when on keypress.',
+      params: {
+        Event: {
+          description: 'the Event object',
+          types: ['Event']
+        },
+        el$: {
+          description: 'the element\'s component',
+          types: ['component']
+        },
+      }
+    }
+  },
   click: {
     default: {
       description: 'Triggered when the button is clicked.',

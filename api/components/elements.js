@@ -627,6 +627,20 @@ module.exports = {
         description: 'The classes instance (for testing purpose).',
         private: true,
       },
+      cols: {
+        types: [
+          'object',
+        ],
+        description: 'The `cols` property of the Columns service instance.',
+        private: true,
+      },
+      columnsClassesService: {
+        types: [
+          'Columns',
+        ],
+        description: 'The classes service instance.',
+        private: true,
+      },
       columnsClasses: {
         types: [
           'object',
@@ -1728,6 +1742,20 @@ module.exports = {
           'MergeClasses',
         ],
         description: 'The classes instance (for testing purpose).',
+        private: true,
+      },
+      cols: {
+        types: [
+          'object',
+        ],
+        description: 'The `cols` property of the Columns service instance.',
+        private: true,
+      },
+      columnsClassesService: {
+        types: [
+          'Columns',
+        ],
+        description: 'The classes service instance.',
         private: true,
       },
       columnsClasses: {
@@ -3042,6 +3070,20 @@ module.exports = {
           'MergeClasses',
         ],
         description: 'The classes instance (for testing purpose).',
+        private: true,
+      },
+      cols: {
+        types: [
+          'object',
+        ],
+        description: 'The `cols` property of the Columns service instance.',
+        private: true,
+      },
+      columnsClassesService: {
+        types: [
+          'Columns',
+        ],
+        description: 'The classes service instance.',
         private: true,
       },
       columnsClasses: {
@@ -4626,6 +4668,20 @@ module.exports = {
         description: 'The classes instance (for testing purpose).',
         private: true,
       },
+      cols: {
+        types: [
+          'object',
+        ],
+        description: 'The `cols` property of the Columns service instance.',
+        private: true,
+      },
+      columnsClassesService: {
+        types: [
+          'Columns',
+        ],
+        description: 'The classes service instance.',
+        private: true,
+      },
       columnsClasses: {
         types: [
           'object',
@@ -6090,6 +6146,20 @@ module.exports = {
         description: 'The classes instance (for testing purpose).',
         private: true,
       },
+      cols: {
+        types: [
+          'object',
+        ],
+        description: 'The `cols` property of the Columns service instance.',
+        private: true,
+      },
+      columnsClassesService: {
+        types: [
+          'Columns',
+        ],
+        description: 'The classes service instance.',
+        private: true,
+      },
       columnsClasses: {
         types: [
           'object',
@@ -7531,6 +7601,20 @@ module.exports = {
           'MergeClasses',
         ],
         description: 'The classes instance (for testing purpose).',
+        private: true,
+      },
+      cols: {
+        types: [
+          'object',
+        ],
+        description: 'The `cols` property of the Columns service instance.',
+        private: true,
+      },
+      columnsClassesService: {
+        types: [
+          'Columns',
+        ],
+        description: 'The classes service instance.',
         private: true,
       },
       columnsClasses: {
@@ -9122,6 +9206,20 @@ module.exports = {
         description: 'The classes instance (for testing purpose).',
         private: true,
       },
+      cols: {
+        types: [
+          'object',
+        ],
+        description: 'The `cols` property of the Columns service instance.',
+        private: true,
+      },
+      columnsClassesService: {
+        types: [
+          'Columns',
+        ],
+        description: 'The classes service instance.',
+        private: true,
+      },
       columnsClasses: {
         types: [
           'object',
@@ -10557,6 +10655,20 @@ module.exports = {
           'MergeClasses',
         ],
         description: 'The classes instance (for testing purpose).',
+        private: true,
+      },
+      cols: {
+        types: [
+          'object',
+        ],
+        description: 'The `cols` property of the Columns service instance.',
+        private: true,
+      },
+      columnsClassesService: {
+        types: [
+          'Columns',
+        ],
+        description: 'The classes service instance.',
         private: true,
       },
       columnsClasses: {
@@ -12791,6 +12903,20 @@ module.exports = {
         description: 'The classes instance (for testing purpose).',
         private: true,
       },
+      cols: {
+        types: [
+          'object',
+        ],
+        description: 'The `cols` property of the Columns service instance.',
+        private: true,
+      },
+      columnsClassesService: {
+        types: [
+          'Columns',
+        ],
+        description: 'The classes service instance.',
+        private: true,
+      },
       columnsClasses: {
         types: [
           'object',
@@ -14398,6 +14524,20 @@ module.exports = {
         description: 'The classes instance (for testing purpose).',
         private: true,
       },
+      cols: {
+        types: [
+          'object',
+        ],
+        description: 'The `cols` property of the Columns service instance.',
+        private: true,
+      },
+      columnsClassesService: {
+        types: [
+          'Columns',
+        ],
+        description: 'The classes service instance.',
+        private: true,
+      },
       columnsClasses: {
         types: [
           'object',
@@ -15525,7 +15665,7 @@ module.exports = {
       },
       initial: {
         required: 'false',
-        default: '1',
+        default: '0',
         types: [
           'number',
         ],
@@ -16002,6 +16142,20 @@ module.exports = {
           'MergeClasses',
         ],
         description: 'The classes instance (for testing purpose).',
+        private: true,
+      },
+      cols: {
+        types: [
+          'object',
+        ],
+        description: 'The `cols` property of the Columns service instance.',
+        private: true,
+      },
+      columnsClassesService: {
+        types: [
+          'Columns',
+        ],
+        description: 'The classes service instance.',
         private: true,
       },
       columnsClasses: {
@@ -18064,6 +18218,20 @@ module.exports = {
         description: 'The classes instance (for testing purpose).',
         private: true,
       },
+      cols: {
+        types: [
+          'object',
+        ],
+        description: 'The `cols` property of the Columns service instance.',
+        private: true,
+      },
+      columnsClassesService: {
+        types: [
+          'Columns',
+        ],
+        description: 'The classes service instance.',
+        private: true,
+      },
       columnsClasses: {
         types: [
           'object',
@@ -19756,6 +19924,20 @@ module.exports = {
         description: 'The classes instance (for testing purpose).',
         private: true,
       },
+      cols: {
+        types: [
+          'object',
+        ],
+        description: 'The `cols` property of the Columns service instance.',
+        private: true,
+      },
+      columnsClassesService: {
+        types: [
+          'Columns',
+        ],
+        description: 'The classes service instance.',
+        private: true,
+      },
       columnsClasses: {
         types: [
           'object',
@@ -21053,6 +21235,20 @@ module.exports = {
           'MergeClasses',
         ],
         description: 'The classes instance (for testing purpose).',
+        private: true,
+      },
+      cols: {
+        types: [
+          'object',
+        ],
+        description: 'The `cols` property of the Columns service instance.',
+        private: true,
+      },
+      columnsClassesService: {
+        types: [
+          'Columns',
+        ],
+        description: 'The classes service instance.',
         private: true,
       },
       columnsClasses: {
@@ -22375,6 +22571,20 @@ module.exports = {
           'MergeClasses',
         ],
         description: 'The classes instance (for testing purpose).',
+        private: true,
+      },
+      cols: {
+        types: [
+          'object',
+        ],
+        description: 'The `cols` property of the Columns service instance.',
+        private: true,
+      },
+      columnsClassesService: {
+        types: [
+          'Columns',
+        ],
+        description: 'The classes service instance.',
         private: true,
       },
       columnsClasses: {
@@ -24208,6 +24418,20 @@ module.exports = {
         description: 'The classes instance (for testing purpose).',
         private: true,
       },
+      cols: {
+        types: [
+          'object',
+        ],
+        description: 'The `cols` property of the Columns service instance.',
+        private: true,
+      },
+      columnsClassesService: {
+        types: [
+          'Columns',
+        ],
+        description: 'The classes service instance.',
+        private: true,
+      },
       columnsClasses: {
         types: [
           'object',
@@ -25963,6 +26187,20 @@ module.exports = {
         description: 'The classes instance (for testing purpose).',
         private: true,
       },
+      cols: {
+        types: [
+          'object',
+        ],
+        description: 'The `cols` property of the Columns service instance.',
+        private: true,
+      },
+      columnsClassesService: {
+        types: [
+          'Columns',
+        ],
+        description: 'The classes service instance.',
+        private: true,
+      },
       columnsClasses: {
         types: [
           'object',
@@ -27132,6 +27370,20 @@ module.exports = {
         description: 'The classes instance (for testing purpose).',
         private: true,
       },
+      cols: {
+        types: [
+          'object',
+        ],
+        description: 'The `cols` property of the Columns service instance.',
+        private: true,
+      },
+      columnsClassesService: {
+        types: [
+          'Columns',
+        ],
+        description: 'The classes service instance.',
+        private: true,
+      },
       columnsClasses: {
         types: [
           'object',
@@ -28249,6 +28501,20 @@ module.exports = {
           'MergeClasses',
         ],
         description: 'The classes instance (for testing purpose).',
+        private: true,
+      },
+      cols: {
+        types: [
+          'object',
+        ],
+        description: 'The `cols` property of the Columns service instance.',
+        private: true,
+      },
+      columnsClassesService: {
+        types: [
+          'Columns',
+        ],
+        description: 'The classes service instance.',
         private: true,
       },
       columnsClasses: {
@@ -29754,6 +30020,20 @@ module.exports = {
         description: 'The classes instance (for testing purpose).',
         private: true,
       },
+      cols: {
+        types: [
+          'object',
+        ],
+        description: 'The `cols` property of the Columns service instance.',
+        private: true,
+      },
+      columnsClassesService: {
+        types: [
+          'Columns',
+        ],
+        description: 'The classes service instance.',
+        private: true,
+      },
       columnsClasses: {
         types: [
           'object',
@@ -30208,6 +30488,48 @@ module.exports = {
         },
         private: true,
       },
+      handleKeydown: {
+        description: 'Handles `keydown` event.',
+        returns: 'void',
+        params: {
+          e: {
+            types: [
+              'Event',
+            ],
+            required: 'true',
+            description: '',
+          },
+        },
+        private: true,
+      },
+      handleKeyup: {
+        description: 'Handles `keyup` event.',
+        returns: 'void',
+        params: {
+          e: {
+            types: [
+              'Event',
+            ],
+            required: 'true',
+            description: '',
+          },
+        },
+        private: true,
+      },
+      handleKeypress: {
+        description: 'Handles `keypress` event.',
+        returns: 'void',
+        params: {
+          e: {
+            types: [
+              'Event',
+            ],
+            required: 'true',
+            description: '',
+          },
+        },
+        private: true,
+      },
       validate: {
         description: 'Checks each validation rule for the element in every language (async).',
         returns: 'void',
@@ -30321,6 +30643,57 @@ module.exports = {
       'blur': {
         description: 'Triggered when the input is blurred.',
         params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'keydown': {
+        description: 'Triggered when on keydown.',
+        params: {
+          Event: {
+            description: 'the Event object',
+            types: [
+              'Event',
+            ]
+          },
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'keyup': {
+        description: 'Triggered when on keyup.',
+        params: {
+          Event: {
+            description: 'the Event object',
+            types: [
+              'Event',
+            ]
+          },
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'keypress': {
+        description: 'Triggered when on keypress.',
+        params: {
+          Event: {
+            description: 'the Event object',
+            types: [
+              'Event',
+            ]
+          },
           el$: {
             description: 'the element&apos;s component',
             types: [
@@ -31217,6 +31590,20 @@ module.exports = {
         description: 'The classes instance (for testing purpose).',
         private: true,
       },
+      cols: {
+        types: [
+          'object',
+        ],
+        description: 'The `cols` property of the Columns service instance.',
+        private: true,
+      },
+      columnsClassesService: {
+        types: [
+          'Columns',
+        ],
+        description: 'The classes service instance.',
+        private: true,
+      },
       columnsClasses: {
         types: [
           'object',
@@ -31669,6 +32056,48 @@ module.exports = {
         },
         private: true,
       },
+      handleKeydown: {
+        description: 'Handles `keydown` event.',
+        returns: 'void',
+        params: {
+          e: {
+            types: [
+              'Event',
+            ],
+            required: 'true',
+            description: '',
+          },
+        },
+        private: true,
+      },
+      handleKeyup: {
+        description: 'Handles `keyup` event.',
+        returns: 'void',
+        params: {
+          e: {
+            types: [
+              'Event',
+            ],
+            required: 'true',
+            description: '',
+          },
+        },
+        private: true,
+      },
+      handleKeypress: {
+        description: 'Handles `keypress` event.',
+        returns: 'void',
+        params: {
+          e: {
+            types: [
+              'Event',
+            ],
+            required: 'true',
+            description: '',
+          },
+        },
+        private: true,
+      },
       validate: {
         description: 'Checks each validation rule for the element in every language (async).',
         returns: 'void',
@@ -31782,6 +32211,57 @@ module.exports = {
       'blur': {
         description: 'Triggered when the input is blurred.',
         params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'keydown': {
+        description: 'Triggered when on keydown.',
+        params: {
+          Event: {
+            description: 'the Event object',
+            types: [
+              'Event',
+            ]
+          },
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'keyup': {
+        description: 'Triggered when on keyup.',
+        params: {
+          Event: {
+            description: 'the Event object',
+            types: [
+              'Event',
+            ]
+          },
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'keypress': {
+        description: 'Triggered when on keypress.',
+        params: {
+          Event: {
+            description: 'the Event object',
+            types: [
+              'Event',
+            ]
+          },
           el$: {
             description: 'the element&apos;s component',
             types: [
@@ -33078,6 +33558,20 @@ module.exports = {
           'MergeClasses',
         ],
         description: 'The classes instance (for testing purpose).',
+        private: true,
+      },
+      cols: {
+        types: [
+          'object',
+        ],
+        description: 'The `cols` property of the Columns service instance.',
+        private: true,
+      },
+      columnsClassesService: {
+        types: [
+          'Columns',
+        ],
+        description: 'The classes service instance.',
         private: true,
       },
       columnsClasses: {
@@ -34898,6 +35392,20 @@ module.exports = {
         description: 'The classes instance (for testing purpose).',
         private: true,
       },
+      cols: {
+        types: [
+          'object',
+        ],
+        description: 'The `cols` property of the Columns service instance.',
+        private: true,
+      },
+      columnsClassesService: {
+        types: [
+          'Columns',
+        ],
+        description: 'The classes service instance.',
+        private: true,
+      },
       columnsClasses: {
         types: [
           'object',
@@ -35338,6 +35846,48 @@ module.exports = {
         },
         private: true,
       },
+      handleKeydown: {
+        description: 'Handles `keydown` event.',
+        returns: 'void',
+        params: {
+          e: {
+            types: [
+              'Event',
+            ],
+            required: 'true',
+            description: '',
+          },
+        },
+        private: true,
+      },
+      handleKeyup: {
+        description: 'Handles `keyup` event.',
+        returns: 'void',
+        params: {
+          e: {
+            types: [
+              'Event',
+            ],
+            required: 'true',
+            description: '',
+          },
+        },
+        private: true,
+      },
+      handleKeypress: {
+        description: 'Handles `keypress` event.',
+        returns: 'void',
+        params: {
+          e: {
+            types: [
+              'Event',
+            ],
+            required: 'true',
+            description: '',
+          },
+        },
+        private: true,
+      },
       validate: {
         description: 'Checks each validation rule for the element (async).',
         returns: 'void',
@@ -35432,6 +35982,57 @@ module.exports = {
       'blur': {
         description: 'Triggered when the input is blurred.',
         params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'keydown': {
+        description: 'Triggered when on keydown.',
+        params: {
+          Event: {
+            description: 'the Event object',
+            types: [
+              'Event',
+            ]
+          },
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'keyup': {
+        description: 'Triggered when on keyup.',
+        params: {
+          Event: {
+            description: 'the Event object',
+            types: [
+              'Event',
+            ]
+          },
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'keypress': {
+        description: 'Triggered when on keypress.',
+        params: {
+          Event: {
+            description: 'the Event object',
+            types: [
+              'Event',
+            ]
+          },
           el$: {
             description: 'the element&apos;s component',
             types: [
@@ -36341,6 +36942,20 @@ module.exports = {
         description: 'The classes instance (for testing purpose).',
         private: true,
       },
+      cols: {
+        types: [
+          'object',
+        ],
+        description: 'The `cols` property of the Columns service instance.',
+        private: true,
+      },
+      columnsClassesService: {
+        types: [
+          'Columns',
+        ],
+        description: 'The classes service instance.',
+        private: true,
+      },
       columnsClasses: {
         types: [
           'object',
@@ -36779,6 +37394,48 @@ module.exports = {
         },
         private: true,
       },
+      handleKeydown: {
+        description: 'Handles `keydown` event.',
+        returns: 'void',
+        params: {
+          e: {
+            types: [
+              'Event',
+            ],
+            required: 'true',
+            description: '',
+          },
+        },
+        private: true,
+      },
+      handleKeyup: {
+        description: 'Handles `keyup` event.',
+        returns: 'void',
+        params: {
+          e: {
+            types: [
+              'Event',
+            ],
+            required: 'true',
+            description: '',
+          },
+        },
+        private: true,
+      },
+      handleKeypress: {
+        description: 'Handles `keypress` event.',
+        returns: 'void',
+        params: {
+          e: {
+            types: [
+              'Event',
+            ],
+            required: 'true',
+            description: '',
+          },
+        },
+        private: true,
+      },
       validate: {
         description: 'Checks each validation rule for the element (async).',
         returns: 'void',
@@ -36873,6 +37530,57 @@ module.exports = {
       'blur': {
         description: 'Triggered when the input is blurred.',
         params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'keydown': {
+        description: 'Triggered when on keydown.',
+        params: {
+          Event: {
+            description: 'the Event object',
+            types: [
+              'Event',
+            ]
+          },
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'keyup': {
+        description: 'Triggered when on keyup.',
+        params: {
+          Event: {
+            description: 'the Event object',
+            types: [
+              'Event',
+            ]
+          },
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'keypress': {
+        description: 'Triggered when on keypress.',
+        params: {
+          Event: {
+            description: 'the Event object',
+            types: [
+              'Event',
+            ]
+          },
           el$: {
             description: 'the element&apos;s component',
             types: [
@@ -37741,6 +38449,20 @@ module.exports = {
           'MergeClasses',
         ],
         description: 'The classes instance (for testing purpose).',
+        private: true,
+      },
+      cols: {
+        types: [
+          'object',
+        ],
+        description: 'The `cols` property of the Columns service instance.',
+        private: true,
+      },
+      columnsClassesService: {
+        types: [
+          'Columns',
+        ],
+        description: 'The classes service instance.',
         private: true,
       },
       columnsClasses: {

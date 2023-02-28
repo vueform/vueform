@@ -117,6 +117,45 @@ export default {
         }
       }
     },
+    "button": {
+      "computed": {
+        "descriptionId": {
+          "public": false,
+          "types": [
+            "string"
+          ],
+          "description": "The `id` of the related description component."
+        },
+        "labelId": {
+          "public": false,
+          "types": [
+            "string"
+          ],
+          "description": "The `id` of the related label component."
+        },
+        "infoId": {
+          "public": false,
+          "types": [
+            "string"
+          ],
+          "description": "The `id` of the related description component."
+        },
+        "errorId": {
+          "public": false,
+          "types": [
+            "string"
+          ],
+          "description": "The `id` of the related error component."
+        },
+        "aria": {
+          "public": true,
+          "types": [
+            "object"
+          ],
+          "description": "The `aria-*` attributes of the input."
+        }
+      }
+    },
     "static": {
       "computed": {
         "descriptionId": {
@@ -1393,6 +1432,20 @@ export default {
   "columns": {
     "base": {
       "computed": {
+        "cols": {
+          "public": false,
+          "types": [
+            "object"
+          ],
+          "description": "The `cols` property of the Columns service instance."
+        },
+        "columnsClassesService": {
+          "public": false,
+          "types": [
+            "Columns"
+          ],
+          "description": "The classes service instance."
+        },
         "columnsClasses": {
           "public": false,
           "types": [
@@ -3144,6 +3197,54 @@ export default {
           "public": false,
           "returns": "void",
           "description": "Handles `input` event.",
+          "params": {
+            "e": {
+              "types": [
+                "Event"
+              ],
+              "required": true,
+              "description": ""
+            }
+          }
+        }
+      }
+    }
+  },
+  "handleKeyEvents": {
+    "base": {
+      "methods": {
+        "handleKeydown": {
+          "public": false,
+          "returns": "void",
+          "description": "Handles `keydown` event.",
+          "params": {
+            "e": {
+              "types": [
+                "Event"
+              ],
+              "required": true,
+              "description": ""
+            }
+          }
+        },
+        "handleKeyup": {
+          "public": false,
+          "returns": "void",
+          "description": "Handles `keyup` event.",
+          "params": {
+            "e": {
+              "types": [
+                "Event"
+              ],
+              "required": true,
+              "description": ""
+            }
+          }
+        },
+        "handleKeypress": {
+          "public": false,
+          "returns": "void",
+          "description": "Handles `keypress` event.",
           "params": {
             "e": {
               "types": [

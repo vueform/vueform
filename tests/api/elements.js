@@ -1,7 +1,7 @@
 export default {
   "button": {
     "features": [
-      "a11y_static",
+      "a11y_button",
       "baseElement_static",
       "button",
       "classes",
@@ -1051,6 +1051,7 @@ export default {
       "genericName",
       "handleBlur",
       "handleInput",
+      "handleKeyEvents",
       "input",
       "label",
       "layout",
@@ -1077,6 +1078,9 @@ export default {
     "events": [
       "change",
       "blur",
+      "keydown",
+      "keyup",
+      "keypress",
       "beforeCreate",
       "created",
       "beforeMount",
@@ -1108,6 +1112,7 @@ export default {
       "genericName",
       "handleBlur",
       "handleInput",
+      "handleKeyEvents",
       "input",
       "label",
       "layout",
@@ -1135,6 +1140,9 @@ export default {
     "events": [
       "change",
       "blur",
+      "keydown",
+      "keyup",
+      "keypress",
       "beforeCreate",
       "created",
       "beforeMount",
@@ -1277,6 +1285,7 @@ export default {
       "genericName",
       "handleBlur",
       "handleInput",
+      "handleKeyEvents",
       "input",
       "label",
       "languages",
@@ -1304,6 +1313,9 @@ export default {
     "events": [
       "change",
       "blur",
+      "keydown",
+      "keyup",
+      "keypress",
       "beforeCreate",
       "created",
       "beforeMount",
@@ -1336,6 +1348,7 @@ export default {
       "genericName",
       "handleBlur",
       "handleInput",
+      "handleKeyEvents",
       "input",
       "label",
       "languages",
@@ -1364,6 +1377,9 @@ export default {
     "events": [
       "change",
       "blur",
+      "keydown",
+      "keyup",
+      "keypress",
       "beforeCreate",
       "created",
       "beforeMount",
