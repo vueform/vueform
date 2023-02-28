@@ -965,7 +965,7 @@ const base = function(props, context, dependencies = {})
   }
 
   /**
-   * Validates all elements (async).
+   * Validates all elements (async) which weren't validated before. If [`validateOn`](#option-validate-on) does not contain `change` it will validate all elements on each call.
    * 
    * @public
    * @returns {void}
