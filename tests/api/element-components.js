@@ -30652,7 +30652,7 @@ module.exports = {
        },
       },
       'keydown': {
-        description: 'Triggered when on keydown.',
+        description: 'Triggered on keydown.',
         params: {
           Event: {
             description: 'the Event object',
@@ -30669,7 +30669,7 @@ module.exports = {
        },
       },
       'keyup': {
-        description: 'Triggered when on keyup.',
+        description: 'Triggered on keyup.',
         params: {
           Event: {
             description: 'the Event object',
@@ -30686,7 +30686,7 @@ module.exports = {
        },
       },
       'keypress': {
-        description: 'Triggered when on keypress.',
+        description: 'Triggered on keypress.',
         params: {
           Event: {
             description: 'the Event object',
@@ -32220,7 +32220,7 @@ module.exports = {
        },
       },
       'keydown': {
-        description: 'Triggered when on keydown.',
+        description: 'Triggered on keydown.',
         params: {
           Event: {
             description: 'the Event object',
@@ -32237,7 +32237,7 @@ module.exports = {
        },
       },
       'keyup': {
-        description: 'Triggered when on keyup.',
+        description: 'Triggered on keyup.',
         params: {
           Event: {
             description: 'the Event object',
@@ -32254,7 +32254,7 @@ module.exports = {
        },
       },
       'keypress': {
-        description: 'Triggered when on keypress.',
+        description: 'Triggered on keypress.',
         params: {
           Event: {
             description: 'the Event object',
@@ -35991,7 +35991,7 @@ module.exports = {
        },
       },
       'keydown': {
-        description: 'Triggered when on keydown.',
+        description: 'Triggered on keydown.',
         params: {
           Event: {
             description: 'the Event object',
@@ -36008,7 +36008,7 @@ module.exports = {
        },
       },
       'keyup': {
-        description: 'Triggered when on keyup.',
+        description: 'Triggered on keyup.',
         params: {
           Event: {
             description: 'the Event object',
@@ -36025,7 +36025,7 @@ module.exports = {
        },
       },
       'keypress': {
-        description: 'Triggered when on keypress.',
+        description: 'Triggered on keypress.',
         params: {
           Event: {
             description: 'the Event object',
@@ -37539,7 +37539,7 @@ module.exports = {
        },
       },
       'keydown': {
-        description: 'Triggered when on keydown.',
+        description: 'Triggered on keydown.',
         params: {
           Event: {
             description: 'the Event object',
@@ -37556,7 +37556,7 @@ module.exports = {
        },
       },
       'keyup': {
-        description: 'Triggered when on keyup.',
+        description: 'Triggered on keyup.',
         params: {
           Event: {
             description: 'the Event object',
@@ -37573,7 +37573,7 @@ module.exports = {
        },
       },
       'keypress': {
-        description: 'Triggered when on keypress.',
+        description: 'Triggered on keypress.',
         params: {
           Event: {
             description: 'the Event object',

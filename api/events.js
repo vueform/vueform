@@ -57,7 +57,7 @@ export default {
   },
   keydown: {
     default: {
-      description: 'Triggered when on keydown.',
+      description: 'Triggered on keydown.',
       params: {
         Event: {
           description: 'the Event object',
@@ -72,7 +72,7 @@ export default {
   },
   keyup: {
     default: {
-      description: 'Triggered when on keyup.',
+      description: 'Triggered on keyup.',
       params: {
         Event: {
           description: 'the Event object',
@@ -87,7 +87,7 @@ export default {
   },
   keypress: {
     default: {
-      description: 'Triggered when on keypress.',
+      description: 'Triggered on keypress.',
       params: {
         Event: {
           description: 'the Event object',
