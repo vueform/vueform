@@ -19,8 +19,8 @@
     },
     "scripts": {
         "dev": "cross-env node_modules/webpack/bin/webpack.js --progress --config webpack.config.js --watch",
-        "test:vue2": "NODE_OPTIONS=--max_old_space_size=5120 VUE=2 jest --watchAll --verbose --maxWorkers=4 --config=jest/jest.config.vue2.js",
-        "test:vue3": "NODE_OPTIONS=\"--max_old_space_size=5120 --no-experimental-fetch\" VUE=3 jest --watchAll --maxWorkers=4 --verbose --config=jest/jest.config.vue3.js",
+        "test:vue2": "NODE_OPTIONS=--max_old_space_size=5120 VUE=2 jest --watchAll --verbose --maxWorkers=50% --config=jest/jest.config.vue2.js",
+        "test:vue3": "NODE_OPTIONS=\"--max_old_space_size=5120 --no-experimental-fetch\" VUE=3 jest --watchAll --maxWorkers=50% --verbose --config=jest/jest.config.vue3.js",
         "test:fields": "npx babel-node api/generators/fields/test.js --presets @babel/preset-env",
         "generate:classes": "npx babel-node api/generators/vueform/classes.js --presets @babel/preset-env",
         "generate:elements": "npx babel-node api/generators/elements.js --presets @babel/preset-env",
