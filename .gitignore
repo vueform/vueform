@@ -9,3 +9,4 @@ selenium-debug.log
 stats.json
 .npmrc
 public/
+packages/
