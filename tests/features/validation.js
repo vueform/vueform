@@ -187,7 +187,7 @@ export const pending = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    el.$vueform.services.axios.post = axiosPostMock
+    el.$vueform.services.axios.request = axiosPostMock
 
     el.validate()
 
@@ -220,7 +220,7 @@ export const debouncing = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    el.$vueform.services.axios.post = axiosPostMock
+    el.$vueform.services.axios.request = axiosPostMock
 
     el.validate()
 
@@ -281,7 +281,7 @@ export const busy = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    el.$vueform.services.axios.post = axiosPostMock
+    el.$vueform.services.axios.request = axiosPostMock
 
     el.validate()
 
