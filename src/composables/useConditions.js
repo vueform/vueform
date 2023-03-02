@@ -50,6 +50,8 @@ const base = function(props, context, dependencies)
       return !form$.value.$vueform.services.condition.check(condition, path.value, form$.value, el$.value)
     })
   })
+  
+  // ============== METHODS ===============
 
   /**
    * Updates element conditions after they have been changed.
@@ -84,10 +86,59 @@ const base = function(props, context, dependencies)
   return {
     conditionList,
     available,
+    additionalConditions,
     updateConditions,
     addConditions,
     removeConditions,
   }
+}
+
+const list = function(props, context, dependencies)
+{
+  const {
+    conditionList,
+    available,
+    additionalConditions,
+    addConditions,
+    removeConditions,
+  } = base(props, context, dependencies)
+
+  const {
+    conditions,
+  } = toRefs(props)
+
+  // ============ DEPENDENCIES ============
+
+  const children$Array = dependencies.children$Array
+
+  // ============== METHODS ===============
+
+  const updateConditions = () => {
+    conditionList.value = Object.values(additionalConditions.value).reduce((prev, curr) => {
+      return prev.concat(curr)
+    }, conditions.value)
+
+    children$Array.value.forEach((child$) => {
+      child$.updateConditions()
+    })
+  }
+
+  return {
+    conditionList,
+    available,
+    updateConditions,
+    addConditions,
+    removeConditions,
+  }
+}
+
+const object = list
+const group = list
+
+export {
+  list,
+  object,
+  group,
 }
 
 export default base
