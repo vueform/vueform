@@ -431,6 +431,7 @@ const vueform = plugin((context) => {
   let withFloating = {}
   let fullWidth = {}
   let textType = {}
+  let responsive = {}
 
   sizes.forEach((s) => {
     let suffix = s?'-'+s:''
@@ -668,7 +669,23 @@ const vueform = plugin((context) => {
       marginBottom: `calc(var(--vf-py-input${size}) * (-1))`,
     }
 
+    plain['.form-pt-0'] = {
+      paddingTop: '0px'
+    }
+
+    responsive['.form-pt-0'] = {
+      paddingTop: '0px'
+    }
+
+    plain['.form-text-type .form-pt-0'] = {
+      paddingTop: '0px'
+    }
+
     textType[`.form-pt-input-border${suffix}`] = {
+      paddingTop: `calc(var(--vf-py-input${size}) + var(--vf-border-width-input-t))`,
+    }
+
+    responsive[`.form-pt-input-border${suffix}`] = {
       paddingTop: `calc(var(--vf-py-input${size}) + var(--vf-border-width-input-t))`,
     }
 
@@ -908,8 +925,24 @@ const vueform = plugin((context) => {
       paddingBottom: `calc(var(--vf-gutter${size}) / 3)`
     }
 
+    responsive[`.${e(`form-pb-gutter/3${suffix}`)}`] = {
+      paddingBottom: `calc(var(--vf-gutter${size}) / 3)`
+    }
+
     plain[`.form-pr-gutter${suffix}`] = {
       paddingRight: `var(--vf-gutter${size})`,
+    }
+
+    responsive[`.form-pr-gutter${suffix}`] = {
+      paddingRight: `var(--vf-gutter${size})`,
+    }
+
+    plain['.form-pr-0'] = {
+      paddingRight: '0px'
+    }
+
+    responsive['.form-pr-0'] = {
+      paddingRight: '0px'
     }
 
     plain[`.form-w-checkbox${suffix}`] = {
@@ -1836,6 +1869,7 @@ const vueform = plugin((context) => {
   addUtilities(textType, ['text-type'])
   addUtilities(rtl, ['rtl'])
   addUtilities(infoGroupHoverable, ['info-group-hover'])
+  addUtilities(responsive, ['responsive'])
 
   addVariant('h', ({ modifySelectors, separator }) => {
     modifySelectors(({ className }) => {

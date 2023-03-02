@@ -1,3 +1,14 @@
+## v1.3.0
+
+> `2023-03-02`
+
+### 🎉 Feature
+- Columns with label < 12 no longer need `horizontal` class - it is now automatic.
+- Added `keydown`, `keyup` and `keypress` events for text and textarea elements.
+
+### 🐞 Bug Fixes
+- `SelectElement` and `MultiselectElement` selected item label padding fix in `tailwind` theme.
+
 ## v1.2.18
 
 > `2023-02-08`

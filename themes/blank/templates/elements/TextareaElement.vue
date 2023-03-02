@@ -32,6 +32,9 @@
             ...attrs,
             ...aria,
           }"
+          @keydown="handleKeydown"
+          @keyup="handleKeyup"
+          @keypress="handleKeypress"
           @input="handleInput"
           @blur="handleBlur"
           ref="input"

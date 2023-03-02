@@ -20,6 +20,9 @@
             ...attrs,
             ...aria,
           }"
+          @keydown="handleKeydown"
+          @keyup="handleKeyup"
+          @keypress="handleKeypress"
           @input="handleInput"
           @select="handleInput"
           @blur="handleBlur"
