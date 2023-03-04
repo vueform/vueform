@@ -15,7 +15,7 @@
         :name="name"
         :options="resolvedOptions"
         :disabled="isDisabled"
-        :placeholder="placeholder"
+        :placeholder="Placeholder"
         :attrs="attrs"
         :aria="aria"
         @select="handleSelect"

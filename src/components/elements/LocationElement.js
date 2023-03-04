@@ -25,6 +25,7 @@ import useClasses from './../../composables/elements/useClasses'
 import useFocused from './../../composables/elements/useFocused'
 import useA11y from './../../composables/elements/useA11y'
 import useFocus from './../../composables/elements/useFocus'
+import usePlaceholder from './../../composables/elements/usePlaceholder'
 
 import { location as useWatchValue } from './../../composables/elements/useWatchValue'
 import { location as useNullValue } from './../../composables/elements/useNullValue' 
@@ -76,7 +77,7 @@ export default {
     },
     floating: {
       required: false,
-      type: [String, Boolean],
+      type: [String, Boolean, Object],
       default: null
     },
     id: {
@@ -86,7 +87,7 @@ export default {
     },
     placeholder: {
       required: false,
-      type: [String],
+      type: [String, Object],
       default: null
     },
     readonly: {
@@ -152,6 +153,7 @@ export default {
       useA11y,
       useWatchValue,
       useFocus,
+      usePlaceholder,
     ]
     context.slots = [
       'label', 'info', 'description', 'before',

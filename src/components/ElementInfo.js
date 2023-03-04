@@ -1,4 +1,4 @@
-import { computed, ref, nextTick } from 'vue'
+import { computed, ref, nextTick, inject } from 'vue'
 import useElementComponent from './../composables/useElementComponent'
 import isInViewport from './../utils/isInViewport'
 
@@ -20,6 +20,10 @@ export default {
       template,
       theme,
     } = useElementComponent(props, context)
+
+    // =============== INJECT ===============
+
+    const config$ = inject('config$')
 
     // ================ DATA ================
 

@@ -24,6 +24,7 @@ import useValue from './../../composables/elements/useValue'
 import useHandleChange from './../../composables/elements/useHandleChange'
 import useWatchValue from './../../composables/elements/useWatchValue'
 import useFocus from './../../composables/elements/useFocus'
+import useText from './../../composables/elements/useText'
 
 import { toggle as useA11y } from './../../composables/elements/useA11y'
 import { toggle as useOptions } from './../../composables/elements/useOptions'
@@ -63,7 +64,7 @@ export default {
     },
     text: {
       required: false,
-      type: [String],
+      type: [String, Object],
       default: null
     },
     labels: {
@@ -117,6 +118,7 @@ export default {
       useA11y,
       useWatchValue,
       useFocus,
+      useText,
     ]
     context.slots = [
       'default', 'label', 'info', 'description',

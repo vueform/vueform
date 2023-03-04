@@ -83,12 +83,12 @@ export default {
     },
     description: {
       required: false,
-      type: [String],
+      type: [String, Object],
       default: null
     },
     info: {
       required: false,
-      type: [String],
+      type: [String, Object],
       default: null
     },
     infoPosition: {

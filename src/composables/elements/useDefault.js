@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import { computed, toRefs } from 'vue'
+import { computed, toRefs, inject } from 'vue'
 
 const base = function(props, context, dependencies)
 {
@@ -13,6 +13,10 @@ const base = function(props, context, dependencies)
   const nullValue = dependencies.nullValue
   const form$ = dependencies.form$
   const parent = dependencies.parent
+
+  // =============== INJECT ===============
+
+  const config$ = inject('config$')
 
   // ============== COMPUTED ===============
 

@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import moment from 'moment'
 import checkDateFormat from './../../utils/checkDateFormat'
-import { computed, toRefs, ref } from 'vue'
+import { computed, toRefs, ref, inject } from 'vue'
 
 const date = function(props, context, dependencies)
 {
@@ -228,6 +228,9 @@ const select = function (props, context, dependencies)
   const form$ = dependencies.form$
   const isLoading = dependencies.isLoading
 
+  // =============== INJECT ===============
+
+  const config$ = inject('config$')
 
   // ============== COMPUTED ==============
 
@@ -343,6 +346,9 @@ const multiselect = function (props, context, dependencies)
   const el$ = dependencies.el$
   const isLoading = dependencies.isLoading
 
+  // =============== INJECT ===============
+
+  const config$ = inject('config$')
 
   // ============== COMPUTED ==============
 
@@ -623,6 +629,10 @@ const toggle = function(props, context, dependencies)
   // ============ DEPENDENCIES ============
 
   const isDisabled = dependencies.isDisabled
+
+    // =============== INJECT ===============
+
+    const config$ = inject('config$')
 
   // ============== COMPUTED ==============
 

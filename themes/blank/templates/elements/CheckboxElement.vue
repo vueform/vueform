@@ -17,9 +17,9 @@
 
         <!-- If label is HTML -->
         <span
-          v-if="text"
+          v-if="Text"
           :class="classes.text"
-          v-html="text"
+          v-html="Text"
         />
 
         <!-- If label is slot -->

@@ -27,6 +27,7 @@ import useWatchValue from './../../composables/elements/useWatchValue'
 import useClasses from './../../composables/elements/useClasses'
 import useHandleBlur from './../../composables/elements/useHandleBlur'
 import useA11y from './../../composables/elements/useA11y'
+import usePlaceholder from './../../composables/elements/usePlaceholder'
 
 import { editor as useFocus } from './../../composables/elements/useFocus'
 import { editor as useData } from './../../composables/elements/useData'
@@ -71,7 +72,7 @@ export default {
     },
     placeholder: {
       required: false,
-      type: [String],
+      type: [String, Object],
       default: null
     },
     onError: {
@@ -154,6 +155,7 @@ export default {
       useA11y,
       useWatchValue,
       useFocus,
+      usePlaceholder,
     ]
     context.slots = [
       'label', 'info', 'description',
