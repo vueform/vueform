@@ -1,6 +1,7 @@
 import _ from 'lodash'
 import moment from 'moment'
 import checkDateFormat from './../../utils/checkDateFormat'
+import localize from './../../utils/localize'
 import { computed, toRefs, ref, inject } from 'vue'
 
 const date = function(props, context, dependencies)
@@ -253,8 +254,8 @@ const select = function (props, context, dependencies)
     return {
       mode: 'single',
       searchable: search.value || create.value,
-      noOptionsText: noOptionsText.value || form$.value.translations.vueform.multiselect.noOptions,
-      noResultsText: noResultsText.value || form$.value.translations.vueform.multiselect.noResults,
+      noOptionsText: localize(noOptionsText.value, config$.value) || form$.value.translations.vueform.multiselect.noOptions,
+      noResultsText: localize(noResultsText.value, config$.value) || form$.value.translations.vueform.multiselect.noResults,
       label: labelProp.value,
       trackBy: trackBy.value,
       valueProp: valueProp.value,
@@ -371,8 +372,8 @@ const multiselect = function (props, context, dependencies)
     return {
       mode: 'multiple',
       searchable: search.value || create.value,
-      noOptionsText: noOptionsText.value || form$.value.translations.vueform.multiselect.noOptions,
-      noResultsText: noResultsText.value || form$.value.translations.vueform.multiselect.noResults,
+      noOptionsText: localize(noOptionsText.value, config$.value) || form$.value.translations.vueform.multiselect.noOptions,
+      noResultsText: localize(noResultsText.value, config$.value) || form$.value.translations.vueform.multiselect.noResults,
       multipleLabel: multipleLabel.value || ((val, select$) => {
         return val && val.length > 1
           ? (multipleLabelMultiple.value
@@ -505,8 +506,8 @@ const tags = function (props, context, dependencies)
     return {
       mode: 'tags',
       searchable: search.value || create.value,
-      noOptionsText: noOptionsText.value || form$.value.translations.vueform.multiselect.noOptions,
-      noResultsText: noResultsText.value || form$.value.translations.vueform.multiselect.noResults,
+      noOptionsText: localize(noOptionsText.value, config$.value) || form$.value.translations.vueform.multiselect.noOptions,
+      noResultsText: localize(noResultsText.value, config$.value) || form$.value.translations.vueform.multiselect.noResults,
       label: labelProp.value,
       trackBy: trackBy.value,
       valueProp: valueProp.value,
@@ -630,9 +631,9 @@ const toggle = function(props, context, dependencies)
 
   const isDisabled = dependencies.isDisabled
 
-    // =============== INJECT ===============
+  // =============== INJECT ===============
 
-    const config$ = inject('config$')
+  const config$ = inject('config$')
 
   // ============== COMPUTED ==============
 
@@ -645,8 +646,8 @@ const toggle = function(props, context, dependencies)
   const defaultOptions = computed(() => {
     return {
       disabled: isDisabled.value,
-      offLabel: labels.value ? (labels.value.off || '') : '',
-      onLabel: labels.value ? (labels.value.on || '') : '',
+      offLabel: labels.value ? (localize(labels.value.off, config$.value) || '') : '',
+      onLabel: labels.value ? (localize(labels.value.on, config$.value) || '') : '',
       trueValue: trueValue.value,
       falseValue: falseValue.value,
     }

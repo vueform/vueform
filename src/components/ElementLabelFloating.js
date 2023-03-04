@@ -1,5 +1,6 @@
-import { computed, toRefs, inject } from 'vue'
+import { computed, inject } from 'vue'
 import useElementComponent from './../composables/useElementComponent'
+import localize from './../utils/localize'
 
 export default {
   name: 'ElementLabelFloating',
@@ -37,7 +38,7 @@ export default {
      * @type {string}
      */
     const floating = computed(() => {
-      return el$.value.floating || (form$.value.options.floatPlaceholders ? el$.value.placeholder : null)
+      return localize(el$.value.floating || (form$.value.options.floatPlaceholders ? el$.value.placeholder : null), config$.value)
     })
     
     return {

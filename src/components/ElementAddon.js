@@ -1,6 +1,7 @@
 import { computed, toRefs, inject } from 'vue'
 import useElementComponent from './../composables/useElementComponent'
 import isVueComponent from './../utils/isVueComponent'
+import localize from './../utils/localize'
 
 export default {
   name: 'ElementAddon',
@@ -52,9 +53,9 @@ export default {
      * @type {string|component}
      */
     const addon = computed(() => {
-      return isAddonFunction.value
+      return localize(isAddonFunction.value
         ? baseAddon.value(el$.value)
-        : baseAddon.value || null
+        : baseAddon.value || null, config$.value)
     })
     
     /**
