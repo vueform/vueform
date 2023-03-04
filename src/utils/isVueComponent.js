@@ -34,6 +34,10 @@ function isNonEmptyArray(value) {
   return Array.isArray(value) && value.length > 0;
 }
 
+function isNonNullObject(value) {
+  return !!value;
+}
+
 /**
  * Check if the given value is an element.
  * @param {*} value - The value to check.

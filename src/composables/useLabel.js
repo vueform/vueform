@@ -1,5 +1,6 @@
-import { computed, ref } from 'vue'
+import { computed, ref, inject } from 'vue'
 import isVueComponent from './../utils/isVueComponent'
+import localize from './../utils/localize'
 
 const base = function(props, context, dependencies)
 {
@@ -7,6 +8,10 @@ const base = function(props, context, dependencies)
 
   const labelDefinition = dependencies.labelDefinition
   const component$ = dependencies.component$ || ref(null)
+
+  // =============== INJECT ===============
+
+  const config$ = inject('config$')
 
   // ============== COMPUTED ==============
   
@@ -46,7 +51,13 @@ const base = function(props, context, dependencies)
   * @type {string|component}
   */
   const label = computed(() => {
-    return isLabelFunction.value ? baseLabel.value(component$.value) : baseLabel.value || null
+    let label = isLabelFunction.value ? baseLabel.value(component$.value) : baseLabel.value || null
+
+    if (label && typeof label === 'object') {
+      label = localize(label, config$.value)
+    }
+
+    return label
   })
 
   return {
