@@ -14,6 +14,7 @@ import messageBag from './../../../src/services/messageBag'
 import autosize from './../../../src/services/autosize'
 import location from './../../../src/services/location'
 import columns from './../../../src/services/columns'
+import i18n from './../../../src/services/i18n'
 
 // 3rd party
 import axios from 'axios'
@@ -95,7 +96,7 @@ export default function createForm (data, options = {}, render = null) {
     store,
     propsData: options.propsData || {},
     mocks: {
-      $vueform: $vueform,
+      // $vueform: $vueform,
       // $i18n: options.vueI18n ? new class VueI18n { get locale() { return options.vueI18nLocale || 'en' } } : null,
       // $t: options.vueI18n ? (str) => { return str + ' vue-i18n' } : null,
     }

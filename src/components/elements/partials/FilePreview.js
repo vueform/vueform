@@ -44,6 +44,7 @@ export default {
       handleKeyup,
     } = usePreview(props, context, {
       el$,
+      form$,
     })
 
     // ============== COMPUTED ==============

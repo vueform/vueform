@@ -4,6 +4,7 @@ import { computed, nextTick } from 'vue'
 const base = function(props, context, dependencies)
 {
   const el$ = dependencies.el$
+  const form$ = dependencies.form$
 
   // ============== COMPUTED ==============
 
@@ -120,7 +121,7 @@ const base = function(props, context, dependencies)
    * @type {string}
    */
   const uploadText = computed(() => {
-    return el$.value.__('vueform.elements.file.upload')
+    return form$.value.translations.vueform.elements.file.upload
   })
 
   /**

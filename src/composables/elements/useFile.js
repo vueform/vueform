@@ -392,7 +392,7 @@ const base = function (props, context, dependencies)
 
     try {
       if (stage.value === 3 && !softRemove.value) {
-        if (!confirm(form$.value.__(`vueform.elements.file.removeConfirm`))) {
+        if (!confirm(form$.value.translations.vueform.elements.file.removeConfirm)) {
           return false
         }
 

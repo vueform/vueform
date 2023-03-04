@@ -185,7 +185,7 @@ export default {
       if (acceptMimes.value && acceptMimes.value.length && acceptMimes.value.indexOf(e.file.type) === -1) {
         e.preventDefault()
 
-        context.emit('alert', form$.value.__('vueform.editor.acceptedMimesError', {
+        context.emit('alert', form$.value.__(form$.value.translations.vueform.editor.acceptedMimesError, {
           mimes:acceptMimes.value.join(', ')
         }))
       }
@@ -195,7 +195,7 @@ export default {
       if (accept.value && accept.value.length && accept.value.indexOf(extension) === -1) {
         e.preventDefault()
 
-        context.emit('alert', form$.value.__('vueform.editor.acceptedExtensionsError', {
+        context.emit('alert', form$.value.__(form$.value.translations.vueform.editor.acceptedExtensionsError, {
           extensions:accept.value.join(', ')
         }))
       }

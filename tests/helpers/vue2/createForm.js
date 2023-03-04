@@ -58,35 +58,35 @@ export default function createForm (data, options = {}, render = null) {
 
   let finalConfig = Object.assign({}, config)
 
-  let $vueform = {
-    test: true,
-    config: finalConfig,
-    classes: finalConfig.classes,
-    templates: finalConfig.templates,
-    rules: finalConfig.rules,
-    theme: finalConfig.theme,
-    plugins: finalConfig.plugins,
-    locales: options.locales || {
-      en: en
-    },
-    vueVersion: 2,
-    services: {
-      condition,
-      validation,
-      axios,
-      messageBag,
-      autosize,
-      location,
-      columns,
-    },
-  }
+  // let $vueform = {
+  //   test: true,
+  //   config: finalConfig,
+  //   classes: finalConfig.classes,
+  //   templates: finalConfig.templates,
+  //   rules: finalConfig.rules,
+  //   theme: finalConfig.theme,
+  //   plugins: finalConfig.plugins,
+  //   locales: options.locales || {
+  //     en: en
+  //   },
+  //   vueVersion: 2,
+  //   services: {
+  //     condition,
+  //     validation,
+  //     axios,
+  //     messageBag,
+  //     autosize,
+  //     location,
+  //     columns,
+  //   },
+  // }
 
   let mountOptions = {
     localVue: LocalVue,
     store,
     propsData: options.propsData || {},
     mocks: {
-      $vueform: $vueform,
+      // $vueform: $vueform,
       // $i18n: options.vueI18n ? new class VueI18n { get locale() { return options.vueI18nLocale || 'en' } } : null,
       // $t: options.vueI18n ? (str) => { return str + ' vue-i18n' } : null,
     }

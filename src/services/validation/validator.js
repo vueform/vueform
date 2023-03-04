@@ -64,7 +64,7 @@ const Validator = class {
   }
 
   get defaultMessage() {
-    return this.form$.__('vueform.defaultMessage')
+    return this.form$.translations.vueform.defaultMessage
   }
 
   get message() {
@@ -76,8 +76,8 @@ const Validator = class {
     else if (this.form$.options.messages[this.name]) {
       message = this.form$.options.messages[this.name]
     }
-    else if (this.name !== '_class' && this.form$.__(`validation`)[this.name] !== undefined) {
-      message = this.form$.__(`validation.${this.name}`)
+    else if (this.name !== '_class' && this.form$.translations.validation?.[this.name] !== undefined) {
+      message = this.form$.translations.validation[this.name]
 
       if (_.isPlainObject(message)) {
         message = message[this.messageType]

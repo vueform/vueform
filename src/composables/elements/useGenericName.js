@@ -73,7 +73,7 @@ const file = function(props, context, dependencies)
       return label.value
     } else {
       return /^\d+$/.test(name.value)
-        ? form$.value.__('vueform.elements.file.defaultName')
+        ? form$.value.translations.vueform.elements.file.defaultName
         : _.upperFirst(name.value).replace(/_|-/g, ' ')
     }
   })

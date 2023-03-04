@@ -59,12 +59,12 @@ export default {
 
       switch (type.value) {
         case 'previous':
-          return stepLabels && stepLabels.previous ? stepLabels.previous : form$.value.__('vueform.steps.previous')
+          return stepLabels && stepLabels.previous ? stepLabels.previous : form$.value.translations.vueform.steps.previous
         case 'next':
-          return stepLabels && stepLabels.next ? stepLabels.next : form$.value.__('vueform.steps.next')
+          return stepLabels && stepLabels.next ? stepLabels.next : form$.value.translations.vueform.steps.next
         case 'finish':
           return stepLabels && stepLabels.finish ? stepLabels.finish : (
-            stepLabels && stepLabels.next ? stepLabels.next : form$.value.__('vueform.steps.finish')
+            stepLabels && stepLabels.next ? stepLabels.next : form$.value.translations.vueform.steps.finish
           )
       }
     })

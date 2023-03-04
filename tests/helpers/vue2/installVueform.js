@@ -1,5 +1,5 @@
 import { createLocalVue } from '@vue/test-utils'
-import Vuex from 'vuex'
+// import Vuex from 'vuex'
 
 import { createVueformInstaller } from './index'
 
@@ -10,17 +10,17 @@ export default function installVueform (options = {}) {
 
   let store = null
 
-  if (options.vuex) {
-    LocalVue.use(Vuex)
+  // if (options.vuex) {
+  //   LocalVue.use(Vuex)
 
-    store = new Vuex.Store({
-      state: options.vuex,
-    })
+  //   store = new Vuex.Store({
+  //     state: options.vuex,
+  //   })
 
-    if (options.vueformStore !== false) {
-      VueformInstaller.store(store)
-    }
-  }
+  //   if (options.vueformStore !== false) {
+  //     VueformInstaller.store(store)
+  //   }
+  // }
 
   LocalVue.use(VueformInstaller, {
     apiKey: 'dvzr-74zl-w99t-dmdv-syr7',

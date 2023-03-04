@@ -62,40 +62,40 @@ export default function createForm (data, options = {}, render = null) {
 
   let finalConfig = Object.assign({}, config, options.config || {})
 
-  let $vueform = {
-    test: true,
-    config: finalConfig,
-    classes: finalConfig.classes,
-    templates: finalConfig.templates,
-    rules: finalConfig.rules,
-    theme: finalConfig.theme,
-    locales: options.locales || {
-      en: en
-    },
-    vueVersion: 3,
-    services: {
-      condition,
-      validation,
-      axios,
-      messageBag,
-      autosize,
-      location,
-      columns,
-    },
-  }
+  // let $vueform = {
+  //   test: true,
+  //   config: finalConfig,
+  //   classes: finalConfig.classes,
+  //   templates: finalConfig.templates,
+  //   rules: finalConfig.rules,
+  //   theme: finalConfig.theme,
+  //   locales: options.locales || {
+  //     en: en
+  //   },
+  //   vueVersion: 3,
+  //   services: {
+  //     condition,
+  //     validation,
+  //     axios,
+  //     messageBag,
+  //     autosize,
+  //     location,
+  //     columns,
+  //   },
+  // }
 
-  let $vueformMixin = {
-    data() {
-      return {
-        $vueform,
-      }
-    }
-  }
+  // let $vueformMixin = {
+  //   data() {
+  //     return {
+  //       $vueform,
+  //     }
+  //   }
+  // }
 
   let mountOptions = {
     propsData: options.propsData || {},
     global: {
-      mixins: [$vueformMixin],
+      // mixins: [$vueformMixin],
       plugins: [
         [VueformInstaller, {
           apiKey: 'dvzr-74zl-w99t-dmdv-syr7',
