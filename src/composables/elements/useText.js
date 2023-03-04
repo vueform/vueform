@@ -1,4 +1,5 @@
 import { computed, toRefs, inject } from 'vue'
+import localize from './../../utils/localize'
 
 const base = function(props, context, dependencies)
 {
@@ -19,7 +20,7 @@ const base = function(props, context, dependencies)
    * 
    */
   const Text = computed(() => {
-    return text.value
+    return localize(text.value, config$.value)
   })
 
   return {

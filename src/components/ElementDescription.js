@@ -1,5 +1,6 @@
 import { computed, inject } from 'vue'
 import useElementComponent from './../composables/useElementComponent'
+import localize from './../utils/localize'
 
 export default {
   name: 'ElementDescription',
@@ -32,7 +33,7 @@ export default {
      * @type {string}
      */
     const description = computed(() => {
-      return el$.value.description
+      return localize(el$.value.description, config$.value)
     })
 
     /**

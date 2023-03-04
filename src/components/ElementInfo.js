@@ -1,6 +1,7 @@
 import { computed, ref, nextTick, inject } from 'vue'
 import useElementComponent from './../composables/useElementComponent'
 import isInViewport from './../utils/isInViewport'
+import localize from './../utils/localize'
 
 export default {
   name: 'ElementInfo',
@@ -44,7 +45,7 @@ export default {
      * @type {string}
      */
     const info = computed(() => {
-      return el$.value.info
+      return localize(el$.value.info, config$.value)
     })
 
     /**

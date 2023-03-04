@@ -1,4 +1,5 @@
 import { computed, toRefs, inject } from 'vue'
+import localize from './../../utils/localize'
 
 const base = function(props, context, dependencies)
 {
@@ -19,7 +20,7 @@ const base = function(props, context, dependencies)
    * 
    */
   const Placeholder = computed(() => {
-    return placeholder.value
+    return localize(placeholder.value, config$.value)
   })
 
   return {
