@@ -822,6 +822,20 @@ const base = function(props, context, dependencies = {})
     return Views.value.Vueform
   })
 
+  /**
+   * The translation tags of the current locale.
+   *
+   * @type {object}
+   */
+  const translations = computed(() => {
+    let i18n = $this.$vueform.i18n
+    let locales = i18n.locales
+    let locale = i18n.locale
+    let fallbackLocale = i18n.fallbackLocale || 'en'
+
+    return locale ? _.merge({}, locales[fallbackLocale], locales[locale]) : locales[fallbackLocale]
+  })
+
   // =============== METHODS ==============
 
   /**
@@ -1245,6 +1259,7 @@ const base = function(props, context, dependencies = {})
   provide('theme', extendedTheme)
   provide('Size', Size)
   provide('Views', Views)
+  provide('translations', translations)
 
   // ================ HOOKS ===============
 
@@ -1350,6 +1365,7 @@ const base = function(props, context, dependencies = {})
     isSync,
     tree,
     flatTree,
+    translations,
     updateModel,
     update,
     load,

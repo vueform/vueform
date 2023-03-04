@@ -57,7 +57,7 @@ const base = function(props, context, dependencies)
    * @private
    */
   const defaultDisplayFormat = computed(() => {
-    return form$.value.__(`vueform.dateFormats.${defaultFormat.value}`)
+    return form$.value.translations.vueform.dateFormats[defaultFormat.value]
   })
 
   /**
@@ -136,7 +136,7 @@ const dates = function(props, context, dependencies)
   // =============== PRIVATE ===============
 
   const defaultFormat = computed(() => {
-    return form$.value.__(`vueform.dateFormats.date`)
+    return form$.value.translations.vueform.dateFormats.date
   })
 
   // ============== COMPUTED ===============

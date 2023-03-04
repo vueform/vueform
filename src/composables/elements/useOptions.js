@@ -250,8 +250,8 @@ const select = function (props, context, dependencies)
     return {
       mode: 'single',
       searchable: search.value || create.value,
-      noOptionsText: noOptionsText.value || form$.value.__('vueform.multiselect.noOptions'),
-      noResultsText: noResultsText.value || form$.value.__('vueform.multiselect.noResults'),
+      noOptionsText: noOptionsText.value || form$.value.translations.vueform.multiselect.noOptions,
+      noResultsText: noResultsText.value || form$.value.translations.vueform.multiselect.noResults,
       label: labelProp.value,
       trackBy: trackBy.value,
       valueProp: valueProp.value,
@@ -365,15 +365,15 @@ const multiselect = function (props, context, dependencies)
     return {
       mode: 'multiple',
       searchable: search.value || create.value,
-      noOptionsText: noOptionsText.value || form$.value.__('vueform.multiselect.noOptions'),
-      noResultsText: noResultsText.value || form$.value.__('vueform.multiselect.noResults'),
+      noOptionsText: noOptionsText.value || form$.value.translations.vueform.multiselect.noOptions,
+      noResultsText: noResultsText.value || form$.value.translations.vueform.multiselect.noResults,
       multipleLabel: multipleLabel.value || ((val, select$) => {
         return val && val.length > 1
           ? (multipleLabelMultiple.value
               ? multipleLabelMultiple.value.replace(':x:', val.length)
-              : form$.value.__('vueform.multiselect.multipleLabelMore', { options: val.length })
+              : form$.value.__(form$.value.translations.vueform.multiselect.multipleLabelMore, { options: val.length })
             )
-          : multipleLabelSingle.value || form$.value.__('vueform.multiselect.multipleLabelOne') 
+          : multipleLabelSingle.value || form$.value.translations.vueform.multiselect.multipleLabelOne
       }),
 
       label: labelProp.value,
@@ -499,8 +499,8 @@ const tags = function (props, context, dependencies)
     return {
       mode: 'tags',
       searchable: search.value || create.value,
-      noOptionsText: noOptionsText.value || form$.value.__('vueform.multiselect.noOptions'),
-      noResultsText: noResultsText.value || form$.value.__('vueform.multiselect.noResults'),
+      noOptionsText: noOptionsText.value || form$.value.translations.vueform.multiselect.noOptions,
+      noResultsText: noResultsText.value || form$.value.translations.vueform.multiselect.noResults,
       label: labelProp.value,
       trackBy: trackBy.value,
       valueProp: valueProp.value,

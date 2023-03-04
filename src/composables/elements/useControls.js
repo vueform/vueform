@@ -51,7 +51,7 @@ const base = function(props, context, dependencies)
    * @type {string}
    */
   const addLabel = computed(() => {
-    return addText.value || form$.value.__('vueform.elements.list.add')
+    return addText.value || form$.value.translations.vueform.elements.list.add
   })
 
   return {

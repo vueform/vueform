@@ -98,7 +98,7 @@
         "vue-next-jest": "npm:@vue/vue3-jest@^27.0.0-alpha.1",
         "vue-next-rollup-plugin-vue": "npm:rollup-plugin-vue@^6.0.0",
         "vue-next-test-utils": "npm:@vue/test-utils@2.0.0-rc.16",
-        "vue-prev": "npm:vue@^2.7.8",
+        "vue-prev": "npm:vue@^2.7.14",
         "vue-prev-jest": "npm:@vue/vue2-jest@^27.0.0-alpha.2",
         "vue-prev-rollup-plugin-vue": "npm:rollup-plugin-vue@^5.1.9",
         "vue-prev-test-utils": "npm:@vue/test-utils@1.2.2",
@@ -124,6 +124,7 @@
         "moment": "^2.27.0",
         "moxios": "^0.4.0",
         "node-sass": "^7.0.3",
+        "nouislider": "^15.4.0",
         "places.js": "^1.14.0",
         "postcss": "^8.4.6",
         "sass": "^1.27.0",
@@ -131,7 +132,6 @@
         "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.0",
         "trix": "^1.0.0",
         "vue-i18n": "^8.18.2",
-        "nouislider": "^15.4.0",
         "wnumb": "^1.2.0"
     },
     "browserslist": [

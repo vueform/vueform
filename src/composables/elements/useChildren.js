@@ -125,32 +125,32 @@ const address = function(props, context, dependencies)
     let fields = {
       address: {
         type: 'text',
-        label: form$.value.__('vueform.elements.address.addressLabel'),
+        label: form$.value.translations.vueform.elements.address.addressLabel,
         id: addressId.value,
         disabled: disabled.value,
         readonly: readonly.value,
       },
       address2: {
         type: 'text',
-        label: form$.value.__('vueform.elements.address.address2Label'),
+        label: form$.value.translations.vueform.elements.address.address2Label,
         disabled: disabled.value,
         readonly: readonly.value,
       },
       zip: {
         type: 'text',
-        label: form$.value.__('vueform.elements.address.zipLabel'),
+        label: form$.value.translations.vueform.elements.address.zipLabel,
         disabled: disabled.value,
         readonly: readonly.value,
       },
       city: {
         type: 'text',
-        label: form$.value.__('vueform.elements.address.cityLabel'),
+        label: form$.value.translations.vueform.elements.address.cityLabel,
         disabled: disabled.value,
         readonly: readonly.value,
       },
       state: {
         type: 'select',
-        label: form$.value.__('vueform.elements.address.stateLabel'),
+        label: form$.value.translations.vueform.elements.address.stateLabel,
         items: states,
         conditions: [[path.value + '.country', ['us', 'US']]],
         disabled: disabled.value,
@@ -159,7 +159,7 @@ const address = function(props, context, dependencies)
       },
       country: {
         type: 'select',
-        label: form$.value.__('vueform.elements.address.countryLabel'),
+        label: form$.value.translations.vueform.elements.address.countryLabel,
         items: countries,
         disabled: disabled.value,
         readonly: readonly.value,

@@ -13,7 +13,7 @@ import condition from './services/condition/index'
 import i18n from './services/i18n/index'
 import columns from './services/columns/index'
 import verifyApiKey from './utils/verifyApiKey'
-import { ref } from 'vue'
+import { ref, markRaw } from 'vue'
 
 export default function(config, components) {
   const Vueform = class {
@@ -337,51 +337,61 @@ export default function(config, components) {
       this.initI18n()
       this.registerComponents(appOrVue)
 
+      let themeTemplates = this.options.theme?.templates || {}
+
+      Object.keys(themeTemplates).forEach((componentName) => {
+        themeTemplates[componentName] = markRaw(themeTemplates[componentName])
+      })
+
+      let $vueform = ref({
+        ...this.options,
+        theme: {
+          ...this.options.theme,
+          templates: themeTemplates,
+        }
+      })
+
       switch (version) {
         case 2:
           appOrVue.config.ignoredElements = ['trix-editor']
           appOrVue.config.unwrapInjectedRef = true
 
-          const $vueform = this.options
+          if (!appOrVue.prototype.$vueform) {
+            appOrVue.prototype.$vueform = new Proxy($vueform, {
+              get: (target, prop, receiver) => {
+                return target.value[prop]
+              }
+            })
+          }
 
           if (!appOrVue.__VUEFORM__) {
             appOrVue.__VUEFORM__ = true
             appOrVue.mixin({
-              data() {
-                return {
-                  $vueform: {},
-                }
-              },
               methods: {
-                __: (expr, data) => this.options.i18n.$t(expr, data),
-              },
-              beforeCreate() {
-                // might exist as test mock
-                if (!this.$vueform) {
-                  this.$vueform = {
-                    config: appOrVue.observable($vueform.config),
-                    templates: $vueform.templates,
-                    rules: $vueform.rules,
-                    services: $vueform.services,
-                    locales: $vueform.locales,
-                    plugins: $vueform.plugins,
-                    theme: $vueform.theme,
-                    i18n: $vueform.i18n,
-                    vueVersion: $vueform.vueVersion,
+                __: (expr, data) => {
+                  if (!data) {
+                    console.warn('DEPRECATED: __ method should be no longer used for translating labels, only if they contain variables. For general translation use form$.translation.TAG instead.')
                   }
-                }
-              }
+
+                  return this.options.i18n.$t(expr, data)
+                },
+              },
             })
           }
           break
 
         case 3:
+          
           // appOrVue.config.isCustomElement = (tag) => ['trix-editor'].indexOf(tag) !== -1
           appOrVue.config.compilerOptions.isCustomElement = (tag) => ['trix-editor'].indexOf(tag) !== -1
-
           appOrVue.config.unwrapInjectedRef = true
-          appOrVue.config.globalProperties.$vueform = this.options
-          appOrVue.provide('$vueform', this.options)
+
+          appOrVue.config.globalProperties.$vueform = new Proxy($vueform, {
+            get: (target, prop, receiver) => {
+              return target.value[prop]
+            }
+          })
+          appOrVue.provide('$vueform', $vueform)
 
           appOrVue.mixin({
             methods: {
@@ -391,7 +401,13 @@ export default function(config, components) {
               $delete(obj, key) {
                 delete obj[key]
               },
-              __: (expr, data) => this.options.i18n.$t(expr, data)
+              __:  (expr, data) => {
+                if (!data) {
+                  console.warn('DEPRECATED: __ method should be no longer used for translating labels, only if they contain variables. For general translation use form$.translation.TAG instead.')
+                }
+                
+                return this.options.i18n.$t(expr, data)
+              },
             },
           })
           break

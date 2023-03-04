@@ -113,6 +113,24 @@ export default {
       default: null,
       private: true,
     },
+    onKeydown: {
+      required: false,
+      type: [Function],
+      default: null,
+      private: true,
+    },
+    onKeyup: {
+      required: false,
+      type: [Function],
+      default: null,
+      private: true,
+    },
+    onKeypress: {
+      required: false,
+      type: [Function],
+      default: null,
+      private: true,
+    },
   },
   setup(props, context) {
     context.features = [
