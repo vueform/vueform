@@ -208,9 +208,19 @@ const base = function(props, context, dependencies = {})
    * The default configuration object.
    * 
    * @type {object}
+   * @private
    */
   const baseConfig = computed(() => {
     return $this.$vueform
+  })
+
+  /**
+   * The default configuration object.
+   * 
+   * @type {object}
+   */
+  const config$ = computed(() => {
+    return baseConfig.value
   })
 
   /**
@@ -1260,6 +1270,7 @@ const base = function(props, context, dependencies = {})
   provide('Size', Size)
   provide('Views', Views)
   provide('translations', translations)
+  provide('config$', config$)
 
   // ================ HOOKS ===============
 
