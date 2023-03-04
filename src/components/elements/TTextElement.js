@@ -25,6 +25,7 @@ import useHandleBlur from './../../composables/elements/useHandleBlur'
 import useA11y from './../../composables/elements/useA11y'
 import useFocus from './../../composables/elements/useFocus'
 import useHandleKeyEvents from './../../composables/elements/useHandleKeyEvents'
+import usePlaceholder from './../../composables/elements/usePlaceholder'
 
 import { multilingual as useValue } from './../../composables/elements/useValue'
 import { multilingual as useData } from './../../composables/elements/useData'
@@ -79,7 +80,7 @@ export default {
     },
     floating: {
       required: false,
-      type: [String, Boolean],
+      type: [String, Boolean, Object],
       default: null
     },
     id: {
@@ -99,7 +100,7 @@ export default {
     },
     placeholder: {
       required: false,
-      type: [String],
+      type: [String, Object],
       default: null
     },
     readonly: {
@@ -173,6 +174,7 @@ export default {
       useWatchValue,
       useFocus,
       useHandleKeyEvents,
+      usePlaceholder,
     ]
     context.slots = [
       'label', 'info', 'description', 'before',

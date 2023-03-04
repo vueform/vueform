@@ -27,6 +27,7 @@ import useLoading from './../../composables/elements/useLoading'
 import useClasses from './../../composables/elements/useClasses'
 import useA11y from './../../composables/elements/useA11y'
 import useFocus from './../../composables/elements/useFocus'
+import usePlaceholder from './../../composables/elements/usePlaceholder'
 
 import { multiselect as useFocused } from './../../composables/elements/useFocused'
 import { multiselect as useOptions } from './../../composables/elements/useOptions'
@@ -63,7 +64,7 @@ export default {
     },
     floating: {
       required: false,
-      type: [String, Boolean],
+      type: [String, Boolean, Object],
       default: null
     },
     id: {
@@ -73,7 +74,7 @@ export default {
     },
     placeholder: {
       required: false,
-      type: [String],
+      type: [String, Object],
       default: null,
       native: false,
     },
@@ -336,14 +337,14 @@ export default {
       native: false,
     },
     noOptionsText: {
-      type: [String],
+      type: [String, Object],
       required: false,
       default: undefined,
       '@default': 'locale.multiselect.noOptions',
       native: false,
     },
     noResultsText: {
-      type: [String],
+      type: [String, Object],
       required: false,
       default: undefined,
       '@default': 'locale.multiselect.noResults',
@@ -402,6 +403,7 @@ export default {
       useA11y,
       useWatchValue,
       useFocus,
+      usePlaceholder,
     ]
     context.slots = [
       'option',

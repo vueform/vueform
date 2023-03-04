@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import { toRefs, ref, computed, watch } from 'vue'
+import { toRefs, ref, computed, watch, inject } from 'vue'
 
 const base = function(props, context, dependencies)
 {
@@ -15,6 +15,10 @@ const base = function(props, context, dependencies)
   const input = dependencies.input
   const el$ = dependencies.el$
   const form$ = dependencies.form$
+
+  // =============== INJECT ===============
+
+  const config$ = inject('config$')
 
   // ================ DATA ================
 
@@ -199,6 +203,10 @@ const checkboxgroup = function(props, context, dependencies) {
   const enableAll = dependencies.enableAll
   const el$ = dependencies.el$
   const form$ = dependencies.form$
+
+  // =============== INJECT ===============
+
+  const config$ = inject('config$')
 
   // ================ DATA ================
 

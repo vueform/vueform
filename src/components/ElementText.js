@@ -1,4 +1,4 @@
-import { computed, toRefs } from 'vue'
+import { computed, toRefs, inject } from 'vue'
 import useElementComponent from './../composables/useElementComponent'
 
 export default {
@@ -27,6 +27,10 @@ export default {
       template,
       theme,
     } = useElementComponent(props, context)
+
+    // =============== INJECT ===============
+
+    const config$ = inject('config$')
 
     // ============== COMPUTED ==============
 

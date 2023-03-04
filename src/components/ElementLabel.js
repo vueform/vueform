@@ -1,7 +1,6 @@
-import { computed } from 'vue'
+import { computed, inject } from 'vue'
 import useElementComponent from './../composables/useElementComponent'
 import useLabel from './../composables/useLabel'
-import useConfig$ from './../composables/useConfig$'
 
 export default {
   name: 'ElementLabel',
@@ -23,16 +22,11 @@ export default {
     } = useElementComponent(props, context)
 
     const {
-      config$,
-    } = useConfig$(props, context)
-
-    const {
       label,
       isLabelComponent
     } = useLabel(props, context, { 
       labelDefinition: computed(() => { return el$.value.label }),
       component$: el$,
-      config$,
      })
 
     // ============== COMPUTED ==============

@@ -3,7 +3,7 @@
     <template #element>
       <EditorWrapper
         :value="model"
-        :placeholder="placeholder"
+        :placeholder="Placeholder"
         :id="fieldId"
         :accept="accept"
         :accept-mimes="acceptMimes"

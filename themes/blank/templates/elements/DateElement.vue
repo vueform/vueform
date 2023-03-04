@@ -22,7 +22,7 @@
             :options="fieldOptions"
             :id="fieldId"
             :class="classes.input"
-            :placeholder="placeholder"
+            :placeholder="Placeholder"
             :disabled="isDisabled"
             :readonly="readonly"
             :attrs="aria"
