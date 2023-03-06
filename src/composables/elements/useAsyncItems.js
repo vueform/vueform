@@ -1,5 +1,6 @@
 import _ from 'lodash'
 import { toRefs, ref, computed, watch, inject } from 'vue'
+import localize from './../../utils/localize'
 
 const base = function(props, context, dependencies)
 {
@@ -72,7 +73,9 @@ const base = function(props, context, dependencies)
       }
     })
 
-    return nativeItems
+    return nativeItems.map((o) => {
+      return { ...o, label: localize(o.label, config$.value)}
+    })
   })
 
   // =============== METHODS ==============
@@ -259,7 +262,9 @@ const checkboxgroup = function(props, context, dependencies) {
       }
     })
 
-    return resolvedOptions
+    return resolvedOptions.map((o) => {
+      return { ...o, label: localize(o.label, config$.value)}
+    })
   })
 
   // =============== METHODS ==============

@@ -254,8 +254,10 @@ const select = function (props, context, dependencies)
     return {
       mode: 'single',
       searchable: search.value || create.value,
-      noOptionsText: localize(noOptionsText.value, config$.value) || form$.value.translations.vueform.multiselect.noOptions,
-      noResultsText: localize(noResultsText.value, config$.value) || form$.value.translations.vueform.multiselect.noResults,
+      noOptionsText: noOptionsText.value || form$.value.translations.vueform.multiselect.noOptions,
+      noResultsText: noResultsText.value || form$.value.translations.vueform.multiselect.noResults,
+      locale: Object.keys(config$.value.i18n.locales).length > 1 ? config$.value.i18n.locale : null,
+      fallbackLocale: config$.value.i18n.fallbackLocale,
       label: labelProp.value,
       trackBy: trackBy.value,
       valueProp: valueProp.value,
@@ -344,7 +346,6 @@ const multiselect = function (props, context, dependencies)
   // ============ DEPENDENCIES ============
 
   const form$ = dependencies.form$
-  const el$ = dependencies.el$
   const isLoading = dependencies.isLoading
 
   // =============== INJECT ===============
@@ -372,8 +373,8 @@ const multiselect = function (props, context, dependencies)
     return {
       mode: 'multiple',
       searchable: search.value || create.value,
-      noOptionsText: localize(noOptionsText.value, config$.value) || form$.value.translations.vueform.multiselect.noOptions,
-      noResultsText: localize(noResultsText.value, config$.value) || form$.value.translations.vueform.multiselect.noResults,
+      noOptionsText: noOptionsText.value || form$.value.translations.vueform.multiselect.noOptions,
+      noResultsText: noResultsText.value || form$.value.translations.vueform.multiselect.noResults,
       multipleLabel: multipleLabel.value || ((val, select$) => {
         return val && val.length > 1
           ? (multipleLabelMultiple.value
@@ -382,6 +383,8 @@ const multiselect = function (props, context, dependencies)
             )
           : multipleLabelSingle.value || form$.value.translations.vueform.multiselect.multipleLabelOne
       }),
+      locale: Object.keys(config$.value.i18n.locales).length > 1 ? config$.value.i18n.locale : null,
+      fallbackLocale: config$.value.i18n.fallbackLocale,
 
       label: labelProp.value,
       trackBy: trackBy.value,
@@ -473,6 +476,10 @@ const tags = function (props, context, dependencies)
   const form$ = dependencies.form$
   const isLoading = dependencies.isLoading
 
+  // =============== INJECT ===============
+
+  const config$ = inject('config$')
+
   // ================ DATA ================
 
   /**
@@ -506,8 +513,10 @@ const tags = function (props, context, dependencies)
     return {
       mode: 'tags',
       searchable: search.value || create.value,
-      noOptionsText: localize(noOptionsText.value, config$.value) || form$.value.translations.vueform.multiselect.noOptions,
-      noResultsText: localize(noResultsText.value, config$.value) || form$.value.translations.vueform.multiselect.noResults,
+      noOptionsText: noOptionsText.value || form$.value.translations.vueform.multiselect.noOptions,
+      noResultsText: noResultsText.value || form$.value.translations.vueform.multiselect.noResults,
+      locale: Object.keys(config$.value.i18n.locales).length > 1 ? config$.value.i18n.locale : null,
+      fallbackLocale: config$.value.i18n.fallbackLocale,
       label: labelProp.value,
       trackBy: trackBy.value,
       valueProp: valueProp.value,

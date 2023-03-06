@@ -36,7 +36,7 @@ export default {
     "multiselect": {
       "multipleLabelOne": "1 opció van kiválasztva",
       "multipleLabelMore": ":options opció van kiválasztva",
-      "noResults": "Nincs kiválasztva egy opció sem",
+      "noResults": "Nincs találat",
       "noOptions": "A lista üres"
     },
     "datepicker": {
