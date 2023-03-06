@@ -7,7 +7,6 @@ import useInput from './../../composables/elements/useInput'
 import usePath from './../../composables/elements/usePath'
 import useConditions from './../../composables/useConditions'
 import useValue from './../../composables/elements/useValue'
-import useDefault from './../../composables/elements/useDefault'
 import useNullValue from './../../composables/elements/useNullValue'
 import useLabel from './../../composables/elements/useLabel'
 import useColumns from './../../composables/elements/useColumns'
@@ -32,6 +31,7 @@ import usePlaceholder from './../../composables/elements/usePlaceholder'
 import { editor as useFocus } from './../../composables/elements/useFocus'
 import { editor as useData } from './../../composables/elements/useData'
 import { text as useValidation } from './../../composables/elements/useValidation'
+import { text as useDefault } from './../../composables/elements/useDefault'
 
 import BaseElement from './../../mixins/BaseElement'
 import HasView from './../../mixins/HasView'
@@ -52,7 +52,7 @@ export default {
     },
     default: {
       required: false,
-      type: [String, Number],
+      type: [String, Number, Object],
       default: null,
     },
     debounce: {

@@ -124,7 +124,7 @@ export default function (options, component = {}) {
       },
       default: {
         required: false,
-        type: [String, Number],
+        type: [String, Number, Object],
         default: undefined
       },
       disabled: {

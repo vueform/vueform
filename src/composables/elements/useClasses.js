@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import { computed, toRefs, ref } from 'vue'
+import { computed, } from 'vue'
 import MergeClasses from './../../utils/mergeClasses'
 
 const base = function(props, context, dependencies, options = {})
@@ -44,7 +44,7 @@ const base = function(props, context, dependencies, options = {})
    */
   const classes = computed(() => {
     return {
-      ...classesInstance.value.classes,
+      ...classesInstance.value?.classes,
     }
   })
 
