@@ -8,8 +8,6 @@ import useAddons from './../../composables/elements/useAddons'
 import usePath from './../../composables/elements/usePath'
 import useConditions from './../../composables/useConditions'
 import useValue from './../../composables/elements/useValue'
-import useData from './../../composables/elements/useData'
-import useDefault from './../../composables/elements/useDefault'
 import useNullValue from './../../composables/elements/useNullValue'
 import useLabel from './../../composables/elements/useLabel'
 import useColumns from './../../composables/elements/useColumns'
@@ -32,8 +30,10 @@ import useA11y from './../../composables/elements/useA11y'
 import useFocus from './../../composables/elements/useFocus'
 import useHandleKeyEvents from './../../composables/elements/useHandleKeyEvents'
 import usePlaceholder from './../../composables/elements/usePlaceholder'
+import useData from './../../composables/elements/useData'
 
 import { text as useValidation } from './../../composables/elements/useValidation'
+import { text as useDefault } from './../../composables/elements/useDefault'
 
 import BaseElement from './../../mixins/BaseElement'
 import HasView from './../../mixins/HasView'
@@ -54,7 +54,7 @@ export default {
     },
     default: {
       required: false,
-      type: [String, Number],
+      type: [String, Number, Object],
       default: null
     },
     debounce: {
