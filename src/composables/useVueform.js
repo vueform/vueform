@@ -1325,6 +1325,14 @@ const base = function(props, context, dependencies = {})
   onBeforeUnmount(() => fire('beforeUnmount', $this))
   onUnmounted(() => fire('unmounted', $this))
 
+  // ============== WATCHERS ==============
+  
+  watch(computed(() => options.value.language), (n, o) => {
+    if (n) {
+      setLanguage(n)
+    }
+  })
+
   return {
     tabs$,
     steps$,
