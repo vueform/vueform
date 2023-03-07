@@ -39,6 +39,7 @@ const base = function(props, context, dependencies = {})
     method,
     formData,
     language,
+    locale,
     validateOn,
     forceLabels,
     floatPlaceholders,
@@ -840,10 +841,11 @@ const base = function(props, context, dependencies = {})
   const translations = computed(() => {
     let i18n = $this.$vueform.i18n
     let locales = i18n.locales
-    let locale = i18n.locale
+    let currentLocale = locale.value || i18n.locale
     let fallbackLocale = i18n.fallbackLocale || 'en'
 
-    return locale ? _.merge({}, locales[fallbackLocale], locales[locale]) : locales[fallbackLocale]
+
+    return currentLocale ? _.merge({}, locales[fallbackLocale], locales[currentLocale]) : locales[fallbackLocale]
   })
 
   // =============== METHODS ==============

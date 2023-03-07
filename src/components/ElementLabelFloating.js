@@ -38,7 +38,7 @@ export default {
      * @type {string}
      */
     const floating = computed(() => {
-      return localize(el$.value.floating || (form$.value.options.floatPlaceholders ? el$.value.placeholder : null), config$.value)
+      return localize(el$.value.floating || (form$.value.options.floatPlaceholders ? el$.value.placeholder : null), config$.value, form$.value)
     })
     
     return {

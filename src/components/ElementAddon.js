@@ -55,7 +55,7 @@ export default {
     const addon = computed(() => {
       return localize(isAddonFunction.value
         ? baseAddon.value(el$.value)
-        : baseAddon.value || null, config$.value)
+        : baseAddon.value || null, config$.value, form$.value)
     })
     
     /**

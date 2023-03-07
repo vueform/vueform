@@ -74,7 +74,7 @@ const base = function(props, context, dependencies)
     })
 
     return nativeItems.map((o) => {
-      return { ...o, label: localize(o.label, config$.value)}
+      return { ...o, label: localize(o.label, config$.value, form$.value)}
     })
   })
 
@@ -263,7 +263,7 @@ const checkboxgroup = function(props, context, dependencies) {
     })
 
     return resolvedOptions.map((o) => {
-      return { ...o, label: localize(o.label, config$.value)}
+      return { ...o, label: localize(o.label, config$.value, form$.value)}
     })
   })
 

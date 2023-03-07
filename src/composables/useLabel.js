@@ -11,6 +11,7 @@ const base = function(props, context, dependencies)
 
   // =============== INJECT ===============
 
+  const form$ = inject('form$')
   const config$ = inject('config$')
 
   // ============== COMPUTED ==============
@@ -51,7 +52,7 @@ const base = function(props, context, dependencies)
   * @type {string|component}
   */
   const label = computed(() => {
-    return localize(isLabelFunction.value ? baseLabel.value(component$.value) : baseLabel.value || null, config$.value)
+    return localize(isLabelFunction.value ? baseLabel.value(component$.value) : baseLabel.value || null, config$.value, form$.value)
   })
 
   return {

@@ -385,6 +385,11 @@ export default {
       required: false,
       default: null
     },
+    locale: {
+      type: String,
+      required: false,
+      default: null
+    },
 
     onChange: {
       required: false,

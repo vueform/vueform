@@ -45,7 +45,7 @@ export default {
      * @type {string}
      */
     const info = computed(() => {
-      return localize(el$.value.info, config$.value)
+      return localize(el$.value.info, config$.value, form$.value)
     })
 
     /**
