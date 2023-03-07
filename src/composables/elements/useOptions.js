@@ -639,6 +639,7 @@ const toggle = function(props, context, dependencies)
   // ============ DEPENDENCIES ============
 
   const isDisabled = dependencies.isDisabled
+  const form$ = dependencies.form$
 
   // =============== INJECT ===============
 
@@ -655,8 +656,8 @@ const toggle = function(props, context, dependencies)
   const defaultOptions = computed(() => {
     return {
       disabled: isDisabled.value,
-      offLabel: labels.value ? (localize(labels.value.off, config$.value) || '') : '',
-      onLabel: labels.value ? (localize(labels.value.on, config$.value) || '') : '',
+      offLabel: labels.value ? (localize(labels.value.off, config$.value, form$.value) || '') : '',
+      onLabel: labels.value ? (localize(labels.value.on, config$.value, form$.value) || '') : '',
       trueValue: trueValue.value,
       falseValue: falseValue.value,
     }

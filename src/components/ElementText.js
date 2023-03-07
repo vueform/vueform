@@ -42,7 +42,7 @@ export default {
      * @private
      */
     const content = computed(() => {
-      return localize(el$.value[type.value], config$.value)
+      return localize(el$.value[type.value], config$.value, form$.value)
     })
 
     /**

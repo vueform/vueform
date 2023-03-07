@@ -10,6 +10,7 @@ const base = function(props, context, dependencies)
   // =============== INJECT ===============
 
   const config$ = inject('config$')
+  const form$ = inject('form$')
 
   // ============== COMPUTED ==============
 
@@ -20,7 +21,7 @@ const base = function(props, context, dependencies)
    * 
    */
   const Text = computed(() => {
-    return localize(text.value, config$.value)
+    return localize(text.value, config$.value, form$.value)
   })
 
   return {

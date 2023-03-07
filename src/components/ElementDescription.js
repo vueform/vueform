@@ -33,7 +33,7 @@ export default {
      * @type {string}
      */
     const description = computed(() => {
-      return localize(el$.value.description, config$.value)
+      return localize(el$.value.description, config$.value, form$.value)
     })
 
     /**
