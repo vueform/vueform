@@ -44,6 +44,7 @@
         :placeholder="Placeholder"
         :attrs="attrs"
         :aria="aria"
+        :locale="form$.locale$"
         @select="handleSelect"
         @deselect="handleDeselect"
         @search-change="handleSearchChange"

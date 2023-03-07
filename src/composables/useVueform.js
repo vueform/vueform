@@ -225,6 +225,15 @@ const base = function(props, context, dependencies = {})
   })
 
   /**
+   * The active locale of the form.
+   * 
+   * @type {string}
+   */
+  const locale$ = computed(() => {
+    return locale.value || baseConfig.value.i18n.locale
+  })
+
+  /**
    * Registered services.
    * 
    * @type {object}
@@ -1387,6 +1396,7 @@ const base = function(props, context, dependencies = {})
     tree,
     flatTree,
     translations,
+    locale$,
     updateModel,
     update,
     load,
