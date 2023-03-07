@@ -52,7 +52,13 @@ const base = function(props, context, dependencies)
   * @type {string|component}
   */
   const label = computed(() => {
-    return localize(isLabelFunction.value ? baseLabel.value(component$.value) : baseLabel.value || null, config$.value, form$.value)
+    let label = isLabelFunction.value ? baseLabel.value(component$.value) : baseLabel.value || null
+
+    if (!isLabelComponent.value) {
+      label = localize(label, config$.value, form$.value)
+    }
+
+    return label
   })
 
   return {
