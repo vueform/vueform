@@ -253,6 +253,12 @@ export default {
       default: true,
       native: false,
     },
+    closeOnDeselect: {
+      type: [Boolean],
+      required: false,
+      default: false,
+      native: false,
+    },
 
     delay: {
       type: [Number],
