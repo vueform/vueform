@@ -1397,6 +1397,7 @@ const base = function(props, context, dependencies = {})
     flatTree,
     translations,
     locale$,
+    prepareElements,
     updateModel,
     update,
     load,
