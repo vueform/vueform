@@ -73,6 +73,15 @@ const base = function (props, context, dependencies)
    */
   const preparing = ref(false)
 
+  /**
+   * Watchers store.
+   * 
+   * @type {object}
+   * @default {}
+   * @private
+   */
+  const watchers = ref({})
+
   // ============== COMPUTED ==============
 
   /**
@@ -547,7 +556,7 @@ const base = function (props, context, dependencies)
 
   // ============== WATCHERS ==============
   
-  watch(value, (val) => {
+  watchers.value.value = watch(value, (val) => {
     if (!val) {
       base64.value = null
       return
@@ -566,17 +575,19 @@ const base = function (props, context, dependencies)
       : value.value?.__file__)
   }, { immediate: true })
 
-  watch(view, (v) => {
+  watchers.value.view = watch(view, (v) => {
     if (['image', 'gallery'].indexOf(v) !== -1 && !base64.value && value.value instanceof File) {
       resolveBase64()
     }
   })
 
-  if (value.value instanceof File && auto.value) {
+  watchers.value.create = watch(value, (n, o) => {
     nextTick(() => {
-      uploadTemp()
+      if (n instanceof File && auto.value && watchers.value.create) {
+        uploadTemp()
+      }
     })
-  }
+  }, { immediate: true })
 
   return {
     hasUploadError,
@@ -593,6 +604,7 @@ const base = function (props, context, dependencies)
     canRemove,
     canUploadTemp,
     canSelect,
+    watchers,
     uploadTemp,
     remove,
     prepare,
