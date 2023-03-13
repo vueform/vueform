@@ -388,7 +388,7 @@ describe('Editor Element Rendering', () => {
     let axiosPostMock = jest.fn()
 
     let axiosMock = {
-      post: axiosPostMock,
+      request: axiosPostMock,
     }
 
     let form = createEditor({

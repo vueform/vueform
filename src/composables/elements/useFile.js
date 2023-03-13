@@ -581,13 +581,11 @@ const base = function (props, context, dependencies)
     }
   })
 
-  watchers.value.create = watch(value, (n, o) => {
+  if (value.value instanceof File && auto.value) {
     nextTick(() => {
-      if (n instanceof File && auto.value && watchers.value.create) {
-        uploadTemp()
-      }
+      uploadTemp()
     })
-  }, { immediate: true })
+  }
 
   return {
     hasUploadError,

@@ -908,7 +908,7 @@ export const uploadTemp = function (elementType, elementName, options) {
 
     let axiosMock = jest.fn()
 
-    el.axios.post = axiosMock
+    el.axios.request = axiosMock
 
     el.load(new File([''], 'filename'))
 
@@ -1805,7 +1805,7 @@ export const prepare = function (elementType, elementName, options) {
 
     let postMock = jest.fn()
 
-    el.axios.post = postMock
+    el.axios.request = postMock
 
     el.load(tmp)
 
@@ -1835,7 +1835,7 @@ export const prepare = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    el.axios.post = jest.fn(() => {
+    el.axios.request = jest.fn(() => {
       return {
         data: {
           tmp: 'tmp123',
@@ -1881,7 +1881,7 @@ export const prepare = function (elementType, elementName, options) {
       }
     })
 
-    el.axios.post = axiosPostMock
+    el.axios.request = axiosPostMock
 
     let file = new File([''], 'filename')
 
@@ -2190,7 +2190,7 @@ export const handleUploadTemp = function (elementType, elementName, options) {
     let elWrapper = findAllComponents(form, { name: elementName }).at(0)
     let FilePreview = findAllComponents(form, { name: 'FilePreview' }).at(0)
 
-    el.$vueform.services.axios.post = jest.fn(() => ({data:{}}))
+    el.$vueform.services.axios.request = jest.fn(() => ({data:{}}))
 
     el.load(new File([], 'filename.jpg'))
 

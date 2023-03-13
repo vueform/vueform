@@ -91,13 +91,17 @@ const text = function(props, context, dependencies)
     if (parentDefaultValue !== undefined) {
       return parentDefaultValue instanceof File
         ? new File([parentDefaultValue], parentDefaultValue.name, parentDefaultValue)
-        : localize(_.cloneDeep(parentDefaultValue), config$.value, form$.value)
+        : (_.isPlainObject(parentDefaultValue)
+          ? localize(_.cloneDeep(parentDefaultValue), config$.value, form$.value)
+          : _.cloneDeep(parentDefaultValue))
     }
 
     if (default_.value !== undefined) {
       return default_.value instanceof File
         ? new File([default_.value], default_.value.name, default_.value)
-        : localize(_.cloneDeep(default_.value), config$.value, form$.value)
+        : _.isPlainObject(default_.value)
+          ? localize(_.cloneDeep(default_.value), config$.value, form$.value)
+          : _.cloneDeep(default_.value)
     }
 
     return _.cloneDeep(nullValue.value)
