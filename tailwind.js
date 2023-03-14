@@ -2238,7 +2238,7 @@ const vueform = plugin((context) => {
         floatingTop: {
           base: '0px',
           sm: '0px',
-          lg: theme('padding')['2.25'],
+          lg: theme('padding')['2.75'],
         },
         
         borderWidths: { // can be array
