@@ -26,7 +26,7 @@
           <!-- Remove button -->
           <div
             v-if="hasRemove"
-            :aria-roledescription="__('vueform.a11y.list.remove')"
+            :aria-roledescription="form$.translations.vueform.a11y.list.remove"
             :class="classes.remove"
             :id="`${path}-${i}-remove-button`"
             @click.prevent="handleRemove(i)"

@@ -14,7 +14,7 @@
           @input="handleChange"
           ref="input"
        />
-        <span v-if="text" :class="classes.text" v-html="text"></span>
+        <span v-if="Text" :class="classes.text" v-html="Text"></span>
         <span v-else :class="classes.text"><slot :el$="el$"><component :is="fieldSlots.default" :el$="el$"/></slot></span>
       </div>
     </template>

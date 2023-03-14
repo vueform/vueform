@@ -10,12 +10,12 @@
     :aria-describedby="`${el$.fieldId}-file-description`"
     @keyup="handleKeyup"
   >
-    <span :id="`${el$.fieldId}-file-description`" :class="classes.assistiveText" aria-hidden="">{{ __('vueform.a11y.file.description') }}</span>
+    <span :id="`${el$.fieldId}-file-description`" :class="classes.assistiveText" aria-hidden="">{{ form$.translations.vueform.a11y.file.description }}</span>
 
     <div :class="classes.wrapper">
       <div :class="classes.file">
         <!-- Filename -->
-        <a :href="link" v-if="hasLink && clickable" :class="classes.filenameLink" target="_blank">{{ filename }}</a>
+        <a :href="link" v-if="hasLink && clickable" :class="classes.filenameLink" target="_blank" rel="nofollow noopener">{{ filename }}</a>
         <span v-else :class="classes.filenameStatic">{{ filename }}</span>
       </div>
       

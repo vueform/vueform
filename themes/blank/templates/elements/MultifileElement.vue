@@ -4,8 +4,8 @@
       <!-- Drag n drop -->
       <DragAndDrop
         v-if="drop && canDrop && hasAdd"
-        :title="__(`vueform.elements.${type}.dndTitle`)"
-        :description="__(`vueform.elements.${type}.dndDescription`)"
+        :title="form$.translations.vueform.elements[type].dndTitle"
+        :description="form$.translations.vueform.elements[type].dndDescription"
         :disabled="isDisabled"
         :class="classes.dnd"
         @click="handleClick"
@@ -18,12 +18,12 @@
         v-bind="aria"
         :class="classes.button"
         :aria-labelledby="labelId"
-        :aria-placeholder="__('vueform.elements.multifile.uploadButton')"
+        :aria-placeholder="form$.translations.vueform.elements.multifile.uploadButton"
         @click.prevent="handleClick"
         @keypress.enter.space="handleClick"
         role="button"
         tabindex="0"
-      >{{ __('vueform.elements.multifile.uploadButton') }}</div>
+      >{{ form$.translations.vueform.elements.multifile.uploadButton }}</div>
       
       <!-- Actual input field -->
       <input

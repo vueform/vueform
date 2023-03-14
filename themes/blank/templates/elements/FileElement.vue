@@ -4,8 +4,8 @@
       <!-- Drag n drop -->
       <DragAndDrop
         v-if="drop && canDrop && canSelect"
-        :title="__(`vueform.elements.${type}.dndTitle`)"
-        :description="__(`vueform.elements.${type}.dndDescription`)"
+        :title="form$.translations.vueform.elements[type].dndTitle"
+        :description="form$.translations.vueform.elements[type].dndDescription"
         :disabled="isDisabled"
         @click="handleClick"
         @drop="handleDrop"
@@ -17,12 +17,12 @@
         v-bind="aria"
         :class="classes.button"
         :aria-labelledby="labelId"
-        :aria-placeholder="__(`vueform.elements.${type}.select`)"
+        :aria-placeholder="form$.translations.vueform.elements[type].select"
         @click.prevent="handleClick"
         @keypress.enter.space="handleClick"
         role="button"
         tabindex="0"
-      >{{ __(`vueform.elements.${type}.select`) }}</div>
+      >{{ form$.translations.vueform.elements[type].select }}</div>
       
       <!-- Hidden file input -->
       <input
