@@ -65,11 +65,13 @@ export default {
     text: {
       required: false,
       type: [String, Object],
+      localized: true,
       default: null
     },
     labels: {
       required: false,
       type: [Object],
+      localized: true,
       default: () => ({})
     },
     trueValue: {

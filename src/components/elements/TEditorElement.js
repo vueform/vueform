@@ -54,6 +54,7 @@ export default {
     default: {
       required: false,
       type: [Object, String, Number],
+      localized: true,
       default: null
     },
     debounce: {
@@ -74,6 +75,7 @@ export default {
     placeholder: {
       required: false,
       type: [String, Object],
+      localized: true,
       default: null
     },
     onError: {

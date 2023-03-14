@@ -2486,6 +2486,17 @@ export default {
         }
       }
     },
+    "text": {
+      "computed": {
+        "defaultValue": {
+          "public": false,
+          "types": [
+            "any"
+          ],
+          "description": "The default value of the element."
+        }
+      }
+    },
     "object": {
       "computed": {
         "defaultValue": {
@@ -2866,6 +2877,14 @@ export default {
             "boolean"
           ],
           "description": "If the form is submitted and the file is not uploaded yet, the element will enter into `preparing` state and upload the temporary file before submitting the form."
+        },
+        "watchers": {
+          "public": false,
+          "default": "{}",
+          "types": [
+            "object"
+          ],
+          "description": "Watchers store."
         }
       },
       "computed": {
@@ -3906,6 +3925,19 @@ export default {
       }
     }
   },
+  "placeholder": {
+    "base": {
+      "computed": {
+        "Placeholder": {
+          "public": true,
+          "types": [
+            "string"
+          ],
+          "description": "The localized placeholder of the element."
+        }
+      }
+    }
+  },
   "prototype": {
     "base": {
       "computed": {
@@ -4167,6 +4199,19 @@ export default {
             "object"
           ],
           "description": "The component's template."
+        }
+      }
+    }
+  },
+  "text": {
+    "base": {
+      "computed": {
+        "Text": {
+          "public": true,
+          "types": [
+            "string"
+          ],
+          "description": "The localized text of the element."
         }
       }
     }

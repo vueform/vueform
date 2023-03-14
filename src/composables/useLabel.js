@@ -47,7 +47,7 @@ const base = function(props, context, dependencies)
   })
   
   /**
-  * The label of the component. If the label is provided as a `function` this contains the resolved value.
+  * The label of the component.
   * 
   * @type {string|component}
   */

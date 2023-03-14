@@ -59,6 +59,7 @@ export default {
     addons: {
       required: false,
       type: [Object],
+      localized: true,
       default: () => ({})
     },
     disabled: {
@@ -69,6 +70,7 @@ export default {
     floating: {
       required: false,
       type: [String, Boolean, Object],
+      localized: true,
       default: null
     },
     id: {
@@ -137,6 +139,7 @@ export default {
     placeholder: {
       required: false,
       type: [String, Object],
+      localized: true,
       default: null
     },
     readonly: {

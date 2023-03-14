@@ -64,6 +64,12 @@ const addProps = (final, Component) => {
 
   final.props = {}
 
+  const addLocalized = (prop, Prop) => {
+    let localized = prop['@localized'] || prop.localized
+
+    Prop.localized = localized
+  }
+
   const addDefault = (prop, Prop) => {
     let default_ = prop['@default'] || prop.default
 
@@ -115,6 +121,7 @@ const addProps = (final, Component) => {
     }
 
     addDefault(v, Prop)
+    addLocalized(v, Prop)
     addTypes(v, Prop)
     addNative(v, Prop)
     addPrivate(v, Prop)

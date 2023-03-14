@@ -84,11 +84,13 @@ export default {
     description: {
       required: false,
       type: [String, Object],
+      localized: true,
       default: null
     },
     info: {
       required: false,
       type: [String, Object],
+      localized: true,
       default: null
     },
     infoPosition: {
@@ -99,21 +101,25 @@ export default {
     label: {
       required: false,
       type: [String, Object, Function],
+      localized: true,
       default: null
     },
     before: {
       required: false,
       type: [Object, String, Number],
+      localized: true,
       default: null
     },
     between: {
       required: false,
       type: [Object, String, Number],
+      localized: true,
       default: null
     },
     after: {
       required: false,
       type: [Object, String, Number],
+      localized: true,
       default: null
     },
     slots: {

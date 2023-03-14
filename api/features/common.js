@@ -26,6 +26,100 @@ export default {
           "description": "Updates element conditions after they have been changed."
         }
       }
+    },
+    "list": {
+      "data": {
+        "conditionList": {
+          "public": false,
+          "types": [
+            "array"
+          ],
+          "description": "The current conditions of the element."
+        }
+      },
+      "computed": {
+        "available": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether no [`conditions`](#option-conditions) are defined or they are all fulfilled."
+        }
+      },
+      "methods": {
+        "updateConditions": {
+          "public": false,
+          "returns": "void",
+          "description": "Updates element conditions after they have been changed."
+        }
+      }
+    },
+    "object": {
+      "data": {
+        "conditionList": {
+          "public": false,
+          "types": [
+            "array"
+          ],
+          "description": "The current conditions of the element."
+        }
+      },
+      "computed": {
+        "available": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether no [`conditions`](#option-conditions) are defined or they are all fulfilled."
+        }
+      },
+      "methods": {
+        "updateConditions": {
+          "public": false,
+          "returns": "void",
+          "description": "Updates element conditions after they have been changed."
+        }
+      }
+    },
+    "group": {
+      "data": {
+        "conditionList": {
+          "public": false,
+          "types": [
+            "array"
+          ],
+          "description": "The current conditions of the element."
+        }
+      },
+      "computed": {
+        "available": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether no [`conditions`](#option-conditions) are defined or they are all fulfilled."
+        }
+      },
+      "methods": {
+        "updateConditions": {
+          "public": false,
+          "returns": "void",
+          "description": "Updates element conditions after they have been changed."
+        }
+      }
+    }
+  },
+  "config$": {
+    "base": {
+      "inject": {
+        "config$": {
+          "public": true,
+          "types": [
+            "component"
+          ],
+          "description": "The global $vueform config object."
+        }
+      }
     }
   },
   "el$": {
@@ -297,7 +391,7 @@ export default {
             "string",
             "component"
           ],
-          "description": "The label of the component. If the label is provided as a `function` this contains the resolved value."
+          "description": "The label of the component."
         },
         "isLabelComponent": {
           "public": false,
@@ -951,9 +1045,28 @@ export default {
             "array"
           ],
           "description": "The flat tree representation of the form schema."
+        },
+        "translations": {
+          "public": true,
+          "types": [
+            "object"
+          ],
+          "description": "The translation tags of the current locale."
+        },
+        "locale$": {
+          "public": true,
+          "types": [
+            "string"
+          ],
+          "description": "The active locale of the form."
         }
       },
       "methods": {
+        "prepareElements": {
+          "public": false,
+          "returns": "void",
+          "description": "Prepares all elements to submit (async)."
+        },
         "updateModel": {
           "public": false,
           "returns": "void",

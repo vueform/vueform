@@ -55,11 +55,13 @@ export default {
     default: {
       required: false,
       type: [String, Number, Object],
+      localized: true,
       default: null
     },
     addons: {
       required: false,
       type: [Object],
+      localized: true,
       default: () => ({})
     },
     autogrow: {
@@ -85,6 +87,7 @@ export default {
     floating: {
       required: false,
       type: [String, Boolean, Object],
+      localized: true,
       default: null
     },
     id: {
@@ -95,6 +98,7 @@ export default {
     placeholder: {
       required: false,
       type: [String, Object],
+      localized: true,
       default: null
     },
     readonly: {

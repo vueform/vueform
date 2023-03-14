@@ -65,6 +65,7 @@ export default {
     floating: {
       required: false,
       type: [String, Boolean, Object],
+      localized: true,
       default: null
     },
     id: {
@@ -75,6 +76,7 @@ export default {
     placeholder: {
       required: false,
       type: [String, Object],
+      localized: true,
       default: null,
       native: false,
     },
@@ -134,6 +136,7 @@ export default {
     items: {
       required: false,
       type: [Object, Array, Function, String],
+      localized: true,
       default: () => ({})
     },
     labelProp: {
@@ -347,6 +350,7 @@ export default {
       required: false,
       default: undefined,
       '@default': 'locale.multiselect.noOptions',
+      localized: true,
       native: false,
     },
     noResultsText: {
@@ -354,6 +358,7 @@ export default {
       required: false,
       default: undefined,
       '@default': 'locale.multiselect.noResults',
+      localized: true,
       native: false,
     },
 
