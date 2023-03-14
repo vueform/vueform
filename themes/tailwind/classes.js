@@ -1216,7 +1216,7 @@ export default {
   },
   ElementLabelFloating: {
     container: 'label-floating relative pointer-events-none',
-    label: 'absolute z-1 leading-px text-0.5xs px-px transition-input duration-200 ease-in-out whitespace-nowrap',
+    label: 'absolute z-1 leading-px text-0.5xs px-px transition-input duration-200 ease-in-out whitespace-nowrap in-input-group:-form-top-border-width-input-t',
     label_enabled: 'form-bg-input form-color-floating',
     label_disabled: 'form-bg-disabled form-color-floating',
     label_danger: 'form-bg-input-danger form-color-floating-danger',
