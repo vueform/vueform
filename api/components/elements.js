@@ -4,6 +4,7 @@ module.exports = {
       name: {
         required: 'true',
         default: 'undefined',
+        localized: false,
         types: [
           'string',
           'number',
@@ -14,6 +15,7 @@ module.exports = {
       conditions: {
         required: 'false',
         default: '[]',
+        localized: false,
         types: [
           'array',
         ],
@@ -23,6 +25,7 @@ module.exports = {
       onBeforeCreate: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -32,6 +35,7 @@ module.exports = {
       onCreated: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -41,6 +45,7 @@ module.exports = {
       onBeforeMount: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -50,6 +55,7 @@ module.exports = {
       onMounted: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -59,6 +65,7 @@ module.exports = {
       onBeforeUpdate: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -68,6 +75,7 @@ module.exports = {
       onUpdated: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -77,6 +85,7 @@ module.exports = {
       onBeforeUnmount: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -86,6 +95,7 @@ module.exports = {
       onUnmounted: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -95,6 +105,7 @@ module.exports = {
       inline: {
         required: 'false',
         default: 'false',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -104,6 +115,7 @@ module.exports = {
       layout: {
         required: 'false',
         default: 'ElementLayout',
+        localized: false,
         types: [
           'string',
           'object',
@@ -115,6 +127,7 @@ module.exports = {
       addClass: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'array',
           'object',
@@ -126,6 +139,7 @@ module.exports = {
       removeClass: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'array',
           'object',
@@ -136,6 +150,7 @@ module.exports = {
       replaceClass: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'object',
         ],
@@ -145,6 +160,7 @@ module.exports = {
       overrideClass: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'array',
           'object',
@@ -156,6 +172,7 @@ module.exports = {
       addClasses: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -165,6 +182,7 @@ module.exports = {
       replaceClasses: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -174,6 +192,7 @@ module.exports = {
       removeClasses: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -183,6 +202,7 @@ module.exports = {
       overrideClasses: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -192,6 +212,7 @@ module.exports = {
       presets: {
         required: 'false',
         default: '[]',
+        localized: false,
         types: [
           'array',
         ],
@@ -201,6 +222,7 @@ module.exports = {
       view: {
         required: 'false',
         default: 'undefined',
+        localized: false,
         types: [
           'string',
         ],
@@ -210,6 +232,7 @@ module.exports = {
       views: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -219,6 +242,7 @@ module.exports = {
       size: {
         required: 'false',
         default: 'undefined',
+        localized: false,
         types: [
           'string',
         ],
@@ -228,6 +252,7 @@ module.exports = {
       columns: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'object',
           'string',
@@ -239,6 +264,7 @@ module.exports = {
       templates: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -248,8 +274,10 @@ module.exports = {
       description: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'string',
+          'object',
         ],
         required: false,
         private: false,
@@ -257,8 +285,10 @@ module.exports = {
       info: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'string',
+          'object',
         ],
         required: false,
         private: false,
@@ -266,6 +296,7 @@ module.exports = {
       infoPosition: {
         required: 'false',
         default: 'right',
+        localized: false,
         types: [
           'string',
         ],
@@ -275,6 +306,7 @@ module.exports = {
       label: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'string',
           'object',
@@ -286,6 +318,7 @@ module.exports = {
       before: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'object',
           'string',
@@ -297,6 +330,7 @@ module.exports = {
       between: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'object',
           'string',
@@ -308,6 +342,7 @@ module.exports = {
       after: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'object',
           'string',
@@ -319,6 +354,7 @@ module.exports = {
       slots: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -328,6 +364,7 @@ module.exports = {
       type: {
         required: 'false',
         default: 'button',
+        localized: false,
         types: [
           'string',
         ],
@@ -337,6 +374,7 @@ module.exports = {
       buttonLabel: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'string',
           'object',
@@ -348,6 +386,7 @@ module.exports = {
       buttonType: {
         required: 'false',
         default: 'button',
+        localized: false,
         types: [
           'string',
         ],
@@ -357,6 +396,7 @@ module.exports = {
       buttonClass: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'string',
           'array',
@@ -368,6 +408,7 @@ module.exports = {
       id: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'string',
         ],
@@ -377,6 +418,7 @@ module.exports = {
       disabled: {
         required: 'false',
         default: 'false',
+        localized: false,
         types: [
           'function',
           'boolean',
@@ -387,6 +429,7 @@ module.exports = {
       loading: {
         required: 'false',
         default: 'false',
+        localized: false,
         types: [
           'function',
           'boolean',
@@ -397,6 +440,7 @@ module.exports = {
       href: {
         required: 'false',
         default: '',
+        localized: false,
         types: [
           'string',
         ],
@@ -406,6 +450,7 @@ module.exports = {
       target: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'string',
         ],
@@ -415,6 +460,7 @@ module.exports = {
       onClick: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -424,6 +470,7 @@ module.exports = {
       resets: {
         required: 'false',
         default: 'false',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -433,6 +480,7 @@ module.exports = {
       submits: {
         required: 'false',
         default: 'false',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -442,6 +490,7 @@ module.exports = {
       secondary: {
         required: 'false',
         default: 'false',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -451,6 +500,7 @@ module.exports = {
       danger: {
         required: 'false',
         default: 'false',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -1086,6 +1136,7 @@ module.exports = {
       name: {
         required: 'true',
         default: 'undefined',
+        localized: false,
         types: [
           'string',
           'number',
@@ -1096,6 +1147,7 @@ module.exports = {
       conditions: {
         required: 'false',
         default: '[]',
+        localized: false,
         types: [
           'array',
         ],
@@ -1105,6 +1157,7 @@ module.exports = {
       onBeforeCreate: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -1114,6 +1167,7 @@ module.exports = {
       onCreated: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -1123,6 +1177,7 @@ module.exports = {
       onBeforeMount: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -1132,6 +1187,7 @@ module.exports = {
       onMounted: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -1141,6 +1197,7 @@ module.exports = {
       onBeforeUpdate: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -1150,6 +1207,7 @@ module.exports = {
       onUpdated: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -1159,6 +1217,7 @@ module.exports = {
       onBeforeUnmount: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -1168,6 +1227,7 @@ module.exports = {
       onUnmounted: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -1177,6 +1237,7 @@ module.exports = {
       inline: {
         required: 'false',
         default: 'false',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -1186,6 +1247,7 @@ module.exports = {
       layout: {
         required: 'false',
         default: 'ElementLayout',
+        localized: false,
         types: [
           'string',
           'object',
@@ -1197,6 +1259,7 @@ module.exports = {
       addClass: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'array',
           'object',
@@ -1208,6 +1271,7 @@ module.exports = {
       removeClass: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'array',
           'object',
@@ -1218,6 +1282,7 @@ module.exports = {
       replaceClass: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'object',
         ],
@@ -1227,6 +1292,7 @@ module.exports = {
       overrideClass: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'array',
           'object',
@@ -1238,6 +1304,7 @@ module.exports = {
       addClasses: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -1247,6 +1314,7 @@ module.exports = {
       replaceClasses: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -1256,6 +1324,7 @@ module.exports = {
       removeClasses: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -1265,6 +1334,7 @@ module.exports = {
       overrideClasses: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -1274,6 +1344,7 @@ module.exports = {
       presets: {
         required: 'false',
         default: '[]',
+        localized: false,
         types: [
           'array',
         ],
@@ -1283,6 +1354,7 @@ module.exports = {
       view: {
         required: 'false',
         default: 'undefined',
+        localized: false,
         types: [
           'string',
         ],
@@ -1292,6 +1364,7 @@ module.exports = {
       views: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -1301,6 +1374,7 @@ module.exports = {
       size: {
         required: 'false',
         default: 'undefined',
+        localized: false,
         types: [
           'string',
         ],
@@ -1310,6 +1384,7 @@ module.exports = {
       columns: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'object',
           'string',
@@ -1321,6 +1396,7 @@ module.exports = {
       templates: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -1330,8 +1406,10 @@ module.exports = {
       description: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'string',
+          'object',
         ],
         required: false,
         private: false,
@@ -1339,8 +1417,10 @@ module.exports = {
       info: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'string',
+          'object',
         ],
         required: false,
         private: false,
@@ -1348,6 +1428,7 @@ module.exports = {
       infoPosition: {
         required: 'false',
         default: 'right',
+        localized: false,
         types: [
           'string',
         ],
@@ -1357,6 +1438,7 @@ module.exports = {
       label: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'string',
           'object',
@@ -1368,6 +1450,7 @@ module.exports = {
       before: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'object',
           'string',
@@ -1379,6 +1462,7 @@ module.exports = {
       between: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'object',
           'string',
@@ -1390,6 +1474,7 @@ module.exports = {
       after: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'object',
           'string',
@@ -1401,6 +1486,7 @@ module.exports = {
       slots: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -1410,6 +1496,7 @@ module.exports = {
       onChange: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -1419,6 +1506,7 @@ module.exports = {
       formatData: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -1428,6 +1516,7 @@ module.exports = {
       formatLoad: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -1437,6 +1526,7 @@ module.exports = {
       submit: {
         required: 'false',
         default: 'true',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -1446,6 +1536,7 @@ module.exports = {
       rules: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'array',
           'string',
@@ -1457,6 +1548,7 @@ module.exports = {
       messages: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -1466,6 +1558,7 @@ module.exports = {
       fieldName: {
         required: 'false',
         default: 'name|label',
+        localized: false,
         types: [
           'string',
         ],
@@ -1475,6 +1568,7 @@ module.exports = {
       type: {
         required: 'false',
         default: 'checkbox',
+        localized: false,
         types: [
           'string',
         ],
@@ -1484,6 +1578,7 @@ module.exports = {
       default: {
         required: 'false',
         default: 'undefined',
+        localized: false,
         types: [
           'string',
           'boolean',
@@ -1495,6 +1590,7 @@ module.exports = {
       id: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'string',
         ],
@@ -1504,8 +1600,10 @@ module.exports = {
       text: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'string',
+          'object',
         ],
         required: false,
         private: false,
@@ -1513,6 +1611,7 @@ module.exports = {
       disabled: {
         required: 'false',
         default: 'false',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -1522,6 +1621,7 @@ module.exports = {
       trueValue: {
         required: 'false',
         default: 'true',
+        localized: false,
         types: [
           'boolean',
           'string',
@@ -1533,6 +1633,7 @@ module.exports = {
       falseValue: {
         required: 'false',
         default: 'false',
+        localized: false,
         types: [
           'boolean',
           'string',
@@ -1890,6 +1991,13 @@ module.exports = {
           'object',
         ],
         description: 'The component&apos;s template.',
+        private: false,
+      },
+      Text: {
+        types: [
+          'string',
+        ],
+        description: 'The localized text of the element.',
         private: false,
       },
       dirty: {
@@ -2427,6 +2535,7 @@ module.exports = {
       name: {
         required: 'true',
         default: 'undefined',
+        localized: false,
         types: [
           'string',
           'number',
@@ -2437,6 +2546,7 @@ module.exports = {
       conditions: {
         required: 'false',
         default: '[]',
+        localized: false,
         types: [
           'array',
         ],
@@ -2446,6 +2556,7 @@ module.exports = {
       onBeforeCreate: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -2455,6 +2566,7 @@ module.exports = {
       onCreated: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -2464,6 +2576,7 @@ module.exports = {
       onBeforeMount: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -2473,6 +2586,7 @@ module.exports = {
       onMounted: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -2482,6 +2596,7 @@ module.exports = {
       onBeforeUpdate: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -2491,6 +2606,7 @@ module.exports = {
       onUpdated: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -2500,6 +2616,7 @@ module.exports = {
       onBeforeUnmount: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -2509,6 +2626,7 @@ module.exports = {
       onUnmounted: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -2518,6 +2636,7 @@ module.exports = {
       inline: {
         required: 'false',
         default: 'false',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -2527,6 +2646,7 @@ module.exports = {
       layout: {
         required: 'false',
         default: 'ElementLayout',
+        localized: false,
         types: [
           'string',
           'object',
@@ -2538,6 +2658,7 @@ module.exports = {
       addClass: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'array',
           'object',
@@ -2549,6 +2670,7 @@ module.exports = {
       removeClass: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'array',
           'object',
@@ -2559,6 +2681,7 @@ module.exports = {
       replaceClass: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'object',
         ],
@@ -2568,6 +2691,7 @@ module.exports = {
       overrideClass: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'array',
           'object',
@@ -2579,6 +2703,7 @@ module.exports = {
       addClasses: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -2588,6 +2713,7 @@ module.exports = {
       replaceClasses: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -2597,6 +2723,7 @@ module.exports = {
       removeClasses: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -2606,6 +2733,7 @@ module.exports = {
       overrideClasses: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -2615,6 +2743,7 @@ module.exports = {
       presets: {
         required: 'false',
         default: '[]',
+        localized: false,
         types: [
           'array',
         ],
@@ -2624,6 +2753,7 @@ module.exports = {
       view: {
         required: 'false',
         default: 'undefined',
+        localized: false,
         types: [
           'string',
         ],
@@ -2633,6 +2763,7 @@ module.exports = {
       views: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -2642,6 +2773,7 @@ module.exports = {
       size: {
         required: 'false',
         default: 'undefined',
+        localized: false,
         types: [
           'string',
         ],
@@ -2651,6 +2783,7 @@ module.exports = {
       columns: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'object',
           'string',
@@ -2662,6 +2795,7 @@ module.exports = {
       templates: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -2671,8 +2805,10 @@ module.exports = {
       description: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'string',
+          'object',
         ],
         required: false,
         private: false,
@@ -2680,8 +2816,10 @@ module.exports = {
       info: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'string',
+          'object',
         ],
         required: false,
         private: false,
@@ -2689,6 +2827,7 @@ module.exports = {
       infoPosition: {
         required: 'false',
         default: 'right',
+        localized: false,
         types: [
           'string',
         ],
@@ -2698,6 +2837,7 @@ module.exports = {
       label: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'string',
           'object',
@@ -2709,6 +2849,7 @@ module.exports = {
       before: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'object',
           'string',
@@ -2720,6 +2861,7 @@ module.exports = {
       between: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'object',
           'string',
@@ -2731,6 +2873,7 @@ module.exports = {
       after: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'object',
           'string',
@@ -2742,6 +2885,7 @@ module.exports = {
       slots: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -2751,6 +2895,7 @@ module.exports = {
       onChange: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -2760,6 +2905,7 @@ module.exports = {
       formatData: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -2769,6 +2915,7 @@ module.exports = {
       formatLoad: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -2778,6 +2925,7 @@ module.exports = {
       submit: {
         required: 'false',
         default: 'true',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -2787,6 +2935,7 @@ module.exports = {
       rules: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'array',
           'string',
@@ -2798,6 +2947,7 @@ module.exports = {
       messages: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -2807,6 +2957,7 @@ module.exports = {
       fieldName: {
         required: 'false',
         default: 'name|label',
+        localized: false,
         types: [
           'string',
         ],
@@ -2816,6 +2967,7 @@ module.exports = {
       type: {
         required: 'false',
         default: 'checkboxgroup',
+        localized: false,
         types: [
           'string',
         ],
@@ -2825,6 +2977,7 @@ module.exports = {
       default: {
         required: 'false',
         default: '[]',
+        localized: false,
         types: [
           'array',
         ],
@@ -2834,6 +2987,7 @@ module.exports = {
       id: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'string',
         ],
@@ -2843,6 +2997,7 @@ module.exports = {
       items: {
         required: 'false',
         default: '{}',
+        localized: true,
         types: [
           'object',
           'array',
@@ -2855,6 +3010,7 @@ module.exports = {
       disabled: {
         required: 'false',
         default: 'false',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -2864,6 +3020,7 @@ module.exports = {
       disables: {
         required: 'false',
         default: '[]',
+        localized: false,
         types: [
           'array',
         ],
@@ -3896,6 +4053,7 @@ module.exports = {
       name: {
         required: 'true',
         default: 'undefined',
+        localized: false,
         types: [
           'string',
           'number',
@@ -3906,6 +4064,7 @@ module.exports = {
       conditions: {
         required: 'false',
         default: '[]',
+        localized: false,
         types: [
           'array',
         ],
@@ -3915,6 +4074,7 @@ module.exports = {
       onBeforeCreate: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -3924,6 +4084,7 @@ module.exports = {
       onCreated: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -3933,6 +4094,7 @@ module.exports = {
       onBeforeMount: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -3942,6 +4104,7 @@ module.exports = {
       onMounted: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -3951,6 +4114,7 @@ module.exports = {
       onBeforeUpdate: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -3960,6 +4124,7 @@ module.exports = {
       onUpdated: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -3969,6 +4134,7 @@ module.exports = {
       onBeforeUnmount: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -3978,6 +4144,7 @@ module.exports = {
       onUnmounted: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -3987,6 +4154,7 @@ module.exports = {
       inline: {
         required: 'false',
         default: 'false',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -3996,6 +4164,7 @@ module.exports = {
       layout: {
         required: 'false',
         default: 'ElementLayout',
+        localized: false,
         types: [
           'string',
           'object',
@@ -4007,6 +4176,7 @@ module.exports = {
       addClass: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'array',
           'object',
@@ -4018,6 +4188,7 @@ module.exports = {
       removeClass: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'array',
           'object',
@@ -4028,6 +4199,7 @@ module.exports = {
       replaceClass: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'object',
         ],
@@ -4037,6 +4209,7 @@ module.exports = {
       overrideClass: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'array',
           'object',
@@ -4048,6 +4221,7 @@ module.exports = {
       addClasses: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -4057,6 +4231,7 @@ module.exports = {
       replaceClasses: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -4066,6 +4241,7 @@ module.exports = {
       removeClasses: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -4075,6 +4251,7 @@ module.exports = {
       overrideClasses: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -4084,6 +4261,7 @@ module.exports = {
       presets: {
         required: 'false',
         default: '[]',
+        localized: false,
         types: [
           'array',
         ],
@@ -4093,6 +4271,7 @@ module.exports = {
       view: {
         required: 'false',
         default: 'undefined',
+        localized: false,
         types: [
           'string',
         ],
@@ -4102,6 +4281,7 @@ module.exports = {
       views: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -4111,6 +4291,7 @@ module.exports = {
       size: {
         required: 'false',
         default: 'undefined',
+        localized: false,
         types: [
           'string',
         ],
@@ -4120,6 +4301,7 @@ module.exports = {
       columns: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'object',
           'string',
@@ -4131,6 +4313,7 @@ module.exports = {
       templates: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -4140,8 +4323,10 @@ module.exports = {
       description: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'string',
+          'object',
         ],
         required: false,
         private: false,
@@ -4149,8 +4334,10 @@ module.exports = {
       info: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'string',
+          'object',
         ],
         required: false,
         private: false,
@@ -4158,6 +4345,7 @@ module.exports = {
       infoPosition: {
         required: 'false',
         default: 'right',
+        localized: false,
         types: [
           'string',
         ],
@@ -4167,6 +4355,7 @@ module.exports = {
       label: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'string',
           'object',
@@ -4178,6 +4367,7 @@ module.exports = {
       before: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'object',
           'string',
@@ -4189,6 +4379,7 @@ module.exports = {
       between: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'object',
           'string',
@@ -4200,6 +4391,7 @@ module.exports = {
       after: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'object',
           'string',
@@ -4211,6 +4403,7 @@ module.exports = {
       slots: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -4220,6 +4413,7 @@ module.exports = {
       onChange: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -4229,6 +4423,7 @@ module.exports = {
       formatData: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -4238,6 +4433,7 @@ module.exports = {
       formatLoad: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -4247,6 +4443,7 @@ module.exports = {
       submit: {
         required: 'false',
         default: 'true',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -4256,6 +4453,7 @@ module.exports = {
       rules: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'array',
           'string',
@@ -4267,6 +4465,7 @@ module.exports = {
       messages: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -4276,6 +4475,7 @@ module.exports = {
       fieldName: {
         required: 'false',
         default: 'name|label',
+        localized: false,
         types: [
           'string',
         ],
@@ -4285,6 +4485,7 @@ module.exports = {
       type: {
         required: 'false',
         default: 'date',
+        localized: false,
         types: [
           'string',
         ],
@@ -4294,6 +4495,7 @@ module.exports = {
       default: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'string',
           'date',
@@ -4304,6 +4506,7 @@ module.exports = {
       addons: {
         required: 'false',
         default: '{}',
+        localized: true,
         types: [
           'object',
         ],
@@ -4313,6 +4516,7 @@ module.exports = {
       disabled: {
         required: 'false',
         default: 'false',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -4322,9 +4526,11 @@ module.exports = {
       floating: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'string',
           'boolean',
+          'object',
         ],
         required: false,
         private: false,
@@ -4332,6 +4538,7 @@ module.exports = {
       id: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'string',
         ],
@@ -4341,6 +4548,7 @@ module.exports = {
       displayFormat: {
         required: 'false',
         default: 'locale.vueform.dateFormats.*',
+        localized: false,
         types: [
           'string',
         ],
@@ -4350,6 +4558,7 @@ module.exports = {
       valueFormat: {
         required: 'false',
         default: 'locale.vueform.dateFormats.*',
+        localized: false,
         types: [
           'string',
           'boolean',
@@ -4360,6 +4569,7 @@ module.exports = {
       loadFormat: {
         required: 'false',
         default: 'locale.vueform.dateFormats.*',
+        localized: false,
         types: [
           'string',
         ],
@@ -4369,6 +4579,7 @@ module.exports = {
       date: {
         required: 'false',
         default: 'true',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -4378,6 +4589,7 @@ module.exports = {
       time: {
         required: 'false',
         default: 'false',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -4387,6 +4599,7 @@ module.exports = {
       seconds: {
         required: 'false',
         default: 'false',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -4396,6 +4609,7 @@ module.exports = {
       hour24: {
         required: 'false',
         default: 'true',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -4405,6 +4619,7 @@ module.exports = {
       min: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'string',
           'date',
@@ -4415,6 +4630,7 @@ module.exports = {
       max: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'string',
           'date',
@@ -4425,6 +4641,7 @@ module.exports = {
       disables: {
         required: 'false',
         default: '[]',
+        localized: false,
         types: [
           'array',
         ],
@@ -4434,6 +4651,7 @@ module.exports = {
       extendOptions: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -4443,8 +4661,10 @@ module.exports = {
       placeholder: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'string',
+          'object',
         ],
         required: false,
         private: false,
@@ -4452,6 +4672,7 @@ module.exports = {
       readonly: {
         required: 'false',
         default: 'false',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -4822,6 +5043,13 @@ module.exports = {
         ],
         description: 'Whether the element is just a container of children but not nested on data level (eg. [`GroupElement`](group-element))',
         private: true,
+      },
+      Placeholder: {
+        types: [
+          'string',
+        ],
+        description: 'The localized placeholder of the element.',
+        private: false,
       },
       elementSlots: {
         types: [
@@ -5401,6 +5629,7 @@ module.exports = {
       name: {
         required: 'true',
         default: 'undefined',
+        localized: false,
         types: [
           'string',
           'number',
@@ -5411,6 +5640,7 @@ module.exports = {
       conditions: {
         required: 'false',
         default: '[]',
+        localized: false,
         types: [
           'array',
         ],
@@ -5420,6 +5650,7 @@ module.exports = {
       onBeforeCreate: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -5429,6 +5660,7 @@ module.exports = {
       onCreated: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -5438,6 +5670,7 @@ module.exports = {
       onBeforeMount: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -5447,6 +5680,7 @@ module.exports = {
       onMounted: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -5456,6 +5690,7 @@ module.exports = {
       onBeforeUpdate: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -5465,6 +5700,7 @@ module.exports = {
       onUpdated: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -5474,6 +5710,7 @@ module.exports = {
       onBeforeUnmount: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -5483,6 +5720,7 @@ module.exports = {
       onUnmounted: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -5492,6 +5730,7 @@ module.exports = {
       inline: {
         required: 'false',
         default: 'false',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -5501,6 +5740,7 @@ module.exports = {
       layout: {
         required: 'false',
         default: 'ElementLayout',
+        localized: false,
         types: [
           'string',
           'object',
@@ -5512,6 +5752,7 @@ module.exports = {
       addClass: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'array',
           'object',
@@ -5523,6 +5764,7 @@ module.exports = {
       removeClass: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'array',
           'object',
@@ -5533,6 +5775,7 @@ module.exports = {
       replaceClass: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'object',
         ],
@@ -5542,6 +5785,7 @@ module.exports = {
       overrideClass: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'array',
           'object',
@@ -5553,6 +5797,7 @@ module.exports = {
       addClasses: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -5562,6 +5807,7 @@ module.exports = {
       replaceClasses: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -5571,6 +5817,7 @@ module.exports = {
       removeClasses: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -5580,6 +5827,7 @@ module.exports = {
       overrideClasses: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -5589,6 +5837,7 @@ module.exports = {
       presets: {
         required: 'false',
         default: '[]',
+        localized: false,
         types: [
           'array',
         ],
@@ -5598,6 +5847,7 @@ module.exports = {
       view: {
         required: 'false',
         default: 'undefined',
+        localized: false,
         types: [
           'string',
         ],
@@ -5607,6 +5857,7 @@ module.exports = {
       views: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -5616,6 +5867,7 @@ module.exports = {
       size: {
         required: 'false',
         default: 'undefined',
+        localized: false,
         types: [
           'string',
         ],
@@ -5625,6 +5877,7 @@ module.exports = {
       columns: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'object',
           'string',
@@ -5636,6 +5889,7 @@ module.exports = {
       templates: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -5645,8 +5899,10 @@ module.exports = {
       description: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'string',
+          'object',
         ],
         required: false,
         private: false,
@@ -5654,8 +5910,10 @@ module.exports = {
       info: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'string',
+          'object',
         ],
         required: false,
         private: false,
@@ -5663,6 +5921,7 @@ module.exports = {
       infoPosition: {
         required: 'false',
         default: 'right',
+        localized: false,
         types: [
           'string',
         ],
@@ -5672,6 +5931,7 @@ module.exports = {
       label: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'string',
           'object',
@@ -5683,6 +5943,7 @@ module.exports = {
       before: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'object',
           'string',
@@ -5694,6 +5955,7 @@ module.exports = {
       between: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'object',
           'string',
@@ -5705,6 +5967,7 @@ module.exports = {
       after: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'object',
           'string',
@@ -5716,6 +5979,7 @@ module.exports = {
       slots: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -5725,6 +5989,7 @@ module.exports = {
       onChange: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -5734,6 +5999,7 @@ module.exports = {
       formatData: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -5743,6 +6009,7 @@ module.exports = {
       formatLoad: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -5752,6 +6019,7 @@ module.exports = {
       submit: {
         required: 'false',
         default: 'true',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -5761,6 +6029,7 @@ module.exports = {
       rules: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'array',
           'string',
@@ -5772,6 +6041,7 @@ module.exports = {
       messages: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -5781,6 +6051,7 @@ module.exports = {
       fieldName: {
         required: 'false',
         default: 'name|label',
+        localized: false,
         types: [
           'string',
         ],
@@ -5790,6 +6061,7 @@ module.exports = {
       type: {
         required: 'false',
         default: 'dates',
+        localized: false,
         types: [
           'string',
         ],
@@ -5799,6 +6071,7 @@ module.exports = {
       default: {
         required: 'false',
         default: '[]',
+        localized: false,
         types: [
           'array',
         ],
@@ -5808,6 +6081,7 @@ module.exports = {
       addons: {
         required: 'false',
         default: '{}',
+        localized: true,
         types: [
           'object',
         ],
@@ -5817,6 +6091,7 @@ module.exports = {
       disabled: {
         required: 'false',
         default: 'false',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -5826,9 +6101,11 @@ module.exports = {
       floating: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'string',
           'boolean',
+          'object',
         ],
         required: false,
         private: false,
@@ -5836,6 +6113,7 @@ module.exports = {
       id: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'string',
         ],
@@ -5845,6 +6123,7 @@ module.exports = {
       displayFormat: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'string',
         ],
@@ -5854,6 +6133,7 @@ module.exports = {
       valueFormat: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'string',
           'boolean',
@@ -5864,6 +6144,7 @@ module.exports = {
       loadFormat: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'string',
           'boolean',
@@ -5874,6 +6155,7 @@ module.exports = {
       mode: {
         required: 'false',
         default: 'multiple',
+        localized: false,
         types: [
           'string',
         ],
@@ -5883,6 +6165,7 @@ module.exports = {
       min: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'string',
           'date',
@@ -5893,6 +6176,7 @@ module.exports = {
       max: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'string',
           'date',
@@ -5903,6 +6187,7 @@ module.exports = {
       disables: {
         required: 'false',
         default: '[]',
+        localized: false,
         types: [
           'array',
         ],
@@ -5912,6 +6197,7 @@ module.exports = {
       extendOptions: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -5921,8 +6207,10 @@ module.exports = {
       placeholder: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'string',
+          'object',
         ],
         required: false,
         private: false,
@@ -5930,6 +6218,7 @@ module.exports = {
       readonly: {
         required: 'false',
         default: 'false',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -6300,6 +6589,13 @@ module.exports = {
         ],
         description: 'Whether the element is just a container of children but not nested on data level (eg. [`GroupElement`](group-element))',
         private: true,
+      },
+      Placeholder: {
+        types: [
+          'string',
+        ],
+        description: 'The localized placeholder of the element.',
+        private: false,
       },
       elementSlots: {
         types: [
@@ -6879,6 +7175,7 @@ module.exports = {
       name: {
         required: 'true',
         default: 'undefined',
+        localized: false,
         types: [
           'string',
           'number',
@@ -6889,6 +7186,7 @@ module.exports = {
       conditions: {
         required: 'false',
         default: '[]',
+        localized: false,
         types: [
           'array',
         ],
@@ -6898,6 +7196,7 @@ module.exports = {
       onBeforeCreate: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -6907,6 +7206,7 @@ module.exports = {
       onCreated: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -6916,6 +7216,7 @@ module.exports = {
       onBeforeMount: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -6925,6 +7226,7 @@ module.exports = {
       onMounted: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -6934,6 +7236,7 @@ module.exports = {
       onBeforeUpdate: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -6943,6 +7246,7 @@ module.exports = {
       onUpdated: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -6952,6 +7256,7 @@ module.exports = {
       onBeforeUnmount: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -6961,6 +7266,7 @@ module.exports = {
       onUnmounted: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -6970,6 +7276,7 @@ module.exports = {
       inline: {
         required: 'false',
         default: 'false',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -6979,6 +7286,7 @@ module.exports = {
       layout: {
         required: 'false',
         default: 'ElementLayout',
+        localized: false,
         types: [
           'string',
           'object',
@@ -6990,6 +7298,7 @@ module.exports = {
       addClass: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'array',
           'object',
@@ -7001,6 +7310,7 @@ module.exports = {
       removeClass: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'array',
           'object',
@@ -7011,6 +7321,7 @@ module.exports = {
       replaceClass: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'object',
         ],
@@ -7020,6 +7331,7 @@ module.exports = {
       overrideClass: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'array',
           'object',
@@ -7031,6 +7343,7 @@ module.exports = {
       addClasses: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -7040,6 +7353,7 @@ module.exports = {
       replaceClasses: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -7049,6 +7363,7 @@ module.exports = {
       removeClasses: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -7058,6 +7373,7 @@ module.exports = {
       overrideClasses: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -7067,6 +7383,7 @@ module.exports = {
       presets: {
         required: 'false',
         default: '[]',
+        localized: false,
         types: [
           'array',
         ],
@@ -7076,6 +7393,7 @@ module.exports = {
       view: {
         required: 'false',
         default: 'undefined',
+        localized: false,
         types: [
           'string',
         ],
@@ -7085,6 +7403,7 @@ module.exports = {
       views: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -7094,6 +7413,7 @@ module.exports = {
       size: {
         required: 'false',
         default: 'undefined',
+        localized: false,
         types: [
           'string',
         ],
@@ -7103,6 +7423,7 @@ module.exports = {
       columns: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'object',
           'string',
@@ -7114,6 +7435,7 @@ module.exports = {
       templates: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -7123,8 +7445,10 @@ module.exports = {
       description: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'string',
+          'object',
         ],
         required: false,
         private: false,
@@ -7132,8 +7456,10 @@ module.exports = {
       info: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'string',
+          'object',
         ],
         required: false,
         private: false,
@@ -7141,6 +7467,7 @@ module.exports = {
       infoPosition: {
         required: 'false',
         default: 'right',
+        localized: false,
         types: [
           'string',
         ],
@@ -7150,6 +7477,7 @@ module.exports = {
       label: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'string',
           'object',
@@ -7161,6 +7489,7 @@ module.exports = {
       before: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'object',
           'string',
@@ -7172,6 +7501,7 @@ module.exports = {
       between: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'object',
           'string',
@@ -7183,6 +7513,7 @@ module.exports = {
       after: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'object',
           'string',
@@ -7194,6 +7525,7 @@ module.exports = {
       slots: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -7203,6 +7535,7 @@ module.exports = {
       onChange: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -7212,6 +7545,7 @@ module.exports = {
       formatData: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -7221,6 +7555,7 @@ module.exports = {
       formatLoad: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -7230,6 +7565,7 @@ module.exports = {
       submit: {
         required: 'false',
         default: 'true',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -7239,6 +7575,7 @@ module.exports = {
       rules: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'array',
           'string',
@@ -7250,6 +7587,7 @@ module.exports = {
       messages: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -7259,6 +7597,7 @@ module.exports = {
       fieldName: {
         required: 'false',
         default: 'name|label',
+        localized: false,
         types: [
           'string',
         ],
@@ -7268,6 +7607,7 @@ module.exports = {
       type: {
         required: 'false',
         default: 'editor',
+        localized: false,
         types: [
           'string',
         ],
@@ -7277,9 +7617,11 @@ module.exports = {
       default: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'string',
           'number',
+          'object',
         ],
         required: false,
         private: false,
@@ -7287,6 +7629,7 @@ module.exports = {
       debounce: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'number',
         ],
@@ -7296,6 +7639,7 @@ module.exports = {
       disabled: {
         required: 'false',
         default: 'false',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -7305,6 +7649,7 @@ module.exports = {
       id: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'string',
         ],
@@ -7314,8 +7659,10 @@ module.exports = {
       placeholder: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'string',
+          'object',
         ],
         required: false,
         private: false,
@@ -7323,6 +7670,7 @@ module.exports = {
       onError: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -7332,6 +7680,7 @@ module.exports = {
       onAlert: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -7341,6 +7690,7 @@ module.exports = {
       accept: {
         required: 'false',
         default: '[]',
+        localized: false,
         types: [
           'array',
         ],
@@ -7350,6 +7700,7 @@ module.exports = {
       acceptMimes: {
         required: 'false',
         default: '[]',
+        localized: false,
         types: [
           'array',
         ],
@@ -7359,6 +7710,7 @@ module.exports = {
       endpoint: {
         required: 'false',
         default: 'config.endpoints.attachment.url',
+        localized: false,
         types: [
           'string',
           'function',
@@ -7369,6 +7721,7 @@ module.exports = {
       method: {
         required: 'false',
         default: 'config.endpoints.attachment.method',
+        localized: false,
         types: [
           'string',
         ],
@@ -7378,6 +7731,7 @@ module.exports = {
       hideTools: {
         required: 'false',
         default: '[]',
+        localized: false,
         types: [
           'array',
         ],
@@ -7387,6 +7741,7 @@ module.exports = {
       onBlur: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -7745,6 +8100,13 @@ module.exports = {
         ],
         description: 'Whether the element is just a container of children but not nested on data level (eg. [`GroupElement`](group-element))',
         private: true,
+      },
+      Placeholder: {
+        types: [
+          'string',
+        ],
+        description: 'The localized placeholder of the element.',
+        private: false,
       },
       elementSlots: {
         types: [
@@ -8375,6 +8737,7 @@ module.exports = {
       name: {
         required: 'true',
         default: 'undefined',
+        localized: false,
         types: [
           'string',
           'number',
@@ -8385,6 +8748,7 @@ module.exports = {
       conditions: {
         required: 'false',
         default: '[]',
+        localized: false,
         types: [
           'array',
         ],
@@ -8394,6 +8758,7 @@ module.exports = {
       onBeforeCreate: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -8403,6 +8768,7 @@ module.exports = {
       onCreated: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -8412,6 +8778,7 @@ module.exports = {
       onBeforeMount: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -8421,6 +8788,7 @@ module.exports = {
       onMounted: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -8430,6 +8798,7 @@ module.exports = {
       onBeforeUpdate: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -8439,6 +8808,7 @@ module.exports = {
       onUpdated: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -8448,6 +8818,7 @@ module.exports = {
       onBeforeUnmount: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -8457,6 +8828,7 @@ module.exports = {
       onUnmounted: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -8466,6 +8838,7 @@ module.exports = {
       inline: {
         required: 'false',
         default: 'false',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -8475,6 +8848,7 @@ module.exports = {
       layout: {
         required: 'false',
         default: 'ElementLayout',
+        localized: false,
         types: [
           'string',
           'object',
@@ -8486,6 +8860,7 @@ module.exports = {
       addClass: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'array',
           'object',
@@ -8497,6 +8872,7 @@ module.exports = {
       removeClass: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'array',
           'object',
@@ -8507,6 +8883,7 @@ module.exports = {
       replaceClass: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'object',
         ],
@@ -8516,6 +8893,7 @@ module.exports = {
       overrideClass: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'array',
           'object',
@@ -8527,6 +8905,7 @@ module.exports = {
       addClasses: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -8536,6 +8915,7 @@ module.exports = {
       replaceClasses: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -8545,6 +8925,7 @@ module.exports = {
       removeClasses: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -8554,6 +8935,7 @@ module.exports = {
       overrideClasses: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -8563,6 +8945,7 @@ module.exports = {
       presets: {
         required: 'false',
         default: '[]',
+        localized: false,
         types: [
           'array',
         ],
@@ -8572,6 +8955,7 @@ module.exports = {
       view: {
         required: 'false',
         default: 'file',
+        localized: false,
         types: [
           'string',
         ],
@@ -8581,6 +8965,7 @@ module.exports = {
       views: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -8590,6 +8975,7 @@ module.exports = {
       size: {
         required: 'false',
         default: 'undefined',
+        localized: false,
         types: [
           'string',
         ],
@@ -8599,6 +8985,7 @@ module.exports = {
       columns: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'object',
           'string',
@@ -8610,6 +8997,7 @@ module.exports = {
       templates: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -8619,8 +9007,10 @@ module.exports = {
       description: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'string',
+          'object',
         ],
         required: false,
         private: false,
@@ -8628,8 +9018,10 @@ module.exports = {
       info: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'string',
+          'object',
         ],
         required: false,
         private: false,
@@ -8637,6 +9029,7 @@ module.exports = {
       infoPosition: {
         required: 'false',
         default: 'right',
+        localized: false,
         types: [
           'string',
         ],
@@ -8646,6 +9039,7 @@ module.exports = {
       label: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'string',
           'object',
@@ -8657,6 +9051,7 @@ module.exports = {
       before: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'object',
           'string',
@@ -8668,6 +9063,7 @@ module.exports = {
       between: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'object',
           'string',
@@ -8679,6 +9075,7 @@ module.exports = {
       after: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'object',
           'string',
@@ -8690,6 +9087,7 @@ module.exports = {
       slots: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -8699,6 +9097,7 @@ module.exports = {
       onChange: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -8708,6 +9107,7 @@ module.exports = {
       formatData: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -8717,6 +9117,7 @@ module.exports = {
       formatLoad: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -8726,6 +9127,7 @@ module.exports = {
       submit: {
         required: 'false',
         default: 'true',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -8735,6 +9137,7 @@ module.exports = {
       rules: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'array',
           'string',
@@ -8746,6 +9149,7 @@ module.exports = {
       messages: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -8755,6 +9159,7 @@ module.exports = {
       fieldName: {
         required: 'false',
         default: 'name|label',
+        localized: false,
         types: [
           'string',
         ],
@@ -8764,6 +9169,7 @@ module.exports = {
       type: {
         required: 'false',
         default: 'file',
+        localized: false,
         types: [
           'string',
         ],
@@ -8773,6 +9179,7 @@ module.exports = {
       default: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'string',
           'object',
@@ -8783,6 +9190,7 @@ module.exports = {
       disabled: {
         required: 'false',
         default: 'false',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -8792,6 +9200,7 @@ module.exports = {
       id: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'string',
         ],
@@ -8801,6 +9210,7 @@ module.exports = {
       onRemove: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -8810,6 +9220,7 @@ module.exports = {
       onError: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -8819,6 +9230,7 @@ module.exports = {
       drop: {
         required: 'false',
         default: 'false',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -8828,6 +9240,7 @@ module.exports = {
       accept: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'string',
           'array',
@@ -8838,6 +9251,7 @@ module.exports = {
       clickable: {
         required: 'false',
         default: 'true',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -8847,6 +9261,7 @@ module.exports = {
       url: {
         required: 'false',
         default: '/',
+        localized: false,
         types: [
           'string',
           'boolean',
@@ -8857,6 +9272,7 @@ module.exports = {
       previewUrl: {
         required: 'false',
         default: 'undefined',
+        localized: false,
         types: [
           'string',
         ],
@@ -8866,6 +9282,7 @@ module.exports = {
       auto: {
         required: 'false',
         default: 'true',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -8875,6 +9292,7 @@ module.exports = {
       urls: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -8884,6 +9302,7 @@ module.exports = {
       methods: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -8893,6 +9312,7 @@ module.exports = {
       uploadTempEndpoint: {
         required: 'false',
         default: 'config.endpoints.uploadTempFile',
+        localized: false,
         types: [
           'object',
           'string',
@@ -8904,6 +9324,7 @@ module.exports = {
       removeTempEndpoint: {
         required: 'false',
         default: 'config.endpoints.removeTempFile',
+        localized: false,
         types: [
           'object',
           'string',
@@ -8915,6 +9336,7 @@ module.exports = {
       removeEndpoint: {
         required: 'false',
         default: 'config.endpoints.removeFile',
+        localized: false,
         types: [
           'object',
           'string',
@@ -8926,6 +9348,7 @@ module.exports = {
       params: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -8935,6 +9358,7 @@ module.exports = {
       softRemove: {
         required: 'false',
         default: 'false',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -8944,6 +9368,7 @@ module.exports = {
       embed: {
         required: 'false',
         default: 'false',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -9038,6 +9463,14 @@ module.exports = {
         description: 'If the form is submitted and the file is not uploaded yet, the element will enter into `preparing` state and upload the temporary file before submitting the form.',
         default: 'false',
         private: false,
+      },
+      watchers: {
+        types: [
+          'object',
+        ],
+        description: 'Watchers store.',
+        default: '{}',
+        private: true,
       },
       input: {
         types: [
@@ -10040,6 +10473,7 @@ module.exports = {
       name: {
         required: 'true',
         default: 'undefined',
+        localized: false,
         types: [
           'string',
           'number',
@@ -10050,6 +10484,7 @@ module.exports = {
       conditions: {
         required: 'false',
         default: '[]',
+        localized: false,
         types: [
           'array',
         ],
@@ -10059,6 +10494,7 @@ module.exports = {
       onBeforeCreate: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -10068,6 +10504,7 @@ module.exports = {
       onCreated: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -10077,6 +10514,7 @@ module.exports = {
       onBeforeMount: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -10086,6 +10524,7 @@ module.exports = {
       onMounted: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -10095,6 +10534,7 @@ module.exports = {
       onBeforeUpdate: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -10104,6 +10544,7 @@ module.exports = {
       onUpdated: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -10113,6 +10554,7 @@ module.exports = {
       onBeforeUnmount: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -10122,6 +10564,7 @@ module.exports = {
       onUnmounted: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -10131,6 +10574,7 @@ module.exports = {
       inline: {
         required: 'false',
         default: 'false',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -10140,6 +10584,7 @@ module.exports = {
       layout: {
         required: 'false',
         default: 'ElementLayout',
+        localized: false,
         types: [
           'string',
           'object',
@@ -10151,6 +10596,7 @@ module.exports = {
       addClass: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'array',
           'object',
@@ -10162,6 +10608,7 @@ module.exports = {
       removeClass: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'array',
           'object',
@@ -10172,6 +10619,7 @@ module.exports = {
       replaceClass: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'object',
         ],
@@ -10181,6 +10629,7 @@ module.exports = {
       overrideClass: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'array',
           'object',
@@ -10192,6 +10641,7 @@ module.exports = {
       addClasses: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -10201,6 +10651,7 @@ module.exports = {
       replaceClasses: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -10210,6 +10661,7 @@ module.exports = {
       removeClasses: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -10219,6 +10671,7 @@ module.exports = {
       overrideClasses: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -10228,6 +10681,7 @@ module.exports = {
       presets: {
         required: 'false',
         default: '[]',
+        localized: false,
         types: [
           'array',
         ],
@@ -10237,6 +10691,7 @@ module.exports = {
       view: {
         required: 'false',
         default: 'undefined',
+        localized: false,
         types: [
           'string',
         ],
@@ -10246,6 +10701,7 @@ module.exports = {
       views: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -10255,6 +10711,7 @@ module.exports = {
       size: {
         required: 'false',
         default: 'undefined',
+        localized: false,
         types: [
           'string',
         ],
@@ -10264,6 +10721,7 @@ module.exports = {
       columns: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'object',
           'string',
@@ -10275,6 +10733,7 @@ module.exports = {
       templates: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -10284,8 +10743,10 @@ module.exports = {
       description: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'string',
+          'object',
         ],
         required: false,
         private: false,
@@ -10293,8 +10754,10 @@ module.exports = {
       info: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'string',
+          'object',
         ],
         required: false,
         private: false,
@@ -10302,6 +10765,7 @@ module.exports = {
       infoPosition: {
         required: 'false',
         default: 'right',
+        localized: false,
         types: [
           'string',
         ],
@@ -10311,6 +10775,7 @@ module.exports = {
       label: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'string',
           'object',
@@ -10322,6 +10787,7 @@ module.exports = {
       before: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'object',
           'string',
@@ -10333,6 +10799,7 @@ module.exports = {
       between: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'object',
           'string',
@@ -10344,6 +10811,7 @@ module.exports = {
       after: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'object',
           'string',
@@ -10355,6 +10823,7 @@ module.exports = {
       slots: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -10364,6 +10833,7 @@ module.exports = {
       onChange: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -10373,6 +10843,7 @@ module.exports = {
       formatData: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -10382,6 +10853,7 @@ module.exports = {
       formatLoad: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -10391,6 +10863,7 @@ module.exports = {
       submit: {
         required: 'false',
         default: 'true',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -10400,6 +10873,7 @@ module.exports = {
       rules: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'array',
           'string',
@@ -10411,6 +10885,7 @@ module.exports = {
       messages: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -10420,6 +10895,7 @@ module.exports = {
       fieldName: {
         required: 'false',
         default: 'name|label',
+        localized: false,
         types: [
           'string',
         ],
@@ -10429,6 +10905,7 @@ module.exports = {
       type: {
         required: 'false',
         default: 'group',
+        localized: false,
         types: [
           'string',
         ],
@@ -10438,6 +10915,7 @@ module.exports = {
       default: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -10447,6 +10925,7 @@ module.exports = {
       id: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'string',
         ],
@@ -10456,6 +10935,7 @@ module.exports = {
       schema: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -11312,6 +11792,7 @@ module.exports = {
       name: {
         required: 'true',
         default: 'undefined',
+        localized: false,
         types: [
           'string',
           'number',
@@ -11322,6 +11803,7 @@ module.exports = {
       conditions: {
         required: 'false',
         default: '[]',
+        localized: false,
         types: [
           'array',
         ],
@@ -11331,6 +11813,7 @@ module.exports = {
       onBeforeCreate: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -11340,6 +11823,7 @@ module.exports = {
       onCreated: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -11349,6 +11833,7 @@ module.exports = {
       onBeforeMount: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -11358,6 +11843,7 @@ module.exports = {
       onMounted: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -11367,6 +11853,7 @@ module.exports = {
       onBeforeUpdate: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -11376,6 +11863,7 @@ module.exports = {
       onUpdated: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -11385,6 +11873,7 @@ module.exports = {
       onBeforeUnmount: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -11394,6 +11883,7 @@ module.exports = {
       onUnmounted: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -11403,6 +11893,7 @@ module.exports = {
       onChange: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -11412,6 +11903,7 @@ module.exports = {
       formatData: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -11421,6 +11913,7 @@ module.exports = {
       formatLoad: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -11430,6 +11923,7 @@ module.exports = {
       submit: {
         required: 'false',
         default: 'true',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -11439,6 +11933,7 @@ module.exports = {
       rules: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'array',
           'string',
@@ -11450,6 +11945,7 @@ module.exports = {
       messages: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -11459,6 +11955,7 @@ module.exports = {
       fieldName: {
         required: 'false',
         default: 'name|label',
+        localized: false,
         types: [
           'string',
         ],
@@ -11468,6 +11965,7 @@ module.exports = {
       type: {
         required: 'false',
         default: 'hidden',
+        localized: false,
         types: [
           'string',
         ],
@@ -11477,6 +11975,7 @@ module.exports = {
       default: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'string',
           'number',
@@ -11487,6 +11986,7 @@ module.exports = {
       id: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'string',
         ],
@@ -11496,6 +11996,7 @@ module.exports = {
       meta: {
         required: 'false',
         default: 'false',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -12123,6 +12624,7 @@ module.exports = {
       name: {
         required: 'true',
         default: 'undefined',
+        localized: false,
         types: [
           'string',
           'number',
@@ -12133,6 +12635,7 @@ module.exports = {
       conditions: {
         required: 'false',
         default: '[]',
+        localized: false,
         types: [
           'array',
         ],
@@ -12142,6 +12645,7 @@ module.exports = {
       onBeforeCreate: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -12151,6 +12655,7 @@ module.exports = {
       onCreated: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -12160,6 +12665,7 @@ module.exports = {
       onBeforeMount: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -12169,6 +12675,7 @@ module.exports = {
       onMounted: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -12178,6 +12685,7 @@ module.exports = {
       onBeforeUpdate: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -12187,6 +12695,7 @@ module.exports = {
       onUpdated: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -12196,6 +12705,7 @@ module.exports = {
       onBeforeUnmount: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -12205,6 +12715,7 @@ module.exports = {
       onUnmounted: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -12214,6 +12725,7 @@ module.exports = {
       inline: {
         required: 'false',
         default: 'false',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -12223,6 +12735,7 @@ module.exports = {
       layout: {
         required: 'false',
         default: 'ElementLayout',
+        localized: false,
         types: [
           'string',
           'object',
@@ -12234,6 +12747,7 @@ module.exports = {
       addClass: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'array',
           'object',
@@ -12245,6 +12759,7 @@ module.exports = {
       removeClass: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'array',
           'object',
@@ -12255,6 +12770,7 @@ module.exports = {
       replaceClass: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'object',
         ],
@@ -12264,6 +12780,7 @@ module.exports = {
       overrideClass: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'array',
           'object',
@@ -12275,6 +12792,7 @@ module.exports = {
       addClasses: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -12284,6 +12802,7 @@ module.exports = {
       replaceClasses: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -12293,6 +12812,7 @@ module.exports = {
       removeClasses: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -12302,6 +12822,7 @@ module.exports = {
       overrideClasses: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -12311,6 +12832,7 @@ module.exports = {
       presets: {
         required: 'false',
         default: '[]',
+        localized: false,
         types: [
           'array',
         ],
@@ -12320,6 +12842,7 @@ module.exports = {
       view: {
         required: 'false',
         default: 'undefined',
+        localized: false,
         types: [
           'string',
         ],
@@ -12329,6 +12852,7 @@ module.exports = {
       views: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -12338,6 +12862,7 @@ module.exports = {
       size: {
         required: 'false',
         default: 'undefined',
+        localized: false,
         types: [
           'string',
         ],
@@ -12347,6 +12872,7 @@ module.exports = {
       columns: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'object',
           'string',
@@ -12358,6 +12884,7 @@ module.exports = {
       templates: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -12367,8 +12894,10 @@ module.exports = {
       description: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'string',
+          'object',
         ],
         required: false,
         private: false,
@@ -12376,8 +12905,10 @@ module.exports = {
       info: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'string',
+          'object',
         ],
         required: false,
         private: false,
@@ -12385,6 +12916,7 @@ module.exports = {
       infoPosition: {
         required: 'false',
         default: 'right',
+        localized: false,
         types: [
           'string',
         ],
@@ -12394,6 +12926,7 @@ module.exports = {
       label: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'string',
           'object',
@@ -12405,6 +12938,7 @@ module.exports = {
       before: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'object',
           'string',
@@ -12416,6 +12950,7 @@ module.exports = {
       between: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'object',
           'string',
@@ -12427,6 +12962,7 @@ module.exports = {
       after: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'object',
           'string',
@@ -12438,6 +12974,7 @@ module.exports = {
       slots: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -12447,6 +12984,7 @@ module.exports = {
       onChange: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -12456,6 +12994,7 @@ module.exports = {
       formatData: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -12465,6 +13004,7 @@ module.exports = {
       formatLoad: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -12474,6 +13014,7 @@ module.exports = {
       submit: {
         required: 'false',
         default: 'true',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -12483,6 +13024,7 @@ module.exports = {
       rules: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'array',
           'string',
@@ -12494,6 +13036,7 @@ module.exports = {
       messages: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -12503,6 +13046,7 @@ module.exports = {
       fieldName: {
         required: 'false',
         default: 'name|label',
+        localized: false,
         types: [
           'string',
         ],
@@ -12512,6 +13056,7 @@ module.exports = {
       type: {
         required: 'false',
         default: 'list',
+        localized: false,
         types: [
           'string',
         ],
@@ -12521,6 +13066,7 @@ module.exports = {
       default: {
         required: 'false',
         default: 'undefined',
+        localized: false,
         types: [
           'array',
         ],
@@ -12530,6 +13076,7 @@ module.exports = {
       id: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'string',
         ],
@@ -12539,6 +13086,7 @@ module.exports = {
       disabled: {
         required: 'false',
         default: 'false',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -12548,6 +13096,7 @@ module.exports = {
       onAdd: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -12557,6 +13106,7 @@ module.exports = {
       onRemove: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -12566,6 +13116,7 @@ module.exports = {
       onSort: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -12575,6 +13126,7 @@ module.exports = {
       element: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'object',
         ],
@@ -12584,6 +13136,7 @@ module.exports = {
       object: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'object',
         ],
@@ -12593,6 +13146,7 @@ module.exports = {
       initial: {
         required: 'false',
         default: '1',
+        localized: false,
         types: [
           'number',
         ],
@@ -12602,6 +13156,7 @@ module.exports = {
       min: {
         required: 'false',
         default: '-1',
+        localized: false,
         types: [
           'number',
         ],
@@ -12611,6 +13166,7 @@ module.exports = {
       max: {
         required: 'false',
         default: '-1',
+        localized: false,
         types: [
           'number',
         ],
@@ -12620,6 +13176,7 @@ module.exports = {
       addText: {
         required: 'false',
         default: 'locale.elements.list.add',
+        localized: false,
         types: [
           'string',
         ],
@@ -12629,6 +13186,7 @@ module.exports = {
       sort: {
         required: 'false',
         default: 'false',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -12638,6 +13196,7 @@ module.exports = {
       controls: {
         required: 'false',
         default: '{"add":true,"remove":true,"sort":true}',
+        localized: false,
         types: [
           'object',
         ],
@@ -12647,6 +13206,7 @@ module.exports = {
       storeOrder: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'string',
         ],
@@ -12656,6 +13216,7 @@ module.exports = {
       order: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'string',
         ],
@@ -12665,6 +13226,7 @@ module.exports = {
       orderBy: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'string',
         ],
@@ -13794,6 +14356,7 @@ module.exports = {
       name: {
         required: 'true',
         default: 'undefined',
+        localized: false,
         types: [
           'string',
           'number',
@@ -13804,6 +14367,7 @@ module.exports = {
       conditions: {
         required: 'false',
         default: '[]',
+        localized: false,
         types: [
           'array',
         ],
@@ -13813,6 +14377,7 @@ module.exports = {
       onBeforeCreate: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -13822,6 +14387,7 @@ module.exports = {
       onCreated: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -13831,6 +14397,7 @@ module.exports = {
       onBeforeMount: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -13840,6 +14407,7 @@ module.exports = {
       onMounted: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -13849,6 +14417,7 @@ module.exports = {
       onBeforeUpdate: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -13858,6 +14427,7 @@ module.exports = {
       onUpdated: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -13867,6 +14437,7 @@ module.exports = {
       onBeforeUnmount: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -13876,6 +14447,7 @@ module.exports = {
       onUnmounted: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -13885,6 +14457,7 @@ module.exports = {
       inline: {
         required: 'false',
         default: 'false',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -13894,6 +14467,7 @@ module.exports = {
       layout: {
         required: 'false',
         default: 'ElementLayout',
+        localized: false,
         types: [
           'string',
           'object',
@@ -13905,6 +14479,7 @@ module.exports = {
       addClass: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'array',
           'object',
@@ -13916,6 +14491,7 @@ module.exports = {
       removeClass: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'array',
           'object',
@@ -13926,6 +14502,7 @@ module.exports = {
       replaceClass: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'object',
         ],
@@ -13935,6 +14512,7 @@ module.exports = {
       overrideClass: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'array',
           'object',
@@ -13946,6 +14524,7 @@ module.exports = {
       addClasses: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -13955,6 +14534,7 @@ module.exports = {
       replaceClasses: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -13964,6 +14544,7 @@ module.exports = {
       removeClasses: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -13973,6 +14554,7 @@ module.exports = {
       overrideClasses: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -13982,6 +14564,7 @@ module.exports = {
       presets: {
         required: 'false',
         default: '[]',
+        localized: false,
         types: [
           'array',
         ],
@@ -13991,6 +14574,7 @@ module.exports = {
       view: {
         required: 'false',
         default: 'undefined',
+        localized: false,
         types: [
           'string',
         ],
@@ -14000,6 +14584,7 @@ module.exports = {
       views: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -14009,6 +14594,7 @@ module.exports = {
       size: {
         required: 'false',
         default: 'undefined',
+        localized: false,
         types: [
           'string',
         ],
@@ -14018,6 +14604,7 @@ module.exports = {
       columns: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'object',
           'string',
@@ -14029,6 +14616,7 @@ module.exports = {
       templates: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -14038,8 +14626,10 @@ module.exports = {
       description: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'string',
+          'object',
         ],
         required: false,
         private: false,
@@ -14047,8 +14637,10 @@ module.exports = {
       info: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'string',
+          'object',
         ],
         required: false,
         private: false,
@@ -14056,6 +14648,7 @@ module.exports = {
       infoPosition: {
         required: 'false',
         default: 'right',
+        localized: false,
         types: [
           'string',
         ],
@@ -14065,6 +14658,7 @@ module.exports = {
       label: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'string',
           'object',
@@ -14076,6 +14670,7 @@ module.exports = {
       before: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'object',
           'string',
@@ -14087,6 +14682,7 @@ module.exports = {
       between: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'object',
           'string',
@@ -14098,6 +14694,7 @@ module.exports = {
       after: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'object',
           'string',
@@ -14109,6 +14706,7 @@ module.exports = {
       slots: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -14118,6 +14716,7 @@ module.exports = {
       onChange: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -14127,6 +14726,7 @@ module.exports = {
       formatData: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -14136,6 +14736,7 @@ module.exports = {
       formatLoad: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -14145,6 +14746,7 @@ module.exports = {
       submit: {
         required: 'false',
         default: 'true',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -14154,6 +14756,7 @@ module.exports = {
       rules: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'array',
           'string',
@@ -14165,6 +14768,7 @@ module.exports = {
       messages: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -14174,6 +14778,7 @@ module.exports = {
       fieldName: {
         required: 'false',
         default: 'name|label',
+        localized: false,
         types: [
           'string',
         ],
@@ -14183,6 +14788,7 @@ module.exports = {
       type: {
         required: 'false',
         default: 'location',
+        localized: false,
         types: [
           'string',
         ],
@@ -14192,6 +14798,7 @@ module.exports = {
       default: {
         required: 'false',
         default: '{"country":null,"country_code":null,"state":null,"state_code":null,"city":null,"zip":null,"address":null,"formatted_address":null,"lat":null,"lng":null}',
+        localized: false,
         types: [
           'object',
         ],
@@ -14201,6 +14808,7 @@ module.exports = {
       debounce: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'number',
         ],
@@ -14210,6 +14818,7 @@ module.exports = {
       disabled: {
         required: 'false',
         default: 'false',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -14219,9 +14828,11 @@ module.exports = {
       floating: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'string',
           'boolean',
+          'object',
         ],
         required: false,
         private: false,
@@ -14229,6 +14840,7 @@ module.exports = {
       id: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'string',
         ],
@@ -14238,8 +14850,10 @@ module.exports = {
       placeholder: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'string',
+          'object',
         ],
         required: false,
         private: false,
@@ -14247,6 +14861,7 @@ module.exports = {
       readonly: {
         required: 'false',
         default: 'false',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -14256,6 +14871,7 @@ module.exports = {
       attrs: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -14265,6 +14881,7 @@ module.exports = {
       addons: {
         required: 'false',
         default: '{}',
+        localized: true,
         types: [
           'object',
         ],
@@ -14274,6 +14891,7 @@ module.exports = {
       provider: {
         required: 'false',
         default: 'google',
+        localized: false,
         types: [
           'string',
         ],
@@ -14283,6 +14901,7 @@ module.exports = {
       displayKey: {
         required: 'false',
         default: 'formatted_address',
+        localized: false,
         types: [
           'string',
         ],
@@ -14292,6 +14911,7 @@ module.exports = {
       extendOptions: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -14658,6 +15278,13 @@ module.exports = {
         ],
         description: 'Whether the element is just a container of children but not nested on data level (eg. [`GroupElement`](group-element))',
         private: true,
+      },
+      Placeholder: {
+        types: [
+          'string',
+        ],
+        description: 'The localized placeholder of the element.',
+        private: false,
       },
       elementSlots: {
         types: [
@@ -15259,6 +15886,7 @@ module.exports = {
       name: {
         required: 'true',
         default: 'undefined',
+        localized: false,
         types: [
           'string',
           'number',
@@ -15269,6 +15897,7 @@ module.exports = {
       conditions: {
         required: 'false',
         default: '[]',
+        localized: false,
         types: [
           'array',
         ],
@@ -15278,6 +15907,7 @@ module.exports = {
       onBeforeCreate: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -15287,6 +15917,7 @@ module.exports = {
       onCreated: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -15296,6 +15927,7 @@ module.exports = {
       onBeforeMount: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -15305,6 +15937,7 @@ module.exports = {
       onMounted: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -15314,6 +15947,7 @@ module.exports = {
       onBeforeUpdate: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -15323,6 +15957,7 @@ module.exports = {
       onUpdated: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -15332,6 +15967,7 @@ module.exports = {
       onBeforeUnmount: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -15341,6 +15977,7 @@ module.exports = {
       onUnmounted: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -15350,6 +15987,7 @@ module.exports = {
       inline: {
         required: 'false',
         default: 'false',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -15359,6 +15997,7 @@ module.exports = {
       layout: {
         required: 'false',
         default: 'ElementLayout',
+        localized: false,
         types: [
           'string',
           'object',
@@ -15370,6 +16009,7 @@ module.exports = {
       addClass: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'array',
           'object',
@@ -15381,6 +16021,7 @@ module.exports = {
       removeClass: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'array',
           'object',
@@ -15391,6 +16032,7 @@ module.exports = {
       replaceClass: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'object',
         ],
@@ -15400,6 +16042,7 @@ module.exports = {
       overrideClass: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'array',
           'object',
@@ -15411,6 +16054,7 @@ module.exports = {
       addClasses: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -15420,6 +16064,7 @@ module.exports = {
       replaceClasses: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -15429,6 +16074,7 @@ module.exports = {
       removeClasses: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -15438,6 +16084,7 @@ module.exports = {
       overrideClasses: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -15447,6 +16094,7 @@ module.exports = {
       presets: {
         required: 'false',
         default: '[]',
+        localized: false,
         types: [
           'array',
         ],
@@ -15456,6 +16104,7 @@ module.exports = {
       view: {
         required: 'false',
         default: 'file',
+        localized: false,
         types: [
           'string',
         ],
@@ -15465,6 +16114,7 @@ module.exports = {
       views: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -15474,6 +16124,7 @@ module.exports = {
       size: {
         required: 'false',
         default: 'undefined',
+        localized: false,
         types: [
           'string',
         ],
@@ -15483,6 +16134,7 @@ module.exports = {
       columns: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'object',
           'string',
@@ -15494,6 +16146,7 @@ module.exports = {
       templates: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -15503,8 +16156,10 @@ module.exports = {
       description: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'string',
+          'object',
         ],
         required: false,
         private: false,
@@ -15512,8 +16167,10 @@ module.exports = {
       info: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'string',
+          'object',
         ],
         required: false,
         private: false,
@@ -15521,6 +16178,7 @@ module.exports = {
       infoPosition: {
         required: 'false',
         default: 'right',
+        localized: false,
         types: [
           'string',
         ],
@@ -15530,6 +16188,7 @@ module.exports = {
       label: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'string',
           'object',
@@ -15541,6 +16200,7 @@ module.exports = {
       before: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'object',
           'string',
@@ -15552,6 +16212,7 @@ module.exports = {
       between: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'object',
           'string',
@@ -15563,6 +16224,7 @@ module.exports = {
       after: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'object',
           'string',
@@ -15574,6 +16236,7 @@ module.exports = {
       slots: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -15583,6 +16246,7 @@ module.exports = {
       onChange: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -15592,6 +16256,7 @@ module.exports = {
       formatData: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -15601,6 +16266,7 @@ module.exports = {
       formatLoad: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -15610,6 +16276,7 @@ module.exports = {
       submit: {
         required: 'false',
         default: 'true',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -15619,6 +16286,7 @@ module.exports = {
       rules: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'array',
           'string',
@@ -15630,6 +16298,7 @@ module.exports = {
       messages: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -15639,6 +16308,7 @@ module.exports = {
       fieldName: {
         required: 'false',
         default: 'name|label',
+        localized: false,
         types: [
           'string',
         ],
@@ -15648,6 +16318,7 @@ module.exports = {
       type: {
         required: 'false',
         default: 'multifile',
+        localized: false,
         types: [
           'string',
         ],
@@ -15657,6 +16328,7 @@ module.exports = {
       default: {
         required: 'false',
         default: '[]',
+        localized: false,
         types: [
           'array',
         ],
@@ -15666,6 +16338,7 @@ module.exports = {
       initial: {
         required: 'false',
         default: '0',
+        localized: false,
         types: [
           'number',
         ],
@@ -15675,6 +16348,7 @@ module.exports = {
       disabled: {
         required: 'false',
         default: 'false',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -15684,6 +16358,7 @@ module.exports = {
       id: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'string',
         ],
@@ -15693,6 +16368,7 @@ module.exports = {
       onAdd: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -15702,6 +16378,7 @@ module.exports = {
       onRemove: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -15711,6 +16388,7 @@ module.exports = {
       onSort: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -15720,6 +16398,7 @@ module.exports = {
       drop: {
         required: 'false',
         default: 'false',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -15729,6 +16408,7 @@ module.exports = {
       sort: {
         required: 'false',
         default: 'false',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -15738,6 +16418,7 @@ module.exports = {
       controls: {
         required: 'false',
         default: '{"add":true,"remove":true,"sort":true}',
+        localized: false,
         types: [
           'object',
         ],
@@ -15747,6 +16428,7 @@ module.exports = {
       object: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -15756,6 +16438,7 @@ module.exports = {
       storeFile: {
         required: 'false',
         default: 'file',
+        localized: false,
         types: [
           'string',
         ],
@@ -15765,6 +16448,7 @@ module.exports = {
       fields: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -15774,6 +16458,7 @@ module.exports = {
       storeOrder: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'string',
         ],
@@ -15783,6 +16468,7 @@ module.exports = {
       order: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'string',
         ],
@@ -15792,6 +16478,7 @@ module.exports = {
       orderBy: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'string',
         ],
@@ -15801,6 +16488,7 @@ module.exports = {
       file: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -15810,6 +16498,7 @@ module.exports = {
       accept: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'string',
           'array',
@@ -15820,6 +16509,7 @@ module.exports = {
       clickable: {
         required: 'false',
         default: 'true',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -15829,6 +16519,7 @@ module.exports = {
       url: {
         required: 'false',
         default: '/',
+        localized: false,
         types: [
           'string',
           'boolean',
@@ -15839,6 +16530,7 @@ module.exports = {
       previewUrl: {
         required: 'false',
         default: 'undefined',
+        localized: false,
         types: [
           'string',
         ],
@@ -15848,6 +16540,7 @@ module.exports = {
       auto: {
         required: 'false',
         default: 'true',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -15857,6 +16550,7 @@ module.exports = {
       uploadTempEndpoint: {
         required: 'false',
         default: 'config.endpoints.uploadTempFile',
+        localized: false,
         types: [
           'object',
           'string',
@@ -15868,6 +16562,7 @@ module.exports = {
       removeTempEndpoint: {
         required: 'false',
         default: 'config.endpoints.removeTempFile',
+        localized: false,
         types: [
           'object',
           'string',
@@ -15879,6 +16574,7 @@ module.exports = {
       removeEndpoint: {
         required: 'false',
         default: 'config.endpoints.removeFile',
+        localized: false,
         types: [
           'object',
           'string',
@@ -15890,6 +16586,7 @@ module.exports = {
       params: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -15899,6 +16596,7 @@ module.exports = {
       softRemove: {
         required: 'false',
         default: 'false',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -17089,6 +17787,7 @@ module.exports = {
       name: {
         required: 'true',
         default: 'undefined',
+        localized: false,
         types: [
           'string',
           'number',
@@ -17099,6 +17798,7 @@ module.exports = {
       conditions: {
         required: 'false',
         default: '[]',
+        localized: false,
         types: [
           'array',
         ],
@@ -17108,6 +17808,7 @@ module.exports = {
       onBeforeCreate: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -17117,6 +17818,7 @@ module.exports = {
       onCreated: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -17126,6 +17828,7 @@ module.exports = {
       onBeforeMount: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -17135,6 +17838,7 @@ module.exports = {
       onMounted: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -17144,6 +17848,7 @@ module.exports = {
       onBeforeUpdate: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -17153,6 +17858,7 @@ module.exports = {
       onUpdated: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -17162,6 +17868,7 @@ module.exports = {
       onBeforeUnmount: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -17171,6 +17878,7 @@ module.exports = {
       onUnmounted: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -17180,6 +17888,7 @@ module.exports = {
       inline: {
         required: 'false',
         default: 'false',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -17189,6 +17898,7 @@ module.exports = {
       layout: {
         required: 'false',
         default: 'ElementLayout',
+        localized: false,
         types: [
           'string',
           'object',
@@ -17200,6 +17910,7 @@ module.exports = {
       addClass: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'array',
           'object',
@@ -17211,6 +17922,7 @@ module.exports = {
       removeClass: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'array',
           'object',
@@ -17221,6 +17933,7 @@ module.exports = {
       replaceClass: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'object',
         ],
@@ -17230,6 +17943,7 @@ module.exports = {
       overrideClass: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'array',
           'object',
@@ -17241,6 +17955,7 @@ module.exports = {
       addClasses: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -17250,6 +17965,7 @@ module.exports = {
       replaceClasses: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -17259,6 +17975,7 @@ module.exports = {
       removeClasses: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -17268,6 +17985,7 @@ module.exports = {
       overrideClasses: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -17277,6 +17995,7 @@ module.exports = {
       presets: {
         required: 'false',
         default: '[]',
+        localized: false,
         types: [
           'array',
         ],
@@ -17286,6 +18005,7 @@ module.exports = {
       view: {
         required: 'false',
         default: 'undefined',
+        localized: false,
         types: [
           'string',
         ],
@@ -17295,6 +18015,7 @@ module.exports = {
       views: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -17304,6 +18025,7 @@ module.exports = {
       size: {
         required: 'false',
         default: 'undefined',
+        localized: false,
         types: [
           'string',
         ],
@@ -17313,6 +18035,7 @@ module.exports = {
       columns: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'object',
           'string',
@@ -17324,6 +18047,7 @@ module.exports = {
       templates: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -17333,8 +18057,10 @@ module.exports = {
       description: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'string',
+          'object',
         ],
         required: false,
         private: false,
@@ -17342,8 +18068,10 @@ module.exports = {
       info: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'string',
+          'object',
         ],
         required: false,
         private: false,
@@ -17351,6 +18079,7 @@ module.exports = {
       infoPosition: {
         required: 'false',
         default: 'right',
+        localized: false,
         types: [
           'string',
         ],
@@ -17360,6 +18089,7 @@ module.exports = {
       label: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'string',
           'object',
@@ -17371,6 +18101,7 @@ module.exports = {
       before: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'object',
           'string',
@@ -17382,6 +18113,7 @@ module.exports = {
       between: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'object',
           'string',
@@ -17393,6 +18125,7 @@ module.exports = {
       after: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'object',
           'string',
@@ -17404,6 +18137,7 @@ module.exports = {
       slots: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -17413,6 +18147,7 @@ module.exports = {
       onChange: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -17422,6 +18157,7 @@ module.exports = {
       formatData: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -17431,6 +18167,7 @@ module.exports = {
       formatLoad: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -17440,6 +18177,7 @@ module.exports = {
       submit: {
         required: 'false',
         default: 'true',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -17449,6 +18187,7 @@ module.exports = {
       rules: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'array',
           'string',
@@ -17460,6 +18199,7 @@ module.exports = {
       messages: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -17469,6 +18209,7 @@ module.exports = {
       fieldName: {
         required: 'false',
         default: 'name|label',
+        localized: false,
         types: [
           'string',
         ],
@@ -17478,6 +18219,7 @@ module.exports = {
       type: {
         required: 'false',
         default: 'multiselect',
+        localized: false,
         types: [
           'string',
         ],
@@ -17487,6 +18229,7 @@ module.exports = {
       default: {
         required: 'false',
         default: '[]',
+        localized: false,
         types: [
           'array',
         ],
@@ -17496,6 +18239,7 @@ module.exports = {
       disabled: {
         required: 'false',
         default: 'false',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -17505,9 +18249,11 @@ module.exports = {
       floating: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'string',
           'boolean',
+          'object',
         ],
         required: false,
         private: false,
@@ -17515,6 +18261,7 @@ module.exports = {
       id: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'string',
         ],
@@ -17524,8 +18271,10 @@ module.exports = {
       placeholder: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'string',
+          'object',
         ],
         native: false,
         required: false,
@@ -17534,6 +18283,7 @@ module.exports = {
       attrs: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -17543,6 +18293,7 @@ module.exports = {
       onSelect: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -17552,6 +18303,7 @@ module.exports = {
       onDeselect: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -17561,6 +18313,7 @@ module.exports = {
       onSearchChange: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -17570,6 +18323,7 @@ module.exports = {
       onOpen: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -17579,6 +18333,7 @@ module.exports = {
       onClose: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -17588,6 +18343,7 @@ module.exports = {
       onClear: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -17597,6 +18353,7 @@ module.exports = {
       onPaste: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -17606,6 +18363,7 @@ module.exports = {
       native: {
         required: 'false',
         default: 'true',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -17615,6 +18373,7 @@ module.exports = {
       items: {
         required: 'false',
         default: '{}',
+        localized: true,
         types: [
           'object',
           'array',
@@ -17627,6 +18386,7 @@ module.exports = {
       labelProp: {
         required: 'false',
         default: 'label',
+        localized: false,
         types: [
           'string',
         ],
@@ -17637,6 +18397,7 @@ module.exports = {
       valueProp: {
         required: 'false',
         default: 'value',
+        localized: false,
         types: [
           'string',
         ],
@@ -17647,6 +18408,7 @@ module.exports = {
       dataKey: {
         required: 'false',
         default: 'undefined',
+        localized: false,
         types: [
           'string',
         ],
@@ -17656,6 +18418,7 @@ module.exports = {
       searchParam: {
         required: 'false',
         default: 'query',
+        localized: false,
         types: [
           'string',
         ],
@@ -17665,6 +18428,7 @@ module.exports = {
       search: {
         required: 'false',
         default: 'false',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -17675,6 +18439,7 @@ module.exports = {
       trackBy: {
         required: 'false',
         default: 'label',
+        localized: false,
         types: [
           'string',
         ],
@@ -17685,6 +18450,7 @@ module.exports = {
       strict: {
         required: 'false',
         default: 'true',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -17695,6 +18461,7 @@ module.exports = {
       multipleLabel: {
         required: 'false',
         default: 'undefined',
+        localized: false,
         types: [
           'function',
         ],
@@ -17705,6 +18472,7 @@ module.exports = {
       multipleLabelSingle: {
         required: 'false',
         default: 'locale.vueform.multiselect.multipleLabelOne',
+        localized: false,
         types: [
           'string',
         ],
@@ -17715,6 +18483,7 @@ module.exports = {
       multipleLabelMultiple: {
         required: 'false',
         default: 'locale.vueform.multiselect.multipleLabelMore',
+        localized: false,
         types: [
           'string',
         ],
@@ -17725,6 +18494,7 @@ module.exports = {
       create: {
         required: 'false',
         default: 'false',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -17735,6 +18505,7 @@ module.exports = {
       appendNewOption: {
         required: 'false',
         default: 'true',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -17745,6 +18516,7 @@ module.exports = {
       addOptionOn: {
         required: 'false',
         default: '["enter"]',
+        localized: false,
         types: [
           'array',
         ],
@@ -17755,6 +18527,7 @@ module.exports = {
       object: {
         required: 'false',
         default: 'false',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -17765,6 +18538,7 @@ module.exports = {
       limit: {
         required: 'false',
         default: '-1',
+        localized: false,
         types: [
           'number',
         ],
@@ -17775,6 +18549,7 @@ module.exports = {
       max: {
         required: 'false',
         default: '-1',
+        localized: false,
         types: [
           'number',
         ],
@@ -17785,6 +18560,7 @@ module.exports = {
       groups: {
         required: 'false',
         default: 'false',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -17795,6 +18571,7 @@ module.exports = {
       groupLabel: {
         required: 'false',
         default: 'label',
+        localized: false,
         types: [
           'string',
         ],
@@ -17805,6 +18582,7 @@ module.exports = {
       groupOptions: {
         required: 'false',
         default: 'items',
+        localized: false,
         types: [
           'string',
         ],
@@ -17815,6 +18593,7 @@ module.exports = {
       groupHideEmpty: {
         required: 'false',
         default: 'false',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -17825,6 +18604,7 @@ module.exports = {
       groupSelect: {
         required: 'false',
         default: 'true',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -17835,6 +18615,7 @@ module.exports = {
       openDirection: {
         required: 'false',
         default: 'bottom',
+        localized: false,
         types: [
           'string',
         ],
@@ -17845,6 +18626,7 @@ module.exports = {
       canClear: {
         required: 'false',
         default: 'true',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -17855,6 +18637,7 @@ module.exports = {
       clearOnSelect: {
         required: 'false',
         default: 'true',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -17865,6 +18648,18 @@ module.exports = {
       closeOnSelect: {
         required: 'false',
         default: 'true',
+        localized: false,
+        types: [
+          'boolean',
+        ],
+        native: false,
+        required: false,
+        private: false,
+      },
+      closeOnDeselect: {
+        required: 'false',
+        default: 'false',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -17875,6 +18670,7 @@ module.exports = {
       delay: {
         required: 'false',
         default: '-1',
+        localized: false,
         types: [
           'number',
         ],
@@ -17885,6 +18681,7 @@ module.exports = {
       minChars: {
         required: 'false',
         default: '0',
+        localized: false,
         types: [
           'number',
         ],
@@ -17895,6 +18692,7 @@ module.exports = {
       resolveOnLoad: {
         required: 'false',
         default: 'true',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -17905,6 +18703,7 @@ module.exports = {
       filterResults: {
         required: 'false',
         default: 'true',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -17915,6 +18714,7 @@ module.exports = {
       clearOnSearch: {
         required: 'false',
         default: 'false',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -17925,6 +18725,7 @@ module.exports = {
       hideSelected: {
         required: 'false',
         default: 'true',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -17935,6 +18736,7 @@ module.exports = {
       caret: {
         required: 'false',
         default: 'true',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -17945,6 +18747,7 @@ module.exports = {
       loading: {
         required: 'false',
         default: 'false',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -17955,8 +18758,10 @@ module.exports = {
       noOptionsText: {
         required: 'false',
         default: 'locale.multiselect.noOptions',
+        localized: true,
         types: [
           'string',
+          'object',
         ],
         native: false,
         required: false,
@@ -17965,8 +18770,10 @@ module.exports = {
       noResultsText: {
         required: 'false',
         default: 'locale.multiselect.noResults',
+        localized: true,
         types: [
           'string',
+          'object',
         ],
         native: false,
         required: false,
@@ -17975,6 +18782,7 @@ module.exports = {
       autocomplete: {
         required: 'false',
         default: 'undefined',
+        localized: false,
         types: [
           'string',
         ],
@@ -17985,6 +18793,7 @@ module.exports = {
       inputType: {
         required: 'false',
         default: 'text',
+        localized: false,
         types: [
           'string',
         ],
@@ -17995,6 +18804,7 @@ module.exports = {
       extendOptions: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -18358,6 +19168,13 @@ module.exports = {
         ],
         description: 'Whether the element is just a container of children but not nested on data level (eg. [`GroupElement`](group-element))',
         private: true,
+      },
+      Placeholder: {
+        types: [
+          'string',
+        ],
+        description: 'The localized placeholder of the element.',
+        private: false,
       },
       elementSlots: {
         types: [
@@ -19282,6 +20099,7 @@ module.exports = {
       name: {
         required: 'true',
         default: 'undefined',
+        localized: false,
         types: [
           'string',
           'number',
@@ -19292,6 +20110,7 @@ module.exports = {
       conditions: {
         required: 'false',
         default: '[]',
+        localized: false,
         types: [
           'array',
         ],
@@ -19301,6 +20120,7 @@ module.exports = {
       onBeforeCreate: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -19310,6 +20130,7 @@ module.exports = {
       onCreated: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -19319,6 +20140,7 @@ module.exports = {
       onBeforeMount: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -19328,6 +20150,7 @@ module.exports = {
       onMounted: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -19337,6 +20160,7 @@ module.exports = {
       onBeforeUpdate: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -19346,6 +20170,7 @@ module.exports = {
       onUpdated: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -19355,6 +20180,7 @@ module.exports = {
       onBeforeUnmount: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -19364,6 +20190,7 @@ module.exports = {
       onUnmounted: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -19373,6 +20200,7 @@ module.exports = {
       inline: {
         required: 'false',
         default: 'false',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -19382,6 +20210,7 @@ module.exports = {
       layout: {
         required: 'false',
         default: 'ElementLayout',
+        localized: false,
         types: [
           'string',
           'object',
@@ -19393,6 +20222,7 @@ module.exports = {
       addClass: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'array',
           'object',
@@ -19404,6 +20234,7 @@ module.exports = {
       removeClass: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'array',
           'object',
@@ -19414,6 +20245,7 @@ module.exports = {
       replaceClass: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'object',
         ],
@@ -19423,6 +20255,7 @@ module.exports = {
       overrideClass: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'array',
           'object',
@@ -19434,6 +20267,7 @@ module.exports = {
       addClasses: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -19443,6 +20277,7 @@ module.exports = {
       replaceClasses: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -19452,6 +20287,7 @@ module.exports = {
       removeClasses: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -19461,6 +20297,7 @@ module.exports = {
       overrideClasses: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -19470,6 +20307,7 @@ module.exports = {
       presets: {
         required: 'false',
         default: '[]',
+        localized: false,
         types: [
           'array',
         ],
@@ -19479,6 +20317,7 @@ module.exports = {
       view: {
         required: 'false',
         default: 'undefined',
+        localized: false,
         types: [
           'string',
         ],
@@ -19488,6 +20327,7 @@ module.exports = {
       views: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -19497,6 +20337,7 @@ module.exports = {
       size: {
         required: 'false',
         default: 'undefined',
+        localized: false,
         types: [
           'string',
         ],
@@ -19506,6 +20347,7 @@ module.exports = {
       columns: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'object',
           'string',
@@ -19517,6 +20359,7 @@ module.exports = {
       templates: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -19526,8 +20369,10 @@ module.exports = {
       description: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'string',
+          'object',
         ],
         required: false,
         private: false,
@@ -19535,8 +20380,10 @@ module.exports = {
       info: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'string',
+          'object',
         ],
         required: false,
         private: false,
@@ -19544,6 +20391,7 @@ module.exports = {
       infoPosition: {
         required: 'false',
         default: 'right',
+        localized: false,
         types: [
           'string',
         ],
@@ -19553,6 +20401,7 @@ module.exports = {
       label: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'string',
           'object',
@@ -19564,6 +20413,7 @@ module.exports = {
       before: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'object',
           'string',
@@ -19575,6 +20425,7 @@ module.exports = {
       between: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'object',
           'string',
@@ -19586,6 +20437,7 @@ module.exports = {
       after: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'object',
           'string',
@@ -19597,6 +20449,7 @@ module.exports = {
       slots: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -19606,6 +20459,7 @@ module.exports = {
       onChange: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -19615,6 +20469,7 @@ module.exports = {
       formatData: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -19624,6 +20479,7 @@ module.exports = {
       formatLoad: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -19633,6 +20489,7 @@ module.exports = {
       submit: {
         required: 'false',
         default: 'true',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -19642,6 +20499,7 @@ module.exports = {
       rules: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'array',
           'string',
@@ -19653,6 +20511,7 @@ module.exports = {
       messages: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -19662,6 +20521,7 @@ module.exports = {
       fieldName: {
         required: 'false',
         default: 'name|label',
+        localized: false,
         types: [
           'string',
         ],
@@ -19671,6 +20531,7 @@ module.exports = {
       type: {
         required: 'false',
         default: 'object',
+        localized: false,
         types: [
           'string',
         ],
@@ -19680,6 +20541,7 @@ module.exports = {
       default: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -19689,6 +20551,7 @@ module.exports = {
       id: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'string',
         ],
@@ -19698,6 +20561,7 @@ module.exports = {
       schema: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -19707,6 +20571,7 @@ module.exports = {
       embed: {
         required: 'false',
         default: 'false',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -19716,6 +20581,7 @@ module.exports = {
       onRemove: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -20582,6 +21448,7 @@ module.exports = {
       name: {
         required: 'true',
         default: 'undefined',
+        localized: false,
         types: [
           'string',
           'number',
@@ -20592,6 +21459,7 @@ module.exports = {
       conditions: {
         required: 'false',
         default: '[]',
+        localized: false,
         types: [
           'array',
         ],
@@ -20601,6 +21469,7 @@ module.exports = {
       onBeforeCreate: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -20610,6 +21479,7 @@ module.exports = {
       onCreated: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -20619,6 +21489,7 @@ module.exports = {
       onBeforeMount: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -20628,6 +21499,7 @@ module.exports = {
       onMounted: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -20637,6 +21509,7 @@ module.exports = {
       onBeforeUpdate: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -20646,6 +21519,7 @@ module.exports = {
       onUpdated: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -20655,6 +21529,7 @@ module.exports = {
       onBeforeUnmount: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -20664,6 +21539,7 @@ module.exports = {
       onUnmounted: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -20673,6 +21549,7 @@ module.exports = {
       inline: {
         required: 'false',
         default: 'false',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -20682,6 +21559,7 @@ module.exports = {
       layout: {
         required: 'false',
         default: 'ElementLayout',
+        localized: false,
         types: [
           'string',
           'object',
@@ -20693,6 +21571,7 @@ module.exports = {
       addClass: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'array',
           'object',
@@ -20704,6 +21583,7 @@ module.exports = {
       removeClass: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'array',
           'object',
@@ -20714,6 +21594,7 @@ module.exports = {
       replaceClass: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'object',
         ],
@@ -20723,6 +21604,7 @@ module.exports = {
       overrideClass: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'array',
           'object',
@@ -20734,6 +21616,7 @@ module.exports = {
       addClasses: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -20743,6 +21626,7 @@ module.exports = {
       replaceClasses: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -20752,6 +21636,7 @@ module.exports = {
       removeClasses: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -20761,6 +21646,7 @@ module.exports = {
       overrideClasses: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -20770,6 +21656,7 @@ module.exports = {
       presets: {
         required: 'false',
         default: '[]',
+        localized: false,
         types: [
           'array',
         ],
@@ -20779,6 +21666,7 @@ module.exports = {
       view: {
         required: 'false',
         default: 'undefined',
+        localized: false,
         types: [
           'string',
         ],
@@ -20788,6 +21676,7 @@ module.exports = {
       views: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -20797,6 +21686,7 @@ module.exports = {
       size: {
         required: 'false',
         default: 'undefined',
+        localized: false,
         types: [
           'string',
         ],
@@ -20806,6 +21696,7 @@ module.exports = {
       columns: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'object',
           'string',
@@ -20817,6 +21708,7 @@ module.exports = {
       templates: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -20826,8 +21718,10 @@ module.exports = {
       description: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'string',
+          'object',
         ],
         required: false,
         private: false,
@@ -20835,8 +21729,10 @@ module.exports = {
       info: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'string',
+          'object',
         ],
         required: false,
         private: false,
@@ -20844,6 +21740,7 @@ module.exports = {
       infoPosition: {
         required: 'false',
         default: 'right',
+        localized: false,
         types: [
           'string',
         ],
@@ -20853,6 +21750,7 @@ module.exports = {
       label: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'string',
           'object',
@@ -20864,6 +21762,7 @@ module.exports = {
       before: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'object',
           'string',
@@ -20875,6 +21774,7 @@ module.exports = {
       between: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'object',
           'string',
@@ -20886,6 +21786,7 @@ module.exports = {
       after: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'object',
           'string',
@@ -20897,6 +21798,7 @@ module.exports = {
       slots: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -20906,6 +21808,7 @@ module.exports = {
       onChange: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -20915,6 +21818,7 @@ module.exports = {
       formatData: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -20924,6 +21828,7 @@ module.exports = {
       formatLoad: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -20933,6 +21838,7 @@ module.exports = {
       submit: {
         required: 'false',
         default: 'true',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -20942,6 +21848,7 @@ module.exports = {
       rules: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'array',
           'string',
@@ -20953,6 +21860,7 @@ module.exports = {
       messages: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -20962,6 +21870,7 @@ module.exports = {
       fieldName: {
         required: 'false',
         default: 'name|label',
+        localized: false,
         types: [
           'string',
         ],
@@ -20971,6 +21880,7 @@ module.exports = {
       type: {
         required: 'false',
         default: 'radio',
+        localized: false,
         types: [
           'string',
         ],
@@ -20980,6 +21890,7 @@ module.exports = {
       default: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'string',
           'number',
@@ -20990,6 +21901,7 @@ module.exports = {
       disabled: {
         required: 'false',
         default: 'false',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -20999,6 +21911,7 @@ module.exports = {
       id: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'string',
         ],
@@ -21008,6 +21921,7 @@ module.exports = {
       radioName: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'string',
         ],
@@ -21017,6 +21931,7 @@ module.exports = {
       radioValue: {
         required: 'false',
         default: '1',
+        localized: false,
         types: [
           'boolean',
           'string',
@@ -21028,8 +21943,10 @@ module.exports = {
       text: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'string',
+          'object',
         ],
         required: false,
         private: false,
@@ -21390,6 +22307,13 @@ module.exports = {
           'object',
         ],
         description: 'The component&apos;s template.',
+        private: false,
+      },
+      Text: {
+        types: [
+          'string',
+        ],
+        description: 'The localized text of the element.',
         private: false,
       },
       dirty: {
@@ -21927,6 +22851,7 @@ module.exports = {
       name: {
         required: 'true',
         default: 'undefined',
+        localized: false,
         types: [
           'string',
           'number',
@@ -21937,6 +22862,7 @@ module.exports = {
       conditions: {
         required: 'false',
         default: '[]',
+        localized: false,
         types: [
           'array',
         ],
@@ -21946,6 +22872,7 @@ module.exports = {
       onBeforeCreate: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -21955,6 +22882,7 @@ module.exports = {
       onCreated: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -21964,6 +22892,7 @@ module.exports = {
       onBeforeMount: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -21973,6 +22902,7 @@ module.exports = {
       onMounted: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -21982,6 +22912,7 @@ module.exports = {
       onBeforeUpdate: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -21991,6 +22922,7 @@ module.exports = {
       onUpdated: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -22000,6 +22932,7 @@ module.exports = {
       onBeforeUnmount: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -22009,6 +22942,7 @@ module.exports = {
       onUnmounted: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -22018,6 +22952,7 @@ module.exports = {
       inline: {
         required: 'false',
         default: 'false',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -22027,6 +22962,7 @@ module.exports = {
       layout: {
         required: 'false',
         default: 'ElementLayout',
+        localized: false,
         types: [
           'string',
           'object',
@@ -22038,6 +22974,7 @@ module.exports = {
       addClass: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'array',
           'object',
@@ -22049,6 +22986,7 @@ module.exports = {
       removeClass: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'array',
           'object',
@@ -22059,6 +22997,7 @@ module.exports = {
       replaceClass: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'object',
         ],
@@ -22068,6 +23007,7 @@ module.exports = {
       overrideClass: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'array',
           'object',
@@ -22079,6 +23019,7 @@ module.exports = {
       addClasses: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -22088,6 +23029,7 @@ module.exports = {
       replaceClasses: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -22097,6 +23039,7 @@ module.exports = {
       removeClasses: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -22106,6 +23049,7 @@ module.exports = {
       overrideClasses: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -22115,6 +23059,7 @@ module.exports = {
       presets: {
         required: 'false',
         default: '[]',
+        localized: false,
         types: [
           'array',
         ],
@@ -22124,6 +23069,7 @@ module.exports = {
       view: {
         required: 'false',
         default: 'undefined',
+        localized: false,
         types: [
           'string',
         ],
@@ -22133,6 +23079,7 @@ module.exports = {
       views: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -22142,6 +23089,7 @@ module.exports = {
       size: {
         required: 'false',
         default: 'undefined',
+        localized: false,
         types: [
           'string',
         ],
@@ -22151,6 +23099,7 @@ module.exports = {
       columns: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'object',
           'string',
@@ -22162,6 +23111,7 @@ module.exports = {
       templates: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -22171,8 +23121,10 @@ module.exports = {
       description: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'string',
+          'object',
         ],
         required: false,
         private: false,
@@ -22180,8 +23132,10 @@ module.exports = {
       info: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'string',
+          'object',
         ],
         required: false,
         private: false,
@@ -22189,6 +23143,7 @@ module.exports = {
       infoPosition: {
         required: 'false',
         default: 'right',
+        localized: false,
         types: [
           'string',
         ],
@@ -22198,6 +23153,7 @@ module.exports = {
       label: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'string',
           'object',
@@ -22209,6 +23165,7 @@ module.exports = {
       before: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'object',
           'string',
@@ -22220,6 +23177,7 @@ module.exports = {
       between: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'object',
           'string',
@@ -22231,6 +23189,7 @@ module.exports = {
       after: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'object',
           'string',
@@ -22242,6 +23201,7 @@ module.exports = {
       slots: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -22251,6 +23211,7 @@ module.exports = {
       onChange: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -22260,6 +23221,7 @@ module.exports = {
       formatData: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -22269,6 +23231,7 @@ module.exports = {
       formatLoad: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -22278,6 +23241,7 @@ module.exports = {
       submit: {
         required: 'false',
         default: 'true',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -22287,6 +23251,7 @@ module.exports = {
       rules: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'array',
           'string',
@@ -22298,6 +23263,7 @@ module.exports = {
       messages: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -22307,6 +23273,7 @@ module.exports = {
       fieldName: {
         required: 'false',
         default: 'name|label',
+        localized: false,
         types: [
           'string',
         ],
@@ -22316,6 +23283,7 @@ module.exports = {
       type: {
         required: 'false',
         default: 'radiogroup',
+        localized: false,
         types: [
           'string',
         ],
@@ -22325,6 +23293,7 @@ module.exports = {
       default: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'string',
           'number',
@@ -22335,6 +23304,7 @@ module.exports = {
       disabled: {
         required: 'false',
         default: 'false',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -22344,6 +23314,7 @@ module.exports = {
       id: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'string',
         ],
@@ -22353,6 +23324,7 @@ module.exports = {
       items: {
         required: 'false',
         default: '{}',
+        localized: true,
         types: [
           'object',
           'array',
@@ -22365,6 +23337,7 @@ module.exports = {
       disables: {
         required: 'false',
         default: '[]',
+        localized: false,
         types: [
           'array',
         ],
@@ -23340,6 +24313,7 @@ module.exports = {
       name: {
         required: 'true',
         default: 'undefined',
+        localized: false,
         types: [
           'string',
           'number',
@@ -23350,6 +24324,7 @@ module.exports = {
       conditions: {
         required: 'false',
         default: '[]',
+        localized: false,
         types: [
           'array',
         ],
@@ -23359,6 +24334,7 @@ module.exports = {
       onBeforeCreate: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -23368,6 +24344,7 @@ module.exports = {
       onCreated: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -23377,6 +24354,7 @@ module.exports = {
       onBeforeMount: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -23386,6 +24364,7 @@ module.exports = {
       onMounted: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -23395,6 +24374,7 @@ module.exports = {
       onBeforeUpdate: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -23404,6 +24384,7 @@ module.exports = {
       onUpdated: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -23413,6 +24394,7 @@ module.exports = {
       onBeforeUnmount: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -23422,6 +24404,7 @@ module.exports = {
       onUnmounted: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -23431,6 +24414,7 @@ module.exports = {
       inline: {
         required: 'false',
         default: 'false',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -23440,6 +24424,7 @@ module.exports = {
       layout: {
         required: 'false',
         default: 'ElementLayout',
+        localized: false,
         types: [
           'string',
           'object',
@@ -23451,6 +24436,7 @@ module.exports = {
       addClass: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'array',
           'object',
@@ -23462,6 +24448,7 @@ module.exports = {
       removeClass: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'array',
           'object',
@@ -23472,6 +24459,7 @@ module.exports = {
       replaceClass: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'object',
         ],
@@ -23481,6 +24469,7 @@ module.exports = {
       overrideClass: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'array',
           'object',
@@ -23492,6 +24481,7 @@ module.exports = {
       addClasses: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -23501,6 +24491,7 @@ module.exports = {
       replaceClasses: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -23510,6 +24501,7 @@ module.exports = {
       removeClasses: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -23519,6 +24511,7 @@ module.exports = {
       overrideClasses: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -23528,6 +24521,7 @@ module.exports = {
       presets: {
         required: 'false',
         default: '[]',
+        localized: false,
         types: [
           'array',
         ],
@@ -23537,6 +24531,7 @@ module.exports = {
       view: {
         required: 'false',
         default: 'undefined',
+        localized: false,
         types: [
           'string',
         ],
@@ -23546,6 +24541,7 @@ module.exports = {
       views: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -23555,6 +24551,7 @@ module.exports = {
       size: {
         required: 'false',
         default: 'undefined',
+        localized: false,
         types: [
           'string',
         ],
@@ -23564,6 +24561,7 @@ module.exports = {
       columns: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'object',
           'string',
@@ -23575,6 +24573,7 @@ module.exports = {
       templates: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -23584,8 +24583,10 @@ module.exports = {
       description: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'string',
+          'object',
         ],
         required: false,
         private: false,
@@ -23593,8 +24594,10 @@ module.exports = {
       info: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'string',
+          'object',
         ],
         required: false,
         private: false,
@@ -23602,6 +24605,7 @@ module.exports = {
       infoPosition: {
         required: 'false',
         default: 'right',
+        localized: false,
         types: [
           'string',
         ],
@@ -23611,6 +24615,7 @@ module.exports = {
       label: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'string',
           'object',
@@ -23622,6 +24627,7 @@ module.exports = {
       before: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'object',
           'string',
@@ -23633,6 +24639,7 @@ module.exports = {
       between: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'object',
           'string',
@@ -23644,6 +24651,7 @@ module.exports = {
       after: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'object',
           'string',
@@ -23655,6 +24663,7 @@ module.exports = {
       slots: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -23664,6 +24673,7 @@ module.exports = {
       onChange: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -23673,6 +24683,7 @@ module.exports = {
       formatData: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -23682,6 +24693,7 @@ module.exports = {
       formatLoad: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -23691,6 +24703,7 @@ module.exports = {
       submit: {
         required: 'false',
         default: 'true',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -23700,6 +24713,7 @@ module.exports = {
       rules: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'array',
           'string',
@@ -23711,6 +24725,7 @@ module.exports = {
       messages: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -23720,6 +24735,7 @@ module.exports = {
       fieldName: {
         required: 'false',
         default: 'name|label',
+        localized: false,
         types: [
           'string',
         ],
@@ -23729,6 +24745,7 @@ module.exports = {
       type: {
         required: 'false',
         default: 'select',
+        localized: false,
         types: [
           'string',
         ],
@@ -23738,6 +24755,7 @@ module.exports = {
       default: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'string',
           'number',
@@ -23749,6 +24767,7 @@ module.exports = {
       disabled: {
         required: 'false',
         default: 'false',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -23758,9 +24777,11 @@ module.exports = {
       floating: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'string',
           'boolean',
+          'object',
         ],
         required: false,
         private: false,
@@ -23768,6 +24789,7 @@ module.exports = {
       id: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'string',
         ],
@@ -23777,8 +24799,10 @@ module.exports = {
       placeholder: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'string',
+          'object',
         ],
         required: false,
         private: false,
@@ -23786,6 +24810,7 @@ module.exports = {
       attrs: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -23795,6 +24820,7 @@ module.exports = {
       onSelect: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -23804,6 +24830,7 @@ module.exports = {
       onDeselect: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -23813,6 +24840,7 @@ module.exports = {
       onSearchChange: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -23822,6 +24850,7 @@ module.exports = {
       onOpen: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -23831,6 +24860,7 @@ module.exports = {
       onClose: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -23840,6 +24870,7 @@ module.exports = {
       onClear: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -23849,6 +24880,7 @@ module.exports = {
       onPaste: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -23858,6 +24890,7 @@ module.exports = {
       native: {
         required: 'false',
         default: 'true',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -23867,6 +24900,7 @@ module.exports = {
       items: {
         required: 'false',
         default: '{}',
+        localized: true,
         types: [
           'object',
           'array',
@@ -23879,6 +24913,7 @@ module.exports = {
       labelProp: {
         required: 'false',
         default: 'label',
+        localized: false,
         types: [
           'string',
         ],
@@ -23888,6 +24923,7 @@ module.exports = {
       valueProp: {
         required: 'false',
         default: 'value',
+        localized: false,
         types: [
           'string',
         ],
@@ -23897,6 +24933,7 @@ module.exports = {
       dataKey: {
         required: 'false',
         default: 'undefined',
+        localized: false,
         types: [
           'string',
         ],
@@ -23906,6 +24943,7 @@ module.exports = {
       searchParam: {
         required: 'false',
         default: 'query',
+        localized: false,
         types: [
           'string',
         ],
@@ -23915,6 +24953,7 @@ module.exports = {
       search: {
         required: 'false',
         default: 'false',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -23925,6 +24964,7 @@ module.exports = {
       trackBy: {
         required: 'false',
         default: 'label',
+        localized: false,
         types: [
           'string',
         ],
@@ -23935,6 +24975,7 @@ module.exports = {
       strict: {
         required: 'false',
         default: 'true',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -23945,6 +24986,7 @@ module.exports = {
       create: {
         required: 'false',
         default: 'false',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -23955,6 +24997,7 @@ module.exports = {
       appendNewOption: {
         required: 'false',
         default: 'true',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -23965,6 +25008,7 @@ module.exports = {
       addOptionOn: {
         required: 'false',
         default: '["enter"]',
+        localized: false,
         types: [
           'array',
         ],
@@ -23975,6 +25019,7 @@ module.exports = {
       object: {
         required: 'false',
         default: 'false',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -23985,6 +25030,7 @@ module.exports = {
       limit: {
         required: 'false',
         default: '-1',
+        localized: false,
         types: [
           'number',
         ],
@@ -23995,6 +25041,7 @@ module.exports = {
       groups: {
         required: 'false',
         default: 'false',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -24005,6 +25052,7 @@ module.exports = {
       groupLabel: {
         required: 'false',
         default: 'label',
+        localized: false,
         types: [
           'string',
         ],
@@ -24015,6 +25063,7 @@ module.exports = {
       groupOptions: {
         required: 'false',
         default: 'items',
+        localized: false,
         types: [
           'string',
         ],
@@ -24025,6 +25074,7 @@ module.exports = {
       groupHideEmpty: {
         required: 'false',
         default: 'false',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -24035,6 +25085,7 @@ module.exports = {
       openDirection: {
         required: 'false',
         default: 'bottom',
+        localized: false,
         types: [
           'string',
         ],
@@ -24045,6 +25096,7 @@ module.exports = {
       canDeselect: {
         required: 'false',
         default: 'true',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -24055,6 +25107,7 @@ module.exports = {
       canClear: {
         required: 'false',
         default: 'true',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -24065,6 +25118,18 @@ module.exports = {
       closeOnSelect: {
         required: 'false',
         default: 'true',
+        localized: false,
+        types: [
+          'boolean',
+        ],
+        native: false,
+        required: false,
+        private: false,
+      },
+      closeOnDeselect: {
+        required: 'false',
+        default: 'false',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -24075,6 +25140,7 @@ module.exports = {
       delay: {
         required: 'false',
         default: '-1',
+        localized: false,
         types: [
           'number',
         ],
@@ -24085,6 +25151,7 @@ module.exports = {
       minChars: {
         required: 'false',
         default: '0',
+        localized: false,
         types: [
           'number',
         ],
@@ -24095,6 +25162,7 @@ module.exports = {
       resolveOnLoad: {
         required: 'false',
         default: 'true',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -24105,6 +25173,7 @@ module.exports = {
       filterResults: {
         required: 'false',
         default: 'true',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -24115,6 +25184,7 @@ module.exports = {
       clearOnSearch: {
         required: 'false',
         default: 'false',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -24125,6 +25195,7 @@ module.exports = {
       caret: {
         required: 'false',
         default: 'true',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -24135,6 +25206,7 @@ module.exports = {
       truncate: {
         required: 'false',
         default: 'true',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -24145,6 +25217,7 @@ module.exports = {
       loading: {
         required: 'false',
         default: 'false',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -24155,8 +25228,10 @@ module.exports = {
       noOptionsText: {
         required: 'false',
         default: 'locale.multiselect.noOptions',
+        localized: true,
         types: [
           'string',
+          'object',
         ],
         native: false,
         required: false,
@@ -24165,8 +25240,10 @@ module.exports = {
       noResultsText: {
         required: 'false',
         default: 'locale.multiselect.noResults',
+        localized: true,
         types: [
           'string',
+          'object',
         ],
         native: false,
         required: false,
@@ -24175,6 +25252,7 @@ module.exports = {
       autocomplete: {
         required: 'false',
         default: 'undefined',
+        localized: false,
         types: [
           'string',
         ],
@@ -24185,6 +25263,7 @@ module.exports = {
       inputType: {
         required: 'false',
         default: 'text',
+        localized: false,
         types: [
           'string',
         ],
@@ -24195,6 +25274,7 @@ module.exports = {
       extendOptions: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -24558,6 +25638,13 @@ module.exports = {
         ],
         description: 'Whether the element is just a container of children but not nested on data level (eg. [`GroupElement`](group-element))',
         private: true,
+      },
+      Placeholder: {
+        types: [
+          'string',
+        ],
+        description: 'The localized placeholder of the element.',
+        private: false,
       },
       elementSlots: {
         types: [
@@ -25452,6 +26539,7 @@ module.exports = {
       name: {
         required: 'true',
         default: 'undefined',
+        localized: false,
         types: [
           'string',
           'number',
@@ -25462,6 +26550,7 @@ module.exports = {
       conditions: {
         required: 'false',
         default: '[]',
+        localized: false,
         types: [
           'array',
         ],
@@ -25471,6 +26560,7 @@ module.exports = {
       onBeforeCreate: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -25480,6 +26570,7 @@ module.exports = {
       onCreated: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -25489,6 +26580,7 @@ module.exports = {
       onBeforeMount: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -25498,6 +26590,7 @@ module.exports = {
       onMounted: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -25507,6 +26600,7 @@ module.exports = {
       onBeforeUpdate: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -25516,6 +26610,7 @@ module.exports = {
       onUpdated: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -25525,6 +26620,7 @@ module.exports = {
       onBeforeUnmount: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -25534,6 +26630,7 @@ module.exports = {
       onUnmounted: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -25543,6 +26640,7 @@ module.exports = {
       inline: {
         required: 'false',
         default: 'false',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -25552,6 +26650,7 @@ module.exports = {
       layout: {
         required: 'false',
         default: 'ElementLayout',
+        localized: false,
         types: [
           'string',
           'object',
@@ -25563,6 +26662,7 @@ module.exports = {
       addClass: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'array',
           'object',
@@ -25574,6 +26674,7 @@ module.exports = {
       removeClass: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'array',
           'object',
@@ -25584,6 +26685,7 @@ module.exports = {
       replaceClass: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'object',
         ],
@@ -25593,6 +26695,7 @@ module.exports = {
       overrideClass: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'array',
           'object',
@@ -25604,6 +26707,7 @@ module.exports = {
       addClasses: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -25613,6 +26717,7 @@ module.exports = {
       replaceClasses: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -25622,6 +26727,7 @@ module.exports = {
       removeClasses: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -25631,6 +26737,7 @@ module.exports = {
       overrideClasses: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -25640,6 +26747,7 @@ module.exports = {
       presets: {
         required: 'false',
         default: '[]',
+        localized: false,
         types: [
           'array',
         ],
@@ -25649,6 +26757,7 @@ module.exports = {
       view: {
         required: 'false',
         default: 'undefined',
+        localized: false,
         types: [
           'string',
         ],
@@ -25658,6 +26767,7 @@ module.exports = {
       views: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -25667,6 +26777,7 @@ module.exports = {
       size: {
         required: 'false',
         default: 'undefined',
+        localized: false,
         types: [
           'string',
         ],
@@ -25676,6 +26787,7 @@ module.exports = {
       columns: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'object',
           'string',
@@ -25687,6 +26799,7 @@ module.exports = {
       templates: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -25696,8 +26809,10 @@ module.exports = {
       description: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'string',
+          'object',
         ],
         required: false,
         private: false,
@@ -25705,8 +26820,10 @@ module.exports = {
       info: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'string',
+          'object',
         ],
         required: false,
         private: false,
@@ -25714,6 +26831,7 @@ module.exports = {
       infoPosition: {
         required: 'false',
         default: 'right',
+        localized: false,
         types: [
           'string',
         ],
@@ -25723,6 +26841,7 @@ module.exports = {
       label: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'string',
           'object',
@@ -25734,6 +26853,7 @@ module.exports = {
       before: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'object',
           'string',
@@ -25745,6 +26865,7 @@ module.exports = {
       between: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'object',
           'string',
@@ -25756,6 +26877,7 @@ module.exports = {
       after: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'object',
           'string',
@@ -25767,6 +26889,7 @@ module.exports = {
       slots: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -25776,6 +26899,7 @@ module.exports = {
       onChange: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -25785,6 +26909,7 @@ module.exports = {
       formatData: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -25794,6 +26919,7 @@ module.exports = {
       formatLoad: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -25803,6 +26929,7 @@ module.exports = {
       submit: {
         required: 'false',
         default: 'true',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -25812,6 +26939,7 @@ module.exports = {
       rules: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'array',
           'string',
@@ -25823,6 +26951,7 @@ module.exports = {
       messages: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -25832,6 +26961,7 @@ module.exports = {
       fieldName: {
         required: 'false',
         default: 'name|label',
+        localized: false,
         types: [
           'string',
         ],
@@ -25841,6 +26971,7 @@ module.exports = {
       type: {
         required: 'false',
         default: 'slider',
+        localized: false,
         types: [
           'string',
         ],
@@ -25850,6 +26981,7 @@ module.exports = {
       default: {
         required: 'false',
         default: '0',
+        localized: false,
         types: [
           'number',
           'array',
@@ -25860,6 +26992,7 @@ module.exports = {
       disabled: {
         required: 'false',
         default: 'false',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -25869,6 +27002,7 @@ module.exports = {
       id: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'string',
         ],
@@ -25878,6 +27012,7 @@ module.exports = {
       min: {
         required: 'false',
         default: '0',
+        localized: false,
         types: [
           'number',
         ],
@@ -25887,6 +27022,7 @@ module.exports = {
       max: {
         required: 'false',
         default: '100',
+        localized: false,
         types: [
           'number',
         ],
@@ -25896,6 +27032,7 @@ module.exports = {
       step: {
         required: 'false',
         default: '1',
+        localized: false,
         types: [
           'number',
         ],
@@ -25905,6 +27042,7 @@ module.exports = {
       tooltips: {
         required: 'false',
         default: 'true',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -25914,6 +27052,7 @@ module.exports = {
       showTooltip: {
         required: 'false',
         default: 'always',
+        localized: false,
         types: [
           'string',
         ],
@@ -25923,6 +27062,7 @@ module.exports = {
       tooltipPosition: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'string',
         ],
@@ -25932,6 +27072,7 @@ module.exports = {
       merge: {
         required: 'false',
         default: '-1',
+        localized: false,
         types: [
           'number',
         ],
@@ -25941,6 +27082,7 @@ module.exports = {
       format: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'object',
           'function',
@@ -25951,6 +27093,7 @@ module.exports = {
       orientation: {
         required: 'false',
         default: 'horizontal',
+        localized: false,
         types: [
           'string',
         ],
@@ -25960,6 +27103,7 @@ module.exports = {
       direction: {
         required: 'false',
         default: 'ltr',
+        localized: false,
         types: [
           'string',
         ],
@@ -25969,6 +27113,7 @@ module.exports = {
       lazy: {
         required: 'false',
         default: 'true',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -25978,6 +27123,7 @@ module.exports = {
       extendOptions: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -26863,6 +28009,7 @@ module.exports = {
       name: {
         required: 'true',
         default: 'undefined',
+        localized: false,
         types: [
           'string',
           'number',
@@ -26873,6 +28020,7 @@ module.exports = {
       conditions: {
         required: 'false',
         default: '[]',
+        localized: false,
         types: [
           'array',
         ],
@@ -26882,6 +28030,7 @@ module.exports = {
       onBeforeCreate: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -26891,6 +28040,7 @@ module.exports = {
       onCreated: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -26900,6 +28050,7 @@ module.exports = {
       onBeforeMount: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -26909,6 +28060,7 @@ module.exports = {
       onMounted: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -26918,6 +28070,7 @@ module.exports = {
       onBeforeUpdate: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -26927,6 +28080,7 @@ module.exports = {
       onUpdated: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -26936,6 +28090,7 @@ module.exports = {
       onBeforeUnmount: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -26945,6 +28100,7 @@ module.exports = {
       onUnmounted: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -26954,6 +28110,7 @@ module.exports = {
       inline: {
         required: 'false',
         default: 'false',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -26963,6 +28120,7 @@ module.exports = {
       layout: {
         required: 'false',
         default: 'ElementLayout',
+        localized: false,
         types: [
           'string',
           'object',
@@ -26974,6 +28132,7 @@ module.exports = {
       addClass: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'array',
           'object',
@@ -26985,6 +28144,7 @@ module.exports = {
       removeClass: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'array',
           'object',
@@ -26995,6 +28155,7 @@ module.exports = {
       replaceClass: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'object',
         ],
@@ -27004,6 +28165,7 @@ module.exports = {
       overrideClass: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'array',
           'object',
@@ -27015,6 +28177,7 @@ module.exports = {
       addClasses: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -27024,6 +28187,7 @@ module.exports = {
       replaceClasses: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -27033,6 +28197,7 @@ module.exports = {
       removeClasses: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -27042,6 +28207,7 @@ module.exports = {
       overrideClasses: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -27051,6 +28217,7 @@ module.exports = {
       presets: {
         required: 'false',
         default: '[]',
+        localized: false,
         types: [
           'array',
         ],
@@ -27060,6 +28227,7 @@ module.exports = {
       view: {
         required: 'false',
         default: 'undefined',
+        localized: false,
         types: [
           'string',
         ],
@@ -27069,6 +28237,7 @@ module.exports = {
       views: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -27078,6 +28247,7 @@ module.exports = {
       size: {
         required: 'false',
         default: 'undefined',
+        localized: false,
         types: [
           'string',
         ],
@@ -27087,6 +28257,7 @@ module.exports = {
       columns: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'object',
           'string',
@@ -27098,6 +28269,7 @@ module.exports = {
       templates: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -27107,8 +28279,10 @@ module.exports = {
       description: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'string',
+          'object',
         ],
         required: false,
         private: false,
@@ -27116,8 +28290,10 @@ module.exports = {
       info: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'string',
+          'object',
         ],
         required: false,
         private: false,
@@ -27125,6 +28301,7 @@ module.exports = {
       infoPosition: {
         required: 'false',
         default: 'right',
+        localized: false,
         types: [
           'string',
         ],
@@ -27134,6 +28311,7 @@ module.exports = {
       label: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'string',
           'object',
@@ -27145,6 +28323,7 @@ module.exports = {
       before: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'object',
           'string',
@@ -27156,6 +28335,7 @@ module.exports = {
       between: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'object',
           'string',
@@ -27167,6 +28347,7 @@ module.exports = {
       after: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'object',
           'string',
@@ -27178,6 +28359,7 @@ module.exports = {
       slots: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -27187,6 +28369,7 @@ module.exports = {
       type: {
         required: 'false',
         default: 'static',
+        localized: false,
         types: [
           'string',
         ],
@@ -27196,6 +28379,7 @@ module.exports = {
       id: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'string',
         ],
@@ -27205,6 +28389,7 @@ module.exports = {
       content: {
         required: 'false',
         default: '',
+        localized: false,
         types: [
           'string',
           'object',
@@ -27215,6 +28400,7 @@ module.exports = {
       wrap: {
         required: 'false',
         default: 'true',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -27792,6 +28978,7 @@ module.exports = {
       name: {
         required: 'true',
         default: 'undefined',
+        localized: false,
         types: [
           'string',
           'number',
@@ -27802,6 +28989,7 @@ module.exports = {
       conditions: {
         required: 'false',
         default: '[]',
+        localized: false,
         types: [
           'array',
         ],
@@ -27811,6 +28999,7 @@ module.exports = {
       onBeforeCreate: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -27820,6 +29009,7 @@ module.exports = {
       onCreated: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -27829,6 +29019,7 @@ module.exports = {
       onBeforeMount: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -27838,6 +29029,7 @@ module.exports = {
       onMounted: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -27847,6 +29039,7 @@ module.exports = {
       onBeforeUpdate: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -27856,6 +29049,7 @@ module.exports = {
       onUpdated: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -27865,6 +29059,7 @@ module.exports = {
       onBeforeUnmount: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -27874,6 +29069,7 @@ module.exports = {
       onUnmounted: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -27883,6 +29079,7 @@ module.exports = {
       inline: {
         required: 'false',
         default: 'false',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -27892,6 +29089,7 @@ module.exports = {
       layout: {
         required: 'false',
         default: 'ElementLayout',
+        localized: false,
         types: [
           'string',
           'object',
@@ -27903,6 +29101,7 @@ module.exports = {
       addClass: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'array',
           'object',
@@ -27914,6 +29113,7 @@ module.exports = {
       removeClass: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'array',
           'object',
@@ -27924,6 +29124,7 @@ module.exports = {
       replaceClass: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'object',
         ],
@@ -27933,6 +29134,7 @@ module.exports = {
       overrideClass: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'array',
           'object',
@@ -27944,6 +29146,7 @@ module.exports = {
       addClasses: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -27953,6 +29156,7 @@ module.exports = {
       replaceClasses: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -27962,6 +29166,7 @@ module.exports = {
       removeClasses: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -27971,6 +29176,7 @@ module.exports = {
       overrideClasses: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -27980,6 +29186,7 @@ module.exports = {
       presets: {
         required: 'false',
         default: '[]',
+        localized: false,
         types: [
           'array',
         ],
@@ -27989,6 +29196,7 @@ module.exports = {
       view: {
         required: 'false',
         default: 'undefined',
+        localized: false,
         types: [
           'string',
         ],
@@ -27998,6 +29206,7 @@ module.exports = {
       views: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -28007,6 +29216,7 @@ module.exports = {
       size: {
         required: 'false',
         default: 'undefined',
+        localized: false,
         types: [
           'string',
         ],
@@ -28016,6 +29226,7 @@ module.exports = {
       columns: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'object',
           'string',
@@ -28027,6 +29238,7 @@ module.exports = {
       templates: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -28036,8 +29248,10 @@ module.exports = {
       description: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'string',
+          'object',
         ],
         required: false,
         private: false,
@@ -28045,8 +29259,10 @@ module.exports = {
       info: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'string',
+          'object',
         ],
         required: false,
         private: false,
@@ -28054,6 +29270,7 @@ module.exports = {
       infoPosition: {
         required: 'false',
         default: 'right',
+        localized: false,
         types: [
           'string',
         ],
@@ -28063,6 +29280,7 @@ module.exports = {
       label: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'string',
           'object',
@@ -28074,6 +29292,7 @@ module.exports = {
       before: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'object',
           'string',
@@ -28085,6 +29304,7 @@ module.exports = {
       between: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'object',
           'string',
@@ -28096,6 +29316,7 @@ module.exports = {
       after: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'object',
           'string',
@@ -28107,6 +29328,7 @@ module.exports = {
       slots: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -28116,6 +29338,7 @@ module.exports = {
       onChange: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -28125,6 +29348,7 @@ module.exports = {
       formatData: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -28134,6 +29358,7 @@ module.exports = {
       formatLoad: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -28143,6 +29368,7 @@ module.exports = {
       submit: {
         required: 'false',
         default: 'true',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -28152,6 +29378,7 @@ module.exports = {
       rules: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'array',
           'string',
@@ -28163,6 +29390,7 @@ module.exports = {
       messages: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -28172,6 +29400,7 @@ module.exports = {
       fieldName: {
         required: 'false',
         default: 'name|label',
+        localized: false,
         types: [
           'string',
         ],
@@ -28181,6 +29410,7 @@ module.exports = {
       type: {
         required: 'false',
         default: 't-editor',
+        localized: false,
         types: [
           'string',
         ],
@@ -28190,6 +29420,7 @@ module.exports = {
       default: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'object',
           'string',
@@ -28201,6 +29432,7 @@ module.exports = {
       debounce: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'number',
         ],
@@ -28210,6 +29442,7 @@ module.exports = {
       disabled: {
         required: 'false',
         default: 'false',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -28219,6 +29452,7 @@ module.exports = {
       id: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'string',
         ],
@@ -28228,8 +29462,10 @@ module.exports = {
       placeholder: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'string',
+          'object',
         ],
         required: false,
         private: false,
@@ -28237,6 +29473,7 @@ module.exports = {
       onError: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -28246,6 +29483,7 @@ module.exports = {
       onAlert: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -28255,6 +29493,7 @@ module.exports = {
       accept: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'array',
         ],
@@ -28264,6 +29503,7 @@ module.exports = {
       acceptMimes: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'array',
         ],
@@ -28273,6 +29513,7 @@ module.exports = {
       endpoint: {
         required: 'false',
         default: 'config.endpoints.attachment.url',
+        localized: false,
         types: [
           'string',
           'function',
@@ -28283,6 +29524,7 @@ module.exports = {
       method: {
         required: 'false',
         default: 'config.endpoints.attachment.method',
+        localized: false,
         types: [
           'string',
         ],
@@ -28292,6 +29534,7 @@ module.exports = {
       hideTools: {
         required: 'false',
         default: '[]',
+        localized: false,
         types: [
           'array',
         ],
@@ -28301,6 +29544,7 @@ module.exports = {
       onBlur: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -28659,6 +29903,13 @@ module.exports = {
         ],
         description: 'Whether the element is just a container of children but not nested on data level (eg. [`GroupElement`](group-element))',
         private: true,
+      },
+      Placeholder: {
+        types: [
+          'string',
+        ],
+        description: 'The localized placeholder of the element.',
+        private: false,
       },
       elementSlots: {
         types: [
@@ -29308,6 +30559,7 @@ module.exports = {
       name: {
         required: 'true',
         default: 'undefined',
+        localized: false,
         types: [
           'string',
           'number',
@@ -29318,6 +30570,7 @@ module.exports = {
       conditions: {
         required: 'false',
         default: '[]',
+        localized: false,
         types: [
           'array',
         ],
@@ -29327,6 +30580,7 @@ module.exports = {
       onBeforeCreate: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -29336,6 +30590,7 @@ module.exports = {
       onCreated: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -29345,6 +30600,7 @@ module.exports = {
       onBeforeMount: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -29354,6 +30610,7 @@ module.exports = {
       onMounted: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -29363,6 +30620,7 @@ module.exports = {
       onBeforeUpdate: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -29372,6 +30630,7 @@ module.exports = {
       onUpdated: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -29381,6 +30640,7 @@ module.exports = {
       onBeforeUnmount: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -29390,6 +30650,7 @@ module.exports = {
       onUnmounted: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -29399,6 +30660,7 @@ module.exports = {
       inline: {
         required: 'false',
         default: 'false',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -29408,6 +30670,7 @@ module.exports = {
       layout: {
         required: 'false',
         default: 'ElementLayout',
+        localized: false,
         types: [
           'string',
           'object',
@@ -29419,6 +30682,7 @@ module.exports = {
       addClass: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'array',
           'object',
@@ -29430,6 +30694,7 @@ module.exports = {
       removeClass: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'array',
           'object',
@@ -29440,6 +30705,7 @@ module.exports = {
       replaceClass: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'object',
         ],
@@ -29449,6 +30715,7 @@ module.exports = {
       overrideClass: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'array',
           'object',
@@ -29460,6 +30727,7 @@ module.exports = {
       addClasses: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -29469,6 +30737,7 @@ module.exports = {
       replaceClasses: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -29478,6 +30747,7 @@ module.exports = {
       removeClasses: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -29487,6 +30757,7 @@ module.exports = {
       overrideClasses: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -29496,6 +30767,7 @@ module.exports = {
       presets: {
         required: 'false',
         default: '[]',
+        localized: false,
         types: [
           'array',
         ],
@@ -29505,6 +30777,7 @@ module.exports = {
       view: {
         required: 'false',
         default: 'undefined',
+        localized: false,
         types: [
           'string',
         ],
@@ -29514,6 +30787,7 @@ module.exports = {
       views: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -29523,6 +30797,7 @@ module.exports = {
       size: {
         required: 'false',
         default: 'undefined',
+        localized: false,
         types: [
           'string',
         ],
@@ -29532,6 +30807,7 @@ module.exports = {
       columns: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'object',
           'string',
@@ -29543,6 +30819,7 @@ module.exports = {
       templates: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -29552,8 +30829,10 @@ module.exports = {
       description: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'string',
+          'object',
         ],
         required: false,
         private: false,
@@ -29561,8 +30840,10 @@ module.exports = {
       info: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'string',
+          'object',
         ],
         required: false,
         private: false,
@@ -29570,6 +30851,7 @@ module.exports = {
       infoPosition: {
         required: 'false',
         default: 'right',
+        localized: false,
         types: [
           'string',
         ],
@@ -29579,6 +30861,7 @@ module.exports = {
       label: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'string',
           'object',
@@ -29590,6 +30873,7 @@ module.exports = {
       before: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'object',
           'string',
@@ -29601,6 +30885,7 @@ module.exports = {
       between: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'object',
           'string',
@@ -29612,6 +30897,7 @@ module.exports = {
       after: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'object',
           'string',
@@ -29623,6 +30909,7 @@ module.exports = {
       slots: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -29632,6 +30919,7 @@ module.exports = {
       onChange: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -29641,6 +30929,7 @@ module.exports = {
       formatData: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -29650,6 +30939,7 @@ module.exports = {
       formatLoad: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -29659,6 +30949,7 @@ module.exports = {
       submit: {
         required: 'false',
         default: 'true',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -29668,6 +30959,7 @@ module.exports = {
       rules: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'array',
           'string',
@@ -29679,6 +30971,7 @@ module.exports = {
       messages: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -29688,6 +30981,7 @@ module.exports = {
       fieldName: {
         required: 'false',
         default: 'name|label',
+        localized: false,
         types: [
           'string',
         ],
@@ -29697,6 +30991,7 @@ module.exports = {
       type: {
         required: 'false',
         default: 't-text',
+        localized: false,
         types: [
           'string',
         ],
@@ -29706,6 +31001,7 @@ module.exports = {
       default: {
         required: 'false',
         default: 'undefined',
+        localized: true,
         types: [
           'object',
           'string',
@@ -29717,6 +31013,7 @@ module.exports = {
       addons: {
         required: 'false',
         default: '{}',
+        localized: true,
         types: [
           'object',
         ],
@@ -29726,6 +31023,7 @@ module.exports = {
       autocomplete: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'string',
           'number',
@@ -29736,6 +31034,7 @@ module.exports = {
       debounce: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'number',
         ],
@@ -29745,6 +31044,7 @@ module.exports = {
       disabled: {
         required: 'false',
         default: 'false',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -29754,9 +31054,11 @@ module.exports = {
       floating: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'string',
           'boolean',
+          'object',
         ],
         required: false,
         private: false,
@@ -29764,6 +31066,7 @@ module.exports = {
       id: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'string',
         ],
@@ -29773,6 +31076,7 @@ module.exports = {
       inputType: {
         required: 'false',
         default: 'text',
+        localized: false,
         types: [
           'string',
         ],
@@ -29782,6 +31086,7 @@ module.exports = {
       attrs: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -29791,8 +31096,10 @@ module.exports = {
       placeholder: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'string',
+          'object',
         ],
         required: false,
         private: false,
@@ -29800,6 +31107,7 @@ module.exports = {
       readonly: {
         required: 'false',
         default: 'false',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -29809,6 +31117,7 @@ module.exports = {
       loading: {
         required: 'false',
         default: 'false',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -29818,6 +31127,37 @@ module.exports = {
       onBlur: {
         required: 'false',
         default: 'null',
+        localized: false,
+        types: [
+          'function',
+        ],
+        required: false,
+        private: true,
+      },
+      onKeydown: {
+        required: 'false',
+        default: 'null',
+        localized: false,
+        types: [
+          'function',
+        ],
+        required: false,
+        private: true,
+      },
+      onKeyup: {
+        required: 'false',
+        default: 'null',
+        localized: false,
+        types: [
+          'function',
+        ],
+        required: false,
+        private: true,
+      },
+      onKeypress: {
+        required: 'false',
+        default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -30174,6 +31514,13 @@ module.exports = {
         ],
         description: 'Whether the element is just a container of children but not nested on data level (eg. [`GroupElement`](group-element))',
         private: true,
+      },
+      Placeholder: {
+        types: [
+          'string',
+        ],
+        description: 'The localized placeholder of the element.',
+        private: false,
       },
       elementSlots: {
         types: [
@@ -30888,6 +32235,7 @@ module.exports = {
       name: {
         required: 'true',
         default: 'undefined',
+        localized: false,
         types: [
           'string',
           'number',
@@ -30898,6 +32246,7 @@ module.exports = {
       conditions: {
         required: 'false',
         default: '[]',
+        localized: false,
         types: [
           'array',
         ],
@@ -30907,6 +32256,7 @@ module.exports = {
       onBeforeCreate: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -30916,6 +32266,7 @@ module.exports = {
       onCreated: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -30925,6 +32276,7 @@ module.exports = {
       onBeforeMount: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -30934,6 +32286,7 @@ module.exports = {
       onMounted: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -30943,6 +32296,7 @@ module.exports = {
       onBeforeUpdate: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -30952,6 +32306,7 @@ module.exports = {
       onUpdated: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -30961,6 +32316,7 @@ module.exports = {
       onBeforeUnmount: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -30970,6 +32326,7 @@ module.exports = {
       onUnmounted: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -30979,6 +32336,7 @@ module.exports = {
       inline: {
         required: 'false',
         default: 'false',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -30988,6 +32346,7 @@ module.exports = {
       layout: {
         required: 'false',
         default: 'ElementLayout',
+        localized: false,
         types: [
           'string',
           'object',
@@ -30999,6 +32358,7 @@ module.exports = {
       addClass: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'array',
           'object',
@@ -31010,6 +32370,7 @@ module.exports = {
       removeClass: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'array',
           'object',
@@ -31020,6 +32381,7 @@ module.exports = {
       replaceClass: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'object',
         ],
@@ -31029,6 +32391,7 @@ module.exports = {
       overrideClass: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'array',
           'object',
@@ -31040,6 +32403,7 @@ module.exports = {
       addClasses: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -31049,6 +32413,7 @@ module.exports = {
       replaceClasses: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -31058,6 +32423,7 @@ module.exports = {
       removeClasses: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -31067,6 +32433,7 @@ module.exports = {
       overrideClasses: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -31076,6 +32443,7 @@ module.exports = {
       presets: {
         required: 'false',
         default: '[]',
+        localized: false,
         types: [
           'array',
         ],
@@ -31085,6 +32453,7 @@ module.exports = {
       view: {
         required: 'false',
         default: 'undefined',
+        localized: false,
         types: [
           'string',
         ],
@@ -31094,6 +32463,7 @@ module.exports = {
       views: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -31103,6 +32473,7 @@ module.exports = {
       size: {
         required: 'false',
         default: 'undefined',
+        localized: false,
         types: [
           'string',
         ],
@@ -31112,6 +32483,7 @@ module.exports = {
       columns: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'object',
           'string',
@@ -31123,6 +32495,7 @@ module.exports = {
       templates: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -31132,8 +32505,10 @@ module.exports = {
       description: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'string',
+          'object',
         ],
         required: false,
         private: false,
@@ -31141,8 +32516,10 @@ module.exports = {
       info: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'string',
+          'object',
         ],
         required: false,
         private: false,
@@ -31150,6 +32527,7 @@ module.exports = {
       infoPosition: {
         required: 'false',
         default: 'right',
+        localized: false,
         types: [
           'string',
         ],
@@ -31159,6 +32537,7 @@ module.exports = {
       label: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'string',
           'object',
@@ -31170,6 +32549,7 @@ module.exports = {
       before: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'object',
           'string',
@@ -31181,6 +32561,7 @@ module.exports = {
       between: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'object',
           'string',
@@ -31192,6 +32573,7 @@ module.exports = {
       after: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'object',
           'string',
@@ -31203,6 +32585,7 @@ module.exports = {
       slots: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -31212,6 +32595,7 @@ module.exports = {
       onChange: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -31221,6 +32605,7 @@ module.exports = {
       formatData: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -31230,6 +32615,7 @@ module.exports = {
       formatLoad: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -31239,6 +32625,7 @@ module.exports = {
       submit: {
         required: 'false',
         default: 'true',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -31248,6 +32635,7 @@ module.exports = {
       rules: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'array',
           'string',
@@ -31259,6 +32647,7 @@ module.exports = {
       messages: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -31268,6 +32657,7 @@ module.exports = {
       fieldName: {
         required: 'false',
         default: 'name|label',
+        localized: false,
         types: [
           'string',
         ],
@@ -31277,6 +32667,7 @@ module.exports = {
       type: {
         required: 'false',
         default: 't-textarea',
+        localized: false,
         types: [
           'string',
         ],
@@ -31286,6 +32677,7 @@ module.exports = {
       default: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'object',
           'string',
@@ -31297,6 +32689,7 @@ module.exports = {
       addons: {
         required: 'false',
         default: '{}',
+        localized: true,
         types: [
           'object',
         ],
@@ -31306,6 +32699,7 @@ module.exports = {
       autogrow: {
         required: 'false',
         default: 'true',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -31315,6 +32709,7 @@ module.exports = {
       rows: {
         required: 'false',
         default: '3',
+        localized: false,
         types: [
           'number',
         ],
@@ -31324,6 +32719,7 @@ module.exports = {
       debounce: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'number',
         ],
@@ -31333,6 +32729,7 @@ module.exports = {
       disabled: {
         required: 'false',
         default: 'false',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -31342,9 +32739,11 @@ module.exports = {
       floating: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'string',
           'boolean',
+          'object',
         ],
         required: false,
         private: false,
@@ -31352,6 +32751,7 @@ module.exports = {
       id: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'string',
         ],
@@ -31361,8 +32761,10 @@ module.exports = {
       placeholder: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'string',
+          'object',
         ],
         required: false,
         private: false,
@@ -31370,6 +32772,7 @@ module.exports = {
       readonly: {
         required: 'false',
         default: 'false',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -31379,6 +32782,7 @@ module.exports = {
       attrs: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -31388,6 +32792,37 @@ module.exports = {
       onBlur: {
         required: 'false',
         default: 'null',
+        localized: false,
+        types: [
+          'function',
+        ],
+        required: false,
+        private: true,
+      },
+      onKeydown: {
+        required: 'false',
+        default: 'null',
+        localized: false,
+        types: [
+          'function',
+        ],
+        required: false,
+        private: true,
+      },
+      onKeyup: {
+        required: 'false',
+        default: 'null',
+        localized: false,
+        types: [
+          'function',
+        ],
+        required: false,
+        private: true,
+      },
+      onKeypress: {
+        required: 'false',
+        default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -31737,6 +33172,13 @@ module.exports = {
         ],
         description: 'Whether the element is just a container of children but not nested on data level (eg. [`GroupElement`](group-element))',
         private: true,
+      },
+      Placeholder: {
+        types: [
+          'string',
+        ],
+        description: 'The localized placeholder of the element.',
+        private: false,
       },
       elementSlots: {
         types: [
@@ -32456,6 +33898,7 @@ module.exports = {
       name: {
         required: 'true',
         default: 'undefined',
+        localized: false,
         types: [
           'string',
           'number',
@@ -32466,6 +33909,7 @@ module.exports = {
       conditions: {
         required: 'false',
         default: '[]',
+        localized: false,
         types: [
           'array',
         ],
@@ -32475,6 +33919,7 @@ module.exports = {
       onBeforeCreate: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -32484,6 +33929,7 @@ module.exports = {
       onCreated: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -32493,6 +33939,7 @@ module.exports = {
       onBeforeMount: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -32502,6 +33949,7 @@ module.exports = {
       onMounted: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -32511,6 +33959,7 @@ module.exports = {
       onBeforeUpdate: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -32520,6 +33969,7 @@ module.exports = {
       onUpdated: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -32529,6 +33979,7 @@ module.exports = {
       onBeforeUnmount: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -32538,6 +33989,7 @@ module.exports = {
       onUnmounted: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -32547,6 +33999,7 @@ module.exports = {
       inline: {
         required: 'false',
         default: 'false',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -32556,6 +34009,7 @@ module.exports = {
       layout: {
         required: 'false',
         default: 'ElementLayout',
+        localized: false,
         types: [
           'string',
           'object',
@@ -32567,6 +34021,7 @@ module.exports = {
       addClass: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'array',
           'object',
@@ -32578,6 +34033,7 @@ module.exports = {
       removeClass: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'array',
           'object',
@@ -32588,6 +34044,7 @@ module.exports = {
       replaceClass: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'object',
         ],
@@ -32597,6 +34054,7 @@ module.exports = {
       overrideClass: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'array',
           'object',
@@ -32608,6 +34066,7 @@ module.exports = {
       addClasses: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -32617,6 +34076,7 @@ module.exports = {
       replaceClasses: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -32626,6 +34086,7 @@ module.exports = {
       removeClasses: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -32635,6 +34096,7 @@ module.exports = {
       overrideClasses: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -32644,6 +34106,7 @@ module.exports = {
       presets: {
         required: 'false',
         default: '[]',
+        localized: false,
         types: [
           'array',
         ],
@@ -32653,6 +34116,7 @@ module.exports = {
       view: {
         required: 'false',
         default: 'undefined',
+        localized: false,
         types: [
           'string',
         ],
@@ -32662,6 +34126,7 @@ module.exports = {
       views: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -32671,6 +34136,7 @@ module.exports = {
       size: {
         required: 'false',
         default: 'undefined',
+        localized: false,
         types: [
           'string',
         ],
@@ -32680,6 +34146,7 @@ module.exports = {
       columns: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'object',
           'string',
@@ -32691,6 +34158,7 @@ module.exports = {
       templates: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -32700,8 +34168,10 @@ module.exports = {
       description: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'string',
+          'object',
         ],
         required: false,
         private: false,
@@ -32709,8 +34179,10 @@ module.exports = {
       info: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'string',
+          'object',
         ],
         required: false,
         private: false,
@@ -32718,6 +34190,7 @@ module.exports = {
       infoPosition: {
         required: 'false',
         default: 'right',
+        localized: false,
         types: [
           'string',
         ],
@@ -32727,6 +34200,7 @@ module.exports = {
       label: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'string',
           'object',
@@ -32738,6 +34212,7 @@ module.exports = {
       before: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'object',
           'string',
@@ -32749,6 +34224,7 @@ module.exports = {
       between: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'object',
           'string',
@@ -32760,6 +34236,7 @@ module.exports = {
       after: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'object',
           'string',
@@ -32771,6 +34248,7 @@ module.exports = {
       slots: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -32780,6 +34258,7 @@ module.exports = {
       onChange: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -32789,6 +34268,7 @@ module.exports = {
       formatData: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -32798,6 +34278,7 @@ module.exports = {
       formatLoad: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -32807,6 +34288,7 @@ module.exports = {
       submit: {
         required: 'false',
         default: 'true',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -32816,6 +34298,7 @@ module.exports = {
       rules: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'array',
           'string',
@@ -32827,6 +34310,7 @@ module.exports = {
       messages: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -32836,6 +34320,7 @@ module.exports = {
       fieldName: {
         required: 'false',
         default: 'name|label',
+        localized: false,
         types: [
           'string',
         ],
@@ -32845,6 +34330,7 @@ module.exports = {
       type: {
         required: 'false',
         default: 'tags',
+        localized: false,
         types: [
           'string',
         ],
@@ -32854,6 +34340,7 @@ module.exports = {
       default: {
         required: 'false',
         default: '[]',
+        localized: false,
         types: [
           'array',
         ],
@@ -32863,6 +34350,7 @@ module.exports = {
       disabled: {
         required: 'false',
         default: 'false',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -32872,9 +34360,11 @@ module.exports = {
       floating: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'string',
           'boolean',
+          'object',
         ],
         required: false,
         private: false,
@@ -32882,6 +34372,7 @@ module.exports = {
       id: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'string',
         ],
@@ -32891,8 +34382,10 @@ module.exports = {
       placeholder: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'string',
+          'object',
         ],
         required: false,
         private: false,
@@ -32900,6 +34393,7 @@ module.exports = {
       attrs: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -32909,6 +34403,7 @@ module.exports = {
       onSelect: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -32918,6 +34413,7 @@ module.exports = {
       onDeselect: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -32927,6 +34423,7 @@ module.exports = {
       onSearchChange: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -32936,6 +34433,7 @@ module.exports = {
       onOpen: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -32945,6 +34443,7 @@ module.exports = {
       onClose: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -32954,6 +34453,7 @@ module.exports = {
       onTag: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -32963,6 +34463,7 @@ module.exports = {
       onClear: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -32972,6 +34473,7 @@ module.exports = {
       onPaste: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -32981,6 +34483,7 @@ module.exports = {
       items: {
         required: 'false',
         default: '{}',
+        localized: true,
         types: [
           'object',
           'array',
@@ -32993,6 +34496,7 @@ module.exports = {
       labelProp: {
         required: 'false',
         default: 'label',
+        localized: false,
         types: [
           'string',
         ],
@@ -33003,6 +34507,7 @@ module.exports = {
       valueProp: {
         required: 'false',
         default: 'value',
+        localized: false,
         types: [
           'string',
         ],
@@ -33013,6 +34518,7 @@ module.exports = {
       dataKey: {
         required: 'false',
         default: 'undefined',
+        localized: false,
         types: [
           'string',
         ],
@@ -33022,6 +34528,7 @@ module.exports = {
       searchParam: {
         required: 'false',
         default: 'query',
+        localized: false,
         types: [
           'string',
         ],
@@ -33031,6 +34538,7 @@ module.exports = {
       search: {
         required: 'false',
         default: 'false',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -33041,6 +34549,7 @@ module.exports = {
       trackBy: {
         required: 'false',
         default: 'label',
+        localized: false,
         types: [
           'string',
         ],
@@ -33051,6 +34560,7 @@ module.exports = {
       strict: {
         required: 'false',
         default: 'true',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -33061,6 +34571,7 @@ module.exports = {
       create: {
         required: 'false',
         default: 'false',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -33070,6 +34581,7 @@ module.exports = {
       appendNewOption: {
         required: 'false',
         default: 'true',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -33079,6 +34591,7 @@ module.exports = {
       addOptionOn: {
         required: 'false',
         default: '["enter"]',
+        localized: false,
         types: [
           'array',
         ],
@@ -33088,6 +34601,7 @@ module.exports = {
       object: {
         required: 'false',
         default: 'false',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -33098,6 +34612,7 @@ module.exports = {
       limit: {
         required: 'false',
         default: '-1',
+        localized: false,
         types: [
           'number',
         ],
@@ -33108,6 +34623,7 @@ module.exports = {
       max: {
         required: 'false',
         default: '-1',
+        localized: false,
         types: [
           'number',
         ],
@@ -33118,6 +34634,7 @@ module.exports = {
       groups: {
         required: 'false',
         default: 'false',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -33128,6 +34645,7 @@ module.exports = {
       groupLabel: {
         required: 'false',
         default: 'label',
+        localized: false,
         types: [
           'string',
         ],
@@ -33138,6 +34656,7 @@ module.exports = {
       groupOptions: {
         required: 'false',
         default: 'items',
+        localized: false,
         types: [
           'string',
         ],
@@ -33148,6 +34667,7 @@ module.exports = {
       groupHideEmpty: {
         required: 'false',
         default: 'false',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -33158,6 +34678,7 @@ module.exports = {
       groupSelect: {
         required: 'false',
         default: 'true',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -33168,6 +34689,7 @@ module.exports = {
       openDirection: {
         required: 'false',
         default: 'bottom',
+        localized: false,
         types: [
           'string',
         ],
@@ -33178,6 +34700,7 @@ module.exports = {
       canClear: {
         required: 'false',
         default: 'true',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -33188,6 +34711,7 @@ module.exports = {
       clearOnSelect: {
         required: 'false',
         default: 'true',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -33198,6 +34722,18 @@ module.exports = {
       closeOnSelect: {
         required: 'false',
         default: 'true',
+        localized: false,
+        types: [
+          'boolean',
+        ],
+        native: false,
+        required: false,
+        private: false,
+      },
+      closeOnDeselect: {
+        required: 'false',
+        default: 'false',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -33208,6 +34744,7 @@ module.exports = {
       delay: {
         required: 'false',
         default: '-1',
+        localized: false,
         types: [
           'number',
         ],
@@ -33218,6 +34755,7 @@ module.exports = {
       minChars: {
         required: 'false',
         default: '0',
+        localized: false,
         types: [
           'number',
         ],
@@ -33228,6 +34766,7 @@ module.exports = {
       resolveOnLoad: {
         required: 'false',
         default: 'true',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -33238,6 +34777,7 @@ module.exports = {
       filterResults: {
         required: 'false',
         default: 'true',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -33248,6 +34788,7 @@ module.exports = {
       clearOnSearch: {
         required: 'false',
         default: 'false',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -33258,6 +34799,7 @@ module.exports = {
       hideSelected: {
         required: 'false',
         default: 'true',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -33268,6 +34810,7 @@ module.exports = {
       showOptions: {
         required: 'false',
         default: 'true',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -33277,6 +34820,7 @@ module.exports = {
       caret: {
         required: 'false',
         default: 'true',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -33287,6 +34831,7 @@ module.exports = {
       loading: {
         required: 'false',
         default: 'false',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -33297,8 +34842,10 @@ module.exports = {
       noOptionsText: {
         required: 'false',
         default: 'locale.multiselect.noOptions',
+        localized: true,
         types: [
           'string',
+          'object',
         ],
         native: false,
         required: false,
@@ -33307,8 +34854,10 @@ module.exports = {
       noResultsText: {
         required: 'false',
         default: 'locale.multiselect.noResults',
+        localized: true,
         types: [
           'string',
+          'object',
         ],
         native: false,
         required: false,
@@ -33317,6 +34866,7 @@ module.exports = {
       autocomplete: {
         required: 'false',
         default: 'undefined',
+        localized: false,
         types: [
           'string',
         ],
@@ -33327,6 +34877,7 @@ module.exports = {
       inputType: {
         required: 'false',
         default: 'text',
+        localized: false,
         types: [
           'string',
         ],
@@ -33337,6 +34888,7 @@ module.exports = {
       extendOptions: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -33700,6 +35252,13 @@ module.exports = {
         ],
         description: 'Whether the element is just a container of children but not nested on data level (eg. [`GroupElement`](group-element))',
         private: true,
+      },
+      Placeholder: {
+        types: [
+          'string',
+        ],
+        description: 'The localized placeholder of the element.',
+        private: false,
       },
       elementSlots: {
         types: [
@@ -34667,6 +36226,7 @@ module.exports = {
       name: {
         required: 'true',
         default: 'undefined',
+        localized: false,
         types: [
           'string',
           'number',
@@ -34677,6 +36237,7 @@ module.exports = {
       conditions: {
         required: 'false',
         default: '[]',
+        localized: false,
         types: [
           'array',
         ],
@@ -34686,6 +36247,7 @@ module.exports = {
       onBeforeCreate: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -34695,6 +36257,7 @@ module.exports = {
       onCreated: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -34704,6 +36267,7 @@ module.exports = {
       onBeforeMount: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -34713,6 +36277,7 @@ module.exports = {
       onMounted: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -34722,6 +36287,7 @@ module.exports = {
       onBeforeUpdate: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -34731,6 +36297,7 @@ module.exports = {
       onUpdated: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -34740,6 +36307,7 @@ module.exports = {
       onBeforeUnmount: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -34749,6 +36317,7 @@ module.exports = {
       onUnmounted: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -34758,6 +36327,7 @@ module.exports = {
       inline: {
         required: 'false',
         default: 'false',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -34767,6 +36337,7 @@ module.exports = {
       layout: {
         required: 'false',
         default: 'ElementLayout',
+        localized: false,
         types: [
           'string',
           'object',
@@ -34778,6 +36349,7 @@ module.exports = {
       addClass: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'array',
           'object',
@@ -34789,6 +36361,7 @@ module.exports = {
       removeClass: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'array',
           'object',
@@ -34799,6 +36372,7 @@ module.exports = {
       replaceClass: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'object',
         ],
@@ -34808,6 +36382,7 @@ module.exports = {
       overrideClass: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'array',
           'object',
@@ -34819,6 +36394,7 @@ module.exports = {
       addClasses: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -34828,6 +36404,7 @@ module.exports = {
       replaceClasses: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -34837,6 +36414,7 @@ module.exports = {
       removeClasses: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -34846,6 +36424,7 @@ module.exports = {
       overrideClasses: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -34855,6 +36434,7 @@ module.exports = {
       presets: {
         required: 'false',
         default: '[]',
+        localized: false,
         types: [
           'array',
         ],
@@ -34864,6 +36444,7 @@ module.exports = {
       view: {
         required: 'false',
         default: 'undefined',
+        localized: false,
         types: [
           'string',
         ],
@@ -34873,6 +36454,7 @@ module.exports = {
       views: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -34882,6 +36464,7 @@ module.exports = {
       size: {
         required: 'false',
         default: 'undefined',
+        localized: false,
         types: [
           'string',
         ],
@@ -34891,6 +36474,7 @@ module.exports = {
       columns: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'object',
           'string',
@@ -34902,6 +36486,7 @@ module.exports = {
       templates: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -34911,8 +36496,10 @@ module.exports = {
       description: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'string',
+          'object',
         ],
         required: false,
         private: false,
@@ -34920,8 +36507,10 @@ module.exports = {
       info: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'string',
+          'object',
         ],
         required: false,
         private: false,
@@ -34929,6 +36518,7 @@ module.exports = {
       infoPosition: {
         required: 'false',
         default: 'right',
+        localized: false,
         types: [
           'string',
         ],
@@ -34938,6 +36528,7 @@ module.exports = {
       label: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'string',
           'object',
@@ -34949,6 +36540,7 @@ module.exports = {
       before: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'object',
           'string',
@@ -34960,6 +36552,7 @@ module.exports = {
       between: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'object',
           'string',
@@ -34971,6 +36564,7 @@ module.exports = {
       after: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'object',
           'string',
@@ -34982,6 +36576,7 @@ module.exports = {
       slots: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -34991,6 +36586,7 @@ module.exports = {
       onChange: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -35000,6 +36596,7 @@ module.exports = {
       formatData: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -35009,6 +36606,7 @@ module.exports = {
       formatLoad: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -35018,6 +36616,7 @@ module.exports = {
       submit: {
         required: 'false',
         default: 'true',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -35027,6 +36626,7 @@ module.exports = {
       rules: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'array',
           'string',
@@ -35038,6 +36638,7 @@ module.exports = {
       messages: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -35047,6 +36648,7 @@ module.exports = {
       fieldName: {
         required: 'false',
         default: 'name|label',
+        localized: false,
         types: [
           'string',
         ],
@@ -35056,6 +36658,7 @@ module.exports = {
       type: {
         required: 'false',
         default: 'text',
+        localized: false,
         types: [
           'string',
         ],
@@ -35065,9 +36668,11 @@ module.exports = {
       default: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'string',
           'number',
+          'object',
         ],
         required: false,
         private: false,
@@ -35075,6 +36680,7 @@ module.exports = {
       debounce: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'number',
         ],
@@ -35084,6 +36690,7 @@ module.exports = {
       disabled: {
         required: 'false',
         default: 'false',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -35093,9 +36700,11 @@ module.exports = {
       floating: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'string',
           'boolean',
+          'object',
         ],
         required: false,
         private: false,
@@ -35103,6 +36712,7 @@ module.exports = {
       id: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'string',
         ],
@@ -35112,8 +36722,10 @@ module.exports = {
       placeholder: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'string',
+          'object',
         ],
         required: false,
         private: false,
@@ -35121,6 +36733,7 @@ module.exports = {
       readonly: {
         required: 'false',
         default: 'false',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -35130,6 +36743,7 @@ module.exports = {
       inputType: {
         required: 'false',
         default: 'text',
+        localized: false,
         types: [
           'string',
         ],
@@ -35139,6 +36753,7 @@ module.exports = {
       attrs: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -35148,6 +36763,7 @@ module.exports = {
       addons: {
         required: 'false',
         default: '{}',
+        localized: true,
         types: [
           'object',
         ],
@@ -35157,6 +36773,7 @@ module.exports = {
       autocomplete: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'string',
           'number',
@@ -35167,6 +36784,7 @@ module.exports = {
       loading: {
         required: 'false',
         default: 'false',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -35176,6 +36794,37 @@ module.exports = {
       onBlur: {
         required: 'false',
         default: 'null',
+        localized: false,
+        types: [
+          'function',
+        ],
+        required: false,
+        private: true,
+      },
+      onKeydown: {
+        required: 'false',
+        default: 'null',
+        localized: false,
+        types: [
+          'function',
+        ],
+        required: false,
+        private: true,
+      },
+      onKeyup: {
+        required: 'false',
+        default: 'null',
+        localized: false,
+        types: [
+          'function',
+        ],
+        required: false,
+        private: true,
+      },
+      onKeypress: {
+        required: 'false',
+        default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -35532,6 +37181,13 @@ module.exports = {
         ],
         description: 'Whether the element is just a container of children but not nested on data level (eg. [`GroupElement`](group-element))',
         private: true,
+      },
+      Placeholder: {
+        types: [
+          'string',
+        ],
+        description: 'The localized placeholder of the element.',
+        private: false,
       },
       elementSlots: {
         types: [
@@ -36227,6 +37883,7 @@ module.exports = {
       name: {
         required: 'true',
         default: 'undefined',
+        localized: false,
         types: [
           'string',
           'number',
@@ -36237,6 +37894,7 @@ module.exports = {
       conditions: {
         required: 'false',
         default: '[]',
+        localized: false,
         types: [
           'array',
         ],
@@ -36246,6 +37904,7 @@ module.exports = {
       onBeforeCreate: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -36255,6 +37914,7 @@ module.exports = {
       onCreated: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -36264,6 +37924,7 @@ module.exports = {
       onBeforeMount: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -36273,6 +37934,7 @@ module.exports = {
       onMounted: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -36282,6 +37944,7 @@ module.exports = {
       onBeforeUpdate: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -36291,6 +37954,7 @@ module.exports = {
       onUpdated: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -36300,6 +37964,7 @@ module.exports = {
       onBeforeUnmount: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -36309,6 +37974,7 @@ module.exports = {
       onUnmounted: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -36318,6 +37984,7 @@ module.exports = {
       inline: {
         required: 'false',
         default: 'false',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -36327,6 +37994,7 @@ module.exports = {
       layout: {
         required: 'false',
         default: 'ElementLayout',
+        localized: false,
         types: [
           'string',
           'object',
@@ -36338,6 +38006,7 @@ module.exports = {
       addClass: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'array',
           'object',
@@ -36349,6 +38018,7 @@ module.exports = {
       removeClass: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'array',
           'object',
@@ -36359,6 +38029,7 @@ module.exports = {
       replaceClass: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'object',
         ],
@@ -36368,6 +38039,7 @@ module.exports = {
       overrideClass: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'array',
           'object',
@@ -36379,6 +38051,7 @@ module.exports = {
       addClasses: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -36388,6 +38061,7 @@ module.exports = {
       replaceClasses: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -36397,6 +38071,7 @@ module.exports = {
       removeClasses: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -36406,6 +38081,7 @@ module.exports = {
       overrideClasses: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -36415,6 +38091,7 @@ module.exports = {
       presets: {
         required: 'false',
         default: '[]',
+        localized: false,
         types: [
           'array',
         ],
@@ -36424,6 +38101,7 @@ module.exports = {
       view: {
         required: 'false',
         default: 'undefined',
+        localized: false,
         types: [
           'string',
         ],
@@ -36433,6 +38111,7 @@ module.exports = {
       views: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -36442,6 +38121,7 @@ module.exports = {
       size: {
         required: 'false',
         default: 'undefined',
+        localized: false,
         types: [
           'string',
         ],
@@ -36451,6 +38131,7 @@ module.exports = {
       columns: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'object',
           'string',
@@ -36462,6 +38143,7 @@ module.exports = {
       templates: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -36471,8 +38153,10 @@ module.exports = {
       description: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'string',
+          'object',
         ],
         required: false,
         private: false,
@@ -36480,8 +38164,10 @@ module.exports = {
       info: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'string',
+          'object',
         ],
         required: false,
         private: false,
@@ -36489,6 +38175,7 @@ module.exports = {
       infoPosition: {
         required: 'false',
         default: 'right',
+        localized: false,
         types: [
           'string',
         ],
@@ -36498,6 +38185,7 @@ module.exports = {
       label: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'string',
           'object',
@@ -36509,6 +38197,7 @@ module.exports = {
       before: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'object',
           'string',
@@ -36520,6 +38209,7 @@ module.exports = {
       between: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'object',
           'string',
@@ -36531,6 +38221,7 @@ module.exports = {
       after: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'object',
           'string',
@@ -36542,6 +38233,7 @@ module.exports = {
       slots: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -36551,6 +38243,7 @@ module.exports = {
       onChange: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -36560,6 +38253,7 @@ module.exports = {
       formatData: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -36569,6 +38263,7 @@ module.exports = {
       formatLoad: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -36578,6 +38273,7 @@ module.exports = {
       submit: {
         required: 'false',
         default: 'true',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -36587,6 +38283,7 @@ module.exports = {
       rules: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'array',
           'string',
@@ -36598,6 +38295,7 @@ module.exports = {
       messages: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -36607,6 +38305,7 @@ module.exports = {
       fieldName: {
         required: 'false',
         default: 'name|label',
+        localized: false,
         types: [
           'string',
         ],
@@ -36616,6 +38315,7 @@ module.exports = {
       type: {
         required: 'false',
         default: 'textarea',
+        localized: false,
         types: [
           'string',
         ],
@@ -36625,9 +38325,11 @@ module.exports = {
       default: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'string',
           'number',
+          'object',
         ],
         required: false,
         private: false,
@@ -36635,6 +38337,7 @@ module.exports = {
       addons: {
         required: 'false',
         default: '{}',
+        localized: true,
         types: [
           'object',
         ],
@@ -36644,6 +38347,7 @@ module.exports = {
       autogrow: {
         required: 'false',
         default: 'true',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -36653,6 +38357,7 @@ module.exports = {
       rows: {
         required: 'false',
         default: '3',
+        localized: false,
         types: [
           'number',
         ],
@@ -36662,6 +38367,7 @@ module.exports = {
       debounce: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'number',
         ],
@@ -36671,6 +38377,7 @@ module.exports = {
       disabled: {
         required: 'false',
         default: 'false',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -36680,9 +38387,11 @@ module.exports = {
       floating: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'string',
           'boolean',
+          'object',
         ],
         required: false,
         private: false,
@@ -36690,6 +38399,7 @@ module.exports = {
       id: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'string',
         ],
@@ -36699,8 +38409,10 @@ module.exports = {
       placeholder: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'string',
+          'object',
         ],
         required: false,
         private: false,
@@ -36708,6 +38420,7 @@ module.exports = {
       readonly: {
         required: 'false',
         default: 'false',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -36717,6 +38430,7 @@ module.exports = {
       attrs: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -36726,6 +38440,37 @@ module.exports = {
       onBlur: {
         required: 'false',
         default: 'null',
+        localized: false,
+        types: [
+          'function',
+        ],
+        required: false,
+        private: true,
+      },
+      onKeydown: {
+        required: 'false',
+        default: 'null',
+        localized: false,
+        types: [
+          'function',
+        ],
+        required: false,
+        private: true,
+      },
+      onKeyup: {
+        required: 'false',
+        default: 'null',
+        localized: false,
+        types: [
+          'function',
+        ],
+        required: false,
+        private: true,
+      },
+      onKeypress: {
+        required: 'false',
+        default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -37075,6 +38820,13 @@ module.exports = {
         ],
         description: 'Whether the element is just a container of children but not nested on data level (eg. [`GroupElement`](group-element))',
         private: true,
+      },
+      Placeholder: {
+        types: [
+          'string',
+        ],
+        description: 'The localized placeholder of the element.',
+        private: false,
       },
       elementSlots: {
         types: [
@@ -37775,6 +39527,7 @@ module.exports = {
       name: {
         required: 'true',
         default: 'undefined',
+        localized: false,
         types: [
           'string',
           'number',
@@ -37785,6 +39538,7 @@ module.exports = {
       conditions: {
         required: 'false',
         default: '[]',
+        localized: false,
         types: [
           'array',
         ],
@@ -37794,6 +39548,7 @@ module.exports = {
       onBeforeCreate: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -37803,6 +39558,7 @@ module.exports = {
       onCreated: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -37812,6 +39568,7 @@ module.exports = {
       onBeforeMount: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -37821,6 +39578,7 @@ module.exports = {
       onMounted: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -37830,6 +39588,7 @@ module.exports = {
       onBeforeUpdate: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -37839,6 +39598,7 @@ module.exports = {
       onUpdated: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -37848,6 +39608,7 @@ module.exports = {
       onBeforeUnmount: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -37857,6 +39618,7 @@ module.exports = {
       onUnmounted: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -37866,6 +39628,7 @@ module.exports = {
       inline: {
         required: 'false',
         default: 'false',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -37875,6 +39638,7 @@ module.exports = {
       layout: {
         required: 'false',
         default: 'ElementLayout',
+        localized: false,
         types: [
           'string',
           'object',
@@ -37886,6 +39650,7 @@ module.exports = {
       addClass: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'array',
           'object',
@@ -37897,6 +39662,7 @@ module.exports = {
       removeClass: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'array',
           'object',
@@ -37907,6 +39673,7 @@ module.exports = {
       replaceClass: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'object',
         ],
@@ -37916,6 +39683,7 @@ module.exports = {
       overrideClass: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'array',
           'object',
@@ -37927,6 +39695,7 @@ module.exports = {
       addClasses: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -37936,6 +39705,7 @@ module.exports = {
       replaceClasses: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -37945,6 +39715,7 @@ module.exports = {
       removeClasses: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -37954,6 +39725,7 @@ module.exports = {
       overrideClasses: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -37963,6 +39735,7 @@ module.exports = {
       presets: {
         required: 'false',
         default: '[]',
+        localized: false,
         types: [
           'array',
         ],
@@ -37972,6 +39745,7 @@ module.exports = {
       view: {
         required: 'false',
         default: 'undefined',
+        localized: false,
         types: [
           'string',
         ],
@@ -37981,6 +39755,7 @@ module.exports = {
       views: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -37990,6 +39765,7 @@ module.exports = {
       size: {
         required: 'false',
         default: 'undefined',
+        localized: false,
         types: [
           'string',
         ],
@@ -37999,6 +39775,7 @@ module.exports = {
       columns: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'object',
           'string',
@@ -38010,6 +39787,7 @@ module.exports = {
       templates: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -38019,8 +39797,10 @@ module.exports = {
       description: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'string',
+          'object',
         ],
         required: false,
         private: false,
@@ -38028,8 +39808,10 @@ module.exports = {
       info: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'string',
+          'object',
         ],
         required: false,
         private: false,
@@ -38037,6 +39819,7 @@ module.exports = {
       infoPosition: {
         required: 'false',
         default: 'right',
+        localized: false,
         types: [
           'string',
         ],
@@ -38046,6 +39829,7 @@ module.exports = {
       label: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'string',
           'object',
@@ -38057,6 +39841,7 @@ module.exports = {
       before: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'object',
           'string',
@@ -38068,6 +39853,7 @@ module.exports = {
       between: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'object',
           'string',
@@ -38079,6 +39865,7 @@ module.exports = {
       after: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'object',
           'string',
@@ -38090,6 +39877,7 @@ module.exports = {
       slots: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -38099,6 +39887,7 @@ module.exports = {
       onChange: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -38108,6 +39897,7 @@ module.exports = {
       formatData: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -38117,6 +39907,7 @@ module.exports = {
       formatLoad: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'function',
         ],
@@ -38126,6 +39917,7 @@ module.exports = {
       submit: {
         required: 'false',
         default: 'true',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -38135,6 +39927,7 @@ module.exports = {
       rules: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'array',
           'string',
@@ -38146,6 +39939,7 @@ module.exports = {
       messages: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -38155,6 +39949,7 @@ module.exports = {
       fieldName: {
         required: 'false',
         default: 'name|label',
+        localized: false,
         types: [
           'string',
         ],
@@ -38164,6 +39959,7 @@ module.exports = {
       type: {
         required: 'false',
         default: 'toggle',
+        localized: false,
         types: [
           'string',
         ],
@@ -38173,6 +39969,7 @@ module.exports = {
       default: {
         required: 'false',
         default: 'undefined',
+        localized: false,
         types: [
           'string',
           'number',
@@ -38184,6 +39981,7 @@ module.exports = {
       disabled: {
         required: 'false',
         default: 'false',
+        localized: false,
         types: [
           'boolean',
         ],
@@ -38193,6 +39991,7 @@ module.exports = {
       id: {
         required: 'false',
         default: 'null',
+        localized: false,
         types: [
           'string',
         ],
@@ -38202,8 +40001,10 @@ module.exports = {
       text: {
         required: 'false',
         default: 'null',
+        localized: true,
         types: [
           'string',
+          'object',
         ],
         required: false,
         private: false,
@@ -38211,6 +40012,7 @@ module.exports = {
       labels: {
         required: 'false',
         default: '{}',
+        localized: true,
         types: [
           'object',
         ],
@@ -38220,6 +40022,7 @@ module.exports = {
       trueValue: {
         required: 'false',
         default: 'true',
+        localized: false,
         types: [
           'boolean',
           'string',
@@ -38231,6 +40034,7 @@ module.exports = {
       falseValue: {
         required: 'false',
         default: 'false',
+        localized: false,
         types: [
           'boolean',
           'string',
@@ -38242,6 +40046,7 @@ module.exports = {
       extendOptions: {
         required: 'false',
         default: '{}',
+        localized: false,
         types: [
           'object',
         ],
@@ -38597,6 +40402,13 @@ module.exports = {
           'object',
         ],
         description: 'The component&apos;s template.',
+        private: false,
+      },
+      Text: {
+        types: [
+          'string',
+        ],
+        description: 'The localized text of the element.',
         private: false,
       },
       dirty: {

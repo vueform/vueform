@@ -58,6 +58,7 @@ export default {
     text: {
       required: false,
       type: [String, Object],
+      localized: true,
       default: null
     },
     disabled: {

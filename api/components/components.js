@@ -619,7 +619,7 @@ module.exports = {
           "string",
           "component"
         ],
-        "description": "The label of the component. If the label is provided as a `function` this contains the resolved value."
+        "description": "The label of the component."
       },
       "isLabelComponent": {
         "public": false,
@@ -2734,7 +2734,7 @@ module.exports = {
           "string",
           "component"
         ],
-        "description": "The label of the component. If the label is provided as a `function` this contains the resolved value."
+        "description": "The label of the component."
       },
       "isLabelComponent": {
         "public": false,
@@ -3907,9 +3907,28 @@ module.exports = {
           "array"
         ],
         "description": "The flat tree representation of the form schema."
+      },
+      "translations": {
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "The translation tags of the current locale."
+      },
+      "locale$": {
+        "public": true,
+        "types": [
+          "string"
+        ],
+        "description": "The active locale of the form."
       }
     },
     "methods": {
+      "prepareElements": {
+        "public": false,
+        "returns": "void",
+        "description": "Prepares all elements to submit (async)."
+      },
       "updateModel": {
         "public": false,
         "returns": "void",
@@ -4437,6 +4456,13 @@ module.exports = {
         ]
       },
       "language": {
+        "required": false,
+        "default": null,
+        "types": [
+          "string"
+        ]
+      },
+      "locale": {
         "required": false,
         "default": null,
         "types": [

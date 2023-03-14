@@ -61,6 +61,7 @@ export default {
     items: {
       required: false,
       type: [Object, Array, Function, String],
+      localized: true,
       default: () => ({})
     },
     disables: {

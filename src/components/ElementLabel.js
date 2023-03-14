@@ -23,7 +23,7 @@ export default {
 
     const {
       label,
-      isLabelComponent
+      isLabelComponent,
     } = useLabel(props, context, { 
       labelDefinition: computed(() => { return el$.value.label }),
       component$: el$,

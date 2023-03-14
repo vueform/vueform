@@ -210,6 +210,12 @@ const addProps = (contents, element) => {
     contents += `        default: '${default_}',\n`
   }
 
+  const addLocalized = (prop) => {
+    let localized = prop.localized
+
+    contents += `        localized: ${localized ? 'true' : 'false'},\n`
+  }
+
   const addTypes = (prop) => {
     let types = prop['@type'] || prop.type
 
@@ -258,6 +264,7 @@ const addProps = (contents, element) => {
     contents += `      ${k}: {\n`
     contents += `        required: '${v.required}',\n`
     addDefault(v)
+    addLocalized(v)
     addTypes(v)
     addNative(v)
     addRequired(v)
