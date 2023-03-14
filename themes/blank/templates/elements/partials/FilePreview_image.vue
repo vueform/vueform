@@ -14,7 +14,7 @@
     
     <div :class="classes.wrapper">
       <!-- Image -->
-      <a :href="link" v-if="uploaded && hasLink && clickable" :class="classes.image" target="_blank">
+      <a :href="link" v-if="uploaded && hasLink && clickable" :class="classes.image" target="_blank" rel="nofollow noopener">
         <img :class="classes.img" :src="preview" :alt="filename" :title="filename" aria-hidden="true"/>
       </a>
       <span v-else :class="classes.image">
@@ -23,7 +23,7 @@
 
       <div :class="classes.file">
         <!-- Filename -->
-        <a :href="link" v-if="hasLink && clickable" :class="classes.filenameLink" target="_blank">{{ filename }}</a>
+        <a :href="link" v-if="hasLink && clickable" :class="classes.filenameLink" target="_blank" rel="nofollow noopener">{{ filename }}</a>
         <span v-else :class="classes.filenameStatic">{{ filename }}</span>
       </div>
       
