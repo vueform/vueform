@@ -1,3 +1,17 @@
+## v1.3.1
+
+> `2023-03-14`
+
+### 🎉 Feature
+- Element props now can be localized.
+- Added `rel="nofollow noopener"` to image previews.
+- Added `closeOnDeselect` options for selects.
+- Added `locale` options for Vueform to override locale for a single form.
+
+### 🐞 Bug Fixes
+- Switching locale in global `$vueform` object will now have immediate effect without having to use `:key` on components.
+- Minor CSS fix in `SelectElement` and `MultiselectElement` floating label in `tailwind` theme.
+
 ## v1.3.0
 
 > `2023-03-02`
