@@ -14,7 +14,7 @@
     <span :id="`${el$.fieldId}-file-description`" :class="classes.assistiveText" aria-hidden="">{{ form$.translations.vueform.a11y.file.description }}</span>
 
     <!-- Image  -->
-    <a v-if="uploaded && hasLink && clickable" :class="classes.image" :href="link" target="_blank">
+    <a v-if="uploaded && hasLink && clickable" :class="classes.image" :href="link" target="_blank" rel="nofollow noopener">
       <img :src="preview" :class="classes.img" :alt="filename" :title="filename" aria-hidden="true"/>
     </a>
     <div v-else :class="classes.image">

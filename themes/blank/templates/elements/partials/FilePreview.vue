@@ -15,7 +15,7 @@
     <div :class="classes.wrapper">
       <div :class="classes.file">
         <!-- Filename -->
-        <a :href="link" v-if="hasLink && clickable" :class="classes.filenameLink" target="_blank">{{ filename }}</a>
+        <a :href="link" v-if="hasLink && clickable" :class="classes.filenameLink" target="_blank" rel="nofollow noopener">{{ filename }}</a>
         <span v-else :class="classes.filenameStatic">{{ filename }}</span>
       </div>
       
