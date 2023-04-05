@@ -15,6 +15,7 @@ const base = function(props, context, dependencies)
   // ============ DEPENDENCIES ============
 
   const form$ = dependencies.form$
+  const Label = dependencies.Label
 
   // =============== INJECT ===============
 
@@ -32,7 +33,7 @@ const base = function(props, context, dependencies)
     if (fieldName && fieldName.value) {
       return localize(fieldName.value, config$.value, form$.value)
     } else if (label && label.value) {
-      return localize(label.value, config$.value, form$.value)
+      return Label.value
     } else if (floating && floating.value) {
       return localize(floating.value, config$.value, form$.value)
     } else if (placeholder && placeholder.value && form$.value.options.floatPlaceholders) {
@@ -59,7 +60,12 @@ const file = function(props, context, dependencies)
   // ============ DEPENDENCIES ============
 
   const form$ = dependencies.form$
+  const Label = dependencies.Label
   const filename = dependencies.filename || ref(null)
+
+  // =============== INJECT ===============
+
+  const config$ = inject('config$')
 
   // ============== COMPUTED ==============
 
@@ -75,7 +81,7 @@ const file = function(props, context, dependencies)
     } else if (fieldName && fieldName.value) {
       return localize(fieldName.value, config$.value, form$.value)
     } else if (label.value) {
-      return localize(label.value, config$.value, form$.value)
+      return Label.value
     } else {
       return /^\d+$/.test(name.value)
         ? form$.value.translations.vueform.elements.file.defaultName
