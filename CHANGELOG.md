@@ -1,3 +1,12 @@
+## v1.3.2
+
+> `2023-04-07`
+
+### 🐞 Bug Fixes
+- Display label in validation message when the label is specified as a function.
+- Localize generic name for validation messages.
+- Floating label position CSS fix.
+
 ## v1.3.1
 
 > `2023-03-14`
