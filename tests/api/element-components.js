@@ -726,6 +726,14 @@ module.exports = {
         description: 'Whether the element has a [`label`](#option-label) option, a [#label](#slot-label) slot or `Vueform` component&apos;s [`forceLabels`](vueform#option-force-labels) option is `true`.',
         private: false,
       },
+      Label: {
+        types: [
+          'string',
+          'component',
+        ],
+        description: 'The localized label of the element.',
+        private: true,
+      },
       elementLayout: {
         types: [
           'string',
@@ -1921,6 +1929,14 @@ module.exports = {
         ],
         description: 'Whether the element has a [`label`](#option-label) option, a [#label](#slot-label) slot or `Vueform` component&apos;s [`forceLabels`](vueform#option-force-labels) option is `true`.',
         private: false,
+      },
+      Label: {
+        types: [
+          'string',
+          'component',
+        ],
+        description: 'The localized label of the element.',
+        private: true,
       },
       elementLayout: {
         types: [
@@ -3305,6 +3321,14 @@ module.exports = {
         ],
         description: 'Whether the element has a [`label`](#option-label) option, a [#label](#slot-label) slot or `Vueform` component&apos;s [`forceLabels`](vueform#option-force-labels) option is `true`.',
         private: false,
+      },
+      Label: {
+        types: [
+          'string',
+          'component',
+        ],
+        description: 'The localized label of the element.',
+        private: true,
       },
       elementLayout: {
         types: [
@@ -5001,6 +5025,14 @@ module.exports = {
         description: 'Whether the element has a [`label`](#option-label) option, a [#label](#slot-label) slot or `Vueform` component&apos;s [`forceLabels`](vueform#option-force-labels) option is `true`.',
         private: false,
       },
+      Label: {
+        types: [
+          'string',
+          'component',
+        ],
+        description: 'The localized label of the element.',
+        private: true,
+      },
       elementLayout: {
         types: [
           'string',
@@ -6547,6 +6579,14 @@ module.exports = {
         description: 'Whether the element has a [`label`](#option-label) option, a [#label](#slot-label) slot or `Vueform` component&apos;s [`forceLabels`](vueform#option-force-labels) option is `true`.',
         private: false,
       },
+      Label: {
+        types: [
+          'string',
+          'component',
+        ],
+        description: 'The localized label of the element.',
+        private: true,
+      },
       elementLayout: {
         types: [
           'string',
@@ -8057,6 +8097,14 @@ module.exports = {
         ],
         description: 'Whether the element has a [`label`](#option-label) option, a [#label](#slot-label) slot or `Vueform` component&apos;s [`forceLabels`](vueform#option-force-labels) option is `true`.',
         private: false,
+      },
+      Label: {
+        types: [
+          'string',
+          'component',
+        ],
+        description: 'The localized label of the element.',
+        private: true,
       },
       elementLayout: {
         types: [
@@ -9801,6 +9849,14 @@ module.exports = {
         description: 'Whether the element has a [`label`](#option-label) option, a [#label](#slot-label) slot or `Vueform` component&apos;s [`forceLabels`](vueform#option-force-labels) option is `true`.',
         private: false,
       },
+      Label: {
+        types: [
+          'string',
+          'component',
+        ],
+        description: 'The localized label of the element.',
+        private: true,
+      },
       elementLayout: {
         types: [
           'string',
@@ -11199,6 +11255,14 @@ module.exports = {
         ],
         description: 'Whether the element has a [`label`](#option-label) option, a [#label](#slot-label) slot or `Vueform` component&apos;s [`forceLabels`](vueform#option-force-labels) option is `true`.',
         private: false,
+      },
+      Label: {
+        types: [
+          'string',
+          'component',
+        ],
+        description: 'The localized label of the element.',
+        private: true,
       },
       elementLayout: {
         types: [
@@ -13584,6 +13648,14 @@ module.exports = {
         description: 'Whether the element has a [`label`](#option-label) option, a [#label](#slot-label) slot or `Vueform` component&apos;s [`forceLabels`](vueform#option-force-labels) option is `true`.',
         private: false,
       },
+      Label: {
+        types: [
+          'string',
+          'component',
+        ],
+        description: 'The localized label of the element.',
+        private: true,
+      },
       elementLayout: {
         types: [
           'string',
@@ -15234,6 +15306,14 @@ module.exports = {
         ],
         description: 'Whether the element has a [`label`](#option-label) option, a [#label](#slot-label) slot or `Vueform` component&apos;s [`forceLabels`](vueform#option-force-labels) option is `true`.',
         private: false,
+      },
+      Label: {
+        types: [
+          'string',
+          'component',
+        ],
+        description: 'The localized label of the element.',
+        private: true,
       },
       elementLayout: {
         types: [
@@ -16960,6 +17040,14 @@ module.exports = {
         ],
         description: 'Whether the element has a [`label`](#option-label) option, a [#label](#slot-label) slot or `Vueform` component&apos;s [`forceLabels`](vueform#option-force-labels) option is `true`.',
         private: false,
+      },
+      Label: {
+        types: [
+          'string',
+          'component',
+        ],
+        description: 'The localized label of the element.',
+        private: true,
       },
       elementLayout: {
         types: [
@@ -19119,6 +19207,14 @@ module.exports = {
         description: 'Whether the element has a [`label`](#option-label) option, a [#label](#slot-label) slot or `Vueform` component&apos;s [`forceLabels`](vueform#option-force-labels) option is `true`.',
         private: false,
       },
+      Label: {
+        types: [
+          'string',
+          'component',
+        ],
+        description: 'The localized label of the element.',
+        private: true,
+      },
       elementLayout: {
         types: [
           'string',
@@ -20853,6 +20949,14 @@ module.exports = {
         description: 'Whether the element has a [`label`](#option-label) option, a [#label](#slot-label) slot or `Vueform` component&apos;s [`forceLabels`](vueform#option-force-labels) option is `true`.',
         private: false,
       },
+      Label: {
+        types: [
+          'string',
+          'component',
+        ],
+        description: 'The localized label of the element.',
+        private: true,
+      },
       elementLayout: {
         types: [
           'string',
@@ -22230,6 +22334,14 @@ module.exports = {
         ],
         description: 'Whether the element has a [`label`](#option-label) option, a [#label](#slot-label) slot or `Vueform` component&apos;s [`forceLabels`](vueform#option-force-labels) option is `true`.',
         private: false,
+      },
+      Label: {
+        types: [
+          'string',
+          'component',
+        ],
+        description: 'The localized label of the element.',
+        private: true,
       },
       elementLayout: {
         types: [
@@ -23622,6 +23734,14 @@ module.exports = {
         ],
         description: 'Whether the element has a [`label`](#option-label) option, a [#label](#slot-label) slot or `Vueform` component&apos;s [`forceLabels`](vueform#option-force-labels) option is `true`.',
         private: false,
+      },
+      Label: {
+        types: [
+          'string',
+          'component',
+        ],
+        description: 'The localized label of the element.',
+        private: true,
       },
       elementLayout: {
         types: [
@@ -25589,6 +25709,14 @@ module.exports = {
         description: 'Whether the element has a [`label`](#option-label) option, a [#label](#slot-label) slot or `Vueform` component&apos;s [`forceLabels`](vueform#option-force-labels) option is `true`.',
         private: false,
       },
+      Label: {
+        types: [
+          'string',
+          'component',
+        ],
+        description: 'The localized label of the element.',
+        private: true,
+      },
       elementLayout: {
         types: [
           'string',
@@ -27410,6 +27538,14 @@ module.exports = {
         description: 'Whether the element has a [`label`](#option-label) option, a [#label](#slot-label) slot or `Vueform` component&apos;s [`forceLabels`](vueform#option-force-labels) option is `true`.',
         private: false,
       },
+      Label: {
+        types: [
+          'string',
+          'component',
+        ],
+        description: 'The localized label of the element.',
+        private: true,
+      },
       elementLayout: {
         types: [
           'string',
@@ -28597,6 +28733,14 @@ module.exports = {
         ],
         description: 'Whether the element has a [`label`](#option-label) option, a [#label](#slot-label) slot or `Vueform` component&apos;s [`forceLabels`](vueform#option-force-labels) option is `true`.',
         private: false,
+      },
+      Label: {
+        types: [
+          'string',
+          'component',
+        ],
+        description: 'The localized label of the element.',
+        private: true,
       },
       elementLayout: {
         types: [
@@ -29846,6 +29990,14 @@ module.exports = {
         ],
         description: 'Whether the element has a [`label`](#option-label) option, a [#label](#slot-label) slot or `Vueform` component&apos;s [`forceLabels`](vueform#option-force-labels) option is `true`.',
         private: false,
+      },
+      Label: {
+        types: [
+          'string',
+          'component',
+        ],
+        description: 'The localized label of the element.',
+        private: true,
       },
       language: {
         types: [
@@ -31450,6 +31602,14 @@ module.exports = {
         ],
         description: 'Whether the element has a [`label`](#option-label) option, a [#label](#slot-label) slot or `Vueform` component&apos;s [`forceLabels`](vueform#option-force-labels) option is `true`.',
         private: false,
+      },
+      Label: {
+        types: [
+          'string',
+          'component',
+        ],
+        description: 'The localized label of the element.',
+        private: true,
       },
       language: {
         types: [
@@ -33115,6 +33275,14 @@ module.exports = {
         ],
         description: 'Whether the element has a [`label`](#option-label) option, a [#label](#slot-label) slot or `Vueform` component&apos;s [`forceLabels`](vueform#option-force-labels) option is `true`.',
         private: false,
+      },
+      Label: {
+        types: [
+          'string',
+          'component',
+        ],
+        description: 'The localized label of the element.',
+        private: true,
       },
       language: {
         types: [
@@ -35203,6 +35371,14 @@ module.exports = {
         description: 'Whether the element has a [`label`](#option-label) option, a [#label](#slot-label) slot or `Vueform` component&apos;s [`forceLabels`](vueform#option-force-labels) option is `true`.',
         private: false,
       },
+      Label: {
+        types: [
+          'string',
+          'component',
+        ],
+        description: 'The localized label of the element.',
+        private: true,
+      },
       elementLayout: {
         types: [
           'string',
@@ -37132,6 +37308,14 @@ module.exports = {
         description: 'Whether the element has a [`label`](#option-label) option, a [#label](#slot-label) slot or `Vueform` component&apos;s [`forceLabels`](vueform#option-force-labels) option is `true`.',
         private: false,
       },
+      Label: {
+        types: [
+          'string',
+          'component',
+        ],
+        description: 'The localized label of the element.',
+        private: true,
+      },
       elementLayout: {
         types: [
           'string',
@@ -38778,6 +38962,14 @@ module.exports = {
         description: 'Whether the element has a [`label`](#option-label) option, a [#label](#slot-label) slot or `Vueform` component&apos;s [`forceLabels`](vueform#option-force-labels) option is `true`.',
         private: false,
       },
+      Label: {
+        types: [
+          'string',
+          'component',
+        ],
+        description: 'The localized label of the element.',
+        private: true,
+      },
       elementLayout: {
         types: [
           'string',
@@ -40332,6 +40524,14 @@ module.exports = {
         ],
         description: 'Whether the element has a [`label`](#option-label) option, a [#label](#slot-label) slot or `Vueform` component&apos;s [`forceLabels`](vueform#option-force-labels) option is `true`.',
         private: false,
+      },
+      Label: {
+        types: [
+          'string',
+          'component',
+        ],
+        description: 'The localized label of the element.',
+        private: true,
       },
       elementLayout: {
         types: [
