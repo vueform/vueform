@@ -146,7 +146,7 @@ const base = function(props, context, dependencies = {})
   const conditions = ref(true)
 
   /**
-   * Instance of MessageBag service. It can be used to add [custom errors and messages](/docs/1.x/validating-elements#custom-errors-and-messages).
+   * Instance of MessageBag service. It can be used to add [custom errors and messages](/docs/validating-elements#custom-errors-and-messages).
    * 
    * @type {MessageBag}
    * @default MessageBag

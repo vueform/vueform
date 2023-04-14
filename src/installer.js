@@ -256,7 +256,7 @@ export default function(config, components) {
       error += `===============================\n`
       error += `\n`
       error += `Create a free API Key at:\n`
-      error += `https://vueform.com/docs/1.x/installation#api-key\n`
+      error += `https://vueform.com/docs/installation#api-key\n`
       error += `\n`
 
       return error
