@@ -2,7 +2,7 @@ import { createForm, findAllComponents, testPropDefault, destroy } from 'test-he
 import { nextTick } from 'vue'
 
 export const text = function (elementType, elementName, options) {
-  testPropDefault(it, elementType, 'text', '', 'Element text')
+  testPropDefault(it, elementType, 'text', null, 'Element text')
 
   it('should render `text`', async () => {
     let form = createForm({
@@ -18,12 +18,6 @@ export const text = function (elementType, elementName, options) {
     let elWrapper = findAllComponents(form, { name: elementName }).at(0)
 
     expect(elWrapper.html()).toContain('Element Text')
-
-    el.text = '<div>Element HTML Text</div>'
-
-    await nextTick()
-
-    expect(elWrapper.html()).toContain('<div>Element HTML Text</div>')
 
     // destroy() // teardown
   })

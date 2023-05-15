@@ -1,4 +1,4 @@
-export default function testComputedOption (it, elementType, optionName, defaultValue, testValue, testDefault = true) {
+export default function (it, elementType, optionName, defaultValue, testValue, testDefault = true) {
   const elementName = `${_.upperFirst(elementType)}Element`
 
   let defaultString

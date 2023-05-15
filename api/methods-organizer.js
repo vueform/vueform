@@ -7,7 +7,6 @@ module.exports = [
   'enableUntil',
   'enableUntilCurrent',
   'enableUntilLastEnabled',
-  'enableUntilLastEnabled',
   'complete',
   'uncomplete',
   'submit',

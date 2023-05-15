@@ -1,5 +1,6 @@
 import _ from 'lodash'
-import { computed, ref, toRefs } from 'vue'
+import { computed, ref, toRefs, inject } from 'vue'
+import localize from './../../utils/localize'
 
 const base = function(props, context, dependencies)
 {
@@ -14,6 +15,11 @@ const base = function(props, context, dependencies)
   // ============ DEPENDENCIES ============
 
   const form$ = dependencies.form$
+  const Label = dependencies.Label
+
+  // =============== INJECT ===============
+
+  const config$ = inject('config$')
 
   // ============== COMPUTED ==============
 
@@ -25,13 +31,13 @@ const base = function(props, context, dependencies)
    */
   const genericName = computed(() => {
     if (fieldName && fieldName.value) {
-      return fieldName.value
+      return localize(fieldName.value, config$.value, form$.value)
     } else if (label && label.value) {
-      return label.value
+      return Label.value
     } else if (floating && floating.value) {
-      return floating.value
+      return localize(floating.value, config$.value, form$.value)
     } else if (placeholder && placeholder.value && form$.value.options.floatPlaceholders) {
-      return placeholder.value
+      return localize(placeholder.value, config$.value, form$.value)
     } else {
       return _.upperFirst(name.value).replace(/_|-/g, ' ')
     }
@@ -54,7 +60,12 @@ const file = function(props, context, dependencies)
   // ============ DEPENDENCIES ============
 
   const form$ = dependencies.form$
+  const Label = dependencies.Label
   const filename = dependencies.filename || ref(null)
+
+  // =============== INJECT ===============
+
+  const config$ = inject('config$')
 
   // ============== COMPUTED ==============
 
@@ -68,9 +79,9 @@ const file = function(props, context, dependencies)
     if (embed.value && filename.value) {
       return filename.value
     } else if (fieldName && fieldName.value) {
-      return fieldName.value
+      return localize(fieldName.value, config$.value, form$.value)
     } else if (label.value) {
-      return label.value
+      return Label.value
     } else {
       return /^\d+$/.test(name.value)
         ? form$.value.translations.vueform.elements.file.defaultName
