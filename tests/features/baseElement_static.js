@@ -1,6 +1,6 @@
 import { createForm, destroy } from 'test-helpers'
 
-export { isFileType, isImageType, isArrayType } from './baseElement'
+export { isFileType, isImageType, isArrayType, activate, deactivate } from './baseElement'
 
 export const isStatic = function (elementType, elementName, options) {
   it('should return `isStatic` true', () => {
@@ -15,7 +15,7 @@ export const isStatic = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
 
     expect(el.isStatic).toBe(true)
-    
+
     // destroy(form) // teardown
   })
 }
