@@ -54,8 +54,6 @@ export const resolvedOptions = function (elementType, elementName, options) {
     })
 
     expect(warnMock.mock.calls[0][0]).toBe('You must define `value` property for each option when using an array of objects options for select element')
-
-    jest.clearAllMocks()
   })
 
   it('should return options mapped with value/label pairs with valueProp and/or labelProps defined when array of objects', () => {
@@ -425,8 +423,6 @@ export const updateItems = function (elementType, elementName, options) {
     await flushPromises()
 
     expect(warnMock.mock.calls[0][0]).toBe('Couldn\'t resolve items from /failing-url')
-
-    jest.clearAllMocks()
   })
 
   it('should throw warn if `resolveOptionsFromFunction` was unsuccessful (meaning `resolveOptionsFromFunction` was called)', async() => {
@@ -448,8 +444,6 @@ export const updateItems = function (elementType, elementName, options) {
     await flushPromises()
 
     expect(warnMock.mock.calls[0][0]).toBe('Couldn\'t resolve items from async function')
-
-    jest.clearAllMocks()
   })
 
   it('should return options if object/array is given just like resolvedOptions', async () => {
