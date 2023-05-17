@@ -5,11 +5,14 @@ import { nextTick } from 'vue'
 expect.extend({toBeVisible})
 
 export const disabledItems = function (elementType, elementName, options) {
+
   it('should transform integer `disables` to strings', () => {
+
     let form = createForm({
       schema: {
         el: {
           type: elementType,
+          items: [1, 2],
           disables: [1, 2],
         }
       }
@@ -18,7 +21,7 @@ export const disabledItems = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
 
     expect(el.disabledItems).toStrictEqual(['1', '2'])
-    
+
     // destroy(form) // teardown
   })
 
@@ -46,6 +49,34 @@ export const disabledItems = function (elementType, elementName, options) {
     // destroy() // teardown
   })
 }
+
+
+export const isDisabled = function (elementType, elementName, options) {
+  it('should disable all items if `disabled` is true', () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          disabled: true,
+          items: {
+            1: 'value',
+            2: 'value2',
+          }
+        }
+      }
+    })
+
+    let elWrapper = findAllComponents(form, { name: elementName }).at(0)
+    let checkbox1 = findAll(elWrapper, `input[type="${options.fieldType}"]`).at(0)
+    let checkbox2 = findAll(elWrapper, `input[type="${options.fieldType}"]`).at(1)
+
+    expect(checkbox1.attributes('disabled') !== undefined).toBe(true)
+    expect(checkbox2.attributes('disabled') !== undefined).toBe(true)
+
+    // destroy() // teardown
+  })
+}
+
 
 export const disable = function (elementType, elementName, options) {
   it('should `disable` single or multiple items', () => {
@@ -102,32 +133,6 @@ export const enable = function (elementType, elementName, options) {
   })
 }
 
-export const isDisabled = function (elementType, elementName, options) {
-  it('should disable all items if `disabled` is true', () => {
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType,
-          disabled: true,
-          items: {
-            1: 'value',
-            2: 'value2',
-          }
-        }
-      }
-    })
-
-    let elWrapper = findAllComponents(form, { name: elementName }).at(0)
-    let checkbox1 = findAll(elWrapper, `input[type="${options.fieldType}"]`).at(0)
-    let checkbox2 = findAll(elWrapper, `input[type="${options.fieldType}"]`).at(1)
-
-    expect(checkbox1.attributes('disabled') !== undefined).toBe(true)
-    expect(checkbox2.attributes('disabled') !== undefined).toBe(true)
-
-    // destroy() // teardown
-  })
-}
-
 export const disableAll = function (elementType, elementName, options) {
   it('should `disableAll` set disabled to "true"', async () => {
     let form = createForm({
@@ -146,7 +151,7 @@ export const disableAll = function (elementType, elementName, options) {
     let elWrapper = findAllComponents(form, { name: elementName }).at(0)
     let checkbox1 = findAll(elWrapper, `input[type="${options.fieldType}"]`).at(0)
     let checkbox2 = findAll(elWrapper, `input[type="${options.fieldType}"]`).at(1)
-    
+
     el.disableAll()
 
     await nextTick()
@@ -178,7 +183,7 @@ export const enableAll = function (elementType, elementName, options) {
     let elWrapper = findAllComponents(form, { name: elementName }).at(0)
     let checkbox1 = findAll(elWrapper, `input[type="${options.fieldType}"]`).at(0)
     let checkbox2 = findAll(elWrapper, `input[type="${options.fieldType}"]`).at(1)
-    
+
     el.enableAll()
 
     await nextTick()

@@ -3,6 +3,34 @@ import { toBeVisible } from '@testing-library/jest-dom/matchers'
 
 expect.extend({toBeVisible})
 
+export const localDisabled = function (elementType, elementName, options) {
+
+  it('should toggle with enable/disable', () => {
+
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          disabled: true,
+        }
+      }
+    })
+
+    let el = form.vm.el$('el')
+
+    el.enable()
+
+    expect(el.localDisabled).toBe(false)
+
+    el.disable()
+
+    expect(el.localDisabled).toBe(true)
+
+    // destroy(form) // teardown
+  })
+}
+
+
 export const isDisabled = function (elementType, elementName, options) {
   it('should not be isDisabled by default', () => {
     let form = createForm({
@@ -16,7 +44,7 @@ export const isDisabled = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
 
     expect(el.isDisabled).toBe(false)
-    
+
     // destroy(form) // teardown
   })
 
@@ -37,6 +65,7 @@ export const isDisabled = function (elementType, elementName, options) {
     // destroy() // teardown
   })
 }
+
 
 export const disable = function (elementType, elementName, options) {
   it('should `disable` element', () => {
@@ -78,7 +107,7 @@ export const enable = function (elementType, elementName, options) {
     el.enable()
 
     expect(el.isDisabled).toBe(false)
-    
+
     // destroy(form) // teardown
   })
 
@@ -104,11 +133,12 @@ export const enable = function (elementType, elementName, options) {
   })
 }
 
+
 export const rendering = function (elementType, elementName, options) {
   if (options.fieldType === undefined) {
     return
   }
-  
+
   it('should disable input when `disabled`', () => {
     let form = createForm({
       schema: {
@@ -123,7 +153,7 @@ export const rendering = function (elementType, elementName, options) {
 
     testAttribute(elWrapper, options.fieldType, 'disabled', ['disabled', '', true])
   })
-  
+
   it('should not disable input when not `disabled`', () => {
     let form = createForm({
       schema: {
@@ -135,7 +165,7 @@ export const rendering = function (elementType, elementName, options) {
     })
 
     let elWrapper = findAllComponents(form, { name: elementName }).at(0)
-    
+
     testAttribute(elWrapper, options.fieldType, 'disabled', [undefined, false])
 
     // destroy() // teardown
