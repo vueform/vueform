@@ -104,7 +104,7 @@ export const isActive = function (elementType, elementName, options) {
 }
 
 export const el$ = function (elementType, elementName, options) {
-  // szmTODO: what to check with el$?
+  // @todo
 }
 
 
