@@ -146,7 +146,7 @@ export const watchers = function (elementType, elementName, options) {
   })
 }
 
-export const hooks = function(elementType, elementsNAme, options) {
+export const hooks = function(elementType, elementsName, options) {
 
   it('should init `autosize` if autogrow is "true"', async () => {
 
