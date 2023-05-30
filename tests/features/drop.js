@@ -1,5 +1,6 @@
 import { createForm, testPropDefault, findAllComponents, destroy } from 'test-helpers'
 import { nextTick } from 'vue'
+import flushPromises from 'flush-promises'
 
 export const canDrop = function (elementType, elementName, options) {
   it('should return true for `canDrop` if browser supports dragging', () => {
@@ -124,6 +125,67 @@ export const handleDrop = function (elementType, elementName, options) {
     expect(el.dirty).toBe(false)
 
     // destroy() // teardown
+  })
+
+  it('should call axios when auto=true', async () => {
+
+    let requestMock = jest.fn(() => ({}))
+
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          drop: true,
+          auto: true,
+          onBeforeCreate(el$) {
+            el$.$vueform.services.axios.request = requestMock
+          }
+        }
+      }
+    })
+
+    let el = form.vm.el$('el')
+
+    el.handleDrop({
+      dataTransfer: {
+        files: [new File([''], 'filename.jpg')]
+      }
+    })
+
+    await flushPromises()
+    
+    expect(requestMock).toHaveBeenCalledTimes(1)
+
+    // destroy(form) // teardown
+  })
+
+  it('should not call axios when auto=false', () => {
+
+    let requestMock = jest.fn()
+
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          auto: false,
+          onBeforeCreate(el$) {
+            el$.$vueform.services.axios.get = requestMock
+          }
+        }
+      }
+    })
+
+    let el = form.vm.el$('el')
+
+    el.handleDrop({
+      dataTransfer: {
+        files: [new File([''], 'filename.jpg')]
+      }
+    })
+
+    expect(requestMock).toHaveBeenCalledTimes(0)
+
+    // destroy(form) // teardown
   })
 }
 
