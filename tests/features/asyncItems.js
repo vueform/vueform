@@ -133,7 +133,54 @@ export const resolvedOptions = function (elementType, elementName, options) {
 
     expect(el.resolvedOptions).toStrictEqual(expected)
   })
-
+  
+  it('should return localized `nativeItems`', () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          items: {
+            en: [
+              {
+                value: 0,
+                label: 'item-en-1',
+              },
+              {
+                value: '1',
+                label: 'item-en-2',
+              }
+            ],
+            de: [
+              {
+                value: 0,
+                label: 'item-de-1',
+              },
+              {
+                value: '1',
+                label: 'item-de-2',
+              }
+            ],
+          }
+        }
+      },
+      locale: 'de'
+    })
+    
+    let el = form.vm.el$('el')
+    
+    expect(el.items).toStrictEqual([
+      {
+        value: 0,
+        label: 'item-en-1',
+      },
+      {
+        value: '1',
+        label: 'item-en-2',
+      },
+      ])
+    
+    // destroy(form) // teardown
+  })
 
   it('should render select options when items are an array', async () => {
     let form = createForm({

@@ -37,6 +37,54 @@ export const resolvedOptions = function (elementType, elementName, options) {
 
     expect(warnMock.mock.calls[0][0]).toBe('You must define `value` property for each item when using an array of objects options')
   })
+  
+  it('should return localized `resolvedOptions`', () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          items: {
+            en: [
+              {
+                value: 0,
+                label: 'item-en-1',
+              },
+              {
+                value: '1',
+                label: 'item-en-2',
+              }
+            ],
+            de: [
+              {
+                value: 0,
+                label: 'item-de-1',
+              },
+              {
+                value: '1',
+                label: 'item-de-2',
+              }
+            ],
+          }
+        }
+      },
+      locale: 'de'
+    })
+    
+    let el = form.vm.el$('el')
+    
+    expect(el.items).toStrictEqual([
+      {
+        value: 0,
+        label: 'item-en-1',
+      },
+      {
+        value: '1',
+        label: 'item-en-2',
+      },
+    ])
+    
+    // destroy(form) // teardown
+  })
 
 
   it('should resolve items when items are an array of objects', async () => {
