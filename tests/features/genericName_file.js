@@ -1,35 +1,64 @@
 import { createForm, destroy } from 'test-helpers'
 
 export const genericName = function (elementType, elementName, options) {
-  // @todo later when multifile works
-  // it('should have `genericName` equal to filename if embedded & filename exists', async () => {
-  //   let form = createForm({
-  //     schema: {
-  //       el: {
-  //         type: elementType,
-  //         label: 'File',
-  //       }
-  //     }
-  //   })
+  
+  it('should have `genericName` equal to filename if embedded & filename exists', async () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          label: 'File',
+          embed: true,
+        }
+      }
+    })
 
-  //   let el = form.vm.el$('el')
+    let el = form.vm.el$('el')
 
-  //   expect(el.genericName).toStrictEqual('File')
+    expect(el.genericName).toStrictEqual('File')
 
-  //   const originalConsoleError = console.error
-  //   const originalConsoleWarn = console.warn
-  //   console.error = () => {}
-  //   console.warn = () => {}
+    el.update('filename.jpg')
 
-  //   el.$props.embed = true
+    expect(el.genericName).toStrictEqual('filename.jpg')
+  })
 
-  //   console.error = originalConsoleError
-  //   console.warn = originalConsoleWarn
+  it('should have `genericName` equal to fieldName if not embedded or filename does not exist and fieldName is set', async () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          fieldName: 'someFieldName',
+        }
+      }
+    })
 
-  //   el.update('filename')
+    let el = form.vm.el$('el')
 
-  //   expect(el.genericName).toStrictEqual('filename')
-  // })
+    expect(el.genericName).toStrictEqual('someFieldName')
+    
+    // destroy(form) // teardown
+  })
+
+  it('should have `genericName` equal to localized fieldName if not embedded or filename does not exist and fieldName is set and has multiple languages', async () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          fieldName: {
+            en: 'fieldName-en',
+            de: 'fieldName-de',
+          }
+        }
+      },
+      locale: 'de',
+    })
+
+    let el = form.vm.el$('el')
+
+    expect(el.genericName).toStrictEqual('fieldName-de')
+    
+    // destroy(form) // teardown
+  })
 
   it('should have `genericName` equal to label if embedded & filename does not exist or not embedded and label exists', async () => {
     let form = createForm({
@@ -52,7 +81,7 @@ export const genericName = function (elementType, elementName, options) {
     // destroy(form) // teardown
   })
 
-  it('should have `genericName` equal to name of the element if embedded & filename & label does not existor not embedded', async () => {
+  it('should have `genericName` equal to name of the element if embedded & filename & label does not exist or not embedded', async () => {
     let form = createForm({
       schema: {
         el: {
