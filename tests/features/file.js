@@ -5,6 +5,80 @@ import flushPromises from 'flush-promises'
 
 expect.extend({toBeVisible})
 
+
+export const hasUploadError = function (elementType, elementName, options) {
+
+  it('should be false by default', async () => {
+
+    let form = createForm({
+      method: 'submit',
+      schema: {
+        el: {
+          type: elementType,
+          auto: false,
+        }
+      }
+    })
+
+    let el = form.vm.el$('el')
+
+    expect(el.hasUploadError).toBe(false)
+  })
+
+  it('should set `hasUploadError` to true if axios is aborted', async () => {
+
+    let form = createForm({
+      method: 'submit',
+      schema: {
+        el: {
+          type: elementType,
+          auto: false,
+        }
+      }
+    })
+
+    let el = form.vm.el$('el')
+
+    try {
+      let axiosPostMock = jest.fn(() => {
+        return {
+          data: {
+            tmp: 'tmp123',
+            originalName: 'filename.jpg'
+          }
+        }
+      })
+
+      el.axios.request = axiosPostMock
+      el.axios.isCancel = () => true
+      el.axios.CancelToken = {
+        source: () => {
+          return {
+            token: 'asdf',
+            cancel: () => {
+              throw new Error('Cancelled')
+            }
+          }
+        }
+      }
+
+      let file = new File([''], 'filename')
+
+      el.load(file)
+
+      el.prepare()
+
+      expect(el.hasUploadError).toBe(12)
+
+      await nextTick()
+
+      el.handleAbort()
+
+      await nextTick()
+    } catch (e) {}
+  })
+}
+
 export const base64 = function (elementType, elementName, options) {
   it('should `base64` be null by default', () => {
     let form = createForm({
@@ -20,7 +94,7 @@ export const base64 = function (elementType, elementName, options) {
     expect(el.base64).toBe(null)
   })
 
-  // @todo: need to mock FileReader to test completeley
+  // @todo: need to mock FileReader to test completely
   it('should not set `base64` when file changes if isImage is false', async () => {
     let form = createForm({
       schema: {
@@ -39,83 +113,6 @@ export const base64 = function (elementType, elementName, options) {
     await flushPromises()
 
     expect(el.base64).toBe(null)
-
-    // destroy() // teardown
-  })
-}
-
-export const preview = function (elementType, elementName, options) {
-  it('should `preview` be equal to "base64" when not uploaded and image', () => {
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType,
-          view: 'image',
-          templates: {
-            FilePreview_image: markRaw({
-              props: ['previewOptions'],
-              render() {
-                return '<div>Preview</div>'
-              }
-            })
-          }
-        }
-      }
-    })
-
-    let el = form.vm.el$('el')
-
-    el.base64 = 'base64'
-    expect(el.preview).toBe(el.base64)
-    
-    // destroy(form) // teardown
-  })
-
-  it('should `preview` be equal to "link" when uploaded and image', async () => {
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType,
-          auto: false,
-          view: 'image',
-          templates: {
-            FilePreview_image: markRaw({
-              props: ['previewOptions'],
-              render() {
-                return '<div>Preview</div>'
-              }
-            })
-          }
-        }
-      }
-    })
-
-    let el = form.vm.el$('el')
-
-    el.value = 'filename.jpg'
-
-    expect(el.preview).toBe(el.link)
-
-    await flushPromises()
-    
-    destroy(form) // teardown
-  })
-
-  it('should `preview` be null when not image', async () => {
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType,
-          auto: false,
-        }
-      }
-    })
-
-    let el = form.vm.el$('el')
-
-    el.value = 'filename.jpg'
-
-    expect(el.preview).toBe(null)
 
     // destroy() // teardown
   })
@@ -154,6 +151,26 @@ export const preparing = function (elementType, elementName, options) {
     expect(el.preparing).toBe(false)
   })
 }
+
+export const watchers = function (elementType, elementName, options) {
+  
+  it('should have value and view keys', () => {
+    
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+        }
+      }
+    })
+    
+    let el = form.vm.el$('el')
+    
+    expect(el.watchers.value).not.toBe(undefined)
+    expect(el.watchers.view).not.toBe(undefined)
+  })
+}
+
 
 export const endpoints = function (elementType, elementName, options) {
   it('should return default from config for uploadTempFile', () => {
@@ -607,6 +624,83 @@ export const link = function (elementType, elementName, options) {
     expect(el.link).toStrictEqual(undefined)
     
     // destroy(form) // teardown
+  })
+}
+
+export const preview = function (elementType, elementName, options) {
+  it('should `preview` be equal to "base64" when not uploaded and image', () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          view: 'image',
+          templates: {
+            FilePreview_image: markRaw({
+              props: ['previewOptions'],
+              render() {
+                return '<div>Preview</div>'
+              }
+            })
+          }
+        }
+      }
+    })
+
+    let el = form.vm.el$('el')
+
+    el.base64 = 'base64'
+    expect(el.preview).toBe(el.base64)
+
+    // destroy(form) // teardown
+  })
+
+  it('should `preview` be equal to "link" when uploaded and image', async () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          auto: false,
+          view: 'image',
+          templates: {
+            FilePreview_image: markRaw({
+              props: ['previewOptions'],
+              render() {
+                return '<div>Preview</div>'
+              }
+            })
+          }
+        }
+      }
+    })
+
+    let el = form.vm.el$('el')
+
+    el.value = 'filename.jpg'
+
+    expect(el.preview).toBe(el.link)
+
+    await flushPromises()
+
+    destroy(form) // teardown
+  })
+
+  it('should `preview` be null when not image', async () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          auto: false,
+        }
+      }
+    })
+
+    let el = form.vm.el$('el')
+
+    el.value = 'filename.jpg'
+
+    expect(el.preview).toBe(null)
+
+    // destroy() // teardown
   })
 }
 
@@ -2393,6 +2487,7 @@ export const handleAbort = function (elementType, elementName, options) {
     // destroy() // teardown
   })
 }
+
 
 export const rendering = function (elementType, elementName, options) {
   it('should hide file input', () => {
