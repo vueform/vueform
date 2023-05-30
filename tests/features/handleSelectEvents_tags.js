@@ -1,1 +1,1 @@
-export { select, deselect, searchChange, open, close } from './handleSelectEvents_multiselect'
+export { select, deselect, searchChange, open, close, clear, paste } from './handleSelectEvents_multiselect'

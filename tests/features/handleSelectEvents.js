@@ -141,3 +141,63 @@ export const close = function (elementType, elementName, options) {
     // destroy() // teardown
   })
 }
+
+export const clear = function (elementType, elementName, options) {
+ 
+  it('should trigger `clear` on non-native element', async () => {
+    
+    let onClearMock = jest.fn()
+    
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          native: false,
+          items: options.items,
+          onClear: onClearMock,
+        }
+      }
+    })
+    
+    let el = form.vm.el$('el')
+    
+    el.input.select(valueOptions(options.value, el))
+    
+    el.input.clear()
+    
+    expect(onClearMock).toHaveBeenCalledWith(el)
+    
+    // destroy() // teardown
+  })
+}
+
+export const paste = function (elementType, elementName, options) {
+  
+  it('should trigger `paste` on non-native element', async () => {
+    
+    let onPasteMock = jest.fn()
+    
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          native: false,
+          items: options.items,
+          onPaste: onPasteMock
+        }
+      }
+    }, {
+      attach: true
+    })
+    
+    let el = form.vm.el$('el')
+    
+    el.input.handlePaste()
+    
+    expect(onPasteMock).toHaveBeenCalled()
+    
+    destroy(form)
+    
+    // destroy() // teardown
+  })
+}
