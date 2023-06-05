@@ -1,5 +1,5 @@
 export default function localize (object, $config, form$) {
-  let locale = form$.locale || $config.i18n.locale
+  let locale = form$.locale$ || $config.i18n.locale
 
   if (!locale) {
     return object

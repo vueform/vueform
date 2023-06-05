@@ -1427,7 +1427,7 @@ export default {
     ]),
   },
   FormTab: {
-    container: '',
+    container: 'cursor-pointer',
     wrapper: 'block border-b-2',
     wrapper_active: 'form-border-color-primary',
     wrapper_inactive: 'border-transparent',
