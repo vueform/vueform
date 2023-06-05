@@ -43,28 +43,22 @@ export const resolvedOptions = function (elementType, elementName, options) {
       schema: {
         el: {
           type: elementType,
-          items: {
-            en: [
-              {
-                value: 0,
-                label: 'item-en-1',
-              },
-              {
-                value: '1',
-                label: 'item-en-2',
+          items: [
+            {
+              value: 0,
+              label: {
+                en: 'item-en-1',
+                de: 'item-de-1',
               }
-            ],
-            de: [
-              {
-                value: 0,
-                label: 'item-de-1',
-              },
-              {
-                value: '1',
-                label: 'item-de-2',
+            },
+            {
+              value: '1',
+              label: {
+                en: 'item-en-2',
+                de: 'item-de-2',
               }
-            ],
-          }
+            },
+          ]
         }
       },
       locale: 'de'
@@ -72,14 +66,14 @@ export const resolvedOptions = function (elementType, elementName, options) {
     
     let el = form.vm.el$('el')
     
-    expect(el.items).toStrictEqual([
+    expect(el.resolvedOptions).toStrictEqual([
       {
         value: 0,
-        label: 'item-en-1',
+        label: 'item-de-1',
       },
       {
         value: '1',
-        label: 'item-en-2',
+        label: 'item-de-2',
       },
     ])
     

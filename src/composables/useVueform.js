@@ -34,12 +34,12 @@ const base = function(props, context, dependencies = {})
     messages,
     columns,
     languages,
+    locale,
     formKey,
     endpoint,
     method,
     formData,
     language,
-    locale,
     validateOn,
     forceLabels,
     floatPlaceholders,
@@ -146,7 +146,7 @@ const base = function(props, context, dependencies = {})
   const conditions = ref(true)
 
   /**
-   * Instance of MessageBag service. It can be used to add [custom errors and messages](/docs/1.x/validating-elements#custom-errors-and-messages).
+   * Instance of MessageBag service. It can be used to add [custom errors and messages](/docs/validating-elements#custom-errors-and-messages).
    * 
    * @type {MessageBag}
    * @default MessageBag
@@ -230,7 +230,7 @@ const base = function(props, context, dependencies = {})
    * @type {string}
    */
   const locale$ = computed(() => {
-    return locale.value || baseConfig.value.i18n.locale
+    return options.value.locale || baseConfig.value.i18n.locale
   })
 
   /**
@@ -261,7 +261,7 @@ const base = function(props, context, dependencies = {})
       messages, formKey, multilingual, formatLoad, formatData, prepare, default: default_, formData, templates,
       addClass, removeClass, replaceClass, overrideClass,
       addClasses, removeClasses, replaceClasses, overrideClasses, presets,
-      size, view, views,
+      size, view, views, locale,
     }
 
     // Only set from prop option if it is not `null` - means the prop is set

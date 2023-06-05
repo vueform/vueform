@@ -3578,7 +3578,7 @@ module.exports = {
         "types": [
           "MessageBag"
         ],
-        "description": "Instance of MessageBag service. It can be used to add [custom errors and messages](/docs/1.x/validating-elements#custom-errors-and-messages)."
+        "description": "Instance of MessageBag service. It can be used to add [custom errors and messages](/docs/validating-elements#custom-errors-and-messages)."
       },
       "selectedLanguage": {
         "public": true,
