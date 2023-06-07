@@ -3,8 +3,10 @@ import { markRaw } from 'vue'
 import { createForm, findAllComponents, createElement, testPropDefault, destroy } from 'test-helpers'
 import defaultTheme from './../../themes/vueform'
 
-export const templates = function (elementType, elementName, options) {
+export const Templates = function (elementType, elementName, options) {
+  
   it('should be theme templates by default', () => {
+  
     let form = createForm({
       schema: {
         el: {
@@ -19,6 +21,7 @@ export const templates = function (elementType, elementName, options) {
   })
 
   it('should be merged with preset templates', () => {
+  
     let template = {
       ...defaultTheme.templates[elementName],
     }
@@ -38,39 +41,7 @@ export const templates = function (elementType, elementName, options) {
               [elementName]: template
             }
           }
-        } 
-      }
-    })
-
-    let el = form.vm.el$('el')
-
-    expect(el.Templates).toEqual({
-      ...el.theme.templates,
-      [elementName]: template
-    })
-  })
-
-  it('should be merged with preset templates', () => {
-    let template = {
-      ...defaultTheme.templates[elementName],
-    }
-
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType,
-          presets: ['preset']
         }
-      }
-    }, {
-      config: {
-        presets: {
-          preset: {
-            templates: {
-              [elementName]: template
-            }
-          }
-        } 
       }
     })
 
@@ -83,6 +54,7 @@ export const templates = function (elementType, elementName, options) {
   })
 
   it('should be merged with templates', () => {
+  
     let template = {
       ...defaultTheme.templates[elementName],
     }
@@ -110,7 +82,7 @@ export const templates = function (elementType, elementName, options) {
               [elementName]: template
             }
           }
-        } 
+        }
       }
     })
 
@@ -171,6 +143,7 @@ export const template = function (elementType, elementName, options) {
     expect(el.template).toStrictEqual(el.Templates[`${elementName}_dark`])
   })
 }
+
 
 export const rendering = function (elementType, elementName, options) {
   it('should replace component in template when `templates` is defined', () => {
