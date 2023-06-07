@@ -2,7 +2,9 @@ import { createForm, testPropDefault, destroy } from 'test-helpers'
 import { nextTick } from 'vue'
 
 export const storeFileName = function (elementType, elementName, options) {
+  
   it('should have "file" as `storeFileName` by default if object is true', () => {
+  
     let form = createForm({
       schema: {
         el: {
@@ -18,9 +20,29 @@ export const storeFileName = function (elementType, elementName, options) {
 
     // destroy() // teardown
   })
+  
+  it('should return `storeFile` if defined and object is true', () => {
+   
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          object: true,
+          storeFile: 'keyInObject'
+        }
+      }
+    })
+
+    let el = form.vm.el$('el')
+
+    expect(el.storeFileName).toBe('keyInObject')
+
+    // destroy() // teardown
+  })
 }
 
 export const prototype = function (elementType, elementName, options) {
+  
   it('should extend single element `prototype` with "file" object', () => {
     let form = createForm({
       schema: {
@@ -49,7 +71,6 @@ export const prototype = function (elementType, elementName, options) {
       removeTempEndpoint: undefined,
       softRemove: false,
       uploadTempEndpoint: undefined,
-      url: '/uploads/',
     })
     
     // destroy(form) // teardown
@@ -163,7 +184,6 @@ export const prototype = function (elementType, elementName, options) {
           removeTempEndpoint: undefined,
           softRemove: false,
           uploadTempEndpoint: undefined,
-          url: '/uploads/',
         }
       }
     })
@@ -260,7 +280,8 @@ export const prototype = function (elementType, elementName, options) {
 }
 
 export const isObject = function (elementType, elementName, options) {
-  it('should have `isObject` true if "object" true or "storeOrder" / "fields" exists', async () => {
+  
+  it('should `isObject` return false by default', async () => {
     let form = createForm({
       schema: {
         el: {
@@ -268,33 +289,57 @@ export const isObject = function (elementType, elementName, options) {
         }
       }
     })
-
+    
     let el = form.vm.el$('el')
-
+    
     expect(el.isObject).toBe(false)
-
-    el.$set(form.vm.vueform.schema.el, 'object', true)
-    await nextTick()
-
-    expect(el.isObject).toBe(true)
-
-    el.$delete(form.vm.vueform.schema.el, 'object')
-    el.$set(form.vm.vueform.schema.el, 'storeOrder', 'order')
-    await nextTick()
+  })
+  
+  it('should `isObject` return true if `object` is true', async () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          object: true,
+        }
+      }
+    })
+    
+    let el = form.vm.el$('el')
     
     expect(el.isObject).toBe(true)
-
-    el.$delete(form.vm.vueform.schema.el, 'storeOrder')
-    el.$set(form.vm.vueform.schema.el, 'fields', { child: { type: 'text' }})
-    await nextTick()
+  })
+  
+  it('should `isObject` return true if `storeOrder` is true', async () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          storeOrder: 'someObjectKey',
+        }
+      }
+    })
+    
+    let el = form.vm.el$('el')
     
     expect(el.isObject).toBe(true)
-
-    el.$set(form.vm.vueform.schema.el, 'fields', {})
-    await nextTick()
-
-    expect(el.isObject).toBe(false)
-
-    // destroy() // teardown
+  })
+  
+  it('should `isObject` return true if wrapper element and has children', async () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          storeOrder: 'someObjectKey',
+          elements: {
+            type: 'text',
+          }
+        }
+      }
+    })
+    
+    let el = form.vm.el$('el')
+    
+    expect(el.isObject).toBe(true)
   })
 }
