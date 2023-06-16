@@ -79,8 +79,36 @@ export const resolvedOptions = function (elementType, elementName, options) {
     
     // destroy(form) // teardown
   })
-
-
+  
+  it('should return options with nested object key mapped to value', () => {
+    
+    let options = {
+      value1: { label: 'label1' },
+      value2: { label: 'label2' },
+      value3: { label: 'label3' },
+    }
+    
+    let expected = [
+      { value: 'value1', label: 'label1' },
+      { value: 'value2', label: 'label2' },
+      { value: 'value3', label: 'label3' },
+    ]
+    
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          items: options,
+        }
+      }
+    })
+    
+    let el = form.vm.el$('el')
+    
+    expect(el.resolvedOptions).toStrictEqual(expected)
+  })
+  
+  
   it('should resolve items when items are an array of objects', async () => {
     let form = createForm({
       schema: {
@@ -358,7 +386,34 @@ export const updateItems = function (elementType, elementName, options) {
 
     expect(warnMock.mock.calls[0][0]).toBe('Couldn\'t resolve items from async function')
   })
-
+  
+  it('should return empty array if `resolveOptionsFromFunction` was called and function return is null or undefined', async() => {
+    
+    let valueStub = jest.fn(() => new Promise((resolve, reject) => {
+      reject()
+    }))
+    
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          native: true,
+          items: async () => {
+            return await new Promise((resolve, reject) => {
+              resolve(null)
+            })
+          }
+        }
+      }
+    })
+    
+    const el = form.vm.el$('el')
+    
+    await flushPromises()
+    
+    expect(el.resolvedOptions).toStrictEqual([])
+  })
+  
 
   it('should update async items', async () => {
     let option3 = 3

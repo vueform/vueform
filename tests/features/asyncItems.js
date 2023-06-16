@@ -85,7 +85,7 @@ export const resolvedOptions = function (elementType, elementName, options) {
 
     expect(el.resolvedOptions).toStrictEqual(expected)
   })
-
+  
   it('should return options object with value=label when array', () => {
     let options = [1,2,3,'someString']
     let expected = [
@@ -175,7 +175,145 @@ export const resolvedOptions = function (elementType, elementName, options) {
     
     // destroy(form) // teardown
   })
-
+  
+  it('should return empty array on createAsyncOptionsFromUrl', async () => {
+    
+    let getStub = jest.fn(() => ({ ObjectWithoutDataKey: true }))
+    
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          native: false,
+          search: true,
+          items: '/async-options-from-url',
+          onBeforeCreate(el$) {
+            el$.$vueform.services.axios.get = getStub
+          }
+        }
+      }
+    })
+    
+    const el = form.vm.el$('el')
+    
+    expect(await (el.resolvedOptions)()).toStrictEqual([])
+  })
+  
+  it('should return array on specific key in createAsyncOptionsFromUrl', async () => {
+    
+    let getStub = jest.fn(() => ({ data: { specificKey: [1,2,3] } }))
+    
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          native: false,
+          search: true,
+          items: '/async-options-from-url',
+          dataKey: 'specificKey',
+          onBeforeCreate(el$) {
+            el$.$vueform.services.axios.get = getStub
+          }
+        }
+      }
+    })
+    
+    const el = form.vm.el$('el')
+    
+    expect(await (el.resolvedOptions)()).toStrictEqual([1,2,3])
+  })
+  
+  it('should return empty array on specific key in createAsyncOptionsFromUrl', async () => {
+    
+    let getStub = jest.fn(() => ({ data: { specificKey: null } }))
+    
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          native: false,
+          search: true,
+          items: '/async-options-from-url',
+          dataKey: 'specificKey',
+          onBeforeCreate(el$) {
+            el$.$vueform.services.axios.get = getStub
+          }
+        }
+      }
+    })
+    
+    const el = form.vm.el$('el')
+    
+    expect(await (el.resolvedOptions)()).toStrictEqual([])
+  })
+  
+  it('should create proper url with single parameter', async () => {
+    
+    let getMock = jest.fn(() => ({ data: [1,2,3] }))
+    
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          native: false,
+          search: true,
+          items: '/async-options-from-url',
+          delay: 0,
+          searchParam: 'param1',
+          onBeforeCreate(el$) {
+            el$.$vueform.services.axios.get = getMock
+          }
+        }
+      }
+    }, {
+      attach: true
+    })
+    
+    const el = form.vm.el$('el')
+    
+    // el.input.update('something')
+    
+    await flushPromises()
+    
+    expect(getMock).toHaveBeenLastCalledWith('/async-options-from-url?param1=') // @question: how to attach query string? el.input.update() does not work
+    
+    destroy(form) // teardown
+  })
+  
+  it('should create proper url with multiple parameters', async () => {
+    
+    let getMock = jest.fn(() => ({ data: [1,2,3] }))
+    
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          native: false,
+          search: true,
+          items: '/async-options-from-url?existing-param=something',
+          delay: 0,
+          searchParam: 'param1',
+          onBeforeCreate(el$) {
+            el$.$vueform.services.axios.get = getMock
+          }
+        }
+      }
+    }, {
+      attach: true
+    })
+    
+    const el = form.vm.el$('el')
+    
+    // el.input.update('something')
+    
+    await flushPromises()
+    
+    expect(getMock).toHaveBeenLastCalledWith('/async-options-from-url?existing-param=something&param1=') // @question: how to attach query string? el.input.update() does not work
+    
+    destroy(form) // teardown
+  })
+  
+  
   it('should render select options when items are an array', async () => {
     let form = createForm({
       schema: {
@@ -366,6 +504,7 @@ export const resolvedOptions = function (elementType, elementName, options) {
 }
 
 export const updateItems = function (elementType, elementName, options) {
+
   it('should call resolveOptions if native false', async () => {
     let getStub = jest.fn(() => [1,2,3])
 
@@ -486,6 +625,33 @@ export const updateItems = function (elementType, elementName, options) {
 
     expect(warnMock.mock.calls[0][0]).toBe('Couldn\'t resolve items from async function')
   })
+  
+  it('should return empty array if `resolveOptionsFromFunction` was called and function return is null or undefined', async() => {
+    
+    let valueStub = jest.fn(() => new Promise((resolve, reject) => {
+      reject()
+    }))
+    
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          native: true,
+          items: async () => {
+            return await new Promise((resolve, reject) => {
+              resolve(null)
+            })
+          }
+        }
+      }
+    })
+    
+    const el = form.vm.el$('el')
+    
+    await flushPromises()
+    
+    expect(el.resolvedOptions).toStrictEqual([])
+  })
 
   it('should return options if object/array is given just like resolvedOptions', async () => {
     let counter = 0
@@ -521,7 +687,34 @@ export const updateItems = function (elementType, elementName, options) {
 
     expect(el.resolvedOptions).toStrictEqual(expected2)
   })
-
+  
+  it('should return options as label/value pairs', () => {
+    
+    let options = [1,2,3,'someString']
+    let expected = [
+      { value: 1, label: 1 },
+      { value: 2, label: 2 },
+      { value: 3, label: 3 },
+      { value: 'someString', label: 'someString' }
+    ]
+    
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          native: true,
+          items: options,
+        }
+      }
+    })
+    
+    let el = form.vm.el$('el')
+    
+    el.updateItems()
+    
+    expect(el.resolvedOptions).toStrictEqual(expected)
+  })
+  
 
   it('should update items when native=true', async () => {
     let option3 = 3
