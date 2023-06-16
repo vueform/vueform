@@ -52,6 +52,7 @@ export const disabledItems = function (elementType, elementName, options) {
 
 
 export const isDisabled = function (elementType, elementName, options) {
+  
   it('should disable all items if `disabled` is true', () => {
     let form = createForm({
       schema: {
