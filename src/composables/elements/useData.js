@@ -2,6 +2,7 @@ import _ from 'lodash'
 import moment from 'moment'
 import { computed, nextTick, toRefs, watch, ref, onMounted, onBeforeUpdate, onUnmounted } from 'vue'
 import checkDateFormat from './../../utils/checkDateFormat'
+import asyncForEach from './../../utils/asyncForEach'
 
 const base = function(props, context, dependencies, options = {})
 {
@@ -135,7 +136,6 @@ const object = function(props, context, dependencies)
 
   const {
     data,
-    prepare,
   } = base(props, context, dependencies)
 
   // ============ DEPENDENCIES =============
@@ -143,6 +143,7 @@ const object = function(props, context, dependencies)
   const form$ = dependencies.form$
   const available = dependencies.available
   const children$ = dependencies.children$
+  const children$Array = dependencies.children$Array
 
   // ============== COMPUTED ===============
   
@@ -214,6 +215,14 @@ const object = function(props, context, dependencies)
       }
       
       element$.reset()
+    })
+  }
+
+  const prepare = async () => {
+    await asyncForEach(children$Array.value, async (e$) => {
+      if (e$.prepare) {
+        await e$.prepare()
+      }
     })
   }
 
@@ -307,7 +316,6 @@ const list = function(props, context, dependencies, options)
   const {
     update,
     clear,
-    prepare,
     data,
   } = base(props, context, dependencies)
 
@@ -456,6 +464,14 @@ const list = function(props, context, dependencies, options)
     
     nextTick(() => {
       refreshOrderStore(value.value)
+    })
+  }
+
+  const prepare = async () => {
+    await asyncForEach(children$Array.value, async (e$) => {
+      if (e$.prepare) {
+        await e$.prepare()
+      }
     })
   }
 
