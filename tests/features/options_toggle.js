@@ -1,5 +1,61 @@
 import { createForm, testPropDefault, destroy } from 'test-helpers'
 
+export const defaultOptions = function (elementType, elementName, options) {
+  
+  it('should return localized labels', () => {
+    
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          labels: {
+            on: {
+              en: 'On',
+              de: 'Ein',
+            },
+            off: {
+              en: 'Off',
+              de: 'Aus',
+            }
+          },
+        }
+      },
+      locale: 'de'
+    })
+    
+    let el = form.vm.el$('el')
+    
+    expect(el.fieldOptions).toStrictEqual({
+      disabled: el.isDisabled,
+      offLabel: 'Aus',
+      onLabel: 'Ein',
+      trueValue: el.trueValue,
+      falseValue: el.falseValue,
+    })
+  })
+  
+  it('should return `` for labels if label is not defined', () => {
+    
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+        }
+      }
+    })
+    
+    let el = form.vm.el$('el')
+    
+    expect(el.fieldOptions).toStrictEqual({
+      disabled: el.isDisabled,
+      offLabel: '',
+      onLabel: '',
+      trueValue: el.trueValue,
+      falseValue: el.falseValue,
+    })
+  })
+}
+
 export const fieldOptions = function (elementType, elementName, options) {
   it('should have default `fieldOptions`', () => {
     let form = createForm({
@@ -15,7 +71,7 @@ export const fieldOptions = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    expect(el.fieldOptions).toStrictEqual({ 
+    expect(el.fieldOptions).toStrictEqual({
       disabled: el.isDisabled,
       onLabel: el.labels.on,
       offLabel: '',
@@ -41,7 +97,7 @@ export const fieldOptions = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    expect(el.fieldOptions).toStrictEqual({ 
+    expect(el.fieldOptions).toStrictEqual({
       disabled: el.isDisabled,
       onLabel: el.labels.on,
       offLabel: '',

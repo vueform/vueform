@@ -21,7 +21,7 @@ export const disabledDates = function (elementType, elementName, options) {
     })
 
     let el = form.vm.el$('el')
-
+    
     expect(el.disabledDates).toStrictEqual([])
     
     // destroy(form) // teardown
@@ -269,7 +269,7 @@ export const hasTime = function (elementType, elementName, options) {
     
     let el = form.vm.el$('el')
     
-    expect(el.hasDate).toBe(true)
+    expect(el.hasTime).toBe(false)
     
     // destroy(form) // teardown
   })

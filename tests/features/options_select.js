@@ -1,6 +1,38 @@
 import { createForm, testPropDefault, destroy } from 'test-helpers'
 import { nextTick } from 'vue'
 
+export const defaultOptions = function(elementType, elementName, options) {
+  //@todo come back when it can be localized on form level
+  it('should have null as locale by default', () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+        }
+      }
+    })
+    
+    let el = form.vm.el$('el')
+    
+    expect(el.fieldOptions.locale).toStrictEqual(null)
+  })
+  
+  it('should have set locale by default', () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+        }
+      },
+      locale: 'de'
+    })
+    
+    let el = form.vm.el$('el')
+    
+    expect(el.fieldOptions.locale).toStrictEqual('de')
+  })
+}
+
 export const isNative = function (elementType, elementName, options) {
   it('should have `isNative` "true" if "native" is true and "search" is false', async () => {
     let form = createForm({
