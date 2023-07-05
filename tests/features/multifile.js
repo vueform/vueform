@@ -68,7 +68,7 @@ export const handleChange = function (elementType, elementName, options) {
     let file = new File([''], 'filename.jpg')
     let file2 = new File([''], 'filename2.jpg')
 
-    el.handleChange({
+    await el.handleChange({
       target: {
         files: [file, file2]
       }
@@ -97,7 +97,7 @@ export const handleChange = function (elementType, elementName, options) {
     let file = new File([''], 'filename.jpg')
     let file2 = new File([''], 'filename2.jpg')
 
-    el.handleChange({
+    await el.handleChange({
       target: {
         files: [file, file2]
       }
@@ -129,7 +129,7 @@ export const handleChange = function (elementType, elementName, options) {
     let file = new File([''], 'filename.jpg')
     let file2 = new File([''], 'filename2.jpg')
 
-    el.handleChange({
+    await el.handleChange({
       target: {
         files: [file, file2]
       }
