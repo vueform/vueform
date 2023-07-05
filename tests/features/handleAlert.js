@@ -4,7 +4,7 @@ export const handleAlert = function (elementType, elementName, options) {
 
   it('should fire browser alert', () => {
 
-    let alertMock = jest.spyOn(window, 'alert');
+    let alertMock = jest.spyOn(window, 'alert').mockImplementation(() => {})
 
     let form = createForm({
       schema: {
