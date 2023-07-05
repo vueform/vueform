@@ -67,16 +67,11 @@ export const hasLabel = function (elementType, elementName, options) {
 }
 
 export const Label = function (elementType, elementName, options) {
-  
   it('should return `Label` null when label prop is not defined', () => {
     let form = createForm({
       schema: {
         el: {
           type: elementType,
-          fieldName: {
-            en: 'field-name',
-            de: 'field-name-de'
-          }
         }
       }
     })
@@ -94,10 +89,6 @@ export const Label = function (elementType, elementName, options) {
         el: {
           label: () => 'someLabel',
           type: elementType,
-          fieldName: {
-            en: 'field-name',
-            de: 'field-name-de'
-          }
         }
       }
     })
@@ -105,6 +96,25 @@ export const Label = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
     
     expect(el.Label).toBe('someLabel')
+    
+    // destroy(form) // teardown
+  })
+  
+  it('should return `Label` when Label prop is a VueComponent', () => {
+    let form = createForm({
+      schema: {
+        el: {
+          label: function VueComponent() {
+            return 'componentLabel'
+          },
+          type: elementType,
+        }
+      }
+    })
+    
+    let el = form.vm.el$('el')
+    
+    expect((el.Label)()).toBe('componentLabel')
     
     // destroy(form) // teardown
   })
