@@ -1,5 +1,8 @@
+import { nextTick } from 'vue'
 import { createForm, findAllComponents, findAll, destroy } from 'test-helpers'
 import flushPromises from 'flush-promises'
+
+jest.useFakeTimers()
 
 export const resolvedOptions = function (elementType, elementName, options) {
   it('should return options prop as is if native is false', () => {
@@ -265,19 +268,21 @@ export const resolvedOptions = function (elementType, elementName, options) {
           }
         }
       }
-    }, {
-      attach: true
     })
     
     const el = form.vm.el$('el')
     
-    // el.input.update('something')
+    el.input.search = 'something'
+    
+    await nextTick()
+
+    jest.advanceTimersByTime(0)
     
     await flushPromises()
     
-    expect(getMock).toHaveBeenLastCalledWith('/async-options-from-url?param1=') // @question: how to attach query string? el.input.update() does not work
+    expect(getMock).toHaveBeenLastCalledWith('/async-options-from-url?param1=something')
     
-    destroy(form) // teardown
+    // destroy(form) // teardown
   })
   
   it('should create proper url with multiple parameters', async () => {
@@ -298,19 +303,19 @@ export const resolvedOptions = function (elementType, elementName, options) {
           }
         }
       }
-    }, {
-      attach: true
     })
     
     const el = form.vm.el$('el')
     
-    // el.input.update('something')
+    el.input.search = 'something-else'
+    
+    await nextTick()
+    
+    jest.advanceTimersByTime(0)
     
     await flushPromises()
     
-    expect(getMock).toHaveBeenLastCalledWith('/async-options-from-url?existing-param=something&param1=') // @question: how to attach query string? el.input.update() does not work
-    
-    destroy(form) // teardown
+    expect(getMock).toHaveBeenLastCalledWith('/async-options-from-url?existing-param=something&param1=something-else')
   })
   
   
