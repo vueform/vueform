@@ -21,7 +21,7 @@ export const handleUpdate = function (elementType, elementName, options) {
     
     let el = form.vm.el$('el')
     
-    el.handleUpdate(2) // @question: why isn't it triggered?
+    el.handleUpdate(2)
     
     await nextTick()
     
