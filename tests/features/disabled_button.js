@@ -30,8 +30,6 @@ export const isDisabled = function (elementType, elementName, options) {
     
     await flushPromises()
     
-    console.log(button.submits, form.vm.invalid, form.vm.shouldValidateOnChange)
-    
     expect(button.isDisabled).toBe(true)
   })
   

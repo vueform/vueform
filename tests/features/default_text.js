@@ -23,4 +23,20 @@ export const defaultValue = function (elementType, elementName, options) {
     
     // destroy(form) // teardown
   })
+  
+  
+  it('should equal to nullValue if no default value is defined', () => {
+    
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+        }
+      }
+    })
+    
+    const el = form.vm.el$('el')
+    
+    expect(el.defaultValue).toStrictEqual(el.nullValue)
+  })
 }
