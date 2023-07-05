@@ -25,7 +25,7 @@ export const handleKeyEvents = function (elementType, elementName, options) {
     
     await nextTick()
 
-    console.log(onKeyDownMock.mock)
+    // console.log(onKeyDownMock.mock)
     
     expect(onKeyDownMock).toHaveBeenCalledTimes(1)
     expect(onKeyDownMock).toHaveBeenCalledWith('a', el)
