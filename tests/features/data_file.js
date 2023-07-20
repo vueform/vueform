@@ -1,5 +1,6 @@
 import { createForm, destroy } from 'test-helpers'
 import flushPromises from 'flush-promises'
+import { createValidImageFile } from '../helpers'
 
 export { load, update, clear, reset } from './data'
 
@@ -13,6 +14,8 @@ export const data = function (elementType, elementName, options) {
         originalName: 'filename.jpg',
       }
     }))
+    
+    const file = await createValidImageFile()
     
     let form = createForm({
       schema: {
@@ -29,7 +32,8 @@ export const data = function (elementType, elementName, options) {
     
     const el = form.vm.el$('el')
     
-    el.update(new File([''], 'filename.jpg'))
+    
+    el.update(file)
     
     await flushPromises()
     

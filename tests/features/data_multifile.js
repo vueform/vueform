@@ -48,7 +48,6 @@ export const data = function (elementType, elementName, options) {
 export const requestData = function (elementType, elementName, options) {
   const prototypes = options.prototypes
   
-  //@question: is it even needed? it is working from requestData
   it('should un-bundle response and delete created __file__ property from requestData', async () => {
     
     const postStub = jest.fn(() => ({
