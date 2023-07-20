@@ -452,6 +452,7 @@ export const validate = function (elementType, elementName, options) {
 }
 
 export const clean = function (elementType, elementName, options) {
+  
   it('should clean all children on `clean`', async () => {
     let form = createForm({
       schema: {
@@ -482,6 +483,113 @@ export const clean = function (elementType, elementName, options) {
     })
 
     // destroy() // teardown
+  })
+  
+  // it('should not clean children that are isStatic true', async () => {
+  //   let form = createForm({
+  //     schema: {
+  //       el: {
+  //         type: elementType,
+  //         schema: {
+  //           child1: {
+  //             type: 'static',
+  //           },
+  //           child2: {
+  //             type: 'button',
+  //           },
+  //         },
+  //       }
+  //     }
+  //   })
+  //
+  //   let el = form.vm.el$('el')
+  //
+  //   _.each(el.children$, (child$) => {
+  //     child$.dirt()
+  //   })
+  //
+  //   el.clean()
+  //
+  //   _.each(el.children$, (child$) => {
+  //     expect(child$.dirty).toBe(false)
+  //   })
+  //
+  //   // destroy() // teardown
+  // })
+}
+
+export const clearMessages = function (elementType, elementName, options) {
+  
+  it('should not clear all elements', () => {
+    
+    const messageBagMock = jest.fn()
+    let originalMessageBag
+    
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          onBeforeCreate(el$) {
+            originalMessageBag = el$.$vueform.services.messageBag
+            el$.$vueform.services.messageBag = class {
+              clear() { messageBagMock() }
+            }
+          },
+          schema: {
+            child1: {
+              type: 'text',
+            },
+            child2: {
+              type: 'text',
+            },
+            child3: {
+              type: 'text',
+            },
+          },
+        }
+      }
+    })
+    
+    const el = form.vm.el$('el')
+    
+    el.clearMessages()
+    
+    expect(messageBagMock).toHaveBeenCalledTimes(4)
+    
+    el.$vueform.services.messageBag = originalMessageBag
+  })
+  
+  it('should not clear child element if child element isStatic is true', () => {
+    
+    const messageBagMock = jest.fn()
+    let originalMessageBag
+    
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          onBeforeCreate(el$) {
+            originalMessageBag = el$.$vueform.services.messageBag
+            el$.$vueform.services.messageBag = class {
+              clear() { messageBagMock() }
+            }
+          },
+          schema: {
+            child: {
+              type: 'static', // or button
+            },
+          },
+        }
+      }
+    })
+    
+    const el = form.vm.el$('el')
+    
+    el.clearMessages()
+    
+    expect(messageBagMock).toHaveBeenCalledTimes(1)
+    
+    el.$vueform.services.messageBag = originalMessageBag
   })
 }
 

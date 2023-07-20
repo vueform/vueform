@@ -588,6 +588,43 @@ export const clean = function (elementType, elementName, options) {
   })
 }
 
+export const reinitValidation = function (elementType, elementName, options) {
+  
+  it('should set `Validators` on reinit for itself and its children', async () => {
+    
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          rules: '',
+          initial: 2,
+          element: { type: 'text' },
+        }
+      }
+    })
+    
+    const el = form.vm.el$('el')
+    const child = form.vm.el$('el.0')
+    
+    expect(el.Validators).toStrictEqual([])
+    expect(child.Validators).toStrictEqual([])
+
+    await nextTick()
+    
+    el.$set(form.vm.vueform.schema.el, 'rules', 'required')
+    el.$set(form.vm.vueform.schema.el.element, 'rules', 'required|min:3')
+    
+    await nextTick()
+   
+    el.reinitValidation()
+    
+    await nextTick()
+    
+    expect(el.Validators.length).toBe(1)
+    expect(child.Validators.length).toBe(2)
+  })
+}
+
 export const resetValidators = function (elementType, elementName, options) {
   const prototypes = options.prototypes
   
