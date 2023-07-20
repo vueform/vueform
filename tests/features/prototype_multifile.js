@@ -3,6 +3,25 @@ import { nextTick } from 'vue'
 
 export const storeFileName = function (elementType, elementName, options) {
   
+  it('should return `storeFile` if defined and object is true', () => {
+    
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          object: true,
+          storeFile: 'keyInObject'
+        }
+      }
+    })
+    
+    let el = form.vm.el$('el')
+    
+    expect(el.storeFileName).toBe('keyInObject')
+    
+    // destroy() // teardown
+  })
+  
   it('should have "file" as `storeFileName` by default if object is true', () => {
   
     let form = createForm({
@@ -21,24 +40,55 @@ export const storeFileName = function (elementType, elementName, options) {
     // destroy() // teardown
   })
   
-  it('should return `storeFile` if defined and object is true', () => {
-   
+  it('should have "file" as `storeFileName` by default if fields prop length > 0', () => {
+  
     let form = createForm({
       schema: {
         el: {
           type: elementType,
-          object: true,
-          storeFile: 'keyInObject'
+          fields: {
+            text: { type: 'text', }
+          },
         }
       }
     })
 
     let el = form.vm.el$('el')
 
-    expect(el.storeFileName).toBe('keyInObject')
-
-    // destroy() // teardown
+    expect(el.storeFileName).toBe('file')
   })
+  
+  it('should have "file" as `storeFileName` by default if order is defined', () => {
+  
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          storeOrder: 'order',
+        }
+      }
+    })
+
+    let el = form.vm.el$('el')
+
+    expect(el.storeFileName).toBe('file')
+  })
+
+  //@todo:adam delete unreachable code in usePrototype
+  // it('should have "null" as `storeFileName` by if not object, no storeOrder or fields is defined', () => {
+  //
+  //   let form = createForm({
+  //     schema: {
+  //       el: {
+  //         type: elementType,
+  //       }
+  //     }
+  //   })
+  //
+  //   let el = form.vm.el$('el')
+  //
+  //   expect(el.storeFileName).toBe(null)
+  // })
 }
 
 export const prototype = function (elementType, elementName, options) {
@@ -75,7 +125,38 @@ export const prototype = function (elementType, elementName, options) {
     
     // destroy(form) // teardown
   })
-
+  
+  it('should return ElementLayoutInline if view = gallery', () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          view: 'gallery',
+        }
+      }
+    })
+    
+    let el = form.vm.el$('el')
+    
+    expect(el.prototype).toStrictEqual({
+      type: 'file',
+      auto: el.auto,
+      url: '/',
+      view: el.view,
+      layout: 'ElementLayoutInline',
+      disabled: el.disabled,
+      clickable: true,
+      params: {},
+      previewUrl: undefined,
+      removeEndpoint: undefined,
+      removeTempEndpoint: undefined,
+      softRemove: false,
+      uploadTempEndpoint: undefined,
+    })
+    
+    // destroy(form) // teardown
+  })
+  
   it('should have `prototype` as an object element isObject true', () => {
     let form = createForm({
       schema: {
@@ -331,7 +412,7 @@ export const isObject = function (elementType, elementName, options) {
         el: {
           type: elementType,
           storeOrder: 'someObjectKey',
-          elements: {
+          element: {
             type: 'text',
           }
         }
