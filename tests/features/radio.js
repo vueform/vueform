@@ -1,4 +1,6 @@
-import { createForm, findAllComponents, destroy } from 'test-helpers'
+import { createForm, findAll, findAllComponents, destroy } from 'test-helpers'
+import { nextTick } from 'vue'
+import getEventListeners from '../helpers/getEventListeners'
 
 export const inputName = function(elementType, elementName, options) {
   
@@ -81,6 +83,7 @@ export const uncheck = function (elementType, elementName, options) {
 export const watchers = function (elementType, elementName, options) {
   
   it('should deselect other radios with the same `fieldName`', () => {
+    
     let form = createForm({
       schema: {
         el1: {
@@ -118,5 +121,36 @@ export const watchers = function (elementType, elementName, options) {
     destroy(form)
     
     // destroy() // teardown
+  })
+  
+  it('should trigger watchChange on value change', async () => {
+    
+    let elementMock
+    
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          onMounted(el$) {
+            
+            elementMock = jest.spyOn(el$.input, 'removeEventListener').mockImplementation()
+          }
+        }
+      }
+    }, {
+      attach: true,
+    })
+    
+    const el = form.vm.el$('el')
+
+    expect(elementMock).toHaveBeenCalledTimes(0)
+    
+    el.$set(form.vm.vueform.schema.el, 'radioName', 'something')
+
+    await nextTick()
+    
+    expect(elementMock).toHaveBeenCalledTimes(1)
+  
+    destroy(form)
   })
 }
