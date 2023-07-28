@@ -5,12 +5,12 @@ export default (commandLineArgs) => {
   const files = [
     {
       input: path.resolve(__dirname, '../dist/installer.js'),
-      output: path.resolve(__dirname, '../../vueform-docs/packages/vueform/installer.js'),
+      output: path.resolve(__dirname, '../../vueform.com/libs/@vueform/vueform/installer.js'),
       lock: true,
     },
     {
       input: path.resolve(__dirname, '../dist/element.js'),
-      output: path.resolve(__dirname, '../../vueform-docs/packages/vueform/element.js'),
+      output: path.resolve(__dirname, '../../vueform.com/libs/@vueform/vueform/element.js'),
       lock: true,
     },
   ]
@@ -35,12 +35,12 @@ export default (commandLineArgs) => {
         format: 'esm',
         sourcemap: false,
       },
-      plugins: [
-        obfuscator({
-          fileOptions: false,
-          globalOptions,
-        }),
-      ],
+      // plugins: [
+      //   obfuscator({
+      //     fileOptions: false,
+      //     globalOptions,
+      //   }),
+      // ],
       external: ['vue', 'axios', 'lodash', 'moment'],
     }
   })

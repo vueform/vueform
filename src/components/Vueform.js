@@ -225,7 +225,7 @@ export default {
     },
 
     endpoint: {
-      type: [String, Boolean],
+      type: [String, Boolean, Function],
       required: false,
       default: null
     },

@@ -1116,7 +1116,7 @@ const base = function(props, context, dependencies = {})
       if (response?.status >= 200 && response?.status < 300) {
         fire('success', response, form$.value)
       } else {
-        fire('error', null, { type: 'submit' }, form$.value)
+        fire('error', { response }, { type: 'submit' }, form$.value)
       }
     }
     catch (error) {

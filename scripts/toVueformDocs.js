@@ -14,7 +14,7 @@ const args = argv.option([
 
 const version = args.options.version || '1.0.1'
 
-const outputDir = path.resolve(__dirname, '../../vueform-docs/packages/vueform')
+const outputDir = path.resolve(__dirname, '../../vueform.com/libs/@vueform/vueform')
 
 const files = {
   'dist': '',
