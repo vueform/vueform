@@ -5,4 +5,8323 @@ import{ref as e,toRefs as t,computed as a,watch as n,getCurrentInstance as l,pro
  * @author	owenm    <owen23355@gmail.com>
  * @license MIT
  */
-function Bn(e,t){var a=Object.keys(e);if(Object.getOwnPropertySymbols){var n=Object.getOwnPropertySymbols(e);t&&(n=n.filter((function(t){return Object.getOwnPropertyDescriptor(e,t).enumerable}))),a.push.apply(a,n)}return a}function Nn(e){for(var t=1;t<arguments.length;t++){var a=null!=arguments[t]?arguments[t]:{};t%2?Bn(Object(a),!0).forEach((function(t){zn(e,t,a[t])})):Object.getOwnPropertyDescriptors?Object.defineProperties(e,Object.getOwnPropertyDescriptors(a)):Bn(Object(a)).forEach((function(t){Object.defineProperty(e,t,Object.getOwnPropertyDescriptor(a,t))}))}return e}function Pn(e){return Pn="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e},Pn(e)}function zn(e,t,a){return t in e?Object.defineProperty(e,t,{value:a,enumerable:!0,configurable:!0,writable:!0}):e[t]=a,e}function Yn(){return Yn=Object.assign||function(e){for(var t=1;t<arguments.length;t++){var a=arguments[t];for(var n in a)Object.prototype.hasOwnProperty.call(a,n)&&(e[n]=a[n])}return e},Yn.apply(this,arguments)}function Rn(e,t){if(null==e)return{};var a,n,l=function(e,t){if(null==e)return{};var a,n,l={},r=Object.keys(e);for(n=0;n<r.length;n++)a=r[n],t.indexOf(a)>=0||(l[a]=e[a]);return l}(e,t);if(Object.getOwnPropertySymbols){var r=Object.getOwnPropertySymbols(e);for(n=0;n<r.length;n++)a=r[n],t.indexOf(a)>=0||Object.prototype.propertyIsEnumerable.call(e,a)&&(l[a]=e[a])}return l}function Un(e){if("undefined"!=typeof window&&window.navigator)return!!navigator.userAgent.match(e)}var Hn=Un(/(?:Trident.*rv[ :]?11\.|msie|iemobile|Windows Phone)/i),Wn=Un(/Edge/i),Kn=Un(/firefox/i),Xn=Un(/safari/i)&&!Un(/chrome/i)&&!Un(/android/i),Gn=Un(/iP(ad|od|hone)/i),Jn=Un(/chrome/i)&&Un(/android/i),Zn={capture:!1,passive:!1};function Qn(e,t,a){e.addEventListener(t,a,!Hn&&Zn)}function el(e,t,a){e.removeEventListener(t,a,!Hn&&Zn)}function tl(e,t){if(t){if(">"===t[0]&&(t=t.substring(1)),e)try{if(e.matches)return e.matches(t);if(e.msMatchesSelector)return e.msMatchesSelector(t);if(e.webkitMatchesSelector)return e.webkitMatchesSelector(t)}catch(e){return!1}return!1}}function al(e){return e.host&&e!==document&&e.host.nodeType?e.host:e.parentNode}function nl(e,t,a,n){if(e){a=a||document;do{if(null!=t&&(">"===t[0]?e.parentNode===a&&tl(e,t):tl(e,t))||n&&e===a)return e;if(e===a)break}while(e=al(e))}return null}var ll,rl=/\s+/g;function il(e,t,a){if(e&&t)if(e.classList)e.classList[a?"add":"remove"](t);else{var n=(" "+e.className+" ").replace(rl," ").replace(" "+t+" "," ");e.className=(n+(a?" "+t:"")).replace(rl," ")}}function ol(e,t,a){var n=e&&e.style;if(n){if(void 0===a)return document.defaultView&&document.defaultView.getComputedStyle?a=document.defaultView.getComputedStyle(e,""):e.currentStyle&&(a=e.currentStyle),void 0===t?a:a[t];t in n||-1!==t.indexOf("webkit")||(t="-webkit-"+t),n[t]=a+("string"==typeof a?"":"px")}}function ul(e,t){var a="";if("string"==typeof e)a=e;else do{var n=ol(e,"transform");n&&"none"!==n&&(a=n+" "+a)}while(!t&&(e=e.parentNode));var l=window.DOMMatrix||window.WebKitCSSMatrix||window.CSSMatrix||window.MSCSSMatrix;return l&&new l(a)}function sl(e,t,a){if(e){var n=e.getElementsByTagName(t),l=0,r=n.length;if(a)for(;l<r;l++)a(n[l],l);return n}return[]}function dl(){var e=document.scrollingElement;return e||document.documentElement}function cl(e,t,a,n,l){if(e.getBoundingClientRect||e===window){var r,i,o,u,s,d,c;if(e!==window&&e.parentNode&&e!==dl()?(i=(r=e.getBoundingClientRect()).top,o=r.left,u=r.bottom,s=r.right,d=r.height,c=r.width):(i=0,o=0,u=window.innerHeight,s=window.innerWidth,d=window.innerHeight,c=window.innerWidth),(t||a)&&e!==window&&(l=l||e.parentNode,!Hn))do{if(l&&l.getBoundingClientRect&&("none"!==ol(l,"transform")||a&&"static"!==ol(l,"position"))){var v=l.getBoundingClientRect();i-=v.top+parseInt(ol(l,"border-top-width")),o-=v.left+parseInt(ol(l,"border-left-width")),u=i+r.height,s=o+r.width;break}}while(l=l.parentNode);if(n&&e!==window){var p=ul(l||e),f=p&&p.a,m=p&&p.d;p&&(u=(i/=m)+(d/=m),s=(o/=f)+(c/=f))}return{top:i,left:o,bottom:u,right:s,width:c,height:d}}}function vl(e,t,a){for(var n=hl(e,!0),l=cl(e)[t];n;){var r=cl(n)[a];if(!("top"===a||"left"===a?l>=r:l<=r))return n;if(n===dl())break;n=hl(n,!1)}return!1}function pl(e,t,a,n){for(var l=0,r=0,i=e.children;r<i.length;){if("none"!==i[r].style.display&&i[r]!==wr.ghost&&(n||i[r]!==wr.dragged)&&nl(i[r],a.draggable,e,!1)){if(l===t)return i[r];l++}r++}return null}function fl(e,t){for(var a=e.lastElementChild;a&&(a===wr.ghost||"none"===ol(a,"display")||t&&!tl(a,t));)a=a.previousElementSibling;return a||null}function ml(e,t){var a=0;if(!e||!e.parentNode)return-1;for(;e=e.previousElementSibling;)"TEMPLATE"===e.nodeName.toUpperCase()||e===wr.clone||t&&!tl(e,t)||a++;return a}function gl(e){var t=0,a=0,n=dl();if(e)do{var l=ul(e),r=l.a,i=l.d;t+=e.scrollLeft*r,a+=e.scrollTop*i}while(e!==n&&(e=e.parentNode));return[t,a]}function hl(e,t){if(!e||!e.getBoundingClientRect)return dl();var a=e,n=!1;do{if(a.clientWidth<a.scrollWidth||a.clientHeight<a.scrollHeight){var l=ol(a);if(a.clientWidth<a.scrollWidth&&("auto"==l.overflowX||"scroll"==l.overflowX)||a.clientHeight<a.scrollHeight&&("auto"==l.overflowY||"scroll"==l.overflowY)){if(!a.getBoundingClientRect||a===document.body)return dl();if(n||t)return a;n=!0}}}while(a=a.parentNode);return dl()}function yl(e,t){return Math.round(e.top)===Math.round(t.top)&&Math.round(e.left)===Math.round(t.left)&&Math.round(e.height)===Math.round(t.height)&&Math.round(e.width)===Math.round(t.width)}function bl(e,t){return function(){if(!ll){var a=arguments;1===a.length?e.call(this,a[0]):e.apply(this,a),ll=setTimeout((function(){ll=void 0}),t)}}}function wl(e,t,a){e.scrollLeft+=t,e.scrollTop+=a}function Sl(e){var t=window.Polymer,a=window.jQuery||window.Zepto;return t&&t.dom?t.dom(e).cloneNode(!0):a?a(e).clone(!0)[0]:e.cloneNode(!0)}var Dl="Sortable"+(new Date).getTime();function Ol(){var e,t=[];return{captureAnimationState:function(){(t=[],this.options.animation)&&[].slice.call(this.el.children).forEach((function(e){if("none"!==ol(e,"display")&&e!==wr.ghost){t.push({target:e,rect:cl(e)});var a=Nn({},t[t.length-1].rect);if(e.thisAnimationDuration){var n=ul(e,!0);n&&(a.top-=n.f,a.left-=n.e)}e.fromRect=a}}))},addAnimationState:function(e){t.push(e)},removeAnimationState:function(e){t.splice(function(e,t){for(var a in e)if(e.hasOwnProperty(a))for(var n in t)if(t.hasOwnProperty(n)&&t[n]===e[a][n])return Number(a);return-1}(t,{target:e}),1)},animateAll:function(a){var n=this;if(!this.options.animation)return clearTimeout(e),void("function"==typeof a&&a());var l=!1,r=0;t.forEach((function(e){var t=0,a=e.target,i=a.fromRect,o=cl(a),u=a.prevFromRect,s=a.prevToRect,d=e.rect,c=ul(a,!0);c&&(o.top-=c.f,o.left-=c.e),a.toRect=o,a.thisAnimationDuration&&yl(u,o)&&!yl(i,o)&&(d.top-o.top)/(d.left-o.left)==(i.top-o.top)/(i.left-o.left)&&(t=function(e,t,a,n){return Math.sqrt(Math.pow(t.top-e.top,2)+Math.pow(t.left-e.left,2))/Math.sqrt(Math.pow(t.top-a.top,2)+Math.pow(t.left-a.left,2))*n.animation}(d,u,s,n.options)),yl(o,i)||(a.prevFromRect=i,a.prevToRect=o,t||(t=n.options.animation),n.animate(a,d,o,t)),t&&(l=!0,r=Math.max(r,t),clearTimeout(a.animationResetTimer),a.animationResetTimer=setTimeout((function(){a.animationTime=0,a.prevFromRect=null,a.fromRect=null,a.prevToRect=null,a.thisAnimationDuration=null}),t),a.thisAnimationDuration=t)})),clearTimeout(e),l?e=setTimeout((function(){"function"==typeof a&&a()}),r):"function"==typeof a&&a(),t=[]},animate:function(e,t,a,n){if(n){ol(e,"transition",""),ol(e,"transform","");var l=ul(this.el),r=l&&l.a,i=l&&l.d,o=(t.left-a.left)/(r||1),u=(t.top-a.top)/(i||1);e.animatingX=!!o,e.animatingY=!!u,ol(e,"transform","translate3d("+o+"px,"+u+"px,0)"),this.forRepaintDummy=function(e){return e.offsetWidth}(e),ol(e,"transition","transform "+n+"ms"+(this.options.easing?" "+this.options.easing:"")),ol(e,"transform","translate3d(0,0,0)"),"number"==typeof e.animated&&clearTimeout(e.animated),e.animated=setTimeout((function(){ol(e,"transition",""),ol(e,"transform",""),e.animated=!1,e.animatingX=!1,e.animatingY=!1}),n)}}}}var Cl=[],ql={initializeByDefault:!0},El={mount:function(e){for(var t in ql)ql.hasOwnProperty(t)&&!(t in e)&&(e[t]=ql[t]);Cl.forEach((function(t){if(t.pluginName===e.pluginName)throw"Sortable: Cannot mount plugin ".concat(e.pluginName," more than once")})),Cl.push(e)},pluginEvent:function(e,t,a){var n=this;this.eventCanceled=!1,a.cancel=function(){n.eventCanceled=!0};var l=e+"Global";Cl.forEach((function(n){t[n.pluginName]&&(t[n.pluginName][l]&&t[n.pluginName][l](Nn({sortable:t},a)),t.options[n.pluginName]&&t[n.pluginName][e]&&t[n.pluginName][e](Nn({sortable:t},a)))}))},initializePlugins:function(e,t,a,n){for(var l in Cl.forEach((function(n){var l=n.pluginName;if(e.options[l]||n.initializeByDefault){var r=new n(e,t,e.options);r.sortable=e,r.options=e.options,e[l]=r,Yn(a,r.defaults)}})),e.options)if(e.options.hasOwnProperty(l)){var r=this.modifyOption(e,l,e.options[l]);void 0!==r&&(e.options[l]=r)}},getEventProperties:function(e,t){var a={};return Cl.forEach((function(n){"function"==typeof n.eventProperties&&Yn(a,n.eventProperties.call(t[n.pluginName],e))})),a},modifyOption:function(e,t,a){var n;return Cl.forEach((function(l){e[l.pluginName]&&l.optionListeners&&"function"==typeof l.optionListeners[t]&&(n=l.optionListeners[t].call(e[l.pluginName],a))})),n}};var xl=["evt"],$l=function(e,t){var a=arguments.length>2&&void 0!==arguments[2]?arguments[2]:{},n=a.evt,l=Rn(a,xl);El.pluginEvent.bind(wr)(e,t,Nn({dragEl:Tl,parentEl:jl,ghostEl:Fl,rootEl:Al,nextEl:kl,lastDownEl:_l,cloneEl:Il,cloneHidden:Ll,dragStarted:Gl,putSortable:Yl,activeSortable:wr.active,originalEvent:n,oldIndex:Vl,oldDraggableIndex:Nl,newIndex:Bl,newDraggableIndex:Pl,hideGhostForTarget:gr,unhideGhostForTarget:hr,cloneNowHidden:function(){Ll=!0},cloneNowShown:function(){Ll=!1},dispatchSortableEvent:function(e){Ml({sortable:t,name:e,originalEvent:n})}},l))};function Ml(e){!function(e){var t=e.sortable,a=e.rootEl,n=e.name,l=e.targetEl,r=e.cloneEl,i=e.toEl,o=e.fromEl,u=e.oldIndex,s=e.newIndex,d=e.oldDraggableIndex,c=e.newDraggableIndex,v=e.originalEvent,p=e.putSortable,f=e.extraEventProperties;if(t=t||a&&a[Dl]){var m,g=t.options,h="on"+n.charAt(0).toUpperCase()+n.substr(1);!window.CustomEvent||Hn||Wn?(m=document.createEvent("Event")).initEvent(n,!0,!0):m=new CustomEvent(n,{bubbles:!0,cancelable:!0}),m.to=i||a,m.from=o||a,m.item=l||a,m.clone=r,m.oldIndex=u,m.newIndex=s,m.oldDraggableIndex=d,m.newDraggableIndex=c,m.originalEvent=v,m.pullMode=p?p.lastPutMode:void 0;var y=Nn(Nn({},f),El.getEventProperties(n,t));for(var b in y)m[b]=y[b];a&&a.dispatchEvent(m),g[h]&&g[h].call(t,m)}}(Nn({putSortable:Yl,cloneEl:Il,targetEl:Tl,rootEl:Al,oldIndex:Vl,oldDraggableIndex:Nl,newIndex:Bl,newDraggableIndex:Pl},e))}var Tl,jl,Fl,Al,kl,_l,Il,Ll,Vl,Bl,Nl,Pl,zl,Yl,Rl,Ul,Hl,Wl,Kl,Xl,Gl,Jl,Zl,Ql,er,tr=!1,ar=!1,nr=[],lr=!1,rr=!1,ir=[],or=!1,ur=[],sr="undefined"!=typeof document,dr=Gn,cr=Wn||Hn?"cssFloat":"float",vr=sr&&!Jn&&!Gn&&"draggable"in document.createElement("div"),pr=function(){if(sr){if(Hn)return!1;var e=document.createElement("x");return e.style.cssText="pointer-events:auto","auto"===e.style.pointerEvents}}(),fr=function(e,t){var a=ol(e),n=parseInt(a.width)-parseInt(a.paddingLeft)-parseInt(a.paddingRight)-parseInt(a.borderLeftWidth)-parseInt(a.borderRightWidth),l=pl(e,0,t),r=pl(e,1,t),i=l&&ol(l),o=r&&ol(r),u=i&&parseInt(i.marginLeft)+parseInt(i.marginRight)+cl(l).width,s=o&&parseInt(o.marginLeft)+parseInt(o.marginRight)+cl(r).width;if("flex"===a.display)return"column"===a.flexDirection||"column-reverse"===a.flexDirection?"vertical":"horizontal";if("grid"===a.display)return a.gridTemplateColumns.split(" ").length<=1?"vertical":"horizontal";if(l&&i.float&&"none"!==i.float){var d="left"===i.float?"left":"right";return!r||"both"!==o.clear&&o.clear!==d?"horizontal":"vertical"}return l&&("block"===i.display||"flex"===i.display||"table"===i.display||"grid"===i.display||u>=n&&"none"===a[cr]||r&&"none"===a[cr]&&u+s>n)?"vertical":"horizontal"},mr=function(e){function t(e,a){return function(n,l,r,i){var o=n.options.group.name&&l.options.group.name&&n.options.group.name===l.options.group.name;if(null==e&&(a||o))return!0;if(null==e||!1===e)return!1;if(a&&"clone"===e)return e;if("function"==typeof e)return t(e(n,l,r,i),a)(n,l,r,i);var u=(a?n:l).options.group.name;return!0===e||"string"==typeof e&&e===u||e.join&&e.indexOf(u)>-1}}var a={},n=e.group;n&&"object"==Pn(n)||(n={name:n}),a.name=n.name,a.checkPull=t(n.pull,!0),a.checkPut=t(n.put),a.revertClone=n.revertClone,e.group=a},gr=function(){!pr&&Fl&&ol(Fl,"display","none")},hr=function(){!pr&&Fl&&ol(Fl,"display","")};sr&&!Jn&&document.addEventListener("click",(function(e){if(ar)return e.preventDefault(),e.stopPropagation&&e.stopPropagation(),e.stopImmediatePropagation&&e.stopImmediatePropagation(),ar=!1,!1}),!0);var yr=function(e){if(Tl){e=e.touches?e.touches[0]:e;var t=(l=e.clientX,r=e.clientY,nr.some((function(e){var t=e[Dl].options.emptyInsertThreshold;if(t&&!fl(e)){var a=cl(e),n=l>=a.left-t&&l<=a.right+t,o=r>=a.top-t&&r<=a.bottom+t;return n&&o?i=e:void 0}})),i);if(t){var a={};for(var n in e)e.hasOwnProperty(n)&&(a[n]=e[n]);a.target=a.rootEl=t,a.preventDefault=void 0,a.stopPropagation=void 0,t[Dl]._onDragOver(a)}}var l,r,i},br=function(e){Tl&&Tl.parentNode[Dl]._isOutsideThisEl(e.target)};function wr(e,t){if(!e||!e.nodeType||1!==e.nodeType)throw"Sortable: `el` must be an HTMLElement, not ".concat({}.toString.call(e));this.el=e,this.options=t=Yn({},t),e[Dl]=this;var a={group:null,sort:!0,disabled:!1,store:null,handle:null,draggable:/^[uo]l$/i.test(e.nodeName)?">li":">*",swapThreshold:1,invertSwap:!1,invertedSwapThreshold:null,removeCloneOnHide:!0,direction:function(){return fr(e,this.options)},ghostClass:"sortable-ghost",chosenClass:"sortable-chosen",dragClass:"sortable-drag",ignore:"a, img",filter:null,preventOnFilter:!0,animation:0,easing:null,setData:function(e,t){e.setData("Text",t.textContent)},dropBubble:!1,dragoverBubble:!1,dataIdAttr:"data-id",delay:0,delayOnTouchOnly:!1,touchStartThreshold:(Number.parseInt?Number:window).parseInt(window.devicePixelRatio,10)||1,forceFallback:!1,fallbackClass:"sortable-fallback",fallbackOnBody:!1,fallbackTolerance:0,fallbackOffset:{x:0,y:0},supportPointer:!1!==wr.supportPointer&&"PointerEvent"in window&&!Xn,emptyInsertThreshold:5};for(var n in El.initializePlugins(this,e,a),a)!(n in t)&&(t[n]=a[n]);for(var l in mr(t),this)"_"===l.charAt(0)&&"function"==typeof this[l]&&(this[l]=this[l].bind(this));this.nativeDraggable=!t.forceFallback&&vr,this.nativeDraggable&&(this.options.touchStartThreshold=1),t.supportPointer?Qn(e,"pointerdown",this._onTapStart):(Qn(e,"mousedown",this._onTapStart),Qn(e,"touchstart",this._onTapStart)),this.nativeDraggable&&(Qn(e,"dragover",this),Qn(e,"dragenter",this)),nr.push(this.el),t.store&&t.store.get&&this.sort(t.store.get(this)||[]),Yn(this,Ol())}function Sr(e,t,a,n,l,r,i,o){var u,s,d=e[Dl],c=d.options.onMove;return!window.CustomEvent||Hn||Wn?(u=document.createEvent("Event")).initEvent("move",!0,!0):u=new CustomEvent("move",{bubbles:!0,cancelable:!0}),u.to=t,u.from=e,u.dragged=a,u.draggedRect=n,u.related=l||t,u.relatedRect=r||cl(t),u.willInsertAfter=o,u.originalEvent=i,e.dispatchEvent(u),c&&(s=c.call(d,u,i)),s}function Dr(e){e.draggable=!1}function Or(){or=!1}function Cr(e){for(var t=e.tagName+e.className+e.src+e.href+e.textContent,a=t.length,n=0;a--;)n+=t.charCodeAt(a);return n.toString(36)}function qr(e){return setTimeout(e,0)}function Er(e){return clearTimeout(e)}wr.prototype={constructor:wr,_isOutsideThisEl:function(e){this.el.contains(e)||e===this.el||(Jl=null)},_getDirection:function(e,t){return"function"==typeof this.options.direction?this.options.direction.call(this,e,t,Tl):this.options.direction},_onTapStart:function(e){if(e.cancelable){var t=this,a=this.el,n=this.options,l=n.preventOnFilter,r=e.type,i=e.touches&&e.touches[0]||e.pointerType&&"touch"===e.pointerType&&e,o=(i||e).target,u=e.target.shadowRoot&&(e.path&&e.path[0]||e.composedPath&&e.composedPath()[0])||o,s=n.filter;if(function(e){ur.length=0;var t=e.getElementsByTagName("input"),a=t.length;for(;a--;){var n=t[a];n.checked&&ur.push(n)}}(a),!Tl&&!(/mousedown|pointerdown/.test(r)&&0!==e.button||n.disabled)&&!u.isContentEditable&&(this.nativeDraggable||!Xn||!o||"SELECT"!==o.tagName.toUpperCase())&&!((o=nl(o,n.draggable,a,!1))&&o.animated||_l===o)){if(Vl=ml(o),Nl=ml(o,n.draggable),"function"==typeof s){if(s.call(this,e,o,this))return Ml({sortable:t,rootEl:u,name:"filter",targetEl:o,toEl:a,fromEl:a}),$l("filter",t,{evt:e}),void(l&&e.cancelable&&e.preventDefault())}else if(s&&(s=s.split(",").some((function(n){if(n=nl(u,n.trim(),a,!1))return Ml({sortable:t,rootEl:n,name:"filter",targetEl:o,fromEl:a,toEl:a}),$l("filter",t,{evt:e}),!0}))))return void(l&&e.cancelable&&e.preventDefault());n.handle&&!nl(u,n.handle,a,!1)||this._prepareDragStart(e,i,o)}}},_prepareDragStart:function(e,t,a){var n,l=this,r=l.el,i=l.options,o=r.ownerDocument;if(a&&!Tl&&a.parentNode===r){var u=cl(a);if(Al=r,jl=(Tl=a).parentNode,kl=Tl.nextSibling,_l=a,zl=i.group,wr.dragged=Tl,Rl={target:Tl,clientX:(t||e).clientX,clientY:(t||e).clientY},Kl=Rl.clientX-u.left,Xl=Rl.clientY-u.top,this._lastX=(t||e).clientX,this._lastY=(t||e).clientY,Tl.style["will-change"]="all",n=function(){$l("delayEnded",l,{evt:e}),wr.eventCanceled?l._onDrop():(l._disableDelayedDragEvents(),!Kn&&l.nativeDraggable&&(Tl.draggable=!0),l._triggerDragStart(e,t),Ml({sortable:l,name:"choose",originalEvent:e}),il(Tl,i.chosenClass,!0))},i.ignore.split(",").forEach((function(e){sl(Tl,e.trim(),Dr)})),Qn(o,"dragover",yr),Qn(o,"mousemove",yr),Qn(o,"touchmove",yr),Qn(o,"mouseup",l._onDrop),Qn(o,"touchend",l._onDrop),Qn(o,"touchcancel",l._onDrop),Kn&&this.nativeDraggable&&(this.options.touchStartThreshold=4,Tl.draggable=!0),$l("delayStart",this,{evt:e}),!i.delay||i.delayOnTouchOnly&&!t||this.nativeDraggable&&(Wn||Hn))n();else{if(wr.eventCanceled)return void this._onDrop();Qn(o,"mouseup",l._disableDelayedDrag),Qn(o,"touchend",l._disableDelayedDrag),Qn(o,"touchcancel",l._disableDelayedDrag),Qn(o,"mousemove",l._delayedDragTouchMoveHandler),Qn(o,"touchmove",l._delayedDragTouchMoveHandler),i.supportPointer&&Qn(o,"pointermove",l._delayedDragTouchMoveHandler),l._dragStartTimer=setTimeout(n,i.delay)}}},_delayedDragTouchMoveHandler:function(e){var t=e.touches?e.touches[0]:e;Math.max(Math.abs(t.clientX-this._lastX),Math.abs(t.clientY-this._lastY))>=Math.floor(this.options.touchStartThreshold/(this.nativeDraggable&&window.devicePixelRatio||1))&&this._disableDelayedDrag()},_disableDelayedDrag:function(){Tl&&Dr(Tl),clearTimeout(this._dragStartTimer),this._disableDelayedDragEvents()},_disableDelayedDragEvents:function(){var e=this.el.ownerDocument;el(e,"mouseup",this._disableDelayedDrag),el(e,"touchend",this._disableDelayedDrag),el(e,"touchcancel",this._disableDelayedDrag),el(e,"mousemove",this._delayedDragTouchMoveHandler),el(e,"touchmove",this._delayedDragTouchMoveHandler),el(e,"pointermove",this._delayedDragTouchMoveHandler)},_triggerDragStart:function(e,t){t=t||"touch"==e.pointerType&&e,!this.nativeDraggable||t?this.options.supportPointer?Qn(document,"pointermove",this._onTouchMove):Qn(document,t?"touchmove":"mousemove",this._onTouchMove):(Qn(Tl,"dragend",this),Qn(Al,"dragstart",this._onDragStart));try{document.selection?qr((function(){document.selection.empty()})):window.getSelection().removeAllRanges()}catch(e){}},_dragStarted:function(e,t){if(tr=!1,Al&&Tl){$l("dragStarted",this,{evt:t}),this.nativeDraggable&&Qn(document,"dragover",br);var a=this.options;!e&&il(Tl,a.dragClass,!1),il(Tl,a.ghostClass,!0),wr.active=this,e&&this._appendGhost(),Ml({sortable:this,name:"start",originalEvent:t})}else this._nulling()},_emulateDragOver:function(){if(Ul){this._lastX=Ul.clientX,this._lastY=Ul.clientY,gr();for(var e=document.elementFromPoint(Ul.clientX,Ul.clientY),t=e;e&&e.shadowRoot&&(e=e.shadowRoot.elementFromPoint(Ul.clientX,Ul.clientY))!==t;)t=e;if(Tl.parentNode[Dl]._isOutsideThisEl(e),t)do{if(t[Dl]){if(t[Dl]._onDragOver({clientX:Ul.clientX,clientY:Ul.clientY,target:e,rootEl:t})&&!this.options.dragoverBubble)break}e=t}while(t=t.parentNode);hr()}},_onTouchMove:function(e){if(Rl){var t=this.options,a=t.fallbackTolerance,n=t.fallbackOffset,l=e.touches?e.touches[0]:e,r=Fl&&ul(Fl,!0),i=Fl&&r&&r.a,o=Fl&&r&&r.d,u=dr&&er&&gl(er),s=(l.clientX-Rl.clientX+n.x)/(i||1)+(u?u[0]-ir[0]:0)/(i||1),d=(l.clientY-Rl.clientY+n.y)/(o||1)+(u?u[1]-ir[1]:0)/(o||1);if(!wr.active&&!tr){if(a&&Math.max(Math.abs(l.clientX-this._lastX),Math.abs(l.clientY-this._lastY))<a)return;this._onDragStart(e,!0)}if(Fl){r?(r.e+=s-(Hl||0),r.f+=d-(Wl||0)):r={a:1,b:0,c:0,d:1,e:s,f:d};var c="matrix(".concat(r.a,",").concat(r.b,",").concat(r.c,",").concat(r.d,",").concat(r.e,",").concat(r.f,")");ol(Fl,"webkitTransform",c),ol(Fl,"mozTransform",c),ol(Fl,"msTransform",c),ol(Fl,"transform",c),Hl=s,Wl=d,Ul=l}e.cancelable&&e.preventDefault()}},_appendGhost:function(){if(!Fl){var e=this.options.fallbackOnBody?document.body:Al,t=cl(Tl,!0,dr,!0,e),a=this.options;if(dr){for(er=e;"static"===ol(er,"position")&&"none"===ol(er,"transform")&&er!==document;)er=er.parentNode;er!==document.body&&er!==document.documentElement?(er===document&&(er=dl()),t.top+=er.scrollTop,t.left+=er.scrollLeft):er=dl(),ir=gl(er)}il(Fl=Tl.cloneNode(!0),a.ghostClass,!1),il(Fl,a.fallbackClass,!0),il(Fl,a.dragClass,!0),ol(Fl,"transition",""),ol(Fl,"transform",""),ol(Fl,"box-sizing","border-box"),ol(Fl,"margin",0),ol(Fl,"top",t.top),ol(Fl,"left",t.left),ol(Fl,"width",t.width),ol(Fl,"height",t.height),ol(Fl,"opacity","0.8"),ol(Fl,"position",dr?"absolute":"fixed"),ol(Fl,"zIndex","100000"),ol(Fl,"pointerEvents","none"),wr.ghost=Fl,e.appendChild(Fl),ol(Fl,"transform-origin",Kl/parseInt(Fl.style.width)*100+"% "+Xl/parseInt(Fl.style.height)*100+"%")}},_onDragStart:function(e,t){var a=this,n=e.dataTransfer,l=a.options;$l("dragStart",this,{evt:e}),wr.eventCanceled?this._onDrop():($l("setupClone",this),wr.eventCanceled||((Il=Sl(Tl)).removeAttribute("id"),Il.draggable=!1,Il.style["will-change"]="",this._hideClone(),il(Il,this.options.chosenClass,!1),wr.clone=Il),a.cloneId=qr((function(){$l("clone",a),wr.eventCanceled||(a.options.removeCloneOnHide||Al.insertBefore(Il,Tl),a._hideClone(),Ml({sortable:a,name:"clone"}))})),!t&&il(Tl,l.dragClass,!0),t?(ar=!0,a._loopId=setInterval(a._emulateDragOver,50)):(el(document,"mouseup",a._onDrop),el(document,"touchend",a._onDrop),el(document,"touchcancel",a._onDrop),n&&(n.effectAllowed="move",l.setData&&l.setData.call(a,n,Tl)),Qn(document,"drop",a),ol(Tl,"transform","translateZ(0)")),tr=!0,a._dragStartId=qr(a._dragStarted.bind(a,t,e)),Qn(document,"selectstart",a),Gl=!0,Xn&&ol(document.body,"user-select","none"))},_onDragOver:function(e){var t,a,n,l,r=this.el,i=e.target,o=this.options,u=o.group,s=wr.active,d=zl===u,c=o.sort,v=Yl||s,p=this,f=!1;if(!or){if(void 0!==e.preventDefault&&e.cancelable&&e.preventDefault(),i=nl(i,o.draggable,r,!0),M("dragOver"),wr.eventCanceled)return f;if(Tl.contains(e.target)||i.animated&&i.animatingX&&i.animatingY||p._ignoreWhileAnimating===i)return j(!1);if(ar=!1,s&&!o.disabled&&(d?c||(n=jl!==Al):Yl===this||(this.lastPutMode=zl.checkPull(this,s,Tl,e))&&u.checkPut(this,s,Tl,e))){if(l="vertical"===this._getDirection(e,i),t=cl(Tl),M("dragOverValid"),wr.eventCanceled)return f;if(n)return jl=Al,T(),this._hideClone(),M("revert"),wr.eventCanceled||(kl?Al.insertBefore(Tl,kl):Al.appendChild(Tl)),j(!0);var m=fl(r,o.draggable);if(!m||function(e,t,a){var n=cl(fl(a.el,a.options.draggable)),l=10;return t?e.clientX>n.right+l||e.clientX<=n.right&&e.clientY>n.bottom&&e.clientX>=n.left:e.clientX>n.right&&e.clientY>n.top||e.clientX<=n.right&&e.clientY>n.bottom+l}(e,l,this)&&!m.animated){if(m===Tl)return j(!1);if(m&&r===e.target&&(i=m),i&&(a=cl(i)),!1!==Sr(Al,r,Tl,t,i,a,e,!!i))return T(),m&&m.nextSibling?r.insertBefore(Tl,m.nextSibling):r.appendChild(Tl),jl=r,F(),j(!0)}else if(m&&function(e,t,a){var n=cl(pl(a.el,0,a.options,!0)),l=10;return t?e.clientX<n.left-l||e.clientY<n.top&&e.clientX<n.right:e.clientY<n.top-l||e.clientY<n.bottom&&e.clientX<n.left}(e,l,this)){var g=pl(r,0,o,!0);if(g===Tl)return j(!1);if(a=cl(i=g),!1!==Sr(Al,r,Tl,t,i,a,e,!1))return T(),r.insertBefore(Tl,g),jl=r,F(),j(!0)}else if(i.parentNode===r){a=cl(i);var h,y,b,w=Tl.parentNode!==r,S=!function(e,t,a){var n=a?e.left:e.top,l=a?e.right:e.bottom,r=a?e.width:e.height,i=a?t.left:t.top,o=a?t.right:t.bottom,u=a?t.width:t.height;return n===i||l===o||n+r/2===i+u/2}(Tl.animated&&Tl.toRect||t,i.animated&&i.toRect||a,l),D=l?"top":"left",O=vl(i,"top","top")||vl(Tl,"top","top"),C=O?O.scrollTop:void 0;if(Jl!==i&&(y=a[D],lr=!1,rr=!S&&o.invertSwap||w),h=function(e,t,a,n,l,r,i,o){var u=n?e.clientY:e.clientX,s=n?a.height:a.width,d=n?a.top:a.left,c=n?a.bottom:a.right,v=!1;if(!i)if(o&&Ql<s*l){if(!lr&&(1===Zl?u>d+s*r/2:u<c-s*r/2)&&(lr=!0),lr)v=!0;else if(1===Zl?u<d+Ql:u>c-Ql)return-Zl}else if(u>d+s*(1-l)/2&&u<c-s*(1-l)/2)return function(e){return ml(Tl)<ml(e)?1:-1}(t);if((v=v||i)&&(u<d+s*r/2||u>c-s*r/2))return u>d+s/2?1:-1;return 0}(e,i,a,l,S?1:o.swapThreshold,null==o.invertedSwapThreshold?o.swapThreshold:o.invertedSwapThreshold,rr,Jl===i),0!==h){var q=ml(Tl);do{q-=h,b=jl.children[q]}while(b&&("none"===ol(b,"display")||b===Fl))}if(0===h||b===i)return j(!1);Jl=i,Zl=h;var E=i.nextElementSibling,x=!1,$=Sr(Al,r,Tl,t,i,a,e,x=1===h);if(!1!==$)return 1!==$&&-1!==$||(x=1===$),or=!0,setTimeout(Or,30),T(),x&&!E?r.appendChild(Tl):i.parentNode.insertBefore(Tl,x?E:i),O&&wl(O,0,C-O.scrollTop),jl=Tl.parentNode,void 0===y||rr||(Ql=Math.abs(y-cl(i)[D])),F(),j(!0)}if(r.contains(Tl))return j(!1)}return!1}function M(o,u){$l(o,p,Nn({evt:e,isOwner:d,axis:l?"vertical":"horizontal",revert:n,dragRect:t,targetRect:a,canSort:c,fromSortable:v,target:i,completed:j,onMove:function(a,n){return Sr(Al,r,Tl,t,a,cl(a),e,n)},changed:F},u))}function T(){M("dragOverAnimationCapture"),p.captureAnimationState(),p!==v&&v.captureAnimationState()}function j(t){return M("dragOverCompleted",{insertion:t}),t&&(d?s._hideClone():s._showClone(p),p!==v&&(il(Tl,Yl?Yl.options.ghostClass:s.options.ghostClass,!1),il(Tl,o.ghostClass,!0)),Yl!==p&&p!==wr.active?Yl=p:p===wr.active&&Yl&&(Yl=null),v===p&&(p._ignoreWhileAnimating=i),p.animateAll((function(){M("dragOverAnimationComplete"),p._ignoreWhileAnimating=null})),p!==v&&(v.animateAll(),v._ignoreWhileAnimating=null)),(i===Tl&&!Tl.animated||i===r&&!i.animated)&&(Jl=null),o.dragoverBubble||e.rootEl||i===document||(Tl.parentNode[Dl]._isOutsideThisEl(e.target),!t&&yr(e)),!o.dragoverBubble&&e.stopPropagation&&e.stopPropagation(),f=!0}function F(){Bl=ml(Tl),Pl=ml(Tl,o.draggable),Ml({sortable:p,name:"change",toEl:r,newIndex:Bl,newDraggableIndex:Pl,originalEvent:e})}},_ignoreWhileAnimating:null,_offMoveEvents:function(){el(document,"mousemove",this._onTouchMove),el(document,"touchmove",this._onTouchMove),el(document,"pointermove",this._onTouchMove),el(document,"dragover",yr),el(document,"mousemove",yr),el(document,"touchmove",yr)},_offUpEvents:function(){var e=this.el.ownerDocument;el(e,"mouseup",this._onDrop),el(e,"touchend",this._onDrop),el(e,"pointerup",this._onDrop),el(e,"touchcancel",this._onDrop),el(document,"selectstart",this)},_onDrop:function(e){var t=this.el,a=this.options;Bl=ml(Tl),Pl=ml(Tl,a.draggable),$l("drop",this,{evt:e}),jl=Tl&&Tl.parentNode,Bl=ml(Tl),Pl=ml(Tl,a.draggable),wr.eventCanceled||(tr=!1,rr=!1,lr=!1,clearInterval(this._loopId),clearTimeout(this._dragStartTimer),Er(this.cloneId),Er(this._dragStartId),this.nativeDraggable&&(el(document,"drop",this),el(t,"dragstart",this._onDragStart)),this._offMoveEvents(),this._offUpEvents(),Xn&&ol(document.body,"user-select",""),ol(Tl,"transform",""),e&&(Gl&&(e.cancelable&&e.preventDefault(),!a.dropBubble&&e.stopPropagation()),Fl&&Fl.parentNode&&Fl.parentNode.removeChild(Fl),(Al===jl||Yl&&"clone"!==Yl.lastPutMode)&&Il&&Il.parentNode&&Il.parentNode.removeChild(Il),Tl&&(this.nativeDraggable&&el(Tl,"dragend",this),Dr(Tl),Tl.style["will-change"]="",Gl&&!tr&&il(Tl,Yl?Yl.options.ghostClass:this.options.ghostClass,!1),il(Tl,this.options.chosenClass,!1),Ml({sortable:this,name:"unchoose",toEl:jl,newIndex:null,newDraggableIndex:null,originalEvent:e}),Al!==jl?(Bl>=0&&(Ml({rootEl:jl,name:"add",toEl:jl,fromEl:Al,originalEvent:e}),Ml({sortable:this,name:"remove",toEl:jl,originalEvent:e}),Ml({rootEl:jl,name:"sort",toEl:jl,fromEl:Al,originalEvent:e}),Ml({sortable:this,name:"sort",toEl:jl,originalEvent:e})),Yl&&Yl.save()):Bl!==Vl&&Bl>=0&&(Ml({sortable:this,name:"update",toEl:jl,originalEvent:e}),Ml({sortable:this,name:"sort",toEl:jl,originalEvent:e})),wr.active&&(null!=Bl&&-1!==Bl||(Bl=Vl,Pl=Nl),Ml({sortable:this,name:"end",toEl:jl,originalEvent:e}),this.save())))),this._nulling()},_nulling:function(){$l("nulling",this),Al=Tl=jl=Fl=kl=Il=_l=Ll=Rl=Ul=Gl=Bl=Pl=Vl=Nl=Jl=Zl=Yl=zl=wr.dragged=wr.ghost=wr.clone=wr.active=null,ur.forEach((function(e){e.checked=!0})),ur.length=Hl=Wl=0},handleEvent:function(e){switch(e.type){case"drop":case"dragend":this._onDrop(e);break;case"dragenter":case"dragover":Tl&&(this._onDragOver(e),function(e){e.dataTransfer&&(e.dataTransfer.dropEffect="move");e.cancelable&&e.preventDefault()}(e));break;case"selectstart":e.preventDefault()}},toArray:function(){for(var e,t=[],a=this.el.children,n=0,l=a.length,r=this.options;n<l;n++)nl(e=a[n],r.draggable,this.el,!1)&&t.push(e.getAttribute(r.dataIdAttr)||Cr(e));return t},sort:function(e,t){var a={},n=this.el;this.toArray().forEach((function(e,t){var l=n.children[t];nl(l,this.options.draggable,n,!1)&&(a[e]=l)}),this),t&&this.captureAnimationState(),e.forEach((function(e){a[e]&&(n.removeChild(a[e]),n.appendChild(a[e]))})),t&&this.animateAll()},save:function(){var e=this.options.store;e&&e.set&&e.set(this)},closest:function(e,t){return nl(e,t||this.options.draggable,this.el,!1)},option:function(e,t){var a=this.options;if(void 0===t)return a[e];var n=El.modifyOption(this,e,t);a[e]=void 0!==n?n:t,"group"===e&&mr(a)},destroy:function(){$l("destroy",this);var e=this.el;e[Dl]=null,el(e,"mousedown",this._onTapStart),el(e,"touchstart",this._onTapStart),el(e,"pointerdown",this._onTapStart),this.nativeDraggable&&(el(e,"dragover",this),el(e,"dragenter",this)),Array.prototype.forEach.call(e.querySelectorAll("[draggable]"),(function(e){e.removeAttribute("draggable")})),this._onDrop(),this._disableDelayedDragEvents(),nr.splice(nr.indexOf(this.el),1),this.el=e=null},_hideClone:function(){if(!Ll){if($l("hideClone",this),wr.eventCanceled)return;ol(Il,"display","none"),this.options.removeCloneOnHide&&Il.parentNode&&Il.parentNode.removeChild(Il),Ll=!0}},_showClone:function(e){if("clone"===e.lastPutMode){if(Ll){if($l("showClone",this),wr.eventCanceled)return;Tl.parentNode!=Al||this.options.group.revertClone?kl?Al.insertBefore(Il,kl):Al.appendChild(Il):Al.insertBefore(Il,Tl),this.options.group.revertClone&&this.animate(Tl,Il),ol(Il,"display",""),Ll=!1}}else this._hideClone()}},sr&&Qn(document,"touchmove",(function(e){(wr.active||tr)&&e.cancelable&&e.preventDefault()})),wr.utils={on:Qn,off:el,css:ol,find:sl,is:function(e,t){return!!nl(e,t,e,!1)},extend:function(e,t){if(e&&t)for(var a in t)t.hasOwnProperty(a)&&(e[a]=t[a]);return e},throttle:bl,closest:nl,toggleClass:il,clone:Sl,index:ml,nextTick:qr,cancelNextTick:Er,detectDirection:fr,getChild:pl},wr.get=function(e){return e[Dl]},wr.mount=function(){for(var e=arguments.length,t=new Array(e),a=0;a<e;a++)t[a]=arguments[a];t[0].constructor===Array&&(t=t[0]),t.forEach((function(e){if(!e.prototype||!e.prototype.constructor)throw"Sortable: Mounted plugin must be a constructor function, not ".concat({}.toString.call(e));e.utils&&(wr.utils=Nn(Nn({},wr.utils),e.utils)),El.mount(e)}))},wr.create=function(e,t){return new wr(e,t)},wr.version="1.15.0";var xr,$r,Mr,Tr,jr,Fr,Ar=[],kr=!1;function _r(){Ar.forEach((function(e){clearInterval(e.pid)})),Ar=[]}function Ir(){clearInterval(Fr)}var Lr=bl((function(e,t,a,n){if(t.scroll){var l,r=(e.touches?e.touches[0]:e).clientX,i=(e.touches?e.touches[0]:e).clientY,o=t.scrollSensitivity,u=t.scrollSpeed,s=dl(),d=!1;$r!==a&&($r=a,_r(),xr=t.scroll,l=t.scrollFn,!0===xr&&(xr=hl(a,!0)));var c=0,v=xr;do{var p=v,f=cl(p),m=f.top,g=f.bottom,h=f.left,y=f.right,b=f.width,w=f.height,S=void 0,D=void 0,O=p.scrollWidth,C=p.scrollHeight,q=ol(p),E=p.scrollLeft,x=p.scrollTop;p===s?(S=b<O&&("auto"===q.overflowX||"scroll"===q.overflowX||"visible"===q.overflowX),D=w<C&&("auto"===q.overflowY||"scroll"===q.overflowY||"visible"===q.overflowY)):(S=b<O&&("auto"===q.overflowX||"scroll"===q.overflowX),D=w<C&&("auto"===q.overflowY||"scroll"===q.overflowY));var $=S&&(Math.abs(y-r)<=o&&E+b<O)-(Math.abs(h-r)<=o&&!!E),M=D&&(Math.abs(g-i)<=o&&x+w<C)-(Math.abs(m-i)<=o&&!!x);if(!Ar[c])for(var T=0;T<=c;T++)Ar[T]||(Ar[T]={});Ar[c].vx==$&&Ar[c].vy==M&&Ar[c].el===p||(Ar[c].el=p,Ar[c].vx=$,Ar[c].vy=M,clearInterval(Ar[c].pid),0==$&&0==M||(d=!0,Ar[c].pid=setInterval(function(){n&&0===this.layer&&wr.active._onTouchMove(jr);var t=Ar[this.layer].vy?Ar[this.layer].vy*u:0,a=Ar[this.layer].vx?Ar[this.layer].vx*u:0;"function"==typeof l&&"continue"!==l.call(wr.dragged.parentNode[Dl],a,t,e,jr,Ar[this.layer].el)||wl(Ar[this.layer].el,a,t)}.bind({layer:c}),24))),c++}while(t.bubbleScroll&&v!==s&&(v=hl(v,!1)));kr=d}}),30),Vr=function(e){var t=e.originalEvent,a=e.putSortable,n=e.dragEl,l=e.activeSortable,r=e.dispatchSortableEvent,i=e.hideGhostForTarget,o=e.unhideGhostForTarget;if(t){var u=a||l;i();var s=t.changedTouches&&t.changedTouches.length?t.changedTouches[0]:t,d=document.elementFromPoint(s.clientX,s.clientY);o(),u&&!u.el.contains(d)&&(r("spill"),this.onSpill({dragEl:n,putSortable:a}))}};function Br(){}function Nr(){}Br.prototype={startIndex:null,dragStart:function(e){var t=e.oldDraggableIndex;this.startIndex=t},onSpill:function(e){var t=e.dragEl,a=e.putSortable;this.sortable.captureAnimationState(),a&&a.captureAnimationState();var n=pl(this.sortable.el,this.startIndex,this.options);n?this.sortable.el.insertBefore(t,n):this.sortable.el.appendChild(t),this.sortable.animateAll(),a&&a.animateAll()},drop:Vr},Yn(Br,{pluginName:"revertOnSpill"}),Nr.prototype={onSpill:function(e){var t=e.dragEl,a=e.putSortable||this.sortable;a.captureAnimationState(),t.parentNode&&t.parentNode.removeChild(t),a.animateAll()},drop:Vr},Yn(Nr,{pluginName:"removeOnSpill"}),wr.mount(new function(){function e(){for(var e in this.defaults={scroll:!0,forceAutoScrollFallback:!1,scrollSensitivity:30,scrollSpeed:10,bubbleScroll:!0},this)"_"===e.charAt(0)&&"function"==typeof this[e]&&(this[e]=this[e].bind(this))}return e.prototype={dragStarted:function(e){var t=e.originalEvent;this.sortable.nativeDraggable?Qn(document,"dragover",this._handleAutoScroll):this.options.supportPointer?Qn(document,"pointermove",this._handleFallbackAutoScroll):t.touches?Qn(document,"touchmove",this._handleFallbackAutoScroll):Qn(document,"mousemove",this._handleFallbackAutoScroll)},dragOverCompleted:function(e){var t=e.originalEvent;this.options.dragOverBubble||t.rootEl||this._handleAutoScroll(t)},drop:function(){this.sortable.nativeDraggable?el(document,"dragover",this._handleAutoScroll):(el(document,"pointermove",this._handleFallbackAutoScroll),el(document,"touchmove",this._handleFallbackAutoScroll),el(document,"mousemove",this._handleFallbackAutoScroll)),Ir(),_r(),clearTimeout(ll),ll=void 0},nulling:function(){jr=$r=xr=kr=Fr=Mr=Tr=null,Ar.length=0},_handleFallbackAutoScroll:function(e){this._handleAutoScroll(e,!0)},_handleAutoScroll:function(e,t){var a=this,n=(e.touches?e.touches[0]:e).clientX,l=(e.touches?e.touches[0]:e).clientY,r=document.elementFromPoint(n,l);if(jr=e,t||this.options.forceAutoScrollFallback||Wn||Hn||Xn){Lr(e,this.options,r,t);var i=hl(r,!0);!kr||Fr&&n===Mr&&l===Tr||(Fr&&Ir(),Fr=setInterval((function(){var r=hl(document.elementFromPoint(n,l),!0);r!==i&&(i=r,_r()),Lr(e,a.options,r,t)}),10),Mr=n,Tr=l)}else{if(!this.options.bubbleScroll||hl(r,!0)===dl())return void _r();Lr(e,this.options,hl(r,!1),!1)}}},Yn(e,{pluginName:"scroll",initializeByDefault:!0})}),wr.mount(Nr,Br);var Pr=function(l,r,i,u){var{sort:s}=t(l),d=i.isDisabled,c=i.fire,v=i.refreshOrderStore,p=i.value,f=i.sorting,m=i.length,h=i.path,y=e(null),b=e(null),w=a((()=>s.value&&!d.value)),S=()=>{b.value=new wr(y.value,{handle:"[data-handle]",onStart:()=>{f.value=!0},onEnd:O})},D=()=>{var e;null===(e=b.value)||void 0===e||e.destroy(),b.value=null},O=e=>{var{oldIndex:t,newIndex:a,item:n}=e;if(f.value=!1,t!==a&&!d.value){y.value.children[a].remove(),y.value.insertBefore(n,y.value.children[t]);var l=g.cloneDeep(p.value);l.splice(a,0,l.splice(t,1)[0]),p.value=l,v(p.value),c("sort",p.value)}};return n(w,((e,t)=>{!0===e&&!1===t?S():!1===e&&!0===t&&D()}),{immediate:!1}),o((()=>{w.value&&S()})),n(m,(e=>{var t;w.value&&(null===(t=b.value)||void 0===t||t.sort(Array.from(Array(e).keys()).reduce(((e,t,a)=>(e.push("".concat(h.value,"-").concat(a)),e)),[])))}),{flush:"post"}),{list:y,sortable:b,isSortable:w,handleSort:O,initSortable:S,destroySortable:D}},zr=function(t,a,n){return{sorting:e(!1)}},Yr=function(l,r,i,o){var{storeOrder:u,orderBy:s,order:d}=t(l),c=i.form$,v=i.value,p=e(c.value.$vueform.config.orderFrom),f=e=>(u.value&&g.each(e,((t,a)=>{t[u.value]=d.value&&"DESC"===d.value.toUpperCase()?e.length-a-(0==p.value?1:0):parseInt(a)+p.value})),e),m=a((()=>s.value||u.value));return n(u,((e,t)=>{e?f(v.value):g.each(v.value,((e,a)=>{e[t]=null}))}),{immediate:!1}),{refreshOrderStore:f,orderByName:m}},Rr=function(e,n,l,r){var{storeOrder:i,orderBy:o}=t(e),{refreshOrderStore:u}=Yr(e,0,l);return{refreshOrderStore:u,orderByName:a((()=>o.value||i.value))}},Ur=function(e,n,l){var{object:r,element:i}=t(e),o=a((()=>u.value?Object.assign({},r.value,{type:"object"}):i.value||{})),u=a((()=>!!r.value));return{prototype:o,isObject:u}},Hr=function(e,n,l){var r=arguments.length>3&&void 0!==arguments[3]?arguments[3]:{},{auto:i,object:o,file:u,fields:s,storeFile:d,storeOrder:c,view:v,clickable:p,url:f,previewUrl:m,uploadTempEndpoint:h,removeTempEndpoint:y,removeEndpoint:b,params:w,softRemove:S}=t(e),D=l.isDisabled,O=a((()=>r.type||"file")),C=a((()=>d.value?d.value:o.value||g.keys(s.value).length||c.value?"file":null)),q=a((()=>!!o.value||!!c.value||!!g.keys(s.value).length)),E=a((()=>{var e={type:O.value,auto:i.value,view:v.value,layout:"gallery"===v.value?"ElementLayoutInline":"ElementLayout",disabled:D.value,clickable:p.value,url:f.value,previewUrl:m.value,uploadTempEndpoint:h.value,removeTempEndpoint:y.value,removeEndpoint:b.value,params:w.value,softRemove:S.value};return q.value?{type:"object",schema:Object.assign({},{[C.value]:Object.assign({},e,{embed:!0},u.value)},c.value?{[c.value]:{type:"hidden",meta:!0}}:{},s.value)}:Object.assign({},e,u.value)}));return{storeFileName:C,isObject:q,prototype:E}},Wr=function(e,n,l){var{controls:r,sort:i,min:o,max:u,addText:s}=t(e),d=l.isDisabled,c=l.value,v=l.form$;return{hasAdd:a((()=>!d.value&&(r.value.add||void 0===r.value.add)&&(-1===u.value||u.value>c.value.length))),hasRemove:a((()=>!d.value&&(r.value.remove||void 0===r.value.remove)&&(-1===o.value||o.value<c.value.length))),hasSort:a((()=>!d.value&&(r.value.sort||void 0===r.value.sort)&&i.value)),addLabel:a((()=>s.value||v.value.translations.vueform.elements.list.add))}},Kr=function(e,n,l){var{controls:r,sort:i}=t(e),o=l.isDisabled,u=l.hasUploading;return{hasAdd:a((()=>r.value.add||void 0===r.value.add)),hasRemove:a((()=>!o.value&&(r.value.remove||void 0===r.value.remove)&&!u.value)),hasSort:a((()=>!o.value&&(r.value.sort||void 0===r.value.sort)&&i.value&&!u.value))}},Xr={name:"ListElement",mixins:[Rt,Ut,Ha,Wa,Ka],emits:["change","add","remove","sort","beforeCreate","created","beforeMount","mounted","beforeUpdate","updated","beforeUnmount","unmounted"],props:{type:{required:!1,type:[String],default:"list",private:!0},default:{required:!1,type:[Array],default:void 0},id:{required:!1,type:[String],default:null},disabled:{required:!1,type:[Boolean],default:!1},onAdd:{required:!1,type:[Function],default:null,private:!0},onRemove:{required:!1,type:[Function],default:null,private:!0},onSort:{required:!1,type:[Function],default:null,private:!0},element:{required:!1,type:[Object],default:null},object:{required:!1,type:[Object],default:null},initial:{required:!1,type:[Number],default:1},min:{required:!1,type:[Number],default:-1},max:{required:!1,type:[Number],default:-1},addText:{required:!1,type:[String],default:null,"@default":"locale.elements.list.add"},sort:{required:!1,type:[Boolean],default:!1},controls:{required:!1,type:[Object],default:()=>({add:!0,remove:!0,sort:!0})},storeOrder:{required:!1,type:[String],default:null},order:{required:!1,type:[String],default:null},orderBy:{required:!1,type:[String],default:null}},setup:(e,t)=>(t.features=[L,V,ct,Lt,pt,gt,Va,Ur,kn,zr,Yr,k,Tt,ia,rt,wa,se,X,pa,Oa,Wr,ln,it,ot,ut,vt,st,Zt,Pr,wt,ja,ft],t.slots=["label","info","description","before","between","after"],b({},Pt(e,t)))},Gr=function(l,r,i){var u=arguments.length>3&&void 0!==arguments[3]?arguments[3]:{},{provider:s,extendOptions:d}=t(l),c=i.form$,v=i.value,p=i.clear,f=i.input,m=()=>u.input?u.input.value:f.value,g=e(null),h=e({}),y=a((()=>s.value||c.value.$vueform.config.locationProvider)),b=a((()=>({google:{fields:["geometry","formatted_address","address_components"]},algolia:{type:"address",appId:c.value.$vueform.config.services.algolia.app_id,apiKey:c.value.$vueform.config.services.algolia.api_key,templates:u.templates||{}}}[y.value]))),w=a((()=>Object.assign({},b.value,d.value||{}))),S=(e,t)=>{u.handleAddressChange?u.handleAddressChange(e,t):(h.value=t,v.value=e)},D=()=>{g.value&&g.value.destroy(),g.value=new c.value.$vueform.services.location[y.value],g.value.init(m(),S,w.value)};return n([y,w],(()=>{D()}),{deep:!0,immediate:!1}),o((()=>{D()})),{locationService:g,location:h,defaultOptions:b,providerOptions:w,handleAddressChange:S,handleLocationBlur:()=>{m().value.length?m().value=v.value.formatted_address:p()},initLocationService:D}},Jr={name:"LocationElement",mixins:[Rt,Ut,Ha,Wa,Ka],emits:["change","beforeCreate","created","beforeMount","mounted","beforeUpdate","updated","beforeUnmount","unmounted"],props:{type:{required:!1,type:[String],default:"location",private:!0},default:{required:!1,type:[Object],default:()=>({country:null,country_code:null,state:null,state_code:null,city:null,zip:null,address:null,formatted_address:null,lat:null,lng:null})},debounce:{required:!1,type:[Number],default:null},disabled:{required:!1,type:[Boolean],default:!1},floating:{required:!1,type:[String,Boolean,Object],localized:!0,default:null},id:{required:!1,type:[String],default:null},placeholder:{required:!1,type:[String,Object],localized:!0,default:null},readonly:{required:!1,type:[Boolean],default:!1},attrs:{required:!1,type:[Object],default:()=>({})},addons:{required:!1,type:[Object],localized:!0,default:()=>({})},provider:{required:!1,type:[String],default:"google"},displayKey:{required:!1,type:[String],default:"formatted_address"},extendOptions:{required:!1,type:[Object],default:()=>({})}},setup:(e,a)=>(a.features=[L,V,ct,Wt,Lt,gt,za,pt,sn,k,Mt,tn,ia,Da,ha,K,Xt,Gr,an,rt,wa,ot,ut,vt,it,st,yn,wt,Aa,ft,dn],a.slots=["label","info","description","before","between","after","addon-before","addon-after"],b({},function(e,a){var n=arguments.length>2&&void 0!==arguments[2]?arguments[2]:{},{displayKey:l}=t(e),r=Nt(e,a,n);return o((()=>{r.value.value[l.value]&&(r.input.value.value=r.value.value[l.value])})),o((()=>{r.initWatcher(),r.initMessageBag(),r.initValidation()})),b({},r)}(e,a)))},Zr=function(e,t,n){var l=n.isDisabled,r=n.add,i=n.input,o=n.isObject,u=n.storeFileName,s=n.children$;return{preparing:a((()=>g.some(s.value,{available:!0,preparing:!0}))),hasUploading:a((()=>g.some(s.value,{uploading:!0}))),handleChange:e=>{e.target&&e.target.files&&0!=e.target.files.length&&!l.value&&(g.each(e.target.files,(e=>{r(o.value?{[u.value]:e}:e)})),i.value.value="")},handleClick:()=>{l.value||i.value.click()}}},Qr={name:"MultifileElement",mixins:[Rt,Ut,Ha,Wa,Ka],emits:["change","add","remove","sort","beforeCreate","created","beforeMount","mounted","beforeUpdate","updated","beforeUnmount","unmounted"],props:{type:{required:!1,type:[String],default:"multifile",private:!0},default:{required:!1,type:[Array],default:()=>[]},initial:{required:!1,type:[Number],default:0,private:!0},disabled:{required:!1,type:[Boolean],default:!1},id:{required:!1,type:[String],default:null},onAdd:{required:!1,type:[Function],default:null,private:!0},onRemove:{required:!1,type:[Function],default:null,private:!0},onSort:{required:!1,type:[Function],default:null,private:!0},view:{type:[String],required:!1,default:"file"},drop:{required:!1,type:[Boolean],default:!1},sort:{required:!1,type:[Boolean],default:!1},controls:{required:!1,type:[Object],default:()=>({add:!0,remove:!0,sort:!0})},object:{required:!1,type:[Boolean],default:null},storeFile:{required:!1,type:[String],default:"file"},fields:{required:!1,type:[Object],default:()=>({})},storeOrder:{required:!1,type:[String],default:null},order:{required:!1,type:[String],default:null},orderBy:{required:!1,type:[String],default:null},file:{required:!1,type:[Object],default:()=>({})},accept:{required:!1,type:[String,Array],default:null},clickable:{required:!1,type:[Boolean],default:!0},url:{required:!1,type:[String,Boolean],default:"/"},previewUrl:{required:!1,type:[String],default:void 0},auto:{required:!1,type:[Boolean],default:!0},uploadTempEndpoint:{required:!1,type:[Object,String,Function],default:void 0,"@default":"config.endpoints.uploadTempFile"},removeTempEndpoint:{required:!1,type:[Object,String,Function],default:void 0,"@default":"config.endpoints.removeTempFile"},removeEndpoint:{required:!1,type:[Object,String,Function],default:void 0,"@default":"config.endpoints.removeFile"},params:{required:!1,type:[Object],default:()=>({})},softRemove:{required:!1,type:[Boolean],default:!1}},setup:(e,t)=>(t.features=[L,V,ct,Lt,gt,Va,kn,Wt,zr,Hr,pt,k,Tt,ia,rt,wa,pa,Da,ln,se,K,it,ot,ut,st,Rr,ra,Zr,Kr,Tn,vt,Pr,wt,ka,ft],t.slots=["label","info","description","before","between","after"],b({},Pt(e,t)))},ei=function(e,t,a){var n=a.fire,l=a.el$;return{handleSelect:e=>{n("select",e,l.value)},handleDeselect:e=>{n("deselect",e,l.value)},handleSearchChange:e=>{n("search-change",e,l.value)},handleOpen:()=>{n("open",l.value)},handleClose:()=>{n("close",l.value)},handleClear:()=>{n("clear",l.value)},handlePaste:e=>{n("paste",e,l.value)},handleTag:e=>{}}};var ti=function(e,t,a){var n=a.value;return{select:e=>{g.isArray(e)||(e=[e]);var t=g.clone(n.value);g.each(e,(e=>{(e=>-1!==n.value.indexOf(e))(H(e))||t.push(e)})),n.value=t},deselect:e=>{g.isArray(e)||(e=[e]);var t=g.clone(n.value),a=[];g.each(e,(e=>{var t=n.value.indexOf(e);-1!==t&&-1===a.indexOf(t)&&a.push(t)})),n.value=function(e,t){t.sort();for(var a=t.length-1;a>=0;a--)e.splice(t[a],1);return e}(t,a)}}},ai=function(e,n,l){var{loading:r}=t(e),i=l.pending;return{isLoading:a((()=>i.value||r.value))}},ni={name:"MultiselectElement",mixins:[Rt,Ut,Ha,Wa,Ka],emits:["change","select","deselect","search-change","open","close","clear","paste","beforeCreate","created","beforeMount","mounted","beforeUpdate","updated","beforeUnmount","unmounted"],props:{type:{required:!1,type:[String],default:"multiselect",private:!0},default:{required:!1,type:[Array],default:()=>[]},disabled:{required:!1,type:[Boolean],default:!1},floating:{required:!1,type:[String,Boolean,Object],localized:!0,default:null},id:{required:!1,type:[String],default:null},placeholder:{required:!1,type:[String,Object],localized:!0,default:null,native:!1},attrs:{required:!1,type:[Object],default:()=>({})},onSelect:{required:!1,type:[Function],default:null,private:!0},onDeselect:{required:!1,type:[Function],default:null,private:!0},onSearchChange:{required:!1,type:[Function],default:null,private:!0},onOpen:{required:!1,type:[Function],default:null,private:!0},onClose:{required:!1,type:[Function],default:null,private:!0},onClear:{required:!1,type:[Function],default:null,private:!0},onPaste:{required:!1,type:[Function],default:null,private:!0},native:{required:!1,type:[Boolean],default:!0},items:{required:!1,type:[Object,Array,Function,String],localized:!0,default:()=>({})},labelProp:{type:[String],required:!1,default:"label",native:!1},valueProp:{type:[String],required:!1,default:"value",native:!1},dataKey:{type:[String],required:!1,default:void 0},searchParam:{type:[String],required:!1,default:"query"},search:{required:!1,type:[Boolean],default:!1,native:!1},trackBy:{type:[String],required:!1,default:"label",native:!1},strict:{type:[Boolean],required:!1,default:!0,native:!1},multipleLabel:{type:[Function],required:!1,native:!1},multipleLabelSingle:{type:[String],required:!1,native:!1,"@default":"locale.vueform.multiselect.multipleLabelOne"},multipleLabelMultiple:{type:[String],required:!1,native:!1,"@default":"locale.vueform.multiselect.multipleLabelMore"},create:{required:!1,type:[Boolean],default:!1,native:!1},appendNewOption:{type:[Boolean],required:!1,default:!0,native:!1},addOptionOn:{type:[Array],required:!1,default:()=>["enter"],native:!1},object:{type:[Boolean],required:!1,default:!1,native:!1},limit:{type:[Number],required:!1,default:-1,native:!1},max:{type:[Number],required:!1,default:-1,native:!1},groups:{type:[Boolean],required:!1,default:!1,native:!1},groupLabel:{type:[String],required:!1,default:"label",native:!1},groupOptions:{type:[String],required:!1,default:"items",native:!1},groupHideEmpty:{type:[Boolean],required:!1,default:!1,native:!1},groupSelect:{type:[Boolean],required:!1,default:!0,native:!1},openDirection:{type:[String],required:!1,default:"bottom",native:!1},canClear:{type:[Boolean],required:!1,default:!0,native:!1},clearOnSelect:{type:[Boolean],required:!1,default:!0,native:!1},closeOnSelect:{type:[Boolean],required:!1,default:!0,native:!1},closeOnDeselect:{type:[Boolean],required:!1,default:!1,native:!1},delay:{type:[Number],required:!1,default:-1,native:!1},minChars:{type:[Number],required:!1,default:0,native:!1},resolveOnLoad:{type:[Boolean],required:!1,default:!0,native:!1},filterResults:{type:[Boolean],required:!1,default:!0,native:!1},clearOnSearch:{type:[Boolean],required:!1,default:!1,native:!1},hideSelected:{type:[Boolean],required:!1,default:!0,native:!1},caret:{type:[Boolean],required:!1,default:!0,native:!1},loading:{type:[Boolean],required:!1,default:!1,native:!1},noOptionsText:{type:[String,Object],required:!1,default:void 0,"@default":"locale.multiselect.noOptions",localized:!0,native:!1},noResultsText:{type:[String,Object],required:!1,default:void 0,"@default":"locale.multiselect.noResults",localized:!0,native:!1},autocomplete:{type:[String],required:!1,native:!1},inputType:{type:[String],required:!1,default:"text",native:!1},extendOptions:{required:!1,type:[Object],default:()=>({})}},setup:(e,t)=>(t.features=[L,V,ct,Wt,Lt,gt,Va,pt,sn,k,_t,ia,ca,ai,fn,Ja,Da,K,Xt,ln,rt,wa,ot,ut,vt,it,st,ei,ti,Dn,wt,Ma,ft,dn],t.slots=["option","multiple-label","placeholder","group-label","before-list","after-list","no-results","no-options","caret","spinner","clear","label","info","description","before","between","after"],b({},Pt(e,t)))},li={name:"ObjectElement",mixins:[Rt,Ut,Ha,Wa,Ka],emits:["change","remove","beforeCreate","created","beforeMount","mounted","beforeUpdate","updated","beforeUnmount","unmounted"],props:{type:{required:!1,type:[String],default:"object",private:!0},default:{required:!1,type:[Object],default:()=>({})},id:{required:!1,type:[String],default:null},schema:{required:!1,type:[Object],default:()=>({})},embed:{required:!1,type:[Boolean],default:!1},onRemove:{required:!1,type:[Function],default:null,private:!0}},setup:(e,t)=>(t.features=[L,V,ct,Lt,pt,Pa,k,Mt,ua,Ca,rt,_n,se,G,ba,ot,ut,vt,it,st,Gt,wt,Fa,ft],t.slots=["label","info","description","before","between","after"],b({},Pt(e,t)))},ri=function(l,r,i){var{radioName:u,radioValue:s}=t(l),d=i.update,c=i.nullValue,v=i.fieldId,p=i.path,f=i.form$,m=e([]),g=a((()=>u.value||p.value)),h=(e,t)=>{t&&f.value.$el.querySelectorAll('input[name="'.concat(e,'"')).forEach(((e,t)=>{m.value[t]&&e.removeEventListener("change",m.value[t])})),f.value.$el.querySelectorAll('input[name="'.concat(e,'"')).forEach((e=>{var t=()=>{e.id!=v.value&&d(c.value)};m.value.push(t),e.addEventListener("change",t)}))};return o((()=>{h(g.value)})),n(g,h),{inputName:g,check:()=>{d(s.value)},uncheck:()=>{d(c.value)}}},ii={name:"RadioElement",mixins:[Rt,Ut,Ha,Wa,Ka],emits:["change","beforeCreate","created","beforeMount","mounted","beforeUpdate","updated","beforeUnmount","unmounted"],props:{type:{required:!1,type:[String],default:"radio",private:!0},default:{required:!1,type:[String,Number],default:null},disabled:{required:!1,type:[Boolean],default:!1},id:{required:!1,type:[String],default:null},radioName:{required:!1,type:[String],default:null},radioValue:{required:!1,type:[Boolean,String,Number],default:1},text:{required:!1,type:[String,Object],localized:!0,default:null}},setup:(e,t)=>(t.features=[L,V,ct,Wt,Lt,gt,pt,k,Mt,La,ia,K,ca,Da,Xt,rt,wa,ot,ut,vt,it,st,ri,Et,Ma,ft,Ia],t.slots=["default","label","info","description","before","between","after"],b({},Pt(e,t)))},oi={name:"RadiogroupElement",mixins:[Rt,Ut,Ha,Wa,Ka],emits:["change","beforeCreate","created","beforeMount","mounted","beforeUpdate","updated","beforeUnmount","unmounted"],props:{type:{required:!1,type:[String],default:"radiogroup",private:!0},default:{required:!1,type:[String,Number],default:null},disabled:{required:!1,type:[Boolean],default:!1},id:{required:!1,type:[String],default:null},items:{required:!1,type:[Object,Array,Function,String],localized:!0,default:()=>({})},disables:{required:!1,type:[Array],default:()=>[]}},setup:(e,t)=>(t.features=[L,V,ct,Lt,La,pt,k,Mt,bt,Qa,ia,K,ca,Da,Xt,rt,wa,ot,ut,vt,it,st,qt,Ma,ft],t.slots=["radio","label","info","description","before","between","after"],b({},Pt(e,t)))},ui={name:"SelectElement",mixins:[Rt,Ut,Ha,Wa,Ka],emits:["change","select","deselect","search-change","open","close","clear","paste","beforeCreate","created","beforeMount","mounted","beforeUpdate","updated","beforeUnmount","unmounted"],props:{type:{required:!1,type:[String],default:"select",private:!0},default:{required:!1,type:[String,Number,Object],default:null},disabled:{required:!1,type:[Boolean],default:!1},floating:{required:!1,type:[String,Boolean,Object],localized:!0,default:null},id:{required:!1,type:[String],default:null},placeholder:{required:!1,type:[String,Object],localized:!0,default:null},attrs:{required:!1,type:[Object],default:()=>({})},onSelect:{required:!1,type:[Function],default:null,private:!0},onDeselect:{required:!1,type:[Function],default:null,private:!0},onSearchChange:{required:!1,type:[Function],default:null,private:!0},onOpen:{required:!1,type:[Function],default:null,private:!0},onClose:{required:!1,type:[Function],default:null,private:!0},onClear:{required:!1,type:[Function],default:null,private:!0},onPaste:{required:!1,type:[Function],default:null,private:!0},native:{required:!1,type:[Boolean],default:!0},items:{required:!1,type:[Object,Array,Function,String],localized:!0,default:()=>({})},labelProp:{type:[String],required:!1,default:"label"},valueProp:{type:[String],required:!1,default:"value"},dataKey:{type:[String],required:!1,default:void 0},searchParam:{type:[String],required:!1,default:"query"},search:{required:!1,type:[Boolean],default:!1,native:!1},trackBy:{type:[String],required:!1,default:"label",native:!1},strict:{type:[Boolean],required:!1,default:!0,native:!1},create:{required:!1,type:[Boolean],default:!1,native:!1},appendNewOption:{type:[Boolean],required:!1,default:!0,native:!1},addOptionOn:{type:[Array],required:!1,default:()=>["enter"],native:!1},object:{type:[Boolean],required:!1,default:!1,native:!1},limit:{type:[Number],required:!1,default:-1,native:!1},groups:{type:[Boolean],required:!1,default:!1,native:!1},groupLabel:{type:[String],required:!1,default:"label",native:!1},groupOptions:{type:[String],required:!1,default:"items",native:!1},groupHideEmpty:{type:[Boolean],required:!1,default:!1,native:!1},openDirection:{type:[String],required:!1,default:"bottom",native:!1},canDeselect:{type:[Boolean],required:!1,default:!0,native:!1},canClear:{type:[Boolean],required:!1,default:!0,native:!1},closeOnSelect:{type:[Boolean],required:!1,default:!0,native:!1},closeOnDeselect:{type:[Boolean],required:!1,default:!1,native:!1},delay:{type:[Number],required:!1,default:-1,native:!1},minChars:{type:[Number],required:!1,default:0,native:!1},resolveOnLoad:{type:[Boolean],required:!1,default:!0,native:!1},filterResults:{type:[Boolean],required:!1,default:!0,native:!1},clearOnSearch:{type:[Boolean],required:!1,default:!1,native:!1},caret:{type:[Boolean],required:!1,default:!0,native:!1},truncate:{type:[Boolean],required:!1,default:!0,native:!1},loading:{type:[Boolean],required:!1,default:!1,native:!1},noOptionsText:{type:[String,Object],required:!1,default:void 0,"@default":"locale.multiselect.noOptions",localized:!0,native:!1},noResultsText:{type:[String,Object],required:!1,default:void 0,"@default":"locale.multiselect.noResults",localized:!0,native:!1},autocomplete:{type:[String],required:!1,native:!1},inputType:{type:[String],required:!1,default:"text",native:!1},extendOptions:{required:!1,type:[Object],default:()=>({})}},setup:(e,t)=>(t.features=[L,V,ct,Wt,Lt,gt,La,pt,sn,k,Mt,ia,ca,ai,pn,Ja,Da,K,Xt,an,rt,wa,ot,ut,vt,it,st,ei,wn,wt,Ma,ft,dn],t.slots=["option","single-label","placeholder","group-label","before-list","after-list","no-results","no-options","caret","spinner","clear","label","info","description","before","between","after"],b({},Pt(e,t)))},si=function(e,a,n){var{lazy:l}=t(e),r=n.value;return{handleUpdate:e=>{l.value||(r.value=e)}}},di={name:"SliderElement",mixins:[Rt,Ut,Ha,Wa,Ka],emits:["change","beforeCreate","created","beforeMount","mounted","beforeUpdate","updated","beforeUnmount","unmounted"],props:{type:{required:!1,type:[String],default:"slider",private:!0},default:{required:!1,type:[Number,Array],default:0},disabled:{required:!1,type:[Boolean],default:!1},id:{required:!1,type:[String],default:null},min:{required:!1,type:[Number],default:0},max:{required:!1,type:[Number],default:100},step:{required:!1,type:[Number],default:1},tooltips:{required:!1,type:[Boolean],default:!0},showTooltip:{required:!1,type:[String],default:"always"},tooltipPosition:{required:!1,type:[String],default:null},merge:{required:!1,type:[Number],default:-1},format:{required:!1,type:[Object,Function],default:null},orientation:{required:!1,type:[String],default:"horizontal"},direction:{required:!1,type:[String],default:"ltr"},lazy:{required:!1,type:[Boolean],default:!0,private:!0},extendOptions:{required:!1,type:[Object],default:()=>({})}},setup:(e,t)=>(t.features=[L,V,ct,Wt,Lt,gt,Na,pt,k,Mt,ia,gn,Da,ma,K,Xt,rt,wa,ot,ut,vt,it,st,un,si,wt,Ma,ft],t.slots=["label","info","description","before","between","after"],b({},Pt(e,t)))},ci=function(e,n,l){var{content:r}=t(e);return{isHtml:a((()=>"string"==typeof r.value))}},vi={name:"StaticElement",mixins:[Rt,Ut],emits:["beforeCreate","created","beforeMount","mounted","beforeUpdate","updated","beforeUnmount","unmounted"],props:{type:{required:!1,type:[String],default:"static",private:!0},id:{required:!1,type:[String],default:null},content:{required:!1,type:[String,Object],default:""},wrap:{required:!1,type:[Boolean],default:!0}},setup:(e,t)=>(t.features=[L,V,ct,Bt,ci,k,Ft,K,rt,ot,ut,vt,it,st,pt,Ct,ft],t.slots=["default","label","info","description","before","between","after"],b({},zt(e,t)))},pi=function(e,t,a){var n=a.fire,l=a.el$;return{handleTag:e=>{n("tag",e,l.value)}}},fi={name:"TagsElement",mixins:[Rt,Ut,Ha,Wa,Ka],emits:["change","select","deselect","search-change","open","close","tag","clear","paste","beforeCreate","created","beforeMount","mounted","beforeUpdate","updated","beforeUnmount","unmounted"],props:{type:{required:!1,type:[String],default:"tags",private:!0},default:{required:!1,type:[Array],default:()=>[]},disabled:{required:!1,type:[Boolean],default:!1},floating:{required:!1,type:[String,Boolean,Object],localized:!0,default:null},id:{required:!1,type:[String],default:null},placeholder:{required:!1,type:[String,Object],localized:!0,default:null},attrs:{required:!1,type:[Object],default:()=>({})},onSelect:{required:!1,type:[Function],default:null,private:!0},onDeselect:{required:!1,type:[Function],default:null,private:!0},onSearchChange:{required:!1,type:[Function],default:null,private:!0},onOpen:{required:!1,type:[Function],default:null,private:!0},onClose:{required:!1,type:[Function],default:null,private:!0},onTag:{required:!1,type:[Function],default:null,private:!0},onClear:{required:!1,type:[Function],default:null,private:!0},onPaste:{required:!1,type:[Function],default:null,private:!0},items:{required:!1,type:[Object,Array,Function,String],localized:!0,default:()=>({})},labelProp:{type:[String],required:!1,default:"label",native:!1},valueProp:{type:[String],required:!1,default:"value",native:!1},dataKey:{type:[String],required:!1,default:void 0},searchParam:{type:[String],required:!1,default:"query"},search:{required:!1,type:[Boolean],default:!1,native:!1},trackBy:{type:[String],required:!1,default:"label",native:!1},strict:{type:[Boolean],required:!1,default:!0,native:!1},create:{required:!1,type:[Boolean],default:!1},appendNewOption:{type:[Boolean],required:!1,default:!0},addOptionOn:{type:[Array],required:!1,default:()=>["enter"]},object:{type:[Boolean],required:!1,default:!1,native:!1},limit:{type:[Number],required:!1,default:-1,native:!1},max:{type:[Number],required:!1,default:-1,native:!1},groups:{type:[Boolean],required:!1,default:!1,native:!1},groupLabel:{type:[String],required:!1,default:"label",native:!1},groupOptions:{type:[String],required:!1,default:"items",native:!1},groupHideEmpty:{type:[Boolean],required:!1,default:!1,native:!1},groupSelect:{type:[Boolean],required:!1,default:!0,native:!1},openDirection:{type:[String],required:!1,default:"bottom",native:!1},canClear:{type:[Boolean],required:!1,default:!0,native:!1},clearOnSelect:{type:[Boolean],required:!1,default:!0,native:!1},closeOnSelect:{type:[Boolean],required:!1,default:!0,native:!1},closeOnDeselect:{type:[Boolean],required:!1,default:!1,native:!1},delay:{type:[Number],required:!1,default:-1,native:!1},minChars:{type:[Number],required:!1,default:0,native:!1},resolveOnLoad:{type:[Boolean],required:!1,default:!0,native:!1},filterResults:{type:[Boolean],required:!1,default:!0,native:!1},clearOnSearch:{type:[Boolean],required:!1,default:!1,native:!1},hideSelected:{type:[Boolean],required:!1,default:!0,native:!1},showOptions:{type:[Boolean],required:!1,default:!0},caret:{type:[Boolean],required:!1,default:!0,native:!1},loading:{type:[Boolean],required:!1,default:!1,native:!1},noOptionsText:{type:[String,Object],required:!1,default:void 0,"@default":"locale.multiselect.noOptions",localized:!0,native:!1},noResultsText:{type:[String,Object],required:!1,default:void 0,"@default":"locale.multiselect.noResults",localized:!0,native:!1},autocomplete:{type:[String],required:!1,native:!1},inputType:{type:[String],required:!1,default:"text",native:!1},extendOptions:{required:!1,type:[Object],default:()=>({})}},setup:(e,t)=>(t.features=[L,V,ct,Wt,Lt,gt,Va,pt,sn,k,It,ia,ca,ai,mn,Ja,Da,K,Xt,ln,rt,wa,ot,ut,vt,it,st,ei,pi,ti,On,wt,Ma,ft,dn],t.slots=["tag","option","placeholder","group-label","before-list","after-list","no-results","no-options","caret","spinner","clear","label","info","description","before","between","after"],b({},Pt(e,t)))},mi=function(e,t,a){var n=a.model;return{handleInput:e=>{n.value=e.target.value}}},gi=function(e,a,l){var{autogrow:r}=t(e),i=l.form$,u=l.input,s=l.value,d=()=>{r.value&&i.value.$vueform.services.autosize.update(u.value)};return n(r,(e=>{e?i.value.$vueform.services.autosize(u.value):i.value.$vueform.services.autosize.destroy(u.value)})),n(s,(()=>{d()})),o((()=>{r.value&&p((()=>{i.value.$vueform.services.autosize(u.value)}))})),{autosize:d}},hi=function(e,t,a){var{autosize:n}=gi(e,0,a),l=a.form$;return o((()=>{l.value.on("language",(()=>{n()}))})),{autosize:n}},yi=function(e,t,a){var n=a.fire,l=a.el$;return{handleBlur:()=>{n("blur",l.value)}}},bi=function(e,t,a){var{fire:n,el$:l}=a;return{handleKeydown:e=>{n("keydown",e,l.value)},handleKeyup:e=>{n("keyup",e,l.value)},handleKeypress:e=>{n("keypress",e,l.value)}}},wi={name:"TextareaElement",mixins:[Rt,Ut,Ha,Wa,Ka],emits:["change","blur","keydown","keyup","keypress","beforeCreate","created","beforeMount","mounted","beforeUpdate","updated","beforeUnmount","unmounted"],props:{type:{required:!1,type:[String],default:"textarea",private:!0},default:{required:!1,type:[String,Number,Object],localized:!0,default:null},addons:{required:!1,type:[Object],localized:!0,default:()=>({})},autogrow:{required:!1,type:[Boolean],default:!0},rows:{required:!1,type:[Number],default:3},debounce:{required:!1,type:[Number],default:null},disabled:{required:!1,type:[Boolean],default:!1},floating:{required:!1,type:[String,Boolean,Object],localized:!0,default:null},id:{required:!1,type:[String],default:null},placeholder:{required:!1,type:[String,Object],localized:!0,default:null},readonly:{required:!1,type:[Boolean],default:!1},attrs:{required:!1,type:[Object],default:()=>({})},onBlur:{required:!1,type:[Function],default:null,private:!0},onKeydown:{required:!1,type:[Function],default:null,private:!0},onKeyup:{required:!1,type:[Function],default:null,private:!0},onKeypress:{required:!1,type:[Function],default:null,private:!0}},setup:(e,t)=>(t.features=[L,V,ct,Wt,Lt,gt,La,pt,sn,k,Mt,tn,oa,K,va,Da,Xt,an,rt,wa,ot,ut,vt,it,st,mi,gi,yn,yi,wt,Ma,ft,bi,dn],t.slots=["label","info","description","before","between","after","addon-before","addon-after"],b({},Pt(e,t)))},Si={name:"TextElement",mixins:[Rt,Ut,Ha,Wa,Ka],emits:["change","blur","keydown","keyup","keypress","beforeCreate","created","beforeMount","mounted","beforeUpdate","updated","beforeUnmount","unmounted"],props:{type:{required:!1,type:[String],default:"text",private:!0},default:{required:!1,type:[String,Number,Object],localized:!0,default:null},debounce:{required:!1,type:[Number],default:null},disabled:{required:!1,type:[Boolean],default:!1},floating:{required:!1,type:[String,Boolean,Object],localized:!0,default:null},id:{required:!1,type:[String],default:null},placeholder:{required:!1,type:[String,Object],localized:!0,default:null},readonly:{required:!1,type:[Boolean],default:!1},inputType:{required:!1,type:[String],default:"text"},attrs:{required:!1,type:[Object],default:()=>({})},addons:{required:!1,type:[Object],localized:!0,default:()=>({})},autocomplete:{required:!1,type:[String,Number],default:null},loading:{type:[Boolean],required:!1,default:!1},onBlur:{required:!1,type:[Function],default:null,private:!0},onKeydown:{required:!1,type:[Function],default:null,private:!0},onKeyup:{required:!1,type:[Function],default:null,private:!0},onKeypress:{required:!1,type:[Function],default:null,private:!0}},setup:(e,t)=>(t.features=[L,V,ct,Wt,Lt,gt,La,pt,sn,k,Mt,tn,oa,K,va,ai,Da,Xt,an,rt,wa,ot,ut,vt,it,st,mi,yn,yi,wt,Ma,ft,bi,dn],t.slots=["label","info","description","before","between","after","addon-before","addon-after"],b({},Pt(e,t)))},Di={name:"ToggleElement",mixins:[Rt,Ut,Ha,Wa,Ka],emits:["change","beforeCreate","created","beforeMount","mounted","beforeUpdate","updated","beforeUnmount","unmounted"],props:{type:{required:!1,type:[String],default:"toggle",private:!0},default:{required:!1,type:[String,Number,Boolean],default:void 0},disabled:{required:!1,type:[Boolean],default:!1},id:{required:!1,type:[String],default:null},text:{required:!1,type:[String,Object],localized:!0,default:null},labels:{required:!1,type:[Object],localized:!0,default:()=>({})},trueValue:{required:!1,type:[Boolean,String,Number],default:!0},falseValue:{required:!1,type:[Boolean,String,Number],default:!1},extendOptions:{required:!1,type:[Object],default:()=>({})}},setup:(e,t)=>(t.features=[L,V,ct,Wt,Lt,gt,Ba,pt,k,Mt,hn,ia,K,ca,Da,Xt,rt,wa,ot,ut,vt,it,st,un,Ra,xt,Ma,ft,Ia],t.slots=["default","label","info","description","before","between","after"],b({},Pt(e,t)))},Oi=function(n,l,r){var{endpoint:i,method:u}=t(n),s=r.form$,d=r.input,c=e(!1),v=a((()=>i.value||s.value.$vueform.config.endpoints.attachment.url)),p=a((()=>u.value||s.value.$vueform.config.endpoints.attachment.method));return o((()=>{d.value.editor$.addEventListener("focus",(()=>{c.value=!0})),d.value.editor$.addEventListener("blur",(()=>{c.value=!1}))})),{editorEndpoint:v,editorMethod:p,focused:c}},Ci=function(e,t,a){var n=a.fire,l=a.listeners;return{handleAlert:e=>{n("alert",e),l.value.alert||alert(e)}}},qi={name:"EditorElement",mixins:[Rt,Ut,Ha,Wa,Ka],emits:["change","blur","alert","error","beforeCreate","created","beforeMount","mounted","beforeUpdate","updated","beforeUnmount","unmounted"],props:{type:{required:!1,type:[String],default:"editor",private:!0},default:{required:!1,type:[String,Number,Object],localized:!0,default:null},debounce:{required:!1,type:[Number],default:null},disabled:{required:!1,type:[Boolean],default:!1},id:{required:!1,type:[String],default:null},placeholder:{required:!1,type:[String,Object],localized:!0,default:null},onError:{required:!1,type:[Function],default:null,private:!0},onAlert:{required:!1,type:[Function],default:null,private:!0},accept:{required:!1,type:[Array],default:()=>[]},acceptMimes:{required:!1,type:[Array],default:()=>[]},endpoint:{required:!1,type:[String,Function],default:null,"@default":"config.endpoints.attachment.url"},method:{required:!1,type:[String],default:null,"@default":"config.endpoints.attachment.method"},hideTools:{required:!1,type:[Array],default:()=>[]},onBlur:{required:!1,type:[Function],default:null,private:!0}},setup:(e,t)=>(t.features=[L,V,ct,Wt,Lt,gt,La,pt,k,Mt,oa,K,va,Da,aa,an,rt,wa,ot,ut,Oi,vt,it,st,mi,Ci,Fn,yi,wt,Ma,mt,dn],t.slots=["label","info","description","before","between","after"],b({},Pt(e,t)))},Ei=function(e,t,n){var l=n.form$;return{language:a((()=>l.value.selectedLanguage)),languages:a((()=>g.keys(l.value.options.languages)))}},xi={name:"TTextareaElement",mixins:[Rt,Ut,Ha,Wa,Ka],emits:["change","blur","keydown","keyup","keypress","beforeCreate","created","beforeMount","mounted","beforeUpdate","updated","beforeUnmount","unmounted"],props:{type:{required:!1,type:[String],default:"t-textarea",private:!0},default:{required:!1,type:[Object,String,Number],localized:!0,default:null},addons:{required:!1,type:[Object],localized:!0,default:()=>({})},autogrow:{required:!1,type:[Boolean],default:!0},rows:{required:!1,type:[Number],default:3},debounce:{required:!1,type:[Number],default:null},disabled:{required:!1,type:[Boolean],default:!1},floating:{required:!1,type:[String,Boolean,Object],localized:!0,default:null},id:{required:!1,type:[String],default:null},placeholder:{required:!1,type:[String,Object],localized:!0,default:null},readonly:{required:!1,type:[Boolean],default:!1},attrs:{required:!1,type:[Object],default:()=>({})},onBlur:{required:!1,type:[Function],default:null,private:!0},onKeydown:{required:!1,type:[Function],default:null,private:!0},onKeyup:{required:!1,type:[Function],default:null,private:!0},onKeypress:{required:!1,type:[Function],default:null,private:!0}},setup:(e,t)=>(t.features=[L,V,ct,Wt,Lt,gt,pt,sn,k,Mt,tn,Ei,Ya,da,Ea,K,fa,ta,nn,rt,wa,ot,ut,vt,it,st,mi,hi,yn,yi,wt,Ta,ft,bi,dn],t.slots=["label","info","description","before","between","after","addon-before","addon-after"],b({},Yt(e,t)))},$i={name:"TTextElement",mixins:[Rt,Ut,Ha,Wa,Ka],emits:["change","blur","keydown","keyup","keypress","beforeCreate","created","beforeMount","mounted","beforeUpdate","updated","beforeUnmount","unmounted"],props:{type:{required:!1,type:[String],default:"t-text",private:!0},default:{required:!1,type:[Object,String,Number],localized:!0,default:void 0},addons:{required:!1,type:[Object],localized:!0,default:()=>({})},autocomplete:{required:!1,type:[String,Number],default:null},debounce:{required:!1,type:[Number],default:null},disabled:{required:!1,type:[Boolean],default:!1},floating:{required:!1,type:[String,Boolean,Object],localized:!0,default:null},id:{required:!1,type:[String],default:null},inputType:{required:!1,type:[String],default:"text"},attrs:{required:!1,type:[Object],default:()=>({})},placeholder:{required:!1,type:[String,Object],localized:!0,default:null},readonly:{required:!1,type:[Boolean],default:!1},loading:{type:[Boolean],required:!1,default:!1},onBlur:{required:!1,type:[Function],default:null,private:!0},onKeydown:{required:!1,type:[Function],default:null,private:!0},onKeyup:{required:!1,type:[Function],default:null,private:!0},onKeypress:{required:!1,type:[Function],default:null,private:!0}},setup:(e,t)=>(t.features=[L,V,ct,Wt,Lt,gt,pt,sn,k,Mt,tn,Ei,Ya,da,Ea,K,fa,ai,ta,nn,rt,wa,ot,ut,vt,it,st,mi,yn,yi,wt,Ta,ft,bi,dn],t.slots=["label","info","description","before","between","after","addon-before","addon-after"],b({},Yt(e,t)))},Mi={name:"TEditorElement",mixins:[Rt,Ut,Ha,Wa,Ka],emits:["change","blur","alert","error","beforeCreate","created","beforeMount","mounted","beforeUpdate","updated","beforeUnmount","unmounted"],props:{type:{required:!1,type:[String],default:"t-editor",private:!0},default:{required:!1,type:[Object,String,Number],localized:!0,default:null},debounce:{required:!1,type:[Number],default:null},disabled:{required:!1,type:[Boolean],default:!1},id:{required:!1,type:[String],default:null},placeholder:{required:!1,type:[String,Object],localized:!0,default:null},onError:{required:!1,type:[Function],default:null,private:!0},onAlert:{required:!1,type:[Function],default:null,private:!0},accept:{required:!1,type:[Array],default:null},acceptMimes:{required:!1,type:[Array],default:null},endpoint:{required:!1,type:[String,Function],default:null,"@default":"config.endpoints.attachment.url"},method:{required:!1,type:[String],default:null,"@default":"config.endpoints.attachment.method"},hideTools:{required:!1,type:[Array],default:()=>[]},onBlur:{required:!1,type:[Function],default:null,private:!0}},setup:(e,t)=>(t.features=[L,V,ct,Wt,Lt,gt,pt,k,Mt,Ei,Ya,da,Ea,K,fa,na,nn,rt,wa,ot,ut,Oi,vt,it,st,mi,Ci,Fn,yi,wt,Ta,ft,dn],t.slots=["label","info","description","before","between","after"],b({},Yt(e,t)))},Ti={name:"FilePreview",props:{attrs:{required:!1,type:[Object],default:()=>({})}},setup(e,t){var{el$:n,form$:l,Size:r,View:i,classesInstance:o,classes:u,Templates:s,template:d,theme:c}=ce(e,t),{visible:v,hasLink:f,hasError:m,link:g,filename:h,clickable:y,uploaded:b,uploading:w,progress:D,canRemove:O,canUploadTemp:C,uploadText:q,ariaLabelledby:E,upload:x,remove:$,handleKeyup:M}=function(e,t,n){var l=n.el$,r=n.form$,i=a((()=>l.value.stage>0)),o=a((()=>l.value.link&&l.value.clickable)),u=a((()=>l.value.hasUploadError)),s=a((()=>l.value.link)),d=a((()=>{var e=l.value.filename&&"string"==typeof l.value.filename?l.value.filename.split("\\").pop().split("/").pop():l.value.filename;return e&&(e=e.split("?")[0]),e})),c=a((()=>l.value.clickable)),v=a((()=>l.value.stage>1)),f=a((()=>l.value.uploading)),m=a((()=>l.value.progress)),g=a((()=>(l.value.canRemove||l.value.uploading)&&!l.value.isDisabled)),h=a((()=>l.value.canUploadTemp)),y=a((()=>r.value.translations.vueform.elements.file.upload)),b=a((()=>l.value.embed?void 0:l.value.labelId)),w=()=>{l.value.uploadTemp()},D=()=>{f.value?l.value.handleAbort():l.value.handleRemove()},O=function(){var e=S((function*(e){switch(e.key){case"Backspace":case"Delete":if(D(),!l.value.canSelect)return;yield p(),document.querySelector("#".concat(l.value.fieldId)).focus();break;case"Enter":if(l.value.auto)return;w()}}));return function(t){return e.apply(this,arguments)}}();return{visible:i,hasLink:o,hasError:u,link:s,filename:d,clickable:c,uploaded:v,uploading:f,progress:m,canRemove:g,canUploadTemp:h,uploadText:y,ariaLabelledby:b,upload:w,remove:D,handleKeyup:O}}(0,0,{el$:n,form$:l}),T=a((()=>-1!==["image","gallery"].indexOf(n.value.View)?n.value.preview:null)),j=a((()=>{var e=n.value.embed&&"gallery"!==n.value.View?void 0:h.value;return m.value&&(e?e+=", error":e="error"),e})),F=a((()=>n.value.embed&&"gallery"!==n.value.View||b.value||n.value.auto?void 0:q.value));return{el$:n,form$:l,Size:r,View:i,classesInstance:o,classes:u,Templates:s,template:d,theme:c,visible:v,hasLink:f,hasError:m,link:g,filename:h,clickable:y,uploaded:b,uploading:w,progress:D,canRemove:O,canUploadTemp:C,uploadText:q,preview:T,ariaLabelledby:E,ariaPlaceholder:j,ariaRoledescription:F,upload:x,remove:$,handleKeyup:M}}},ji={Vueform:I,FormErrors:z,FormMessages:Y,FormLanguages:R,FormLanguage:U,FormTabs:W,FormTab:le,FormSteps:re,FormStepsControls:ie,FormStepsControl:oe,FormStep:ue,FormElements:de,ElementLayout:ve,ElementLayoutInline:pe,ElementLoader:fe,ElementLabelFloating:me,ElementLabel:ge,ElementInfo:ye,ElementDescription:be,ElementError:we,ElementMessage:Se,ElementText:De,DragAndDrop:Oe,ElementAddon:Ce,DatepickerWrapper:nt,EditorWrapper:lt,ButtonElement:Ht,CheckboxElement:Xa,CheckboxgroupElement:en,DateElement:Cn,DatesElement:qn,FileElement:An,GroupElement:Ln,HiddenElement:Vn,ListElement:Xr,LocationElement:Jr,MultifileElement:Qr,MultiselectElement:ni,ObjectElement:li,RadioElement:ii,RadiogroupElement:oi,SelectElement:ui,SliderElement:di,StaticElement:vi,TagsElement:fi,TextareaElement:wi,TextElement:Si,ToggleElement:Di,EditorElement:qi,TTextareaElement:xi,TTextElement:$i,TEditorElement:Mi,CheckboxgroupCheckbox:{name:"CheckboxgroupCheckbox",props:{item:{type:[Object,String,Number],required:!0},value:{type:[String,Number],required:!0},items:{type:[Object,Array],required:!0},index:{type:[Number],required:!0},attrs:{required:!1,type:[Object],default:()=>({})}},setup(e,n){var{value:l}=t(e),{el$:r,form$:i,Size:o,View:u,classesInstance:s,classes:d,Templates:c,template:v,theme:p}=ce(e,n),f=a((()=>-1!==r.value.disabledItems.map((e=>String(e))).indexOf(String(l.value))||r.value.isDisabled)),m=a((()=>-1!==r.value.value.indexOf(String(l.value))||-1!==r.value.value.indexOf(Number(l.value)))),g=a((()=>"".concat(r.value.fieldId,"-").concat(l.value))),h=a((()=>"".concat(r.value.path,"-").concat(l.value)));return{el$:r,form$:i,Size:o,View:u,classesInstance:s,classes:d,Templates:c,template:v,theme:p,isDisabled:f,id:g,name:h,checked:m,handleKeydown:e=>{if(-1!==["ArrowRight","ArrowDown"].indexOf(e.key)){e.preventDefault();var t=e.target.nextElementSibling;"checkbox"===(null==t?void 0:t.getAttribute("role"))&&t.focus()}else if(-1!==["ArrowLeft","ArrowUp"].indexOf(e.key)){e.preventDefault();var a=e.target.previousElementSibling;"checkbox"===(null==a?void 0:a.getAttribute("role"))&&a.focus()}}}}},FilePreview:Ti,RadiogroupRadio:{name:"RadiogroupRadio",props:{item:{type:[Object,String,Number],required:!0},value:{type:[String,Number],required:!0},items:{type:[Object,Array],required:!0},index:{type:[Number],required:!0},attrs:{required:!1,type:[Object],default:()=>({})}},setup(e,n){var{value:l}=t(e),{el$:r,form$:i,Size:o,View:u,classesInstance:s,classes:d,Templates:c,template:v,theme:p}=ce(e,n),f=a((()=>-1!==r.value.disabledItems.map((e=>String(e))).indexOf(String(l.value))||r.value.isDisabled)),m=a((()=>r.value.value===String(l.value)||r.value.value===Number(l.value))),g=a((()=>"".concat(r.value.fieldId,"-").concat(l.value))),h=a((()=>r.value.path));return{el$:r,form$:i,Size:o,View:u,classesInstance:s,classes:d,Templates:c,template:v,theme:p,isDisabled:f,id:g,name:h,checked:m,handleKeydown:e=>{if(-1!==["ArrowRight","ArrowDown"].indexOf(e.key)){e.preventDefault();var t=e.target.nextElementSibling;"radio"===(null==t?void 0:t.getAttribute("role"))&&t.focus()}else if(-1!==["ArrowLeft","ArrowUp"].indexOf(e.key)){e.preventDefault();var a=e.target.previousElementSibling;"radio"===(null==a?void 0:a.getAttribute("role"))&&a.focus()}}}}}};!function(e){var t=function(e){var t,a=Object.prototype,n=a.hasOwnProperty,l=Object.defineProperty||function(e,t,a){e[t]=a.value},r="function"==typeof Symbol?Symbol:{},i=r.iterator||"@@iterator",o=r.asyncIterator||"@@asyncIterator",u=r.toStringTag||"@@toStringTag";function s(e,t,a){return Object.defineProperty(e,t,{value:a,enumerable:!0,configurable:!0,writable:!0}),e[t]}try{s({},"")}catch(e){s=function(e,t,a){return e[t]=a}}function d(e,t,a,n){var r=t&&t.prototype instanceof h?t:h,i=Object.create(r.prototype),o=new T(n||[]);return l(i,"_invoke",{value:E(e,a,o)}),i}function c(e,t,a){try{return{type:"normal",arg:e.call(t,a)}}catch(e){return{type:"throw",arg:e}}}e.wrap=d;var v="suspendedStart",p="suspendedYield",f="executing",m="completed",g={};function h(){}function y(){}function b(){}var w={};s(w,i,(function(){return this}));var S=Object.getPrototypeOf,D=S&&S(S(j([])));D&&D!==a&&n.call(D,i)&&(w=D);var O=b.prototype=h.prototype=Object.create(w);function C(e){["next","throw","return"].forEach((function(t){s(e,t,(function(e){return this._invoke(t,e)}))}))}function q(e,t){function a(l,r,i,o){var u=c(e[l],e,r);if("throw"!==u.type){var s=u.arg,d=s.value;return d&&"object"==typeof d&&n.call(d,"__await")?t.resolve(d.__await).then((function(e){a("next",e,i,o)}),(function(e){a("throw",e,i,o)})):t.resolve(d).then((function(e){s.value=e,i(s)}),(function(e){return a("throw",e,i,o)}))}o(u.arg)}var r;l(this,"_invoke",{value:function(e,n){function l(){return new t((function(t,l){a(e,n,t,l)}))}return r=r?r.then(l,l):l()}})}function E(e,t,a){var n=v;return function(l,r){if(n===f)throw new Error("Generator is already running");if(n===m){if("throw"===l)throw r;return F()}for(a.method=l,a.arg=r;;){var i=a.delegate;if(i){var o=x(i,a);if(o){if(o===g)continue;return o}}if("next"===a.method)a.sent=a._sent=a.arg;else if("throw"===a.method){if(n===v)throw n=m,a.arg;a.dispatchException(a.arg)}else"return"===a.method&&a.abrupt("return",a.arg);n=f;var u=c(e,t,a);if("normal"===u.type){if(n=a.done?m:p,u.arg===g)continue;return{value:u.arg,done:a.done}}"throw"===u.type&&(n=m,a.method="throw",a.arg=u.arg)}}}function x(e,a){var n=a.method,l=e.iterator[n];if(l===t)return a.delegate=null,"throw"===n&&e.iterator.return&&(a.method="return",a.arg=t,x(e,a),"throw"===a.method)||"return"!==n&&(a.method="throw",a.arg=new TypeError("The iterator does not provide a '"+n+"' method")),g;var r=c(l,e.iterator,a.arg);if("throw"===r.type)return a.method="throw",a.arg=r.arg,a.delegate=null,g;var i=r.arg;return i?i.done?(a[e.resultName]=i.value,a.next=e.nextLoc,"return"!==a.method&&(a.method="next",a.arg=t),a.delegate=null,g):i:(a.method="throw",a.arg=new TypeError("iterator result is not an object"),a.delegate=null,g)}function $(e){var t={tryLoc:e[0]};1 in e&&(t.catchLoc=e[1]),2 in e&&(t.finallyLoc=e[2],t.afterLoc=e[3]),this.tryEntries.push(t)}function M(e){var t=e.completion||{};t.type="normal",delete t.arg,e.completion=t}function T(e){this.tryEntries=[{tryLoc:"root"}],e.forEach($,this),this.reset(!0)}function j(e){if(e){var a=e[i];if(a)return a.call(e);if("function"==typeof e.next)return e;if(!isNaN(e.length)){var l=-1,r=function a(){for(;++l<e.length;)if(n.call(e,l))return a.value=e[l],a.done=!1,a;return a.value=t,a.done=!0,a};return r.next=r}}return{next:F}}function F(){return{value:t,done:!0}}return y.prototype=b,l(O,"constructor",{value:b,configurable:!0}),l(b,"constructor",{value:y,configurable:!0}),y.displayName=s(b,u,"GeneratorFunction"),e.isGeneratorFunction=function(e){var t="function"==typeof e&&e.constructor;return!!t&&(t===y||"GeneratorFunction"===(t.displayName||t.name))},e.mark=function(e){return Object.setPrototypeOf?Object.setPrototypeOf(e,b):(e.__proto__=b,s(e,u,"GeneratorFunction")),e.prototype=Object.create(O),e},e.awrap=function(e){return{__await:e}},C(q.prototype),s(q.prototype,o,(function(){return this})),e.AsyncIterator=q,e.async=function(t,a,n,l,r){void 0===r&&(r=Promise);var i=new q(d(t,a,n,l),r);return e.isGeneratorFunction(a)?i:i.next().then((function(e){return e.done?e.value:i.next()}))},C(O),s(O,u,"Generator"),s(O,i,(function(){return this})),s(O,"toString",(function(){return"[object Generator]"})),e.keys=function(e){var t=Object(e),a=[];for(var n in t)a.push(n);return a.reverse(),function e(){for(;a.length;){var n=a.pop();if(n in t)return e.value=n,e.done=!1,e}return e.done=!0,e}},e.values=j,T.prototype={constructor:T,reset:function(e){if(this.prev=0,this.next=0,this.sent=this._sent=t,this.done=!1,this.delegate=null,this.method="next",this.arg=t,this.tryEntries.forEach(M),!e)for(var a in this)"t"===a.charAt(0)&&n.call(this,a)&&!isNaN(+a.slice(1))&&(this[a]=t)},stop:function(){this.done=!0;var e=this.tryEntries[0].completion;if("throw"===e.type)throw e.arg;return this.rval},dispatchException:function(e){if(this.done)throw e;var a=this;function l(n,l){return o.type="throw",o.arg=e,a.next=n,l&&(a.method="next",a.arg=t),!!l}for(var r=this.tryEntries.length-1;r>=0;--r){var i=this.tryEntries[r],o=i.completion;if("root"===i.tryLoc)return l("end");if(i.tryLoc<=this.prev){var u=n.call(i,"catchLoc"),s=n.call(i,"finallyLoc");if(u&&s){if(this.prev<i.catchLoc)return l(i.catchLoc,!0);if(this.prev<i.finallyLoc)return l(i.finallyLoc)}else if(u){if(this.prev<i.catchLoc)return l(i.catchLoc,!0)}else{if(!s)throw new Error("try statement without catch or finally");if(this.prev<i.finallyLoc)return l(i.finallyLoc)}}}},abrupt:function(e,t){for(var a=this.tryEntries.length-1;a>=0;--a){var l=this.tryEntries[a];if(l.tryLoc<=this.prev&&n.call(l,"finallyLoc")&&this.prev<l.finallyLoc){var r=l;break}}r&&("break"===e||"continue"===e)&&r.tryLoc<=t&&t<=r.finallyLoc&&(r=null);var i=r?r.completion:{};return i.type=e,i.arg=t,r?(this.method="next",this.next=r.finallyLoc,g):this.complete(i)},complete:function(e,t){if("throw"===e.type)throw e.arg;return"break"===e.type||"continue"===e.type?this.next=e.arg:"return"===e.type?(this.rval=this.arg=e.arg,this.method="return",this.next="end"):"normal"===e.type&&t&&(this.next=t),g},finish:function(e){for(var t=this.tryEntries.length-1;t>=0;--t){var a=this.tryEntries[t];if(a.finallyLoc===e)return this.complete(a.completion,a.afterLoc),M(a),g}},catch:function(e){for(var t=this.tryEntries.length-1;t>=0;--t){var a=this.tryEntries[t];if(a.tryLoc===e){var n=a.completion;if("throw"===n.type){var l=n.arg;M(a)}return l}}throw new Error("illegal catch attempt")},delegateYield:function(e,a,n){return this.delegate={iterator:j(e),resultName:a,nextLoc:n},"next"===this.method&&(this.arg=t),g}},e}(e.exports);try{regeneratorRuntime=t}catch(e){"object"==typeof globalThis?globalThis.regeneratorRuntime=t:Function("r","regeneratorRuntime = r")(t)}}({exports:{}});var Fi=class{constructor(e,t){var l;this.rule=e,this.attributes=e.attributes||{},this.conditions=e.conditions||[],this.dependents=e.dependents||[],this.element$=t.element$,this.form$=(null===(l=t.element$)||void 0===l?void 0:l.form$)||{},this.numeric=t.numeric||!1,this.elementMessages=t.element$.messages,this.invalid=!1,this.pending=!1,this.debouncer=null,this.lastValue=null,this.watchers={},this.dependents.forEach((e=>{n(a((()=>g.get(this.form$.data,e))),(()=>{this.element$.validated&&("nullable"===this.name?this.element$.validate():this.revalidate())}))})),n(a((()=>t.element$.messages)),((e,a)=>{g.isEqual(e,a)||(this.elementMessages=t.element$.messages)}),{deep:!0}),this.init()}get name(){return this.rule.name}get failing(){return this.invalid}get defaultMessage(){return this.form$.translations.vueform.defaultMessage}get message(){var e,t="";return this.elementMessages[this.name]?t=this.elementMessages[this.name]:this.form$.options.messages[this.name]?t=this.form$.options.messages[this.name]:"_class"!==this.name&&void 0!==(null===(e=this.form$.translations.validation)||void 0===e?void 0:e[this.name])?(t=this.form$.translations.validation[this.name],g.isPlainObject(t)&&(t=t[this.messageType])):t=this.defaultMessage,g.each(g.map(t.match(/:\w+/g),(e=>e.replace(":",""))),(e=>{t=t.replace(":".concat(e),this.messageParams[e])})),g.each(g.map(t.match(/{[^}]+/g),(e=>e.replace("{",""))),(e=>{t=t.replace("{".concat(e,"}"),this.messageParams[e])})),t}get messageType(){return this.isNumeric?"numeric":this.isFile?"file":this.isArray?"array":"string"}get messageParams(){return{attribute:this.attributeName}}get attributeName(){return this.element$.genericName}get type(){return this.isNumeric?"numeric":this.isFile?"file":this.isArray?"array":"string"}get isNumeric(){return g.some(this.element$.Validators,{name:"numeric"})||g.some(this.element$.Validators,{name:"integer"})}get isNullable(){var e=!1;return g.each(this.element$.Validators,(t=>{"nullable"===t.name&&(e=!t.conditions.length||t.conditions(this.form$,this,this.element$))})),e}get isFile(){return this.element$.isFileType}get isArray(){return this.element$.isArrayType}get isAsync(){return!1}get debounce(){return this.attributes.debounce?this.attributes.debounce:!!this.element$.debounce&&this.element$.debounce}get debouncing(){return null!==this.debouncer}init(){}validate(e){var t=this;return S((function*(){var a;void 0===e&&(e=null===(a=t.element$)||void 0===a?void 0:a.value);t.form$.validation&&((!t.isNullable||t.filled(e))&&(!t.conditions.length||t.conditions(t.form$,t,t.element$))?t.debounce&&t.filled(e)?yield t._validateWithDebounce(e):(t.debounce&&t.debouncer&&clearTimeout(t.debouncer),yield t._validate(e)):t.invalid=!1)}))()}reset(){this.invalid=!1}watch(e){Array.isArray(e)||(e=[e]),e.forEach((e=>{this.addWatcher(e)}))}addWatcher(e){this.watchers[e]||(this.watchers[e]=n(a((()=>g.get(this.form$.data,e))),(()=>{this.revalidate()})))}revalidate(){this.element$.Validators.forEach((e=>{e.rule.name===this.rule.name&&e.validate()}))}watchOther(){this.form$.$nextTick((()=>{this.other$&&this.form$.$watch((()=>{var e;return null===(e=this.other$)||void 0===e?void 0:e.value}),(()=>{this.element$.validated&&this.element$.validate()}))}))}size(e){return this.isNumeric?e:this.isFile?e?e.size/1e3:0:this.isArray?e.length:null==e||""===e?0:String(e).length}filled(e){return void 0!==e&&(null!==e||e===this.element$.trueValue)&&e!==this.element$.falseValue&&((!this.isNumeric||0!==e)&&((!g.isString(e)||""!==g.trim(e))&&(!(g.isArray(e)&&e.length<1)&&!(e instanceof File&&""===e.name))))}_validate(e){var t=this;return S((function*(){t.isAsync?yield t._validateAsync(e):t._validateSync(e)}))()}_validateAsync(e){var t=this;return S((function*(){t.lastValue=e,t.pending=!0;var a=yield t.check(e);j(t.lastValue,e)&&(t.invalid=!a,t.pending=!1)}))()}_validateSync(e){this.invalid=!this.check(e)}_validateWithDebounce(e){var t=this;return S((function*(){return new Promise(((a,n)=>{t.debouncer&&(a(),clearTimeout(t.debouncer)),t.debouncer=setTimeout(S((function*(){yield t._validate(e),t.debouncer=null,a()})),t.debounce)}))}))()}};export{Fi as Validator,I as Vueform,ji as components,O as config,_ as useVueform};
+function ownKeys(object, enumerableOnly) {
+  var keys = Object.keys(object);
+
+  if (Object.getOwnPropertySymbols) {
+    var symbols = Object.getOwnPropertySymbols(object);
+
+    if (enumerableOnly) {
+      symbols = symbols.filter(function (sym) {
+        return Object.getOwnPropertyDescriptor(object, sym).enumerable;
+      });
+    }
+
+    keys.push.apply(keys, symbols);
+  }
+
+  return keys;
+}
+
+function _objectSpread2(target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i] != null ? arguments[i] : {};
+
+    if (i % 2) {
+      ownKeys(Object(source), true).forEach(function (key) {
+        _defineProperty(target, key, source[key]);
+      });
+    } else if (Object.getOwnPropertyDescriptors) {
+      Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
+    } else {
+      ownKeys(Object(source)).forEach(function (key) {
+        Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
+      });
+    }
+  }
+
+  return target;
+}
+
+function _typeof(obj) {
+  "@babel/helpers - typeof";
+
+  if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
+    _typeof = function (obj) {
+      return typeof obj;
+    };
+  } else {
+    _typeof = function (obj) {
+      return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+    };
+  }
+
+  return _typeof(obj);
+}
+
+function _defineProperty(obj, key, value) {
+  if (key in obj) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+
+  return obj;
+}
+
+function _extends() {
+  _extends = Object.assign || function (target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i];
+
+      for (var key in source) {
+        if (Object.prototype.hasOwnProperty.call(source, key)) {
+          target[key] = source[key];
+        }
+      }
+    }
+
+    return target;
+  };
+
+  return _extends.apply(this, arguments);
+}
+
+function _objectWithoutPropertiesLoose(source, excluded) {
+  if (source == null) return {};
+  var target = {};
+  var sourceKeys = Object.keys(source);
+  var key, i;
+
+  for (i = 0; i < sourceKeys.length; i++) {
+    key = sourceKeys[i];
+    if (excluded.indexOf(key) >= 0) continue;
+    target[key] = source[key];
+  }
+
+  return target;
+}
+
+function _objectWithoutProperties(source, excluded) {
+  if (source == null) return {};
+
+  var target = _objectWithoutPropertiesLoose(source, excluded);
+
+  var key, i;
+
+  if (Object.getOwnPropertySymbols) {
+    var sourceSymbolKeys = Object.getOwnPropertySymbols(source);
+
+    for (i = 0; i < sourceSymbolKeys.length; i++) {
+      key = sourceSymbolKeys[i];
+      if (excluded.indexOf(key) >= 0) continue;
+      if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue;
+      target[key] = source[key];
+    }
+  }
+
+  return target;
+}
+
+var version = "1.15.0";
+
+function userAgent(pattern) {
+  if (typeof window !== 'undefined' && window.navigator) {
+    return !! /*@__PURE__*/navigator.userAgent.match(pattern);
+  }
+}
+
+var IE11OrLess = userAgent(/(?:Trident.*rv[ :]?11\.|msie|iemobile|Windows Phone)/i);
+var Edge = userAgent(/Edge/i);
+var FireFox = userAgent(/firefox/i);
+var Safari = userAgent(/safari/i) && !userAgent(/chrome/i) && !userAgent(/android/i);
+var IOS = userAgent(/iP(ad|od|hone)/i);
+var ChromeForAndroid = userAgent(/chrome/i) && userAgent(/android/i);
+
+var captureMode = {
+  capture: false,
+  passive: false
+};
+
+function on(el, event, fn) {
+  el.addEventListener(event, fn, !IE11OrLess && captureMode);
+}
+
+function off(el, event, fn) {
+  el.removeEventListener(event, fn, !IE11OrLess && captureMode);
+}
+
+function matches(
+/**HTMLElement*/
+el,
+/**String*/
+selector) {
+  if (!selector) return;
+  selector[0] === '>' && (selector = selector.substring(1));
+
+  if (el) {
+    try {
+      if (el.matches) {
+        return el.matches(selector);
+      } else if (el.msMatchesSelector) {
+        return el.msMatchesSelector(selector);
+      } else if (el.webkitMatchesSelector) {
+        return el.webkitMatchesSelector(selector);
+      }
+    } catch (_) {
+      return false;
+    }
+  }
+
+  return false;
+}
+
+function getParentOrHost(el) {
+  return el.host && el !== document && el.host.nodeType ? el.host : el.parentNode;
+}
+
+function closest(
+/**HTMLElement*/
+el,
+/**String*/
+selector,
+/**HTMLElement*/
+ctx, includeCTX) {
+  if (el) {
+    ctx = ctx || document;
+
+    do {
+      if (selector != null && (selector[0] === '>' ? el.parentNode === ctx && matches(el, selector) : matches(el, selector)) || includeCTX && el === ctx) {
+        return el;
+      }
+
+      if (el === ctx) break;
+      /* jshint boss:true */
+    } while (el = getParentOrHost(el));
+  }
+
+  return null;
+}
+
+var R_SPACE = /\s+/g;
+
+function toggleClass(el, name, state) {
+  if (el && name) {
+    if (el.classList) {
+      el.classList[state ? 'add' : 'remove'](name);
+    } else {
+      var className = (' ' + el.className + ' ').replace(R_SPACE, ' ').replace(' ' + name + ' ', ' ');
+      el.className = (className + (state ? ' ' + name : '')).replace(R_SPACE, ' ');
+    }
+  }
+}
+
+function css(el, prop, val) {
+  var style = el && el.style;
+
+  if (style) {
+    if (val === void 0) {
+      if (document.defaultView && document.defaultView.getComputedStyle) {
+        val = document.defaultView.getComputedStyle(el, '');
+      } else if (el.currentStyle) {
+        val = el.currentStyle;
+      }
+
+      return prop === void 0 ? val : val[prop];
+    } else {
+      if (!(prop in style) && prop.indexOf('webkit') === -1) {
+        prop = '-webkit-' + prop;
+      }
+
+      style[prop] = val + (typeof val === 'string' ? '' : 'px');
+    }
+  }
+}
+
+function matrix(el, selfOnly) {
+  var appliedTransforms = '';
+
+  if (typeof el === 'string') {
+    appliedTransforms = el;
+  } else {
+    do {
+      var transform = css(el, 'transform');
+
+      if (transform && transform !== 'none') {
+        appliedTransforms = transform + ' ' + appliedTransforms;
+      }
+      /* jshint boss:true */
+
+    } while (!selfOnly && (el = el.parentNode));
+  }
+
+  var matrixFn = window.DOMMatrix || window.WebKitCSSMatrix || window.CSSMatrix || window.MSCSSMatrix;
+  /*jshint -W056 */
+
+  return matrixFn && new matrixFn(appliedTransforms);
+}
+
+function find(ctx, tagName, iterator) {
+  if (ctx) {
+    var list = ctx.getElementsByTagName(tagName),
+        i = 0,
+        n = list.length;
+
+    if (iterator) {
+      for (; i < n; i++) {
+        iterator(list[i], i);
+      }
+    }
+
+    return list;
+  }
+
+  return [];
+}
+
+function getWindowScrollingElement() {
+  var scrollingElement = document.scrollingElement;
+
+  if (scrollingElement) {
+    return scrollingElement;
+  } else {
+    return document.documentElement;
+  }
+}
+/**
+ * Returns the "bounding client rect" of given element
+ * @param  {HTMLElement} el                       The element whose boundingClientRect is wanted
+ * @param  {[Boolean]} relativeToContainingBlock  Whether the rect should be relative to the containing block of (including) the container
+ * @param  {[Boolean]} relativeToNonStaticParent  Whether the rect should be relative to the relative parent of (including) the contaienr
+ * @param  {[Boolean]} undoScale                  Whether the container's scale() should be undone
+ * @param  {[HTMLElement]} container              The parent the element will be placed in
+ * @return {Object}                               The boundingClientRect of el, with specified adjustments
+ */
+
+
+function getRect(el, relativeToContainingBlock, relativeToNonStaticParent, undoScale, container) {
+  if (!el.getBoundingClientRect && el !== window) return;
+  var elRect, top, left, bottom, right, height, width;
+
+  if (el !== window && el.parentNode && el !== getWindowScrollingElement()) {
+    elRect = el.getBoundingClientRect();
+    top = elRect.top;
+    left = elRect.left;
+    bottom = elRect.bottom;
+    right = elRect.right;
+    height = elRect.height;
+    width = elRect.width;
+  } else {
+    top = 0;
+    left = 0;
+    bottom = window.innerHeight;
+    right = window.innerWidth;
+    height = window.innerHeight;
+    width = window.innerWidth;
+  }
+
+  if ((relativeToContainingBlock || relativeToNonStaticParent) && el !== window) {
+    // Adjust for translate()
+    container = container || el.parentNode; // solves #1123 (see: https://stackoverflow.com/a/37953806/6088312)
+    // Not needed on <= IE11
+
+    if (!IE11OrLess) {
+      do {
+        if (container && container.getBoundingClientRect && (css(container, 'transform') !== 'none' || relativeToNonStaticParent && css(container, 'position') !== 'static')) {
+          var containerRect = container.getBoundingClientRect(); // Set relative to edges of padding box of container
+
+          top -= containerRect.top + parseInt(css(container, 'border-top-width'));
+          left -= containerRect.left + parseInt(css(container, 'border-left-width'));
+          bottom = top + elRect.height;
+          right = left + elRect.width;
+          break;
+        }
+        /* jshint boss:true */
+
+      } while (container = container.parentNode);
+    }
+  }
+
+  if (undoScale && el !== window) {
+    // Adjust for scale()
+    var elMatrix = matrix(container || el),
+        scaleX = elMatrix && elMatrix.a,
+        scaleY = elMatrix && elMatrix.d;
+
+    if (elMatrix) {
+      top /= scaleY;
+      left /= scaleX;
+      width /= scaleX;
+      height /= scaleY;
+      bottom = top + height;
+      right = left + width;
+    }
+  }
+
+  return {
+    top: top,
+    left: left,
+    bottom: bottom,
+    right: right,
+    width: width,
+    height: height
+  };
+}
+/**
+ * Checks if a side of an element is scrolled past a side of its parents
+ * @param  {HTMLElement}  el           The element who's side being scrolled out of view is in question
+ * @param  {String}       elSide       Side of the element in question ('top', 'left', 'right', 'bottom')
+ * @param  {String}       parentSide   Side of the parent in question ('top', 'left', 'right', 'bottom')
+ * @return {HTMLElement}               The parent scroll element that the el's side is scrolled past, or null if there is no such element
+ */
+
+
+function isScrolledPast(el, elSide, parentSide) {
+  var parent = getParentAutoScrollElement(el, true),
+      elSideVal = getRect(el)[elSide];
+  /* jshint boss:true */
+
+  while (parent) {
+    var parentSideVal = getRect(parent)[parentSide],
+        visible = void 0;
+
+    if (parentSide === 'top' || parentSide === 'left') {
+      visible = elSideVal >= parentSideVal;
+    } else {
+      visible = elSideVal <= parentSideVal;
+    }
+
+    if (!visible) return parent;
+    if (parent === getWindowScrollingElement()) break;
+    parent = getParentAutoScrollElement(parent, false);
+  }
+
+  return false;
+}
+/**
+ * Gets nth child of el, ignoring hidden children, sortable's elements (does not ignore clone if it's visible)
+ * and non-draggable elements
+ * @param  {HTMLElement} el       The parent element
+ * @param  {Number} childNum      The index of the child
+ * @param  {Object} options       Parent Sortable's options
+ * @return {HTMLElement}          The child at index childNum, or null if not found
+ */
+
+
+function getChild(el, childNum, options, includeDragEl) {
+  var currentChild = 0,
+      i = 0,
+      children = el.children;
+
+  while (i < children.length) {
+    if (children[i].style.display !== 'none' && children[i] !== Sortable.ghost && (includeDragEl || children[i] !== Sortable.dragged) && closest(children[i], options.draggable, el, false)) {
+      if (currentChild === childNum) {
+        return children[i];
+      }
+
+      currentChild++;
+    }
+
+    i++;
+  }
+
+  return null;
+}
+/**
+ * Gets the last child in the el, ignoring ghostEl or invisible elements (clones)
+ * @param  {HTMLElement} el       Parent element
+ * @param  {selector} selector    Any other elements that should be ignored
+ * @return {HTMLElement}          The last child, ignoring ghostEl
+ */
+
+
+function lastChild(el, selector) {
+  var last = el.lastElementChild;
+
+  while (last && (last === Sortable.ghost || css(last, 'display') === 'none' || selector && !matches(last, selector))) {
+    last = last.previousElementSibling;
+  }
+
+  return last || null;
+}
+/**
+ * Returns the index of an element within its parent for a selected set of
+ * elements
+ * @param  {HTMLElement} el
+ * @param  {selector} selector
+ * @return {number}
+ */
+
+
+function index$1(el, selector) {
+  var index = 0;
+
+  if (!el || !el.parentNode) {
+    return -1;
+  }
+  /* jshint boss:true */
+
+
+  while (el = el.previousElementSibling) {
+    if (el.nodeName.toUpperCase() !== 'TEMPLATE' && el !== Sortable.clone && (!selector || matches(el, selector))) {
+      index++;
+    }
+  }
+
+  return index;
+}
+/**
+ * Returns the scroll offset of the given element, added with all the scroll offsets of parent elements.
+ * The value is returned in real pixels.
+ * @param  {HTMLElement} el
+ * @return {Array}             Offsets in the format of [left, top]
+ */
+
+
+function getRelativeScrollOffset(el) {
+  var offsetLeft = 0,
+      offsetTop = 0,
+      winScroller = getWindowScrollingElement();
+
+  if (el) {
+    do {
+      var elMatrix = matrix(el),
+          scaleX = elMatrix.a,
+          scaleY = elMatrix.d;
+      offsetLeft += el.scrollLeft * scaleX;
+      offsetTop += el.scrollTop * scaleY;
+    } while (el !== winScroller && (el = el.parentNode));
+  }
+
+  return [offsetLeft, offsetTop];
+}
+/**
+ * Returns the index of the object within the given array
+ * @param  {Array} arr   Array that may or may not hold the object
+ * @param  {Object} obj  An object that has a key-value pair unique to and identical to a key-value pair in the object you want to find
+ * @return {Number}      The index of the object in the array, or -1
+ */
+
+
+function indexOfObject(arr, obj) {
+  for (var i in arr) {
+    if (!arr.hasOwnProperty(i)) continue;
+
+    for (var key in obj) {
+      if (obj.hasOwnProperty(key) && obj[key] === arr[i][key]) return Number(i);
+    }
+  }
+
+  return -1;
+}
+
+function getParentAutoScrollElement(el, includeSelf) {
+  // skip to window
+  if (!el || !el.getBoundingClientRect) return getWindowScrollingElement();
+  var elem = el;
+  var gotSelf = false;
+
+  do {
+    // we don't need to get elem css if it isn't even overflowing in the first place (performance)
+    if (elem.clientWidth < elem.scrollWidth || elem.clientHeight < elem.scrollHeight) {
+      var elemCSS = css(elem);
+
+      if (elem.clientWidth < elem.scrollWidth && (elemCSS.overflowX == 'auto' || elemCSS.overflowX == 'scroll') || elem.clientHeight < elem.scrollHeight && (elemCSS.overflowY == 'auto' || elemCSS.overflowY == 'scroll')) {
+        if (!elem.getBoundingClientRect || elem === document.body) return getWindowScrollingElement();
+        if (gotSelf || includeSelf) return elem;
+        gotSelf = true;
+      }
+    }
+    /* jshint boss:true */
+
+  } while (elem = elem.parentNode);
+
+  return getWindowScrollingElement();
+}
+
+function extend(dst, src) {
+  if (dst && src) {
+    for (var key in src) {
+      if (src.hasOwnProperty(key)) {
+        dst[key] = src[key];
+      }
+    }
+  }
+
+  return dst;
+}
+
+function isRectEqual(rect1, rect2) {
+  return Math.round(rect1.top) === Math.round(rect2.top) && Math.round(rect1.left) === Math.round(rect2.left) && Math.round(rect1.height) === Math.round(rect2.height) && Math.round(rect1.width) === Math.round(rect2.width);
+}
+
+var _throttleTimeout;
+
+function throttle(callback, ms) {
+  return function () {
+    if (!_throttleTimeout) {
+      var args = arguments,
+          _this = this;
+
+      if (args.length === 1) {
+        callback.call(_this, args[0]);
+      } else {
+        callback.apply(_this, args);
+      }
+
+      _throttleTimeout = setTimeout(function () {
+        _throttleTimeout = void 0;
+      }, ms);
+    }
+  };
+}
+
+function cancelThrottle() {
+  clearTimeout(_throttleTimeout);
+  _throttleTimeout = void 0;
+}
+
+function scrollBy(el, x, y) {
+  el.scrollLeft += x;
+  el.scrollTop += y;
+}
+
+function clone(el) {
+  var Polymer = window.Polymer;
+  var $ = window.jQuery || window.Zepto;
+
+  if (Polymer && Polymer.dom) {
+    return Polymer.dom(el).cloneNode(true);
+  } else if ($) {
+    return $(el).clone(true)[0];
+  } else {
+    return el.cloneNode(true);
+  }
+}
+
+var expando = 'Sortable' + new Date().getTime();
+
+function AnimationStateManager() {
+  var animationStates = [],
+      animationCallbackId;
+  return {
+    captureAnimationState: function captureAnimationState() {
+      animationStates = [];
+      if (!this.options.animation) return;
+      var children = [].slice.call(this.el.children);
+      children.forEach(function (child) {
+        if (css(child, 'display') === 'none' || child === Sortable.ghost) return;
+        animationStates.push({
+          target: child,
+          rect: getRect(child)
+        });
+
+        var fromRect = _objectSpread2({}, animationStates[animationStates.length - 1].rect); // If animating: compensate for current animation
+
+
+        if (child.thisAnimationDuration) {
+          var childMatrix = matrix(child, true);
+
+          if (childMatrix) {
+            fromRect.top -= childMatrix.f;
+            fromRect.left -= childMatrix.e;
+          }
+        }
+
+        child.fromRect = fromRect;
+      });
+    },
+    addAnimationState: function addAnimationState(state) {
+      animationStates.push(state);
+    },
+    removeAnimationState: function removeAnimationState(target) {
+      animationStates.splice(indexOfObject(animationStates, {
+        target: target
+      }), 1);
+    },
+    animateAll: function animateAll(callback) {
+      var _this = this;
+
+      if (!this.options.animation) {
+        clearTimeout(animationCallbackId);
+        if (typeof callback === 'function') callback();
+        return;
+      }
+
+      var animating = false,
+          animationTime = 0;
+      animationStates.forEach(function (state) {
+        var time = 0,
+            target = state.target,
+            fromRect = target.fromRect,
+            toRect = getRect(target),
+            prevFromRect = target.prevFromRect,
+            prevToRect = target.prevToRect,
+            animatingRect = state.rect,
+            targetMatrix = matrix(target, true);
+
+        if (targetMatrix) {
+          // Compensate for current animation
+          toRect.top -= targetMatrix.f;
+          toRect.left -= targetMatrix.e;
+        }
+
+        target.toRect = toRect;
+
+        if (target.thisAnimationDuration) {
+          // Could also check if animatingRect is between fromRect and toRect
+          if (isRectEqual(prevFromRect, toRect) && !isRectEqual(fromRect, toRect) && // Make sure animatingRect is on line between toRect & fromRect
+          (animatingRect.top - toRect.top) / (animatingRect.left - toRect.left) === (fromRect.top - toRect.top) / (fromRect.left - toRect.left)) {
+            // If returning to same place as started from animation and on same axis
+            time = calculateRealTime(animatingRect, prevFromRect, prevToRect, _this.options);
+          }
+        } // if fromRect != toRect: animate
+
+
+        if (!isRectEqual(toRect, fromRect)) {
+          target.prevFromRect = fromRect;
+          target.prevToRect = toRect;
+
+          if (!time) {
+            time = _this.options.animation;
+          }
+
+          _this.animate(target, animatingRect, toRect, time);
+        }
+
+        if (time) {
+          animating = true;
+          animationTime = Math.max(animationTime, time);
+          clearTimeout(target.animationResetTimer);
+          target.animationResetTimer = setTimeout(function () {
+            target.animationTime = 0;
+            target.prevFromRect = null;
+            target.fromRect = null;
+            target.prevToRect = null;
+            target.thisAnimationDuration = null;
+          }, time);
+          target.thisAnimationDuration = time;
+        }
+      });
+      clearTimeout(animationCallbackId);
+
+      if (!animating) {
+        if (typeof callback === 'function') callback();
+      } else {
+        animationCallbackId = setTimeout(function () {
+          if (typeof callback === 'function') callback();
+        }, animationTime);
+      }
+
+      animationStates = [];
+    },
+    animate: function animate(target, currentRect, toRect, duration) {
+      if (duration) {
+        css(target, 'transition', '');
+        css(target, 'transform', '');
+        var elMatrix = matrix(this.el),
+            scaleX = elMatrix && elMatrix.a,
+            scaleY = elMatrix && elMatrix.d,
+            translateX = (currentRect.left - toRect.left) / (scaleX || 1),
+            translateY = (currentRect.top - toRect.top) / (scaleY || 1);
+        target.animatingX = !!translateX;
+        target.animatingY = !!translateY;
+        css(target, 'transform', 'translate3d(' + translateX + 'px,' + translateY + 'px,0)');
+        this.forRepaintDummy = repaint(target); // repaint
+
+        css(target, 'transition', 'transform ' + duration + 'ms' + (this.options.easing ? ' ' + this.options.easing : ''));
+        css(target, 'transform', 'translate3d(0,0,0)');
+        typeof target.animated === 'number' && clearTimeout(target.animated);
+        target.animated = setTimeout(function () {
+          css(target, 'transition', '');
+          css(target, 'transform', '');
+          target.animated = false;
+          target.animatingX = false;
+          target.animatingY = false;
+        }, duration);
+      }
+    }
+  };
+}
+
+function repaint(target) {
+  return target.offsetWidth;
+}
+
+function calculateRealTime(animatingRect, fromRect, toRect, options) {
+  return Math.sqrt(Math.pow(fromRect.top - animatingRect.top, 2) + Math.pow(fromRect.left - animatingRect.left, 2)) / Math.sqrt(Math.pow(fromRect.top - toRect.top, 2) + Math.pow(fromRect.left - toRect.left, 2)) * options.animation;
+}
+
+var plugins = [];
+var defaults = {
+  initializeByDefault: true
+};
+var PluginManager = {
+  mount: function mount(plugin) {
+    // Set default static properties
+    for (var option in defaults) {
+      if (defaults.hasOwnProperty(option) && !(option in plugin)) {
+        plugin[option] = defaults[option];
+      }
+    }
+
+    plugins.forEach(function (p) {
+      if (p.pluginName === plugin.pluginName) {
+        throw "Sortable: Cannot mount plugin ".concat(plugin.pluginName, " more than once");
+      }
+    });
+    plugins.push(plugin);
+  },
+  pluginEvent: function pluginEvent(eventName, sortable, evt) {
+    var _this = this;
+
+    this.eventCanceled = false;
+
+    evt.cancel = function () {
+      _this.eventCanceled = true;
+    };
+
+    var eventNameGlobal = eventName + 'Global';
+    plugins.forEach(function (plugin) {
+      if (!sortable[plugin.pluginName]) return; // Fire global events if it exists in this sortable
+
+      if (sortable[plugin.pluginName][eventNameGlobal]) {
+        sortable[plugin.pluginName][eventNameGlobal](_objectSpread2({
+          sortable: sortable
+        }, evt));
+      } // Only fire plugin event if plugin is enabled in this sortable,
+      // and plugin has event defined
+
+
+      if (sortable.options[plugin.pluginName] && sortable[plugin.pluginName][eventName]) {
+        sortable[plugin.pluginName][eventName](_objectSpread2({
+          sortable: sortable
+        }, evt));
+      }
+    });
+  },
+  initializePlugins: function initializePlugins(sortable, el, defaults, options) {
+    plugins.forEach(function (plugin) {
+      var pluginName = plugin.pluginName;
+      if (!sortable.options[pluginName] && !plugin.initializeByDefault) return;
+      var initialized = new plugin(sortable, el, sortable.options);
+      initialized.sortable = sortable;
+      initialized.options = sortable.options;
+      sortable[pluginName] = initialized; // Add default options from plugin
+
+      _extends(defaults, initialized.defaults);
+    });
+
+    for (var option in sortable.options) {
+      if (!sortable.options.hasOwnProperty(option)) continue;
+      var modified = this.modifyOption(sortable, option, sortable.options[option]);
+
+      if (typeof modified !== 'undefined') {
+        sortable.options[option] = modified;
+      }
+    }
+  },
+  getEventProperties: function getEventProperties(name, sortable) {
+    var eventProperties = {};
+    plugins.forEach(function (plugin) {
+      if (typeof plugin.eventProperties !== 'function') return;
+
+      _extends(eventProperties, plugin.eventProperties.call(sortable[plugin.pluginName], name));
+    });
+    return eventProperties;
+  },
+  modifyOption: function modifyOption(sortable, name, value) {
+    var modifiedValue;
+    plugins.forEach(function (plugin) {
+      // Plugin must exist on the Sortable
+      if (!sortable[plugin.pluginName]) return; // If static option listener exists for this option, call in the context of the Sortable's instance of this plugin
+
+      if (plugin.optionListeners && typeof plugin.optionListeners[name] === 'function') {
+        modifiedValue = plugin.optionListeners[name].call(sortable[plugin.pluginName], value);
+      }
+    });
+    return modifiedValue;
+  }
+};
+
+function dispatchEvent(_ref) {
+  var sortable = _ref.sortable,
+      rootEl = _ref.rootEl,
+      name = _ref.name,
+      targetEl = _ref.targetEl,
+      cloneEl = _ref.cloneEl,
+      toEl = _ref.toEl,
+      fromEl = _ref.fromEl,
+      oldIndex = _ref.oldIndex,
+      newIndex = _ref.newIndex,
+      oldDraggableIndex = _ref.oldDraggableIndex,
+      newDraggableIndex = _ref.newDraggableIndex,
+      originalEvent = _ref.originalEvent,
+      putSortable = _ref.putSortable,
+      extraEventProperties = _ref.extraEventProperties;
+  sortable = sortable || rootEl && rootEl[expando];
+  if (!sortable) return;
+  var evt,
+      options = sortable.options,
+      onName = 'on' + name.charAt(0).toUpperCase() + name.substr(1); // Support for new CustomEvent feature
+
+  if (window.CustomEvent && !IE11OrLess && !Edge) {
+    evt = new CustomEvent(name, {
+      bubbles: true,
+      cancelable: true
+    });
+  } else {
+    evt = document.createEvent('Event');
+    evt.initEvent(name, true, true);
+  }
+
+  evt.to = toEl || rootEl;
+  evt.from = fromEl || rootEl;
+  evt.item = targetEl || rootEl;
+  evt.clone = cloneEl;
+  evt.oldIndex = oldIndex;
+  evt.newIndex = newIndex;
+  evt.oldDraggableIndex = oldDraggableIndex;
+  evt.newDraggableIndex = newDraggableIndex;
+  evt.originalEvent = originalEvent;
+  evt.pullMode = putSortable ? putSortable.lastPutMode : undefined;
+
+  var allEventProperties = _objectSpread2(_objectSpread2({}, extraEventProperties), PluginManager.getEventProperties(name, sortable));
+
+  for (var option in allEventProperties) {
+    evt[option] = allEventProperties[option];
+  }
+
+  if (rootEl) {
+    rootEl.dispatchEvent(evt);
+  }
+
+  if (options[onName]) {
+    options[onName].call(sortable, evt);
+  }
+}
+
+var _excluded = ["evt"];
+
+var pluginEvent = function pluginEvent(eventName, sortable) {
+  var _ref = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {},
+      originalEvent = _ref.evt,
+      data = _objectWithoutProperties(_ref, _excluded);
+
+  PluginManager.pluginEvent.bind(Sortable)(eventName, sortable, _objectSpread2({
+    dragEl: dragEl,
+    parentEl: parentEl,
+    ghostEl: ghostEl,
+    rootEl: rootEl,
+    nextEl: nextEl,
+    lastDownEl: lastDownEl,
+    cloneEl: cloneEl,
+    cloneHidden: cloneHidden,
+    dragStarted: moved,
+    putSortable: putSortable,
+    activeSortable: Sortable.active,
+    originalEvent: originalEvent,
+    oldIndex: oldIndex,
+    oldDraggableIndex: oldDraggableIndex,
+    newIndex: newIndex,
+    newDraggableIndex: newDraggableIndex,
+    hideGhostForTarget: _hideGhostForTarget,
+    unhideGhostForTarget: _unhideGhostForTarget,
+    cloneNowHidden: function cloneNowHidden() {
+      cloneHidden = true;
+    },
+    cloneNowShown: function cloneNowShown() {
+      cloneHidden = false;
+    },
+    dispatchSortableEvent: function dispatchSortableEvent(name) {
+      _dispatchEvent({
+        sortable: sortable,
+        name: name,
+        originalEvent: originalEvent
+      });
+    }
+  }, data));
+};
+
+function _dispatchEvent(info) {
+  dispatchEvent(_objectSpread2({
+    putSortable: putSortable,
+    cloneEl: cloneEl,
+    targetEl: dragEl,
+    rootEl: rootEl,
+    oldIndex: oldIndex,
+    oldDraggableIndex: oldDraggableIndex,
+    newIndex: newIndex,
+    newDraggableIndex: newDraggableIndex
+  }, info));
+}
+
+var dragEl,
+    parentEl,
+    ghostEl,
+    rootEl,
+    nextEl,
+    lastDownEl,
+    cloneEl,
+    cloneHidden,
+    oldIndex,
+    newIndex,
+    oldDraggableIndex,
+    newDraggableIndex,
+    activeGroup,
+    putSortable,
+    awaitingDragStarted = false,
+    ignoreNextClick = false,
+    sortables = [],
+    tapEvt,
+    touchEvt,
+    lastDx,
+    lastDy,
+    tapDistanceLeft,
+    tapDistanceTop,
+    moved,
+    lastTarget,
+    lastDirection,
+    pastFirstInvertThresh = false,
+    isCircumstantialInvert = false,
+    targetMoveDistance,
+    // For positioning ghost absolutely
+ghostRelativeParent,
+    ghostRelativeParentInitialScroll = [],
+    // (left, top)
+_silent = false,
+    savedInputChecked = [];
+/** @const */
+
+var documentExists = typeof document !== 'undefined',
+    PositionGhostAbsolutely = IOS,
+    CSSFloatProperty = Edge || IE11OrLess ? 'cssFloat' : 'float',
+    // This will not pass for IE9, because IE9 DnD only works on anchors
+supportDraggable = documentExists && !ChromeForAndroid && !IOS && 'draggable' in document.createElement('div'),
+    supportCssPointerEvents = function () {
+  if (!documentExists) return; // false when <= IE11
+
+  if (IE11OrLess) {
+    return false;
+  }
+
+  var el = document.createElement('x');
+  el.style.cssText = 'pointer-events:auto';
+  return el.style.pointerEvents === 'auto';
+}(),
+    _detectDirection = function _detectDirection(el, options) {
+  var elCSS = css(el),
+      elWidth = parseInt(elCSS.width) - parseInt(elCSS.paddingLeft) - parseInt(elCSS.paddingRight) - parseInt(elCSS.borderLeftWidth) - parseInt(elCSS.borderRightWidth),
+      child1 = getChild(el, 0, options),
+      child2 = getChild(el, 1, options),
+      firstChildCSS = child1 && css(child1),
+      secondChildCSS = child2 && css(child2),
+      firstChildWidth = firstChildCSS && parseInt(firstChildCSS.marginLeft) + parseInt(firstChildCSS.marginRight) + getRect(child1).width,
+      secondChildWidth = secondChildCSS && parseInt(secondChildCSS.marginLeft) + parseInt(secondChildCSS.marginRight) + getRect(child2).width;
+
+  if (elCSS.display === 'flex') {
+    return elCSS.flexDirection === 'column' || elCSS.flexDirection === 'column-reverse' ? 'vertical' : 'horizontal';
+  }
+
+  if (elCSS.display === 'grid') {
+    return elCSS.gridTemplateColumns.split(' ').length <= 1 ? 'vertical' : 'horizontal';
+  }
+
+  if (child1 && firstChildCSS["float"] && firstChildCSS["float"] !== 'none') {
+    var touchingSideChild2 = firstChildCSS["float"] === 'left' ? 'left' : 'right';
+    return child2 && (secondChildCSS.clear === 'both' || secondChildCSS.clear === touchingSideChild2) ? 'vertical' : 'horizontal';
+  }
+
+  return child1 && (firstChildCSS.display === 'block' || firstChildCSS.display === 'flex' || firstChildCSS.display === 'table' || firstChildCSS.display === 'grid' || firstChildWidth >= elWidth && elCSS[CSSFloatProperty] === 'none' || child2 && elCSS[CSSFloatProperty] === 'none' && firstChildWidth + secondChildWidth > elWidth) ? 'vertical' : 'horizontal';
+},
+    _dragElInRowColumn = function _dragElInRowColumn(dragRect, targetRect, vertical) {
+  var dragElS1Opp = vertical ? dragRect.left : dragRect.top,
+      dragElS2Opp = vertical ? dragRect.right : dragRect.bottom,
+      dragElOppLength = vertical ? dragRect.width : dragRect.height,
+      targetS1Opp = vertical ? targetRect.left : targetRect.top,
+      targetS2Opp = vertical ? targetRect.right : targetRect.bottom,
+      targetOppLength = vertical ? targetRect.width : targetRect.height;
+  return dragElS1Opp === targetS1Opp || dragElS2Opp === targetS2Opp || dragElS1Opp + dragElOppLength / 2 === targetS1Opp + targetOppLength / 2;
+},
+
+/**
+ * Detects first nearest empty sortable to X and Y position using emptyInsertThreshold.
+ * @param  {Number} x      X position
+ * @param  {Number} y      Y position
+ * @return {HTMLElement}   Element of the first found nearest Sortable
+ */
+_detectNearestEmptySortable = function _detectNearestEmptySortable(x, y) {
+  var ret;
+  sortables.some(function (sortable) {
+    var threshold = sortable[expando].options.emptyInsertThreshold;
+    if (!threshold || lastChild(sortable)) return;
+    var rect = getRect(sortable),
+        insideHorizontally = x >= rect.left - threshold && x <= rect.right + threshold,
+        insideVertically = y >= rect.top - threshold && y <= rect.bottom + threshold;
+
+    if (insideHorizontally && insideVertically) {
+      return ret = sortable;
+    }
+  });
+  return ret;
+},
+    _prepareGroup = function _prepareGroup(options) {
+  function toFn(value, pull) {
+    return function (to, from, dragEl, evt) {
+      var sameGroup = to.options.group.name && from.options.group.name && to.options.group.name === from.options.group.name;
+
+      if (value == null && (pull || sameGroup)) {
+        // Default pull value
+        // Default pull and put value if same group
+        return true;
+      } else if (value == null || value === false) {
+        return false;
+      } else if (pull && value === 'clone') {
+        return value;
+      } else if (typeof value === 'function') {
+        return toFn(value(to, from, dragEl, evt), pull)(to, from, dragEl, evt);
+      } else {
+        var otherGroup = (pull ? to : from).options.group.name;
+        return value === true || typeof value === 'string' && value === otherGroup || value.join && value.indexOf(otherGroup) > -1;
+      }
+    };
+  }
+
+  var group = {};
+  var originalGroup = options.group;
+
+  if (!originalGroup || _typeof(originalGroup) != 'object') {
+    originalGroup = {
+      name: originalGroup
+    };
+  }
+
+  group.name = originalGroup.name;
+  group.checkPull = toFn(originalGroup.pull, true);
+  group.checkPut = toFn(originalGroup.put);
+  group.revertClone = originalGroup.revertClone;
+  options.group = group;
+},
+    _hideGhostForTarget = function _hideGhostForTarget() {
+  if (!supportCssPointerEvents && ghostEl) {
+    css(ghostEl, 'display', 'none');
+  }
+},
+    _unhideGhostForTarget = function _unhideGhostForTarget() {
+  if (!supportCssPointerEvents && ghostEl) {
+    css(ghostEl, 'display', '');
+  }
+}; // #1184 fix - Prevent click event on fallback if dragged but item not changed position
+
+
+if (documentExists && !ChromeForAndroid) {
+  document.addEventListener('click', function (evt) {
+    if (ignoreNextClick) {
+      evt.preventDefault();
+      evt.stopPropagation && evt.stopPropagation();
+      evt.stopImmediatePropagation && evt.stopImmediatePropagation();
+      ignoreNextClick = false;
+      return false;
+    }
+  }, true);
+}
+
+var nearestEmptyInsertDetectEvent = function nearestEmptyInsertDetectEvent(evt) {
+  if (dragEl) {
+    evt = evt.touches ? evt.touches[0] : evt;
+
+    var nearest = _detectNearestEmptySortable(evt.clientX, evt.clientY);
+
+    if (nearest) {
+      // Create imitation event
+      var event = {};
+
+      for (var i in evt) {
+        if (evt.hasOwnProperty(i)) {
+          event[i] = evt[i];
+        }
+      }
+
+      event.target = event.rootEl = nearest;
+      event.preventDefault = void 0;
+      event.stopPropagation = void 0;
+
+      nearest[expando]._onDragOver(event);
+    }
+  }
+};
+
+var _checkOutsideTargetEl = function _checkOutsideTargetEl(evt) {
+  if (dragEl) {
+    dragEl.parentNode[expando]._isOutsideThisEl(evt.target);
+  }
+};
+/**
+ * @class  Sortable
+ * @param  {HTMLElement}  el
+ * @param  {Object}       [options]
+ */
+
+
+function Sortable(el, options) {
+  if (!(el && el.nodeType && el.nodeType === 1)) {
+    throw "Sortable: `el` must be an HTMLElement, not ".concat({}.toString.call(el));
+  }
+
+  this.el = el; // root element
+
+  this.options = options = _extends({}, options); // Export instance
+
+  el[expando] = this;
+  var defaults = {
+    group: null,
+    sort: true,
+    disabled: false,
+    store: null,
+    handle: null,
+    draggable: /^[uo]l$/i.test(el.nodeName) ? '>li' : '>*',
+    swapThreshold: 1,
+    // percentage; 0 <= x <= 1
+    invertSwap: false,
+    // invert always
+    invertedSwapThreshold: null,
+    // will be set to same as swapThreshold if default
+    removeCloneOnHide: true,
+    direction: function direction() {
+      return _detectDirection(el, this.options);
+    },
+    ghostClass: 'sortable-ghost',
+    chosenClass: 'sortable-chosen',
+    dragClass: 'sortable-drag',
+    ignore: 'a, img',
+    filter: null,
+    preventOnFilter: true,
+    animation: 0,
+    easing: null,
+    setData: function setData(dataTransfer, dragEl) {
+      dataTransfer.setData('Text', dragEl.textContent);
+    },
+    dropBubble: false,
+    dragoverBubble: false,
+    dataIdAttr: 'data-id',
+    delay: 0,
+    delayOnTouchOnly: false,
+    touchStartThreshold: (Number.parseInt ? Number : window).parseInt(window.devicePixelRatio, 10) || 1,
+    forceFallback: false,
+    fallbackClass: 'sortable-fallback',
+    fallbackOnBody: false,
+    fallbackTolerance: 0,
+    fallbackOffset: {
+      x: 0,
+      y: 0
+    },
+    supportPointer: Sortable.supportPointer !== false && 'PointerEvent' in window && !Safari,
+    emptyInsertThreshold: 5
+  };
+  PluginManager.initializePlugins(this, el, defaults); // Set default options
+
+  for (var name in defaults) {
+    !(name in options) && (options[name] = defaults[name]);
+  }
+
+  _prepareGroup(options); // Bind all private methods
+
+
+  for (var fn in this) {
+    if (fn.charAt(0) === '_' && typeof this[fn] === 'function') {
+      this[fn] = this[fn].bind(this);
+    }
+  } // Setup drag mode
+
+
+  this.nativeDraggable = options.forceFallback ? false : supportDraggable;
+
+  if (this.nativeDraggable) {
+    // Touch start threshold cannot be greater than the native dragstart threshold
+    this.options.touchStartThreshold = 1;
+  } // Bind events
+
+
+  if (options.supportPointer) {
+    on(el, 'pointerdown', this._onTapStart);
+  } else {
+    on(el, 'mousedown', this._onTapStart);
+    on(el, 'touchstart', this._onTapStart);
+  }
+
+  if (this.nativeDraggable) {
+    on(el, 'dragover', this);
+    on(el, 'dragenter', this);
+  }
+
+  sortables.push(this.el); // Restore sorting
+
+  options.store && options.store.get && this.sort(options.store.get(this) || []); // Add animation state manager
+
+  _extends(this, AnimationStateManager());
+}
+
+Sortable.prototype =
+/** @lends Sortable.prototype */
+{
+  constructor: Sortable,
+  _isOutsideThisEl: function _isOutsideThisEl(target) {
+    if (!this.el.contains(target) && target !== this.el) {
+      lastTarget = null;
+    }
+  },
+  _getDirection: function _getDirection(evt, target) {
+    return typeof this.options.direction === 'function' ? this.options.direction.call(this, evt, target, dragEl) : this.options.direction;
+  },
+  _onTapStart: function _onTapStart(
+  /** Event|TouchEvent */
+  evt) {
+    if (!evt.cancelable) return;
+
+    var _this = this,
+        el = this.el,
+        options = this.options,
+        preventOnFilter = options.preventOnFilter,
+        type = evt.type,
+        touch = evt.touches && evt.touches[0] || evt.pointerType && evt.pointerType === 'touch' && evt,
+        target = (touch || evt).target,
+        originalTarget = evt.target.shadowRoot && (evt.path && evt.path[0] || evt.composedPath && evt.composedPath()[0]) || target,
+        filter = options.filter;
+
+    _saveInputCheckedState(el); // Don't trigger start event when an element is been dragged, otherwise the evt.oldindex always wrong when set option.group.
+
+
+    if (dragEl) {
+      return;
+    }
+
+    if (/mousedown|pointerdown/.test(type) && evt.button !== 0 || options.disabled) {
+      return; // only left button and enabled
+    } // cancel dnd if original target is content editable
+
+
+    if (originalTarget.isContentEditable) {
+      return;
+    } // Safari ignores further event handling after mousedown
+
+
+    if (!this.nativeDraggable && Safari && target && target.tagName.toUpperCase() === 'SELECT') {
+      return;
+    }
+
+    target = closest(target, options.draggable, el, false);
+
+    if (target && target.animated) {
+      return;
+    }
+
+    if (lastDownEl === target) {
+      // Ignoring duplicate `down`
+      return;
+    } // Get the index of the dragged element within its parent
+
+
+    oldIndex = index$1(target);
+    oldDraggableIndex = index$1(target, options.draggable); // Check filter
+
+    if (typeof filter === 'function') {
+      if (filter.call(this, evt, target, this)) {
+        _dispatchEvent({
+          sortable: _this,
+          rootEl: originalTarget,
+          name: 'filter',
+          targetEl: target,
+          toEl: el,
+          fromEl: el
+        });
+
+        pluginEvent('filter', _this, {
+          evt: evt
+        });
+        preventOnFilter && evt.cancelable && evt.preventDefault();
+        return; // cancel dnd
+      }
+    } else if (filter) {
+      filter = filter.split(',').some(function (criteria) {
+        criteria = closest(originalTarget, criteria.trim(), el, false);
+
+        if (criteria) {
+          _dispatchEvent({
+            sortable: _this,
+            rootEl: criteria,
+            name: 'filter',
+            targetEl: target,
+            fromEl: el,
+            toEl: el
+          });
+
+          pluginEvent('filter', _this, {
+            evt: evt
+          });
+          return true;
+        }
+      });
+
+      if (filter) {
+        preventOnFilter && evt.cancelable && evt.preventDefault();
+        return; // cancel dnd
+      }
+    }
+
+    if (options.handle && !closest(originalTarget, options.handle, el, false)) {
+      return;
+    } // Prepare `dragstart`
+
+
+    this._prepareDragStart(evt, touch, target);
+  },
+  _prepareDragStart: function _prepareDragStart(
+  /** Event */
+  evt,
+  /** Touch */
+  touch,
+  /** HTMLElement */
+  target) {
+    var _this = this,
+        el = _this.el,
+        options = _this.options,
+        ownerDocument = el.ownerDocument,
+        dragStartFn;
+
+    if (target && !dragEl && target.parentNode === el) {
+      var dragRect = getRect(target);
+      rootEl = el;
+      dragEl = target;
+      parentEl = dragEl.parentNode;
+      nextEl = dragEl.nextSibling;
+      lastDownEl = target;
+      activeGroup = options.group;
+      Sortable.dragged = dragEl;
+      tapEvt = {
+        target: dragEl,
+        clientX: (touch || evt).clientX,
+        clientY: (touch || evt).clientY
+      };
+      tapDistanceLeft = tapEvt.clientX - dragRect.left;
+      tapDistanceTop = tapEvt.clientY - dragRect.top;
+      this._lastX = (touch || evt).clientX;
+      this._lastY = (touch || evt).clientY;
+      dragEl.style['will-change'] = 'all';
+
+      dragStartFn = function dragStartFn() {
+        pluginEvent('delayEnded', _this, {
+          evt: evt
+        });
+
+        if (Sortable.eventCanceled) {
+          _this._onDrop();
+
+          return;
+        } // Delayed drag has been triggered
+        // we can re-enable the events: touchmove/mousemove
+
+
+        _this._disableDelayedDragEvents();
+
+        if (!FireFox && _this.nativeDraggable) {
+          dragEl.draggable = true;
+        } // Bind the events: dragstart/dragend
+
+
+        _this._triggerDragStart(evt, touch); // Drag start event
+
+
+        _dispatchEvent({
+          sortable: _this,
+          name: 'choose',
+          originalEvent: evt
+        }); // Chosen item
+
+
+        toggleClass(dragEl, options.chosenClass, true);
+      }; // Disable "draggable"
+
+
+      options.ignore.split(',').forEach(function (criteria) {
+        find(dragEl, criteria.trim(), _disableDraggable);
+      });
+      on(ownerDocument, 'dragover', nearestEmptyInsertDetectEvent);
+      on(ownerDocument, 'mousemove', nearestEmptyInsertDetectEvent);
+      on(ownerDocument, 'touchmove', nearestEmptyInsertDetectEvent);
+      on(ownerDocument, 'mouseup', _this._onDrop);
+      on(ownerDocument, 'touchend', _this._onDrop);
+      on(ownerDocument, 'touchcancel', _this._onDrop); // Make dragEl draggable (must be before delay for FireFox)
+
+      if (FireFox && this.nativeDraggable) {
+        this.options.touchStartThreshold = 4;
+        dragEl.draggable = true;
+      }
+
+      pluginEvent('delayStart', this, {
+        evt: evt
+      }); // Delay is impossible for native DnD in Edge or IE
+
+      if (options.delay && (!options.delayOnTouchOnly || touch) && (!this.nativeDraggable || !(Edge || IE11OrLess))) {
+        if (Sortable.eventCanceled) {
+          this._onDrop();
+
+          return;
+        } // If the user moves the pointer or let go the click or touch
+        // before the delay has been reached:
+        // disable the delayed drag
+
+
+        on(ownerDocument, 'mouseup', _this._disableDelayedDrag);
+        on(ownerDocument, 'touchend', _this._disableDelayedDrag);
+        on(ownerDocument, 'touchcancel', _this._disableDelayedDrag);
+        on(ownerDocument, 'mousemove', _this._delayedDragTouchMoveHandler);
+        on(ownerDocument, 'touchmove', _this._delayedDragTouchMoveHandler);
+        options.supportPointer && on(ownerDocument, 'pointermove', _this._delayedDragTouchMoveHandler);
+        _this._dragStartTimer = setTimeout(dragStartFn, options.delay);
+      } else {
+        dragStartFn();
+      }
+    }
+  },
+  _delayedDragTouchMoveHandler: function _delayedDragTouchMoveHandler(
+  /** TouchEvent|PointerEvent **/
+  e) {
+    var touch = e.touches ? e.touches[0] : e;
+
+    if (Math.max(Math.abs(touch.clientX - this._lastX), Math.abs(touch.clientY - this._lastY)) >= Math.floor(this.options.touchStartThreshold / (this.nativeDraggable && window.devicePixelRatio || 1))) {
+      this._disableDelayedDrag();
+    }
+  },
+  _disableDelayedDrag: function _disableDelayedDrag() {
+    dragEl && _disableDraggable(dragEl);
+    clearTimeout(this._dragStartTimer);
+
+    this._disableDelayedDragEvents();
+  },
+  _disableDelayedDragEvents: function _disableDelayedDragEvents() {
+    var ownerDocument = this.el.ownerDocument;
+    off(ownerDocument, 'mouseup', this._disableDelayedDrag);
+    off(ownerDocument, 'touchend', this._disableDelayedDrag);
+    off(ownerDocument, 'touchcancel', this._disableDelayedDrag);
+    off(ownerDocument, 'mousemove', this._delayedDragTouchMoveHandler);
+    off(ownerDocument, 'touchmove', this._delayedDragTouchMoveHandler);
+    off(ownerDocument, 'pointermove', this._delayedDragTouchMoveHandler);
+  },
+  _triggerDragStart: function _triggerDragStart(
+  /** Event */
+  evt,
+  /** Touch */
+  touch) {
+    touch = touch || evt.pointerType == 'touch' && evt;
+
+    if (!this.nativeDraggable || touch) {
+      if (this.options.supportPointer) {
+        on(document, 'pointermove', this._onTouchMove);
+      } else if (touch) {
+        on(document, 'touchmove', this._onTouchMove);
+      } else {
+        on(document, 'mousemove', this._onTouchMove);
+      }
+    } else {
+      on(dragEl, 'dragend', this);
+      on(rootEl, 'dragstart', this._onDragStart);
+    }
+
+    try {
+      if (document.selection) {
+        // Timeout neccessary for IE9
+        _nextTick(function () {
+          document.selection.empty();
+        });
+      } else {
+        window.getSelection().removeAllRanges();
+      }
+    } catch (err) {}
+  },
+  _dragStarted: function _dragStarted(fallback, evt) {
+
+    awaitingDragStarted = false;
+
+    if (rootEl && dragEl) {
+      pluginEvent('dragStarted', this, {
+        evt: evt
+      });
+
+      if (this.nativeDraggable) {
+        on(document, 'dragover', _checkOutsideTargetEl);
+      }
+
+      var options = this.options; // Apply effect
+
+      !fallback && toggleClass(dragEl, options.dragClass, false);
+      toggleClass(dragEl, options.ghostClass, true);
+      Sortable.active = this;
+      fallback && this._appendGhost(); // Drag start event
+
+      _dispatchEvent({
+        sortable: this,
+        name: 'start',
+        originalEvent: evt
+      });
+    } else {
+      this._nulling();
+    }
+  },
+  _emulateDragOver: function _emulateDragOver() {
+    if (touchEvt) {
+      this._lastX = touchEvt.clientX;
+      this._lastY = touchEvt.clientY;
+
+      _hideGhostForTarget();
+
+      var target = document.elementFromPoint(touchEvt.clientX, touchEvt.clientY);
+      var parent = target;
+
+      while (target && target.shadowRoot) {
+        target = target.shadowRoot.elementFromPoint(touchEvt.clientX, touchEvt.clientY);
+        if (target === parent) break;
+        parent = target;
+      }
+
+      dragEl.parentNode[expando]._isOutsideThisEl(target);
+
+      if (parent) {
+        do {
+          if (parent[expando]) {
+            var inserted = void 0;
+            inserted = parent[expando]._onDragOver({
+              clientX: touchEvt.clientX,
+              clientY: touchEvt.clientY,
+              target: target,
+              rootEl: parent
+            });
+
+            if (inserted && !this.options.dragoverBubble) {
+              break;
+            }
+          }
+
+          target = parent; // store last element
+        }
+        /* jshint boss:true */
+        while (parent = parent.parentNode);
+      }
+
+      _unhideGhostForTarget();
+    }
+  },
+  _onTouchMove: function _onTouchMove(
+  /**TouchEvent*/
+  evt) {
+    if (tapEvt) {
+      var options = this.options,
+          fallbackTolerance = options.fallbackTolerance,
+          fallbackOffset = options.fallbackOffset,
+          touch = evt.touches ? evt.touches[0] : evt,
+          ghostMatrix = ghostEl && matrix(ghostEl, true),
+          scaleX = ghostEl && ghostMatrix && ghostMatrix.a,
+          scaleY = ghostEl && ghostMatrix && ghostMatrix.d,
+          relativeScrollOffset = PositionGhostAbsolutely && ghostRelativeParent && getRelativeScrollOffset(ghostRelativeParent),
+          dx = (touch.clientX - tapEvt.clientX + fallbackOffset.x) / (scaleX || 1) + (relativeScrollOffset ? relativeScrollOffset[0] - ghostRelativeParentInitialScroll[0] : 0) / (scaleX || 1),
+          dy = (touch.clientY - tapEvt.clientY + fallbackOffset.y) / (scaleY || 1) + (relativeScrollOffset ? relativeScrollOffset[1] - ghostRelativeParentInitialScroll[1] : 0) / (scaleY || 1); // only set the status to dragging, when we are actually dragging
+
+      if (!Sortable.active && !awaitingDragStarted) {
+        if (fallbackTolerance && Math.max(Math.abs(touch.clientX - this._lastX), Math.abs(touch.clientY - this._lastY)) < fallbackTolerance) {
+          return;
+        }
+
+        this._onDragStart(evt, true);
+      }
+
+      if (ghostEl) {
+        if (ghostMatrix) {
+          ghostMatrix.e += dx - (lastDx || 0);
+          ghostMatrix.f += dy - (lastDy || 0);
+        } else {
+          ghostMatrix = {
+            a: 1,
+            b: 0,
+            c: 0,
+            d: 1,
+            e: dx,
+            f: dy
+          };
+        }
+
+        var cssMatrix = "matrix(".concat(ghostMatrix.a, ",").concat(ghostMatrix.b, ",").concat(ghostMatrix.c, ",").concat(ghostMatrix.d, ",").concat(ghostMatrix.e, ",").concat(ghostMatrix.f, ")");
+        css(ghostEl, 'webkitTransform', cssMatrix);
+        css(ghostEl, 'mozTransform', cssMatrix);
+        css(ghostEl, 'msTransform', cssMatrix);
+        css(ghostEl, 'transform', cssMatrix);
+        lastDx = dx;
+        lastDy = dy;
+        touchEvt = touch;
+      }
+
+      evt.cancelable && evt.preventDefault();
+    }
+  },
+  _appendGhost: function _appendGhost() {
+    // Bug if using scale(): https://stackoverflow.com/questions/2637058
+    // Not being adjusted for
+    if (!ghostEl) {
+      var container = this.options.fallbackOnBody ? document.body : rootEl,
+          rect = getRect(dragEl, true, PositionGhostAbsolutely, true, container),
+          options = this.options; // Position absolutely
+
+      if (PositionGhostAbsolutely) {
+        // Get relatively positioned parent
+        ghostRelativeParent = container;
+
+        while (css(ghostRelativeParent, 'position') === 'static' && css(ghostRelativeParent, 'transform') === 'none' && ghostRelativeParent !== document) {
+          ghostRelativeParent = ghostRelativeParent.parentNode;
+        }
+
+        if (ghostRelativeParent !== document.body && ghostRelativeParent !== document.documentElement) {
+          if (ghostRelativeParent === document) ghostRelativeParent = getWindowScrollingElement();
+          rect.top += ghostRelativeParent.scrollTop;
+          rect.left += ghostRelativeParent.scrollLeft;
+        } else {
+          ghostRelativeParent = getWindowScrollingElement();
+        }
+
+        ghostRelativeParentInitialScroll = getRelativeScrollOffset(ghostRelativeParent);
+      }
+
+      ghostEl = dragEl.cloneNode(true);
+      toggleClass(ghostEl, options.ghostClass, false);
+      toggleClass(ghostEl, options.fallbackClass, true);
+      toggleClass(ghostEl, options.dragClass, true);
+      css(ghostEl, 'transition', '');
+      css(ghostEl, 'transform', '');
+      css(ghostEl, 'box-sizing', 'border-box');
+      css(ghostEl, 'margin', 0);
+      css(ghostEl, 'top', rect.top);
+      css(ghostEl, 'left', rect.left);
+      css(ghostEl, 'width', rect.width);
+      css(ghostEl, 'height', rect.height);
+      css(ghostEl, 'opacity', '0.8');
+      css(ghostEl, 'position', PositionGhostAbsolutely ? 'absolute' : 'fixed');
+      css(ghostEl, 'zIndex', '100000');
+      css(ghostEl, 'pointerEvents', 'none');
+      Sortable.ghost = ghostEl;
+      container.appendChild(ghostEl); // Set transform-origin
+
+      css(ghostEl, 'transform-origin', tapDistanceLeft / parseInt(ghostEl.style.width) * 100 + '% ' + tapDistanceTop / parseInt(ghostEl.style.height) * 100 + '%');
+    }
+  },
+  _onDragStart: function _onDragStart(
+  /**Event*/
+  evt,
+  /**boolean*/
+  fallback) {
+    var _this = this;
+
+    var dataTransfer = evt.dataTransfer;
+    var options = _this.options;
+    pluginEvent('dragStart', this, {
+      evt: evt
+    });
+
+    if (Sortable.eventCanceled) {
+      this._onDrop();
+
+      return;
+    }
+
+    pluginEvent('setupClone', this);
+
+    if (!Sortable.eventCanceled) {
+      cloneEl = clone(dragEl);
+      cloneEl.removeAttribute("id");
+      cloneEl.draggable = false;
+      cloneEl.style['will-change'] = '';
+
+      this._hideClone();
+
+      toggleClass(cloneEl, this.options.chosenClass, false);
+      Sortable.clone = cloneEl;
+    } // #1143: IFrame support workaround
+
+
+    _this.cloneId = _nextTick(function () {
+      pluginEvent('clone', _this);
+      if (Sortable.eventCanceled) return;
+
+      if (!_this.options.removeCloneOnHide) {
+        rootEl.insertBefore(cloneEl, dragEl);
+      }
+
+      _this._hideClone();
+
+      _dispatchEvent({
+        sortable: _this,
+        name: 'clone'
+      });
+    });
+    !fallback && toggleClass(dragEl, options.dragClass, true); // Set proper drop events
+
+    if (fallback) {
+      ignoreNextClick = true;
+      _this._loopId = setInterval(_this._emulateDragOver, 50);
+    } else {
+      // Undo what was set in _prepareDragStart before drag started
+      off(document, 'mouseup', _this._onDrop);
+      off(document, 'touchend', _this._onDrop);
+      off(document, 'touchcancel', _this._onDrop);
+
+      if (dataTransfer) {
+        dataTransfer.effectAllowed = 'move';
+        options.setData && options.setData.call(_this, dataTransfer, dragEl);
+      }
+
+      on(document, 'drop', _this); // #1276 fix:
+
+      css(dragEl, 'transform', 'translateZ(0)');
+    }
+
+    awaitingDragStarted = true;
+    _this._dragStartId = _nextTick(_this._dragStarted.bind(_this, fallback, evt));
+    on(document, 'selectstart', _this);
+    moved = true;
+
+    if (Safari) {
+      css(document.body, 'user-select', 'none');
+    }
+  },
+  // Returns true - if no further action is needed (either inserted or another condition)
+  _onDragOver: function _onDragOver(
+  /**Event*/
+  evt) {
+    var el = this.el,
+        target = evt.target,
+        dragRect,
+        targetRect,
+        revert,
+        options = this.options,
+        group = options.group,
+        activeSortable = Sortable.active,
+        isOwner = activeGroup === group,
+        canSort = options.sort,
+        fromSortable = putSortable || activeSortable,
+        vertical,
+        _this = this,
+        completedFired = false;
+
+    if (_silent) return;
+
+    function dragOverEvent(name, extra) {
+      pluginEvent(name, _this, _objectSpread2({
+        evt: evt,
+        isOwner: isOwner,
+        axis: vertical ? 'vertical' : 'horizontal',
+        revert: revert,
+        dragRect: dragRect,
+        targetRect: targetRect,
+        canSort: canSort,
+        fromSortable: fromSortable,
+        target: target,
+        completed: completed,
+        onMove: function onMove(target, after) {
+          return _onMove(rootEl, el, dragEl, dragRect, target, getRect(target), evt, after);
+        },
+        changed: changed
+      }, extra));
+    } // Capture animation state
+
+
+    function capture() {
+      dragOverEvent('dragOverAnimationCapture');
+
+      _this.captureAnimationState();
+
+      if (_this !== fromSortable) {
+        fromSortable.captureAnimationState();
+      }
+    } // Return invocation when dragEl is inserted (or completed)
+
+
+    function completed(insertion) {
+      dragOverEvent('dragOverCompleted', {
+        insertion: insertion
+      });
+
+      if (insertion) {
+        // Clones must be hidden before folding animation to capture dragRectAbsolute properly
+        if (isOwner) {
+          activeSortable._hideClone();
+        } else {
+          activeSortable._showClone(_this);
+        }
+
+        if (_this !== fromSortable) {
+          // Set ghost class to new sortable's ghost class
+          toggleClass(dragEl, putSortable ? putSortable.options.ghostClass : activeSortable.options.ghostClass, false);
+          toggleClass(dragEl, options.ghostClass, true);
+        }
+
+        if (putSortable !== _this && _this !== Sortable.active) {
+          putSortable = _this;
+        } else if (_this === Sortable.active && putSortable) {
+          putSortable = null;
+        } // Animation
+
+
+        if (fromSortable === _this) {
+          _this._ignoreWhileAnimating = target;
+        }
+
+        _this.animateAll(function () {
+          dragOverEvent('dragOverAnimationComplete');
+          _this._ignoreWhileAnimating = null;
+        });
+
+        if (_this !== fromSortable) {
+          fromSortable.animateAll();
+          fromSortable._ignoreWhileAnimating = null;
+        }
+      } // Null lastTarget if it is not inside a previously swapped element
+
+
+      if (target === dragEl && !dragEl.animated || target === el && !target.animated) {
+        lastTarget = null;
+      } // no bubbling and not fallback
+
+
+      if (!options.dragoverBubble && !evt.rootEl && target !== document) {
+        dragEl.parentNode[expando]._isOutsideThisEl(evt.target); // Do not detect for empty insert if already inserted
+
+
+        !insertion && nearestEmptyInsertDetectEvent(evt);
+      }
+
+      !options.dragoverBubble && evt.stopPropagation && evt.stopPropagation();
+      return completedFired = true;
+    } // Call when dragEl has been inserted
+
+
+    function changed() {
+      newIndex = index$1(dragEl);
+      newDraggableIndex = index$1(dragEl, options.draggable);
+
+      _dispatchEvent({
+        sortable: _this,
+        name: 'change',
+        toEl: el,
+        newIndex: newIndex,
+        newDraggableIndex: newDraggableIndex,
+        originalEvent: evt
+      });
+    }
+
+    if (evt.preventDefault !== void 0) {
+      evt.cancelable && evt.preventDefault();
+    }
+
+    target = closest(target, options.draggable, el, true);
+    dragOverEvent('dragOver');
+    if (Sortable.eventCanceled) return completedFired;
+
+    if (dragEl.contains(evt.target) || target.animated && target.animatingX && target.animatingY || _this._ignoreWhileAnimating === target) {
+      return completed(false);
+    }
+
+    ignoreNextClick = false;
+
+    if (activeSortable && !options.disabled && (isOwner ? canSort || (revert = parentEl !== rootEl) // Reverting item into the original list
+    : putSortable === this || (this.lastPutMode = activeGroup.checkPull(this, activeSortable, dragEl, evt)) && group.checkPut(this, activeSortable, dragEl, evt))) {
+      vertical = this._getDirection(evt, target) === 'vertical';
+      dragRect = getRect(dragEl);
+      dragOverEvent('dragOverValid');
+      if (Sortable.eventCanceled) return completedFired;
+
+      if (revert) {
+        parentEl = rootEl; // actualization
+
+        capture();
+
+        this._hideClone();
+
+        dragOverEvent('revert');
+
+        if (!Sortable.eventCanceled) {
+          if (nextEl) {
+            rootEl.insertBefore(dragEl, nextEl);
+          } else {
+            rootEl.appendChild(dragEl);
+          }
+        }
+
+        return completed(true);
+      }
+
+      var elLastChild = lastChild(el, options.draggable);
+
+      if (!elLastChild || _ghostIsLast(evt, vertical, this) && !elLastChild.animated) {
+        // Insert to end of list
+        // If already at end of list: Do not insert
+        if (elLastChild === dragEl) {
+          return completed(false);
+        } // if there is a last element, it is the target
+
+
+        if (elLastChild && el === evt.target) {
+          target = elLastChild;
+        }
+
+        if (target) {
+          targetRect = getRect(target);
+        }
+
+        if (_onMove(rootEl, el, dragEl, dragRect, target, targetRect, evt, !!target) !== false) {
+          capture();
+
+          if (elLastChild && elLastChild.nextSibling) {
+            // the last draggable element is not the last node
+            el.insertBefore(dragEl, elLastChild.nextSibling);
+          } else {
+            el.appendChild(dragEl);
+          }
+
+          parentEl = el; // actualization
+
+          changed();
+          return completed(true);
+        }
+      } else if (elLastChild && _ghostIsFirst(evt, vertical, this)) {
+        // Insert to start of list
+        var firstChild = getChild(el, 0, options, true);
+
+        if (firstChild === dragEl) {
+          return completed(false);
+        }
+
+        target = firstChild;
+        targetRect = getRect(target);
+
+        if (_onMove(rootEl, el, dragEl, dragRect, target, targetRect, evt, false) !== false) {
+          capture();
+          el.insertBefore(dragEl, firstChild);
+          parentEl = el; // actualization
+
+          changed();
+          return completed(true);
+        }
+      } else if (target.parentNode === el) {
+        targetRect = getRect(target);
+        var direction = 0,
+            targetBeforeFirstSwap,
+            differentLevel = dragEl.parentNode !== el,
+            differentRowCol = !_dragElInRowColumn(dragEl.animated && dragEl.toRect || dragRect, target.animated && target.toRect || targetRect, vertical),
+            side1 = vertical ? 'top' : 'left',
+            scrolledPastTop = isScrolledPast(target, 'top', 'top') || isScrolledPast(dragEl, 'top', 'top'),
+            scrollBefore = scrolledPastTop ? scrolledPastTop.scrollTop : void 0;
+
+        if (lastTarget !== target) {
+          targetBeforeFirstSwap = targetRect[side1];
+          pastFirstInvertThresh = false;
+          isCircumstantialInvert = !differentRowCol && options.invertSwap || differentLevel;
+        }
+
+        direction = _getSwapDirection(evt, target, targetRect, vertical, differentRowCol ? 1 : options.swapThreshold, options.invertedSwapThreshold == null ? options.swapThreshold : options.invertedSwapThreshold, isCircumstantialInvert, lastTarget === target);
+        var sibling;
+
+        if (direction !== 0) {
+          // Check if target is beside dragEl in respective direction (ignoring hidden elements)
+          var dragIndex = index$1(dragEl);
+
+          do {
+            dragIndex -= direction;
+            sibling = parentEl.children[dragIndex];
+          } while (sibling && (css(sibling, 'display') === 'none' || sibling === ghostEl));
+        } // If dragEl is already beside target: Do not insert
+
+
+        if (direction === 0 || sibling === target) {
+          return completed(false);
+        }
+
+        lastTarget = target;
+        lastDirection = direction;
+        var nextSibling = target.nextElementSibling,
+            after = false;
+        after = direction === 1;
+
+        var moveVector = _onMove(rootEl, el, dragEl, dragRect, target, targetRect, evt, after);
+
+        if (moveVector !== false) {
+          if (moveVector === 1 || moveVector === -1) {
+            after = moveVector === 1;
+          }
+
+          _silent = true;
+          setTimeout(_unsilent, 30);
+          capture();
+
+          if (after && !nextSibling) {
+            el.appendChild(dragEl);
+          } else {
+            target.parentNode.insertBefore(dragEl, after ? nextSibling : target);
+          } // Undo chrome's scroll adjustment (has no effect on other browsers)
+
+
+          if (scrolledPastTop) {
+            scrollBy(scrolledPastTop, 0, scrollBefore - scrolledPastTop.scrollTop);
+          }
+
+          parentEl = dragEl.parentNode; // actualization
+          // must be done before animation
+
+          if (targetBeforeFirstSwap !== undefined && !isCircumstantialInvert) {
+            targetMoveDistance = Math.abs(targetBeforeFirstSwap - getRect(target)[side1]);
+          }
+
+          changed();
+          return completed(true);
+        }
+      }
+
+      if (el.contains(dragEl)) {
+        return completed(false);
+      }
+    }
+
+    return false;
+  },
+  _ignoreWhileAnimating: null,
+  _offMoveEvents: function _offMoveEvents() {
+    off(document, 'mousemove', this._onTouchMove);
+    off(document, 'touchmove', this._onTouchMove);
+    off(document, 'pointermove', this._onTouchMove);
+    off(document, 'dragover', nearestEmptyInsertDetectEvent);
+    off(document, 'mousemove', nearestEmptyInsertDetectEvent);
+    off(document, 'touchmove', nearestEmptyInsertDetectEvent);
+  },
+  _offUpEvents: function _offUpEvents() {
+    var ownerDocument = this.el.ownerDocument;
+    off(ownerDocument, 'mouseup', this._onDrop);
+    off(ownerDocument, 'touchend', this._onDrop);
+    off(ownerDocument, 'pointerup', this._onDrop);
+    off(ownerDocument, 'touchcancel', this._onDrop);
+    off(document, 'selectstart', this);
+  },
+  _onDrop: function _onDrop(
+  /**Event*/
+  evt) {
+    var el = this.el,
+        options = this.options; // Get the index of the dragged element within its parent
+
+    newIndex = index$1(dragEl);
+    newDraggableIndex = index$1(dragEl, options.draggable);
+    pluginEvent('drop', this, {
+      evt: evt
+    });
+    parentEl = dragEl && dragEl.parentNode; // Get again after plugin event
+
+    newIndex = index$1(dragEl);
+    newDraggableIndex = index$1(dragEl, options.draggable);
+
+    if (Sortable.eventCanceled) {
+      this._nulling();
+
+      return;
+    }
+
+    awaitingDragStarted = false;
+    isCircumstantialInvert = false;
+    pastFirstInvertThresh = false;
+    clearInterval(this._loopId);
+    clearTimeout(this._dragStartTimer);
+
+    _cancelNextTick(this.cloneId);
+
+    _cancelNextTick(this._dragStartId); // Unbind events
+
+
+    if (this.nativeDraggable) {
+      off(document, 'drop', this);
+      off(el, 'dragstart', this._onDragStart);
+    }
+
+    this._offMoveEvents();
+
+    this._offUpEvents();
+
+    if (Safari) {
+      css(document.body, 'user-select', '');
+    }
+
+    css(dragEl, 'transform', '');
+
+    if (evt) {
+      if (moved) {
+        evt.cancelable && evt.preventDefault();
+        !options.dropBubble && evt.stopPropagation();
+      }
+
+      ghostEl && ghostEl.parentNode && ghostEl.parentNode.removeChild(ghostEl);
+
+      if (rootEl === parentEl || putSortable && putSortable.lastPutMode !== 'clone') {
+        // Remove clone(s)
+        cloneEl && cloneEl.parentNode && cloneEl.parentNode.removeChild(cloneEl);
+      }
+
+      if (dragEl) {
+        if (this.nativeDraggable) {
+          off(dragEl, 'dragend', this);
+        }
+
+        _disableDraggable(dragEl);
+
+        dragEl.style['will-change'] = ''; // Remove classes
+        // ghostClass is added in dragStarted
+
+        if (moved && !awaitingDragStarted) {
+          toggleClass(dragEl, putSortable ? putSortable.options.ghostClass : this.options.ghostClass, false);
+        }
+
+        toggleClass(dragEl, this.options.chosenClass, false); // Drag stop event
+
+        _dispatchEvent({
+          sortable: this,
+          name: 'unchoose',
+          toEl: parentEl,
+          newIndex: null,
+          newDraggableIndex: null,
+          originalEvent: evt
+        });
+
+        if (rootEl !== parentEl) {
+          if (newIndex >= 0) {
+            // Add event
+            _dispatchEvent({
+              rootEl: parentEl,
+              name: 'add',
+              toEl: parentEl,
+              fromEl: rootEl,
+              originalEvent: evt
+            }); // Remove event
+
+
+            _dispatchEvent({
+              sortable: this,
+              name: 'remove',
+              toEl: parentEl,
+              originalEvent: evt
+            }); // drag from one list and drop into another
+
+
+            _dispatchEvent({
+              rootEl: parentEl,
+              name: 'sort',
+              toEl: parentEl,
+              fromEl: rootEl,
+              originalEvent: evt
+            });
+
+            _dispatchEvent({
+              sortable: this,
+              name: 'sort',
+              toEl: parentEl,
+              originalEvent: evt
+            });
+          }
+
+          putSortable && putSortable.save();
+        } else {
+          if (newIndex !== oldIndex) {
+            if (newIndex >= 0) {
+              // drag & drop within the same list
+              _dispatchEvent({
+                sortable: this,
+                name: 'update',
+                toEl: parentEl,
+                originalEvent: evt
+              });
+
+              _dispatchEvent({
+                sortable: this,
+                name: 'sort',
+                toEl: parentEl,
+                originalEvent: evt
+              });
+            }
+          }
+        }
+
+        if (Sortable.active) {
+          /* jshint eqnull:true */
+          if (newIndex == null || newIndex === -1) {
+            newIndex = oldIndex;
+            newDraggableIndex = oldDraggableIndex;
+          }
+
+          _dispatchEvent({
+            sortable: this,
+            name: 'end',
+            toEl: parentEl,
+            originalEvent: evt
+          }); // Save sorting
+
+
+          this.save();
+        }
+      }
+    }
+
+    this._nulling();
+  },
+  _nulling: function _nulling() {
+    pluginEvent('nulling', this);
+    rootEl = dragEl = parentEl = ghostEl = nextEl = cloneEl = lastDownEl = cloneHidden = tapEvt = touchEvt = moved = newIndex = newDraggableIndex = oldIndex = oldDraggableIndex = lastTarget = lastDirection = putSortable = activeGroup = Sortable.dragged = Sortable.ghost = Sortable.clone = Sortable.active = null;
+    savedInputChecked.forEach(function (el) {
+      el.checked = true;
+    });
+    savedInputChecked.length = lastDx = lastDy = 0;
+  },
+  handleEvent: function handleEvent(
+  /**Event*/
+  evt) {
+    switch (evt.type) {
+      case 'drop':
+      case 'dragend':
+        this._onDrop(evt);
+
+        break;
+
+      case 'dragenter':
+      case 'dragover':
+        if (dragEl) {
+          this._onDragOver(evt);
+
+          _globalDragOver(evt);
+        }
+
+        break;
+
+      case 'selectstart':
+        evt.preventDefault();
+        break;
+    }
+  },
+
+  /**
+   * Serializes the item into an array of string.
+   * @returns {String[]}
+   */
+  toArray: function toArray() {
+    var order = [],
+        el,
+        children = this.el.children,
+        i = 0,
+        n = children.length,
+        options = this.options;
+
+    for (; i < n; i++) {
+      el = children[i];
+
+      if (closest(el, options.draggable, this.el, false)) {
+        order.push(el.getAttribute(options.dataIdAttr) || _generateId(el));
+      }
+    }
+
+    return order;
+  },
+
+  /**
+   * Sorts the elements according to the array.
+   * @param  {String[]}  order  order of the items
+   */
+  sort: function sort(order, useAnimation) {
+    var items = {},
+        rootEl = this.el;
+    this.toArray().forEach(function (id, i) {
+      var el = rootEl.children[i];
+
+      if (closest(el, this.options.draggable, rootEl, false)) {
+        items[id] = el;
+      }
+    }, this);
+    useAnimation && this.captureAnimationState();
+    order.forEach(function (id) {
+      if (items[id]) {
+        rootEl.removeChild(items[id]);
+        rootEl.appendChild(items[id]);
+      }
+    });
+    useAnimation && this.animateAll();
+  },
+
+  /**
+   * Save the current sorting
+   */
+  save: function save() {
+    var store = this.options.store;
+    store && store.set && store.set(this);
+  },
+
+  /**
+   * For each element in the set, get the first element that matches the selector by testing the element itself and traversing up through its ancestors in the DOM tree.
+   * @param   {HTMLElement}  el
+   * @param   {String}       [selector]  default: `options.draggable`
+   * @returns {HTMLElement|null}
+   */
+  closest: function closest$1(el, selector) {
+    return closest(el, selector || this.options.draggable, this.el, false);
+  },
+
+  /**
+   * Set/get option
+   * @param   {string} name
+   * @param   {*}      [value]
+   * @returns {*}
+   */
+  option: function option(name, value) {
+    var options = this.options;
+
+    if (value === void 0) {
+      return options[name];
+    } else {
+      var modifiedValue = PluginManager.modifyOption(this, name, value);
+
+      if (typeof modifiedValue !== 'undefined') {
+        options[name] = modifiedValue;
+      } else {
+        options[name] = value;
+      }
+
+      if (name === 'group') {
+        _prepareGroup(options);
+      }
+    }
+  },
+
+  /**
+   * Destroy
+   */
+  destroy: function destroy() {
+    pluginEvent('destroy', this);
+    var el = this.el;
+    el[expando] = null;
+    off(el, 'mousedown', this._onTapStart);
+    off(el, 'touchstart', this._onTapStart);
+    off(el, 'pointerdown', this._onTapStart);
+
+    if (this.nativeDraggable) {
+      off(el, 'dragover', this);
+      off(el, 'dragenter', this);
+    } // Remove draggable attributes
+
+
+    Array.prototype.forEach.call(el.querySelectorAll('[draggable]'), function (el) {
+      el.removeAttribute('draggable');
+    });
+
+    this._onDrop();
+
+    this._disableDelayedDragEvents();
+
+    sortables.splice(sortables.indexOf(this.el), 1);
+    this.el = el = null;
+  },
+  _hideClone: function _hideClone() {
+    if (!cloneHidden) {
+      pluginEvent('hideClone', this);
+      if (Sortable.eventCanceled) return;
+      css(cloneEl, 'display', 'none');
+
+      if (this.options.removeCloneOnHide && cloneEl.parentNode) {
+        cloneEl.parentNode.removeChild(cloneEl);
+      }
+
+      cloneHidden = true;
+    }
+  },
+  _showClone: function _showClone(putSortable) {
+    if (putSortable.lastPutMode !== 'clone') {
+      this._hideClone();
+
+      return;
+    }
+
+    if (cloneHidden) {
+      pluginEvent('showClone', this);
+      if (Sortable.eventCanceled) return; // show clone at dragEl or original position
+
+      if (dragEl.parentNode == rootEl && !this.options.group.revertClone) {
+        rootEl.insertBefore(cloneEl, dragEl);
+      } else if (nextEl) {
+        rootEl.insertBefore(cloneEl, nextEl);
+      } else {
+        rootEl.appendChild(cloneEl);
+      }
+
+      if (this.options.group.revertClone) {
+        this.animate(dragEl, cloneEl);
+      }
+
+      css(cloneEl, 'display', '');
+      cloneHidden = false;
+    }
+  }
+};
+
+function _globalDragOver(
+/**Event*/
+evt) {
+  if (evt.dataTransfer) {
+    evt.dataTransfer.dropEffect = 'move';
+  }
+
+  evt.cancelable && evt.preventDefault();
+}
+
+function _onMove(fromEl, toEl, dragEl, dragRect, targetEl, targetRect, originalEvent, willInsertAfter) {
+  var evt,
+      sortable = fromEl[expando],
+      onMoveFn = sortable.options.onMove,
+      retVal; // Support for new CustomEvent feature
+
+  if (window.CustomEvent && !IE11OrLess && !Edge) {
+    evt = new CustomEvent('move', {
+      bubbles: true,
+      cancelable: true
+    });
+  } else {
+    evt = document.createEvent('Event');
+    evt.initEvent('move', true, true);
+  }
+
+  evt.to = toEl;
+  evt.from = fromEl;
+  evt.dragged = dragEl;
+  evt.draggedRect = dragRect;
+  evt.related = targetEl || toEl;
+  evt.relatedRect = targetRect || getRect(toEl);
+  evt.willInsertAfter = willInsertAfter;
+  evt.originalEvent = originalEvent;
+  fromEl.dispatchEvent(evt);
+
+  if (onMoveFn) {
+    retVal = onMoveFn.call(sortable, evt, originalEvent);
+  }
+
+  return retVal;
+}
+
+function _disableDraggable(el) {
+  el.draggable = false;
+}
+
+function _unsilent() {
+  _silent = false;
+}
+
+function _ghostIsFirst(evt, vertical, sortable) {
+  var rect = getRect(getChild(sortable.el, 0, sortable.options, true));
+  var spacer = 10;
+  return vertical ? evt.clientX < rect.left - spacer || evt.clientY < rect.top && evt.clientX < rect.right : evt.clientY < rect.top - spacer || evt.clientY < rect.bottom && evt.clientX < rect.left;
+}
+
+function _ghostIsLast(evt, vertical, sortable) {
+  var rect = getRect(lastChild(sortable.el, sortable.options.draggable));
+  var spacer = 10;
+  return vertical ? evt.clientX > rect.right + spacer || evt.clientX <= rect.right && evt.clientY > rect.bottom && evt.clientX >= rect.left : evt.clientX > rect.right && evt.clientY > rect.top || evt.clientX <= rect.right && evt.clientY > rect.bottom + spacer;
+}
+
+function _getSwapDirection(evt, target, targetRect, vertical, swapThreshold, invertedSwapThreshold, invertSwap, isLastTarget) {
+  var mouseOnAxis = vertical ? evt.clientY : evt.clientX,
+      targetLength = vertical ? targetRect.height : targetRect.width,
+      targetS1 = vertical ? targetRect.top : targetRect.left,
+      targetS2 = vertical ? targetRect.bottom : targetRect.right,
+      invert = false;
+
+  if (!invertSwap) {
+    // Never invert or create dragEl shadow when target movemenet causes mouse to move past the end of regular swapThreshold
+    if (isLastTarget && targetMoveDistance < targetLength * swapThreshold) {
+      // multiplied only by swapThreshold because mouse will already be inside target by (1 - threshold) * targetLength / 2
+      // check if past first invert threshold on side opposite of lastDirection
+      if (!pastFirstInvertThresh && (lastDirection === 1 ? mouseOnAxis > targetS1 + targetLength * invertedSwapThreshold / 2 : mouseOnAxis < targetS2 - targetLength * invertedSwapThreshold / 2)) {
+        // past first invert threshold, do not restrict inverted threshold to dragEl shadow
+        pastFirstInvertThresh = true;
+      }
+
+      if (!pastFirstInvertThresh) {
+        // dragEl shadow (target move distance shadow)
+        if (lastDirection === 1 ? mouseOnAxis < targetS1 + targetMoveDistance // over dragEl shadow
+        : mouseOnAxis > targetS2 - targetMoveDistance) {
+          return -lastDirection;
+        }
+      } else {
+        invert = true;
+      }
+    } else {
+      // Regular
+      if (mouseOnAxis > targetS1 + targetLength * (1 - swapThreshold) / 2 && mouseOnAxis < targetS2 - targetLength * (1 - swapThreshold) / 2) {
+        return _getInsertDirection(target);
+      }
+    }
+  }
+
+  invert = invert || invertSwap;
+
+  if (invert) {
+    // Invert of regular
+    if (mouseOnAxis < targetS1 + targetLength * invertedSwapThreshold / 2 || mouseOnAxis > targetS2 - targetLength * invertedSwapThreshold / 2) {
+      return mouseOnAxis > targetS1 + targetLength / 2 ? 1 : -1;
+    }
+  }
+
+  return 0;
+}
+/**
+ * Gets the direction dragEl must be swapped relative to target in order to make it
+ * seem that dragEl has been "inserted" into that element's position
+ * @param  {HTMLElement} target       The target whose position dragEl is being inserted at
+ * @return {Number}                   Direction dragEl must be swapped
+ */
+
+
+function _getInsertDirection(target) {
+  if (index$1(dragEl) < index$1(target)) {
+    return 1;
+  } else {
+    return -1;
+  }
+}
+/**
+ * Generate id
+ * @param   {HTMLElement} el
+ * @returns {String}
+ * @private
+ */
+
+
+function _generateId(el) {
+  var str = el.tagName + el.className + el.src + el.href + el.textContent,
+      i = str.length,
+      sum = 0;
+
+  while (i--) {
+    sum += str.charCodeAt(i);
+  }
+
+  return sum.toString(36);
+}
+
+function _saveInputCheckedState(root) {
+  savedInputChecked.length = 0;
+  var inputs = root.getElementsByTagName('input');
+  var idx = inputs.length;
+
+  while (idx--) {
+    var el = inputs[idx];
+    el.checked && savedInputChecked.push(el);
+  }
+}
+
+function _nextTick(fn) {
+  return setTimeout(fn, 0);
+}
+
+function _cancelNextTick(id) {
+  return clearTimeout(id);
+} // Fixed #973:
+
+
+if (documentExists) {
+  on(document, 'touchmove', function (evt) {
+    if ((Sortable.active || awaitingDragStarted) && evt.cancelable) {
+      evt.preventDefault();
+    }
+  });
+} // Export utils
+
+
+Sortable.utils = {
+  on: on,
+  off: off,
+  css: css,
+  find: find,
+  is: function is(el, selector) {
+    return !!closest(el, selector, el, false);
+  },
+  extend: extend,
+  throttle: throttle,
+  closest: closest,
+  toggleClass: toggleClass,
+  clone: clone,
+  index: index$1,
+  nextTick: _nextTick,
+  cancelNextTick: _cancelNextTick,
+  detectDirection: _detectDirection,
+  getChild: getChild
+};
+/**
+ * Get the Sortable instance of an element
+ * @param  {HTMLElement} element The element
+ * @return {Sortable|undefined}         The instance of Sortable
+ */
+
+Sortable.get = function (element) {
+  return element[expando];
+};
+/**
+ * Mount a plugin to Sortable
+ * @param  {...SortablePlugin|SortablePlugin[]} plugins       Plugins being mounted
+ */
+
+
+Sortable.mount = function () {
+  for (var _len = arguments.length, plugins = new Array(_len), _key = 0; _key < _len; _key++) {
+    plugins[_key] = arguments[_key];
+  }
+
+  if (plugins[0].constructor === Array) plugins = plugins[0];
+  plugins.forEach(function (plugin) {
+    if (!plugin.prototype || !plugin.prototype.constructor) {
+      throw "Sortable: Mounted plugin must be a constructor function, not ".concat({}.toString.call(plugin));
+    }
+
+    if (plugin.utils) Sortable.utils = _objectSpread2(_objectSpread2({}, Sortable.utils), plugin.utils);
+    PluginManager.mount(plugin);
+  });
+};
+/**
+ * Create sortable instance
+ * @param {HTMLElement}  el
+ * @param {Object}      [options]
+ */
+
+
+Sortable.create = function (el, options) {
+  return new Sortable(el, options);
+}; // Export
+
+
+Sortable.version = version;
+
+var autoScrolls = [],
+    scrollEl,
+    scrollRootEl,
+    scrolling = false,
+    lastAutoScrollX,
+    lastAutoScrollY,
+    touchEvt$1,
+    pointerElemChangedInterval;
+
+function AutoScrollPlugin() {
+  function AutoScroll() {
+    this.defaults = {
+      scroll: true,
+      forceAutoScrollFallback: false,
+      scrollSensitivity: 30,
+      scrollSpeed: 10,
+      bubbleScroll: true
+    }; // Bind all private methods
+
+    for (var fn in this) {
+      if (fn.charAt(0) === '_' && typeof this[fn] === 'function') {
+        this[fn] = this[fn].bind(this);
+      }
+    }
+  }
+
+  AutoScroll.prototype = {
+    dragStarted: function dragStarted(_ref) {
+      var originalEvent = _ref.originalEvent;
+
+      if (this.sortable.nativeDraggable) {
+        on(document, 'dragover', this._handleAutoScroll);
+      } else {
+        if (this.options.supportPointer) {
+          on(document, 'pointermove', this._handleFallbackAutoScroll);
+        } else if (originalEvent.touches) {
+          on(document, 'touchmove', this._handleFallbackAutoScroll);
+        } else {
+          on(document, 'mousemove', this._handleFallbackAutoScroll);
+        }
+      }
+    },
+    dragOverCompleted: function dragOverCompleted(_ref2) {
+      var originalEvent = _ref2.originalEvent;
+
+      // For when bubbling is canceled and using fallback (fallback 'touchmove' always reached)
+      if (!this.options.dragOverBubble && !originalEvent.rootEl) {
+        this._handleAutoScroll(originalEvent);
+      }
+    },
+    drop: function drop() {
+      if (this.sortable.nativeDraggable) {
+        off(document, 'dragover', this._handleAutoScroll);
+      } else {
+        off(document, 'pointermove', this._handleFallbackAutoScroll);
+        off(document, 'touchmove', this._handleFallbackAutoScroll);
+        off(document, 'mousemove', this._handleFallbackAutoScroll);
+      }
+
+      clearPointerElemChangedInterval();
+      clearAutoScrolls();
+      cancelThrottle();
+    },
+    nulling: function nulling() {
+      touchEvt$1 = scrollRootEl = scrollEl = scrolling = pointerElemChangedInterval = lastAutoScrollX = lastAutoScrollY = null;
+      autoScrolls.length = 0;
+    },
+    _handleFallbackAutoScroll: function _handleFallbackAutoScroll(evt) {
+      this._handleAutoScroll(evt, true);
+    },
+    _handleAutoScroll: function _handleAutoScroll(evt, fallback) {
+      var _this = this;
+
+      var x = (evt.touches ? evt.touches[0] : evt).clientX,
+          y = (evt.touches ? evt.touches[0] : evt).clientY,
+          elem = document.elementFromPoint(x, y);
+      touchEvt$1 = evt; // IE does not seem to have native autoscroll,
+      // Edge's autoscroll seems too conditional,
+      // MACOS Safari does not have autoscroll,
+      // Firefox and Chrome are good
+
+      if (fallback || this.options.forceAutoScrollFallback || Edge || IE11OrLess || Safari) {
+        autoScroll(evt, this.options, elem, fallback); // Listener for pointer element change
+
+        var ogElemScroller = getParentAutoScrollElement(elem, true);
+
+        if (scrolling && (!pointerElemChangedInterval || x !== lastAutoScrollX || y !== lastAutoScrollY)) {
+          pointerElemChangedInterval && clearPointerElemChangedInterval(); // Detect for pointer elem change, emulating native DnD behaviour
+
+          pointerElemChangedInterval = setInterval(function () {
+            var newElem = getParentAutoScrollElement(document.elementFromPoint(x, y), true);
+
+            if (newElem !== ogElemScroller) {
+              ogElemScroller = newElem;
+              clearAutoScrolls();
+            }
+
+            autoScroll(evt, _this.options, newElem, fallback);
+          }, 10);
+          lastAutoScrollX = x;
+          lastAutoScrollY = y;
+        }
+      } else {
+        // if DnD is enabled (and browser has good autoscrolling), first autoscroll will already scroll, so get parent autoscroll of first autoscroll
+        if (!this.options.bubbleScroll || getParentAutoScrollElement(elem, true) === getWindowScrollingElement()) {
+          clearAutoScrolls();
+          return;
+        }
+
+        autoScroll(evt, this.options, getParentAutoScrollElement(elem, false), false);
+      }
+    }
+  };
+  return _extends(AutoScroll, {
+    pluginName: 'scroll',
+    initializeByDefault: true
+  });
+}
+
+function clearAutoScrolls() {
+  autoScrolls.forEach(function (autoScroll) {
+    clearInterval(autoScroll.pid);
+  });
+  autoScrolls = [];
+}
+
+function clearPointerElemChangedInterval() {
+  clearInterval(pointerElemChangedInterval);
+}
+
+var autoScroll = throttle(function (evt, options, rootEl, isFallback) {
+  // Bug: https://bugzilla.mozilla.org/show_bug.cgi?id=505521
+  if (!options.scroll) return;
+  var x = (evt.touches ? evt.touches[0] : evt).clientX,
+      y = (evt.touches ? evt.touches[0] : evt).clientY,
+      sens = options.scrollSensitivity,
+      speed = options.scrollSpeed,
+      winScroller = getWindowScrollingElement();
+  var scrollThisInstance = false,
+      scrollCustomFn; // New scroll root, set scrollEl
+
+  if (scrollRootEl !== rootEl) {
+    scrollRootEl = rootEl;
+    clearAutoScrolls();
+    scrollEl = options.scroll;
+    scrollCustomFn = options.scrollFn;
+
+    if (scrollEl === true) {
+      scrollEl = getParentAutoScrollElement(rootEl, true);
+    }
+  }
+
+  var layersOut = 0;
+  var currentParent = scrollEl;
+
+  do {
+    var el = currentParent,
+        rect = getRect(el),
+        top = rect.top,
+        bottom = rect.bottom,
+        left = rect.left,
+        right = rect.right,
+        width = rect.width,
+        height = rect.height,
+        canScrollX = void 0,
+        canScrollY = void 0,
+        scrollWidth = el.scrollWidth,
+        scrollHeight = el.scrollHeight,
+        elCSS = css(el),
+        scrollPosX = el.scrollLeft,
+        scrollPosY = el.scrollTop;
+
+    if (el === winScroller) {
+      canScrollX = width < scrollWidth && (elCSS.overflowX === 'auto' || elCSS.overflowX === 'scroll' || elCSS.overflowX === 'visible');
+      canScrollY = height < scrollHeight && (elCSS.overflowY === 'auto' || elCSS.overflowY === 'scroll' || elCSS.overflowY === 'visible');
+    } else {
+      canScrollX = width < scrollWidth && (elCSS.overflowX === 'auto' || elCSS.overflowX === 'scroll');
+      canScrollY = height < scrollHeight && (elCSS.overflowY === 'auto' || elCSS.overflowY === 'scroll');
+    }
+
+    var vx = canScrollX && (Math.abs(right - x) <= sens && scrollPosX + width < scrollWidth) - (Math.abs(left - x) <= sens && !!scrollPosX);
+    var vy = canScrollY && (Math.abs(bottom - y) <= sens && scrollPosY + height < scrollHeight) - (Math.abs(top - y) <= sens && !!scrollPosY);
+
+    if (!autoScrolls[layersOut]) {
+      for (var i = 0; i <= layersOut; i++) {
+        if (!autoScrolls[i]) {
+          autoScrolls[i] = {};
+        }
+      }
+    }
+
+    if (autoScrolls[layersOut].vx != vx || autoScrolls[layersOut].vy != vy || autoScrolls[layersOut].el !== el) {
+      autoScrolls[layersOut].el = el;
+      autoScrolls[layersOut].vx = vx;
+      autoScrolls[layersOut].vy = vy;
+      clearInterval(autoScrolls[layersOut].pid);
+
+      if (vx != 0 || vy != 0) {
+        scrollThisInstance = true;
+        /* jshint loopfunc:true */
+
+        autoScrolls[layersOut].pid = setInterval(function () {
+          // emulate drag over during autoscroll (fallback), emulating native DnD behaviour
+          if (isFallback && this.layer === 0) {
+            Sortable.active._onTouchMove(touchEvt$1); // To move ghost if it is positioned absolutely
+
+          }
+
+          var scrollOffsetY = autoScrolls[this.layer].vy ? autoScrolls[this.layer].vy * speed : 0;
+          var scrollOffsetX = autoScrolls[this.layer].vx ? autoScrolls[this.layer].vx * speed : 0;
+
+          if (typeof scrollCustomFn === 'function') {
+            if (scrollCustomFn.call(Sortable.dragged.parentNode[expando], scrollOffsetX, scrollOffsetY, evt, touchEvt$1, autoScrolls[this.layer].el) !== 'continue') {
+              return;
+            }
+          }
+
+          scrollBy(autoScrolls[this.layer].el, scrollOffsetX, scrollOffsetY);
+        }.bind({
+          layer: layersOut
+        }), 24);
+      }
+    }
+
+    layersOut++;
+  } while (options.bubbleScroll && currentParent !== winScroller && (currentParent = getParentAutoScrollElement(currentParent, false)));
+
+  scrolling = scrollThisInstance; // in case another function catches scrolling as false in between when it is not
+}, 30);
+
+var drop = function drop(_ref) {
+  var originalEvent = _ref.originalEvent,
+      putSortable = _ref.putSortable,
+      dragEl = _ref.dragEl,
+      activeSortable = _ref.activeSortable,
+      dispatchSortableEvent = _ref.dispatchSortableEvent,
+      hideGhostForTarget = _ref.hideGhostForTarget,
+      unhideGhostForTarget = _ref.unhideGhostForTarget;
+  if (!originalEvent) return;
+  var toSortable = putSortable || activeSortable;
+  hideGhostForTarget();
+  var touch = originalEvent.changedTouches && originalEvent.changedTouches.length ? originalEvent.changedTouches[0] : originalEvent;
+  var target = document.elementFromPoint(touch.clientX, touch.clientY);
+  unhideGhostForTarget();
+
+  if (toSortable && !toSortable.el.contains(target)) {
+    dispatchSortableEvent('spill');
+    this.onSpill({
+      dragEl: dragEl,
+      putSortable: putSortable
+    });
+  }
+};
+
+function Revert() {}
+
+Revert.prototype = {
+  startIndex: null,
+  dragStart: function dragStart(_ref2) {
+    var oldDraggableIndex = _ref2.oldDraggableIndex;
+    this.startIndex = oldDraggableIndex;
+  },
+  onSpill: function onSpill(_ref3) {
+    var dragEl = _ref3.dragEl,
+        putSortable = _ref3.putSortable;
+    this.sortable.captureAnimationState();
+
+    if (putSortable) {
+      putSortable.captureAnimationState();
+    }
+
+    var nextSibling = getChild(this.sortable.el, this.startIndex, this.options);
+
+    if (nextSibling) {
+      this.sortable.el.insertBefore(dragEl, nextSibling);
+    } else {
+      this.sortable.el.appendChild(dragEl);
+    }
+
+    this.sortable.animateAll();
+
+    if (putSortable) {
+      putSortable.animateAll();
+    }
+  },
+  drop: drop
+};
+
+_extends(Revert, {
+  pluginName: 'revertOnSpill'
+});
+
+function Remove() {}
+
+Remove.prototype = {
+  onSpill: function onSpill(_ref4) {
+    var dragEl = _ref4.dragEl,
+        putSortable = _ref4.putSortable;
+    var parentSortable = putSortable || this.sortable;
+    parentSortable.captureAnimationState();
+    dragEl.parentNode && dragEl.parentNode.removeChild(dragEl);
+    parentSortable.animateAll();
+  },
+  drop: drop
+};
+
+_extends(Remove, {
+  pluginName: 'removeOnSpill'
+});
+
+Sortable.mount(new AutoScrollPlugin());
+Sortable.mount(Remove, Revert);
+
+var base$l = function base(props, context, dependencies, options) {
+  var {
+    sort
+  } = toRefs(props);
+
+  // ============ DEPENDENCIES ============
+
+  var isDisabled = dependencies.isDisabled;
+  var fire = dependencies.fire;
+  var refreshOrderStore = dependencies.refreshOrderStore;
+  var value = dependencies.value;
+  var sorting = dependencies.sorting;
+  var length = dependencies.length;
+  var path = dependencies.path;
+
+  // ================ DATA ================
+
+  /**
+   * The DOM element containing list items.
+   * 
+   * @type {HTMLElement}
+   * @private
+   */
+  var list = ref(null);
+
+  /**
+   * The `Sortable.js` instance.
+   * 
+   * @type {object}
+   * @private
+   */
+  var sortable = ref(null);
+
+  // ============== COMPUTED ==============
+
+  /**
+   * Whether the list is sortable. Can be enabled with [`sort`](#option-sort) option, but it will disabled if [`isDisabled`](#property-is-disabled) is `true`.
+   * 
+   * @type {boolean}
+   */
+  var isSortable = computed(() => {
+    return sort.value && !isDisabled.value;
+  });
+
+  // =============== METHODS ==============
+
+  /**
+   * Inits Sortable.js.
+   *
+   * @returns {void}
+   * @private
+   */
+  var initSortable = () => {
+    sortable.value = new Sortable(list.value, {
+      handle: "[data-handle]",
+      onStart: () => {
+        sorting.value = true;
+      },
+      onEnd: handleSort
+    });
+  };
+
+  /**
+   * Destroys Sortable.js.
+   *
+   * @returns {void}
+   * @private
+   */
+  var destroySortable = () => {
+    var _sortable$value;
+    (_sortable$value = sortable.value) === null || _sortable$value === void 0 ? void 0 : _sortable$value.destroy();
+    sortable.value = null;
+  };
+
+  /**
+   * Handles `sort` event.
+   *
+   * @param {Event} e Sortable.js event
+   * @private
+   */
+  var handleSort = _ref => {
+    var {
+      oldIndex,
+      newIndex,
+      item
+    } = _ref;
+    sorting.value = false;
+    if (oldIndex === newIndex || isDisabled.value) {
+      return;
+    }
+    list.value.children[newIndex].remove();
+    list.value.insertBefore(item, list.value.children[oldIndex]);
+    var valueClone = _.cloneDeep(value.value);
+    valueClone.splice(newIndex, 0, valueClone.splice(oldIndex, 1)[0]);
+    value.value = valueClone;
+    refreshOrderStore(value.value);
+    fire('sort', value.value);
+  };
+
+  // ============== WATCHERS ==============
+
+  watch(isSortable, (n, o) => {
+    if (n === true && o === false) {
+      initSortable();
+    } else if (n === false && o === true) {
+      destroySortable();
+    }
+  }, {
+    immediate: false
+  });
+
+  // ================ HOOKS ===============
+
+  onMounted(() => {
+    if (isSortable.value) {
+      initSortable();
+    }
+  });
+  watch(length, n => {
+    var _sortable$value2;
+    if (!isSortable.value) {
+      return;
+    }
+    (_sortable$value2 = sortable.value) === null || _sortable$value2 === void 0 ? void 0 : _sortable$value2.sort(Array.from(Array(n).keys()).reduce((a, b, i) => {
+      a.push("".concat(path.value, "-").concat(i));
+      return a;
+    }, []));
+  }, {
+    flush: 'post'
+  });
+  return {
+    list,
+    sortable,
+    isSortable,
+    handleSort,
+    initSortable,
+    destroySortable
+  };
+};
+
+var base$k = function base(props, context, dependencies) {
+  // ================ DATA ================
+
+  /**
+   * Whether the list is currently being sorted (an item is dragged).
+   * 
+   * @type {boolean}
+   */
+  var sorting = ref(false);
+  return {
+    sorting
+  };
+};
+
+var base$j = function base(props, context, dependencies, options) {
+  var {
+    storeOrder,
+    orderBy,
+    order
+  } = toRefs(props);
+
+  // ============ DEPENDENCIES ============
+
+  var form$ = dependencies.form$;
+  var value = dependencies.value;
+
+  // ================= DATA ===============
+
+  var orderFrom = ref(form$.value.$vueform.config.orderFrom);
+
+  // =============== METHODS ==============
+
+  /**
+   * Sets the value of `storeOrder` field within a list of items to match the order.
+   *
+   * @param {array} value* list of items
+   * @returns {void}
+   * @private
+   */
+  var refreshOrderStore = value => {
+    if (storeOrder.value) {
+      _.each(value, (val, index) => {
+        val[storeOrder.value] = order.value && order.value.toUpperCase() === 'DESC' ? value.length - index - (orderFrom.value == 0 ? 1 : 0) : parseInt(index) + orderFrom.value;
+      });
+    }
+    return value;
+  };
+
+  /**
+   * The name of the child (when using [`object`](#option-object)) by which the items should ordered.
+   * 
+   * @type {string}
+   */
+  var orderByName = computed(() => {
+    return orderBy.value || storeOrder.value;
+  });
+  watch(storeOrder, (n, o) => {
+    // If storeOrder exists, refresh
+    if (n) {
+      refreshOrderStore(value.value);
+    }
+
+    // If not, clear its value
+    else {
+      _.each(value.value, (val, index) => {
+        val[o] = null;
+      });
+    }
+  }, {
+    immediate: false
+  });
+  return {
+    refreshOrderStore,
+    orderByName
+  };
+};
+var multifile$2 = function multifile(props, context, dependencies, options) {
+  var {
+    storeOrder,
+    orderBy
+  } = toRefs(props);
+  var {
+    refreshOrderStore
+  } = base$j(props, context, dependencies);
+
+  // =============== METHODS ==============
+
+  /**
+   * The name of the field (when using [`fields`](#option-fiels)) by which the files should ordered.
+   * 
+   * @type {string}
+   */
+  var orderByName = computed(() => {
+    return orderBy.value || storeOrder.value;
+  });
+  return {
+    refreshOrderStore,
+    orderByName
+  };
+};
+
+var base$i = function base(props, context, dependencies) {
+  var {
+    object,
+    element
+  } = toRefs(props);
+
+  // ============== COMPUTED ==============
+
+  /**
+    * The schema of a child element.
+    * 
+    * @type {object}
+    * @private
+    */
+  var prototype = computed(() => {
+    return isObject.value ? Object.assign({}, object.value, {
+      type: 'object'
+    }) : element.value || {};
+  });
+
+  /**
+   * Whether childrens are objects.
+   *
+   * @type {boolean}
+   * @private
+   */
+  var isObject = computed(() => {
+    return !!object.value;
+  });
+  return {
+    prototype,
+    isObject
+  };
+};
+var multifile$1 = function multifile(props, context, dependencies) {
+  var options = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
+  var {
+    auto,
+    object,
+    file,
+    fields,
+    storeFile,
+    storeOrder,
+    view,
+    clickable,
+    url,
+    previewUrl,
+    uploadTempEndpoint,
+    removeTempEndpoint,
+    removeEndpoint,
+    params,
+    softRemove
+  } = toRefs(props);
+
+  // ============ DEPENDENCIES ============
+
+  var isDisabled = dependencies.isDisabled;
+
+  // =============== PRIVATE ==============
+
+  var type = computed(() => {
+    return options.type || 'file';
+  });
+
+  // ============== COMPUTED ==============
+
+  /**
+   * The `name` of the child element that stores the filename.
+   * 
+   * @type {string}
+   * @private
+   */
+  var storeFileName = computed(() => {
+    if (storeFile.value) {
+      return storeFile.value;
+    }
+    return object.value || _.keys(fields.value).length || storeOrder.value ? 'file' : null;
+  });
+  var isObject = computed(() => {
+    return !!object.value || !!storeOrder.value || !!_.keys(fields.value).length;
+  });
+  var prototype = computed(() => {
+    var fileSchema = {
+      type: type.value,
+      auto: auto.value,
+      view: view.value,
+      layout: view.value === 'gallery' ? 'ElementLayoutInline' : 'ElementLayout',
+      disabled: isDisabled.value,
+      clickable: clickable.value,
+      url: url.value,
+      previewUrl: previewUrl.value,
+      uploadTempEndpoint: uploadTempEndpoint.value,
+      removeTempEndpoint: removeTempEndpoint.value,
+      removeEndpoint: removeEndpoint.value,
+      params: params.value,
+      softRemove: softRemove.value
+    };
+    if (!isObject.value) {
+      return Object.assign({}, fileSchema, file.value);
+    }
+    return {
+      type: 'object',
+      schema: Object.assign({},
+      // File
+      {
+        [storeFileName.value]: Object.assign({}, fileSchema, {
+          embed: true
+        }, file.value)
+      },
+      // Order
+      storeOrder.value ? {
+        [storeOrder.value]: {
+          type: 'hidden',
+          meta: true
+        }
+      } : {},
+      // Other fields
+      fields.value)
+    };
+  });
+  return {
+    storeFileName,
+    isObject,
+    prototype
+  };
+};
+
+var base$h = function base(props, context, dependencies) {
+  var {
+    controls,
+    sort,
+    min,
+    max,
+    addText
+  } = toRefs(props);
+
+  // ============ DEPENDENCIES ============
+
+  var isDisabled = dependencies.isDisabled;
+  var value = dependencies.value;
+  var form$ = dependencies.form$;
+
+  // ================ DATA ================
+
+  /**
+   * Whether adding new items is allowed. Will return `false` if the element has [`isDisabled: true`](#property-is-disabled) or have reached [`max`](#option-max) items. Can be disabled manually by setting [`controls.add`](#option-controls) to `false`.
+   * 
+   * @type {boolean}
+   */
+  var hasAdd = computed(() => {
+    return !isDisabled.value && (controls.value.add || controls.value.add === undefined) && (max.value === -1 || max.value > value.value.length);
+  });
+
+  /**
+   * Whether remove items is allowed. Will return `false` if the element has [`isDisabled: true`](#property-is-disabled) or has <= [`min`](#option-min) items. Can be disabled manually by setting [`controls.remove`](#option-controls) to `false`.
+   * 
+   * @type {boolean}
+   */
+  var hasRemove = computed(() => {
+    return !isDisabled.value && (controls.value.remove || controls.value.remove === undefined) && (min.value === -1 || min.value < value.value.length);
+  });
+
+  /**
+   * Whether list items should be sortable. Can be enabled by setting [`sort`](#option-sort) to `true`, but will return `false` if the element has [`isDisabled: true`](#property-is-disabled).
+   * 
+   * @type {boolean}
+   */
+  var hasSort = computed(() => {
+    return !isDisabled.value && (controls.value.sort || controls.value.sort === undefined) && sort.value;
+  });
+
+  /**
+   * The label of add button.
+   * 
+   * @type {string}
+   */
+  var addLabel = computed(() => {
+    return addText.value || form$.value.translations.vueform.elements.list.add;
+  });
+  return {
+    hasAdd,
+    hasRemove,
+    hasSort,
+    addLabel
+  };
+};
+var multifile = function multifile(props, context, dependencies) {
+  var {
+    controls,
+    sort
+  } = toRefs(props);
+
+  // ============ DEPENDENCIES ============
+
+  var isDisabled = dependencies.isDisabled;
+  var hasUploading = dependencies.hasUploading;
+
+  // ================ DATA ================
+
+  /**
+   * Whether adding new files is allowed. Will return `false` if the element has [`isDisabled: true`](#property-is-disabled). Can be disabled manually by setting [`controls.add`](#option-controls) to `false`.
+   * 
+   * @type {boolean}
+   */
+  var hasAdd = computed(() => {
+    return controls.value.add || controls.value.add === undefined;
+  });
+
+  /**
+   * Whether remove files is allowed. Will return `false` if the element has [`isDisabled: true`](#property-is-disabled) or a temporary file upload is in progress. Can be disabled manually by setting [`controls.remove`](#option-controls) to `false`.
+   * 
+   * @type {boolean}
+   */
+  var hasRemove = computed(() => {
+    return !isDisabled.value && (controls.value.remove || controls.value.remove === undefined) && !hasUploading.value;
+  });
+
+  /**
+   * Whether list files should be sortable. Can be enabled by setting [`sort`](#option-sort) to `true`, but will return `false` if the element has [`isDisabled: true`](#property-is-disabled) or a temporary file upload is in progress.
+   * 
+   * @type {boolean}
+   */
+  var hasSort = computed(() => {
+    return !isDisabled.value && (controls.value.sort || controls.value.sort === undefined) && sort.value && !hasUploading.value;
+  });
+  return {
+    hasAdd,
+    hasRemove,
+    hasSort
+  };
+};
+
+var ListElement = {
+  name: 'ListElement',
+  mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
+  emits: ['change', 'add', 'remove', 'sort', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
+  props: {
+    type: {
+      required: false,
+      type: [String],
+      default: 'list',
+      private: true
+    },
+    default: {
+      required: false,
+      type: [Array],
+      default: undefined
+    },
+    id: {
+      required: false,
+      type: [String],
+      default: null
+    },
+    disabled: {
+      required: false,
+      type: [Boolean],
+      default: false
+    },
+    onAdd: {
+      required: false,
+      type: [Function],
+      default: null,
+      private: true
+    },
+    onRemove: {
+      required: false,
+      type: [Function],
+      default: null,
+      private: true
+    },
+    onSort: {
+      required: false,
+      type: [Function],
+      default: null,
+      private: true
+    },
+    element: {
+      required: false,
+      type: [Object],
+      default: null
+    },
+    object: {
+      required: false,
+      type: [Object],
+      default: null
+    },
+    initial: {
+      required: false,
+      type: [Number],
+      default: 1
+    },
+    min: {
+      required: false,
+      type: [Number],
+      default: -1
+    },
+    max: {
+      required: false,
+      type: [Number],
+      default: -1
+    },
+    addText: {
+      required: false,
+      type: [String],
+      default: null,
+      '@default': 'locale.elements.list.add'
+    },
+    sort: {
+      required: false,
+      type: [Boolean],
+      default: false
+    },
+    controls: {
+      required: false,
+      type: [Object],
+      default: () => ({
+        add: true,
+        remove: true,
+        sort: true
+      })
+    },
+    storeOrder: {
+      required: false,
+      type: [String],
+      default: null
+    },
+    order: {
+      required: false,
+      type: [String],
+      default: null
+    },
+    orderBy: {
+      required: false,
+      type: [String],
+      default: null
+    }
+  },
+  setup(props, context) {
+    context.features = [base$18, base$17, base$U, base$M, base$S, base$Q, array$1, base$i, base$m, base$k, base$j, base$1a, list$4, base$I, base$_, base$G, base$11, list$5, list$2, list$1, base$h, array, base$Z, base$Y, base$X, base$T, base$W, list$3, base$l, base$P, list, base$R];
+    context.slots = ['label', 'info', 'description', 'before', 'between', 'after'];
+    return _objectSpread2$1({}, base$L(props, context));
+  }
+};
+
+var base$g = function base(props, context, dependencies) {
+  var options_ = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
+  var {
+    provider,
+    extendOptions
+  } = toRefs(props);
+
+  // ============ DEPENDENCIES ============
+
+  var form$ = dependencies.form$;
+  var value = dependencies.value;
+  var clear = dependencies.clear;
+  var input = dependencies.input;
+
+  // ============== PRIVATE ===============
+
+  var inputElement = () => {
+    return options_.input ? options_.input.value : input.value;
+  };
+
+  // ================ DATA ================
+
+  /**
+   * The location service that's initalized once the component is mounted.
+   * 
+   * @type {class}
+   * @default null
+   */
+  var locationService = ref(null);
+
+  /**
+   * The raw location object of location provider (Google/Algolia).
+   * 
+   * @type {class}
+   * @default null
+   */
+  var location = ref({});
+
+  // ============== COMPUTED ==============
+
+  var locationProvider = computed(() => {
+    return provider.value || form$.value.$vueform.config.locationProvider;
+  });
+
+  /**
+  * Default options for location provider. Can be extended with [`extendOptions`](#option-extend-options).
+  * 
+  * @type {object} 
+  * @default {}
+  */
+  var defaultOptions = computed(() => {
+    var providers = {
+      google: {
+        fields: ['geometry', 'formatted_address', 'address_components']
+      },
+      algolia: {
+        type: 'address',
+        appId: form$.value.$vueform.config.services.algolia.app_id,
+        apiKey: form$.value.$vueform.config.services.algolia.api_key,
+        templates: options_.templates || {}
+      }
+    };
+    return providers[locationProvider.value];
+  });
+
+  /**
+  * Additional options for [Google Places](https://developers.google.com/maps/documentation/javascript/reference/places-widget#AutocompleteOptions) or [Algolia Places](https://community.algolia.com/places/documentation.html#options) depending on the provider.
+  * 
+  * @type {object} 
+  * @default {}
+  * @option
+  */
+  var providerOptions = computed(() => {
+    return Object.assign({}, defaultOptions.value, extendOptions.value || {});
+  });
+
+  // =============== METHODS ==============
+
+  /**
+   * Handles location service's address change.
+   *
+   * @param {object} data an object containing address data
+   * @param {object} raw an object containing raw address data (based on provider)
+   * @private
+   */
+  var handleAddressChange = (data, raw) => {
+    if (options_.handleAddressChange) {
+      options_.handleAddressChange(data, raw);
+      return;
+    }
+    location.value = raw;
+    value.value = data;
+  };
+
+  /* istanbul ignore next */
+  /**
+   * 
+   *
+   * @private
+   */
+  var handleLocationBlur = () => {
+    if (inputElement().value.length) {
+      inputElement().value = value.value.formatted_address;
+    } else {
+      clear();
+    }
+  };
+
+  /**
+   * Initalizes location service. Can be used to re-initalize location service.
+   *
+   * @returns {void}
+   */
+  var initLocationService = () => {
+    if (locationService.value) {
+      locationService.value.destroy();
+    }
+    locationService.value = new form$.value.$vueform.services.location[locationProvider.value]();
+    locationService.value.init(inputElement(), handleAddressChange, providerOptions.value);
+  };
+
+  // ============== WATCHERS ==============
+
+  watch([locationProvider, providerOptions], () => {
+    initLocationService();
+  }, {
+    deep: true,
+    immediate: false
+  });
+
+  // =============== HOOKS ================
+
+  onMounted(() => {
+    initLocationService();
+  });
+  return {
+    locationService,
+    location,
+    defaultOptions,
+    providerOptions,
+    handleAddressChange,
+    handleLocationBlur,
+    initLocationService
+  };
+};
+
+var LocationElement = {
+  name: 'LocationElement',
+  mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
+  emits: ['change', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
+  props: {
+    type: {
+      required: false,
+      type: [String],
+      default: 'location',
+      private: true
+    },
+    default: {
+      required: false,
+      type: [Object],
+      default: () => ({
+        country: null,
+        country_code: null,
+        state: null,
+        state_code: null,
+        city: null,
+        zip: null,
+        address: null,
+        formatted_address: null,
+        lat: null,
+        lng: null
+      })
+    },
+    debounce: {
+      required: false,
+      type: [Number],
+      default: null
+    },
+    disabled: {
+      required: false,
+      type: [Boolean],
+      default: false
+    },
+    floating: {
+      required: false,
+      type: [String, Boolean, Object],
+      localized: true,
+      default: null
+    },
+    id: {
+      required: false,
+      type: [String],
+      default: null
+    },
+    placeholder: {
+      required: false,
+      type: [String, Object],
+      localized: true,
+      default: null
+    },
+    readonly: {
+      required: false,
+      type: [Boolean],
+      default: false
+    },
+    attrs: {
+      required: false,
+      type: [Object],
+      default: () => ({})
+    },
+    addons: {
+      required: false,
+      type: [Object],
+      localized: true,
+      default: () => ({})
+    },
+    provider: {
+      required: false,
+      type: [String],
+      default: 'google'
+    },
+    displayKey: {
+      required: false,
+      type: [String],
+      default: 'formatted_address'
+    },
+    extendOptions: {
+      required: false,
+      type: [Object],
+      default: () => ({})
+    }
+  },
+  setup(props, context) {
+    context.features = [base$18, base$17, base$U, base$K, base$M, base$Q, location, base$S, base$u, base$1a, base$N, base$y, base$I, base$F, location$2, base$13, base$J, base$g, base$x, base$_, base$G, base$Y, base$X, base$T, base$Z, base$W, base$s, base$P, location$1, base$R, base$t];
+    context.slots = ['label', 'info', 'description', 'before', 'between', 'after', 'addon-before', 'addon-after'];
+    return _objectSpread2$1({}, location$3(props, context));
+  }
+};
+
+var base$f = function base(props, context, dependencies) {
+  // ============ DEPENDENCIES ============
+
+  var isDisabled = dependencies.isDisabled;
+  var add = dependencies.add;
+  var input = dependencies.input;
+  var isObject = dependencies.isObject;
+  var storeFileName = dependencies.storeFileName;
+  var children$ = dependencies.children$;
+
+  // ============== COMPUTED ==============
+
+  /**
+   * Whether any of the files are currently being uploaded to the server (initiated by form submit).
+   * 
+   * @type {boolean}
+   */
+  var preparing = computed(() => {
+    return _.some(children$.value, {
+      available: true,
+      preparing: true
+    });
+  });
+
+  /**
+   * Whether any of the files are currently being uploaded to the server (initiated by the user).
+   * 
+   * @type {boolean}
+   */
+  var hasUploading = computed(() => {
+    return _.some(children$.value, {
+      uploading: true
+    });
+  });
+
+  // =============== METHODS ==============
+
+  /**
+   * Handles `change` event.
+   * 
+   * @param {Event} e* 
+   * @returns {void}
+   * @private
+   */
+  var handleChange = e => {
+    if (!e.target || !e.target.files || e.target.files.length == 0 || isDisabled.value) {
+      return;
+    }
+    _.each(e.target.files, file => {
+      add(isObject.value ? {
+        [storeFileName.value]: file
+      } : file);
+    });
+    input.value.value = '';
+  };
+
+  /**
+   * Handles `click` event.
+   * 
+   * @returns {void}
+   * @private
+   */
+  var handleClick = () => {
+    if (isDisabled.value) {
+      return;
+    }
+    input.value.click();
+  };
+  return {
+    preparing,
+    hasUploading,
+    handleChange,
+    handleClick
+  };
+};
+
+var MultifileElement = {
+  name: 'MultifileElement',
+  mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
+  emits: ['change', 'add', 'remove', 'sort', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
+  props: {
+    type: {
+      required: false,
+      type: [String],
+      default: 'multifile',
+      private: true
+    },
+    default: {
+      required: false,
+      type: [Array],
+      default: () => []
+    },
+    initial: {
+      required: false,
+      type: [Number],
+      default: 0,
+      private: true
+    },
+    disabled: {
+      required: false,
+      type: [Boolean],
+      default: false
+    },
+    id: {
+      required: false,
+      type: [String],
+      default: null
+    },
+    onAdd: {
+      required: false,
+      type: [Function],
+      default: null,
+      private: true
+    },
+    onRemove: {
+      required: false,
+      type: [Function],
+      default: null,
+      private: true
+    },
+    onSort: {
+      required: false,
+      type: [Function],
+      default: null,
+      private: true
+    },
+    view: {
+      type: [String],
+      required: false,
+      default: 'file'
+    },
+    drop: {
+      required: false,
+      type: [Boolean],
+      default: false
+    },
+    sort: {
+      required: false,
+      type: [Boolean],
+      default: false
+    },
+    controls: {
+      required: false,
+      type: [Object],
+      default: () => ({
+        add: true,
+        remove: true,
+        sort: true
+      })
+    },
+    object: {
+      required: false,
+      type: [Boolean],
+      default: null
+    },
+    storeFile: {
+      required: false,
+      type: [String],
+      default: 'file'
+    },
+    fields: {
+      required: false,
+      type: [Object],
+      default: () => ({})
+    },
+    storeOrder: {
+      required: false,
+      type: [String],
+      default: null
+    },
+    order: {
+      required: false,
+      type: [String],
+      default: null
+    },
+    orderBy: {
+      required: false,
+      type: [String],
+      default: null
+    },
+    file: {
+      required: false,
+      type: [Object],
+      default: () => ({})
+    },
+    accept: {
+      required: false,
+      type: [String, Array],
+      default: null
+    },
+    clickable: {
+      required: false,
+      type: [Boolean],
+      default: true
+    },
+    url: {
+      required: false,
+      type: [String, Boolean],
+      default: '/'
+    },
+    previewUrl: {
+      required: false,
+      type: [String],
+      default: undefined
+    },
+    auto: {
+      required: false,
+      type: [Boolean],
+      default: true
+    },
+    uploadTempEndpoint: {
+      required: false,
+      type: [Object, String, Function],
+      default: undefined,
+      '@default': 'config.endpoints.uploadTempFile'
+    },
+    removeTempEndpoint: {
+      required: false,
+      type: [Object, String, Function],
+      default: undefined,
+      '@default': 'config.endpoints.removeTempFile'
+    },
+    removeEndpoint: {
+      required: false,
+      type: [Object, String, Function],
+      default: undefined,
+      '@default': 'config.endpoints.removeFile'
+    },
+    params: {
+      required: false,
+      type: [Object],
+      default: () => ({})
+    },
+    softRemove: {
+      required: false,
+      type: [Boolean],
+      default: false
+    }
+  },
+  setup(props, context) {
+    context.features = [base$18, base$17, base$U, base$M, base$Q, array$1, base$m, base$K, base$k, multifile$1, base$S, base$1a, list$4, base$I, base$_, base$G, list$2, base$F, array, base$11, base$13, base$Z, base$Y, base$X, base$W, multifile$2, multifile$5, base$f, multifile, multifile$3, base$T, base$l, base$P, multifile$4, base$R];
+    context.slots = ['label', 'info', 'description', 'before', 'between', 'after'];
+    return _objectSpread2$1({}, base$L(props, context));
+  }
+};
+
+var base$e = function base(props, context, dependencies) {
+  // ============ DEPENDENCIES ============
+
+  var fire = dependencies.fire;
+  var el$ = dependencies.el$;
+
+  // =============== METHODS ==============
+
+  /**
+   * Handles `select` event.
+   *
+   * @param {object} option* the selected option object
+   * @returns {void}
+   * @private
+   */
+  var handleSelect = option => {
+    fire('select', option, el$.value);
+  };
+
+  /**
+   * Handles `deselect` event.
+   *
+   * @param {object} option* the deselected option object
+   * @returns {void}
+   * @private
+   */
+  var handleDeselect = option => {
+    fire('deselect', option, el$.value);
+  };
+
+  /**
+   * Handles `search-change` event.
+   *
+   * @param {string} searchQuery* the current search query
+   * @returns {void}
+   * @private
+   */
+  var handleSearchChange = searchQuery => {
+    fire('search-change', searchQuery, el$.value);
+  };
+
+  /**
+   * Handles `open` event.
+   *
+   * @returns {void}
+   * @private
+   */
+  var handleOpen = () => {
+    fire('open', el$.value);
+  };
+
+  /**
+   * Handles `close` event.
+   *
+   * @returns {void}
+   * @private
+   */
+  var handleClose = () => {
+    fire('close', el$.value);
+  };
+
+  /**
+   * Handles `clear` event.
+   *
+   * @returns {void}
+   * @private
+   */
+  var handleClear = () => {
+    fire('clear', el$.value);
+  };
+
+  /**
+   * Handles `paste` event.
+   * 
+   * @param {Event} e event
+   * @returns {void}
+   * @private
+   */
+  var handlePaste = e => {
+    fire('paste', e, el$.value);
+  };
+
+  /**
+   * Handles `tag` event.
+   *
+   * @param {string} searchQuery* the current search query
+   * @returns {void}
+   * @private
+   */
+  var handleTag = searchQuery => {
+    // unimplemented
+  };
+
+  // =============== HOOKS ================
+
+  return {
+    handleSelect,
+    handleDeselect,
+    handleSearchChange,
+    handleOpen,
+    handleClose,
+    handleClear,
+    handlePaste,
+    handleTag
+  };
+};
+
+function spliceMultiple(array, indexes) {
+  indexes.sort();
+  for (var i = indexes.length - 1; i >= 0; i--) {
+    array.splice(indexes[i], 1);
+  }
+  return array;
+}
+
+var base$d = function base(props, context, dependencies) {
+  // ============ DEPENDENCIES ============
+
+  var value = dependencies.value;
+
+  // =============== PRIVATE ==============
+
+  /**
+   * Whether an option is already selected.
+   *
+   * @param {object} option* value of the option
+   * @returns {boolean}
+   * @private
+   */
+  var inValue = option => {
+    return value.value.indexOf(option) !== -1;
+  };
+
+  // =============== METHODS ==============
+
+  /**
+   * Selects one or more options.
+   *
+   * @param {str|array} options* value(s) of the option(s) to select
+   * @returns {void}
+   */
+  var select = options => {
+    if (!_.isArray(options)) {
+      options = [options];
+    }
+    var val = _.clone(value.value);
+    _.each(options, option => {
+      if (inValue(normalize(option))) {
+        return;
+      }
+      val.push(option);
+    });
+    value.value = val;
+  };
+
+  /**
+   * Deselects one or more options.
+   *
+   * @param {str|array} options* value(s) of the option(s) to deselect
+   * @returns {void}
+   */
+  var deselect = options => {
+    if (!_.isArray(options)) {
+      options = [options];
+    }
+    var val = _.clone(value.value);
+    var indexes = [];
+    _.each(options, option => {
+      var i = value.value.indexOf(option);
+      if (i === -1 || indexes.indexOf(i) !== -1) {
+        return;
+      }
+      indexes.push(i);
+    });
+    value.value = spliceMultiple(val, indexes);
+  };
+  return {
+    select,
+    deselect
+  };
+};
+
+var base$c = function base(props, context, dependencies) {
+  var {
+    loading
+  } = toRefs(props);
+
+  // ============ DEPENDENCIES ============
+
+  var pending = dependencies.pending;
+
+  // ============== COMPUTED ==============
+
+  /**
+  * Whether the element is in loading state.
+  * 
+  * @type {boolean}
+  */
+  var isLoading = computed(() => {
+    return pending.value || loading.value;
+  });
+  return {
+    isLoading
+  };
+};
+
+var MultiselectElement = {
+  name: 'MultiselectElement',
+  mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
+  emits: ['change', 'select', 'deselect', 'search-change', 'open', 'close', 'clear', 'paste', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
+  props: {
+    type: {
+      required: false,
+      type: [String],
+      default: 'multiselect',
+      private: true
+    },
+    default: {
+      required: false,
+      type: [Array],
+      default: () => []
+    },
+    disabled: {
+      required: false,
+      type: [Boolean],
+      default: false
+    },
+    floating: {
+      required: false,
+      type: [String, Boolean, Object],
+      localized: true,
+      default: null
+    },
+    id: {
+      required: false,
+      type: [String],
+      default: null
+    },
+    placeholder: {
+      required: false,
+      type: [String, Object],
+      localized: true,
+      default: null,
+      native: false
+    },
+    attrs: {
+      required: false,
+      type: [Object],
+      default: () => ({})
+    },
+    onSelect: {
+      required: false,
+      type: [Function],
+      default: null,
+      private: true
+    },
+    onDeselect: {
+      required: false,
+      type: [Function],
+      default: null,
+      private: true
+    },
+    onSearchChange: {
+      required: false,
+      type: [Function],
+      default: null,
+      private: true
+    },
+    onOpen: {
+      required: false,
+      type: [Function],
+      default: null,
+      private: true
+    },
+    onClose: {
+      required: false,
+      type: [Function],
+      default: null,
+      private: true
+    },
+    onClear: {
+      required: false,
+      type: [Function],
+      default: null,
+      private: true
+    },
+    onPaste: {
+      required: false,
+      type: [Function],
+      default: null,
+      private: true
+    },
+    native: {
+      required: false,
+      type: [Boolean],
+      default: true
+    },
+    items: {
+      required: false,
+      type: [Object, Array, Function, String],
+      localized: true,
+      default: () => ({})
+    },
+    labelProp: {
+      type: [String],
+      required: false,
+      default: 'label',
+      native: false
+    },
+    valueProp: {
+      type: [String],
+      required: false,
+      default: 'value',
+      native: false
+    },
+    dataKey: {
+      type: [String],
+      required: false,
+      default: undefined
+    },
+    searchParam: {
+      type: [String],
+      required: false,
+      default: 'query'
+    },
+    search: {
+      required: false,
+      type: [Boolean],
+      default: false,
+      native: false
+    },
+    trackBy: {
+      type: [String],
+      required: false,
+      default: 'label',
+      native: false
+    },
+    strict: {
+      type: [Boolean],
+      required: false,
+      default: true,
+      native: false
+    },
+    multipleLabel: {
+      type: [Function],
+      required: false,
+      native: false
+    },
+    multipleLabelSingle: {
+      type: [String],
+      required: false,
+      native: false,
+      '@default': 'locale.vueform.multiselect.multipleLabelOne'
+    },
+    multipleLabelMultiple: {
+      type: [String],
+      required: false,
+      native: false,
+      '@default': 'locale.vueform.multiselect.multipleLabelMore'
+    },
+    create: {
+      required: false,
+      type: [Boolean],
+      default: false,
+      native: false
+    },
+    appendNewOption: {
+      type: [Boolean],
+      required: false,
+      default: true,
+      native: false
+    },
+    addOptionOn: {
+      type: [Array],
+      required: false,
+      default: () => ['enter'],
+      native: false
+    },
+    object: {
+      type: [Boolean],
+      required: false,
+      default: false,
+      native: false
+    },
+    limit: {
+      type: [Number],
+      required: false,
+      default: -1,
+      native: false
+    },
+    max: {
+      type: [Number],
+      required: false,
+      default: -1,
+      native: false
+    },
+    groups: {
+      type: [Boolean],
+      required: false,
+      default: false,
+      native: false
+    },
+    groupLabel: {
+      type: [String],
+      required: false,
+      default: 'label',
+      native: false
+    },
+    groupOptions: {
+      type: [String],
+      required: false,
+      default: 'items',
+      native: false
+    },
+    groupHideEmpty: {
+      type: [Boolean],
+      required: false,
+      default: false,
+      native: false
+    },
+    groupSelect: {
+      type: [Boolean],
+      required: false,
+      default: true,
+      native: false
+    },
+    openDirection: {
+      type: [String],
+      required: false,
+      default: 'bottom',
+      native: false
+    },
+    canClear: {
+      type: [Boolean],
+      required: false,
+      default: true,
+      native: false
+    },
+    clearOnSelect: {
+      type: [Boolean],
+      required: false,
+      default: true,
+      native: false
+    },
+    closeOnSelect: {
+      type: [Boolean],
+      required: false,
+      default: true,
+      native: false
+    },
+    closeOnDeselect: {
+      type: [Boolean],
+      required: false,
+      default: false,
+      native: false
+    },
+    delay: {
+      type: [Number],
+      required: false,
+      default: -1,
+      native: false
+    },
+    minChars: {
+      type: [Number],
+      required: false,
+      default: 0,
+      native: false
+    },
+    resolveOnLoad: {
+      type: [Boolean],
+      required: false,
+      default: true,
+      native: false
+    },
+    filterResults: {
+      type: [Boolean],
+      required: false,
+      default: true,
+      native: false
+    },
+    clearOnSearch: {
+      type: [Boolean],
+      required: false,
+      default: false,
+      native: false
+    },
+    hideSelected: {
+      type: [Boolean],
+      required: false,
+      default: true,
+      native: false
+    },
+    caret: {
+      type: [Boolean],
+      required: false,
+      default: true,
+      native: false
+    },
+    loading: {
+      type: [Boolean],
+      required: false,
+      default: false,
+      native: false
+    },
+    noOptionsText: {
+      type: [String, Object],
+      required: false,
+      default: undefined,
+      '@default': 'locale.multiselect.noOptions',
+      localized: true,
+      native: false
+    },
+    noResultsText: {
+      type: [String, Object],
+      required: false,
+      default: undefined,
+      '@default': 'locale.multiselect.noResults',
+      localized: true,
+      native: false
+    },
+    autocomplete: {
+      type: [String],
+      required: false,
+      native: false
+    },
+    inputType: {
+      type: [String],
+      required: false,
+      default: 'text',
+      native: false
+    },
+    extendOptions: {
+      required: false,
+      type: [Object],
+      default: () => ({})
+    }
+  },
+  setup(props, context) {
+    context.features = [base$18, base$17, base$U, base$K, base$M, base$Q, array$1, base$S, base$u, base$1a, multiselect$2, base$I, base$H, base$c, multiselect$1, base$z, base$F, base$13, base$J, array, base$_, base$G, base$Y, base$X, base$T, base$Z, base$W, base$e, base$d, multiselect, base$P, base$E, base$R, base$t];
+    context.slots = ['option', 'multiple-label', 'placeholder', 'group-label', 'before-list', 'after-list', 'no-results', 'no-options', 'caret', 'spinner', 'clear', 'label', 'info', 'description', 'before', 'between', 'after'];
+    return _objectSpread2$1({}, base$L(props, context));
+  }
+};
+
+var ObjectElement = {
+  name: 'ObjectElement',
+  mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
+  emits: ['change', 'remove', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
+  props: {
+    type: {
+      required: false,
+      type: [String],
+      default: 'object',
+      private: true
+    },
+    default: {
+      required: false,
+      type: [Object],
+      default: () => ({})
+    },
+    id: {
+      required: false,
+      type: [String],
+      default: null
+    },
+    schema: {
+      required: false,
+      type: [Object],
+      default: () => ({})
+    },
+    embed: {
+      required: false,
+      type: [Boolean],
+      default: false
+    },
+    onRemove: {
+      required: false,
+      type: [Function],
+      default: null,
+      private: true
+    }
+  },
+  setup(props, context) {
+    context.features = [base$18, base$17, base$U, base$M, base$S, object$1, base$1a, base$N, object$5, object$3, base$_, object, base$11, object$7, object$4, base$Y, base$X, base$T, base$Z, base$W, object$6, base$P, object$2, base$R];
+    context.slots = ['label', 'info', 'description', 'before', 'between', 'after'];
+    return _objectSpread2$1({}, base$L(props, context));
+  }
+};
+
+var base$b = function base(props, context, dependencies) {
+  var {
+    radioName,
+    radioValue
+  } = toRefs(props);
+
+  // ============ DEPENDENCIES ============
+
+  var update = dependencies.update;
+  var nullValue = dependencies.nullValue;
+  var fieldId = dependencies.fieldId;
+  var path = dependencies.path;
+  var form$ = dependencies.form$;
+
+  // ================ DATA ================
+
+  /**
+   * The list of listeners.
+   * 
+   * @type {array}
+   * @default []
+   * @private
+   */
+  var listeners = ref([]);
+
+  // ============== COMPUTED ==============
+
+  /**
+   * The `name` attribute of the element. If [`id`](#option-id) is not provided [`name`](#option-name) will be used.
+   * 
+   * @type {string}
+   */
+  var inputName = computed(() => {
+    return radioName.value || path.value;
+  });
+
+  // =============== METHODS ==============
+
+  /**
+   * Checks the radio.
+   *
+   * @returns {void}
+   */
+  var check = () => {
+    update(radioValue.value);
+  };
+
+  /**
+   * Unhecks the radio.
+   *
+   * @returns {void}
+   */
+  var uncheck = () => {
+    update(nullValue.value);
+  };
+
+  /**
+   * Watches radio name change.
+   *
+   * @returns {void}
+   * @private
+   */
+  var watchChange = (value, old) => {
+    if (old) {
+      form$.value.$el.querySelectorAll("input[name=\"".concat(value, "\"")).forEach((element, i) => {
+        if (listeners.value[i]) {
+          element.removeEventListener('change', listeners.value[i]);
+        }
+      });
+    }
+    form$.value.$el.querySelectorAll("input[name=\"".concat(value, "\"")).forEach(element => {
+      var listener = () => {
+        if (element.id != fieldId.value) {
+          update(nullValue.value);
+        }
+      };
+      listeners.value.push(listener);
+      element.addEventListener('change', listener);
+    });
+  };
+
+  // =============== HOOKS ================
+
+  onMounted(() => {
+    watchChange(inputName.value);
+  });
+
+  // ============= WATCTHERS ==============
+
+  watch(inputName, watchChange);
+  return {
+    inputName,
+    check,
+    uncheck
+  };
+};
+
+var RadioElement = {
+  name: 'RadioElement',
+  mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
+  emits: ['change', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
+  props: {
+    type: {
+      required: false,
+      type: [String],
+      default: 'radio',
+      private: true
+    },
+    default: {
+      required: false,
+      type: [String, Number],
+      default: null
+    },
+    disabled: {
+      required: false,
+      type: [Boolean],
+      default: false
+    },
+    id: {
+      required: false,
+      type: [String],
+      default: null
+    },
+    radioName: {
+      required: false,
+      type: [String],
+      default: null
+    },
+    radioValue: {
+      required: false,
+      type: [Boolean, String, Number],
+      default: 1
+    },
+    text: {
+      required: false,
+      type: [String, Object],
+      localized: true,
+      default: null
+    }
+  },
+  setup(props, context) {
+    context.features = [base$18, base$17, base$U, base$K, base$M, base$Q, base$S, base$1a, base$N, base$C, base$I, base$13, base$H, base$F, base$J, base$_, base$G, base$Y, base$X, base$T, base$Z, base$W, base$b, radio, base$E, base$R, base$D];
+    context.slots = ['default', 'label', 'info', 'description', 'before', 'between', 'after'];
+    return _objectSpread2$1({}, base$L(props, context));
+  }
+};
+
+var RadiogroupElement = {
+  name: 'RadiogroupElement',
+  mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
+  emits: ['change', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
+  props: {
+    type: {
+      required: false,
+      type: [String],
+      default: 'radiogroup',
+      private: true
+    },
+    default: {
+      required: false,
+      type: [String, Number],
+      default: null
+    },
+    disabled: {
+      required: false,
+      type: [Boolean],
+      default: false
+    },
+    id: {
+      required: false,
+      type: [String],
+      default: null
+    },
+    items: {
+      required: false,
+      type: [Object, Array, Function, String],
+      localized: true,
+      default: () => ({})
+    },
+    disables: {
+      required: false,
+      type: [Array],
+      default: () => []
+    }
+  },
+  setup(props, context) {
+    context.features = [base$18, base$17, base$U, base$M, base$C, base$S, base$1a, base$N, radiogroup$2, radiogroup, base$I, base$13, base$H, base$F, base$J, base$_, base$G, base$Y, base$X, base$T, base$Z, base$W, radiogroup$1, base$E, base$R];
+    context.slots = ['radio', 'label', 'info', 'description', 'before', 'between', 'after'];
+    return _objectSpread2$1({}, base$L(props, context));
+  }
+};
+
+var SelectElement = {
+  name: 'SelectElement',
+  mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
+  emits: ['change', 'select', 'deselect', 'search-change', 'open', 'close', 'clear', 'paste', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
+  props: {
+    type: {
+      required: false,
+      type: [String],
+      default: 'select',
+      private: true
+    },
+    default: {
+      required: false,
+      type: [String, Number, Object],
+      default: null
+    },
+    disabled: {
+      required: false,
+      type: [Boolean],
+      default: false
+    },
+    floating: {
+      required: false,
+      type: [String, Boolean, Object],
+      localized: true,
+      default: null
+    },
+    id: {
+      required: false,
+      type: [String],
+      default: null
+    },
+    placeholder: {
+      required: false,
+      type: [String, Object],
+      localized: true,
+      default: null
+    },
+    attrs: {
+      required: false,
+      type: [Object],
+      default: () => ({})
+    },
+    onSelect: {
+      required: false,
+      type: [Function],
+      default: null,
+      private: true
+    },
+    onDeselect: {
+      required: false,
+      type: [Function],
+      default: null,
+      private: true
+    },
+    onSearchChange: {
+      required: false,
+      type: [Function],
+      default: null,
+      private: true
+    },
+    onOpen: {
+      required: false,
+      type: [Function],
+      default: null,
+      private: true
+    },
+    onClose: {
+      required: false,
+      type: [Function],
+      default: null,
+      private: true
+    },
+    onClear: {
+      required: false,
+      type: [Function],
+      default: null,
+      private: true
+    },
+    onPaste: {
+      required: false,
+      type: [Function],
+      default: null,
+      private: true
+    },
+    native: {
+      required: false,
+      type: [Boolean],
+      default: true
+    },
+    items: {
+      required: false,
+      type: [Object, Array, Function, String],
+      localized: true,
+      default: () => ({})
+    },
+    labelProp: {
+      type: [String],
+      required: false,
+      default: 'label'
+    },
+    valueProp: {
+      type: [String],
+      required: false,
+      default: 'value'
+    },
+    dataKey: {
+      type: [String],
+      required: false,
+      default: undefined
+    },
+    searchParam: {
+      type: [String],
+      required: false,
+      default: 'query'
+    },
+    search: {
+      required: false,
+      type: [Boolean],
+      default: false,
+      native: false
+    },
+    trackBy: {
+      type: [String],
+      required: false,
+      default: 'label',
+      native: false
+    },
+    strict: {
+      type: [Boolean],
+      required: false,
+      default: true,
+      native: false
+    },
+    create: {
+      required: false,
+      type: [Boolean],
+      default: false,
+      native: false
+    },
+    appendNewOption: {
+      type: [Boolean],
+      required: false,
+      default: true,
+      native: false
+    },
+    addOptionOn: {
+      type: [Array],
+      required: false,
+      default: () => ['enter'],
+      native: false
+    },
+    object: {
+      type: [Boolean],
+      required: false,
+      default: false,
+      native: false
+    },
+    limit: {
+      type: [Number],
+      required: false,
+      default: -1,
+      native: false
+    },
+    groups: {
+      type: [Boolean],
+      required: false,
+      default: false,
+      native: false
+    },
+    groupLabel: {
+      type: [String],
+      required: false,
+      default: 'label',
+      native: false
+    },
+    groupOptions: {
+      type: [String],
+      required: false,
+      default: 'items',
+      native: false
+    },
+    groupHideEmpty: {
+      type: [Boolean],
+      required: false,
+      default: false,
+      native: false
+    },
+    openDirection: {
+      type: [String],
+      required: false,
+      default: 'bottom',
+      native: false
+    },
+    canDeselect: {
+      type: [Boolean],
+      required: false,
+      default: true,
+      native: false
+    },
+    canClear: {
+      type: [Boolean],
+      required: false,
+      default: true,
+      native: false
+    },
+    closeOnSelect: {
+      type: [Boolean],
+      required: false,
+      default: true,
+      native: false
+    },
+    closeOnDeselect: {
+      type: [Boolean],
+      required: false,
+      default: false,
+      native: false
+    },
+    delay: {
+      type: [Number],
+      required: false,
+      default: -1,
+      native: false
+    },
+    minChars: {
+      type: [Number],
+      required: false,
+      default: 0,
+      native: false
+    },
+    resolveOnLoad: {
+      type: [Boolean],
+      required: false,
+      default: true,
+      native: false
+    },
+    filterResults: {
+      type: [Boolean],
+      required: false,
+      default: true,
+      native: false
+    },
+    clearOnSearch: {
+      type: [Boolean],
+      required: false,
+      default: false,
+      native: false
+    },
+    caret: {
+      type: [Boolean],
+      required: false,
+      default: true,
+      native: false
+    },
+    truncate: {
+      type: [Boolean],
+      required: false,
+      default: true,
+      native: false
+    },
+    loading: {
+      type: [Boolean],
+      required: false,
+      default: false,
+      native: false
+    },
+    noOptionsText: {
+      type: [String, Object],
+      required: false,
+      default: undefined,
+      '@default': 'locale.multiselect.noOptions',
+      localized: true,
+      native: false
+    },
+    noResultsText: {
+      type: [String, Object],
+      required: false,
+      default: undefined,
+      '@default': 'locale.multiselect.noResults',
+      localized: true,
+      native: false
+    },
+    autocomplete: {
+      type: [String],
+      required: false,
+      native: false
+    },
+    inputType: {
+      type: [String],
+      required: false,
+      default: 'text',
+      native: false
+    },
+    extendOptions: {
+      required: false,
+      type: [Object],
+      default: () => ({})
+    }
+  },
+  setup(props, context) {
+    context.features = [base$18, base$17, base$U, base$K, base$M, base$Q, base$C, base$S, base$u, base$1a, base$N, base$I, base$H, base$c, select$1, base$z, base$F, base$13, base$J, base$x, base$_, base$G, base$Y, base$X, base$T, base$Z, base$W, base$e, select, base$P, base$E, base$R, base$t];
+    context.slots = ['option', 'single-label', 'placeholder', 'group-label', 'before-list', 'after-list', 'no-results', 'no-options', 'caret', 'spinner', 'clear', 'label', 'info', 'description', 'before', 'between', 'after'];
+    return _objectSpread2$1({}, base$L(props, context));
+  }
+};
+
+var base$a = function base(props, context, dependencies) {
+  var {
+    lazy
+  } = toRefs(props);
+
+  // ============ DEPENDENCIES ============
+
+  var value = dependencies.value;
+
+  // =============== METHODS ==============
+
+  /**
+   * Handles `update` event if not lazy.
+   *
+   * @param {string} val* value of the element
+   * @returns {void}
+   * @private
+   */
+  var handleUpdate = val => {
+    if (lazy.value) {
+      return;
+    }
+    value.value = val;
+  };
+  return {
+    handleUpdate
+  };
+};
+
+var SliderElement = {
+  name: 'SliderElement',
+  mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
+  emits: ['change', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
+  props: {
+    type: {
+      required: false,
+      type: [String],
+      default: 'slider',
+      private: true
+    },
+    default: {
+      required: false,
+      type: [Number, Array],
+      default: 0
+    },
+    disabled: {
+      required: false,
+      type: [Boolean],
+      default: false
+    },
+    id: {
+      required: false,
+      type: [String],
+      default: null
+    },
+    min: {
+      required: false,
+      type: [Number],
+      default: 0
+    },
+    max: {
+      required: false,
+      type: [Number],
+      default: 100
+    },
+    step: {
+      required: false,
+      type: [Number],
+      default: 1
+    },
+    tooltips: {
+      required: false,
+      type: [Boolean],
+      default: true
+    },
+    showTooltip: {
+      required: false,
+      type: [String],
+      default: 'always'
+    },
+    tooltipPosition: {
+      required: false,
+      type: [String],
+      default: null
+    },
+    merge: {
+      required: false,
+      type: [Number],
+      default: -1
+    },
+    format: {
+      required: false,
+      type: [Object, Function],
+      default: null
+    },
+    orientation: {
+      required: false,
+      type: [String],
+      default: 'horizontal'
+    },
+    direction: {
+      required: false,
+      type: [String],
+      default: 'ltr'
+    },
+    lazy: {
+      required: false,
+      type: [Boolean],
+      default: true,
+      private: true
+    },
+    extendOptions: {
+      required: false,
+      type: [Object],
+      default: () => ({})
+    }
+  },
+  setup(props, context) {
+    context.features = [base$18, base$17, base$U, base$K, base$M, base$Q, min, base$S, base$1a, base$N, base$I, slider, base$F, slider$1, base$13, base$J, base$_, base$G, base$Y, base$X, base$T, base$Z, base$W, base$v, base$a, base$P, base$E, base$R];
+    context.slots = ['label', 'info', 'description', 'before', 'between', 'after'];
+    return _objectSpread2$1({}, base$L(props, context));
+  }
+};
+
+var base$9 = function base(props, context, dependencies) {
+  var {
+    content
+  } = toRefs(props);
+
+  // ============== COMPUTED ==============
+
+  /**
+   * Determines if HTML content should be rendered for the element.
+   * 
+   * @type {boolean}
+   * @private
+   */
+  var isHtml = computed(() => {
+    return typeof content.value == 'string';
+  });
+  return {
+    isHtml
+  };
+};
+
+var StaticElement = {
+  name: 'StaticElement',
+  mixins: [BaseElement, HasView],
+  emits: ['beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
+  props: {
+    type: {
+      required: false,
+      type: [String],
+      default: 'static',
+      private: true
+    },
+    id: {
+      required: false,
+      type: [String],
+      default: null
+    },
+    content: {
+      required: false,
+      type: [String, Object],
+      default: ''
+    },
+    wrap: {
+      required: false,
+      type: [Boolean],
+      default: true
+    }
+  },
+  setup(props, context) {
+    context.features = [base$18, base$17, base$U, static_$1, base$9, base$1a, static_$2, base$13, base$_, base$Y, base$X, base$T, base$Z, base$W, base$S, static_$3, base$R];
+    context.slots = ['default', 'label', 'info', 'description', 'before', 'between', 'after'];
+    return _objectSpread2$1({}, static_(props, context));
+  }
+};
+
+var base$8 = function base(props, context, dependencies) {
+  // ============ DEPENDENCIES ============
+
+  var fire = dependencies.fire;
+  var el$ = dependencies.el$;
+
+  /**
+   * Handles `tag` event.
+   *
+   * @param {string} searchQuery* the current search query.
+   * @returns {void}
+   * @private
+   */
+  var handleTag = searchQuery => {
+    fire('tag', searchQuery, el$.value);
+  };
+  return {
+    handleTag
+  };
+};
+
+var TagsElement = {
+  name: 'TagsElement',
+  mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
+  emits: ['change', 'select', 'deselect', 'search-change', 'open', 'close', 'tag', 'clear', 'paste', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
+  props: {
+    type: {
+      required: false,
+      type: [String],
+      default: 'tags',
+      private: true
+    },
+    default: {
+      required: false,
+      type: [Array],
+      default: () => []
+    },
+    disabled: {
+      required: false,
+      type: [Boolean],
+      default: false
+    },
+    floating: {
+      required: false,
+      type: [String, Boolean, Object],
+      localized: true,
+      default: null
+    },
+    id: {
+      required: false,
+      type: [String],
+      default: null
+    },
+    placeholder: {
+      required: false,
+      type: [String, Object],
+      localized: true,
+      default: null
+    },
+    attrs: {
+      required: false,
+      type: [Object],
+      default: () => ({})
+    },
+    onSelect: {
+      required: false,
+      type: [Function],
+      default: null,
+      private: true
+    },
+    onDeselect: {
+      required: false,
+      type: [Function],
+      default: null,
+      private: true
+    },
+    onSearchChange: {
+      required: false,
+      type: [Function],
+      default: null,
+      private: true
+    },
+    onOpen: {
+      required: false,
+      type: [Function],
+      default: null,
+      private: true
+    },
+    onClose: {
+      required: false,
+      type: [Function],
+      default: null,
+      private: true
+    },
+    onTag: {
+      required: false,
+      type: [Function],
+      default: null,
+      private: true
+    },
+    onClear: {
+      required: false,
+      type: [Function],
+      default: null,
+      private: true
+    },
+    onPaste: {
+      required: false,
+      type: [Function],
+      default: null,
+      private: true
+    },
+    items: {
+      required: false,
+      type: [Object, Array, Function, String],
+      localized: true,
+      default: () => ({})
+    },
+    labelProp: {
+      type: [String],
+      required: false,
+      default: 'label',
+      native: false
+    },
+    valueProp: {
+      type: [String],
+      required: false,
+      default: 'value',
+      native: false
+    },
+    dataKey: {
+      type: [String],
+      required: false,
+      default: undefined
+    },
+    searchParam: {
+      type: [String],
+      required: false,
+      default: 'query'
+    },
+    search: {
+      required: false,
+      type: [Boolean],
+      default: false,
+      native: false
+    },
+    trackBy: {
+      type: [String],
+      required: false,
+      default: 'label',
+      native: false
+    },
+    strict: {
+      type: [Boolean],
+      required: false,
+      default: true,
+      native: false
+    },
+    create: {
+      required: false,
+      type: [Boolean],
+      default: false
+    },
+    appendNewOption: {
+      type: [Boolean],
+      required: false,
+      default: true
+    },
+    addOptionOn: {
+      type: [Array],
+      required: false,
+      default: () => ['enter']
+    },
+    object: {
+      type: [Boolean],
+      required: false,
+      default: false,
+      native: false
+    },
+    limit: {
+      type: [Number],
+      required: false,
+      default: -1,
+      native: false
+    },
+    max: {
+      type: [Number],
+      required: false,
+      default: -1,
+      native: false
+    },
+    groups: {
+      type: [Boolean],
+      required: false,
+      default: false,
+      native: false
+    },
+    groupLabel: {
+      type: [String],
+      required: false,
+      default: 'label',
+      native: false
+    },
+    groupOptions: {
+      type: [String],
+      required: false,
+      default: 'items',
+      native: false
+    },
+    groupHideEmpty: {
+      type: [Boolean],
+      required: false,
+      default: false,
+      native: false
+    },
+    groupSelect: {
+      type: [Boolean],
+      required: false,
+      default: true,
+      native: false
+    },
+    openDirection: {
+      type: [String],
+      required: false,
+      default: 'bottom',
+      native: false
+    },
+    canClear: {
+      type: [Boolean],
+      required: false,
+      default: true,
+      native: false
+    },
+    clearOnSelect: {
+      type: [Boolean],
+      required: false,
+      default: true,
+      native: false
+    },
+    closeOnSelect: {
+      type: [Boolean],
+      required: false,
+      default: true,
+      native: false
+    },
+    closeOnDeselect: {
+      type: [Boolean],
+      required: false,
+      default: false,
+      native: false
+    },
+    delay: {
+      type: [Number],
+      required: false,
+      default: -1,
+      native: false
+    },
+    minChars: {
+      type: [Number],
+      required: false,
+      default: 0,
+      native: false
+    },
+    resolveOnLoad: {
+      type: [Boolean],
+      required: false,
+      default: true,
+      native: false
+    },
+    filterResults: {
+      type: [Boolean],
+      required: false,
+      default: true,
+      native: false
+    },
+    clearOnSearch: {
+      type: [Boolean],
+      required: false,
+      default: false,
+      native: false
+    },
+    hideSelected: {
+      type: [Boolean],
+      required: false,
+      default: true,
+      native: false
+    },
+    showOptions: {
+      type: [Boolean],
+      required: false,
+      default: true
+    },
+    caret: {
+      type: [Boolean],
+      required: false,
+      default: true,
+      native: false
+    },
+    loading: {
+      type: [Boolean],
+      required: false,
+      default: false,
+      native: false
+    },
+    noOptionsText: {
+      type: [String, Object],
+      required: false,
+      default: undefined,
+      '@default': 'locale.multiselect.noOptions',
+      localized: true,
+      native: false
+    },
+    noResultsText: {
+      type: [String, Object],
+      required: false,
+      default: undefined,
+      '@default': 'locale.multiselect.noResults',
+      localized: true,
+      native: false
+    },
+    autocomplete: {
+      type: [String],
+      required: false,
+      native: false
+    },
+    inputType: {
+      type: [String],
+      required: false,
+      default: 'text',
+      native: false
+    },
+    extendOptions: {
+      required: false,
+      type: [Object],
+      default: () => ({})
+    }
+  },
+  setup(props, context) {
+    context.features = [base$18, base$17, base$U, base$K, base$M, base$Q, array$1, base$S, base$u, base$1a, tags$2, base$I, base$H, base$c, tags$1, base$z, base$F, base$13, base$J, array, base$_, base$G, base$Y, base$X, base$T, base$Z, base$W, base$e, base$8, base$d, tags, base$P, base$E, base$R, base$t];
+    context.slots = ['tag', 'option', 'placeholder', 'group-label', 'before-list', 'after-list', 'no-results', 'no-options', 'caret', 'spinner', 'clear', 'label', 'info', 'description', 'before', 'between', 'after'];
+    return _objectSpread2$1({}, base$L(props, context));
+  }
+};
+
+var base$7 = function base(props, context, dependencies) {
+  // ============ DEPENDENCIES ============
+
+  var model = dependencies.model;
+
+  // =============== METHODS ==============
+
+  /**
+   * Handles `input` event.
+   * 
+   * @param {Event} e* 
+   * @returns {void}
+   * @private
+   */
+  var handleInput = e => {
+    model.value = e.target.value;
+  };
+  return {
+    handleInput
+  };
+};
+
+var base$6 = function base(props, context, dependencies) {
+  var {
+    autogrow
+  } = toRefs(props);
+
+  // ============ DEPENDENCIES ============
+
+  var form$ = dependencies.form$;
+  var input = dependencies.input;
+  var value = dependencies.value;
+
+  // =============== METHODS ==============
+
+  /**
+   * Updates the height of the input based in its contents when [`autogrow`](#option-autogrow) is enabled.
+   * 
+   * @returns {void}
+   */
+  var autosize = () => {
+    if (!autogrow.value) {
+      return;
+    }
+    form$.value.$vueform.services.autosize.update(input.value);
+  };
+
+  // ============== WATCHERS ==============
+
+  watch(autogrow, newValue => {
+    if (newValue) {
+      form$.value.$vueform.services.autosize(input.value);
+    } else {
+      form$.value.$vueform.services.autosize.destroy(input.value);
+    }
+  });
+  watch(value, () => {
+    autosize();
+  });
+
+  // =============== HOOKS ================
+
+  onMounted(() => {
+    if (autogrow.value) {
+      nextTick(() => {
+        form$.value.$vueform.services.autosize(input.value);
+      });
+    }
+  });
+  return {
+    autosize
+  };
+};
+var multilingual = function multilingual(props, context, dependencies) {
+  var {
+    autosize
+  } = base$6(props, context, dependencies);
+
+  // ============ DEPENDENCIES ============
+
+  var form$ = dependencies.form$;
+
+  // =============== HOOKS ================
+
+  onMounted(() => {
+    form$.value.on('language', () => {
+      autosize();
+    });
+  });
+  return {
+    autosize
+  };
+};
+
+var base$5 = function base(props, context, dependencies) {
+  // ============ DEPENDENCIES ============
+
+  var fire = dependencies.fire;
+  var el$ = dependencies.el$;
+
+  // =============== METHODS ==============
+
+  /**
+   * Handles `blur` event.
+   *
+   * @returns {void}
+   * @private
+   */
+  var handleBlur = () => {
+    fire('blur', el$.value);
+  };
+  return {
+    handleBlur
+  };
+};
+
+var base$4 = function base(props, context, dependencies) {
+  var {
+    fire,
+    el$
+  } = dependencies;
+
+  // =============== METHODS ==============
+
+  /**
+   * Handles `keydown` event.
+   * 
+   * @param {Event} e* 
+   * @returns {void}
+   * @private
+   */
+  var handleKeydown = e => {
+    fire('keydown', e, el$.value);
+  };
+
+  /**
+   * Handles `keyup` event.
+   * 
+   * @param {Event} e* 
+   * @returns {void}
+   * @private
+   */
+  var handleKeyup = e => {
+    fire('keyup', e, el$.value);
+  };
+
+  /**
+   * Handles `keypress` event.
+   * 
+   * @param {Event} e* 
+   * @returns {void}
+   * @private
+   */
+  var handleKeypress = e => {
+    fire('keypress', e, el$.value);
+  };
+  return {
+    handleKeydown,
+    handleKeyup,
+    handleKeypress
+  };
+};
+
+var TextareaElement = {
+  name: 'TextareaElement',
+  mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
+  emits: ['change', 'blur', 'keydown', 'keyup', 'keypress', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
+  props: {
+    type: {
+      required: false,
+      type: [String],
+      default: 'textarea',
+      private: true
+    },
+    default: {
+      required: false,
+      type: [String, Number, Object],
+      localized: true,
+      default: null
+    },
+    addons: {
+      required: false,
+      type: [Object],
+      localized: true,
+      default: () => ({})
+    },
+    autogrow: {
+      required: false,
+      type: [Boolean],
+      default: true
+    },
+    rows: {
+      required: false,
+      type: [Number],
+      default: 3
+    },
+    debounce: {
+      required: false,
+      type: [Number],
+      default: null
+    },
+    disabled: {
+      required: false,
+      type: [Boolean],
+      default: false
+    },
+    floating: {
+      required: false,
+      type: [String, Boolean, Object],
+      localized: true,
+      default: null
+    },
+    id: {
+      required: false,
+      type: [String],
+      default: null
+    },
+    placeholder: {
+      required: false,
+      type: [String, Object],
+      localized: true,
+      default: null
+    },
+    readonly: {
+      required: false,
+      type: [Boolean],
+      default: false
+    },
+    attrs: {
+      required: false,
+      type: [Object],
+      default: () => ({})
+    },
+    onBlur: {
+      required: false,
+      type: [Function],
+      default: null,
+      private: true
+    },
+    onKeydown: {
+      required: false,
+      type: [Function],
+      default: null,
+      private: true
+    },
+    onKeyup: {
+      required: false,
+      type: [Function],
+      default: null,
+      private: true
+    },
+    onKeypress: {
+      required: false,
+      type: [Function],
+      default: null,
+      private: true
+    }
+  },
+  setup(props, context) {
+    context.features = [base$18, base$17, base$U, base$K, base$M, base$Q, base$C, base$S, base$u, base$1a, base$N, base$y, text$1, base$13, text, base$F, base$J, base$x, base$_, base$G, base$Y, base$X, base$T, base$Z, base$W, base$7, base$6, base$s, base$5, base$P, base$E, base$R, base$4, base$t];
+    context.slots = ['label', 'info', 'description', 'before', 'between', 'after', 'addon-before', 'addon-after'];
+    return _objectSpread2$1({}, base$L(props, context));
+  }
+};
+
+var TextElement = {
+  name: 'TextElement',
+  mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
+  emits: ['change', 'blur', 'keydown', 'keyup', 'keypress', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
+  props: {
+    type: {
+      required: false,
+      type: [String],
+      default: 'text',
+      private: true
+    },
+    default: {
+      required: false,
+      type: [String, Number, Object],
+      localized: true,
+      default: null
+    },
+    debounce: {
+      required: false,
+      type: [Number],
+      default: null
+    },
+    disabled: {
+      required: false,
+      type: [Boolean],
+      default: false
+    },
+    floating: {
+      required: false,
+      type: [String, Boolean, Object],
+      localized: true,
+      default: null
+    },
+    id: {
+      required: false,
+      type: [String],
+      default: null
+    },
+    placeholder: {
+      required: false,
+      type: [String, Object],
+      localized: true,
+      default: null
+    },
+    readonly: {
+      required: false,
+      type: [Boolean],
+      default: false
+    },
+    inputType: {
+      required: false,
+      type: [String],
+      default: 'text'
+    },
+    attrs: {
+      required: false,
+      type: [Object],
+      default: () => ({})
+    },
+    addons: {
+      required: false,
+      type: [Object],
+      localized: true,
+      default: () => ({})
+    },
+    autocomplete: {
+      required: false,
+      type: [String, Number],
+      default: null
+    },
+    loading: {
+      type: [Boolean],
+      required: false,
+      default: false
+    },
+    onBlur: {
+      required: false,
+      type: [Function],
+      default: null,
+      private: true
+    },
+    onKeydown: {
+      required: false,
+      type: [Function],
+      default: null,
+      private: true
+    },
+    onKeyup: {
+      required: false,
+      type: [Function],
+      default: null,
+      private: true
+    },
+    onKeypress: {
+      required: false,
+      type: [Function],
+      default: null,
+      private: true
+    }
+  },
+  setup(props, context) {
+    context.features = [base$18, base$17, base$U, base$K, base$M, base$Q, base$C, base$S, base$u, base$1a, base$N, base$y, text$1, base$13, text, base$c, base$F, base$J, base$x, base$_, base$G, base$Y, base$X, base$T, base$Z, base$W, base$7, base$s, base$5, base$P, base$E, base$R, base$4, base$t];
+    context.slots = ['label', 'info', 'description', 'before', 'between', 'after', 'addon-before', 'addon-after'];
+    return _objectSpread2$1({}, base$L(props, context));
+  }
+};
+
+var ToggleElement = {
+  name: 'ToggleElement',
+  mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
+  emits: ['change', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
+  props: {
+    type: {
+      required: false,
+      type: [String],
+      default: 'toggle',
+      private: true
+    },
+    default: {
+      required: false,
+      type: [String, Number, Boolean],
+      default: undefined // falseValue
+    },
+
+    disabled: {
+      required: false,
+      type: [Boolean],
+      default: false
+    },
+    id: {
+      required: false,
+      type: [String],
+      default: null
+    },
+    text: {
+      required: false,
+      type: [String, Object],
+      localized: true,
+      default: null
+    },
+    labels: {
+      required: false,
+      type: [Object],
+      localized: true,
+      default: () => ({})
+    },
+    trueValue: {
+      required: false,
+      type: [Boolean, String, Number],
+      default: true
+    },
+    falseValue: {
+      required: false,
+      type: [Boolean, String, Number],
+      default: false
+    },
+    extendOptions: {
+      required: false,
+      type: [Object],
+      default: () => ({})
+    }
+  },
+  setup(props, context) {
+    context.features = [base$18, base$17, base$U, base$K, base$M, base$Q, boolean, base$S, base$1a, base$N, toggle, base$I, base$13, base$H, base$F, base$J, base$_, base$G, base$Y, base$X, base$T, base$Z, base$W, base$v, base$B, toggle$1, base$E, base$R, base$D];
+    context.slots = ['default', 'label', 'info', 'description', 'before', 'between', 'after'];
+    return _objectSpread2$1({}, base$L(props, context));
+  }
+};
+
+var base$3 = function base(props, context, dependencies) {
+  var {
+    endpoint,
+    method
+  } = toRefs(props);
+
+  // ============ DEPENDENCIES ============
+
+  var form$ = dependencies.form$;
+  var input = dependencies.input;
+
+  // ================ DATA ================
+
+  /**
+   * Whether the editor is focused.
+   * 
+   * @type {boolean}
+   */
+  var focused = ref(false);
+
+  // ============== COMPUTED ==============
+
+  /**
+  * The endpoint that uploads attachment. Can be changed by setting [`endpoint`](#endpoint) option.
+  * 
+  * @type {string}
+  * @default `config.endpoints.attachment.url`
+  * @private
+  */
+  var editorEndpoint = computed(() => {
+    return endpoint.value || form$.value.$vueform.config.endpoints.attachment.url;
+  });
+
+  /**
+  * The method to use to upload attachment. Can be changed by setting [`method`](#method) option.
+  * 
+  * @type {string}
+  * @default `config.endpoints.attachment.method`
+  * @private
+  */
+  var editorMethod = computed(() => {
+    return method.value || form$.value.$vueform.config.endpoints.attachment.method;
+  });
+
+  // =============== HOOKS ================
+
+  onMounted(() => {
+    input.value.editor$.addEventListener('focus', () => {
+      focused.value = true;
+    });
+    input.value.editor$.addEventListener('blur', () => {
+      focused.value = false;
+    });
+  });
+  return {
+    editorEndpoint,
+    editorMethod,
+    focused
+  };
+};
+
+var base$2 = function base(props, context, dependencies) {
+  // ============ DEPENDENCIES ============
+
+  var fire = dependencies.fire;
+  var listeners = dependencies.listeners;
+
+  // =============== METHODS ==============
+
+  /**
+   * Handles `alert` event.
+   *
+   * @param {string} message* alert message
+   * @returns {void}
+   * @private
+   */
+  var handleAlert = message => {
+    fire('alert', message);
+    if (!listeners.value.alert) {
+      alert(message);
+    }
+  };
+  return {
+    handleAlert
+  };
+};
+
+var EditorElement = {
+  name: 'EditorElement',
+  mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
+  emits: ['change', 'blur', 'alert', 'error', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
+  props: {
+    type: {
+      required: false,
+      type: [String],
+      default: 'editor',
+      private: true
+    },
+    default: {
+      required: false,
+      type: [String, Number, Object],
+      localized: true,
+      default: null
+    },
+    debounce: {
+      required: false,
+      type: [Number],
+      default: null
+    },
+    disabled: {
+      required: false,
+      type: [Boolean],
+      default: false
+    },
+    id: {
+      required: false,
+      type: [String],
+      default: null
+    },
+    placeholder: {
+      required: false,
+      type: [String, Object],
+      localized: true,
+      default: null
+    },
+    onError: {
+      required: false,
+      type: [Function],
+      default: null,
+      private: true
+    },
+    onAlert: {
+      required: false,
+      type: [Function],
+      default: null,
+      private: true
+    },
+    accept: {
+      required: false,
+      type: [Array],
+      default: () => []
+    },
+    acceptMimes: {
+      required: false,
+      type: [Array],
+      default: () => []
+    },
+    endpoint: {
+      required: false,
+      type: [String, Function],
+      default: null,
+      '@default': 'config.endpoints.attachment.url'
+    },
+    method: {
+      required: false,
+      type: [String],
+      default: null,
+      '@default': 'config.endpoints.attachment.method'
+    },
+    hideTools: {
+      required: false,
+      type: [Array],
+      default: () => []
+    },
+    onBlur: {
+      required: false,
+      type: [Function],
+      default: null,
+      private: true
+    }
+  },
+  setup(props, context) {
+    context.features = [base$18, base$17, base$U, base$K, base$M, base$Q, base$C, base$S, base$1a, base$N, text$1, base$13, text, base$F, editor, base$x, base$_, base$G, base$Y, base$X, base$3, base$T, base$Z, base$W, base$7, base$2, base$n, base$5, base$P, base$E, editor$1, base$t];
+    context.slots = ['label', 'info', 'description', 'before', 'between', 'after'];
+    return _objectSpread2$1({}, base$L(props, context));
+  }
+};
+
+var base$1 = function base(props, context, dependencies) {
+  // ============ DEPENDENCIES ============
+
+  var form$ = dependencies.form$;
+
+  // ============== COMPUTED ===============
+
+  /**
+   * The language code of the currently selected language (2 letters).
+   * 
+   * @type {string}
+   */
+  var language = computed(() => {
+    return form$.value.selectedLanguage;
+  });
+
+  /**
+   * Available language codes.
+   * 
+   * @type {array}
+   */
+  var languages = computed(() => {
+    return _.keys(form$.value.options.languages);
+  });
+  return {
+    language,
+    languages
+  };
+};
+
+var TTextareaElement = {
+  name: 'TTextareaElement',
+  mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
+  emits: ['change', 'blur', 'keydown', 'keyup', 'keypress', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
+  props: {
+    type: {
+      required: false,
+      type: [String],
+      default: 't-textarea',
+      private: true
+    },
+    default: {
+      required: false,
+      type: [Object, String, Number],
+      localized: true,
+      default: null
+    },
+    addons: {
+      required: false,
+      type: [Object],
+      localized: true,
+      default: () => ({})
+    },
+    autogrow: {
+      required: false,
+      type: [Boolean],
+      default: true
+    },
+    rows: {
+      required: false,
+      type: [Number],
+      default: 3
+    },
+    debounce: {
+      required: false,
+      type: [Number],
+      default: null
+    },
+    disabled: {
+      required: false,
+      type: [Boolean],
+      default: false
+    },
+    floating: {
+      required: false,
+      type: [String, Boolean, Object],
+      localized: true,
+      default: null
+    },
+    id: {
+      required: false,
+      type: [String],
+      default: null
+    },
+    placeholder: {
+      required: false,
+      type: [String, Object],
+      localized: true,
+      default: null
+    },
+    readonly: {
+      required: false,
+      type: [Boolean],
+      default: false
+    },
+    attrs: {
+      required: false,
+      type: [Object],
+      default: () => ({})
+    },
+    onBlur: {
+      required: false,
+      type: [Function],
+      default: null,
+      private: true
+    },
+    onKeydown: {
+      required: false,
+      type: [Function],
+      default: null,
+      private: true
+    },
+    onKeyup: {
+      required: false,
+      type: [Function],
+      default: null,
+      private: true
+    },
+    onKeypress: {
+      required: false,
+      type: [Function],
+      default: null,
+      private: true
+    }
+  },
+  setup(props, context) {
+    context.features = [base$18, base$17, base$U, base$K, base$M, base$Q, base$S, base$u, base$1a, base$N, base$y, base$1, multilingual$2, multilingual$6, multilingual$4, base$13, multilingual$5, multilingual$7, multilingual$1, base$_, base$G, base$Y, base$X, base$T, base$Z, base$W, base$7, multilingual, base$s, base$5, base$P, multilingual$3, base$R, base$4, base$t];
+    context.slots = ['label', 'info', 'description', 'before', 'between', 'after', 'addon-before', 'addon-after'];
+    return _objectSpread2$1({}, multilingual$8(props, context));
+  }
+};
+
+var TTextElement = {
+  name: 'TTextElement',
+  mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
+  emits: ['change', 'blur', 'keydown', 'keyup', 'keypress', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
+  props: {
+    type: {
+      required: false,
+      type: [String],
+      default: 't-text',
+      private: true
+    },
+    default: {
+      required: false,
+      type: [Object, String, Number],
+      localized: true,
+      default: undefined
+    },
+    addons: {
+      required: false,
+      type: [Object],
+      localized: true,
+      default: () => ({})
+    },
+    autocomplete: {
+      required: false,
+      type: [String, Number],
+      default: null
+    },
+    debounce: {
+      required: false,
+      type: [Number],
+      default: null
+    },
+    disabled: {
+      required: false,
+      type: [Boolean],
+      default: false
+    },
+    floating: {
+      required: false,
+      type: [String, Boolean, Object],
+      localized: true,
+      default: null
+    },
+    id: {
+      required: false,
+      type: [String],
+      default: null
+    },
+    inputType: {
+      required: false,
+      type: [String],
+      default: 'text'
+    },
+    attrs: {
+      required: false,
+      type: [Object],
+      default: () => ({})
+    },
+    placeholder: {
+      required: false,
+      type: [String, Object],
+      localized: true,
+      default: null
+    },
+    readonly: {
+      required: false,
+      type: [Boolean],
+      default: false
+    },
+    loading: {
+      type: [Boolean],
+      required: false,
+      default: false
+    },
+    onBlur: {
+      required: false,
+      type: [Function],
+      default: null,
+      private: true
+    },
+    onKeydown: {
+      required: false,
+      type: [Function],
+      default: null,
+      private: true
+    },
+    onKeyup: {
+      required: false,
+      type: [Function],
+      default: null,
+      private: true
+    },
+    onKeypress: {
+      required: false,
+      type: [Function],
+      default: null,
+      private: true
+    }
+  },
+  setup(props, context) {
+    context.features = [base$18, base$17, base$U, base$K, base$M, base$Q, base$S, base$u, base$1a, base$N, base$y, base$1, multilingual$2, multilingual$6, multilingual$4, base$13, multilingual$5, base$c, multilingual$7, multilingual$1, base$_, base$G, base$Y, base$X, base$T, base$Z, base$W, base$7, base$s, base$5, base$P, multilingual$3, base$R, base$4, base$t];
+    context.slots = ['label', 'info', 'description', 'before', 'between', 'after', 'addon-before', 'addon-after'];
+    return _objectSpread2$1({}, multilingual$8(props, context));
+  }
+};
+
+var TEditorElement = {
+  name: 'TEditorElement',
+  mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
+  emits: ['change', 'blur', 'alert', 'error', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
+  props: {
+    type: {
+      required: false,
+      type: [String],
+      default: 't-editor',
+      private: true
+    },
+    default: {
+      required: false,
+      type: [Object, String, Number],
+      localized: true,
+      default: null
+    },
+    debounce: {
+      required: false,
+      type: [Number],
+      default: null
+    },
+    disabled: {
+      required: false,
+      type: [Boolean],
+      default: false
+    },
+    id: {
+      required: false,
+      type: [String],
+      default: null
+    },
+    placeholder: {
+      required: false,
+      type: [String, Object],
+      localized: true,
+      default: null
+    },
+    onError: {
+      required: false,
+      type: [Function],
+      default: null,
+      private: true
+    },
+    onAlert: {
+      required: false,
+      type: [Function],
+      default: null,
+      private: true
+    },
+    accept: {
+      required: false,
+      type: [Array],
+      default: null
+    },
+    acceptMimes: {
+      required: false,
+      type: [Array],
+      default: null
+    },
+    endpoint: {
+      required: false,
+      type: [String, Function],
+      default: null,
+      '@default': 'config.endpoints.attachment.url'
+    },
+    method: {
+      required: false,
+      type: [String],
+      default: null,
+      '@default': 'config.endpoints.attachment.method'
+    },
+    hideTools: {
+      required: false,
+      type: [Array],
+      default: () => []
+    },
+    onBlur: {
+      required: false,
+      type: [Function],
+      default: null,
+      private: true
+    }
+  },
+  setup(props, context) {
+    context.features = [base$18, base$17, base$U, base$K, base$M, base$Q, base$S, base$1a, base$N, base$1, multilingual$2, multilingual$6, multilingual$4, base$13, multilingual$5, teditor, multilingual$1, base$_, base$G, base$Y, base$X, base$3, base$T, base$Z, base$W, base$7, base$2, base$n, base$5, base$P, multilingual$3, base$R, base$t];
+    context.slots = ['label', 'info', 'description', 'before', 'between', 'after'];
+    return _objectSpread2$1({}, multilingual$8(props, context));
+  }
+};
+
+var CheckboxgroupCheckbox = {
+  name: 'CheckboxgroupCheckbox',
+  props: {
+    item: {
+      type: [Object, String, Number],
+      required: true
+    },
+    value: {
+      type: [String, Number],
+      required: true
+    },
+    items: {
+      type: [Object, Array],
+      required: true
+    },
+    index: {
+      type: [Number],
+      required: true
+    },
+    attrs: {
+      required: false,
+      type: [Object],
+      default: () => ({})
+    }
+  },
+  setup(props, context) {
+    var {
+      value,
+      item
+    } = toRefs(props);
+    var {
+      el$,
+      form$,
+      Size,
+      View,
+      classesInstance,
+      classes,
+      Templates,
+      template,
+      theme
+    } = base$$(props, context);
+
+    // ============== COMPUTED ==============
+
+    /**
+     * Whether the checkbox should be disabled.
+     * 
+     * @type {boolean}
+     */
+    var isDisabled = computed(() => {
+      var _item$value;
+      return el$.value.disabledItems.map(i => String(i)).indexOf(String(value.value)) !== -1 || el$.value.isDisabled || !!((_item$value = item.value) !== null && _item$value !== void 0 && _item$value.disabled);
+    });
+
+    /**
+     * Whether the checkbox is checked.
+     * 
+     * @type {boolean}
+     */
+    var checked = computed(() => {
+      return el$.value.value.indexOf(String(value.value)) !== -1 || el$.value.value.indexOf(Number(value.value)) !== -1;
+    });
+
+    /**
+     * The `id` attribute of the input.
+     * 
+     * @type {boolean}
+     */
+    var id = computed(() => {
+      return "".concat(el$.value.fieldId, "-").concat(value.value);
+    });
+
+    /**
+     * The `name` attribute of the input.
+     * 
+     * @type {boolean}
+     */
+    var name = computed(() => {
+      return "".concat(el$.value.path, "-").concat(value.value);
+    });
+
+    // =============== METHODS ==============
+
+    /**
+     * Handles `keydown` event.
+     * 
+     * @param {Event} e* 
+     * @returns {void}
+     * @private
+     */
+    var handleKeydown = e => {
+      if (['ArrowRight', 'ArrowDown'].indexOf(e.key) !== -1) {
+        e.preventDefault();
+        var next = e.target.nextElementSibling;
+        if ((next === null || next === void 0 ? void 0 : next.getAttribute('role')) === 'checkbox') {
+          next.focus();
+        }
+      } else if (['ArrowLeft', 'ArrowUp'].indexOf(e.key) !== -1) {
+        e.preventDefault();
+        var previous = e.target.previousElementSibling;
+        if ((previous === null || previous === void 0 ? void 0 : previous.getAttribute('role')) === 'checkbox') {
+          previous.focus();
+        }
+      }
+    };
+    return {
+      el$,
+      form$,
+      Size,
+      View,
+      classesInstance,
+      classes,
+      Templates,
+      template,
+      theme,
+      isDisabled,
+      id,
+      name,
+      checked,
+      handleKeydown
+    };
+  }
+};
+
+var base = function base(props, context, dependencies) {
+  var el$ = dependencies.el$;
+  var form$ = dependencies.form$;
+
+  // ============== COMPUTED ==============
+
+  /**
+   * Whether the preview component should be visible.
+   * 
+   * @type {boolean}
+   */
+  var visible = computed(() => {
+    return el$.value.stage > 0;
+  });
+
+  /**
+   * Whether the file has link and should be clickable.
+   * 
+   * @type {boolean}
+   */
+  var hasLink = computed(() => {
+    return el$.value.link && el$.value.clickable;
+  });
+
+  /**
+   * Whether the preview has upload error.
+   * 
+   * @type {boolean}
+   */
+  var hasError = computed(() => {
+    return el$.value.hasUploadError;
+  });
+
+  /**
+   * The link for the file.
+   * 
+   * @type {string}
+   */
+  var link = computed(() => {
+    return el$.value.link;
+  });
+
+  /**
+   * The filename to display.
+   * 
+   * @type {string}
+   */
+  var filename = computed(() => {
+    var filename = el$.value.filename && typeof el$.value.filename === 'string' ? el$.value.filename.split('\\').pop().split('/').pop() : el$.value.filename;
+    if (filename) {
+      filename = filename.split('?')[0];
+    }
+    return filename;
+  });
+
+  /**
+   * Whether the file should be clickable if it is already permantently uploaded.
+   * 
+   * @type {boolean}
+   */
+  var clickable = computed(() => {
+    return el$.value.clickable;
+  });
+
+  /**
+   * Whether the temporary or permanent file is uploaded.
+   * 
+   * @type {boolean}
+   */
+  var uploaded = computed(() => {
+    return el$.value.stage > 1;
+  });
+
+  /**
+   * Whether the file is currently uploading.
+   * 
+   * @type {boolean}
+   */
+  var uploading = computed(() => {
+    return el$.value.uploading;
+  });
+
+  /**
+   * The percentage of progress when the file is being temporarily uploaded (0-100).
+   * 
+   * @type {number}
+   */
+  var progress = computed(() => {
+    return el$.value.progress;
+  });
+
+  /**
+   * Whether the file can be removed. 
+   * 
+   * @type {boolean}
+   */
+  var canRemove = computed(() => {
+    return (el$.value.canRemove || el$.value.uploading) && !el$.value.isDisabled;
+  });
+
+  /**
+   * Whether temporary file can be uploaded.
+   * 
+   * @type {boolean}
+   */
+  var canUploadTemp = computed(() => {
+    return el$.value.canUploadTemp;
+  });
+
+  /**
+   * The text for upload button. Can be also changed in the locale file: `vueform.elements.file.upload`
+   * 
+   * @type {string}
+   */
+  var uploadText = computed(() => {
+    return form$.value.translations.vueform.elements.file.upload;
+  });
+
+  /**
+   * The `aria-labelledby` attribute of the preview.
+   * 
+   * @type {string}
+   */
+  var ariaLabelledby = computed(() => {
+    return el$.value.embed ? undefined : el$.value.labelId;
+  });
+
+  // =============== METHODS ==============
+
+  /**
+   * Upload the currently selected file as temporary.
+   * 
+   * @returns {void}
+   */
+  var upload = () => {
+    el$.value.uploadTemp();
+  };
+
+  /**
+   * Remove the file.
+   * 
+   * @returns {void}
+   */
+  var remove = () => {
+    if (uploading.value) {
+      el$.value.handleAbort();
+    } else {
+      el$.value.handleRemove();
+    }
+  };
+
+  /**
+   * Handle the keyup event of the preview.
+   * 
+   * @param {Event} event the keyup Event
+   * @returns {void}
+   * @private
+   */
+  var handleKeyup = /*#__PURE__*/function () {
+    var _ref = _asyncToGenerator(function* (e) {
+      switch (e.key) {
+        case 'Backspace':
+        case 'Delete':
+          remove();
+          if (!el$.value.canSelect) {
+            return;
+          }
+          yield nextTick();
+          document.querySelector("#".concat(el$.value.fieldId)).focus();
+          break;
+        case 'Enter':
+          if (el$.value.auto) {
+            return;
+          }
+          upload();
+          break;
+      }
+    });
+    return function handleKeyup(_x) {
+      return _ref.apply(this, arguments);
+    };
+  }();
+
+  // =============== HOOKS ================
+
+  return {
+    visible,
+    hasLink,
+    hasError,
+    link,
+    filename,
+    clickable,
+    uploaded,
+    uploading,
+    progress,
+    canRemove,
+    canUploadTemp,
+    uploadText,
+    ariaLabelledby,
+    upload,
+    remove,
+    handleKeyup
+  };
+};
+
+var FilePreview = {
+  name: 'FilePreview',
+  props: {
+    attrs: {
+      required: false,
+      type: [Object],
+      default: () => ({})
+    }
+  },
+  setup(props, context) {
+    var {
+      el$,
+      form$,
+      Size,
+      View,
+      classesInstance,
+      classes,
+      Templates,
+      template,
+      theme
+    } = base$$(props, context);
+    var {
+      visible,
+      hasLink,
+      hasError,
+      link,
+      filename,
+      clickable,
+      uploaded,
+      uploading,
+      progress,
+      canRemove,
+      canUploadTemp,
+      uploadText,
+      ariaLabelledby,
+      upload,
+      remove,
+      handleKeyup
+    } = base(props, context, {
+      el$,
+      form$
+    });
+
+    // ============== COMPUTED ==============
+
+    /**
+     * The image's preview when [`view`](#option-view) is `image` or `gallery`. Equals to the `link` if the file is already uploaded and `base64` if only selected or temporarily uploaded.
+     * 
+     * @type {string}
+     */
+    var preview = computed(() => {
+      return ['image', 'gallery'].indexOf(el$.value.View) !== -1 ? el$.value.preview : null;
+    });
+
+    /**
+     * The `aria-placeholder` attribute of the preview.
+     * 
+     * @type {string}
+     */
+    var ariaPlaceholder = computed(() => {
+      var text = el$.value.embed && el$.value.View !== 'gallery' ? undefined : filename.value;
+      if (hasError.value) {
+        if (text) {
+          text += ', error';
+        } else {
+          text = 'error';
+        }
+      }
+      return text;
+    });
+
+    /**
+     * The `aria-roledescription` attribute of the preview.
+     * 
+     * @type {string}
+     */
+    var ariaRoledescription = computed(() => {
+      return el$.value.embed && el$.value.View !== 'gallery' || uploaded.value || el$.value.auto ? undefined : uploadText.value;
+    });
+    return {
+      el$,
+      form$,
+      Size,
+      View,
+      classesInstance,
+      classes,
+      Templates,
+      template,
+      theme,
+      visible,
+      hasLink,
+      hasError,
+      link,
+      filename,
+      clickable,
+      uploaded,
+      uploading,
+      progress,
+      canRemove,
+      canUploadTemp,
+      uploadText,
+      preview,
+      ariaLabelledby,
+      ariaPlaceholder,
+      ariaRoledescription,
+      upload,
+      remove,
+      handleKeyup
+    };
+  }
+};
+
+var RadiogroupRadio = {
+  name: 'RadiogroupRadio',
+  props: {
+    item: {
+      type: [Object, String, Number],
+      required: true
+    },
+    value: {
+      type: [String, Number],
+      required: true
+    },
+    items: {
+      type: [Object, Array],
+      required: true
+    },
+    index: {
+      type: [Number],
+      required: true
+    },
+    attrs: {
+      required: false,
+      type: [Object],
+      default: () => ({})
+    }
+  },
+  setup(props, context) {
+    var {
+      value,
+      item
+    } = toRefs(props);
+    var {
+      el$,
+      form$,
+      Size,
+      View,
+      classesInstance,
+      classes,
+      Templates,
+      template,
+      theme
+    } = base$$(props, context);
+
+    // ============== COMPUTED ==============
+
+    /**
+     * Whether the radio should be disabled.
+     * 
+     * @type {boolean}
+     */
+    var isDisabled = computed(() => {
+      var _item$value;
+      return el$.value.disabledItems.map(i => String(i)).indexOf(String(value.value)) !== -1 || el$.value.isDisabled || !!((_item$value = item.value) !== null && _item$value !== void 0 && _item$value.disabled);
+    });
+
+    /**
+     * Whether the radio is checked.
+     * 
+     * @type {boolean}
+     */
+    var checked = computed(() => {
+      return el$.value.value === String(value.value) || el$.value.value === Number(value.value);
+    });
+
+    /**
+     * The `id` attribute of the input.
+     * 
+     * @type {boolean}
+     */
+    var id = computed(() => {
+      return "".concat(el$.value.fieldId, "-").concat(value.value);
+    });
+
+    /**
+     * The `name` attribute of the input.
+     * 
+     * @type {boolean}
+     */
+    var name = computed(() => {
+      return el$.value.path;
+    });
+
+    // =============== METHODS ==============
+
+    /**
+     * Handles `keydown` event.
+     * 
+     * @param {Event} e* 
+     * @returns {void}
+     * @private
+     */
+    var handleKeydown = e => {
+      if (['ArrowRight', 'ArrowDown'].indexOf(e.key) !== -1) {
+        e.preventDefault();
+        var next = e.target.nextElementSibling;
+        if ((next === null || next === void 0 ? void 0 : next.getAttribute('role')) === 'radio') {
+          next.focus();
+        }
+      } else if (['ArrowLeft', 'ArrowUp'].indexOf(e.key) !== -1) {
+        e.preventDefault();
+        var previous = e.target.previousElementSibling;
+        if ((previous === null || previous === void 0 ? void 0 : previous.getAttribute('role')) === 'radio') {
+          previous.focus();
+        }
+      }
+    };
+    return {
+      el$,
+      form$,
+      Size,
+      View,
+      classesInstance,
+      classes,
+      Templates,
+      template,
+      theme,
+      isDisabled,
+      id,
+      name,
+      checked,
+      handleKeydown
+    };
+  }
+};
+
+var index = {
+  Vueform,
+  FormErrors,
+  FormMessages,
+  FormLanguages,
+  FormLanguage,
+  FormTabs,
+  FormTab,
+  FormSteps,
+  FormStepsControls,
+  FormStepsControl,
+  FormStep,
+  FormElements,
+  ElementLayout,
+  ElementLayoutInline,
+  ElementLoader,
+  ElementLabelFloating,
+  ElementLabel,
+  ElementInfo,
+  ElementDescription,
+  ElementError,
+  ElementMessage,
+  ElementText,
+  DragAndDrop,
+  ElementAddon,
+  DatepickerWrapper,
+  EditorWrapper,
+  ButtonElement,
+  CheckboxElement,
+  CheckboxgroupElement,
+  DateElement,
+  DatesElement,
+  FileElement,
+  GroupElement,
+  HiddenElement,
+  ListElement,
+  LocationElement,
+  MultifileElement,
+  MultiselectElement,
+  ObjectElement,
+  RadioElement,
+  RadiogroupElement,
+  SelectElement,
+  SliderElement,
+  StaticElement,
+  TagsElement,
+  TextareaElement,
+  TextElement,
+  ToggleElement,
+  EditorElement,
+  TTextareaElement,
+  TTextElement,
+  TEditorElement,
+  CheckboxgroupCheckbox,
+  FilePreview,
+  RadiogroupRadio
+};
+
+var runtime = {exports: {}};
+
+/**
+ * Copyright (c) 2014-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+(function (module) {
+	var runtime = (function (exports) {
+
+	  var Op = Object.prototype;
+	  var hasOwn = Op.hasOwnProperty;
+	  var defineProperty = Object.defineProperty || function (obj, key, desc) { obj[key] = desc.value; };
+	  var undefined$1; // More compressible than void 0.
+	  var $Symbol = typeof Symbol === "function" ? Symbol : {};
+	  var iteratorSymbol = $Symbol.iterator || "@@iterator";
+	  var asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator";
+	  var toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag";
+
+	  function define(obj, key, value) {
+	    Object.defineProperty(obj, key, {
+	      value: value,
+	      enumerable: true,
+	      configurable: true,
+	      writable: true
+	    });
+	    return obj[key];
+	  }
+	  try {
+	    // IE 8 has a broken Object.defineProperty that only works on DOM objects.
+	    define({}, "");
+	  } catch (err) {
+	    define = function(obj, key, value) {
+	      return obj[key] = value;
+	    };
+	  }
+
+	  function wrap(innerFn, outerFn, self, tryLocsList) {
+	    // If outerFn provided and outerFn.prototype is a Generator, then outerFn.prototype instanceof Generator.
+	    var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator;
+	    var generator = Object.create(protoGenerator.prototype);
+	    var context = new Context(tryLocsList || []);
+
+	    // The ._invoke method unifies the implementations of the .next,
+	    // .throw, and .return methods.
+	    defineProperty(generator, "_invoke", { value: makeInvokeMethod(innerFn, self, context) });
+
+	    return generator;
+	  }
+	  exports.wrap = wrap;
+
+	  // Try/catch helper to minimize deoptimizations. Returns a completion
+	  // record like context.tryEntries[i].completion. This interface could
+	  // have been (and was previously) designed to take a closure to be
+	  // invoked without arguments, but in all the cases we care about we
+	  // already have an existing method we want to call, so there's no need
+	  // to create a new function object. We can even get away with assuming
+	  // the method takes exactly one argument, since that happens to be true
+	  // in every case, so we don't have to touch the arguments object. The
+	  // only additional allocation required is the completion record, which
+	  // has a stable shape and so hopefully should be cheap to allocate.
+	  function tryCatch(fn, obj, arg) {
+	    try {
+	      return { type: "normal", arg: fn.call(obj, arg) };
+	    } catch (err) {
+	      return { type: "throw", arg: err };
+	    }
+	  }
+
+	  var GenStateSuspendedStart = "suspendedStart";
+	  var GenStateSuspendedYield = "suspendedYield";
+	  var GenStateExecuting = "executing";
+	  var GenStateCompleted = "completed";
+
+	  // Returning this object from the innerFn has the same effect as
+	  // breaking out of the dispatch switch statement.
+	  var ContinueSentinel = {};
+
+	  // Dummy constructor functions that we use as the .constructor and
+	  // .constructor.prototype properties for functions that return Generator
+	  // objects. For full spec compliance, you may wish to configure your
+	  // minifier not to mangle the names of these two functions.
+	  function Generator() {}
+	  function GeneratorFunction() {}
+	  function GeneratorFunctionPrototype() {}
+
+	  // This is a polyfill for %IteratorPrototype% for environments that
+	  // don't natively support it.
+	  var IteratorPrototype = {};
+	  define(IteratorPrototype, iteratorSymbol, function () {
+	    return this;
+	  });
+
+	  var getProto = Object.getPrototypeOf;
+	  var NativeIteratorPrototype = getProto && getProto(getProto(values([])));
+	  if (NativeIteratorPrototype &&
+	      NativeIteratorPrototype !== Op &&
+	      hasOwn.call(NativeIteratorPrototype, iteratorSymbol)) {
+	    // This environment has a native %IteratorPrototype%; use it instead
+	    // of the polyfill.
+	    IteratorPrototype = NativeIteratorPrototype;
+	  }
+
+	  var Gp = GeneratorFunctionPrototype.prototype =
+	    Generator.prototype = Object.create(IteratorPrototype);
+	  GeneratorFunction.prototype = GeneratorFunctionPrototype;
+	  defineProperty(Gp, "constructor", { value: GeneratorFunctionPrototype, configurable: true });
+	  defineProperty(
+	    GeneratorFunctionPrototype,
+	    "constructor",
+	    { value: GeneratorFunction, configurable: true }
+	  );
+	  GeneratorFunction.displayName = define(
+	    GeneratorFunctionPrototype,
+	    toStringTagSymbol,
+	    "GeneratorFunction"
+	  );
+
+	  // Helper for defining the .next, .throw, and .return methods of the
+	  // Iterator interface in terms of a single ._invoke method.
+	  function defineIteratorMethods(prototype) {
+	    ["next", "throw", "return"].forEach(function(method) {
+	      define(prototype, method, function(arg) {
+	        return this._invoke(method, arg);
+	      });
+	    });
+	  }
+
+	  exports.isGeneratorFunction = function(genFun) {
+	    var ctor = typeof genFun === "function" && genFun.constructor;
+	    return ctor
+	      ? ctor === GeneratorFunction ||
+	        // For the native GeneratorFunction constructor, the best we can
+	        // do is to check its .name property.
+	        (ctor.displayName || ctor.name) === "GeneratorFunction"
+	      : false;
+	  };
+
+	  exports.mark = function(genFun) {
+	    if (Object.setPrototypeOf) {
+	      Object.setPrototypeOf(genFun, GeneratorFunctionPrototype);
+	    } else {
+	      genFun.__proto__ = GeneratorFunctionPrototype;
+	      define(genFun, toStringTagSymbol, "GeneratorFunction");
+	    }
+	    genFun.prototype = Object.create(Gp);
+	    return genFun;
+	  };
+
+	  // Within the body of any async function, `await x` is transformed to
+	  // `yield regeneratorRuntime.awrap(x)`, so that the runtime can test
+	  // `hasOwn.call(value, "__await")` to determine if the yielded value is
+	  // meant to be awaited.
+	  exports.awrap = function(arg) {
+	    return { __await: arg };
+	  };
+
+	  function AsyncIterator(generator, PromiseImpl) {
+	    function invoke(method, arg, resolve, reject) {
+	      var record = tryCatch(generator[method], generator, arg);
+	      if (record.type === "throw") {
+	        reject(record.arg);
+	      } else {
+	        var result = record.arg;
+	        var value = result.value;
+	        if (value &&
+	            typeof value === "object" &&
+	            hasOwn.call(value, "__await")) {
+	          return PromiseImpl.resolve(value.__await).then(function(value) {
+	            invoke("next", value, resolve, reject);
+	          }, function(err) {
+	            invoke("throw", err, resolve, reject);
+	          });
+	        }
+
+	        return PromiseImpl.resolve(value).then(function(unwrapped) {
+	          // When a yielded Promise is resolved, its final value becomes
+	          // the .value of the Promise<{value,done}> result for the
+	          // current iteration.
+	          result.value = unwrapped;
+	          resolve(result);
+	        }, function(error) {
+	          // If a rejected Promise was yielded, throw the rejection back
+	          // into the async generator function so it can be handled there.
+	          return invoke("throw", error, resolve, reject);
+	        });
+	      }
+	    }
+
+	    var previousPromise;
+
+	    function enqueue(method, arg) {
+	      function callInvokeWithMethodAndArg() {
+	        return new PromiseImpl(function(resolve, reject) {
+	          invoke(method, arg, resolve, reject);
+	        });
+	      }
+
+	      return previousPromise =
+	        // If enqueue has been called before, then we want to wait until
+	        // all previous Promises have been resolved before calling invoke,
+	        // so that results are always delivered in the correct order. If
+	        // enqueue has not been called before, then it is important to
+	        // call invoke immediately, without waiting on a callback to fire,
+	        // so that the async generator function has the opportunity to do
+	        // any necessary setup in a predictable way. This predictability
+	        // is why the Promise constructor synchronously invokes its
+	        // executor callback, and why async functions synchronously
+	        // execute code before the first await. Since we implement simple
+	        // async functions in terms of async generators, it is especially
+	        // important to get this right, even though it requires care.
+	        previousPromise ? previousPromise.then(
+	          callInvokeWithMethodAndArg,
+	          // Avoid propagating failures to Promises returned by later
+	          // invocations of the iterator.
+	          callInvokeWithMethodAndArg
+	        ) : callInvokeWithMethodAndArg();
+	    }
+
+	    // Define the unified helper method that is used to implement .next,
+	    // .throw, and .return (see defineIteratorMethods).
+	    defineProperty(this, "_invoke", { value: enqueue });
+	  }
+
+	  defineIteratorMethods(AsyncIterator.prototype);
+	  define(AsyncIterator.prototype, asyncIteratorSymbol, function () {
+	    return this;
+	  });
+	  exports.AsyncIterator = AsyncIterator;
+
+	  // Note that simple async functions are implemented on top of
+	  // AsyncIterator objects; they just return a Promise for the value of
+	  // the final result produced by the iterator.
+	  exports.async = function(innerFn, outerFn, self, tryLocsList, PromiseImpl) {
+	    if (PromiseImpl === void 0) PromiseImpl = Promise;
+
+	    var iter = new AsyncIterator(
+	      wrap(innerFn, outerFn, self, tryLocsList),
+	      PromiseImpl
+	    );
+
+	    return exports.isGeneratorFunction(outerFn)
+	      ? iter // If outerFn is a generator, return the full iterator.
+	      : iter.next().then(function(result) {
+	          return result.done ? result.value : iter.next();
+	        });
+	  };
+
+	  function makeInvokeMethod(innerFn, self, context) {
+	    var state = GenStateSuspendedStart;
+
+	    return function invoke(method, arg) {
+	      if (state === GenStateExecuting) {
+	        throw new Error("Generator is already running");
+	      }
+
+	      if (state === GenStateCompleted) {
+	        if (method === "throw") {
+	          throw arg;
+	        }
+
+	        // Be forgiving, per 25.3.3.3.3 of the spec:
+	        // https://people.mozilla.org/~jorendorff/es6-draft.html#sec-generatorresume
+	        return doneResult();
+	      }
+
+	      context.method = method;
+	      context.arg = arg;
+
+	      while (true) {
+	        var delegate = context.delegate;
+	        if (delegate) {
+	          var delegateResult = maybeInvokeDelegate(delegate, context);
+	          if (delegateResult) {
+	            if (delegateResult === ContinueSentinel) continue;
+	            return delegateResult;
+	          }
+	        }
+
+	        if (context.method === "next") {
+	          // Setting context._sent for legacy support of Babel's
+	          // function.sent implementation.
+	          context.sent = context._sent = context.arg;
+
+	        } else if (context.method === "throw") {
+	          if (state === GenStateSuspendedStart) {
+	            state = GenStateCompleted;
+	            throw context.arg;
+	          }
+
+	          context.dispatchException(context.arg);
+
+	        } else if (context.method === "return") {
+	          context.abrupt("return", context.arg);
+	        }
+
+	        state = GenStateExecuting;
+
+	        var record = tryCatch(innerFn, self, context);
+	        if (record.type === "normal") {
+	          // If an exception is thrown from innerFn, we leave state ===
+	          // GenStateExecuting and loop back for another invocation.
+	          state = context.done
+	            ? GenStateCompleted
+	            : GenStateSuspendedYield;
+
+	          if (record.arg === ContinueSentinel) {
+	            continue;
+	          }
+
+	          return {
+	            value: record.arg,
+	            done: context.done
+	          };
+
+	        } else if (record.type === "throw") {
+	          state = GenStateCompleted;
+	          // Dispatch the exception by looping back around to the
+	          // context.dispatchException(context.arg) call above.
+	          context.method = "throw";
+	          context.arg = record.arg;
+	        }
+	      }
+	    };
+	  }
+
+	  // Call delegate.iterator[context.method](context.arg) and handle the
+	  // result, either by returning a { value, done } result from the
+	  // delegate iterator, or by modifying context.method and context.arg,
+	  // setting context.delegate to null, and returning the ContinueSentinel.
+	  function maybeInvokeDelegate(delegate, context) {
+	    var methodName = context.method;
+	    var method = delegate.iterator[methodName];
+	    if (method === undefined$1) {
+	      // A .throw or .return when the delegate iterator has no .throw
+	      // method, or a missing .next mehtod, always terminate the
+	      // yield* loop.
+	      context.delegate = null;
+
+	      // Note: ["return"] must be used for ES3 parsing compatibility.
+	      if (methodName === "throw" && delegate.iterator["return"]) {
+	        // If the delegate iterator has a return method, give it a
+	        // chance to clean up.
+	        context.method = "return";
+	        context.arg = undefined$1;
+	        maybeInvokeDelegate(delegate, context);
+
+	        if (context.method === "throw") {
+	          // If maybeInvokeDelegate(context) changed context.method from
+	          // "return" to "throw", let that override the TypeError below.
+	          return ContinueSentinel;
+	        }
+	      }
+	      if (methodName !== "return") {
+	        context.method = "throw";
+	        context.arg = new TypeError(
+	          "The iterator does not provide a '" + methodName + "' method");
+	      }
+
+	      return ContinueSentinel;
+	    }
+
+	    var record = tryCatch(method, delegate.iterator, context.arg);
+
+	    if (record.type === "throw") {
+	      context.method = "throw";
+	      context.arg = record.arg;
+	      context.delegate = null;
+	      return ContinueSentinel;
+	    }
+
+	    var info = record.arg;
+
+	    if (! info) {
+	      context.method = "throw";
+	      context.arg = new TypeError("iterator result is not an object");
+	      context.delegate = null;
+	      return ContinueSentinel;
+	    }
+
+	    if (info.done) {
+	      // Assign the result of the finished delegate to the temporary
+	      // variable specified by delegate.resultName (see delegateYield).
+	      context[delegate.resultName] = info.value;
+
+	      // Resume execution at the desired location (see delegateYield).
+	      context.next = delegate.nextLoc;
+
+	      // If context.method was "throw" but the delegate handled the
+	      // exception, let the outer generator proceed normally. If
+	      // context.method was "next", forget context.arg since it has been
+	      // "consumed" by the delegate iterator. If context.method was
+	      // "return", allow the original .return call to continue in the
+	      // outer generator.
+	      if (context.method !== "return") {
+	        context.method = "next";
+	        context.arg = undefined$1;
+	      }
+
+	    } else {
+	      // Re-yield the result returned by the delegate method.
+	      return info;
+	    }
+
+	    // The delegate iterator is finished, so forget it and continue with
+	    // the outer generator.
+	    context.delegate = null;
+	    return ContinueSentinel;
+	  }
+
+	  // Define Generator.prototype.{next,throw,return} in terms of the
+	  // unified ._invoke helper method.
+	  defineIteratorMethods(Gp);
+
+	  define(Gp, toStringTagSymbol, "Generator");
+
+	  // A Generator should always return itself as the iterator object when the
+	  // @@iterator function is called on it. Some browsers' implementations of the
+	  // iterator prototype chain incorrectly implement this, causing the Generator
+	  // object to not be returned from this call. This ensures that doesn't happen.
+	  // See https://github.com/facebook/regenerator/issues/274 for more details.
+	  define(Gp, iteratorSymbol, function() {
+	    return this;
+	  });
+
+	  define(Gp, "toString", function() {
+	    return "[object Generator]";
+	  });
+
+	  function pushTryEntry(locs) {
+	    var entry = { tryLoc: locs[0] };
+
+	    if (1 in locs) {
+	      entry.catchLoc = locs[1];
+	    }
+
+	    if (2 in locs) {
+	      entry.finallyLoc = locs[2];
+	      entry.afterLoc = locs[3];
+	    }
+
+	    this.tryEntries.push(entry);
+	  }
+
+	  function resetTryEntry(entry) {
+	    var record = entry.completion || {};
+	    record.type = "normal";
+	    delete record.arg;
+	    entry.completion = record;
+	  }
+
+	  function Context(tryLocsList) {
+	    // The root entry object (effectively a try statement without a catch
+	    // or a finally block) gives us a place to store values thrown from
+	    // locations where there is no enclosing try statement.
+	    this.tryEntries = [{ tryLoc: "root" }];
+	    tryLocsList.forEach(pushTryEntry, this);
+	    this.reset(true);
+	  }
+
+	  exports.keys = function(val) {
+	    var object = Object(val);
+	    var keys = [];
+	    for (var key in object) {
+	      keys.push(key);
+	    }
+	    keys.reverse();
+
+	    // Rather than returning an object with a next method, we keep
+	    // things simple and return the next function itself.
+	    return function next() {
+	      while (keys.length) {
+	        var key = keys.pop();
+	        if (key in object) {
+	          next.value = key;
+	          next.done = false;
+	          return next;
+	        }
+	      }
+
+	      // To avoid creating an additional object, we just hang the .value
+	      // and .done properties off the next function object itself. This
+	      // also ensures that the minifier will not anonymize the function.
+	      next.done = true;
+	      return next;
+	    };
+	  };
+
+	  function values(iterable) {
+	    if (iterable) {
+	      var iteratorMethod = iterable[iteratorSymbol];
+	      if (iteratorMethod) {
+	        return iteratorMethod.call(iterable);
+	      }
+
+	      if (typeof iterable.next === "function") {
+	        return iterable;
+	      }
+
+	      if (!isNaN(iterable.length)) {
+	        var i = -1, next = function next() {
+	          while (++i < iterable.length) {
+	            if (hasOwn.call(iterable, i)) {
+	              next.value = iterable[i];
+	              next.done = false;
+	              return next;
+	            }
+	          }
+
+	          next.value = undefined$1;
+	          next.done = true;
+
+	          return next;
+	        };
+
+	        return next.next = next;
+	      }
+	    }
+
+	    // Return an iterator with no values.
+	    return { next: doneResult };
+	  }
+	  exports.values = values;
+
+	  function doneResult() {
+	    return { value: undefined$1, done: true };
+	  }
+
+	  Context.prototype = {
+	    constructor: Context,
+
+	    reset: function(skipTempReset) {
+	      this.prev = 0;
+	      this.next = 0;
+	      // Resetting context._sent for legacy support of Babel's
+	      // function.sent implementation.
+	      this.sent = this._sent = undefined$1;
+	      this.done = false;
+	      this.delegate = null;
+
+	      this.method = "next";
+	      this.arg = undefined$1;
+
+	      this.tryEntries.forEach(resetTryEntry);
+
+	      if (!skipTempReset) {
+	        for (var name in this) {
+	          // Not sure about the optimal order of these conditions:
+	          if (name.charAt(0) === "t" &&
+	              hasOwn.call(this, name) &&
+	              !isNaN(+name.slice(1))) {
+	            this[name] = undefined$1;
+	          }
+	        }
+	      }
+	    },
+
+	    stop: function() {
+	      this.done = true;
+
+	      var rootEntry = this.tryEntries[0];
+	      var rootRecord = rootEntry.completion;
+	      if (rootRecord.type === "throw") {
+	        throw rootRecord.arg;
+	      }
+
+	      return this.rval;
+	    },
+
+	    dispatchException: function(exception) {
+	      if (this.done) {
+	        throw exception;
+	      }
+
+	      var context = this;
+	      function handle(loc, caught) {
+	        record.type = "throw";
+	        record.arg = exception;
+	        context.next = loc;
+
+	        if (caught) {
+	          // If the dispatched exception was caught by a catch block,
+	          // then let that catch block handle the exception normally.
+	          context.method = "next";
+	          context.arg = undefined$1;
+	        }
+
+	        return !! caught;
+	      }
+
+	      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+	        var entry = this.tryEntries[i];
+	        var record = entry.completion;
+
+	        if (entry.tryLoc === "root") {
+	          // Exception thrown outside of any try block that could handle
+	          // it, so set the completion value of the entire function to
+	          // throw the exception.
+	          return handle("end");
+	        }
+
+	        if (entry.tryLoc <= this.prev) {
+	          var hasCatch = hasOwn.call(entry, "catchLoc");
+	          var hasFinally = hasOwn.call(entry, "finallyLoc");
+
+	          if (hasCatch && hasFinally) {
+	            if (this.prev < entry.catchLoc) {
+	              return handle(entry.catchLoc, true);
+	            } else if (this.prev < entry.finallyLoc) {
+	              return handle(entry.finallyLoc);
+	            }
+
+	          } else if (hasCatch) {
+	            if (this.prev < entry.catchLoc) {
+	              return handle(entry.catchLoc, true);
+	            }
+
+	          } else if (hasFinally) {
+	            if (this.prev < entry.finallyLoc) {
+	              return handle(entry.finallyLoc);
+	            }
+
+	          } else {
+	            throw new Error("try statement without catch or finally");
+	          }
+	        }
+	      }
+	    },
+
+	    abrupt: function(type, arg) {
+	      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+	        var entry = this.tryEntries[i];
+	        if (entry.tryLoc <= this.prev &&
+	            hasOwn.call(entry, "finallyLoc") &&
+	            this.prev < entry.finallyLoc) {
+	          var finallyEntry = entry;
+	          break;
+	        }
+	      }
+
+	      if (finallyEntry &&
+	          (type === "break" ||
+	           type === "continue") &&
+	          finallyEntry.tryLoc <= arg &&
+	          arg <= finallyEntry.finallyLoc) {
+	        // Ignore the finally entry if control is not jumping to a
+	        // location outside the try/catch block.
+	        finallyEntry = null;
+	      }
+
+	      var record = finallyEntry ? finallyEntry.completion : {};
+	      record.type = type;
+	      record.arg = arg;
+
+	      if (finallyEntry) {
+	        this.method = "next";
+	        this.next = finallyEntry.finallyLoc;
+	        return ContinueSentinel;
+	      }
+
+	      return this.complete(record);
+	    },
+
+	    complete: function(record, afterLoc) {
+	      if (record.type === "throw") {
+	        throw record.arg;
+	      }
+
+	      if (record.type === "break" ||
+	          record.type === "continue") {
+	        this.next = record.arg;
+	      } else if (record.type === "return") {
+	        this.rval = this.arg = record.arg;
+	        this.method = "return";
+	        this.next = "end";
+	      } else if (record.type === "normal" && afterLoc) {
+	        this.next = afterLoc;
+	      }
+
+	      return ContinueSentinel;
+	    },
+
+	    finish: function(finallyLoc) {
+	      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+	        var entry = this.tryEntries[i];
+	        if (entry.finallyLoc === finallyLoc) {
+	          this.complete(entry.completion, entry.afterLoc);
+	          resetTryEntry(entry);
+	          return ContinueSentinel;
+	        }
+	      }
+	    },
+
+	    "catch": function(tryLoc) {
+	      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+	        var entry = this.tryEntries[i];
+	        if (entry.tryLoc === tryLoc) {
+	          var record = entry.completion;
+	          if (record.type === "throw") {
+	            var thrown = record.arg;
+	            resetTryEntry(entry);
+	          }
+	          return thrown;
+	        }
+	      }
+
+	      // The context.catch method must only be called with a location
+	      // argument that corresponds to a known catch block.
+	      throw new Error("illegal catch attempt");
+	    },
+
+	    delegateYield: function(iterable, resultName, nextLoc) {
+	      this.delegate = {
+	        iterator: values(iterable),
+	        resultName: resultName,
+	        nextLoc: nextLoc
+	      };
+
+	      if (this.method === "next") {
+	        // Deliberately forget the last sent value so that we don't
+	        // accidentally pass it on to the delegate.
+	        this.arg = undefined$1;
+	      }
+
+	      return ContinueSentinel;
+	    }
+	  };
+
+	  // Regardless of whether this script is executing as a CommonJS module
+	  // or not, return the runtime object so that we can declare the variable
+	  // regeneratorRuntime in the outer scope, which allows this module to be
+	  // injected easily by `bin/regenerator --include-runtime script.js`.
+	  return exports;
+
+	}(
+	  // If this script is executing as a CommonJS module, use module.exports
+	  // as the regeneratorRuntime namespace. Otherwise create a new empty
+	  // object. Either way, the resulting object will be used to initialize
+	  // the regeneratorRuntime variable at the top of this file.
+	  module.exports 
+	));
+
+	try {
+	  regeneratorRuntime = runtime;
+	} catch (accidentalStrictMode) {
+	  // This module should not be running in strict mode, so the above
+	  // assignment should always work unless something is misconfigured. Just
+	  // in case runtime.js accidentally runs in strict mode, in modern engines
+	  // we can explicitly access globalThis. In older engines we can escape
+	  // strict mode using a global Function call. This could conceivably fail
+	  // if a Content Security Policy forbids using Function, but in that case
+	  // the proper solution is to fix the accidental strict mode problem. If
+	  // you've misconfigured your bundler to force strict mode and applied a
+	  // CSP to forbid Function, and you're not willing to fix either of those
+	  // problems, please detail your unique predicament in a GitHub issue.
+	  if (typeof globalThis === "object") {
+	    globalThis.regeneratorRuntime = runtime;
+	  } else {
+	    Function("r", "regeneratorRuntime = r")(runtime);
+	  }
+	}
+} (runtime));
+
+var Validator = class {
+  constructor(rule, props) {
+    var _props$element$;
+    this.rule = rule;
+    this.attributes = rule.attributes || {};
+    this.conditions = rule.conditions || [];
+    this.dependents = rule.dependents || [];
+    this.element$ = props.element$;
+    this.form$ = ((_props$element$ = props.element$) === null || _props$element$ === void 0 ? void 0 : _props$element$.form$) || {};
+    this.numeric = props.numeric || false;
+    this.elementMessages = props.element$.messages;
+    this.invalid = false;
+    this.pending = false;
+    this.debouncer = null;
+    this.lastValue = null;
+    this.watchers = {};
+    this.dependents.forEach(dependent => {
+      watch(computed(() => _.get(this.form$.data, dependent)), () => {
+        if (this.element$.validated) {
+          // we need to revalidate the whole element
+          if (this.name === 'nullable') {
+            this.element$.validate();
+          }
+
+          // we need to revalidate only current validator
+          else {
+            // We need to do this instead of this.validate()
+            // because Vue3 does not recognize `invalid` as
+            // as a reactive property if used that way.
+            this.revalidate();
+          }
+        }
+      });
+    });
+    watch(computed(() => props.element$.messages), (n, o) => {
+      if (_.isEqual(n, o)) {
+        return;
+      }
+      this.elementMessages = props.element$.messages;
+    }, {
+      deep: true
+    });
+    this.init();
+  }
+  get name() {
+    return this.rule.name;
+  }
+  get failing() {
+    return this.invalid;
+  }
+  get defaultMessage() {
+    return this.form$.translations.vueform.defaultMessage;
+  }
+  get message() {
+    var _this$form$$translati;
+    var message = '';
+    if (this.elementMessages[this.name]) {
+      message = this.elementMessages[this.name];
+    } else if (this.form$.options.messages[this.name]) {
+      message = this.form$.options.messages[this.name];
+    } else if (this.name !== '_class' && ((_this$form$$translati = this.form$.translations.validation) === null || _this$form$$translati === void 0 ? void 0 : _this$form$$translati[this.name]) !== undefined) {
+      message = this.form$.translations.validation[this.name];
+      if (_.isPlainObject(message)) {
+        message = message[this.messageType];
+      }
+    } else {
+      message = this.defaultMessage;
+    }
+
+    // replace :params
+    _.each(_.map(message.match(/:\w+/g), p => p.replace(':', '')), param => {
+      message = message.replace(":".concat(param), this.messageParams[param]);
+    });
+
+    // replace {params}
+    _.each(_.map(message.match(/{[^}]+/g), p => p.replace('{', '')), param => {
+      message = message.replace("{".concat(param, "}"), this.messageParams[param]);
+    });
+    return message;
+  }
+  get messageType() {
+    if (this.isNumeric) {
+      return 'numeric';
+    } else if (this.isFile) {
+      return 'file';
+    } else if (this.isArray) {
+      return 'array';
+    }
+    return 'string';
+  }
+  get messageParams() {
+    return {
+      attribute: this.attributeName
+    };
+  }
+  get attributeName() {
+    return this.element$.genericName;
+  }
+  get type() {
+    if (this.isNumeric) {
+      return 'numeric';
+    } else if (this.isFile) {
+      return 'file';
+    } else if (this.isArray) {
+      return 'array';
+    }
+    return 'string';
+  }
+  get isNumeric() {
+    return _.some(this.element$.Validators, {
+      name: 'numeric'
+    }) || _.some(this.element$.Validators, {
+      name: 'integer'
+    });
+  }
+  get isNullable() {
+    var nullable = false;
+    _.each(this.element$.Validators, Validator => {
+      if (Validator.name !== 'nullable') {
+        return;
+      }
+      if (!Validator.conditions.length) {
+        nullable = true;
+        return;
+      }
+      nullable = Validator.conditions(this.form$, this, this.element$);
+    });
+    return nullable;
+  }
+  get isFile() {
+    return this.element$.isFileType;
+  }
+  get isArray() {
+    return this.element$.isArrayType;
+  }
+  get isAsync() {
+    return false;
+  }
+  get debounce() {
+    if (this.attributes.debounce) {
+      return this.attributes.debounce;
+    }
+    if (this.element$.debounce) {
+      return this.element$.debounce;
+    }
+    return false;
+  }
+  get debouncing() {
+    return this.debouncer !== null;
+  }
+  init() {}
+  validate(value) {
+    var _this = this;
+    return _asyncToGenerator(function* () {
+      if (value === undefined) {
+        var _this$element$;
+        value = (_this$element$ = _this.element$) === null || _this$element$ === void 0 ? void 0 : _this$element$.value;
+      }
+      if (!_this.form$.validation) {
+        return;
+      }
+      if (_this.isNullable && !_this.filled(value)) {
+        _this.invalid = false;
+        return;
+      }
+      if (_this.conditions.length) {
+        if (!_this.conditions(_this.form$, _this, _this.element$)) {
+          _this.invalid = false;
+          return;
+        }
+      }
+      if (_this.debounce && _this.filled(value)) {
+        yield _this._validateWithDebounce(value);
+      } else {
+        if (_this.debounce && _this.debouncer) {
+          clearTimeout(_this.debouncer);
+        }
+        yield _this._validate(value);
+      }
+    })();
+  }
+  reset() {
+    this.invalid = false;
+  }
+  watch(variables) {
+    if (!Array.isArray(variables)) {
+      variables = [variables];
+    }
+    variables.forEach(variable => {
+      this.addWatcher(variable);
+    });
+  }
+  addWatcher(variable) {
+    if (this.watchers[variable]) {
+      return;
+    }
+    this.watchers[variable] = watch(computed(() => _.get(this.form$.data, variable)), () => {
+      this.revalidate();
+    });
+  }
+  revalidate() {
+    this.element$.Validators.forEach(Validator => {
+      if (Validator.rule.name === this.rule.name) {
+        Validator.validate();
+      }
+    });
+  }
+  watchOther() {
+    this.form$.$nextTick(() => {
+      if (!this.other$) {
+        return;
+      }
+      this.form$.$watch(() => {
+        var _this$other$;
+        return (_this$other$ = this.other$) === null || _this$other$ === void 0 ? void 0 : _this$other$.value;
+      }, () => {
+        if (this.element$.validated) {
+          this.element$.validate();
+        }
+      });
+    });
+  }
+  size(value) {
+    if (this.isNumeric) {
+      return value;
+    } else if (this.isFile) {
+      return value ? value.size / 1000 : 0;
+    } else if (this.isArray) {
+      return value.length;
+    } else if (value === null) {
+      return 0;
+    } else if (value === undefined) {
+      return 0;
+    } else if (value === '') {
+      return 0;
+    }
+    return String(value).length;
+  }
+  filled(value) {
+    if (value === undefined || value === null && value !== this.element$.trueValue || value === this.element$.falseValue) {
+      return false;
+    } else if (this.isNumeric && value === 0) {
+      return false;
+    } else if (_.isString(value) && _.trim(value) === '') {
+      return false;
+    } else if (_.isArray(value) && value.length < 1) {
+      return false;
+    } else if (value instanceof File && value.name === '') {
+      return false;
+    }
+    return true;
+  }
+  _validate(value) {
+    var _this2 = this;
+    return _asyncToGenerator(function* () {
+      if (_this2.isAsync) {
+        yield _this2._validateAsync(value);
+      } else {
+        _this2._validateSync(value);
+      }
+    })();
+  }
+  _validateAsync(value) {
+    var _this3 = this;
+    return _asyncToGenerator(function* () {
+      _this3.lastValue = value;
+      _this3.pending = true;
+      var valid = yield _this3.check(value);
+      if (dataEquals(_this3.lastValue, value)) {
+        _this3.invalid = !valid;
+        _this3.pending = false;
+      }
+    })();
+  }
+  _validateSync(value) {
+    this.invalid = !this.check(value);
+  }
+  _validateWithDebounce(value) {
+    var _this4 = this;
+    return _asyncToGenerator(function* () {
+      return new Promise((resolve, reject) => {
+        if (_this4.debouncer) {
+          resolve();
+          clearTimeout(_this4.debouncer);
+        }
+        _this4.debouncer = setTimeout( /*#__PURE__*/_asyncToGenerator(function* () {
+          yield _this4._validate(value);
+          _this4.debouncer = null;
+          resolve();
+        }), _this4.debounce);
+      });
+    })();
+  }
+};
+
+export { Validator, Vueform, index as components, config, base$19 as useVueform };

@@ -66,7 +66,7 @@ _.each(files, (file) => {
         exclude: /^(.+\/)?node_modules\/.+$/,
       }),
       nodeResolve(),
-      terser(),
+      // terser(),
     ],
     external: ['vue', 'axios', 'lodash', 'moment']
   })
