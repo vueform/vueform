@@ -184,7 +184,7 @@ const group = function(props, context, dependencies, options = {})
       let value
 
       if (form$.value.isSync) {
-        value = dataPath.value ? _.get(form$.value.model, dataPath.value) : form$.value.model
+        value = dataPath.value ? (_.get(form$.value.model, dataPath.value) || {}) : form$.value.model
       } else if (parent.value && ['group', 'object'].indexOf(parent.value.type) !== -1) {
         value = parent.value.value
       } else {
