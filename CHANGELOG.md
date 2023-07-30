@@ -1,3 +1,10 @@
+## v1.3.3
+
+> `2023-07-30`
+
+### 🐞 Bug Fixes
+- List object group child remove fix.
+
 ## v1.3.2
 
 > `2023-04-07`
