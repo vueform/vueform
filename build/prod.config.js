@@ -1,11 +1,32 @@
 import path from 'path'
 import obfuscator from 'rollup-plugin-obfuscator'
+import packageJson from './../package.json'
+import distPackageJson from './../dist.package.json'
 
 const ncp = require('ncp')
 const fs = require('fs')
 const _ = require('lodash')
 
-const outputDir = path.resolve(__dirname, '../../@vueform')
+const outputDir = path.resolve(__dirname, '../../@vueform-sdk')
+
+function deleteFolderRecursiveSync(directory, deleteCurrent = false) {
+  if (fs.existsSync(directory)) {
+    fs.readdirSync(directory).forEach((file) => {
+      const filePath = path.join(directory, file);
+      if (fs.lstatSync(filePath).isDirectory()) {
+        deleteFolderRecursiveSync(filePath, true);
+      } else {
+        fs.unlinkSync(filePath);
+      }
+    });
+
+    if (deleteCurrent) {
+      fs.rmdirSync(directory);
+    }
+  }
+}
+
+deleteFolderRecursiveSync(outputDir)
 
 const copyFiles = {
   'themes': 'themes',
@@ -13,23 +34,28 @@ const copyFiles = {
   'CHANGELOG.md': 'CHANGELOG.md',
   'tailwind.js': 'tailwind.js',
   'tailwind-prefixer.js': 'tailwind-prefixer.js',
-  'src/plugins.js': 'plugin.js',
+  'src/plugin.js': 'plugin.js',
+  '.gitignore.dist': '.gitignore',
+  '.npmrc.dist': '.npmrc',
+  'README.prod.md': 'README.md',
 }
 
 export default (commandLineArgs) => {
-  const version = commandLineArgs.configVersion
+  let version = commandLineArgs.configVersion
 
   if (!version) {
-    throw new Error('Version missing')
+    version = packageJson.version
   }
 
-  const copyPackageJson = function() {
-    let packageJson = fs.readFileSync(path.resolve(__dirname, '../', 'dist.package.json'), 'UTF-8')
+  const copyPackageJson = function()
+  {
+    const finalPackageJson = { ...distPackageJson }
 
-    packageJson = packageJson.replace(/"\d\.\d\.\d"/, `"${version}"`)
-    packageJson = packageJson.replace('"private": true', '"private": false')
+    finalPackageJson.name = '@vueform/sdk'
+    finalPackageJson.version = version
+    finalPackageJson.private = false
 
-    fs.writeFileSync(path.resolve(outputDir, 'package.json'), packageJson)
+    fs.writeFileSync(path.resolve(outputDir, 'package.json'), JSON.stringify(finalPackageJson, null, 2))
   }
 
   if (!fs.existsSync(outputDir)){
@@ -55,18 +81,15 @@ export default (commandLineArgs) => {
   const files = [
     {
       input: path.resolve(__dirname, '../dist/installer.js'),
-      output: path.resolve(__dirname, '../../@vueform/installer.js'),
-      lock: true,
+      output: path.resolve(__dirname, '../../@vueform-sdk/installer.js'),
     },
     {
       input: path.resolve(__dirname, '../dist/element.js'),
-      output: path.resolve(__dirname, '../../@vueform/element.js'),
-      lock: true,
+      output: path.resolve(__dirname, '../../@vueform-sdk/element.js'),
     },
     {
       input: path.resolve(__dirname, '../dist/index.js'),
-      output: path.resolve(__dirname, '../../@vueform/index.js'),
-      lock: true,
+      output: path.resolve(__dirname, '../../@vueform-sdk/index.js'),
     },
   ]
 
@@ -79,14 +102,6 @@ export default (commandLineArgs) => {
       splitStrings: true,
       stringArrayCallsTransform: true,
       stringArrayEncoding: ['base64'],
-    }
-
-    if (file.lock) {
-      globalOptions = {
-        ...globalOptions,
-        domainLock: ['localhost', 'codesandbox.io'],
-        domainLockRedirectUrl: 'https://vueform.com/not-allowed?k=trial'
-      }
     }
 
     return {
