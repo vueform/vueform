@@ -123,3 +123,37 @@ export const editorMethod = function (elementType, elementName, options) {
     // destroy() // teardown
   })
 }
+
+//@todo:adam
+export const hooks = function (elementType, elementName, options) {
+  
+  // it('should add event listener to focus on onMounted',  () => {
+  //
+  //   let form = createForm({
+  //     schema: {
+  //       el: {
+  //         type: elementType,
+  //       }
+  //     }
+  //   })
+  //
+  //   let editor$ = findAllComponents(form, { name: 'TrixEditor' }).at(0)
+  //
+  //   expect(editor$.emitted('trix-focus-hook')).toBeTruthy()
+  // })
+
+  // it('should add event listener to blur on onMounted',  () => {
+  //
+  //   let form = createForm({
+  //     schema: {
+  //       el: {
+  //         type: elementType,
+  //       }
+  //     }
+  //   })
+  //
+  //   let editor$ = findAllComponents(form, { name: 'TrixEditor' }).at(0)
+  //
+  //   expect(editor$.emitted('trix-blur-hook')).toBeTruthy()
+  // })
+}
