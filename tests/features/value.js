@@ -93,7 +93,7 @@ const testChanges = async (form, mocks, options, updateModel, initial, hasModel,
   expect(elChangeMock).toHaveBeenNthCalledWith(1, options.value, initial.el, el)
   expect(el2ChangeMock).not.toHaveBeenCalled()
 
-  // Wait an other tick to make sure everything settles down
+  // Wait another tick to make sure everything settles down
   await nextTick()
 
   // Update the whole form
