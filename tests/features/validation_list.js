@@ -106,7 +106,7 @@ export const validated = function (elementType, elementName, options) {
 export const invalid = function (elementType, elementName, options) {
   const prototypes = options.prototypes
 
-  it('shoulÍd be `invalid` if any of the validators is invalid', async () => {
+  it('should be `invalid` if any of the validators is invalid', async () => {
     await asyncForEach(prototypes, async (prototype, i) => {
       let form = createForm(listSchema(options, i, {
         initial: 2,
@@ -584,6 +584,28 @@ export const clean = function (elementType, elementName, options) {
       expect(child1.dirty).toBe(false)
     })
 
+    // destroy() // teardown
+  })
+  
+  it('should not throw console error on clean when child element is static', async () => {
+    
+    let errorMock = jest.spyOn(console, 'error').mockImplementation()
+    
+    const form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          initial: 2,
+          element: { type: 'text' },
+        }
+      }
+    })
+    
+    const el = form.vm.el$('el')
+    
+    el.clean()
+    
+    expect(errorMock).not.toHaveBeenCalled()
     // destroy() // teardown
   })
 }
