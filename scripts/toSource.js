@@ -4,7 +4,7 @@ const fs = require('fs')
 const _ = require('lodash')
 const jestConfig = require('./../jest/jest.config.vue3')
 
-const outputDir = path.resolve(__dirname, '../../vueform-source')
+const outputDir = path.resolve(__dirname, '../../@vueform-sdk-source')
 
 const files = [
   'locales',
@@ -18,7 +18,29 @@ const files = [
   'CHANGELOG.md',
   ['build/source.config.js', 'build/rollup.config.js'],
   ['jest/jest.setup.js', 'jest.setup.js'],
+  ['.gitignore.dist', '.gitignore'],
+  ['.npmrc.dist', '.npmrc'],
+  ['README.source.md', 'README.md'],
 ]
+
+function deleteFolderRecursiveSync(directory, deleteCurrent = false) {
+  if (fs.existsSync(directory)) {
+    fs.readdirSync(directory).forEach((file) => {
+      const filePath = path.join(directory, file);
+      if (fs.lstatSync(filePath).isDirectory()) {
+        deleteFolderRecursiveSync(filePath, true);
+      } else {
+        fs.unlinkSync(filePath);
+      }
+    });
+
+    if (deleteCurrent) {
+      fs.rmdirSync(directory);
+    }
+  }
+}
+
+deleteFolderRecursiveSync(outputDir)
 
 if (!fs.existsSync(outputDir)){
   fs.mkdirSync(outputDir, { recursive: true });
@@ -53,7 +75,9 @@ const copyPackageJson = function() {
   let packageJson = JSON.parse(fs.readFileSync(path.resolve(__dirname, '../', 'package.json'), 'UTF-8'))
   let source = JSON.parse(fs.readFileSync(path.resolve(__dirname, '../', 'source.package.json'), 'UTF-8'))
 
+  source.name = '@vueform/source'
   source.version = packageJson.version
+  source.private = false
   source.devDependencies = packageJson.devDependencies
 
   Object.keys(packageJson.dependencies).forEach((key) => {
