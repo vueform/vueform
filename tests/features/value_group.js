@@ -263,6 +263,169 @@ export const value = function (elementType, elementName, options) {
       subchild8: 'subchild8-h this',
     })
   })
+  
+  it('should return value on dataPath while omitting group element if form is sync', async () => {
+    
+    const { form } = createInlineForm({
+      model: {
+        parent: {
+          text: 5
+        }
+      },
+      props: {
+        sync: true,
+        schema: {
+          parent: {
+            type: 'object',
+            schema: {
+              child: {
+                type: elementType,
+                schema: {
+                  text: {
+                    type: 'text'
+                  }
+                }
+              }
+            },
+          }
+        }
+      }
+    })
+    
+    expect(form.vm.data).toStrictEqual({ parent: { text: 5 }})
+  })
+  
+  it('should update values based on model if form is sync', async () => {
+    
+    const { form } = createInlineForm({
+      model: {
+        parent: {
+          text: 5
+        }
+      },
+      props: {
+        sync: true,
+        schema: {
+          parent: {
+            type: 'object',
+            schema: {
+              child: {
+                type: elementType,
+                schema: {
+                  text: {
+                    type: 'text'
+                  }
+                }
+              }
+            },
+          }
+        }
+      }
+    })
+    
+    expect(form.vm.data).toStrictEqual({ parent: { text: 5 }})
+  })
+  
+  it('should update model based on value if form is sync', async () => {
+    
+    const { form } = createInlineForm({
+      model: {},
+      props: {
+        sync: true,
+        schema: {
+          parent: {
+            type: 'object',
+            schema: {
+              groupChild: {
+                type: elementType,
+                schema: {
+                  textChild1: {
+                    type: 'text',
+                  }
+                }
+              },
+              textChild2: {
+                type: 'text',
+              }
+            }
+          }
+        }
+      }
+    })
+    
+    const groupChild = form.vm.el$('parent.groupChild')
+
+    expect(form.vm.model).toStrictEqual({ parent: { textChild1: null, textChild2: null }})
+
+    groupChild.value = { textChild1: 'something', textChild2: 'something-else' }
+
+    await nextTick()
+
+    expect(form.vm.model).toStrictEqual({ parent: { textChild1: 'something', textChild2: 'something-else' }})
+  })
+  
+  it('should invoke addGroupKeys', async () => {
+
+    const form = createForm({
+      schema: {
+        parent: {
+          type: elementType,
+          schema: {
+            child: {
+              type: elementType,
+              schema: {
+                subChild: {
+                  type: elementType,
+                  schema: {
+                    text: {
+                      type: 'text',
+                      default: 5,
+                    },
+                    static: {
+                      type: 'static',
+                      content: 'x'
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    })
+    
+    const parent = form.vm.el$('parent')
+    
+    expect(parent.value).toStrictEqual({ text: 5 })
+  })
+  
+  it('should use default value for children if children have no value given', async () => {
+
+    const form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          default: {
+            text1: 5,
+            text2: 10,
+          },
+          schema: {
+            text1: {
+              type: 'text',
+            },
+            text2: {
+              type: 'text',
+            }
+          }
+        }
+      }
+    })
+
+    const el = form.vm.el$('el')
+
+    expect(el.value).toStrictEqual({ text1: 5, text2: 10 })
+  })
+  
 }
 
 // ============= HELPERS =============

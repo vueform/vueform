@@ -43,6 +43,30 @@ export const value = function (elementType, elementName, options) {
     
     // destroy(form) // teardown
   })
+  
+  it('should return values on index in list', () => {
+    
+    let form = createForm({
+      schema: {
+        parent: {
+          type: 'list',
+          initial: 2,
+          element: { type: elementType }
+        }
+      }
+    })
+    
+    let date = form.vm.el$('parent.0')
+    expect(date.value).toEqual([])
+    
+    date.value = '2012-06-22'
+    
+    expect(date.value).toEqual(['2012-06-22'])
+    
+    date.value = '2012-06-23'
+    
+    expect(date.value).toEqual(['2012-06-23'])
+  })
 }
 
 export const model = function (elementType, elementName, options) {
