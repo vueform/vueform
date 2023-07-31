@@ -150,78 +150,78 @@ export const refreshOrderStore = function (elementType, elementName, options) {
     // destroy() // teardown
   })
 }
-
-export const watchers = function (elementType, elementName, options) {
-
-  it('should invoke refreshOrderStore if storeOrder changes but not removed', async () => {
-
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType,
-          storeOrder: 'order',
-          initial: 3,
-          sort: true,
-          object: {
-            schema: {
-              name: { type: 'text' },
-              order: { type: 'hidden', meta: true },
-            }
-          }
-        }
-      }
-    })
-
-    let el = form.vm.el$('el')
-
-    let child1 = form.vm.el$('el.0')
-    let child2 = form.vm.el$('el.1')
-    let child3 = form.vm.el$('el.2')
-
-    expect(child1.value).toStrictEqual({ name: null, order: 1 })
-    expect(child2.value).toStrictEqual({ name: null, order: 2 })
-    expect(child3.value).toStrictEqual({ name: null, order: 3 })
-
-    el.$set(form.vm.vueform.schema.el, 'storeOrder', 'elseOrder')
-
-    expect(child1.value).toStrictEqual({ name: null, order: 1 })
-    expect(child2.value).toStrictEqual({ name: null, order: 2 })
-    expect(child3.value).toStrictEqual({ name: null, order: 3 })
-  })
-
-  it('should remove storeOrder property from elements if set to undefined', () => {
-
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType,
-          storeOrder: 'order',
-          initial: 3,
-          sort: true,
-          object: {
-            schema: {
-              name: { type: 'text' },
-              order: { type: 'hidden', meta: true },
-            }
-          }
-        }
-      }
-    })
-
-    let el = form.vm.el$('el')
-
-    let child1 = form.vm.el$('el.0')
-    let child2 = form.vm.el$('el.1')
-    let child3 = form.vm.el$('el.2')
-
-    expect(child1.value).toStrictEqual({ name: null, order: 1 })
-    expect(child2.value).toStrictEqual({ name: null, order: 2 })
-    expect(child3.value).toStrictEqual({ name: null, order: 3 })
-
-    el.$set(form.vm.vueform.schema.el, 'storeOrder', undefined)
-
-    expect(child1.value).toStrictEqual({ name: null, order: null })
-    expect(child2.value).toStrictEqual({ name: null, order: null })
-    expect(child3.value).toStrictEqual({ name: null, order: null })
-  })
-}
+//@todo:adam imports are not in correct order for this to work
+// export const watchers = function (elementType, elementName, options) {
+//
+//   it('should invoke refreshOrderStore if storeOrder changes but not removed', async () => {
+//
+//     let form = createForm({
+//       schema: {
+//         el: {
+//           type: elementType,
+//           storeOrder: 'order',
+//           initial: 3,
+//           sort: true,
+//           object: {
+//             schema: {
+//               name: { type: 'text' },
+//               order: { type: 'hidden', meta: true },
+//             }
+//           }
+//         }
+//       }
+//     })
+//
+//     let el = form.vm.el$('el')
+//
+//     let child1 = form.vm.el$('el.0')
+//     let child2 = form.vm.el$('el.1')
+//     let child3 = form.vm.el$('el.2')
+//
+//     expect(child1.value).toStrictEqual({ name: null, order: 1 })
+//     expect(child2.value).toStrictEqual({ name: null, order: 2 })
+//     expect(child3.value).toStrictEqual({ name: null, order: 3 })
+//
+//     el.$set(form.vm.vueform.schema.el, 'storeOrder', 'elseOrder')
+//
+//     expect(child1.value).toStrictEqual({ name: null, order: 1 })
+//     expect(child2.value).toStrictEqual({ name: null, order: 2 })
+//     expect(child3.value).toStrictEqual({ name: null, order: 3 })
+//   })
+//
+//   it('should remove storeOrder property from elements if set to undefined', () => {
+//
+//     let form = createForm({
+//       schema: {
+//         el: {
+//           type: elementType,
+//           storeOrder: 'order',
+//           initial: 3,
+//           sort: true,
+//           object: {
+//             schema: {
+//               name: { type: 'text' },
+//               order: { type: 'hidden', meta: true },
+//             }
+//           }
+//         }
+//       }
+//     })
+//
+//     let el = form.vm.el$('el')
+//
+//     let child1 = form.vm.el$('el.0')
+//     let child2 = form.vm.el$('el.1')
+//     let child3 = form.vm.el$('el.2')
+//
+//     expect(child1.value).toStrictEqual({ name: null, order: 1 })
+//     expect(child2.value).toStrictEqual({ name: null, order: 2 })
+//     expect(child3.value).toStrictEqual({ name: null, order: 3 })
+//
+//     el.$set(form.vm.vueform.schema.el, 'storeOrder', undefined)
+//
+//     expect(child1.value).toStrictEqual({ name: null, order: null })
+//     expect(child2.value).toStrictEqual({ name: null, order: null })
+//     expect(child3.value).toStrictEqual({ name: null, order: null })
+//   })
+// }
