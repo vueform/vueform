@@ -8,6 +8,7 @@ export default runElementTests('date', {
     value: '2020-12-26',
     value2: '2020-12-27',
     nullValue: null,
+    inputSelector: 'input',
   },
   // events: {
   //   events: ['change']

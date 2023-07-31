@@ -8,6 +8,7 @@ export default runElementTests('slider', {
     value: 20,
     value2: 30,
     nullValue: 0,
+    inputSelector: '.cursor-grab',
   },
   // events: {
   //   events: ['change']

@@ -8,6 +8,7 @@ export default runElementTests('dates', {
     default: ['2020-12-28', '2020-12-29'],
     default2: ['2020-12-30', '2020-12-31'],
     nullValue: [],
+    inputSelector: 'input',
   },
   // events: {
   //   events: ['change']

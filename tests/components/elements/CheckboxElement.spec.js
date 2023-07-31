@@ -8,6 +8,7 @@ export default runElementTests('checkbox', {
     default: false,
     default2: false,
     nullValue: false,
+    inputSelector: 'input',
   },
   // events: {
   //   events: ['change', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],

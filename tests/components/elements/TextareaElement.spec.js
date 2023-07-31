@@ -8,6 +8,7 @@ export default runElementTests('textarea', {
     value: 'value',
     value2: 'value2',
     nullValue: null,
+    inputSelector: 'textarea',
   },
   // events: {
   //   events: ['change'],

@@ -9,6 +9,7 @@ export default runElementTests('multiselect', {
     value2: [4,5],
     items: [1,2,3,4,5,6],
     nullValue: [],
+    inputSelector: 'input',
   },
   // events: {
   //   events: [

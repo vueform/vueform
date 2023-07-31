@@ -8,6 +8,7 @@ export default runElementTests('checkboxgroup', {
     default: [5,6],
     default2: [7,8],
     nullValue: [],
+    inputSelector: 'input',
   },
   // events: {
   //   events: ['change'],

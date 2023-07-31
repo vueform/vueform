@@ -8,6 +8,7 @@ export default runElementTests('tText', {
     value: {en:'value-en',fr:'value-fr'},
     value2: {en:'value2-en',fr:'value2-fr'},
     nullValue: {en:null,fr:null},
+    inputSelector: 'input',
   },
   // events: {
   //   events: ['change']

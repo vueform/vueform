@@ -9,6 +9,7 @@ export default runElementTests('select', {
     value2: 4,
     items: [1,2,3,4,5,6],
     nullValue: null,
+    inputSelector: 'select',
   },
   // events: {
   //   events: [

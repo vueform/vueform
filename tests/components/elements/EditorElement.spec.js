@@ -8,6 +8,7 @@ export default runElementTests('editor', {
     value: '<div>value</div>',
     value2: '<div>value2</div>',
     nullValue: null,
+    inputSelector: 'TrixEditor',
   },
   // events: {
   //   events: ['change', 'error']

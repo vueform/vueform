@@ -20,6 +20,7 @@ export default runElementTests('location', {
       lng: null
     },
     mockPlaces: true,
+    inputSelector: 'input',
   },
   // events: {
   //   events: ['change']
