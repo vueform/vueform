@@ -4,33 +4,33 @@ import { computed, ref, toRefs } from 'vue'
 const base = function(props, context, dependencies)
 {
   const {
-    disabled
+    disabled,
   } = toRefs(props)
-
+  
   // ================ DATA ================
-
+  
   /**
    * Helper to store whether the element is disabled via api (with .disable()).
-   * 
+   *
    * @type {boolean|null}
    * @default null
    * @private
    */
   const localDisabled = ref(null)
-
+  
   // ============== COMPUTED ==============
-
+  
   /**
    * Whether the element is disabled.
-   * 
+   *
    * @type {boolean}
    */
   const isDisabled = computed(() => {
     return (disabled.value && localDisabled.value !== false) || localDisabled.value === true
   })
-
+  
   // =============== METHODS ==============
-
+  
   /**
    * Disables the element.
    *
@@ -39,7 +39,7 @@ const base = function(props, context, dependencies)
   const disable = () => {
     localDisabled.value = true
   }
-
+  
   /**
    * Enables the element even if it is disabled by [`disabled`](#disabled) option.
    *
@@ -48,7 +48,7 @@ const base = function(props, context, dependencies)
   const enable = () => {
     localDisabled.value = false
   }
-
+  
   return {
     localDisabled,
     isDisabled,
@@ -59,7 +59,7 @@ const base = function(props, context, dependencies)
 
 const checkboxgroup = function(props, context, dependencies)
 {
-  const { 
+  const {
     disables,
   } = toRefs(props)
   
@@ -67,20 +67,20 @@ const checkboxgroup = function(props, context, dependencies)
     localDisabled,
     isDisabled,
   } = base(props, context, dependencies)
-
+  
   // ================ DATA ================
-
+  
   /**
    * List of option keys to be disabled.
-   * 
-   * @type {array} 
+   *
+   * @type {array}
    * @default []
    * @private
    */
   const disabledItems = ref([])
-
+  
   // =============== METHODS ==============
-
+  
   /**
    * Disables one item or more items.
    *
@@ -91,20 +91,21 @@ const checkboxgroup = function(props, context, dependencies)
     if (!_.isArray(values)) {
       values = [values]
     }
-
+    
     const disablesList = _.clone(disabledItems.value)
-
+    
     _.each(values, (item) => {
       item = String(item)
       
+      /* istanbul ignore else */
       if (disablesList.indexOf(item) === -1) {
         disablesList.push(item)
       }
     })
-
+    
     disabledItems.value = disablesList
   }
-
+  
   /**
    * Disables one item or more disabled items.
    *
@@ -115,22 +116,23 @@ const checkboxgroup = function(props, context, dependencies)
     if (!_.isArray(values)) {
       values = [values]
     }
-
+    
     const disablesList = _.clone(disabledItems.value)
-
+    
     _.each(values, (item) => {
       item = String(item)
       
       var index = disablesList.indexOf(item)
-
+      
+      /* istanbul ignore else */
       if (index !== -1) {
         disablesList.splice(index, 1)
       }
     })
-
+    
     disabledItems.value = disablesList
   }
-
+  
   /**
    * Disables all items.
    *
@@ -139,7 +141,7 @@ const checkboxgroup = function(props, context, dependencies)
   const disableAll = () => {
     localDisabled.value = true
   }
-
+  
   /**
    * Enables all items.
    *
@@ -149,13 +151,13 @@ const checkboxgroup = function(props, context, dependencies)
     localDisabled.value = false
     disabledItems.value = []
   }
-
+  
   // ================ HOOKS ===============
-
-  disabledItems.value = _.map(disables.value || [], (d) => {
+  
+  disabledItems.value = _.map(disables.value || /* istanbul ignore next: can't fall into this, because it is hardwired to be `[]` if undefined */ [], (d) => {
     return String(d)
   })
-
+  
   return {
     disabledItems,
     isDisabled,
@@ -172,17 +174,17 @@ const button = function(props, context, dependencies)
     disabled,
     submits,
   } = toRefs(props)
-
+  
   // ============ DEPENDENCIES ============
-
+  
   const form$ = dependencies.form$
   const el$ = dependencies.el$
-
+  
   // ============== COMPUTED ==============
-
+  
   /**
    * Whether the button is disabled.
-   * 
+   *
    * @type {boolean}
    */
   const isDisabled = computed(() => {
@@ -196,7 +198,7 @@ const button = function(props, context, dependencies)
     
     return disabled.value
   })
-
+  
   return {
     isDisabled,
   }

@@ -1,12 +1,12 @@
-const base = function (props, context, dependencies)
+const base = function(props, context, dependencies)
 {
   // ============ DEPENDENCIES ============
-
+  
   const fire = dependencies.fire
   const el$ = dependencies.el$
-
+  
   // =============== METHODS ==============
-
+  
   /**
    * Handles `select` event.
    *
@@ -17,7 +17,7 @@ const base = function (props, context, dependencies)
   const handleSelect = (option) => {
     fire('select', option, el$.value)
   }
-
+  
   /**
    * Handles `deselect` event.
    *
@@ -28,7 +28,7 @@ const base = function (props, context, dependencies)
   const handleDeselect = (option) => {
     fire('deselect', option, el$.value)
   }
-
+  
   /**
    * Handles `search-change` event.
    *
@@ -39,7 +39,7 @@ const base = function (props, context, dependencies)
   const handleSearchChange = (searchQuery) => {
     fire('search-change', searchQuery, el$.value)
   }
-
+  
   /**
    * Handles `open` event.
    *
@@ -49,7 +49,7 @@ const base = function (props, context, dependencies)
   const handleOpen = () => {
     fire('open', el$.value)
   }
-
+  
   /**
    * Handles `close` event.
    *
@@ -59,7 +59,7 @@ const base = function (props, context, dependencies)
   const handleClose = () => {
     fire('close', el$.value)
   }
-
+  
   /**
    * Handles `clear` event.
    *
@@ -69,10 +69,10 @@ const base = function (props, context, dependencies)
   const handleClear = () => {
     fire('clear', el$.value)
   }
-
+  
   /**
    * Handles `paste` event.
-   * 
+   *
    * @param {Event} e event
    * @returns {void}
    * @private
@@ -80,7 +80,7 @@ const base = function (props, context, dependencies)
   const handlePaste = (e) => {
     fire('paste', e, el$.value)
   }
-
+  
   /**
    * Handles `tag` event.
    *
@@ -88,12 +88,13 @@ const base = function (props, context, dependencies)
    * @returns {void}
    * @private
    */
+  /* istanbul ignore next: unimplemented */
   const handleTag = (searchQuery) => {
     // unimplemented
   }
-
+  
   // =============== HOOKS ================
-
+  
   return {
     handleSelect,
     handleDeselect,

@@ -9,24 +9,24 @@ const base = function(props, context, dependencies)
     date,
     time,
     seconds,
-    hour24
+    hour24,
   } = toRefs(props)
-
+  
   // ============ DEPENDENCIES =============
-
+  
   const form$ = dependencies.form$
-
+  
   // =============== PRIVATE ===============
-
+  
   /**
    * The default date format type.
-   * 
+   *
    * @type {string}
    * @private
    */
   const defaultFormat = computed(() => {
     let format
-
+    
     if (date.value && time.value && seconds.value && hour24.value) {
       format = 'datetimeSeconds24'
     } else if (date.value && time.value && seconds.value && !hour24.value) {
@@ -46,23 +46,23 @@ const base = function(props, context, dependencies)
     } else {
       format = 'date'
     }
-
+    
     return format
   })
-
+  
   /**
    * The default date format for display.
-   * 
+   *
    * @type {string}
    * @private
    */
   const defaultDisplayFormat = computed(() => {
     return form$.value.translations.vueform.dateFormats[defaultFormat.value]
   })
-
+  
   /**
    * The default date format for value & load.
-   * 
+   *
    * @type {string}
    * @private
    */
@@ -78,42 +78,42 @@ const base = function(props, context, dependencies)
       time12: 'hh:mm a',
       date: 'YYYY-MM-DD',
     }
-
+    
     return dataDateFormats[defaultFormat.value]
   })
-
+  
   // ============== COMPUTED ===============
-
+  
   /**
    * The display date format.
-   * 
+   *
    * @type {string}
    * @private
    */
   const displayDateFormat = computed(() => {
     return displayFormat.value !== null ? displayFormat.value : defaultDisplayFormat.value
   })
-
+  
   /**
    * The format of date value.
-   * 
+   *
    * @type {string}
    * @private
    */
   const valueDateFormat = computed(() => {
     return valueFormat.value !== null || valueFormat.value === false ? valueFormat.value : defaultDataFormat.value
   })
-
+  
   /**
    * The date format of the data the element being loaded with.
-   * 
+   *
    * @type {string}
    * @private
    */
   const loadDateFormat = computed(() => {
     return loadFormat.value !== null ? loadFormat.value : defaultDataFormat.value
   })
-
+  
   return {
     displayDateFormat,
     valueDateFormat,
@@ -121,38 +121,37 @@ const base = function(props, context, dependencies)
   }
 }
 
-const dates = function(props, context, dependencies)
-{
+const dates = function(props, context, dependencies) {
   const {
     displayFormat,
     valueFormat,
     loadFormat,
   } = toRefs(props)
-
+  
   // ============ DEPENDENCIES =============
-
+  
   const form$ = dependencies.form$
-
+  
   // =============== PRIVATE ===============
-
+  
   const defaultFormat = computed(() => {
     return form$.value.translations.vueform.dateFormats.date
   })
-
+  
   // ============== COMPUTED ===============
-
+  
   const displayDateFormat = computed(() => {
     return displayFormat.value !== null ? displayFormat.value : defaultFormat.value
   })
-
+  
   const valueDateFormat = computed(() => {
     return valueFormat.value !== null || valueFormat.value === false ? valueFormat.value : defaultFormat.value
   })
-
+  
   const loadDateFormat = computed(() => {
     return loadFormat.value !== null ? loadFormat.value : defaultFormat.value
   })
-
+  
   return {
     displayDateFormat,
     valueDateFormat,

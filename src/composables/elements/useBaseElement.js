@@ -11,7 +11,7 @@ const base = function(props, context, dependencies)
     'onBeforeCreate',
     'onCreated',
   ]
-
+  
   const hooks = {
     onBeforeMount,
     onMounted,
@@ -20,59 +20,59 @@ const base = function(props, context, dependencies)
     onBeforeUnmount,
     onUnmounted,
   }
-
+  
   const currentInstance = getCurrentInstance()
-
+  
   // ============ DEPENDENCIES ============
-
+  
   const form$ = dependencies.form$
   const fire = dependencies.fire
   
   const {
     assignToParent,
-    removeFromParent
+    removeFromParent,
   } = useParentAssign(props, context, {
     form$,
   })
-
+  
   // ================= DATA ================
-
+  
   /**
    * The ref to the outermost DOM of the element.
-   * 
+   *
    * @type {HTMLElement}
    */
   const container = ref(null)
-
+  
   /**
    * Whether the element has been already mounted.
-   * 
+   *
    * @type {boolean}
    * @default true
    */
   const mounted = ref(false)
-
+  
   /**
-   * Whether the element is hidden internally by core components like tabs or steps steps. Only intended for reading.
-   * 
-   * @type {boolean} 
+   * Whether the element is hidden internally by core components like tabs or steps. Only intended for reading.
+   *
+   * @type {boolean}
    * @default true
    * @private
    */
   const active = ref(true)
-
+  
   // ============== COMPUTED ==============
-
+  
   /**
    * Whether the element is static (does not have any data or validation).
-   * 
+   *
    * @type {boolean}
    * @private
    */
   const isStatic = computed(() => {
     return false
   })
-
+  
   /**
    * Whether the element's value is a file.
    *
@@ -82,7 +82,7 @@ const base = function(props, context, dependencies)
   const isFileType = computed(() => {
     return false
   })
-
+  
   /**
    * Whether the element's value is an image.
    *
@@ -92,7 +92,7 @@ const base = function(props, context, dependencies)
   const isImageType = computed(() => {
     return false
   })
-
+  
   /**
    * Whether the element's value is an array.
    *
@@ -102,17 +102,17 @@ const base = function(props, context, dependencies)
   const isArrayType = computed(() => {
     return false
   })
-
+  
   /**
    * Whether the element should be visible when using `tabs` or `steps`.
-   * 
+   *
    * @type {boolean}
    * @private
    */
   const isActive = computed(() => {
     return active.value
   })
-
+  
   /**
    * The element's component.
    *
@@ -121,9 +121,9 @@ const base = function(props, context, dependencies)
   const el$ = computed(() => {
     return currentInstance.proxy
   })
-
+  
   // ============== METHODS ===============
-
+  
   /**
    * Sets the `active` property of the element to `true`.
    *
@@ -133,7 +133,7 @@ const base = function(props, context, dependencies)
   const activate = () => {
     active.value = true
   }
-
+  
   /**
    * Sets the `active` property of the element to `false`.
    *
@@ -143,40 +143,40 @@ const base = function(props, context, dependencies)
   const deactivate = () => {
     active.value = false
   }
-
+  
   // ============== PROVIDES ==============
-
+  
   /**
    * The element's component.
    *
    * @type {component}
    */
   provide('el$', el$)
-
+  
   // ================ HOOKS ===============
-
+  
   onBeforeMount(() => {
     assignToParent(currentInstance.proxy.$parent, assignToParent)
   })
-
+  
   onMounted(() => {
     mounted.value = true
   })
-
+  
   onBeforeUnmount(() => {
     removeFromParent(currentInstance.proxy.$parent, removeFromParent)
   })
-
+  
   Object.values(instantHooks).forEach((hook) => {
     fire(_.lowerFirst(hook.replace('on', '')), el$.value)
   })
-
+  
   Object.keys(hooks).forEach((hook) => {
     hooks[hook](() => {
       fire(_.lowerFirst(hook.replace('on', '')), el$.value)
     })
   })
-
+  
   return {
     el$,
     isStatic,
@@ -206,13 +206,13 @@ const list = function(props, context, dependencies)
     activate,
     deactivate,
   } = base(props, context, dependencies)
-
+  
   // ============== COMPUTED ==============
-
+  
   const isArrayType = computed(() => {
     return true
   })
-
+  
   return {
     el$,
     isStatic,
@@ -233,7 +233,7 @@ const file = function(props, context, dependencies)
   const {
     view,
   } = toRefs(props)
-
+  
   const {
     el$,
     isStatic,
@@ -245,17 +245,17 @@ const file = function(props, context, dependencies)
     activate,
     deactivate,
   } = base(props, context, dependencies)
-
+  
   // ============== COMPUTED ==============
-
+  
   const isFileType = computed(() => {
     return true
   })
-
+  
   const isImageType = computed(() => {
     return ['gallery', 'image'].indexOf(view.value) !== -1
   })
-
+  
   return {
     el$,
     isStatic,
@@ -285,13 +285,13 @@ const static_ = function(props, context, dependencies)
     activate,
     deactivate,
   } = base(props, context, dependencies)
-
+  
   // ============== COMPUTED ==============
-
+  
   const isStatic = computed(() => {
     return true
   })
-
+  
   return {
     el$,
     isStatic,
@@ -320,6 +320,6 @@ export {
   tags,
   file,
   static_,
-} 
+}
 
 export default base

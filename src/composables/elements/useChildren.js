@@ -7,80 +7,81 @@ import normalize from './../../utils/normalize'
 const base = function(props, context, dependencies)
 {
   // ================ DATA ================
-
+  
   /**
    * List of child element components.
-   * 
+   *
    * @type {array<component>}
    * @default [children<component>]
    * @private
    */
   const children$Array = ref([])
-      
+  
   // ============== COMPUTED ==============
-
+  
   /**
    * Child element components.
-   * 
+   *
    * @type {object<Element>}
    */
   const children$ = computed(() => {
     let children$ = {}
-
+    
     children$Array.value.forEach((e$) => {
       children$[e$.name] = e$
     })
-
+    
     return children$
   })
-
+  
   // =============== METHODS ==============
-
+  
   return {
     children$Array,
     children$,
   }
 }
 
-const object = function(props, context, dependencies, options = {})
+const object = function(props, context, dependencies, /* istanbul ignore next */ options = {})
 {
   const schemaName = options.schemaName || 'schema'
   
   const {
-    [schemaName]: schema
+    [schemaName]: schema,
   } = toRefs(props)
-
+  
   const {
     children$Array,
-    children$
+    children$,
   } = base(props, context, dependencies)
-
+  
   // ============== COMPUTED ==============
-
+  
   /**
    * Schema of child elements.
-   * 
+   *
    * @type {object}
    * @private
    */
   const children = computed(() => {
     return schema.value
   })
-
+  
   // Resort children$Array when children
   // order changes or a child is removed
+  /* istanbul ignore else */
   if (schema) {
     watch(schema, (newValue) => {
       let newChildren$Array = []
-
+      
       _.each(newValue, (child, name) => {
-        newChildren$Array.push(children$Array.value[children$Array.value.map(e$=>normalize(e$.name)).indexOf(normalize(name))])
+        newChildren$Array.push(children$Array.value[children$Array.value.map(e$ => normalize(e$.name)).indexOf(normalize(name))])
       })
-
+      
       children$Array.value = newChildren$Array
     }, { flush: 'post', deep: true })
   }
-
+  
   return {
     children,
     children$Array,
@@ -88,6 +89,7 @@ const object = function(props, context, dependencies, options = {})
   }
 }
 
+/* istanbul ignore next */
 const address = function(props, context, dependencies)
 {
   const {
@@ -95,29 +97,29 @@ const address = function(props, context, dependencies)
     required,
     disabled,
   } = toRefs(props)
-
+  
   // ============ DEPENDENCIES ============
-
+  
   const form$ = dependencies.form$
   const path = dependencies.path
-
+  
   const {
     children$Array,
-    children$
+    children$,
   } = object(props, context, dependencies)
-
+  
   // ============== COMPUTED ==============
-
+  
   /**
    * The `id` attribute of the input which contains the location autocomplete. Format: `address-{rand}`.
-   * 
+   *
    * @type {string}
    */
-  const addressId = ref(`address-${Math.floor(Math.random() * 100000000)}`)
-
+  const addressId = ref(`address-${ Math.floor(Math.random() * 100000000) }`)
+  
   /**
-   * Fields of the address. By default has the following `text` type elements: `address`, `address2`, `zip`, `city`, `state`, `country`.
-   * 
+   * Fields of the address. By default, has the following `text` type elements: `address`, `address2`, `zip`, `city`, `state`, `country`.
+   *
    * @type {object}
    * @private
    */
@@ -166,7 +168,7 @@ const address = function(props, context, dependencies)
         search: true,
       },
     }
-
+    
     if (required.value) {
       fields.address.rules = 'required'
       fields.zip.rules = 'required'
@@ -174,14 +176,14 @@ const address = function(props, context, dependencies)
       fields.state.rules = 'required'
       fields.country.rules = 'required'
     }
-
+    
     return fields
   })
-
+  
   const children = computed(() => {
     return fields.value
   })
-
+  
   return {
     children$Array,
     children$,
@@ -191,16 +193,18 @@ const address = function(props, context, dependencies)
   }
 }
 
+//@todo:adam remove options.schemaName || 'schema', because `buttons` does not exist anymore
+/* istanbul ignore next */
 const buttons = function(props, context, dependencies)
 {
   const {
     children$Array,
     children$,
-    children
+    children,
   } = object(props, context, dependencies, {
-    schemaName: 'buttons'
+    schemaName: 'buttons',
   })
-
+  
   return {
     children$Array,
     children$,

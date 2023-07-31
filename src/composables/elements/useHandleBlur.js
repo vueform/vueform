@@ -1,12 +1,12 @@
 const base = function(props, context, dependencies)
 {
   // ============ DEPENDENCIES ============
-
+  
   const fire = dependencies.fire
   const el$ = dependencies.el$
-
+  
   // =============== METHODS ==============
-
+  
   /**
    * Handles `blur` event.
    *
@@ -16,7 +16,7 @@ const base = function(props, context, dependencies)
   const handleBlur = () => {
     fire('blur', el$.value)
   }
-
+  
   return {
     handleBlur,
   }

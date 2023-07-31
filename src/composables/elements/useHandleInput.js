@@ -1,24 +1,22 @@
-import useHandleChange from './useHandleChange'
-
 const base = function(props, context, dependencies)
 {
   // ============ DEPENDENCIES ============
-
+  
   const model = dependencies.model
-
+  
   // =============== METHODS ==============
-
+  
   /**
    * Handles `input` event.
-   * 
-   * @param {Event} e* 
+   *
+   * @param {Event} e*
    * @returns {void}
    * @private
    */
   const handleInput = (e) => {
     model.value = e.target.value
   }
-
+  
   return {
     handleInput,
   }

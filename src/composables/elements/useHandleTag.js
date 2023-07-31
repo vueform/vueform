@@ -1,10 +1,10 @@
-const base = function (props, context, dependencies)
+const base = function(props, context, dependencies)
 {
   // ============ DEPENDENCIES ============
-
+  
   const fire = dependencies.fire
   const el$ = dependencies.el$
-
+  
   /**
    * Handles `tag` event.
    *
@@ -15,7 +15,7 @@ const base = function (props, context, dependencies)
   const handleTag = (searchQuery) => {
     fire('tag', searchQuery, el$.value)
   }
-
+  
   return {
     handleTag,
   }

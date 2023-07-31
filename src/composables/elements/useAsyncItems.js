@@ -7,45 +7,45 @@ const base = function(props, context, dependencies)
   const {
     items, valueProp, labelProp, dataKey, searchParam,
   } = toRefs(props)
-
+  
   // ============ DEPENDENCIES ============
-
+  
   const isNative = dependencies.isNative
   const disable = dependencies.disable
   const enable = dependencies.enable
   const input = dependencies.input
   const el$ = dependencies.el$
   const form$ = dependencies.form$
-
+  
   // =============== INJECT ===============
-
+  
   const config$ = inject('config$')
-
+  
   // ================ DATA ================
-
+  
   /**
    * Contains the fetched items when using async `items`.
-   * 
+   *
    * @type {array|object}
    * @default null
    * @private
    */
   const options = ref(null)
-
+  
   // ============== COMPUTED ==============
   
   /**
-   * Contains the resolved options. 
-   * 
+   * Contains the resolved options.
+   *
    * @type {array}
    */
   const resolvedOptions = computed(() => {
     if (!isNative.value) {
       return options.value
     }
-
+    
     let nativeItems = []
-
+    
     _.each(options.value, (item, key) => {
       if ([null, undefined].indexOf(item) !== -1) {
         return
@@ -55,10 +55,10 @@ const base = function(props, context, dependencies)
         if (item[valueProp.value] === undefined) {
           console.warn('You must define `value` property for each option when using an array of objects options for select element')
         }
-
+        
         nativeItems.push({
           value: item[valueProp.value],
-          label: item[labelProp.value]
+          label: item[labelProp.value],
         })
       } else if (Array.isArray(options.value)) {
         nativeItems.push({
@@ -72,30 +72,30 @@ const base = function(props, context, dependencies)
         })
       }
     })
-
+    
     return nativeItems.map((o) => {
-      return { ...o, label: localize(o.label, config$.value, form$.value)}
+      return { ...o, label: localize(o.label, config$.value, form$.value) }
     })
   })
-
+  
   // =============== METHODS ==============
-
+  
   /**
    * Fetches & updates select options when using `async` options. Receives [`el$`](#property-el) as first param.
-   * 
+   *
    * @param {boolean} disable* whether the input field should be disabled while fetching options
-   * @returns {void} 
+   * @returns {void}
    */
   const updateItems = async (shouldDisable = true) => {
     if (!isNative.value) {
       await input.value?.resolveOptions()
       return
     }
-
+    
     if (shouldDisable) {
       disable()
     }
-
+    
     if (typeof items.value === 'string') {
       await resolveOptionsFromUrl()
     } else if (typeof items.value === 'function') {
@@ -103,54 +103,54 @@ const base = function(props, context, dependencies)
     } else {
       options.value = items.value
     }
-      
+    
     if (shouldDisable) {
       enable()
     }
   }
-
+  
   /**
    * Resolves options from url.
-   * 
+   *
    * @return {void}
    * @private
    */
   const resolveOptionsFromUrl = async () => {
     try {
       let optionList = (await form$.value.$vueform.services.axios.get(items.value))?.data || []
-
+      
       if (dataKey && dataKey.value && Object.keys(optionList).length) {
         optionList = _.get(optionList, dataKey.value) || []
       }
-
+      
       options.value = optionList
     } catch (e) {
       options.value = []
-      console.warn(`Couldn\'t resolve items from ${items.value}`, e)
+      console.warn(`Couldn\'t resolve items from ${ items.value }`, e)
     }
   }
-
+  
   /**
    * Creates an async function returning options from url.
-   * 
+   *
    * @return {void}
    * @private
    */
   const createAsyncOptionsFromUrl = () => {
     return async (query) => {
-      let optionList = (await form$.value.$vueform.services.axios.get(`${items.value}${items.value.match(/\?/)?'&':'?'}${searchParam.value}=${query||''}`))?.data || []
-
+      let optionList = (await form$.value.$vueform.services.axios.get(`${ items.value }${ items.value.match(/\?/) ? '&' : '?' }${ searchParam.value }=${ query || '' }`))?.data || []
+      
       if (dataKey && dataKey.value && Object.keys(optionList).length) {
         optionList = _.get(optionList, dataKey.value) || []
       }
-
+      
       return optionList
     }
   }
-
+  
   /**
    * Resolves options from function.
-   * 
+   *
    * @return {void}
    * @private
    */
@@ -162,10 +162,10 @@ const base = function(props, context, dependencies)
       console.warn(`Couldn\'t resolve items from async function`, e)
     }
   }
-
+  
   /**
    * Resolves items.
-   * 
+   *
    * @return {void}
    * @private
    */
@@ -182,51 +182,52 @@ const base = function(props, context, dependencies)
       }
     }
   }
-
+  
   // ================ HOOKS ===============
-
+  
   resolveOptions()
   watch(items, resolveOptions)
   watch(isNative, resolveOptions)
-
+  
   return {
     resolvedOptions,
     updateItems,
   }
 }
 
-const checkboxgroup = function(props, context, dependencies) {
+const checkboxgroup = function(props, context, dependencies)
+{
   const {
     items,
   } = toRefs(props)
-
+  
   // ============ DEPENDENCIES ============
-
+  
   const disableAll = dependencies.disableAll
   const enableAll = dependencies.enableAll
   const el$ = dependencies.el$
   const form$ = dependencies.form$
-
+  
   // =============== INJECT ===============
-
+  
   const config$ = inject('config$')
-
+  
   // ================ DATA ================
-
+  
   /**
    * Contains the fetched items when using async `items`.
-   * 
+   *
    * @type {array|object}
    * @default null
    * @private
    */
   const options = ref(null)
-
+  
   // ============== COMPUTED ==============
   
   /**
    * Contains the available items. If [`items`](#option-items) are async this contains the resolved items.
-   * 
+   *
    * @type {array}
    */
   const resolvedOptions = computed(() => {
@@ -236,64 +237,64 @@ const checkboxgroup = function(props, context, dependencies) {
       if ([null, undefined].indexOf(item) !== -1) {
         return
       }
-
+      
       // [{a:1},{b:2}]
       if (Array.isArray(options.value) && typeof item === 'object') {
         if (item.value === undefined) {
           console.warn('You must define `value` property for each item when using an array of objects options')
         }
-
+        
         resolvedOptions.push(item)
       }
-
+      
       // ['a', 'b']
       else if (Array.isArray(options.value)) {
         resolvedOptions.push({ value: item, label: item })
       }
-
+      
       // {a:{label:1},b:{label:2}}
       else if (typeof item === 'object') {
         resolvedOptions.push({ ...item, value: key })
       }
-
+      
       // {a:1,b:2}
       else {
         resolvedOptions.push({ label: item, value: key })
       }
     })
-
+    
     return resolvedOptions.map((o) => {
-      return { ...o, label: localize(o.label, config$.value, form$.value)}
+      return { ...o, label: localize(o.label, config$.value, form$.value) }
     })
   })
-
+  
   // =============== METHODS ==============
-
+  
   /**
    * Fetches & updates items when using `async` items.
-   * 
+   *
    * @param {boolean} disable* whether the input field should be disabled while fetching options
-   * @returns {void} 
+   * @returns {void}
    */
   const updateItems = async (shouldDisable = true) => {
     if (shouldDisable) {
       disableAll()
     }
-
+    
     if (typeof items.value === 'string') {
       await resolveOptionsFromUrl()
     } else {
       await resolveOptionsFromFunction()
     }
-
+    
     if (shouldDisable) {
       enableAll()
     }
   }
-
+  
   /**
    * Resolves options from url.
-   * 
+   *
    * @return {void}
    * @private
    */
@@ -302,13 +303,13 @@ const checkboxgroup = function(props, context, dependencies) {
       options.value = (await form$.value.$vueform.services.axios.get(items.value))?.data || []
     } catch (e) {
       options.value = []
-      console.warn(`Couldn\'t resolve items from ${items.value}`, e)
+      console.warn(`Couldn\'t resolve items from ${ items.value }`, e)
     }
   }
-
+  
   /**
    * Resolves options from function. Receives [`el$`](#property-el) as first param.
-   * 
+   *
    * @return {void}
    * @private
    */
@@ -320,10 +321,10 @@ const checkboxgroup = function(props, context, dependencies) {
       console.warn(`Couldn\'t resolve items from async function`, e)
     }
   }
-
+  
   /**
    * Resolves items.
-   * 
+   *
    * @return {void}
    * @private
    */
@@ -336,12 +337,12 @@ const checkboxgroup = function(props, context, dependencies) {
       options.value = items.value
     }
   }
-
+  
   // ================ HOOKS ===============
-
+  
   resolveOptions()
   watch(items, resolveOptions)
-
+  
   return {
     resolvedOptions,
     updateItems,

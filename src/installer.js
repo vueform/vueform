@@ -241,10 +241,10 @@ export default function(config, components) {
       error += `\n`
       error += ` .....................  ......\n`
       error += `  ..................   ......\n`
-      error += `   ................  .......\n` 
+      error += `   ................  .......\n`
       error += `     ......         ......\n`
       error += `      ..........  .......\n`
-      error += `       ........  ......\n`   
+      error += `       ........  ......\n`
       error += `                ......\n`
       error += `          ...........\n`
       error += `            .......\n`
@@ -384,7 +384,7 @@ export default function(config, components) {
           
           // appOrVue.config.isCustomElement = (tag) => ['trix-editor'].indexOf(tag) !== -1
           appOrVue.config.compilerOptions.isCustomElement = (tag) => ['trix-editor'].indexOf(tag) !== -1
-          appOrVue.config.unwrapInjectedRef = true
+          // appOrVue.config.unwrapInjectedRef = true
 
           appOrVue.config.globalProperties.$vueform = new Proxy($vueform, {
             get: (target, prop, receiver) => {

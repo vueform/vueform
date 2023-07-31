@@ -34,12 +34,12 @@ const base = function(props, context, dependencies = {})
     messages,
     columns,
     languages,
-    locale,
     formKey,
     endpoint,
     method,
     formData,
     language,
+    locale,
     validateOn,
     forceLabels,
     floatPlaceholders,
@@ -106,7 +106,7 @@ const base = function(props, context, dependencies = {})
 
   /**
   * The components of highest level form elements.
-  * 
+  *
   * @type {object}
   * @default {}
   * @private
@@ -115,7 +115,7 @@ const base = function(props, context, dependencies = {})
 
   /**
   * The FormTabs component.
-  * 
+  *
   * @type {component}
   * @private
   */
@@ -123,7 +123,7 @@ const base = function(props, context, dependencies = {})
 
   /**
   * The FormSteps component.
-  * 
+  *
   * @type {component}
   * @private
   */
@@ -131,7 +131,7 @@ const base = function(props, context, dependencies = {})
 
   /**
    * Enables/disables validation for the form globally.
-   * 
+   *
    * @type {boolean}
    * @default true
    */
@@ -139,15 +139,15 @@ const base = function(props, context, dependencies = {})
 
   /**
    * Enables/disables conditions for the form globally.
-   * 
+   *
    * @type {boolean}
    * @default true
    */
   const conditions = ref(true)
 
   /**
-   * Instance of MessageBag service. It can be used to add [custom errors and messages](/docs/validating-elements#custom-errors-and-messages).
-   * 
+   * Instance of MessageBag service. It can be used to add [custom errors and messages](/docs/1.x/validating-elements#custom-errors-and-messages).
+   *
    * @type {MessageBag}
    * @default MessageBag
    */
@@ -155,7 +155,7 @@ const base = function(props, context, dependencies = {})
 
   /**
    * Whether the async process of submitting the form is currently in progress.
-   * 
+   *
    * @type {boolean}
    * @default false
    */
@@ -163,7 +163,7 @@ const base = function(props, context, dependencies = {})
 
   /**
    * Whether the async process of preparing the elements for submit is currently in progress.
-   * 
+   *
    * @type {boolean}
    * @default false
    */
@@ -171,7 +171,7 @@ const base = function(props, context, dependencies = {})
 
   /**
    * The code of the currently selected language (eg. `en`).
-   * 
+   *
    * @type {string}
    * @default config.language
    */
@@ -179,7 +179,7 @@ const base = function(props, context, dependencies = {})
 
   /**
    * The configuration object of the user when using SFC mode. Basically the value of the component's `data.vueform` object.
-   * 
+   *
    * @type {object}
    * @default {}
    * @private
@@ -188,7 +188,7 @@ const base = function(props, context, dependencies = {})
 
   /**
    * Whether the form has been mounted.
-   * 
+   *
    * @type {boolean}
    * @default false
    */
@@ -198,7 +198,7 @@ const base = function(props, context, dependencies = {})
 
   /**
    * The form component instance (self).
-   * 
+   *
    * @type {component}
    */
   const form$ = computed(() => {
@@ -207,7 +207,7 @@ const base = function(props, context, dependencies = {})
 
   /**
    * The default configuration object.
-   * 
+   *
    * @type {object}
    * @private
    */
@@ -217,7 +217,7 @@ const base = function(props, context, dependencies = {})
 
   /**
    * The default configuration object.
-   * 
+   *
    * @type {object}
    */
   const config$ = computed(() => {
@@ -226,7 +226,7 @@ const base = function(props, context, dependencies = {})
 
   /**
    * The active locale of the form.
-   * 
+   *
    * @type {string}
    */
   const locale$ = computed(() => {
@@ -235,7 +235,7 @@ const base = function(props, context, dependencies = {})
 
   /**
    * Registered services.
-   * 
+   *
    * @type {object}
    */
   const services = computed(() => {
@@ -244,7 +244,7 @@ const base = function(props, context, dependencies = {})
 
   /**
    * Form options merged from config, component props & the component's `data.vueform` options.
-   * 
+   *
    * @type {object}
    * @private
    */
@@ -335,7 +335,7 @@ const base = function(props, context, dependencies = {})
 
   /**
   * The global schema which has already been ordered based on tabs/steps element order.
-  * 
+  *
   * @type {object}
   * @private
   */
@@ -374,7 +374,7 @@ const base = function(props, context, dependencies = {})
 
   /**
    * The form's schema merged from `schema` prop and the component's `data.vueform.schema` object.
-   * 
+   *
    * @type {object}
    * @private
    */
@@ -384,7 +384,7 @@ const base = function(props, context, dependencies = {})
 
   /**
    * The form's tabs merged from `tabs` prop and the component's `data.vueform.tabs` object.
-   * 
+   *
    * @type {object}
    * @private
    */
@@ -394,7 +394,7 @@ const base = function(props, context, dependencies = {})
 
   /**
    * The form's steps merged from `steps` prop and the component's `data.vueform.steps` object.
-   * 
+   *
    * @type {object}
    * @private
    */
@@ -404,7 +404,7 @@ const base = function(props, context, dependencies = {})
 
   /**
    * The tree representation of the form schema.
-   * 
+   *
    * @type {array}
    */
   const tree = computed(() => {
@@ -413,7 +413,7 @@ const base = function(props, context, dependencies = {})
 
   /**
    * The flat tree representation of the form schema.
-   * 
+   *
    * @type {array}
    */
   const flatTree = computed(() => {
@@ -422,7 +422,7 @@ const base = function(props, context, dependencies = {})
 
   /**
    * The form data including the data of all elements even the ones with `available: false` and `submit: false`.
-   * 
+   *
    * @type {object}
    */
   const data = computed(() => {
@@ -441,7 +441,7 @@ const base = function(props, context, dependencies = {})
 
   /**
    * The form data excluding elements with `available: false` and `submit: false`. This one gets submitted by default, but can be changed with [`formData`](#option-form-data)
-   * 
+   *
    * @type {object}
    */
   const requestData = computed(() => {
@@ -460,7 +460,7 @@ const base = function(props, context, dependencies = {})
 
   /**
    * Whether the form has any elements which were modified.
-   * 
+   *
    * @type {boolean}
    */
   const dirty = computed(() => {
@@ -471,7 +471,7 @@ const base = function(props, context, dependencies = {})
 
   /**
    * Whether the form has any invalid elements.
-   * 
+   *
    * @type {boolean}
    */
   const invalid = computed(() => {
@@ -482,7 +482,7 @@ const base = function(props, context, dependencies = {})
 
   /**
    * Whether the form has any elements with active debounce process.
-   * 
+   *
    * @type {boolean}
    */
   const debouncing = computed(() => {
@@ -493,7 +493,7 @@ const base = function(props, context, dependencies = {})
 
   /**
    * Whether the form has any elements with pending async validation.
-   * 
+   *
    * @type {boolean}
    */
   const pending = computed(() => {
@@ -504,7 +504,7 @@ const base = function(props, context, dependencies = {})
 
   /**
    * Whether each element in the form has been validated at least once.
-   * 
+   *
    * @type {boolean}
    */
   const validated = computed(() => {
@@ -515,7 +515,7 @@ const base = function(props, context, dependencies = {})
 
   /**
    * Whether the form has any elements with `busy: true` or the [`isLoading`](#property-is-loading), [`preparing`](#property-preparing) or [`submitting`](#property-submitting) property is `true`.
-   * 
+   *
    * @type {boolean}
    */
   const busy = computed(() => {
@@ -527,7 +527,7 @@ const base = function(props, context, dependencies = {})
   // no export
   /**
    * Errors collected from elements.
-   * 
+   *
    * @type {array}
    * @private
    */
@@ -545,7 +545,7 @@ const base = function(props, context, dependencies = {})
 
   /**
    * Form errors including element errors and the ones added to [`messageBag`](#property-message-bag) manually.
-   * 
+   *
    * @type {array}
    */
   const formErrors = computed(() => {
@@ -554,7 +554,7 @@ const base = function(props, context, dependencies = {})
 
   /**
    * Whether the form has any errors.
-   * 
+   *
    * @type {boolean}
    */
   const hasErrors = computed(() => {
@@ -563,7 +563,7 @@ const base = function(props, context, dependencies = {})
 
   /**
    * Whether the form should display errors above the form with [`FormErrors`](form-errors) component. Can be disabled by [`displayErrors`](#option-display-errors) or in `config.displayErrors`.
-   * 
+   *
    * @type {boolean}
    */
   const showErrors = computed(() => {
@@ -572,7 +572,7 @@ const base = function(props, context, dependencies = {})
 
   /**
    * Form messages including element messages and the ones added to [`messageBag`](#property-message-bag) manually.
-   * 
+   *
    * @type {array}
    */
   const formMessages = computed(() => {
@@ -581,7 +581,7 @@ const base = function(props, context, dependencies = {})
 
   /**
    * Whether the form has any messages.
-   * 
+   *
    * @ignore
    * @type {boolean}
    */
@@ -591,7 +591,7 @@ const base = function(props, context, dependencies = {})
 
   /**
    * Whether the form should display messages above the form with [`FormMessages`](form-messages) component. Can be disabled by [`displayMessages`](#option-display-messages) or in `config.displayMessages`.
-   * 
+   *
    * @type {boolean}
    */
   const showMessages = computed(() => {
@@ -600,7 +600,7 @@ const base = function(props, context, dependencies = {})
 
   /**
    * Whether the form is multilingual and should show [`FormLanguages`](form-languages) component. Returns `true` if [`multilingual`](#option-multilingual) is enabled.
-   * 
+   *
    * @type {boolean}
    */
   const isMultilingual = computed(() => {
@@ -609,7 +609,7 @@ const base = function(props, context, dependencies = {})
 
   /**
    * Whether the form should show langauge selectors.
-   * 
+   *
    * @type {boolean}
    */
   const showLanguages = computed(() => {
@@ -621,7 +621,7 @@ const base = function(props, context, dependencies = {})
    * * the form has any invalid elements and [`validateOn`](#option-validate-on) contains `change`
    * * the form is [`busy`](#property-busy)
    * * manually disabled with [`disabled`](#option-disabled) option.
-   * 
+   *
    * @type {boolean}
    */
   const isDisabled = computed(() => {
@@ -630,7 +630,7 @@ const base = function(props, context, dependencies = {})
 
   /**
    * Whether loading state is triggered manually via [`loading`](#option-loading) option.
-   * 
+   *
    * @type {boolean}
    */
   const isLoading = computed(() => {
@@ -639,7 +639,7 @@ const base = function(props, context, dependencies = {})
 
   /**
    * Whether the `validateOn` prop or `config.validateOn` contains `'change'`.
-   * 
+   *
    * @type {boolean}
    * @private
    */
@@ -649,7 +649,7 @@ const base = function(props, context, dependencies = {})
 
   /**
    * Whether the `validateOn` prop or `config.validateOn` contains `'step'`.
-   * 
+   *
    * @type {boolean}
    * @private
    */
@@ -659,7 +659,7 @@ const base = function(props, context, dependencies = {})
 
   /**
    * Whether the form has any steps.
-   * 
+   *
    * @type {boolean}
    * @private
    */
@@ -669,7 +669,7 @@ const base = function(props, context, dependencies = {})
 
   /**
    * Whether the form should show [`FormSteps`](form-steps) component. Returns `true` if [`steps`](#option-steps) has value.
-   * 
+   *
    * @type {boolean}
    */
   const showSteps = computed(() => {
@@ -678,7 +678,7 @@ const base = function(props, context, dependencies = {})
 
   /**
    * Whether the form should display steps controls below form with [`FormStepsControls`](form-steps-control) component when it has [`steps`](#option-steps). Can be disabled with [`stepsControls`](#option-steps-controls).
-   * 
+   *
    * @type {boolean}
    */
   const showStepsControls = computed(() => {
@@ -687,7 +687,7 @@ const base = function(props, context, dependencies = {})
 
   /**
    * Whether the form has any tabs.
-   * 
+   *
    * @ignore
    * @type {boolean}
    */
@@ -697,7 +697,7 @@ const base = function(props, context, dependencies = {})
 
   /**
    * Whether the form should show [`FormTabs`](form-tabs) component. Returns `true` if [`tabs`](#option-tabs) has value.
-   * 
+   *
    * @type {boolean}
    */
   const showTabs = computed(() => {
@@ -706,7 +706,7 @@ const base = function(props, context, dependencies = {})
 
   /**
    * The selected theme, extended by local template and class overrides, using [`templates`](#option-replace-templates), [`addClasses`](#option-add-classes) and [`replaceClasses`](#option-replace-classes).
-   * 
+   *
    * @type {object}
    */
   const extendedTheme = computed(() => {
@@ -735,7 +735,7 @@ const base = function(props, context, dependencies = {})
 
   /**
    * The default list of templates available to the form components.
-   * 
+   *
    * @type {object}
    * @private
    */
@@ -745,7 +745,7 @@ const base = function(props, context, dependencies = {})
 
   /**
    * The component's template.
-   * 
+   *
    * @type {object}
    */
   const template = computed(() => {
@@ -756,7 +756,7 @@ const base = function(props, context, dependencies = {})
 
   /**
    * The component's classes.
-   * 
+   *
    * @type {object}
    */
   const classes = computed(() => {
@@ -790,7 +790,7 @@ const base = function(props, context, dependencies = {})
 
         if (!preset || !preset.size) {
           return
-        } 
+        }
 
         Size = preset.size
       })
@@ -861,7 +861,7 @@ const base = function(props, context, dependencies = {})
 
   /**
    * Updates the form data. Can be used to update a single element by providing the element's `path` as second option.
-   * 
+   *
    * @param {object} data* data to update with
    * @param {object} path the `path` of the element to update (default: `null`)
    * @returns {void}
@@ -887,7 +887,7 @@ const base = function(props, context, dependencies = {})
 
   /**
    * Loads data to the form using optional [`formatLoad`](#option-format-load) formatter.
-   * 
+   *
    * @param {string} value* the value to be loaded
    * @param {boolean} format whether the loaded value should be formatted with [`formatLoad`](#option-format-load) (default: `false`)
    * @returns {void}
@@ -917,7 +917,7 @@ const base = function(props, context, dependencies = {})
 
   /**
    * Resets the form's data to default state. Also resets all the validation state for the elements.
-   * 
+   *
    * @returns {void}
    */
   const reset = () => {
@@ -942,7 +942,7 @@ const base = function(props, context, dependencies = {})
 
   /**
    * Clears the forms data.
-   * 
+   *
    * @returns {void}
    */
   const clear = () => {
@@ -967,7 +967,7 @@ const base = function(props, context, dependencies = {})
   
   /**
    * Sets all elements' `dirty` to `false`.
-   * 
+   *
    * @returns {void}
    */
   const clean = () => {
@@ -982,7 +982,7 @@ const base = function(props, context, dependencies = {})
   
   /**
    * Clears the manually added messages from the form's and each element's `messageBag`.
-   * 
+   *
    * @returns {void}
    */
   const clearMessages = () => {
@@ -1001,7 +1001,7 @@ const base = function(props, context, dependencies = {})
 
   /**
    * Validates all elements (async) which weren't validated before. If [`validateOn`](#option-validate-on) does not contain `change` it will validate all elements on each call.
-   * 
+   *
    * @public
    * @returns {void}
    */
@@ -1021,7 +1021,7 @@ const base = function(props, context, dependencies = {})
   
   /**
    * Sets all element validators to default state.
-   * 
+   *
    * @returns {void}
    */
   const resetValidators = () => {
@@ -1036,7 +1036,7 @@ const base = function(props, context, dependencies = {})
 
   /**
    * Validates and prepares elements then submits the form (async).
-   * 
+   *
    * @returns {void}
    */
   const submit = async () => {
@@ -1081,7 +1081,7 @@ const base = function(props, context, dependencies = {})
 
   /**
    * Sends form data to [`endpoint`](#option-endpoint) with the selected [`method`](#option-method) (async).
-   * 
+   *
    * @returns {void}
    */
   const send = async () => {
@@ -1131,7 +1131,7 @@ const base = function(props, context, dependencies = {})
 
   /**
   * Prepares all elements to submit (async).
-  * 
+  *
   * @returns {void}
   * @private
   */
@@ -1149,7 +1149,7 @@ const base = function(props, context, dependencies = {})
 
   /**
    * Disabled form validation globally.
-   * 
+   *
    * @returns {void}
    */
   const disableValidation = () => {
@@ -1158,7 +1158,7 @@ const base = function(props, context, dependencies = {})
 
   /**
    * Enables form validation globally.
-   * 
+   *
    * @returns {void}
    */
   const enableValidation = () => {
@@ -1167,7 +1167,7 @@ const base = function(props, context, dependencies = {})
 
   /**
   * Enables conditions globally.
-  * 
+  *
   * @returns {void}
   */
   const enableConditions = () => {
@@ -1176,7 +1176,7 @@ const base = function(props, context, dependencies = {})
 
   /**
   * Disables conditions globally.
-  * 
+  *
   * @returns {void}
   */
   const disableConditions = () => {
@@ -1185,7 +1185,7 @@ const base = function(props, context, dependencies = {})
 
   /**
   * Sets current language when using [`multilingual`](#option-multilingual).
-  * 
+  *
   * @param {string} code* the language code to be selected
   * @returns {void}
   */
@@ -1206,7 +1206,7 @@ const base = function(props, context, dependencies = {})
 
   /**
   * Converts form data to [`FormData`](https://developer.mozilla.org/en-US/docs/Web/API/FormData).
-  * 
+  *
   * @param {object} data* the data to be converted
   * @returns {FormData}
   */
@@ -1216,7 +1216,7 @@ const base = function(props, context, dependencies = {})
 
   /**
    * Returns an element by its path.
-   * 
+   *
    * @param {string} path path of the element
    * @returns {component|null}
    */
@@ -1252,7 +1252,7 @@ const base = function(props, context, dependencies = {})
 
   /**
    * Returns the siblings of an element.
-   * 
+   *
    * @param {string} path path of the element
    * @returns {void}
    */
@@ -1266,7 +1266,7 @@ const base = function(props, context, dependencies = {})
 
   /**
   * Inits MessageBag service.
-  * 
+  *
   * @returns {void}
   * @private
   */

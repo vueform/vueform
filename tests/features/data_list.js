@@ -183,8 +183,6 @@ export const requestData = function (elementType, elementName, options) {
 
 export const length = function (elementType, elementName, options) {
   
-  //@todo:374:40 istanbul ignore if
-  
   it('should return correct amount of list elements if initial is not defined', async () => {
     
     let form = createForm({
@@ -214,6 +212,8 @@ export const length = function (elementType, elementName, options) {
     })
     
     let el = form.vm.el$('el')
+    
+    
     
     expect(el.value.length).toStrictEqual(0)
   })

@@ -5,25 +5,25 @@ const base = function(props, context, dependencies)
 {
   const {
     object,
-    element
+    element,
   } = toRefs(props)
-      
+  
   // ============== COMPUTED ==============
-
+  
   /**
-    * The schema of a child element.
-    * 
-    * @type {object}
-    * @private
-    */
+   * The schema of a child element.
+   *
+   * @type {object}
+   * @private
+   */
   const prototype = computed(() => {
     return isObject.value
-      ? Object.assign({}, object.value, {type: 'object'})
+      ? Object.assign({}, object.value, { type: 'object' })
       : element.value || {}
   })
-
+  
   /**
-   * Whether childrens are objects.
+   * Whether children are objects.
    *
    * @type {boolean}
    * @private
@@ -31,16 +31,16 @@ const base = function(props, context, dependencies)
   const isObject = computed(() => {
     return !!object.value
   })
-
+  
   return {
     prototype,
     isObject,
   }
 }
 
-const multifile = function(props, context, dependencies, options = {})
+const multifile = function(props, context, dependencies, /* istanbul ignore next */ options = {})
 {
-  const { 
+  const {
     auto,
     object,
     file,
@@ -48,7 +48,7 @@ const multifile = function(props, context, dependencies, options = {})
     storeFile,
     storeOrder,
     view,
-
+    
     clickable,
     url,
     previewUrl,
@@ -57,38 +57,41 @@ const multifile = function(props, context, dependencies, options = {})
     removeEndpoint,
     params,
     softRemove,
-   } = toRefs(props)
-
+  } = toRefs(props)
+  
   // ============ DEPENDENCIES ============
-
+  
   const isDisabled = dependencies.isDisabled
-
+  
   // =============== PRIVATE ==============
-
+  
   const type = computed(() => {
     return options.type || 'file'
   })
-
+  
   // ============== COMPUTED ==============
-
+  
   /**
    * The `name` of the child element that stores the filename.
-   * 
+   *
    * @type {string}
    * @private
    */
   const storeFileName = computed(() => {
+    /* istanbul ignore else */
     if (storeFile.value) {
       return storeFile.value
     }
-
+    
+    //@todo:adam unreachable code, storeFile is never undefined
+    /* istanbul ignore next: fields.value is hardcoded {} */
     return object.value || _.keys(fields.value).length || storeOrder.value ? 'file' : null
   })
-
+  
   const isObject = computed(() => {
     return !!object.value || !!storeOrder.value || !!_.keys(fields.value).length
   })
-
+  
   const prototype = computed(() => {
     let fileSchema = {
       type: type.value,
@@ -96,7 +99,7 @@ const multifile = function(props, context, dependencies, options = {})
       view: view.value,
       layout: view.value === 'gallery' ? 'ElementLayoutInline' : 'ElementLayout',
       disabled: isDisabled.value,
-
+      
       clickable: clickable.value,
       url: url.value,
       previewUrl: previewUrl.value,
@@ -106,33 +109,35 @@ const multifile = function(props, context, dependencies, options = {})
       params: params.value,
       softRemove: softRemove.value,
     }
-
+    
     if (!isObject.value) {
       return Object.assign({}, fileSchema, file.value)
     }
-
+    
     return {
       type: 'object',
       schema: Object.assign({},
         // File
-        {[storeFileName.value]: Object.assign({}, fileSchema , {
-          embed: true,
-        }, file.value)},
-
+        {
+          [storeFileName.value]: Object.assign({}, fileSchema, {
+            embed: true,
+          }, file.value),
+        },
+        
         // Order
         storeOrder.value ? {
           [storeOrder.value]: {
             type: 'hidden',
-            meta: true
-          }
+            meta: true,
+          },
         } : {},
-
+        
         // Other fields
         fields.value,
-      )
+      ),
     }
   })
-
+  
   return {
     storeFileName,
     isObject,

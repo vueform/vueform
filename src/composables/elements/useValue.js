@@ -1,54 +1,54 @@
 import _ from 'lodash'
 import moment from 'moment'
-import { computed, ref, toRefs, watch, onUpdated } from 'vue'
+import { computed, ref, toRefs, watch } from 'vue'
 import checkDateFormat from '../../utils/checkDateFormat'
 
-const base = function(props, context, dependencies, options = {})
+const base = function(props, context, dependencies, /* istanbul ignore next */ options = {})
 {
   const { name, type } = toRefs(props)
-
+  
   // ============ DEPENDENCIES =============
-
+  
   const parent = dependencies.parent
   const defaultValue = dependencies.defaultValue
   const dataPath = dependencies.dataPath
   const form$ = dependencies.form$
-
+  
   // ================ DATA =================
-
+  
   /**
    * The initial value of the element.
-   * 
+   *
    * @type {any}
    * @private
    */
   const initialValue = ref(undefined)
-
+  
   if (form$.value.isSync) {
     initialValue.value = _.get(form$.value.model, dataPath.value)
   } else if (parent.value && ['group', 'object', 'list', 'multifile'].indexOf(parent.value.type) !== -1) {
     initialValue.value = parent.value.value[name.value]
   }
-
+  
   // ============== COMPUTED ===============
-
+  
   /**
    * The store for the value of the element when we're not using external data (form's `v-model`).
-   * 
+   *
    * @type {any}
    * @private
    */
   const internalValue = ref(defaultValue.value instanceof File ? defaultValue.value : _.cloneDeep(defaultValue.value))
-
+  
   /**
    * The value of the element.
-   * 
+   *
    * @type {any}
    */
   const value = computed({
-    get: options.value?.get || function() {
+    get: options.value?.get || function () {
       let value
-
+      
       if (form$.value.isSync) {
         value = _.get(form$.value.model, dataPath.value)
       } else if (parent.value && ['group', 'object', 'list', 'multifile'].indexOf(parent.value.type) !== -1) {
@@ -56,50 +56,53 @@ const base = function(props, context, dependencies, options = {})
       } else {
         value = internalValue.value
       }
-
-      return value !== undefined ? value : (defaultValue.value instanceof File ? defaultValue.value : _.cloneDeep(defaultValue.value))
+      
+      return value !== undefined ? value : /* istanbul ignore next: value is never undefined if default is set */ (defaultValue.value instanceof File ? defaultValue.value : _.cloneDeep(defaultValue.value))
     },
-    set: options.value?.set || function(val) {
+    set: options.value?.set || function (val) {
       if (form$.value.isSync) {
         form$.value.updateModel(dataPath.value, val)
       } else if (parent.value && ['list', 'multifile'].indexOf(parent.value.type) !== -1) {
-        const newValue = parent.value.value.map((v,k) => k == name.value ? val : v)
+        const newValue = parent.value.value.map((v, k) => k == name.value ? val : v)
         parent.value.update(newValue)
       } else if (parent.value && ['group', 'object'].indexOf(parent.value.type) !== -1) {
         parent.value.value = Object.assign({}, parent.value.value, {
-          [name.value]: val
+          [name.value]: val,
         })
       } else {
         internalValue.value = val
       }
-    }
+    },
   })
-
+  
   /**
    * Intermediary value between element's value and field's `v-model`. It is required when we need to transform the value format between the element and its field.
-   * 
+   *
    * @type {any}
    */
   const model = computed({
-    get() {
+    get()
+    {
       return value.value
     },
-    set(val) {
+    set(val)
+    {
       value.value = val
-    }
+    },
   })
-
+  
   if (options.init === undefined || options.init !== false) {
-    // If element's value was undefined initially (not found in v-model/data) then we need to set it's value
+    // If element's value was undefined initially (not found in v-model/data) then we need to set its value
     if (initialValue.value === undefined) {
       value.value = defaultValue.value instanceof File ? defaultValue.value : _.cloneDeep(defaultValue.value)
     }
   }
-
+  
+  /* istanbul ignore next: type can not be changed on the fly */
   watch(type, () => {
     value.value = defaultValue.value instanceof File ? defaultValue.value : _.cloneDeep(defaultValue.value)
   })
-
+  
   return {
     initialValue,
     internalValue,
@@ -108,7 +111,7 @@ const base = function(props, context, dependencies, options = {})
   }
 }
 
-const list = function(props, context, dependencies, options = {})
+const list = function(props, context, dependencies, /* istanbul ignore next */ options = {})
 {
   const {
     initialValue,
@@ -116,9 +119,9 @@ const list = function(props, context, dependencies, options = {})
     value,
     model,
   } = base(props, context, dependencies, {
-   init: false,
+    init: false,
   })
-
+  
   return {
     initialValue,
     internalValue,
@@ -127,60 +130,62 @@ const list = function(props, context, dependencies, options = {})
   }
 }
 
-const object = function(props, context, dependencies, options = {})
+const object = function(props, context, dependencies, /* istanbul ignore next */ options = {})
 {
   const {
     initialValue,
     internalValue,
     value,
   } = base(props, context, dependencies, {
-   init: false,
+    init: false,
   })
-
+  
   // ============ DEPENDENCIES =============
-
+  
   const defaultValue = dependencies.defaultValue
-
+  
   // ================ HOOKS ================
-
-  if (options.init === undefined || options.init !== false) {
+  
+  /* istanbul ignore else */
+  if (options.init === undefined || /* istanbul ignore next: init will always be false */ options.init !== false) {
     if (initialValue.value === undefined) {
       value.value = defaultValue.value
     } else {
       value.value = Object.assign({}, defaultValue.value, value.value)
     }
   }
-
+  
   return {
     internalValue,
     value,
   }
 }
 
-const group = function(props, context, dependencies, options = {})
+const group = function(props, context, dependencies, /* istanbul ignore next */ options = {})
 {
   // ============ DEPENDENCIES =============
-
+  
   const parent = dependencies.parent
   const dataPath = dependencies.dataPath
   const defaultValue = dependencies.defaultValue
   const children$Array = dependencies.children$Array
   const form$ = dependencies.form$
-
+  
   // ================ DATA =================
-
+  
   /**
    * The store for the value of the element when we're not using external data (form's `v-model`).
-   * 
+   *
    * @type {any}
    * @private
    */
   const internalValue = ref(_.cloneDeep(defaultValue.value))
-
+  
   // ============== COMPUTED ===============
-
+  
   const value = computed(options.value || {
-    get() {
+    get()
+    {
       let value
 
       if (form$.value.isSync) {
@@ -190,15 +195,16 @@ const group = function(props, context, dependencies, options = {})
       } else {
         value = internalValue.value
       }
-
+      
       // Filter out children values that parent has but not among group elements
       let childKeys = children$Array.value.reduce((all, child$) => {
+        /* istanbul ignore else */
         if (child$.isStatic || !child$) {
           return all
         }
-
+        
         let keys = []
-
+        
         if (!child$.flat) {
           keys.push(child$.name)
         } else {
@@ -206,7 +212,7 @@ const group = function(props, context, dependencies, options = {})
             children$Array.forEach((child$) => {
               if (!child$.isStatic && child$.flat) {
                 addGroupKeys(child$.children$Array)
-              } else if (!child$.isStatic) {
+              } /* istanbul ignore else */ else if (!child$.isStatic) {
                 keys.push(child$.name)
               }
             })
@@ -214,21 +220,23 @@ const group = function(props, context, dependencies, options = {})
           
           addGroupKeys(child$.children$Array)
         }
-
+        
         return all.concat(keys)
       }, [])
-
+      
       let tempValue = {}
       childKeys.forEach((key) => {
+        /* istanbul ignore else */
         if (value[key] !== undefined) {
           tempValue[key] = value[key]
         }
       })
       value = tempValue
-
-      return value !== undefined ? value : _.cloneDeep(defaultValue.value)
+      
+      return value !== undefined ? value : /* istanbul ignore next: will never reach, internalValue is assigned at the beginning */ _.cloneDeep(defaultValue.value)
     },
-    set(val) {
+    set(val)
+    {
       if (form$.value.isSync) {
         form$.value.updateModel(dataPath.value, val)
       } else if (parent.value && ['group', 'object'].indexOf(parent.value.type) !== -1) {
@@ -236,9 +244,9 @@ const group = function(props, context, dependencies, options = {})
       } else {
         internalValue.value = val
       }
-    }
+    },
   })
-
+  
   return {
     value,
   }
@@ -251,22 +259,24 @@ const multilingual = function(props, context, dependencies)
   } = base(props, context, dependencies)
   
   // ============ DEPENDENCIES =============
-
+  
   const language = dependencies.language
-
+  
   // ============== COMPUTED ===============
-
+  
   const model = computed({
-    get() {
+    get()
+    {
       return value.value[language.value]
     },
-    set(val) {
+    set(val)
+    {
       value.value = Object.assign({}, value.value, {
-        [language.value]: val
+        [language.value]: val,
       })
-    }
+    },
   })
-
+  
   return {
     value,
     model,
@@ -276,33 +286,34 @@ const multilingual = function(props, context, dependencies)
 const date = function(props, context, dependencies)
 {
   const { name } = toRefs(props)
-
+  
   // ============ DEPENDENCIES =============
-
+  
   const parent = dependencies.parent
   const valueDateFormat = dependencies.valueDateFormat
   const defaultValue = dependencies.defaultValue
   const dataPath = dependencies.dataPath
   const form$ = dependencies.form$
-
+  
   // ================= PRE =================
-
+  
   /**
    * The store for the value of the element when we're not using external data (form's `v-model`).
-   * 
+   *
    * @type {any}
    * @private
    */
-  const internalValue = ref(defaultValue.value instanceof File ? defaultValue.value : _.cloneDeep(defaultValue.value))
-
+  const internalValue = ref(defaultValue.value instanceof File ? /* istanbul ignore next: @todo:adam date type will never have file instance default value */ defaultValue.value : _.cloneDeep(defaultValue.value))
+  
   const {
     value,
     initialValue,
   } = base(props, context, dependencies, {
     value: {
-      get() {
+      get()
+      {
         let value
-
+        
         if (form$.value.isSync) {
           value = _.get(form$.value.model, dataPath.value)
         } else if (parent.value && ['object', 'list', 'multifile'].indexOf(parent.value.type) !== -1) {
@@ -310,19 +321,20 @@ const date = function(props, context, dependencies)
         } else {
           value = internalValue.value
         }
-
-        return value !== undefined ? value : (defaultValue.value instanceof File ? defaultValue.value : _.cloneDeep(defaultValue.value))
+        
+        return value !== undefined ? value : /* istanbul ignore next: can not be undefined @todo:adam can not be file */ (defaultValue.value instanceof File ? defaultValue.value : _.cloneDeep(defaultValue.value))
       },
-      set(val) {
+      set(val)
+      {
         // If the value is not a Date object check if it is matching the value format
         if (!_.isEmpty(val) && !(val instanceof Date) && valueDateFormat.value !== false) {
           checkDateFormat(valueDateFormat.value, val)
         }
-
+        
         val = val && val instanceof Date && valueDateFormat.value !== false
           ? moment(val).format(valueDateFormat.value)
           : val
-
+        
         if (form$.value.isSync) {
           form$.value.updateModel(dataPath.value, val)
         } else if (parent.value && ['list', 'multifile'].indexOf(parent.value.type) !== -1) {
@@ -330,21 +342,21 @@ const date = function(props, context, dependencies)
           parent.value.update(newValue)
         } else if (parent.value && ['object'].indexOf(parent.value.type) !== -1) {
           parent.value.value = Object.assign({}, parent.value.value, {
-            [name.value]: val
+            [name.value]: val,
           })
         } else {
           internalValue.value = val
         }
-      }
-    }
+      },
+    },
   })
-
+  
   // ============== COMPUTED ===============
-
+  
   const model = computed(() => {
     return value.value instanceof Date || !value.value ? value.value : moment(value.value, valueDateFormat.value).toDate()
   })
-
+  
   return {
     value,
     model,
@@ -358,31 +370,32 @@ const dates = function(props, context, dependencies)
   const { name } = toRefs(props)
   
   // ============ DEPENDENCIES =============
-
+  
   const parent = dependencies.parent
   const valueDateFormat = dependencies.valueDateFormat
   const defaultValue = dependencies.defaultValue
   const dataPath = dependencies.dataPath
   const form$ = dependencies.form$
-
+  
   // ================= PRE =================
-
+  
   /**
    * The store for the value of the element when we're not using external data (form's `v-model`).
-   * 
+   *
    * @type {any}
    * @private
    */
-  const internalValue = ref(defaultValue.value instanceof File ? defaultValue.value : _.cloneDeep(defaultValue.value))
-
+  const internalValue = ref(defaultValue.value instanceof File ? /* istanbul ignore next: @todo:adam date type will never have file instance default value */ defaultValue.value : _.cloneDeep(defaultValue.value))
+  
   const {
     value,
     initialValue,
   } = base(props, context, dependencies, {
     value: {
-      get() {
+      get()
+      {
         let value
-
+        
         if (form$.value.isSync) {
           value = _.get(form$.value.model, dataPath.value)
         } else if (parent.value && ['object', 'list', 'multifile'].indexOf(parent.value.type) !== -1) {
@@ -390,48 +403,49 @@ const dates = function(props, context, dependencies)
         } else {
           value = internalValue.value
         }
-
-        return value !== undefined ? value : (defaultValue.value instanceof File ? defaultValue.value : _.cloneDeep(defaultValue.value))
+        
+        return value !== undefined ? value : /* istanbul ignore next: can not be undefined @todo:adam can not be file */ (defaultValue.value instanceof File ? defaultValue.value : _.cloneDeep(defaultValue.value))
       },
-      set(val) {
+      set(val)
+      {
         if (!Array.isArray(val)) {
           val = [val]
         }
-
+        
         val = val.map((v) => {
           if (!_.isEmpty(v) && !(v instanceof Date) && valueDateFormat.value !== false) {
             checkDateFormat(valueDateFormat.value, v)
           }
-
+          
           return v && v instanceof Date && valueDateFormat.value !== false
             ? moment(v).format(valueDateFormat.value)
             : v
         })
-
+        
         if (form$.value.isSync) {
           form$.value.updateModel(dataPath.value, val)
         } else if (parent.value && ['list', 'multifile'].indexOf(parent.value.type) !== -1) {
-          const newValue = parent.value.value.map((v,k) => k == name.value ? val : v)
+          const newValue = parent.value.value.map((v, k) => k == name.value ? val : v)
           parent.value.update(newValue)
         } else if (parent.value && ['object'].indexOf(parent.value.type) !== -1) {
           parent.value.value = Object.assign({}, parent.value.value, {
-            [name.value]: val
+            [name.value]: val,
           })
         } else {
           internalValue.value = val
         }
-      }
-    }
+      },
+    },
   })
-
+  
   // ============== COMPUTED ===============
-
+  
   const model = computed(() => {
     return value.value.map((v) => {
       return v instanceof Date || !v ? v : moment(v, valueDateFormat.value).toDate()
     })
   })
-
+  
   return {
     value,
     model,

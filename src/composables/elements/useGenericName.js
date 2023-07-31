@@ -11,21 +11,21 @@ const base = function(props, context, dependencies)
     label,
     fieldName,
   } = toRefs(props)
-
+  
   // ============ DEPENDENCIES ============
-
+  
   const form$ = dependencies.form$
   const Label = dependencies.Label
-
+  
   // =============== INJECT ===============
-
+  
   const config$ = inject('config$')
-
+  
   // ============== COMPUTED ==============
-
+  
   /**
    * The generic name of the element constructed from label / floating or element name.
-   * 
+   *
    * @type {string}
    * @private.
    */
@@ -42,7 +42,7 @@ const base = function(props, context, dependencies)
       return _.upperFirst(name.value).replace(/_|-/g, ' ')
     }
   })
-
+  
   return {
     genericName,
   }
@@ -56,22 +56,22 @@ const file = function(props, context, dependencies)
     label,
     fieldName,
   } = toRefs(props)
-
+  
   // ============ DEPENDENCIES ============
-
+  
   const form$ = dependencies.form$
   const Label = dependencies.Label
-  const filename = dependencies.filename || ref(null)
-
+  const filename = dependencies.filename || /* istanbul ignore next: failsafe only */ ref(null)
+  
   // =============== INJECT ===============
-
+  
   const config$ = inject('config$')
-
+  
   // ============== COMPUTED ==============
-
+  
   /**
    * The generic name of the element constructed from label / floating, element name or default file name if name is a number.
-   * 
+   *
    * @type {string}
    * @private.
    */
@@ -88,7 +88,7 @@ const file = function(props, context, dependencies)
         : _.upperFirst(name.value).replace(/_|-/g, ' ')
     }
   })
-
+  
   return {
     genericName,
   }
@@ -96,6 +96,6 @@ const file = function(props, context, dependencies)
 
 export {
   file,
-} 
+}
 
 export default base
