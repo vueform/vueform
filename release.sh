@@ -363,4 +363,4 @@ for repo in "${repos[@]}"; do
     success_message "Git and npm operations completed successfully in $repo."
 done
 
-success_message "Relesed $new_version"
+success_message "Released $new_version <<<"
