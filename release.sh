@@ -13,12 +13,12 @@ update_version() {
 
 # Function to display success message in green color
 success_message() {
-    echo -e "\033[32m$1\033[0m"
+    echo -e "\033[32m>>> $1\033[0m"
 }
 
 # Function to display error message in red color
 error_message() {
-    echo -e "\033[31m$1\033[0m"
+    echo -e "\033[31m>>> $1\033[0m"
 }
 
 # Custom select_option function to replace dialog
@@ -127,7 +127,7 @@ echo "Building dist..."
 
 if [ "$test_choice" -eq 0 ]; then
     # User chose to run unit tests
-    echo "Running unit tests..."
+    echo ">>> Running unit tests..."
     npm run test
     test_result=$?
     if [ $test_result -ne 0 ]; then
@@ -149,7 +149,7 @@ else
 fi
 
 # Run npm run build
-echo "Building @vueform/sdk-dev..."
+echo ">>> Building @vueform/sdk-dev..."
 npm run to:dev
 dev_result=$?
 if [ $dev_result -ne 0 ]; then
@@ -188,7 +188,7 @@ fi
 # fi
 
 # Commit the changes with the new version and builde
-echo "Commiting main repo..."
+echo ">>> Commiting main repo..."
 git add --all
 git commit -m "chore: version, build $new_version"
 commit_result=$?
@@ -242,9 +242,9 @@ fi
 repos=("./../@vueform-sdk-dev")
 
 for repo in "${repos[@]}"; do
-    echo "Current directory: $(pwd)" # Debugging output
+    echo ">>> Current directory: $(pwd)" # Debugging output
     pushd "$repo" # Navigate to the repository directory
-    echo "Changed directory to: $(pwd)" # Debugging output
+    echo ">>> Changed directory to: $(pwd)" # Debugging output
 
     # git add --all
     git add --all
