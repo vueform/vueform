@@ -253,65 +253,65 @@ for repo in "${repos[@]}"; do
         exit 1
     fi
 
+    # # git add --all
     # git add --all
-    git add --all
-    git_add_result=$?
-    if [ $git_add_result -ne 0 ]; then
-        # Echo the message in red color
-        error_message "Git add failed in $repo. Exiting..."
-        exit 1
-    else
-        # Echo the success message in green color
-        success_message "Git add successful in $repo."
-    fi
+    # git_add_result=$?
+    # if [ $git_add_result -ne 0 ]; then
+    #     # Echo the message in red color
+    #     error_message "Git add failed in $repo. Exiting..."
+    #     exit 1
+    # else
+    #     # Echo the success message in green color
+    #     success_message "Git add successful in $repo."
+    # fi
 
+    # # git commit -m "$new_version"
     # git commit -m "$new_version"
-    git commit -m "$new_version"
-    git_commit_result=$?
-    if [ $git_commit_result -ne 0 ]; then
-        # Echo the message in red color
-        error_message "Git commit failed in $repo. Exiting..."
-        exit 1
-    else
-        # Echo the success message in green color
-        success_message "Git commit successful in $repo."
-    fi
+    # git_commit_result=$?
+    # if [ $git_commit_result -ne 0 ]; then
+    #     # Echo the message in red color
+    #     error_message "Git commit failed in $repo. Exiting..."
+    #     exit 1
+    # else
+    #     # Echo the success message in green color
+    #     success_message "Git commit successful in $repo."
+    # fi
 
+    # # git tag "v$new_version"
     # git tag "v$new_version"
-    git tag "v$new_version"
-    git_tag_result=$?
-    if [ $git_tag_result -ne 0 ]; then
-        # Echo the message in red color
-        error_message "Git tag creation failed in $repo. Exiting..."
-        exit 1
-    else
-        # Echo the success message in green color
-        success_message "Git tag created successfully in $repo."
-    fi
+    # git_tag_result=$?
+    # if [ $git_tag_result -ne 0 ]; then
+    #     # Echo the message in red color
+    #     error_message "Git tag creation failed in $repo. Exiting..."
+    #     exit 1
+    # else
+    #     # Echo the success message in green color
+    #     success_message "Git tag created successfully in $repo."
+    # fi
 
+    # # git push --tags
     # git push --tags
-    git push --tags
-    git_push_tags_result=$?
-    if [ $git_push_tags_result -ne 0 ]; then
-        # Echo the message in red color
-        error_message "Git push tags failed in $repo. Exiting..."
-        exit 1
-    else
-        # Echo the success message in green color
-        success_message "Git push tags successful in $repo."
-    fi
+    # git_push_tags_result=$?
+    # if [ $git_push_tags_result -ne 0 ]; then
+    #     # Echo the message in red color
+    #     error_message "Git push tags failed in $repo. Exiting..."
+    #     exit 1
+    # else
+    #     # Echo the success message in green color
+    #     success_message "Git push tags successful in $repo."
+    # fi
 
+    # # npm publish
     # npm publish
-    npm publish
-    npm_publish_result=$?
-    if [ $npm_publish_result -ne 0 ]; then
-        # Echo the message in red color
-        error_message "npm publish failed in $repo. Exiting..."
-        exit 1
-    else
-        # Echo the success message in green color
-        success_message "npm publish successful in $repo."
-    fi
+    # npm_publish_result=$?
+    # if [ $npm_publish_result -ne 0 ]; then
+    #     # Echo the message in red color
+    #     error_message "npm publish failed in $repo. Exiting..."
+    #     exit 1
+    # else
+    #     # Echo the success message in green color
+    #     success_message "npm publish successful in $repo."
+    # fi
 
     popd # Return to the original directory
     echo "Returned to the original directory: $(pwd)" # Debugging output
