@@ -194,8 +194,9 @@ fi
 
 # Commit the changes with the new version and builde
 info_message "Commiting main repo..."
+git push --delete origin v$new_version
+git tag -d "v$new_version"
 git add --all
-
 git commit -m "chore: version, build $new_version"
 commit_result=$?
 if [ $commit_result -ne 0 ]; then
@@ -254,16 +255,7 @@ repos=("./../@vueform-sdk-dev" "./../@vueform-sdk" "./../@vueform-sdk-source")
 # repos=("./../@vueform-sdk-dev")
 
 for repo in "${repos[@]}"; do
-    info_message "Current directory: $(pwd)" # Debugging output
-    pushd "$repo" # Navigate to the repository directory
-    info_message "Changed directory to: $(pwd)" # Debugging output
-
-    # Ensure we are in the correct directory
-    if [ ! -d ".git" ]; then
-        # Echo the message in red color
-        error_message "Error: Not in a git repository. Exiting..."
-        exit 1
-    fi
+    cd "$repo"
 
     # git add --all
     git add --all
@@ -277,55 +269,67 @@ for repo in "${repos[@]}"; do
         success_message "Git add successful in $repo."
     fi
 
-    # git commit -m "$new_version"
-    git commit -m "$new_version"
-    git_commit_result=$?
-    if [ $git_commit_result -ne 0 ]; then
-        # Echo the message in red color
-        error_message "Git commit failed in $repo. Exiting..."
-        exit 1
+    # Check if there are any changes to commit
+    git_status=$(git status --porcelain)
+    if [ -n "$git_status" ]; then
+        # git commit -m "$new_version"
+        git commit -m "$new_version"
+        git_commit_result=$?
+        if [ $git_commit_result -ne 0 ]; then
+            # Check if the error is due to "Nothing to commit. Working tree clean."
+            if [[ "$git_commit_result" == *"nothing to commit, working tree clean"* ]]; then
+                # Echo the message in green color
+                success_message "Nothing to commit. Working tree clean in $repo."
+            else
+                # Echo the message in red color
+                error_message "Git commit failed in $repo. Exiting..."
+                exit 1
+            fi
+        else
+            # Echo the success message in green color
+            success_message "Git commit successful in $repo."
+
+            # git tag "v$new_version"
+            git tag "v$new_version"
+            git_tag_result=$?
+            if [ $git_tag_result -ne 0 ]; then
+                # Echo the message in red color
+                error_message "Git tag creation failed in $repo. Exiting..."
+                exit 1
+            else
+                # Echo the success message in green color
+                success_message "Git tag created successfully in $repo."
+
+                # git push --tags
+                git push --tags
+                git_push_tags_result=$?
+                if [ $git_push_tags_result -ne 0 ]; then
+                    # Echo the message in red color
+                    error_message "Git push tags failed in $repo. Exiting..."
+                    exit 1
+                else
+                    # Echo the success message in green color
+                    success_message "Git push tags successful in $repo."
+
+                    # npm publish
+                    npm publish
+                    npm_publish_result=$?
+                    if [ $npm_publish_result -ne 0 ]; then
+                        # Echo the message in red color
+                        error_message "npm publish failed in $repo. Exiting..."
+                        exit 1
+                    else
+                        # Echo the success message in green color
+                        success_message "npm publish successful in $repo."
+                    fi
+                fi
+            fi
+        fi
     else
-        # Echo the success message in green color
-        success_message "Git commit successful in $repo."
+        # Echo the message in green color
+        success_message "Nothing to commit. Working tree clean in $repo."
     fi
 
-    # git tag "v$new_version"
-    git tag "v$new_version"
-    git_tag_result=$?
-    if [ $git_tag_result -ne 0 ]; then
-        # Echo the message in red color
-        error_message "Git tag creation failed in $repo."
-    else
-        # Echo the success message in green color
-        success_message "Git tag created successfully in $repo."
-    fi
-
-    # git push --tags
-    git push --tags
-    git_push_tags_result=$?
-    if [ $git_push_tags_result -ne 0 ]; then
-        # Echo the message in red color
-        error_message "Git push tags failed in $repo. Exiting..."
-        exit 1
-    else
-        # Echo the success message in green color
-        success_message "Git push tags successful in $repo."
-    fi
-
-    # npm publish
-    npm publish
-    npm_publish_result=$?
-    if [ $npm_publish_result -ne 0 ]; then
-        # Echo the message in red color
-        error_message "npm publish failed in $repo. Exiting..."
-        exit 1
-    else
-        # Echo the success message in green color
-        success_message "npm publish successful in $repo."
-    fi
-
-    popd # Return to the original directory
-    info_message "Returned to the original directory: $(pwd)" # Debugging output
     success_message "Git and npm operations completed successfully in $repo."
 done
 
