@@ -195,6 +195,7 @@ fi
 # Commit the changes with the new version and builde
 info_message "Commiting main repo..."
 git add --all
+
 git commit -m "chore: version, build $new_version"
 commit_result=$?
 if [ $commit_result -ne 0 ]; then
