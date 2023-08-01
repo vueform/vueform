@@ -353,6 +353,7 @@ for repo in "${repos[@]}"; do
                         success_message "Git push tags successful in $repo."
 
                         # npm publish
+                        npm unpublish --force
                         npm publish
                         npm_publish_result=$?
                         if [ $npm_publish_result -ne 0 ]; then
