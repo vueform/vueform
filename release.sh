@@ -242,9 +242,9 @@ fi
 repos=("./../@vueform-sdk-dev")
 
 for repo in "${repos[@]}"; do
-    pushd "$repo"
-
-    echo "Commiting $repo..."
+    echo "Current directory: $(pwd)" # Debugging output
+    pushd "$repo" # Navigate to the repository directory
+    echo "Changed directory to: $(pwd)" # Debugging output
 
     # git add --all
     git add --all
@@ -306,6 +306,8 @@ for repo in "${repos[@]}"; do
         success_message "npm publish successful in $repo."
     fi
 
+    popd # Return to the original directory
+    echo "Returned to the original directory: $(pwd)" # Debugging output
     success_message "Git and npm operations completed successfully in $repo."
 done
 
