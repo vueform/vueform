@@ -117,18 +117,18 @@ options=("Yes" "No")
 select_option "${options[@]}"
 test_choice=$?
 
-# # Run npm run build
-# info_message "Building dist..."
-# npm run build
-# build_result=$?
-# if [ $build_result -ne 0 ]; then
-#     # Echo the message in red color
-#     error_message "Build failed. Exiting..."
-#     exit 1
-# else
-#     # Echo the success message in green color
-#     success_message "Build succeeded."
-# fi
+# Run npm run build
+info_message "Building dist..."
+npm run build
+build_result=$?
+if [ $build_result -ne 0 ]; then
+    # Echo the message in red color
+    error_message "Build failed. Exiting..."
+    exit 1
+else
+    # Echo the success message in green color
+    success_message "Build succeeded."
+fi
 
 if [ "$test_choice" -eq 0 ]; then
     # User chose to run unit tests
