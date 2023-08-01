@@ -242,7 +242,7 @@ fi
 repos=("./../@vueform-sdk-dev")
 
 for repo in "${repos[@]}"; do
-    cd "$repo"
+    pushd "$repo"
 
     echo "Commiting $repo..."
 
