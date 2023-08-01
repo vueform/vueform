@@ -235,7 +235,7 @@ git push --delete origin v$new_version
 git tag -d "v$new_version"
 
 # Create a git tag with the new version
-info_message "Adding version tag in repo..."
+info_message "Adding version tag in main repo..."
 git tag "v$new_version"
 tag_result=$?
 if [ $tag_result -ne 0 ]; then
