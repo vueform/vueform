@@ -29,7 +29,7 @@ else
     success_message "Git commit successful."
 
     # Push the changes
-    git push origin main
+    git push
     push_result=$?
     if [ $push_result -ne 0 ]; then
         # Echo the message in red color
@@ -51,7 +51,7 @@ else
             success_message "Git tag created successfully."
 
             # Push git tags
-            git push origin --tags
+            git push --tags
             push_tags_result=$?
             if [ $push_tags_result -ne 0 ]; then
                 # Echo the message in red color
