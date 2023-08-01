@@ -13,9 +13,9 @@ function deleteFolderRecursiveSync(directory, deleteCurrent = false) {
   if (fs.existsSync(directory)) {
     fs.readdirSync(directory).forEach((file) => {
       const filePath = path.join(directory, file);
-      if (fs.lstatSync(filePath).isDirectory()) {
+      if (fs.lstatSync(filePath).isDirectory() && file != '.git') {
         deleteFolderRecursiveSync(filePath, true);
-      } else {
+      } else if (file != '.git') {
         fs.unlinkSync(filePath);
       }
     });
