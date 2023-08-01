@@ -1,6 +1,6 @@
 ## v1.3.4
 
-> `2023-07-30`
+> `2023-07-31`
 
 ### 🐞 Bug Fixes
 - List object group child remove fix.
