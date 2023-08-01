@@ -7,6 +7,10 @@ error_message() {
     echo -e "\033[31m>>> $1\033[0m"
 }
 
+new_version=1.3.5
+
+info_message "Commiting main repo..."
+git add --all
 git commit -m "chore: version, build $new_version"
 commit_result=$?
 if [ $commit_result -ne 0 ]; then
