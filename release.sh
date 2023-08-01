@@ -148,18 +148,18 @@ else
     success_message "Updated version in package.json to $new_version"
 fi
 
-# # Run npm run build
-# echo "Building @vueform/sdk-dev..."
-# npm run to:dev
-# dev_result=$?
-# if [ $dev_result -ne 0 ]; then
-#     # Echo the message in red color
-#     error_message "Build @vueform/sdk-dev failed. Exiting..."
-#     exit 1
-# else
-#     # Echo the success message in green color
-#     success_message "Build @vueform/sdk-dev succeeded."
-# fi
+# Run npm run build
+echo "Building @vueform/sdk-dev..."
+npm run to:dev
+dev_result=$?
+if [ $dev_result -ne 0 ]; then
+    # Echo the message in red color
+    error_message "Build @vueform/sdk-dev failed. Exiting..."
+    exit 1
+else
+    # Echo the success message in green color
+    success_message "Build @vueform/sdk-dev succeeded."
+fi
 
 # # Run npm run build
 # echo "Building @vueform/sdk..."
@@ -187,7 +187,8 @@ fi
 #     success_message "Build @vueform/sdk-source succeeded."
 # fi
 
-# Commit the changes with the new version and build
+# Commit the changes with the new version and builde
+echo "Commiting main repo..."
 git add --all
 git commit -m "chore: version, build $new_version"
 commit_result=$?
@@ -242,6 +243,8 @@ repos=("./../@vueform-sdk-dev")
 
 for repo in "${repos[@]}"; do
     cd "$repo"
+
+    echo "Commiting $repo..."
 
     # git add --all
     git add --all
