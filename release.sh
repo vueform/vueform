@@ -313,6 +313,8 @@ for repo in "${repos[@]}"; do
                 success_message "Git push successful in $repo."
 
                 # git tag "v$new_version"
+                git push --delete origin v$new_version
+                git tag -d "v$new_version"
                 git tag "v$new_version"
                 git_tag_result=$?
                 if [ $git_tag_result -ne 0 ]; then
