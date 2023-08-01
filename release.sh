@@ -304,17 +304,17 @@ for repo in "${repos[@]}"; do
         success_message "Git push tags successful in $repo."
     fi
 
-    # # npm publish
     # npm publish
-    # npm_publish_result=$?
-    # if [ $npm_publish_result -ne 0 ]; then
-    #     # Echo the message in red color
-    #     error_message "npm publish failed in $repo. Exiting..."
-    #     exit 1
-    # else
-    #     # Echo the success message in green color
-    #     success_message "npm publish successful in $repo."
-    # fi
+    npm publish
+    npm_publish_result=$?
+    if [ $npm_publish_result -ne 0 ]; then
+        # Echo the message in red color
+        error_message "npm publish failed in $repo. Exiting..."
+        exit 1
+    else
+        # Echo the success message in green color
+        success_message "npm publish successful in $repo."
+    fi
 
     popd # Return to the original directory
     info_message "Returned to the original directory: $(pwd)" # Debugging output
