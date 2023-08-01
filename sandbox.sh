@@ -23,4 +23,40 @@ if [ $commit_result -ne 0 ]; then
 else
     # Echo the success message in green color
     success_message "Git commit successful."
+
+    # Push the changes
+    git push origin main
+    push_result=$?
+    if [ $push_result -ne 0 ]; then
+        # Echo the message in red color
+        error_message "Git push failed. Exiting..."
+        exit 1
+    else
+        # Echo the success message in green color
+        success_message "Git push successful."
+
+        # Create a git tag with the new version
+        git tag "v$new_version"
+        tag_result=$?
+        if [ $tag_result -ne 0 ]; then
+            # Echo the message in red color
+            error_message "Git tag creation failed. Exiting..."
+            exit 1
+        else
+            # Echo the success message in green color
+            success_message "Git tag created successfully."
+
+            # Push git tags
+            git push origin --tags
+            push_tags_result=$?
+            if [ $push_tags_result -ne 0 ]; then
+                # Echo the message in red color
+                error_message "Git push tags failed. Exiting..."
+                exit 1
+            else
+                # Echo the success message in green color
+                success_message "Git push tags successful."
+            fi
+        fi
+    fi
 fi
