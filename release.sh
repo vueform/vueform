@@ -167,7 +167,7 @@ else
 fi
 
 # Run npm run build
-echo "Building @vueform/sdk..."
+info_message "Building @vueform/sdk..."
 npm run to:prod
 prod_result=$?
 if [ $prod_result -ne 0 ]; then
@@ -180,7 +180,7 @@ else
 fi
 
 # Run npm run build
-echo "Building @vueform/sdk-source..."
+info_message "Building @vueform/sdk-source..."
 npm run to:source
 source_result=$?
 if [ $source_result -ne 0 ]; then
@@ -242,8 +242,8 @@ else
 fi
 
 # Additional git and npm operations for @vueform-sdk-dev, @vueform-sdk, and @vueform-sdk-source folders
-# repos=("./../@vueform-sdk-dev" "./../@vueform-sdk" "./../@vueform-sdk-source")
-repos=("./../@vueform-sdk-dev")
+repos=("./../@vueform-sdk-dev" "./../@vueform-sdk" "./../@vueform-sdk-source")
+# repos=("./../@vueform-sdk-dev")
 
 for repo in "${repos[@]}"; do
     info_message "Current directory: $(pwd)" # Debugging output
@@ -304,17 +304,17 @@ for repo in "${repos[@]}"; do
         success_message "Git push tags successful in $repo."
     fi
 
+    # # npm publish
     # npm publish
-    npm publish
-    npm_publish_result=$?
-    if [ $npm_publish_result -ne 0 ]; then
-        # Echo the message in red color
-        error_message "npm publish failed in $repo. Exiting..."
-        exit 1
-    else
-        # Echo the success message in green color
-        success_message "npm publish successful in $repo."
-    fi
+    # npm_publish_result=$?
+    # if [ $npm_publish_result -ne 0 ]; then
+    #     # Echo the message in red color
+    #     error_message "npm publish failed in $repo. Exiting..."
+    #     exit 1
+    # else
+    #     # Echo the success message in green color
+    #     success_message "npm publish successful in $repo."
+    # fi
 
     popd # Return to the original directory
     info_message "Returned to the original directory: $(pwd)" # Debugging output
