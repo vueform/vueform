@@ -252,7 +252,6 @@ fi
 
 # Additional git and npm operations for @vueform-sdk-dev, @vueform-sdk, and @vueform-sdk-source folders
 repos=("./../@vueform-sdk-dev" "./../@vueform-sdk" "./../@vueform-sdk-source")
-# repos=("./../@vueform-sdk-dev")
 
 for repo in "${repos[@]}"; do
     cd "$repo"
@@ -262,7 +261,11 @@ for repo in "${repos[@]}"; do
     git_add_result=$?
     if [ $git_add_result -ne 0 ]; then
         # Echo the message in red color
-        error_message "Git add failed in $repo. Exiting..."
+        error_message "Git add failed in $repo. Cleaning up..."
+        # Undo the previous git add --all
+        git reset HEAD . &> /dev/null
+        # Reset the repository back to the state of the main branch on the remote repository
+        git reset --hard origin/main &> /dev/null
         exit 1
     else
         # Echo the success message in green color
@@ -282,7 +285,11 @@ for repo in "${repos[@]}"; do
                 success_message "Nothing to commit. Working tree clean in $repo."
             else
                 # Echo the message in red color
-                error_message "Git commit failed in $repo. Exiting..."
+                error_message "Git commit failed in $repo. Cleaning up..."
+                # Undo the previous git add --all
+                git reset HEAD . &> /dev/null
+                # Reset the repository back to the state of the main branch on the remote repository
+                git reset --hard origin/main &> /dev/null
                 exit 1
             fi
         else
@@ -294,18 +301,32 @@ for repo in "${repos[@]}"; do
             git_tag_result=$?
             if [ $git_tag_result -ne 0 ]; then
                 # Echo the message in red color
-                error_message "Git tag creation failed in $repo. Exiting..."
+                error_message "Git tag creation failed in $repo. Cleaning up..."
+                # Delete the local tag (if created)
+                git tag -d "v$new_version" &> /dev/null
+                # Undo the previous git add --all
+                git reset HEAD . &> /dev/null
+                # Reset the repository back to the state of the main branch on the remote repository
+                git reset --hard origin/main &> /dev/null
                 exit 1
             else
                 # Echo the success message in green color
                 success_message "Git tag created successfully in $repo."
 
-                # git push --tags
-                git push --tags
-                git_push_tags_result=$?
-                if [ $git_push_tags_result -ne 0 ]; then
+                # Push git tags
+                git push origin --tags
+                push_tags_result=$?
+                if [ $push_tags_result -ne 0 ]; then
                     # Echo the message in red color
-                    error_message "Git push tags failed in $repo. Exiting..."
+                    error_message "Git push tags failed in $repo. Cleaning up..."
+                    # Delete the local tag (if created)
+                    git tag -d "v$new_version" &> /dev/null
+                    # Delete the remote tag (if created)
+                    git push --delete origin "v$new_version" &> /dev/null
+                    # Undo the previous git add --all
+                    git reset HEAD . &> /dev/null
+                    # Reset the repository back to the state of the main branch on the remote repository
+                    git reset --hard origin/main &> /dev/null
                     exit 1
                 else
                     # Echo the success message in green color
@@ -316,7 +337,15 @@ for repo in "${repos[@]}"; do
                     npm_publish_result=$?
                     if [ $npm_publish_result -ne 0 ]; then
                         # Echo the message in red color
-                        error_message "npm publish failed in $repo. Exiting..."
+                        error_message "npm publish failed in $repo. Cleaning up..."
+                        # Delete the local tag (if created)
+                        git tag -d "v$new_version" &> /dev/null
+                        # Delete the remote tag (if created)
+                        git push --delete origin "v$new_version" &> /dev/null
+                        # Undo the previous git add --all
+                        git reset HEAD . &> /dev/null
+                        # Reset the repository back to the state of the main branch on the remote repository
+                        git reset --hard origin/main &> /dev/null
                         exit 1
                     else
                         # Echo the success message in green color
