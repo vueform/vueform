@@ -192,11 +192,12 @@ else
     success_message "Build @vueform/sdk-source succeeded."
 fi
 
-# Commit the changes with the new version and builde
-info_message "Commiting main repo..."
-git push --delete origin v$new_version
-git tag -d "v$new_version"
+# Adding files in main repo
+info_message "Adding files in main repo..."
 git add --all
+
+# Commit the changes with the new version and build
+info_message "Comitting in main repo..."
 git commit -m "chore: version, build $new_version"
 commit_result=$?
 if [ $commit_result -ne 0 ]; then
@@ -216,6 +217,7 @@ else
 fi
 
 # Push the changes
+info_message "Pushing main repo..."
 git push
 push_result=$?
 if [ $push_result -ne 0 ]; then
@@ -227,7 +229,13 @@ else
     success_message "Git push successful."
 fi
 
+# Remove existing git tag with the new version
+info_message "Removing current version tag in main repo..."
+git push --delete origin v$new_version
+git tag -d "v$new_version"
+
 # Create a git tag with the new version
+info_message "Adding version tag in repo..."
 git tag "v$new_version"
 tag_result=$?
 if [ $tag_result -ne 0 ]; then
@@ -239,6 +247,7 @@ else
 fi
 
 # Push git tags
+info_message "Pusing tags in main repo..."
 git push --tags
 push_tags_result=$?
 if [ $push_tags_result -ne 0 ]; then
@@ -252,12 +261,13 @@ fi
 
 # Additional git and npm operations for @vueform-sdk-dev, @vueform-sdk, and @vueform-sdk-source folders
 #repos=("./../@vueform-sdk-dev" "./../@vueform-sdk" "./../@vueform-sdk-source")
-repos=("./../@vueform-sdk-dev" "./../@vueform-sdk" "./../@vueform-sdk-source")
+repos=("@vueform-sdk-dev" "@vueform-sdk" "@vueform-sdk-source")
 
 for repo in "${repos[@]}"; do
-    cd "$repo"
+    cd "./../$repo"
 
     # git add --all
+    info_message "Adding files in $repo..."
     git add --all
     git_add_result=$?
     if [ $git_add_result -ne 0 ]; then
@@ -277,6 +287,7 @@ for repo in "${repos[@]}"; do
     git_status=$(git status --porcelain)
     if [ -n "$git_status" ]; then
         # git commit -m "$new_version"
+        info_message "Commiting $repo..."
         git commit -m "$new_version"
         git_commit_result=$?
         if [ $git_commit_result -ne 0 ]; then
@@ -298,6 +309,7 @@ for repo in "${repos[@]}"; do
             success_message "Git commit successful in $repo."
 
             # Push the changes
+            info_message "Pusing $repo..."
             git push
             push_result=$?
             if [ $push_result -ne 0 ]; then
@@ -313,8 +325,10 @@ for repo in "${repos[@]}"; do
                 success_message "Git push successful in $repo."
 
                 # git tag "v$new_version"
+                info_message "Removing current version tag in $repo..."
                 git push --delete origin v$new_version
                 git tag -d "v$new_version"
+                info_message "Creating version tag in $repo..."
                 git tag "v$new_version"
                 git_tag_result=$?
                 if [ $git_tag_result -ne 0 ]; then
@@ -334,6 +348,7 @@ for repo in "${repos[@]}"; do
                     success_message "Git tag created successfully in $repo."
 
                     # Push git tags
+                    info_message "Pusing tags in $repo..."
                     git push --tags
                     push_tags_result=$?
                     if [ $push_tags_result -ne 0 ]; then
@@ -353,7 +368,9 @@ for repo in "${repos[@]}"; do
                         success_message "Git push tags successful in $repo."
 
                         # npm publish
+                        info_message "Unpublishing $repo..."
                         npm unpublish --force
+                        info_message "Publishing $repo..."
                         npm publish
                         npm_publish_result=$?
                         if [ $npm_publish_result -ne 0 ]; then
