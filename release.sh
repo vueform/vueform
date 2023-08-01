@@ -21,6 +21,11 @@ error_message() {
     echo -e "\033[31m>>> $1\033[0m"
 }
 
+# Function to display error message in red color
+info_message() {
+    echo ">>> $1"
+}
+
 # Custom select_option function to replace dialog
 select_option() {
     local options=("$@")
@@ -113,21 +118,21 @@ select_option "${options[@]}"
 test_choice=$?
 
 # Run npm run build
-echo "Building dist..."
-# npm run build
-# build_result=$?
-# if [ $build_result -ne 0 ]; then
-#     # Echo the message in red color
-#     error_message "Build failed. Exiting..."
-#     exit 1
-# else
-#     # Echo the success message in green color
-#     success_message "Build succeeded."
-# fi
+info_message "Building dist..."
+npm run build
+build_result=$?
+if [ $build_result -ne 0 ]; then
+    # Echo the message in red color
+    error_message "Build failed. Exiting..."
+    exit 1
+else
+    # Echo the success message in green color
+    success_message "Build succeeded."
+fi
 
 if [ "$test_choice" -eq 0 ]; then
     # User chose to run unit tests
-    echo ">>> Running unit tests..."
+    info_message "Running unit tests..."
     npm run test
     test_result=$?
     if [ $test_result -ne 0 ]; then
@@ -142,14 +147,14 @@ if [ "$test_choice" -eq 0 ]; then
         success_message "Updated version in package.json to $new_version"
     fi
 else
-    echo "Skipping unit tests."
+    info_message "Skipping unit tests."
     # Update package.json with the new version since tests are skipped
     update_version "$new_version"
     success_message "Updated version in package.json to $new_version"
 fi
 
 # Run npm run build
-echo ">>> Building @vueform/sdk-dev..."
+info_message "Building @vueform/sdk-dev..."
 npm run to:dev
 dev_result=$?
 if [ $dev_result -ne 0 ]; then
@@ -161,34 +166,34 @@ else
     success_message "Build @vueform/sdk-dev succeeded."
 fi
 
-# # Run npm run build
-# echo "Building @vueform/sdk..."
-# npm run to:prod
-# prod_result=$?
-# if [ $prod_result -ne 0 ]; then
-#     # Echo the message in red color
-#     error_message "Build @vueform/sdk failed. Exiting..."
-#     exit 1
-# else
-#     # Echo the success message in green color
-#     success_message "Build @vueform/sdk succeeded."
-# fi
+# Run npm run build
+echo "Building @vueform/sdk..."
+npm run to:prod
+prod_result=$?
+if [ $prod_result -ne 0 ]; then
+    # Echo the message in red color
+    error_message "Build @vueform/sdk failed. Exiting..."
+    exit 1
+else
+    # Echo the success message in green color
+    success_message "Build @vueform/sdk succeeded."
+fi
 
-# # Run npm run build
-# echo "Building @vueform/sdk-source..."
-# npm run to:source
-# source_result=$?
-# if [ $source_result -ne 0 ]; then
-#     # Echo the message in red color
-#     error_message "Build @vueform/sdk-source failed. Exiting..."
-#     exit 1
-# else
-#     # Echo the success message in green color
-#     success_message "Build @vueform/sdk-source succeeded."
-# fi
+# Run npm run build
+echo "Building @vueform/sdk-source..."
+npm run to:source
+source_result=$?
+if [ $source_result -ne 0 ]; then
+    # Echo the message in red color
+    error_message "Build @vueform/sdk-source failed. Exiting..."
+    exit 1
+else
+    # Echo the success message in green color
+    success_message "Build @vueform/sdk-source succeeded."
+fi
 
 # Commit the changes with the new version and builde
-echo ">>> Commiting main repo..."
+info_message "Commiting main repo..."
 git add --all
 git commit -m "chore: version, build $new_version"
 commit_result=$?
@@ -241,9 +246,9 @@ fi
 repos=("./../@vueform-sdk-dev")
 
 for repo in "${repos[@]}"; do
-    echo ">>> Current directory: $(pwd)" # Debugging output
+    info_message "Current directory: $(pwd)" # Debugging output
     pushd "$repo" # Navigate to the repository directory
-    echo ">>> Changed directory to: $(pwd)" # Debugging output
+    info_message "Changed directory to: $(pwd)" # Debugging output
 
     # Ensure we are in the correct directory
     if [ ! -d ".git" ]; then
@@ -281,8 +286,7 @@ for repo in "${repos[@]}"; do
     git_tag_result=$?
     if [ $git_tag_result -ne 0 ]; then
         # Echo the message in red color
-        error_message "Git tag creation failed in $repo. Exiting..."
-        exit 1
+        error_message "Git tag creation failed in $repo."
     else
         # Echo the success message in green color
         success_message "Git tag created successfully in $repo."
@@ -313,7 +317,7 @@ for repo in "${repos[@]}"; do
     fi
 
     popd # Return to the original directory
-    echo "Returned to the original directory: $(pwd)" # Debugging output
+    info_message "Returned to the original directory: $(pwd)" # Debugging output
     success_message "Git and npm operations completed successfully in $repo."
 done
 
