@@ -246,6 +246,13 @@ for repo in "${repos[@]}"; do
     pushd "$repo" # Navigate to the repository directory
     echo ">>> Changed directory to: $(pwd)" # Debugging output
 
+    # Ensure we are in the correct directory
+    if [ ! -d ".git" ]; then
+        # Echo the message in red color
+        error_message "Error: Not in a git repository. Exiting..."
+        exit 1
+    fi
+
     # git add --all
     git add --all
     git_add_result=$?
