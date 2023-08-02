@@ -10538,7 +10538,7 @@ var base$P = function base(props, context, dependencies) {
   // ============== COMPUTED ==============
 
   /**
-   * The `id` of the related label component..
+   * The `id` of the related label component.
    * 
    * @type {string}
    * @private
