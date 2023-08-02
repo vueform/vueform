@@ -446,7 +446,7 @@ done
 
 if [ "$publish_notes_choice" -eq 0 ]; then
     cd ./../vueform
-   ./notes.sh > "$temp_file" 2>&1
+   ./notes.sh
    notes=$?
 
    if [ $notes -ne 0 ]; then

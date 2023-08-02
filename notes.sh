@@ -17,7 +17,6 @@ info_message() {
 
 temp_file=$(mktemp)
 
-info_message "Creating release notes..."
 node ./scripts/notes.js > "$temp_file" 2>&1
 notes=$?
 if [ $notes -ne 0 ]; then
@@ -42,11 +41,18 @@ fi
     
 cd ./../vueform.com
 
-git add apps/sdk/releases.json
-git commit -m  '$new_version'
-git push
+git add apps/sdk/releases.json > "$temp_file" 2>&1
+git commit -m  '$new_version' > "$temp_file" 2>&1
+git push > "$temp_file" 2>&1
+push_result=$?
 
-info_message "Publishing release notes..."
+if [[ $? -eq 0 ]]; then
+  success_message "Pushing release notes to https://sdk.vueform.com succeeded."
+else
+  error_message "Pushing release notes to https://sdk.vueform.com failed. Exiting..."
+  cat "$temp_file"
+  exit 1
+fi
 
 # Define the URL
 url="https://forge.laravel.com/servers/681079/sites/2056602/deploy/http?token=gTbJpYLM7MhxprrI4m5WkceH8vA16AHkW2P4Q4ig"
