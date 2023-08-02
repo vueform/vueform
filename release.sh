@@ -68,6 +68,8 @@ select_option() {
     return $selected
 }
 
+temp_file=$(mktemp)
+
 # Ask for the version update type
 echo "Choose the version update type:"
 options=("Don't change version" "Patch" "Minor" "Major")
@@ -111,12 +113,12 @@ check_changelog_version() {
 # Call the function to check the version in CHANGELOG.md
 check_changelog_version "$new_version"
 
-info_message "Generating release notes..."
-node ./scripts/notes.js
+node ./scripts/notes.js > "$temp_file" 2>&1
 notes=$?
 if [ $notes -ne 0 ]; then
     # Echo the message in red color
     error_message "Generating notes failed. Exiting..."
+    cat "$temp_file"
     exit 1
 else
     # Echo the success message in green color
@@ -134,24 +136,25 @@ options=("Yes" "No")
 select_option "${options[@]}"
 publish_notes_choice=$?
 
-info_message "Generating API files..."
-npm run generate
+# Generate api files
+npm run generate > "$temp_file" 2>&1
 generate_result=$?
 if [ $generate_result -ne 0 ]; then
     # Echo the message in red color
     error_message "API generation failed. Exiting..."
+    cat "$temp_file"
     exit 1
 else
     # Echo the success message in green color
     success_message "API generation succeeded."
 fi
 
-info_message "Publishing API files..."
-node ./scripts/apiToSdk.js
+node ./scripts/apiToSdk.js > "$temp_file" 2>&1
 publish_result=$?
 if [ $publish_result -ne 0 ]; then
     # Echo the message in red color
     error_message "API publishing failed. Exiting..."
+    cat "$temp_file"
     exit 1
 else
     # Echo the success message in green color
@@ -159,12 +162,12 @@ else
 fi
 
 # Run npm run build
-info_message "Building dist..."
-npm run build
+npm run build > "$temp_file" 2>&1
 build_result=$?
 if [ $build_result -ne 0 ]; then
     # Echo the message in red color
     error_message "Build failed. Exiting..."
+    cat "$temp_file"
     exit 1
 else
     # Echo the success message in green color
@@ -173,7 +176,6 @@ fi
 
 if [ "$test_choice" -eq 0 ]; then
     # User chose to run unit tests
-    info_message "Running unit tests..."
     npm run test
     test_result=$?
     if [ $test_result -ne 0 ]; then
@@ -195,12 +197,12 @@ else
 fi
 
 # Run npm run build
-info_message "Building @vueform/sdk-dev..."
-npm run to:dev
+npm run to:dev > "$temp_file" 2>&1
 dev_result=$?
 if [ $dev_result -ne 0 ]; then
     # Echo the message in red color
     error_message "Build @vueform/sdk-dev failed. Exiting..."
+    cat "$temp_file"
     exit 1
 else
     # Echo the success message in green color
@@ -208,12 +210,12 @@ else
 fi
 
 # Run npm run build
-info_message "Building @vueform/sdk..."
-npm run to:prod
+npm run to:prod > "$temp_file" 2>&1
 prod_result=$?
 if [ $prod_result -ne 0 ]; then
     # Echo the message in red color
     error_message "Build @vueform/sdk failed. Exiting..."
+    cat "$temp_file"
     exit 1
 else
     # Echo the success message in green color
@@ -221,12 +223,12 @@ else
 fi
 
 # Run npm run build
-info_message "Building @vueform/sdk-source..."
-npm run to:source
+npm run to:source > "$temp_file" 2>&1
 source_result=$?
 if [ $source_result -ne 0 ]; then
     # Echo the message in red color
     error_message "Build @vueform/sdk-source failed. Exiting..."
+    cat "$temp_file"
     exit 1
 else
     # Echo the success message in green color
@@ -234,12 +236,10 @@ else
 fi
 
 # Adding files in main repo
-info_message "Adding files in main repo..."
-git add --all
+git add --all > "$temp_file" 2>&1
 
 # Commit the changes with the new version and build
-info_message "Comitting in main repo..."
-git commit -m "chore: version, build $new_version"
+git commit -m "chore: version, build $new_version" > "$temp_file" 2>&1
 commit_result=$?
 if [ $commit_result -ne 0 ]; then
     # Check if the error is due to "nothing to commit, working tree clean"
@@ -250,6 +250,7 @@ if [ $commit_result -ne 0 ]; then
     else
         # Echo the message in red color
         error_message "Git commit failed. Exiting..."
+        cat "$temp_file"
         exit 1
     fi
 else
@@ -258,12 +259,12 @@ else
 fi
 
 # Push the changes
-info_message "Pushing main repo..."
-git push
+git push > "$temp_file" 2>&1
 push_result=$?
 if [ $push_result -ne 0 ]; then
     # Echo the message in red color
     error_message "Git push failed. Exiting..."
+    cat "$temp_file"
     exit 1
 else
     # Echo the success message in green color
@@ -271,29 +272,28 @@ else
 fi
 
 # Remove existing git tag with the new version
-info_message "Removing current version tag in main repo..."
-git push --delete origin v$new_version
-git tag -d "v$new_version"
+git push --delete origin v$new_version > "$temp_file" 2>&1
+git tag -d "v$new_version" > "$temp_file" 2>&1
 
 # Create a git tag with the new version
-info_message "Adding version tag in main repo..."
-git tag "v$new_version"
+git tag "v$new_version" > "$temp_file" 2>&1
 tag_result=$?
 if [ $tag_result -ne 0 ]; then
     # Echo the message in red color
     error_message "Git tag creation failed."
+    cat "$temp_file"
 else
     # Echo the success message in green color
     success_message "Git tag created successfully."
 fi
 
 # Push git tags
-info_message "Pusing tags in main repo..."
-git push --tags
+git push --tags > "$temp_file" 2>&1
 push_tags_result=$?
 if [ $push_tags_result -ne 0 ]; then
     # Echo the message in red color
     error_message "Git push tags failed. Exiting..."
+    cat "$temp_file"
     exit 1
 else
     # Echo the success message in green color
@@ -308,12 +308,12 @@ for repo in "${repos[@]}"; do
     cd "./../$repo"
 
     # git add --all
-    info_message "Adding files in $repo..."
-    git add --all
+    git add --all > "$temp_file" 2>&1
     git_add_result=$?
     if [ $git_add_result -ne 0 ]; then
         # Echo the message in red color
         error_message "Git add failed in $repo. Cleaning up..."
+        cat "$temp_file"
         # Undo the previous git add --all
         git reset HEAD . &> /dev/null
         # Reset the repository back to the state of the main branch on the remote repository
@@ -328,8 +328,7 @@ for repo in "${repos[@]}"; do
     git_status=$(git status --porcelain)
     if [ -n "$git_status" ]; then
         # git commit -m "$new_version"
-        info_message "Commiting $repo..."
-        git commit -m "$new_version"
+        git commit -m "$new_version" > "$temp_file" 2>&1
         git_commit_result=$?
         if [ $git_commit_result -ne 0 ]; then
             # Check if the error is due to "Nothing to commit. Working tree clean."
@@ -339,6 +338,7 @@ for repo in "${repos[@]}"; do
             else
                 # Echo the message in red color
                 error_message "Git commit failed in $repo. Cleaning up..."
+                cat "$temp_file"
                 # Undo the previous git add --all
                 git reset HEAD . &> /dev/null
                 # Reset the repository back to the state of the main branch on the remote repository
@@ -350,12 +350,12 @@ for repo in "${repos[@]}"; do
             success_message "Git commit successful in $repo."
 
             # Push the changes
-            info_message "Pusing $repo..."
-            git push
+            git push > "$temp_file" 2>&1
             push_result=$?
             if [ $push_result -ne 0 ]; then
                 # Echo the message in red color
                 error_message "Git push failed in $repo. Cleaning up..."
+                cat "$temp_file"
                 # Undo the previous git add --all
                 git reset HEAD . &> /dev/null
                 # Reset the repository back to the state of the main branch on the remote repository
@@ -366,15 +366,15 @@ for repo in "${repos[@]}"; do
                 success_message "Git push successful in $repo."
 
                 # git tag "v$new_version"
-                info_message "Removing current version tag in $repo..."
-                git push --delete origin v$new_version
-                git tag -d "v$new_version"
-                info_message "Creating version tag in $repo..."
-                git tag "v$new_version"
+                git push --delete origin v$new_version > "$temp_file" 2>&1
+                git tag -d "v$new_version" > "$temp_file" 2>&1
+                
+                git tag "v$new_version" > "$temp_file" 2>&1
                 git_tag_result=$?
                 if [ $git_tag_result -ne 0 ]; then
                     # Echo the message in red color
                     error_message "Git tag creation failed in $repo. Cleaning up..."
+                    cat "$temp_file"
                     # Delete the local tag (if created)
                     git tag -d "v$new_version" &> /dev/null
                     # Delete the remote tag (if created)
@@ -389,12 +389,12 @@ for repo in "${repos[@]}"; do
                     success_message "Git tag created successfully in $repo."
 
                     # Push git tags
-                    info_message "Pusing tags in $repo..."
-                    git push --tags
+                    git push --tags > "$temp_file" 2>&1
                     push_tags_result=$?
                     if [ $push_tags_result -ne 0 ]; then
                         # Echo the message in red color
                         error_message "Git push tags failed in $repo. Cleaning up..."
+                        cat "$temp_file"
                         # Delete the local tag (if created)
                         git tag -d "v$new_version" &> /dev/null
                         # Delete the remote tag (if created)
@@ -409,14 +409,13 @@ for repo in "${repos[@]}"; do
                         success_message "Git push tags successful in $repo."
 
                         # npm publish
-                        info_message "Unpublishing $repo..."
-                        npm unpublish --force
-                        info_message "Publishing $repo..."
-                        npm publish
+                        npm unpublish --force > "$temp_file" 2>&1
+                        npm publish > "$temp_file" 2>&1
                         npm_publish_result=$?
                         if [ $npm_publish_result -ne 0 ]; then
                             # Echo the message in red color
                             error_message "npm publish failed in $repo. Cleaning up..."
+                            cat "$temp_file"
                             # Delete the local tag (if created)
                             git tag -d "v$new_version" &> /dev/null
                             # Delete the remote tag (if created)
@@ -444,11 +443,12 @@ done
 
 if [ "$publish_notes_choice" -eq 0 ]; then
     cd ./../vueform
-   ./notes.sh
+   ./notes.sh > "$temp_file" 2>&1
    notes=$?
 
    if [ $notes -ne 0 ]; then
       error_message "Failed publishing notes. Exiting..."
+      cat "$temp_file"
       exit 1
   else
       success_message "Publishing notes succeeded."

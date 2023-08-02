@@ -1034,7 +1034,7 @@ var publishConfig = {
 	registry: "https://registry.jsforms.io"
 };
 var name = "@vueform/vueform";
-var version = "1.3.11";
+var version = "1.3.12";
 var description = "Form builder for Vue.js";
 var homepage = "https://vueform.com";
 var bugs = {
