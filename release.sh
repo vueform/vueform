@@ -111,6 +111,18 @@ check_changelog_version() {
 # Call the function to check the version in CHANGELOG.md
 check_changelog_version "$new_version"
 
+info_message "Generating release notes..."
+node ./scripts/notes.js
+notes=$?
+if [ $notes -ne 0 ]; then
+    # Echo the message in red color
+    error_message "Generating notes failed. Exiting..."
+    exit 1
+else
+    # Echo the success message in green color
+    success_message "Generating notes succeeded."
+fi
+
 # Ask whether to run unit tests
 echo "Do you want to run unit tests?"
 options=("Yes" "No")
