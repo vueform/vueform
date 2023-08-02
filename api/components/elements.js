@@ -576,7 +576,7 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The `id` of the related label component.',
+        description: 'The `id` of the related label component..',
         private: true,
       },
       infoId: {
@@ -1773,7 +1773,7 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The `id` of the related label component.',
+        description: 'The `id` of the related label component..',
         private: true,
       },
       infoId: {
@@ -3158,7 +3158,7 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The `id` of the related label component.',
+        description: 'The `id` of the related label component..',
         private: true,
       },
       infoId: {
@@ -4833,7 +4833,7 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The `id` of the related label component.',
+        description: 'The `id` of the related label component..',
         private: true,
       },
       infoId: {
@@ -6387,7 +6387,7 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The `id` of the related label component.',
+        description: 'The `id` of the related label component..',
         private: true,
       },
       infoId: {
@@ -7918,7 +7918,7 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The `id` of the related label component.',
+        description: 'The `id` of the related label component..',
         private: true,
       },
       infoId: {
@@ -9607,7 +9607,7 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The `id` of the related label component.',
+        description: 'The `id` of the related label component..',
         private: true,
       },
       infoId: {
@@ -11099,7 +11099,7 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The `id` of the related label component.',
+        description: 'The `id` of the related label component..',
         private: true,
       },
       infoId: {
@@ -13442,7 +13442,7 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The `id` of the related label component.',
+        description: 'The `id` of the related label component..',
         private: true,
       },
       infoId: {
@@ -15136,7 +15136,7 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The `id` of the related label component.',
+        description: 'The `id` of the related label component..',
         private: true,
       },
       infoId: {
@@ -16835,7 +16835,7 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The `id` of the related label component.',
+        description: 'The `id` of the related label component..',
         private: true,
       },
       infoId: {
@@ -19029,7 +19029,7 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The `id` of the related label component.',
+        description: 'The `id` of the related label component..',
         private: true,
       },
       infoId: {
@@ -20792,7 +20792,7 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The `id` of the related label component.',
+        description: 'The `id` of the related label component..',
         private: true,
       },
       infoId: {
@@ -22178,7 +22178,7 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The `id` of the related label component.',
+        description: 'The `id` of the related label component..',
         private: true,
       },
       infoId: {
@@ -23571,7 +23571,7 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The `id` of the related label component.',
+        description: 'The `id` of the related label component..',
         private: true,
       },
       infoId: {
@@ -25531,7 +25531,7 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The `id` of the related label component.',
+        description: 'The `id` of the related label component..',
         private: true,
       },
       infoId: {
@@ -27381,7 +27381,7 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The `id` of the related label component.',
+        description: 'The `id` of the related label component..',
         private: true,
       },
       infoId: {
@@ -28612,7 +28612,7 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The `id` of the related label component.',
+        description: 'The `id` of the related label component..',
         private: true,
       },
       infoId: {
@@ -29811,7 +29811,7 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The `id` of the related label component.',
+        description: 'The `id` of the related label component..',
         private: true,
       },
       infoId: {
@@ -31432,7 +31432,7 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The `id` of the related label component.',
+        description: 'The `id` of the related label component..',
         private: true,
       },
       infoId: {
@@ -33105,7 +33105,7 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The `id` of the related label component.',
+        description: 'The `id` of the related label component..',
         private: true,
       },
       infoId: {
@@ -35193,7 +35193,7 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The `id` of the related label component.',
+        description: 'The `id` of the related label component..',
         private: true,
       },
       infoId: {
@@ -37137,7 +37137,7 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The `id` of the related label component.',
+        description: 'The `id` of the related label component..',
         private: true,
       },
       infoId: {
@@ -38791,7 +38791,7 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The `id` of the related label component.',
+        description: 'The `id` of the related label component..',
         private: true,
       },
       infoId: {
@@ -40368,7 +40368,7 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The `id` of the related label component.',
+        description: 'The `id` of the related label component..',
         private: true,
       },
       infoId: {

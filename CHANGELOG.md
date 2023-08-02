@@ -1,5 +1,12 @@
 [//]: # (Don't use <tags>)
 
+## v1.3.12
+
+> `2023-07-31`
+> 
+### 🎉 Feature
+- Element props now can be localized.
+
 ## v1.3.11
 
 > `2023-07-31`
