@@ -14,7 +14,7 @@ export default {
           "types": [
             "string"
           ],
-          "description": "The `id` of the related label component."
+          "description": "The `id` of the related label component.."
         },
         "infoId": {
           "public": false,
@@ -53,7 +53,7 @@ export default {
           "types": [
             "string"
           ],
-          "description": "The `id` of the related label component."
+          "description": "The `id` of the related label component.."
         },
         "infoId": {
           "public": false,
@@ -92,7 +92,7 @@ export default {
           "types": [
             "string"
           ],
-          "description": "The `id` of the related label component."
+          "description": "The `id` of the related label component.."
         },
         "infoId": {
           "public": false,
@@ -131,7 +131,7 @@ export default {
           "types": [
             "string"
           ],
-          "description": "The `id` of the related label component."
+          "description": "The `id` of the related label component.."
         },
         "infoId": {
           "public": false,
@@ -170,7 +170,7 @@ export default {
           "types": [
             "string"
           ],
-          "description": "The `id` of the related label component."
+          "description": "The `id` of the related label component.."
         },
         "infoId": {
           "public": false,
@@ -209,7 +209,7 @@ export default {
           "types": [
             "string"
           ],
-          "description": "The `id` of the related label component."
+          "description": "The `id` of the related label component.."
         },
         "infoId": {
           "public": false,
@@ -248,7 +248,7 @@ export default {
           "types": [
             "string"
           ],
-          "description": "The `id` of the related label component."
+          "description": "The `id` of the related label component.."
         },
         "infoId": {
           "public": false,
@@ -287,7 +287,7 @@ export default {
           "types": [
             "string"
           ],
-          "description": "The `id` of the related label component."
+          "description": "The `id` of the related label component.."
         },
         "infoId": {
           "public": false,
@@ -326,7 +326,7 @@ export default {
           "types": [
             "string"
           ],
-          "description": "The `id` of the related label component."
+          "description": "The `id` of the related label component.."
         },
         "infoId": {
           "public": false,
