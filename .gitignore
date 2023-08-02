@@ -10,3 +10,4 @@ stats.json
 .npmrc
 public/
 packages/
+.idea/

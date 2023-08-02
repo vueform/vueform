@@ -3,4 +3,1045 @@ import e from"lodash";import t from"axios";import u from"moment";import{watch as
 	autosize 4.0.4
 	license: MIT
 	http://www.jacklmoore.com/autosize
-*/!function(e,t){var u,r,i="function"==typeof Map?new Map:(u=[],r=[],{has:function(e){return u.indexOf(e)>-1},get:function(e){return r[u.indexOf(e)]},set:function(e,t){-1===u.indexOf(e)&&(u.push(e),r.push(t))},delete:function(e){var t=u.indexOf(e);t>-1&&(u.splice(t,1),r.splice(t,1))}}),s=function(e){return new Event(e,{bubbles:!0})};try{new Event("test")}catch(e){s=function(e){var t=document.createEvent("Event");return t.initEvent(e,!0,!1),t}}function a(e){if(e&&e.nodeName&&"TEXTAREA"===e.nodeName&&!i.has(e)){var t=null,u=null,r=null,a=function(){e.clientWidth!==u&&d()},n=function(t){window.removeEventListener("resize",a,!1),e.removeEventListener("input",d,!1),e.removeEventListener("keyup",d,!1),e.removeEventListener("autosize:destroy",n,!1),e.removeEventListener("autosize:update",d,!1),Object.keys(t).forEach((function(u){e.style[u]=t[u]})),i.delete(e)}.bind(e,{height:e.style.height,resize:e.style.resize,overflowY:e.style.overflowY,overflowX:e.style.overflowX,wordWrap:e.style.wordWrap});e.addEventListener("autosize:destroy",n,!1),"onpropertychange"in e&&"oninput"in e&&e.addEventListener("keyup",d,!1),window.addEventListener("resize",a,!1),e.addEventListener("input",d,!1),e.addEventListener("autosize:update",d,!1),e.style.overflowX="hidden",e.style.wordWrap="break-word",i.set(e,{destroy:n,update:d}),o()}function o(){var u=window.getComputedStyle(e,null);"vertical"===u.resize?e.style.resize="none":"both"===u.resize&&(e.style.resize="horizontal"),t="content-box"===u.boxSizing?-(parseFloat(u.paddingTop)+parseFloat(u.paddingBottom)):parseFloat(u.borderTopWidth)+parseFloat(u.borderBottomWidth),isNaN(t)&&(t=0),d()}function h(t){var u=e.style.width;e.style.width="0px",e.offsetWidth,e.style.width=u,e.style.overflowY=t}function c(e){for(var t=[];e&&e.parentNode&&e.parentNode instanceof Element;)e.parentNode.scrollTop&&t.push({node:e.parentNode,scrollTop:e.parentNode.scrollTop}),e=e.parentNode;return t}function l(){if(0!==e.scrollHeight){var r=c(e),i=document.documentElement&&document.documentElement.scrollTop;e.style.height="",e.style.height=e.scrollHeight+t+"px",u=e.clientWidth,r.forEach((function(e){e.node.scrollTop=e.scrollTop})),i&&(document.documentElement.scrollTop=i)}}function d(){l();var t=Math.round(parseFloat(e.style.height)),u=window.getComputedStyle(e,null),i="content-box"===u.boxSizing?Math.round(parseFloat(u.height)):e.offsetHeight;if(i<t?"hidden"===u.overflowY&&(h("scroll"),l(),i="content-box"===u.boxSizing?Math.round(parseFloat(window.getComputedStyle(e,null).height)):e.offsetHeight):"hidden"!==u.overflowY&&(h("hidden"),l(),i="content-box"===u.boxSizing?Math.round(parseFloat(window.getComputedStyle(e,null).height)):e.offsetHeight),r!==i){r=i;var a=s("autosize:resized");try{e.dispatchEvent(a)}catch(e){}}}}function n(e){var t=i.get(e);t&&t.destroy()}function o(e){var t=i.get(e);t&&t.update()}var h=null;"undefined"==typeof window||"function"!=typeof window.getComputedStyle?((h=function(e){return e}).destroy=function(e){return e},h.update=function(e){return e}):((h=function(e,t){return e&&Array.prototype.forEach.call(e.length?e:[e],(function(e){return a(e)})),e}).destroy=function(e){return e&&Array.prototype.forEach.call(e.length?e:[e],n),e},h.update=function(e){return e&&Array.prototype.forEach.call(e.length?e:[e],o),e}),t.default=h,e.exports=t.default}(Ae,Ae.exports);var fe=Ae.exports;var pe={google:class{constructor(){this.autocomplete=null,this.autocompleteListener=null,this.options={}}init(e,t,u){void 0===window.google||void 0===window.google.maps||void 0===window.google.maps.places||window.google.maps.places.Autocomplete,this.options=u,this.autocomplete=new window.google.maps.places.Autocomplete(e,u),this.autocompleteListener=this.autocomplete.addListener("place_changed",(()=>{var e=this.autocomplete.getPlace();t(this.formatValue(e),e)}))}destroy(){window.google.maps.event.removeListener(this.autocompleteListener),window.google.maps.event.clearInstanceListeners(this.autocomplete);var e=document.querySelector(".pac-container");e&&e.remove()}formatValue(t){if(!e.isPlainObject(t))return t;var u=t.address_components,r=this.addressComponent(u,"street"),i=this.addressComponent(u,"street_number"),s=null;return null!==r&&(s=r),null!==i&&(s+=(null!==r?" ":"")+i),{country:this.addressComponent(u,"country"),country_code:this.addressComponent(u,"country_code"),state:this.addressComponent(u,"state"),state_code:this.addressComponent(u,"state_code"),city:this.addressComponent(u,"city"),zip:this.addressComponent(u,"zip"),address:s,formatted_address:t.formatted_address||null,lat:t.geometry.location.lat()||null,lng:t.geometry.location.lng()||null}}addressComponent(t,u){var r={country:{field:"country",type:"long_name"},country_code:{field:"country",type:"short_name"},state:{field:"administrative_area_level_1",type:"long_name"},state_code:{field:"administrative_area_level_1",type:"short_name"},city:{field:"locality",type:"long_name"},zip:{field:"postal_code",type:"long_name"},street:{field:"route",type:"long_name"},street_number:{field:"street_number",type:"long_name"}},i=null;return e.each(t,(e=>{if(-1!==e.types.indexOf(r[u].field)){if(-1!==["state","state_code"].indexOf(u)&&"US"!=this.addressComponent(t,"country_code"))return;i=e[r[u].type]||null}})),i}},algolia:class{constructor(){this.places=null,this.options={}}init(e,t,u){if(void 0===window.places)throw new Error("Algolia Places API missing. Please include script in your project from https://community.algolia.com/places/documentation.html#cdn-script or install via npm and set to `window.places`.");this.options=u,this.places=window.places(Object.assign({},{container:e},u)),this.places.on("change",(e=>{t(this.formatValue(e.suggestion),e.suggestion)}))}destroy(){this.places.destroy()}formatValue(t){return e.isPlainObject(t)?{country:t.country,country_code:t.countryCode?t.countryCode.toUpperCase():null,state:"us"==t.countryCode?t.administrative:null,state_code:"us"==t.countryCode?this.stateCode(t.administrative.toLowerCase()):null,city:t.city,zip:t.postcode,address:t.name,formatted_address:t.value,lat:t.latlng.lat,lng:t.latlng.lng}:t}stateCode(t){var u={AL:"alabama",AK:"alaska",AZ:"arizona",AR:"arkansas",CA:"california",CO:"colorado",CT:"connecticut",DE:"delaware",DC:"district of columbia",FL:"florida",GA:"georgia",HI:"hawaii",ID:"idaho",IL:"illinois",IN:"indiana",IA:"iowa",KS:"kansas",KY:"kentucky",LA:"louisiana",ME:"maine",MD:"maryland",MA:"massachusetts",MI:"michigan",MN:"minnesota",MS:"mississippi",MO:"missouri",MT:"montana",NE:"nebraska",NV:"nevada",NH:"new hampshire",NJ:"new Jersey",NM:"new Mexico",NY:"new york",NC:"north carolina",ND:"north dakota",OH:"ohio",OK:"oklahoma",OR:"oregon",PA:"pennsylvania",RI:"rhode Island",SC:"south carolina",SD:"south dakota",TN:"tennessee",TX:"texas",UT:"utah",VT:"vermont",VA:"virginia",WA:"washington",WV:"west virginia",WI:"wisconsin",WY:"wyoming"};return-1===e.values(u).indexOf(t)?null:e.keys(u)[e.values(u).indexOf(t)]}}},ge={check:(t,u,r,i)=>{var s=t=>{var{conditionPath:i,operator:s,expected:o}=a(t),h=r.el$(i),c=!1;return h&&u&&e.each(h.conditions,(e=>{Array.isArray(e)&&e[0]==u&&(c=!0)})),!(!h||!c&&!h.available)&&n(h.value,o,s)},a=e=>({conditionPath:u?C(e[0],u):e[0],operator:3==e.length||-1!==["empty","not_empty","today"].indexOf(e[1])?e[1]:"==",expected:3==e.length?e[2]:-1!==["empty","not_empty","today"].indexOf(e[1])||e[1]}),n=(e,t,u)=>v(e,u,t,i);if("function"==typeof t)return t(r,i);if(e.isArray(t)&&e.isArray(t[0]))return t.reduce(((e,t)=>e||s(t)),!1);if(e.isArray(t))return s(t);throw new Error("Condition must be a function or an array")}};class Fe{constructor(e){this.locales=e.locales,this.locale=e.locale,this.fallbackLocale=e.fallbackLocale}$t(t){var u=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{},r=e.get(this.locales[this.locale],t)||t;return r===t&&(r=e.get(this.locales[this.fallbackLocale],t)||t),e.each(u,((e,t)=>{r=r.replace(":"+t,e)})),e.each(u,((e,t)=>{r=r.replace("{"+t+"}",e)})),r}}class ye{constructor(e,t,u,r){l(this,"defaultBreakpoint","default"),this.presets=r,this.configPresetColumns=this.serialize(this.columnsFromPresets(e.configPresetColumns)||{}),this.configColumns=this.serialize(e.configColumns||{}),this.formPresetColumns=this.serialize(this.columnsFromPresets(e.formPresetColumns)||{}),this.formColumns=this.serialize(e.formColumns||{}),this.presetColumns=this.serialize(this.columnsFromPresets(e.elementPresetColumns)||{}),this.columns=this.serialize(e.elementColumns||{}),this.hasLabel=t,this.getClass=u,this.cols=this.getCols()}get classes(){return{container:this.getClasses("container"),label:this.getClasses("label"),innerContainer:this.getClasses("innerContainer"),wrapper:this.getClasses("wrapper")}}serialize(t){if(-1!==["number","string"].indexOf(typeof t))return{[this.defaultBreakpoint]:{container:t}};if("object"==typeof t&&-1!==["container","label","wrapper"].indexOf(Object.keys(t)[0])){var u={};return e.each(t,((t,r)=>{-1!==["number","string"].indexOf(typeof t)?(void 0===u[this.defaultBreakpoint]&&(u[this.defaultBreakpoint]={}),u[this.defaultBreakpoint][r]=t):e.each(t,((e,t)=>{void 0===u[t]&&(u[t]={}),u[t][r]=e}))})),u}var r={};return e.each(t,((e,t)=>{-1!==["number","string"].indexOf(typeof e)?(void 0===r[t]&&(r[t]={}),r[t].container=e):r[t]=e})),r}columnsFromPresets(t){var u;return e.each(t,(e=>{var t=this.presets[e];t&&t.columns&&(u=t.columns)})),u}getNullClass(){return[this.getClass(this.defaultBreakpoint,0)]}getClasses(e){var t=[];return Object.keys(this.cols).forEach((u=>{var r;"innerContainer"===e?r=(r=this.cols[u].label)>=12||!this.hasLabel?12:12-r:(r=this.cols[u][e],"label"!==e||this.hasLabel||(r=0)),void 0===r||isNaN(r)||t.push(this.getClass(u,r))})),t}getCols(){return e.merge({},{[this.defaultBreakpoint]:{container:12,label:12,wrapper:12}},this.configPresetColumns||{},this.configColumns||{},this.formPresetColumns||{},this.formColumns||{},this.presetColumns||{},this.columns||{})}}function Ce(u,r){return new class{constructor(){this.options={config:e.omit(u,["theme","templates","locales","rules","plugins"]),templates:u.templates||{},theme:u.theme||{},rules:u.rules||{},locales:u.locales||{},plugins:u.plugins||[],i18n:null,vueVersion:null,services:{validation:de,axios:t,messageBag:me,autosize:fe,location:pe,condition:ge,columns:ye},version:g}}config(t){e.each(["theme","templates","locales","rules"],(e=>{void 0!==t[e]&&(this.options[e]=Object.assign({},this.options[e],t[e]))})),e.each(["plugins"],(e=>{void 0!==t[e]&&(this.options[e]=t[e])})),e.each(["languages","services","addClasses","removeClasses","replaceClasses","overrideClasses","presets","views"],(e=>{void 0!==t[e]&&(this.options.config[e]=Object.assign({},this.options.config[e],t[e]))})),e.each(["endpoints"],(u=>{void 0!==t[u]&&(this.options.config[u]=e.merge({},this.options.config[u],t[u]))})),e.each(["columns","forceLabels","displayErrors","floatPlaceholders","displayErrors","displayMessages","language","locale","fallbackLocale","orderFrom","validateOn","formData","beforeSend","locationProvider","classHelpers","env","usePresets","plugins","size"],(e=>{void 0!==t[e]&&(this.options.config[e]=t[e])})),t.elements&&(t.elements.forEach((t=>{r[t.name]=e.omit(t,["render","staticRenderFns","components"])})),t.elements.forEach((t=>{void 0===this.options.templates[t.name]&&(this.options.templates[t.name]=e.pick(t,["render","staticRenderFns","components"]))}))),void 0!==t.axios&&("function"==typeof t.axios?this.options.services.axios=t.axios:this.options.config.axios=t.axios)}registerComponents(t){e.each(r,((u,r)=>{var i,a,n=o({},u);(n.setup=(e,t)=>{t=Object.assign({},t,{name:s(r),emits:n.emits});var i=u.setup(e,t);return this.options.plugins.forEach((u=>{"function"==typeof u&&(u=u()),(u=Array.isArray(u)?u:[u]).forEach((u=>{var s="function"==typeof u?u():u;s.setup&&p(r,s)&&(i=s.setup(e,t,i))}))})),i},void 0===n.components)&&(n.components=(null===(i=this.options.templates[r])||void 0===i?void 0:i.components)||(null===(a=this.options.theme.templates[r])||void 0===a?void 0:a.components)||{});n.render=function(){return this.template.render.apply(this,arguments)},n.staticRenderFns=function(){return this.template.staticRenderFns},this.options.plugins.forEach((t=>{"function"==typeof t&&(t=t()),(t=Array.isArray(t)?t:[t]).forEach((t=>{var u="function"==typeof t?t():t;e.each(e.without(Object.keys(u),"setup","apply","config","install"),(t=>{if(u[t]&&p(r,u))if(Array.isArray(u[t])){var i=n[t]||[];n[t]=i.concat(u[t])}else e.isPlainObject(u[t])?n[t]=Object.assign({},n[t]||{},u[t]):n[t]=u[t]}))}))})),t.component(r,n)}))}initAxios(){var t=this.options.services.axios,u=this.options.config.axios,r=d(this.options.config.axios);Object.keys(r).forEach((u=>{var i=r[u];-1===["onUnauthenticated"].indexOf(u)&&-1===u.indexOf("csrfRequest.")&&e.set(t.defaults,u,i)})),t.interceptors.response.use((e=>e),(e=>e.response?new Promise(((r,i)=>{var s=e.response.config;-1!==[401,419].indexOf(e.response.status)?u.csrfRequest&&!s.CSRF?t.request(o(o({},u.csrfRequest),{},{CSRF:!0})).then((()=>{r(t.request(o(o({},s),{},{CSRF:!0})))})).catch((e=>{i(e)})):u.onUnauthenticated?u.onUnauthenticated(s):i(e):i(e)})):Promise.reject(e)))}initI18n(){this.options.i18n=new Fe({locales:this.options.locales,locale:this.options.config.locale,fallbackLocale:this.options.config.fallbackLocale})}createApiKeyError(){var e="";return e+="\n",e+=" .....................  ......\n",e+="  ..................   ......\n",e+="   ................  .......\n",e+="     ......         ......\n",e+="      ..........  .......\n",e+="       ........  ......\n",e+="                ......\n",e+="          ...........\n",e+="            .......\n",e+="             .....\n",e+="               .\n",e+="\n",e+="===============================\n",e+="".concat(arguments.length>0&&void 0!==arguments[0]?arguments[0]:"=== Vueform API Key Missing ===","\n"),e+="===============================\n",e+="\n",e+="Create a free API Key at:\n",e+="https://vueform.com/docs/1.x/installation#api-key\n",e+="\n"}install(e){var t,r=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{},i=parseInt(e.version.split(".")[0]);this.options.vueVersion=i;var n="VUEFORM_API_KEY",h=7!==n.length&&"V"!==n.charAt(0)&&"_"!==n.charAt(7)?n:r.apiKey;if(h)if(function(e){var t=0,u=e[0],r=0;return e.split("-").forEach((e=>{if(4!=e.length)return!1;e.split("").forEach((e=>{e==u&&r++,t+=e.codePointAt(0)}))})),1492==t&&3==r}(h.toUpperCase())){navigator&&navigator.onLine&&window&&window.location&&-1!==["http:","https:"].indexOf(window.location.protocol)&&"undefined"!=typeof fetch&&fetch("https://api.vueform.com/check?key=".concat(h)).then((e=>e.json())).then((e=>{})).catch((()=>{})),(r.plugins||[]).forEach((e=>{"function"==typeof e&&(e=e()),(e=Array.isArray(e)?e:[e]).forEach((e=>{var t="function"==typeof e?e():e;t.config&&t.config(r)}))})),r&&this.config(r),this.options.plugins.forEach((t=>{"function"==typeof t&&(t=t()),(t=Array.isArray(t)?t:[t]).forEach((t=>{var u="function"==typeof t?t():t;u.install&&u.install(e,this.options)}))})),"function"!=typeof u.axios&&this.initAxios(),this.initI18n(),this.registerComponents(e);var c=(null===(t=this.options.theme)||void 0===t?void 0:t.templates)||{};Object.keys(c).forEach((e=>{c[e]=a(c[e])}));var l=s(o(o({},this.options),{},{theme:o(o({},this.options.theme),{},{templates:c})}));switch(i){case 2:e.config.ignoredElements=["trix-editor"],e.config.unwrapInjectedRef=!0,e.prototype.$vueform||(e.prototype.$vueform=new Proxy(l,{get:(e,t,u)=>e.value[t]})),e.__VUEFORM__||(e.__VUEFORM__=!0,e.mixin({methods:{__:(e,t)=>(t||console.warn("DEPRECATED: __ method should be no longer used for translating labels, only if they contain variables. For general translation use form$.translation.TAG instead."),this.options.i18n.$t(e,t))}}));break;case 3:e.config.compilerOptions.isCustomElement=e=>-1!==["trix-editor"].indexOf(e),e.config.unwrapInjectedRef=!0,e.config.globalProperties.$vueform=new Proxy(l,{get:(e,t,u)=>e.value[t]}),e.provide("$vueform",l),e.mixin({methods:{$set(e,t,u){e[t]=u},$delete(e,t){delete e[t]},__:(e,t)=>(t||console.warn("DEPRECATED: __ method should be no longer used for translating labels, only if they contain variables. For general translation use form$.translation.TAG instead."),this.options.i18n.$t(e,t))}})}}else console.error(this.createApiKeyError("=== Invalid Vueform API Key ==="));else console.error(this.createApiKeyError("=== Vueform API Key Missing ==="))}}}export{Ce as default};
+*/
+
+(function (module, exports) {
+	(function (global, factory) {
+		{
+			factory(module, exports);
+		}
+	})(commonjsGlobal, function (module, exports) {
+
+		var map = typeof Map === "function" ? new Map() : function () {
+			var keys = [];
+			var values = [];
+
+			return {
+				has: function has(key) {
+					return keys.indexOf(key) > -1;
+				},
+				get: function get(key) {
+					return values[keys.indexOf(key)];
+				},
+				set: function set(key, value) {
+					if (keys.indexOf(key) === -1) {
+						keys.push(key);
+						values.push(value);
+					}
+				},
+				delete: function _delete(key) {
+					var index = keys.indexOf(key);
+					if (index > -1) {
+						keys.splice(index, 1);
+						values.splice(index, 1);
+					}
+				}
+			};
+		}();
+
+		var createEvent = function createEvent(name) {
+			return new Event(name, { bubbles: true });
+		};
+		try {
+			new Event('test');
+		} catch (e) {
+			// IE does not support `new Event()`
+			createEvent = function createEvent(name) {
+				var evt = document.createEvent('Event');
+				evt.initEvent(name, true, false);
+				return evt;
+			};
+		}
+
+		function assign(ta) {
+			if (!ta || !ta.nodeName || ta.nodeName !== 'TEXTAREA' || map.has(ta)) return;
+
+			var heightOffset = null;
+			var clientWidth = null;
+			var cachedHeight = null;
+
+			function init() {
+				var style = window.getComputedStyle(ta, null);
+
+				if (style.resize === 'vertical') {
+					ta.style.resize = 'none';
+				} else if (style.resize === 'both') {
+					ta.style.resize = 'horizontal';
+				}
+
+				if (style.boxSizing === 'content-box') {
+					heightOffset = -(parseFloat(style.paddingTop) + parseFloat(style.paddingBottom));
+				} else {
+					heightOffset = parseFloat(style.borderTopWidth) + parseFloat(style.borderBottomWidth);
+				}
+				// Fix when a textarea is not on document body and heightOffset is Not a Number
+				if (isNaN(heightOffset)) {
+					heightOffset = 0;
+				}
+
+				update();
+			}
+
+			function changeOverflow(value) {
+				{
+					// Chrome/Safari-specific fix:
+					// When the textarea y-overflow is hidden, Chrome/Safari do not reflow the text to account for the space
+					// made available by removing the scrollbar. The following forces the necessary text reflow.
+					var width = ta.style.width;
+					ta.style.width = '0px';
+					// Force reflow:
+					/* jshint ignore:start */
+					ta.offsetWidth;
+					/* jshint ignore:end */
+					ta.style.width = width;
+				}
+
+				ta.style.overflowY = value;
+			}
+
+			function getParentOverflows(el) {
+				var arr = [];
+
+				while (el && el.parentNode && el.parentNode instanceof Element) {
+					if (el.parentNode.scrollTop) {
+						arr.push({
+							node: el.parentNode,
+							scrollTop: el.parentNode.scrollTop
+						});
+					}
+					el = el.parentNode;
+				}
+
+				return arr;
+			}
+
+			function resize() {
+				if (ta.scrollHeight === 0) {
+					// If the scrollHeight is 0, then the element probably has display:none or is detached from the DOM.
+					return;
+				}
+
+				var overflows = getParentOverflows(ta);
+				var docTop = document.documentElement && document.documentElement.scrollTop; // Needed for Mobile IE (ticket #240)
+
+				ta.style.height = '';
+				ta.style.height = ta.scrollHeight + heightOffset + 'px';
+
+				// used to check if an update is actually necessary on window.resize
+				clientWidth = ta.clientWidth;
+
+				// prevents scroll-position jumping
+				overflows.forEach(function (el) {
+					el.node.scrollTop = el.scrollTop;
+				});
+
+				if (docTop) {
+					document.documentElement.scrollTop = docTop;
+				}
+			}
+
+			function update() {
+				resize();
+
+				var styleHeight = Math.round(parseFloat(ta.style.height));
+				var computed = window.getComputedStyle(ta, null);
+
+				// Using offsetHeight as a replacement for computed.height in IE, because IE does not account use of border-box
+				var actualHeight = computed.boxSizing === 'content-box' ? Math.round(parseFloat(computed.height)) : ta.offsetHeight;
+
+				// The actual height not matching the style height (set via the resize method) indicates that 
+				// the max-height has been exceeded, in which case the overflow should be allowed.
+				if (actualHeight < styleHeight) {
+					if (computed.overflowY === 'hidden') {
+						changeOverflow('scroll');
+						resize();
+						actualHeight = computed.boxSizing === 'content-box' ? Math.round(parseFloat(window.getComputedStyle(ta, null).height)) : ta.offsetHeight;
+					}
+				} else {
+					// Normally keep overflow set to hidden, to avoid flash of scrollbar as the textarea expands.
+					if (computed.overflowY !== 'hidden') {
+						changeOverflow('hidden');
+						resize();
+						actualHeight = computed.boxSizing === 'content-box' ? Math.round(parseFloat(window.getComputedStyle(ta, null).height)) : ta.offsetHeight;
+					}
+				}
+
+				if (cachedHeight !== actualHeight) {
+					cachedHeight = actualHeight;
+					var evt = createEvent('autosize:resized');
+					try {
+						ta.dispatchEvent(evt);
+					} catch (err) {
+						// Firefox will throw an error on dispatchEvent for a detached element
+						// https://bugzilla.mozilla.org/show_bug.cgi?id=889376
+					}
+				}
+			}
+
+			var pageResize = function pageResize() {
+				if (ta.clientWidth !== clientWidth) {
+					update();
+				}
+			};
+
+			var destroy = function (style) {
+				window.removeEventListener('resize', pageResize, false);
+				ta.removeEventListener('input', update, false);
+				ta.removeEventListener('keyup', update, false);
+				ta.removeEventListener('autosize:destroy', destroy, false);
+				ta.removeEventListener('autosize:update', update, false);
+
+				Object.keys(style).forEach(function (key) {
+					ta.style[key] = style[key];
+				});
+
+				map.delete(ta);
+			}.bind(ta, {
+				height: ta.style.height,
+				resize: ta.style.resize,
+				overflowY: ta.style.overflowY,
+				overflowX: ta.style.overflowX,
+				wordWrap: ta.style.wordWrap
+			});
+
+			ta.addEventListener('autosize:destroy', destroy, false);
+
+			// IE9 does not fire onpropertychange or oninput for deletions,
+			// so binding to onkeyup to catch most of those events.
+			// There is no way that I know of to detect something like 'cut' in IE9.
+			if ('onpropertychange' in ta && 'oninput' in ta) {
+				ta.addEventListener('keyup', update, false);
+			}
+
+			window.addEventListener('resize', pageResize, false);
+			ta.addEventListener('input', update, false);
+			ta.addEventListener('autosize:update', update, false);
+			ta.style.overflowX = 'hidden';
+			ta.style.wordWrap = 'break-word';
+
+			map.set(ta, {
+				destroy: destroy,
+				update: update
+			});
+
+			init();
+		}
+
+		function destroy(ta) {
+			var methods = map.get(ta);
+			if (methods) {
+				methods.destroy();
+			}
+		}
+
+		function update(ta) {
+			var methods = map.get(ta);
+			if (methods) {
+				methods.update();
+			}
+		}
+
+		var autosize = null;
+
+		// Do nothing in Node.js environment and IE8 (or lower)
+		if (typeof window === 'undefined' || typeof window.getComputedStyle !== 'function') {
+			autosize = function autosize(el) {
+				return el;
+			};
+			autosize.destroy = function (el) {
+				return el;
+			};
+			autosize.update = function (el) {
+				return el;
+			};
+		} else {
+			autosize = function autosize(el, options) {
+				if (el) {
+					Array.prototype.forEach.call(el.length ? el : [el], function (x) {
+						return assign(x);
+					});
+				}
+				return el;
+			};
+			autosize.destroy = function (el) {
+				if (el) {
+					Array.prototype.forEach.call(el.length ? el : [el], destroy);
+				}
+				return el;
+			};
+			autosize.update = function (el) {
+				if (el) {
+					Array.prototype.forEach.call(el.length ? el : [el], update);
+				}
+				return el;
+			};
+		}
+
+		exports.default = autosize;
+		module.exports = exports['default'];
+	});
+} (autosize$1, autosize$1.exports));
+
+var autosize = autosize$1.exports;
+
+class google {
+  constructor() {
+    this.autocomplete = null;
+    this.autocompleteListener = null;
+    this.options = {};
+  }
+  init(container, onChange, options) {
+    if (window.google === undefined || window.google.maps === undefined || window.google.maps.places === undefined || window.google.maps.places.Autocomplete === undefined) ;
+    this.options = options;
+    this.autocomplete = new window.google.maps.places.Autocomplete(container, options);
+    this.autocompleteListener = this.autocomplete.addListener('place_changed', () => {
+      var place = this.autocomplete.getPlace();
+      onChange(this.formatValue(place), place);
+    });
+  }
+  destroy() {
+    window.google.maps.event.removeListener(this.autocompleteListener);
+    window.google.maps.event.clearInstanceListeners(this.autocomplete);
+    var pac = document.querySelector('.pac-container');
+    if (pac) {
+      pac.remove();
+    }
+  }
+  formatValue(value) {
+    if (!_.isPlainObject(value)) {
+      return value;
+    }
+    var addressComponents = value.address_components;
+    var street = this.addressComponent(addressComponents, 'street');
+    var streetNumber = this.addressComponent(addressComponents, 'street_number');
+    var address = null;
+    if (street !== null) {
+      address = street;
+    }
+    if (streetNumber !== null) {
+      address += (street !== null ? ' ' : '') + streetNumber;
+    }
+    return {
+      country: this.addressComponent(addressComponents, 'country'),
+      country_code: this.addressComponent(addressComponents, 'country_code'),
+      state: this.addressComponent(addressComponents, 'state'),
+      state_code: this.addressComponent(addressComponents, 'state_code'),
+      city: this.addressComponent(addressComponents, 'city'),
+      zip: this.addressComponent(addressComponents, 'zip'),
+      address: address,
+      formatted_address: value.formatted_address || null,
+      lat: value.geometry.location.lat() || null,
+      lng: value.geometry.location.lng() || null
+    };
+  }
+  addressComponent(addressComponents, type) {
+    var typeMap = {
+      country: {
+        field: 'country',
+        type: 'long_name'
+      },
+      country_code: {
+        field: 'country',
+        type: 'short_name'
+      },
+      state: {
+        field: 'administrative_area_level_1',
+        type: 'long_name'
+      },
+      state_code: {
+        field: 'administrative_area_level_1',
+        type: 'short_name'
+      },
+      city: {
+        field: 'locality',
+        type: 'long_name'
+      },
+      zip: {
+        field: 'postal_code',
+        type: 'long_name'
+      },
+      street: {
+        field: 'route',
+        type: 'long_name'
+      },
+      street_number: {
+        field: 'street_number',
+        type: 'long_name'
+      }
+    };
+    var addressComponent = null;
+    _.each(addressComponents, component => {
+      if (component.types.indexOf(typeMap[type].field) !== -1) {
+        if (['state', 'state_code'].indexOf(type) !== -1 && this.addressComponent(addressComponents, 'country_code') != 'US') {
+          return;
+        }
+        addressComponent = component[typeMap[type].type] || null;
+      }
+    });
+    return addressComponent;
+  }
+}
+
+class algolia {
+  constructor() {
+    this.places = null;
+    this.options = {};
+  }
+  init(container, onChange, options) {
+    if (window.places === undefined) {
+      throw new Error('Algolia Places API missing. Please include script in your project from https://community.algolia.com/places/documentation.html#cdn-script or install via npm and set to `window.places`.');
+    }
+    this.options = options;
+    this.places = window.places(Object.assign({}, {
+      container
+    }, options));
+    this.places.on('change', e => {
+      onChange(this.formatValue(e.suggestion), e.suggestion);
+    });
+  }
+  destroy() {
+    this.places.destroy();
+  }
+  formatValue(value) {
+    if (!_.isPlainObject(value)) {
+      return value;
+    }
+    return {
+      country: value.country,
+      country_code: value.countryCode ? value.countryCode.toUpperCase() : null,
+      state: value.countryCode == 'us' ? value.administrative : null,
+      state_code: value.countryCode == 'us' ? this.stateCode(value.administrative.toLowerCase()) : null,
+      city: value.city,
+      zip: value.postcode,
+      address: value.name,
+      formatted_address: value.value,
+      lat: value.latlng.lat,
+      lng: value.latlng.lng
+    };
+  }
+  stateCode(name) {
+    var states = {
+      AL: 'alabama',
+      AK: 'alaska',
+      AZ: 'arizona',
+      AR: 'arkansas',
+      CA: 'california',
+      CO: 'colorado',
+      CT: 'connecticut',
+      DE: 'delaware',
+      DC: 'district of columbia',
+      FL: 'florida',
+      GA: 'georgia',
+      HI: 'hawaii',
+      ID: 'idaho',
+      IL: 'illinois',
+      IN: 'indiana',
+      IA: 'iowa',
+      KS: 'kansas',
+      KY: 'kentucky',
+      LA: 'louisiana',
+      ME: 'maine',
+      MD: 'maryland',
+      MA: 'massachusetts',
+      MI: 'michigan',
+      MN: 'minnesota',
+      MS: 'mississippi',
+      MO: 'missouri',
+      MT: 'montana',
+      NE: 'nebraska',
+      NV: 'nevada',
+      NH: 'new hampshire',
+      NJ: 'new Jersey',
+      NM: 'new Mexico',
+      NY: 'new york',
+      NC: 'north carolina',
+      ND: 'north dakota',
+      OH: 'ohio',
+      OK: 'oklahoma',
+      OR: 'oregon',
+      PA: 'pennsylvania',
+      RI: 'rhode Island',
+      SC: 'south carolina',
+      SD: 'south dakota',
+      TN: 'tennessee',
+      TX: 'texas',
+      UT: 'utah',
+      VT: 'vermont',
+      VA: 'virginia',
+      WA: 'washington',
+      WV: 'west virginia',
+      WI: 'wisconsin',
+      WY: 'wyoming'
+    };
+    if (_.values(states).indexOf(name) === -1) {
+      return null;
+    }
+    return _.keys(states)[_.values(states).indexOf(name)];
+  }
+}
+
+var location = {
+  google,
+  algolia
+};
+
+// condition - condition information [otherPath, operator, expectedValue]
+// elementPath - current
+var check = (condition, elementPath, form$, el$) => {
+  var checkFunction = () => {
+    return condition(form$, el$);
+  };
+  var checkArray = condition => {
+    var {
+      conditionPath,
+      operator,
+      expected
+    } = details(condition);
+
+    // other
+    var element$ = form$.el$(conditionPath);
+    var hasCircularCondition = false;
+
+    // other && currentPath
+    if (element$ && elementPath) {
+      _.each(element$.conditions, condition => {
+        if (!Array.isArray(condition)) {
+          return;
+        }
+        if (condition[0] == elementPath) {
+          hasCircularCondition = true;
+        }
+      });
+    }
+    if (!element$ || !hasCircularCondition && !element$.available) {
+      return false;
+    }
+    return compareValues(element$.value, expected, operator);
+  };
+  var details = condition => {
+    return {
+      conditionPath: elementPath ? replaceWildcards(condition[0], elementPath) : condition[0],
+      operator: condition.length == 3 || ['empty', 'not_empty', 'today'].indexOf(condition[1]) !== -1 ? condition[1] : '==',
+      expected: condition.length == 3 ? condition[2] : ['empty', 'not_empty', 'today'].indexOf(condition[1]) === -1 ? condition[1] : true
+    };
+  };
+  var compareValues = (actual, expected, operator) => {
+    return compare(actual, operator, expected, el$);
+  };
+  if (typeof condition == 'function') {
+    return checkFunction();
+  } else if (_.isArray(condition) && _.isArray(condition[0])) {
+    return condition.reduce((prev, curr) => {
+      return prev ? prev : checkArray(curr);
+    }, false);
+  } else if (_.isArray(condition)) {
+    return checkArray(condition);
+  }
+  throw new Error('Condition must be a function or an array');
+};
+var condition = {
+  check
+};
+
+class i18n {
+  constructor(options) {
+    this.locales = options.locales;
+    this.locale = options.locale;
+    this.fallbackLocale = options.fallbackLocale;
+  }
+  $t(expr) {
+    var data = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+    var tag = _.get(this.locales[this.locale], expr) || expr;
+    if (tag === expr) {
+      tag = _.get(this.locales[this.fallbackLocale], expr) || expr;
+    }
+    _.each(data, (value, key) => {
+      tag = tag.replace(':' + key, value);
+    });
+    _.each(data, (value, key) => {
+      tag = tag.replace('{' + key + '}', value);
+    });
+    return tag;
+  }
+}
+
+class Columns {
+  constructor(options, hasLabel, getClass, presets) {
+    _defineProperty(this, "defaultBreakpoint", 'default');
+    this.presets = presets;
+    this.configPresetColumns = this.serialize(this.columnsFromPresets(options.configPresetColumns) || {});
+    this.configColumns = this.serialize(options.configColumns || {});
+    this.formPresetColumns = this.serialize(this.columnsFromPresets(options.formPresetColumns) || {});
+    this.formColumns = this.serialize(options.formColumns || {});
+    this.presetColumns = this.serialize(this.columnsFromPresets(options.elementPresetColumns) || {});
+    this.columns = this.serialize(options.elementColumns || {});
+    this.hasLabel = hasLabel;
+    this.getClass = getClass;
+    this.cols = this.getCols();
+  }
+  get classes() {
+    return {
+      container: this.getClasses('container'),
+      label: this.getClasses('label'),
+      innerContainer: this.getClasses('innerContainer'),
+      wrapper: this.getClasses('wrapper')
+    };
+  }
+  serialize(columns) {
+    // columns: 8
+    if (['number', 'string'].indexOf(typeof columns) !== -1) {
+      return {
+        [this.defaultBreakpoint]: {
+          container: columns
+        }
+      };
+    }
+
+    // columns: { container: 8, wrapper: { default: 8, lg: 8 } }
+    if (typeof columns === 'object' && ['container', 'label', 'wrapper'].indexOf(Object.keys(columns)[0]) !== -1) {
+      var serialized = {};
+      _.each(columns, (size, type) => {
+        // columns: { container: 8 }
+        if (['number', 'string'].indexOf(typeof size) !== -1) {
+          if (serialized[this.defaultBreakpoint] === undefined) {
+            serialized[this.defaultBreakpoint] = {};
+          }
+          serialized[this.defaultBreakpoint][type] = size;
+        }
+
+        // columns: { container: { default: 8, lg: 8 } }
+        else {
+          _.each(size, (s, breakpoint) => {
+            if (serialized[breakpoint] === undefined) {
+              serialized[breakpoint] = {};
+            }
+            serialized[breakpoint][type] = s;
+          });
+        }
+      });
+      return serialized;
+    }
+
+    // columns: { lg: 8, md: { container: 8 } }
+    else {
+      var _serialized = {};
+      _.each(columns, (size, breakpoint) => {
+        // columns: { lg: 8 }
+        if (['number', 'string'].indexOf(typeof size) !== -1) {
+          if (_serialized[breakpoint] === undefined) {
+            _serialized[breakpoint] = {};
+          }
+          _serialized[breakpoint].container = size;
+        }
+
+        // columns: { md: { container: 8 } }
+        else {
+          _serialized[breakpoint] = size;
+        }
+      });
+      return _serialized;
+    }
+  }
+  columnsFromPresets(presets) {
+    var columns;
+    _.each(presets, presetName => {
+      var preset = this.presets[presetName];
+      if (!preset || !preset.columns) {
+        return;
+      }
+      columns = preset.columns;
+    });
+    return columns;
+  }
+  getNullClass() {
+    return [this.getClass(this.defaultBreakpoint, 0)];
+  }
+  getClasses(type) {
+    var classes = [];
+    Object.keys(this.cols).forEach(breakpoint => {
+      var size;
+      if (type === 'innerContainer') {
+        size = this.cols[breakpoint].label;
+        size = size >= 12 || !this.hasLabel ? 12 : 12 - size;
+      } else {
+        size = this.cols[breakpoint][type];
+        if (type === 'label' && !this.hasLabel) {
+          size = 0;
+        }
+
+        // if (type === 'wrapper' && !this.hasLabel) {
+        //   size += this.cols[breakpoint].label || 0
+
+        //   if (size > 12) {
+        //     size = 12
+        //   }
+        // }
+      }
+
+      if (size !== undefined && !isNaN(size)) {
+        classes.push(this.getClass(breakpoint, size));
+      }
+    });
+    return classes;
+  }
+  getCols() {
+    return _.merge({}, {
+      [this.defaultBreakpoint]: {
+        container: 12,
+        label: 12,
+        wrapper: 12
+      }
+    }, this.configPresetColumns || {}, this.configColumns || {}, this.formPresetColumns || {}, this.formColumns || {}, this.presetColumns || {}, this.columns || {});
+  }
+}
+
+function verifyApiKey(license) {
+  var score = 0;
+  var check_digit = license[0];
+  var check_digit_count = 0;
+  var chunks = license.split('-');
+  chunks.forEach(chunk => {
+    if (chunk.length != 4) {
+      return false;
+    }
+    chunk.split('').forEach(char => {
+      if (char == check_digit) {
+        check_digit_count++;
+      }
+      score += char.codePointAt(0);
+    });
+  });
+  if (score == 1492 && check_digit_count == 3) {
+    return true;
+  }
+  return false;
+}
+
+function installer (config, components) {
+  var Vueform = class {
+    constructor() {
+      this.options = {
+        config: _.omit(config, ['theme', 'templates', 'locales', 'rules', 'plugins']),
+        templates: config.templates || {},
+        theme: config.theme || {},
+        rules: config.rules || {},
+        locales: config.locales || {},
+        plugins: config.plugins || [],
+        i18n: null,
+        vueVersion: null,
+        services: {
+          validation,
+          axios,
+          messageBag,
+          autosize,
+          location,
+          condition,
+          columns: Columns
+        },
+        version: packageJson.version
+      };
+    }
+    config(config) {
+      // merge
+      _.each(['theme', 'templates', 'locales', 'rules'], attr => {
+        if (config[attr] !== undefined) {
+          this.options[attr] = Object.assign({}, this.options[attr], config[attr]);
+        }
+      });
+
+      // replace
+      _.each(['plugins'], attr => {
+        if (config[attr] !== undefined) {
+          this.options[attr] = config[attr];
+        }
+      });
+
+      // merge (config)
+      _.each(['languages', 'services', 'addClasses', 'removeClasses', 'replaceClasses', 'overrideClasses', 'presets', 'views'], attr => {
+        if (config[attr] !== undefined) {
+          this.options.config[attr] = Object.assign({}, this.options.config[attr], config[attr]);
+        }
+      });
+
+      // deep merge
+      _.each(['endpoints'], attr => {
+        if (config[attr] !== undefined) {
+          this.options.config[attr] = _.merge({}, this.options.config[attr], config[attr]);
+        }
+      });
+
+      // replace
+      _.each(['columns', 'forceLabels', 'displayErrors', 'floatPlaceholders', 'displayErrors', 'displayMessages', 'language', 'locale', 'fallbackLocale', 'orderFrom', 'validateOn', 'formData', 'beforeSend', 'locationProvider', 'classHelpers', 'env', 'usePresets', 'plugins', 'size'], attr => {
+        if (config[attr] !== undefined) {
+          this.options.config[attr] = config[attr];
+        }
+      });
+      if (config.elements) {
+        config.elements.forEach(element => {
+          components[element.name] = _.omit(element, ['render', 'staticRenderFns', 'components']);
+        });
+        config.elements.forEach(element => {
+          if (this.options.templates[element.name] === undefined) {
+            this.options.templates[element.name] = _.pick(element, ['render', 'staticRenderFns', 'components']);
+          }
+        });
+      }
+      if (config.axios !== undefined) {
+        if (typeof config.axios === 'function') {
+          this.options.services.axios = config.axios;
+        } else {
+          this.options.config.axios = config.axios;
+        }
+      }
+    }
+    registerComponents(appOrVue) {
+      _.each(components, (comp, name) => {
+        var component = _objectSpread2({}, comp);
+        component.setup = (props, context) => {
+          context = Object.assign({}, context, {
+            name: ref(name),
+            emits: component.emits
+          });
+          var setup = comp.setup(props, context);
+          this.options.plugins.forEach(p => {
+            if (typeof p === 'function') {
+              p = p();
+            }
+            p = Array.isArray(p) ? p : [p];
+            p.forEach(plugin => {
+              var pluginOptions = typeof plugin === 'function' ? plugin() : plugin;
+              if (pluginOptions.setup && shouldApplyPlugin(name, pluginOptions)) {
+                setup = pluginOptions.setup(props, context, setup);
+              }
+            });
+          });
+          return setup;
+        };
+        if (component.components === undefined) {
+          var _this$options$templat, _this$options$theme$t;
+          component.components = ((_this$options$templat = this.options.templates[name]) === null || _this$options$templat === void 0 ? void 0 : _this$options$templat.components) || ((_this$options$theme$t = this.options.theme.templates[name]) === null || _this$options$theme$t === void 0 ? void 0 : _this$options$theme$t.components) || {};
+        }
+        component.render = function () {
+          return this.template.render.apply(this, arguments);
+        };
+        component.staticRenderFns = function () {
+          return this.template.staticRenderFns;
+        };
+        this.options.plugins.forEach(p => {
+          if (typeof p === 'function') {
+            p = p();
+          }
+          p = Array.isArray(p) ? p : [p];
+          p.forEach(plugin => {
+            var pluginOptions = typeof plugin === 'function' ? plugin() : plugin;
+            _.each(_.without(Object.keys(pluginOptions), 'setup', 'apply', 'config', 'install'), key => {
+              if (pluginOptions[key] && shouldApplyPlugin(name, pluginOptions)) {
+                if (Array.isArray(pluginOptions[key])) {
+                  var base = component[key] || [];
+                  component[key] = base.concat(pluginOptions[key]);
+                } else if (_.isPlainObject(pluginOptions[key])) {
+                  component[key] = Object.assign({}, component[key] || {}, pluginOptions[key]);
+                } else {
+                  component[key] = pluginOptions[key];
+                }
+              }
+            });
+          });
+        });
+        appOrVue.component(name, component);
+      });
+    }
+    initAxios() {
+      var $axios = this.options.services.axios;
+      var axiosConfig = this.options.config.axios;
+      var axiosConfigFlat = flat(this.options.config.axios);
+      Object.keys(axiosConfigFlat).forEach(key => {
+        var value = axiosConfigFlat[key];
+        if (['onUnauthenticated'].indexOf(key) === -1 && key.indexOf('csrfRequest.') === -1) {
+          _.set($axios.defaults, key, value);
+        }
+      });
+      $axios.interceptors.response.use(r => r, error => {
+        if (!error.response) {
+          return Promise.reject(error);
+        }
+        return new Promise((resolve, reject) => {
+          var response = error.response;
+          var originalRequest = response.config;
+          if ([401, 419].indexOf(error.response.status) !== -1) {
+            if (axiosConfig.csrfRequest && !originalRequest.CSRF) {
+              $axios.request(_objectSpread2(_objectSpread2({}, axiosConfig.csrfRequest), {}, {
+                CSRF: true
+              })).then(() => {
+                resolve($axios.request(_objectSpread2(_objectSpread2({}, originalRequest), {}, {
+                  CSRF: true
+                })));
+              }).catch(error => {
+                reject(error);
+              });
+            } else if (axiosConfig.onUnauthenticated) {
+              axiosConfig.onUnauthenticated(originalRequest);
+            } else {
+              reject(error);
+            }
+          } else {
+            reject(error);
+          }
+        });
+      });
+    }
+    initI18n() {
+      this.options.i18n = new i18n({
+        locales: this.options.locales,
+        locale: this.options.config.locale,
+        fallbackLocale: this.options.config.fallbackLocale
+      });
+    }
+    createApiKeyError() {
+      var message = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '=== Vueform API Key Missing ===';
+      var error = "";
+      error += "\n";
+      error += " .....................  ......\n";
+      error += "  ..................   ......\n";
+      error += "   ................  .......\n";
+      error += "     ......         ......\n";
+      error += "      ..........  .......\n";
+      error += "       ........  ......\n";
+      error += "                ......\n";
+      error += "          ...........\n";
+      error += "            .......\n";
+      error += "             .....\n";
+      error += "               .\n";
+      error += "\n";
+      error += "===============================\n";
+      error += "".concat(message, "\n");
+      error += "===============================\n";
+      error += "\n";
+      error += "Create a free API Key at:\n";
+      error += "https://vueform.com/docs/installation#api-key\n";
+      error += "\n";
+      return error;
+    }
+    install(appOrVue) {
+      var _this$options$theme;
+      var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+      var version = parseInt(appOrVue.version.split('.')[0]);
+      this.options.vueVersion = version;
+      var PRO_AK = 'VUEFORM_API_KEY';
+      var apikey = PRO_AK.length !== 7 && PRO_AK.charAt(0) !== 'V' && PRO_AK.charAt(7) !== '_' ? PRO_AK : options.apiKey;
+      if (!apikey) {
+        console.error(this.createApiKeyError('=== Vueform API Key Missing ==='));
+        return;
+      }
+      if (!verifyApiKey(apikey.toUpperCase())) {
+        console.error(this.createApiKeyError('=== Invalid Vueform API Key ==='));
+        return;
+      }
+      if (navigator && navigator.onLine && window && window.location && ['http:', 'https:'].indexOf(window.location.protocol) !== -1 && typeof fetch !== 'undefined') {
+        fetch("https://api.vueform.com/check?key=".concat(apikey)).then(response => response.json()).then(data => {
+          // if (data?.valid !== true) {
+          //   console.error(this.createApiKeyError('======= Invalid API Key ======='))
+          // }
+        }).catch(() => {});
+      }
+      var plugins = options.plugins || [];
+      plugins.forEach(p => {
+        if (typeof p === 'function') {
+          p = p();
+        }
+        p = Array.isArray(p) ? p : [p];
+        p.forEach(plugin => {
+          var pluginOptions = typeof plugin === 'function' ? plugin() : plugin;
+          if (pluginOptions.config) {
+            pluginOptions.config(options);
+          }
+        });
+      });
+      if (options) {
+        this.config(options);
+      }
+      this.options.plugins.forEach(p => {
+        if (typeof p === 'function') {
+          p = p();
+        }
+        p = Array.isArray(p) ? p : [p];
+        p.forEach(plugin => {
+          var pluginOptions = typeof plugin === 'function' ? plugin() : plugin;
+          if (pluginOptions.install) {
+            pluginOptions.install(appOrVue, this.options);
+          }
+        });
+      });
+      if (typeof config.axios !== 'function') {
+        this.initAxios();
+      }
+      this.initI18n();
+      this.registerComponents(appOrVue);
+      var themeTemplates = ((_this$options$theme = this.options.theme) === null || _this$options$theme === void 0 ? void 0 : _this$options$theme.templates) || {};
+      Object.keys(themeTemplates).forEach(componentName => {
+        themeTemplates[componentName] = markRaw(themeTemplates[componentName]);
+      });
+      var $vueform = ref(_objectSpread2(_objectSpread2({}, this.options), {}, {
+        theme: _objectSpread2(_objectSpread2({}, this.options.theme), {}, {
+          templates: themeTemplates
+        })
+      }));
+      switch (version) {
+        case 2:
+          appOrVue.config.ignoredElements = ['trix-editor'];
+          appOrVue.config.unwrapInjectedRef = true;
+          if (!appOrVue.prototype.$vueform) {
+            appOrVue.prototype.$vueform = new Proxy($vueform, {
+              get: (target, prop, receiver) => {
+                return target.value[prop];
+              }
+            });
+          }
+          if (!appOrVue.__VUEFORM__) {
+            appOrVue.__VUEFORM__ = true;
+            appOrVue.mixin({
+              methods: {
+                __: (expr, data) => {
+                  if (!data) {
+                    console.warn('DEPRECATED: __ method should be no longer used for translating labels, only if they contain variables. For general translation use form$.translation.TAG instead.');
+                  }
+                  return this.options.i18n.$t(expr, data);
+                }
+              }
+            });
+          }
+          break;
+        case 3:
+          // appOrVue.config.isCustomElement = (tag) => ['trix-editor'].indexOf(tag) !== -1
+          appOrVue.config.compilerOptions.isCustomElement = tag => ['trix-editor'].indexOf(tag) !== -1;
+          appOrVue.config.unwrapInjectedRef = true;
+          appOrVue.config.globalProperties.$vueform = new Proxy($vueform, {
+            get: (target, prop, receiver) => {
+              return target.value[prop];
+            }
+          });
+          appOrVue.provide('$vueform', $vueform);
+          appOrVue.mixin({
+            methods: {
+              $set(obj, key, value) {
+                obj[key] = value;
+              },
+              $delete(obj, key) {
+                delete obj[key];
+              },
+              __: (expr, data) => {
+                if (!data) {
+                  console.warn('DEPRECATED: __ method should be no longer used for translating labels, only if they contain variables. For general translation use form$.translation.TAG instead.');
+                }
+                return this.options.i18n.$t(expr, data);
+              }
+            }
+          });
+          break;
+      }
+    }
+  };
+  return new Vueform();
+}
+
+export { installer as default };

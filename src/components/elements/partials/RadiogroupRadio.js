@@ -28,7 +28,7 @@ export default {
   },
   setup(props, context)
   {
-    const { value } = toRefs(props)
+    const { value, item } = toRefs(props)
 
     const {
       el$,
@@ -50,7 +50,7 @@ export default {
      * @type {boolean}
      */
     const isDisabled = computed(() => {
-      return el$.value.disabledItems.map(i=>String(i)).indexOf(String(value.value)) !== -1 || el$.value.isDisabled
+      return el$.value.disabledItems.map(i=>String(i)).indexOf(String(value.value)) !== -1 || el$.value.isDisabled || !!item.value?.disabled
     })
 
     /**
