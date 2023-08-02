@@ -4106,7 +4106,7 @@ export default {
           "types": [
             "object"
           ],
-          "description": "Slots related to the element's field. Eg. an \"elementSlot\" is something related to the element, like `label`, `description`, etc. A \"fieldSlot\" is something that related to the field within the element, eg. `option` or `singlelabel` for `SelectElement`."
+          "description": "Slots related to the element's field. Eg. an \"elementSlot\" is something related to the element, like `label`, `description`, etc. A \"fieldSlot\" is something that related to the field within the element, eg. `option` or `single-label` for `SelectElement`."
         }
       }
     }

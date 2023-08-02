@@ -4238,7 +4238,8 @@ module.exports = {
         "default": null,
         "types": [
           "string",
-          "boolean"
+          "boolean",
+          "function"
         ]
       },
       "method": {
