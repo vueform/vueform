@@ -15,8 +15,10 @@ info_message() {
     echo ">>> $1"
 }
 
-info_message "Generating release notes..."
-node ./scripts/notes.js
+temp_file=$(mktemp)
+
+info_message "Creating release notes..."
+node ./scripts/notes.js > "$temp_file" 2>&1
 notes=$?
 if [ $notes -ne 0 ]; then
     # Echo the message in red color
@@ -27,7 +29,6 @@ else
     success_message "Generating notes succeeded."
 fi
 
-info_message "Copying release notes to vueform.com/apps/sdk/release.json..."
 cp ./CHANGELOG.json ./../vueform.com/apps/sdk/releases.json
 cp_response=$?
 if [ $cp_response -ne 0 ]; then
@@ -38,8 +39,6 @@ else
     # Echo the success message in green color
     success_message "Copying notes succeeded."
 fi
-
-info_message "Comitting release notes..."
     
 cd ./../vueform.com
 

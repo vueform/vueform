@@ -149,6 +149,7 @@ else
     success_message "API generation succeeded."
 fi
 
+info_message "Generating API files..."
 node ./scripts/apiToSdk.js > "$temp_file" 2>&1
 publish_result=$?
 if [ $publish_result -ne 0 ]; then
