@@ -774,7 +774,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `singlelabel` for `SelectElement`.',
+        description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `single-label` for `SelectElement`.',
         private: true,
       },
       Templates: {
@@ -1992,7 +1992,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `singlelabel` for `SelectElement`.',
+        description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `single-label` for `SelectElement`.',
         private: true,
       },
       Templates: {
@@ -3384,7 +3384,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `singlelabel` for `SelectElement`.',
+        description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `single-label` for `SelectElement`.',
         private: true,
       },
       Templates: {
@@ -5094,7 +5094,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `singlelabel` for `SelectElement`.',
+        description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `single-label` for `SelectElement`.',
         private: true,
       },
       Templates: {
@@ -6648,7 +6648,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `singlelabel` for `SelectElement`.',
+        description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `single-label` for `SelectElement`.',
         private: true,
       },
       Templates: {
@@ -8167,7 +8167,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `singlelabel` for `SelectElement`.',
+        description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `single-label` for `SelectElement`.',
         private: true,
       },
       Templates: {
@@ -9915,7 +9915,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `singlelabel` for `SelectElement`.',
+        description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `single-label` for `SelectElement`.',
         private: true,
       },
       Templates: {
@@ -11318,7 +11318,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `singlelabel` for `SelectElement`.',
+        description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `single-label` for `SelectElement`.',
         private: true,
       },
       Templates: {
@@ -13731,7 +13731,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `singlelabel` for `SelectElement`.',
+        description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `single-label` for `SelectElement`.',
         private: true,
       },
       isSortable: {
@@ -15377,7 +15377,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `singlelabel` for `SelectElement`.',
+        description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `single-label` for `SelectElement`.',
         private: true,
       },
       Templates: {
@@ -17145,7 +17145,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `singlelabel` for `SelectElement`.',
+        description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `single-label` for `SelectElement`.',
         private: true,
       },
       isSortable: {
@@ -19283,7 +19283,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `singlelabel` for `SelectElement`.',
+        description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `single-label` for `SelectElement`.',
         private: true,
       },
       Templates: {
@@ -21011,7 +21011,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `singlelabel` for `SelectElement`.',
+        description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `single-label` for `SelectElement`.',
         private: true,
       },
       Templates: {
@@ -22404,7 +22404,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `singlelabel` for `SelectElement`.',
+        description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `single-label` for `SelectElement`.',
         private: true,
       },
       Templates: {
@@ -23797,7 +23797,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `singlelabel` for `SelectElement`.',
+        description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `single-label` for `SelectElement`.',
         private: true,
       },
       Templates: {
@@ -25785,7 +25785,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `singlelabel` for `SelectElement`.',
+        description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `single-label` for `SelectElement`.',
         private: true,
       },
       Templates: {
@@ -27600,7 +27600,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `singlelabel` for `SelectElement`.',
+        description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `single-label` for `SelectElement`.',
         private: true,
       },
       Templates: {
@@ -28782,7 +28782,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `singlelabel` for `SelectElement`.',
+        description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `single-label` for `SelectElement`.',
         private: true,
       },
       isHtml: {
@@ -30074,7 +30074,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `singlelabel` for `SelectElement`.',
+        description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `single-label` for `SelectElement`.',
         private: true,
       },
       Templates: {
@@ -31693,7 +31693,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `singlelabel` for `SelectElement`.',
+        description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `single-label` for `SelectElement`.',
         private: true,
       },
       Templates: {
@@ -33359,7 +33359,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `singlelabel` for `SelectElement`.',
+        description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `single-label` for `SelectElement`.',
         private: true,
       },
       Templates: {
@@ -35447,7 +35447,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `singlelabel` for `SelectElement`.',
+        description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `single-label` for `SelectElement`.',
         private: true,
       },
       Templates: {
@@ -37384,7 +37384,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `singlelabel` for `SelectElement`.',
+        description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `single-label` for `SelectElement`.',
         private: true,
       },
       Templates: {
@@ -39031,7 +39031,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `singlelabel` for `SelectElement`.',
+        description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `single-label` for `SelectElement`.',
         private: true,
       },
       Templates: {
@@ -40587,7 +40587,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `singlelabel` for `SelectElement`.',
+        description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `single-label` for `SelectElement`.',
         private: true,
       },
       Templates: {

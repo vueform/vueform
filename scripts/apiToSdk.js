@@ -10,6 +10,12 @@ const propertiesOrganizer = require('./../api/properties-organizer')
 const methodsOrganizer = require('./../api/methods-organizer')
 const fieldNames = require('./../api/field-names')
 
+const toKebab = (str) => {
+  let has$Ending = str.match(/\$$/)
+
+  return _.kebabCase(str) + (has$Ending ? '_' : '')
+}
+
 _.forEach(['', '/properties', '/methods', '/events', '/slots', '/provide', '/options', '/views'], (dir) => {
   try {
     fs.readdirSync(`${outputDir}${dir}`)
@@ -30,7 +36,7 @@ const createOptions = (component, component_name, ComponentName, name, Name, fie
       return
     }
 
-    content += `### ${optionName} {#option-${_.kebabCase(optionName)}}\n\n`
+    content += `### ${optionName} {#option-${toKebab(optionName)}}\n\n`
 
     if (option.types) {
       content += `* Type: \`${option.types.join('|')}\`\n`
@@ -107,7 +113,7 @@ const createProperties = (component, component_name, ComponentName, name, Name, 
     const def = property.default ? `\`${property.default}\`` : null
     const description = property.description ? escapeStr(property.description).split('').map(c=>c==='\''?'&apos;':c).join('') : null
 
-    content += `### ${propertyName} {#property-${_.kebabCase(propertyName)}}\n\n`
+    content += `### ${propertyName} {#property-${toKebab(propertyName)}}\n\n`
 
     if (types) {
       content += `* Type: ${types}\n`
@@ -177,7 +183,7 @@ const createMethods = (component, component_name, ComponentName, name, Name, fie
       return
     }
 
-    content += `### ${methodName} {#method-${_.kebabCase(methodName)}}\n\n`
+    content += `### ${methodName} {#method-${toKebab(methodName)}}\n\n`
 
     if (method.params) {
       content += `* Arguments:\n`
@@ -238,7 +244,7 @@ const createEvents = (component, component_name, ComponentName, name, Name, fiel
       return
     }
 
-    content += `### ${eventName} {#event-${_.kebabCase(eventName)}}\n\n`
+    content += `### ${eventName} {#event-${toKebab(eventName)}}\n\n`
 
     if (event.params) {
       content += `* Params:\n`
@@ -277,7 +283,7 @@ const createSlots = (component, component_name, ComponentName, name, Name, field
       return
     }
 
-    content += `### #${slotName} {#event-${_.kebabCase(slotName)}}\n\n`
+    content += `### ${slotName} {#slot-${toKebab(slotName)}}\n\n`
 
     if (slot.props) {
       content += `* Scope:\n`

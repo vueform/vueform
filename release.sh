@@ -146,6 +146,18 @@ else
     success_message "API generation succeeded."
 fi
 
+info_message "Publishing API files..."
+node ./scripts/apiToSdk.js
+publish_result=$?
+if [ $publish_result -ne 0 ]; then
+    # Echo the message in red color
+    error_message "API publishing failed. Exiting..."
+    exit 1
+else
+    # Echo the success message in green color
+    success_message "API publishing succeeded."
+fi
+
 # Run npm run build
 info_message "Building dist..."
 npm run build
