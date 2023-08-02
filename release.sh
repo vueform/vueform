@@ -117,7 +117,7 @@ options=("Yes" "No")
 select_option "${options[@]}"
 test_choice=$?
 
-echo "Do you publish release notes?"
+echo "Do you want to publish release notes?"
 options=("Yes" "No")
 select_option "${options[@]}"
 publish_notes_choice=$?
