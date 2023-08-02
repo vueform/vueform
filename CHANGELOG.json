@@ -1,0 +1,195 @@
+[
+  {
+    "version": "1.3.9",
+    "date": "2023-07-31",
+    "available": true,
+    "notes": [
+      "feat: Element props now can be localized.",
+      "fix: Some random stuff"
+    ]
+  },
+  {
+    "version": "1.3.3",
+    "date": "2023-07-30",
+    "available": true,
+    "notes": [
+      "fix: List object group child remove fix."
+    ]
+  },
+  {
+    "version": "1.3.2",
+    "date": "2023-04-07",
+    "available": true,
+    "notes": [
+      "fix: Display label in validation message when the label is specified as a function.",
+      "fix: Localize generic name for validation messages.",
+      "fix: Floating label position CSS fix."
+    ]
+  },
+  {
+    "version": "1.3.1",
+    "date": "2023-03-14",
+    "available": true,
+    "notes": [
+      "feat: Element props now can be localized.",
+      "feat: Added `rel=\"nofollow noopener\"` to image previews.",
+      "feat: Added `closeOnDeselect` options for selects.",
+      "feat: Added `locale` options for Vueform to override locale for a single form.",
+      "fix: Switching locale in global `$vueform` object will now have immediate effect without having to use `:key` on components.",
+      "fix: Minor CSS fix in `SelectElement` and `MultiselectElement` floating label in `tailwind` theme."
+    ]
+  },
+  {
+    "version": "1.3.0",
+    "date": "2023-03-02",
+    "available": true,
+    "notes": [
+      "feat: Columns with label < 12 no longer need `horizontal` class - it is now automatic.",
+      "feat: Added `keydown`, `keyup` and `keypress` events for text and textarea elements.",
+      "fix: `SelectElement` and `MultiselectElement` selected item label padding fix in `tailwind` theme."
+    ]
+  },
+  {
+    "version": "1.2.18",
+    "date": "2023-02-08",
+    "available": true,
+    "notes": [
+      "feat: OR type conditions.",
+      "feat: New condition operators: `empty`, `not_empty`, `today`, `before`, `after`, `^`, `$`, `*`.",
+      "fix: Incorrectly displaying disabled `aria` for static element.",
+      "fix: UI fix for list remove buttons.",
+      "fix: UI fix for select, multiselect & tags elements."
+    ]
+  },
+  {
+    "version": "1.2.17",
+    "date": "2022-12-23",
+    "available": true,
+    "notes": [
+      "fix: Adding element after resorting a list / multifile should add as last.",
+      "fix: Change radiogroup / checkbox group tabs with arrows."
+    ]
+  },
+  {
+    "version": "1.2.16",
+    "date": "2022-12-14",
+    "available": true,
+    "notes": [
+      "feat: Tree now include tabs/steps with correct element order.",
+      "fix: Multifile data & requestData fixes.",
+      "fix: Got into infinite loop in production if custom element level error messages were defined as inline objects.",
+      "fix: Don't disable the Next button on a valid step."
+    ]
+  },
+  {
+    "version": "1.2.15",
+    "date": "2022-11-21",
+    "available": true,
+    "notes": [
+      "feat: Z-index optimization thought the whole library. New rule is that everything has z-index 999 that intended to be brought to top (eg. tooltip, dropdown) and everything else got the lowest possible (1) z-index where relative z-indexing was needed.",
+      "feat: Added `clearMessage` method to clear all messages manually added to `messageBag`.",
+      "feat: Refactored tabs & steps CSS.",
+      "feat: Form steps are now using `v-if` instead of `v-show`.",
+      "feat: Added `isLast`, `isFirst`, `last$` props steps & tabs.",
+      "feat: Finish step now also recognizes `next` label (for ease of configuration).",
+      "feat: Focus first element on next step if stepped with keyboard.",
+      "feat: A11y improvements.",
+      "fix: Multifile object gallery rendered images in rows.",
+      "fix: Remove query param from uploaded filename.",
+      "fix: Pressing enter in certain elements caused removing or adding list elements.",
+      "fix: Datepicker was aligned to right in `tailwind` theme."
+    ]
+  },
+  {
+    "version": "1.2.14",
+    "date": "2022-10-28",
+    "available": true,
+    "notes": [
+      "feat: Added current Vueform version to `$vueform.version`.",
+      "feat: Added `rules` & related options to `GroupElement` & `ObjectElement`.",
+      "feat: Added `reinitValidation()` method to elements.",
+      "feat: Added `tree` & `flatTree` props to `Vueform`.",
+      "fix: Submit steps on Finish in FFX broke in some versions.",
+      "fix: List first instance didn't display instantly when a prototype got defined on the flight if list was in a group.",
+      "fix: Aria didn't display for certain elements eg. Group, Object.",
+      "fix: Element's container class is now added to inline layout's container.",
+      "fix: Multifile resort images in stage 2 refresh fix.",
+      "fix: Axios now works with an instance provided to config.",
+      "fix: Refresh order fields in object lists when `storeOrder` changes or reseted.",
+      "fix: Reset list children when directly resetting lists."
+    ]
+  },
+  {
+    "version": "1.2.13",
+    "date": "2022-10-07",
+    "available": true,
+    "notes": [
+      "feat: Added `tree` and `flatTree` props to `Vueform` component."
+    ]
+  },
+  {
+    "version": "1.2.12",
+    "date": "2022-09-26",
+    "available": true,
+    "notes": [
+      "feat: A11y improvements."
+    ]
+  },
+  {
+    "version": "1.2.11",
+    "date": "2022-09-16",
+    "available": true,
+    "notes": [
+      "feat: Added `updateColumns` API method.",
+      "feat: Multifile inherits file props.",
+      "feat: Errors and messages can now display HTML.",
+      "fix: Removed unused import from `tailwind.js`."
+    ]
+  },
+  {
+    "version": "1.2.10",
+    "date": "2022-08-19",
+    "available": true,
+    "notes": [
+      "fix: Added datepicker locales.",
+      "fix: Mobile datepicker fix.",
+      "fix: Removed `font-sans` from select elements' search input in Tailwind.",
+      "fix: Tailwind 3 lg input floating label positioning fix.",
+      "fix: `GroupElement` can now be placed in an `ObjectElement`."
+    ]
+  },
+  {
+    "version": "1.2.9",
+    "date": "2022-08-08",
+    "available": true,
+    "notes": [
+      "feat: Allow `false` value for `FileElement`'s `url` option.",
+      "feat: If a filename contains url only the filename is displayed.",
+      "feat: Can pass an axios instance to `axios` option in `vueform.config.js`.",
+      "fix: Select endpoint will add search param with `&` if it already contains `?`."
+    ]
+  },
+  {
+    "version": "1.2.8",
+    "date": "2022-07-19",
+    "available": true,
+    "notes": [
+      "fix: Added `regeneratorRuntime` to `validator` export.",
+      "fix: API Key validation url fixed.",
+      "fix: Nested global form element styles under `form` tag."
+    ]
+  },
+  {
+    "version": "1.2.7",
+    "date": "2022-07-18",
+    "available": true,
+    "notes": [
+      "feat: Added [API Key](/docs/1.x/installation#api-key) validation.",
+      "feat: Removed Composition API dependency. Use Vue.js 2.7+ instead.",
+      "fix: Added `components` to element creator.",
+      "fix: Locales export `module.exports` -> `export default`.",
+      "fix: Fixed `clean()` for `Vueform` and `ListElement`.",
+      "fix: Added prefix to component styles."
+    ]
+  }
+]
