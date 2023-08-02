@@ -134,6 +134,18 @@ options=("Yes" "No")
 select_option "${options[@]}"
 publish_notes_choice=$?
 
+info_message "Generating API files..."
+npm run generate
+generate_result=$?
+if [ $generate_result -ne 0 ]; then
+    # Echo the message in red color
+    error_message "API generation failed. Exiting..."
+    exit 1
+else
+    # Echo the success message in green color
+    success_message "API generation succeeded."
+fi
+
 # Run npm run build
 info_message "Building dist..."
 npm run build
