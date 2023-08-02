@@ -162,6 +162,7 @@ else
 fi
 
 # Run npm run build
+info_message "Building main files..."
 npm run build > "$temp_file" 2>&1
 build_result=$?
 if [ $build_result -ne 0 ]; then
@@ -190,13 +191,14 @@ if [ "$test_choice" -eq 0 ]; then
         success_message "Updated version in package.json to $new_version"
     fi
 else
-    info_message "Skipping unit tests."
+    success_message "Skipping unit tests."
     # Update package.json with the new version since tests are skipped
     update_version "$new_version"
     success_message "Updated version in package.json to $new_version"
 fi
 
 # Run npm run build
+info_message "Building dev files..."
 npm run to:dev > "$temp_file" 2>&1
 dev_result=$?
 if [ $dev_result -ne 0 ]; then
@@ -210,6 +212,7 @@ else
 fi
 
 # Run npm run build
+info_message "Building prod files..."
 npm run to:prod > "$temp_file" 2>&1
 prod_result=$?
 if [ $prod_result -ne 0 ]; then
@@ -223,6 +226,7 @@ else
 fi
 
 # Run npm run build
+info_message "Building source files..."
 npm run to:source > "$temp_file" 2>&1
 source_result=$?
 if [ $source_result -ne 0 ]; then
@@ -437,8 +441,6 @@ for repo in "${repos[@]}"; do
         # Echo the message in green color
         success_message "Nothing to commit. Working tree clean in $repo."
     fi
-
-    success_message "Git and npm operations completed successfully in $repo."
 done
 
 if [ "$publish_notes_choice" -eq 0 ]; then
