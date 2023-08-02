@@ -4,7 +4,7 @@
     "date": "2023-07-31",
     "available": true,
     "notes": [
-      "feat: Element props now can be localized.",
+      "feat: Element props now can be localized. 111",
       "fix: Some random stuff"
     ]
   },

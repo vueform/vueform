@@ -1,3 +1,10 @@
+## v1.3.10
+
+> `2023-07-31`
+> 
+### 🎉 Feature
+- Element props now can be localized.
+
 ## v1.3.9
 
 > `2023-07-31`

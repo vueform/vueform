@@ -111,35 +111,16 @@ check_changelog_version() {
 # Call the function to check the version in CHANGELOG.md
 check_changelog_version "$new_version"
 
-info_message "Generating release notes..."
-node ./scripts/notes.js
-notes=$?
-if [ $notes -ne 0 ]; then
-    # Echo the message in red color
-    error_message "Generating notes failed. Exiting..."
-    exit 1
-else
-    # Echo the success message in green color
-    success_message "Generating notes succeeded."
-fi
-
-info_message "Copying release notes to vueform.com/apps/sdk/release.json..."
-cp ./CHANGELOG.json ./../vueform.com/apps/sdk/releases.json
-cp=$?
-if [ $cp -ne 0 ]; then
-    # Echo the message in red color
-    error_message "Copying notes failed. Exiting..."
-    exit 1
-else
-    # Echo the success message in green color
-    success_message "Copying notes succeeded."
-fi
-
 # Ask whether to run unit tests
 echo "Do you want to run unit tests?"
 options=("Yes" "No")
 select_option "${options[@]}"
 test_choice=$?
+
+echo "Do you publish release notes?"
+options=("Yes" "No")
+select_option "${options[@]}"
+publish_notes_choice=$?
 
 # Run npm run build
 info_message "Building dist..."
@@ -425,35 +406,16 @@ for repo in "${repos[@]}"; do
     success_message "Git and npm operations completed successfully in $repo."
 done
 
-echo "Do you publish release notes?"
-options=("Yes" "No")
-select_option "${options[@]}"
-publish_notes_choice=$?
-
 if [ "$publish_notes_choice" -eq 0 ]; then
-   info_message "Comitting release notes..."
-    
-    cd ./../vueform.com
+   ./notes.sh
+   notes=$?
 
-    git add apps/sdk/releases.json
-    git commit -m  '$new_version'
-    git push
-
-    info_message "Publishing release notes..."
-
-    # Define the URL
-    url="https://forge.laravel.com/servers/681079/sites/2056602/deploy/http?token=gTbJpYLM7MhxprrI4m5WkceH8vA16AHkW2P4Q4ig"
-
-    # Make the GET request using curl
-    response=$(curl -sS $url)
-
-    # Check if the request was successful (HTTP status code 200)
-    if [[ $? -eq 0 ]]; then
-      success_message "https://sdk.vueform.com deploy script ran successfully! You should see the release notes in a few minutes."
-    else
-      error_message "https://sdk.vueform.com deploy script failed. Exiting..."
+   if [ $notes -ne 0 ]; then
+      error_message "Failed publishing notes. Exiting..."
       exit 1
-    fi
+  else
+      success_message "Publishing notes succeeded."
+  fi
 fi
 
 success_message "Released $new_version <<<"
