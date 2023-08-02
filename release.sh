@@ -199,7 +199,7 @@ else
 fi
 
 # Run npm run build
-info_message "Building dev files..."
+info_message "Building @vueform/sdk-dev files..."
 npm run to:dev > "$temp_file" 2>&1
 dev_result=$?
 if [ $dev_result -ne 0 ]; then
@@ -213,7 +213,7 @@ else
 fi
 
 # Run npm run build
-info_message "Building prod files..."
+info_message "Building @vueform/sdk files..."
 npm run to:prod > "$temp_file" 2>&1
 prod_result=$?
 if [ $prod_result -ne 0 ]; then
@@ -227,7 +227,7 @@ else
 fi
 
 # Run npm run build
-info_message "Building source files..."
+info_message "Building @vueform/sdk-source files..."
 npm run to:source > "$temp_file" 2>&1
 source_result=$?
 if [ $source_result -ne 0 ]; then
