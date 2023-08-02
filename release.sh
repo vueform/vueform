@@ -407,6 +407,7 @@ for repo in "${repos[@]}"; do
 done
 
 if [ "$publish_notes_choice" -eq 0 ]; then
+    cd ./../vueform
    ./notes.sh
    notes=$?
 
