@@ -113,6 +113,7 @@ check_changelog_version() {
 # Call the function to check the version in CHANGELOG.md
 check_changelog_version "$new_version"
 
+info_message "Generating notes files"
 node ./scripts/notes.js > "$temp_file" 2>&1
 notes=$?
 if [ $notes -ne 0 ]; then
@@ -137,6 +138,7 @@ select_option "${options[@]}"
 publish_notes_choice=$?
 
 # Generate api files
+info_message "Generating API files"
 npm run generate > "$temp_file" 2>&1
 generate_result=$?
 if [ $generate_result -ne 0 ]; then
