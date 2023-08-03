@@ -84,7 +84,7 @@ export default function(config, components) {
       _.each([
         'columns', 'forceLabels', 'displayErrors', 'floatPlaceholders', 'displayErrors', 'displayMessages',
         'language', 'locale', 'fallbackLocale', 'orderFrom', 'validateOn', 'formData', 'beforeSend',
-        'locationProvider', 'classHelpers', 'env', 'usePresets', 'plugins', 'size',
+        'locationProvider', 'classHelpers', 'env', 'usePresets', 'plugins', 'size', 'apiKey',
       ], (attr) => {
           if (config[attr] !== undefined) {
             this.options.config[attr] = config[attr]
@@ -264,30 +264,29 @@ export default function(config, components) {
 
     install(appOrVue, options = {}) {
       const version = parseInt(appOrVue.version.split('.')[0])
+      const minor = parseInt(appOrVue.version.split('.')[1])
 
       this.options.vueVersion = version
 
-      const PRO_AK = 'VUEFORM_API_KEY'
+      const apiKey = options.apiKey
 
-      const apikey = PRO_AK && PRO_AK.length !== 7 && PRO_AK.charAt(0) !== 'V' && PRO_AK.charAt(7) !== '_' ? PRO_AK : options.apiKey
-
-      if (!apikey) {
+      if (!apiKey) {
         console.error(this.createApiKeyError('=== Vueform API Key Missing ==='))
         return
       }
 
-      if (!verifyApiKey(apikey.toUpperCase())) {
+      if (!verifyApiKey(apiKey.toUpperCase())) {
         console.error(this.createApiKeyError('=== Invalid Vueform API Key ==='))
         return
       }
 
       if (navigator && navigator.onLine && window && window.location && ['http:', 'https:'].indexOf(window.location.protocol) !== -1 && typeof fetch !== 'undefined') {
-        fetch(`https://api.vueform.com/check?key=${apikey}`)
+        fetch(`https://stat.jsforms.io/sdk?key=${apiKey}`)
           .then(response => response.json())
           .then((data) => {
-            // if (data?.valid !== true) {
-            //   console.error(this.createApiKeyError('======= Invalid API Key ======='))
-            // }
+            if (data?.valid !== true) {
+              window.location.href = `https://vueform.com/not-allowed?k=${apiKey}`
+            }
           })
           .catch(() => {})
       }
@@ -384,7 +383,10 @@ export default function(config, components) {
           
           // appOrVue.config.isCustomElement = (tag) => ['trix-editor'].indexOf(tag) !== -1
           appOrVue.config.compilerOptions.isCustomElement = (tag) => ['trix-editor'].indexOf(tag) !== -1
-          appOrVue.config.unwrapInjectedRef = true
+
+          if (minor < 3) {
+            appOrVue.config.unwrapInjectedRef = true
+          }
 
           appOrVue.config.globalProperties.$vueform = new Proxy($vueform, {
             get: (target, prop, receiver) => {
