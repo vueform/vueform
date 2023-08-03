@@ -17,6 +17,8 @@
     "main": "index.js",
     "module": "index.js",
     "dependencies": {
+        "@babel/plugin-transform-runtime": "^7.16.4",
+        "@babel/runtime": "^7.16.3",
         "@vueform/multiselect": "^2.2.1",
         "@vueform/slider": "^2.0.0",
         "@vueform/toggle": "^2.0.0",
