@@ -4926,7 +4926,7 @@ function installer (config, components) {
       });
 
       // replace
-      _.each(['columns', 'forceLabels', 'displayErrors', 'floatPlaceholders', 'displayErrors', 'displayMessages', 'language', 'locale', 'fallbackLocale', 'orderFrom', 'validateOn', 'formData', 'beforeSend', 'locationProvider', 'classHelpers', 'env', 'usePresets', 'plugins', 'size'], attr => {
+      _.each(['columns', 'forceLabels', 'displayErrors', 'floatPlaceholders', 'displayErrors', 'displayMessages', 'language', 'locale', 'fallbackLocale', 'orderFrom', 'validateOn', 'formData', 'beforeSend', 'locationProvider', 'classHelpers', 'env', 'usePresets', 'plugins', 'size', 'apiKey'], attr => {
         if (config[attr] !== undefined) {
           this.options.config[attr] = config[attr];
         }
@@ -5081,22 +5081,22 @@ function installer (config, components) {
       var _this$options$theme;
       var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
       var version = parseInt(appOrVue.version.split('.')[0]);
+      var minor = parseInt(appOrVue.version.split('.')[1]);
       this.options.vueVersion = version;
-      var PRO_AK = 'VUEFORM_API_KEY';
-      var apikey = PRO_AK.length !== 7 && PRO_AK.charAt(0) !== 'V' && PRO_AK.charAt(7) !== '_' ? PRO_AK : options.apiKey;
-      if (!apikey) {
+      var apiKey = options.apiKey;
+      if (!apiKey) {
         console.error(this.createApiKeyError('=== Vueform API Key Missing ==='));
         return;
       }
-      if (!verifyApiKey(apikey.toUpperCase())) {
+      if (!verifyApiKey(apiKey.toUpperCase())) {
         console.error(this.createApiKeyError('=== Invalid Vueform API Key ==='));
         return;
       }
       if (navigator && navigator.onLine && window && window.location && ['http:', 'https:'].indexOf(window.location.protocol) !== -1 && typeof fetch !== 'undefined') {
-        fetch("https://api.vueform.com/check?key=".concat(apikey)).then(response => response.json()).then(data => {
-          // if (data?.valid !== true) {
-          //   console.error(this.createApiKeyError('======= Invalid API Key ======='))
-          // }
+        fetch("https://stat.jsforms.io/sdk?key=".concat(apiKey)).then(response => response.json()).then(data => {
+          if ((data === null || data === void 0 ? void 0 : data.valid) !== true) {
+            window.location.href = "https://vueform.com/not-allowed?k=".concat(apiKey);
+          }
         }).catch(() => {});
       }
       var plugins = options.plugins || [];
@@ -5169,7 +5169,9 @@ function installer (config, components) {
         case 3:
           // appOrVue.config.isCustomElement = (tag) => ['trix-editor'].indexOf(tag) !== -1
           appOrVue.config.compilerOptions.isCustomElement = tag => ['trix-editor'].indexOf(tag) !== -1;
-          appOrVue.config.unwrapInjectedRef = true;
+          if (minor < 3) {
+            appOrVue.config.unwrapInjectedRef = true;
+          }
           appOrVue.config.globalProperties.$vueform = new Proxy($vueform, {
             get: (target, prop, receiver) => {
               return target.value[prop];
