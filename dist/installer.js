@@ -1034,7 +1034,7 @@ var publishConfig = {
 	registry: "https://registry.jsforms.io"
 };
 var name = "@vueform/vueform";
-var version = "1.3.12";
+var version = "1.3.13";
 var description = "Form builder for Vue.js";
 var homepage = "https://vueform.com";
 var bugs = {
@@ -5167,8 +5167,6 @@ function installer (config, components) {
           }
           break;
         case 3:
-          // appOrVue.config.isCustomElement = (tag) => ['trix-editor'].indexOf(tag) !== -1
-          appOrVue.config.compilerOptions.isCustomElement = tag => ['trix-editor'].indexOf(tag) !== -1;
           if (minor < 3) {
             appOrVue.config.unwrapInjectedRef = true;
           }
