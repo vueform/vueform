@@ -15,6 +15,7 @@ const files = [
   'postcss.config.js',
   'tailwind-prefixer.js',
   'tailwind.js',
+  'vite.js',
   'CHANGELOG.md',
   ['build/source.config.js', 'build/rollup.config.js'],
   ['jest/jest.setup.js', 'jest.setup.js'],

@@ -34,6 +34,7 @@ const copyFiles = {
   'CHANGELOG.md': 'CHANGELOG.md',
   'tailwind.js': 'tailwind.js',
   'tailwind-prefixer.js': 'tailwind-prefixer.js',
+  'vite.js': 'vite.js',
   'src/plugin.js': 'plugin.js',
   '.gitignore.dist': '.gitignore',
   '.npmrc.dist': '.npmrc',
