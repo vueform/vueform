@@ -380,10 +380,6 @@ export default function(config, components) {
           break
 
         case 3:
-          
-          // appOrVue.config.isCustomElement = (tag) => ['trix-editor'].indexOf(tag) !== -1
-          appOrVue.config.compilerOptions.isCustomElement = (tag) => ['trix-editor'].indexOf(tag) !== -1
-
           if (minor < 3) {
             appOrVue.config.unwrapInjectedRef = true
           }
