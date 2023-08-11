@@ -55,6 +55,7 @@ export default (commandLineArgs) => {
     finalPackageJson.name = '@vueform/sdk-dev'
     finalPackageJson.version = version
     finalPackageJson.private = false
+    finalPackageJson.description = 'Vueform SDK development build.'
 
     fs.writeFileSync(path.resolve(outputDir, 'package.json'), JSON.stringify(finalPackageJson, null, 2))
   }
