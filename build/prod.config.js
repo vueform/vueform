@@ -1,7 +1,7 @@
 import path from 'path'
 import obfuscator from 'rollup-plugin-obfuscator'
 import packageJson from './../package.json'
-import distPackageJson from './../dist.package.json'
+import distPackageJson from './../package.prod.json'
 
 const ncp = require('ncp')
 const fs = require('fs')
