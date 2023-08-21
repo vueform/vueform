@@ -201,45 +201,59 @@ else
 fi
 
 # Run npm run build
-info_message "Building @vueform/vueform-dev files..."
+info_message "Building @vueform/vueform (dev) files..."
 npm run to:dev > "$temp_file" 2>&1
 dev_result=$?
 if [ $dev_result -ne 0 ]; then
     # Echo the message in red color
-    error_message "Build @vueform/vueform-dev failed. Exiting..."
+    error_message "Build @vueform/vueform (dev) failed. Exiting..."
     cat "$temp_file"
     exit 1
 else
     # Echo the success message in green color
-    success_message "Build @vueform/vueform-dev succeeded."
+    success_message "Build @vueform/vueform (dev) succeeded."
 fi
 
 # Run npm run build
-info_message "Building @vueform/vueform files..."
+info_message "Building @vueform/vueform (prod) files..."
 npm run to:prod > "$temp_file" 2>&1
 prod_result=$?
 if [ $prod_result -ne 0 ]; then
     # Echo the message in red color
-    error_message "Build @vueform/vueform failed. Exiting..."
+    error_message "Build @vueform/vueform (prod) failed. Exiting..."
     cat "$temp_file"
     exit 1
 else
     # Echo the success message in green color
-    success_message "Build @vueform/vueform succeeded."
+    success_message "Build @vueform/vueform (prod) succeeded."
 fi
 
 # Run npm run build
-info_message "Building @vueform/vueform-source files..."
+info_message "Building @vueform/vueform (wildcard) files..."
+npm run to:wildcard > "$temp_file" 2>&1
+source_result=$?
+if [ $source_result -ne 0 ]; then
+    # Echo the message in red color
+    error_message "Build @vueform/vueform (wildcar) failed. Exiting..."
+    cat "$temp_file"
+    exit 1
+else
+    # Echo the success message in green color
+    success_message "Build @vueform/vueform (wildcar) succeeded."
+fi
+
+# Run npm run build
+info_message "Building @vueform/vueform (source) files..."
 npm run to:source > "$temp_file" 2>&1
 source_result=$?
 if [ $source_result -ne 0 ]; then
     # Echo the message in red color
-    error_message "Build @vueform/vueform-source failed. Exiting..."
+    error_message "Build @vueform/vueform (source) failed. Exiting..."
     cat "$temp_file"
     exit 1
 else
     # Echo the success message in green color
-    success_message "Build @vueform/vueform-source succeeded."
+    success_message "Build @vueform/vueform (source) succeeded."
 fi
 
 # Adding files in main repo
