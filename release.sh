@@ -308,8 +308,8 @@ else
 fi
 
 # Additional git and npm operations for @vueform-vueform-dev, @vueform-vueform, and @vueform-vueform-source folders
-# repos=("@vueform-vueform-dev" "@vueform-vueform" "@vueform-vueform-wildcard" "@vueform-vueform-source")
-repos=("@vueform-vueform")
+repos=("@vueform-vueform-dev" "@vueform-vueform" "@vueform-vueform-wildcard" "@vueform-vueform-source")
+# repos=("@vueform-vueform")
 
 for repo in "${repos[@]}"; do
     cd "./../$repo"
