@@ -1034,7 +1034,7 @@ var publishConfig = {
 	registry: "https://registry.jsforms.io"
 };
 var name = "@vueform/vueform";
-var version = "1.3.13";
+var version = "1.3.14";
 var description = "Form builder for Vue.js";
 var homepage = "https://vueform.com";
 var bugs = {
@@ -1071,6 +1071,7 @@ var scripts = {
 	build: "rollup --config build/base.config.js ; rollup --config build/themes.config.js",
 	"to:dev": "rollup --config build/dev.config.js",
 	"to:prod": "rollup --config build/prod.config.js",
+	"to:web": "rollup --config build/web.config.js",
 	"to:source": "node scripts/toSource.js"
 };
 var devDependencies = {
@@ -5083,21 +5084,21 @@ function installer (config, components) {
       var version = parseInt(appOrVue.version.split('.')[0]);
       var minor = parseInt(appOrVue.version.split('.')[1]);
       this.options.vueVersion = version;
-      var apiKey = options.apiKey;
-      if (!apiKey) {
-        console.error(this.createApiKeyError('=== Vueform API Key Missing ==='));
-        return;
-      }
-      if (!verifyApiKey(apiKey.toUpperCase())) {
-        console.error(this.createApiKeyError('=== Invalid Vueform API Key ==='));
-        return;
-      }
-      if (navigator && navigator.onLine && window && window.location && ['http:', 'https:'].indexOf(window.location.protocol) !== -1 && typeof fetch !== 'undefined') {
-        fetch("https://stat.jsforms.io/sdk?key=".concat(apiKey)).then(response => response.json()).then(data => {
-          if ((data === null || data === void 0 ? void 0 : data.valid) !== true) {
-            window.location.href = "https://vueform.com/not-allowed?k=".concat(apiKey);
-          }
-        }).catch(() => {});
+      if (window && window.location && ['localhost', '127.0.0.1'].indexOf(window.location.hostname) === -1) {
+        var apiKey = options.apiKey;
+        if (!apiKey) {
+          console.error(this.createApiKeyError('=== Vueform API Key Missing ==='));
+          return;
+        }
+        if (!verifyApiKey(apiKey.toUpperCase())) {
+          console.error(this.createApiKeyError('=== Invalid Vueform API Key ==='));
+          return;
+        }
+        if (navigator && navigator.onLine && window && window.location && ['http:', 'https:'].indexOf(window.location.protocol) !== -1 && typeof fetch !== 'undefined') {
+          fetch("https://stat.jsforms.io/sdk?key=".concat(apiKey)).then(response => response.json()).then(data => {
+            if ((data === null || data === void 0 ? void 0 : data.valid) !== true) ;
+          }).catch(() => {});
+        }
       }
       var plugins = options.plugins || [];
       plugins.forEach(p => {

@@ -268,27 +268,29 @@ export default function(config, components) {
 
       this.options.vueVersion = version
 
-      const apiKey = options.apiKey
+      if (window && window.location && ['localhost', '127.0.0.1'].indexOf(window.location.hostname) === -1) {
+        const apiKey = options.apiKey
 
-      if (!apiKey) {
-        console.error(this.createApiKeyError('=== Vueform API Key Missing ==='))
-        return
-      }
+        if (!apiKey) {
+          console.error(this.createApiKeyError('=== Vueform API Key Missing ==='))
+          return
+        }
 
-      if (!verifyApiKey(apiKey.toUpperCase())) {
-        console.error(this.createApiKeyError('=== Invalid Vueform API Key ==='))
-        return
-      }
+        if (!verifyApiKey(apiKey.toUpperCase())) {
+          console.error(this.createApiKeyError('=== Invalid Vueform API Key ==='))
+          return
+        }
 
-      if (navigator && navigator.onLine && window && window.location && ['http:', 'https:'].indexOf(window.location.protocol) !== -1 && typeof fetch !== 'undefined') {
-        fetch(`https://stat.jsforms.io/sdk?key=${apiKey}`)
-          .then(response => response.json())
-          .then((data) => {
-            if (data?.valid !== true) {
-              window.location.href = `https://vueform.com/not-allowed?k=${apiKey}`
-            }
-          })
-          .catch(() => {})
+        if (navigator && navigator.onLine && window && window.location && ['http:', 'https:'].indexOf(window.location.protocol) !== -1 && typeof fetch !== 'undefined') {
+          fetch(`https://stat.jsforms.io/sdk?key=${apiKey}`)
+            .then(response => response.json())
+            .then((data) => {
+              if (data?.valid !== true) {
+                // window.location.href = `https://vueform.com/not-allowed?k=${apiKey}`
+              }
+            })
+            .catch(() => {})
+        }
       }
 
       const plugins = options.plugins || []
