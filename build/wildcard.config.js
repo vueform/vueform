@@ -1,7 +1,7 @@
 import path from 'path'
 import obfuscator from 'rollup-plugin-obfuscator'
 import packageJson from './../package.json'
-import distPackageJson from './../dist.package.json'
+import distPackageJson from './../package.wildcard.json'
 
 const ncp = require('ncp')
 const fs = require('fs')
@@ -38,7 +38,7 @@ const copyFiles = {
   'src/plugin.js': 'plugin.js',
   '.gitignore.dist': '.gitignore',
   '.npmrc.wildcard': '.npmrc',
-  'README.prod.md': 'README.md',
+  'README.wildcard.md': 'README.md',
 }
 
 export default (commandLineArgs) => {

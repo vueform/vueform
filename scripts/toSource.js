@@ -74,7 +74,7 @@ const copyFiles = function() {
 
 const copyPackageJson = function() {
   let packageJson = JSON.parse(fs.readFileSync(path.resolve(__dirname, '../', 'package.json'), 'UTF-8'))
-  let source = JSON.parse(fs.readFileSync(path.resolve(__dirname, '../', 'source.package.json'), 'UTF-8'))
+  let source = JSON.parse(fs.readFileSync(path.resolve(__dirname, '../', 'package.source.json'), 'UTF-8'))
 
   source.name = '@vueform/vueform'
   source.version = packageJson.version
