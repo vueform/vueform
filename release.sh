@@ -201,45 +201,45 @@ else
 fi
 
 # Run npm run build
-info_message "Building @vueform/sdk-dev files..."
+info_message "Building @vueform/vueform-dev files..."
 npm run to:dev > "$temp_file" 2>&1
 dev_result=$?
 if [ $dev_result -ne 0 ]; then
     # Echo the message in red color
-    error_message "Build @vueform/sdk-dev failed. Exiting..."
+    error_message "Build @vueform/vueform-dev failed. Exiting..."
     cat "$temp_file"
     exit 1
 else
     # Echo the success message in green color
-    success_message "Build @vueform/sdk-dev succeeded."
+    success_message "Build @vueform/vueform-dev succeeded."
 fi
 
 # Run npm run build
-info_message "Building @vueform/sdk files..."
+info_message "Building @vueform/vueform files..."
 npm run to:prod > "$temp_file" 2>&1
 prod_result=$?
 if [ $prod_result -ne 0 ]; then
     # Echo the message in red color
-    error_message "Build @vueform/sdk failed. Exiting..."
+    error_message "Build @vueform/vueform failed. Exiting..."
     cat "$temp_file"
     exit 1
 else
     # Echo the success message in green color
-    success_message "Build @vueform/sdk succeeded."
+    success_message "Build @vueform/vueform succeeded."
 fi
 
 # Run npm run build
-info_message "Building @vueform/sdk-source files..."
+info_message "Building @vueform/vueform-source files..."
 npm run to:source > "$temp_file" 2>&1
 source_result=$?
 if [ $source_result -ne 0 ]; then
     # Echo the message in red color
-    error_message "Build @vueform/sdk-source failed. Exiting..."
+    error_message "Build @vueform/vueform-source failed. Exiting..."
     cat "$temp_file"
     exit 1
 else
     # Echo the success message in green color
-    success_message "Build @vueform/sdk-source succeeded."
+    success_message "Build @vueform/vueform-source succeeded."
 fi
 
 # Adding files in main repo
@@ -307,10 +307,9 @@ else
     success_message "Git push tags successful."
 fi
 
-# Additional git and npm operations for @vueform-sdk-dev, @vueform-sdk, and @vueform-sdk-source folders
-#repos=("./../@vueform-sdk-dev" "./../@vueform-sdk" "./../@vueform-sdk-source")
-# repos=("@vueform-sdk-dev" "@vueform-sdk" "@vueform-sdk-wildcard" "@vueform-sdk-source")
-repos=("@vueform-sdk")
+# Additional git and npm operations for @vueform-vueform-dev, @vueform-vueform, and @vueform-vueform-source folders
+# repos=("@vueform-vueform-dev" "@vueform-vueform" "@vueform-vueform-wildcard" "@vueform-vueform-source")
+repos=("@vueform-vueform")
 
 for repo in "${repos[@]}"; do
     cd "./../$repo"
@@ -416,27 +415,27 @@ for repo in "${repos[@]}"; do
                         # Echo the success message in green color
                         success_message "Git push tags successful in $repo."
 
-                        # npm publish
-                        npm unpublish --force > "$temp_file" 2>&1
-                        npm publish > "$temp_file" 2>&1
-                        npm_publish_result=$?
-                        if [ $npm_publish_result -ne 0 ]; then
-                            # Echo the message in red color
-                            error_message "npm publish failed in $repo. Cleaning up..."
-                            cat "$temp_file"
-                            # Delete the local tag (if created)
-                            git tag -d "v$new_version" &> /dev/null
-                            # Delete the remote tag (if created)
-                            git push --delete origin "v$new_version" &> /dev/null
-                            # Undo the previous git add --all
-                            git reset HEAD . &> /dev/null
-                            # Reset the repository back to the state of the main branch on the remote repository
-                            git reset --hard origin/main &> /dev/null
-                            exit 1
-                        else
-                            # Echo the success message in green color
-                            success_message "npm publish successful in $repo."
-                        fi
+                        # # npm publish
+                        # npm unpublish --force > "$temp_file" 2>&1
+                        # npm publish > "$temp_file" 2>&1
+                        # npm_publish_result=$?
+                        # if [ $npm_publish_result -ne 0 ]; then
+                        #     # Echo the message in red color
+                        #     error_message "npm publish failed in $repo. Cleaning up..."
+                        #     cat "$temp_file"
+                        #     # Delete the local tag (if created)
+                        #     git tag -d "v$new_version" &> /dev/null
+                        #     # Delete the remote tag (if created)
+                        #     git push --delete origin "v$new_version" &> /dev/null
+                        #     # Undo the previous git add --all
+                        #     git reset HEAD . &> /dev/null
+                        #     # Reset the repository back to the state of the main branch on the remote repository
+                        #     git reset --hard origin/main &> /dev/null
+                        #     exit 1
+                        # else
+                        #     # Echo the success message in green color
+                        #     success_message "npm publish successful in $repo."
+                        # fi
                     fi
                 fi
             fi

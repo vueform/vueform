@@ -7,7 +7,7 @@ const ncp = require('ncp')
 const fs = require('fs')
 const _ = require('lodash')
 
-const outputDir = path.resolve(__dirname, '../../@vueform-wildcard')
+const outputDir = path.resolve(__dirname, '../../@vueform-vueform-wildcard')
 
 function deleteFolderRecursiveSync(directory, deleteCurrent = false) {
   if (fs.existsSync(directory)) {
@@ -52,7 +52,7 @@ export default (commandLineArgs) => {
   {
     const finalPackageJson = { ...distPackageJson }
 
-    finalPackageJson.name = '@vueform/sdk'
+    finalPackageJson.name = '@vueform/vueform'
     finalPackageJson.version = version
     finalPackageJson.private = false
     finalPackageJson.description = 'Vueform SDK wildcard production build.'
@@ -83,15 +83,15 @@ export default (commandLineArgs) => {
   const files = [
     {
       input: path.resolve(__dirname, '../dist/installer.js'),
-      output: path.resolve(__dirname, '../../@vueform-wildcard/installer.js'),
+      output: path.resolve(__dirname, '../../@vueform-vueform-wildcard/installer.js'),
     },
     {
       input: path.resolve(__dirname, '../dist/element.js'),
-      output: path.resolve(__dirname, '../../@vueform-wildcard/element.js'),
+      output: path.resolve(__dirname, '../../@vueform-vueform-wildcard/element.js'),
     },
     {
       input: path.resolve(__dirname, '../dist/index.js'),
-      output: path.resolve(__dirname, '../../@vueform-wildcard/index.js'),
+      output: path.resolve(__dirname, '../../@vueform-vueform-wildcard/index.js'),
     },
   ]
 

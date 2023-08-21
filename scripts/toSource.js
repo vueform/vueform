@@ -4,7 +4,7 @@ const fs = require('fs')
 const _ = require('lodash')
 const jestConfig = require('./../jest/jest.config.vue3')
 
-const outputDir = path.resolve(__dirname, '../../@vueform-sdk-source')
+const outputDir = path.resolve(__dirname, '../../@vueform-vueform-source')
 
 const files = [
   'locales',
@@ -20,7 +20,7 @@ const files = [
   ['build/source.config.js', 'build/rollup.config.js'],
   ['jest/jest.setup.js', 'jest.setup.js'],
   ['.gitignore.dist', '.gitignore'],
-  ['.npmrc.dist', '.npmrc'],
+  ['.npmrc.source', '.npmrc'],
   ['README.source.md', 'README.md'],
 ]
 
@@ -76,11 +76,11 @@ const copyPackageJson = function() {
   let packageJson = JSON.parse(fs.readFileSync(path.resolve(__dirname, '../', 'package.json'), 'UTF-8'))
   let source = JSON.parse(fs.readFileSync(path.resolve(__dirname, '../', 'source.package.json'), 'UTF-8'))
 
-  source.name = '@vueform/source'
+  source.name = '@vueform/vueform'
   source.version = packageJson.version
   source.private = false
   source.devDependencies = packageJson.devDependencies
-  finalPackageJson.description = 'Vueform SDK full source build.'
+  source.description = 'Vueform SDK source production build.'
 
   Object.keys(packageJson.dependencies).forEach((key) => {
     let dep = packageJson.dependencies[key]
