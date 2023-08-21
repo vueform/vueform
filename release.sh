@@ -309,7 +309,8 @@ fi
 
 # Additional git and npm operations for @vueform-sdk-dev, @vueform-sdk, and @vueform-sdk-source folders
 #repos=("./../@vueform-sdk-dev" "./../@vueform-sdk" "./../@vueform-sdk-source")
-repos=("@vueform-sdk-dev" "@vueform-sdk" "@vueform-sdk-source")
+# repos=("@vueform-sdk-dev" "@vueform-sdk" "@vueform-sdk-wildcard" "@vueform-sdk-source")
+repos=("@vueform-sdk")
 
 for repo in "${repos[@]}"; do
     cd "./../$repo"

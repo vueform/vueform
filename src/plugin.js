@@ -1,4 +1,3 @@
-import 'regenerator-runtime/runtime'
 import installer from './installer'
 import { config, components } from './index'
 
