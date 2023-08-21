@@ -412,7 +412,7 @@ class MergeClasses {
           arrayClasses[subclassName] = this.classesToArray(subclasses, path.concat([subclassName]));
         });
       }
-    } else if (typeof classes === 'boolean' || typeof classes === 'object' && ['ComputedRefImpl', 'RefImpl'].indexOf(classes === null || classes === void 0 ? void 0 : (_classes$constructor = classes.constructor) === null || _classes$constructor === void 0 ? void 0 : _classes$constructor.name) !== -1) {
+    } else if (typeof classes === 'boolean' || typeof classes === 'object' && ['ComputedRefImpl', 'RefImpl'].indexOf(classes === null || classes === void 0 || (_classes$constructor = classes.constructor) === null || _classes$constructor === void 0 ? void 0 : _classes$constructor.name) !== -1) {
       throw Error("Cannot add conditional class to ".concat(this.component, ": '").concat(path.join('.'), "'"));
     }
     return arrayClasses;
@@ -1866,8 +1866,8 @@ var base$19 = function base(props, context) {
           });
         }
         if (response && !(response instanceof Promise)) {
-          var _response, _response$data, _response$data$payloa;
-          if ((_response = response) !== null && _response !== void 0 && (_response$data = _response.data) !== null && _response$data !== void 0 && (_response$data$payloa = _response$data.payload) !== null && _response$data$payloa !== void 0 && _response$data$payloa.updates) {
+          var _response;
+          if ((_response = response) !== null && _response !== void 0 && (_response = _response.data) !== null && _response !== void 0 && (_response = _response.payload) !== null && _response !== void 0 && _response.updates) {
             update(response.data.payload.updates);
           }
         }
@@ -3840,7 +3840,7 @@ var FormTab = {
      */
     var index = computed(() => {
       var _tabs$$value;
-      return Object.keys((tabs$ === null || tabs$ === void 0 ? void 0 : (_tabs$$value = tabs$.value) === null || _tabs$$value === void 0 ? void 0 : _tabs$$value.tabs$) || {}).indexOf(name.value);
+      return Object.keys((tabs$ === null || tabs$ === void 0 || (_tabs$$value = tabs$.value) === null || _tabs$$value === void 0 ? void 0 : _tabs$$value.tabs$) || {}).indexOf(name.value);
     });
 
     /**
@@ -4946,9 +4946,9 @@ var FormStepsControl = {
             nextTick(() => {
               nextTick(() => {
                 var _current$$value$child;
-                var firstEl$ = current$ === null || current$ === void 0 ? void 0 : (_current$$value$child = current$.value.children$) === null || _current$$value$child === void 0 ? void 0 : _current$$value$child.find(el$ => {
+                var firstEl$ = current$ === null || current$ === void 0 || (_current$$value$child = current$.value.children$) === null || _current$$value$child === void 0 ? void 0 : _current$$value$child.find(el$ => {
                   var _current$$value$eleme;
-                  return el$.name === (current$ === null || current$ === void 0 ? void 0 : (_current$$value$eleme = current$.value.elements) === null || _current$$value$eleme === void 0 ? void 0 : _current$$value$eleme[0]);
+                  return el$.name === (current$ === null || current$ === void 0 || (_current$$value$eleme = current$.value.elements) === null || _current$$value$eleme === void 0 ? void 0 : _current$$value$eleme[0]);
                 });
                 if (!firstEl$) {
                   return;
@@ -5188,7 +5188,7 @@ var FormStep = {
      */
     var index = computed(() => {
       var _steps$$value;
-      return Object.keys((steps$ === null || steps$ === void 0 ? void 0 : (_steps$$value = steps$.value) === null || _steps$$value === void 0 ? void 0 : _steps$$value.steps$) || {}).indexOf(name.value);
+      return Object.keys((steps$ === null || steps$ === void 0 || (_steps$$value = steps$.value) === null || _steps$$value === void 0 ? void 0 : _steps$$value.steps$) || {}).indexOf(name.value);
     });
 
     /**
@@ -9256,8 +9256,8 @@ var DatepickerWrapper = {
      * @private
      */
     var locale = computed(() => {
-      var _$this$$vueform$i18n$, _$this$$vueform$i18n$2, _$this$$vueform$i18n$3, _$this$$vueform$i18n$4;
-      return ((_$this$$vueform$i18n$ = $this.$vueform.i18n.locales[$this.$vueform.i18n.locale]) === null || _$this$$vueform$i18n$ === void 0 ? void 0 : (_$this$$vueform$i18n$2 = _$this$$vueform$i18n$.vueform) === null || _$this$$vueform$i18n$2 === void 0 ? void 0 : _$this$$vueform$i18n$2.datepicker) || ((_$this$$vueform$i18n$3 = $this.$vueform.i18n.locales[$this.$vueform.i18n.fallbackLocale]) === null || _$this$$vueform$i18n$3 === void 0 ? void 0 : (_$this$$vueform$i18n$4 = _$this$$vueform$i18n$3.vueform) === null || _$this$$vueform$i18n$4 === void 0 ? void 0 : _$this$$vueform$i18n$4.datepicker) || {};
+      var _$this$$vueform$i18n$, _$this$$vueform$i18n$2;
+      return ((_$this$$vueform$i18n$ = $this.$vueform.i18n.locales[$this.$vueform.i18n.locale]) === null || _$this$$vueform$i18n$ === void 0 || (_$this$$vueform$i18n$ = _$this$$vueform$i18n$.vueform) === null || _$this$$vueform$i18n$ === void 0 ? void 0 : _$this$$vueform$i18n$.datepicker) || ((_$this$$vueform$i18n$2 = $this.$vueform.i18n.locales[$this.$vueform.i18n.fallbackLocale]) === null || _$this$$vueform$i18n$2 === void 0 || (_$this$$vueform$i18n$2 = _$this$$vueform$i18n$2.vueform) === null || _$this$$vueform$i18n$2 === void 0 ? void 0 : _$this$$vueform$i18n$2.datepicker) || {};
     });
 
     /**
@@ -10322,7 +10322,7 @@ var base$R = function base(props, context, dependencies) {
   var focus = () => {
     var _container$value, _el$querySelector;
     var el = ((_container$value = container.value) === null || _container$value === void 0 ? void 0 : _container$value.$el) || container.value;
-    el === null || el === void 0 ? void 0 : (_el$querySelector = el.querySelector('a[href],area[href],input:not([disabled]),select:not([disabled]),textarea:not([disabled]),' + 'button:not([disabled]),iframe,[tabindex],[contentEditable=true],trix-editor')) === null || _el$querySelector === void 0 ? void 0 : _el$querySelector.focus();
+    el === null || el === void 0 || (_el$querySelector = el.querySelector('a[href],area[href],input:not([disabled]),select:not([disabled]),textarea:not([disabled]),' + 'button:not([disabled]),iframe,[tabindex],[contentEditable=true],trix-editor')) === null || _el$querySelector === void 0 ? void 0 : _el$querySelector.focus();
   };
   return {
     focus
@@ -25368,7 +25368,7 @@ var runtime = {exports: {}};
 	  };
 
 	  function values(iterable) {
-	    if (iterable) {
+	    if (iterable || iterable === "") {
 	      var iteratorMethod = iterable[iteratorSymbol];
 	      if (iteratorMethod) {
 	        return iteratorMethod.call(iterable);
@@ -25398,8 +25398,7 @@ var runtime = {exports: {}};
 	      }
 	    }
 
-	    // Return an iterator with no values.
-	    return { next: doneResult };
+	    throw new TypeError(typeof iterable + " is not iterable");
 	  }
 	  exports.values = values;
 

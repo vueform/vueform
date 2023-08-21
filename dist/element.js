@@ -573,7 +573,7 @@ var runtime = {exports: {}};
 	  };
 
 	  function values(iterable) {
-	    if (iterable) {
+	    if (iterable || iterable === "") {
 	      var iteratorMethod = iterable[iteratorSymbol];
 	      if (iteratorMethod) {
 	        return iteratorMethod.call(iterable);
@@ -603,8 +603,7 @@ var runtime = {exports: {}};
 	      }
 	    }
 
-	    // Return an iterator with no values.
-	    return { next: doneResult };
+	    throw new TypeError(typeof iterable + " is not iterable");
 	  }
 	  exports.values = values;
 
@@ -2565,7 +2564,7 @@ class MergeClasses {
           arrayClasses[subclassName] = this.classesToArray(subclasses, path.concat([subclassName]));
         });
       }
-    } else if (typeof classes === 'boolean' || typeof classes === 'object' && ['ComputedRefImpl', 'RefImpl'].indexOf(classes === null || classes === void 0 ? void 0 : (_classes$constructor = classes.constructor) === null || _classes$constructor === void 0 ? void 0 : _classes$constructor.name) !== -1) {
+    } else if (typeof classes === 'boolean' || typeof classes === 'object' && ['ComputedRefImpl', 'RefImpl'].indexOf(classes === null || classes === void 0 || (_classes$constructor = classes.constructor) === null || _classes$constructor === void 0 ? void 0 : _classes$constructor.name) !== -1) {
       throw Error("Cannot add conditional class to ".concat(this.component, ": '").concat(path.join('.'), "'"));
     }
     return arrayClasses;

@@ -7,7 +7,7 @@ const ncp = require('ncp')
 const fs = require('fs')
 const _ = require('lodash')
 
-const outputDir = path.resolve(__dirname, '../../@vueform-sdk-dev')
+const outputDir = path.resolve(__dirname, '../../@vueform-vueform-dev')
 
 function deleteFolderRecursiveSync(directory, deleteCurrent = false) {
   if (fs.existsSync(directory)) {
@@ -37,7 +37,7 @@ const copyFiles = {
   'vite.js': 'vite.js',
   'src/plugin.js': 'plugin.js',
   '.gitignore.dist': '.gitignore',
-  '.npmrc.dist': '.npmrc',
+  '.npmrc.dev': '.npmrc',
   'README.dev.md': 'README.md',
 }
 
@@ -52,7 +52,7 @@ export default (commandLineArgs) => {
   {
     const finalPackageJson = { ...distPackageJson }
 
-    finalPackageJson.name = '@vueform/sdk-dev'
+    finalPackageJson.name = '@vueform/vueform'
     finalPackageJson.version = version
     finalPackageJson.private = false
     finalPackageJson.description = 'Vueform SDK development build.'
@@ -83,17 +83,17 @@ export default (commandLineArgs) => {
   const files = [
     {
       input: path.resolve(__dirname, '../dist/installer.js'),
-      output: path.resolve(__dirname, '../../@vueform-sdk-dev/installer.js'),
+      output: path.resolve(__dirname, '../../@vueform-vueform-dev/installer.js'),
       lock: true,
     },
     {
       input: path.resolve(__dirname, '../dist/element.js'),
-      output: path.resolve(__dirname, '../../@vueform-sdk-dev/element.js'),
+      output: path.resolve(__dirname, '../../@vueform-vueform-dev/element.js'),
       lock: true,
     },
     {
       input: path.resolve(__dirname, '../dist/index.js'),
-      output: path.resolve(__dirname, '../../@vueform-sdk-dev/index.js'),
+      output: path.resolve(__dirname, '../../@vueform-vueform-dev/index.js'),
       lock: true,
     },
   ]

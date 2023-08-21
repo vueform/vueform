@@ -576,7 +576,7 @@ var runtime = {exports: {}};
 	  };
 
 	  function values(iterable) {
-	    if (iterable) {
+	    if (iterable || iterable === "") {
 	      var iteratorMethod = iterable[iteratorSymbol];
 	      if (iteratorMethod) {
 	        return iteratorMethod.call(iterable);
@@ -606,8 +606,7 @@ var runtime = {exports: {}};
 	      }
 	    }
 
-	    // Return an iterator with no values.
-	    return { next: doneResult };
+	    throw new TypeError(typeof iterable + " is not iterable");
 	  }
 	  exports.values = values;
 
@@ -1071,8 +1070,9 @@ var scripts = {
 	build: "rollup --config build/base.config.js ; rollup --config build/themes.config.js",
 	"to:dev": "rollup --config build/dev.config.js",
 	"to:prod": "rollup --config build/prod.config.js",
-	"to:web": "rollup --config build/web.config.js",
-	"to:source": "node scripts/toSource.js"
+	"to:wildcard": "rollup --config build/wildcard.config.js",
+	"to:source": "node scripts/toSource.js",
+	"to:web": "rollup --config build/web.config.js"
 };
 var devDependencies = {
 	"@babel/core": "^7.2.2",
@@ -1099,7 +1099,7 @@ var devDependencies = {
 	"flush-promises": "^1.0.2",
 	"html-loader": "^1.3.2",
 	html5sortable: "^0.11.1",
-	"javascript-obfuscator": "^3.0.0",
+	"javascript-obfuscator": "^4.0.0",
 	jest: "^27.3.1",
 	"jest-canvas-mock": "^2.3.1",
 	"jest-environment-jsdom-sixteen": "^1.0.3",
