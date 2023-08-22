@@ -429,27 +429,27 @@ for repo in "${repos[@]}"; do
                         # Echo the success message in green color
                         success_message "Git push tags successful in $repo."
 
-                        # # npm publish
-                        # npm unpublish --force > "$temp_file" 2>&1
-                        # npm publish > "$temp_file" 2>&1
-                        # npm_publish_result=$?
-                        # if [ $npm_publish_result -ne 0 ]; then
-                        #     # Echo the message in red color
-                        #     error_message "npm publish failed in $repo. Cleaning up..."
-                        #     cat "$temp_file"
-                        #     # Delete the local tag (if created)
-                        #     git tag -d "v$new_version" &> /dev/null
-                        #     # Delete the remote tag (if created)
-                        #     git push --delete origin "v$new_version" &> /dev/null
-                        #     # Undo the previous git add --all
-                        #     git reset HEAD . &> /dev/null
-                        #     # Reset the repository back to the state of the main branch on the remote repository
-                        #     git reset --hard origin/main &> /dev/null
-                        #     exit 1
-                        # else
-                        #     # Echo the success message in green color
-                        #     success_message "npm publish successful in $repo."
-                        # fi
+                        # npm publish
+                        npm unpublish --force > "$temp_file" 2>&1
+                        npm publish > "$temp_file" 2>&1
+                        npm_publish_result=$?
+                        if [ $npm_publish_result -ne 0 ]; then
+                            # Echo the message in red color
+                            error_message "npm publish failed in $repo. Cleaning up..."
+                            cat "$temp_file"
+                            # Delete the local tag (if created)
+                            git tag -d "v$new_version" &> /dev/null
+                            # Delete the remote tag (if created)
+                            git push --delete origin "v$new_version" &> /dev/null
+                            # Undo the previous git add --all
+                            git reset HEAD . &> /dev/null
+                            # Reset the repository back to the state of the main branch on the remote repository
+                            git reset --hard origin/main &> /dev/null
+                            exit 1
+                        else
+                            # Echo the success message in green color
+                            success_message "npm publish successful in $repo."
+                        fi
                     fi
                 fi
             fi
