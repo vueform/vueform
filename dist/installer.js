@@ -1030,7 +1030,7 @@ function shouldApplyPlugin (name, plugin) {
 }
 
 var publishConfig = {
-	registry: "https://registry.jsforms.io"
+	registry: "https://registry.vueform.com"
 };
 var name = "@vueform/vueform";
 var version = "1.3.14";
@@ -5095,7 +5095,7 @@ function installer (config, components) {
           return;
         }
         if (navigator && navigator.onLine && window && window.location && ['http:', 'https:'].indexOf(window.location.protocol) !== -1 && typeof fetch !== 'undefined') {
-          fetch("https://stat.jsforms.io/sdk?key=".concat(apiKey)).then(response => response.json()).then(data => {
+          fetch("https://stat.vueform.com/sdk?key=".concat(apiKey)).then(response => response.json()).then(data => {
             if ((data === null || data === void 0 ? void 0 : data.valid) !== true) ;
           }).catch(() => {});
         }

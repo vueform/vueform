@@ -55,7 +55,7 @@ else
 fi
 
 # Define the URL
-url="https://forge.laravel.com/servers/681079/sites/2056602/deploy/http?token=gTbJpYLM7MhxprrI4m5WkceH8vA16AHkW2P4Q4ig"
+url="https://forge.laravel.com/servers/681079/sites/2086486/deploy/http?token=SmK5fHcJRTclTDHQ55H0wIt6iqZmMxVQtRuPmgcL"
 
 # Make the GET request using curl
 response=$(curl -sS $url)
