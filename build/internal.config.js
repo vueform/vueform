@@ -1,13 +1,13 @@
 import path from 'path'
 import obfuscator from 'rollup-plugin-obfuscator'
 import packageJson from './../package.json'
-import distPackageJson from './../package.wildcard.json'
+import distPackageJson from './../package.prod.json'
 
 const ncp = require('ncp')
 const fs = require('fs')
 const _ = require('lodash')
 
-const outputDir = path.resolve(__dirname, '../../@vueform-vueform-wildcard')
+const outputDir = path.resolve(__dirname, '../../@vueform-vueform-internal')
 
 function deleteFolderRecursiveSync(directory, deleteCurrent = false) {
   if (fs.existsSync(directory)) {
@@ -37,8 +37,8 @@ const copyFiles = {
   'vite.js': 'vite.js',
   'src/plugin.js': 'plugin.js',
   '.gitignore.dist': '.gitignore',
-  '.npmrc.wildcard': '.npmrc',
-  'README.wildcard.md': 'README.md',
+  '.npmrc.prod': '.npmrc',
+  'README.prod.md': 'README.md',
 }
 
 export default (commandLineArgs) => {
@@ -55,7 +55,7 @@ export default (commandLineArgs) => {
     finalPackageJson.name = '@vueform/vueform'
     finalPackageJson.version = version
     finalPackageJson.private = false
-    finalPackageJson.description = 'Vueform SDK wildcard production build.'
+    finalPackageJson.description = 'Vueform SDK production build.'
 
     fs.writeFileSync(path.resolve(outputDir, 'package.json'), JSON.stringify(finalPackageJson, null, 2))
   }
@@ -83,15 +83,15 @@ export default (commandLineArgs) => {
   const files = [
     {
       input: path.resolve(__dirname, '../dist/installer.js'),
-      output: path.resolve(__dirname, '../../@vueform-vueform-wildcard/installer.js'),
+      output: path.resolve(__dirname, '../../@vueform-vueform-internal/installer.js'),
     },
     {
       input: path.resolve(__dirname, '../dist/element.js'),
-      output: path.resolve(__dirname, '../../@vueform-vueform-wildcard/element.js'),
+      output: path.resolve(__dirname, '../../@vueform-vueform-internal/element.js'),
     },
     {
       input: path.resolve(__dirname, '../dist/index.js'),
-      output: path.resolve(__dirname, '../../@vueform-vueform-wildcard/index.js'),
+      output: path.resolve(__dirname, '../../@vueform-vueform-internal/index.js'),
     },
   ]
 
