@@ -53,6 +53,7 @@ export default (commandLineArgs) => {
     const finalPackageJson = { ...distPackageJson }
 
     finalPackageJson.name = '@vueform/vueform'
+    finalPackageJson.publishConfig.registry = 'https://internal.vueform.com'
     finalPackageJson.version = version
     finalPackageJson.private = false
     finalPackageJson.description = 'Vueform SDK production build.'
