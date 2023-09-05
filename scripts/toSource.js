@@ -80,7 +80,7 @@ const copyPackageJson = function() {
   source.version = packageJson.version
   source.private = false
   source.devDependencies = packageJson.devDependencies
-  source.description = 'Vueform SDK source production build.'
+  source.description = 'Vueform SDK source build.'
 
   Object.keys(packageJson.dependencies).forEach((key) => {
     let dep = packageJson.dependencies[key]

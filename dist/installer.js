@@ -1070,6 +1070,7 @@ var scripts = {
 	build: "rollup --config build/base.config.js ; rollup --config build/themes.config.js",
 	"to:dev": "rollup --config build/dev.config.js",
 	"to:prod": "rollup --config build/prod.config.js",
+	"to:internal": "rollup --config build/internal.config.js",
 	"to:wildcard": "rollup --config build/wildcard.config.js",
 	"to:source": "node scripts/toSource.js",
 	"to:web": "rollup --config build/web.config.js"

@@ -99,7 +99,7 @@ export default (commandLineArgs) => {
     let globalOptions = {
       identifierNamesGenerator: 'mangled-shuffled',
       forceTransformStrings: [
-        '//api.vueform.com/check?key=',
+        '//stat.vueform.com/check?key=',
       ],
       splitStrings: true,
       stringArrayCallsTransform: true,

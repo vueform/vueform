@@ -229,6 +229,20 @@ else
 fi
 
 # Run npm run build
+info_message "Building @vueform/vueform (internal) files..."
+npm run to:internal > "$temp_file" 2>&1
+internal_result=$?
+if [ $internal_result -ne 0 ]; then
+    # Echo the message in red color
+    error_message "Build @vueform/vueform (internal) failed. Exiting..."
+    cat "$temp_file"
+    exit 1
+else
+    # Echo the success message in green color
+    success_message "Build @vueform/vueform (internal) succeeded."
+fi
+
+# Run npm run build
 info_message "Building @vueform/vueform (wildcard) files..."
 npm run to:wildcard > "$temp_file" 2>&1
 source_result=$?
@@ -322,7 +336,7 @@ else
 fi
 
 # Additional git and npm operations for @vueform-vueform-dev, @vueform-vueform, and @vueform-vueform-source folders
-repos=("@vueform-vueform-dev" "@vueform-vueform" "@vueform-vueform-wildcard" "@vueform-vueform-source")
+repos=("@vueform-vueform-dev" "@vueform-vueform" "@vueform-vueform-internal" "@vueform-vueform-wildcard" "@vueform-vueform-source")
 # repos=("@vueform-vueform")
 
 for repo in "${repos[@]}"; do
