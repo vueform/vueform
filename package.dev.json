@@ -1,6 +1,6 @@
 {
     "publishConfig": {
-      "registry": "https://dev.jsforms.io"
+      "registry": "https://dev.vueform.com"
     },
     "private": true,
     "name": "@vueform/vueform",
