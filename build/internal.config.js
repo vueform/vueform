@@ -37,7 +37,7 @@ const copyFiles = {
   'vite.js': 'vite.js',
   'src/plugin.js': 'plugin.js',
   '.gitignore.dist': '.gitignore',
-  '.npmrc.prod': '.npmrc',
+  '.npmrc.internal': '.npmrc',
   'README.prod.md': 'README.md',
 }
 
