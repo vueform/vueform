@@ -1,6 +1,6 @@
 {
     "publishConfig": {
-      "registry": "https://wildcard.jsforms.io"
+      "registry": "https://wildcard.vueform.com"
     },
     "private": true,
     "name": "@vueform/vueform",
