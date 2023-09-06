@@ -1154,7 +1154,6 @@ var dependencies = {
 	"mini-svg-data-uri": "^1.3.3",
 	moment: "^2.27.0",
 	moxios: "^0.4.0",
-	"node-sass": "^7.0.3",
 	nouislider: "^15.4.0",
 	"places.js": "^1.14.0",
 	postcss: "^8.4.6",
