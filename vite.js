@@ -10,7 +10,12 @@ module.exports = function vitePluginVueform() {
           'lodash',
           'axios',
         ]
-      }
+      },
+      server: {
+        watch: {
+          ignored: [`!**/node_modules/@vueform/**`],
+        },
+      },
     })
   }
 }
