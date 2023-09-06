@@ -6,7 +6,9 @@ module.exports = function vitePluginVueform() {
         include: [
           'wnumb',
           'nouislider',
-          'trix'
+          'trix',
+          'lodash',
+          'axios',
         ]
       }
     })
