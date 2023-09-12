@@ -14,9 +14,6 @@ import i18n from './services/i18n/index'
 import columns from './services/columns/index'
 import { ref, markRaw } from 'vue'
 
-/* @feat-start:api-key-validation */
-import verifyApiKey from './utils/verifyApiKey'
-/* @feat-end:api-key-validation */
 
 export default function(config, components) {
   const Vueform = class {
@@ -271,32 +268,6 @@ export default function(config, components) {
 
       this.options.vueVersion = version
 
-      /* @feat-start:api-key-validation */
-      if (window && window.location && ['localhost', '127.0.0.1'].indexOf(window.location.hostname) === -1) {
-        const apiKey = options.apiKey
-
-        if (!apiKey) {
-          console.error(this.createApiKeyError('=== Vueform API Key Missing ==='))
-          return
-        }
-
-        if (!verifyApiKey(apiKey.toUpperCase())) {
-          console.error(this.createApiKeyError('=== Invalid Vueform API Key ==='))
-          return
-        }
-
-        if (navigator && navigator.onLine && window && window.location && ['http:', 'https:'].indexOf(window.location.protocol) !== -1 && typeof fetch !== 'undefined') {
-          fetch(`https://stat.vueform.com/sdk?key=${apiKey}`)
-            .then(response => response.json())
-            .then((data) => {
-              if (data?.valid !== true) {
-                // window.location.href = `https://vueform.com/not-allowed?k=${apiKey}`
-              }
-            })
-            .catch(() => {})
-        }
-      }
-      /* @feat-end:api-key-validation */
 
       const plugins = options.plugins || []
       

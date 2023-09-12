@@ -21,6 +21,10 @@ const files = [
     input: 'bundles/dist/installer.js',
     output: 'dist/installer.js',
   },
+  {
+    input: 'bundles/dist/installer.noapi.js',
+    output: 'dist/installer.noapi.js',
+  },
 ]
 
 const copy = [
@@ -48,6 +52,52 @@ _.each(copy, (file) => {
   })
 })
 
+const createNoapiInstaller = () => {
+  // Create no api installer source file
+  const sourceFilePath = path.resolve(__dirname, '../src', 'installer.js'); // Replace with your source file path
+  const targetFilePath = path.resolve(__dirname, '../src', 'installer.noapi.js'); // Replace with your desired new file path
+
+  const startMarker = '/* @feat-start:api-key-validation */';
+  const endMarker = '/* @feat-end:api-key-validation */';
+
+  let ignoreLines = false;
+
+  const readStream = fs.createReadStream(sourceFilePath, 'utf8');
+  const writeStream = fs.createWriteStream(targetFilePath);
+
+  readStream.on('data', function(chunk) {
+      const lines = chunk.split('\n');
+      for (let line of lines) {
+          if (line.includes(startMarker)) {
+              ignoreLines = true;
+              continue;
+          }
+          if (line.includes(endMarker)) {
+              ignoreLines = false;
+              continue;
+          }
+          if (!ignoreLines) {
+              writeStream.write(line + '\n');
+          }
+      }
+  });
+
+  readStream.on('end', function() {
+      writeStream.end();
+      console.log('File transformation completed.');
+  });
+
+  readStream.on('error', function(err) {
+      console.error('Error reading the file:', err);
+  });
+
+  writeStream.on('error', function(err) {
+      console.error('Error writing to the file:', err);
+  });
+}
+
+createNoapiInstaller()
+
 const exports = []
 
 _.each(files, (file) => {
@@ -66,7 +116,7 @@ _.each(files, (file) => {
         exclude: /^(.+\/)?node_modules\/.+$/,
       }),
       nodeResolve(),
-      // terser(),
+      terser(),
     ],
     external: ['vue', 'axios', 'lodash', 'moment']
   })
