@@ -1,42 +1,13 @@
 [//]: # (Don't use <tags>)
 
-## v1.3.14
+## v1.4.0
 
-> `2023-09-05`
+> `2023-09-17`
 > 
 ### 🎉 Feature
-- New!! Element props now can be localized.
-
-## v1.3.13
-
-> `2023-07-31`
-> 
-### 🎉 Feature
-- Element props now can be localized.
-- 
-## v1.3.12
-
-> `2023-07-31`
-> 
-### 🎉 Feature
-- Element props now can be localized.
-
-## v1.3.11
-
-> `2023-07-31`
-> 
-### 🎉 Feature
-- Element props now can be localized.
-
-## v1.3.9
-
-> `2023-07-31`
-> 
-### 🎉 Feature
-- Element props now can be localized.
-
-### 🐞 Bug Fixes
-- Some random stuff
+- Remote API key validation as primary domain validation method.
+- Removed `node-sass` dependency.
+- No need to specify `trix-editor` as custom element.
 
 ## v1.3.3
 
