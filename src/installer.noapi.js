@@ -236,31 +236,6 @@ export default function(config, components) {
       })
     }
 
-    createApiKeyError(message = '=== Vueform API Key Missing ===') {
-      let error = ``
-      error += `\n`
-      error += ` .....................  ......\n`
-      error += `  ..................   ......\n`
-      error += `   ................  .......\n` 
-      error += `     ......         ......\n`
-      error += `      ..........  .......\n`
-      error += `       ........  ......\n`   
-      error += `                ......\n`
-      error += `          ...........\n`
-      error += `            .......\n`
-      error += `             .....\n`
-      error += `               .\n`
-      error += `\n`
-      error += `===============================\n`
-      error += `${message}\n`
-      error += `===============================\n`
-      error += `\n`
-      error += `Create a free API Key at:\n`
-      error += `https://vueform.com/docs/installation#api-key\n`
-      error += `\n`
-
-      return error
-    }
 
     install(appOrVue, options = {}) {
       const version = parseInt(appOrVue.version.split('.')[0])

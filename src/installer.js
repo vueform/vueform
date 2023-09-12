@@ -239,6 +239,7 @@ export default function(config, components) {
       })
     }
 
+    /* @feat-start:api-key-validation */
     createApiKeyError(message = '=== Vueform API Key Missing ===') {
       let error = ``
       error += `\n`
@@ -264,6 +265,7 @@ export default function(config, components) {
 
       return error
     }
+    /* @feat-end:api-key-validation */
 
     install(appOrVue, options = {}) {
       const version = parseInt(appOrVue.version.split('.')[0])
