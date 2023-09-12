@@ -1,44 +1,15 @@
 [
   {
-    "version": "1.3.14",
-    "date": "2023-09-05",
+    "version": "1.4.0",
+    "date": "2023-09-17",
     "available": true,
     "notes": [
-      "feat: New!! Element props now can be localized."
-    ]
-  },
-  {
-    "version": "1.3.13",
-    "date": "2023-07-31",
-    "available": true,
-    "notes": [
-      "feat: Element props now can be localized.",
-      "feat: "
-    ]
-  },
-  {
-    "version": "1.3.12",
-    "date": "2023-07-31",
-    "available": true,
-    "notes": [
-      "feat: Element props now can be localized."
-    ]
-  },
-  {
-    "version": "1.3.11",
-    "date": "2023-07-31",
-    "available": true,
-    "notes": [
-      "feat: Element props now can be localized."
-    ]
-  },
-  {
-    "version": "1.3.9",
-    "date": "2023-07-31",
-    "available": true,
-    "notes": [
-      "feat: Element props now can be localized.",
-      "fix: Some random stuff"
+      "feat: Remote API key validation as primary domain validation method.",
+      "feat: Removed `node-sass` dependency.",
+      "feat: No need to specify `trix-editor` as custom element.",
+      "feat: Added type classes to steps controls.",
+      "fix: Fix for `prepare()` in nested elements.",
+      "fix: Set focused state for select elements when it is active, instead of being open."
     ]
   },
   {

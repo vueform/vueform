@@ -28,7 +28,7 @@ else
     success_message "Generating notes succeeded."
 fi
 
-cp ./CHANGELOG.json ./../vueform.com/apps/sdk/releases.json
+cp ./CHANGELOG.json ./../vueform.com/apps/www/releases.json
 cp_response=$?
 if [ $cp_response -ne 0 ]; then
     # Echo the message in red color
@@ -41,15 +41,15 @@ fi
     
 cd ./../vueform.com
 
-git add apps/sdk/releases.json > "$temp_file" 2>&1
+git add apps/www/releases.json > "$temp_file" 2>&1
 git commit -m  '$new_version' > "$temp_file" 2>&1
 git push > "$temp_file" 2>&1
 push_result=$?
 
 if [[ $? -eq 0 ]]; then
-  success_message "Pushing release notes to https://sdk.vueform.com succeeded."
+  success_message "Pushing release notes to https://vueform.com succeeded."
 else
-  error_message "Pushing release notes to https://sdk.vueform.com failed. Exiting..."
+  error_message "Pushing release notes to https://vueform.com failed. Exiting..."
   cat "$temp_file"
   exit 1
 fi
@@ -62,8 +62,8 @@ response=$(curl -sS $url)
 
 # Check if the request was successful (HTTP status code 200)
 if [[ $? -eq 0 ]]; then
-  success_message "https://sdk.vueform.com deploy script ran successfully! You should see the release notes in a few minutes."
+  success_message "https://vueform.com deploy script ran successfully! You should see the release notes in a few minutes."
 else
-  error_message "https://sdk.vueform.com deploy script failed. Exiting..."
+  error_message "https://vueform.com deploy script failed. Exiting..."
   exit 1
 fi
