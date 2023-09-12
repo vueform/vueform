@@ -1,7 +1,7 @@
 import path from 'path'
 import obfuscator from 'rollup-plugin-obfuscator'
 import packageJson from './../package.json'
-import distPackageJson from './../dist.package.json'
+import distPackageJson from './../package.prod.json'
 
 const ncp = require('ncp')
 const fs = require('fs')
@@ -37,8 +37,8 @@ const copyFiles = {
   'vite.js': 'vite.js',
   'src/plugin.js': 'plugin.js',
   '.gitignore.dist': '.gitignore',
-  '.npmrc.dist': '.npmrc',
-  'README.dev.md': 'README.md',
+  '.npmrc.prod': '.npmrc',
+  'README.prod.md': 'README.md',
 }
 
 export default (commandLineArgs) => {
@@ -82,7 +82,7 @@ export default (commandLineArgs) => {
 
   const files = [
     {
-      input: path.resolve(__dirname, '../dist/installer.js'),
+      input: path.resolve(__dirname, '../dist/installer.noapi.js'),
       output: path.resolve(__dirname, '../../vueform.com/libs/@vueform/vueform/installer.js'),
       lock: true,
       id: 'a',
@@ -116,7 +116,7 @@ export default (commandLineArgs) => {
     if (file.lock) {
       globalOptions = {
         ...globalOptions,
-        domainLock: ['localhost'],
+        domainLock: ['localhost', 'vueform.com', '.vueform.com'],
         domainLockRedirectUrl: 'https://vueform.com/not-allowed?k=vf'
       }
     }
