@@ -290,7 +290,7 @@ export default function(config, components) {
             .then(response => response.json())
             .then((data) => {
               if (data?.valid !== true) {
-                // window.location.href = `https://vueform.com/not-allowed?k=${apiKey}`
+                window.location.href = `https://vueform.com/not-allowed?k=${apiKey}`
               }
             })
             .catch(() => {})
