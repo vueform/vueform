@@ -86,31 +86,6 @@ async function copyFiles(files) {
   }
 }
 
-// const copyFiles = function() {
-//   _.each(files, (filename) => {
-//     let fromPath = path.resolve(__dirname, '../', Array.isArray(filename) ? filename[0] : filename)
-//     let toPath = Array.isArray(filename) ? filename[1] : filename
-
-//     if (toPath.match(/\//)) {
-//       let dir = path.resolve(outputDir, toPath.split('/').slice(0,-1).join('/'))
-
-//       if (!fs.existsSync(dir)){
-//         fs.mkdirSync(dir, { recursive: true });
-//       }
-//     }
-    
-//     if (!fs.existsSync(fromPath)) {
-//       return
-//     }
-
-//     ncp(fromPath, path.resolve(outputDir, toPath), function (err) {
-//       if (err) {
-//         return console.error(err);
-//       }
-//     })
-//   })
-// }
-
 const copyPackageJson = function() {
   let packageJson = JSON.parse(fs.readFileSync(path.resolve(__dirname, '../', 'package.json'), 'UTF-8'))
   let source = JSON.parse(fs.readFileSync(path.resolve(__dirname, '../', 'package.source.json'), 'UTF-8'))
