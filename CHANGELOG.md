@@ -8,6 +8,11 @@
 - Remote API key validation as primary domain validation method.
 - Removed `node-sass` dependency.
 - No need to specify `trix-editor` as custom element.
+- Added type classes to steps controls.
+
+### 🐞 Bug Fixes
+- Fix for `prepare()` in nested elements.
+- Set focused state for select elements when it is active, instead of being open.
 
 ## v1.3.3
 
