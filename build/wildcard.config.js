@@ -82,7 +82,7 @@ export default (commandLineArgs) => {
 
   const files = [
     {
-      input: path.resolve(__dirname, '../dist/installer.js'),
+      input: path.resolve(__dirname, '../dist/installer.noapi.js'),
       output: path.resolve(__dirname, '../../@vueform-vueform-wildcard/installer.js'),
     },
     {
@@ -98,9 +98,6 @@ export default (commandLineArgs) => {
   return files.map((file) => {
     let globalOptions = {
       identifierNamesGenerator: 'mangled-shuffled',
-      forceTransformStrings: [
-        '//stat.vueform.com/check?key=',
-      ],
       splitStrings: true,
       stringArrayCallsTransform: true,
       stringArrayEncoding: ['base64'],
