@@ -291,7 +291,7 @@ export default function(config, components) {
           fetch(`https://stat.vueform.com/sdk?key=${apiKey}`)
             .then(response => response.json())
             .then((data) => {
-              if (data?.valid !== true) {
+              if (data.valid !== undefined && data?.valid !== true) {
                 window.location.href = `https://vueform.com/not-allowed?k=${apiKey}`
               }
             })
