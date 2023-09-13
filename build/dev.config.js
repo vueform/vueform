@@ -110,11 +110,11 @@ export default (commandLineArgs) => {
     }
 
     if (file.lock) {
-      globalOptions = {
-        ...globalOptions,
-        domainLock: ['localhost', 'codesandbox.io', '.csb.app'],
-        domainLockRedirectUrl: 'https://vueform.com/not-allowed?k=dev-sdk'
-      }
+      // globalOptions = {
+      //   ...globalOptions,
+      //   domainLock: ['localhost', 'codesandbox.io', '.csb.app'],
+      //   domainLockRedirectUrl: 'https://vueform.com/not-allowed?k=dev-sdk'
+      // }
     }
 
     return {
