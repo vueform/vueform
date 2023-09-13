@@ -269,6 +269,11 @@ export default {
       if (disabled.value) {
         editor$.value.contentEditable = false
       }
+
+      editor$.value.addEventListener('trix-change', handleChange)
+      editor$.value.addEventListener('trix-blur', handleBlur)
+      editor$.value.addEventListener('trix-file-accept', handleFileAccept)
+      editor$.value.addEventListener('trix-attachment-add', handleAttachmentAdd)
     })
 
     return {
