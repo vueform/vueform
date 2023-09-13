@@ -44,7 +44,8 @@
     "to:internal": "rollup --config build/internal.config.js",
     "to:wildcard": "rollup --config build/wildcard.config.js",
     "to:source": "node scripts/toSource.js",
-    "to:web": "rollup --config build/web.config.js"
+    "to:web": "rollup --config build/web.config.js",
+    "to:test": "rollup --config build/test.config.js"
   },
   "devDependencies": {
     "@babel/core": "^7.2.2",
