@@ -2,13 +2,12 @@ import path from 'path'
 import obfuscator from 'rollup-plugin-obfuscator'
 
 import packageJson from './../package.json'
-import distPackageJson from './../package.prod.json'
 import createPackageJson from './utils/createPackageJson'
 import rmDir from './utils/rmDir'
 import mkdirs from './utils/mkdirs'
 import cp from './utils/cp'
 
-export default function({ outputDir, npmrc, readme, packageJsonOptions, obfuscatorOptions = {}, noapi = false }) {
+export default function({ outputDir, npmrc, readme, distPackageJson, packageJsonOptions, obfuscatorOptions = {}, noapi = false }) {
 
   // Remove existing folder
   rmDir(outputDir)
@@ -81,8 +80,6 @@ export default function({ outputDir, npmrc, readme, packageJsonOptions, obfuscat
           stringArrayCallsTransform: true,
           stringArrayEncoding: ['base64'],
           ...obfuscatorOptions,
-          // domainLock: ['localhost', '.csb.app'],
-          // domainLockRedirectUrl: 'https://vueform.com/not-allowed?k=dev-sdk'
         },
       }),
     ],
