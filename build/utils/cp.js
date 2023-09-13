@@ -7,6 +7,18 @@ export default function(copy, outputDir = '') {
       from,
       to: copy[from],
     }))
+  } else {
+    copy = copy.map((to) => {
+      return (
+        typeof to === 'string' ? {
+          from: to,
+          to,
+        } : {
+          from: Object.keys(to)[0],
+          to: Object.values(to)[0],
+        }
+      )
+    })
   }
 
   copy.forEach((file) => {

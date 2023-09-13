@@ -82,7 +82,7 @@ export default files.map((file) => ({
         stringArrayEncoding: ['base64'],
         renameGlobals: true,
         domainLock: ['localhost', 'vueform.com', '.vueform.com'],
-        domainLockRedirectUrl: 'https://vueform.com/not-allowed?k=vf'
+        domainLockRedirectUrl: 'https://vueform.com/not-allowed?k=sdk-web'
       },
     }),
   ],
