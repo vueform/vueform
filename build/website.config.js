@@ -8,7 +8,7 @@ import rmDir from './utils/rmDir'
 import mkdirs from './utils/mkdirs'
 import cp from './utils/cp'
 
-const outputDir = path.resolve(__dirname, '../../@vueform-vueform-dev')
+const outputDir = path.resolve(__dirname, '../../vueform.com/libs/@vueform/vueform')
 
 // Remove existing folder
 rmDir(outputDir)
@@ -28,8 +28,8 @@ cp({
   'vite.js': 'vite.js',
   'src/plugin.js': 'plugin.js',
   '.gitignore.dist': '.gitignore',
-  '.npmrc.dev': '.npmrc',
-  'README.dev.md': 'README.md',
+  '.npmrc.prod': '.npmrc',
+  'README.prod.md': 'README.md',
 }, outputDir)
 
 // Create package.json
@@ -37,24 +37,24 @@ createPackageJson(distPackageJson, path.resolve(outputDir, 'package.json'), {
   name: '@vueform/vueform',
   version: packageJson.version,
   private: false,
-  description: 'Vueform SDK development build.',
+  description: 'Vueform SDK production build.',
 })
 
 // Files to transpile
 const files = [
   {
-    input: path.resolve(__dirname, '../dist/installer.js'),
-    output: path.resolve(__dirname, '../../@vueform-vueform-dev/installer.js'),
+    input: path.resolve(__dirname, '../dist/installer.noapi.js'),
+    output: path.resolve(__dirname, '../../vueform.com/libs/@vueform/vueform/installer.js'),
     id: 'installer',
   },
   {
     input: path.resolve(__dirname, '../dist/element.js'),
-    output: path.resolve(__dirname, '../../@vueform-vueform-dev/element.js'),
+    output: path.resolve(__dirname, '../../vueform.com/libs/@vueform/vueform/element.js'),
     id: 'element',
   },
   {
     input: path.resolve(__dirname, '../dist/index.js'),
-    output: path.resolve(__dirname, '../../@vueform-vueform-dev/index.js'),
+    output: path.resolve(__dirname, '../../vueform.com/libs/@vueform/vueform/index.js'),
     id: 'index',
   },
 ]
@@ -72,16 +72,17 @@ export default files.map((file) => ({
         identifiersPrefix: file.id,
       },
       globalOptions: {
-        identifierNamesGenerator: 'mangled-shuffled',
         forceTransformStrings: [
           '//stat.vueform.com/sdk?key=',
           '//vueform.com/not-allowed?k=',
         ],
+        compact: true,
         splitStrings: true,
         stringArrayCallsTransform: true,
         stringArrayEncoding: ['base64'],
-        domainLock: ['localhost', '.csb.app'],
-        domainLockRedirectUrl: 'https://vueform.com/not-allowed?k=dev-sdk'
+        renameGlobals: true,
+        domainLock: ['localhost', 'vueform.com', '.vueform.com'],
+        domainLockRedirectUrl: 'https://vueform.com/not-allowed?k=vf'
       },
     }),
   ],
