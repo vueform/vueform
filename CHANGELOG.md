@@ -9,6 +9,7 @@
 - Removed `node-sass` dependency.
 - No need to specify `trix-editor` as custom element.
 - Added type classes to steps controls.
+- Rename `tooltip-top`, `tooltip-bottom`, etc. classes in `tailwind` theme to `form-slider-tooltip-top`, `form-slider-tooltip-bottom`, etc.
 
 ### 🐞 Bug Fixes
 - Fix for `prepare()` in nested elements.
