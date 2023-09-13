@@ -1,6 +1,6 @@
 import path from 'path'
 import defaultConfig from './default.config'
-import distPackageJson from './../package.dev.json'
+import distPackageJson from './../package.prod.json'
 
 export default defaultConfig({
   outputDir: path.resolve(__dirname, '../../@vueform-vueform-dev'),
