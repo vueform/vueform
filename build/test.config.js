@@ -1,13 +1,13 @@
 import path from 'path'
 import obfuscator from 'rollup-plugin-obfuscator'
 import packageJson from './../package.json'
-import distPackageJson from './../package.dev.json'
+import distPackageJson from './../package.prod.json'
 
 const ncp = require('ncp')
 const fs = require('fs')
 const _ = require('lodash')
 
-const outputDir = path.resolve(__dirname, '../../@vueform-vueform-dev')
+const outputDir = path.resolve(__dirname, '../../vueform-test/packages/@vueform/vueform')
 
 function deleteFolderRecursiveSync(directory, deleteCurrent = false) {
   if (fs.existsSync(directory)) {
@@ -37,8 +37,8 @@ const copyFiles = {
   'vite.js': 'vite.js',
   'src/plugin.js': 'plugin.js',
   '.gitignore.dist': '.gitignore',
-  '.npmrc.dev': '.npmrc',
-  'README.dev.md': 'README.md',
+  '.npmrc.prod': '.npmrc',
+  'README.prod.md': 'README.md',
 }
 
 export default (commandLineArgs) => {
@@ -55,7 +55,7 @@ export default (commandLineArgs) => {
     finalPackageJson.name = '@vueform/vueform'
     finalPackageJson.version = version
     finalPackageJson.private = false
-    finalPackageJson.description = 'Vueform SDK development build.'
+    finalPackageJson.description = 'Vueform SDK production build.'
 
     fs.writeFileSync(path.resolve(outputDir, 'package.json'), JSON.stringify(finalPackageJson, null, 2))
   }
@@ -83,38 +83,41 @@ export default (commandLineArgs) => {
   const files = [
     {
       input: path.resolve(__dirname, '../dist/installer.js'),
-      output: path.resolve(__dirname, '../../@vueform-vueform-dev/installer.js'),
+      output: path.resolve(__dirname, '../../vueform-test/packages/@vueform/vueform/installer.js'),
       lock: true,
+      id: 'a',
     },
     {
       input: path.resolve(__dirname, '../dist/element.js'),
-      output: path.resolve(__dirname, '../../@vueform-vueform-dev/element.js'),
+      output: path.resolve(__dirname, '../../vueform-test/packages/@vueform/vueform/element.js'),
       lock: true,
+      id: 'b',
     },
     {
       input: path.resolve(__dirname, '../dist/index.js'),
-      output: path.resolve(__dirname, '../../@vueform-vueform-dev/index.js'),
+      output: path.resolve(__dirname, '../../vueform-test/packages/@vueform/vueform/index.js'),
       lock: true,
+      id: 'c',
     },
   ]
 
   return files.map((file) => {
     let globalOptions = {
-      identifierNamesGenerator: 'mangled-shuffled',
       forceTransformStrings: [
         '//stat.vueform.com/sdk?key=',
-        '//vueform.com/not-allowed?k=',
       ],
+      compact: true,
       splitStrings: true,
       stringArrayCallsTransform: true,
       stringArrayEncoding: ['base64'],
+      renameGlobals: true
     }
 
     if (file.lock) {
       globalOptions = {
         ...globalOptions,
-        domainLock: ['localhost', '.csb.app'],
-        domainLockRedirectUrl: 'https://vueform.com/not-allowed?k=dev-sdk'
+        domainLock: ['localhost'],
+        domainLockRedirectUrl: 'https://vueform.com/not-allowed?k=vf'
       }
     }
 
