@@ -1,92 +1,18 @@
 import path from 'path'
-import obfuscator from 'rollup-plugin-obfuscator'
+import defaultConfig from './default.config'
 
-import packageJson from './../package.json'
-import distPackageJson from './../package.prod.json'
-import createPackageJson from './utils/createPackageJson'
-import rmDir from './utils/rmDir'
-import mkdirs from './utils/mkdirs'
-import cp from './utils/cp'
-
-const outputDir = path.resolve(__dirname, '../../@vueform-vueform-internal')
-
-// Remove existing folder
-rmDir(outputDir)
-
-// Create output dir
-mkdirs([
-  outputDir,
-])
-
-// Copy files
-cp({
-  'themes': 'themes',
-  'locales': 'locales',
-  'CHANGELOG.md': 'CHANGELOG.md',
-  'tailwind.js': 'tailwind.js',
-  'tailwind-prefixer.js': 'tailwind-prefixer.js',
-  'vite.js': 'vite.js',
-  'src/plugin.js': 'plugin.js',
-  '.gitignore.dist': '.gitignore',
-  '.npmrc.internal': '.npmrc',
-  'README.prod.md': 'README.md',
-}, outputDir)
-
-// Create package.json
-createPackageJson(distPackageJson, path.resolve(outputDir, 'package.json'), {
-  name: '@vueform/vueform',
-  version: packageJson.version,
-  publishConfig: {
-    registry: 'https://internal.vueform.com',
+export default defaultConfig({
+  outputDir: path.resolve(__dirname, '../../@vueform-vueform-internal'),
+  npmrc: '.npmrc.internal',
+  readme: 'README.prod.md',
+  packageJsonOptions: {
+    publishConfig: {
+      registry: 'https://internal.vueform.com',
+    },
+    description: 'Vueform SDK production build.',
   },
-  private: false,
-  description: 'Vueform SDK internal build.',
+  obfuscatorOptions: {
+    domainLock: ['localhost'],
+    domainLockRedirectUrl: 'https://vueform.com/not-allowed?k=internal-sdk'
+  }
 })
-
-// Files to transpile
-const files = [
-  {
-    input: path.resolve(__dirname, '../dist/installer.js'),
-    output: path.resolve(__dirname, '../../@vueform-vueform-internal/installer.js'),
-    id: 'installer',
-  },
-  {
-    input: path.resolve(__dirname, '../dist/element.js'),
-    output: path.resolve(__dirname, '../../@vueform-vueform-internal/element.js'),
-    id: 'element',
-  },
-  {
-    input: path.resolve(__dirname, '../dist/index.js'),
-    output: path.resolve(__dirname, '../../@vueform-vueform-internal/index.js'),
-    id: 'index',
-  },
-]
-
-export default files.map((file) => ({
-  input: file.input,
-  output: {
-    file: file.output,
-    format: 'esm',
-    sourcemap: false,
-  },
-  plugins: [
-    obfuscator({
-      fileOptions: {
-        identifiersPrefix: file.id,
-      },
-      globalOptions: {
-        identifierNamesGenerator: 'mangled-shuffled',
-        forceTransformStrings: [
-          '//stat.vueform.com/sdk?key=',
-          '//vueform.com/not-allowed?k=',
-        ],
-        splitStrings: true,
-        stringArrayCallsTransform: true,
-        stringArrayEncoding: ['base64'],
-        domainLock: ['localhost'],
-        domainLockRedirectUrl: 'https://vueform.com/not-allowed?k=internal-sdk'
-      },
-    }),
-  ],
-  external: ['vue', 'axios', 'lodash', 'moment'],
-}))
