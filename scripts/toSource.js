@@ -97,14 +97,12 @@ const copyPackageJson = function() {
   source.description = 'Vueform SDK source build.'
 
   Object.keys(packageJson.dependencies).forEach((key) => {
-    let dep = packageJson.dependencies[key]
-
-    if (key.match(/^@vueform/)) {
-      source.dependencies[key] = '^2.0.0'
-    } else {
-      source.dependencies[key] = dep
-    }
+    source.dependencies[key] = packageJson.dependencies[key]
   })
+
+  source.dependencies['@vueform/multiselect'] = '^2.6.2'
+  source.dependencies['@vueform/slider'] = '^2.1.7'
+  source.dependencies['@vueform/toggle'] = '^2.1.3'
 
   delete source.dependencies['bootstrap']
   delete source.dependencies['moxios']
