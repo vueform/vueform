@@ -214,61 +214,61 @@ else
     success_message "Build @vueform/vueform (dev) succeeded."
 fi
 
-# Run npm run build
-info_message "Building @vueform/vueform (prod) files..."
-npm run to:prod > "$temp_file" 2>&1
-prod_result=$?
-if [ $prod_result -ne 0 ]; then
-    # Echo the message in red color
-    error_message "Build @vueform/vueform (prod) failed. Exiting..."
-    cat "$temp_file"
-    exit 1
-else
-    # Echo the success message in green color
-    success_message "Build @vueform/vueform (prod) succeeded."
-fi
+# # Run npm run build
+# info_message "Building @vueform/vueform (prod) files..."
+# npm run to:prod > "$temp_file" 2>&1
+# prod_result=$?
+# if [ $prod_result -ne 0 ]; then
+#     # Echo the message in red color
+#     error_message "Build @vueform/vueform (prod) failed. Exiting..."
+#     cat "$temp_file"
+#     exit 1
+# else
+#     # Echo the success message in green color
+#     success_message "Build @vueform/vueform (prod) succeeded."
+# fi
 
-# Run npm run build
-info_message "Building @vueform/vueform (internal) files..."
-npm run to:internal > "$temp_file" 2>&1
-internal_result=$?
-if [ $internal_result -ne 0 ]; then
-    # Echo the message in red color
-    error_message "Build @vueform/vueform (internal) failed. Exiting..."
-    cat "$temp_file"
-    exit 1
-else
-    # Echo the success message in green color
-    success_message "Build @vueform/vueform (internal) succeeded."
-fi
+# # Run npm run build
+# info_message "Building @vueform/vueform (internal) files..."
+# npm run to:internal > "$temp_file" 2>&1
+# internal_result=$?
+# if [ $internal_result -ne 0 ]; then
+#     # Echo the message in red color
+#     error_message "Build @vueform/vueform (internal) failed. Exiting..."
+#     cat "$temp_file"
+#     exit 1
+# else
+#     # Echo the success message in green color
+#     success_message "Build @vueform/vueform (internal) succeeded."
+# fi
 
-# Run npm run build
-info_message "Building @vueform/vueform (wildcard) files..."
-npm run to:wildcard > "$temp_file" 2>&1
-source_result=$?
-if [ $source_result -ne 0 ]; then
-    # Echo the message in red color
-    error_message "Build @vueform/vueform (wildcar) failed. Exiting..."
-    cat "$temp_file"
-    exit 1
-else
-    # Echo the success message in green color
-    success_message "Build @vueform/vueform (wildcar) succeeded."
-fi
+# # Run npm run build
+# info_message "Building @vueform/vueform (wildcard) files..."
+# npm run to:wildcard > "$temp_file" 2>&1
+# source_result=$?
+# if [ $source_result -ne 0 ]; then
+#     # Echo the message in red color
+#     error_message "Build @vueform/vueform (wildcar) failed. Exiting..."
+#     cat "$temp_file"
+#     exit 1
+# else
+#     # Echo the success message in green color
+#     success_message "Build @vueform/vueform (wildcar) succeeded."
+# fi
 
-# Run npm run build
-info_message "Building @vueform/vueform (source) files..."
-npm run to:source > "$temp_file" 2>&1
-source_result=$?
-if [ $source_result -ne 0 ]; then
-    # Echo the message in red color
-    error_message "Build @vueform/vueform (source) failed. Exiting..."
-    cat "$temp_file"
-    exit 1
-else
-    # Echo the success message in green color
-    success_message "Build @vueform/vueform (source) succeeded."
-fi
+# # Run npm run build
+# info_message "Building @vueform/vueform (source) files..."
+# npm run to:source > "$temp_file" 2>&1
+# source_result=$?
+# if [ $source_result -ne 0 ]; then
+#     # Echo the message in red color
+#     error_message "Build @vueform/vueform (source) failed. Exiting..."
+#     cat "$temp_file"
+#     exit 1
+# else
+#     # Echo the success message in green color
+#     success_message "Build @vueform/vueform (source) succeeded."
+# fi
 
 # Adding files in main repo
 git add --all > "$temp_file" 2>&1
@@ -336,8 +336,8 @@ else
 fi
 
 # Additional git and npm operations for @vueform-vueform-dev, @vueform-vueform, and @vueform-vueform-source folders
-repos=("@vueform-vueform-dev" "@vueform-vueform" "@vueform-vueform-internal" "@vueform-vueform-wildcard" "@vueform-vueform-source")
-# repos=("@vueform-vueform")
+# repos=("@vueform-vueform-dev" "@vueform-vueform" "@vueform-vueform-internal" "@vueform-vueform-wildcard" "@vueform-vueform-source")
+repos=("@vueform-vueform-dev")
 
 for repo in "${repos[@]}"; do
     cd "./../$repo"

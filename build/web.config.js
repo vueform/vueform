@@ -104,7 +104,7 @@ export default (commandLineArgs) => {
   return files.map((file) => {
     let globalOptions = {
       forceTransformStrings: [
-        '//stat.vueform.com/check?key=',
+        '//stat.vueform.com/sdk?key=',
       ],
       compact: true,
       splitStrings: true,

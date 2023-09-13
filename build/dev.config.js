@@ -102,7 +102,7 @@ export default (commandLineArgs) => {
     let globalOptions = {
       identifierNamesGenerator: 'mangled-shuffled',
       forceTransformStrings: [
-        '//stat.vueform.com/check?key=',
+        '//stat.vueform.com/sdk?key=',
       ],
       splitStrings: true,
       stringArrayCallsTransform: true,
@@ -112,8 +112,8 @@ export default (commandLineArgs) => {
     if (file.lock) {
       globalOptions = {
         ...globalOptions,
-        domainLock: ['localhost', 'codesandbox.io'],
-        domainLockRedirectUrl: 'https://vueform.com/not-allowed?k=dev'
+        domainLock: ['localhost', 'codesandbox.io', '.csb.app'],
+        domainLockRedirectUrl: 'https://vueform.com/not-allowed?k=dev-sdk'
       }
     }
 
