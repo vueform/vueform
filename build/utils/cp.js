@@ -13,10 +13,10 @@ export default function(copy, outputDir = '') {
         typeof to === 'string' ? {
           from: to,
           to,
-        } : {
+        } : (!to.to && to.from ? {
           from: Object.keys(to)[0],
           to: Object.values(to)[0],
-        }
+        } : to)
       )
     })
   }
