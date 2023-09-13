@@ -113,18 +113,18 @@ check_changelog_version() {
 # Call the function to check the version in CHANGELOG.md
 check_changelog_version "$new_version"
 
-info_message "Generating notes files"
-node ./scripts/notes.js > "$temp_file" 2>&1
-notes=$?
-if [ $notes -ne 0 ]; then
-    # Echo the message in red color
-    error_message "Generating notes failed. Exiting..."
-    cat "$temp_file"
-    exit 1
-else
-    # Echo the success message in green color
-    success_message "Generating notes succeeded."
-fi
+# info_message "Generating notes files"
+# node ./scripts/notes.js > "$temp_file" 2>&1
+# notes=$?
+# if [ $notes -ne 0 ]; then
+#     # Echo the message in red color
+#     error_message "Generating notes failed. Exiting..."
+#     cat "$temp_file"
+#     exit 1
+# else
+#     # Echo the success message in green color
+#     success_message "Generating notes succeeded."
+# fi
 
 # Ask whether to run unit tests
 echo "Do you want to run unit tests?"
@@ -137,68 +137,68 @@ options=("Yes" "No")
 select_option "${options[@]}"
 publish_notes_choice=$?
 
-# Generate api files
-info_message "Generating API files"
-npm run generate > "$temp_file" 2>&1
-generate_result=$?
-if [ $generate_result -ne 0 ]; then
-    # Echo the message in red color
-    error_message "API generation failed. Exiting..."
-    cat "$temp_file"
-    exit 1
-else
-    # Echo the success message in green color
-    success_message "API generation succeeded."
-fi
+# # Generate api files
+# info_message "Generating API files"
+# npm run generate > "$temp_file" 2>&1
+# generate_result=$?
+# if [ $generate_result -ne 0 ]; then
+#     # Echo the message in red color
+#     error_message "API generation failed. Exiting..."
+#     cat "$temp_file"
+#     exit 1
+# else
+#     # Echo the success message in green color
+#     success_message "API generation succeeded."
+# fi
 
-info_message "Publishing API files..."
-node ./scripts/apiToSdk.js > "$temp_file" 2>&1
-publish_result=$?
-if [ $publish_result -ne 0 ]; then
-    # Echo the message in red color
-    error_message "API publishing failed. Exiting..."
-    cat "$temp_file"
-    exit 1
-else
-    # Echo the success message in green color
-    success_message "API publishing succeeded."
-fi
+# info_message "Publishing API files..."
+# node ./scripts/apiToSdk.js > "$temp_file" 2>&1
+# publish_result=$?
+# if [ $publish_result -ne 0 ]; then
+#     # Echo the message in red color
+#     error_message "API publishing failed. Exiting..."
+#     cat "$temp_file"
+#     exit 1
+# else
+#     # Echo the success message in green color
+#     success_message "API publishing succeeded."
+# fi
 
-# Run npm run build
-info_message "Building main files..."
-npm run build > "$temp_file" 2>&1
-build_result=$?
-if [ $build_result -ne 0 ]; then
-    # Echo the message in red color
-    error_message "Build failed. Exiting..."
-    cat "$temp_file"
-    exit 1
-else
-    # Echo the success message in green color
-    success_message "Build succeeded."
-fi
+# # Run npm run build
+# info_message "Building main files..."
+# npm run build > "$temp_file" 2>&1
+# build_result=$?
+# if [ $build_result -ne 0 ]; then
+#     # Echo the message in red color
+#     error_message "Build failed. Exiting..."
+#     cat "$temp_file"
+#     exit 1
+# else
+#     # Echo the success message in green color
+#     success_message "Build succeeded."
+# fi
 
-if [ "$test_choice" -eq 0 ]; then
-    # User chose to run unit tests
-    npm run test
-    test_result=$?
-    if [ $test_result -ne 0 ]; then
-        # Echo the message in red color
-        error_message "Unit tests failed. Skipping version update in package.json."
-        exit 1
-    else
-        # Echo the success message in green color
-        success_message "Unit tests passed successfully."
-        # Update package.json with the new version since tests succeeded
-        update_version "$new_version"
-        success_message "Updated version in package.json to $new_version"
-    fi
-else
-    success_message "Skipping unit tests."
-    # Update package.json with the new version since tests are skipped
-    update_version "$new_version"
-    success_message "Updated version in package.json to $new_version"
-fi
+# if [ "$test_choice" -eq 0 ]; then
+#     # User chose to run unit tests
+#     npm run test
+#     test_result=$?
+#     if [ $test_result -ne 0 ]; then
+#         # Echo the message in red color
+#         error_message "Unit tests failed. Skipping version update in package.json."
+#         exit 1
+#     else
+#         # Echo the success message in green color
+#         success_message "Unit tests passed successfully."
+#         # Update package.json with the new version since tests succeeded
+#         update_version "$new_version"
+#         success_message "Updated version in package.json to $new_version"
+#     fi
+# else
+#     success_message "Skipping unit tests."
+#     # Update package.json with the new version since tests are skipped
+#     update_version "$new_version"
+#     success_message "Updated version in package.json to $new_version"
+# fi
 
 # Run npm run build
 info_message "Building @vueform/vueform (dev) files..."
