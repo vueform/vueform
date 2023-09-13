@@ -55,7 +55,7 @@ export default (commandLineArgs) => {
     finalPackageJson.name = '@vueform/vueform'
     finalPackageJson.version = version
     finalPackageJson.private = false
-    finalPackageJson.description = 'Vueform SDK development build...'
+    finalPackageJson.description = 'Vueform SDK development build.'
 
     fs.writeFileSync(path.resolve(outputDir, 'package.json'), JSON.stringify(finalPackageJson, null, 2))
   }
@@ -112,7 +112,7 @@ export default (commandLineArgs) => {
     if (file.lock) {
       globalOptions = {
         ...globalOptions,
-        domainLock: ['localhost'],
+        domainLock: ['localhost', 'codesandbox.io', '.csb.app'],
         domainLockRedirectUrl: 'https://vueform.com/not-allowed?k=dev-sdk'
       }
     }
