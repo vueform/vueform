@@ -11,7 +11,7 @@ export default defaultConfig({
     description: 'Vueform SDK production build.',
   },
   obfuscatorOptions: {
-    domainLock: ['localhost', 'vueform.com', '.vueform.com'],
+    domainLock: ['localhost', '.vueform.com'],
     domainLockRedirectUrl: 'https://vueform.com/not-allowed?k=sdk-web',
   },
   noapi: true,
