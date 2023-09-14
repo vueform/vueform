@@ -5060,27 +5060,26 @@ function installer (config, components) {
 
     /* @feat-start:api-key-validation */
     createApiKeyError() {
-      var message = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '=== Vueform API Key Missing ===';
+      var message = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '=== Vueform Public Key Missing ===';
       var error = "";
       error += "\n";
-      error += " .....................  ......\n";
-      error += "  ..................   ......\n";
-      error += "   ................  .......\n";
-      error += "     ......         ......\n";
-      error += "      ..........  .......\n";
-      error += "       ........  ......\n";
-      error += "                ......\n";
-      error += "          ...........\n";
-      error += "            .......\n";
-      error += "             .....\n";
-      error += "               .\n";
+      error += "     .....................  ......\n";
+      error += "      ..................   ......\n";
+      error += "       ................  .......\n";
+      error += "         ......         ......\n";
+      error += "          ..........  .......\n";
+      error += "           ........  ......\n";
+      error += "                    ......\n";
+      error += "              ...........\n";
+      error += "                .......\n";
+      error += "                 .....\n";
+      error += "                   .\n";
       error += "\n";
-      error += "===============================\n";
+      error += "".concat(Array(message.length + 1).join('='), "\n");
       error += "".concat(message, "\n");
-      error += "===============================\n";
+      error += "".concat(Array(message.length + 1).join('='), "\n");
       error += "\n";
-      error += "Create a free API Key at:\n";
-      error += "https://vueform.com/docs/installation#api-key\n";
+      error += "Obtain a Public Key at: https://vueform.com\n";
       error += "\n";
       return error;
     }
@@ -5094,22 +5093,34 @@ function installer (config, components) {
       this.options.vueVersion = version;
 
       /* @feat-start:api-key-validation */
-      if (window && window.location && ['localhost', '127.0.0.1'].indexOf(window.location.hostname) === -1) {
-        var apiKey = options.apiKey;
+      var apiKey = options.apiKey;
+      if (window && window.location && ['localhost', '127.0.0.1'].indexOf(window.location.hostname) === -1 || apiKey) {
         if (!apiKey) {
-          console.error(this.createApiKeyError('=== Vueform API Key Missing ==='));
+          console.error(this.createApiKeyError('=== Vueform Public Key Missing ==='));
+          window.location.href = "https://vueform.com/not-allowed?k=".concat(apiKey, "&c=303");
           return;
         }
         if (!verifyApiKey(apiKey.toUpperCase())) {
-          console.error(this.createApiKeyError('=== Invalid Vueform API Key ==='));
+          console.error(this.createApiKeyError('=== Invalid Vueform Public Key Format ==='));
+          window.location.href = "https://vueform.com/not-allowed?k=".concat(apiKey, "&c=304");
           return;
         }
         if (navigator && navigator.onLine && window && window.location && ['http:', 'https:'].indexOf(window.location.protocol) !== -1 && typeof fetch !== 'undefined') {
           fetch("https://stat.vueform.com/sdk?key=".concat(apiKey)).then(response => response.json()).then(data => {
             if (data.valid !== undefined && (data === null || data === void 0 ? void 0 : data.valid) !== true) {
-              window.location.href = "https://vueform.com/not-allowed?k=".concat(apiKey);
+              var type = data.type || 'redirect';
+              switch (type) {
+                case 'redirect':
+                  window.location.href = "https://vueform.com/not-allowed?k=".concat(apiKey, "&c=").concat(data.code);
+                  return;
+                case 'alert':
+                  alert(data.message);
+                  return;
+                case 'message':
+                  throw new Error(this.createApiKeyError(data.message));
+              }
             }
-          }).catch(() => {});
+          });
         }
       }
       /* @feat-end:api-key-validation */
