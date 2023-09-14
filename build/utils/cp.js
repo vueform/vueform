@@ -13,13 +13,15 @@ export default function(copy, outputDir = '') {
         typeof to === 'string' ? {
           from: to,
           to,
-        } : (!to.to && to.from ? {
+        } : (!to.to && !to.from ? {
           from: Object.keys(to)[0],
           to: Object.values(to)[0],
         } : to)
       )
     })
   }
+
+  console.log(copy)
 
   copy.forEach((file) => {
     ncp(path.resolve(__dirname, '../', file.from), path.resolve(__dirname, '../', outputDir, file.to), function (err) {

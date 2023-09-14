@@ -1,5 +1,6 @@
 import path from 'path'
 import obfuscator from 'rollup-plugin-obfuscator'
+import { terser } from 'rollup-plugin-terser'
 
 import packageJson from './../package.json'
 import createPackageJson from './utils/createPackageJson'
@@ -71,17 +72,15 @@ export default function({ outputDir, npmrc, readme, distPackageJson, packageJson
           identifiersPrefix: file.id,
         },
         globalOptions: {
-          identifierNamesGenerator: 'mangled-shuffled',
+          compact: false,
           forceTransformStrings: [
             '//stat.vueform.com/sdk?key=',
             '//vueform.com/not-allowed?k=',
           ],
-          splitStrings: true,
-          stringArrayCallsTransform: true,
-          stringArrayEncoding: ['base64'],
           ...obfuscatorOptions,
         },
       }),
+      terser(),
     ],
     external: ['vue', 'axios', 'lodash', 'moment'],
   }))
