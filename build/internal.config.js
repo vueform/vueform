@@ -8,10 +8,10 @@ export default defaultConfig({
   readme: 'README.prod.md',
   distPackageJson,
   packageJsonOptions: {
+    description: 'Vueform SDK production build.',
     publishConfig: {
       registry: 'https://internal.vueform.com',
     },
-    description: 'Vueform SDK production build.',
   },
   obfuscatorOptions: {
     domainLock: ['localhost'],
