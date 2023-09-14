@@ -45,44 +45,58 @@ export default function({ outputDir, npmrc, readme, distPackageJson, packageJson
     {
       input: path.resolve(__dirname, `../dist/installer.${noapi?'noapi.':''}js`),
       output: path.resolve(outputDir, 'installer.js'),
+      lock: true,
       id: 'installer',
     },
     {
       input: path.resolve(__dirname, '../dist/element.js'),
       output: path.resolve(outputDir, 'element.js'),
+      lock: false,
       id: 'element',
     },
     {
       input: path.resolve(__dirname, '../dist/index.js'),
       output: path.resolve(outputDir, 'index.js'),
+      lock: false,
       id: 'index',
     },
   ]
 
-  return files.map((file) => ({
-    input: file.input,
-    output: {
-      file: file.output,
-      format: 'esm',
-      sourcemap: false,
-    },
-    plugins: [
-      obfuscator({
-        fileOptions: {
-          identifiersPrefix: file.id,
-        },
-        globalOptions: {
-          compact: false,
-          forceTransformStrings: [
-            '//stat.vueform.com/sdk?key=',
-            '//vueform.com/not-allowed?k=',
-          ],
-          ...obfuscatorOptions,
-        },
-      }),
-      terser(),
-    ],
-    external: ['vue', 'axios', 'lodash', 'moment'],
-  }))
+  return files.map((file) => {
+    let extendedOptions = {
+      ...obfuscatorOptions,
+    }
+
+    if (!file.lock) {
+      delete extendedOptions.domainLock
+      delete extendedOptions.domainLockRedirectUrl
+    }
+
+    return {
+      input: file.input,
+      output: {
+        file: file.output,
+        format: 'esm',
+        sourcemap: false,
+      },
+      plugins: [
+        obfuscator({
+          fileOptions: {
+            identifiersPrefix: file.id,
+          },
+          globalOptions: {
+            compact: false,
+            forceTransformStrings: [
+              '//stat.vueform.com/sdk?key=',
+              '//vueform.com/not-allowed?k=',
+            ],
+            ...extendedOptions,
+          },
+        }),
+        terser(),
+      ],
+      external: ['vue', 'axios', 'lodash', 'moment'],
+    }
+  })
   
 }
