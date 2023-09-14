@@ -8,6 +8,7 @@
       "feat: Removed `node-sass` dependency.",
       "feat: No need to specify `trix-editor` as custom element.",
       "feat: Added type classes to steps controls.",
+      "feat: Rename `tooltip-top`, `tooltip-bottom`, etc. classes in `tailwind` theme to `form-slider-tooltip-top`, `form-slider-tooltip-bottom`, etc.",
       "fix: Fix for `prepare()` in nested elements.",
       "fix: Set focused state for select elements when it is active, instead of being open."
     ]
