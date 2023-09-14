@@ -13,8 +13,4 @@ export default defaultConfig({
       registry: 'https://internal.vueform.com',
     },
   },
-  obfuscatorOptions: {
-    domainLock: ['localhost'],
-    domainLockRedirectUrl: 'https://vueform.com/not-allowed?k=internal-sdk'
-  }
 })
