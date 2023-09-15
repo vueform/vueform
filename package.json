@@ -116,7 +116,7 @@
     "@vueform/multiselect": "file:./packages/vueform-multiselect",
     "@vueform/slider": "file:./packages/vueform-slider",
     "@vueform/toggle": "file:./packages/vueform-toggle",
-    "autosize": "^6.0.2",
+    "autosize": "^6.0.1",
     "axios": "^1.5.0",
     "bootstrap": "^4.4.1",
     "color": "^4.2.3",
