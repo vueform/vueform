@@ -275,7 +275,7 @@ export default function(config, components) {
       /* @feat-start:api-key-validation */
       const apiKey = options.apiKey
 
-      if ((window && window.location && ['localhost', '127.0.0.1'].indexOf(window.location.hostname) === -1) || apiKey) {
+      if ((typeof window !== 'undefined' && window.location && ['localhost', '127.0.0.1'].indexOf(window.location.hostname) === -1) || apiKey) {
         if (!apiKey) {
           console.error(this.createApiKeyError('=== Vueform Public Key Missing ==='))
           window.location.href = `https://vueform.com/not-allowed?k=${apiKey}&c=303`
@@ -288,16 +288,16 @@ export default function(config, components) {
           return
         }
 
-        if (navigator && navigator.onLine && window && window.location && ['http:', 'https:'].indexOf(window.location.protocol) !== -1 && typeof fetch !== 'undefined') {
+        if (typeof navigator !== 'undefined' && navigator.onLine && typeof window !== 'undefined' && window.location && ['http:', 'https:'].indexOf(window.location.protocol) !== -1 && typeof fetch !== 'undefined') {
           fetch(`https://stat.vueform.com/sdk?key=${apiKey}`)
             .then(response => response.json())
             .then((data) => {
-              if (data.valid !== undefined && data?.valid !== true) {
-                let type = data.type || 'redirect'
-
-                switch (type) {
+              if (data && data?.type && data?.type.length) {
+                switch (data.type) {
                   case 'redirect':
-                    window.location.href = `https://vueform.com/not-allowed?k=${apiKey}&c=${data.code}`
+                    if (data.valid !== undefined && data.valid === false) {
+                      window.location.href = `https://vueform.com/not-allowed?k=${apiKey}&c=${data.code}`
+                    }
                     return
                     
                   case 'alert':
