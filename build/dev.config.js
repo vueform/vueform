@@ -14,7 +14,21 @@ export default defaultConfig({
     },
   },
   obfuscatorOptions: {
-    domainLock: ['localhost', '.csb.app'],
+    domainLock: [
+      'localhost',
+      '.localhost',
+      '.test',
+      '.local',
+      '.csb.app',
+      '.elasticbeanstalk.com',
+      '.netlify.com',
+      '.vercel.app',
+      '.gitpod.io',
+      '.cloudfront.net',
+      '.amplifyapp.com',
+      '.azureedge.net',
+      '.windows.net',
+    ],
     domainLockRedirectUrl: 'https://vueform.com/not-allowed?k=dev-sdk'
   }
 })
