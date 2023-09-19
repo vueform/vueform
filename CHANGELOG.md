@@ -3,7 +3,7 @@
 ## v1.4.0
 
 > `2023-09-17`
-> 
+
 ### 🎉 Feature
 - Remote API key validation as primary domain validation method.
 - Removed `node-sass` dependency.
