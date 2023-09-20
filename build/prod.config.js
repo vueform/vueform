@@ -9,5 +9,8 @@ export default defaultConfig({
   distPackageJson,
   packageJsonOptions: {
     description: 'Vueform SDK production build.',
+    publishConfig: {
+      registry: 'https://registry.vueform.com',
+    },
   }
 })

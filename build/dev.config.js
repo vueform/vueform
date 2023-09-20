@@ -9,9 +9,6 @@ export default defaultConfig({
   distPackageJson,
   packageJsonOptions: {
     description: 'Vueform SDK development build.',
-    publishConfig: {
-      registry: 'https://dev.vueform.com',
-    },
   },
   obfuscatorOptions: {
     domainLock: [
