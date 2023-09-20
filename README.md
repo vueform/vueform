@@ -50,13 +50,13 @@ Vueform is a form development tool that eliminates the manual work of coding for
       <td width="50%" valign="top" align="center">
         <h4>✨ 26 high-quality elements</h4>
         <p>
-        No need to hunt down custom elements on your own anymore. Use eg. <a href="https://vueform.com/reference/1.x/multifile-element">multi-file upload</a>, <a href="https://vueform.com/reference/1.x/editor-element">rich text editor</a>, <a href="https://vueform.com/reference/1.x/tags-element">tags input</a> or a <a href="https://vueform.com/reference/1.x/slider-element">slider</a> out of the box. If you want, <a href="https://vueform.com/docs/1.x/creating-elements">create your own element</a>.
+        No need to hunt down custom elements on your own anymore. Use eg. <a href="https://vueform.com/reference/multifile-element">multi-file upload</a>, <a href="https://vueform.com/reference/editor-element">rich text editor</a>, <a href="https://vueform.com/reference/tags-element">tags input</a> or a <a href="https://vueform.com/reference/slider-element">slider</a> out of the box. If you want, <a href="https://vueform.com/docs/creating-elements">create your own element</a>.
         </p>
       </td>
       <td width="50%" valign="top" align="center">
         <h4>✅ 54 built-in validators</h4>
         <p>
-        Most of your validation use cases are covered <a href="https://vueform.com/docs/1.x/validating-elements#available-validation-rules">out of the box</a>. You might use <a href="https://vueform.com/docs/1.x/validating-elements#conditional-rules">conditional</a>, <a href="https://vueform.com/docs/1.x/validating-elements#dependent-rules">dependent</a>, <a href="https://vueform.com/docs/1.x/validating-elements#asnyc-rules">async</a> or even <a href="https://vueform.com/docs/1.x/validating-elements#multilingual-rules">multilingual</a> validators. Missing something? Create a <a href="https://vueform.com/docs/1.x/validating-elements#custom-validation-rules">custom rule</a>.
+        Most of your validation use cases are covered <a href="https://vueform.com/docs/validating-elements#available-validation-rules">out of the box</a>. You might use <a href="https://vueform.com/docs/validating-elements#conditional-rules">conditional</a>, <a href="https://vueform.com/docs/validating-elements#dependent-rules">dependent</a>, <a href="https://vueform.com/docs/validating-elements#asnyc-rules">async</a> or even <a href="https://vueform.com/docs/validating-elements#multilingual-rules">multilingual</a> validators. Missing something? Create a <a href="https://vueform.com/docs/validating-elements#custom-validation-rules">custom rule</a>.
         </p>
       </td>
     </tr>
@@ -64,13 +64,13 @@ Vueform is a form development tool that eliminates the manual work of coding for
       <td width="50%" valign="top" align="center">
         <h4>🗂️ Groupped & repeatable elements</h4>
         <p>
-        Always felt like other libraries missing something? <a href="https://vueform.com/reference/1.x/group-element">Group</a> and <a href="https://vueform.com/reference/1.x/object-element">nest</a> elements on any levels or <a href="https://vueform.com/reference/1.x/list-element">repeat certain element groups</a>.
+        Always felt like other libraries missing something? <a href="https://vueform.com/reference/group-element">Group</a> and <a href="https://vueform.com/reference/object-element">nest</a> elements on any levels or <a href="https://vueform.com/reference/list-element">repeat certain element groups</a>.
         </p>
       </td>
       <td width="50%" valign="top" align="center">
         <h4>🌐 Translatable elements</h4>
         <p>
-        If you are working on a project which displays content in multiple languages you'll love this feature! See how to <a href="https://vueform.com/docs/1.x/i18n#translating-elements">translate element content</a>.
+        If you are working on a project which displays content in multiple languages you'll love this feature! See how to <a href="https://vueform.com/docs/i18n#translating-elements">translate element content</a>.
         </p>
       </td>
     </tr>
@@ -78,13 +78,13 @@ Vueform is a form development tool that eliminates the manual work of coding for
       <td width="50%" valign="top" align="center">
         <h4>➡️ Form steps</h4>
         <p>
-        Everybody hates filling in long forms. They might not even get started if all they see is an endless list of fields. Vueform makes it easy to <a href="https://vueform.com/docs/1.x/breaking-forms-into-steps">break forms into steps</a> to guarantee the best UX.
+        Everybody hates filling in long forms. They might not even get started if all they see is an endless list of fields. Vueform makes it easy to <a href="https://vueform.com/docs/breaking-forms-into-steps">break forms into steps</a> to guarantee the best UX.
         </p>
       </td>
       <td width="50%" valign="top" align="center">
         <h4>🔗 Conditional rendering</h4>
         <p>
-        Using <code>v-if</code> to render certain elements conditionally is no magic. Handling that on a data level is a different thing. Vueform removes all the struggle of creating <a href="https://vueform.com/docs/1.x/conditional-rendering">conditions</a>.
+        Using <code>v-if</code> to render certain elements conditionally is no magic. Handling that on a data level is a different thing. Vueform removes all the struggle of creating <a href="https://vueform.com/docs/conditional-rendering">conditions</a>.
         </p>
       </td>
     </tr>
@@ -92,13 +92,13 @@ Vueform is a form development tool that eliminates the manual work of coding for
       <td width="50%" valign="top" align="center">
         <h4>🎨 Advanced theming</h4>
         <p>
-        One of the most carefully designed part of Vueform is handling styles. Vueform comes with <a href="https://vueform.com/docs/1.x/styles-and-layout#size">3 different sizes</a>, <a href="https://vueform.com/docs/1.x/styles-and-layout#views">alternative views</a>, <a href="https://vueform.com/docs/1.x/styles-and-layout#changing-classes">replacable classes</a>, <a href="https://vueform.com/docs/1.x/styles-and-layout#presets">presets</a>, use of <a href="https://vueform.com/docs/1.x/styles-and-layout#css-vars">CSS vars</a> and some <a href="https://vueform.com/themes/tailwind">predefined themes</a>. Also, it supports <b>Tailwind CSS</b>.
+        One of the most carefully designed part of Vueform is handling styles. Vueform comes with <a href="https://vueform.com/docs/styles-and-layout#size">3 different sizes</a>, <a href="https://vueform.com/docs/styles-and-layout#views">alternative views</a>, <a href="https://vueform.com/docs/styles-and-layout#changing-classes">replacable classes</a>, <a href="https://vueform.com/docs/styles-and-layout#presets">presets</a>, use of <a href="https://vueform.com/docs/styles-and-layout#css-vars">CSS vars</a> and some <a href="https://vueform.com/themes/tailwind">predefined themes</a>. Also, it supports <b>Tailwind CSS</b>.
         </p>
       </td>
       <td width="50%" valign="top" align="center">
         <h4>🔌 Plugin system</h4>
         <p>
-        A great thing about Vueform is that it'll <b>never limit your work</b>. If the built in customization options are not enough for you you can go ahead and replace, overwrite or extend any features in Vueform using our <a href="https://vueform.com/docs/1.x/plugins">Plugin system</a>.
+        A great thing about Vueform is that it'll <b>never limit your work</b>. If the built in customization options are not enough for you you can go ahead and replace, overwrite or extend any features in Vueform using our <a href="https://vueform.com/docs/plugins">Plugin system</a>.
         </p>
       </td>
     </tr>
@@ -106,13 +106,13 @@ Vueform is a form development tool that eliminates the manual work of coding for
       <td width="50%" valign="top" align="center">
         <h4>⚒️ JSON forms</h4>
         <p>
-        Everything in Vueform, including elements, validation rules or steps and be <a href="https://vueform.com/docs/1.x/rendering-forms#using-schema-object">stored as a JSON string</a>. This enables rendering dynamic forms and storing even complex forms in databases. 
+        Everything in Vueform, including elements, validation rules or steps and be <a href="https://vueform.com/docs/rendering-forms#using-schema-object">stored as a JSON string</a>. This enables rendering dynamic forms and storing even complex forms in databases. 
         </p>
       </td>
       <td width="50%" valign="top" align="center">
         <h4>📚 Extensive docs</h4>
         <p>
-        Vueform comes with a carefully crafter <a href="https://vueform.com/docs/1.x/rendering-forms">Guide</a> for beginners and advanced users and an extensive <a href="https://vueform.com/reference">API Reference</a>. Our API docs comes with tons of examples and everything explained to the very detail.
+        Vueform comes with a carefully crafter <a href="https://vueform.com/docs/rendering-forms">Guide</a> for beginners and advanced users and an extensive <a href="https://vueform.com/reference">API Reference</a>. Our API docs comes with tons of examples and everything explained to the very detail.
         </p>
       </td>
     </tr>
@@ -149,50 +149,10 @@ Get started with Vueform in an instant using one of our boilerplates.
     </tr>
     <tr>
       <td>
-        <h4><img src="https://github.com/vueform/vueform/raw/main/assets/icon-nuxt.svg" height="21" /> Nuxt 2</h4>
+        <h4><img src="https://github.com/vueform/vueform/raw/main/assets/icon-nuxt.svg" height="21" /> Nuxt</h4>
       </td>
       <td>
-         <h4><a href="https://github.com/vueform/nuxt2-starter">@vueform/nuxt2-starter</a></h4>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <h4><img src="https://github.com/vueform/vueform/raw/main/assets/icon-nuxt.svg" height="21" /> Nuxt 3</h4>
-      </td>
-      <td>
-         <h4><a href="https://github.com/vueform/nuxt3-starter">@vueform/nuxt3-starter</a></h4>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <h4><img src="https://github.com/vueform/vueform/raw/main/assets/icon-vue.svg" height="21" /> VueCLI (Vue 2)</h4>
-      </td>
-      <td>
-         <h4><a href="https://github.com/vueform/vuecli2-starter">@vueform/vuecli2-starter</a></h4>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <h4><img src="https://github.com/vueform/vueform/raw/main/assets/icon-vue.svg" height="21" /> VueCLI (Vue 3)</h4>
-      </td>
-      <td>
-         <h4><a href="https://github.com/vueform/vuecli3-starter">@vueform/vuecli3-starter</a></h4>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <h4><img src="https://github.com/vueform/vueform/raw/main/assets/icon-laravel.svg" height="21" /> Laravel (Vue 2)</h4>
-      </td>
-      <td>
-         <h4><a href="https://github.com/vueform/laravel-vue2-starter">@vueform/laravel-vue2-starter</a></h4>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <h4><img src="https://github.com/vueform/vueform/raw/main/assets/icon-laravel.svg" height="21" /> Laravel (Vue 3)</h4>
-      </td>
-      <td>
-         <h4><a href="https://github.com/vueform/laravel-starter">@vueform/laravel-starter</a></h4>
+         <h4><a href="https://github.com/vueform/nuxt-starter">@vueform/nuxt-starter</a></h4>
       </td>
     </tr>
   </tbody>
@@ -206,11 +166,10 @@ If you don't want to use a starter kit you might set it up in your project manua
 
 It's recommended to use are environment-aware installation wizard to get started with Vueform.
 
-[![Installation wizard](https://github.com/vueform/vueform/raw/main/assets/button-installation-wizard.svg)](https://vueform.com/docs/1.x/installation)
+[![Installation wizard](https://github.com/vueform/vueform/raw/main/assets/button-installation-wizard.svg)](https://vueform.com/docs/installation)
 
 ### Manual installation
 
-For those who like cutting through the bush themselves.
 
 1. Install Vueform package:
 
@@ -226,23 +185,17 @@ npm install @vueform/vueform
 import en from '@vueform/vueform/locales/en'
 import vueform from '@vueform/vueform/themes/vueform'
 
+// You might place this anywhere else in your project
+import '@vueform/vueform/themes/vueform/css/index.min.css';
+
 export default {
   theme: bootstrap,
   locales: { en },
   locale: 'en',
-  apiKey: 'YOUR-API-KEY-HERE' // https://vueform.com/docs/1.x/installation#api-key
 }
 ```
 
-3. Add style to main CSS:
-
-```css
-/* your main CSS file */
-
-@import "{PATH_TO}/node_modules/@vueform/vueform/themes/vueform/css/index.min.css";
-```
-
-4. Import Vueform in your main JS:
+3. Import Vueform in your main JS:
 
 ```js
 // your main JS file
@@ -253,13 +206,11 @@ import Vueform from '@vueform/vueform/plugin'
 import vueformConfig from '{PATH_TO}/vueform.config'
 
 const app = createApp(App)
-
 app.use(Vueform, vueformConfig)
-
 app.mount('#app')
 ```
 
-5. Test your installation:
+4. Test your installation:
 
 ```vue
 <template>
@@ -275,25 +226,25 @@ app.mount('#app')
 
 #### Troubleshooting
 
-If you are experiencing any issues during installation head to out [Troubleshooting](https://vueform.com/docs/1.x/troubleshooting) page or join our [Discord](https://discord.gg/WhX2nG6GTQ).
+If you are experiencing any issues during installation head to out [Troubleshooting](https://vueform.com/docs/troubleshooting) page or join our [Discord](https://discord.gg/WhX2nG6GTQ).
 
 ## Learning Guide
 
-To start learning about Vueform head to our [Essentials](https://vueform.com/docs/1.x/rendering-forms) guide.
+To start learning about Vueform head to our [Essentials](https://vueform.com/docs/rendering-forms) guide.
 
 **Main chapters:**
-- [Rendering Forms](https://vueform.com/docs/1.x/rendering-forms)
-- [Styles and Layout](https://vueform.com/docs/1.x/styles-and-layout)
-- [Handling Form Data](https://vueform.com/docs/1.x/handling-form-data)
-- [Validating Elements](https://vueform.com/docs/1.x/validating-elements)
-- [Conditional Rendering](https://vueform.com/docs/1.x/conditional-rendering)
-- [Subscribing to Events](https://vueform.com/docs/1.x/subscribing-to-events)
-- [Breaking Forms into Steps](https://vueform.com/docs/1.x/breaking-forms-into-steps)
-- [I18n](https://vueform.com/docs/1.x/i18n)
-- [Plugins](https://vueform.com/docs/1.x/plugins)
-- [Creating Elements](https://vueform.com/docs/1.x/creating-elements)
+- [Rendering Forms](https://vueform.com/docs/rendering-forms)
+- [Styles and Layout](https://vueform.com/docs/styles-and-layout)
+- [Handling Form Data](https://vueform.com/docs/handling-form-data)
+- [Validating Elements](https://vueform.com/docs/validating-elements)
+- [Conditional Rendering](https://vueform.com/docs/conditional-rendering)
+- [Subscribing to Events](https://vueform.com/docs/subscribing-to-events)
+- [Breaking Forms into Steps](https://vueform.com/docs/breaking-forms-into-steps)
+- [I18n](https://vueform.com/docs/i18n)
+- [Plugins](https://vueform.com/docs/plugins)
+- [Creating Elements](https://vueform.com/docs/creating-elements)
 
-[![Go to Guide](https://github.com/vueform/vueform/raw/main/assets/button-guide.svg)](https://vueform.com/docs/1.x/rendering-forms)
+[![Go to Guide](https://github.com/vueform/vueform/raw/main/assets/button-guide.svg)](https://vueform.com/docs/rendering-forms)
 
 ## API Docs
 
@@ -327,8 +278,8 @@ Join our [Discord](https://discord.gg/WhX2nG6GTQ) or [open an issue](https://git
 Instead of going through hundreds of pages of docs you just put together stuff, hit export and 💥  - you have a working form in your project.
 
 Sounds great? Give it a try:
-https://builder.vueform.com/ 
+https://builder.vueform.com/demo
 
 ### Licensing
 
-Vueform Builder is available for licensing to other applications like SAAS products, intranets, etc. More information: https://vueform.com/builder
+Vueform Builder is available for licensing to other applications like SAAS products, intranets, etc. More information: https://vueform.com/pricing

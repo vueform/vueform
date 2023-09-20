@@ -7,10 +7,7 @@
       :id="id"
       :input="`editor-input-${id}`"
       v-bind="attrs"
-      @trix-change="handleChange"
-      @trix-blur="handleBlur"
-      @trix-file-accept="handleFileAccept"
-      @trix-attachment-add="handleAttachmentAdd"
+      v-pre
       ref="editor$"
     ></trix-editor>
   </div>
