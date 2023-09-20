@@ -210,7 +210,7 @@ app.use(Vueform, vueformConfig)
 app.mount('#app')
 ```
 
-5. Test your installation:
+4. Test your installation:
 
 ```vue
 <template>
