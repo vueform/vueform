@@ -2821,7 +2821,8 @@ describe('Vueform', () => {
     })
 
     it('should fire error with 4xx response but not success', async () => {
-      let postMock = jest.fn(() => ({ data: { this: 'that', }, status: 422 }))
+      let response = { data: { this: 'that', }, status: 422 }
+      let postMock = jest.fn(() => response)
       let successMock = jest.fn()
       let errorMock = jest.fn()
 
@@ -2841,7 +2842,7 @@ describe('Vueform', () => {
       await flushPromises()
 
       expect(successMock).not.toHaveBeenCalled()
-      expect(errorMock).toHaveBeenCalledWith(null, { type: 'submit' }, form.vm)
+      expect(errorMock).toHaveBeenCalledWith({ response }, { type: 'submit' }, form.vm)
     })
 
     it('should fire error when fails and set submitting false', async () => {

@@ -1,4 +1,4 @@
-import { ref, watch, onMounted, toRefs, computed } from 'vue'
+import { ref, watch, onMounted, toRefs, computed, onBeforeUnmount } from 'vue'
 import useElementComponent from './../../composables/useElementComponent'
 
 export default {
@@ -274,6 +274,13 @@ export default {
       editor$.value.addEventListener('trix-blur', handleBlur)
       editor$.value.addEventListener('trix-file-accept', handleFileAccept)
       editor$.value.addEventListener('trix-attachment-add', handleAttachmentAdd)
+    })
+
+    onBeforeUnmount(() => {
+      editor$.value?.removeEventListener('trix-change', handleChange)
+      editor$.value?.removeEventListener('trix-blur', handleBlur)
+      editor$.value?.removeEventListener('trix-file-accept', handleFileAccept)
+      editor$.value?.removeEventListener('trix-attachment-add', handleAttachmentAdd)
     })
 
     return {

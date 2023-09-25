@@ -15,6 +15,8 @@
 
       const option = ref(null)
 
+      const listeners = ref({})
+
       const setOption = (v) => {
         option.value = v
       }
@@ -29,14 +31,29 @@
         }
       })
 
-      const addEventListener = () => {}
+      const addEventListener = (evt, cb) => {
+        if (!listeners.value[evt]) {
+          listeners.value[evt] = []
+        }
+
+        listeners.value[evt].push(cb)
+      }
+
+      const removeEventListener = (evt, cb) => {
+        delete listeners.value[evt]
+        if (!listeners.value[evt]) {
+          listeners.value[evt] = []
+        }
+
+        listeners.value[evt].push(cb)
+      }
 
       watch(value, (newValue, oldValue) => {
         if (newValue == oldValue) {
           return
         }
 
-        context.emit('trix-change')
+        listeners.value['trix-change'].forEach(e=>e(newValue))
       }, { flush: 'sync' })
 
       return {
