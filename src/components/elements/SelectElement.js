@@ -6,7 +6,6 @@ import useLayout from './../../composables/elements/useLayout'
 import useInput from './../../composables/elements/useInput'
 import usePath from './../../composables/elements/usePath'
 import useConditions from './../../composables/useConditions'
-import useData from './../../composables/elements/useData'
 import useDefault from './../../composables/elements/useDefault'
 import useNullValue from './../../composables/elements/useNullValue'
 import useValidation from './../../composables/elements/useValidation'
@@ -33,6 +32,7 @@ import usePlaceholder from './../../composables/elements/usePlaceholder'
 
 import { select as useFocused } from './../../composables/elements/useFocused'
 import { select as useOptions } from './../../composables/elements/useOptions'
+import { select as useData } from './../../composables/elements/useData'
 
 import BaseElement from './../../mixins/BaseElement'
 import HasView from './../../mixins/HasView'
@@ -363,8 +363,8 @@ export default {
       useValidation,
       useLoading,
       useOptions,
-      useAsyncItems,
       useValue,
+      useAsyncItems,
       useConditions,
       useData,
       useEmpty,

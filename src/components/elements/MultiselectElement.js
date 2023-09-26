@@ -6,7 +6,6 @@ import useLayout from './../../composables/elements/useLayout'
 import useInput from './../../composables/elements/useInput'
 import usePath from './../../composables/elements/usePath'
 import useConditions from './../../composables/useConditions'
-import useData from './../../composables/elements/useData'
 import useDefault from './../../composables/elements/useDefault'
 import useValidation from './../../composables/elements/useValidation'
 import useLabel from './../../composables/elements/useLabel'
@@ -32,6 +31,7 @@ import usePlaceholder from './../../composables/elements/usePlaceholder'
 import { multiselect as useFocused } from './../../composables/elements/useFocused'
 import { multiselect as useOptions } from './../../composables/elements/useOptions'
 import { multiselect as useBaseElement } from './../../composables/elements/useBaseElement'
+import { multiselect as useData } from './../../composables/elements/useData'
 import { array as useNullValue } from './../../composables/elements/useNullValue'
 import { array as useEmpty } from './../../composables/elements/useEmpty'
 
@@ -396,8 +396,8 @@ export default {
       useValidation,
       useLoading,
       useOptions,
-      useAsyncItems,
       useValue,
+      useAsyncItems,
       useConditions,
       useData,
       useEmpty,

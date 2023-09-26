@@ -1,6 +1,7 @@
 import _ from 'lodash'
-import { toRefs, ref, computed, watch, inject } from 'vue'
+import { toRefs, ref, computed, watch, inject, nextTick, onBeforeUnmount } from 'vue'
 import localize from './../../utils/localize'
+import replaceWildcards from './../../utils/replaceWildcards'
 
 const base = function(props, context, dependencies)
 {
@@ -14,6 +15,9 @@ const base = function(props, context, dependencies)
   const disable = dependencies.disable
   const enable = dependencies.enable
   const input = dependencies.input
+  const value = dependencies.value
+  const nullValue = dependencies.nullValue
+  const path = dependencies.path
   const el$ = dependencies.el$
   const form$ = dependencies.form$
 
@@ -31,6 +35,11 @@ const base = function(props, context, dependencies)
    * @private
    */
   const options = ref(null)
+
+  /**
+   * @private
+   */
+  const watchers = ref([])
 
   // ============== COMPUTED ==============
   
@@ -88,6 +97,12 @@ const base = function(props, context, dependencies)
    */
   const updateItems = async (shouldDisable = true) => {
     if (!isNative.value) {
+      // Refresh async function in case it
+      // contains variables that have changed
+      if (typeof items.value === 'string') {
+        options.value = createAsyncOptionsFromUrl()
+      }
+
       await input.value?.resolveOptions()
       return
     }
@@ -117,13 +132,19 @@ const base = function(props, context, dependencies)
    */
   const resolveOptionsFromUrl = async () => {
     try {
-      let optionList = (await form$.value.$vueform.services.axios.get(items.value))?.data || []
+      let url = await resolveUrlAndSetWatchers(items.value)
+
+      let optionList = (await form$.value.$vueform.services.axios.get(url))?.data || []
 
       if (dataKey && dataKey.value && Object.keys(optionList).length) {
         optionList = _.get(optionList, dataKey.value) || []
       }
 
       options.value = optionList
+
+      // If currently selected value is not among the
+      // newly fetched option list set the value to null
+      cleanupValue(resolvedOptions.value?.map(o=>o.value) || [])
     } catch (e) {
       options.value = []
       console.warn(`Couldn\'t resolve items from ${items.value}`, e)
@@ -138,11 +159,20 @@ const base = function(props, context, dependencies)
    */
   const createAsyncOptionsFromUrl = () => {
     return async (query) => {
-      let optionList = (await form$.value.$vueform.services.axios.get(`${items.value}${items.value.match(/\?/)?'&':'?'}${searchParam.value}=${query||''}`))?.data || []
+      let url = await resolveUrlAndSetWatchers(items.value)
+
+      let optionList = (await form$.value.$vueform.services.axios.get(`${url}${url.match(/\?/)?'&':'?'}${searchParam.value}=${query||''}`))?.data || []
 
       if (dataKey && dataKey.value && Object.keys(optionList).length) {
         optionList = _.get(optionList, dataKey.value) || []
       }
+
+      // If currently selected value is not among the
+      // newly fetched option list set the value to null
+      // (using set timeout to wait for async call)
+      setTimeout(() => {
+        cleanupValue(input.value?.eo?.map(o=>o[valueProp.value]) || [])
+      }, 0)
 
       return optionList
     }
@@ -183,11 +213,56 @@ const base = function(props, context, dependencies)
     }
   }
 
+  const cleanupValue = (values) => {
+    if (!Array.isArray(nullValue.value) && value.value && values.indexOf(value.value) === -1) {
+      value.value = _.cloneDeep(nullValue.value)
+    }
+    else if (Array.isArray(nullValue.value) && value.value.length) {
+      value.value = value.value.filter((v) => {
+        return values.indexOf(v) !== -1
+      })
+    }
+  }
+
+  const resolveUrlAndSetWatchers = async (url) => {
+    const regex = /{([^}]+)}/g
+
+    if (url.match(regex)) {
+      await nextTick()
+
+      watchers.value.forEach(unwatch => unwatch())
+
+      let match
+      while ((match = regex.exec(url)) !== null) {
+        let defaultValue = match[1].match(/\|'([^']+)/)?.[1] || ''
+        let elPath = replaceWildcards(match[1].match(/^([^|]+)/)[1], path.value)
+        let el$ = form$.value.el$(elPath)
+
+        let elValue = Array.isArray(el$?.value) && el$.value.length
+          ? el$.value.join(',') : (
+            !Array.isArray(el$?.value) && el$?.value ? el$.value : defaultValue
+          )
+
+        url = url.replace(match[0], elValue)
+
+        watchers.value.push(watch(computed(() => el$?.value), () => {
+          updateItems()
+        }))
+      }
+    }
+
+    return url
+  }
+
   // ================ HOOKS ===============
 
   resolveOptions()
   watch(items, resolveOptions)
   watch(isNative, resolveOptions)
+
+  onBeforeUnmount(() => {
+    watchers.value.forEach(unwatch => unwatch())
+  })
 
   return {
     resolvedOptions,
