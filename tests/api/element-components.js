@@ -3045,6 +3045,14 @@ module.exports = {
       },
     },
     data: {
+      watchers: {
+        types: [
+          'array',
+        ],
+        description: 'Stores watchers for fields from which dynamic values for endpoints are retrieved.',
+        default: '[]',
+        private: true,
+      },
       active: {
         types: [
           'boolean',
@@ -3516,6 +3524,10 @@ module.exports = {
       },
     },
     methods: {
+      resolveOptions: {
+        description: 'Resolves items.',
+        private: true,
+      },
       updateItems: {
         description: 'Fetches & updates items when using `async` items.',
         returns: 'void',
@@ -3529,6 +3541,39 @@ module.exports = {
           },
         },
         private: false,
+      },
+      cleanupValue: {
+        description: 'Removes any value that is not among the newly fetches option list after async resolve.',
+        params: {
+          values: {
+            types: [
+              'array',
+            ],
+            required: 'true',
+            description: 'the list of option values',
+          },
+        },
+        private: true,
+      },
+      resolveUrlAndSetWatchers: {
+        description: 'Resolves the endpoint url with field values and sets watchers for those fields.',
+        params: {
+          url: {
+            types: [
+              'string',
+            ],
+            required: 'true',
+            description: 'the base url potentially containing variable names',
+          },
+          updateItems: {
+            types: [
+              'function',
+            ],
+            required: 'true',
+            description: 'the method that triggers item updates',
+          },
+        },
+        private: true,
       },
       activate: {
         description: 'Sets the `active` property of the element to `true`.',
@@ -18901,6 +18946,14 @@ module.exports = {
       },
     },
     data: {
+      watchers: {
+        types: [
+          'array',
+        ],
+        description: 'Stores watchers for fields from which dynamic values for endpoints are retrieved.',
+        default: '[]',
+        private: true,
+      },
       active: {
         types: [
           'boolean',
@@ -19415,6 +19468,10 @@ module.exports = {
       },
     },
     methods: {
+      resolveOptions: {
+        description: 'Resolves items.',
+        private: true,
+      },
       updateItems: {
         description: 'Fetches & updates select options when using `async` options. Receives [`el$`](#property-el) as first param.',
         returns: 'void',
@@ -19428,6 +19485,39 @@ module.exports = {
           },
         },
         private: false,
+      },
+      cleanupValue: {
+        description: 'Removes any value that is not among the newly fetches option list after async resolve.',
+        params: {
+          values: {
+            types: [
+              'array',
+            ],
+            required: 'true',
+            description: 'the list of option values',
+          },
+        },
+        private: true,
+      },
+      resolveUrlAndSetWatchers: {
+        description: 'Resolves the endpoint url with field values and sets watchers for those fields.',
+        params: {
+          url: {
+            types: [
+              'string',
+            ],
+            required: 'true',
+            description: 'the base url potentially containing variable names',
+          },
+          updateItems: {
+            types: [
+              'function',
+            ],
+            required: 'true',
+            description: 'the method that triggers item updates',
+          },
+        },
+        private: true,
       },
       activate: {
         description: 'Sets the `active` property of the element to `true`.',
@@ -23458,6 +23548,14 @@ module.exports = {
       },
     },
     data: {
+      watchers: {
+        types: [
+          'array',
+        ],
+        description: 'Stores watchers for fields from which dynamic values for endpoints are retrieved.',
+        default: '[]',
+        private: true,
+      },
       active: {
         types: [
           'boolean',
@@ -23929,6 +24027,10 @@ module.exports = {
       },
     },
     methods: {
+      resolveOptions: {
+        description: 'Resolves items.',
+        private: true,
+      },
       updateItems: {
         description: 'Fetches & updates items when using `async` items.',
         returns: 'void',
@@ -23942,6 +24044,39 @@ module.exports = {
           },
         },
         private: false,
+      },
+      cleanupValue: {
+        description: 'Removes any value that is not among the newly fetches option list after async resolve.',
+        params: {
+          values: {
+            types: [
+              'array',
+            ],
+            required: 'true',
+            description: 'the list of option values',
+          },
+        },
+        private: true,
+      },
+      resolveUrlAndSetWatchers: {
+        description: 'Resolves the endpoint url with field values and sets watchers for those fields.',
+        params: {
+          url: {
+            types: [
+              'string',
+            ],
+            required: 'true',
+            description: 'the base url potentially containing variable names',
+          },
+          updateItems: {
+            types: [
+              'function',
+            ],
+            required: 'true',
+            description: 'the method that triggers item updates',
+          },
+        },
+        private: true,
       },
       activate: {
         description: 'Sets the `active` property of the element to `true`.',
@@ -25403,6 +25538,14 @@ module.exports = {
       },
     },
     data: {
+      watchers: {
+        types: [
+          'array',
+        ],
+        description: 'Stores watchers for fields from which dynamic values for endpoints are retrieved.',
+        default: '[]',
+        private: true,
+      },
       active: {
         types: [
           'boolean',
@@ -25917,6 +26060,10 @@ module.exports = {
       },
     },
     methods: {
+      resolveOptions: {
+        description: 'Resolves items.',
+        private: true,
+      },
       updateItems: {
         description: 'Fetches & updates select options when using `async` options. Receives [`el$`](#property-el) as first param.',
         returns: 'void',
@@ -25930,6 +26077,39 @@ module.exports = {
           },
         },
         private: false,
+      },
+      cleanupValue: {
+        description: 'Removes any value that is not among the newly fetches option list after async resolve.',
+        params: {
+          values: {
+            types: [
+              'array',
+            ],
+            required: 'true',
+            description: 'the list of option values',
+          },
+        },
+        private: true,
+      },
+      resolveUrlAndSetWatchers: {
+        description: 'Resolves the endpoint url with field values and sets watchers for those fields.',
+        params: {
+          url: {
+            types: [
+              'string',
+            ],
+            required: 'true',
+            description: 'the base url potentially containing variable names',
+          },
+          updateItems: {
+            types: [
+              'function',
+            ],
+            required: 'true',
+            description: 'the method that triggers item updates',
+          },
+        },
+        private: true,
       },
       activate: {
         description: 'Sets the `active` property of the element to `true`.',
@@ -35065,6 +35245,14 @@ module.exports = {
       },
     },
     data: {
+      watchers: {
+        types: [
+          'array',
+        ],
+        description: 'Stores watchers for fields from which dynamic values for endpoints are retrieved.',
+        default: '[]',
+        private: true,
+      },
       active: {
         types: [
           'boolean',
@@ -35579,6 +35767,10 @@ module.exports = {
       },
     },
     methods: {
+      resolveOptions: {
+        description: 'Resolves items.',
+        private: true,
+      },
       updateItems: {
         description: 'Fetches & updates select options when using `async` options. Receives [`el$`](#property-el) as first param.',
         returns: 'void',
@@ -35592,6 +35784,39 @@ module.exports = {
           },
         },
         private: false,
+      },
+      cleanupValue: {
+        description: 'Removes any value that is not among the newly fetches option list after async resolve.',
+        params: {
+          values: {
+            types: [
+              'array',
+            ],
+            required: 'true',
+            description: 'the list of option values',
+          },
+        },
+        private: true,
+      },
+      resolveUrlAndSetWatchers: {
+        description: 'Resolves the endpoint url with field values and sets watchers for those fields.',
+        params: {
+          url: {
+            types: [
+              'string',
+            ],
+            required: 'true',
+            description: 'the base url potentially containing variable names',
+          },
+          updateItems: {
+            types: [
+              'function',
+            ],
+            required: 'true',
+            description: 'the method that triggers item updates',
+          },
+        },
+        private: true,
       },
       activate: {
         description: 'Sets the `active` property of the element to `true`.',
