@@ -37,6 +37,10 @@ const base = function(props, context, dependencies)
   const options = ref(null)
 
   /**
+   * Stores watchers for fields from which dynamic values for endpoints are retrieved.
+   * 
+   * @type {array}
+   * @default []
    * @private
    */
   const watchers = ref([])
@@ -142,8 +146,6 @@ const base = function(props, context, dependencies)
 
       options.value = optionList
 
-      // If currently selected value is not among the
-      // newly fetched option list set the value to null
       cleanupValue(resolvedOptions.value?.map(o=>o.value) || [])
     } catch (e) {
       options.value = []
@@ -167,9 +169,6 @@ const base = function(props, context, dependencies)
         optionList = _.get(optionList, dataKey.value) || []
       }
 
-      // If currently selected value is not among the
-      // newly fetched option list set the value to null
-      // (using set timeout to wait for async call)
       setTimeout(() => {
         cleanupValue(input.value?.eo?.map(o=>o[valueProp.value]) || [])
       }, 0)
@@ -213,6 +212,13 @@ const base = function(props, context, dependencies)
     }
   }
 
+  /**
+   * Removes any value that is not among the newly fetches option list after async resolve.
+   * 
+   * @return {void}
+   * @param {array} values* the list of option values
+   * @private
+   */
   const cleanupValue = (values) => {
     if (!Array.isArray(nullValue.value) && value.value && values.indexOf(value.value) === -1) {
       value.value = _.cloneDeep(nullValue.value)
@@ -224,7 +230,15 @@ const base = function(props, context, dependencies)
     }
   }
 
-  const resolveUrlAndSetWatchers = async (url) => {
+  /**
+   * Resolves the endpoint url with field values and sets watchers for those fields.
+   * 
+   * @return {void}
+   * @param {string} url* the base url potentially containing variable names
+   * @param {function} updateItems* the method that triggers item updates
+   * @private
+   */
+  const resolveUrlAndSetWatchers = async (url, updateItems) => {
     const regex = /{([^}]+)}/g
 
     if (url.match(regex)) {
@@ -254,19 +268,42 @@ const base = function(props, context, dependencies)
     return url
   }
 
+  return {
+    resolveOptions,
+    resolvedOptions,
+    updateItems,
+    watchers,
+    cleanupValue,
+    resolveUrlAndSetWatchers,
+  }
+}
+
+const select = function(props, context, dependencies) {
+  const {
+    items,
+  } = toRefs(props)
+
+  const {
+    resolveOptions,
+    resolvedOptions,
+    updateItems,
+    watchers,
+    cleanupValue,
+    resolveUrlAndSetWatchers,
+  } = base(props, context, dependencies)
+
   // ================ HOOKS ===============
 
   resolveOptions()
   watch(items, resolveOptions)
-  watch(isNative, resolveOptions)
-
-  onBeforeUnmount(() => {
-    watchers.value.forEach(unwatch => unwatch())
-  })
 
   return {
+    resolveOptions,
     resolvedOptions,
     updateItems,
+    watchers,
+    cleanupValue,
+    resolveUrlAndSetWatchers,
   }
 }
 
@@ -274,6 +311,12 @@ const checkboxgroup = function(props, context, dependencies) {
   const {
     items,
   } = toRefs(props)
+
+  const {
+    watchers,
+    cleanupValue,
+    resolveUrlAndSetWatchers,
+  } = base(props, context, dependencies)
 
   // ============ DEPENDENCIES ============
 
@@ -374,7 +417,11 @@ const checkboxgroup = function(props, context, dependencies) {
    */
   const resolveOptionsFromUrl = async () => {
     try {
-      options.value = (await form$.value.$vueform.services.axios.get(items.value))?.data || []
+      let url = await resolveUrlAndSetWatchers(items.value, updateItems)
+
+      options.value = (await form$.value.$vueform.services.axios.get(url))?.data || []
+
+      cleanupValue(resolvedOptions.value?.map(o=>o.value) || [])
     } catch (e) {
       options.value = []
       console.warn(`Couldn\'t resolve items from ${items.value}`, e)
@@ -418,16 +465,25 @@ const checkboxgroup = function(props, context, dependencies) {
   watch(items, resolveOptions)
 
   return {
+    resolveOptions,
     resolvedOptions,
     updateItems,
+    watchers,
+    cleanupValue,
+    resolveUrlAndSetWatchers,
   }
 }
 
 const radiogroup = checkboxgroup
+const multiselect = select
+const tags = select
 
 export {
   checkboxgroup,
   radiogroup,
+  select,
+  multiselect,
+  tags,
 }
 
 export default base
