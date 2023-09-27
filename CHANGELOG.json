@@ -1,5 +1,13 @@
 [
   {
+    "version": "1.4.1",
+    "date": "2023-09-28",
+    "available": true,
+    "notes": [
+      "feat: Added variable usage to elements with `items`."
+    ]
+  },
+  {
     "version": "1.4.0",
     "date": "2023-09-17",
     "available": true,

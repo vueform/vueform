@@ -1,5 +1,12 @@
 [//]: # (Don't use <tags>)
 
+## v1.4.1
+
+> `2023-09-28`
+
+### 🎉 Feature
+- Added variable usage to elements with `items`.
+
 ## v1.4.0
 
 > `2023-09-17`

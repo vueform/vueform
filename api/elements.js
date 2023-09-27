@@ -574,12 +574,12 @@ export default {
   "multiselect": {
     "features": [
       "a11y",
-      "asyncItems",
+      "asyncItems_multiselect",
       "baseElement_multiselect",
       "classes",
       "columns",
       "conditions",
-      "data",
+      "data_multiselect",
       "default",
       "disabled",
       "empty_array",
@@ -797,12 +797,12 @@ export default {
   "select": {
     "features": [
       "a11y",
-      "asyncItems",
+      "asyncItems_select",
       "baseElement",
       "classes",
       "columns",
       "conditions",
-      "data",
+      "data_select",
       "default",
       "disabled",
       "empty",
@@ -963,12 +963,12 @@ export default {
   "tags": {
     "features": [
       "a11y",
-      "asyncItems",
+      "asyncItems_tags",
       "baseElement_tags",
       "classes",
       "columns",
       "conditions",
-      "data",
+      "data_tags",
       "default",
       "disabled",
       "empty_array",
