@@ -136,7 +136,7 @@ const base = function(props, context, dependencies)
    */
   const resolveOptionsFromUrl = async () => {
     try {
-      let url = await resolveUrlAndSetWatchers(items.value)
+      let url = await resolveUrlAndSetWatchers(items.value, updateItems)
 
       let optionList = (await form$.value.$vueform.services.axios.get(url))?.data || []
 
@@ -161,7 +161,7 @@ const base = function(props, context, dependencies)
    */
   const createAsyncOptionsFromUrl = () => {
     return async (query) => {
-      let url = await resolveUrlAndSetWatchers(items.value)
+      let url = await resolveUrlAndSetWatchers(items.value, updateItems)
 
       let optionList = (await form$.value.$vueform.services.axios.get(`${url}${url.match(/\?/)?'&':'?'}${searchParam.value}=${query||''}`))?.data || []
 
@@ -252,12 +252,14 @@ const base = function(props, context, dependencies)
         let elPath = replaceWildcards(match[1].match(/^([^|]+)/)[1], path.value)
         let el$ = form$.value.el$(elPath)
 
-        let elValue = Array.isArray(el$?.value) && el$.value.length
-          ? el$.value.join(',') : (
-            !Array.isArray(el$?.value) && el$?.value ? el$.value : defaultValue
+        let elValue = typeof el$?.value !== 'undefined' && typeof el$.value === 'object'
+          ? JSON.stringify(el$.value)
+          : (typeof el$?.value !== 'undefined'
+            ? el$.value
+            : defaultValue
           )
 
-        url = url.replace(match[0], elValue)
+        url = url.replace(match[0], encodeURIComponent(elValue))
 
         watchers.value.push(watch(computed(() => el$?.value), () => {
           updateItems()
