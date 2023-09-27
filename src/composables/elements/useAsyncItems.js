@@ -252,9 +252,9 @@ const base = function(props, context, dependencies)
         let elPath = replaceWildcards(match[1].match(/^([^|]+)/)[1], path.value)
         let el$ = form$.value.el$(elPath)
 
-        let elValue = typeof el$?.value !== 'undefined' && typeof el$.value === 'object'
+        let elValue = typeof el$?.value !== 'undefined' && el$.value !== null && typeof el$.value === 'object'
           ? JSON.stringify(el$.value)
-          : (typeof el$?.value !== 'undefined'
+          : (typeof el$?.value !== 'undefined' && el$.value !== null
             ? el$.value
             : defaultValue
           )
