@@ -4,7 +4,7 @@
   },
   "private": true,
   "name": "@vueform/vueform",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "Form builder for Vue.js",
   "homepage": "https://vueform.com",
   "bugs": {
