@@ -15519,8 +15519,7 @@ var CheckboxgroupElement = {
     clearOnRefetch: {
       type: [Boolean],
       required: false,
-      default: true,
-      native: false
+      default: true
     }
   },
   setup(props, context) {
@@ -22368,8 +22367,7 @@ var MultiselectElement = {
     clearOnRefetch: {
       type: [Boolean],
       required: false,
-      default: true,
-      native: false
+      default: true
     },
     delay: {
       type: [Number],
@@ -22691,8 +22689,7 @@ var RadiogroupElement = {
     clearOnRefetch: {
       type: [Boolean],
       required: false,
-      default: true,
-      native: false
+      default: true
     }
   },
   setup(props, context) {
@@ -22923,8 +22920,7 @@ var SelectElement = {
     clearOnRefetch: {
       type: [Boolean],
       required: false,
-      default: true,
-      native: false
+      default: true
     },
     delay: {
       type: [Number],
@@ -23447,8 +23443,7 @@ var TagsElement = {
     clearOnRefetch: {
       type: [Boolean],
       required: false,
-      default: true,
-      native: false
+      default: true
     },
     delay: {
       type: [Number],

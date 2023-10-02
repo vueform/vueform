@@ -3050,7 +3050,6 @@ module.exports = {
         types: [
           'boolean',
         ],
-        native: false,
         required: false,
         private: false,
       },
@@ -18818,7 +18817,6 @@ module.exports = {
         types: [
           'boolean',
         ],
-        native: false,
         required: false,
         private: false,
       },
@@ -23575,7 +23573,6 @@ module.exports = {
         types: [
           'boolean',
         ],
-        native: false,
         required: false,
         private: false,
       },
@@ -25432,7 +25429,6 @@ module.exports = {
         types: [
           'boolean',
         ],
-        native: false,
         required: false,
         private: false,
       },
@@ -35140,7 +35136,6 @@ module.exports = {
         types: [
           'boolean',
         ],
-        native: false,
         required: false,
         private: false,
       },
