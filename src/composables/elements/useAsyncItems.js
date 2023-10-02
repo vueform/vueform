@@ -6,7 +6,7 @@ import replaceWildcards from './../../utils/replaceWildcards'
 const base = function(props, context, dependencies)
 {
   const {
-    items, valueProp, labelProp, dataKey, searchParam,
+    items, valueProp, labelProp, dataKey, searchParam, clearOnRefetch,
   } = toRefs(props)
 
   // ============ DEPENDENCIES ============
@@ -145,11 +145,11 @@ const base = function(props, context, dependencies)
       }
 
       options.value = optionList
-
-      cleanupValue(resolvedOptions.value?.map(o=>o.value) || [])
     } catch (e) {
       options.value = []
       console.warn(`Couldn\'t resolve items from ${items.value}`, e)
+    } finally {
+      cleanupValue(resolvedOptions.value?.map(o=>o.value) || [])
     }
   }
 
@@ -163,15 +163,21 @@ const base = function(props, context, dependencies)
     return async (query) => {
       let url = await resolveUrlAndSetWatchers(items.value, updateItems)
 
-      let optionList = (await form$.value.$vueform.services.axios.get(`${url}${url.match(/\?/)?'&':'?'}${searchParam.value}=${query||''}`))?.data || []
+      let optionList
 
-      if (dataKey && dataKey.value && Object.keys(optionList).length) {
-        optionList = _.get(optionList, dataKey.value) || []
+      try {
+        optionList = (await form$.value.$vueform.services.axios.get(`${url}${url.match(/\?/)?'&':'?'}${searchParam.value}=${query||''}`))?.data || []
+
+        if (dataKey && dataKey.value && Object.keys(optionList).length) {
+          optionList = _.get(optionList, dataKey.value) || []
+        }
+      } catch (e) {
+        console.error(e)
+      } finally {
+        setTimeout(() => {
+          cleanupValue(input.value?.eo?.map(o=>o[valueProp.value]) || [])
+        }, 0)
       }
-
-      setTimeout(() => {
-        cleanupValue(input.value?.eo?.map(o=>o[valueProp.value]) || [])
-      }, 0)
 
       return optionList
     }
@@ -220,6 +226,11 @@ const base = function(props, context, dependencies)
    * @private
    */
   const cleanupValue = (values) => {
+    if (clearOnRefetch.value) {
+      value.value = _.cloneDeep(nullValue.value)
+      return
+    }
+
     if (!Array.isArray(nullValue.value) && value.value && values.indexOf(value.value) === -1) {
       value.value = _.cloneDeep(nullValue.value)
     }

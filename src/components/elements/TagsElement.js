@@ -277,6 +277,12 @@ export default {
       default: false,
       native: false,
     },
+    clearOnRefetch: {
+      type: [Boolean],
+      required: false,
+      default: true,
+      native: false,
+    },
 
     delay: {
       type: [Number],

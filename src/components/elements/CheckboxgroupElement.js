@@ -70,6 +70,12 @@ export default {
       type: [Array],
       default: () => ([])
     },
+    clearOnRefetch: {
+      type: [Boolean],
+      required: false,
+      default: true,
+      native: false,
+    },
   },
   setup(props, context) {
     context.features = [
