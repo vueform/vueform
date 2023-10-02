@@ -74,7 +74,6 @@ export default {
       type: [Boolean],
       required: false,
       default: true,
-      native: false,
     },
   },
   setup(props, context) {
