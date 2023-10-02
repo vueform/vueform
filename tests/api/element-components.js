@@ -3043,6 +3043,17 @@ module.exports = {
         required: false,
         private: false,
       },
+      clearOnRefetch: {
+        required: 'false',
+        default: 'true',
+        localized: false,
+        types: [
+          'boolean',
+        ],
+        native: false,
+        required: false,
+        private: false,
+      },
     },
     data: {
       watchers: {
@@ -18800,6 +18811,17 @@ module.exports = {
         required: false,
         private: false,
       },
+      clearOnRefetch: {
+        required: 'false',
+        default: 'true',
+        localized: false,
+        types: [
+          'boolean',
+        ],
+        native: false,
+        required: false,
+        private: false,
+      },
       delay: {
         required: 'false',
         default: '-1',
@@ -23546,6 +23568,17 @@ module.exports = {
         required: false,
         private: false,
       },
+      clearOnRefetch: {
+        required: 'false',
+        default: 'true',
+        localized: false,
+        types: [
+          'boolean',
+        ],
+        native: false,
+        required: false,
+        private: false,
+      },
     },
     data: {
       watchers: {
@@ -25384,6 +25417,17 @@ module.exports = {
       closeOnDeselect: {
         required: 'false',
         default: 'false',
+        localized: false,
+        types: [
+          'boolean',
+        ],
+        native: false,
+        required: false,
+        private: false,
+      },
+      clearOnRefetch: {
+        required: 'false',
+        default: 'true',
         localized: false,
         types: [
           'boolean',
@@ -35081,6 +35125,17 @@ module.exports = {
       closeOnDeselect: {
         required: 'false',
         default: 'false',
+        localized: false,
+        types: [
+          'boolean',
+        ],
+        native: false,
+        required: false,
+        private: false,
+      },
+      clearOnRefetch: {
+        required: 'false',
+        default: 'true',
         localized: false,
         types: [
           'boolean',

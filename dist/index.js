@@ -14964,7 +14964,8 @@ var base$z = function base(props, context, dependencies) {
     valueProp,
     labelProp,
     dataKey,
-    searchParam
+    searchParam,
+    clearOnRefetch
   } = toRefs(props);
 
   // ============ DEPENDENCIES ============
@@ -15095,17 +15096,19 @@ var base$z = function base(props, context, dependencies) {
   var resolveOptionsFromUrl = /*#__PURE__*/function () {
     var _ref2 = _asyncToGenerator(function* () {
       try {
-        var _yield$form$$value$$v, _resolvedOptions$valu;
+        var _yield$form$$value$$v;
         var url = yield resolveUrlAndSetWatchers(items.value, updateItems);
         var optionList = ((_yield$form$$value$$v = yield form$.value.$vueform.services.axios.get(url)) === null || _yield$form$$value$$v === void 0 ? void 0 : _yield$form$$value$$v.data) || [];
         if (dataKey && dataKey.value && Object.keys(optionList).length) {
           optionList = _.get(optionList, dataKey.value) || [];
         }
         options.value = optionList;
-        cleanupValue(((_resolvedOptions$valu = resolvedOptions.value) === null || _resolvedOptions$valu === void 0 ? void 0 : _resolvedOptions$valu.map(o => o.value)) || []);
       } catch (e) {
         options.value = [];
         console.warn("Couldn't resolve items from ".concat(items.value), e);
+      } finally {
+        var _resolvedOptions$valu;
+        cleanupValue(((_resolvedOptions$valu = resolvedOptions.value) === null || _resolvedOptions$valu === void 0 ? void 0 : _resolvedOptions$valu.map(o => o.value)) || []);
       }
     });
     return function resolveOptionsFromUrl() {
@@ -15122,16 +15125,22 @@ var base$z = function base(props, context, dependencies) {
   var createAsyncOptionsFromUrl = () => {
     return /*#__PURE__*/function () {
       var _ref3 = _asyncToGenerator(function* (query) {
-        var _yield$form$$value$$v2;
         var url = yield resolveUrlAndSetWatchers(items.value, updateItems);
-        var optionList = ((_yield$form$$value$$v2 = yield form$.value.$vueform.services.axios.get("".concat(url).concat(url.match(/\?/) ? '&' : '?').concat(searchParam.value, "=").concat(query || ''))) === null || _yield$form$$value$$v2 === void 0 ? void 0 : _yield$form$$value$$v2.data) || [];
-        if (dataKey && dataKey.value && Object.keys(optionList).length) {
-          optionList = _.get(optionList, dataKey.value) || [];
+        var optionList;
+        try {
+          var _yield$form$$value$$v2;
+          optionList = ((_yield$form$$value$$v2 = yield form$.value.$vueform.services.axios.get("".concat(url).concat(url.match(/\?/) ? '&' : '?').concat(searchParam.value, "=").concat(query || ''))) === null || _yield$form$$value$$v2 === void 0 ? void 0 : _yield$form$$value$$v2.data) || [];
+          if (dataKey && dataKey.value && Object.keys(optionList).length) {
+            optionList = _.get(optionList, dataKey.value) || [];
+          }
+        } catch (e) {
+          console.error(e);
+        } finally {
+          setTimeout(() => {
+            var _input$value2;
+            cleanupValue(((_input$value2 = input.value) === null || _input$value2 === void 0 || (_input$value2 = _input$value2.eo) === null || _input$value2 === void 0 ? void 0 : _input$value2.map(o => o[valueProp.value])) || []);
+          }, 0);
         }
-        setTimeout(() => {
-          var _input$value2;
-          cleanupValue(((_input$value2 = input.value) === null || _input$value2 === void 0 || (_input$value2 = _input$value2.eo) === null || _input$value2 === void 0 ? void 0 : _input$value2.map(o => o[valueProp.value])) || []);
-        }, 0);
         return optionList;
       });
       return function (_x) {
@@ -15193,6 +15202,10 @@ var base$z = function base(props, context, dependencies) {
    * @private
    */
   var cleanupValue = values => {
+    if (clearOnRefetch.value) {
+      value.value = _.cloneDeep(nullValue.value);
+      return;
+    }
     if (!Array.isArray(nullValue.value) && value.value && values.indexOf(value.value) === -1) {
       value.value = _.cloneDeep(nullValue.value);
     } else if (Array.isArray(nullValue.value) && value.value.length) {
@@ -15502,6 +15515,12 @@ var CheckboxgroupElement = {
       required: false,
       type: [Array],
       default: () => []
+    },
+    clearOnRefetch: {
+      type: [Boolean],
+      required: false,
+      default: true,
+      native: false
     }
   },
   setup(props, context) {
@@ -22346,6 +22365,12 @@ var MultiselectElement = {
       default: false,
       native: false
     },
+    clearOnRefetch: {
+      type: [Boolean],
+      required: false,
+      default: true,
+      native: false
+    },
     delay: {
       type: [Number],
       required: false,
@@ -22662,6 +22687,12 @@ var RadiogroupElement = {
       required: false,
       type: [Array],
       default: () => []
+    },
+    clearOnRefetch: {
+      type: [Boolean],
+      required: false,
+      default: true,
+      native: false
     }
   },
   setup(props, context) {
@@ -22887,6 +22918,12 @@ var SelectElement = {
       type: [Boolean],
       required: false,
       default: false,
+      native: false
+    },
+    clearOnRefetch: {
+      type: [Boolean],
+      required: false,
+      default: true,
       native: false
     },
     delay: {
@@ -23405,6 +23442,12 @@ var TagsElement = {
       type: [Boolean],
       required: false,
       default: false,
+      native: false
+    },
+    clearOnRefetch: {
+      type: [Boolean],
+      required: false,
+      default: true,
       native: false
     },
     delay: {

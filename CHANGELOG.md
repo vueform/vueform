@@ -1,5 +1,12 @@
 [//]: # (Don't use <tags>)
 
+## v1.4.2
+
+> `2023-10-02`
+
+### 🎉 Feature
+- Added `clearOnRefetch` option to elements with options.
+
 ## v1.4.1
 
 > `2023-09-28`
