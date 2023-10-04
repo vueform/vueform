@@ -171,7 +171,7 @@ export const watchers = function (elementType, elementName, options) {
     expect(el.watchers.view).not.toBe(undefined)
   })
   
-  //@todo:szm fileReader can not be mocked outside exported function?
+  //@todo:szm fileReader can not be mocked
   // it('should have thumbnail if image or gallery', async () => {
   //
   //   const file = await createValidImageFile()

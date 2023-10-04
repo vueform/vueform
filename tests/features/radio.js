@@ -1,6 +1,5 @@
 import { createForm, findAll, findAllComponents, destroy } from 'test-helpers'
 import { nextTick } from 'vue'
-import getEventListeners from '../helpers/getEventListeners'
 
 export const inputName = function(elementType, elementName, options) {
   
