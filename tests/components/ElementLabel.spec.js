@@ -1,5 +1,5 @@
 import { createForm, createElement } from 'test-helpers'
-import { nextTick, markRaw } from 'vue'
+import { nextTick, markRaw, h } from 'vue'
 import useElementComponent from './../composables/useElementComponent'
 
 describe('ElementLabel', () => {
@@ -35,7 +35,7 @@ describe('ElementLabel', () => {
       expect(form.findComponent({name: 'ElementLabel'}).html()).toContain('Name Var')
     })
 
-    it('should render the value of a function when it\'s updated', async () => {
+    it(`should render the value of a function when it's updated`, async () => {
       let form = createForm({
         schema: {
           name: {
@@ -73,6 +73,48 @@ describe('ElementLabel', () => {
       })
 
       expect(form.findComponent({name: 'ElementLabel'}).html()).toContain('Name Var')
+    })
+    
+    it('should render as slot', async () => {
+      
+      let form = createForm({
+        schema: {
+          el: {
+            type: 'text',
+            slots: {
+              description: function render() {
+                return h('div', 'schema slot')
+              }
+            }
+          }
+        }
+      })
+      
+      expect(form.findComponent({name: 'ElementLabel'}).html()).toContain('schema slot')
+    })
+    
+    it('should render as inline slot', async () => {
+      
+      const form = createForm({
+        schema: {
+          el: {
+            type: 'text'
+          }
+        }
+      }, {}, function(h) {
+        return createElement(h, 'form', [
+          createElement(h, 'TextElement', {
+            props: {
+              name: 'el',
+            },
+            scopedSlots: {
+              'label': () => createElement(h, 'div', 'this is an inline slot')
+            }
+          })
+        ])
+      })
+      
+      expect(form.findComponent({name: 'ElementLabel'}).html()).toContain('this is an inline slot')
     })
   })
 })
