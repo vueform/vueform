@@ -1,7 +1,60 @@
 import { createForm, findAllComponents, testPropDefault, destroy } from 'test-helpers'
 import { nextTick } from 'vue'
 
-export const locationService = function (elementType, elementName, options) { 
+export const locationProvider = function (elementType, elementName, options) {
+
+  it('should return default form config for provider when provider is not set', () => {
+    
+    const locationServiceMock = jest.fn()
+    let google
+    
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          provider: null,
+          onBeforeCreate(el$) {
+            google = el$.$vueform.services.location.google
+            el$.$vueform.services.location.google = class {
+              init() { locationServiceMock() }
+            }
+          }
+        }
+      }
+    })
+    
+    const el$ = form.vm.el$('el')
+    
+    expect(locationServiceMock).toHaveBeenCalled()
+    
+    el$.$vueform.services.location.google = google
+  })
+  
+  it('should return custom provider', async () => {
+      
+      const locationServiceMock = jest.fn()
+      
+      let form = createForm({
+        schema: {
+          el: {
+            type: elementType,
+            provider: 'custom',
+            onBeforeCreate(el$) {
+              el$.$vueform.services.location.custom = class {
+                init() { locationServiceMock() }
+              }
+            }
+          }
+        }
+      })
+      
+      await nextTick()
+      
+      expect(locationServiceMock).toHaveBeenCalled()
+    })
+}
+
+export const locationService = function (elementType, elementName, options) {
   it('should init `locationService` with google', async () => {
     let form = createForm({
       schema: {
@@ -12,7 +65,7 @@ export const locationService = function (elementType, elementName, options) {
     })
 
     let el = form.vm.el$('el')
-
+    
     expect(el.locationService).not.toStrictEqual(new el.$vueform.services.location.google)
     expect(el.locationService.options).toStrictEqual(el.providerOptions)
     
@@ -38,7 +91,7 @@ export const locationService = function (elementType, elementName, options) {
   })
 }
 
-export const location = function (elementType, elementName, options) { 
+export const location = function (elementType, elementName, options) {
   it('should `location` be equal to "{}" by default', () => {
     let form = createForm({
       schema: {
@@ -165,7 +218,7 @@ export const providerOptions = function (elementType, elementName, options, spie
 
     let el = form.vm.el$('el')
 
-    expect(el.providerOptions).toStrictEqual(Object.assign({}, el.defaultOptions, { 
+    expect(el.providerOptions).toStrictEqual(Object.assign({}, el.defaultOptions, {
       custom: 'option'
     }))
   })
@@ -225,7 +278,7 @@ export const providerOptions = function (elementType, elementName, options, spie
   })
 }
 
-export const handleAddressChange = function (elementType, elementName, options) { 
+export const handleAddressChange = function (elementType, elementName, options) {
   it('should set value, location and trigger updated on `handleAddressChange`', async () => {
     let form = createForm({
       schema: {

@@ -6,19 +6,19 @@ const base = function(props, context, dependencies)
     layout,
     inline,
   } = toRefs(props)
-
+  
   // ============== COMPUTED ==============
-
+  
   /**
    * The current layout of the element.
-   * 
+   *
    * @type {string|component}
    * @private
    */
   const elementLayout = computed(() => {
     return inline.value || !layout.value ? 'ElementLayoutInline' : layout.value
   })
-
+  
   return {
     elementLayout,
   }

@@ -1,5 +1,5 @@
 import _ from 'lodash'
-// @todo: check required schema (eg. `elements` property) here and everywhere
+// @todo:adam check required schema (eg. `elements` property) here and everywhere
 import { computed, ref, toRefs, watch, onMounted, onBeforeMount, onBeforeUnmount, nextTick, getCurrentInstance, markRaw } from 'vue'
 import useFormComponent from './../composables/useFormComponent'
 import useConditions from './../composables/useConditions'
@@ -79,8 +79,8 @@ export default {
     },
   },
   setup(props, context)
-  {  
-    const { 
+  {
+    const {
       name,
       label,
       elements,
@@ -126,7 +126,7 @@ export default {
 
     /**
      * Whether the tab is active.
-     * 
+     *
      * @type {boolean}
      * @default false
      */
@@ -134,7 +134,7 @@ export default {
 
     /**
      * The label of the tab.
-     * 
+     *
      * @type {string|component}
      * @default null
      */
@@ -144,7 +144,7 @@ export default {
 
     /**
      * The components of highest level form elements.
-     * 
+     *
      * @type {object}
      */
     const elements$ = computed(() => {
@@ -153,7 +153,7 @@ export default {
 
     /**
      * The parent [`FormTabs`](form-tabs) component.
-     * 
+     *
      * @type {component}
      */
     const tabs$ = computed(() => {
@@ -162,7 +162,7 @@ export default {
 
     /**
      * Index of this tab among the other tabs which are not hidden by unmet conditions.
-     * 
+     *
      * @type {number}
      */
     const index = computed(() => {
@@ -171,7 +171,7 @@ export default {
 
     /**
      * Whether the tab is the first.
-     * 
+     *
      * @type {boolean}
      */
     const isFirst = computed(() => {
@@ -180,7 +180,7 @@ export default {
 
     /**
      * Whether the tab is the first.
-     * 
+     *
      * @type {boolean}
      */
     const isLast = computed(() => {
@@ -189,7 +189,7 @@ export default {
 
     /**
      * The components of form elements within the tab.
-     * 
+     *
      * @type {object}
      */
     const children$ = computed(() => {
@@ -200,7 +200,7 @@ export default {
 
     /**
      * Whether the tab should be visible.
-     * 
+     *
      * @type {boolean}
      */
     const visible = computed(() => {
@@ -209,16 +209,16 @@ export default {
 
     /**
      * Whether the tab has any invalid elements.
-     * 
+     *
      * @type {boolean}
      */
     const invalid = computed(() => {
-      return _.some(children$.value, { available: true, invalid: true })   
+      return _.some(children$.value, { available: true, invalid: true })
     })
     
     /**
      * The tab's component.
-     * 
+     *
      * @type {component}
      */
     const tab$ = computed(() => {
@@ -282,7 +282,7 @@ export default {
 
     /**
       * Apply conditions of the tab to its elements.
-      * 
+      *
       * @returns {void}
       * @private
       */
@@ -298,7 +298,7 @@ export default {
 
     /**
       * Remove conditions of the elements of the tab.
-      * 
+      *
       * @returns {void}
       * @private
       */
@@ -310,7 +310,7 @@ export default {
 
     /**
       * Resets conditions of the elements of the tab.
-      * 
+      *
       * @returns {void}
       * @private
       */
@@ -321,7 +321,7 @@ export default {
 
     /**
      * Set the component to the parent as if `refs` were used.
-     * 
+     *
      * @param {component} $parent parent component
      * @param {function} assignToParent the assignToParent function for recursion
      * @returns {void}
@@ -338,7 +338,7 @@ export default {
 
     /**
     * Removes the component from the parent.
-    * 
+    *
     * @param {component} $parent parent component
     * @param {function} removeFromParent the removeFromParent function for recursion
     * @private
@@ -357,7 +357,7 @@ export default {
     watch(children$, () => {
       if (!active.value) {
         return
-      } 
+      }
 
       _.each(children$.value, (element$) => {
         element$.activate()

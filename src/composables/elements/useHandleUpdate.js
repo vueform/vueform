@@ -3,13 +3,13 @@ import { toRefs } from 'vue'
 const base = function(props, context, dependencies)
 {
   const { lazy } = toRefs(props)
-
+  
   // ============ DEPENDENCIES ============
-
+  
   const value = dependencies.value
-
+  
   // =============== METHODS ==============
-
+  
   /**
    * Handles `update` event if not lazy.
    *
@@ -21,10 +21,10 @@ const base = function(props, context, dependencies)
     if (lazy.value) {
       return
     }
-
+    
     value.value = val
   }
-
+  
   return {
     handleUpdate,
   }

@@ -4,9 +4,9 @@ const base = function(props, context, dependencies)
   
   const fire = dependencies.fire
   const listeners = dependencies.listeners
-
+  
   // =============== METHODS ==============
-
+  
   /**
    * Handles `alert` event.
    *
@@ -16,13 +16,14 @@ const base = function(props, context, dependencies)
    */
   const handleAlert = (message) => {
     fire('alert', message)
-
+    
+    /* istanbul ignore else */
     if (!listeners.value.alert) {
       alert(message)
-    } 
+    }
   }
-
-
+  
+  
   return {
     handleAlert,
   }

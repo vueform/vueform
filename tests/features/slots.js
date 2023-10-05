@@ -1,10 +1,63 @@
 import { createForm, findAllComponents, testPropDefault, createElement, destroy } from 'test-helpers'
 import { defineComponent, markRaw, nextTick, h } from 'vue'
 
-const slotTemplates = {
+const slotTemplatesArrayEl$ = {
   default: markRaw(defineComponent({
     name: 'CustomSlot',
     props: ['el$'],
+    render(h) {
+      return createElement(h, 'div', 'from schema slot')
+    }
+  })),
+}
+
+const slotTemplatesArrayNoEl$ = {
+  default: markRaw(defineComponent({
+    name: 'CustomSlot',
+    props: ['otherProp'],
+    render(h) {
+      return createElement(h, 'div', 'from schema slot')
+    }
+  })),
+}
+
+const slotTemplatesObjectEl$ = {
+  default: markRaw(defineComponent({
+    name: 'CustomSlot',
+    props: {
+      el$: {
+        type: Object,
+        required: true,
+      },
+      otherProp: {
+        type: Object,
+        required: true,
+      }
+    },
+    render(h) {
+      return createElement(h, 'div', 'from schema slot')
+    }
+  })),
+}
+
+const slotTemplatesObjectNoEl$ = {
+  default: markRaw(defineComponent({
+    name: 'CustomSlot',
+    props: {
+      otherProp: {
+        type: Object,
+        required: true,
+      }
+    },
+    render(h) {
+      return createElement(h, 'div', 'from schema slot')
+    }
+  })),
+}
+
+const slotTemplatesNoProp = {
+  default: markRaw(defineComponent({
+    name: 'CustomSlot',
     render(h) {
       return createElement(h, 'div', 'from schema slot')
     }
@@ -151,6 +204,7 @@ const setups = {
 }
 
 export const slots = function (elementType, elementName, options) {
+
   const defaultForm = createForm({
     schema: {
       el: {
@@ -165,37 +219,113 @@ export const slots = function (elementType, elementName, options) {
   destroy(defaultForm)
 
   // Slots
+  // _.each(_.keys(defaultSlots), (slot) => {
+  //   testSchemaSlotArrayEl$(it, elementName, elementType, slot)
+  // })
+  //
+  // _.each(_.keys(fieldSlots), (slot) => {
+  //   testSchemaSlotArrayEl$(it, elementName, elementType, slot)
+  // })
+  //
   _.each(_.keys(defaultSlots), (slot) => {
-    testSchemaSlot(it, elementName, elementType, slot)
+    testSchemaSlotArrayEl$(it, elementName, elementType, slot)
   })
 
   _.each(_.keys(fieldSlots), (slot) => {
-    testSchemaSlot(it, elementName, elementType, slot)
+    testSchemaSlotArrayEl$(it, elementName, elementType, slot)
   })
+  
+  
+  _.each(_.keys(defaultSlots), (slot) => {
+    testSchemaSlotArrayNoEl$(it, elementName, elementType, slot, 'elementSlots')
+  })
+
+  _.each(_.keys(fieldSlots), (slot) => {
+    testSchemaSlotArrayNoEl$(it, elementName, elementType, slot, 'fieldSlots')
+  })
+
+  
+  _.each(_.keys(defaultSlots), (slot) => {
+    testSchemaSlotObjectEl$(it, elementName, elementType, slot)
+  })
+
+  _.each(_.keys(fieldSlots), (slot) => {
+    testSchemaSlotObjectEl$(it, elementName, elementType, slot)
+  })
+
+  
+  _.each(_.keys(defaultSlots), (slot) => {
+    testSchemaSlotObjectNoEl$(it, elementName, elementType, slot)
+  })
+
+  _.each(_.keys(fieldSlots), (slot) => {
+    testSchemaSlotObjectNoEl$(it, elementName, elementType, slot)
+  })
+
+  
+  _.each(_.keys(defaultSlots), (slot) => {
+    testSchemaSlotNoProp(it, elementName, elementType, slot)
+  })
+
+  _.each(_.keys(fieldSlots), (slot) => {
+    testSchemaSlotNoProp(it, elementName, elementType, slot)
+  })
+
+  
 
   _.each(_.keys(defaultSlots), (slot) => {
     testInlineSlot(it, elementName, elementType, slot)
   })
-  
+
   _.each(_.keys(fieldSlots), (slot) => {
     testInlineSlot(it, elementName, elementType, slot)
   })
 }
 
-const testSchemaSlot = function(it, elementName, elementType, slot) {
+const testSchemaSlotArrayEl$ = function(it, elementName, elementType, slot) {
+  
   it('should replace `'+slot+'` slot from schema', async () => {
-    let form
-    let elWrapper
-    let CustomSlot
 
     const config = _.merge({}, {
       type: elementType,
       slots: {
-        [slot]: slotTemplates[slot]?.[elementType] || slotTemplates[slot]?.default || slotTemplates.default
+        [slot]: slotTemplatesArrayEl$[slot]?.[elementType] || slotTemplatesArrayEl$[slot]?.default || slotTemplatesArrayEl$.default
       }
     }, configs[slot]?.[elementType] || configs[slot]?.default || {})
 
-    form = createForm({
+    const form = createForm({
+      schema: {
+        el: config
+      }
+    }, {
+      attach: true
+    })
+    
+    const el = form.vm.el$('el')
+    
+    const elWrapper = findAllComponents(form, { name: elementName }).at(0)
+
+    await (setups[slot] || setups.default)(elWrapper)
+    
+    expect(el.slots[slot].props).toStrictEqual(['el$'])
+    expect(elWrapper.html()).toContain('from schema slot')
+
+    destroy(form)
+  })
+}
+
+const testSchemaSlotArrayNoEl$ = function(it, elementName, elementType, slot, slotPosition) {
+  
+  it(`should add el$ to ${slot} array`, async () => {
+
+    const config = _.merge({}, {
+      type: elementType,
+      slots: {
+        [slot]: slotTemplatesArrayNoEl$[slot]?.[elementType] || slotTemplatesArrayNoEl$[slot]?.default || slotTemplatesArrayNoEl$.default
+      }
+    }, configs[slot]?.[elementType] || configs[slot]?.default || {})
+
+    const form = createForm({
       schema: {
         el: config
       }
@@ -203,12 +333,119 @@ const testSchemaSlot = function(it, elementName, elementType, slot) {
       attach: true
     })
 
-    elWrapper = findAllComponents(form, { name: elementName }).at(0)
-    CustomSlot = findAllComponents(elWrapper, { name: 'CustomSlot' })
+    const el = form.vm.el$('el')
+
+    const elWrapper = findAllComponents(form, { name: elementName }).at(0)
+    
+    await (setups[slot] || setups.default)(elWrapper)
+    
+    expect(el[slotPosition][slot].props).toStrictEqual(['otherProp', 'el$'])
+    
+    destroy(form)
+  })
+}
+
+const testSchemaSlotObjectEl$ = function(it, elementName, elementType, slot) {
+  
+  it(`should add custom prop to ${slot} object`, async () => {
+    
+    const config = _.merge({}, {
+      type: elementType,
+      slots: {
+        [slot]: slotTemplatesObjectNoEl$[slot]?.[elementType] || slotTemplatesObjectNoEl$[slot]?.default || slotTemplatesObjectNoEl$.default
+      }
+    }, configs[slot]?.[elementType] || configs[slot]?.default || {})
+
+    const form = createForm({
+      schema: {
+        el: config
+      }
+    }, {
+      attach: true
+    })
+    
+    const el = form.vm.el$('el')
+    
+    const elWrapper = findAllComponents(form, { name: elementName }).at(0)
 
     await (setups[slot] || setups.default)(elWrapper)
+    
+    expect(el.slots[slot].props.el$).toStrictEqual({
+      type: Object,
+      required: true,
+    })
+    expect(el.slots[slot].props.otherProp).toStrictEqual({
+      type: Object,
+      required: true,
+    })
+    
+    destroy(form)
+  })
+}
 
-    expect(elWrapper.html()).toContain('from schema slot')
+const testSchemaSlotObjectNoEl$ = function(it, elementName, elementType, slot) {
+  
+  it(`should add el$ to ${slot} object`, async () => {
+    
+    const config = _.merge({}, {
+      type: elementType,
+      slots: {
+        [slot]: slotTemplatesObjectEl$[slot]?.[elementType] || slotTemplatesObjectEl$[slot]?.default || slotTemplatesObjectEl$.default
+      }
+    }, configs[slot]?.[elementType] || configs[slot]?.default || {})
+
+    const form = createForm({
+      schema: {
+        el: config
+      }
+    }, {
+      attach: true
+    })
+    
+    const el = form.vm.el$('el')
+    
+    const elWrapper = findAllComponents(form, { name: elementName }).at(0)
+
+    await (setups[slot] || setups.default)(elWrapper)
+    
+    expect(el.slots[slot].props.el$).toStrictEqual({
+      type: Object,
+      required: true,
+    })
+    expect(el.slots[slot].props.otherProp).toStrictEqual({
+      type: Object,
+      required: true,
+    })
+    
+    destroy(form)
+  })
+}
+
+const testSchemaSlotNoProp = function(it, elementName, elementType, slot) {
+  
+  it(`should add props to ${slot}`, async () => {
+    
+    const config = _.merge({}, {
+      type: elementType,
+      slots: {
+        [slot]: slotTemplatesNoProp[slot]?.[elementType] || slotTemplatesNoProp[slot]?.default || slotTemplatesNoProp.default
+      }
+    }, configs[slot]?.[elementType] || configs[slot]?.default || {})
+
+    const form = createForm({
+      schema: {
+        el: config
+      }
+    }, {
+      attach: true
+    })
+
+    const el = form.vm.el$('el')
+    const elWrapper = findAllComponents(form, { name: elementName }).at(0)
+
+    await (setups[slot] || setups.default)(elWrapper)
+    
+    expect(el.slots[slot].props).toStrictEqual(['el$'])
 
     destroy(form)
   })

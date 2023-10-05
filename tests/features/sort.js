@@ -1,3 +1,4 @@
+import Sortable from 'sortablejs'
 import { nextTick } from 'vue'
 import {
   createForm, destroy
@@ -110,7 +111,7 @@ export const isSortable = function (elementType, elementName, options) {
 }
 
 export const initSortable = function (elementType, elementName, options) {
-  it('should init sortable', () => {
+  it('should init sortable', async () => {
     let form = createForm({
       schema: {
         el: {
@@ -127,8 +128,8 @@ export const initSortable = function (elementType, elementName, options) {
     expect(el.sortable).toBe(null)
 
     el.initSortable()
-
-    expect(el.sortable).not.toBe(null)
+  
+    expect(el.sortable instanceof Sortable).toBe(true)
 
     // destroy() // teardown
   })

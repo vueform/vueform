@@ -4,10 +4,10 @@ import { computed, toRefs } from 'vue'
 const base = function(props, context, dependencies)
 {
   // ============== COMPUTED ===============
-
+  
   /**
    * The null value of the element.
-   * 
+   *
    * @type {any}
    * @private
    */
@@ -23,7 +23,7 @@ const base = function(props, context, dependencies)
 const array = function(props, context, dependencies)
 {
   // ============== COMPUTED ===============
-
+  
   const nullValue = computed(() => {
     return []
   })
@@ -36,12 +36,12 @@ const array = function(props, context, dependencies)
 const boolean = function(props, context, dependencies)
 {
   const {
-    falseValue
+    falseValue,
   } = toRefs(props)
-
-
+  
+  
   // ============== COMPUTED ===============
-
+  
   const nullValue = computed(() => {
     return falseValue.value
   })
@@ -55,11 +55,11 @@ const min = function(props, context, dependencies)
 {
   const {
     min,
-    default: default_
+    default: default_,
   } = toRefs(props)
-
+  
   // ============== COMPUTED ===============
-
+  
   const nullValue = computed(() => {
     return default_.value !== undefined && _.isArray(default_.value)
       ? default_.value.map(v => min.value)
@@ -74,7 +74,7 @@ const min = function(props, context, dependencies)
 const object = function(props, context, dependencies)
 {
   // ============== COMPUTED ===============
-
+  
   const nullValue = computed(() => {
     return {}
   })
@@ -87,7 +87,7 @@ const object = function(props, context, dependencies)
 const location = function(props, context, dependencies)
 {
   // ============== COMPUTED ===============
-
+  
   const nullValue = computed(() => {
     return {
       country: null,
@@ -99,7 +99,7 @@ const location = function(props, context, dependencies)
       address: null,
       formatted_address: null,
       lat: null,
-      lng: null
+      lng: null,
     }
   })
   
@@ -108,10 +108,11 @@ const location = function(props, context, dependencies)
   }
 }
 
+/* istanbul ignore next: unimplemented */
 const address = function(props, context, dependencies)
 {
   // ============== COMPUTED ===============
-
+  
   const nullValue = computed(() => {
     return {
       address: null,
@@ -131,18 +132,18 @@ const address = function(props, context, dependencies)
 const multilingual = function(props, context, dependencies)
 {
   // ============ DEPENDENCIES ============
-
+  
   const languages = dependencies.languages
-
+  
   // ============== COMPUTED ===============
-
+  
   const nullValue = computed(() => {
     var value = {}
-
+    
     _.each(languages.value, (code) => {
       value[code] = null
     })
-
+    
     return value
   })
   

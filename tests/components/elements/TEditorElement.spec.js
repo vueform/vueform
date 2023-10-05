@@ -8,6 +8,7 @@ export default runElementTests('tEditor', {
     value: {en:'<div>value-en</div>',fr:'<div>value-fr</div>'},
     value2: {en:'<div>value2-en</div>',fr:'<div>value2-fr</div>'},
     nullValue: {en:null,fr:null},
+    inputSelector: 'trix-editor',
   },
   // events: {
   //   events: ['change', 'error']

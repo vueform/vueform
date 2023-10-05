@@ -24,7 +24,7 @@ export const watcher = function (elementType, elementName, options) {
 
     let child = form.vm.el$('el.0')
 
-    el.$set(form.vm.schema.el.file, 'label', 'new label')
+    el.$set(form.vm.vueform.schema.el.file, 'label', 'new label') //@todo check if works
 
     await nextTick()
     await nextTick()
@@ -55,7 +55,7 @@ export const watcher = function (elementType, elementName, options) {
 
     let child = form.vm.el$('el.0.file')
 
-    el.$set(form.vm.schema.el.file, 'label', 'new label')
+    el.$set(form.vm.vueform.schema.el.file, 'label', 'new label') //@todo check if works
 
     await nextTick()
     await nextTick()

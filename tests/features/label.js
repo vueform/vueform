@@ -1,6 +1,6 @@
 import { createForm, findAllComponents, testPropDefault, destroy, isVisible } from 'test-helpers'
 
-export const hasLabel = function (elementType, elementName, options) { 
+export const hasLabel = function (elementType, elementName, options) {
   it('should have `hasLabel` equal "true" if the element has label defined & config.labels disabled', () => {
     let form = createForm({
       schema: {
@@ -23,7 +23,7 @@ export const hasLabel = function (elementType, elementName, options) {
     // destroy(form) // teardown
   })
 
-  it('should have `hasLabel` equal "true" if the element has no label defined & config.labels enabled', () => {
+  it('should have `hasLabel` equal "true" if the element has no label defined & config.forceLabels enabled', () => {
     let form = createForm({
       schema: {
         el: {
@@ -63,6 +63,102 @@ export const hasLabel = function (elementType, elementName, options) {
     expect(el.hasLabel).toBe(false)
 
     // destroy() // teardown
+  })
+}
+
+export const Label = function (elementType, elementName, options) {
+  it('should return `Label` null when label prop is not defined', () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+        }
+      }
+    })
+    
+    let el = form.vm.el$('el')
+    
+    expect(el.Label).toBe(null)
+    
+    // destroy(form) // teardown
+  })
+  
+  it('should return `Label` when label prop is function', () => {
+    let form = createForm({
+      schema: {
+        el: {
+          label: () => 'someLabel',
+          type: elementType,
+        }
+      }
+    })
+    
+    let el = form.vm.el$('el')
+    
+    expect(el.Label).toBe('someLabel')
+    
+    // destroy(form) // teardown
+  })
+  
+  it('should return `Label` when Label prop is a VueComponent', () => {
+    let form = createForm({
+      schema: {
+        el: {
+          label: function VueComponent() {
+            return 'componentLabel'
+          },
+          type: elementType,
+        }
+      }
+    })
+    
+    let el = form.vm.el$('el')
+    
+    expect((el.Label)()).toBe('componentLabel')
+    
+    // destroy(form) // teardown
+  })
+  
+  it('should return label as `Label` when label prop is string', () => {
+    let form = createForm({
+      schema: {
+        el: {
+          label: 'someLabel',
+          type: elementType,
+          fieldName: {
+            en: 'field-name',
+            de: 'field-name-de'
+          }
+        }
+      }
+    })
+    
+    let el = form.vm.el$('el')
+    
+    expect(el.Label).toBe('someLabel')
+    
+    // destroy(form) // teardown
+  })
+  
+  it('should return localized `Label` when multiple languages used', () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          label: {
+            en: 'label',
+            de: 'label-de'
+          }
+        }
+      },
+      locale: 'de'
+    })
+    
+    let el = form.vm.el$('el')
+    
+    expect(el.Label).toBe('label-de')
+    
+    // destroy(form) // teardown
   })
 }
 

@@ -23,6 +23,32 @@ export const data = function (elementType, elementName, options) {
 }
 
 export const requestData = function (elementType, elementName, options) {
+  
+  it('should have formatted `requestData` if formatData exists', () => {
+    
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          default: options.value,
+          formatData(name, value) {
+            return {
+              someKey: {
+                [name]: options.formattedValue
+              }
+            }
+          }
+        }
+      }
+    })
+
+    let el = form.vm.el$('el')
+
+    expect(el.requestData.someKey).toStrictEqual({ el: options.formattedValue })
+    
+    // destroy(form) // teardown
+  })
+  
   it('should have `requestData` equal to `data` if there are no conditions', () => {
     let form = createForm({
       schema: {

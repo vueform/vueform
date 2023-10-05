@@ -1,6 +1,6 @@
 import { createForm, destroy } from 'test-helpers'
 
-export { isStatic, isImageType, isFileType } from './baseElement'
+export { isStatic, isImageType, isFileType, activate, deactivate } from './baseElement'
 
 export const isArrayType = function (elementType, elementName, options) {
   it('should return `isArrayType` true', () => {
@@ -15,7 +15,7 @@ export const isArrayType = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
 
     expect(el.isArrayType).toBe(true)
-    
+
     // destroy(form) // teardown
   })
 }

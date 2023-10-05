@@ -2,7 +2,7 @@ import _ from 'lodash'
 import { computed, toRefs, ref, watch, nextTick } from 'vue'
 import convertFormData from './../../utils/convertFormData'
 
-const base = function (props, context, dependencies)
+const base = function(props, context, dependencies)
 {
   const {
     type,
@@ -19,9 +19,9 @@ const base = function (props, context, dependencies)
     softRemove,
     view,
   } = toRefs(props)
-
+  
   // ============ DEPENDENCIES ============
-
+  
   const form$ = dependencies.form$
   const value = dependencies.value
   const isDisabled = dependencies.isDisabled
@@ -38,55 +38,55 @@ const base = function (props, context, dependencies)
   const removing = dependencies.removing
   const handleError = dependencies.handleError
   const el$ = dependencies.el$
-
+  
   // ================ DATA ================
-
+  
   /**
    * Whether the file uploader has any errors.
-   * 
+   *
    * @type {boolean}
    * @default false
    */
   const hasUploadError = ref(false)
-
+  
   /**
    * The `base64` representation of the file when [`view`](#option-view) is `image` or `gallery` and file is only selected, but not uploaded yet.
-   * 
+   *
    * @type {string}
    * @default null
    */
   const base64 = ref(null)
-
+  
   /**
    * The percentage of progress when the file is being temporarily uploaded (0-100).
-   * 
+   *
    * @type {number}
    * @default 0
    */
   const progress = ref(0)
-
+  
   /**
    * If the form is submitted and the file is not uploaded yet, the element will enter into `preparing` state and upload the temporary file before submitting the form.
-   * 
+   *
    * @type {boolean}
    * @default false
    */
   const preparing = ref(false)
-
+  
   /**
    * Watchers store.
-   * 
+   *
    * @type {object}
    * @default {}
    * @private
    */
   const watchers = ref({})
-
+  
   // ============== COMPUTED ==============
-
+  
   /**
    * The HTTP request endpoints.
-   * 
+   *
    * @type {object}
    * @private
    */
@@ -98,21 +98,21 @@ const base = function (props, context, dependencies)
       removeFile: removeEndpoint.value,
     }
     const endpoints = {}
-
+    
     Object.keys(propEndpoints).forEach((name) => {
       let endpoint = configEndpoints[name]
-
+      
       if (urls.value[name]) {
         endpoint = {
           url: urls.value[name],
           method: 'POST',
         }
       }
-
+      
       if (methods.value[name] && typeof endpoint === 'object') {
         endpoint.method = methods.value[name]
       }
-
+      
       if (typeof propEndpoints[name] === 'string') {
         if (configEndpoints[propEndpoints[name]] !== undefined) {
           endpoint = configEndpoints[propEndpoints[name]]
@@ -120,238 +120,242 @@ const base = function (props, context, dependencies)
           endpoint.url = propEndpoints[name]
         }
       }
-
+      
       if (typeof propEndpoints[name] === 'function') {
         endpoint = propEndpoints[name]
       }
-
+      
       if (typeof propEndpoints[name] === 'object') {
         endpoint = {
           url: propEndpoints[name].url || propEndpoints[name].endpoint || configEndpoints[name].url,
           method: propEndpoints[name].method || configEndpoints[name].method,
         }
       }
-
+      
       endpoints[name] = endpoint
     })
-
+    
     return endpoints
   })
-
+  
   /**
    * URL to file using the [`url`](#url) option without including the filename. If `url` is not defined it will default to `'/'`.
-   * 
+   *
    * @type {string|boolean}
    * @private
    */
   const fileUrl = computed(() => {
+    /* istanbul ignore next: will never be undefined, hardcoded `/`, failsafe only */
     if (url.value === undefined) {
       return '/'
     }
-
+    
     if (url.value === false) {
       return ''
     }
-
+    
     let fileUrl = url.value
-
+    
     if (!fileUrl.match(/\/$/)) {
       fileUrl += '/'
     }
-
+    
     if (!fileUrl.match(/^http/) && !fileUrl.match(/^\//)) {
       fileUrl = '/' + fileUrl
     }
-
+    
     return fileUrl
   })
-
+  
   /**
    * URL to file preview image using the [`previewUrl`](#option-preview-url) option without including the filename. If `previewUrl` is not defined it will default to [`url`](#option-url).
-   * 
+   *
    * @type {string}
    * @private
    */
+  /* istanbul ignore next: private computed, can not cover but tested */
   const filePreviewUrl = computed(() => {
+    /* istanbul ignore else */
     if (previewUrl.value === undefined) {
       return fileUrl.value
     }
-
+    
     let filePreviewUrl = previewUrl.value
-
+    
     if (!filePreviewUrl.match(/\/$/)) {
       filePreviewUrl += '/'
     }
-
+    
     if (!filePreviewUrl.match(/^http/) && !filePreviewUrl.match(/^\//)) {
       filePreviewUrl = '/' + filePreviewUrl
     }
-
+    
     return filePreviewUrl
   })
-
+  
   /**
    * The stage the file is at:
-   * 
+   *
    * * `0`: file not selected
    * * `1`: file selected
    * * `2`: file temporarily uploaded
    * * `3`: file permanently uploaded
-   * 
+   *
    * @type {number}
    */
   const stage = computed(() => {
     if (value.value === null) {
       return 0 // file not selected
     }
-
+    
     if (value.value instanceof File) {
       return 1 // file selected
     }
-
+    
     if (_.isObject(value.value) && value.value.tmp !== undefined) {
       return 2 // temp uploaded
     }
-
+    
     if (_.isString(value.value)) {
       return 3 // file uploaded
     }
-
+    
     return -1
   })
-
+  
   /**
    * The original or stored name of the file.
-   * 
+   *
    * @type {string}
    */
   const filename = computed(() => {
-    switch(stage.value) {
+    switch (stage.value) {
       case 1:
         return value.value.name
-
+      
       case 2:
         return value.value.originalName
-
+      
       case 3:
         return value.value
-
+      
       default:
         return null
     }
   })
-
+  
   /**
    * The clickable link of the uploaded file.
-   * 
+   *
    * @type {string}
    */
   const link = computed(() => {
     if (!uploaded.value) {
       return
     }
-
+    
     return fileUrl.value + filename.value
   })
-
+  
   /**
    * The preview link of the uploaded file.
-   * 
+   *
    * @type {string}
    */
+  /* istanbul ignore next: private computed, can not cover but tested */
   const previewLink = computed(() => {
     if (!uploaded.value) {
       return
     }
-
+    
     return filePreviewUrl.value + filename.value
   })
-
+  
   /**
    * The preview of the file when [`view`](#view) is `image` or `gallery`. Equals to the `link` if the file is already uploaded and `base64` if only selected or temporarily uploaded.
-   * 
+   *
    * @type {string}
    */
   const preview = computed(() => {
     if (view.value === 'file') {
       return null
     }
-
+    
     return uploaded.value ? previewLink.value : base64.value
   })
-
+  
   /**
-   * Whether the file is permantently uploaded.
-   * 
+   * Whether the file is permanently uploaded.
+   *
    * @type {boolean}
    */
   const uploaded = computed(() => {
     return stage.value === 3
   })
-
+  
   /**
-   * Whether the file can be removed. 
-   * 
+   * Whether the file can be removed.
+   *
    * @type {boolean}
    */
   const canRemove = computed(() => {
     return stage.value > 0 && !uploading.value && !isDisabled.value && !preparing.value && !removing.value
   })
-
+  
   /**
    * Whether temporary file can be uploaded.
-   * 
+   *
    * @type {boolean}
    */
   const canUploadTemp = computed(() => {
     return stage.value === 1 && !auto.value && !uploading.value && !isDisabled.value
   })
-
+  
   /**
    * Whether file can be selected.
-   * 
+   *
    * @type {boolean}
    */
   const canSelect = computed(() => {
     return !embed.value && stage.value == 0
   })
-
+  
   // =============== METHODS ==============
-
+  
   /**
    * Upload temporary file (async).
-   * 
+   *
    * @returns {void}
    */
   const uploadTemp = async () => {
     if (stage.value !== 1) {
       throw new Error('No file is selected')
     }
-
+    
     await validate()
-
+    
     if (invalid.value) {
       return
     }
-
+    
     request.value = axios.value.CancelToken.source()
-
+    
     try {
       let data = convertFormData(Object.assign({}, params.value, {
         file: value.value,
         formKey: form$.value.options.formKey,
         path: path.value,
       }))
-
+      
       hasUploadError.value = false
-
+      
       let response
-
+      
       if (typeof endpoints.value.uploadTempFile === 'function') {
         response = await endpoints.value.uploadTempFile(value.value, el$.value)
-      } else { 
+      } else {
         const method = endpoints.value.uploadTempFile.method.toLowerCase()
-
+        
         response = await axios.value.request({
           url: endpoints.value.uploadTempFile.url,
           method,
@@ -361,55 +365,53 @@ const base = function (props, context, dependencies)
           },
           cancelToken: request.value.token,
         })
-
+        
         response = response.data
       }
-
+      
       if (response && typeof response === 'object') {
         response.__file__ = value.value
       }
-
+      
       update(response)
-    }
-    catch (error) {
+    } catch (error) {
       progress.value = 0
-
+      
       if (!axios.value.isCancel(error)) {
         hasUploadError.value = true
         handleError(error)
       }
-
+      
       throw new Error(error)
-    }
-    finally {
+    } finally {
       request.value = null
     }
   }
-
+  
   /**
    * Removes file (async):
-   * 
+   *
    * * in stage `1`: sets the value to `null`
    * * in stage `2`: submits a request to `removeTemp` endpoint (if [`softRemove: false`](#option-soft-remove)) and sets the value to `null`
    * * in stage `3`: submits a request to `remove` endpoint (if [`softRemove: false`](#option-soft-remove)) and sets the value to `null`
-   * 
+   *
    * @returns {void}
    */
   const remove = async () => {
     removing.value = true
     hasUploadError.value = false
-
+    
     try {
       if (stage.value === 3 && !softRemove.value) {
         if (!confirm(form$.value.translations.vueform.elements.file.removeConfirm)) {
           return false
         }
-
+        
         if (typeof endpoints.value.removeFile === 'function') {
           await endpoints.value.removeFile(value.value, el$.value)
-        } else { 
+        } else {
           const method = endpoints.value.removeFile.method.toLowerCase()
-
+          
           await axios.value.request({
             method,
             url: endpoints.value.removeFile.url,
@@ -420,14 +422,12 @@ const base = function (props, context, dependencies)
             }),
           })
         }
-      }
-
-      else if (stage.value === 2 && !softRemove.value) {
+      } else if (stage.value === 2 && !softRemove.value) {
         if (typeof endpoints.value.removeTempFile === 'function') {
           await endpoints.value.removeTempFile(value.value, el$.value)
-        } else { 
+        } else {
           const method = endpoints.value.removeTempFile.method.toLowerCase()
-
+          
           await axios.value.request({
             method,
             url: endpoints.value.removeTempFile.url,
@@ -445,17 +445,17 @@ const base = function (props, context, dependencies)
     } finally {
       removing.value = false
     }
-
+    
     update(null)
-
+    
     progress.value = 0
     
     fire('remove')
   }
-
+  
   /**
-   * Prepare the element for submitting the form (async). It will upload temp file if it hasn't been uploaded yet and halts the submit process until its done without any errors.
-   * 
+   * Prepare the element for submitting the form (async). It will upload temp file if it hasn't been uploaded yet and halts the submit process until it is done without any errors.
+   *
    * @returns {void}
    * @private
    */
@@ -463,49 +463,49 @@ const base = function (props, context, dependencies)
     // In selected state
     if (stage.value === 1) {
       preparing.value = true
-
+      
       try {
         await uploadTemp()
-      }
-      finally {
+      } finally {
         preparing.value = false
       }
     }
   }
-
+  
+  //@todo:szm mock window.fileReader
   const resolveBase64 = (source = value.value) => {
     let reader = new FileReader()
-  
+    
     reader.onload = (e) => {
       base64.value = e.target.result
     }
-
+    
     reader.readAsDataURL(source)
   }
-
+  
   /**
    * Handles `change` event.
-   * 
-   * @param {Event} e* 
+   *
+   * @param {Event} e*
    * @returns {void}
    * @private
    */
-  const handleChange = (e) => {
+  const handleChange = async (e) => { //@todo:adam handleChange has to be async and await uploadTemp() and input.value.value should be before update because otherwise it may not exist
     let file = e.target.files[0]
-
-    update(file || null)
-
-    if (auto.value) {
-      uploadTemp()
-    }
-
+    
     input.value.value = ''
 
+    update(file || null)
+    
+    if (auto.value) {
+      await uploadTemp()
+    }
+    
     if (form$.value.shouldValidateOnChange) {
       validate()
     }
   }
-
+  
   /**
    * Handles file select button `click` event.
    *
@@ -516,33 +516,33 @@ const base = function (props, context, dependencies)
     if (isDisabled.value) {
       return
     }
-
+    
     input.value.click()
   }
-
+  
   /**
    * Handles `uploadTemp` event.
-   * 
+   *
    * @returns {void}
    * @private
    */
   const handleUploadTemp = () => {
     uploadTemp()
   }
-
+  
   /**
    * Handles `remove` event.
-   * 
+   *
    * @returns {void}
    * @private
    */
   const handleRemove = () => {
     remove()
   }
-
+  
   /**
    * Handles `abort` event.
-   * 
+   *
    * @returns {void}
    * @private
    */
@@ -550,10 +550,10 @@ const base = function (props, context, dependencies)
     if (request.value === null) {
       return
     }
-
+    
     request.value.cancel()
   }
-
+  
   // ============== WATCHERS ==============
   
   watchers.value.value = watch(value, (val) => {
@@ -561,32 +561,33 @@ const base = function (props, context, dependencies)
       base64.value = null
       return
     }
-
+    
     if (!isImageType.value || view.value === 'file') {
       return
     }
-
+    
     if (!(value.value instanceof File) && !value.value?.__file__) {
       return
     }
-
+    
     resolveBase64(value.value instanceof File
       ? value.value
       : value.value?.__file__)
   }, { immediate: true })
-
+  
   watchers.value.view = watch(view, (v) => {
+    /* istanbul ignore else */
     if (['image', 'gallery'].indexOf(v) !== -1 && !base64.value && value.value instanceof File) {
       resolveBase64()
     }
   })
-
+  
   if (value.value instanceof File && auto.value) {
     nextTick(() => {
       uploadTemp()
     })
   }
-
+  
   return {
     hasUploadError,
     base64,

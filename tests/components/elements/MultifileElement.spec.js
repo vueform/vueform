@@ -1,5 +1,7 @@
 import { runElementTests } from 'test-helpers'
 
+
+//@todo:adam incorrect json value/value2 duplicate
 export default runElementTests('multifile', {
   default: {
     elementType: 'multifile',
@@ -31,7 +33,7 @@ export default runElementTests('multifile', {
     childNulls: [null, { file: null }],
     childName: 'file',
     initial: 0,
-
+    inputSelector: 'div[aria-placeholder="Upload files"]',
   },
   // events: {
   //   events: ['change', 'add', 'remove', 'sort']

@@ -1,6 +1,39 @@
 import { createForm, testPropDefault, destroy } from 'test-helpers'
 import { nextTick } from 'vue'
 
+//@todo:adam can not be localized on form level
+// export const defaultOptions = function(elementType, elementName, options) {
+//
+//   it('should have null as locale by default', () => {
+//     let form = createForm({
+//       schema: {
+//         el: {
+//           type: elementType,
+//         }
+//       }
+//     })
+//
+//     let el = form.vm.el$('el')
+//
+//     expect(el.fieldOptions.locale).toStrictEqual(null)
+//   })
+//
+//   it('should have set locale by default', () => {
+//     let form = createForm({
+//       schema: {
+//         el: {
+//           type: elementType,
+//         }
+//       },
+//       locale: 'de'
+//     })
+//
+//     let el = form.vm.el$('el')
+//
+//     expect(el.fieldOptions.locale).toStrictEqual('de')
+//   })
+// }
+
 export const isNative = function (elementType, elementName, options) {
   it('should have `isNative` "true" if "native" is true and "search" is false', async () => {
     let form = createForm({
@@ -45,7 +78,7 @@ export const fieldOptions = function (elementType, elementName, options) {
       searchable: el.search,
       noOptionsText: el.__('vueform.multiselect.noOptions'),
       noResultsText: el.__('vueform.multiselect.noResults'),
-      locale: null,
+      locale: 'en',
       fallbackLocale: 'en',
       label: el.labelProp,
       trackBy: el.trackBy,
@@ -96,7 +129,7 @@ export const fieldOptions = function (elementType, elementName, options) {
       searchable: el.search,
       noOptionsText: el.__('vueform.multiselect.noOptions'),
       noResultsText: el.__('vueform.multiselect.noResults'),
-      locale: null,
+      locale: 'en',
       fallbackLocale: 'en',
       label: el.labelProp,
       trackBy: el.trackBy,

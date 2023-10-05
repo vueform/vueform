@@ -8,6 +8,7 @@ export default runElementTests('radio', {
     default: null,
     default2: null,
     nullValue: null,
+    inputSelector: 'input',
   },
   // events: {
   //   events: ['change'],

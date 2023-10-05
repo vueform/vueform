@@ -17,6 +17,7 @@ export default runElementTests('list', {
     childValues: ['value{i}', { child: 'value{i}' }],
     childNulls: [null, { child: null }],
     childName: 'child',
+    inputSelector: 'input',
   },
   // events: {
   //   events: ['change', 'add', 'remove', 'sort']

@@ -163,3 +163,29 @@ export const clear = function (elementType, elementName, options) {
     // destroy() // teardown
   })
 }
+
+export const watchers = function (elementType, elementName, options) {
+  
+  it('should change language of element when from language has changed', async () => {
+   
+    let form = createForm({
+      languages: { en:'English',fr:'French' },
+      schema: {
+        el: {
+          type: elementType,
+        }
+      }
+    })
+    
+    let el = form.vm.el$('el')
+    
+    expect(el.language).toBe('en')
+    
+    form.vm.setLanguage('fr')
+    
+    expect(el.language).toBe('fr')
+    
+    // destroy() // teardown
+  })
+  
+}

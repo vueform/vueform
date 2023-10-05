@@ -2,7 +2,7 @@ import flushPromises from 'flush-promises'
 import { createForm, destroy } from 'test-helpers'
 import { nextTick } from 'vue'
 
-export { messageBag, } from './validation'
+export { messageBag } from './validation'
 
 jest.useFakeTimers()
 
@@ -231,7 +231,7 @@ export const debouncing = function (elementType, elementName, options) {
     jest.advanceTimersByTime(1)
     await flushPromises()
 
-    expect(el.debouncing).toBe(false)      
+    expect(el.debouncing).toBe(false)
 
     // destroy() // teardown
   })
@@ -490,6 +490,72 @@ export const validateLanguage = function (elementType, elementName, options) {
   })
 }
 
+export const initValidation = function (elementType, elementName, options) {
+  
+  it('should set validation state in language to true if no condition', () => {
+    
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+        }
+      }
+    })
+    
+    let el = form.vm.el$('el')
+    
+    expect(el.state.validated.en).toBe(true)
+    expect(el.state.validated.fr).toBe(true)
+  })
+  
+  it('should set validation state in language to false if conditions is not null or length > 0', async () => {
+    
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          rules: {
+            en: 'required|min:2',
+            fr: 'nullable|min:2',
+          }
+        }
+      }
+    })
+    
+    let el = form.vm.el$('el')
+    
+    expect(el.state.validated.en).toBe(false)
+    expect(el.state.validated.fr).toBe(false)
+  })
+}
+
+export const reinitValidation = function (elementType, elementName, options) {
+  
+  it('should set `Validators` on reinit', async () => {
+    
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+        }
+      }
+    })
+    
+    let el = form.vm.el$('el')
+    
+    expect(el.Validators).toStrictEqual({})
+    
+    el.$set(form.vm.vueform.schema.el, 'rules', 'required|email|min:3')
+    
+    await nextTick()
+    
+    el.reinitValidation()
+    
+    expect(el.Validators.en.length).toBe(3)
+    expect(el.Validators.fr.length).toBe(3)
+  })
+}
+
 export const resetValidators = function (elementType, elementName, options) {
   it('should `resetValidators` and set validated to "false" in each language', async () => {
     let form = createForm({
@@ -501,23 +567,58 @@ export const resetValidators = function (elementType, elementName, options) {
         }
       }
     })
-
+    
     let el = form.vm.el$('el')
-
+    
     el.validate()
-
+    
     await flushPromises()
-
+    
     expect(el.validated).toBe(true)
     expect(el.invalid).toBe(true)
-
+    
     el.resetValidators()
-
+    
     expect(el.validated).toBe(false)
     expect(el.invalid).toBe(false)
-
+    
     // destroy() // teardown
   })
+  
+  //@todo:adam missing null check in useValidation resetvalidation innermost each
+  // it('should `resetValidators` and set validated to true in each language if conditions change to null or length is 0', async () => {
+  //   let form = createForm({
+  //     schema: {
+  //       el: {
+  //         type: elementType,
+  //         rules: {
+  //           en: 'required|min:2',
+  //           fr: 'nullable|min:2',
+  //         }
+  //       }
+  //     }
+  //   })
+  //
+  //   let el = form.vm.el$('el')
+  //
+  //   el.validate()
+  //
+  //   await flushPromises()
+  //
+  //   expect(el.validated).toBe(true)
+  //   expect(el.validated).toBe(true)
+  //
+  //   await el.$set(form.vm.vueform.schema.el, 'rules', { en: null, fr: '' })
+  //
+  //   el.resetValidators()
+  //
+  //   await nextTick()
+  //
+  //   expect(el.validated).toBe(true)
+  //   expect(el.validated).toBe(true)
+  //
+  //   // destroy() // teardown
+  // })
 }
 
 export const dirt = function (elementType, elementName, options) {

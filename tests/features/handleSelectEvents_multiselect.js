@@ -1,7 +1,6 @@
 import { createForm, destroy } from 'test-helpers'
-import { nextTick } from 'vue'
 
-export { searchChange, open, close } from './handleSelectEvents'
+export { searchChange, open, close, clear, paste } from './handleSelectEvents'
 
 const valueOptions = (value, el) => {
   return _.isArray(value) ? _.map(value, (v) => el.input.getOption(v)) : [el.input.getOption(value)]

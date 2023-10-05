@@ -2,15 +2,15 @@ import _ from 'lodash'
 import normalize from './../../utils/normalize'
 import spliceMultiple from './../../utils/spliceMultiple'
 
-const base = function (props, context, dependencies)
+const base = function(props, context, dependencies)
 {
   // ============ DEPENDENCIES ============
-
+  
   const value = dependencies.value
-
-
+  
+  
   // =============== PRIVATE ==============
-
+  
   /**
    * Whether an option is already selected.
    *
@@ -21,9 +21,9 @@ const base = function (props, context, dependencies)
   const inValue = (option) => {
     return value.value.indexOf(option) !== -1
   }
-
+  
   // =============== METHODS ==============
-
+  
   /**
    * Selects one or more options.
    *
@@ -34,20 +34,20 @@ const base = function (props, context, dependencies)
     if (!_.isArray(options)) {
       options = [options]
     }
-
+    
     let val = _.clone(value.value)
-
+    
     _.each(options, (option) => {
       if (inValue(normalize(option))) {
         return
       }
-
+      
       val.push(option)
     })
-
+    
     value.value = val
   }
-
+  
   /**
    * Deselects one or more options.
    *
@@ -58,23 +58,23 @@ const base = function (props, context, dependencies)
     if (!_.isArray(options)) {
       options = [options]
     }
-
+    
     let val = _.clone(value.value)
     let indexes = []
-
+    
     _.each(options, (option) => {
       let i = value.value.indexOf(option)
-
+      
       if (i === -1 || indexes.indexOf(i) !== -1) {
         return
       }
-
+      
       indexes.push(i)
     })
-
+    
     value.value = spliceMultiple(val, indexes)
   }
-
+  
   return {
     select,
     deselect,

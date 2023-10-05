@@ -4,21 +4,21 @@ import { computed } from 'vue'
 const base = function(props, context, dependencies)
 {
   // ============ DEPENDENCIES ============
-
+  
   const value = dependencies.value
   const nullValue = dependencies.nullValue
-
+  
   // ============== COMPUTED ==============
-
+  
   /**
-    * Whether the element has no value filled in.
-    * 
-    * @type {boolean}
-    */
+   * Whether the element has no value filled in.
+   *
+   * @type {boolean}
+   */
   const empty = computed(() => {
     return _.isEqual(value.value, nullValue.value) || [undefined, null, ''].indexOf(value.value) !== -1
   })
-
+  
   return {
     empty,
   }
@@ -27,17 +27,17 @@ const base = function(props, context, dependencies)
 const multilingual = function(props, context, dependencies)
 {
   // ============ DEPENDENCIES ============
-
+  
   const value = dependencies.value
   const nullValue = dependencies.nullValue
   const language = dependencies.language
-
+  
   // ============== COMPUTED ==============
-
+  
   const empty = computed(() => {
     return value.value[language.value] == nullValue.value[language.value] || value.value[language.value] === ''
   })
-
+  
   return {
     empty,
   }
@@ -46,16 +46,16 @@ const multilingual = function(props, context, dependencies)
 const array = function(props, context, dependencies)
 {
   // ============ DEPENDENCIES ============
-
+  
   const value = dependencies.value
   const nullValue = dependencies.nullValue
-
+  
   // ============== COMPUTED ==============
-
+  
   const empty = computed(() => {
     return _.isEqual(value.value, nullValue.value) || [undefined, null, ''].indexOf(value.value) !== -1 || value.value.length == 0
   })
-
+  
   return {
     empty,
   }

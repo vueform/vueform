@@ -4,9 +4,9 @@ const base = function(props, context, dependencies)
   
   const fire = dependencies.fire
   const listeners = dependencies.listeners
-
+  
   // =============== METHODS ==============
-
+  
   /**
    * Handles `error` event.
    *
@@ -17,7 +17,7 @@ const base = function(props, context, dependencies)
   const handleError = (error) => {
     fire('error', error)
   }
-
+  
   return {
     handleError,
   }

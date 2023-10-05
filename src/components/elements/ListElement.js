@@ -145,7 +145,7 @@ export default {
       default: null
     },
   },
-  setup(props, context) {
+  setup(props, context) { //@todo:adam useValue and useDefault should be before useOrder
     context.features = [
       useForm$,
       useTheme,

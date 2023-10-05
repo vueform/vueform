@@ -8,6 +8,7 @@ export default runElementTests('toggle', {
     default: false,
     default2: false,
     nullValue: false,
+    inputSelector: 'div[role=switch]',
   },
   // events: {
   //   events: ['change'],

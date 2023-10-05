@@ -1,18 +1,96 @@
+import flushPromises from 'flush-promises'
 import { nextTick } from 'vue'
 import { createForm, listSchema, listChildValue, destroy } from 'test-helpers'
 import asyncForEach from './../../src/utils/asyncForEach'
 
-export { data, add, remove, load, update, clear, reset, } from './data_list'
+export { add, remove, load, update, clear, reset } from './data_list'
+
+export const data = function (elementType, elementName, options) {
+  
+  it('should un-bundle response and delete created __file__ property from data', async () => {
+    
+    const postStub = jest.fn(() => ({
+      data: {
+        tmp: 'tmp_name',
+        originalName: 'filename.jpg',
+      }
+    }))
+    
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          auto: true,
+          onBeforeCreate(el$) {
+            el$.$vueform.services.axios.request = postStub
+          }
+        }
+      }
+    })
+    
+    const el = form.vm.el$('el')
+    
+    await el.handleChange({
+      target: {
+        files: [
+          new File([''], 'filename.jpg')
+        ]
+      }
+    })
+    
+    await nextTick()
+    await flushPromises()
+    
+    expect(el.data.el[0].__file__).toBe(undefined)
+  })
+}
 
 export const requestData = function (elementType, elementName, options) {
   const prototypes = options.prototypes
-
-  it('should "requestData" containe requestData of children if prototype is a single element', async () => {
+  
+  it('should un-bundle response and delete created __file__ property from requestData', async () => {
+    
+    const postStub = jest.fn(() => ({
+      data: {
+        tmp: 'tmp_name',
+        originalName: 'filename.jpg',
+      }
+    }))
+    
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          auto: true,
+          onBeforeCreate(el$) {
+            el$.$vueform.services.axios.request = postStub
+          }
+        }
+      }
+    })
+    
+    const el = form.vm.el$('el')
+    
+    await el.handleChange({
+      target: {
+        files: [
+          new File([''], 'filename.jpg')
+        ]
+      }
+    })
+    
+    await nextTick()
+    await flushPromises()
+    
+    expect(el.requestData.el[0].__file__).toBe(undefined)
+  })
+  
+  it('should "requestData" contain requestData of children if prototype is a single element', async () => {
     let form = createForm(listSchema(options, 0, {
       type: elementType,
       initial: 0,
       parent: {
-        auto: false, 
+        auto: false,
         file: {
           conditions: [
             ['el2', 'value2']
@@ -53,12 +131,12 @@ export const requestData = function (elementType, elementName, options) {
 
     expect(el.requestData).toStrictEqual({
       el: [listChildValue(options, 0, 0), listChildValue(options, 0, 1)]
-    })    
+    })
     
     // destroy(form) // teardown
   })
 
-  it('should "requestData" containe requestData of children prototype is an object', async () => {
+  it('should "requestData" contain requestData of children prototype is an object', async () => {
     let form = createForm({
       schema: {
         el: {
@@ -103,7 +181,7 @@ export const requestData = function (elementType, elementName, options) {
           child: null,
         }
       ]
-    })    
+    })
     
     // destroy(form) // teardown
   })
@@ -154,7 +232,7 @@ export const sortValue = function (elementType, elementName, options) {
 
     await el.load([3,2,4])
 
-    expect(el.value).toStrictEqual([2,3,4])    
+    expect(el.value).toStrictEqual([2,3,4])
     
     // destroy(form) // teardown
   })
@@ -169,7 +247,7 @@ export const sortValue = function (elementType, elementName, options) {
 
     await el.load([3,2,4])
 
-    expect(el.value).toStrictEqual([4,3,2])    
+    expect(el.value).toStrictEqual([4,3,2])
     
     // destroy(form) // teardown
   })
@@ -208,7 +286,7 @@ export const sortValue = function (elementType, elementName, options) {
       Object.assign({}, options.childNulls[1], {
         order: 4
       }),
-    ])    
+    ])
     
     // destroy(form) // teardown
   })
@@ -301,7 +379,7 @@ export const handleRemove = function (elementType, elementName, options) {
       el.handleRemove(1)
 
       expect(el.value.length).toBe(2)
-    })    
+    })
     
     // destroy(form) // teardown
   })

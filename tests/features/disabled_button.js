@@ -1,3 +1,4 @@
+import flushPromises from 'flush-promises'
 import { createForm, findAll, createElement, destroy } from 'test-helpers'
 import { toBeVisible } from '@testing-library/jest-dom/matchers'
 import { nextTick, markRaw } from 'vue'
@@ -5,6 +6,33 @@ import { nextTick, markRaw } from 'vue'
 expect.extend({toBeVisible})
 
 export const isDisabled = function (elementType, elementName, options) {
+  
+  it('should be disabled if form is submitted, invalid and validated on change', async () => {
+    
+    let form = createForm({
+      schema: {
+        text: {
+          type: 'text',
+          rules: ['required', 'email'],
+        },
+        button: {
+          type: elementType,
+          submits: true,
+        }
+      },
+      validateOn: 'change',
+    })
+    
+    let text = form.vm.el$('text')
+    let button = form.vm.el$('button')
+    
+    text.update('wrong@email.')
+    
+    await flushPromises()
+    
+    expect(button.isDisabled).toBe(true)
+  })
+  
   it('should not be isDisabled by default', () => {
     let form = createForm({
       schema: {

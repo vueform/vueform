@@ -1,11 +1,11 @@
 const base = function(props, context, dependencies)
 {
   // ============ DEPENDENCIES ============
-
+  
   const value = dependencies.value
-
+  
   // =============== METHODS ==============
-
+  
   /**
    * Handles `change` event.
    *
@@ -16,7 +16,7 @@ const base = function(props, context, dependencies)
   const handleChange = (val) => {
     value.value = val
   }
-
+  
   return {
     handleChange,
   }

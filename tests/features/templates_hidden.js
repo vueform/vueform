@@ -1,7 +1,7 @@
 import { createForm, destroy } from 'test-helpers'
 
-export const templates = function (elementType, elementName, options) {
-  // Computed Porps
+export const Templates = function (elementType, elementName, options) {
+  // Computed Props
   it('should return theme templates for `templates` by default', () => {
     let form = createForm({
       schema: {

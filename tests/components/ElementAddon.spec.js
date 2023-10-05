@@ -7,7 +7,7 @@ import useElementComponent from './../composables/useElementComponent'
 expect.extend({toBeVisible})
 
 describe('ElementAddon', () => {
-  useElementComponent('text', 'ElementAddon', { addons:{before:'before'} })
+  useElementComponent('text', 'ElementAddon', { addons: { before:'before'} })
 
   describe('rendering', () => {
     it('should render as a string', async () => {
@@ -68,7 +68,7 @@ describe('ElementAddon', () => {
                   return createElement(h, 'div', this.form$.value ? this.form$.value.options.schema.el.beforeVar : this.form$.options.schema.el.beforeVar)
                 }
               })
-            } 
+            }
           }
         }
       })
@@ -80,6 +80,78 @@ describe('ElementAddon', () => {
       await nextTick()
 
       expect(form.findComponent({name: 'ElementAddon'}).html()).toContain('not before var')
+    })
+
+    //@todo:szm make it dynamic
+    it('should render as a VueComponent', async () => {
+      
+      let form = createForm({
+        schema: {
+          el: {
+            type: 'text',
+            addons: {
+              before: function VueComponent() {
+                return 'ElementAddonBefore'
+              }
+            }
+          }
+        }
+      })
+      
+      expect(form.findComponent({name: 'ElementAddon'}).html()).toContain('ElementAddonBefore')
+    })
+    
+    //@todo:adam does not render
+    // it('should render as slot', async () => {
+    //
+    //   let form = createForm({
+    //     schema: {
+    //       el: {
+    //         type: 'text',
+    //         beforeVar: 'before var',
+    //         slots: {
+    //           'addon-before': markRaw({
+    //             inject: ['el$', 'form$'],
+    //             render(h) {
+    //               return createElement(h, 'div', this.form$.value ? this.form$.value.options.schema.el.beforeVar : this.form$.options.schema.el.beforeVar)
+    //             }
+    //           })
+    //         }
+    //       }
+    //     }
+    //   })
+    //
+    //   expect(form.findComponent({name: 'ElementAddon'}).html()).toContain('before var')
+    //
+    //   form.vm.vueform.schema.el.beforeVar = 'not before var'
+    //
+    //   await nextTick()
+    //
+    //   expect(form.findComponent({name: 'ElementAddon'}).html()).toContain('not before var')
+    // })
+    
+    it('should render as inline slot', async () => {
+
+      const form = createForm({
+        schema: {
+          el: {
+            type: 'text'
+          }
+        }
+      }, {}, function(h) {
+        return createElement(h, 'form', [
+          createElement(h, 'TextElement', {
+            props: {
+              name: 'el',
+            },
+            scopedSlots: {
+              'addon-before': () => createElement(h, 'div', 'this is an inline slot')
+            }
+          })
+        ])
+      })
+
+      expect(form.findComponent({name: 'ElementAddon'}).html()).toContain('this is an inline slot')
     })
   })
 })

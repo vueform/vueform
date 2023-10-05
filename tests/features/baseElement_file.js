@@ -1,6 +1,6 @@
 import { createForm, destroy } from 'test-helpers'
 
-export { isStatic, isArrayType } from './baseElement'
+export { isStatic, isArrayType, activate, deactivate } from './baseElement'
 
 export const isFileType = function (elementType, elementName, options) {
   it('should return `isFileType` true', () => {
@@ -15,7 +15,7 @@ export const isFileType = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
 
     expect(el.isFileType).toBe(true)
-    
+
     // destroy(form) // teardown
 
     // destroy() // teardown
@@ -35,11 +35,11 @@ export const isImageType = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    expect(el.isImageType).toBe(true)    
-    
+    expect(el.isImageType).toBe(true)
+
     // destroy(form) // teardown
   })
-  
+
   it('should return `isImageType` true if view is `gallery`', () => {
     let form = createForm({
       schema: {
@@ -52,8 +52,8 @@ export const isImageType = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    expect(el.isImageType).toBe(true)    
-    
+    expect(el.isImageType).toBe(true)
+
     // destroy(form) // teardown
   })
 
@@ -69,7 +69,7 @@ export const isImageType = function (elementType, elementName, options) {
     let el = form.vm.el$('el')
 
     expect(el.isImageType).toBe(false)
-    
+
     // destroy(form) // teardown
   })
 }

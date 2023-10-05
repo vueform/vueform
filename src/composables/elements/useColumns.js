@@ -7,29 +7,29 @@ const base = function(props, context, dependencies)
     columns,
     presets,
   } = toRefs(props)
-
+  
   // ============ DEPENDENCIES ============
-
+  
   const form$ = dependencies.form$
   const theme = dependencies.theme
   const hasLabel = dependencies.hasLabel
-
+  
   // ================ DATA ================
-
+  
   const Columns = ref(_.cloneDeep(columns.value))
-
-
+  
+  
   // ============== COMPUTED ==============
-
+  
   /**
    * The classes service instance.
-   * 
+   *
    * @type {Columns}
    * @private
    */
   const columnsClassesService = computed(() => {
     let config = form$.value.$vueform.config
-
+    
     return (new form$.value.$vueform.services.columns({
       configPresetColumns: config.usePresets,
       configColumns: config.columns,
@@ -39,43 +39,43 @@ const base = function(props, context, dependencies)
       elementColumns: Columns.value,
     }, hasLabel.value, theme.value.columns, config.presets))
   })
-
+  
   /**
-   * Calulated column sizes and classes for the element.
-   * 
+   * Calculated column sizes and classes for the element.
+   *
    * @type {object}
    * @private
    */
   const columnsClasses = computed(() => {
     return columnsClassesService.value.classes
   })
-
+  
   /**
    * The `cols` property of the Columns service instance.
-   * 
+   *
    * @type {object}
    * @private
    */
   const cols = computed(() => {
     return columnsClassesService.value.cols
   })
-
+  
   // =============== METHODS ==============
-
+  
   /**
    * Update columns programmatically.
-   * 
+   *
    * @param {number|array} value* the new value for columns option
    * @private
    */
   const updateColumns = (v) => {
     Columns.value = _.cloneDeep(v)
   }
-
+  
   watch(columns, (v) => {
     Columns.value = _.cloneDeep(v)
   }, { immediate: false, deep: true })
-
+  
   return {
     cols,
     columnsClassesService,

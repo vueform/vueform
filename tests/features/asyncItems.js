@@ -1,6 +1,8 @@
-import { createForm, findAllComponents, findAll, destroy } from 'test-helpers'
 import { nextTick } from 'vue'
+import { createForm, findAllComponents, findAll, destroy } from 'test-helpers'
 import flushPromises from 'flush-promises'
+
+jest.useFakeTimers()
 
 export const resolvedOptions = function (elementType, elementName, options) {
   it('should return options prop as is if native is false', () => {
@@ -55,8 +57,6 @@ export const resolvedOptions = function (elementType, elementName, options) {
     })
 
     expect(warnMock.mock.calls[0][0]).toBe('You must define `value` property for each option when using an array of objects options for select element')
-    
-    jest.clearAllMocks()
   })
 
   it('should return options mapped with value/label pairs with valueProp and/or labelProps defined when array of objects', () => {
@@ -88,7 +88,7 @@ export const resolvedOptions = function (elementType, elementName, options) {
 
     expect(el.resolvedOptions).toStrictEqual(expected)
   })
-
+  
   it('should return options object with value=label when array', () => {
     let options = [1,2,3,'someString']
     let expected = [
@@ -136,8 +136,189 @@ export const resolvedOptions = function (elementType, elementName, options) {
 
     expect(el.resolvedOptions).toStrictEqual(expected)
   })
+  
+  it('should return localized `nativeItems`', () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          items: [
+            {
+              value: 0,
+              label: {
+                en: 'item-en-1',
+                de: 'item-de-1',
+              }
+            },
+            {
+              value: '1',
+              label: {
+                en: 'item-en-2',
+                de: 'item-de-2',
+              }
+            },
+          ]
+        }
+      },
+      locale: 'de'
+    })
+    
+    let el = form.vm.el$('el')
+    
+    expect(el.resolvedOptions).toStrictEqual([
+      {
+        value: 0,
+        label: 'item-de-1',
+      },
+      {
+        value: '1',
+        label: 'item-de-2',
+      },
+      ])
+    
+    // destroy(form) // teardown
+  })
+  
+  it('should return empty array on createAsyncOptionsFromUrl', async () => {
+    
+    let getStub = jest.fn(() => ({ ObjectWithoutDataKey: true }))
+    
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          native: false,
+          search: true,
+          items: '/async-options-from-url',
+          onBeforeCreate(el$) {
+            el$.$vueform.services.axios.get = getStub
+          }
+        }
+      }
+    })
+    
+    const el = form.vm.el$('el')
+    
+    expect(await (el.resolvedOptions)()).toStrictEqual([])
+  })
+  
+  it('should return array on specific key in createAsyncOptionsFromUrl', async () => {
+    
+    let getStub = jest.fn(() => ({ data: { specificKey: [1,2,3] } }))
+    
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          native: false,
+          search: true,
+          items: '/async-options-from-url',
+          dataKey: 'specificKey',
+          onBeforeCreate(el$) {
+            el$.$vueform.services.axios.get = getStub
+          }
+        }
+      }
+    })
+    
+    const el = form.vm.el$('el')
+    
+    expect(await (el.resolvedOptions)()).toStrictEqual([1,2,3])
+  })
+  
+  it('should return empty array on specific key in createAsyncOptionsFromUrl', async () => {
+    
+    let getStub = jest.fn(() => ({ data: { specificKey: null } }))
+    
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          native: false,
+          search: true,
+          items: '/async-options-from-url',
+          dataKey: 'specificKey',
+          onBeforeCreate(el$) {
+            el$.$vueform.services.axios.get = getStub
+          }
+        }
+      }
+    })
+    
+    const el = form.vm.el$('el')
+    
+    expect(await (el.resolvedOptions)()).toStrictEqual([])
+  })
+  
+  it('should create proper url with single parameter', async () => {
+    
+    let getMock = jest.fn(() => ({ data: [1,2,3] }))
+    
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          native: false,
+          search: true,
+          items: '/async-options-from-url',
+          delay: 0,
+          searchParam: 'param1',
+          onBeforeCreate(el$) {
+            el$.$vueform.services.axios.get = getMock
+          }
+        }
+      }
+    })
+    
+    const el = form.vm.el$('el')
+    
+    el.input.search = 'something'
+    
+    await nextTick()
 
-
+    jest.advanceTimersByTime(0)
+    
+    await flushPromises()
+    
+    expect(getMock).toHaveBeenLastCalledWith('/async-options-from-url?param1=something')
+    
+    // destroy(form) // teardown
+  })
+  
+  it('should create proper url with multiple parameters', async () => {
+    
+    let getMock = jest.fn(() => ({ data: [1,2,3] }))
+    
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          native: false,
+          search: true,
+          items: '/async-options-from-url?existing-param=something',
+          delay: 0,
+          searchParam: 'param1',
+          onBeforeCreate(el$) {
+            el$.$vueform.services.axios.get = getMock
+          }
+        }
+      }
+    })
+    
+    const el = form.vm.el$('el')
+    
+    el.input.search = 'something-else'
+    
+    await nextTick()
+    
+    jest.advanceTimersByTime(0)
+    
+    await flushPromises()
+    
+    expect(getMock).toHaveBeenLastCalledWith('/async-options-from-url?existing-param=something&param1=something-else')
+  })
+  
+  
   it('should render select options when items are an array', async () => {
     let form = createForm({
       schema: {
@@ -291,7 +472,7 @@ export const resolvedOptions = function (elementType, elementName, options) {
 
   it('should render select options when items are string using dataKey & native', async () => {
     let getMock = jest.fn(() => ({data:{options:[1,2,3]}}))
-    
+
     let form = createForm({
       schema: {
         el: {
@@ -328,13 +509,30 @@ export const resolvedOptions = function (elementType, elementName, options) {
 }
 
 export const updateItems = function (elementType, elementName, options) {
-  it('should call resolveOptions if native false', () => {
-    // TODO: call resolveOptions
+
+  it('should call resolveOptions if native false', async () => {
+    let getStub = jest.fn(() => [1,2,3])
+
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          native: false,
+          items: 'url',
+        }
+      }
+    })
+
+    form.vm.$vueform.services.axios.get = getStub
+
+    let el = form.vm.el$('el')
+
+    expect(typeof el.resolvedOptions).toBe('function')
   })
-  
+
   it('should disable input while updating if not specified', async () => {
     let getStub = jest.fn(() => [1,2,3])
-    
+
     let form = createForm({
       schema: {
         el: {
@@ -344,25 +542,25 @@ export const updateItems = function (elementType, elementName, options) {
         }
       }
     })
-  
+
     form.vm.$vueform.services.axios.get = getStub
-    
+
     let el = form.vm.el$('el')
-    
+
     await flushPromises()
-    
+
     el.updateItems()
-    
+
     expect(el.isDisabled).toBe(true)
-  
+
     await flushPromises()
-  
+
     expect(el.isDisabled).toBe(false)
   })
-  
+
   it('should not disable input while updating if false given to `updateItems`', async () => {
     let getStub = jest.fn(() => [1,2,3])
-    
+
     let form = createForm({
       schema: {
         el: {
@@ -372,37 +570,101 @@ export const updateItems = function (elementType, elementName, options) {
         }
       }
     })
-  
+
     form.vm.$vueform.services.axios.get = getStub
-    
+
     let el = form.vm.el$('el')
-    
+
     await flushPromises()
-    
+
     el.updateItems(false)
-    
+
     expect(el.isDisabled).toBe(false)
-  
+
     await flushPromises()
-  
+
     expect(el.isDisabled).toBe(false)
   })
-  
-  it('should call non public `resolveOptionsFromFunction`', () => {
-    // TODO: resolveOptionsFromFunction called
+
+  it('should throw warn if `resolveOptionsFromUrl` was unsuccessful (meaning `resolveOptionsFromUrl` was called)', async() => {
+    let warnMock = jest.spyOn(console, 'warn').mockImplementation()
+    let getStub = jest.fn(() => new Promise((resolve, reject) => {
+      reject()
+    }))
+
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          native: true,
+          items: '/failing-url',
+          onBeforeCreate(el$) {
+            el$.$vueform.services.axios.get = getStub
+          }
+        }
+      }
+    })
+
+    await flushPromises()
+
+    expect(warnMock.mock.calls[0][0]).toBe('Couldn\'t resolve items from /failing-url')
+  })
+
+  it('should throw warn if `resolveOptionsFromFunction` was unsuccessful (meaning `resolveOptionsFromFunction` was called)', async() => {
+    let warnMock = jest.spyOn(console, 'warn').mockImplementation()
+    let valueStub = jest.fn(() => new Promise((resolve, reject) => {
+      reject()
+    }))
+
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          native: true,
+          items: valueStub,
+        }
+      }
+    })
+
+    await flushPromises()
+
+    expect(warnMock.mock.calls[0][0]).toBe('Couldn\'t resolve items from async function')
   })
   
-  it('should call non public `resolveOptionsFromUrl`', () => {
-    // TODO: resolveOptionsFromUrl called
+  it('should return empty array if `resolveOptionsFromFunction` was called and function return is null or undefined', async() => {
+    
+    let valueStub = jest.fn(() => new Promise((resolve, reject) => {
+      reject()
+    }))
+    
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          native: true,
+          items: async () => {
+            return await new Promise((resolve, reject) => {
+              resolve(null)
+            })
+          }
+        }
+      }
+    })
+    
+    const el = form.vm.el$('el')
+    
+    await flushPromises()
+    
+    expect(el.resolvedOptions).toStrictEqual([])
   })
-  
+
   it('should return options if object/array is given just like resolvedOptions', async () => {
     let counter = 0
-  
+
     let getStub = jest.fn(() => { return {data: counter ? [4,5,6] : [1,2,3] } })
     let expected1 = [{ value: 1, label: 1},{ value: 2, label: 2},{ value: 3, label: 3}]
     let expected2 = [{ value: 4, label: 4},{ value: 5, label: 5},{ value: 6, label: 6}]
-  
+
     let form = createForm({
       schema: {
         el: {
@@ -415,23 +677,50 @@ export const updateItems = function (elementType, elementName, options) {
         }
       }
     })
-  
+
     let el = form.vm.el$('el')
-    
+
     await flushPromises()
-  
+
     expect(el.resolvedOptions).toStrictEqual(expected1)
-  
+
     counter++
-  
+
     el.updateItems()
-    
+
     await flushPromises()
-  
+
     expect(el.resolvedOptions).toStrictEqual(expected2)
   })
-
   
+  it('should return options as label/value pairs', () => {
+    
+    let options = [1,2,3,'someString']
+    let expected = [
+      { value: 1, label: 1 },
+      { value: 2, label: 2 },
+      { value: 3, label: 3 },
+      { value: 'someString', label: 'someString' }
+    ]
+    
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+          native: true,
+          items: options,
+        }
+      }
+    })
+    
+    let el = form.vm.el$('el')
+    
+    el.updateItems()
+    
+    expect(el.resolvedOptions).toStrictEqual(expected)
+  })
+  
+
   it('should update items when native=true', async () => {
     let option3 = 3
 
@@ -517,188 +806,11 @@ export const updateItems = function (elementType, elementName, options) {
   })
 }
 
-export const resolveOptionsFromFunction = function (elementType, elementName, options) {
-  it('should return anonymous function on string if native false', () => {
-    let getStub = jest.fn(() => { return { data: { thisCanBe: 'anything-really' }} })
-    
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType,
-          native: false,
-          items: '/url-3',
-          onBeforeCreate(el$) {
-            el$.$vueform.services.axios.get = getStub
-          }
-        }
-      }
-    })
-    
-    let el = form.vm.el$('el')
-    
-    el.updateItems()
-    
-    expect(typeof el.resolvedOptions).toBe('function')
-  })
-  
-  it('should throw warn if could not resolve items from async function', async () => {
-    let warnMock = jest.spyOn(console, 'warn').mockImplementation()
-    let getStub = jest.fn(() => new Promise((resolve, reject) => {
-      reject()
-    }))
-    
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType,
-          native: true,
-          items: '/resolve-from-function',
-          onBeforeCreate(el$) {
-            el$.$vueform.services.axios.get = getStub
-          }
-        }
-      }
-    })
-    
-    await flushPromises()
-    
-    expect(warnMock.mock.calls[0][0]).toBe('Couldn\'t resolve items from /resolve-from-function')
-    
-    jest.clearAllMocks()
-  })
-}
-
-export const resolveOptionsFromUrl = function (elementType, elementName, options) {
-  it('should return [] on string if axios response is empty', async () => {
-    let getStub = jest.fn(() => { return {data: null} })
-    
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType,
-          native: true,
-          items: '/url-4',
-          onBeforeCreate(el$) {
-            el$.$vueform.services.axios.get = getStub
-          }
-        }
-      }
-    })
-    
-    let el = form.vm.el$('el')
-    
-    el.updateItems()
-    
-    await flushPromises()
-    
-    expect(el.resolvedOptions).toStrictEqual([])
-  })
-
-  it('should return options on string if axios response has data', async () => {
-    let counter = 0
-    
-    let getStub = jest.fn(() => { return {data: counter ? [4,5,6] : [1,2,3] } })
-    let expected1 = [{ value: 1, label: 1},{ value: 2, label: 2},{ value: 3, label: 3}]
-    let expected2 = [{ value: 4, label: 4},{ value: 5, label: 5},{ value: 6, label: 6}]
-    
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType,
-          native: true,
-          items: '/url-5',
-          onBeforeCreate(el$) {
-            el$.$vueform.services.axios.get = getStub
-          }
-        }
-      }
-    })
-    
-    let el = form.vm.el$('el')
-    
-    await flushPromises()
-    
-    expect(el.resolvedOptions).toStrictEqual(expected1)
-    
-    counter++
-    
-    el.updateItems()
-    
-    await flushPromises()
-    
-    expect(el.resolvedOptions).toStrictEqual(expected2)
-  })
-
-  it('should return options if dataKey is set', async () => {
-    let getStub = jest.fn(() => {
-      return {
-        data: {
-          more: [],
-          than: [],
-          one: [],
-          options: [1,2,3],
-        }
-      }
-    })
-    let expected1 = [
-      { value: 1, label: 1},
-      { value: 2, label: 2},
-      { value: 3, label: 3}
-    ]
-    
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType,
-          native: true,
-          items: '/url-6',
-          onBeforeCreate(el$) {
-            el$.$vueform.services.axios.get = getStub
-          },
-          dataKey: 'options',
-        }
-      }
-    })
-    
-    let el = form.vm.el$('el')
-    
-    await flushPromises()
-    
-    expect(el.resolvedOptions).toStrictEqual(expected1)
-  })
-
-  it('should throw warn if url could not be resolved', async () => {
-    let warnMock = jest.spyOn(console, 'warn').mockImplementation()
-    let getStub = jest.fn(() => new Promise((resolve, reject) => {
-      reject()
-    }))
-    
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType,
-          native: true,
-          items: '/custom-lengthy-url-to-be-checked-against',
-          onBeforeCreate(el$) {
-            el$.$vueform.services.axios.get = getStub
-          }
-        }
-      }
-    })
-    
-    await flushPromises()
-    
-    expect(warnMock.mock.calls[0][0]).toBe('Couldn\'t resolve items from /custom-lengthy-url-to-be-checked-against')
-    
-    jest.clearAllMocks()
-  })
-}
-
 export const watchers = function (elementType, elementName, options) {
   it('should resolve options on items prop change', async () => {
     let options1 = [1,2,3]
     let options2 = [4,5,6]
-    
+
     let form = createForm({
       schema: {
         el: {
@@ -708,17 +820,17 @@ export const watchers = function (elementType, elementName, options) {
         }
       }
     })
-    
+
     let el = form.vm.el$('el')
-    
+
     await flushPromises()
-    
+
     expect(el.resolvedOptions).toStrictEqual(options1)
-    
+
     form.vm.$set(form.vm.vueform.schema.el, 'items', options2)
-    
+
     await flushPromises()
-    
+
     expect(el.resolvedOptions).toStrictEqual(options2)
   })
 
@@ -732,17 +844,17 @@ export const watchers = function (elementType, elementName, options) {
         }
       }
     })
-    
+
     let el = form.vm.el$('el')
-    
+
     await flushPromises()
-    
+
     expect(el.resolvedOptions).toStrictEqual([{value: 1, label: 1}])
-    
+
     form.vm.$set(form.vm.vueform.schema.el, 'native', false)
-    
+
     await flushPromises()
-    
+
     expect(el.resolvedOptions).toStrictEqual([1])
   })
 }

@@ -1,5 +1,5 @@
 <template>
-  <div></div>
+  <div data-mock tabindex="0"></div>
 </template>
 
 <script>
@@ -7,7 +7,7 @@
 
   export default {
     name: 'TrixEditor',
-    emits: ['trix-change'],
+    emits: ['trix-change', 'trix-focus', 'trix-focus-hook', 'trix-blur-hook'],
     setup(props, context) {
       const value = ref(null)
 
@@ -30,8 +30,12 @@
           value.value = /<\/?[a-z][\s\S]*>/i.test(val) || !val.length ? val : `<div>${val}</div>`
         }
       })
+      
+      // const addEventListener = () => {}
+      
+      const addEventListener = (e) => {
+        context.emit(`trix-${e}-hook`)
 
-      const addEventListener = (evt, cb) => {
         if (!listeners.value[evt]) {
           listeners.value[evt] = []
         }
@@ -48,6 +52,10 @@
         listeners.value[evt].push(cb)
       }
 
+      const focus = () => {
+        context.emit('trix-focus')
+      }      
+      
       watch(value, (newValue, oldValue) => {
         if (newValue == oldValue) {
           return
@@ -63,6 +71,8 @@
         option,
         setOption,
         addEventListener,
+        removeEventListener,
+        focus,
       }
     },
   }

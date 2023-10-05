@@ -2,7 +2,7 @@ import { createForm } from 'test-helpers'
 import { nextTick, ref } from 'vue'
 
 describe('Plugin', () => {
-  // @todo: Could not test in Vue2 because of global $vueform obj setting for tests
+  // @todo:adam Could not test in Vue2 because of global $vueform obj setting for tests
   // it('should change config', async () => {
   //   let form = createForm({
   //     el: {

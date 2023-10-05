@@ -6,6 +6,7 @@ import components from './../../src/components'
 // Assets
 import defaultTheme from './../../themes/vueform'
 import en from './../../locales/en'
+import de from './../../locales/de'
 
 export default function createVueformInstaller (options = {}) {
   let theme = options.theme || defaultTheme
@@ -18,8 +19,9 @@ export default function createVueformInstaller (options = {}) {
     templates: options.templates || {},
     rules: options.rules || {},
     locales: Object.assign({}, options.locales || {
-      en,
+      en, de,
     }),
+    locale: 'en',
     languages: {en:'English',fr:'French'},
   }, options.config || {}, {
     endpoints: {

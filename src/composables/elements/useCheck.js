@@ -1,15 +1,14 @@
 import _ from 'lodash'
-import { toRefs } from 'vue'
 
 const base = function(props, context, dependencies)
 {
   // ============ DEPENDENCIES ============
-
+  
   const value = dependencies.value
   const resolvedOptions = dependencies.resolvedOptions
-
+  
   // =============== METHODS ==============
-
+  
   /**
    * Toggle's a checkbox's value.
    *
@@ -23,7 +22,7 @@ const base = function(props, context, dependencies)
       uncheck(val)
     }
   }
-
+  
   /**
    * Checks one or more checkboxes.
    *
@@ -34,18 +33,19 @@ const base = function(props, context, dependencies)
     if (!_.isArray(values)) {
       values = [values]
     }
-
+    
     const items = _.clone(value.value)
-
+    
     _.each(values, (item) => {
+      /* istanbul ignore else */
       if (items.indexOf(String(item)) === -1 && items.indexOf(Number(item)) === -1) {
         items.push(item)
       }
     })
-
+    
     value.value = items
   }
-
+  
   /**
    * Unchecks one or more checkboxes.
    *
@@ -56,24 +56,26 @@ const base = function(props, context, dependencies)
     if (!_.isArray(values)) {
       values = [values]
     }
-
+    
     const items = _.clone(value.value)
-
+    
     _.each(values, (item) => {
       let index = items.indexOf(String(item))
-
+      
+      /* istanbul ignore else */
       if (index === -1) {
         index = items.indexOf(Number(item))
       }
-
+      
+      /* istanbul ignore else */
       if (index !== -1) {
         items.splice(index, 1)
       }
     })
-
+    
     value.value = items
   }
-
+  
   /**
    * Checks all checkboxes.
    *
@@ -82,7 +84,7 @@ const base = function(props, context, dependencies)
   const checkAll = () => {
     check(resolvedOptions.value.map(o => o.value))
   }
-
+  
   /**
    * Unchecks all checkboxes.
    *
@@ -91,7 +93,7 @@ const base = function(props, context, dependencies)
   const uncheckAll = () => {
     uncheck(resolvedOptions.value.map(o => o.value))
   }
-
+  
   return {
     toggle,
     check,

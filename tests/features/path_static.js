@@ -1,0 +1,1 @@
+export { parent, path, flat } from './path'

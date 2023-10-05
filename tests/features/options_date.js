@@ -21,7 +21,7 @@ export const disabledDates = function (elementType, elementName, options) {
     })
 
     let el = form.vm.el$('el')
-
+    
     expect(el.disabledDates).toStrictEqual([])
     
     // destroy(form) // teardown
@@ -177,7 +177,7 @@ export const fieldOptions = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    expect(el.fieldOptions).toStrictEqual({ 
+    expect(el.fieldOptions).toStrictEqual({
       dateFormat: el.displayDateFormat,
       minDate: el.minDate,
       maxDate: el.maxDate,
@@ -204,7 +204,7 @@ export const fieldOptions = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    expect(el.fieldOptions).toStrictEqual({ 
+    expect(el.fieldOptions).toStrictEqual({
       dateFormat: el.displayDateFormat,
       minDate: el.minDate,
       maxDate: el.maxDate,
@@ -234,5 +234,43 @@ export const fieldOptions = function (elementType, elementName, options) {
     expect(Datepicker.props('options')).toStrictEqual(el.fieldOptions)
 
     // destroy() // teardown
+  })
+}
+
+export const hasDate = function (elementType, elementName, options) {
+  
+  it('should have return true by default', () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+        }
+      }
+    })
+    
+    let el = form.vm.el$('el')
+    
+    expect(el.hasDate).toBe(true)
+    
+    // destroy(form) // teardown
+  })
+}
+
+export const hasTime = function (elementType, elementName, options) {
+  
+  it('should have return false by default', () => {
+    let form = createForm({
+      schema: {
+        el: {
+          type: elementType,
+        }
+      }
+    })
+    
+    let el = form.vm.el$('el')
+    
+    expect(el.hasTime).toBe(false)
+    
+    // destroy(form) // teardown
   })
 }

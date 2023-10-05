@@ -1,5 +1,7 @@
 import { createForm, destroy } from 'test-helpers'
 
+export { hasDate, hasTime } from './options_date'
+
 export const fieldOptions = function (elementType, elementName, options) {
   it('should have default `fieldOptions`', () => {
     let form = createForm({
@@ -12,7 +14,7 @@ export const fieldOptions = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    expect(el.fieldOptions).toStrictEqual({ 
+    expect(el.fieldOptions).toStrictEqual({
       mode: el.mode,
       dateFormat: el.displayDateFormat,
       minDate: el.minDate,
@@ -36,7 +38,7 @@ export const fieldOptions = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
 
-    expect(el.fieldOptions).toStrictEqual({ 
+    expect(el.fieldOptions).toStrictEqual({
       mode: el.mode,
       dateFormat: el.displayDateFormat,
       minDate: el.minDate,

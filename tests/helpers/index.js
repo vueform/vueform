@@ -5,6 +5,7 @@ import confirmSelectOptions from './confirmSelectOptions'
 import createElement from './createElement'
 import createForm from './createForm'
 import createInlineForm from './createInlineForm'
+import createValidImageFile from './createValidImageFile'
 import createVueformInstaller from './createVueformInstaller'
 import createEditor from './createEditor'
 import destroy from './destroy'
@@ -52,6 +53,7 @@ export {
   createElement,
   createForm,
   createInlineForm,
+  createValidImageFile,
   createVueformInstaller,
   createEditor,
   destroy,
