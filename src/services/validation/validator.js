@@ -271,7 +271,7 @@ const Validator = class {
 
   size(value) {
     if (this.isNumeric) {
-      return value
+      return parseInt(value)
     }
     else if (this.isFile) {
       return value ? value.size / 1000 : 0
