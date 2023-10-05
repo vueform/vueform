@@ -22,7 +22,7 @@ module.exports = {
       '^vue-jest$': "<rootDir>/node_modules/vue-prev-jest"
   },
   "transformIgnorePatterns": [
-      "/node_modules/(?!@vueform)"
+      "/node_modules/(?!@vueform|axios)"
   ],
   "setupFilesAfterEnv": ["<rootDir>/jest/jest.setup.js"],
   "collectCoverage": true,
