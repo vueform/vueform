@@ -15,7 +15,7 @@ export default {
     },
   },
   setup(props, context)
-  {  
+  {
     const $this = getCurrentInstance().proxy
 
     // ============ DEPENDENCIES ============
@@ -45,7 +45,7 @@ export default {
 
     /**
      * The child [`FormTab`](form-tab) components.
-     * 
+     *
      * @type {array}
      * @default []
      */
@@ -53,7 +53,7 @@ export default {
 
     /**
      * Helper prop used for checking if the component exists.
-     * 
+     *
      * @type {boolean}
      * @private
      */
@@ -63,7 +63,7 @@ export default {
 
     /**
      * The form elements' components.
-     * 
+     *
      * @type {object}
      */
     const elements$ = computed(() => {
@@ -71,8 +71,8 @@ export default {
     })
 
     /**
-     * The object containing tabs defined in [`Vueform`](vueform#option-tabs). 
-     * 
+     * The object containing tabs defined in [`Vueform`](vueform#option-tabs).
+     *
      * @type {object}
      */
     const tabs = computed(() => {
@@ -81,7 +81,7 @@ export default {
 
     /**
      * The child [`FormTab`](form-tab) components with indexed keys.
-     * 
+     *
      * @type {object}
      */
     const tabs$ = computed(() => {
@@ -96,7 +96,7 @@ export default {
 
     /**
      * All the visible [`FormTab`](form-tab) components.
-     * 
+     *
      * @type {object}
      */
     const visible$ = computed(() => {
@@ -113,7 +113,7 @@ export default {
 
     /**
      * The current [`FormTab`](form-tab) component.
-     * 
+     *
      * @type {component}
      */
     const current$ = computed(() => {
@@ -124,7 +124,7 @@ export default {
 
     /**
      * The first visible [`FormTab`](form-tab) component.
-     * 
+     *
      * @type {component}
      */
     const first$ = computed(() => {
@@ -135,7 +135,7 @@ export default {
 
     /**
      * The last visible [`FormTab`](form-tab) component.
-     * 
+     *
      * @type {component}
      */
     const last$ = computed(() => {
@@ -144,7 +144,7 @@ export default {
 
     /**
      * The next visible [`FormTab`](form-tab) component.
-     * 
+     *
      * @type {component}
      */
     const next$ = computed(() => {
@@ -155,7 +155,7 @@ export default {
 
     /**
      * The previous visible [`FormTab`](form-tab) component.
-     * 
+     *
      * @type {component}
      */
     const previous$ = computed(() => {
@@ -220,7 +220,7 @@ export default {
 
     /**
      * Set the component to the parent as if `refs` were used.
-     * 
+     *
      * @param {component} $parent parent component
      * @param {function} assignToParent the assignToParent function for recursion
      * @returns {void}
@@ -237,7 +237,7 @@ export default {
 
     /**
     * Removes the component from the parent.
-    * 
+    *
     * @param {component} $parent parent component
     * @param {function} removeFromParent the removeFromParent function for recursion
     * @private
@@ -247,6 +247,7 @@ export default {
         form$.value.$set($parent, 'tabs$', null)
       }
       else {
+        /* @todo:adam test later */
         removeFromParent($parent.$parent, removeFromParent)
       }
     }
@@ -256,10 +257,11 @@ export default {
     provide('View', View)
 
     // ============== WATCHERS ==============
-
+    
+    /* istanbul ignore next: can not reproduce */
     watch(elements$, (newValue, oldValue) => {
       let newElements$ = _.difference(_.keys(newValue), _.keys(oldValue))
-
+      
       _.each(newElements$, (newElement$) => {
         elements$.value[newElement$].deactivate()
       })
@@ -268,8 +270,9 @@ export default {
     watch(tabs, async () => {
       await nextTick()
       await nextTick()
-
-      if (current$.value === undefined || current$.value.index === undefined) {
+      
+      //@todo:adam we came up with change together
+      if ((current$.value === undefined || current$.value.index === undefined) && first$.value) {
         first$.value.select()
       }
     }, { deep: true, lazy: true })

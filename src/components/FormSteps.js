@@ -15,7 +15,7 @@ export default {
     },
   },
   setup(props, context)
-  { 
+  {
     const $this = getCurrentInstance().proxy
 
     // ============ DEPENDENCIES ============
@@ -45,7 +45,7 @@ export default {
 
     /**
      * The child [`FormStep`](form-step) components.
-     * 
+     *
      * @type {array}
      * @default []
      */
@@ -53,7 +53,7 @@ export default {
 
     /**
      * Helper to store a watcher.
-     * 
+     *
      * @type {object}
      * @default null
      */
@@ -61,7 +61,7 @@ export default {
 
     /**
      * Helper prop used for checking if the component exists.
-     * 
+     *
      * @type {boolean}
      * @private
      */
@@ -70,8 +70,8 @@ export default {
     // ============== COMPUTED ==============
 
     /**
-     * The object containing steps defined in [`Vueform`](vueform#option-steps). 
-     * 
+     * The object containing steps defined in [`Vueform`](vueform#option-steps).
+     *
      * @type {object}
      */
     const steps = computed(() => {
@@ -80,7 +80,7 @@ export default {
 
     /**
      * The form elements' components.
-     * 
+     *
      * @type {object}
      */
     const elements$ = computed(() => {
@@ -89,7 +89,7 @@ export default {
 
     /**
      * Whether there are any steps in [`pending`](form-step#property-pending) state.
-     * 
+     *
      * @type {boolean}
      */
     const pending = computed(() => {
@@ -98,7 +98,7 @@ export default {
 
     /**
      * Whether there are any steps in [`debouncing`](form-step#property-debouncing) state.
-     * 
+     *
      * @type {boolean}
      */
     const debouncing = computed(() => {
@@ -107,7 +107,7 @@ export default {
 
     /**
      * Whether there are any steps in [`invalid`](form-step#property-invalid) state.
-     * 
+     *
      * @type {boolean}
      */
     const invalid = computed(() => {
@@ -116,7 +116,7 @@ export default {
 
     /**
      * Whether all the steps are [`done`](form-step#property-done).
-     * 
+     *
      * @type {boolean}
      */
     const done = computed(() => {
@@ -125,7 +125,7 @@ export default {
 
     /**
      * Whether there are any steps in [`busys`](form-step#property-busys) state.
-     * 
+     *
      * @type {boolean}
      */
     const busy = computed(() => {
@@ -134,7 +134,7 @@ export default {
 
     /**
      * The child [`FormStep`](form-step) components with indexed keys.
-     * 
+     *
      * @type {object}
      */
     const steps$ = computed(() => {
@@ -149,7 +149,7 @@ export default {
 
     /**
      * All the visible [`FormStep`](form-step) components.
-     * 
+     *
      * @type {object}
      */
     const visible$ = computed(() => {
@@ -166,7 +166,7 @@ export default {
 
     /**
      * The first visible [`FormStep`](form-step) component.
-     * 
+     *
      * @type {component}
      */
     const first$ = computed(() => {
@@ -177,7 +177,7 @@ export default {
 
     /**
      * The last visible [`FormStep`](form-step) component.
-     * 
+     *
      * @type {component}
      */
     const last$ = computed(() => {
@@ -186,7 +186,7 @@ export default {
 
     /**
      * The current [`FormStep`](form-step) component.
-     * 
+     *
      * @type {component}
      */
     const current$ = computed(() => {
@@ -197,7 +197,7 @@ export default {
 
     /**
      * The next visible [`FormStep`](form-step) component.
-     * 
+     *
      * @type {component}
      */
     const next$ = computed(() => {
@@ -208,7 +208,7 @@ export default {
 
     /**
      * The previous visible [`FormStep`](form-step) component.
-     * 
+     *
      * @type {component}
      */
     const previous$ = computed(() => {
@@ -219,7 +219,7 @@ export default {
 
     /**
      * The first invalid & visible [`FormStep`](form-step) component.
-     * 
+     *
      * @type {component}
      */
     const firstInvalid$ = computed(() => {
@@ -228,7 +228,7 @@ export default {
 
     /**
      * The first visible [`FormStep`](form-step) component which is not done yet.
-     * 
+     *
      * @type {component}
      */
     const firstNonDone$ = computed(() => {
@@ -237,7 +237,7 @@ export default {
 
     /**
      * The last enabled & visible [`FormStep`](form-step) component.
-     * 
+     *
      * @type {component}
      */
     const lastEnabled$ = computed(() => {
@@ -246,22 +246,24 @@ export default {
 
     /**
      * Whether is at the last step.
-     * 
+     *
      * @type {boolean}
      */
     const isAtLastStep = computed(() => {
       const last = _.findLast(visible$.value, { visible: true })
-
+      
+      // @todo:adam !current$.value will never be null or undefined, hardcoded {}
+      /* istanbul ignore next: !last not worth the effort */
       if (!current$.value || !last) {
         return false
       }
-
+      
       return last.index === current$.value.index
     })
 
     /**
      * Whether is at the first step.
-     * 
+     *
      * @type {boolean}
      */
     const isAtFirstStep = computed(() => {
@@ -378,6 +380,8 @@ export default {
         return
       }
 
+      //@todo:adam it should not be necessary anymore since submit is async
+      /* istanbul ignore next */
       unwatchInvalid.value = watch(invalid, (isInvalid) => {
         if (isInvalid) {
           firstInvalid$.value.select()
@@ -410,12 +414,13 @@ export default {
 
     /**
      * Enable steps until a certain index.
-     * 
+     *
      * @param {integer} index index of the step
      * @returns {void}
      */
     const enableUntil = (index) => {
       _.each(steps$.value, (step$) => {
+        /* istanbul ignore else */
         if (step$.index <= index && step$.visible) {
           step$.enable()
         }
@@ -424,7 +429,7 @@ export default {
 
     /**
      * Enable all steps up to the current step.
-     * 
+     *
      * @returns {void}
      */
     const enableUntilCurrent = () => {
@@ -433,20 +438,21 @@ export default {
 
     /**
      * Enable all steps up to the last enabled.
-     * 
+     *
      * @returns {void}
      */
     const enableUntilLastEnabled = () => {
+      /* istanbul ignore next: not reproducible only for Vue 2 Cli compatibility */
       if (!lastEnabled$.value && !first$.value) {
         return
       }
-
+      
       enableUntil(lastEnabled$.value !== undefined ? lastEnabled$.value.index : first$.value.index)
     }
 
     /**
      * Set the component to the parent as if `refs` were used.
-     * 
+     *
      * @param {component} $parent parent component
      * @param {function} assignToParent the assignToParent function for recursion
      * @returns {void}
@@ -463,7 +469,7 @@ export default {
 
     /**
     * Removes the component from the parent.
-    * 
+    *
     * @param {component} $parent parent component
     * @param {function} removeFromParent the removeFromParent function for recursion
     * @private
@@ -473,6 +479,7 @@ export default {
         form$.value.$set($parent, 'steps$', null)
       }
       else {
+        /* @todo:adam test later */
         removeFromParent($parent.$parent, removeFromParent)
       }
     }
@@ -482,10 +489,11 @@ export default {
     provide('View', View)
 
     // ============== WATCHERS ==============
-
+    
+    /* istanbul ignore next: can not reproduce */
     watch(elements$, (newValue, oldValue) => {
       let newElements$ = _.difference(_.keys(newValue), _.keys(oldValue))
-
+      
       _.each(newElements$, (newElement$) => {
         elements$.value[newElement$].deactivate()
       })
@@ -493,6 +501,7 @@ export default {
 
     watch(steps, () => {
       nextTick(() => {
+        /* istanbul ignore next: nothing happens */
         if (lastEnabled$.value === undefined) {
           // first$.value.enable()
         }
@@ -516,7 +525,7 @@ export default {
     }, { flush: 'post' })
 
     // =============== HOOKS ================
-
+    
     onBeforeMount(() => {
       assignToParent($this.$parent, assignToParent)
     })

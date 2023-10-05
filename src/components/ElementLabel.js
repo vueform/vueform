@@ -24,7 +24,7 @@ export default {
     const {
       label,
       isLabelComponent,
-    } = useLabel(props, context, { 
+    } = useLabel(props, context, {
       labelDefinition: computed(() => { return el$.value.label }),
       component$: el$,
      })
@@ -33,7 +33,7 @@ export default {
 
     /**
      * The name of the element.
-     * 
+     *
      * @type {string}
      * @private
      */
@@ -43,7 +43,7 @@ export default {
 
     /**
      * The `id` attribute of the container.
-     * 
+     *
      * @type {string}
      */
     const id = computed(() => {
@@ -52,9 +52,9 @@ export default {
 
     /**
      * Whether the element has a `label` option, a `#label` slot or `Vueform` component's [`forceLabels`](vueform#force-labels) option is `true`.
-     * 
+     *
      * @type {boolean}
-     * 
+     *
      */
     const hasLabel = computed(() => {
       return el$.value.hasLabel
@@ -62,12 +62,12 @@ export default {
   
     /**
      * Whether the label is provided as a slot.
-     * 
+     *
      * @type {boolean}
      * @private
      */
     const isSlot = computed(() => {
-      return !!(el$.value.slots?.label || el$.value.$slots?.label || (form$.value.$vueform.vueVersion === 2 && el$.value.$scopedSlots?.label))
+      return !!(el$.value.slots?.label || el$.value.$slots?.label || /* istanbul ignore next: Vue2 is not checked */  (form$.value.$vueform.vueVersion === 2 && el$.value.$scopedSlots?.label))
     })
 
     return {

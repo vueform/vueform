@@ -13,7 +13,7 @@ export default {
     },
   },
   setup(props, context)
-  { 
+  {
     const { type } = toRefs(props)
 
     // ============ DEPENDENCIES ============
@@ -39,7 +39,7 @@ export default {
     /**
      * The addon definition.
      * ponent.
-  * 
+  *
   * @type {string|function|component}
   * @private
      */
@@ -49,13 +49,13 @@ export default {
 
     /**
      * The content of the addon. If the addon is provided ss a `function` this contains the resolved value.
-     * 
+     *
      * @type {string|component}
      */
     const addon = computed(() => {
       let addon = isAddonFunction.value
         ? baseAddon.value(el$.value)
-        : baseAddon.value || null
+        : baseAddon.value || /* istanbul ignore next: failsafe */ null
 
       if (!isAddonComponent.value) {
         addon = localize(addon, config$.value, form$.value)
@@ -66,7 +66,7 @@ export default {
     
     /**
     * Whether the addon is provided as a function.
-    * 
+    *
     * @type {boolean}
     * @private
     */
@@ -76,7 +76,7 @@ export default {
 
     /**
     * Whether addon is provided as a Vue component.
-    * 
+    *
     * @type {boolean}
     * @private
     */
@@ -86,12 +86,13 @@ export default {
   
     /**
      * Whether the label is provided as a slot.
-     * 
+     *
      * @type {boolean}
      * @private
      */
     const isSlot = computed(() => {
-      return !!(el$.value.slots?.[`addon-${type.value}`] || el$.value.$slots?.[`addon-${type.value}`] || (form$.value.$vueform.vueVersion === 2 && el$.value.$scopedSlots?.[`addon-${type.value}`]) || el$.value.slots[`addon-${type.value}`])
+      // @todo:adam last condition is a duplicate of the first one
+      return !!(el$.value.slots?.[`addon-${type.value}`] || el$.value.$slots?.[`addon-${type.value}`] || /* istanbul ignore next: Vue2 is not checked */ (form$.value.$vueform.vueVersion === 2 && el$.value.$scopedSlots?.[`addon-${type.value}`]) || /* istanbul ignore next */ el$.value.slots[`addon-${type.value}`])
     })
 
     return {

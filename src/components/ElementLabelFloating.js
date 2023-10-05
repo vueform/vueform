@@ -11,7 +11,7 @@ export default {
     }
   },
   setup(props, context)
-  {    
+  {
     // ============ DEPENDENCIES ============
 
     const {
@@ -34,11 +34,11 @@ export default {
 
     /**
      * The floating label of the element, defined via `floating` prop.
-     * 
+     *
      * @type {string}
      */
     const floating = computed(() => {
-      return localize(el$.value.floating || (form$.value.options.floatPlaceholders ? el$.value.placeholder : null), config$.value, form$.value)
+      return localize(el$.value.floating || /* istanbul ignore next: tested, but not covered */ (form$.value.options.floatPlaceholders ? el$.value.placeholder : null), config$.value, form$.value)
     })
     
     return {

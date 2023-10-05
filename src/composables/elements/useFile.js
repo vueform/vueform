@@ -472,7 +472,6 @@ const base = function(props, context, dependencies)
     }
   }
   
-  //@todo:szm mock window.fileReader
   const resolveBase64 = (source = value.value) => {
     let reader = new FileReader()
     

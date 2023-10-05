@@ -30,7 +30,7 @@ export default {
 
     /**
      * The position of the info.
-     * 
+     *
      * @type {boolean}
      * @default false
      * @private
@@ -41,7 +41,7 @@ export default {
 
     /**
      * The info for the element, defined via the element's `info` prop.
-     * 
+     *
      * @type {string}
      */
     const info = computed(() => {
@@ -50,7 +50,7 @@ export default {
 
     /**
      * The `id` attribute of the container.
-     * 
+     *
      * @type {string}
      */
     const id = computed(() => {
@@ -59,23 +59,24 @@ export default {
   
     /**
      * Whether the info is provided as a slot.
-     * 
+     *
      * @type {boolean}
      * @private
      */
     const isSlot = computed(() => {
-      return !!(el$.value.slots?.info || el$.value.$slots?.info || (form$.value.$vueform.vueVersion === 2 && el$.value.$scopedSlots?.info))
+      return !!(el$.value.slots?.info || el$.value.$slots?.info || /* istanbul ignore next: Vue2 is not checked */  (form$.value.$vueform.vueVersion === 2 && el$.value.$scopedSlots?.info))
     })
 
     // =============== METHODS ==============
 
     /**
      * Handles the info hover.
-     * 
-     * @param {Event} e 
+     *
+     * @param {Event} e
      * @return {void}
      * @private
      */
+    /* istanbul ignore next: not worth it */
     const handleMouseOver = async (e) => {
       if (position.value !== el$.value.infoPosition) {
         return
@@ -84,7 +85,7 @@ export default {
       await nextTick()
 
       let wrapper = e.target.querySelector('div')
-
+      
       if (!wrapper) {
         return
       }

@@ -4,7 +4,7 @@ import useElementComponent from './../composables/useElementComponent'
 export default {
   name: 'ElementMessage',
   setup(props, context)
-  {    
+  {
     // ============ DEPENDENCIES ============
 
     const {
@@ -23,11 +23,11 @@ export default {
 
     /**
      * The first message of the element.
-     * 
+     *
      * @type {string}
      */
     const message = computed(() => {
-      return el$.value.messageBag ? el$.value.messageBag.message : null
+      return el$.value.messageBag ? el$.value.messageBag.message : /* istanbul ignore next: messageBag itself will always be defined */ null
     })
 
     return {

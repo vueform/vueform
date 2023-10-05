@@ -102,8 +102,8 @@ export default {
     },
   },
   setup(props, context)
-  {  
-    const { 
+  {
+    const {
       name,
       label,
       elements,
@@ -149,7 +149,7 @@ export default {
 
     /**
      * The label of the step.
-     * 
+     *
      * @type {string|component}
      * @default null
      */
@@ -157,7 +157,7 @@ export default {
 
     /**
      * Whether the step is active.
-     * 
+     *
      * @type {boolean}
      * @default false
      */
@@ -165,7 +165,7 @@ export default {
 
     /**
      * Whether the step is disabled.
-     * 
+     *
      * @type {boolean}
      * @default true
      */
@@ -173,7 +173,7 @@ export default {
 
     /**
      * Whether the step is completed.
-     * 
+     *
      * @type {boolean}
      * @default false
      */
@@ -183,7 +183,7 @@ export default {
     
     /**
      * The form elements' components.
-     * 
+     *
      * @type {object}
      */
     const elements$ = computed(() => {
@@ -192,16 +192,16 @@ export default {
     
     /**
      * The parent [`FormSteps`](form-steps) component.
-     * 
+     *
      * @type {component}
      */
     const steps$ = computed(() => {
-      return form$.value.steps$ || {}
+      return form$.value.steps$ || /* istanbul ignore next: failsafe only, step can not exist by itself */ {}
     })
 
     /**
      * The label definition of the component.
-     * 
+     *
      * @type {string}
      * @private
      */
@@ -211,16 +211,16 @@ export default {
 
     /**
      * Index of this step among the other steps which are not hidden by unmet conditions.
-     * 
+     *
      * @type {number}
      */
     const index = computed(() => {
-      return Object.keys(steps$?.value?.steps$||{}).indexOf(name.value)
+      return Object.keys(steps$?.value?.steps$||/* istanbul ignore next: failsafe only, step can not exist by itself */{}).indexOf(name.value)
     })
 
     /**
      * Whether the step is the first.
-     * 
+     *
      * @type {boolean}
      */
     const isFirst = computed(() => {
@@ -229,7 +229,7 @@ export default {
 
     /**
      * Whether the step is the first.
-     * 
+     *
      * @type {boolean}
      */
     const isLast = computed(() => {
@@ -238,7 +238,7 @@ export default {
 
     /**
      * The elements' components in the step.
-     * 
+     *
      * @type {object}
      */
     const children$ = computed(() => {
@@ -249,7 +249,7 @@ export default {
 
     /**
      * Whether the step should be visible.
-     * 
+     *
      * @type {boolean}
      */
     const visible = computed(() => {
@@ -258,7 +258,7 @@ export default {
 
     /**
       * Whether the step has any invalid elements.
-      * 
+      *
       * @type {boolean}
       */
     const invalid = computed(() => {
@@ -267,25 +267,25 @@ export default {
 
     /**
       * Whether the step has any pending elements.
-      * 
+      *
       * @type {boolean}
       */
     const pending = computed(() => {
-      return _.some(children$.value, { available: true, pending: true })   
+      return _.some(children$.value, { available: true, pending: true })
     })
 
     /**
       * Whether the step has any debouncing elements.
-      * 
+      *
       * @type {boolean}
       */
     const debouncing = computed(() => {
-      return _.some(children$.value, { available: true, debouncing: true })   
+      return _.some(children$.value, { available: true, debouncing: true })
     })
 
     /**
       * Whether all the elements in the step were already validated at least once.
-      * 
+      *
       * @type {boolean}
       */
     const validated = computed(() => {
@@ -294,7 +294,7 @@ export default {
 
     /**
       * Whether the step has any busy elements.
-      * 
+      *
       * @type {boolean}
       */
     const busy = computed(() => {
@@ -303,7 +303,7 @@ export default {
 
     /**
       * Whether the step is done (completed, validated has no invalid or pending elements).
-      * 
+      *
       * @type {boolean}
       */
     const done = computed(() => {
@@ -315,7 +315,7 @@ export default {
 
     /**
      * The step's component.
-     * 
+     *
      * @type {component}
      */
     const step$ = computed(() => {
@@ -335,10 +335,11 @@ export default {
       // are validated and none is invalid and
       // elements get revalidated on change
       if (validated.value && !invalid.value && form$.value.shouldValidateOnChange) {
-        return 
+        return
       }
 
       await asyncForEach(children$.value, async (element$) => {
+        /* istanbul ignore else */
         if ((!element$.validated || element$.invalid || !form$.value.shouldValidateOnChange) && element$.available && !element$.isStatic) {
           await element$.validate()
         }
@@ -450,15 +451,16 @@ export default {
 
     /**
       * Apply conditions of the step to its elements.
-      * 
+      *
       * @returns {void}
       * @private
       */
     const addChildConditions = () => {
+      /* istanbul ignore else */
       if (conditionList.value.length == 0) {
         return
       }
-
+      
       Object.values(children$.value).forEach((element$) => {
         element$.addConditions('step', conditionList.value)
       })
@@ -466,7 +468,7 @@ export default {
 
     /**
       * Remove conditions of the elements of the step.
-      * 
+      *
       * @returns {void}
       * @private
       */
@@ -478,7 +480,7 @@ export default {
 
     /**
       * Resets conditions of the elements of the step.
-      * 
+      *
       * @returns {void}
       * @private
       */
@@ -489,7 +491,7 @@ export default {
 
     /**
      * Set the component to the parent as if `refs` were used.
-     * 
+     *
      * @param {component} $parent parent component
      * @param {function} assignToParent the assignToParent function for recursion
      * @returns {void}
@@ -506,7 +508,7 @@ export default {
 
     /**
     * Removes the component from the parent.
-    * 
+    *
     * @param {component} $parent parent component
     * @param {function} removeFromParent the removeFromParent function for recursion
     * @private
@@ -516,6 +518,7 @@ export default {
         $parent.steps$Array.splice($parent.steps$Array.map(t$=>normalize(t$.name)).indexOf(normalize(name.value)), 1)
       }
       else {
+        /* @todo:adam test later */
         removeFromParent($parent.$parent, removeFromParent)
       }
     }
@@ -531,10 +534,11 @@ export default {
     })
 
     watch(children$, () => {
+      /* istanbul ignore else */
       if (!active.value) {
         return
-      } 
-
+      }
+      
       _.each(children$.value, (element$) => {
         element$.activate()
       })
@@ -604,6 +608,7 @@ export default {
       isLabelComponent,
       stepLabel,
       index,
+      conditionList,
       validate,
       activate,
       deactivate,

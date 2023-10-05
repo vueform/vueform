@@ -37,7 +37,7 @@ export default {
 
     /**
      * The value of the content type.
-     * 
+     *
      * @type {string}
      * @private
      */
@@ -47,12 +47,12 @@ export default {
 
     /**
      * Whether the contents are provided as a slot.
-     * 
+     *
      * @type {boolean}
      * @private
      */
     const isSlot = computed(() => {
-      return !!(el$.value.slots?.[type.value] || el$.value.$slots?.[type.value] || (form$.value.$vueform.vueVersion === 2 && el$.value.$scopedSlots?.[type.value]))
+      return !!(el$.value.slots?.[type.value] || el$.value.$slots?.[type.value] || /* istanbul ignore next: Vue2 is not checked */ (form$.value.$vueform.vueVersion === 2 && el$.value.$scopedSlots?.[type.value]))
     })
 
     return {

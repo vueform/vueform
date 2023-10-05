@@ -23,7 +23,7 @@ export default {
     },
   },
   setup(props, context)
-  {  
+  {
     const {
       type,
       labels,
@@ -46,17 +46,18 @@ export default {
 
     /**
      * The label definition of the component.
-     * 
+     *
      * @type {string|function|component}
      * @private
      */
     const baseLabel = computed(() => {
+      /* istanbul ignore next: can not tell if returned  */
       if (!labels.value) {
         return null
       }
-
-      let stepLabels = current$ && current$.value ? current$.value.labels : null
-
+      
+      let stepLabels = current$ && current$.value ? current$.value.labels : /* istanbul ignore next: failsafe only */ null
+      
       switch (type.value) {
         case 'previous':
           return stepLabels && stepLabels.previous ? stepLabels.previous : form$.value.translations.vueform.steps.previous
@@ -78,7 +79,7 @@ export default {
 
     /**
      * The [`FormSteps`](form-steps) component.
-     * 
+     *
      * @private
      */
     const steps$ = computed(() => {
@@ -87,20 +88,20 @@ export default {
 
     /**
      * The currently active [`FormStep`](form-step) component.
-     * 
+     *
      * @private
      */
     const current$ = computed(() => {
-      return steps$.value ? steps$.value.current$ : undefined
+      return steps$.value ? steps$.value.current$ : /* istanbul ignore next: failsafe only */ undefined
     })
 
     /**
      * Whether the control should be visible.
-     * 
+     *
      * @type {boolean}
      */
     const visible = computed(() => {
-      let buttons = current$ && current$.value ? current$.value.buttons : null
+      let buttons = current$ && current$.value ? current$.value.buttons : /* istanbul ignore next: failsafe only */ null
 
       switch (type.value) {
         case 'previous':
@@ -116,7 +117,7 @@ export default {
 
     /**
      * Whether the control should be disabled.
-     * 
+     *
      * @type {boolean}
      */
     const isDisabled = computed(() => {
@@ -132,7 +133,7 @@ export default {
             // step has invalid fields, which values have
             // changed to valid, but still marked as invalid
             (
-              (current$.value.invalid && form$.value.shouldValidateOnChange) ||  
+              (current$.value.invalid && form$.value.shouldValidateOnChange) ||
               current$.value.busy || form$.value.isLoading
             )
 
@@ -149,7 +150,7 @@ export default {
 
     /**
      * Whether the control is in loading state (except for previous).
-     * 
+     *
      * @type {boolean}
      */
     const isLoading = computed(() => {
@@ -160,7 +161,7 @@ export default {
 
     /**
      * Go to the previous form step.
-     * 
+     *
      * @returns {void}
      */
     const previous = () => {
@@ -169,14 +170,15 @@ export default {
 
     /**
      * Complete the current step and go to the next one (async). If the form's [`validateOn`](vueform#option-validate-on) prop or `config.validateOn` contains `'step'` also validates the elements within the step before moving forward (and stay if there's any error).
-     * 
+     *
      * @returns {void}
      */
     const next = async () => {
+      /* istanbul ignore else */
       if (form$.value.shouldValidateOnStep) {
         await current$.value.validate()
       }
-
+      
       if (current$.value.invalid) {
         return
       }
@@ -187,7 +189,7 @@ export default {
 
     /**
      * Complete the final step and submit the form (async).
-     * 
+     *
      * @returns {void}
      */
     const finish = async () => {
@@ -199,7 +201,7 @@ export default {
 
     /**
      * Handles `click` event.
-     * 
+     *
      * @returns {void}
      * @private
      */

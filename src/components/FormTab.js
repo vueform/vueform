@@ -166,7 +166,7 @@ export default {
      * @type {number}
      */
     const index = computed(() => {
-      return Object.keys(tabs$?.value?.tabs$||{}).indexOf(name.value)
+      return Object.keys(tabs$?.value?.tabs$||/* istanbul ignore next: tab can not stand by itself */{}).indexOf(name.value)
     })
 
     /**
@@ -348,6 +348,7 @@ export default {
         $parent.tabs$Array.splice($parent.tabs$Array.map(t$=>normalize(t$.name)).indexOf(normalize(name.value)), 1)
       }
       else {
+        /* @todo:adam test later */
         removeFromParent($parent.$parent, removeFromParent)
       }
     }
@@ -355,6 +356,7 @@ export default {
     // ============== WATCHERS ==============
 
     watch(children$, () => {
+      /* istanbul ignore else */
       if (!active.value) {
         return
       }
@@ -420,6 +422,7 @@ export default {
       tabLabel,
       tab$,
       tabs$,
+      conditionList,
       select,
       activate,
       deactivate,

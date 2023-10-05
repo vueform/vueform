@@ -29,7 +29,7 @@ export default {
 
     /**
      * The element's description, defined via the element's `description` option.
-     * 
+     *
      * @type {string}
      */
     const description = computed(() => {
@@ -38,7 +38,7 @@ export default {
 
     /**
      * The `id` attribute of the container.
-     * 
+     *
      * @type {string}
      */
     const id = computed(() => {
@@ -47,12 +47,12 @@ export default {
 
     /**
      * Whether the description is provided as a slot.
-     * 
+     *
      * @type {boolean}
      * @private
      */
     const isSlot = computed(() => {
-      return !!(el$.value.slots?.description || el$.value.$slots?.description || (form$.value.$vueform.vueVersion === 2 && el$.value.$scopedSlots?.description))
+      return !!(el$.value.slots?.description || el$.value.$slots?.description || /* istanbul ignore next: Vue2 is not checked */ (form$.value.$vueform.vueVersion === 2 && el$.value.$scopedSlots?.description))
     })
 
     return {
