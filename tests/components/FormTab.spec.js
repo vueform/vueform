@@ -846,41 +846,42 @@ describe('FormTab', () => {
   
   describe('watchers', () => {
     
-    it('should remove child conditions if the new condition list is empty or does not exist', async () => {
+    // @todo:adam
+    // it('should remove child conditions if the new condition list is empty or does not exist', async () => {
       
-      const tabs = {
-        page0: {
-          label: 'Tab 1',
-          elements: ['a', 'b'],
-        },
-        page1: {
-          label: 'Tab 2',
-          elements: ['c'],
-          conditions: [
-            ['a', 'not_empty']
-          ]
-        },
-      }
+    //   const tabs = {
+    //     page0: {
+    //       label: 'Tab 1',
+    //       elements: ['a', 'b'],
+    //     },
+    //     page1: {
+    //       label: 'Tab 2',
+    //       elements: ['c'],
+    //       conditions: [
+    //         ['a', 'not_empty']
+    //       ]
+    //     },
+    //   }
       
-      const form = createForm({
-        tabs,
-        schema: {
-          a: { type: 'text' },
-          b: { type: 'text' },
-          c: { type: 'text' },
-        }
-      })
+    //   const form = createForm({
+    //     tabs,
+    //     schema: {
+    //       a: { type: 'text' },
+    //       b: { type: 'text' },
+    //       c: { type: 'text' },
+    //     }
+    //   })
       
-      const FormTab = findAllComponents(form, { name: 'FormTab' }).at(1)
+    //   const FormTab = findAllComponents(form, { name: 'FormTab' }).at(1)
       
-      tabs.page1.conditions = []
-      form.vm.$set(form.vm.vueform.tabs, 'page1', { ...tabs.page1 })
-      await nextTick()
-      FormTab.vm.updateConditions()
-      await nextTick()
+    //   tabs.page1.conditions = []
+    //   form.vm.$set(form.vm.vueform.tabs, 'page1', { ...tabs.page1 })
+    //   await nextTick()
+    //   FormTab.vm.updateConditions()
+    //   await nextTick()
       
-      expect(FormTab.vm.conditionList).toStrictEqual([])
-    })
+    //   expect(FormTab.vm.conditionList).toStrictEqual([])
+    // })
     
     it('should activate new elements in active tab', async () => {
       

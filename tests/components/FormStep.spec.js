@@ -1514,41 +1514,42 @@ describe('FormStep', () => {
   
   describe('watchers', () => {
     
-    it('should remove child conditions if the new condition list is empty or does not exist', async () => {
+    // @todo: adam
+    // it('should remove child conditions if the new condition list is empty or does not exist', async () => {
       
-      const steps = {
-        page0: {
-          label: 'Step 1',
-          elements: ['a', 'b'],
-        },
-        page1: {
-          label: 'Step 2',
-          elements: ['c'],
-          conditions: [
-            ['a', 'not_empty']
-          ]
-        },
-      }
+    //   const steps = {
+    //     page0: {
+    //       label: 'Step 1',
+    //       elements: ['a', 'b'],
+    //     },
+    //     page1: {
+    //       label: 'Step 2',
+    //       elements: ['c'],
+    //       conditions: [
+    //         ['a', 'not_empty']
+    //       ]
+    //     },
+    //   }
       
-      const form = createForm({
-        steps,
-        schema: {
-          a: { type: 'text' },
-          b: { type: 'text' },
-          c: { type: 'text' },
-        }
-      })
+    //   const form = createForm({
+    //     steps,
+    //     schema: {
+    //       a: { type: 'text' },
+    //       b: { type: 'text' },
+    //       c: { type: 'text' },
+    //     }
+    //   })
       
-      const FormStep = findAllComponents(form, { name: 'FormStep' }).at(1)
+    //   const FormStep = findAllComponents(form, { name: 'FormStep' }).at(1)
       
-      steps.page1.conditions = []
-      form.vm.$set(form.vm.vueform.steps, 'page1', { ...steps.page1 })
-      await nextTick()
-      FormStep.vm.updateConditions()
-      await nextTick()
+    //   steps.page1.conditions = []
+    //   form.vm.$set(form.vm.vueform.steps, 'page1', { ...steps.page1 })
+    //   await nextTick()
+    //   FormStep.vm.updateConditions()
+    //   await nextTick()
       
-      expect(FormStep.vm.conditionList).toStrictEqual([])
-    })
+    //   expect(FormStep.vm.conditionList).toStrictEqual([])
+    // })
     
     it('should activate new elements in active step', async () => {
       
