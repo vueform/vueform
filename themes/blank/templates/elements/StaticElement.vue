@@ -5,10 +5,10 @@
       <div v-if="content && isHtml" :class="classes.content" v-html="content"></div>
 
       <!-- If content is component -->
-      <component v-else-if="content" :is="content" :el$="el$" />
+      <component v-else-if="content" :is="componentContent" :el$="el$" />
 
       <!-- If content is a slot -->
-      <slot v-else :el$="el$"><component :is="fieldSlots.default" :el$="el$"/></slot>
+      <slot v-else :el$="el$"><component :is="slotContent" :el$="el$"/></slot>
     </template>
 
     <!-- Default element slots -->
@@ -17,10 +17,10 @@
 
   <div v-else-if="content && isHtml" :class="classes.content" v-html="content"></div>
 
-  <component v-else-if="content" :is="content" ref="container" />
+  <component v-else-if="content" :is="componentContent" ref="container" />
 
   <div v-else :class="classes.container" ref="container">
-    <slot :el$="el$"><component :is="fieldSlots.default" :el$="el$"/></slot>
+    <slot :el$="el$"><component :is="slotContent" :el$="el$"/></slot>
   </div>
 </template>
 

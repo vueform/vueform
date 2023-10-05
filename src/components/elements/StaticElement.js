@@ -54,7 +54,6 @@ export default {
       useTheme,
       useLayout,
       usePath,
-      useStatic,
       useEvents,
       useBaseElement,
       useConditions,
@@ -67,6 +66,7 @@ export default {
       useFieldId,
       useA11y,
       useFocus,
+      useStatic,
     ]
     context.slots = [
       'default', 'label', 'info', 'description',
