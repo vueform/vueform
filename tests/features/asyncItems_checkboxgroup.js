@@ -207,7 +207,7 @@ export const resolvedOptions = function (elementType, elementName, options) {
 
     let el = form.vm.el$('el')
     
-    el.updateItems()
+    await el.updateItems()
     
     await flushPromises
     
