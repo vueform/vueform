@@ -818,12 +818,12 @@ var base$19 = function base(props, context) {
     messages,
     columns,
     languages,
-    locale,
     formKey,
     endpoint,
     method,
     formData,
     language,
+    locale,
     validateOn,
     forceLabels,
     floatPlaceholders,
@@ -883,7 +883,7 @@ var base$19 = function base(props, context) {
 
   /**
   * The components of highest level form elements.
-  * 
+  *
   * @type {object}
   * @default {}
   * @private
@@ -892,7 +892,7 @@ var base$19 = function base(props, context) {
 
   /**
   * The FormTabs component.
-  * 
+  *
   * @type {component}
   * @private
   */
@@ -900,7 +900,7 @@ var base$19 = function base(props, context) {
 
   /**
   * The FormSteps component.
-  * 
+  *
   * @type {component}
   * @private
   */
@@ -908,7 +908,7 @@ var base$19 = function base(props, context) {
 
   /**
    * Enables/disables validation for the form globally.
-   * 
+   *
    * @type {boolean}
    * @default true
    */
@@ -916,15 +916,15 @@ var base$19 = function base(props, context) {
 
   /**
    * Enables/disables conditions for the form globally.
-   * 
+   *
    * @type {boolean}
    * @default true
    */
   var conditions = ref(true);
 
   /**
-   * Instance of MessageBag service. It can be used to add [custom errors and messages](/docs/validating-elements#custom-errors-and-messages).
-   * 
+   * Instance of MessageBag service. It can be used to add [custom errors and messages](/docs/1.x/validating-elements#custom-errors-and-messages).
+   *
    * @type {MessageBag}
    * @default MessageBag
    */
@@ -932,7 +932,7 @@ var base$19 = function base(props, context) {
 
   /**
    * Whether the async process of submitting the form is currently in progress.
-   * 
+   *
    * @type {boolean}
    * @default false
    */
@@ -940,7 +940,7 @@ var base$19 = function base(props, context) {
 
   /**
    * Whether the async process of preparing the elements for submit is currently in progress.
-   * 
+   *
    * @type {boolean}
    * @default false
    */
@@ -948,7 +948,7 @@ var base$19 = function base(props, context) {
 
   /**
    * The code of the currently selected language (eg. `en`).
-   * 
+   *
    * @type {string}
    * @default config.language
    */
@@ -956,7 +956,7 @@ var base$19 = function base(props, context) {
 
   /**
    * The configuration object of the user when using SFC mode. Basically the value of the component's `data.vueform` object.
-   * 
+   *
    * @type {object}
    * @default {}
    * @private
@@ -965,7 +965,7 @@ var base$19 = function base(props, context) {
 
   /**
    * Whether the form has been mounted.
-   * 
+   *
    * @type {boolean}
    * @default false
    */
@@ -975,7 +975,7 @@ var base$19 = function base(props, context) {
 
   /**
    * The form component instance (self).
-   * 
+   *
    * @type {component}
    */
   var form$ = computed(() => {
@@ -984,7 +984,7 @@ var base$19 = function base(props, context) {
 
   /**
    * The default configuration object.
-   * 
+   *
    * @type {object}
    * @private
    */
@@ -994,7 +994,7 @@ var base$19 = function base(props, context) {
 
   /**
    * The default configuration object.
-   * 
+   *
    * @type {object}
    */
   var config$ = computed(() => {
@@ -1003,7 +1003,7 @@ var base$19 = function base(props, context) {
 
   /**
    * The active locale of the form.
-   * 
+   *
    * @type {string}
    */
   var locale$ = computed(() => {
@@ -1012,7 +1012,7 @@ var base$19 = function base(props, context) {
 
   /**
    * Registered services.
-   * 
+   *
    * @type {object}
    */
   var services = computed(() => {
@@ -1021,7 +1021,7 @@ var base$19 = function base(props, context) {
 
   /**
    * Form options merged from config, component props & the component's `data.vueform` options.
-   * 
+   *
    * @type {object}
    * @private
    */
@@ -1137,7 +1137,7 @@ var base$19 = function base(props, context) {
 
   /**
   * The global schema which has already been ordered based on tabs/steps element order.
-  * 
+  *
   * @type {object}
   * @private
   */
@@ -1170,7 +1170,7 @@ var base$19 = function base(props, context) {
 
   /**
    * The form's schema merged from `schema` prop and the component's `data.vueform.schema` object.
-   * 
+   *
    * @type {object}
    * @private
    */
@@ -1180,7 +1180,7 @@ var base$19 = function base(props, context) {
 
   /**
    * The form's tabs merged from `tabs` prop and the component's `data.vueform.tabs` object.
-   * 
+   *
    * @type {object}
    * @private
    */
@@ -1190,7 +1190,7 @@ var base$19 = function base(props, context) {
 
   /**
    * The form's steps merged from `steps` prop and the component's `data.vueform.steps` object.
-   * 
+   *
    * @type {object}
    * @private
    */
@@ -1200,7 +1200,7 @@ var base$19 = function base(props, context) {
 
   /**
    * The tree representation of the form schema.
-   * 
+   *
    * @type {array}
    */
   var tree = computed(() => {
@@ -1209,7 +1209,7 @@ var base$19 = function base(props, context) {
 
   /**
    * The flat tree representation of the form schema.
-   * 
+   *
    * @type {array}
    */
   var flatTree = computed(() => {
@@ -1218,7 +1218,7 @@ var base$19 = function base(props, context) {
 
   /**
    * The form data including the data of all elements even the ones with `available: false` and `submit: false`.
-   * 
+   *
    * @type {object}
    */
   var data = computed(() => {
@@ -1234,7 +1234,7 @@ var base$19 = function base(props, context) {
 
   /**
    * The form data excluding elements with `available: false` and `submit: false`. This one gets submitted by default, but can be changed with [`formData`](#option-form-data)
-   * 
+   *
    * @type {object}
    */
   var requestData = computed(() => {
@@ -1250,7 +1250,7 @@ var base$19 = function base(props, context) {
 
   /**
    * Whether the form has any elements which were modified.
-   * 
+   *
    * @type {boolean}
    */
   var dirty = computed(() => {
@@ -1261,7 +1261,7 @@ var base$19 = function base(props, context) {
 
   /**
    * Whether the form has any invalid elements.
-   * 
+   *
    * @type {boolean}
    */
   var invalid = computed(() => {
@@ -1272,7 +1272,7 @@ var base$19 = function base(props, context) {
 
   /**
    * Whether the form has any elements with active debounce process.
-   * 
+   *
    * @type {boolean}
    */
   var debouncing = computed(() => {
@@ -1283,7 +1283,7 @@ var base$19 = function base(props, context) {
 
   /**
    * Whether the form has any elements with pending async validation.
-   * 
+   *
    * @type {boolean}
    */
   var pending = computed(() => {
@@ -1294,7 +1294,7 @@ var base$19 = function base(props, context) {
 
   /**
    * Whether each element in the form has been validated at least once.
-   * 
+   *
    * @type {boolean}
    */
   var validated = computed(() => {
@@ -1305,7 +1305,7 @@ var base$19 = function base(props, context) {
 
   /**
    * Whether the form has any elements with `busy: true` or the [`isLoading`](#property-is-loading), [`preparing`](#property-preparing) or [`submitting`](#property-submitting) property is `true`.
-   * 
+   *
    * @type {boolean}
    */
   var busy = computed(() => {
@@ -1317,7 +1317,7 @@ var base$19 = function base(props, context) {
   // no export
   /**
    * Errors collected from elements.
-   * 
+   *
    * @type {array}
    * @private
    */
@@ -1336,7 +1336,7 @@ var base$19 = function base(props, context) {
 
   /**
    * Form errors including element errors and the ones added to [`messageBag`](#property-message-bag) manually.
-   * 
+   *
    * @type {array}
    */
   var formErrors = computed(() => {
@@ -1345,7 +1345,7 @@ var base$19 = function base(props, context) {
 
   /**
    * Whether the form has any errors.
-   * 
+   *
    * @type {boolean}
    */
   var hasErrors = computed(() => {
@@ -1354,7 +1354,7 @@ var base$19 = function base(props, context) {
 
   /**
    * Whether the form should display errors above the form with [`FormErrors`](form-errors) component. Can be disabled by [`displayErrors`](#option-display-errors) or in `config.displayErrors`.
-   * 
+   *
    * @type {boolean}
    */
   var showErrors = computed(() => {
@@ -1363,7 +1363,7 @@ var base$19 = function base(props, context) {
 
   /**
    * Form messages including element messages and the ones added to [`messageBag`](#property-message-bag) manually.
-   * 
+   *
    * @type {array}
    */
   var formMessages = computed(() => {
@@ -1372,7 +1372,7 @@ var base$19 = function base(props, context) {
 
   /**
    * Whether the form has any messages.
-   * 
+   *
    * @ignore
    * @type {boolean}
    */
@@ -1382,7 +1382,7 @@ var base$19 = function base(props, context) {
 
   /**
    * Whether the form should display messages above the form with [`FormMessages`](form-messages) component. Can be disabled by [`displayMessages`](#option-display-messages) or in `config.displayMessages`.
-   * 
+   *
    * @type {boolean}
    */
   var showMessages = computed(() => {
@@ -1391,7 +1391,7 @@ var base$19 = function base(props, context) {
 
   /**
    * Whether the form is multilingual and should show [`FormLanguages`](form-languages) component. Returns `true` if [`multilingual`](#option-multilingual) is enabled.
-   * 
+   *
    * @type {boolean}
    */
   var isMultilingual = computed(() => {
@@ -1400,7 +1400,7 @@ var base$19 = function base(props, context) {
 
   /**
    * Whether the form should show langauge selectors.
-   * 
+   *
    * @type {boolean}
    */
   var showLanguages = computed(() => {
@@ -1412,7 +1412,7 @@ var base$19 = function base(props, context) {
    * * the form has any invalid elements and [`validateOn`](#option-validate-on) contains `change`
    * * the form is [`busy`](#property-busy)
    * * manually disabled with [`disabled`](#option-disabled) option.
-   * 
+   *
    * @type {boolean}
    */
   var isDisabled = computed(() => {
@@ -1421,7 +1421,7 @@ var base$19 = function base(props, context) {
 
   /**
    * Whether loading state is triggered manually via [`loading`](#option-loading) option.
-   * 
+   *
    * @type {boolean}
    */
   var isLoading = computed(() => {
@@ -1430,7 +1430,7 @@ var base$19 = function base(props, context) {
 
   /**
    * Whether the `validateOn` prop or `config.validateOn` contains `'change'`.
-   * 
+   *
    * @type {boolean}
    * @private
    */
@@ -1440,7 +1440,7 @@ var base$19 = function base(props, context) {
 
   /**
    * Whether the `validateOn` prop or `config.validateOn` contains `'step'`.
-   * 
+   *
    * @type {boolean}
    * @private
    */
@@ -1450,7 +1450,7 @@ var base$19 = function base(props, context) {
 
   /**
    * Whether the form has any steps.
-   * 
+   *
    * @type {boolean}
    * @private
    */
@@ -1460,7 +1460,7 @@ var base$19 = function base(props, context) {
 
   /**
    * Whether the form should show [`FormSteps`](form-steps) component. Returns `true` if [`steps`](#option-steps) has value.
-   * 
+   *
    * @type {boolean}
    */
   var showSteps = computed(() => {
@@ -1469,7 +1469,7 @@ var base$19 = function base(props, context) {
 
   /**
    * Whether the form should display steps controls below form with [`FormStepsControls`](form-steps-control) component when it has [`steps`](#option-steps). Can be disabled with [`stepsControls`](#option-steps-controls).
-   * 
+   *
    * @type {boolean}
    */
   var showStepsControls = computed(() => {
@@ -1478,7 +1478,7 @@ var base$19 = function base(props, context) {
 
   /**
    * Whether the form has any tabs.
-   * 
+   *
    * @ignore
    * @type {boolean}
    */
@@ -1488,7 +1488,7 @@ var base$19 = function base(props, context) {
 
   /**
    * Whether the form should show [`FormTabs`](form-tabs) component. Returns `true` if [`tabs`](#option-tabs) has value.
-   * 
+   *
    * @type {boolean}
    */
   var showTabs = computed(() => {
@@ -1497,7 +1497,7 @@ var base$19 = function base(props, context) {
 
   /**
    * The selected theme, extended by local template and class overrides, using [`templates`](#option-replace-templates), [`addClasses`](#option-add-classes) and [`replaceClasses`](#option-replace-classes).
-   * 
+   *
    * @type {object}
    */
   var extendedTheme = computed(() => {
@@ -1517,7 +1517,7 @@ var base$19 = function base(props, context) {
 
   /**
    * The default list of templates available to the form components.
-   * 
+   *
    * @type {object}
    * @private
    */
@@ -1527,7 +1527,7 @@ var base$19 = function base(props, context) {
 
   /**
    * The component's template.
-   * 
+   *
    * @type {object}
    */
   var template = computed(() => {
@@ -1536,7 +1536,7 @@ var base$19 = function base(props, context) {
 
   /**
    * The component's classes.
-   * 
+   *
    * @type {object}
    */
   var classes = computed(() => {
@@ -1624,7 +1624,7 @@ var base$19 = function base(props, context) {
 
   /**
    * Updates the form data. Can be used to update a single element by providing the element's `path` as second option.
-   * 
+   *
    * @param {object} data* data to update with
    * @param {object} path the `path` of the element to update (default: `null`)
    * @returns {void}
@@ -1648,7 +1648,7 @@ var base$19 = function base(props, context) {
 
   /**
    * Loads data to the form using optional [`formatLoad`](#option-format-load) formatter.
-   * 
+   *
    * @param {string} value* the value to be loaded
    * @param {boolean} format whether the loaded value should be formatted with [`formatLoad`](#option-format-load) (default: `false`)
    * @returns {void}
@@ -1684,7 +1684,7 @@ var base$19 = function base(props, context) {
 
   /**
    * Resets the form's data to default state. Also resets all the validation state for the elements.
-   * 
+   *
    * @returns {void}
    */
   var reset = () => {
@@ -1705,7 +1705,7 @@ var base$19 = function base(props, context) {
 
   /**
    * Clears the forms data.
-   * 
+   *
    * @returns {void}
    */
   var clear = () => {
@@ -1726,7 +1726,7 @@ var base$19 = function base(props, context) {
 
   /**
    * Sets all elements' `dirty` to `false`.
-   * 
+   *
    * @returns {void}
    */
   var clean = () => {
@@ -1740,7 +1740,7 @@ var base$19 = function base(props, context) {
 
   /**
    * Clears the manually added messages from the form's and each element's `messageBag`.
-   * 
+   *
    * @returns {void}
    */
   var clearMessages = () => {
@@ -1757,7 +1757,7 @@ var base$19 = function base(props, context) {
 
   /**
    * Validates all elements (async) which weren't validated before. If [`validateOn`](#option-validate-on) does not contain `change` it will validate all elements on each call.
-   * 
+   *
    * @public
    * @returns {void}
    */
@@ -1785,7 +1785,7 @@ var base$19 = function base(props, context) {
 
   /**
    * Sets all element validators to default state.
-   * 
+   *
    * @returns {void}
    */
   var resetValidators = () => {
@@ -1799,7 +1799,7 @@ var base$19 = function base(props, context) {
 
   /**
    * Validates and prepares elements then submits the form (async).
-   * 
+   *
    * @returns {void}
    */
   var submit = /*#__PURE__*/function () {
@@ -1842,7 +1842,7 @@ var base$19 = function base(props, context) {
 
   /**
    * Sends form data to [`endpoint`](#option-endpoint) with the selected [`method`](#option-method) (async).
-   * 
+   *
    * @returns {void}
    */
   var send = /*#__PURE__*/function () {
@@ -1897,7 +1897,7 @@ var base$19 = function base(props, context) {
 
   /**
   * Prepares all elements to submit (async).
-  * 
+  *
   * @returns {void}
   * @private
   */
@@ -1925,7 +1925,7 @@ var base$19 = function base(props, context) {
 
   /**
    * Disabled form validation globally.
-   * 
+   *
    * @returns {void}
    */
   var disableValidation = () => {
@@ -1934,7 +1934,7 @@ var base$19 = function base(props, context) {
 
   /**
    * Enables form validation globally.
-   * 
+   *
    * @returns {void}
    */
   var enableValidation = () => {
@@ -1943,7 +1943,7 @@ var base$19 = function base(props, context) {
 
   /**
   * Enables conditions globally.
-  * 
+  *
   * @returns {void}
   */
   var enableConditions = () => {
@@ -1952,7 +1952,7 @@ var base$19 = function base(props, context) {
 
   /**
   * Disables conditions globally.
-  * 
+  *
   * @returns {void}
   */
   var disableConditions = () => {
@@ -1961,7 +1961,7 @@ var base$19 = function base(props, context) {
 
   /**
   * Sets current language when using [`multilingual`](#option-multilingual).
-  * 
+  *
   * @param {string} code* the language code to be selected
   * @returns {void}
   */
@@ -1981,7 +1981,7 @@ var base$19 = function base(props, context) {
 
   /**
   * Converts form data to [`FormData`](https://developer.mozilla.org/en-US/docs/Web/API/FormData).
-  * 
+  *
   * @param {object} data* the data to be converted
   * @returns {FormData}
   */
@@ -1991,7 +1991,7 @@ var base$19 = function base(props, context) {
 
   /**
    * Returns an element by its path.
-   * 
+   *
    * @param {string} path path of the element
    * @returns {component|null}
    */
@@ -2017,7 +2017,7 @@ var base$19 = function base(props, context) {
 
   /**
    * Returns the siblings of an element.
-   * 
+   *
    * @param {string} path path of the element
    * @returns {void}
    */
@@ -2031,7 +2031,7 @@ var base$19 = function base(props, context) {
 
   /**
   * Inits MessageBag service.
-  * 
+  *
   * @returns {void}
   * @private
   */
@@ -3799,7 +3799,7 @@ var FormTab = {
 
     /**
      * Whether the tab is active.
-     * 
+     *
      * @type {boolean}
      * @default false
      */
@@ -3807,7 +3807,7 @@ var FormTab = {
 
     /**
      * The label of the tab.
-     * 
+     *
      * @type {string|component}
      * @default null
      */
@@ -3817,7 +3817,7 @@ var FormTab = {
 
     /**
      * The components of highest level form elements.
-     * 
+     *
      * @type {object}
      */
     var elements$ = computed(() => {
@@ -3826,7 +3826,7 @@ var FormTab = {
 
     /**
      * The parent [`FormTabs`](form-tabs) component.
-     * 
+     *
      * @type {component}
      */
     var tabs$ = computed(() => {
@@ -3835,7 +3835,7 @@ var FormTab = {
 
     /**
      * Index of this tab among the other tabs which are not hidden by unmet conditions.
-     * 
+     *
      * @type {number}
      */
     var index = computed(() => {
@@ -3845,7 +3845,7 @@ var FormTab = {
 
     /**
      * Whether the tab is the first.
-     * 
+     *
      * @type {boolean}
      */
     var isFirst = computed(() => {
@@ -3854,7 +3854,7 @@ var FormTab = {
 
     /**
      * Whether the tab is the first.
-     * 
+     *
      * @type {boolean}
      */
     var isLast = computed(() => {
@@ -3863,7 +3863,7 @@ var FormTab = {
 
     /**
      * The components of form elements within the tab.
-     * 
+     *
      * @type {object}
      */
     var children$ = computed(() => {
@@ -3874,7 +3874,7 @@ var FormTab = {
 
     /**
      * Whether the tab should be visible.
-     * 
+     *
      * @type {boolean}
      */
     var visible = computed(() => {
@@ -3883,7 +3883,7 @@ var FormTab = {
 
     /**
      * Whether the tab has any invalid elements.
-     * 
+     *
      * @type {boolean}
      */
     var invalid = computed(() => {
@@ -3895,7 +3895,7 @@ var FormTab = {
 
     /**
      * The tab's component.
-     * 
+     *
      * @type {component}
      */
     var tab$ = computed(() => {
@@ -3952,7 +3952,7 @@ var FormTab = {
 
     /**
       * Apply conditions of the tab to its elements.
-      * 
+      *
       * @returns {void}
       * @private
       */
@@ -3967,7 +3967,7 @@ var FormTab = {
 
     /**
       * Remove conditions of the elements of the tab.
-      * 
+      *
       * @returns {void}
       * @private
       */
@@ -3979,7 +3979,7 @@ var FormTab = {
 
     /**
       * Resets conditions of the elements of the tab.
-      * 
+      *
       * @returns {void}
       * @private
       */
@@ -3990,7 +3990,7 @@ var FormTab = {
 
     /**
      * Set the component to the parent as if `refs` were used.
-     * 
+     *
      * @param {component} $parent parent component
      * @param {function} assignToParent the assignToParent function for recursion
      * @returns {void}
@@ -4006,7 +4006,7 @@ var FormTab = {
 
     /**
     * Removes the component from the parent.
-    * 
+    *
     * @param {component} $parent parent component
     * @param {function} removeFromParent the removeFromParent function for recursion
     * @private
@@ -9728,43 +9728,45 @@ var base$_ = function base(props, context, dependencies) {
 
   /**
    * Whether the element has a [`label`](#option-label) option, a [#label](#slot-label) slot or `Vueform` component's [`forceLabels`](vueform#option-force-labels) option is `true`.
-   * 
+   *
    * @type {boolean}
-   * 
+   *
    */
   var hasLabel = computed(() => {
     var _el$$value$$slots, _el$$value$$scopedSlo;
-    return !!(form$.value.options.forceLabels || label.value || el$.value.slots.label || (_el$$value$$slots = el$.value.$slots) !== null && _el$$value$$slots !== void 0 && _el$$value$$slots.label || form$.value.$vueform.vueVersion === 2 && (_el$$value$$scopedSlo = el$.value.$scopedSlots) !== null && _el$$value$$scopedSlo !== void 0 && _el$$value$$scopedSlo.label);
+    return !!(form$.value.options.forceLabels || label.value || el$.value.slots.label || (_el$$value$$slots = el$.value.$slots) !== null && _el$$value$$slots !== void 0 && _el$$value$$slots.label || /* istanbul ignore next: vue2 */form$.value.$vueform.vueVersion === 2 && (_el$$value$$scopedSlo = el$.value.$scopedSlots) !== null && _el$$value$$scopedSlo !== void 0 && _el$$value$$scopedSlo.label);
   });
 
   /**
-  * Whether the label is provided as a function.
-  * 
-  * @type {boolean}
-  * @private
-  */
+   * Whether the label is provided as a function.
+   *
+   * @type {boolean}
+   * @private
+   */
   var isLabelFunction = computed(() => {
     return typeof label.value === 'function' && (!label.value.prototype || !label.value.prototype.constructor || label.value.prototype.constructor && label.value.prototype.constructor.name !== 'VueComponent');
   });
 
   /**
-  * Whether label is provided as a Vue component.
-  * 
-  * @type {boolean}
-  * @private
-  */
+   * Whether label is provided as a Vue component.
+   *
+   * @type {boolean}
+   * @private
+   */
   var isLabelComponent = computed(() => {
     return isVueComponent(label.value);
   });
 
   /**
-  * The localized label of the element.
-  * 
-  * @type {string|component}
-  * @private
-  */
+   * The localized label of the element.
+   *
+   * @type {string|component}
+   * @private
+   */
   var Label = computed(() => {
     var Label = isLabelFunction.value ? label.value(el$.value) : label.value || null;
+
+    /* istanbul ignore else */
     if (!isLabelComponent.value) {
       Label = localize(Label, config$.value, form$.value);
     }
@@ -9796,7 +9798,7 @@ var base$Z = function base(props, context, dependencies) {
 
   /**
    * The classes service instance.
-   * 
+   *
    * @type {Columns}
    * @private
    */
@@ -9813,8 +9815,8 @@ var base$Z = function base(props, context, dependencies) {
   });
 
   /**
-   * Calulated column sizes and classes for the element.
-   * 
+   * Calculated column sizes and classes for the element.
+   *
    * @type {object}
    * @private
    */
@@ -9824,7 +9826,7 @@ var base$Z = function base(props, context, dependencies) {
 
   /**
    * The `cols` property of the Columns service instance.
-   * 
+   *
    * @type {object}
    * @private
    */
@@ -9836,7 +9838,7 @@ var base$Z = function base(props, context, dependencies) {
 
   /**
    * Update columns programmatically.
-   * 
+   *
    * @param {number|array} value* the new value for columns option
    * @private
    */
@@ -9877,8 +9879,8 @@ var base$Y = function base(props, context, dependencies) {
 
   /**
    * Whether the element was hidden programmatically with [`show()`](#method-show) or [`hide()`](#method-hide) methods.
-   * 
-   * @type {boolean} 
+   *
+   * @type {boolean}
    * @default false
    */
   var hidden = ref(false);
@@ -9887,8 +9889,8 @@ var base$Y = function base(props, context, dependencies) {
 
   /**
    * Whether the element is visible. It's `false` when `available` or `active` is `false` or `hidden` is `true`.
-   * 
-   * @type {boolean} 
+   *
+   * @type {boolean}
    */
   var visible = computed(() => {
     return available.value && !hidden.value && active.value;
@@ -10006,7 +10008,7 @@ var base$X = function base(props, context, dependencies) {
 
   /**
    * The list of templates available to the element.
-   * 
+   *
    * @type {object}
    * @private
    */
@@ -10024,7 +10026,7 @@ var base$X = function base(props, context, dependencies) {
 
   /**
    * The component's template.
-   * 
+   *
    * @type {object}
    */
   var template = computed(() => {
@@ -10053,7 +10055,7 @@ var base$W = function base(props, context, dependencies) {
 
   /**
    * Slots of the element.
-   * 
+   *
    * @type {object}
    * @private
    */
@@ -10081,8 +10083,8 @@ var base$W = function base(props, context, dependencies) {
   });
 
   /**
-   * Slots related to the element's field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `single-label` for `SelectElement`.
-   * 
+   * Slots related to the element's field. E.g. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, e.g. `option` or `single-label` for `SelectElement`.
+   *
    * @type {object}
    * @private
    */
@@ -10140,7 +10142,7 @@ var base$V = function base(props, context, dependencies) {
 
   /**
    * Whether the button is in loading state.
-   * 
+   *
    * @type {boolean}
    */
   var isLoading = computed(() => {
@@ -10155,7 +10157,7 @@ var base$V = function base(props, context, dependencies) {
 
   /**
    * Whether the button's label is a component.
-   * 
+   *
    * @type {boolean}
    * @private
    */
@@ -10165,7 +10167,7 @@ var base$V = function base(props, context, dependencies) {
 
   /**
    * Attributes of the button.
-   * 
+   *
    * @type {object}
    * @private
    */
@@ -10233,7 +10235,7 @@ var base$U = function base(props, context, dependencies) {
 
   /**
    * The current layout of the element.
-   * 
+   *
    * @type {string|component}
    * @private
    */
@@ -10260,7 +10262,7 @@ var base$T = function base(props, context, dependencies) {
 
   /**
    * The classes instance (for testing purpose).
-   * 
+   *
    * @type {MergeClasses}
    * @private
    */
@@ -10278,7 +10280,7 @@ var base$T = function base(props, context, dependencies) {
 
   /**
    * The component's classes.
-   * 
+   *
    * @type {object}
    */
   var classes = computed(() => {
@@ -10304,7 +10306,7 @@ var base$S = function base(props, context, dependencies) {
 
   /**
    * The `id` of the <%field%>. If [`id`](#option-id) is not provided [`path`](#option-path) will be used.
-   * 
+   *
    * @type {string}
    */
   var fieldId = computed(() => {
@@ -10326,9 +10328,9 @@ var base$R = function base(props, context, dependencies) {
 
   /**
    * Focuses the first focusable part of the element.
-   * 
+   *
    * @returns {void}
-   * @private 
+   * @private
    */
   var focus = () => {
     var _container$value, _el$querySelector;
@@ -10365,7 +10367,7 @@ var base$Q = function base(props, context, dependencies) {
 
   /**
    * Helper to store whether the element is disabled via api (with .disable()).
-   * 
+   *
    * @type {boolean|null}
    * @default null
    * @private
@@ -10376,7 +10378,7 @@ var base$Q = function base(props, context, dependencies) {
 
   /**
    * Whether the element is disabled.
-   * 
+   *
    * @type {boolean}
    */
   var isDisabled = computed(() => {
@@ -10422,8 +10424,8 @@ var checkboxgroup$3 = function checkboxgroup(props, context, dependencies) {
 
   /**
    * List of option keys to be disabled.
-   * 
-   * @type {array} 
+   *
+   * @type {array}
    * @default []
    * @private
    */
@@ -10444,6 +10446,8 @@ var checkboxgroup$3 = function checkboxgroup(props, context, dependencies) {
     var disablesList = _.clone(disabledItems.value);
     _.each(values, item => {
       item = String(item);
+
+      /* istanbul ignore else */
       if (disablesList.indexOf(item) === -1) {
         disablesList.push(item);
       }
@@ -10465,6 +10469,8 @@ var checkboxgroup$3 = function checkboxgroup(props, context, dependencies) {
     _.each(values, item => {
       item = String(item);
       var index = disablesList.indexOf(item);
+
+      /* istanbul ignore else */
       if (index !== -1) {
         disablesList.splice(index, 1);
       }
@@ -10493,7 +10499,7 @@ var checkboxgroup$3 = function checkboxgroup(props, context, dependencies) {
 
   // ================ HOOKS ===============
 
-  disabledItems.value = _.map(disables.value || [], d => {
+  disabledItems.value = _.map(disables.value || /* istanbul ignore next: can't fall into this, because it is hardwired to be `[]` if undefined */[], d => {
     return String(d);
   });
   return {
@@ -10520,7 +10526,7 @@ var button$1 = function button(props, context, dependencies) {
 
   /**
    * Whether the button is disabled.
-   * 
+   *
    * @type {boolean}
    */
   var isDisabled = computed(() => {
@@ -10550,7 +10556,7 @@ var base$P = function base(props, context, dependencies) {
 
   /**
    * The `id` of the related label component.
-   * 
+   *
    * @type {string}
    * @private
    */
@@ -10560,7 +10566,7 @@ var base$P = function base(props, context, dependencies) {
 
   /**
    * The `id` of the related description component.
-   * 
+   *
    * @type {string}
    * @private
    */
@@ -10570,7 +10576,7 @@ var base$P = function base(props, context, dependencies) {
 
   /**
    * The `id` of the related description component.
-   * 
+   *
    * @type {string}
    * @private
    */
@@ -10580,7 +10586,7 @@ var base$P = function base(props, context, dependencies) {
 
   /**
    * The `id` of the related error component.
-   * 
+   *
    * @type {string}
    * @private
    */
@@ -10590,7 +10596,7 @@ var base$P = function base(props, context, dependencies) {
 
   /**
    * The `aria-*` attributes of the input.
-   * 
+   *
    * @type {object}
    */
   var aria = computed(() => {
@@ -10822,23 +10828,23 @@ var base$N = function base(props, context, dependencies) {
 
   /**
    * The ref to the outermost DOM of the element.
-   * 
+   *
    * @type {HTMLElement}
    */
   var container = ref(null);
 
   /**
    * Whether the element has been already mounted.
-   * 
+   *
    * @type {boolean}
    * @default true
    */
   var mounted = ref(false);
 
   /**
-   * Whether the element is hidden internally by core components like tabs or steps steps. Only intended for reading.
-   * 
-   * @type {boolean} 
+   * Whether the element is hidden internally by core components like tabs or steps. Only intended for reading.
+   *
+   * @type {boolean}
    * @default true
    * @private
    */
@@ -10848,7 +10854,7 @@ var base$N = function base(props, context, dependencies) {
 
   /**
    * Whether the element is static (does not have any data or validation).
-   * 
+   *
    * @type {boolean}
    * @private
    */
@@ -10888,7 +10894,7 @@ var base$N = function base(props, context, dependencies) {
 
   /**
    * Whether the element should be visible when using `tabs` or `steps`.
-   * 
+   *
    * @type {boolean}
    * @private
    */
@@ -11094,7 +11100,7 @@ var base$M = function base(props, context, dependencies) {
 
   /**
    * The parent component of the element.
-   * 
+   *
    * @type {component}
    * @private
    */
@@ -11113,7 +11119,7 @@ var base$M = function base(props, context, dependencies) {
 
   /**
    * The path of the element using dot `.` syntax.
-   * 
+   *
    * @type {string}
    */
   var path = computed(() => {
@@ -11122,8 +11128,8 @@ var base$M = function base(props, context, dependencies) {
 
   /**
    * The path of the element's data using dot `.` syntax.
-   * 
-   * @type {string} 
+   *
+   * @type {string}
    */
   var dataPath = computed(() => {
     return parent.value && parent.value.dataPath ? parent.value.dataPath + '.' + name.value : name.value;
@@ -11131,7 +11137,7 @@ var base$M = function base(props, context, dependencies) {
 
   /**
    * Whether the element is just a container of children but not nested on data level (eg. [`GroupElement`](group-element))
-   * 
+   *
    * @type {boolean}
    * @private
    */
@@ -11536,8 +11542,8 @@ var base$K = function base(props, context, dependencies) {
 
   /**
    * The main input field of the element.
-   * 
-   * @type {HTMLElement} 
+   *
+   * @type {HTMLElement}
    */
   var input = ref(null);
   return {
@@ -11573,8 +11579,8 @@ var base$J = function base(props, context, dependencies) {
 
   /**
    * Sets the value of the element.
-   * 
-   * 
+   *
+   *
    * @param {any} val the value to be set
    * @returns {void}
    * @private
@@ -11590,7 +11596,7 @@ var base$J = function base(props, context, dependencies) {
 
   /**
    * The value of the element in `{[name]: value}` value format. This gets merged with the parent component's data.
-   * 
+   *
    * @type {object}
    */
   var data = computed(() => {
@@ -11601,7 +11607,7 @@ var base$J = function base(props, context, dependencies) {
 
   /**
    * Same as `data` property except that it only includes the element's value if [`submit`](#option-submit) is not disabled and [`available`](#property-available) is `true` (has no [`conditions`](#option-conditions) or they are fulfilled).
-   * 
+   *
    * @type {object}
    */
   var requestData = computed(() => {
@@ -11617,7 +11623,7 @@ var base$J = function base(props, context, dependencies) {
 
   /**
    * Loads value to the element using optional [`formatLoad`](#option-format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.
-   * 
+   *
    * @param {string} value* the value to be loaded
    * @param {boolean} format whether the loaded value should be formatted with [`formatLoad`](#option-format-load) before setting the value of the element (default: `false`)
    * @returns {void}
@@ -11628,8 +11634,8 @@ var base$J = function base(props, context, dependencies) {
   };
 
   /**
-   * Updates the value of the element similarly to [`load`](#method-load), only that it can\'t format data. 
-   * 
+   * Updates the value of the element similarly to [`load`](#method-load), only that it can\'t format data.
+   *
    * @param {string|} value* the value to be set
    * @returns {void}
    */
@@ -11639,7 +11645,7 @@ var base$J = function base(props, context, dependencies) {
 
   /**
    * Clears the element's value.
-   * 
+   *
    * @returns {void}
    */
   var clear = () => {
@@ -11648,7 +11654,7 @@ var base$J = function base(props, context, dependencies) {
 
   /**
    * Resets the element's value to [`default`](#option-default) (or empty if `default` is not provided). Also resets all the validation state for the element.
-   * 
+   *
    * @returns {void}
    */
   var reset = () => {
@@ -11662,6 +11668,7 @@ var base$J = function base(props, context, dependencies) {
    * @returns {void}
    * @private
    */
+  /* istanbul ignore next:@todo:adam missing implementation, but used in code */
   var prepare = /*#__PURE__*/function () {
     var _ref = _asyncToGenerator(function* () {});
     return function prepare() {
@@ -11859,7 +11866,7 @@ var group$5 = function group(props, context, dependencies) {
 
   /**
    * The value of child elements in object. This gets merged with the parent component's data.
-   * 
+   *
    * @type {object}
    */
   var data = computed(() => {
@@ -11930,7 +11937,7 @@ var list$3 = function list(props, context, dependencies, options) {
 
   /**
    * Default value of the parent
-   * 
+   *
    * @type {any}
    * @private
    */
@@ -11955,19 +11962,19 @@ var list$3 = function list(props, context, dependencies, options) {
 
   /**
    * Number of children.
-   * 
+   *
    * @type {number}
    * @private
    */
   var length = computed(() => {
-    return Object.keys(value.value || {}).length;
+    return Object.keys(value.value || /* istanbul ignore next: failsafe only */{}).length;
   });
 
   // =============== METHODS ===============
 
   /**
    * Appends a new item.
-   * 
+   *
    * @param {any} value value of the appended element (optional)
    * @returns {integer} the index of the appended item
    */
@@ -11993,8 +12000,8 @@ var list$3 = function list(props, context, dependencies, options) {
 
   /**
    * Removes an items by its index.
-   * 
-   * 
+   *
+   *
    * @param {number} index* index of items to be removed
    * @returns {void}
    */
@@ -12061,7 +12068,7 @@ var list$3 = function list(props, context, dependencies, options) {
 
   /**
    * Sorts value when `order` and `orderByName` is defined.
-   * 
+   *
    * @param {array} value value to be sorted
    * @returns {array}
    * @private
@@ -12071,6 +12078,8 @@ var list$3 = function list(props, context, dependencies, options) {
       return val;
     }
     var desc = order.value && typeof order.value === 'string' && order.value.toUpperCase() == 'DESC';
+
+    /* istanbul ignore else: console.log() shows that the single run test falls into the else branch, but coverage does not detect */
     if (orderByName.value) {
       val = desc ? _.sortBy(val, orderByName.value).reverse() : _.sortBy(val, orderByName.value);
     } else if (order.value) {
@@ -12081,7 +12090,7 @@ var list$3 = function list(props, context, dependencies, options) {
 
   /**
    * Handles the `add` event.
-   * 
+   *
    * @returns {void}
    * @private
    */
@@ -12446,6 +12455,8 @@ var multifile$5 = function multifile(props, context, dependencies) {
     var requestData = [];
     _.each(children$.value, element$ => {
       var val = element$.requestData[element$.name];
+
+      /* istanbul ignore next: failsafe only */
       if (val !== undefined) {
         var _val;
         if (typeof val === 'object' && (_val = val) !== null && _val !== void 0 && _val.__file__) {
@@ -12493,11 +12504,11 @@ var base$I = function base(props, context, dependencies) {
   // ============== COMPUTED ===============
 
   /**
-  * The default value of the element.
-  * 
-  * @type {any}
-  * @private
-  */
+   * The default value of the element.
+   *
+   * @type {any}
+   * @private
+   */
   var defaultValue = computed(() => {
     var parentDefaultValue;
     if (parent && parent.value && !parent.value.mounted) {
@@ -12536,11 +12547,11 @@ var text$1 = function text(props, context, dependencies) {
   // ============== COMPUTED ===============
 
   /**
-  * The default value of the element.
-  * 
-  * @type {any}
-  * @private
-  */
+   * The default value of the element.
+   *
+   * @type {any}
+   * @private
+   */
   var defaultValue = computed(() => {
     var parentDefaultValue;
     if (parent && parent.value && !parent.value.mounted) {
@@ -12551,9 +12562,14 @@ var text$1 = function text(props, context, dependencies) {
     if (parentDefaultValue !== undefined) {
       return parentDefaultValue instanceof File ? new File([parentDefaultValue], parentDefaultValue.name, parentDefaultValue) : _.isPlainObject(parentDefaultValue) ? localize(_.cloneDeep(parentDefaultValue), config$.value, form$.value) : _.cloneDeep(parentDefaultValue);
     }
+
+    /* istanbul ignore else */
     if (default_.value !== undefined) {
+      /* istanbul ignore next: text can not have File as default */
       return default_.value instanceof File ? new File([default_.value], default_.value.name, default_.value) : _.isPlainObject(default_.value) ? localize(_.cloneDeep(default_.value), config$.value, form$.value) : _.cloneDeep(default_.value);
     }
+
+    /* istanbul ignore next: text will never fall into this case, because `default_.value` is never undefined but null */
     return _.cloneDeep(nullValue.value);
   });
   return {
@@ -12582,7 +12598,7 @@ var object$5 = function object(props, context, dependencies) {
       parentDefaultValue = form$.value.options.default[name.value];
     }
     if (parentDefaultValue !== undefined) {
-      return _.cloneDeep(_.merge({}, default_.value || nullValue.value, parentDefaultValue));
+      return _.cloneDeep(_.merge({}, default_.value || /* istanbul ignore next: `default_.value` will never be undefined, because it is a hardwired `{}` */nullValue.value, parentDefaultValue));
     }
     if (Object.keys(default_.value).length > 0) {
       return _.cloneDeep(default_.value);
@@ -12610,6 +12626,7 @@ var group$4 = function group(props, context, dependencies) {
     if (parent && parent.value && !parent.value.mounted) {
       parentDefaultValue = parent.value.defaultValue;
     } else if (!form$.value.mounted && form$.value.options.default) {
+      //@todo:adam
       parentDefaultValue = form$.value.options.default;
     }
     return _.cloneDeep(_.merge({}, default_.value, parentDefaultValue));
@@ -12674,7 +12691,7 @@ var base$H = function base(props, context, dependencies) {
 
   /**
    * Helper property used to store the element states.
-   * 
+   *
    * @type {object}
    * @default { dirty: false, validate: true }
    * @private
@@ -12686,7 +12703,7 @@ var base$H = function base(props, context, dependencies) {
 
   /**
    * An array containing all the validators of the element.
-   * 
+   *
    * @type {array<Validator>}
    * @default []
    * @private
@@ -12695,7 +12712,7 @@ var base$H = function base(props, context, dependencies) {
 
   /**
    * Instance of MessageBag service. Custom errors and messages [can be added](/docs/validating-elements#custom-errors-and-messages).
-   * 
+   *
    * @type {MessageBag}
    * @default MessageBag
    */
@@ -12703,7 +12720,7 @@ var base$H = function base(props, context, dependencies) {
 
   /**
    * Instance of ValidatorFactory.
-   * 
+   *
    * @type {ValidatorFactory}
    * @default ValidatorFactory
    * @private
@@ -12714,7 +12731,7 @@ var base$H = function base(props, context, dependencies) {
 
   /**
    * The element's validation rules.
-   * 
+   *
    * @type {string|array}
    * @private
    */
@@ -12724,7 +12741,7 @@ var base$H = function base(props, context, dependencies) {
 
   /**
    * Whether the element's value was modified.
-   * 
+   *
    * @type {boolean}
    */
   var dirty = computed(() => {
@@ -12733,7 +12750,7 @@ var base$H = function base(props, context, dependencies) {
 
   /**
    * Whether the element was already validated at least once.
-   * 
+   *
    * @type {boolean}
    */
   var validated = computed(() => {
@@ -12742,7 +12759,7 @@ var base$H = function base(props, context, dependencies) {
 
   /**
    * Whether the element has any failing rules.
-   * 
+   *
    * @type {boolean}
    */
   var invalid = computed(() => {
@@ -12753,7 +12770,7 @@ var base$H = function base(props, context, dependencies) {
 
   /**
    * Whether the element has any async rules in progress.
-   * 
+   *
    * @type {boolean}
    */
   var pending = computed(() => {
@@ -12764,7 +12781,7 @@ var base$H = function base(props, context, dependencies) {
 
   /**
    * Whether the element is `pending`.
-   * 
+   *
    * @type {boolean}
    */
   var busy = computed(() => {
@@ -12773,7 +12790,7 @@ var base$H = function base(props, context, dependencies) {
 
   /**
    * The list of errors of failing rules.
-   * 
+   *
    * @type {array}
    * @private
    */
@@ -12789,7 +12806,7 @@ var base$H = function base(props, context, dependencies) {
 
   /**
    * All the errors of `MessageBag`.
-   * 
+   *
    * @type {array}
    */
   var errors = computed(() => {
@@ -12798,7 +12815,7 @@ var base$H = function base(props, context, dependencies) {
 
   /**
    * The first error of `MessageBag`.
-   * 
+   *
    * @type {string}
    */
   var error = computed(() => {
@@ -12807,7 +12824,7 @@ var base$H = function base(props, context, dependencies) {
 
   /**
    * Whether the element has errors.
-   * 
+   *
    * @type {boolean}
    */
   var isDanger = computed(() => {
@@ -12816,7 +12833,7 @@ var base$H = function base(props, context, dependencies) {
 
   /**
    * Whether the element has been filled in successfully.
-   * 
+   *
    * @type {boolean}
    */
   var isSuccess = computed(() => {
@@ -12827,7 +12844,7 @@ var base$H = function base(props, context, dependencies) {
 
   /**
    * Checks each validation rule for the element (async).
-   * 
+   *
    * @returns {void}
    */
   var validate = /*#__PURE__*/function () {
@@ -12855,7 +12872,7 @@ var base$H = function base(props, context, dependencies) {
 
   /**
    * Sets the validators to default state.
-   * 
+   *
    * @returns {void}
    */
   var resetValidators = () => {
@@ -12867,7 +12884,7 @@ var base$H = function base(props, context, dependencies) {
 
   /**
    * Flag the element as dirty.
-   * 
+   *
    * @returns {void}
    * @private
    */
@@ -12877,7 +12894,7 @@ var base$H = function base(props, context, dependencies) {
 
   /**
    * Removes the element's `dirty` state.
-   * 
+   *
    * @returns {void}
    */
   var clean = () => {
@@ -12886,18 +12903,19 @@ var base$H = function base(props, context, dependencies) {
 
   /**
    * Clears the manually added messages from the [`messageBag`](#property-message-bag).
-   * 
+   *
    * @returns {void}
    */
   var clearMessages = () => {
+    /* istanbul ignore else */
     if (messageBag.value) {
       messageBag.value.clear();
     }
   };
 
   /**
-   * Initalizes MessageBag service.
-   * 
+   * Initializes MessageBag service.
+   *
    * @returns {void}
    * @private
    */
@@ -12906,12 +12924,13 @@ var base$H = function base(props, context, dependencies) {
   };
 
   /**
-   * Initalizes validators.
-   * 
+   * Initializes validators.
+   *
    * @returns {void}
    * @private
    */
   var initValidation = () => {
+    /* istanbul ignore else */
     if (!validationRules.value) {
       return;
     }
@@ -12927,8 +12946,8 @@ var base$H = function base(props, context, dependencies) {
   };
 
   /**
-   * Re-initalizes validators when rules have changed.
-   * 
+   * Re-initializes validators when rules have changed.
+   *
    * @returns {void}
    */
   var reinitValidation = () => {
@@ -12986,7 +13005,7 @@ var text = function text(props, context, dependencies) {
 
   /**
    * Whether the element has a validation rule with pending debounce.
-   * 
+   *
    * @type {boolean}
    */
   var debouncing = computed(() => {
@@ -12997,7 +13016,7 @@ var text = function text(props, context, dependencies) {
 
   /**
    * Whether the element is `pending` or `debouncing`.
-   * 
+   *
    * @type {boolean}
    */
   var busy = computed(() => {
@@ -13046,7 +13065,7 @@ var list$2 = function list(props, context, dependencies) {
 
   /**
    * Whether the element's or any of its children's value was modified.
-   * 
+   *
    * @type {boolean}
    */
   var dirty = computed(() => {
@@ -13058,7 +13077,7 @@ var list$2 = function list(props, context, dependencies) {
 
   /**
    * Whether the element and all of its children was already validated at least once.
-   * 
+   *
    * @type {boolean}
    */
   var validated = computed(() => {
@@ -13070,7 +13089,7 @@ var list$2 = function list(props, context, dependencies) {
 
   /**
    * Whether the element or any of its children has any failing rules.
-   * 
+   *
    * @type {boolean}
    */
   var invalid = computed(() => {
@@ -13084,7 +13103,7 @@ var list$2 = function list(props, context, dependencies) {
 
   /**
    * Whether the element or any of its children has any async rules in progress.
-   * 
+   *
    * @type {boolean}
    */
   var pending = computed(() => {
@@ -13097,8 +13116,8 @@ var list$2 = function list(props, context, dependencies) {
   });
 
   /**
-   * Whether the element or any of its chilren has a validation rule with pending debounce.
-   * 
+   * Whether the element or any of its children have a validation rule with pending debounce.
+   *
    * @type {boolean}
    */
   var debouncing = computed(() => {
@@ -13112,7 +13131,7 @@ var list$2 = function list(props, context, dependencies) {
 
   /**
    * Whether the element or any of its children is `pending` or `debouncing`.
-   * 
+   *
    * @type {boolean}
    */
   var busy = computed(() => {
@@ -13133,7 +13152,7 @@ var list$2 = function list(props, context, dependencies) {
 
   /**
    * The list of errors collected from children.
-   * 
+   *
    * @type {array}
    * @private
    */
@@ -13151,8 +13170,8 @@ var list$2 = function list(props, context, dependencies) {
   });
 
   /**
-   * The `validatorErrors` concated with `childrenErrors`.
-   * 
+   * The `validatorErrors` concatenated with `childrenErrors`.
+   *
    * @type {array}
    * @private
    */
@@ -13170,7 +13189,7 @@ var list$2 = function list(props, context, dependencies) {
 
   /**
    * Checks each validation rule for the element and validates children (async).
-   * 
+   *
    * @returns {void}
    */
   var validate = /*#__PURE__*/function () {
@@ -13185,7 +13204,7 @@ var list$2 = function list(props, context, dependencies) {
 
   /**
    * Checks each validation rule for the element (async).
-   * 
+   *
    * @returns {void}
    */
   var validateValidators = /*#__PURE__*/function () {
@@ -13210,7 +13229,7 @@ var list$2 = function list(props, context, dependencies) {
 
   /**
    * Validates every child (async).
-   * 
+   *
    * @returns {void}
    */
   var validateChildren = /*#__PURE__*/function () {
@@ -13220,6 +13239,7 @@ var list$2 = function list(props, context, dependencies) {
       }
       yield asyncForEach(children$.value, /*#__PURE__*/function () {
         var _ref7 = _asyncToGenerator(function* (element$) {
+          /* istanbul ignore else */
           if (!element$.isStatic) {
             yield element$.validate();
           }
@@ -13235,6 +13255,7 @@ var list$2 = function list(props, context, dependencies) {
   }();
   var clean = () => {
     _.each(children$.value, element$ => {
+      /* istanbul ignore next: checked for console errors, but return can not be checked */
       if (element$.isStatic) {
         return;
       }
@@ -13243,10 +13264,12 @@ var list$2 = function list(props, context, dependencies) {
     state.value.dirty = false;
   };
   var clearMessages = () => {
+    /* istanbul ignore else */
     if (messageBag.value) {
       messageBag.value.clear();
     }
     _.each(children$.value, element$ => {
+      /* istanbul ignore else */
       if (element$.isStatic) {
         return;
       }
@@ -13255,6 +13278,7 @@ var list$2 = function list(props, context, dependencies) {
   };
   var resetValidators = () => {
     _.each(children$.value, element$ => {
+      /* istanbul ignore next: checked for console errors, but return can not be checked */
       if (element$.isStatic) {
         return;
       }
@@ -13271,6 +13295,7 @@ var list$2 = function list(props, context, dependencies) {
   var reinitValidation = () => {
     initValidation();
     _.each(children$.value, element$ => {
+      /* istanbul ignore next: checked for console errors, but return can not be checked */
       if (element$.isStatic) {
         return;
       }
@@ -13344,7 +13369,7 @@ var multilingual$5 = function multilingual(props, context, dependencies) {
 
   /**
    * Whether the element's value has been modified in any language.
-   * 
+   *
    * @type {boolean}
    */
   var dirty = computed(() => {
@@ -13355,7 +13380,7 @@ var multilingual$5 = function multilingual(props, context, dependencies) {
 
   /**
    * Whether all the languages have already been validated at least once.
-   * 
+   *
    * @type {boolean}
    */
   var validated = computed(() => {
@@ -13366,7 +13391,7 @@ var multilingual$5 = function multilingual(props, context, dependencies) {
 
   /**
    * Whether the element has failing rules in any language.
-   * 
+   *
    * @type {boolean}
    */
   var invalid = computed(() => {
@@ -13383,7 +13408,7 @@ var multilingual$5 = function multilingual(props, context, dependencies) {
 
   /**
    * Whether the element has any async rules in progress in any language.
-   * 
+   *
    * @type {boolean}
    */
   var pending = computed(() => {
@@ -13400,7 +13425,7 @@ var multilingual$5 = function multilingual(props, context, dependencies) {
 
   /**
    * Whether the element has a validation rule with pending debounce in any language.
-   * 
+   *
    * @type {boolean}
    */
   var debouncing = computed(() => {
@@ -13417,7 +13442,7 @@ var multilingual$5 = function multilingual(props, context, dependencies) {
 
   /**
    * Whether the element is `pending` or `debouncing` in any language.
-   * 
+   *
    * @type {boolean}
    */
   var busy = computed(() => {
@@ -13457,7 +13482,7 @@ var multilingual$5 = function multilingual(props, context, dependencies) {
 
   /**
    * Whether the field has errors.
-   * 
+   *
    * @type {boolean}
    */
   var isDanger = computed(() => {
@@ -13466,7 +13491,7 @@ var multilingual$5 = function multilingual(props, context, dependencies) {
 
   /**
    * Whether the field has been filled in successfully.
-   * 
+   *
    * @type {boolean}
    */
   var isSuccess = computed(() => {
@@ -13479,7 +13504,7 @@ var multilingual$5 = function multilingual(props, context, dependencies) {
 
   /**
    * Checks each validation rule for the element in every language (async).
-   * 
+   *
    * @returns {void}
    */
   var validate = /*#__PURE__*/function () {
@@ -13500,8 +13525,8 @@ var multilingual$5 = function multilingual(props, context, dependencies) {
 
   /**
    * Checks each validation rule for the element in a specific language (async).
-   * 
-   * @param {string} lang the langauage to check (defaults to currently selected language)
+   *
+   * @param {string} lang the language to check (defaults to currently selected language)
    * @returns {void}
    */
   var validateLanguage = /*#__PURE__*/function () {
@@ -13533,10 +13558,11 @@ var multilingual$5 = function multilingual(props, context, dependencies) {
         Validator.reset();
       });
       _.each(validationRules.value, (r, lang) => {
-        state.value.validated[lang] = r.length > 0 ? false : true;
+        state.value.validated[lang] = r.length > 0 ? false : true; // @todo:adam missing null check
       });
     });
   };
+
   var dirt = () => {
     state.value.dirty[language.value] = true;
   };
@@ -13546,7 +13572,7 @@ var multilingual$5 = function multilingual(props, context, dependencies) {
 
   /**
    * Inits the default `state` object.
-   * 
+   *
    * @returns {void}
    * @private
    */
@@ -13568,6 +13594,7 @@ var multilingual$5 = function multilingual(props, context, dependencies) {
     messageBag.value = new form$.value.$vueform.services.messageBag(validatorErrors);
   };
   var initValidation = () => {
+    /* istanbul ignore next: can not be null or false */
     if (!validationRules.value) {
       return;
     }
@@ -13583,6 +13610,8 @@ var multilingual$5 = function multilingual(props, context, dependencies) {
       if (languageRules === null) {
         return;
       }
+
+      /* istanbul ignore else */
       if (!Validators.value[lang]) {
         Validators.value = Object.assign({}, Validators.value, {
           [lang]: []
@@ -13745,7 +13774,7 @@ var file$1 = function file(props, context, dependencies) {
 
   /**
    * Whether the element is `pending`, `debouncing`, `uploading` or `removing`.
-   * 
+   *
    * @type {boolean}
    */
   var busy = computed(() => {
@@ -13756,7 +13785,7 @@ var file$1 = function file(props, context, dependencies) {
 
   /**
    * Checks each validation rule for the element (async). File element will only validate for `min`, `max`, `between`, `size`, `mimetypes`, `mimes`, `dimensions`, `file`, `image`, `gt`, `gte`, `lt` and `lte` rules and only before the temporary files are uploaded.
-   * 
+   *
    * @returns {void}
    */
   var validate = /*#__PURE__*/function () {
@@ -13844,7 +13873,7 @@ var location$2 = function location(props, context, dependencies) {
 
   /**
    * Checks each validation rule for the element on [`displayKey`](#option-display-key) property of the location object (async).
-   * 
+   *
    * @returns {void}
    */
   var validate = /*#__PURE__*/function () {
@@ -13919,7 +13948,7 @@ var base$G = function base(props, context, dependencies) {
 
   /**
    * The generic name of the element constructed from label / floating or element name.
-   * 
+   *
    * @type {string}
    * @private.
    */
@@ -13952,7 +13981,7 @@ var file = function file(props, context, dependencies) {
 
   var form$ = dependencies.form$;
   var Label = dependencies.Label;
-  var filename = dependencies.filename || ref(null);
+  var filename = dependencies.filename || /* istanbul ignore next: failsafe only */ref(null);
 
   // =============== INJECT ===============
 
@@ -13962,7 +13991,7 @@ var file = function file(props, context, dependencies) {
 
   /**
    * The generic name of the element constructed from label / floating, element name or default file name if name is a number.
-   * 
+   *
    * @type {string}
    * @private.
    */
@@ -14001,7 +14030,7 @@ var base$F = function base(props, context, dependencies) {
 
   /**
    * The initial value of the element.
-   * 
+   *
    * @type {any}
    * @private
    */
@@ -14016,7 +14045,7 @@ var base$F = function base(props, context, dependencies) {
 
   /**
    * The store for the value of the element when we're not using external data (form's `v-model`).
-   * 
+   *
    * @type {any}
    * @private
    */
@@ -14024,7 +14053,7 @@ var base$F = function base(props, context, dependencies) {
 
   /**
    * The value of the element.
-   * 
+   *
    * @type {any}
    */
   var value = computed({
@@ -14037,7 +14066,7 @@ var base$F = function base(props, context, dependencies) {
       } else {
         value = internalValue.value;
       }
-      return value !== undefined ? value : defaultValue.value instanceof File ? defaultValue.value : _.cloneDeep(defaultValue.value);
+      return value !== undefined ? value : /* istanbul ignore next: value is never undefined if default is set */defaultValue.value instanceof File ? defaultValue.value : _.cloneDeep(defaultValue.value);
     },
     set: ((_options$value2 = options.value) === null || _options$value2 === void 0 ? void 0 : _options$value2.set) || function (val) {
       if (form$.value.isSync) {
@@ -14057,7 +14086,7 @@ var base$F = function base(props, context, dependencies) {
 
   /**
    * Intermediary value between element's value and field's `v-model`. It is required when we need to transform the value format between the element and its field.
-   * 
+   *
    * @type {any}
    */
   var model = computed({
@@ -14069,11 +14098,13 @@ var base$F = function base(props, context, dependencies) {
     }
   });
   if (options.init === undefined || options.init !== false) {
-    // If element's value was undefined initially (not found in v-model/data) then we need to set it's value
+    // If element's value was undefined initially (not found in v-model/data) then we need to set its value
     if (initialValue.value === undefined) {
       value.value = defaultValue.value instanceof File ? defaultValue.value : _.cloneDeep(defaultValue.value);
     }
   }
+
+  /* istanbul ignore next: type can not be changed on the fly */
   watch(type, () => {
     value.value = defaultValue.value instanceof File ? defaultValue.value : _.cloneDeep(defaultValue.value);
   });
@@ -14116,7 +14147,8 @@ var object$3 = function object(props, context, dependencies) {
 
   // ================ HOOKS ================
 
-  if (options.init === undefined || options.init !== false) {
+  /* istanbul ignore else */
+  if (options.init === undefined || /* istanbul ignore next: init will always be false */options.init !== false) {
     if (initialValue.value === undefined) {
       value.value = defaultValue.value;
     } else {
@@ -14142,7 +14174,7 @@ var group$2 = function group(props, context, dependencies) {
 
   /**
    * The store for the value of the element when we're not using external data (form's `v-model`).
-   * 
+   *
    * @type {any}
    * @private
    */
@@ -14163,6 +14195,7 @@ var group$2 = function group(props, context, dependencies) {
 
       // Filter out children values that parent has but not among group elements
       var childKeys = children$Array.value.reduce((all, child$) => {
+        /* istanbul ignore else */
         if (child$.isStatic || !child$) {
           return all;
         }
@@ -14174,7 +14207,7 @@ var group$2 = function group(props, context, dependencies) {
             children$Array.forEach(child$ => {
               if (!child$.isStatic && child$.flat) {
                 addGroupKeys(child$.children$Array);
-              } else if (!child$.isStatic) {
+              } /* istanbul ignore else */else if (!child$.isStatic) {
                 keys.push(child$.name);
               }
             });
@@ -14185,12 +14218,13 @@ var group$2 = function group(props, context, dependencies) {
       }, []);
       var tempValue = {};
       childKeys.forEach(key => {
+        /* istanbul ignore else */
         if (value[key] !== undefined) {
           tempValue[key] = value[key];
         }
       });
       value = tempValue;
-      return value !== undefined ? value : _.cloneDeep(defaultValue.value);
+      return value !== undefined ? value : /* istanbul ignore next: will never reach, internalValue is assigned at the beginning */_.cloneDeep(defaultValue.value);
     },
     set(val) {
       if (form$.value.isSync) {
@@ -14249,11 +14283,11 @@ var date$2 = function date(props, context, dependencies) {
 
   /**
    * The store for the value of the element when we're not using external data (form's `v-model`).
-   * 
+   *
    * @type {any}
    * @private
    */
-  var internalValue = ref(defaultValue.value instanceof File ? defaultValue.value : _.cloneDeep(defaultValue.value));
+  var internalValue = ref(defaultValue.value instanceof File ? /* istanbul ignore next: @todo:adam date type will never have file instance default value */defaultValue.value : _.cloneDeep(defaultValue.value));
   var {
     value,
     initialValue
@@ -14268,7 +14302,7 @@ var date$2 = function date(props, context, dependencies) {
         } else {
           value = internalValue.value;
         }
-        return value !== undefined ? value : defaultValue.value instanceof File ? defaultValue.value : _.cloneDeep(defaultValue.value);
+        return value !== undefined ? value : /* istanbul ignore next: can not be undefined @todo:adam can not be file */defaultValue.value instanceof File ? defaultValue.value : _.cloneDeep(defaultValue.value);
       },
       set(val) {
         // If the value is not a Date object check if it is matching the value format
@@ -14321,11 +14355,11 @@ var dates$3 = function dates(props, context, dependencies) {
 
   /**
    * The store for the value of the element when we're not using external data (form's `v-model`).
-   * 
+   *
    * @type {any}
    * @private
    */
-  var internalValue = ref(defaultValue.value instanceof File ? defaultValue.value : _.cloneDeep(defaultValue.value));
+  var internalValue = ref(defaultValue.value instanceof File ? /* istanbul ignore next: @todo:adam date type will never have file instance default value */defaultValue.value : _.cloneDeep(defaultValue.value));
   var {
     value,
     initialValue
@@ -14340,7 +14374,7 @@ var dates$3 = function dates(props, context, dependencies) {
         } else {
           value = internalValue.value;
         }
-        return value !== undefined ? value : defaultValue.value instanceof File ? defaultValue.value : _.cloneDeep(defaultValue.value);
+        return value !== undefined ? value : /* istanbul ignore next: can not be undefined @todo:adam can not be file */defaultValue.value instanceof File ? defaultValue.value : _.cloneDeep(defaultValue.value);
       },
       set(val) {
         if (!Array.isArray(val)) {
@@ -14401,6 +14435,8 @@ var base$E = function base(props, context, dependencies) {
         return;
       }
       fire('change', n, o, el$.value);
+
+      /* istanbul ignore else */
       if (dirt) {
         dirt();
       }
@@ -14435,6 +14471,8 @@ var multilingual$3 = function multilingual(props, context, dependencies) {
         return;
       }
       fire('change', n, o, el$.value);
+
+      /* istanbul ignore else */
       if (dirt) {
         dirt();
       }
@@ -14468,9 +14506,13 @@ var list = function list(props, context, dependencies) {
         return;
       }
       fire('change', n, o, el$.value);
+
+      /* istanbul ignore else */
       if (dirt) {
         dirt();
       }
+
+      /* istanbul ignore else */
       if (validateValidators && form$.value.shouldValidateOnChange) {
         validateValidators();
       }
@@ -14501,9 +14543,13 @@ var object$2 = function object(props, context, dependencies) {
         return;
       }
       fire('change', n, o, el$.value);
+
+      /* istanbul ignore else */
       if (dirt) {
         dirt();
       }
+
+      /* istanbul ignore else */
       if (validateValidators && form$.value.shouldValidateOnChange) {
         validateValidators();
       }
@@ -14541,6 +14587,8 @@ var location$1 = function location(props, context, dependencies) {
       fire('change', n, o, el$.value);
       dirt();
       input.value.value = input.value && value.value && value.value[displayKey.value] !== undefined ? value.value[displayKey.value] : '';
+
+      /* istanbul ignore else */
       if (validate && form$.value.shouldValidateOnChange) {
         validate();
       }
@@ -14570,9 +14618,9 @@ var base$D = function base(props, context, dependencies) {
 
   /**
    * The localized text of the element.
-   * 
+   *
    * @type {string}
-   * 
+   *
    */
   var Text = computed(() => {
     return localize(text.value, config$.value, form$.value) || '';
@@ -14587,7 +14635,7 @@ var base$C = function base(props, context, dependencies) {
 
   /**
    * The null value of the element.
-   * 
+   *
    * @type {any}
    * @private
    */
@@ -14892,6 +14940,7 @@ var base$A = function base(props, context, dependencies) {
     }
     var items = _.clone(value.value);
     _.each(values, item => {
+      /* istanbul ignore else */
       if (items.indexOf(String(item)) === -1 && items.indexOf(Number(item)) === -1) {
         items.push(item);
       }
@@ -14912,9 +14961,13 @@ var base$A = function base(props, context, dependencies) {
     var items = _.clone(value.value);
     _.each(values, item => {
       var index = items.indexOf(String(item));
+
+      /* istanbul ignore else */
       if (index === -1) {
         index = items.indexOf(Number(item));
       }
+
+      /* istanbul ignore else */
       if (index !== -1) {
         items.splice(index, 1);
       }
@@ -14988,7 +15041,7 @@ var base$z = function base(props, context, dependencies) {
 
   /**
    * Contains the fetched items when using async `items`.
-   * 
+   *
    * @type {array|object}
    * @default null
    * @private
@@ -15007,8 +15060,8 @@ var base$z = function base(props, context, dependencies) {
   // ============== COMPUTED ==============
 
   /**
-   * Contains the resolved options. 
-   * 
+   * Contains the resolved options.
+   *
    * @type {array}
    */
   var resolvedOptions = computed(() => {
@@ -15051,9 +15104,9 @@ var base$z = function base(props, context, dependencies) {
 
   /**
    * Fetches & updates select options when using `async` options. Receives [`el$`](#property-el) as first param.
-   * 
+   *
    * @param {boolean} disable* whether the input field should be disabled while fetching options
-   * @returns {void} 
+   * @returns {void}
    */
   var updateItems = /*#__PURE__*/function () {
     var _ref = _asyncToGenerator(function* () {
@@ -15089,7 +15142,7 @@ var base$z = function base(props, context, dependencies) {
 
   /**
    * Resolves options from url.
-   * 
+   *
    * @return {void}
    * @private
    */
@@ -15118,7 +15171,7 @@ var base$z = function base(props, context, dependencies) {
 
   /**
    * Creates an async function returning options from url.
-   * 
+   *
    * @return {void}
    * @private
    */
@@ -15151,7 +15204,7 @@ var base$z = function base(props, context, dependencies) {
 
   /**
    * Resolves options from function.
-   * 
+   *
    * @return {void}
    * @private
    */
@@ -15171,7 +15224,7 @@ var base$z = function base(props, context, dependencies) {
 
   /**
    * Resolves items.
-   * 
+   *
    * @return {void}
    * @private
    */
@@ -15311,7 +15364,7 @@ var checkboxgroup = function checkboxgroup(props, context, dependencies) {
 
   /**
    * Contains the fetched items when using async `items`.
-   * 
+   *
    * @type {array|object}
    * @default null
    * @private
@@ -15322,7 +15375,7 @@ var checkboxgroup = function checkboxgroup(props, context, dependencies) {
 
   /**
    * Contains the available items. If [`items`](#option-items) are async this contains the resolved items.
-   * 
+   *
    * @type {array}
    */
   var resolvedOptions = computed(() => {
@@ -15374,9 +15427,9 @@ var checkboxgroup = function checkboxgroup(props, context, dependencies) {
 
   /**
    * Fetches & updates items when using `async` items.
-   * 
+   *
    * @param {boolean} disable* whether the input field should be disabled while fetching options
-   * @returns {void} 
+   * @returns {void}
    */
   var updateItems = /*#__PURE__*/function () {
     var _ref7 = _asyncToGenerator(function* () {
@@ -15400,7 +15453,7 @@ var checkboxgroup = function checkboxgroup(props, context, dependencies) {
 
   /**
    * Resolves options from url.
-   * 
+   *
    * @return {void}
    * @private
    */
@@ -15423,7 +15476,7 @@ var checkboxgroup = function checkboxgroup(props, context, dependencies) {
 
   /**
    * Resolves options from function. Receives [`el$`](#property-el) as first param.
-   * 
+   *
    * @return {void}
    * @private
    */
@@ -15443,7 +15496,7 @@ var checkboxgroup = function checkboxgroup(props, context, dependencies) {
 
   /**
    * Resolves items.
-   * 
+   *
    * @return {void}
    * @private
    */
@@ -15544,11 +15597,11 @@ var base$y = function base(props, context, dependencies) {
 
   var hasAddonBefore = computed(() => {
     var _el$$value$$slots, _el$$value$$scopedSlo;
-    return !!(addons.value.before || (_el$$value$$slots = el$.value.$slots) !== null && _el$$value$$slots !== void 0 && _el$$value$$slots['addon-before'] || form$.value.$vueform.vueVersion === 2 && (_el$$value$$scopedSlo = el$.value.$scopedSlots) !== null && _el$$value$$scopedSlo !== void 0 && _el$$value$$scopedSlo['addon-before'] || slots.value['addon-before']);
+    return !!(addons.value.before || (_el$$value$$slots = el$.value.$slots) !== null && _el$$value$$slots !== void 0 && _el$$value$$slots['addon-before'] || /* istanbul ignore next */form$.value.$vueform.vueVersion === 2 && (_el$$value$$scopedSlo = el$.value.$scopedSlots) !== null && _el$$value$$scopedSlo !== void 0 && _el$$value$$scopedSlo['addon-before'] || slots.value['addon-before']);
   });
   var hasAddonAfter = computed(() => {
     var _el$$value$$slots2, _el$$value$$scopedSlo2;
-    return !!(addons.value.after || (_el$$value$$slots2 = el$.value.$slots) !== null && _el$$value$$slots2 !== void 0 && _el$$value$$slots2['addon-after'] || form$.value.$vueform.vueVersion === 2 && (_el$$value$$scopedSlo2 = el$.value.$scopedSlots) !== null && _el$$value$$scopedSlo2 !== void 0 && _el$$value$$scopedSlo2['addon-after'] || slots.value['addon-after']);
+    return !!(addons.value.after || (_el$$value$$slots2 = el$.value.$slots) !== null && _el$$value$$slots2 !== void 0 && _el$$value$$slots2['addon-after'] || /* istanbul ignore next */form$.value.$vueform.vueVersion === 2 && (_el$$value$$scopedSlo2 = el$.value.$scopedSlots) !== null && _el$$value$$scopedSlo2 !== void 0 && _el$$value$$scopedSlo2['addon-after'] || slots.value['addon-after']);
   });
   return {
     hasAddonBefore,
@@ -15565,10 +15618,10 @@ var base$x = function base(props, context, dependencies) {
   // ============== COMPUTED ==============
 
   /**
-    * Whether the element has no value filled in.
-    * 
-    * @type {boolean}
-    */
+   * Whether the element has no value filled in.
+   *
+   * @type {boolean}
+   */
   var empty = computed(() => {
     return _.isEqual(value.value, nullValue.value) || [undefined, null, ''].indexOf(value.value) !== -1;
   });
@@ -15627,7 +15680,7 @@ var base$w = function base(props, context, dependencies) {
 
   /**
    * The default date format type.
-   * 
+   *
    * @type {string}
    * @private
    */
@@ -15657,7 +15710,7 @@ var base$w = function base(props, context, dependencies) {
 
   /**
    * The default date format for display.
-   * 
+   *
    * @type {string}
    * @private
    */
@@ -15667,7 +15720,7 @@ var base$w = function base(props, context, dependencies) {
 
   /**
    * The default date format for value & load.
-   * 
+   *
    * @type {string}
    * @private
    */
@@ -15690,7 +15743,7 @@ var base$w = function base(props, context, dependencies) {
 
   /**
    * The display date format.
-   * 
+   *
    * @type {string}
    * @private
    */
@@ -15700,7 +15753,7 @@ var base$w = function base(props, context, dependencies) {
 
   /**
    * The format of date value.
-   * 
+   *
    * @type {string}
    * @private
    */
@@ -15710,7 +15763,7 @@ var base$w = function base(props, context, dependencies) {
 
   /**
    * The date format of the data the element being loaded with.
-   * 
+   *
    * @type {string}
    * @private
    */
@@ -15794,7 +15847,7 @@ var base$u = function base(props, context, dependencies) {
 
   /**
    * Whether the element floating label.
-   * 
+   *
    * @type {boolean}
    */
   var hasFloating = computed(() => {
@@ -15819,9 +15872,9 @@ var base$t = function base(props, context, dependencies) {
 
   /**
    * The localized placeholder of the element.
-   * 
+   *
    * @type {string}
-   * 
+   *
    */
   var Placeholder = computed(() => {
     return localize(placeholder.value, config$.value, form$.value);
@@ -15854,11 +15907,12 @@ var date$1 = function date(props, context, dependencies) {
 
   /**
    * List of dates to disable.
-   * 
-   * @type {array} 
+   *
+   * @type {array}
    * @private
    */
   var disabledDates = computed(() => {
+    /* istanbul ignore next: failsafe only */
     if (disables.value === undefined) {
       return [];
     }
@@ -15870,8 +15924,8 @@ var date$1 = function date(props, context, dependencies) {
 
   /**
    * Earliest selectable date. Can be a string in `[loadFormat](#load-format)` or a Date object.
-   * 
-   * @type {string|Date} 
+   *
+   * @type {string|Date}
    * @private
    */
   var minDate = computed(() => {
@@ -15884,8 +15938,8 @@ var date$1 = function date(props, context, dependencies) {
 
   /**
    * Latest selectable date. Can be a string in `[loadFormat](#load-format)` or a Date object.
-   * 
-   * @type {string|Date} 
+   *
+   * @type {string|Date}
    * @private
    */
   var maxDate = computed(() => {
@@ -15897,11 +15951,11 @@ var date$1 = function date(props, context, dependencies) {
   });
 
   /**
-  * Default options for date selector.
-  * 
-  * @type {object}
-  * @private
-  */
+   * Default options for date selector.
+   *
+   * @type {object}
+   * @private
+   */
   var defaultOptions = computed(() => {
     return {
       dateFormat: displayDateFormat.value,
@@ -15917,17 +15971,17 @@ var date$1 = function date(props, context, dependencies) {
   });
 
   /**
-  * Options for date selector. Can be extended via [`extend-options`](#option-extend-options) with [flatpickr options](https://flatpickr.js.org/options/).
-  * 
-  * @type {object} 
-  */
+   * Options for date selector. Can be extended via [`extend-options`](#option-extend-options) with [flatpickr options](https://flatpickr.js.org/options/).
+   *
+   * @type {object}
+   */
   var fieldOptions = computed(() => {
-    return Object.assign({}, defaultOptions.value, extendOptions.value || {});
+    return Object.assign({}, defaultOptions.value, extendOptions.value || /* istanbul ignore next */{});
   });
 
   /**
    * Whether date selector has `date` enabled.
-   * 
+   *
    * @type {boolean}
    * @private
    */
@@ -15937,7 +15991,7 @@ var date$1 = function date(props, context, dependencies) {
 
   /**
    * Whether date selector has `time` enabled.
-   * 
+   *
    * @type {boolean}
    * @private
    */
@@ -15983,7 +16037,7 @@ var dates$1 = function dates(props, context, dependencies) {
     };
   });
   var fieldOptions = computed(() => {
-    return Object.assign({}, defaultOptions.value, extendOptions.value || {});
+    return Object.assign({}, defaultOptions.value, extendOptions.value || /* istanbul ignore next */{});
   });
   var hasDate = computed(() => {
     return true;
@@ -16048,7 +16102,7 @@ var select$1 = function select(props, context, dependencies) {
 
   /**
    * Whether native select should be used.
-   * 
+   *
    * @type {string}
    */
   var isNative = computed(() => {
@@ -16056,11 +16110,11 @@ var select$1 = function select(props, context, dependencies) {
   });
 
   /**
-  * Default options for non-native select input.
-  * 
-  * @type {object} 
-  * @private
-  */
+   * Default options for non-native select input.
+   *
+   * @type {object}
+   * @private
+   */
   var defaultOptions = computed(() => {
     return {
       mode: 'single',
@@ -16068,6 +16122,7 @@ var select$1 = function select(props, context, dependencies) {
       noOptionsText: noOptionsText.value || form$.value.translations.vueform.multiselect.noOptions,
       noResultsText: noResultsText.value || form$.value.translations.vueform.multiselect.noResults,
       locale: Object.keys(config$.value.i18n.locales).length > 1 ? config$.value.i18n.locale : null,
+      //@todo:adam can not be localized on form level
       fallbackLocale: config$.value.i18n.fallbackLocale,
       label: labelProp.value,
       trackBy: trackBy.value,
@@ -16100,12 +16155,12 @@ var select$1 = function select(props, context, dependencies) {
   });
 
   /**
-  * Options for non-native select input. Can be extended via [`extend-options`](#option-extend-options) with [@vueform/multiselect options](https://github.com/vueform/multiselect#basic-props).
-  * 
-  * @type {object} 
-  */
+   * Options for non-native select input. Can be extended via [`extend-options`](#option-extend-options) with [@vueform/multiselect options](https://github.com/vueform/multiselect#basic-props).
+   *
+   * @type {object}
+   */
   var fieldOptions = computed(() => {
-    return Object.assign({}, defaultOptions.value, extendOptions.value || {});
+    return Object.assign({}, defaultOptions.value, extendOptions.value || /* istanbul ignore next */{});
   });
   return {
     fieldOptions,
@@ -16166,7 +16221,7 @@ var multiselect$1 = function multiselect(props, context, dependencies) {
 
   /**
    * Whether native multiselect should be used.
-   * 
+   *
    * @type {string}
    */
   var isNative = computed(() => {
@@ -16174,11 +16229,11 @@ var multiselect$1 = function multiselect(props, context, dependencies) {
   });
 
   /**
-  * Default options for non-native multiselect input.
-  * 
-  * @type {object} 
-  * @private
-  */
+   * Default options for non-native multiselect input.
+   *
+   * @type {object}
+   * @private
+   */
   var defaultOptions = computed(() => {
     return {
       mode: 'multiple',
@@ -16191,6 +16246,7 @@ var multiselect$1 = function multiselect(props, context, dependencies) {
         }) : multipleLabelSingle.value || form$.value.translations.vueform.multiselect.multipleLabelOne;
       }),
       locale: Object.keys(config$.value.i18n.locales).length > 1 ? config$.value.i18n.locale : null,
+      //@todo:adam can not be localized on form level
       fallbackLocale: config$.value.i18n.fallbackLocale,
       label: labelProp.value,
       trackBy: trackBy.value,
@@ -16226,12 +16282,12 @@ var multiselect$1 = function multiselect(props, context, dependencies) {
   });
 
   /**
-  * Options for non-native multiselect input. Can be extended via [`extend-options`](#option-extend-options) with [@vueform/multiselect options](https://github.com/vueform/multiselect#basic-props).
-  * 
-  * @type {object} 
-  */
+   * Options for non-native multiselect input. Can be extended via [`extend-options`](#option-extend-options) with [@vueform/multiselect options](https://github.com/vueform/multiselect#basic-props).
+   *
+   * @type {object}
+   */
   var fieldOptions = computed(() => {
-    return Object.assign({}, defaultOptions.value, extendOptions.value || {});
+    return Object.assign({}, defaultOptions.value, extendOptions.value || /* istanbul ignore next */{});
   });
   return {
     fieldOptions,
@@ -16289,7 +16345,7 @@ var tags$1 = function tags(props, context, dependencies) {
 
   /**
    * Technical prop to be able to use the same template for tags as for select.
-   * 
+   *
    * @type {boolean}
    * @default false
    * @private
@@ -16300,7 +16356,7 @@ var tags$1 = function tags(props, context, dependencies) {
 
   /**
    * Technical prop to be able to use the same template for tags as for select.
-   * 
+   *
    * @type {boolean}
    * @private
    */
@@ -16309,11 +16365,11 @@ var tags$1 = function tags(props, context, dependencies) {
   });
 
   /**
-  * Default options for tags input.
-  * 
-  * @type {object} 
-  * @private
-  */
+   * Default options for tags input.
+   *
+   * @type {object}
+   * @private
+   */
   var defaultOptions = computed(() => {
     return {
       mode: 'tags',
@@ -16321,6 +16377,7 @@ var tags$1 = function tags(props, context, dependencies) {
       noOptionsText: noOptionsText.value || form$.value.translations.vueform.multiselect.noOptions,
       noResultsText: noResultsText.value || form$.value.translations.vueform.multiselect.noResults,
       locale: Object.keys(config$.value.i18n.locales).length > 1 ? config$.value.i18n.locale : null,
+      //@todo:adam can not be localized on form level
       fallbackLocale: config$.value.i18n.fallbackLocale,
       label: labelProp.value,
       trackBy: trackBy.value,
@@ -16357,12 +16414,12 @@ var tags$1 = function tags(props, context, dependencies) {
   });
 
   /**
-  * Options for tags input. Can be extended via [`extend-options`](#option-extend-options) with [@vueform/multiselect options](https://github.com/vueform/multiselect#basic-props).
-  * 
-  * @type {object} 
-  */
+   * Options for tags input. Can be extended via [`extend-options`](#option-extend-options) with [@vueform/multiselect options](https://github.com/vueform/multiselect#basic-props).
+   *
+   * @type {object}
+   */
   var fieldOptions = computed(() => {
-    return Object.assign({}, defaultOptions.value, extendOptions.value || {});
+    return Object.assign({}, defaultOptions.value, extendOptions.value || /* istanbul ignore next */{});
   });
   return {
     native,
@@ -16394,11 +16451,11 @@ var slider = function slider(props, context, dependencies) {
   // ============== COMPUTED ==============
 
   /**
-  * Default options for slider input.
-  * 
-  * @type {object}
-  * @private
-  */
+   * Default options for slider input.
+   *
+   * @type {object}
+   * @private
+   */
   var defaultOptions = computed(() => {
     return {
       min: min.value,
@@ -16417,12 +16474,12 @@ var slider = function slider(props, context, dependencies) {
   });
 
   /**
-  * Options for slider input. Can be extended via [`extend-options`](#option-extend-options) with [@vueform/slider options](https://github.com/vueform/slider#basic-props).
-  * 
-  * @type {object} 
-  */
+   * Options for slider input. Can be extended via [`extend-options`](#option-extend-options) with [@vueform/slider options](https://github.com/vueform/slider#basic-props).
+   *
+   * @type {object}
+   */
   var fieldOptions = computed(() => {
-    return Object.assign({}, defaultOptions.value, extendOptions.value || {});
+    return Object.assign({}, defaultOptions.value, extendOptions.value || /* istanbul ignore next */{});
   });
   return {
     fieldOptions
@@ -16448,28 +16505,28 @@ var toggle = function toggle(props, context, dependencies) {
   // ============== COMPUTED ==============
 
   /**
-  * Default options toggle input.
-  * 
-  * @type {object}
-  * @private
-  */
+   * Default options toggle input.
+   *
+   * @type {object}
+   * @private
+   */
   var defaultOptions = computed(() => {
     return {
       disabled: isDisabled.value,
-      offLabel: labels.value ? localize(labels.value.off, config$.value, form$.value) || '' : '',
-      onLabel: labels.value ? localize(labels.value.on, config$.value, form$.value) || '' : '',
+      offLabel: labels.value ? localize(labels.value.off, config$.value, form$.value) || '' : /* istanbul ignore next: default is hardcoded {}, will never fall there */'',
+      onLabel: labels.value ? localize(labels.value.on, config$.value, form$.value) || '' : /* istanbul ignore next: default is hardcoded {}, will never fall there */'',
       trueValue: trueValue.value,
       falseValue: falseValue.value
     };
   });
 
   /**
-  * Options for toggle input. Can be extended via [`extend-options`](#option-extend-options) with [@vueform/toggle options](https://github.com/vueform/toggle#basic-props).
-  * 
-  * @type {object} 
-  */
+   * Options for toggle input. Can be extended via [`extend-options`](#option-extend-options) with [@vueform/toggle options](https://github.com/vueform/toggle#basic-props).
+   *
+   * @type {object}
+   */
   var fieldOptions = computed(() => {
-    return Object.assign({}, defaultOptions.value, extendOptions.value || {});
+    return Object.assign({}, defaultOptions.value, extendOptions.value || /* istanbul ignore next */{});
   });
   return {
     fieldOptions
@@ -16485,7 +16542,7 @@ var base$s = function base(props, context, dependencies) {
 
   /**
    * Whether the element is focused.
-   * 
+   *
    * @type {boolean}
    */
   var focused = ref(false);
@@ -16515,7 +16572,7 @@ var date = function date(props, context, dependencies) {
 
   /**
    * Whether the element is focused.
-   * 
+   *
    * @type {boolean}
    */
   var focused = ref(false);
@@ -16544,7 +16601,7 @@ var select = function select(props, context, dependencies) {
 
   /**
    * Whether the element is focused.
-   * 
+   *
    * @type {boolean}
    */
   var focused = ref(false);
@@ -16828,7 +16885,7 @@ var base$r = function base(props, context, dependencies) {
 
   /**
    * Whether the file uploader has any errors.
-   * 
+   *
    * @type {boolean}
    * @default false
    */
@@ -16836,7 +16893,7 @@ var base$r = function base(props, context, dependencies) {
 
   /**
    * The `base64` representation of the file when [`view`](#option-view) is `image` or `gallery` and file is only selected, but not uploaded yet.
-   * 
+   *
    * @type {string}
    * @default null
    */
@@ -16844,7 +16901,7 @@ var base$r = function base(props, context, dependencies) {
 
   /**
    * The percentage of progress when the file is being temporarily uploaded (0-100).
-   * 
+   *
    * @type {number}
    * @default 0
    */
@@ -16852,7 +16909,7 @@ var base$r = function base(props, context, dependencies) {
 
   /**
    * If the form is submitted and the file is not uploaded yet, the element will enter into `preparing` state and upload the temporary file before submitting the form.
-   * 
+   *
    * @type {boolean}
    * @default false
    */
@@ -16860,7 +16917,7 @@ var base$r = function base(props, context, dependencies) {
 
   /**
    * Watchers store.
-   * 
+   *
    * @type {object}
    * @default {}
    * @private
@@ -16871,7 +16928,7 @@ var base$r = function base(props, context, dependencies) {
 
   /**
    * The HTTP request endpoints.
-   * 
+   *
    * @type {object}
    * @private
    */
@@ -16917,11 +16974,12 @@ var base$r = function base(props, context, dependencies) {
 
   /**
    * URL to file using the [`url`](#url) option without including the filename. If `url` is not defined it will default to `'/'`.
-   * 
+   *
    * @type {string|boolean}
    * @private
    */
   var fileUrl = computed(() => {
+    /* istanbul ignore next: will never be undefined, hardcoded `/`, failsafe only */
     if (url.value === undefined) {
       return '/';
     }
@@ -16940,11 +16998,13 @@ var base$r = function base(props, context, dependencies) {
 
   /**
    * URL to file preview image using the [`previewUrl`](#option-preview-url) option without including the filename. If `previewUrl` is not defined it will default to [`url`](#option-url).
-   * 
+   *
    * @type {string}
    * @private
    */
+  /* istanbul ignore next: private computed, can not cover but tested */
   var filePreviewUrl = computed(() => {
+    /* istanbul ignore else */
     if (previewUrl.value === undefined) {
       return fileUrl.value;
     }
@@ -16960,12 +17020,12 @@ var base$r = function base(props, context, dependencies) {
 
   /**
    * The stage the file is at:
-   * 
+   *
    * * `0`: file not selected
    * * `1`: file selected
    * * `2`: file temporarily uploaded
    * * `3`: file permanently uploaded
-   * 
+   *
    * @type {number}
    */
   var stage = computed(() => {
@@ -16990,7 +17050,7 @@ var base$r = function base(props, context, dependencies) {
 
   /**
    * The original or stored name of the file.
-   * 
+   *
    * @type {string}
    */
   var filename = computed(() => {
@@ -17008,7 +17068,7 @@ var base$r = function base(props, context, dependencies) {
 
   /**
    * The clickable link of the uploaded file.
-   * 
+   *
    * @type {string}
    */
   var link = computed(() => {
@@ -17020,9 +17080,10 @@ var base$r = function base(props, context, dependencies) {
 
   /**
    * The preview link of the uploaded file.
-   * 
+   *
    * @type {string}
    */
+  /* istanbul ignore next: private computed, can not cover but tested */
   var previewLink = computed(() => {
     if (!uploaded.value) {
       return;
@@ -17032,7 +17093,7 @@ var base$r = function base(props, context, dependencies) {
 
   /**
    * The preview of the file when [`view`](#view) is `image` or `gallery`. Equals to the `link` if the file is already uploaded and `base64` if only selected or temporarily uploaded.
-   * 
+   *
    * @type {string}
    */
   var preview = computed(() => {
@@ -17043,8 +17104,8 @@ var base$r = function base(props, context, dependencies) {
   });
 
   /**
-   * Whether the file is permantently uploaded.
-   * 
+   * Whether the file is permanently uploaded.
+   *
    * @type {boolean}
    */
   var uploaded = computed(() => {
@@ -17052,8 +17113,8 @@ var base$r = function base(props, context, dependencies) {
   });
 
   /**
-   * Whether the file can be removed. 
-   * 
+   * Whether the file can be removed.
+   *
    * @type {boolean}
    */
   var canRemove = computed(() => {
@@ -17062,7 +17123,7 @@ var base$r = function base(props, context, dependencies) {
 
   /**
    * Whether temporary file can be uploaded.
-   * 
+   *
    * @type {boolean}
    */
   var canUploadTemp = computed(() => {
@@ -17071,7 +17132,7 @@ var base$r = function base(props, context, dependencies) {
 
   /**
    * Whether file can be selected.
-   * 
+   *
    * @type {boolean}
    */
   var canSelect = computed(() => {
@@ -17082,7 +17143,7 @@ var base$r = function base(props, context, dependencies) {
 
   /**
    * Upload temporary file (async).
-   * 
+   *
    * @returns {void}
    */
   var uploadTemp = /*#__PURE__*/function () {
@@ -17140,11 +17201,11 @@ var base$r = function base(props, context, dependencies) {
 
   /**
    * Removes file (async):
-   * 
+   *
    * * in stage `1`: sets the value to `null`
    * * in stage `2`: submits a request to `removeTemp` endpoint (if [`softRemove: false`](#option-soft-remove)) and sets the value to `null`
    * * in stage `3`: submits a request to `remove` endpoint (if [`softRemove: false`](#option-soft-remove)) and sets the value to `null`
-   * 
+   *
    * @returns {void}
    */
   var remove = /*#__PURE__*/function () {
@@ -17202,8 +17263,8 @@ var base$r = function base(props, context, dependencies) {
   }();
 
   /**
-   * Prepare the element for submitting the form (async). It will upload temp file if it hasn't been uploaded yet and halts the submit process until its done without any errors.
-   * 
+   * Prepare the element for submitting the form (async). It will upload temp file if it hasn't been uploaded yet and halts the submit process until it is done without any errors.
+   *
    * @returns {void}
    * @private
    */
@@ -17223,6 +17284,8 @@ var base$r = function base(props, context, dependencies) {
       return _ref3.apply(this, arguments);
     };
   }();
+
+  //@todo:szm mock window.fileReader
   var resolveBase64 = function resolveBase64() {
     var source = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : value.value;
     var reader = new FileReader();
@@ -17234,22 +17297,28 @@ var base$r = function base(props, context, dependencies) {
 
   /**
    * Handles `change` event.
-   * 
-   * @param {Event} e* 
+   *
+   * @param {Event} e*
    * @returns {void}
    * @private
    */
-  var handleChange = e => {
-    var file = e.target.files[0];
-    update(file || null);
-    if (auto.value) {
-      uploadTemp();
-    }
-    input.value.value = '';
-    if (form$.value.shouldValidateOnChange) {
-      validate();
-    }
-  };
+  var handleChange = /*#__PURE__*/function () {
+    var _ref4 = _asyncToGenerator(function* (e) {
+      //@todo:adam handleChange has to be async and await uploadTemp() and input.value.value should be before update because otherwise it may not exist
+      var file = e.target.files[0];
+      input.value.value = '';
+      update(file || null);
+      if (auto.value) {
+        yield uploadTemp();
+      }
+      if (form$.value.shouldValidateOnChange) {
+        validate();
+      }
+    });
+    return function handleChange(_x) {
+      return _ref4.apply(this, arguments);
+    };
+  }();
 
   /**
    * Handles file select button `click` event.
@@ -17266,7 +17335,7 @@ var base$r = function base(props, context, dependencies) {
 
   /**
    * Handles `uploadTemp` event.
-   * 
+   *
    * @returns {void}
    * @private
    */
@@ -17276,7 +17345,7 @@ var base$r = function base(props, context, dependencies) {
 
   /**
    * Handles `remove` event.
-   * 
+   *
    * @returns {void}
    * @private
    */
@@ -17286,7 +17355,7 @@ var base$r = function base(props, context, dependencies) {
 
   /**
    * Handles `abort` event.
-   * 
+   *
    * @returns {void}
    * @private
    */
@@ -17316,6 +17385,7 @@ var base$r = function base(props, context, dependencies) {
     immediate: true
   });
   watchers.value.view = watch(view, v => {
+    /* istanbul ignore else */
     if (['image', 'gallery'].indexOf(v) !== -1 && !base64.value && value.value instanceof File) {
       resolveBase64();
     }
@@ -17361,7 +17431,7 @@ var base$q = function base(props, context, dependencies) {
 
   /**
    * The axios request when temp is being uploaded.
-   * 
+   *
    * @type {object}
    * @private
    */
@@ -17369,7 +17439,7 @@ var base$q = function base(props, context, dependencies) {
 
   /**
    * The form's axios instance.
-   * 
+   *
    * @type {object}
    * @private
    */
@@ -17379,7 +17449,7 @@ var base$q = function base(props, context, dependencies) {
 
   /**
    * Whether a temp file is currently being uploaded.
-   * 
+   *
    * @private
    */
   var uploading = computed(() => {
@@ -17437,23 +17507,23 @@ var base$p = function base(props, context, dependencies) {
 
   /**
    * Whether `drop` is enabled and browser supports dragging.
-   * 
+   *
    * @type {boolean}
    * @private
    */
   var canDrop = computed(() => {
     var div = document.createElement('div');
-    return ('draggable' in div || 'ondragstart' in div && 'ondrop' in div) && 'FormData' in window && 'FileReader' in window;
+    return ('draggable' in div || /* istanbul ignore next: failsafe only, can not influence div from outside */'ondragstart' in div && 'ondrop' in div) && 'FormData' in window && 'FileReader' in window;
   });
 
   // =============== METHODS ==============
 
   /**
    * Handles the `drop` event.
-   * 
-   * @param {Event} e 
+   *
+   * @param {Event} e
    * @returns {void}
-   * @private 
+   * @private
    */
   var handleDrop = e => {
     if (isDisabled.value) {
@@ -17463,7 +17533,7 @@ var base$p = function base(props, context, dependencies) {
     if (!checkFileType(file, accept.value)) {
       return;
     }
-    update(file || null);
+    update(file || /* istanbul ignore next: failsafe only */null);
     if (auto.value) {
       uploadTemp();
     }
@@ -17515,7 +17585,7 @@ var base$o = function base(props, context, dependencies) {
 
   /**
    * Whether async file removing request is in progress.
-   * 
+   *
    * @type {boolean}
    */
   var removing = ref(false);
@@ -17677,7 +17747,7 @@ var base$m = function base(props, context, dependencies) {
 
   /**
    * List of child element components.
-   * 
+   *
    * @type {array<component>}
    * @default [children<component>]
    * @private
@@ -17688,7 +17758,7 @@ var base$m = function base(props, context, dependencies) {
 
   /**
    * Child element components.
-   * 
+   *
    * @type {object<Element>}
    */
   var children$ = computed(() => {
@@ -17721,7 +17791,7 @@ var object = function object(props, context, dependencies) {
 
   /**
    * Schema of child elements.
-   * 
+   *
    * @type {object}
    * @private
    */
@@ -17731,6 +17801,7 @@ var object = function object(props, context, dependencies) {
 
   // Resort children$Array when children
   // order changes or a child is removed
+  /* istanbul ignore else */
   if (schema) {
     watch(schema, newValue => {
       var newChildren$Array = [];
@@ -20857,7 +20928,7 @@ var base$l = function base(props, context, dependencies, options) {
 
   /**
    * The DOM element containing list items.
-   * 
+   *
    * @type {HTMLElement}
    * @private
    */
@@ -20865,7 +20936,7 @@ var base$l = function base(props, context, dependencies, options) {
 
   /**
    * The `Sortable.js` instance.
-   * 
+   *
    * @type {object}
    * @private
    */
@@ -20875,7 +20946,7 @@ var base$l = function base(props, context, dependencies, options) {
 
   /**
    * Whether the list is sortable. Can be enabled with [`sort`](#option-sort) option, but it will disabled if [`isDisabled`](#property-is-disabled) is `true`.
-   * 
+   *
    * @type {boolean}
    */
   var isSortable = computed(() => {
@@ -20893,7 +20964,7 @@ var base$l = function base(props, context, dependencies, options) {
   var initSortable = () => {
     sortable.value = new Sortable(list.value, {
       handle: "[data-handle]",
-      onStart: () => {
+      onStart: /* istanbul ignore next: can not imitate dragging */() => {
         sorting.value = true;
       },
       onEnd: handleSort
@@ -20925,6 +20996,8 @@ var base$l = function base(props, context, dependencies, options) {
       item
     } = _ref;
     sorting.value = false;
+
+    /* istanbul ignore next: can not imitate dragging */
     if (oldIndex === newIndex || isDisabled.value) {
       return;
     }
@@ -20940,6 +21013,7 @@ var base$l = function base(props, context, dependencies, options) {
   // ============== WATCHERS ==============
 
   watch(isSortable, (n, o) => {
+    /* istanbul ignore else */
     if (n === true && o === false) {
       initSortable();
     } else if (n === false && o === true) {
@@ -20983,7 +21057,7 @@ var base$k = function base(props, context, dependencies) {
 
   /**
    * Whether the list is currently being sorted (an item is dragged).
-   * 
+   *
    * @type {boolean}
    */
   var sorting = ref(false);
@@ -21027,8 +21101,8 @@ var base$j = function base(props, context, dependencies, options) {
   };
 
   /**
-   * The name of the child (when using [`object`](#option-object)) by which the items should ordered.
-   * 
+   * The name of the child (when using [`object`](#option-object)) by which the items should be ordered.
+   *
    * @type {string}
    */
   var orderByName = computed(() => {
@@ -21066,8 +21140,8 @@ var multifile$2 = function multifile(props, context, dependencies, options) {
   // =============== METHODS ==============
 
   /**
-   * The name of the field (when using [`fields`](#option-fiels)) by which the files should ordered.
-   * 
+   * The name of the field (when using [`fields`](#option-fields)) by which the files should be ordered.
+   *
    * @type {string}
    */
   var orderByName = computed(() => {
@@ -21088,11 +21162,11 @@ var base$i = function base(props, context, dependencies) {
   // ============== COMPUTED ==============
 
   /**
-    * The schema of a child element.
-    * 
-    * @type {object}
-    * @private
-    */
+   * The schema of a child element.
+   *
+   * @type {object}
+   * @private
+   */
   var prototype = computed(() => {
     return isObject.value ? Object.assign({}, object.value, {
       type: 'object'
@@ -21100,7 +21174,7 @@ var base$i = function base(props, context, dependencies) {
   });
 
   /**
-   * Whether childrens are objects.
+   * Whether children are objects.
    *
    * @type {boolean}
    * @private
@@ -21147,14 +21221,18 @@ var multifile$1 = function multifile(props, context, dependencies) {
 
   /**
    * The `name` of the child element that stores the filename.
-   * 
+   *
    * @type {string}
    * @private
    */
   var storeFileName = computed(() => {
+    /* istanbul ignore else */
     if (storeFile.value) {
       return storeFile.value;
     }
+
+    //@todo:adam unreachable code, storeFile is never undefined
+    /* istanbul ignore next: fields.value is hardcoded {} */
     return object.value || _.keys(fields.value).length || storeOrder.value ? 'file' : null;
   });
   var isObject = computed(() => {
@@ -21225,7 +21303,7 @@ var base$h = function base(props, context, dependencies) {
 
   /**
    * Whether adding new items is allowed. Will return `false` if the element has [`isDisabled: true`](#property-is-disabled) or have reached [`max`](#option-max) items. Can be disabled manually by setting [`controls.add`](#option-controls) to `false`.
-   * 
+   *
    * @type {boolean}
    */
   var hasAdd = computed(() => {
@@ -21234,7 +21312,7 @@ var base$h = function base(props, context, dependencies) {
 
   /**
    * Whether remove items is allowed. Will return `false` if the element has [`isDisabled: true`](#property-is-disabled) or has <= [`min`](#option-min) items. Can be disabled manually by setting [`controls.remove`](#option-controls) to `false`.
-   * 
+   *
    * @type {boolean}
    */
   var hasRemove = computed(() => {
@@ -21243,7 +21321,7 @@ var base$h = function base(props, context, dependencies) {
 
   /**
    * Whether list items should be sortable. Can be enabled by setting [`sort`](#option-sort) to `true`, but will return `false` if the element has [`isDisabled: true`](#property-is-disabled).
-   * 
+   *
    * @type {boolean}
    */
   var hasSort = computed(() => {
@@ -21252,7 +21330,7 @@ var base$h = function base(props, context, dependencies) {
 
   /**
    * The label of add button.
-   * 
+   *
    * @type {string}
    */
   var addLabel = computed(() => {
@@ -21280,7 +21358,7 @@ var multifile = function multifile(props, context, dependencies) {
 
   /**
    * Whether adding new files is allowed. Will return `false` if the element has [`isDisabled: true`](#property-is-disabled). Can be disabled manually by setting [`controls.add`](#option-controls) to `false`.
-   * 
+   *
    * @type {boolean}
    */
   var hasAdd = computed(() => {
@@ -21289,7 +21367,7 @@ var multifile = function multifile(props, context, dependencies) {
 
   /**
    * Whether remove files is allowed. Will return `false` if the element has [`isDisabled: true`](#property-is-disabled) or a temporary file upload is in progress. Can be disabled manually by setting [`controls.remove`](#option-controls) to `false`.
-   * 
+   *
    * @type {boolean}
    */
   var hasRemove = computed(() => {
@@ -21298,7 +21376,7 @@ var multifile = function multifile(props, context, dependencies) {
 
   /**
    * Whether list files should be sortable. Can be enabled by setting [`sort`](#option-sort) to `true`, but will return `false` if the element has [`isDisabled: true`](#property-is-disabled) or a temporary file upload is in progress.
-   * 
+   *
    * @type {boolean}
    */
   var hasSort = computed(() => {
@@ -21417,6 +21495,7 @@ var ListElement = {
     }
   },
   setup(props, context) {
+    //@todo:adam useValue and useDefault should be before useOrder
     context.features = [base$18, base$17, base$U, base$M, base$S, base$Q, array$1, base$i, base$m, base$k, base$j, base$1a, list$4, base$I, base$_, base$G, base$11, list$5, list$2, list$1, base$h, array, base$Z, base$Y, base$X, base$T, base$W, list$3, base$l, base$P, list, base$R];
     context.slots = ['label', 'info', 'description', 'before', 'between', 'after'];
     return _objectSpread2$1({}, base$L(props, context));
@@ -21439,6 +21518,7 @@ var base$g = function base(props, context, dependencies) {
 
   // ============== PRIVATE ===============
 
+  /* istanbul ignore next: private */
   var inputElement = () => {
     return options_.input ? options_.input.value : input.value;
   };
@@ -21446,8 +21526,8 @@ var base$g = function base(props, context, dependencies) {
   // ================ DATA ================
 
   /**
-   * The location service that's initalized once the component is mounted.
-   * 
+   * The location service that's initialized once the component is mounted.
+   *
    * @type {class}
    * @default null
    */
@@ -21455,7 +21535,7 @@ var base$g = function base(props, context, dependencies) {
 
   /**
    * The raw location object of location provider (Google/Algolia).
-   * 
+   *
    * @type {class}
    * @default null
    */
@@ -21463,16 +21543,17 @@ var base$g = function base(props, context, dependencies) {
 
   // ============== COMPUTED ==============
 
+  //@todo:adam location `provider` should not be google by default but null
   var locationProvider = computed(() => {
     return provider.value || form$.value.$vueform.config.locationProvider;
   });
 
   /**
-  * Default options for location provider. Can be extended with [`extendOptions`](#option-extend-options).
-  * 
-  * @type {object} 
-  * @default {}
-  */
+   * Default options for location provider. Can be extended with [`extendOptions`](#option-extend-options).
+   *
+   * @type {object}
+   * @default {}
+   */
   var defaultOptions = computed(() => {
     var providers = {
       google: {
@@ -21489,14 +21570,14 @@ var base$g = function base(props, context, dependencies) {
   });
 
   /**
-  * Additional options for [Google Places](https://developers.google.com/maps/documentation/javascript/reference/places-widget#AutocompleteOptions) or [Algolia Places](https://community.algolia.com/places/documentation.html#options) depending on the provider.
-  * 
-  * @type {object} 
-  * @default {}
-  * @option
-  */
+   * Additional options for [Google Places](https://developers.google.com/maps/documentation/javascript/reference/places-widget#AutocompleteOptions) or [Algolia Places](https://community.algolia.com/places/documentation.html#options) depending on the provider.
+   *
+   * @type {object}
+   * @default {}
+   * @option
+   */
   var providerOptions = computed(() => {
-    return Object.assign({}, defaultOptions.value, extendOptions.value || {});
+    return Object.assign({}, defaultOptions.value, extendOptions.value || /* istanbul ignore next: failsafe only */{});
   });
 
   // =============== METHODS ==============
@@ -21509,6 +21590,7 @@ var base$g = function base(props, context, dependencies) {
    * @private
    */
   var handleAddressChange = (data, raw) => {
+    /* istanbul ignore next */
     if (options_.handleAddressChange) {
       options_.handleAddressChange(data, raw);
       return;
@@ -21519,7 +21601,7 @@ var base$g = function base(props, context, dependencies) {
 
   /* istanbul ignore next */
   /**
-   * 
+   *
    *
    * @private
    */
@@ -21532,7 +21614,7 @@ var base$g = function base(props, context, dependencies) {
   };
 
   /**
-   * Initalizes location service. Can be used to re-initalize location service.
+   * Initializes location service. Can be used to re-initialize location service.
    *
    * @returns {void}
    */
@@ -21676,7 +21758,7 @@ var base$f = function base(props, context, dependencies) {
 
   /**
    * Whether any of the files are currently being uploaded to the server (initiated by form submit).
-   * 
+   *
    * @type {boolean}
    */
   var preparing = computed(() => {
@@ -21688,7 +21770,7 @@ var base$f = function base(props, context, dependencies) {
 
   /**
    * Whether any of the files are currently being uploaded to the server (initiated by the user).
-   * 
+   *
    * @type {boolean}
    */
   var hasUploading = computed(() => {
@@ -21701,8 +21783,8 @@ var base$f = function base(props, context, dependencies) {
 
   /**
    * Handles `change` event.
-   * 
-   * @param {Event} e* 
+   *
+   * @param {Event} e*
    * @returns {void}
    * @private
    */
@@ -21720,7 +21802,7 @@ var base$f = function base(props, context, dependencies) {
 
   /**
    * Handles `click` event.
-   * 
+   *
    * @returns {void}
    * @private
    */
@@ -21981,7 +22063,7 @@ var base$e = function base(props, context, dependencies) {
 
   /**
    * Handles `paste` event.
-   * 
+   *
    * @param {Event} e event
    * @returns {void}
    * @private
@@ -21997,6 +22079,7 @@ var base$e = function base(props, context, dependencies) {
    * @returns {void}
    * @private
    */
+  /* istanbul ignore next: unimplemented */
   var handleTag = searchQuery => {
     // unimplemented
   };
@@ -22102,10 +22185,10 @@ var base$c = function base(props, context, dependencies) {
   // ============== COMPUTED ==============
 
   /**
-  * Whether the element is in loading state.
-  * 
-  * @type {boolean}
-  */
+   * Whether the element is in loading state.
+   *
+   * @type {boolean}
+   */
   var isLoading = computed(() => {
     return pending.value || loading.value;
   });
@@ -22520,7 +22603,7 @@ var base$b = function base(props, context, dependencies) {
 
   /**
    * The list of listeners.
-   * 
+   *
    * @type {array}
    * @default []
    * @private
@@ -22531,10 +22614,11 @@ var base$b = function base(props, context, dependencies) {
 
   /**
    * The `name` attribute of the element. If [`id`](#option-id) is not provided [`name`](#option-name) will be used.
-   * 
+   *
    * @type {string}
    */
   var inputName = computed(() => {
+    //@todo:adam incorrect documentation, id is non-existent in path computed
     return radioName.value || path.value;
   });
 
@@ -22550,7 +22634,7 @@ var base$b = function base(props, context, dependencies) {
   };
 
   /**
-   * Unhecks the radio.
+   * Unchecks the radio.
    *
    * @returns {void}
    */
@@ -22565,8 +22649,9 @@ var base$b = function base(props, context, dependencies) {
    * @private
    */
   var watchChange = (value, old) => {
+    //@todo:adam queryselectorall should check for name old and not name value
     if (old) {
-      form$.value.$el.querySelectorAll("input[name=\"".concat(value, "\"")).forEach((element, i) => {
+      form$.value.$el.querySelectorAll("input[name=\"".concat(old, "\"")).forEach((element, i) => {
         if (listeners.value[i]) {
           element.removeEventListener('change', listeners.value[i]);
         }
@@ -22589,7 +22674,7 @@ var base$b = function base(props, context, dependencies) {
     watchChange(inputName.value);
   });
 
-  // ============= WATCTHERS ==============
+  // ============= WATCHERS ===============
 
   watch(inputName, watchChange);
   return {
@@ -23143,7 +23228,7 @@ var base$9 = function base(props, context, dependencies) {
 
   /**
    * Determines if HTML content should be rendered for the element.
-   * 
+   *
    * @type {boolean}
    * @private
    */
@@ -23547,8 +23632,8 @@ var base$7 = function base(props, context, dependencies) {
 
   /**
    * Handles `input` event.
-   * 
-   * @param {Event} e* 
+   *
+   * @param {Event} e*
    * @returns {void}
    * @private
    */
@@ -23575,7 +23660,7 @@ var base$6 = function base(props, context, dependencies) {
 
   /**
    * Updates the height of the input based in its contents when [`autogrow`](#option-autogrow) is enabled.
-   * 
+   *
    * @returns {void}
    */
   var autosize = () => {
@@ -23664,8 +23749,8 @@ var base$4 = function base(props, context, dependencies) {
 
   /**
    * Handles `keydown` event.
-   * 
-   * @param {Event} e* 
+   *
+   * @param {Event} e*
    * @returns {void}
    * @private
    */
@@ -23675,8 +23760,8 @@ var base$4 = function base(props, context, dependencies) {
 
   /**
    * Handles `keyup` event.
-   * 
-   * @param {Event} e* 
+   *
+   * @param {Event} e*
    * @returns {void}
    * @private
    */
@@ -23686,8 +23771,8 @@ var base$4 = function base(props, context, dependencies) {
 
   /**
    * Handles `keypress` event.
-   * 
-   * @param {Event} e* 
+   *
+   * @param {Event} e*
    * @returns {void}
    * @private
    */
@@ -23987,7 +24072,7 @@ var base$3 = function base(props, context, dependencies) {
 
   /**
    * Whether the editor is focused.
-   * 
+   *
    * @type {boolean}
    */
   var focused = ref(false);
@@ -23995,23 +24080,23 @@ var base$3 = function base(props, context, dependencies) {
   // ============== COMPUTED ==============
 
   /**
-  * The endpoint that uploads attachment. Can be changed by setting [`endpoint`](#endpoint) option.
-  * 
-  * @type {string}
-  * @default `config.endpoints.attachment.url`
-  * @private
-  */
+   * The endpoint that uploads attachment. Can be changed by setting [`endpoint`](#endpoint) option.
+   *
+   * @type {string}
+   * @default `config.endpoints.attachment.url`
+   * @private
+   */
   var editorEndpoint = computed(() => {
     return endpoint.value || form$.value.$vueform.config.endpoints.attachment.url;
   });
 
   /**
-  * The method to use to upload attachment. Can be changed by setting [`method`](#method) option.
-  * 
-  * @type {string}
-  * @default `config.endpoints.attachment.method`
-  * @private
-  */
+   * The method to use to upload attachment. Can be changed by setting [`method`](#method) option.
+   *
+   * @type {string}
+   * @default `config.endpoints.attachment.method`
+   * @private
+   */
   var editorMethod = computed(() => {
     return method.value || form$.value.$vueform.config.endpoints.attachment.method;
   });
@@ -24050,6 +24135,8 @@ var base$2 = function base(props, context, dependencies) {
    */
   var handleAlert = message => {
     fire('alert', message);
+
+    /* istanbul ignore else */
     if (!listeners.value.alert) {
       alert(message);
     }
@@ -24159,7 +24246,7 @@ var base$1 = function base(props, context, dependencies) {
 
   /**
    * The language code of the currently selected language (2 letters).
-   * 
+   *
    * @type {string}
    */
   var language = computed(() => {
@@ -24168,7 +24255,7 @@ var base$1 = function base(props, context, dependencies) {
 
   /**
    * Available language codes.
-   * 
+   *
    * @type {array}
    */
   var languages = computed(() => {

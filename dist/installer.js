@@ -1033,7 +1033,7 @@ var publishConfig = {
 	registry: "https://registry.vueform.com"
 };
 var name = "@vueform/vueform";
-var version = "1.4.1";
+var version = "1.4.2";
 var description = "Form builder for Vue.js";
 var homepage = "https://vueform.com";
 var bugs = {

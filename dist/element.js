@@ -915,7 +915,7 @@ var base$o = function base(props, context, dependencies) {
 
   /**
    * The current layout of the element.
-   * 
+   *
    * @type {string|component}
    * @private
    */
@@ -943,7 +943,7 @@ var base$n = function base(props, context, dependencies) {
 
   /**
    * The parent component of the element.
-   * 
+   *
    * @type {component}
    * @private
    */
@@ -962,7 +962,7 @@ var base$n = function base(props, context, dependencies) {
 
   /**
    * The path of the element using dot `.` syntax.
-   * 
+   *
    * @type {string}
    */
   var path = computed(() => {
@@ -971,8 +971,8 @@ var base$n = function base(props, context, dependencies) {
 
   /**
    * The path of the element's data using dot `.` syntax.
-   * 
-   * @type {string} 
+   *
+   * @type {string}
    */
   var dataPath = computed(() => {
     return parent.value && parent.value.dataPath ? parent.value.dataPath + '.' + name.value : name.value;
@@ -980,7 +980,7 @@ var base$n = function base(props, context, dependencies) {
 
   /**
    * Whether the element is just a container of children but not nested on data level (eg. [`GroupElement`](group-element))
-   * 
+   *
    * @type {boolean}
    * @private
    */
@@ -1097,7 +1097,7 @@ var base$l = function base(props, context, dependencies) {
 
   /**
    * The initial value of the element.
-   * 
+   *
    * @type {any}
    * @private
    */
@@ -1112,7 +1112,7 @@ var base$l = function base(props, context, dependencies) {
 
   /**
    * The store for the value of the element when we're not using external data (form's `v-model`).
-   * 
+   *
    * @type {any}
    * @private
    */
@@ -1120,7 +1120,7 @@ var base$l = function base(props, context, dependencies) {
 
   /**
    * The value of the element.
-   * 
+   *
    * @type {any}
    */
   var value = computed({
@@ -1133,7 +1133,7 @@ var base$l = function base(props, context, dependencies) {
       } else {
         value = internalValue.value;
       }
-      return value !== undefined ? value : defaultValue.value instanceof File ? defaultValue.value : _.cloneDeep(defaultValue.value);
+      return value !== undefined ? value : /* istanbul ignore next: value is never undefined if default is set */defaultValue.value instanceof File ? defaultValue.value : _.cloneDeep(defaultValue.value);
     },
     set: ((_options$value2 = options.value) === null || _options$value2 === void 0 ? void 0 : _options$value2.set) || function (val) {
       if (form$.value.isSync) {
@@ -1153,7 +1153,7 @@ var base$l = function base(props, context, dependencies) {
 
   /**
    * Intermediary value between element's value and field's `v-model`. It is required when we need to transform the value format between the element and its field.
-   * 
+   *
    * @type {any}
    */
   var model = computed({
@@ -1165,11 +1165,13 @@ var base$l = function base(props, context, dependencies) {
     }
   });
   if (options.init === undefined || options.init !== false) {
-    // If element's value was undefined initially (not found in v-model/data) then we need to set it's value
+    // If element's value was undefined initially (not found in v-model/data) then we need to set its value
     if (initialValue.value === undefined) {
       value.value = defaultValue.value instanceof File ? defaultValue.value : _.cloneDeep(defaultValue.value);
     }
   }
+
+  /* istanbul ignore next: type can not be changed on the fly */
   watch(type, () => {
     value.value = defaultValue.value instanceof File ? defaultValue.value : _.cloneDeep(defaultValue.value);
   });
@@ -1216,8 +1218,8 @@ var base$k = function base(props, context, dependencies) {
 
   /**
    * Sets the value of the element.
-   * 
-   * 
+   *
+   *
    * @param {any} val the value to be set
    * @returns {void}
    * @private
@@ -1233,7 +1235,7 @@ var base$k = function base(props, context, dependencies) {
 
   /**
    * The value of the element in `{[name]: value}` value format. This gets merged with the parent component's data.
-   * 
+   *
    * @type {object}
    */
   var data = computed(() => {
@@ -1244,7 +1246,7 @@ var base$k = function base(props, context, dependencies) {
 
   /**
    * Same as `data` property except that it only includes the element's value if [`submit`](#option-submit) is not disabled and [`available`](#property-available) is `true` (has no [`conditions`](#option-conditions) or they are fulfilled).
-   * 
+   *
    * @type {object}
    */
   var requestData = computed(() => {
@@ -1260,7 +1262,7 @@ var base$k = function base(props, context, dependencies) {
 
   /**
    * Loads value to the element using optional [`formatLoad`](#option-format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.
-   * 
+   *
    * @param {string} value* the value to be loaded
    * @param {boolean} format whether the loaded value should be formatted with [`formatLoad`](#option-format-load) before setting the value of the element (default: `false`)
    * @returns {void}
@@ -1271,8 +1273,8 @@ var base$k = function base(props, context, dependencies) {
   };
 
   /**
-   * Updates the value of the element similarly to [`load`](#method-load), only that it can\'t format data. 
-   * 
+   * Updates the value of the element similarly to [`load`](#method-load), only that it can\'t format data.
+   *
    * @param {string|} value* the value to be set
    * @returns {void}
    */
@@ -1282,7 +1284,7 @@ var base$k = function base(props, context, dependencies) {
 
   /**
    * Clears the element's value.
-   * 
+   *
    * @returns {void}
    */
   var clear = () => {
@@ -1291,7 +1293,7 @@ var base$k = function base(props, context, dependencies) {
 
   /**
    * Resets the element's value to [`default`](#option-default) (or empty if `default` is not provided). Also resets all the validation state for the element.
-   * 
+   *
    * @returns {void}
    */
   var reset = () => {
@@ -1305,6 +1307,7 @@ var base$k = function base(props, context, dependencies) {
    * @returns {void}
    * @private
    */
+  /* istanbul ignore next:@todo:adam missing implementation, but used in code */
   var prepare = /*#__PURE__*/function () {
     var _ref = _asyncToGenerator(function* () {});
     return function prepare() {
@@ -1345,11 +1348,11 @@ var base$j = function base(props, context, dependencies) {
   // ============== COMPUTED ===============
 
   /**
-  * The default value of the element.
-  * 
-  * @type {any}
-  * @private
-  */
+   * The default value of the element.
+   *
+   * @type {any}
+   * @private
+   */
   var defaultValue = computed(() => {
     var parentDefaultValue;
     if (parent && parent.value && !parent.value.mounted) {
@@ -1448,43 +1451,45 @@ var base$i = function base(props, context, dependencies) {
 
   /**
    * Whether the element has a [`label`](#option-label) option, a [#label](#slot-label) slot or `Vueform` component's [`forceLabels`](vueform#option-force-labels) option is `true`.
-   * 
+   *
    * @type {boolean}
-   * 
+   *
    */
   var hasLabel = computed(() => {
     var _el$$value$$slots, _el$$value$$scopedSlo;
-    return !!(form$.value.options.forceLabels || label.value || el$.value.slots.label || (_el$$value$$slots = el$.value.$slots) !== null && _el$$value$$slots !== void 0 && _el$$value$$slots.label || form$.value.$vueform.vueVersion === 2 && (_el$$value$$scopedSlo = el$.value.$scopedSlots) !== null && _el$$value$$scopedSlo !== void 0 && _el$$value$$scopedSlo.label);
+    return !!(form$.value.options.forceLabels || label.value || el$.value.slots.label || (_el$$value$$slots = el$.value.$slots) !== null && _el$$value$$slots !== void 0 && _el$$value$$slots.label || /* istanbul ignore next: vue2 */form$.value.$vueform.vueVersion === 2 && (_el$$value$$scopedSlo = el$.value.$scopedSlots) !== null && _el$$value$$scopedSlo !== void 0 && _el$$value$$scopedSlo.label);
   });
 
   /**
-  * Whether the label is provided as a function.
-  * 
-  * @type {boolean}
-  * @private
-  */
+   * Whether the label is provided as a function.
+   *
+   * @type {boolean}
+   * @private
+   */
   var isLabelFunction = computed(() => {
     return typeof label.value === 'function' && (!label.value.prototype || !label.value.prototype.constructor || label.value.prototype.constructor && label.value.prototype.constructor.name !== 'VueComponent');
   });
 
   /**
-  * Whether label is provided as a Vue component.
-  * 
-  * @type {boolean}
-  * @private
-  */
+   * Whether label is provided as a Vue component.
+   *
+   * @type {boolean}
+   * @private
+   */
   var isLabelComponent = computed(() => {
     return isVueComponent(label.value);
   });
 
   /**
-  * The localized label of the element.
-  * 
-  * @type {string|component}
-  * @private
-  */
+   * The localized label of the element.
+   *
+   * @type {string|component}
+   * @private
+   */
   var Label = computed(() => {
     var Label = isLabelFunction.value ? label.value(el$.value) : label.value || null;
+
+    /* istanbul ignore else */
     if (!isLabelComponent.value) {
       Label = localize(Label, config$.value, form$.value);
     }
@@ -1516,7 +1521,7 @@ var base$h = function base(props, context, dependencies) {
 
   /**
    * The classes service instance.
-   * 
+   *
    * @type {Columns}
    * @private
    */
@@ -1533,8 +1538,8 @@ var base$h = function base(props, context, dependencies) {
   });
 
   /**
-   * Calulated column sizes and classes for the element.
-   * 
+   * Calculated column sizes and classes for the element.
+   *
    * @type {object}
    * @private
    */
@@ -1544,7 +1549,7 @@ var base$h = function base(props, context, dependencies) {
 
   /**
    * The `cols` property of the Columns service instance.
-   * 
+   *
    * @type {object}
    * @private
    */
@@ -1556,7 +1561,7 @@ var base$h = function base(props, context, dependencies) {
 
   /**
    * Update columns programmatically.
-   * 
+   *
    * @param {number|array} value* the new value for columns option
    * @private
    */
@@ -1675,23 +1680,23 @@ var base$f = function base(props, context, dependencies) {
 
   /**
    * The ref to the outermost DOM of the element.
-   * 
+   *
    * @type {HTMLElement}
    */
   var container = ref(null);
 
   /**
    * Whether the element has been already mounted.
-   * 
+   *
    * @type {boolean}
    * @default true
    */
   var mounted = ref(false);
 
   /**
-   * Whether the element is hidden internally by core components like tabs or steps steps. Only intended for reading.
-   * 
-   * @type {boolean} 
+   * Whether the element is hidden internally by core components like tabs or steps. Only intended for reading.
+   *
+   * @type {boolean}
    * @default true
    * @private
    */
@@ -1701,7 +1706,7 @@ var base$f = function base(props, context, dependencies) {
 
   /**
    * Whether the element is static (does not have any data or validation).
-   * 
+   *
    * @type {boolean}
    * @private
    */
@@ -1741,7 +1746,7 @@ var base$f = function base(props, context, dependencies) {
 
   /**
    * Whether the element should be visible when using `tabs` or `steps`.
-   * 
+   *
    * @type {boolean}
    * @private
    */
@@ -1845,7 +1850,7 @@ var base$e = function base(props, context, dependencies) {
 
   /**
    * The generic name of the element constructed from label / floating or element name.
-   * 
+   *
    * @type {string}
    * @private.
    */
@@ -1887,8 +1892,8 @@ var base$d = function base(props, context, dependencies) {
 
   /**
    * Whether the element was hidden programmatically with [`show()`](#method-show) or [`hide()`](#method-hide) methods.
-   * 
-   * @type {boolean} 
+   *
+   * @type {boolean}
    * @default false
    */
   var hidden = ref(false);
@@ -1897,8 +1902,8 @@ var base$d = function base(props, context, dependencies) {
 
   /**
    * Whether the element is visible. It's `false` when `available` or `active` is `false` or `hidden` is `true`.
-   * 
-   * @type {boolean} 
+   *
+   * @type {boolean}
    */
   var visible = computed(() => {
     return available.value && !hidden.value && active.value;
@@ -2016,7 +2021,7 @@ var base$c = function base(props, context, dependencies) {
 
   /**
    * The list of templates available to the element.
-   * 
+   *
    * @type {object}
    * @private
    */
@@ -2034,7 +2039,7 @@ var base$c = function base(props, context, dependencies) {
 
   /**
    * The component's template.
-   * 
+   *
    * @type {object}
    */
   var template = computed(() => {
@@ -2063,7 +2068,7 @@ var base$b = function base(props, context, dependencies) {
 
   /**
    * Slots of the element.
-   * 
+   *
    * @type {object}
    * @private
    */
@@ -2091,8 +2096,8 @@ var base$b = function base(props, context, dependencies) {
   });
 
   /**
-   * Slots related to the element's field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `single-label` for `SelectElement`.
-   * 
+   * Slots related to the element's field. E.g. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, e.g. `option` or `single-label` for `SelectElement`.
+   *
    * @type {object}
    * @private
    */
@@ -2135,7 +2140,7 @@ var base$a = function base(props, context, dependencies) {
 
   /**
    * Helper to store whether the element is disabled via api (with .disable()).
-   * 
+   *
    * @type {boolean|null}
    * @default null
    * @private
@@ -2146,7 +2151,7 @@ var base$a = function base(props, context, dependencies) {
 
   /**
    * Whether the element is disabled.
-   * 
+   *
    * @type {boolean}
    */
   var isDisabled = computed(() => {
@@ -2277,8 +2282,8 @@ var base$8 = function base(props, context, dependencies) {
 
   /**
    * Handles `input` event.
-   * 
-   * @param {Event} e* 
+   *
+   * @param {Event} e*
    * @returns {void}
    * @private
    */
@@ -2299,10 +2304,10 @@ var base$7 = function base(props, context, dependencies) {
   // ============== COMPUTED ==============
 
   /**
-    * Whether the element has no value filled in.
-    * 
-    * @type {boolean}
-    */
+   * Whether the element has no value filled in.
+   *
+   * @type {boolean}
+   */
   var empty = computed(() => {
     return _.isEqual(value.value, nullValue.value) || [undefined, null, ''].indexOf(value.value) !== -1;
   });
@@ -2325,7 +2330,7 @@ var base$6 = function base(props, context, dependencies) {
 
   /**
    * Whether the element floating label.
-   * 
+   *
    * @type {boolean}
    */
   var hasFloating = computed(() => {
@@ -2631,7 +2636,7 @@ var base$5 = function base(props, context, dependencies) {
 
   /**
    * The classes instance (for testing purpose).
-   * 
+   *
    * @type {MergeClasses}
    * @private
    */
@@ -2649,7 +2654,7 @@ var base$5 = function base(props, context, dependencies) {
 
   /**
    * The component's classes.
-   * 
+   *
    * @type {object}
    */
   var classes = computed(() => {
@@ -2675,7 +2680,7 @@ var base$4 = function base(props, context, dependencies) {
 
   /**
    * The `id` of the <%field%>. If [`id`](#option-id) is not provided [`path`](#option-path) will be used.
-   * 
+   *
    * @type {string}
    */
   var fieldId = computed(() => {
@@ -2691,8 +2696,8 @@ var base$3 = function base(props, context, dependencies) {
 
   /**
    * The main input field of the element.
-   * 
-   * @type {HTMLElement} 
+   *
+   * @type {HTMLElement}
    */
   var input = ref(null);
   return {
@@ -2714,7 +2719,7 @@ var base$2 = function base(props, context, dependencies) {
 
   /**
    * Helper property used to store the element states.
-   * 
+   *
    * @type {object}
    * @default { dirty: false, validate: true }
    * @private
@@ -2726,7 +2731,7 @@ var base$2 = function base(props, context, dependencies) {
 
   /**
    * An array containing all the validators of the element.
-   * 
+   *
    * @type {array<Validator>}
    * @default []
    * @private
@@ -2735,7 +2740,7 @@ var base$2 = function base(props, context, dependencies) {
 
   /**
    * Instance of MessageBag service. Custom errors and messages [can be added](/docs/validating-elements#custom-errors-and-messages).
-   * 
+   *
    * @type {MessageBag}
    * @default MessageBag
    */
@@ -2743,7 +2748,7 @@ var base$2 = function base(props, context, dependencies) {
 
   /**
    * Instance of ValidatorFactory.
-   * 
+   *
    * @type {ValidatorFactory}
    * @default ValidatorFactory
    * @private
@@ -2754,7 +2759,7 @@ var base$2 = function base(props, context, dependencies) {
 
   /**
    * The element's validation rules.
-   * 
+   *
    * @type {string|array}
    * @private
    */
@@ -2764,7 +2769,7 @@ var base$2 = function base(props, context, dependencies) {
 
   /**
    * Whether the element's value was modified.
-   * 
+   *
    * @type {boolean}
    */
   var dirty = computed(() => {
@@ -2773,7 +2778,7 @@ var base$2 = function base(props, context, dependencies) {
 
   /**
    * Whether the element was already validated at least once.
-   * 
+   *
    * @type {boolean}
    */
   var validated = computed(() => {
@@ -2782,7 +2787,7 @@ var base$2 = function base(props, context, dependencies) {
 
   /**
    * Whether the element has any failing rules.
-   * 
+   *
    * @type {boolean}
    */
   var invalid = computed(() => {
@@ -2793,7 +2798,7 @@ var base$2 = function base(props, context, dependencies) {
 
   /**
    * Whether the element has any async rules in progress.
-   * 
+   *
    * @type {boolean}
    */
   var pending = computed(() => {
@@ -2804,7 +2809,7 @@ var base$2 = function base(props, context, dependencies) {
 
   /**
    * Whether the element is `pending`.
-   * 
+   *
    * @type {boolean}
    */
   var busy = computed(() => {
@@ -2813,7 +2818,7 @@ var base$2 = function base(props, context, dependencies) {
 
   /**
    * The list of errors of failing rules.
-   * 
+   *
    * @type {array}
    * @private
    */
@@ -2829,7 +2834,7 @@ var base$2 = function base(props, context, dependencies) {
 
   /**
    * All the errors of `MessageBag`.
-   * 
+   *
    * @type {array}
    */
   var errors = computed(() => {
@@ -2838,7 +2843,7 @@ var base$2 = function base(props, context, dependencies) {
 
   /**
    * The first error of `MessageBag`.
-   * 
+   *
    * @type {string}
    */
   var error = computed(() => {
@@ -2847,7 +2852,7 @@ var base$2 = function base(props, context, dependencies) {
 
   /**
    * Whether the element has errors.
-   * 
+   *
    * @type {boolean}
    */
   var isDanger = computed(() => {
@@ -2856,7 +2861,7 @@ var base$2 = function base(props, context, dependencies) {
 
   /**
    * Whether the element has been filled in successfully.
-   * 
+   *
    * @type {boolean}
    */
   var isSuccess = computed(() => {
@@ -2867,7 +2872,7 @@ var base$2 = function base(props, context, dependencies) {
 
   /**
    * Checks each validation rule for the element (async).
-   * 
+   *
    * @returns {void}
    */
   var validate = /*#__PURE__*/function () {
@@ -2895,7 +2900,7 @@ var base$2 = function base(props, context, dependencies) {
 
   /**
    * Sets the validators to default state.
-   * 
+   *
    * @returns {void}
    */
   var resetValidators = () => {
@@ -2907,7 +2912,7 @@ var base$2 = function base(props, context, dependencies) {
 
   /**
    * Flag the element as dirty.
-   * 
+   *
    * @returns {void}
    * @private
    */
@@ -2917,7 +2922,7 @@ var base$2 = function base(props, context, dependencies) {
 
   /**
    * Removes the element's `dirty` state.
-   * 
+   *
    * @returns {void}
    */
   var clean = () => {
@@ -2926,18 +2931,19 @@ var base$2 = function base(props, context, dependencies) {
 
   /**
    * Clears the manually added messages from the [`messageBag`](#property-message-bag).
-   * 
+   *
    * @returns {void}
    */
   var clearMessages = () => {
+    /* istanbul ignore else */
     if (messageBag.value) {
       messageBag.value.clear();
     }
   };
 
   /**
-   * Initalizes MessageBag service.
-   * 
+   * Initializes MessageBag service.
+   *
    * @returns {void}
    * @private
    */
@@ -2946,12 +2952,13 @@ var base$2 = function base(props, context, dependencies) {
   };
 
   /**
-   * Initalizes validators.
-   * 
+   * Initializes validators.
+   *
    * @returns {void}
    * @private
    */
   var initValidation = () => {
+    /* istanbul ignore else */
     if (!validationRules.value) {
       return;
     }
@@ -2967,8 +2974,8 @@ var base$2 = function base(props, context, dependencies) {
   };
 
   /**
-   * Re-initalizes validators when rules have changed.
-   * 
+   * Re-initializes validators when rules have changed.
+   *
    * @returns {void}
    */
   var reinitValidation = () => {
@@ -3008,7 +3015,7 @@ var base$1 = function base(props, context, dependencies) {
 
   /**
    * Whether the element is focused.
-   * 
+   *
    * @type {boolean}
    */
   var focused = ref(false);
@@ -3072,6 +3079,8 @@ var base = function base(props, context, dependencies) {
         return;
       }
       fire('change', n, o, el$.value);
+
+      /* istanbul ignore else */
       if (dirt) {
         dirt();
       }
