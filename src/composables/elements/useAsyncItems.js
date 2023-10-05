@@ -1,11 +1,12 @@
 import _ from 'lodash'
-import { toRefs, ref, computed, watch, inject } from 'vue'
+import { toRefs, ref, computed, watch, inject, nextTick, onBeforeUnmount } from 'vue'
 import localize from './../../utils/localize'
+import replaceWildcards from './../../utils/replaceWildcards'
 
 const base = function(props, context, dependencies)
 {
   const {
-    items, valueProp, labelProp, dataKey, searchParam,
+    items, valueProp, labelProp, dataKey, searchParam, clearOnRefetch,
   } = toRefs(props)
 
   // ============ DEPENDENCIES ============
@@ -14,6 +15,9 @@ const base = function(props, context, dependencies)
   const disable = dependencies.disable
   const enable = dependencies.enable
   const input = dependencies.input
+  const value = dependencies.value
+  const nullValue = dependencies.nullValue
+  const path = dependencies.path
   const el$ = dependencies.el$
   const form$ = dependencies.form$
 
@@ -31,6 +35,15 @@ const base = function(props, context, dependencies)
    * @private
    */
   const options = ref(null)
+
+  /**
+   * Stores watchers for fields from which dynamic values for endpoints are retrieved.
+   * 
+   * @type {array}
+   * @default []
+   * @private
+   */
+  const watchers = ref([])
 
   // ============== COMPUTED ==============
   
@@ -88,6 +101,12 @@ const base = function(props, context, dependencies)
    */
   const updateItems = async (shouldDisable = true) => {
     if (!isNative.value) {
+      // Refresh async function in case it
+      // contains variables that have changed
+      if (typeof items.value === 'string') {
+        options.value = createAsyncOptionsFromUrl()
+      }
+
       await input.value?.resolveOptions()
       return
     }
@@ -117,7 +136,9 @@ const base = function(props, context, dependencies)
    */
   const resolveOptionsFromUrl = async () => {
     try {
-      let optionList = (await form$.value.$vueform.services.axios.get(items.value))?.data || []
+      let url = await resolveUrlAndSetWatchers(items.value, updateItems)
+
+      let optionList = (await form$.value.$vueform.services.axios.get(url))?.data || []
 
       if (dataKey && dataKey.value && Object.keys(optionList).length) {
         optionList = _.get(optionList, dataKey.value) || []
@@ -127,6 +148,8 @@ const base = function(props, context, dependencies)
     } catch (e) {
       options.value = []
       console.warn(`Couldn\'t resolve items from ${items.value}`, e)
+    } finally {
+      cleanupValue(resolvedOptions.value?.map(o=>o.value) || [])
     }
   }
 
@@ -138,10 +161,22 @@ const base = function(props, context, dependencies)
    */
   const createAsyncOptionsFromUrl = () => {
     return async (query) => {
-      let optionList = (await form$.value.$vueform.services.axios.get(`${items.value}${items.value.match(/\?/)?'&':'?'}${searchParam.value}=${query||''}`))?.data || []
+      let url = await resolveUrlAndSetWatchers(items.value, updateItems)
 
-      if (dataKey && dataKey.value && Object.keys(optionList).length) {
-        optionList = _.get(optionList, dataKey.value) || []
+      let optionList
+
+      try {
+        optionList = (await form$.value.$vueform.services.axios.get(`${url}${url.match(/\?/)?'&':'?'}${searchParam.value}=${query||''}`))?.data || []
+
+        if (dataKey && dataKey.value && Object.keys(optionList).length) {
+          optionList = _.get(optionList, dataKey.value) || []
+        }
+      } catch (e) {
+        console.error(e)
+      } finally {
+        setTimeout(() => {
+          cleanupValue(input.value?.eo?.map(o=>o[valueProp.value]) || [])
+        }, 0)
       }
 
       return optionList
@@ -183,15 +218,105 @@ const base = function(props, context, dependencies)
     }
   }
 
+  /**
+   * Removes any value that is not among the newly fetches option list after async resolve.
+   * 
+   * @return {void}
+   * @param {array} values* the list of option values
+   * @private
+   */
+  const cleanupValue = (values) => {
+    if (clearOnRefetch.value) {
+      value.value = _.cloneDeep(nullValue.value)
+      return
+    }
+
+    if (!Array.isArray(nullValue.value) && value.value && values.indexOf(value.value) === -1) {
+      value.value = _.cloneDeep(nullValue.value)
+    }
+    else if (Array.isArray(nullValue.value) && value.value.length) {
+      value.value = value.value.filter((v) => {
+        return values.indexOf(v) !== -1
+      })
+    }
+  }
+
+  /**
+   * Resolves the endpoint url with field values and sets watchers for those fields.
+   * 
+   * @return {void}
+   * @param {string} url* the base url potentially containing variable names
+   * @param {function} updateItems* the method that triggers item updates
+   * @private
+   */
+  const resolveUrlAndSetWatchers = async (url, updateItems) => {
+    const regex = /{([^}]+)}/g
+
+    if (url.match(regex)) {
+      await nextTick()
+
+      watchers.value.forEach(unwatch => unwatch())
+
+      let match
+      while ((match = regex.exec(url)) !== null) {
+        let defaultValue = match[1].match(/\|'([^']+)/)?.[1] || ''
+        let elPath = replaceWildcards(match[1].match(/^([^|]+)/)[1], path.value)
+        let el$ = form$.value.el$(elPath)
+
+        let elValue = typeof el$?.value !== 'undefined' && el$.value !== null && typeof el$.value === 'object'
+          ? JSON.stringify(el$.value)
+          : (typeof el$?.value !== 'undefined' && el$.value !== null
+            ? el$.value
+            : defaultValue
+          )
+
+        url = url.replace(match[0], encodeURIComponent(elValue))
+
+        watchers.value.push(watch(computed(() => el$?.value), () => {
+          updateItems()
+        }))
+      }
+    }
+
+    return url
+  }
+
+  return {
+    resolveOptions,
+    resolvedOptions,
+    updateItems,
+    watchers,
+    cleanupValue,
+    resolveUrlAndSetWatchers,
+  }
+}
+
+const select = function(props, context, dependencies) {
+  const {
+    items,
+  } = toRefs(props)
+
+  const {
+    resolveOptions,
+    resolvedOptions,
+    updateItems,
+    watchers,
+    cleanupValue,
+    resolveUrlAndSetWatchers,
+  } = base(props, context, dependencies)
+
   // ================ HOOKS ===============
 
   resolveOptions()
   watch(items, resolveOptions)
-  watch(isNative, resolveOptions)
 
   return {
+    resolveOptions,
     resolvedOptions,
     updateItems,
+    watchers,
+    cleanupValue,
+    resolveUrlAndSetWatchers,
   }
 }
 
@@ -199,6 +324,12 @@ const checkboxgroup = function(props, context, dependencies) {
   const {
     items,
   } = toRefs(props)
+
+  const {
+    watchers,
+    cleanupValue,
+    resolveUrlAndSetWatchers,
+  } = base(props, context, dependencies)
 
   // ============ DEPENDENCIES ============
 
@@ -299,7 +430,11 @@ const checkboxgroup = function(props, context, dependencies) {
    */
   const resolveOptionsFromUrl = async () => {
     try {
-      options.value = (await form$.value.$vueform.services.axios.get(items.value))?.data || []
+      let url = await resolveUrlAndSetWatchers(items.value, updateItems)
+
+      options.value = (await form$.value.$vueform.services.axios.get(url))?.data || []
+
+      cleanupValue(resolvedOptions.value?.map(o=>o.value) || [])
     } catch (e) {
       options.value = []
       console.warn(`Couldn\'t resolve items from ${items.value}`, e)
@@ -343,16 +478,25 @@ const checkboxgroup = function(props, context, dependencies) {
   watch(items, resolveOptions)
 
   return {
+    resolveOptions,
     resolvedOptions,
     updateItems,
+    watchers,
+    cleanupValue,
+    resolveUrlAndSetWatchers,
   }
 }
 
 const radiogroup = checkboxgroup
+const multiselect = select
+const tags = select
 
 export {
   checkboxgroup,
   radiogroup,
+  select,
+  multiselect,
+  tags,
 }
 
 export default base

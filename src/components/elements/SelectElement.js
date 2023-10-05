@@ -6,7 +6,6 @@ import useLayout from './../../composables/elements/useLayout'
 import useInput from './../../composables/elements/useInput'
 import usePath from './../../composables/elements/usePath'
 import useConditions from './../../composables/useConditions'
-import useData from './../../composables/elements/useData'
 import useDefault from './../../composables/elements/useDefault'
 import useNullValue from './../../composables/elements/useNullValue'
 import useValidation from './../../composables/elements/useValidation'
@@ -21,7 +20,6 @@ import useDisabled from './../../composables/elements/useDisabled'
 import useEvents from './../../composables/useEvents'
 import useEmpty from './../../composables/elements/useEmpty'
 import useHandleSelectEvents from './../../composables/elements/useHandleSelectEvents'
-import useAsyncItems from './../../composables/elements/useAsyncItems'
 import useValue from './../../composables/elements/useValue'
 import useWatchValue from './../../composables/elements/useWatchValue'
 import useFloating from './../../composables/elements/useFloating'
@@ -33,6 +31,8 @@ import usePlaceholder from './../../composables/elements/usePlaceholder'
 
 import { select as useFocused } from './../../composables/elements/useFocused'
 import { select as useOptions } from './../../composables/elements/useOptions'
+import { select as useData } from './../../composables/elements/useData'
+import { select as useAsyncItems } from './../../composables/elements/useAsyncItems'
 
 import BaseElement from './../../mixins/BaseElement'
 import HasView from './../../mixins/HasView'
@@ -262,6 +262,11 @@ export default {
       default: false,
       native: false,
     },
+    clearOnRefetch: {
+      type: [Boolean],
+      required: false,
+      default: true,
+    },
 
     delay: {
       type: [Number],
@@ -363,8 +368,8 @@ export default {
       useValidation,
       useLoading,
       useOptions,
-      useAsyncItems,
       useValue,
+      useAsyncItems,
       useConditions,
       useData,
       useEmpty,

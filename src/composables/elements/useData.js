@@ -125,6 +125,61 @@ const base = function(props, context, dependencies, options = {})
   }
 }
 
+const select = function(props, context, dependencies, options = {})
+{
+  const {
+    resolveOnLoad,
+    items,
+  } = toRefs(props)
+
+  const {
+    data,
+    requestData,
+    load,
+    update,
+    clear,
+    prepare,
+  } = base(props, context, dependencies)
+
+  // ============ DEPENDENCIES =============
+
+  const value = dependencies.value
+  const resetValidators = dependencies.resetValidators
+  const defaultValue = dependencies.defaultValue
+  const updateItems = dependencies.updateItems
+
+  // =============== PRIVATE ===============
+
+  const setValue = (val) => {
+    if (options.setValue) {
+      return options.setValue(val)
+    }
+
+    value.value = val
+  }
+
+  // =============== METHODS ===============
+
+  const reset = () => {
+    setValue(_.cloneDeep(defaultValue.value))
+    resetValidators()
+
+    if (typeof items.value === 'string' && resolveOnLoad.value !== false) {
+      updateItems()
+    }
+  }
+
+  return {
+    data,
+    requestData,
+    load,
+    update,
+    clear,
+    reset,
+    prepare,
+  }
+}
+
 const object = function(props, context, dependencies)
 {
   const {
@@ -938,6 +993,9 @@ const multifile = function(props, context, dependencies)
   }
 }
 
+const multiselect = select
+const tags = select
+
 export {
   date,
   dates,
@@ -949,6 +1007,9 @@ export {
   teditor,
   file,
   multifile,
+  select,
+  multiselect,
+  tags,
 }
 
 export default base

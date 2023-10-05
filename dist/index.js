@@ -9681,6 +9681,13 @@ var EditorWrapper = {
       editor$.value.addEventListener('trix-file-accept', handleFileAccept);
       editor$.value.addEventListener('trix-attachment-add', handleAttachmentAdd);
     });
+    onBeforeUnmount(() => {
+      var _editor$$value, _editor$$value2, _editor$$value3, _editor$$value4;
+      (_editor$$value = editor$.value) === null || _editor$$value === void 0 ? void 0 : _editor$$value.removeEventListener('trix-change', handleChange);
+      (_editor$$value2 = editor$.value) === null || _editor$$value2 === void 0 ? void 0 : _editor$$value2.removeEventListener('trix-blur', handleBlur);
+      (_editor$$value3 = editor$.value) === null || _editor$$value3 === void 0 ? void 0 : _editor$$value3.removeEventListener('trix-file-accept', handleFileAccept);
+      (_editor$$value4 = editor$.value) === null || _editor$$value4 === void 0 ? void 0 : _editor$$value4.removeEventListener('trix-attachment-add', handleAttachmentAdd);
+    });
     return {
       el$,
       form$,
@@ -11068,8 +11075,8 @@ var static_$2 = function static_(props, context, dependencies) {
 };
 var checkboxgroup$1 = list$4;
 var dates$5 = list$4;
-var multiselect$2 = list$4;
-var tags$2 = list$4;
+var multiselect$4 = list$4;
+var tags$4 = list$4;
 
 var base$M = function base(props, context, dependencies) {
   var {
@@ -11661,6 +11668,56 @@ var base$J = function base(props, context, dependencies) {
       return _ref.apply(this, arguments);
     };
   }();
+  return {
+    data,
+    requestData,
+    load,
+    update,
+    clear,
+    reset,
+    prepare
+  };
+};
+var select$3 = function select(props, context, dependencies) {
+  var options = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
+  var {
+    resolveOnLoad,
+    items
+  } = toRefs(props);
+  var {
+    data,
+    requestData,
+    load,
+    update,
+    clear,
+    prepare
+  } = base$J(props, context, dependencies);
+
+  // ============ DEPENDENCIES =============
+
+  var value = dependencies.value;
+  var resetValidators = dependencies.resetValidators;
+  var defaultValue = dependencies.defaultValue;
+  var updateItems = dependencies.updateItems;
+
+  // =============== PRIVATE ===============
+
+  var setValue = val => {
+    if (options.setValue) {
+      return options.setValue(val);
+    }
+    value.value = val;
+  };
+
+  // =============== METHODS ===============
+
+  var reset = () => {
+    setValue(_.cloneDeep(defaultValue.value));
+    resetValidators();
+    if (typeof items.value === 'string' && resolveOnLoad.value !== false) {
+      updateItems();
+    }
+  };
   return {
     data,
     requestData,
@@ -12418,6 +12475,8 @@ var multifile$5 = function multifile(props, context, dependencies) {
     prepare
   };
 };
+var multiselect$3 = select$3;
+var tags$3 = select$3;
 
 var base$I = function base(props, context, dependencies) {
   var {
@@ -14889,13 +14948,24 @@ var base$A = function base(props, context, dependencies) {
   };
 };
 
+function replaceWildcards (fillable, fill) {
+  if (!fill.match(/\.([0-9]+)(?![a-zA-Z]+)/g)) {
+    return fillable;
+  }
+  fill.match(/\.([0-9]+)(?![a-zA-Z]+)/g).forEach(match => {
+    fillable = fillable.replace('.*', match);
+  });
+  return fillable;
+}
+
 var base$z = function base(props, context, dependencies) {
   var {
     items,
     valueProp,
     labelProp,
     dataKey,
-    searchParam
+    searchParam,
+    clearOnRefetch
   } = toRefs(props);
 
   // ============ DEPENDENCIES ============
@@ -14904,6 +14974,9 @@ var base$z = function base(props, context, dependencies) {
   var disable = dependencies.disable;
   var enable = dependencies.enable;
   var input = dependencies.input;
+  var value = dependencies.value;
+  var nullValue = dependencies.nullValue;
+  var path = dependencies.path;
   var el$ = dependencies.el$;
   var form$ = dependencies.form$;
 
@@ -14921,6 +14994,15 @@ var base$z = function base(props, context, dependencies) {
    * @private
    */
   var options = ref(null);
+
+  /**
+   * Stores watchers for fields from which dynamic values for endpoints are retrieved.
+   * 
+   * @type {array}
+   * @default []
+   * @private
+   */
+  var watchers = ref([]);
 
   // ============== COMPUTED ==============
 
@@ -14978,6 +15060,11 @@ var base$z = function base(props, context, dependencies) {
       var shouldDisable = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
       if (!isNative.value) {
         var _input$value;
+        // Refresh async function in case it
+        // contains variables that have changed
+        if (typeof items.value === 'string') {
+          options.value = createAsyncOptionsFromUrl();
+        }
         yield (_input$value = input.value) === null || _input$value === void 0 ? void 0 : _input$value.resolveOptions();
         return;
       }
@@ -15010,7 +15097,8 @@ var base$z = function base(props, context, dependencies) {
     var _ref2 = _asyncToGenerator(function* () {
       try {
         var _yield$form$$value$$v;
-        var optionList = ((_yield$form$$value$$v = yield form$.value.$vueform.services.axios.get(items.value)) === null || _yield$form$$value$$v === void 0 ? void 0 : _yield$form$$value$$v.data) || [];
+        var url = yield resolveUrlAndSetWatchers(items.value, updateItems);
+        var optionList = ((_yield$form$$value$$v = yield form$.value.$vueform.services.axios.get(url)) === null || _yield$form$$value$$v === void 0 ? void 0 : _yield$form$$value$$v.data) || [];
         if (dataKey && dataKey.value && Object.keys(optionList).length) {
           optionList = _.get(optionList, dataKey.value) || [];
         }
@@ -15018,6 +15106,9 @@ var base$z = function base(props, context, dependencies) {
       } catch (e) {
         options.value = [];
         console.warn("Couldn't resolve items from ".concat(items.value), e);
+      } finally {
+        var _resolvedOptions$valu;
+        cleanupValue(((_resolvedOptions$valu = resolvedOptions.value) === null || _resolvedOptions$valu === void 0 ? void 0 : _resolvedOptions$valu.map(o => o.value)) || []);
       }
     });
     return function resolveOptionsFromUrl() {
@@ -15034,10 +15125,21 @@ var base$z = function base(props, context, dependencies) {
   var createAsyncOptionsFromUrl = () => {
     return /*#__PURE__*/function () {
       var _ref3 = _asyncToGenerator(function* (query) {
-        var _yield$form$$value$$v2;
-        var optionList = ((_yield$form$$value$$v2 = yield form$.value.$vueform.services.axios.get("".concat(items.value).concat(items.value.match(/\?/) ? '&' : '?').concat(searchParam.value, "=").concat(query || ''))) === null || _yield$form$$value$$v2 === void 0 ? void 0 : _yield$form$$value$$v2.data) || [];
-        if (dataKey && dataKey.value && Object.keys(optionList).length) {
-          optionList = _.get(optionList, dataKey.value) || [];
+        var url = yield resolveUrlAndSetWatchers(items.value, updateItems);
+        var optionList;
+        try {
+          var _yield$form$$value$$v2;
+          optionList = ((_yield$form$$value$$v2 = yield form$.value.$vueform.services.axios.get("".concat(url).concat(url.match(/\?/) ? '&' : '?').concat(searchParam.value, "=").concat(query || ''))) === null || _yield$form$$value$$v2 === void 0 ? void 0 : _yield$form$$value$$v2.data) || [];
+          if (dataKey && dataKey.value && Object.keys(optionList).length) {
+            optionList = _.get(optionList, dataKey.value) || [];
+          }
+        } catch (e) {
+          console.error(e);
+        } finally {
+          setTimeout(() => {
+            var _input$value2;
+            cleanupValue(((_input$value2 = input.value) === null || _input$value2 === void 0 || (_input$value2 = _input$value2.eo) === null || _input$value2 === void 0 ? void 0 : _input$value2.map(o => o[valueProp.value])) || []);
+          }, 0);
         }
         return optionList;
       });
@@ -15092,20 +15194,107 @@ var base$z = function base(props, context, dependencies) {
     };
   }();
 
+  /**
+   * Removes any value that is not among the newly fetches option list after async resolve.
+   * 
+   * @return {void}
+   * @param {array} values* the list of option values
+   * @private
+   */
+  var cleanupValue = values => {
+    if (clearOnRefetch.value) {
+      value.value = _.cloneDeep(nullValue.value);
+      return;
+    }
+    if (!Array.isArray(nullValue.value) && value.value && values.indexOf(value.value) === -1) {
+      value.value = _.cloneDeep(nullValue.value);
+    } else if (Array.isArray(nullValue.value) && value.value.length) {
+      value.value = value.value.filter(v => {
+        return values.indexOf(v) !== -1;
+      });
+    }
+  };
+
+  /**
+   * Resolves the endpoint url with field values and sets watchers for those fields.
+   * 
+   * @return {void}
+   * @param {string} url* the base url potentially containing variable names
+   * @param {function} updateItems* the method that triggers item updates
+   * @private
+   */
+  var resolveUrlAndSetWatchers = /*#__PURE__*/function () {
+    var _ref6 = _asyncToGenerator(function* (url, updateItems) {
+      var regex = /{([^}]+)}/g;
+      if (url.match(regex)) {
+        yield nextTick();
+        watchers.value.forEach(unwatch => unwatch());
+        var match;
+        var _loop = function* _loop() {
+          var _match$1$match;
+          var defaultValue = ((_match$1$match = match[1].match(/\|'([^']+)/)) === null || _match$1$match === void 0 ? void 0 : _match$1$match[1]) || '';
+          var elPath = replaceWildcards(match[1].match(/^([^|]+)/)[1], path.value);
+          var el$ = form$.value.el$(elPath);
+          var elValue = typeof (el$ === null || el$ === void 0 ? void 0 : el$.value) !== 'undefined' && el$.value !== null && typeof el$.value === 'object' ? JSON.stringify(el$.value) : typeof (el$ === null || el$ === void 0 ? void 0 : el$.value) !== 'undefined' && el$.value !== null ? el$.value : defaultValue;
+          url = url.replace(match[0], encodeURIComponent(elValue));
+          watchers.value.push(watch(computed(() => el$ === null || el$ === void 0 ? void 0 : el$.value), () => {
+            updateItems();
+          }));
+        };
+        while ((match = regex.exec(url)) !== null) {
+          yield* _loop();
+        }
+      }
+      return url;
+    });
+    return function resolveUrlAndSetWatchers(_x4, _x5) {
+      return _ref6.apply(this, arguments);
+    };
+  }();
+  return {
+    resolveOptions,
+    resolvedOptions,
+    updateItems,
+    watchers,
+    cleanupValue,
+    resolveUrlAndSetWatchers
+  };
+};
+var select$2 = function select(props, context, dependencies) {
+  var {
+    items
+  } = toRefs(props);
+  var {
+    resolveOptions,
+    resolvedOptions,
+    updateItems,
+    watchers,
+    cleanupValue,
+    resolveUrlAndSetWatchers
+  } = base$z(props, context, dependencies);
+
   // ================ HOOKS ===============
 
   resolveOptions();
   watch(items, resolveOptions);
-  watch(isNative, resolveOptions);
   return {
+    resolveOptions,
     resolvedOptions,
-    updateItems
+    updateItems,
+    watchers,
+    cleanupValue,
+    resolveUrlAndSetWatchers
   };
 };
 var checkboxgroup = function checkboxgroup(props, context, dependencies) {
   var {
     items
   } = toRefs(props);
+  var {
+    watchers,
+    cleanupValue,
+    resolveUrlAndSetWatchers
+  } = base$z(props, context, dependencies);
 
   // ============ DEPENDENCIES ============
 
@@ -15190,7 +15379,7 @@ var checkboxgroup = function checkboxgroup(props, context, dependencies) {
    * @returns {void} 
    */
   var updateItems = /*#__PURE__*/function () {
-    var _ref6 = _asyncToGenerator(function* () {
+    var _ref7 = _asyncToGenerator(function* () {
       var shouldDisable = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
       if (shouldDisable) {
         disableAll();
@@ -15205,7 +15394,7 @@ var checkboxgroup = function checkboxgroup(props, context, dependencies) {
       }
     });
     return function updateItems() {
-      return _ref6.apply(this, arguments);
+      return _ref7.apply(this, arguments);
     };
   }();
 
@@ -15216,17 +15405,19 @@ var checkboxgroup = function checkboxgroup(props, context, dependencies) {
    * @private
    */
   var resolveOptionsFromUrl = /*#__PURE__*/function () {
-    var _ref7 = _asyncToGenerator(function* () {
+    var _ref8 = _asyncToGenerator(function* () {
       try {
-        var _yield$form$$value$$v3;
-        options.value = ((_yield$form$$value$$v3 = yield form$.value.$vueform.services.axios.get(items.value)) === null || _yield$form$$value$$v3 === void 0 ? void 0 : _yield$form$$value$$v3.data) || [];
+        var _yield$form$$value$$v3, _resolvedOptions$valu2;
+        var url = yield resolveUrlAndSetWatchers(items.value, updateItems);
+        options.value = ((_yield$form$$value$$v3 = yield form$.value.$vueform.services.axios.get(url)) === null || _yield$form$$value$$v3 === void 0 ? void 0 : _yield$form$$value$$v3.data) || [];
+        cleanupValue(((_resolvedOptions$valu2 = resolvedOptions.value) === null || _resolvedOptions$valu2 === void 0 ? void 0 : _resolvedOptions$valu2.map(o => o.value)) || []);
       } catch (e) {
         options.value = [];
         console.warn("Couldn't resolve items from ".concat(items.value), e);
       }
     });
     return function resolveOptionsFromUrl() {
-      return _ref7.apply(this, arguments);
+      return _ref8.apply(this, arguments);
     };
   }();
 
@@ -15237,7 +15428,7 @@ var checkboxgroup = function checkboxgroup(props, context, dependencies) {
    * @private
    */
   var resolveOptionsFromFunction = /*#__PURE__*/function () {
-    var _ref8 = _asyncToGenerator(function* () {
+    var _ref9 = _asyncToGenerator(function* () {
       try {
         options.value = (yield items.value(el$.value)) || [];
       } catch (e) {
@@ -15246,7 +15437,7 @@ var checkboxgroup = function checkboxgroup(props, context, dependencies) {
       }
     });
     return function resolveOptionsFromFunction() {
-      return _ref8.apply(this, arguments);
+      return _ref9.apply(this, arguments);
     };
   }();
 
@@ -15257,7 +15448,7 @@ var checkboxgroup = function checkboxgroup(props, context, dependencies) {
    * @private
    */
   var resolveOptions = /*#__PURE__*/function () {
-    var _ref9 = _asyncToGenerator(function* () {
+    var _ref10 = _asyncToGenerator(function* () {
       if (typeof items.value === 'function') {
         yield resolveOptionsFromFunction();
       } else if (typeof items.value === 'string') {
@@ -15267,7 +15458,7 @@ var checkboxgroup = function checkboxgroup(props, context, dependencies) {
       }
     });
     return function resolveOptions() {
-      return _ref9.apply(this, arguments);
+      return _ref10.apply(this, arguments);
     };
   }();
 
@@ -15276,11 +15467,17 @@ var checkboxgroup = function checkboxgroup(props, context, dependencies) {
   resolveOptions();
   watch(items, resolveOptions);
   return {
+    resolveOptions,
     resolvedOptions,
-    updateItems
+    updateItems,
+    watchers,
+    cleanupValue,
+    resolveUrlAndSetWatchers
   };
 };
 var radiogroup = checkboxgroup;
+var multiselect$2 = select$2;
+var tags$2 = select$2;
 
 var CheckboxgroupElement = {
   name: 'CheckboxgroupElement',
@@ -15318,10 +15515,15 @@ var CheckboxgroupElement = {
       required: false,
       type: [Array],
       default: () => []
+    },
+    clearOnRefetch: {
+      type: [Boolean],
+      required: false,
+      default: true
     }
   },
   setup(props, context) {
-    context.features = [base$18, base$17, base$U, base$M, array$1, base$S, base$1a, checkboxgroup$1, checkboxgroup$3, checkboxgroup, base$I, base$13, base$H, base$F, base$A, base$J, base$_, base$G, base$Z, base$Y, base$X, base$T, base$W, checkboxgroup$2, base$E, base$R];
+    context.features = [base$18, base$17, base$U, base$M, array$1, base$S, base$1a, checkboxgroup$1, checkboxgroup$3, base$I, base$F, checkboxgroup, base$13, base$H, base$A, base$J, base$_, base$G, base$Z, base$Y, base$X, base$T, base$W, checkboxgroup$2, base$E, base$R];
     context.slots = ['checkbox', 'label', 'info', 'description', 'before', 'between', 'after'];
     return _objectSpread2$1({}, base$L(props, context));
   }
@@ -22162,6 +22364,11 @@ var MultiselectElement = {
       default: false,
       native: false
     },
+    clearOnRefetch: {
+      type: [Boolean],
+      required: false,
+      default: true
+    },
     delay: {
       type: [Number],
       required: false,
@@ -22244,7 +22451,7 @@ var MultiselectElement = {
     }
   },
   setup(props, context) {
-    context.features = [base$18, base$17, base$U, base$K, base$M, base$Q, array$1, base$S, base$u, base$1a, multiselect$2, base$I, base$H, base$c, multiselect$1, base$z, base$F, base$13, base$J, array, base$_, base$G, base$Y, base$X, base$T, base$Z, base$W, base$e, base$d, multiselect, base$P, base$E, base$R, base$t];
+    context.features = [base$18, base$17, base$U, base$K, base$M, base$Q, array$1, base$S, base$u, base$1a, multiselect$4, base$I, base$H, base$c, multiselect$1, base$F, multiselect$2, base$13, multiselect$3, array, base$_, base$G, base$Y, base$X, base$T, base$Z, base$W, base$e, base$d, multiselect, base$P, base$E, base$R, base$t];
     context.slots = ['option', 'multiple-label', 'placeholder', 'group-label', 'before-list', 'after-list', 'no-results', 'no-options', 'caret', 'spinner', 'clear', 'label', 'info', 'description', 'before', 'between', 'after'];
     return _objectSpread2$1({}, base$L(props, context));
   }
@@ -22478,10 +22685,15 @@ var RadiogroupElement = {
       required: false,
       type: [Array],
       default: () => []
+    },
+    clearOnRefetch: {
+      type: [Boolean],
+      required: false,
+      default: true
     }
   },
   setup(props, context) {
-    context.features = [base$18, base$17, base$U, base$M, base$C, base$S, base$1a, base$N, radiogroup$2, radiogroup, base$I, base$13, base$H, base$F, base$J, base$_, base$G, base$Y, base$X, base$T, base$Z, base$W, radiogroup$1, base$E, base$R];
+    context.features = [base$18, base$17, base$U, base$M, base$C, base$S, base$1a, base$N, radiogroup$2, base$I, base$F, radiogroup, base$13, base$H, base$J, base$_, base$G, base$Y, base$X, base$T, base$Z, base$W, radiogroup$1, base$E, base$R];
     context.slots = ['radio', 'label', 'info', 'description', 'before', 'between', 'after'];
     return _objectSpread2$1({}, base$L(props, context));
   }
@@ -22705,6 +22917,11 @@ var SelectElement = {
       default: false,
       native: false
     },
+    clearOnRefetch: {
+      type: [Boolean],
+      required: false,
+      default: true
+    },
     delay: {
       type: [Number],
       required: false,
@@ -22787,7 +23004,7 @@ var SelectElement = {
     }
   },
   setup(props, context) {
-    context.features = [base$18, base$17, base$U, base$K, base$M, base$Q, base$C, base$S, base$u, base$1a, base$N, base$I, base$H, base$c, select$1, base$z, base$F, base$13, base$J, base$x, base$_, base$G, base$Y, base$X, base$T, base$Z, base$W, base$e, select, base$P, base$E, base$R, base$t];
+    context.features = [base$18, base$17, base$U, base$K, base$M, base$Q, base$C, base$S, base$u, base$1a, base$N, base$I, base$H, base$c, select$1, base$F, select$2, base$13, select$3, base$x, base$_, base$G, base$Y, base$X, base$T, base$Z, base$W, base$e, select, base$P, base$E, base$R, base$t];
     context.slots = ['option', 'single-label', 'placeholder', 'group-label', 'before-list', 'after-list', 'no-results', 'no-options', 'caret', 'spinner', 'clear', 'label', 'info', 'description', 'before', 'between', 'after'];
     return _objectSpread2$1({}, base$L(props, context));
   }
@@ -23223,6 +23440,11 @@ var TagsElement = {
       default: false,
       native: false
     },
+    clearOnRefetch: {
+      type: [Boolean],
+      required: false,
+      default: true
+    },
     delay: {
       type: [Number],
       required: false,
@@ -23310,7 +23532,7 @@ var TagsElement = {
     }
   },
   setup(props, context) {
-    context.features = [base$18, base$17, base$U, base$K, base$M, base$Q, array$1, base$S, base$u, base$1a, tags$2, base$I, base$H, base$c, tags$1, base$z, base$F, base$13, base$J, array, base$_, base$G, base$Y, base$X, base$T, base$Z, base$W, base$e, base$8, base$d, tags, base$P, base$E, base$R, base$t];
+    context.features = [base$18, base$17, base$U, base$K, base$M, base$Q, array$1, base$S, base$u, base$1a, tags$4, base$I, base$H, base$c, tags$1, base$F, tags$2, base$13, tags$3, array, base$_, base$G, base$Y, base$X, base$T, base$Z, base$W, base$e, base$8, base$d, tags, base$P, base$E, base$R, base$t];
     context.slots = ['tag', 'option', 'placeholder', 'group-label', 'before-list', 'after-list', 'no-results', 'no-options', 'caret', 'spinner', 'clear', 'label', 'info', 'description', 'before', 'between', 'after'];
     return _objectSpread2$1({}, base$L(props, context));
   }

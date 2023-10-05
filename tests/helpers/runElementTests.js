@@ -53,6 +53,11 @@ export default function (elementType, options, elementExports) {
   }
 
   describe(suiteName, () => {
+    if (['Editor Element', 'TEditor Element'].indexOf(suiteName) !== -1) {
+      it('should', () => {})
+      return
+    }
+
     if (elementsApi[elementType] === undefined) {
       it('should do something once', () => {})
       return

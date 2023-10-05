@@ -70,6 +70,11 @@ export default {
       type: [Array],
       default: () => ([])
     },
+    clearOnRefetch: {
+      type: [Boolean],
+      required: false,
+      default: true,
+    },
   },
   setup(props, context) {
     context.features = [
@@ -82,11 +87,11 @@ export default {
       useEvents,
       useBaseElement,
       useDisabled,
-      useAsyncItems,
       useDefault,
+      useValue,
+      useAsyncItems,
       useConditions,
       useValidation,
-      useValue,
       useCheck,
       useData,
       useLabel,

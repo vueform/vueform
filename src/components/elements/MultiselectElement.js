@@ -6,7 +6,6 @@ import useLayout from './../../composables/elements/useLayout'
 import useInput from './../../composables/elements/useInput'
 import usePath from './../../composables/elements/usePath'
 import useConditions from './../../composables/useConditions'
-import useData from './../../composables/elements/useData'
 import useDefault from './../../composables/elements/useDefault'
 import useValidation from './../../composables/elements/useValidation'
 import useLabel from './../../composables/elements/useLabel'
@@ -19,7 +18,6 @@ import useDisabled from './../../composables/elements/useDisabled'
 import useEvents from './../../composables/useEvents'
 import useHandleSelectEvents from './../../composables/elements/useHandleSelectEvents'
 import useSelect from './../../composables/elements/useSelect'
-import useAsyncItems from './../../composables/elements/useAsyncItems'
 import useValue from './../../composables/elements/useValue'
 import useWatchValue from './../../composables/elements/useWatchValue'
 import useFloating from './../../composables/elements/useFloating'
@@ -32,6 +30,8 @@ import usePlaceholder from './../../composables/elements/usePlaceholder'
 import { multiselect as useFocused } from './../../composables/elements/useFocused'
 import { multiselect as useOptions } from './../../composables/elements/useOptions'
 import { multiselect as useBaseElement } from './../../composables/elements/useBaseElement'
+import { multiselect as useData } from './../../composables/elements/useData'
+import { multiselect as useAsyncItems } from './../../composables/elements/useAsyncItems'
 import { array as useNullValue } from './../../composables/elements/useNullValue'
 import { array as useEmpty } from './../../composables/elements/useEmpty'
 
@@ -295,6 +295,11 @@ export default {
       default: false,
       native: false,
     },
+    clearOnRefetch: {
+      type: [Boolean],
+      required: false,
+      default: true,
+    },
 
     delay: {
       type: [Number],
@@ -396,8 +401,8 @@ export default {
       useValidation,
       useLoading,
       useOptions,
-      useAsyncItems,
       useValue,
+      useAsyncItems,
       useConditions,
       useData,
       useEmpty,
