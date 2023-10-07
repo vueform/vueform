@@ -1,5 +1,15 @@
 [
   {
+    "version": "1.4.3",
+    "date": "2023-10-07",
+    "available": true,
+    "notes": [
+      "feat: Long tags are now truncated by default. Can be broken into multiple lines with `breakTags`.",
+      "feat: `trackBy` property now accepts array.",
+      "fix: Number comparison rules fix."
+    ]
+  },
+  {
     "version": "1.4.2",
     "date": "2023-10-02",
     "available": true,
