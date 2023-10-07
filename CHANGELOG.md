@@ -1,5 +1,16 @@
 [//]: # (Don't use <tags>)
 
+## v1.4.3
+
+> `2023-10-07`
+
+### 🎉 Feature
+- Long tags are now truncated by default. Can be broken into multiple lines with `breakTags`.
+- `trackBy` property now accepts array.
+
+### 🐞 Bug Fixes
+- Number comparison rules fix.
+
 ## v1.4.2
 
 > `2023-10-02`
