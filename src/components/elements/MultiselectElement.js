@@ -168,7 +168,7 @@ export default {
       native: false,
     },
     trackBy: {
-      type: [String],
+      type: [String, Array],
       required: false,
       default: 'label',
       native: false,

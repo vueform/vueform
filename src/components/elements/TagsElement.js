@@ -166,7 +166,7 @@ export default {
       default: false,
     },
     trackBy: {
-      type: [String],
+      type: [String, Array],
       required: false,
       default: 'label',
     },
@@ -174,6 +174,11 @@ export default {
       type: [Boolean],
       required: false,
       default: true,
+    },
+    breakTags: {
+      type: [Boolean],
+      required: false,
+      default: false,
     },
 
     create: {
@@ -305,11 +310,6 @@ export default {
       type: [Boolean],
       required: false,
       default: true,
-    },
-    truncate: {
-      type: [Number],
-      required: false,
-      default: 0,
     },
     loading: {
       type: [Boolean],

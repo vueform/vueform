@@ -37,7 +37,7 @@ const base = function(props, context, dependencies)
   /**
    * Handles the `drop` event.
    *
-   * @param {Event} e
+   * @param {Event} e - event object
    * @returns {void}
    * @private
    */

@@ -522,21 +522,6 @@ module.exports = {
         "description": "The position of the info."
       }
     },
-    "methods": {
-      "handleMouseOver": {
-        "public": false,
-        "description": "Handles the info hover.",
-        "params": {
-          "e": {
-            "types": [
-              "Event"
-            ],
-            "required": false,
-            "description": ""
-          }
-        }
-      }
-    },
     "props": {},
     "events": {},
     "slots": {
@@ -1949,6 +1934,13 @@ module.exports = {
           "component"
         ],
         "description": "The label of the step."
+      },
+      "conditionList": {
+        "public": false,
+        "types": [
+          "array"
+        ],
+        "description": "The current conditions of the element."
       }
     },
     "methods": {
@@ -3057,6 +3049,13 @@ module.exports = {
           "component"
         ],
         "description": "The label of the tab."
+      },
+      "conditionList": {
+        "public": false,
+        "types": [
+          "array"
+        ],
+        "description": "The current conditions of the element."
       }
     },
     "methods": {
@@ -3578,7 +3577,7 @@ module.exports = {
         "types": [
           "MessageBag"
         ],
-        "description": "Instance of MessageBag service. It can be used to add [custom errors and messages](/docs/validating-elements#custom-errors-and-messages)."
+        "description": "Instance of MessageBag service. It can be used to add [custom errors and messages](/docs/1.x/validating-elements#custom-errors-and-messages)."
       },
       "selectedLanguage": {
         "public": true,
@@ -5384,8 +5383,8 @@ module.exports = {
             "types": [
               "Event"
             ],
-            "required": true,
-            "description": ""
+            "required": false,
+            "description": "- event object "
           }
         }
       }
@@ -5762,8 +5761,8 @@ module.exports = {
             "types": [
               "Event"
             ],
-            "required": true,
-            "description": ""
+            "required": false,
+            "description": "- event object "
           }
         }
       }

@@ -37,7 +37,7 @@ const base = function(props, context, dependencies)
   /**
    * Handles `change` event.
    *
-   * @param {Event} e*
+   * @param {Event} e - event object
    * @returns {void}
    * @private
    */

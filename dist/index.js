@@ -3149,7 +3149,7 @@ var FormTabs = {
 
     /**
      * The child [`FormTab`](form-tab) components.
-     * 
+     *
      * @type {array}
      * @default []
      */
@@ -3157,7 +3157,7 @@ var FormTabs = {
 
     /**
      * Helper prop used for checking if the component exists.
-     * 
+     *
      * @type {boolean}
      * @private
      */
@@ -3167,7 +3167,7 @@ var FormTabs = {
 
     /**
      * The form elements' components.
-     * 
+     *
      * @type {object}
      */
     var elements$ = computed(() => {
@@ -3175,8 +3175,8 @@ var FormTabs = {
     });
 
     /**
-     * The object containing tabs defined in [`Vueform`](vueform#option-tabs). 
-     * 
+     * The object containing tabs defined in [`Vueform`](vueform#option-tabs).
+     *
      * @type {object}
      */
     var tabs = computed(() => {
@@ -3185,7 +3185,7 @@ var FormTabs = {
 
     /**
      * The child [`FormTab`](form-tab) components with indexed keys.
-     * 
+     *
      * @type {object}
      */
     var tabs$ = computed(() => {
@@ -3198,7 +3198,7 @@ var FormTabs = {
 
     /**
      * All the visible [`FormTab`](form-tab) components.
-     * 
+     *
      * @type {object}
      */
     var visible$ = computed(() => {
@@ -3213,7 +3213,7 @@ var FormTabs = {
 
     /**
      * The current [`FormTab`](form-tab) component.
-     * 
+     *
      * @type {component}
      */
     var current$ = computed(() => {
@@ -3225,7 +3225,7 @@ var FormTabs = {
 
     /**
      * The first visible [`FormTab`](form-tab) component.
-     * 
+     *
      * @type {component}
      */
     var first$ = computed(() => {
@@ -3236,7 +3236,7 @@ var FormTabs = {
 
     /**
      * The last visible [`FormTab`](form-tab) component.
-     * 
+     *
      * @type {component}
      */
     var last$ = computed(() => {
@@ -3245,7 +3245,7 @@ var FormTabs = {
 
     /**
      * The next visible [`FormTab`](form-tab) component.
-     * 
+     *
      * @type {component}
      */
     var next$ = computed(() => {
@@ -3256,7 +3256,7 @@ var FormTabs = {
 
     /**
      * The previous visible [`FormTab`](form-tab) component.
-     * 
+     *
      * @type {component}
      */
     var previous$ = computed(() => {
@@ -3319,7 +3319,7 @@ var FormTabs = {
 
     /**
      * Set the component to the parent as if `refs` were used.
-     * 
+     *
      * @param {component} $parent parent component
      * @param {function} assignToParent the assignToParent function for recursion
      * @returns {void}
@@ -3335,7 +3335,7 @@ var FormTabs = {
 
     /**
     * Removes the component from the parent.
-    * 
+    *
     * @param {component} $parent parent component
     * @param {function} removeFromParent the removeFromParent function for recursion
     * @private
@@ -3344,6 +3344,7 @@ var FormTabs = {
       if ($parent.tabs$ !== undefined) {
         form$.value.$set($parent, 'tabs$', null);
       } else {
+        /* @todo:adam test later */
         removeFromParent($parent.$parent, removeFromParent);
       }
     };
@@ -3354,6 +3355,7 @@ var FormTabs = {
 
     // ============== WATCHERS ==============
 
+    /* istanbul ignore next: can not reproduce */
     watch(elements$, (newValue, oldValue) => {
       var newElements$ = _.difference(_.keys(newValue), _.keys(oldValue));
       _.each(newElements$, newElement$ => {
@@ -3366,7 +3368,9 @@ var FormTabs = {
     watch(tabs, /*#__PURE__*/_asyncToGenerator(function* () {
       yield nextTick();
       yield nextTick();
-      if (current$.value === undefined || current$.value.index === undefined) {
+
+      //@todo:adam we came up with change together
+      if ((current$.value === undefined || current$.value.index === undefined) && first$.value) {
         first$.value.select();
       }
     }), {
@@ -3840,7 +3844,7 @@ var FormTab = {
      */
     var index = computed(() => {
       var _tabs$$value;
-      return Object.keys((tabs$ === null || tabs$ === void 0 || (_tabs$$value = tabs$.value) === null || _tabs$$value === void 0 ? void 0 : _tabs$$value.tabs$) || {}).indexOf(name.value);
+      return Object.keys((tabs$ === null || tabs$ === void 0 || (_tabs$$value = tabs$.value) === null || _tabs$$value === void 0 ? void 0 : _tabs$$value.tabs$) || /* istanbul ignore next: tab can not stand by itself */{}).indexOf(name.value);
     });
 
     /**
@@ -4015,6 +4019,7 @@ var FormTab = {
       if ($parent.tabs$Array) {
         $parent.tabs$Array.splice($parent.tabs$Array.map(t$ => normalize(t$.name)).indexOf(normalize(name.value)), 1);
       } else {
+        /* @todo:adam test later */
         removeFromParent($parent.$parent, removeFromParent);
       }
     };
@@ -4022,6 +4027,7 @@ var FormTab = {
     // ============== WATCHERS ==============
 
     watch(children$, () => {
+      /* istanbul ignore else */
       if (!active.value) {
         return;
       }
@@ -4084,6 +4090,7 @@ var FormTab = {
       tabLabel,
       tab$,
       tabs$,
+      conditionList,
       select,
       activate,
       deactivate,
@@ -4139,7 +4146,7 @@ var FormSteps = {
 
     /**
      * The child [`FormStep`](form-step) components.
-     * 
+     *
      * @type {array}
      * @default []
      */
@@ -4147,7 +4154,7 @@ var FormSteps = {
 
     /**
      * Helper to store a watcher.
-     * 
+     *
      * @type {object}
      * @default null
      */
@@ -4155,7 +4162,7 @@ var FormSteps = {
 
     /**
      * Helper prop used for checking if the component exists.
-     * 
+     *
      * @type {boolean}
      * @private
      */
@@ -4164,8 +4171,8 @@ var FormSteps = {
     // ============== COMPUTED ==============
 
     /**
-     * The object containing steps defined in [`Vueform`](vueform#option-steps). 
-     * 
+     * The object containing steps defined in [`Vueform`](vueform#option-steps).
+     *
      * @type {object}
      */
     var steps = computed(() => {
@@ -4174,7 +4181,7 @@ var FormSteps = {
 
     /**
      * The form elements' components.
-     * 
+     *
      * @type {object}
      */
     var elements$ = computed(() => {
@@ -4183,7 +4190,7 @@ var FormSteps = {
 
     /**
      * Whether there are any steps in [`pending`](form-step#property-pending) state.
-     * 
+     *
      * @type {boolean}
      */
     var pending = computed(() => {
@@ -4194,7 +4201,7 @@ var FormSteps = {
 
     /**
      * Whether there are any steps in [`debouncing`](form-step#property-debouncing) state.
-     * 
+     *
      * @type {boolean}
      */
     var debouncing = computed(() => {
@@ -4205,7 +4212,7 @@ var FormSteps = {
 
     /**
      * Whether there are any steps in [`invalid`](form-step#property-invalid) state.
-     * 
+     *
      * @type {boolean}
      */
     var invalid = computed(() => {
@@ -4216,7 +4223,7 @@ var FormSteps = {
 
     /**
      * Whether all the steps are [`done`](form-step#property-done).
-     * 
+     *
      * @type {boolean}
      */
     var done = computed(() => {
@@ -4227,7 +4234,7 @@ var FormSteps = {
 
     /**
      * Whether there are any steps in [`busys`](form-step#property-busys) state.
-     * 
+     *
      * @type {boolean}
      */
     var busy = computed(() => {
@@ -4236,7 +4243,7 @@ var FormSteps = {
 
     /**
      * The child [`FormStep`](form-step) components with indexed keys.
-     * 
+     *
      * @type {object}
      */
     var steps$ = computed(() => {
@@ -4249,7 +4256,7 @@ var FormSteps = {
 
     /**
      * All the visible [`FormStep`](form-step) components.
-     * 
+     *
      * @type {object}
      */
     var visible$ = computed(() => {
@@ -4264,7 +4271,7 @@ var FormSteps = {
 
     /**
      * The first visible [`FormStep`](form-step) component.
-     * 
+     *
      * @type {component}
      */
     var first$ = computed(() => {
@@ -4275,7 +4282,7 @@ var FormSteps = {
 
     /**
      * The last visible [`FormStep`](form-step) component.
-     * 
+     *
      * @type {component}
      */
     var last$ = computed(() => {
@@ -4284,7 +4291,7 @@ var FormSteps = {
 
     /**
      * The current [`FormStep`](form-step) component.
-     * 
+     *
      * @type {component}
      */
     var current$ = computed(() => {
@@ -4296,7 +4303,7 @@ var FormSteps = {
 
     /**
      * The next visible [`FormStep`](form-step) component.
-     * 
+     *
      * @type {component}
      */
     var next$ = computed(() => {
@@ -4307,7 +4314,7 @@ var FormSteps = {
 
     /**
      * The previous visible [`FormStep`](form-step) component.
-     * 
+     *
      * @type {component}
      */
     var previous$ = computed(() => {
@@ -4318,7 +4325,7 @@ var FormSteps = {
 
     /**
      * The first invalid & visible [`FormStep`](form-step) component.
-     * 
+     *
      * @type {component}
      */
     var firstInvalid$ = computed(() => {
@@ -4329,7 +4336,7 @@ var FormSteps = {
 
     /**
      * The first visible [`FormStep`](form-step) component which is not done yet.
-     * 
+     *
      * @type {component}
      */
     var firstNonDone$ = computed(() => {
@@ -4340,7 +4347,7 @@ var FormSteps = {
 
     /**
      * The last enabled & visible [`FormStep`](form-step) component.
-     * 
+     *
      * @type {component}
      */
     var lastEnabled$ = computed(() => {
@@ -4351,13 +4358,16 @@ var FormSteps = {
 
     /**
      * Whether is at the last step.
-     * 
+     *
      * @type {boolean}
      */
     var isAtLastStep = computed(() => {
       var last = _.findLast(visible$.value, {
         visible: true
       });
+
+      // @todo:adam !current$.value will never be null or undefined, hardcoded {}
+      /* istanbul ignore next: !last not worth the effort */
       if (!current$.value || !last) {
         return false;
       }
@@ -4366,7 +4376,7 @@ var FormSteps = {
 
     /**
      * Whether is at the first step.
-     * 
+     *
      * @type {boolean}
      */
     var isAtFirstStep = computed(() => {
@@ -4479,6 +4489,9 @@ var FormSteps = {
           firstInvalid$.value.select();
           return;
         }
+
+        //@todo:adam it should not be necessary anymore since submit is async
+        /* istanbul ignore next */
         unwatchInvalid.value = watch(invalid, isInvalid => {
           if (isInvalid) {
             firstInvalid$.value.select();
@@ -4511,12 +4524,13 @@ var FormSteps = {
 
     /**
      * Enable steps until a certain index.
-     * 
+     *
      * @param {integer} index index of the step
      * @returns {void}
      */
     var enableUntil = index => {
       _.each(steps$.value, step$ => {
+        /* istanbul ignore else */
         if (step$.index <= index && step$.visible) {
           step$.enable();
         }
@@ -4525,7 +4539,7 @@ var FormSteps = {
 
     /**
      * Enable all steps up to the current step.
-     * 
+     *
      * @returns {void}
      */
     var enableUntilCurrent = () => {
@@ -4534,10 +4548,11 @@ var FormSteps = {
 
     /**
      * Enable all steps up to the last enabled.
-     * 
+     *
      * @returns {void}
      */
     var enableUntilLastEnabled = () => {
+      /* istanbul ignore next: not reproducible only for Vue 2 Cli compatibility */
       if (!lastEnabled$.value && !first$.value) {
         return;
       }
@@ -4546,7 +4561,7 @@ var FormSteps = {
 
     /**
      * Set the component to the parent as if `refs` were used.
-     * 
+     *
      * @param {component} $parent parent component
      * @param {function} assignToParent the assignToParent function for recursion
      * @returns {void}
@@ -4562,7 +4577,7 @@ var FormSteps = {
 
     /**
     * Removes the component from the parent.
-    * 
+    *
     * @param {component} $parent parent component
     * @param {function} removeFromParent the removeFromParent function for recursion
     * @private
@@ -4571,6 +4586,7 @@ var FormSteps = {
       if ($parent.steps$ !== undefined) {
         form$.value.$set($parent, 'steps$', null);
       } else {
+        /* @todo:adam test later */
         removeFromParent($parent.$parent, removeFromParent);
       }
     };
@@ -4581,6 +4597,7 @@ var FormSteps = {
 
     // ============== WATCHERS ==============
 
+    /* istanbul ignore next: can not reproduce */
     watch(elements$, (newValue, oldValue) => {
       var newElements$ = _.difference(_.keys(newValue), _.keys(oldValue));
       _.each(newElements$, newElement$ => {
@@ -4592,6 +4609,7 @@ var FormSteps = {
     });
     watch(steps, () => {
       nextTick(() => {
+        /* istanbul ignore next: nothing happens */
         if (lastEnabled$.value === undefined) ;
         if (current$.value.index === undefined && first$.value) {
           first$.value.select();
@@ -4781,15 +4799,16 @@ var FormStepsControl = {
 
     /**
      * The label definition of the component.
-     * 
+     *
      * @type {string|function|component}
      * @private
      */
     var baseLabel = computed(() => {
+      /* istanbul ignore next: can not tell if returned  */
       if (!labels.value) {
         return null;
       }
-      var stepLabels = current$ && current$.value ? current$.value.labels : null;
+      var stepLabels = current$ && current$.value ? current$.value.labels : /* istanbul ignore next: failsafe only */null;
       switch (type.value) {
         case 'previous':
           return stepLabels && stepLabels.previous ? stepLabels.previous : form$.value.translations.vueform.steps.previous;
@@ -4811,7 +4830,7 @@ var FormStepsControl = {
 
     /**
      * The [`FormSteps`](form-steps) component.
-     * 
+     *
      * @private
      */
     var steps$ = computed(() => {
@@ -4820,20 +4839,20 @@ var FormStepsControl = {
 
     /**
      * The currently active [`FormStep`](form-step) component.
-     * 
+     *
      * @private
      */
     var current$ = computed(() => {
-      return steps$.value ? steps$.value.current$ : undefined;
+      return steps$.value ? steps$.value.current$ : /* istanbul ignore next: failsafe only */undefined;
     });
 
     /**
      * Whether the control should be visible.
-     * 
+     *
      * @type {boolean}
      */
     var visible = computed(() => {
-      var buttons = current$ && current$.value ? current$.value.buttons : null;
+      var buttons = current$ && current$.value ? current$.value.buttons : /* istanbul ignore next: failsafe only */null;
       switch (type.value) {
         case 'previous':
           return !buttons ? true : buttons.previous !== false;
@@ -4846,7 +4865,7 @@ var FormStepsControl = {
 
     /**
      * Whether the control should be disabled.
-     * 
+     *
      * @type {boolean}
      */
     var isDisabled = computed(() => {
@@ -4874,7 +4893,7 @@ var FormStepsControl = {
 
     /**
      * Whether the control is in loading state (except for previous).
-     * 
+     *
      * @type {boolean}
      */
     var isLoading = computed(() => {
@@ -4885,7 +4904,7 @@ var FormStepsControl = {
 
     /**
      * Go to the previous form step.
-     * 
+     *
      * @returns {void}
      */
     var previous = () => {
@@ -4894,11 +4913,12 @@ var FormStepsControl = {
 
     /**
      * Complete the current step and go to the next one (async). If the form's [`validateOn`](vueform#option-validate-on) prop or `config.validateOn` contains `'step'` also validates the elements within the step before moving forward (and stay if there's any error).
-     * 
+     *
      * @returns {void}
      */
     var next = /*#__PURE__*/function () {
       var _ref = _asyncToGenerator(function* () {
+        /* istanbul ignore else */
         if (form$.value.shouldValidateOnStep) {
           yield current$.value.validate();
         }
@@ -4915,7 +4935,7 @@ var FormStepsControl = {
 
     /**
      * Complete the final step and submit the form (async).
-     * 
+     *
      * @returns {void}
      */
     var finish = /*#__PURE__*/function () {
@@ -4931,7 +4951,7 @@ var FormStepsControl = {
 
     /**
      * Handles `click` event.
-     * 
+     *
      * @returns {void}
      * @private
      */
@@ -5121,7 +5141,7 @@ var FormStep = {
 
     /**
      * The label of the step.
-     * 
+     *
      * @type {string|component}
      * @default null
      */
@@ -5129,7 +5149,7 @@ var FormStep = {
 
     /**
      * Whether the step is active.
-     * 
+     *
      * @type {boolean}
      * @default false
      */
@@ -5137,7 +5157,7 @@ var FormStep = {
 
     /**
      * Whether the step is disabled.
-     * 
+     *
      * @type {boolean}
      * @default true
      */
@@ -5145,7 +5165,7 @@ var FormStep = {
 
     /**
      * Whether the step is completed.
-     * 
+     *
      * @type {boolean}
      * @default false
      */
@@ -5155,7 +5175,7 @@ var FormStep = {
 
     /**
      * The form elements' components.
-     * 
+     *
      * @type {object}
      */
     var elements$ = computed(() => {
@@ -5164,16 +5184,16 @@ var FormStep = {
 
     /**
      * The parent [`FormSteps`](form-steps) component.
-     * 
+     *
      * @type {component}
      */
     var steps$ = computed(() => {
-      return form$.value.steps$ || {};
+      return form$.value.steps$ || /* istanbul ignore next: failsafe only, step can not exist by itself */{};
     });
 
     /**
      * The label definition of the component.
-     * 
+     *
      * @type {string}
      * @private
      */
@@ -5183,17 +5203,17 @@ var FormStep = {
 
     /**
      * Index of this step among the other steps which are not hidden by unmet conditions.
-     * 
+     *
      * @type {number}
      */
     var index = computed(() => {
       var _steps$$value;
-      return Object.keys((steps$ === null || steps$ === void 0 || (_steps$$value = steps$.value) === null || _steps$$value === void 0 ? void 0 : _steps$$value.steps$) || {}).indexOf(name.value);
+      return Object.keys((steps$ === null || steps$ === void 0 || (_steps$$value = steps$.value) === null || _steps$$value === void 0 ? void 0 : _steps$$value.steps$) || /* istanbul ignore next: failsafe only, step can not exist by itself */{}).indexOf(name.value);
     });
 
     /**
      * Whether the step is the first.
-     * 
+     *
      * @type {boolean}
      */
     var isFirst = computed(() => {
@@ -5202,7 +5222,7 @@ var FormStep = {
 
     /**
      * Whether the step is the first.
-     * 
+     *
      * @type {boolean}
      */
     var isLast = computed(() => {
@@ -5211,7 +5231,7 @@ var FormStep = {
 
     /**
      * The elements' components in the step.
-     * 
+     *
      * @type {object}
      */
     var children$ = computed(() => {
@@ -5222,7 +5242,7 @@ var FormStep = {
 
     /**
      * Whether the step should be visible.
-     * 
+     *
      * @type {boolean}
      */
     var visible = computed(() => {
@@ -5231,7 +5251,7 @@ var FormStep = {
 
     /**
       * Whether the step has any invalid elements.
-      * 
+      *
       * @type {boolean}
       */
     var invalid = computed(() => {
@@ -5243,7 +5263,7 @@ var FormStep = {
 
     /**
       * Whether the step has any pending elements.
-      * 
+      *
       * @type {boolean}
       */
     var pending = computed(() => {
@@ -5255,7 +5275,7 @@ var FormStep = {
 
     /**
       * Whether the step has any debouncing elements.
-      * 
+      *
       * @type {boolean}
       */
     var debouncing = computed(() => {
@@ -5267,7 +5287,7 @@ var FormStep = {
 
     /**
       * Whether all the elements in the step were already validated at least once.
-      * 
+      *
       * @type {boolean}
       */
     var validated = computed(() => {
@@ -5279,7 +5299,7 @@ var FormStep = {
 
     /**
       * Whether the step has any busy elements.
-      * 
+      *
       * @type {boolean}
       */
     var busy = computed(() => {
@@ -5288,7 +5308,7 @@ var FormStep = {
 
     /**
       * Whether the step is done (completed, validated has no invalid or pending elements).
-      * 
+      *
       * @type {boolean}
       */
     var done = computed(() => {
@@ -5297,7 +5317,7 @@ var FormStep = {
 
     /**
      * The step's component.
-     * 
+     *
      * @type {component}
      */
     var step$ = computed(() => {
@@ -5322,6 +5342,7 @@ var FormStep = {
         }
         yield asyncForEach(children$.value, /*#__PURE__*/function () {
           var _ref2 = _asyncToGenerator(function* (element$) {
+            /* istanbul ignore else */
             if ((!element$.validated || element$.invalid || !form$.value.shouldValidateOnChange) && element$.available && !element$.isStatic) {
               yield element$.validate();
             }
@@ -5429,11 +5450,12 @@ var FormStep = {
 
     /**
       * Apply conditions of the step to its elements.
-      * 
+      *
       * @returns {void}
       * @private
       */
     var addChildConditions = () => {
+      /* istanbul ignore else */
       if (conditionList.value.length == 0) {
         return;
       }
@@ -5444,7 +5466,7 @@ var FormStep = {
 
     /**
       * Remove conditions of the elements of the step.
-      * 
+      *
       * @returns {void}
       * @private
       */
@@ -5456,7 +5478,7 @@ var FormStep = {
 
     /**
       * Resets conditions of the elements of the step.
-      * 
+      *
       * @returns {void}
       * @private
       */
@@ -5467,7 +5489,7 @@ var FormStep = {
 
     /**
      * Set the component to the parent as if `refs` were used.
-     * 
+     *
      * @param {component} $parent parent component
      * @param {function} assignToParent the assignToParent function for recursion
      * @returns {void}
@@ -5483,7 +5505,7 @@ var FormStep = {
 
     /**
     * Removes the component from the parent.
-    * 
+    *
     * @param {component} $parent parent component
     * @param {function} removeFromParent the removeFromParent function for recursion
     * @private
@@ -5492,6 +5514,7 @@ var FormStep = {
       if ($parent.steps$Array) {
         $parent.steps$Array.splice($parent.steps$Array.map(t$ => normalize(t$.name)).indexOf(normalize(name.value)), 1);
       } else {
+        /* @todo:adam test later */
         removeFromParent($parent.$parent, removeFromParent);
       }
     };
@@ -5506,6 +5529,7 @@ var FormStep = {
       }
     });
     watch(children$, () => {
+      /* istanbul ignore else */
       if (!active.value) {
         return;
       }
@@ -5576,6 +5600,7 @@ var FormStep = {
       isLabelComponent,
       stepLabel,
       index,
+      conditionList,
       validate,
       activate,
       deactivate,
@@ -5930,11 +5955,11 @@ var ElementLabelFloating = {
 
     /**
      * The floating label of the element, defined via `floating` prop.
-     * 
+     *
      * @type {string}
      */
     var floating = computed(() => {
-      return localize(el$.value.floating || (form$.value.options.floatPlaceholders ? el$.value.placeholder : null), config$.value, form$.value);
+      return localize(el$.value.floating || ( /* istanbul ignore next: tested, but not covered */form$.value.options.floatPlaceholders ? el$.value.placeholder : null), config$.value, form$.value);
     });
     return {
       el$,
@@ -5982,7 +6007,7 @@ var ElementLabel = {
 
     /**
      * The name of the element.
-     * 
+     *
      * @type {string}
      * @private
      */
@@ -5992,7 +6017,7 @@ var ElementLabel = {
 
     /**
      * The `id` attribute of the container.
-     * 
+     *
      * @type {string}
      */
     var id = computed(() => {
@@ -6001,9 +6026,9 @@ var ElementLabel = {
 
     /**
      * Whether the element has a `label` option, a `#label` slot or `Vueform` component's [`forceLabels`](vueform#force-labels) option is `true`.
-     * 
+     *
      * @type {boolean}
-     * 
+     *
      */
     var hasLabel = computed(() => {
       return el$.value.hasLabel;
@@ -6011,13 +6036,13 @@ var ElementLabel = {
 
     /**
      * Whether the label is provided as a slot.
-     * 
+     *
      * @type {boolean}
      * @private
      */
     var isSlot = computed(() => {
       var _el$$value$slots, _el$$value$$slots, _el$$value$$scopedSlo;
-      return !!((_el$$value$slots = el$.value.slots) !== null && _el$$value$slots !== void 0 && _el$$value$slots.label || (_el$$value$$slots = el$.value.$slots) !== null && _el$$value$$slots !== void 0 && _el$$value$$slots.label || form$.value.$vueform.vueVersion === 2 && (_el$$value$$scopedSlo = el$.value.$scopedSlots) !== null && _el$$value$$scopedSlo !== void 0 && _el$$value$$scopedSlo.label);
+      return !!((_el$$value$slots = el$.value.slots) !== null && _el$$value$slots !== void 0 && _el$$value$slots.label || (_el$$value$$slots = el$.value.$slots) !== null && _el$$value$$slots !== void 0 && _el$$value$$slots.label || /* istanbul ignore next: Vue2 is not checked */form$.value.$vueform.vueVersion === 2 && (_el$$value$$scopedSlo = el$.value.$scopedSlots) !== null && _el$$value$$scopedSlo !== void 0 && _el$$value$$scopedSlo.label);
     });
     return {
       el$,
@@ -6070,7 +6095,7 @@ var ElementInfo = {
 
     /**
      * The position of the info.
-     * 
+     *
      * @type {boolean}
      * @default false
      * @private
@@ -6081,7 +6106,7 @@ var ElementInfo = {
 
     /**
      * The info for the element, defined via the element's `info` prop.
-     * 
+     *
      * @type {string}
      */
     var info = computed(() => {
@@ -6090,7 +6115,7 @@ var ElementInfo = {
 
     /**
      * The `id` attribute of the container.
-     * 
+     *
      * @type {string}
      */
     var id = computed(() => {
@@ -6099,24 +6124,25 @@ var ElementInfo = {
 
     /**
      * Whether the info is provided as a slot.
-     * 
+     *
      * @type {boolean}
      * @private
      */
     var isSlot = computed(() => {
       var _el$$value$slots, _el$$value$$slots, _el$$value$$scopedSlo;
-      return !!((_el$$value$slots = el$.value.slots) !== null && _el$$value$slots !== void 0 && _el$$value$slots.info || (_el$$value$$slots = el$.value.$slots) !== null && _el$$value$$slots !== void 0 && _el$$value$$slots.info || form$.value.$vueform.vueVersion === 2 && (_el$$value$$scopedSlo = el$.value.$scopedSlots) !== null && _el$$value$$scopedSlo !== void 0 && _el$$value$$scopedSlo.info);
+      return !!((_el$$value$slots = el$.value.slots) !== null && _el$$value$slots !== void 0 && _el$$value$slots.info || (_el$$value$$slots = el$.value.$slots) !== null && _el$$value$$slots !== void 0 && _el$$value$$slots.info || /* istanbul ignore next: Vue2 is not checked */form$.value.$vueform.vueVersion === 2 && (_el$$value$$scopedSlo = el$.value.$scopedSlots) !== null && _el$$value$$scopedSlo !== void 0 && _el$$value$$scopedSlo.info);
     });
 
     // =============== METHODS ==============
 
     /**
      * Handles the info hover.
-     * 
-     * @param {Event} e 
+     *
+     * @param {Event} e
      * @return {void}
      * @private
      */
+    /* istanbul ignore next: not worth it */
     var handleMouseOver = /*#__PURE__*/function () {
       var _ref = _asyncToGenerator(function* (e) {
         if (position.value !== el$.value.infoPosition) {
@@ -6192,7 +6218,7 @@ var ElementDescription = {
 
     /**
      * The element's description, defined via the element's `description` option.
-     * 
+     *
      * @type {string}
      */
     var description = computed(() => {
@@ -6201,7 +6227,7 @@ var ElementDescription = {
 
     /**
      * The `id` attribute of the container.
-     * 
+     *
      * @type {string}
      */
     var id = computed(() => {
@@ -6210,13 +6236,13 @@ var ElementDescription = {
 
     /**
      * Whether the description is provided as a slot.
-     * 
+     *
      * @type {boolean}
      * @private
      */
     var isSlot = computed(() => {
       var _el$$value$slots, _el$$value$$slots, _el$$value$$scopedSlo;
-      return !!((_el$$value$slots = el$.value.slots) !== null && _el$$value$slots !== void 0 && _el$$value$slots.description || (_el$$value$$slots = el$.value.$slots) !== null && _el$$value$$slots !== void 0 && _el$$value$$slots.description || form$.value.$vueform.vueVersion === 2 && (_el$$value$$scopedSlo = el$.value.$scopedSlots) !== null && _el$$value$$scopedSlo !== void 0 && _el$$value$$scopedSlo.description);
+      return !!((_el$$value$slots = el$.value.slots) !== null && _el$$value$slots !== void 0 && _el$$value$slots.description || (_el$$value$$slots = el$.value.$slots) !== null && _el$$value$$slots !== void 0 && _el$$value$$slots.description || /* istanbul ignore next: Vue2 is not checked */form$.value.$vueform.vueVersion === 2 && (_el$$value$$scopedSlo = el$.value.$scopedSlots) !== null && _el$$value$$scopedSlo !== void 0 && _el$$value$$scopedSlo.description);
     });
     return {
       el$,
@@ -6308,11 +6334,11 @@ var ElementMessage = {
 
     /**
      * The first message of the element.
-     * 
+     *
      * @type {string}
      */
     var message = computed(() => {
-      return el$.value.messageBag ? el$.value.messageBag.message : null;
+      return el$.value.messageBag ? el$.value.messageBag.message : /* istanbul ignore next: messageBag itself will always be defined */null;
     });
     return {
       el$,
@@ -6365,7 +6391,7 @@ var ElementText = {
 
     /**
      * The value of the content type.
-     * 
+     *
      * @type {string}
      * @private
      */
@@ -6375,13 +6401,13 @@ var ElementText = {
 
     /**
      * Whether the contents are provided as a slot.
-     * 
+     *
      * @type {boolean}
      * @private
      */
     var isSlot = computed(() => {
       var _el$$value$slots, _el$$value$$slots, _el$$value$$scopedSlo;
-      return !!((_el$$value$slots = el$.value.slots) !== null && _el$$value$slots !== void 0 && _el$$value$slots[type.value] || (_el$$value$$slots = el$.value.$slots) !== null && _el$$value$$slots !== void 0 && _el$$value$$slots[type.value] || form$.value.$vueform.vueVersion === 2 && (_el$$value$$scopedSlo = el$.value.$scopedSlots) !== null && _el$$value$$scopedSlo !== void 0 && _el$$value$$scopedSlo[type.value]);
+      return !!((_el$$value$slots = el$.value.slots) !== null && _el$$value$slots !== void 0 && _el$$value$slots[type.value] || (_el$$value$$slots = el$.value.$slots) !== null && _el$$value$$slots !== void 0 && _el$$value$$slots[type.value] || /* istanbul ignore next: Vue2 is not checked */form$.value.$vueform.vueVersion === 2 && (_el$$value$$scopedSlo = el$.value.$scopedSlots) !== null && _el$$value$$scopedSlo !== void 0 && _el$$value$$scopedSlo[type.value]);
     });
     return {
       el$,
@@ -6560,7 +6586,7 @@ var ElementAddon = {
     /**
      * The addon definition.
      * ponent.
-    * 
+    *
     * @type {string|function|component}
     * @private
      */
@@ -6570,11 +6596,11 @@ var ElementAddon = {
 
     /**
      * The content of the addon. If the addon is provided ss a `function` this contains the resolved value.
-     * 
+     *
      * @type {string|component}
      */
     var addon = computed(() => {
-      var addon = isAddonFunction.value ? baseAddon.value(el$.value) : baseAddon.value || null;
+      var addon = isAddonFunction.value ? baseAddon.value(el$.value) : baseAddon.value || /* istanbul ignore next: failsafe */null;
       if (!isAddonComponent.value) {
         addon = localize(addon, config$.value, form$.value);
       }
@@ -6583,7 +6609,7 @@ var ElementAddon = {
 
     /**
     * Whether the addon is provided as a function.
-    * 
+    *
     * @type {boolean}
     * @private
     */
@@ -6593,7 +6619,7 @@ var ElementAddon = {
 
     /**
     * Whether addon is provided as a Vue component.
-    * 
+    *
     * @type {boolean}
     * @private
     */
@@ -6603,13 +6629,14 @@ var ElementAddon = {
 
     /**
      * Whether the label is provided as a slot.
-     * 
+     *
      * @type {boolean}
      * @private
      */
     var isSlot = computed(() => {
       var _el$$value$slots, _el$$value$$slots, _el$$value$$scopedSlo;
-      return !!((_el$$value$slots = el$.value.slots) !== null && _el$$value$slots !== void 0 && _el$$value$slots["addon-".concat(type.value)] || (_el$$value$$slots = el$.value.$slots) !== null && _el$$value$$slots !== void 0 && _el$$value$$slots["addon-".concat(type.value)] || form$.value.$vueform.vueVersion === 2 && (_el$$value$$scopedSlo = el$.value.$scopedSlots) !== null && _el$$value$$scopedSlo !== void 0 && _el$$value$$scopedSlo["addon-".concat(type.value)] || el$.value.slots["addon-".concat(type.value)]);
+      // @todo:adam last condition is a duplicate of the first one
+      return !!((_el$$value$slots = el$.value.slots) !== null && _el$$value$slots !== void 0 && _el$$value$slots["addon-".concat(type.value)] || (_el$$value$$slots = el$.value.$slots) !== null && _el$$value$$slots !== void 0 && _el$$value$$slots["addon-".concat(type.value)] || /* istanbul ignore next: Vue2 is not checked */form$.value.$vueform.vueVersion === 2 && (_el$$value$$scopedSlo = el$.value.$scopedSlots) !== null && _el$$value$$scopedSlo !== void 0 && _el$$value$$scopedSlo["addon-".concat(type.value)] || /* istanbul ignore next */el$.value.slots["addon-".concat(type.value)]);
     });
     return {
       el$,
@@ -10195,7 +10222,7 @@ var base$V = function base(props, context, dependencies) {
   /**
    * Handles the button's click event.
    *
-   * @param {Event} e* event
+   * @param {Event} e - event object event
    * @returns {void}
    * @private
    */
@@ -16329,7 +16356,8 @@ var tags$1 = function tags(props, context, dependencies) {
     hideSelected,
     create,
     appendNewOption,
-    addOptionOn
+    addOptionOn,
+    breakTags
   } = toRefs(props);
 
   // ============ DEPENDENCIES ============
@@ -16409,7 +16437,8 @@ var tags$1 = function tags(props, context, dependencies) {
       hideSelected: hideSelected.value,
       createOption: create.value,
       appendNewOption: appendNewOption.value,
-      addOptionOn: addOptionOn.value
+      addOptionOn: addOptionOn.value,
+      breakTags: breakTags.value
     };
   });
 
@@ -17284,8 +17313,6 @@ var base$r = function base(props, context, dependencies) {
       return _ref3.apply(this, arguments);
     };
   }();
-
-  //@todo:szm mock window.fileReader
   var resolveBase64 = function resolveBase64() {
     var source = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : value.value;
     var reader = new FileReader();
@@ -17298,7 +17325,7 @@ var base$r = function base(props, context, dependencies) {
   /**
    * Handles `change` event.
    *
-   * @param {Event} e*
+   * @param {Event} e - event object
    * @returns {void}
    * @private
    */
@@ -17521,7 +17548,7 @@ var base$p = function base(props, context, dependencies) {
   /**
    * Handles the `drop` event.
    *
-   * @param {Event} e
+   * @param {Event} e - event object
    * @returns {void}
    * @private
    */
@@ -21784,7 +21811,7 @@ var base$f = function base(props, context, dependencies) {
   /**
    * Handles `change` event.
    *
-   * @param {Event} e*
+   * @param {Event} e - event object
    * @returns {void}
    * @private
    */
@@ -22323,7 +22350,7 @@ var MultiselectElement = {
       native: false
     },
     trackBy: {
-      type: [String],
+      type: [String, Array],
       required: false,
       default: 'label',
       native: false
@@ -22907,7 +22934,7 @@ var SelectElement = {
       native: false
     },
     trackBy: {
-      type: [String],
+      type: [String, Array],
       required: false,
       default: 'label',
       native: false
@@ -23224,6 +23251,10 @@ var base$9 = function base(props, context, dependencies) {
     content
   } = toRefs(props);
 
+  // ============ DEPENDENCIES ============
+
+  var fieldSlots = dependencies.fieldSlots;
+
   // ============== COMPUTED ==============
 
   /**
@@ -23235,8 +23266,61 @@ var base$9 = function base(props, context, dependencies) {
   var isHtml = computed(() => {
     return typeof content.value == 'string';
   });
+
+  /**
+   * Resolves the content as component.
+   *
+   * @type {object}
+   * @private
+   */
+  var componentContent = computed(() => {
+    var _content$value, _content$value2;
+    if (!((_content$value = content.value) !== null && _content$value !== void 0 && _content$value.render) && !((_content$value2 = content.value) !== null && _content$value2 !== void 0 && _content$value2.template)) {
+      return content.value;
+    }
+    return resolveComponent(content.value);
+  });
+
+  /**
+   * Resolves the content as slot.
+   *
+   * @type {object}
+   * @private
+   */
+  var slotContent = computed(() => {
+    var _fieldSlots$value$def, _fieldSlots$value$def2;
+    if (!((_fieldSlots$value$def = fieldSlots.value.default) !== null && _fieldSlots$value$def !== void 0 && _fieldSlots$value$def.render) && !((_fieldSlots$value$def2 = fieldSlots.value.default) !== null && _fieldSlots$value$def2 !== void 0 && _fieldSlots$value$def2.template)) {
+      return fieldSlots.value.default;
+    }
+    return resolveComponent(fieldSlots.value.default);
+  });
+
+  /**
+   * Adds el$ prop to component.
+   * 
+   * @param {object} component - the base component
+   * @returns {object}
+   * @private
+   */
+  var resolveComponent = component => {
+    component = _objectSpread2$1({}, component);
+    if (!component.props) {
+      component.props = ['el$'];
+    } else if (Array.isArray(component.props) && component.props.indexOf('el$') === -1) {
+      component.props.push('el$');
+    } else if (!Array.isArray(component.props) && !component.props.el$) {
+      component.props['el$'] = {
+        type: Object,
+        required: false,
+        default: () => ({})
+      };
+    }
+    return component;
+  };
   return {
-    isHtml
+    isHtml,
+    componentContent,
+    slotContent
   };
 };
 
@@ -23268,7 +23352,7 @@ var StaticElement = {
     }
   },
   setup(props, context) {
-    context.features = [base$18, base$17, base$U, static_$1, base$9, base$1a, static_$2, base$13, base$_, base$Y, base$X, base$T, base$Z, base$W, base$S, static_$3, base$R];
+    context.features = [base$18, base$17, base$U, static_$1, base$1a, static_$2, base$13, base$_, base$Y, base$X, base$T, base$Z, base$W, base$S, static_$3, base$R, base$9];
     context.slots = ['default', 'label', 'info', 'description', 'before', 'between', 'after'];
     return _objectSpread2$1({}, static_(props, context));
   }
@@ -23395,14 +23479,12 @@ var TagsElement = {
     labelProp: {
       type: [String],
       required: false,
-      default: 'label',
-      native: false
+      default: 'label'
     },
     valueProp: {
       type: [String],
       required: false,
-      default: 'value',
-      native: false
+      default: 'value'
     },
     dataKey: {
       type: [String],
@@ -23417,20 +23499,22 @@ var TagsElement = {
     search: {
       required: false,
       type: [Boolean],
-      default: false,
-      native: false
+      default: false
     },
     trackBy: {
-      type: [String],
+      type: [String, Array],
       required: false,
-      default: 'label',
-      native: false
+      default: 'label'
     },
     strict: {
       type: [Boolean],
       required: false,
-      default: true,
-      native: false
+      default: true
+    },
+    breakTags: {
+      type: [Boolean],
+      required: false,
+      default: false
     },
     create: {
       required: false,
@@ -23450,80 +23534,67 @@ var TagsElement = {
     object: {
       type: [Boolean],
       required: false,
-      default: false,
-      native: false
+      default: false
     },
     limit: {
       type: [Number],
       required: false,
-      default: -1,
-      native: false
+      default: -1
     },
     max: {
       type: [Number],
       required: false,
-      default: -1,
-      native: false
+      default: -1
     },
     groups: {
       type: [Boolean],
       required: false,
-      default: false,
-      native: false
+      default: false
     },
     groupLabel: {
       type: [String],
       required: false,
-      default: 'label',
-      native: false
+      default: 'label'
     },
     groupOptions: {
       type: [String],
       required: false,
-      default: 'items',
-      native: false
+      default: 'items'
     },
     groupHideEmpty: {
       type: [Boolean],
       required: false,
-      default: false,
-      native: false
+      default: false
     },
     groupSelect: {
       type: [Boolean],
       required: false,
-      default: true,
-      native: false
+      default: true
     },
     openDirection: {
       type: [String],
       required: false,
-      default: 'bottom',
-      native: false
+      default: 'bottom'
     },
     canClear: {
       type: [Boolean],
       required: false,
-      default: true,
-      native: false
+      default: true
     },
     clearOnSelect: {
       type: [Boolean],
       required: false,
-      default: true,
-      native: false
+      default: true
     },
     closeOnSelect: {
       type: [Boolean],
       required: false,
-      default: true,
-      native: false
+      default: true
     },
     closeOnDeselect: {
       type: [Boolean],
       required: false,
-      default: false,
-      native: false
+      default: false
     },
     clearOnRefetch: {
       type: [Boolean],
@@ -23533,38 +23604,32 @@ var TagsElement = {
     delay: {
       type: [Number],
       required: false,
-      default: -1,
-      native: false
+      default: -1
     },
     minChars: {
       type: [Number],
       required: false,
-      default: 0,
-      native: false
+      default: 0
     },
     resolveOnLoad: {
       type: [Boolean],
       required: false,
-      default: true,
-      native: false
+      default: true
     },
     filterResults: {
       type: [Boolean],
       required: false,
-      default: true,
-      native: false
+      default: true
     },
     clearOnSearch: {
       type: [Boolean],
       required: false,
-      default: false,
-      native: false
+      default: false
     },
     hideSelected: {
       type: [Boolean],
       required: false,
-      default: true,
-      native: false
+      default: true
     },
     showOptions: {
       type: [Boolean],
@@ -23574,41 +23639,35 @@ var TagsElement = {
     caret: {
       type: [Boolean],
       required: false,
-      default: true,
-      native: false
+      default: true
     },
     loading: {
       type: [Boolean],
       required: false,
-      default: false,
-      native: false
+      default: false
     },
     noOptionsText: {
       type: [String, Object],
       required: false,
       default: undefined,
       '@default': 'locale.multiselect.noOptions',
-      localized: true,
-      native: false
+      localized: true
     },
     noResultsText: {
       type: [String, Object],
       required: false,
       default: undefined,
       '@default': 'locale.multiselect.noResults',
-      localized: true,
-      native: false
+      localized: true
     },
     autocomplete: {
       type: [String],
-      required: false,
-      native: false
+      required: false
     },
     inputType: {
       type: [String],
       required: false,
-      default: 'text',
-      native: false
+      default: 'text'
     },
     extendOptions: {
       required: false,
@@ -23633,7 +23692,7 @@ var base$7 = function base(props, context, dependencies) {
   /**
    * Handles `input` event.
    *
-   * @param {Event} e*
+   * @param {Event} e - event object
    * @returns {void}
    * @private
    */
@@ -23750,7 +23809,7 @@ var base$4 = function base(props, context, dependencies) {
   /**
    * Handles `keydown` event.
    *
-   * @param {Event} e*
+   * @param {Event} e - event object
    * @returns {void}
    * @private
    */
@@ -23761,7 +23820,7 @@ var base$4 = function base(props, context, dependencies) {
   /**
    * Handles `keyup` event.
    *
-   * @param {Event} e*
+   * @param {Event} e - event object
    * @returns {void}
    * @private
    */
@@ -23772,7 +23831,7 @@ var base$4 = function base(props, context, dependencies) {
   /**
    * Handles `keypress` event.
    *
-   * @param {Event} e*
+   * @param {Event} e - event object
    * @returns {void}
    * @private
    */
@@ -24653,7 +24712,7 @@ var CheckboxgroupCheckbox = {
     /**
      * Handles `keydown` event.
      * 
-     * @param {Event} e* 
+     * @param {Event} e - event object 
      * @returns {void}
      * @private
      */
@@ -25094,7 +25153,7 @@ var RadiogroupRadio = {
     /**
      * Handles `keydown` event.
      * 
-     * @param {Event} e* 
+     * @param {Event} e - event object 
      * @returns {void}
      * @private
      */
@@ -26178,7 +26237,7 @@ var Validator = class {
   }
   size(value) {
     if (this.isNumeric) {
-      return value;
+      return parseInt(value);
     } else if (this.isFile) {
       return value ? value.size / 1000 : 0;
     } else if (this.isArray) {

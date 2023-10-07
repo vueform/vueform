@@ -953,11 +953,11 @@ export default {
     container: 'form-text-type',
     select: {
       ...select,
-      tags: 'flex-grow flex-shrink flex flex-wrap items-center rtl:pl-0',
+      tags: 'flex-grow flex-shrink flex flex-wrap items-center min-w-0 rtl:pl-0',
       tags_sm: 'form-pl-input-y-sm form-mt-space-tags-sm with-floating:form-p-tags-floating-sm rtl:form-pr-input-y-sm',
       tags_md: 'form-pl-input-y form-mt-space-tags with-floating:form-p-tags-floating rtl:form-pr-input-y',
       tags_lg: 'form-pl-input-y-lg form-mt-space-tags-lg with-floating:form-p-tags-floating-lg rtl:form-pr-input-y-lg',
-      tag: 'form-bg-tag form-color-tag form-border-width-tag form-border-color-tag font-semibold  flex items-center whitespace-nowrap rtl:pl-0 rtl:mr-0',
+      tag: 'form-bg-tag form-color-tag form-border-width-tag form-border-color-tag font-semibold  flex items-center whitespace-nowrap min-w-0 rtl:pl-0 rtl:mr-0',
       tag_sm: 'form-radius-input-tag-sm form-text-small-sm form-py-tag-sm form-pl-tag-sm form-mr-space-tags-sm form-mb-space-tags-sm rtl:form-pr-tag-sm rtl:form-ml-space-tags-sm',
       tag_md: 'form-radius-input-tag form-text-small form-py-tag form-pl-tag form-mr-space-tags form-mb-space-tags rtl:form-pr-tag rtl:form-ml-space-tags',
       tag_lg: 'form-radius-input-tag-lg form-text-small-lg form-py-tag-lg form-pl-tag-lg form-mr-space-tags-lg form-mb-space-tags-lg rtl:form-pr-tag-lg rtl:form-ml-space-tags-lg',
@@ -965,6 +965,9 @@ export default {
       tagDisabled_sm: 'form-pr-tag-sm rtl:form-pl-tag-sm',
       tagDisabled_md: 'form-pr-tag rtl:form-pl-tag',
       tagDisabled_lg: 'form-pr-tag-lg rtl:form-pl-tag-lg',
+      tagWrapper: 'overflow-hidden overflow-ellipsis',
+      tagWrapper_nobreak: 'whitespace-nowrap',
+      tagWrapperBreak: 'whitespace-normal break-all',
       tagRemove: 'flex items-center justify-center p-1 mx-0.5 hover:bg-black hover:bg-opacity-10 group',
       tagRemove_sm: 'form-radius-input-tag-sm',
       tagRemove_md: 'form-radius-input-tag',
@@ -986,6 +989,10 @@ export default {
       $tag: (classes, { Size }) => ([
         classes.select.tag,
         classes.select[`tag_${Size}`],
+      ]),
+      $tagWrapper: (classes, { breakTags }) => ([
+        classes.select.tagWrapper,
+        !breakTags.value ? classes.select.tagWrapper_noBreak : null,
       ]),
       $tagDisabled: (classes, { Size }) => ([
         classes.select.tagDisabled,

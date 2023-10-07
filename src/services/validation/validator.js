@@ -271,7 +271,17 @@ const Validator = class {
 
   size(value) {
     if (this.isNumeric) {
-      return parseInt(value)
+      if (!isNaN(value)) {
+        let num = parseFloat(value)
+        
+        if (Number.isInteger(num)) {
+            return parseInt(value)
+        }
+
+        return num
+      }
+      
+      return null
     }
     else if (this.isFile) {
       return value ? value.size / 1000 : 0

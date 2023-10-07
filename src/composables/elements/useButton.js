@@ -84,7 +84,7 @@ const base = function(props, context, dependencies)
   /**
    * Handles the button's click event.
    *
-   * @param {Event} e* event
+   * @param {Event} e - event object event
    * @returns {void}
    * @private
    */

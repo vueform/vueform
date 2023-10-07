@@ -26,6 +26,8 @@
             tagDisabled_sm: '',
             tagDisabled_md: '',
             tagDisabled_lg: '',
+            tagWrapper: 'vf-multiselect-tag-wrapper',
+            tagWrapperBreak: 'vf-multiselect-tag-wrapper-break',
             tagRemove: 'vf-multiselect-tag-remove',
             tagRemove_sm: 'vf-multiselect-tag-remove-sm',
             tagRemove_md: '',
@@ -255,6 +257,7 @@
     margin: var(--vf-space-tags) 0 0;
     padding-left: var(--vf-py-input);
     align-items: center;
+    min-width: 0;
 
     &.vf-multiselect-tags-sm {
       padding-left: var(--vf-py-input-sm);
@@ -300,6 +303,7 @@
     display: flex;
     align-items: center;
     white-space: nowrap;
+    min-width: 0;
 
     &.vf-multiselect-tag-disabled {
       padding-right: var(--vf-px-tag);
@@ -329,6 +333,17 @@
         padding-right: var(--vf-px-tag-lg);
       }
     }
+  }
+
+  .vf-multiselect-tag-wrapper {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .vf-multiselect-tag-wrapper-break {
+    white-space: normal;
+    word-break: break-all;
   }
 
   .vf-multiselect-tag-remove {

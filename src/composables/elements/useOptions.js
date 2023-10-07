@@ -475,6 +475,7 @@ const tags = function(props, context, dependencies)
     create,
     appendNewOption,
     addOptionOn,
+    breakTags,
   } = toRefs(props)
   
   // ============ DEPENDENCIES ============
@@ -554,6 +555,7 @@ const tags = function(props, context, dependencies)
       createOption: create.value,
       appendNewOption: appendNewOption.value,
       addOptionOn: addOptionOn.value,
+      breakTags: breakTags.value,
     }
   })
   

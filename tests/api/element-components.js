@@ -513,7 +513,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element is hidden internally by core components like tabs or steps steps. Only intended for reading.',
+        description: 'Whether the element is hidden internally by core components like tabs or steps. Only intended for reading.',
         default: 'true',
         private: true,
       },
@@ -695,7 +695,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'Calulated column sizes and classes for the element.',
+        description: 'Calculated column sizes and classes for the element.',
         private: true,
       },
       available: {
@@ -774,7 +774,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `single-label` for `SelectElement`.',
+        description: 'Slots related to the element&apos;s field. E.g. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, e.g. `option` or `single-label` for `SelectElement`.',
         private: true,
       },
       Templates: {
@@ -839,8 +839,8 @@ module.exports = {
             types: [
               'Event',
             ],
-            required: 'true',
-            description: 'event',
+            required: 'false',
+            description: '- event object event',
           },
         },
         private: true,
@@ -1656,7 +1656,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element is hidden internally by core components like tabs or steps steps. Only intended for reading.',
+        description: 'Whether the element is hidden internally by core components like tabs or steps. Only intended for reading.',
         default: 'true',
         private: true,
       },
@@ -1871,7 +1871,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'Calulated column sizes and classes for the element.',
+        description: 'Calculated column sizes and classes for the element.',
         private: true,
       },
       available: {
@@ -1992,7 +1992,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `single-label` for `SelectElement`.',
+        description: 'Slots related to the element&apos;s field. E.g. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, e.g. `option` or `single-label` for `SelectElement`.',
         private: true,
       },
       Templates: {
@@ -2206,11 +2206,6 @@ module.exports = {
         returns: 'void',
         private: false,
       },
-      prepare: {
-        description: 'Prepares the element.',
-        returns: 'void',
-        private: true,
-      },
       disable: {
         description: 'Disables the element.',
         returns: 'void',
@@ -2311,17 +2306,17 @@ module.exports = {
         private: false,
       },
       initMessageBag: {
-        description: 'Initalizes MessageBag service.',
+        description: 'Initializes MessageBag service.',
         returns: 'void',
         private: true,
       },
       initValidation: {
-        description: 'Initalizes validators.',
+        description: 'Initializes validators.',
         returns: 'void',
         private: true,
       },
       reinitValidation: {
-        description: 'Re-initalizes validators when rules have changed.',
+        description: 'Re-initializes validators when rules have changed.',
         returns: 'void',
         private: false,
       },
@@ -3067,7 +3062,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element is hidden internally by core components like tabs or steps steps. Only intended for reading.',
+        description: 'Whether the element is hidden internally by core components like tabs or steps. Only intended for reading.',
         default: 'true',
         private: true,
       },
@@ -3281,7 +3276,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'Calulated column sizes and classes for the element.',
+        description: 'Calculated column sizes and classes for the element.',
         private: true,
       },
       available: {
@@ -3402,7 +3397,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `single-label` for `SelectElement`.',
+        description: 'Slots related to the element&apos;s field. E.g. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, e.g. `option` or `single-label` for `SelectElement`.',
         private: true,
       },
       Templates: {
@@ -3717,11 +3712,6 @@ module.exports = {
         returns: 'void',
         private: false,
       },
-      prepare: {
-        description: 'Prepares the element.',
-        returns: 'void',
-        private: true,
-      },
       disableAll: {
         description: 'Disables all items.',
         returns: 'void',
@@ -3844,17 +3834,17 @@ module.exports = {
         private: false,
       },
       initMessageBag: {
-        description: 'Initalizes MessageBag service.',
+        description: 'Initializes MessageBag service.',
         returns: 'void',
         private: true,
       },
       initValidation: {
-        description: 'Initalizes validators.',
+        description: 'Initializes validators.',
         returns: 'void',
         private: true,
       },
       reinitValidation: {
-        description: 'Re-initalizes validators when rules have changed.',
+        description: 'Re-initializes validators when rules have changed.',
         returns: 'void',
         private: false,
       },
@@ -4764,7 +4754,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element is hidden internally by core components like tabs or steps steps. Only intended for reading.',
+        description: 'Whether the element is hidden internally by core components like tabs or steps. Only intended for reading.',
         default: 'true',
         private: true,
       },
@@ -4986,7 +4976,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'Calulated column sizes and classes for the element.',
+        description: 'Calculated column sizes and classes for the element.',
         private: true,
       },
       available: {
@@ -5149,7 +5139,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `single-label` for `SelectElement`.',
+        description: 'Slots related to the element&apos;s field. E.g. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, e.g. `option` or `single-label` for `SelectElement`.',
         private: true,
       },
       Templates: {
@@ -5356,11 +5346,6 @@ module.exports = {
         returns: 'void',
         private: false,
       },
-      prepare: {
-        description: 'Prepares the element.',
-        returns: 'void',
-        private: true,
-      },
       disable: {
         description: 'Disables the element.',
         returns: 'void',
@@ -5465,17 +5450,17 @@ module.exports = {
         private: false,
       },
       initMessageBag: {
-        description: 'Initalizes MessageBag service.',
+        description: 'Initializes MessageBag service.',
         returns: 'void',
         private: true,
       },
       initValidation: {
-        description: 'Initalizes validators.',
+        description: 'Initializes validators.',
         returns: 'void',
         private: true,
       },
       reinitValidation: {
-        description: 'Re-initalizes validators when rules have changed.',
+        description: 'Re-initializes validators when rules have changed.',
         returns: 'void',
         private: false,
       },
@@ -6318,7 +6303,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element is hidden internally by core components like tabs or steps steps. Only intended for reading.',
+        description: 'Whether the element is hidden internally by core components like tabs or steps. Only intended for reading.',
         default: 'true',
         private: true,
       },
@@ -6540,7 +6525,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'Calulated column sizes and classes for the element.',
+        description: 'Calculated column sizes and classes for the element.',
         private: true,
       },
       available: {
@@ -6703,7 +6688,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `single-label` for `SelectElement`.',
+        description: 'Slots related to the element&apos;s field. E.g. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, e.g. `option` or `single-label` for `SelectElement`.',
         private: true,
       },
       Templates: {
@@ -6910,11 +6895,6 @@ module.exports = {
         returns: 'void',
         private: false,
       },
-      prepare: {
-        description: 'Prepares the element.',
-        returns: 'void',
-        private: true,
-      },
       disable: {
         description: 'Disables the element.',
         returns: 'void',
@@ -7019,17 +6999,17 @@ module.exports = {
         private: false,
       },
       initMessageBag: {
-        description: 'Initalizes MessageBag service.',
+        description: 'Initializes MessageBag service.',
         returns: 'void',
         private: true,
       },
       initValidation: {
-        description: 'Initalizes validators.',
+        description: 'Initializes validators.',
         returns: 'void',
         private: true,
       },
       reinitValidation: {
-        description: 'Re-initalizes validators when rules have changed.',
+        description: 'Re-initializes validators when rules have changed.',
         returns: 'void',
         private: false,
       },
@@ -7849,7 +7829,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element is hidden internally by core components like tabs or steps steps. Only intended for reading.',
+        description: 'Whether the element is hidden internally by core components like tabs or steps. Only intended for reading.',
         default: 'true',
         private: true,
       },
@@ -8071,7 +8051,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'Calulated column sizes and classes for the element.',
+        description: 'Calculated column sizes and classes for the element.',
         private: true,
       },
       available: {
@@ -8222,7 +8202,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `single-label` for `SelectElement`.',
+        description: 'Slots related to the element&apos;s field. E.g. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, e.g. `option` or `single-label` for `SelectElement`.',
         private: true,
       },
       Templates: {
@@ -8436,11 +8416,6 @@ module.exports = {
         returns: 'void',
         private: false,
       },
-      prepare: {
-        description: 'Prepares the element.',
-        returns: 'void',
-        private: true,
-      },
       disable: {
         description: 'Disables the element.',
         returns: 'void',
@@ -8546,8 +8521,8 @@ module.exports = {
             types: [
               'Event',
             ],
-            required: 'true',
-            description: '',
+            required: 'false',
+            description: '- event object',
           },
         },
         private: true,
@@ -8578,17 +8553,17 @@ module.exports = {
         private: false,
       },
       initMessageBag: {
-        description: 'Initalizes MessageBag service.',
+        description: 'Initializes MessageBag service.',
         returns: 'void',
         private: true,
       },
       initValidation: {
-        description: 'Initalizes validators.',
+        description: 'Initializes validators.',
         returns: 'void',
         private: true,
       },
       reinitValidation: {
-        description: 'Re-initalizes validators when rules have changed.',
+        description: 'Re-initializes validators when rules have changed.',
         returns: 'void',
         private: false,
       },
@@ -9484,7 +9459,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element is hidden internally by core components like tabs or steps steps. Only intended for reading.',
+        description: 'Whether the element is hidden internally by core components like tabs or steps. Only intended for reading.',
         default: 'true',
         private: true,
       },
@@ -9760,7 +9735,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'Calulated column sizes and classes for the element.',
+        description: 'Calculated column sizes and classes for the element.',
         private: true,
       },
       available: {
@@ -9866,7 +9841,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the file is permantently uploaded.',
+        description: 'Whether the file is permanently uploaded.',
         private: false,
       },
       canRemove: {
@@ -9970,7 +9945,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `single-label` for `SelectElement`.',
+        description: 'Slots related to the element&apos;s field. E.g. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, e.g. `option` or `single-label` for `SelectElement`.',
         private: true,
       },
       Templates: {
@@ -10163,11 +10138,6 @@ module.exports = {
         returns: 'void',
         private: false,
       },
-      prepare: {
-        description: 'Prepares the element.',
-        returns: 'void',
-        private: true,
-      },
       disable: {
         description: 'Disables the element.',
         returns: 'void',
@@ -10187,7 +10157,7 @@ module.exports = {
               'Event',
             ],
             required: 'false',
-            description: '',
+            description: '- event object',
           },
         },
         private: true,
@@ -10252,7 +10222,7 @@ module.exports = {
         private: false,
       },
       prepare: {
-        description: 'Prepare the element for submitting the form (async). It will upload temp file if it hasn&apos;t been uploaded yet and halts the submit process until its done without any errors.',
+        description: 'Prepare the element for submitting the form (async). It will upload temp file if it hasn&apos;t been uploaded yet and halts the submit process until it is done without any errors.',
         returns: 'void',
         private: true,
       },
@@ -10264,8 +10234,8 @@ module.exports = {
             types: [
               'Event',
             ],
-            required: 'true',
-            description: '',
+            required: 'false',
+            description: '- event object',
           },
         },
         private: true,
@@ -10335,17 +10305,17 @@ module.exports = {
         private: false,
       },
       initMessageBag: {
-        description: 'Initalizes MessageBag service.',
+        description: 'Initializes MessageBag service.',
         returns: 'void',
         private: true,
       },
       initValidation: {
-        description: 'Initalizes validators.',
+        description: 'Initializes validators.',
         returns: 'void',
         private: true,
       },
       reinitValidation: {
-        description: 'Re-initalizes validators when rules have changed.',
+        description: 'Re-initializes validators when rules have changed.',
         returns: 'void',
         private: false,
       },
@@ -11059,7 +11029,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element is hidden internally by core components like tabs or steps steps. Only intended for reading.',
+        description: 'Whether the element is hidden internally by core components like tabs or steps. Only intended for reading.',
         default: 'true',
         private: true,
       },
@@ -11266,7 +11236,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'Calulated column sizes and classes for the element.',
+        description: 'Calculated column sizes and classes for the element.',
         private: true,
       },
       available: {
@@ -11373,7 +11343,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `single-label` for `SelectElement`.',
+        description: 'Slots related to the element&apos;s field. E.g. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, e.g. `option` or `single-label` for `SelectElement`.',
         private: true,
       },
       Templates: {
@@ -11422,7 +11392,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element or any of its chilren has a validation rule with pending debounce.',
+        description: 'Whether the element or any of its children have a validation rule with pending debounce.',
         private: false,
       },
       busy: {
@@ -11573,11 +11543,6 @@ module.exports = {
         returns: 'void',
         private: false,
       },
-      prepare: {
-        description: 'Prepares the element.',
-        returns: 'void',
-        private: true,
-      },
       component: {
         description: 'Transforms an element `type` into the element&apos;s component name.',
         returns: 'string',
@@ -11682,17 +11647,17 @@ module.exports = {
         private: false,
       },
       initMessageBag: {
-        description: 'Initalizes MessageBag service.',
+        description: 'Initializes MessageBag service.',
         returns: 'void',
         private: true,
       },
       initValidation: {
-        description: 'Initalizes validators.',
+        description: 'Initializes validators.',
         returns: 'void',
         private: true,
       },
       reinitValidation: {
-        description: 'Re-initalizes validators when rules have changed.',
+        description: 'Re-initializes validators when rules have changed.',
         returns: 'void',
         private: false,
       },
@@ -12128,7 +12093,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element is hidden internally by core components like tabs or steps steps. Only intended for reading.',
+        description: 'Whether the element is hidden internally by core components like tabs or steps. Only intended for reading.',
         default: 'true',
         private: true,
       },
@@ -12505,11 +12470,6 @@ module.exports = {
         returns: 'void',
         private: false,
       },
-      prepare: {
-        description: 'Prepares the element.',
-        returns: 'void',
-        private: true,
-      },
       on: {
         description: 'Adds a listener for an event.',
         returns: 'void',
@@ -12590,17 +12550,17 @@ module.exports = {
         private: false,
       },
       initMessageBag: {
-        description: 'Initalizes MessageBag service.',
+        description: 'Initializes MessageBag service.',
         returns: 'void',
         private: true,
       },
       initValidation: {
-        description: 'Initalizes validators.',
+        description: 'Initializes validators.',
         returns: 'void',
         private: true,
       },
       reinitValidation: {
-        description: 'Re-initalizes validators when rules have changed.',
+        description: 'Re-initializes validators when rules have changed.',
         returns: 'void',
         private: false,
       },
@@ -13358,7 +13318,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element is hidden internally by core components like tabs or steps steps. Only intended for reading.',
+        description: 'Whether the element is hidden internally by core components like tabs or steps. Only intended for reading.',
         default: 'true',
         private: true,
       },
@@ -13602,7 +13562,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'Calulated column sizes and classes for the element.',
+        description: 'Calculated column sizes and classes for the element.',
         private: true,
       },
       available: {
@@ -13730,7 +13690,7 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The name of the child (when using [`object`](#option-object)) by which the items should ordered.',
+        description: 'The name of the child (when using [`object`](#option-object)) by which the items should be ordered.',
         private: false,
       },
       parent: {
@@ -13772,7 +13732,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether childrens are objects.',
+        description: 'Whether children are objects.',
         private: true,
       },
       elementSlots: {
@@ -13786,7 +13746,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `single-label` for `SelectElement`.',
+        description: 'Slots related to the element&apos;s field. E.g. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, e.g. `option` or `single-label` for `SelectElement`.',
         private: true,
       },
       isSortable: {
@@ -13842,7 +13802,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element or any of its chilren has a validation rule with pending debounce.',
+        description: 'Whether the element or any of its children have a validation rule with pending debounce.',
         private: false,
       },
       busy: {
@@ -14047,11 +14007,6 @@ module.exports = {
         },
         private: true,
       },
-      prepare: {
-        description: 'Prepares the element.',
-        returns: 'void',
-        private: true,
-      },
       disable: {
         description: 'Disables the element.',
         returns: 'void',
@@ -14203,17 +14158,17 @@ module.exports = {
         private: false,
       },
       initMessageBag: {
-        description: 'Initalizes MessageBag service.',
+        description: 'Initializes MessageBag service.',
         returns: 'void',
         private: true,
       },
       initValidation: {
-        description: 'Initalizes validators.',
+        description: 'Initializes validators.',
         returns: 'void',
         private: true,
       },
       reinitValidation: {
-        description: 'Re-initalizes validators when rules have changed.',
+        description: 'Re-initializes validators when rules have changed.',
         returns: 'void',
         private: false,
       },
@@ -15051,7 +15006,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element is hidden internally by core components like tabs or steps steps. Only intended for reading.',
+        description: 'Whether the element is hidden internally by core components like tabs or steps. Only intended for reading.',
         default: 'true',
         private: true,
       },
@@ -15120,7 +15075,7 @@ module.exports = {
         types: [
           'class',
         ],
-        description: 'The location service that&apos;s initalized once the component is mounted.',
+        description: 'The location service that&apos;s initialized once the component is mounted.',
         default: 'null',
         private: false,
       },
@@ -15289,7 +15244,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'Calulated column sizes and classes for the element.',
+        description: 'Calculated column sizes and classes for the element.',
         private: true,
       },
       available: {
@@ -15432,7 +15387,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `single-label` for `SelectElement`.',
+        description: 'Slots related to the element&apos;s field. E.g. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, e.g. `option` or `single-label` for `SelectElement`.',
         private: true,
       },
       Templates: {
@@ -15646,11 +15601,6 @@ module.exports = {
         returns: 'void',
         private: false,
       },
-      prepare: {
-        description: 'Prepares the element.',
-        returns: 'void',
-        private: true,
-      },
       disable: {
         description: 'Disables the element.',
         returns: 'void',
@@ -15740,7 +15690,7 @@ module.exports = {
         private: true,
       },
       initLocationService: {
-        description: 'Initalizes location service. Can be used to re-initalize location service.',
+        description: 'Initializes location service. Can be used to re-initialize location service.',
         returns: 'void',
         private: false,
       },
@@ -15770,17 +15720,17 @@ module.exports = {
         private: false,
       },
       initMessageBag: {
-        description: 'Initalizes MessageBag service.',
+        description: 'Initializes MessageBag service.',
         returns: 'void',
         private: true,
       },
       initValidation: {
-        description: 'Initalizes validators.',
+        description: 'Initializes validators.',
         returns: 'void',
         private: true,
       },
       reinitValidation: {
-        description: 'Re-initalizes validators when rules have changed.',
+        description: 'Re-initializes validators when rules have changed.',
         returns: 'void',
         private: false,
       },
@@ -16744,7 +16694,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element is hidden internally by core components like tabs or steps steps. Only intended for reading.',
+        description: 'Whether the element is hidden internally by core components like tabs or steps. Only intended for reading.',
         default: 'true',
         private: true,
       },
@@ -16995,7 +16945,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'Calulated column sizes and classes for the element.',
+        description: 'Calculated column sizes and classes for the element.',
         private: true,
       },
       available: {
@@ -17137,7 +17087,7 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The name of the field (when using [`fields`](#option-fiels)) by which the files should ordered.',
+        description: 'The name of the field (when using [`fields`](#option-fields)) by which the files should be ordered.',
         private: false,
       },
       parent: {
@@ -17179,7 +17129,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether childrens are objects.',
+        description: 'Whether children are objects.',
         private: true,
       },
       prototype: {
@@ -17200,7 +17150,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `single-label` for `SelectElement`.',
+        description: 'Slots related to the element&apos;s field. E.g. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, e.g. `option` or `single-label` for `SelectElement`.',
         private: true,
       },
       isSortable: {
@@ -17256,7 +17206,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element or any of its chilren has a validation rule with pending debounce.',
+        description: 'Whether the element or any of its children have a validation rule with pending debounce.',
         private: false,
       },
       busy: {
@@ -17461,11 +17411,6 @@ module.exports = {
         },
         private: true,
       },
-      prepare: {
-        description: 'Prepares the element.',
-        returns: 'void',
-        private: true,
-      },
       disable: {
         description: 'Disables the element.',
         returns: 'void',
@@ -17485,7 +17430,7 @@ module.exports = {
               'Event',
             ],
             required: 'false',
-            description: '',
+            description: '- event object',
           },
         },
         private: true,
@@ -17566,8 +17511,8 @@ module.exports = {
             types: [
               'Event',
             ],
-            required: 'true',
-            description: '',
+            required: 'false',
+            description: '- event object',
           },
         },
         private: true,
@@ -17650,17 +17595,17 @@ module.exports = {
         private: false,
       },
       initMessageBag: {
-        description: 'Initalizes MessageBag service.',
+        description: 'Initializes MessageBag service.',
         returns: 'void',
         private: true,
       },
       initValidation: {
-        description: 'Initalizes validators.',
+        description: 'Initializes validators.',
         returns: 'void',
         private: true,
       },
       reinitValidation: {
-        description: 'Re-initalizes validators when rules have changed.',
+        description: 'Re-initializes validators when rules have changed.',
         returns: 'void',
         private: false,
       },
@@ -18585,6 +18530,7 @@ module.exports = {
         localized: false,
         types: [
           'string',
+          'array',
         ],
         native: false,
         required: false,
@@ -18978,7 +18924,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element is hidden internally by core components like tabs or steps steps. Only intended for reading.',
+        description: 'Whether the element is hidden internally by core components like tabs or steps. Only intended for reading.',
         default: 'true',
         private: true,
       },
@@ -19207,7 +19153,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'Calulated column sizes and classes for the element.',
+        description: 'Calculated column sizes and classes for the element.',
         private: true,
       },
       available: {
@@ -19356,7 +19302,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `single-label` for `SelectElement`.',
+        description: 'Slots related to the element&apos;s field. E.g. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, e.g. `option` or `single-label` for `SelectElement`.',
         private: true,
       },
       Templates: {
@@ -19614,11 +19560,6 @@ module.exports = {
         returns: 'void',
         private: false,
       },
-      prepare: {
-        description: 'Prepares the element.',
-        returns: 'void',
-        private: true,
-      },
       disable: {
         description: 'Disables the element.',
         returns: 'void',
@@ -19754,20 +19695,6 @@ module.exports = {
         },
         private: true,
       },
-      handleTag: {
-        description: 'Handles `tag` event.',
-        returns: 'void',
-        params: {
-          searchQuery: {
-            types: [
-              'string',
-            ],
-            required: 'true',
-            description: 'the current search query',
-          },
-        },
-        private: true,
-      },
       select: {
         description: 'Selects one or more options.',
         returns: 'void',
@@ -19824,17 +19751,17 @@ module.exports = {
         private: false,
       },
       initMessageBag: {
-        description: 'Initalizes MessageBag service.',
+        description: 'Initializes MessageBag service.',
         returns: 'void',
         private: true,
       },
       initValidation: {
-        description: 'Initalizes validators.',
+        description: 'Initializes validators.',
         returns: 'void',
         private: true,
       },
       reinitValidation: {
-        description: 'Re-initalizes validators when rules have changed.',
+        description: 'Re-initializes validators when rules have changed.',
         returns: 'void',
         private: false,
       },
@@ -20800,7 +20727,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element is hidden internally by core components like tabs or steps steps. Only intended for reading.',
+        description: 'Whether the element is hidden internally by core components like tabs or steps. Only intended for reading.',
         default: 'true',
         private: true,
       },
@@ -21014,7 +20941,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'Calulated column sizes and classes for the element.',
+        description: 'Calculated column sizes and classes for the element.',
         private: true,
       },
       available: {
@@ -21121,7 +21048,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `single-label` for `SelectElement`.',
+        description: 'Slots related to the element&apos;s field. E.g. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, e.g. `option` or `single-label` for `SelectElement`.',
         private: true,
       },
       Templates: {
@@ -21170,7 +21097,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element or any of its chilren has a validation rule with pending debounce.',
+        description: 'Whether the element or any of its children have a validation rule with pending debounce.',
         private: false,
       },
       busy: {
@@ -21321,11 +21248,6 @@ module.exports = {
         returns: 'void',
         private: false,
       },
-      prepare: {
-        description: 'Prepares the element.',
-        returns: 'void',
-        private: true,
-      },
       component: {
         description: 'Transforms an element `type` into the element&apos;s component name.',
         returns: 'string',
@@ -21430,17 +21352,17 @@ module.exports = {
         private: false,
       },
       initMessageBag: {
-        description: 'Initalizes MessageBag service.',
+        description: 'Initializes MessageBag service.',
         returns: 'void',
         private: true,
       },
       initValidation: {
-        description: 'Initalizes validators.',
+        description: 'Initializes validators.',
         returns: 'void',
         private: true,
       },
       reinitValidation: {
-        description: 'Re-initalizes validators when rules have changed.',
+        description: 'Re-initializes validators when rules have changed.',
         returns: 'void',
         private: false,
       },
@@ -22171,7 +22093,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element is hidden internally by core components like tabs or steps steps. Only intended for reading.',
+        description: 'Whether the element is hidden internally by core components like tabs or steps. Only intended for reading.',
         default: 'true',
         private: true,
       },
@@ -22386,7 +22308,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'Calulated column sizes and classes for the element.',
+        description: 'Calculated column sizes and classes for the element.',
         private: true,
       },
       available: {
@@ -22514,7 +22436,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `single-label` for `SelectElement`.',
+        description: 'Slots related to the element&apos;s field. E.g. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, e.g. `option` or `single-label` for `SelectElement`.',
         private: true,
       },
       Templates: {
@@ -22728,11 +22650,6 @@ module.exports = {
         returns: 'void',
         private: false,
       },
-      prepare: {
-        description: 'Prepares the element.',
-        returns: 'void',
-        private: true,
-      },
       disable: {
         description: 'Disables the element.',
         returns: 'void',
@@ -22803,7 +22720,7 @@ module.exports = {
         private: false,
       },
       uncheck: {
-        description: 'Unhecks the radio.',
+        description: 'Unchecks the radio.',
         returns: 'void',
         private: false,
       },
@@ -22833,17 +22750,17 @@ module.exports = {
         private: false,
       },
       initMessageBag: {
-        description: 'Initalizes MessageBag service.',
+        description: 'Initializes MessageBag service.',
         returns: 'void',
         private: true,
       },
       initValidation: {
-        description: 'Initalizes validators.',
+        description: 'Initializes validators.',
         returns: 'void',
         private: true,
       },
       reinitValidation: {
-        description: 'Re-initalizes validators when rules have changed.',
+        description: 'Re-initializes validators when rules have changed.',
         returns: 'void',
         private: false,
       },
@@ -23590,7 +23507,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element is hidden internally by core components like tabs or steps steps. Only intended for reading.',
+        description: 'Whether the element is hidden internally by core components like tabs or steps. Only intended for reading.',
         default: 'true',
         private: true,
       },
@@ -23804,7 +23721,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'Calulated column sizes and classes for the element.',
+        description: 'Calculated column sizes and classes for the element.',
         private: true,
       },
       available: {
@@ -23925,7 +23842,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `single-label` for `SelectElement`.',
+        description: 'Slots related to the element&apos;s field. E.g. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, e.g. `option` or `single-label` for `SelectElement`.',
         private: true,
       },
       Templates: {
@@ -24183,11 +24100,6 @@ module.exports = {
         returns: 'void',
         private: false,
       },
-      prepare: {
-        description: 'Prepares the element.',
-        returns: 'void',
-        private: true,
-      },
       disableAll: {
         description: 'Disables all items.',
         returns: 'void',
@@ -24310,17 +24222,17 @@ module.exports = {
         private: false,
       },
       initMessageBag: {
-        description: 'Initalizes MessageBag service.',
+        description: 'Initializes MessageBag service.',
         returns: 'void',
         private: true,
       },
       initValidation: {
-        description: 'Initalizes validators.',
+        description: 'Initializes validators.',
         returns: 'void',
         private: true,
       },
       reinitValidation: {
-        description: 'Re-initalizes validators when rules have changed.',
+        description: 'Re-initializes validators when rules have changed.',
         returns: 'void',
         private: false,
       },
@@ -25252,6 +25164,7 @@ module.exports = {
         localized: false,
         types: [
           'string',
+          'array',
         ],
         native: false,
         required: false,
@@ -25590,7 +25503,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element is hidden internally by core components like tabs or steps steps. Only intended for reading.',
+        description: 'Whether the element is hidden internally by core components like tabs or steps. Only intended for reading.',
         default: 'true',
         private: true,
       },
@@ -25819,7 +25732,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'Calulated column sizes and classes for the element.',
+        description: 'Calculated column sizes and classes for the element.',
         private: true,
       },
       available: {
@@ -25968,7 +25881,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `single-label` for `SelectElement`.',
+        description: 'Slots related to the element&apos;s field. E.g. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, e.g. `option` or `single-label` for `SelectElement`.',
         private: true,
       },
       Templates: {
@@ -26226,11 +26139,6 @@ module.exports = {
         returns: 'void',
         private: false,
       },
-      prepare: {
-        description: 'Prepares the element.',
-        returns: 'void',
-        private: true,
-      },
       disable: {
         description: 'Disables the element.',
         returns: 'void',
@@ -26366,20 +26274,6 @@ module.exports = {
         },
         private: true,
       },
-      handleTag: {
-        description: 'Handles `tag` event.',
-        returns: 'void',
-        params: {
-          searchQuery: {
-            types: [
-              'string',
-            ],
-            required: 'true',
-            description: 'the current search query',
-          },
-        },
-        private: true,
-      },
       validate: {
         description: 'Checks each validation rule for the element (async).',
         returns: 'void',
@@ -26406,17 +26300,17 @@ module.exports = {
         private: false,
       },
       initMessageBag: {
-        description: 'Initalizes MessageBag service.',
+        description: 'Initializes MessageBag service.',
         returns: 'void',
         private: true,
       },
       initValidation: {
-        description: 'Initalizes validators.',
+        description: 'Initializes validators.',
         returns: 'void',
         private: true,
       },
       reinitValidation: {
-        description: 'Re-initalizes validators when rules have changed.',
+        description: 'Re-initializes validators when rules have changed.',
         returns: 'void',
         private: false,
       },
@@ -27484,7 +27378,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element is hidden internally by core components like tabs or steps steps. Only intended for reading.',
+        description: 'Whether the element is hidden internally by core components like tabs or steps. Only intended for reading.',
         default: 'true',
         private: true,
       },
@@ -27699,7 +27593,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'Calulated column sizes and classes for the element.',
+        description: 'Calculated column sizes and classes for the element.',
         private: true,
       },
       available: {
@@ -27820,7 +27714,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `single-label` for `SelectElement`.',
+        description: 'Slots related to the element&apos;s field. E.g. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, e.g. `option` or `single-label` for `SelectElement`.',
         private: true,
       },
       Templates: {
@@ -28013,11 +27907,6 @@ module.exports = {
         returns: 'void',
         private: false,
       },
-      prepare: {
-        description: 'Prepares the element.',
-        returns: 'void',
-        private: true,
-      },
       disable: {
         description: 'Disables the element.',
         returns: 'void',
@@ -28136,17 +28025,17 @@ module.exports = {
         private: false,
       },
       initMessageBag: {
-        description: 'Initalizes MessageBag service.',
+        description: 'Initializes MessageBag service.',
         returns: 'void',
         private: true,
       },
       initValidation: {
-        description: 'Initalizes validators.',
+        description: 'Initializes validators.',
         returns: 'void',
         private: true,
       },
       reinitValidation: {
-        description: 'Re-initalizes validators when rules have changed.',
+        description: 'Re-initializes validators when rules have changed.',
         returns: 'void',
         private: false,
       },
@@ -28769,7 +28658,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element is hidden internally by core components like tabs or steps steps. Only intended for reading.',
+        description: 'Whether the element is hidden internally by core components like tabs or steps. Only intended for reading.',
         default: 'true',
         private: true,
       },
@@ -28930,7 +28819,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'Calulated column sizes and classes for the element.',
+        description: 'Calculated column sizes and classes for the element.',
         private: true,
       },
       available: {
@@ -29002,7 +28891,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `single-label` for `SelectElement`.',
+        description: 'Slots related to the element&apos;s field. E.g. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, e.g. `option` or `single-label` for `SelectElement`.',
         private: true,
       },
       isHtml: {
@@ -29010,6 +28899,20 @@ module.exports = {
           'boolean',
         ],
         description: 'Determines if HTML content should be rendered for the element.',
+        private: true,
+      },
+      componentContent: {
+        types: [
+          'object',
+        ],
+        description: 'Resolves the content as component.',
+        private: true,
+      },
+      slotContent: {
+        types: [
+          'object',
+        ],
+        description: 'Resolves the content as slot.',
         private: true,
       },
       Templates: {
@@ -29921,7 +29824,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element is hidden internally by core components like tabs or steps steps. Only intended for reading.',
+        description: 'Whether the element is hidden internally by core components like tabs or steps. Only intended for reading.',
         default: 'true',
         private: true,
       },
@@ -30129,7 +30032,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'Calulated column sizes and classes for the element.',
+        description: 'Calculated column sizes and classes for the element.',
         private: true,
       },
       available: {
@@ -30294,7 +30197,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `single-label` for `SelectElement`.',
+        description: 'Slots related to the element&apos;s field. E.g. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, e.g. `option` or `single-label` for `SelectElement`.',
         private: true,
       },
       Templates: {
@@ -30508,11 +30411,6 @@ module.exports = {
         returns: 'void',
         private: false,
       },
-      prepare: {
-        description: 'Prepares the element.',
-        returns: 'void',
-        private: true,
-      },
       disable: {
         description: 'Disables the element.',
         returns: 'void',
@@ -30618,8 +30516,8 @@ module.exports = {
             types: [
               'Event',
             ],
-            required: 'true',
-            description: '',
+            required: 'false',
+            description: '- event object',
           },
         },
         private: true,
@@ -30638,7 +30536,7 @@ module.exports = {
               'string',
             ],
             required: 'false',
-            description: 'the langauage to check (defaults to currently selected language)',
+            description: 'the language to check (defaults to currently selected language)',
           },
         },
         private: false,
@@ -30669,17 +30567,17 @@ module.exports = {
         private: true,
       },
       initMessageBag: {
-        description: 'Initalizes MessageBag service.',
+        description: 'Initializes MessageBag service.',
         returns: 'void',
         private: true,
       },
       initValidation: {
-        description: 'Initalizes validators.',
+        description: 'Initializes validators.',
         returns: 'void',
         private: true,
       },
       reinitValidation: {
-        description: 'Re-initalizes validators when rules have changed.',
+        description: 'Re-initializes validators when rules have changed.',
         returns: 'void',
         private: false,
       },
@@ -31542,7 +31440,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element is hidden internally by core components like tabs or steps steps. Only intended for reading.',
+        description: 'Whether the element is hidden internally by core components like tabs or steps. Only intended for reading.',
         default: 'true',
         private: true,
       },
@@ -31750,7 +31648,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'Calulated column sizes and classes for the element.',
+        description: 'Calculated column sizes and classes for the element.',
         private: true,
       },
       available: {
@@ -31913,7 +31811,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `single-label` for `SelectElement`.',
+        description: 'Slots related to the element&apos;s field. E.g. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, e.g. `option` or `single-label` for `SelectElement`.',
         private: true,
       },
       Templates: {
@@ -32127,11 +32025,6 @@ module.exports = {
         returns: 'void',
         private: false,
       },
-      prepare: {
-        description: 'Prepares the element.',
-        returns: 'void',
-        private: true,
-      },
       disable: {
         description: 'Disables the element.',
         returns: 'void',
@@ -32209,8 +32102,8 @@ module.exports = {
             types: [
               'Event',
             ],
-            required: 'true',
-            description: '',
+            required: 'false',
+            description: '- event object',
           },
         },
         private: true,
@@ -32223,8 +32116,8 @@ module.exports = {
             types: [
               'Event',
             ],
-            required: 'true',
-            description: '',
+            required: 'false',
+            description: '- event object',
           },
         },
         private: true,
@@ -32237,8 +32130,8 @@ module.exports = {
             types: [
               'Event',
             ],
-            required: 'true',
-            description: '',
+            required: 'false',
+            description: '- event object',
           },
         },
         private: true,
@@ -32251,8 +32144,8 @@ module.exports = {
             types: [
               'Event',
             ],
-            required: 'true',
-            description: '',
+            required: 'false',
+            description: '- event object',
           },
         },
         private: true,
@@ -32271,7 +32164,7 @@ module.exports = {
               'string',
             ],
             required: 'false',
-            description: 'the langauage to check (defaults to currently selected language)',
+            description: 'the language to check (defaults to currently selected language)',
           },
         },
         private: false,
@@ -32302,17 +32195,17 @@ module.exports = {
         private: true,
       },
       initMessageBag: {
-        description: 'Initalizes MessageBag service.',
+        description: 'Initializes MessageBag service.',
         returns: 'void',
         private: true,
       },
       initValidation: {
-        description: 'Initalizes validators.',
+        description: 'Initializes validators.',
         returns: 'void',
         private: true,
       },
       reinitValidation: {
-        description: 'Re-initalizes validators when rules have changed.',
+        description: 'Re-initializes validators when rules have changed.',
         returns: 'void',
         private: false,
       },
@@ -33215,7 +33108,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element is hidden internally by core components like tabs or steps steps. Only intended for reading.',
+        description: 'Whether the element is hidden internally by core components like tabs or steps. Only intended for reading.',
         default: 'true',
         private: true,
       },
@@ -33423,7 +33316,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'Calulated column sizes and classes for the element.',
+        description: 'Calculated column sizes and classes for the element.',
         private: true,
       },
       available: {
@@ -33579,7 +33472,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `single-label` for `SelectElement`.',
+        description: 'Slots related to the element&apos;s field. E.g. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, e.g. `option` or `single-label` for `SelectElement`.',
         private: true,
       },
       Templates: {
@@ -33798,11 +33691,6 @@ module.exports = {
         returns: 'void',
         private: false,
       },
-      prepare: {
-        description: 'Prepares the element.',
-        returns: 'void',
-        private: true,
-      },
       disable: {
         description: 'Disables the element.',
         returns: 'void',
@@ -33880,8 +33768,8 @@ module.exports = {
             types: [
               'Event',
             ],
-            required: 'true',
-            description: '',
+            required: 'false',
+            description: '- event object',
           },
         },
         private: true,
@@ -33894,8 +33782,8 @@ module.exports = {
             types: [
               'Event',
             ],
-            required: 'true',
-            description: '',
+            required: 'false',
+            description: '- event object',
           },
         },
         private: true,
@@ -33908,8 +33796,8 @@ module.exports = {
             types: [
               'Event',
             ],
-            required: 'true',
-            description: '',
+            required: 'false',
+            description: '- event object',
           },
         },
         private: true,
@@ -33922,8 +33810,8 @@ module.exports = {
             types: [
               'Event',
             ],
-            required: 'true',
-            description: '',
+            required: 'false',
+            description: '- event object',
           },
         },
         private: true,
@@ -33942,7 +33830,7 @@ module.exports = {
               'string',
             ],
             required: 'false',
-            description: 'the langauage to check (defaults to currently selected language)',
+            description: 'the language to check (defaults to currently selected language)',
           },
         },
         private: false,
@@ -33973,17 +33861,17 @@ module.exports = {
         private: true,
       },
       initMessageBag: {
-        description: 'Initalizes MessageBag service.',
+        description: 'Initializes MessageBag service.',
         returns: 'void',
         private: true,
       },
       initValidation: {
-        description: 'Initalizes validators.',
+        description: 'Initializes validators.',
         returns: 'void',
         private: true,
       },
       reinitValidation: {
-        description: 'Re-initalizes validators when rules have changed.',
+        description: 'Re-initializes validators when rules have changed.',
         returns: 'void',
         private: false,
       },
@@ -34888,7 +34776,6 @@ module.exports = {
         types: [
           'string',
         ],
-        native: false,
         required: false,
         private: false,
       },
@@ -34899,7 +34786,6 @@ module.exports = {
         types: [
           'string',
         ],
-        native: false,
         required: false,
         private: false,
       },
@@ -34930,7 +34816,6 @@ module.exports = {
         types: [
           'boolean',
         ],
-        native: false,
         required: false,
         private: false,
       },
@@ -34940,8 +34825,8 @@ module.exports = {
         localized: false,
         types: [
           'string',
+          'array',
         ],
-        native: false,
         required: false,
         private: false,
       },
@@ -34952,7 +34837,16 @@ module.exports = {
         types: [
           'boolean',
         ],
-        native: false,
+        required: false,
+        private: false,
+      },
+      breakTags: {
+        required: 'false',
+        default: 'false',
+        localized: false,
+        types: [
+          'boolean',
+        ],
         required: false,
         private: false,
       },
@@ -34993,7 +34887,6 @@ module.exports = {
         types: [
           'boolean',
         ],
-        native: false,
         required: false,
         private: false,
       },
@@ -35004,7 +34897,6 @@ module.exports = {
         types: [
           'number',
         ],
-        native: false,
         required: false,
         private: false,
       },
@@ -35015,7 +34907,6 @@ module.exports = {
         types: [
           'number',
         ],
-        native: false,
         required: false,
         private: false,
       },
@@ -35026,7 +34917,6 @@ module.exports = {
         types: [
           'boolean',
         ],
-        native: false,
         required: false,
         private: false,
       },
@@ -35037,7 +34927,6 @@ module.exports = {
         types: [
           'string',
         ],
-        native: false,
         required: false,
         private: false,
       },
@@ -35048,7 +34937,6 @@ module.exports = {
         types: [
           'string',
         ],
-        native: false,
         required: false,
         private: false,
       },
@@ -35059,7 +34947,6 @@ module.exports = {
         types: [
           'boolean',
         ],
-        native: false,
         required: false,
         private: false,
       },
@@ -35070,7 +34957,6 @@ module.exports = {
         types: [
           'boolean',
         ],
-        native: false,
         required: false,
         private: false,
       },
@@ -35081,7 +34967,6 @@ module.exports = {
         types: [
           'string',
         ],
-        native: false,
         required: false,
         private: false,
       },
@@ -35092,7 +34977,6 @@ module.exports = {
         types: [
           'boolean',
         ],
-        native: false,
         required: false,
         private: false,
       },
@@ -35103,7 +34987,6 @@ module.exports = {
         types: [
           'boolean',
         ],
-        native: false,
         required: false,
         private: false,
       },
@@ -35114,7 +34997,6 @@ module.exports = {
         types: [
           'boolean',
         ],
-        native: false,
         required: false,
         private: false,
       },
@@ -35125,7 +35007,6 @@ module.exports = {
         types: [
           'boolean',
         ],
-        native: false,
         required: false,
         private: false,
       },
@@ -35146,7 +35027,6 @@ module.exports = {
         types: [
           'number',
         ],
-        native: false,
         required: false,
         private: false,
       },
@@ -35157,7 +35037,6 @@ module.exports = {
         types: [
           'number',
         ],
-        native: false,
         required: false,
         private: false,
       },
@@ -35168,7 +35047,6 @@ module.exports = {
         types: [
           'boolean',
         ],
-        native: false,
         required: false,
         private: false,
       },
@@ -35179,7 +35057,6 @@ module.exports = {
         types: [
           'boolean',
         ],
-        native: false,
         required: false,
         private: false,
       },
@@ -35190,7 +35067,6 @@ module.exports = {
         types: [
           'boolean',
         ],
-        native: false,
         required: false,
         private: false,
       },
@@ -35201,7 +35077,6 @@ module.exports = {
         types: [
           'boolean',
         ],
-        native: false,
         required: false,
         private: false,
       },
@@ -35222,7 +35097,6 @@ module.exports = {
         types: [
           'boolean',
         ],
-        native: false,
         required: false,
         private: false,
       },
@@ -35233,7 +35107,6 @@ module.exports = {
         types: [
           'boolean',
         ],
-        native: false,
         required: false,
         private: false,
       },
@@ -35245,7 +35118,6 @@ module.exports = {
           'string',
           'object',
         ],
-        native: false,
         required: false,
         private: false,
       },
@@ -35257,7 +35129,6 @@ module.exports = {
           'string',
           'object',
         ],
-        native: false,
         required: false,
         private: false,
       },
@@ -35268,7 +35139,6 @@ module.exports = {
         types: [
           'string',
         ],
-        native: false,
         required: false,
         private: false,
       },
@@ -35279,7 +35149,6 @@ module.exports = {
         types: [
           'string',
         ],
-        native: false,
         required: false,
         private: false,
       },
@@ -35307,7 +35176,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element is hidden internally by core components like tabs or steps steps. Only intended for reading.',
+        description: 'Whether the element is hidden internally by core components like tabs or steps. Only intended for reading.',
         default: 'true',
         private: true,
       },
@@ -35536,7 +35405,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'Calulated column sizes and classes for the element.',
+        description: 'Calculated column sizes and classes for the element.',
         private: true,
       },
       available: {
@@ -35685,7 +35554,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `single-label` for `SelectElement`.',
+        description: 'Slots related to the element&apos;s field. E.g. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, e.g. `option` or `single-label` for `SelectElement`.',
         private: true,
       },
       Templates: {
@@ -35943,11 +35812,6 @@ module.exports = {
         returns: 'void',
         private: false,
       },
-      prepare: {
-        description: 'Prepares the element.',
-        returns: 'void',
-        private: true,
-      },
       disable: {
         description: 'Disables the element.',
         returns: 'void',
@@ -36092,20 +35956,6 @@ module.exports = {
               'string',
             ],
             required: 'true',
-            description: 'the current search query',
-          },
-        },
-        private: true,
-      },
-      handleTag: {
-        description: 'Handles `tag` event.',
-        returns: 'void',
-        params: {
-          searchQuery: {
-            types: [
-              'string',
-            ],
-            required: 'true',
             description: 'the current search query.',
           },
         },
@@ -36167,17 +36017,17 @@ module.exports = {
         private: false,
       },
       initMessageBag: {
-        description: 'Initalizes MessageBag service.',
+        description: 'Initializes MessageBag service.',
         returns: 'void',
         private: true,
       },
       initValidation: {
-        description: 'Initalizes validators.',
+        description: 'Initializes validators.',
         returns: 'void',
         private: true,
       },
       reinitValidation: {
-        description: 'Re-initalizes validators when rules have changed.',
+        description: 'Re-initializes validators when rules have changed.',
         returns: 'void',
         private: false,
       },
@@ -37288,7 +37138,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element is hidden internally by core components like tabs or steps steps. Only intended for reading.',
+        description: 'Whether the element is hidden internally by core components like tabs or steps. Only intended for reading.',
         default: 'true',
         private: true,
       },
@@ -37510,7 +37360,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'Calulated column sizes and classes for the element.',
+        description: 'Calculated column sizes and classes for the element.',
         private: true,
       },
       available: {
@@ -37659,7 +37509,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `single-label` for `SelectElement`.',
+        description: 'Slots related to the element&apos;s field. E.g. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, e.g. `option` or `single-label` for `SelectElement`.',
         private: true,
       },
       Templates: {
@@ -37873,11 +37723,6 @@ module.exports = {
         returns: 'void',
         private: false,
       },
-      prepare: {
-        description: 'Prepares the element.',
-        returns: 'void',
-        private: true,
-      },
       disable: {
         description: 'Disables the element.',
         returns: 'void',
@@ -37955,8 +37800,8 @@ module.exports = {
             types: [
               'Event',
             ],
-            required: 'true',
-            description: '',
+            required: 'false',
+            description: '- event object',
           },
         },
         private: true,
@@ -37969,8 +37814,8 @@ module.exports = {
             types: [
               'Event',
             ],
-            required: 'true',
-            description: '',
+            required: 'false',
+            description: '- event object',
           },
         },
         private: true,
@@ -37983,8 +37828,8 @@ module.exports = {
             types: [
               'Event',
             ],
-            required: 'true',
-            description: '',
+            required: 'false',
+            description: '- event object',
           },
         },
         private: true,
@@ -37997,8 +37842,8 @@ module.exports = {
             types: [
               'Event',
             ],
-            required: 'true',
-            description: '',
+            required: 'false',
+            description: '- event object',
           },
         },
         private: true,
@@ -38029,17 +37874,17 @@ module.exports = {
         private: false,
       },
       initMessageBag: {
-        description: 'Initalizes MessageBag service.',
+        description: 'Initializes MessageBag service.',
         returns: 'void',
         private: true,
       },
       initValidation: {
-        description: 'Initalizes validators.',
+        description: 'Initializes validators.',
         returns: 'void',
         private: true,
       },
       reinitValidation: {
-        description: 'Re-initalizes validators when rules have changed.',
+        description: 'Re-initializes validators when rules have changed.',
         returns: 'void',
         private: false,
       },
@@ -38942,7 +38787,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element is hidden internally by core components like tabs or steps steps. Only intended for reading.',
+        description: 'Whether the element is hidden internally by core components like tabs or steps. Only intended for reading.',
         default: 'true',
         private: true,
       },
@@ -39164,7 +39009,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'Calulated column sizes and classes for the element.',
+        description: 'Calculated column sizes and classes for the element.',
         private: true,
       },
       available: {
@@ -39306,7 +39151,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `single-label` for `SelectElement`.',
+        description: 'Slots related to the element&apos;s field. E.g. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, e.g. `option` or `single-label` for `SelectElement`.',
         private: true,
       },
       Templates: {
@@ -39525,11 +39370,6 @@ module.exports = {
         returns: 'void',
         private: false,
       },
-      prepare: {
-        description: 'Prepares the element.',
-        returns: 'void',
-        private: true,
-      },
       disable: {
         description: 'Disables the element.',
         returns: 'void',
@@ -39607,8 +39447,8 @@ module.exports = {
             types: [
               'Event',
             ],
-            required: 'true',
-            description: '',
+            required: 'false',
+            description: '- event object',
           },
         },
         private: true,
@@ -39621,8 +39461,8 @@ module.exports = {
             types: [
               'Event',
             ],
-            required: 'true',
-            description: '',
+            required: 'false',
+            description: '- event object',
           },
         },
         private: true,
@@ -39635,8 +39475,8 @@ module.exports = {
             types: [
               'Event',
             ],
-            required: 'true',
-            description: '',
+            required: 'false',
+            description: '- event object',
           },
         },
         private: true,
@@ -39649,8 +39489,8 @@ module.exports = {
             types: [
               'Event',
             ],
-            required: 'true',
-            description: '',
+            required: 'false',
+            description: '- event object',
           },
         },
         private: true,
@@ -39681,17 +39521,17 @@ module.exports = {
         private: false,
       },
       initMessageBag: {
-        description: 'Initalizes MessageBag service.',
+        description: 'Initializes MessageBag service.',
         returns: 'void',
         private: true,
       },
       initValidation: {
-        description: 'Initalizes validators.',
+        description: 'Initializes validators.',
         returns: 'void',
         private: true,
       },
       reinitValidation: {
-        description: 'Re-initalizes validators when rules have changed.',
+        description: 'Re-initializes validators when rules have changed.',
         returns: 'void',
         private: false,
       },
@@ -40526,7 +40366,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element is hidden internally by core components like tabs or steps steps. Only intended for reading.',
+        description: 'Whether the element is hidden internally by core components like tabs or steps. Only intended for reading.',
         default: 'true',
         private: true,
       },
@@ -40741,7 +40581,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'Calulated column sizes and classes for the element.',
+        description: 'Calculated column sizes and classes for the element.',
         private: true,
       },
       available: {
@@ -40862,7 +40702,7 @@ module.exports = {
         types: [
           'object',
         ],
-        description: 'Slots related to the element&apos;s field. Eg. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, eg. `option` or `single-label` for `SelectElement`.',
+        description: 'Slots related to the element&apos;s field. E.g. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, e.g. `option` or `single-label` for `SelectElement`.',
         private: true,
       },
       Templates: {
@@ -41076,11 +40916,6 @@ module.exports = {
         returns: 'void',
         private: false,
       },
-      prepare: {
-        description: 'Prepares the element.',
-        returns: 'void',
-        private: true,
-      },
       disable: {
         description: 'Disables the element.',
         returns: 'void',
@@ -41195,17 +41030,17 @@ module.exports = {
         private: false,
       },
       initMessageBag: {
-        description: 'Initalizes MessageBag service.',
+        description: 'Initializes MessageBag service.',
         returns: 'void',
         private: true,
       },
       initValidation: {
-        description: 'Initalizes validators.',
+        description: 'Initializes validators.',
         returns: 'void',
         private: true,
       },
       reinitValidation: {
-        description: 'Re-initalizes validators when rules have changed.',
+        description: 'Re-initializes validators when rules have changed.',
         returns: 'void',
         private: false,
       },

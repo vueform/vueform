@@ -1091,7 +1091,6 @@ var devDependencies = {
 	autoprefixer: "^9",
 	"babel-core": "^7.0.0-bridge.0",
 	"babel-loader": "^8.0.5",
-	canvas: "^2.7.0",
 	"core-js": "^3.10.1",
 	"cross-env": "^5.2.0",
 	"css-loader": "^2.1.0",
@@ -1146,11 +1145,12 @@ var dependencies = {
 	autosize: "^6.0.1",
 	axios: "^1.5.0",
 	bootstrap: "^4.4.1",
+	canvas: "^2.11.2",
 	color: "^4.2.3",
 	flat: "^5.0.2",
 	flatpickr: "^4.6.13",
-	lodash: "^4.17.21",
 	locutus: "^2.0.16",
+	lodash: "^4.17.21",
 	"mini-svg-data-uri": "^1.4.4",
 	moment: "^2.29.4",
 	moxios: "^0.4.0",
@@ -1699,7 +1699,7 @@ var Validator = class {
   }
   size(value) {
     if (this.isNumeric) {
-      return value;
+      return parseInt(value);
     } else if (this.isFile) {
       return value ? value.size / 1000 : 0;
     } else if (this.isArray) {
