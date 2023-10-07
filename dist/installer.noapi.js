@@ -1699,7 +1699,14 @@ var Validator = class {
   }
   size(value) {
     if (this.isNumeric) {
-      return parseInt(value);
+      if (!isNaN(value)) {
+        var num = parseFloat(value);
+        if (Number.isInteger(num)) {
+          return parseInt(value);
+        }
+        return num;
+      }
+      return null;
     } else if (this.isFile) {
       return value ? value.size / 1000 : 0;
     } else if (this.isArray) {
