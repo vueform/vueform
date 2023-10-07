@@ -144,13 +144,11 @@ export default {
       type: [String],
       required: false,
       default: 'label',
-      native: false,
     },
     valueProp: {
       type: [String],
       required: false,
       default: 'value',
-      native: false,
     },
     dataKey: {
       type: [String],
@@ -166,19 +164,16 @@ export default {
       required: false,
       type: [Boolean],
       default: false,
-      native: false,
     },
     trackBy: {
       type: [String],
       required: false,
       default: 'label',
-      native: false,
     },
     strict: {
       type: [Boolean],
       required: false,
       default: true,
-      native: false,
     },
 
     create: {
@@ -201,81 +196,68 @@ export default {
       type: [Boolean],
       required: false,
       default: false,
-      native: false,
     },
     limit: {
       type: [Number],
       required: false,
       default: -1,
-      native: false,
     },
     max: {
       type: [Number],
       required: false,
       default: -1,
-      native: false,
     },
 
     groups: {
       type: [Boolean],
       required: false,
       default: false,
-      native: false,
     },
     groupLabel: {
       type: [String],
       required: false,
       default: 'label',
-      native: false,
     },
     groupOptions: {
       type: [String],
       required: false,
       default: 'items',
-      native: false,
     },
     groupHideEmpty: {
       type: [Boolean],
       required: false,
       default: false,
-      native: false,
     },
     groupSelect: {
       type: [Boolean],
       required: false,
       default: true,
-      native: false,
     },
     
     openDirection: {
       type: [String],
       required: false,
       default: 'bottom',
-      native: false,
     },
     canClear: {
       type: [Boolean],
       required: false,
       default: true,
-      native: false,
     },
     clearOnSelect: {
       type: [Boolean],
       required: false,
       default: true,
-      native: false,
     },
     closeOnSelect: {
       type: [Boolean],
       required: false,
       default: true,
-      native: false,
     },
     closeOnDeselect: {
       type: [Boolean],
       required: false,
       default: false,
-      native: false,
     },
     clearOnRefetch: {
       type: [Boolean],
@@ -287,37 +269,31 @@ export default {
       type: [Number],
       required: false,
       default: -1,
-      native: false,
     },
     minChars: {
       type: [Number],
       required: false,
       default: 0,
-      native: false,
     },
     resolveOnLoad: {
       type: [Boolean],
       required: false,
       default: true,
-      native: false,
     },
     filterResults: {
       type: [Boolean],
       required: false,
       default: true,
-      native: false,
     },
     clearOnSearch: {
       type: [Boolean],
       required: false,
       default: false,
-      native: false,
     },
     hideSelected: {
       type: [Boolean],
       required: false,
       default: true,
-      native: false,
     },
     showOptions: {
       type: [Boolean],
@@ -329,13 +305,16 @@ export default {
       type: [Boolean],
       required: false,
       default: true,
-      native: false,
+    },
+    truncate: {
+      type: [Number],
+      required: false,
+      default: 0,
     },
     loading: {
       type: [Boolean],
       required: false,
       default: false,
-      native: false,
     },
     noOptionsText: {
       type: [String, Object],
@@ -343,7 +322,6 @@ export default {
       default: undefined,
       '@default': 'locale.multiselect.noOptions',
       localized: true,
-      native: false,
     },
     noResultsText: {
       type: [String, Object],
@@ -351,19 +329,16 @@ export default {
       default: undefined,
       '@default': 'locale.multiselect.noResults',
       localized: true,
-      native: false,
     },
 
     autocomplete: {
       type: [String],
       required: false,
-      native: false,
     },
     inputType: {
       type: [String],
       required: false,
       default: 'text',
-      native: false,
     },
     extendOptions: {
       required: false,
