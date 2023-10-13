@@ -20992,7 +20992,6 @@ var base$l = function base(props, context, dependencies, options) {
     sortable.value = new Sortable(list.value, {
       handle: "[data-handle]",
       onStart: /* istanbul ignore next: can not imitate dragging */() => {
-        console.log(111);
         sorting.value = true;
       },
       onEnd: handleSort

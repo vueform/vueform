@@ -1,5 +1,13 @@
 [
   {
+    "version": "1.4.4",
+    "date": "2023-10-13",
+    "available": true,
+    "notes": [
+      "fix: Gallery sorting fix."
+    ]
+  },
+  {
     "version": "1.4.3",
     "date": "2023-10-07",
     "available": true,
