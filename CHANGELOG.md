@@ -1,5 +1,12 @@
 [//]: # (Don't use <tags>)
 
+## v1.4.4
+
+> `2023-10-13`
+
+### 🐞 Bug Fixes
+- Gallery sorting fix.
+
 ## v1.4.3
 
 > `2023-10-07`
