@@ -128,6 +128,9 @@ const base = function(props, context, dependencies, options)
       return
     }
     
+    destroySortable()
+    initSortable()
+    
     sortable.value?.sort(Array.from(Array(n).keys()).reduce((a, b, i) => {
       a.push(`${ path.value }-${ i }`)
       return a

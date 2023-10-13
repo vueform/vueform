@@ -2,26 +2,26 @@ import { ref, toRefs, computed, watch, getCurrentInstance, provide, onBeforeMoun
 import _ from 'lodash';
 import moment from 'moment';
 
-function ownKeys$1(object, enumerableOnly) {
-  var keys = Object.keys(object);
+function ownKeys$1(e, r) {
+  var t = Object.keys(e);
   if (Object.getOwnPropertySymbols) {
-    var symbols = Object.getOwnPropertySymbols(object);
-    enumerableOnly && (symbols = symbols.filter(function (sym) {
-      return Object.getOwnPropertyDescriptor(object, sym).enumerable;
-    })), keys.push.apply(keys, symbols);
+    var o = Object.getOwnPropertySymbols(e);
+    r && (o = o.filter(function (r) {
+      return Object.getOwnPropertyDescriptor(e, r).enumerable;
+    })), t.push.apply(t, o);
   }
-  return keys;
+  return t;
 }
-function _objectSpread2$1(target) {
-  for (var i = 1; i < arguments.length; i++) {
-    var source = null != arguments[i] ? arguments[i] : {};
-    i % 2 ? ownKeys$1(Object(source), !0).forEach(function (key) {
-      _defineProperty$1(target, key, source[key]);
-    }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys$1(Object(source)).forEach(function (key) {
-      Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
+function _objectSpread2$1(e) {
+  for (var r = 1; r < arguments.length; r++) {
+    var t = null != arguments[r] ? arguments[r] : {};
+    r % 2 ? ownKeys$1(Object(t), !0).forEach(function (r) {
+      _defineProperty$1(e, r, t[r]);
+    }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys$1(Object(t)).forEach(function (r) {
+      Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r));
     });
   }
-  return target;
+  return e;
 }
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
   try {
@@ -3918,7 +3918,7 @@ var FormTab = {
       if (active.value || !((_tabs$$value2 = tabs$.value) !== null && _tabs$$value2 !== void 0 && _tabs$$value2.select)) {
         return;
       }
-      (_tabs$$value3 = tabs$.value) === null || _tabs$$value3 === void 0 ? void 0 : _tabs$$value3.select(tab$.value);
+      (_tabs$$value3 = tabs$.value) === null || _tabs$$value3 === void 0 || _tabs$$value3.select(tab$.value);
       activate();
     };
 
@@ -5441,7 +5441,7 @@ var FormStep = {
       if (isDisabled.value || !((_steps$$value2 = steps$.value) !== null && _steps$$value2 !== void 0 && _steps$$value2.select)) {
         return;
       }
-      (_steps$$value3 = steps$.value) === null || _steps$$value3 === void 0 ? void 0 : _steps$$value3.select(step$.value);
+      (_steps$$value3 = steps$.value) === null || _steps$$value3 === void 0 || _steps$$value3.select(step$.value);
       _.each(children$.value, element$ => {
         element$.activate();
       });
@@ -9392,7 +9392,7 @@ var DatepickerWrapper = {
 
     watch(value, (n, o) => {
       var _datepicker$$value;
-      (_datepicker$$value = datepicker$.value) === null || _datepicker$$value === void 0 ? void 0 : _datepicker$$value.setDate(n, false);
+      (_datepicker$$value = datepicker$.value) === null || _datepicker$$value === void 0 || _datepicker$$value.setDate(n, false);
     });
     watch(id, (n, o) => {
       setDatepickerId();
@@ -9710,10 +9710,10 @@ var EditorWrapper = {
     });
     onBeforeUnmount(() => {
       var _editor$$value, _editor$$value2, _editor$$value3, _editor$$value4;
-      (_editor$$value = editor$.value) === null || _editor$$value === void 0 ? void 0 : _editor$$value.removeEventListener('trix-change', handleChange);
-      (_editor$$value2 = editor$.value) === null || _editor$$value2 === void 0 ? void 0 : _editor$$value2.removeEventListener('trix-blur', handleBlur);
-      (_editor$$value3 = editor$.value) === null || _editor$$value3 === void 0 ? void 0 : _editor$$value3.removeEventListener('trix-file-accept', handleFileAccept);
-      (_editor$$value4 = editor$.value) === null || _editor$$value4 === void 0 ? void 0 : _editor$$value4.removeEventListener('trix-attachment-add', handleAttachmentAdd);
+      (_editor$$value = editor$.value) === null || _editor$$value === void 0 || _editor$$value.removeEventListener('trix-change', handleChange);
+      (_editor$$value2 = editor$.value) === null || _editor$$value2 === void 0 || _editor$$value2.removeEventListener('trix-blur', handleBlur);
+      (_editor$$value3 = editor$.value) === null || _editor$$value3 === void 0 || _editor$$value3.removeEventListener('trix-file-accept', handleFileAccept);
+      (_editor$$value4 = editor$.value) === null || _editor$$value4 === void 0 || _editor$$value4.removeEventListener('trix-attachment-add', handleAttachmentAdd);
     });
     return {
       el$,
@@ -10362,7 +10362,7 @@ var base$R = function base(props, context, dependencies) {
   var focus = () => {
     var _container$value, _el$querySelector;
     var el = ((_container$value = container.value) === null || _container$value === void 0 ? void 0 : _container$value.$el) || container.value;
-    el === null || el === void 0 || (_el$querySelector = el.querySelector('a[href],area[href],input:not([disabled]),select:not([disabled]),textarea:not([disabled]),' + 'button:not([disabled]),iframe,[tabindex],[contentEditable=true],trix-editor')) === null || _el$querySelector === void 0 ? void 0 : _el$querySelector.focus();
+    el === null || el === void 0 || (_el$querySelector = el.querySelector('a[href],area[href],input:not([disabled]),select:not([disabled]),textarea:not([disabled]),' + 'button:not([disabled]),iframe,[tabindex],[contentEditable=true],trix-editor')) === null || _el$querySelector === void 0 || _el$querySelector.focus();
   };
   return {
     focus
@@ -20992,6 +20992,7 @@ var base$l = function base(props, context, dependencies, options) {
     sortable.value = new Sortable(list.value, {
       handle: "[data-handle]",
       onStart: /* istanbul ignore next: can not imitate dragging */() => {
+        console.log(111);
         sorting.value = true;
       },
       onEnd: handleSort
@@ -21006,7 +21007,7 @@ var base$l = function base(props, context, dependencies, options) {
    */
   var destroySortable = () => {
     var _sortable$value;
-    (_sortable$value = sortable.value) === null || _sortable$value === void 0 ? void 0 : _sortable$value.destroy();
+    (_sortable$value = sortable.value) === null || _sortable$value === void 0 || _sortable$value.destroy();
     sortable.value = null;
   };
 
@@ -21062,7 +21063,9 @@ var base$l = function base(props, context, dependencies, options) {
     if (!isSortable.value) {
       return;
     }
-    (_sortable$value2 = sortable.value) === null || _sortable$value2 === void 0 ? void 0 : _sortable$value2.sort(Array.from(Array(n).keys()).reduce((a, b, i) => {
+    destroySortable();
+    initSortable();
+    (_sortable$value2 = sortable.value) === null || _sortable$value2 === void 0 || _sortable$value2.sort(Array.from(Array(n).keys()).reduce((a, b, i) => {
       a.push("".concat(path.value, "-").concat(i));
       return a;
     }, []));
