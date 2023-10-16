@@ -184,6 +184,7 @@ npm install @vueform/vueform
 
 import en from '@vueform/vueform/locales/en'
 import vueform from '@vueform/vueform/themes/vueform'
+import '@vueform/vueform/types/index.d.ts'
 
 // You might place this anywhere else in your project
 import '@vueform/vueform/themes/vueform/css/index.min.css';
