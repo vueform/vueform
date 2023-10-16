@@ -47,7 +47,7 @@ export default {
     /**
      * The label definition of the component.
      *
-     * @type {string|function|component}
+     * @type {string|function|Component}
      * @private
      */
     const baseLabel = computed(() => {
@@ -173,7 +173,7 @@ export default {
     /**
      * Complete the current step and go to the next one (async). If the form's [`validateOn`](vueform#option-validate-on) prop or `config.validateOn` contains `'step'` also validates the elements within the step before moving forward (and stay if there's any error).
      *
-     * @returns {void}
+     * @returns {Promise}
      */
     const next = async () => {
       /* istanbul ignore else */
@@ -192,7 +192,7 @@ export default {
     /**
      * Complete the final step and submit the form (async).
      *
-     * @returns {void}
+     * @returns {Promise}
      */
     const finish = async () => {
       steps$.value.fire('finish')
@@ -205,6 +205,7 @@ export default {
      * Handles `click` event.
      *
      * @returns {void}
+     * @param {Event} e event object
      * @private
      */
     const handleClick = (e) => {

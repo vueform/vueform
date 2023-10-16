@@ -15,7 +15,7 @@ const base = function(props, context, dependencies, options = {})
   /**
   * Sets the component to the parent as if `refs` were used.
   * 
-  * @param {component} $parent parent component
+  * @param {VNode} $parent parent component
   * @param {function} assignToParent the assignToParent function for recursion
   * @returns {void}
   * @private
@@ -35,7 +35,7 @@ const base = function(props, context, dependencies, options = {})
   /**
   * Removes the component from the parent.
   * 
-  * @param {component} $parent parent component
+  * @param {VNode} $parent parent component
   * @param {function} removeFromParent the removeFromParent function for recursion
   * @private
   */

@@ -27,7 +27,7 @@ const base = function(props, context, dependencies)
   /**
    * Selects one or more options.
    *
-   * @param {str|array} options* value(s) of the option(s) to select
+   * @param {string|array} options* value(s) of the option(s) to select
    * @returns {void}
    */
   const select = (options) => {
@@ -51,7 +51,7 @@ const base = function(props, context, dependencies)
   /**
    * Deselects one or more options.
    *
-   * @param {str|array} options* value(s) of the option(s) to deselect
+   * @param {string|array} options* value(s) of the option(s) to deselect
    * @returns {void}
    */
   const deselect = (options) => {

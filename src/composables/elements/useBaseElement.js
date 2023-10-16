@@ -116,7 +116,7 @@ const base = function(props, context, dependencies)
   /**
    * The element's component.
    *
-   * @type {component}
+   * @type {VueformElement}
    */
   const el$ = computed(() => {
     return currentInstance.proxy
@@ -149,7 +149,7 @@ const base = function(props, context, dependencies)
   /**
    * The element's component.
    *
-   * @type {component}
+   * @type {VueformElement}
    */
   provide('el$', el$)
   

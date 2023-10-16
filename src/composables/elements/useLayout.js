@@ -12,7 +12,7 @@ const base = function(props, context, dependencies)
   /**
    * The current layout of the element.
    *
-   * @type {string|component}
+   * @type {string|Component}
    * @private
    */
   const elementLayout = computed(() => {

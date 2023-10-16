@@ -7,7 +7,7 @@ const base = function(props, context, dependencies)
   /**
   * The parent element's component.
   * 
-  * @type {component}
+  * @type {VueformElement}
   */
   let el$ = inject('el$')
 

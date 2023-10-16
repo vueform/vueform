@@ -7,7 +7,7 @@ const base = function(props, context, dependencies)
   /**
   * The size of the component.
   * 
-  * @type {component}
+  * @type {string}
   */
   let Size = inject('Size')
 

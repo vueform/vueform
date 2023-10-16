@@ -19,7 +19,7 @@ const base = function(props, context, dependencies)
   /**
   * The label definition of the component.
   * 
-  * @type {string|function|component}
+  * @type {string|function|Component}
   * @private
   */
   const baseLabel = computed(() => {
@@ -49,7 +49,7 @@ const base = function(props, context, dependencies)
   /**
   * The label of the component.
   * 
-  * @type {string|component}
+  * @type {string|Component}
   */
   const label = computed(() => {
     let label = isLabelFunction.value ? baseLabel.value(component$.value) : baseLabel.value || null

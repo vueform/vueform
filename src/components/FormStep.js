@@ -150,7 +150,7 @@ export default {
     /**
      * The label of the step.
      *
-     * @type {string|component}
+     * @type {string|Component}
      * @default null
      */
     const stepLabel = ref(stepLabel_.value && typeof stepLabel_.value === 'object' ? markRaw(stepLabel_.value) : stepLabel_.value)
@@ -193,7 +193,7 @@ export default {
     /**
      * The parent [`FormSteps`](form-steps) component.
      *
-     * @type {component}
+     * @type {FormSteps}
      */
     const steps$ = computed(() => {
       return form$.value.steps$ || /* istanbul ignore next: failsafe only, step can not exist by itself */ {}
@@ -316,7 +316,7 @@ export default {
     /**
      * The step's component.
      *
-     * @type {component}
+     * @type {FormStep}
      */
     const step$ = computed(() => {
       return form$.value.steps$?.steps$[name.value]
@@ -328,7 +328,7 @@ export default {
     /**
      * Validate all elements within the step (async).
      *
-     * @returns {void}
+     * @returns {Promise}
      */
     const validate = async () => {
       // only skip validation if the elements
@@ -492,7 +492,7 @@ export default {
     /**
      * Set the component to the parent as if `refs` were used.
      *
-     * @param {component} $parent parent component
+     * @param {VNode} $parent parent component
      * @param {function} assignToParent the assignToParent function for recursion
      * @returns {void}
      * @private
@@ -509,7 +509,7 @@ export default {
     /**
     * Removes the component from the parent.
     *
-    * @param {component} $parent parent component
+    * @param {VNode} $parent parent component
     * @param {function} removeFromParent the removeFromParent function for recursion
     * @private
     */

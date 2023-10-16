@@ -116,7 +116,7 @@ const base = function(props, context, dependencies = {})
   /**
   * The FormTabs component.
   *
-  * @type {component}
+  * @type {FormTabs}
   * @private
   */
   const tabs$ = ref(null)
@@ -124,7 +124,7 @@ const base = function(props, context, dependencies = {})
   /**
   * The FormSteps component.
   *
-  * @type {component}
+  * @type {FormSteps}
   * @private
   */
   const steps$ = ref(null)
@@ -199,7 +199,7 @@ const base = function(props, context, dependencies = {})
   /**
    * The form component instance (self).
    *
-   * @type {component}
+   * @type {Vueform}
    */
   const form$ = computed(() => {
     return $this
@@ -1218,7 +1218,7 @@ const base = function(props, context, dependencies = {})
    * Returns an element by its path.
    *
    * @param {string} path path of the element
-   * @returns {component|null}
+   * @returns {VueformElement|null}
    */
   const el$ = (path, elements) => {
     if (elements === undefined) {

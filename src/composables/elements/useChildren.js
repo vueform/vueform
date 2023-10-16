@@ -11,8 +11,8 @@ const base = function(props, context, dependencies)
   /**
    * List of child element components.
    *
-   * @type {array<component>}
-   * @default [children<component>]
+   * @type {array}
+   * @default [array]
    * @private
    */
   const children$Array = ref([])
@@ -22,7 +22,7 @@ const base = function(props, context, dependencies)
   /**
    * Child element components.
    *
-   * @type {object<Element>}
+   * @type {object}
    */
   const children$ = computed(() => {
     let children$ = {}

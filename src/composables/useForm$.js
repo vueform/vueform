@@ -7,7 +7,7 @@ const base = function(props, context, dependencies)
   /**
   * The root form's component.
   * 
-  * @type {component}
+  * @type {Vueform}
   */
   let form$ = inject('form$')
 

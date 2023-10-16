@@ -4,21 +4,21 @@ module.exports = {
       "el$": {
         "public": true,
         "types": [
-          "component"
+          "VueformElement"
         ],
         "description": "The parent element's component."
       },
       "form$": {
         "public": true,
         "types": [
-          "component"
+          "Vueform"
         ],
         "description": "The root form's component."
       },
       "Size": {
         "public": true,
         "types": [
-          "component"
+          "string"
         ],
         "description": "The size of the component."
       },
@@ -137,14 +137,14 @@ module.exports = {
       "el$": {
         "public": true,
         "types": [
-          "component"
+          "VueformElement"
         ],
         "description": "The parent element's component."
       },
       "form$": {
         "public": true,
         "types": [
-          "component"
+          "Vueform"
         ],
         "description": "The root form's component."
       },
@@ -158,7 +158,7 @@ module.exports = {
       "Size": {
         "public": true,
         "types": [
-          "component"
+          "string"
         ],
         "description": "The size of the component."
       }
@@ -203,7 +203,7 @@ module.exports = {
         "public": true,
         "types": [
           "string",
-          "component"
+          "Component"
         ],
         "description": "The content of the addon. If the addon is provided ss a `function` this contains the resolved value."
       },
@@ -243,21 +243,21 @@ module.exports = {
       "el$": {
         "public": true,
         "types": [
-          "component"
+          "VueformElement"
         ],
         "description": "The parent element's component."
       },
       "form$": {
         "public": true,
         "types": [
-          "component"
+          "Vueform"
         ],
         "description": "The root form's component."
       },
       "Size": {
         "public": true,
         "types": [
-          "component"
+          "string"
         ],
         "description": "The size of the component."
       },
@@ -341,21 +341,21 @@ module.exports = {
       "el$": {
         "public": true,
         "types": [
-          "component"
+          "VueformElement"
         ],
         "description": "The parent element's component."
       },
       "form$": {
         "public": true,
         "types": [
-          "component"
+          "Vueform"
         ],
         "description": "The root form's component."
       },
       "Size": {
         "public": true,
         "types": [
-          "component"
+          "string"
         ],
         "description": "The size of the component."
       },
@@ -428,21 +428,21 @@ module.exports = {
       "el$": {
         "public": true,
         "types": [
-          "component"
+          "VueformElement"
         ],
         "description": "The parent element's component."
       },
       "form$": {
         "public": true,
         "types": [
-          "component"
+          "Vueform"
         ],
         "description": "The root form's component."
       },
       "Size": {
         "public": true,
         "types": [
-          "component"
+          "string"
         ],
         "description": "The size of the component."
       },
@@ -536,21 +536,21 @@ module.exports = {
       "el$": {
         "public": true,
         "types": [
-          "component"
+          "VueformElement"
         ],
         "description": "The parent element's component."
       },
       "form$": {
         "public": true,
         "types": [
-          "component"
+          "Vueform"
         ],
         "description": "The root form's component."
       },
       "Size": {
         "public": true,
         "types": [
-          "component"
+          "string"
         ],
         "description": "The size of the component."
       },
@@ -602,7 +602,7 @@ module.exports = {
         "public": true,
         "types": [
           "string",
-          "component"
+          "Component"
         ],
         "description": "The label of the component."
       },
@@ -659,21 +659,21 @@ module.exports = {
       "el$": {
         "public": true,
         "types": [
-          "component"
+          "VueformElement"
         ],
         "description": "The parent element's component."
       },
       "form$": {
         "public": true,
         "types": [
-          "component"
+          "Vueform"
         ],
         "description": "The root form's component."
       },
       "Size": {
         "public": true,
         "types": [
-          "component"
+          "string"
         ],
         "description": "The size of the component."
       },
@@ -747,21 +747,21 @@ module.exports = {
       "el$": {
         "public": true,
         "types": [
-          "component"
+          "VueformElement"
         ],
         "description": "The parent element's component."
       },
       "form$": {
         "public": true,
         "types": [
-          "component"
+          "Vueform"
         ],
         "description": "The root form's component."
       },
       "Size": {
         "public": true,
         "types": [
-          "component"
+          "string"
         ],
         "description": "The size of the component."
       },
@@ -863,21 +863,21 @@ module.exports = {
       "el$": {
         "public": true,
         "types": [
-          "component"
+          "VueformElement"
         ],
         "description": "The parent element's component."
       },
       "form$": {
         "public": true,
         "types": [
-          "component"
+          "Vueform"
         ],
         "description": "The root form's component."
       },
       "Size": {
         "public": true,
         "types": [
-          "component"
+          "string"
         ],
         "description": "The size of the component."
       },
@@ -965,21 +965,21 @@ module.exports = {
       "el$": {
         "public": true,
         "types": [
-          "component"
+          "VueformElement"
         ],
         "description": "The parent element's component."
       },
       "form$": {
         "public": true,
         "types": [
-          "component"
+          "Vueform"
         ],
         "description": "The root form's component."
       },
       "Size": {
         "public": true,
         "types": [
-          "component"
+          "string"
         ],
         "description": "The size of the component."
       },
@@ -1038,21 +1038,21 @@ module.exports = {
       "el$": {
         "public": true,
         "types": [
-          "component"
+          "VueformElement"
         ],
         "description": "The parent element's component."
       },
       "form$": {
         "public": true,
         "types": [
-          "component"
+          "Vueform"
         ],
         "description": "The root form's component."
       },
       "Size": {
         "public": true,
         "types": [
-          "component"
+          "string"
         ],
         "description": "The size of the component."
       },
@@ -1118,21 +1118,21 @@ module.exports = {
       "el$": {
         "public": true,
         "types": [
-          "component"
+          "VueformElement"
         ],
         "description": "The parent element's component."
       },
       "form$": {
         "public": true,
         "types": [
-          "component"
+          "Vueform"
         ],
         "description": "The root form's component."
       },
       "Size": {
         "public": true,
         "types": [
-          "component"
+          "string"
         ],
         "description": "The size of the component."
       },
@@ -1216,14 +1216,14 @@ module.exports = {
       "form$": {
         "public": true,
         "types": [
-          "component"
+          "Vueform"
         ],
         "description": "The root form's component."
       },
       "Size": {
         "public": true,
         "types": [
-          "component"
+          "string"
         ],
         "description": "The size of the component."
       },
@@ -1246,7 +1246,7 @@ module.exports = {
       "classesInstance": {
         "public": false,
         "types": [
-          "object"
+          "MergeClasses"
         ],
         "description": "An object containaing all the component's classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides."
       },
@@ -1316,14 +1316,14 @@ module.exports = {
       "form$": {
         "public": true,
         "types": [
-          "component"
+          "Vueform"
         ],
         "description": "The root form's component."
       },
       "Size": {
         "public": true,
         "types": [
-          "component"
+          "string"
         ],
         "description": "The size of the component."
       },
@@ -1346,7 +1346,7 @@ module.exports = {
       "classesInstance": {
         "public": false,
         "types": [
-          "object"
+          "MergeClasses"
         ],
         "description": "An object containaing all the component's classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides."
       },
@@ -1396,14 +1396,14 @@ module.exports = {
       "form$": {
         "public": true,
         "types": [
-          "component"
+          "Vueform"
         ],
         "description": "The root form's component."
       },
       "Size": {
         "public": true,
         "types": [
-          "component"
+          "string"
         ],
         "description": "The size of the component."
       },
@@ -1426,7 +1426,7 @@ module.exports = {
       "classesInstance": {
         "public": false,
         "types": [
-          "object"
+          "MergeClasses"
         ],
         "description": "An object containaing all the component's classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides."
       },
@@ -1514,14 +1514,14 @@ module.exports = {
       "form$": {
         "public": true,
         "types": [
-          "component"
+          "Vueform"
         ],
         "description": "The root form's component."
       },
       "Size": {
         "public": true,
         "types": [
-          "component"
+          "string"
         ],
         "description": "The size of the component."
       },
@@ -1544,7 +1544,7 @@ module.exports = {
       "classesInstance": {
         "public": false,
         "types": [
-          "object"
+          "MergeClasses"
         ],
         "description": "An object containaing all the component's classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides."
       },
@@ -1631,14 +1631,14 @@ module.exports = {
       "form$": {
         "public": true,
         "types": [
-          "component"
+          "Vueform"
         ],
         "description": "The root form's component."
       },
       "Size": {
         "public": true,
         "types": [
-          "component"
+          "string"
         ],
         "description": "The size of the component."
       },
@@ -1661,7 +1661,7 @@ module.exports = {
       "classesInstance": {
         "public": false,
         "types": [
-          "object"
+          "MergeClasses"
         ],
         "description": "An object containaing all the component's classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides."
       },
@@ -1711,14 +1711,14 @@ module.exports = {
       "form$": {
         "public": true,
         "types": [
-          "component"
+          "Vueform"
         ],
         "description": "The root form's component."
       },
       "Size": {
         "public": true,
         "types": [
-          "component"
+          "string"
         ],
         "description": "The size of the component."
       },
@@ -1741,14 +1741,14 @@ module.exports = {
       "classesInstance": {
         "public": false,
         "types": [
-          "object"
+          "MergeClasses"
         ],
         "description": "An object containaing all the component's classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides."
       },
       "steps$": {
         "public": true,
         "types": [
-          "component"
+          "FormSteps"
         ],
         "description": "The parent [`FormSteps`](form-steps) component."
       },
@@ -1867,7 +1867,7 @@ module.exports = {
       "step$": {
         "public": true,
         "types": [
-          "component"
+          "FormStep"
         ],
         "description": "The step's component."
       },
@@ -1932,7 +1932,7 @@ module.exports = {
         "default": "null",
         "types": [
           "string",
-          "component"
+          "Component"
         ],
         "description": "The label of the step."
       },
@@ -1947,7 +1947,7 @@ module.exports = {
     "methods": {
       "validate": {
         "public": true,
-        "returns": "void",
+        "returns": "Promise",
         "description": "Validate all elements within the step (async)."
       },
       "activate": {
@@ -2201,14 +2201,14 @@ module.exports = {
       "form$": {
         "public": true,
         "types": [
-          "component"
+          "Vueform"
         ],
         "description": "The root form's component."
       },
       "Size": {
         "public": true,
         "types": [
-          "component"
+          "string"
         ],
         "description": "The size of the component."
       },
@@ -2231,7 +2231,7 @@ module.exports = {
       "classesInstance": {
         "public": false,
         "types": [
-          "object"
+          "MergeClasses"
         ],
         "description": "An object containaing all the component's classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides."
       },
@@ -2322,56 +2322,64 @@ module.exports = {
       "first$": {
         "public": true,
         "types": [
-          "component"
+          "FormStep",
+          "undefined"
         ],
         "description": "The first visible [`FormStep`](form-step) component."
       },
       "last$": {
         "public": true,
         "types": [
-          "component"
+          "FormStep",
+          "undefined"
         ],
         "description": "The last visible [`FormStep`](form-step) component."
       },
       "current$": {
         "public": true,
         "types": [
-          "component"
+          "FormStep",
+          "undefined"
         ],
         "description": "The current [`FormStep`](form-step) component."
       },
       "next$": {
         "public": true,
         "types": [
-          "component"
+          "FormStep",
+          "undefined"
         ],
         "description": "The next visible [`FormStep`](form-step) component."
       },
       "previous$": {
         "public": true,
         "types": [
-          "component"
+          "FormStep",
+          "undefined"
         ],
         "description": "The previous visible [`FormStep`](form-step) component."
       },
       "firstInvalid$": {
         "public": true,
         "types": [
-          "component"
+          "FormStep",
+          "undefined"
         ],
         "description": "The first invalid & visible [`FormStep`](form-step) component."
       },
       "firstNonDone$": {
         "public": true,
         "types": [
-          "component"
+          "FormStep",
+          "undefined"
         ],
         "description": "The first visible [`FormStep`](form-step) component which is not done yet."
       },
       "lastEnabled$": {
         "public": true,
         "types": [
-          "component"
+          "FormStep",
+          "undefined"
         ],
         "description": "The last enabled & visible [`FormStep`](form-step) component."
       },
@@ -2462,7 +2470,7 @@ module.exports = {
       },
       "step$": {
         "public": true,
-        "returns": "component",
+        "returns": "FormStep|undefined",
         "description": "Returns a specific [`FormStep`](form-step) component by index.",
         "params": {
           "name": {
@@ -2496,7 +2504,7 @@ module.exports = {
         "params": {
           "step$": {
             "types": [
-              "component"
+              "FormStep"
             ],
             "required": false,
             "description": "the [`FormStep`](form-step) component to select"
@@ -2510,7 +2518,7 @@ module.exports = {
         "params": {
           "index": {
             "types": [
-              "integer"
+              "number"
             ],
             "required": false,
             "description": "index of the step"
@@ -2637,14 +2645,14 @@ module.exports = {
       "form$": {
         "public": true,
         "types": [
-          "component"
+          "Vueform"
         ],
         "description": "The root form's component."
       },
       "Size": {
         "public": true,
         "types": [
-          "component"
+          "string"
         ],
         "description": "The size of the component."
       },
@@ -2667,7 +2675,7 @@ module.exports = {
       "classesInstance": {
         "public": false,
         "types": [
-          "object"
+          "MergeClasses"
         ],
         "description": "An object containaing all the component's classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides."
       },
@@ -2731,7 +2739,7 @@ module.exports = {
         "public": true,
         "types": [
           "string",
-          "component"
+          "Component"
         ],
         "description": "The label of the component."
       },
@@ -2751,18 +2759,27 @@ module.exports = {
       },
       "next": {
         "public": true,
-        "returns": "void",
+        "returns": "Promise",
         "description": "Complete the current step and go to the next one (async). If the form's [`validateOn`](vueform#option-validate-on) prop or `config.validateOn` contains `'step'` also validates the elements within the step before moving forward (and stay if there's any error)."
       },
       "finish": {
         "public": true,
-        "returns": "void",
+        "returns": "Promise",
         "description": "Complete the final step and submit the form (async)."
       },
       "handleClick": {
         "public": false,
         "returns": "void",
-        "description": "Handles `click` event."
+        "description": "Handles `click` event.",
+        "params": {
+          "e": {
+            "types": [
+              "Event"
+            ],
+            "required": false,
+            "description": "event object"
+          }
+        }
       }
     },
     "props": {
@@ -2800,14 +2817,14 @@ module.exports = {
       "form$": {
         "public": true,
         "types": [
-          "component"
+          "Vueform"
         ],
         "description": "The root form's component."
       },
       "Size": {
         "public": true,
         "types": [
-          "component"
+          "string"
         ],
         "description": "The size of the component."
       },
@@ -2830,7 +2847,7 @@ module.exports = {
       "classesInstance": {
         "public": false,
         "types": [
-          "object"
+          "MergeClasses"
         ],
         "description": "An object containaing all the component's classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides."
       },
@@ -2890,14 +2907,14 @@ module.exports = {
       "form$": {
         "public": true,
         "types": [
-          "component"
+          "Vueform"
         ],
         "description": "The root form's component."
       },
       "Size": {
         "public": true,
         "types": [
-          "component"
+          "string"
         ],
         "description": "The size of the component."
       },
@@ -2920,7 +2937,7 @@ module.exports = {
       "classesInstance": {
         "public": false,
         "types": [
-          "object"
+          "MergeClasses"
         ],
         "description": "An object containaing all the component's classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides."
       },
@@ -3011,14 +3028,14 @@ module.exports = {
       "tab$": {
         "public": true,
         "types": [
-          "component"
+          "FormTab"
         ],
         "description": "The tab's component."
       },
       "tabs$": {
         "public": true,
         "types": [
-          "component"
+          "FormTabs"
         ],
         "description": "The parent [`FormTabs`](form-tabs) component."
       }
@@ -3053,7 +3070,7 @@ module.exports = {
         "default": "null",
         "types": [
           "string",
-          "component"
+          "Component"
         ],
         "description": "The label of the tab."
       },
@@ -3258,14 +3275,14 @@ module.exports = {
       "form$": {
         "public": true,
         "types": [
-          "component"
+          "Vueform"
         ],
         "description": "The root form's component."
       },
       "Size": {
         "public": true,
         "types": [
-          "component"
+          "string"
         ],
         "description": "The size of the component."
       },
@@ -3288,7 +3305,7 @@ module.exports = {
       "classesInstance": {
         "public": false,
         "types": [
-          "object"
+          "MergeClasses"
         ],
         "description": "An object containaing all the component's classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides."
       },
@@ -3344,35 +3361,35 @@ module.exports = {
       "current$": {
         "public": true,
         "types": [
-          "component"
+          "FormTab"
         ],
         "description": "The current [`FormTab`](form-tab) component."
       },
       "first$": {
         "public": true,
         "types": [
-          "component"
+          "FormTab"
         ],
         "description": "The first visible [`FormTab`](form-tab) component."
       },
       "last$": {
         "public": true,
         "types": [
-          "component"
+          "FormTab"
         ],
         "description": "The last visible [`FormTab`](form-tab) component."
       },
       "next$": {
         "public": true,
         "types": [
-          "component"
+          "FormTab"
         ],
         "description": "The next visible [`FormTab`](form-tab) component."
       },
       "previous$": {
         "public": true,
         "types": [
-          "component"
+          "FormTab"
         ],
         "description": "The previous visible [`FormTab`](form-tab) component."
       }
@@ -3432,7 +3449,7 @@ module.exports = {
         "params": {
           "tab$": {
             "types": [
-              "component"
+              "FormTab"
             ],
             "required": false,
             "description": "the [`FormTab`](form-tab) component to select"
@@ -3441,7 +3458,7 @@ module.exports = {
       },
       "tab$": {
         "public": true,
-        "returns": "component",
+        "returns": "FormTab",
         "description": "Returns a specific [`FormTab`](form-tab) by index.",
         "params": {
           "tab": {
@@ -3543,14 +3560,14 @@ module.exports = {
       "tabs$": {
         "public": false,
         "types": [
-          "component"
+          "FormTabs"
         ],
         "description": "The FormTabs component."
       },
       "steps$": {
         "public": false,
         "types": [
-          "component"
+          "FormSteps"
         ],
         "description": "The FormSteps component."
       },
@@ -3885,7 +3902,7 @@ module.exports = {
       "form$": {
         "public": true,
         "types": [
-          "component"
+          "Vueform"
         ],
         "description": "The form component instance (self)."
       },
@@ -4096,7 +4113,7 @@ module.exports = {
       },
       "el$": {
         "public": true,
-        "returns": "component|null",
+        "returns": "VueformElement|null",
         "description": "Returns an element by its path.",
         "params": {
           "path": {
@@ -4821,21 +4838,21 @@ module.exports = {
       "el$": {
         "public": true,
         "types": [
-          "component"
+          "VueformElement"
         ],
         "description": "The parent element's component."
       },
       "form$": {
         "public": true,
         "types": [
-          "component"
+          "Vueform"
         ],
         "description": "The root form's component."
       },
       "Size": {
         "public": true,
         "types": [
-          "component"
+          "string"
         ],
         "description": "The size of the component."
       },
@@ -5007,21 +5024,21 @@ module.exports = {
       "el$": {
         "public": true,
         "types": [
-          "component"
+          "VueformElement"
         ],
         "description": "The parent element's component."
       },
       "form$": {
         "public": true,
         "types": [
-          "component"
+          "Vueform"
         ],
         "description": "The root form's component."
       },
       "Size": {
         "public": true,
         "types": [
-          "component"
+          "string"
         ],
         "description": "The size of the component."
       },
@@ -5292,21 +5309,21 @@ module.exports = {
       "el$": {
         "public": true,
         "types": [
-          "component"
+          "VueformElement"
         ],
         "description": "The parent element's component."
       },
       "form$": {
         "public": true,
         "types": [
-          "component"
+          "Vueform"
         ],
         "description": "The root form's component."
       },
       "Size": {
         "public": true,
         "types": [
-          "component"
+          "string"
         ],
         "description": "The size of the component."
       },
@@ -5448,21 +5465,21 @@ module.exports = {
       "el$": {
         "public": true,
         "types": [
-          "component"
+          "VueformElement"
         ],
         "description": "The parent element's component."
       },
       "form$": {
         "public": true,
         "types": [
-          "component"
+          "Vueform"
         ],
         "description": "The root form's component."
       },
       "Size": {
         "public": true,
         "types": [
-          "component"
+          "string"
         ],
         "description": "The size of the component."
       },
@@ -5670,21 +5687,21 @@ module.exports = {
       "el$": {
         "public": true,
         "types": [
-          "component"
+          "VueformElement"
         ],
         "description": "The parent element's component."
       },
       "form$": {
         "public": true,
         "types": [
-          "component"
+          "Vueform"
         ],
         "description": "The root form's component."
       },
       "Size": {
         "public": true,
         "types": [
-          "component"
+          "string"
         ],
         "description": "The size of the component."
       },

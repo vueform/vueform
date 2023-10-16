@@ -602,7 +602,7 @@ module.exports = {
       },
       el$: {
         types: [
-          'component',
+          'VueformElement',
         ],
         description: 'The element&apos;s component.',
         private: false,
@@ -729,7 +729,7 @@ module.exports = {
       Label: {
         types: [
           'string',
-          'component',
+          'Component',
         ],
         description: 'The localized label of the element.',
         private: true,
@@ -737,7 +737,7 @@ module.exports = {
       elementLayout: {
         types: [
           'string',
-          'component',
+          'Component',
         ],
         description: 'The current layout of the element.',
         private: true,
@@ -758,7 +758,7 @@ module.exports = {
       },
       parent: {
         types: [
-          'component',
+          'VNode',
         ],
         description: 'The parent component of the element.',
         private: true,
@@ -933,7 +933,7 @@ module.exports = {
     inject: {
       form$: {
         types: [
-          'component',
+          'Vueform',
         ],
         description: 'The root form&apos;s component.',
         private: false,
@@ -1725,7 +1725,7 @@ module.exports = {
       },
       Validators: {
         types: [
-          'array,Validator',
+          'array',
         ],
         description: 'An array containing all the validators of the element.',
         default: '[]',
@@ -1800,7 +1800,7 @@ module.exports = {
       },
       el$: {
         types: [
-          'component',
+          'VueformElement',
         ],
         description: 'The element&apos;s component.',
         private: false,
@@ -1934,7 +1934,7 @@ module.exports = {
       Label: {
         types: [
           'string',
-          'component',
+          'Component',
         ],
         description: 'The localized label of the element.',
         private: true,
@@ -1942,7 +1942,7 @@ module.exports = {
       elementLayout: {
         types: [
           'string',
-          'component',
+          'Component',
         ],
         description: 'The current layout of the element.',
         private: true,
@@ -1956,7 +1956,7 @@ module.exports = {
       },
       parent: {
         types: [
-          'component',
+          'VNode',
         ],
         description: 'The parent component of the element.',
         private: true,
@@ -2335,7 +2335,7 @@ module.exports = {
     inject: {
       form$: {
         types: [
-          'component',
+          'Vueform',
         ],
         description: 'The root form&apos;s component.',
         private: false,
@@ -3123,7 +3123,7 @@ module.exports = {
       },
       Validators: {
         types: [
-          'array,Validator',
+          'array',
         ],
         description: 'An array containing all the validators of the element.',
         default: '[]',
@@ -3205,7 +3205,7 @@ module.exports = {
       },
       el$: {
         types: [
-          'component',
+          'VueformElement',
         ],
         description: 'The element&apos;s component.',
         private: false,
@@ -3339,7 +3339,7 @@ module.exports = {
       Label: {
         types: [
           'string',
-          'component',
+          'Component',
         ],
         description: 'The localized label of the element.',
         private: true,
@@ -3347,7 +3347,7 @@ module.exports = {
       elementLayout: {
         types: [
           'string',
-          'component',
+          'Component',
         ],
         description: 'The current layout of the element.',
         private: true,
@@ -3361,7 +3361,7 @@ module.exports = {
       },
       parent: {
         types: [
-          'component',
+          'VNode',
         ],
         description: 'The parent component of the element.',
         private: true,
@@ -3866,7 +3866,7 @@ module.exports = {
     inject: {
       form$: {
         types: [
-          'component',
+          'Vueform',
         ],
         description: 'The root form&apos;s component.',
         private: false,
@@ -4833,7 +4833,7 @@ module.exports = {
       },
       Validators: {
         types: [
-          'array,Validator',
+          'array',
         ],
         description: 'An array containing all the validators of the element.',
         default: '[]',
@@ -4908,7 +4908,7 @@ module.exports = {
       },
       el$: {
         types: [
-          'component',
+          'VueformElement',
         ],
         description: 'The element&apos;s component.',
         private: false,
@@ -5077,7 +5077,7 @@ module.exports = {
       Label: {
         types: [
           'string',
-          'component',
+          'Component',
         ],
         description: 'The localized label of the element.',
         private: true,
@@ -5085,7 +5085,7 @@ module.exports = {
       elementLayout: {
         types: [
           'string',
-          'component',
+          'Component',
         ],
         description: 'The current layout of the element.',
         private: true,
@@ -5099,7 +5099,7 @@ module.exports = {
       },
       parent: {
         types: [
-          'component',
+          'VNode',
         ],
         description: 'The parent component of the element.',
         private: true,
@@ -5482,7 +5482,7 @@ module.exports = {
     inject: {
       form$: {
         types: [
-          'component',
+          'Vueform',
         ],
         description: 'The root form&apos;s component.',
         private: false,
@@ -6382,7 +6382,7 @@ module.exports = {
       },
       Validators: {
         types: [
-          'array,Validator',
+          'array',
         ],
         description: 'An array containing all the validators of the element.',
         default: '[]',
@@ -6457,7 +6457,7 @@ module.exports = {
       },
       el$: {
         types: [
-          'component',
+          'VueformElement',
         ],
         description: 'The element&apos;s component.',
         private: false,
@@ -6626,7 +6626,7 @@ module.exports = {
       Label: {
         types: [
           'string',
-          'component',
+          'Component',
         ],
         description: 'The localized label of the element.',
         private: true,
@@ -6634,7 +6634,7 @@ module.exports = {
       elementLayout: {
         types: [
           'string',
-          'component',
+          'Component',
         ],
         description: 'The current layout of the element.',
         private: true,
@@ -6648,7 +6648,7 @@ module.exports = {
       },
       parent: {
         types: [
-          'component',
+          'VNode',
         ],
         description: 'The parent component of the element.',
         private: true,
@@ -7031,7 +7031,7 @@ module.exports = {
     inject: {
       form$: {
         types: [
-          'component',
+          'Vueform',
         ],
         description: 'The root form&apos;s component.',
         private: false,
@@ -7908,7 +7908,7 @@ module.exports = {
       },
       Validators: {
         types: [
-          'array,Validator',
+          'array',
         ],
         description: 'An array containing all the validators of the element.',
         default: '[]',
@@ -7983,7 +7983,7 @@ module.exports = {
       },
       el$: {
         types: [
-          'component',
+          'VueformElement',
         ],
         description: 'The element&apos;s component.',
         private: false,
@@ -8140,7 +8140,7 @@ module.exports = {
       Label: {
         types: [
           'string',
-          'component',
+          'Component',
         ],
         description: 'The localized label of the element.',
         private: true,
@@ -8148,7 +8148,7 @@ module.exports = {
       elementLayout: {
         types: [
           'string',
-          'component',
+          'Component',
         ],
         description: 'The current layout of the element.',
         private: true,
@@ -8162,7 +8162,7 @@ module.exports = {
       },
       parent: {
         types: [
-          'component',
+          'VNode',
         ],
         description: 'The parent component of the element.',
         private: true,
@@ -8585,7 +8585,7 @@ module.exports = {
     inject: {
       form$: {
         types: [
-          'component',
+          'Vueform',
         ],
         description: 'The root form&apos;s component.',
         private: false,
@@ -9592,7 +9592,7 @@ module.exports = {
       },
       Validators: {
         types: [
-          'array,Validator',
+          'array',
         ],
         description: 'An array containing all the validators of the element.',
         default: '[]',
@@ -9667,7 +9667,7 @@ module.exports = {
       },
       el$: {
         types: [
-          'component',
+          'VueformElement',
         ],
         description: 'The element&apos;s component.',
         private: false,
@@ -9886,7 +9886,7 @@ module.exports = {
       Label: {
         types: [
           'string',
-          'component',
+          'Component',
         ],
         description: 'The localized label of the element.',
         private: true,
@@ -9894,7 +9894,7 @@ module.exports = {
       elementLayout: {
         types: [
           'string',
-          'component',
+          'Component',
         ],
         description: 'The current layout of the element.',
         private: true,
@@ -9908,7 +9908,7 @@ module.exports = {
       },
       parent: {
         types: [
-          'component',
+          'VNode',
         ],
         description: 'The parent component of the element.',
         private: true,
@@ -10340,7 +10340,7 @@ module.exports = {
     inject: {
       form$: {
         types: [
-          'component',
+          'Vueform',
         ],
         description: 'The root form&apos;s component.',
         private: false,
@@ -11057,10 +11057,10 @@ module.exports = {
       },
       children$Array: {
         types: [
-          'array,component',
+          'array',
         ],
         description: 'List of child element components.',
-        default: '[children<component>]',
+        default: '[array]',
         private: true,
       },
       conditionList: {
@@ -11096,7 +11096,7 @@ module.exports = {
       },
       Validators: {
         types: [
-          'array,Validator',
+          'array',
         ],
         description: 'An array containing all the validators of the element.',
         default: '[]',
@@ -11157,7 +11157,7 @@ module.exports = {
       },
       el$: {
         types: [
-          'component',
+          'VueformElement',
         ],
         description: 'The element&apos;s component.',
         private: false,
@@ -11206,7 +11206,7 @@ module.exports = {
       },
       children$: {
         types: [
-          'object,Element',
+          'object',
         ],
         description: 'Child element components.',
         private: false,
@@ -11291,7 +11291,7 @@ module.exports = {
       Label: {
         types: [
           'string',
-          'component',
+          'Component',
         ],
         description: 'The localized label of the element.',
         private: true,
@@ -11299,7 +11299,7 @@ module.exports = {
       elementLayout: {
         types: [
           'string',
-          'component',
+          'Component',
         ],
         description: 'The current layout of the element.',
         private: true,
@@ -11334,7 +11334,7 @@ module.exports = {
       },
       parent: {
         types: [
-          'component',
+          'VNode',
         ],
         description: 'The parent component of the element.',
         private: true,
@@ -11682,7 +11682,7 @@ module.exports = {
     inject: {
       form$: {
         types: [
-          'component',
+          'Vueform',
         ],
         description: 'The root form&apos;s component.',
         private: false,
@@ -12159,7 +12159,7 @@ module.exports = {
       },
       Validators: {
         types: [
-          'array,Validator',
+          'array',
         ],
         description: 'An array containing all the validators of the element.',
         default: '[]',
@@ -12191,7 +12191,7 @@ module.exports = {
     computed: {
       el$: {
         types: [
-          'component',
+          'VueformElement',
         ],
         description: 'The element&apos;s component.',
         private: false,
@@ -12289,7 +12289,7 @@ module.exports = {
       },
       parent: {
         types: [
-          'component',
+          'VNode',
         ],
         description: 'The parent component of the element.',
         private: true,
@@ -12574,7 +12574,7 @@ module.exports = {
     inject: {
       form$: {
         types: [
-          'component',
+          'Vueform',
         ],
         description: 'The root form&apos;s component.',
         private: false,
@@ -13345,10 +13345,10 @@ module.exports = {
       },
       children$Array: {
         types: [
-          'array,component',
+          'array',
         ],
         description: 'List of child element components.',
-        default: '[children<component>]',
+        default: '[array]',
         private: true,
       },
       conditionList: {
@@ -13414,7 +13414,7 @@ module.exports = {
       },
       Validators: {
         types: [
-          'array,Validator',
+          'array',
         ],
         description: 'An array containing all the validators of the element.',
         default: '[]',
@@ -13489,7 +13489,7 @@ module.exports = {
       },
       el$: {
         types: [
-          'component',
+          'VueformElement',
         ],
         description: 'The element&apos;s component.',
         private: false,
@@ -13531,7 +13531,7 @@ module.exports = {
       },
       children$: {
         types: [
-          'object,Element',
+          'object',
         ],
         description: 'Child element components.',
         private: false,
@@ -13672,7 +13672,7 @@ module.exports = {
       Label: {
         types: [
           'string',
-          'component',
+          'Component',
         ],
         description: 'The localized label of the element.',
         private: true,
@@ -13680,7 +13680,7 @@ module.exports = {
       elementLayout: {
         types: [
           'string',
-          'component',
+          'Component',
         ],
         description: 'The current layout of the element.',
         private: true,
@@ -13701,7 +13701,7 @@ module.exports = {
       },
       parent: {
         types: [
-          'component',
+          'VNode',
         ],
         description: 'The parent component of the element.',
         private: true,
@@ -13923,7 +13923,7 @@ module.exports = {
       },
       add: {
         description: 'Appends a new item.',
-        returns: 'integer',
+        returns: 'number',
         params: {
           value: {
             types: [
@@ -14193,7 +14193,7 @@ module.exports = {
     inject: {
       form$: {
         types: [
-          'component',
+          'Vueform',
         ],
         description: 'The root form&apos;s component.',
         private: false,
@@ -15104,7 +15104,7 @@ module.exports = {
       },
       Validators: {
         types: [
-          'array,Validator',
+          'array',
         ],
         description: 'An array containing all the validators of the element.',
         default: '[]',
@@ -15179,7 +15179,7 @@ module.exports = {
       },
       el$: {
         types: [
-          'component',
+          'VueformElement',
         ],
         description: 'The element&apos;s component.',
         private: false,
@@ -15327,7 +15327,7 @@ module.exports = {
       Label: {
         types: [
           'string',
-          'component',
+          'Component',
         ],
         description: 'The localized label of the element.',
         private: true,
@@ -15335,7 +15335,7 @@ module.exports = {
       elementLayout: {
         types: [
           'string',
-          'component',
+          'Component',
         ],
         description: 'The current layout of the element.',
         private: true,
@@ -15350,7 +15350,7 @@ module.exports = {
       },
       parent: {
         types: [
-          'component',
+          'VNode',
         ],
         description: 'The parent component of the element.',
         private: true,
@@ -15757,7 +15757,7 @@ module.exports = {
     inject: {
       form$: {
         types: [
-          'component',
+          'Vueform',
         ],
         description: 'The root form&apos;s component.',
         private: false,
@@ -16724,10 +16724,10 @@ module.exports = {
       },
       children$Array: {
         types: [
-          'array,component',
+          'array',
         ],
         description: 'List of child element components.',
-        default: '[children<component>]',
+        default: '[array]',
         private: true,
       },
       conditionList: {
@@ -16800,7 +16800,7 @@ module.exports = {
       },
       Validators: {
         types: [
-          'array,Validator',
+          'array',
         ],
         description: 'An array containing all the validators of the element.',
         default: '[]',
@@ -16875,7 +16875,7 @@ module.exports = {
       },
       el$: {
         types: [
-          'component',
+          'VueformElement',
         ],
         description: 'The element&apos;s component.',
         private: false,
@@ -16917,7 +16917,7 @@ module.exports = {
       },
       children$: {
         types: [
-          'object,Element',
+          'object',
         ],
         description: 'Child element components.',
         private: false,
@@ -17058,7 +17058,7 @@ module.exports = {
       Label: {
         types: [
           'string',
-          'component',
+          'Component',
         ],
         description: 'The localized label of the element.',
         private: true,
@@ -17066,7 +17066,7 @@ module.exports = {
       elementLayout: {
         types: [
           'string',
-          'component',
+          'Component',
         ],
         description: 'The current layout of the element.',
         private: true,
@@ -17101,7 +17101,7 @@ module.exports = {
       },
       parent: {
         types: [
-          'component',
+          'VNode',
         ],
         description: 'The parent component of the element.',
         private: true,
@@ -17330,7 +17330,7 @@ module.exports = {
       },
       add: {
         description: 'Appends a new item.',
-        returns: 'integer',
+        returns: 'number',
         params: {
           value: {
             types: [
@@ -17633,7 +17633,7 @@ module.exports = {
     inject: {
       form$: {
         types: [
-          'component',
+          'Vueform',
         ],
         description: 'The root form&apos;s component.',
         private: false,
@@ -19009,7 +19009,7 @@ module.exports = {
       },
       Validators: {
         types: [
-          'array,Validator',
+          'array',
         ],
         description: 'An array containing all the validators of the element.',
         default: '[]',
@@ -19091,7 +19091,7 @@ module.exports = {
       },
       el$: {
         types: [
-          'component',
+          'VueformElement',
         ],
         description: 'The element&apos;s component.',
         private: false,
@@ -19239,7 +19239,7 @@ module.exports = {
       Label: {
         types: [
           'string',
-          'component',
+          'Component',
         ],
         description: 'The localized label of the element.',
         private: true,
@@ -19247,7 +19247,7 @@ module.exports = {
       elementLayout: {
         types: [
           'string',
-          'component',
+          'Component',
         ],
         description: 'The current layout of the element.',
         private: true,
@@ -19268,7 +19268,7 @@ module.exports = {
       },
       parent: {
         types: [
-          'component',
+          'VNode',
         ],
         description: 'The parent component of the element.',
         private: true,
@@ -19714,7 +19714,7 @@ module.exports = {
         params: {
           options: {
             types: [
-              'str',
+              'string',
               'array',
             ],
             required: 'true',
@@ -19729,7 +19729,7 @@ module.exports = {
         params: {
           options: {
             types: [
-              'str',
+              'string',
               'array',
             ],
             required: 'true',
@@ -19792,7 +19792,7 @@ module.exports = {
     inject: {
       form$: {
         types: [
-          'component',
+          'Vueform',
         ],
         description: 'The root form&apos;s component.',
         private: false,
@@ -20761,10 +20761,10 @@ module.exports = {
       },
       children$Array: {
         types: [
-          'array,component',
+          'array',
         ],
         description: 'List of child element components.',
-        default: '[children<component>]',
+        default: '[array]',
         private: true,
       },
       conditionList: {
@@ -20800,7 +20800,7 @@ module.exports = {
       },
       Validators: {
         types: [
-          'array,Validator',
+          'array',
         ],
         description: 'An array containing all the validators of the element.',
         default: '[]',
@@ -20868,7 +20868,7 @@ module.exports = {
       },
       el$: {
         types: [
-          'component',
+          'VueformElement',
         ],
         description: 'The element&apos;s component.',
         private: false,
@@ -20917,7 +20917,7 @@ module.exports = {
       },
       children$: {
         types: [
-          'object,Element',
+          'object',
         ],
         description: 'Child element components.',
         private: false,
@@ -21002,7 +21002,7 @@ module.exports = {
       Label: {
         types: [
           'string',
-          'component',
+          'Component',
         ],
         description: 'The localized label of the element.',
         private: true,
@@ -21010,7 +21010,7 @@ module.exports = {
       elementLayout: {
         types: [
           'string',
-          'component',
+          'Component',
         ],
         description: 'The current layout of the element.',
         private: true,
@@ -21024,7 +21024,7 @@ module.exports = {
       },
       parent: {
         types: [
-          'component',
+          'VNode',
         ],
         description: 'The parent component of the element.',
         private: true,
@@ -21393,7 +21393,7 @@ module.exports = {
     inject: {
       form$: {
         types: [
-          'component',
+          'Vueform',
         ],
         description: 'The root form&apos;s component.',
         private: false,
@@ -22174,7 +22174,7 @@ module.exports = {
       },
       Validators: {
         types: [
-          'array,Validator',
+          'array',
         ],
         description: 'An array containing all the validators of the element.',
         default: '[]',
@@ -22249,7 +22249,7 @@ module.exports = {
       },
       el$: {
         types: [
-          'component',
+          'VueformElement',
         ],
         description: 'The element&apos;s component.',
         private: false,
@@ -22383,7 +22383,7 @@ module.exports = {
       Label: {
         types: [
           'string',
-          'component',
+          'Component',
         ],
         description: 'The localized label of the element.',
         private: true,
@@ -22391,7 +22391,7 @@ module.exports = {
       elementLayout: {
         types: [
           'string',
-          'component',
+          'Component',
         ],
         description: 'The current layout of the element.',
         private: true,
@@ -22405,7 +22405,7 @@ module.exports = {
       },
       parent: {
         types: [
-          'component',
+          'VNode',
         ],
         description: 'The parent component of the element.',
         private: true,
@@ -22791,7 +22791,7 @@ module.exports = {
     inject: {
       form$: {
         types: [
-          'component',
+          'Vueform',
         ],
         description: 'The root form&apos;s component.',
         private: false,
@@ -23580,7 +23580,7 @@ module.exports = {
       },
       Validators: {
         types: [
-          'array,Validator',
+          'array',
         ],
         description: 'An array containing all the validators of the element.',
         default: '[]',
@@ -23662,7 +23662,7 @@ module.exports = {
       },
       el$: {
         types: [
-          'component',
+          'VueformElement',
         ],
         description: 'The element&apos;s component.',
         private: false,
@@ -23796,7 +23796,7 @@ module.exports = {
       Label: {
         types: [
           'string',
-          'component',
+          'Component',
         ],
         description: 'The localized label of the element.',
         private: true,
@@ -23804,7 +23804,7 @@ module.exports = {
       elementLayout: {
         types: [
           'string',
-          'component',
+          'Component',
         ],
         description: 'The current layout of the element.',
         private: true,
@@ -23818,7 +23818,7 @@ module.exports = {
       },
       parent: {
         types: [
-          'component',
+          'VNode',
         ],
         description: 'The parent component of the element.',
         private: true,
@@ -24266,7 +24266,7 @@ module.exports = {
     inject: {
       form$: {
         types: [
-          'component',
+          'Vueform',
         ],
         description: 'The root form&apos;s component.',
         private: false,
@@ -25594,7 +25594,7 @@ module.exports = {
       },
       Validators: {
         types: [
-          'array,Validator',
+          'array',
         ],
         description: 'An array containing all the validators of the element.',
         default: '[]',
@@ -25676,7 +25676,7 @@ module.exports = {
       },
       el$: {
         types: [
-          'component',
+          'VueformElement',
         ],
         description: 'The element&apos;s component.',
         private: false,
@@ -25824,7 +25824,7 @@ module.exports = {
       Label: {
         types: [
           'string',
-          'component',
+          'Component',
         ],
         description: 'The localized label of the element.',
         private: true,
@@ -25832,7 +25832,7 @@ module.exports = {
       elementLayout: {
         types: [
           'string',
-          'component',
+          'Component',
         ],
         description: 'The current layout of the element.',
         private: true,
@@ -25853,7 +25853,7 @@ module.exports = {
       },
       parent: {
         types: [
-          'component',
+          'VNode',
         ],
         description: 'The parent component of the element.',
         private: true,
@@ -26347,7 +26347,7 @@ module.exports = {
     inject: {
       form$: {
         types: [
-          'component',
+          'Vueform',
         ],
         description: 'The root form&apos;s component.',
         private: false,
@@ -27465,7 +27465,7 @@ module.exports = {
       },
       Validators: {
         types: [
-          'array,Validator',
+          'array',
         ],
         description: 'An array containing all the validators of the element.',
         default: '[]',
@@ -27540,7 +27540,7 @@ module.exports = {
       },
       el$: {
         types: [
-          'component',
+          'VueformElement',
         ],
         description: 'The element&apos;s component.',
         private: false,
@@ -27674,7 +27674,7 @@ module.exports = {
       Label: {
         types: [
           'string',
-          'component',
+          'Component',
         ],
         description: 'The localized label of the element.',
         private: true,
@@ -27682,7 +27682,7 @@ module.exports = {
       elementLayout: {
         types: [
           'string',
-          'component',
+          'Component',
         ],
         description: 'The current layout of the element.',
         private: true,
@@ -27696,7 +27696,7 @@ module.exports = {
       },
       parent: {
         types: [
-          'component',
+          'VNode',
         ],
         description: 'The parent component of the element.',
         private: true,
@@ -28072,7 +28072,7 @@ module.exports = {
     inject: {
       form$: {
         types: [
-          'component',
+          'Vueform',
         ],
         description: 'The root form&apos;s component.',
         private: false,
@@ -28766,7 +28766,7 @@ module.exports = {
       },
       el$: {
         types: [
-          'component',
+          'VueformElement',
         ],
         description: 'The element&apos;s component.',
         private: false,
@@ -28865,7 +28865,7 @@ module.exports = {
       Label: {
         types: [
           'string',
-          'component',
+          'Component',
         ],
         description: 'The localized label of the element.',
         private: true,
@@ -28873,7 +28873,7 @@ module.exports = {
       elementLayout: {
         types: [
           'string',
-          'component',
+          'Component',
         ],
         description: 'The current layout of the element.',
         private: true,
@@ -28894,7 +28894,7 @@ module.exports = {
       },
       parent: {
         types: [
-          'component',
+          'VNode',
         ],
         description: 'The parent component of the element.',
         private: true,
@@ -29076,7 +29076,7 @@ module.exports = {
     inject: {
       form$: {
         types: [
-          'component',
+          'Vueform',
         ],
         description: 'The root form&apos;s component.',
         private: false,
@@ -29919,7 +29919,7 @@ module.exports = {
       },
       Validators: {
         types: [
-          'array,Validator',
+          'array',
         ],
         description: 'An array containing all the validators of the element.',
         default: '[]',
@@ -29980,7 +29980,7 @@ module.exports = {
       },
       el$: {
         types: [
-          'component',
+          'VueformElement',
         ],
         description: 'The element&apos;s component.',
         private: false,
@@ -30137,7 +30137,7 @@ module.exports = {
       Label: {
         types: [
           'string',
-          'component',
+          'Component',
         ],
         description: 'The localized label of the element.',
         private: true,
@@ -30159,7 +30159,7 @@ module.exports = {
       elementLayout: {
         types: [
           'string',
-          'component',
+          'Component',
         ],
         description: 'The current layout of the element.',
         private: true,
@@ -30173,7 +30173,7 @@ module.exports = {
       },
       parent: {
         types: [
-          'component',
+          'VNode',
         ],
         description: 'The parent component of the element.',
         private: true,
@@ -30615,7 +30615,7 @@ module.exports = {
     inject: {
       form$: {
         types: [
-          'component',
+          'Vueform',
         ],
         description: 'The root form&apos;s component.',
         private: false,
@@ -31535,7 +31535,7 @@ module.exports = {
       },
       Validators: {
         types: [
-          'array,Validator',
+          'array',
         ],
         description: 'An array containing all the validators of the element.',
         default: '[]',
@@ -31596,7 +31596,7 @@ module.exports = {
       },
       el$: {
         types: [
-          'component',
+          'VueformElement',
         ],
         description: 'The element&apos;s component.',
         private: false,
@@ -31744,7 +31744,7 @@ module.exports = {
       Label: {
         types: [
           'string',
-          'component',
+          'Component',
         ],
         description: 'The localized label of the element.',
         private: true,
@@ -31766,7 +31766,7 @@ module.exports = {
       elementLayout: {
         types: [
           'string',
-          'component',
+          'Component',
         ],
         description: 'The current layout of the element.',
         private: true,
@@ -31787,7 +31787,7 @@ module.exports = {
       },
       parent: {
         types: [
-          'component',
+          'VNode',
         ],
         description: 'The parent component of the element.',
         private: true,
@@ -32243,7 +32243,7 @@ module.exports = {
     inject: {
       form$: {
         types: [
-          'component',
+          'Vueform',
         ],
         description: 'The root form&apos;s component.',
         private: false,
@@ -33203,7 +33203,7 @@ module.exports = {
       },
       Validators: {
         types: [
-          'array,Validator',
+          'array',
         ],
         description: 'An array containing all the validators of the element.',
         default: '[]',
@@ -33264,7 +33264,7 @@ module.exports = {
       },
       el$: {
         types: [
-          'component',
+          'VueformElement',
         ],
         description: 'The element&apos;s component.',
         private: false,
@@ -33412,7 +33412,7 @@ module.exports = {
       Label: {
         types: [
           'string',
-          'component',
+          'Component',
         ],
         description: 'The localized label of the element.',
         private: true,
@@ -33434,7 +33434,7 @@ module.exports = {
       elementLayout: {
         types: [
           'string',
-          'component',
+          'Component',
         ],
         description: 'The current layout of the element.',
         private: true,
@@ -33448,7 +33448,7 @@ module.exports = {
       },
       parent: {
         types: [
-          'component',
+          'VNode',
         ],
         description: 'The parent component of the element.',
         private: true,
@@ -33909,7 +33909,7 @@ module.exports = {
     inject: {
       form$: {
         types: [
-          'component',
+          'Vueform',
         ],
         description: 'The root form&apos;s component.',
         private: false,
@@ -35271,7 +35271,7 @@ module.exports = {
       },
       Validators: {
         types: [
-          'array,Validator',
+          'array',
         ],
         description: 'An array containing all the validators of the element.',
         default: '[]',
@@ -35353,7 +35353,7 @@ module.exports = {
       },
       el$: {
         types: [
-          'component',
+          'VueformElement',
         ],
         description: 'The element&apos;s component.',
         private: false,
@@ -35501,7 +35501,7 @@ module.exports = {
       Label: {
         types: [
           'string',
-          'component',
+          'Component',
         ],
         description: 'The localized label of the element.',
         private: true,
@@ -35509,7 +35509,7 @@ module.exports = {
       elementLayout: {
         types: [
           'string',
-          'component',
+          'Component',
         ],
         description: 'The current layout of the element.',
         private: true,
@@ -35530,7 +35530,7 @@ module.exports = {
       },
       parent: {
         types: [
-          'component',
+          'VNode',
         ],
         description: 'The parent component of the element.',
         private: true,
@@ -35990,7 +35990,7 @@ module.exports = {
         params: {
           options: {
             types: [
-              'str',
+              'string',
               'array',
             ],
             required: 'true',
@@ -36005,7 +36005,7 @@ module.exports = {
         params: {
           options: {
             types: [
-              'str',
+              'string',
               'array',
             ],
             required: 'true',
@@ -36068,7 +36068,7 @@ module.exports = {
     inject: {
       form$: {
         types: [
-          'component',
+          'Vueform',
         ],
         description: 'The root form&apos;s component.',
         private: false,
@@ -37236,7 +37236,7 @@ module.exports = {
       },
       Validators: {
         types: [
-          'array,Validator',
+          'array',
         ],
         description: 'An array containing all the validators of the element.',
         default: '[]',
@@ -37311,7 +37311,7 @@ module.exports = {
       },
       el$: {
         types: [
-          'component',
+          'VueformElement',
         ],
         description: 'The element&apos;s component.',
         private: false,
@@ -37459,7 +37459,7 @@ module.exports = {
       Label: {
         types: [
           'string',
-          'component',
+          'Component',
         ],
         description: 'The localized label of the element.',
         private: true,
@@ -37467,7 +37467,7 @@ module.exports = {
       elementLayout: {
         types: [
           'string',
-          'component',
+          'Component',
         ],
         description: 'The current layout of the element.',
         private: true,
@@ -37488,7 +37488,7 @@ module.exports = {
       },
       parent: {
         types: [
-          'component',
+          'VNode',
         ],
         description: 'The parent component of the element.',
         private: true,
@@ -37925,7 +37925,7 @@ module.exports = {
     inject: {
       form$: {
         types: [
-          'component',
+          'Vueform',
         ],
         description: 'The root form&apos;s component.',
         private: false,
@@ -38885,7 +38885,7 @@ module.exports = {
       },
       Validators: {
         types: [
-          'array,Validator',
+          'array',
         ],
         description: 'An array containing all the validators of the element.',
         default: '[]',
@@ -38960,7 +38960,7 @@ module.exports = {
       },
       el$: {
         types: [
-          'component',
+          'VueformElement',
         ],
         description: 'The element&apos;s component.',
         private: false,
@@ -39108,7 +39108,7 @@ module.exports = {
       Label: {
         types: [
           'string',
-          'component',
+          'Component',
         ],
         description: 'The localized label of the element.',
         private: true,
@@ -39116,7 +39116,7 @@ module.exports = {
       elementLayout: {
         types: [
           'string',
-          'component',
+          'Component',
         ],
         description: 'The current layout of the element.',
         private: true,
@@ -39130,7 +39130,7 @@ module.exports = {
       },
       parent: {
         types: [
-          'component',
+          'VNode',
         ],
         description: 'The parent component of the element.',
         private: true,
@@ -39572,7 +39572,7 @@ module.exports = {
     inject: {
       form$: {
         types: [
-          'component',
+          'Vueform',
         ],
         description: 'The root form&apos;s component.',
         private: false,
@@ -40457,7 +40457,7 @@ module.exports = {
       },
       Validators: {
         types: [
-          'array,Validator',
+          'array',
         ],
         description: 'An array containing all the validators of the element.',
         default: '[]',
@@ -40532,7 +40532,7 @@ module.exports = {
       },
       el$: {
         types: [
-          'component',
+          'VueformElement',
         ],
         description: 'The element&apos;s component.',
         private: false,
@@ -40666,7 +40666,7 @@ module.exports = {
       Label: {
         types: [
           'string',
-          'component',
+          'Component',
         ],
         description: 'The localized label of the element.',
         private: true,
@@ -40674,7 +40674,7 @@ module.exports = {
       elementLayout: {
         types: [
           'string',
-          'component',
+          'Component',
         ],
         description: 'The current layout of the element.',
         private: true,
@@ -40688,7 +40688,7 @@ module.exports = {
       },
       parent: {
         types: [
-          'component',
+          'VNode',
         ],
         description: 'The parent component of the element.',
         private: true,
@@ -41081,7 +41081,7 @@ module.exports = {
     inject: {
       form$: {
         types: [
-          'component',
+          'Vueform',
         ],
         description: 'The root form&apos;s component.',
         private: false,

@@ -72,7 +72,7 @@ export default {
     /**
      * Handles the info hover.
      *
-     * @param {Event} e
+     * @param {Event|object} e
      * @returns {void}
      * @private
      */

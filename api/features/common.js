@@ -115,7 +115,7 @@ export default {
         "config$": {
           "public": true,
           "types": [
-            "component"
+            "object"
           ],
           "description": "The global $vueform config object."
         }
@@ -128,7 +128,7 @@ export default {
         "el$": {
           "public": true,
           "types": [
-            "component"
+            "VueformElement"
           ],
           "description": "The parent element's component."
         }
@@ -147,14 +147,14 @@ export default {
         "el$": {
           "public": true,
           "types": [
-            "component"
+            "VueformElement"
           ],
           "description": "The parent element's component."
         },
         "form$": {
           "public": true,
           "types": [
-            "component"
+            "Vueform"
           ],
           "description": "The root form's component."
         },
@@ -168,7 +168,7 @@ export default {
         "Size": {
           "public": true,
           "types": [
-            "component"
+            "string"
           ],
           "description": "The size of the component."
         }
@@ -311,7 +311,7 @@ export default {
         "form$": {
           "public": true,
           "types": [
-            "component"
+            "Vueform"
           ],
           "description": "The root form's component."
         }
@@ -324,7 +324,7 @@ export default {
         "form$": {
           "public": true,
           "types": [
-            "component"
+            "Vueform"
           ],
           "description": "The root form's component."
         },
@@ -338,7 +338,7 @@ export default {
         "Size": {
           "public": true,
           "types": [
-            "component"
+            "string"
           ],
           "description": "The size of the component."
         }
@@ -354,7 +354,7 @@ export default {
         "classesInstance": {
           "public": false,
           "types": [
-            "object"
+            "MergeClasses"
           ],
           "description": "An object containaing all the component's classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides."
         },
@@ -389,7 +389,7 @@ export default {
           "public": true,
           "types": [
             "string",
-            "component"
+            "Component"
           ],
           "description": "The label of the component."
         },
@@ -473,7 +473,7 @@ export default {
           "params": {
             "$parent": {
               "types": [
-                "component"
+                "VNode"
               ],
               "required": false,
               "description": "parent component"
@@ -493,7 +493,7 @@ export default {
           "params": {
             "$parent": {
               "types": [
-                "component"
+                "VNode"
               ],
               "required": false,
               "description": "parent component"
@@ -639,7 +639,7 @@ export default {
         "Size": {
           "public": true,
           "types": [
-            "component"
+            "string"
           ],
           "description": "The size of the component."
         }
@@ -678,14 +678,14 @@ export default {
         "tabs$": {
           "public": false,
           "types": [
-            "component"
+            "FormTabs"
           ],
           "description": "The FormTabs component."
         },
         "steps$": {
           "public": false,
           "types": [
-            "component"
+            "FormSteps"
           ],
           "description": "The FormSteps component."
         },
@@ -1020,7 +1020,7 @@ export default {
         "form$": {
           "public": true,
           "types": [
-            "component"
+            "Vueform"
           ],
           "description": "The form component instance (self)."
         },
@@ -1231,7 +1231,7 @@ export default {
         },
         "el$": {
           "public": true,
-          "returns": "component|null",
+          "returns": "VueformElement|null",
           "description": "Returns an element by its path.",
           "params": {
             "path": {

@@ -38,7 +38,7 @@ const base = function(props, context, dependencies, options = {})
   /**
    * The component instance (self).
    * 
-   * @type {component}
+   * @type {VueformComponent}
    */
   const component$ = computed(() => {
     return getCurrentInstance().proxy

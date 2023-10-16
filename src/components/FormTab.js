@@ -135,7 +135,7 @@ export default {
     /**
      * The label of the tab.
      *
-     * @type {string|component}
+     * @type {string|Component}
      * @default null
      */
     const tabLabel = ref(tabLabel_.value && typeof tabLabel_.value === 'object' ? markRaw(tabLabel_.value) : tabLabel_.value)
@@ -154,7 +154,7 @@ export default {
     /**
      * The parent [`FormTabs`](form-tabs) component.
      *
-     * @type {component}
+     * @type {FormTabs}
      */
     const tabs$ = computed(() => {
       return form$.value.tabs$
@@ -219,7 +219,7 @@ export default {
     /**
      * The tab's component.
      *
-     * @type {component}
+     * @type {FormTab}
      */
     const tab$ = computed(() => {
       return form$.value.tabs$.tabs$[name.value]
@@ -322,7 +322,7 @@ export default {
     /**
      * Set the component to the parent as if `refs` were used.
      *
-     * @param {component} $parent parent component
+     * @param {VNode} $parent parent component
      * @param {function} assignToParent the assignToParent function for recursion
      * @returns {void}
      * @private
@@ -339,7 +339,7 @@ export default {
     /**
     * Removes the component from the parent.
     *
-    * @param {component} $parent parent component
+    * @param {VNode} $parent parent component
     * @param {function} removeFromParent the removeFromParent function for recursion
     * @private
     */

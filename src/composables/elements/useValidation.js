@@ -30,7 +30,7 @@ const base = function(props, context, dependencies)
   /**
    * An array containing all the validators of the element.
    *
-   * @type {array<Validator>}
+   * @type {array}
    * @default []
    * @private
    */

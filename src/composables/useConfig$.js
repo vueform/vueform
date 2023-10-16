@@ -7,7 +7,7 @@ const base = function(props, context, dependencies)
   /**
   * The global $vueform config object.
   * 
-  * @type {component}
+  * @type {object}
   */
   let config$ = inject('config$')
 

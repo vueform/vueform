@@ -443,7 +443,7 @@ const list = function(props, context, dependencies, options)
    * Appends a new item.
    *
    * @param {any} value value of the appended element (optional)
-   * @returns {integer} the index of the appended item
+   * @returns {number} the index of the appended item
    */
   const add = (val = undefined, focus = false) => {
     let newValue = storeOrder.value ? Object.assign({}, val || {}, {

@@ -40,7 +40,7 @@ export default {
      * The addon definition.
      * ponent.
   *
-  * @type {string|function|component}
+  * @type {string|function|Component}
   * @private
      */
     const baseAddon = computed(() => {
@@ -50,7 +50,7 @@ export default {
     /**
      * The content of the addon. If the addon is provided ss a `function` this contains the resolved value.
      *
-     * @type {string|component}
+     * @type {string|Component}
      */
     const addon = computed(() => {
       let addon = isAddonFunction.value

@@ -17786,7 +17786,7 @@ var base$m = function base(props, context, dependencies) {
   /**
    * Child element components.
    *
-   * @type {object<Element>}
+   * @type {object}
    */
   var children$ = computed(() => {
     var children$ = {};

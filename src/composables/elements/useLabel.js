@@ -52,7 +52,7 @@ const base = function(props, context, dependencies)
   /**
    * The localized label of the element.
    *
-   * @type {string|component}
+   * @type {string|Component}
    * @private
    */
   const Label = computed(() => {

@@ -167,7 +167,7 @@ export default {
     /**
      * The first visible [`FormStep`](form-step) component.
      *
-     * @type {component}
+     * @type {FormStep|undefined}
      */
     const first$ = computed(() => {
       return _.find(visible$.value, (step) => {
@@ -178,7 +178,7 @@ export default {
     /**
      * The last visible [`FormStep`](form-step) component.
      *
-     * @type {component}
+     * @type {FormStep|undefined}
      */
     const last$ = computed(() => {
       return Object.values(visible$.value).pop()
@@ -187,7 +187,7 @@ export default {
     /**
      * The current [`FormStep`](form-step) component.
      *
-     * @type {component}
+     * @type {FormStep|undefined}
      */
     const current$ = computed(() => {
       var current = _.find(steps$.value, { active: true })
@@ -198,7 +198,7 @@ export default {
     /**
      * The next visible [`FormStep`](form-step) component.
      *
-     * @type {component}
+     * @type {FormStep|undefined}
      */
     const next$ = computed(() => {
       return _.find(visible$.value, (step) => {
@@ -209,7 +209,7 @@ export default {
     /**
      * The previous visible [`FormStep`](form-step) component.
      *
-     * @type {component}
+     * @type {FormStep|undefined}
      */
     const previous$ = computed(() => {
       return _.findLast(visible$.value, (step) => {
@@ -220,7 +220,7 @@ export default {
     /**
      * The first invalid & visible [`FormStep`](form-step) component.
      *
-     * @type {component}
+     * @type {FormStep|undefined}
      */
     const firstInvalid$ = computed(() => {
       return _.find(visible$.value, { invalid: true })
@@ -229,7 +229,7 @@ export default {
     /**
      * The first visible [`FormStep`](form-step) component which is not done yet.
      *
-     * @type {component}
+     * @type {FormStep|undefined}
      */
     const firstNonDone$ = computed(() => {
       return _.find(visible$.value, { done: false })
@@ -238,7 +238,7 @@ export default {
     /**
      * The last enabled & visible [`FormStep`](form-step) component.
      *
-     * @type {component}
+     * @type {FormStep|undefined}
      */
     const lastEnabled$ = computed(() => {
       return _.findLast(visible$.value, { isDisabled: false })
@@ -331,7 +331,7 @@ export default {
      * Returns a specific [`FormStep`](form-step) component by index.
      *
      * @param {string} name* name of the step
-     * @returns {component}
+     * @returns {FormStep|undefined}
      */
     const step$ = (name) => {
       return _.find(visible$.value, { name: name })
@@ -394,7 +394,7 @@ export default {
     /**
      * Select a step.
      *
-     * @param {component} step$ the [`FormStep`](form-step) component to select
+     * @param {FormStep} step$ the [`FormStep`](form-step) component to select
      * @returns {void}
      * @private
      */
@@ -415,7 +415,7 @@ export default {
     /**
      * Enable steps until a certain index.
      *
-     * @param {integer} index index of the step
+     * @param {number} index index of the step
      * @returns {void}
      */
     const enableUntil = (index) => {
@@ -453,7 +453,7 @@ export default {
     /**
      * Set the component to the parent as if `refs` were used.
      *
-     * @param {component} $parent parent component
+     * @param {VNode} $parent parent component
      * @param {function} assignToParent the assignToParent function for recursion
      * @returns {void}
      * @private
@@ -470,7 +470,7 @@ export default {
     /**
     * Removes the component from the parent.
     *
-    * @param {component} $parent parent component
+    * @param {VNode} $parent parent component
     * @param {function} removeFromParent the removeFromParent function for recursion
     * @private
     */

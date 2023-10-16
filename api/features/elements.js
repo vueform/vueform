@@ -845,7 +845,7 @@ export default {
         "el$": {
           "public": true,
           "types": [
-            "component"
+            "VueformElement"
           ],
           "description": "The element's component."
         },
@@ -928,7 +928,7 @@ export default {
         "el$": {
           "public": true,
           "types": [
-            "component"
+            "VueformElement"
           ],
           "description": "The element's component."
         },
@@ -1011,7 +1011,7 @@ export default {
         "el$": {
           "public": true,
           "types": [
-            "component"
+            "VueformElement"
           ],
           "description": "The element's component."
         },
@@ -1094,7 +1094,7 @@ export default {
         "el$": {
           "public": true,
           "types": [
-            "component"
+            "VueformElement"
           ],
           "description": "The element's component."
         },
@@ -1177,7 +1177,7 @@ export default {
         "el$": {
           "public": true,
           "types": [
-            "component"
+            "VueformElement"
           ],
           "description": "The element's component."
         },
@@ -1260,7 +1260,7 @@ export default {
         "el$": {
           "public": true,
           "types": [
-            "component"
+            "VueformElement"
           ],
           "description": "The element's component."
         },
@@ -1343,7 +1343,7 @@ export default {
         "el$": {
           "public": true,
           "types": [
-            "component"
+            "VueformElement"
           ],
           "description": "The element's component."
         },
@@ -1426,7 +1426,7 @@ export default {
         "el$": {
           "public": true,
           "types": [
-            "component"
+            "VueformElement"
           ],
           "description": "The element's component."
         },
@@ -1616,12 +1616,9 @@ export default {
       "data": {
         "children$Array": {
           "public": false,
-          "default": "[children<component>]",
+          "default": "[array]",
           "types": [
-            [
-              "array",
-              "component"
-            ]
+            "array"
           ],
           "description": "List of child element components."
         }
@@ -1630,10 +1627,7 @@ export default {
         "children$": {
           "public": true,
           "types": [
-            [
-              "object",
-              "Element"
-            ]
+            "object"
           ],
           "description": "Child element components."
         }
@@ -1651,10 +1645,7 @@ export default {
         "children$": {
           "public": true,
           "types": [
-            [
-              "object",
-              "Element"
-            ]
+            "object"
           ],
           "description": "Child element components."
         }
@@ -1662,12 +1653,9 @@ export default {
       "data": {
         "children$Array": {
           "public": false,
-          "default": "[children<component>]",
+          "default": "[array]",
           "types": [
-            [
-              "array",
-              "component"
-            ]
+            "array"
           ],
           "description": "List of child element components."
         }
@@ -1677,12 +1665,9 @@ export default {
       "data": {
         "children$Array": {
           "public": false,
-          "default": "[children<component>]",
+          "default": "[array]",
           "types": [
-            [
-              "array",
-              "component"
-            ]
+            "array"
           ],
           "description": "List of child element components."
         },
@@ -1698,10 +1683,7 @@ export default {
         "children$": {
           "public": true,
           "types": [
-            [
-              "object",
-              "Element"
-            ]
+            "object"
           ],
           "description": "Child element components."
         },
@@ -1725,12 +1707,9 @@ export default {
       "data": {
         "children$Array": {
           "public": false,
-          "default": "[children<component>]",
+          "default": "[array]",
           "types": [
-            [
-              "array",
-              "component"
-            ]
+            "array"
           ],
           "description": "List of child element components."
         }
@@ -1739,10 +1718,7 @@ export default {
         "children$": {
           "public": true,
           "types": [
-            [
-              "object",
-              "Element"
-            ]
+            "object"
           ],
           "description": "Child element components."
         },
@@ -1767,10 +1743,7 @@ export default {
         "children$": {
           "public": true,
           "types": [
-            [
-              "object",
-              "Element"
-            ]
+            "object"
           ],
           "description": "Child element components."
         }
@@ -1778,12 +1751,9 @@ export default {
       "data": {
         "children$Array": {
           "public": false,
-          "default": "[children<component>]",
+          "default": "[array]",
           "types": [
-            [
-              "array",
-              "component"
-            ]
+            "array"
           ],
           "description": "List of child element components."
         }
@@ -2201,7 +2171,7 @@ export default {
       "methods": {
         "add": {
           "public": true,
-          "returns": "integer",
+          "returns": "number",
           "description": "Appends a new item.",
           "params": {
             "value": {
@@ -2710,7 +2680,7 @@ export default {
       "methods": {
         "add": {
           "public": true,
-          "returns": "integer",
+          "returns": "number",
           "description": "Appends a new item.",
           "params": {
             "value": {
@@ -3932,7 +3902,7 @@ export default {
           "public": false,
           "types": [
             "string",
-            "component"
+            "Component"
           ],
           "description": "The localized label of the element."
         }
@@ -3966,7 +3936,7 @@ export default {
           "public": false,
           "types": [
             "string",
-            "component"
+            "Component"
           ],
           "description": "The current layout of the element."
         }
@@ -4348,7 +4318,7 @@ export default {
         "parent": {
           "public": false,
           "types": [
-            "component"
+            "VNode"
           ],
           "description": "The parent component of the element."
         },
@@ -4401,7 +4371,7 @@ export default {
         "parent": {
           "public": false,
           "types": [
-            "component"
+            "VNode"
           ],
           "description": "The parent component of the element."
         }
@@ -4426,7 +4396,7 @@ export default {
         "parent": {
           "public": false,
           "types": [
-            "component"
+            "VNode"
           ],
           "description": "The parent component of the element."
         }
@@ -4568,7 +4538,7 @@ export default {
           "params": {
             "options": {
               "types": [
-                "str",
+                "string",
                 "array"
               ],
               "required": true,
@@ -4583,7 +4553,7 @@ export default {
           "params": {
             "options": {
               "types": [
-                "str",
+                "string",
                 "array"
               ],
               "required": true,
@@ -4787,10 +4757,7 @@ export default {
           "public": false,
           "default": "[]",
           "types": [
-            [
-              "array",
-              "Validator"
-            ]
+            "array"
           ],
           "description": "An array containing all the validators of the element."
         },
@@ -4933,10 +4900,7 @@ export default {
           "public": false,
           "default": "[]",
           "types": [
-            [
-              "array",
-              "Validator"
-            ]
+            "array"
           ],
           "description": "An array containing all the validators of the element."
         },
@@ -5086,10 +5050,7 @@ export default {
           "public": false,
           "default": "[]",
           "types": [
-            [
-              "array",
-              "Validator"
-            ]
+            "array"
           ],
           "description": "An array containing all the validators of the element."
         },
@@ -5242,10 +5203,7 @@ export default {
           "public": false,
           "default": "[]",
           "types": [
-            [
-              "array",
-              "Validator"
-            ]
+            "array"
           ],
           "description": "An array containing all the validators of the element."
         },
@@ -5414,10 +5372,7 @@ export default {
           "public": false,
           "default": "[]",
           "types": [
-            [
-              "array",
-              "Validator"
-            ]
+            "array"
           ],
           "description": "An array containing all the validators of the element."
         },
@@ -5546,10 +5501,7 @@ export default {
           "public": false,
           "default": "[]",
           "types": [
-            [
-              "array",
-              "Validator"
-            ]
+            "array"
           ],
           "description": "An array containing all the validators of the element."
         },
@@ -5678,10 +5630,7 @@ export default {
           "public": false,
           "default": "[]",
           "types": [
-            [
-              "array",
-              "Validator"
-            ]
+            "array"
           ],
           "description": "An array containing all the validators of the element."
         },
@@ -5831,10 +5780,7 @@ export default {
           "public": false,
           "default": "[]",
           "types": [
-            [
-              "array",
-              "Validator"
-            ]
+            "array"
           ],
           "description": "An array containing all the validators of the element."
         },
@@ -5987,10 +5933,7 @@ export default {
           "public": false,
           "default": "[]",
           "types": [
-            [
-              "array",
-              "Validator"
-            ]
+            "array"
           ],
           "description": "An array containing all the validators of the element."
         },

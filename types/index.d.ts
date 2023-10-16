@@ -1,4 +1,4 @@
-import { App, defineComponent } from 'vue';
+import { App, defineComponent, DefineComponent, VNode } from 'vue';
 
 interface MessageBag {
   constructor(baseErrors: any);
@@ -13,6 +13,660 @@ interface MessageBag {
   clear(type: any): void;
   clearPrepended(type: any): void;
   clearAppended(type: any): void;
+}
+
+interface MergeClasses {
+  constructor(options?: {});
+  options: {};
+  componentClasses: any;
+  get classes(): any;
+  get config(): any;
+  get component(): any;
+  get component$(): any;
+  get locals(): any;
+  get view(): any;
+  get theme(): any;
+  get presets(): any;
+  get templates(): any;
+  get template(): any;
+  get themeClasses(): any;
+  get templateClasses(): any;
+  get shouldMergeTemplateClasses(): any;
+  get defaultClasses(): any;
+  get mainClass(): string;
+  merge(merge: any, locals?: boolean): void;
+  mergeComponentClasses(componentClasses: any, key: any): void;
+  addClasses(add: any, levels: any): void;
+  prependClasses(prepend: any, levels: any): void;
+  removeClasses(remove: any, levels: any): void;
+  replaceClasses(replace: any, levels: any): void;
+  overrideClasses(override: any, levels: any): void;
+  toArray(componentClasses: any): {};
+  classesToArray(classes: any, path: any): any;
+  getDynamicClasses(target: any, prop: any, mainTarget: any): any;
+  getClassHelpers(componentClasses: any, path: any): {};
+  pick(from: any, picks: any): {};
+}
+
+interface Columns {
+  constructor(options: any, hasLabel: any, getClass: any, presets: any);
+  defaultBreakpoint: string;
+  presets: any;
+  configPresetColumns: {};
+  configColumns: {};
+  formPresetColumns: {};
+  formColumns: {};
+  presetColumns: {};
+  columns: {};
+  hasLabel: any;
+  getClass: any;
+  cols: any;
+  get classes(): {
+    container: any[];
+    label: any[];
+    innerContainer: any[];
+    wrapper: any[];
+  };
+  serialize(columns: any): {};
+  columnsFromPresets(presets: any): undefined;
+  getNullClass(): any[];
+  getClasses(type: any): any[];
+  getCols(): any;
+}
+
+interface Component extends DefineComponent {}
+
+interface VueformComponent extends DefineComponent {}
+
+interface VueformElement extends DefineComponent {
+  // Props
+  name: string | number;
+  conditions: Array<any>;
+  onBeforeCreate: Function;
+  onCreated: Function;
+  onBeforeMount: Function;
+  onMounted: Function;
+  onBeforeUpdate: Function;
+  onUpdated: Function;
+  onBeforeUnmount: Function;
+  onUnmounted: Function;
+  inline: boolean;
+  layout: string | object | boolean;
+  addClass: Array<any> | object | string;
+  removeClass: Array<any> | object;
+  replaceClass: object;
+  overrideClass: Array<any> | object | string;
+  addClasses: object;
+  replaceClasses: object;
+  removeClasses: object;
+  overrideClasses: object;
+  presets: Array<any>;
+  view: string;
+  views: object;
+  size: string;
+  columns: object | string | number;
+  templates: object;
+  description: string | object;
+  info: string | object;
+  infoPosition: string;
+  label: string | object | Function;
+  before: object | string | number;
+  between: object | string | number;
+  after: object | string | number;
+  slots: object;
+  type: string;
+  buttonLabel: string | object | Function;
+  buttonType: string;
+  buttonClass: string | Array<any> | object;
+  id: string;
+  disabled: Function | boolean;
+  loading: Function | boolean;
+  href: string;
+  target: string;
+  onClick: Function;
+  resets: boolean;
+  submits: boolean;
+  secondary: boolean;
+  danger: boolean;
+  onChange: Function;
+  formatData: Function;
+  formatLoad: Function;
+  submit: boolean;
+  rules: Array<any> | string | object;
+  messages: object;
+  fieldName: string;
+  default: string | boolean | number | Array<any> | Date | object;
+  text: string | object;
+  trueValue: boolean | string | number;
+  falseValue: boolean | string | number;
+  items: object | Array<any> | Function | string;
+  disables: Array<any>;
+  clearOnRefetch: boolean;
+  addons: object;
+  floating: string | boolean | object;
+  displayFormat: string;
+  valueFormat: string | boolean;
+  loadFormat: string | boolean;
+  date: boolean;
+  time: boolean;
+  seconds: boolean;
+  hour24: boolean;
+  min: string | Date | number;
+  max: string | Date | number;
+  extendOptions: object;
+  placeholder: string | object;
+  readonly: boolean;
+  mode: string;
+  debounce: number;
+  onError: Function;
+  onAlert: Function;
+  accept: Array<any> | string;
+  acceptMimes: Array<any>;
+  endpoint: string | Function;
+  method: string;
+  hideTools: Array<any>;
+  onBlur: Function;
+  onRemove: Function;
+  drop: boolean;
+  clickable: boolean;
+  url: string | boolean;
+  previewUrl: string;
+  auto: boolean;
+  urls: object;
+  methods: object;
+  uploadTempEndpoint: object | string | Function;
+  removeTempEndpoint: object | string | Function;
+  removeEndpoint: object | string | Function;
+  params: object;
+  softRemove: boolean;
+  embed: boolean;
+  schema: object;
+  meta: boolean;
+  onAdd: Function;
+  onSort: Function;
+  element: object;
+  object: object | boolean;
+  initial: number;
+  addText: string;
+  sort: boolean;
+  controls: object;
+  storeOrder: string;
+  order: string;
+  orderBy: string;
+  attrs: object;
+  provider: string;
+  displayKey: string;
+  storeFile: string;
+  fields: object;
+  file: object;
+  onSelect: Function;
+  onDeselect: Function;
+  onSearchChange: Function;
+  onOpen: Function;
+  onClose: Function;
+  onClear: Function;
+  onPaste: Function;
+  native: boolean;
+  labelProp: string;
+  valueProp: string;
+  dataKey: string;
+  searchParam: string;
+  search: boolean;
+  trackBy: string | Array<any>;
+  strict: boolean;
+  multipleLabel: Function;
+  multipleLabelSingle: string;
+  multipleLabelMultiple: string;
+  create: boolean;
+  appendNewOption: boolean;
+  addOptionOn: Array<any>;
+  limit: number;
+  groups: boolean;
+  groupLabel: string;
+  groupOptions: string;
+  groupHideEmpty: boolean;
+  groupSelect: boolean;
+  openDirection: string;
+  canClear: boolean;
+  clearOnSelect: boolean;
+  closeOnSelect: boolean;
+  closeOnDeselect: boolean;
+  delay: number;
+  minChars: number;
+  resolveOnLoad: boolean;
+  filterResults: boolean;
+  clearOnSearch: boolean;
+  hideSelected: boolean;
+  caret: boolean;
+  noOptionsText: string | object;
+  noResultsText: string | object;
+  autocomplete: string | number;
+  inputType: string;
+  radioName: string;
+  radioValue: boolean | string | number;
+  canDeselect: boolean;
+  truncate: boolean;
+  step: number;
+  tooltips: boolean;
+  showTooltip: string;
+  tooltipPosition: string;
+  merge: number;
+  format: object | Function;
+  orientation: string;
+  direction: string;
+  lazy: boolean;
+  content: string | object;
+  wrap: boolean;
+  onKeydown: Function;
+  onKeyup: Function;
+  onKeypress: Function;
+  autogrow: boolean;
+  rows: number;
+  onTag: Function;
+  breakTags: boolean;
+  showOptions: boolean;
+  labels: object;
+
+  // Computed
+  descriptionId: string;
+  labelId: string;
+  infoId: string;
+  errorId: string;
+  aria: object;
+  el$: VueformElement;
+  isStatic: boolean;
+  isFileType: boolean;
+  isArrayType: boolean;
+  isImageType: boolean;
+  isActive: boolean;
+  isButtonLabelComponent: boolean;
+  button: object;
+  isLoading: boolean;
+  classes: object;
+  classesInstance: MergeClasses;
+  cols: object;
+  columnsClassesService: Columns;
+  columnsClasses: object;
+  available: boolean;
+  isDisabled: boolean;
+  fieldId: string;
+  hasLabel: boolean;
+  Label: string | Component;
+  elementLayout: string | Component;
+  path: string;
+  flat: boolean;
+  parent: VNode;
+  elementSlots: object;
+  fieldSlots: object;
+  Templates: object;
+  template: object;
+  visible: boolean;
+  Size: string;
+  View: string;
+  Views: object;
+  data: object;
+  requestData: object;
+  defaultValue: any;
+  genericName: string;
+  nullValue: any;
+  dataPath: string;
+  Text: string;
+  dirty: boolean;
+  validated: boolean;
+  invalid: boolean;
+  pending: boolean;
+  busy: boolean;
+  errors: Array<any>;
+  error: string;
+  validationRules: string | Array<any>;
+  isDanger: boolean;
+  isSuccess: boolean;
+  value: any;
+  model: any;
+  resolvedOptions: Array<any>;
+  displayDateFormat: string;
+  valueDateFormat: string;
+  loadDateFormat: string;
+  empty: boolean;
+  hasFloating: boolean;
+  Placeholder: string;
+  editorEndpoint: string;
+  editorMethod: string;
+  debouncing: boolean;
+  canDrop: boolean;
+  endpoints: object;
+  fileUrl: string | boolean;
+  stage: number;
+  filename: string;
+  link: string;
+  preview: string;
+  uploaded: boolean;
+  canRemove: boolean;
+  canUploadTemp: boolean;
+  canSelect: boolean;
+  uploading: boolean;
+  children: object;
+  children$: object;
+  childrenErrors: Array<any>;
+  hasAdd: boolean;
+  hasRemove: boolean;
+  hasSort: boolean;
+  addLabel: string;
+  length: number;
+  orderByName: string;
+  prototype: object;
+  isObject: boolean;
+  isSortable: boolean;
+  defaultOptions: object;
+  preparing: boolean;
+  hasUploading: boolean;
+  storeFileName: string;
+  inputName: string;
+  isHtml: boolean;
+  componentContent: object;
+  slotContent: object;
+  language: string;
+  languages: Array<any>;
+
+  // Data
+  active: boolean;
+  mounted: boolean;
+  container: HTMLElement;
+  conditionList: Array<any>;
+  events: Array<any>;
+  listeners: object;
+  hidden: boolean;
+  localDisabled: boolean | null;
+  input: HTMLElement;
+  state: object;
+  Validators: Array<any>;
+  messageBag: MessageBag;
+  initialValue: any;
+  internalValue: any;
+  watchers: Array<any> | object;
+  disabledItems: Array<any>;
+  focused: boolean;
+  hasUploadError: boolean;
+  base64: string;
+  progress: number;
+  preparing: boolean;
+  removing: boolean;
+  request: object;
+  axios: object;
+  children$Array: Array<any>;
+  list: HTMLElement;
+  sortable: object;
+  sorting: boolean;
+  locationService: class;
+  location: class;
+
+  // Methods
+  activate: () => void;
+  deactivate: () => void;
+  handleClick: (e: Event) => void;
+  updateColumns: (value: number | Array<any>) => void;
+  updateConditions: () => void;
+  on: (event: string, callback: Function) => void;
+  off: (event: string) => void;
+  fire: (args: any) => void;
+  focus: () => void;
+  hide: () => void;
+  show: () => void;
+  load: (value: any, format: boolean) => void;
+  update: (value: any) => void;
+  clear: () => void;
+  reset: () => void;
+  disable: () => void;
+  enable: () => void;
+  check: () => void;
+  uncheck: () => void;
+  validate: () => void;
+  dirt: () => void;
+  clean: () => void;
+  clearMessages: () => void;
+  resetValidators: () => void;
+  initMessageBag: () => void;
+  initValidation: () => void;
+  reinitValidation: () => void;
+  resolveOptions: () => void;
+  updateItems: (disable: boolean) => void;
+  cleanupValue: (values: Array<any>) => void;
+  resolveUrlAndSetWatchers: (url: string, updateItems: Function) => void;
+  toggle: (value: string | number) => void;
+  checkAll: () => void;
+  uncheckAll: () => void;
+  disableAll: () => void;
+  enableAll: () => void;
+  handleChange: (val: any) => void;
+  handleAlert: (message: string) => void;
+  handleBlur: () => void;
+  handleError: (error: Error) => void;
+  handleInput: (e: Event) => void;
+  handleDrop: (e: Event) => void;
+  uploadTemp: () => void;
+  remove: () => void;
+  prepare: () => void;
+  handleUploadTemp: () => void;
+  handleRemove: () => void;
+  handleAbort: () => void;
+  component: (element: string) => string;
+  validateValidators: () => void;
+  validateChildren: () => void;
+  add: (value: any) => number;
+  handleAdd: () => void;
+  refreshOrderStore: (value: Array<any>) => void;
+  handleSort: (e: Event) => void;
+  initSortable: () => void;
+  destroySortable: () => void;
+  handleAddressChange: (data: object, raw: object) => void;
+  handleLocationBlur: () => void;
+  initLocationService: () => void;
+  handleSelect: (option: object) => void;
+  handleDeselect: (option: object) => void;
+  handleSearchChange: (searchQuery: string) => void;
+  handleOpen: () => void;
+  handleClose: () => void;
+  handleClear: () => void;
+  handlePaste: (e: Event) => void;
+  select: (options: string | Array<any>) => void;
+  deselect: (options: string | Array<any>) => void;
+  handleUpdate: (val: string) => void;
+  validateLanguage: (lang: string) => void;
+  initState: () => void;
+  handleKeydown: (e: Event) => void;
+  handleKeyup: (e: Event) => void;
+  handleKeypress: (e: Event) => void;
+  autosize: () => void;
+  handleTag: (searchQuery: string) => void;
+}
+
+interface VueformSchema {
+  conditions?: Array<any>;
+  onBeforeCreate?: Function;
+  onCreated?: Function;
+  onBeforeMount?: Function;
+  onMounted?: Function;
+  onBeforeUpdate?: Function;
+  onUpdated?: Function;
+  onBeforeUnmount?: Function;
+  onUnmounted?: Function;
+  inline?: boolean;
+  layout?: string | object | boolean;
+  addClass?: Array<any> | object | string;
+  removeClass?: Array<any> | object;
+  replaceClass?: object;
+  overrideClass?: Array<any> | object | string;
+  addClasses?: object;
+  replaceClasses?: object;
+  removeClasses?: object;
+  overrideClasses?: object;
+  presets?: Array<any>;
+  view?: string;
+  views?: object;
+  size?: string;
+  columns?: object | string | number;
+  templates?: object;
+  description?: string | object;
+  info?: string | object;
+  infoPosition?: string;
+  label?: string | object | Function;
+  before?: object | string | number;
+  between?: object | string | number;
+  after?: object | string | number;
+  slots?: object;
+  type: string;
+  buttonLabel?: string | object | Function;
+  buttonType?: string;
+  buttonClass?: string | Array<any> | object;
+  id?: string;
+  disabled?: Function | boolean;
+  loading?: Function | boolean;
+  href?: string;
+  target?: string;
+  onClick?: Function;
+  resets?: boolean;
+  submits?: boolean;
+  secondary?: boolean;
+  danger?: boolean;
+  onChange?: Function;
+  formatData?: Function;
+  formatLoad?: Function;
+  submit?: boolean;
+  rules?: Array<any> | string | object;
+  messages?: object;
+  fieldName?: string;
+  default?: string | boolean | number | Array<any> | Date | object;
+  text?: string | object;
+  trueValue?: boolean | string | number;
+  falseValue?: boolean | string | number;
+  items?: object | Array<any> | Function | string;
+  disables?: Array<any>;
+  clearOnRefetch?: boolean;
+  addons?: object;
+  floating?: string | boolean | object;
+  displayFormat?: string;
+  valueFormat?: string | boolean;
+  loadFormat?: string | boolean;
+  date?: boolean;
+  time?: boolean;
+  seconds?: boolean;
+  hour24?: boolean;
+  min?: string | Date | number;
+  max?: string | Date | number;
+  extendOptions?: object;
+  placeholder?: string | object;
+  readonly?: boolean;
+  mode?: string;
+  debounce?: number;
+  onError?: Function;
+  onAlert?: Function;
+  accept?: Array<any> | string;
+  acceptMimes?: Array<any>;
+  endpoint?: string | Function;
+  method?: string;
+  hideTools?: Array<any>;
+  onBlur?: Function;
+  onRemove?: Function;
+  drop?: boolean;
+  clickable?: boolean;
+  url?: string | boolean;
+  previewUrl?: string;
+  auto?: boolean;
+  urls?: object;
+  methods?: object;
+  uploadTempEndpoint?: object | string | Function;
+  removeTempEndpoint?: object | string | Function;
+  removeEndpoint?: object | string | Function;
+  params?: object;
+  softRemove?: boolean;
+  embed?: boolean;
+  schema?: object;
+  meta?: boolean;
+  onAdd?: Function;
+  onSort?: Function;
+  element?: object;
+  object?: object | boolean;
+  initial?: number;
+  addText?: string;
+  sort?: boolean;
+  controls?: object;
+  storeOrder?: string;
+  order?: string;
+  orderBy?: string;
+  attrs?: object;
+  provider?: string;
+  displayKey?: string;
+  storeFile?: string;
+  fields?: object;
+  file?: object;
+  onSelect?: Function;
+  onDeselect?: Function;
+  onSearchChange?: Function;
+  onOpen?: Function;
+  onClose?: Function;
+  onClear?: Function;
+  onPaste?: Function;
+  native?: boolean;
+  labelProp?: string;
+  valueProp?: string;
+  dataKey?: string;
+  searchParam?: string;
+  search?: boolean;
+  trackBy?: string | Array<any>;
+  strict?: boolean;
+  multipleLabel?: Function;
+  multipleLabelSingle?: string;
+  multipleLabelMultiple?: string;
+  create?: boolean;
+  appendNewOption?: boolean;
+  addOptionOn?: Array<any>;
+  limit?: number;
+  groups?: boolean;
+  groupLabel?: string;
+  groupOptions?: string;
+  groupHideEmpty?: boolean;
+  groupSelect?: boolean;
+  openDirection?: string;
+  canClear?: boolean;
+  clearOnSelect?: boolean;
+  closeOnSelect?: boolean;
+  closeOnDeselect?: boolean;
+  delay?: number;
+  minChars?: number;
+  resolveOnLoad?: boolean;
+  filterResults?: boolean;
+  clearOnSearch?: boolean;
+  hideSelected?: boolean;
+  caret?: boolean;
+  noOptionsText?: string | object;
+  noResultsText?: string | object;
+  autocomplete?: string | number;
+  inputType?: string;
+  radioName?: string;
+  radioValue?: boolean | string | number;
+  canDeselect?: boolean;
+  truncate?: boolean;
+  step?: number;
+  tooltips?: boolean;
+  showTooltip?: string;
+  tooltipPosition?: string;
+  merge?: number;
+  format?: object | Function;
+  orientation?: string;
+  direction?: string;
+  lazy?: boolean;
+  content?: string | object;
+  wrap?: boolean;
+  onKeydown?: Function;
+  onKeyup?: Function;
+  onKeypress?: Function;
+  autogrow?: boolean;
+  rows?: number;
+  onTag?: Function;
+  breakTags?: boolean;
+  showOptions?: boolean;
+  labels?: object;
+  [key: string]: any;
 }
 
 interface DragAndDropProps {
@@ -133,7 +787,9 @@ interface FormTabsProps {
 }
 
 interface VueformProps {
-  schema?: object;
+  schema?: {
+    [key: string]: VueformSchema;
+  };
   name?: string;
   tabs?: object;
   steps?: object;
@@ -326,7 +982,7 @@ interface CheckboxElementProps {
   messages?: object;
   fieldName?: string;
   type?: string;
-  default?: string | boolean | number;
+  default?: string | boolean | number | Array<any> | Date | object;
   id?: string;
   text?: string | object;
   disabled?: boolean;
@@ -428,20 +1084,20 @@ interface DateElementProps {
   messages?: object;
   fieldName?: string;
   type?: string;
-  default?: string | date;
+  default?: string | Date;
   addons?: object;
   disabled?: boolean;
   floating?: string | boolean | object;
   id?: string;
   displayFormat?: string;
   valueFormat?: string | boolean;
-  loadFormat?: string;
+  loadFormat?: string | boolean;
   date?: boolean;
   time?: boolean;
   seconds?: boolean;
   hour24?: boolean;
-  min?: string | date;
-  max?: string | date;
+  min?: string | Date | number;
+  max?: string | Date | number;
   disables?: Array<any>;
   extendOptions?: object;
   placeholder?: string | object;
@@ -500,8 +1156,8 @@ interface DatesElementProps {
   valueFormat?: string | boolean;
   loadFormat?: string | boolean;
   mode?: string;
-  min?: string | date;
-  max?: string | date;
+  min?: string | Date;
+  max?: string | Date;
   disables?: Array<any>;
   extendOptions?: object;
   placeholder?: string | object;
@@ -558,7 +1214,7 @@ interface EditorElementProps {
   placeholder?: string | object;
   onError?: Function;
   onAlert?: Function;
-  accept?: Array<any>;
+  accept?: Array<any> | string;
   acceptMimes?: Array<any>;
   endpoint?: string | Function;
   method?: string;
@@ -752,7 +1408,7 @@ interface ListElementProps {
   onRemove?: Function;
   onSort?: Function;
   element?: object;
-  object?: object;
+  object?: object | boolean;
   initial?: number;
   min?: number;
   max?: number;
@@ -988,7 +1644,7 @@ interface MultiselectElementProps {
   loading?: boolean;
   noOptionsText?: string | object;
   noResultsText?: string | object;
-  autocomplete?: string;
+  autocomplete?: string | number;
   inputType?: string;
   extendOptions?: object;
 }
@@ -1812,6 +2468,12 @@ declare class DragAndDrop implements ReturnType<typeof defineComponent> {
   dragging: boolean;
   area: HTMLElement;
 
+  // Injects
+  el$: VueformElement;
+  form$: Vueform;
+  Size: string;
+  theme: object;
+
   // Methods
   handleClick: () => void;
 
@@ -1832,9 +2494,15 @@ declare class ElementAddon implements ReturnType<typeof defineComponent> {
   Templates: object;
   template: object;
   classes: object;
-  addon: string | component;
+  addon: string | Component;
   isAddonComponent: boolean;
   isSlot: boolean;
+
+  // Injects
+  el$: VueformElement;
+  form$: Vueform;
+  theme: object;
+  Size: string;
 
   //Slots
   $slots: {
@@ -1855,6 +2523,12 @@ declare class ElementDescription implements ReturnType<typeof defineComponent> {
   isSlot: boolean;
   id: string;
 
+  // Injects
+  el$: VueformElement;
+  form$: Vueform;
+  Size: string;
+  theme: object;
+
   //Slots
   $slots: {
     'default': VNode[];
@@ -1872,6 +2546,12 @@ declare class ElementError implements ReturnType<typeof defineComponent> {
   template: object;
   error: string;
   id: string;
+
+  // Injects
+  el$: VueformElement;
+  form$: Vueform;
+  Size: string;
+  theme: object;
 }
 
 declare class ElementInfo implements ReturnType<typeof defineComponent> {
@@ -1890,6 +2570,12 @@ declare class ElementInfo implements ReturnType<typeof defineComponent> {
   // Data
   position: boolean;
 
+  // Injects
+  el$: VueformElement;
+  form$: Vueform;
+  Size: string;
+  theme: object;
+
   //Slots
   $slots: {
     'default': VNode[];
@@ -1905,12 +2591,18 @@ declare class ElementLabel implements ReturnType<typeof defineComponent> {
   classes: object;
   Templates: object;
   template: object;
-  label: string | component;
+  label: string | Component;
   isLabelComponent: boolean;
   name: string;
   id: string;
   hasLabel: boolean;
   isSlot: boolean;
+
+  // Injects
+  el$: VueformElement;
+  form$: Vueform;
+  Size: string;
+  theme: object;
 
   //Slots
   $slots: {
@@ -1932,6 +2624,12 @@ declare class ElementLabelFloating implements ReturnType<typeof defineComponent>
   Templates: object;
   template: object;
   floating: string;
+
+  // Injects
+  el$: VueformElement;
+  form$: Vueform;
+  Size: string;
+  theme: object;
 }
 
 declare class ElementLayout implements ReturnType<typeof defineComponent> {
@@ -1948,6 +2646,12 @@ declare class ElementLayout implements ReturnType<typeof defineComponent> {
   template: object;
   classes: object;
   visible: boolean;
+
+  // Injects
+  el$: VueformElement;
+  form$: Vueform;
+  Size: string;
+  theme: object;
 
   //Slots
   $slots: {
@@ -1972,6 +2676,12 @@ declare class ElementLayoutInline implements ReturnType<typeof defineComponent> 
   classes: object;
   visible: boolean;
 
+  // Injects
+  el$: VueformElement;
+  form$: Vueform;
+  Size: string;
+  theme: object;
+
   //Slots
   $slots: {
     'field': VNode[];
@@ -1993,6 +2703,12 @@ declare class ElementLoader implements ReturnType<typeof defineComponent> {
   classes: object;
   Templates: object;
   template: object;
+
+  // Injects
+  el$: VueformElement;
+  form$: Vueform;
+  Size: string;
+  theme: object;
 }
 
 declare class ElementMessage implements ReturnType<typeof defineComponent> {
@@ -2005,6 +2721,12 @@ declare class ElementMessage implements ReturnType<typeof defineComponent> {
   Templates: object;
   template: object;
   message: string;
+
+  // Injects
+  el$: VueformElement;
+  form$: Vueform;
+  Size: string;
+  theme: object;
 }
 
 declare class ElementText implements ReturnType<typeof defineComponent> {
@@ -2022,6 +2744,12 @@ declare class ElementText implements ReturnType<typeof defineComponent> {
   content: string;
   isSlot: boolean;
 
+  // Injects
+  el$: VueformElement;
+  form$: Vueform;
+  Size: string;
+  theme: object;
+
   //Slots
   $slots: {
     'default': VNode[];
@@ -2036,11 +2764,16 @@ declare class FormElements implements ReturnType<typeof defineComponent> {
 
   // Computed
   View: string;
-  classesInstance: object;
+  classesInstance: MergeClasses;
   classes: object;
   Templates: object;
   template: object;
   schema: object;
+
+  // Injects
+  form$: Vueform;
+  Size: string;
+  theme: object;
 
   // Methods
   component: (element: string) => string;
@@ -2059,11 +2792,16 @@ declare class FormErrors implements ReturnType<typeof defineComponent> {
 
   // Computed
   View: string;
-  classesInstance: object;
+  classesInstance: MergeClasses;
   classes: object;
   Templates: object;
   template: object;
   errors: Array<any>;
+
+  // Injects
+  form$: Vueform;
+  Size: string;
+  theme: object;
 }
 
 declare class FormLanguage implements ReturnType<typeof defineComponent> {
@@ -2076,12 +2814,17 @@ declare class FormLanguage implements ReturnType<typeof defineComponent> {
 
   // Computed
   View: string;
-  classesInstance: object;
+  classesInstance: MergeClasses;
   selectedLanguage: string;
   selected: boolean;
   classes: object;
   Templates: object;
   template: object;
+
+  // Injects
+  form$: Vueform;
+  Size: string;
+  theme: object;
 
   // Methods
   select: () => void;
@@ -2098,12 +2841,17 @@ declare class FormLanguages implements ReturnType<typeof defineComponent> {
 
   // Computed
   View: string;
-  classesInstance: object;
+  classesInstance: MergeClasses;
   classes: object;
   Templates: object;
   template: object;
   language: string;
   languages: object;
+
+  // Injects
+  form$: Vueform;
+  Size: string;
+  theme: object;
 
   // Methods
   select: (code: string) => void;
@@ -2118,11 +2866,16 @@ declare class FormMessages implements ReturnType<typeof defineComponent> {
 
   // Computed
   View: string;
-  classesInstance: object;
+  classesInstance: MergeClasses;
   classes: object;
   Templates: object;
   template: object;
   messages: Array<any>;
+
+  // Injects
+  form$: Vueform;
+  Size: string;
+  theme: object;
 }
 
 declare class FormStep implements ReturnType<typeof defineComponent> {
@@ -2147,8 +2900,8 @@ declare class FormStep implements ReturnType<typeof defineComponent> {
 
   // Computed
   View: string;
-  classesInstance: object;
-  steps$: component;
+  classesInstance: MergeClasses;
+  steps$: FormSteps;
   elements$: object;
   isFirst: boolean;
   isLast: boolean;
@@ -2165,7 +2918,7 @@ declare class FormStep implements ReturnType<typeof defineComponent> {
   validated: boolean;
   busy: boolean;
   done: boolean;
-  step$: component;
+  step$: FormStep;
   isLabelComponent: boolean;
   index: number;
 
@@ -2175,11 +2928,16 @@ declare class FormStep implements ReturnType<typeof defineComponent> {
   completed: boolean;
   events: Array<any>;
   listeners: object;
-  stepLabel: string | component;
+  stepLabel: string | Component;
   conditionList: Array<any>;
 
+  // Injects
+  form$: Vueform;
+  Size: string;
+  theme: object;
+
   // Methods
-  validate: () => void;
+  validate: () => Promise;
   activate: () => void;
   deactivate: () => void;
   enable: () => void;
@@ -2216,7 +2974,7 @@ declare class FormSteps implements ReturnType<typeof defineComponent> {
 
   // Computed
   View: string;
-  classesInstance: object;
+  classesInstance: MergeClasses;
   steps: object;
   elements$: object;
   classes: object;
@@ -2229,14 +2987,14 @@ declare class FormSteps implements ReturnType<typeof defineComponent> {
   done: boolean;
   busy: boolean;
   visible$: object;
-  first$: component;
-  last$: component;
-  current$: component;
-  next$: component;
-  previous$: component;
-  firstInvalid$: component;
-  firstNonDone$: component;
-  lastEnabled$: component;
+  first$: FormStep | undefined;
+  last$: FormStep | undefined;
+  current$: FormStep | undefined;
+  next$: FormStep | undefined;
+  previous$: FormStep | undefined;
+  firstInvalid$: FormStep | undefined;
+  firstNonDone$: FormStep | undefined;
+  lastEnabled$: FormStep | undefined;
   isAtLastStep: boolean;
   isAtFirstStep: boolean;
 
@@ -2246,17 +3004,22 @@ declare class FormSteps implements ReturnType<typeof defineComponent> {
   listeners: object;
   exists: boolean;
 
+  // Injects
+  form$: Vueform;
+  Size: string;
+  theme: object;
+
   // Methods
   goTo: (name: string, enableUntil?: boolean) => void;
   next: () => void;
   previous: () => void;
   complete: () => void;
-  step$: (name: string) => object;
+  step$: (name: string) => FormStep | undefined;
   reset: () => void;
   enableAllSteps: () => void;
   submit: () => void;
-  select: (step$?: component) => void;
-  enableUntil: (index?: integer) => void;
+  select: (step$?: FormStep) => void;
+  enableUntil: (index?: number) => void;
   enableUntilCurrent: () => void;
   enableUntilLastEnabled: () => void;
   on: (event?: string, callback?: Function) => void;
@@ -2280,7 +3043,7 @@ declare class FormStepsControl implements ReturnType<typeof defineComponent> {
 
   // Computed
   View: string;
-  classesInstance: object;
+  classesInstance: MergeClasses;
   steps$: FormSteps;
   classes: object;
   Templates: object;
@@ -2289,14 +3052,19 @@ declare class FormStepsControl implements ReturnType<typeof defineComponent> {
   isDisabled: boolean;
   isLoading: boolean;
   current$: FormStep;
-  label: string | component;
+  label: string | Component;
   isLabelComponent: boolean;
+
+  // Injects
+  form$: Vueform;
+  Size: string;
+  theme: object;
 
   // Methods
   previous: () => void;
-  next: () => void;
-  finish: () => void;
-  handleClick: () => void;
+  next: () => Promise;
+  finish: () => Promise;
+  handleClick: (e?: Event) => void;
 
   //Slots
   $slots: {
@@ -2313,10 +3081,15 @@ declare class FormStepsControls implements ReturnType<typeof defineComponent> {
 
   // Computed
   View: string;
-  classesInstance: object;
+  classesInstance: MergeClasses;
   classes: object;
   Templates: object;
   template: object;
+
+  // Injects
+  form$: Vueform;
+  Size: string;
+  theme: object;
 
   //Slots
   $slots: {
@@ -2344,7 +3117,7 @@ declare class FormTab implements ReturnType<typeof defineComponent> {
 
   // Computed
   View: string;
-  classesInstance: object;
+  classesInstance: MergeClasses;
   elements$: object;
   index: number;
   isFirst: boolean;
@@ -2357,15 +3130,20 @@ declare class FormTab implements ReturnType<typeof defineComponent> {
   template: object;
   available: boolean;
   isLabelComponent: boolean;
-  tab$: component;
-  tabs$: component;
+  tab$: FormTab;
+  tabs$: FormTabs;
 
   // Data
   active: boolean;
   events: Array<any>;
   listeners: object;
-  tabLabel: string | component;
+  tabLabel: string | Component;
   conditionList: Array<any>;
+
+  // Injects
+  form$: Vueform;
+  Size: string;
+  theme: object;
 
   // Methods
   select: () => void;
@@ -2397,7 +3175,7 @@ declare class FormTabs implements ReturnType<typeof defineComponent> {
 
   // Computed
   View: string;
-  classesInstance: object;
+  classesInstance: MergeClasses;
   tabs: object;
   elements$: object;
   classes: object;
@@ -2405,11 +3183,11 @@ declare class FormTabs implements ReturnType<typeof defineComponent> {
   template: object;
   tabs$: object;
   visible$: object;
-  current$: component;
-  first$: component;
-  last$: component;
-  next$: component;
-  previous$: component;
+  current$: FormTab;
+  first$: FormTab;
+  last$: FormTab;
+  next$: FormTab;
+  previous$: FormTab;
 
   // Data
   tabs$Array: Array<any>;
@@ -2417,10 +3195,15 @@ declare class FormTabs implements ReturnType<typeof defineComponent> {
   listeners: object;
   exists: boolean;
 
+  // Injects
+  form$: Vueform;
+  Size: string;
+  theme: object;
+
   // Methods
   goTo: (name: string) => void;
-  select: (tab$?: component) => void;
-  tab$: (tab: string) => object;
+  select: (tab$?: FormTab) => void;
+  tab$: (tab: string) => FormTab;
   reset: () => void;
   on: (event?: string, callback?: Function) => void;
   off: (event?: string) => void;
@@ -2524,7 +3307,7 @@ declare class Vueform implements ReturnType<typeof defineComponent> {
   Size: string;
   View: string;
   Views: object;
-  form$: component;
+  form$: Vueform;
   model: object;
   isSync: boolean;
   tree: Array<any>;
@@ -2533,8 +3316,8 @@ declare class Vueform implements ReturnType<typeof defineComponent> {
   locale$: string;
 
   // Data
-  tabs$: component;
-  steps$: component;
+  tabs$: FormTabs;
+  steps$: FormSteps;
   elements$: object;
   validation: boolean;
   conditions: boolean;
@@ -2568,7 +3351,7 @@ declare class Vueform implements ReturnType<typeof defineComponent> {
   disableConditions: () => void;
   setLanguage: (code: string) => void;
   handleSubmit: () => void;
-  el$: (path?: string) => object | null;
+  el$: (path?: string) => VueformElement | null;
   siblings$: (path?: string) => void;
   initMessageBag: () => void;
   fire: (args?: any) => void;
@@ -2626,6 +3409,12 @@ declare class DatepickerWrapper implements ReturnType<typeof defineComponent> {
   datepicker$: object;
   input: HTMLElement;
 
+  // Injects
+  el$: VueformElement;
+  form$: Vueform;
+  Size: string;
+  theme: object;
+
   // Methods
   update: (value: Array<any> | Date) => void;
 
@@ -2658,6 +3447,12 @@ declare class EditorWrapper implements ReturnType<typeof defineComponent> {
 
   // Data
   editor$: HTMLElement;
+
+  // Injects
+  el$: VueformElement;
+  form$: Vueform;
+  Size: string;
+  theme: object;
 
   // Methods
   update: (value: string) => void;
@@ -2695,6 +3490,12 @@ declare class CheckboxgroupCheckbox implements ReturnType<typeof defineComponent
   name: boolean;
   checked: boolean;
 
+  // Injects
+  el$: VueformElement;
+  form$: Vueform;
+  Size: string;
+  theme: object;
+
   // Methods
   handleKeydown: (e: Event) => void;
 }
@@ -2728,6 +3529,12 @@ declare class FilePreview implements ReturnType<typeof defineComponent> {
   ariaPlaceholder: string;
   ariaRoledescription: string;
 
+  // Injects
+  el$: VueformElement;
+  form$: Vueform;
+  Size: string;
+  theme: object;
+
   // Methods
   upload: () => void;
   remove: () => void;
@@ -2754,6 +3561,12 @@ declare class RadiogroupRadio implements ReturnType<typeof defineComponent> {
   id: boolean;
   name: boolean;
   checked: boolean;
+
+  // Injects
+  el$: VueformElement;
+  form$: Vueform;
+  Size: string;
+  theme: object;
 
   // Methods
   handleKeydown: (e: Event) => void;
@@ -2818,7 +3631,7 @@ declare class ButtonElement implements ReturnType<typeof defineComponent> {
   infoId: string;
   errorId: string;
   aria: object;
-  el$: component;
+  el$: VueformElement;
   isStatic: boolean;
   isFileType: boolean;
   isArrayType: boolean;
@@ -2836,11 +3649,11 @@ declare class ButtonElement implements ReturnType<typeof defineComponent> {
   isDisabled: boolean;
   fieldId: string;
   hasLabel: boolean;
-  Label: string | component;
-  elementLayout: string | component;
+  Label: string | Component;
+  elementLayout: string | Component;
   path: string;
   flat: boolean;
-  parent: component;
+  parent: VNode;
   elementSlots: object;
   fieldSlots: object;
   Templates: object;
@@ -2858,6 +3671,10 @@ declare class ButtonElement implements ReturnType<typeof defineComponent> {
   events: Array<any>;
   listeners: object;
   hidden: boolean;
+
+  // Injects
+  form$: Vueform;
+  theme: object;
 
   // Methods
   activate: () => void;
@@ -2954,7 +3771,7 @@ declare class CheckboxElement implements ReturnType<typeof defineComponent> {
   infoId: string;
   errorId: string;
   aria: object;
-  el$: component;
+  el$: VueformElement;
   isStatic: boolean;
   isFileType: boolean;
   isArrayType: boolean;
@@ -2973,10 +3790,10 @@ declare class CheckboxElement implements ReturnType<typeof defineComponent> {
   fieldId: string;
   genericName: string;
   hasLabel: boolean;
-  Label: string | component;
-  elementLayout: string | component;
+  Label: string | Component;
+  elementLayout: string | Component;
   nullValue: any;
-  parent: component;
+  parent: VNode;
   path: string;
   dataPath: string;
   flat: boolean;
@@ -3012,19 +3829,23 @@ declare class CheckboxElement implements ReturnType<typeof defineComponent> {
   listeners: object;
   input: HTMLElement;
   state: object;
-  Validators: array,Validator;
+  Validators: Array<any>;
   messageBag: MessageBag;
   initialValue: any;
   internalValue: any;
   hidden: boolean;
+
+  // Injects
+  form$: Vueform;
+  theme: object;
 
   // Methods
   activate: () => void;
   deactivate: () => void;
   updateColumns: (value: number | Array<any>) => void;
   updateConditions: () => void;
-  load: (value: string, format: boolean) => void;
-  update: (value: string) => void;
+  load: (value: any, format: boolean) => void;
+  update: (value: any) => void;
   clear: () => void;
   reset: () => void;
   disable: () => void;
@@ -3129,7 +3950,7 @@ declare class CheckboxgroupElement implements ReturnType<typeof defineComponent>
   errorId: string;
   aria: object;
   resolvedOptions: Array<any>;
-  el$: component;
+  el$: VueformElement;
   isStatic: boolean;
   isFileType: boolean;
   isArrayType: boolean;
@@ -3148,10 +3969,10 @@ declare class CheckboxgroupElement implements ReturnType<typeof defineComponent>
   fieldId: string;
   genericName: string;
   hasLabel: boolean;
-  Label: string | component;
-  elementLayout: string | component;
+  Label: string | Component;
+  elementLayout: string | Component;
   nullValue: any;
-  parent: component;
+  parent: VNode;
   path: string;
   dataPath: string;
   flat: boolean;
@@ -3177,7 +3998,7 @@ declare class CheckboxgroupElement implements ReturnType<typeof defineComponent>
   Views: object;
 
   // Data
-  watchers: Array<any>;
+  watchers: Array<any> | object;
   active: boolean;
   mounted: boolean;
   container: HTMLElement;
@@ -3186,11 +4007,15 @@ declare class CheckboxgroupElement implements ReturnType<typeof defineComponent>
   events: Array<any>;
   listeners: object;
   state: object;
-  Validators: array,Validator;
+  Validators: Array<any>;
   messageBag: MessageBag;
   initialValue: any;
   internalValue: any;
   hidden: boolean;
+
+  // Injects
+  form$: Vueform;
+  theme: object;
 
   // Methods
   resolveOptions: () => void;
@@ -3323,7 +4148,7 @@ declare class DateElement implements ReturnType<typeof defineComponent> {
   infoId: string;
   errorId: string;
   aria: object;
-  el$: component;
+  el$: VueformElement;
   isStatic: boolean;
   isFileType: boolean;
   isArrayType: boolean;
@@ -3347,10 +4172,10 @@ declare class DateElement implements ReturnType<typeof defineComponent> {
   hasFloating: boolean;
   genericName: string;
   hasLabel: boolean;
-  Label: string | component;
-  elementLayout: string | component;
+  Label: string | Component;
+  elementLayout: string | Component;
   nullValue: any;
-  parent: component;
+  parent: VNode;
   path: string;
   dataPath: string;
   flat: boolean;
@@ -3387,11 +4212,15 @@ declare class DateElement implements ReturnType<typeof defineComponent> {
   focused: boolean;
   input: HTMLElement;
   state: object;
-  Validators: array,Validator;
+  Validators: Array<any>;
   messageBag: MessageBag;
   initialValue: any;
   internalValue: any;
   hidden: boolean;
+
+  // Injects
+  form$: Vueform;
+  theme: object;
 
   // Methods
   activate: () => void;
@@ -3408,7 +4237,7 @@ declare class DateElement implements ReturnType<typeof defineComponent> {
   off: (event: string) => void;
   fire: (args: any) => void;
   focus: () => void;
-  handleChange: (val: string) => void;
+  handleChange: (val: any) => void;
   validate: () => void;
   dirt: () => void;
   clean: () => void;
@@ -3512,7 +4341,7 @@ declare class DatesElement implements ReturnType<typeof defineComponent> {
   infoId: string;
   errorId: string;
   aria: object;
-  el$: component;
+  el$: VueformElement;
   isStatic: boolean;
   isFileType: boolean;
   isArrayType: boolean;
@@ -3536,10 +4365,10 @@ declare class DatesElement implements ReturnType<typeof defineComponent> {
   hasFloating: boolean;
   genericName: string;
   hasLabel: boolean;
-  Label: string | component;
-  elementLayout: string | component;
+  Label: string | Component;
+  elementLayout: string | Component;
   nullValue: any;
-  parent: component;
+  parent: VNode;
   path: string;
   dataPath: string;
   flat: boolean;
@@ -3576,11 +4405,15 @@ declare class DatesElement implements ReturnType<typeof defineComponent> {
   focused: boolean;
   input: HTMLElement;
   state: object;
-  Validators: array,Validator;
+  Validators: Array<any>;
   messageBag: MessageBag;
   initialValue: any;
   internalValue: any;
   hidden: boolean;
+
+  // Injects
+  form$: Vueform;
+  theme: object;
 
   // Methods
   activate: () => void;
@@ -3699,7 +4532,7 @@ declare class EditorElement implements ReturnType<typeof defineComponent> {
   infoId: string;
   errorId: string;
   aria: object;
-  el$: component;
+  el$: VueformElement;
   isStatic: boolean;
   isFileType: boolean;
   isArrayType: boolean;
@@ -3721,10 +4554,10 @@ declare class EditorElement implements ReturnType<typeof defineComponent> {
   fieldId: string;
   genericName: string;
   hasLabel: boolean;
-  Label: string | component;
-  elementLayout: string | component;
+  Label: string | Component;
+  elementLayout: string | Component;
   nullValue: any;
-  parent: component;
+  parent: VNode;
   path: string;
   dataPath: string;
   flat: boolean;
@@ -3762,11 +4595,15 @@ declare class EditorElement implements ReturnType<typeof defineComponent> {
   listeners: object;
   input: HTMLElement;
   state: object;
-  Validators: array,Validator;
+  Validators: Array<any>;
   messageBag: MessageBag;
   initialValue: any;
   internalValue: any;
   hidden: boolean;
+
+  // Injects
+  form$: Vueform;
+  theme: object;
 
   // Methods
   activate: () => void;
@@ -3895,7 +4732,7 @@ declare class FileElement implements ReturnType<typeof defineComponent> {
   infoId: string;
   errorId: string;
   aria: object;
-  el$: component;
+  el$: VueformElement;
   isStatic: boolean;
   isFileType: boolean;
   isArrayType: boolean;
@@ -3926,10 +4763,10 @@ declare class FileElement implements ReturnType<typeof defineComponent> {
   canSelect: boolean;
   genericName: string;
   hasLabel: boolean;
-  Label: string | component;
-  elementLayout: string | component;
+  Label: string | Component;
+  elementLayout: string | Component;
   nullValue: any;
-  parent: component;
+  parent: VNode;
   path: string;
   dataPath: string;
   flat: boolean;
@@ -3971,11 +4808,15 @@ declare class FileElement implements ReturnType<typeof defineComponent> {
   request: object;
   axios: object;
   state: object;
-  Validators: array,Validator;
+  Validators: Array<any>;
   messageBag: MessageBag;
   initialValue: any;
   internalValue: any;
   hidden: boolean;
+
+  // Injects
+  form$: Vueform;
+  theme: object;
 
   // Methods
   activate: () => void;
@@ -4093,14 +4934,14 @@ declare class GroupElement implements ReturnType<typeof defineComponent> {
   infoId: string;
   errorId: string;
   aria: object;
-  el$: component;
+  el$: VueformElement;
   isStatic: boolean;
   isFileType: boolean;
   isArrayType: boolean;
   isImageType: boolean;
   isActive: boolean;
   children: object;
-  children$: object,Element;
+  children$: object;
   classes: object;
   classesInstance: MergeClasses;
   cols: object;
@@ -4112,13 +4953,13 @@ declare class GroupElement implements ReturnType<typeof defineComponent> {
   defaultValue: any;
   fieldId: string;
   hasLabel: boolean;
-  Label: string | component;
-  elementLayout: string | component;
+  Label: string | Component;
+  elementLayout: string | Component;
   nullValue: any;
   path: string;
   dataPath: string;
   flat: boolean;
-  parent: component;
+  parent: VNode;
   elementSlots: object;
   fieldSlots: object;
   Templates: object;
@@ -4143,14 +4984,18 @@ declare class GroupElement implements ReturnType<typeof defineComponent> {
   active: boolean;
   mounted: boolean;
   container: HTMLElement;
-  children$Array: array,component;
+  children$Array: Array<any>;
   conditionList: Array<any>;
   events: Array<any>;
   listeners: object;
   state: object;
-  Validators: array,Validator;
+  Validators: Array<any>;
   messageBag: MessageBag;
   hidden: boolean;
+
+  // Injects
+  form$: Vueform;
+  theme: object;
 
   // Methods
   activate: () => void;
@@ -4228,7 +5073,7 @@ declare class HiddenElement implements ReturnType<typeof defineComponent> {
   meta: HiddenElementProps['meta'];
 
   // Computed
-  el$: component;
+  el$: VueformElement;
   isStatic: boolean;
   isFileType: boolean;
   isArrayType: boolean;
@@ -4242,7 +5087,7 @@ declare class HiddenElement implements ReturnType<typeof defineComponent> {
   fieldId: string;
   genericName: string;
   nullValue: any;
-  parent: component;
+  parent: VNode;
   path: string;
   dataPath: string;
   flat: boolean;
@@ -4270,10 +5115,14 @@ declare class HiddenElement implements ReturnType<typeof defineComponent> {
   listeners: object;
   input: HTMLElement;
   state: object;
-  Validators: array,Validator;
+  Validators: Array<any>;
   messageBag: MessageBag;
   initialValue: any;
   internalValue: any;
+
+  // Injects
+  form$: Vueform;
+  theme: object;
 
   // Methods
   activate: () => void;
@@ -4378,13 +5227,13 @@ declare class ListElement implements ReturnType<typeof defineComponent> {
   infoId: string;
   errorId: string;
   aria: object;
-  el$: component;
+  el$: VueformElement;
   isStatic: boolean;
   isFileType: boolean;
   isArrayType: boolean;
   isImageType: boolean;
   isActive: boolean;
-  children$: object,Element;
+  children$: object;
   classes: object;
   classesInstance: MergeClasses;
   cols: object;
@@ -4404,11 +5253,11 @@ declare class ListElement implements ReturnType<typeof defineComponent> {
   fieldId: string;
   genericName: string;
   hasLabel: boolean;
-  Label: string | component;
-  elementLayout: string | component;
+  Label: string | Component;
+  elementLayout: string | Component;
   nullValue: any;
   orderByName: string;
-  parent: component;
+  parent: VNode;
   path: string;
   dataPath: string;
   flat: boolean;
@@ -4440,7 +5289,7 @@ declare class ListElement implements ReturnType<typeof defineComponent> {
   active: boolean;
   mounted: boolean;
   container: HTMLElement;
-  children$Array: array,component;
+  children$Array: Array<any>;
   conditionList: Array<any>;
   localDisabled: boolean | null;
   events: Array<any>;
@@ -4449,18 +5298,22 @@ declare class ListElement implements ReturnType<typeof defineComponent> {
   sortable: object;
   sorting: boolean;
   state: object;
-  Validators: array,Validator;
+  Validators: Array<any>;
   messageBag: MessageBag;
   initialValue: any;
   internalValue: any;
   hidden: boolean;
+
+  // Injects
+  form$: Vueform;
+  theme: object;
 
   // Methods
   activate: () => void;
   deactivate: () => void;
   updateColumns: (value: number | Array<any>) => void;
   updateConditions: () => void;
-  add: (value: any) => integer;
+  add: (value: any) => number;
   remove: (index: number) => void;
   load: (value: string, format: boolean) => void;
   update: (value: string) => void;
@@ -4582,7 +5435,7 @@ declare class LocationElement implements ReturnType<typeof defineComponent> {
   infoId: string;
   errorId: string;
   aria: object;
-  el$: component;
+  el$: VueformElement;
   isStatic: boolean;
   isFileType: boolean;
   isArrayType: boolean;
@@ -4603,10 +5456,10 @@ declare class LocationElement implements ReturnType<typeof defineComponent> {
   hasFloating: boolean;
   genericName: string;
   hasLabel: boolean;
-  Label: string | component;
-  elementLayout: string | component;
+  Label: string | Component;
+  elementLayout: string | Component;
   defaultOptions: object;
-  parent: component;
+  parent: VNode;
   path: string;
   dataPath: string;
   flat: boolean;
@@ -4646,11 +5499,15 @@ declare class LocationElement implements ReturnType<typeof defineComponent> {
   locationService: class;
   location: class;
   state: object;
-  Validators: array,Validator;
+  Validators: Array<any>;
   messageBag: MessageBag;
   initialValue: any;
   internalValue: any;
   hidden: boolean;
+
+  // Injects
+  form$: Vueform;
+  theme: object;
 
   // Methods
   activate: () => void;
@@ -4785,13 +5642,13 @@ declare class MultifileElement implements ReturnType<typeof defineComponent> {
   infoId: string;
   errorId: string;
   aria: object;
-  el$: component;
+  el$: VueformElement;
   isStatic: boolean;
   isFileType: boolean;
   isArrayType: boolean;
   isImageType: boolean;
   isActive: boolean;
-  children$: object,Element;
+  children$: object;
   classes: object;
   classesInstance: MergeClasses;
   cols: object;
@@ -4811,13 +5668,13 @@ declare class MultifileElement implements ReturnType<typeof defineComponent> {
   fieldId: string;
   genericName: string;
   hasLabel: boolean;
-  Label: string | component;
-  elementLayout: string | component;
+  Label: string | Component;
+  elementLayout: string | Component;
   preparing: boolean;
   hasUploading: boolean;
   nullValue: any;
   orderByName: string;
-  parent: component;
+  parent: VNode;
   path: string;
   dataPath: string;
   flat: boolean;
@@ -4850,7 +5707,7 @@ declare class MultifileElement implements ReturnType<typeof defineComponent> {
   active: boolean;
   mounted: boolean;
   container: HTMLElement;
-  children$Array: array,component;
+  children$Array: Array<any>;
   conditionList: Array<any>;
   localDisabled: boolean | null;
   events: Array<any>;
@@ -4860,18 +5717,22 @@ declare class MultifileElement implements ReturnType<typeof defineComponent> {
   sortable: object;
   sorting: boolean;
   state: object;
-  Validators: array,Validator;
+  Validators: Array<any>;
   messageBag: MessageBag;
   initialValue: any;
   internalValue: any;
   hidden: boolean;
+
+  // Injects
+  form$: Vueform;
+  theme: object;
 
   // Methods
   activate: () => void;
   deactivate: () => void;
   updateColumns: (value: number | Array<any>) => void;
   updateConditions: () => void;
-  add: (value: any) => integer;
+  add: (value: any) => number;
   remove: (index: number) => void;
   load: (value: string, format: boolean) => void;
   update: (value: string) => void;
@@ -5040,7 +5901,7 @@ declare class MultiselectElement implements ReturnType<typeof defineComponent> {
   errorId: string;
   aria: object;
   resolvedOptions: Array<any>;
-  el$: component;
+  el$: VueformElement;
   isStatic: boolean;
   isFileType: boolean;
   isArrayType: boolean;
@@ -5061,11 +5922,11 @@ declare class MultiselectElement implements ReturnType<typeof defineComponent> {
   hasFloating: boolean;
   genericName: string;
   hasLabel: boolean;
-  Label: string | component;
-  elementLayout: string | component;
+  Label: string | Component;
+  elementLayout: string | Component;
   isLoading: boolean;
   nullValue: any;
-  parent: component;
+  parent: VNode;
   path: string;
   dataPath: string;
   flat: boolean;
@@ -5103,11 +5964,15 @@ declare class MultiselectElement implements ReturnType<typeof defineComponent> {
   focused: boolean;
   input: HTMLElement;
   state: object;
-  Validators: array,Validator;
+  Validators: Array<any>;
   messageBag: MessageBag;
   initialValue: any;
   internalValue: any;
   hidden: boolean;
+
+  // Injects
+  form$: Vueform;
+  theme: object;
 
   // Methods
   resolveOptions: () => void;
@@ -5135,8 +6000,8 @@ declare class MultiselectElement implements ReturnType<typeof defineComponent> {
   handleClose: () => void;
   handleClear: () => void;
   handlePaste: (e: Event) => void;
-  select: (options: str | Array<any>) => void;
-  deselect: (options: str | Array<any>) => void;
+  select: (options: string | Array<any>) => void;
+  deselect: (options: string | Array<any>) => void;
   validate: () => void;
   dirt: () => void;
   clean: () => void;
@@ -5246,14 +6111,14 @@ declare class ObjectElement implements ReturnType<typeof defineComponent> {
   infoId: string;
   errorId: string;
   aria: object;
-  el$: component;
+  el$: VueformElement;
   isStatic: boolean;
   isFileType: boolean;
   isArrayType: boolean;
   isImageType: boolean;
   isActive: boolean;
   children: object;
-  children$: object,Element;
+  children$: object;
   classes: object;
   classesInstance: MergeClasses;
   cols: object;
@@ -5265,10 +6130,10 @@ declare class ObjectElement implements ReturnType<typeof defineComponent> {
   defaultValue: any;
   fieldId: string;
   hasLabel: boolean;
-  Label: string | component;
-  elementLayout: string | component;
+  Label: string | Component;
+  elementLayout: string | Component;
   nullValue: any;
-  parent: component;
+  parent: VNode;
   path: string;
   dataPath: string;
   flat: boolean;
@@ -5296,15 +6161,19 @@ declare class ObjectElement implements ReturnType<typeof defineComponent> {
   active: boolean;
   mounted: boolean;
   container: HTMLElement;
-  children$Array: array,component;
+  children$Array: Array<any>;
   conditionList: Array<any>;
   events: Array<any>;
   listeners: object;
   state: object;
-  Validators: array,Validator;
+  Validators: Array<any>;
   messageBag: MessageBag;
   internalValue: any;
   hidden: boolean;
+
+  // Injects
+  form$: Vueform;
+  theme: object;
 
   // Methods
   activate: () => void;
@@ -5415,7 +6284,7 @@ declare class RadioElement implements ReturnType<typeof defineComponent> {
   infoId: string;
   errorId: string;
   aria: object;
-  el$: component;
+  el$: VueformElement;
   isStatic: boolean;
   isFileType: boolean;
   isArrayType: boolean;
@@ -5434,10 +6303,10 @@ declare class RadioElement implements ReturnType<typeof defineComponent> {
   fieldId: string;
   genericName: string;
   hasLabel: boolean;
-  Label: string | component;
-  elementLayout: string | component;
+  Label: string | Component;
+  elementLayout: string | Component;
   nullValue: any;
-  parent: component;
+  parent: VNode;
   path: string;
   dataPath: string;
   flat: boolean;
@@ -5474,11 +6343,15 @@ declare class RadioElement implements ReturnType<typeof defineComponent> {
   listeners: object;
   input: HTMLElement;
   state: object;
-  Validators: array,Validator;
+  Validators: Array<any>;
   messageBag: MessageBag;
   initialValue: any;
   internalValue: any;
   hidden: boolean;
+
+  // Injects
+  form$: Vueform;
+  theme: object;
 
   // Methods
   activate: () => void;
@@ -5591,7 +6464,7 @@ declare class RadiogroupElement implements ReturnType<typeof defineComponent> {
   errorId: string;
   aria: object;
   resolvedOptions: Array<any>;
-  el$: component;
+  el$: VueformElement;
   isStatic: boolean;
   isFileType: boolean;
   isArrayType: boolean;
@@ -5610,10 +6483,10 @@ declare class RadiogroupElement implements ReturnType<typeof defineComponent> {
   fieldId: string;
   genericName: string;
   hasLabel: boolean;
-  Label: string | component;
-  elementLayout: string | component;
+  Label: string | Component;
+  elementLayout: string | Component;
   nullValue: any;
-  parent: component;
+  parent: VNode;
   path: string;
   dataPath: string;
   flat: boolean;
@@ -5648,11 +6521,15 @@ declare class RadiogroupElement implements ReturnType<typeof defineComponent> {
   events: Array<any>;
   listeners: object;
   state: object;
-  Validators: array,Validator;
+  Validators: Array<any>;
   messageBag: MessageBag;
   initialValue: any;
   internalValue: any;
   hidden: boolean;
+
+  // Injects
+  form$: Vueform;
+  theme: object;
 
   // Methods
   resolveOptions: () => void;
@@ -5813,7 +6690,7 @@ declare class SelectElement implements ReturnType<typeof defineComponent> {
   errorId: string;
   aria: object;
   resolvedOptions: Array<any>;
-  el$: component;
+  el$: VueformElement;
   isStatic: boolean;
   isFileType: boolean;
   isArrayType: boolean;
@@ -5834,11 +6711,11 @@ declare class SelectElement implements ReturnType<typeof defineComponent> {
   hasFloating: boolean;
   genericName: string;
   hasLabel: boolean;
-  Label: string | component;
-  elementLayout: string | component;
+  Label: string | Component;
+  elementLayout: string | Component;
   isLoading: boolean;
   nullValue: any;
-  parent: component;
+  parent: VNode;
   path: string;
   dataPath: string;
   flat: boolean;
@@ -5876,11 +6753,15 @@ declare class SelectElement implements ReturnType<typeof defineComponent> {
   focused: boolean;
   input: HTMLElement;
   state: object;
-  Validators: array,Validator;
+  Validators: Array<any>;
   messageBag: MessageBag;
   initialValue: any;
   internalValue: any;
   hidden: boolean;
+
+  // Injects
+  form$: Vueform;
+  theme: object;
 
   // Methods
   resolveOptions: () => void;
@@ -6027,7 +6908,7 @@ declare class SliderElement implements ReturnType<typeof defineComponent> {
   infoId: string;
   errorId: string;
   aria: object;
-  el$: component;
+  el$: VueformElement;
   isStatic: boolean;
   isFileType: boolean;
   isArrayType: boolean;
@@ -6046,10 +6927,10 @@ declare class SliderElement implements ReturnType<typeof defineComponent> {
   fieldId: string;
   genericName: string;
   hasLabel: boolean;
-  Label: string | component;
-  elementLayout: string | component;
+  Label: string | Component;
+  elementLayout: string | Component;
   nullValue: any;
-  parent: component;
+  parent: VNode;
   path: string;
   dataPath: string;
   flat: boolean;
@@ -6082,11 +6963,15 @@ declare class SliderElement implements ReturnType<typeof defineComponent> {
   listeners: object;
   input: HTMLElement;
   state: object;
-  Validators: array,Validator;
+  Validators: Array<any>;
   messageBag: MessageBag;
   initialValue: any;
   internalValue: any;
   hidden: boolean;
+
+  // Injects
+  form$: Vueform;
+  theme: object;
 
   // Methods
   activate: () => void;
@@ -6187,7 +7072,7 @@ declare class StaticElement implements ReturnType<typeof defineComponent> {
   infoId: string;
   errorId: string;
   aria: object;
-  el$: component;
+  el$: VueformElement;
   isStatic: boolean;
   isFileType: boolean;
   isArrayType: boolean;
@@ -6201,11 +7086,11 @@ declare class StaticElement implements ReturnType<typeof defineComponent> {
   available: boolean;
   fieldId: string;
   hasLabel: boolean;
-  Label: string | component;
-  elementLayout: string | component;
+  Label: string | Component;
+  elementLayout: string | Component;
   path: string;
   flat: boolean;
-  parent: component;
+  parent: VNode;
   elementSlots: object;
   fieldSlots: object;
   isHtml: boolean;
@@ -6226,6 +7111,10 @@ declare class StaticElement implements ReturnType<typeof defineComponent> {
   events: Array<any>;
   listeners: object;
   hidden: boolean;
+
+  // Injects
+  form$: Vueform;
+  theme: object;
 
   // Methods
   activate: () => void;
@@ -6327,7 +7216,7 @@ declare class TEditorElement implements ReturnType<typeof defineComponent> {
   infoId: string;
   errorId: string;
   aria: object;
-  el$: component;
+  el$: VueformElement;
   isStatic: boolean;
   isFileType: boolean;
   isArrayType: boolean;
@@ -6349,12 +7238,12 @@ declare class TEditorElement implements ReturnType<typeof defineComponent> {
   fieldId: string;
   genericName: string;
   hasLabel: boolean;
-  Label: string | component;
+  Label: string | Component;
   language: string;
   languages: Array<any>;
-  elementLayout: string | component;
+  elementLayout: string | Component;
   nullValue: any;
-  parent: component;
+  parent: VNode;
   path: string;
   dataPath: string;
   flat: boolean;
@@ -6392,9 +7281,13 @@ declare class TEditorElement implements ReturnType<typeof defineComponent> {
   listeners: object;
   input: HTMLElement;
   state: object;
-  Validators: array,Validator;
+  Validators: Array<any>;
   messageBag: MessageBag;
   hidden: boolean;
+
+  // Injects
+  form$: Vueform;
+  theme: object;
 
   // Methods
   activate: () => void;
@@ -6522,7 +7415,7 @@ declare class TTextElement implements ReturnType<typeof defineComponent> {
   infoId: string;
   errorId: string;
   aria: object;
-  el$: component;
+  el$: VueformElement;
   isStatic: boolean;
   isFileType: boolean;
   isArrayType: boolean;
@@ -6543,13 +7436,13 @@ declare class TTextElement implements ReturnType<typeof defineComponent> {
   hasFloating: boolean;
   genericName: string;
   hasLabel: boolean;
-  Label: string | component;
+  Label: string | Component;
   language: string;
   languages: Array<any>;
-  elementLayout: string | component;
+  elementLayout: string | Component;
   isLoading: boolean;
   nullValue: any;
-  parent: component;
+  parent: VNode;
   path: string;
   dataPath: string;
   flat: boolean;
@@ -6587,9 +7480,13 @@ declare class TTextElement implements ReturnType<typeof defineComponent> {
   focused: boolean;
   input: HTMLElement;
   state: object;
-  Validators: array,Validator;
+  Validators: Array<any>;
   messageBag: MessageBag;
   hidden: boolean;
+
+  // Injects
+  form$: Vueform;
+  theme: object;
 
   // Methods
   activate: () => void;
@@ -6720,7 +7617,7 @@ declare class TTextareaElement implements ReturnType<typeof defineComponent> {
   infoId: string;
   errorId: string;
   aria: object;
-  el$: component;
+  el$: VueformElement;
   isStatic: boolean;
   isFileType: boolean;
   isArrayType: boolean;
@@ -6741,12 +7638,12 @@ declare class TTextareaElement implements ReturnType<typeof defineComponent> {
   hasFloating: boolean;
   genericName: string;
   hasLabel: boolean;
-  Label: string | component;
+  Label: string | Component;
   language: string;
   languages: Array<any>;
-  elementLayout: string | component;
+  elementLayout: string | Component;
   nullValue: any;
-  parent: component;
+  parent: VNode;
   path: string;
   dataPath: string;
   flat: boolean;
@@ -6784,9 +7681,13 @@ declare class TTextareaElement implements ReturnType<typeof defineComponent> {
   focused: boolean;
   input: HTMLElement;
   state: object;
-  Validators: array,Validator;
+  Validators: Array<any>;
   messageBag: MessageBag;
   hidden: boolean;
+
+  // Injects
+  form$: Vueform;
+  theme: object;
 
   // Methods
   autosize: () => void;
@@ -6958,7 +7859,7 @@ declare class TagsElement implements ReturnType<typeof defineComponent> {
   errorId: string;
   aria: object;
   resolvedOptions: Array<any>;
-  el$: component;
+  el$: VueformElement;
   isStatic: boolean;
   isFileType: boolean;
   isArrayType: boolean;
@@ -6979,11 +7880,11 @@ declare class TagsElement implements ReturnType<typeof defineComponent> {
   hasFloating: boolean;
   genericName: string;
   hasLabel: boolean;
-  Label: string | component;
-  elementLayout: string | component;
+  Label: string | Component;
+  elementLayout: string | Component;
   isLoading: boolean;
   nullValue: any;
-  parent: component;
+  parent: VNode;
   path: string;
   dataPath: string;
   flat: boolean;
@@ -7021,11 +7922,15 @@ declare class TagsElement implements ReturnType<typeof defineComponent> {
   focused: boolean;
   input: HTMLElement;
   state: object;
-  Validators: array,Validator;
+  Validators: Array<any>;
   messageBag: MessageBag;
   initialValue: any;
   internalValue: any;
   hidden: boolean;
+
+  // Injects
+  form$: Vueform;
+  theme: object;
 
   // Methods
   resolveOptions: () => void;
@@ -7054,8 +7959,8 @@ declare class TagsElement implements ReturnType<typeof defineComponent> {
   handleClear: () => void;
   handlePaste: (e: Event) => void;
   handleTag: (searchQuery: string) => void;
-  select: (options: str | Array<any>) => void;
-  deselect: (options: str | Array<any>) => void;
+  select: (options: string | Array<any>) => void;
+  deselect: (options: string | Array<any>) => void;
   validate: () => void;
   dirt: () => void;
   clean: () => void;
@@ -7177,7 +8082,7 @@ declare class TextElement implements ReturnType<typeof defineComponent> {
   infoId: string;
   errorId: string;
   aria: object;
-  el$: component;
+  el$: VueformElement;
   isStatic: boolean;
   isFileType: boolean;
   isArrayType: boolean;
@@ -7198,11 +8103,11 @@ declare class TextElement implements ReturnType<typeof defineComponent> {
   hasFloating: boolean;
   genericName: string;
   hasLabel: boolean;
-  Label: string | component;
-  elementLayout: string | component;
+  Label: string | Component;
+  elementLayout: string | Component;
   isLoading: boolean;
   nullValue: any;
-  parent: component;
+  parent: VNode;
   path: string;
   dataPath: string;
   flat: boolean;
@@ -7240,11 +8145,15 @@ declare class TextElement implements ReturnType<typeof defineComponent> {
   focused: boolean;
   input: HTMLElement;
   state: object;
-  Validators: array,Validator;
+  Validators: Array<any>;
   messageBag: MessageBag;
   initialValue: any;
   internalValue: any;
   hidden: boolean;
+
+  // Injects
+  form$: Vueform;
+  theme: object;
 
   // Methods
   activate: () => void;
@@ -7294,9 +8203,6 @@ declare class TextElement implements ReturnType<typeof defineComponent> {
 
   //Slots
   $slots: {
-    /**
-     * The label slotyy
-     */
     'label': VNode[];
     'info': VNode[];
     'description': VNode[];
@@ -7376,7 +8282,7 @@ declare class TextareaElement implements ReturnType<typeof defineComponent> {
   infoId: string;
   errorId: string;
   aria: object;
-  el$: component;
+  el$: VueformElement;
   isStatic: boolean;
   isFileType: boolean;
   isArrayType: boolean;
@@ -7397,10 +8303,10 @@ declare class TextareaElement implements ReturnType<typeof defineComponent> {
   hasFloating: boolean;
   genericName: string;
   hasLabel: boolean;
-  Label: string | component;
-  elementLayout: string | component;
+  Label: string | Component;
+  elementLayout: string | Component;
   nullValue: any;
-  parent: component;
+  parent: VNode;
   path: string;
   dataPath: string;
   flat: boolean;
@@ -7438,11 +8344,15 @@ declare class TextareaElement implements ReturnType<typeof defineComponent> {
   focused: boolean;
   input: HTMLElement;
   state: object;
-  Validators: array,Validator;
+  Validators: Array<any>;
   messageBag: MessageBag;
   initialValue: any;
   internalValue: any;
   hidden: boolean;
+
+  // Injects
+  form$: Vueform;
+  theme: object;
 
   // Methods
   autosize: () => void;
@@ -7565,7 +8475,7 @@ declare class ToggleElement implements ReturnType<typeof defineComponent> {
   infoId: string;
   errorId: string;
   aria: object;
-  el$: component;
+  el$: VueformElement;
   isStatic: boolean;
   isFileType: boolean;
   isArrayType: boolean;
@@ -7584,10 +8494,10 @@ declare class ToggleElement implements ReturnType<typeof defineComponent> {
   fieldId: string;
   genericName: string;
   hasLabel: boolean;
-  Label: string | component;
-  elementLayout: string | component;
+  Label: string | Component;
+  elementLayout: string | Component;
   nullValue: any;
-  parent: component;
+  parent: VNode;
   path: string;
   dataPath: string;
   flat: boolean;
@@ -7623,11 +8533,15 @@ declare class ToggleElement implements ReturnType<typeof defineComponent> {
   listeners: object;
   input: HTMLElement;
   state: object;
-  Validators: array,Validator;
+  Validators: Array<any>;
   messageBag: MessageBag;
   initialValue: any;
   internalValue: any;
   hidden: boolean;
+
+  // Injects
+  form$: Vueform;
+  theme: object;
 
   // Methods
   activate: () => void;

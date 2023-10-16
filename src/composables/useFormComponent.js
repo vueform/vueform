@@ -33,7 +33,7 @@ const base = function(props, context, dependencies, options = {})
   /**
    * The component instance (self).
    * 
-   * @type {component}
+   * @type {VueformComponent}
    */
   const component$ = computed(() => {
     return getCurrentInstance().proxy
@@ -42,7 +42,7 @@ const base = function(props, context, dependencies, options = {})
   /**
    * An object containaing all the component's classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides.
    * 
-   * @type {object}
+   * @type {MergeClasses}
    * @private
    */
   const classesInstance = computed(() => {

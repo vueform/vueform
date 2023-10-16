@@ -114,7 +114,7 @@ export default {
     /**
      * The current [`FormTab`](form-tab) component.
      *
-     * @type {component}
+     * @type {FormTab}
      */
     const current$ = computed(() => {
       var current = _.find(tabs$.value, { active: true })
@@ -125,7 +125,7 @@ export default {
     /**
      * The first visible [`FormTab`](form-tab) component.
      *
-     * @type {component}
+     * @type {FormTab}
      */
     const first$ = computed(() => {
       return _.find(visible$.value, (tab) => {
@@ -136,7 +136,7 @@ export default {
     /**
      * The last visible [`FormTab`](form-tab) component.
      *
-     * @type {component}
+     * @type {FormTab}
      */
     const last$ = computed(() => {
       return Object.values(visible$.value).pop()
@@ -145,7 +145,7 @@ export default {
     /**
      * The next visible [`FormTab`](form-tab) component.
      *
-     * @type {component}
+     * @type {FormTab}
      */
     const next$ = computed(() => {
       return _.find(visible$.value, (tab) => {
@@ -156,7 +156,7 @@ export default {
     /**
      * The previous visible [`FormTab`](form-tab) component.
      *
-     * @type {component}
+     * @type {FormTab}
      */
     const previous$ = computed(() => {
       return _.findLast(visible$.value, (tab) => {
@@ -181,7 +181,7 @@ export default {
     /**
      * Select a tab.
      *
-     * @param {component} tab$ the [`FormTab`](form-tab) component to select
+     * @param {FormTab} tab$ the [`FormTab`](form-tab) component to select
      * @returns {void}
      * @private
      */
@@ -203,7 +203,7 @@ export default {
      * Returns a specific [`FormTab`](form-tab) by index.
      *
      * @param {string} tab* name of the tab
-     * @returns {component}
+     * @returns {FormTab}
      */
     const tab$ = (name) => {
       return _.find(tabs$.value, { name: name })
@@ -221,7 +221,7 @@ export default {
     /**
      * Set the component to the parent as if `refs` were used.
      *
-     * @param {component} $parent parent component
+     * @param {VNode} $parent parent component
      * @param {function} assignToParent the assignToParent function for recursion
      * @returns {void}
      * @private
@@ -238,7 +238,7 @@ export default {
     /**
     * Removes the component from the parent.
     *
-    * @param {component} $parent parent component
+    * @param {VNode} $parent parent component
     * @param {function} removeFromParent the removeFromParent function for recursion
     * @private
     */
