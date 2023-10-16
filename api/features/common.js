@@ -432,7 +432,10 @@ export default {
         },
         "intermediaryValue": {
           "public": false,
-          "description": ""
+          "types": [
+            "object"
+          ],
+          "description": "The intermediary value."
         }
       },
       "methods": {
@@ -768,7 +771,10 @@ export default {
         },
         "intermediaryValue": {
           "public": false,
-          "description": ""
+          "types": [
+            "object"
+          ],
+          "description": "The intermediary value."
         },
         "userConfig": {
           "public": false,

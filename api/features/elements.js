@@ -360,6 +360,7 @@ export default {
       "methods": {
         "resolveOptions": {
           "public": false,
+          "returns": "void",
           "description": "Resolves items."
         },
         "updateItems": {
@@ -378,6 +379,7 @@ export default {
         },
         "cleanupValue": {
           "public": false,
+          "returns": "void",
           "description": "Removes any value that is not among the newly fetches option list after async resolve.",
           "params": {
             "values": {
@@ -391,6 +393,7 @@ export default {
         },
         "resolveUrlAndSetWatchers": {
           "public": false,
+          "returns": "void",
           "description": "Resolves the endpoint url with field values and sets watchers for those fields.",
           "params": {
             "url": {
@@ -434,6 +437,7 @@ export default {
       "methods": {
         "resolveOptions": {
           "public": false,
+          "returns": "void",
           "description": "Resolves items."
         },
         "updateItems": {
@@ -452,6 +456,7 @@ export default {
         },
         "cleanupValue": {
           "public": false,
+          "returns": "void",
           "description": "Removes any value that is not among the newly fetches option list after async resolve.",
           "params": {
             "values": {
@@ -465,6 +470,7 @@ export default {
         },
         "resolveUrlAndSetWatchers": {
           "public": false,
+          "returns": "void",
           "description": "Resolves the endpoint url with field values and sets watchers for those fields.",
           "params": {
             "url": {
@@ -508,6 +514,7 @@ export default {
       "methods": {
         "resolveOptions": {
           "public": false,
+          "returns": "void",
           "description": "Resolves items."
         },
         "updateItems": {
@@ -526,6 +533,7 @@ export default {
         },
         "cleanupValue": {
           "public": false,
+          "returns": "void",
           "description": "Removes any value that is not among the newly fetches option list after async resolve.",
           "params": {
             "values": {
@@ -539,6 +547,7 @@ export default {
         },
         "resolveUrlAndSetWatchers": {
           "public": false,
+          "returns": "void",
           "description": "Resolves the endpoint url with field values and sets watchers for those fields.",
           "params": {
             "url": {
@@ -582,6 +591,7 @@ export default {
       "methods": {
         "resolveOptions": {
           "public": false,
+          "returns": "void",
           "description": "Resolves items."
         },
         "updateItems": {
@@ -600,6 +610,7 @@ export default {
         },
         "cleanupValue": {
           "public": false,
+          "returns": "void",
           "description": "Removes any value that is not among the newly fetches option list after async resolve.",
           "params": {
             "values": {
@@ -613,6 +624,7 @@ export default {
         },
         "resolveUrlAndSetWatchers": {
           "public": false,
+          "returns": "void",
           "description": "Resolves the endpoint url with field values and sets watchers for those fields.",
           "params": {
             "url": {
@@ -656,6 +668,7 @@ export default {
       "methods": {
         "resolveOptions": {
           "public": false,
+          "returns": "void",
           "description": "Resolves items."
         },
         "updateItems": {
@@ -674,6 +687,7 @@ export default {
         },
         "cleanupValue": {
           "public": false,
+          "returns": "void",
           "description": "Removes any value that is not among the newly fetches option list after async resolve.",
           "params": {
             "values": {
@@ -687,6 +701,7 @@ export default {
         },
         "resolveUrlAndSetWatchers": {
           "public": false,
+          "returns": "void",
           "description": "Resolves the endpoint url with field values and sets watchers for those fields.",
           "params": {
             "url": {
@@ -730,6 +745,7 @@ export default {
       "methods": {
         "resolveOptions": {
           "public": false,
+          "returns": "void",
           "description": "Resolves items."
         },
         "updateItems": {
@@ -748,6 +764,7 @@ export default {
         },
         "cleanupValue": {
           "public": false,
+          "returns": "void",
           "description": "Removes any value that is not among the newly fetches option list after async resolve.",
           "params": {
             "values": {
@@ -761,6 +778,7 @@ export default {
         },
         "resolveUrlAndSetWatchers": {
           "public": false,
+          "returns": "void",
           "description": "Resolves the endpoint url with field values and sets watchers for those fields.",
           "params": {
             "url": {
@@ -1522,8 +1540,8 @@ export default {
               "types": [
                 "Event"
               ],
-              "required": false,
-              "description": "- event object event"
+              "required": true,
+              "description": "event object event"
             }
           }
         }
@@ -1820,6 +1838,7 @@ export default {
       "methods": {
         "updateColumns": {
           "public": false,
+          "returns": "void",
           "description": "Update columns programmatically.",
           "params": {
             "value": {
@@ -1941,8 +1960,7 @@ export default {
           "params": {
             "value": {
               "types": [
-                "string",
-                ""
+                "string"
               ],
               "required": true,
               "description": "the value to be set"
@@ -2007,8 +2025,7 @@ export default {
           "params": {
             "value": {
               "types": [
-                "string",
-                ""
+                "string"
               ],
               "required": true,
               "description": "the value to be set"
@@ -2073,8 +2090,7 @@ export default {
           "params": {
             "value": {
               "types": [
-                "string",
-                ""
+                "string"
               ],
               "required": true,
               "description": "the value to be set"
@@ -2139,8 +2155,7 @@ export default {
           "params": {
             "value": {
               "types": [
-                "string",
-                ""
+                "string"
               ],
               "required": true,
               "description": "the value to be set"
@@ -2240,8 +2255,7 @@ export default {
           "params": {
             "value": {
               "types": [
-                "string",
-                ""
+                "string"
               ],
               "required": true,
               "description": "the value to be set"
@@ -2325,8 +2339,7 @@ export default {
           "params": {
             "value": {
               "types": [
-                "string",
-                ""
+                "string"
               ],
               "required": true,
               "description": "the value to be set"
@@ -2391,8 +2404,7 @@ export default {
           "params": {
             "value": {
               "types": [
-                "string",
-                ""
+                "string"
               ],
               "required": true,
               "description": "the value to be set"
@@ -2457,8 +2469,7 @@ export default {
           "params": {
             "value": {
               "types": [
-                "string",
-                ""
+                "string"
               ],
               "required": true,
               "description": "the value to be set"
@@ -2523,8 +2534,7 @@ export default {
           "params": {
             "value": {
               "types": [
-                "string",
-                ""
+                "string"
               ],
               "required": true,
               "description": "the value to be set"
@@ -2589,8 +2599,7 @@ export default {
           "params": {
             "value": {
               "types": [
-                "string",
-                ""
+                "string"
               ],
               "required": true,
               "description": "the value to be set"
@@ -2655,8 +2664,7 @@ export default {
           "params": {
             "value": {
               "types": [
-                "string",
-                ""
+                "string"
               ],
               "required": true,
               "description": "the value to be set"
@@ -2756,8 +2764,7 @@ export default {
           "params": {
             "value": {
               "types": [
-                "string",
-                ""
+                "string"
               ],
               "required": true,
               "description": "the value to be set"
@@ -2841,8 +2848,7 @@ export default {
           "params": {
             "value": {
               "types": [
-                "string",
-                ""
+                "string"
               ],
               "required": true,
               "description": "the value to be set"
@@ -2907,8 +2913,7 @@ export default {
           "params": {
             "value": {
               "types": [
-                "string",
-                ""
+                "string"
               ],
               "required": true,
               "description": "the value to be set"
@@ -3235,8 +3240,8 @@ export default {
               "types": [
                 "Event"
               ],
-              "required": false,
-              "description": "- event object"
+              "required": true,
+              "description": "event object"
             }
           }
         }
@@ -3262,8 +3267,8 @@ export default {
               "types": [
                 "Event"
               ],
-              "required": false,
-              "description": "- event object"
+              "required": true,
+              "description": "event object"
             }
           }
         }
@@ -3491,8 +3496,8 @@ export default {
               "types": [
                 "Event"
               ],
-              "required": false,
-              "description": "- event object"
+              "required": true,
+              "description": "event object"
             }
           }
         },
@@ -3727,8 +3732,8 @@ export default {
               "types": [
                 "Event"
               ],
-              "required": false,
-              "description": "- event object"
+              "required": true,
+              "description": "event object"
             }
           }
         }
@@ -3747,8 +3752,8 @@ export default {
               "types": [
                 "Event"
               ],
-              "required": false,
-              "description": "- event object"
+              "required": true,
+              "description": "event object"
             }
           }
         },
@@ -3761,8 +3766,8 @@ export default {
               "types": [
                 "Event"
               ],
-              "required": false,
-              "description": "- event object"
+              "required": true,
+              "description": "event object"
             }
           }
         },
@@ -3775,8 +3780,8 @@ export default {
               "types": [
                 "Event"
               ],
-              "required": false,
-              "description": "- event object"
+              "required": true,
+              "description": "event object"
             }
           }
         }
@@ -4024,6 +4029,7 @@ export default {
       "methods": {
         "handleAddressChange": {
           "public": false,
+          "returns": "void",
           "description": "Handles location service's address change.",
           "params": {
             "data": {
@@ -4044,7 +4050,8 @@ export default {
         },
         "handleLocationBlur": {
           "public": false,
-          "description": ""
+          "returns": "void",
+          "description": "Handles the blur event of location element."
         },
         "initLocationService": {
           "public": true,
@@ -4107,7 +4114,8 @@ export default {
           }
         },
         "handleAddressChange": {
-          "public": true,
+          "public": false,
+          "returns": "void",
           "description": "Handles location service's address change.",
           "params": {
             "data": {
@@ -4162,8 +4170,8 @@ export default {
               "types": [
                 "Event"
               ],
-              "required": false,
-              "description": "- event object"
+              "required": true,
+              "description": "event object"
             }
           }
         },
@@ -4542,6 +4550,9 @@ export default {
       "computed": {
         "uploading": {
           "public": false,
+          "types": [
+            "boolean"
+          ],
           "description": "Whether a temp file is currently being uploaded."
         }
       }
@@ -4633,13 +4644,14 @@ export default {
       "methods": {
         "handleSort": {
           "public": false,
+          "returns": "void",
           "description": "Handles `sort` event.",
           "params": {
             "e": {
               "types": [
                 "Event"
               ],
-              "required": false,
+              "required": true,
               "description": "Sortable.js event"
             }
           }

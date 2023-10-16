@@ -839,14 +839,15 @@ module.exports = {
             types: [
               'Event',
             ],
-            required: 'false',
-            description: '- event object event',
+            required: 'true',
+            description: 'event object event',
           },
         },
         private: true,
       },
       updateColumns: {
         description: 'Update columns programmatically.',
+        returns: 'void',
         params: {
           value: {
             types: [
@@ -2143,6 +2144,7 @@ module.exports = {
       },
       updateColumns: {
         description: 'Update columns programmatically.',
+        returns: 'void',
         params: {
           value: {
             types: [
@@ -2188,7 +2190,6 @@ module.exports = {
           value: {
             types: [
               'string',
-              '',
             ],
             required: 'true',
             description: 'the value to be set',
@@ -3531,6 +3532,7 @@ module.exports = {
     methods: {
       resolveOptions: {
         description: 'Resolves items.',
+        returns: 'void',
         private: true,
       },
       updateItems: {
@@ -3549,6 +3551,7 @@ module.exports = {
       },
       cleanupValue: {
         description: 'Removes any value that is not among the newly fetches option list after async resolve.',
+        returns: 'void',
         params: {
           values: {
             types: [
@@ -3562,6 +3565,7 @@ module.exports = {
       },
       resolveUrlAndSetWatchers: {
         description: 'Resolves the endpoint url with field values and sets watchers for those fields.',
+        returns: 'void',
         params: {
           url: {
             types: [
@@ -3649,6 +3653,7 @@ module.exports = {
       },
       updateColumns: {
         description: 'Update columns programmatically.',
+        returns: 'void',
         params: {
           value: {
             types: [
@@ -3694,7 +3699,6 @@ module.exports = {
           value: {
             types: [
               'string',
-              '',
             ],
             required: 'true',
             description: 'the value to be set',
@@ -5283,6 +5287,7 @@ module.exports = {
       },
       updateColumns: {
         description: 'Update columns programmatically.',
+        returns: 'void',
         params: {
           value: {
             types: [
@@ -5328,7 +5333,6 @@ module.exports = {
           value: {
             types: [
               'string',
-              '',
             ],
             required: 'true',
             description: 'the value to be set',
@@ -6832,6 +6836,7 @@ module.exports = {
       },
       updateColumns: {
         description: 'Update columns programmatically.',
+        returns: 'void',
         params: {
           value: {
             types: [
@@ -6877,7 +6882,6 @@ module.exports = {
           value: {
             types: [
               'string',
-              '',
             ],
             required: 'true',
             description: 'the value to be set',
@@ -8353,6 +8357,7 @@ module.exports = {
       },
       updateColumns: {
         description: 'Update columns programmatically.',
+        returns: 'void',
         params: {
           value: {
             types: [
@@ -8398,7 +8403,6 @@ module.exports = {
           value: {
             types: [
               'string',
-              '',
             ],
             required: 'true',
             description: 'the value to be set',
@@ -8521,8 +8525,8 @@ module.exports = {
             types: [
               'Event',
             ],
-            required: 'false',
-            description: '- event object',
+            required: 'true',
+            description: 'event object',
           },
         },
         private: true,
@@ -9931,6 +9935,9 @@ module.exports = {
         private: true,
       },
       uploading: {
+        types: [
+          'boolean',
+        ],
         description: 'Whether a temp file is currently being uploaded.',
         private: true,
       },
@@ -10075,6 +10082,7 @@ module.exports = {
       },
       updateColumns: {
         description: 'Update columns programmatically.',
+        returns: 'void',
         params: {
           value: {
             types: [
@@ -10120,7 +10128,6 @@ module.exports = {
           value: {
             types: [
               'string',
-              '',
             ],
             required: 'true',
             description: 'the value to be set',
@@ -10156,8 +10163,8 @@ module.exports = {
             types: [
               'Event',
             ],
-            required: 'false',
-            description: '- event object',
+            required: 'true',
+            description: 'event object',
           },
         },
         private: true,
@@ -10234,8 +10241,8 @@ module.exports = {
             types: [
               'Event',
             ],
-            required: 'false',
-            description: '- event object',
+            required: 'true',
+            description: 'event object',
           },
         },
         private: true,
@@ -11480,6 +11487,7 @@ module.exports = {
       },
       updateColumns: {
         description: 'Update columns programmatically.',
+        returns: 'void',
         params: {
           value: {
             types: [
@@ -11525,7 +11533,6 @@ module.exports = {
           value: {
             types: [
               'string',
-              '',
             ],
             required: 'true',
             description: 'the value to be set',
@@ -12452,7 +12459,6 @@ module.exports = {
           value: {
             types: [
               'string',
-              '',
             ],
             required: 'true',
             description: 'the value to be set',
@@ -13897,6 +13903,7 @@ module.exports = {
       },
       updateColumns: {
         description: 'Update columns programmatically.',
+        returns: 'void',
         params: {
           value: {
             types: [
@@ -13970,7 +13977,6 @@ module.exports = {
           value: {
             types: [
               'string',
-              '',
             ],
             required: 'true',
             description: 'the value to be set',
@@ -14101,12 +14107,13 @@ module.exports = {
       },
       handleSort: {
         description: 'Handles `sort` event.',
+        returns: 'void',
         params: {
           e: {
             types: [
               'Event',
             ],
-            required: 'false',
+            required: 'true',
             description: 'Sortable.js event',
           },
         },
@@ -15538,6 +15545,7 @@ module.exports = {
       },
       updateColumns: {
         description: 'Update columns programmatically.',
+        returns: 'void',
         params: {
           value: {
             types: [
@@ -15583,7 +15591,6 @@ module.exports = {
           value: {
             types: [
               'string',
-              '',
             ],
             required: 'true',
             description: 'the value to be set',
@@ -15667,6 +15674,7 @@ module.exports = {
       },
       handleAddressChange: {
         description: 'Handles location service&apos;s address change.',
+        returns: 'void',
         params: {
           data: {
             types: [
@@ -15686,7 +15694,8 @@ module.exports = {
         private: true,
       },
       handleLocationBlur: {
-        description: '',
+        description: 'Handles the blur event of location element.',
+        returns: 'void',
         private: true,
       },
       initLocationService: {
@@ -17301,6 +17310,7 @@ module.exports = {
       },
       updateColumns: {
         description: 'Update columns programmatically.',
+        returns: 'void',
         params: {
           value: {
             types: [
@@ -17374,7 +17384,6 @@ module.exports = {
           value: {
             types: [
               'string',
-              '',
             ],
             required: 'true',
             description: 'the value to be set',
@@ -17429,8 +17438,8 @@ module.exports = {
             types: [
               'Event',
             ],
-            required: 'false',
-            description: '- event object',
+            required: 'true',
+            description: 'event object',
           },
         },
         private: true,
@@ -17511,8 +17520,8 @@ module.exports = {
             types: [
               'Event',
             ],
-            required: 'false',
-            description: '- event object',
+            required: 'true',
+            description: 'event object',
           },
         },
         private: true,
@@ -17538,12 +17547,13 @@ module.exports = {
       },
       handleSort: {
         description: 'Handles `sort` event.',
+        returns: 'void',
         params: {
           e: {
             types: [
               'Event',
             ],
-            required: 'false',
+            required: 'true',
             description: 'Sortable.js event',
           },
         },
@@ -19436,6 +19446,7 @@ module.exports = {
     methods: {
       resolveOptions: {
         description: 'Resolves items.',
+        returns: 'void',
         private: true,
       },
       updateItems: {
@@ -19454,6 +19465,7 @@ module.exports = {
       },
       cleanupValue: {
         description: 'Removes any value that is not among the newly fetches option list after async resolve.',
+        returns: 'void',
         params: {
           values: {
             types: [
@@ -19467,6 +19479,7 @@ module.exports = {
       },
       resolveUrlAndSetWatchers: {
         description: 'Resolves the endpoint url with field values and sets watchers for those fields.',
+        returns: 'void',
         params: {
           url: {
             types: [
@@ -19497,6 +19510,7 @@ module.exports = {
       },
       updateColumns: {
         description: 'Update columns programmatically.',
+        returns: 'void',
         params: {
           value: {
             types: [
@@ -19542,7 +19556,6 @@ module.exports = {
           value: {
             types: [
               'string',
-              '',
             ],
             required: 'true',
             description: 'the value to be set',
@@ -21185,6 +21198,7 @@ module.exports = {
       },
       updateColumns: {
         description: 'Update columns programmatically.',
+        returns: 'void',
         params: {
           value: {
             types: [
@@ -21230,7 +21244,6 @@ module.exports = {
           value: {
             types: [
               'string',
-              '',
             ],
             required: 'true',
             description: 'the value to be set',
@@ -22587,6 +22600,7 @@ module.exports = {
       },
       updateColumns: {
         description: 'Update columns programmatically.',
+        returns: 'void',
         params: {
           value: {
             types: [
@@ -22632,7 +22646,6 @@ module.exports = {
           value: {
             types: [
               'string',
-              '',
             ],
             required: 'true',
             description: 'the value to be set',
@@ -23976,6 +23989,7 @@ module.exports = {
     methods: {
       resolveOptions: {
         description: 'Resolves items.',
+        returns: 'void',
         private: true,
       },
       updateItems: {
@@ -23994,6 +24008,7 @@ module.exports = {
       },
       cleanupValue: {
         description: 'Removes any value that is not among the newly fetches option list after async resolve.',
+        returns: 'void',
         params: {
           values: {
             types: [
@@ -24007,6 +24022,7 @@ module.exports = {
       },
       resolveUrlAndSetWatchers: {
         description: 'Resolves the endpoint url with field values and sets watchers for those fields.',
+        returns: 'void',
         params: {
           url: {
             types: [
@@ -24037,6 +24053,7 @@ module.exports = {
       },
       updateColumns: {
         description: 'Update columns programmatically.',
+        returns: 'void',
         params: {
           value: {
             types: [
@@ -24082,7 +24099,6 @@ module.exports = {
           value: {
             types: [
               'string',
-              '',
             ],
             required: 'true',
             description: 'the value to be set',
@@ -26015,6 +26031,7 @@ module.exports = {
     methods: {
       resolveOptions: {
         description: 'Resolves items.',
+        returns: 'void',
         private: true,
       },
       updateItems: {
@@ -26033,6 +26050,7 @@ module.exports = {
       },
       cleanupValue: {
         description: 'Removes any value that is not among the newly fetches option list after async resolve.',
+        returns: 'void',
         params: {
           values: {
             types: [
@@ -26046,6 +26064,7 @@ module.exports = {
       },
       resolveUrlAndSetWatchers: {
         description: 'Resolves the endpoint url with field values and sets watchers for those fields.',
+        returns: 'void',
         params: {
           url: {
             types: [
@@ -26076,6 +26095,7 @@ module.exports = {
       },
       updateColumns: {
         description: 'Update columns programmatically.',
+        returns: 'void',
         params: {
           value: {
             types: [
@@ -26121,7 +26141,6 @@ module.exports = {
           value: {
             types: [
               'string',
-              '',
             ],
             required: 'true',
             description: 'the value to be set',
@@ -27844,6 +27863,7 @@ module.exports = {
       },
       updateColumns: {
         description: 'Update columns programmatically.',
+        returns: 'void',
         params: {
           value: {
             types: [
@@ -27889,7 +27909,6 @@ module.exports = {
           value: {
             types: [
               'string',
-              '',
             ],
             required: 'true',
             description: 'the value to be set',
@@ -28971,6 +28990,7 @@ module.exports = {
       },
       updateColumns: {
         description: 'Update columns programmatically.',
+        returns: 'void',
         params: {
           value: {
             types: [
@@ -30348,6 +30368,7 @@ module.exports = {
       },
       updateColumns: {
         description: 'Update columns programmatically.',
+        returns: 'void',
         params: {
           value: {
             types: [
@@ -30393,7 +30414,6 @@ module.exports = {
           value: {
             types: [
               'string',
-              '',
             ],
             required: 'true',
             description: 'the value to be set',
@@ -30516,8 +30536,8 @@ module.exports = {
             types: [
               'Event',
             ],
-            required: 'false',
-            description: '- event object',
+            required: 'true',
+            description: 'event object',
           },
         },
         private: true,
@@ -31962,6 +31982,7 @@ module.exports = {
       },
       updateColumns: {
         description: 'Update columns programmatically.',
+        returns: 'void',
         params: {
           value: {
             types: [
@@ -32007,7 +32028,6 @@ module.exports = {
           value: {
             types: [
               'string',
-              '',
             ],
             required: 'true',
             description: 'the value to be set',
@@ -32102,8 +32122,8 @@ module.exports = {
             types: [
               'Event',
             ],
-            required: 'false',
-            description: '- event object',
+            required: 'true',
+            description: 'event object',
           },
         },
         private: true,
@@ -32116,8 +32136,8 @@ module.exports = {
             types: [
               'Event',
             ],
-            required: 'false',
-            description: '- event object',
+            required: 'true',
+            description: 'event object',
           },
         },
         private: true,
@@ -32130,8 +32150,8 @@ module.exports = {
             types: [
               'Event',
             ],
-            required: 'false',
-            description: '- event object',
+            required: 'true',
+            description: 'event object',
           },
         },
         private: true,
@@ -32144,8 +32164,8 @@ module.exports = {
             types: [
               'Event',
             ],
-            required: 'false',
-            description: '- event object',
+            required: 'true',
+            description: 'event object',
           },
         },
         private: true,
@@ -33628,6 +33648,7 @@ module.exports = {
       },
       updateColumns: {
         description: 'Update columns programmatically.',
+        returns: 'void',
         params: {
           value: {
             types: [
@@ -33673,7 +33694,6 @@ module.exports = {
           value: {
             types: [
               'string',
-              '',
             ],
             required: 'true',
             description: 'the value to be set',
@@ -33768,8 +33788,8 @@ module.exports = {
             types: [
               'Event',
             ],
-            required: 'false',
-            description: '- event object',
+            required: 'true',
+            description: 'event object',
           },
         },
         private: true,
@@ -33782,8 +33802,8 @@ module.exports = {
             types: [
               'Event',
             ],
-            required: 'false',
-            description: '- event object',
+            required: 'true',
+            description: 'event object',
           },
         },
         private: true,
@@ -33796,8 +33816,8 @@ module.exports = {
             types: [
               'Event',
             ],
-            required: 'false',
-            description: '- event object',
+            required: 'true',
+            description: 'event object',
           },
         },
         private: true,
@@ -33810,8 +33830,8 @@ module.exports = {
             types: [
               'Event',
             ],
-            required: 'false',
-            description: '- event object',
+            required: 'true',
+            description: 'event object',
           },
         },
         private: true,
@@ -35688,6 +35708,7 @@ module.exports = {
     methods: {
       resolveOptions: {
         description: 'Resolves items.',
+        returns: 'void',
         private: true,
       },
       updateItems: {
@@ -35706,6 +35727,7 @@ module.exports = {
       },
       cleanupValue: {
         description: 'Removes any value that is not among the newly fetches option list after async resolve.',
+        returns: 'void',
         params: {
           values: {
             types: [
@@ -35719,6 +35741,7 @@ module.exports = {
       },
       resolveUrlAndSetWatchers: {
         description: 'Resolves the endpoint url with field values and sets watchers for those fields.',
+        returns: 'void',
         params: {
           url: {
             types: [
@@ -35749,6 +35772,7 @@ module.exports = {
       },
       updateColumns: {
         description: 'Update columns programmatically.',
+        returns: 'void',
         params: {
           value: {
             types: [
@@ -35794,7 +35818,6 @@ module.exports = {
           value: {
             types: [
               'string',
-              '',
             ],
             required: 'true',
             description: 'the value to be set',
@@ -37660,6 +37683,7 @@ module.exports = {
       },
       updateColumns: {
         description: 'Update columns programmatically.',
+        returns: 'void',
         params: {
           value: {
             types: [
@@ -37705,7 +37729,6 @@ module.exports = {
           value: {
             types: [
               'string',
-              '',
             ],
             required: 'true',
             description: 'the value to be set',
@@ -37800,8 +37823,8 @@ module.exports = {
             types: [
               'Event',
             ],
-            required: 'false',
-            description: '- event object',
+            required: 'true',
+            description: 'event object',
           },
         },
         private: true,
@@ -37814,8 +37837,8 @@ module.exports = {
             types: [
               'Event',
             ],
-            required: 'false',
-            description: '- event object',
+            required: 'true',
+            description: 'event object',
           },
         },
         private: true,
@@ -37828,8 +37851,8 @@ module.exports = {
             types: [
               'Event',
             ],
-            required: 'false',
-            description: '- event object',
+            required: 'true',
+            description: 'event object',
           },
         },
         private: true,
@@ -37842,8 +37865,8 @@ module.exports = {
             types: [
               'Event',
             ],
-            required: 'false',
-            description: '- event object',
+            required: 'true',
+            description: 'event object',
           },
         },
         private: true,
@@ -39307,6 +39330,7 @@ module.exports = {
       },
       updateColumns: {
         description: 'Update columns programmatically.',
+        returns: 'void',
         params: {
           value: {
             types: [
@@ -39352,7 +39376,6 @@ module.exports = {
           value: {
             types: [
               'string',
-              '',
             ],
             required: 'true',
             description: 'the value to be set',
@@ -39447,8 +39470,8 @@ module.exports = {
             types: [
               'Event',
             ],
-            required: 'false',
-            description: '- event object',
+            required: 'true',
+            description: 'event object',
           },
         },
         private: true,
@@ -39461,8 +39484,8 @@ module.exports = {
             types: [
               'Event',
             ],
-            required: 'false',
-            description: '- event object',
+            required: 'true',
+            description: 'event object',
           },
         },
         private: true,
@@ -39475,8 +39498,8 @@ module.exports = {
             types: [
               'Event',
             ],
-            required: 'false',
-            description: '- event object',
+            required: 'true',
+            description: 'event object',
           },
         },
         private: true,
@@ -39489,8 +39512,8 @@ module.exports = {
             types: [
               'Event',
             ],
-            required: 'false',
-            description: '- event object',
+            required: 'true',
+            description: 'event object',
           },
         },
         private: true,
@@ -40853,6 +40876,7 @@ module.exports = {
       },
       updateColumns: {
         description: 'Update columns programmatically.',
+        returns: 'void',
         params: {
           value: {
             types: [
@@ -40898,7 +40922,6 @@ module.exports = {
           value: {
             types: [
               'string',
-              '',
             ],
             required: 'true',
             description: 'the value to be set',

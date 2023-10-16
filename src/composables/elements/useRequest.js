@@ -29,6 +29,7 @@ const base = function(props, context, dependencies)
   /**
    * Whether a temp file is currently being uploaded.
    *
+   * @type {boolean}
    * @private
    */
   const uploading = computed(() => {

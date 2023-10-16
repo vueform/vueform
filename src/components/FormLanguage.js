@@ -61,7 +61,7 @@ export default {
     /**
      * Select the language.
      * 
-     * @return {void}
+     * @returns {void}
      */
     const select = () => {
       context.emit('select', code.value)

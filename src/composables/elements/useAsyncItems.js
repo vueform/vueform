@@ -131,7 +131,7 @@ const base = function(props, context, dependencies)
   /**
    * Resolves options from url.
    *
-   * @return {void}
+   * @returns {void}
    * @private
    */
   const resolveOptionsFromUrl = async () => {
@@ -156,7 +156,7 @@ const base = function(props, context, dependencies)
   /**
    * Creates an async function returning options from url.
    *
-   * @return {void}
+   * @returns {void}
    * @private
    */
   const createAsyncOptionsFromUrl = () => {
@@ -186,7 +186,7 @@ const base = function(props, context, dependencies)
   /**
    * Resolves options from function.
    *
-   * @return {void}
+   * @returns {void}
    * @private
    */
   const resolveOptionsFromFunction = async () => {
@@ -201,7 +201,7 @@ const base = function(props, context, dependencies)
   /**
    * Resolves items.
    *
-   * @return {void}
+   * @returns {void}
    * @private
    */
   const resolveOptions = async (n, o) => {
@@ -221,7 +221,7 @@ const base = function(props, context, dependencies)
   /**
    * Removes any value that is not among the newly fetches option list after async resolve.
    * 
-   * @return {void}
+   * @returns {void}
    * @param {array} values* the list of option values
    * @private
    */
@@ -244,7 +244,7 @@ const base = function(props, context, dependencies)
   /**
    * Resolves the endpoint url with field values and sets watchers for those fields.
    * 
-   * @return {void}
+   * @returns {void}
    * @param {string} url* the base url potentially containing variable names
    * @param {function} updateItems* the method that triggers item updates
    * @private
@@ -425,7 +425,7 @@ const checkboxgroup = function(props, context, dependencies)
   /**
    * Resolves options from url.
    *
-   * @return {void}
+   * @returns {void}
    * @private
    */
   const resolveOptionsFromUrl = async () => {
@@ -444,7 +444,7 @@ const checkboxgroup = function(props, context, dependencies)
   /**
    * Resolves options from function. Receives [`el$`](#property-el) as first param.
    *
-   * @return {void}
+   * @returns {void}
    * @private
    */
   const resolveOptionsFromFunction = async () => {
@@ -459,7 +459,7 @@ const checkboxgroup = function(props, context, dependencies)
   /**
    * Resolves items.
    *
-   * @return {void}
+   * @returns {void}
    * @private
    */
   const resolveOptions = async () => {

@@ -87,6 +87,7 @@ const base = function(props, context, dependencies, /* istanbul ignore next: add
    *
    * @param {object} data an object containing address data
    * @param {object} raw an object containing raw address data (based on provider)
+   * @returns {void}
    * @private
    */
   const handleAddressChange = (data, raw) => {
@@ -102,8 +103,9 @@ const base = function(props, context, dependencies, /* istanbul ignore next: add
   
   /* istanbul ignore next */
   /**
-   *
-   *
+   * Handles the blur event of location element.
+   * 
+   * @returns {void}
    * @private
    */
   const handleLocationBlur = () => {
@@ -192,12 +194,6 @@ const address = function(props, context, dependencies)
     }
   }
   
-  /**
-   * Handles location service's address change.
-   *
-   * @param {object} data an object containing address data
-   * @param {object} raw an object containing raw address data (based on provider)
-   */
   const handleAddressChange = (data, raw) => {
     location.value = raw
     updateFields(data)

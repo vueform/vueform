@@ -1469,6 +1469,7 @@ module.exports = {
     "methods": {
       "select": {
         "public": true,
+        "returns": "void",
         "description": "Select the language."
       }
     },
@@ -2672,6 +2673,9 @@ module.exports = {
       },
       "steps$": {
         "public": false,
+        "types": [
+          "FormSteps"
+        ],
         "description": "The [`FormSteps`](form-steps) component."
       },
       "classes": {
@@ -2718,6 +2722,9 @@ module.exports = {
       },
       "current$": {
         "public": false,
+        "types": [
+          "FormStep"
+        ],
         "description": "The currently active [`FormStep`](form-step) component."
       },
       "label": {
@@ -3629,7 +3636,10 @@ module.exports = {
       },
       "intermediaryValue": {
         "public": false,
-        "description": ""
+        "types": [
+          "object"
+        ],
+        "description": "The intermediary value."
       },
       "userConfig": {
         "public": false,
@@ -5383,8 +5393,8 @@ module.exports = {
             "types": [
               "Event"
             ],
-            "required": false,
-            "description": "- event object "
+            "required": true,
+            "description": "event object "
           }
         }
       }
@@ -5761,8 +5771,8 @@ module.exports = {
             "types": [
               "Event"
             ],
-            "required": false,
-            "description": "- event object "
+            "required": true,
+            "description": "event object "
           }
         }
       }

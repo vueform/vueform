@@ -79,7 +79,8 @@ const base = function(props, context, dependencies, options)
   /**
    * Handles `sort` event.
    *
-   * @param {Event} e Sortable.js event
+   * @param {Event} e* Sortable.js event
+   * @returns {void}
    * @private
    */
   const handleSort = ({ oldIndex, newIndex, item }) => {

@@ -7,7 +7,7 @@ const base = function(props, context, dependencies)
   /**
    * Handles `keydown` event.
    *
-   * @param {Event} e - event object
+   * @param {Event} e* event object
    * @returns {void}
    * @private
    */
@@ -18,7 +18,7 @@ const base = function(props, context, dependencies)
   /**
    * Handles `keyup` event.
    *
-   * @param {Event} e - event object
+   * @param {Event} e* event object
    * @returns {void}
    * @private
    */
@@ -29,7 +29,7 @@ const base = function(props, context, dependencies)
   /**
    * Handles `keypress` event.
    *
-   * @param {Event} e - event object
+   * @param {Event} e* event object
    * @returns {void}
    * @private
    */

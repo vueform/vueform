@@ -85,7 +85,7 @@ export default {
     /**
      * Handles `keydown` event.
      * 
-     * @param {Event} e - event object 
+     * @param {Event} e* event object 
      * @returns {void}
      * @private
      */

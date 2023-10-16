@@ -80,6 +80,7 @@ export default {
     /**
      * The [`FormSteps`](form-steps) component.
      *
+     * @type {FormSteps}
      * @private
      */
     const steps$ = computed(() => {
@@ -89,6 +90,7 @@ export default {
     /**
      * The currently active [`FormStep`](form-step) component.
      *
+     * @type {FormStep}
      * @private
      */
     const current$ = computed(() => {

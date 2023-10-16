@@ -80,7 +80,7 @@ const base = function(props, context, dependencies, options = {})
   /**
    * Updates the value of the element similarly to [`load`](#method-load), only that it can\'t format data.
    *
-   * @param {string|} value* the value to be set
+   * @param {string} value* the value to be set
    * @returns {void}
    */
   const update = (val) => {

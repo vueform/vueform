@@ -66,6 +66,7 @@ const base = function(props, context, dependencies)
    * Update columns programmatically.
    *
    * @param {number|array} value* the new value for columns option
+   * @returns {void}
    * @private
    */
   const updateColumns = (v) => {

@@ -32,8 +32,9 @@ export default function (props, context, dependencies)
   const internalData = ref({})
 
   /**
+   * The intermediary value.
    * 
-   * 
+   * @type {object}
    * @private
    */
   const intermediaryValue = ref(externalValue && externalValue.value ? _.cloneDeep(externalValue.value) : null)
