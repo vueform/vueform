@@ -180,7 +180,9 @@ interface VueformElement extends DefineComponent {
   params: object;
   softRemove: boolean;
   embed: boolean;
-  schema: object;
+  schema: {
+    [key: string]: VueformSchema;
+  };
   meta: boolean;
   onAdd: Function;
   onSort: Function;
@@ -580,7 +582,9 @@ interface VueformSchema {
   params?: object;
   softRemove?: boolean;
   embed?: boolean;
-  schema?: object;
+  schema?: {
+    [key: string]: VueformSchema;
+  };
   meta?: boolean;
   onAdd?: Function;
   onSort?: Function;
@@ -1331,7 +1335,9 @@ interface GroupElementProps {
   type?: string;
   default?: object;
   id?: string;
-  schema?: object;
+  schema?: {
+    [key: string]: VueformSchema;
+  };
 }
 
 interface HiddenElementProps {
@@ -1694,7 +1700,9 @@ interface ObjectElementProps {
   type?: string;
   default?: object;
   id?: string;
-  schema?: object;
+  schema?: {
+    [key: string]: VueformSchema;
+  };
   embed?: boolean;
   onRemove?: Function;
 }

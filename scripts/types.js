@@ -220,7 +220,13 @@ if (Object.keys(props).length) {
   for (const key in props) {
     let value = props[key]
 
-    content += `  ${key}: ${transformTypes(value.types, key)};\n`
+    if (key === 'schema') {
+      content += `  ${key}: {\n`
+      content += `    [key: string]: VueformSchema;\n`
+      content += `  };\n`
+    } else {
+      content += `  ${key}: ${transformTypes(value.types, key)};\n`
+    }
   }
 }
 
@@ -280,7 +286,13 @@ if (Object.keys(props).length) {
     let value = props[key]
 
     if (key !== 'name') {
-      content += `  ${key}${key!=='type'?'?':''}: ${transformTypes(value.types, key)};\n`
+      if (key === 'schema') {
+        content += `  ${key}${value.required?'':'?'}: {\n`
+        content += `    [key: string]: VueformSchema;\n`
+        content += `  };\n`
+      } else {
+        content += `  ${key}${key!=='type'?'?':''}: ${transformTypes(value.types, key)};\n`
+      }
     }
   }
 }
@@ -297,7 +309,7 @@ for (const component in components) {
   for (const key in props) {
     let value = props[key]
 
-    if (component === 'Vueform' && key === 'schema') {
+    if (key === 'schema') {
       content += `  ${key}${value.required?'':'?'}: {\n`
       content += `    [key: string]: VueformSchema;\n`
       content += `  };\n`
