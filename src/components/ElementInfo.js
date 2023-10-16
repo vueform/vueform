@@ -73,7 +73,7 @@ export default {
      * Handles the info hover.
      *
      * @param {Event|object} e
-     * @returns {void}
+     * @returns {Promise}
      * @private
      */
     /* istanbul ignore next: not worth it */

@@ -143,7 +143,7 @@ export default {
     /**
      * Initalizes the flatpickr.
      * 
-     * @returns {void}
+     * @returns {Promise}
      * @private
      */
     const init = async () => {

@@ -366,7 +366,7 @@ export default {
     /**
      * Invokes the form's `submit` event. If the form has any validation errors it will jump to the first step with error.
      *
-     * @returns {void}
+     * @returns {Promise}
      */
     const submit = async () => {
       // Replaced with next because Vue didn't handle component's submit event in FFX

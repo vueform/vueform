@@ -360,12 +360,12 @@ export default {
       "methods": {
         "resolveOptions": {
           "public": false,
-          "returns": "void",
+          "returns": "Promise",
           "description": "Resolves items."
         },
         "updateItems": {
           "public": true,
-          "returns": "void",
+          "returns": "Promise",
           "description": "Fetches & updates select options when using `async` options. Receives [`el$`](#property-el) as first param.",
           "params": {
             "disable": {
@@ -393,7 +393,7 @@ export default {
         },
         "resolveUrlAndSetWatchers": {
           "public": false,
-          "returns": "void",
+          "returns": "Promise",
           "description": "Resolves the endpoint url with field values and sets watchers for those fields.",
           "params": {
             "url": {
@@ -437,12 +437,12 @@ export default {
       "methods": {
         "resolveOptions": {
           "public": false,
-          "returns": "void",
+          "returns": "Promise",
           "description": "Resolves items."
         },
         "updateItems": {
           "public": true,
-          "returns": "void",
+          "returns": "Promise",
           "description": "Fetches & updates select options when using `async` options. Receives [`el$`](#property-el) as first param.",
           "params": {
             "disable": {
@@ -470,7 +470,7 @@ export default {
         },
         "resolveUrlAndSetWatchers": {
           "public": false,
-          "returns": "void",
+          "returns": "Promise",
           "description": "Resolves the endpoint url with field values and sets watchers for those fields.",
           "params": {
             "url": {
@@ -514,12 +514,12 @@ export default {
       "methods": {
         "resolveOptions": {
           "public": false,
-          "returns": "void",
+          "returns": "Promise",
           "description": "Resolves items."
         },
         "updateItems": {
           "public": true,
-          "returns": "void",
+          "returns": "Promise",
           "description": "Fetches & updates items when using `async` items.",
           "params": {
             "disable": {
@@ -547,7 +547,7 @@ export default {
         },
         "resolveUrlAndSetWatchers": {
           "public": false,
-          "returns": "void",
+          "returns": "Promise",
           "description": "Resolves the endpoint url with field values and sets watchers for those fields.",
           "params": {
             "url": {
@@ -591,12 +591,12 @@ export default {
       "methods": {
         "resolveOptions": {
           "public": false,
-          "returns": "void",
+          "returns": "Promise",
           "description": "Resolves items."
         },
         "updateItems": {
           "public": true,
-          "returns": "void",
+          "returns": "Promise",
           "description": "Fetches & updates items when using `async` items.",
           "params": {
             "disable": {
@@ -624,7 +624,7 @@ export default {
         },
         "resolveUrlAndSetWatchers": {
           "public": false,
-          "returns": "void",
+          "returns": "Promise",
           "description": "Resolves the endpoint url with field values and sets watchers for those fields.",
           "params": {
             "url": {
@@ -668,12 +668,12 @@ export default {
       "methods": {
         "resolveOptions": {
           "public": false,
-          "returns": "void",
+          "returns": "Promise",
           "description": "Resolves items."
         },
         "updateItems": {
           "public": true,
-          "returns": "void",
+          "returns": "Promise",
           "description": "Fetches & updates select options when using `async` options. Receives [`el$`](#property-el) as first param.",
           "params": {
             "disable": {
@@ -701,7 +701,7 @@ export default {
         },
         "resolveUrlAndSetWatchers": {
           "public": false,
-          "returns": "void",
+          "returns": "Promise",
           "description": "Resolves the endpoint url with field values and sets watchers for those fields.",
           "params": {
             "url": {
@@ -745,12 +745,12 @@ export default {
       "methods": {
         "resolveOptions": {
           "public": false,
-          "returns": "void",
+          "returns": "Promise",
           "description": "Resolves items."
         },
         "updateItems": {
           "public": true,
-          "returns": "void",
+          "returns": "Promise",
           "description": "Fetches & updates select options when using `async` options. Receives [`el$`](#property-el) as first param.",
           "params": {
             "disable": {
@@ -778,7 +778,7 @@ export default {
         },
         "resolveUrlAndSetWatchers": {
           "public": false,
-          "returns": "void",
+          "returns": "Promise",
           "description": "Resolves the endpoint url with field values and sets watchers for those fields.",
           "params": {
             "url": {
@@ -1909,7 +1909,7 @@ export default {
           "params": {
             "value": {
               "types": [
-                "string"
+                "any"
               ],
               "required": true,
               "description": "the value to be loaded"
@@ -1930,7 +1930,7 @@ export default {
           "params": {
             "value": {
               "types": [
-                "string"
+                "any"
               ],
               "required": true,
               "description": "the value to be set"
@@ -1974,7 +1974,7 @@ export default {
           "params": {
             "value": {
               "types": [
-                "string"
+                "any"
               ],
               "required": true,
               "description": "the value to be loaded"
@@ -1995,7 +1995,7 @@ export default {
           "params": {
             "value": {
               "types": [
-                "string"
+                "any"
               ],
               "required": true,
               "description": "the value to be set"
@@ -2039,7 +2039,7 @@ export default {
           "params": {
             "value": {
               "types": [
-                "string"
+                "any"
               ],
               "required": true,
               "description": "the value to be loaded"
@@ -2060,7 +2060,7 @@ export default {
           "params": {
             "value": {
               "types": [
-                "string"
+                "any"
               ],
               "required": true,
               "description": "the value to be set"
@@ -2104,7 +2104,7 @@ export default {
           "params": {
             "value": {
               "types": [
-                "string"
+                "any"
               ],
               "required": true,
               "description": "the value to be loaded"
@@ -2125,7 +2125,7 @@ export default {
           "params": {
             "value": {
               "types": [
-                "string"
+                "any"
               ],
               "required": true,
               "description": "the value to be set"
@@ -2204,7 +2204,7 @@ export default {
           "params": {
             "value": {
               "types": [
-                "string"
+                "any"
               ],
               "required": true,
               "description": "the value to be loaded"
@@ -2225,7 +2225,7 @@ export default {
           "params": {
             "value": {
               "types": [
-                "string"
+                "any"
               ],
               "required": true,
               "description": "the value to be set"
@@ -2288,7 +2288,7 @@ export default {
           "params": {
             "value": {
               "types": [
-                "string"
+                "any"
               ],
               "required": true,
               "description": "the value to be loaded"
@@ -2309,7 +2309,7 @@ export default {
           "params": {
             "value": {
               "types": [
-                "string"
+                "any"
               ],
               "required": true,
               "description": "the value to be set"
@@ -2353,7 +2353,7 @@ export default {
           "params": {
             "value": {
               "types": [
-                "string"
+                "any"
               ],
               "required": true,
               "description": "the value to be loaded"
@@ -2374,7 +2374,7 @@ export default {
           "params": {
             "value": {
               "types": [
-                "string"
+                "any"
               ],
               "required": true,
               "description": "the value to be set"
@@ -2418,7 +2418,7 @@ export default {
           "params": {
             "value": {
               "types": [
-                "string"
+                "any"
               ],
               "required": true,
               "description": "the value to be loaded"
@@ -2439,7 +2439,7 @@ export default {
           "params": {
             "value": {
               "types": [
-                "string"
+                "any"
               ],
               "required": true,
               "description": "the value to be set"
@@ -2483,7 +2483,7 @@ export default {
           "params": {
             "value": {
               "types": [
-                "string"
+                "any"
               ],
               "required": true,
               "description": "the value to be loaded"
@@ -2504,7 +2504,7 @@ export default {
           "params": {
             "value": {
               "types": [
-                "string"
+                "any"
               ],
               "required": true,
               "description": "the value to be set"
@@ -2548,7 +2548,7 @@ export default {
           "params": {
             "value": {
               "types": [
-                "string"
+                "any"
               ],
               "required": true,
               "description": "the value to be loaded"
@@ -2569,7 +2569,7 @@ export default {
           "params": {
             "value": {
               "types": [
-                "string"
+                "any"
               ],
               "required": true,
               "description": "the value to be set"
@@ -2613,7 +2613,7 @@ export default {
           "params": {
             "value": {
               "types": [
-                "string"
+                "any"
               ],
               "required": true,
               "description": "the value to be loaded"
@@ -2634,7 +2634,7 @@ export default {
           "params": {
             "value": {
               "types": [
-                "string"
+                "any"
               ],
               "required": true,
               "description": "the value to be set"
@@ -2713,7 +2713,7 @@ export default {
           "params": {
             "value": {
               "types": [
-                "string"
+                "any"
               ],
               "required": true,
               "description": "the value to be loaded"
@@ -2734,7 +2734,7 @@ export default {
           "params": {
             "value": {
               "types": [
-                "string"
+                "any"
               ],
               "required": true,
               "description": "the value to be set"
@@ -2797,7 +2797,7 @@ export default {
           "params": {
             "value": {
               "types": [
-                "string"
+                "any"
               ],
               "required": true,
               "description": "the value to be loaded"
@@ -2818,7 +2818,7 @@ export default {
           "params": {
             "value": {
               "types": [
-                "string"
+                "any"
               ],
               "required": true,
               "description": "the value to be set"
@@ -2862,7 +2862,7 @@ export default {
           "params": {
             "value": {
               "types": [
-                "string"
+                "any"
               ],
               "required": true,
               "description": "the value to be loaded"
@@ -2883,7 +2883,7 @@ export default {
           "params": {
             "value": {
               "types": [
-                "string"
+                "any"
               ],
               "required": true,
               "description": "the value to be set"
@@ -3444,22 +3444,22 @@ export default {
       "methods": {
         "uploadTemp": {
           "public": true,
-          "returns": "void",
+          "returns": "Promise",
           "description": "Upload temporary file (async)."
         },
         "remove": {
           "public": true,
-          "returns": "void",
+          "returns": "Promise",
           "description": "Removes file (async):\\n\\n* in stage `1`: sets the value to `null`\\n* in stage `2`: submits a request to `removeTemp` endpoint (if [`softRemove: false`](#option-soft-remove)) and sets the value to `null`\\n* in stage `3`: submits a request to `remove` endpoint (if [`softRemove: false`](#option-soft-remove)) and sets the value to `null`"
         },
         "prepare": {
           "public": false,
-          "returns": "void",
+          "returns": "Promise",
           "description": "Prepare the element for submitting the form (async). It will upload temp file if it hasn't been uploaded yet and halts the submit process until it is done without any errors."
         },
         "handleChange": {
           "public": false,
-          "returns": "void",
+          "returns": "Promise",
           "description": "Handles `change` event.",
           "params": {
             "e": {
@@ -3963,7 +3963,8 @@ export default {
           "public": true,
           "default": "null",
           "types": [
-            "class"
+            "object",
+            "null"
           ],
           "description": "The location service that's initialized once the component is mounted."
         },
@@ -3971,7 +3972,7 @@ export default {
           "public": true,
           "default": "null",
           "types": [
-            "class"
+            "object"
           ],
           "description": "The raw location object of location provider (Google/Algolia)."
         }
@@ -4036,7 +4037,8 @@ export default {
           "public": true,
           "default": "null",
           "types": [
-            "class"
+            "object",
+            "null"
           ],
           "description": "The location service that's initialized once the component is mounted."
         },
@@ -4044,7 +4046,7 @@ export default {
           "public": true,
           "default": "null",
           "types": [
-            "class"
+            "object"
           ],
           "description": "The raw location object of location provider (Google/Algolia)."
         }
@@ -4846,7 +4848,7 @@ export default {
       "methods": {
         "validate": {
           "public": true,
-          "returns": "void",
+          "returns": "Promise",
           "description": "Checks each validation rule for the element (async)."
         },
         "dirt": {
@@ -4996,7 +4998,7 @@ export default {
       "methods": {
         "validate": {
           "public": true,
-          "returns": "void",
+          "returns": "Promise",
           "description": "Checks each validation rule for the element (async)."
         },
         "dirt": {
@@ -5139,17 +5141,17 @@ export default {
       "methods": {
         "validate": {
           "public": true,
-          "returns": "void",
+          "returns": "Promise",
           "description": "Checks each validation rule for the element and validates children (async)."
         },
         "validateValidators": {
           "public": true,
-          "returns": "void",
+          "returns": "Promise",
           "description": "Checks each validation rule for the element (async)."
         },
         "validateChildren": {
           "public": true,
-          "returns": "void",
+          "returns": "Promise",
           "description": "Validates every child (async)."
         },
         "dirt": {
@@ -5299,12 +5301,12 @@ export default {
       "methods": {
         "validate": {
           "public": true,
-          "returns": "void",
+          "returns": "Promise",
           "description": "Checks each validation rule for the element in every language (async)."
         },
         "validateLanguage": {
           "public": true,
-          "returns": "void",
+          "returns": "Promise",
           "description": "Checks each validation rule for the element in a specific language (async).",
           "params": {
             "lang": {
@@ -5447,7 +5449,7 @@ export default {
       "methods": {
         "validate": {
           "public": true,
-          "returns": "void",
+          "returns": "Promise",
           "description": "Checks each validation rule for the element (async)."
         },
         "dirt": {
@@ -5576,7 +5578,7 @@ export default {
       "methods": {
         "validate": {
           "public": true,
-          "returns": "void",
+          "returns": "Promise",
           "description": "Checks each validation rule for the element (async). File element will only validate for `min`, `max`, `between`, `size`, `mimetypes`, `mimes`, `dimensions`, `file`, `image`, `gt`, `gte`, `lt` and `lte` rules and only before the temporary files are uploaded."
         },
         "dirt": {
@@ -5726,7 +5728,7 @@ export default {
       "methods": {
         "validate": {
           "public": true,
-          "returns": "void",
+          "returns": "Promise",
           "description": "Checks each validation rule for the element on [`displayKey`](#option-display-key) property of the location object (async)."
         },
         "dirt": {
@@ -5869,17 +5871,17 @@ export default {
       "methods": {
         "validate": {
           "public": true,
-          "returns": "void",
+          "returns": "Promise",
           "description": "Checks each validation rule for the element and validates children (async)."
         },
         "validateValidators": {
           "public": true,
-          "returns": "void",
+          "returns": "Promise",
           "description": "Checks each validation rule for the element (async)."
         },
         "validateChildren": {
           "public": true,
-          "returns": "void",
+          "returns": "Promise",
           "description": "Validates every child (async)."
         },
         "dirt": {
@@ -6022,17 +6024,17 @@ export default {
       "methods": {
         "validate": {
           "public": true,
-          "returns": "void",
+          "returns": "Promise",
           "description": "Checks each validation rule for the element and validates children (async)."
         },
         "validateValidators": {
           "public": true,
-          "returns": "void",
+          "returns": "Promise",
           "description": "Checks each validation rule for the element (async)."
         },
         "validateChildren": {
           "public": true,
-          "returns": "void",
+          "returns": "Promise",
           "description": "Validates every child (async)."
         },
         "dirt": {

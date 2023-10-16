@@ -618,7 +618,7 @@ export default {
         },
         "handleKeyup": {
           "public": false,
-          "returns": "void",
+          "returns": "Promise",
           "description": "Handle the keyup event of the preview.",
           "params": {
             "event": {
@@ -1070,7 +1070,7 @@ export default {
       "methods": {
         "prepareElements": {
           "public": false,
-          "returns": "void",
+          "returns": "Promise",
           "description": "Prepares all elements to submit (async)."
         },
         "updateModel": {
@@ -1117,7 +1117,7 @@ export default {
         },
         "load": {
           "public": true,
-          "returns": "void",
+          "returns": "Promise",
           "description": "Loads data to the form using optional [`formatLoad`](#option-format-load) formatter.",
           "params": {
             "value": {
@@ -1158,7 +1158,7 @@ export default {
         },
         "validate": {
           "public": true,
-          "returns": "void",
+          "returns": "Promise",
           "description": "Validates all elements (async) which weren't validated before. If [`validateOn`](#option-validate-on) does not contain `change` it will validate all elements on each call."
         },
         "resetValidators": {
@@ -1182,12 +1182,12 @@ export default {
         },
         "submit": {
           "public": true,
-          "returns": "void",
+          "returns": "Promise",
           "description": "Validates and prepares elements then submits the form (async)."
         },
         "send": {
           "public": true,
-          "returns": "void",
+          "returns": "Promise",
           "description": "Sends form data to [`endpoint`](#option-endpoint) with the selected [`method`](#option-method) (async)."
         },
         "disableValidation": {

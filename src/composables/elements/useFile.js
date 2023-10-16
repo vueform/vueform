@@ -325,7 +325,7 @@ const base = function(props, context, dependencies)
   /**
    * Upload temporary file (async).
    *
-   * @returns {void}
+   * @returns {Promise}
    */
   const uploadTemp = async () => {
     if (stage.value !== 1) {
@@ -395,7 +395,7 @@ const base = function(props, context, dependencies)
    * * in stage `2`: submits a request to `removeTemp` endpoint (if [`softRemove: false`](#option-soft-remove)) and sets the value to `null`
    * * in stage `3`: submits a request to `remove` endpoint (if [`softRemove: false`](#option-soft-remove)) and sets the value to `null`
    *
-   * @returns {void}
+   * @returns {Promise}
    */
   const remove = async () => {
     removing.value = true
@@ -456,7 +456,7 @@ const base = function(props, context, dependencies)
   /**
    * Prepare the element for submitting the form (async). It will upload temp file if it hasn't been uploaded yet and halts the submit process until it is done without any errors.
    *
-   * @returns {void}
+   * @returns {Promise}
    * @private
    */
   const prepare = async () => {
@@ -486,7 +486,7 @@ const base = function(props, context, dependencies)
    * Handles `change` event.
    *
    * @param {Event} e* event object
-   * @returns {void}
+   * @returns {Promise}
    * @private
    */
   const handleChange = async (e) => { //@todo:adam handleChange has to be async and await uploadTemp() and input.value.value should be before update because otherwise it may not exist

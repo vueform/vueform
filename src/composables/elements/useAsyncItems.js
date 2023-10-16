@@ -97,7 +97,7 @@ const base = function(props, context, dependencies)
    * Fetches & updates select options when using `async` options. Receives [`el$`](#property-el) as first param.
    *
    * @param {boolean} disable* whether the input field should be disabled while fetching options
-   * @returns {void}
+   * @returns {Promise}
    */
   const updateItems = async (shouldDisable = true) => {
     if (!isNative.value) {
@@ -131,7 +131,7 @@ const base = function(props, context, dependencies)
   /**
    * Resolves options from url.
    *
-   * @returns {void}
+   * @returns {Promise}
    * @private
    */
   const resolveOptionsFromUrl = async () => {
@@ -156,7 +156,7 @@ const base = function(props, context, dependencies)
   /**
    * Creates an async function returning options from url.
    *
-   * @returns {void}
+   * @returns {function}
    * @private
    */
   const createAsyncOptionsFromUrl = () => {
@@ -186,7 +186,7 @@ const base = function(props, context, dependencies)
   /**
    * Resolves options from function.
    *
-   * @returns {void}
+   * @returns {Promise}
    * @private
    */
   const resolveOptionsFromFunction = async () => {
@@ -201,7 +201,7 @@ const base = function(props, context, dependencies)
   /**
    * Resolves items.
    *
-   * @returns {void}
+   * @returns {Promise}
    * @private
    */
   const resolveOptions = async (n, o) => {
@@ -244,7 +244,7 @@ const base = function(props, context, dependencies)
   /**
    * Resolves the endpoint url with field values and sets watchers for those fields.
    * 
-   * @returns {void}
+   * @returns {Promise}
    * @param {string} url* the base url potentially containing variable names
    * @param {function} updateItems* the method that triggers item updates
    * @private
@@ -404,7 +404,7 @@ const checkboxgroup = function(props, context, dependencies)
    * Fetches & updates items when using `async` items.
    *
    * @param {boolean} disable* whether the input field should be disabled while fetching options
-   * @returns {void}
+   * @returns {Promise}
    */
   const updateItems = async (shouldDisable = true) => {
     if (shouldDisable) {
@@ -425,7 +425,7 @@ const checkboxgroup = function(props, context, dependencies)
   /**
    * Resolves options from url.
    *
-   * @returns {void}
+   * @returns {Promise}
    * @private
    */
   const resolveOptionsFromUrl = async () => {
@@ -444,7 +444,7 @@ const checkboxgroup = function(props, context, dependencies)
   /**
    * Resolves options from function. Receives [`el$`](#property-el) as first param.
    *
-   * @returns {void}
+   * @returns {Promise}
    * @private
    */
   const resolveOptionsFromFunction = async () => {
@@ -459,7 +459,7 @@ const checkboxgroup = function(props, context, dependencies)
   /**
    * Resolves items.
    *
-   * @returns {void}
+   * @returns {Promise}
    * @private
    */
   const resolveOptions = async () => {

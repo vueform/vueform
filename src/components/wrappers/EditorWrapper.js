@@ -205,7 +205,7 @@ export default {
      * Handles `attachmentAdd` event.
      * 
      * @param {Event} e event
-     * @returns {void}
+     * @returns {Promise}
      * @private
      */
     const handleAttachmentAdd = async (e) => {

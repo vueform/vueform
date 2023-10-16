@@ -397,8 +397,8 @@ interface VueformElement extends DefineComponent {
   list: HTMLElement;
   sortable: object;
   sorting: boolean;
-  locationService: class;
-  location: class;
+  locationService: object | null;
+  location: object;
 
   // Methods
   activate: () => void;
@@ -420,7 +420,7 @@ interface VueformElement extends DefineComponent {
   enable: () => void;
   check: () => void;
   uncheck: () => void;
-  validate: () => void;
+  validate: () => Promise;
   dirt: () => void;
   clean: () => void;
   clearMessages: () => void;
@@ -428,10 +428,10 @@ interface VueformElement extends DefineComponent {
   initMessageBag: () => void;
   initValidation: () => void;
   reinitValidation: () => void;
-  resolveOptions: () => void;
-  updateItems: (disable: boolean) => void;
+  resolveOptions: () => Promise;
+  updateItems: (disable: boolean) => Promise;
   cleanupValue: (values: Array<any>) => void;
-  resolveUrlAndSetWatchers: (url: string, updateItems: Function) => void;
+  resolveUrlAndSetWatchers: (url: string, updateItems: Function) => Promise;
   toggle: (value: string | number) => void;
   checkAll: () => void;
   uncheckAll: () => void;
@@ -443,15 +443,15 @@ interface VueformElement extends DefineComponent {
   handleError: (error: Error) => void;
   handleInput: (e: Event) => void;
   handleDrop: (e: Event) => void;
-  uploadTemp: () => void;
-  remove: () => void;
-  prepare: () => void;
+  uploadTemp: () => Promise;
+  remove: () => Promise;
+  prepare: () => Promise;
   handleUploadTemp: () => void;
   handleRemove: () => void;
   handleAbort: () => void;
   component: (element: string) => string;
-  validateValidators: () => void;
-  validateChildren: () => void;
+  validateValidators: () => Promise;
+  validateChildren: () => Promise;
   add: (value: any) => number;
   handleAdd: () => void;
   refreshOrderStore: (value: Array<any>) => void;
@@ -471,7 +471,7 @@ interface VueformElement extends DefineComponent {
   select: (options: string | Array<any>) => void;
   deselect: (options: string | Array<any>) => void;
   handleUpdate: (val: string) => void;
-  validateLanguage: (lang: string) => void;
+  validateLanguage: (lang: string) => Promise;
   initState: () => void;
   handleKeydown: (e: Event) => void;
   handleKeyup: (e: Event) => void;
@@ -3017,7 +3017,7 @@ declare class FormSteps implements ReturnType<typeof defineComponent> {
   step$: (name: string) => FormStep | undefined;
   reset: () => void;
   enableAllSteps: () => void;
-  submit: () => void;
+  submit: () => Promise;
   select: (step$?: FormStep) => void;
   enableUntil: (index?: number) => void;
   enableUntilCurrent: () => void;
@@ -3332,19 +3332,19 @@ declare class Vueform implements ReturnType<typeof defineComponent> {
   userConfig: object;
 
   // Methods
-  prepareElements: () => void;
+  prepareElements: () => Promise;
   updateModel: (dataPath?: string, val?: any) => void;
   update: (data: object, path?: object) => void;
-  load: (value: string, format?: boolean) => void;
+  load: (value: string, format?: boolean) => Promise;
   reset: () => void;
   clear: () => void;
   clean: () => void;
   clearMessages: () => void;
-  validate: () => void;
+  validate: () => Promise;
   resetValidators: () => void;
   convertFormData: (data: object) => object;
-  submit: () => void;
-  send: () => void;
+  submit: () => Promise;
+  send: () => Promise;
   disableValidation: () => void;
   enableValidation: () => void;
   enableConditions: () => void;
@@ -3459,7 +3459,7 @@ declare class EditorWrapper implements ReturnType<typeof defineComponent> {
   setOption: (key: string, value: string) => void;
   handleChange: () => void;
   handleFileAccept: (e?: Event) => void;
-  handleAttachmentAdd: (e?: Event) => void;
+  handleAttachmentAdd: (e?: Event) => Promise;
   handleBlur: () => void;
 
   //Events
@@ -3538,7 +3538,7 @@ declare class FilePreview implements ReturnType<typeof defineComponent> {
   // Methods
   upload: () => void;
   remove: () => void;
-  handleKeyup: (event?: Event) => void;
+  handleKeyup: (event?: Event) => Promise;
 }
 
 declare class RadiogroupRadio implements ReturnType<typeof defineComponent> {
@@ -3856,7 +3856,7 @@ declare class CheckboxElement implements ReturnType<typeof defineComponent> {
   focus: () => void;
   check: () => void;
   uncheck: () => void;
-  validate: () => void;
+  validate: () => Promise;
   dirt: () => void;
   clean: () => void;
   clearMessages: () => void;
@@ -4018,10 +4018,10 @@ declare class CheckboxgroupElement implements ReturnType<typeof defineComponent>
   theme: object;
 
   // Methods
-  resolveOptions: () => void;
-  updateItems: (disable: boolean) => void;
+  resolveOptions: () => Promise;
+  updateItems: (disable: boolean) => Promise;
   cleanupValue: (values: Array<any>) => void;
-  resolveUrlAndSetWatchers: (url: string, updateItems: Function) => void;
+  resolveUrlAndSetWatchers: (url: string, updateItems: Function) => Promise;
   activate: () => void;
   deactivate: () => void;
   toggle: (value: string | number) => void;
@@ -4031,8 +4031,8 @@ declare class CheckboxgroupElement implements ReturnType<typeof defineComponent>
   uncheckAll: () => void;
   updateColumns: (value: number | Array<any>) => void;
   updateConditions: () => void;
-  load: (value: string, format: boolean) => void;
-  update: (value: string) => void;
+  load: (value: any, format: boolean) => void;
+  update: (value: any) => void;
   clear: () => void;
   reset: () => void;
   disableAll: () => void;
@@ -4043,7 +4043,7 @@ declare class CheckboxgroupElement implements ReturnType<typeof defineComponent>
   off: (event: string) => void;
   fire: (args: any) => void;
   focus: () => void;
-  validate: () => void;
+  validate: () => Promise;
   dirt: () => void;
   clean: () => void;
   clearMessages: () => void;
@@ -4227,8 +4227,8 @@ declare class DateElement implements ReturnType<typeof defineComponent> {
   deactivate: () => void;
   updateColumns: (value: number | Array<any>) => void;
   updateConditions: () => void;
-  load: (value: string, format: boolean) => void;
-  update: (value: string) => void;
+  load: (value: any, format: boolean) => void;
+  update: (value: any) => void;
   clear: () => void;
   reset: () => void;
   disable: () => void;
@@ -4238,7 +4238,7 @@ declare class DateElement implements ReturnType<typeof defineComponent> {
   fire: (args: any) => void;
   focus: () => void;
   handleChange: (val: any) => void;
-  validate: () => void;
+  validate: () => Promise;
   dirt: () => void;
   clean: () => void;
   clearMessages: () => void;
@@ -4420,8 +4420,8 @@ declare class DatesElement implements ReturnType<typeof defineComponent> {
   deactivate: () => void;
   updateColumns: (value: number | Array<any>) => void;
   updateConditions: () => void;
-  load: (value: string, format: boolean) => void;
-  update: (value: string) => void;
+  load: (value: any, format: boolean) => void;
+  update: (value: any) => void;
   clear: () => void;
   reset: () => void;
   disable: () => void;
@@ -4431,7 +4431,7 @@ declare class DatesElement implements ReturnType<typeof defineComponent> {
   fire: (args: any) => void;
   focus: () => void;
   handleChange: (val: string) => void;
-  validate: () => void;
+  validate: () => Promise;
   dirt: () => void;
   clean: () => void;
   clearMessages: () => void;
@@ -4610,8 +4610,8 @@ declare class EditorElement implements ReturnType<typeof defineComponent> {
   deactivate: () => void;
   updateColumns: (value: number | Array<any>) => void;
   updateConditions: () => void;
-  load: (value: string, format: boolean) => void;
-  update: (value: string) => void;
+  load: (value: any, format: boolean) => void;
+  update: (value: any) => void;
   clear: () => void;
   reset: () => void;
   disable: () => void;
@@ -4624,7 +4624,7 @@ declare class EditorElement implements ReturnType<typeof defineComponent> {
   handleBlur: () => void;
   handleError: (error: Error) => void;
   handleInput: (e: Event) => void;
-  validate: () => void;
+  validate: () => Promise;
   dirt: () => void;
   clean: () => void;
   clearMessages: () => void;
@@ -4823,8 +4823,8 @@ declare class FileElement implements ReturnType<typeof defineComponent> {
   deactivate: () => void;
   updateColumns: (value: number | Array<any>) => void;
   updateConditions: () => void;
-  load: (value: string, format: boolean) => void;
-  update: (value: string) => void;
+  load: (value: any, format: boolean) => void;
+  update: (value: any) => void;
   clear: () => void;
   reset: () => void;
   disable: () => void;
@@ -4833,17 +4833,17 @@ declare class FileElement implements ReturnType<typeof defineComponent> {
   on: (event: string, callback: Function) => void;
   off: (event: string) => void;
   fire: (args: any) => void;
-  uploadTemp: () => void;
-  remove: () => void;
-  prepare: () => void;
-  handleChange: (e: Event) => void;
+  uploadTemp: () => Promise;
+  remove: () => Promise;
+  prepare: () => Promise;
+  handleChange: (e: Event) => Promise;
   handleClick: () => void;
   handleUploadTemp: () => void;
   handleRemove: () => void;
   handleAbort: () => void;
   focus: () => void;
   handleError: (error: Error) => void;
-  validate: () => void;
+  validate: () => Promise;
   dirt: () => void;
   clean: () => void;
   clearMessages: () => void;
@@ -5002,8 +5002,8 @@ declare class GroupElement implements ReturnType<typeof defineComponent> {
   deactivate: () => void;
   updateColumns: (value: number | Array<any>) => void;
   updateConditions: () => void;
-  load: (value: string, format: boolean) => void;
-  update: (value: string) => void;
+  load: (value: any, format: boolean) => void;
+  update: (value: any) => void;
   clear: () => void;
   reset: () => void;
   component: (element: string) => string;
@@ -5011,9 +5011,9 @@ declare class GroupElement implements ReturnType<typeof defineComponent> {
   off: (event: string) => void;
   fire: (args: any) => void;
   focus: () => void;
-  validate: () => void;
-  validateValidators: () => void;
-  validateChildren: () => void;
+  validate: () => Promise;
+  validateValidators: () => Promise;
+  validateChildren: () => Promise;
   dirt: () => void;
   clean: () => void;
   clearMessages: () => void;
@@ -5128,15 +5128,15 @@ declare class HiddenElement implements ReturnType<typeof defineComponent> {
   activate: () => void;
   deactivate: () => void;
   updateConditions: () => void;
-  load: (value: string, format: boolean) => void;
-  update: (value: string) => void;
+  load: (value: any, format: boolean) => void;
+  update: (value: any) => void;
   clear: () => void;
   reset: () => void;
   on: (event: string, callback: Function) => void;
   off: (event: string) => void;
   fire: (args: any) => void;
   focus: () => void;
-  validate: () => void;
+  validate: () => Promise;
   dirt: () => void;
   clean: () => void;
   clearMessages: () => void;
@@ -5315,8 +5315,8 @@ declare class ListElement implements ReturnType<typeof defineComponent> {
   updateConditions: () => void;
   add: (value: any) => number;
   remove: (index: number) => void;
-  load: (value: string, format: boolean) => void;
-  update: (value: string) => void;
+  load: (value: any, format: boolean) => void;
+  update: (value: any) => void;
   clear: () => void;
   reset: () => void;
   handleAdd: () => void;
@@ -5332,9 +5332,9 @@ declare class ListElement implements ReturnType<typeof defineComponent> {
   handleSort: (e: Event) => void;
   initSortable: () => void;
   destroySortable: () => void;
-  validate: () => void;
-  validateValidators: () => void;
-  validateChildren: () => void;
+  validate: () => Promise;
+  validateValidators: () => Promise;
+  validateChildren: () => Promise;
   dirt: () => void;
   clean: () => void;
   clearMessages: () => void;
@@ -5496,8 +5496,8 @@ declare class LocationElement implements ReturnType<typeof defineComponent> {
   listeners: object;
   focused: boolean;
   input: HTMLElement;
-  locationService: class;
-  location: class;
+  locationService: object | null;
+  location: object;
   state: object;
   Validators: Array<any>;
   messageBag: MessageBag;
@@ -5514,8 +5514,8 @@ declare class LocationElement implements ReturnType<typeof defineComponent> {
   deactivate: () => void;
   updateColumns: (value: number | Array<any>) => void;
   updateConditions: () => void;
-  load: (value: string, format: boolean) => void;
-  update: (value: string) => void;
+  load: (value: any, format: boolean) => void;
+  update: (value: any) => void;
   clear: () => void;
   reset: () => void;
   disable: () => void;
@@ -5527,7 +5527,7 @@ declare class LocationElement implements ReturnType<typeof defineComponent> {
   handleAddressChange: (data: object, raw: object) => void;
   handleLocationBlur: () => void;
   initLocationService: () => void;
-  validate: () => void;
+  validate: () => Promise;
   dirt: () => void;
   clean: () => void;
   clearMessages: () => void;
@@ -5734,8 +5734,8 @@ declare class MultifileElement implements ReturnType<typeof defineComponent> {
   updateConditions: () => void;
   add: (value: any) => number;
   remove: (index: number) => void;
-  load: (value: string, format: boolean) => void;
-  update: (value: string) => void;
+  load: (value: any, format: boolean) => void;
+  update: (value: any) => void;
   clear: () => void;
   reset: () => void;
   handleAdd: () => void;
@@ -5754,9 +5754,9 @@ declare class MultifileElement implements ReturnType<typeof defineComponent> {
   handleSort: (e: Event) => void;
   initSortable: () => void;
   destroySortable: () => void;
-  validate: () => void;
-  validateValidators: () => void;
-  validateChildren: () => void;
+  validate: () => Promise;
+  validateValidators: () => Promise;
+  validateChildren: () => Promise;
   dirt: () => void;
   clean: () => void;
   clearMessages: () => void;
@@ -5975,16 +5975,16 @@ declare class MultiselectElement implements ReturnType<typeof defineComponent> {
   theme: object;
 
   // Methods
-  resolveOptions: () => void;
-  updateItems: (disable: boolean) => void;
+  resolveOptions: () => Promise;
+  updateItems: (disable: boolean) => Promise;
   cleanupValue: (values: Array<any>) => void;
-  resolveUrlAndSetWatchers: (url: string, updateItems: Function) => void;
+  resolveUrlAndSetWatchers: (url: string, updateItems: Function) => Promise;
   activate: () => void;
   deactivate: () => void;
   updateColumns: (value: number | Array<any>) => void;
   updateConditions: () => void;
-  load: (value: string, format: boolean) => void;
-  update: (value: string) => void;
+  load: (value: any, format: boolean) => void;
+  update: (value: any) => void;
   clear: () => void;
   reset: () => void;
   disable: () => void;
@@ -6002,7 +6002,7 @@ declare class MultiselectElement implements ReturnType<typeof defineComponent> {
   handlePaste: (e: Event) => void;
   select: (options: string | Array<any>) => void;
   deselect: (options: string | Array<any>) => void;
-  validate: () => void;
+  validate: () => Promise;
   dirt: () => void;
   clean: () => void;
   clearMessages: () => void;
@@ -6180,8 +6180,8 @@ declare class ObjectElement implements ReturnType<typeof defineComponent> {
   deactivate: () => void;
   updateColumns: (value: number | Array<any>) => void;
   updateConditions: () => void;
-  load: (value: string, format: boolean) => void;
-  update: (value: string) => void;
+  load: (value: any, format: boolean) => void;
+  update: (value: any) => void;
   clear: () => void;
   reset: () => void;
   component: (element: string) => string;
@@ -6189,9 +6189,9 @@ declare class ObjectElement implements ReturnType<typeof defineComponent> {
   off: (event: string) => void;
   fire: (args: any) => void;
   focus: () => void;
-  validate: () => void;
-  validateValidators: () => void;
-  validateChildren: () => void;
+  validate: () => Promise;
+  validateValidators: () => Promise;
+  validateChildren: () => Promise;
   dirt: () => void;
   clean: () => void;
   clearMessages: () => void;
@@ -6358,8 +6358,8 @@ declare class RadioElement implements ReturnType<typeof defineComponent> {
   deactivate: () => void;
   updateColumns: (value: number | Array<any>) => void;
   updateConditions: () => void;
-  load: (value: string, format: boolean) => void;
-  update: (value: string) => void;
+  load: (value: any, format: boolean) => void;
+  update: (value: any) => void;
   clear: () => void;
   reset: () => void;
   disable: () => void;
@@ -6370,7 +6370,7 @@ declare class RadioElement implements ReturnType<typeof defineComponent> {
   focus: () => void;
   check: () => void;
   uncheck: () => void;
-  validate: () => void;
+  validate: () => Promise;
   dirt: () => void;
   clean: () => void;
   clearMessages: () => void;
@@ -6532,16 +6532,16 @@ declare class RadiogroupElement implements ReturnType<typeof defineComponent> {
   theme: object;
 
   // Methods
-  resolveOptions: () => void;
-  updateItems: (disable: boolean) => void;
+  resolveOptions: () => Promise;
+  updateItems: (disable: boolean) => Promise;
   cleanupValue: (values: Array<any>) => void;
-  resolveUrlAndSetWatchers: (url: string, updateItems: Function) => void;
+  resolveUrlAndSetWatchers: (url: string, updateItems: Function) => Promise;
   activate: () => void;
   deactivate: () => void;
   updateColumns: (value: number | Array<any>) => void;
   updateConditions: () => void;
-  load: (value: string, format: boolean) => void;
-  update: (value: string) => void;
+  load: (value: any, format: boolean) => void;
+  update: (value: any) => void;
   clear: () => void;
   reset: () => void;
   disableAll: () => void;
@@ -6552,7 +6552,7 @@ declare class RadiogroupElement implements ReturnType<typeof defineComponent> {
   off: (event: string) => void;
   fire: (args: any) => void;
   focus: () => void;
-  validate: () => void;
+  validate: () => Promise;
   dirt: () => void;
   clean: () => void;
   clearMessages: () => void;
@@ -6764,16 +6764,16 @@ declare class SelectElement implements ReturnType<typeof defineComponent> {
   theme: object;
 
   // Methods
-  resolveOptions: () => void;
-  updateItems: (disable: boolean) => void;
+  resolveOptions: () => Promise;
+  updateItems: (disable: boolean) => Promise;
   cleanupValue: (values: Array<any>) => void;
-  resolveUrlAndSetWatchers: (url: string, updateItems: Function) => void;
+  resolveUrlAndSetWatchers: (url: string, updateItems: Function) => Promise;
   activate: () => void;
   deactivate: () => void;
   updateColumns: (value: number | Array<any>) => void;
   updateConditions: () => void;
-  load: (value: string, format: boolean) => void;
-  update: (value: string) => void;
+  load: (value: any, format: boolean) => void;
+  update: (value: any) => void;
   clear: () => void;
   reset: () => void;
   disable: () => void;
@@ -6789,7 +6789,7 @@ declare class SelectElement implements ReturnType<typeof defineComponent> {
   handleClose: () => void;
   handleClear: () => void;
   handlePaste: (e: Event) => void;
-  validate: () => void;
+  validate: () => Promise;
   dirt: () => void;
   clean: () => void;
   clearMessages: () => void;
@@ -6978,8 +6978,8 @@ declare class SliderElement implements ReturnType<typeof defineComponent> {
   deactivate: () => void;
   updateColumns: (value: number | Array<any>) => void;
   updateConditions: () => void;
-  load: (value: string, format: boolean) => void;
-  update: (value: string) => void;
+  load: (value: any, format: boolean) => void;
+  update: (value: any) => void;
   clear: () => void;
   reset: () => void;
   disable: () => void;
@@ -6990,7 +6990,7 @@ declare class SliderElement implements ReturnType<typeof defineComponent> {
   focus: () => void;
   handleChange: (val: string) => void;
   handleUpdate: (val: string) => void;
-  validate: () => void;
+  validate: () => Promise;
   dirt: () => void;
   clean: () => void;
   clearMessages: () => void;
@@ -7294,8 +7294,8 @@ declare class TEditorElement implements ReturnType<typeof defineComponent> {
   deactivate: () => void;
   updateColumns: (value: number | Array<any>) => void;
   updateConditions: () => void;
-  load: (value: string, format: boolean) => void;
-  update: (value: string) => void;
+  load: (value: any, format: boolean) => void;
+  update: (value: any) => void;
   clear: () => void;
   reset: () => void;
   disable: () => void;
@@ -7308,8 +7308,8 @@ declare class TEditorElement implements ReturnType<typeof defineComponent> {
   handleBlur: () => void;
   handleError: (error: Error) => void;
   handleInput: (e: Event) => void;
-  validate: () => void;
-  validateLanguage: (lang: string) => void;
+  validate: () => Promise;
+  validateLanguage: (lang: string) => Promise;
   dirt: () => void;
   clean: () => void;
   clearMessages: () => void;
@@ -7493,8 +7493,8 @@ declare class TTextElement implements ReturnType<typeof defineComponent> {
   deactivate: () => void;
   updateColumns: (value: number | Array<any>) => void;
   updateConditions: () => void;
-  load: (value: string, format: boolean) => void;
-  update: (value: string) => void;
+  load: (value: any, format: boolean) => void;
+  update: (value: any) => void;
   clear: () => void;
   reset: () => void;
   disable: () => void;
@@ -7508,8 +7508,8 @@ declare class TTextElement implements ReturnType<typeof defineComponent> {
   handleKeydown: (e: Event) => void;
   handleKeyup: (e: Event) => void;
   handleKeypress: (e: Event) => void;
-  validate: () => void;
-  validateLanguage: (lang: string) => void;
+  validate: () => Promise;
+  validateLanguage: (lang: string) => Promise;
   dirt: () => void;
   clean: () => void;
   clearMessages: () => void;
@@ -7695,8 +7695,8 @@ declare class TTextareaElement implements ReturnType<typeof defineComponent> {
   deactivate: () => void;
   updateColumns: (value: number | Array<any>) => void;
   updateConditions: () => void;
-  load: (value: string, format: boolean) => void;
-  update: (value: string) => void;
+  load: (value: any, format: boolean) => void;
+  update: (value: any) => void;
   clear: () => void;
   reset: () => void;
   disable: () => void;
@@ -7710,8 +7710,8 @@ declare class TTextareaElement implements ReturnType<typeof defineComponent> {
   handleKeydown: (e: Event) => void;
   handleKeyup: (e: Event) => void;
   handleKeypress: (e: Event) => void;
-  validate: () => void;
-  validateLanguage: (lang: string) => void;
+  validate: () => Promise;
+  validateLanguage: (lang: string) => Promise;
   dirt: () => void;
   clean: () => void;
   clearMessages: () => void;
@@ -7933,16 +7933,16 @@ declare class TagsElement implements ReturnType<typeof defineComponent> {
   theme: object;
 
   // Methods
-  resolveOptions: () => void;
-  updateItems: (disable: boolean) => void;
+  resolveOptions: () => Promise;
+  updateItems: (disable: boolean) => Promise;
   cleanupValue: (values: Array<any>) => void;
-  resolveUrlAndSetWatchers: (url: string, updateItems: Function) => void;
+  resolveUrlAndSetWatchers: (url: string, updateItems: Function) => Promise;
   activate: () => void;
   deactivate: () => void;
   updateColumns: (value: number | Array<any>) => void;
   updateConditions: () => void;
-  load: (value: string, format: boolean) => void;
-  update: (value: string) => void;
+  load: (value: any, format: boolean) => void;
+  update: (value: any) => void;
   clear: () => void;
   reset: () => void;
   disable: () => void;
@@ -7961,7 +7961,7 @@ declare class TagsElement implements ReturnType<typeof defineComponent> {
   handleTag: (searchQuery: string) => void;
   select: (options: string | Array<any>) => void;
   deselect: (options: string | Array<any>) => void;
-  validate: () => void;
+  validate: () => Promise;
   dirt: () => void;
   clean: () => void;
   clearMessages: () => void;
@@ -8160,8 +8160,8 @@ declare class TextElement implements ReturnType<typeof defineComponent> {
   deactivate: () => void;
   updateColumns: (value: number | Array<any>) => void;
   updateConditions: () => void;
-  load: (value: string, format: boolean) => void;
-  update: (value: string) => void;
+  load: (value: any, format: boolean) => void;
+  update: (value: any) => void;
   clear: () => void;
   reset: () => void;
   disable: () => void;
@@ -8175,7 +8175,7 @@ declare class TextElement implements ReturnType<typeof defineComponent> {
   handleKeydown: (e: Event) => void;
   handleKeyup: (e: Event) => void;
   handleKeypress: (e: Event) => void;
-  validate: () => void;
+  validate: () => Promise;
   dirt: () => void;
   clean: () => void;
   clearMessages: () => void;
@@ -8360,8 +8360,8 @@ declare class TextareaElement implements ReturnType<typeof defineComponent> {
   deactivate: () => void;
   updateColumns: (value: number | Array<any>) => void;
   updateConditions: () => void;
-  load: (value: string, format: boolean) => void;
-  update: (value: string) => void;
+  load: (value: any, format: boolean) => void;
+  update: (value: any) => void;
   clear: () => void;
   reset: () => void;
   disable: () => void;
@@ -8375,7 +8375,7 @@ declare class TextareaElement implements ReturnType<typeof defineComponent> {
   handleKeydown: (e: Event) => void;
   handleKeyup: (e: Event) => void;
   handleKeypress: (e: Event) => void;
-  validate: () => void;
+  validate: () => Promise;
   dirt: () => void;
   clean: () => void;
   clearMessages: () => void;
@@ -8548,8 +8548,8 @@ declare class ToggleElement implements ReturnType<typeof defineComponent> {
   deactivate: () => void;
   updateColumns: (value: number | Array<any>) => void;
   updateConditions: () => void;
-  load: (value: string, format: boolean) => void;
-  update: (value: string) => void;
+  load: (value: any, format: boolean) => void;
+  update: (value: any) => void;
   clear: () => void;
   reset: () => void;
   disable: () => void;
@@ -8561,7 +8561,7 @@ declare class ToggleElement implements ReturnType<typeof defineComponent> {
   handleChange: (val: string) => void;
   check: () => void;
   uncheck: () => void;
-  validate: () => void;
+  validate: () => Promise;
   dirt: () => void;
   clean: () => void;
   clearMessages: () => void;

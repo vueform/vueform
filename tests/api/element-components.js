@@ -2168,7 +2168,7 @@ module.exports = {
         params: {
           value: {
             types: [
-              'string',
+              'any',
             ],
             required: 'true',
             description: 'the value to be loaded',
@@ -2189,7 +2189,7 @@ module.exports = {
         params: {
           value: {
             types: [
-              'string',
+              'any',
             ],
             required: 'true',
             description: 'the value to be set',
@@ -2283,7 +2283,7 @@ module.exports = {
       },
       validate: {
         description: 'Checks each validation rule for the element (async).',
-        returns: 'void',
+        returns: 'Promise',
         private: false,
       },
       dirt: {
@@ -3532,12 +3532,12 @@ module.exports = {
     methods: {
       resolveOptions: {
         description: 'Resolves items.',
-        returns: 'void',
+        returns: 'Promise',
         private: true,
       },
       updateItems: {
         description: 'Fetches & updates items when using `async` items.',
-        returns: 'void',
+        returns: 'Promise',
         params: {
           disable: {
             types: [
@@ -3565,7 +3565,7 @@ module.exports = {
       },
       resolveUrlAndSetWatchers: {
         description: 'Resolves the endpoint url with field values and sets watchers for those fields.',
-        returns: 'void',
+        returns: 'Promise',
         params: {
           url: {
             types: [
@@ -3677,7 +3677,7 @@ module.exports = {
         params: {
           value: {
             types: [
-              'string',
+              'any',
             ],
             required: 'true',
             description: 'the value to be loaded',
@@ -3698,7 +3698,7 @@ module.exports = {
         params: {
           value: {
             types: [
-              'string',
+              'any',
             ],
             required: 'true',
             description: 'the value to be set',
@@ -3814,7 +3814,7 @@ module.exports = {
       },
       validate: {
         description: 'Checks each validation rule for the element (async).',
-        returns: 'void',
+        returns: 'Promise',
         private: false,
       },
       dirt: {
@@ -5311,7 +5311,7 @@ module.exports = {
         params: {
           value: {
             types: [
-              'string',
+              'any',
             ],
             required: 'true',
             description: 'the value to be loaded',
@@ -5332,7 +5332,7 @@ module.exports = {
         params: {
           value: {
             types: [
-              'string',
+              'any',
             ],
             required: 'true',
             description: 'the value to be set',
@@ -5430,7 +5430,7 @@ module.exports = {
       },
       validate: {
         description: 'Checks each validation rule for the element (async).',
-        returns: 'void',
+        returns: 'Promise',
         private: false,
       },
       dirt: {
@@ -6860,7 +6860,7 @@ module.exports = {
         params: {
           value: {
             types: [
-              'string',
+              'any',
             ],
             required: 'true',
             description: 'the value to be loaded',
@@ -6881,7 +6881,7 @@ module.exports = {
         params: {
           value: {
             types: [
-              'string',
+              'any',
             ],
             required: 'true',
             description: 'the value to be set',
@@ -6979,7 +6979,7 @@ module.exports = {
       },
       validate: {
         description: 'Checks each validation rule for the element (async).',
-        returns: 'void',
+        returns: 'Promise',
         private: false,
       },
       dirt: {
@@ -8381,7 +8381,7 @@ module.exports = {
         params: {
           value: {
             types: [
-              'string',
+              'any',
             ],
             required: 'true',
             description: 'the value to be loaded',
@@ -8402,7 +8402,7 @@ module.exports = {
         params: {
           value: {
             types: [
-              'string',
+              'any',
             ],
             required: 'true',
             description: 'the value to be set',
@@ -8533,7 +8533,7 @@ module.exports = {
       },
       validate: {
         description: 'Checks each validation rule for the element (async).',
-        returns: 'void',
+        returns: 'Promise',
         private: false,
       },
       dirt: {
@@ -10106,7 +10106,7 @@ module.exports = {
         params: {
           value: {
             types: [
-              'string',
+              'any',
             ],
             required: 'true',
             description: 'the value to be loaded',
@@ -10127,7 +10127,7 @@ module.exports = {
         params: {
           value: {
             types: [
-              'string',
+              'any',
             ],
             required: 'true',
             description: 'the value to be set',
@@ -10220,22 +10220,22 @@ module.exports = {
       },
       uploadTemp: {
         description: 'Upload temporary file (async).',
-        returns: 'void',
+        returns: 'Promise',
         private: false,
       },
       remove: {
         description: 'Removes file (async):\n\n* in stage `1`: sets the value to `null`\n* in stage `2`: submits a request to `removeTemp` endpoint (if [`softRemove: false`](#option-soft-remove)) and sets the value to `null`\n* in stage `3`: submits a request to `remove` endpoint (if [`softRemove: false`](#option-soft-remove)) and sets the value to `null`',
-        returns: 'void',
+        returns: 'Promise',
         private: false,
       },
       prepare: {
         description: 'Prepare the element for submitting the form (async). It will upload temp file if it hasn&apos;t been uploaded yet and halts the submit process until it is done without any errors.',
-        returns: 'void',
+        returns: 'Promise',
         private: true,
       },
       handleChange: {
         description: 'Handles `change` event.',
-        returns: 'void',
+        returns: 'Promise',
         params: {
           e: {
             types: [
@@ -10288,7 +10288,7 @@ module.exports = {
       },
       validate: {
         description: 'Checks each validation rule for the element (async). File element will only validate for `min`, `max`, `between`, `size`, `mimetypes`, `mimes`, `dimensions`, `file`, `image`, `gt`, `gte`, `lt` and `lte` rules and only before the temporary files are uploaded.',
-        returns: 'void',
+        returns: 'Promise',
         private: false,
       },
       dirt: {
@@ -11511,7 +11511,7 @@ module.exports = {
         params: {
           value: {
             types: [
-              'string',
+              'any',
             ],
             required: 'true',
             description: 'the value to be loaded',
@@ -11532,7 +11532,7 @@ module.exports = {
         params: {
           value: {
             types: [
-              'string',
+              'any',
             ],
             required: 'true',
             description: 'the value to be set',
@@ -11620,17 +11620,17 @@ module.exports = {
       },
       validate: {
         description: 'Checks each validation rule for the element and validates children (async).',
-        returns: 'void',
+        returns: 'Promise',
         private: false,
       },
       validateValidators: {
         description: 'Checks each validation rule for the element (async).',
-        returns: 'void',
+        returns: 'Promise',
         private: false,
       },
       validateChildren: {
         description: 'Validates every child (async).',
-        returns: 'void',
+        returns: 'Promise',
         private: false,
       },
       dirt: {
@@ -12437,7 +12437,7 @@ module.exports = {
         params: {
           value: {
             types: [
-              'string',
+              'any',
             ],
             required: 'true',
             description: 'the value to be loaded',
@@ -12458,7 +12458,7 @@ module.exports = {
         params: {
           value: {
             types: [
-              'string',
+              'any',
             ],
             required: 'true',
             description: 'the value to be set',
@@ -12532,7 +12532,7 @@ module.exports = {
       },
       validate: {
         description: 'Checks each validation rule for the element (async).',
-        returns: 'void',
+        returns: 'Promise',
         private: false,
       },
       dirt: {
@@ -13955,7 +13955,7 @@ module.exports = {
         params: {
           value: {
             types: [
-              'string',
+              'any',
             ],
             required: 'true',
             description: 'the value to be loaded',
@@ -13976,7 +13976,7 @@ module.exports = {
         params: {
           value: {
             types: [
-              'string',
+              'any',
             ],
             required: 'true',
             description: 'the value to be set',
@@ -14131,17 +14131,17 @@ module.exports = {
       },
       validate: {
         description: 'Checks each validation rule for the element and validates children (async).',
-        returns: 'void',
+        returns: 'Promise',
         private: false,
       },
       validateValidators: {
         description: 'Checks each validation rule for the element (async).',
-        returns: 'void',
+        returns: 'Promise',
         private: false,
       },
       validateChildren: {
         description: 'Validates every child (async).',
-        returns: 'void',
+        returns: 'Promise',
         private: false,
       },
       dirt: {
@@ -15080,7 +15080,8 @@ module.exports = {
       },
       locationService: {
         types: [
-          'class',
+          'object',
+          'null',
         ],
         description: 'The location service that&apos;s initialized once the component is mounted.',
         default: 'null',
@@ -15088,7 +15089,7 @@ module.exports = {
       },
       location: {
         types: [
-          'class',
+          'object',
         ],
         description: 'The raw location object of location provider (Google/Algolia).',
         default: 'null',
@@ -15569,7 +15570,7 @@ module.exports = {
         params: {
           value: {
             types: [
-              'string',
+              'any',
             ],
             required: 'true',
             description: 'the value to be loaded',
@@ -15590,7 +15591,7 @@ module.exports = {
         params: {
           value: {
             types: [
-              'string',
+              'any',
             ],
             required: 'true',
             description: 'the value to be set',
@@ -15705,7 +15706,7 @@ module.exports = {
       },
       validate: {
         description: 'Checks each validation rule for the element on [`displayKey`](#option-display-key) property of the location object (async).',
-        returns: 'void',
+        returns: 'Promise',
         private: false,
       },
       dirt: {
@@ -17362,7 +17363,7 @@ module.exports = {
         params: {
           value: {
             types: [
-              'string',
+              'any',
             ],
             required: 'true',
             description: 'the value to be loaded',
@@ -17383,7 +17384,7 @@ module.exports = {
         params: {
           value: {
             types: [
-              'string',
+              'any',
             ],
             required: 'true',
             description: 'the value to be set',
@@ -17571,17 +17572,17 @@ module.exports = {
       },
       validate: {
         description: 'Checks each validation rule for the element and validates children (async).',
-        returns: 'void',
+        returns: 'Promise',
         private: false,
       },
       validateValidators: {
         description: 'Checks each validation rule for the element (async).',
-        returns: 'void',
+        returns: 'Promise',
         private: false,
       },
       validateChildren: {
         description: 'Validates every child (async).',
-        returns: 'void',
+        returns: 'Promise',
         private: false,
       },
       dirt: {
@@ -19446,12 +19447,12 @@ module.exports = {
     methods: {
       resolveOptions: {
         description: 'Resolves items.',
-        returns: 'void',
+        returns: 'Promise',
         private: true,
       },
       updateItems: {
         description: 'Fetches & updates select options when using `async` options. Receives [`el$`](#property-el) as first param.',
-        returns: 'void',
+        returns: 'Promise',
         params: {
           disable: {
             types: [
@@ -19479,7 +19480,7 @@ module.exports = {
       },
       resolveUrlAndSetWatchers: {
         description: 'Resolves the endpoint url with field values and sets watchers for those fields.',
-        returns: 'void',
+        returns: 'Promise',
         params: {
           url: {
             types: [
@@ -19534,7 +19535,7 @@ module.exports = {
         params: {
           value: {
             types: [
-              'string',
+              'any',
             ],
             required: 'true',
             description: 'the value to be loaded',
@@ -19555,7 +19556,7 @@ module.exports = {
         params: {
           value: {
             types: [
-              'string',
+              'any',
             ],
             required: 'true',
             description: 'the value to be set',
@@ -19740,7 +19741,7 @@ module.exports = {
       },
       validate: {
         description: 'Checks each validation rule for the element (async).',
-        returns: 'void',
+        returns: 'Promise',
         private: false,
       },
       dirt: {
@@ -21222,7 +21223,7 @@ module.exports = {
         params: {
           value: {
             types: [
-              'string',
+              'any',
             ],
             required: 'true',
             description: 'the value to be loaded',
@@ -21243,7 +21244,7 @@ module.exports = {
         params: {
           value: {
             types: [
-              'string',
+              'any',
             ],
             required: 'true',
             description: 'the value to be set',
@@ -21331,17 +21332,17 @@ module.exports = {
       },
       validate: {
         description: 'Checks each validation rule for the element and validates children (async).',
-        returns: 'void',
+        returns: 'Promise',
         private: false,
       },
       validateValidators: {
         description: 'Checks each validation rule for the element (async).',
-        returns: 'void',
+        returns: 'Promise',
         private: false,
       },
       validateChildren: {
         description: 'Validates every child (async).',
-        returns: 'void',
+        returns: 'Promise',
         private: false,
       },
       dirt: {
@@ -22624,7 +22625,7 @@ module.exports = {
         params: {
           value: {
             types: [
-              'string',
+              'any',
             ],
             required: 'true',
             description: 'the value to be loaded',
@@ -22645,7 +22646,7 @@ module.exports = {
         params: {
           value: {
             types: [
-              'string',
+              'any',
             ],
             required: 'true',
             description: 'the value to be set',
@@ -22739,7 +22740,7 @@ module.exports = {
       },
       validate: {
         description: 'Checks each validation rule for the element (async).',
-        returns: 'void',
+        returns: 'Promise',
         private: false,
       },
       dirt: {
@@ -23989,12 +23990,12 @@ module.exports = {
     methods: {
       resolveOptions: {
         description: 'Resolves items.',
-        returns: 'void',
+        returns: 'Promise',
         private: true,
       },
       updateItems: {
         description: 'Fetches & updates items when using `async` items.',
-        returns: 'void',
+        returns: 'Promise',
         params: {
           disable: {
             types: [
@@ -24022,7 +24023,7 @@ module.exports = {
       },
       resolveUrlAndSetWatchers: {
         description: 'Resolves the endpoint url with field values and sets watchers for those fields.',
-        returns: 'void',
+        returns: 'Promise',
         params: {
           url: {
             types: [
@@ -24077,7 +24078,7 @@ module.exports = {
         params: {
           value: {
             types: [
-              'string',
+              'any',
             ],
             required: 'true',
             description: 'the value to be loaded',
@@ -24098,7 +24099,7 @@ module.exports = {
         params: {
           value: {
             types: [
-              'string',
+              'any',
             ],
             required: 'true',
             description: 'the value to be set',
@@ -24214,7 +24215,7 @@ module.exports = {
       },
       validate: {
         description: 'Checks each validation rule for the element (async).',
-        returns: 'void',
+        returns: 'Promise',
         private: false,
       },
       dirt: {
@@ -26031,12 +26032,12 @@ module.exports = {
     methods: {
       resolveOptions: {
         description: 'Resolves items.',
-        returns: 'void',
+        returns: 'Promise',
         private: true,
       },
       updateItems: {
         description: 'Fetches & updates select options when using `async` options. Receives [`el$`](#property-el) as first param.',
-        returns: 'void',
+        returns: 'Promise',
         params: {
           disable: {
             types: [
@@ -26064,7 +26065,7 @@ module.exports = {
       },
       resolveUrlAndSetWatchers: {
         description: 'Resolves the endpoint url with field values and sets watchers for those fields.',
-        returns: 'void',
+        returns: 'Promise',
         params: {
           url: {
             types: [
@@ -26119,7 +26120,7 @@ module.exports = {
         params: {
           value: {
             types: [
-              'string',
+              'any',
             ],
             required: 'true',
             description: 'the value to be loaded',
@@ -26140,7 +26141,7 @@ module.exports = {
         params: {
           value: {
             types: [
-              'string',
+              'any',
             ],
             required: 'true',
             description: 'the value to be set',
@@ -26295,7 +26296,7 @@ module.exports = {
       },
       validate: {
         description: 'Checks each validation rule for the element (async).',
-        returns: 'void',
+        returns: 'Promise',
         private: false,
       },
       dirt: {
@@ -27887,7 +27888,7 @@ module.exports = {
         params: {
           value: {
             types: [
-              'string',
+              'any',
             ],
             required: 'true',
             description: 'the value to be loaded',
@@ -27908,7 +27909,7 @@ module.exports = {
         params: {
           value: {
             types: [
-              'string',
+              'any',
             ],
             required: 'true',
             description: 'the value to be set',
@@ -28020,7 +28021,7 @@ module.exports = {
       },
       validate: {
         description: 'Checks each validation rule for the element (async).',
-        returns: 'void',
+        returns: 'Promise',
         private: false,
       },
       dirt: {
@@ -30392,7 +30393,7 @@ module.exports = {
         params: {
           value: {
             types: [
-              'string',
+              'any',
             ],
             required: 'true',
             description: 'the value to be loaded',
@@ -30413,7 +30414,7 @@ module.exports = {
         params: {
           value: {
             types: [
-              'string',
+              'any',
             ],
             required: 'true',
             description: 'the value to be set',
@@ -30544,12 +30545,12 @@ module.exports = {
       },
       validate: {
         description: 'Checks each validation rule for the element in every language (async).',
-        returns: 'void',
+        returns: 'Promise',
         private: false,
       },
       validateLanguage: {
         description: 'Checks each validation rule for the element in a specific language (async).',
-        returns: 'void',
+        returns: 'Promise',
         params: {
           lang: {
             types: [
@@ -32006,7 +32007,7 @@ module.exports = {
         params: {
           value: {
             types: [
-              'string',
+              'any',
             ],
             required: 'true',
             description: 'the value to be loaded',
@@ -32027,7 +32028,7 @@ module.exports = {
         params: {
           value: {
             types: [
-              'string',
+              'any',
             ],
             required: 'true',
             description: 'the value to be set',
@@ -32172,12 +32173,12 @@ module.exports = {
       },
       validate: {
         description: 'Checks each validation rule for the element in every language (async).',
-        returns: 'void',
+        returns: 'Promise',
         private: false,
       },
       validateLanguage: {
         description: 'Checks each validation rule for the element in a specific language (async).',
-        returns: 'void',
+        returns: 'Promise',
         params: {
           lang: {
             types: [
@@ -33672,7 +33673,7 @@ module.exports = {
         params: {
           value: {
             types: [
-              'string',
+              'any',
             ],
             required: 'true',
             description: 'the value to be loaded',
@@ -33693,7 +33694,7 @@ module.exports = {
         params: {
           value: {
             types: [
-              'string',
+              'any',
             ],
             required: 'true',
             description: 'the value to be set',
@@ -33838,12 +33839,12 @@ module.exports = {
       },
       validate: {
         description: 'Checks each validation rule for the element in every language (async).',
-        returns: 'void',
+        returns: 'Promise',
         private: false,
       },
       validateLanguage: {
         description: 'Checks each validation rule for the element in a specific language (async).',
-        returns: 'void',
+        returns: 'Promise',
         params: {
           lang: {
             types: [
@@ -35708,12 +35709,12 @@ module.exports = {
     methods: {
       resolveOptions: {
         description: 'Resolves items.',
-        returns: 'void',
+        returns: 'Promise',
         private: true,
       },
       updateItems: {
         description: 'Fetches & updates select options when using `async` options. Receives [`el$`](#property-el) as first param.',
-        returns: 'void',
+        returns: 'Promise',
         params: {
           disable: {
             types: [
@@ -35741,7 +35742,7 @@ module.exports = {
       },
       resolveUrlAndSetWatchers: {
         description: 'Resolves the endpoint url with field values and sets watchers for those fields.',
-        returns: 'void',
+        returns: 'Promise',
         params: {
           url: {
             types: [
@@ -35796,7 +35797,7 @@ module.exports = {
         params: {
           value: {
             types: [
-              'string',
+              'any',
             ],
             required: 'true',
             description: 'the value to be loaded',
@@ -35817,7 +35818,7 @@ module.exports = {
         params: {
           value: {
             types: [
-              'string',
+              'any',
             ],
             required: 'true',
             description: 'the value to be set',
@@ -36016,7 +36017,7 @@ module.exports = {
       },
       validate: {
         description: 'Checks each validation rule for the element (async).',
-        returns: 'void',
+        returns: 'Promise',
         private: false,
       },
       dirt: {
@@ -37707,7 +37708,7 @@ module.exports = {
         params: {
           value: {
             types: [
-              'string',
+              'any',
             ],
             required: 'true',
             description: 'the value to be loaded',
@@ -37728,7 +37729,7 @@ module.exports = {
         params: {
           value: {
             types: [
-              'string',
+              'any',
             ],
             required: 'true',
             description: 'the value to be set',
@@ -37873,7 +37874,7 @@ module.exports = {
       },
       validate: {
         description: 'Checks each validation rule for the element (async).',
-        returns: 'void',
+        returns: 'Promise',
         private: false,
       },
       dirt: {
@@ -39354,7 +39355,7 @@ module.exports = {
         params: {
           value: {
             types: [
-              'string',
+              'any',
             ],
             required: 'true',
             description: 'the value to be loaded',
@@ -39375,7 +39376,7 @@ module.exports = {
         params: {
           value: {
             types: [
-              'string',
+              'any',
             ],
             required: 'true',
             description: 'the value to be set',
@@ -39520,7 +39521,7 @@ module.exports = {
       },
       validate: {
         description: 'Checks each validation rule for the element (async).',
-        returns: 'void',
+        returns: 'Promise',
         private: false,
       },
       dirt: {
@@ -40900,7 +40901,7 @@ module.exports = {
         params: {
           value: {
             types: [
-              'string',
+              'any',
             ],
             required: 'true',
             description: 'the value to be loaded',
@@ -40921,7 +40922,7 @@ module.exports = {
         params: {
           value: {
             types: [
-              'string',
+              'any',
             ],
             required: 'true',
             description: 'the value to be set',
@@ -41029,7 +41030,7 @@ module.exports = {
       },
       validate: {
         description: 'Checks each validation rule for the element (async).',
-        returns: 'void',
+        returns: 'Promise',
         private: false,
       },
       dirt: {

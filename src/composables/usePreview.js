@@ -162,7 +162,7 @@ const base = function(props, context, dependencies)
    * Handle the keyup event of the preview.
    * 
    * @param {Event} event the keyup Event
-   * @returns {void}
+   * @returns {Promise}
    * @private
    */
   const handleKeyup = async (e) => {

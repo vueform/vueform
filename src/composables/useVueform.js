@@ -890,7 +890,7 @@ const base = function(props, context, dependencies = {})
    *
    * @param {string} value* the value to be loaded
    * @param {boolean} format whether the loaded value should be formatted with [`formatLoad`](#option-format-load) (default: `false`)
-   * @returns {void}
+   * @returns {Promise}
    */
   const load = async (data, format = false) => {
     if (steps$.value !== null) {
@@ -1003,7 +1003,7 @@ const base = function(props, context, dependencies = {})
    * Validates all elements (async) which weren't validated before. If [`validateOn`](#option-validate-on) does not contain `change` it will validate all elements on each call.
    *
    * @public
-   * @returns {void}
+   * @returns {Promise}
    */
   const validate = async () => {
     if (!invalid.value && validated.value && shouldValidateOnChange.value) {
@@ -1037,7 +1037,7 @@ const base = function(props, context, dependencies = {})
   /**
    * Validates and prepares elements then submits the form (async).
    *
-   * @returns {void}
+   * @returns {Promise}
    */
   const submit = async () => {
     if (isDisabled.value) {
@@ -1082,7 +1082,7 @@ const base = function(props, context, dependencies = {})
   /**
    * Sends form data to [`endpoint`](#option-endpoint) with the selected [`method`](#option-method) (async).
    *
-   * @returns {void}
+   * @returns {Promise}
    */
   const send = async () => {
     submitting.value = true
@@ -1132,7 +1132,7 @@ const base = function(props, context, dependencies = {})
   /**
   * Prepares all elements to submit (async).
   *
-  * @returns {void}
+  * @returns {Promise}
   * @private
   */
   const prepareElements = async () => {

@@ -69,7 +69,7 @@ const base = function(props, context, dependencies, options = {})
   /**
    * Loads value to the element using optional [`formatLoad`](#option-format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.
    *
-   * @param {string} value* the value to be loaded
+   * @param {any} value* the value to be loaded
    * @param {boolean} format whether the loaded value should be formatted with [`formatLoad`](#option-format-load) before setting the value of the element (default: `false`)
    * @returns {void}
    */
@@ -80,7 +80,7 @@ const base = function(props, context, dependencies, options = {})
   /**
    * Updates the value of the element similarly to [`load`](#method-load), only that it can\'t format data.
    *
-   * @param {string} value* the value to be set
+   * @param {any} value* the value to be set
    * @returns {void}
    */
   const update = (val) => {
@@ -109,7 +109,7 @@ const base = function(props, context, dependencies, options = {})
   /**
    * Prepares the element.
    *
-   * @returns {void}
+   * @returns {Promise}
    * @private
    */
   /* istanbul ignore next:@todo:adam missing implementation, but used in code */

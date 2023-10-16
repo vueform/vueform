@@ -2494,7 +2494,7 @@ module.exports = {
       },
       "submit": {
         "public": true,
-        "returns": "void",
+        "returns": "Promise",
         "description": "Invokes the form's `submit` event. If the form has any validation errors it will jump to the first step with error."
       },
       "select": {
@@ -3952,7 +3952,7 @@ module.exports = {
     "methods": {
       "prepareElements": {
         "public": false,
-        "returns": "void",
+        "returns": "Promise",
         "description": "Prepares all elements to submit (async)."
       },
       "updateModel": {
@@ -3999,7 +3999,7 @@ module.exports = {
       },
       "load": {
         "public": true,
-        "returns": "void",
+        "returns": "Promise",
         "description": "Loads data to the form using optional [`formatLoad`](#option-format-load) formatter.",
         "params": {
           "value": {
@@ -4040,7 +4040,7 @@ module.exports = {
       },
       "validate": {
         "public": true,
-        "returns": "void",
+        "returns": "Promise",
         "description": "Validates all elements (async) which weren't validated before. If [`validateOn`](#option-validate-on) does not contain `change` it will validate all elements on each call."
       },
       "resetValidators": {
@@ -4064,12 +4064,12 @@ module.exports = {
       },
       "submit": {
         "public": true,
-        "returns": "void",
+        "returns": "Promise",
         "description": "Validates and prepares elements then submits the form (async)."
       },
       "send": {
         "public": true,
-        "returns": "void",
+        "returns": "Promise",
         "description": "Sends form data to [`endpoint`](#option-endpoint) with the selected [`method`](#option-method) (async)."
       },
       "disableValidation": {
@@ -5154,7 +5154,7 @@ module.exports = {
       },
       "handleAttachmentAdd": {
         "public": false,
-        "returns": "void",
+        "returns": "Promise",
         "description": "Handles `attachmentAdd` event.",
         "params": {
           "e": {
@@ -5653,7 +5653,7 @@ module.exports = {
       },
       "handleKeyup": {
         "public": false,
-        "returns": "void",
+        "returns": "Promise",
         "description": "Handle the keyup event of the preview.",
         "params": {
           "event": {

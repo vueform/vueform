@@ -26,7 +26,7 @@ const base = function(props, context, dependencies, /* istanbul ignore next: add
   /**
    * The location service that's initialized once the component is mounted.
    *
-   * @type {class}
+   * @type {object|null}
    * @default null
    */
   const locationService = ref(null)
@@ -34,7 +34,7 @@ const base = function(props, context, dependencies, /* istanbul ignore next: add
   /**
    * The raw location object of location provider (Google/Algolia).
    *
-   * @type {class}
+   * @type {object}
    * @default null
    */
   const location = ref({})

@@ -170,7 +170,7 @@ const base = function(props, context, dependencies)
   /**
    * Checks each validation rule for the element (async).
    *
-   * @returns {void}
+   * @returns {Promise}
    */
   const validate = async () => {
     if (!validationRules.value) {
@@ -507,7 +507,7 @@ const list = function(props, context, dependencies)
   /**
    * Checks each validation rule for the element and validates children (async).
    *
-   * @returns {void}
+   * @returns {Promise}
    */
   const validate = async () => {
     await validateValidators()
@@ -517,7 +517,7 @@ const list = function(props, context, dependencies)
   /**
    * Checks each validation rule for the element (async).
    *
-   * @returns {void}
+   * @returns {Promise}
    */
   const validateValidators = async () => {
     if (form$.value.validation === false) {
@@ -534,7 +534,7 @@ const list = function(props, context, dependencies)
   /**
    * Validates every child (async).
    *
-   * @returns {void}
+   * @returns {Promise}
    */
   const validateChildren = async () => {
     if (form$.value.validation === false) {
@@ -834,7 +834,7 @@ const multilingual = function(props, context, dependencies)
   /**
    * Checks each validation rule for the element in every language (async).
    *
-   * @returns {void}
+   * @returns {Promise}
    */
   const validate = async () => {
     await asyncForEach(languages.value, async (lang) => {
@@ -846,7 +846,7 @@ const multilingual = function(props, context, dependencies)
    * Checks each validation rule for the element in a specific language (async).
    *
    * @param {string} lang the language to check (defaults to currently selected language)
-   * @returns {void}
+   * @returns {Promise}
    */
   const validateLanguage = async (lang = language.value) => {
     if (form$.value.validation === false) {
@@ -1101,7 +1101,7 @@ const file = function(props, context, dependencies)
   /**
    * Checks each validation rule for the element (async). File element will only validate for `min`, `max`, `between`, `size`, `mimetypes`, `mimes`, `dimensions`, `file`, `image`, `gt`, `gte`, `lt` and `lte` rules and only before the temporary files are uploaded.
    *
-   * @returns {void}
+   * @returns {Promise}
    */
   const validate = async () => {
     if (!validationRules.value) {
@@ -1191,7 +1191,7 @@ const location = function(props, context, dependencies)
   /**
    * Checks each validation rule for the element on [`displayKey`](#option-display-key) property of the location object (async).
    *
-   * @returns {void}
+   * @returns {Promise}
    */
   const validate = async () => {
     if (!validationRules.value) {
