@@ -164,6 +164,20 @@ else
     success_message "API publishing succeeded."
 fi
 
+# Generate api files
+info_message "Generating Types"
+node ./scripts/types.js > "$temp_file" 2>&1
+types_result=$?
+if [ $types_result -ne 0 ]; then
+    # Echo the message in red color
+    error_message "Type generation failed. Exiting..."
+    cat "$temp_file"
+    exit 1
+else
+    # Echo the success message in green color
+    success_message "Type generation succeeded."
+fi
+
 # Run npm run build
 info_message "Building main files..."
 npm run build > "$temp_file" 2>&1

@@ -18,6 +18,7 @@
     }
   ],
   "main": "src/index.js",
+  "types": "types/index.d.ts",
   "_moduleAliases": {
     "vue": "node_modules/vue-next"
   },

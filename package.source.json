@@ -18,6 +18,7 @@
         }
     ],
     "main": "src/index.js",
+    "types": "types/index.d.ts",
     "scripts": {
         "build": "rollup -c build/rollup.config.js",
         "test": "NODE_OPTIONS=\"--max_old_space_size=5120 --no-experimental-fetch\" VUE=3 jest --watchAll --maxWorkers=4 --verbose"

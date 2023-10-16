@@ -22,6 +22,7 @@ export default function({ outputDir, npmrc, readme, distPackageJson, packageJson
   cp({
     'themes': 'themes',
     'locales': 'locales',
+    'types': 'types',
     'CHANGELOG.md': 'CHANGELOG.md',
     'tailwind.js': 'tailwind.js',
     'tailwind-prefixer.js': 'tailwind-prefixer.js',

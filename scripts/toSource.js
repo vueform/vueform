@@ -11,6 +11,7 @@ const files = [
   'src',
   'themes',
   'tests',
+  'types',
   'babel.config.js',
   'postcss.config.js',
   'tailwind-prefixer.js',
