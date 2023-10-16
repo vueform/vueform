@@ -873,14 +873,14 @@ module.exports = {
             types: [
               'string',
             ],
-            required: 'false',
+            required: 'true',
             description: 'name of the event to listen for',
           },
           callback: {
             types: [
               'function',
             ],
-            required: 'false',
+            required: 'true',
             description: 'callback to run when the event is triggered',
           },
         },
@@ -894,7 +894,7 @@ module.exports = {
             types: [
               'string',
             ],
-            required: 'false',
+            required: 'true',
             description: 'name of the event to remove',
           },
         },
@@ -2225,14 +2225,14 @@ module.exports = {
             types: [
               'string',
             ],
-            required: 'false',
+            required: 'true',
             description: 'name of the event to listen for',
           },
           callback: {
             types: [
               'function',
             ],
-            required: 'false',
+            required: 'true',
             description: 'callback to run when the event is triggered',
           },
         },
@@ -2246,7 +2246,7 @@ module.exports = {
             types: [
               'string',
             ],
-            required: 'false',
+            required: 'true',
             description: 'name of the event to remove',
           },
         },
@@ -3766,14 +3766,14 @@ module.exports = {
             types: [
               'string',
             ],
-            required: 'false',
+            required: 'true',
             description: 'name of the event to listen for',
           },
           callback: {
             types: [
               'function',
             ],
-            required: 'false',
+            required: 'true',
             description: 'callback to run when the event is triggered',
           },
         },
@@ -3787,7 +3787,7 @@ module.exports = {
             types: [
               'string',
             ],
-            required: 'false',
+            required: 'true',
             description: 'name of the event to remove',
           },
         },
@@ -5368,14 +5368,14 @@ module.exports = {
             types: [
               'string',
             ],
-            required: 'false',
+            required: 'true',
             description: 'name of the event to listen for',
           },
           callback: {
             types: [
               'function',
             ],
-            required: 'false',
+            required: 'true',
             description: 'callback to run when the event is triggered',
           },
         },
@@ -5389,7 +5389,7 @@ module.exports = {
             types: [
               'string',
             ],
-            required: 'false',
+            required: 'true',
             description: 'name of the event to remove',
           },
         },
@@ -6917,14 +6917,14 @@ module.exports = {
             types: [
               'string',
             ],
-            required: 'false',
+            required: 'true',
             description: 'name of the event to listen for',
           },
           callback: {
             types: [
               'function',
             ],
-            required: 'false',
+            required: 'true',
             description: 'callback to run when the event is triggered',
           },
         },
@@ -6938,7 +6938,7 @@ module.exports = {
             types: [
               'string',
             ],
-            required: 'false',
+            required: 'true',
             description: 'name of the event to remove',
           },
         },
@@ -8438,14 +8438,14 @@ module.exports = {
             types: [
               'string',
             ],
-            required: 'false',
+            required: 'true',
             description: 'name of the event to listen for',
           },
           callback: {
             types: [
               'function',
             ],
-            required: 'false',
+            required: 'true',
             description: 'callback to run when the event is triggered',
           },
         },
@@ -8459,7 +8459,7 @@ module.exports = {
             types: [
               'string',
             ],
-            required: 'false',
+            required: 'true',
             description: 'name of the event to remove',
           },
         },
@@ -10177,14 +10177,14 @@ module.exports = {
             types: [
               'string',
             ],
-            required: 'false',
+            required: 'true',
             description: 'name of the event to listen for',
           },
           callback: {
             types: [
               'function',
             ],
-            required: 'false',
+            required: 'true',
             description: 'callback to run when the event is triggered',
           },
         },
@@ -10198,7 +10198,7 @@ module.exports = {
             types: [
               'string',
             ],
-            required: 'false',
+            required: 'true',
             description: 'name of the event to remove',
           },
         },
@@ -11572,14 +11572,14 @@ module.exports = {
             types: [
               'string',
             ],
-            required: 'false',
+            required: 'true',
             description: 'name of the event to listen for',
           },
           callback: {
             types: [
               'function',
             ],
-            required: 'false',
+            required: 'true',
             description: 'callback to run when the event is triggered',
           },
         },
@@ -11593,7 +11593,7 @@ module.exports = {
             types: [
               'string',
             ],
-            required: 'false',
+            required: 'true',
             description: 'name of the event to remove',
           },
         },
@@ -12484,14 +12484,14 @@ module.exports = {
             types: [
               'string',
             ],
-            required: 'false',
+            required: 'true',
             description: 'name of the event to listen for',
           },
           callback: {
             types: [
               'function',
             ],
-            required: 'false',
+            required: 'true',
             description: 'callback to run when the event is triggered',
           },
         },
@@ -12505,7 +12505,7 @@ module.exports = {
             types: [
               'string',
             ],
-            required: 'false',
+            required: 'true',
             description: 'name of the event to remove',
           },
         },
@@ -14045,14 +14045,14 @@ module.exports = {
             types: [
               'string',
             ],
-            required: 'false',
+            required: 'true',
             description: 'name of the event to listen for',
           },
           callback: {
             types: [
               'function',
             ],
-            required: 'false',
+            required: 'true',
             description: 'callback to run when the event is triggered',
           },
         },
@@ -14066,7 +14066,7 @@ module.exports = {
             types: [
               'string',
             ],
-            required: 'false',
+            required: 'true',
             description: 'name of the event to remove',
           },
         },
@@ -15627,14 +15627,14 @@ module.exports = {
             types: [
               'string',
             ],
-            required: 'false',
+            required: 'true',
             description: 'name of the event to listen for',
           },
           callback: {
             types: [
               'function',
             ],
-            required: 'false',
+            required: 'true',
             description: 'callback to run when the event is triggered',
           },
         },
@@ -15648,7 +15648,7 @@ module.exports = {
             types: [
               'string',
             ],
-            required: 'false',
+            required: 'true',
             description: 'name of the event to remove',
           },
         },
@@ -15681,14 +15681,14 @@ module.exports = {
             types: [
               'object',
             ],
-            required: 'false',
+            required: 'true',
             description: 'an object containing address data',
           },
           raw: {
             types: [
               'object',
             ],
-            required: 'false',
+            required: 'true',
             description: 'an object containing raw address data (based on provider)',
           },
         },
@@ -17467,14 +17467,14 @@ module.exports = {
             types: [
               'string',
             ],
-            required: 'false',
+            required: 'true',
             description: 'name of the event to listen for',
           },
           callback: {
             types: [
               'function',
             ],
-            required: 'false',
+            required: 'true',
             description: 'callback to run when the event is triggered',
           },
         },
@@ -17488,7 +17488,7 @@ module.exports = {
             types: [
               'string',
             ],
-            required: 'false',
+            required: 'true',
             description: 'name of the event to remove',
           },
         },
@@ -19592,14 +19592,14 @@ module.exports = {
             types: [
               'string',
             ],
-            required: 'false',
+            required: 'true',
             description: 'name of the event to listen for',
           },
           callback: {
             types: [
               'function',
             ],
-            required: 'false',
+            required: 'true',
             description: 'callback to run when the event is triggered',
           },
         },
@@ -19613,7 +19613,7 @@ module.exports = {
             types: [
               'string',
             ],
-            required: 'false',
+            required: 'true',
             description: 'name of the event to remove',
           },
         },
@@ -21284,14 +21284,14 @@ module.exports = {
             types: [
               'string',
             ],
-            required: 'false',
+            required: 'true',
             description: 'name of the event to listen for',
           },
           callback: {
             types: [
               'function',
             ],
-            required: 'false',
+            required: 'true',
             description: 'callback to run when the event is triggered',
           },
         },
@@ -21305,7 +21305,7 @@ module.exports = {
             types: [
               'string',
             ],
-            required: 'false',
+            required: 'true',
             description: 'name of the event to remove',
           },
         },
@@ -22682,14 +22682,14 @@ module.exports = {
             types: [
               'string',
             ],
-            required: 'false',
+            required: 'true',
             description: 'name of the event to listen for',
           },
           callback: {
             types: [
               'function',
             ],
-            required: 'false',
+            required: 'true',
             description: 'callback to run when the event is triggered',
           },
         },
@@ -22703,7 +22703,7 @@ module.exports = {
             types: [
               'string',
             ],
-            required: 'false',
+            required: 'true',
             description: 'name of the event to remove',
           },
         },
@@ -24167,14 +24167,14 @@ module.exports = {
             types: [
               'string',
             ],
-            required: 'false',
+            required: 'true',
             description: 'name of the event to listen for',
           },
           callback: {
             types: [
               'function',
             ],
-            required: 'false',
+            required: 'true',
             description: 'callback to run when the event is triggered',
           },
         },
@@ -24188,7 +24188,7 @@ module.exports = {
             types: [
               'string',
             ],
-            required: 'false',
+            required: 'true',
             description: 'name of the event to remove',
           },
         },
@@ -26177,14 +26177,14 @@ module.exports = {
             types: [
               'string',
             ],
-            required: 'false',
+            required: 'true',
             description: 'name of the event to listen for',
           },
           callback: {
             types: [
               'function',
             ],
-            required: 'false',
+            required: 'true',
             description: 'callback to run when the event is triggered',
           },
         },
@@ -26198,7 +26198,7 @@ module.exports = {
             types: [
               'string',
             ],
-            required: 'false',
+            required: 'true',
             description: 'name of the event to remove',
           },
         },
@@ -27945,14 +27945,14 @@ module.exports = {
             types: [
               'string',
             ],
-            required: 'false',
+            required: 'true',
             description: 'name of the event to listen for',
           },
           callback: {
             types: [
               'function',
             ],
-            required: 'false',
+            required: 'true',
             description: 'callback to run when the event is triggered',
           },
         },
@@ -27966,7 +27966,7 @@ module.exports = {
             types: [
               'string',
             ],
-            required: 'false',
+            required: 'true',
             description: 'name of the event to remove',
           },
         },
@@ -29017,14 +29017,14 @@ module.exports = {
             types: [
               'string',
             ],
-            required: 'false',
+            required: 'true',
             description: 'name of the event to listen for',
           },
           callback: {
             types: [
               'function',
             ],
-            required: 'false',
+            required: 'true',
             description: 'callback to run when the event is triggered',
           },
         },
@@ -29038,7 +29038,7 @@ module.exports = {
             types: [
               'string',
             ],
-            required: 'false',
+            required: 'true',
             description: 'name of the event to remove',
           },
         },
@@ -30450,14 +30450,14 @@ module.exports = {
             types: [
               'string',
             ],
-            required: 'false',
+            required: 'true',
             description: 'name of the event to listen for',
           },
           callback: {
             types: [
               'function',
             ],
-            required: 'false',
+            required: 'true',
             description: 'callback to run when the event is triggered',
           },
         },
@@ -30471,7 +30471,7 @@ module.exports = {
             types: [
               'string',
             ],
-            required: 'false',
+            required: 'true',
             description: 'name of the event to remove',
           },
         },
@@ -32064,14 +32064,14 @@ module.exports = {
             types: [
               'string',
             ],
-            required: 'false',
+            required: 'true',
             description: 'name of the event to listen for',
           },
           callback: {
             types: [
               'function',
             ],
-            required: 'false',
+            required: 'true',
             description: 'callback to run when the event is triggered',
           },
         },
@@ -32085,7 +32085,7 @@ module.exports = {
             types: [
               'string',
             ],
-            required: 'false',
+            required: 'true',
             description: 'name of the event to remove',
           },
         },
@@ -33730,14 +33730,14 @@ module.exports = {
             types: [
               'string',
             ],
-            required: 'false',
+            required: 'true',
             description: 'name of the event to listen for',
           },
           callback: {
             types: [
               'function',
             ],
-            required: 'false',
+            required: 'true',
             description: 'callback to run when the event is triggered',
           },
         },
@@ -33751,7 +33751,7 @@ module.exports = {
             types: [
               'string',
             ],
-            required: 'false',
+            required: 'true',
             description: 'name of the event to remove',
           },
         },
@@ -35854,14 +35854,14 @@ module.exports = {
             types: [
               'string',
             ],
-            required: 'false',
+            required: 'true',
             description: 'name of the event to listen for',
           },
           callback: {
             types: [
               'function',
             ],
-            required: 'false',
+            required: 'true',
             description: 'callback to run when the event is triggered',
           },
         },
@@ -35875,7 +35875,7 @@ module.exports = {
             types: [
               'string',
             ],
-            required: 'false',
+            required: 'true',
             description: 'name of the event to remove',
           },
         },
@@ -37765,14 +37765,14 @@ module.exports = {
             types: [
               'string',
             ],
-            required: 'false',
+            required: 'true',
             description: 'name of the event to listen for',
           },
           callback: {
             types: [
               'function',
             ],
-            required: 'false',
+            required: 'true',
             description: 'callback to run when the event is triggered',
           },
         },
@@ -37786,7 +37786,7 @@ module.exports = {
             types: [
               'string',
             ],
-            required: 'false',
+            required: 'true',
             description: 'name of the event to remove',
           },
         },
@@ -39412,14 +39412,14 @@ module.exports = {
             types: [
               'string',
             ],
-            required: 'false',
+            required: 'true',
             description: 'name of the event to listen for',
           },
           callback: {
             types: [
               'function',
             ],
-            required: 'false',
+            required: 'true',
             description: 'callback to run when the event is triggered',
           },
         },
@@ -39433,7 +39433,7 @@ module.exports = {
             types: [
               'string',
             ],
-            required: 'false',
+            required: 'true',
             description: 'name of the event to remove',
           },
         },
@@ -40958,14 +40958,14 @@ module.exports = {
             types: [
               'string',
             ],
-            required: 'false',
+            required: 'true',
             description: 'name of the event to listen for',
           },
           callback: {
             types: [
               'function',
             ],
-            required: 'false',
+            required: 'true',
             description: 'callback to run when the event is triggered',
           },
         },
@@ -40979,7 +40979,7 @@ module.exports = {
             types: [
               'string',
             ],
-            required: 'false',
+            required: 'true',
             description: 'name of the event to remove',
           },
         },

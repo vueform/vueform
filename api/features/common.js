@@ -262,14 +262,14 @@ export default {
               "types": [
                 "string"
               ],
-              "required": false,
+              "required": true,
               "description": "name of the event to listen for"
             },
             "callback": {
               "types": [
                 "function"
               ],
-              "required": false,
+              "required": true,
               "description": "callback to run when the event is triggered"
             }
           }
@@ -283,7 +283,7 @@ export default {
               "types": [
                 "string"
               ],
-              "required": false,
+              "required": true,
               "description": "name of the event to remove"
             }
           }
@@ -448,14 +448,14 @@ export default {
               "types": [
                 "string"
               ],
-              "required": false,
+              "required": true,
               "description": "the `dataPath` property of the element to update"
             },
             "val": {
               "types": [
                 "any"
               ],
-              "required": false,
+              "required": true,
               "description": "value to update with"
             }
           }
@@ -625,7 +625,7 @@ export default {
               "types": [
                 "Event"
               ],
-              "required": false,
+              "required": true,
               "description": "the keyup Event"
             }
           }
@@ -1082,14 +1082,14 @@ export default {
               "types": [
                 "string"
               ],
-              "required": false,
+              "required": true,
               "description": "the `dataPath` property of the element to update"
             },
             "val": {
               "types": [
                 "any"
               ],
-              "required": false,
+              "required": true,
               "description": "value to update with"
             }
           }
@@ -1238,8 +1238,15 @@ export default {
               "types": [
                 "string"
               ],
-              "required": false,
+              "required": true,
               "description": "path of the element"
+            },
+            "elements": {
+              "types": [
+                "object"
+              ],
+              "required": false,
+              "description": "the object of elements to look into (defaults to elements$)"
             }
           }
         },
@@ -1252,7 +1259,7 @@ export default {
               "types": [
                 "string"
               ],
-              "required": false,
+              "required": true,
               "description": "path of the element"
             }
           }
@@ -1285,14 +1292,14 @@ export default {
               "types": [
                 "string"
               ],
-              "required": false,
+              "required": true,
               "description": "name of the event to listen for"
             },
             "callback": {
               "types": [
                 "function"
               ],
-              "required": false,
+              "required": true,
               "description": "callback to run when the event is triggered"
             }
           }
@@ -1306,7 +1313,7 @@ export default {
               "types": [
                 "string"
               ],
-              "required": false,
+              "required": true,
               "description": "name of the event to remove"
             }
           }

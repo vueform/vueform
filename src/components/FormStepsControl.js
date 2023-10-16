@@ -205,7 +205,7 @@ export default {
      * Handles `click` event.
      *
      * @returns {void}
-     * @param {Event} e event object
+     * @param {Event} e* event object
      * @private
      */
     const handleClick = (e) => {

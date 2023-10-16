@@ -1217,7 +1217,8 @@ const base = function(props, context, dependencies = {})
   /**
    * Returns an element by its path.
    *
-   * @param {string} path path of the element
+   * @param {string} path* path of the element
+   * @param {object} elements the object of elements to look into (defaults to elements$)
    * @returns {VueformElement|null}
    */
   const el$ = (path, elements) => {
@@ -1253,7 +1254,7 @@ const base = function(props, context, dependencies = {})
   /**
    * Returns the siblings of an element.
    *
-   * @param {string} path path of the element
+   * @param {string} path* path of the element
    * @returns {void}
    */
   const siblings$ = (path) => {

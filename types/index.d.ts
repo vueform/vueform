@@ -2945,8 +2945,8 @@ declare class FormStep implements ReturnType<typeof defineComponent> {
   complete: () => void;
   uncomplete: () => void;
   select: () => void;
-  on: (event?: string, callback?: Function) => void;
-  off: (event?: string) => void;
+  on: (event: string, callback: Function) => void;
+  off: (event: string) => void;
   fire: (args?: any) => void;
   addChildConditions: () => void;
   removeChildConditions: () => void;
@@ -3018,12 +3018,12 @@ declare class FormSteps implements ReturnType<typeof defineComponent> {
   reset: () => void;
   enableAllSteps: () => void;
   submit: () => Promise;
-  select: (step$?: FormStep) => void;
-  enableUntil: (index?: number) => void;
+  select: (step$: FormStep) => void;
+  enableUntil: (index: number) => void;
   enableUntilCurrent: () => void;
   enableUntilLastEnabled: () => void;
-  on: (event?: string, callback?: Function) => void;
-  off: (event?: string) => void;
+  on: (event: string, callback: Function) => void;
+  off: (event: string) => void;
   fire: (args?: any) => void;
 
   //Events
@@ -3064,7 +3064,7 @@ declare class FormStepsControl implements ReturnType<typeof defineComponent> {
   previous: () => void;
   next: () => Promise;
   finish: () => Promise;
-  handleClick: (e?: Event) => void;
+  handleClick: (e: Event) => void;
 
   //Slots
   $slots: {
@@ -3149,8 +3149,8 @@ declare class FormTab implements ReturnType<typeof defineComponent> {
   select: () => void;
   activate: () => void;
   deactivate: () => void;
-  on: (event?: string, callback?: Function) => void;
-  off: (event?: string) => void;
+  on: (event: string, callback: Function) => void;
+  off: (event: string) => void;
   fire: (args?: any) => void;
   addChildConditions: () => void;
   removeChildConditions: () => void;
@@ -3202,11 +3202,11 @@ declare class FormTabs implements ReturnType<typeof defineComponent> {
 
   // Methods
   goTo: (name: string) => void;
-  select: (tab$?: FormTab) => void;
+  select: (tab$: FormTab) => void;
   tab$: (tab: string) => FormTab;
   reset: () => void;
-  on: (event?: string, callback?: Function) => void;
-  off: (event?: string) => void;
+  on: (event: string, callback: Function) => void;
+  off: (event: string) => void;
   fire: (args?: any) => void;
 
   //Events
@@ -3333,7 +3333,7 @@ declare class Vueform implements ReturnType<typeof defineComponent> {
 
   // Methods
   prepareElements: () => Promise;
-  updateModel: (dataPath?: string, val?: any) => void;
+  updateModel: (dataPath: string, val: any) => void;
   update: (data: object, path?: object) => void;
   load: (value: string, format?: boolean) => Promise;
   reset: () => void;
@@ -3351,12 +3351,12 @@ declare class Vueform implements ReturnType<typeof defineComponent> {
   disableConditions: () => void;
   setLanguage: (code: string) => void;
   handleSubmit: () => void;
-  el$: (path?: string) => VueformElement | null;
-  siblings$: (path?: string) => void;
+  el$: (path: string, elements?: object) => VueformElement | null;
+  siblings$: (path: string) => void;
   initMessageBag: () => void;
   fire: (args?: any) => void;
-  on: (event?: string, callback?: Function) => void;
-  off: (event?: string) => void;
+  on: (event: string, callback: Function) => void;
+  off: (event: string) => void;
 
   //Events
   $emit(eventName: 'input', value: any): void;
@@ -3458,8 +3458,8 @@ declare class EditorWrapper implements ReturnType<typeof defineComponent> {
   update: (value: string) => void;
   setOption: (key: string, value: string) => void;
   handleChange: () => void;
-  handleFileAccept: (e?: Event) => void;
-  handleAttachmentAdd: (e?: Event) => Promise;
+  handleFileAccept: (e: Event) => void;
+  handleAttachmentAdd: (e: Event) => Promise;
   handleBlur: () => void;
 
   //Events
@@ -3538,7 +3538,7 @@ declare class FilePreview implements ReturnType<typeof defineComponent> {
   // Methods
   upload: () => void;
   remove: () => void;
-  handleKeyup: (event?: Event) => Promise;
+  handleKeyup: (event: Event) => Promise;
 }
 
 declare class RadiogroupRadio implements ReturnType<typeof defineComponent> {

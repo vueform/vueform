@@ -1994,14 +1994,14 @@ module.exports = {
             "types": [
               "string"
             ],
-            "required": false,
+            "required": true,
             "description": "name of the event to listen for"
           },
           "callback": {
             "types": [
               "function"
             ],
-            "required": false,
+            "required": true,
             "description": "callback to run when the event is triggered"
           }
         }
@@ -2015,7 +2015,7 @@ module.exports = {
             "types": [
               "string"
             ],
-            "required": false,
+            "required": true,
             "description": "name of the event to remove"
           }
         }
@@ -2506,7 +2506,7 @@ module.exports = {
             "types": [
               "FormStep"
             ],
-            "required": false,
+            "required": true,
             "description": "the [`FormStep`](form-step) component to select"
           }
         }
@@ -2520,7 +2520,7 @@ module.exports = {
             "types": [
               "number"
             ],
-            "required": false,
+            "required": true,
             "description": "index of the step"
           }
         }
@@ -2544,14 +2544,14 @@ module.exports = {
             "types": [
               "string"
             ],
-            "required": false,
+            "required": true,
             "description": "name of the event to listen for"
           },
           "callback": {
             "types": [
               "function"
             ],
-            "required": false,
+            "required": true,
             "description": "callback to run when the event is triggered"
           }
         }
@@ -2565,7 +2565,7 @@ module.exports = {
             "types": [
               "string"
             ],
-            "required": false,
+            "required": true,
             "description": "name of the event to remove"
           }
         }
@@ -2776,7 +2776,7 @@ module.exports = {
             "types": [
               "Event"
             ],
-            "required": false,
+            "required": true,
             "description": "event object"
           }
         }
@@ -3107,14 +3107,14 @@ module.exports = {
             "types": [
               "string"
             ],
-            "required": false,
+            "required": true,
             "description": "name of the event to listen for"
           },
           "callback": {
             "types": [
               "function"
             ],
-            "required": false,
+            "required": true,
             "description": "callback to run when the event is triggered"
           }
         }
@@ -3128,7 +3128,7 @@ module.exports = {
             "types": [
               "string"
             ],
-            "required": false,
+            "required": true,
             "description": "name of the event to remove"
           }
         }
@@ -3451,7 +3451,7 @@ module.exports = {
             "types": [
               "FormTab"
             ],
-            "required": false,
+            "required": true,
             "description": "the [`FormTab`](form-tab) component to select"
           }
         }
@@ -3484,14 +3484,14 @@ module.exports = {
             "types": [
               "string"
             ],
-            "required": false,
+            "required": true,
             "description": "name of the event to listen for"
           },
           "callback": {
             "types": [
               "function"
             ],
-            "required": false,
+            "required": true,
             "description": "callback to run when the event is triggered"
           }
         }
@@ -3505,7 +3505,7 @@ module.exports = {
             "types": [
               "string"
             ],
-            "required": false,
+            "required": true,
             "description": "name of the event to remove"
           }
         }
@@ -3964,14 +3964,14 @@ module.exports = {
             "types": [
               "string"
             ],
-            "required": false,
+            "required": true,
             "description": "the `dataPath` property of the element to update"
           },
           "val": {
             "types": [
               "any"
             ],
-            "required": false,
+            "required": true,
             "description": "value to update with"
           }
         }
@@ -4120,8 +4120,15 @@ module.exports = {
             "types": [
               "string"
             ],
-            "required": false,
+            "required": true,
             "description": "path of the element"
+          },
+          "elements": {
+            "types": [
+              "object"
+            ],
+            "required": false,
+            "description": "the object of elements to look into (defaults to elements$)"
           }
         }
       },
@@ -4134,7 +4141,7 @@ module.exports = {
             "types": [
               "string"
             ],
-            "required": false,
+            "required": true,
             "description": "path of the element"
           }
         }
@@ -4167,14 +4174,14 @@ module.exports = {
             "types": [
               "string"
             ],
-            "required": false,
+            "required": true,
             "description": "name of the event to listen for"
           },
           "callback": {
             "types": [
               "function"
             ],
-            "required": false,
+            "required": true,
             "description": "callback to run when the event is triggered"
           }
         }
@@ -4188,7 +4195,7 @@ module.exports = {
             "types": [
               "string"
             ],
-            "required": false,
+            "required": true,
             "description": "name of the event to remove"
           }
         }
@@ -5147,7 +5154,7 @@ module.exports = {
             "types": [
               "Event"
             ],
-            "required": false,
+            "required": true,
             "description": "event"
           }
         }
@@ -5161,7 +5168,7 @@ module.exports = {
             "types": [
               "Event"
             ],
-            "required": false,
+            "required": true,
             "description": "event"
           }
         }
@@ -5660,7 +5667,7 @@ module.exports = {
             "types": [
               "Event"
             ],
-            "required": false,
+            "required": true,
             "description": "the keyup Event"
           }
         }

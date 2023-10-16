@@ -32,8 +32,8 @@ const base = function(props, context, dependencies, options = {})
   /**
    * Adds a listener for an event.
    *
-   * @param {string} event name of the event to listen for
-   * @param {function} callback callback to run when the event is triggered
+   * @param {string} event* name of the event to listen for
+   * @param {function} callback* callback to run when the event is triggered
    * @returns {void}
    */
   const on = (evt, callback) => {
@@ -47,7 +47,7 @@ const base = function(props, context, dependencies, options = {})
   /**
    * Removes all listeners for an event.
    *
-   * @param {string} event name of the event to remove
+   * @param {string} event* name of the event to remove
    * @returns {void}
    */
   const off = (evt) => {

@@ -369,6 +369,10 @@ for (const component in components) {
       let params = Object.keys(value.params || {}).map((paramKey) => {
         let param = value.params[paramKey]
 
+        if (!param.required) {
+          console.log(key, paramKey)
+        }
+
         return `${paramKey}${param.required?'':'?'}: ${transformTypes(param.types, paramKey)}`
       }).join(', ')
 
@@ -410,4 +414,4 @@ content += `\n\ndeclare module 'vue' {
 // Write
 fs.writeFileSync('./types/index.d.ts', content)
 
-typeTypes.map(t => console.log(t))
+// typeTypes.map(t => console.log(t))

@@ -394,7 +394,7 @@ export default {
     /**
      * Select a step.
      *
-     * @param {FormStep} step$ the [`FormStep`](form-step) component to select
+     * @param {FormStep} step$* the [`FormStep`](form-step) component to select
      * @returns {void}
      * @private
      */
@@ -415,7 +415,7 @@ export default {
     /**
      * Enable steps until a certain index.
      *
-     * @param {number} index index of the step
+     * @param {number} index* index of the step
      * @returns {void}
      */
     const enableUntil = (index) => {

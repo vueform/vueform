@@ -4007,14 +4007,14 @@ export default {
               "types": [
                 "object"
               ],
-              "required": false,
+              "required": true,
               "description": "an object containing address data"
             },
             "raw": {
               "types": [
                 "object"
               ],
-              "required": false,
+              "required": true,
               "description": "an object containing raw address data (based on provider)"
             }
           }
@@ -4094,14 +4094,14 @@ export default {
               "types": [
                 "object"
               ],
-              "required": false,
+              "required": true,
               "description": "an object containing address data"
             },
             "raw": {
               "types": [
                 "object"
               ],
-              "required": false,
+              "required": true,
               "description": "an object containing raw address data (based on provider)"
             }
           }

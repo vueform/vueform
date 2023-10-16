@@ -167,7 +167,7 @@ export default {
     /**
      * Handles `fileAccept` event.
      * 
-     * @param {Event} e event
+     * @param {Event} e* event
      * @returns {void}
      * @private
      */
@@ -204,7 +204,7 @@ export default {
     /**
      * Handles `attachmentAdd` event.
      * 
-     * @param {Event} e event
+     * @param {Event} e* event
      * @returns {Promise}
      * @private
      */

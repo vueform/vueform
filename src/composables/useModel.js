@@ -66,8 +66,8 @@ export default function (props, context, dependencies)
   /**
    * Updates an element's data in the form model.
    * 
-   * @param {string} dataPath the `dataPath` property of the element to update
-   * @param {any} val value to update with
+   * @param {string} dataPath* the `dataPath` property of the element to update
+   * @param {any} val* value to update with
    * @returns {void}
    * @private
    */

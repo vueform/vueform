@@ -181,7 +181,7 @@ export default {
     /**
      * Select a tab.
      *
-     * @param {FormTab} tab$ the [`FormTab`](form-tab) component to select
+     * @param {FormTab} tab$* the [`FormTab`](form-tab) component to select
      * @returns {void}
      * @private
      */

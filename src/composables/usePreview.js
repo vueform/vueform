@@ -161,7 +161,7 @@ const base = function(props, context, dependencies)
   /**
    * Handle the keyup event of the preview.
    * 
-   * @param {Event} event the keyup Event
+   * @param {Event} event* the keyup Event
    * @returns {Promise}
    * @private
    */
