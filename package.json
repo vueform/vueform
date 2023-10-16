@@ -18,6 +18,9 @@
     }
   ],
   "main": "src/index.js",
+  "_moduleAliases": {
+    "vue": "node_modules/vue-next"
+  },
   "scripts": {
     "dev": "cross-env node_modules/webpack/bin/webpack.js --progress --config webpack.config.js --watch",
     "test": "NODE_OPTIONS=\"--max_old_space_size=5120 --no-experimental-fetch\" VUE=3 jest --maxWorkers=8 --verbose --config=jest/jest.config.vue3.js",
@@ -92,7 +95,6 @@
     "sass-loader": "^7.1.0",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.2",
     "ts-loader": "^8.0.7",
-    "vue": "^3.3.4",
     "vue-loader": "^15.10.0",
     "vue-next": "npm:vue@^3.2.20",
     "vue-next-jest": "npm:@vue/vue3-jest@^27.0.0-alpha.1",
