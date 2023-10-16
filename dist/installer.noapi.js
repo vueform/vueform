@@ -1031,7 +1031,7 @@ var publishConfig = {
 	registry: "https://registry.vueform.com"
 };
 var name = "@vueform/vueform";
-var version = "1.4.3";
+var version = "1.4.4";
 var description = "Form builder for Vue.js";
 var homepage = "https://vueform.com";
 var bugs = {
@@ -1045,6 +1045,7 @@ var authors = [
 	}
 ];
 var main = "src/index.js";
+var types = "types/index.d.ts";
 var _moduleAliases = {
 	vue: "node_modules/vue-next"
 };
@@ -1134,7 +1135,8 @@ var devDependencies = {
 	"vue-template-compiler": "^2.7.8",
 	webpack: "^4.28.4",
 	"webpack-cli": "^3.2.1",
-	"webpack-notifier": "^1.7.0"
+	"webpack-notifier": "^1.7.0",
+	vue: "^3.3.4"
 };
 var dependencies = {
 	"@babel/plugin-transform-runtime": "^7.16.4",
@@ -1180,6 +1182,7 @@ var packageJson = {
 	license: license,
 	authors: authors,
 	main: main,
+	types: types,
 	_moduleAliases: _moduleAliases,
 	scripts: scripts,
 	devDependencies: devDependencies,

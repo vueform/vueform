@@ -600,8 +600,8 @@ var base$1a = function base(props, context, dependencies) {
   /**
    * Adds a listener for an event.
    *
-   * @param {string} event name of the event to listen for
-   * @param {function} callback callback to run when the event is triggered
+   * @param {string} event* name of the event to listen for
+   * @param {function} callback* callback to run when the event is triggered
    * @returns {void}
    */
   var on = (evt, callback) => {
@@ -614,7 +614,7 @@ var base$1a = function base(props, context, dependencies) {
   /**
    * Removes all listeners for an event.
    *
-   * @param {string} event name of the event to remove
+   * @param {string} event* name of the event to remove
    * @returns {void}
    */
   var off = evt => {
@@ -685,8 +685,9 @@ function useModel (props, context, dependencies) {
   var internalData = ref({});
 
   /**
+   * The intermediary value.
    * 
-   * 
+   * @type {object}
    * @private
    */
   var intermediaryValue = ref(externalValue && externalValue.value ? _.cloneDeep(externalValue.value) : null);
@@ -718,8 +719,8 @@ function useModel (props, context, dependencies) {
   /**
    * Updates an element's data in the form model.
    * 
-   * @param {string} dataPath the `dataPath` property of the element to update
-   * @param {any} val value to update with
+   * @param {string} dataPath* the `dataPath` property of the element to update
+   * @param {any} val* value to update with
    * @returns {void}
    * @private
    */
@@ -893,7 +894,7 @@ var base$19 = function base(props, context) {
   /**
   * The FormTabs component.
   *
-  * @type {component}
+  * @type {FormTabs}
   * @private
   */
   var tabs$ = ref(null);
@@ -901,7 +902,7 @@ var base$19 = function base(props, context) {
   /**
   * The FormSteps component.
   *
-  * @type {component}
+  * @type {FormSteps}
   * @private
   */
   var steps$ = ref(null);
@@ -976,7 +977,7 @@ var base$19 = function base(props, context) {
   /**
    * The form component instance (self).
    *
-   * @type {component}
+   * @type {Vueform}
    */
   var form$ = computed(() => {
     return $this;
@@ -1651,7 +1652,7 @@ var base$19 = function base(props, context) {
    *
    * @param {string} value* the value to be loaded
    * @param {boolean} format whether the loaded value should be formatted with [`formatLoad`](#option-format-load) (default: `false`)
-   * @returns {void}
+   * @returns {Promise}
    */
   var load = /*#__PURE__*/function () {
     var _ref = _asyncToGenerator(function* (data) {
@@ -1759,7 +1760,7 @@ var base$19 = function base(props, context) {
    * Validates all elements (async) which weren't validated before. If [`validateOn`](#option-validate-on) does not contain `change` it will validate all elements on each call.
    *
    * @public
-   * @returns {void}
+   * @returns {Promise}
    */
   var validate = /*#__PURE__*/function () {
     var _ref3 = _asyncToGenerator(function* () {
@@ -1800,7 +1801,7 @@ var base$19 = function base(props, context) {
   /**
    * Validates and prepares elements then submits the form (async).
    *
-   * @returns {void}
+   * @returns {Promise}
    */
   var submit = /*#__PURE__*/function () {
     var _ref5 = _asyncToGenerator(function* () {
@@ -1843,7 +1844,7 @@ var base$19 = function base(props, context) {
   /**
    * Sends form data to [`endpoint`](#option-endpoint) with the selected [`method`](#option-method) (async).
    *
-   * @returns {void}
+   * @returns {Promise}
    */
   var send = /*#__PURE__*/function () {
     var _ref6 = _asyncToGenerator(function* () {
@@ -1898,7 +1899,7 @@ var base$19 = function base(props, context) {
   /**
   * Prepares all elements to submit (async).
   *
-  * @returns {void}
+  * @returns {Promise}
   * @private
   */
   var prepareElements = /*#__PURE__*/function () {
@@ -1992,8 +1993,9 @@ var base$19 = function base(props, context) {
   /**
    * Returns an element by its path.
    *
-   * @param {string} path path of the element
-   * @returns {component|null}
+   * @param {string} path* path of the element
+   * @param {object} elements the object of elements to look into (defaults to elements$)
+   * @returns {VueformElement|null}
    */
   var el$ = (path, elements) => {
     if (elements === undefined) {
@@ -2018,7 +2020,7 @@ var base$19 = function base(props, context) {
   /**
    * Returns the siblings of an element.
    *
-   * @param {string} path path of the element
+   * @param {string} path* path of the element
    * @returns {void}
    */
   var siblings$ = path => {
@@ -2660,7 +2662,7 @@ var base$18 = function base(props, context, dependencies) {
   /**
   * The root form's component.
   * 
-  * @type {component}
+  * @type {Vueform}
   */
   var form$ = inject('form$');
   return {
@@ -2688,7 +2690,7 @@ var base$16 = function base(props, context, dependencies) {
   /**
   * The size of the component.
   * 
-  * @type {component}
+  * @type {string}
   */
   var Size = inject('Size');
   return {
@@ -2764,7 +2766,7 @@ var base$14 = function base(props, context, dependencies) {
   /**
    * The component instance (self).
    * 
-   * @type {component}
+   * @type {VueformComponent}
    */
   var component$ = computed(() => {
     return getCurrentInstance().proxy;
@@ -2773,7 +2775,7 @@ var base$14 = function base(props, context, dependencies) {
   /**
    * An object containaing all the component's classes in key/value pairs. Class values are merged based on the default classes provided by the theme respecing any additional classes / overrides.
    * 
-   * @type {object}
+   * @type {MergeClasses}
    * @private
    */
   var classesInstance = computed(() => {
@@ -3068,7 +3070,7 @@ var FormLanguage = {
     /**
      * Select the language.
      * 
-     * @return {void}
+     * @returns {void}
      */
     var select = () => {
       context.emit('select', code.value);
@@ -3214,7 +3216,7 @@ var FormTabs = {
     /**
      * The current [`FormTab`](form-tab) component.
      *
-     * @type {component}
+     * @type {FormTab}
      */
     var current$ = computed(() => {
       var current = _.find(tabs$.value, {
@@ -3226,7 +3228,7 @@ var FormTabs = {
     /**
      * The first visible [`FormTab`](form-tab) component.
      *
-     * @type {component}
+     * @type {FormTab}
      */
     var first$ = computed(() => {
       return _.find(visible$.value, tab => {
@@ -3237,7 +3239,7 @@ var FormTabs = {
     /**
      * The last visible [`FormTab`](form-tab) component.
      *
-     * @type {component}
+     * @type {FormTab}
      */
     var last$ = computed(() => {
       return Object.values(visible$.value).pop();
@@ -3246,7 +3248,7 @@ var FormTabs = {
     /**
      * The next visible [`FormTab`](form-tab) component.
      *
-     * @type {component}
+     * @type {FormTab}
      */
     var next$ = computed(() => {
       return _.find(visible$.value, tab => {
@@ -3257,7 +3259,7 @@ var FormTabs = {
     /**
      * The previous visible [`FormTab`](form-tab) component.
      *
-     * @type {component}
+     * @type {FormTab}
      */
     var previous$ = computed(() => {
       return _.findLast(visible$.value, tab => {
@@ -3281,7 +3283,7 @@ var FormTabs = {
     /**
      * Select a tab.
      *
-     * @param {component} tab$ the [`FormTab`](form-tab) component to select
+     * @param {FormTab} tab$* the [`FormTab`](form-tab) component to select
      * @returns {void}
      * @private
      */
@@ -3300,7 +3302,7 @@ var FormTabs = {
      * Returns a specific [`FormTab`](form-tab) by index.
      *
      * @param {string} tab* name of the tab
-     * @returns {component}
+     * @returns {FormTab}
      */
     var tab$ = name => {
       return _.find(tabs$.value, {
@@ -3320,7 +3322,7 @@ var FormTabs = {
     /**
      * Set the component to the parent as if `refs` were used.
      *
-     * @param {component} $parent parent component
+     * @param {VNode} $parent parent component
      * @param {function} assignToParent the assignToParent function for recursion
      * @returns {void}
      * @private
@@ -3336,7 +3338,7 @@ var FormTabs = {
     /**
     * Removes the component from the parent.
     *
-    * @param {component} $parent parent component
+    * @param {VNode} $parent parent component
     * @param {function} removeFromParent the removeFromParent function for recursion
     * @private
     */
@@ -3643,7 +3645,7 @@ var base$12 = function base(props, context, dependencies) {
   /**
   * The label definition of the component.
   * 
-  * @type {string|function|component}
+  * @type {string|function|Component}
   * @private
   */
   var baseLabel = computed(() => {
@@ -3673,7 +3675,7 @@ var base$12 = function base(props, context, dependencies) {
   /**
   * The label of the component.
   * 
-  * @type {string|component}
+  * @type {string|Component}
   */
   var label = computed(() => {
     var label = isLabelFunction.value ? baseLabel.value(component$.value) : baseLabel.value || null;
@@ -3812,7 +3814,7 @@ var FormTab = {
     /**
      * The label of the tab.
      *
-     * @type {string|component}
+     * @type {string|Component}
      * @default null
      */
     var tabLabel = ref(tabLabel_.value && typeof tabLabel_.value === 'object' ? markRaw(tabLabel_.value) : tabLabel_.value);
@@ -3831,7 +3833,7 @@ var FormTab = {
     /**
      * The parent [`FormTabs`](form-tabs) component.
      *
-     * @type {component}
+     * @type {FormTabs}
      */
     var tabs$ = computed(() => {
       return form$.value.tabs$;
@@ -3900,7 +3902,7 @@ var FormTab = {
     /**
      * The tab's component.
      *
-     * @type {component}
+     * @type {FormTab}
      */
     var tab$ = computed(() => {
       return form$.value.tabs$.tabs$[name.value];
@@ -3995,7 +3997,7 @@ var FormTab = {
     /**
      * Set the component to the parent as if `refs` were used.
      *
-     * @param {component} $parent parent component
+     * @param {VNode} $parent parent component
      * @param {function} assignToParent the assignToParent function for recursion
      * @returns {void}
      * @private
@@ -4011,7 +4013,7 @@ var FormTab = {
     /**
     * Removes the component from the parent.
     *
-    * @param {component} $parent parent component
+    * @param {VNode} $parent parent component
     * @param {function} removeFromParent the removeFromParent function for recursion
     * @private
     */
@@ -4272,7 +4274,7 @@ var FormSteps = {
     /**
      * The first visible [`FormStep`](form-step) component.
      *
-     * @type {component}
+     * @type {FormStep|undefined}
      */
     var first$ = computed(() => {
       return _.find(visible$.value, step => {
@@ -4283,7 +4285,7 @@ var FormSteps = {
     /**
      * The last visible [`FormStep`](form-step) component.
      *
-     * @type {component}
+     * @type {FormStep|undefined}
      */
     var last$ = computed(() => {
       return Object.values(visible$.value).pop();
@@ -4292,7 +4294,7 @@ var FormSteps = {
     /**
      * The current [`FormStep`](form-step) component.
      *
-     * @type {component}
+     * @type {FormStep|undefined}
      */
     var current$ = computed(() => {
       var current = _.find(steps$.value, {
@@ -4304,7 +4306,7 @@ var FormSteps = {
     /**
      * The next visible [`FormStep`](form-step) component.
      *
-     * @type {component}
+     * @type {FormStep|undefined}
      */
     var next$ = computed(() => {
       return _.find(visible$.value, step => {
@@ -4315,7 +4317,7 @@ var FormSteps = {
     /**
      * The previous visible [`FormStep`](form-step) component.
      *
-     * @type {component}
+     * @type {FormStep|undefined}
      */
     var previous$ = computed(() => {
       return _.findLast(visible$.value, step => {
@@ -4326,7 +4328,7 @@ var FormSteps = {
     /**
      * The first invalid & visible [`FormStep`](form-step) component.
      *
-     * @type {component}
+     * @type {FormStep|undefined}
      */
     var firstInvalid$ = computed(() => {
       return _.find(visible$.value, {
@@ -4337,7 +4339,7 @@ var FormSteps = {
     /**
      * The first visible [`FormStep`](form-step) component which is not done yet.
      *
-     * @type {component}
+     * @type {FormStep|undefined}
      */
     var firstNonDone$ = computed(() => {
       return _.find(visible$.value, {
@@ -4348,7 +4350,7 @@ var FormSteps = {
     /**
      * The last enabled & visible [`FormStep`](form-step) component.
      *
-     * @type {component}
+     * @type {FormStep|undefined}
      */
     var lastEnabled$ = computed(() => {
       return _.findLast(visible$.value, {
@@ -4440,7 +4442,7 @@ var FormSteps = {
      * Returns a specific [`FormStep`](form-step) component by index.
      *
      * @param {string} name* name of the step
-     * @returns {component}
+     * @returns {FormStep|undefined}
      */
     var step$ = name => {
       return _.find(visible$.value, {
@@ -4476,7 +4478,7 @@ var FormSteps = {
     /**
      * Invokes the form's `submit` event. If the form has any validation errors it will jump to the first step with error.
      *
-     * @returns {void}
+     * @returns {Promise}
      */
     var submit = /*#__PURE__*/function () {
       var _ref = _asyncToGenerator(function* () {
@@ -4507,7 +4509,7 @@ var FormSteps = {
     /**
      * Select a step.
      *
-     * @param {component} step$ the [`FormStep`](form-step) component to select
+     * @param {FormStep} step$* the [`FormStep`](form-step) component to select
      * @returns {void}
      * @private
      */
@@ -4525,7 +4527,7 @@ var FormSteps = {
     /**
      * Enable steps until a certain index.
      *
-     * @param {integer} index index of the step
+     * @param {number} index* index of the step
      * @returns {void}
      */
     var enableUntil = index => {
@@ -4562,7 +4564,7 @@ var FormSteps = {
     /**
      * Set the component to the parent as if `refs` were used.
      *
-     * @param {component} $parent parent component
+     * @param {VNode} $parent parent component
      * @param {function} assignToParent the assignToParent function for recursion
      * @returns {void}
      * @private
@@ -4578,7 +4580,7 @@ var FormSteps = {
     /**
     * Removes the component from the parent.
     *
-    * @param {component} $parent parent component
+    * @param {VNode} $parent parent component
     * @param {function} removeFromParent the removeFromParent function for recursion
     * @private
     */
@@ -4800,7 +4802,7 @@ var FormStepsControl = {
     /**
      * The label definition of the component.
      *
-     * @type {string|function|component}
+     * @type {string|function|Component}
      * @private
      */
     var baseLabel = computed(() => {
@@ -4831,6 +4833,7 @@ var FormStepsControl = {
     /**
      * The [`FormSteps`](form-steps) component.
      *
+     * @type {FormSteps}
      * @private
      */
     var steps$ = computed(() => {
@@ -4840,6 +4843,7 @@ var FormStepsControl = {
     /**
      * The currently active [`FormStep`](form-step) component.
      *
+     * @type {FormStep}
      * @private
      */
     var current$ = computed(() => {
@@ -4914,7 +4918,7 @@ var FormStepsControl = {
     /**
      * Complete the current step and go to the next one (async). If the form's [`validateOn`](vueform#option-validate-on) prop or `config.validateOn` contains `'step'` also validates the elements within the step before moving forward (and stay if there's any error).
      *
-     * @returns {void}
+     * @returns {Promise}
      */
     var next = /*#__PURE__*/function () {
       var _ref = _asyncToGenerator(function* () {
@@ -4936,7 +4940,7 @@ var FormStepsControl = {
     /**
      * Complete the final step and submit the form (async).
      *
-     * @returns {void}
+     * @returns {Promise}
      */
     var finish = /*#__PURE__*/function () {
       var _ref2 = _asyncToGenerator(function* () {
@@ -4953,6 +4957,7 @@ var FormStepsControl = {
      * Handles `click` event.
      *
      * @returns {void}
+     * @param {Event} e* event object
      * @private
      */
     var handleClick = e => {
@@ -5142,7 +5147,7 @@ var FormStep = {
     /**
      * The label of the step.
      *
-     * @type {string|component}
+     * @type {string|Component}
      * @default null
      */
     var stepLabel = ref(stepLabel_.value && typeof stepLabel_.value === 'object' ? markRaw(stepLabel_.value) : stepLabel_.value);
@@ -5185,7 +5190,7 @@ var FormStep = {
     /**
      * The parent [`FormSteps`](form-steps) component.
      *
-     * @type {component}
+     * @type {FormSteps}
      */
     var steps$ = computed(() => {
       return form$.value.steps$ || /* istanbul ignore next: failsafe only, step can not exist by itself */{};
@@ -5318,7 +5323,7 @@ var FormStep = {
     /**
      * The step's component.
      *
-     * @type {component}
+     * @type {FormStep}
      */
     var step$ = computed(() => {
       var _form$$value$steps$;
@@ -5330,7 +5335,7 @@ var FormStep = {
     /**
      * Validate all elements within the step (async).
      *
-     * @returns {void}
+     * @returns {Promise}
      */
     var validate = /*#__PURE__*/function () {
       var _ref = _asyncToGenerator(function* () {
@@ -5490,7 +5495,7 @@ var FormStep = {
     /**
      * Set the component to the parent as if `refs` were used.
      *
-     * @param {component} $parent parent component
+     * @param {VNode} $parent parent component
      * @param {function} assignToParent the assignToParent function for recursion
      * @returns {void}
      * @private
@@ -5506,7 +5511,7 @@ var FormStep = {
     /**
     * Removes the component from the parent.
     *
-    * @param {component} $parent parent component
+    * @param {VNode} $parent parent component
     * @param {function} removeFromParent the removeFromParent function for recursion
     * @private
     */
@@ -5697,7 +5702,7 @@ var base$10 = function base(props, context, dependencies) {
   /**
   * The parent element's component.
   * 
-  * @type {component}
+  * @type {VueformElement}
   */
   var el$ = inject('el$');
   return {
@@ -5731,7 +5736,7 @@ var base$$ = function base(props, context, dependencies) {
   /**
    * The component instance (self).
    * 
-   * @type {component}
+   * @type {VueformComponent}
    */
   var component$ = computed(() => {
     return getCurrentInstance().proxy;
@@ -6138,8 +6143,8 @@ var ElementInfo = {
     /**
      * Handles the info hover.
      *
-     * @param {Event} e
-     * @return {void}
+     * @param {Event|object} e
+     * @returns {Promise}
      * @private
      */
     /* istanbul ignore next: not worth it */
@@ -6587,7 +6592,7 @@ var ElementAddon = {
      * The addon definition.
      * ponent.
     *
-    * @type {string|function|component}
+    * @type {string|function|Component}
     * @private
      */
     var baseAddon = computed(() => {
@@ -6597,7 +6602,7 @@ var ElementAddon = {
     /**
      * The content of the addon. If the addon is provided ss a `function` this contains the resolved value.
      *
-     * @type {string|component}
+     * @type {string|Component}
      */
     var addon = computed(() => {
       var addon = isAddonFunction.value ? baseAddon.value(el$.value) : baseAddon.value || /* istanbul ignore next: failsafe */null;
@@ -9345,7 +9350,7 @@ var DatepickerWrapper = {
     /**
      * Initalizes the flatpickr.
      * 
-     * @returns {void}
+     * @returns {Promise}
      * @private
      */
     var init = /*#__PURE__*/function () {
@@ -9610,7 +9615,7 @@ var EditorWrapper = {
     /**
      * Handles `fileAccept` event.
      * 
-     * @param {Event} e event
+     * @param {Event} e* event
      * @returns {void}
      * @private
      */
@@ -9641,8 +9646,8 @@ var EditorWrapper = {
     /**
      * Handles `attachmentAdd` event.
      * 
-     * @param {Event} e event
-     * @returns {void}
+     * @param {Event} e* event
+     * @returns {Promise}
      * @private
      */
     var handleAttachmentAdd = /*#__PURE__*/function () {
@@ -9787,7 +9792,7 @@ var base$_ = function base(props, context, dependencies) {
   /**
    * The localized label of the element.
    *
-   * @type {string|component}
+   * @type {string|Component}
    * @private
    */
   var Label = computed(() => {
@@ -9867,6 +9872,7 @@ var base$Z = function base(props, context, dependencies) {
    * Update columns programmatically.
    *
    * @param {number|array} value* the new value for columns option
+   * @returns {void}
    * @private
    */
   var updateColumns = v => {
@@ -10222,7 +10228,7 @@ var base$V = function base(props, context, dependencies) {
   /**
    * Handles the button's click event.
    *
-   * @param {Event} e - event object event
+   * @param {Event} e* event object event
    * @returns {void}
    * @private
    */
@@ -10263,7 +10269,7 @@ var base$U = function base(props, context, dependencies) {
   /**
    * The current layout of the element.
    *
-   * @type {string|component}
+   * @type {string|Component}
    * @private
    */
   var elementLayout = computed(() => {
@@ -10791,7 +10797,7 @@ var base$O = function base(props, context, dependencies) {
   /**
   * Sets the component to the parent as if `refs` were used.
   * 
-  * @param {component} $parent parent component
+  * @param {VNode} $parent parent component
   * @param {function} assignToParent the assignToParent function for recursion
   * @returns {void}
   * @private
@@ -10809,7 +10815,7 @@ var base$O = function base(props, context, dependencies) {
   /**
   * Removes the component from the parent.
   * 
-  * @param {component} $parent parent component
+  * @param {VNode} $parent parent component
   * @param {function} removeFromParent the removeFromParent function for recursion
   * @private
   */
@@ -10932,7 +10938,7 @@ var base$N = function base(props, context, dependencies) {
   /**
    * The element's component.
    *
-   * @type {component}
+   * @type {VueformElement}
    */
   var el$ = computed(() => {
     return currentInstance.proxy;
@@ -10965,7 +10971,7 @@ var base$N = function base(props, context, dependencies) {
   /**
    * The element's component.
    *
-   * @type {component}
+   * @type {VueformElement}
    */
   provide('el$', el$);
 
@@ -11128,7 +11134,7 @@ var base$M = function base(props, context, dependencies) {
   /**
    * The parent component of the element.
    *
-   * @type {component}
+   * @type {VNode}
    * @private
    */
   var parent = computed(() => {
@@ -11651,7 +11657,7 @@ var base$J = function base(props, context, dependencies) {
   /**
    * Loads value to the element using optional [`formatLoad`](#option-format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.
    *
-   * @param {string} value* the value to be loaded
+   * @param {any} value* the value to be loaded
    * @param {boolean} format whether the loaded value should be formatted with [`formatLoad`](#option-format-load) before setting the value of the element (default: `false`)
    * @returns {void}
    */
@@ -11663,7 +11669,7 @@ var base$J = function base(props, context, dependencies) {
   /**
    * Updates the value of the element similarly to [`load`](#method-load), only that it can\'t format data.
    *
-   * @param {string|} value* the value to be set
+   * @param {any} value* the value to be set
    * @returns {void}
    */
   var update = val => {
@@ -11692,7 +11698,7 @@ var base$J = function base(props, context, dependencies) {
   /**
    * Prepares the element.
    *
-   * @returns {void}
+   * @returns {Promise}
    * @private
    */
   /* istanbul ignore next:@todo:adam missing implementation, but used in code */
@@ -12003,7 +12009,7 @@ var list$3 = function list(props, context, dependencies, options) {
    * Appends a new item.
    *
    * @param {any} value value of the appended element (optional)
-   * @returns {integer} the index of the appended item
+   * @returns {number} the index of the appended item
    */
   var add = function add() {
     var val = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : undefined;
@@ -12731,7 +12737,7 @@ var base$H = function base(props, context, dependencies) {
   /**
    * An array containing all the validators of the element.
    *
-   * @type {array<Validator>}
+   * @type {array}
    * @default []
    * @private
    */
@@ -12872,7 +12878,7 @@ var base$H = function base(props, context, dependencies) {
   /**
    * Checks each validation rule for the element (async).
    *
-   * @returns {void}
+   * @returns {Promise}
    */
   var validate = /*#__PURE__*/function () {
     var _ref = _asyncToGenerator(function* () {
@@ -13217,7 +13223,7 @@ var list$2 = function list(props, context, dependencies) {
   /**
    * Checks each validation rule for the element and validates children (async).
    *
-   * @returns {void}
+   * @returns {Promise}
    */
   var validate = /*#__PURE__*/function () {
     var _ref3 = _asyncToGenerator(function* () {
@@ -13232,7 +13238,7 @@ var list$2 = function list(props, context, dependencies) {
   /**
    * Checks each validation rule for the element (async).
    *
-   * @returns {void}
+   * @returns {Promise}
    */
   var validateValidators = /*#__PURE__*/function () {
     var _ref4 = _asyncToGenerator(function* () {
@@ -13257,7 +13263,7 @@ var list$2 = function list(props, context, dependencies) {
   /**
    * Validates every child (async).
    *
-   * @returns {void}
+   * @returns {Promise}
    */
   var validateChildren = /*#__PURE__*/function () {
     var _ref6 = _asyncToGenerator(function* () {
@@ -13532,7 +13538,7 @@ var multilingual$5 = function multilingual(props, context, dependencies) {
   /**
    * Checks each validation rule for the element in every language (async).
    *
-   * @returns {void}
+   * @returns {Promise}
    */
   var validate = /*#__PURE__*/function () {
     var _ref8 = _asyncToGenerator(function* () {
@@ -13554,7 +13560,7 @@ var multilingual$5 = function multilingual(props, context, dependencies) {
    * Checks each validation rule for the element in a specific language (async).
    *
    * @param {string} lang the language to check (defaults to currently selected language)
-   * @returns {void}
+   * @returns {Promise}
    */
   var validateLanguage = /*#__PURE__*/function () {
     var _ref10 = _asyncToGenerator(function* () {
@@ -13813,7 +13819,7 @@ var file$1 = function file(props, context, dependencies) {
   /**
    * Checks each validation rule for the element (async). File element will only validate for `min`, `max`, `between`, `size`, `mimetypes`, `mimes`, `dimensions`, `file`, `image`, `gt`, `gte`, `lt` and `lte` rules and only before the temporary files are uploaded.
    *
-   * @returns {void}
+   * @returns {Promise}
    */
   var validate = /*#__PURE__*/function () {
     var _ref16 = _asyncToGenerator(function* () {
@@ -13901,7 +13907,7 @@ var location$2 = function location(props, context, dependencies) {
   /**
    * Checks each validation rule for the element on [`displayKey`](#option-display-key) property of the location object (async).
    *
-   * @returns {void}
+   * @returns {Promise}
    */
   var validate = /*#__PURE__*/function () {
     var _ref18 = _asyncToGenerator(function* () {
@@ -15133,7 +15139,7 @@ var base$z = function base(props, context, dependencies) {
    * Fetches & updates select options when using `async` options. Receives [`el$`](#property-el) as first param.
    *
    * @param {boolean} disable* whether the input field should be disabled while fetching options
-   * @returns {void}
+   * @returns {Promise}
    */
   var updateItems = /*#__PURE__*/function () {
     var _ref = _asyncToGenerator(function* () {
@@ -15170,7 +15176,7 @@ var base$z = function base(props, context, dependencies) {
   /**
    * Resolves options from url.
    *
-   * @return {void}
+   * @returns {Promise}
    * @private
    */
   var resolveOptionsFromUrl = /*#__PURE__*/function () {
@@ -15199,7 +15205,7 @@ var base$z = function base(props, context, dependencies) {
   /**
    * Creates an async function returning options from url.
    *
-   * @return {void}
+   * @returns {function}
    * @private
    */
   var createAsyncOptionsFromUrl = () => {
@@ -15232,7 +15238,7 @@ var base$z = function base(props, context, dependencies) {
   /**
    * Resolves options from function.
    *
-   * @return {void}
+   * @returns {Promise}
    * @private
    */
   var resolveOptionsFromFunction = /*#__PURE__*/function () {
@@ -15252,7 +15258,7 @@ var base$z = function base(props, context, dependencies) {
   /**
    * Resolves items.
    *
-   * @return {void}
+   * @returns {Promise}
    * @private
    */
   var resolveOptions = /*#__PURE__*/function () {
@@ -15277,7 +15283,7 @@ var base$z = function base(props, context, dependencies) {
   /**
    * Removes any value that is not among the newly fetches option list after async resolve.
    * 
-   * @return {void}
+   * @returns {void}
    * @param {array} values* the list of option values
    * @private
    */
@@ -15298,7 +15304,7 @@ var base$z = function base(props, context, dependencies) {
   /**
    * Resolves the endpoint url with field values and sets watchers for those fields.
    * 
-   * @return {void}
+   * @returns {Promise}
    * @param {string} url* the base url potentially containing variable names
    * @param {function} updateItems* the method that triggers item updates
    * @private
@@ -15456,7 +15462,7 @@ var checkboxgroup = function checkboxgroup(props, context, dependencies) {
    * Fetches & updates items when using `async` items.
    *
    * @param {boolean} disable* whether the input field should be disabled while fetching options
-   * @returns {void}
+   * @returns {Promise}
    */
   var updateItems = /*#__PURE__*/function () {
     var _ref7 = _asyncToGenerator(function* () {
@@ -15481,7 +15487,7 @@ var checkboxgroup = function checkboxgroup(props, context, dependencies) {
   /**
    * Resolves options from url.
    *
-   * @return {void}
+   * @returns {Promise}
    * @private
    */
   var resolveOptionsFromUrl = /*#__PURE__*/function () {
@@ -15504,7 +15510,7 @@ var checkboxgroup = function checkboxgroup(props, context, dependencies) {
   /**
    * Resolves options from function. Receives [`el$`](#property-el) as first param.
    *
-   * @return {void}
+   * @returns {Promise}
    * @private
    */
   var resolveOptionsFromFunction = /*#__PURE__*/function () {
@@ -15524,7 +15530,7 @@ var checkboxgroup = function checkboxgroup(props, context, dependencies) {
   /**
    * Resolves items.
    *
-   * @return {void}
+   * @returns {Promise}
    * @private
    */
   var resolveOptions = /*#__PURE__*/function () {
@@ -17173,7 +17179,7 @@ var base$r = function base(props, context, dependencies) {
   /**
    * Upload temporary file (async).
    *
-   * @returns {void}
+   * @returns {Promise}
    */
   var uploadTemp = /*#__PURE__*/function () {
     var _ref = _asyncToGenerator(function* () {
@@ -17235,7 +17241,7 @@ var base$r = function base(props, context, dependencies) {
    * * in stage `2`: submits a request to `removeTemp` endpoint (if [`softRemove: false`](#option-soft-remove)) and sets the value to `null`
    * * in stage `3`: submits a request to `remove` endpoint (if [`softRemove: false`](#option-soft-remove)) and sets the value to `null`
    *
-   * @returns {void}
+   * @returns {Promise}
    */
   var remove = /*#__PURE__*/function () {
     var _ref2 = _asyncToGenerator(function* () {
@@ -17294,7 +17300,7 @@ var base$r = function base(props, context, dependencies) {
   /**
    * Prepare the element for submitting the form (async). It will upload temp file if it hasn't been uploaded yet and halts the submit process until it is done without any errors.
    *
-   * @returns {void}
+   * @returns {Promise}
    * @private
    */
   var prepare = /*#__PURE__*/function () {
@@ -17325,8 +17331,8 @@ var base$r = function base(props, context, dependencies) {
   /**
    * Handles `change` event.
    *
-   * @param {Event} e - event object
-   * @returns {void}
+   * @param {Event} e* event object
+   * @returns {Promise}
    * @private
    */
   var handleChange = /*#__PURE__*/function () {
@@ -17477,6 +17483,7 @@ var base$q = function base(props, context, dependencies) {
   /**
    * Whether a temp file is currently being uploaded.
    *
+   * @type {boolean}
    * @private
    */
   var uploading = computed(() => {
@@ -17548,7 +17555,7 @@ var base$p = function base(props, context, dependencies) {
   /**
    * Handles the `drop` event.
    *
-   * @param {Event} e - event object
+   * @param {Event} e* event object
    * @returns {void}
    * @private
    */
@@ -17775,8 +17782,8 @@ var base$m = function base(props, context, dependencies) {
   /**
    * List of child element components.
    *
-   * @type {array<component>}
-   * @default [children<component>]
+   * @type {array}
+   * @default [array]
    * @private
    */
   var children$Array = ref([]);
@@ -21013,7 +21020,8 @@ var base$l = function base(props, context, dependencies, options) {
   /**
    * Handles `sort` event.
    *
-   * @param {Event} e Sortable.js event
+   * @param {Event} e* Sortable.js event
+   * @returns {void}
    * @private
    */
   var handleSort = _ref => {
@@ -21557,7 +21565,7 @@ var base$g = function base(props, context, dependencies) {
   /**
    * The location service that's initialized once the component is mounted.
    *
-   * @type {class}
+   * @type {object|null}
    * @default null
    */
   var locationService = ref(null);
@@ -21565,7 +21573,7 @@ var base$g = function base(props, context, dependencies) {
   /**
    * The raw location object of location provider (Google/Algolia).
    *
-   * @type {class}
+   * @type {object}
    * @default null
    */
   var location = ref({});
@@ -21614,8 +21622,9 @@ var base$g = function base(props, context, dependencies) {
   /**
    * Handles location service's address change.
    *
-   * @param {object} data an object containing address data
-   * @param {object} raw an object containing raw address data (based on provider)
+   * @param {object} data* an object containing address data
+   * @param {object} raw* an object containing raw address data (based on provider)
+   * @returns {void}
    * @private
    */
   var handleAddressChange = (data, raw) => {
@@ -21630,8 +21639,9 @@ var base$g = function base(props, context, dependencies) {
 
   /* istanbul ignore next */
   /**
-   *
-   *
+   * Handles the blur event of location element.
+   * 
+   * @returns {void}
    * @private
    */
   var handleLocationBlur = () => {
@@ -21813,7 +21823,7 @@ var base$f = function base(props, context, dependencies) {
   /**
    * Handles `change` event.
    *
-   * @param {Event} e - event object
+   * @param {Event} e* event object
    * @returns {void}
    * @private
    */
@@ -22158,7 +22168,7 @@ var base$d = function base(props, context, dependencies) {
   /**
    * Selects one or more options.
    *
-   * @param {str|array} options* value(s) of the option(s) to select
+   * @param {string|array} options* value(s) of the option(s) to select
    * @returns {void}
    */
   var select = options => {
@@ -22178,7 +22188,7 @@ var base$d = function base(props, context, dependencies) {
   /**
    * Deselects one or more options.
    *
-   * @param {str|array} options* value(s) of the option(s) to deselect
+   * @param {string|array} options* value(s) of the option(s) to deselect
    * @returns {void}
    */
   var deselect = options => {
@@ -23694,7 +23704,7 @@ var base$7 = function base(props, context, dependencies) {
   /**
    * Handles `input` event.
    *
-   * @param {Event} e - event object
+   * @param {Event} e* event object
    * @returns {void}
    * @private
    */
@@ -23811,7 +23821,7 @@ var base$4 = function base(props, context, dependencies) {
   /**
    * Handles `keydown` event.
    *
-   * @param {Event} e - event object
+   * @param {Event} e* event object
    * @returns {void}
    * @private
    */
@@ -23822,7 +23832,7 @@ var base$4 = function base(props, context, dependencies) {
   /**
    * Handles `keyup` event.
    *
-   * @param {Event} e - event object
+   * @param {Event} e* event object
    * @returns {void}
    * @private
    */
@@ -23833,7 +23843,7 @@ var base$4 = function base(props, context, dependencies) {
   /**
    * Handles `keypress` event.
    *
-   * @param {Event} e - event object
+   * @param {Event} e* event object
    * @returns {void}
    * @private
    */
@@ -24714,7 +24724,7 @@ var CheckboxgroupCheckbox = {
     /**
      * Handles `keydown` event.
      * 
-     * @param {Event} e - event object 
+     * @param {Event} e* event object 
      * @returns {void}
      * @private
      */
@@ -24906,8 +24916,8 @@ var base = function base(props, context, dependencies) {
   /**
    * Handle the keyup event of the preview.
    * 
-   * @param {Event} event the keyup Event
-   * @returns {void}
+   * @param {Event} event* the keyup Event
+   * @returns {Promise}
    * @private
    */
   var handleKeyup = /*#__PURE__*/function () {
@@ -25155,7 +25165,7 @@ var RadiogroupRadio = {
     /**
      * Handles `keydown` event.
      * 
-     * @param {Event} e - event object 
+     * @param {Event} e* event object 
      * @returns {void}
      * @private
      */

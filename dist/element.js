@@ -883,7 +883,7 @@ var base$q = function base(props, context, dependencies) {
   /**
   * The root form's component.
   * 
-  * @type {component}
+  * @type {Vueform}
   */
   var form$ = inject('form$');
   return {
@@ -916,7 +916,7 @@ var base$o = function base(props, context, dependencies) {
   /**
    * The current layout of the element.
    *
-   * @type {string|component}
+   * @type {string|Component}
    * @private
    */
   var elementLayout = computed(() => {
@@ -944,7 +944,7 @@ var base$n = function base(props, context, dependencies) {
   /**
    * The parent component of the element.
    *
-   * @type {component}
+   * @type {VNode}
    * @private
    */
   var parent = computed(() => {
@@ -1263,7 +1263,7 @@ var base$k = function base(props, context, dependencies) {
   /**
    * Loads value to the element using optional [`formatLoad`](#option-format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.
    *
-   * @param {string} value* the value to be loaded
+   * @param {any} value* the value to be loaded
    * @param {boolean} format whether the loaded value should be formatted with [`formatLoad`](#option-format-load) before setting the value of the element (default: `false`)
    * @returns {void}
    */
@@ -1275,7 +1275,7 @@ var base$k = function base(props, context, dependencies) {
   /**
    * Updates the value of the element similarly to [`load`](#method-load), only that it can\'t format data.
    *
-   * @param {string|} value* the value to be set
+   * @param {any} value* the value to be set
    * @returns {void}
    */
   var update = val => {
@@ -1304,7 +1304,7 @@ var base$k = function base(props, context, dependencies) {
   /**
    * Prepares the element.
    *
-   * @returns {void}
+   * @returns {Promise}
    * @private
    */
   /* istanbul ignore next:@todo:adam missing implementation, but used in code */
@@ -1483,7 +1483,7 @@ var base$i = function base(props, context, dependencies) {
   /**
    * The localized label of the element.
    *
-   * @type {string|component}
+   * @type {string|Component}
    * @private
    */
   var Label = computed(() => {
@@ -1563,6 +1563,7 @@ var base$h = function base(props, context, dependencies) {
    * Update columns programmatically.
    *
    * @param {number|array} value* the new value for columns option
+   * @returns {void}
    * @private
    */
   var updateColumns = v => {
@@ -1616,7 +1617,7 @@ var base$g = function base(props, context, dependencies) {
   /**
   * Sets the component to the parent as if `refs` were used.
   * 
-  * @param {component} $parent parent component
+  * @param {VNode} $parent parent component
   * @param {function} assignToParent the assignToParent function for recursion
   * @returns {void}
   * @private
@@ -1634,7 +1635,7 @@ var base$g = function base(props, context, dependencies) {
   /**
   * Removes the component from the parent.
   * 
-  * @param {component} $parent parent component
+  * @param {VNode} $parent parent component
   * @param {function} removeFromParent the removeFromParent function for recursion
   * @private
   */
@@ -1757,7 +1758,7 @@ var base$f = function base(props, context, dependencies) {
   /**
    * The element's component.
    *
-   * @type {component}
+   * @type {VueformElement}
    */
   var el$ = computed(() => {
     return currentInstance.proxy;
@@ -1790,7 +1791,7 @@ var base$f = function base(props, context, dependencies) {
   /**
    * The element's component.
    *
-   * @type {component}
+   * @type {VueformElement}
    */
   provide('el$', el$);
 
@@ -2216,8 +2217,8 @@ var base$9 = function base(props, context, dependencies) {
   /**
    * Adds a listener for an event.
    *
-   * @param {string} event name of the event to listen for
-   * @param {function} callback callback to run when the event is triggered
+   * @param {string} event* name of the event to listen for
+   * @param {function} callback* callback to run when the event is triggered
    * @returns {void}
    */
   var on = (evt, callback) => {
@@ -2230,7 +2231,7 @@ var base$9 = function base(props, context, dependencies) {
   /**
    * Removes all listeners for an event.
    *
-   * @param {string} event name of the event to remove
+   * @param {string} event* name of the event to remove
    * @returns {void}
    */
   var off = evt => {
@@ -2283,7 +2284,7 @@ var base$8 = function base(props, context, dependencies) {
   /**
    * Handles `input` event.
    *
-   * @param {Event} e - event object
+   * @param {Event} e* event object
    * @returns {void}
    * @private
    */
@@ -2732,7 +2733,7 @@ var base$2 = function base(props, context, dependencies) {
   /**
    * An array containing all the validators of the element.
    *
-   * @type {array<Validator>}
+   * @type {array}
    * @default []
    * @private
    */
@@ -2873,7 +2874,7 @@ var base$2 = function base(props, context, dependencies) {
   /**
    * Checks each validation rule for the element (async).
    *
-   * @returns {void}
+   * @returns {Promise}
    */
   var validate = /*#__PURE__*/function () {
     var _ref = _asyncToGenerator(function* () {
