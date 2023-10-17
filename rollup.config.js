@@ -1,55 +1,85 @@
+import _ from 'lodash'
 import autoprefixer from 'autoprefixer'
+import json from '@rollup/plugin-json'
 import babel from '@rollup/plugin-babel'
 import commonjs from '@rollup/plugin-commonjs'
-import json from '@rollup/plugin-json'
 import postcss from 'rollup-plugin-postcss'
-import vue from 'rollup-plugin-vue'
-import { nodeResolve } from '@rollup/plugin-node-resolve'
 import { terser } from 'rollup-plugin-terser'
+import { nodeResolve } from '@rollup/plugin-node-resolve'
 
-export default [
+const files = [
   {
+    type: 'script',
     input: 'src/index.js',
-    output: {
-      file: 'dist/index.js',
-      format: 'esm',
-    },
-    plugins: [
-      json(),
-      vue({
-        preprocessStyles: true
-      }),
-      postcss({
-        plugins: [require('autoprefixer')],
-        inject: true,
-        minimize: true,
-        sourceMap: false,
-        extensions: ['.sass', '.scss', '.css']
-      }),
-      commonjs(),
-      babel({
-        babelHelpers: 'bundled',
-        exclude: /^(.+\/)?node_modules\/.+$/,
-        extensions: ['.js', '.jsx', '.ts', '.tsx', '.vue'],
-      }),
-      nodeResolve(),
-      terser(),
-    ],
-    external: ['vue', 'axios', 'lodash', 'moment']
+    output: 'dist/index.js',
   },
   {
-    input: 'src/style/index.scss',
-    output: {
-      file: 'dist/index.css',
-    },
-    plugins: [
-      postcss({
-        extract: true,
-        minimize: false,
-        plugins: [
-          autoprefixer(),
-        ]
-      }),
-    ]
-  }
+    type: 'style',
+    minimize: false,
+    input: 'themes/vueform/scss/index.scss',
+    output: 'themes/vueform/css/index.css',
+  },
+  {
+    type: 'style',
+    minimize: true,
+    input: 'themes/vueform/scss/index.scss',
+    output: 'themes/vueform/css/index.min.css',
+  },
+  {
+    type: 'style',
+    minimize: false,
+    input: 'themes/material/scss/index.scss',
+    output: 'themes/material/css/index.css',
+  },
+  {
+    type: 'style',
+    minimize: true,
+    input: 'themes/material/scss/index.scss',
+    output: 'themes/material/css/index.min.css',
+  },
+  {
+    type: 'style',
+    minimize: false,
+    input: 'themes/tailwind-material/scss/index.scss',
+    output: 'themes/tailwind-material/css/index.css',
+  },
+  {
+    type: 'style',
+    minimize: true,
+    input: 'themes/tailwind-material/scss/index.scss',
+    output: 'themes/tailwind-material/css/index.min.css',
+  },
+  {
+    type: 'style',
+    minimize: true,
+    input: 'themes/bootstrap/css/index.css',
+    output: 'themes/bootstrap/css/index.min.css',
+  },
 ]
+
+export default files.map((file) => ({
+  input: file.input,
+  output: {
+    file: file.output,
+    format: 'esm',
+  },
+  plugins: file.type === 'script' ? [
+    json(),
+    commonjs(),
+    babel({
+      babelHelpers: 'bundled',
+      exclude: /^(.+\/)?node_modules\/.+$/,
+    }),
+    nodeResolve(),
+    terser(),
+  ] : (file.type === 'style' ? [
+    postcss({
+      extract: true,
+      minimize: file.minimize,
+      plugins: [
+        autoprefixer(),
+      ]
+    }),
+  ] : []),
+  external: ['vue', 'axios', 'lodash', 'moment']
+}))
