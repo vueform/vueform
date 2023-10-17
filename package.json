@@ -15,7 +15,8 @@
   "types": "types/index.d.ts",
   "scripts": {
     "build": "rollup --config rollup.config.js",
-    "test": "NODE_OPTIONS=\"--max_old_space_size=5120 --no-experimental-fetch\" VUE=3 jest --config=jest.config.js"
+    "test": "NODE_OPTIONS=\"--max_old_space_size=5120 --no-experimental-fetch\" VUE=3 jest --config=jest.config.js",
+    "generate": "node scripts/elements.js"
   },
   "devDependencies": {
     "@babel/core": "^7.2.2",
