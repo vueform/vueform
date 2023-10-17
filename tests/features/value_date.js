@@ -72,8 +72,6 @@ export const value = function (elementType, elementName, options) {
       }
     })
     
-    console.log(form.vm.data.parent)
-    
     let date = form.vm.el$('parent.0')
     expect(date.value).toEqual(null)
     
