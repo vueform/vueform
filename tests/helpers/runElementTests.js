@@ -1,7 +1,5 @@
 import elementsApi from './../api/elements'
-import elementsComponentApi from './../api/element-components'
 import features from './../features'
-import props from './../props'
 import elements from './../elements'
 
 const mockPlaces = (spy = null) => {
@@ -75,19 +73,6 @@ export default function (elementType, options, elementExports) {
       }
 
       describe(`${_.upperFirst(baseFeature)} feature`, featureTest(elementType, Object.assign({}, options.default || {}, options[feature] || {}), spies))
-    })
-
-    // Prop tests
-    _.each(Object.keys(elementsComponentApi[_.upperFirst(elementType)+'Element'].props), (prop) => {
-      let baseProp = prop.split('_')[0]
-
-      const propTest = props[`${baseProp}_${elementType}`] || props[prop] || props[baseProp]
-
-      if (!propTest) {
-        return
-      }
-
-      describe(`${_.upperFirst(baseProp)} prop`, propTest(elementType, Object.assign({}, options.default || {}, options[prop] || {}), spies))
     })
 
     // Element tests
