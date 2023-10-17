@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import { toRefs, ref, computed, watch, inject, nextTick, onBeforeUnmount } from 'vue'
+import { toRefs, ref, computed, watch, inject, nextTick } from 'vue'
 import localize from './../../utils/localize'
 import replaceWildcards from './../../utils/replaceWildcards'
 

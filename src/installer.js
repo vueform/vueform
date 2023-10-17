@@ -14,10 +14,6 @@ import i18n from './services/i18n/index'
 import columns from './services/columns/index'
 import { ref, markRaw } from 'vue'
 
-/* @feat-start:api-key-validation */
-import { default as v } from './utils/verifyApiKey'
-/* @feat-end:api-key-validation */
-
 export default function(config, components) {
   const Vueform = class {
     constructor() {
@@ -239,79 +235,11 @@ export default function(config, components) {
       })
     }
 
-    /* @feat-start:api-key-validation */
-    createApiKeyError(message = '=== Vueform Public Key Missing ===') {
-      let error = ``
-      error += `\n`
-      error += `     .....................  ......\n`
-      error += `      ..................   ......\n`
-      error += `       ................  .......\n` 
-      error += `         ......         ......\n`
-      error += `          ..........  .......\n`
-      error += `           ........  ......\n`   
-      error += `                    ......\n`
-      error += `              ...........\n`
-      error += `                .......\n`
-      error += `                 .....\n`
-      error += `                   .\n`
-      error += `\n`
-      error += `${Array(message.length + 1).join('=')}\n`
-      error += `${message}\n`
-      error += `${Array(message.length + 1).join('=')}\n`
-      error += `\n`
-      error += `Obtain a Public Key at: https://vueform.com\n`
-      error += `\n`
-
-      return error
-    }
-    /* @feat-end:api-key-validation */
-
     install(appOrVue, options = {}) {
       const version = parseInt(appOrVue.version.split('.')[0])
       const minor = parseInt(appOrVue.version.split('.')[1])
 
       this.options.vueVersion = version
-
-      /* @feat-start:api-key-validation */
-      const apiKey = options.apiKey
-
-      if ((typeof window !== 'undefined' && window.location && ['localhost', '127.0.0.1'].indexOf(window.location.hostname) === -1) || apiKey) {
-        if (!apiKey) {
-          console.error(this.createApiKeyError('=== Vueform Public Key Missing ==='))
-          window.location.href = `https://vueform.com/not-allowed?k=${apiKey}&c=303`
-          return
-        }
-
-        if (!v(apiKey.toUpperCase())) {
-          console.error(this.createApiKeyError('=== Invalid Vueform Public Key Format ==='))
-          window.location.href = `https://vueform.com/not-allowed?k=${apiKey}&c=304`
-          return
-        }
-
-        if (typeof navigator !== 'undefined' && navigator.onLine && typeof window !== 'undefined' && window.location && ['http:', 'https:'].indexOf(window.location.protocol) !== -1 && typeof fetch !== 'undefined') {
-          fetch(`https://stat.vueform.com/sdk?key=${apiKey}`)
-            .then(response => response.json())
-            .then((data) => {
-              if (data && data?.type && data?.type.length) {
-                switch (data.type) {
-                  case 'redirect':
-                    if (data.valid !== undefined && data.valid === false) {
-                      window.location.href = `https://vueform.com/not-allowed?k=${apiKey}&c=${data.code}`
-                    }
-                    return
-                    
-                  case 'alert':
-                    alert(data.message)
-                    return
-                    
-                  case 'message':
-                    throw new Error(this.createApiKeyError(data.message))
-                }
-              }
-            })
-        }
-      }
-      /* @feat-end:api-key-validation */
 
       const plugins = options.plugins || []
       

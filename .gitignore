@@ -1,13 +1,6 @@
 .vscode
 .DS_Store
-__tests__/
 node_modules/
 coverage/
-out/
-npm-debug.log
-selenium-debug.log
-stats.json
+dist/
 .npmrc
-public/
-packages/
-.idea/

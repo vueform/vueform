@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import { computed, ref, toRefs,  onMounted, watch, } from 'vue'
+import { computed, ref, toRefs, watch, } from 'vue'
 import dataEquals from './../utils/dataEquals'
 
 export default function (props, context, dependencies)

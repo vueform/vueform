@@ -1,5 +1,0 @@
-export { default as config } from './../../src/config'
-export { default as components } from './../../src/components'
-export { default as useVueform } from './../../src/composables/useVueform'
-export { default as Vueform } from './../../src/components/Vueform'
-export { default as Validator } from './../../src/services/validation/validator'
