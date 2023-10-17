@@ -1,6 +1,6 @@
 module.exports = {
   "clearMocks": true,
-  "rootDir": "./",
+  "rootDir": "./../",
   "moduleFileExtensions": [
       "js",
       "json",
@@ -25,7 +25,7 @@ module.exports = {
       "/node_modules/(?!@vueform|axios)"
   ],
   "setupFilesAfterEnv": [
-      "<rootDir>/jest.setup.js"
+      "<rootDir>/tests/jest.setup.js"
   ],
   "collectCoverage": false,
   "collectCoverageFrom": [
