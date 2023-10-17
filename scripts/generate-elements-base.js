@@ -2,6 +2,7 @@ const fs = require('fs')
 const _ = require('lodash')
 const basePath = __dirname + '/..'
 const featuresPath = '/src/components/elements'
+const outputPath = __dirname + '/../api/generated/elements-base.js'
 const elements = [
   'button',
   'checkbox',
@@ -147,7 +148,7 @@ class Generator {
     contents += 'export default '
     contents += JSON.stringify(this.getElements(), null, 2)
 
-    fs.writeFileSync(__dirname + '/../api/generated/elements-test.js', contents)
+    fs.writeFileSync(outputPath, contents)
   }
 }
 

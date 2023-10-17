@@ -1,4 +1,4 @@
-import elementsApi from './../../api/generated/elements-test'
+import elementsApi from './../../api/generated/elements-base'
 import features from './../features'
 import elements from './../elements'
 

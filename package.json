@@ -15,8 +15,13 @@
   "types": "types/index.d.ts",
   "scripts": {
     "build": "rollup --config rollup.config.js",
-    "test": "npm run generate:elements; NODE_OPTIONS=\"--max_old_space_size=5120 --no-experimental-fetch\" VUE=3 jest --config=jest.config.js",
-    "generate:elements": "npx babel-node scripts/generate-elements-test.js --presets @babel/preset-env"
+    "test": "npm run generate:elements-base; NODE_OPTIONS=\"--max_old_space_size=5120 --no-experimental-fetch\" VUE=3 jest --config=jest.config.js",
+    "generate:common-features": "npx babel-node scripts/generate-common-features.js --presets @babel/preset-env",
+    "generate:element-features": "npx babel-node scripts/generate-element-features.js --presets @babel/preset-env",
+    "generate:elements-base": "npx babel-node scripts/generate-elements-base.js --presets @babel/preset-env",
+    "generate:elements": "npx babel-node scripts/generate-elements.js --presets @babel/preset-env",
+    "generate:components": "npx babel-node scripts/generate-components.js --presets @babel/preset-env",
+    "generate": "npm run generate:common-features; npm run generate:element-features; npm run generate:elements-base; npm run generate:elements; npm run generate:components"
   },
   "devDependencies": {
     "@babel/core": "^7.2.2",
@@ -46,6 +51,7 @@
     "jest-transform-stub": "^2.0.0",
     "json-loader": "^0.5.7",
     "locutus": "^2.0.16",
+    "module-alias": "^2.2.3",
     "moxios": "^0.4.0",
     "mutationobserver-shim": "^0.3.7",
     "ncp": "^2.0.0",
