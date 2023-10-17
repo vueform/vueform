@@ -14,14 +14,15 @@
   "main": "dist/index.js",
   "types": "types/index.d.ts",
   "scripts": {
-    "build": "rollup --config rollup.config.js",
+    "build": "npm run generate; rollup --config rollup.config.js",
     "test": "npm run generate:elements-base; NODE_OPTIONS=\"--max_old_space_size=5120 --no-experimental-fetch\" VUE=3 jest --config=jest.config.js",
+    "generate:types": "node scripts/generate-types.js",
     "generate:common-features": "npx babel-node scripts/generate-common-features.js --presets @babel/preset-env",
     "generate:element-features": "npx babel-node scripts/generate-element-features.js --presets @babel/preset-env",
     "generate:elements-base": "npx babel-node scripts/generate-elements-base.js --presets @babel/preset-env",
     "generate:elements": "npx babel-node scripts/generate-elements.js --presets @babel/preset-env",
     "generate:components": "npx babel-node scripts/generate-components.js --presets @babel/preset-env",
-    "generate": "npm run generate:common-features; npm run generate:element-features; npm run generate:elements-base; npm run generate:elements; npm run generate:components"
+    "generate": "npm run generate:common-features; npm run generate:element-features; npm run generate:elements-base; npm run generate:elements; npm run generate:components; npm run generate:types"
   },
   "devDependencies": {
     "@babel/core": "^7.2.2",
