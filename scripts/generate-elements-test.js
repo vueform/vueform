@@ -147,7 +147,7 @@ class Generator {
     contents += 'export default '
     contents += JSON.stringify(this.getElements(), null, 2)
 
-    fs.writeFileSync(__dirname + '/../tests/api/elements.js', contents)
+    fs.writeFileSync(__dirname + '/../api/generated/elements-test.js', contents)
   }
 }
 

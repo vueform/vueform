@@ -15,8 +15,8 @@
   "types": "types/index.d.ts",
   "scripts": {
     "build": "rollup --config rollup.config.js",
-    "test": "generate:test-elements; NODE_OPTIONS=\"--max_old_space_size=5120 --no-experimental-fetch\" VUE=3 jest --config=jest.config.js",
-    "generate:test-elements": "node scripts/generateTestElements.js"
+    "test": "npm run generate:elements; NODE_OPTIONS=\"--max_old_space_size=5120 --no-experimental-fetch\" VUE=3 jest --config=jest.config.js",
+    "generate:elements": "npx babel-node scripts/generate-elements-test.js --presets @babel/preset-env"
   },
   "devDependencies": {
     "@babel/core": "^7.2.2",
