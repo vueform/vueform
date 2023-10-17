@@ -11,8 +11,7 @@
       "email": "adam@vueform.com"
     }
   ],
-  "main": "index.js",
-  "module": "index.js",
+  "main": "dist/index.js",
   "types": "types/index.d.ts",
   "scripts": {
     "build": "rollup --config rollup.config.js",
@@ -59,8 +58,6 @@
     "vue-loader": "^15.10.0"
   },
   "dependencies": {
-    "@babel/plugin-transform-runtime": "^7.16.4",
-    "@babel/runtime": "^7.16.3",
     "@vueform/multiselect": "^2.6.3",
     "@vueform/slider": "^2.1.7",
     "@vueform/toggle": "^2.1.3",
