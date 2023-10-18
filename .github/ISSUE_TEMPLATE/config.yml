@@ -1,0 +1,11 @@
+blank_issues_enabled: true
+contact_links:
+  - name: 📚 Learning Guide
+    url: https://vueform.com/docs
+    about: Learning material for Vueform
+  - name: 📖 API Reference
+    url: https://vueform.com/reference
+    about: Detailed reference for Vueform elements & components
+  - name: 💬 Discussions
+    url: https://github.com/vueform/vueform/discussions
+    about: Use discussions if you have another issue, an idea for improvement or for asking questions.
