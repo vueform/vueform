@@ -24,11 +24,20 @@ It standardizes the entire form building process, while taking care of everythin
 
 Get started with Vueform in an instant using one of our boilerplates.
 
+<hr />
+
+<h4><img src="https://raw.githubusercontent.com/vueform/vueform/1.3.3/assets/icon-vite.svg" height="21" /> Vite — <a href="https://github.com/vueform/vite-starter">@vueform/vite-starter</a></h4>
+
+<hr />
+
+<h4><img src="https://raw.githubusercontent.com/vueform/vueform/1.3.3/assets/icon-nuxt.svg" height="21" /> Nuxt — <a href="https://github.com/vueform/nuxt-starter">@vueform/nuxt-starter</a></h4>
+
+<hr />
 <table>
   <tbody>
     <tr>
       <td>
-        <h4><img src="https://raw.githubusercontent.com/vueform/vueform/1.3.3/assets/icon-vite.svg" height="21" /> Vite</h4><p>&nbsp;</p>
+        <h4><p>&nbsp;</p>
       </td>
       <td>
          <h4><a href="https://github.com/vueform/vite-starter">@vueform/vite-starter</a></h4>
@@ -36,7 +45,7 @@ Get started with Vueform in an instant using one of our boilerplates.
     </tr>
     <tr>
       <td>
-        <h4><img src="https://raw.githubusercontent.com/vueform/vueform/1.3.3/assets/icon-nuxt.svg" height="21" /> Nuxt</h4><p>&nbsp;</p>
+        
       </td>
       <td>
          <h4><a href="https://github.com/vueform/nuxt-starter">@vueform/nuxt-starter</a></h4>
