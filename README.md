@@ -1,3 +1,5 @@
+[![Vuefom](./.github/assets/banner.svg)](https://vueform.com)
+
 # Vueform
 
 <p>
@@ -52,7 +54,6 @@ To manually install Vueform, please use our [Installation Wizard](https://vuefor
 ## Documentation
 
 For a detailed understanding of Vueform, its features, and how to use them, please refer to our [Documentation](https://vueform.com/docs/rendering-forms). It provides in-depth explanations and guides to ensure you get the most out of Vueform.
-
 
 ## Examples
 
