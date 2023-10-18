@@ -22,7 +22,7 @@ It standardizes the entire form building process, while taking care of everythin
 
 ## Get Started
 
-Get started with Vueform in an instant using one of our boilerplates.
+Jump right into the project with ease using one of our boilerplates. These boilerplates are designed to give you a head start and simplify the initial setup.
 
 <table>
   <tbody>
@@ -47,26 +47,88 @@ Get started with Vueform in an instant using one of our boilerplates.
 
 #### Manual Installation
 
-If you prefer going through the installation step manually check out our [installation wizard](https://vueform.com/docs/installation).
+To manually install Vueform, please use our [Installation Wizard](https://vueform.com/docs/installation). This wizard will guide you through the necessary steps for a hassle-free setup. Simply follow the steps, and you'll be up and running in no time.
 
 ## Documentation
 
-To start learning about Vueform head to our [Essentials](https://vueform.com/docs/rendering-forms) guide.
+For a detailed understanding of Vueform, its features, and how to use them, please refer to our [Documentation](https://vueform.com/docs/rendering-forms). It provides in-depth explanations and guides to ensure you get the most out of Vueform.
 
-- [Rendering Forms](https://vueform.com/docs/rendering-forms)
-- [Styles and Layout](https://vueform.com/docs/styles-and-layout)
-- [Handling Form Data](https://vueform.com/docs/handling-form-data)
-- [Validating Elements](https://vueform.com/docs/validating-elements)
-- [Conditional Rendering](https://vueform.com/docs/conditional-rendering)
-- [Subscribing to Events](https://vueform.com/docs/subscribing-to-events)
-- [Breaking Forms into Steps](https://vueform.com/docs/breaking-forms-into-steps)
-- [I18n](https://vueform.com/docs/i18n)
-- [Plugins](https://vueform.com/docs/plugins)
-- [Creating Elements](https://vueform.com/docs/creating-elements)
 
 ## Examples
+
+Explore real-world applications of Vueform with some of our examples. Whether you're building a simple contact form or a complex multi-step questionnaire, these examples will give you insights into Vueform's capabilities and how to leverage its features for your projects.
 
 - [Simple form](https://vueform.com/examples/basics/simple-form)
 - [Complex form](https://vueform.com/examples/basics/complex-form)
 - [Multi-step form](https://vueform.com/examples/basics/multi-step-form)
 - [Inline form builder](https://vueform.com/examples/basics/form-builder)
+- ... more to come
+
+## Try our Builder
+
+Put forms together quickly using our drag and drop form builder tool and export the code as a native Vue component: https://builder.vueform.com/demo
+
+[![Vuefom Builder](./.github/assets/builder.png)](https://builder.vueform.com/demo)
+
+## Contribute
+
+We welcome contributors of all levels and backgrounds. Whether you're fixing bugs, enhancing functionality, or updating documentation, your efforts help strengthen Vueform for everyone.
+
+Here are a few ideas how can your contribute:
+
+- **Report bugs** to help us maintain stability. Please check our [reporting bugs](https://vueform.com/community/reporting-bugs) guide.
+- **Share ideas** for innovative features or improvements in [Ideas](https://github.com/vueform/vueform/discussions/categories/ideas).
+- **Ask questions** to clarify doubts in [Questions](https://github.com/vueform/vueform/discussions/categories/questions) and let others find it later.
+- **Send pull** requests for code enhancements or fixes. Please check our [contribution guide](https://vueform.com/community/contribution-guide#send-a-pull-request).
+- **Help with translating** Vueform to new [languages](https://github.com/vueform/vueform/tree/main/locales).
+
+## Development
+
+For those interested in diving deeper into Vueform's inner workings, you can set up a local development environment. Please follow our guide for setup instructions.
+
+### Clone
+
+Clone Vueform into your local environment.
+
+```bash
+git clone https://github.com/vueform/vueform.git
+```
+
+### Setup
+
+[Setup](https://vueform.com/docs/installation#manual-installation) Vueform in a test environment and import the source files for Vueform plugin.
+
+```js
+import { vueform } from '@vueform/vueform/src'
+```
+
+Now you can make changes in the `src` directory and you should see their effect in your test environment.
+
+### Test
+
+Once you're finished make sure that all the tests are still passing.
+
+```bash
+npm run test
+```
+
+### Build
+
+If everything looks good, run the build script.
+
+```bash
+npm run build
+```
+
+## Follow Us
+
+<p>
+  <a href="https://discord.gg/WhX2nG6GTQ" target="_blank"><img src="./.github/assets/discord.svg" alt="Vueform on Discord" title="Vueform on Discord"></a>&nbsp;&nbsp;
+  <a href="https://twitter.com/vueform" target="_blank"><img src="./.github/assets/x.svg" alt="Vueform on X" title="Vueform on X"></a>&nbsp;&nbsp;
+  <a href="https://www.linkedin.com/company/vueform" target="_blank"><img src="./.github/assets/linkedin.svg" alt="Vueform on LinkedIn" title="Vueform on LinkedIn"></a>&nbsp;&nbsp;
+  <a href="https://github.com/vueform" target="_blank"><img src="./.github/assets/github.svg" alt="Vueform on GitHub" title="Vueform on GitHub"></a>
+</p>
+
+## License
+
+[MIT](https://github.com/vueform/vueform/blob/main/LICENSE)
