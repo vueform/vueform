@@ -1,4 +1,3 @@
-import _ from 'lodash'
 import autoprefixer from 'autoprefixer'
 import json from '@rollup/plugin-json'
 import babel from '@rollup/plugin-babel'
