@@ -33,5 +33,7 @@ body:
       options:
         - label: Read the [contribution guide](https://vueform.com/community/contribution-guide).
           required: true
-        - label: Check existing [discussions](https://github.com/vueform/vueform/discussions) and [issues](https://github.com/vueform/vueform/issues).
+        - label: Check existing [discussions](https://github.com/vueform/vueform/discussions) and [ideas](https://github.com/vueform/vueform/issues/categories/ideas).
+          required: true
+        - label: Check [roadmap](https://github.com/vueform/builder/discussions/categories/roadmap).
           required: true

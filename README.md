@@ -1,4 +1,4 @@
-[![Vuefom](./.github/assets/banner.svg)](https://vueform.com)
+[![Vuefom](./.github/assets/banner.svg)](https://vueform.com?cid=vueform)
 
 # Vueform
 
@@ -30,7 +30,7 @@ Jump right into the project with ease using one of our boilerplates.
   <tbody>
     <tr>
       <td>
-        <h4><img src="https://raw.githubusercontent.com/vueform/vueform/1.3.3/assets/icon-vite.svg" height="21" /> Vite</h4>
+        <h4><img src="./.github/assets/vite.svg" height="21" /> Vite</h4>
       </td>
       <td>
          <h4><a href="https://github.com/vueform/vite-starter">@vueform/vite-starter</a></h4>
@@ -38,7 +38,7 @@ Jump right into the project with ease using one of our boilerplates.
     </tr>
     <tr>
       <td>
-        <h4><img src="https://raw.githubusercontent.com/vueform/vueform/1.3.3/assets/icon-nuxt.svg" height="21" /> Nuxt</h4>
+        <h4><img src="./.github/assets/nuxt.svg" height="21" /> Nuxt</h4>
       </td>
       <td>
          <h4><a href="https://github.com/vueform/nuxt-starter">@vueform/nuxt-starter</a></h4>
@@ -49,27 +49,27 @@ Jump right into the project with ease using one of our boilerplates.
 
 #### Manual Installation
 
-To manually install Vueform, use our [Installation Wizard](https://vueform.com/docs/installation). This wizard will guide you through the necessary steps for a hassle-free setup.
+To manually install Vueform, use our [Installation Wizard](https://vueform.com/docs/installation?cid=vueform). This wizard will guide you through the necessary steps for a hassle-free setup.
 
 ## Documentation
 
-For a detailed understanding of Vueform, its features, and how to use them, refer to our [Documentation](https://vueform.com/docs/rendering-forms).
+For a detailed understanding of Vueform, its features, and how to use them, refer to our [Documentation](https://vueform.com/docs/rendering-forms?cid=vueform).
 
 ## Examples
 
 Explore real-world applications of Vueform with some of our examples. Whether you're building a simple contact form or a complex multi-step questionnaire, these examples will give you ideas how to leverage Vueform features in your projects.
 
-- [Simple form](https://vueform.com/examples/basics/simple-form)
-- [Complex form](https://vueform.com/examples/basics/complex-form)
-- [Multi-step form](https://vueform.com/examples/basics/multi-step-form)
-- [Inline form builder](https://vueform.com/examples/basics/form-builder)
+- [Simple form](https://vueform.com/examples/basics/simple-form?cid=vueform)
+- [Complex form](https://vueform.com/examples/basics/complex-form?cid=vueform)
+- [Multi-step form](https://vueform.com/examples/basics/multi-step-form?cid=vueform)
+- [Inline form builder](https://vueform.com/examples/basics/form-builder?cid=vueform)
 - ... more to come
 
 ## Drag and Drop
 
-Build forms even quicker using our drag and drop form builder tool and export the code as a native Vue component: https://builder.vueform.com/demo
+Build forms even quicker using our drag and drop form builder tool and export the code as a native Vue component: [https://builder.vueform.com/demo](https://builder.vueform.com/demo?cid=vueform)
 
-[![Vuefom Builder](./.github/assets/builder.png)](https://builder.vueform.com/demo)
+[![Vuefom Builder](./.github/assets/builder.png)](https://builder.vueform.com/demo?cid=vueform)
 
 ## Contribute
 
@@ -77,10 +77,10 @@ We welcome contributors of all levels and backgrounds. Whether you're fixing bug
 
 Here are a few ideas how can your contribute:
 
-- **Report bugs** to help us maintain stability. Please check our [reporting bugs](https://vueform.com/community/reporting-bugs) guide.
+- **Report bugs** to help us maintain stability. Please check our [reporting bugs](https://vueform.com/community/reporting-bugs?cid=vueform) guide.
 - **Share ideas** for innovative features or improvements in [Ideas](https://github.com/vueform/vueform/discussions/categories/ideas).
 - **Ask questions** to clarify doubts in [Questions](https://github.com/vueform/vueform/discussions/categories/questions) and let others find it later.
-- **Send pull** requests for code enhancements or fixes. Please check our [contribution guide](https://vueform.com/community/contribution-guide#send-a-pull-request).
+- **Send pull** requests for code enhancements or fixes. Please check our [contribution guide](https://vueform.com/community/contribution-guide?cid=vueform#send-a-pull-request).
 - **Help with translating** Vueform to new [languages](https://github.com/vueform/vueform/tree/main/locales).
 
 ## Development
@@ -97,7 +97,7 @@ git clone https://github.com/vueform/vueform.git
 
 ### Setup
 
-[Setup](https://vueform.com/docs/installation#manual-installation) Vueform in a test environment and import the source files for Vueform plugin.
+[Setup](https://vueform.com/docs/installation?cid=vueform#manual-installation) Vueform in a test environment and import the source files for Vueform plugin.
 
 ```js
 import { vueform } from '@vueform/vueform/src'
