@@ -24,7 +24,7 @@ It standardizes the entire form building process, while taking care of everythin
 
 ## Get Started
 
-Jump right into the project with ease using one of our boilerplates. These boilerplates are designed to give you a head start and simplify the initial setup.
+Jump right into the project with ease using one of our boilerplates.
 
 <table>
   <tbody>
@@ -49,15 +49,15 @@ Jump right into the project with ease using one of our boilerplates. These boile
 
 #### Manual Installation
 
-To manually install Vueform, please use our [Installation Wizard](https://vueform.com/docs/installation). This wizard will guide you through the necessary steps for a hassle-free setup. Simply follow the steps, and you'll be up and running in no time.
+To manually install Vueform, use our [Installation Wizard](https://vueform.com/docs/installation). This wizard will guide you through the necessary steps for a hassle-free setup.
 
 ## Documentation
 
-For a detailed understanding of Vueform, its features, and how to use them, please refer to our [Documentation](https://vueform.com/docs/rendering-forms). It provides in-depth explanations and guides to ensure you get the most out of Vueform.
+For a detailed understanding of Vueform, its features, and how to use them, refer to our [Documentation](https://vueform.com/docs/rendering-forms).
 
 ## Examples
 
-Explore real-world applications of Vueform with some of our examples. Whether you're building a simple contact form or a complex multi-step questionnaire, these examples will give you insights into Vueform's capabilities and how to leverage its features for your projects.
+Explore real-world applications of Vueform with some of our examples. Whether you're building a simple contact form or a complex multi-step questionnaire, these examples will give you ideas how to leverage Vueform features in your projects.
 
 - [Simple form](https://vueform.com/examples/basics/simple-form)
 - [Complex form](https://vueform.com/examples/basics/complex-form)
@@ -65,9 +65,9 @@ Explore real-world applications of Vueform with some of our examples. Whether yo
 - [Inline form builder](https://vueform.com/examples/basics/form-builder)
 - ... more to come
 
-## Try our Builder
+## Drag and Drop
 
-Put forms together quickly using our drag and drop form builder tool and export the code as a native Vue component: https://builder.vueform.com/demo
+Build forms even quicker using our drag and drop form builder tool and export the code as a native Vue component: https://builder.vueform.com/demo
 
 [![Vuefom Builder](./.github/assets/builder.png)](https://builder.vueform.com/demo)
 
