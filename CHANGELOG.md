@@ -1,5 +1,12 @@
 [//]: # (Don't use <tags>)
 
+## v1.5.0
+
+> `2023-10-20`
+
+### 🎉 Feature
+- Going open source.
+
 ## v1.4.5
 
 > `2023-10-16`

@@ -1,7 +1,7 @@
 {
   "private": false,
   "name": "@vueform/vueform",
-  "version": "1.4.5",
+  "version": "1.5.0",
   "description": "Open source form framework for Vue.js",
   "homepage": "https://vueform.com",
   "license": "MIT",
