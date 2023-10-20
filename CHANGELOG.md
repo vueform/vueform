@@ -1,5 +1,12 @@
 [//]: # (Don't use <tags>)
 
+## v1.5.2
+
+> `2023-10-20`
+
+### 🎉 Feature
+- Export element as default from './element.js'
+
 ## v1.5.1
 
 > `2023-10-20`
