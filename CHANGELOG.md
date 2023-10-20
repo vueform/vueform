@@ -1,5 +1,12 @@
 [//]: # (Don't use <tags>)
 
+## v1.5.1
+
+> `2023-10-20`
+
+### 🎉 Feature
+- Added `@popperjs/core` as a dependency.
+
 ## v1.5.0
 
 > `2023-10-20`
