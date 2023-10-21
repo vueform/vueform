@@ -59,10 +59,10 @@ For a detailed understanding of Vueform, its features, and how to use them, refe
 
 Explore real-world applications of Vueform with some of our examples. Whether you're building a simple contact form or a complex multi-step questionnaire, these examples will give you ideas how to leverage Vueform features in your projects.
 
-- [Simple form](https://vueform.com/examples/basics/simple-form?cid=vueform)
-- [Complex form](https://vueform.com/examples/basics/complex-form?cid=vueform)
-- [Multi-step form](https://vueform.com/examples/basics/multi-step-form?cid=vueform)
-- [Inline form builder](https://vueform.com/examples/basics/form-builder?cid=vueform)
+- [Simple form](https://vueform.com/examples/basics-simple-form?cid=vueform)
+- [Complex form](https://vueform.com/examples/basics-complex-form?cid=vueform)
+- [Multi-step form](https://vueform.com/examples/basics-multi-step-form?cid=vueform)
+- [Inline form builder](https://vueform.com/examples/basics-form-builder?cid=vueform)
 - ... more to come
 
 ## Drag and Drop
