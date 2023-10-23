@@ -1,5 +1,12 @@
 [//]: # (Don't use <tags>)
 
+## v1.5.3
+
+> `2023-10-23`
+
+### 🎉 Feature
+- Export Vue plugin as default.
+
 ## v1.5.2
 
 > `2023-10-20`
