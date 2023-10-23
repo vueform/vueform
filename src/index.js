@@ -17,3 +17,5 @@ export {
   vueform,
   element,
  }
+
+ export default vueform
