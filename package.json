@@ -56,6 +56,7 @@
     "moxios": "^0.4.0",
     "mutationobserver-shim": "^0.3.7",
     "ncp": "^2.0.0",
+    "rollup-plugin-license": "^3.2.0",
     "rollup-plugin-postcss": "^4.0.1",
     "rollup-plugin-terser": "^7.0.2",
     "sass-loader": "^7.1.0",
@@ -66,6 +67,7 @@
     "vue-loader": "^15.10.0"
   },
   "dependencies": {
+    "@popperjs/core": "^2.11.8",
     "@vueform/multiselect": "^2.6.3",
     "@vueform/slider": "^2.1.7",
     "@vueform/toggle": "^2.1.3",
@@ -77,7 +79,6 @@
     "nouislider": "^15.7.1",
     "sass": "^1.66.1",
     "trix": "^1.0.5",
-    "wnumb": "^1.2.0",
-    "@popperjs/core": "^2.11.8"
+    "wnumb": "^1.2.0"
   }
 }
