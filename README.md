@@ -1,4 +1,4 @@
-[![Vuefom](./.github/assets/banner.svg)](https://vueform.com?cid=vueform)
+[![Vuefom](https://raw.githubusercontent.com/vueform/vueform/main/.github/assets/banner.svg)](https://vueform.com?cid=vueform)
 
 # Vueform
 
@@ -30,7 +30,7 @@ Jump right into the project with ease using one of our boilerplates.
   <tbody>
     <tr>
       <td>
-        <h4><img src="./.github/assets/vite.svg" height="21" /> Vite</h4>
+        <h4><img src="https://raw.githubusercontent.com/vueform/vueform/main/.github/assets/vite.svg" height="21" /> Vite</h4>
       </td>
       <td>
          <h4><a href="https://github.com/vueform/vite-starter">@vueform/vite-starter</a></h4>
@@ -38,7 +38,7 @@ Jump right into the project with ease using one of our boilerplates.
     </tr>
     <tr>
       <td>
-        <h4><img src="./.github/assets/nuxt.svg" height="21" /> Nuxt</h4>
+        <h4><img src="https://raw.githubusercontent.com/vueform/vueform/main/.github/assets/nuxt.svg" height="21" /> Nuxt</h4>
       </td>
       <td>
          <h4><a href="https://github.com/vueform/nuxt-starter">@vueform/nuxt-starter</a></h4>
@@ -69,7 +69,7 @@ Explore real-world applications of Vueform with some of our examples. Whether yo
 
 Build forms even quicker using our drag and drop form builder tool and export the code as a native Vue component: [https://builder.vueform.com/demo](https://builder.vueform.com/demo?cid=vueform)
 
-[![Vuefom Builder](./.github/assets/builder.png)](https://builder.vueform.com/demo?cid=vueform)
+[![Vuefom Builder](https://raw.githubusercontent.com/vueform/vueform/main/.github/assets/builder.png)](https://builder.vueform.com/demo?cid=vueform)
 
 ## Contribute
 
@@ -124,10 +124,10 @@ npm run build
 ## Follow Us
 
 <p>
-  <a href="https://discord.gg/WhX2nG6GTQ" target="_blank"><img src="./.github/assets/discord.svg" alt="Vueform on Discord" title="Vueform on Discord"></a>&nbsp;&nbsp;
-  <a href="https://twitter.com/vueform" target="_blank"><img src="./.github/assets/x.svg" alt="Vueform on X" title="Vueform on X"></a>&nbsp;&nbsp;
-  <a href="https://www.linkedin.com/company/vueform" target="_blank"><img src="./.github/assets/linkedin.svg" alt="Vueform on LinkedIn" title="Vueform on LinkedIn"></a>&nbsp;&nbsp;
-  <a href="https://github.com/vueform" target="_blank"><img src="./.github/assets/github.svg" alt="Vueform on GitHub" title="Vueform on GitHub"></a>
+  <a href="https://discord.gg/WhX2nG6GTQ" target="_blank"><img src="https://raw.githubusercontent.com/vueform/vueform/main/.github/assets/discord.svg" alt="Vueform on Discord" title="Vueform on Discord"></a>&nbsp;&nbsp;
+  <a href="https://twitter.com/vueform" target="_blank"><img src="https://raw.githubusercontent.com/vueform/vueform/main/.github/assets/x.svg" alt="Vueform on X" title="Vueform on X"></a>&nbsp;&nbsp;
+  <a href="https://www.linkedin.com/company/vueform" target="_blank"><img src="https://raw.githubusercontent.com/vueform/vueform/main/.github/assets/linkedin.svg" alt="Vueform on LinkedIn" title="Vueform on LinkedIn"></a>&nbsp;&nbsp;
+  <a href="https://github.com/vueform" target="_blank"><img src="https://raw.githubusercontent.com/vueform/vueform/main/.github/assets/github.svg" alt="Vueform on GitHub" title="Vueform on GitHub"></a>
 </p>
 
 ## License
