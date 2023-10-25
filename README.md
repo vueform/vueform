@@ -1,4 +1,4 @@
-[![Vuefom](https://raw.githubusercontent.com/vueform/vueform/main/.github/assets/banner.svg)](https://vueform.com?cid=vueform)
+[![Vueform](https://raw.githubusercontent.com/vueform/vueform/main/.github/assets/banner.svg)](https://vueform.com?cid=vueform)
 
 # Vueform
 
@@ -69,7 +69,7 @@ Explore real-world applications of Vueform with some of our examples. Whether yo
 
 Build forms even quicker using our drag and drop form builder tool and export the code as a native Vue component: [https://builder.vueform.com/demo](https://builder.vueform.com/demo?cid=vueform)
 
-[![Vuefom Builder](https://raw.githubusercontent.com/vueform/vueform/main/.github/assets/builder.png)](https://builder.vueform.com/demo?cid=vueform)
+[![Vuefom Builder](https://raw.githubusercontent.com/vueform/vueform/main/.github/assets/builder.gif)](https://builder.vueform.com/demo?cid=vueform)
 
 ## Contribute
 
