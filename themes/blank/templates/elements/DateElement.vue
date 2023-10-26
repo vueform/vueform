@@ -4,11 +4,11 @@
       <div :class="classes.inputContainer">
 
         <ElementAddon v-if="hasAddonBefore" type="before">
-          <slot name="addon-before"/>
+          <slot name="addon-before"><component :is="fieldSlots['addon-before']" :el$="el$"/></slot>
         </ElementAddon>
 
         <ElementAddon v-if="hasAddonAfter" type="after">
-          <slot name="addon-after"/>
+          <slot name="addon-after"><component :is="fieldSlots['addon-after']" :el$="el$"/></slot>
         </ElementAddon>
 
         <ElementLabelFloating
