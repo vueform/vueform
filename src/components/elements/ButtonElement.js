@@ -99,6 +99,11 @@ export default {
       type: [Boolean],
       default: false
     },
+    full: {
+      required: false,
+      type: [Boolean],
+      default: false
+    },
   },
   setup(props, context) {
     context.features = [

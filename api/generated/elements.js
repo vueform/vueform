@@ -507,6 +507,16 @@ module.exports = {
         required: false,
         private: false,
       },
+      full: {
+        required: 'false',
+        default: 'false',
+        localized: false,
+        types: [
+          'boolean',
+        ],
+        required: false,
+        private: false,
+      },
     },
     data: {
       active: {

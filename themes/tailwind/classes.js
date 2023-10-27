@@ -390,10 +390,12 @@ export default {
     button_primary: 'form-bg-btn form-color-btn form-border-color-btn',
     button_secondary: 'form-bg-btn-secondary form-color-btn-secondary form-border-color-btn-secondary',
     button_danger: 'form-bg-btn-danger form-color-btn-danger form-border-color-btn-danger',
+    button_full: 'w-full',
+    button_not_full: '',
     button_sm: 'form-p-btn-sm form-radius-btn-sm form-text-sm',
     button_md: 'form-p-btn form-radius-btn form-text',
     button_lg: 'form-p-btn-lg form-radius-btn-lg form-text-lg',
-    $button: (classes, { isDisabled, isLoading, buttonClass, Size, danger, secondary }) => ([
+    $button: (classes, { isDisabled, isLoading, buttonClass, Size, danger, secondary, full }) => ([
       classes.button,
       danger ? classes.button_danger : null,
       secondary ? classes.button_secondary : null,
@@ -405,6 +407,7 @@ export default {
       isLoading && danger ? classes.button_loading_danger : null,
       isLoading && secondary ? classes.button_loading_secondary : null,
       isLoading && !secondary && !danger ? classes.button_loading_primary : null,
+      full ? classes.button_full : classes.button_not_full,
       buttonClass,
     ]),
   },

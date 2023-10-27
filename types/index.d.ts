@@ -128,6 +128,7 @@ interface VueformElement extends DefineComponent {
   submits: boolean;
   secondary: boolean;
   danger: boolean;
+  full: boolean;
   onChange: Function;
   formatData: Function;
   formatLoad: Function;
@@ -530,6 +531,7 @@ interface VueformSchema {
   submits?: boolean;
   secondary?: boolean;
   danger?: boolean;
+  full?: boolean;
   onChange?: Function;
   formatData?: Function;
   formatLoad?: Function;
@@ -941,6 +943,7 @@ interface ButtonElementProps {
   submits?: boolean;
   secondary?: boolean;
   danger?: boolean;
+  full?: boolean;
 }
 
 interface CheckboxElementProps {
@@ -3632,6 +3635,7 @@ declare class ButtonElement implements ReturnType<typeof defineComponent> {
   submits: ButtonElementProps['submits'];
   secondary: ButtonElementProps['secondary'];
   danger: ButtonElementProps['danger'];
+  full: ButtonElementProps['full'];
 
   // Computed
   descriptionId: string;

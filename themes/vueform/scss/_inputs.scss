@@ -563,6 +563,10 @@
     }
   }
 
+  &.vf-btn-full {
+    width: 100%;
+  }
+
   &[disabled],
   &.vf-btn-disabled {
     opacity: 0.6;

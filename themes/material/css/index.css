@@ -1294,6 +1294,10 @@ form ::placeholder {
   border-radius: var(--vf-radius-small-lg);
 }
 
+.vf-btn.vf-btn-full {
+  width: 100%;
+}
+
 .vf-btn[disabled], .vf-btn.vf-btn-disabled {
   opacity: 0.6;
   cursor: not-allowed;
