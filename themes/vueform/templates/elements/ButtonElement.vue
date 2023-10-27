@@ -21,10 +21,12 @@
           button_danger: 'vf-btn-danger',
           button_full: 'vf-btn-full',
           button_not_full: '',
+          button_left: 'vf-btn-left',
+          button_right: 'vf-btn-right',
           button_sm: 'vf-btn-sm',
           button_md: '',
           button_lg: 'vf-btn-lg',
-          $button: (classes, { isDisabled, isLoading, buttonClass, Size, danger, secondary, full }) => ([
+          $button: (classes, { isDisabled, isLoading, buttonClass, Size, danger, secondary, full, align }) => ([
             classes.button,
             danger ? classes.button_danger : null,
             secondary ? classes.button_secondary : null,
@@ -37,6 +39,8 @@
             isLoading && secondary ? classes.button_loading_secondary : null,
             isLoading && !secondary && !danger ? classes.button_loading_primary : null,
             full ? classes.button_full : classes.button_not_full,
+            align === 'left' ? classes.button_left : null,
+            align === 'right' ? classes.button_right : null,
             buttonClass,
           ]),
         }

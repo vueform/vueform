@@ -104,6 +104,11 @@ export default {
       type: [Boolean],
       default: false
     },
+    align: {
+      required: false,
+      type: [String],
+      default: undefined,
+    },
   },
   setup(props, context) {
     context.features = [

@@ -89,6 +89,11 @@ export default {
       type: [Object],
       default: () => ({})
     },
+    align: {
+      required: false,
+      type: [String],
+      default: undefined,
+    },
   },
   setup(props, context) {
     context.features = [

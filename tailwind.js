@@ -1740,6 +1740,14 @@ const vueform = plugin((context) => {
         height: '100%',
       }
     },
+    'body[dir="rtl"]': {
+      '.form-bg-icon-check': {
+        '&::after': {
+          left: 'auto',
+          right: 'calc(var(--vf-border-width-checkbox-l) * (-1))',
+        }
+      },
+    }
   }
 
   const focusable = {

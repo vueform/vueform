@@ -14,10 +14,14 @@
         defaultClasses: {
           container: '',
           wrapper: 'vf-toggle-wrapper',
+          wrapper_left: 'vf-toggle-wrapper-left',
+          wrapper_right: 'vf-toggle-wrapper-right',
           text: 'vf-toggle-text',
           text_sm: 'vf-toggle-text-sm',
           text_md: '',
           text_lg: 'vf-toggle-text-lg',
+          text_left: 'vf-toggle-text-left',
+          text_right: 'vf-toggle-text-right',
           toggle: {
             container: 'vf-toggle-container',
             container_enabled: '',
@@ -60,9 +64,16 @@
               classes.toggle[`label_${Size}`],
             ]),
           },
-          $text: (classes, { Size }) => ([
+          $text: (classes, { Size, align }) => ([
             classes.text,
             classes[`text_${Size}`],
+            align === 'left' ? classes.text_left : null,
+            align === 'right' ? classes.text_right : null,
+          ]),
+          $wrapper: (classes, { align }) => ([
+            classes.wrapper,
+            align === 'left' ? classes.wrapper_left : null,
+            align === 'right' ? classes.wrapper_right : null,
           ]),
         }
       }
@@ -231,7 +242,33 @@
     }
   }
 
-  [dir="rtl"] {
+  body:not([dir="rtl"]) {
+    .vf-toggle-wrapper-right {
+      justify-content: flex-end;
+    }
+
+    .vf-toggle-text-right {
+      margin-left: 0;
+      margin-right: var(--vf-space-checkbox);
+      order: -1;
+
+      &.vf-toggle-text-sm {
+        margin-left: 0;
+        margin-right: var(--vf-space-checkbox-sm);
+      }
+
+      &.vf-toggle-text-lg {
+        margin-left: 0;
+        margin-right: var(--vf-space-checkbox-lg);
+      }
+    }
+  }
+
+  body[dir="rtl"] {
+    .vf-toggle-wrapper-left {
+      justify-content: flex-end;
+    }
+
     .vf-toggle-text {
       margin-left: 0;
       margin-right: var(--vf-space-checkbox);
@@ -244,6 +281,22 @@
       &.vf-toggle-text-lg {
         margin-left: 0;
         margin-right: var(--vf-space-checkbox-lg);
+      }
+
+      &.vf-toggle-text-left {
+        margin-right: 0;
+        margin-left: var(--vf-space-checkbox);
+        order: -1;
+
+        &.vf-toggle-text-sm {
+          margin-right: 0;
+          margin-left: var(--vf-space-checkbox-sm);
+        }
+
+        &.vf-toggle-text-lg {
+          margin-right: 0;
+          margin-left: var(--vf-space-checkbox-lg);
+        }
       }
     }
   }

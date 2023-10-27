@@ -76,6 +76,11 @@ export default {
       localized: true,
       default: null
     },
+    align: {
+      required: false,
+      type: [String],
+      default: undefined,
+    },
   },
   setup(props, context) {
     context.features = [

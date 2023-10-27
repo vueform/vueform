@@ -129,6 +129,7 @@ interface VueformElement extends DefineComponent {
   secondary: boolean;
   danger: boolean;
   full: boolean;
+  align: string;
   onChange: Function;
   formatData: Function;
   formatLoad: Function;
@@ -532,6 +533,7 @@ interface VueformSchema {
   secondary?: boolean;
   danger?: boolean;
   full?: boolean;
+  align?: string;
   onChange?: Function;
   formatData?: Function;
   formatLoad?: Function;
@@ -944,6 +946,7 @@ interface ButtonElementProps {
   secondary?: boolean;
   danger?: boolean;
   full?: boolean;
+  align?: string;
 }
 
 interface CheckboxElementProps {
@@ -995,6 +998,7 @@ interface CheckboxElementProps {
   disabled?: boolean;
   trueValue?: boolean | string | number;
   falseValue?: boolean | string | number;
+  align?: string;
 }
 
 interface CheckboxgroupElementProps {
@@ -1759,6 +1763,7 @@ interface RadioElementProps {
   radioName?: string;
   radioValue?: boolean | string | number;
   text?: string | object;
+  align?: string;
 }
 
 interface RadiogroupElementProps {
@@ -2458,6 +2463,7 @@ interface ToggleElementProps {
   trueValue?: boolean | string | number;
   falseValue?: boolean | string | number;
   extendOptions?: object;
+  align?: string;
 }
 
 declare class DragAndDrop implements ReturnType<typeof defineComponent> {
@@ -3636,6 +3642,7 @@ declare class ButtonElement implements ReturnType<typeof defineComponent> {
   secondary: ButtonElementProps['secondary'];
   danger: ButtonElementProps['danger'];
   full: ButtonElementProps['full'];
+  align: ButtonElementProps['align'];
 
   // Computed
   descriptionId: string;
@@ -3776,6 +3783,7 @@ declare class CheckboxElement implements ReturnType<typeof defineComponent> {
   disabled: CheckboxElementProps['disabled'];
   trueValue: CheckboxElementProps['trueValue'];
   falseValue: CheckboxElementProps['falseValue'];
+  align: CheckboxElementProps['align'];
 
   // Computed
   descriptionId: string;
@@ -6289,6 +6297,7 @@ declare class RadioElement implements ReturnType<typeof defineComponent> {
   radioName: RadioElementProps['radioName'];
   radioValue: RadioElementProps['radioValue'];
   text: RadioElementProps['text'];
+  align: RadioElementProps['align'];
 
   // Computed
   descriptionId: string;
@@ -8480,6 +8489,7 @@ declare class ToggleElement implements ReturnType<typeof defineComponent> {
   trueValue: ToggleElementProps['trueValue'];
   falseValue: ToggleElementProps['falseValue'];
   extendOptions: ToggleElementProps['extendOptions'];
+  align: ToggleElementProps['align'];
 
   // Computed
   descriptionId: string;

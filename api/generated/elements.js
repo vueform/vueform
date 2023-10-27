@@ -517,6 +517,16 @@ module.exports = {
         required: false,
         private: false,
       },
+      align: {
+        required: 'false',
+        default: 'undefined',
+        localized: false,
+        types: [
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
     },
     data: {
       active: {
@@ -1657,6 +1667,16 @@ module.exports = {
           'boolean',
           'string',
           'number',
+        ],
+        required: false,
+        private: false,
+      },
+      align: {
+        required: 'false',
+        default: 'undefined',
+        localized: false,
+        types: [
+          'string',
         ],
         required: false,
         private: false,
@@ -22111,6 +22131,16 @@ module.exports = {
         required: false,
         private: false,
       },
+      align: {
+        required: 'false',
+        default: 'undefined',
+        localized: false,
+        types: [
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
     },
     data: {
       active: {
@@ -40390,6 +40420,16 @@ module.exports = {
         localized: false,
         types: [
           'object',
+        ],
+        required: false,
+        private: false,
+      },
+      align: {
+        required: 'false',
+        default: 'undefined',
+        localized: false,
+        types: [
+          'string',
         ],
         required: false,
         private: false,

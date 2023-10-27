@@ -636,7 +636,73 @@
   }
 }
 
-[dir="rtl"] {
+body:not([dir="rtl"]) {
+  .vf-btn {
+    &.vf-btn-right {
+      float: right;
+    }
+  }
+
+  .vf-checkbox-wrapper-right,
+  .vf-radio-wrapper-right {
+    justify-content: flex-end;
+  }
+
+  .vf-checkbox-right {
+    margin-right: 0;
+    margin-left: var(--vf-space-checkbox);
+
+    &.vf-checkbox-sm {
+      margin-right: 0;
+      margin-left: var(--vf-space-checkbox-sm);
+    }
+
+    &.vf-checkbox-lg {
+      margin-right: 0;
+      margin-left: var(--vf-space-checkbox-lg);
+    }
+
+    &:checked {
+      &:after {
+        left: 0;
+        right: calc(var(--vf-border-width-checkbox-l) * (-1));
+      }
+    }
+  }
+
+  .vf-radio-right {
+    margin-right: 0;
+    margin-left: var(--vf-space-checkbox);
+
+    &.vf-radio-sm {
+      margin-right: 0;
+      margin-left: var(--vf-space-checkbox-sm);
+    }
+
+    &.vf-radio-lg {
+      margin-right: 0;
+      margin-left: var(--vf-space-checkbox-lg);
+    }
+  }
+
+  .vf-checkbox-text-right,
+  .vf-radio-text-right {
+    order: -1;
+  }
+}
+
+body[dir="rtl"] {
+  .vf-btn {
+    &.vf-btn-left {
+      float: left;
+    }
+  }
+
+  .vf-checkbox-wrapper-left,
+  .vf-radio-wrapper-left {
+    justify-content: flex-end;
+  }
+
   .vf-checkbox {
     margin-right: 0;
     margin-left: var(--vf-space-checkbox);
@@ -649,6 +715,28 @@
     &.vf-checkbox-lg {
       margin-right: 0;
       margin-left: var(--vf-space-checkbox-lg);
+    }
+
+    &:checked {
+      &:after {
+        left: 0;
+        right: calc(var(--vf-border-width-checkbox-l) * (-1));
+      }
+    }
+  }
+
+  .vf-checkbox-left {
+    margin-left: 0;
+    margin-right: var(--vf-space-checkbox);
+    
+    &.vf-checkbox-sm {
+      margin-left: 0;
+      margin-right: var(--vf-space-checkbox-sm);
+    }
+
+    &.vf-checkbox-lg {
+      margin-left: 0;
+      margin-right: var(--vf-space-checkbox-lg);
     }
 
     &:checked {
@@ -672,6 +760,26 @@
       margin-right: 0;
       margin-left: var(--vf-space-checkbox-lg);
     }
+  }
+
+  .vf-radio-left {
+    margin-left: 0;
+    margin-right: var(--vf-space-checkbox);
+    
+    &.vf-radio-sm {
+      margin-left: 0;
+      margin-right: var(--vf-space-checkbox-sm);
+    }
+
+    &.vf-radio-lg {
+      margin-left: 0;
+      margin-right: var(--vf-space-checkbox-lg);
+    }
+  }
+
+  .vf-checkbox-text-left,
+  .vf-radio-text-left {
+    order: -1;
   }
 }
 
