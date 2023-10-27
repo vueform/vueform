@@ -9,6 +9,7 @@ const base = function(props, context, dependencies, /* istanbul ignore next */ o
   
   const form$ = dependencies.form$
   const el$ = dependencies.el$
+  const component$ = dependencies.component$ || dependencies.el$
   const theme = dependencies.theme
   const Templates = dependencies.Templates
   const View = dependencies.View
@@ -24,7 +25,7 @@ const base = function(props, context, dependencies, /* istanbul ignore next */ o
   const classesInstance = computed(() => {
     return (new MergeClasses({
       component: componentName.value,
-      component$: el$,
+      component$: component$,
       theme: theme.value,
       config: form$.value.$vueform.config,
       templates: Templates.value,
