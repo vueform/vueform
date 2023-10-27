@@ -230,4 +230,21 @@
       width: calc(var(--vf-toggle-width-lg) - var(--vf-toggle-height-lg));
     }
   }
+
+  [dir="rtl"] {
+    .vf-toggle-text {
+      margin-left: 0;
+      margin-right: var(--vf-space-checkbox);
+
+      &.vf-toggle-text-sm {
+        margin-left: 0;
+        margin-right: var(--vf-space-checkbox-sm);
+      }
+
+      &.vf-toggle-text-lg {
+        margin-left: 0;
+        margin-right: var(--vf-space-checkbox-lg);
+      }
+    }
+  }
 </style>

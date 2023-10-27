@@ -1362,6 +1362,41 @@ form ::placeholder {
   background-color: var(--vf-color-btn-danger);
 }
 
+[dir=rtl] .vf-checkbox {
+  margin-right: 0;
+  margin-left: var(--vf-space-checkbox);
+}
+
+[dir=rtl] .vf-checkbox.vf-checkbox-sm {
+  margin-right: 0;
+  margin-left: var(--vf-space-checkbox-sm);
+}
+
+[dir=rtl] .vf-checkbox.vf-checkbox-lg {
+  margin-right: 0;
+  margin-left: var(--vf-space-checkbox-lg);
+}
+
+[dir=rtl] .vf-checkbox:checked:after {
+  left: 0;
+  right: calc(var(--vf-border-width-checkbox-l) * -1);
+}
+
+[dir=rtl] .vf-radio {
+  margin-right: 0;
+  margin-left: var(--vf-space-checkbox);
+}
+
+[dir=rtl] .vf-radio.vf-radio-sm {
+  margin-right: 0;
+  margin-left: var(--vf-space-checkbox-sm);
+}
+
+[dir=rtl] .vf-radio.vf-radio-lg {
+  margin-right: 0;
+  margin-left: var(--vf-space-checkbox-lg);
+}
+
 @keyframes button-spinner {
   from {
     transform: rotate(0);

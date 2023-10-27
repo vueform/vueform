@@ -636,6 +636,45 @@
   }
 }
 
+[dir="rtl"] {
+  .vf-checkbox {
+    margin-right: 0;
+    margin-left: var(--vf-space-checkbox);
+
+    &.vf-checkbox-sm {
+      margin-right: 0;
+      margin-left: var(--vf-space-checkbox-sm);
+    }
+
+    &.vf-checkbox-lg {
+      margin-right: 0;
+      margin-left: var(--vf-space-checkbox-lg);
+    }
+
+    &:checked {
+      &:after {
+        left: 0;
+        right: calc(var(--vf-border-width-checkbox-l) * (-1));
+      }
+    }
+  }
+
+  .vf-radio {
+    margin-right: 0;
+    margin-left: var(--vf-space-checkbox);
+
+    &.vf-radio-sm {
+      margin-right: 0;
+      margin-left: var(--vf-space-checkbox-sm);
+    }
+
+    &.vf-radio-lg {
+      margin-right: 0;
+      margin-left: var(--vf-space-checkbox-lg);
+    }
+  }
+}
+
 @keyframes button-spinner {
   from {
     transform: rotate(0);

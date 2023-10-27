@@ -823,6 +823,10 @@ const vueform = plugin((context) => {
       marginLeft: `var(--vf-space-checkbox${size})`
     }
 
+    plain[`.form-mr-space-checkbox${suffix}`] = {
+      marginRight: `var(--vf-space-checkbox${size})`
+    }
+
     plain[`.form-mt-space-tags${suffix}`] = {
       marginTop: `var(--vf-space-tags${size})`
     }
