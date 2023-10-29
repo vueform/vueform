@@ -136,6 +136,9 @@ const vueform = plugin((context) => {
         '--vf-ring-color': theme('form.ringColor') === null ? Color(theme('form.primary')).alpha(theme('form.ringOpacity')).toString() : theme('form.ringColor'),
         '--vf-ring-width': theme('form.ringWidth'),
 
+        '--vf-link-color': theme('form.linkColor'),
+        '--vf-link-decoration': theme('form.linkDecoration'),
+
         '--vf-gray-50': theme('form.grays.50'),
         '--vf-gray-100': theme('form.grays.100'),
         '--vf-gray-200': theme('form.grays.200'),
@@ -155,6 +158,38 @@ const vueform = plugin((context) => {
         '--vf-font-size-small-sm': Array.isArray(theme('form.smallFontSize.sm')) ? theme('form.smallFontSize.sm')[0] : theme('form.smallFontSize.sm'),
         '--vf-font-size-small-lg': Array.isArray(theme('form.smallFontSize.lg')) ? theme('form.smallFontSize.lg')[0] : theme('form.smallFontSize.lg'),
 
+        '--vf-font-size-h1': theme('form.h1FontSize.base'),
+        '--vf-font-size-h1-sm': theme('form.h1FontSize.sm'),
+        '--vf-font-size-h1-lg': theme('form.h1FontSize.lg'),
+
+        '--vf-font-size-h2': theme('form.h2FontSize.base'),
+        '--vf-font-size-h2-sm': theme('form.h2FontSize.sm'),
+        '--vf-font-size-h2-lg': theme('form.h2FontSize.lg'),
+
+        '--vf-font-size-h3': theme('form.h3FontSize.base'),
+        '--vf-font-size-h3-sm': theme('form.h3FontSize.sm'),
+        '--vf-font-size-h3-lg': theme('form.h3FontSize.lg'),
+
+        '--vf-font-size-h4': theme('form.h4FontSize.base'),
+        '--vf-font-size-h4-sm': theme('form.h4FontSize.sm'),
+        '--vf-font-size-h4-lg': theme('form.h4FontSize.lg'),
+
+        '--vf-font-size-h1-mobile': theme('form.h1MobileFontSize.base'),
+        '--vf-font-size-h1-mobile-sm': theme('form.h1MobileFontSize.sm'),
+        '--vf-font-size-h1-mobile-lg': theme('form.h1MobileFontSize.lg'),
+
+        '--vf-font-size-h2-mobile': theme('form.h2MobileFontSize.base'),
+        '--vf-font-size-h2-mobile-sm': theme('form.h2MobileFontSize.sm'),
+        '--vf-font-size-h2-mobile-lg': theme('form.h2MobileFontSize.lg'),
+
+        '--vf-font-size-h3-mobile': theme('form.h3MobileFontSize.base'),
+        '--vf-font-size-h3-mobile-sm': theme('form.h3MobileFontSize.sm'),
+        '--vf-font-size-h3-mobile-lg': theme('form.h3MobileFontSize.lg'),
+
+        '--vf-font-size-h4-mobile': theme('form.h4MobileFontSize.base'),
+        '--vf-font-size-h4-mobile-sm': theme('form.h4MobileFontSize.sm'),
+        '--vf-font-size-h4-mobile-lg': theme('form.h4MobileFontSize.lg'),
+
         '--vf-line-height': theme('form.lineHeight.base'),
         '--vf-line-height-sm': theme('form.lineHeight.sm'),
         '--vf-line-height-lg': theme('form.lineHeight.lg'),
@@ -163,6 +198,14 @@ const vueform = plugin((context) => {
         '--vf-line-height-small-sm': theme('form.smallLineHeight.sm'),
         '--vf-line-height-small-lg': theme('form.smallLineHeight.lg'),
 
+        '--vf-line-height-headings': theme('form.headingsLineHeight.base'),
+        '--vf-line-height-headings-sm': theme('form.headingsLineHeight.sm'),
+        '--vf-line-height-headings-lg': theme('form.headingsLineHeight.lg'),
+
+        '--vf-line-height-blockquote': theme('form.blockquoteLineHeight.base'),
+        '--vf-line-height-blockquote-sm': theme('form.blockquoteLineHeight.sm'),
+        '--vf-line-height-blockquote-lg': theme('form.blockquoteLineHeight.lg'),
+
         '--vf-letter-spacing': theme('form.letterSpacing.base'),
         '--vf-letter-spacing-sm': theme('form.letterSpacing.sm'),
         '--vf-letter-spacing-lg': theme('form.letterSpacing.lg'),
@@ -170,6 +213,14 @@ const vueform = plugin((context) => {
         '--vf-letter-spacing-small': theme('form.smallLetterSpacing.base'),
         '--vf-letter-spacing-small-sm': theme('form.smallLetterSpacing.sm'),
         '--vf-letter-spacing-small-lg': theme('form.smallLetterSpacing.lg'),
+
+        '--vf-letter-spacing-headings': theme('form.headingsLetterSpacing.base'),
+        '--vf-letter-spacing-headings-sm': theme('form.headingsLetterSpacing.sm'),
+        '--vf-letter-spacing-headings-lg': theme('form.headingsLetterSpacing.lg'),
+
+        '--vf-letter-spacing-blockquote': theme('form.blockquoteLetterSpacing.base'),
+        '--vf-letter-spacing-blockquote-sm': theme('form.blockquoteLetterSpacing.sm'),
+        '--vf-letter-spacing-blockquote-lg': theme('form.blockquoteLetterSpacing.lg'),
 
         '--vf-gutter': theme('form.gutter.base'),
         '--vf-gutter-sm': theme('form.gutter.sm'),
@@ -235,6 +286,18 @@ const vueform = plugin((context) => {
         '--vf-px-slider-tooltip-sm': theme('form.sliderTooltipPx.sm'),
         '--vf-px-slider-tooltip-lg': theme('form.sliderTooltipPx.lg'),
 
+        '--vf-py-blockquote': theme('form.blockquotePy.base'),
+        '--vf-py-blockquote-sm': theme('form.blockquotePy.sm'),
+        '--vf-py-blockquote-lg': theme('form.blockquotePy.lg'),
+
+        '--vf-px-blockquote': theme('form.blockquotePx.base'),
+        '--vf-px-blockquote-sm': theme('form.blockquotePx.sm'),
+        '--vf-px-blockquote-lg': theme('form.blockquotePx.lg'),
+
+        '--vf-py-hr': theme('form.hrPy.base'),
+        '--vf-py-hr-sm': theme('form.hrPy.sm'),
+        '--vf-py-hr-lg': theme('form.hrPy.lg'),
+
         '--vf-space-addon': theme('form.spaceAddon.base'),
         '--vf-space-addon-sm': theme('form.spaceAddon.sm'),
         '--vf-space-addon-lg': theme('form.spaceAddon.lg'),
@@ -246,6 +309,10 @@ const vueform = plugin((context) => {
         '--vf-space-tags': theme('form.spaceTags.base'),
         '--vf-space-tags-sm': theme('form.spaceTags.sm'),
         '--vf-space-tags-lg': theme('form.spaceTags.lg'),
+
+        '--vf-space-static-tag-1': theme('form.spaceStaticTag1'),
+        '--vf-space-static-tag-2': theme('form.spaceStaticTag2'),
+        '--vf-space-static-tag-3': theme('form.spaceStaticTag3'),
 
         '--vf-floating-top': theme('form.floatingTop.base'),
         '--vf-floating-top-sm': theme('form.floatingTop.sm'),
@@ -306,6 +373,8 @@ const vueform = plugin((context) => {
         '--vf-border-color-btn': theme('form.borderColors.btn'),
         '--vf-border-color-btn-danger': theme('form.borderColors.btnDanger'),
         '--vf-border-color-btn-secondary': theme('form.borderColors.btnSecondary'),
+        '--vf-border-color-blockquote': theme('form.borderColors.blockquote'),
+        '--vf-border-color-hr': theme('form.borderColors.hr'),
 
         '--vf-border-width-input-t': Array.isArray(theme('form.borderWidths.input')) ? theme('form.borderWidths.input')[0] : theme('form.borderWidths.input'),
         '--vf-border-width-input-r': Array.isArray(theme('form.borderWidths.input')) ? theme('form.borderWidths.input')[1] : theme('form.borderWidths.input'),
@@ -326,6 +395,7 @@ const vueform = plugin((context) => {
         '--vf-border-width-btn': Array.isArray(theme('form.borderWidths.btn')) ? theme('form.borderWidths.btn').join(' ') : theme('form.borderWidths.btn'),
         '--vf-border-width-toggle': Array.isArray(theme('form.borderWidths.toggle')) ? theme('form.borderWidths.toggle').join(' ') : theme('form.borderWidths.toggle'),
         '--vf-border-width-tag': Array.isArray(theme('form.borderWidths.tag')) ? theme('form.borderWidths.tag').join(' ') : theme('form.borderWidths.tag'),
+        '--vf-border-width-blockquote': theme('form.borderWidths.blockquote'),
 
         '--vf-shadow-input': theme('form.shadows.input'),
         '--vf-shadow-input-hover': theme('form.shadows.inputHover'),
@@ -448,6 +518,60 @@ const vueform = plugin((context) => {
       fontSize: `var(--vf-font-size-small${size})`,
       lineHeight: `var(--vf-line-height-small${size})`,
       letterSpacing: `var(--vf-letter-spacing-small${size})`,
+    }
+
+    responsive[`.form-text-h1${suffix}`] = {
+      fontSize: `var(--vf-font-size-h1${size})`,
+      lineHeight: `var(--vf-line-height-headings${size})`,
+      letterSpacing: `var(--vf-letter-spacing-headings${size})`,
+    }
+
+    responsive[`.form-text-h2${suffix}`] = {
+      fontSize: `var(--vf-font-size-h2${size})`,
+      lineHeight: `var(--vf-line-height-headings${size})`,
+      letterSpacing: `var(--vf-letter-spacing-headings${size})`,
+    }
+
+    responsive[`.form-text-h3${suffix}`] = {
+      fontSize: `var(--vf-font-size-h3${size})`,
+      lineHeight: `var(--vf-line-height-headings${size})`,
+      letterSpacing: `var(--vf-letter-spacing-headings${size})`,
+    }
+
+    responsive[`.form-text-h4${suffix}`] = {
+      fontSize: `var(--vf-font-size-h4${size})`,
+      lineHeight: `var(--vf-line-height-headings${size})`,
+      letterSpacing: `var(--vf-letter-spacing-headings${size})`,
+    }
+
+    plain[`.form-text-h1-mobile${suffix}`] = {
+      fontSize: `var(--vf-font-size-h1-mobile${size})`,
+      lineHeight: `var(--vf-line-height-headings${size})`,
+      letterSpacing: `var(--vf-letter-spacing-headings${size})`,
+    }
+
+    plain[`.form-text-h2-mobile${suffix}`] = {
+      fontSize: `var(--vf-font-size-h2-mobile${size})`,
+      lineHeight: `var(--vf-line-height-headings${size})`,
+      letterSpacing: `var(--vf-letter-spacing-headings${size})`,
+    }
+
+    plain[`.form-text-h3-mobile${suffix}`] = {
+      fontSize: `var(--vf-font-size-h3-mobile${size})`,
+      lineHeight: `var(--vf-line-height-headings${size})`,
+      letterSpacing: `var(--vf-letter-spacing-headings${size})`,
+    }
+
+    plain[`.form-text-h4-mobile${suffix}`] = {
+      fontSize: `var(--vf-font-size-h4-mobile${size})`,
+      lineHeight: `var(--vf-line-height-headings${size})`,
+      letterSpacing: `var(--vf-letter-spacing-headings${size})`,
+    }
+
+    plain[`.form-text-blockquote${suffix}`] = {
+      fontSize: `var(--vf-font-size-blockquote${size})`,
+      lineHeight: `var(--vf-line-height-blockquote${size})`,
+      letterSpacing: `var(--vf-letter-spacing-blockquote${size})`,
     }
 
     // grid
@@ -811,6 +935,18 @@ const vueform = plugin((context) => {
       paddingLeft: `var(--vf-space-addon${size})`
     }
 
+    plain[`.form-pr-space-addon${suffix}`] = {
+      paddingRight: `var(--vf-space-addon${size})`
+    }
+
+    plain[`.form-p-blockquote${suffix}`] = {
+      padding: `var(--vf-py-blockquote${size}) var(--vf-px-blockquote${size})`
+    }
+
+    plain[`.form-py-hr${suffix}`] = {
+      padding: `var(--vf-py-hr${size}) 0px`
+    }
+
     plain[`.form-mt-checkbox${suffix}`] = {
       marginTop: `calc((var(--vf-line-height${size}) - var(--vf-checkbox-size${size})) / 2)`
     }
@@ -841,10 +977,6 @@ const vueform = plugin((context) => {
 
     rtl[`.form-ml-space-tags${suffix}`] = {
       marginLeft: `var(--vf-space-tags${size})`
-    }
-
-    plain[`.form-pr-space-addon${suffix}`] = {
-      paddingRight: `var(--vf-space-addon${size})`
     }
 
     h[`.form-top-slider-handle-horizontal${suffix}`] = {
@@ -1215,6 +1347,13 @@ const vueform = plugin((context) => {
     '.form-color-transparent': {
       color: 'transparent !important',
     },
+    '.form-color-link': {
+      color: 'var(--vf-link-color)',
+    },
+
+    '.form-decoration-link': {
+      textDecoration: 'var(--vf-link-decoration)',
+    },
 
     '.form-bg-input': {
       backgroundColor: 'var(--vf-bg-input)'
@@ -1307,6 +1446,12 @@ const vueform = plugin((context) => {
     '.form-border-color-btn-danger': {
       borderColor: 'var(--vf-border-color-btn-danger)'
     },
+    '.form-border-color-blockquote': {
+      borderColor: 'var(--vf-border-color-blockquote)'
+    },
+    '.form-border-color-hr': {
+      borderColor: 'var(--vf-border-color-hr)'
+    },
 
     '.form-border-width-btn': {
       borderWidth: `var(--vf-border-width-btn)`,
@@ -1318,6 +1463,10 @@ const vueform = plugin((context) => {
     },
     '.form-border-width-tag': {
       borderWidth: `var(--vf-border-width-tag)`,
+      borderStyle: 'solid',
+    },
+    '.form-border-width-blockquote': {
+      borderLeftWidth: `var(--vf-border-width-blockquote)`,
       borderStyle: 'solid',
     },
 
@@ -1332,6 +1481,26 @@ const vueform = plugin((context) => {
     },
     '.form-shadow-handles': {
       boxShadow: 'var(--vf-shadow-handles)',
+    },
+
+    '.form-mt-tag-1': {
+      marginTop: 'var(--vf-space-static-tag-1)',
+    },
+    '.form-mt-tag-2': {
+      marginTop: 'var(--vf-space-static-tag-2)',
+    },
+    '.form-mt-tag-3': {
+      marginTop: 'var(--vf-space-static-tag-3)',
+    },
+
+    '.form-mb-tag-1': {
+      marginBottom: 'var(--vf-space-static-tag-1)',
+    },
+    '.form-mb-tag-2': {
+      marginBottom: 'var(--vf-space-static-tag-2)',
+    },
+    '.form-mb-tag-3': {
+      marginBottom: 'var(--vf-space-static-tag-3)',
     },
 
     '.form-hide-empty-img:not([src])': {
@@ -1666,6 +1835,18 @@ const vueform = plugin((context) => {
     },
     [`.${e('mask-size-3')}`]: {
       maskSize: '0.75rem 0.75rem',
+    },
+
+    // Static
+    '.form-static-tag-hr-wrapper': {
+      'hr': {
+        borderColor: 'inherit',
+      }
+    },
+    '.form-static-tag-img': {
+      'img': {
+        display: 'inline-block',
+      }
     },
   })
 
@@ -2095,6 +2276,9 @@ const vueform = plugin((context) => {
         ringWidth: theme('ringWidth.2'),
         ringOpacity: 0.4,
 
+        linkColor: 'var(--vf-primary)',
+        linkDecoration: 'underline',
+
         grays: theme('colors.gray'),
 
         fontSize: {
@@ -2109,10 +2293,76 @@ const vueform = plugin((context) => {
           lg: theme('fontSize.sm'),
         },
 
+        h1FontSize: {
+          base: '2.125rem',
+          sm: '2.125rem',
+          lg: '2.125rem',
+        },
+
+        h2FontSize: {
+          base: '1.875rem',
+          sm: '1.875rem',
+          lg: '1.875rem',
+        },
+
+        h3FontSize: {
+          base: '1.5rem',
+          sm: '1.5rem',
+          lg: '1.5rem',
+        },
+
+        h4FontSize: {
+          base: '1.25rem',
+          sm: '1.25rem',
+          lg: '1.25rem',
+        },
+
+        h1MobileFontSize: {
+          base: '1.5rem',
+          sm: '1.5rem',
+          lg: '1.5rem',
+        },
+
+        h2MobileFontSize: {
+          base: '1.25rem',
+          sm: '1.25rem',
+          lg: '1.25rem',
+        },
+
+        h3MobileFontSize: {
+          base: '1.125rem',
+          sm: '1.125rem',
+          lg: '1.125rem',
+        },
+
+        h4MobileFontSize: {
+          base: '1rem',
+          sm: '1rem',
+          lg: '1rem',
+        },
+
+        blockquoteFontSize: {
+          base: '1rem',
+          sm: '0.875rem',
+          lg: '1rem',
+        },
+
         lineHeight: {
           base: theme('fontSize.base')[1].lineHeight,
           sm: theme('fontSize.sm')[1].lineHeight,
           lg: theme('fontSize.base')[1].lineHeight,
+        },
+
+        headingsLineHeight: {
+          base: '1.2',
+          sm: '1.2',
+          lg: '1.2',
+        },
+
+        blockquoteLineHeight: {
+          base: '1.5rem',
+          sm: '1.25rem',
+          lg: '1.5rem',
         },
 
         smallLineHeight: {
@@ -2128,6 +2378,18 @@ const vueform = plugin((context) => {
         },
 
         smallLetterSpacing: {
+          base: 0,
+          sm: 0,
+          lg: 0,
+        },
+
+        headingsLetterSpacing: {
+          base: 0,
+          sm: 0,
+          lg: 0,
+        },
+
+        blockquoteLetterSpacing: {
           base: 0,
           sm: 0,
           lg: 0,
@@ -2229,6 +2491,24 @@ const vueform = plugin((context) => {
           lg: theme('padding')['2'],
         },
 
+        blockquotePy: {
+          base: '0.25rem',
+          sm: '0.25rem',
+          lg: '0.25rem',
+        },
+
+        blockquotePx: {
+          base: '0.75rem',
+          sm: '0.75rem',
+          lg: '0.75rem',
+        },
+
+        hrPy: {
+          base: '2rem',
+          sm: '1.5rem',
+          lg: '3rem',
+        },
+
         spaceAddon: {
           base: '0px',
           sm: 'var(--vf-space-addon)',
@@ -2246,6 +2526,10 @@ const vueform = plugin((context) => {
           sm: 'var(--vf-space-tags)',
           lg: 'var(--vf-space-tags)',
         },
+
+        spaceStaticTag1: '1rem',
+        spaceStaticTag2: '2rem',
+        spaceStaticTag3: '3rem',
 
         floatingTop: {
           base: '0px',
@@ -2281,6 +2565,7 @@ const vueform = plugin((context) => {
           ],
           toggle: theme('width')['0.5'], 
           tag: '1px',
+          blockquote: '3px',
         },
         
         inputRadius: { // can be array
@@ -2397,6 +2682,8 @@ const vueform = plugin((context) => {
           passive: 'var(--vf-gray-300)',
           btnDanger: 'var(--vf-danger)',
           btnSecondary: 'var(--vf-gray-200)',
+          blockquote: 'var(--vf-gray-300)',
+          hr: 'var(--vf-gray-300)',
         },
 
         shadows: {
