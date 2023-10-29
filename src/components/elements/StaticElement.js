@@ -47,6 +47,76 @@ export default {
       type: [Boolean],
       default: true
     },
+    tag: {
+      required: false,
+      type: [String],
+      default: undefined,
+    },
+    allowHtml: {
+      required: false,
+      type: [Boolean],
+      default: true,
+    },
+    href: {
+      required: false,
+      type: [String],
+      default: undefined,
+    },
+    target: {
+      required: false,
+      type: [String],
+      default: undefined,
+    },
+    rel: {
+      required: false,
+      type: [String],
+      default: undefined,
+    },
+    src: {
+      required: false,
+      type: [String],
+      default: undefined,
+    },
+    alt: {
+      required: false,
+      type: [String],
+      default: undefined,
+    },
+    title: {
+      required: false,
+      type: [String],
+      default: undefined,
+    },
+    width: {
+      required: false,
+      type: [String],
+      default: undefined,
+    },
+    height: {
+      required: false,
+      type: [String],
+      default: undefined,
+    },
+    attrs: {
+      required: false,
+      type: [Object],
+      default: () => ({}),
+    },
+    align: {
+      required: false,
+      type: [String],
+      default: undefined,
+    },
+    top: {
+      required: false,
+      type: [Number],
+      default: 0,
+    },
+    bottom: {
+      required: false,
+      type: [Number],
+      default: 0,
+    },
   },
   setup(props, context) {
     context.features = [

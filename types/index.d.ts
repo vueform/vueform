@@ -261,6 +261,16 @@ interface VueformElement extends DefineComponent {
   lazy: boolean;
   content: string | object;
   wrap: boolean;
+  tag: string;
+  allowHtml: boolean;
+  rel: string;
+  src: string;
+  alt: string;
+  title: string;
+  width: string;
+  height: string;
+  top: number;
+  bottom: number;
   onKeydown: Function;
   onKeyup: Function;
   onKeypress: Function;
@@ -665,6 +675,16 @@ interface VueformSchema {
   lazy?: boolean;
   content?: string | object;
   wrap?: boolean;
+  tag?: string;
+  allowHtml?: boolean;
+  rel?: string;
+  src?: string;
+  alt?: string;
+  title?: string;
+  width?: string;
+  height?: string;
+  top?: number;
+  bottom?: number;
   onKeydown?: Function;
   onKeyup?: Function;
   onKeypress?: Function;
@@ -2011,6 +2031,20 @@ interface StaticElementProps {
   id?: string;
   content?: string | object;
   wrap?: boolean;
+  tag?: string;
+  allowHtml?: boolean;
+  href?: string;
+  target?: string;
+  rel?: string;
+  src?: string;
+  alt?: string;
+  title?: string;
+  width?: string;
+  height?: string;
+  attrs?: object;
+  align?: string;
+  top?: number;
+  bottom?: number;
 }
 
 interface TEditorElementProps {
@@ -7086,6 +7120,20 @@ declare class StaticElement implements ReturnType<typeof defineComponent> {
   id: StaticElementProps['id'];
   content: StaticElementProps['content'];
   wrap: StaticElementProps['wrap'];
+  tag: StaticElementProps['tag'];
+  allowHtml: StaticElementProps['allowHtml'];
+  href: StaticElementProps['href'];
+  target: StaticElementProps['target'];
+  rel: StaticElementProps['rel'];
+  src: StaticElementProps['src'];
+  alt: StaticElementProps['alt'];
+  title: StaticElementProps['title'];
+  width: StaticElementProps['width'];
+  height: StaticElementProps['height'];
+  attrs: StaticElementProps['attrs'];
+  align: StaticElementProps['align'];
+  top: StaticElementProps['top'];
+  bottom: StaticElementProps['bottom'];
 
   // Computed
   descriptionId: string;

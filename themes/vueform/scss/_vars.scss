@@ -6,9 +6,6 @@
   --vf-success: #10b981;
   --vf-success-lighter: #d1fae5;
 
-  --vf-ring-width: 2px;
-  --vf-ring-color: #07bf9b66;
-
   --vf-gray-50: #f9fafb;
   --vf-gray-100: #f3f4f6;
   --vf-gray-200: #e5e7eb;
@@ -20,6 +17,12 @@
   --vf-gray-800: #1f2937;
   --vf-gray-900: #111827;
 
+  --vf-ring-color: #07bf9b66;
+  --vf-ring-width: 2px;
+
+  --vf-link-color: var(--vf-primary);
+  --vf-link-decoration: underline;
+
   --vf-font-size: 1rem;
   --vf-font-size-sm: 0.875rem;
   --vf-font-size-lg: 1rem;
@@ -27,6 +30,42 @@
   --vf-font-size-small: 0.875rem;
   --vf-font-size-small-sm: 0.8125rem;
   --vf-font-size-small-lg: 0.875rem;
+
+  --vf-font-size-h1: 2.125rem;
+  --vf-font-size-h1-sm: 2.125rem;
+  --vf-font-size-h1-lg: 2.125rem;
+
+  --vf-font-size-h2: 1.875rem;
+  --vf-font-size-h2-sm: 1.875rem;
+  --vf-font-size-h2-lg: 1.875rem;
+
+  --vf-font-size-h3: 1.5rem;
+  --vf-font-size-h3-sm: 1.5rem;
+  --vf-font-size-h3-lg: 1.5rem;
+
+  --vf-font-size-h4: 1.25rem;
+  --vf-font-size-h4-sm: 1.25rem;
+  --vf-font-size-h4-lg: 1.25rem;
+
+  --vf-font-size-h1-mobile: 1.5rem;
+  --vf-font-size-h1-mobile-sm: 1.5rem;
+  --vf-font-size-h1-mobile-lg: 1.5rem;
+
+  --vf-font-size-h2-mobile: 1.25rem;
+  --vf-font-size-h2-mobile-sm: 1.25rem;
+  --vf-font-size-h2-mobile-lg: 1.25rem;
+
+  --vf-font-size-h3-mobile: 1.125rem;
+  --vf-font-size-h3-mobile-sm: 1.125rem;
+  --vf-font-size-h3-mobile-lg: 1.125rem;
+
+  --vf-font-size-h4-mobile: 1rem;
+  --vf-font-size-h4-mobile-sm: 1rem;
+  --vf-font-size-h4-mobile-lg: 1rem;
+
+  --vf-font-size-blockquote: 1rem;
+  --vf-font-size-blockquote-sm: 0.875rem;
+  --vf-font-size-blockquote-lg: 1rem;
 
   --vf-line-height: 1.5rem;
   --vf-line-height-sm: 1.25rem;
@@ -36,6 +75,14 @@
   --vf-line-height-small-sm: 1.125rem;
   --vf-line-height-small-lg: 1.25rem;
 
+  --vf-line-height-headings: 1.2;
+  --vf-line-height-headings-sm: 1.2;
+  --vf-line-height-headings-lg: 1.2;
+
+  --vf-line-height-blockquote: 1.5rem;
+  --vf-line-height-blockquote-sm: 1.25rem;
+  --vf-line-height-blockquote-lg: 1.5rem;
+
   --vf-letter-spacing: 0;
   --vf-letter-spacing-sm: 0;
   --vf-letter-spacing-lg: 0;
@@ -43,6 +90,14 @@
   --vf-letter-spacing-small: 0;
   --vf-letter-spacing-small-sm: 0;
   --vf-letter-spacing-small-lg: 0;
+
+  --vf-letter-spacing-headings: 0;
+  --vf-letter-spacing-headings-sm: 0;
+  --vf-letter-spacing-headings-lg: 0;
+
+  --vf-letter-spacing-blockquote: 0;
+  --vf-letter-spacing-blockquote-sm: 0;
+  --vf-letter-spacing-blockquote-lg: 0;
 
   --vf-gutter: 1rem;
   --vf-gutter-sm: 0.5rem;
@@ -108,6 +163,18 @@
   --vf-px-slider-tooltip-sm: 0.3125rem;
   --vf-px-slider-tooltip-lg: 0.5rem;
 
+  --vf-py-blockquote: 0.25rem;
+  --vf-py-blockquote-sm: 0.25rem;
+  --vf-py-blockquote-lg: 0.25rem;
+
+  --vf-px-blockquote: 0.75rem;
+  --vf-px-blockquote-sm: 0.75rem;
+  --vf-px-blockquote-lg: 0.75rem;
+
+  --vf-py-hr: 2rem;
+  --vf-py-hr-sm: 1.5rem;
+  --vf-py-hr-lg: 3rem;
+
   // Space between addon and text input
   --vf-space-addon: 0;
   --vf-space-addon-sm: var(--vf-space-addon);
@@ -122,6 +189,11 @@
   --vf-space-tags: 0.1875rem;
   --vf-space-tags-sm: var(--vf-space-tags);
   --vf-space-tags-lg: var(--vf-space-tags);
+
+  // Space above `StaticElement` tags
+  --vf-space-tag-1: 1rem;
+  --vf-space-tag-2: 2rem;
+  --vf-space-tag-3: 3rem;
 
   // Space between the field's top and floating label
   --vf-floating-top: 0rem;
@@ -183,6 +255,8 @@
   --vf-border-color-btn: var(--vf-primary);
   --vf-border-color-btn-danger: var(--vf-danger);
   --vf-border-color-btn-secondary: var(--vf-gray-200);
+  --vf-border-color-blockquote: var(--vf-gray-300);
+  --vf-border-color-hr: var(--vf-gray-300);
 
   --vf-border-width-input-t: 1px;
   --vf-border-width-input-r: 1px;
@@ -203,6 +277,8 @@
   --vf-border-width-btn: 1px;
   --vf-border-width-toggle: 0.125rem;
   --vf-border-width-tag: 1px;
+  --vf-border-width-blockquote: 3px;
+  --vf-border-width-hr: 1px;
 
   --vf-shadow-input: 0px 0px 0px 0px rgba(0,0,0,0);
   --vf-shadow-input-hover: 0px 0px 0px 0px rgba(0,0,0,0);

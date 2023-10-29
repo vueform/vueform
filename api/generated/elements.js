@@ -28712,6 +28712,146 @@ module.exports = {
         required: false,
         private: false,
       },
+      tag: {
+        required: 'false',
+        default: 'undefined',
+        localized: false,
+        types: [
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
+      allowHtml: {
+        required: 'false',
+        default: 'true',
+        localized: false,
+        types: [
+          'boolean',
+        ],
+        required: false,
+        private: false,
+      },
+      href: {
+        required: 'false',
+        default: 'undefined',
+        localized: false,
+        types: [
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
+      target: {
+        required: 'false',
+        default: 'undefined',
+        localized: false,
+        types: [
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
+      rel: {
+        required: 'false',
+        default: 'undefined',
+        localized: false,
+        types: [
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
+      src: {
+        required: 'false',
+        default: 'undefined',
+        localized: false,
+        types: [
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
+      alt: {
+        required: 'false',
+        default: 'undefined',
+        localized: false,
+        types: [
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
+      title: {
+        required: 'false',
+        default: 'undefined',
+        localized: false,
+        types: [
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
+      width: {
+        required: 'false',
+        default: 'undefined',
+        localized: false,
+        types: [
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
+      height: {
+        required: 'false',
+        default: 'undefined',
+        localized: false,
+        types: [
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
+      attrs: {
+        required: 'false',
+        default: '{}',
+        localized: false,
+        types: [
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      align: {
+        required: 'false',
+        default: 'undefined',
+        localized: false,
+        types: [
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
+      top: {
+        required: 'false',
+        default: '0',
+        localized: false,
+        types: [
+          'number',
+        ],
+        required: false,
+        private: false,
+      },
+      bottom: {
+        required: 'false',
+        default: '0',
+        localized: false,
+        types: [
+          'number',
+        ],
+        required: false,
+        private: false,
+      },
     },
     data: {
       active: {

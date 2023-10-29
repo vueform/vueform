@@ -6,9 +6,6 @@
   --vf-success: #{$success};
   --vf-success-lighter: #{lighten($success, 45%)};
 
-  --vf-ring-width: #{$input-focus-width};
-  --vf-ring-color: #{rgba(red($primary), green($primary), blue($primary), 0.4)};
-
   --vf-gray-50: #f9fafb;
   --vf-gray-100: #{$gray-100};
   --vf-gray-200: #{$gray-200};
@@ -20,6 +17,12 @@
   --vf-gray-800: #{$gray-800};
   --vf-gray-900: #{$gray-900};
 
+  --vf-ring-width: #{$input-focus-width};
+  --vf-ring-color: #{rgba(red($primary), green($primary), blue($primary), 0.4)};
+
+  --vf-link-color: #{$link-color};
+  --vf-link-decoration: #{$link-decoration};
+
   --vf-font-size: #{$font-size-base};
   --vf-font-size-sm: #{$font-size-sm};
   --vf-font-size-lg: #{$font-size-lg};
@@ -28,9 +31,53 @@
   --vf-font-size-small-sm: #{$small-font-size};
   --vf-font-size-small-lg: #{$small-font-size};
 
-  --vf-line-height: #{$line-height-base}rem;
-  --vf-line-height-sm: #{$line-height-sm}rem;
-  --vf-line-height-lg: #{$line-height-lg}rem;
+  --vf-font-size-h1: #{$h1-font-size};
+  --vf-font-size-h1-sm: #{$h1-font-size};
+  --vf-font-size-h1-lg: #{$h1-font-size};
+
+  --vf-font-size-h2: #{$h2-font-size};
+  --vf-font-size-h2-sm: #{$h2-font-size};
+  --vf-font-size-h2-lg: #{$h2-font-size};
+
+  --vf-font-size-h3: #{$h3-font-size};
+  --vf-font-size-h3-sm: #{$h3-font-size};
+  --vf-font-size-h3-lg: #{$h3-font-size};
+
+  --vf-font-size-h4: #{$h4-font-size};
+  --vf-font-size-h4-sm: #{$h4-font-size};
+  --vf-font-size-h4-lg: #{$h4-font-size};
+
+  --vf-font-size-h1-mobile: #{$h1-font-size};
+  --vf-font-size-h1-mobile-sm: #{$h1-font-size};
+  --vf-font-size-h1-mobile-lg: #{$h1-font-size};
+
+  --vf-font-size-h2-mobile: #{$h2-font-size};
+  --vf-font-size-h2-mobile-sm: #{$h2-font-size};
+  --vf-font-size-h2-mobile-lg: #{$h2-font-size};
+
+  --vf-font-size-h3-mobile: #{$h3-font-size};
+  --vf-font-size-h3-mobile-sm: #{$h3-font-size};
+  --vf-font-size-h3-mobile-lg: #{$h3-font-size};
+
+  --vf-font-size-h4-mobile: #{$h4-font-size};
+  --vf-font-size-h4-mobile-sm: #{$h4-font-size};
+  --vf-font-size-h4-mobile-lg: #{$h4-font-size};
+
+  --vf-font-size-blockquote: #{$blockquote-font-size};
+  --vf-font-size-blockquote-sm: #{$blockquote-font-size};
+  --vf-font-size-blockquote-lg: #{$blockquote-font-size};
+
+  --vf-line-height: #{$line-height-base};
+  --vf-line-height-sm: #{$line-height-sm};
+  --vf-line-height-lg: #{$line-height-lg};
+
+  --vf-line-height-headings: #{$headings-line-height};
+  --vf-line-height-headings-sm: #{$headings-line-height};
+  --vf-line-height-headings-lg: #{$headings-line-height};
+
+  --vf-line-height-blockquote: #{$line-height-base};
+  --vf-line-height-blockquote-sm: #{$line-height-sm};
+  --vf-line-height-blockquote-lg: #{$line-height-lg};
 
   --vf-line-height-small: #{$line-height-base}rem;
   --vf-line-height-small-sm: #{$line-height-sm}rem;
@@ -43,6 +90,14 @@
   --vf-letter-spacing-small: 0;
   --vf-letter-spacing-small-sm: 0;
   --vf-letter-spacing-small-lg: 0;
+
+  --vf-letter-spacing-headings: 0;
+  --vf-letter-spacing-headings-sm: 0;
+  --vf-letter-spacing-headings-lg: 0;
+
+  --vf-letter-spacing-blockquote: 0;
+  --vf-letter-spacing-blockquote-sm: 0;
+  --vf-letter-spacing-blockquote-lg: 0;
 
   --vf-gutter: calc(#{$grid-gutter-width} / 2);
   --vf-gutter-sm: calc(#{$grid-gutter-width} / 4);
@@ -108,6 +163,18 @@
   --vf-px-slider-tooltip-sm: 0.3125rem;
   --vf-px-slider-tooltip-lg: 0.5rem;
 
+  --vf-py-blockquote: 0.5rem;
+  --vf-py-blockquote-sm: 0.5rem;
+  --vf-py-blockquote-lg: 0.5rem;
+
+  --vf-px-blockquote: 1rem;
+  --vf-px-blockquote-sm: 1rem;
+  --vf-px-blockquote-lg: 1rem;
+
+  --vf-py-hr: #{$hr-margin-y};
+  --vf-py-hr-sm:calc(#{$hr-margin-y} * 0.75);
+  --vf-py-hr-lg: calc(#{$hr-margin-y} * 1.5);
+
   // Space between addon and text input
   --vf-space-addon: #{$input-padding-x};
   --vf-space-addon-sm: var(--vf-space-addon);
@@ -122,6 +189,11 @@
   --vf-space-tags: 0.1875rem;
   --vf-space-tags-sm: var(--vf-space-tags);
   --vf-space-tags-lg: var(--vf-space-tags);
+
+  // Space above `StaticElement` tags
+  --vf-space-tag-1: 1rem;
+  --vf-space-tag-2: 2rem;
+  --vf-space-tag-3: 3rem;
 
   // Space between the field's top and floating label
   --vf-floating-top: 0rem;
@@ -183,6 +255,8 @@
   --vf-border-color-btn: var(--vf-primary);
   --vf-border-color-btn-danger: var(--vf-danger);
   --vf-border-color-btn-secondary: var(--vf-gray-200);
+  --vf-border-color-blockquote: var(--vf-gray-400);
+  --vf-border-color-hr: var(--vf-gray-600);
 
   --vf-border-width-input-t: #{$input-border-width};
   --vf-border-width-input-r: #{$input-border-width};
@@ -203,6 +277,8 @@
   --vf-border-width-btn: #{$input-border-width};
   --vf-border-width-toggle: 0.125rem;
   --vf-border-width-tag: 1px;
+  --vf-border-width-blockquote: 3px;
+  --vf-border-width-hr: 1px;
 
   --vf-shadow-input: #{$input-box-shadow};
   --vf-shadow-input-hover: #{$input-box-shadow};
