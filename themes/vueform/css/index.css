@@ -142,9 +142,9 @@
   --vf-space-tags: 0.1875rem;
   --vf-space-tags-sm: var(--vf-space-tags);
   --vf-space-tags-lg: var(--vf-space-tags);
-  --vf-space-tag-1: 1rem;
-  --vf-space-tag-2: 2rem;
-  --vf-space-tag-3: 3rem;
+  --vf-space-static-tag-1: 1rem;
+  --vf-space-static-tag-2: 2rem;
+  --vf-space-static-tag-3: 3rem;
   --vf-floating-top: 0rem;
   --vf-floating-top-sm: 0rem;
   --vf-floating-top-lg: 0.6875rem;
@@ -220,7 +220,6 @@
   --vf-border-width-toggle: 0.125rem;
   --vf-border-width-tag: 1px;
   --vf-border-width-blockquote: 3px;
-  --vf-border-width-hr: 1px;
   --vf-shadow-input: 0px 0px 0px 0px rgba(0,0,0,0);
   --vf-shadow-input-hover: 0px 0px 0px 0px rgba(0,0,0,0);
   --vf-shadow-input-focus: 0px 0px 0px 0px rgba(0,0,0,0);
@@ -838,21 +837,20 @@ form ::placeholder {
 }
 
 .vf-static-tag-hr {
-  color: var(--vf-border-color-hr);
-  margin: var(--vf-py-hr) 0;
+  border-color: var(--vf-border-color-hr);
+  padding: var(--vf-py-hr) 0;
 }
 
 .vf-static-tag-hr hr {
-  border-color: currentColor;
-  border-top-width: var(--vf-border-width-hr);
+  border-color: inherit;
 }
 
 .vf-static-tag-hr.vf-static-tag-sm {
-  margin: var(--vf-py-hr-sm) 0;
+  padding: var(--vf-py-hr-sm) 0;
 }
 
 .vf-static-tag-hr.vf-static-tag-lg {
-  margin: var(--vf-py-hr-lg) 0;
+  padding: var(--vf-py-hr-lg) 0;
 }
 
 .vf-static-tag-img img {
@@ -860,27 +858,27 @@ form ::placeholder {
 }
 
 .vf-static-tag-top-1 {
-  margin-top: var(--vf-space-tag-1);
+  margin-top: var(--vf-space-static-tag-1);
 }
 
 .vf-static-tag-top-2 {
-  margin-top: var(--vf-space-tag-2);
+  margin-top: var(--vf-space-static-tag-2);
 }
 
 .vf-static-tag-top-3 {
-  margin-top: var(--vf-space-tag-3);
+  margin-top: var(--vf-space-static-tag-3);
 }
 
 .vf-static-tag-bottom-1 {
-  margin-bottom: var(--vf-space-tag-1);
+  margin-bottom: var(--vf-space-static-tag-1);
 }
 
 .vf-static-tag-bottom-2 {
-  margin-bottom: var(--vf-space-tag-2);
+  margin-bottom: var(--vf-space-static-tag-2);
 }
 
 .vf-static-tag-bottom-3 {
-  margin-bottom: var(--vf-space-tag-3);
+  margin-bottom: var(--vf-space-static-tag-3);
 }
 
 .vf-static-tag-h1,

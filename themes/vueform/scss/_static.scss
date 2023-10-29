@@ -58,20 +58,19 @@ $md-breakpoint: map-get($grid-breakpoints, md);
 }
 
 .vf-static-tag-hr {
-  color: var(--vf-border-color-hr);
-  margin: var(--vf-py-hr) 0;
+  border-color: var(--vf-border-color-hr);
+  padding: var(--vf-py-hr) 0;
 
   hr {
-    border-color: currentColor;
-    border-top-width: var(--vf-border-width-hr);
+    border-color: inherit;
   }
 
   &.vf-static-tag-sm {
-    margin: var(--vf-py-hr-sm) 0;
+    padding: var(--vf-py-hr-sm) 0;
   }
 
   &.vf-static-tag-lg {
-    margin: var(--vf-py-hr-lg) 0;
+    padding: var(--vf-py-hr-lg) 0;
   }
 }
 
@@ -82,27 +81,27 @@ $md-breakpoint: map-get($grid-breakpoints, md);
 }
 
 .vf-static-tag-top-1 {
-  margin-top: var(--vf-space-tag-1);
+  margin-top: var(--vf-space-static-tag-1);
 }
 
 .vf-static-tag-top-2 {
-  margin-top: var(--vf-space-tag-2);
+  margin-top: var(--vf-space-static-tag-2);
 }
 
 .vf-static-tag-top-3 {
-  margin-top: var(--vf-space-tag-3);
+  margin-top: var(--vf-space-static-tag-3);
 }
 
 .vf-static-tag-bottom-1 {
-  margin-bottom: var(--vf-space-tag-1);
+  margin-bottom: var(--vf-space-static-tag-1);
 }
 
 .vf-static-tag-bottom-2 {
-  margin-bottom: var(--vf-space-tag-2);
+  margin-bottom: var(--vf-space-static-tag-2);
 }
 
 .vf-static-tag-bottom-3 {
-  margin-bottom: var(--vf-space-tag-3);
+  margin-bottom: var(--vf-space-static-tag-3);
 }
 
 .vf-static-tag-h1,

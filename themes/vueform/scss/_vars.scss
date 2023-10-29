@@ -191,9 +191,9 @@
   --vf-space-tags-lg: var(--vf-space-tags);
 
   // Space above `StaticElement` tags
-  --vf-space-tag-1: 1rem;
-  --vf-space-tag-2: 2rem;
-  --vf-space-tag-3: 3rem;
+  --vf-space-static-tag-1: 1rem;
+  --vf-space-static-tag-2: 2rem;
+  --vf-space-static-tag-3: 3rem;
 
   // Space between the field's top and floating label
   --vf-floating-top: 0rem;
@@ -278,7 +278,6 @@
   --vf-border-width-toggle: 0.125rem;
   --vf-border-width-tag: 1px;
   --vf-border-width-blockquote: 3px;
-  --vf-border-width-hr: 1px;
 
   --vf-shadow-input: 0px 0px 0px 0px rgba(0,0,0,0);
   --vf-shadow-input-hover: 0px 0px 0px 0px rgba(0,0,0,0);
