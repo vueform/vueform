@@ -28752,16 +28752,6 @@ module.exports = {
         required: false,
         private: false,
       },
-      rel: {
-        required: 'false',
-        default: 'undefined',
-        localized: false,
-        types: [
-          'string',
-        ],
-        required: false,
-        private: false,
-      },
       src: {
         required: 'false',
         default: 'undefined',
@@ -28837,6 +28827,7 @@ module.exports = {
         default: '0',
         localized: false,
         types: [
+          'string',
           'number',
         ],
         required: false,
@@ -28847,6 +28838,7 @@ module.exports = {
         default: '0',
         localized: false,
         types: [
+          'string',
           'number',
         ],
         required: false,

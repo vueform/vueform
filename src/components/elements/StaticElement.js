@@ -67,11 +67,6 @@ export default {
       type: [String],
       default: undefined,
     },
-    rel: {
-      required: false,
-      type: [String],
-      default: undefined,
-    },
     src: {
       required: false,
       type: [String],
