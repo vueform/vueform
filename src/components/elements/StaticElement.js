@@ -109,12 +109,12 @@ export default {
     },
     top: {
       required: false,
-      type: [Number],
+      type: [String, Number],
       default: 0,
     },
     bottom: {
       required: false,
-      type: [Number],
+      type: [String, Number],
       default: 0,
     },
   },
