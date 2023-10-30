@@ -2277,7 +2277,7 @@ const vueform = plugin((context) => {
         ringOpacity: 0.4,
 
         linkColor: 'var(--vf-primary)',
-        linkDecoration: 'underline',
+        linkDecoration: 'none',
 
         grays: theme('colors.gray'),
 
