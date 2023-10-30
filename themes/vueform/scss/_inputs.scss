@@ -567,6 +567,14 @@
     width: 100%;
   }
 
+  &.vf-btn-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
   &[disabled],
   &.vf-btn-disabled {
     opacity: 0.6;
