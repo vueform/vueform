@@ -39,7 +39,7 @@
         </div>
         
         <div v-if="tag === 'a'" :class="classes.tag">
-          <a :href="href" :target="target" :rel="rel" v-bind="attrs">{{ content }}</a>
+          <a :href="href" :target="target" v-bind="attrs">{{ content }}</a>
         </div>
         
         <div v-if="tag === 'hr'" :class="classes.tag">
@@ -47,7 +47,7 @@
         </div>
         
         <div v-if="tag === 'img'" :class="classes.tag">
-          <a v-if="href" :href="href" :target="target" :rel="rel">
+          <a v-if="href" :href="href" :target="target">
             <img :src="src" :alt="alt" :title="title" :width="width" :height="height" v-bind="attrs" />
           </a>
           <img v-else :src="src" :alt="alt" :title="title" :width="width" :height="height" v-bind="attrs" />
