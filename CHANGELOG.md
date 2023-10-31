@@ -1,5 +1,14 @@
 [//]: # (Don't use <tags>)
 
+## v1.5.4
+
+> `2023-10-23`
+
+### 🎉 Feature
+- Added `full` and `align` props to `ButtonElement`.
+- Added `align` prop to `ToggleElement`, `CheckboxElement` and `RadioElement`.
+- Added `allowHtml`, `top`, `bottom`, `align`, `attrs`, `tag`, `href`, `target`, `src`, `alt`, `title`, `width` and `height` props to `StaticElement` making it able to display different HTML tags without actually using HTML.
+
 ## v1.5.3
 
 > `2023-10-23`
