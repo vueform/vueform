@@ -1580,6 +1580,14 @@ form ::placeholder {
   width: 100%;
 }
 
+.vf-btn.vf-btn-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .vf-btn[disabled], .vf-btn.vf-btn-disabled {
   opacity: 0.6;
   cursor: not-allowed;
