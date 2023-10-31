@@ -995,6 +995,12 @@ export default {
     content_sm: 'form-text-sm',
     content_md: 'form-text',
     content_lg: 'form-text-lg',
+    content_top_1: 'form-mt-tag-1',
+    content_top_2: 'form-mt-tag-2',
+    content_top_3: 'form-mt-tag-3',
+    content_bottom_1: 'form-mb-tag-1',
+    content_bottom_2: 'form-mb-tag-2',
+    content_bottom_3: 'form-mb-tag-3',
     tag: '',
     tag_sm: '',
     tag_md: '',
@@ -1041,9 +1047,11 @@ export default {
     tag_hr_md: 'form-py-hr',
     tag_hr_lg: 'form-py-hr-lg',
     tag_img: 'form-static-tag-img',
-    $content: (classes, { Size }) => ([
+    $content: (classes, { Size, top, bottom }) => ([
       classes.content,
       classes[`content_${Size}`],
+      top >= 1 ? classes[`content_top_${top}`] : null,
+      bottom >= 1 ? classes[`content_bottom_${bottom}`] : null,
     ]),
     $tag: (classes, { Size, tag, align, top, bottom }) => ([
       classes.tag,
