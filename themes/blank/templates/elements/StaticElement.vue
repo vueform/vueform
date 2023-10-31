@@ -39,7 +39,8 @@
         </div>
         
         <div v-if="tag === 'a'" :class="classes.tag">
-          <a :href="href" :target="target" v-bind="attrs">{{ content }}</a>
+          <a v-if="allowHtml" :href="href" :target="target" v-bind="attrs" v-html="content"></a>
+          <a v-else :href="href" :target="target" v-bind="attrs">{{ content }}</a>
         </div>
         
         <div v-if="tag === 'hr'" :class="classes.tag">
