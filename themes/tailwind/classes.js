@@ -1042,10 +1042,7 @@ export default {
     tag_a_sm: '',
     tag_a_md: '',
     tag_a_lg: '',
-    tag_hr: 'form-static-tag-hr-wrapper form-border-color-hr',
-    tag_hr_sm: 'form-py-hr-sm',
-    tag_hr_md: 'form-py-hr',
-    tag_hr_lg: 'form-py-hr-lg',
+    tag_hr: 'form-static-tag-hr-wrapper form-border-color-hr form-py-hr',
     tag_img: 'form-static-tag-img',
     $content: (classes, { Size, top, bottom }) => ([
       classes.content,

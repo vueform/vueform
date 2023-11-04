@@ -64,14 +64,6 @@ $md-breakpoint: map-get($grid-breakpoints, md);
   hr {
     border-color: inherit;
   }
-
-  &.vf-static-tag-sm {
-    padding: var(--vf-py-hr-sm) 0;
-  }
-
-  &.vf-static-tag-lg {
-    padding: var(--vf-py-hr-lg) 0;
-  }
 }
 
 .vf-static-tag-img {

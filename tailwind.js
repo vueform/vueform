@@ -295,8 +295,6 @@ const vueform = plugin((context) => {
         '--vf-px-blockquote-lg': theme('form.blockquotePx.lg'),
 
         '--vf-py-hr': theme('form.hrPy.base'),
-        '--vf-py-hr-sm': theme('form.hrPy.sm'),
-        '--vf-py-hr-lg': theme('form.hrPy.lg'),
 
         '--vf-space-addon': theme('form.spaceAddon.base'),
         '--vf-space-addon-sm': theme('form.spaceAddon.sm'),
@@ -943,8 +941,8 @@ const vueform = plugin((context) => {
       padding: `var(--vf-py-blockquote${size}) var(--vf-px-blockquote${size})`
     }
 
-    plain[`.form-py-hr${suffix}`] = {
-      padding: `var(--vf-py-hr${size}) 0px`
+    plain[`.form-py-hr`] = {
+      padding: `var(--vf-py-hr) 0px`
     }
 
     plain[`.form-mt-checkbox${suffix}`] = {
