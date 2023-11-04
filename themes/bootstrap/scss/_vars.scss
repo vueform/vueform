@@ -171,9 +171,7 @@
   --vf-px-blockquote-sm: 1rem;
   --vf-px-blockquote-lg: 1rem;
 
-  --vf-py-hr: #{$hr-margin-y};
-  --vf-py-hr-sm:calc(#{$hr-margin-y} * 0.75);
-  --vf-py-hr-lg: calc(#{$hr-margin-y} * 1.5);
+  --vf-py-hr: 0.25rem;
 
   // Space between addon and text input
   --vf-space-addon: #{$input-padding-x};

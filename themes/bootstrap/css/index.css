@@ -130,9 +130,7 @@
   --vf-px-blockquote: 1rem;
   --vf-px-blockquote-sm: 1rem;
   --vf-px-blockquote-lg: 1rem;
-  --vf-py-hr: 1rem;
-  --vf-py-hr-sm: calc(1rem * 0.75);
-  --vf-py-hr-lg: calc(1rem * 1.5);
+  --vf-py-hr: 0.25rem;
   --vf-space-addon: 0.75rem;
   --vf-space-addon-sm: var(--vf-space-addon);
   --vf-space-addon-lg: var(--vf-space-addon);
