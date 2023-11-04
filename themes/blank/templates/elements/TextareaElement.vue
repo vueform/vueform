@@ -32,6 +32,7 @@
             ...attrs,
             ...aria,
           }"
+          :data-autogrow="autogrow || undefined"
           @keydown="handleKeydown"
           @keyup="handleKeyup"
           @keypress="handleKeypress"
