@@ -280,7 +280,7 @@ export default {
     clearOnSelect: {
       type: [Boolean],
       required: false,
-      default: true,
+      default: false,
       native: false,
     },
     closeOnSelect: {

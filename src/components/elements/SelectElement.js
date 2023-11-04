@@ -265,7 +265,7 @@ export default {
     clearOnRefetch: {
       type: [Boolean],
       required: false,
-      default: true,
+      default: false,
     },
 
     delay: {
