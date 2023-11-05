@@ -843,14 +843,6 @@ form ::placeholder {
   border-color: inherit;
 }
 
-.vf-static-tag-hr.vf-static-tag-sm {
-  padding: var(--vf-py-hr-sm) 0;
-}
-
-.vf-static-tag-hr.vf-static-tag-lg {
-  padding: var(--vf-py-hr-lg) 0;
-}
-
 .vf-static-tag-img img {
   display: inline-block;
 }
