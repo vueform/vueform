@@ -1,5 +1,9 @@
 import { App, defineComponent, DefineComponent, VNode } from 'vue';
 
+declare module '@vueform/vueform' {
+  export function install(options?: any): any;
+}
+
 interface MessageBag {
   constructor(baseErrors: any);
   get errors(): any;
