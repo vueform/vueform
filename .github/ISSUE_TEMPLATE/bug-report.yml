@@ -1,6 +1,6 @@
 name: "\U0001F41E Bug report"
 description: Create a report to help us improve Vueform
-labels: ["pending triage"]
+labels: ["uncategorized"]
 body:
   - type: markdown
     attributes:
@@ -14,7 +14,7 @@ body:
     id: bug-env
     attributes:
       label: Environment
-      description: Please list **framework with version** (Vite 4.5.0, Nuxt 3.7.4, etc.) and **package manager** (npm/yarn/pnpm/bun)
+      description: Please list **framework with version** (Vite 4.5.0, Nuxt 3.7.4, etc.), the theme (vueform/tailwind/etc) and the **package manager** (npm/yarn/pnpm/bun)
       placeholder: Environment
     validations:
       required: true

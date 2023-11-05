@@ -1,6 +1,6 @@
 name: "🚀 Feature request"
 description: Suggest a feature that will improve Vueform
-labels: ["pending triage"]
+labels: ["uncategorized"]
 body:
   - type: markdown
     attributes:
