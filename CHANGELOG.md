@@ -7,6 +7,7 @@
 ### 🎉 Feature
 - `clearOnRefetch` defaults to false
 - Add `data-autogrow` to textarea
+- Add types for `vite`, main exports and config
 
 ### 🐞 Bug Fixes
 - `fieldId` use parent `fieldId`
