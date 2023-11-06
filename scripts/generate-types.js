@@ -69,6 +69,92 @@ const transformReturns = (returns, key) => {
 // Base
 let content = `import { App, defineComponent, DefineComponent, VNode } from 'vue';
 
+interface EndpointConfig {
+  url?: string;
+  method?: string;
+}
+
+interface AlgoliaConfig {
+  app_id?: string;
+  api_key?: string;
+}
+
+interface VueformConfig {
+  env?: string;
+  plugins?: any[];
+  elements?: any[];
+  theme: object;
+  templates?: object;
+  views?: object;
+  size?: string;
+  addClasses?: object;
+  removeClasses?: object;
+  replaceClasses?: object;
+  overrideClasses?: object;
+  presets?: object;
+  usePresets?: any[];
+  classHelpers?: boolean;
+  columns?: object;
+  forceLabels?: boolean;
+  floatPlaceholders?: boolean;
+  displayErrors?: boolean;
+  displayMessages?: boolean;
+  breakpoints?: string[];
+  languages?: object;
+  language?: string;
+  locales: object;
+  locale: null | string;
+  fallbackLocale?: string;
+  orderFrom?: number;
+  rules?: object;
+  validateOn?: 'change' | 'step' | 'change|step';
+  endpoints?: {
+    submit?: EndpointConfig;
+    uploadTempFile?: EndpointConfig;
+    removeTempFile?: EndpointConfig;
+    removeFile?: EndpointConfig;
+    attachment?: EndpointConfig;
+    activeUrl?: EndpointConfig;
+    unique?: EndpointConfig;
+    exists?: EndpointConfig;
+    [key: string]: EndpointConfig;
+  };
+  formData?: (form$: any) => any;
+  beforeSend?: any;
+  axios?: any;
+  locationProvider?: string;
+  services?: {
+    algolia: AlgoliaConfig;
+    [key: string]: object;
+  };
+}
+
+declare module '@vueform/vueform' {
+    const config: any;
+    const components: any;
+    const useVueform: any;
+    const useClasses: any;
+    const Vueform: any;
+    const Validator: any;
+    const vueform: any;
+    const element: any;
+    function defineConfig(options: VueformConfig): VueformConfig;
+
+  export {
+    config,
+    components,
+    useVueform,
+    useClasses,
+    Vueform,
+    Validator,
+    vueform,
+    element,
+    defineConfig,
+  }
+
+  export default function install(options?: any): any;
+}
+
 interface MessageBag {
   constructor(baseErrors: any);
   get errors(): any;

@@ -6,6 +6,7 @@ import Vueform from './components/Vueform'
 import Validator from './services/validation/validator'
 import installer from './installer'
 import element from './element'
+import defineConfig from './defineConfig'
 
 const vueform = installer(config, components)
 
@@ -18,6 +19,7 @@ export {
   Validator,
   vueform,
   element,
+  defineConfig,
  }
 
  export default vueform
