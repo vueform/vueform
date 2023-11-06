@@ -4,11 +4,12 @@ const base = function(props, context, dependencies)
 {
   const {
     id,
+    name,
   } = toRefs(props)
   
   // ============ DEPENDENCIES ============
   
-  const path = dependencies.path
+  const parent = dependencies.parent
   
   // ============== COMPUTED ==============
   
@@ -18,7 +19,7 @@ const base = function(props, context, dependencies)
    * @type {string}
    */
   const fieldId = computed(() => {
-    return id.value || path.value
+    return id.value || (parent.value?.fieldId ? `${parent.value?.fieldId}.${name.value}` : name.value)
   })
   
   return {
