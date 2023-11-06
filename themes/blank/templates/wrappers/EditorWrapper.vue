@@ -1,15 +1,7 @@
 <template>
   <div :class="classes.container">
-    <input :id="`editor-input-${id}`" :value="value" type="hidden">
-    <trix-editor
-      :placeholder="placeholder"
-      :disabled="disabled"
-      :id="id"
-      :input="`editor-input-${id}`"
-      v-bind="attrs"
-      v-pre
-      ref="editor$"
-    ></trix-editor>
+    <input :id="`editor-input-${id}`" :value="value" type="hidden" />
+    <component :is="editorComponent" />
   </div>
 </template>
 

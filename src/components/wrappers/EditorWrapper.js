@@ -1,4 +1,4 @@
-import { ref, watch, onMounted, toRefs, computed, onBeforeUnmount } from 'vue'
+import { ref, watch, onMounted, toRefs, computed, onBeforeUnmount, h } from 'vue'
 import useElementComponent from './../../composables/useElementComponent'
 
 export default {
@@ -68,7 +68,10 @@ export default {
       acceptMimes,
       accept,
       endpoint,
-      method
+      method,
+      attrs,
+      placeholder,
+      id,
     } = toRefs(props)
 
     // ============ DEPENDENCIES ============
@@ -117,6 +120,17 @@ export default {
       }
 
       return method.value || form$.value.$vueform.config.endpoints.attachment.method
+    })
+
+    const editorComponent = computed(() => {
+      return h('trix-editor', {
+        ...attrs.value,
+        placeholder: placeholder.value,
+        disabled: disabled.value,
+        id: id.value,
+        input: `editor-input-${id.value}`,
+        ref: 'editor$',
+      })
     })
 
     // =============== METHODS ==============
@@ -290,6 +304,7 @@ export default {
       View,
       classesInstance,
       resolvedEndpoint,
+      editorComponent,
       theme,
       classes,
       Templates,
