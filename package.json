@@ -62,7 +62,7 @@
     "sass-loader": "^7.1.0",
     "sortablejs": "^1.15.0",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.2",
-    "vue": "^3.2.20",
+    "vue": "^3.3.8",
     "vue-jest": "npm:@vue/vue3-jest@^27.0.0-alpha.1",
     "vue-loader": "^15.10.0"
   },
