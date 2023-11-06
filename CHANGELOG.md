@@ -1,5 +1,12 @@
 [//]: # (Don't use <tags>)
 
+## v1.5.6
+
+> `2023-11-06`
+
+### 🐞 Bug Fixes
+- Reset validators on reset.
+
 ## v1.5.5
 
 > `2023-11-06`
