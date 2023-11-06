@@ -1,5 +1,20 @@
 [//]: # (Don't use <tags>)
 
+## v1.5.5
+
+> `2023-11-06`
+
+### 🎉 Feature
+- `clearOnRefetch` defaults to false
+- Add `data-autogrow` to textarea
+
+### 🐞 Bug Fixes
+- `fieldId` use parent `fieldId`
+- Missing editor placeholder #13
+- Add missing types
+- Divider single & smaller py
+- No `trackBy` default for select, multiselect, tags
+
 ## v1.5.4
 
 > `2023-10-23`
