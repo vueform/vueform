@@ -5,11 +5,6 @@ interface EndpointConfig {
   method?: string;
 }
 
-interface AlgoliaConfig {
-  app_id?: string;
-  api_key?: string;
-}
-
 interface VueformConfig {
   env?: string;
   plugins?: any[];
@@ -54,10 +49,8 @@ interface VueformConfig {
   beforeSend?: any;
   axios?: any;
   locationProvider?: string;
-  services?: {
-    algolia: AlgoliaConfig;
-    [key: string]: object;
-  };
+  services?: object;
+  [key: string]: any;
 }
 
 declare module '@vueform/vueform' {
@@ -83,7 +76,7 @@ declare module '@vueform/vueform' {
     defineConfig,
   }
 
-  export default function install(options?: any): any;
+  export default function install(app?: any, options: VueformConfig): any;
 }
 
 interface MessageBag {
