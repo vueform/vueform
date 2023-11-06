@@ -18766,7 +18766,7 @@ module.exports = {
       },
       clearOnSelect: {
         required: 'false',
-        default: 'true',
+        default: 'false',
         localized: false,
         types: [
           'boolean',
@@ -25217,7 +25217,7 @@ module.exports = {
       },
       trackBy: {
         required: 'false',
-        default: 'label',
+        default: 'undefined',
         localized: false,
         types: [
           'string',
@@ -25394,7 +25394,7 @@ module.exports = {
       },
       clearOnRefetch: {
         required: 'false',
-        default: 'true',
+        default: 'false',
         localized: false,
         types: [
           'boolean',
@@ -35205,7 +35205,7 @@ module.exports = {
       },
       clearOnRefetch: {
         required: 'false',
-        default: 'true',
+        default: 'false',
         localized: false,
         types: [
           'boolean',
