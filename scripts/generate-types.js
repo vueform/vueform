@@ -75,6 +75,7 @@ interface EndpointConfig {
 }
 
 interface VueformConfig {
+  apiKey?: string;
   env?: string;
   plugins?: any[];
   elements?: any[];
