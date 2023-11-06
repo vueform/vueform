@@ -104,6 +104,10 @@ const base = function(props, context, dependencies, options = {})
   const reset = () => {
     setValue(_.cloneDeep(defaultValue.value))
     resetValidators()
+
+    nextTick(() => {
+      resetValidators()
+    })
   }
   
   /**
@@ -169,6 +173,10 @@ const select = function(props, context, dependencies, options = {})
     if (typeof items.value === 'string' && resolveOnLoad.value !== false) {
       updateItems()
     }
+
+    nextTick(() => {
+      resetValidators()
+    })
   }
 
   return {
@@ -520,6 +528,7 @@ const list = function(props, context, dependencies, options)
     }
     
     nextTick(() => {
+      resetValidators()
       refreshOrderStore(value.value)
     })
   }
