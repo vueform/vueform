@@ -2503,8 +2503,6 @@ const vueform = plugin((context) => {
 
         hrPy: {
           base: '2rem',
-          sm: '1.5rem',
-          lg: '3rem',
         },
 
         spaceAddon: {
