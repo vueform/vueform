@@ -1,4 +1,5 @@
-import _ from 'lodash'
+// import _ from 'lodash'
+import upperFirst from 'lodash/upperFirst'
 
 const base = function(props, context, dependencies)
 { 

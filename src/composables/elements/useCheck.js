@@ -1,4 +1,7 @@
-import _ from 'lodash'
+// import _ from 'lodash'
+import isArray from 'lodash/isArray'
+import clone from 'lodash/clone'
+import each from 'lodash/each'
 
 const base = function(props, context, dependencies)
 {

@@ -1,4 +1,5 @@
-import _ from 'lodash'
+// import _ from 'lodash'
+import camelCase from 'lodash/camelCase'
 import { computed, toRefs } from 'vue'
 
 const base = function(props, context, dependencies, /* istanbul ignore next */ options = {})

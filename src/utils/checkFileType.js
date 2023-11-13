@@ -1,4 +1,7 @@
-import _ from 'lodash'
+// import _ from 'lodash'
+import each from 'lodash/each'
+import isArray from 'lodash/isArray'
+import some from 'lodash/some'
 
 export default function checkFileType (file, accept) {
   if (!accept) {

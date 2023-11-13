@@ -1,4 +1,7 @@
-import _ from 'lodash'
+// import _ from 'lodash'
+import upperFirst from 'lodash/upperFirst'
+import camelCase from 'lodash/camelCase'
+import omit from 'lodash/omit'
 import { ref } from 'vue'
 import useElementBase from './composables/useElement'
 import useForm$ from './composables/useForm$'

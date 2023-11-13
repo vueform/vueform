@@ -1,4 +1,6 @@
-import _ from 'lodash'
+// import _ from 'lodash'
+import each from 'lodash/each'
+import merge from 'lodash/merge'
 export default class Columns
 {
   defaultBreakpoint = 'default'

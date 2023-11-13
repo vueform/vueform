@@ -1,4 +1,6 @@
-import _ from 'lodash'
+// import _ from 'lodash'
+import each from 'lodash/each'
+import isArray from 'lodash/isArray'
 import compare from './../../utils/compare'
 import replaceWildcards from './../../utils/replaceWildcards'
 

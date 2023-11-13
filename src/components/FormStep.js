@@ -1,4 +1,7 @@
-import _ from 'lodash'
+// import _ from 'lodash'
+import filter from 'lodash/filter'
+import some from 'lodash/some'
+import each from 'lodash/each'
 import { toRefs, ref, computed, onMounted, nextTick, watch, onBeforeMount, onBeforeUnmount, getCurrentInstance, markRaw } from 'vue'
 import useFormComponent from './../composables/useFormComponent'
 import useConditions from './../composables/useConditions'

@@ -1,4 +1,6 @@
-import _ from 'lodash'
+// import _ from 'lodash'
+import each from 'lodash/each'
+import keys from 'lodash/keys'
 import Validator from './../validator'
 
 export default class unique extends Validator {

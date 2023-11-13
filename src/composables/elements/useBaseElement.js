@@ -1,4 +1,5 @@
-import _ from 'lodash'
+// import _ from 'lodash'
+import lowerFirst from 'lodash/lowerFirst'
 import {
   computed, getCurrentInstance, provide, toRefs, onBeforeMount, onMounted, onBeforeUpdate,
   onUpdated, onBeforeUnmount, onUnmounted, ref,

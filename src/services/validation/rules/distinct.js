@@ -1,4 +1,6 @@
-import _ from 'lodash'
+// import _ from 'lodash'
+import each from 'lodash/each'
+import values from 'lodash/values'
 import Validator from './../validator'
 import pregQuote from './../../../utils/pregQuote'
 import flattenKeys from './../../../utils/flattenKeys'

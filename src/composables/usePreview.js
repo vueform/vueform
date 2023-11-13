@@ -1,4 +1,4 @@
-import _ from 'lodash'
+// import _ from 'lodash'
 import { computed, nextTick } from 'vue'
 
 const base = function(props, context, dependencies)

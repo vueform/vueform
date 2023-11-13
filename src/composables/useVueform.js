@@ -1,4 +1,9 @@
-import _ from 'lodash'
+// import _ from 'lodash'
+import each from 'lodash/each'
+import merge from 'lodash/merge'
+import some from 'lodash/some'
+import isEmpty from 'lodash/isEmpty'
+import upperFirst from 'lodash/upperFirst'
 import {
   computed, ref, toRefs, getCurrentInstance, onBeforeMount, onMounted, onBeforeUpdate,
   onUpdated, onBeforeUnmount, onUnmounted, provide, watch,

@@ -1,4 +1,4 @@
-import _ from 'lodash'
+import each from 'lodash/each'
 import { onMounted, ref, toRefs, } from 'vue'
 import useElementComponent from './../composables/useElementComponent'
 

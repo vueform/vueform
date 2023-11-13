@@ -1,4 +1,8 @@
-import _ from 'lodash'
+// import _ from 'lodash'
+import each from 'lodash/each'
+import isArray from 'lodash/isArray'
+import clone from 'lodash/clone'
+import map from 'lodash/map'
 import { computed, ref, toRefs } from 'vue'
 
 const base = function(props, context, dependencies)

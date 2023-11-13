@@ -1,4 +1,7 @@
-import _ from 'lodash'
+// import _ from 'lodash'
+import isObject from 'lodash/isObject'
+import reduce from 'lodash/reduce'
+import merge from 'lodash/merge'
 
 const flattenKeys = function(obj, path = []) {
   return !_.isObject(obj)

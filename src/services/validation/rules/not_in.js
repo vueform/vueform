@@ -1,4 +1,5 @@
-import _ from 'lodash'
+// import _ from 'lodash'
+import values from 'lodash/values'
 import Validator from './../validator'
 
 export default class not_in extends Validator {

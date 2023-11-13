@@ -1,4 +1,9 @@
-import _ from 'lodash'
+// import _ from 'lodash'
+import each from 'lodash/each'
+import cloneDeep from 'lodash/cloneDeep'
+import isPlainObject from 'lodash/isPlainObject'
+import merge from 'lodash/merge'
+import clone from 'lodash/clone'
 import { computed, toRefs, inject } from 'vue'
 import localize from '../../utils/localize'
 

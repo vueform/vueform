@@ -1,4 +1,5 @@
-import _ from 'lodash'
+// import _ from 'lodash'
+import each from 'lodash/each'
 
 export default function resolveDeps (props, context, options) {
   let deps = options.deps || {}

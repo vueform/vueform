@@ -1,4 +1,8 @@
-import _ from 'lodash'
+// import _ from 'lodash'
+import isArray from 'lodash/isArray'
+import includes from 'lodash/includes'
+import startsWith from 'lodash/startsWith'
+import endsWith from 'lodash/endsWith'
 import moment from 'moment'
 import normalize from './normalize'
 

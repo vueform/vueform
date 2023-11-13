@@ -1,4 +1,7 @@
-import _ from 'lodash'
+// import _ from 'lodash'
+import concat from 'lodash/concat'
+import head from 'lodash/head'
+import each from 'lodash/each'
 
 export default class messageBag {
   constructor(baseErrors) {

@@ -1,4 +1,10 @@
-import _ from 'lodash'
+// import _ from 'lodash'
+import some from 'lodash/some'
+import each from 'lodash/each'
+import head from 'lodash/head'
+import isPlainObject from 'lodash/isPlainObject'
+import concat from 'lodash/concat'
+import isArray from 'lodash/isArray'
 import { computed, reactive, toRefs, ref } from 'vue'
 import asyncForEach from './../../utils/asyncForEach'
 

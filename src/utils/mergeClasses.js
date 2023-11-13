@@ -1,4 +1,11 @@
-import _ from 'lodash'
+// import _ from 'lodash'
+import each from 'lodash/each'
+import cloneDeep from 'lodash/cloneDeep'
+import isPlainObject from 'lodash/isPlainObject'
+import get from 'lodash/get'
+import set from 'lodash/set'
+import union from 'lodash/union'
+import flattenDeep from 'lodash/flattenDeep'
 
 const MERGE_KEYS = [
   'presets', 'usePresets', 'addClasses', 'prependClasses', 'removeClasses',

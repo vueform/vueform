@@ -1,4 +1,5 @@
-import _ from 'lodash'
+// import _ from 'lodash'
+import upperFirst from 'lodash/upperFirst'
 import { computed, ref, toRefs, inject } from 'vue'
 import localize from './../../utils/localize'
 

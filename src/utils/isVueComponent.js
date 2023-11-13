@@ -1,4 +1,5 @@
-import _ from 'lodash'
+// import _ from 'lodash'
+import isPlainObject from 'lodash/isPlainObject'
 
 /**
  * From: https://github.com/fengyuanchen/is-vue-component/blob/master/src/index.js
