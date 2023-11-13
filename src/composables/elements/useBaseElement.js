@@ -169,12 +169,12 @@ const base = function(props, context, dependencies)
   })
   
   Object.values(instantHooks).forEach((hook) => {
-    fire(_.lowerFirst(hook.replace('on', '')), el$.value)
+    fire(lowerFirst(hook.replace('on', '')), el$.value)
   })
   
   Object.keys(hooks).forEach((hook) => {
     hooks[hook](() => {
-      fire(_.lowerFirst(hook.replace('on', '')), el$.value)
+      fire(lowerFirst(hook.replace('on', '')), el$.value)
     })
   })
   

@@ -3,7 +3,7 @@ import each from 'lodash/each'
 import difference from 'lodash/difference'
 
 export default function (name, plugin) {
-  if (!plugin.apply && _.difference(Object.keys(plugin), ['config', 'install']).length > 0) {
+  if (!plugin.apply && difference(Object.keys(plugin), ['config', 'install']).length > 0) {
     return true
   }
 
@@ -15,7 +15,7 @@ export default function (name, plugin) {
 
   let shouldApply = false
 
-  _.each(apply, (condition) => {
+  each(apply, (condition) => {
     if (typeof condition === 'string' && condition === name) {
       shouldApply = true
       return false

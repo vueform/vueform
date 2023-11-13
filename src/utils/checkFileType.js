@@ -8,15 +8,15 @@ export default function checkFileType (file, accept) {
     return true
   } 
 
-  if (!_.isArray(accept)) {
+  if (!isArray(accept)) {
     accept = accept.split(',')
 
-    _.each(accept, (one, i) => {
+    each(accept, (one, i) => {
       accept[i] = one.trim()
     })
   }
 
-  return _.some(accept, (a) => {
+  return some(accept, (a) => {
     let universal = a.match(/^([^\/]+)\/\*$/)
 
     if (universal) {

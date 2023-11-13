@@ -30,7 +30,7 @@ const base = function(props, context, dependencies, options)
    */
   const refreshOrderStore = (value) => {
     if (storeOrder.value) {
-      _.each(value, (val, index) => {
+      each(value, (val, index) => {
         val[storeOrder.value] = order.value && order.value.toUpperCase() === 'DESC'
           ? value.length - index - (orderFrom.value == 0 ? 1 : 0)
           : parseInt(index) + orderFrom.value
@@ -57,7 +57,7 @@ const base = function(props, context, dependencies, options)
     
     // If not, clear its value
     else {
-      _.each(value.value, (val, index) => {
+      each(value.value, (val, index) => {
         val[o] = null
       })
     }

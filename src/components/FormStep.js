@@ -245,7 +245,7 @@ export default {
      * @type {object}
      */
     const children$ = computed(() => {
-      return _.filter(elements$.value, (element$, key) => {
+      return filter(elements$.value, (element$, key) => {
         return elements.value.indexOf(key) !== -1
       })
     })
@@ -265,7 +265,7 @@ export default {
       * @type {boolean}
       */
     const invalid = computed(() => {
-      return _.some(children$.value, { available: true, invalid: true })
+      return some(children$.value, { available: true, invalid: true })
     })
 
     /**
@@ -274,7 +274,7 @@ export default {
       * @type {boolean}
       */
     const pending = computed(() => {
-      return _.some(children$.value, { available: true, pending: true })
+      return some(children$.value, { available: true, pending: true })
     })
 
     /**
@@ -283,7 +283,7 @@ export default {
       * @type {boolean}
       */
     const debouncing = computed(() => {
-      return _.some(children$.value, { available: true, debouncing: true })
+      return some(children$.value, { available: true, debouncing: true })
     })
 
     /**
@@ -292,7 +292,7 @@ export default {
       * @type {boolean}
       */
     const validated = computed(() => {
-      return !_.some(children$.value, { available: true, validated: false })
+      return !some(children$.value, { available: true, validated: false })
     })
 
     /**
@@ -445,7 +445,7 @@ export default {
 
       steps$.value?.select(step$.value)
 
-      _.each(children$.value, (element$) => {
+      each(children$.value, (element$) => {
         element$.activate()
       })
 
@@ -542,7 +542,7 @@ export default {
         return
       }
       
-      _.each(children$.value, (element$) => {
+      each(children$.value, (element$) => {
         element$.activate()
       })
     }, { deep: false, lazy: true })

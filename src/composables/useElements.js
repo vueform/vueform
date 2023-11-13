@@ -1,5 +1,6 @@
 // import _ from 'lodash'
 import upperFirst from 'lodash/upperFirst'
+import camelCase from 'lodash/camelCase'
 
 const base = function(props, context, dependencies)
 { 
@@ -13,7 +14,7 @@ const base = function(props, context, dependencies)
   * @private
   */
   const component = (element) => {
-    return `${_.upperFirst(_.camelCase(element.type))}Element`
+    return `${upperFirst(camelCase(element.type))}Element`
   }
 
   return {

@@ -53,7 +53,7 @@ const base = function(props, context, dependencies)
     if (size.value) {
       Size = size.value
     } else {
-      _.each(presets.value, (presetName) => {
+      each(presets.value, (presetName) => {
         let preset = form$.value.$vueform.config.presets[presetName]
         
         if (!preset || !preset.size) {
@@ -97,7 +97,7 @@ const base = function(props, context, dependencies)
   const Views = computed(() => {
     let Views = form$.value.Views
     
-    _.each(presets.value, (presetName) => {
+    each(presets.value, (presetName) => {
       let preset = form$.value.$vueform.config.presets[presetName]
       
       if (!preset || !preset.views) {

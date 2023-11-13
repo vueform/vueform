@@ -102,7 +102,7 @@ export default {
     const config = computed(() => {
       const config = {}
 
-      _.each(options.value, (val, option) => {
+      each(options.value, (val, option) => {
         if (val !== null && val !== undefined) {
           config[option] = val
         }
@@ -199,7 +199,7 @@ export default {
     }, { immediate: false })
 
     watch(options, (n,o) => {
-      if (_.isEqual(n, o)) {
+      if (isEqual(n, o)) {
         return
       }
       

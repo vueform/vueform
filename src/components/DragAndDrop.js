@@ -72,7 +72,7 @@ export default {
 
     onMounted(() => {
       // cancelling all default events
-      _.each(['drag', 'dragstart', 'dragend', 'dragover', 'dragenter', 'dragleave', 'drop'], (event) => {
+      each(['drag', 'dragstart', 'dragend', 'dragover', 'dragenter', 'dragleave', 'drop'], (event) => {
         area.value.addEventListener(event, (e) => {
           e.preventDefault()
           e.stopPropagation()

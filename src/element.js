@@ -96,7 +96,7 @@ export default function (options, component = {}) {
   }
 
   let name = options.name
-  let ComponentName = `${_.upperFirst(_.camelCase(name))}`
+  let ComponentName = `${upperFirst(camelCase(name))}`
 
   let emits = ['change', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'].concat(component.emits||[])
 
@@ -151,6 +151,6 @@ export default function (options, component = {}) {
       },
       ...(options.props||{}),
     },
-    ...(_.omit(component, ['setup', 'mixins', 'emits', 'props']))
+    ...(omit(component, ['setup', 'mixins', 'emits', 'props']))
   }
 }

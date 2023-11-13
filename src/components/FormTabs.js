@@ -92,7 +92,7 @@ export default {
     const tabs$ = computed(() => {
       let tabList$ = {}
 
-      _.each(tabs$Array.value, (formTab$) => {
+      each(tabs$Array.value, (formTab$) => {
         tabList$[formTab$.name] = formTab$
       })
 
@@ -107,7 +107,7 @@ export default {
     const visible$ = computed(() => {
       var tabList$ = {}
 
-      _.each(tabs$.value, (tab$) => {
+      each(tabs$.value, (tab$) => {
         if (tab$.visible) {
           tabList$[tab$.name] = tab$
         }
@@ -122,7 +122,7 @@ export default {
      * @type {FormTab}
      */
     const current$ = computed(() => {
-      var current = _.find(tabs$.value, { active: true })
+      var current = find(tabs$.value, { active: true })
 
       return current !== undefined ? current : {}
     })
@@ -133,7 +133,7 @@ export default {
      * @type {FormTab}
      */
     const first$ = computed(() => {
-      return _.find(visible$.value, (tab) => {
+      return find(visible$.value, (tab) => {
         return tab.visible
       })
     })
@@ -153,7 +153,7 @@ export default {
      * @type {FormTab}
      */
     const next$ = computed(() => {
-      return _.find(visible$.value, (tab) => {
+      return find(visible$.value, (tab) => {
         return tab.index > current$.value.index && tab.visible
       })
     })
@@ -164,7 +164,7 @@ export default {
      * @type {FormTab}
      */
     const previous$ = computed(() => {
-      return _.findLast(visible$.value, (tab) => {
+      return findLast(visible$.value, (tab) => {
         return tab.index < current$.value.index && tab.visible
       })
     })
@@ -193,11 +193,11 @@ export default {
     const select = (tab$) => {
       let curr$ = current$.value
 
-      _.each(elements$.value, (element$) => {
+      each(elements$.value, (element$) => {
         element$.deactivate()
       })
 
-      _.each(tabs$.value, (tab$) => {
+      each(tabs$.value, (tab$) => {
         tab$.deactivate()
       })
 
@@ -211,7 +211,7 @@ export default {
      * @returns {FormTab}
      */
     const tab$ = (name) => {
-      return _.find(tabs$.value, { name: name })
+      return find(tabs$.value, { name: name })
     }
 
     /**
@@ -265,9 +265,9 @@ export default {
     
     /* istanbul ignore next: can not reproduce */
     watch(elements$, (newValue, oldValue) => {
-      let newElements$ = _.difference(_.keys(newValue), _.keys(oldValue))
+      let newElements$ = difference(keys(newValue), keys(oldValue))
       
-      _.each(newElements$, (newElement$) => {
+      each(newElements$, (newElement$) => {
         elements$.value[newElement$].deactivate()
       })
     }, { deep: false, lazy: true })
@@ -287,7 +287,7 @@ export default {
     watch(tabs, (newValue) => {
       let newTabs$Array = []
 
-      _.each(newValue, (t, name) => {
+      each(newValue, (t, name) => {
         newTabs$Array.push(tabs$Array.value[tabs$Array.value.map(t$=>normalize(t$.name)).indexOf(normalize(name))])
       })
 
@@ -306,7 +306,7 @@ export default {
 
     onMounted(() => {
       nextTick(() => {
-        if (!_.find(tabs$.value, { active: true })) {
+        if (!find(tabs$.value, { active: true })) {
           first$.value.select()
         }
       })

@@ -16,27 +16,27 @@ export default function(actual, operator, expected, el$) {
   
   switch (operator.toLowerCase()) {
     case '>':
-      return _.isArray(actual)
+      return isArray(actual)
         ? actual.every(a => a > expected)
         : actual > expected
 
     case '>=':
-      return _.isArray(actual)
+      return isArray(actual)
         ? actual.every(a => a >= expected)
         : actual >= expected
 
     case '<':
-      return _.isArray(actual)
+      return isArray(actual)
         ? actual.every(a => a < expected)
         : actual < expected
 
     case '<=':
-      return _.isArray(actual)
+      return isArray(actual)
         ? actual.every(a => a <= expected)
         : actual <= expected
 
     case 'empty':
-      if (_.isArray(actual)) {
+      if (isArray(actual)) {
         return !actual.length
       } else if (actual && actual instanceof File) {
         return false
@@ -49,7 +49,7 @@ export default function(actual, operator, expected, el$) {
       }
 
     case 'not_empty':
-      if (_.isArray(actual)) {
+      if (isArray(actual)) {
         return !!actual.length
       } else if (actual && actual instanceof File) {
         return true
@@ -63,18 +63,18 @@ export default function(actual, operator, expected, el$) {
 
     case '==':
     case 'in':
-      if (_.isArray(expected)) {
-        if (_.isArray(actual)) {
+      if (isArray(expected)) {
+        if (isArray(actual)) {
           // ['checkboxes', [1,2,3]]
           return !expected.length
             ? !actual.length
-            : actual.filter(a => _.includes(expected, a)).length > 0
+            : actual.filter(a => includes(expected, a)).length > 0
         } else {
           // ['text', [1,2,3]]
           return expected.indexOf(actual) !== -1
         }
       } else {
-        if (_.isArray(actual)) {
+        if (isArray(actual)) {
           // ['checkboxes', 1]
           return actual.indexOf(expected) !== -1
         } else {
@@ -85,18 +85,18 @@ export default function(actual, operator, expected, el$) {
 
     case '!=':
     case 'not_in':
-      if (_.isArray(expected)) {
-        if (_.isArray(actual)) {
+      if (isArray(expected)) {
+        if (isArray(actual)) {
           // ['checkboxes', 'not_in', [1,2,3]]
           return !expected.length
             ? !!actual.length
-            : actual.filter(e => _.includes(expected, e)).length == 0
+            : actual.filter(e => includes(expected, e)).length == 0
         } else {
           // ['text', 'not_in', [1,2,3]]
           return expected.indexOf(actual) === -1
         }
       } else {
-        if (_.isArray(actual)) {
+        if (isArray(actual)) {
           // ['checkboxes', '!=', 1]
           return actual.indexOf(expected) === -1
         } else {
@@ -106,14 +106,14 @@ export default function(actual, operator, expected, el$) {
       }
 
     case 'today':
-      if (!_.isArray(actual)) {
+      if (!isArray(actual)) {
         actual = [actual]
       }
 
       return actual.length && actual.every(a => moment(a, el$.valueDateFormat).isSame(moment(), 'day'))
 
     case 'before':
-      if (!_.isArray(actual)) {
+      if (!isArray(actual)) {
         actual = [actual]
       }
 
@@ -124,7 +124,7 @@ export default function(actual, operator, expected, el$) {
       })
 
     case 'after':
-      if (!_.isArray(actual)) {
+      if (!isArray(actual)) {
         actual = [actual]
       }
 
@@ -135,12 +135,12 @@ export default function(actual, operator, expected, el$) {
       })
 
     case '^':
-      return _.startsWith(actual, expected)
+      return startsWith(actual, expected)
 
     case '$':
-      return _.endsWith(actual, expected)
+      return endsWith(actual, expected)
 
     case '*':
-      return _.includes(actual, expected)
+      return includes(actual, expected)
   }
 }

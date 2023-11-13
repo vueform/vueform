@@ -99,7 +99,7 @@ export default {
      * @type {boolean}
      */
     const pending = computed(() => {
-      return _.some(visible$.value, { pending: true })
+      return some(visible$.value, { pending: true })
     })
 
     /**
@@ -108,7 +108,7 @@ export default {
      * @type {boolean}
      */
     const debouncing = computed(() => {
-      return _.some(visible$.value, { debouncing: true })
+      return some(visible$.value, { debouncing: true })
     })
 
     /**
@@ -117,7 +117,7 @@ export default {
      * @type {boolean}
      */
     const invalid = computed(() => {
-      return _.some(visible$.value, { invalid: true })
+      return some(visible$.value, { invalid: true })
     })
 
     /**
@@ -126,7 +126,7 @@ export default {
      * @type {boolean}
      */
     const done = computed(() => {
-      return !_.some(visible$.value, { done: false })
+      return !some(visible$.value, { done: false })
     })
 
     /**
@@ -146,7 +146,7 @@ export default {
     const steps$ = computed(() => {
       let steps$ = {}
 
-      _.each(steps$Array.value, (step$) => {
+      each(steps$Array.value, (step$) => {
         steps$[step$.name] = step$
       })
 
@@ -161,7 +161,7 @@ export default {
     const visible$ = computed(() => {
       var stepList$ = {}
 
-      _.each(steps$.value, (step$) => {
+      each(steps$.value, (step$) => {
         if (step$.visible) {
           stepList$[step$.name] = step$
         }
@@ -176,7 +176,7 @@ export default {
      * @type {FormStep|undefined}
      */
     const first$ = computed(() => {
-      return _.find(visible$.value, (step) => {
+      return find(visible$.value, (step) => {
         return step.visible
       })
     })
@@ -196,7 +196,7 @@ export default {
      * @type {FormStep|undefined}
      */
     const current$ = computed(() => {
-      var current = _.find(steps$.value, { active: true })
+      var current = find(steps$.value, { active: true })
 
       return current !== undefined ? current : {}
     })
@@ -207,7 +207,7 @@ export default {
      * @type {FormStep|undefined}
      */
     const next$ = computed(() => {
-      return _.find(visible$.value, (step) => {
+      return find(visible$.value, (step) => {
         return step.index > current$.value.index && step.visible
       })
     })
@@ -218,7 +218,7 @@ export default {
      * @type {FormStep|undefined}
      */
     const previous$ = computed(() => {
-      return _.findLast(visible$.value, (step) => {
+      return findLast(visible$.value, (step) => {
         return step.index < current$.value.index && step.visible
       })
     })
@@ -229,7 +229,7 @@ export default {
      * @type {FormStep|undefined}
      */
     const firstInvalid$ = computed(() => {
-      return _.find(visible$.value, { invalid: true })
+      return find(visible$.value, { invalid: true })
     })
 
     /**
@@ -238,7 +238,7 @@ export default {
      * @type {FormStep|undefined}
      */
     const firstNonDone$ = computed(() => {
-      return _.find(visible$.value, { done: false })
+      return find(visible$.value, { done: false })
     })
 
     /**
@@ -247,7 +247,7 @@ export default {
      * @type {FormStep|undefined}
      */
     const lastEnabled$ = computed(() => {
-      return _.findLast(visible$.value, { isDisabled: false })
+      return findLast(visible$.value, { isDisabled: false })
     })
 
     /**
@@ -256,7 +256,7 @@ export default {
      * @type {boolean}
      */
     const isAtLastStep = computed(() => {
-      const last = _.findLast(visible$.value, { visible: true })
+      const last = findLast(visible$.value, { visible: true })
       
       // @todo:adam !current$.value will never be null or undefined, hardcoded {}
       /* istanbul ignore next: !last not worth the effort */
@@ -328,7 +328,7 @@ export default {
      * @returns {void}
      */
     const complete = () => {
-      _.each(steps$.value, (step$) => {
+      each(steps$.value, (step$) => {
         step$.complete()
       })
     }
@@ -340,7 +340,7 @@ export default {
      * @returns {FormStep|undefined}
      */
     const step$ = (name) => {
-      return _.find(visible$.value, { name: name })
+      return find(visible$.value, { name: name })
     }
 
     /**
@@ -349,7 +349,7 @@ export default {
      * @returns {void}
      */
     const reset = () => {
-      _.each(steps$.value, (step$) => {
+      each(steps$.value, (step$) => {
         step$.uncomplete()
         step$.disable()
       })
@@ -364,7 +364,7 @@ export default {
      * @returns {void}
      */
     const enableAllSteps = () => {
-      _.each(steps$.value, (step$) => {
+      each(steps$.value, (step$) => {
         step$.enable()
       })
     }
@@ -407,11 +407,11 @@ export default {
     const select = (step$) => {
       let curr$ = current$.value
 
-      _.each(elements$.value, (element$) => {
+      each(elements$.value, (element$) => {
         element$.deactivate()
       })
 
-      _.each(steps$.value, (step$) => {
+      each(steps$.value, (step$) => {
         step$.deactivate()
       })
 
@@ -425,7 +425,7 @@ export default {
      * @returns {void}
      */
     const enableUntil = (index) => {
-      _.each(steps$.value, (step$) => {
+      each(steps$.value, (step$) => {
         /* istanbul ignore else */
         if (step$.index <= index && step$.visible) {
           step$.enable()
@@ -498,9 +498,9 @@ export default {
     
     /* istanbul ignore next: can not reproduce */
     watch(elements$, (newValue, oldValue) => {
-      let newElements$ = _.difference(_.keys(newValue), _.keys(oldValue))
+      let newElements$ = difference(keys(newValue), keys(oldValue))
       
-      _.each(newElements$, (newElement$) => {
+      each(newElements$, (newElement$) => {
         elements$.value[newElement$].deactivate()
       })
     }, { deep: false, lazy: true })
@@ -523,7 +523,7 @@ export default {
     watch(steps, (newValue) => {
       let newSteps$Array = []
 
-      _.each(newValue, (t, name) => {
+      each(newValue, (t, name) => {
         newSteps$Array.push(steps$Array.value[steps$Array.value.map(t$=>normalize(t$.name)).indexOf(normalize(name))])
       })
 

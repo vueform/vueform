@@ -75,7 +75,7 @@ const object = function(props, context, dependencies, /* istanbul ignore next */
     watch(schema, (newValue) => {
       let newChildren$Array = []
       
-      _.each(newValue, (child, name) => {
+      each(newValue, (child, name) => {
         newChildren$Array.push(children$Array.value[children$Array.value.map(e$ => normalize(e$.name)).indexOf(normalize(name))])
       })
       

@@ -22,7 +22,7 @@ const base = function(props, context, dependencies)
    * @type {boolean}
    */
   const preparing = computed(() => {
-    return _.some(children$.value, { available: true, preparing: true })
+    return some(children$.value, { available: true, preparing: true })
   })
   
   /**
@@ -31,7 +31,7 @@ const base = function(props, context, dependencies)
    * @type {boolean}
    */
   const hasUploading = computed(() => {
-    return _.some(children$.value, { uploading: true })
+    return some(children$.value, { uploading: true })
   })
   
   // =============== METHODS ==============
@@ -48,7 +48,7 @@ const base = function(props, context, dependencies)
       return
     }
     
-    _.each(e.target.files, (file) => {
+    each(e.target.files, (file) => {
       add(isObject.value ? {
         [storeFileName.value]: file,
       } : file)

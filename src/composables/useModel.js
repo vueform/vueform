@@ -41,7 +41,7 @@ export default function (props, context, dependencies)
    * @type {object}
    * @private
    */
-  const intermediaryValue = ref(externalValue && externalValue.value ? _.cloneDeep(externalValue.value) : null)
+  const intermediaryValue = ref(externalValue && externalValue.value ? cloneDeep(externalValue.value) : null)
 
   // ============== COMPUTED ===============
 
@@ -62,7 +62,7 @@ export default function (props, context, dependencies)
    * @private
    */
   const model = computed(() => {
-    return _.cloneDeep(externalValue.value || internalData.value)
+    return cloneDeep(externalValue.value || internalData.value)
   })
 
   // =============== METHODS ==============
@@ -84,7 +84,7 @@ export default function (props, context, dependencies)
         let element = parts.pop()
         let parent = parts.join('.') || null
 
-        let externalValueObject = parent ? _.get(externalValue.value, parent) : externalValue.value
+        let externalValueObject = parent ? get(externalValue.value, parent) : externalValue.value
 
         // Thinking about cases when it tries to to set an element 
         // which no longer exists in the same tick (eg. when removing
@@ -97,12 +97,12 @@ export default function (props, context, dependencies)
         // Setting directly because externalValue might contain changes
         // that intermediary does not have yet, so it would overwrite
         // external model with old value
-        intermediaryValue.value = _.cloneDeep(externalValue.value)
+        intermediaryValue.value = cloneDeep(externalValue.value)
       }
 
       // Group element
       else {
-        _.each(val, (v, key) => {
+        each(val, (v, key) => {
           if (externalValue.value !== undefined) {
             $this.$set(externalValue.value, key, v)
           }
@@ -117,11 +117,11 @@ export default function (props, context, dependencies)
     // When using this.data as model
     } else {
       // We need a different clone than this.valueValue clone to not effect children watching model
-      let model = _.cloneDeep(externalValue.value || internalData.value)
+      let model = cloneDeep(externalValue.value || internalData.value)
 
       // Non-flat elements
       if (dataPath) {
-        _.set(model, dataPath, val)
+        set(model, dataPath, val)
 
       // Flat elements (eg. Group)
       } else {

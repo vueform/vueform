@@ -63,7 +63,7 @@ const min = function(props, context, dependencies)
   // ============== COMPUTED ===============
   
   const nullValue = computed(() => {
-    return default_.value !== undefined && _.isArray(default_.value)
+    return default_.value !== undefined && isArray(default_.value)
       ? default_.value.map(v => min.value)
       : min.value
   })
@@ -142,7 +142,7 @@ const multilingual = function(props, context, dependencies)
   const nullValue = computed(() => {
     var value = {}
     
-    _.each(languages.value, (code) => {
+    each(languages.value, (code) => {
       value[code] = null
     })
     

@@ -95,7 +95,7 @@ const base = function(props, context, dependencies)
    * @type {boolean}
    */
   const invalid = computed(() => {
-    return _.some(Validators.value, { invalid: true })
+    return some(Validators.value, { invalid: true })
   })
   
   /**
@@ -104,7 +104,7 @@ const base = function(props, context, dependencies)
    * @type {boolean}
    */
   const pending = computed(() => {
-    return _.some(Validators.value, { pending: true })
+    return some(Validators.value, { pending: true })
   })
   
   /**
@@ -125,7 +125,7 @@ const base = function(props, context, dependencies)
   const validatorErrors = computed(() => {
     let errs = []
     
-    _.each(Validators.value, (Validator) => {
+    each(Validators.value, (Validator) => {
       if (Validator.failing) {
         errs.push(Validator.message)
       }
@@ -200,7 +200,7 @@ const base = function(props, context, dependencies)
    * @returns {void}
    */
   const resetValidators = () => {
-    _.each(Validators.value, (Validator) => {
+    each(Validators.value, (Validator) => {
       Validator.reset()
     })
     
@@ -268,7 +268,7 @@ const base = function(props, context, dependencies)
     
     Validators.value = []
     
-    _.each(validatorFactory.value.makeAll(validationRules.value), (Validator) => {
+    each(validatorFactory.value.makeAll(validationRules.value), (Validator) => {
       Validators.value.push(Validator)
     })
   }
@@ -340,7 +340,7 @@ const text = function(props, context, dependencies)
    * @type {boolean}
    */
   const debouncing = computed(() => {
-    return _.some(Validators.value, { debouncing: true })
+    return some(Validators.value, { debouncing: true })
   })
   
   /**
@@ -402,7 +402,7 @@ const list = function(props, context, dependencies)
    * @type {boolean}
    */
   const dirty = computed(() => {
-    return _.some(children$.value, { available: true, dirty: true })
+    return some(children$.value, { available: true, dirty: true })
       || state.value.dirty
   })
   
@@ -412,7 +412,7 @@ const list = function(props, context, dependencies)
    * @type {boolean}
    */
   const validated = computed(() => {
-    return !_.some(children$.value, { available: true, validated: false })
+    return !some(children$.value, { available: true, validated: false })
       && state.value.validated
   })
   
@@ -422,8 +422,8 @@ const list = function(props, context, dependencies)
    * @type {boolean}
    */
   const invalid = computed(() => {
-    return _.some(children$.value, { available: true, invalid: true })
-      || _.some(Validators.value, { invalid: true })
+    return some(children$.value, { available: true, invalid: true })
+      || some(Validators.value, { invalid: true })
   })
   
   /**
@@ -432,8 +432,8 @@ const list = function(props, context, dependencies)
    * @type {boolean}
    */
   const pending = computed(() => {
-    return _.some(children$.value, { available: true, pending: true })
-      || _.some(Validators.value, { pending: true })
+    return some(children$.value, { available: true, pending: true })
+      || some(Validators.value, { pending: true })
   })
   
   /**
@@ -442,8 +442,8 @@ const list = function(props, context, dependencies)
    * @type {boolean}
    */
   const debouncing = computed(() => {
-    return _.some(children$.value, { available: true, debouncing: true })
-      || _.some(Validators.value, { debouncing: true })
+    return some(children$.value, { available: true, debouncing: true })
+      || some(Validators.value, { debouncing: true })
   })
   
   /**
@@ -452,14 +452,14 @@ const list = function(props, context, dependencies)
    * @type {boolean}
    */
   const busy = computed(() => {
-    return _.some(children$.value, { available: true, busy: true })
+    return some(children$.value, { available: true, busy: true })
       || pending.value || debouncing.value
   })
   
   const validatorErrors = computed(() => {
     const validatorErrors = []
     
-    _.each(Validators.value, (Validator) => {
+    each(Validators.value, (Validator) => {
       if (Validator.failing) {
         validatorErrors.push(Validator.message)
       }
@@ -477,12 +477,12 @@ const list = function(props, context, dependencies)
   const childrenErrors = computed(() => {
     const childrenErrors = []
     
-    _.each(children$.value, (element$) => {
+    each(children$.value, (element$) => {
       if (!element$.available || element$.isStatic) {
         return
       }
       
-      _.each(element$.errors, (error) => {
+      each(element$.errors, (error) => {
         childrenErrors.push(error)
       })
     })
@@ -505,7 +505,7 @@ const list = function(props, context, dependencies)
   })
   
   const error = computed(() => {
-    return _.head(validatorErrors.value)
+    return head(validatorErrors.value)
   })
   
   // =============== METHODS ==============
@@ -556,7 +556,7 @@ const list = function(props, context, dependencies)
   }
   
   const clean = () => {
-    _.each(children$.value, (element$) => {
+    each(children$.value, (element$) => {
       /* istanbul ignore next: checked for console errors, but return can not be checked */
       if (element$.isStatic) {
         return
@@ -574,7 +574,7 @@ const list = function(props, context, dependencies)
       messageBag.value.clear()
     }
     
-    _.each(children$.value, (element$) => {
+    each(children$.value, (element$) => {
       /* istanbul ignore else */
       if (element$.isStatic) {
         return
@@ -585,7 +585,7 @@ const list = function(props, context, dependencies)
   }
   
   const resetValidators = () => {
-    _.each(children$.value, (element$) => {
+    each(children$.value, (element$) => {
       /* istanbul ignore next: checked for console errors, but return can not be checked */
       if (element$.isStatic) {
         return
@@ -594,7 +594,7 @@ const list = function(props, context, dependencies)
       element$.resetValidators()
     })
     
-    _.each(Validators.value, (Validator) => {
+    each(Validators.value, (Validator) => {
       Validator.reset()
     })
     
@@ -608,7 +608,7 @@ const list = function(props, context, dependencies)
   const reinitValidation = () => {
     initValidation()
     
-    _.each(children$.value, (element$) => {
+    each(children$.value, (element$) => {
       /* istanbul ignore next: checked for console errors, but return can not be checked */
       if (element$.isStatic) {
         return
@@ -683,8 +683,8 @@ const multilingual = function(props, context, dependencies)
       return ruleList
     }
     
-    _.each(languages.value, (lang) => {
-      ruleList[lang] = _.isPlainObject(rules.value)
+    each(languages.value, (lang) => {
+      ruleList[lang] = isPlainObject(rules.value)
         ? (rules.value[lang] || null)
         : rules.value
     })
@@ -698,7 +698,7 @@ const multilingual = function(props, context, dependencies)
    * @type {boolean}
    */
   const dirty = computed(() => {
-    return _.some(state.value.dirty, (val) => {
+    return some(state.value.dirty, (val) => {
       return val === true
     })
   })
@@ -709,7 +709,7 @@ const multilingual = function(props, context, dependencies)
    * @type {boolean}
    */
   const validated = computed(() => {
-    return !_.some(state.value.validated, (val) => {
+    return !some(state.value.validated, (val) => {
       return val === false
     })
   })
@@ -722,8 +722,8 @@ const multilingual = function(props, context, dependencies)
   const invalid = computed(() => {
     var invalid = false
     
-    _.each(Validators.value, (Validators) => {
-      if (_.some(Validators, { invalid: true })) {
+    each(Validators.value, (Validators) => {
+      if (some(Validators, { invalid: true })) {
         invalid = true
       }
     })
@@ -739,8 +739,8 @@ const multilingual = function(props, context, dependencies)
   const pending = computed(() => {
     var pending = false
     
-    _.each(Validators.value, (Validators) => {
-      if (_.some(Validators, { pending: true })) {
+    each(Validators.value, (Validators) => {
+      if (some(Validators, { pending: true })) {
         pending = true
       }
     })
@@ -756,8 +756,8 @@ const multilingual = function(props, context, dependencies)
   const debouncing = computed(() => {
     var debouncing = false
     
-    _.each(Validators.value, (Validators) => {
-      if (_.some(Validators, { debouncing: true })) {
+    each(Validators.value, (Validators) => {
+      if (some(Validators, { debouncing: true })) {
         debouncing = true
       }
     })
@@ -777,8 +777,8 @@ const multilingual = function(props, context, dependencies)
   const validatorErrors = computed(() => {
     var errors = []
     
-    _.each(Validators.value, (Validators, language) => {
-      _.each(Validators, (Validator) => {
+    each(Validators.value, (Validators, language) => {
+      each(Validators, (Validator) => {
         if (Validator.failing) {
           errors.push(Validator.message + ' (' + language + ')')
         }
@@ -795,7 +795,7 @@ const multilingual = function(props, context, dependencies)
   const error = computed(() => {
     var error = null
     
-    _.each(Validators.value[language.value], (Validator) => {
+    each(Validators.value[language.value], (Validator) => {
       if (error !== null) {
         return false
       }
@@ -808,12 +808,12 @@ const multilingual = function(props, context, dependencies)
     let errors = messageBag.value.prepends ? messageBag.value.prepends.errors : []
     
     if (error !== null) {
-      errors = _.concat(errors, [error])
+      errors = concat(errors, [error])
     }
     
-    errors = _.concat(errors, messageBag.value.appends ? messageBag.value.appends.errors : [])
+    errors = concat(errors, messageBag.value.appends ? messageBag.value.appends.errors : [])
     
-    return _.head(errors)
+    return head(errors)
   })
   
   /**
@@ -831,7 +831,7 @@ const multilingual = function(props, context, dependencies)
    * @type {boolean}
    */
   const isSuccess = computed(() => {
-    return (validationRules.value[language.value] && validationRules.value[language.value].length > 0 && state.value.validated[language.value] && !_.some(Validators.value[language.value], { invalid: true })) ||
+    return (validationRules.value[language.value] && validationRules.value[language.value].length > 0 && state.value.validated[language.value] && !some(Validators.value[language.value], { invalid: true })) ||
       ((!validationRules.value[language.value] || !validationRules.value[language.value].length) && state.value.dirty[language.value])
   })
   
@@ -871,12 +871,12 @@ const multilingual = function(props, context, dependencies)
   }
   
   const resetValidators = () => {
-    _.each(languages.value, (lang) => {
-      _.each(Validators.value[lang], (Validator) => {
+    each(languages.value, (lang) => {
+      each(Validators.value[lang], (Validator) => {
         Validator.reset()
       })
       
-      _.each(validationRules.value, (r, lang) => {
+      each(validationRules.value, (r, lang) => {
         state.value.validated[lang] = r.length > 0 ? false : true // @todo:adam missing null check
       })
     })
@@ -900,11 +900,11 @@ const multilingual = function(props, context, dependencies)
     var dirty = {}
     var validated = {}
     
-    _.each(languages.value, (lang) => {
+    each(languages.value, (lang) => {
       dirty[lang] = false
     })
     
-    _.each(languages.value, (lang) => {
+    each(languages.value, (lang) => {
       validated[lang] = true
     })
     
@@ -926,7 +926,7 @@ const multilingual = function(props, context, dependencies)
     
     // If the element has rules it does not
     // qualify as validated by default
-    _.each(validationRules.value, (r, lang) => {
+    each(validationRules.value, (r, lang) => {
       state.value.validated[lang] = r !== null && r.length > 0 ? false : true
     })
     
@@ -934,7 +934,7 @@ const multilingual = function(props, context, dependencies)
     
     Validators.value = {}
     
-    _.each(validationRules.value, (languageRules, lang) => {
+    each(validationRules.value, (languageRules, lang) => {
       if (languageRules === null) {
         return
       }
@@ -946,7 +946,7 @@ const multilingual = function(props, context, dependencies)
         })
       }
       
-      _.each(factory.makeAll(languageRules), (Validator) => {
+      each(factory.makeAll(languageRules), (Validator) => {
         Validators.value[lang].push(Validator)
       })
     })
@@ -1018,7 +1018,7 @@ const slider = function(props, context, dependencies)
       return
     }
     
-    if (_.isArray(value.value)) {
+    if (isArray(value.value)) {
       // going through each value of the slider
       // and validate them all for the same field
       await asyncForEach(value.value, async (val) => {

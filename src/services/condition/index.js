@@ -21,7 +21,7 @@ const check = (condition, elementPath, form$, el$) => {
 
     // other && currentPath
     if (element$ && elementPath) {
-      _.each(element$.conditions, (condition) => {
+      each(element$.conditions, (condition) => {
         if (!Array.isArray(condition)) {
           return
         }
@@ -57,13 +57,13 @@ const check = (condition, elementPath, form$, el$) => {
     return checkFunction()
   }
 
-  else if (_.isArray(condition) && _.isArray(condition[0])) {
+  else if (isArray(condition) && isArray(condition[0])) {
     return condition.reduce((prev, curr) => {
       return prev ? prev : checkArray(curr)
     }, false)
   }
 
-  else if (_.isArray(condition)) {
+  else if (isArray(condition)) {
     return checkArray(condition)
   }
 

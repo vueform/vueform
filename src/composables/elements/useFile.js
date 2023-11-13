@@ -214,11 +214,11 @@ const base = function(props, context, dependencies)
       return 1 // file selected
     }
     
-    if (_.isObject(value.value) && value.value.tmp !== undefined) {
+    if (isObject(value.value) && value.value.tmp !== undefined) {
       return 2 // temp uploaded
     }
     
-    if (_.isString(value.value)) {
+    if (isString(value.value)) {
       return 3 // file uploaded
     }
     

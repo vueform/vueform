@@ -27,7 +27,7 @@ export default function(config = baseConfig, components = {}, rules = {}) {
   const Vueform = class {
     constructor() {
       this.options = {
-        config: _.omit(config, [
+        config: omit(config, [
           'theme', 'templates', 'locales', 'rules', 'plugins',
         ]),
         templates: config.templates || {},
@@ -56,7 +56,7 @@ export default function(config = baseConfig, components = {}, rules = {}) {
 
     config(config) {
       // merge
-      _.each([
+      each([
         'theme', 'templates', 'locales', 'rules',
       ], (attr) => {
           if (config[attr] !== undefined) {
@@ -65,7 +65,7 @@ export default function(config = baseConfig, components = {}, rules = {}) {
       })
 
       // replace
-      _.each([
+      each([
         'plugins', 'components',
       ], (attr) => {
           if (config[attr] !== undefined) {
@@ -74,7 +74,7 @@ export default function(config = baseConfig, components = {}, rules = {}) {
       })
 
       // merge (config)
-      _.each([
+      each([
         'languages', 'services', 'addClasses', 'removeClasses',
         'replaceClasses', 'overrideClasses', 'presets', 'views',
       ], (attr) => {
@@ -84,16 +84,16 @@ export default function(config = baseConfig, components = {}, rules = {}) {
       })
 
       // deep merge
-      _.each([
+      each([
         'endpoints',
       ], (attr) => {
           if (config[attr] !== undefined) {
-            this.options.config[attr] = _.merge({}, this.options.config[attr], config[attr])
+            this.options.config[attr] = merge({}, this.options.config[attr], config[attr])
           }
       })
       
       // replace
-      _.each([
+      each([
         'columns', 'forceLabels', 'displayErrors', 'floatPlaceholders', 'displayErrors', 'displayMessages',
         'language', 'locale', 'fallbackLocale', 'orderFrom', 'validateOn', 'formData', 'beforeSend',
         'locationProvider', 'classHelpers', 'env', 'usePresets', 'plugins', 'size', 'apiKey',
@@ -105,12 +105,12 @@ export default function(config = baseConfig, components = {}, rules = {}) {
 
       if (config.elements) {
         config.elements.forEach((element) => {
-          components[element.name] = _.omit(element, ['render', 'staticRenderFns', 'components'])
+          components[element.name] = omit(element, ['render', 'staticRenderFns', 'components'])
         })
 
         config.elements.forEach((element) => {
           if (this.options.templates[element.name] === undefined) {
-            this.options.templates[element.name] = _.pick(element, ['render', 'staticRenderFns', 'components'])
+            this.options.templates[element.name] = pick(element, ['render', 'staticRenderFns', 'components'])
           }
         })
       }
@@ -125,7 +125,7 @@ export default function(config = baseConfig, components = {}, rules = {}) {
     }
 
     registerComponents(appOrVue) {
-      _.each(components, (comp, name) => {
+      each(components, (comp, name) => {
         const component = {...comp}
 
         component.setup = (props, context) => {
@@ -177,12 +177,12 @@ export default function(config = baseConfig, components = {}, rules = {}) {
           p.forEach((plugin) => {
             const pluginOptions = typeof plugin === 'function' ? plugin() : plugin
 
-            _.each(_.without(Object.keys(pluginOptions), 'setup', 'apply', 'config', 'install'), (key) => {
+            each(without(Object.keys(pluginOptions), 'setup', 'apply', 'config', 'install'), (key) => {
               if (pluginOptions[key] && shouldApplyPlugin(name, pluginOptions)) {
                 if (Array.isArray(pluginOptions[key])) {
                   let base = component[key] || []
                   component[key] = base.concat(pluginOptions[key])
-                } else if (_.isPlainObject(pluginOptions[key])) {
+                } else if (isPlainObject(pluginOptions[key])) {
                   component[key] = Object.assign({}, component[key] || {}, pluginOptions[key])
                 } else {
                   component[key] = pluginOptions[key]
@@ -205,7 +205,7 @@ export default function(config = baseConfig, components = {}, rules = {}) {
         const value = axiosConfigFlat[key]
 
         if (['onUnauthenticated'].indexOf(key) === -1 && key.indexOf('csrfRequest.') === -1) {
-          _.set($axios.defaults, key, value)
+          set($axios.defaults, key, value)
         }
       })
 

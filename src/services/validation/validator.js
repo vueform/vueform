@@ -33,7 +33,7 @@ const Validator = class {
     this.watchers = {}
     
     this.dependents.forEach((dependent) => {
-      watch(computed(() => _.get(this.form$.data, dependent)), () => {
+      watch(computed(() => get(this.form$.data, dependent)), () => {
         if (this.element$.validated) {
 
           // we need to revalidate the whole element
@@ -53,7 +53,7 @@ const Validator = class {
     })
 
     watch(computed(() => props.element$.messages), (n, o) => {
-      if (_.isEqual(n, o)) {
+      if (isEqual(n, o)) {
         return
       }
 
@@ -87,7 +87,7 @@ const Validator = class {
     else if (this.name !== '_class' && this.form$.translations.validation?.[this.name] !== undefined) {
       message = this.form$.translations.validation[this.name]
 
-      if (_.isPlainObject(message)) {
+      if (isPlainObject(message)) {
         message = message[this.messageType]
       }
     } else {
@@ -95,12 +95,12 @@ const Validator = class {
     }
 
     // replace :params
-    _.each(_.map(message.match(/:\w+/g),p=>p.replace(':','')), (param) => {
+    each(map(message.match(/:\w+/g),p=>p.replace(':','')), (param) => {
       message = message.replace(`:${param}`, this.messageParams[param])
     })
 
     // replace {params}
-    _.each(_.map(message.match(/{[^}]+/g),p=>p.replace('{','')), (param) => {
+    each(map(message.match(/{[^}]+/g),p=>p.replace('{','')), (param) => {
       message = message.replace(`{${param}}`, this.messageParams[param])
     })
 
@@ -146,14 +146,14 @@ const Validator = class {
   }
 
   get isNumeric() {
-    return _.some(this.element$.Validators, { name: 'numeric' })
-        || _.some(this.element$.Validators, { name: 'integer' })
+    return some(this.element$.Validators, { name: 'numeric' })
+        || some(this.element$.Validators, { name: 'integer' })
   }
 
   get isNullable() {
     let nullable = false
 
-    _.each(this.element$.Validators, (Validator) => {
+    each(this.element$.Validators, (Validator) => {
       if (Validator.name !== 'nullable') {
         return
       }
@@ -250,7 +250,7 @@ const Validator = class {
       return
     }
 
-    this.watchers[variable] = watch(computed(() => _.get(this.form$.data, variable)), () => {
+    this.watchers[variable] = watch(computed(() => get(this.form$.data, variable)), () => {
       this.revalidate()
     })
   }
@@ -314,10 +314,10 @@ const Validator = class {
     else if (this.isNumeric && value === 0) {
       return false;
     }
-    else if (_.isString(value) && _.trim(value) === '') {
+    else if (isString(value) && trim(value) === '') {
       return false;
     }
-    else if (_.isArray(value) && value.length < 1) {
+    else if (isArray(value) && value.length < 1) {
       return false;
     }
     else if (value instanceof File && value.name === '') {

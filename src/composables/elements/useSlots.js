@@ -37,7 +37,7 @@ const base = function(props, context, dependencies, /* istanbul ignore next */ o
     const elementSlots = {}
     
     defaultElementSlots.filter(s => options.slots.indexOf(s) !== -1).forEach((s) => {
-      const slot = el$.value.slots[s] || el$.value.slots[_.camelCase(s)]
+      const slot = el$.value.slots[s] || el$.value.slots[camelCase(s)]
       
       if (typeof slot === 'object') {
         if (slot.props && (
@@ -74,7 +74,7 @@ const base = function(props, context, dependencies, /* istanbul ignore next */ o
     const fieldSlots = {}
     
     defaultFieldSlots.filter(s => options.slots.indexOf(s) !== -1).forEach((s) => {
-      const slot = el$.value.slots[s] || el$.value.slots[_.camelCase(s)]
+      const slot = el$.value.slots[s] || el$.value.slots[camelCase(s)]
       
       // Add `el$` prop to `default` slot
       if (typeof slot === 'object') {

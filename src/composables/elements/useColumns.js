@@ -17,7 +17,7 @@ const base = function(props, context, dependencies)
   
   // ================ DATA ================
   
-  const Columns = ref(_.cloneDeep(columns.value))
+  const Columns = ref(cloneDeep(columns.value))
   
   
   // ============== COMPUTED ==============
@@ -71,11 +71,11 @@ const base = function(props, context, dependencies)
    * @private
    */
   const updateColumns = (v) => {
-    Columns.value = _.cloneDeep(v)
+    Columns.value = cloneDeep(v)
   }
   
   watch(columns, (v) => {
-    Columns.value = _.cloneDeep(v)
+    Columns.value = cloneDeep(v)
   }, { immediate: false, deep: true })
   
   return {

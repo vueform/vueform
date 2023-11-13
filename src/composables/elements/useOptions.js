@@ -39,7 +39,7 @@ const date = function(props, context, dependencies)
       return []
     }
     
-    return _.map(disables.value, (disabledDate) => {
+    return map(disables.value, (disabledDate) => {
       checkDateFormat(valueDateFormat.value, disabledDate)
       
       return disabledDate instanceof Date ? disabledDate : moment(disabledDate, valueDateFormat.value, true).toDate()

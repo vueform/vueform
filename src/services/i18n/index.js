@@ -13,17 +13,17 @@ export default class {
   }
 
   $t(expr, data = {}) {
-    let tag = _.get(this.locales[this.locale], expr) || expr
+    let tag = get(this.locales[this.locale], expr) || expr
 
     if (tag === expr) {
-      tag = _.get(this.locales[this.fallbackLocale], expr) || expr
+      tag = get(this.locales[this.fallbackLocale], expr) || expr
     }
 
-    _.each(data, (value, key) => {
+    each(data, (value, key) => {
       tag = tag.replace(':' + key, value)
     })
 
-    _.each(data, (value, key) => {
+    each(data, (value, key) => {
       tag = tag.replace('{' + key + '}', value)
     })
 

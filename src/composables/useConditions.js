@@ -47,7 +47,7 @@ const base = function(props, context, dependencies)
       return true
     }
 
-    return !_.some(conditionList.value, (condition) => {
+    return !some(conditionList.value, (condition) => {
       return !form$.value.$vueform.services.condition.check(condition, path.value, form$.value, el$.value)
     })
   })

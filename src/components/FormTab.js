@@ -196,7 +196,7 @@ export default {
      * @type {object}
      */
     const children$ = computed(() => {
-      return _.filter(elements$.value, (element$, key) => {
+      return filter(elements$.value, (element$, key) => {
         return elements.value.indexOf(key) !== -1
       })
     })
@@ -216,7 +216,7 @@ export default {
      * @type {boolean}
      */
     const invalid = computed(() => {
-      return _.some(children$.value, { available: true, invalid: true })
+      return some(children$.value, { available: true, invalid: true })
     })
     
     /**
@@ -257,7 +257,7 @@ export default {
 
       active.value = true
 
-      _.each(children$.value, (element$) => {
+      each(children$.value, (element$) => {
         element$.activate()
       })
 
@@ -276,7 +276,7 @@ export default {
 
       active.value = false
 
-      _.each(children$.value, (element$) => {
+      each(children$.value, (element$) => {
         element$.deactivate()
       })
 
@@ -364,7 +364,7 @@ export default {
         return
       }
 
-      _.each(children$.value, (element$) => {
+      each(children$.value, (element$) => {
         element$.activate()
       })
     }, { deep: false, lazy: true })

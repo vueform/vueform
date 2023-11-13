@@ -100,7 +100,7 @@ const base = function(props, context, dependencies, options = {})
    * @returns {void}
    */
   const clear = () => {
-    setValue(_.cloneDeep(nullValue.value))
+    setValue(cloneDeep(nullValue.value))
   }
   
   /**
@@ -109,7 +109,7 @@ const base = function(props, context, dependencies, options = {})
    * @returns {void}
    */
   const reset = () => {
-    setValue(_.cloneDeep(defaultValue.value))
+    setValue(cloneDeep(defaultValue.value))
     resetValidators()
 
     nextTick(() => {
@@ -174,7 +174,7 @@ const select = function(props, context, dependencies, options = {})
   // =============== METHODS ===============
 
   const reset = () => {
-    setValue(_.cloneDeep(defaultValue.value))
+    setValue(cloneDeep(defaultValue.value))
     resetValidators()
 
     if (typeof items.value === 'string' && resolveOnLoad.value !== false) {
@@ -226,7 +226,7 @@ const object = function(props, context, dependencies)
     
     let requestData = {}
     
-    _.each(children$.value, (element$) => {
+    each(children$.value, (element$) => {
       if (element$.isStatic) {
         return
       }
@@ -242,7 +242,7 @@ const object = function(props, context, dependencies)
   const load = (val, format = false) => {
     let formatted = format && formatLoad.value ? formatLoad.value(val, form$.value) : val
     
-    _.each(children$.value, (element$) => {
+    each(children$.value, (element$) => {
       if (element$.isStatic) {
         return
       }
@@ -257,7 +257,7 @@ const object = function(props, context, dependencies)
   }
   
   const update = (val) => {
-    _.each(children$.value, (element$) => {
+    each(children$.value, (element$) => {
       if (element$.isStatic) {
         return
       }
@@ -271,7 +271,7 @@ const object = function(props, context, dependencies)
   }
   
   const clear = () => {
-    _.each(children$.value, (element$) => {
+    each(children$.value, (element$) => {
       if (element$.isStatic) {
         return
       }
@@ -281,7 +281,7 @@ const object = function(props, context, dependencies)
   }
   
   const reset = () => {
-    _.each(children$.value, (element$) => {
+    each(children$.value, (element$) => {
       if (element$.isStatic) {
         return
       }
@@ -350,7 +350,7 @@ const group = function(props, context, dependencies)
     
     let requestData = {}
     
-    _.each(children$.value, (element$) => {
+    each(children$.value, (element$) => {
       if (element$.isStatic) {
         return
       }
@@ -410,7 +410,7 @@ const list = function(props, context, dependencies, options)
   
   // ================ DATA =================
   
-  const initialValue = ref(_.get(form$.value.model, dataPath.value))
+  const initialValue = ref(get(form$.value.model, dataPath.value))
   
   // ============== COMPUTED ===============
   
@@ -431,7 +431,7 @@ const list = function(props, context, dependencies, options)
     
     let requestData = []
     
-    _.each(children$.value, (element$) => {
+    each(children$.value, (element$) => {
       let val = element$.requestData[element$.name]
       
       if (val !== undefined) {
@@ -510,13 +510,13 @@ const list = function(props, context, dependencies, options)
     
     await nextTick()
     
-    _.each(children$.value, (child$, i) => {
+    each(children$.value, (child$, i) => {
       child$.load(values[i], format)
     })
   }
   
   const reset = () => {
-    value.value = _.cloneDeep(defaultValue.value)
+    value.value = cloneDeep(defaultValue.value)
     
     resetValidators()
     
@@ -564,7 +564,7 @@ const list = function(props, context, dependencies, options)
     
     /* istanbul ignore else: console.log() shows that the single run test falls into the else branch, but coverage does not detect */
     if (orderByName.value) {
-      val = desc ? _.sortBy(val, orderByName.value).reverse() : _.sortBy(val, orderByName.value)
+      val = desc ? sortBy(val, orderByName.value).reverse() : sortBy(val, orderByName.value)
     } else if (order.value) {
       val = desc ? val.sort().reverse() : val.sort()
     }
@@ -699,7 +699,7 @@ const dates = function(props, context, dependencies)
   const load = (val, format = false) => {
     let formatted = format && formatLoad.value ? formatLoad.value(val, form$.value) : val
     
-    value.value = _.map(formatted, (v) => {
+    value.value = map(formatted, (v) => {
       checkDateFormat(loadDateFormat.value, v)
       
       return v instanceof Date ? v : moment(v, loadDateFormat.value).toDate()
@@ -753,17 +753,17 @@ const multilingual = function(props, context, dependencies, /* istanbul ignore n
   const load = (val, format = false) => {
     let formatted = format && formatLoad.value ? formatLoad.value(val, form$.value) : val
     
-    if (!_.isPlainObject(formatted)) {
+    if (!isPlainObject(formatted)) {
       throw new Error('Multilingual element requires an object to load')
     }
     
-    setValue(Object.assign({}, _.clone(nullValue.value), formatted))
+    setValue(Object.assign({}, clone(nullValue.value), formatted))
   }
   
   const update = (val) => {
     let updateValue = val
     
-    if (!_.isPlainObject(updateValue)) {
+    if (!isPlainObject(updateValue)) {
       updateValue = {
         [language.value]: val,
       }
@@ -978,7 +978,7 @@ const multifile = function(props, context, dependencies)
     let requestData = []
 
 
-    _.each(children$.value, (element$) => {
+    each(children$.value, (element$) => {
       let val = element$.requestData[element$.name]
       
       /* istanbul ignore next: failsafe only */

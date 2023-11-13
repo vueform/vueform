@@ -18,7 +18,7 @@ export default class messageBag {
   }
 
   get errors() {
-    return _.concat(
+    return concat(
       this.prepends.errors,
       this.baseErrors,
       this.appends.errors,
@@ -26,7 +26,7 @@ export default class messageBag {
   }
 
   get messages() {
-    return _.concat(
+    return concat(
       this.prepends.messages,
       this.appends.messages,
     )
@@ -38,7 +38,7 @@ export default class messageBag {
    * @type {string}
    */
   get error() {
-    return _.head(this.errors)
+    return head(this.errors)
   }
 
   /**
@@ -47,7 +47,7 @@ export default class messageBag {
    * @type {string}
    */
   get message() {
-    return _.head(this.messages)
+    return head(this.messages)
   }
 
   prepend(msg, type) {
@@ -72,12 +72,12 @@ export default class messageBag {
     }
 
     if (['any', 'error'].indexOf(type) !== -1) {
-      _.each(this.prepends.errors, (error, index) => {
+      each(this.prepends.errors, (error, index) => {
         if (error == msg) {
           this.rm('prepends', 'errors', index)
         }
       })
-      _.each(this.appends.errors, (error, index) => {
+      each(this.appends.errors, (error, index) => {
         if (error == msg) {
           this.rm('appends', 'errors', index)
         }
@@ -85,12 +85,12 @@ export default class messageBag {
     }
 
     if (['any', 'message'].indexOf(type) !== -1) {
-      _.each(this.prepends.messages, (error, index) => {
+      each(this.prepends.messages, (error, index) => {
         if (error == msg) {
           this.rm('prepends', 'messages', index)
         }
       })
-      _.each(this.appends.messages, (error, index) => {
+      each(this.appends.messages, (error, index) => {
         if (error == msg) {
           this.rm('appends', 'messages', index)
         }

@@ -34,13 +34,13 @@ const base = function(props, context, dependencies)
    * @returns {void}
    */
   const select = (options) => {
-    if (!_.isArray(options)) {
+    if (!isArray(options)) {
       options = [options]
     }
     
-    let val = _.clone(value.value)
+    let val = clone(value.value)
     
-    _.each(options, (option) => {
+    each(options, (option) => {
       if (inValue(normalize(option))) {
         return
       }
@@ -58,14 +58,14 @@ const base = function(props, context, dependencies)
    * @returns {void}
    */
   const deselect = (options) => {
-    if (!_.isArray(options)) {
+    if (!isArray(options)) {
       options = [options]
     }
     
-    let val = _.clone(value.value)
+    let val = clone(value.value)
     let indexes = []
     
-    _.each(options, (option) => {
+    each(options, (option) => {
       let i = value.value.indexOf(option)
       
       if (i === -1 || indexes.indexOf(i) !== -1) {

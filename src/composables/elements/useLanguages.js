@@ -25,7 +25,7 @@ const base = function(props, context, dependencies)
    * @type {array}
    */
   const languages = computed(() => {
-    return _.keys(form$.value.options.languages)
+    return keys(form$.value.options.languages)
   })
   
   return {

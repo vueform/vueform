@@ -1,4 +1,6 @@
-import _ from 'lodash'
+// import _ from 'lodash'
+import each from 'lodash/each'
+import isPlainObject from 'lodash/isPlainObject'
 
 /**
  * =========
@@ -240,14 +242,14 @@ const prefixer = function (classes, prefix) {
     return res
   } 
 
-  _.each(classes, (classList, componentName) => {
+  each(classes, (classList, componentName) => {
     prefixedClasses[componentName] = {}
 
-    _.each(classList, (class_, className) => {
-      if (_.isPlainObject(class_)) {
+    each(classList, (class_, className) => {
+      if (isPlainObject(class_)) {
         prefixedClasses[componentName][className] = {}
         
-        _.each(class_, (subclass, subclassName) => {
+        each(class_, (subclass, subclassName) => {
           if (typeof subclass !== 'function') {
             prefixedClasses[componentName][className][subclassName] = prefixClass(subclass)
           } else {

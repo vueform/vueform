@@ -10,7 +10,7 @@ export default class exists extends Validator {
   get requestParams() {
     var params = {}
 
-    _.each(this.attributes, (param, key) => {
+    each(this.attributes, (param, key) => {
       var requestParam = key
 
       if (!isNaN(key)) {
@@ -24,7 +24,7 @@ export default class exists extends Validator {
       var el = this.form$.el$(requestParam)
 
       // set the element value or the param name itself
-      params[_.keys(params).length] = el && key != 0 ? el.value : requestParam
+      params[keys(params).length] = el && key != 0 ? el.value : requestParam
     })
 
     return params

@@ -29,7 +29,7 @@ const base = function(props, context, dependencies, /* istanbul ignore next */ o
   const initialValue = ref(undefined)
   
   if (form$.value.isSync) {
-    initialValue.value = _.get(form$.value.model, dataPath.value)
+    initialValue.value = get(form$.value.model, dataPath.value)
   } else if (parent.value && ['group', 'object', 'list', 'multifile'].indexOf(parent.value.type) !== -1) {
     initialValue.value = parent.value.value[name.value]
   }
@@ -42,7 +42,7 @@ const base = function(props, context, dependencies, /* istanbul ignore next */ o
    * @type {any}
    * @private
    */
-  const internalValue = ref(defaultValue.value instanceof File ? defaultValue.value : _.cloneDeep(defaultValue.value))
+  const internalValue = ref(defaultValue.value instanceof File ? defaultValue.value : cloneDeep(defaultValue.value))
   
   /**
    * The value of the element.
@@ -54,14 +54,14 @@ const base = function(props, context, dependencies, /* istanbul ignore next */ o
       let value
       
       if (form$.value.isSync) {
-        value = _.get(form$.value.model, dataPath.value)
+        value = get(form$.value.model, dataPath.value)
       } else if (parent.value && ['group', 'object', 'list', 'multifile'].indexOf(parent.value.type) !== -1) {
         value = parent.value.value[name.value]
       } else {
         value = internalValue.value
       }
       
-      return value !== undefined ? value : /* istanbul ignore next: value is never undefined if default is set */ (defaultValue.value instanceof File ? defaultValue.value : _.cloneDeep(defaultValue.value))
+      return value !== undefined ? value : /* istanbul ignore next: value is never undefined if default is set */ (defaultValue.value instanceof File ? defaultValue.value : cloneDeep(defaultValue.value))
     },
     set: options.value?.set || function (val) {
       if (form$.value.isSync) {
@@ -98,13 +98,13 @@ const base = function(props, context, dependencies, /* istanbul ignore next */ o
   if (options.init === undefined || options.init !== false) {
     // If element's value was undefined initially (not found in v-model/data) then we need to set its value
     if (initialValue.value === undefined) {
-      value.value = defaultValue.value instanceof File ? defaultValue.value : _.cloneDeep(defaultValue.value)
+      value.value = defaultValue.value instanceof File ? defaultValue.value : cloneDeep(defaultValue.value)
     }
   }
   
   /* istanbul ignore next: type can not be changed on the fly */
   watch(type, () => {
-    value.value = defaultValue.value instanceof File ? defaultValue.value : _.cloneDeep(defaultValue.value)
+    value.value = defaultValue.value instanceof File ? defaultValue.value : cloneDeep(defaultValue.value)
   })
   
   return {
@@ -183,7 +183,7 @@ const group = function(props, context, dependencies, /* istanbul ignore next */ 
    * @type {any}
    * @private
    */
-  const internalValue = ref(_.cloneDeep(defaultValue.value))
+  const internalValue = ref(cloneDeep(defaultValue.value))
   
   // ============== COMPUTED ===============
   
@@ -193,7 +193,7 @@ const group = function(props, context, dependencies, /* istanbul ignore next */ 
       let value
 
       if (form$.value.isSync) {
-        value = dataPath.value ? (_.get(form$.value.model, dataPath.value) || {}) : form$.value.model
+        value = dataPath.value ? (get(form$.value.model, dataPath.value) || {}) : form$.value.model
       } else if (parent.value && ['group', 'object'].indexOf(parent.value.type) !== -1) {
         value = parent.value.value
       } else {
@@ -237,7 +237,7 @@ const group = function(props, context, dependencies, /* istanbul ignore next */ 
       })
       value = tempValue
       
-      return value !== undefined ? value : /* istanbul ignore next: will never reach, internalValue is assigned at the beginning */ _.cloneDeep(defaultValue.value)
+      return value !== undefined ? value : /* istanbul ignore next: will never reach, internalValue is assigned at the beginning */ cloneDeep(defaultValue.value)
     },
     set(val)
     {
@@ -307,7 +307,7 @@ const date = function(props, context, dependencies)
    * @type {any}
    * @private
    */
-  const internalValue = ref(defaultValue.value instanceof File ? /* istanbul ignore next: @todo:adam date type will never have file instance default value */ defaultValue.value : _.cloneDeep(defaultValue.value))
+  const internalValue = ref(defaultValue.value instanceof File ? /* istanbul ignore next: @todo:adam date type will never have file instance default value */ defaultValue.value : cloneDeep(defaultValue.value))
   
   const {
     value,
@@ -319,19 +319,19 @@ const date = function(props, context, dependencies)
         let value
         
         if (form$.value.isSync) {
-          value = _.get(form$.value.model, dataPath.value)
+          value = get(form$.value.model, dataPath.value)
         } else if (parent.value && ['object', 'list', 'multifile'].indexOf(parent.value.type) !== -1) {
           value = parent.value.value[name.value]
         } else {
           value = internalValue.value
         }
         
-        return value !== undefined ? value : /* istanbul ignore next: can not be undefined @todo:adam can not be file */ (defaultValue.value instanceof File ? defaultValue.value : _.cloneDeep(defaultValue.value))
+        return value !== undefined ? value : /* istanbul ignore next: can not be undefined @todo:adam can not be file */ (defaultValue.value instanceof File ? defaultValue.value : cloneDeep(defaultValue.value))
       },
       set(val)
       {
         // If the value is not a Date object check if it is matching the value format
-        if (!_.isEmpty(val) && !(val instanceof Date) && valueDateFormat.value !== false) {
+        if (!isEmpty(val) && !(val instanceof Date) && valueDateFormat.value !== false) {
           checkDateFormat(valueDateFormat.value, val)
         }
         
@@ -389,7 +389,7 @@ const dates = function(props, context, dependencies)
    * @type {any}
    * @private
    */
-  const internalValue = ref(defaultValue.value instanceof File ? /* istanbul ignore next: @todo:adam date type will never have file instance default value */ defaultValue.value : _.cloneDeep(defaultValue.value))
+  const internalValue = ref(defaultValue.value instanceof File ? /* istanbul ignore next: @todo:adam date type will never have file instance default value */ defaultValue.value : cloneDeep(defaultValue.value))
   
   const {
     value,
@@ -401,14 +401,14 @@ const dates = function(props, context, dependencies)
         let value
         
         if (form$.value.isSync) {
-          value = _.get(form$.value.model, dataPath.value)
+          value = get(form$.value.model, dataPath.value)
         } else if (parent.value && ['object', 'list', 'multifile'].indexOf(parent.value.type) !== -1) {
           value = parent.value.value[name.value]
         } else {
           value = internalValue.value
         }
         
-        return value !== undefined ? value : /* istanbul ignore next: can not be undefined @todo:adam can not be file */ (defaultValue.value instanceof File ? defaultValue.value : _.cloneDeep(defaultValue.value))
+        return value !== undefined ? value : /* istanbul ignore next: can not be undefined @todo:adam can not be file */ (defaultValue.value instanceof File ? defaultValue.value : cloneDeep(defaultValue.value))
       },
       set(val)
       {
@@ -417,7 +417,7 @@ const dates = function(props, context, dependencies)
         }
         
         val = val.map((v) => {
-          if (!_.isEmpty(v) && !(v instanceof Date) && valueDateFormat.value !== false) {
+          if (!isEmpty(v) && !(v instanceof Date) && valueDateFormat.value !== false) {
             checkDateFormat(valueDateFormat.value, v)
           }
           

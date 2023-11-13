@@ -12,12 +12,12 @@ let getFormData = function (data, formData, namespace) {
     namespace = ''
   }
 
-  if (_.isArray(data)) {
-    _.each(data, (value, key) => {
+  if (isArray(data)) {
+    each(data, (value, key) => {
       getFormData(value, formData, namespace + '[' + key + ']');
     })
-  } else if (_.isPlainObject(data)) {
-    _.each(data, (value, key) => {
+  } else if (isPlainObject(data)) {
+    each(data, (value, key) => {
       getFormData(value, formData, namespace ? namespace + '[' + key + ']' : key);
     })
   } else {

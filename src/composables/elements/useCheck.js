@@ -33,13 +33,13 @@ const base = function(props, context, dependencies)
    * @returns {void}
    */
   const check = (values) => {
-    if (!_.isArray(values)) {
+    if (!isArray(values)) {
       values = [values]
     }
     
-    const items = _.clone(value.value)
+    const items = clone(value.value)
     
-    _.each(values, (item) => {
+    each(values, (item) => {
       /* istanbul ignore else */
       if (items.indexOf(String(item)) === -1 && items.indexOf(Number(item)) === -1) {
         items.push(item)
@@ -56,13 +56,13 @@ const base = function(props, context, dependencies)
    * @returns {void}
    */
   const uncheck = (values) => {
-    if (!_.isArray(values)) {
+    if (!isArray(values)) {
       values = [values]
     }
     
-    const items = _.clone(value.value)
+    const items = clone(value.value)
     
-    _.each(values, (item) => {
+    each(values, (item) => {
       let index = items.indexOf(String(item))
       
       /* istanbul ignore else */

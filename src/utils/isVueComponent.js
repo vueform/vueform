@@ -56,7 +56,7 @@ function isElement(value) {
  */
 export default function isVueComponent(value) {
   /* istanbul ignore next */
-  return (_.isPlainObject(value) && (
+  return (isPlainObject(value) && (
     isNonEmptyString(value.template)
     || isFunction(value.render)
     || isNonEmptyString(value.el)

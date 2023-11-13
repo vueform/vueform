@@ -40,7 +40,7 @@ const base = function(props, context, dependencies)
     } else if (placeholder && placeholder.value && form$.value.options.floatPlaceholders) {
       return localize(placeholder.value, config$.value, form$.value)
     } else {
-      return _.upperFirst(name.value).replace(/_|-/g, ' ')
+      return upperFirst(name.value).replace(/_|-/g, ' ')
     }
   })
   
@@ -86,7 +86,7 @@ const file = function(props, context, dependencies)
     } else {
       return /^\d+$/.test(name.value)
         ? form$.value.translations.vueform.elements.file.defaultName
-        : _.upperFirst(name.value).replace(/_|-/g, ' ')
+        : upperFirst(name.value).replace(/_|-/g, ' ')
     }
   })
   

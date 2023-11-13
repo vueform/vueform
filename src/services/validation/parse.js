@@ -27,7 +27,7 @@ const parse = (string) => {
       return attributes
     }
 
-    _.each(params.split(','), (attribute, index) => {
+    each(params.split(','), (attribute, index) => {
       var attrParts = attribute.split('=')
 
       if (attrParts.length <= 1) {

@@ -92,13 +92,13 @@ const checkboxgroup = function(props, context, dependencies)
    * @returns {void}
    */
   const disable = (values) => {
-    if (!_.isArray(values)) {
+    if (!isArray(values)) {
       values = [values]
     }
     
-    const disablesList = _.clone(disabledItems.value)
+    const disablesList = clone(disabledItems.value)
     
-    _.each(values, (item) => {
+    each(values, (item) => {
       item = String(item)
       
       /* istanbul ignore else */
@@ -117,13 +117,13 @@ const checkboxgroup = function(props, context, dependencies)
    * @returns {void}
    */
   const enable = (values) => {
-    if (!_.isArray(values)) {
+    if (!isArray(values)) {
       values = [values]
     }
     
-    const disablesList = _.clone(disabledItems.value)
+    const disablesList = clone(disabledItems.value)
     
-    _.each(values, (item) => {
+    each(values, (item) => {
       item = String(item)
       
       var index = disablesList.indexOf(item)
@@ -158,7 +158,7 @@ const checkboxgroup = function(props, context, dependencies)
   
   // ================ HOOKS ===============
   
-  disabledItems.value = _.map(disables.value || /* istanbul ignore next: can't fall into this, because it is hardwired to be `[]` if undefined */ [], (d) => {
+  disabledItems.value = map(disables.value || /* istanbul ignore next: can't fall into this, because it is hardwired to be `[]` if undefined */ [], (d) => {
     return String(d)
   })
   

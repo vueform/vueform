@@ -86,11 +86,11 @@ const multifile = function(props, context, dependencies, /* istanbul ignore next
     
     //@todo:adam unreachable code, storeFile is never undefined
     /* istanbul ignore next: fields.value is hardcoded {} */
-    return object.value || _.keys(fields.value).length || storeOrder.value ? 'file' : null
+    return object.value || keys(fields.value).length || storeOrder.value ? 'file' : null
   })
   
   const isObject = computed(() => {
-    return !!object.value || !!storeOrder.value || !!_.keys(fields.value).length
+    return !!object.value || !!storeOrder.value || !!keys(fields.value).length
   })
   
   const prototype = computed(() => {

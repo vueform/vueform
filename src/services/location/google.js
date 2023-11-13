@@ -37,7 +37,7 @@ export default class {
   }
 
   formatValue(value) {
-    if (!_.isPlainObject(value)) {
+    if (!isPlainObject(value)) {
       return value
     }
 
@@ -84,7 +84,7 @@ export default class {
 
     let addressComponent = null
 
-    _.each(addressComponents, (component) => {
+    each(addressComponents, (component) => {
       if (component.types.indexOf(typeMap[type].field) !== -1) {
         if (['state', 'state_code'].indexOf(type) !== -1 && this.addressComponent(addressComponents, 'country_code') != 'US') {
           return 

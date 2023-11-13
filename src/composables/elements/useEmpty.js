@@ -17,7 +17,7 @@ const base = function(props, context, dependencies)
    * @type {boolean}
    */
   const empty = computed(() => {
-    return _.isEqual(value.value, nullValue.value) || [undefined, null, ''].indexOf(value.value) !== -1
+    return isEqual(value.value, nullValue.value) || [undefined, null, ''].indexOf(value.value) !== -1
   })
   
   return {
@@ -54,7 +54,7 @@ const array = function(props, context, dependencies)
   // ============== COMPUTED ==============
   
   const empty = computed(() => {
-    return _.isEqual(value.value, nullValue.value) || [undefined, null, ''].indexOf(value.value) !== -1 || value.value.length == 0
+    return isEqual(value.value, nullValue.value) || [undefined, null, ''].indexOf(value.value) !== -1 || value.value.length == 0
   })
   
   return {

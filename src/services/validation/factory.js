@@ -28,7 +28,7 @@ const Factory = class {
       return []
     }
 
-    return _.map(parsedRules, (rule) => {
+    return map(parsedRules, (rule) => {
       return this.make(rule)
     })
   }
@@ -46,11 +46,11 @@ const Factory = class {
   }
 
   parseRules(rules) {
-    if (!_.isArray(rules)) {
+    if (!isArray(rules)) {
       rules = rules.split('|')
     }
     
-    return _.flatMap(rules, (rule) => {
+    return flatMap(rules, (rule) => {
       if (typeof rule == 'function') {
         return rule
       }
@@ -64,24 +64,24 @@ const Factory = class {
   }
 
   isConditional(rule) {
-    return _.isPlainObject(rule)
+    return isPlainObject(rule)
   }
 
   parseConditional(rule) {
-    let conditions = _.values(rule)[0]
+    let conditions = values(rule)[0]
 
     if (!Array.isArray(conditions[0])) {
       conditions = [conditions]
     }
 
     let parsed = {
-      ...parse(_.keys(rule)[0]),
+      ...parse(keys(rule)[0]),
       conditions: (form$, Validator, el$) => {
         return conditions.every((condition) => {
-          if (_.isArray(condition)) {
-            if (_.isArray(condition[0])) {
+          if (isArray(condition)) {
+            if (isArray(condition[0])) {
               return condition.some((subcondition) => {
-                if (_.isArray(subcondition)) {
+                if (isArray(subcondition)) {
                   return this.createConditionFromArray(subcondition)(form$, Validator, el$)
                 } else {
                   return condition(form$, Validator, el$)
@@ -99,10 +99,10 @@ const Factory = class {
     }
 
     conditions.forEach((condition) => {
-      if (_.isArray(condition)) {
-        if (_.isArray(condition[0])) {
+      if (isArray(condition)) {
+        if (isArray(condition[0])) {
           condition.forEach((subcondition) => {
-            if (_.isArray(subcondition)) {
+            if (isArray(subcondition)) {
               parsed.dependents.push(replaceWildcards(subcondition[0], this.element$.path))
             }
           })
@@ -123,7 +123,7 @@ const Factory = class {
     )
 
     return (form$, Validator, el$) => {
-      var actual = _.get(form$.requestData, field)
+      var actual = get(form$.requestData, field)
       var expected = value
 
       return compare(actual, operator, expected, this.element$)

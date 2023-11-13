@@ -95,7 +95,7 @@ const base = function(props, context, dependencies, options)
     list.value.children[newIndex].remove()
     list.value.insertBefore(item, list.value.children[oldIndex])
     
-    let valueClone = _.cloneDeep(value.value)
+    let valueClone = cloneDeep(value.value)
     
     valueClone.splice(newIndex, 0, valueClone.splice(oldIndex, 1)[0])
     

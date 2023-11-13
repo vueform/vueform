@@ -35,7 +35,7 @@ export default class MergeClasses
 
     this.merge(this.config)
 
-    _.each(options.merge, (merge) => {
+    each(options.merge, (merge) => {
       this.merge(merge)
     })
 
@@ -101,13 +101,13 @@ export default class MergeClasses
   }
 
   get themeClasses () {
-    return _.cloneDeep(this.toArray(this.view && this.theme.classes[`${this.component}_${this.view}`]
+    return cloneDeep(this.toArray(this.view && this.theme.classes[`${this.component}_${this.view}`]
       ? this.theme.classes[`${this.component}_${this.view}`]
       : this.theme.classes[this.component]))
   }
 
   get templateClasses () {
-     return _.cloneDeep(this.toArray(this.defaultClasses))
+     return cloneDeep(this.toArray(this.defaultClasses))
   }
 
   get shouldMergeTemplateClasses () {
@@ -133,7 +133,7 @@ export default class MergeClasses
   }
 
   merge(merge, locals = false) {
-    _.each(this.pick(merge, locals ? LOCALS_KEYS : MERGE_KEYS), (mergables, key) => {
+    each(this.pick(merge, locals ? LOCALS_KEYS : MERGE_KEYS), (mergables, key) => {
       switch (key) {
         case 'addClasses':
         case 'prependClasses':
@@ -172,7 +172,7 @@ export default class MergeClasses
             }, `${key}es`)
           } else if (key === 'replaceClass') {
               this.mergeComponentClasses(mergables, `${key}es`)
-          } else if (_.isPlainObject(mergables)) {
+          } else if (isPlainObject(mergables)) {
             this.mergeComponentClasses(this.toArray(mergables), `${key}es`)
           } else {
           }
@@ -184,7 +184,7 @@ export default class MergeClasses
             return
           }
 
-          _.each(mergables, (presetName) => {
+          each(mergables, (presetName) => {
             this.merge(this.presets[presetName])
           })
           break
@@ -193,24 +193,24 @@ export default class MergeClasses
   }
   
   mergeComponentClasses(componentClasses, key) {
-    _.each(componentClasses, (classes, className) => {
+    each(componentClasses, (classes, className) => {
       this[key](classes, [className])
     })
   }
 
   addClasses(add, levels) {
-    let base = _.get(this.componentClasses, levels.join('.'))
+    let base = get(this.componentClasses, levels.join('.'))
 
     if (add.length == 1 && !add[0]) {
       return
     }
 
-    if (_.isPlainObject(base)) {
-      _.each(add, (subclasses, subclassName) => {
+    if (isPlainObject(base)) {
+      each(add, (subclasses, subclassName) => {
         this.addClasses(subclasses, levels.concat(subclassName))
       })
     } else {
-      _.set(this.componentClasses, levels.join('.'), _.union(
+      set(this.componentClasses, levels.join('.'), union(
         base,
         add
       ))
@@ -218,18 +218,18 @@ export default class MergeClasses
   }
 
   prependClasses(prepend, levels) {
-    let base = _.get(this.componentClasses, levels.join('.'))
+    let base = get(this.componentClasses, levels.join('.'))
 
     if (prepend.length == 1 && !prepend[0]) {
       return
     }
 
-    if (_.isPlainObject(base)) {
-      _.each(prepend, (subclasses, subclassName) => {
+    if (isPlainObject(base)) {
+      each(prepend, (subclasses, subclassName) => {
         this.prependClasses(subclasses, levels.concat(subclassName))
       })
     } else {
-      _.set(this.componentClasses, levels.join('.'), _.union(
+      set(this.componentClasses, levels.join('.'), union(
         prepend,
         base
       ))
@@ -237,21 +237,21 @@ export default class MergeClasses
   }
 
   removeClasses(remove, levels) {
-    let base = _.get(this.componentClasses, levels.join('.'))
+    let base = get(this.componentClasses, levels.join('.'))
 
-    if (_.isPlainObject(base)) {
-      _.each(remove, (subclasses, subclassName) => {
+    if (isPlainObject(base)) {
+      each(remove, (subclasses, subclassName) => {
         this.removeClasses(subclasses, levels.concat(subclassName))
       })
     } else if (Array.isArray(base)) {
-      _.set(this.componentClasses, levels.join('.'), base.filter((c) => {
+      set(this.componentClasses, levels.join('.'), base.filter((c) => {
         return typeof c !== 'string' || remove.indexOf(c) === -1
       }))
     }
   }
 
   replaceClasses(replace, levels) {
-    let base = _.get(this.componentClasses, levels.join('.'))
+    let base = get(this.componentClasses, levels.join('.'))
 
     if (Array.isArray(replace)) {
       let tempReplace = {}
@@ -266,12 +266,12 @@ export default class MergeClasses
       replace = tempReplace
     }
 
-    if (_.isPlainObject(base)) {
-      _.each(replace, (subclasses, subclassName) => {
+    if (isPlainObject(base)) {
+      each(replace, (subclasses, subclassName) => {
         this.replaceClasses(subclasses, levels.concat(subclassName))
       })
     } else if (Array.isArray(base)) {
-      _.set(this.componentClasses, levels.join('.'), base.map((c) => {
+      set(this.componentClasses, levels.join('.'), base.map((c) => {
         return typeof c !== 'string' || Object.keys(replace).indexOf(c) === -1
           ? c
           : replace[c]
@@ -280,21 +280,21 @@ export default class MergeClasses
   }
 
   overrideClasses(override, levels) {
-    let base = _.get(this.componentClasses, levels.join('.'))
+    let base = get(this.componentClasses, levels.join('.'))
 
-    if (_.isPlainObject(base)) {
-      _.each(override, (subclasses, subclassName) => {
+    if (isPlainObject(base)) {
+      each(override, (subclasses, subclassName) => {
         this.overrideClasses(subclasses, levels.concat(subclassName))
       })
     } else {
-      _.set(this.componentClasses, levels.join('.'), override)
+      set(this.componentClasses, levels.join('.'), override)
     }
   }
 
   toArray(componentClasses) {
     let arrayClasses = {}
 
-    _.each(componentClasses, (classes, className) => {
+    each(componentClasses, (classes, className) => {
       arrayClasses[className] = this.classesToArray(classes, [className])
     })
 
@@ -303,17 +303,17 @@ export default class MergeClasses
 
   classesToArray(classes, path) {
     let arrayClasses = classes
-    let base = path ? _.get(this.componentClasses, path.join('.')) : undefined
+    let base = path ? get(this.componentClasses, path.join('.')) : undefined
 
     if (typeof classes === 'string') {
       arrayClasses = classes.length > 0 ? classes.split(' ') : []
-    } else if (_.isPlainObject(classes)) {
+    } else if (isPlainObject(classes)) {
       if (base && Array.isArray(base)) {
         arrayClasses = [classes]
-      } else if (!base || _.isPlainObject(base)) {
+      } else if (!base || isPlainObject(base)) {
         arrayClasses = {}
 
-        _.each(classes, (subclasses, subclassName) => {
+        each(classes, (subclasses, subclassName) => {
           arrayClasses[subclassName] = this.classesToArray(subclasses, path.concat([subclassName]))
         })
       }
@@ -331,16 +331,16 @@ export default class MergeClasses
       mainTarget = target
     }
 
-    let classes = Array.isArray(target[prop]) ? _.flattenDeep(target[prop]) : target[prop]
+    let classes = Array.isArray(target[prop]) ? flattenDeep(target[prop]) : target[prop]
 
     if (target[`$${prop}`]) {
-      return _.flattenDeep(target[`$${prop}`](mainTarget, this.component$.value))
+      return flattenDeep(target[`$${prop}`](mainTarget, this.component$.value))
     }
 
-    if (_.isPlainObject(classes)) {
-      classes = _.cloneDeep(classes)
+    if (isPlainObject(classes)) {
+      classes = cloneDeep(classes)
 
-      _.each(classes, (classList, className) => {
+      each(classes, (classList, className) => {
         classes[className] = this.getDynamicClasses(classes, className, target)
       })
     }
@@ -351,14 +351,14 @@ export default class MergeClasses
   getClassHelpers (componentClasses, path) {
     let classHelpers = {}
 
-    _.each(componentClasses, (classes, className) => {
+    each(componentClasses, (classes, className) => {
       if (className.match(/[$]/)) {
         return
       }
 
       // let name = componentClasses[`$${className}`] !== undefined ? `$${className}` : className
 
-      if (_.isPlainObject(classes)) {
+      if (isPlainObject(classes)) {
         classHelpers[className] = this.getClassHelpers(componentClasses[className], path.concat([className]))
       } else {
         classHelpers[className] = [`${path.join('.')}.${className}-->`]
@@ -375,7 +375,7 @@ export default class MergeClasses
       return picked
     }
 
-    _.each(picks, (pick) => {
+    each(picks, (pick) => {
       if (pick in from) {
         picked[pick] = from[pick]
       }

@@ -40,7 +40,7 @@ export default class Columns
     if (typeof columns === 'object' && ['container', 'label', 'wrapper'].indexOf(Object.keys(columns)[0]) !== -1) {
       let serialized = {}
 
-      _.each(columns, (size, type) => {
+      each(columns, (size, type) => {
         // columns: { container: 8 }
         if (['number', 'string'].indexOf(typeof size) !== -1) {
           if (serialized[this.defaultBreakpoint] === undefined) {
@@ -52,7 +52,7 @@ export default class Columns
 
         // columns: { container: { default: 8, lg: 8 } }
         else {
-          _.each(size, (s, breakpoint) => {
+          each(size, (s, breakpoint) => {
             if (serialized[breakpoint] === undefined) {
               serialized[breakpoint] = {}
             }
@@ -69,7 +69,7 @@ export default class Columns
     else {
       let serialized = {}
 
-      _.each(columns, (size, breakpoint) => {
+      each(columns, (size, breakpoint) => {
         // columns: { lg: 8 }
         if (['number', 'string'].indexOf(typeof size) !== -1) {
           if (serialized[breakpoint] === undefined) {
@@ -92,7 +92,7 @@ export default class Columns
   columnsFromPresets(presets) {
     let columns
 
-    _.each(presets, (presetName) => {
+    each(presets, (presetName) => {
       let preset = this.presets[presetName]
 
       if (!preset || !preset.columns) {
@@ -143,7 +143,7 @@ export default class Columns
   }
 
   getCols() {
-    return _.merge({},
+    return merge({},
       { [this.defaultBreakpoint]: { container: 12, label: 12, wrapper: 12 } },
       this.configPresetColumns || {},
       this.configColumns || {},

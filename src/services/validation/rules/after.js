@@ -97,10 +97,10 @@ export default class after extends Validator {
   }
 
   check(value) {
-    if (_.isArray(value)) {
+    if (isArray(value)) {
       let valid = true
 
-      _.each(value, (date) => {
+      each(value, (date) => {
         if (!this.checkDate(date)) {
           valid = false
         }

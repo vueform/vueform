@@ -30,7 +30,7 @@ export default class {
   } 
 
   formatValue(value) {
-    if (!_.isPlainObject(value)) {
+    if (!isPlainObject(value)) {
       return value
     }
 
@@ -61,10 +61,10 @@ export default class {
       WA: 'washington', WV: 'west virginia', WI: 'wisconsin', WY: 'wyoming'
     }
 
-    if (_.values(states).indexOf(name) === -1) {
+    if (values(states).indexOf(name) === -1) {
       return null
     }
 
-    return _.keys(states)[_.values(states).indexOf(name)]
+    return keys(states)[values(states).indexOf(name)]
   }
 }

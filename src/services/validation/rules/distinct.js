@@ -18,12 +18,12 @@ export default class distinct extends Validator {
 
     let data = {}
 
-    _.each(flattenKeys(attributeData), (v, k) => {
+    each(flattenKeys(attributeData), (v, k) => {
       if (k != attribute && k.match('^' + pattern + '$') !== null) {
         data[k] = v
       }
     })
 
-    return !(_.values(data).indexOf(value) !== -1)
+    return !(values(data).indexOf(value) !== -1)
   }
 }

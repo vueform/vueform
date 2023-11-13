@@ -29,7 +29,7 @@ const base = function(props, context, dependencies)
   const Templates = computed(() => {
     let presetTemplates = {}
     
-    _.each(presets ? presets.value : [], (presetName) => {
+    each(presets ? presets.value : [], (presetName) => {
       let preset = form$.value.$vueform.config.presets[presetName]
       
       if (!preset || !preset.templates) {

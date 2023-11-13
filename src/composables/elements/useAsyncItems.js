@@ -63,7 +63,7 @@ const base = function(props, context, dependencies)
     
     let nativeItems = []
     
-    _.each(options.value, (item, key) => {
+    each(options.value, (item, key) => {
       if ([null, undefined].indexOf(item) !== -1) {
         return
       }
@@ -145,7 +145,7 @@ const base = function(props, context, dependencies)
       let optionList = (await form$.value.$vueform.services.axios.get(url))?.data || []
 
       if (dataKey && dataKey.value && Object.keys(optionList).length) {
-        optionList = _.get(optionList, dataKey.value) || []
+        optionList = get(optionList, dataKey.value) || []
       }
       
       options.value = optionList
@@ -173,7 +173,7 @@ const base = function(props, context, dependencies)
         optionList = (await form$.value.$vueform.services.axios.get(`${url}${url.match(/\?/)?'&':'?'}${searchParam.value}=${query||''}`))?.data || []
 
         if (dataKey && dataKey.value && Object.keys(optionList).length) {
-          optionList = _.get(optionList, dataKey.value) || []
+          optionList = get(optionList, dataKey.value) || []
         }
       } catch (e) {
         console.error(e)
@@ -211,7 +211,7 @@ const base = function(props, context, dependencies)
   const resolveOptions = async (n, o) => {
     if (typeof items.value === 'function' && isNative.value) {
       await resolveOptionsFromFunction()
-    } else if (!_.isEqual(n, o) || (n === undefined && o === undefined)) {
+    } else if (!isEqual(n, o) || (n === undefined && o === undefined)) {
       if (typeof items.value === 'string' && isNative.value) {
         await resolveOptionsFromUrl()
       } else if (typeof items.value === 'string' && !isNative.value) {
@@ -231,12 +231,12 @@ const base = function(props, context, dependencies)
    */
   const cleanupValue = (values) => {
     if (clearOnRefetch.value) {
-      value.value = _.cloneDeep(nullValue.value)
+      value.value = cloneDeep(nullValue.value)
       return
     }
 
     if (!Array.isArray(nullValue.value) && value.value && values.indexOf(value.value) === -1) {
-      value.value = _.cloneDeep(nullValue.value)
+      value.value = cloneDeep(nullValue.value)
     }
     else if (Array.isArray(nullValue.value) && value.value.length) {
       value.value = value.value.filter((v) => {
@@ -367,7 +367,7 @@ const checkboxgroup = function(props, context, dependencies)
   const resolvedOptions = computed(() => {
     let resolvedOptions = []
     
-    _.each(options.value, (item, key) => {
+    each(options.value, (item, key) => {
       if ([null, undefined].indexOf(item) !== -1) {
         return
       }

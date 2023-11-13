@@ -4,6 +4,7 @@ import merge from 'lodash/merge'
 import some from 'lodash/some'
 import isEmpty from 'lodash/isEmpty'
 import upperFirst from 'lodash/upperFirst'
+import filter from 'lodash/filter'
 import {
   computed, ref, toRefs, getCurrentInstance, onBeforeMount, onMounted, onBeforeUpdate,
   onUpdated, onBeforeUnmount, onUnmounted, provide, watch,
@@ -373,11 +374,11 @@ const base = function(props, context, dependencies = {})
       loading: false,
     }
 
-    _.each(override, (val, key) => {
+    each(override, (val, key) => {
       options[key] = userConfig.value[key] !== undefined ?  userConfig.value[key] : ((val && val.value ? val.value : undefined) || defaults[key])
     })
 
-    _.each(ifPropSet, (val, key) => {
+    each(ifPropSet, (val, key) => {
       options[key] = userConfig.value[key] !== undefined ? userConfig.value[key] : (val && val.value !== null ? val.value : defaults[key])
     })
 
@@ -405,15 +406,15 @@ const base = function(props, context, dependencies = {})
     if (blocks) {
       orderedSchema = {}
 
-      _.each(blocks, (block) => {
-        _.each(block.elements, (name) => {
+      each(blocks, (block) => {
+        each(block.elements, (name) => {
           if (formSchema.value[name]) {
             orderedSchema[name] = formSchema.value[name]
           }
         })
       })
 
-      _.each(Object.keys(formSchema.value), (name) => {
+      each(Object.keys(formSchema.value), (name) => {
         if (orderedSchema[name] === undefined) {
           orderedSchema[name] = formSchema.value[name]
         }
@@ -430,7 +431,7 @@ const base = function(props, context, dependencies = {})
    * @private
    */
   const formSchema = computed(() => {
-    return _.merge({}, schema && schema.value ? schema.value : {}, userConfig.value.schema || {})
+    return merge({}, schema && schema.value ? schema.value : {}, userConfig.value.schema || {})
   })
 
   /**
@@ -440,7 +441,7 @@ const base = function(props, context, dependencies = {})
    * @private
    */
   const formTabs = computed(() => {
-    return _.merge({}, tabs && tabs.value ? tabs.value : {}, userConfig.value.tabs || {})
+    return merge({}, tabs && tabs.value ? tabs.value : {}, userConfig.value.tabs || {})
   })
 
   /**
@@ -450,7 +451,7 @@ const base = function(props, context, dependencies = {})
    * @private
    */
   const formSteps = computed(() => {
-    return _.merge({}, steps && steps.value ? steps.value : {}, userConfig.value.steps || {})
+    return merge({}, steps && steps.value ? steps.value : {}, userConfig.value.steps || {})
   })
 
   /**
@@ -479,7 +480,7 @@ const base = function(props, context, dependencies = {})
   const data = computed(() => {
     var data = {}
 
-    _.each(elements$.value, (e$) => {
+    each(elements$.value, (e$) => {
       if (e$.isStatic) {
         return
       }
@@ -498,7 +499,7 @@ const base = function(props, context, dependencies = {})
   const requestData = computed(() => {
     var requestData = {}
 
-    _.each(elements$.value, (e$) => {
+    each(elements$.value, (e$) => {
       if (e$.isStatic) {
         return
       }
@@ -515,7 +516,7 @@ const base = function(props, context, dependencies = {})
    * @type {boolean}
    */
   const dirty = computed(() => {
-    return _.some(elements$.value, (element$) => {
+    return some(elements$.value, (element$) => {
       return element$.isStatic === false && element$.available === true && element$.dirty === true
     })
   })
@@ -526,7 +527,7 @@ const base = function(props, context, dependencies = {})
    * @type {boolean}
    */
   const invalid = computed(() => {
-    return _.some(elements$.value, (element$) => {
+    return some(elements$.value, (element$) => {
       return element$.isStatic === false && element$.available === true && element$.invalid === true
     })
   })
@@ -537,7 +538,7 @@ const base = function(props, context, dependencies = {})
    * @type {boolean}
    */
   const debouncing = computed(() => {
-    return _.some(elements$.value, (element$) => {
+    return some(elements$.value, (element$) => {
       return element$.isStatic === false && element$.available === true && element$.debouncing === true
     })
   })
@@ -548,7 +549,7 @@ const base = function(props, context, dependencies = {})
    * @type {boolean}
    */
   const pending = computed(() => {
-    return _.some(elements$.value, (element$) => {
+    return some(elements$.value, (element$) => {
       return element$.isStatic === false && element$.available === true && element$.pending === true
     })
   })
@@ -559,7 +560,7 @@ const base = function(props, context, dependencies = {})
    * @type {boolean}
    */
   const validated = computed(() => {
-    return !_.some(elements$.value, (element$) => {
+    return !some(elements$.value, (element$) => {
       return element$.isStatic === false && element$.available === true && element$.validated === false
     })
   })
@@ -570,7 +571,7 @@ const base = function(props, context, dependencies = {})
    * @type {boolean}
    */
   const busy = computed(() => {
-    return _.some(elements$.value, (element$) => {
+    return some(elements$.value, (element$) => {
       return element$.isStatic === false && element$.available === true && element$.busy === true
     }) || submitting.value || preparing.value || isLoading.value
   })
@@ -585,8 +586,8 @@ const base = function(props, context, dependencies = {})
   const elementErrors = computed(() => {
     var errors = []
 
-    _.each(_.filter(elements$.value, { available: true, isStatic: false }), (element$) => {
-      _.each(element$.errors, (error) => {
+    each(filter(elements$.value, { available: true, isStatic: false }), (element$) => {
+      each(element$.errors, (error) => {
         errors.push(error)
       })
     })
@@ -715,7 +716,7 @@ const base = function(props, context, dependencies = {})
    * @private
    */
   const hasSteps = computed(() => {
-    return !_.isEmpty(options.value.steps)
+    return !isEmpty(options.value.steps)
   })
 
   /**
@@ -743,7 +744,7 @@ const base = function(props, context, dependencies = {})
    * @type {boolean}
    */
   const hasTabs = computed(() => {
-    return !_.isEmpty(options.value.tabs)
+    return !isEmpty(options.value.tabs)
   })
 
   /**
@@ -763,7 +764,7 @@ const base = function(props, context, dependencies = {})
   const extendedTheme = computed(() => {
     let presetTemplates = {}
 
-    _.each(baseConfig.value.config.usePresets.concat(options.value.presets), (presetName) => {
+    each(baseConfig.value.config.usePresets.concat(options.value.presets), (presetName) => {
       let preset = baseConfig.value.config.presets[presetName]
 
       if (!preset || !preset.templates) {
@@ -836,7 +837,7 @@ const base = function(props, context, dependencies = {})
     if (options.value.size) {
       Size = options.value.size
     } else {
-      _.each(baseConfig.value.config.usePresets.concat(options.value.presets), (presetName) => {
+      each(baseConfig.value.config.usePresets.concat(options.value.presets), (presetName) => {
         let preset = baseConfig.value.config.presets[presetName]
 
         if (!preset || !preset.size) {
@@ -864,7 +865,7 @@ const base = function(props, context, dependencies = {})
   const Views = computed(() => {
     let Views = baseConfig.value.config.views
 
-    _.each(baseConfig.value.config.usePresets.concat(options.value.presets), (presetName) => {
+    each(baseConfig.value.config.usePresets.concat(options.value.presets), (presetName) => {
       let preset = baseConfig.value.config.presets[presetName]
       
       if (!preset || !preset.views) {
@@ -905,7 +906,7 @@ const base = function(props, context, dependencies = {})
     let fallbackLocale = i18n.fallbackLocale || 'en'
 
 
-    return currentLocale ? _.merge({}, locales[fallbackLocale], locales[currentLocale]) : locales[fallbackLocale]
+    return currentLocale ? merge({}, locales[fallbackLocale], locales[currentLocale]) : locales[fallbackLocale]
   })
 
   // =============== METHODS ==============
@@ -923,7 +924,7 @@ const base = function(props, context, dependencies = {})
       return
     }
 
-    _.each(elements$.value, (element$) => {
+    each(elements$.value, (element$) => {
       if (element$.isStatic) {
         return
       }
@@ -972,7 +973,7 @@ const base = function(props, context, dependencies = {})
    * @returns {void}
    */
   const reset = () => {
-    _.each(elements$.value, (e$) => {
+    each(elements$.value, (e$) => {
       if (e$.isStatic) {
         return
       }
@@ -997,7 +998,7 @@ const base = function(props, context, dependencies = {})
    * @returns {void}
    */
   const clear = () => {
-    _.each(elements$.value, (e$) => {
+    each(elements$.value, (e$) => {
       if (e$.isStatic) {
         return
       }
@@ -1022,7 +1023,7 @@ const base = function(props, context, dependencies = {})
    * @returns {void}
    */
   const clean = () => {
-    _.each(elements$.value, (e$) => {
+    each(elements$.value, (e$) => {
       if (e$.isStatic) {
         return
       }
@@ -1041,7 +1042,7 @@ const base = function(props, context, dependencies = {})
       messageBag.value.clear()
     }
 
-    _.each(elements$.value, (e$) => {
+    each(elements$.value, (e$) => {
       if (e$.isStatic) {
         return
       }
@@ -1076,7 +1077,7 @@ const base = function(props, context, dependencies = {})
    * @returns {void}
    */
   const resetValidators = () => {
-    _.each(elements$.value, (e$) => {
+    each(elements$.value, (e$) => {
       if (e$.isStatic) {
         return
       }
@@ -1277,7 +1278,7 @@ const base = function(props, context, dependencies = {})
       elements = elements$.value
     }
 
-    if (_.isEmpty(elements) || !path) {
+    if (isEmpty(elements) || !path) {
       return null
     }
     
@@ -1344,8 +1345,8 @@ const base = function(props, context, dependencies = {})
     userConfig.value = $this.vueform || {}
 
     // Manually subscribe to events defined in options object
-    _.each(evts, (evt) => {
-      let callback = options.value['on' + _.upperFirst(evt)]
+    each(evts, (evt) => {
+      let callback = options.value['on' + upperFirst(evt)]
 
       if (callback) {
         on(evt, callback)

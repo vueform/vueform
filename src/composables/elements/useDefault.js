@@ -40,16 +40,16 @@ const base = function(props, context, dependencies)
     if (parentDefaultValue !== undefined) {
       return parentDefaultValue instanceof File
         ? new File([parentDefaultValue], parentDefaultValue.name, parentDefaultValue)
-        : _.cloneDeep(parentDefaultValue)
+        : cloneDeep(parentDefaultValue)
     }
     
     if (default_.value !== undefined) {
       return default_.value instanceof File
         ? new File([default_.value], default_.value.name, default_.value)
-        : _.cloneDeep(default_.value)
+        : cloneDeep(default_.value)
     }
     
-    return _.cloneDeep(nullValue.value)
+    return cloneDeep(nullValue.value)
   })
   
   return {
@@ -94,9 +94,9 @@ const text = function(props, context, dependencies)
     if (parentDefaultValue !== undefined) {
       return parentDefaultValue instanceof File
         ? new File([parentDefaultValue], parentDefaultValue.name, parentDefaultValue)
-        : (_.isPlainObject(parentDefaultValue)
-          ? localize(_.cloneDeep(parentDefaultValue), config$.value, form$.value)
-          : _.cloneDeep(parentDefaultValue))
+        : (isPlainObject(parentDefaultValue)
+          ? localize(cloneDeep(parentDefaultValue), config$.value, form$.value)
+          : cloneDeep(parentDefaultValue))
     }
     
     /* istanbul ignore else */
@@ -104,13 +104,13 @@ const text = function(props, context, dependencies)
       /* istanbul ignore next: text can not have File as default */
       return default_.value instanceof File
         ? new File([default_.value], default_.value.name, default_.value)
-        : _.isPlainObject(default_.value)
-          ? localize(_.cloneDeep(default_.value), config$.value, form$.value)
-          : _.cloneDeep(default_.value)
+        : isPlainObject(default_.value)
+          ? localize(cloneDeep(default_.value), config$.value, form$.value)
+          : cloneDeep(default_.value)
     }
     
     /* istanbul ignore next: text will never fall into this case, because `default_.value` is never undefined but null */
-    return _.cloneDeep(nullValue.value)
+    return cloneDeep(nullValue.value)
   })
   
   return {
@@ -143,14 +143,14 @@ const object = function(props, context, dependencies)
     }
     
     if (parentDefaultValue !== undefined) {
-      return _.cloneDeep(_.merge({}, default_.value || /* istanbul ignore next: `default_.value` will never be undefined, because it is a hardwired `{}` */ nullValue.value, parentDefaultValue))
+      return cloneDeep(merge({}, default_.value || /* istanbul ignore next: `default_.value` will never be undefined, because it is a hardwired `{}` */ nullValue.value, parentDefaultValue))
     }
     
     if (Object.keys(default_.value).length > 0) {
-      return _.cloneDeep(default_.value)
+      return cloneDeep(default_.value)
     }
     
-    return _.cloneDeep(nullValue.value)
+    return cloneDeep(nullValue.value)
   })
   
   return {
@@ -180,7 +180,7 @@ const group = function(props, context, dependencies)
       parentDefaultValue = form$.value.options.default
     }
     
-    return _.cloneDeep(_.merge({}, default_.value, parentDefaultValue))
+    return cloneDeep(merge({}, default_.value, parentDefaultValue))
   })
   
   return {
@@ -213,26 +213,26 @@ const multilingual = function(props, context, dependencies)
     }
     
     if (parentDefaultValue !== undefined) {
-      return _.cloneDeep(Object.assign({}, _.clone(nullValue.value), parentDefaultValue))
+      return cloneDeep(Object.assign({}, clone(nullValue.value), parentDefaultValue))
     }
     
     if (default_.value === undefined) {
-      return _.clone(nullValue.value)
+      return clone(nullValue.value)
     }
     
-    let def = _.clone(default_.value)
+    let def = clone(default_.value)
     
-    if (!_.isPlainObject(def)) {
+    if (!isPlainObject(def)) {
       let tempDefault = {}
       
-      _.each(nullValue.value, (v, language) => {
+      each(nullValue.value, (v, language) => {
         tempDefault[language] = def
       })
       
       def = tempDefault
     }
     
-    return Object.assign({}, _.clone(nullValue.value), def)
+    return Object.assign({}, clone(nullValue.value), def)
   })
   
   return {

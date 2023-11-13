@@ -10,7 +10,7 @@ export default function resolveDeps (props, context, options) {
   }
 
   context.features.forEach((feature) => {
-    _.each(feature(props, context, deps, options), (featureDep, key) => {
+    each(feature(props, context, deps, options), (featureDep, key) => {
       deps[key] = featureDep
     })
   })

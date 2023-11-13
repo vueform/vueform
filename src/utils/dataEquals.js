@@ -22,12 +22,12 @@ const dataToComperable = function (data) {
     return data.map(dataToComperable)
   }
   else if (typeof data === 'object' && data !== null) {
-    return _.mapValues(data, dataToComperable)
+    return mapValues(data, dataToComperable)
   }
 
   return data
 }
 
 export default function dataEquals (a, b) {
-  return _.isEqual(dataToComperable(a), dataToComperable(b))
+  return isEqual(dataToComperable(a), dataToComperable(b))
 }

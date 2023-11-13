@@ -92,7 +92,7 @@ const multifile = function(props, context, dependencies)
       return
     }
     
-    _.each(e.dataTransfer.files, (file) => {
+    each(e.dataTransfer.files, (file) => {
       if (!checkFileType(file, accept.value)) {
         return
       }
