@@ -7,3 +7,7 @@ import * as rules from './services/validation/rules'
 const vueform = installer(undefined, { ...components }, { ...rules })
 
 export default vueform
+
+export {
+  vueform
+}
