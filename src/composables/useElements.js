@@ -1,6 +1,5 @@
-// import _ from 'lodash'
-import upperFirst from 'lodash/upperFirst'
-import camelCase from 'lodash/camelCase'
+import upperFirst from 'lodash-es/upperFirst'
+import camelCase from 'lodash-es/camelCase'
 
 const base = function(props, context, dependencies)
 { 

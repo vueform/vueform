@@ -1,7 +1,6 @@
-// import _ from 'lodash'
-import each from 'lodash/each'
-import isArray from 'lodash/isArray'
-import clone from 'lodash/clone'
+import each from 'lodash-es/each'
+import isArray from 'lodash-es/isArray'
+import clone from 'lodash-es/clone'
 import normalize from './../../utils/normalize'
 import spliceMultiple from './../../utils/spliceMultiple'
 

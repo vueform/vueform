@@ -1,5 +1,4 @@
-// import _ from 'lodash'
-import each from 'lodash/each'
+import each from 'lodash-es/each'
 import { computed, toRefs, ref, watch } from 'vue'
 import states from './../../utils/states'
 import countries from './../../utils/countries'

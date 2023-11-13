@@ -1,5 +1,4 @@
-// import _ from 'lodash'
-import each from 'lodash/each'
+import each from 'lodash-es/each'
 import normalize from './../../utils/normalize'
 
 const parse = (string) => {

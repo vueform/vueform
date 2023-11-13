@@ -1,9 +1,8 @@
-// import _ from 'lodash'
-import each from 'lodash/each'
-import get from 'lodash/get'
-import isPlainObject from 'lodash/isPlainObject'
-import values from 'lodash/values'
-import keys from 'lodash/keys'
+import each from 'lodash-es/each'
+import get from 'lodash-es/get'
+import isPlainObject from 'lodash-es/isPlainObject'
+import values from 'lodash-es/values'
+import keys from 'lodash-es/keys'
 
 export default class {
   constructor(options) {

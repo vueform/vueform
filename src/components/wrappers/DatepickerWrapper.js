@@ -1,6 +1,5 @@
-// import _ from 'lodash'
-import each from 'lodash/each'
-import isEqual from 'lodash/isEqual'
+import each from 'lodash-es/each'
+import isEqual from 'lodash-es/isEqual'
 import moment from 'moment'
 import { toRefs, watch, computed, ref, nextTick, onMounted, getCurrentInstance } from 'vue'
 import useElementComponent from '../../composables/useElementComponent'

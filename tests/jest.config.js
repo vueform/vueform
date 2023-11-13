@@ -22,7 +22,7 @@ module.exports = {
       "^test-helpers$": "<rootDir>/tests/helpers/index.js"
   },
   "transformIgnorePatterns": [
-      "/node_modules/(?!@vueform|axios)"
+      "/node_modules/(?!@vueform|axios|lodash-es)"
   ],
   "setupFilesAfterEnv": [
       "<rootDir>/tests/jest.setup.js"

@@ -2,6 +2,7 @@
 import installer from './../../src/installer'
 import config from './../../src/config'
 import components from './../../src/components'
+import rules from './../../src/services/validation/rules'
 
 // Assets
 import defaultTheme from './../../themes/vueform'
@@ -30,7 +31,7 @@ export default function createVueformInstaller (options = {}) {
     }
   })
 
-  const VueformInstaller = installer(finalConfig, components)
+  const VueformInstaller = installer(finalConfig, components, rules)
 
   return {
     VueformInstaller,

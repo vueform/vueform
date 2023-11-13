@@ -1,6 +1,5 @@
-// import _ from 'lodash'
-import mapValues from 'lodash/mapValues'
-import isEqual from 'lodash/isEqual'
+import mapValues from 'lodash-es/mapValues'
+import isEqual from 'lodash-es/isEqual'
 
 const fileToObject = function (file) {
   return {

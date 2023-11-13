@@ -1,6 +1,5 @@
-// import _ from 'lodash'
-import each from 'lodash/each'
-import isPlainObject from 'lodash/isPlainObject'
+import each from 'lodash-es/each'
+import isPlainObject from 'lodash-es/isPlainObject'
 
 export default class {
   constructor() {

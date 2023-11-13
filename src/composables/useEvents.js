@@ -1,7 +1,6 @@
-// import _ from 'lodash'
-import each from 'lodash/each'
-import upperFirst from 'lodash/upperFirst'
-import camelCase from 'lodash/camelCase'
+import each from 'lodash-es/each'
+import upperFirst from 'lodash-es/upperFirst'
+import camelCase from 'lodash-es/camelCase'
 import { ref } from 'vue'
 
 const base = function(props, context, dependencies, options = {})

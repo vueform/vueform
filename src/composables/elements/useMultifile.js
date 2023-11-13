@@ -1,6 +1,5 @@
-// import _ from 'lodash'
-import each from 'lodash/each'
-import some from 'lodash/some'
+import each from 'lodash-es/each'
+import some from 'lodash-es/some'
 import { computed } from 'vue'
 
 const base = function(props, context, dependencies)
