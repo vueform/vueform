@@ -22,6 +22,7 @@ const base = function(props, context, dependencies, /* istanbul ignore next */ o
     'checkbox', 'radio', 'option', 'single-label', 'multiple-label', 'tag',
     'no-results', 'no-options', 'after-list', 'before-list', 'placeholder',
     'group-label', 'caret', 'clear', 'spinner', 'option', 'default',
+    'addon-before', 'addon-after',
   ]
   
   // ============== COMPUTED ==============

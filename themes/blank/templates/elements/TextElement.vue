@@ -2,8 +2,8 @@
   <component :is="elementLayout" ref="container">
     <template #element>
       <div :class="classes.inputContainer">
-        <ElementAddon v-if="hasAddonBefore" type="before"><slot name="addon-before"/></ElementAddon>
-        <ElementAddon v-if="hasAddonAfter" type="after"><slot name="addon-after"/></ElementAddon>
+        <ElementAddon v-if="hasAddonBefore" type="before"><slot name="addon-before"><component :is="fieldSlots['addon-before']" :el$="el$"/></slot></ElementAddon>
+        <ElementAddon v-if="hasAddonAfter" type="after"><slot name="addon-after"><component :is="fieldSlots['addon-after']" :el$="el$"/></slot></ElementAddon>
         <ElementLabelFloating v-if="hasFloating && !empty" :visible="!empty" />
         <ElementLoader v-if="isLoading"/>
         <input
