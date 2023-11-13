@@ -1,5 +1,15 @@
 [//]: # (Don't use <tags>)
 
+## v1.5.7
+
+> `2023-11-13`
+
+### 🎉 Feature
+- Tree-shaking
+
+### 💻 Refact
+- Tree-shake by switching to `lodash` -> `lodash-es`.
+
 ## v1.5.6
 
 > `2023-11-06`
