@@ -89,6 +89,11 @@ export default {
       fire,
       on,
       off,
+      messagesRegistered,
+      errorsRegistered,
+      languagesRegistered,
+      tabsRegistered,
+      stepsRegistered,
     } = useVueform(props, context)
 
     return {
@@ -171,6 +176,11 @@ export default {
       fire,
       on,
       off,
+      messagesRegistered,
+      errorsRegistered,
+      languagesRegistered,
+      tabsRegistered,
+      stepsRegistered,
     }
   },
   props: {

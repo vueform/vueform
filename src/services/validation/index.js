@@ -1,7 +1,13 @@
 import factory from './factory'
-import rules from './rules'
+import * as rules from './rules'
+
+export * from './rules'
 
 export default {
   factory: factory,
-  rules: rules
+  rules: {},
+}
+
+export {
+  rules,
 }

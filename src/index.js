@@ -1,25 +1,9 @@
-import config from './config'
-import components from './components'
-import useVueform from './composables/useVueform'
-import useClasses from './composables/elements/useClasses'
-import Vueform from './components/Vueform'
-import Validator from './services/validation/validator'
-import installer from './installer'
-import element from './element'
-import defineConfig from './defineConfig'
+import { installer } from './core'
+export * from './core'
 
-const vueform = installer(config, components)
+import * as components from './components'
+import * as rules from './services/validation/rules'
 
-export {
-  config,
-  components,
-  useVueform,
-  useClasses,
-  Vueform,
-  Validator,
-  vueform,
-  element,
-  defineConfig,
- }
+const vueform = installer(undefined, { ...components }, { ...rules })
 
- export default vueform
+export default vueform

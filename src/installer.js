@@ -14,7 +14,9 @@ import i18n from './services/i18n/index'
 import columns from './services/columns/index'
 import { ref, markRaw } from 'vue'
 
-export default function(config, components) {
+import baseConfig from './config'
+
+export default function(config = baseConfig, components = {}, rules = {}) {
   const Vueform = class {
     constructor() {
       this.options = {
@@ -22,8 +24,12 @@ export default function(config, components) {
           'theme', 'templates', 'locales', 'rules', 'plugins',
         ]),
         templates: config.templates || {},
+        components: config.components || {},
         theme: config.theme || {},
-        rules: config.rules || {},
+        rules: {
+          ...rules,
+          ...(config.rules || {})
+        },
         locales: config.locales || {},
         plugins: config.plugins || [],
         i18n: null,
@@ -53,7 +59,7 @@ export default function(config, components) {
 
       // replace
       _.each([
-        'plugins',
+        'plugins', 'components',
       ], (attr) => {
           if (config[attr] !== undefined) {
             this.options[attr] = config[attr]
@@ -284,6 +290,11 @@ export default function(config, components) {
       }
       
       this.initI18n()
+      
+      Object.keys(this.options.components).forEach((componentName) => {
+        components[componentName] = this.options.components[componentName]
+      })
+      
       this.registerComponents(appOrVue)
 
       let themeTemplates = this.options.theme?.templates || {}

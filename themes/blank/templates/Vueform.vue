@@ -4,13 +4,13 @@
     @submit.prevent="submit"
   >
     <slot name="empty">
-      <FormMessages v-if="showMessages"/>
-      <FormErrors v-if="showErrors"/>
-      <FormLanguages v-if="showLanguages"/>
-      <FormTabs v-if="showTabs"/>
-      <FormSteps v-if="showSteps"/>
+      <component is="FormMessages" v-if="showMessages"/>
+      <component is="FormErrors" v-if="showErrors"/>
+      <component is="FormLanguages" v-if="showLanguages"/>
+      <component is="FormTabs" v-if="showTabs"/>
+      <component is="FormSteps" v-if="showSteps"/>
       <FormElements><slot/></FormElements>
-      <FormStepsControls v-if="showStepsControls"/>
+      <component is="FormStepsControls" v-if="showStepsControls"/>
     </slot>
   </form>
 </template>

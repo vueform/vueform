@@ -1,8 +1,8 @@
 {
   "private": false,
   "name": "@vueform/vueform",
-  "version": "1.5.6",
-  "description": "Open source form framework for Vue.js",
+  "version": "1.5.7",
+  "description": "Open-Source Form Framework for Vue",
   "homepage": "https://vueform.com",
   "license": "MIT",
   "authors": [
@@ -11,8 +11,51 @@
       "email": "adam@vueform.com"
     }
   ],
-  "main": "dist/index.js",
-  "types": "types/index.d.ts",
+  "sideEffects": false,
+  "main": "./dist/index.js",
+  "types": "./types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./types/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./api/*": "./api/*",
+    "./dist/*": "./dist/*",
+    "./locales/*": "./locales/*/index.js",
+    "./src": "./src/index.js",
+    "./src/*": "./src/*",
+    "./themes/*": "./themes/*/index.js",
+    "./themes/blank/*": "./themes/blank/css/*",
+    "./themes/blank/templates/*": "./themes/blank/templates/*",
+    "./themes/bootstrap/*": "./themes/bootstrap/css/*",
+    "./themes/bootstrap/css/*": "./themes/bootstrap/css/*",
+    "./themes/bootstrap/scss/*": "./themes/bootstrap/scss/*",
+    "./themes/material/*": "./themes/material/css/*",
+    "./themes/material/css/*": "./themes/material/css/*",
+    "./themes/material/scss/*": "./themes/material/scss/*",
+    "./themes/tailwind/*": "./themes/tailwind/css/*",
+    "./themes/tailwind/templates/*": "./themes/tailwind/templates/*",
+    "./themes/tailwind-material/*": "./themes/tailwind-material/css/*",
+    "./themes/tailwind-material/css/*": "./themes/tailwind-material/css/*",
+    "./themes/tailwind-material/scss/*": "./themes/tailwind-material/scss/*",
+    "./themes/vueform/*": "./themes/vueform/css/*",
+    "./themes/vueform/css/*": "./themes/vueform/css/*",
+    "./themes/vueform/scss/*": "./themes/vueform/scss/*",
+    "./themes/vueform/templates/*": "./themes/vueform/templates/*",
+    "./types/*": "./types/*",
+    "./core": "./dist/core.js",
+    "./element": "./element.js",
+    "./package.json": "./package.json",
+    "./plugin": "./plugin.js",
+    "./postcss.config.js": "./postcss.config.js",
+    "./tailwind-prefixer.js": "./tailwind-prefixer.js",
+    "./tailwind.config.js": "./tailwind.config.js",
+    "./tailwind": "./tailwind.js",
+    "./vite": {
+      "types": "./vite.d.ts",
+      "import": "./vite.js"
+    }
+  },
   "scripts": {
     "build": "rollup --config build/rollup.config.js",
     "test": "npm run generate:elements-base; NODE_OPTIONS=\"--max_old_space_size=5120 --no-experimental-fetch\" VUE=3 jest --config=./tests/jest.config.js",

@@ -15,6 +15,12 @@ const files = [
     banner: true,
   },
   {
+    type: 'script',
+    input: 'src/core.js',
+    output: 'dist/core.js',
+    banner: true,
+  },
+  {
     type: 'style',
     minimize: false,
     input: 'themes/vueform/scss/index.scss',

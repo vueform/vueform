@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import {
   computed, ref, toRefs, getCurrentInstance, onBeforeMount, onMounted, onBeforeUpdate,
-  onUpdated, onBeforeUnmount, onUnmounted, provide, watch
+  onUpdated, onBeforeUnmount, onUnmounted, provide, watch,
 } from 'vue'
 import MergeClasses from './../utils/mergeClasses'
 import convertFormDataUtil from './../utils/convertFormData'
@@ -76,7 +76,8 @@ const base = function(props, context, dependencies = {})
     'beforeUnmount', 'unmounted',
   ]
 
-  const $this = getCurrentInstance().proxy
+  const vm = getCurrentInstance()
+  const $this = vm.proxy
 
   // ============ DEPENDENCIES ============
 
@@ -193,6 +194,51 @@ const base = function(props, context, dependencies = {})
    * @default false
    */
   const mounted = ref(false)
+
+  /**
+   * Whether FormMessages component is registered.
+   *
+   * @type {boolean}
+   * @default false
+   * @private
+   */
+  const messagesRegistered = ref(typeof vm.appContext.app.component('FormMessages') !== 'string')
+
+  /**
+   * Whether FormErrors component is registered.
+   *
+   * @type {boolean}
+   * @default false
+   * @private
+   */
+  const errorsRegistered = ref(typeof vm.appContext.app.component('FormErrors') !== 'string')
+
+  /**
+   * Whether FormLanguages component is registered.
+   *
+   * @type {boolean}
+   * @default false
+   * @private
+   */
+  const languagesRegistered = ref(typeof vm.appContext.app.component('FormLanguages') !== 'string')
+
+  /**
+   * Whether FormTabs component is registered.
+   *
+   * @type {boolean}
+   * @default false
+   * @private
+   */
+  const tabsRegistered = ref(typeof vm.appContext.app.component('FormTabs') !== 'string')
+
+  /**
+   * Whether FormSteps component is registered.
+   *
+   * @type {boolean}
+   * @default false
+   * @private
+   */
+  const stepsRegistered = ref(typeof vm.appContext.app.component('FormSteps') !== 'string')
 
   // ============== COMPUTED ==============
 
@@ -567,7 +613,7 @@ const base = function(props, context, dependencies = {})
    * @type {boolean}
    */
   const showErrors = computed(() => {
-    return hasErrors.value && options.value.displayErrors
+    return hasErrors.value && options.value.displayErrors && errorsRegistered.value
   })
 
   /**
@@ -595,7 +641,7 @@ const base = function(props, context, dependencies = {})
    * @type {boolean}
    */
   const showMessages = computed(() => {
-    return hasMessages.value && options.value.displayMessages
+    return hasMessages.value && options.value.displayMessages && messagesRegistered.value
   })
 
   /**
@@ -613,7 +659,7 @@ const base = function(props, context, dependencies = {})
    * @type {boolean}
    */
   const showLanguages = computed(() => {
-    return isMultilingual.value
+    return isMultilingual.value && languagesRegistered.value
   })
 
   /**
@@ -673,7 +719,7 @@ const base = function(props, context, dependencies = {})
    * @type {boolean}
    */
   const showSteps = computed(() => {
-    return hasSteps.value
+    return hasSteps.value && stepsRegistered.value
   })
 
   /**
@@ -682,7 +728,7 @@ const base = function(props, context, dependencies = {})
    * @type {boolean}
    */
   const showStepsControls = computed(() => {
-    return hasSteps.value && options.value.stepsControls
+    return hasSteps.value && options.value.stepsControls && stepsRegistered.value
   })
 
   /**
@@ -701,7 +747,7 @@ const base = function(props, context, dependencies = {})
    * @type {boolean}
    */
   const showTabs = computed(() => {
-    return hasTabs.value
+    return hasTabs.value && tabsRegistered.value
   })
 
   /**
@@ -1423,6 +1469,11 @@ const base = function(props, context, dependencies = {})
     fire,
     on,
     off,
+    messagesRegistered,
+    errorsRegistered,
+    languagesRegistered,
+    tabsRegistered,
+    stepsRegistered,
   }
 }
 
