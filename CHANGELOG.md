@@ -1,5 +1,13 @@
 [//]: # (Don't use <tags>)
 
+## v1.5.8
+
+> `2023-11-14`
+
+### 🐞 Bug Fixes
+- Addon slots fix #15
+- Removed `lodash-es` from `tailwind` theme
+
 ## v1.5.7
 
 > `2023-11-13`

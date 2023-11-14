@@ -1,6 +1,3 @@
-import each from 'lodash-es/each'
-import isPlainObject from 'lodash-es/isPlainObject'
-
 /**
  * =========
  * Templates
@@ -241,27 +238,36 @@ const prefixer = function (classes, prefix) {
     return res
   } 
 
-  each(classes, (classList, componentName) => {
-    prefixedClasses[componentName] = {}
+  for (const componentName in classes) {
+    if (classes.hasOwnProperty(componentName)) {
+      prefixedClasses[componentName] = {};
 
-    each(classList, (class_, className) => {
-      if (isPlainObject(class_)) {
-        prefixedClasses[componentName][className] = {}
-        
-        each(class_, (subclass, subclassName) => {
-          if (typeof subclass !== 'function') {
-            prefixedClasses[componentName][className][subclassName] = prefixClass(subclass)
+      for (const className in classes[componentName]) {
+        if (classes[componentName].hasOwnProperty(className)) {
+          const class_ = classes[componentName][className];
+          
+          if (typeof class_ === 'object' && !Array.isArray(class_)) {
+            prefixedClasses[componentName][className] = {};
+
+            for (const subclassName in class_) {
+              if (class_.hasOwnProperty(subclassName)) {
+                const subclass = class_[subclassName];
+                if (typeof subclass !== 'function') {
+                  prefixedClasses[componentName][className][subclassName] = prefixClass(subclass);
+                } else {
+                  prefixedClasses[componentName][className][subclassName] = subclass;
+                }
+              }
+            }
+          } else if (typeof class_ !== 'function') {
+            prefixedClasses[componentName][className] = prefixClass(class_);
           } else {
-            prefixedClasses[componentName][className][subclassName] = subclass
+            prefixedClasses[componentName][className] = class_;
           }
-        })
-      } else if (typeof class_ !== 'function') {
-        prefixedClasses[componentName][className] = prefixClass(class_)
-      } else {
-        prefixedClasses[componentName][className] = class_
+        }
       }
-    })
-  })
+    }
+  }
 
   return prefixedClasses
 }
