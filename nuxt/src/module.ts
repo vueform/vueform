@@ -1,18 +1,13 @@
 import { existsSync } from 'fs'
-import type { NuxtModule } from '@nuxt/schema'
 import { resolve } from 'pathe'
-import {
-  defineNuxtModule,
-  addPluginTemplate,
-  createResolver,
-} from '@nuxt/kit'
+import { defineNuxtModule, addPluginTemplate, createResolver } from '@nuxt/kit'
 
 // Module options TypeScript interface definition
 export interface ModuleOptions {
   configPath?: string
 }
 
-const module: NuxtModule<ModuleOptions> = defineNuxtModule<ModuleOptions>({
+export default defineNuxtModule<ModuleOptions>({
   meta: {
     name: 'Vueform',
     configKey: 'vueform',
@@ -20,10 +15,11 @@ const module: NuxtModule<ModuleOptions> = defineNuxtModule<ModuleOptions>({
       nuxt: '^3.0.0',
     },
   },
+  // Default configuration options of the Nuxt module
   defaults: {
     configPath: undefined,
   },
-  async setup(options, nuxt) {
+  async setup (options, nuxt) {
     const resolver = createResolver(import.meta.url)
 
     nuxt.hook('prepare:types', (opts) => {
@@ -44,20 +40,30 @@ const module: NuxtModule<ModuleOptions> = defineNuxtModule<ModuleOptions>({
       ]
     }
 
-    const configBase = resolve(
+    let configBase = resolve(
       nuxt.options.rootDir,
       options.configPath || 'vueform.config.js'
     )
 
     addPluginTemplate({
       async getContents() {
-        const configPath = await resolver.resolvePath(configBase)
-        const configPathExists = existsSync(configPath)
+        let configPath = await resolver.resolvePath(configBase)
+        let configPathExists = existsSync(configPath)
 
         if (!configPathExists) {
-          throw new Error(
-            `Vueform configuration was not located at ${configPath}`
+          configBase = resolve(
+            nuxt.options.rootDir,
+            'vueform.config.ts'
           )
+
+          configPath = await resolver.resolvePath(configBase)
+          configPathExists = existsSync(configPath)
+
+          if (!configPathExists) {
+            throw new Error(
+              `Vueform configuration was not located at ${configPath}`
+            )
+          }
         }
 
         return `import { defineNuxtPlugin } from '#imports'
@@ -74,7 +80,5 @@ const module: NuxtModule<ModuleOptions> = defineNuxtModule<ModuleOptions>({
       },
       filename: 'vueformPlugin.mjs',
     })
-  },
+  }
 })
-
-export default module
