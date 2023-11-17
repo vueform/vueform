@@ -17,6 +17,7 @@ const base = function(props, context, dependencies, options)
   const sorting = dependencies.sorting
   const length = dependencies.length
   const path = dependencies.path
+  const children$Array = dependencies.children$Array
   
   // ================ DATA ================
   
@@ -102,7 +103,7 @@ const base = function(props, context, dependencies, options)
     
     refreshOrderStore(value.value)
     
-    fire('sort', value.value)
+    fire('sort', value.value, oldIndex, newIndex, children$Array.value[newIndex])
   }
   
   // ============== WATCHERS ==============

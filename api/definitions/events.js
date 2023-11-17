@@ -336,6 +336,18 @@ export default {
           description: 'the element\'s value after sorting',
           types: ['array']
         },
+        oldIndex: {
+          description: 'the old index of the moved element',
+          types: ['number']
+        },
+        newIndex: {
+          description: 'the new index of the moved element',
+          types: ['number']
+        },
+        el$: {
+          description: 'the moved element\'s component',
+          types: ['component']
+        },
       }
     },
   },
