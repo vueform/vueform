@@ -149,6 +149,7 @@ export default function (options, component = {}) {
         default: null
       },
       ...(options.props||{}),
+      ...(component.props||{}),
     },
     ...(omit(component, ['setup', 'mixins', 'emits', 'props']))
   }
