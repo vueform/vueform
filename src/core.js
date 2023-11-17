@@ -6,6 +6,8 @@ import installer from './installer'
 import element from './element'
 import defineConfig from './defineConfig'
 
+const VueformElement = element
+
 import {
   Vueform as VueformComponent,
   FormElements,
@@ -23,6 +25,7 @@ export {
   Validator,
   vueform,
   element,
+  VueformElement,
   defineConfig,
   installer,
 }
