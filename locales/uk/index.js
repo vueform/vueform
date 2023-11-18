@@ -22,7 +22,7 @@ export default {
         "uploadButton": "Завантажити зображення",
         "dndTitle": "Завантажити зображення",
         "dndDescription": "Перемістіть зображення або натисніть тут, щоби завантажити"
-      },
+      }
     },
     "steps": {
       "finish": "Завершити",
@@ -33,15 +33,17 @@ export default {
       "acceptedMimesError": "Допустимі MIME: :mimes",
       "acceptedExtensionsError": "Допустимі розширення: :extensions"
     },
-    "multiselect": {
-      "multipleLabelOne": "Вибрано 1 варіант",
-      "multipleLabelMore": "Вибрано :options варіанти",
-      "noResults": "Не знайдено жодних варіантів",
-      "noOptions": "Перелік порожній"
-    },
     "datepicker": {
       "weekdays": {
-        "shorthand": ["Нд", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"],
+        "shorthand": [
+          "Нд",
+          "Пн",
+          "Вт",
+          "Ср",
+          "Чт",
+          "Пт",
+          "Сб"
+        ],
         "longhand": [
           "Неділя",
           "Понеділок",
@@ -49,8 +51,8 @@ export default {
           "Середа",
           "Четвер",
           "П'ятниця",
-          "Субота",
-        ],
+          "Субота"
+        ]
       },
       "months": {
         "shorthand": [
@@ -65,7 +67,7 @@ export default {
           "Вер",
           "Жов",
           "Лис",
-          "Гру",
+          "Гру"
         ],
         "longhand": [
           "Січень",
@@ -79,12 +81,40 @@ export default {
           "Вересень",
           "Жовтень",
           "Листопад",
-          "Грудень",
-        ],
+          "Грудень"
+        ]
       },
+      "daysInMonth": [
+        31,
+        28,
+        31,
+        30,
+        31,
+        30,
+        31,
+        31,
+        30,
+        31,
+        30,
+        31
+      ],
       "firstDayOfWeek": 1,
+      "ordinal": function () {
+    return '';
+  },
+      "rangeSeparator": " to ",
+      "weekAbbreviation": "Wk",
+      "scrollTitle": "Scroll to increment",
+      "toggleTitle": "Click to toggle",
+      "amPM": [
+        "AM",
+        "PM"
+      ],
+      "yearAriaLabel": "Year",
+      "monthAriaLabel": "Month",
+      "hourAriaLabel": "Hour",
+      "minuteAriaLabel": "Minute"
     },
-    "defaultMessage": "Недійсне поле",
     "dateFormats": {
       "datetimeSeconds24": "DD.MM.YYYY, HH:mm:ss",
       "datetimeSeconds12": "DD.MM.YYYY, hh:mm:ss a",
@@ -95,6 +125,21 @@ export default {
       "time24": "HH:mm",
       "time12": "hh:mm a",
       "date": "DD.MM.YYYY"
+    },
+    "multiselect": {
+      "multipleLabelOne": "Вибрано 1 варіант",
+      "multipleLabelMore": "Вибрано :options варіанти",
+      "noResults": "Не знайдено жодних варіантів",
+      "noOptions": "Перелік порожній"
+    },
+    "defaultMessage": "Недійсне поле",
+    "a11y": {
+      "file": {
+        "description": "Press Backspace to remove"
+      },
+      "list": {
+        "remove": "Remove item button"
+      }
     }
   },
   "validation": {
@@ -177,8 +222,15 @@ export default {
     "not_in": "Вибране для :attribute значення не коректне.",
     "not_regex": "Формат поля :attribute не вірний.",
     "numeric": "Поле :attribute повинно містити число.",
+    "present": "The :attribute field must be present.",
     "regex": "Поле :attribute має хибний формат.",
     "required": "Поле :attribute є обовязковим для заповнення.",
+    "required_if": "The :attribute field is required when :other is :value.",
+    "required_unless": "The :attribute field is required unless :other is in :values.",
+    "required_with": "The :attribute field is required when :values is present.",
+    "required_with_all": "The :attribute field is required when :values are present.",
+    "required_without": "The :attribute field is required when :values is not present.",
+    "required_without_all": "The :attribute field is required when none of :values are present.",
     "same": "Поля :attribute та :other мають збігатися.",
     "size": {
       "numeric": "Поле :attribute має бути довжини :size.",
@@ -189,7 +241,9 @@ export default {
     "string": "Поле :attribute повинне містити текст.",
     "timezone": "Поле :attribute повинне містити коректну часову зону.",
     "unique": "Вказане значення поля :attribute вже існує.",
+    "uploaded": "The :attribute failed to upload.",
     "url": "Формат поля :attribute хибний.",
-    "uuid": "Поле :attribute має бути коректним UUID ідентифікатором."
+    "uuid": "Поле :attribute має бути коректним UUID ідентифікатором.",
+    "remote": "The :attribute field is invalid."
   }
 }

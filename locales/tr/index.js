@@ -22,7 +22,7 @@ export default {
         "uploadButton": "Resim yükle",
         "dndTitle": "Resim yükle",
         "dndDescription": "Resimleri bırakın veya yüklemek için buraya tıklayın"
-      },
+      }
     },
     "steps": {
       "finish": "Bitiş",
@@ -33,15 +33,17 @@ export default {
       "acceptedMimesError": "Kabul edilen mimler: :mimes",
       "acceptedExtensionsError": "Kabul edilen uzantılar şunlardır: :extensions"
     },
-    "multiselect": {
-      "multipleLabelOne": "1 seçenek seçildi",
-      "multipleLabelMore": ":options seçenekleri seçildi",
-      "noResults": "Seçenek bulunamadı",
-      "noOptions": "Liste boş"
-    },
     "datepicker": {
       "weekdays": {
-        "shorthand": ["Paz", "Pzt", "Sal", "Çar", "Per", "Cum", "Cmt"],
+        "shorthand": [
+          "Paz",
+          "Pzt",
+          "Sal",
+          "Çar",
+          "Per",
+          "Cum",
+          "Cmt"
+        ],
         "longhand": [
           "Pazar",
           "Pazartesi",
@@ -49,8 +51,8 @@ export default {
           "Çarşamba",
           "Perşembe",
           "Cuma",
-          "Cumartesi",
-        ],
+          "Cumartesi"
+        ]
       },
       "months": {
         "shorthand": [
@@ -65,7 +67,7 @@ export default {
           "Eyl",
           "Eki",
           "Kas",
-          "Ara",
+          "Ara"
         ],
         "longhand": [
           "Ocak",
@@ -79,20 +81,40 @@ export default {
           "Eylül",
           "Ekim",
           "Kasım",
-          "Aralık",
-        ],
+          "Aralık"
+        ]
       },
+      "daysInMonth": [
+        31,
+        28,
+        31,
+        30,
+        31,
+        30,
+        31,
+        31,
+        30,
+        31,
+        30,
+        31
+      ],
       "firstDayOfWeek": 1,
-      "ordinal": () => {
+      "ordinal": function () {
         return ".";
       },
       "rangeSeparator": " - ",
       "weekAbbreviation": "Hf",
       "scrollTitle": "Artırmak için kaydırın",
       "toggleTitle": "Aç/Kapa",
-      "amPM": ["ÖÖ", "ÖS"],
+      "amPM": [
+        "ÖÖ",
+        "ÖS"
+      ],
+      "yearAriaLabel": "Year",
+      "monthAriaLabel": "Month",
+      "hourAriaLabel": "Hour",
+      "minuteAriaLabel": "Minute"
     },
-    "defaultMessage": "Geçersiz alan",
     "dateFormats": {
       "datetimeSeconds24": "DD.MM.YYYY HH:mm:ss",
       "datetimeSeconds12": "DD.MM.YYYY a hh:mm:ss",
@@ -103,6 +125,21 @@ export default {
       "time24": "HH:mm",
       "time12": "a hh:mm",
       "date": "DD.MM.YYYY"
+    },
+    "multiselect": {
+      "multipleLabelOne": "1 seçenek seçildi",
+      "multipleLabelMore": ":options seçenekleri seçildi",
+      "noResults": "Seçenek bulunamadı",
+      "noOptions": "Liste boş"
+    },
+    "defaultMessage": "Geçersiz alan",
+    "a11y": {
+      "file": {
+        "description": "Press Backspace to remove"
+      },
+      "list": {
+        "remove": "Remove item button"
+      }
     }
   },
   "validation": {
@@ -185,8 +222,15 @@ export default {
     "not_in": "Seçili :attribute geçersiz.",
     "not_regex": ":attribute biçimi geçersiz.",
     "numeric": ":attribute mutlaka bir sayı olmalıdır.",
+    "present": "The :attribute field must be present.",
     "regex": ":attribute biçimi geçersiz.",
     "required": ":attribute mutlaka gereklidir.",
+    "required_if": "The :attribute field is required when :other is :value.",
+    "required_unless": "The :attribute field is required unless :other is in :values.",
+    "required_with": "The :attribute field is required when :values is present.",
+    "required_with_all": "The :attribute field is required when :values are present.",
+    "required_without": "The :attribute field is required when :values is not present.",
+    "required_without_all": "The :attribute field is required when none of :values are present.",
     "same": ":attribute ile :other aynı olmalıdır.",
     "size": {
       "numeric": ":attribute mutlaka :size olmalıdır.",
@@ -197,7 +241,9 @@ export default {
     "string": ":attribute mutlaka bir metin olmalıdır.",
     "timezone": ":attribute mutlaka geçerli bir saat dilimi olmalıdır.",
     "unique": ":attribute zaten alınmış.",
+    "uploaded": "The :attribute failed to upload.",
     "url": ":attribute biçimi geçersiz.",
-    "uuid": ":attribute mutlaka geçerli bir UUID olmalıdır."
+    "uuid": ":attribute mutlaka geçerli bir UUID olmalıdır.",
+    "remote": "The :attribute field is invalid."
   }
 }

@@ -22,7 +22,7 @@ export default {
         "uploadButton": "Afbeeldingen uploaden",
         "dndTitle": "Afbeeldingen uploaden",
         "dndDescription": "Sleep afbeeldingen of klik hier om te uploaden"
-      },
+      }
     },
     "steps": {
       "finish": "Voltooi",
@@ -33,15 +33,17 @@ export default {
       "acceptedMimesError": "Geaccepteerde MIME-types zijn: :mimes",
       "acceptedExtensionsError": "Geaccepteerde extensies zijn: :extensions"
     },
-    "multiselect": {
-      "multipleLabelOne": "1 optie geselecteerd",
-      "multipleLabelMore": ":options opties geselecteerd",
-      "noResults": "Geen opties gevonden",
-      "noOptions": "Deze lijst is leeg"
-    },
     "datepicker": {
       "weekdays": {
-        "shorthand": ["zo", "ma", "di", "wo", "do", "vr", "za"],
+        "shorthand": [
+          "zo",
+          "ma",
+          "di",
+          "wo",
+          "do",
+          "vr",
+          "za"
+        ],
         "longhand": [
           "zondag",
           "maandag",
@@ -49,8 +51,8 @@ export default {
           "woensdag",
           "donderdag",
           "vrijdag",
-          "zaterdag",
-        ],
+          "zaterdag"
+        ]
       },
       "months": {
         "shorthand": [
@@ -65,7 +67,7 @@ export default {
           "sept",
           "okt",
           "nov",
-          "dec",
+          "dec"
         ],
         "longhand": [
           "januari",
@@ -79,21 +81,41 @@ export default {
           "september",
           "oktober",
           "november",
-          "december",
-        ],
+          "december"
+        ]
       },
+      "daysInMonth": [
+        31,
+        28,
+        31,
+        30,
+        31,
+        30,
+        31,
+        31,
+        30,
+        31,
+        30,
+        31
+      ],
       "firstDayOfWeek": 1,
-      "weekAbbreviation": "wk",
-      "rangeSeparator": " t/m ",
-      "scrollTitle": "Scroll voor volgende / vorige",
-      "toggleTitle": "Klik om te wisselen",
-      "ordinal": (nth) => {
+      "ordinal": function (nth) {
         if (nth === 1 || nth === 8 || nth >= 20) return "ste";
-
         return "de";
       },
+      "rangeSeparator": " t/m ",
+      "weekAbbreviation": "wk",
+      "scrollTitle": "Scroll voor volgende / vorige",
+      "toggleTitle": "Klik om te wisselen",
+      "amPM": [
+        "AM",
+        "PM"
+      ],
+      "yearAriaLabel": "Year",
+      "monthAriaLabel": "Month",
+      "hourAriaLabel": "Hour",
+      "minuteAriaLabel": "Minute"
     },
-    "defaultMessage": "Ongeldig veld",
     "dateFormats": {
       "datetimeSeconds24": "DD-MM-YYYY HH:mm:ss",
       "datetimeSeconds12": "DD-MM-YYYY hh:mm:ss a",
@@ -104,6 +126,21 @@ export default {
       "time24": "HH:mm",
       "time12": "hh:mm a",
       "date": "DD-MM-YYYY"
+    },
+    "multiselect": {
+      "multipleLabelOne": "1 optie geselecteerd",
+      "multipleLabelMore": ":options opties geselecteerd",
+      "noResults": "Geen opties gevonden",
+      "noOptions": "Deze lijst is leeg"
+    },
+    "defaultMessage": "Ongeldig veld",
+    "a11y": {
+      "file": {
+        "description": "Press Backspace to remove"
+      },
+      "list": {
+        "remove": "Remove item button"
+      }
     }
   },
   "validation": {
@@ -186,8 +223,15 @@ export default {
     "not_in": "Het formaat van :attribute is ongeldig.",
     "not_regex": "De :attribute formaat is ongeldig.",
     "numeric": ":Attribute moet een nummer zijn.",
+    "present": "The :attribute field must be present.",
     "regex": ":Attribute formaat is ongeldig.",
     "required": ":Attribute is verplicht.",
+    "required_if": "The :attribute field is required when :other is :value.",
+    "required_unless": "The :attribute field is required unless :other is in :values.",
+    "required_with": "The :attribute field is required when :values is present.",
+    "required_with_all": "The :attribute field is required when :values are present.",
+    "required_without": "The :attribute field is required when :values is not present.",
+    "required_without_all": "The :attribute field is required when none of :values are present.",
     "same": ":Attribute en :other moeten overeenkomen.",
     "size": {
       "numeric": ":Attribute moet :size zijn.",
@@ -198,7 +242,9 @@ export default {
     "string": ":Attribute moet een tekst zijn.",
     "timezone": ":Attribute moet een geldige tijdzone zijn.",
     "unique": ":Attribute is al in gebruik.",
+    "uploaded": "The :attribute failed to upload.",
     "url": ":Attribute moet een geldig URL zijn.",
-    "uuid": ":Attribute moet een geldig UUID zijn."
+    "uuid": ":Attribute moet een geldig UUID zijn.",
+    "remote": "The :attribute field is invalid."
   }
 }

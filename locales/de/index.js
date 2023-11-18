@@ -3,7 +3,7 @@ export default {
     "elements": {
       "list": {
         "add": "+ Addieren",
-        "remove": "&times;",
+        "remove": "&times;"
       },
       "file": {
         "defaultName": "File",
@@ -11,31 +11,41 @@ export default {
         "dndDescription": "File ablegen oder zum Hochladen hier klicken",
         "removeConfirm": "Durch das Entfernen Files wird diese endgültig gelöscht. Sind Sie sicher, dass Sie fortfahren?",
         "select": "File auswählen",
-        "upload": "Hochladen",
+        "upload": "Hochladen"
       },
       "multifile": {
         "uploadButton": "Files hochladen",
         "dndTitle": "Files hochladen",
-        "dndDescription": "File ablegen oder zum Hochladen hier klicken",
+        "dndDescription": "File ablegen oder zum Hochladen hier klicken"
       },
       "gallery": {
         "uploadButton": "Bilder hochladen",
         "dndTitle": "Bilder hochladen",
-        "dndDescription": "Bild ablegen oder zum Hochladen hier klicken",
-      },
+        "dndDescription": "Bild ablegen oder zum Hochladen hier klicken"
+      }
     },
     "steps": {
       "finish": "Beenden",
       "next": "Nächste",
-      "previous": "Früher",
+      "previous": "Früher"
     },
     "editor": {
+      "acceptedMimesError": "Accepted mimes are: :mimes",
+      "acceptedExtensionsError": "Accepted extenions are: :extensions",
       "acceptedMimes": "Akzeptierte mimes sind: :mimes",
-      "acceptedExtensions": "Akzeptierte extenions sind: :extensions",
+      "acceptedExtensions": "Akzeptierte extenions sind: :extensions"
     },
     "datepicker": {
       "weekdays": {
-        "shorthand": ["So", "Mo", "Di", "Mi", "Do", "Fr", "Sa"],
+        "shorthand": [
+          "So",
+          "Mo",
+          "Di",
+          "Mi",
+          "Do",
+          "Fr",
+          "Sa"
+        ],
         "longhand": [
           "Sonntag",
           "Montag",
@@ -43,8 +53,8 @@ export default {
           "Mittwoch",
           "Donnerstag",
           "Freitag",
-          "Samstag",
-        ],
+          "Samstag"
+        ]
       },
       "months": {
         "shorthand": [
@@ -59,7 +69,7 @@ export default {
           "Sep",
           "Okt",
           "Nov",
-          "Dez",
+          "Dez"
         ],
         "longhand": [
           "Januar",
@@ -73,14 +83,39 @@ export default {
           "September",
           "Oktober",
           "November",
-          "Dezember",
-        ],
+          "Dezember"
+        ]
       },
+      "daysInMonth": [
+        31,
+        28,
+        31,
+        30,
+        31,
+        30,
+        31,
+        31,
+        30,
+        31,
+        30,
+        31
+      ],
       "firstDayOfWeek": 1,
-      "weekAbbreviation": "KW",
+      "ordinal": function () {
+    return '';
+  },
       "rangeSeparator": " bis ",
+      "weekAbbreviation": "KW",
       "scrollTitle": "Zum Ändern scrollen",
       "toggleTitle": "Zum Umschalten klicken",
+      "amPM": [
+        "AM",
+        "PM"
+      ],
+      "yearAriaLabel": "Year",
+      "monthAriaLabel": "Month",
+      "hourAriaLabel": "Hour",
+      "minuteAriaLabel": "Minute"
     },
     "dateFormats": {
       "datetimeSeconds24": "DD.MM.YYYY HH:mm:ss",
@@ -91,15 +126,23 @@ export default {
       "timeSeconds12": "hh:mm:ss a",
       "time24": "HH:mm",
       "time12": "hh:mm a",
-      "date": "DD.MM.YYYY",
+      "date": "DD.MM.YYYY"
     },
     "multiselect": {
       "multipleLabelOne": "1 option ausgewählt",
       "multipleLabelMore": ":options optionen ausgewählt",
       "noResults": "Keine Optionen gefunden",
-      "noOptions": "Liste ist leer.",
+      "noOptions": "Liste ist leer."
     },
     "defaultMessage": "Ungültiges Feld",
+    "a11y": {
+      "file": {
+        "description": "Press Backspace to remove"
+      },
+      "list": {
+        "remove": "Remove item button"
+      }
+    }
   },
   "validation": {
     "accepted": ":attribute muss akzeptiert werden.",
@@ -113,16 +156,16 @@ export default {
     "before": ":attribute muss ein Datum vor :date sein.",
     "before_or_equal": ":attribute muss ein Datum vor :date oder gleich :date sein.",
     "between": {
-      "array": ":attribute muss zwischen :min & :max Elemente haben.",
-      "file": ":attribute muss zwischen :min & :max Kilobytes groß sein.",
       "numeric": ":attribute muss zwischen :min & :max liegen.",
-      "string": ":attribute muss zwischen :min & :max Zeichen lang sein."
+      "file": ":attribute muss zwischen :min & :max Kilobytes groß sein.",
+      "string": ":attribute muss zwischen :min & :max Zeichen lang sein.",
+      "array": ":attribute muss zwischen :min & :max Elemente haben."
     },
     "boolean": ":attribute muss entweder true oder false sein.",
     "confirmed": ":attribute stimmt nicht mit der Bestätigung überein.",
     "date": ":attribute muss ein gültiges Datum sein.",
-    "date_equals": ":attribute muss ein Datum gleich :date sein.",
     "date_format": ":attribute entspricht nicht dem gültigen Format für :format.",
+    "date_equals": ":attribute muss ein Datum gleich :date sein.",
     "different": ":attribute und :other müssen sich unterscheiden.",
     "digits": ":attribute muss :digits Stellen haben.",
     "digits_between": ":attribute muss zwischen :min und :max Stellen haben.",
@@ -133,16 +176,16 @@ export default {
     "file": ":attribute muss eine Datei sein.",
     "filled": ":attribute muss ausgefüllt sein.",
     "gt": {
-      "array": ":attribute muss mehr als :value Elemente haben.",
-      "file": ":attribute muss größer als :value Kilobytes sein.",
       "numeric": ":attribute muss größer als :value sein.",
-      "string": ":attribute muss länger als :value Zeichen sein."
+      "file": ":attribute muss größer als :value Kilobytes sein.",
+      "string": ":attribute muss länger als :value Zeichen sein.",
+      "array": ":attribute muss mehr als :value Elemente haben."
     },
     "gte": {
-      "array": ":attribute muss mindestens :value Elemente haben.",
-      "file": ":attribute muss größer oder gleich :value Kilobytes sein.",
       "numeric": ":attribute muss größer oder gleich :value sein.",
-      "string": ":attribute muss mindestens :value Zeichen lang sein."
+      "file": ":attribute muss größer oder gleich :value Kilobytes sein.",
+      "string": ":attribute muss mindestens :value Zeichen lang sein.",
+      "array": ":attribute muss mindestens :value Elemente haben."
     },
     "image": ":attribute muss ein Bild sein.",
     "in": "Der gewählte Wert für :attribute ist ungültig.",
@@ -153,30 +196,30 @@ export default {
     "ipv6": ":attribute muss eine gültige IPv6-Adresse sein.",
     "json": ":attribute muss ein gültiger JSON-String sein.",
     "lt": {
-      "array": ":attribute muss weniger als :value Elemente haben.",
-      "file": ":attribute muss kleiner als :value Kilobytes sein.",
       "numeric": ":attribute muss kleiner als :value sein.",
-      "string": ":attribute muss kürzer als :value Zeichen sein."
+      "file": ":attribute muss kleiner als :value Kilobytes sein.",
+      "string": ":attribute muss kürzer als :value Zeichen sein.",
+      "array": ":attribute muss weniger als :value Elemente haben."
     },
     "lte": {
-      "array": ":attribute darf maximal :value Elemente haben.",
-      "file": ":attribute muss kleiner oder gleich :value Kilobytes sein.",
       "numeric": ":attribute muss kleiner oder gleich :value sein.",
-      "string": ":attribute darf maximal :value Zeichen lang sein."
+      "file": ":attribute muss kleiner oder gleich :value Kilobytes sein.",
+      "string": ":attribute darf maximal :value Zeichen lang sein.",
+      "array": ":attribute darf maximal :value Elemente haben."
     },
     "max": {
-      "array": ":attribute darf maximal :max Elemente haben.",
-      "file": ":attribute darf maximal :max Kilobytes groß sein.",
       "numeric": ":attribute darf maximal :max sein.",
-      "string": ":attribute darf maximal :max Zeichen haben."
+      "file": ":attribute darf maximal :max Kilobytes groß sein.",
+      "string": ":attribute darf maximal :max Zeichen haben.",
+      "array": ":attribute darf maximal :max Elemente haben."
     },
     "mimes": ":attribute muss den Dateityp :values haben.",
     "mimetypes": ":attribute muss den Dateityp :values haben.",
     "min": {
-      "array": ":attribute muss mindestens :min Elemente haben.",
-      "file": ":attribute muss mindestens :min Kilobytes groß sein.",
       "numeric": ":attribute muss mindestens :min sein.",
-      "string": ":attribute muss mindestens :min Zeichen lang sein."
+      "file": ":attribute muss mindestens :min Kilobytes groß sein.",
+      "string": ":attribute muss mindestens :min Zeichen lang sein.",
+      "array": ":attribute muss mindestens :min Elemente haben."
     },
     "not_in": "Der gewählte Wert für :attribute ist ungültig.",
     "not_regex": ":attribute hat ein ungültiges Format.",
@@ -192,10 +235,10 @@ export default {
     "required_without_all": ":attribute muss ausgefüllt werden, wenn keines der Felder :values ausgefüllt wurde.",
     "same": ":attribute und :other müssen übereinstimmen.",
     "size": {
-      "array": ":attribute muss genau :size Elemente haben.",
-      "file": ":attribute muss :size Kilobyte groß sein.",
       "numeric": ":attribute muss gleich :size sein.",
-      "string": ":attribute muss :size Zeichen lang sein."
+      "file": ":attribute muss :size Kilobyte groß sein.",
+      "string": ":attribute muss :size Zeichen lang sein.",
+      "array": ":attribute muss genau :size Elemente haben."
     },
     "string": ":attribute muss ein String sein.",
     "timezone": ":attribute muss eine gültige Zeitzone sein.",
@@ -203,6 +246,6 @@ export default {
     "uploaded": ":attribute konnte nicht hochgeladen werden.",
     "url": ":attribute muss eine URL sein.",
     "uuid": ":attribute muss ein UUID sein.",
-    "remote": "Das Feld :attribute ist ungültig.",
+    "remote": "Das Feld :attribute ist ungültig."
   }
 }

@@ -22,7 +22,7 @@ export default {
         "uploadButton": " 上傳圖像",
         "dndTitle": " 上傳圖像",
         "dndDescription": "拖曳圖像或點擊此處上傳"
-      },
+      }
     },
     "steps": {
       "finish": "完成",
@@ -33,15 +33,17 @@ export default {
       "acceptedMimesError": "接受的啞劇是： :mimes",
       "acceptedExtensionsError": "接受的範圍是：:extensions"
     },
-    "multiselect": {
-      "multipleLabelOne": " 已選擇 1 個選項",
-      "multipleLabelMore": ":options 選項已選擇",
-      "noResults": "未找到選項",
-      "noOptions": "列表為空"
-    },
     "datepicker": {
       "weekdays": {
-        "shorthand": ["週日", "週一", "週二", "週三", "週四", "週五", "週六"],
+        "shorthand": [
+          "週日",
+          "週一",
+          "週二",
+          "週三",
+          "週四",
+          "週五",
+          "週六"
+        ],
         "longhand": [
           "星期日",
           "星期一",
@@ -49,8 +51,8 @@ export default {
           "星期三",
           "星期四",
           "星期五",
-          "星期六",
-        ],
+          "星期六"
+        ]
       },
       "months": {
         "shorthand": [
@@ -65,7 +67,7 @@ export default {
           "九月",
           "十月",
           "十一月",
-          "十二月",
+          "十二月"
         ],
         "longhand": [
           "一月",
@@ -79,15 +81,40 @@ export default {
           "九月",
           "十月",
           "十一月",
-          "十二月",
-        ],
+          "十二月"
+        ]
       },
+      "daysInMonth": [
+        31,
+        28,
+        31,
+        30,
+        31,
+        30,
+        31,
+        31,
+        30,
+        31,
+        30,
+        31
+      ],
+      "firstDayOfWeek": 0,
+      "ordinal": function () {
+    return '';
+  },
       "rangeSeparator": " 至 ",
       "weekAbbreviation": "週",
       "scrollTitle": "滾動切換",
       "toggleTitle": "點擊切換 12/24 小時時制",
+      "amPM": [
+        "AM",
+        "PM"
+      ],
+      "yearAriaLabel": "Year",
+      "monthAriaLabel": "Month",
+      "hourAriaLabel": "Hour",
+      "minuteAriaLabel": "Minute"
     },
-    "defaultMessage": "無效欄位",
     "dateFormats": {
       "datetimeSeconds24": "DD/MM/YYYY, HH:mm:ss",
       "datetimeSeconds12": "DD/MM/YYYY, hh:mm:ss a",
@@ -98,6 +125,21 @@ export default {
       "time24": "HH:mm",
       "time12": "hh:mm a",
       "date": "DD/MM/YYYY"
+    },
+    "multiselect": {
+      "multipleLabelOne": " 已選擇 1 個選項",
+      "multipleLabelMore": ":options 選項已選擇",
+      "noResults": "未找到選項",
+      "noOptions": "列表為空"
+    },
+    "defaultMessage": "無效欄位",
+    "a11y": {
+      "file": {
+        "description": "Press Backspace to remove"
+      },
+      "list": {
+        "remove": "Remove item button"
+      }
     }
   },
   "validation": {
@@ -180,8 +222,15 @@ export default {
     "not_in": "所揀選的 :attribute 選項無效。",
     "not_regex": ":attribute 的格式錯誤。",
     "numeric": ":attribute 必須為一個數字。",
+    "present": "The :attribute field must be present.",
     "regex": ":attribute 的格式錯誤。",
     "required": ":attribute 不能留空。",
+    "required_if": "The :attribute field is required when :other is :value.",
+    "required_unless": "The :attribute field is required unless :other is in :values.",
+    "required_with": "The :attribute field is required when :values is present.",
+    "required_with_all": "The :attribute field is required when :values are present.",
+    "required_without": "The :attribute field is required when :values is not present.",
+    "required_without_all": "The :attribute field is required when none of :values are present.",
     "same": ":attribute 與 :other 必須相同。",
     "size": {
       "numeric": ":attribute 的大小必須是 :size。",
@@ -192,7 +241,9 @@ export default {
     "string": ":attribute 必須是一個字符串",
     "timezone": ":attribute 必須是一個正確的時區值。",
     "unique": ":attribute 已經存在。",
+    "uploaded": "The :attribute failed to upload.",
     "url": ":attribute 的格式錯誤。",
-    "uuid": ":attribute 必須是有效的 UUID。"
+    "uuid": ":attribute 必須是有效的 UUID。",
+    "remote": "The :attribute field is invalid."
   }
 }

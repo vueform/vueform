@@ -22,7 +22,7 @@ export default {
         "uploadButton": "Cargar imágenes.",
         "dndTitle": "Cargar imágenes.",
         "dndDescription": "Suelte las imágenes o haga clic aquí para cargar."
-      },
+      }
     },
     "steps": {
       "finish": "Terminar",
@@ -33,15 +33,17 @@ export default {
       "acceptedMimesError": "Los mimos aceptados son: :mimes",
       "acceptedExtensionsError": "Las extensiones aceptadas son: :extensions"
     },
-    "multiselect": {
-      "multipleLabelOne": "1 opción seleccionada",
-      "multipleLabelMore": ":options opciones seleccionadas",
-      "noResults": "No se encuentran opciones",
-      "noOptions": "La lista está vacía"
-    },
     "datepicker": {
       "weekdays": {
-        "shorthand": ["Dom", "Lun", "Mar", "Mié", "Jue", "Vie", "Sáb"],
+        "shorthand": [
+          "Dom",
+          "Lun",
+          "Mar",
+          "Mié",
+          "Jue",
+          "Vie",
+          "Sáb"
+        ],
         "longhand": [
           "Domingo",
           "Lunes",
@@ -49,8 +51,8 @@ export default {
           "Miércoles",
           "Jueves",
           "Viernes",
-          "Sábado",
-        ],
+          "Sábado"
+        ]
       },
       "months": {
         "shorthand": [
@@ -65,7 +67,7 @@ export default {
           "Sep",
           "Oct",
           "Nov",
-          "Dic",
+          "Dic"
         ],
         "longhand": [
           "Enero",
@@ -79,16 +81,40 @@ export default {
           "Septiembre",
           "Octubre",
           "Noviembre",
-          "Diciembre",
-        ],
+          "Diciembre"
+        ]
       },
-      "ordinal": () => {
+      "daysInMonth": [
+        31,
+        28,
+        31,
+        30,
+        31,
+        30,
+        31,
+        31,
+        30,
+        31,
+        30,
+        31
+      ],
+      "firstDayOfWeek": 1,
+      "ordinal": function () {
         return "º";
       },
-      "firstDayOfWeek": 1,
       "rangeSeparator": " a ",
+      "weekAbbreviation": "Wk",
+      "scrollTitle": "Scroll to increment",
+      "toggleTitle": "Click to toggle",
+      "amPM": [
+        "AM",
+        "PM"
+      ],
+      "yearAriaLabel": "Year",
+      "monthAriaLabel": "Month",
+      "hourAriaLabel": "Hour",
+      "minuteAriaLabel": "Minute"
     },
-    "defaultMessage": "Campo inválido",
     "dateFormats": {
       "datetimeSeconds24": "DD/MM/YYYY HH:mm:ss",
       "datetimeSeconds12": "DD/MM/YYYY hh:mm:ss a",
@@ -99,6 +125,21 @@ export default {
       "time24": "HH:mm",
       "time12": "hh:mm a",
       "date": "DD/MM/YYYY"
+    },
+    "multiselect": {
+      "multipleLabelOne": "1 opción seleccionada",
+      "multipleLabelMore": ":options opciones seleccionadas",
+      "noResults": "No se encuentran opciones",
+      "noOptions": "La lista está vacía"
+    },
+    "defaultMessage": "Campo inválido",
+    "a11y": {
+      "file": {
+        "description": "Press Backspace to remove"
+      },
+      "list": {
+        "remove": "Remove item button"
+      }
     }
   },
   "validation": {
@@ -181,8 +222,15 @@ export default {
     "not_in": ":attribute es inválido.",
     "not_regex": "El formato del campo :attribute no es válido.",
     "numeric": ":attribute debe ser numérico.",
+    "present": "The :attribute field must be present.",
     "regex": "El formato de :attribute es inválido.",
     "required": "El campo :attribute es obligatorio.",
+    "required_if": "The :attribute field is required when :other is :value.",
+    "required_unless": "The :attribute field is required unless :other is in :values.",
+    "required_with": "The :attribute field is required when :values is present.",
+    "required_with_all": "The :attribute field is required when :values are present.",
+    "required_without": "The :attribute field is required when :values is not present.",
+    "required_without_all": "The :attribute field is required when none of :values are present.",
     "same": ":attribute y :other deben coincidir.",
     "size": {
       "numeric": "El tamaño de :attribute debe ser :size.",
@@ -193,7 +241,9 @@ export default {
     "string": "El campo :attribute debe ser una cadena de caracteres.",
     "timezone": ":Attribute debe ser una zona horaria válida.",
     "unique": "El campo :attribute ya ha sido registrado.",
+    "uploaded": "The :attribute failed to upload.",
     "url": ":Attribute debe ser una URL válida.",
-    "uuid": "El campo :attribute debe ser un UUID válido."
+    "uuid": "El campo :attribute debe ser un UUID válido.",
+    "remote": "The :attribute field is invalid."
   }
 }

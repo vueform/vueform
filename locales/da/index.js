@@ -22,7 +22,7 @@ export default {
         "uploadButton": "Upload billeder",
         "dndTitle": "Upload billeder",
         "dndDescription": "Slip billeder eller klik her for at uploade"
-      },
+      }
     },
     "steps": {
       "finish": "Afslut",
@@ -33,15 +33,17 @@ export default {
       "acceptedMimesError": "Accepterede mimes er: :mimes",
       "acceptedExtensionsError": "Accepterede udvidelser er: :extensions"
     },
-    "multiselect": {
-      "multipleLabelOne": "1 indstilling valgt",
-      "multipleLabelMore": ":options indstillinger valgt",
-      "noResults": "Ingen indstillinger fundet",
-      "noOptions": "Listen er tom"
-    },
     "datepicker": {
       "weekdays": {
-        "shorthand": ["søn", "man", "tir", "ons", "tors", "fre", "lør"],
+        "shorthand": [
+          "søn",
+          "man",
+          "tir",
+          "ons",
+          "tors",
+          "fre",
+          "lør"
+        ],
         "longhand": [
           "søndag",
           "mandag",
@@ -49,8 +51,8 @@ export default {
           "onsdag",
           "torsdag",
           "fredag",
-          "lørdag",
-        ],
+          "lørdag"
+        ]
       },
       "months": {
         "shorthand": [
@@ -65,7 +67,7 @@ export default {
           "sep",
           "okt",
           "nov",
-          "dec",
+          "dec"
         ],
         "longhand": [
           "januar",
@@ -79,15 +81,39 @@ export default {
           "september",
           "oktober",
           "november",
-          "december",
-        ],
+          "december"
+        ]
       },
-      "ordinal": () => {
+      "daysInMonth": [
+        31,
+        28,
+        31,
+        30,
+        31,
+        30,
+        31,
+        31,
+        30,
+        31,
+        30,
+        31
+      ],
+      "firstDayOfWeek": 1,
+      "ordinal": function () {
         return ".";
       },
-      "firstDayOfWeek": 1,
       "rangeSeparator": " til ",
       "weekAbbreviation": "uge",
+      "scrollTitle": "Scroll to increment",
+      "toggleTitle": "Click to toggle",
+      "amPM": [
+        "AM",
+        "PM"
+      ],
+      "yearAriaLabel": "Year",
+      "monthAriaLabel": "Month",
+      "hourAriaLabel": "Hour",
+      "minuteAriaLabel": "Minute"
     },
     "dateFormats": {
       "datetimeSeconds24": "DD.MM.YYYY HH.mm.ss",
@@ -100,7 +126,21 @@ export default {
       "time12": "hh.mm a",
       "date": "DD.MM.YYYY"
     },
+    "multiselect": {
+      "multipleLabelOne": "1 indstilling valgt",
+      "multipleLabelMore": ":options indstillinger valgt",
+      "noResults": "Ingen indstillinger fundet",
+      "noOptions": "Listen er tom"
+    },
     "defaultMessage": "Ugyldigt felt",
+    "a11y": {
+      "file": {
+        "description": "Press Backspace to remove"
+      },
+      "list": {
+        "remove": "Remove item button"
+      }
+    }
   },
   "validation": {
     "accepted": ":attribute skal accepteres.",
@@ -182,8 +222,15 @@ export default {
     "not_in": "Valgte :attribute er ugyldig.",
     "not_regex": "Formatet for :attribute er ugyldigt.",
     "numeric": ":attribute skal være et tal.",
+    "present": "The :attribute field must be present.",
     "regex": ":attribute formatet er ugyldigt.",
     "required": ":attribute skal udfyldes.",
+    "required_if": "The :attribute field is required when :other is :value.",
+    "required_unless": "The :attribute field is required unless :other is in :values.",
+    "required_with": "The :attribute field is required when :values is present.",
+    "required_with_all": "The :attribute field is required when :values are present.",
+    "required_without": "The :attribute field is required when :values is not present.",
+    "required_without_all": "The :attribute field is required when none of :values are present.",
     "same": ":attribute og :other skal være ens.",
     "size": {
       "numeric": ":attribute skal være :size.",
@@ -194,7 +241,9 @@ export default {
     "string": ":attribute skal være en streng.",
     "timezone": ":attribute skal være en gyldig tidszone.",
     "unique": ":attribute er allerede taget.",
+    "uploaded": "The :attribute failed to upload.",
     "url": ":attribute formatet er ugyldigt.",
-    "uuid": ":attribute skal være en gyldig UUID."
+    "uuid": ":attribute skal være en gyldig UUID.",
+    "remote": "The :attribute field is invalid."
   }
 }

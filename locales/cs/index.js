@@ -22,7 +22,7 @@ export default {
         "uploadButton": "Nahrát obrázky",
         "dndTitle": "Nahrát obrázky",
         "dndDescription": "Presuňte obrázky nebo je nahrajte kliknutím sem"
-      },
+      }
     },
     "steps": {
       "finish": "Dokončit",
@@ -33,15 +33,17 @@ export default {
       "acceptedMimesError": "Akceptované mimy jsou: :mimes",
       "acceptedExtensionsError": "Akceptované rozšíření jsou: :extensions"
     },
-    "multiselect": {
-      "multipleLabelOne": "1 vybraná možnost",
-      "multipleLabelMore": ":options vybrané možnosti",
-      "noResults": "Možnosti nenalezeny.",
-      "noOptions": "Seznam je prázdny"
-    },
     "datepicker": {
       "weekdays": {
-        "shorthand": ["Ne", "Po", "Út", "St", "Čt", "Pá", "So"],
+        "shorthand": [
+          "Ne",
+          "Po",
+          "Út",
+          "St",
+          "Čt",
+          "Pá",
+          "So"
+        ],
         "longhand": [
           "Neděle",
           "Pondělí",
@@ -49,8 +51,8 @@ export default {
           "Středa",
           "Čtvrtek",
           "Pátek",
-          "Sobota",
-        ],
+          "Sobota"
+        ]
       },
       "months": {
         "shorthand": [
@@ -65,7 +67,7 @@ export default {
           "Zář",
           "Říj",
           "Lis",
-          "Pro",
+          "Pro"
         ],
         "longhand": [
           "Leden",
@@ -79,31 +81,39 @@ export default {
           "Září",
           "Říjen",
           "Listopad",
-          "Prosinec",
-        ],
+          "Prosinec"
+        ]
       },
+      "daysInMonth": [
+        31,
+        28,
+        31,
+        30,
+        31,
+        30,
+        31,
+        31,
+        30,
+        31,
+        30,
+        31
+      ],
       "firstDayOfWeek": 1,
-      "rangeSeparator": " do ",
       "ordinal": function () {
         return ".";
       },
+      "rangeSeparator": " do ",
       "weekAbbreviation": "t.",
       "scrollTitle": "Scroll to increment",
       "toggleTitle": "Click to toggle",
-      "amPM": ["AM", "PM"],
+      "amPM": [
+        "AM",
+        "PM"
+      ],
       "yearAriaLabel": "Rok",
       "monthAriaLabel": "Měsíc",
       "hourAriaLabel": "Hodina",
-      "minuteAriaLabel": "Minuta",
-    },
-    "defaultMessage": "Neplatné pole",
-    "a11y": {
-      "file": {
-        "description": "Zmáčkněte klávesu zpět pro smazání."
-      },
-      "list": {
-        "remove": "Tlačítko odstranit položku"
-      },
+      "minuteAriaLabel": "Minuta"
     },
     "dateFormats": {
       "datetimeSeconds24": "DD. MM. YYYY, HH:mm:ss",
@@ -115,6 +125,21 @@ export default {
       "time24": "HH:mm",
       "time12": "hh:mm a",
       "date": "DD. MM. YYYY"
+    },
+    "multiselect": {
+      "multipleLabelOne": "1 vybraná možnost",
+      "multipleLabelMore": ":options vybrané možnosti",
+      "noResults": "Možnosti nenalezeny.",
+      "noOptions": "Seznam je prázdny"
+    },
+    "defaultMessage": "Neplatné pole",
+    "a11y": {
+      "file": {
+        "description": "Zmáčkněte klávesu zpět pro smazání."
+      },
+      "list": {
+        "remove": "Tlačítko odstranit položku"
+      }
     }
   },
   "validation": {
@@ -197,6 +222,7 @@ export default {
     "not_in": "označený :attribute je neplatný.",
     "not_regex": ":Attribute má neplatný formát.",
     "numeric": ":Attribute musí být číslo.",
+    "present": "The :attribute field must be present.",
     "regex": ":Attribute má neplatný formát.",
     "required": ":Attribute je požadovaný.",
     "required_if": ":Attribute je povinný když :other je :value.",
@@ -215,6 +241,7 @@ export default {
     "string": ":Attribute musí být řetězec znaků.",
     "timezone": ":Attribute musí být platné časové pásmo.",
     "unique": ":Attribute už existuje.",
+    "uploaded": "The :attribute failed to upload.",
     "url": ":Attribute musí mít formát URL.",
     "uuid": ":Attribute musí být platné UUID.",
     "remote": "Pole :attribute je neplatný."

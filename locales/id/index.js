@@ -22,7 +22,7 @@ export default {
         "uploadButton": "Unggah gambar",
         "dndTitle": "Unggah gambar",
         "dndDescription": "Jatuhkan gambar atau klik di sini untuk mengunggah"
-      },
+      }
     },
     "steps": {
       "finish": "Menyelesaikan",
@@ -33,16 +33,26 @@ export default {
       "acceptedMimesError": "Mime yang diterima adalah: :mimes",
       "acceptedExtensionsError": "Ekstensi yang diterima adalah: :extensions"
     },
-    "multiselect": {
-      "multipleLabelOne": "1 opsi dipilih",
-      "multipleLabelMore": ":options opsi dipilih",
-      "noResults": "Tidak ada opsi yang ditemukan",
-      "noOptions": "Daftarnya kosong"
-    },
     "datepicker": {
       "weekdays": {
-        "shorthand": ["Min", "Sen", "Sel", "Rab", "Kam", "Jum", "Sab"],
-        "longhand": ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"],
+        "shorthand": [
+          "Min",
+          "Sen",
+          "Sel",
+          "Rab",
+          "Kam",
+          "Jum",
+          "Sab"
+        ],
+        "longhand": [
+          "Minggu",
+          "Senin",
+          "Selasa",
+          "Rabu",
+          "Kamis",
+          "Jumat",
+          "Sabtu"
+        ]
       },
       "months": {
         "shorthand": [
@@ -57,7 +67,7 @@ export default {
           "Sep",
           "Okt",
           "Nov",
-          "Des",
+          "Des"
         ],
         "longhand": [
           "Januari",
@@ -71,16 +81,40 @@ export default {
           "September",
           "Oktober",
           "November",
-          "Desember",
-        ],
+          "Desember"
+        ]
       },
-      "ordinal": () => {
+      "daysInMonth": [
+        31,
+        28,
+        31,
+        30,
+        31,
+        30,
+        31,
+        31,
+        30,
+        31,
+        30,
+        31
+      ],
+      "firstDayOfWeek": 1,
+      "ordinal": function () {
         return "";
       },
-      "firstDayOfWeek": 1,
       "rangeSeparator": " - ",
+      "weekAbbreviation": "Wk",
+      "scrollTitle": "Scroll to increment",
+      "toggleTitle": "Click to toggle",
+      "amPM": [
+        "AM",
+        "PM"
+      ],
+      "yearAriaLabel": "Year",
+      "monthAriaLabel": "Month",
+      "hourAriaLabel": "Hour",
+      "minuteAriaLabel": "Minute"
     },
-    "defaultMessage": "Bidang tidak valid",
     "dateFormats": {
       "datetimeSeconds24": "DD/MM/YYYY HH.mm.ss",
       "datetimeSeconds12": "DD/MM/YYYY hh.mm.ss a",
@@ -91,6 +125,21 @@ export default {
       "time24": "HH.mm",
       "time12": "hh.mm a",
       "date": "DD/MM/YYYY"
+    },
+    "multiselect": {
+      "multipleLabelOne": "1 opsi dipilih",
+      "multipleLabelMore": ":options opsi dipilih",
+      "noResults": "Tidak ada opsi yang ditemukan",
+      "noOptions": "Daftarnya kosong"
+    },
+    "defaultMessage": "Bidang tidak valid",
+    "a11y": {
+      "file": {
+        "description": "Press Backspace to remove"
+      },
+      "list": {
+        "remove": "Remove item button"
+      }
     }
   },
   "validation": {
@@ -173,8 +222,15 @@ export default {
     "not_in": ":Attribute yang dipilih tidak valid.",
     "not_regex": "Format :attribute tidak valid.",
     "numeric": ":Attribute harus berupa angka.",
+    "present": "The :attribute field must be present.",
     "regex": "Format :attribute tidak valid.",
     "required": ":Attribute wajib diisi.",
+    "required_if": "The :attribute field is required when :other is :value.",
+    "required_unless": "The :attribute field is required unless :other is in :values.",
+    "required_with": "The :attribute field is required when :values is present.",
+    "required_with_all": "The :attribute field is required when :values are present.",
+    "required_without": "The :attribute field is required when :values is not present.",
+    "required_without_all": "The :attribute field is required when none of :values are present.",
     "same": ":Attribute dan :other harus sama.",
     "size": {
       "numeric": ":Attribute harus berukuran :size.",
@@ -185,7 +241,9 @@ export default {
     "string": ":Attribute harus berupa string.",
     "timezone": ":Attribute harus berisi zona waktu yang valid.",
     "unique": ":Attribute sudah ada sebelumnya.",
+    "uploaded": "The :attribute failed to upload.",
     "url": "Format :attribute tidak valid.",
-    "uuid": ":Attribute harus merupakan UUID yang valid."
+    "uuid": ":Attribute harus merupakan UUID yang valid.",
+    "remote": "The :attribute field is invalid."
   }
 }

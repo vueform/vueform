@@ -22,7 +22,7 @@ export default {
         "uploadButton": "Μεταφόρτωση εικόνων",
         "dndTitle": "Μεταφόρτωση εικόνων",
         "dndDescription": "Αποθέστε εικόνες ή κάντε κλικ εδώ για μεταφόρτωση"
-      },
+      }
     },
     "steps": {
       "finish": "Ολοκλήρωση",
@@ -33,15 +33,17 @@ export default {
       "acceptedMimesError": "Αποδεκτά πρωτόκολλα MIME είναι: :mimes",
       "acceptedExtensionsError": "Αποδεκτές επεκτάσεις είναι: :extensions"
     },
-    "multiselect": {
-      "multipleLabelOne": "Επιλέχθηκε η 1 επιλογή",
-      "multipleLabelMore": "Επιλέχθηκαν :options επιλογές",
-      "noResults": "Δεν βρέθηκαν επιλογές",
-      "noOptions": "Η λίστα είναι κενή"
-    },
     "datepicker": {
       "weekdays": {
-        "shorthand": ["Κυ", "Δε", "Τρ", "Τε", "Πέ", "Πα", "Σά"],
+        "shorthand": [
+          "Κυ",
+          "Δε",
+          "Τρ",
+          "Τε",
+          "Πέ",
+          "Πα",
+          "Σά"
+        ],
         "longhand": [
           "Κυριακή",
           "Δευτέρα",
@@ -49,8 +51,8 @@ export default {
           "Τετάρτη",
           "Πέμπτη",
           "Παρασκευή",
-          "Σάββατο",
-        ],
+          "Σάββατο"
+        ]
       },
       "months": {
         "shorthand": [
@@ -65,7 +67,7 @@ export default {
           "Σεπ",
           "Οκτ",
           "Νοέ",
-          "Δεκ",
+          "Δεκ"
         ],
         "longhand": [
           "Ιανουάριος",
@@ -79,22 +81,39 @@ export default {
           "Σεπτέμβριος",
           "Οκτώβριος",
           "Νοέμβριος",
-          "Δεκέμβριος",
-        ],
+          "Δεκέμβριος"
+        ]
       },
+      "daysInMonth": [
+        31,
+        28,
+        31,
+        30,
+        31,
+        30,
+        31,
+        31,
+        30,
+        31,
+        30,
+        31
+      ],
       "firstDayOfWeek": 1,
       "ordinal": function () {
         return "";
       },
-      "weekAbbreviation": "Εβδ",
       "rangeSeparator": " έως ",
+      "weekAbbreviation": "Εβδ",
       "scrollTitle": "Μετακυλήστε για προσαύξηση",
       "toggleTitle": "Κάντε κλικ για αλλαγή",
-      "amPM": ["ΠΜ", "ΜΜ"],
+      "amPM": [
+        "ΠΜ",
+        "ΜΜ"
+      ],
       "yearAriaLabel": "χρόνος",
       "monthAriaLabel": "μήνας",
       "hourAriaLabel": "ώρα",
-      "minuteAriaLabel": "λεπτό",
+      "minuteAriaLabel": "λεπτό"
     },
     "dateFormats": {
       "datetimeSeconds24": "DD/MM/YYYY, HH:mm:ss a",
@@ -107,7 +126,21 @@ export default {
       "time12": "hh:mm a",
       "date": "DD/MM/YYYY"
     },
+    "multiselect": {
+      "multipleLabelOne": "Επιλέχθηκε η 1 επιλογή",
+      "multipleLabelMore": "Επιλέχθηκαν :options επιλογές",
+      "noResults": "Δεν βρέθηκαν επιλογές",
+      "noOptions": "Η λίστα είναι κενή"
+    },
     "defaultMessage": "Μη έγκυρο πεδίο",
+    "a11y": {
+      "file": {
+        "description": "Press Backspace to remove"
+      },
+      "list": {
+        "remove": "Remove item button"
+      }
+    }
   },
   "validation": {
     "accepted": "Το πεδίο :attribute πρέπει να γίνει αποδεκτό.",
@@ -189,8 +222,15 @@ export default {
     "not_in": "Το επιλεγμένο :attribute δεν είναι αποδεκτό.",
     "not_regex": "Η μορφή του πεδίου :attribute δεν είναι αποδεκτή.",
     "numeric": "Το πεδίο :attribute πρέπει να είναι αριθμός.",
+    "present": "The :attribute field must be present.",
     "regex": "Η μορφή του πεδίου :attribute δεν είναι αποδεκτή.",
     "required": "Το πεδίο :attribute είναι απαραίτητο.",
+    "required_if": "The :attribute field is required when :other is :value.",
+    "required_unless": "The :attribute field is required unless :other is in :values.",
+    "required_with": "The :attribute field is required when :values is present.",
+    "required_with_all": "The :attribute field is required when :values are present.",
+    "required_without": "The :attribute field is required when :values is not present.",
+    "required_without_all": "The :attribute field is required when none of :values are present.",
     "same": "Τα πεδία :attribute και :other πρέπει να είναι ίδια.",
     "size": {
       "numeric": "Το πεδίο :attribute πρέπει να είναι :size.",
@@ -201,7 +241,9 @@ export default {
     "string": "Το πεδίο :attribute πρέπει να είναι αλφαριθμητικό.",
     "timezone": "Το πεδίο :attribute πρέπει να είναι μία έγκυρη ζώνη ώρας.",
     "unique": "Το πεδίο :attribute έχει ήδη εκχωρηθεί.",
+    "uploaded": "The :attribute failed to upload.",
     "url": "Το πεδίο :attribute δεν είναι έγκυρη διεύθυνση URL.",
-    "uuid": "Το πεδίο :attribute πρέπει να είναι έγκυρο UUID."
+    "uuid": "Το πεδίο :attribute πρέπει να είναι έγκυρο UUID.",
+    "remote": "The :attribute field is invalid."
   }
 }

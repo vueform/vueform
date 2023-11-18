@@ -3,7 +3,7 @@ export default {
     "elements": {
       "list": {
         "add": "+ Add",
-        "remove": "&times;",
+        "remove": "&times;"
       },
       "file": {
         "defaultName": "File",
@@ -11,31 +11,39 @@ export default {
         "dndDescription": "Drop file or click here to upload",
         "removeConfirm": "By removing the file it will be permanently deleted. Are you sure to continue?",
         "select": "Select file",
-        "upload": "Upload",
+        "upload": "Upload"
       },
       "multifile": {
         "uploadButton": "Upload files",
         "dndTitle": "Upload files",
-        "dndDescription": "Drop files or click here to upload",
+        "dndDescription": "Drop files or click here to upload"
       },
       "gallery": {
         "uploadButton": "Upload images",
         "dndTitle": "Upload images",
-        "dndDescription": "Drop images or click here to upload",
-      },
+        "dndDescription": "Drop images or click here to upload"
+      }
     },
     "steps": {
       "finish": "Finish",
       "next": "Next",
-      "previous": "Previous",
+      "previous": "Previous"
     },
     "editor": {
       "acceptedMimesError": "Accepted mimes are: :mimes",
-      "acceptedExtensionsError": "Accepted extenions are: :extensions",
+      "acceptedExtensionsError": "Accepted extenions are: :extensions"
     },
     "datepicker": {
       "weekdays": {
-        "shorthand": ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+        "shorthand": [
+          "Sun",
+          "Mon",
+          "Tue",
+          "Wed",
+          "Thu",
+          "Fri",
+          "Sat"
+        ],
         "longhand": [
           "Sunday",
           "Monday",
@@ -43,8 +51,8 @@ export default {
           "Wednesday",
           "Thursday",
           "Friday",
-          "Saturday",
-        ],
+          "Saturday"
+        ]
       },
       "months": {
         "shorthand": [
@@ -59,7 +67,7 @@ export default {
           "Sep",
           "Oct",
           "Nov",
-          "Dec",
+          "Dec"
         ],
         "longhand": [
           "January",
@@ -73,13 +81,26 @@ export default {
           "September",
           "October",
           "November",
-          "December",
-        ],
+          "December"
+        ]
       },
-      "daysInMonth": [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31],
+      "daysInMonth": [
+        31,
+        28,
+        31,
+        30,
+        31,
+        30,
+        31,
+        31,
+        30,
+        31,
+        30,
+        31
+      ],
       "firstDayOfWeek": 0,
-      "ordinal": (nth) => {
-        const s = nth % 100;
+      "ordinal": function (nth) {
+        var s = nth % 100;
         if (s > 3 && s < 21) return "th";
         switch (s % 10) {
           case 1:
@@ -96,11 +117,14 @@ export default {
       "weekAbbreviation": "Wk",
       "scrollTitle": "Scroll to increment",
       "toggleTitle": "Click to toggle",
-      "amPM": ["AM", "PM"],
+      "amPM": [
+        "AM",
+        "PM"
+      ],
       "yearAriaLabel": "Year",
       "monthAriaLabel": "Month",
       "hourAriaLabel": "Hour",
-      "minuteAriaLabel": "Minute",
+      "minuteAriaLabel": "Minute"
     },
     "dateFormats": {
       "datetimeSeconds24": "YYYY-MM-DD HH:mm:ss",
@@ -111,23 +135,23 @@ export default {
       "timeSeconds12": "hh:mm:ss a",
       "time24": "HH:mm",
       "time12": "hh:mm a",
-      "date": "YYYY-MM-DD",
+      "date": "YYYY-MM-DD"
     },
     "multiselect": {
       "multipleLabelOne": "1 option selected",
       "multipleLabelMore": ":options options selected",
       "noResults": "No options found",
-      "noOptions": "The list is empty",
+      "noOptions": "The list is empty"
     },
     "defaultMessage": "Invalid field",
     "a11y": {
       "file": {
-        "description": "Press Backspace to remove",
+        "description": "Press Backspace to remove"
       },
       "list": {
-        "remove": "Remove item button",
-      },
-    },
+        "remove": "Remove item button"
+      }
+    }
   },
   "validation": {
     "accepted": "The :attribute must be accepted.",
@@ -144,7 +168,7 @@ export default {
       "numeric": "The :attribute must be between :min and :max.",
       "file": "The :attribute must be between :min and :max kilobytes.",
       "string": "The :attribute must be between :min and :max characters.",
-      "array": "The :attribute must have between :min and :max items.",
+      "array": "The :attribute must have between :min and :max items."
     },
     "boolean": "The :attribute field must be true or false.",
     "confirmed": "The :attribute confirmation does not match.",
@@ -164,13 +188,13 @@ export default {
       "numeric": "The :attribute must be greater than :value.",
       "file": "The :attribute must be greater than :value kilobytes.",
       "string": "The :attribute must be greater than :value characters.",
-      "array": "The :attribute must have more than :value items.",
+      "array": "The :attribute must have more than :value items."
     },
     "gte": {
       "numeric": "The :attribute must be greater than or equal :value.",
       "file": "The :attribute must be greater than or equal :value kilobytes.",
       "string": "The :attribute must be greater than or equal :value characters.",
-      "array": "The :attribute must have :value items or more.",
+      "array": "The :attribute must have :value items or more."
     },
     "image": "The :attribute must be an image.",
     "in": "The selected :attribute is invalid.",
@@ -184,19 +208,19 @@ export default {
       "numeric": "The :attribute must be less than :value.",
       "file": "The :attribute must be less than :value kilobytes.",
       "string": "The :attribute must be less than :value characters.",
-      "array": "The :attribute must have less than :value items.",
+      "array": "The :attribute must have less than :value items."
     },
     "lte": {
       "numeric": "The :attribute must be less than or equal :value.",
       "file": "The :attribute must be less than or equal :value kilobytes.",
       "string": "The :attribute must be less than or equal :value characters.",
-      "array": "The :attribute must not have more than :value items.",
+      "array": "The :attribute must not have more than :value items."
     },
     "max": {
       "numeric": "The :attribute may not be greater than :max.",
       "file": "The :attribute may not be greater than :max kilobytes.",
       "string": "The :attribute may not be greater than :max characters.",
-      "array": "The :attribute may not have more than :max items.",
+      "array": "The :attribute may not have more than :max items."
     },
     "mimes": "The :attribute must be a file of type: :values.",
     "mimetypes": "The :attribute must be a file of type: :values.",
@@ -204,7 +228,7 @@ export default {
       "numeric": "The :attribute must be at least :min.",
       "file": "The :attribute must be at least :min kilobytes.",
       "string": "The :attribute must be at least :min characters.",
-      "array": "The :attribute must have at least :min items.",
+      "array": "The :attribute must have at least :min items."
     },
     "not_in": "The selected :attribute is invalid.",
     "not_regex": "The :attribute format is invalid.",
@@ -223,7 +247,7 @@ export default {
       "numeric": "The :attribute must be :size.",
       "file": "The :attribute must be :size kilobytes.",
       "string": "The :attribute must be :size characters.",
-      "array": "The :attribute must contain :size items.",
+      "array": "The :attribute must contain :size items."
     },
     "string": "The :attribute must be a string.",
     "timezone": "The :attribute must be a valid zone.",
@@ -231,6 +255,6 @@ export default {
     "uploaded": "The :attribute failed to upload.",
     "url": "The :attribute format is invalid.",
     "uuid": "The :attribute must be a valid UUID.",
-    "remote": "The :attribute field is invalid.",
+    "remote": "The :attribute field is invalid."
   }
 }

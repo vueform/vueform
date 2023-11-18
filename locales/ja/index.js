@@ -22,7 +22,7 @@ export default {
         "uploadButton": "画像をアップロードする",
         "dndTitle": "画像をアップロードする",
         "dndDescription": "画像をドロップするか、ここをクリックしてアップロードしてください"
-      },
+      }
     },
     "steps": {
       "finish": "終了",
@@ -33,15 +33,17 @@ export default {
       "acceptedMimesError": "受け付けたマイムは次のとおりです：:mimes",
       "acceptedExtensionsError": "受け付けた拡張機能は次のとおりです：:extensions"
     },
-    "multiselect": {
-      "multipleLabelOne": "1つのオプションが選択されました",
-      "multipleLabelMore": ":options オプションが選択されました",
-      "noResults": "オプションが見つかりません",
-      "noOptions": "リストは空です"
-    },
     "datepicker": {
       "weekdays": {
-        "shorthand": ["日", "月", "火", "水", "木", "金", "土"],
+        "shorthand": [
+          "日",
+          "月",
+          "火",
+          "水",
+          "木",
+          "金",
+          "土"
+        ],
         "longhand": [
           "日曜日",
           "月曜日",
@@ -49,10 +51,9 @@ export default {
           "水曜日",
           "木曜日",
           "金曜日",
-          "土曜日",
-        ],
+          "土曜日"
+        ]
       },
-
       "months": {
         "shorthand": [
           "1月",
@@ -66,7 +67,7 @@ export default {
           "9月",
           "10月",
           "11月",
-          "12月",
+          "12月"
         ],
         "longhand": [
           "1月",
@@ -80,17 +81,40 @@ export default {
           "9月",
           "10月",
           "11月",
-          "12月",
-        ],
+          "12月"
+        ]
       },
+      "daysInMonth": [
+        31,
+        28,
+        31,
+        30,
+        31,
+        30,
+        31,
+        31,
+        30,
+        31,
+        30,
+        31
+      ],
+      "firstDayOfWeek": 0,
+      "ordinal": function () {
+    return '';
+  },
       "rangeSeparator": " から ",
-      "monthAriaLabel": "月",
-      "amPM": ["午前", "午後"],
+      "weekAbbreviation": "Wk",
+      "scrollTitle": "Scroll to increment",
+      "toggleTitle": "Click to toggle",
+      "amPM": [
+        "午前",
+        "午後"
+      ],
       "yearAriaLabel": "年",
+      "monthAriaLabel": "月",
       "hourAriaLabel": "時間",
-      "minuteAriaLabel": "分",
+      "minuteAriaLabel": "分"
     },
-    "defaultMessage": "無効なフィールド",
     "dateFormats": {
       "datetimeSeconds24": "YYYY/MM/DD HH:mm:ss",
       "datetimeSeconds12": "YYYY/MM/DD ahh:mm:ss",
@@ -101,6 +125,21 @@ export default {
       "time24": "HH:mm",
       "time12": "ahh:mm",
       "date": "YYYY/MM/DD"
+    },
+    "multiselect": {
+      "multipleLabelOne": "1つのオプションが選択されました",
+      "multipleLabelMore": ":options オプションが選択されました",
+      "noResults": "オプションが見つかりません",
+      "noOptions": "リストは空です"
+    },
+    "defaultMessage": "無効なフィールド",
+    "a11y": {
+      "file": {
+        "description": "Press Backspace to remove"
+      },
+      "list": {
+        "remove": "Remove item button"
+      }
     }
   },
   "validation": {
@@ -183,8 +222,15 @@ export default {
     "not_in": "選択された:attributeは、有効ではありません。",
     "not_regex": ":attributeの形式が無効です。",
     "numeric": ":attributeには、数字を指定してください。",
+    "present": "The :attribute field must be present.",
     "regex": ":attributeには、有効な正規表現を指定してください。",
     "required": ":attributeは、必ず指定してください。",
+    "required_if": "The :attribute field is required when :other is :value.",
+    "required_unless": "The :attribute field is required unless :other is in :values.",
+    "required_with": "The :attribute field is required when :values is present.",
+    "required_with_all": "The :attribute field is required when :values are present.",
+    "required_without": "The :attribute field is required when :values is not present.",
+    "required_without_all": "The :attribute field is required when none of :values are present.",
     "same": ":attributeと:otherが一致しません。",
     "size": {
       "numeric": ":attributeには、:sizeを指定してください。",
@@ -195,7 +241,9 @@ export default {
     "string": ":attributeには、文字を指定してください。",
     "timezone": ":attributeには、有効なタイムゾーンを指定してください。",
     "unique": "指定の:attributeは既に使用されています。",
+    "uploaded": "The :attribute failed to upload.",
     "url": ":attributeは、有効なURL形式で指定してください。",
-    "uuid": ":attributeは、有効なUUIDでなければなりません。"
+    "uuid": ":attributeは、有効なUUIDでなければなりません。",
+    "remote": "The :attribute field is invalid."
   }
 }

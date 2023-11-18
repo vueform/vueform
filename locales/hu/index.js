@@ -22,7 +22,7 @@ export default {
         "uploadButton": "Képek feltöltése",
         "dndTitle": "Képek feltöltése",
         "dndDescription": "Képek feltöltéshez kattints ide vagy húzd ide a képeket"
-      },
+      }
     },
     "steps": {
       "finish": "Befejezés",
@@ -33,15 +33,17 @@ export default {
       "acceptedMimesError": "A következő MIME típusok engedélyezettek: :mimes",
       "acceptedExtensionsError": "A következő fájl kiterjesztések engedélyezettek: :extensions"
     },
-    "multiselect": {
-      "multipleLabelOne": "1 opció van kiválasztva",
-      "multipleLabelMore": ":options opció van kiválasztva",
-      "noResults": "Nincs találat",
-      "noOptions": "A lista üres"
-    },
     "datepicker": {
       "weekdays": {
-        "shorthand": ["V", "H", "K", "Sz", "Cs", "P", "Szo"],
+        "shorthand": [
+          "V",
+          "H",
+          "K",
+          "Sz",
+          "Cs",
+          "P",
+          "Szo"
+        ],
         "longhand": [
           "Vasárnap",
           "Hétfő",
@@ -49,8 +51,8 @@ export default {
           "Szerda",
           "Csütörtök",
           "Péntek",
-          "Szombat",
-        ],
+          "Szombat"
+        ]
       },
       "months": {
         "shorthand": [
@@ -65,7 +67,7 @@ export default {
           "Szep",
           "Okt",
           "Nov",
-          "Dec",
+          "Dec"
         ],
         "longhand": [
           "Január",
@@ -79,19 +81,40 @@ export default {
           "Szeptember",
           "Október",
           "November",
-          "December",
-        ],
+          "December"
+        ]
       },
+      "daysInMonth": [
+        31,
+        28,
+        31,
+        30,
+        31,
+        30,
+        31,
+        31,
+        30,
+        31,
+        30,
+        31
+      ],
+      "firstDayOfWeek": 1,
       "ordinal": function () {
         return ".";
       },
+      "rangeSeparator": " - ",
       "weekAbbreviation": "Hét",
       "scrollTitle": "Görgessen",
       "toggleTitle": "Kattintson a váltáshoz",
-      "rangeSeparator": " - ",
-      "firstDayOfWeek": 1,
+      "amPM": [
+        "AM",
+        "PM"
+      ],
+      "yearAriaLabel": "Year",
+      "monthAriaLabel": "Month",
+      "hourAriaLabel": "Hour",
+      "minuteAriaLabel": "Minute"
     },
-    "defaultMessage": "Érvénytelen mező",
     "dateFormats": {
       "datetimeSeconds24": "YYYY. MM. DD. HH:mm:ss",
       "datetimeSeconds12": "YYYY. MM. DD. a hh:mm:ss",
@@ -102,6 +125,21 @@ export default {
       "time24": "HH:mm",
       "time12": "a hh:mm",
       "date": "YYYY. MM. DD."
+    },
+    "multiselect": {
+      "multipleLabelOne": "1 opció van kiválasztva",
+      "multipleLabelMore": ":options opció van kiválasztva",
+      "noResults": "Nincs találat",
+      "noOptions": "A lista üres"
+    },
+    "defaultMessage": "Érvénytelen mező",
+    "a11y": {
+      "file": {
+        "description": "Press Backspace to remove"
+      },
+      "list": {
+        "remove": "Remove item button"
+      }
     }
   },
   "validation": {
@@ -184,8 +222,15 @@ export default {
     "not_in": "A(z) :attribute értéke érvénytelen.",
     "not_regex": "A(z) :attribute formátuma érvénytelen.",
     "numeric": "A(z) :attribute szám kell, hogy legyen!",
+    "present": "The :attribute field must be present.",
     "regex": "A(z) :attribute formátuma érvénytelen.",
     "required": "A(z) :attribute megadása kötelező!",
+    "required_if": "The :attribute field is required when :other is :value.",
+    "required_unless": "The :attribute field is required unless :other is in :values.",
+    "required_with": "The :attribute field is required when :values is present.",
+    "required_with_all": "The :attribute field is required when :values are present.",
+    "required_without": "The :attribute field is required when :values is not present.",
+    "required_without_all": "The :attribute field is required when none of :values are present.",
     "same": "A(z) :attribute és :other mezőknek egyezniük kell!",
     "size": {
       "numeric": "A(z) :attribute értéke :size kell, hogy legyen!",
@@ -196,7 +241,9 @@ export default {
     "string": "A(z) :attribute szöveg kell, hogy legyen.",
     "timezone": "A(z) :attribute nem létező időzona.",
     "unique": "A(z) :attribute már foglalt.",
+    "uploaded": "The :attribute failed to upload.",
     "url": "A(z) :attribute érvénytelen link.",
-    "uuid": ":attribute érvényes UUID-val kell rendelkezzen."
+    "uuid": ":attribute érvényes UUID-val kell rendelkezzen.",
+    "remote": "The :attribute field is invalid."
   }
 }

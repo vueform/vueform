@@ -22,7 +22,7 @@ export default {
         "uploadButton": "Загрузка изображений",
         "dndTitle": "Загрузка изображений",
         "dndDescription": "Перетащите изображения или нажмите здесь, чтобы загрузить"
-      },
+      }
     },
     "steps": {
       "finish": "Заканчивать",
@@ -33,15 +33,17 @@ export default {
       "acceptedMimesError": "Принятые мимы: :mimes",
       "acceptedExtensionsError": "Принятые исключения: :extensions"
     },
-    "multiselect": {
-      "multipleLabelOne": "Выбран 1 вариант",
-      "multipleLabelMore": ":options выбранные параметры",
-      "noResults": "Параметры не найдены",
-      "noOptions": "Список пуст"
-    },
     "datepicker": {
       "weekdays": {
-        "shorthand": ["Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"],
+        "shorthand": [
+          "Вс",
+          "Пн",
+          "Вт",
+          "Ср",
+          "Чт",
+          "Пт",
+          "Сб"
+        ],
         "longhand": [
           "Воскресенье",
           "Понедельник",
@@ -49,8 +51,8 @@ export default {
           "Среда",
           "Четверг",
           "Пятница",
-          "Суббота",
-        ],
+          "Суббота"
+        ]
       },
       "months": {
         "shorthand": [
@@ -65,7 +67,7 @@ export default {
           "Сен",
           "Окт",
           "Ноя",
-          "Дек",
+          "Дек"
         ],
         "longhand": [
           "Январь",
@@ -79,9 +81,23 @@ export default {
           "Сентябрь",
           "Октябрь",
           "Ноябрь",
-          "Декабрь",
-        ],
+          "Декабрь"
+        ]
       },
+      "daysInMonth": [
+        31,
+        28,
+        31,
+        30,
+        31,
+        30,
+        31,
+        31,
+        30,
+        31,
+        30,
+        31
+      ],
       "firstDayOfWeek": 1,
       "ordinal": function () {
         return "";
@@ -90,10 +106,15 @@ export default {
       "weekAbbreviation": "Нед.",
       "scrollTitle": "Прокрутите для увеличения",
       "toggleTitle": "Нажмите для переключения",
-      "amPM": ["ДП", "ПП"],
+      "amPM": [
+        "ДП",
+        "ПП"
+      ],
       "yearAriaLabel": "Год",
+      "monthAriaLabel": "Month",
+      "hourAriaLabel": "Hour",
+      "minuteAriaLabel": "Minute"
     },
-    "defaultMessage": "Недопустимое поле",
     "dateFormats": {
       "datetimeSeconds24": "DD.MM.YYYY, HH:mm:ss",
       "datetimeSeconds12": "DD.MM.YYYY, hh:mm:ss a",
@@ -104,6 +125,21 @@ export default {
       "time24": "HH:mm",
       "time12": "hh:mm a",
       "date": "DD.MM.YYYY"
+    },
+    "multiselect": {
+      "multipleLabelOne": "Выбран 1 вариант",
+      "multipleLabelMore": ":options выбранные параметры",
+      "noResults": "Параметры не найдены",
+      "noOptions": "Список пуст"
+    },
+    "defaultMessage": "Недопустимое поле",
+    "a11y": {
+      "file": {
+        "description": "Press Backspace to remove"
+      },
+      "list": {
+        "remove": "Remove item button"
+      }
     }
   },
   "validation": {
@@ -186,8 +222,15 @@ export default {
     "not_in": "Выбранное значение для :attribute некорректно.",
     "not_regex": "Значение поля :attribute некорректно.",
     "numeric": "Значение поля :attribute должно быть числом.",
+    "present": "The :attribute field must be present.",
     "regex": "Значение поля :attribute некорректно.",
     "required": "Поле :attribute обязательно для заполнения.",
+    "required_if": "The :attribute field is required when :other is :value.",
+    "required_unless": "The :attribute field is required unless :other is in :values.",
+    "required_with": "The :attribute field is required when :values is present.",
+    "required_with_all": "The :attribute field is required when :values are present.",
+    "required_without": "The :attribute field is required when :values is not present.",
+    "required_without_all": "The :attribute field is required when none of :values are present.",
     "same": "Значения полей :attribute и :other должны совпадать.",
     "size": {
       "numeric": "Значение поля :attribute должно быть равным :size.",
@@ -198,7 +241,9 @@ export default {
     "string": "Значение поля :attribute должно быть строкой.",
     "timezone": "Значение поля :attribute должно быть действительным часовым поясом.",
     "unique": "Такое значение поля :attribute уже существует.",
+    "uploaded": "The :attribute failed to upload.",
     "url": "Значение поля :attribute имеет ошибочный формат URL.",
-    "uuid": "Значение поля :attribute должно быть корректным UUID."
+    "uuid": "Значение поля :attribute должно быть корректным UUID.",
+    "remote": "The :attribute field is invalid."
   }
 }

@@ -22,7 +22,7 @@ export default {
         "uploadButton": "Nahrajte obrázky",
         "dndTitle": "Nahrajte obrázky",
         "dndDescription": "Presuňte obrázky alebo ich nahrajte kliknutím sem"
-      },
+      }
     },
     "steps": {
       "finish": "Skončiť",
@@ -33,15 +33,17 @@ export default {
       "acceptedMimesError": "Akceptované mimy sú: :mimes",
       "acceptedExtensionsError": "Akceptované rozšírenia sú: :extensions"
     },
-    "multiselect": {
-      "multipleLabelOne": "1 vybratá možnosť",
-      "multipleLabelMore": ":options vybrané možnosti",
-      "noResults": "Nenašli sa žiadne možnosti",
-      "noOptions": "Zoznam je prázdny"
-    },
     "datepicker": {
       "weekdays": {
-        "shorthand": ["Ned", "Pon", "Ut", "Str", "Štv", "Pia", "Sob"],
+        "shorthand": [
+          "Ned",
+          "Pon",
+          "Ut",
+          "Str",
+          "Štv",
+          "Pia",
+          "Sob"
+        ],
         "longhand": [
           "Nedeľa",
           "Pondelok",
@@ -49,8 +51,8 @@ export default {
           "Streda",
           "Štvrtok",
           "Piatok",
-          "Sobota",
-        ],
+          "Sobota"
+        ]
       },
       "months": {
         "shorthand": [
@@ -65,7 +67,7 @@ export default {
           "Sep",
           "Okt",
           "Nov",
-          "Dec",
+          "Dec"
         ],
         "longhand": [
           "Január",
@@ -79,16 +81,40 @@ export default {
           "September",
           "Október",
           "November",
-          "December",
-        ],
+          "December"
+        ]
       },
+      "daysInMonth": [
+        31,
+        28,
+        31,
+        30,
+        31,
+        30,
+        31,
+        31,
+        30,
+        31,
+        30,
+        31
+      ],
       "firstDayOfWeek": 1,
-      "rangeSeparator": " do ",
       "ordinal": function () {
         return ".";
       },
+      "rangeSeparator": " do ",
+      "weekAbbreviation": "Wk",
+      "scrollTitle": "Scroll to increment",
+      "toggleTitle": "Click to toggle",
+      "amPM": [
+        "AM",
+        "PM"
+      ],
+      "yearAriaLabel": "Year",
+      "monthAriaLabel": "Month",
+      "hourAriaLabel": "Hour",
+      "minuteAriaLabel": "Minute"
     },
-    "defaultMessage": "Neplatné pole",
     "dateFormats": {
       "datetimeSeconds24": "DD. MM. YYYY, HH:mm:ss",
       "datetimeSeconds12": "DD. MM. YYYY, hh:mm:ss a",
@@ -99,6 +125,21 @@ export default {
       "time24": "HH:mm",
       "time12": "hh:mm a",
       "date": "DD. MM. YYYY"
+    },
+    "multiselect": {
+      "multipleLabelOne": "1 vybratá možnosť",
+      "multipleLabelMore": ":options vybrané možnosti",
+      "noResults": "Nenašli sa žiadne možnosti",
+      "noOptions": "Zoznam je prázdny"
+    },
+    "defaultMessage": "Neplatné pole",
+    "a11y": {
+      "file": {
+        "description": "Press Backspace to remove"
+      },
+      "list": {
+        "remove": "Remove item button"
+      }
     }
   },
   "validation": {
@@ -181,8 +222,15 @@ export default {
     "not_in": "označený :attribute je neplatný.",
     "not_regex": ":Attribute má neplatný formát.",
     "numeric": ":Attribute musí byť číslo.",
+    "present": "The :attribute field must be present.",
     "regex": ":Attribute má neplatný formát.",
     "required": ":Attribute je požadované.",
+    "required_if": "The :attribute field is required when :other is :value.",
+    "required_unless": "The :attribute field is required unless :other is in :values.",
+    "required_with": "The :attribute field is required when :values is present.",
+    "required_with_all": "The :attribute field is required when :values are present.",
+    "required_without": "The :attribute field is required when :values is not present.",
+    "required_without_all": "The :attribute field is required when none of :values are present.",
     "same": ":Attribute a :other sa musia zhodovať.",
     "size": {
       "numeric": ":Attribute musí byť :size.",
@@ -193,7 +241,9 @@ export default {
     "string": ":Attribute musí byť reťazec znakov.",
     "timezone": ":Attribute musí byť platné časové pásmo.",
     "unique": ":Attribute už existuje.",
+    "uploaded": "The :attribute failed to upload.",
     "url": ":Attribute musí mať formát URL.",
-    "uuid": ":Attribute musí byť platné UUID."
+    "uuid": ":Attribute musí byť platné UUID.",
+    "remote": "The :attribute field is invalid."
   }
 }
