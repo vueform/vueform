@@ -1412,6 +1412,54 @@ interface FileElementProps {
   embed?: boolean;
 }
 
+interface GenericElementProps {
+  name: string | number;
+  conditions?: Array<any>;
+  onBeforeCreate?: Function;
+  onCreated?: Function;
+  onBeforeMount?: Function;
+  onMounted?: Function;
+  onBeforeUpdate?: Function;
+  onUpdated?: Function;
+  onBeforeUnmount?: Function;
+  onUnmounted?: Function;
+  inline?: boolean;
+  layout?: string | object | boolean;
+  addClass?: Array<any> | object | string;
+  removeClass?: Array<any> | object;
+  replaceClass?: object;
+  overrideClass?: Array<any> | object | string;
+  addClasses?: object;
+  replaceClasses?: object;
+  removeClasses?: object;
+  overrideClasses?: object;
+  presets?: Array<any>;
+  view?: string;
+  views?: object;
+  size?: string;
+  columns?: object | string | number;
+  templates?: object;
+  description?: string | object;
+  info?: string | object;
+  infoPosition?: string;
+  label?: string | object | Function;
+  before?: object | string | number;
+  between?: object | string | number;
+  after?: object | string | number;
+  slots?: object;
+  onChange?: Function;
+  formatData?: Function;
+  formatLoad?: Function;
+  submit?: boolean;
+  rules?: Array<any> | string | object;
+  messages?: object;
+  fieldName?: string;
+  type?: string;
+  id?: string;
+  disabled?: boolean;
+  default?: string | number | object;
+}
+
 interface GroupElementProps {
   name: string | number;
   conditions?: Array<any>;
@@ -3475,6 +3523,11 @@ declare class Vueform implements ReturnType<typeof defineComponent> {
   internalData: object;
   intermediaryValue: object;
   userConfig: object;
+  messagesRegistered: boolean;
+  errorsRegistered: boolean;
+  languagesRegistered: boolean;
+  tabsRegistered: boolean;
+  stepsRegistered: boolean;
 
   // Methods
   prepareElements: () => Promise;
@@ -5006,6 +5059,181 @@ declare class FileElement implements ReturnType<typeof defineComponent> {
   $emit(eventName: 'change', value: any): void;
   $emit(eventName: 'remove', value: any): void;
   $emit(eventName: 'error', value: any): void;
+  $emit(eventName: 'beforeCreate', value: any): void;
+  $emit(eventName: 'created', value: any): void;
+  $emit(eventName: 'beforeMount', value: any): void;
+  $emit(eventName: 'mounted', value: any): void;
+  $emit(eventName: 'beforeUpdate', value: any): void;
+  $emit(eventName: 'updated', value: any): void;
+  $emit(eventName: 'beforeUnmount', value: any): void;
+  $emit(eventName: 'unmounted', value: any): void;
+
+  //Slots
+  $slots: {
+    'label': VNode[];
+    'info': VNode[];
+    'description': VNode[];
+    'before': VNode[];
+    'between': VNode[];
+    'after': VNode[];
+  };
+}
+
+declare class GenericElement implements ReturnType<typeof defineComponent> {
+  $props: GenericElementProps;
+
+  // Props
+  name: GenericElementProps['name'];
+  conditions: GenericElementProps['conditions'];
+  onBeforeCreate: GenericElementProps['onBeforeCreate'];
+  onCreated: GenericElementProps['onCreated'];
+  onBeforeMount: GenericElementProps['onBeforeMount'];
+  onMounted: GenericElementProps['onMounted'];
+  onBeforeUpdate: GenericElementProps['onBeforeUpdate'];
+  onUpdated: GenericElementProps['onUpdated'];
+  onBeforeUnmount: GenericElementProps['onBeforeUnmount'];
+  onUnmounted: GenericElementProps['onUnmounted'];
+  inline: GenericElementProps['inline'];
+  layout: GenericElementProps['layout'];
+  addClass: GenericElementProps['addClass'];
+  removeClass: GenericElementProps['removeClass'];
+  replaceClass: GenericElementProps['replaceClass'];
+  overrideClass: GenericElementProps['overrideClass'];
+  addClasses: GenericElementProps['addClasses'];
+  replaceClasses: GenericElementProps['replaceClasses'];
+  removeClasses: GenericElementProps['removeClasses'];
+  overrideClasses: GenericElementProps['overrideClasses'];
+  presets: GenericElementProps['presets'];
+  view: GenericElementProps['view'];
+  views: GenericElementProps['views'];
+  size: GenericElementProps['size'];
+  columns: GenericElementProps['columns'];
+  templates: GenericElementProps['templates'];
+  description: GenericElementProps['description'];
+  info: GenericElementProps['info'];
+  infoPosition: GenericElementProps['infoPosition'];
+  label: GenericElementProps['label'];
+  before: GenericElementProps['before'];
+  between: GenericElementProps['between'];
+  after: GenericElementProps['after'];
+  slots: GenericElementProps['slots'];
+  onChange: GenericElementProps['onChange'];
+  formatData: GenericElementProps['formatData'];
+  formatLoad: GenericElementProps['formatLoad'];
+  submit: GenericElementProps['submit'];
+  rules: GenericElementProps['rules'];
+  messages: GenericElementProps['messages'];
+  fieldName: GenericElementProps['fieldName'];
+  type: GenericElementProps['type'];
+  id: GenericElementProps['id'];
+  disabled: GenericElementProps['disabled'];
+  default: GenericElementProps['default'];
+
+  // Computed
+  descriptionId: string;
+  labelId: string;
+  infoId: string;
+  errorId: string;
+  aria: object;
+  el$: VueformElement;
+  isStatic: boolean;
+  isFileType: boolean;
+  isArrayType: boolean;
+  isImageType: boolean;
+  isActive: boolean;
+  classes: object;
+  classesInstance: MergeClasses;
+  cols: object;
+  columnsClassesService: Columns;
+  columnsClasses: object;
+  available: boolean;
+  data: object;
+  requestData: object;
+  defaultValue: any;
+  isDisabled: boolean;
+  empty: boolean;
+  fieldId: string;
+  genericName: string;
+  hasLabel: boolean;
+  Label: string | Component;
+  elementLayout: string | Component;
+  nullValue: any;
+  parent: VNode;
+  path: string;
+  dataPath: string;
+  flat: boolean;
+  elementSlots: object;
+  fieldSlots: object;
+  Templates: object;
+  template: object;
+  dirty: boolean;
+  validated: boolean;
+  invalid: boolean;
+  pending: boolean;
+  debouncing: boolean;
+  busy: boolean;
+  errors: Array<any>;
+  error: string;
+  validationRules: string | Array<any>;
+  isDanger: boolean;
+  isSuccess: boolean;
+  value: any;
+  model: any;
+  visible: boolean;
+  Size: string;
+  View: string;
+  Views: object;
+
+  // Data
+  active: boolean;
+  mounted: boolean;
+  container: HTMLElement;
+  conditionList: Array<any>;
+  localDisabled: boolean | null;
+  events: Array<any>;
+  listeners: object;
+  focused: boolean;
+  input: HTMLElement;
+  state: object;
+  Validators: Array<any>;
+  messageBag: MessageBag;
+  initialValue: any;
+  internalValue: any;
+  hidden: boolean;
+
+  // Injects
+  form$: Vueform;
+  theme: object;
+
+  // Methods
+  activate: () => void;
+  deactivate: () => void;
+  updateColumns: (value: number | Array<any>) => void;
+  updateConditions: () => void;
+  load: (value: any, format: boolean) => void;
+  update: (value: any) => void;
+  clear: () => void;
+  reset: () => void;
+  disable: () => void;
+  enable: () => void;
+  on: (event: string, callback: Function) => void;
+  off: (event: string) => void;
+  fire: (args: any) => void;
+  focus: () => void;
+  handleInput: (e: Event) => void;
+  validate: () => Promise;
+  dirt: () => void;
+  clean: () => void;
+  clearMessages: () => void;
+  resetValidators: () => void;
+  initMessageBag: () => void;
+  initValidation: () => void;
+  reinitValidation: () => void;
+  hide: () => void;
+  show: () => void;
+
+  //Events
+  $emit(eventName: 'change', value: any): void;
   $emit(eventName: 'beforeCreate', value: any): void;
   $emit(eventName: 'created', value: any): void;
   $emit(eventName: 'beforeMount', value: any): void;
@@ -8796,6 +9024,7 @@ declare module 'vue' {
     DatesElement: typeof DatesElement;
     EditorElement: typeof EditorElement;
     FileElement: typeof FileElement;
+    GenericElement: typeof GenericElement;
     GroupElement: typeof GroupElement;
     HiddenElement: typeof HiddenElement;
     ListElement: typeof ListElement;

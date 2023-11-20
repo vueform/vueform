@@ -315,6 +315,57 @@ export default {
       "unmounted"
     ]
   },
+  "generic": {
+    "features": [
+      "a11y",
+      "baseElement",
+      "classes",
+      "columns",
+      "conditions",
+      "data",
+      "default_text",
+      "disabled",
+      "empty",
+      "events",
+      "fieldId",
+      "focus",
+      "focused",
+      "form$",
+      "genericName",
+      "handleInput",
+      "input",
+      "label",
+      "layout",
+      "nullValue",
+      "path",
+      "slots",
+      "templates",
+      "theme",
+      "validation_text",
+      "value",
+      "view",
+      "watchValue"
+    ],
+    "slots": [
+      "label",
+      "info",
+      "description",
+      "before",
+      "between",
+      "after"
+    ],
+    "events": [
+      "change",
+      "beforeCreate",
+      "created",
+      "beforeMount",
+      "mounted",
+      "beforeUpdate",
+      "updated",
+      "beforeUnmount",
+      "unmounted"
+    ]
+  },
   "group": {
     "features": [
       "a11y",

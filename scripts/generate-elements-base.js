@@ -10,6 +10,7 @@ const elements = [
   'date',
   'dates',
   'file',
+  'generic',
   'group',
   'hidden',
   'list',

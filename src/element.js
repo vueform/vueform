@@ -28,6 +28,12 @@ export default function (options, component = {}) {
     props: {
       ...GenericElement.props,
       ...(options.props||{}),
+      type: {
+        required: false,
+        type: [String],
+        default: name,
+        private: true,
+      },
     },
     setup(props, ctx) {
       const context = {

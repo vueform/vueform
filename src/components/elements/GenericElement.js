@@ -18,14 +18,12 @@ import useDisabled from './../../composables/elements/useDisabled'
 import useEvents from './../../composables/useEvents'
 import useHandleInput from './../../composables/elements/useHandleInput'
 import useEmpty from './../../composables/elements/useEmpty'
-import useFloating from './../../composables/elements/useFloating'
 import useClasses from './../../composables/elements/useClasses'
 import useFieldId from './../../composables/elements/useFieldId'
 import useInput from './../../composables/elements/useInput'
 import useFocused from './../../composables/elements/useFocused'
 import useFocus from './../../composables/elements/useFocus'
 import useWatchValue from './../../composables/elements/useWatchValue'
-import usePlaceholder from './../../composables/elements/usePlaceholder'
 import useA11y from './../../composables/elements/useA11y'
 
 import { text as useValidation } from './../../composables/elements/useValidation'
@@ -46,7 +44,8 @@ export default {
     type: {
       required: false,
       type: [String],
-      default: name,
+      default: '',
+      private: true,
     },
     id: {
       required: false,
@@ -63,16 +62,6 @@ export default {
       type: [String, Number, Object],
       default: undefined
     },
-    placeholder: {
-      required: false,
-      type: [String],
-      default: null
-    },
-    floating: {
-      required: false,
-      type: [String],
-      default: null
-    },
   },
   setup(props, context) {
     context.features = [
@@ -84,7 +73,6 @@ export default {
       useDisabled,
       useNullValue,
       useFieldId,
-      useFloating,
       useEvents,
       useBaseElement,
       useDefault,
@@ -105,7 +93,6 @@ export default {
       useA11y,
       useWatchValue,
       useFocus,
-      usePlaceholder,
     ]
     context.slots = [
       'label', 'info', 'description',
