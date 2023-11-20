@@ -1,6 +1,6 @@
-import upperFirst from 'lodash-es/upperFirst'
-import camelCase from 'lodash-es/camelCase'
-import omit from 'lodash-es/omit'
+import upperFirst from 'lodash/upperFirst'
+import camelCase from 'lodash/camelCase'
+import omit from 'lodash/omit'
 import { ref } from 'vue'
 
 import { GenericElement } from './components'

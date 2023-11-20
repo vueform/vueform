@@ -1,7 +1,7 @@
-import cloneDeep from 'lodash-es/cloneDeep'
-import get from 'lodash-es/get'
-import each from 'lodash-es/each'
-import set from 'lodash-es/set'
+import cloneDeep from 'lodash/cloneDeep'
+import get from 'lodash/get'
+import each from 'lodash/each'
+import set from 'lodash/set'
 import { computed, ref, toRefs, watch, } from 'vue'
 import dataEquals from './../utils/dataEquals'
 

@@ -1,8 +1,8 @@
-import each from 'lodash-es/each'
-import cloneDeep from 'lodash-es/cloneDeep'
-import isPlainObject from 'lodash-es/isPlainObject'
-import merge from 'lodash-es/merge'
-import clone from 'lodash-es/clone'
+import each from 'lodash/each'
+import cloneDeep from 'lodash/cloneDeep'
+import isPlainObject from 'lodash/isPlainObject'
+import merge from 'lodash/merge'
+import clone from 'lodash/clone'
 import { computed, toRefs, inject } from 'vue'
 import localize from '../../utils/localize'
 

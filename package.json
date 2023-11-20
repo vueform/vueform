@@ -109,7 +109,7 @@
     "vue": "^3.3.8",
     "vue-jest": "npm:@vue/vue3-jest@^27.0.0-alpha.1",
     "vue-loader": "^15.10.0",
-    "lodash-es": "^4.17.21"
+    "lodash": "^4.17.21"
   },
   "dependencies": {
     "@popperjs/core": "^2.11.8",

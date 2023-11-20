@@ -1,4 +1,4 @@
-import isArray from 'lodash-es/isArray'
+import isArray from 'lodash/isArray'
 import Validator from './../validator'
 
 export default class array extends Validator {

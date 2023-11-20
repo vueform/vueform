@@ -1,6 +1,6 @@
-import filter from 'lodash-es/filter'
-import some from 'lodash-es/some'
-import each from 'lodash-es/each'
+import filter from 'lodash/filter'
+import some from 'lodash/some'
+import each from 'lodash/each'
 // @todo:adam check required schema (eg. `elements` property) here and everywhere
 import { computed, ref, toRefs, watch, onMounted, onBeforeMount, onBeforeUnmount, nextTick, getCurrentInstance, markRaw } from 'vue'
 import useFormComponent from './../composables/useFormComponent'

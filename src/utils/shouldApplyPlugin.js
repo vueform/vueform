@@ -1,5 +1,5 @@
-import each from 'lodash-es/each'
-import difference from 'lodash-es/difference'
+import each from 'lodash/each'
+import difference from 'lodash/difference'
 
 export default function (name, plugin) {
   if (!plugin.apply && difference(Object.keys(plugin), ['config', 'install']).length > 0) {

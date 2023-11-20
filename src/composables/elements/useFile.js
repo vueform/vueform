@@ -1,5 +1,5 @@
-import isObject from 'lodash-es/isObject'
-import isString from 'lodash-es/isString'
+import isObject from 'lodash/isObject'
+import isString from 'lodash/isString'
 import { computed, toRefs, ref, watch, nextTick } from 'vue'
 import convertFormData from './../../utils/convertFormData'
 

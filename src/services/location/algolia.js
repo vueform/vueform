@@ -1,6 +1,6 @@
-import isPlainObject from 'lodash-es/isPlainObject'
-import values from 'lodash-es/values'
-import keys from 'lodash-es/keys'
+import isPlainObject from 'lodash/isPlainObject'
+import values from 'lodash/values'
+import keys from 'lodash/keys'
 
 export default class {
   constructor() {

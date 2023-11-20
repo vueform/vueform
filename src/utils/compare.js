@@ -1,7 +1,7 @@
-import isArray from 'lodash-es/isArray'
-import includes from 'lodash-es/includes'
-import startsWith from 'lodash-es/startsWith'
-import endsWith from 'lodash-es/endsWith'
+import isArray from 'lodash/isArray'
+import includes from 'lodash/includes'
+import startsWith from 'lodash/startsWith'
+import endsWith from 'lodash/endsWith'
 import moment from 'moment'
 import normalize from './normalize'
 

@@ -1,9 +1,9 @@
-import each from 'lodash-es/each'
-import merge from 'lodash-es/merge'
-import some from 'lodash-es/some'
-import isEmpty from 'lodash-es/isEmpty'
-import upperFirst from 'lodash-es/upperFirst'
-import filter from 'lodash-es/filter'
+import each from 'lodash/each'
+import merge from 'lodash/merge'
+import some from 'lodash/some'
+import isEmpty from 'lodash/isEmpty'
+import upperFirst from 'lodash/upperFirst'
+import filter from 'lodash/filter'
 import {
   computed, ref, toRefs, getCurrentInstance, onBeforeMount, onMounted, onBeforeUpdate,
   onUpdated, onBeforeUnmount, onUnmounted, provide, watch,

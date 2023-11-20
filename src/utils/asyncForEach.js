@@ -1,6 +1,6 @@
-import isPlainObject from 'lodash-es/isPlainObject'
-import values from 'lodash-es/values'
-import keys from 'lodash-es/keys'
+import isPlainObject from 'lodash/isPlainObject'
+import values from 'lodash/values'
+import keys from 'lodash/keys'
 
 export default async function asyncForEach(array, callback) {
   for (let index = 0; index < (isPlainObject(array) ? values(array) : array).length; index++) {

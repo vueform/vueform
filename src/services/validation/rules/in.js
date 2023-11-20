@@ -1,4 +1,4 @@
-import values from 'lodash-es/values'
+import values from 'lodash/values'
 import Validator from './../validator'
 
 export default class in_ extends Validator {

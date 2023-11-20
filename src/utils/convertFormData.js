@@ -1,6 +1,6 @@
-import isArray from 'lodash-es/isArray'
-import each from 'lodash-es/each'
-import isPlainObject from 'lodash-es/isPlainObject'
+import isArray from 'lodash/isArray'
+import each from 'lodash/each'
+import isPlainObject from 'lodash/isPlainObject'
 
 let getFormData = function (data, formData, namespace) {
   if (formData === undefined) {

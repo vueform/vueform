@@ -1,4 +1,4 @@
-import isEqual from 'lodash-es/isEqual'
+import isEqual from 'lodash/isEqual'
 import { computed } from 'vue'
 
 const base = function(props, context, dependencies)

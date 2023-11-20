@@ -1,5 +1,5 @@
-import each from 'lodash-es/each'
-import isPlainObject from 'lodash-es/isPlainObject'
+import each from 'lodash/each'
+import isPlainObject from 'lodash/isPlainObject'
 
 export default class {
   constructor() {

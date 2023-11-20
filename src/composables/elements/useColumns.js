@@ -1,4 +1,4 @@
-import cloneDeep from 'lodash-es/cloneDeep'
+import cloneDeep from 'lodash/cloneDeep'
 import { computed, toRefs, ref, watch } from 'vue'
 
 const base = function(props, context, dependencies)

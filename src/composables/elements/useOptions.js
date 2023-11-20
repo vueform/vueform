@@ -1,4 +1,4 @@
-import map from 'lodash-es/map'
+import map from 'lodash/map'
 import moment from 'moment'
 import checkDateFormat from './../../utils/checkDateFormat'
 import localize from './../../utils/localize'

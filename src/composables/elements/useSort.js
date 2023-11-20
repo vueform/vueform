@@ -1,4 +1,4 @@
-import cloneDeep from 'lodash-es/cloneDeep'
+import cloneDeep from 'lodash/cloneDeep'
 import Sortable from 'sortablejs'
 import { computed, toRefs, ref, watch, onMounted } from 'vue'
 

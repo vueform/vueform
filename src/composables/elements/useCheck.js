@@ -1,6 +1,6 @@
-import isArray from 'lodash-es/isArray'
-import clone from 'lodash-es/clone'
-import each from 'lodash-es/each'
+import isArray from 'lodash/isArray'
+import clone from 'lodash/clone'
+import each from 'lodash/each'
 
 const base = function(props, context, dependencies)
 {
