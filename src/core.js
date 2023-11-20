@@ -7,6 +7,7 @@ import element from './element'
 import defineConfig from './defineConfig'
 
 const VueformElement = element
+const defineElement = element
 
 import {
   Vueform as VueformComponent,
@@ -26,6 +27,7 @@ export {
   vueform,
   element,
   VueformElement,
+  defineElement,
   defineConfig,
   installer,
 }

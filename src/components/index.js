@@ -32,6 +32,7 @@ import CheckboxgroupElement from './elements/CheckboxgroupElement'
 import DateElement from './elements/DateElement'
 import DatesElement from './elements/DatesElement'
 import FileElement from './elements/FileElement'
+import GenericElement from './elements/GenericElement'
 import GroupElement from './elements/GroupElement'
 import HiddenElement from './elements/HiddenElement'
 import ListElement from './elements/ListElement'
@@ -90,6 +91,7 @@ export default {
   DateElement,
   DatesElement,
   FileElement,
+  GenericElement,
   GroupElement,
   HiddenElement,
   ListElement,
@@ -148,6 +150,7 @@ export {
   DateElement,
   DatesElement,
   FileElement,
+  GenericElement,
   GroupElement,
   HiddenElement,
   ListElement,

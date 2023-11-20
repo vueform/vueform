@@ -783,6 +783,46 @@ export default {
             "object"
           ],
           "description": "The configuration object of the user when using SFC mode. Basically the value of the component's `data.vueform` object."
+        },
+        "messagesRegistered": {
+          "public": false,
+          "default": "false",
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether FormMessages component is registered."
+        },
+        "errorsRegistered": {
+          "public": false,
+          "default": "false",
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether FormErrors component is registered."
+        },
+        "languagesRegistered": {
+          "public": false,
+          "default": "false",
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether FormLanguages component is registered."
+        },
+        "tabsRegistered": {
+          "public": false,
+          "default": "false",
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether FormTabs component is registered."
+        },
+        "stepsRegistered": {
+          "public": false,
+          "default": "false",
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether FormSteps component is registered."
         }
       },
       "computed": {

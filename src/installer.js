@@ -125,6 +125,10 @@ export default function(config = baseConfig, components = {}, rules = {}) {
 
     registerComponents(appOrVue) {
       each(components, (comp, name) => {
+        if (comp.register === false) {
+          return
+        } 
+
         const component = {...comp}
 
         component.setup = (props, context) => {

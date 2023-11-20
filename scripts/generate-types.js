@@ -124,6 +124,16 @@ interface VueformConfig {
   [key: string]: any;
 }
 
+interface DefineElement {
+  name: string;
+  setup?: Function;
+  props?: object;
+  emits?: any[];
+  mixins?: any[];
+  components?: object;
+  [key: string]: any;
+}
+
 declare module '@vueform/vueform/core' {}
 
 declare module '@vueform/vueform' {
@@ -136,6 +146,7 @@ declare module '@vueform/vueform' {
     const vueform: any;
     const element: any;
     const VueformElement: any;
+    const defineElement: any;
     function defineConfig(options: VueformConfig): VueformConfig;
 
   export {
@@ -148,6 +159,7 @@ declare module '@vueform/vueform' {
     vueform,
     element,
     VueformElement,
+    defineElement,
     defineConfig,
   }
 

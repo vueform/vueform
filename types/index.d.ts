@@ -10,6 +10,7 @@ interface VueformConfig {
   env?: string;
   plugins?: any[];
   elements?: any[];
+  components?: object;
   theme: object;
   templates?: object;
   views?: object;
@@ -54,6 +55,18 @@ interface VueformConfig {
   [key: string]: any;
 }
 
+interface DefineElement {
+  name: string;
+  setup?: Function;
+  props?: object;
+  emits?: any[];
+  mixins?: any[];
+  components?: object;
+  [key: string]: any;
+}
+
+declare module '@vueform/vueform/core' {}
+
 declare module '@vueform/vueform' {
     const config: any;
     const components: any;
@@ -63,6 +76,8 @@ declare module '@vueform/vueform' {
     const Validator: any;
     const vueform: any;
     const element: any;
+    const VueformElement: any;
+    const defineElement: any;
     function defineConfig(options: VueformConfig): VueformConfig;
 
   export {
@@ -74,6 +89,8 @@ declare module '@vueform/vueform' {
     Validator,
     vueform,
     element,
+    VueformElement,
+    defineElement,
     defineConfig,
   }
 
