@@ -389,6 +389,7 @@
     flex-grow: 1;
     flex-shrink: 1;
     height: 100%;
+    max-width: 100%;
   }
 
   .vf-multiselect-tags-search-copy {
@@ -418,6 +419,7 @@
     line-height: var(--vf-line-height);
     letter-spacing: var(--vf-letter-spacing);
     background-color: transparent;
+    padding-right: 0.5rem;
 
     &::-webkit-search-decoration,
     &::-webkit-search-cancel-button,

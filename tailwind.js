@@ -969,6 +969,10 @@ const vueform = plugin((context) => {
       marginRight: `var(--vf-space-tags${size})`
     }
 
+    plain[`.form-pr-space-tags${suffix}`] = {
+      paddingRight: `var(--vf-space-tags${size})`
+    }
+
     plain[`.form-mb-space-tags${suffix}`] = {
       marginBottom: `var(--vf-space-tags${size})`
     }
