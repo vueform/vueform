@@ -1,5 +1,22 @@
 [//]: # (Don't use <tags>)
 
+## v1.6.0
+
+> `2023-11-22`
+
+### 🎉 Feature
+- [Custom element creation]](https://vueform.com/docs/creating-elements) revamp for better DX (previous implementations will work).
+- Floating and placeholder are **no longer available** for the default custom element. [Copy](https://vueform.com/docs/creating-elements#copy-element) `TextElement` to use them.
+- Added old / new index and el$ to `@sort` event.
+- Added `cs` (Czech) locale. Thank you @tomasvn! 💚
+
+### 🐞 Bug Fixes
+- Fix search wrap for `TagsElement` #21
+
+### 🧹 Chore
+- Changed back `lodash-es` to `lodash`
+- Type fixes.
+
 ## v1.5.8
 
 > `2023-11-14`
