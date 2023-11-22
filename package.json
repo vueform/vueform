@@ -58,7 +58,7 @@
   },
   "scripts": {
     "build": "rollup --config build/rollup.config.js",
-    "test": "npm run generate:elements-base; NODE_OPTIONS=\"--max_old_space_size=5120 --no-experimental-fetch\" VUE=3 jest --config=./tests/jest.config.js",
+    "test": "npm run generate:elements-base && NODE_OPTIONS=\"--max_old_space_size=5120 --no-experimental-fetch\" VUE=3 jest --config=./tests/jest.config.js",
     "generate:types": "node scripts/generate-types.js",
     "generate:common-features": "npx babel-node scripts/generate-common-features.js --presets @babel/preset-env",
     "generate:element-features": "npx babel-node scripts/generate-element-features.js --presets @babel/preset-env",
