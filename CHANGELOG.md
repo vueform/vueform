@@ -1,5 +1,12 @@
 [//]: # (Don't use <tags>)
 
+## v1.6.1
+
+> `2023-11-23`
+
+### 🧹 Chore
+- Added missing `lodash` as dependency
+
 ## v1.6.0
 
 > `2023-11-22`
