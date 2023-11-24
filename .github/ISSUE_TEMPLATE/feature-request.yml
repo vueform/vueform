@@ -1,6 +1,6 @@
 name: "🚀 Feature request"
 description: Suggest a feature that will improve Vueform
-labels: ["uncategorized"]
+labels: ["pending triage"]
 body:
   - type: markdown
     attributes:
@@ -34,6 +34,4 @@ body:
         - label: Read the [contribution guide](https://vueform.com/community/contribution-guide).
           required: true
         - label: Check existing [discussions](https://github.com/vueform/vueform/discussions) and [ideas](https://github.com/vueform/vueform/issues/categories/ideas).
-          required: true
-        - label: Check [roadmap](https://github.com/vueform/builder/discussions/categories/roadmap).
           required: true
