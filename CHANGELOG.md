@@ -1,5 +1,16 @@
 [//]: # (Don't use <tags>)
 
+## v1.6.2
+
+> `2023-11-27`
+
+### 🐞 Bug Fixes
+- Don't throw validation errors on reset
+
+### 🧹 Chore
+- Export fix for tailwind-prefixer
+- Type fixes for tailwind-prefixer
+
 ## v1.6.1
 
 > `2023-11-23`
