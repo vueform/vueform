@@ -134,6 +134,10 @@ interface DefineElement {
   [key: string]: any;
 }
 
+declare module '@vueform/vueform/themes/tailwind' {
+  export function prefix(prefix: string): any
+}
+
 declare module '@vueform/vueform/core' {}
 
 declare module '@vueform/vueform' {
