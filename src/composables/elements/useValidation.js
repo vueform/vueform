@@ -57,6 +57,16 @@ const base = function(props, context, dependencies)
    * @private
    */
   const validatorFactory = reactive({})
+
+  /**
+   * Whether the element is currently being resetet (no validation should happen).
+   *
+   *
+   * @type {boolean}
+   * @default false
+   * @private
+   */
+  const resetting = ref(false)
   
   // ============== COMPUTED ===============
   
@@ -186,6 +196,11 @@ const base = function(props, context, dependencies)
       return
     }
     
+    if (resetting.value) {
+      resetting.value = false
+      return
+    }
+    
     await asyncForEach(Validators.value, async (Validator) => {
       await Validator.validate()
     })
@@ -285,6 +300,7 @@ const base = function(props, context, dependencies)
     state,
     Validators,
     messageBag,
+    resetting,
     dirty,
     validated,
     invalid,
@@ -312,6 +328,7 @@ const text = function(props, context, dependencies)
     state,
     Validators,
     messageBag,
+    resetting,
     dirty,
     validated,
     invalid,
@@ -355,6 +372,7 @@ const text = function(props, context, dependencies)
     state,
     Validators,
     messageBag,
+    resetting,
     dirty,
     validated,
     invalid,
@@ -388,6 +406,7 @@ const list = function(props, context, dependencies)
     validationRules,
     dirt,
     initValidation,
+    resetting,
   } = base(props, context, dependencies)
   
   const form$ = dependencies.form$
@@ -515,6 +534,11 @@ const list = function(props, context, dependencies)
    * @returns {Promise}
    */
   const validate = async () => {
+    if (resetting.value) {
+      resetting.value = false
+      return
+    }
+
     await validateValidators()
     await validateChildren()
   }
@@ -621,6 +645,7 @@ const list = function(props, context, dependencies)
     state,
     Validators,
     messageBag,
+    resetting,
     dirty,
     validated,
     invalid,
@@ -662,6 +687,7 @@ const multilingual = function(props, context, dependencies)
   const {
     messageBag,
     clearMessages,
+    resetting,
   } = text(props, context, dependencies)
   
   // ================ DATA ================
@@ -842,6 +868,11 @@ const multilingual = function(props, context, dependencies)
    * @returns {Promise}
    */
   const validate = async () => {
+    if (resetting.value) {
+      resetting.value = false
+      return
+    }
+
     await asyncForEach(languages.value, async (lang) => {
       await validateLanguage(lang)
     })
@@ -959,6 +990,7 @@ const multilingual = function(props, context, dependencies)
     state,
     Validators,
     messageBag,
+    resetting,
     dirty,
     validated,
     invalid,
@@ -993,6 +1025,7 @@ const slider = function(props, context, dependencies)
     state,
     Validators,
     messageBag,
+    resetting,
     dirty,
     validated,
     invalid,
@@ -1014,6 +1047,11 @@ const slider = function(props, context, dependencies)
   
   const validate = async () => {
     if (!validationRules.value) {
+      return
+    }
+    
+    if (resetting.value) {
+      resetting.value = false
       return
     }
     
@@ -1042,6 +1080,7 @@ const slider = function(props, context, dependencies)
     state,
     Validators,
     messageBag,
+    resetting,
     dirty,
     validated,
     invalid,
@@ -1074,6 +1113,7 @@ const file = function(props, context, dependencies)
     state,
     Validators,
     messageBag,
+    resetting,
     dirty,
     validated,
     invalid,
@@ -1117,6 +1157,11 @@ const file = function(props, context, dependencies)
       return
     }
     
+    if (resetting.value) {
+      resetting.value = false
+      return
+    }
+    
     let restricted = [
       'min', 'max', 'between', 'size', 'mimetypes', 'mimes',
       'dimensions', 'file', 'image', 'gt', 'gte', 'lt', 'lte',
@@ -1137,6 +1182,7 @@ const file = function(props, context, dependencies)
     state,
     Validators,
     messageBag,
+    resetting,
     dirty,
     validated,
     invalid,
@@ -1171,6 +1217,7 @@ const location = function(props, context, dependencies)
     state,
     Validators,
     messageBag,
+    resetting,
     dirty,
     validated,
     invalid,
@@ -1207,6 +1254,11 @@ const location = function(props, context, dependencies)
       return
     }
     
+    if (resetting.value) {
+      resetting.value = false
+      return
+    }
+    
     await asyncForEach(Validators.value, async (Validator) => {
       await Validator.validate(value.value[displayKey.value])
     })
@@ -1218,6 +1270,7 @@ const location = function(props, context, dependencies)
     state,
     Validators,
     messageBag,
+    resetting,
     dirty,
     validated,
     invalid,

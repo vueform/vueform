@@ -27,6 +27,7 @@ const base = function(props, context, dependencies, options = {})
   const resetValidators = dependencies.resetValidators
   const defaultValue = dependencies.defaultValue
   const nullValue = dependencies.nullValue
+  const resetting = dependencies.resetting
   
   // =============== PRIVATE ===============
   
@@ -45,7 +46,7 @@ const base = function(props, context, dependencies, options = {})
     
     value.value = val
   }
-  
+
   // ============== COMPUTED ===============
   
   /**
@@ -108,12 +109,9 @@ const base = function(props, context, dependencies, options = {})
    * @returns {void}
    */
   const reset = () => {
+    resetting.value = true
     setValue(cloneDeep(defaultValue.value))
     resetValidators()
-
-    nextTick(() => {
-      resetValidators()
-    })
   }
   
   /**
@@ -159,6 +157,7 @@ const select = function(props, context, dependencies, options = {})
   const resetValidators = dependencies.resetValidators
   const defaultValue = dependencies.defaultValue
   const updateItems = dependencies.updateItems
+  const resetting = dependencies.resetting
 
   // =============== PRIVATE ===============
 
@@ -173,16 +172,13 @@ const select = function(props, context, dependencies, options = {})
   // =============== METHODS ===============
 
   const reset = () => {
+    resetting.value = true
     setValue(cloneDeep(defaultValue.value))
     resetValidators()
 
     if (typeof items.value === 'string' && resolveOnLoad.value !== false) {
       updateItems()
     }
-
-    nextTick(() => {
-      resetValidators()
-    })
   }
 
   return {
@@ -215,6 +211,7 @@ const object = function(props, context, dependencies)
   const available = dependencies.available
   const children$ = dependencies.children$
   const children$Array = dependencies.children$Array
+  const resetting = dependencies.resetting
 
   // ============== COMPUTED ===============
   
@@ -280,6 +277,7 @@ const object = function(props, context, dependencies)
   }
   
   const reset = () => {
+    resetting.value = true
     each(children$.value, (element$) => {
       if (element$.isStatic) {
         return
@@ -406,6 +404,7 @@ const list = function(props, context, dependencies, options)
   const defaultValue = dependencies.defaultValue
   const fire = dependencies.fire
   const resetValidators = dependencies.resetValidators
+  const resetting = dependencies.resetting
   
   // ================ DATA =================
   
@@ -515,26 +514,27 @@ const list = function(props, context, dependencies, options)
   }
   
   const reset = () => {
+    resetting.value = true
+
     value.value = cloneDeep(defaultValue.value)
-    
+
     resetValidators()
     
     if (!value.value.length && initial.value > 0) {
       for (let i = 0; i < initial.value; i++) {
         add()
       }
-      
-      // Making sure child lists are reset as well
-      // so initial instances can be set
-      nextTick(() => {
-        children$Array.value.forEach((child$) => {
-          child$.reset()
-        })
+    
+      // NextTick is no longer required as validation
+      // happens with async/await anyway in children
+      // nextTick(() => {
+      children$Array.value.forEach((child$) => {
+        child$.reset()
       })
+      // })
     }
     
     nextTick(() => {
-      resetValidators()
       refreshOrderStore(value.value)
     })
   }
