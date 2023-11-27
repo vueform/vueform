@@ -48,6 +48,7 @@
     "./package.json": "./package.json",
     "./plugin": "./plugin.js",
     "./postcss.config.js": "./postcss.config.js",
+    "./tailwind-prefixer": "./tailwind-prefixer.js",
     "./tailwind-prefixer.js": "./tailwind-prefixer.js",
     "./tailwind.config.js": "./tailwind.config.js",
     "./tailwind": "./tailwind.js",
