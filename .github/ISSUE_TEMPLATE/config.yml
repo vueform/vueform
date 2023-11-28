@@ -2,10 +2,10 @@ blank_issues_enabled: true
 contact_links:
   - name: ❓ Ask a question
     url: https://github.com/vueform/vueform/discussions/categories/questions
-    about: Not sure about something? Start a "New discussion" and receive answer from Vueform team
+    about: Not sure about something? Start a "New discussion" and get an answer
   - name: 🚀 Feature Request
     url: https://github.com/vueform/vueform/discussions/categories/ideas
-    about: Suggest a feature that will improve Vueform by starting a "New discussion"
+    about: Suggest a feature that will improve Vueform by starting a "New discussion" about it
   - name: 📚 Learning Guide
     url: https://vueform.com/docs
     about: Learning material for Vueform
