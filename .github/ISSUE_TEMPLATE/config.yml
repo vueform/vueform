@@ -1,11 +1,14 @@
 blank_issues_enabled: true
 contact_links:
+  - name: ❓ Ask a question
+    url: https://github.com/vueform/vueform/discussions/categories/questions
+    about: Not sure about something? Receive an answer from Vueform team
+  - name: 🚀 Feature Request
+    url: https://github.com/vueform/vueform/discussions/categories/ideas
+    about: Suggest a feature that will improve Vueform
   - name: 📚 Learning Guide
     url: https://vueform.com/docs
     about: Learning material for Vueform
   - name: 📖 API Reference
     url: https://vueform.com/reference
     about: Detailed reference for Vueform elements & components
-  - name: 💬 Discussions
-    url: https://github.com/vueform/vueform/discussions
-    about: Use discussions if you have another issue, an idea for improvement or for asking questions.
