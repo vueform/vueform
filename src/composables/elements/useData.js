@@ -503,7 +503,7 @@ const list = function(props, context, dependencies, options)
     await nextTick()
     
     for (let i = 0; i < values.length; i++) {
-      add()
+      add(values[i])
     }
     
     await nextTick()
