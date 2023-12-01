@@ -1171,13 +1171,19 @@ const base = function(props, context, dependencies = {})
       }
     }
     catch (error) {
+      if (error.response) {
+        fire('response', error.response, form$.value)
+      }
+
       fire('error', error, { type: 'submit' }, form$.value)
       console.error(error)
+      return
     }
     finally {
-      fire('response', response, form$.value)
       submitting.value = false
     }
+
+    fire('response', response, form$.value)
   }
 
   /**
