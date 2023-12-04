@@ -1,5 +1,15 @@
 [//]: # (Don't use <tags>)
 
+## v1.6.4
+
+> `2023-12-01`
+
+### 🐞 Bug Fixes
+- Vue 2 tree-shaking fix #85
+- Add response to error event #83
+- Tailwind default divider py fix
+- Form default 0 int for text fix ([Discord](https://discord.com/channels/787237947635793940/1179439942766706788))
+
 ## v1.6.3
 
 > `2023-11-27`

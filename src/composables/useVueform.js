@@ -12,6 +12,7 @@ import MergeClasses from './../utils/mergeClasses'
 import convertFormDataUtil from './../utils/convertFormData'
 import asyncForEach from './../utils/asyncForEach'
 import dataEquals from './../utils/dataEquals'
+import isComponentRegistered from './../utils/isComponentRegistered'
 import { flatten as flattrenTree, collect as collectTree } from './../utils/tree'
 import useEvents from './useEvents'
 import useModel from './useModel'
@@ -207,7 +208,7 @@ const base = function(props, context, dependencies = {})
    * @default false
    * @private
    */
-  const messagesRegistered = ref(typeof vm.appContext.app.component('FormMessages') !== 'string')
+  const messagesRegistered = ref(isComponentRegistered(vm, 'FormMessages'))
 
   /**
    * Whether FormErrors component is registered.
@@ -216,7 +217,7 @@ const base = function(props, context, dependencies = {})
    * @default false
    * @private
    */
-  const errorsRegistered = ref(typeof vm.appContext.app.component('FormErrors') !== 'string')
+  const errorsRegistered = ref(isComponentRegistered(vm, 'FormErrors'))
 
   /**
    * Whether FormLanguages component is registered.
@@ -225,7 +226,7 @@ const base = function(props, context, dependencies = {})
    * @default false
    * @private
    */
-  const languagesRegistered = ref(typeof vm.appContext.app.component('FormLanguages') !== 'string')
+  const languagesRegistered = ref(isComponentRegistered(vm, 'FormLanguages'))
 
   /**
    * Whether FormTabs component is registered.
@@ -234,7 +235,7 @@ const base = function(props, context, dependencies = {})
    * @default false
    * @private
    */
-  const tabsRegistered = ref(typeof vm.appContext.app.component('FormTabs') !== 'string')
+  const tabsRegistered = ref(isComponentRegistered(vm, 'FormTabs'))
 
   /**
    * Whether FormSteps component is registered.
@@ -243,7 +244,7 @@ const base = function(props, context, dependencies = {})
    * @default false
    * @private
    */
-  const stepsRegistered = ref(typeof vm.appContext.app.component('FormSteps') !== 'string')
+  const stepsRegistered = ref(isComponentRegistered(vm, 'FormSteps'))
 
   // ============== COMPUTED ==============
 
@@ -1171,13 +1172,19 @@ const base = function(props, context, dependencies = {})
       }
     }
     catch (error) {
+      if (error.response) {
+        fire('response', error.response, form$.value)
+      }
+
       fire('error', error, { type: 'submit' }, form$.value)
       console.error(error)
+      return
     }
     finally {
-      fire('response', response, form$.value)
       submitting.value = false
     }
+
+    fire('response', response, form$.value)
   }
 
   /**
