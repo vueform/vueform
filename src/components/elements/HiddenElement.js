@@ -36,7 +36,7 @@ export default {
     },
     default: {
       required: false,
-      type: [String, Number],
+      type: [String, Number, Object],
       default: null
     },
     id: {
