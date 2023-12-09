@@ -254,6 +254,7 @@ const base = function(props, context, dependencies)
    */
   const resolveUrlAndSetWatchers = async (url, updateItems) => {
     const regex = /{([^}]+)}/g
+    let resolvedUrl = url
 
     if (url.match(regex)) {
       await nextTick()
@@ -273,7 +274,7 @@ const base = function(props, context, dependencies)
             : defaultValue
           )
 
-        url = url.replace(match[0], encodeURIComponent(elValue))
+        resolvedUrl = resolvedUrl.replace(match[0], encodeURIComponent(elValue))
 
         watchers.value.push(watch(computed(() => el$?.value), () => {
           updateItems()
@@ -281,7 +282,7 @@ const base = function(props, context, dependencies)
       }
     }
 
-    return url
+    return resolvedUrl
   }
 
   return {
