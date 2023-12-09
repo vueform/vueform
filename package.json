@@ -68,7 +68,8 @@
     "generate:components": "npx babel-node scripts/generate-components.js --presets @babel/preset-env",
     "generate": "npm run generate:common-features; npm run generate:element-features; npm run generate:elements-base; npm run generate:elements; npm run generate:components; npm run generate:types",
     "fix-locales": "npx babel-node --presets @babel/preset-env ./scripts/fix-locales.js",
-    "release": "npm run build && npm publish --access public"
+    "prepack": "npm run build && npm run generate",
+    "release": "npm run pre-pack && npm publish --access public"
   },
   "devDependencies": {
     "@babel/core": "^7.2.2",
