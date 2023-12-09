@@ -1,5 +1,13 @@
 [//]: # (Don't use <tags>)
 
+## v1.6.5
+
+> `2023-12-09`
+
+### 🐞 Bug Fixes
+- `object` type as default for HiddenElement #94
+- Chained select url encoding fix #95
+
 ## v1.6.4
 
 > `2023-12-01`
