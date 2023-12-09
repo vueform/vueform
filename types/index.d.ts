@@ -65,6 +65,10 @@ interface DefineElement {
   [key: string]: any;
 }
 
+declare module '@vueform/vueform/themes/tailwind' {
+  export function prefix(prefix: string): any
+}
+
 declare module '@vueform/vueform/core' {}
 
 declare module '@vueform/vueform' {
@@ -491,6 +495,7 @@ interface VueformElement extends DefineComponent {
   state: object;
   Validators: Array<any>;
   messageBag: MessageBag;
+  resetting: boolean;
   initialValue: any;
   internalValue: any;
   watchers: Array<any> | object;
@@ -1529,7 +1534,7 @@ interface HiddenElementProps {
   messages?: object;
   fieldName?: string;
   type?: string;
-  default?: string | number;
+  default?: string | number | object;
   id?: string;
   meta?: boolean;
 }
@@ -4032,6 +4037,7 @@ declare class CheckboxElement implements ReturnType<typeof defineComponent> {
   state: object;
   Validators: Array<any>;
   messageBag: MessageBag;
+  resetting: boolean;
   initialValue: any;
   internalValue: any;
   hidden: boolean;
@@ -4210,6 +4216,7 @@ declare class CheckboxgroupElement implements ReturnType<typeof defineComponent>
   state: object;
   Validators: Array<any>;
   messageBag: MessageBag;
+  resetting: boolean;
   initialValue: any;
   internalValue: any;
   hidden: boolean;
@@ -4415,6 +4422,7 @@ declare class DateElement implements ReturnType<typeof defineComponent> {
   state: object;
   Validators: Array<any>;
   messageBag: MessageBag;
+  resetting: boolean;
   initialValue: any;
   internalValue: any;
   hidden: boolean;
@@ -4608,6 +4616,7 @@ declare class DatesElement implements ReturnType<typeof defineComponent> {
   state: object;
   Validators: Array<any>;
   messageBag: MessageBag;
+  resetting: boolean;
   initialValue: any;
   internalValue: any;
   hidden: boolean;
@@ -4798,6 +4807,7 @@ declare class EditorElement implements ReturnType<typeof defineComponent> {
   state: object;
   Validators: Array<any>;
   messageBag: MessageBag;
+  resetting: boolean;
   initialValue: any;
   internalValue: any;
   hidden: boolean;
@@ -5011,6 +5021,7 @@ declare class FileElement implements ReturnType<typeof defineComponent> {
   state: object;
   Validators: Array<any>;
   messageBag: MessageBag;
+  resetting: boolean;
   initialValue: any;
   internalValue: any;
   hidden: boolean;
@@ -5197,6 +5208,7 @@ declare class GenericElement implements ReturnType<typeof defineComponent> {
   state: object;
   Validators: Array<any>;
   messageBag: MessageBag;
+  resetting: boolean;
   initialValue: any;
   internalValue: any;
   hidden: boolean;
@@ -5367,6 +5379,7 @@ declare class GroupElement implements ReturnType<typeof defineComponent> {
   state: object;
   Validators: Array<any>;
   messageBag: MessageBag;
+  resetting: boolean;
   hidden: boolean;
 
   // Injects
@@ -5493,6 +5506,7 @@ declare class HiddenElement implements ReturnType<typeof defineComponent> {
   state: object;
   Validators: Array<any>;
   messageBag: MessageBag;
+  resetting: boolean;
   initialValue: any;
   internalValue: any;
 
@@ -5676,6 +5690,7 @@ declare class ListElement implements ReturnType<typeof defineComponent> {
   state: object;
   Validators: Array<any>;
   messageBag: MessageBag;
+  resetting: boolean;
   initialValue: any;
   internalValue: any;
   hidden: boolean;
@@ -5877,6 +5892,7 @@ declare class LocationElement implements ReturnType<typeof defineComponent> {
   state: object;
   Validators: Array<any>;
   messageBag: MessageBag;
+  resetting: boolean;
   initialValue: any;
   internalValue: any;
   hidden: boolean;
@@ -6095,6 +6111,7 @@ declare class MultifileElement implements ReturnType<typeof defineComponent> {
   state: object;
   Validators: Array<any>;
   messageBag: MessageBag;
+  resetting: boolean;
   initialValue: any;
   internalValue: any;
   hidden: boolean;
@@ -6342,6 +6359,7 @@ declare class MultiselectElement implements ReturnType<typeof defineComponent> {
   state: object;
   Validators: Array<any>;
   messageBag: MessageBag;
+  resetting: boolean;
   initialValue: any;
   internalValue: any;
   hidden: boolean;
@@ -6544,6 +6562,7 @@ declare class ObjectElement implements ReturnType<typeof defineComponent> {
   state: object;
   Validators: Array<any>;
   messageBag: MessageBag;
+  resetting: boolean;
   internalValue: any;
   hidden: boolean;
 
@@ -6722,6 +6741,7 @@ declare class RadioElement implements ReturnType<typeof defineComponent> {
   state: object;
   Validators: Array<any>;
   messageBag: MessageBag;
+  resetting: boolean;
   initialValue: any;
   internalValue: any;
   hidden: boolean;
@@ -6900,6 +6920,7 @@ declare class RadiogroupElement implements ReturnType<typeof defineComponent> {
   state: object;
   Validators: Array<any>;
   messageBag: MessageBag;
+  resetting: boolean;
   initialValue: any;
   internalValue: any;
   hidden: boolean;
@@ -7132,6 +7153,7 @@ declare class SelectElement implements ReturnType<typeof defineComponent> {
   state: object;
   Validators: Array<any>;
   messageBag: MessageBag;
+  resetting: boolean;
   initialValue: any;
   internalValue: any;
   hidden: boolean;
@@ -7342,6 +7364,7 @@ declare class SliderElement implements ReturnType<typeof defineComponent> {
   state: object;
   Validators: Array<any>;
   messageBag: MessageBag;
+  resetting: boolean;
   initialValue: any;
   internalValue: any;
   hidden: boolean;
@@ -7673,6 +7696,7 @@ declare class TEditorElement implements ReturnType<typeof defineComponent> {
   state: object;
   Validators: Array<any>;
   messageBag: MessageBag;
+  resetting: boolean;
   hidden: boolean;
 
   // Injects
@@ -7872,6 +7896,7 @@ declare class TTextElement implements ReturnType<typeof defineComponent> {
   state: object;
   Validators: Array<any>;
   messageBag: MessageBag;
+  resetting: boolean;
   hidden: boolean;
 
   // Injects
@@ -8073,6 +8098,7 @@ declare class TTextareaElement implements ReturnType<typeof defineComponent> {
   state: object;
   Validators: Array<any>;
   messageBag: MessageBag;
+  resetting: boolean;
   hidden: boolean;
 
   // Injects
@@ -8314,6 +8340,7 @@ declare class TagsElement implements ReturnType<typeof defineComponent> {
   state: object;
   Validators: Array<any>;
   messageBag: MessageBag;
+  resetting: boolean;
   initialValue: any;
   internalValue: any;
   hidden: boolean;
@@ -8537,6 +8564,7 @@ declare class TextElement implements ReturnType<typeof defineComponent> {
   state: object;
   Validators: Array<any>;
   messageBag: MessageBag;
+  resetting: boolean;
   initialValue: any;
   internalValue: any;
   hidden: boolean;
@@ -8736,6 +8764,7 @@ declare class TextareaElement implements ReturnType<typeof defineComponent> {
   state: object;
   Validators: Array<any>;
   messageBag: MessageBag;
+  resetting: boolean;
   initialValue: any;
   internalValue: any;
   hidden: boolean;
@@ -8926,6 +8955,7 @@ declare class ToggleElement implements ReturnType<typeof defineComponent> {
   state: object;
   Validators: Array<any>;
   messageBag: MessageBag;
+  resetting: boolean;
   initialValue: any;
   internalValue: any;
   hidden: boolean;
