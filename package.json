@@ -11,7 +11,10 @@
       "email": "adam@vueform.com"
     }
   ],
-  "sideEffects": false,
+  "sideEffects": [
+    "./themes/tailwind/templates/**/*.vue",
+    "./themes/vueform/templates/**/*.vue"
+  ],
   "main": "./dist/index.js",
   "types": "./types/index.d.ts",
   "exports": {
