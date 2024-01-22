@@ -1,2 +1,8 @@
 api/
+build/
+nuxt/
+scripts/
+tests/
 .github/
+babel.config.js
+CHANGELOG.md

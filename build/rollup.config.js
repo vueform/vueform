@@ -10,7 +10,7 @@ import { nodeResolve } from '@rollup/plugin-node-resolve'
 
 const files = [
 
-  // Main scripts
+  // Main scripts (ESM)
   {
     type: 'script',
     input: 'src/index.js',
@@ -24,37 +24,90 @@ const files = [
     banner: true,
   },
 
-  // Theme files
+  // Theme files (ESM)
   {
     type: 'vue',
-    input: 'themes/bootstrap/index.js',
+    input: 'themes/bootstrap/index.mjs',
     output: 'dist/bootstrap.mjs',
     banner: true,
   },
   {
     type: 'vue',
-    input: 'themes/material/index.js',
+    input: 'themes/material/index.mjs',
     output: 'dist/material.mjs',
     banner: true,
   },
   {
     type: 'vue',
-    input: 'themes/tailwind/index.js',
+    input: 'themes/tailwind/index.mjs',
     output: 'dist/tailwind.mjs',
     banner: true,
   },
   {
     type: 'vue',
-    input: 'themes/tailwind-material/index.js',
+    input: 'themes/tailwind-material/index.mjs',
     output: 'dist/tailwind-material.mjs',
     banner: true,
   },
   {
     type: 'vue',
-    input: 'themes/vueform/index.js',
+    input: 'themes/vueform/index.mjs',
     output: 'dist/vueform.mjs',
     banner: true,
   },
+
+  // // Main scripts (CJS)
+  // {
+  //   type: 'script',
+  //   input: 'src/index.js',
+  //   output: 'dist/index.cjs',
+  //   format: 'cjs',
+  //   banner: true,
+  // },
+  // {
+  //   type: 'script',
+  //   input: 'src/core.js',
+  //   output: 'dist/core.cjs',
+  //   format: 'cjs',
+  //   banner: true,
+  // },
+
+  // // Theme files (CJS)
+  // {
+  //   type: 'vue',
+  //   input: 'themes/bootstrap/index.js',
+  //   output: 'dist/bootstrap.cjs',
+  //   format: 'cjs',
+  //   banner: true,
+  // },
+  // {
+  //   type: 'vue',
+  //   input: 'themes/material/index.js',
+  //   output: 'dist/material.cjs',
+  //   format: 'cjs',
+  //   banner: true,
+  // },
+  // {
+  //   type: 'vue',
+  //   input: 'themes/tailwind/index.js',
+  //   output: 'dist/tailwind.cjs',
+  //   format: 'cjs',
+  //   banner: true,
+  // },
+  // {
+  //   type: 'vue',
+  //   input: 'themes/tailwind-material/index.js',
+  //   output: 'dist/tailwind-material.cjs',
+  //   format: 'cjs',
+  //   banner: true,
+  // },
+  // {
+  //   type: 'vue',
+  //   input: 'themes/vueform/index.js',
+  //   output: 'dist/vueform.cjs',
+  //   format: 'cjs',
+  //   banner: true,
+  // },
 
   // Theme styles
   {
@@ -183,7 +236,7 @@ export default files.map((file) => {
     input: file.input,
     output: {
       file: file.output,
-      format: 'esm',
+      format: file.format || 'esm',
     },
     plugins,
     external: ['vue', 'axios', 'moment', /lodash\/.*/]

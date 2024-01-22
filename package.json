@@ -20,22 +20,8 @@
   "types": "./types/index.d.ts",
   "exports": {
     ".": {
-      "require": {
-        "types": "./types/index.d.cts",
-        "default": "./dist/index.js"
-      },
-      "import": {
-        "types": "./types/index.d.ts",
-        "default": "./dist/index.mjs"
-      }
-    },
-    "./*": {
-      "import": "./*.js",
-      "require": "./*.js"
-    },
-    "./*.js": {
-      "import": "./*.js",
-      "require": "./*.js"
+      "types": "./types/index.d.ts",
+      "default": "./dist/index.mjs"
     },
     "./core": "./dist/core.mjs",
     "./core.js": "./dist/core.mjs",
@@ -46,13 +32,10 @@
     "./plugin": "./plugin.mjs",
     "./plugin.js": "./plugin.mjs",
     "./plugin.mjs": "./plugin.mjs",
-    "./locales/*": "./locales/*/index.js",
+    "./locales/*.js": "./locales/*/index.mjs",
+    "./locales/*": "./locales/*/index.mjs",
     "./src/*": "./src/*",
     "./types/*": "./types/*",
-    "./dist/*": {
-      "import": "./dist/*.mjs",
-      "require": "./dist/*.mjs"
-    },
     "./dist/*.js": {
       "import": "./dist/*.mjs",
       "require": "./dist/*.mjs"
@@ -61,16 +44,63 @@
       "import": "./dist/*.mjs",
       "require": "./dist/*.mjs"
     },
-    "./dist/*.css": "./dist/*.css",
-    "./themes/vueform/*": "./themes/vueform/*",
-    "./themes/tailwind/*": "./themes/tailwind/*",
-    "./themes/tailwind-material/*": "./themes/tailwind-material/*",
-    "./themes/material/*": "./themes/material/*",
-    "./themes/bootstrap/*": "./themes/bootstrap/*",
-    "./themes/*": {
-      "import": "./themes/*/index.js"
+    "./dist/*": {
+      "import": "./dist/*.mjs",
+      "require": "./dist/*.mjs"
     },
-    "./package.json": "./package.json"
+    "./dist/*.css": "./dist/*.css",
+    "./tailwind": "./tailwind.js",
+    "./tailwind.js": "./tailwind.js",
+    "./vite": "./vite.js",
+    "./vite.js": "./vite.js",
+    "./vite.d.ts": "./vite.d.ts",
+    "./tailwind-prefixer": "./tailwind-prefixer.js",
+    "./tailwind-prefixer.js": "./tailwind-prefixer.js",
+    "./tailwind-prefixer.d.ts": "./tailwind-prefixer.d.ts",
+    "./postcss.config": "./postcss.config.js",
+    "./postcss.config.js": "./postcss.config.js",
+    "./tailwind.config": "./tailwind.config.js",
+    "./tailwind.config.js": "./tailwind.config.js",
+    "./package.json": "./package.json",
+    "./themes/blank/templates/*": "./themes/blank/templates/*",
+    "./themes/blank/index.d.ts": "./themes/blank/index.d.ts",
+    "./themes/blank/*": "./themes/blank/*.mjs",
+    "./themes/blank/*.js": "./themes/blank/*.mjs",
+    "./themes/bootstrap/css/*": "./themes/bootstrap/css/*",
+    "./themes/bootstrap/scss/*": "./themes/bootstrap/scss/*",
+    "./themes/bootstrap/index.d.ts": "./themes/bootstrap/index.d.ts",
+    "./themes/bootstrap/*": "./themes/bootstrap/*.mjs",
+    "./themes/bootstrap/*.js": "./themes/bootstrap/*.mjs",
+    "./themes/bootstrap.js": "./themes/bootstrap/index.mjs",
+    "./themes/bootstrap": "./themes/bootstrap/index.mjs",
+    "./themes/material/css/*": "./themes/material/css/*",
+    "./themes/material/scss/*": "./themes/material/scss/*",
+    "./themes/material/index.d.ts": "./themes/material/index.d.ts",
+    "./themes/material/*": "./themes/material/*.mjs",
+    "./themes/material/*.js": "./themes/material/*.mjs",
+    "./themes/material.js": "./themes/material/index.mjs",
+    "./themes/material": "./themes/material/index.mjs",
+    "./themes/tailwind/templates/*": "./themes/tailwind/templates/*",
+    "./themes/tailwind/index.d.ts": "./themes/tailwind/index.d.ts",
+    "./themes/tailwind/*": "./themes/tailwind/*.mjs",
+    "./themes/tailwind/*.js": "./themes/tailwind/*.mjs",
+    "./themes/tailwind.js": "./themes/tailwind/index.mjs",
+    "./themes/tailwind": "./themes/tailwind/index.mjs",
+    "./themes/tailwind-material/css/*": "./themes/tailwind-material/css/*",
+    "./themes/tailwind-material/scss/*": "./themes/tailwind-material/scss/*",
+    "./themes/tailwind-material/index.d.ts": "./themes/tailwind-material/index.d.ts",
+    "./themes/tailwind-material/*": "./themes/tailwind-material/*.mjs",
+    "./themes/tailwind-material/*.js": "./themes/tailwind-material/*.mjs",
+    "./themes/tailwind-material.js": "./themes/tailwind-material/index.mjs",
+    "./themes/tailwind-material": "./themes/tailwind-material/index.mjs",
+    "./themes/vueform/css/*": "./themes/vueform/css/*",
+    "./themes/vueform/scss/*": "./themes/vueform/scss/*",
+    "./themes/vueform/templates/*": "./themes/vueform/templates/*",
+    "./themes/vueform/index.d.ts": "./themes/vueform/index.d.ts",
+    "./themes/vueform/*": "./themes/vueform/*.mjs",
+    "./themes/vueform/*.js": "./themes/vueform/*.mjs",
+    "./themes/vueform.js": "./themes/vueform/index.mjs",
+    "./themes/vueform": "./themes/vueform/index.mjs"
   },
   "scripts": {
     "build": "rollup --config build/rollup.config.js",
