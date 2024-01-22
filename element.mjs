@@ -1,3 +1,3 @@
-import { element } from './dist'
+import { element } from './dist/index.mjs'
 
 export default element

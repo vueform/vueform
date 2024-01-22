@@ -1,3 +1,3 @@
-import { vueform } from './dist'
+import { vueform } from './dist/index.mjs'
 
 export default vueform
