@@ -20,9 +20,6 @@ packages/*/LICENSE
 # Lychee cache
 .lycheecache
 
-# Generated dirs
-dist
-
 # Coverage reports
 coverage
 *.lcov

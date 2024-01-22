@@ -15,50 +15,62 @@
     "./themes/tailwind/templates/**/*.vue",
     "./themes/vueform/templates/**/*.vue"
   ],
-  "main": "./dist/index.js",
+  "main": "./dist/index.mjs",
+  "module": "./dist/index.mjs",
   "types": "./types/index.d.ts",
   "exports": {
     ".": {
-      "types": "./types/index.d.ts",
-      "import": "./dist/index.js"
+      "require": {
+        "types": "./types/index.d.cts",
+        "default": "./dist/index.js"
+      },
+      "import": {
+        "types": "./types/index.d.ts",
+        "default": "./dist/index.mjs"
+      }
     },
-    "./api/*": "./api/*",
-    "./dist/*": "./dist/*",
+    "./*": {
+      "import": "./*.js",
+      "require": "./*.js"
+    },
+    "./*.js": {
+      "import": "./*.js",
+      "require": "./*.js"
+    },
+    "./core": "./dist/core.mjs",
+    "./core.js": "./dist/core.mjs",
+    "./core.mjs": "./dist/core.mjs",
+    "./element": "./element.mjs",
+    "./element.js": "./element.mjs",
+    "./element.mjs": "./element.mjs",
+    "./plugin": "./plugin.mjs",
+    "./plugin.js": "./plugin.mjs",
+    "./plugin.mjs": "./plugin.mjs",
     "./locales/*": "./locales/*/index.js",
-    "./src": "./src/index.js",
     "./src/*": "./src/*",
-    "./themes/*": "./themes/*/index.js",
-    "./themes/blank/*": "./themes/blank/css/*",
-    "./themes/blank/templates/*": "./themes/blank/templates/*",
-    "./themes/bootstrap/*": "./themes/bootstrap/css/*",
-    "./themes/bootstrap/css/*": "./themes/bootstrap/css/*",
-    "./themes/bootstrap/scss/*": "./themes/bootstrap/scss/*",
-    "./themes/material/*": "./themes/material/css/*",
-    "./themes/material/css/*": "./themes/material/css/*",
-    "./themes/material/scss/*": "./themes/material/scss/*",
-    "./themes/tailwind/*": "./themes/tailwind/css/*",
-    "./themes/tailwind/templates/*": "./themes/tailwind/templates/*",
-    "./themes/tailwind-material/*": "./themes/tailwind-material/css/*",
-    "./themes/tailwind-material/css/*": "./themes/tailwind-material/css/*",
-    "./themes/tailwind-material/scss/*": "./themes/tailwind-material/scss/*",
-    "./themes/vueform/*": "./themes/vueform/css/*",
-    "./themes/vueform/css/*": "./themes/vueform/css/*",
-    "./themes/vueform/scss/*": "./themes/vueform/scss/*",
-    "./themes/vueform/templates/*": "./themes/vueform/templates/*",
     "./types/*": "./types/*",
-    "./core": "./dist/core.js",
-    "./element": "./element.js",
-    "./package.json": "./package.json",
-    "./plugin": "./plugin.js",
-    "./postcss.config.js": "./postcss.config.js",
-    "./tailwind-prefixer": "./tailwind-prefixer.js",
-    "./tailwind-prefixer.js": "./tailwind-prefixer.js",
-    "./tailwind.config.js": "./tailwind.config.js",
-    "./tailwind": "./tailwind.js",
-    "./vite": {
-      "types": "./vite.d.ts",
-      "import": "./vite.js"
-    }
+    "./dist/*": {
+      "import": "./dist/*.mjs",
+      "require": "./dist/*.mjs"
+    },
+    "./dist/*.js": {
+      "import": "./dist/*.mjs",
+      "require": "./dist/*.mjs"
+    },
+    "./dist/*.mjs": {
+      "import": "./dist/*.mjs",
+      "require": "./dist/*.mjs"
+    },
+    "./dist/*.css": "./dist/*.css",
+    "./themes/vueform/*": "./themes/vueform/*",
+    "./themes/tailwind/*": "./themes/tailwind/*",
+    "./themes/tailwind-material/*": "./themes/tailwind-material/*",
+    "./themes/material/*": "./themes/material/*",
+    "./themes/bootstrap/*": "./themes/bootstrap/*",
+    "./themes/*": {
+      "import": "./themes/*/index.js"
+    },
+    "./package.json": "./package.json"
   },
   "scripts": {
     "build": "rollup --config build/rollup.config.js",
@@ -109,10 +121,11 @@
     "rollup-plugin-license": "^3.2.0",
     "rollup-plugin-postcss": "^4.0.1",
     "rollup-plugin-terser": "^7.0.2",
+    "rollup-plugin-vue": "^6.0.0",
     "sass-loader": "^7.1.0",
     "sortablejs": "^1.15.0",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.2",
-    "vue": "^3.3.8",
+    "vue": "3.3.13",
     "vue-jest": "npm:@vue/vue3-jest@^27.0.0-alpha.1",
     "vue-loader": "^15.10.0"
   },

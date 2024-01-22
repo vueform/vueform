@@ -4,22 +4,85 @@ import babel from '@rollup/plugin-babel'
 import commonjs from '@rollup/plugin-commonjs'
 import postcss from 'rollup-plugin-postcss'
 import license from 'rollup-plugin-license'
+import vue from 'rollup-plugin-vue'
 import { terser } from 'rollup-plugin-terser'
 import { nodeResolve } from '@rollup/plugin-node-resolve'
 
 const files = [
+
+  // Main scripts
   {
     type: 'script',
     input: 'src/index.js',
-    output: 'dist/index.js',
+    output: 'dist/index.mjs',
     banner: true,
   },
   {
     type: 'script',
     input: 'src/core.js',
-    output: 'dist/core.js',
+    output: 'dist/core.mjs',
     banner: true,
   },
+
+  // Theme files
+  {
+    type: 'vue',
+    input: 'themes/bootstrap/index.js',
+    output: 'dist/bootstrap.mjs',
+    banner: true,
+  },
+  {
+    type: 'vue',
+    input: 'themes/material/index.js',
+    output: 'dist/material.mjs',
+    banner: true,
+  },
+  {
+    type: 'vue',
+    input: 'themes/tailwind/index.js',
+    output: 'dist/tailwind.mjs',
+    banner: true,
+  },
+  {
+    type: 'vue',
+    input: 'themes/tailwind-material/index.js',
+    output: 'dist/tailwind-material.mjs',
+    banner: true,
+  },
+  {
+    type: 'vue',
+    input: 'themes/vueform/index.js',
+    output: 'dist/vueform.mjs',
+    banner: true,
+  },
+
+  // Theme styles
+  {
+    type: 'style',
+    minimize: true,
+    input: 'themes/bootstrap/css/index.css',
+    output: 'dist/bootstrap.css',
+  },
+  {
+    type: 'style',
+    minimize: true,
+    input: 'themes/material/scss/index.scss',
+    output: 'dist/material.css',
+  },
+  {
+    type: 'style',
+    minimize: true,
+    input: 'themes/tailwind-material/scss/index.scss',
+    output: 'dist/tailwind-material.css',
+  },
+  {
+    type: 'style',
+    minimize: true,
+    input: 'themes/vueform/scss/index.scss',
+    output: 'dist/vueform.css',
+  },
+
+  // To keep backward compatibility after 1.7
   {
     type: 'style',
     minimize: false,
@@ -67,8 +130,21 @@ const files = [
 export default files.map((file) => {
   let plugins = []
 
-  if (file.type === 'script') {
-    plugins = [
+  if (file.type === 'vue') {
+    plugins.push(vue({
+      css: false,
+      style: {
+        postcssPlugins: [autoprefixer()],
+      },
+    }))
+
+    plugins.push(postcss({
+      inject: true,
+    }))
+  }
+
+  if (['script', 'vue'].indexOf(file.type) !== -1) {
+    plugins = plugins.concat([
       json(),
       commonjs(),
       babel({
@@ -77,7 +153,7 @@ export default files.map((file) => {
       }),
       nodeResolve(),
       terser(),
-    ]
+    ])
 
     if (file.banner) {
       plugins.push(license({
@@ -89,8 +165,10 @@ export default files.map((file) => {
         }
       }))
     }
-  } else if (file.type === 'style') {
-    plugins = [
+  }
+  
+  if (file.type === 'style') {
+    plugins = plugins.concat([
       postcss({
         extract: true,
         minimize: file.minimize,
@@ -98,7 +176,7 @@ export default files.map((file) => {
           autoprefixer(),
         ]
       }),
-    ]
+    ])
   }
 
   return {
