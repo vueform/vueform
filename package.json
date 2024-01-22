@@ -35,8 +35,14 @@
     "./plugin": "./plugin.mjs",
     "./plugin.js": "./plugin.mjs",
     "./plugin.mjs": "./plugin.mjs",
-    "./locales/*.js": "./locales/*/index.mjs",
-    "./locales/*": "./locales/*/index.mjs",
+    "./locales/*.js": {
+      "types": "./locales/*/index.d.ts",
+      "default": "./locales/*/index.mjs"
+    },
+    "./locales/*": {
+      "types": "./locales/*/index.d.ts",
+      "default": "./locales/*/index.mjs"
+    },
     "./src/*": "./src/*",
     "./types/*": "./types/*",
     "./dist/*.js": {
