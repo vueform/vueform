@@ -247,7 +247,7 @@
 </script>
 
 <style lang="scss">
-  // Some styles are contained in SelectElement.vue
+  /* Some styles are contained in SelectElement.vue */
 
   .vf-multiselect-tags {
     flex-grow: 1;

@@ -38,5 +38,5 @@
 </script>
 
 <style lang="scss">
-  // Some styles are contained in EditorElement.vue
+  /* Some styles are contained in EditorElement.vue */
 </style>

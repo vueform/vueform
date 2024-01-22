@@ -41,5 +41,5 @@
 </script>
 
 <style lang="scss">
-  // Styles can be found at scss/_label.scss
+  /* Styles can be found at scss/_label.scss */
 </style>

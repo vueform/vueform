@@ -71,7 +71,7 @@
 </script>
 
 <style lang="scss">
-  // Some styles are contained in Vueform.vue & CheckboxgroupElement.vue
+  /* Some styles are contained in Vueform.vue & CheckboxgroupElement.vue */
   .vf-checkbox-blocks-container {
     display: flex;
     align-items: flex-start;

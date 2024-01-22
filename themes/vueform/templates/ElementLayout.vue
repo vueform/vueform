@@ -40,7 +40,7 @@
 </script>
 
 <style lang="scss">
-  // Some styles are contained in Vueform.vue
+  /* Some styles are contained in Vueform.vue */
 
   .vf-element-layout {
     font-size: var(--vf-font-size);

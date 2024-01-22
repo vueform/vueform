@@ -9,7 +9,7 @@
 </script>
 
 <style lang="scss">
-  // Google
+  /* Google */
   .pac-container {
     border-color: var(--vf-border-color-input);
     background: var(--vf-bg-input);
@@ -68,7 +68,7 @@
     background-image: none;
   }
 
-  // Algolia
+  /* Algolia */
   .ap-input {
     height: auto;
   }

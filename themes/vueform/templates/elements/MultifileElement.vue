@@ -82,7 +82,7 @@
 </script>
 
 <style lang="scss">
-  // Some styles are contained in Vueform.vue
+  /* Some styles are contained in Vueform.vue */
 
   .vf-multifile-list {
     margin-top: var(--vf-gutter);

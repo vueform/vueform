@@ -337,7 +337,7 @@
     }
   }
   
-  // @vueform/multiselect styles
+  /* @vueform/multiselect styles */
   .vf-multiselect {
     position: relative;
     display: flex;
@@ -556,7 +556,7 @@
 
   .vf-multiselect-search {
     width: 100%;
-    height: 100%; // for FF
+    height: 100%; /* for FF */
     position: absolute;
     top: 0px;
     bottom: 0px;

@@ -14,6 +14,9 @@ export default function (breakpoint, size, prefix = '') {
     case 'default':
       return `${prefix}col-span-${size}`
 
+    case 'safelist':
+      return safelist
+
     default:
       return `${breakpoint}:${prefix}col-span-${size}`
   }

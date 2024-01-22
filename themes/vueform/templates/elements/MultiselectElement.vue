@@ -212,7 +212,7 @@
 </script>
 
 <style lang="scss">
-  // Some styles are contained in Vueform.vue & SelectElement.vue
+  /* Some styles are contained in Vueform.vue & SelectElement.vue */
 
   .vf-multiselect-multiple-label {
     display: flex;

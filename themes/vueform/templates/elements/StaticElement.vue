@@ -64,5 +64,5 @@
 </script>
 
 <style lang="scss">
-  // Styles contained in scss/_static.scss
+  /* Styles contained in scss/_static.scss */
 </style>

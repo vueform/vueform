@@ -100,7 +100,7 @@
     }
   }
 
-  // @vueform/toggle styles
+  /* @vueform/toggle styles */
   .vf-toggle-container {
     display: inline-block;
     outline: 0px solid var(--vf-ring-color);

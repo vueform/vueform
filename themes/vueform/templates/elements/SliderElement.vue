@@ -155,7 +155,7 @@
     }
   }
 
-  // @vueform/slider styles
+  /* @vueform/slider styles */
   .vf-slider-target,
   .vf-slider-target * {
     -webkit-touch-callout: none;
