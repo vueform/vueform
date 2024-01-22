@@ -13,7 +13,10 @@
   ],
   "sideEffects": [
     "./themes/tailwind/templates/**/*.vue",
-    "./themes/vueform/templates/**/*.vue"
+    "./themes/vueform/templates/**/*.vue",
+    "./themes/vueform/templates/elements/**/*.vue",
+    "./themes/vueform/templates/wrappers/**/*.vue",
+    "./themes/vueform/templates/elements/partials/**/*.vue"
   ],
   "main": "./dist/index.mjs",
   "module": "./dist/index.mjs",

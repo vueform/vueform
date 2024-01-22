@@ -30,6 +30,8 @@ import ElementAddon from './../blank/templates/ElementAddon.vue'
 import ButtonElement from './../blank/templates/elements/ButtonElement.vue'
 import CheckboxElement from './../blank/templates/elements/CheckboxElement.vue'
 import CheckboxgroupElement from './../blank/templates/elements/CheckboxgroupElement.vue'
+import CheckboxgroupElement_blocks from './../blank/templates/elements/CheckboxgroupElement.vue'
+import CheckboxgroupElement_tabs from './../blank/templates/elements/CheckboxgroupElement.vue'
 import DateElement from './../blank/templates/elements/DateElement.vue'
 import DatesElement from './../blank/templates/elements/DatesElement.vue'
 import FileElement from './../blank/templates/elements/FileElement.vue'
@@ -42,6 +44,8 @@ import MultiselectElement from './../blank/templates/elements/MultiselectElement
 import ObjectElement from './../blank/templates/elements/ObjectElement.vue'
 import RadioElement from './../blank/templates/elements/RadioElement.vue'
 import RadiogroupElement from './../blank/templates/elements/RadiogroupElement.vue'
+import RadiogroupElement_blocks from './../blank/templates/elements/RadiogroupElement.vue'
+import RadiogroupElement_tabs from './../blank/templates/elements/RadiogroupElement.vue'
 import SelectElement from './../blank/templates/elements/SelectElement.vue'
 import SliderElement from './../blank/templates/elements/SliderElement.vue'
 import StaticElement from './../blank/templates/elements/StaticElement.vue'
@@ -100,6 +104,8 @@ const theme = {
     ButtonElement,
     CheckboxElement,
     CheckboxgroupElement,
+    CheckboxroupElement_tabs,
+    CheckboxroupElement_blocks,
     DateElement,
     DatesElement,
     FileElement,
@@ -112,6 +118,8 @@ const theme = {
     ObjectElement,
     RadioElement,
     RadiogroupElement,
+    RadiogroupElement_tabs,
+    RadiogroupElement_blocks,
     SelectElement,
     SliderElement,
     StaticElement,
@@ -172,6 +180,8 @@ export {
   ButtonElement,
   CheckboxElement,
   CheckboxgroupElement,
+  CheckboxgroupElement_tabs,
+  CheckboxgroupElement_blocks,
   DateElement,
   DatesElement,
   FileElement,
@@ -184,6 +194,8 @@ export {
   ObjectElement,
   RadioElement,
   RadiogroupElement,
+  RadiogroupElement_tabs,
+  RadiogroupElement_blocks,
   SelectElement,
   SliderElement,
   StaticElement,

@@ -33,6 +33,8 @@ import EditorWrapper from './templates/wrappers/EditorWrapper.vue'
 import ButtonElement from './templates/elements/ButtonElement.vue'
 import CheckboxElement from './templates/elements/CheckboxElement.vue'
 import CheckboxgroupElement from './templates/elements/CheckboxgroupElement.vue'
+import CheckboxgroupElement_blocks from './templates/elements/CheckboxgroupElement_blocks.vue'
+import CheckboxgroupElement_tabs from './templates/elements/CheckboxgroupElement_tabs.vue'
 import DateElement from './templates/elements/DateElement.vue'
 import DatesElement from './templates/elements/DatesElement.vue'
 import FileElement from './templates/elements/FileElement.vue'
@@ -45,6 +47,8 @@ import MultiselectElement from './templates/elements/MultiselectElement.vue'
 import ObjectElement from './templates/elements/ObjectElement.vue'
 import RadioElement from './templates/elements/RadioElement.vue'
 import RadiogroupElement from './templates/elements/RadiogroupElement.vue'
+import RadiogroupElement_blocks from './templates/elements/RadiogroupElement_blocks.vue'
+import RadiogroupElement_tabs from './templates/elements/RadiogroupElement_tabs.vue'
 import SelectElement from './templates/elements/SelectElement.vue'
 import SliderElement from './templates/elements/SliderElement.vue'
 import StaticElement from './templates/elements/StaticElement.vue'
@@ -100,6 +104,8 @@ export default {
     ButtonElement,
     CheckboxElement,
     CheckboxgroupElement,
+    CheckboxgroupElement_tabs,
+    CheckboxgroupElement_blocks,
     DateElement,
     DatesElement,
     FileElement,
@@ -112,6 +118,8 @@ export default {
     ObjectElement,
     RadioElement,
     RadiogroupElement,
+    RadiogroupElement_tabs,
+    RadiogroupElement_blocks,
     SelectElement,
     SliderElement,
     StaticElement,
