@@ -69,6 +69,8 @@ declare module '@vueform/vueform/themes/tailwind' {
   export function prefix(prefix: string): any
 }
 
+declare module '@vueform/vueform/core' {}
+
 declare module '@vueform/vueform' {
     const config: any;
     const components: any;
@@ -9072,11 +9074,5 @@ declare module 'vue' {
     TextElement: typeof TextElement;
     TextareaElement: typeof TextareaElement;
     ToggleElement: typeof ToggleElement;
-  }
-}
-
-declare module '@vueform/vueform/core' {
-  export {
-    FormElements,
   }
 }

@@ -2,12 +2,19 @@ const fs = require('fs')
 const _ = require('lodash')
 const componentsBase = require('./../api/generated/components')
 const elementsBase = require('./../api/generated/elements')
+const themesOutputPath = './dist/'
 const outputPath = './types/index.d.ts'
 
 const components = {
   ...componentsBase,
   ...elementsBase,
 }
+
+const themes = ['bootstrap', 'material', 'tailwind-material', 'tailwind', 'vueform']
+
+let themeDefinitions = ``
+
+let themeExports = ``
 
 let typeTypes = []
 
@@ -521,7 +528,22 @@ content += `\n\ndeclare module 'vue' {
   content += `  }
 }`
 
+// Theme files
+for (const component in components) {
+  themeDefinitions += `  const ${component}: any;\n`
+  themeExports += `    ${component},\n`
+}
+
 // Write
 fs.writeFileSync(outputPath, content)
 
-// typeTypes.map(t => console.log(t))
+themes.forEach((theme) => {
+  fs.writeFileSync(`${themesOutputPath}${theme}.d.mts`, `declare module '@vueform/vueform/dist/${theme}' {
+  const obj: any;
+${themeDefinitions}
+  export default obj;${['tailwind', 'tailwind-material'].indexOf(theme) !== -1 ? `\n\n  export function prefix(prefix: string): any` : ''}
+
+  export {
+${themeExports}  }
+}`)
+})
