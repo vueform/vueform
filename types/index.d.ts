@@ -9081,3 +9081,8 @@ declare module '@vueform/vueform/themes/tailwind' {
   const obj: any;
   export default obj;
 }
+
+declare module '@vueform/vueform/dist/tailwind' {
+  const obj: any;
+  export default obj;
+}
