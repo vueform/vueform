@@ -2,6 +2,7 @@ const fs = require('fs')
 const _ = require('lodash')
 const componentsBase = require('./../api/generated/components')
 const elementsBase = require('./../api/generated/elements')
+const views = require('./../api/definitions/views').default
 const themesOutputPath = './dist/'
 const outputPath = './types/index.d.ts'
 
@@ -532,6 +533,11 @@ content += `\n\ndeclare module 'vue' {
 for (const component in components) {
   themeDefinitions += `  const ${component}: any;\n`
   themeExports += `    ${component},\n`
+
+  views[component]?.forEach((view) => {
+    themeDefinitions += `  const ${component}_${view}: any;\n`
+    themeExports += `    ${component}_${view},\n`
+  })
 }
 
 // Write
