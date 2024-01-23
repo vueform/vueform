@@ -533,13 +533,13 @@ content += `\n\ndeclare module 'vue' {
 content += `\n\ndeclare module '@vueform/vueform/core' {\n`
 
 rules.forEach((rule) => {
-  content += `  const ${rule}: any;\n`
+  content += `  const ${rule=='in'?'in_':rule}: any;\n`
 })
 
 content += `\n  export {\n`
 
 rules.forEach((rule) => {
-  content += `    ${rule},\n`
+  content += `    ${rule=='in'?'in_':rule},\n`
 })
 
 content += `  }\n}`

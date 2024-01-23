@@ -9104,7 +9104,7 @@ declare module '@vueform/vueform/core' {
   const gt: any;
   const gte: any;
   const image: any;
-  const in: any;
+  const in_: any;
   const in_array: any;
   const integer: any;
   const ip: any;
@@ -9160,7 +9160,7 @@ declare module '@vueform/vueform/core' {
     gt,
     gte,
     image,
-    in,
+    in_,
     in_array,
     integer,
     ip,
