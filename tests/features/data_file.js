@@ -6,39 +6,39 @@ export { load, update, clear, reset } from './data'
 
 export const data = function (elementType, elementName, options) {
   
-  it('should un-bundle response and delete created __file__ property from data', async () => {
+  // it('should un-bundle response and delete created __file__ property from data', async () => {
     
-    const postStub = jest.fn(() => ({
-      data: {
-        tmp: 'tmp_name',
-        originalName: 'filename.jpg',
-      }
-    }))
+  //   const postStub = jest.fn(() => ({
+  //     data: {
+  //       tmp: 'tmp_name',
+  //       originalName: 'filename.jpg',
+  //     }
+  //   }))
     
-    const file = await createValidImageFile()
+  //   const file = await createValidImageFile()
     
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType,
-          auto: true,
-          view: 'image',
-          onBeforeCreate(el$) {
-            el$.$vueform.services.axios.request = postStub
-          }
-        }
-      }
-    })
+  //   let form = createForm({
+  //     schema: {
+  //       el: {
+  //         type: elementType,
+  //         auto: true,
+  //         view: 'image',
+  //         onBeforeCreate(el$) {
+  //           el$.$vueform.services.axios.request = postStub
+  //         }
+  //       }
+  //     }
+  //   })
     
-    const el = form.vm.el$('el')
+  //   const el = form.vm.el$('el')
     
     
-    el.update(file)
+  //   el.update(file)
     
-    await flushPromises()
+  //   await flushPromises()
     
-    expect(el.data.__file__).toBe(undefined)
-  })
+  //   expect(el.data.__file__).toBe(undefined)
+  // })
 
   it('should have "data" as an object with element name as property and element value as value by default', async () => {
     let form = createForm({

@@ -4,12 +4,12 @@ import columns from './../../themes/tailwind/columns'
 
 describe('Tailwind Prefixer', () => {
   it('should prefix tailwind files', async () => {
-    expect(prefixer(`// prefix
-
+    expect(prefixer(`
       export default function (breakpoint, size, prefix = '') {
         const safelist = [
           'col-span-1',
           'col-span-2',
+          'form-bg-input',
           'hover:col-span-3',
         ]
 
@@ -23,12 +23,12 @@ describe('Tailwind Prefixer', () => {
             isDisabled ? classes.input_disabled : classes.input_enabled
           ]),
         }
-      }`, 'tw-')).toBe(`// prefix
-
-      export default function (breakpoint, size, prefix = '') {
+      }`, 'tw-')).toBe(`
+      export default function (breakpoint, size, prefix = 'tw-') {
         const safelist = [
           'tw-col-span-1',
           'tw-col-span-2',
+          'tw-form-bg-input',
           'hover:tw-col-span-3',
         ]
 
@@ -43,6 +43,18 @@ describe('Tailwind Prefixer', () => {
           ]),
         }
       }
+tw-col-span-1
+tw-col-span-2
+tw-col-span-3
+tw-col-span-4
+tw-col-span-5
+tw-col-span-6
+tw-col-span-7
+tw-col-span-8
+tw-col-span-9
+tw-col-span-10
+tw-col-span-11
+tw-col-span-12
 sm:tw-col-span-1
 sm:tw-col-span-2
 sm:tw-col-span-3

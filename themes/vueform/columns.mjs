@@ -1,9 +1,5 @@
-export default function (breakpoint, size) {
-  switch (breakpoint) {
-    case 'default':
-      return `vf-col-${size}`
+import columns from './columns.js'
 
-    default:
-      return `vf-col-${breakpoint}-${size}`
-  }
-}
+export default columns
+
+export * from './columns.js'

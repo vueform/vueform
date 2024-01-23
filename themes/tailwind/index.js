@@ -72,8 +72,8 @@ import RadiogroupRadio_blocks from './../blank/templates/elements/partials/Radio
 import DatepickerWrapper from './templates/wrappers/DatepickerWrapper.vue'
 import EditorWrapper from './templates/wrappers/EditorWrapper.vue'
 
-import columns from './columns.mjs'
-import classes from './classes.mjs'
+import columns from './columns'
+import classes from './classes'
 
 const theme = {
   templates: {
