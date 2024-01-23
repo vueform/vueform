@@ -547,9 +547,11 @@ themes.forEach((theme) => {
   fs.writeFileSync(`${themesOutputPath}${theme}.d.mts`, `declare module '@vueform/vueform/dist/${theme}' {
   const obj: any;
 ${themeDefinitions}
-  export default obj;${['tailwind', 'tailwind-material'].indexOf(theme) !== -1 ? `\n\n  export function prefix(prefix: string): any` : ''}
+  export default obj;${['tailwind', 'tailwind-material'].indexOf(theme) !== -1 ? `\n\n  export function prefix(prefix: string): any;\n  export function prefixer(classes: any, prefix: string): any;` : ''}
 
   export {
+    classes,
+    columns,
 ${themeExports}  }
 }`)
 })

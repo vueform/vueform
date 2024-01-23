@@ -73,9 +73,12 @@ declare module '@vueform/vueform/dist/tailwind-material' {
 
   export default obj;
 
-  export function prefix(prefix: string): any
+  export function prefix(prefix: string): any;
+  export function prefixer(classes: any, prefix: string): any;
 
   export {
+    classes,
+    columns,
     DragAndDrop,
     ElementAddon,
     ElementDescription,

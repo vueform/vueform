@@ -74,6 +74,8 @@ declare module '@vueform/vueform/dist/vueform' {
   export default obj;
 
   export {
+    classes,
+    columns,
     DragAndDrop,
     ElementAddon,
     ElementDescription,
