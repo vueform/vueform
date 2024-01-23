@@ -147,8 +147,8 @@ declare module '@vueform/vueform/dist/vueform' {
     TextareaElement,
     ToggleElement,
   }
+}
 
-  declare module '@vueform/vueform/themes/vueform' {
-    export * from '@vueform/vueform/dist/vueform';
-  }
+declare module '@vueform/vueform/themes/vueform' {
+  export * from '@vueform/vueform/dist/vueform';
 }
