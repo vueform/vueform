@@ -239,6 +239,6 @@ export default files.map((file) => {
       format: file.format || 'esm',
     },
     plugins,
-    external: ['vue', 'axios', 'moment', /lodash\/.*/]
+    external: ['vue', 'axios', 'moment']
   }
 })
