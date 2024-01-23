@@ -28,17 +28,17 @@ export default defineNuxtModule<ModuleOptions>({
 
     nuxt.options.build.transpile.push('@vueform/vueform')
 
-    // nuxt.options.vite.optimizeDeps = {
-    //   ...(nuxt.options.vite.optimizeDeps || {}),
-    //   include: [
-    //     ...(nuxt.options.vite.optimizeDeps?.include || []),
-    //     'wnumb',
-    //     'nouislider',
-    //     'trix',
-    //     'lodash',
-    //     'axios',
-    //   ]
-    // }
+    nuxt.options.vite.optimizeDeps = {
+      ...(nuxt.options.vite.optimizeDeps || {}),
+      include: [
+        ...(nuxt.options.vite.optimizeDeps?.include || []),
+        'wnumb',
+        'nouislider',
+        'trix',
+        'lodash',
+        'axios',
+      ]
+    }
 
     let configBase = resolve(
       nuxt.options.rootDir,

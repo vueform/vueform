@@ -568,5 +568,9 @@ ${themeDefinitions}
     classes,
     columns,
 ${themeExports}  }
+
+  declare module '@vueform/vueform/themes/${theme}' {
+    export * from '@vueform/vueform/dist/${theme}';
+  }
 }`)
 })

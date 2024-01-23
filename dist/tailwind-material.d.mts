@@ -150,4 +150,8 @@ declare module '@vueform/vueform/dist/tailwind-material' {
     TextareaElement,
     ToggleElement,
   }
+
+  declare module '@vueform/vueform/themes/tailwind-material' {
+    export * from '@vueform/vueform/dist/tailwind-material';
+  }
 }

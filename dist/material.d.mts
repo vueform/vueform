@@ -147,4 +147,8 @@ declare module '@vueform/vueform/dist/material' {
     TextareaElement,
     ToggleElement,
   }
+
+  declare module '@vueform/vueform/themes/material' {
+    export * from '@vueform/vueform/dist/material';
+  }
 }
