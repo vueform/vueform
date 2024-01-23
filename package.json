@@ -40,7 +40,10 @@
     "./src/*": "./src/*",
     "./types/*": "./types/*",
     "./dist/*.js": "./dist/*.mjs",
-    "./dist/*": "./dist/*.mjs",
+    "./dist/*": {
+      "types": "./types/index.d.ts",
+      "default": "./dist/*.mjs"
+    },
     "./dist/*.css": "./dist/*.css",
     "./tailwind": "./tailwind.js",
     "./tailwind.js": "./tailwind.js",
