@@ -3,6 +3,7 @@ const _ = require('lodash')
 const componentsBase = require('./../api/generated/components')
 const elementsBase = require('./../api/generated/elements')
 const views = require('./../api/definitions/views').default
+const rules = Object.keys(require('./../src/services/validation/rules').default)
 const themesOutputPath = './dist/'
 const outputPath = './types/index.d.ts'
 
@@ -145,8 +146,6 @@ interface DefineElement {
 declare module '@vueform/vueform/themes/tailwind' {
   export function prefix(prefix: string): any
 }
-
-declare module '@vueform/vueform/core' {}
 
 declare module '@vueform/vueform' {
     const config: any;
@@ -528,6 +527,22 @@ content += `\n\ndeclare module 'vue' {
 
   content += `  }
 }`
+
+// Core
+
+content += `\n\ndeclare module '@vueform/vueform/core' {\n`
+
+rules.forEach((rule) => {
+  content += `  const ${rule}: any;\n`
+})
+
+content += `\n  export {\n`
+
+rules.forEach((rule) => {
+  content += `    ${rule},\n`
+})
+
+content += `  }\n}`
 
 // Theme files
 for (const component in components) {

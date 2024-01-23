@@ -69,8 +69,6 @@ declare module '@vueform/vueform/themes/tailwind' {
   export function prefix(prefix: string): any
 }
 
-declare module '@vueform/vueform/core' {}
-
 declare module '@vueform/vueform' {
     const config: any;
     const components: any;
@@ -9074,5 +9072,119 @@ declare module 'vue' {
     TextElement: typeof TextElement;
     TextareaElement: typeof TextareaElement;
     ToggleElement: typeof ToggleElement;
+  }
+}
+
+declare module '@vueform/vueform/core' {
+  const accepted: any;
+  const active_url: any;
+  const after: any;
+  const after_or_equal: any;
+  const alpha: any;
+  const alpha_dash: any;
+  const alpha_num: any;
+  const array: any;
+  const before: any;
+  const before_or_equal: any;
+  const between: any;
+  const boolean: any;
+  const confirmed: any;
+  const date: any;
+  const date_equals: any;
+  const date_format: any;
+  const different: any;
+  const digits: any;
+  const digits_between: any;
+  const dimensions: any;
+  const distinct: any;
+  const email: any;
+  const exists: any;
+  const file: any;
+  const filled: any;
+  const gt: any;
+  const gte: any;
+  const image: any;
+  const in: any;
+  const in_array: any;
+  const integer: any;
+  const ip: any;
+  const ipv4: any;
+  const ipv6: any;
+  const json: any;
+  const lt: any;
+  const lte: any;
+  const max: any;
+  const mimes: any;
+  const mimetypes: any;
+  const min: any;
+  const not_in: any;
+  const not_regex: any;
+  const nullable: any;
+  const numeric: any;
+  const regex: any;
+  const required: any;
+  const same: any;
+  const size: any;
+  const string: any;
+  const timezone: any;
+  const unique: any;
+  const url: any;
+  const uuid: any;
+
+  export {
+    accepted,
+    active_url,
+    after,
+    after_or_equal,
+    alpha,
+    alpha_dash,
+    alpha_num,
+    array,
+    before,
+    before_or_equal,
+    between,
+    boolean,
+    confirmed,
+    date,
+    date_equals,
+    date_format,
+    different,
+    digits,
+    digits_between,
+    dimensions,
+    distinct,
+    email,
+    exists,
+    file,
+    filled,
+    gt,
+    gte,
+    image,
+    in,
+    in_array,
+    integer,
+    ip,
+    ipv4,
+    ipv6,
+    json,
+    lt,
+    lte,
+    max,
+    mimes,
+    mimetypes,
+    min,
+    not_in,
+    not_regex,
+    nullable,
+    numeric,
+    regex,
+    required,
+    same,
+    size,
+    string,
+    timezone,
+    unique,
+    url,
+    uuid,
   }
 }
