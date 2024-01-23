@@ -23,21 +23,23 @@
       "types": "./types/index.d.ts",
       "default": "./dist/index.mjs"
     },
-    "./core": "./dist/core.mjs",
-    "./core.js": "./dist/core.mjs",
-    "./core.mjs": "./dist/core.mjs",
+    "./core": {
+      "types": "./types/index.d.ts",
+      "default": "./dist/core.mjs"
+    },
+    "./core.js": {
+      "types": "./types/index.d.ts",
+      "default": "./dist/core.mjs"
+    },
     "./element": "./element.mjs",
     "./element.js": "./element.mjs",
-    "./element.mjs": "./element.mjs",
     "./plugin": "./plugin.mjs",
     "./plugin.js": "./plugin.mjs",
-    "./plugin.mjs": "./plugin.mjs",
     "./locales/*.js": "./locales/*/index.mjs",
     "./locales/*": "./locales/*/index.mjs",
     "./src/*": "./src/*",
     "./types/*": "./types/*",
     "./dist/*.js": "./dist/*.mjs",
-    "./dist/*.mjs": "./dist/*.mjs",
     "./dist/*": "./dist/*.mjs",
     "./dist/*.css": "./dist/*.css",
     "./tailwind": "./tailwind.js",

@@ -9084,8 +9084,4 @@ declare module '@vueform/vueform/core' {
 declare module '@vueform/vueform/dist/vueform' {
   const obj: any;
   export default obj;
-
-  export {
-    FormElements,
-  }
 }
