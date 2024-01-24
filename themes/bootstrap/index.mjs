@@ -1,4 +1,4 @@
-import base from './../vueform'
+import base from './../vueform/index.js'
 
 export default base
-export * from './../vueform'
+export * from './../vueform/index.js'

@@ -88,7 +88,7 @@
     }
   },
   "scripts": {
-    "build": "rollup --config build/rollup.config.js",
+    "build": "rollup --config build/rollup.config.js && node ./scripts/pre-build-vue2 && rollup --config build/rollup.vue2.config.js && node ./scripts/post-build-vue2",
     "test": "npm run generate:elements-base && NODE_OPTIONS=\"--max_old_space_size=5120 --no-experimental-fetch\" VUE=3 jest --config=./tests/jest.config.js",
     "generate:types": "npx babel-node  scripts/generate-types.js --presets @babel/preset-env",
     "generate:common-features": "npx babel-node scripts/generate-common-features.js --presets @babel/preset-env",
@@ -105,6 +105,7 @@
     "@babel/core": "^7.2.2",
     "@babel/node": "^7.12.10",
     "@babel/preset-env": "^7.3.1",
+    "@rollup/plugin-alias": "^5.1.0",
     "@rollup/plugin-babel": "^5.3.0",
     "@rollup/plugin-commonjs": "^22.0.1",
     "@rollup/plugin-json": "^4.1.0",
@@ -136,12 +137,15 @@
     "rollup-plugin-postcss": "^4.0.1",
     "rollup-plugin-terser": "^7.0.2",
     "rollup-plugin-vue": "^6.0.0",
+    "rollup-plugin-vue2": "npm:rollup-plugin-vue@^5.1.9",
     "sass-loader": "^7.1.0",
     "sortablejs": "^1.15.0",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.2",
     "vue": "3.3.13",
     "vue-jest": "npm:@vue/vue3-jest@^27.0.0-alpha.1",
-    "vue-loader": "^15.10.0"
+    "vue-loader": "^15.10.0",
+    "vue-template-compiler": "^2.7.8",
+    "vue2": "npm:vue@^2.7.0"
   },
   "dependencies": {
     "@popperjs/core": "^2.11.8",
