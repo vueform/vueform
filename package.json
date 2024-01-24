@@ -84,7 +84,10 @@
     "./themes/vueform.js": "./themes/vueform/index.mjs",
     "./themes/*": {
       "types": "./dist/*.d.mts",
-      "default": "./themes/*/index.mjs"
+      "require": "./themes/*/index.cjs",
+      "node": "./themes/*/index.cjs",
+      "import": "./themes/*/index.mjs",
+      "module": "./themes/*/index.mjs"
     }
   },
   "scripts": {
