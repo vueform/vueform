@@ -41,6 +41,12 @@
     "./types/*": "./types/*",
     "./dist/*.js": "./dist/*.mjs",
     "./dist/*": "./dist/*.mjs",
+    "./dist/vueform": {
+      "require": "./dist/vueform.cjs",
+      "node": "./dist/vueform.cjs",
+      "module": "./dist/vueform.mjs",
+      "import": "./dist/vueform.mjs"
+    },
     "./dist/*.css": "./dist/*.css",
     "./tailwind": "./tailwind.js",
     "./tailwind.js": "./tailwind.js",
@@ -84,10 +90,7 @@
     "./themes/vueform.js": "./themes/vueform/index.mjs",
     "./themes/*": {
       "types": "./dist/*.d.mts",
-      "require": "./themes/*/index.cjs",
-      "node": "./themes/*/index.cjs",
-      "import": "./themes/*/index.mjs",
-      "module": "./themes/*/index.mjs"
+      "default": "./themes/*/index.mjs"
     }
   },
   "scripts": {
