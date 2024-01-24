@@ -1,5 +1,17 @@
 [//]: # (Don't use <tags>)
 
+## v1.7.0
+
+> `2024-01-24`
+
+### 🐞 Bug Fixes
+- `in` validation rule fix #121
+- Select element with 0 value in form default fix #122
+
+### 🧹 Chore
+- All dist exports are now interpreted as ESM.
+- Themes are bundled to separate dist files.
+
 ## v1.6.6
 
 > `2024-01-10`
