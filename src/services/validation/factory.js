@@ -17,7 +17,13 @@ const Factory = class {
   }
 
   get rules() {
-    return Object.assign({}, this.form$.$vueform.services.validation.rules, this.form$.$vueform.rules)
+    let rules = Object.assign({}, this.form$.$vueform.services.validation.rules, this.form$.$vueform.rules)
+
+    if (!rules.in && rules.in_) {
+      rules.in = rules.in_
+    }
+
+    return rules
   }
  
   makeAll(rules) {
