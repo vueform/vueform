@@ -32,7 +32,7 @@ const base = function(props, context, dependencies)
     
     if (parent && parent.value && !parent.value.mounted) {
       parentDefaultValue = parent.value.defaultValue[name.value]
-    } else if (!form$.value.mounted && form$.value.options.default[name.value]) {
+    } else if (!form$.value.mounted && form$.value.options.default[name.value] !== undefined) {
       parentDefaultValue = form$.value.options.default[name.value]
     }
     
