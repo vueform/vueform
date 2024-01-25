@@ -1,5 +1,12 @@
 [//]: # (Don't use <tags>)
 
+## v1.7.1
+
+> `2024-01-25`
+
+### 🎉 Feature
+- Added `appendTo` and `appendToBody` options for select/multiselect/tags.
+
 ## v1.7.0
 
 > `2024-01-24`
