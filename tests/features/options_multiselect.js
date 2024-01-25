@@ -53,6 +53,8 @@ export const fieldOptions = function (elementType, elementName, options) {
     expect(el.fieldOptions.createOption).toStrictEqual(el.create)
     expect(el.fieldOptions.appendNewOption).toStrictEqual(el.appendNewOption)
     expect(el.fieldOptions.addOptionOn).toStrictEqual(el.addOptionOn)
+    expect(el.fieldOptions.appendTo).toStrictEqual(el.appendTo)
+    expect(el.fieldOptions.appendToBody).toStrictEqual(el.appendToBody)
   })
   
   it('should extend `options` from schema', () => {
@@ -107,6 +109,8 @@ export const fieldOptions = function (elementType, elementName, options) {
     expect(el.fieldOptions.createOption).toStrictEqual(el.create)
     expect(el.fieldOptions.appendNewOption).toStrictEqual(el.appendNewOption)
     expect(el.fieldOptions.addOptionOn).toStrictEqual(el.addOptionOn)
+    expect(el.fieldOptions.appendTo).toStrictEqual(el.appendTo)
+    expect(el.fieldOptions.appendToBody).toStrictEqual(el.appendToBody)
     expect(el.fieldOptions.custom).toStrictEqual('option')
   })
   

@@ -108,6 +108,8 @@ export const fieldOptions = function (elementType, elementName, options) {
       appendNewOption: el.appendNewOption,
       addOptionOn: el.addOptionOn,
       breakTags: el.breakTags,
+      appendTo: el.appendTo,
+      appendToBody: el.appendToBody,
     })
   })
   
@@ -164,6 +166,8 @@ export const fieldOptions = function (elementType, elementName, options) {
       appendNewOption: el.appendNewOption,
       addOptionOn: el.addOptionOn,
       breakTags: el.breakTags,
+      appendTo: el.appendTo,
+      appendToBody: el.appendToBody,
       custom: 'option'
     })
   })

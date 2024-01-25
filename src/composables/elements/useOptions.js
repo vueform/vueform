@@ -224,6 +224,8 @@ const select = function(props, context, dependencies)
     create,
     appendNewOption,
     addOptionOn,
+    appendTo,
+    appendToBody,
   } = toRefs(props)
   
   // ============ DEPENDENCIES ============
@@ -287,6 +289,8 @@ const select = function(props, context, dependencies)
       createOption: create.value,
       appendNewOption: appendNewOption.value,
       addOptionOn: addOptionOn.value,
+      appendTo: appendTo.value,
+      appendToBody: appendToBody.value,
     }
   })
   
@@ -345,6 +349,8 @@ const multiselect = function(props, context, dependencies)
     create,
     appendNewOption,
     addOptionOn,
+    appendTo,
+    appendToBody,
   } = toRefs(props)
   
   // ============ DEPENDENCIES ============
@@ -420,6 +426,8 @@ const multiselect = function(props, context, dependencies)
       createOption: create.value,
       appendNewOption: appendNewOption.value,
       addOptionOn: addOptionOn.value,
+      appendTo: appendTo.value,
+      appendToBody: appendToBody.value,
     }
   })
   
@@ -476,6 +484,8 @@ const tags = function(props, context, dependencies)
     appendNewOption,
     addOptionOn,
     breakTags,
+    appendTo,
+    appendToBody,
   } = toRefs(props)
   
   // ============ DEPENDENCIES ============
@@ -556,6 +566,8 @@ const tags = function(props, context, dependencies)
       appendNewOption: appendNewOption.value,
       addOptionOn: addOptionOn.value,
       breakTags: breakTags.value,
+      appendTo: appendTo.value,
+      appendToBody: appendToBody.value,
     }
   })
   
