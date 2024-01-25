@@ -229,11 +229,12 @@ const select = {
   infinite_md: 'form-min-h-input-height',
   infinite_lg: 'form-min-h-input-height-lg',
   infiniteSpinner: 'mask-bg mask-form-spinner form-bg-primary w-4 h-4 animate-spin flex-shrink-0 flex-grow-0',
-  dropdown: 'max-h-60 absolute z-999 -left-px -right-px bottom-0 transform translate-y-full form-shadow-dropdown form-border-width-dropdown border-solid form-border-color-input form-bg-input -mt-px overflow-y-scroll flex flex-col',
+  dropdown: 'max-h-60 absolute z-999 -left-px -right-px bottom-0 transform form-shadow-dropdown form-border-width-dropdown border-solid form-border-color-input form-bg-input -mt-px overflow-y-scroll flex flex-col',
   dropdown_sm: 'form-radius-input-b-sm',
   dropdown_md: 'form-radius-input-b',
   dropdown_lg: 'form-radius-input-b-lg',
-  dropdownTop: '-translate-y-full top-px bottom-auto !rounded-b-none',
+  dropdownBottom: 'translate-y-full',
+  dropdownTop: '-translate-y-full top-px bottom-auto !rounded-b-none !rounded-t',
   dropdownTop_sm: 'form-radius-input-t-sm',
   dropdownTop_md: 'form-radius-input-t',
   dropdownTop_lg: 'form-radius-input-t-lg',
@@ -307,9 +308,10 @@ const select = {
     classes.select.spinner,
     classes.select[`spinner_${Size}`],
   ]),
-  $dropdown: (classes, { Size }) => ([
+  $dropdown: (classes, { Size, openDirection }) => ([
     classes.select.dropdown,
     classes.select[`dropdown_${Size}`],
+    openDirection === 'top' ? null : classes.select.dropdownBottom
   ]),
   $dropdownTop: (classes, { Size }) => ([
     classes.select.dropdownTop,
