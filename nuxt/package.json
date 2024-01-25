@@ -35,7 +35,7 @@
   },
   "dependencies": {
     "@nuxt/kit": "^3.8.1",
-    "@vueform/vueform": "github:vueform/vueform#chore/exports",
+    "@vueform/vueform": "^1.7.0",
     "pathe": "^1.1.1"
   },
   "devDependencies": {
