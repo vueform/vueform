@@ -330,6 +330,8 @@ interface VueformElement extends DefineComponent {
   groupHideEmpty: boolean;
   groupSelect: boolean;
   openDirection: string;
+  appendToBody: boolean;
+  appendTo: string;
   canClear: boolean;
   clearOnSelect: boolean;
   closeOnSelect: boolean;
@@ -744,6 +746,8 @@ interface VueformSchema {
   groupHideEmpty?: boolean;
   groupSelect?: boolean;
   openDirection?: string;
+  appendToBody?: boolean;
+  appendTo?: string;
   canClear?: boolean;
   clearOnSelect?: boolean;
   closeOnSelect?: boolean;
@@ -1808,6 +1812,8 @@ interface MultiselectElementProps {
   groupHideEmpty?: boolean;
   groupSelect?: boolean;
   openDirection?: string;
+  appendToBody?: boolean;
+  appendTo?: string;
   canClear?: boolean;
   clearOnSelect?: boolean;
   closeOnSelect?: boolean;
@@ -2058,6 +2064,8 @@ interface SelectElementProps {
   groupOptions?: string;
   groupHideEmpty?: boolean;
   openDirection?: string;
+  appendToBody?: boolean;
+  appendTo?: string;
   canDeselect?: boolean;
   canClear?: boolean;
   closeOnSelect?: boolean;
@@ -2449,6 +2457,8 @@ interface TagsElementProps {
   groupHideEmpty?: boolean;
   groupSelect?: boolean;
   openDirection?: string;
+  appendToBody?: boolean;
+  appendTo?: string;
   canClear?: boolean;
   clearOnSelect?: boolean;
   closeOnSelect?: boolean;
@@ -6266,6 +6276,8 @@ declare class MultiselectElement implements ReturnType<typeof defineComponent> {
   groupHideEmpty: MultiselectElementProps['groupHideEmpty'];
   groupSelect: MultiselectElementProps['groupSelect'];
   openDirection: MultiselectElementProps['openDirection'];
+  appendToBody: MultiselectElementProps['appendToBody'];
+  appendTo: MultiselectElementProps['appendTo'];
   canClear: MultiselectElementProps['canClear'];
   clearOnSelect: MultiselectElementProps['clearOnSelect'];
   closeOnSelect: MultiselectElementProps['closeOnSelect'];
@@ -7060,6 +7072,8 @@ declare class SelectElement implements ReturnType<typeof defineComponent> {
   groupOptions: SelectElementProps['groupOptions'];
   groupHideEmpty: SelectElementProps['groupHideEmpty'];
   openDirection: SelectElementProps['openDirection'];
+  appendToBody: SelectElementProps['appendToBody'];
+  appendTo: SelectElementProps['appendTo'];
   canDeselect: SelectElementProps['canDeselect'];
   canClear: SelectElementProps['canClear'];
   closeOnSelect: SelectElementProps['closeOnSelect'];
@@ -8246,6 +8260,8 @@ declare class TagsElement implements ReturnType<typeof defineComponent> {
   groupHideEmpty: TagsElementProps['groupHideEmpty'];
   groupSelect: TagsElementProps['groupSelect'];
   openDirection: TagsElementProps['openDirection'];
+  appendToBody: TagsElementProps['appendToBody'];
+  appendTo: TagsElementProps['appendTo'];
   canClear: TagsElementProps['canClear'];
   clearOnSelect: TagsElementProps['clearOnSelect'];
   closeOnSelect: TagsElementProps['closeOnSelect'];

@@ -20260,6 +20260,28 @@ module.exports = {
         required: false,
         private: false,
       },
+      appendToBody: {
+        required: 'false',
+        default: 'false',
+        localized: false,
+        types: [
+          'boolean',
+        ],
+        native: false,
+        required: false,
+        private: false,
+      },
+      appendTo: {
+        required: 'false',
+        default: 'undefined',
+        localized: false,
+        types: [
+          'string',
+        ],
+        native: false,
+        required: false,
+        private: false,
+      },
       canClear: {
         required: 'false',
         default: 'true',
@@ -26879,6 +26901,28 @@ module.exports = {
       openDirection: {
         required: 'false',
         default: 'bottom',
+        localized: false,
+        types: [
+          'string',
+        ],
+        native: false,
+        required: false,
+        private: false,
+      },
+      appendToBody: {
+        required: 'false',
+        default: 'false',
+        localized: false,
+        types: [
+          'boolean',
+        ],
+        native: false,
+        required: false,
+        private: false,
+      },
+      appendTo: {
+        required: 'false',
+        default: 'undefined',
         localized: false,
         types: [
           'string',
@@ -36739,6 +36783,28 @@ module.exports = {
         types: [
           'string',
         ],
+        required: false,
+        private: false,
+      },
+      appendToBody: {
+        required: 'false',
+        default: 'false',
+        localized: false,
+        types: [
+          'boolean',
+        ],
+        native: false,
+        required: false,
+        private: false,
+      },
+      appendTo: {
+        required: 'false',
+        default: 'undefined',
+        localized: false,
+        types: [
+          'string',
+        ],
+        native: false,
         required: false,
         private: false,
       },

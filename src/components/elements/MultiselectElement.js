@@ -271,6 +271,18 @@ export default {
       default: 'bottom',
       native: false,
     },
+    appendToBody: {
+      type: [Boolean],
+      required: false,
+      default: false,
+      native: false,
+    },
+    appendTo: {
+      type: [String],
+      required: false,
+      default: undefined,
+      native: false,
+    },
     canClear: {
       type: [Boolean],
       required: false,
