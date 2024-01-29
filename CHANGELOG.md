@@ -1,5 +1,13 @@
 [//]: # (Don't use <tags>)
 
+## v1.7.2
+
+> `2024-01-29`
+
+### 🎉 Feature
+- Added `between` condition.
+- Added nesting `and` condition in `or` conditions.
+
 ## v1.7.1
 
 > `2024-01-25`
