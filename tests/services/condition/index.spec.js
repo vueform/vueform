@@ -2602,5 +2602,54 @@ describe('Condition Service', () => {
     b.clear()
     expect(c.available).toBe(false)
   })
+
+  it('should check `between` condition', () => {
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'text'
+        },
+        b: {
+          type: 'text'
+        },
+        c: {
+          type: 'text',
+          conditions: [
+            [
+              ['a', 'a'],
+              ['b', 'between', [20, 25]],
+            ]
+          ]
+        }
+      }
+    })
+    
+    let a = form.vm.el$('a')
+    let b = form.vm.el$('b')
+    let c = form.vm.el$('c')
+
+    expect(c.available).toBe(false)
+    
+    a.update('a')
+    expect(c.available).toBe(true)
+    
+    a.clear()
+    expect(c.available).toBe(false)
+
+    b.update('22')
+    expect(c.available).toBe(true)
+
+    b.update('20')
+    expect(c.available).toBe(false)
+
+    b.update('25')
+    expect(c.available).toBe(false)
+
+    b.update('24')
+    expect(c.available).toBe(true)
+    
+    b.clear()
+    expect(c.available).toBe(false)
+  })
   
 })
