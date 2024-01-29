@@ -58,7 +58,15 @@ const check = (condition, elementPath, form$, el$) => {
 
   else if (isArray(condition) && isArray(condition[0])) {
     return condition.reduce((prev, curr) => {
-      return prev ? prev : checkArray(curr)
+      if (prev) {
+        return prev
+      }
+
+      if (isArray(curr[0])) {
+        return curr.reduce((p, c) => !p ? p : checkArray(c), true)
+      }
+
+      return checkArray(curr)
     }, false)
   }
 

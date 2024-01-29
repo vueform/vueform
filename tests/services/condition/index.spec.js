@@ -2513,5 +2513,94 @@ describe('Condition Service', () => {
     d.update('asd')
     expect(z.available).toBe(false)
   })
+
+  it('should check `or` type', () => {
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'text'
+        },
+        b: {
+          type: 'text'
+        },
+        c: {
+          type: 'text',
+          conditions: [
+            [
+              ['a', 'a'],
+              ['b', 'b'],
+            ]
+          ]
+        }
+      }
+    })
+    
+    let a = form.vm.el$('a')
+    let b = form.vm.el$('b')
+    let c = form.vm.el$('c')
+
+    expect(c.available).toBe(false)
+    
+    a.update('a')
+    expect(c.available).toBe(true)
+    
+    a.clear()
+    expect(c.available).toBe(false)
+
+    b.update('b')
+    expect(c.available).toBe(true)
+    
+    b.clear()
+    expect(c.available).toBe(false)
+  })
+
+  it('should check `or` with nested `and` type', () => {
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'text'
+        },
+        b: {
+          type: 'text'
+        },
+        c: {
+          type: 'text',
+          conditions: [
+            [
+              ['a', 'a'],
+              [['b', '>', '20'], ['b', '<', '25']],
+            ]
+          ]
+        }
+      }
+    })
+    
+    let a = form.vm.el$('a')
+    let b = form.vm.el$('b')
+    let c = form.vm.el$('c')
+
+    expect(c.available).toBe(false)
+    
+    a.update('a')
+    expect(c.available).toBe(true)
+    
+    a.clear()
+    expect(c.available).toBe(false)
+
+    b.update('22')
+    expect(c.available).toBe(true)
+
+    b.update('20')
+    expect(c.available).toBe(false)
+
+    b.update('25')
+    expect(c.available).toBe(false)
+
+    b.update('24')
+    expect(c.available).toBe(true)
+    
+    b.clear()
+    expect(c.available).toBe(false)
+  })
   
 })

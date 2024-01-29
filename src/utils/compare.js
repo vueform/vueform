@@ -34,6 +34,9 @@ export default function(actual, operator, expected, el$) {
         ? actual.every(a => a <= expected)
         : actual <= expected
 
+    case 'between':
+      return actual > expected[0] && actual < expected[1]
+
     case 'empty':
       if (isArray(actual)) {
         return !actual.length
