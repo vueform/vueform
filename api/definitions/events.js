@@ -308,7 +308,7 @@ export default {
   },
   remove: {
     default: {
-      description: 'Triggered when a new item is added to the list.',
+      description: 'Triggered when a new item is removed from the list.',
       params: {
         index: {
           description: 'the index of the removed item',
