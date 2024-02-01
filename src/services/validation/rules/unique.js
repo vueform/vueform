@@ -38,7 +38,7 @@ export default class unique extends Validator {
     let res
 
     if (typeof endpoint === 'function') {
-      res = await(endpoint(value, name, this.requestParams, this.element$, this.form$))
+      res = await endpoint(value, name, this.requestParams, this.element$, this.form$)
     } else {
       res = await this.form$.$vueform.services.axios.request({
         url: endpoint.url,
@@ -49,8 +49,10 @@ export default class unique extends Validator {
           value,
         },
       })
+
+      res = res.data
     }
 
-    return res.data
+    return res
   }
 }

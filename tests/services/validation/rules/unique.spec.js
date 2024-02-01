@@ -56,7 +56,7 @@ describe('Unique Rule', () => {
   })
 
   it('should work with function endpoint', async () => {
-    let uniqueMock = jest.fn(() => ({data: false}))
+    let uniqueMock = jest.fn(() => (false))
 
     let form = createForm({
       schema: {

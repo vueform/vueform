@@ -58,7 +58,7 @@ describe('Exists Rule', () => {
   })
 
   it('should work with function endpoint', async () => {
-    let existsMock = jest.fn(() => ({data: false}))
+    let existsMock = jest.fn(() => (false))
 
     let form = createForm({
       schema: {

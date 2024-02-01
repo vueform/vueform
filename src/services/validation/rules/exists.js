@@ -51,8 +51,10 @@ export default class exists extends Validator {
           name,
         },
       })
+
+      res = res.data
     }
 
-    return res.data
+    return res
   }
 }
