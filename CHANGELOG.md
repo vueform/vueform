@@ -1,5 +1,15 @@
 [//]: # (Don't use <tags>)
 
+## v1.7.3
+
+> `2024-02-07`
+
+### 🎉 Feature
+- Keep file as binary in data if not uploaded.
+
+### 🐞 Bug Fixes
+- Async exists/unique rule fix #133
+
 ## v1.7.2
 
 > `2024-01-29`
