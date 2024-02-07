@@ -890,7 +890,7 @@ const file = function(props, context, dependencies)
     let v = value.value
     
     if (typeof v === 'object' && v?.__file__) {
-      v = { ...v }
+      v = v instanceof File ? v : { ...v }
       delete v.__file__
     }
     
@@ -905,7 +905,7 @@ const file = function(props, context, dependencies)
     let v = value.value
     
     if (typeof v === 'object' && v?.__file__) {
-      v = { ...v }
+      v = v instanceof File ? v : { ...v }
       delete v.__file__
     }
     
@@ -958,7 +958,7 @@ const multifile = function(props, context, dependencies)
     
     val = val.map((file) => {
       if (typeof file === 'object' && file?.__file__) {
-        let v = { ...file }
+        let v = file instanceof File ? file : { ...file }
         delete v.__file__
         return v
       }
@@ -983,7 +983,7 @@ const multifile = function(props, context, dependencies)
       /* istanbul ignore next: failsafe only */
       if (val !== undefined) {
         if (typeof val === 'object' && val?.__file__) {
-          let v = { ...file }
+          let v = file instanceof File ? file : { ...file }
           delete v.__file__
           val = v
         }
