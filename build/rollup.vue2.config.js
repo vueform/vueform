@@ -54,7 +54,7 @@ export default files.map((file) => {
       exclude: /^(.+\/)?node_modules\/.+$/,
     }),
     nodeResolve(),
-    terser(),
+    // terser(),
     license({
       banner: {
         content: `Vueform v<%= pkg.version %> (https://github.com/vueform/vueform)\n` + 

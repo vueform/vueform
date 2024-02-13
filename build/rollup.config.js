@@ -205,7 +205,7 @@ export default files.map((file) => {
         exclude: /^(.+\/)?node_modules\/.+$/,
       }),
       nodeResolve(),
-      terser(),
+      // terser(),
     ])
 
     if (file.banner) {
