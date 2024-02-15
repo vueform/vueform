@@ -31,20 +31,23 @@ $md-breakpoint: map-get($grid-breakpoints, md);
 }
 
 .vf-static-tag-blockquote {
-  font-size: var(--vf-font-size-blockquote);
-  line-height: var(--vf-line-height-blockquote);
-  letter-spacing: var(--vf-letter-spacing-blockquote);
-  padding: var(--vf-py-blockquote) 0px var(--vf-py-blockquote) var(--vf-px-blockquote);
-  border-left: var(--vf-border-width-blockquote) var(--vf-border-color-blockquote) solid;
+  blockquote {
+    font-size: var(--vf-font-size-blockquote);
+    line-height: var(--vf-line-height-blockquote);
+    letter-spacing: var(--vf-letter-spacing-blockquote);
+    padding: var(--vf-py-blockquote) 0px var(--vf-py-blockquote) var(--vf-px-blockquote);
+    border-left: var(--vf-border-width-blockquote) var(--vf-border-color-blockquote) solid;
+    margin: 0;
+  }
 
-  &.vf-static-tag-sm {
+  &.vf-static-tag-sm blockquote {
     font-size: var(--vf-font-size-blockquote-sm);
     line-height: var(--vf-line-height-blockquote-sm);
     letter-spacing: var(--vf-letter-spacing-blockquote-sm);
     padding: var(--vf-py-blockquote-sm) 0px var(--vf-py-blockquote-sm) var(--vf-px-blockquote-sm);
   }
 
-  &.vf-static-tag-lg {
+  &.vf-static-tag-lg blockquote {
     font-size: var(--vf-font-size-blockquote-lg);
     line-height: var(--vf-line-height-blockquote-lg);
     letter-spacing: var(--vf-letter-spacing-blockquote-lg);
@@ -53,16 +56,17 @@ $md-breakpoint: map-get($grid-breakpoints, md);
 }
 
 .vf-static-tag-a {
-  color: var(--vf-link-color);
-  text-decoration: var(--vf-link-decoration);
+  a {
+    color: var(--vf-link-color);
+    text-decoration: var(--vf-link-decoration);
+  }
 }
 
 .vf-static-tag-hr {
-  border-color: var(--vf-border-color-hr);
   padding: var(--vf-py-hr) 0;
 
   hr {
-    border-color: inherit;
+    border-color: var(--vf-border-color-hr);
   }
 }
 
@@ -96,118 +100,199 @@ $md-breakpoint: map-get($grid-breakpoints, md);
   margin-bottom: var(--vf-space-static-tag-3);
 }
 
-.vf-static-tag-h1,
-.vf-static-tag-h2,
-.vf-static-tag-h3,
-.vf-static-tag-h4 {
-  font-weight: bold;
-  line-height: var(--vf-line-height-headings);
-  letter-spacing: var(--vf-letter-spacing-headings);
-
-  &.vf-static-tag-sm {
-    line-height: var(--vf-line-height-headings-sm);
-    letter-spacing: var(--vf-letter-spacing-headings-sm);
+.vf-static-tag-h1 {
+  h1 {
+    font-weight: bold;
+    line-height: var(--vf-line-height-headings);
+    letter-spacing: var(--vf-letter-spacing-headings);
+    margin: 0;
   }
 
-  &.vf-static-tag-lg {
+  &.vf-static-tag-sm h1 {
+    line-height: var(--vf-line-height-headings-sm);
+    letter-spacing: var(--vf-letter-spacing-headings-sm);
+    margin: 0;
+  }
+
+  &.vf-static-tag-lg h1 {
     line-height: var(--vf-line-height-headings-lg);
     letter-spacing: var(--vf-letter-spacing-headings-lg);
+    margin: 0;
+  }
+}
+
+.vf-static-tag-h2 {
+  h2 {
+    font-weight: bold;
+    line-height: var(--vf-line-height-headings);
+    letter-spacing: var(--vf-letter-spacing-headings);
+    margin: 0;
+  }
+
+  &.vf-static-tag-sm h2 {
+    line-height: var(--vf-line-height-headings-sm);
+    letter-spacing: var(--vf-letter-spacing-headings-sm);
+    margin: 0;
+  }
+
+  &.vf-static-tag-lg h2 {
+    line-height: var(--vf-line-height-headings-lg);
+    letter-spacing: var(--vf-letter-spacing-headings-lg);
+    margin: 0;
+  }
+}
+
+.vf-static-tag-h3 {
+  h3 {
+    font-weight: bold;
+    line-height: var(--vf-line-height-headings);
+    letter-spacing: var(--vf-letter-spacing-headings);
+    margin: 0;
+  }
+
+  &.vf-static-tag-sm h3 {
+    line-height: var(--vf-line-height-headings-sm);
+    letter-spacing: var(--vf-letter-spacing-headings-sm);
+    margin: 0;
+  }
+
+  &.vf-static-tag-lg h3 {
+    line-height: var(--vf-line-height-headings-lg);
+    letter-spacing: var(--vf-letter-spacing-headings-lg);
+    margin: 0;
+  }
+}
+
+.vf-static-tag-h4 {
+  h4 {
+    font-weight: bold;
+    line-height: var(--vf-line-height-headings);
+    letter-spacing: var(--vf-letter-spacing-headings);
+    margin: 0;
+  }
+
+  &.vf-static-tag-sm h4 {
+    line-height: var(--vf-line-height-headings-sm);
+    letter-spacing: var(--vf-letter-spacing-headings-sm);
+    margin: 0;
+  }
+
+  &.vf-static-tag-lg h4 {
+    line-height: var(--vf-line-height-headings-lg);
+    letter-spacing: var(--vf-letter-spacing-headings-lg);
+    margin: 0;
   }
 }
 
 .vf-static-tag-h1 {
-  font-size: var(--vf-font-size-h1-mobile);
+  h1 {
+    font-size: var(--vf-font-size-h1-mobile);
+  }
 
-  &.vf-static-tag-sm {
+  &.vf-static-tag-sm h1 {
     font-size: var(--vf-font-size-h1-mobile-sm);
   }
 
-  &.vf-static-tag-lg {
+  &.vf-static-tag-lg h1 {
     font-size: var(--vf-font-size-h1-mobile-lg);
   }
 }
 
 .vf-static-tag-h2 {
-  font-size: var(--vf-font-size-h2-mobile);
+  h2 {
+    font-size: var(--vf-font-size-h2-mobile);
+  }
 
-  &.vf-static-tag-sm {
+  &.vf-static-tag-sm h2 {
     font-size: var(--vf-font-size-h2-mobile-sm);
   }
 
-  &.vf-static-tag-lg {
+  &.vf-static-tag-lg h2 {
     font-size: var(--vf-font-size-h2-mobile-lg);
   }
 }
 
 .vf-static-tag-h3 {
-  font-size: var(--vf-font-size-h3-mobile);
+  h3 {
+    font-size: var(--vf-font-size-h3-mobile);
+  }
 
-  &.vf-static-tag-sm {
+  &.vf-static-tag-sm h3 {
     font-size: var(--vf-font-size-h3-mobile-sm);
   }
 
-  &.vf-static-tag-lg {
+  &.vf-static-tag-lg h3 {
     font-size: var(--vf-font-size-h3-mobile-lg);
   }
 }
 
 .vf-static-tag-h4 {
-  font-size: var(--vf-font-size-h4-mobile);
+  h4 {
+    font-size: var(--vf-font-size-h4-mobile);
+  }
 
-  &.vf-static-tag-sm {
+  &.vf-static-tag-sm h4 {
     font-size: var(--vf-font-size-h4-mobile-sm);
   }
 
-  &.vf-static-tag-lg {
+  &.vf-static-tag-lg h4 {
     font-size: var(--vf-font-size-h4-mobile-lg);
   }
 }
 
 @media (min-width: $md-breakpoint) {
   .vf-static-tag-h1 {
-    font-size: var(--vf-font-size-h1);
+    h1 {
+      font-size: var(--vf-font-size-h1);
+    }
 
-    &.vf-static-tag-sm {
+    &.vf-static-tag-sm h1 {
       font-size: var(--vf-font-size-h1-sm);
     }
 
-    &.vf-static-tag-lg {
+    &.vf-static-tag-lg h1 {
       font-size: var(--vf-font-size-h1-lg);
     }
   }
 
   .vf-static-tag-h2 {
-    font-size: var(--vf-font-size-h2);
+    h2 {
+      font-size: var(--vf-font-size-h2);
+    }
 
-    &.vf-static-tag-sm {
+    &.vf-static-tag-sm h2 {
       font-size: var(--vf-font-size-h2-sm);
     }
 
-    &.vf-static-tag-lg {
+    &.vf-static-tag-lg h2 {
       font-size: var(--vf-font-size-h2-lg);
     }
   }
-  
-  .vf-static-tag-h3 {
-    font-size: var(--vf-font-size-h3);
 
-    &.vf-static-tag-sm {
+  .vf-static-tag-h3 {
+    h3 {
+      font-size: var(--vf-font-size-h3);
+    }
+
+    &.vf-static-tag-sm h3 {
       font-size: var(--vf-font-size-h3-sm);
     }
 
-    &.vf-static-tag-lg {
+    &.vf-static-tag-lg h3 {
       font-size: var(--vf-font-size-h3-lg);
     }
   }
 
   .vf-static-tag-h4 {
-    font-size: var(--vf-font-size-h4);
+    h4 {
+      font-size: var(--vf-font-size-h4);
+    }
 
-    &.vf-static-tag-sm {
+    &.vf-static-tag-sm h4 {
       font-size: var(--vf-font-size-h4-sm);
     }
 
-    &.vf-static-tag-lg {
+    &.vf-static-tag-lg h4 {
       font-size: var(--vf-font-size-h4-lg);
     }
   }
