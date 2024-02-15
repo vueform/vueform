@@ -1,4 +1,4 @@
-*, :before, :after, :root {
+:root {
   --vf-primary: #07bf9b;
   --vf-primary-darker: #06ac8b;
   --vf-danger: #ef4444;
@@ -16,6 +16,17 @@
   --vf-gray-700: #374151;
   --vf-gray-800: #1f2937;
   --vf-gray-900: #111827;
+
+  --vf-dark-50: #f9fafb;
+  --vf-dark-100: #f3f4f6;
+  --vf-dark-200: #e5e7eb;
+  --vf-dark-300: #d1d5db;
+  --vf-dark-400: #9ca3af;
+  --vf-dark-500: #6b7280;
+  --vf-dark-600: #4b5563;
+  --vf-dark-700: #374151;
+  --vf-dark-800: #1f2937;
+  --vf-dark-900: #111827;
 
   --vf-ring-color: #07bf9b66;
   --vf-ring-width: 2px;
@@ -204,53 +215,53 @@
   --vf-bg-input-danger: var(--vf-bg-input);
   --vf-bg-input-success: var(--vf-bg-input);
   --vf-bg-disabled: var(--vf-gray-200);
-  --vf-bg-selected: rgba(17,24,39,0.05); // Used eg. when select option is hovered or a checkbox is selected in `blocks` view
+  --vf-bg-selected: var(--vf-gray-100); // Used eg. when select option is hovered or a checkbox is selected in `blocks` view
   --vf-bg-passive: var(--vf-gray-300); // Used as a background color for eg. slider, toggle
   --vf-bg-icon: var(--vf-gray-500);
   --vf-bg-danger: var(--vf-danger-lighter);
   --vf-bg-success: var(--vf-success-lighter);
+  --vf-bg-addon: transparent;
   --vf-bg-tag: var(--vf-primary);
   --vf-bg-slider-handle: var(--vf-primary);
   --vf-bg-toggle-handle: #ffffff;
   --vf-bg-date-head: var(--vf-gray-100);
-  --vf-bg-addon: transparent;
   --vf-bg-btn: var(--vf-primary);
   --vf-bg-btn-danger: var(--vf-danger);
   --vf-bg-btn-secondary: var(--vf-gray-200);
 
+  --vf-color-on-primary: #ffffff; // Used when text is displayed on primary color
   --vf-color-input: var(--vf-gray-800);
   --vf-color-input-hover: var(--vf-color-input);
   --vf-color-input-focus: var(--vf-color-input);
   --vf-color-input-danger: var(--vf-color-input);
   --vf-color-input-success: var(--vf-color-input);
-  --vf-color-disabled: var(--vf-gray-400);
   --vf-color-placeholder: var(--vf-gray-300);
+  --vf-color-disabled: var(--vf-gray-400);
   --vf-color-passive: var(--vf-gray-700); // Used when text is displayed on passive background eg. `off` toggle
   --vf-color-muted: var(--vf-gray-500); // Used for helper texts eg. element description, floating label
   --vf-color-floating: var(--vf-color-muted);
   --vf-color-floating-focus: var(--vf-color-floating); // Used when the input is focused
   --vf-color-floating-success: var(--vf-color-floating); // Used when the input is filled with success
   --vf-color-floating-danger: var(--vf-color-floating); // Used when the input has error
-  --vf-color-on-primary: #ffffff; // Used when text is displayed on primary color
   --vf-color-danger: var(--vf-danger);
   --vf-color-success: var(--vf-success);
-  --vf-color-tag: var(--vf-color-on-primary);
   --vf-color-addon: var(--vf-color-input);
+  --vf-color-tag: var(--vf-color-on-primary);
   --vf-color-date-head: var(--vf-gray-700);
   --vf-color-btn: var(--vf-color-on-primary);
   --vf-color-btn-danger: #ffffff;
   --vf-color-btn-secondary: var(--vf-gray-700);
 
   --vf-border-color-input: var(--vf-gray-300);
-  --vf-border-color-input-hover: var(--vf-border-color-input);
   --vf-border-color-input-focus: var(--vf-primary);
+  --vf-border-color-input-hover: var(--vf-border-color-input);
   --vf-border-color-input-danger: var(--vf-border-color-input);
   --vf-border-color-input-success: var(--vf-border-color-input);
   --vf-border-color-checked: var(--vf-primary);
-  --vf-border-color-passive: var(--vf-gray-300); // Used as a border for passive states eg. `off` toggle
-  --vf-border-color-slider-tooltip: var(--vf-primary);
-  --vf-border-color-tag: var(--vf-primary);
   --vf-border-color-btn: var(--vf-primary);
+  --vf-border-color-tag: var(--vf-primary);
+  --vf-border-color-slider-tooltip: var(--vf-primary);
+  --vf-border-color-passive: var(--vf-gray-300); // Used as a border for passive states eg. `off` toggle
   --vf-border-color-btn-danger: var(--vf-danger);
   --vf-border-color-btn-secondary: var(--vf-gray-200);
   --vf-border-color-blockquote: var(--vf-gray-300);
@@ -359,4 +370,73 @@
   --vf-slider-tooltip-arrow-size: 0.3125rem;
   --vf-slider-tooltip-arrow-size-sm: var(--vf-slider-tooltip-arrow-size);
   --vf-slider-tooltip-arrow-size-lg: var(--vf-slider-tooltip-arrow-size);
+}
+
+.dark {
+  --vf-bg-input: var(--vf-dark-800);
+  --vf-bg-input-hover: var(--vf-bg-input);
+  --vf-bg-input-focus: var(--vf-bg-input);
+  --vf-bg-input-danger: var(--vf-bg-input);
+  --vf-bg-input-success: var(--vf-bg-input);
+  --vf-bg-disabled: var(--vf-dark-700);
+  --vf-bg-selected: var(--vf-dark-700); // Used eg. when select option is hovered or a checkbox is selected in `blocks` view
+  --vf-bg-passive: var(--vf-dark-700); // Used as a background color for eg. slider, toggle
+  --vf-bg-icon: var(--vf-dark-400);
+  --vf-bg-danger: var(--vf-danger-lighter);
+  --vf-bg-success: var(--vf-success-lighter);
+  --vf-bg-addon: transparent;
+  --vf-bg-tag: var(--vf-primary);
+  --vf-bg-slider-handle: var(--vf-primary);
+  --vf-bg-toggle-handle: #ffffff;
+  --vf-bg-date-head: var(--vf-dark-700);
+  --vf-bg-btn: var(--vf-primary);
+  --vf-bg-btn-danger: var(--vf-danger);
+  --vf-bg-btn-secondary: var(--vf-dark-700);
+
+  --vf-color-on-primary: #ffffff; // Used when text is displayed on primary color
+  --vf-color-input: var(--vf-dark-100);
+  --vf-color-input-hover: var(--vf-color-input);
+  --vf-color-input-focus: var(--vf-color-input);
+  --vf-color-input-danger: var(--vf-color-input);
+  --vf-color-input-success: var(--vf-color-input);
+  --vf-color-placeholder: var(--vf-dark-500);
+  --vf-color-disabled: var(--vf-dark-500);
+  --vf-color-passive: var(--vf-dark-900); // Used when text is displayed on passive background eg. `off` toggle
+  --vf-color-muted: var(--vf-dark-500); // Used for helper texts eg. element description, floating label
+  --vf-color-floating: var(--vf-color-muted);
+  --vf-color-floating-focus: var(--vf-color-floating); // Used when the input is focused
+  --vf-color-floating-success: var(--vf-color-floating); // Used when the input is filled with success
+  --vf-color-floating-danger: var(--vf-color-floating); // Used when the input has error
+  --vf-color-danger: var(--vf-danger);
+  --vf-color-success: var(--vf-success);
+  --vf-color-addon: initial;
+  --vf-color-tag: var(--vf-color-on-primary);
+  --vf-color-date-head: var(--vf-dark-200);
+  --vf-color-btn: var(--vf-color-on-primary);
+  --vf-color-btn-danger: #ffffff;
+  --vf-color-btn-secondary: var(--vf-dark-300);
+
+  --vf-border-color-input: var(--vf-dark-800);
+  --vf-border-color-input-focus: var(--vf-primary);
+  --vf-border-color-input-hover: var(--vf-border-color-input);
+  --vf-border-color-input-danger: var(--vf-border-color-input);
+  --vf-border-color-input-success: var(--vf-border-color-input);
+  --vf-border-color-checked: var(--vf-primary);
+  --vf-border-color-btn: var(--vf-primary);
+  --vf-border-color-tag: var(--vf-primary);
+  --vf-border-color-slider-tooltip: var(--vf-primary);
+  --vf-border-color-passive: var(--vf-dark-700); // Used as a border for passive states eg. `off` toggle
+  --vf-border-color-btn-danger: var(--vf-danger);
+  --vf-border-color-btn-secondary: var(--vf-dark-700);
+  --vf-border-color-blockquote: var(--vf-dark-700);
+  --vf-border-color-hr: var(--vf-dark-700);
+
+  --vf-shadow-input: 0px 0px 0px 0px rgba(0,0,0,0);
+  --vf-shadow-input-hover: 0px 0px 0px 0px rgba(0,0,0,0);
+  --vf-shadow-input-focus: 0px 0px 0px 0px rgba(0,0,0,0);
+  --vf-shadow-handles: 0px 0px 0px 0px rgba(0,0,0,0);
+  --vf-shadow-handles-hover: 0px 0px 0px 0px rgba(0,0,0,0);
+  --vf-shadow-handles-focus: 0px 0px 0px 0px rgba(0,0,0,0);
+  --vf-shadow-btn: 0px 0px 0px 0px rgba(0,0,0,0);
+  --vf-shadow-dropdown: 0px 0px 0px 0px rgba(0,0,0,0);
 }
