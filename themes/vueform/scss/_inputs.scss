@@ -42,6 +42,7 @@
     transition: color .2s ease-in-out;
     min-height: 100%;
     border-radius: var(--vf-radius-input);
+    color: var(--vf-color-input);
 
     &:-webkit-autofill,
     &:-webkit-autofill:hover, 
