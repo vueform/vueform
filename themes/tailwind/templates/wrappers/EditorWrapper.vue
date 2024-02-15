@@ -34,7 +34,7 @@ import EditorWrapper from './../../../blank/templates/wrappers/EditorWrapper.vue
     .trix-button {
       position: relative;
       margin-bottom: 0.25rem;
-      color: var(--vf-gray-700);
+      color: var(--vf-bg-icon);
       padding-left: 0.5rem;
       padding-right: 0.5rem;
       outline: none;
@@ -205,24 +205,24 @@ import EditorWrapper from './../../../blank/templates/wrappers/EditorWrapper.vue
       line-height: 1rem;
       padding: 1rem 0.625rem;
       background-color: var(--vf-bg-input);
-      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-      border-top-width: 2px;
-      border-color: var(--vf-gray-300);
+      box-shadow: 0 0px 15px 0px rgba(0, 0, 0, 0.3);
+      margin-top: 0.375rem;
       border-radius: 0.25rem;
       z-index: 2;
     }
 
     .trix-input--dialog {
       padding: 0.375rem 0.75rem;
-      border: 1px solid var(--vf-gray-300);
+      border: 1px solid var(--vf-border-color-input);
       border-radius: 0.25rem;
       margin-right: 0.5rem;
       font-size: 0.75rem;
       line-height: 1rem;
+      background: var(--vf-bg-input);
 
       &:focus {
-        box-shadow: var(--vf-ring-shadow);
-        border-color: var(--vf-ring-border-color);
+
+        outline: var(--vf-ring-width) solid var(--vf-ring-color) !important;
       }
 
       &.validate:invalid {
@@ -233,7 +233,7 @@ import EditorWrapper from './../../../blank/templates/wrappers/EditorWrapper.vue
     .trix-button--dialog {
       padding: 0.5rem;
       border-left-width: 1px;
-      border-color: var(--vf-gray-300);
+      border-color: var(--vf-border-color-input);
       background-color: transparent;
       border-radius: 0;
 
@@ -354,11 +354,7 @@ import EditorWrapper from './../../../blank/templates/wrappers/EditorWrapper.vue
       border-width: 0;
       appearance: none;
       outline: 0;
-
-      &:focus {
-        border-color: var(--vf-gray-200);
-        box-shadow: none;
-      }
+      background: var(--vf-bg-input);
     }
 
     .attachment__toolbar {
@@ -383,7 +379,7 @@ import EditorWrapper from './../../../blank/templates/wrappers/EditorWrapper.vue
       padding-right: 0.75rem;
       margin: 0;
       background-color: transparent;
-      color: var(--vf-gray-500);
+      color: var(--vf-bg-icon);
       font-size: 0.875rem;
       line-height: 1.25rem;
       white-space: nowrap;
@@ -756,6 +752,17 @@ import EditorWrapper from './../../../blank/templates/wrappers/EditorWrapper.vue
   [class*="form-editor-hide-redo"] {
     .trix-button--icon-redo {
       display: none;
+    }
+  }
+
+  .dark .trix-content,
+  .dark trix-editor {
+    blockquote {
+      border-color: var(--vf-dark-700);
+    }
+
+    pre {
+      background-color: var(--vf-dark-900);
     }
   }
 </style>

@@ -120,7 +120,7 @@ const vueform = plugin((context) => {
       },
     },
     {
-      base: [':root', '*', '::before', '::after'],
+      base: [':root'],
       styles: {
         '--vf-primary': theme('form.primary'),
         '--vf-primary-darker': theme('form.primaryDarker') === null
@@ -149,6 +149,17 @@ const vueform = plugin((context) => {
         '--vf-gray-700': theme('form.grays.700'),
         '--vf-gray-800': theme('form.grays.800'),
         '--vf-gray-900': theme('form.grays.900'),
+
+        '--vf-dark-50': theme('form.darks.50'),
+        '--vf-dark-100': theme('form.darks.100'),
+        '--vf-dark-200': theme('form.darks.200'),
+        '--vf-dark-300': theme('form.darks.300'),
+        '--vf-dark-400': theme('form.darks.400'),
+        '--vf-dark-500': theme('form.darks.500'),
+        '--vf-dark-600': theme('form.darks.600'),
+        '--vf-dark-700': theme('form.darks.700'),
+        '--vf-dark-800': theme('form.darks.800'),
+        '--vf-dark-900': theme('form.darks.900'),
 
         '--vf-font-size': Array.isArray(theme('form.fontSize.base')) ? theme('form.fontSize.base')[0] : theme('form.fontSize.base'),
         '--vf-font-size-sm': Array.isArray(theme('form.fontSize.sm')) ? theme('form.fontSize.sm')[0] : theme('form.fontSize.sm'),
@@ -475,6 +486,83 @@ const vueform = plugin((context) => {
         '--vf-slider-tooltip-arrow-size': theme('form.sliderTooltipArrowSize.base'),
         '--vf-slider-tooltip-arrow-size-sm': theme('form.sliderTooltipArrowSize.sm'),
         '--vf-slider-tooltip-arrow-size-lg': theme('form.sliderTooltipArrowSize.lg'),
+      }
+    },
+    {
+      base: ['.dark'],
+      styles: {
+        '--vf-danger': theme('form.danger'),
+        '--vf-danger-lighter': theme('form.dangerLighter'),
+
+        '--vf-success': theme('form.success'),
+        '--vf-success-lighter': theme('form.successLighter'),
+
+        '--vf-bg-input': theme('form.bgColorsDark.input'),
+        '--vf-bg-input-hover': theme('form.bgColorsDark.inputHover'),
+        '--vf-bg-input-focus': theme('form.bgColorsDark.inputFocus'),
+        '--vf-bg-input-danger': theme('form.bgColorsDark.inputDanger'),
+        '--vf-bg-input-success': theme('form.bgColorsDark.inputSuccess'),
+        '--vf-bg-disabled': theme('form.bgColorsDark.disabled'),
+        '--vf-bg-selected': theme('form.bgColorsDark.selected'),
+        '--vf-bg-passive': theme('form.bgColorsDark.passive'),
+        '--vf-bg-icon': theme('form.bgColorsDark.icon'),
+        '--vf-bg-danger': theme('form.bgColorsDark.danger'),
+        '--vf-bg-success': theme('form.bgColorsDark.success'),
+        '--vf-bg-tag': theme('form.bgColorsDark.tag'),
+        '--vf-bg-slider-handle': theme('form.bgColorsDark.sliderHandle'),
+        '--vf-bg-toggle-handle': theme('form.bgColorsDark.toggleHandle'),
+        '--vf-bg-date-head': theme('form.bgColorsDark.dateHead'),
+        '--vf-bg-addon': theme('form.bgColorsDark.addon'),
+        '--vf-bg-btn': theme('form.bgColorsDark.btn'),
+        '--vf-bg-btn-danger': theme('form.bgColorsDark.btnDanger'),
+        '--vf-bg-btn-secondary': theme('form.bgColorsDark.btnSecondary'),
+
+        '--vf-color-input': theme('form.textColorsDark.input'),
+        '--vf-color-input-hover': theme('form.textColorsDark.inputHover'),
+        '--vf-color-input-focus': theme('form.textColorsDark.inputFocus'),
+        '--vf-color-input-danger': theme('form.textColorsDark.inputDanger'),
+        '--vf-color-input-success': theme('form.textColorsDark.inputSuccess'),
+        '--vf-color-disabled': theme('form.textColorsDark.disabled'),
+        '--vf-color-placeholder': theme('form.textColorsDark.placeholder'),
+        '--vf-color-passive': theme('form.textColorsDark.passive'),
+        '--vf-color-muted': theme('form.textColorsDark.muted'),
+        '--vf-color-floating': theme('form.textColorsDark.floating'),
+        '--vf-color-floating-focus': theme('form.textColorsDark.floatingFocus'),
+        '--vf-color-floating-success': theme('form.textColorsDark.floatingSuccess'),
+        '--vf-color-floating-danger': theme('form.textColorsDark.floatingDanger'),
+        '--vf-color-on-primary': theme('form.textColorsDark.onPrimary'),
+        '--vf-color-danger': theme('form.textColorsDark.danger'),
+        '--vf-color-success': theme('form.textColorsDark.success'),
+        '--vf-color-tag': theme('form.textColorsDark.tag'),
+        '--vf-color-addon': theme('form.textColorsDark.addon'),
+        '--vf-color-date-head': theme('form.textColorsDark.dateHead'),
+        '--vf-color-btn': theme('form.textColorsDark.btn'),
+        '--vf-color-btn-danger': theme('form.textColorsDark.btnDanger'),
+        '--vf-color-btn-secondary': theme('form.textColorsDark.btnSecondary'),
+
+        '--vf-border-color-input': theme('form.borderColorsDark.input'),
+        '--vf-border-color-input-hover': theme('form.borderColorsDark.inputHover'),
+        '--vf-border-color-input-focus': theme('form.borderColorsDark.inputFocus'),
+        '--vf-border-color-input-danger': theme('form.borderColorsDark.inputDanger'),
+        '--vf-border-color-input-success': theme('form.borderColorsDark.inputSuccess'),
+        '--vf-border-color-checked': theme('form.borderColorsDark.checked'),
+        '--vf-border-color-passive': theme('form.borderColorsDark.passive'),
+        '--vf-border-color-slider-tooltip': theme('form.borderColorsDark.sliderTooltip'),
+        '--vf-border-color-tag': theme('form.borderColorsDark.tag'),
+        '--vf-border-color-btn': theme('form.borderColorsDark.btn'),
+        '--vf-border-color-btn-danger': theme('form.borderColorsDark.btnDanger'),
+        '--vf-border-color-btn-secondary': theme('form.borderColorsDark.btnSecondary'),
+        '--vf-border-color-blockquote': theme('form.borderColorsDark.blockquote'),
+        '--vf-border-color-hr': theme('form.borderColorsDark.hr'),
+
+        '--vf-shadow-input': theme('form.shadowsDark.input'),
+        '--vf-shadow-input-hover': theme('form.shadowsDark.inputHover'),
+        '--vf-shadow-input-focus': theme('form.shadowsDark.inputFocus'),
+        '--vf-shadow-handles': theme('form.shadowsDark.handles'),
+        '--vf-shadow-handles-hover': theme('form.shadowsDark.handlesHover'),
+        '--vf-shadow-handles-focus': theme('form.shadowsDark.handlesFocus'),
+        '--vf-shadow-btn': theme('form.shadowsDark.btn'),
+        '--vf-shadow-dropdown': theme('form.shadowsDark.dropdown'),
       }
     }
   ]
@@ -1360,6 +1448,9 @@ const vueform = plugin((context) => {
     '.form-bg-input': {
       backgroundColor: 'var(--vf-bg-input)'
     },
+    '.form-bg-input-color': {
+      backgroundColor: 'var(--vf-color-input)'
+    },
     '.form-bg-input-success': {
       backgroundColor: 'var(--vf-bg-input-success)'
     },
@@ -1622,7 +1713,7 @@ const vueform = plugin((context) => {
           width: '0.5rem',
           height: '0.5rem',
           position: 'absolute',
-          background: '#ffffff',
+          background: 'var(--vf-color-on-primary)',
           borderRadius: '50%',
           left: 'calc(50% - 0.25rem)',
           transform: 'scale(0)',
@@ -2282,6 +2373,7 @@ const vueform = plugin((context) => {
         linkDecoration: 'none',
 
         grays: theme('colors.gray'),
+        darks: theme('colors.gray'),
 
         fontSize: {
           base: theme('fontSize.base'),
@@ -2629,7 +2721,7 @@ const vueform = plugin((context) => {
           inputDanger: 'var(--vf-bg-input)',
           inputSuccess: 'var(--vf-bg-input)',
           disabled: 'var(--vf-gray-200)',
-          selected: 'rgba(17,24,39,0.05)', // Option hover, cbgroup blocks selected
+          selected: 'var(--vf-gray-100)', // Option hover, cbgroup blocks selected
           passive: 'var(--vf-gray-300)',
           icon: 'var(--vf-gray-500)',
           danger: 'var(--vf-danger-lighter)',
@@ -2687,6 +2779,81 @@ const vueform = plugin((context) => {
         },
 
         shadows: {
+          input: '0px 0px 0px 0px rgba(0,0,0,0)',
+          inputHover: 'var(--vf-shadow-input)',
+          inputFocus: 'var(--vf-shadow-input)',
+          handles: '0px 0px 0px 0px rgba(0,0,0,0)',
+          handlesHover: 'var(--vf-shadow-input-hover)',
+          handlesFocus: 'var(--vf-shadow-input-focus)',
+          btn: 'var(--vf-shadow-input)',
+          dropdown: 'var(--vf-shadow-input)',
+        },
+
+        bgColorsDark: {
+          input: 'var(--vf-dark-800)',
+          inputHover: 'var(--vf-bg-input)',
+          inputFocus: 'var(--vf-bg-input)',
+          inputDanger: 'var(--vf-bg-input)',
+          inputSuccess: 'var(--vf-bg-input)',
+          disabled: 'var(--vf-dark-700)',
+          selected: 'var(--vf-dark-700)', // Option hover, cbgroup blocks selected
+          passive: 'var(--vf-dark-700)',
+          icon: 'var(--vf-dark-400)',
+          danger: 'var(--vf-danger-lighter)',
+          success: 'var(--vf-success-lighter)',
+          addon: 'transparent',
+          tag: 'var(--vf-primary)',
+          sliderHandle: 'var(--vf-primary)',
+          toggleHandle: '#ffffff',
+          dateHead: 'var(--vf-dark-700)',
+          btn: 'var(--vf-primary)',
+          btnDanger: 'var(--vf-danger)',
+          btnSecondary: 'var(--vf-dark-700)',
+        },
+
+        textColorsDark: {
+          onPrimary: '#ffffff',
+          input: 'var(--vf-dark-100)',
+          inputHover: 'var(--vf-color-input)',
+          inputFocus: 'var(--vf-color-input)',
+          inputDanger: 'var(--vf-color-input)',
+          inputSuccess: 'var(--vf-color-input)',
+          placeholder: 'var(--vf-dark-500)',
+          disabled: 'var(--vf-dark-500)',
+          passive: 'var(--vf-dark-900)',
+          muted: 'var(--vf-dark-500)',
+          floating: 'var(--vf-color-muted)',
+          floatingFocus: 'var(--vf-color-floating)',
+          floatingSuccess: 'var(--vf-color-floating)',
+          floatingDanger: 'var(--vf-color-floating)',
+          danger: 'var(--vf-danger)',
+          success: 'var(--vf-success)',
+          addon: 'initial',
+          tag: 'var(--vf-color-on-primary)',
+          dateHead: 'var(--vf-dark-200)',
+          btn: 'var(--vf-color-on-primary)',
+          btnDanger: '#ffffff',
+          btnSecondary: 'var(--vf-dark-300)',
+        },
+
+        borderColorsDark: {
+          input: 'var(--vf-dark-800)',
+          inputFocus: 'var(--vf-primary)',
+          inputHover: 'var(--vf-border-color-input)',
+          inputDanger: 'var(--vf-border-color-input)',
+          inputSuccess: 'var(--vf-border-color-input)',
+          checked: 'var(--vf-primary)', // applies to checkbox & radio
+          btn: 'var(--vf-primary)',
+          tag: 'var(--vf-primary)',
+          sliderTooltip: 'var(--vf-primary)',
+          passive: 'var(--vf-dark-700)',
+          btnDanger: 'var(--vf-danger)',
+          btnSecondary: 'var(--vf-dark-700)',
+          blockquote: 'var(--vf-dark-700)',
+          hr: 'var(--vf-dark-700)',
+        },
+
+        shadowsDark: {
           input: '0px 0px 0px 0px rgba(0,0,0,0)',
           inputHover: 'var(--vf-shadow-input)',
           inputFocus: 'var(--vf-shadow-input)',
