@@ -134,6 +134,12 @@ const files = [
     input: 'themes/vueform/scss/index.scss',
     output: 'dist/vueform.css',
   },
+  {
+    type: 'style',
+    minimize: true,
+    input: 'themes/vueform/scss/nodark.scss',
+    output: 'dist/vueform.nodark.css',
+  },
 
   // To keep backward compatibility after 1.7
   {
@@ -147,6 +153,12 @@ const files = [
     minimize: true,
     input: 'themes/vueform/scss/index.scss',
     output: 'themes/vueform/css/index.min.css',
+  },
+  {
+    type: 'style',
+    minimize: true,
+    input: 'themes/vueform/scss/nodark.scss',
+    output: 'themes/vueform/css/nodark.min.css',
   },
   {
     type: 'style',

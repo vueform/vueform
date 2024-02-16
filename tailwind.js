@@ -52,13 +52,18 @@ const upperFirst = (string) => {
 }
 
 const vueform = plugin((context) => {
-  const { theme, addBase, addUtilities, addVariant, e } = context
+  const { theme, addBase, addUtilities, addVariant, e, config } = context
   const prefix = context.matchComponents === undefined ? context.prefix : s => s
   const version = context.matchComponents === undefined ? 2 : 3
+  const vfDarkMode = typeof config === 'function' && config()?.vfDarkMode === false ? false : true
+  const darkMode = typeof config === 'function' && config()?.darkMode ? config()?.darkMode : false
+
+  const darkModeSelector = darkMode === 'class' ? '.dark' : (
+    Array.isArray(darkMode) ? darkMode[1] : '@media (prefers-color-scheme: dark)'
+  )
 
   // Testing output
-  // const file = fs.readFileSync(path.resolve(__dirname, './tw.txt'))
-  // fs.writeFileSync(path.resolve(__dirname, './tw.txt'), file + '\n' + version.toString() + '\n' + JSON.stringify(Object.keys(context).sort()))
+  // fs.writeFileSync(path.resolve(__dirname, './tw.txt'),  ? 'a' : 'b')
 
   const rules = [
     {
@@ -488,84 +493,91 @@ const vueform = plugin((context) => {
         '--vf-slider-tooltip-arrow-size-lg': theme('form.sliderTooltipArrowSize.lg'),
       }
     },
-    {
-      base: ['.dark'],
-      styles: {
-        '--vf-danger': theme('form.danger'),
-        '--vf-danger-lighter': theme('form.dangerLighter'),
-
-        '--vf-success': theme('form.success'),
-        '--vf-success-lighter': theme('form.successLighter'),
-
-        '--vf-bg-input': theme('form.bgColorsDark.input'),
-        '--vf-bg-input-hover': theme('form.bgColorsDark.inputHover'),
-        '--vf-bg-input-focus': theme('form.bgColorsDark.inputFocus'),
-        '--vf-bg-input-danger': theme('form.bgColorsDark.inputDanger'),
-        '--vf-bg-input-success': theme('form.bgColorsDark.inputSuccess'),
-        '--vf-bg-disabled': theme('form.bgColorsDark.disabled'),
-        '--vf-bg-selected': theme('form.bgColorsDark.selected'),
-        '--vf-bg-passive': theme('form.bgColorsDark.passive'),
-        '--vf-bg-icon': theme('form.bgColorsDark.icon'),
-        '--vf-bg-danger': theme('form.bgColorsDark.danger'),
-        '--vf-bg-success': theme('form.bgColorsDark.success'),
-        '--vf-bg-tag': theme('form.bgColorsDark.tag'),
-        '--vf-bg-slider-handle': theme('form.bgColorsDark.sliderHandle'),
-        '--vf-bg-toggle-handle': theme('form.bgColorsDark.toggleHandle'),
-        '--vf-bg-date-head': theme('form.bgColorsDark.dateHead'),
-        '--vf-bg-addon': theme('form.bgColorsDark.addon'),
-        '--vf-bg-btn': theme('form.bgColorsDark.btn'),
-        '--vf-bg-btn-danger': theme('form.bgColorsDark.btnDanger'),
-        '--vf-bg-btn-secondary': theme('form.bgColorsDark.btnSecondary'),
-
-        '--vf-color-input': theme('form.textColorsDark.input'),
-        '--vf-color-input-hover': theme('form.textColorsDark.inputHover'),
-        '--vf-color-input-focus': theme('form.textColorsDark.inputFocus'),
-        '--vf-color-input-danger': theme('form.textColorsDark.inputDanger'),
-        '--vf-color-input-success': theme('form.textColorsDark.inputSuccess'),
-        '--vf-color-disabled': theme('form.textColorsDark.disabled'),
-        '--vf-color-placeholder': theme('form.textColorsDark.placeholder'),
-        '--vf-color-passive': theme('form.textColorsDark.passive'),
-        '--vf-color-muted': theme('form.textColorsDark.muted'),
-        '--vf-color-floating': theme('form.textColorsDark.floating'),
-        '--vf-color-floating-focus': theme('form.textColorsDark.floatingFocus'),
-        '--vf-color-floating-success': theme('form.textColorsDark.floatingSuccess'),
-        '--vf-color-floating-danger': theme('form.textColorsDark.floatingDanger'),
-        '--vf-color-on-primary': theme('form.textColorsDark.onPrimary'),
-        '--vf-color-danger': theme('form.textColorsDark.danger'),
-        '--vf-color-success': theme('form.textColorsDark.success'),
-        '--vf-color-tag': theme('form.textColorsDark.tag'),
-        '--vf-color-addon': theme('form.textColorsDark.addon'),
-        '--vf-color-date-head': theme('form.textColorsDark.dateHead'),
-        '--vf-color-btn': theme('form.textColorsDark.btn'),
-        '--vf-color-btn-danger': theme('form.textColorsDark.btnDanger'),
-        '--vf-color-btn-secondary': theme('form.textColorsDark.btnSecondary'),
-
-        '--vf-border-color-input': theme('form.borderColorsDark.input'),
-        '--vf-border-color-input-hover': theme('form.borderColorsDark.inputHover'),
-        '--vf-border-color-input-focus': theme('form.borderColorsDark.inputFocus'),
-        '--vf-border-color-input-danger': theme('form.borderColorsDark.inputDanger'),
-        '--vf-border-color-input-success': theme('form.borderColorsDark.inputSuccess'),
-        '--vf-border-color-checked': theme('form.borderColorsDark.checked'),
-        '--vf-border-color-passive': theme('form.borderColorsDark.passive'),
-        '--vf-border-color-slider-tooltip': theme('form.borderColorsDark.sliderTooltip'),
-        '--vf-border-color-tag': theme('form.borderColorsDark.tag'),
-        '--vf-border-color-btn': theme('form.borderColorsDark.btn'),
-        '--vf-border-color-btn-danger': theme('form.borderColorsDark.btnDanger'),
-        '--vf-border-color-btn-secondary': theme('form.borderColorsDark.btnSecondary'),
-        '--vf-border-color-blockquote': theme('form.borderColorsDark.blockquote'),
-        '--vf-border-color-hr': theme('form.borderColorsDark.hr'),
-
-        '--vf-shadow-input': theme('form.shadowsDark.input'),
-        '--vf-shadow-input-hover': theme('form.shadowsDark.inputHover'),
-        '--vf-shadow-input-focus': theme('form.shadowsDark.inputFocus'),
-        '--vf-shadow-handles': theme('form.shadowsDark.handles'),
-        '--vf-shadow-handles-hover': theme('form.shadowsDark.handlesHover'),
-        '--vf-shadow-handles-focus': theme('form.shadowsDark.handlesFocus'),
-        '--vf-shadow-btn': theme('form.shadowsDark.btn'),
-        '--vf-shadow-dropdown': theme('form.shadowsDark.dropdown'),
-      }
-    }
   ]
+
+  if (vfDarkMode) {
+    const darkVars = {
+      '--vf-danger': theme('form.danger'),
+      '--vf-danger-lighter': theme('form.dangerLighter'),
+
+      '--vf-success': theme('form.success'),
+      '--vf-success-lighter': theme('form.successLighter'),
+
+      '--vf-bg-input': theme('form.bgColorsDark.input'),
+      '--vf-bg-input-hover': theme('form.bgColorsDark.inputHover'),
+      '--vf-bg-input-focus': theme('form.bgColorsDark.inputFocus'),
+      '--vf-bg-input-danger': theme('form.bgColorsDark.inputDanger'),
+      '--vf-bg-input-success': theme('form.bgColorsDark.inputSuccess'),
+      '--vf-bg-disabled': theme('form.bgColorsDark.disabled'),
+      '--vf-bg-selected': theme('form.bgColorsDark.selected'),
+      '--vf-bg-passive': theme('form.bgColorsDark.passive'),
+      '--vf-bg-icon': theme('form.bgColorsDark.icon'),
+      '--vf-bg-danger': theme('form.bgColorsDark.danger'),
+      '--vf-bg-success': theme('form.bgColorsDark.success'),
+      '--vf-bg-tag': theme('form.bgColorsDark.tag'),
+      '--vf-bg-slider-handle': theme('form.bgColorsDark.sliderHandle'),
+      '--vf-bg-toggle-handle': theme('form.bgColorsDark.toggleHandle'),
+      '--vf-bg-date-head': theme('form.bgColorsDark.dateHead'),
+      '--vf-bg-addon': theme('form.bgColorsDark.addon'),
+      '--vf-bg-btn': theme('form.bgColorsDark.btn'),
+      '--vf-bg-btn-danger': theme('form.bgColorsDark.btnDanger'),
+      '--vf-bg-btn-secondary': theme('form.bgColorsDark.btnSecondary'),
+
+      '--vf-color-input': theme('form.textColorsDark.input'),
+      '--vf-color-input-hover': theme('form.textColorsDark.inputHover'),
+      '--vf-color-input-focus': theme('form.textColorsDark.inputFocus'),
+      '--vf-color-input-danger': theme('form.textColorsDark.inputDanger'),
+      '--vf-color-input-success': theme('form.textColorsDark.inputSuccess'),
+      '--vf-color-disabled': theme('form.textColorsDark.disabled'),
+      '--vf-color-placeholder': theme('form.textColorsDark.placeholder'),
+      '--vf-color-passive': theme('form.textColorsDark.passive'),
+      '--vf-color-muted': theme('form.textColorsDark.muted'),
+      '--vf-color-floating': theme('form.textColorsDark.floating'),
+      '--vf-color-floating-focus': theme('form.textColorsDark.floatingFocus'),
+      '--vf-color-floating-success': theme('form.textColorsDark.floatingSuccess'),
+      '--vf-color-floating-danger': theme('form.textColorsDark.floatingDanger'),
+      '--vf-color-on-primary': theme('form.textColorsDark.onPrimary'),
+      '--vf-color-danger': theme('form.textColorsDark.danger'),
+      '--vf-color-success': theme('form.textColorsDark.success'),
+      '--vf-color-tag': theme('form.textColorsDark.tag'),
+      '--vf-color-addon': theme('form.textColorsDark.addon'),
+      '--vf-color-date-head': theme('form.textColorsDark.dateHead'),
+      '--vf-color-btn': theme('form.textColorsDark.btn'),
+      '--vf-color-btn-danger': theme('form.textColorsDark.btnDanger'),
+      '--vf-color-btn-secondary': theme('form.textColorsDark.btnSecondary'),
+
+      '--vf-border-color-input': theme('form.borderColorsDark.input'),
+      '--vf-border-color-input-hover': theme('form.borderColorsDark.inputHover'),
+      '--vf-border-color-input-focus': theme('form.borderColorsDark.inputFocus'),
+      '--vf-border-color-input-danger': theme('form.borderColorsDark.inputDanger'),
+      '--vf-border-color-input-success': theme('form.borderColorsDark.inputSuccess'),
+      '--vf-border-color-checked': theme('form.borderColorsDark.checked'),
+      '--vf-border-color-passive': theme('form.borderColorsDark.passive'),
+      '--vf-border-color-slider-tooltip': theme('form.borderColorsDark.sliderTooltip'),
+      '--vf-border-color-tag': theme('form.borderColorsDark.tag'),
+      '--vf-border-color-btn': theme('form.borderColorsDark.btn'),
+      '--vf-border-color-btn-danger': theme('form.borderColorsDark.btnDanger'),
+      '--vf-border-color-btn-secondary': theme('form.borderColorsDark.btnSecondary'),
+      '--vf-border-color-blockquote': theme('form.borderColorsDark.blockquote'),
+      '--vf-border-color-hr': theme('form.borderColorsDark.hr'),
+
+      '--vf-shadow-input': theme('form.shadowsDark.input'),
+      '--vf-shadow-input-hover': theme('form.shadowsDark.inputHover'),
+      '--vf-shadow-input-focus': theme('form.shadowsDark.inputFocus'),
+      '--vf-shadow-handles': theme('form.shadowsDark.handles'),
+      '--vf-shadow-handles-hover': theme('form.shadowsDark.handlesHover'),
+      '--vf-shadow-handles-focus': theme('form.shadowsDark.handlesFocus'),
+      '--vf-shadow-btn': theme('form.shadowsDark.btn'),
+      '--vf-shadow-dropdown': theme('form.shadowsDark.dropdown'),
+    }
+
+    rules.push({
+      base: [darkModeSelector],
+      styles: darkModeSelector === '@media (prefers-color-scheme: dark)' ? {
+        ':root': darkVars
+      } : darkVars
+    })
+  }
   
   addBase(rules.map((rule) => {
     return { [rule.base]: rule.styles }
@@ -1771,7 +1783,7 @@ const vueform = plugin((context) => {
           left: '-100%',
         },
         a: {
-          color: 'var(--vf-color-passive)',
+          color: 'var(--vf-color-disabled)',
           '&:before': {
             background: 'var(--vf-bg-passive)',
           }
