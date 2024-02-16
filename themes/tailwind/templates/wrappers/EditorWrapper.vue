@@ -41,6 +41,8 @@ import EditorWrapper from './../../../blank/templates/wrappers/EditorWrapper.vue
       border-radius: 0.25rem;
       white-space: nowrap;
       float: left;
+      border: 0;
+      background: none;
 
       &.trix-active {
         background-color: var(--vf-bg-selected);
@@ -219,6 +221,7 @@ import EditorWrapper from './../../../blank/templates/wrappers/EditorWrapper.vue
       font-size: 0.75rem;
       line-height: 1rem;
       background: var(--vf-bg-input);
+      color: var(--vf-color-input);
 
       &:focus {
 
@@ -303,7 +306,7 @@ import EditorWrapper from './../../../blank/templates/wrappers/EditorWrapper.vue
     }
 
     [data-trix-mutable].attachment.attachment--file {
-      background-color: var(--vf-gray-100);
+      background-color: var(--vf-bg-selected);
     }
 
     [data-trix-mutable].attachment img {
@@ -355,6 +358,8 @@ import EditorWrapper from './../../../blank/templates/wrappers/EditorWrapper.vue
       appearance: none;
       outline: 0;
       background: var(--vf-bg-input);
+      color: var(--vf-color-input);
+      font-family: inherit;
     }
 
     .attachment__toolbar {
@@ -387,15 +392,6 @@ import EditorWrapper from './../../../blank/templates/wrappers/EditorWrapper.vue
       border-width: 0;
       outline: 0;
 
-      &.trix-active {
-        color: #000000;
-        background-color: var(--vf-gray-200);
-      }
-
-      &:not(.trix-active):hover {
-        background-color: var(--vf-gray-100);
-      }
-
       &:not(:disabled) {
         cursor: pointer;
       }
@@ -407,26 +403,28 @@ import EditorWrapper from './../../../blank/templates/wrappers/EditorWrapper.vue
       padding: 0;
       background-color: var(--vf-bg-input);
       line-height: 1.75rem;
+      border-color: var(--vf-color-selected);
       border-radius: 9999px;
       border-width: 1px;
-      border-color: var(--vf-gray-400);
       border-style: solid;
       outline: 0;
       text-indent: -9999px;
+      width: 24px;
+      height: 24px;
 
-      &:not(.trix-active):hover {
-        background-color: var(--vf-gray-100);
+      &:hover {
+        background-color: var(--vf-bg-selected);
       }
 
       &::before {
         content: "";
         display: inline-block;
         position: absolute;
-        top: 0.25rem;
-        right: 0.25rem;
-        bottom: 0.25rem;
-        left: 0.25rem;
-        background-color: var(--vf-gray-900);
+        top: 0.125rem;
+        right: 0.125rem;
+        bottom: 0.125rem;
+        left: 0.125rem;
+        background-color: var(--vf-color-input);
         opacity: 0.7;
         background-position: center;
         background-repeat: no-repeat;
@@ -438,14 +436,6 @@ import EditorWrapper from './../../../blank/templates/wrappers/EditorWrapper.vue
         -webkit-mask-size: contain;
         mask-image: theme('maskImage.form-remove-light');
         -webkit-mask-image: theme('maskImage.form-remove-light');
-
-        &:hover {
-          border-color: var(--vf-gray-700);
-
-          &::before {
-            opacity: 1;
-          }
-        }
       }
     }
 
@@ -522,6 +512,8 @@ import EditorWrapper from './../../../blank/templates/wrappers/EditorWrapper.vue
       padding-left: 0.625rem;
       border-left-width: 4px;
       border-color: var(--vf-gray-300);
+      border-left-style: solid;
+      margin: 0;
     }
 
     [dir=rtl] blockquote,
