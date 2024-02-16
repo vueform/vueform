@@ -39,13 +39,13 @@ const inputStates = {
 
 const checkboxStates = {
   default: ``
-    + `form-bg-input `
-    + `form-border-color-input `
-    + `hover:form-bg-input-hover `
-    + `hover:form-border-color-input-hover `
+    + `form-bg-checkbox `
+    + `form-border-color-checkbox `
+    + `hover:form-bg-checkbox-hover `
+    + `hover:form-border-color-checkbox-hover `
     + `hover:form-shadow-handles-hover `
-    + `focused:form-bg-input-focus `
-    + `focused:form-border-color-input-focus `
+    + `focused:form-bg-checkbox-focus `
+    + `focused:form-border-color-checkbox-focus `
     + `focused:form-shadow-handles-focus `
     + `focused-hover:form-shadow-handles-hover `
     + `checked:form-bg-primary `
@@ -55,13 +55,13 @@ const checkboxStates = {
     + `checked-focused:form-bg-primary`,
   disabled: ``
     + `form-bg-disabled `
-    + `form-border-color-input `
+    + `form-border-color-checkbox `
     + `opacity-50 `
     + `checked:form-bg-primary `
     + `checked:form-border-color-checked`,
   danger: ``
-    + `form-bg-input-danger `
-    + `form-border-color-input-danger `
+    + `form-bg-checkbox-danger `
+    + `form-border-color-checkbox-danger `
     + `hover:form-shadow-handles-hover `
     + `focused:form-shadow-handles-focus `
     + `focused-hover:form-shadow-handles-hover `

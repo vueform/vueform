@@ -6,6 +6,11 @@ $vf-dark-mode-selector: '.dark' !default;
   --vf-bg-input-focus: var(--vf-bg-input);
   --vf-bg-input-danger: var(--vf-bg-input);
   --vf-bg-input-success: var(--vf-bg-input);
+  --vf-bg-checkbox: var(--vf-dark-700);
+  --vf-bg-checkbox-hover: var(--vf-bg-checkbox);
+  --vf-bg-checkbox-focus: var(--vf-bg-checkbox);
+  --vf-bg-checkbox-danger: var(--vf-bg-checkbox);
+  --vf-bg-checkbox-success: var(--vf-bg-checkbox);
   --vf-bg-disabled: var(--vf-dark-700);
   --vf-bg-selected: var(--vf-dark-700); // Used eg. when select option is hovered or a checkbox is selected in `blocks` view
   --vf-bg-passive: var(--vf-dark-700); // Used as a background color for eg. slider, toggle
@@ -49,6 +54,11 @@ $vf-dark-mode-selector: '.dark' !default;
   --vf-border-color-input-hover: var(--vf-border-color-input);
   --vf-border-color-input-danger: var(--vf-border-color-input);
   --vf-border-color-input-success: var(--vf-border-color-input);
+  --vf-border-color-checkbox: var(--vf-border-color-input);
+  --vf-border-color-checkbox-focus: var(--vf-primary);
+  --vf-border-color-checkbox-hover: var(--vf-border-color-checkbox);
+  --vf-border-color-checkbox-danger: var(--vf-border-color-checkbox);
+  --vf-border-color-checkbox-success: var(--vf-border-color-checkbox);
   --vf-border-color-checked: var(--vf-primary);
   --vf-border-color-btn: var(--vf-primary);
   --vf-border-color-tag: var(--vf-primary);

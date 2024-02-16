@@ -337,6 +337,11 @@ const vueform = plugin((context) => {
         '--vf-bg-input-focus': theme('form.bgColors.inputFocus'),
         '--vf-bg-input-danger': theme('form.bgColors.inputDanger'),
         '--vf-bg-input-success': theme('form.bgColors.inputSuccess'),
+        '--vf-bg-checkbox': theme('form.bgColors.checkbox'),
+        '--vf-bg-checkbox-hover': theme('form.bgColors.checkboxHover'),
+        '--vf-bg-checkbox-focus': theme('form.bgColors.checkboxFocus'),
+        '--vf-bg-checkbox-danger': theme('form.bgColors.checkboxDanger'),
+        '--vf-bg-checkbox-success': theme('form.bgColors.checkboxSuccess'),
         '--vf-bg-disabled': theme('form.bgColors.disabled'),
         '--vf-bg-selected': theme('form.bgColors.selected'),
         '--vf-bg-passive': theme('form.bgColors.passive'),
@@ -380,6 +385,11 @@ const vueform = plugin((context) => {
         '--vf-border-color-input-focus': theme('form.borderColors.inputFocus'),
         '--vf-border-color-input-danger': theme('form.borderColors.inputDanger'),
         '--vf-border-color-input-success': theme('form.borderColors.inputSuccess'),
+        '--vf-border-color-checkbox': theme('form.borderColors.checkbox'),
+        '--vf-border-color-checkbox-hover': theme('form.borderColors.checkboxHover'),
+        '--vf-border-color-checkbox-focus': theme('form.borderColors.checkboxFocus'),
+        '--vf-border-color-checkbox-danger': theme('form.borderColors.checkboxDanger'),
+        '--vf-border-color-checkbox-success': theme('form.borderColors.checkboxSuccess'),
         '--vf-border-color-checked': theme('form.borderColors.checked'),
         '--vf-border-color-passive': theme('form.borderColors.passive'),
         '--vf-border-color-slider-tooltip': theme('form.borderColors.sliderTooltip'),
@@ -508,6 +518,11 @@ const vueform = plugin((context) => {
       '--vf-bg-input-focus': theme('form.bgColorsDark.inputFocus'),
       '--vf-bg-input-danger': theme('form.bgColorsDark.inputDanger'),
       '--vf-bg-input-success': theme('form.bgColorsDark.inputSuccess'),
+      '--vf-bg-checkbox': theme('form.bgColorsDark.checkbox'),
+      '--vf-bg-checkbox-hover': theme('form.bgColorsDark.checkboxHover'),
+      '--vf-bg-checkbox-focus': theme('form.bgColorsDark.checkboxFocus'),
+      '--vf-bg-checkbox-danger': theme('form.bgColorsDark.checkboxDanger'),
+      '--vf-bg-checkbox-success': theme('form.bgColorsDark.checkboxSuccess'),
       '--vf-bg-disabled': theme('form.bgColorsDark.disabled'),
       '--vf-bg-selected': theme('form.bgColorsDark.selected'),
       '--vf-bg-passive': theme('form.bgColorsDark.passive'),
@@ -551,6 +566,11 @@ const vueform = plugin((context) => {
       '--vf-border-color-input-focus': theme('form.borderColorsDark.inputFocus'),
       '--vf-border-color-input-danger': theme('form.borderColorsDark.inputDanger'),
       '--vf-border-color-input-success': theme('form.borderColorsDark.inputSuccess'),
+      '--vf-border-color-checkbox': theme('form.borderColorsDark.checkbox'),
+      '--vf-border-color-checkbox-hover': theme('form.borderColorsDark.checkboxHover'),
+      '--vf-border-color-checkbox-focus': theme('form.borderColorsDark.checkboxFocus'),
+      '--vf-border-color-checkbox-danger': theme('form.borderColorsDark.checkboxDanger'),
+      '--vf-border-color-checkbox-success': theme('form.borderColorsDark.checkboxSuccess'),
       '--vf-border-color-checked': theme('form.borderColorsDark.checked'),
       '--vf-border-color-passive': theme('form.borderColorsDark.passive'),
       '--vf-border-color-slider-tooltip': theme('form.borderColorsDark.sliderTooltip'),
@@ -1469,6 +1489,18 @@ const vueform = plugin((context) => {
     '.form-bg-input-danger': {
       backgroundColor: 'var(--vf-bg-input-danger)'
     },
+    '.form-bg-checkbox': {
+      backgroundColor: 'var(--vf-bg-checkbox)'
+    },
+    '.form-bg-checkbox-color': {
+      backgroundColor: 'var(--vf-color-checkbox)'
+    },
+    '.form-bg-checkbox-success': {
+      backgroundColor: 'var(--vf-bg-checkbox-success)'
+    },
+    '.form-bg-checkbox-danger': {
+      backgroundColor: 'var(--vf-bg-checkbox-danger)'
+    },
     '.form-bg-disabled': {
       backgroundColor: 'var(--vf-bg-disabled)'
     },
@@ -1529,6 +1561,12 @@ const vueform = plugin((context) => {
     },
     '.form-border-color-input-danger': {
       borderColor: 'var(--vf-border-color-input-danger)'
+    },
+    '.form-border-color-checkbox-success': {
+      borderColor: 'var(--vf-border-color-checkbox-success)'
+    },
+    '.form-border-color-checkbox-danger': {
+      borderColor: 'var(--vf-border-color-checkbox-danger)'
     },
     '.form-border-color-danger': {
       borderColor: 'var(--vf-border-color-danger)'
@@ -1926,7 +1964,7 @@ const vueform = plugin((context) => {
       cursor: 'ns-resize',
     },
 
-    // Mask things
+    // Mask
     '.mask-bg': {
       maskRepeat: 'no-repeat',
       maskPosition: 'center center',
@@ -1990,6 +2028,9 @@ const vueform = plugin((context) => {
     '.form-border-color-input': {
       borderColor: 'var(--vf-border-color-input)'
     },
+    '.form-border-color-checkbox': {
+      borderColor: 'var(--vf-border-color-checkbox)'
+    },
     '.form-border-color-checked': {
       borderColor: `var(--vf-border-color-checked)`,
     },
@@ -2043,8 +2084,14 @@ const vueform = plugin((context) => {
     '.form-bg-input-focus': {
       backgroundColor: 'var(--vf-bg-input-focus)'
     },
+    '.form-bg-checkbox-focus': {
+      backgroundColor: 'var(--vf-bg-checkbox-focus)'
+    },
     '.form-border-color-input-focus': {
       borderColor: 'var(--vf-border-color-input-focus)'
+    },
+    '.form-border-color-checkbox-focus': {
+      borderColor: 'var(--vf-border-color-checkbox-focus)'
     },
     '.form-ring': {
       outline: 'var(--vf-ring-width) solid var(--vf-ring-color)',
@@ -2067,8 +2114,14 @@ const vueform = plugin((context) => {
     '.form-bg-input-hover': {
       backgroundColor: 'var(--vf-bg-input-hover)'
     },
+    '.form-bg-checkbox-hover': {
+      backgroundColor: 'var(--vf-bg-checkbox-hover)'
+    },
     '.form-border-color-input-hover': {
       borderColor: 'var(--vf-border-color-input-hover)'
+    },
+    '.form-border-color-checkbox-hover': {
+      borderColor: 'var(--vf-border-color-checkbox-hover)'
     },
     '.form-shadow-input-hover': {
       boxShadow: 'var(--vf-shadow-input), var(--vf-shadow-input-hover)',
@@ -2732,6 +2785,11 @@ const vueform = plugin((context) => {
           inputFocus: 'var(--vf-bg-input)',
           inputDanger: 'var(--vf-bg-input)',
           inputSuccess: 'var(--vf-bg-input)',
+          checkbox: 'var(--vf-bg-input)',
+          checkboxHover: 'var(--vf-bg-checkbox)',
+          checkboxFocus: 'var(--vf-bg-checkbox)',
+          checkboxDanger: 'var(--vf-bg-checkbox)',
+          checkboxSuccess: 'var(--vf-bg-checkbox)',
           disabled: 'var(--vf-gray-200)',
           selected: 'var(--vf-gray-100)', // Option hover, cbgroup blocks selected
           passive: 'var(--vf-gray-300)',
@@ -2779,6 +2837,11 @@ const vueform = plugin((context) => {
           inputHover: 'var(--vf-border-color-input)',
           inputDanger: 'var(--vf-border-color-input)',
           inputSuccess: 'var(--vf-border-color-input)',
+          checkbox: 'var(--vf-border-color-input)',
+          checkboxFocus: 'var(--vf-primary)',
+          checkboxHover: 'var(--vf-border-color-checkbox)',
+          checkboxDanger: 'var(--vf-border-color-checkbox)',
+          checkboxSuccess: 'var(--vf-border-color-checkbox)',
           checked: 'var(--vf-primary)', // applies to checkbox & radio
           btn: 'var(--vf-primary)',
           tag: 'var(--vf-primary)',
@@ -2807,6 +2870,11 @@ const vueform = plugin((context) => {
           inputFocus: 'var(--vf-bg-input)',
           inputDanger: 'var(--vf-bg-input)',
           inputSuccess: 'var(--vf-bg-input)',
+          checkbox: 'var(--vf-dark-700)',
+          checkboxHover: 'var(--vf-bg-checkbox)',
+          checkboxFocus: 'var(--vf-bg-checkbox)',
+          checkboxDanger: 'var(--vf-bg-checkbox)',
+          checkboxSuccess: 'var(--vf-bg-checkbox)',
           disabled: 'var(--vf-dark-700)',
           selected: 'var(--vf-dark-700)', // Option hover, cbgroup blocks selected
           passive: 'var(--vf-dark-700)',
@@ -2854,6 +2922,11 @@ const vueform = plugin((context) => {
           inputHover: 'var(--vf-border-color-input)',
           inputDanger: 'var(--vf-border-color-input)',
           inputSuccess: 'var(--vf-border-color-input)',
+          checkbox: 'var(--vf-border-color-input)',
+          checkboxFocus: 'var(--vf-primary)',
+          checkboxHover: 'var(--vf-border-color-checkbox)',
+          checkboxDanger: 'var(--vf-border-color-checkbox)',
+          checkboxSuccess: 'var(--vf-border-color-checkbox)',
           checked: 'var(--vf-primary)', // applies to checkbox & radio
           btn: 'var(--vf-primary)',
           tag: 'var(--vf-primary)',
