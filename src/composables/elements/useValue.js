@@ -343,7 +343,7 @@ const date = function(props, context, dependencies)
         } else if (parent.value && ['list', 'multifile'].indexOf(parent.value.type) !== -1) {
           const newValue = parent.value.value.map((v,k) => k == name.value ? val : v)
           parent.value.update(newValue)
-        } else if (parent.value && ['object'].indexOf(parent.value.type) !== -1) {
+        } else if (parent.value && ['group', 'object'].indexOf(parent.value.type) !== -1) {
           parent.value.value = Object.assign({}, parent.value.value, {
             [name.value]: val,
           })
@@ -430,7 +430,7 @@ const dates = function(props, context, dependencies)
         } else if (parent.value && ['list', 'multifile'].indexOf(parent.value.type) !== -1) {
           const newValue = parent.value.value.map((v, k) => k == name.value ? val : v)
           parent.value.update(newValue)
-        } else if (parent.value && ['object'].indexOf(parent.value.type) !== -1) {
+        } else if (parent.value && ['group', 'object'].indexOf(parent.value.type) !== -1) {
           parent.value.value = Object.assign({}, parent.value.value, {
             [name.value]: val,
           })

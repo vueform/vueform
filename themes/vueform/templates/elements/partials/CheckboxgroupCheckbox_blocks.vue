@@ -76,7 +76,6 @@
     display: flex;
     align-items: flex-start;
     cursor: pointer;
-    background: var(--vf-bg-input);
     border-radius: var(--vf-radius-large);
 
     .vf-checkbox {
@@ -104,6 +103,7 @@
     font-size: var(--vf-font-size);
     line-height: var(--vf-line-height);
     letter-spacing: var(--vf-letter-spacing);
+    background: var(--vf-bg-input);
 
     &.vf-checkbox-blocks-not-last {
       border-bottom: 0;

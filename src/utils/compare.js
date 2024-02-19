@@ -45,9 +45,9 @@ export default function(actual, operator, expected, el$) {
       } else if (actual && typeof actual === 'object') {
         let values = Object.values(actual)
 
-        return !values.length || values.every(v => !v)
+        return !values.length || values.every(v => ['', null, undefined].indexOf(v) !== -1)
       } else {
-        return !actual
+        return ['', null, undefined].indexOf(actual) !== -1
       }
 
     case 'not_empty':
@@ -58,9 +58,9 @@ export default function(actual, operator, expected, el$) {
       } else if (actual && typeof actual === 'object') {
         let values = Object.values(actual)
 
-        return values.length && values.some(v => !!v)
+        return values.length && values.some(v => ['', null, undefined].indexOf(v) === -1)
       } else {
-        return !!actual
+        return ['', null, undefined].indexOf(actual) === -1
       }
 
     case '==':

@@ -82,8 +82,8 @@ import DatepickerWrapper from './../../../blank/templates/wrappers/DatepickerWra
   }
 
   .flatpickr-calendar.multiMonth .flatpickr-days .dayContainer:nth-child(n+2) .flatpickr-day.inRange:nth-child(7n+1) {
-    -webkit-box-shadow: -2px 0 0 var(--vf-gray-200), 5px 0 0 var(--vf-gray-200);
-            box-shadow: -2px 0 0 var(--vf-gray-200), 5px 0 0 var(--vf-gray-200);
+    -webkit-box-shadow: -2px 0 0 var(--vf-bg-selected), 5px 0 0 var(--vf-bg-selected);
+            box-shadow: -2px 0 0 var(--vf-bg-selected), 5px 0 0 var(--vf-bg-selected);
   }
 
   .flatpickr-calendar .hasWeeks .dayContainer,
@@ -99,7 +99,7 @@ import DatepickerWrapper from './../../../blank/templates/wrappers/DatepickerWra
 
   .flatpickr-calendar.hasTime .flatpickr-time {
     height: 40px;
-    border-top: 1px solid var(--vf-gray-200);
+    border-top: 1px solid var(--vf-border-color-input);
   }
 
   .flatpickr-calendar.hasTime .flatpickr-innerContainer {
@@ -305,17 +305,17 @@ import DatepickerWrapper from './../../../blank/templates/wrappers/DatepickerWra
     line-height: 50%;
     opacity: 0;
     cursor: pointer;
-    border: 1px solid var(--vf-gray-200);
+    border: 1px solid var(--vf-border-color-input);
     -webkit-box-sizing: border-box;
             box-sizing: border-box;
   }
 
   .numInputWrapper span:hover {
-    background: var(--vf-gray-100);
+    background: var(--vf-bg-selected);
   }
 
   .numInputWrapper span:active {
-    background: var(--vf-gray-200);
+    background: var(--vf-bg-selected);
   }
 
   .numInputWrapper span:after {
@@ -332,7 +332,7 @@ import DatepickerWrapper from './../../../blank/templates/wrappers/DatepickerWra
   .numInputWrapper span.arrowUp:after {
     border-left: 4px solid transparent;
     border-right: 4px solid transparent;
-    border-bottom: 4px solid var(--vf-gray-700);
+    border-bottom: 4px solid var(--vf-color-input);
     top: 26%;
     box-sizing: border-box;
   }
@@ -344,7 +344,7 @@ import DatepickerWrapper from './../../../blank/templates/wrappers/DatepickerWra
   .numInputWrapper span.arrowDown:after {
     border-left: 4px solid transparent;
     border-right: 4px solid transparent;
-    border-top: 4px solid var(--vf-gray-700);
+    border-top: 4px solid var(--vf-color-input);
     top: 40%;
     box-sizing: border-box;
   }
@@ -355,7 +355,7 @@ import DatepickerWrapper from './../../../blank/templates/wrappers/DatepickerWra
   }
 
   .numInputWrapper span svg path {
-    fill: var(--vf-gray-300);
+    fill: var(--vf-color-input);
   }
 
   .numInputWrapper:hover {
@@ -474,7 +474,7 @@ import DatepickerWrapper from './../../../blank/templates/wrappers/DatepickerWra
   }
 
   .flatpickr-current-month .flatpickr-monthDropdown-months:hover {
-    background: var(--vf-gray-100);
+    background: rgb(0 0 0 / 10%);
   }
 
   .flatpickr-current-month .flatpickr-monthDropdown-months .flatpickr-monthDropdown-month {
@@ -543,6 +543,7 @@ import DatepickerWrapper from './../../../blank/templates/wrappers/DatepickerWra
         -ms-flex-align: start;
             align-items: flex-start;
     width: 307.875px;
+    background-color: var(--vf-bg-input);
   }
 
   .flatpickr-days:focus {
@@ -618,18 +619,18 @@ import DatepickerWrapper from './../../../blank/templates/wrappers/DatepickerWra
   .flatpickr-day.nextMonthDay:focus {
     cursor: pointer;
     outline: 0;
-    background: var(--vf-gray-100);
-    border-color: var(--vf-gray-100);
+    background: var(--vf-bg-selected);
+    border-color: var(--vf-bg-selected);
   }
 
   .flatpickr-day.today {
-    border-color: var(--vf-gray-200);
+    border-color: var(--vf-bg-selected);
   }
 
   .flatpickr-day.today:hover,
   .flatpickr-day.today:focus {
-    border-color: var(--vf-gray-200);
-    background: var(--vf-gray-200);
+    border-color: var(--vf-bg-selected);
+    background: var(--vf-bg-selected);
   }
 
   .flatpickr-day.selected,
@@ -684,8 +685,8 @@ import DatepickerWrapper from './../../../blank/templates/wrappers/DatepickerWra
 
   .flatpickr-day.inRange {
     border-radius: 0;
-    -webkit-box-shadow: -5px 0 0 var(--vf-gray-100), 5px 0 0 var(--vf-gray-100);
-            box-shadow: -5px 0 0 var(--vf-gray-100), 5px 0 0 var(--vf-gray-100);
+    -webkit-box-shadow: -5px 0 0 var(--vf-bg-selected), 5px 0 0 var(--vf-bg-selected);
+            box-shadow: -5px 0 0 var(--vf-bg-selected), 5px 0 0 var(--vf-bg-selected);
   }
 
   .flatpickr-day.flatpickr-disabled,
@@ -755,7 +756,7 @@ import DatepickerWrapper from './../../../blank/templates/wrappers/DatepickerWra
     -webkit-box-sizing: border-box;
             box-sizing: border-box;
     overflow: hidden;
-    background: #fff;
+    background: var(--vf-bg-input);
   }
 
   .flatpickr-rContainer {
@@ -779,7 +780,7 @@ import DatepickerWrapper from './../../../blank/templates/wrappers/DatepickerWra
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
-    background: #fff;
+    background: var(--vf-bg-input);
     border-radius: 0 0 5px 5px;
     color: var(--vf-color-input);
   }
@@ -801,12 +802,12 @@ import DatepickerWrapper from './../../../blank/templates/wrappers/DatepickerWra
   }
 
   .flatpickr-time .numInputWrapper span.arrowUp:after {
-    border-bottom-color: var(--vf-gray-600);
+    border-bottom-color: var(--vf-color-input);
     box-sizing: border-box;
   }
 
   .flatpickr-time .numInputWrapper span.arrowDown:after {
-    border-top-color: var(--vf-gray-600);
+    border-top-color: var(--vf-color-input);
     box-sizing: border-box;
   }
 
@@ -837,6 +838,7 @@ import DatepickerWrapper from './../../../blank/templates/wrappers/DatepickerWra
     -moz-appearance: textfield;
     appearance: textfield;
     color: var(--vf-color-input);
+    background: var(--vf-bg-input);
   }
 
   .flatpickr-time input.flatpickr-hour {
@@ -867,6 +869,7 @@ import DatepickerWrapper from './../../../blank/templates/wrappers/DatepickerWra
     -webkit-align-self: center;
         -ms-flex-item-align: center;
             align-self: center;
+    background: var(--vf-bg-input);
   }
 
   .flatpickr-time .flatpickr-am-pm {
@@ -881,7 +884,7 @@ import DatepickerWrapper from './../../../blank/templates/wrappers/DatepickerWra
   .flatpickr-time .flatpickr-am-pm:hover,
   .flatpickr-time input:focus,
   .flatpickr-time .flatpickr-am-pm:focus {
-    background: var(--vf-gray-200);
+    background: var(--vf-bg-selected);
   }
 
   .flatpickr-input[readonly] {

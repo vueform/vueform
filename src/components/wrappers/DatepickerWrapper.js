@@ -74,6 +74,16 @@ export default {
     // ============== COMPUTED ==============
 
     /**
+     * Whether the element containing the datepicker is available.
+     * 
+     * @type {boolean}
+     * @private
+     */
+    const available = computed(() => {
+      return el$.value.available
+    })
+
+    /**
      * The current locale object for flatpickr.
      * 
      * @type {object}
@@ -205,7 +215,7 @@ export default {
       init()
     }, { deep: true })
 
-    watch(locale, (n,o) => {
+    watch([locale, available], (n,o) => {
       init()
     }, { deep: true })
 
@@ -241,6 +251,7 @@ export default {
       mode,
       locale,
       update,
+      init,
     }
   },
 }

@@ -42,6 +42,7 @@
     transition: color .2s ease-in-out;
     min-height: 100%;
     border-radius: var(--vf-radius-input);
+    color: var(--vf-color-input);
 
     &:-webkit-autofill,
     &:-webkit-autofill:hover, 
@@ -320,9 +321,9 @@
   outline: 0px solid var(--vf-ring-color);
   outline-offset: 0;
 
-  border-color: var(--vf-border-color-input);
+  border-color: var(--vf-border-color-checkbox);
   box-shadow: var(--vf-shadow-handles);
-  background-color: var(--vf-bg-input);
+  background-color: var(--vf-bg-checkbox);
 
   width: var(--vf-checkbox-size);
   height: var(--vf-checkbox-size);
@@ -335,16 +336,16 @@
   }
 
   &.vf-checkbox-danger:not(:checked) {
-    border-color: var(--vf-border-color-input-danger);
-    background-color: var(--vf-bg-input-danger);
+    border-color: var(--vf-border-color-checkbox-danger);
+    background-color: var(--vf-bg-checkbox-danger);
   }
 
   &:hover:not([disabled]) {
     box-shadow: var(--vf-shadow-handles-hover);
 
     &:not(.vf-checkbox-danger):not(:checked):not(:focus) {
-      background-color: var(--vf-bg-input-hover);
-      border-color: var(--vf-border-color-input-hover);
+      background-color: var(--vf-bg-checkbox-hover);
+      border-color: var(--vf-border-color-checkbox-hover);
     }
   }
 
@@ -353,8 +354,8 @@
     outline: var(--vf-ring-width) solid var(--vf-ring-color);
 
     &:not(.vf-checkbox-danger):not(:checked) {
-      border-color: var(--vf-border-color-input-focus);
-      background-color: var(--vf-bg-input-focus);
+      border-color: var(--vf-border-color-checkbox-focus);
+      background-color: var(--vf-bg-checkbox-focus);
     }
   }
 
@@ -424,9 +425,9 @@
   justify-content: center;
   border-radius: 999px;
 
-  border-color: var(--vf-border-color-input);
+  border-color: var(--vf-border-color-checkbox);
   box-shadow: var(--vf-shadow-handles);
-  background-color: var(--vf-bg-input);
+  background-color: var(--vf-bg-checkbox);
 
   width: var(--vf-checkbox-size);
   height: var(--vf-checkbox-size);
@@ -438,16 +439,16 @@
   }
 
   &.vf-radio-danger:not(:checked) {
-    border-color: var(--vf-border-color-input-danger);
-    background-color: var(--vf-bg-input-danger);
+    border-color: var(--vf-border-color-checkbox-danger);
+    background-color: var(--vf-bg-checkbox-danger);
   }
 
   &:hover:not([disabled]) {
     box-shadow: var(--vf-shadow-handles-hover);
 
     &:not(.vf-radio-danger):not(:checked):not(:focus) {
-      background-color: var(--vf-bg-input-hover);
-      border-color: var(--vf-border-color-input-hover);
+      background-color: var(--vf-bg-checkbox-hover);
+      border-color: var(--vf-border-color-checkbox-hover);
     }
   }
 
@@ -456,8 +457,8 @@
     outline: var(--vf-ring-width) solid var(--vf-ring-color);
 
     &:not(.vf-radio-danger):not(:checked) {
-      border-color: var(--vf-border-color-input-focus);
-      background-color: var(--vf-bg-input-focus);
+      border-color: var(--vf-border-color-checkbox-focus);
+      background-color: var(--vf-bg-checkbox-focus);
     }
   }
 

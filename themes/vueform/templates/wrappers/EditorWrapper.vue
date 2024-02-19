@@ -59,7 +59,7 @@
     .trix-button {
       position: relative;
       margin-bottom: 0.25rem;
-      color: var(--vf-gray-700);
+      color: var(--vf-bg-icon);
       padding-left: 0.5rem;
       padding-right: 0.5rem;
       outline: none;
@@ -232,24 +232,25 @@
       line-height: 1rem;
       padding: 1rem 0.625rem;
       background-color: var(--vf-bg-input);
-      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-      border-top-width: 2px;
-      border-color: var(--vf-gray-300);
+      box-shadow: 0 0px 15px 0px rgba(0, 0, 0, 0.3);
+      margin-top: 0.375rem;
       border-radius: 0.25rem;
-      z-index: 1;
+      z-index: 2;
     }
 
     .trix-input--dialog {
       padding: 0.375rem 0.75rem;
-      border: 1px solid var(--vf-gray-300);
+      border: 1px solid var(--vf-border-color-input);
       border-radius: 0.25rem;
       margin-right: 0.5rem;
       font-size: 0.75rem;
       line-height: 1rem;
+      background: var(--vf-bg-input);
+      color: var(--vf-color-input);
 
       &:focus {
-        box-shadow: var(--vf-ring-shadow);
-        border-color: var(--vf-ring-border-color);
+
+        outline: var(--vf-ring-width) solid var(--vf-ring-color) !important;
       }
 
       &.validate:invalid {
@@ -260,7 +261,7 @@
     .trix-button--dialog {
       padding: 0.5rem;
       border-left-width: 1px;
-      border-color: var(--vf-gray-300);
+      border-color: var(--vf-border-color-input);
       background-color: transparent;
       border-radius: 0;
 
@@ -330,7 +331,7 @@
     }
 
     [data-trix-mutable].attachment.attachment--file {
-      background-color: var(--vf-gray-100);
+      background-color: var(--vf-bg-selected);
     }
 
     [data-trix-mutable].attachment img {
@@ -351,6 +352,7 @@
 
     .attachment__progress {
       position: absolute;
+      z-index: 1;
       height: 1.25rem;
       top: 50%;
       left: 0;
@@ -380,11 +382,9 @@
       border-width: 0;
       appearance: none;
       outline: 0;
-
-      &:focus {
-        border-color: var(--vf-gray-200);
-        box-shadow: none;
-      }
+      background: var(--vf-bg-input);
+      color: var(--vf-color-input);
+      font-family: inherit;
     }
 
     .attachment__toolbar {
@@ -409,22 +409,13 @@
       padding-right: 0.75rem;
       margin: 0;
       background-color: transparent;
-      color: var(--vf-gray-500);
+      color: var(--vf-bg-icon);
       font-size: 0.875rem;
       line-height: 1.25rem;
       white-space: nowrap;
       border-radius: 0;
       border-width: 0;
       outline: 0;
-
-      &.trix-active {
-        color: #000000;
-        background-color: var(--vf-gray-200);
-      }
-
-      &:not(.trix-active):hover {
-        background-color: var(--vf-gray-100);
-      }
 
       &:not(:disabled) {
         cursor: pointer;
@@ -437,26 +428,28 @@
       padding: 0;
       background-color: var(--vf-bg-input);
       line-height: 1.75rem;
+      border-color: var(--vf-color-selected);
       border-radius: 9999px;
       border-width: 1px;
-      border-color: var(--vf-gray-400);
       border-style: solid;
       outline: 0;
       text-indent: -9999px;
+      width: 24px;
+      height: 24px;
 
-      &:not(.trix-active):hover {
-        background-color: var(--vf-gray-100);
+      &:hover {
+        background-color: var(--vf-bg-selected);
       }
 
       &::before {
         content: "";
         display: inline-block;
         position: absolute;
-        top: 0.25rem;
-        right: 0.25rem;
-        bottom: 0.25rem;
-        left: 0.25rem;
-        background-color: var(--vf-gray-900);
+        top: 0.125rem;
+        right: 0.125rem;
+        bottom: 0.125rem;
+        left: 0.125rem;
+        background-color: var(--vf-color-input);
         opacity: 0.7;
         background-position: center;
         background-repeat: no-repeat;
@@ -468,14 +461,6 @@
         -webkit-mask-size: contain;
         mask-image: url("data:image/svg+xml,%3csvg viewBox='0 0 320 512' fill='currentColor' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M193.94 256L296.5 153.44l21.15-21.15c3.12-3.12 3.12-8.19 0-11.31l-22.63-22.63c-3.12-3.12-8.19-3.12-11.31 0L160 222.06 36.29 98.34c-3.12-3.12-8.19-3.12-11.31 0L2.34 120.97c-3.12 3.12-3.12 8.19 0 11.31L126.06 256 2.34 379.71c-3.12 3.12-3.12 8.19 0 11.31l22.63 22.63c3.12 3.12 8.19 3.12 11.31 0L160 289.94 262.56 392.5l21.15 21.15c3.12 3.12 8.19 3.12 11.31 0l22.63-22.63c3.12-3.12 3.12-8.19 0-11.31L193.94 256z'%3e%3c/path%3e%3c/svg%3e");
         -webkit-mask-image: url("data:image/svg+xml,%3csvg viewBox='0 0 320 512' fill='currentColor' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M193.94 256L296.5 153.44l21.15-21.15c3.12-3.12 3.12-8.19 0-11.31l-22.63-22.63c-3.12-3.12-8.19-3.12-11.31 0L160 222.06 36.29 98.34c-3.12-3.12-8.19-3.12-11.31 0L2.34 120.97c-3.12 3.12-3.12 8.19 0 11.31L126.06 256 2.34 379.71c-3.12 3.12-3.12 8.19 0 11.31l22.63 22.63c3.12 3.12 8.19 3.12 11.31 0L160 289.94 262.56 392.5l21.15 21.15c3.12 3.12 8.19 3.12 11.31 0l22.63-22.63c3.12-3.12 3.12-8.19 0-11.31L193.94 256z'%3e%3c/path%3e%3c/svg%3e");
-
-        &:hover {
-          border-color: var(--vf-gray-700);
-
-          &::before {
-            opacity: 1;
-          }
-        }
       }
     }
 
@@ -552,6 +537,8 @@
       padding-left: 0.625rem;
       border-left-width: 4px;
       border-color: var(--vf-gray-300);
+      border-left-style: solid;
+      margin: 0;
     }
 
     [dir=rtl] blockquote,
@@ -782,6 +769,17 @@
   .vf-editor-hide-redo {
     .trix-button--icon-redo {
       display: none;
+    }
+  }
+
+  .dark .trix-content,
+  .dark trix-editor {
+    blockquote {
+      border-color: var(--vf-dark-700);
+    }
+
+    pre {
+      background-color: var(--vf-dark-900);
     }
   }
 </style>

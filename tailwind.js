@@ -52,13 +52,18 @@ const upperFirst = (string) => {
 }
 
 const vueform = plugin((context) => {
-  const { theme, addBase, addUtilities, addVariant, e } = context
+  const { theme, addBase, addUtilities, addVariant, e, config } = context
   const prefix = context.matchComponents === undefined ? context.prefix : s => s
   const version = context.matchComponents === undefined ? 2 : 3
+  const vfDarkMode = typeof config === 'function' && config()?.vfDarkMode === false ? false : true
+  const darkMode = typeof config === 'function' && config()?.darkMode ? config()?.darkMode : false
+
+  const darkModeSelector = darkMode === 'class' ? '.dark, .dark *, .dark :before, .dark :after' : (
+    Array.isArray(darkMode) ? darkMode[1] : '@media (prefers-color-scheme: dark)'
+  )
 
   // Testing output
-  // const file = fs.readFileSync(path.resolve(__dirname, './tw.txt'))
-  // fs.writeFileSync(path.resolve(__dirname, './tw.txt'), file + '\n' + version.toString() + '\n' + JSON.stringify(Object.keys(context).sort()))
+  // fs.writeFileSync(path.resolve(__dirname, './tw.txt'),  ? 'a' : 'b')
 
   const rules = [
     {
@@ -120,7 +125,7 @@ const vueform = plugin((context) => {
       },
     },
     {
-      base: [':root', '*', '::before', '::after'],
+      base: [':root', ':before', ':after', '*'],
       styles: {
         '--vf-primary': theme('form.primary'),
         '--vf-primary-darker': theme('form.primaryDarker') === null
@@ -149,6 +154,17 @@ const vueform = plugin((context) => {
         '--vf-gray-700': theme('form.grays.700'),
         '--vf-gray-800': theme('form.grays.800'),
         '--vf-gray-900': theme('form.grays.900'),
+
+        '--vf-dark-50': theme('form.darks.50'),
+        '--vf-dark-100': theme('form.darks.100'),
+        '--vf-dark-200': theme('form.darks.200'),
+        '--vf-dark-300': theme('form.darks.300'),
+        '--vf-dark-400': theme('form.darks.400'),
+        '--vf-dark-500': theme('form.darks.500'),
+        '--vf-dark-600': theme('form.darks.600'),
+        '--vf-dark-700': theme('form.darks.700'),
+        '--vf-dark-800': theme('form.darks.800'),
+        '--vf-dark-900': theme('form.darks.900'),
 
         '--vf-font-size': Array.isArray(theme('form.fontSize.base')) ? theme('form.fontSize.base')[0] : theme('form.fontSize.base'),
         '--vf-font-size-sm': Array.isArray(theme('form.fontSize.sm')) ? theme('form.fontSize.sm')[0] : theme('form.fontSize.sm'),
@@ -321,6 +337,11 @@ const vueform = plugin((context) => {
         '--vf-bg-input-focus': theme('form.bgColors.inputFocus'),
         '--vf-bg-input-danger': theme('form.bgColors.inputDanger'),
         '--vf-bg-input-success': theme('form.bgColors.inputSuccess'),
+        '--vf-bg-checkbox': theme('form.bgColors.checkbox'),
+        '--vf-bg-checkbox-hover': theme('form.bgColors.checkboxHover'),
+        '--vf-bg-checkbox-focus': theme('form.bgColors.checkboxFocus'),
+        '--vf-bg-checkbox-danger': theme('form.bgColors.checkboxDanger'),
+        '--vf-bg-checkbox-success': theme('form.bgColors.checkboxSuccess'),
         '--vf-bg-disabled': theme('form.bgColors.disabled'),
         '--vf-bg-selected': theme('form.bgColors.selected'),
         '--vf-bg-passive': theme('form.bgColors.passive'),
@@ -364,6 +385,11 @@ const vueform = plugin((context) => {
         '--vf-border-color-input-focus': theme('form.borderColors.inputFocus'),
         '--vf-border-color-input-danger': theme('form.borderColors.inputDanger'),
         '--vf-border-color-input-success': theme('form.borderColors.inputSuccess'),
+        '--vf-border-color-checkbox': theme('form.borderColors.checkbox'),
+        '--vf-border-color-checkbox-hover': theme('form.borderColors.checkboxHover'),
+        '--vf-border-color-checkbox-focus': theme('form.borderColors.checkboxFocus'),
+        '--vf-border-color-checkbox-danger': theme('form.borderColors.checkboxDanger'),
+        '--vf-border-color-checkbox-success': theme('form.borderColors.checkboxSuccess'),
         '--vf-border-color-checked': theme('form.borderColors.checked'),
         '--vf-border-color-passive': theme('form.borderColors.passive'),
         '--vf-border-color-slider-tooltip': theme('form.borderColors.sliderTooltip'),
@@ -476,8 +502,102 @@ const vueform = plugin((context) => {
         '--vf-slider-tooltip-arrow-size-sm': theme('form.sliderTooltipArrowSize.sm'),
         '--vf-slider-tooltip-arrow-size-lg': theme('form.sliderTooltipArrowSize.lg'),
       }
-    }
+    },
   ]
+
+  if (vfDarkMode) {
+    const darkVars = {
+      '--vf-danger': theme('form.danger'),
+      '--vf-danger-lighter': theme('form.dangerLighter'),
+
+      '--vf-success': theme('form.success'),
+      '--vf-success-lighter': theme('form.successLighter'),
+
+      '--vf-bg-input': theme('form.bgColorsDark.input'),
+      '--vf-bg-input-hover': theme('form.bgColorsDark.inputHover'),
+      '--vf-bg-input-focus': theme('form.bgColorsDark.inputFocus'),
+      '--vf-bg-input-danger': theme('form.bgColorsDark.inputDanger'),
+      '--vf-bg-input-success': theme('form.bgColorsDark.inputSuccess'),
+      '--vf-bg-checkbox': theme('form.bgColorsDark.checkbox'),
+      '--vf-bg-checkbox-hover': theme('form.bgColorsDark.checkboxHover'),
+      '--vf-bg-checkbox-focus': theme('form.bgColorsDark.checkboxFocus'),
+      '--vf-bg-checkbox-danger': theme('form.bgColorsDark.checkboxDanger'),
+      '--vf-bg-checkbox-success': theme('form.bgColorsDark.checkboxSuccess'),
+      '--vf-bg-disabled': theme('form.bgColorsDark.disabled'),
+      '--vf-bg-selected': theme('form.bgColorsDark.selected'),
+      '--vf-bg-passive': theme('form.bgColorsDark.passive'),
+      '--vf-bg-icon': theme('form.bgColorsDark.icon'),
+      '--vf-bg-danger': theme('form.bgColorsDark.danger'),
+      '--vf-bg-success': theme('form.bgColorsDark.success'),
+      '--vf-bg-tag': theme('form.bgColorsDark.tag'),
+      '--vf-bg-slider-handle': theme('form.bgColorsDark.sliderHandle'),
+      '--vf-bg-toggle-handle': theme('form.bgColorsDark.toggleHandle'),
+      '--vf-bg-date-head': theme('form.bgColorsDark.dateHead'),
+      '--vf-bg-addon': theme('form.bgColorsDark.addon'),
+      '--vf-bg-btn': theme('form.bgColorsDark.btn'),
+      '--vf-bg-btn-danger': theme('form.bgColorsDark.btnDanger'),
+      '--vf-bg-btn-secondary': theme('form.bgColorsDark.btnSecondary'),
+
+      '--vf-color-input': theme('form.textColorsDark.input'),
+      '--vf-color-input-hover': theme('form.textColorsDark.inputHover'),
+      '--vf-color-input-focus': theme('form.textColorsDark.inputFocus'),
+      '--vf-color-input-danger': theme('form.textColorsDark.inputDanger'),
+      '--vf-color-input-success': theme('form.textColorsDark.inputSuccess'),
+      '--vf-color-disabled': theme('form.textColorsDark.disabled'),
+      '--vf-color-placeholder': theme('form.textColorsDark.placeholder'),
+      '--vf-color-passive': theme('form.textColorsDark.passive'),
+      '--vf-color-muted': theme('form.textColorsDark.muted'),
+      '--vf-color-floating': theme('form.textColorsDark.floating'),
+      '--vf-color-floating-focus': theme('form.textColorsDark.floatingFocus'),
+      '--vf-color-floating-success': theme('form.textColorsDark.floatingSuccess'),
+      '--vf-color-floating-danger': theme('form.textColorsDark.floatingDanger'),
+      '--vf-color-on-primary': theme('form.textColorsDark.onPrimary'),
+      '--vf-color-danger': theme('form.textColorsDark.danger'),
+      '--vf-color-success': theme('form.textColorsDark.success'),
+      '--vf-color-tag': theme('form.textColorsDark.tag'),
+      '--vf-color-addon': theme('form.textColorsDark.addon'),
+      '--vf-color-date-head': theme('form.textColorsDark.dateHead'),
+      '--vf-color-btn': theme('form.textColorsDark.btn'),
+      '--vf-color-btn-danger': theme('form.textColorsDark.btnDanger'),
+      '--vf-color-btn-secondary': theme('form.textColorsDark.btnSecondary'),
+
+      '--vf-border-color-input': theme('form.borderColorsDark.input'),
+      '--vf-border-color-input-hover': theme('form.borderColorsDark.inputHover'),
+      '--vf-border-color-input-focus': theme('form.borderColorsDark.inputFocus'),
+      '--vf-border-color-input-danger': theme('form.borderColorsDark.inputDanger'),
+      '--vf-border-color-input-success': theme('form.borderColorsDark.inputSuccess'),
+      '--vf-border-color-checkbox': theme('form.borderColorsDark.checkbox'),
+      '--vf-border-color-checkbox-hover': theme('form.borderColorsDark.checkboxHover'),
+      '--vf-border-color-checkbox-focus': theme('form.borderColorsDark.checkboxFocus'),
+      '--vf-border-color-checkbox-danger': theme('form.borderColorsDark.checkboxDanger'),
+      '--vf-border-color-checkbox-success': theme('form.borderColorsDark.checkboxSuccess'),
+      '--vf-border-color-checked': theme('form.borderColorsDark.checked'),
+      '--vf-border-color-passive': theme('form.borderColorsDark.passive'),
+      '--vf-border-color-slider-tooltip': theme('form.borderColorsDark.sliderTooltip'),
+      '--vf-border-color-tag': theme('form.borderColorsDark.tag'),
+      '--vf-border-color-btn': theme('form.borderColorsDark.btn'),
+      '--vf-border-color-btn-danger': theme('form.borderColorsDark.btnDanger'),
+      '--vf-border-color-btn-secondary': theme('form.borderColorsDark.btnSecondary'),
+      '--vf-border-color-blockquote': theme('form.borderColorsDark.blockquote'),
+      '--vf-border-color-hr': theme('form.borderColorsDark.hr'),
+
+      '--vf-shadow-input': theme('form.shadowsDark.input'),
+      '--vf-shadow-input-hover': theme('form.shadowsDark.inputHover'),
+      '--vf-shadow-input-focus': theme('form.shadowsDark.inputFocus'),
+      '--vf-shadow-handles': theme('form.shadowsDark.handles'),
+      '--vf-shadow-handles-hover': theme('form.shadowsDark.handlesHover'),
+      '--vf-shadow-handles-focus': theme('form.shadowsDark.handlesFocus'),
+      '--vf-shadow-btn': theme('form.shadowsDark.btn'),
+      '--vf-shadow-dropdown': theme('form.shadowsDark.dropdown'),
+    }
+
+    rules.push({
+      base: [darkModeSelector],
+      styles: darkModeSelector === '@media (prefers-color-scheme: dark)' ? {
+        ':root, :before, :after, *': darkVars
+      } : darkVars
+    })
+  }
   
   addBase(rules.map((rule) => {
     return { [rule.base]: rule.styles }
@@ -1360,11 +1480,26 @@ const vueform = plugin((context) => {
     '.form-bg-input': {
       backgroundColor: 'var(--vf-bg-input)'
     },
+    '.form-bg-input-color': {
+      backgroundColor: 'var(--vf-color-input)'
+    },
     '.form-bg-input-success': {
       backgroundColor: 'var(--vf-bg-input-success)'
     },
     '.form-bg-input-danger': {
       backgroundColor: 'var(--vf-bg-input-danger)'
+    },
+    '.form-bg-checkbox': {
+      backgroundColor: 'var(--vf-bg-checkbox)'
+    },
+    '.form-bg-checkbox-color': {
+      backgroundColor: 'var(--vf-color-checkbox)'
+    },
+    '.form-bg-checkbox-success': {
+      backgroundColor: 'var(--vf-bg-checkbox-success)'
+    },
+    '.form-bg-checkbox-danger': {
+      backgroundColor: 'var(--vf-bg-checkbox-danger)'
     },
     '.form-bg-disabled': {
       backgroundColor: 'var(--vf-bg-disabled)'
@@ -1426,6 +1561,12 @@ const vueform = plugin((context) => {
     },
     '.form-border-color-input-danger': {
       borderColor: 'var(--vf-border-color-input-danger)'
+    },
+    '.form-border-color-checkbox-success': {
+      borderColor: 'var(--vf-border-color-checkbox-success)'
+    },
+    '.form-border-color-checkbox-danger': {
+      borderColor: 'var(--vf-border-color-checkbox-danger)'
     },
     '.form-border-color-danger': {
       borderColor: 'var(--vf-border-color-danger)'
@@ -1622,7 +1763,7 @@ const vueform = plugin((context) => {
           width: '0.5rem',
           height: '0.5rem',
           position: 'absolute',
-          background: '#ffffff',
+          background: 'var(--vf-color-on-primary)',
           borderRadius: '50%',
           left: 'calc(50% - 0.25rem)',
           transform: 'scale(0)',
@@ -1680,7 +1821,7 @@ const vueform = plugin((context) => {
           left: '-100%',
         },
         a: {
-          color: 'var(--vf-color-passive)',
+          color: 'var(--vf-color-disabled)',
           '&:before': {
             background: 'var(--vf-bg-passive)',
           }
@@ -1823,7 +1964,7 @@ const vueform = plugin((context) => {
       cursor: 'ns-resize',
     },
 
-    // Mask things
+    // Mask
     '.mask-bg': {
       maskRepeat: 'no-repeat',
       maskPosition: 'center center',
@@ -1887,6 +2028,9 @@ const vueform = plugin((context) => {
     '.form-border-color-input': {
       borderColor: 'var(--vf-border-color-input)'
     },
+    '.form-border-color-checkbox': {
+      borderColor: 'var(--vf-border-color-checkbox)'
+    },
     '.form-border-color-checked': {
       borderColor: `var(--vf-border-color-checked)`,
     },
@@ -1940,8 +2084,14 @@ const vueform = plugin((context) => {
     '.form-bg-input-focus': {
       backgroundColor: 'var(--vf-bg-input-focus)'
     },
+    '.form-bg-checkbox-focus': {
+      backgroundColor: 'var(--vf-bg-checkbox-focus)'
+    },
     '.form-border-color-input-focus': {
       borderColor: 'var(--vf-border-color-input-focus)'
+    },
+    '.form-border-color-checkbox-focus': {
+      borderColor: 'var(--vf-border-color-checkbox-focus)'
     },
     '.form-ring': {
       outline: 'var(--vf-ring-width) solid var(--vf-ring-color)',
@@ -1964,8 +2114,14 @@ const vueform = plugin((context) => {
     '.form-bg-input-hover': {
       backgroundColor: 'var(--vf-bg-input-hover)'
     },
+    '.form-bg-checkbox-hover': {
+      backgroundColor: 'var(--vf-bg-checkbox-hover)'
+    },
     '.form-border-color-input-hover': {
       borderColor: 'var(--vf-border-color-input-hover)'
+    },
+    '.form-border-color-checkbox-hover': {
+      borderColor: 'var(--vf-border-color-checkbox-hover)'
     },
     '.form-shadow-input-hover': {
       boxShadow: 'var(--vf-shadow-input), var(--vf-shadow-input-hover)',
@@ -2282,6 +2438,18 @@ const vueform = plugin((context) => {
         linkDecoration: 'none',
 
         grays: theme('colors.gray'),
+        darks: {
+          50: '#efefef',
+          100: '#dcdcdc',
+          200: '#bdbdbd',
+          300: '#a0a0a0',
+          400: '#848484',
+          500: '#737373',
+          600: '#393939',
+          700: '#323232',
+          800: '#262626',
+          900: '#191919',
+        },
 
         fontSize: {
           base: theme('fontSize.base'),
@@ -2628,8 +2796,13 @@ const vueform = plugin((context) => {
           inputFocus: 'var(--vf-bg-input)',
           inputDanger: 'var(--vf-bg-input)',
           inputSuccess: 'var(--vf-bg-input)',
+          checkbox: 'var(--vf-bg-input)',
+          checkboxHover: 'var(--vf-bg-checkbox)',
+          checkboxFocus: 'var(--vf-bg-checkbox)',
+          checkboxDanger: 'var(--vf-bg-checkbox)',
+          checkboxSuccess: 'var(--vf-bg-checkbox)',
           disabled: 'var(--vf-gray-200)',
-          selected: 'rgba(17,24,39,0.05)', // Option hover, cbgroup blocks selected
+          selected: 'var(--vf-gray-100)', // Option hover, cbgroup blocks selected
           passive: 'var(--vf-gray-300)',
           icon: 'var(--vf-gray-500)',
           danger: 'var(--vf-danger-lighter)',
@@ -2675,6 +2848,11 @@ const vueform = plugin((context) => {
           inputHover: 'var(--vf-border-color-input)',
           inputDanger: 'var(--vf-border-color-input)',
           inputSuccess: 'var(--vf-border-color-input)',
+          checkbox: 'var(--vf-border-color-input)',
+          checkboxFocus: 'var(--vf-primary)',
+          checkboxHover: 'var(--vf-border-color-checkbox)',
+          checkboxDanger: 'var(--vf-border-color-checkbox)',
+          checkboxSuccess: 'var(--vf-border-color-checkbox)',
           checked: 'var(--vf-primary)', // applies to checkbox & radio
           btn: 'var(--vf-primary)',
           tag: 'var(--vf-primary)',
@@ -2687,6 +2865,91 @@ const vueform = plugin((context) => {
         },
 
         shadows: {
+          input: '0px 0px 0px 0px rgba(0,0,0,0)',
+          inputHover: 'var(--vf-shadow-input)',
+          inputFocus: 'var(--vf-shadow-input)',
+          handles: '0px 0px 0px 0px rgba(0,0,0,0)',
+          handlesHover: 'var(--vf-shadow-input-hover)',
+          handlesFocus: 'var(--vf-shadow-input-focus)',
+          btn: 'var(--vf-shadow-input)',
+          dropdown: 'var(--vf-shadow-input)',
+        },
+
+        bgColorsDark: {
+          input: 'var(--vf-dark-800)',
+          inputHover: 'var(--vf-bg-input)',
+          inputFocus: 'var(--vf-bg-input)',
+          inputDanger: 'var(--vf-bg-input)',
+          inputSuccess: 'var(--vf-bg-input)',
+          checkbox: 'var(--vf-dark-700)',
+          checkboxHover: 'var(--vf-bg-checkbox)',
+          checkboxFocus: 'var(--vf-bg-checkbox)',
+          checkboxDanger: 'var(--vf-bg-checkbox)',
+          checkboxSuccess: 'var(--vf-bg-checkbox)',
+          disabled: 'var(--vf-dark-700)',
+          selected: 'var(--vf-dark-700)', // Option hover, cbgroup blocks selected
+          passive: 'var(--vf-dark-700)',
+          icon: 'var(--vf-dark-400)',
+          danger: 'var(--vf-danger-lighter)',
+          success: 'var(--vf-success-lighter)',
+          addon: 'transparent',
+          tag: 'var(--vf-primary)',
+          sliderHandle: 'var(--vf-primary)',
+          toggleHandle: '#ffffff',
+          dateHead: 'var(--vf-dark-700)',
+          btn: 'var(--vf-primary)',
+          btnDanger: 'var(--vf-danger)',
+          btnSecondary: 'var(--vf-dark-700)',
+        },
+
+        textColorsDark: {
+          onPrimary: '#ffffff',
+          input: 'var(--vf-dark-100)',
+          inputHover: 'var(--vf-color-input)',
+          inputFocus: 'var(--vf-color-input)',
+          inputDanger: 'var(--vf-color-input)',
+          inputSuccess: 'var(--vf-color-input)',
+          placeholder: 'var(--vf-dark-500)',
+          disabled: 'var(--vf-dark-500)',
+          passive: 'var(--vf-dark-900)',
+          muted: 'var(--vf-dark-500)',
+          floating: 'var(--vf-color-muted)',
+          floatingFocus: 'var(--vf-color-floating)',
+          floatingSuccess: 'var(--vf-color-floating)',
+          floatingDanger: 'var(--vf-color-floating)',
+          danger: 'var(--vf-danger)',
+          success: 'var(--vf-success)',
+          addon: 'initial',
+          tag: 'var(--vf-color-on-primary)',
+          dateHead: 'var(--vf-dark-200)',
+          btn: 'var(--vf-color-on-primary)',
+          btnDanger: '#ffffff',
+          btnSecondary: 'var(--vf-dark-300)',
+        },
+
+        borderColorsDark: {
+          input: 'var(--vf-dark-800)',
+          inputFocus: 'var(--vf-primary)',
+          inputHover: 'var(--vf-border-color-input)',
+          inputDanger: 'var(--vf-border-color-input)',
+          inputSuccess: 'var(--vf-border-color-input)',
+          checkbox: 'var(--vf-border-color-input)',
+          checkboxFocus: 'var(--vf-primary)',
+          checkboxHover: 'var(--vf-border-color-checkbox)',
+          checkboxDanger: 'var(--vf-border-color-checkbox)',
+          checkboxSuccess: 'var(--vf-border-color-checkbox)',
+          checked: 'var(--vf-primary)', // applies to checkbox & radio
+          btn: 'var(--vf-primary)',
+          tag: 'var(--vf-primary)',
+          sliderTooltip: 'var(--vf-primary)',
+          passive: 'var(--vf-dark-700)',
+          btnDanger: 'var(--vf-danger)',
+          btnSecondary: 'var(--vf-dark-700)',
+          blockquote: 'var(--vf-dark-700)',
+          hr: 'var(--vf-dark-700)',
+        },
+
+        shadowsDark: {
           input: '0px 0px 0px 0px rgba(0,0,0,0)',
           inputHover: 'var(--vf-shadow-input)',
           inputFocus: 'var(--vf-shadow-input)',
