@@ -2439,10 +2439,10 @@ const vueform = plugin((context) => {
 
         grays: theme('colors.gray'),
         darks: {
-          50: '#EFEFEF',
-          100: '#DCDCDC',
-          200: '#BDBDBD',
-          300: '#A0A0A0',
+          50: '#efefef',
+          100: '#dcdcdc',
+          200: '#bdbdbd',
+          300: '#a0a0a0',
           400: '#848484',
           500: '#737373',
           600: '#393939',
