@@ -1,4 +1,4 @@
-$vf-dark-mode-selector: '.dark' !default;
+$vf-dark-mode-selector: '.dark, .dark *, .dark :before, .dark :after' !default;
 
 @mixin vf-dark-vars {
   --vf-bg-input: var(--vf-dark-800);
@@ -68,15 +68,6 @@ $vf-dark-mode-selector: '.dark' !default;
   --vf-border-color-btn-secondary: var(--vf-dark-700);
   --vf-border-color-blockquote: var(--vf-dark-700);
   --vf-border-color-hr: var(--vf-dark-700);
-
-  --vf-shadow-input: 0px 0px 0px 0px rgba(0,0,0,0);
-  --vf-shadow-input-hover: 0px 0px 0px 0px rgba(0,0,0,0);
-  --vf-shadow-input-focus: 0px 0px 0px 0px rgba(0,0,0,0);
-  --vf-shadow-handles: 0px 0px 0px 0px rgba(0,0,0,0);
-  --vf-shadow-handles-hover: 0px 0px 0px 0px rgba(0,0,0,0);
-  --vf-shadow-handles-focus: 0px 0px 0px 0px rgba(0,0,0,0);
-  --vf-shadow-btn: 0px 0px 0px 0px rgba(0,0,0,0);
-  --vf-shadow-dropdown: 0px 0px 0px 0px rgba(0,0,0,0);
 }
 
 #{$vf-dark-mode-selector} {

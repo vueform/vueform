@@ -1,4 +1,4 @@
-:root {
+:root, :before, :after, * {
   --vf-primary: #07bf9b;
   --vf-primary-darker: #06ac8b;
   --vf-danger: #ef4444;
@@ -15,16 +15,16 @@
   --vf-gray-700: #374151;
   --vf-gray-800: #1f2937;
   --vf-gray-900: #111827;
-  --vf-dark-50: #f9fafb;
-  --vf-dark-100: #f3f4f6;
-  --vf-dark-200: #e5e7eb;
-  --vf-dark-300: #d1d5db;
-  --vf-dark-400: #9ca3af;
-  --vf-dark-500: #6b7280;
-  --vf-dark-600: #4b5563;
-  --vf-dark-700: #374151;
-  --vf-dark-800: #1f2937;
-  --vf-dark-900: #111827;
+  --vf-dark-50: #EFEFEF;
+  --vf-dark-100: #DCDCDC;
+  --vf-dark-200: #BDBDBD;
+  --vf-dark-300: #A0A0A0;
+  --vf-dark-400: #848484;
+  --vf-dark-500: #737373;
+  --vf-dark-600: #393939;
+  --vf-dark-700: #323232;
+  --vf-dark-800: #262626;
+  --vf-dark-900: #191919;
   --vf-ring-color: #07bf9b66;
   --vf-ring-width: 2px;
   --vf-link-color: var(--vf-primary);
@@ -302,7 +302,7 @@
   --vf-slider-tooltip-arrow-size-lg: var(--vf-slider-tooltip-arrow-size);
 }
 
-.dark {
+.dark, .dark *, .dark :before, .dark :after {
   --vf-bg-input: var(--vf-dark-800);
   --vf-bg-input-hover: var(--vf-bg-input);
   --vf-bg-input-focus: var(--vf-bg-input);
@@ -368,14 +368,6 @@
   --vf-border-color-btn-secondary: var(--vf-dark-700);
   --vf-border-color-blockquote: var(--vf-dark-700);
   --vf-border-color-hr: var(--vf-dark-700);
-  --vf-shadow-input: 0px 0px 0px 0px rgba(0,0,0,0);
-  --vf-shadow-input-hover: 0px 0px 0px 0px rgba(0,0,0,0);
-  --vf-shadow-input-focus: 0px 0px 0px 0px rgba(0,0,0,0);
-  --vf-shadow-handles: 0px 0px 0px 0px rgba(0,0,0,0);
-  --vf-shadow-handles-hover: 0px 0px 0px 0px rgba(0,0,0,0);
-  --vf-shadow-handles-focus: 0px 0px 0px 0px rgba(0,0,0,0);
-  --vf-shadow-btn: 0px 0px 0px 0px rgba(0,0,0,0);
-  --vf-shadow-dropdown: 0px 0px 0px 0px rgba(0,0,0,0);
 }
 
 /*

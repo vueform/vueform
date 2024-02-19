@@ -1,4 +1,4 @@
-:root {
+:root, :before, :after, * {
   --vf-primary: #6200ee;
   --vf-primary-darker: #5000cc;
   --vf-danger: #B00020;
@@ -16,6 +16,17 @@
   --vf-gray-700: #616161;
   --vf-gray-800: #424242;
   --vf-gray-900: #212121;
+
+  --vf-dark-50: #FAFAFA;
+  --vf-dark-100: #F5F5F5;
+  --vf-dark-200: #EEEEEE;
+  --vf-dark-300: #E0E0E0;
+  --vf-dark-400: #BDBDBD;
+  --vf-dark-500: #9E9E9E;
+  --vf-dark-600: #757575;
+  --vf-dark-700: #616161;
+  --vf-dark-800: #424242;
+  --vf-dark-900: #212121;
 
   --vf-ring-width: 0;
   --vf-ring-color: #673AB766;

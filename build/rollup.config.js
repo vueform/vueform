@@ -56,59 +56,6 @@ const files = [
     banner: true,
   },
 
-  // // Main scripts (CJS)
-  // {
-  //   type: 'script',
-  //   input: 'src/index.js',
-  //   output: 'dist/index.cjs',
-  //   format: 'cjs',
-  //   banner: true,
-  // },
-  // {
-  //   type: 'script',
-  //   input: 'src/core.js',
-  //   output: 'dist/core.cjs',
-  //   format: 'cjs',
-  //   banner: true,
-  // },
-
-  // // Theme files (CJS)
-  // {
-  //   type: 'vue',
-  //   input: 'themes/bootstrap/index.js',
-  //   output: 'dist/bootstrap.cjs',
-  //   format: 'cjs',
-  //   banner: true,
-  // },
-  // {
-  //   type: 'vue',
-  //   input: 'themes/material/index.js',
-  //   output: 'dist/material.cjs',
-  //   format: 'cjs',
-  //   banner: true,
-  // },
-  // {
-  //   type: 'vue',
-  //   input: 'themes/tailwind/index.js',
-  //   output: 'dist/tailwind.cjs',
-  //   format: 'cjs',
-  //   banner: true,
-  // },
-  // {
-  //   type: 'vue',
-  //   input: 'themes/tailwind-material/index.js',
-  //   output: 'dist/tailwind-material.cjs',
-  //   format: 'cjs',
-  //   banner: true,
-  // },
-  // {
-  //   type: 'vue',
-  //   input: 'themes/vueform/index.js',
-  //   output: 'dist/vueform.cjs',
-  //   format: 'cjs',
-  //   banner: true,
-  // },
-
   // Theme styles
   {
     type: 'style',
@@ -119,14 +66,32 @@ const files = [
   {
     type: 'style',
     minimize: true,
+    input: 'themes/bootstrap/css/nodark.css',
+    output: 'dist/bootstrap.nodark.css',
+  },
+  {
+    type: 'style',
+    minimize: true,
     input: 'themes/material/scss/index.scss',
     output: 'dist/material.css',
   },
   {
     type: 'style',
     minimize: true,
+    input: 'themes/material/scss/nodark.scss',
+    output: 'dist/material.nodark.css',
+  },
+  {
+    type: 'style',
+    minimize: true,
     input: 'themes/tailwind-material/scss/index.scss',
     output: 'dist/tailwind-material.css',
+  },
+  {
+    type: 'style',
+    minimize: true,
+    input: 'themes/tailwind-material/scss/nodark.scss',
+    output: 'dist/tailwind-material.nodark.css',
   },
   {
     type: 'style',
@@ -150,6 +115,12 @@ const files = [
   },
   {
     type: 'style',
+    minimize: false,
+    input: 'themes/vueform/scss/nodark.scss',
+    output: 'themes/vueform/css/nodark.css',
+  },
+  {
+    type: 'style',
     minimize: true,
     input: 'themes/vueform/scss/index.scss',
     output: 'themes/vueform/css/index.min.css',
@@ -168,15 +139,33 @@ const files = [
   },
   {
     type: 'style',
+    minimize: false,
+    input: 'themes/material/scss/nodark.scss',
+    output: 'themes/material/css/nodark.css',
+  },
+  {
+    type: 'style',
     minimize: true,
     input: 'themes/material/scss/index.scss',
     output: 'themes/material/css/index.min.css',
   },
   {
     type: 'style',
+    minimize: true,
+    input: 'themes/material/scss/nodark.scss',
+    output: 'themes/material/css/nodark.min.css',
+  },
+  {
+    type: 'style',
     minimize: false,
     input: 'themes/tailwind-material/scss/index.scss',
     output: 'themes/tailwind-material/css/index.css',
+  },
+  {
+    type: 'style',
+    minimize: false,
+    input: 'themes/tailwind-material/scss/nodark.scss',
+    output: 'themes/tailwind-material/css/nodark.css',
   },
   {
     type: 'style',
@@ -187,8 +176,20 @@ const files = [
   {
     type: 'style',
     minimize: true,
+    input: 'themes/tailwind-material/scss/nodark.scss',
+    output: 'themes/tailwind-material/css/nodark.min.css',
+  },
+  {
+    type: 'style',
+    minimize: true,
     input: 'themes/bootstrap/css/index.css',
     output: 'themes/bootstrap/css/index.min.css',
+  },
+  {
+    type: 'style',
+    minimize: true,
+    input: 'themes/bootstrap/css/nodark.css',
+    output: 'themes/bootstrap/css/nodark.min.css',
   },
 ]
 

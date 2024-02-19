@@ -58,7 +58,7 @@ const vueform = plugin((context) => {
   const vfDarkMode = typeof config === 'function' && config()?.vfDarkMode === false ? false : true
   const darkMode = typeof config === 'function' && config()?.darkMode ? config()?.darkMode : false
 
-  const darkModeSelector = darkMode === 'class' ? '.dark' : (
+  const darkModeSelector = darkMode === 'class' ? '.dark, .dark *, .dark :before, .dark :after' : (
     Array.isArray(darkMode) ? darkMode[1] : '@media (prefers-color-scheme: dark)'
   )
 
@@ -125,7 +125,7 @@ const vueform = plugin((context) => {
       },
     },
     {
-      base: [':root'],
+      base: [':root', ':before', ':after', '*'],
       styles: {
         '--vf-primary': theme('form.primary'),
         '--vf-primary-darker': theme('form.primaryDarker') === null
@@ -594,7 +594,7 @@ const vueform = plugin((context) => {
     rules.push({
       base: [darkModeSelector],
       styles: darkModeSelector === '@media (prefers-color-scheme: dark)' ? {
-        ':root': darkVars
+        ':root, :before, :after, *': darkVars
       } : darkVars
     })
   }
@@ -2438,7 +2438,18 @@ const vueform = plugin((context) => {
         linkDecoration: 'none',
 
         grays: theme('colors.gray'),
-        darks: theme('colors.gray'),
+        darks: {
+          50: '#EFEFEF',
+          100: '#DCDCDC',
+          200: '#BDBDBD',
+          300: '#A0A0A0',
+          400: '#848484',
+          500: '#737373',
+          600: '#393939',
+          700: '#323232',
+          800: '#262626',
+          900: '#191919',
+        },
 
         fontSize: {
           base: theme('fontSize.base'),
