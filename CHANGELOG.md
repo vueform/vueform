@@ -1,5 +1,17 @@
 [//]: # (Don't use <tags>)
 
+## v1.8.0
+
+> `2024-02-19`
+
+### 🎉 Feature
+- [Dark mode](https://vueform.com/docs/styles-and-layout#dark-mode) 🌙
+
+### 🐞 Bug Fixes
+- `not_empty` condition with select `0` fix (builder/35)
+- Datepicker conditional rendering fix #147
+- Date data in group fix #131
+
 ## v1.7.3
 
 > `2024-02-07`

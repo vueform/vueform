@@ -10672,9 +10672,9 @@ function compare (actual, operator, expected, el$) {
         return false;
       } else if (actual && typeof actual === 'object') {
         var values = Object.values(actual);
-        return !values.length || values.every(v => !v);
+        return !values.length || values.every(v => ['', null, undefined].indexOf(v) !== -1);
       } else {
-        return !actual;
+        return ['', null, undefined].indexOf(actual) !== -1;
       }
     case 'not_empty':
       if (isArray_1(actual)) {
@@ -10683,9 +10683,9 @@ function compare (actual, operator, expected, el$) {
         return true;
       } else if (actual && typeof actual === 'object') {
         var _values = Object.values(actual);
-        return _values.length && _values.some(v => !!v);
+        return _values.length && _values.some(v => ['', null, undefined].indexOf(v) === -1);
       } else {
-        return !!actual;
+        return ['', null, undefined].indexOf(actual) === -1;
       }
     case '==':
     case 'in':
@@ -21080,6 +21080,16 @@ var DatepickerWrapper = {
     // ============== COMPUTED ==============
 
     /**
+     * Whether the element containing the datepicker is available.
+     * 
+     * @type {boolean}
+     * @private
+     */
+    var available = computed(() => {
+      return el$.value.available;
+    });
+
+    /**
      * The current locale object for flatpickr.
      * 
      * @type {object}
@@ -21210,7 +21220,7 @@ var DatepickerWrapper = {
     }, {
       deep: true
     });
-    watch(locale, (n, o) => {
+    watch([locale, available], (n, o) => {
       init();
     }, {
       deep: true
@@ -21247,7 +21257,8 @@ var DatepickerWrapper = {
       config,
       mode,
       locale,
-      update
+      update,
+      init
     };
   }
 };
@@ -26447,7 +26458,7 @@ var date$2 = function date(props, context, dependencies) {
         } else if (parent.value && ['list', 'multifile'].indexOf(parent.value.type) !== -1) {
           var newValue = parent.value.value.map((v, k) => k == name.value ? val : v);
           parent.value.update(newValue);
-        } else if (parent.value && ['object'].indexOf(parent.value.type) !== -1) {
+        } else if (parent.value && ['group', 'object'].indexOf(parent.value.type) !== -1) {
           parent.value.value = Object.assign({}, parent.value.value, {
             [name.value]: val
           });
@@ -26523,7 +26534,7 @@ var dates$3 = function dates(props, context, dependencies) {
         } else if (parent.value && ['list', 'multifile'].indexOf(parent.value.type) !== -1) {
           var newValue = parent.value.value.map((v, k) => k == name.value ? val : v);
           parent.value.update(newValue);
-        } else if (parent.value && ['object'].indexOf(parent.value.type) !== -1) {
+        } else if (parent.value && ['group', 'object'].indexOf(parent.value.type) !== -1) {
           parent.value.value = Object.assign({}, parent.value.value, {
             [name.value]: val
           });
