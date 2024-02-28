@@ -106,9 +106,7 @@ const base = function(props, context, dependencies)
       form$.value.submit()
     }
     
-    if (typeof onClick.value == 'function') {
-      fire('click', form$.value, el$.value, e)
-    }
+    fire('click', form$.value, el$.value, e)
   }
   
   return {
