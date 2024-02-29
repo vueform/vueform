@@ -113,7 +113,7 @@ export default {
           return steps$.value && !steps$.value.isAtLastStep && (!buttons || buttons.next !== false)
 
         case 'finish':
-          return steps$.value && steps$.value.isAtLastStep
+          return steps$.value && steps$.value.isAtLastStep && (!buttons || buttons.finish !== false)
       }
     })
 
