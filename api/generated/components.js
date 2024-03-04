@@ -5001,6 +5001,11 @@ module.exports = {
             "description": "the value to emit with change"
           }
         }
+      },
+      "init": {
+        "public": false,
+        "returns": "Promise",
+        "description": "Initalizes the flatpickr."
       }
     },
     "props": {
