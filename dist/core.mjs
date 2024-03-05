@@ -1,5 +1,5 @@
 /*!
- * Vueform v1.8.0 (https://github.com/vueform/vueform)
+ * Vueform v1.9.0 (https://github.com/vueform/vueform)
  * Copyright (c) 2024 Adam Berecz <adam@vueform.com>
  * Licensed under the MIT License
  */
@@ -10070,7 +10070,7 @@ function shouldApplyPlugin (name, plugin) {
 }
 
 var name = "@vueform/vueform";
-var version$1 = "1.8.0";
+var version$1 = "1.9.0";
 var description = "Open-Source Form Framework for Vue";
 var homepage = "https://vueform.com";
 var license = "MIT";
@@ -26759,6 +26759,16 @@ var multilingual$2 = function multilingual(props, context, dependencies) {
     nullValue
   };
 };
+var generic = function generic(props, context, dependencies) {
+  // ============== COMPUTED ===============
+
+  var nullValue = computed(() => {
+    return context.nullValue !== undefined ? context.nullValue : null;
+  });
+  return {
+    nullValue
+  };
+};
 
 var base$B = function base(props, context, dependencies) {
   var {
@@ -29822,7 +29832,7 @@ var GenericElement = {
     }
   },
   setup(props, context) {
-    context.features = [base$17, base$16, base$T, base$K, base$M, base$Q, base$C, base$S, base$1a, base$N, text$1, base$12, text, base$F, base$J, base$x, base$Z, base$G, base$X, base$W, base$18, base$Y, base$V, base$m, base$s, base$P, base$E, base$R];
+    context.features = [base$17, base$16, base$T, base$K, base$M, base$Q, generic, base$S, base$1a, base$N, text$1, base$12, text, base$F, base$J, base$x, base$Z, base$G, base$X, base$W, base$18, base$Y, base$V, base$m, base$s, base$P, base$E, base$R];
     context.slots = ['label', 'info', 'description', 'before', 'between', 'after'];
     return _objectSpread2$1({}, base$L(props, context));
   }
