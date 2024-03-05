@@ -78,12 +78,12 @@ const transformReturns = (returns, key) => {
 // Base
 let content = `import { App, defineComponent, DefineComponent, VNode } from 'vue';
 
-interface EndpointConfig {
+export interface EndpointConfig {
   url?: string;
   method?: string;
 }
 
-interface VueformConfig {
+export interface VueformConfig {
   apiKey?: string;
   env?: string;
   plugins?: any[];
@@ -133,7 +133,7 @@ interface VueformConfig {
   [key: string]: any;
 }
 
-interface DefineElement {
+export interface DefineElement {
   name: string;
   setup?: Function;
   props?: object;
@@ -177,7 +177,7 @@ declare module '@vueform/vueform' {
   export default function install(app?: any, options: VueformConfig): any;
 }
 
-interface MessageBag {
+export interface MessageBag {
   constructor(baseErrors: any);
   get errors(): any;
   get messages(): any;
@@ -192,7 +192,7 @@ interface MessageBag {
   clearAppended(type: any): void;
 }
 
-interface MergeClasses {
+export interface MergeClasses {
   constructor(options?: {});
   options: {};
   componentClasses: any;
@@ -225,7 +225,7 @@ interface MergeClasses {
   pick(from: any, picks: any): {};
 }
 
-interface Columns {
+export interface Columns {
   constructor(options: any, hasLabel: any, getClass: any, presets: any);
   defaultBreakpoint: string;
   presets: any;
@@ -251,11 +251,11 @@ interface Columns {
   getCols(): any;
 }
 
-interface Component extends DefineComponent {}
+export interface Component extends DefineComponent {}
 
-interface VueformComponent extends DefineComponent {}
+export interface VueformComponent extends DefineComponent {}
 
-interface VueformElement extends DefineComponent {`
+export interface VueformElement extends DefineComponent {`
 
 // Merged element props
 let elementMerge = {
@@ -388,7 +388,7 @@ if (Object.keys(methods).length) {
 content += `}`
 
 // VueformSchema
-content += `\n\ninterface VueformSchema {\n`
+content += `\n\nexport interface VueformSchema {\n`
 
 if (Object.keys(props).length) {
   for (const key in props) {
@@ -413,7 +413,7 @@ content += `}`
 for (const component in components) {
   let props = components[component].props || {}
 
-  content += `\n\ninterface ${component}Props {\n`
+  content += `\n\nexport interface ${component}Props {\n`
 
   for (const key in props) {
     let value = props[key]
@@ -440,7 +440,7 @@ for (const component in components) {
   let slots = components[component].slots || {}
   let injects = components[component].inject || {}
 
-  content += `\n\ndeclare class ${component} implements ReturnType<typeof defineComponent> {\n`
+  content += `\n\nexport declare class ${component} implements DefineComponent {\n`
   content += `  $props: ${component}Props;\n`
 
   // Props
