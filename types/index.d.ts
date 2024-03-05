@@ -1,11 +1,11 @@
 import { App, defineComponent, DefineComponent, VNode } from 'vue';
 
-interface EndpointConfig {
+export interface EndpointConfig {
   url?: string;
   method?: string;
 }
 
-interface VueformConfig {
+export interface VueformConfig {
   apiKey?: string;
   env?: string;
   plugins?: any[];
@@ -55,7 +55,7 @@ interface VueformConfig {
   [key: string]: any;
 }
 
-interface DefineElement {
+export interface DefineElement {
   name: string;
   setup?: Function;
   props?: object;
@@ -99,7 +99,7 @@ declare module '@vueform/vueform' {
   export default function install(app?: any, options: VueformConfig): any;
 }
 
-interface MessageBag {
+export interface MessageBag {
   constructor(baseErrors: any);
   get errors(): any;
   get messages(): any;
@@ -114,7 +114,7 @@ interface MessageBag {
   clearAppended(type: any): void;
 }
 
-interface MergeClasses {
+export interface MergeClasses {
   constructor(options?: {});
   options: {};
   componentClasses: any;
@@ -147,7 +147,7 @@ interface MergeClasses {
   pick(from: any, picks: any): {};
 }
 
-interface Columns {
+export interface Columns {
   constructor(options: any, hasLabel: any, getClass: any, presets: any);
   defaultBreakpoint: string;
   presets: any;
@@ -173,11 +173,11 @@ interface Columns {
   getCols(): any;
 }
 
-interface Component extends DefineComponent {}
+export interface Component extends DefineComponent {}
 
-interface VueformComponent extends DefineComponent {}
+export interface VueformComponent extends DefineComponent {}
 
-interface VueformElement extends DefineComponent {
+export interface VueformElement extends DefineComponent {
   // Props
   name: string | number;
   conditions: Array<any>;
@@ -595,7 +595,7 @@ interface VueformElement extends DefineComponent {
   handleTag: (searchQuery: string) => void;
 }
 
-interface VueformSchema {
+export interface VueformSchema {
   conditions?: Array<any>;
   onBeforeCreate?: Function;
   onCreated?: Function;
@@ -799,73 +799,73 @@ interface VueformSchema {
   [key: string]: any;
 }
 
-interface DragAndDropProps {
+export interface DragAndDropProps {
   title: string;
   description: string;
   disabled?: boolean;
 }
 
-interface ElementAddonProps {
+export interface ElementAddonProps {
   type: string;
 }
 
-interface ElementDescriptionProps {
+export interface ElementDescriptionProps {
 }
 
-interface ElementErrorProps {
+export interface ElementErrorProps {
 }
 
-interface ElementInfoProps {
+export interface ElementInfoProps {
 }
 
-interface ElementLabelProps {
+export interface ElementLabelProps {
 }
 
-interface ElementLabelFloatingProps {
+export interface ElementLabelFloatingProps {
   visible?: boolean;
 }
 
-interface ElementLayoutProps {
+export interface ElementLayoutProps {
   multiple?: boolean;
   view?: string;
 }
 
-interface ElementLayoutInlineProps {
+export interface ElementLayoutInlineProps {
 }
 
-interface ElementLoaderProps {
+export interface ElementLoaderProps {
 }
 
-interface ElementMessageProps {
+export interface ElementMessageProps {
 }
 
-interface ElementTextProps {
+export interface ElementTextProps {
   type: string;
 }
 
-interface FormElementsProps {
+export interface FormElementsProps {
   view?: string;
 }
 
-interface FormErrorsProps {
+export interface FormErrorsProps {
   view?: string;
 }
 
-interface FormLanguageProps {
+export interface FormLanguageProps {
   language: string;
   code: string;
   view?: string;
 }
 
-interface FormLanguagesProps {
+export interface FormLanguagesProps {
   view?: string;
 }
 
-interface FormMessagesProps {
+export interface FormMessagesProps {
   view?: string;
 }
 
-interface FormStepProps {
+export interface FormStepProps {
   name: string | number;
   label?: string | object | Function;
   labels?: object;
@@ -883,22 +883,22 @@ interface FormStepProps {
   onEnable?: Function;
 }
 
-interface FormStepsProps {
+export interface FormStepsProps {
   view?: string;
 }
 
-interface FormStepsControlProps {
+export interface FormStepsControlProps {
   type: string;
   labels?: boolean;
   view?: string;
 }
 
-interface FormStepsControlsProps {
+export interface FormStepsControlsProps {
   labels?: boolean;
   view?: string;
 }
 
-interface FormTabProps {
+export interface FormTabProps {
   name: string | number;
   label?: string | object | Function;
   elements?: Array<any>;
@@ -912,11 +912,11 @@ interface FormTabProps {
   onInactivate?: Function;
 }
 
-interface FormTabsProps {
+export interface FormTabsProps {
   view?: string;
 }
 
-interface VueformProps {
+export interface VueformProps {
   schema?: {
     [key: string]: VueformSchema;
   };
@@ -976,7 +976,7 @@ interface VueformProps {
   onUnmounted?: Function;
 }
 
-interface DatepickerWrapperProps {
+export interface DatepickerWrapperProps {
   value: any;
   options: object;
   id: number | string;
@@ -984,7 +984,7 @@ interface DatepickerWrapperProps {
   attrs?: object;
 }
 
-interface EditorWrapperProps {
+export interface EditorWrapperProps {
   value?: any;
   placeholder?: string | number;
   name?: string | number;
@@ -998,7 +998,7 @@ interface EditorWrapperProps {
   attrs?: object;
 }
 
-interface CheckboxgroupCheckboxProps {
+export interface CheckboxgroupCheckboxProps {
   item: object | string | number;
   value: string | number;
   items: object | Array<any>;
@@ -1006,11 +1006,11 @@ interface CheckboxgroupCheckboxProps {
   attrs?: object;
 }
 
-interface FilePreviewProps {
+export interface FilePreviewProps {
   attrs?: object;
 }
 
-interface RadiogroupRadioProps {
+export interface RadiogroupRadioProps {
   item: object | string | number;
   value: string | number;
   items: object | Array<any>;
@@ -1018,7 +1018,7 @@ interface RadiogroupRadioProps {
   attrs?: object;
 }
 
-interface ButtonElementProps {
+export interface ButtonElementProps {
   name: string | number;
   conditions?: Array<any>;
   onBeforeCreate?: Function;
@@ -1071,7 +1071,7 @@ interface ButtonElementProps {
   align?: string;
 }
 
-interface CheckboxElementProps {
+export interface CheckboxElementProps {
   name: string | number;
   conditions?: Array<any>;
   onBeforeCreate?: Function;
@@ -1123,7 +1123,7 @@ interface CheckboxElementProps {
   align?: string;
 }
 
-interface CheckboxgroupElementProps {
+export interface CheckboxgroupElementProps {
   name: string | number;
   conditions?: Array<any>;
   onBeforeCreate?: Function;
@@ -1174,7 +1174,7 @@ interface CheckboxgroupElementProps {
   clearOnRefetch?: boolean;
 }
 
-interface DateElementProps {
+export interface DateElementProps {
   name: string | number;
   conditions?: Array<any>;
   onBeforeCreate?: Function;
@@ -1237,7 +1237,7 @@ interface DateElementProps {
   readonly?: boolean;
 }
 
-interface DatesElementProps {
+export interface DatesElementProps {
   name: string | number;
   conditions?: Array<any>;
   onBeforeCreate?: Function;
@@ -1297,7 +1297,7 @@ interface DatesElementProps {
   readonly?: boolean;
 }
 
-interface EditorElementProps {
+export interface EditorElementProps {
   name: string | number;
   conditions?: Array<any>;
   onBeforeCreate?: Function;
@@ -1355,7 +1355,7 @@ interface EditorElementProps {
   onBlur?: Function;
 }
 
-interface FileElementProps {
+export interface FileElementProps {
   name: string | number;
   conditions?: Array<any>;
   onBeforeCreate?: Function;
@@ -1419,7 +1419,7 @@ interface FileElementProps {
   embed?: boolean;
 }
 
-interface GenericElementProps {
+export interface GenericElementProps {
   name: string | number;
   conditions?: Array<any>;
   onBeforeCreate?: Function;
@@ -1467,7 +1467,7 @@ interface GenericElementProps {
   default?: string | number | object;
 }
 
-interface GroupElementProps {
+export interface GroupElementProps {
   name: string | number;
   conditions?: Array<any>;
   onBeforeCreate?: Function;
@@ -1517,7 +1517,7 @@ interface GroupElementProps {
   };
 }
 
-interface HiddenElementProps {
+export interface HiddenElementProps {
   name: string | number;
   conditions?: Array<any>;
   onBeforeCreate?: Function;
@@ -1541,7 +1541,7 @@ interface HiddenElementProps {
   meta?: boolean;
 }
 
-interface ListElementProps {
+export interface ListElementProps {
   name: string | number;
   conditions?: Array<any>;
   onBeforeCreate?: Function;
@@ -1603,7 +1603,7 @@ interface ListElementProps {
   orderBy?: string;
 }
 
-interface LocationElementProps {
+export interface LocationElementProps {
   name: string | number;
   conditions?: Array<any>;
   onBeforeCreate?: Function;
@@ -1660,7 +1660,7 @@ interface LocationElementProps {
   extendOptions?: object;
 }
 
-interface MultifileElementProps {
+export interface MultifileElementProps {
   name: string | number;
   conditions?: Array<any>;
   onBeforeCreate?: Function;
@@ -1732,7 +1732,7 @@ interface MultifileElementProps {
   softRemove?: boolean;
 }
 
-interface MultiselectElementProps {
+export interface MultiselectElementProps {
   name: string | number;
   conditions?: Array<any>;
   onBeforeCreate?: Function;
@@ -1834,7 +1834,7 @@ interface MultiselectElementProps {
   extendOptions?: object;
 }
 
-interface ObjectElementProps {
+export interface ObjectElementProps {
   name: string | number;
   conditions?: Array<any>;
   onBeforeCreate?: Function;
@@ -1886,7 +1886,7 @@ interface ObjectElementProps {
   onRemove?: Function;
 }
 
-interface RadioElementProps {
+export interface RadioElementProps {
   name: string | number;
   conditions?: Array<any>;
   onBeforeCreate?: Function;
@@ -1938,7 +1938,7 @@ interface RadioElementProps {
   align?: string;
 }
 
-interface RadiogroupElementProps {
+export interface RadiogroupElementProps {
   name: string | number;
   conditions?: Array<any>;
   onBeforeCreate?: Function;
@@ -1989,7 +1989,7 @@ interface RadiogroupElementProps {
   clearOnRefetch?: boolean;
 }
 
-interface SelectElementProps {
+export interface SelectElementProps {
   name: string | number;
   conditions?: Array<any>;
   onBeforeCreate?: Function;
@@ -2086,7 +2086,7 @@ interface SelectElementProps {
   extendOptions?: object;
 }
 
-interface SliderElementProps {
+export interface SliderElementProps {
   name: string | number;
   conditions?: Array<any>;
   onBeforeCreate?: Function;
@@ -2146,7 +2146,7 @@ interface SliderElementProps {
   extendOptions?: object;
 }
 
-interface StaticElementProps {
+export interface StaticElementProps {
   name: string | number;
   conditions?: Array<any>;
   onBeforeCreate?: Function;
@@ -2200,7 +2200,7 @@ interface StaticElementProps {
   bottom?: string | number;
 }
 
-interface TEditorElementProps {
+export interface TEditorElementProps {
   name: string | number;
   conditions?: Array<any>;
   onBeforeCreate?: Function;
@@ -2258,7 +2258,7 @@ interface TEditorElementProps {
   onBlur?: Function;
 }
 
-interface TTextElementProps {
+export interface TTextElementProps {
   name: string | number;
   conditions?: Array<any>;
   onBeforeCreate?: Function;
@@ -2319,7 +2319,7 @@ interface TTextElementProps {
   onKeypress?: Function;
 }
 
-interface TTextareaElementProps {
+export interface TTextareaElementProps {
   name: string | number;
   conditions?: Array<any>;
   onBeforeCreate?: Function;
@@ -2379,7 +2379,7 @@ interface TTextareaElementProps {
   onKeypress?: Function;
 }
 
-interface TagsElementProps {
+export interface TagsElementProps {
   name: string | number;
   conditions?: Array<any>;
   onBeforeCreate?: Function;
@@ -2480,7 +2480,7 @@ interface TagsElementProps {
   extendOptions?: object;
 }
 
-interface TextElementProps {
+export interface TextElementProps {
   name: string | number;
   conditions?: Array<any>;
   onBeforeCreate?: Function;
@@ -2541,7 +2541,7 @@ interface TextElementProps {
   onKeypress?: Function;
 }
 
-interface TextareaElementProps {
+export interface TextareaElementProps {
   name: string | number;
   conditions?: Array<any>;
   onBeforeCreate?: Function;
@@ -2601,7 +2601,7 @@ interface TextareaElementProps {
   onKeypress?: Function;
 }
 
-interface ToggleElementProps {
+export interface ToggleElementProps {
   name: string | number;
   conditions?: Array<any>;
   onBeforeCreate?: Function;
@@ -2655,7 +2655,7 @@ interface ToggleElementProps {
   align?: string;
 }
 
-declare class DragAndDrop implements ReturnType<typeof defineComponent> {
+export declare class DragAndDrop implements DefineComponent {
   $props: DragAndDropProps;
 
   // Props
@@ -2688,7 +2688,7 @@ declare class DragAndDrop implements ReturnType<typeof defineComponent> {
   $emit(eventName: 'drop', value: any): void;
 }
 
-declare class ElementAddon implements ReturnType<typeof defineComponent> {
+export declare class ElementAddon implements DefineComponent {
   $props: ElementAddonProps;
 
   // Props
@@ -2716,7 +2716,7 @@ declare class ElementAddon implements ReturnType<typeof defineComponent> {
   };
 }
 
-declare class ElementDescription implements ReturnType<typeof defineComponent> {
+export declare class ElementDescription implements DefineComponent {
   $props: ElementDescriptionProps;
 
   // Computed
@@ -2741,7 +2741,7 @@ declare class ElementDescription implements ReturnType<typeof defineComponent> {
   };
 }
 
-declare class ElementError implements ReturnType<typeof defineComponent> {
+export declare class ElementError implements DefineComponent {
   $props: ElementErrorProps;
 
   // Computed
@@ -2760,7 +2760,7 @@ declare class ElementError implements ReturnType<typeof defineComponent> {
   theme: object;
 }
 
-declare class ElementInfo implements ReturnType<typeof defineComponent> {
+export declare class ElementInfo implements DefineComponent {
   $props: ElementInfoProps;
 
   // Computed
@@ -2788,7 +2788,7 @@ declare class ElementInfo implements ReturnType<typeof defineComponent> {
   };
 }
 
-declare class ElementLabel implements ReturnType<typeof defineComponent> {
+export declare class ElementLabel implements DefineComponent {
   $props: ElementLabelProps;
 
   // Computed
@@ -2817,7 +2817,7 @@ declare class ElementLabel implements ReturnType<typeof defineComponent> {
   };
 }
 
-declare class ElementLabelFloating implements ReturnType<typeof defineComponent> {
+export declare class ElementLabelFloating implements DefineComponent {
   $props: ElementLabelFloatingProps;
 
   // Props
@@ -2838,7 +2838,7 @@ declare class ElementLabelFloating implements ReturnType<typeof defineComponent>
   theme: object;
 }
 
-declare class ElementLayout implements ReturnType<typeof defineComponent> {
+export declare class ElementLayout implements DefineComponent {
   $props: ElementLayoutProps;
 
   // Props
@@ -2871,7 +2871,7 @@ declare class ElementLayout implements ReturnType<typeof defineComponent> {
   };
 }
 
-declare class ElementLayoutInline implements ReturnType<typeof defineComponent> {
+export declare class ElementLayoutInline implements DefineComponent {
   $props: ElementLayoutInlineProps;
 
   // Computed
@@ -2900,7 +2900,7 @@ declare class ElementLayoutInline implements ReturnType<typeof defineComponent> 
   };
 }
 
-declare class ElementLoader implements ReturnType<typeof defineComponent> {
+export declare class ElementLoader implements DefineComponent {
   $props: ElementLoaderProps;
 
   // Computed
@@ -2917,7 +2917,7 @@ declare class ElementLoader implements ReturnType<typeof defineComponent> {
   theme: object;
 }
 
-declare class ElementMessage implements ReturnType<typeof defineComponent> {
+export declare class ElementMessage implements DefineComponent {
   $props: ElementMessageProps;
 
   // Computed
@@ -2935,7 +2935,7 @@ declare class ElementMessage implements ReturnType<typeof defineComponent> {
   theme: object;
 }
 
-declare class ElementText implements ReturnType<typeof defineComponent> {
+export declare class ElementText implements DefineComponent {
   $props: ElementTextProps;
 
   // Props
@@ -2962,7 +2962,7 @@ declare class ElementText implements ReturnType<typeof defineComponent> {
   };
 }
 
-declare class FormElements implements ReturnType<typeof defineComponent> {
+export declare class FormElements implements DefineComponent {
   $props: FormElementsProps;
 
   // Props
@@ -2990,7 +2990,7 @@ declare class FormElements implements ReturnType<typeof defineComponent> {
   };
 }
 
-declare class FormErrors implements ReturnType<typeof defineComponent> {
+export declare class FormErrors implements DefineComponent {
   $props: FormErrorsProps;
 
   // Props
@@ -3010,7 +3010,7 @@ declare class FormErrors implements ReturnType<typeof defineComponent> {
   theme: object;
 }
 
-declare class FormLanguage implements ReturnType<typeof defineComponent> {
+export declare class FormLanguage implements DefineComponent {
   $props: FormLanguageProps;
 
   // Props
@@ -3039,7 +3039,7 @@ declare class FormLanguage implements ReturnType<typeof defineComponent> {
   $emit(eventName: 'select', value: any): void;
 }
 
-declare class FormLanguages implements ReturnType<typeof defineComponent> {
+export declare class FormLanguages implements DefineComponent {
   $props: FormLanguagesProps;
 
   // Props
@@ -3064,7 +3064,7 @@ declare class FormLanguages implements ReturnType<typeof defineComponent> {
   handleSelect: (code: string) => void;
 }
 
-declare class FormMessages implements ReturnType<typeof defineComponent> {
+export declare class FormMessages implements DefineComponent {
   $props: FormMessagesProps;
 
   // Props
@@ -3084,7 +3084,7 @@ declare class FormMessages implements ReturnType<typeof defineComponent> {
   theme: object;
 }
 
-declare class FormStep implements ReturnType<typeof defineComponent> {
+export declare class FormStep implements DefineComponent {
   $props: FormStepProps;
 
   // Props
@@ -3172,7 +3172,7 @@ declare class FormStep implements ReturnType<typeof defineComponent> {
   };
 }
 
-declare class FormSteps implements ReturnType<typeof defineComponent> {
+export declare class FormSteps implements DefineComponent {
   $props: FormStepsProps;
 
   // Props
@@ -3239,7 +3239,7 @@ declare class FormSteps implements ReturnType<typeof defineComponent> {
   $emit(eventName: 'finish', value: any): void;
 }
 
-declare class FormStepsControl implements ReturnType<typeof defineComponent> {
+export declare class FormStepsControl implements DefineComponent {
   $props: FormStepsControlProps;
 
   // Props
@@ -3278,7 +3278,7 @@ declare class FormStepsControl implements ReturnType<typeof defineComponent> {
   };
 }
 
-declare class FormStepsControls implements ReturnType<typeof defineComponent> {
+export declare class FormStepsControls implements DefineComponent {
   $props: FormStepsControlsProps;
 
   // Props
@@ -3305,7 +3305,7 @@ declare class FormStepsControls implements ReturnType<typeof defineComponent> {
   };
 }
 
-declare class FormTab implements ReturnType<typeof defineComponent> {
+export declare class FormTab implements DefineComponent {
   $props: FormTabProps;
 
   // Props
@@ -3373,7 +3373,7 @@ declare class FormTab implements ReturnType<typeof defineComponent> {
   };
 }
 
-declare class FormTabs implements ReturnType<typeof defineComponent> {
+export declare class FormTabs implements DefineComponent {
   $props: FormTabsProps;
 
   // Props
@@ -3419,7 +3419,7 @@ declare class FormTabs implements ReturnType<typeof defineComponent> {
   $emit(eventName: 'select', value: any): void;
 }
 
-declare class Vueform implements ReturnType<typeof defineComponent> {
+export declare class Vueform implements DefineComponent {
   $props: VueformProps;
 
   // Props
@@ -3596,7 +3596,7 @@ declare class Vueform implements ReturnType<typeof defineComponent> {
   };
 }
 
-declare class DatepickerWrapper implements ReturnType<typeof defineComponent> {
+export declare class DatepickerWrapper implements DefineComponent {
   $props: DatepickerWrapperProps;
 
   // Props
@@ -3628,12 +3628,13 @@ declare class DatepickerWrapper implements ReturnType<typeof defineComponent> {
 
   // Methods
   update: (value: Array<any> | Date) => void;
+  init: () => Promise;
 
   //Events
   $emit(eventName: 'change', value: any): void;
 }
 
-declare class EditorWrapper implements ReturnType<typeof defineComponent> {
+export declare class EditorWrapper implements DefineComponent {
   $props: EditorWrapperProps;
 
   // Props
@@ -3680,7 +3681,7 @@ declare class EditorWrapper implements ReturnType<typeof defineComponent> {
   $emit(eventName: 'blur', value: any): void;
 }
 
-declare class CheckboxgroupCheckbox implements ReturnType<typeof defineComponent> {
+export declare class CheckboxgroupCheckbox implements DefineComponent {
   $props: CheckboxgroupCheckboxProps;
 
   // Props
@@ -3711,7 +3712,7 @@ declare class CheckboxgroupCheckbox implements ReturnType<typeof defineComponent
   handleKeydown: (e: Event) => void;
 }
 
-declare class FilePreview implements ReturnType<typeof defineComponent> {
+export declare class FilePreview implements DefineComponent {
   $props: FilePreviewProps;
 
   // Props
@@ -3752,7 +3753,7 @@ declare class FilePreview implements ReturnType<typeof defineComponent> {
   handleKeyup: (event: Event) => Promise;
 }
 
-declare class RadiogroupRadio implements ReturnType<typeof defineComponent> {
+export declare class RadiogroupRadio implements DefineComponent {
   $props: RadiogroupRadioProps;
 
   // Props
@@ -3783,7 +3784,7 @@ declare class RadiogroupRadio implements ReturnType<typeof defineComponent> {
   handleKeydown: (e: Event) => void;
 }
 
-declare class ButtonElement implements ReturnType<typeof defineComponent> {
+export declare class ButtonElement implements DefineComponent {
   $props: ButtonElementProps;
 
   // Props
@@ -3925,7 +3926,7 @@ declare class ButtonElement implements ReturnType<typeof defineComponent> {
   };
 }
 
-declare class CheckboxElement implements ReturnType<typeof defineComponent> {
+export declare class CheckboxElement implements DefineComponent {
   $props: CheckboxElementProps;
 
   // Props
@@ -4105,7 +4106,7 @@ declare class CheckboxElement implements ReturnType<typeof defineComponent> {
   };
 }
 
-declare class CheckboxgroupElement implements ReturnType<typeof defineComponent> {
+export declare class CheckboxgroupElement implements DefineComponent {
   $props: CheckboxgroupElementProps;
 
   // Props
@@ -4293,7 +4294,7 @@ declare class CheckboxgroupElement implements ReturnType<typeof defineComponent>
   };
 }
 
-declare class DateElement implements ReturnType<typeof defineComponent> {
+export declare class DateElement implements DefineComponent {
   $props: DateElementProps;
 
   // Props
@@ -4490,7 +4491,7 @@ declare class DateElement implements ReturnType<typeof defineComponent> {
   };
 }
 
-declare class DatesElement implements ReturnType<typeof defineComponent> {
+export declare class DatesElement implements DefineComponent {
   $props: DatesElementProps;
 
   // Props
@@ -4684,7 +4685,7 @@ declare class DatesElement implements ReturnType<typeof defineComponent> {
   };
 }
 
-declare class EditorElement implements ReturnType<typeof defineComponent> {
+export declare class EditorElement implements DefineComponent {
   $props: EditorElementProps;
 
   // Props
@@ -4879,7 +4880,7 @@ declare class EditorElement implements ReturnType<typeof defineComponent> {
   };
 }
 
-declare class FileElement implements ReturnType<typeof defineComponent> {
+export declare class FileElement implements DefineComponent {
   $props: FileElementProps;
 
   // Props
@@ -5098,7 +5099,7 @@ declare class FileElement implements ReturnType<typeof defineComponent> {
   };
 }
 
-declare class GenericElement implements ReturnType<typeof defineComponent> {
+export declare class GenericElement implements DefineComponent {
   $props: GenericElementProps;
 
   // Props
@@ -5274,7 +5275,7 @@ declare class GenericElement implements ReturnType<typeof defineComponent> {
   };
 }
 
-declare class GroupElement implements ReturnType<typeof defineComponent> {
+export declare class GroupElement implements DefineComponent {
   $props: GroupElementProps;
 
   // Props
@@ -5443,7 +5444,7 @@ declare class GroupElement implements ReturnType<typeof defineComponent> {
   };
 }
 
-declare class HiddenElement implements ReturnType<typeof defineComponent> {
+export declare class HiddenElement implements DefineComponent {
   $props: HiddenElementProps;
 
   // Props
@@ -5555,7 +5556,7 @@ declare class HiddenElement implements ReturnType<typeof defineComponent> {
   $emit(eventName: 'unmounted', value: any): void;
 }
 
-declare class ListElement implements ReturnType<typeof defineComponent> {
+export declare class ListElement implements DefineComponent {
   $props: ListElementProps;
 
   // Props
@@ -5769,7 +5770,7 @@ declare class ListElement implements ReturnType<typeof defineComponent> {
   };
 }
 
-declare class LocationElement implements ReturnType<typeof defineComponent> {
+export declare class LocationElement implements DefineComponent {
   $props: LocationElementProps;
 
   // Props
@@ -5962,7 +5963,7 @@ declare class LocationElement implements ReturnType<typeof defineComponent> {
   };
 }
 
-declare class MultifileElement implements ReturnType<typeof defineComponent> {
+export declare class MultifileElement implements DefineComponent {
   $props: MultifileElementProps;
 
   // Props
@@ -6193,7 +6194,7 @@ declare class MultifileElement implements ReturnType<typeof defineComponent> {
   };
 }
 
-declare class MultiselectElement implements ReturnType<typeof defineComponent> {
+export declare class MultiselectElement implements DefineComponent {
   $props: MultiselectElementProps;
 
   // Props
@@ -6457,7 +6458,7 @@ declare class MultiselectElement implements ReturnType<typeof defineComponent> {
   };
 }
 
-declare class ObjectElement implements ReturnType<typeof defineComponent> {
+export declare class ObjectElement implements DefineComponent {
   $props: ObjectElementProps;
 
   // Props
@@ -6630,7 +6631,7 @@ declare class ObjectElement implements ReturnType<typeof defineComponent> {
   };
 }
 
-declare class RadioElement implements ReturnType<typeof defineComponent> {
+export declare class RadioElement implements DefineComponent {
   $props: RadioElementProps;
 
   // Props
@@ -6811,7 +6812,7 @@ declare class RadioElement implements ReturnType<typeof defineComponent> {
   };
 }
 
-declare class RadiogroupElement implements ReturnType<typeof defineComponent> {
+export declare class RadiogroupElement implements DefineComponent {
   $props: RadiogroupElementProps;
 
   // Props
@@ -6994,7 +6995,7 @@ declare class RadiogroupElement implements ReturnType<typeof defineComponent> {
   };
 }
 
-declare class SelectElement implements ReturnType<typeof defineComponent> {
+export declare class SelectElement implements DefineComponent {
   $props: SelectElementProps;
 
   // Props
@@ -7251,7 +7252,7 @@ declare class SelectElement implements ReturnType<typeof defineComponent> {
   };
 }
 
-declare class SliderElement implements ReturnType<typeof defineComponent> {
+export declare class SliderElement implements DefineComponent {
   $props: SliderElementProps;
 
   // Props
@@ -7435,7 +7436,7 @@ declare class SliderElement implements ReturnType<typeof defineComponent> {
   };
 }
 
-declare class StaticElement implements ReturnType<typeof defineComponent> {
+export declare class StaticElement implements DefineComponent {
   $props: StaticElementProps;
 
   // Props
@@ -7575,7 +7576,7 @@ declare class StaticElement implements ReturnType<typeof defineComponent> {
   };
 }
 
-declare class TEditorElement implements ReturnType<typeof defineComponent> {
+export declare class TEditorElement implements DefineComponent {
   $props: TEditorElementProps;
 
   // Props
@@ -7772,7 +7773,7 @@ declare class TEditorElement implements ReturnType<typeof defineComponent> {
   };
 }
 
-declare class TTextElement implements ReturnType<typeof defineComponent> {
+export declare class TTextElement implements DefineComponent {
   $props: TTextElementProps;
 
   // Props
@@ -7976,7 +7977,7 @@ declare class TTextElement implements ReturnType<typeof defineComponent> {
   };
 }
 
-declare class TTextareaElement implements ReturnType<typeof defineComponent> {
+export declare class TTextareaElement implements DefineComponent {
   $props: TTextareaElementProps;
 
   // Props
@@ -8179,7 +8180,7 @@ declare class TTextareaElement implements ReturnType<typeof defineComponent> {
   };
 }
 
-declare class TagsElement implements ReturnType<typeof defineComponent> {
+export declare class TagsElement implements DefineComponent {
   $props: TagsElementProps;
 
   // Props
@@ -8444,7 +8445,7 @@ declare class TagsElement implements ReturnType<typeof defineComponent> {
   };
 }
 
-declare class TextElement implements ReturnType<typeof defineComponent> {
+export declare class TextElement implements DefineComponent {
   $props: TextElementProps;
 
   // Props
@@ -8646,7 +8647,7 @@ declare class TextElement implements ReturnType<typeof defineComponent> {
   };
 }
 
-declare class TextareaElement implements ReturnType<typeof defineComponent> {
+export declare class TextareaElement implements DefineComponent {
   $props: TextareaElementProps;
 
   // Props
@@ -8847,7 +8848,7 @@ declare class TextareaElement implements ReturnType<typeof defineComponent> {
   };
 }
 
-declare class ToggleElement implements ReturnType<typeof defineComponent> {
+export declare class ToggleElement implements DefineComponent {
   $props: ToggleElementProps;
 
   // Props

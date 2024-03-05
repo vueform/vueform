@@ -1,5 +1,5 @@
 /*!
- * Vueform v1.7.3 (https://github.com/vueform/vueform)
+ * Vueform v1.8.0 (https://github.com/vueform/vueform)
  * Copyright (c) 2024 Adam Berecz <adam@vueform.com>
  * Licensed under the MIT License
  */
@@ -10070,7 +10070,7 @@ function shouldApplyPlugin (name, plugin) {
 }
 
 var name = "@vueform/vueform";
-var version$1 = "1.7.3";
+var version$1 = "1.8.0";
 var description = "Open-Source Form Framework for Vue";
 var homepage = "https://vueform.com";
 var license = "MIT";
@@ -16661,7 +16661,7 @@ var FormStepsControl = {
         case 'next':
           return steps$.value && !steps$.value.isAtLastStep && (!buttons || buttons.next !== false);
         case 'finish':
-          return steps$.value && steps$.value.isAtLastStep;
+          return steps$.value && steps$.value.isAtLastStep && (!buttons || buttons.finish !== false);
       }
     });
 
@@ -22068,9 +22068,7 @@ var base$U = function base(props, context, dependencies) {
     if (submits.value) {
       form$.value.submit();
     }
-    if (typeof onClick.value == 'function') {
-      fire('click', form$.value, el$.value, e);
-    }
+    fire('click', form$.value, el$.value, e);
   };
   return {
     isButtonLabelComponent,
@@ -37236,7 +37234,8 @@ function element (options) {
     setup(props, ctx) {
       var context = _objectSpread2$1(_objectSpread2$1({}, ctx), {}, {
         emits,
-        name: ref(ComponentName)
+        name: ref(ComponentName),
+        nullValue: options.nullValue !== undefined ? options.nullValue : null
       });
       var element = GenericElement.setup(props, context);
       context.element = element;

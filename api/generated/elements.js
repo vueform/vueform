@@ -38920,6 +38920,19 @@ module.exports = {
         required: false,
         private: false,
       },
+      mask: {
+        required: 'false',
+        default: 'undefined',
+        localized: false,
+        types: [
+          'string',
+          'object',
+          'array',
+          'function',
+        ],
+        required: false,
+        private: false,
+      },
       autocomplete: {
         required: 'false',
         default: 'null',

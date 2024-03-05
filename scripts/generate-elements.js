@@ -32,6 +32,45 @@ const include = []
 
 const output = __dirname + '/../api/generated/elements.js'
 
+const additions = [
+  {
+    element: 'TextElement',
+    section: 'props',
+    before: 'autocomplete',
+    addition: {
+      mask: {
+        required: false,
+        type: [String, Object, Array, Function],
+        default: undefined,
+      },
+    }
+  }
+]
+
+additions.forEach(({ element, section, before, addition }) => {
+  let target = elements[element][section]
+  let temp = {}
+
+  Object.keys(target).forEach((key) => {
+    if (key === before) {
+      temp = {
+        ...temp,
+        ...addition,
+      }
+    }
+
+    temp = {
+      ...temp,
+      [key]: target[key],
+    }
+  })
+
+  elements[element][section] = temp
+})
+
+
+console.log(elements.TextElement)
+
 const generate = () => {
   let contents = `module.exports = {\n`
 

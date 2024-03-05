@@ -39,7 +39,8 @@ export default function (options, component = {}) {
       const context = {
         ...ctx,
         emits,
-        name: ref(ComponentName)
+        name: ref(ComponentName),
+        nullValue: options.nullValue !== undefined ? options.nullValue : null,
       }
 
       const element = GenericElement.setup(props, context)
