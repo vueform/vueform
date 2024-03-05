@@ -153,6 +153,19 @@ const multilingual = function(props, context, dependencies)
   }
 }
 
+const generic = function(props, context, dependencies)
+{
+  // ============== COMPUTED ===============
+  
+  const nullValue = computed(() => {
+    return context.nullValue !== undefined ? context.nullValue : null
+  })
+  
+  return {
+    nullValue,
+  }
+}
+
 export {
   array,
   boolean,
@@ -161,6 +174,7 @@ export {
   object,
   location,
   address,
+  generic,
 }
 
 export default base
