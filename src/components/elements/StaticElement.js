@@ -39,7 +39,7 @@ export default {
     },
     content: {
       required: false,
-      type: [String, Object],
+      type: [String, Object, Function],
       default: ''
     },
     wrap: {
