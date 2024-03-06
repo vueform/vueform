@@ -20,6 +20,12 @@ let themeExports = ``
 
 let typeTypes = []
 
+for (const component in components) {
+  if (components[component].props.mask) {
+    delete components[component].props.mask
+  }
+}
+
 const transformTypes = (types, key) => {
   let res
 

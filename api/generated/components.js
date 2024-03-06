@@ -4344,6 +4344,13 @@ module.exports = {
           "function"
         ]
       },
+      "forceNumbers": {
+        "required": false,
+        "default": null,
+        "types": [
+          "boolean"
+        ]
+      },
       "value": {
         "required": false,
         "types": [

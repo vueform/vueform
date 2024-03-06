@@ -1949,6 +1949,71 @@ export default {
         }
       }
     },
+    "text": {
+      "computed": {
+        "data": {
+          "public": true,
+          "types": [
+            "object"
+          ],
+          "description": "The value of the element in `{[name]: value}` value format. This gets merged with the parent component's data."
+        },
+        "requestData": {
+          "public": true,
+          "types": [
+            "object"
+          ],
+          "description": "Same as `data` property except that it only includes the element's value if [`submit`](#option-submit) is not disabled and [`available`](#property-available) is `true` (has no [`conditions`](#option-conditions) or they are fulfilled)."
+        }
+      },
+      "methods": {
+        "load": {
+          "public": true,
+          "returns": "void",
+          "description": "Loads value to the element using optional [`formatLoad`](#option-format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.",
+          "params": {
+            "value": {
+              "types": [
+                "any"
+              ],
+              "required": true,
+              "description": "the value to be loaded"
+            },
+            "format": {
+              "types": [
+                "boolean"
+              ],
+              "required": false,
+              "description": "whether the loaded value should be formatted with [`formatLoad`](#option-format-load) before setting the value of the element (default: `false`)"
+            }
+          }
+        },
+        "update": {
+          "public": true,
+          "returns": "void",
+          "description": "Updates the value of the element similarly to [`load`](#method-load), only that it can\\'t format data.",
+          "params": {
+            "value": {
+              "types": [
+                "any"
+              ],
+              "required": true,
+              "description": "the value to be set"
+            }
+          }
+        },
+        "clear": {
+          "public": true,
+          "returns": "void",
+          "description": "Clears the element's value."
+        },
+        "reset": {
+          "public": true,
+          "returns": "void",
+          "description": "Resets the element's value to [`default`](#option-default) (or empty if `default` is not provided). Also resets all the validation state for the element."
+        }
+      }
+    },
     "select": {
       "computed": {
         "data": {
@@ -4234,6 +4299,17 @@ export default {
       }
     },
     "multilingual": {
+      "computed": {
+        "nullValue": {
+          "public": false,
+          "types": [
+            "any"
+          ],
+          "description": "The null value of the element."
+        }
+      }
+    },
+    "generic": {
       "computed": {
         "nullValue": {
           "public": false,

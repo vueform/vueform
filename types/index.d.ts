@@ -360,7 +360,7 @@ export interface VueformElement extends DefineComponent {
   orientation: string;
   direction: string;
   lazy: boolean;
-  content: string | object;
+  content: string | object | Function;
   wrap: boolean;
   tag: string;
   allowHtml: boolean;
@@ -379,6 +379,7 @@ export interface VueformElement extends DefineComponent {
   onTag: Function;
   breakTags: boolean;
   showOptions: boolean;
+  forceNumbers: boolean;
   labels: object;
 
   // Computed
@@ -776,7 +777,7 @@ export interface VueformSchema {
   orientation?: string;
   direction?: string;
   lazy?: boolean;
-  content?: string | object;
+  content?: string | object | Function;
   wrap?: boolean;
   tag?: string;
   allowHtml?: boolean;
@@ -795,6 +796,7 @@ export interface VueformSchema {
   onTag?: Function;
   breakTags?: boolean;
   showOptions?: boolean;
+  forceNumbers?: boolean;
   labels?: object;
   [key: string]: any;
 }
@@ -933,6 +935,7 @@ export interface VueformProps {
   prepare?: Function;
   formKey?: string | number;
   formData?: Function;
+  forceNumbers?: boolean;
   value?: object;
   modelValue?: object;
   sync?: boolean;
@@ -2183,7 +2186,7 @@ export interface StaticElementProps {
   slots?: object;
   type?: string;
   id?: string;
-  content?: string | object;
+  content?: string | object | Function;
   wrap?: boolean;
   tag?: string;
   allowHtml?: boolean;
@@ -2531,6 +2534,7 @@ export interface TextElementProps {
   placeholder?: string | object;
   readonly?: boolean;
   inputType?: string;
+  forceNumbers?: boolean;
   attrs?: object;
   addons?: object;
   autocomplete?: string | number;
@@ -3437,6 +3441,7 @@ export declare class Vueform implements DefineComponent {
   prepare: VueformProps['prepare'];
   formKey: VueformProps['formKey'];
   formData: VueformProps['formData'];
+  forceNumbers: VueformProps['forceNumbers'];
   value: VueformProps['value'];
   modelValue: VueformProps['modelValue'];
   sync: VueformProps['sync'];
@@ -8499,6 +8504,7 @@ export declare class TextElement implements DefineComponent {
   placeholder: TextElementProps['placeholder'];
   readonly: TextElementProps['readonly'];
   inputType: TextElementProps['inputType'];
+  forceNumbers: TextElementProps['forceNumbers'];
   attrs: TextElementProps['attrs'];
   addons: TextElementProps['addons'];
   autocomplete: TextElementProps['autocomplete'];

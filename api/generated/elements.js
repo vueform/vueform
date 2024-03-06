@@ -30297,6 +30297,7 @@ module.exports = {
         types: [
           'string',
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -38896,6 +38897,16 @@ module.exports = {
         localized: false,
         types: [
           'string',
+        ],
+        required: false,
+        private: false,
+      },
+      forceNumbers: {
+        required: 'false',
+        default: 'null',
+        localized: false,
+        types: [
+          'boolean',
         ],
         required: false,
         private: false,
