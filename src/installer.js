@@ -95,7 +95,7 @@ export default function(config = baseConfig, components = {}, rules = {}) {
       each([
         'columns', 'forceLabels', 'displayErrors', 'floatPlaceholders', 'displayErrors', 'displayMessages',
         'language', 'locale', 'fallbackLocale', 'orderFrom', 'validateOn', 'formData', 'beforeSend',
-        'locationProvider', 'classHelpers', 'env', 'usePresets', 'plugins', 'size', 'apiKey',
+        'locationProvider', 'classHelpers', 'env', 'usePresets', 'plugins', 'size', 'apiKey', 'forceNumbers',
       ], (attr) => {
           if (config[attr] !== undefined) {
             this.options.config[attr] = config[attr]

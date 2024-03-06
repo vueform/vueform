@@ -259,6 +259,11 @@ export default {
       required: false,
       default: null
     },
+    forceNumbers: {
+      required: false,
+      type: [Boolean],
+      default: null
+    },
 
     value: {
       type: Object,

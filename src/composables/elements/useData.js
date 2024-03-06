@@ -6,7 +6,7 @@ import map from 'lodash/map'
 import isPlainObject from 'lodash/isPlainObject'
 import clone from 'lodash/clone'
 import moment from 'moment'
-import { computed, nextTick, toRefs, watch, ref } from 'vue'
+import { computed, nextTick, toRefs, watch, ref, inject } from 'vue'
 import checkDateFormat from './../../utils/checkDateFormat'
 import asyncForEach from './../../utils/asyncForEach'
 
@@ -124,6 +124,103 @@ const base = function(props, context, dependencies, options = {})
   const prepare = async () => {
   }
   
+  return {
+    data,
+    requestData,
+    load,
+    update,
+    clear,
+    reset,
+    prepare,
+  }
+}
+
+const text = function(props, context, dependencies, options = {})
+{
+  const {
+    submit,
+    formatData,
+    name,
+    forceNumbers,
+  } = toRefs(props)
+
+  const {
+    load,
+    update,
+    clear,
+    reset,
+    prepare,
+  } = base(props, context, dependencies)
+
+  // ============ DEPENDENCIES =============
+
+  const form$ = dependencies.form$
+  const available = dependencies.available
+  const value = dependencies.value
+  
+  // =============== INJECT ===============
+  
+  const config$ = inject('config$')
+
+  // =============== COMPUTED ==============
+
+  const data = computed(() => {
+    let v = value.value
+
+    if (shouldForceNumbers()) {
+      v = stringToNumber(value.value)
+    }
+
+    return { [name.value]: v }
+  })
+  
+  const requestData = computed(() => {
+    if (!available.value || !submit.value) {
+      return {}
+    }
+
+    let v = value.value
+
+    if (shouldForceNumbers()) {
+      v = stringToNumber(value.value)
+    }
+    
+    return formatData.value ? formatData.value(name.value, v, form$.value) : { [name.value]: v }
+  })
+  
+  // =============== METHODS ===============
+
+  /**
+   * Whether the value should be converted to number/float.
+   *
+   * @returns {boolean}
+   * @private
+   */
+  const shouldForceNumbers = () => {
+    return forceNumbers.value || (config$.value.config.forceNumbers && form$.value.options.forceNumbers !== false && forceNumbers.value !== false) || (form$.value.options.forceNumbers && forceNumbers.value !== false)
+  }
+
+  /**
+   * Converts string value to number or float.
+   *
+   * @param {any} str* the string to be converted
+   * @returns {number|float|string}
+   * @private
+   */
+  const stringToNumber = (str) => {
+    let v = str
+
+    if (typeof str === 'string') {
+      if (/^[-+]?\d+([\.,]\d+)?$/.test(str)) {
+        v = parseFloat(str.replace(',', '.'))
+      } else if (/^[-+]?\d+$/.test(str)) {
+        v = parseInt(str, 10)
+      }
+    }
+
+    return v
+  }
+
   return {
     data,
     requestData,
@@ -1015,6 +1112,7 @@ const multiselect = select
 const tags = select
 
 export {
+  text,
   date,
   dates,
   object,

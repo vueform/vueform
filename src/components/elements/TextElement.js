@@ -30,10 +30,10 @@ import useA11y from './../../composables/elements/useA11y'
 import useFocus from './../../composables/elements/useFocus'
 import useHandleKeyEvents from './../../composables/elements/useHandleKeyEvents'
 import usePlaceholder from './../../composables/elements/usePlaceholder'
-import useData from './../../composables/elements/useData'
 
 import { text as useValidation } from './../../composables/elements/useValidation'
 import { text as useDefault } from './../../composables/elements/useDefault'
+import { text as useData } from './../../composables/elements/useData'
 
 import BaseElement from './../../mixins/BaseElement'
 import HasView from './../../mixins/HasView'
@@ -95,6 +95,11 @@ export default {
       required: false,
       type: [String],
       default: 'text'
+    },
+    forceNumbers: {
+      required: false,
+      type: [Boolean],
+      default: null
     },
     attrs: {
       required: false,

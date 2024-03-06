@@ -55,6 +55,7 @@ const base = function(props, context, dependencies = {})
     displayMessages,
     formatLoad,
     formatData,
+    forceNumbers,
     prepare,
     default: default_,
     disabled,
@@ -320,7 +321,7 @@ const base = function(props, context, dependencies = {})
     // (otherwise will use the value defined in `defaults` or `undefined` if not)
     const ifPropSet = {
       stepsControls, displayErrors, displayMessages, forceLabels, disabled, loading,
-      floatPlaceholders, endpoint,
+      floatPlaceholders, endpoint, forceNumbers,
       onChange: _onChange.value,
       onReset: _onReset.value,
       onClear: _onClear.value,
@@ -367,6 +368,7 @@ const base = function(props, context, dependencies = {})
       formKey: null,
       formatLoad: null,
       formatData: null,
+      forceNumbers: null,
       prepare: null,
       multilingual: false,
       stepsControls: true,

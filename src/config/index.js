@@ -50,6 +50,11 @@ const config = {
   validateOn: 'change|step',
 
   /**
+   * Data
+   */
+  forceNumbers: false,
+
+  /**
    * Submitting
    */
   endpoints: {
