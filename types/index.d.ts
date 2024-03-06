@@ -935,11 +935,11 @@ export interface VueformProps {
   prepare?: Function;
   formKey?: string | number;
   formData?: Function;
-  forceNumbers?: boolean;
   value?: object;
   modelValue?: object;
   sync?: boolean;
   default?: object;
+  forceNumbers?: boolean;
   formatData?: Function;
   formatLoad?: Function;
   loading?: boolean;
@@ -3441,11 +3441,11 @@ export declare class Vueform implements DefineComponent {
   prepare: VueformProps['prepare'];
   formKey: VueformProps['formKey'];
   formData: VueformProps['formData'];
-  forceNumbers: VueformProps['forceNumbers'];
   value: VueformProps['value'];
   modelValue: VueformProps['modelValue'];
   sync: VueformProps['sync'];
   default: VueformProps['default'];
+  forceNumbers: VueformProps['forceNumbers'];
   formatData: VueformProps['formatData'];
   formatLoad: VueformProps['formatLoad'];
   loading: VueformProps['loading'];

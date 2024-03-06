@@ -4344,13 +4344,6 @@ module.exports = {
           "function"
         ]
       },
-      "forceNumbers": {
-        "required": false,
-        "default": null,
-        "types": [
-          "boolean"
-        ]
-      },
       "value": {
         "required": false,
         "types": [
@@ -4375,6 +4368,13 @@ module.exports = {
         "default": null,
         "types": [
           "object"
+        ]
+      },
+      "forceNumbers": {
+        "required": false,
+        "default": null,
+        "types": [
+          "boolean"
         ]
       },
       "formatData": {
