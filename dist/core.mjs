@@ -7029,6 +7029,7 @@ var base$19 = function base(props, context) {
     displayMessages,
     formatLoad,
     formatData,
+    forceNumbers,
     prepare,
     default: default_,
     disabled,
@@ -7317,6 +7318,7 @@ var base$19 = function base(props, context) {
       loading,
       floatPlaceholders,
       endpoint,
+      forceNumbers,
       onChange: _onChange.value,
       onReset: _onReset.value,
       onClear: _onClear.value,
@@ -7362,6 +7364,7 @@ var base$19 = function base(props, context) {
       formKey: null,
       formatLoad: null,
       formatData: null,
+      forceNumbers: null,
       prepare: null,
       multilingual: false,
       stepsControls: true,
@@ -8736,6 +8739,11 @@ var VueformComponent = {
       required: false,
       default: null
     },
+    forceNumbers: {
+      required: false,
+      type: [Boolean],
+      default: null
+    },
     value: {
       type: Object,
       required: false,
@@ -9449,7 +9457,7 @@ var Validator = class {
   filled(value) {
     if (value === undefined || value === null && value !== this.element$.trueValue || value === this.element$.falseValue) {
       return false;
-    } else if (this.isNumeric && value === 0) {
+    } else if (this.isNumeric && trim_1(value) === '') {
       return false;
     } else if (isString_1(value) && trim_1(value) === '') {
       return false;
@@ -13795,6 +13803,10 @@ var config = {
   rules: {},
   validateOn: 'change|step',
   /**
+   * Data
+   */
+  forceNumbers: false,
+  /**
    * Submitting
    */
   endpoints: {
@@ -13908,7 +13920,7 @@ function installer () {
       });
 
       // replace
-      each(['columns', 'forceLabels', 'displayErrors', 'floatPlaceholders', 'displayErrors', 'displayMessages', 'language', 'locale', 'fallbackLocale', 'orderFrom', 'validateOn', 'formData', 'beforeSend', 'locationProvider', 'classHelpers', 'env', 'usePresets', 'plugins', 'size', 'apiKey'], attr => {
+      each(['columns', 'forceLabels', 'displayErrors', 'floatPlaceholders', 'displayErrors', 'displayMessages', 'language', 'locale', 'fallbackLocale', 'orderFrom', 'validateOn', 'formData', 'beforeSend', 'locationProvider', 'classHelpers', 'env', 'usePresets', 'plugins', 'size', 'apiKey', 'forceNumbers'], attr => {
         if (config[attr] !== undefined) {
           this.options.config[attr] = config[attr];
         }
@@ -23658,6 +23670,95 @@ var base$J = function base(props, context, dependencies) {
     prepare
   };
 };
+var text$2 = function text(props, context, dependencies) {
+  var {
+    submit,
+    formatData,
+    name,
+    forceNumbers
+  } = toRefs(props);
+  var {
+    load,
+    update,
+    clear,
+    reset,
+    prepare
+  } = base$J(props, context, dependencies);
+
+  // ============ DEPENDENCIES =============
+
+  var form$ = dependencies.form$;
+  var available = dependencies.available;
+  var value = dependencies.value;
+
+  // =============== INJECT ===============
+
+  var config$ = inject('config$');
+
+  // =============== COMPUTED ==============
+
+  var data = computed(() => {
+    var v = value.value;
+    if (shouldForceNumbers()) {
+      v = stringToNumber(value.value);
+    }
+    return {
+      [name.value]: v
+    };
+  });
+  var requestData = computed(() => {
+    if (!available.value || !submit.value) {
+      return {};
+    }
+    var v = value.value;
+    if (shouldForceNumbers()) {
+      v = stringToNumber(value.value);
+    }
+    return formatData.value ? formatData.value(name.value, v, form$.value) : {
+      [name.value]: v
+    };
+  });
+
+  // =============== METHODS ===============
+
+  /**
+   * Whether the value should be converted to number/float.
+   *
+   * @returns {boolean}
+   * @private
+   */
+  var shouldForceNumbers = () => {
+    return forceNumbers.value || config$.value.config.forceNumbers && form$.value.options.forceNumbers !== false && forceNumbers.value !== false || form$.value.options.forceNumbers && forceNumbers.value !== false;
+  };
+
+  /**
+   * Converts string value to number or float.
+   *
+   * @param {any} str* the string to be converted
+   * @returns {number|float|string}
+   * @private
+   */
+  var stringToNumber = str => {
+    var v = str;
+    if (typeof str === 'string') {
+      if (/^[-+]?\d+([\.,]\d+)?$/.test(str)) {
+        v = parseFloat(str.replace(',', '.'));
+      } else if (/^[-+]?\d+$/.test(str)) {
+        v = parseInt(str, 10);
+      }
+    }
+    return v;
+  };
+  return {
+    data,
+    requestData,
+    load,
+    update,
+    clear,
+    reset,
+    prepare
+  };
+};
 var select$3 = function select(props, context, dependencies) {
   var options = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
   var {
@@ -26322,7 +26423,7 @@ var date$2 = function date(props, context, dependencies) {
         var value;
         if (form$.value.isSync) {
           value = get_1(form$.value.model, dataPath.value);
-        } else if (parent.value && ['object', 'list', 'multifile'].indexOf(parent.value.type) !== -1) {
+        } else if (parent.value && ['group', 'object', 'list', 'multifile'].indexOf(parent.value.type) !== -1) {
           value = parent.value.value[name.value];
         } else {
           value = internalValue.value;
@@ -35075,7 +35176,7 @@ var StaticElement = {
     },
     content: {
       required: false,
-      type: [String, Object],
+      type: [String, Object, Function],
       default: ''
     },
     wrap: {
@@ -35789,6 +35890,11 @@ var TextElement = {
       type: [String],
       default: 'text'
     },
+    forceNumbers: {
+      required: false,
+      type: [Boolean],
+      default: null
+    },
     attrs: {
       required: false,
       type: [Object],
@@ -35836,7 +35942,7 @@ var TextElement = {
     }
   },
   setup(props, context) {
-    context.features = [base$17, base$16, base$T, base$K, base$M, base$Q, base$C, base$S, base$u, base$1a, base$N, base$y, text$1, base$12, text, base$b, base$F, base$J, base$x, base$Z, base$G, base$X, base$W, base$18, base$Y, base$V, base$m, base$s, base$5, base$P, base$E, base$R, base$4, base$t];
+    context.features = [base$17, base$16, base$T, base$K, base$M, base$Q, base$C, base$S, base$u, base$1a, base$N, base$y, text$1, base$12, text, base$b, base$F, text$2, base$x, base$Z, base$G, base$X, base$W, base$18, base$Y, base$V, base$m, base$s, base$5, base$P, base$E, base$R, base$4, base$t];
     context.slots = ['label', 'info', 'description', 'before', 'between', 'after', 'addon-before', 'addon-after'];
     return _objectSpread2$1({}, base$L(props, context));
   }

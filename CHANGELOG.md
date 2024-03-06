@@ -1,5 +1,21 @@
 [//]: # (Don't use <tags>)
 
+## v1.9.0
+
+> `2024-03-06`
+
+### 🎉 Feature
+- [Input mask](https://vueform.com/docs/input-mask) plugin compatibility 
+- Option to force converting numeric strings to numbers in form data/requestData with `forceNumbers` on config, form and text element level
+- Allow `function` for `StaticElement`'s `content` prop #155
+- Option to define `nullValue` for generic element.
+- Ability to disable Finish button #158
+
+### 🐞 Bug Fixes
+- Accept `0` as number for required rule #149
+- Fix for date change event when in group #156
+- Fire button click in all cases #150
+
 ## v1.8.0
 
 > `2024-02-19`
