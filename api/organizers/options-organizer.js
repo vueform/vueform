@@ -6,7 +6,7 @@ module.exports = [
   'label', 'placeholder', 'floating', 'info', 'infoPosition', 'description', 'before', 'between', 'after',
 
   // Data
-  'default', 'formatData', 'formatLoad', 'submit',
+  'default', 'forceNumbers', 'formatData', 'formatLoad', 'submit',
 
   // Validation
   'rules', 'fieldName', 'debounce', 'messages',
