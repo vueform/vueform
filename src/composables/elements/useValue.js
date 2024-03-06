@@ -319,7 +319,7 @@ const date = function(props, context, dependencies)
         
         if (form$.value.isSync) {
           value = get(form$.value.model, dataPath.value)
-        } else if (parent.value && ['object', 'list', 'multifile'].indexOf(parent.value.type) !== -1) {
+        } else if (parent.value && ['group', 'object', 'list', 'multifile'].indexOf(parent.value.type) !== -1) {
           value = parent.value.value[name.value]
         } else {
           value = internalValue.value
