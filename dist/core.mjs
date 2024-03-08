@@ -1,5 +1,5 @@
 /*!
- * Vueform v1.9.0 (https://github.com/vueform/vueform)
+ * Vueform v1.9.1 (https://github.com/vueform/vueform)
  * Copyright (c) 2024 Adam Berecz <adam@vueform.com>
  * Licensed under the MIT License
  */
@@ -5944,6 +5944,9 @@ class MergeClasses {
   merge(merge) {
     var locals = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
     each(this.pick(merge, locals ? LOCALS_KEYS : MERGE_KEYS), (mergables, key) => {
+      if (typeof mergables === 'function') {
+        mergables = mergables(this.component$.value.form$);
+      }
       switch (key) {
         case 'addClasses':
         case 'prependClasses':
@@ -8739,11 +8742,6 @@ var VueformComponent = {
       required: false,
       default: null
     },
-    forceNumbers: {
-      required: false,
-      type: [Boolean],
-      default: null
-    },
     value: {
       type: Object,
       required: false,
@@ -8762,6 +8760,11 @@ var VueformComponent = {
     default: {
       type: Object,
       required: false,
+      default: null
+    },
+    forceNumbers: {
+      required: false,
+      type: [Boolean],
       default: null
     },
     formatData: {
@@ -8816,42 +8819,42 @@ var VueformComponent = {
     },
     addClasses: {
       required: false,
-      type: [Object],
+      type: [Object, Function],
       default: null
     },
     addClass: {
       required: false,
-      type: [Array, Object, String],
+      type: [Array, Object, String, Function],
       default: null
     },
     removeClasses: {
       required: false,
-      type: [Object],
+      type: [Object, Function],
       default: null
     },
     removeClass: {
       required: false,
-      type: [Array, Object],
+      type: [Array, Object, Function],
       default: null
     },
     replaceClasses: {
       required: false,
-      type: [Object],
+      type: [Object, Function],
       default: null
     },
     replaceClass: {
       required: false,
-      type: [Object],
+      type: [Object, Function],
       default: null
     },
     overrideClasses: {
       required: false,
-      type: [Object],
+      type: [Object, Function],
       default: null
     },
     overrideClass: {
       required: false,
-      type: [Array, Object, String],
+      type: [Array, Object, String, Function],
       default: null
     },
     templates: {
@@ -10078,7 +10081,7 @@ function shouldApplyPlugin (name, plugin) {
 }
 
 var name = "@vueform/vueform";
-var version$1 = "1.9.0";
+var version$1 = "1.9.1";
 var description = "Open-Source Form Framework for Vue";
 var homepage = "https://vueform.com";
 var license = "MIT";
@@ -10165,7 +10168,7 @@ var exports = {
 	}
 };
 var scripts = {
-	build: "npm run build3 && npm run build2",
+	build: "npm run build3 && npm run build2 && npm run generate",
 	build2: "node ./scripts/pre-build-vue2 && rollup --config build/rollup.vue2.config.js && node ./scripts/post-build-vue2",
 	build3: "rollup --config build/rollup.config.js",
 	test: "npm run generate:elements-base && NODE_OPTIONS=\"--max_old_space_size=5120 --no-experimental-fetch\" VUE=3 jest --config=./tests/jest.config.js",
@@ -13906,9 +13909,14 @@ function installer () {
       });
 
       // merge (config)
-      each(['languages', 'services', 'addClasses', 'removeClasses', 'replaceClasses', 'overrideClasses', 'presets', 'views'], attr => {
+      each(['languages', 'services', 'presets', 'views'], attr => {
         if (config[attr] !== undefined) {
           this.options.config[attr] = Object.assign({}, this.options.config[attr], config[attr]);
+        }
+      });
+      each(['addClasses', 'removeClasses', 'replaceClasses', 'overrideClasses'], attr => {
+        if (config[attr] !== undefined) {
+          this.options.config[attr] = typeof config[attr] === 'function' ? config[attr] : Object.assign({}, this.options.config[attr], config[attr]);
         }
       });
 
@@ -23099,42 +23107,42 @@ var HasView = {
     },
     addClass: {
       required: false,
-      type: [Array, Object, String],
+      type: [Array, Object, String, Function],
       default: null
     },
     removeClass: {
       required: false,
-      type: [Array, Object],
+      type: [Array, Object, Function],
       default: null
     },
     replaceClass: {
       required: false,
-      type: [Object],
+      type: [Object, Function],
       default: null
     },
     overrideClass: {
       required: false,
-      type: [Array, Object, String],
+      type: [Array, Object, String, Function],
       default: null
     },
     addClasses: {
       required: false,
-      type: [Object],
+      type: [Object, Function],
       default: () => ({})
     },
     replaceClasses: {
       required: false,
-      type: [Object],
+      type: [Object, Function],
       default: () => ({})
     },
     removeClasses: {
       required: false,
-      type: [Object],
+      type: [Object, Function],
       default: () => ({})
     },
     overrideClasses: {
       required: false,
-      type: [Object],
+      type: [Object, Function],
       default: () => ({})
     },
     presets: {

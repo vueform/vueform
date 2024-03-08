@@ -132,6 +132,7 @@ module.exports = {
           'array',
           'object',
           'string',
+          'function',
         ],
         required: false,
         private: false,
@@ -143,6 +144,7 @@ module.exports = {
         types: [
           'array',
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -153,6 +155,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -165,6 +168,7 @@ module.exports = {
           'array',
           'object',
           'string',
+          'function',
         ],
         required: false,
         private: false,
@@ -175,6 +179,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -185,6 +190,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -195,6 +201,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -205,6 +212,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -1293,6 +1301,7 @@ module.exports = {
           'array',
           'object',
           'string',
+          'function',
         ],
         required: false,
         private: false,
@@ -1304,6 +1313,7 @@ module.exports = {
         types: [
           'array',
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -1314,6 +1324,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -1326,6 +1337,7 @@ module.exports = {
           'array',
           'object',
           'string',
+          'function',
         ],
         required: false,
         private: false,
@@ -1336,6 +1348,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -1346,6 +1359,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -1356,6 +1370,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -1366,6 +1381,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -2713,6 +2729,7 @@ module.exports = {
           'array',
           'object',
           'string',
+          'function',
         ],
         required: false,
         private: false,
@@ -2724,6 +2741,7 @@ module.exports = {
         types: [
           'array',
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -2734,6 +2752,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -2746,6 +2765,7 @@ module.exports = {
           'array',
           'object',
           'string',
+          'function',
         ],
         required: false,
         private: false,
@@ -2756,6 +2776,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -2766,6 +2787,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -2776,6 +2798,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -2786,6 +2809,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -4300,6 +4324,7 @@ module.exports = {
           'array',
           'object',
           'string',
+          'function',
         ],
         required: false,
         private: false,
@@ -4311,6 +4336,7 @@ module.exports = {
         types: [
           'array',
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -4321,6 +4347,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -4333,6 +4360,7 @@ module.exports = {
           'array',
           'object',
           'string',
+          'function',
         ],
         required: false,
         private: false,
@@ -4343,6 +4371,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -4353,6 +4382,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -4363,6 +4393,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -4373,6 +4404,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -5887,6 +5919,7 @@ module.exports = {
           'array',
           'object',
           'string',
+          'function',
         ],
         required: false,
         private: false,
@@ -5898,6 +5931,7 @@ module.exports = {
         types: [
           'array',
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -5908,6 +5942,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -5920,6 +5955,7 @@ module.exports = {
           'array',
           'object',
           'string',
+          'function',
         ],
         required: false,
         private: false,
@@ -5930,6 +5966,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -5940,6 +5977,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -5950,6 +5988,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -5960,6 +5999,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -7444,6 +7484,7 @@ module.exports = {
           'array',
           'object',
           'string',
+          'function',
         ],
         required: false,
         private: false,
@@ -7455,6 +7496,7 @@ module.exports = {
         types: [
           'array',
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -7465,6 +7507,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -7477,6 +7520,7 @@ module.exports = {
           'array',
           'object',
           'string',
+          'function',
         ],
         required: false,
         private: false,
@@ -7487,6 +7531,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -7497,6 +7542,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -7507,6 +7553,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -7517,6 +7564,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -9017,6 +9065,7 @@ module.exports = {
           'array',
           'object',
           'string',
+          'function',
         ],
         required: false,
         private: false,
@@ -9028,6 +9077,7 @@ module.exports = {
         types: [
           'array',
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -9038,6 +9088,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -9050,6 +9101,7 @@ module.exports = {
           'array',
           'object',
           'string',
+          'function',
         ],
         required: false,
         private: false,
@@ -9060,6 +9112,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -9070,6 +9123,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -9080,6 +9134,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -9090,6 +9145,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -10767,6 +10823,7 @@ module.exports = {
           'array',
           'object',
           'string',
+          'function',
         ],
         required: false,
         private: false,
@@ -10778,6 +10835,7 @@ module.exports = {
         types: [
           'array',
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -10788,6 +10846,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -10800,6 +10859,7 @@ module.exports = {
           'array',
           'object',
           'string',
+          'function',
         ],
         required: false,
         private: false,
@@ -10810,6 +10870,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -10820,6 +10881,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -10830,6 +10892,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -10840,6 +10903,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -12149,6 +12213,7 @@ module.exports = {
           'array',
           'object',
           'string',
+          'function',
         ],
         required: false,
         private: false,
@@ -12160,6 +12225,7 @@ module.exports = {
         types: [
           'array',
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -12170,6 +12236,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -12182,6 +12249,7 @@ module.exports = {
           'array',
           'object',
           'string',
+          'function',
         ],
         required: false,
         private: false,
@@ -12192,6 +12260,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -12202,6 +12271,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -12212,6 +12282,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -12222,6 +12293,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -14314,6 +14386,7 @@ module.exports = {
           'array',
           'object',
           'string',
+          'function',
         ],
         required: false,
         private: false,
@@ -14325,6 +14398,7 @@ module.exports = {
         types: [
           'array',
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -14335,6 +14409,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -14347,6 +14422,7 @@ module.exports = {
           'array',
           'object',
           'string',
+          'function',
         ],
         required: false,
         private: false,
@@ -14357,6 +14433,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -14367,6 +14444,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -14377,6 +14455,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -14387,6 +14466,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -16076,6 +16156,7 @@ module.exports = {
           'array',
           'object',
           'string',
+          'function',
         ],
         required: false,
         private: false,
@@ -16087,6 +16168,7 @@ module.exports = {
         types: [
           'array',
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -16097,6 +16179,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -16109,6 +16192,7 @@ module.exports = {
           'array',
           'object',
           'string',
+          'function',
         ],
         required: false,
         private: false,
@@ -16119,6 +16203,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -16129,6 +16214,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -16139,6 +16225,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -16149,6 +16236,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -17620,6 +17708,7 @@ module.exports = {
           'array',
           'object',
           'string',
+          'function',
         ],
         required: false,
         private: false,
@@ -17631,6 +17720,7 @@ module.exports = {
         types: [
           'array',
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -17641,6 +17731,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -17653,6 +17744,7 @@ module.exports = {
           'array',
           'object',
           'string',
+          'function',
         ],
         required: false,
         private: false,
@@ -17663,6 +17755,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -17673,6 +17766,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -17683,6 +17777,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -17693,6 +17788,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -19551,6 +19647,7 @@ module.exports = {
           'array',
           'object',
           'string',
+          'function',
         ],
         required: false,
         private: false,
@@ -19562,6 +19659,7 @@ module.exports = {
         types: [
           'array',
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -19572,6 +19670,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -19584,6 +19683,7 @@ module.exports = {
           'array',
           'object',
           'string',
+          'function',
         ],
         required: false,
         private: false,
@@ -19594,6 +19694,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -19604,6 +19705,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -19614,6 +19716,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -19624,6 +19727,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -21941,6 +22045,7 @@ module.exports = {
           'array',
           'object',
           'string',
+          'function',
         ],
         required: false,
         private: false,
@@ -21952,6 +22057,7 @@ module.exports = {
         types: [
           'array',
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -21962,6 +22068,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -21974,6 +22081,7 @@ module.exports = {
           'array',
           'object',
           'string',
+          'function',
         ],
         required: false,
         private: false,
@@ -21984,6 +22092,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -21994,6 +22103,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -22004,6 +22114,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -22014,6 +22125,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -23301,6 +23413,7 @@ module.exports = {
           'array',
           'object',
           'string',
+          'function',
         ],
         required: false,
         private: false,
@@ -23312,6 +23425,7 @@ module.exports = {
         types: [
           'array',
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -23322,6 +23436,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -23334,6 +23449,7 @@ module.exports = {
           'array',
           'object',
           'string',
+          'function',
         ],
         required: false,
         private: false,
@@ -23344,6 +23460,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -23354,6 +23471,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -23364,6 +23482,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -23374,6 +23493,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -24725,6 +24845,7 @@ module.exports = {
           'array',
           'object',
           'string',
+          'function',
         ],
         required: false,
         private: false,
@@ -24736,6 +24857,7 @@ module.exports = {
         types: [
           'array',
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -24746,6 +24868,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -24758,6 +24881,7 @@ module.exports = {
           'array',
           'object',
           'string',
+          'function',
         ],
         required: false,
         private: false,
@@ -24768,6 +24892,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -24778,6 +24903,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -24788,6 +24914,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -24798,6 +24925,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -26256,6 +26384,7 @@ module.exports = {
           'array',
           'object',
           'string',
+          'function',
         ],
         required: false,
         private: false,
@@ -26267,6 +26396,7 @@ module.exports = {
         types: [
           'array',
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -26277,6 +26407,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -26289,6 +26420,7 @@ module.exports = {
           'array',
           'object',
           'string',
+          'function',
         ],
         required: false,
         private: false,
@@ -26299,6 +26431,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -26309,6 +26442,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -26319,6 +26453,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -26329,6 +26464,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -28560,6 +28696,7 @@ module.exports = {
           'array',
           'object',
           'string',
+          'function',
         ],
         required: false,
         private: false,
@@ -28571,6 +28708,7 @@ module.exports = {
         types: [
           'array',
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -28581,6 +28719,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -28593,6 +28732,7 @@ module.exports = {
           'array',
           'object',
           'string',
+          'function',
         ],
         required: false,
         private: false,
@@ -28603,6 +28743,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -28613,6 +28754,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -28623,6 +28765,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -28633,6 +28776,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -30041,6 +30185,7 @@ module.exports = {
           'array',
           'object',
           'string',
+          'function',
         ],
         required: false,
         private: false,
@@ -30052,6 +30197,7 @@ module.exports = {
         types: [
           'array',
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -30062,6 +30208,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -30074,6 +30221,7 @@ module.exports = {
           'array',
           'object',
           'string',
+          'function',
         ],
         required: false,
         private: false,
@@ -30084,6 +30232,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -30094,6 +30243,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -30104,6 +30254,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -30114,6 +30265,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -31166,6 +31318,7 @@ module.exports = {
           'array',
           'object',
           'string',
+          'function',
         ],
         required: false,
         private: false,
@@ -31177,6 +31330,7 @@ module.exports = {
         types: [
           'array',
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -31187,6 +31341,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -31199,6 +31354,7 @@ module.exports = {
           'array',
           'object',
           'string',
+          'function',
         ],
         required: false,
         private: false,
@@ -31209,6 +31365,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -31219,6 +31376,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -31229,6 +31387,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -31239,6 +31398,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -32758,6 +32918,7 @@ module.exports = {
           'array',
           'object',
           'string',
+          'function',
         ],
         required: false,
         private: false,
@@ -32769,6 +32930,7 @@ module.exports = {
         types: [
           'array',
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -32779,6 +32941,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -32791,6 +32954,7 @@ module.exports = {
           'array',
           'object',
           'string',
+          'function',
         ],
         required: false,
         private: false,
@@ -32801,6 +32965,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -32811,6 +32976,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -32821,6 +32987,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -32831,6 +32998,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -34445,6 +34613,7 @@ module.exports = {
           'array',
           'object',
           'string',
+          'function',
         ],
         required: false,
         private: false,
@@ -34456,6 +34625,7 @@ module.exports = {
         types: [
           'array',
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -34466,6 +34636,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -34478,6 +34649,7 @@ module.exports = {
           'array',
           'object',
           'string',
+          'function',
         ],
         required: false,
         private: false,
@@ -34488,6 +34660,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -34498,6 +34671,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -34508,6 +34682,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -34518,6 +34693,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -36119,6 +36295,7 @@ module.exports = {
           'array',
           'object',
           'string',
+          'function',
         ],
         required: false,
         private: false,
@@ -36130,6 +36307,7 @@ module.exports = {
         types: [
           'array',
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -36140,6 +36318,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -36152,6 +36331,7 @@ module.exports = {
           'array',
           'object',
           'string',
+          'function',
         ],
         required: false,
         private: false,
@@ -36162,6 +36342,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -36172,6 +36353,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -36182,6 +36364,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -36192,6 +36375,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -38505,6 +38689,7 @@ module.exports = {
           'array',
           'object',
           'string',
+          'function',
         ],
         required: false,
         private: false,
@@ -38516,6 +38701,7 @@ module.exports = {
         types: [
           'array',
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -38526,6 +38712,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -38538,6 +38725,7 @@ module.exports = {
           'array',
           'object',
           'string',
+          'function',
         ],
         required: false,
         private: false,
@@ -38548,6 +38736,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -38558,6 +38747,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -38568,6 +38758,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -38578,6 +38769,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -40196,6 +40388,7 @@ module.exports = {
           'array',
           'object',
           'string',
+          'function',
         ],
         required: false,
         private: false,
@@ -40207,6 +40400,7 @@ module.exports = {
         types: [
           'array',
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -40217,6 +40411,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -40229,6 +40424,7 @@ module.exports = {
           'array',
           'object',
           'string',
+          'function',
         ],
         required: false,
         private: false,
@@ -40239,6 +40435,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -40249,6 +40446,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -40259,6 +40457,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -40269,6 +40468,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -41851,6 +42051,7 @@ module.exports = {
           'array',
           'object',
           'string',
+          'function',
         ],
         required: false,
         private: false,
@@ -41862,6 +42063,7 @@ module.exports = {
         types: [
           'array',
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -41872,6 +42074,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -41884,6 +42087,7 @@ module.exports = {
           'array',
           'object',
           'string',
+          'function',
         ],
         required: false,
         private: false,
@@ -41894,6 +42098,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -41904,6 +42109,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -41914,6 +42120,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,
@@ -41924,6 +42131,7 @@ module.exports = {
         localized: false,
         types: [
           'object',
+          'function',
         ],
         required: false,
         private: false,

@@ -4451,7 +4451,8 @@ module.exports = {
         "required": false,
         "default": null,
         "types": [
-          "object"
+          "object",
+          "function"
         ]
       },
       "addClass": {
@@ -4460,14 +4461,16 @@ module.exports = {
         "types": [
           "array",
           "object",
-          "string"
+          "string",
+          "function"
         ]
       },
       "removeClasses": {
         "required": false,
         "default": null,
         "types": [
-          "object"
+          "object",
+          "function"
         ]
       },
       "removeClass": {
@@ -4475,28 +4478,32 @@ module.exports = {
         "default": null,
         "types": [
           "array",
-          "object"
+          "object",
+          "function"
         ]
       },
       "replaceClasses": {
         "required": false,
         "default": null,
         "types": [
-          "object"
+          "object",
+          "function"
         ]
       },
       "replaceClass": {
         "required": false,
         "default": null,
         "types": [
-          "object"
+          "object",
+          "function"
         ]
       },
       "overrideClasses": {
         "required": false,
         "default": null,
         "types": [
-          "object"
+          "object",
+          "function"
         ]
       },
       "overrideClass": {
@@ -4505,7 +4512,8 @@ module.exports = {
         "types": [
           "array",
           "object",
-          "string"
+          "string",
+          "function"
         ]
       },
       "templates": {

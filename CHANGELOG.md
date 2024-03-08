@@ -1,5 +1,12 @@
 [//]: # (Don't use <tags>)
 
+## v1.9.1
+
+> `2024-03-08`
+
+### 🎉 Feature
+- Allow `function` with `form$` param for class modificators
+
 ## v1.9.0
 
 > `2024-03-06`
