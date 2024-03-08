@@ -13,42 +13,42 @@ export default {
     },
     addClass: {
       required: false,
-      type: [Array, Object, String],
+      type: [Array, Object, String, Function],
       default: null,
     },
     removeClass: {
       required: false,
-      type: [Array, Object],
+      type: [Array, Object, Function],
       default: null,
     },
     replaceClass: {
       required: false,
-      type: [Object],
+      type: [Object, Function],
       default: null
     },
     overrideClass: {
       required: false,
-      type: [Array, Object, String],
+      type: [Array, Object, String, Function],
       default: null
     },
     addClasses: {
       required: false,
-      type: [Object],
+      type: [Object, Function],
       default: () => ({})
     },
     replaceClasses: {
       required: false,
-      type: [Object],
+      type: [Object, Function],
       default: () => ({})
     },
     removeClasses: {
       required: false,
-      type: [Object],
+      type: [Object, Function],
       default: () => ({})
     },
     overrideClasses: {
       required: false,
-      type: [Object],
+      type: [Object, Function],
       default: () => ({})
     },
     presets: {

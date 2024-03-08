@@ -340,42 +340,42 @@ export default {
     },
     addClasses: {
       required: false,
-      type: [Object],
+      type: [Object, Function],
       default: null
     },
     addClass: {
       required: false,
-      type: [Array, Object, String],
+      type: [Array, Object, String, Function],
       default: null,
     },
     removeClasses: {
       required: false,
-      type: [Object],
+      type: [Object, Function],
       default: null
     },
     removeClass: {
       required: false,
-      type: [Array, Object],
+      type: [Array, Object, Function],
       default: null,
     },
     replaceClasses: {
       required: false,
-      type: [Object],
+      type: [Object, Function],
       default: null
     },
     replaceClass: {
       required: false,
-      type: [Object],
+      type: [Object, Function],
       default: null
     },
     overrideClasses: {
       required: false,
-      type: [Object],
+      type: [Object, Function],
       default: null
     },
     overrideClass: {
       required: false,
-      type: [Array, Object, String],
+      type: [Array, Object, String, Function],
       default: null
     },
     templates: {

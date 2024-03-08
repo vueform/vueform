@@ -74,11 +74,20 @@ export default function(config = baseConfig, components = {}, rules = {}) {
 
       // merge (config)
       each([
-        'languages', 'services', 'addClasses', 'removeClasses',
-        'replaceClasses', 'overrideClasses', 'presets', 'views',
+        'languages', 'services', 'presets', 'views',
       ], (attr) => {
           if (config[attr] !== undefined) {
             this.options.config[attr] = Object.assign({}, this.options.config[attr], config[attr])
+          }
+      })
+
+      each([
+        'addClasses', 'removeClasses', 'replaceClasses', 'overrideClasses',
+      ], (attr) => {
+          if (config[attr] !== undefined) {
+            this.options.config[attr] = typeof config[attr] === 'function'
+              ? config[attr]
+              : Object.assign({}, this.options.config[attr], config[attr])
           }
       })
 

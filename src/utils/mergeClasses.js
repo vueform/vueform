@@ -133,6 +133,10 @@ export default class MergeClasses
 
   merge(merge, locals = false) {
     each(this.pick(merge, locals ? LOCALS_KEYS : MERGE_KEYS), (mergables, key) => {
+      if (typeof mergables === 'function') {
+        mergables = mergables(this.component$.value.form$)
+      }
+
       switch (key) {
         case 'addClasses':
         case 'prependClasses':

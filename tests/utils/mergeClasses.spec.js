@@ -1,3 +1,5 @@
+import { ref } from 'vue'
+import {createForm} from 'test-helpers'
 import MergeClasses from './../../src/utils/mergeClasses'
 
 const $container = (classes, { Size }) => ([
@@ -120,16 +122,14 @@ const defaultClasses = {
   $container,
 }
 
-const component$ = {
-  value: {
-    Size: 'md',
-    $size2: 'sm',
-    merge: false,
-    open: false,
-    placeholder: true,
-    defaultClasses,
-  }
-}
+const component$ = ref({
+  Size: 'md',
+  $size2: 'sm',
+  merge: false,
+  open: false,
+  placeholder: true,
+  defaultClasses,
+})
 
 describe('mergeClasses', () => {
   it('should convert template classes to array', () => {
@@ -832,6 +832,382 @@ describe('mergeClasses', () => {
       },
       $container: $container2,
     })
+  })
+
+  it('should addClasses with a dynamic function', async () => {
+    let form = createForm({
+      addClasses: (form$) => ({
+        TextElement: {
+          container: {
+            'bg-blue-500': form$.el$('a')?.value === 'blue'
+          }
+        }
+      }),
+      schema: {
+        a: {
+          type: 'text',
+        },
+        b: {
+          type: 'text',
+          addClasses: (form$) => ({
+            TextElement: {
+              container: {
+                'bg-red-500': form$.el$('a').value === 'red'
+              }
+            }
+          })
+        },
+      }
+    })
+
+    expect(form.vm.el$('b').classes.container).toEqual(
+      ['vf-text-type', {
+        'bg-blue-500': false
+      }, {
+        'bg-red-500': false
+      }]
+    )
+
+    form.vm.el$('a').update('red')
+
+    expect(form.vm.el$('b').classes.container).toEqual(
+      ['vf-text-type', {
+        'bg-blue-500': false
+      }, {
+        'bg-red-500': true
+      }]
+    )
+
+    form.vm.el$('a').update('blue')
+
+    expect(form.vm.el$('a').classes.container).toEqual(
+      ['vf-text-type', {
+        'bg-blue-500': true
+      }]
+    )
+
+    expect(form.vm.el$('b').classes.container).toEqual(
+      ['vf-text-type', {
+        'bg-blue-500': true
+      }, {
+        'bg-red-500': false
+      }]
+    )
+  })
+
+  it('should addClass with a dynamic function', async () => {
+    let form = createForm({
+      addClass: (form$) => ({
+        form: {
+          'bg-blue-500': form$.el$('a')?.value === 'blue'
+        }
+      }),
+      schema: {
+        a: {
+          type: 'text',
+        },
+        b: {
+          type: 'text',
+          addClass: (form$) => ({
+            container: {
+              'bg-red-500': form$.el$('a').value === 'red'
+            }
+          })
+        },
+      }
+    })
+
+    expect(form.vm.classes.form).toEqual(
+      [{
+        'bg-blue-500': false
+      }]
+    )
+
+    expect(form.vm.el$('b').classes.container).toEqual(
+      ['vf-text-type', {
+        'bg-red-500': false
+      }]
+    )
+
+    form.vm.el$('a').update('red')
+
+    expect(form.vm.el$('b').classes.container).toEqual(
+      ['vf-text-type', {
+        'bg-red-500': true
+      }]
+    )
+
+    form.vm.el$('a').update('blue')
+
+    expect(form.vm.classes.form).toEqual(
+      [{
+        'bg-blue-500': true
+      }]
+    )
+
+    expect(form.vm.el$('b').classes.container).toEqual(
+      ['vf-text-type', {
+        'bg-red-500': false
+      }]
+    )
+  })
+
+  it('should removeClasses with a dynamic function', async () => {
+    let form = createForm({
+      removeClasses: (form$) => ({
+        TextElement: {
+          container: form$.el$('a')?.value === 'blue' ? ['vf-text-type'] : [],
+        }
+      }),
+      schema: {
+        a: {
+          type: 'text',
+        },
+        b: {
+          type: 'text',
+          removeClasses: (form$) => ({
+            TextElement: {
+              container: form$.el$('a').value === 'red' ? ['vf-text-type'] : [],
+            }
+          })
+        },
+      }
+    })
+
+    expect(form.vm.el$('b').classes.container).toEqual(
+      ['vf-text-type']
+    )
+
+    form.vm.el$('a').update('red')
+
+    expect(form.vm.el$('b').classes.container).toEqual(
+      []
+    )
+
+    form.vm.el$('a').update('blue')
+
+    expect(form.vm.el$('a').classes.container).toEqual(
+      []
+    )
+
+    form.vm.el$('a').update('green')
+
+    expect(form.vm.el$('a').classes.container).toEqual(
+      ['vf-text-type']
+    )
+  })
+
+  it('should removeClass with a dynamic function', async () => {
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'text',
+        },
+        b: {
+          type: 'text',
+          removeClass: (form$) => ({
+            container: form$.el$('a').value === 'red' ? ['vf-text-type'] : [],
+          })
+        },
+      }
+    })
+
+    expect(form.vm.el$('b').classes.container).toEqual(
+      ['vf-text-type']
+    )
+
+    form.vm.el$('a').update('red')
+
+    expect(form.vm.el$('b').classes.container).toEqual(
+      []
+    )
+
+    form.vm.el$('a').update('green')
+
+    expect(form.vm.el$('a').classes.container).toEqual(
+      ['vf-text-type']
+    )
+  })
+
+  it('should replaceClasses with a dynamic function', async () => {
+    let form = createForm({
+      replaceClasses: (form$) => ({
+        TextElement: {
+          container: form$.el$('a')?.value !== 'red' ? {
+            'vf-text-type': 'not-vf-text-' + (form$.el$('a')?.value || ''),
+          } : {}
+        }
+      }),
+      schema: {
+        a: {
+          type: 'text',
+        },
+        b: {
+          type: 'text',
+          replaceClasses: (form$) => ({
+            TextElement: {
+              container: form$.el$('a').value === 'red' ? {
+                'vf-text-type': 'not-vf-text-type',
+              } : {}
+            }
+          })
+        },
+      }
+    })
+
+    expect(form.vm.el$('b').classes.container).toEqual(
+      ['not-vf-text-']
+    )
+
+    form.vm.el$('a').update('red')
+
+    expect(form.vm.el$('b').classes.container).toEqual(
+      ['not-vf-text-type']
+    )
+
+    form.vm.el$('a').update('blue')
+
+    expect(form.vm.el$('a').classes.container).toEqual(
+      ['not-vf-text-blue']
+    )
+
+    form.vm.el$('a').update('green')
+
+    expect(form.vm.el$('a').classes.container).toEqual(
+      ['not-vf-text-green']
+    )
+  })
+
+  it('should replaceClass with a dynamic function', async () => {
+    let form = createForm({
+      schema: {
+        a: {
+          type: 'text',
+        },
+        b: {
+          type: 'text',
+          replaceClass: (form$) => ({
+            container: form$.el$('a').value === 'red' ? {
+              'vf-text-type': 'not-vf-text-type',
+            } : {}
+          })
+        },
+      }
+    })
+
+    expect(form.vm.el$('b').classes.container).toEqual(
+      ['vf-text-type']
+    )
+
+    form.vm.el$('a').update('red')
+
+    expect(form.vm.el$('b').classes.container).toEqual(
+      ['not-vf-text-type']
+    )
+
+    form.vm.el$('a').update('green')
+
+    expect(form.vm.el$('a').classes.container).toEqual(
+      ['vf-text-type']
+    )
+  })
+
+  it('should overrideClasses with a dynamic function', async () => {
+    let form = createForm({
+      overrideClasses: (form$) => ({
+        TextElement: form$.el$('a')?.value !== 'red' ? {
+          container: (form$.el$('a')?.value || 'empty')
+        } : {}
+      }),
+      schema: {
+        a: {
+          type: 'text',
+        },
+        b: {
+          type: 'text',
+          overrideClasses: (form$) => ({
+            TextElement: form$.el$('a').value === 'red' ? {
+              container: 'not'
+            } : {}
+          })
+        },
+      }
+    })
+
+    expect(form.vm.el$('b').classes.container).toEqual(
+      ['empty']
+    )
+
+    form.vm.el$('a').update('red')
+
+    expect(form.vm.el$('b').classes.container).toEqual(
+      ['not']
+    )
+
+    form.vm.el$('a').update('blue')
+
+    expect(form.vm.el$('a').classes.container).toEqual(
+      ['blue']
+    )
+
+    form.vm.el$('a').update('green')
+
+    expect(form.vm.el$('a').classes.container).toEqual(
+      ['green']
+    )
+  })
+
+  it('should overrideClass with a dynamic function', async () => {
+    let form = createForm({
+      overrideClass: (form$) => ({
+        form: form$.el$('a')?.value !== 'red' ? 'not-red' : 'red'
+      }),
+      schema: {
+        a: {
+          type: 'text',
+        },
+        b: {
+          type: 'text',
+          overrideClass: (form$) => ({
+            container: (form$.el$('a')?.value || 'empty')
+          })
+        },
+      }
+    })
+
+    expect(form.vm.classes.form).toEqual(
+      ['not-red']
+    )
+    expect(form.vm.el$('b').classes.container).toEqual(
+      ['empty']
+    )
+
+    form.vm.el$('a').update('red')
+
+    expect(form.vm.classes.form).toEqual(
+      ['red']
+    )
+    expect(form.vm.el$('b').classes.container).toEqual(
+      ['red']
+    )
+
+    form.vm.el$('a').update('blue')
+
+    expect(form.vm.classes.form).toEqual(
+      ['not-red']
+    )
+    expect(form.vm.el$('b').classes.container).toEqual(
+      ['blue']
+    )
+
+    form.vm.el$('a').update('green')
+
+    expect(form.vm.classes.form).toEqual(
+      ['not-red']
+    )
+    expect(form.vm.el$('b').classes.container).toEqual(
+      ['green']
+    )
   })
 
   it('should merge presets', () => {
