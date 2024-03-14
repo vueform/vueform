@@ -6,7 +6,6 @@ import convertFormData from './../../utils/convertFormData'
 const base = function(props, context, dependencies)
 {
   const {
-    type,
     embed,
     auto,
     methods,
@@ -122,8 +121,9 @@ const base = function(props, context, dependencies)
         }
       }
       
-      if (typeof propEndpoints[name] === 'function') {
-        endpoint = propEndpoints[name]
+      
+      if (propEndpoints[name] === false) {
+        endpoint = f => f
       }
       
       if (typeof propEndpoints[name] === 'object') {
