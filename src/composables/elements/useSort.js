@@ -6,6 +6,8 @@ const base = function(props, context, dependencies, options)
 {
   const {
     sort,
+    object,
+    element,
   } = toRefs(props)
   
   // ============ DEPENDENCIES ============
@@ -45,7 +47,7 @@ const base = function(props, context, dependencies, options)
    * @type {boolean}
    */
   const isSortable = computed(() => {
-    return sort.value && !isDisabled.value
+    return sort.value && !isDisabled.value && (element?.value || object?.value)
   })
   
   // =============== METHODS ==============
