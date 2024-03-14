@@ -10,7 +10,7 @@ const base = function(props, context, dependencies)
   /**
    * Handles `error` event.
    *
-   * @param {Error} error* the error object
+   * @param {Error} error* the error object containing `response` property
    * @returns {void}
    * @private
    */
