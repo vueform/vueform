@@ -3,7 +3,7 @@
     :class="classes.form"
     @submit.prevent="submit"
   >
-    <slot name="empty" :classses="classes">
+    <slot name="empty" :classes="classes">
       <component is="FormMessages" v-if="showMessages"/>
       <component is="FormErrors" v-if="showErrors"/>
       <component is="FormLanguages" v-if="showLanguages"/>
