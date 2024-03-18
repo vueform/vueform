@@ -13950,7 +13950,7 @@ var classes = {
     }
   },
   StaticElement: {
-    container: '',
+    container: 'form-static',
     content: '',
     content_sm: 'form-text-sm',
     content_md: 'form-text',

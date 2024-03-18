@@ -1472,6 +1472,12 @@ const vueform = plugin((context) => {
     '.form-color-link': {
       color: 'var(--vf-link-color)',
     },
+    '.form-static': {
+      a: {
+        color: 'var(--vf-link-color)',
+        textDecoration: 'var(--vf-link-decoration)',
+      }
+    },
 
     '.form-decoration-link': {
       textDecoration: 'var(--vf-link-decoration)',
