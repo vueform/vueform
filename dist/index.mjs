@@ -29116,7 +29116,6 @@ var DatesElement = {
 
 var base$r = function base(props, context, dependencies) {
   var {
-    type,
     embed,
     auto,
     methods,
@@ -29227,8 +29226,8 @@ var base$r = function base(props, context, dependencies) {
           endpoint.url = propEndpoints[name];
         }
       }
-      if (typeof propEndpoints[name] === 'function') {
-        endpoint = propEndpoints[name];
+      if (propEndpoints[name] === false) {
+        endpoint = f => f;
       }
       if (typeof propEndpoints[name] === 'object') {
         endpoint = {
@@ -29869,7 +29868,7 @@ var base$n = function base(props, context, dependencies) {
   /**
    * Handles `error` event.
    *
-   * @param {Error} error* the error object
+   * @param {Error} error* the error object containing `response` property
    * @returns {void}
    * @private
    */
@@ -29966,19 +29965,19 @@ var FileElement = {
     },
     uploadTempEndpoint: {
       required: false,
-      type: [Object, String, Function],
+      type: [Object, String, Function, Boolean],
       default: undefined,
       '@default': 'config.endpoints.uploadTempFile'
     },
     removeTempEndpoint: {
       required: false,
-      type: [Object, String, Function],
+      type: [Object, String, Function, Boolean],
       default: undefined,
       '@default': 'config.endpoints.removeTempFile'
     },
     removeEndpoint: {
       required: false,
-      type: [Object, String, Function],
+      type: [Object, String, Function, Boolean],
       default: undefined,
       '@default': 'config.endpoints.removeFile'
     },
@@ -32861,7 +32860,9 @@ Sortable.mount(Remove, Revert);
 
 var base$k = function base(props, context, dependencies, options) {
   var {
-    sort
+    sort,
+    object,
+    element
   } = toRefs(props);
 
   // ============ DEPENDENCIES ============
@@ -32901,7 +32902,7 @@ var base$k = function base(props, context, dependencies, options) {
    * @type {boolean}
    */
   var isSortable = computed(() => {
-    return sort.value && !isDisabled.value;
+    return sort.value && !isDisabled.value && ((element === null || element === void 0 ? void 0 : element.value) || (object === null || object === void 0 ? void 0 : object.value));
   });
 
   // =============== METHODS ==============
@@ -33912,19 +33913,19 @@ var MultifileElement = {
     },
     uploadTempEndpoint: {
       required: false,
-      type: [Object, String, Function],
+      type: [Object, String, Function, Boolean],
       default: undefined,
       '@default': 'config.endpoints.uploadTempFile'
     },
     removeTempEndpoint: {
       required: false,
-      type: [Object, String, Function],
+      type: [Object, String, Function, Boolean],
       default: undefined,
       '@default': 'config.endpoints.removeTempFile'
     },
     removeEndpoint: {
       required: false,
-      type: [Object, String, Function],
+      type: [Object, String, Function, Boolean],
       default: undefined,
       '@default': 'config.endpoints.removeFile'
     },

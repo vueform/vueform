@@ -275,9 +275,9 @@ export interface VueformElement extends DefineComponent {
   auto: boolean;
   urls: object;
   methods: object;
-  uploadTempEndpoint: object | string | Function;
-  removeTempEndpoint: object | string | Function;
-  removeEndpoint: object | string | Function;
+  uploadTempEndpoint: object | string | Function | boolean;
+  removeTempEndpoint: object | string | Function | boolean;
+  removeEndpoint: object | string | Function | boolean;
   params: object;
   softRemove: boolean;
   embed: boolean;
@@ -692,9 +692,9 @@ export interface VueformSchema {
   auto?: boolean;
   urls?: object;
   methods?: object;
-  uploadTempEndpoint?: object | string | Function;
-  removeTempEndpoint?: object | string | Function;
-  removeEndpoint?: object | string | Function;
+  uploadTempEndpoint?: object | string | Function | boolean;
+  removeTempEndpoint?: object | string | Function | boolean;
+  removeEndpoint?: object | string | Function | boolean;
   params?: object;
   softRemove?: boolean;
   embed?: boolean;
@@ -1414,9 +1414,9 @@ export interface FileElementProps {
   auto?: boolean;
   urls?: object;
   methods?: object;
-  uploadTempEndpoint?: object | string | Function;
-  removeTempEndpoint?: object | string | Function;
-  removeEndpoint?: object | string | Function;
+  uploadTempEndpoint?: object | string | Function | boolean;
+  removeTempEndpoint?: object | string | Function | boolean;
+  removeEndpoint?: object | string | Function | boolean;
   params?: object;
   softRemove?: boolean;
   embed?: boolean;
@@ -1728,9 +1728,9 @@ export interface MultifileElementProps {
   url?: string | boolean;
   previewUrl?: string;
   auto?: boolean;
-  uploadTempEndpoint?: object | string | Function;
-  removeTempEndpoint?: object | string | Function;
-  removeEndpoint?: object | string | Function;
+  uploadTempEndpoint?: object | string | Function | boolean;
+  removeTempEndpoint?: object | string | Function | boolean;
+  removeEndpoint?: object | string | Function | boolean;
   params?: object;
   softRemove?: boolean;
 }

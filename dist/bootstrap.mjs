@@ -24,7 +24,7 @@ function render$X(_ctx, _cache, $props, $setup, $data, $options) {
     class: normalizeClass(_ctx.classes.form),
     onSubmit: _cache[0] || (_cache[0] = withModifiers((...args) => (_ctx.submit && _ctx.submit(...args)), ["prevent"]))
   }, [
-    renderSlot(_ctx.$slots, "empty", {}, () => [
+    renderSlot(_ctx.$slots, "empty", { classes: _ctx.classes }, () => [
       (_ctx.showMessages)
         ? (openBlock(), createBlock(resolveDynamicComponent("FormMessages"), { key: 0 }))
         : createCommentVNode("v-if", true),

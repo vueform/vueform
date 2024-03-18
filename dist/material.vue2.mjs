@@ -159,29 +159,33 @@ var __vue_render__$X = function () {
       },
     },
     [
-      _vm._t("empty", function () {
-        return [
-          _vm.showMessages
-            ? _c("FormMessages", { tag: "component" })
-            : _vm._e(),
-          _vm._v(" "),
-          _vm.showErrors ? _c("FormErrors", { tag: "component" }) : _vm._e(),
-          _vm._v(" "),
-          _vm.showLanguages
-            ? _c("FormLanguages", { tag: "component" })
-            : _vm._e(),
-          _vm._v(" "),
-          _vm.showTabs ? _c("FormTabs", { tag: "component" }) : _vm._e(),
-          _vm._v(" "),
-          _vm.showSteps ? _c("FormSteps", { tag: "component" }) : _vm._e(),
-          _vm._v(" "),
-          _c("FormElements", [_vm._t("default")], 2),
-          _vm._v(" "),
-          _vm.showStepsControls
-            ? _c("FormStepsControls", { tag: "component" })
-            : _vm._e(),
-        ]
-      }),
+      _vm._t(
+        "empty",
+        function () {
+          return [
+            _vm.showMessages
+              ? _c("FormMessages", { tag: "component" })
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.showErrors ? _c("FormErrors", { tag: "component" }) : _vm._e(),
+            _vm._v(" "),
+            _vm.showLanguages
+              ? _c("FormLanguages", { tag: "component" })
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.showTabs ? _c("FormTabs", { tag: "component" }) : _vm._e(),
+            _vm._v(" "),
+            _vm.showSteps ? _c("FormSteps", { tag: "component" }) : _vm._e(),
+            _vm._v(" "),
+            _c("FormElements", [_vm._t("default")], 2),
+            _vm._v(" "),
+            _vm.showStepsControls
+              ? _c("FormStepsControls", { tag: "component" })
+              : _vm._e(),
+          ]
+        },
+        { classes: _vm.classes }
+      ),
     ],
     2
   )

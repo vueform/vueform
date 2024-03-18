@@ -3748,7 +3748,7 @@ export default {
                 "Error"
               ],
               "required": true,
-              "description": "the error object"
+              "description": "the error object containing `response` property"
             }
           }
         }
