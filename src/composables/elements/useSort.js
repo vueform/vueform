@@ -6,9 +6,6 @@ const base = function(props, context, dependencies, options)
 {
   const {
     sort,
-    object,
-    element,
-    name
   } = toRefs(props)
   
   // ============ DEPENDENCIES ============
@@ -48,7 +45,7 @@ const base = function(props, context, dependencies, options)
    * @type {boolean}
    */
   const isSortable = computed(() => {
-    return sort.value && !isDisabled.value && (Object.keys(element?.value || {}).length || Object.keys(object?.value || {}).length)
+    return sort.value && !isDisabled.value && length.value && value.value[0] !== undefined
   })
   
   // =============== METHODS ==============
@@ -110,7 +107,7 @@ const base = function(props, context, dependencies, options)
   }
   
   // ============== WATCHERS ==============
-  
+
   watch(isSortable, (n, o) => {
     /* istanbul ignore else */
     if (n === true && o === false) {
@@ -118,7 +115,7 @@ const base = function(props, context, dependencies, options)
     } else if (n === false && o === true) {
       destroySortable()
     }
-  }, { immediate: false })
+  }, { immediate: false, flush: 'post' })
   
   // ================ HOOKS ===============
   

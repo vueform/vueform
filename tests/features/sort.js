@@ -74,6 +74,7 @@ export const isSortable = function (elementType, elementName, options) {
         el: {
           type: elementType,
           sort: true,
+          default: ['a'],
           element: {
             type: 'text'
           }
@@ -136,18 +137,21 @@ export const initSortable = function (elementType, elementName, options) {
 }
 
 export const destroySortable = function (elementType, elementName, options) {
-  it('should destroy sortable', () => {
+  it('should destroy sortable', async () => {
     let form = createForm({
       schema: {
         el: {
           type: elementType,
           sort: true,
+          default: ['a'],
           element: {
             type: 'text'
           }
         }
       }
     })
+
+    await nextTick()
 
     let el = form.vm.el$('el')
     
@@ -230,6 +234,7 @@ export const watchers = function (elementType, elementName, options) {
         el: {
           type: elementType,
           sort: false,
+          default: ['a'],
           element: {
             type: 'text'
           }
@@ -256,6 +261,7 @@ export const watchers = function (elementType, elementName, options) {
         el: {
           type: elementType,
           sort: true,
+          default: ['a'],
           element: {
             type: 'text'
           }
@@ -284,6 +290,7 @@ export const onMounted = function (elementType, elementName, options) {
         el: {
           type: elementType,
           sort: true,
+          default: ['a'],
           element: {
             type: 'text'
           }
