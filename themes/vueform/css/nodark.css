@@ -796,6 +796,12 @@ form ::placeholder {
   }
 }
 
+.vf-contains-link a {
+  color: var(--vf-link-color);
+  -webkit-text-decoration: var(--vf-link-decoration);
+  text-decoration: var(--vf-link-decoration);
+}
+
 .vf-static-tag {
   font-size: var(--vf-font-size);
   line-height: var(--vf-line-height);

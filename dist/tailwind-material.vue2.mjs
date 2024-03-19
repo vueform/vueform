@@ -1,5 +1,5 @@
 /*!
- * Vueform v1.9.1 (https://github.com/vueform/vueform)
+ * Vueform v1.9.2 (https://github.com/vueform/vueform)
  * Copyright (c) 2024 Adam Berecz <adam@vueform.com>
  * Licensed under the MIT License
  */
@@ -19601,7 +19601,7 @@ var classes = {
     }
   },
   CheckboxElement: _objectSpread2(_objectSpread2({}, checkbox), {}, {
-    container: '',
+    container: 'form-contains-link',
     wrapper: 'flex align-start',
     wrapper_sm: 'form-text-sm',
     wrapper_md: 'form-text',
@@ -20222,7 +20222,7 @@ var classes = {
     }
   },
   StaticElement: {
-    container: '',
+    container: 'form-contains-link',
     content: '',
     content_sm: 'form-text-sm',
     content_md: 'form-text',
@@ -20374,7 +20374,7 @@ var classes = {
   TextareaElement: _objectSpread2({}, textarea),
   TextElement: _objectSpread2({}, text),
   ToggleElement: {
-    container: '',
+    container: 'form-contains-link',
     wrapper: 'flex items-start',
     wrapper_left: 'rtl:justify-end',
     wrapper_right: 'justify-end rtl:justify-start',

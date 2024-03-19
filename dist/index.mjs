@@ -1,5 +1,5 @@
 /*!
- * Vueform v1.9.1 (https://github.com/vueform/vueform)
+ * Vueform v1.9.2 (https://github.com/vueform/vueform)
  * Copyright (c) 2024 Adam Berecz <adam@vueform.com>
  * Licensed under the MIT License
  */
@@ -10081,7 +10081,7 @@ function shouldApplyPlugin (name, plugin) {
 }
 
 var name = "@vueform/vueform";
-var version$1 = "1.9.1";
+var version$1 = "1.9.2";
 var description = "Open-Source Form Framework for Vue";
 var homepage = "https://vueform.com";
 var license = "MIT";
@@ -32862,7 +32862,8 @@ var base$k = function base(props, context, dependencies, options) {
   var {
     sort,
     object,
-    element
+    element,
+    name
   } = toRefs(props);
 
   // ============ DEPENDENCIES ============
@@ -32902,7 +32903,7 @@ var base$k = function base(props, context, dependencies, options) {
    * @type {boolean}
    */
   var isSortable = computed(() => {
-    return sort.value && !isDisabled.value && ((element === null || element === void 0 ? void 0 : element.value) || (object === null || object === void 0 ? void 0 : object.value));
+    return sort.value && !isDisabled.value && (Object.keys((element === null || element === void 0 ? void 0 : element.value) || {}).length || Object.keys((object === null || object === void 0 ? void 0 : object.value) || {}).length);
   });
 
   // =============== METHODS ==============

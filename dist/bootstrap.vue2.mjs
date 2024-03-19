@@ -1,5 +1,5 @@
 /*!
- * Vueform v1.9.1 (https://github.com/vueform/vueform)
+ * Vueform v1.9.2 (https://github.com/vueform/vueform)
  * Copyright (c) 2024 Adam Berecz <adam@vueform.com>
  * Licensed under the MIT License
  */
@@ -4514,7 +4514,7 @@ var script$1f = {
       return {
         merge: true,
         defaultClasses: {
-          container: '',
+          container: 'vf-contains-link',
           wrapper: 'vf-checkbox-wrapper',
           wrapper_sm: 'vf-checkbox-wrapper-sm',
           wrapper_md: '',
@@ -18453,7 +18453,7 @@ var script$F = {
       return {
         merge: true,
         defaultClasses: {
-          container: '',
+          container: 'vf-contains-link',
           content: 'vf-static',
           content_sm: 'vf-static-sm',
           content_md: '',
@@ -20335,7 +20335,7 @@ var script$w = {
       return {
         merge: true,
         defaultClasses: {
-          container: '',
+          container: 'vf-contains-link',
           wrapper: 'vf-toggle-wrapper',
           wrapper_left: 'vf-toggle-wrapper-left',
           wrapper_right: 'vf-toggle-wrapper-right',

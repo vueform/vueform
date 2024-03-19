@@ -1,5 +1,17 @@
 [//]: # (Don't use <tags>)
 
+## v1.9.2
+
+> `2024-03-19`
+
+### 🎉 Feature
+- Allow `false` for file endpoints to disable temp upload.
+- Expose `classes` in `<Vueform>` `#empty` slot.
+
+### 🐞 Bug Fixes
+- Auto-style links within forms.
+- Don't init sort if the list has no prototype.
+
 ## v1.9.1
 
 > `2024-03-08`
