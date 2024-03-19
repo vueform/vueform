@@ -29113,6 +29113,9 @@ var base$r = function base(props, context, dependencies) {
       if (propEndpoints[name] === false) {
         endpoint = f => f;
       }
+      if (typeof propEndpoints[name] === 'function') {
+        endpoint = propEndpoints[name];
+      }
       if (typeof propEndpoints[name] === 'object') {
         endpoint = {
           url: propEndpoints[name].url || propEndpoints[name].endpoint || configEndpoints[name].url,
@@ -32744,10 +32747,7 @@ Sortable.mount(Remove, Revert);
 
 var base$k = function base(props, context, dependencies, options) {
   var {
-    sort,
-    object,
-    element,
-    name
+    sort
   } = toRefs(props);
 
   // ============ DEPENDENCIES ============
@@ -32787,7 +32787,7 @@ var base$k = function base(props, context, dependencies, options) {
    * @type {boolean}
    */
   var isSortable = computed(() => {
-    return sort.value && !isDisabled.value && (Object.keys((element === null || element === void 0 ? void 0 : element.value) || {}).length || Object.keys((object === null || object === void 0 ? void 0 : object.value) || {}).length);
+    return sort.value && !isDisabled.value && length.value && value.value[0] !== undefined;
   });
 
   // =============== METHODS ==============
@@ -32858,7 +32858,8 @@ var base$k = function base(props, context, dependencies, options) {
       destroySortable();
     }
   }, {
-    immediate: false
+    immediate: false,
+    flush: 'post'
   });
 
   // ================ HOOKS ===============
