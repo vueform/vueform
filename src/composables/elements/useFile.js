@@ -121,9 +121,12 @@ const base = function(props, context, dependencies)
         }
       }
       
-      
       if (propEndpoints[name] === false) {
         endpoint = f => f
+      }
+
+      if (typeof propEndpoints[name] === 'function') {
+        endpoint = propEndpoints[name]
       }
       
       if (typeof propEndpoints[name] === 'object') {
