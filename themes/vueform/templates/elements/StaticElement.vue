@@ -8,7 +8,7 @@
       return {
         merge: true,
         defaultClasses: {
-          container: 'vf-static-container',
+          container: 'vf-contains-link',
           content: 'vf-static',
           content_sm: 'vf-static-sm',
           content_md: '',

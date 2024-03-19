@@ -437,7 +437,7 @@ export default {
   },
   CheckboxElement: {
     ...checkbox,
-    container: '',
+    container: 'form-contains-link',
     wrapper: 'flex align-start',
     wrapper_sm: 'form-text-sm',
     wrapper_md: 'form-text',
@@ -992,7 +992,7 @@ export default {
     ]),
   },
   StaticElement: {
-    container: 'form-static',
+    container: 'form-contains-link',
     content: '',
     content_sm: 'form-text-sm',
     content_md: 'form-text',
@@ -1134,7 +1134,7 @@ export default {
     ...text,
   },
   ToggleElement: {
-    container: '',
+    container: 'form-contains-link',
     wrapper: 'flex items-start',
     wrapper_left: 'rtl:justify-end',
     wrapper_right: 'justify-end rtl:justify-start',

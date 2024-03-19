@@ -1,6 +1,6 @@
 $md-breakpoint: map-get($grid-breakpoints, md);
 
-.vf-static-container {
+.vf-contains-link {
   a {
     color: var(--vf-link-color);
     text-decoration: var(--vf-link-decoration);

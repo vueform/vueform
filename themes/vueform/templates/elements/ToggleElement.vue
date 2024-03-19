@@ -12,7 +12,7 @@
       return {
         merge: true,
         defaultClasses: {
-          container: '',
+          container: 'vf-contains-link',
           wrapper: 'vf-toggle-wrapper',
           wrapper_left: 'vf-toggle-wrapper-left',
           wrapper_right: 'vf-toggle-wrapper-right',

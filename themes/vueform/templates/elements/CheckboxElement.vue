@@ -8,7 +8,7 @@
       return {
         merge: true,
         defaultClasses: {
-          container: '',
+          container: 'vf-contains-link',
           wrapper: 'vf-checkbox-wrapper',
           wrapper_sm: 'vf-checkbox-wrapper-sm',
           wrapper_md: '',
