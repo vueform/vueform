@@ -6,7 +6,7 @@
 
 ### 🎉 Feature
 - Allow `false` for file endpoints to disable temp upload.
-- Expose `classes` in `<Vueform>` `#empty` slot.
+- Expose `classes` in `Vueform` `#empty` slot.
 
 ### 🐞 Bug Fixes
 - Auto-style links within forms.
