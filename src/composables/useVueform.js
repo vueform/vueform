@@ -77,7 +77,7 @@ const base = function(props, context, dependencies = {})
 
   const evts = [
     'change', 'reset', 'clear', 'submit',
-    'success', 'error', 'language',
+    'success', 'error', 'language', 'response',
     'beforeCreate', 'created', 'beforeMount',
     'mounted', 'beforeUpdate', 'updated',
     'beforeUnmount', 'unmounted',
@@ -122,18 +122,16 @@ const base = function(props, context, dependencies = {})
   const elements$ = ref({})
 
   /**
-  * The FormTabs component.
+  * The [`FormTabs`](/reference/form-tabs) component.
   *
   * @type {FormTabs}
-  * @private
   */
   const tabs$ = ref(null)
 
   /**
-  * The FormSteps component.
+  * The [`FormSteps`](/reference/form-steps) component.
   *
   * @type {FormSteps}
-  * @private
   */
   const steps$ = ref(null)
 
@@ -1174,11 +1172,12 @@ const base = function(props, context, dependencies = {})
       }
     }
     catch (error) {
+      fire('error', error, { type: 'submit' }, form$.value)
+
       if (error.response) {
         fire('response', error.response, form$.value)
       }
 
-      fire('error', error, { type: 'submit' }, form$.value)
       console.error(error)
       return
     }
