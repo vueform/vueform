@@ -70,9 +70,7 @@ const base = function(props, context, dependencies, options = {})
       callback(...args)
     })
 
-    if (!listeners.value[evt] || !listeners.value[evt].length) {
-      context.emit(...[evt].concat(args))
-    }
+    context.emit(...[evt].concat(args))
   }
 
   // =============== HOOKS ================
