@@ -434,6 +434,12 @@ export default {
       default: null,
       private: true,
     },
+    onResponse: {
+      required: false,
+      type: [Function],
+      default: null,
+      private: true,
+    },
     onSuccess: {
       required: false,
       type: [Function],
