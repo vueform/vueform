@@ -39,13 +39,20 @@ const Factory = class {
   }
   
   make(rule) {
-    let ruleClass = typeof rule == 'function' ? rule : this.rules[rule.name]
+    let ruleClass = typeof rule == 'function'
+      ? rule
+      : Array.isArray(rule)
+        ? rule[0]
+        : this.rules[rule.name] 
 
     if (!ruleClass) {
       throw new Error(`Unknown rule: '${rule.name}'`)
     }
 
-    return new ruleClass(rule, {
+    return new ruleClass(rule?.name ? rule : {
+      name: `custom_rule_${Math.floor(Math.random() * 9000000) + 1000000}`,
+      attributes: Array.isArray(rule) && rule[1] ? rule[1] : []
+    }, {
       element$: this.element$
     })
   }
@@ -55,8 +62,8 @@ const Factory = class {
       rules = rules.split('|')
     }
     
-    return flatMap(rules, (rule) => {
-      if (typeof rule == 'function') {
+    return rules.map((rule) => {
+      if (typeof rule == 'function' || Array.isArray(rule)) {
         return rule
       }
 
