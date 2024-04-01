@@ -78,7 +78,9 @@ const Validator = class {
   get message() {
     let message = ''
 
-    if (this.elementMessages[this.name]) {
+    if (this.msg) {
+      message = this.msg
+    } else if (this.elementMessages[this.name]) {
       message = this.elementMessages[this.name]
     }
     else if (this.form$.options.messages[this.name]) {
@@ -231,6 +233,20 @@ const Validator = class {
     }
   }
 
+  replaceParams(message) {
+    // replace :params
+    each(map(message.match(/:\w+/g),p=>p.replace(':','')), (param) => {
+      message = message.replace(`:${param}`, this.messageParams[param])
+    })
+
+    // replace {params}
+    each(map(message.match(/{[^}]+/g),p=>p.replace('{','')), (param) => {
+      message = message.replace(`{${param}}`, this.messageParams[param])
+    })
+
+    return message
+  }
+
   reset() {
     this.invalid = false
   }
@@ -350,6 +366,7 @@ const Validator = class {
 
   _validateSync(value) {
     this.invalid = !this.check(value)
+    console.log('invalid', this.invalid)
   }
 
   async _validateWithDebounce(value) {
