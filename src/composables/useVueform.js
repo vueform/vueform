@@ -1122,7 +1122,9 @@ const base = function(props, context, dependencies = {})
       preparing.value = false
     }
     
-    fire('submit', form$.value)
+    const data = options.value.formData(form$.value)
+
+    fire('submit', form$.value, data)
 
     if (!options.value.endpoint) {
       return
@@ -1172,10 +1174,11 @@ const base = function(props, context, dependencies = {})
       }
     }
     catch (error) {
-      fire('error', error, { type: 'submit' }, form$.value)
-
       if (error.response) {
+        fire('error', error, { type: 'submit' }, form$.value)
         fire('response', error.response, form$.value)
+      } else {
+        fire('error', error, { type: 'other' }, form$.value)
       }
 
       console.error(error)
