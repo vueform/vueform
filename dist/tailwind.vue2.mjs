@@ -20532,7 +20532,7 @@ var classes = {
   },
   ElementInfo: {
     container: 'inline-block w-3.5 h-3.5 form-bg-info relative ml-1 cursor-pointer form-info-group',
-    wrapper: 'absolute z-999 -mt-px opacity-0 invisible info-group-hover:opacity-100 info-group-hover:form-visible transition-opacity w-52 flex',
+    wrapper: 'absolute z-1000 -mt-px opacity-0 invisible info-group-hover:opacity-100 info-group-hover:form-visible transition-opacity w-52 flex',
     wrapper_left: 'right-5 -top-0.5 justify-end',
     wrapper_right: 'left-5 -top-0.5 justify-start',
     wrapper_top: 'left-1/2 transform -translate-x-1/2 bottom-8 justify-center',
