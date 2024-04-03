@@ -12,7 +12,7 @@
 ### 🐞 Bug Fixes
 - Added missing `onResponse` prop to `Vueform` component.
 - Fixed `fr_CA` translation issues. (Thanks @digino 🙏)
-- Replaced `process.*` with `import.meta.*` in Nuxt package. (Thanks @danielroe 🙏)
+- Replaced `process.` with `import.meta.` in Nuxt package. (Thanks @danielroe 🙏)
 
 ## v1.9.2
 
