@@ -61,7 +61,7 @@
     opacity: 0;
     visibility: hidden;
     transition: .3s;
-    z-index: 999;
+    z-index: 1000;
     width: 12.5rem;
 
     &.vf-element-info-wrapper-left {

@@ -3033,6 +3033,7 @@ const vueform = plugin((context) => {
         8: 8,
         9: 9,
         999: 999,
+        1000: 1000,
       },
       margin: {
         '0.75': '0.1875rem',
