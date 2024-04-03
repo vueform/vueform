@@ -968,6 +968,7 @@ export interface VueformProps {
   onReset?: Function;
   onClear?: Function;
   onSubmit?: Function;
+  onResponse?: Function;
   onSuccess?: Function;
   onError?: Function;
   onLanguage?: Function;
@@ -3474,6 +3475,7 @@ export declare class Vueform implements DefineComponent {
   onReset: VueformProps['onReset'];
   onClear: VueformProps['onClear'];
   onSubmit: VueformProps['onSubmit'];
+  onResponse: VueformProps['onResponse'];
   onSuccess: VueformProps['onSuccess'];
   onError: VueformProps['onError'];
   onLanguage: VueformProps['onLanguage'];

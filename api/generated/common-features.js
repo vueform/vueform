@@ -676,18 +676,18 @@ export default {
     "base": {
       "data": {
         "tabs$": {
-          "public": false,
+          "public": true,
           "types": [
             "FormTabs"
           ],
-          "description": "The FormTabs component."
+          "description": "The [`FormTabs`](/reference/form-tabs) component."
         },
         "steps$": {
-          "public": false,
+          "public": true,
           "types": [
             "FormSteps"
           ],
-          "description": "The FormSteps component."
+          "description": "The [`FormSteps`](/reference/form-steps) component."
         },
         "elements$": {
           "public": false,

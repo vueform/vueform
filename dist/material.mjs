@@ -1,5 +1,5 @@
 /*!
- * Vueform v1.9.2 (https://github.com/vueform/vueform)
+ * Vueform v1.9.3 (https://github.com/vueform/vueform)
  * Copyright (c) 2024 Adam Berecz <adam@vueform.com>
  * Licensed under the MIT License
  */
@@ -4526,7 +4526,7 @@ function usePointer (props, context, dep)
   });
 
   watch(isOpen, (val) => {
-    if (val) {
+    if (val && multiselect?.value) {
       let firstSelected = multiselect.value.querySelectorAll(`[data-selected]`)[0];
 
       if (!firstSelected) {
@@ -7586,10 +7586,10 @@ function render$q(_ctx, _cache, $props, $setup, $data, $options) {
     class: normalizeClass(_ctx.classList.container),
     id: $props.searchable ? undefined : $props.id,
     dir: $props.rtl ? 'rtl' : undefined,
-    onFocusin: _cache[10] || (_cache[10] = (...args) => (_ctx.handleFocusIn && _ctx.handleFocusIn(...args))),
-    onFocusout: _cache[11] || (_cache[11] = (...args) => (_ctx.handleFocusOut && _ctx.handleFocusOut(...args))),
-    onKeyup: _cache[12] || (_cache[12] = (...args) => (_ctx.handleKeyup && _ctx.handleKeyup(...args))),
-    onKeydown: _cache[13] || (_cache[13] = (...args) => (_ctx.handleKeydown && _ctx.handleKeydown(...args)))
+    onFocusin: _cache[12] || (_cache[12] = (...args) => (_ctx.handleFocusIn && _ctx.handleFocusIn(...args))),
+    onFocusout: _cache[13] || (_cache[13] = (...args) => (_ctx.handleFocusOut && _ctx.handleFocusOut(...args))),
+    onKeyup: _cache[14] || (_cache[14] = (...args) => (_ctx.handleKeyup && _ctx.handleKeyup(...args))),
+    onKeydown: _cache[15] || (_cache[15] = (...args) => (_ctx.handleKeydown && _ctx.handleKeydown(...args)))
   }, [
     createElementVNode("div", mergeProps({
       class: _ctx.classList.wrapper,
@@ -7792,10 +7792,12 @@ function render$q(_ctx, _cache, $props, $setup, $data, $options) {
       disabled: !$props.appendToBody && !$props.appendTo
     }, [
       createElementVNode("div", {
-        id: `${$props.id}-dropdown`,
+        id: $props.id ? `${$props.id}-dropdown` : undefined,
         class: normalizeClass(_ctx.classList.dropdown),
         tabindex: "-1",
-        ref: "dropdown"
+        ref: "dropdown",
+        onFocusin: _cache[10] || (_cache[10] = (...args) => (_ctx.handleFocusIn && _ctx.handleFocusIn(...args))),
+        onFocusout: _cache[11] || (_cache[11] = (...args) => (_ctx.handleFocusOut && _ctx.handleFocusOut(...args)))
       }, [
         renderSlot(_ctx.$slots, "beforelist", { options: _ctx.fo }),
         createElementVNode("ul", {
@@ -7917,7 +7919,7 @@ function render$q(_ctx, _cache, $props, $setup, $data, $options) {
             ], 2 /* CLASS */))
           : createCommentVNode("v-if", true),
         renderSlot(_ctx.$slots, "afterlist", { options: _ctx.fo })
-      ], 10 /* CLASS, PROPS */, _hoisted_8$1)
+      ], 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_8$1)
     ], 8 /* PROPS */, ["to", "disabled"])),
     createCommentVNode(" Hacky input element to show HTML5 required warning "),
     ($props.required)

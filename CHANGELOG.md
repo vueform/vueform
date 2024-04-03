@@ -1,5 +1,19 @@
 [//]: # (Don't use <tags>)
 
+# v1.9.3
+
+> `2024-04-03`
+
+### 🎉 Feature
+- Added `msg` to custom rules for automatic param replaces.
+- Allow custom rules receiving params.
+- Pass form data to `@submit` event.
+
+### 🐞 Bug Fixes
+- Added missing `onResponse` prop to `Vueform` component.
+- Fixed `fr_CA` translation issues. (Thanks @digino 🙏)
+- Replaced `process.*` with `import.meta.*` in Nuxt package. (Thanks @danielroe 🙏)
+
 ## v1.9.2
 
 > `2024-03-19`

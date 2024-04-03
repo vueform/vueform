@@ -1,5 +1,5 @@
 /*!
- * Vueform v1.9.2 (https://github.com/vueform/vueform)
+ * Vueform v1.9.3 (https://github.com/vueform/vueform)
  * Copyright (c) 2024 Adam Berecz <adam@vueform.com>
  * Licensed under the MIT License
  */
@@ -41,7 +41,7 @@ function _toPrimitive(t, r) {
 }
 function _toPropertyKey(t) {
   var i = _toPrimitive(t, "string");
-  return "symbol" == typeof i ? i : String(i);
+  return "symbol" == typeof i ? i : i + "";
 }
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
   try {
@@ -5540,7 +5540,7 @@ var arrayPush$1 = _arrayPush,
  * @param {Array} [result=[]] The initial result value.
  * @returns {Array} Returns the new flattened array.
  */
-function baseFlatten$7(array, depth, predicate, isStrict, result) {
+function baseFlatten$6(array, depth, predicate, isStrict, result) {
   var index = -1,
       length = array.length;
 
@@ -5552,7 +5552,7 @@ function baseFlatten$7(array, depth, predicate, isStrict, result) {
     if (depth > 0 && predicate(value)) {
       if (depth > 1) {
         // Recursively flatten arrays (susceptible to call stack limits).
-        baseFlatten$7(value, depth - 1, predicate, isStrict, result);
+        baseFlatten$6(value, depth - 1, predicate, isStrict, result);
       } else {
         arrayPush$1(result, value);
       }
@@ -5563,7 +5563,7 @@ function baseFlatten$7(array, depth, predicate, isStrict, result) {
   return result;
 }
 
-var _baseFlatten = baseFlatten$7;
+var _baseFlatten = baseFlatten$6;
 
 /**
  * The base implementation of `_.findIndex` and `_.findLastIndex` without
@@ -5805,7 +5805,7 @@ function baseUniq$1(array, iteratee, comparator) {
 
 var _baseUniq = baseUniq$1;
 
-var baseFlatten$6 = _baseFlatten,
+var baseFlatten$5 = _baseFlatten,
     baseRest$3 = _baseRest,
     baseUniq = _baseUniq,
     isArrayLikeObject$2 = isArrayLikeObject_1;
@@ -5827,12 +5827,12 @@ var baseFlatten$6 = _baseFlatten,
  * // => [2, 1]
  */
 var union = baseRest$3(function(arrays) {
-  return baseUniq(baseFlatten$6(arrays, 1, isArrayLikeObject$2, true));
+  return baseUniq(baseFlatten$5(arrays, 1, isArrayLikeObject$2, true));
 });
 
 var union_1 = union;
 
-var baseFlatten$5 = _baseFlatten;
+var baseFlatten$4 = _baseFlatten;
 
 /** Used as references for various `Number` constants. */
 var INFINITY$1 = 1 / 0;
@@ -5853,7 +5853,7 @@ var INFINITY$1 = 1 / 0;
  */
 function flattenDeep(array) {
   var length = array == null ? 0 : array.length;
-  return length ? baseFlatten$5(array, INFINITY$1) : [];
+  return length ? baseFlatten$4(array, INFINITY$1) : [];
 }
 
 var flattenDeep_1 = flattenDeep;
@@ -7051,7 +7051,7 @@ var base$19 = function base(props, context) {
     onBeforeUnmount: _onBeforeUnmount,
     onUnmounted: _onUnmounted
   } = toRefs(props);
-  var evts = ['change', 'reset', 'clear', 'submit', 'success', 'error', 'language', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'];
+  var evts = ['change', 'reset', 'clear', 'submit', 'success', 'error', 'language', 'response', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'];
   var vm = getCurrentInstance();
   var $this = vm.proxy;
 
@@ -7092,18 +7092,16 @@ var base$19 = function base(props, context) {
   var elements$ = ref({});
 
   /**
-  * The FormTabs component.
+  * The [`FormTabs`](/reference/form-tabs) component.
   *
   * @type {FormTabs}
-  * @private
   */
   var tabs$ = ref(null);
 
   /**
-  * The FormSteps component.
+  * The [`FormSteps`](/reference/form-steps) component.
   *
   * @type {FormSteps}
-  * @private
   */
   var steps$ = ref(null);
 
@@ -8077,7 +8075,8 @@ var base$19 = function base(props, context) {
       } finally {
         preparing.value = false;
       }
-      fire('submit', form$.value);
+      var data = options.value.formData(form$.value);
+      fire('submit', form$.value, data);
       if (!options.value.endpoint) {
         return;
       }
@@ -8130,11 +8129,15 @@ var base$19 = function base(props, context) {
         }
       } catch (error) {
         if (error.response) {
+          fire('error', error, {
+            type: 'submit'
+          }, form$.value);
           fire('response', error.response, form$.value);
+        } else {
+          fire('error', error, {
+            type: 'other'
+          }, form$.value);
         }
-        fire('error', error, {
-          type: 'submit'
-        }, form$.value);
         console.error(error);
         return;
       } finally {
@@ -8911,6 +8914,12 @@ var VueformComponent = {
       default: null,
       private: true
     },
+    onResponse: {
+      required: false,
+      type: [Function],
+      default: null,
+      private: true
+    },
     onSuccess: {
       required: false,
       type: [Function],
@@ -9044,12 +9053,12 @@ var arrayMap$3 = _arrayMap,
  * _.map(users, 'user');
  * // => ['barney', 'fred']
  */
-function map$1(collection, iteratee) {
+function map(collection, iteratee) {
   var func = isArray$4(collection) ? arrayMap$3 : baseMap$1;
   return func(collection, baseIteratee$5(iteratee));
 }
 
-var map_1 = map$1;
+var map_1 = map;
 
 var baseGetTag = _baseGetTag,
     isArray$3 = isArray_1,
@@ -9268,7 +9277,9 @@ var Validator = class {
   get message() {
     var _this$form$$translati;
     var message = '';
-    if (this.elementMessages[this.name]) {
+    if (this.msg) {
+      message = this.msg;
+    } else if (this.elementMessages[this.name]) {
       message = this.elementMessages[this.name];
     } else if (this.form$.options.messages[this.name]) {
       message = this.form$.options.messages[this.name];
@@ -9392,6 +9403,18 @@ var Validator = class {
         yield _this._validate(value);
       }
     })();
+  }
+  replaceParams(message) {
+    // replace :params
+    each(map_1(message.match(/:\w+/g), p => p.replace(':', '')), param => {
+      message = message.replace(":".concat(param), this.messageParams[param]);
+    });
+
+    // replace {params}
+    each(map_1(message.match(/{[^}]+/g), p => p.replace('{', '')), param => {
+      message = message.replace("{".concat(param, "}"), this.messageParams[param]);
+    });
+    return message;
   }
   reset() {
     this.invalid = false;
@@ -9591,7 +9614,7 @@ function customOmitClone$1(value) {
 
 var _customOmitClone = customOmitClone$1;
 
-var baseFlatten$4 = _baseFlatten;
+var baseFlatten$3 = _baseFlatten;
 
 /**
  * Flattens `array` a single level deep.
@@ -9609,7 +9632,7 @@ var baseFlatten$4 = _baseFlatten;
  */
 function flatten$2(array) {
   var length = array == null ? 0 : array.length;
-  return length ? baseFlatten$4(array, 1) : [];
+  return length ? baseFlatten$3(array, 1) : [];
 }
 
 var flatten_1 = flatten$2;
@@ -10026,7 +10049,7 @@ function unflatten (target, opts) {
 }
 
 var baseDifference = _baseDifference,
-    baseFlatten$3 = _baseFlatten,
+    baseFlatten$2 = _baseFlatten,
     baseRest$1 = _baseRest,
     isArrayLikeObject = isArrayLikeObject_1;
 
@@ -10053,7 +10076,7 @@ var baseDifference = _baseDifference,
  */
 var difference = baseRest$1(function(array, values) {
   return isArrayLikeObject(array)
-    ? baseDifference(array, baseFlatten$3(values, 1, isArrayLikeObject, true))
+    ? baseDifference(array, baseFlatten$2(values, 1, isArrayLikeObject, true))
     : [];
 });
 
@@ -10081,7 +10104,7 @@ function shouldApplyPlugin (name, plugin) {
 }
 
 var name = "@vueform/vueform";
-var version$1 = "1.9.2";
+var version$1 = "1.9.3";
 var description = "Open-Source Form Framework for Vue";
 var homepage = "https://vueform.com";
 var license = "MIT";
@@ -10259,36 +10282,6 @@ var packageJson = {
 	devDependencies: devDependencies,
 	dependencies: dependencies
 };
-
-var baseFlatten$2 = _baseFlatten,
-    map = map_1;
-
-/**
- * Creates a flattened array of values by running each element in `collection`
- * thru `iteratee` and flattening the mapped results. The iteratee is invoked
- * with three arguments: (value, index|key, collection).
- *
- * @static
- * @memberOf _
- * @since 4.0.0
- * @category Collection
- * @param {Array|Object} collection The collection to iterate over.
- * @param {Function} [iteratee=_.identity] The function invoked per iteration.
- * @returns {Array} Returns the new flattened array.
- * @example
- *
- * function duplicate(n) {
- *   return [n, n];
- * }
- *
- * _.flatMap([1, 2], duplicate);
- * // => [1, 1, 2, 2]
- */
-function flatMap(collection, iteratee) {
-  return baseFlatten$2(map(collection, iteratee), 1);
-}
-
-var flatMap_1 = flatMap;
 
 var normalize = function normalize(value) {
   if (value === undefined || typeof value != 'string') {
@@ -10788,11 +10781,14 @@ var Factory = class {
     });
   }
   make(rule) {
-    var ruleClass = typeof rule == 'function' ? rule : this.rules[rule.name];
+    var ruleClass = typeof rule == 'function' ? rule : Array.isArray(rule) ? rule[0] : this.rules[rule.name];
     if (!ruleClass) {
       throw new Error("Unknown rule: '".concat(rule.name, "'"));
     }
-    return new ruleClass(rule, {
+    return new ruleClass(rule !== null && rule !== void 0 && rule.name ? rule : {
+      name: "custom_rule_".concat(Math.floor(Math.random() * 9000000) + 1000000),
+      attributes: Array.isArray(rule) && rule[1] ? rule[1] : []
+    }, {
       element$: this.element$
     });
   }
@@ -10800,8 +10796,8 @@ var Factory = class {
     if (!isArray_1(rules)) {
       rules = rules.split('|');
     }
-    return flatMap_1(rules, rule => {
-      if (typeof rule == 'function') {
+    return rules.map(rule => {
+      if (typeof rule == 'function' || Array.isArray(rule)) {
         return rule;
       }
       return this.isConditional(rule) ? this.parseConditional(rule) : this.parse(rule);

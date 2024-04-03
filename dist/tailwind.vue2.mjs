@@ -1,5 +1,5 @@
 /*!
- * Vueform v1.9.2 (https://github.com/vueform/vueform)
+ * Vueform v1.9.3 (https://github.com/vueform/vueform)
  * Copyright (c) 2024 Adam Berecz <adam@vueform.com>
  * Licensed under the MIT License
  */
@@ -6181,7 +6181,7 @@ function usePointer (props, context, dep)
   });
 
   watch(isOpen, (val) => {
-    if (val) {
+    if (val && multiselect?.value) {
       let firstSelected = multiselect.value.querySelectorAll(`[data-selected]`)[0];
 
       if (!firstSelected) {
@@ -9597,7 +9597,11 @@ var __vue_render__$q = function () {
             {
               ref: "dropdown",
               class: _vm.classList.dropdown,
-              attrs: { id: _vm.id + "-dropdown", tabindex: "-1" },
+              attrs: {
+                id: _vm.id ? _vm.id + "-dropdown" : undefined,
+                tabindex: "-1",
+              },
+              on: { focusin: _vm.handleFocusIn, focusout: _vm.handleFocusOut },
             },
             [
               _vm._t("beforelist", null, { options: _vm.fo }),
@@ -19176,7 +19180,7 @@ function _toPrimitive(t, r) {
 }
 function _toPropertyKey(t) {
   var i = _toPrimitive(t, "string");
-  return "symbol" == typeof i ? i : String(i);
+  return "symbol" == typeof i ? i : i + "";
 }
 function _defineProperty(obj, key, value) {
   key = _toPropertyKey(key);
