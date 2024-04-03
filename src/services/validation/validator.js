@@ -366,7 +366,6 @@ const Validator = class {
 
   _validateSync(value) {
     this.invalid = !this.check(value)
-    console.log('invalid', this.invalid)
   }
 
   async _validateWithDebounce(value) {
