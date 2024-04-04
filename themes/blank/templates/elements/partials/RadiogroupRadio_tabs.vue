@@ -39,7 +39,7 @@
 
 <script>
   export default {
-    name: 'CheckboxgroupCheckbox_tabs',
+    name: 'RadiogroupRadio_tabs',
     data() {
       return {
         merge: true,
