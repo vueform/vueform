@@ -80,45 +80,6 @@ export const hasUploadError = function (elementType, elementName, options) {
   })
 }
 
-export const base64 = function (elementType, elementName, options) {
-  it('should `base64` be null by default', () => {
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType,
-        }
-      }
-    })
-    
-    let el = form.vm.el$('el')
-    
-    expect(el.base64).toBe(null)
-  })
-  
-  it('should not set `base64` when file changes if isImage is false', async () => {
-    
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType,
-          auto: false,
-        }
-      }
-    })
-    
-    let el = form.vm.el$('el')
-    
-    el.load(new File([''], 'a'))
-    
-    await nextTick()
-    await flushPromises()
-    
-    expect(el.base64).toBe(null)
-    
-    // destroy() // teardown
-  })
-}
-
 export const progress = function (elementType, elementName, options) {
   it('should `progress` be 0 by default', () => {
     let form = createForm({
@@ -151,90 +112,6 @@ export const preparing = function (elementType, elementName, options) {
     
     expect(el.preparing).toBe(false)
   })
-}
-
-export const watchers = function (elementType, elementName, options) {
-  
-  it('should have value and view keys', () => {
-    
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType,
-        }
-      }
-    })
-    
-    let el = form.vm.el$('el')
-    
-    expect(el.watchers.value).not.toBe(undefined)
-    expect(el.watchers.view).not.toBe(undefined)
-  })
-  
-  //@todo:szm fileReader can not be mocked
-  // it('should have thumbnail if image or gallery', async () => {
-  //
-  //   const file = await createValidImageFile()
-  //
-  //   let form = createForm({
-  //     schema: {
-  //       el: {
-  //         type: elementType,
-  //         view: 'file',
-  //       }
-  //     }
-  //   })
-  //
-  //   let el = form.vm.el$('el')
-  //
-  //   el.load(new File([file], 'file.jpg'))
-  //
-  //   await nextTick()
-  //
-  //   el.$set(form.vm.vueform.schema.el, 'view', 'image')
-  //   //@todo
-  // })
-  //
-  // it('should invoke resolveBase64 if imageType is true, view is not file and either has value of file or __file__', async () => {
-  //
-  //   const requestStub = jest.fn(() => {
-  //     return {
-  //       tmp: 'tmp_name',
-  //       originalName: 'filename.jpg',
-  //     }
-  //   })
-  //
-  //   const validFile = await createValidImageFile()
-  //
-  //   let form = createForm({
-  //     schema: {
-  //       el: {
-  //         type: elementType,
-  //         auto: true,
-  //         onBeforeCreate(el$) {
-  //           el$.$vueform.services.axios.request = requestStub
-  //         },
-  //       }
-  //     }
-  //   })
-  //
-  //   let el = form.vm.el$('el')
-  //
-  //   await el.handleChange({
-  //     target: {
-  //       files: [
-  //         validFile
-  //       ]
-  //     }
-  //   })
-  //
-  //   await flushPromises()
-  //
-  //
-  //   expect(el.value instanceof File).toBe(true)
-  //   // destroy(form) // teardown
-  //   //@todo
-  // })
 }
 
 
@@ -763,7 +640,7 @@ export const link = function (elementType, elementName, options) {
 }
 
 export const preview = function (elementType, elementName, options) {
-  it('should `preview` be equal to "base64" when not uploaded and image', () => {
+  it('should `preview` be equal to "value" when not uploaded and image', () => {
     let form = createForm({
       schema: {
         el: {
@@ -783,8 +660,7 @@ export const preview = function (elementType, elementName, options) {
     
     let el = form.vm.el$('el')
     
-    el.base64 = 'base64'
-    expect(el.preview).toBe(el.base64)
+    expect(el.preview).toBe(el.value)
     
     // destroy(form) // teardown
   })
