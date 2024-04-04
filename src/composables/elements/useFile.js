@@ -285,7 +285,13 @@ const base = function(props, context, dependencies)
       return null
     }
     
-    return uploaded.value ? previewLink.value : base64.value
+    return uploaded.value
+      ? previewLink.value
+      : value.value instanceof File
+        ? URL.createObjectURL(value.value)
+        : value.value?.__file__ instanceof File
+          ? URL.createObjectURL(value.value.__file__)
+          : null
   })
   
   /**
@@ -476,15 +482,15 @@ const base = function(props, context, dependencies)
     }
   }
   
-  const resolveBase64 = (source = value.value) => {
-    let reader = new FileReader()
+  // const resolveBase64 = (source = value.value) => {
+  //   let reader = new FileReader()
     
-    reader.onload = (e) => {
-      base64.value = e.target.result
-    }
+  //   reader.onload = (e) => {
+  //     base64.value = e.target.result
+  //   }
     
-    reader.readAsDataURL(source)
-  }
+  //   reader.readAsDataURL(source)
+  // }
   
   /**
    * Handles `change` event.
@@ -559,31 +565,31 @@ const base = function(props, context, dependencies)
   
   // ============== WATCHERS ==============
   
-  watchers.value.value = watch(value, (val) => {
-    if (!val) {
-      base64.value = null
-      return
-    }
+  // watchers.value.value = watch(value, (val) => {
+  //   if (!val) {
+  //     base64.value = null
+  //     return
+  //   }
     
-    if (!isImageType.value || view.value === 'file') {
-      return
-    }
+  //   if (!isImageType.value || view.value === 'file') {
+  //     return
+  //   }
     
-    if (!(value.value instanceof File) && !value.value?.__file__) {
-      return
-    }
+  //   if (!(value.value instanceof File) && !value.value?.__file__) {
+  //     return
+  //   }
     
-    resolveBase64(value.value instanceof File
-      ? value.value
-      : value.value?.__file__)
-  }, { immediate: true })
+  //   resolveBase64(value.value instanceof File
+  //     ? value.value
+  //     : value.value?.__file__)
+  // }, { immediate: true })
   
-  watchers.value.view = watch(view, (v) => {
-    /* istanbul ignore else */
-    if (['image', 'gallery'].indexOf(v) !== -1 && !base64.value && value.value instanceof File) {
-      resolveBase64()
-    }
-  })
+  // watchers.value.view = watch(view, (v) => {
+  //   /* istanbul ignore else */
+  //   if (['image', 'gallery'].indexOf(v) !== -1 && !base64.value && value.value instanceof File) {
+  //     resolveBase64()
+  //   }
+  // })
   
   if (value.value instanceof File && auto.value) {
     nextTick(() => {
