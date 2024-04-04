@@ -50,14 +50,6 @@ const base = function(props, context, dependencies)
   const hasUploadError = ref(false)
   
   /**
-   * The `base64` representation of the file when [`view`](#option-view) is `image` or `gallery` and file is only selected, but not uploaded yet.
-   *
-   * @type {string}
-   * @default null
-   */
-  const base64 = ref(null)
-  
-  /**
    * The percentage of progress when the file is being temporarily uploaded (0-100).
    *
    * @type {number}
@@ -73,14 +65,6 @@ const base = function(props, context, dependencies)
    */
   const preparing = ref(false)
   
-  /**
-   * Watchers store.
-   *
-   * @type {object}
-   * @default {}
-   * @private
-   */
-  const watchers = ref({})
   
   // ============== COMPUTED ==============
   
@@ -482,16 +466,6 @@ const base = function(props, context, dependencies)
     }
   }
   
-  // const resolveBase64 = (source = value.value) => {
-  //   let reader = new FileReader()
-    
-  //   reader.onload = (e) => {
-  //     base64.value = e.target.result
-  //   }
-    
-  //   reader.readAsDataURL(source)
-  // }
-  
   /**
    * Handles `change` event.
    *
@@ -563,34 +537,6 @@ const base = function(props, context, dependencies)
     request.value.cancel()
   }
   
-  // ============== WATCHERS ==============
-  
-  // watchers.value.value = watch(value, (val) => {
-  //   if (!val) {
-  //     base64.value = null
-  //     return
-  //   }
-    
-  //   if (!isImageType.value || view.value === 'file') {
-  //     return
-  //   }
-    
-  //   if (!(value.value instanceof File) && !value.value?.__file__) {
-  //     return
-  //   }
-    
-  //   resolveBase64(value.value instanceof File
-  //     ? value.value
-  //     : value.value?.__file__)
-  // }, { immediate: true })
-  
-  // watchers.value.view = watch(view, (v) => {
-  //   /* istanbul ignore else */
-  //   if (['image', 'gallery'].indexOf(v) !== -1 && !base64.value && value.value instanceof File) {
-  //     resolveBase64()
-  //   }
-  // })
-  
   if (value.value instanceof File && auto.value) {
     nextTick(() => {
       uploadTemp()
@@ -599,7 +545,6 @@ const base = function(props, context, dependencies)
   
   return {
     hasUploadError,
-    base64,
     progress,
     preparing,
     endpoints,
@@ -612,7 +557,6 @@ const base = function(props, context, dependencies)
     canRemove,
     canUploadTemp,
     canSelect,
-    watchers,
     uploadTemp,
     remove,
     prepare,
