@@ -55,7 +55,7 @@ export default {
      * @type {string}
      */
     const preview = computed(() => {
-      return ['image', 'gallery'].indexOf(el$.value.View) !== -1 ? el$.value.preview : null
+      return el$.value.preview
     })
 
     /**
