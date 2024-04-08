@@ -1,5 +1,16 @@
 [//]: # (Don't use <tags>)
 
+## v1.9.4
+
+> `2024-04-08`
+
+### 🎉 Feature
+- Allow custom elements based on object/group/list.
+- Added `el$` for [conditional classes](https://vueform.com/docs/styles-and-layout#conditional-classes).
+- Removed `base64` transformation from file elements.
+- Return `preview` value for all file preview types.
+- Improved tree-shaking.
+
 ## v1.9.3
 
 > `2024-04-03`

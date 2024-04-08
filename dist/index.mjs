@@ -1,5 +1,5 @@
 /*!
- * Vueform v1.9.3 (https://github.com/vueform/vueform)
+ * Vueform v1.9.4 (https://github.com/vueform/vueform)
  * Copyright (c) 2024 Adam Berecz <adam@vueform.com>
  * Licensed under the MIT License
  */
@@ -9889,163 +9889,35 @@ var without = baseRest$2(function(array, values) {
 
 var without_1 = without;
 
-var flat = flatten;
-flatten.flatten = flatten;
-flatten.unflatten = unflatten;
-
-function isBuffer (obj) {
-  return obj &&
-    obj.constructor &&
-    (typeof obj.constructor.isBuffer === 'function') &&
-    obj.constructor.isBuffer(obj)
+function isBuffer(obj) {
+  return obj && obj.constructor && typeof obj.constructor.isBuffer === 'function' && obj.constructor.isBuffer(obj);
 }
-
-function keyIdentity (key) {
-  return key
+function keyIdentity(key) {
+  return key;
 }
-
-function flatten (target, opts) {
+function flatten(target, opts) {
   opts = opts || {};
-
-  const delimiter = opts.delimiter || '.';
-  const maxDepth = opts.maxDepth;
-  const transformKey = opts.transformKey || keyIdentity;
-  const output = {};
-
-  function step (object, prev, currentDepth) {
+  var delimiter = opts.delimiter || '.';
+  var maxDepth = opts.maxDepth;
+  var transformKey = opts.transformKey || keyIdentity;
+  var output = {};
+  function step(object, prev, currentDepth) {
     currentDepth = currentDepth || 1;
     Object.keys(object).forEach(function (key) {
-      const value = object[key];
-      const isarray = opts.safe && Array.isArray(value);
-      const type = Object.prototype.toString.call(value);
-      const isbuffer = isBuffer(value);
-      const isobject = (
-        type === '[object Object]' ||
-        type === '[object Array]'
-      );
-
-      const newKey = prev
-        ? prev + delimiter + transformKey(key)
-        : transformKey(key);
-
-      if (!isarray && !isbuffer && isobject && Object.keys(value).length &&
-        (!opts.maxDepth || currentDepth < maxDepth)) {
-        return step(value, newKey, currentDepth + 1)
+      var value = object[key];
+      var isarray = opts.safe && Array.isArray(value);
+      var type = Object.prototype.toString.call(value);
+      var isbuffer = isBuffer(value);
+      var isobject = type === '[object Object]' || type === '[object Array]';
+      var newKey = prev ? prev + delimiter + transformKey(key) : transformKey(key);
+      if (!isarray && !isbuffer && isobject && Object.keys(value).length && (!opts.maxDepth || currentDepth < maxDepth)) {
+        return step(value, newKey, currentDepth + 1);
       }
-
       output[newKey] = value;
     });
   }
-
   step(target);
-
-  return output
-}
-
-function unflatten (target, opts) {
-  opts = opts || {};
-
-  const delimiter = opts.delimiter || '.';
-  const overwrite = opts.overwrite || false;
-  const transformKey = opts.transformKey || keyIdentity;
-  const result = {};
-
-  const isbuffer = isBuffer(target);
-  if (isbuffer || Object.prototype.toString.call(target) !== '[object Object]') {
-    return target
-  }
-
-  // safely ensure that the key is
-  // an integer.
-  function getkey (key) {
-    const parsedKey = Number(key);
-
-    return (
-      isNaN(parsedKey) ||
-      key.indexOf('.') !== -1 ||
-      opts.object
-    ) ? key
-      : parsedKey
-  }
-
-  function addKeys (keyPrefix, recipient, target) {
-    return Object.keys(target).reduce(function (result, key) {
-      result[keyPrefix + delimiter + key] = target[key];
-
-      return result
-    }, recipient)
-  }
-
-  function isEmpty (val) {
-    const type = Object.prototype.toString.call(val);
-    const isArray = type === '[object Array]';
-    const isObject = type === '[object Object]';
-
-    if (!val) {
-      return true
-    } else if (isArray) {
-      return !val.length
-    } else if (isObject) {
-      return !Object.keys(val).length
-    }
-  }
-
-  target = Object.keys(target).reduce(function (result, key) {
-    const type = Object.prototype.toString.call(target[key]);
-    const isObject = (type === '[object Object]' || type === '[object Array]');
-    if (!isObject || isEmpty(target[key])) {
-      result[key] = target[key];
-      return result
-    } else {
-      return addKeys(
-        key,
-        result,
-        flatten(target[key], opts)
-      )
-    }
-  }, {});
-
-  Object.keys(target).forEach(function (key) {
-    const split = key.split(delimiter).map(transformKey);
-    let key1 = getkey(split.shift());
-    let key2 = getkey(split[0]);
-    let recipient = result;
-
-    while (key2 !== undefined) {
-      if (key1 === '__proto__') {
-        return
-      }
-
-      const type = Object.prototype.toString.call(recipient[key1]);
-      const isobject = (
-        type === '[object Object]' ||
-        type === '[object Array]'
-      );
-
-      // do not write over falsey, non-undefined values if overwrite is false
-      if (!overwrite && !isobject && typeof recipient[key1] !== 'undefined') {
-        return
-      }
-
-      if ((overwrite && !isobject) || (!overwrite && recipient[key1] == null)) {
-        recipient[key1] = (
-          typeof key2 === 'number' &&
-          !opts.object ? [] : {}
-        );
-      }
-
-      recipient = recipient[key1];
-      if (split.length > 0) {
-        key1 = getkey(split.shift());
-        key2 = getkey(split[0]);
-      }
-    }
-
-    // unflatten again for 'messy objects'
-    recipient[key1] = unflatten(target[key], opts);
-  });
-
-  return result
+  return output;
 }
 
 var baseDifference = _baseDifference,
@@ -10104,7 +9976,7 @@ function shouldApplyPlugin (name, plugin) {
 }
 
 var name = "@vueform/vueform";
-var version$1 = "1.9.3";
+var version$1 = "1.9.4";
 var description = "Open-Source Form Framework for Vue";
 var homepage = "https://vueform.com";
 var license = "MIT";
@@ -10115,8 +9987,8 @@ var authors = [
 	}
 ];
 var sideEffects = [
-	"./themes/tailwind/templates/**/*.vue",
-	"./themes/vueform/templates/**/*.vue"
+	"./themes/tailwind/templates/**/*.css",
+	"./themes/vueform/templates/**/*.css"
 ];
 var main = "./dist/index.mjs";
 var module = "./dist/index.mjs";
@@ -10222,7 +10094,6 @@ var devDependencies = {
 	"babel-loader": "^8.0.5",
 	"core-js": "^3.10.1",
 	"css-loader": "^2.1.0",
-	flat: "^5.0.2",
 	flatpickr: "^4.6.13",
 	"flush-promises": "^1.0.2",
 	"html-loader": "^1.3.2",
@@ -14164,7 +14035,7 @@ function installer () {
     initAxios() {
       var $axios = this.options.services.axios;
       var axiosConfig = this.options.config.axios;
-      var axiosConfigFlat = flat(this.options.config.axios);
+      var axiosConfigFlat = flatten(this.options.config.axios);
       Object.keys(axiosConfigFlat).forEach(key => {
         var value = axiosConfigFlat[key];
         if (['onUnauthenticated'].indexOf(key) === -1 && key.indexOf('csrfRequest.') === -1) {

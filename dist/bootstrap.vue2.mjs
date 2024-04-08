@@ -1,5 +1,5 @@
 /*!
- * Vueform v1.9.3 (https://github.com/vueform/vueform)
+ * Vueform v1.9.4 (https://github.com/vueform/vueform)
  * Copyright (c) 2024 Adam Berecz <adam@vueform.com>
  * Licensed under the MIT License
  */
@@ -222,11 +222,11 @@ __vue_render__$X._withStripped = true;
     undefined
   );
 
-  var Vueform = __vue_component__$20;
+  var Vueform$1 = __vue_component__$20;
 
 var script$1$ = {
     name: 'Vueform',
-    render: Vueform.render,
+    render: Vueform$1.render,
     data() {
       return {
         merge: true,
@@ -272,6 +272,8 @@ const __vue_script__$1$ = script$1$;
     undefined,
     undefined
   );
+
+  var Vueform = __vue_component__$1$;
 
 //
 //
@@ -355,11 +357,11 @@ __vue_render__$W._withStripped = true;
     undefined
   );
 
-  var FormErrors = __vue_component__$1_;
+  var FormErrors$1 = __vue_component__$1_;
 
 var script$1Z = {
     name: 'FormErrors',
-    render: FormErrors.render,
+    render: FormErrors$1.render,
     data() {
       return {
         merge: true,
@@ -413,6 +415,8 @@ const __vue_script__$1Z = script$1Z;
     undefined,
     undefined
   );
+
+  var FormErrors = __vue_component__$1Z;
 
 //
 //
@@ -495,11 +499,11 @@ __vue_render__$V._withStripped = true;
     undefined
   );
 
-  var FormMessages = __vue_component__$1Y;
+  var FormMessages$1 = __vue_component__$1Y;
 
 var script$1X = {
     name: 'FormMessages',
-    render: FormMessages.render,
+    render: FormMessages$1.render,
     data() {
       return {
         merge: true,
@@ -553,6 +557,8 @@ const __vue_script__$1X = script$1X;
     undefined,
     undefined
   );
+
+  var FormMessages = __vue_component__$1X;
 
 //
 //
@@ -639,11 +645,11 @@ __vue_render__$U._withStripped = true;
     undefined
   );
 
-  var FormLanguages = __vue_component__$1W;
+  var FormLanguages$1 = __vue_component__$1W;
 
 var script$1V = {
     name: 'FormLanguages',
-    render: FormLanguages.render,
+    render: FormLanguages$1.render,
     data() {
       return {
         merge: true,
@@ -696,6 +702,8 @@ const __vue_script__$1V = script$1V;
     undefined,
     undefined
   );
+
+  var FormLanguages = __vue_component__$1V;
 
 //
 //
@@ -782,11 +790,11 @@ __vue_render__$T._withStripped = true;
     undefined
   );
 
-  var FormLanguage = __vue_component__$1U;
+  var FormLanguage$1 = __vue_component__$1U;
 
 var script$1T = {
     name: 'FormLanguage',
-    render: FormLanguage.render,
+    render: FormLanguage$1.render,
     data() {
       return {
         merge: true,
@@ -843,6 +851,8 @@ const __vue_script__$1T = script$1T;
     undefined,
     undefined
   );
+
+  var FormLanguage = __vue_component__$1T;
 
 //
 //
@@ -934,11 +944,11 @@ __vue_render__$S._withStripped = true;
     undefined
   );
 
-  var FormTabs = __vue_component__$1S;
+  var FormTabs$1 = __vue_component__$1S;
 
 var script$1R = {
     name: 'FormTabs',
-    render: FormTabs.render,
+    render: FormTabs$1.render,
     data() {
       return {
         merge: true,
@@ -991,6 +1001,8 @@ const __vue_script__$1R = script$1R;
     undefined,
     undefined
   );
+
+  var FormTabs = __vue_component__$1R;
 
 //
 //
@@ -1134,11 +1146,11 @@ __vue_render__$R._withStripped = true;
     undefined
   );
 
-  var FormTab = __vue_component__$1Q;
+  var FormTab$1 = __vue_component__$1Q;
 
 var script$1P = {
     name: 'FormTab',
-    render: FormTab.render,
+    render: FormTab$1.render,
     data() {
       return {
         merge: true,
@@ -1201,6 +1213,8 @@ const __vue_script__$1P = script$1P;
     undefined,
     undefined
   );
+
+  var FormTab = __vue_component__$1P;
 
 //
 //
@@ -1300,11 +1314,11 @@ __vue_render__$Q._withStripped = true;
     undefined
   );
 
-  var FormSteps = __vue_component__$1O;
+  var FormSteps$1 = __vue_component__$1O;
 
 var script$1N = {
     name: 'FormSteps',
-    render: FormSteps.render,
+    render: FormSteps$1.render,
     data() {
       return {
         merge: true,
@@ -1358,6 +1372,8 @@ const __vue_script__$1N = script$1N;
     undefined,
     undefined
   );
+
+  var FormSteps = __vue_component__$1N;
 
 //
 //
@@ -1450,11 +1466,11 @@ __vue_render__$P._withStripped = true;
     undefined
   );
 
-  var FormStepsControls = __vue_component__$1M;
+  var FormStepsControls$1 = __vue_component__$1M;
 
 var script$1L = {
     name: 'FormStepsControls',
-    render: FormStepsControls.render,
+    render: FormStepsControls$1.render,
     data() {
       return {
         merge: true,
@@ -1507,6 +1523,8 @@ const __vue_script__$1L = script$1L;
     undefined,
     undefined
   );
+
+  var FormStepsControls = __vue_component__$1L;
 
 //
 //
@@ -1680,11 +1698,11 @@ __vue_render__$O._withStripped = true;
     undefined
   );
 
-  var FormStepsControl = __vue_component__$1K;
+  var FormStepsControl$1 = __vue_component__$1K;
 
 var script$1J = {
     name: 'FormStepsControl',
-    render: FormStepsControl.render,
+    render: FormStepsControl$1.render,
     data() {
       return {
         merge: true,
@@ -1751,6 +1769,8 @@ const __vue_script__$1J = script$1J;
     undefined,
     undefined
   );
+
+  var FormStepsControl = __vue_component__$1J;
 
 //
 //
@@ -1890,11 +1910,11 @@ __vue_render__$N._withStripped = true;
     undefined
   );
 
-  var FormStep = __vue_component__$1I;
+  var FormStep$1 = __vue_component__$1I;
 
 var script$1H = {
     name: 'FormStep',
-    render: FormStep.render,
+    render: FormStep$1.render,
     data() {
       return {
         merge: true,
@@ -1958,6 +1978,8 @@ const __vue_script__$1H = script$1H;
     undefined,
     undefined
   );
+
+  var FormStep = __vue_component__$1H;
 
 //
 //
@@ -2049,11 +2071,11 @@ __vue_render__$M._withStripped = true;
     undefined
   );
 
-  var FormElements = __vue_component__$1G;
+  var FormElements$1 = __vue_component__$1G;
 
 var script$1F = {
     name: 'FormElements',
-    render: FormElements.render,
+    render: FormElements$1.render,
     data() {
       return {
         merge: true,
@@ -2106,6 +2128,8 @@ const __vue_script__$1F = script$1F;
     undefined,
     undefined
   );
+
+  var FormElements = __vue_component__$1F;
 
 //
 //
@@ -2290,11 +2314,11 @@ __vue_render__$L._withStripped = true;
     undefined
   );
 
-  var ElementLayout = __vue_component__$1E;
+  var ElementLayout$1 = __vue_component__$1E;
 
 var script$1D = {
     name: 'ElementLayout',
-    render: ElementLayout.render,
+    render: ElementLayout$1.render,
     data() {
       return {
         merge: true,
@@ -2364,6 +2388,8 @@ const __vue_script__$1D = script$1D;
     undefined,
     undefined
   );
+
+  var ElementLayout = __vue_component__$1D;
 
 //
 //
@@ -2466,11 +2492,11 @@ __vue_render__$K._withStripped = true;
     undefined
   );
 
-  var ElementLayoutInline = __vue_component__$1C;
+  var ElementLayoutInline$1 = __vue_component__$1C;
 
 var script$1B = {
     name: 'ElementLayoutInline',
-    render: ElementLayoutInline.render,
+    render: ElementLayoutInline$1.render,
     data() {
       return {
         merge: true,
@@ -2521,6 +2547,8 @@ const __vue_script__$1B = script$1B;
     undefined,
     undefined
   );
+
+  var ElementLayoutInline = __vue_component__$1B;
 
 //
 //
@@ -2588,11 +2616,11 @@ __vue_render__$J._withStripped = true;
     undefined
   );
 
-  var ElementLoader = __vue_component__$1A;
+  var ElementLoader$1 = __vue_component__$1A;
 
 var script$1z = {
     name: 'ElementLoader',
-    render: ElementLoader.render,
+    render: ElementLoader$1.render,
     data() {
       return {
         merge: true,
@@ -2646,6 +2674,8 @@ const __vue_script__$1z = script$1z;
     undefined,
     undefined
   );
+
+  var ElementLoader = __vue_component__$1z;
 
 //
 //
@@ -2719,11 +2749,11 @@ __vue_render__$I._withStripped = true;
     undefined
   );
 
-  var ElementLabelFloating = __vue_component__$1y;
+  var ElementLabelFloating$1 = __vue_component__$1y;
 
 var script$1x = {
     name: 'ElementLabelFloating',
-    render: ElementLabelFloating.render,
+    render: ElementLabelFloating$1.render,
     data() {
       return {
         merge: true,
@@ -2790,6 +2820,8 @@ const __vue_script__$1x = script$1x;
     undefined,
     undefined
   );
+
+  var ElementLabelFloating = __vue_component__$1x;
 
 //
 //
@@ -2922,11 +2954,11 @@ __vue_render__$H._withStripped = true;
     undefined
   );
 
-  var ElementLabel = __vue_component__$1w;
+  var ElementLabel$1 = __vue_component__$1w;
 
 var script$1v = {
     name: 'ElementLabel',
-    render: ElementLabel.render,
+    render: ElementLabel$1.render,
     data() {
       return {
         merge: true,
@@ -2997,6 +3029,8 @@ const __vue_script__$1v = script$1v;
     undefined,
     undefined
   );
+
+  var ElementLabel = __vue_component__$1v;
 
 //
 //
@@ -3089,11 +3123,11 @@ __vue_render__$G._withStripped = true;
     undefined
   );
 
-  var ElementInfo = __vue_component__$1u;
+  var ElementInfo$1 = __vue_component__$1u;
 
 var script$1t = {
     name: 'ElementInfo',
-    render: ElementInfo.render,
+    render: ElementInfo$1.render,
     data() {
       return {
         merge: true,
@@ -3149,6 +3183,8 @@ const __vue_script__$1t = script$1t;
     undefined,
     undefined
   );
+
+  var ElementInfo = __vue_component__$1t;
 
 //
 //
@@ -3228,11 +3264,11 @@ __vue_render__$F._withStripped = true;
     undefined
   );
 
-  var ElementDescription = __vue_component__$1s;
+  var ElementDescription$1 = __vue_component__$1s;
 
 var script$1r = {
     name: 'ElementDescription',
-    render: ElementDescription.render,
+    render: ElementDescription$1.render,
     data() {
       return {
         merge: true,
@@ -3285,6 +3321,8 @@ const __vue_script__$1r = script$1r;
     undefined,
     undefined
   );
+
+  var ElementDescription = __vue_component__$1r;
 
 //
 //
@@ -3359,11 +3397,11 @@ __vue_render__$E._withStripped = true;
     undefined
   );
 
-  var ElementError = __vue_component__$1q;
+  var ElementError$1 = __vue_component__$1q;
 
 var script$1p = {
     name: 'ElementError',
-    render: ElementError.render,
+    render: ElementError$1.render,
     data() {
       return {
         merge: true,
@@ -3416,6 +3454,8 @@ const __vue_script__$1p = script$1p;
     undefined,
     undefined
   );
+
+  var ElementError = __vue_component__$1p;
 
 //
 //
@@ -3483,11 +3523,11 @@ __vue_render__$D._withStripped = true;
     undefined
   );
 
-  var ElementMessage = __vue_component__$1o;
+  var ElementMessage$1 = __vue_component__$1o;
 
 var script$1n = {
     name: 'ElementMessage',
-    render: ElementMessage.render,
+    render: ElementMessage$1.render,
     data() {
       return {
         merge: true,
@@ -3540,6 +3580,8 @@ const __vue_script__$1n = script$1n;
     undefined,
     undefined
   );
+
+  var ElementMessage = __vue_component__$1n;
 
 //
 //
@@ -3613,11 +3655,11 @@ __vue_render__$C._withStripped = true;
     undefined
   );
 
-  var ElementText = __vue_component__$1m;
+  var ElementText$1 = __vue_component__$1m;
 
 var script$1l = {
     name: 'ElementText',
-    render: ElementText.render,
+    render: ElementText$1.render,
     data() {
       return {
         merge: true,
@@ -3670,6 +3712,8 @@ const __vue_script__$1l = script$1l;
     undefined,
     undefined
   );
+
+  var ElementText = __vue_component__$1l;
 
 //
 //
@@ -3768,11 +3812,11 @@ __vue_render__$B._withStripped = true;
     undefined
   );
 
-  var ElementAddon = __vue_component__$1k;
+  var ElementAddon$1 = __vue_component__$1k;
 
 var script$1j = {
     name: 'ElementAddon',
-    render: ElementAddon.render,
+    render: ElementAddon$1.render,
     data() {
       return {
         merge: true,
@@ -3836,6 +3880,8 @@ const __vue_script__$1j = script$1j;
     undefined,
     undefined
   );
+
+  var ElementAddon = __vue_component__$1j;
 
 //
 //
@@ -4201,11 +4247,11 @@ __vue_render__$A._withStripped = true;
     undefined
   );
 
-  var ButtonElement = __vue_component__$1i;
+  var ButtonElement$1 = __vue_component__$1i;
 
 var script$1h = {
     name: 'ButtonElement',
-    render: ButtonElement.render,
+    render: ButtonElement$1.render,
     data() {
       return {
         merge: true,
@@ -4287,6 +4333,8 @@ const __vue_script__$1h = script$1h;
     undefined,
     undefined
   );
+
+  var ButtonElement = __vue_component__$1h;
 
 //
 //
@@ -4505,11 +4553,11 @@ __vue_render__$z._withStripped = true;
     undefined
   );
 
-  var CheckboxElement = __vue_component__$1g;
+  var CheckboxElement$1 = __vue_component__$1g;
 
 var script$1f = {
     name: 'CheckboxElement',
-    render: CheckboxElement.render,
+    render: CheckboxElement$1.render,
     data() {
       return {
         merge: true,
@@ -4592,6 +4640,8 @@ const __vue_script__$1f = script$1f;
     undefined,
     undefined
   );
+
+  var CheckboxElement = __vue_component__$1f;
 
 //
 //
@@ -4771,11 +4821,11 @@ __vue_render__$y._withStripped = true;
     undefined
   );
 
-  var CheckboxgroupElement = __vue_component__$1e;
+  var CheckboxgroupElement$1 = __vue_component__$1e;
 
 var script$1d = {
     name: 'CheckboxgroupElement',
-    render: CheckboxgroupElement.render,
+    render: CheckboxgroupElement$1.render,
     data() {
       return {
         merge: true,
@@ -4830,9 +4880,11 @@ const __vue_script__$1d = script$1d;
     undefined
   );
 
+  var CheckboxgroupElement = __vue_component__$1d;
+
 var script$1c = {
     name: 'CheckboxgroupElement_tabs',
-    render: CheckboxgroupElement.render,
+    render: CheckboxgroupElement$1.render,
     data() {
       return {
         merge: true,
@@ -4887,9 +4939,11 @@ const __vue_script__$1c = script$1c;
     undefined
   );
 
+  var CheckboxgroupElement_tabs = __vue_component__$1c;
+
 var script$1b = {
     name: 'CheckboxgroupElement_blocks',
-    render: CheckboxgroupElement.render,
+    render: CheckboxgroupElement$1.render,
     data() {
       return {
         merge: true,
@@ -4943,6 +4997,8 @@ const __vue_script__$1b = script$1b;
     undefined,
     undefined
   );
+
+  var CheckboxgroupElement_blocks = __vue_component__$1b;
 
 //
 //
@@ -5153,11 +5209,11 @@ __vue_render__$x._withStripped = true;
     undefined
   );
 
-  var DateElement = __vue_component__$1a;
+  var DateElement$1 = __vue_component__$1a;
 
 var script$19 = {
     name: 'DateElement',
-    render: DateElement.render,
+    render: DateElement$1.render,
     data() {
       return {
         merge: true,
@@ -5241,10 +5297,12 @@ const __vue_script__$19 = script$19;
     undefined
   );
 
+  var DateElement = __vue_component__$19;
+
 var script$18 = {
     name: 'DatesElement',
-    render: DateElement.render,
-    staticRenderFns: DateElement.staticRenderFns,
+    render: DateElement$1.render,
+    staticRenderFns: DateElement$1.staticRenderFns,
     data() {
       return {
         merge: true,
@@ -5293,11 +5351,11 @@ const __vue_script__$18 = script$18;
     undefined
   );
 
-  var DatesElement = __vue_component__$18;
+  var DatesElement$1 = __vue_component__$18;
 
 var script$17 = {
     name: 'DatesElement',
-    render: DatesElement.render,
+    render: DatesElement$1.render,
     data() {
       return {
         merge: true,
@@ -5380,6 +5438,8 @@ const __vue_script__$17 = script$17;
     undefined,
     undefined
   );
+
+  var DatesElement = __vue_component__$17;
 
 //
 //
@@ -5622,11 +5682,11 @@ __vue_render__$w._withStripped = true;
     undefined
   );
 
-  var FileElement = __vue_component__$16;
+  var FileElement$1 = __vue_component__$16;
 
 var script$15 = {
     name: 'FileElement',
-    render: FileElement.render,
+    render: FileElement$1.render,
     data() {
       return {
         merge: true,
@@ -5690,6 +5750,8 @@ const __vue_script__$15 = script$15;
     undefined,
     undefined
   );
+
+  var FileElement = __vue_component__$15;
 
 //
 //
@@ -5836,11 +5898,11 @@ __vue_render__$v._withStripped = true;
     undefined
   );
 
-  var GroupElement = __vue_component__$14;
+  var GroupElement$1 = __vue_component__$14;
 
 var script$13 = {
     name: 'GroupElement',
-    render: GroupElement.render,
+    render: GroupElement$1.render,
     data() {
       return {
         merge: true,
@@ -5894,6 +5956,8 @@ const __vue_script__$13 = script$13;
     undefined,
     undefined
   );
+
+  var GroupElement = __vue_component__$13;
 
 //
 //
@@ -5986,11 +6050,11 @@ __vue_render__$u._withStripped = true;
     undefined
   );
 
-  var HiddenElement = __vue_component__$12;
+  var HiddenElement$1 = __vue_component__$12;
 
 var script$11 = {
     name: 'HiddenElement',
-    render: HiddenElement.render,
+    render: HiddenElement$1.render,
     data() {
       return {
         merge: true,
@@ -6034,6 +6098,8 @@ const __vue_script__$11 = script$11;
     undefined,
     undefined
   );
+
+  var HiddenElement = __vue_component__$11;
 
 //
 //
@@ -6339,11 +6405,11 @@ __vue_render__$t._withStripped = true;
     undefined
   );
 
-  var ListElement = __vue_component__$10;
+  var ListElement$1 = __vue_component__$10;
 
 var script$$ = {
     name: 'ListElement',
-    render: ListElement.render,
+    render: ListElement$1.render,
     data() {
       return {
         merge: true,
@@ -6428,6 +6494,8 @@ const __vue_script__$$ = script$$;
     undefined,
     undefined
   );
+
+  var ListElement = __vue_component__$$;
 
 //
 //
@@ -6638,11 +6706,11 @@ __vue_render__$s._withStripped = true;
     undefined
   );
 
-  var LocationElement = __vue_component__$_;
+  var LocationElement$1 = __vue_component__$_;
 
 var script$Z = {
     name: 'LocationElement',
-    render: LocationElement.render,
+    render: LocationElement$1.render,
     data() {
       return {
         merge: true,
@@ -6724,6 +6792,8 @@ const __vue_script__$Z = script$Z;
     undefined,
     undefined
   );
+
+  var LocationElement = __vue_component__$Z;
 
 //
 //
@@ -7040,11 +7110,11 @@ __vue_render__$r._withStripped = true;
     undefined
   );
 
-  var MultifileElement = __vue_component__$Y;
+  var MultifileElement$1 = __vue_component__$Y;
 
 var script$X = {
     name: 'MultifileElement',
-    render: MultifileElement.render,
+    render: MultifileElement$1.render,
     data() {
       return {
         merge: true,
@@ -7156,6 +7226,8 @@ const __vue_script__$X = script$X;
     undefined,
     undefined
   );
+
+  var MultifileElement = __vue_component__$X;
 
 function isNullish$1 (val) {
   return [null, undefined].indexOf(val) !== -1
@@ -12574,14 +12646,14 @@ __vue_render__$p._withStripped = true;
     undefined
   );
 
-  var MultiselectElement = __vue_component__$V;
+  var MultiselectElement$1 = __vue_component__$V;
 
 var script$U = {
     name: 'MultiselectElement',
     components: {
       Multiselect: __vue_component__$W,
     },
-    render: MultiselectElement.render,
+    render: MultiselectElement$1.render,
     data() {
       return {
         merge: true,
@@ -12820,6 +12892,8 @@ const __vue_script__$U = script$U;
     undefined
   );
 
+  var MultiselectElement = __vue_component__$U;
+
 //
 //
 //
@@ -12972,11 +13046,11 @@ __vue_render__$o._withStripped = true;
     undefined
   );
 
-  var ObjectElement = __vue_component__$T;
+  var ObjectElement$1 = __vue_component__$T;
 
 var script$S = {
     name: 'ObjectElement',
-    render: ObjectElement.render,
+    render: ObjectElement$1.render,
     data() {
       return {
         merge: true,
@@ -13032,6 +13106,8 @@ const __vue_script__$S = script$S;
     undefined,
     undefined
   );
+
+  var ObjectElement = __vue_component__$S;
 
 //
 //
@@ -13230,11 +13306,11 @@ __vue_render__$n._withStripped = true;
     undefined
   );
 
-  var RadioElement = __vue_component__$R;
+  var RadioElement$1 = __vue_component__$R;
 
 var script$Q = {
     name: 'RadioElement',
-    render: RadioElement.render,
+    render: RadioElement$1.render,
     data() {
       return {
         merge: true,
@@ -13317,6 +13393,8 @@ const __vue_script__$Q = script$Q;
     undefined,
     undefined
   );
+
+  var RadioElement = __vue_component__$Q;
 
 //
 //
@@ -13496,11 +13574,11 @@ __vue_render__$m._withStripped = true;
     undefined
   );
 
-  var RadiogroupElement = __vue_component__$P;
+  var RadiogroupElement$1 = __vue_component__$P;
 
 var script$O = {
     name: 'RadiogroupElement',
-    render: RadiogroupElement.render,
+    render: RadiogroupElement$1.render,
     data() {
       return {
         merge: true,
@@ -13555,9 +13633,11 @@ const __vue_script__$O = script$O;
     undefined
   );
 
+  var RadiogroupElement = __vue_component__$O;
+
 var script$N = {
     name: 'RadiogroupElement',
-    render: RadiogroupElement.render,
+    render: RadiogroupElement$1.render,
     data() {
       return {
         merge: true,
@@ -13612,9 +13692,11 @@ const __vue_script__$N = script$N;
     undefined
   );
 
+  var RadiogroupElement_tabs = __vue_component__$N;
+
 var script$M = {
     name: 'RadiogroupElement',
-    render: RadiogroupElement.render,
+    render: RadiogroupElement$1.render,
     data() {
       return {
         merge: true,
@@ -13668,6 +13750,8 @@ const __vue_script__$M = script$M;
     undefined,
     undefined
   );
+
+  var RadiogroupElement_blocks = __vue_component__$M;
 
 //
 
@@ -14000,11 +14084,11 @@ __vue_render__$l._withStripped = true;
     undefined
   );
 
-  var SelectElement = __vue_component__$L;
+  var SelectElement$1 = __vue_component__$L;
 
 var script$K = {
     name: 'SelectElement',
-    render: SelectElement.render,
+    render: SelectElement$1.render,
     components: {
       Multiselect: __vue_component__$W,
     },
@@ -14274,6 +14358,8 @@ const __vue_script__$K = script$K;
     undefined,
     undefined
   );
+
+  var SelectElement = __vue_component__$K;
 
 function isNullish (val) {
   return [null, undefined, false].indexOf(val) !== -1
@@ -17793,11 +17879,11 @@ __vue_render__$j._withStripped = true;
     undefined
   );
 
-  var SliderElement = __vue_component__$I;
+  var SliderElement$1 = __vue_component__$I;
 
 var script$H = {
     name: 'SliderElement',
-    render: SliderElement.render,
+    render: SliderElement$1.render,
     components: {
       Slider,
     },
@@ -17968,6 +18054,8 @@ const __vue_script__$H = script$H;
     undefined,
     undefined
   );
+
+  var SliderElement = __vue_component__$H;
 
 //
 //
@@ -18448,11 +18536,11 @@ __vue_render__$i._withStripped = true;
     undefined
   );
 
-  var StaticElement = __vue_component__$G;
+  var StaticElement$1 = __vue_component__$G;
 
 var script$F = {
     name: 'StaticElement',
-    render: StaticElement.render,
+    render: StaticElement$1.render,
     data() {
       return {
         merge: true,
@@ -18546,6 +18634,8 @@ const __vue_script__$F = script$F;
     undefined,
     undefined
   );
+
+  var StaticElement = __vue_component__$F;
 
 //
 
@@ -18821,11 +18911,11 @@ __vue_render__$h._withStripped = true;
     undefined
   );
 
-  var TagsElement = __vue_component__$E;
+  var TagsElement$1 = __vue_component__$E;
 
 var script$D = {
     name: 'TagsElement',
-    render: TagsElement.render,
+    render: TagsElement$1.render,
     components: {
       Multiselect: __vue_component__$W,
     },
@@ -19102,6 +19192,8 @@ const __vue_script__$D = script$D;
     undefined
   );
 
+  var TagsElement = __vue_component__$D;
+
 //
 //
 //
@@ -19339,11 +19431,11 @@ __vue_render__$g._withStripped = true;
     undefined
   );
 
-  var TextareaElement = __vue_component__$C;
+  var TextareaElement$1 = __vue_component__$C;
 
 var script$B = {
     name: 'TextareaElement',
-    render: TextareaElement.render,
+    render: TextareaElement$1.render,
     data() {
       return {
         merge: true,
@@ -19425,6 +19517,8 @@ const __vue_script__$B = script$B;
     undefined,
     undefined
   );
+
+  var TextareaElement = __vue_component__$B;
 
 //
 //
@@ -19642,11 +19736,11 @@ __vue_render__$f._withStripped = true;
     undefined
   );
 
-  var TextElement = __vue_component__$A;
+  var TextElement$1 = __vue_component__$A;
 
 var script$z = {
     name: 'TextElement',
-    render: TextElement.render,
+    render: TextElement$1.render,
     data() {
       return {
         merge: true,
@@ -19728,6 +19822,8 @@ const __vue_script__$z = script$z;
     undefined,
     undefined
   );
+
+  var TextElement = __vue_component__$z;
 
 function useValue$1 (props, context, dependencies)
 {
@@ -20327,11 +20423,11 @@ __vue_render__$d._withStripped = true;
     undefined
   );
 
-  var ToggleElement = __vue_component__$x;
+  var ToggleElement$1 = __vue_component__$x;
 
 var script$w = {
     name: 'ToggleElement',
-    render: ToggleElement.render,
+    render: ToggleElement$1.render,
     components: {
       Toggle: __vue_component__$y,
     },
@@ -20442,6 +20538,8 @@ const __vue_script__$w = script$w;
     undefined,
     undefined
   );
+
+  var ToggleElement = __vue_component__$w;
 
 //
 //
@@ -20590,11 +20688,11 @@ __vue_render__$c._withStripped = true;
     undefined
   );
 
-  var EditorElement = __vue_component__$v;
+  var EditorElement$1 = __vue_component__$v;
 
 var script$u = {
     name: 'EditorElement',
-    render: EditorElement.render,
+    render: EditorElement$1.render,
     data() {
       return {
         merge: true,
@@ -20659,10 +20757,12 @@ const __vue_script__$u = script$u;
     undefined
   );
 
+  var EditorElement = __vue_component__$u;
+
 var script$t = {
     name: 'TTextareaElement',
-    render: TextareaElement.render,
-    staticRenderFns: TextareaElement.staticRenderFns,
+    render: TextareaElement$1.render,
+    staticRenderFns: TextareaElement$1.staticRenderFns,
     data() {
       return {
         merge: true,
@@ -20711,11 +20811,11 @@ const __vue_script__$t = script$t;
     undefined
   );
 
-  var TTextareaElement = __vue_component__$t;
+  var TTextareaElement$1 = __vue_component__$t;
 
 var script$s = {
     name: 'TTextareaElement',
-    render: TTextareaElement.render,
+    render: TTextareaElement$1.render,
     data() {
       return {
         merge: true,
@@ -20798,10 +20898,12 @@ const __vue_script__$s = script$s;
     undefined
   );
 
+  var TTextareaElement = __vue_component__$s;
+
 var script$r = {
     name: 'TTextElement',
-    render: TextElement.render,
-    staticRenderFns: TextElement.staticRenderFns,
+    render: TextElement$1.render,
+    staticRenderFns: TextElement$1.staticRenderFns,
     data() {
       return {
         merge: true,
@@ -20850,11 +20952,11 @@ const __vue_script__$r = script$r;
     undefined
   );
 
-  var TTextElement = __vue_component__$r;
+  var TTextElement$1 = __vue_component__$r;
 
 var script$q = {
     name: 'TTextElement',
-    render: TTextElement.render,
+    render: TTextElement$1.render,
     data() {
       return {
         merge: true,
@@ -20937,10 +21039,12 @@ const __vue_script__$q = script$q;
     undefined
   );
 
+  var TTextElement = __vue_component__$q;
+
 var script$p = {
     name: 'TEditorElement',
-    render: EditorElement.render,
-    staticRenderFns: EditorElement.staticRenderFns,
+    render: EditorElement$1.render,
+    staticRenderFns: EditorElement$1.staticRenderFns,
     data() {
       return {
         merge: true,
@@ -20988,11 +21092,11 @@ const __vue_script__$p = script$p;
     undefined
   );
 
-  var TEditorElement = __vue_component__$p;
+  var TEditorElement$1 = __vue_component__$p;
 
 var script$o = {
     name: 'TEditorElement',
-    render: TEditorElement.render,
+    render: TEditorElement$1.render,
     data() {
       return {
         merge: true,
@@ -21060,6 +21164,8 @@ const __vue_script__$o = script$o;
     undefined,
     undefined
   );
+
+  var TEditorElement = __vue_component__$o;
 
 //
 //
@@ -21235,11 +21341,11 @@ __vue_render__$b._withStripped = true;
     undefined
   );
 
-  var CheckboxgroupCheckbox = __vue_component__$n;
+  var CheckboxgroupCheckbox$1 = __vue_component__$n;
 
 var script$m = {
     name: 'CheckboxgroupCheckbox',
-    render: CheckboxgroupCheckbox.render,
+    render: CheckboxgroupCheckbox$1.render,
     data() {
       return {
         merge: true,
@@ -21297,6 +21403,8 @@ const __vue_script__$m = script$m;
     undefined,
     undefined
   );
+
+  var CheckboxgroupCheckbox = __vue_component__$m;
 
 //
 //
@@ -21494,11 +21602,11 @@ __vue_render__$a._withStripped = true;
     undefined
   );
 
-  var CheckboxgroupCheckbox_tabs = __vue_component__$l;
+  var CheckboxgroupCheckbox_tabs$1 = __vue_component__$l;
 
 var script$k = {
     name: 'CheckboxgroupCheckbox_tabs',
-    render: CheckboxgroupCheckbox_tabs.render,
+    render: CheckboxgroupCheckbox_tabs$1.render,
     data() {
       return {
         merge: true,
@@ -21573,6 +21681,8 @@ const __vue_script__$k = script$k;
     undefined,
     undefined
   );
+
+  var CheckboxgroupCheckbox_tabs = __vue_component__$k;
 
 //
 //
@@ -21760,11 +21870,11 @@ __vue_render__$9._withStripped = true;
     undefined
   );
 
-  var CheckboxgroupCheckbox_blocks = __vue_component__$j;
+  var CheckboxgroupCheckbox_blocks$1 = __vue_component__$j;
 
 var script$i = {
     name: 'CheckboxgroupCheckbox_blocks',
-    render: CheckboxgroupCheckbox_blocks.render,
+    render: CheckboxgroupCheckbox_blocks$1.render,
     data() {
       return {
         merge: true,
@@ -21866,6 +21976,8 @@ const __vue_script__$i = script$i;
     undefined
   );
 
+  var CheckboxgroupCheckbox_blocks = __vue_component__$i;
+
 //
 //
 //
@@ -21963,11 +22075,11 @@ __vue_render__$8._withStripped = true;
     undefined
   );
 
-  var DragAndDrop = __vue_component__$h;
+  var DragAndDrop$1 = __vue_component__$h;
 
 var script$g = {
     name: 'DragAndDrop',
-    render: DragAndDrop.render,
+    render: DragAndDrop$1.render,
     data() {
       return {
         merge: true,
@@ -22029,6 +22141,8 @@ const __vue_script__$g = script$g;
     undefined,
     undefined
   );
+
+  var DragAndDrop = __vue_component__$g;
 
 //
 //
@@ -22311,11 +22425,11 @@ __vue_render__$7._withStripped = true;
     undefined
   );
 
-  var FilePreview = __vue_component__$f;
+  var FilePreview$1 = __vue_component__$f;
 
 var script$e = {
     name: 'FilePreview',
-    render: FilePreview.render,
+    render: FilePreview$1.render,
     data() {
       return {
         merge: true,
@@ -22384,6 +22498,8 @@ const __vue_script__$e = script$e;
     undefined,
     undefined
   );
+
+  var FilePreview = __vue_component__$e;
 
 //
 //
@@ -22823,6 +22939,8 @@ const __vue_script__$c = script$c;
     undefined
   );
 
+  var FilePreview_image = __vue_component__$c;
+
 //
 //
 //
@@ -23219,6 +23337,8 @@ const __vue_script__$a = script$a;
     undefined
   );
 
+  var FilePreview_gallery = __vue_component__$a;
+
 //
 //
 //
@@ -23373,11 +23493,11 @@ __vue_render__$4._withStripped = true;
     undefined
   );
 
-  var RadiogroupRadio = __vue_component__$9;
+  var RadiogroupRadio$1 = __vue_component__$9;
 
 var script$8 = {
     name: 'RadiogroupRadio',
-    render: RadiogroupRadio.render,
+    render: RadiogroupRadio$1.render,
     data() {
       return {
         merge: true,
@@ -23435,6 +23555,8 @@ const __vue_script__$8 = script$8;
     undefined,
     undefined
   );
+
+  var RadiogroupRadio = __vue_component__$8;
 
 //
 //
@@ -23612,11 +23734,11 @@ __vue_render__$3._withStripped = true;
     undefined
   );
 
-  var RadiogroupRadio_tabs = __vue_component__$7;
+  var RadiogroupRadio_tabs$1 = __vue_component__$7;
 
 var script$6 = {
     name: 'RadiogroupRadio_tabs',
-    render: RadiogroupRadio_tabs.render,
+    render: RadiogroupRadio_tabs$1.render,
     data() {
       return {
         merge: true,
@@ -23689,6 +23811,8 @@ const __vue_script__$6 = script$6;
     undefined,
     undefined
   );
+
+  var RadiogroupRadio_tabs = __vue_component__$6;
 
 //
 //
@@ -23855,11 +23979,11 @@ __vue_render__$2._withStripped = true;
     undefined
   );
 
-  var RadiogroupRadio_blocks = __vue_component__$5;
+  var RadiogroupRadio_blocks$1 = __vue_component__$5;
 
 var script$4 = {
     name: 'RadiogroupRadio_blocks',
-    render: RadiogroupRadio_blocks.render,
+    render: RadiogroupRadio_blocks$1.render,
     data() {
       return {
         merge: true,
@@ -23961,6 +24085,8 @@ const __vue_script__$4 = script$4;
     undefined
   );
 
+  var RadiogroupRadio_blocks = __vue_component__$4;
+
 //
 //
 //
@@ -24042,11 +24168,11 @@ __vue_render__$1._withStripped = true;
     undefined
   );
 
-  var DatepickerWrapper = __vue_component__$3;
+  var DatepickerWrapper$1 = __vue_component__$3;
 
 var script$2 = {
     name: 'DatepickerWrapper',
-    render: DatepickerWrapper.render,
+    render: DatepickerWrapper$1.render,
     data() {
       return {
         merge: true,
@@ -24093,6 +24219,8 @@ const __vue_script__$2 = script$2;
     undefined,
     undefined
   );
+
+  var DatepickerWrapper = __vue_component__$2;
 
 var trix = {exports: {}};
 
@@ -24191,11 +24319,11 @@ __vue_render__._withStripped = true;
     undefined
   );
 
-  var EditorWrapper = __vue_component__$1;
+  var EditorWrapper$1 = __vue_component__$1;
 
 var script = {
     name: 'EditorWrapper',
-    render: EditorWrapper.render,
+    render: EditorWrapper$1.render,
     data() {
       return {
         merge: true,
@@ -24259,6 +24387,8 @@ const __vue_script__ = script;
     undefined
   );
 
+  var EditorWrapper = __vue_component__;
+
 function columns (breakpoint, size) {
   switch (breakpoint) {
     case 'default':
@@ -24277,74 +24407,74 @@ var classes = {};
  */
 var base = {
   templates: {
-    Vueform: __vue_component__$1$,
-    FormErrors: __vue_component__$1Z,
-    FormMessages: __vue_component__$1X,
-    FormLanguages: __vue_component__$1V,
-    FormLanguage: __vue_component__$1T,
-    FormTabs: __vue_component__$1R,
-    FormTab: __vue_component__$1P,
-    FormSteps: __vue_component__$1N,
-    FormStepsControls: __vue_component__$1L,
-    FormStepsControl: __vue_component__$1J,
-    FormStep: __vue_component__$1H,
-    FormElements: __vue_component__$1F,
-    ElementLayout: __vue_component__$1D,
-    ElementLayoutInline: __vue_component__$1B,
-    ElementLoader: __vue_component__$1z,
-    ElementLabelFloating: __vue_component__$1x,
-    ElementLabel: __vue_component__$1v,
-    ElementInfo: __vue_component__$1t,
-    ElementDescription: __vue_component__$1r,
-    ElementError: __vue_component__$1p,
-    ElementMessage: __vue_component__$1n,
-    ElementText: __vue_component__$1l,
-    ElementAddon: __vue_component__$1j,
-    ButtonElement: __vue_component__$1h,
-    CheckboxElement: __vue_component__$1f,
-    CheckboxgroupElement: __vue_component__$1d,
-    CheckboxgroupElement_tabs: __vue_component__$1c,
-    CheckboxgroupElement_blocks: __vue_component__$1b,
-    DateElement: __vue_component__$19,
-    DatesElement: __vue_component__$17,
-    FileElement: __vue_component__$15,
-    GroupElement: __vue_component__$13,
-    HiddenElement: __vue_component__$11,
-    ListElement: __vue_component__$$,
-    LocationElement: __vue_component__$Z,
-    MultifileElement: __vue_component__$X,
-    MultiselectElement: __vue_component__$U,
-    ObjectElement: __vue_component__$S,
-    RadioElement: __vue_component__$Q,
-    RadiogroupElement: __vue_component__$O,
-    RadiogroupElement_tabs: __vue_component__$N,
-    RadiogroupElement_blocks: __vue_component__$M,
-    SelectElement: __vue_component__$K,
-    SliderElement: __vue_component__$H,
-    StaticElement: __vue_component__$F,
-    TagsElement: __vue_component__$D,
-    TextareaElement: __vue_component__$B,
-    TextElement: __vue_component__$z,
-    ToggleElement: __vue_component__$w,
-    EditorElement: __vue_component__$u,
-    TTextareaElement: __vue_component__$s,
-    TTextElement: __vue_component__$q,
-    TEditorElement: __vue_component__$o,
-    CheckboxgroupCheckbox: __vue_component__$m,
-    CheckboxgroupCheckbox_tabs: __vue_component__$k,
-    CheckboxgroupCheckbox_blocks: __vue_component__$i,
-    DragAndDrop: __vue_component__$g,
-    FilePreview: __vue_component__$e,
-    FilePreview_image: __vue_component__$c,
-    FilePreview_gallery: __vue_component__$a,
-    RadiogroupRadio: __vue_component__$8,
-    RadiogroupRadio_tabs: __vue_component__$6,
-    RadiogroupRadio_blocks: __vue_component__$4,
-    DatepickerWrapper: __vue_component__$2,
-    EditorWrapper: __vue_component__
+    Vueform,
+    FormErrors,
+    FormMessages,
+    FormLanguages,
+    FormLanguage,
+    FormTabs,
+    FormTab,
+    FormSteps,
+    FormStepsControls,
+    FormStepsControl,
+    FormStep,
+    FormElements,
+    ElementLayout,
+    ElementLayoutInline,
+    ElementLoader,
+    ElementLabelFloating,
+    ElementLabel,
+    ElementInfo,
+    ElementDescription,
+    ElementError,
+    ElementMessage,
+    ElementText,
+    ElementAddon,
+    ButtonElement,
+    CheckboxElement,
+    CheckboxgroupElement,
+    CheckboxgroupElement_tabs,
+    CheckboxgroupElement_blocks,
+    DateElement,
+    DatesElement,
+    FileElement,
+    GroupElement,
+    HiddenElement,
+    ListElement,
+    LocationElement,
+    MultifileElement,
+    MultiselectElement,
+    ObjectElement,
+    RadioElement,
+    RadiogroupElement,
+    RadiogroupElement_tabs,
+    RadiogroupElement_blocks,
+    SelectElement,
+    SliderElement,
+    StaticElement,
+    TagsElement,
+    TextareaElement,
+    TextElement,
+    ToggleElement,
+    EditorElement,
+    TTextareaElement,
+    TTextElement,
+    TEditorElement,
+    CheckboxgroupCheckbox,
+    CheckboxgroupCheckbox_tabs,
+    CheckboxgroupCheckbox_blocks,
+    DragAndDrop,
+    FilePreview,
+    FilePreview_image,
+    FilePreview_gallery,
+    RadiogroupRadio,
+    RadiogroupRadio_tabs,
+    RadiogroupRadio_blocks,
+    DatepickerWrapper,
+    EditorWrapper
   },
   classes,
   columns
 };
 
-export { __vue_component__$1h as ButtonElement, __vue_component__$1f as CheckboxElement, __vue_component__$m as CheckboxgroupCheckbox, __vue_component__$i as CheckboxgroupCheckbox_blocks, __vue_component__$k as CheckboxgroupCheckbox_tabs, __vue_component__$1d as CheckboxgroupElement, __vue_component__$1b as CheckboxgroupElement_blocks, __vue_component__$1c as CheckboxgroupElement_tabs, __vue_component__$19 as DateElement, __vue_component__$2 as DatepickerWrapper, __vue_component__$17 as DatesElement, __vue_component__$g as DragAndDrop, __vue_component__$u as EditorElement, __vue_component__ as EditorWrapper, __vue_component__$1j as ElementAddon, __vue_component__$1r as ElementDescription, __vue_component__$1p as ElementError, __vue_component__$1t as ElementInfo, __vue_component__$1v as ElementLabel, __vue_component__$1x as ElementLabelFloating, __vue_component__$1D as ElementLayout, __vue_component__$1B as ElementLayoutInline, __vue_component__$1z as ElementLoader, __vue_component__$1n as ElementMessage, __vue_component__$1l as ElementText, __vue_component__$15 as FileElement, __vue_component__$e as FilePreview, __vue_component__$a as FilePreview_gallery, __vue_component__$c as FilePreview_image, __vue_component__$1F as FormElements, __vue_component__$1Z as FormErrors, __vue_component__$1T as FormLanguage, __vue_component__$1V as FormLanguages, __vue_component__$1X as FormMessages, __vue_component__$1H as FormStep, __vue_component__$1N as FormSteps, __vue_component__$1J as FormStepsControl, __vue_component__$1L as FormStepsControls, __vue_component__$1P as FormTab, __vue_component__$1R as FormTabs, __vue_component__$13 as GroupElement, __vue_component__$11 as HiddenElement, __vue_component__$$ as ListElement, __vue_component__$Z as LocationElement, __vue_component__$X as MultifileElement, __vue_component__$U as MultiselectElement, __vue_component__$S as ObjectElement, __vue_component__$Q as RadioElement, __vue_component__$O as RadiogroupElement, __vue_component__$M as RadiogroupElement_blocks, __vue_component__$N as RadiogroupElement_tabs, __vue_component__$8 as RadiogroupRadio, __vue_component__$4 as RadiogroupRadio_blocks, __vue_component__$6 as RadiogroupRadio_tabs, __vue_component__$K as SelectElement, __vue_component__$H as SliderElement, __vue_component__$F as StaticElement, __vue_component__$o as TEditorElement, __vue_component__$q as TTextElement, __vue_component__$s as TTextareaElement, __vue_component__$D as TagsElement, __vue_component__$z as TextElement, __vue_component__$B as TextareaElement, __vue_component__$w as ToggleElement, __vue_component__$1$ as Vueform, classes, columns, base as default };
+export { ButtonElement, CheckboxElement, CheckboxgroupCheckbox, CheckboxgroupCheckbox_blocks, CheckboxgroupCheckbox_tabs, CheckboxgroupElement, CheckboxgroupElement_blocks, CheckboxgroupElement_tabs, DateElement, DatepickerWrapper, DatesElement, DragAndDrop, EditorElement, EditorWrapper, ElementAddon, ElementDescription, ElementError, ElementInfo, ElementLabel, ElementLabelFloating, ElementLayout, ElementLayoutInline, ElementLoader, ElementMessage, ElementText, FileElement, FilePreview, FilePreview_gallery, FilePreview_image, FormElements, FormErrors, FormLanguage, FormLanguages, FormMessages, FormStep, FormSteps, FormStepsControl, FormStepsControls, FormTab, FormTabs, GroupElement, HiddenElement, ListElement, LocationElement, MultifileElement, MultiselectElement, ObjectElement, RadioElement, RadiogroupElement, RadiogroupElement_blocks, RadiogroupElement_tabs, RadiogroupRadio, RadiogroupRadio_blocks, RadiogroupRadio_tabs, SelectElement, SliderElement, StaticElement, TEditorElement, TTextElement, TTextareaElement, TagsElement, TextElement, TextareaElement, ToggleElement, Vueform, classes, columns, base as default };
