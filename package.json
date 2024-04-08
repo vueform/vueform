@@ -119,7 +119,6 @@
     "babel-loader": "^8.0.5",
     "core-js": "^3.10.1",
     "css-loader": "^2.1.0",
-    "flat": "^5.0.2",
     "flatpickr": "^4.6.13",
     "flush-promises": "^1.0.2",
     "html-loader": "^1.3.2",

@@ -6,7 +6,7 @@ import pick from 'lodash/pick'
 import set from 'lodash/set'
 import without from 'lodash/without'
 import isPlainObject from 'lodash/isPlainObject'
-import flatten from 'flat'
+import flatten from './utils/flatten'
 import shouldApplyPlugin from './utils/shouldApplyPlugin'
 import packageJson from './../package.json'
 
