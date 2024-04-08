@@ -23599,7 +23599,7 @@ const __vue_script__$8 = script$8;
 //
 
   var script$7 = {
-    name: 'CheckboxgroupCheckbox_tabs',
+    name: 'RadiogroupRadio_tabs',
     data() {
       return {
         merge: true,
@@ -23848,7 +23848,7 @@ const __vue_script__$6 = script$6;
 //
 
   var script$5 = {
-    name: 'CheckboxgroupCheckbox_tabs',
+    name: 'RadiogroupRadio_tabs',
     data() {
       return {
         merge: true,

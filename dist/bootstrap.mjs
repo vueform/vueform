@@ -15670,7 +15670,7 @@ styleInject(css_248z$4);
 script$8.__file = "themes/vueform/templates/elements/partials/RadiogroupRadio.vue";
 
 var script$7 = {
-    name: 'CheckboxgroupCheckbox_tabs',
+    name: 'RadiogroupRadio_tabs',
     data() {
       return {
         merge: true,
@@ -15778,7 +15778,7 @@ styleInject(css_248z$3);
 script$6.__file = "themes/vueform/templates/elements/partials/RadiogroupRadio_tabs.vue";
 
 var script$5 = {
-    name: 'CheckboxgroupCheckbox_tabs',
+    name: 'RadiogroupRadio_tabs',
     data() {
       return {
         merge: true,

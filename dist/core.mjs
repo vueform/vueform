@@ -5945,7 +5945,7 @@ class MergeClasses {
     var locals = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
     each(this.pick(merge, locals ? LOCALS_KEYS : MERGE_KEYS), (mergables, key) => {
       if (typeof mergables === 'function') {
-        mergables = mergables(this.component$.value.form$);
+        mergables = mergables(this.component$.value.form$, 'el$' in this.component$.value && typeof this.component$.value.el$ === 'object' ? this.component$.value.el$ : undefined);
       }
       switch (key) {
         case 'addClasses':
@@ -11516,6 +11516,28 @@ var formats$1 = {
     }
   },
 
+  oracledate: {
+    regex: /^(\d{2})-([A-Z]{3})-(\d{2})$/i,
+    name: 'd-M-y',
+    callback: function callback(match, day, monthText, year) {
+      var month = {
+        JAN: 0,
+        FEB: 1,
+        MAR: 2,
+        APR: 3,
+        MAY: 4,
+        JUN: 5,
+        JUL: 6,
+        AUG: 7,
+        SEP: 8,
+        OCT: 9,
+        NOV: 10,
+        DEC: 11
+      }[monthText.toUpperCase()];
+      return this.ymd(2000 + parseInt(year, 10), month, parseInt(day, 10));
+    }
+  },
+
   timeLong12: {
     regex: RegExp('^' + reHour12 + '[:.]' + reMinute + '[:.]' + reSecondlz + reSpaceOpt + reMeridian, 'i'),
     name: 'timelong12',
@@ -11866,13 +11888,20 @@ var formats$1 = {
         case 'years':
           this.ry += amount;
           break;
-        case 'mon':case 'monday':
-        case 'tue':case 'tuesday':
-        case 'wed':case 'wednesday':
-        case 'thu':case 'thursday':
-        case 'fri':case 'friday':
-        case 'sat':case 'saturday':
-        case 'sun':case 'sunday':
+        case 'mon':
+        case 'monday':
+        case 'tue':
+        case 'tuesday':
+        case 'wed':
+        case 'wednesday':
+        case 'thu':
+        case 'thursday':
+        case 'fri':
+        case 'friday':
+        case 'sat':
+        case 'saturday':
+        case 'sun':
+        case 'sunday':
           this.resetTime();
           this.weekday = lookupWeekday(relUnit, 7);
           this.weekdayBehavior = 1;
@@ -11929,13 +11958,20 @@ var formats$1 = {
         case 'years':
           this.ry += amount;
           break;
-        case 'mon':case 'monday':
-        case 'tue':case 'tuesday':
-        case 'wed':case 'wednesday':
-        case 'thu':case 'thursday':
-        case 'fri':case 'friday':
-        case 'sat':case 'saturday':
-        case 'sun':case 'sunday':
+        case 'mon':
+        case 'monday':
+        case 'tue':
+        case 'tuesday':
+        case 'wed':
+        case 'wednesday':
+        case 'thu':
+        case 'thursday':
+        case 'fri':
+        case 'friday':
+        case 'sat':
+        case 'saturday':
+        case 'sun':
+        case 'sunday':
           this.resetTime();
           this.weekday = lookupWeekday(relUnit, 7);
           this.weekdayBehavior = 1;
@@ -12309,6 +12345,8 @@ var strtotime = function strtotime(str, now) {
   //        returns 5: 1241418600
   //        example 6: strtotime('2009-05-04 08:30:00 YWT')
   //        returns 6: 1241454600
+  //        example 7: strtotime('10-JUL-17')
+  //        returns 7: 1499644800
 
   if (now == null) {
     now = Math.floor(Date.now() / 1000);
@@ -12319,7 +12357,7 @@ var strtotime = function strtotime(str, now) {
   // if multiple rules match the same string, the first match wins
   var rules = [formats$1.yesterday, formats$1.now, formats$1.noon, formats$1.midnightOrToday, formats$1.tomorrow, formats$1.timestamp, formats$1.firstOrLastDay, formats$1.backOrFrontOf,
   // formats.weekdayOf, // not yet implemented
-  formats$1.timeTiny12, formats$1.timeShort12, formats$1.timeLong12, formats$1.mssqltime, formats$1.timeShort24, formats$1.timeLong24, formats$1.iso8601long, formats$1.gnuNoColon, formats$1.iso8601noColon, formats$1.americanShort, formats$1.american, formats$1.iso8601date4, formats$1.iso8601dateSlash, formats$1.dateSlash, formats$1.gnuDateShortOrIso8601date2, formats$1.gnuDateShorter, formats$1.dateFull, formats$1.pointedDate4, formats$1.pointedDate2, formats$1.dateNoDay, formats$1.dateNoDayRev, formats$1.dateTextual, formats$1.dateNoYear, formats$1.dateNoYearRev, formats$1.dateNoColon, formats$1.xmlRpc, formats$1.xmlRpcNoColon, formats$1.soap, formats$1.wddx, formats$1.exif, formats$1.pgydotd, formats$1.isoWeekDay, formats$1.pgTextShort, formats$1.pgTextReverse, formats$1.clf, formats$1.year4, formats$1.ago, formats$1.dayText, formats$1.relativeTextWeek, formats$1.relativeText, formats$1.monthFullOrMonthAbbr, formats$1.tzCorrection, formats$1.tzAbbr, formats$1.dateShortWithTimeShort12, formats$1.dateShortWithTimeLong12, formats$1.dateShortWithTimeShort, formats$1.dateShortWithTimeLong, formats$1.relative, formats$1.whitespace];
+  formats$1.timeTiny12, formats$1.timeShort12, formats$1.timeLong12, formats$1.mssqltime, formats$1.oracledate, formats$1.timeShort24, formats$1.timeLong24, formats$1.iso8601long, formats$1.gnuNoColon, formats$1.iso8601noColon, formats$1.americanShort, formats$1.american, formats$1.iso8601date4, formats$1.iso8601dateSlash, formats$1.dateSlash, formats$1.gnuDateShortOrIso8601date2, formats$1.gnuDateShorter, formats$1.dateFull, formats$1.pointedDate4, formats$1.pointedDate2, formats$1.dateNoDay, formats$1.dateNoDayRev, formats$1.dateTextual, formats$1.dateNoYear, formats$1.dateNoYearRev, formats$1.dateNoColon, formats$1.xmlRpc, formats$1.xmlRpcNoColon, formats$1.soap, formats$1.wddx, formats$1.exif, formats$1.pgydotd, formats$1.isoWeekDay, formats$1.pgTextShort, formats$1.pgTextReverse, formats$1.clf, formats$1.year4, formats$1.ago, formats$1.dayText, formats$1.relativeTextWeek, formats$1.relativeText, formats$1.monthFullOrMonthAbbr, formats$1.tzCorrection, formats$1.tzAbbr, formats$1.dateShortWithTimeShort12, formats$1.dateShortWithTimeLong12, formats$1.dateShortWithTimeShort, formats$1.dateShortWithTimeLong, formats$1.relative, formats$1.whitespace];
 
   var result = Object.create(resultProto);
 
@@ -15256,8 +15294,8 @@ var list$5 = function list(props, context, dependencies) {
     removeConditions
   };
 };
-var object$7 = list$5;
-var group$7 = list$5;
+var object$8 = list$5;
+var group$8 = list$5;
 
 /**
  * From: https://github.com/fengyuanchen/is-vue-component/blob/master/src/index.js
@@ -22662,6 +22700,36 @@ var base$N = function base(props, context, dependencies) {
   });
 
   /**
+   * Whether the element is a nested object.
+   *
+   * @type {boolean}
+   * @private
+   */
+  var isObjectType = computed(() => {
+    return false;
+  });
+
+  /**
+   * Whether the element is a nested group.
+   *
+   * @type {boolean}
+   * @private
+   */
+  var isGroupType = computed(() => {
+    return false;
+  });
+
+  /**
+   * Whether the element is a list.
+   *
+   * @type {boolean}
+   * @private
+   */
+  var isListType = computed(() => {
+    return false;
+  });
+
+  /**
    * Whether the element should be visible when using `tabs` or `steps`.
    *
    * @type {boolean}
@@ -22736,6 +22804,9 @@ var base$N = function base(props, context, dependencies) {
     isFileType,
     isArrayType,
     isImageType,
+    isObjectType,
+    isGroupType,
+    isListType,
     isActive,
     active,
     mounted,
@@ -22750,6 +22821,8 @@ var list$4 = function list(props, context, dependencies) {
     isStatic,
     isFileType,
     isImageType,
+    isObjectType,
+    isGroupType,
     isActive,
     active,
     mounted,
@@ -22763,12 +22836,96 @@ var list$4 = function list(props, context, dependencies) {
   var isArrayType = computed(() => {
     return true;
   });
+  var isListType = computed(() => {
+    return true;
+  });
   return {
     el$,
     isStatic,
     isFileType,
     isArrayType,
     isImageType,
+    isObjectType,
+    isGroupType,
+    isListType,
+    isActive,
+    active,
+    mounted,
+    container,
+    activate,
+    deactivate
+  };
+};
+var object$7 = function object(props, context, dependencies) {
+  var {
+    el$,
+    isStatic,
+    isFileType,
+    isArrayType,
+    isImageType,
+    isGroupType,
+    isListType,
+    isActive,
+    active,
+    mounted,
+    container,
+    activate,
+    deactivate
+  } = base$N(props, context, dependencies);
+
+  // ============== COMPUTED ==============
+
+  var isObjectType = computed(() => {
+    return true;
+  });
+  return {
+    el$,
+    isStatic,
+    isFileType,
+    isArrayType,
+    isImageType,
+    isObjectType,
+    isGroupType,
+    isListType,
+    isActive,
+    active,
+    mounted,
+    container,
+    activate,
+    deactivate
+  };
+};
+var group$7 = function group(props, context, dependencies) {
+  var {
+    el$,
+    isStatic,
+    isFileType,
+    isArrayType,
+    isImageType,
+    isObjectType,
+    isListType,
+    isActive,
+    active,
+    mounted,
+    container,
+    activate,
+    deactivate
+  } = base$N(props, context, dependencies);
+
+  // ============== COMPUTED ==============
+
+  var isGroupType = computed(() => {
+    return true;
+  });
+  return {
+    el$,
+    isStatic,
+    isFileType,
+    isArrayType,
+    isImageType,
+    isObjectType,
+    isGroupType,
+    isListType,
     isActive,
     active,
     mounted,
@@ -22785,6 +22942,9 @@ var file$3 = function file(props, context, dependencies) {
     el$,
     isStatic,
     isArrayType,
+    isObjectType,
+    isGroupType,
+    isListType,
     isActive,
     active,
     mounted,
@@ -22807,6 +22967,9 @@ var file$3 = function file(props, context, dependencies) {
     isFileType,
     isArrayType,
     isImageType,
+    isObjectType,
+    isGroupType,
+    isListType,
     isActive,
     active,
     mounted,
@@ -22821,6 +22984,9 @@ var static_$2 = function static_(props, context, dependencies) {
     isArrayType,
     isFileType,
     isImageType,
+    isObjectType,
+    isGroupType,
+    isListType,
     isActive,
     active,
     mounted,
@@ -22840,6 +23006,9 @@ var static_$2 = function static_(props, context, dependencies) {
     isFileType,
     isArrayType,
     isImageType,
+    isObjectType,
+    isGroupType,
+    isListType,
     isActive,
     active,
     mounted,
@@ -26155,11 +26324,15 @@ var base$F = function base(props, context, dependencies) {
   var defaultValue = dependencies.defaultValue;
   var dataPath = dependencies.dataPath;
   var form$ = dependencies.form$;
+  dependencies.isObject;
+  dependencies.isGroup;
+  dependencies.isList;
 
   // ================ DATA =================
 
   /**
    * The initial value of the element.
+   * 
    *
    * @type {any}
    * @private
@@ -26167,7 +26340,7 @@ var base$F = function base(props, context, dependencies) {
   var initialValue = ref(undefined);
   if (form$.value.isSync) {
     initialValue.value = get_1(form$.value.model, dataPath.value);
-  } else if (parent.value && ['group', 'object', 'list', 'multifile'].indexOf(parent.value.type) !== -1) {
+  } else if (parent.value && (parent.value.isObjectType || parent.value.isGroupType || parent.value.isListType)) {
     initialValue.value = parent.value.value[name.value];
   }
 
@@ -26191,7 +26364,7 @@ var base$F = function base(props, context, dependencies) {
       var value;
       if (form$.value.isSync) {
         value = get_1(form$.value.model, dataPath.value);
-      } else if (parent.value && ['group', 'object', 'list', 'multifile'].indexOf(parent.value.type) !== -1) {
+      } else if (parent.value && (parent.value.isObjectType || parent.value.isGroupType || parent.value.isListType)) {
         value = parent.value.value[name.value];
       } else {
         value = internalValue.value;
@@ -26201,10 +26374,10 @@ var base$F = function base(props, context, dependencies) {
     set: ((_options$value2 = options.value) === null || _options$value2 === void 0 ? void 0 : _options$value2.set) || function (val) {
       if (form$.value.isSync) {
         form$.value.updateModel(dataPath.value, val);
-      } else if (parent.value && ['list', 'multifile'].indexOf(parent.value.type) !== -1) {
+      } else if (parent.value && parent.value.isListType) {
         var newValue = parent.value.value.map((v, k) => k == name.value ? val : v);
         parent.value.update(newValue);
-      } else if (parent.value && ['group', 'object'].indexOf(parent.value.type) !== -1) {
+      } else if (parent.value && (parent.value.isObjectType || parent.value.isGroupType)) {
         parent.value.value = Object.assign({}, parent.value.value, {
           [name.value]: val
         });
@@ -26299,6 +26472,9 @@ var group$2 = function group(props, context, dependencies) {
   var defaultValue = dependencies.defaultValue;
   var children$Array = dependencies.children$Array;
   var form$ = dependencies.form$;
+  dependencies.isObject;
+  dependencies.isGroup;
+  dependencies.isList;
 
   // ================ DATA =================
 
@@ -26317,7 +26493,7 @@ var group$2 = function group(props, context, dependencies) {
       var value;
       if (form$.value.isSync) {
         value = dataPath.value ? get_1(form$.value.model, dataPath.value) || {} : form$.value.model;
-      } else if (parent.value && ['group', 'object'].indexOf(parent.value.type) !== -1) {
+      } else if (parent.value && (parent.value.isObjectType || parent.value.isGroupType)) {
         value = parent.value.value;
       } else {
         value = internalValue.value;
@@ -26359,7 +26535,7 @@ var group$2 = function group(props, context, dependencies) {
     set(val) {
       if (form$.value.isSync) {
         form$.value.updateModel(dataPath.value, val);
-      } else if (parent.value && ['group', 'object'].indexOf(parent.value.type) !== -1) {
+      } else if (parent.value && (parent.value.isObjectType || parent.value.isGroupType)) {
         parent.value.value = Object.assign({}, parent.value.value, val);
       } else {
         internalValue.value = val;
@@ -26408,6 +26584,9 @@ var date$2 = function date(props, context, dependencies) {
   var defaultValue = dependencies.defaultValue;
   var dataPath = dependencies.dataPath;
   var form$ = dependencies.form$;
+  dependencies.isObject;
+  dependencies.isGroup;
+  dependencies.isList;
 
   // ================= PRE =================
 
@@ -26427,7 +26606,7 @@ var date$2 = function date(props, context, dependencies) {
         var value;
         if (form$.value.isSync) {
           value = get_1(form$.value.model, dataPath.value);
-        } else if (parent.value && ['group', 'object', 'list', 'multifile'].indexOf(parent.value.type) !== -1) {
+        } else if (parent.value && (parent.value.isObjectType || parent.value.isGroupType || parent.value.isListType)) {
           value = parent.value.value[name.value];
         } else {
           value = internalValue.value;
@@ -26442,10 +26621,10 @@ var date$2 = function date(props, context, dependencies) {
         val = val && val instanceof Date && valueDateFormat.value !== false ? moment(val).format(valueDateFormat.value) : val;
         if (form$.value.isSync) {
           form$.value.updateModel(dataPath.value, val);
-        } else if (parent.value && ['list', 'multifile'].indexOf(parent.value.type) !== -1) {
+        } else if (parent.value && parent.value.isListType) {
           var newValue = parent.value.value.map((v, k) => k == name.value ? val : v);
           parent.value.update(newValue);
-        } else if (parent.value && ['group', 'object'].indexOf(parent.value.type) !== -1) {
+        } else if (parent.value && (parent.value.isObjectType || parent.value.isGroupType)) {
           parent.value.value = Object.assign({}, parent.value.value, {
             [name.value]: val
           });
@@ -26480,6 +26659,9 @@ var dates$3 = function dates(props, context, dependencies) {
   var defaultValue = dependencies.defaultValue;
   var dataPath = dependencies.dataPath;
   var form$ = dependencies.form$;
+  dependencies.isObject;
+  dependencies.isGroup;
+  dependencies.isList;
 
   // ================= PRE =================
 
@@ -26499,7 +26681,7 @@ var dates$3 = function dates(props, context, dependencies) {
         var value;
         if (form$.value.isSync) {
           value = get_1(form$.value.model, dataPath.value);
-        } else if (parent.value && ['object', 'list', 'multifile'].indexOf(parent.value.type) !== -1) {
+        } else if (parent.value && (parent.value.isObjectType || parent.value.isGroupType || parent.value.isListType)) {
           value = parent.value.value[name.value];
         } else {
           value = internalValue.value;
@@ -26518,10 +26700,10 @@ var dates$3 = function dates(props, context, dependencies) {
         });
         if (form$.value.isSync) {
           form$.value.updateModel(dataPath.value, val);
-        } else if (parent.value && ['list', 'multifile'].indexOf(parent.value.type) !== -1) {
+        } else if (parent.value && parent.value.isListType) {
           var newValue = parent.value.value.map((v, k) => k == name.value ? val : v);
           parent.value.update(newValue);
-        } else if (parent.value && ['group', 'object'].indexOf(parent.value.type) !== -1) {
+        } else if (parent.value && (parent.value.isObjectType || parent.value.isGroupType)) {
           parent.value.value = Object.assign({}, parent.value.value, {
             [name.value]: val
           });
@@ -29024,7 +29206,7 @@ var base$r = function base(props, context, dependencies) {
   var input = dependencies.input;
   var update = dependencies.update;
   var fire = dependencies.fire;
-  var isImageType = dependencies.isImageType;
+  dependencies.isImageType;
   var removing = dependencies.removing;
   var handleError = dependencies.handleError;
   var el$ = dependencies.el$;
@@ -29038,14 +29220,6 @@ var base$r = function base(props, context, dependencies) {
    * @default false
    */
   var hasUploadError = ref(false);
-
-  /**
-   * The `base64` representation of the file when [`view`](#option-view) is `image` or `gallery` and file is only selected, but not uploaded yet.
-   *
-   * @type {string}
-   * @default null
-   */
-  var base64 = ref(null);
 
   /**
    * The percentage of progress when the file is being temporarily uploaded (0-100).
@@ -29062,15 +29236,6 @@ var base$r = function base(props, context, dependencies) {
    * @default false
    */
   var preparing = ref(false);
-
-  /**
-   * Watchers store.
-   *
-   * @type {object}
-   * @default {}
-   * @private
-   */
-  var watchers = ref({});
 
   // ============== COMPUTED ==============
 
@@ -29244,10 +29409,11 @@ var base$r = function base(props, context, dependencies) {
    * @type {string}
    */
   var preview = computed(() => {
+    var _value$value;
     if (view.value === 'file') {
       return null;
     }
-    return uploaded.value ? previewLink.value : base64.value;
+    return uploaded.value ? previewLink.value : value.value instanceof File ? URL.createObjectURL(value.value) : ((_value$value = value.value) === null || _value$value === void 0 ? void 0 : _value$value.__file__) instanceof File ? URL.createObjectURL(value.value.__file__) : null;
   });
 
   /**
@@ -29431,14 +29597,6 @@ var base$r = function base(props, context, dependencies) {
       return _ref3.apply(this, arguments);
     };
   }();
-  var resolveBase64 = function resolveBase64() {
-    var source = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : value.value;
-    var reader = new FileReader();
-    reader.onload = e => {
-      base64.value = e.target.result;
-    };
-    reader.readAsDataURL(source);
-  };
 
   /**
    * Handles `change` event.
@@ -29510,31 +29668,6 @@ var base$r = function base(props, context, dependencies) {
     }
     request.value.cancel();
   };
-
-  // ============== WATCHERS ==============
-
-  watchers.value.value = watch(value, val => {
-    var _value$value, _value$value2;
-    if (!val) {
-      base64.value = null;
-      return;
-    }
-    if (!isImageType.value || view.value === 'file') {
-      return;
-    }
-    if (!(value.value instanceof File) && !((_value$value = value.value) !== null && _value$value !== void 0 && _value$value.__file__)) {
-      return;
-    }
-    resolveBase64(value.value instanceof File ? value.value : (_value$value2 = value.value) === null || _value$value2 === void 0 ? void 0 : _value$value2.__file__);
-  }, {
-    immediate: true
-  });
-  watchers.value.view = watch(view, v => {
-    /* istanbul ignore else */
-    if (['image', 'gallery'].indexOf(v) !== -1 && !base64.value && value.value instanceof File) {
-      resolveBase64();
-    }
-  });
   if (value.value instanceof File && auto.value) {
     nextTick(() => {
       uploadTemp();
@@ -29542,7 +29675,6 @@ var base$r = function base(props, context, dependencies) {
   }
   return {
     hasUploadError,
-    base64,
     progress,
     preparing,
     endpoints,
@@ -29555,7 +29687,6 @@ var base$r = function base(props, context, dependencies) {
     canRemove,
     canUploadTemp,
     canSelect,
-    watchers,
     uploadTemp,
     remove,
     prepare,
@@ -30053,7 +30184,7 @@ var GroupElement = {
     }
   },
   setup(props, context) {
-    context.features = [base$17, base$16, base$T, group$6, base$S, object$1, base$1a, base$N, group, group$4, base$Z, group$3, group$2, base$10, group$7, base$X, base$W, base$18, base$Y, base$V, group$5, base$P, group$1, base$R];
+    context.features = [base$17, base$16, base$T, group$6, base$S, object$1, base$1a, group$7, group, group$4, base$Z, group$3, group$2, base$10, group$8, base$X, base$W, base$18, base$Y, base$V, group$5, base$P, group$1, base$R];
     context.slots = ['label', 'info', 'description', 'before', 'between', 'after'];
     return _objectSpread2$1({}, base$L(props, context));
   }
@@ -34430,7 +34561,7 @@ var ObjectElement = {
     }
   },
   setup(props, context) {
-    context.features = [base$17, base$16, base$T, base$M, base$S, object$1, base$1a, base$N, object$5, object$3, base$Z, object, base$10, object$7, object$4, base$X, base$W, base$18, base$Y, base$V, object$6, base$P, object$2, base$R];
+    context.features = [base$17, base$16, base$T, base$M, base$S, object$1, base$1a, object$7, object$5, object$3, base$Z, object, base$10, object$8, object$4, base$X, base$W, base$18, base$Y, base$V, object$6, base$P, object$2, base$R];
     context.slots = ['label', 'info', 'description', 'before', 'between', 'after'];
     return _objectSpread2$1({}, base$L(props, context));
   }
@@ -36911,7 +37042,7 @@ var FilePreview = {
      * @type {string}
      */
     var preview = computed(() => {
-      return ['image', 'gallery'].indexOf(el$.value.View) !== -1 ? el$.value.preview : null;
+      return el$.value.preview;
     });
 
     /**

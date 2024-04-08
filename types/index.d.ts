@@ -393,6 +393,9 @@ export interface VueformElement extends DefineComponent {
   isFileType: boolean;
   isArrayType: boolean;
   isImageType: boolean;
+  isObjectType: boolean;
+  isGroupType: boolean;
+  isListType: boolean;
   isActive: boolean;
   isButtonLabelComponent: boolean;
   button: object;
@@ -499,11 +502,10 @@ export interface VueformElement extends DefineComponent {
   resetting: boolean;
   initialValue: any;
   internalValue: any;
-  watchers: Array<any> | object;
+  watchers: Array<any>;
   disabledItems: Array<any>;
   focused: boolean;
   hasUploadError: boolean;
-  base64: string;
   progress: number;
   preparing: boolean;
   removing: boolean;
@@ -3857,6 +3859,9 @@ export declare class ButtonElement implements DefineComponent {
   isFileType: boolean;
   isArrayType: boolean;
   isImageType: boolean;
+  isObjectType: boolean;
+  isGroupType: boolean;
+  isListType: boolean;
   isActive: boolean;
   isButtonLabelComponent: boolean;
   button: object;
@@ -3998,6 +4003,9 @@ export declare class CheckboxElement implements DefineComponent {
   isFileType: boolean;
   isArrayType: boolean;
   isImageType: boolean;
+  isObjectType: boolean;
+  isGroupType: boolean;
+  isListType: boolean;
   isActive: boolean;
   classes: object;
   classesInstance: MergeClasses;
@@ -4178,6 +4186,9 @@ export declare class CheckboxgroupElement implements DefineComponent {
   isFileType: boolean;
   isArrayType: boolean;
   isImageType: boolean;
+  isObjectType: boolean;
+  isGroupType: boolean;
+  isListType: boolean;
   isActive: boolean;
   classes: object;
   classesInstance: MergeClasses;
@@ -4221,7 +4232,7 @@ export declare class CheckboxgroupElement implements DefineComponent {
   Views: object;
 
   // Data
-  watchers: Array<any> | object;
+  watchers: Array<any>;
   active: boolean;
   mounted: boolean;
   container: HTMLElement;
@@ -4377,6 +4388,9 @@ export declare class DateElement implements DefineComponent {
   isFileType: boolean;
   isArrayType: boolean;
   isImageType: boolean;
+  isObjectType: boolean;
+  isGroupType: boolean;
+  isListType: boolean;
   isActive: boolean;
   classes: object;
   classesInstance: MergeClasses;
@@ -4571,6 +4585,9 @@ export declare class DatesElement implements DefineComponent {
   isFileType: boolean;
   isArrayType: boolean;
   isImageType: boolean;
+  isObjectType: boolean;
+  isGroupType: boolean;
+  isListType: boolean;
   isActive: boolean;
   classes: object;
   classesInstance: MergeClasses;
@@ -4763,6 +4780,9 @@ export declare class EditorElement implements DefineComponent {
   isFileType: boolean;
   isArrayType: boolean;
   isImageType: boolean;
+  isObjectType: boolean;
+  isGroupType: boolean;
+  isListType: boolean;
   isActive: boolean;
   classes: object;
   classesInstance: MergeClasses;
@@ -4964,6 +4984,9 @@ export declare class FileElement implements DefineComponent {
   isFileType: boolean;
   isArrayType: boolean;
   isImageType: boolean;
+  isObjectType: boolean;
+  isGroupType: boolean;
+  isListType: boolean;
   isActive: boolean;
   classes: object;
   classesInstance: MergeClasses;
@@ -5026,10 +5049,8 @@ export declare class FileElement implements DefineComponent {
   events: Array<any>;
   listeners: object;
   hasUploadError: boolean;
-  base64: string;
   progress: number;
   preparing: boolean;
-  watchers: object;
   input: HTMLElement;
   removing: boolean;
   request: object;
@@ -5167,6 +5188,9 @@ export declare class GenericElement implements DefineComponent {
   isFileType: boolean;
   isArrayType: boolean;
   isImageType: boolean;
+  isObjectType: boolean;
+  isGroupType: boolean;
+  isListType: boolean;
   isActive: boolean;
   classes: object;
   classesInstance: MergeClasses;
@@ -5343,6 +5367,9 @@ export declare class GroupElement implements DefineComponent {
   isFileType: boolean;
   isArrayType: boolean;
   isImageType: boolean;
+  isObjectType: boolean;
+  isGroupType: boolean;
+  isListType: boolean;
   isActive: boolean;
   children: object;
   children$: object;
@@ -5483,6 +5510,9 @@ export declare class HiddenElement implements DefineComponent {
   isFileType: boolean;
   isArrayType: boolean;
   isImageType: boolean;
+  isObjectType: boolean;
+  isGroupType: boolean;
+  isListType: boolean;
   isActive: boolean;
   available: boolean;
   data: object;
@@ -5638,6 +5668,9 @@ export declare class ListElement implements DefineComponent {
   isFileType: boolean;
   isArrayType: boolean;
   isImageType: boolean;
+  isObjectType: boolean;
+  isGroupType: boolean;
+  isListType: boolean;
   isActive: boolean;
   children$: object;
   classes: object;
@@ -5847,6 +5880,9 @@ export declare class LocationElement implements DefineComponent {
   isFileType: boolean;
   isArrayType: boolean;
   isImageType: boolean;
+  isObjectType: boolean;
+  isGroupType: boolean;
+  isListType: boolean;
   isActive: boolean;
   classes: object;
   classesInstance: MergeClasses;
@@ -6055,6 +6091,9 @@ export declare class MultifileElement implements DefineComponent {
   isFileType: boolean;
   isArrayType: boolean;
   isImageType: boolean;
+  isObjectType: boolean;
+  isGroupType: boolean;
+  isListType: boolean;
   isActive: boolean;
   children$: object;
   classes: object;
@@ -6317,6 +6356,9 @@ export declare class MultiselectElement implements DefineComponent {
   isFileType: boolean;
   isArrayType: boolean;
   isImageType: boolean;
+  isObjectType: boolean;
+  isGroupType: boolean;
+  isListType: boolean;
   isActive: boolean;
   classes: object;
   classesInstance: MergeClasses;
@@ -6528,6 +6570,9 @@ export declare class ObjectElement implements DefineComponent {
   isFileType: boolean;
   isArrayType: boolean;
   isImageType: boolean;
+  isObjectType: boolean;
+  isGroupType: boolean;
+  isListType: boolean;
   isActive: boolean;
   children: object;
   children$: object;
@@ -6703,6 +6748,9 @@ export declare class RadioElement implements DefineComponent {
   isFileType: boolean;
   isArrayType: boolean;
   isImageType: boolean;
+  isObjectType: boolean;
+  isGroupType: boolean;
+  isListType: boolean;
   isActive: boolean;
   classes: object;
   classesInstance: MergeClasses;
@@ -6884,6 +6932,9 @@ export declare class RadiogroupElement implements DefineComponent {
   isFileType: boolean;
   isArrayType: boolean;
   isImageType: boolean;
+  isObjectType: boolean;
+  isGroupType: boolean;
+  isListType: boolean;
   isActive: boolean;
   classes: object;
   classesInstance: MergeClasses;
@@ -7113,6 +7164,9 @@ export declare class SelectElement implements DefineComponent {
   isFileType: boolean;
   isArrayType: boolean;
   isImageType: boolean;
+  isObjectType: boolean;
+  isGroupType: boolean;
+  isListType: boolean;
   isActive: boolean;
   classes: object;
   classesInstance: MergeClasses;
@@ -7332,6 +7386,9 @@ export declare class SliderElement implements DefineComponent {
   isFileType: boolean;
   isArrayType: boolean;
   isImageType: boolean;
+  isObjectType: boolean;
+  isGroupType: boolean;
+  isListType: boolean;
   isActive: boolean;
   classes: object;
   classesInstance: MergeClasses;
@@ -7510,6 +7567,9 @@ export declare class StaticElement implements DefineComponent {
   isFileType: boolean;
   isArrayType: boolean;
   isImageType: boolean;
+  isObjectType: boolean;
+  isGroupType: boolean;
+  isListType: boolean;
   isActive: boolean;
   classes: object;
   classesInstance: MergeClasses;
@@ -7654,6 +7714,9 @@ export declare class TEditorElement implements DefineComponent {
   isFileType: boolean;
   isArrayType: boolean;
   isImageType: boolean;
+  isObjectType: boolean;
+  isGroupType: boolean;
+  isListType: boolean;
   isActive: boolean;
   classes: object;
   classesInstance: MergeClasses;
@@ -7854,6 +7917,9 @@ export declare class TTextElement implements DefineComponent {
   isFileType: boolean;
   isArrayType: boolean;
   isImageType: boolean;
+  isObjectType: boolean;
+  isGroupType: boolean;
+  isListType: boolean;
   isActive: boolean;
   classes: object;
   classesInstance: MergeClasses;
@@ -8057,6 +8123,9 @@ export declare class TTextareaElement implements DefineComponent {
   isFileType: boolean;
   isArrayType: boolean;
   isImageType: boolean;
+  isObjectType: boolean;
+  isGroupType: boolean;
+  isListType: boolean;
   isActive: boolean;
   classes: object;
   classesInstance: MergeClasses;
@@ -8302,6 +8371,9 @@ export declare class TagsElement implements DefineComponent {
   isFileType: boolean;
   isArrayType: boolean;
   isImageType: boolean;
+  isObjectType: boolean;
+  isGroupType: boolean;
+  isListType: boolean;
   isActive: boolean;
   classes: object;
   classesInstance: MergeClasses;
@@ -8527,6 +8599,9 @@ export declare class TextElement implements DefineComponent {
   isFileType: boolean;
   isArrayType: boolean;
   isImageType: boolean;
+  isObjectType: boolean;
+  isGroupType: boolean;
+  isListType: boolean;
   isActive: boolean;
   classes: object;
   classesInstance: MergeClasses;
@@ -8728,6 +8803,9 @@ export declare class TextareaElement implements DefineComponent {
   isFileType: boolean;
   isArrayType: boolean;
   isImageType: boolean;
+  isObjectType: boolean;
+  isGroupType: boolean;
+  isListType: boolean;
   isActive: boolean;
   classes: object;
   classesInstance: MergeClasses;
@@ -8923,6 +9001,9 @@ export declare class ToggleElement implements DefineComponent {
   isFileType: boolean;
   isArrayType: boolean;
   isImageType: boolean;
+  isObjectType: boolean;
+  isGroupType: boolean;
+  isListType: boolean;
   isActive: boolean;
   classes: object;
   classesInstance: MergeClasses;

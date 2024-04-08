@@ -12627,7 +12627,7 @@ script$6.render = render$4;
 script$6.__file = "themes/blank/templates/elements/partials/RadiogroupRadio.vue";
 
 var script$5 = {
-    name: 'CheckboxgroupCheckbox_tabs',
+    name: 'RadiogroupRadio_tabs',
     data() {
       return {
         merge: true,
@@ -12690,7 +12690,7 @@ script$5.render = render$3;
 script$5.__file = "themes/blank/templates/elements/partials/RadiogroupRadio_tabs.vue";
 
 var script$4 = {
-    name: 'CheckboxgroupCheckbox_tabs',
+    name: 'RadiogroupRadio_tabs',
     data() {
       return {
         merge: true,
@@ -14675,10 +14675,10 @@ var classes = {
     }
   },
   FilePreview: {
-    container: 'flex justify-center flex-row group relative',
-    container_sm: 'form-h-input-height-sm',
-    container_md: 'form-h-input-height',
-    container_lg: 'form-h-input-height',
+    container: 'flex justify-center flex-col group relative',
+    container_sm: 'form-h-input-min-height-sm',
+    container_md: 'form-h-input-min-height',
+    container_lg: 'form-h-input-min-height-lg',
     wrapper: 'flex justify-between items-center w-full',
     file: 'flex items-center',
     filenameLink: 'hover:underline',
@@ -14703,7 +14703,7 @@ var classes = {
     }
   },
   FilePreview_image: {
-    container: 'flex justify-start flex-row group relative',
+    container: 'flex justify-start flex-col group relative',
     wrapper: 'flex justify-between items-center w-full',
     image: 'form-shadow-input flex items-center form-bg-passive flex-grow-0 flex-shrink-0',
     image_link: '',

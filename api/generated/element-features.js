@@ -877,6 +877,27 @@ export default {
           ],
           "description": "Whether the element's value is an image."
         },
+        "isObjectType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is a nested object."
+        },
+        "isGroupType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is a nested group."
+        },
+        "isListType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is a list."
+        },
         "isActive": {
           "public": false,
           "types": [
@@ -959,6 +980,235 @@ export default {
             "boolean"
           ],
           "description": "Whether the element's value is an image."
+        },
+        "isObjectType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is a nested object."
+        },
+        "isGroupType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is a nested group."
+        },
+        "isListType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is a list."
+        },
+        "isActive": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element should be visible when using `tabs` or `steps`."
+        }
+      },
+      "data": {
+        "active": {
+          "public": false,
+          "default": "true",
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is hidden internally by core components like tabs or steps. Only intended for reading."
+        },
+        "mounted": {
+          "public": true,
+          "default": "true",
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element has been already mounted."
+        },
+        "container": {
+          "public": true,
+          "types": [
+            "HTMLElement"
+          ],
+          "description": "The ref to the outermost DOM of the element."
+        }
+      },
+      "methods": {
+        "activate": {
+          "public": false,
+          "returns": "void",
+          "description": "Sets the `active` property of the element to `true`."
+        },
+        "deactivate": {
+          "public": false,
+          "returns": "void",
+          "description": "Sets the `active` property of the element to `false`."
+        }
+      }
+    },
+    "object": {
+      "computed": {
+        "el$": {
+          "public": true,
+          "types": [
+            "VueformElement"
+          ],
+          "description": "The element's component."
+        },
+        "isStatic": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is static (does not have any data or validation)."
+        },
+        "isFileType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element's value is a file."
+        },
+        "isArrayType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element's value is an array."
+        },
+        "isImageType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element's value is an image."
+        },
+        "isObjectType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is a nested object."
+        },
+        "isGroupType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is a nested group."
+        },
+        "isListType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is a list."
+        },
+        "isActive": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element should be visible when using `tabs` or `steps`."
+        }
+      },
+      "data": {
+        "active": {
+          "public": false,
+          "default": "true",
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is hidden internally by core components like tabs or steps. Only intended for reading."
+        },
+        "mounted": {
+          "public": true,
+          "default": "true",
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element has been already mounted."
+        },
+        "container": {
+          "public": true,
+          "types": [
+            "HTMLElement"
+          ],
+          "description": "The ref to the outermost DOM of the element."
+        }
+      },
+      "methods": {
+        "activate": {
+          "public": false,
+          "returns": "void",
+          "description": "Sets the `active` property of the element to `true`."
+        },
+        "deactivate": {
+          "public": false,
+          "returns": "void",
+          "description": "Sets the `active` property of the element to `false`."
+        }
+      }
+    },
+    "group": {
+      "computed": {
+        "el$": {
+          "public": true,
+          "types": [
+            "VueformElement"
+          ],
+          "description": "The element's component."
+        },
+        "isStatic": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is static (does not have any data or validation)."
+        },
+        "isFileType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element's value is a file."
+        },
+        "isArrayType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element's value is an array."
+        },
+        "isImageType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element's value is an image."
+        },
+        "isObjectType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is a nested object."
+        },
+        "isGroupType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is a nested group."
+        },
+        "isListType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is a list."
         },
         "isActive": {
           "public": false,
@@ -1043,6 +1293,27 @@ export default {
           ],
           "description": "Whether the element's value is an image."
         },
+        "isObjectType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is a nested object."
+        },
+        "isGroupType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is a nested group."
+        },
+        "isListType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is a list."
+        },
         "isActive": {
           "public": false,
           "types": [
@@ -1125,6 +1396,27 @@ export default {
             "boolean"
           ],
           "description": "Whether the element's value is an image."
+        },
+        "isObjectType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is a nested object."
+        },
+        "isGroupType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is a nested group."
+        },
+        "isListType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is a list."
         },
         "isActive": {
           "public": false,
@@ -1209,6 +1501,27 @@ export default {
           ],
           "description": "Whether the element's value is an image."
         },
+        "isObjectType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is a nested object."
+        },
+        "isGroupType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is a nested group."
+        },
+        "isListType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is a list."
+        },
         "isActive": {
           "public": false,
           "types": [
@@ -1291,6 +1604,27 @@ export default {
             "boolean"
           ],
           "description": "Whether the element's value is an image."
+        },
+        "isObjectType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is a nested object."
+        },
+        "isGroupType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is a nested group."
+        },
+        "isListType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is a list."
         },
         "isActive": {
           "public": false,
@@ -1375,6 +1709,27 @@ export default {
           ],
           "description": "Whether the element's value is an image."
         },
+        "isObjectType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is a nested object."
+        },
+        "isGroupType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is a nested group."
+        },
+        "isListType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is a list."
+        },
         "isActive": {
           "public": false,
           "types": [
@@ -1457,6 +1812,27 @@ export default {
             "boolean"
           ],
           "description": "Whether the element's value is an image."
+        },
+        "isObjectType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is a nested object."
+        },
+        "isGroupType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is a nested group."
+        },
+        "isListType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is a list."
         },
         "isActive": {
           "public": false,
@@ -3400,14 +3776,6 @@ export default {
           ],
           "description": "Whether the file uploader has any errors."
         },
-        "base64": {
-          "public": true,
-          "default": "null",
-          "types": [
-            "string"
-          ],
-          "description": "The `base64` representation of the file when [`view`](#option-view) is `image` or `gallery` and file is only selected, but not uploaded yet."
-        },
         "progress": {
           "public": true,
           "default": "0",
@@ -3423,14 +3791,6 @@ export default {
             "boolean"
           ],
           "description": "If the form is submitted and the file is not uploaded yet, the element will enter into `preparing` state and upload the temporary file before submitting the form."
-        },
-        "watchers": {
-          "public": false,
-          "default": "{}",
-          "types": [
-            "object"
-          ],
-          "description": "Watchers store."
         }
       },
       "computed": {

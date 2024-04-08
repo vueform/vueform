@@ -369,7 +369,7 @@ export default {
   "group": {
     "features": [
       "a11y",
-      "baseElement",
+      "baseElement_group",
       "children_group",
       "classes",
       "columns",
@@ -700,7 +700,7 @@ export default {
   "object": {
     "features": [
       "a11y",
-      "baseElement",
+      "baseElement_object",
       "children_object",
       "classes",
       "columns",

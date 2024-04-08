@@ -663,6 +663,27 @@ module.exports = {
         description: 'Whether the element&apos;s value is an image.',
         private: true,
       },
+      isObjectType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is a nested object.',
+        private: true,
+      },
+      isGroupType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is a nested group.',
+        private: true,
+      },
+      isListType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is a list.',
+        private: true,
+      },
       isActive: {
         types: [
           'boolean',
@@ -1885,6 +1906,27 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element&apos;s value is an image.',
+        private: true,
+      },
+      isObjectType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is a nested object.',
+        private: true,
+      },
+      isGroupType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is a nested group.',
+        private: true,
+      },
+      isListType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is a list.',
         private: true,
       },
       isActive: {
@@ -3306,6 +3348,27 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element&apos;s value is an image.',
+        private: true,
+      },
+      isObjectType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is a nested object.',
+        private: true,
+      },
+      isGroupType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is a nested group.',
+        private: true,
+      },
+      isListType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is a list.',
         private: true,
       },
       isActive: {
@@ -5027,6 +5090,27 @@ module.exports = {
         description: 'Whether the element&apos;s value is an image.',
         private: true,
       },
+      isObjectType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is a nested object.',
+        private: true,
+      },
+      isGroupType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is a nested group.',
+        private: true,
+      },
+      isListType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is a list.',
+        private: true,
+      },
       isActive: {
         types: [
           'boolean',
@@ -6592,6 +6676,27 @@ module.exports = {
         description: 'Whether the element&apos;s value is an image.',
         private: true,
       },
+      isObjectType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is a nested object.',
+        private: true,
+      },
+      isGroupType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is a nested group.',
+        private: true,
+      },
+      isListType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is a list.',
+        private: true,
+      },
       isActive: {
         types: [
           'boolean',
@@ -8134,6 +8239,27 @@ module.exports = {
         description: 'Whether the element&apos;s value is an image.',
         private: true,
       },
+      isObjectType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is a nested object.',
+        private: true,
+      },
+      isGroupType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is a nested group.',
+        private: true,
+      },
+      isListType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is a list.',
+        private: true,
+      },
       isActive: {
         types: [
           'boolean',
@@ -9651,14 +9777,6 @@ module.exports = {
         default: 'false',
         private: false,
       },
-      base64: {
-        types: [
-          'string',
-        ],
-        description: 'The `base64` representation of the file when [`view`](#option-view) is `image` or `gallery` and file is only selected, but not uploaded yet.',
-        default: 'null',
-        private: false,
-      },
       progress: {
         types: [
           'number',
@@ -9674,14 +9792,6 @@ module.exports = {
         description: 'If the form is submitted and the file is not uploaded yet, the element will enter into `preparing` state and upload the temporary file before submitting the form.',
         default: 'false',
         private: false,
-      },
-      watchers: {
-        types: [
-          'object',
-        ],
-        description: 'Watchers store.',
-        default: '{}',
-        private: true,
       },
       input: {
         types: [
@@ -9835,6 +9945,27 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element&apos;s value is an image.',
+        private: true,
+      },
+      isObjectType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is a nested object.',
+        private: true,
+      },
+      isGroupType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is a nested group.',
+        private: true,
+      },
+      isListType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is a list.',
         private: true,
       },
       isActive: {
@@ -11374,6 +11505,27 @@ module.exports = {
         description: 'Whether the element&apos;s value is an image.',
         private: true,
       },
+      isObjectType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is a nested object.',
+        private: true,
+      },
+      isGroupType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is a nested group.',
+        private: true,
+      },
+      isListType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is a list.',
+        private: true,
+      },
       isActive: {
         types: [
           'boolean',
@@ -12733,6 +12885,27 @@ module.exports = {
         description: 'Whether the element&apos;s value is an image.',
         private: true,
       },
+      isObjectType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is a nested object.',
+        private: true,
+      },
+      isGroupType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is a nested group.',
+        private: true,
+      },
+      isListType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is a list.',
+        private: true,
+      },
       isActive: {
         types: [
           'boolean',
@@ -13774,6 +13947,27 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element&apos;s value is an image.',
+        private: true,
+      },
+      isObjectType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is a nested object.',
+        private: true,
+      },
+      isGroupType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is a nested group.',
+        private: true,
+      },
+      isListType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is a list.',
         private: true,
       },
       isActive: {
@@ -15088,6 +15282,27 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element&apos;s value is an image.',
+        private: true,
+      },
+      isObjectType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is a nested object.',
+        private: true,
+      },
+      isGroupType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is a nested group.',
+        private: true,
+      },
+      isListType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is a list.',
         private: true,
       },
       isActive: {
@@ -16815,6 +17030,27 @@ module.exports = {
         description: 'Whether the element&apos;s value is an image.',
         private: true,
       },
+      isObjectType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is a nested object.',
+        private: true,
+      },
+      isGroupType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is a nested group.',
+        private: true,
+      },
+      isListType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is a list.',
+        private: true,
+      },
       isActive: {
         types: [
           'boolean',
@@ -18528,6 +18764,27 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element&apos;s value is an image.',
+        private: true,
+      },
+      isObjectType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is a nested object.',
+        private: true,
+      },
+      isGroupType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is a nested group.',
+        private: true,
+      },
+      isListType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is a list.',
         private: true,
       },
       isActive: {
@@ -20802,6 +21059,27 @@ module.exports = {
         description: 'Whether the element&apos;s value is an image.',
         private: true,
       },
+      isObjectType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is a nested object.',
+        private: true,
+      },
+      isGroupType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is a nested group.',
+        private: true,
+      },
+      isListType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is a list.',
+        private: true,
+      },
       isActive: {
         types: [
           'boolean',
@@ -22595,6 +22873,27 @@ module.exports = {
         description: 'Whether the element&apos;s value is an image.',
         private: true,
       },
+      isObjectType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is a nested object.',
+        private: true,
+      },
+      isGroupType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is a nested group.',
+        private: true,
+      },
+      isListType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is a list.',
+        private: true,
+      },
       isActive: {
         types: [
           'boolean',
@@ -24000,6 +24299,27 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element&apos;s value is an image.',
+        private: true,
+      },
+      isObjectType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is a nested object.',
+        private: true,
+      },
+      isGroupType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is a nested group.',
+        private: true,
+      },
+      isListType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is a list.',
         private: true,
       },
       isActive: {
@@ -25429,6 +25749,27 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element&apos;s value is an image.',
+        private: true,
+      },
+      isObjectType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is a nested object.',
+        private: true,
+      },
+      isGroupType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is a nested group.',
+        private: true,
+      },
+      isListType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is a list.',
         private: true,
       },
       isActive: {
@@ -27483,6 +27824,27 @@ module.exports = {
         description: 'Whether the element&apos;s value is an image.',
         private: true,
       },
+      isObjectType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is a nested object.',
+        private: true,
+      },
+      isGroupType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is a nested group.',
+        private: true,
+      },
+      isListType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is a list.',
+        private: true,
+      },
       isActive: {
         types: [
           'boolean',
@@ -29363,6 +29725,27 @@ module.exports = {
         description: 'Whether the element&apos;s value is an image.',
         private: true,
       },
+      isObjectType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is a nested object.',
+        private: true,
+      },
+      isGroupType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is a nested group.',
+        private: true,
+      },
+      isListType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is a list.',
+        private: true,
+      },
       isActive: {
         types: [
           'boolean',
@@ -30730,6 +31113,27 @@ module.exports = {
         description: 'Whether the element&apos;s value is an image.',
         private: true,
       },
+      isObjectType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is a nested object.',
+        private: true,
+      },
+      isGroupType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is a nested group.',
+        private: true,
+      },
+      isListType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is a list.',
+        private: true,
+      },
       isActive: {
         types: [
           'boolean',
@@ -31958,6 +32362,27 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element&apos;s value is an image.',
+        private: true,
+      },
+      isObjectType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is a nested object.',
+        private: true,
+      },
+      isGroupType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is a nested group.',
+        private: true,
+      },
+      isListType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is a list.',
         private: true,
       },
       isActive: {
@@ -33590,6 +34015,27 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element&apos;s value is an image.',
+        private: true,
+      },
+      isObjectType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is a nested object.',
+        private: true,
+      },
+      isGroupType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is a nested group.',
+        private: true,
+      },
+      isListType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is a list.',
         private: true,
       },
       isActive: {
@@ -35274,6 +35720,27 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element&apos;s value is an image.',
+        private: true,
+      },
+      isObjectType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is a nested object.',
+        private: true,
+      },
+      isGroupType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is a nested group.',
+        private: true,
+      },
+      isListType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is a list.',
         private: true,
       },
       isActive: {
@@ -37403,6 +37870,27 @@ module.exports = {
         description: 'Whether the element&apos;s value is an image.',
         private: true,
       },
+      isObjectType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is a nested object.',
+        private: true,
+      },
+      isGroupType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is a nested group.',
+        private: true,
+      },
+      isListType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is a list.',
+        private: true,
+      },
       isActive: {
         types: [
           'boolean',
@@ -39400,6 +39888,27 @@ module.exports = {
         description: 'Whether the element&apos;s value is an image.',
         private: true,
       },
+      isObjectType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is a nested object.',
+        private: true,
+      },
+      isGroupType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is a nested group.',
+        private: true,
+      },
+      isListType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is a list.',
+        private: true,
+      },
       isActive: {
         types: [
           'boolean',
@@ -41065,6 +41574,27 @@ module.exports = {
         description: 'Whether the element&apos;s value is an image.',
         private: true,
       },
+      isObjectType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is a nested object.',
+        private: true,
+      },
+      isGroupType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is a nested group.',
+        private: true,
+      },
+      isListType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is a list.',
+        private: true,
+      },
       isActive: {
         types: [
           'boolean',
@@ -42661,6 +43191,27 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element&apos;s value is an image.',
+        private: true,
+      },
+      isObjectType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is a nested object.',
+        private: true,
+      },
+      isGroupType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is a nested group.',
+        private: true,
+      },
+      isListType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is a list.',
         private: true,
       },
       isActive: {

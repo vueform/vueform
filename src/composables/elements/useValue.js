@@ -16,11 +16,15 @@ const base = function(props, context, dependencies, /* istanbul ignore next */ o
   const defaultValue = dependencies.defaultValue
   const dataPath = dependencies.dataPath
   const form$ = dependencies.form$
+  const isObject = dependencies.isObject
+  const isGroup = dependencies.isGroup
+  const isList = dependencies.isList
   
   // ================ DATA =================
   
   /**
    * The initial value of the element.
+   * 
    *
    * @type {any}
    * @private
@@ -29,7 +33,7 @@ const base = function(props, context, dependencies, /* istanbul ignore next */ o
   
   if (form$.value.isSync) {
     initialValue.value = get(form$.value.model, dataPath.value)
-  } else if (parent.value && ['group', 'object', 'list', 'multifile'].indexOf(parent.value.type) !== -1) {
+  } else if (parent.value && (parent.value.isObjectType || parent.value.isGroupType || parent.value.isListType)) {
     initialValue.value = parent.value.value[name.value]
   }
   
@@ -54,7 +58,7 @@ const base = function(props, context, dependencies, /* istanbul ignore next */ o
       
       if (form$.value.isSync) {
         value = get(form$.value.model, dataPath.value)
-      } else if (parent.value && ['group', 'object', 'list', 'multifile'].indexOf(parent.value.type) !== -1) {
+      } else if (parent.value && (parent.value.isObjectType || parent.value.isGroupType || parent.value.isListType)) {
         value = parent.value.value[name.value]
       } else {
         value = internalValue.value
@@ -65,10 +69,10 @@ const base = function(props, context, dependencies, /* istanbul ignore next */ o
     set: options.value?.set || function (val) {
       if (form$.value.isSync) {
         form$.value.updateModel(dataPath.value, val)
-      } else if (parent.value && ['list', 'multifile'].indexOf(parent.value.type) !== -1) {
+      } else if (parent.value && parent.value.isListType) {
         const newValue = parent.value.value.map((v, k) => k == name.value ? val : v)
         parent.value.update(newValue)
-      } else if (parent.value && ['group', 'object'].indexOf(parent.value.type) !== -1) {
+      } else if (parent.value && (parent.value.isObjectType || parent.value.isGroupType)) {
         parent.value.value = Object.assign({}, parent.value.value, {
           [name.value]: val,
         })
@@ -173,6 +177,9 @@ const group = function(props, context, dependencies, /* istanbul ignore next */ 
   const defaultValue = dependencies.defaultValue
   const children$Array = dependencies.children$Array
   const form$ = dependencies.form$
+  const isObject = dependencies.isObject
+  const isGroup = dependencies.isGroup
+  const isList = dependencies.isList
   
   // ================ DATA =================
   
@@ -193,7 +200,7 @@ const group = function(props, context, dependencies, /* istanbul ignore next */ 
 
       if (form$.value.isSync) {
         value = dataPath.value ? (get(form$.value.model, dataPath.value) || {}) : form$.value.model
-      } else if (parent.value && ['group', 'object'].indexOf(parent.value.type) !== -1) {
+      } else if (parent.value && (parent.value.isObjectType || parent.value.isGroupType)) {
         value = parent.value.value
       } else {
         value = internalValue.value
@@ -242,7 +249,7 @@ const group = function(props, context, dependencies, /* istanbul ignore next */ 
     {
       if (form$.value.isSync) {
         form$.value.updateModel(dataPath.value, val)
-      } else if (parent.value && ['group', 'object'].indexOf(parent.value.type) !== -1) {
+      } else if (parent.value && (parent.value.isObjectType || parent.value.isGroupType)) {
         parent.value.value = Object.assign({}, parent.value.value, val)
       } else {
         internalValue.value = val
@@ -297,6 +304,9 @@ const date = function(props, context, dependencies)
   const defaultValue = dependencies.defaultValue
   const dataPath = dependencies.dataPath
   const form$ = dependencies.form$
+  const isObject = dependencies.isObject
+  const isGroup = dependencies.isGroup
+  const isList = dependencies.isList
   
   // ================= PRE =================
   
@@ -319,7 +329,7 @@ const date = function(props, context, dependencies)
         
         if (form$.value.isSync) {
           value = get(form$.value.model, dataPath.value)
-        } else if (parent.value && ['group', 'object', 'list', 'multifile'].indexOf(parent.value.type) !== -1) {
+        } else if (parent.value && (parent.value.isObjectType || parent.value.isGroupType || parent.value.isListType)) {
           value = parent.value.value[name.value]
         } else {
           value = internalValue.value
@@ -340,10 +350,10 @@ const date = function(props, context, dependencies)
         
         if (form$.value.isSync) {
           form$.value.updateModel(dataPath.value, val)
-        } else if (parent.value && ['list', 'multifile'].indexOf(parent.value.type) !== -1) {
+        } else if (parent.value && parent.value.isListType) {
           const newValue = parent.value.value.map((v,k) => k == name.value ? val : v)
           parent.value.update(newValue)
-        } else if (parent.value && ['group', 'object'].indexOf(parent.value.type) !== -1) {
+        } else if (parent.value && (parent.value.isObjectType || parent.value.isGroupType)) {
           parent.value.value = Object.assign({}, parent.value.value, {
             [name.value]: val,
           })
@@ -379,6 +389,9 @@ const dates = function(props, context, dependencies)
   const defaultValue = dependencies.defaultValue
   const dataPath = dependencies.dataPath
   const form$ = dependencies.form$
+  const isObject = dependencies.isObject
+  const isGroup = dependencies.isGroup
+  const isList = dependencies.isList
   
   // ================= PRE =================
   
@@ -401,7 +414,7 @@ const dates = function(props, context, dependencies)
         
         if (form$.value.isSync) {
           value = get(form$.value.model, dataPath.value)
-        } else if (parent.value && ['object', 'list', 'multifile'].indexOf(parent.value.type) !== -1) {
+        } else if (parent.value && (parent.value.isObjectType || parent.value.isGroupType || parent.value.isListType)) {
           value = parent.value.value[name.value]
         } else {
           value = internalValue.value
@@ -427,10 +440,10 @@ const dates = function(props, context, dependencies)
         
         if (form$.value.isSync) {
           form$.value.updateModel(dataPath.value, val)
-        } else if (parent.value && ['list', 'multifile'].indexOf(parent.value.type) !== -1) {
+        } else if (parent.value && parent.value.isListType) {
           const newValue = parent.value.value.map((v, k) => k == name.value ? val : v)
           parent.value.update(newValue)
-        } else if (parent.value && ['group', 'object'].indexOf(parent.value.type) !== -1) {
+        } else if (parent.value && (parent.value.isObjectType || parent.value.isGroupType)) {
           parent.value.value = Object.assign({}, parent.value.value, {
             [name.value]: val,
           })

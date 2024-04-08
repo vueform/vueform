@@ -104,6 +104,36 @@ const base = function(props, context, dependencies)
   })
   
   /**
+   * Whether the element is a nested object.
+   *
+   * @type {boolean}
+   * @private
+   */
+  const isObjectType = computed(() => {
+    return false
+  })
+  
+  /**
+   * Whether the element is a nested group.
+   *
+   * @type {boolean}
+   * @private
+   */
+  const isGroupType = computed(() => {
+    return false
+  })
+  
+  /**
+   * Whether the element is a list.
+   *
+   * @type {boolean}
+   * @private
+   */
+  const isListType = computed(() => {
+    return false
+  })
+  
+  /**
    * Whether the element should be visible when using `tabs` or `steps`.
    *
    * @type {boolean}
@@ -183,6 +213,9 @@ const base = function(props, context, dependencies)
     isFileType,
     isArrayType,
     isImageType,
+    isObjectType,
+    isGroupType,
+    isListType,
     isActive,
     active,
     mounted,
@@ -199,6 +232,8 @@ const list = function(props, context, dependencies)
     isStatic,
     isFileType,
     isImageType,
+    isObjectType,
+    isGroupType,
     isActive,
     active,
     mounted,
@@ -212,6 +247,10 @@ const list = function(props, context, dependencies)
   const isArrayType = computed(() => {
     return true
   })
+
+  const isListType = computed(() => {
+    return true
+  })
   
   return {
     el$,
@@ -219,6 +258,93 @@ const list = function(props, context, dependencies)
     isFileType,
     isArrayType,
     isImageType,
+    isObjectType,
+    isGroupType,
+    isListType,
+    isActive,
+    active,
+    mounted,
+    container,
+    activate,
+    deactivate,
+  }
+}
+
+const object = function(props, context, dependencies)
+{
+  const {
+    el$,
+    isStatic,
+    isFileType,
+    isArrayType,
+    isImageType,
+    isGroupType,
+    isListType,
+    isActive,
+    active,
+    mounted,
+    container,
+    activate,
+    deactivate,
+  } = base(props, context, dependencies)
+  
+  // ============== COMPUTED ==============
+  
+  const isObjectType = computed(() => {
+    return true
+  })
+  
+  return {
+    el$,
+    isStatic,
+    isFileType,
+    isArrayType,
+    isImageType,
+    isObjectType,
+    isGroupType,
+    isListType,
+    isActive,
+    active,
+    mounted,
+    container,
+    activate,
+    deactivate,
+  }
+}
+
+const group = function(props, context, dependencies)
+{
+  const {
+    el$,
+    isStatic,
+    isFileType,
+    isArrayType,
+    isImageType,
+    isObjectType,
+    isListType,
+    isActive,
+    active,
+    mounted,
+    container,
+    activate,
+    deactivate,
+  } = base(props, context, dependencies)
+  
+  // ============== COMPUTED ==============
+  
+  const isGroupType = computed(() => {
+    return true
+  })
+  
+  return {
+    el$,
+    isStatic,
+    isFileType,
+    isArrayType,
+    isImageType,
+    isObjectType,
+    isGroupType,
+    isListType,
     isActive,
     active,
     mounted,
@@ -238,6 +364,9 @@ const file = function(props, context, dependencies)
     el$,
     isStatic,
     isArrayType,
+    isObjectType,
+    isGroupType,
+    isListType,
     isActive,
     active,
     mounted,
@@ -262,6 +391,9 @@ const file = function(props, context, dependencies)
     isFileType,
     isArrayType,
     isImageType,
+    isObjectType,
+    isGroupType,
+    isListType,
     isActive,
     active,
     mounted,
@@ -278,6 +410,9 @@ const static_ = function(props, context, dependencies)
     isArrayType,
     isFileType,
     isImageType,
+    isObjectType,
+    isGroupType,
+    isListType,
     isActive,
     active,
     mounted,
@@ -298,6 +433,9 @@ const static_ = function(props, context, dependencies)
     isFileType,
     isArrayType,
     isImageType,
+    isObjectType,
+    isGroupType,
+    isListType,
     isActive,
     active,
     mounted,
@@ -313,6 +451,8 @@ const multiselect = list
 const tags = list
 
 export {
+  object,
+  group,
   list,
   checkboxgroup,
   dates,
