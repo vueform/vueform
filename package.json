@@ -12,8 +12,8 @@
     }
   ],
   "sideEffects": [
-    "./themes/tailwind/templates/**/*.vue",
-    "./themes/vueform/templates/**/*.vue"
+    "./themes/tailwind/templates/**/*.css",
+    "./themes/vueform/templates/**/*.css"
   ],
   "main": "./dist/index.mjs",
   "module": "./dist/index.mjs",
