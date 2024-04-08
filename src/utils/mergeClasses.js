@@ -134,7 +134,7 @@ export default class MergeClasses
   merge(merge, locals = false) {
     each(this.pick(merge, locals ? LOCALS_KEYS : MERGE_KEYS), (mergables, key) => {
       if (typeof mergables === 'function') {
-        mergables = mergables(this.component$.value.form$)
+        mergables = mergables(this.component$.value.form$, 'el$' in this.component$.value && typeof this.component$.value.el$ === 'object' ? this.component$.value.el$ : undefined)
       }
 
       switch (key) {
