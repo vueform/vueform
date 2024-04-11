@@ -7146,6 +7146,14 @@ var base$19 = function base(props, context) {
   var preparing = ref(false);
 
   /**
+   * The axios cancel token when a request is in progress.
+   *
+   * @type {boolean}
+   * @default false
+   */
+  var cancelToken = ref(null);
+
+  /**
    * The code of the currently selected language (eg. `en`).
    *
    * @type {string}
@@ -8104,12 +8112,14 @@ var base$19 = function base(props, context) {
           response = yield options.value.endpoint(_data, form$.value);
         } else {
           var _$this$$vueform$confi, _$this$$vueform$confi2;
+          cancelToken.value = services.value.axios.CancelToken.source();
           var url = ((_$this$$vueform$confi = $this.$vueform.config.endpoints[options.value.endpoint]) === null || _$this$$vueform$confi === void 0 ? void 0 : _$this$$vueform$confi.url) || options.value.endpoint;
           var _method = ((_$this$$vueform$confi2 = $this.$vueform.config.endpoints[options.value.endpoint]) === null || _$this$$vueform$confi2 === void 0 ? void 0 : _$this$$vueform$confi2.method) || options.value.method;
           response = yield services.value.axios.request({
             url,
             method: _method.toLowerCase(),
-            [_method.toLowerCase() === 'get' ? 'params' : 'data']: _data
+            [_method.toLowerCase() === 'get' ? 'params' : 'data']: _data,
+            cancelToken: cancelToken.value.token
           });
         }
         if (response && !(response instanceof Promise)) {
@@ -8133,6 +8143,10 @@ var base$19 = function base(props, context) {
             type: 'submit'
           }, form$.value);
           fire('response', error.response, form$.value);
+        } else if (services.value.axios.isCancel(error)) {
+          fire('error', error, {
+            type: 'cancel'
+          }, form$.value);
         } else {
           fire('error', error, {
             type: 'other'
@@ -8141,6 +8155,7 @@ var base$19 = function base(props, context) {
         console.error(error);
         return;
       } finally {
+        cancelToken.value = null;
         submitting.value = false;
       }
       fire('response', response, form$.value);
@@ -8149,6 +8164,18 @@ var base$19 = function base(props, context) {
       return _ref6.apply(this, arguments);
     };
   }();
+
+  /**
+   * Cancels the form request in progress.
+   *
+   * @returns {void}
+   */
+  var cancel = () => {
+    if (!cancelToken.value) {
+      return;
+    }
+    cancelToken.value.cancel();
+  };
 
   /**
   * Prepares all elements to submit (async).
@@ -8368,6 +8395,7 @@ var base$19 = function base(props, context) {
     selectedLanguage,
     submitting,
     preparing,
+    cancelToken,
     events,
     listeners,
     internalData,
@@ -8425,6 +8453,7 @@ var base$19 = function base(props, context) {
     convertFormData,
     submit,
     send,
+    cancel,
     disableValidation,
     enableValidation,
     enableConditions,
@@ -8510,6 +8539,7 @@ var VueformComponent = {
       selectedLanguage,
       submitting,
       preparing,
+      cancelToken,
       events,
       listeners,
       internalData,
@@ -8567,6 +8597,7 @@ var VueformComponent = {
       convertFormData,
       submit,
       send,
+      cancel,
       disableValidation,
       enableValidation,
       enableConditions,
@@ -8596,6 +8627,7 @@ var VueformComponent = {
       selectedLanguage,
       submitting,
       preparing,
+      cancelToken,
       events,
       listeners,
       internalData,
@@ -8653,6 +8685,7 @@ var VueformComponent = {
       convertFormData,
       submit,
       send,
+      cancel,
       disableValidation,
       enableValidation,
       enableConditions,

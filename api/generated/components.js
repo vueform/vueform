@@ -3627,6 +3627,14 @@ module.exports = {
         ],
         "description": "Whether the async process of preparing the elements for submit is currently in progress."
       },
+      "cancelToken": {
+        "public": true,
+        "default": "false",
+        "types": [
+          "boolean"
+        ],
+        "description": "The axios cancel token when a request is in progress."
+      },
       "events": {
         "public": false,
         "default": "[]",
@@ -4111,6 +4119,11 @@ module.exports = {
         "public": true,
         "returns": "Promise",
         "description": "Sends form data to [`endpoint`](#option-endpoint) with the selected [`method`](#option-method) (async)."
+      },
+      "cancel": {
+        "public": true,
+        "returns": "void",
+        "description": "Cancels the form request in progress."
       },
       "disableValidation": {
         "public": true,

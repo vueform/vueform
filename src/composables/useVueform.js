@@ -176,6 +176,14 @@ const base = function(props, context, dependencies = {})
   const preparing = ref(false)
 
   /**
+   * The axios cancel token when a request is in progress.
+   *
+   * @type {boolean}
+   * @default false
+   */
+  const cancelToken = ref(null)
+
+  /**
    * The code of the currently selected language (eg. `en`).
    *
    * @type {string}
@@ -1151,6 +1159,8 @@ const base = function(props, context, dependencies = {})
       if (typeof options.value.endpoint === 'function') {
         response = await options.value.endpoint(data, form$.value)
       } else {
+        cancelToken.value = services.value.axios.CancelToken.source()
+
         let url = $this.$vueform.config.endpoints[options.value.endpoint]?.url || options.value.endpoint
         let method = $this.$vueform.config.endpoints[options.value.endpoint]?.method || options.value.method
 
@@ -1158,6 +1168,7 @@ const base = function(props, context, dependencies = {})
           url,
           method: method.toLowerCase(),
           [method.toLowerCase() === 'get' ? 'params' : 'data']: data,
+          cancelToken: cancelToken.value.token,
         })
       }
 
@@ -1177,6 +1188,8 @@ const base = function(props, context, dependencies = {})
       if (error.response) {
         fire('error', error, { type: 'submit' }, form$.value)
         fire('response', error.response, form$.value)
+      } else if (services.value.axios.isCancel(error)) {
+        fire('error', error, { type: 'cancel' }, form$.value)
       } else {
         fire('error', error, { type: 'other' }, form$.value)
       }
@@ -1185,10 +1198,24 @@ const base = function(props, context, dependencies = {})
       return
     }
     finally {
+      cancelToken.value = null
       submitting.value = false
     }
 
     fire('response', response, form$.value)
+  }
+
+  /**
+   * Cancels the form request in progress.
+   *
+   * @returns {void}
+   */
+  const cancel = () => {
+    if (!cancelToken.value) {
+      return
+    }
+
+    cancelToken.value.cancel()
   }
 
   /**
@@ -1416,6 +1443,7 @@ const base = function(props, context, dependencies = {})
     selectedLanguage,
     submitting,
     preparing,
+    cancelToken,
     events,
     listeners,
     internalData,
@@ -1473,6 +1501,7 @@ const base = function(props, context, dependencies = {})
     convertFormData,
     submit,
     send,
+    cancel,
     disableValidation,
     enableValidation,
     enableConditions,

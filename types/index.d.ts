@@ -3540,6 +3540,7 @@ export declare class Vueform implements DefineComponent {
   selectedLanguage: string;
   submitting: boolean;
   preparing: boolean;
+  cancelToken: boolean;
   events: Array<any>;
   listeners: object;
   internalData: object;
@@ -3565,6 +3566,7 @@ export declare class Vueform implements DefineComponent {
   convertFormData: (data: object) => object;
   submit: () => Promise;
   send: () => Promise;
+  cancel: () => void;
   disableValidation: () => void;
   enableValidation: () => void;
   enableConditions: () => void;
