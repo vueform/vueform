@@ -1,5 +1,5 @@
 /*!
- * Vueform v1.9.4 (https://github.com/vueform/vueform)
+ * Vueform v1.9.5 (https://github.com/vueform/vueform)
  * Copyright (c) 2024 Adam Berecz <adam@vueform.com>
  * Licensed under the MIT License
  */
@@ -10009,7 +10009,7 @@ function shouldApplyPlugin (name, plugin) {
 }
 
 var name = "@vueform/vueform";
-var version$1 = "1.9.4";
+var version$1 = "1.9.5";
 var description = "Open-Source Form Framework for Vue";
 var homepage = "https://vueform.com";
 var license = "MIT";

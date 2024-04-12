@@ -1,5 +1,12 @@
 [//]: # (Don't use <tags>)
 
+## v1.9.5
+
+> `2024-04-12`
+
+### 🎉 Feature
+- Added `cancel` method to Vueform.
+
 ## v1.9.4
 
 > `2024-04-08`
