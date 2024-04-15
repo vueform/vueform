@@ -36,7 +36,7 @@ export default {
     },
     endpoint: {
       required: false,
-      type: [String, Function],
+      type: [String, Function, Promise],
       default: null
     },
     method: {

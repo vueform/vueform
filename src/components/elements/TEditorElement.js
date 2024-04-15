@@ -102,7 +102,7 @@ export default {
     },
     endpoint: {
       required: false,
-      type: [String, Function],
+      type: [String, Function, Promise],
       default: null,
       '@default': 'config.endpoints.attachment.url',
     },
