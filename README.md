@@ -24,28 +24,23 @@ It standardizes the entire form building process, while taking care of everythin
 
 ## Get Started
 
-Jump right into the project with ease using one of our boilerplates.
+Create your first Vueform project using your favourite package manager:
 
-<table>
-  <tbody>
-    <tr>
-      <td>
-        <h4><img src="https://raw.githubusercontent.com/vueform/vueform/main/.github/assets/vite.svg" height="21" /> Vite</h4>
-      </td>
-      <td>
-         <h4><a href="https://github.com/vueform/vite-starter">@vueform/vite-starter</a></h4>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <h4><img src="https://raw.githubusercontent.com/vueform/vueform/main/.github/assets/nuxt.svg" height="21" /> Nuxt</h4>
-      </td>
-      <td>
-         <h4><a href="https://github.com/vueform/nuxt-starter">@vueform/nuxt-starter</a></h4>
-      </td>
-    </tr>
-  </tbody>
-</table>
+```bash
+npm create vueform@latest
+```
+
+```bash
+yarn create vueform
+```
+
+```bash
+pnpm create vueform
+```
+
+```bash
+bun create vueform
+```
 
 #### Manual Installation
 
