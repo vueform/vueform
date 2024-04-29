@@ -42,6 +42,57 @@ export default {
       "unmounted"
     ]
   },
+  "captcha": {
+    "features": [
+      "baseElement",
+      "captcha",
+      "classes",
+      "columns",
+      "conditions",
+      "data_captcha",
+      "default",
+      "disabled",
+      "empty",
+      "events",
+      "fieldId",
+      "floating",
+      "focus",
+      "form$",
+      "genericName",
+      "input",
+      "label",
+      "layout",
+      "loading",
+      "nullValue",
+      "path",
+      "slots",
+      "templates",
+      "theme",
+      "validation",
+      "value",
+      "view_captcha",
+      "watchValue"
+    ],
+    "slots": [
+      "label",
+      "info",
+      "description",
+      "before",
+      "between",
+      "after"
+    ],
+    "events": [
+      "change",
+      "beforeCreate",
+      "created",
+      "beforeMount",
+      "mounted",
+      "beforeUpdate",
+      "updated",
+      "beforeUnmount",
+      "unmounted"
+    ]
+  },
   "checkbox": {
     "features": [
       "a11y_checkbox",

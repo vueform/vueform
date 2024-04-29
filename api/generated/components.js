@@ -4325,7 +4325,8 @@ module.exports = {
         "types": [
           "string",
           "boolean",
-          "function"
+          "function",
+          "promise"
         ]
       },
       "method": {
@@ -4569,6 +4570,27 @@ module.exports = {
         "default": null,
         "types": [
           "string"
+        ]
+      },
+      "providers": {
+        "required": false,
+        "default": null,
+        "types": [
+          "object"
+        ]
+      },
+      "useProviders": {
+        "required": false,
+        "default": null,
+        "types": [
+          "object"
+        ]
+      },
+      "providerOptions": {
+        "required": false,
+        "default": null,
+        "types": [
+          "object"
         ]
       },
       "onChange": {
@@ -5311,7 +5333,8 @@ module.exports = {
         "default": null,
         "types": [
           "string",
-          "function"
+          "function",
+          "promise"
         ]
       },
       "method": {

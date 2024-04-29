@@ -1,12 +1,16 @@
-export default class Recaptcha2Provider {
+import CaptchaProviderInterface from './CaptchaProviderInterface'
+
+export default class Recaptcha2Provider extends CaptchaProviderInterface {
   src = 'https://www.google.com/recaptcha/api.js?onload=recaptcha2LoadCallback&render=explicit'
   element
   options = {}
   el$ = {}
   id
   rendered = false
+  interval
 
   constructor(element, options, el$) {
+    super(element, options, el$)
     this.element = element
     this.options = options
     this.el$ = el$
@@ -14,10 +18,6 @@ export default class Recaptcha2Provider {
   }
 
   init() {
-    window.recaptcha2LoadCallback = () => {
-      this.render()
-    }
-
     this.loadScript()
   }
 
@@ -55,9 +55,24 @@ export default class Recaptcha2Provider {
   }
 
   loadScript() {
-    if (this.isScriptLoaded()) {
+    if (this.isCaptchaLoaded()) {
       this.render()
       return
+    }
+
+    if (this.isScriptAdded()) {
+      this.interval = setInterval(() => {
+        if (this.isCaptchaLoaded()) {
+          this.render()
+          clearInterval(this.interval)
+        }
+      }, 500)
+
+      return
+    }
+
+    window.recaptcha2LoadCallback = () => {
+      this.render()
     }
 
     var script = document.createElement('script')
@@ -73,11 +88,15 @@ export default class Recaptcha2Provider {
     }
   }
 
-  isScriptLoaded() {
+  isCaptchaLoaded() {
+    return typeof window !== 'undefined' && window.grecaptcha
+  }
+
+  isScriptAdded() {
     const scripts = document.getElementsByTagName('script')
 
     for (var i = 0; i < scripts.length; i++) {
-      if (scripts[i].src === this.src) {
+      if (scripts[i].src.includes('https://www.google.com/recaptcha/api.js')) {
         return true
       }
     }

@@ -118,7 +118,7 @@ const config = {
   },
   providerOptions: {
     recaptcha2: {
-      sitekey: '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI'
+      sitekey: '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI',
     }
   },
   services: {

@@ -36,6 +36,7 @@ declare module '@vueform/vueform/dist/tailwind' {
   const RadiogroupRadio_blocks: any;
   const RadiogroupRadio_tabs: any;
   const ButtonElement: any;
+  const CaptchaElement: any;
   const CheckboxElement: any;
   const CheckboxgroupElement: any;
   const CheckboxgroupElement_blocks: any;
@@ -115,6 +116,7 @@ declare module '@vueform/vueform/dist/tailwind' {
     RadiogroupRadio_blocks,
     RadiogroupRadio_tabs,
     ButtonElement,
+    CaptchaElement,
     CheckboxElement,
     CheckboxgroupElement,
     CheckboxgroupElement_blocks,

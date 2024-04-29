@@ -1924,6 +1924,48 @@ export default {
       }
     }
   },
+  "captcha": {
+    "base": {
+      "data": {
+        "Provider": {
+          "public": true,
+          "types": [
+            "object",
+            "null"
+          ],
+          "description": "The captcha provider instance."
+        }
+      },
+      "computed": {
+        "captchaOptions": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "The captcha options."
+        },
+        "shouldVerify": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the captcha should verify."
+        }
+      },
+      "methods": {
+        "initCaptcha": {
+          "public": true,
+          "returns": "void",
+          "description": "Inits captcha provider."
+        },
+        "destroyCaptcha": {
+          "public": true,
+          "returns": "void",
+          "description": "Destroys the captcha provider."
+        }
+      }
+    }
+  },
   "check": {
     "base": {
       "methods": {
@@ -2391,6 +2433,71 @@ export default {
       }
     },
     "select": {
+      "computed": {
+        "data": {
+          "public": true,
+          "types": [
+            "object"
+          ],
+          "description": "The value of the element in `{[name]: value}` value format. This gets merged with the parent component's data."
+        },
+        "requestData": {
+          "public": true,
+          "types": [
+            "object"
+          ],
+          "description": "Same as `data` property except that it only includes the element's value if [`submit`](#option-submit) is not disabled and [`available`](#property-available) is `true` (has no [`conditions`](#option-conditions) or they are fulfilled)."
+        }
+      },
+      "methods": {
+        "load": {
+          "public": true,
+          "returns": "void",
+          "description": "Loads value to the element using optional [`formatLoad`](#option-format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.",
+          "params": {
+            "value": {
+              "types": [
+                "any"
+              ],
+              "required": true,
+              "description": "the value to be loaded"
+            },
+            "format": {
+              "types": [
+                "boolean"
+              ],
+              "required": false,
+              "description": "whether the loaded value should be formatted with [`formatLoad`](#option-format-load) before setting the value of the element (default: `false`)"
+            }
+          }
+        },
+        "update": {
+          "public": true,
+          "returns": "void",
+          "description": "Updates the value of the element similarly to [`load`](#method-load), only that it can\\'t format data.",
+          "params": {
+            "value": {
+              "types": [
+                "any"
+              ],
+              "required": true,
+              "description": "the value to be set"
+            }
+          }
+        },
+        "clear": {
+          "public": true,
+          "returns": "void",
+          "description": "Clears the element's value."
+        },
+        "reset": {
+          "public": true,
+          "returns": "void",
+          "description": "Resets the element's value to [`default`](#option-default) (or empty if `default` is not provided). Also resets all the validation state for the element."
+        }
+      }
+    },
+    "captcha": {
       "computed": {
         "data": {
           "public": true,
@@ -6615,6 +6722,13 @@ export default {
             "any"
           ],
           "description": "Intermediary value between element's value and field's `v-model`. It is required when we need to transform the value format between the element and its field."
+        },
+        "isDefault": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element has its default value."
         }
       }
     },
@@ -6649,6 +6763,13 @@ export default {
             "any"
           ],
           "description": "Intermediary value between element's value and field's `v-model`. It is required when we need to transform the value format between the element and its field."
+        },
+        "isDefault": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element has its default value."
         }
       }
     },
@@ -6669,6 +6790,13 @@ export default {
             "any"
           ],
           "description": "The value of the element."
+        },
+        "isDefault": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element has its default value."
         }
       }
     },
@@ -6680,6 +6808,13 @@ export default {
             "any"
           ],
           "description": "The value of the element."
+        },
+        "isDefault": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element has its default value."
         }
       }
     },
@@ -6698,6 +6833,13 @@ export default {
             "any"
           ],
           "description": "Intermediary value between element's value and field's `v-model`. It is required when we need to transform the value format between the element and its field."
+        },
+        "isDefault": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element has its default value."
         }
       }
     },
@@ -6716,6 +6858,13 @@ export default {
             "any"
           ],
           "description": "Intermediary value between element's value and field's `v-model`. It is required when we need to transform the value format between the element and its field."
+        },
+        "isDefault": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element has its default value."
         }
       },
       "data": {
@@ -6750,6 +6899,13 @@ export default {
             "any"
           ],
           "description": "Intermediary value between element's value and field's `v-model`. It is required when we need to transform the value format between the element and its field."
+        },
+        "isDefault": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element has its default value."
         }
       },
       "data": {
@@ -6772,6 +6928,60 @@ export default {
   },
   "view": {
     "base": {
+      "data": {
+        "hidden": {
+          "public": true,
+          "default": "false",
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element was hidden programmatically with [`show()`](#method-show) or [`hide()`](#method-hide) methods."
+        }
+      },
+      "computed": {
+        "visible": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is visible. It's `false` when `available` or `active` is `false` or `hidden` is `true`."
+        },
+        "Size": {
+          "public": true,
+          "types": [
+            "string"
+          ],
+          "description": "The resolved size of the element and all of its child components."
+        },
+        "View": {
+          "public": true,
+          "types": [
+            "string"
+          ],
+          "description": "The name of the resolved view for the component and the default view for its child components. Child component views can be overridden with [`views`](#option-views) option. This one should be used to determine the component's view in class functions."
+        },
+        "Views": {
+          "public": false,
+          "types": [
+            "object"
+          ],
+          "description": "The name of the views for the components."
+        }
+      },
+      "methods": {
+        "hide": {
+          "public": true,
+          "returns": "void",
+          "description": "Hides the element."
+        },
+        "show": {
+          "public": true,
+          "returns": "void",
+          "description": "Shows the element if it was hidden with [`hide()`](#method-hide) method."
+        }
+      }
+    },
+    "captcha": {
       "data": {
         "hidden": {
           "public": true,

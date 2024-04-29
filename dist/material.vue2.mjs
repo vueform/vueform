@@ -1,5 +1,5 @@
 /*!
- * Vueform v1.9.5 (https://github.com/vueform/vueform)
+ * Vueform v1.9.6 (https://github.com/vueform/vueform)
  * Copyright (c) 2024 Adam Berecz <adam@vueform.com>
  * Licensed under the MIT License
  */
@@ -24,7 +24,7 @@ import { toRefs, getCurrentInstance, ref, computed, watch, nextTick, onMounted, 
 //
 //
 
-  var script$20 = {
+  var script$22 = {
     data() {
       return {
         merge: true,
@@ -62,8 +62,8 @@ function styleInject(css, ref) {
   }
 }
 
-var css_248z$1Z = "";
-styleInject(css_248z$1Z);
+var css_248z$1$ = "";
+styleInject(css_248z$1$);
 
 function normalizeComponent(template, style, script, scopeId, isFunctionalTemplate, moduleIdentifier /* server only */, shadowMode, createInjector, createInjectorSSR, createInjectorShadow) {
     if (typeof shadowMode !== 'boolean') {
@@ -141,9 +141,9 @@ function normalizeComponent(template, style, script, scopeId, isFunctionalTempla
 }
 
 /* script */
-const __vue_script__$20 = script$20;
+const __vue_script__$22 = script$22;
 /* template */
-var __vue_render__$X = function () {
+var __vue_render__$Y = function () {
   var _vm = this;
   var _h = _vm.$createElement;
   var _c = _vm._self._c || _h;
@@ -190,6 +190,141 @@ var __vue_render__$X = function () {
     2
   )
 };
+var __vue_staticRenderFns__$Y = [];
+__vue_render__$Y._withStripped = true;
+
+  /* style */
+  const __vue_inject_styles__$22 = undefined;
+  /* scoped */
+  const __vue_scope_id__$22 = undefined;
+  /* module identifier */
+  const __vue_module_identifier__$22 = undefined;
+  /* functional template */
+  const __vue_is_functional_template__$22 = false;
+  /* style inject */
+  
+  /* style inject SSR */
+  
+  /* style inject shadow dom */
+  
+
+  
+  const __vue_component__$22 = /*#__PURE__*/normalizeComponent(
+    { render: __vue_render__$Y, staticRenderFns: __vue_staticRenderFns__$Y },
+    __vue_inject_styles__$22,
+    __vue_script__$22,
+    __vue_scope_id__$22,
+    __vue_is_functional_template__$22,
+    __vue_module_identifier__$22,
+    false,
+    undefined,
+    undefined,
+    undefined
+  );
+
+  var Vueform$1 = __vue_component__$22;
+
+var script$21 = {
+    name: 'Vueform',
+    render: Vueform$1.render,
+    data() {
+      return {
+        merge: true,
+        defaultClasses: {
+          form: '',
+        }
+      }
+    },
+  };
+
+var css_248z$1_ = "";
+styleInject(css_248z$1_);
+
+/* script */
+const __vue_script__$21 = script$21;
+/* template */
+
+  /* style */
+  const __vue_inject_styles__$21 = undefined;
+  /* scoped */
+  const __vue_scope_id__$21 = undefined;
+  /* module identifier */
+  const __vue_module_identifier__$21 = undefined;
+  /* functional template */
+  const __vue_is_functional_template__$21 = undefined;
+  /* style inject */
+  
+  /* style inject SSR */
+  
+  /* style inject shadow dom */
+  
+
+  
+  const __vue_component__$21 = /*#__PURE__*/normalizeComponent(
+    {},
+    __vue_inject_styles__$21,
+    __vue_script__$21,
+    __vue_scope_id__$21,
+    __vue_is_functional_template__$21,
+    __vue_module_identifier__$21,
+    false,
+    undefined,
+    undefined,
+    undefined
+  );
+
+  var Vueform = __vue_component__$21;
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+  var script$20 = {
+    name: 'FormErrors',
+    data() {
+      return {
+        merge: true,
+        defaultClasses: {
+          container: '',
+          error: '',
+        }
+      }
+    }
+  };
+
+var css_248z$1Z = "";
+styleInject(css_248z$1Z);
+
+/* script */
+const __vue_script__$20 = script$20;
+/* template */
+var __vue_render__$X = function () {
+  var _vm = this;
+  var _h = _vm.$createElement;
+  var _c = _vm._self._c || _h;
+  return _c(
+    "div",
+    { class: _vm.classes.container },
+    _vm._l(_vm.errors, function (error, key, index) {
+      return _c("div", {
+        key: index,
+        class: _vm.classes.error,
+        domProps: { innerHTML: _vm._s(error) },
+      })
+    }),
+    0
+  )
+};
 var __vue_staticRenderFns__$X = [];
 __vue_render__$X._withStripped = true;
 
@@ -222,22 +357,30 @@ __vue_render__$X._withStripped = true;
     undefined
   );
 
-  var Vueform$1 = __vue_component__$20;
+  var FormErrors$1 = __vue_component__$20;
 
 var script$1$ = {
-    name: 'Vueform',
-    render: Vueform$1.render,
+    name: 'FormErrors',
+    render: FormErrors$1.render,
     data() {
       return {
         merge: true,
         defaultClasses: {
-          form: '',
+          container: 'vf-errors',
+          container_sm: 'vf-errors-sm',
+          container_md: '',
+          container_lg: 'vf-errors-lg',
+          error: '',
+          $container: (classes, { Size }) => ([
+            classes.container,
+            classes[`container_${Size}`],
+          ])
         }
       }
-    },
+    }
   };
 
-var css_248z$1Y = "";
+var css_248z$1Y = ".vf-errors {\n  background: var(--vf-bg-danger);\n  color: var(--vf-color-danger);\n  border-radius: var(--vf-radius-input);\n  margin-bottom: var(--vf-gutter);\n  font-size: var(--vf-font-size);\n  line-height: var(--vf-line-height);\n  letter-spacing: var(--vf-letter-spacing);\n  padding: 0.5rem 0.75rem;\n}\n\n.vf-errors.vf-errors-sm {\n  border-radius: var(--vf-radius-input-sm);\n  margin-bottom: var(--vf-gutter-sm);\n  font-size: var(--vf-font-size-sm);\n  line-height: var(--vf-line-height-sm);\n  letter-spacing: var(--vf-letter-spacing-sm);\n  padding: 0.5rem 0.75rem;\n}\n\n.vf-errors.vf-errors-lg {\n  border-radius: var(--vf-radius-input-lg);\n  margin-bottom: var(--vf-gutter-lg);\n  font-size: var(--vf-font-size-lg);\n  line-height: var(--vf-line-height-lg);\n  letter-spacing: var(--vf-letter-spacing-lg);\n  padding: 0.75rem 1rem;\n}";
 styleInject(css_248z$1Y);
 
 /* script */
@@ -273,7 +416,7 @@ const __vue_script__$1$ = script$1$;
     undefined
   );
 
-  var Vueform = __vue_component__$1$;
+  var FormErrors = __vue_component__$1$;
 
 //
 //
@@ -287,16 +430,15 @@ const __vue_script__$1$ = script$1$;
 //
 //
 //
-
 
   var script$1_ = {
-    name: 'FormErrors',
+    name: 'FormMessages',
     data() {
       return {
         merge: true,
         defaultClasses: {
           container: '',
-          error: '',
+          message: '',
         }
       }
     }
@@ -315,11 +457,11 @@ var __vue_render__$W = function () {
   return _c(
     "div",
     { class: _vm.classes.container },
-    _vm._l(_vm.errors, function (error, key, index) {
+    _vm._l(_vm.messages, function (message, key, index) {
       return _c("div", {
         key: index,
-        class: _vm.classes.error,
-        domProps: { innerHTML: _vm._s(error) },
+        class: _vm.classes.message,
+        domProps: { innerHTML: _vm._s(message) },
       })
     }),
     0
@@ -357,20 +499,20 @@ __vue_render__$W._withStripped = true;
     undefined
   );
 
-  var FormErrors$1 = __vue_component__$1_;
+  var FormMessages$1 = __vue_component__$1_;
 
 var script$1Z = {
-    name: 'FormErrors',
-    render: FormErrors$1.render,
+    name: 'FormMessages',
+    render: FormMessages$1.render,
     data() {
       return {
         merge: true,
         defaultClasses: {
-          container: 'vf-errors',
-          container_sm: 'vf-errors-sm',
+          container: 'vf-messages',
+          container_sm: 'vf-messages-sm',
           container_md: '',
-          container_lg: 'vf-errors-lg',
-          error: '',
+          container_lg: 'vf-messages-lg',
+          message: '',
           $container: (classes, { Size }) => ([
             classes.container,
             classes[`container_${Size}`],
@@ -380,7 +522,7 @@ var script$1Z = {
     }
   };
 
-var css_248z$1W = ".vf-errors {\n  background: var(--vf-bg-danger);\n  color: var(--vf-color-danger);\n  border-radius: var(--vf-radius-input);\n  margin-bottom: var(--vf-gutter);\n  font-size: var(--vf-font-size);\n  line-height: var(--vf-line-height);\n  letter-spacing: var(--vf-letter-spacing);\n  padding: 0.5rem 0.75rem;\n}\n\n.vf-errors.vf-errors-sm {\n  border-radius: var(--vf-radius-input-sm);\n  margin-bottom: var(--vf-gutter-sm);\n  font-size: var(--vf-font-size-sm);\n  line-height: var(--vf-line-height-sm);\n  letter-spacing: var(--vf-letter-spacing-sm);\n  padding: 0.5rem 0.75rem;\n}\n\n.vf-errors.vf-errors-lg {\n  border-radius: var(--vf-radius-input-lg);\n  margin-bottom: var(--vf-gutter-lg);\n  font-size: var(--vf-font-size-lg);\n  line-height: var(--vf-line-height-lg);\n  letter-spacing: var(--vf-letter-spacing-lg);\n  padding: 0.75rem 1rem;\n}";
+var css_248z$1W = ".vf-messages {\n  background: var(--vf-bg-success);\n  color: var(--vf-color-success);\n  border-radius: var(--vf-radius-input);\n  margin-bottom: var(--vf-gutter);\n  font-size: var(--vf-font-size);\n  line-height: var(--vf-line-height);\n  letter-spacing: var(--vf-letter-spacing);\n  padding: 0.5rem 0.75rem;\n}\n\n.vf-messages.vf-messages-sm {\n  border-radius: var(--vf-radius-input-sm);\n  margin-bottom: var(--vf-gutter-sm);\n  font-size: var(--vf-font-size-sm);\n  line-height: var(--vf-line-height-sm);\n  letter-spacing: var(--vf-letter-spacing-sm);\n  padding: 0.5rem 0.75rem;\n}\n\n.vf-messages.vf-messages-lg {\n  border-radius: var(--vf-radius-input-lg);\n  margin-bottom: var(--vf-gutter-lg);\n  font-size: var(--vf-font-size-lg);\n  line-height: var(--vf-line-height-lg);\n  letter-spacing: var(--vf-letter-spacing-lg);\n  padding: 0.75rem 1rem;\n}";
 styleInject(css_248z$1W);
 
 /* script */
@@ -416,8 +558,9 @@ const __vue_script__$1Z = script$1Z;
     undefined
   );
 
-  var FormErrors = __vue_component__$1Z;
+  var FormMessages = __vue_component__$1Z;
 
+//
 //
 //
 //
@@ -432,14 +575,13 @@ const __vue_script__$1Z = script$1Z;
 //
 
   var script$1Y = {
-    name: 'FormMessages',
+    name: 'FormLanguages',
     data() {
       return {
         merge: true,
         defaultClasses: {
           container: '',
-          message: '',
-        }
+        },
       }
     }
   };
@@ -455,16 +597,20 @@ var __vue_render__$V = function () {
   var _h = _vm.$createElement;
   var _c = _vm._self._c || _h;
   return _c(
-    "div",
+    "ul",
     { class: _vm.classes.container },
-    _vm._l(_vm.messages, function (message, key, index) {
-      return _c("div", {
-        key: index,
-        class: _vm.classes.message,
-        domProps: { innerHTML: _vm._s(message) },
-      })
-    }),
-    0
+    [
+      _vm._t("default", function () {
+        return _vm._l(_vm.languages, function (lang, code, key) {
+          return _c("FormLanguage", {
+            key: key,
+            attrs: { language: lang, code: code },
+            on: { select: _vm.handleSelect },
+          })
+        })
+      }),
+    ],
+    2
   )
 };
 var __vue_staticRenderFns__$V = [];
@@ -499,30 +645,29 @@ __vue_render__$V._withStripped = true;
     undefined
   );
 
-  var FormMessages$1 = __vue_component__$1Y;
+  var FormLanguages$1 = __vue_component__$1Y;
 
 var script$1X = {
-    name: 'FormMessages',
-    render: FormMessages$1.render,
+    name: 'FormLanguages',
+    render: FormLanguages$1.render,
     data() {
       return {
         merge: true,
         defaultClasses: {
-          container: 'vf-messages',
-          container_sm: 'vf-messages-sm',
+          container: 'vf-languages',
+          container_sm: 'vf-languages-sm',
           container_md: '',
-          container_lg: 'vf-messages-lg',
-          message: '',
+          container_lg: 'vf-languages-lg',
           $container: (classes, { Size }) => ([
             classes.container,
             classes[`container_${Size}`],
-          ])
+          ]),
         }
       }
     }
   };
 
-var css_248z$1U = ".vf-messages {\n  background: var(--vf-bg-success);\n  color: var(--vf-color-success);\n  border-radius: var(--vf-radius-input);\n  margin-bottom: var(--vf-gutter);\n  font-size: var(--vf-font-size);\n  line-height: var(--vf-line-height);\n  letter-spacing: var(--vf-letter-spacing);\n  padding: 0.5rem 0.75rem;\n}\n\n.vf-messages.vf-messages-sm {\n  border-radius: var(--vf-radius-input-sm);\n  margin-bottom: var(--vf-gutter-sm);\n  font-size: var(--vf-font-size-sm);\n  line-height: var(--vf-line-height-sm);\n  letter-spacing: var(--vf-letter-spacing-sm);\n  padding: 0.5rem 0.75rem;\n}\n\n.vf-messages.vf-messages-lg {\n  border-radius: var(--vf-radius-input-lg);\n  margin-bottom: var(--vf-gutter-lg);\n  font-size: var(--vf-font-size-lg);\n  line-height: var(--vf-line-height-lg);\n  letter-spacing: var(--vf-letter-spacing-lg);\n  padding: 0.75rem 1rem;\n}";
+var css_248z$1U = ".vf-languages {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  list-style: none;\n  padding: 0;\n  margin: 0 0 var(--vf-gutter-lg) 0;\n  font-size: var(--vf-font-size);\n  line-height: var(--vf-line-height);\n  letter-spacing: var(--vf-letter-spacing);\n}\n\n.vf-languages.vf-languages-sm {\n  margin: 0 0 var(--vf-gutter) 0;\n  font-size: var(--vf-font-size-sm);\n  line-height: var(--vf-line-height-sm);\n  letter-spacing: var(--vf-letter-spacing-sm);\n}\n\n.vf-languages.vf-languages-lg {\n  margin: 0 0 var(--vf-gutter-lg) 0;\n  font-size: var(--vf-font-size-lg);\n  line-height: var(--vf-line-height-lg);\n  letter-spacing: var(--vf-letter-spacing-lg);\n}";
 styleInject(css_248z$1U);
 
 /* script */
@@ -558,9 +703,8 @@ const __vue_script__$1X = script$1X;
     undefined
   );
 
-  var FormMessages = __vue_component__$1X;
+  var FormLanguages = __vue_component__$1X;
 
-//
 //
 //
 //
@@ -575,12 +719,13 @@ const __vue_script__$1X = script$1X;
 //
 
   var script$1W = {
-    name: 'FormLanguages',
+    name: 'FormLanguage',
     data() {
       return {
         merge: true,
         defaultClasses: {
           container: '',
+          wrapper: '',
         },
       }
     }
@@ -596,22 +741,22 @@ var __vue_render__$U = function () {
   var _vm = this;
   var _h = _vm.$createElement;
   var _c = _vm._self._c || _h;
-  return _c(
-    "ul",
-    { class: _vm.classes.container },
-    [
-      _vm._t("default", function () {
-        return _vm._l(_vm.languages, function (lang, code, key) {
-          return _c("FormLanguage", {
-            key: key,
-            attrs: { language: lang, code: code },
-            on: { select: _vm.handleSelect },
-          })
-        })
-      }),
-    ],
-    2
-  )
+  return _c("li", { class: _vm.classes.container }, [
+    _c(
+      "a",
+      {
+        class: _vm.classes.wrapper,
+        attrs: { href: "#" },
+        on: {
+          click: function ($event) {
+            $event.preventDefault();
+            return _vm.select.apply(null, arguments)
+          },
+        },
+      },
+      [_vm._v("\n    " + _vm._s(_vm.language) + "\n  ")]
+    ),
+  ])
 };
 var __vue_staticRenderFns__$U = [];
 __vue_render__$U._withStripped = true;
@@ -645,29 +790,33 @@ __vue_render__$U._withStripped = true;
     undefined
   );
 
-  var FormLanguages$1 = __vue_component__$1W;
+  var FormLanguage$1 = __vue_component__$1W;
 
 var script$1V = {
-    name: 'FormLanguages',
-    render: FormLanguages$1.render,
+    name: 'FormLanguage',
+    render: FormLanguage$1.render,
     data() {
       return {
         merge: true,
         defaultClasses: {
-          container: 'vf-languages',
-          container_sm: 'vf-languages-sm',
-          container_md: '',
-          container_lg: 'vf-languages-lg',
-          $container: (classes, { Size }) => ([
-            classes.container,
-            classes[`container_${Size}`],
+          container: 'vf-language',
+          wrapper: 'vf-language-wrapper',
+          wrapper_sm: 'vf-language-wrapper-sm',
+          wrapper_md: '',
+          wrapper_lg: 'vf-language-wrapper-lg',
+          wrapper_active: 'vf-language-wrapper-active',
+          wrapper_inactive: '',
+          $wrapper: (classes, { selected, Size }) => ([
+            classes.wrapper,
+            classes[`wrapper_${Size}`],
+            selected ? classes.wrapper_active : classes.wrapper_inactive
           ]),
         }
       }
     }
   };
 
-var css_248z$1S = ".vf-languages {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  list-style: none;\n  padding: 0;\n  margin: 0 0 var(--vf-gutter-lg) 0;\n  font-size: var(--vf-font-size);\n  line-height: var(--vf-line-height);\n  letter-spacing: var(--vf-letter-spacing);\n}\n\n.vf-languages.vf-languages-sm {\n  margin: 0 0 var(--vf-gutter) 0;\n  font-size: var(--vf-font-size-sm);\n  line-height: var(--vf-line-height-sm);\n  letter-spacing: var(--vf-letter-spacing-sm);\n}\n\n.vf-languages.vf-languages-lg {\n  margin: 0 0 var(--vf-gutter-lg) 0;\n  font-size: var(--vf-font-size-lg);\n  line-height: var(--vf-line-height-lg);\n  letter-spacing: var(--vf-letter-spacing-lg);\n}";
+var css_248z$1S = ".vf-language {\n  flex-grow: 1;\n  flex-shrink: 1;\n  width: 100%;\n}\n\n.vf-language-wrapper {\n  padding: 0.5rem 1rem;\n  display: block;\n  margin-left: 1px;\n  margin-right: 1px;\n  text-decoration: none;\n  border-bottom: 2px solid transparent;\n  color: var(--vf-color-input);\n  text-align: center;\n}\n\n.vf-language-wrapper:hover {\n  text-decoration: none;\n}\n\n.vf-language-wrapper.vf-language-wrapper-sm {\n  padding: 0.375rem 0.875rem;\n}\n\n.vf-language-wrapper.vf-language-wrapper-lg {\n  padding: 0.5rem 1rem;\n}\n\n.vf-language-wrapper.vf-language-wrapper-active {\n  border-color: var(--vf-primary);\n}\n\n.vf-language-wrapper.vf-language-wrapper-invalid {\n  border-color: var(--vf-danger);\n  color: var(--vf-color-danger);\n}";
 styleInject(css_248z$1S);
 
 /* script */
@@ -703,8 +852,10 @@ const __vue_script__$1V = script$1V;
     undefined
   );
 
-  var FormLanguages = __vue_component__$1V;
+  var FormLanguage = __vue_component__$1V;
 
+//
+//
 //
 //
 //
@@ -719,16 +870,15 @@ const __vue_script__$1V = script$1V;
 //
 
   var script$1U = {
-    name: 'FormLanguage',
+    name: 'FormTabs',
     data() {
       return {
         merge: true,
         defaultClasses: {
           container: '',
-          wrapper: '',
-        },
+        }
       }
-    }
+    },
   };
 
 var css_248z$1R = "";
@@ -741,22 +891,26 @@ var __vue_render__$T = function () {
   var _vm = this;
   var _h = _vm.$createElement;
   var _c = _vm._self._c || _h;
-  return _c("li", { class: _vm.classes.container }, [
-    _c(
-      "a",
-      {
-        class: _vm.classes.wrapper,
-        attrs: { href: "#" },
-        on: {
-          click: function ($event) {
-            $event.preventDefault();
-            return _vm.select.apply(null, arguments)
-          },
-        },
-      },
-      [_vm._v("\n    " + _vm._s(_vm.language) + "\n  ")]
-    ),
-  ])
+  return _c(
+    "ul",
+    { class: _vm.classes.container, attrs: { role: "tablist" } },
+    [
+      _vm._t("default", function () {
+        return _vm._l(_vm.tabs, function (tab, name, i) {
+          return _c(
+            "FormTab",
+            _vm._b(
+              { key: name, attrs: { name: name, index: i } },
+              "FormTab",
+              tab,
+              false
+            )
+          )
+        })
+      }),
+    ],
+    2
+  )
 };
 var __vue_staticRenderFns__$T = [];
 __vue_render__$T._withStripped = true;
@@ -790,33 +944,29 @@ __vue_render__$T._withStripped = true;
     undefined
   );
 
-  var FormLanguage$1 = __vue_component__$1U;
+  var FormTabs$1 = __vue_component__$1U;
 
 var script$1T = {
-    name: 'FormLanguage',
-    render: FormLanguage$1.render,
+    name: 'FormTabs',
+    render: FormTabs$1.render,
     data() {
       return {
         merge: true,
         defaultClasses: {
-          container: 'vf-language',
-          wrapper: 'vf-language-wrapper',
-          wrapper_sm: 'vf-language-wrapper-sm',
-          wrapper_md: '',
-          wrapper_lg: 'vf-language-wrapper-lg',
-          wrapper_active: 'vf-language-wrapper-active',
-          wrapper_inactive: '',
-          $wrapper: (classes, { selected, Size }) => ([
-            classes.wrapper,
-            classes[`wrapper_${Size}`],
-            selected ? classes.wrapper_active : classes.wrapper_inactive
+          container: 'vf-tabs',
+          container_sm: 'vf-tabs-sm',
+          container_md: '',
+          container_lg: 'vf-tabs-lg',
+          $container: (classes, { Size }) => ([
+            classes.container,
+            classes[`container_${Size}`],
           ]),
         }
       }
     }
   };
 
-var css_248z$1Q = ".vf-language {\n  flex-grow: 1;\n  flex-shrink: 1;\n  width: 100%;\n}\n\n.vf-language-wrapper {\n  padding: 0.5rem 1rem;\n  display: block;\n  margin-left: 1px;\n  margin-right: 1px;\n  text-decoration: none;\n  border-bottom: 2px solid transparent;\n  color: var(--vf-color-input);\n  text-align: center;\n}\n\n.vf-language-wrapper:hover {\n  text-decoration: none;\n}\n\n.vf-language-wrapper.vf-language-wrapper-sm {\n  padding: 0.375rem 0.875rem;\n}\n\n.vf-language-wrapper.vf-language-wrapper-lg {\n  padding: 0.5rem 1rem;\n}\n\n.vf-language-wrapper.vf-language-wrapper-active {\n  border-color: var(--vf-primary);\n}\n\n.vf-language-wrapper.vf-language-wrapper-invalid {\n  border-color: var(--vf-danger);\n  color: var(--vf-color-danger);\n}";
+var css_248z$1Q = ".vf-tabs {\n  display: flex;\n  align-items: flex-end;\n  list-style: none;\n  padding: 0;\n  margin: 0 0 var(--vf-gutter) 0;\n  font-size: var(--vf-font-size);\n  line-height: var(--vf-line-height);\n  letter-spacing: var(--vf-letter-spacing);\n}\n\n.vf-tabs.vf-tabs-sm {\n  margin: 0 0 var(--vf-gutter) 0;\n  font-size: var(--vf-font-size-sm);\n  line-height: var(--vf-line-height-sm);\n  letter-spacing: var(--vf-letter-spacing-sm);\n}\n\n.vf-tabs.vf-tabs-lg {\n  margin: 0 0 var(--vf-gutter-lg) 0;\n  font-size: var(--vf-font-size-lg);\n  line-height: var(--vf-line-height-lg);\n  letter-spacing: var(--vf-letter-spacing-lg);\n}";
 styleInject(css_248z$1Q);
 
 /* script */
@@ -852,8 +1002,17 @@ const __vue_script__$1T = script$1T;
     undefined
   );
 
-  var FormLanguage = __vue_component__$1T;
+  var FormTabs = __vue_component__$1T;
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -870,165 +1029,6 @@ const __vue_script__$1T = script$1T;
 //
 
   var script$1S = {
-    name: 'FormTabs',
-    data() {
-      return {
-        merge: true,
-        defaultClasses: {
-          container: '',
-        }
-      }
-    },
-  };
-
-var css_248z$1P = "";
-styleInject(css_248z$1P);
-
-/* script */
-const __vue_script__$1S = script$1S;
-/* template */
-var __vue_render__$S = function () {
-  var _vm = this;
-  var _h = _vm.$createElement;
-  var _c = _vm._self._c || _h;
-  return _c(
-    "ul",
-    { class: _vm.classes.container, attrs: { role: "tablist" } },
-    [
-      _vm._t("default", function () {
-        return _vm._l(_vm.tabs, function (tab, name, i) {
-          return _c(
-            "FormTab",
-            _vm._b(
-              { key: name, attrs: { name: name, index: i } },
-              "FormTab",
-              tab,
-              false
-            )
-          )
-        })
-      }),
-    ],
-    2
-  )
-};
-var __vue_staticRenderFns__$S = [];
-__vue_render__$S._withStripped = true;
-
-  /* style */
-  const __vue_inject_styles__$1S = undefined;
-  /* scoped */
-  const __vue_scope_id__$1S = undefined;
-  /* module identifier */
-  const __vue_module_identifier__$1S = undefined;
-  /* functional template */
-  const __vue_is_functional_template__$1S = false;
-  /* style inject */
-  
-  /* style inject SSR */
-  
-  /* style inject shadow dom */
-  
-
-  
-  const __vue_component__$1S = /*#__PURE__*/normalizeComponent(
-    { render: __vue_render__$S, staticRenderFns: __vue_staticRenderFns__$S },
-    __vue_inject_styles__$1S,
-    __vue_script__$1S,
-    __vue_scope_id__$1S,
-    __vue_is_functional_template__$1S,
-    __vue_module_identifier__$1S,
-    false,
-    undefined,
-    undefined,
-    undefined
-  );
-
-  var FormTabs$1 = __vue_component__$1S;
-
-var script$1R = {
-    name: 'FormTabs',
-    render: FormTabs$1.render,
-    data() {
-      return {
-        merge: true,
-        defaultClasses: {
-          container: 'vf-tabs',
-          container_sm: 'vf-tabs-sm',
-          container_md: '',
-          container_lg: 'vf-tabs-lg',
-          $container: (classes, { Size }) => ([
-            classes.container,
-            classes[`container_${Size}`],
-          ]),
-        }
-      }
-    }
-  };
-
-var css_248z$1O = ".vf-tabs {\n  display: flex;\n  align-items: flex-end;\n  list-style: none;\n  padding: 0;\n  margin: 0 0 var(--vf-gutter) 0;\n  font-size: var(--vf-font-size);\n  line-height: var(--vf-line-height);\n  letter-spacing: var(--vf-letter-spacing);\n}\n\n.vf-tabs.vf-tabs-sm {\n  margin: 0 0 var(--vf-gutter) 0;\n  font-size: var(--vf-font-size-sm);\n  line-height: var(--vf-line-height-sm);\n  letter-spacing: var(--vf-letter-spacing-sm);\n}\n\n.vf-tabs.vf-tabs-lg {\n  margin: 0 0 var(--vf-gutter-lg) 0;\n  font-size: var(--vf-font-size-lg);\n  line-height: var(--vf-line-height-lg);\n  letter-spacing: var(--vf-letter-spacing-lg);\n}";
-styleInject(css_248z$1O);
-
-/* script */
-const __vue_script__$1R = script$1R;
-/* template */
-
-  /* style */
-  const __vue_inject_styles__$1R = undefined;
-  /* scoped */
-  const __vue_scope_id__$1R = undefined;
-  /* module identifier */
-  const __vue_module_identifier__$1R = undefined;
-  /* functional template */
-  const __vue_is_functional_template__$1R = undefined;
-  /* style inject */
-  
-  /* style inject SSR */
-  
-  /* style inject shadow dom */
-  
-
-  
-  const __vue_component__$1R = /*#__PURE__*/normalizeComponent(
-    {},
-    __vue_inject_styles__$1R,
-    __vue_script__$1R,
-    __vue_scope_id__$1R,
-    __vue_is_functional_template__$1R,
-    __vue_module_identifier__$1R,
-    false,
-    undefined,
-    undefined,
-    undefined
-  );
-
-  var FormTabs = __vue_component__$1R;
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-  var script$1Q = {
     name: 'FormTab',
     data() {
       return {
@@ -1041,13 +1041,13 @@ const __vue_script__$1R = script$1R;
     }
   };
 
-var css_248z$1N = "";
-styleInject(css_248z$1N);
+var css_248z$1P = "";
+styleInject(css_248z$1P);
 
 /* script */
-const __vue_script__$1Q = script$1Q;
+const __vue_script__$1S = script$1S;
 /* template */
-var __vue_render__$R = function () {
+var __vue_render__$S = function () {
   var _vm = this;
   var _h = _vm.$createElement;
   var _c = _vm._self._c || _h;
@@ -1114,6 +1114,174 @@ var __vue_render__$R = function () {
     ]
   )
 };
+var __vue_staticRenderFns__$S = [];
+__vue_render__$S._withStripped = true;
+
+  /* style */
+  const __vue_inject_styles__$1S = undefined;
+  /* scoped */
+  const __vue_scope_id__$1S = undefined;
+  /* module identifier */
+  const __vue_module_identifier__$1S = undefined;
+  /* functional template */
+  const __vue_is_functional_template__$1S = false;
+  /* style inject */
+  
+  /* style inject SSR */
+  
+  /* style inject shadow dom */
+  
+
+  
+  const __vue_component__$1S = /*#__PURE__*/normalizeComponent(
+    { render: __vue_render__$S, staticRenderFns: __vue_staticRenderFns__$S },
+    __vue_inject_styles__$1S,
+    __vue_script__$1S,
+    __vue_scope_id__$1S,
+    __vue_is_functional_template__$1S,
+    __vue_module_identifier__$1S,
+    false,
+    undefined,
+    undefined,
+    undefined
+  );
+
+  var FormTab$1 = __vue_component__$1S;
+
+var script$1R = {
+    name: 'FormTab',
+    render: FormTab$1.render,
+    data() {
+      return {
+        merge: true,
+        defaultClasses: {
+          container: 'vf-tab',
+          wrapper: 'vf-tab-wrapper',
+          wrapper_active: 'vf-tab-wrapper-active',
+          wrapper_inactive: '',
+          wrapper_valid: '',
+          wrapper_invalid: 'vf-tab-wrapper-invalid',
+          wrapper_sm: 'vf-tab-wrapper-sm',
+          wrapper_md: '',
+          wrapper_lg: 'vf-tab-wrapper-lg',
+          $container: (classes, {}) => ([
+            classes.container,
+          ]),
+          $wrapper: (classes, { active, invalid, Size }) => ([
+            classes.wrapper,
+            classes[`wrapper_${Size}`],
+            active ? classes.wrapper_active : classes.wrapper_inactive,
+            invalid ? classes.wrapper_invalid : classes.wrapper_valid,
+          ]),
+        }
+      }
+    }
+  };
+
+var css_248z$1O = ".vf-tab-wrapper {\n  padding: 0.5rem 1rem;\n  display: block;\n  margin-left: 1px;\n  margin-right: 1px;\n  text-decoration: none;\n  border-bottom: 2px solid transparent;\n  color: var(--vf-color-input);\n}\n\n.vf-tab-wrapper:hover {\n  text-decoration: none;\n}\n\n.vf-tab-wrapper.vf-tab-wrapper-sm {\n  padding: 0.375rem 0.875rem;\n}\n\n.vf-tab-wrapper.vf-tab-wrapper-lg {\n  padding: 0.5rem 1rem;\n}\n\n.vf-tab-wrapper.vf-tab-wrapper-active {\n  border-color: var(--vf-primary);\n}\n\n.vf-tab-wrapper.vf-tab-wrapper-invalid {\n  border-color: var(--vf-danger);\n  color: var(--vf-color-danger);\n}";
+styleInject(css_248z$1O);
+
+/* script */
+const __vue_script__$1R = script$1R;
+/* template */
+
+  /* style */
+  const __vue_inject_styles__$1R = undefined;
+  /* scoped */
+  const __vue_scope_id__$1R = undefined;
+  /* module identifier */
+  const __vue_module_identifier__$1R = undefined;
+  /* functional template */
+  const __vue_is_functional_template__$1R = undefined;
+  /* style inject */
+  
+  /* style inject SSR */
+  
+  /* style inject shadow dom */
+  
+
+  
+  const __vue_component__$1R = /*#__PURE__*/normalizeComponent(
+    {},
+    __vue_inject_styles__$1R,
+    __vue_script__$1R,
+    __vue_scope_id__$1R,
+    __vue_is_functional_template__$1R,
+    __vue_module_identifier__$1R,
+    false,
+    undefined,
+    undefined,
+    undefined
+  );
+
+  var FormTab = __vue_component__$1R;
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+  var script$1Q = {
+    name: 'FormSteps',
+    data() {
+      return {
+        merge: true,
+        defaultClasses: {
+          container: '',
+          wrapper: '',
+        }
+      }
+    },
+  };
+
+var css_248z$1N = "";
+styleInject(css_248z$1N);
+
+/* script */
+const __vue_script__$1Q = script$1Q;
+/* template */
+var __vue_render__$R = function () {
+  var _vm = this;
+  var _h = _vm.$createElement;
+  var _c = _vm._self._c || _h;
+  return _c(
+    "div",
+    { class: _vm.classes.container, attrs: { role: "tablist" } },
+    [
+      _c(
+        "ul",
+        { class: _vm.classes.wrapper },
+        [
+          _vm._t("default", function () {
+            return _vm._l(_vm.steps, function (step, name) {
+              return _c(
+                "FormStep",
+                _vm._b(
+                  { key: name, attrs: { name: name } },
+                  "FormStep",
+                  step,
+                  false
+                )
+              )
+            })
+          }),
+        ],
+        2
+      ),
+    ]
+  )
+};
 var __vue_staticRenderFns__$R = [];
 __vue_render__$R._withStripped = true;
 
@@ -1146,39 +1314,30 @@ __vue_render__$R._withStripped = true;
     undefined
   );
 
-  var FormTab$1 = __vue_component__$1Q;
+  var FormSteps$1 = __vue_component__$1Q;
 
 var script$1P = {
-    name: 'FormTab',
-    render: FormTab$1.render,
+    name: 'FormSteps',
+    render: FormSteps$1.render,
     data() {
       return {
         merge: true,
         defaultClasses: {
-          container: 'vf-tab',
-          wrapper: 'vf-tab-wrapper',
-          wrapper_active: 'vf-tab-wrapper-active',
-          wrapper_inactive: '',
-          wrapper_valid: '',
-          wrapper_invalid: 'vf-tab-wrapper-invalid',
-          wrapper_sm: 'vf-tab-wrapper-sm',
-          wrapper_md: '',
-          wrapper_lg: 'vf-tab-wrapper-lg',
-          $container: (classes, {}) => ([
+          container: 'vf-steps-container',
+          container_sm: 'vf-steps-container-sm',
+          container_md: '',
+          container_lg: 'vf-steps-container-lg',
+          wrapper: 'vf-steps-wrapper',
+          $container: (classes, { Size }) => ([
             classes.container,
-          ]),
-          $wrapper: (classes, { active, invalid, Size }) => ([
-            classes.wrapper,
-            classes[`wrapper_${Size}`],
-            active ? classes.wrapper_active : classes.wrapper_inactive,
-            invalid ? classes.wrapper_invalid : classes.wrapper_valid,
+            classes[`container_${Size}`],
           ]),
         }
       }
     }
   };
 
-var css_248z$1M = ".vf-tab-wrapper {\n  padding: 0.5rem 1rem;\n  display: block;\n  margin-left: 1px;\n  margin-right: 1px;\n  text-decoration: none;\n  border-bottom: 2px solid transparent;\n  color: var(--vf-color-input);\n}\n\n.vf-tab-wrapper:hover {\n  text-decoration: none;\n}\n\n.vf-tab-wrapper.vf-tab-wrapper-sm {\n  padding: 0.375rem 0.875rem;\n}\n\n.vf-tab-wrapper.vf-tab-wrapper-lg {\n  padding: 0.5rem 1rem;\n}\n\n.vf-tab-wrapper.vf-tab-wrapper-active {\n  border-color: var(--vf-primary);\n}\n\n.vf-tab-wrapper.vf-tab-wrapper-invalid {\n  border-color: var(--vf-danger);\n  color: var(--vf-color-danger);\n}";
+var css_248z$1M = ".vf-steps-container {\n  width: 100%;\n  position: relative;\n  margin: 0 0 var(--vf-gutter-lg) 0;\n  font-size: var(--vf-font-size);\n  line-height: var(--vf-line-height);\n  letter-spacing: var(--vf-letter-spacing);\n}\n\n.vf-steps-container:before {\n  content: \" \";\n  display: inline-block;\n  background: var(--vf-bg-passive);\n  position: absolute;\n  top: 0.375rem;\n  left: 0.125rem;\n  right: 0.125rem;\n  height: 0.25rem;\n}\n\n.vf-steps-container.vf-steps-container-sm {\n  margin: 0 0 var(--vf-gutter) 0;\n  font-size: var(--vf-font-size-sm);\n  line-height: var(--vf-line-height-sm);\n  letter-spacing: var(--vf-letter-spacing-sm);\n}\n\n.vf-steps-container.vf-steps-container-lg {\n  margin: 0 0 var(--vf-gutter-lg) 0;\n  font-size: var(--vf-font-size-lg);\n  line-height: var(--vf-line-height-lg);\n  letter-spacing: var(--vf-letter-spacing-lg);\n}\n\n.vf-steps-wrapper {\n  list-style: none;\n  display: flex;\n  justify-content: space-between;\n  padding: 0;\n  overflow-x: auto;\n}";
 styleInject(css_248z$1M);
 
 /* script */
@@ -1214,15 +1373,8 @@ const __vue_script__$1P = script$1P;
     undefined
   );
 
-  var FormTab = __vue_component__$1P;
+  var FormSteps = __vue_component__$1P;
 
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -1233,16 +1385,15 @@ const __vue_script__$1P = script$1P;
 //
 
   var script$1O = {
-    name: 'FormSteps',
+    name: 'FormStepsControls',
     data() {
       return {
         merge: true,
         defaultClasses: {
           container: '',
-          wrapper: '',
         }
       }
-    },
+    }
   };
 
 var css_248z$1L = "";
@@ -1257,29 +1408,30 @@ var __vue_render__$Q = function () {
   var _c = _vm._self._c || _h;
   return _c(
     "div",
-    { class: _vm.classes.container, attrs: { role: "tablist" } },
+    { class: _vm.classes.container },
     [
       _c(
-        "ul",
-        { class: _vm.classes.wrapper },
-        [
-          _vm._t("default", function () {
-            return _vm._l(_vm.steps, function (step, name) {
-              return _c(
-                "FormStep",
-                _vm._b(
-                  { key: name, attrs: { name: name } },
-                  "FormStep",
-                  step,
-                  false
-                )
-              )
-            })
-          }),
-        ],
+        "FormStepsControl",
+        { attrs: { type: "previous", labels: _vm.labels } },
+        [_vm._t("previous")],
         2
       ),
-    ]
+      _vm._v(" "),
+      _c(
+        "FormStepsControl",
+        { attrs: { type: "next", labels: _vm.labels } },
+        [_vm._t("next")],
+        2
+      ),
+      _vm._v(" "),
+      _c(
+        "FormStepsControl",
+        { attrs: { type: "finish", labels: _vm.labels } },
+        [_vm._t("finish")],
+        2
+      ),
+    ],
+    1
   )
 };
 var __vue_staticRenderFns__$Q = [];
@@ -1314,20 +1466,19 @@ __vue_render__$Q._withStripped = true;
     undefined
   );
 
-  var FormSteps$1 = __vue_component__$1O;
+  var FormStepsControls$1 = __vue_component__$1O;
 
 var script$1N = {
-    name: 'FormSteps',
-    render: FormSteps$1.render,
+    name: 'FormStepsControls',
+    render: FormStepsControls$1.render,
     data() {
       return {
         merge: true,
         defaultClasses: {
-          container: 'vf-steps-container',
-          container_sm: 'vf-steps-container-sm',
+          container: 'vf-steps-controls',
+          container_sm: 'vf-steps-controls-sm',
           container_md: '',
-          container_lg: 'vf-steps-container-lg',
-          wrapper: 'vf-steps-wrapper',
+          container_lg: 'vf-steps-controls-lg',
           $container: (classes, { Size }) => ([
             classes.container,
             classes[`container_${Size}`],
@@ -1337,7 +1488,7 @@ var script$1N = {
     }
   };
 
-var css_248z$1K = ".vf-steps-container {\n  width: 100%;\n  position: relative;\n  margin: 0 0 var(--vf-gutter-lg) 0;\n  font-size: var(--vf-font-size);\n  line-height: var(--vf-line-height);\n  letter-spacing: var(--vf-letter-spacing);\n}\n\n.vf-steps-container:before {\n  content: \" \";\n  display: inline-block;\n  background: var(--vf-bg-passive);\n  position: absolute;\n  top: 0.375rem;\n  left: 0.125rem;\n  right: 0.125rem;\n  height: 0.25rem;\n}\n\n.vf-steps-container.vf-steps-container-sm {\n  margin: 0 0 var(--vf-gutter) 0;\n  font-size: var(--vf-font-size-sm);\n  line-height: var(--vf-line-height-sm);\n  letter-spacing: var(--vf-letter-spacing-sm);\n}\n\n.vf-steps-container.vf-steps-container-lg {\n  margin: 0 0 var(--vf-gutter-lg) 0;\n  font-size: var(--vf-font-size-lg);\n  line-height: var(--vf-line-height-lg);\n  letter-spacing: var(--vf-letter-spacing-lg);\n}\n\n.vf-steps-wrapper {\n  list-style: none;\n  display: flex;\n  justify-content: space-between;\n  padding: 0;\n  overflow-x: auto;\n}";
+var css_248z$1K = ".vf-steps-controls {\n  display: flex;\n  justify-content: space-between;\n  margin: var(--vf-gutter-lg) 0 0 0;\n  font-size: var(--vf-font-size);\n  line-height: var(--vf-line-height);\n  letter-spacing: var(--vf-letter-spacing);\n}\n\n.vf-steps-controls.vf-steps-controls-sm {\n  margin: var(--vf-gutter) 0 0 0;\n  font-size: var(--vf-font-size-sm);\n  line-height: var(--vf-line-height-sm);\n  letter-spacing: var(--vf-letter-spacing-md);\n}\n\n.vf-steps-controls.vf-steps-controls-lg {\n  margin: var(--vf-gutter-lg) 0 0 0;\n  font-size: var(--vf-font-size-lg);\n  line-height: var(--vf-line-height-lg);\n  letter-spacing: var(--vf-letter-spacing-lg);\n}";
 styleInject(css_248z$1K);
 
 /* script */
@@ -1373,8 +1524,32 @@ const __vue_script__$1N = script$1N;
     undefined
   );
 
-  var FormSteps = __vue_component__$1N;
+  var FormStepsControls = __vue_component__$1N;
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -1385,12 +1560,12 @@ const __vue_script__$1N = script$1N;
 //
 
   var script$1M = {
-    name: 'FormStepsControls',
+    name: 'FormStepsControl',
     data() {
       return {
         merge: true,
         defaultClasses: {
-          container: '',
+          button: '',
         }
       }
     }
@@ -1403,181 +1578,6 @@ styleInject(css_248z$1J);
 const __vue_script__$1M = script$1M;
 /* template */
 var __vue_render__$P = function () {
-  var _vm = this;
-  var _h = _vm.$createElement;
-  var _c = _vm._self._c || _h;
-  return _c(
-    "div",
-    { class: _vm.classes.container },
-    [
-      _c(
-        "FormStepsControl",
-        { attrs: { type: "previous", labels: _vm.labels } },
-        [_vm._t("previous")],
-        2
-      ),
-      _vm._v(" "),
-      _c(
-        "FormStepsControl",
-        { attrs: { type: "next", labels: _vm.labels } },
-        [_vm._t("next")],
-        2
-      ),
-      _vm._v(" "),
-      _c(
-        "FormStepsControl",
-        { attrs: { type: "finish", labels: _vm.labels } },
-        [_vm._t("finish")],
-        2
-      ),
-    ],
-    1
-  )
-};
-var __vue_staticRenderFns__$P = [];
-__vue_render__$P._withStripped = true;
-
-  /* style */
-  const __vue_inject_styles__$1M = undefined;
-  /* scoped */
-  const __vue_scope_id__$1M = undefined;
-  /* module identifier */
-  const __vue_module_identifier__$1M = undefined;
-  /* functional template */
-  const __vue_is_functional_template__$1M = false;
-  /* style inject */
-  
-  /* style inject SSR */
-  
-  /* style inject shadow dom */
-  
-
-  
-  const __vue_component__$1M = /*#__PURE__*/normalizeComponent(
-    { render: __vue_render__$P, staticRenderFns: __vue_staticRenderFns__$P },
-    __vue_inject_styles__$1M,
-    __vue_script__$1M,
-    __vue_scope_id__$1M,
-    __vue_is_functional_template__$1M,
-    __vue_module_identifier__$1M,
-    false,
-    undefined,
-    undefined,
-    undefined
-  );
-
-  var FormStepsControls$1 = __vue_component__$1M;
-
-var script$1L = {
-    name: 'FormStepsControls',
-    render: FormStepsControls$1.render,
-    data() {
-      return {
-        merge: true,
-        defaultClasses: {
-          container: 'vf-steps-controls',
-          container_sm: 'vf-steps-controls-sm',
-          container_md: '',
-          container_lg: 'vf-steps-controls-lg',
-          $container: (classes, { Size }) => ([
-            classes.container,
-            classes[`container_${Size}`],
-          ]),
-        }
-      }
-    }
-  };
-
-var css_248z$1I = ".vf-steps-controls {\n  display: flex;\n  justify-content: space-between;\n  margin: var(--vf-gutter-lg) 0 0 0;\n  font-size: var(--vf-font-size);\n  line-height: var(--vf-line-height);\n  letter-spacing: var(--vf-letter-spacing);\n}\n\n.vf-steps-controls.vf-steps-controls-sm {\n  margin: var(--vf-gutter) 0 0 0;\n  font-size: var(--vf-font-size-sm);\n  line-height: var(--vf-line-height-sm);\n  letter-spacing: var(--vf-letter-spacing-md);\n}\n\n.vf-steps-controls.vf-steps-controls-lg {\n  margin: var(--vf-gutter-lg) 0 0 0;\n  font-size: var(--vf-font-size-lg);\n  line-height: var(--vf-line-height-lg);\n  letter-spacing: var(--vf-letter-spacing-lg);\n}";
-styleInject(css_248z$1I);
-
-/* script */
-const __vue_script__$1L = script$1L;
-/* template */
-
-  /* style */
-  const __vue_inject_styles__$1L = undefined;
-  /* scoped */
-  const __vue_scope_id__$1L = undefined;
-  /* module identifier */
-  const __vue_module_identifier__$1L = undefined;
-  /* functional template */
-  const __vue_is_functional_template__$1L = undefined;
-  /* style inject */
-  
-  /* style inject SSR */
-  
-  /* style inject shadow dom */
-  
-
-  
-  const __vue_component__$1L = /*#__PURE__*/normalizeComponent(
-    {},
-    __vue_inject_styles__$1L,
-    __vue_script__$1L,
-    __vue_scope_id__$1L,
-    __vue_is_functional_template__$1L,
-    __vue_module_identifier__$1L,
-    false,
-    undefined,
-    undefined,
-    undefined
-  );
-
-  var FormStepsControls = __vue_component__$1L;
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-  var script$1K = {
-    name: 'FormStepsControl',
-    data() {
-      return {
-        merge: true,
-        defaultClasses: {
-          button: '',
-        }
-      }
-    }
-  };
-
-var css_248z$1H = "";
-styleInject(css_248z$1H);
-
-/* script */
-const __vue_script__$1K = script$1K;
-/* template */
-var __vue_render__$O = function () {
   var _vm = this;
   var _h = _vm.$createElement;
   var _c = _vm._self._c || _h;
@@ -1666,17 +1666,17 @@ var __vue_render__$O = function () {
       )
     : _vm._e()
 };
-var __vue_staticRenderFns__$O = [];
-__vue_render__$O._withStripped = true;
+var __vue_staticRenderFns__$P = [];
+__vue_render__$P._withStripped = true;
 
   /* style */
-  const __vue_inject_styles__$1K = undefined;
+  const __vue_inject_styles__$1M = undefined;
   /* scoped */
-  const __vue_scope_id__$1K = undefined;
+  const __vue_scope_id__$1M = undefined;
   /* module identifier */
-  const __vue_module_identifier__$1K = undefined;
+  const __vue_module_identifier__$1M = undefined;
   /* functional template */
-  const __vue_is_functional_template__$1K = false;
+  const __vue_is_functional_template__$1M = false;
   /* style inject */
   
   /* style inject SSR */
@@ -1685,22 +1685,22 @@ __vue_render__$O._withStripped = true;
   
 
   
-  const __vue_component__$1K = /*#__PURE__*/normalizeComponent(
-    { render: __vue_render__$O, staticRenderFns: __vue_staticRenderFns__$O },
-    __vue_inject_styles__$1K,
-    __vue_script__$1K,
-    __vue_scope_id__$1K,
-    __vue_is_functional_template__$1K,
-    __vue_module_identifier__$1K,
+  const __vue_component__$1M = /*#__PURE__*/normalizeComponent(
+    { render: __vue_render__$P, staticRenderFns: __vue_staticRenderFns__$P },
+    __vue_inject_styles__$1M,
+    __vue_script__$1M,
+    __vue_scope_id__$1M,
+    __vue_is_functional_template__$1M,
+    __vue_module_identifier__$1M,
     false,
     undefined,
     undefined,
     undefined
   );
 
-  var FormStepsControl$1 = __vue_component__$1K;
+  var FormStepsControl$1 = __vue_component__$1M;
 
-var script$1J = {
+var script$1L = {
     name: 'FormStepsControl',
     render: FormStepsControl$1.render,
     data() {
@@ -1734,21 +1734,21 @@ var script$1J = {
     }
   };
 
-var css_248z$1G = "";
-styleInject(css_248z$1G);
+var css_248z$1I = "";
+styleInject(css_248z$1I);
 
 /* script */
-const __vue_script__$1J = script$1J;
+const __vue_script__$1L = script$1L;
 /* template */
 
   /* style */
-  const __vue_inject_styles__$1J = undefined;
+  const __vue_inject_styles__$1L = undefined;
   /* scoped */
-  const __vue_scope_id__$1J = undefined;
+  const __vue_scope_id__$1L = undefined;
   /* module identifier */
-  const __vue_module_identifier__$1J = undefined;
+  const __vue_module_identifier__$1L = undefined;
   /* functional template */
-  const __vue_is_functional_template__$1J = undefined;
+  const __vue_is_functional_template__$1L = undefined;
   /* style inject */
   
   /* style inject SSR */
@@ -1757,20 +1757,20 @@ const __vue_script__$1J = script$1J;
   
 
   
-  const __vue_component__$1J = /*#__PURE__*/normalizeComponent(
+  const __vue_component__$1L = /*#__PURE__*/normalizeComponent(
     {},
-    __vue_inject_styles__$1J,
-    __vue_script__$1J,
-    __vue_scope_id__$1J,
-    __vue_is_functional_template__$1J,
-    __vue_module_identifier__$1J,
+    __vue_inject_styles__$1L,
+    __vue_script__$1L,
+    __vue_scope_id__$1L,
+    __vue_is_functional_template__$1L,
+    __vue_module_identifier__$1L,
     false,
     undefined,
     undefined,
     undefined
   );
 
-  var FormStepsControl = __vue_component__$1J;
+  var FormStepsControl = __vue_component__$1L;
 
 //
 //
@@ -1797,7 +1797,7 @@ const __vue_script__$1J = script$1J;
 //
 //
 
-  var script$1I = {
+  var script$1K = {
     name: 'FormStep',
     data() {
       return {
@@ -1810,13 +1810,13 @@ const __vue_script__$1J = script$1J;
     }
   };
 
-var css_248z$1F = "";
-styleInject(css_248z$1F);
+var css_248z$1H = "";
+styleInject(css_248z$1H);
 
 /* script */
-const __vue_script__$1I = script$1I;
+const __vue_script__$1K = script$1K;
 /* template */
-var __vue_render__$N = function () {
+var __vue_render__$O = function () {
   var _vm = this;
   var _h = _vm.$createElement;
   var _c = _vm._self._c || _h;
@@ -1878,6 +1878,167 @@ var __vue_render__$N = function () {
       ])
     : _vm._e()
 };
+var __vue_staticRenderFns__$O = [];
+__vue_render__$O._withStripped = true;
+
+  /* style */
+  const __vue_inject_styles__$1K = undefined;
+  /* scoped */
+  const __vue_scope_id__$1K = undefined;
+  /* module identifier */
+  const __vue_module_identifier__$1K = undefined;
+  /* functional template */
+  const __vue_is_functional_template__$1K = false;
+  /* style inject */
+  
+  /* style inject SSR */
+  
+  /* style inject shadow dom */
+  
+
+  
+  const __vue_component__$1K = /*#__PURE__*/normalizeComponent(
+    { render: __vue_render__$O, staticRenderFns: __vue_staticRenderFns__$O },
+    __vue_inject_styles__$1K,
+    __vue_script__$1K,
+    __vue_scope_id__$1K,
+    __vue_is_functional_template__$1K,
+    __vue_module_identifier__$1K,
+    false,
+    undefined,
+    undefined,
+    undefined
+  );
+
+  var FormStep$1 = __vue_component__$1K;
+
+var script$1J = {
+    name: 'FormStep',
+    render: FormStep$1.render,
+    data() {
+      return {
+        merge: true,
+        defaultClasses: {
+          container: 'vf-step',
+          wrapper: '',
+          container_active: 'vf-step-active',
+          container_inactive: '',
+          container_invalid: 'vf-step-invalid',
+          container_valid: '',
+          container_disabled: 'vf-step-disabled',
+          container_enabled: '',
+          container_completed: 'vf-step-completed',
+          container_incompleted: '',
+          container_pending: 'vf-step-pending',
+          $container: (classes, { active, isDisabled, completed, invalid, pending }) => ([
+            classes.container,
+            active ? classes.container_active : classes.container_inactive,
+            isDisabled ? classes.container_disabled : classes.container_enabled,
+            completed ? classes.container_completed : classes.container_incompleted,
+            invalid ? classes.container_invalid : classes.container_valid,
+            pending ? classes.container_pending : null,
+          ]),
+        }
+      }
+    }
+  };
+
+var css_248z$1G = ".vf-step {\n  display: block;\n  position: relative;\n  white-space: nowrap;\n  flex: 1 1;\n  text-align: center;\n  padding: 1.25rem 0.625rem 0;\n}\n\n.vf-step a {\n  text-decoration: none !important;\n  color: inherit;\n}\n\n.vf-step a:hover, .vf-step a:focus, .vf-step a:active {\n  text-decoration: none !important;\n  color: inherit;\n}\n\n.vf-step a:before {\n  content: \" \";\n  display: inline-block;\n  width: 1rem;\n  height: 1rem;\n  position: absolute;\n  background: var(--vf-primary);\n  border-radius: 50%;\n  left: 50%;\n  transform: translateX(-50%);\n  top: 0px;\n}\n\n.vf-step a:after {\n  content: \" \";\n  display: inline-block;\n  width: 0.5rem;\n  height: 0.5rem;\n  position: absolute;\n  background: #FFFFFF;\n  border-radius: 50%;\n  left: calc(50% - 0.25rem);\n  transform: scale(0);\n  top: 0.25rem;\n  transition: transform 0.3s ease-in-out;\n}\n\n.vf-step:first-of-type {\n  padding-left: 0;\n  text-align: left;\n}\n\n.vf-step:first-of-type:before {\n  display: none;\n}\n\n.vf-step:first-of-type:after {\n  left: 0;\n}\n\n.vf-step:first-of-type a:before {\n  left: 0;\n  transform: none;\n}\n\n.vf-step:first-of-type a:after {\n  left: 0.25rem;\n  transform: scale(0);\n}\n\n.vf-step:last-of-type {\n  padding-right: 0;\n  text-align: right;\n}\n\n.vf-step:last-of-type:after {\n  display: none;\n}\n\n.vf-step:last-of-type:before {\n  right: 0;\n}\n\n.vf-step:last-of-type a:before {\n  right: 0;\n  left: auto;\n  left: initial;\n  transform: none;\n}\n\n.vf-step:last-of-type a:after {\n  left: auto;\n  left: initial;\n  transform: scale(0);\n  right: 0.25rem;\n}\n\n.vf-step.vf-step-disabled:before {\n  background: var(--vf-bg-passive);\n  left: -100%;\n}\n\n.vf-step.vf-step-disabled a {\n  color: var(--vf-color-passive);\n}\n\n.vf-step.vf-step-disabled a:before {\n  background: var(--vf-bg-passive);\n}\n\n.vf-step.vf-step-completed + .vf-step:not(.vf-step-completed):before {\n  content: \" \";\n  display: inline-block;\n  background: var(--vf-primary);\n  position: absolute;\n  top: 0.375rem;\n  left: 0px;\n  right: 50%;\n  height: 0.25rem;\n}\n\n.vf-step.vf-step-completed + .vf-step:last-of-type:before {\n  right: 0px;\n}\n\n.vf-step.vf-step-completed:before {\n  content: \" \";\n  display: inline-block;\n  background: var(--vf-primary);\n  position: absolute;\n  top: 0.375rem;\n  left: 0px;\n  right: 0px;\n  height: 0.25rem;\n}\n\n.vf-step.vf-step-completed a:after {\n  mask-image: url('data:image/svg+xml;utf8,<svg aria-hidden=\"true\" focusable=\"false\" data-prefix=\"fas\" data-icon=\"check\" class=\"svg-inline--fa fa-check fa-w-16\" role=\"img\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 512 512\"><path fill=\"white\" d=\"M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z\"></path></svg>');\n  -webkit-mask-image: url('data:image/svg+xml;utf8,<svg aria-hidden=\"true\" focusable=\"false\" data-prefix=\"fas\" data-icon=\"check\" class=\"svg-inline--fa fa-check fa-w-16\" role=\"img\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 512 512\"><path fill=\"white\" d=\"M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z\"></path></svg>');\n  mask-size: 0.5rem 0.5rem;\n  -webkit-mask-size: 0.5rem 0.5rem;\n  mask-position: 0 0;\n  -webkit-mask-position: 0 0;\n  mask-repeat: no-repeat;\n  -webkit-mask-repeat: no-repeat;\n  background-color: var(--vf-color-on-primary);\n  border-radius: 0;\n  transform: scale(1);\n}\n\n.vf-step.vf-step-active a:after {\n  mask-image: none;\n  -webkit-mask-image: none;\n  background-color: var(--vf-color-on-primary);\n  top: 0.25rem;\n  transform: scale(1);\n  border-radius: 50%;\n}\n\n.vf-step.vf-step-invalid a {\n  color: var(--vf-bg-btn-danger);\n}\n\n.vf-step.vf-step-invalid a:before {\n  background-color: var(--vf-bg-btn-danger);\n}\n\n.vf-step.vf-step-invalid a:after {\n  mask-image: url('data:image/svg+xml;utf8,<svg aria-hidden=\"true\" focusable=\"false\" data-prefix=\"fas\" data-icon=\"exclamation\" class=\"svg-inline--fa fa-exclamation fa-w-6\" role=\"img\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 192 512\"><path fill=\"white\" d=\"M176 432c0 44.112-35.888 80-80 80s-80-35.888-80-80 35.888-80 80-80 80 35.888 80 80zM25.26 25.199l13.6 272C39.499 309.972 50.041 320 62.83 320h66.34c12.789 0 23.331-10.028 23.97-22.801l13.6-272C167.425 11.49 156.496 0 142.77 0H49.23C35.504 0 24.575 11.49 25.26 25.199z\"></path></svg>');\n  -webkit-mask-image: url('data:image/svg+xml;utf8,<svg aria-hidden=\"true\" focusable=\"false\" data-prefix=\"fas\" data-icon=\"exclamation\" class=\"svg-inline--fa fa-exclamation fa-w-6\" role=\"img\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 192 512\"><path fill=\"white\" d=\"M176 432c0 44.112-35.888 80-80 80s-80-35.888-80-80 35.888-80 80-80 80 35.888 80 80zM25.26 25.199l13.6 272C39.499 309.972 50.041 320 62.83 320h66.34c12.789 0 23.331-10.028 23.97-22.801l13.6-272C167.425 11.49 156.496 0 142.77 0H49.23C35.504 0 24.575 11.49 25.26 25.199z\"></path></svg>');\n  mask-size: 0.5rem 0.5rem;\n  -webkit-mask-size: 0.5rem 0.5rem;\n  mask-position: 0 0;\n  -webkit-mask-position: 0 0;\n  mask-repeat: no-repeat;\n  -webkit-mask-repeat: no-repeat;\n  background-color: var(--vf-color-btn-danger);\n  width: 0.5rem;\n  height: 0.5rem;\n  top: 0.25rem;\n  border-radius: 0;\n}\n\n.vf-step.vf-step-invalid.vf-step-active a:after {\n  mask-image: none;\n  -webkit-mask-image: none;\n  background-color: var(--vf-color-on-primary);\n  transform: scale(1);\n  border-radius: 50%;\n}\n\n.vf-step.vf-step-pending a:after {\n  animation: 1s linear infinite step-loading;\n  background: var(--vf-color-btn-danger);\n  top: 0.25rem;\n  border-radius: 50%;\n}\n\n@keyframes step-loading {\n  0% {\n    transform: scale(0.5);\n  }\n\n  20% {\n    transform: scale(1.2);\n  }\n\n  100% {\n    transform: scale(0.5);\n  }\n}";
+styleInject(css_248z$1G);
+
+/* script */
+const __vue_script__$1J = script$1J;
+/* template */
+
+  /* style */
+  const __vue_inject_styles__$1J = undefined;
+  /* scoped */
+  const __vue_scope_id__$1J = undefined;
+  /* module identifier */
+  const __vue_module_identifier__$1J = undefined;
+  /* functional template */
+  const __vue_is_functional_template__$1J = undefined;
+  /* style inject */
+  
+  /* style inject SSR */
+  
+  /* style inject shadow dom */
+  
+
+  
+  const __vue_component__$1J = /*#__PURE__*/normalizeComponent(
+    {},
+    __vue_inject_styles__$1J,
+    __vue_script__$1J,
+    __vue_scope_id__$1J,
+    __vue_is_functional_template__$1J,
+    __vue_module_identifier__$1J,
+    false,
+    undefined,
+    undefined,
+    undefined
+  );
+
+  var FormStep = __vue_component__$1J;
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+  var script$1I = {
+    name: 'FormElements',
+    data() {
+      return {
+        merge: true,
+        defaultClasses: {
+          container: '',
+        }
+      }
+    },
+  };
+
+var css_248z$1F = "";
+styleInject(css_248z$1F);
+
+/* script */
+const __vue_script__$1I = script$1I;
+/* template */
+var __vue_render__$N = function () {
+  var _vm = this;
+  var _h = _vm.$createElement;
+  var _c = _vm._self._c || _h;
+  return _c(
+    "div",
+    { class: _vm.classes.container },
+    [
+      _vm._t("default", function () {
+        return _vm._l(_vm.schema, function (element, name) {
+          return _c(
+            _vm.component(element),
+            _vm._b(
+              { key: name, tag: "component", attrs: { name: name } },
+              "component",
+              element,
+              false
+            )
+          )
+        })
+      }),
+    ],
+    2
+  )
+};
 var __vue_staticRenderFns__$N = [];
 __vue_render__$N._withStripped = true;
 
@@ -1910,40 +2071,29 @@ __vue_render__$N._withStripped = true;
     undefined
   );
 
-  var FormStep$1 = __vue_component__$1I;
+  var FormElements$1 = __vue_component__$1I;
 
 var script$1H = {
-    name: 'FormStep',
-    render: FormStep$1.render,
+    name: 'FormElements',
+    render: FormElements$1.render,
     data() {
       return {
         merge: true,
         defaultClasses: {
-          container: 'vf-step',
-          wrapper: '',
-          container_active: 'vf-step-active',
-          container_inactive: '',
-          container_invalid: 'vf-step-invalid',
-          container_valid: '',
-          container_disabled: 'vf-step-disabled',
-          container_enabled: '',
-          container_completed: 'vf-step-completed',
-          container_incompleted: '',
-          container_pending: 'vf-step-pending',
-          $container: (classes, { active, isDisabled, completed, invalid, pending }) => ([
+          container: 'vf-row',
+          container_sm: 'vf-row-sm',
+          container_md: '',
+          container_lg: 'vf-row-lg',
+          $container: (classes, { Size }) => ([
             classes.container,
-            active ? classes.container_active : classes.container_inactive,
-            isDisabled ? classes.container_disabled : classes.container_enabled,
-            completed ? classes.container_completed : classes.container_incompleted,
-            invalid ? classes.container_invalid : classes.container_valid,
-            pending ? classes.container_pending : null,
+            classes[`container_${Size}`]
           ]),
         }
       }
     }
   };
 
-var css_248z$1E = ".vf-step {\n  display: block;\n  position: relative;\n  white-space: nowrap;\n  flex: 1 1;\n  text-align: center;\n  padding: 1.25rem 0.625rem 0;\n}\n\n.vf-step a {\n  text-decoration: none !important;\n  color: inherit;\n}\n\n.vf-step a:hover, .vf-step a:focus, .vf-step a:active {\n  text-decoration: none !important;\n  color: inherit;\n}\n\n.vf-step a:before {\n  content: \" \";\n  display: inline-block;\n  width: 1rem;\n  height: 1rem;\n  position: absolute;\n  background: var(--vf-primary);\n  border-radius: 50%;\n  left: 50%;\n  transform: translateX(-50%);\n  top: 0px;\n}\n\n.vf-step a:after {\n  content: \" \";\n  display: inline-block;\n  width: 0.5rem;\n  height: 0.5rem;\n  position: absolute;\n  background: #FFFFFF;\n  border-radius: 50%;\n  left: calc(50% - 0.25rem);\n  transform: scale(0);\n  top: 0.25rem;\n  transition: transform 0.3s ease-in-out;\n}\n\n.vf-step:first-of-type {\n  padding-left: 0;\n  text-align: left;\n}\n\n.vf-step:first-of-type:before {\n  display: none;\n}\n\n.vf-step:first-of-type:after {\n  left: 0;\n}\n\n.vf-step:first-of-type a:before {\n  left: 0;\n  transform: none;\n}\n\n.vf-step:first-of-type a:after {\n  left: 0.25rem;\n  transform: scale(0);\n}\n\n.vf-step:last-of-type {\n  padding-right: 0;\n  text-align: right;\n}\n\n.vf-step:last-of-type:after {\n  display: none;\n}\n\n.vf-step:last-of-type:before {\n  right: 0;\n}\n\n.vf-step:last-of-type a:before {\n  right: 0;\n  left: auto;\n  left: initial;\n  transform: none;\n}\n\n.vf-step:last-of-type a:after {\n  left: auto;\n  left: initial;\n  transform: scale(0);\n  right: 0.25rem;\n}\n\n.vf-step.vf-step-disabled:before {\n  background: var(--vf-bg-passive);\n  left: -100%;\n}\n\n.vf-step.vf-step-disabled a {\n  color: var(--vf-color-passive);\n}\n\n.vf-step.vf-step-disabled a:before {\n  background: var(--vf-bg-passive);\n}\n\n.vf-step.vf-step-completed + .vf-step:not(.vf-step-completed):before {\n  content: \" \";\n  display: inline-block;\n  background: var(--vf-primary);\n  position: absolute;\n  top: 0.375rem;\n  left: 0px;\n  right: 50%;\n  height: 0.25rem;\n}\n\n.vf-step.vf-step-completed + .vf-step:last-of-type:before {\n  right: 0px;\n}\n\n.vf-step.vf-step-completed:before {\n  content: \" \";\n  display: inline-block;\n  background: var(--vf-primary);\n  position: absolute;\n  top: 0.375rem;\n  left: 0px;\n  right: 0px;\n  height: 0.25rem;\n}\n\n.vf-step.vf-step-completed a:after {\n  mask-image: url('data:image/svg+xml;utf8,<svg aria-hidden=\"true\" focusable=\"false\" data-prefix=\"fas\" data-icon=\"check\" class=\"svg-inline--fa fa-check fa-w-16\" role=\"img\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 512 512\"><path fill=\"white\" d=\"M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z\"></path></svg>');\n  -webkit-mask-image: url('data:image/svg+xml;utf8,<svg aria-hidden=\"true\" focusable=\"false\" data-prefix=\"fas\" data-icon=\"check\" class=\"svg-inline--fa fa-check fa-w-16\" role=\"img\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 512 512\"><path fill=\"white\" d=\"M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z\"></path></svg>');\n  mask-size: 0.5rem 0.5rem;\n  -webkit-mask-size: 0.5rem 0.5rem;\n  mask-position: 0 0;\n  -webkit-mask-position: 0 0;\n  mask-repeat: no-repeat;\n  -webkit-mask-repeat: no-repeat;\n  background-color: var(--vf-color-on-primary);\n  border-radius: 0;\n  transform: scale(1);\n}\n\n.vf-step.vf-step-active a:after {\n  mask-image: none;\n  -webkit-mask-image: none;\n  background-color: var(--vf-color-on-primary);\n  top: 0.25rem;\n  transform: scale(1);\n  border-radius: 50%;\n}\n\n.vf-step.vf-step-invalid a {\n  color: var(--vf-bg-btn-danger);\n}\n\n.vf-step.vf-step-invalid a:before {\n  background-color: var(--vf-bg-btn-danger);\n}\n\n.vf-step.vf-step-invalid a:after {\n  mask-image: url('data:image/svg+xml;utf8,<svg aria-hidden=\"true\" focusable=\"false\" data-prefix=\"fas\" data-icon=\"exclamation\" class=\"svg-inline--fa fa-exclamation fa-w-6\" role=\"img\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 192 512\"><path fill=\"white\" d=\"M176 432c0 44.112-35.888 80-80 80s-80-35.888-80-80 35.888-80 80-80 80 35.888 80 80zM25.26 25.199l13.6 272C39.499 309.972 50.041 320 62.83 320h66.34c12.789 0 23.331-10.028 23.97-22.801l13.6-272C167.425 11.49 156.496 0 142.77 0H49.23C35.504 0 24.575 11.49 25.26 25.199z\"></path></svg>');\n  -webkit-mask-image: url('data:image/svg+xml;utf8,<svg aria-hidden=\"true\" focusable=\"false\" data-prefix=\"fas\" data-icon=\"exclamation\" class=\"svg-inline--fa fa-exclamation fa-w-6\" role=\"img\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 192 512\"><path fill=\"white\" d=\"M176 432c0 44.112-35.888 80-80 80s-80-35.888-80-80 35.888-80 80-80 80 35.888 80 80zM25.26 25.199l13.6 272C39.499 309.972 50.041 320 62.83 320h66.34c12.789 0 23.331-10.028 23.97-22.801l13.6-272C167.425 11.49 156.496 0 142.77 0H49.23C35.504 0 24.575 11.49 25.26 25.199z\"></path></svg>');\n  mask-size: 0.5rem 0.5rem;\n  -webkit-mask-size: 0.5rem 0.5rem;\n  mask-position: 0 0;\n  -webkit-mask-position: 0 0;\n  mask-repeat: no-repeat;\n  -webkit-mask-repeat: no-repeat;\n  background-color: var(--vf-color-btn-danger);\n  width: 0.5rem;\n  height: 0.5rem;\n  top: 0.25rem;\n  border-radius: 0;\n}\n\n.vf-step.vf-step-invalid.vf-step-active a:after {\n  mask-image: none;\n  -webkit-mask-image: none;\n  background-color: var(--vf-color-on-primary);\n  transform: scale(1);\n  border-radius: 50%;\n}\n\n.vf-step.vf-step-pending a:after {\n  animation: 1s linear infinite step-loading;\n  background: var(--vf-color-btn-danger);\n  top: 0.25rem;\n  border-radius: 50%;\n}\n\n@keyframes step-loading {\n  0% {\n    transform: scale(0.5);\n  }\n\n  20% {\n    transform: scale(1.2);\n  }\n\n  100% {\n    transform: scale(0.5);\n  }\n}";
+var css_248z$1E = "/* Some styles are contained in Vueform.vue */";
 styleInject(css_248z$1E);
 
 /* script */
@@ -1979,8 +2129,21 @@ const __vue_script__$1H = script$1H;
     undefined
   );
 
-  var FormStep = __vue_component__$1H;
+  var FormElements = __vue_component__$1H;
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -1997,169 +2160,6 @@ const __vue_script__$1H = script$1H;
 //
 
   var script$1G = {
-    name: 'FormElements',
-    data() {
-      return {
-        merge: true,
-        defaultClasses: {
-          container: '',
-        }
-      }
-    },
-  };
-
-var css_248z$1D = "";
-styleInject(css_248z$1D);
-
-/* script */
-const __vue_script__$1G = script$1G;
-/* template */
-var __vue_render__$M = function () {
-  var _vm = this;
-  var _h = _vm.$createElement;
-  var _c = _vm._self._c || _h;
-  return _c(
-    "div",
-    { class: _vm.classes.container },
-    [
-      _vm._t("default", function () {
-        return _vm._l(_vm.schema, function (element, name) {
-          return _c(
-            _vm.component(element),
-            _vm._b(
-              { key: name, tag: "component", attrs: { name: name } },
-              "component",
-              element,
-              false
-            )
-          )
-        })
-      }),
-    ],
-    2
-  )
-};
-var __vue_staticRenderFns__$M = [];
-__vue_render__$M._withStripped = true;
-
-  /* style */
-  const __vue_inject_styles__$1G = undefined;
-  /* scoped */
-  const __vue_scope_id__$1G = undefined;
-  /* module identifier */
-  const __vue_module_identifier__$1G = undefined;
-  /* functional template */
-  const __vue_is_functional_template__$1G = false;
-  /* style inject */
-  
-  /* style inject SSR */
-  
-  /* style inject shadow dom */
-  
-
-  
-  const __vue_component__$1G = /*#__PURE__*/normalizeComponent(
-    { render: __vue_render__$M, staticRenderFns: __vue_staticRenderFns__$M },
-    __vue_inject_styles__$1G,
-    __vue_script__$1G,
-    __vue_scope_id__$1G,
-    __vue_is_functional_template__$1G,
-    __vue_module_identifier__$1G,
-    false,
-    undefined,
-    undefined,
-    undefined
-  );
-
-  var FormElements$1 = __vue_component__$1G;
-
-var script$1F = {
-    name: 'FormElements',
-    render: FormElements$1.render,
-    data() {
-      return {
-        merge: true,
-        defaultClasses: {
-          container: 'vf-row',
-          container_sm: 'vf-row-sm',
-          container_md: '',
-          container_lg: 'vf-row-lg',
-          $container: (classes, { Size }) => ([
-            classes.container,
-            classes[`container_${Size}`]
-          ]),
-        }
-      }
-    }
-  };
-
-var css_248z$1C = "/* Some styles are contained in Vueform.vue */";
-styleInject(css_248z$1C);
-
-/* script */
-const __vue_script__$1F = script$1F;
-/* template */
-
-  /* style */
-  const __vue_inject_styles__$1F = undefined;
-  /* scoped */
-  const __vue_scope_id__$1F = undefined;
-  /* module identifier */
-  const __vue_module_identifier__$1F = undefined;
-  /* functional template */
-  const __vue_is_functional_template__$1F = undefined;
-  /* style inject */
-  
-  /* style inject SSR */
-  
-  /* style inject shadow dom */
-  
-
-  
-  const __vue_component__$1F = /*#__PURE__*/normalizeComponent(
-    {},
-    __vue_inject_styles__$1F,
-    __vue_script__$1F,
-    __vue_scope_id__$1F,
-    __vue_is_functional_template__$1F,
-    __vue_module_identifier__$1F,
-    false,
-    undefined,
-    undefined,
-    undefined
-  );
-
-  var FormElements = __vue_component__$1F;
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-  var script$1E = {
     name: 'ElementLayout',
     data() {
       return {
@@ -2176,13 +2176,13 @@ const __vue_script__$1F = script$1F;
     },
   };
 
-var css_248z$1B = "";
-styleInject(css_248z$1B);
+var css_248z$1D = "";
+styleInject(css_248z$1D);
 
 /* script */
-const __vue_script__$1E = script$1E;
+const __vue_script__$1G = script$1G;
 /* template */
-var __vue_render__$L = function () {
+var __vue_render__$M = function () {
   var _vm = this;
   var _h = _vm.$createElement;
   var _c = _vm._self._c || _h;
@@ -2282,17 +2282,17 @@ var __vue_render__$L = function () {
     ]
   )
 };
-var __vue_staticRenderFns__$L = [];
-__vue_render__$L._withStripped = true;
+var __vue_staticRenderFns__$M = [];
+__vue_render__$M._withStripped = true;
 
   /* style */
-  const __vue_inject_styles__$1E = undefined;
+  const __vue_inject_styles__$1G = undefined;
   /* scoped */
-  const __vue_scope_id__$1E = undefined;
+  const __vue_scope_id__$1G = undefined;
   /* module identifier */
-  const __vue_module_identifier__$1E = undefined;
+  const __vue_module_identifier__$1G = undefined;
   /* functional template */
-  const __vue_is_functional_template__$1E = false;
+  const __vue_is_functional_template__$1G = false;
   /* style inject */
   
   /* style inject SSR */
@@ -2301,22 +2301,22 @@ __vue_render__$L._withStripped = true;
   
 
   
-  const __vue_component__$1E = /*#__PURE__*/normalizeComponent(
-    { render: __vue_render__$L, staticRenderFns: __vue_staticRenderFns__$L },
-    __vue_inject_styles__$1E,
-    __vue_script__$1E,
-    __vue_scope_id__$1E,
-    __vue_is_functional_template__$1E,
-    __vue_module_identifier__$1E,
+  const __vue_component__$1G = /*#__PURE__*/normalizeComponent(
+    { render: __vue_render__$M, staticRenderFns: __vue_staticRenderFns__$M },
+    __vue_inject_styles__$1G,
+    __vue_script__$1G,
+    __vue_scope_id__$1G,
+    __vue_is_functional_template__$1G,
+    __vue_module_identifier__$1G,
     false,
     undefined,
     undefined,
     undefined
   );
 
-  var ElementLayout$1 = __vue_component__$1E;
+  var ElementLayout$1 = __vue_component__$1G;
 
-var script$1D = {
+var script$1F = {
     name: 'ElementLayout',
     render: ElementLayout$1.render,
     data() {
@@ -2353,21 +2353,21 @@ var script$1D = {
     }
   };
 
-var css_248z$1A = "/* Some styles are contained in Vueform.vue */\n\n.vf-element-layout {\n  font-size: var(--vf-font-size);\n  line-height: var(--vf-line-height);\n  letter-spacing: var(--vf-letter-spacing);\n}\n\n.vf-element-layout.vf-element-layout-sm {\n  font-size: var(--vf-font-size-sm);\n  line-height: var(--vf-line-height-sm);\n  letter-spacing: var(--vf-letter-spacing-sm);\n}\n\n.vf-element-layout.vf-element-layout-lg {\n  font-size: var(--vf-font-size-lg);\n  line-height: var(--vf-line-height-lg);\n  letter-spacing: var(--vf-letter-spacing-lg);\n}\n\n.vf-layout-inner-container {\n  flex: 1 1 0%;\n  display: grid;\n  grid-template-columns: repeat(12, minmax(0, 1fr));\n}\n\n.vf-layout-inner-container .vf-layout-inner-wrapper,\n.vf-layout-inner-container .vf-layout-inner-wrapper-before,\n.vf-layout-inner-container .vf-layout-inner-wrapper-after {\n  padding-left: 0;\n  padding-right: 0;\n}\n\n.vf-layout-inner-wrapper-before,\n.vf-layout-inner-wrapper-after {\n  grid-column: span 12/span 12;\n  padding-left: var(--vf-gutter);\n  padding-right: var(--vf-gutter);\n}\n\n.vf-element-layout-outer-wrapper {\n  display: grid;\n  grid-template-columns: repeat(12, minmax(0, 1fr));\n}";
-styleInject(css_248z$1A);
+var css_248z$1C = "/* Some styles are contained in Vueform.vue */\n\n.vf-element-layout {\n  font-size: var(--vf-font-size);\n  line-height: var(--vf-line-height);\n  letter-spacing: var(--vf-letter-spacing);\n}\n\n.vf-element-layout.vf-element-layout-sm {\n  font-size: var(--vf-font-size-sm);\n  line-height: var(--vf-line-height-sm);\n  letter-spacing: var(--vf-letter-spacing-sm);\n}\n\n.vf-element-layout.vf-element-layout-lg {\n  font-size: var(--vf-font-size-lg);\n  line-height: var(--vf-line-height-lg);\n  letter-spacing: var(--vf-letter-spacing-lg);\n}\n\n.vf-layout-inner-container {\n  flex: 1 1 0%;\n  display: grid;\n  grid-template-columns: repeat(12, minmax(0, 1fr));\n}\n\n.vf-layout-inner-container .vf-layout-inner-wrapper,\n.vf-layout-inner-container .vf-layout-inner-wrapper-before,\n.vf-layout-inner-container .vf-layout-inner-wrapper-after {\n  padding-left: 0;\n  padding-right: 0;\n}\n\n.vf-layout-inner-wrapper-before,\n.vf-layout-inner-wrapper-after {\n  grid-column: span 12/span 12;\n  padding-left: var(--vf-gutter);\n  padding-right: var(--vf-gutter);\n}\n\n.vf-element-layout-outer-wrapper {\n  display: grid;\n  grid-template-columns: repeat(12, minmax(0, 1fr));\n}";
+styleInject(css_248z$1C);
 
 /* script */
-const __vue_script__$1D = script$1D;
+const __vue_script__$1F = script$1F;
 /* template */
 
   /* style */
-  const __vue_inject_styles__$1D = undefined;
+  const __vue_inject_styles__$1F = undefined;
   /* scoped */
-  const __vue_scope_id__$1D = undefined;
+  const __vue_scope_id__$1F = undefined;
   /* module identifier */
-  const __vue_module_identifier__$1D = undefined;
+  const __vue_module_identifier__$1F = undefined;
   /* functional template */
-  const __vue_is_functional_template__$1D = undefined;
+  const __vue_is_functional_template__$1F = undefined;
   /* style inject */
   
   /* style inject SSR */
@@ -2376,20 +2376,20 @@ const __vue_script__$1D = script$1D;
   
 
   
-  const __vue_component__$1D = /*#__PURE__*/normalizeComponent(
+  const __vue_component__$1F = /*#__PURE__*/normalizeComponent(
     {},
-    __vue_inject_styles__$1D,
-    __vue_script__$1D,
-    __vue_scope_id__$1D,
-    __vue_is_functional_template__$1D,
-    __vue_module_identifier__$1D,
+    __vue_inject_styles__$1F,
+    __vue_script__$1F,
+    __vue_scope_id__$1F,
+    __vue_is_functional_template__$1F,
+    __vue_module_identifier__$1F,
     false,
     undefined,
     undefined,
     undefined
   );
 
-  var ElementLayout = __vue_component__$1D;
+  var ElementLayout = __vue_component__$1F;
 
 //
 //
@@ -2405,7 +2405,7 @@ const __vue_script__$1D = script$1D;
 //
 //
 
-  var script$1C = {
+  var script$1E = {
     name: 'ElementLayoutInline',
     data() {
       return {
@@ -2417,13 +2417,13 @@ const __vue_script__$1D = script$1D;
     },
   };
 
-var css_248z$1z = "";
-styleInject(css_248z$1z);
+var css_248z$1B = "";
+styleInject(css_248z$1B);
 
 /* script */
-const __vue_script__$1C = script$1C;
+const __vue_script__$1E = script$1E;
 /* template */
-var __vue_render__$K = function () {
+var __vue_render__$L = function () {
   var _vm = this;
   var _h = _vm.$createElement;
   var _c = _vm._self._c || _h;
@@ -2460,6 +2460,130 @@ var __vue_render__$K = function () {
     2
   )
 };
+var __vue_staticRenderFns__$L = [];
+__vue_render__$L._withStripped = true;
+
+  /* style */
+  const __vue_inject_styles__$1E = undefined;
+  /* scoped */
+  const __vue_scope_id__$1E = undefined;
+  /* module identifier */
+  const __vue_module_identifier__$1E = undefined;
+  /* functional template */
+  const __vue_is_functional_template__$1E = false;
+  /* style inject */
+  
+  /* style inject SSR */
+  
+  /* style inject shadow dom */
+  
+
+  
+  const __vue_component__$1E = /*#__PURE__*/normalizeComponent(
+    { render: __vue_render__$L, staticRenderFns: __vue_staticRenderFns__$L },
+    __vue_inject_styles__$1E,
+    __vue_script__$1E,
+    __vue_scope_id__$1E,
+    __vue_is_functional_template__$1E,
+    __vue_module_identifier__$1E,
+    false,
+    undefined,
+    undefined,
+    undefined
+  );
+
+  var ElementLayoutInline$1 = __vue_component__$1E;
+
+var script$1D = {
+    name: 'ElementLayoutInline',
+    render: ElementLayoutInline$1.render,
+    data() {
+      return {
+        merge: true,
+        defaultClasses: {
+          container: 'vf-inline-layout',
+          container_error: 'has-error',
+          $container: (classes, { el$ }) => ([
+            classes.container,
+            !el$.isStatic && el$.errors && !!el$.errors.length ? classes.container_error : null
+          ]),
+        }
+      }
+    }
+  };
+
+var css_248z$1A = ".vf-inline-layout {\n  display: flex;\n}";
+styleInject(css_248z$1A);
+
+/* script */
+const __vue_script__$1D = script$1D;
+/* template */
+
+  /* style */
+  const __vue_inject_styles__$1D = undefined;
+  /* scoped */
+  const __vue_scope_id__$1D = undefined;
+  /* module identifier */
+  const __vue_module_identifier__$1D = undefined;
+  /* functional template */
+  const __vue_is_functional_template__$1D = undefined;
+  /* style inject */
+  
+  /* style inject SSR */
+  
+  /* style inject shadow dom */
+  
+
+  
+  const __vue_component__$1D = /*#__PURE__*/normalizeComponent(
+    {},
+    __vue_inject_styles__$1D,
+    __vue_script__$1D,
+    __vue_scope_id__$1D,
+    __vue_is_functional_template__$1D,
+    __vue_module_identifier__$1D,
+    false,
+    undefined,
+    undefined,
+    undefined
+  );
+
+  var ElementLayoutInline = __vue_component__$1D;
+
+//
+//
+//
+//
+//
+//
+
+  var script$1C = {
+    name: 'ElementLoader',
+    data() {
+      return {
+        merge: true,
+        defaultClasses: {
+          container: '',
+          loader: '',
+        }
+      }
+    }
+  };
+
+var css_248z$1z = "";
+styleInject(css_248z$1z);
+
+/* script */
+const __vue_script__$1C = script$1C;
+/* template */
+var __vue_render__$K = function () {
+  var _vm = this;
+  var _h = _vm.$createElement;
+  var _c = _vm._self._c || _h;
+  return _c("div", { class: _vm.classes.container }, [
+    _c("span", { class: _vm.classes.loader }),
+  ])
+};
 var __vue_staticRenderFns__$K = [];
 __vue_render__$K._withStripped = true;
 
@@ -2492,27 +2616,30 @@ __vue_render__$K._withStripped = true;
     undefined
   );
 
-  var ElementLayoutInline$1 = __vue_component__$1C;
+  var ElementLoader$1 = __vue_component__$1C;
 
 var script$1B = {
-    name: 'ElementLayoutInline',
-    render: ElementLayoutInline$1.render,
+    name: 'ElementLoader',
+    render: ElementLoader$1.render,
     data() {
       return {
         merge: true,
         defaultClasses: {
-          container: 'vf-inline-layout',
-          container_error: 'has-error',
-          $container: (classes, { el$ }) => ([
-            classes.container,
-            !el$.isStatic && el$.errors && !!el$.errors.length ? classes.container_error : null
+          container: 'vf-element-loader-container',
+          loader: 'vf-element-loader',
+          loader_sm: 'vf-element-loader-sm',
+          loader_md: '',
+          loader_lg: 'vf-element-loader-lg',
+          $loader: (classes, { Size }) => ([
+            classes.loader,
+            classes[`loader_${Size}`],
           ]),
         }
       }
     }
   };
 
-var css_248z$1y = ".vf-inline-layout {\n  display: flex;\n}";
+var css_248z$1y = ".vf-element-loader-container {\n  position: relative;\n  z-index: 1;\n  order: 1;\n}\n\n.vf-element-loader {\n  position: absolute;\n  width: 1rem;\n  height: 1rem;\n  display: block;\n  right: var(--vf-px-input);\n  top: 50%;\n  transform: translateY(-50%);\n}\n\n.vf-element-loader:before, .vf-element-loader:after {\n  position: absolute;\n  content: \"\";\n  top: 50%;\n  left: 50%;\n  margin: -0.5rem 0 0 -0.5rem;\n  width: 1rem;\n  height: 1rem;\n  border-radius: 100%;\n  border-color: var(--vf-primary) transparent transparent;\n  border-style: solid;\n  border-width: 2px;\n  box-shadow: 0 0 0 1px transparent;\n  box-sizing: border-box;\n}\n\n.vf-element-loader:before {\n  animation: vf-element-loader 2.4s infinite cubic-bezier(0.41, 0.26, 0.2, 0.62);\n}\n\n.vf-element-loader:after {\n  animation: vf-element-loader 2.4s infinite cubic-bezier(0.51, 0.09, 0.21, 0.8);\n}\n\n.vf-element-loader.vf-element-loader-sm {\n  right: var(--vf-px-input-sm);\n}\n\n.vf-element-loader.vf-element-loader-lg {\n  right: var(--vf-px-input-lg);\n}\n\n@keyframes vf-element-loader {\n  from {\n    transform: rotate(0);\n  }\n\n  to {\n    transform: rotate(2turn);\n  }\n}";
 styleInject(css_248z$1y);
 
 /* script */
@@ -2548,8 +2675,11 @@ const __vue_script__$1B = script$1B;
     undefined
   );
 
-  var ElementLayoutInline = __vue_component__$1B;
+  var ElementLoader = __vue_component__$1B;
 
+//
+//
+//
 //
 //
 //
@@ -2558,13 +2688,13 @@ const __vue_script__$1B = script$1B;
 //
 
   var script$1A = {
-    name: 'ElementLoader',
+    name: 'ElementLabelFloating',
     data() {
       return {
         merge: true,
         defaultClasses: {
           container: '',
-          loader: '',
+          label: '',
         }
       }
     }
@@ -2581,7 +2711,10 @@ var __vue_render__$J = function () {
   var _h = _vm.$createElement;
   var _c = _vm._self._c || _h;
   return _c("div", { class: _vm.classes.container }, [
-    _c("span", { class: _vm.classes.loader }),
+    _c("span", {
+      class: _vm.classes.label,
+      domProps: { innerHTML: _vm._s(_vm.floating) },
+    }),
   ])
 };
 var __vue_staticRenderFns__$J = [];
@@ -2616,30 +2749,43 @@ __vue_render__$J._withStripped = true;
     undefined
   );
 
-  var ElementLoader$1 = __vue_component__$1A;
+  var ElementLabelFloating$1 = __vue_component__$1A;
 
 var script$1z = {
-    name: 'ElementLoader',
-    render: ElementLoader$1.render,
+    name: 'ElementLabelFloating',
+    render: ElementLabelFloating$1.render,
     data() {
       return {
         merge: true,
         defaultClasses: {
-          container: 'vf-element-loader-container',
-          loader: 'vf-element-loader',
-          loader_sm: 'vf-element-loader-sm',
-          loader_md: '',
-          loader_lg: 'vf-element-loader-lg',
-          $loader: (classes, { Size }) => ([
-            classes.loader,
-            classes[`loader_${Size}`],
+          container: 'vf-floating-wrapper',
+          label: 'vf-floating-label',
+          label_enabled: '',
+          label_disabled: 'vf-floating-label-disabled',
+          label_danger: 'vf-floating-label-danger',
+          label_success: 'vf-floating-label-success',
+          label_focused: 'vf-floating-label-focus',
+          label_sm: 'vf-floating-label-sm',
+          label_md: '',
+          label_lg: 'vf-floating-label-lg',
+          label_invisible: '',
+          label_visible: 'vf-floating-label-visible',
+          $label: (classes, { visible, Size, el$ }) => ([
+            classes.label,
+            classes[`label_${Size}`],
+            visible ? classes.label_visible : classes.label_invisible,
+            el$.focused ? classes.label_focused : null,
+            !el$.isDisabled && !el$.isDanger && !el$.isSuccess ? classes.label_enabled : null,
+            el$.isDisabled ? classes.label_disabled : null,
+            el$.isDanger ? classes.label_danger : null,
+            el$.isSuccess ? classes.label_success : null,
           ]),
         }
       }
     }
   };
 
-var css_248z$1w = ".vf-element-loader-container {\n  position: relative;\n  z-index: 1;\n  order: 1;\n}\n\n.vf-element-loader {\n  position: absolute;\n  width: 1rem;\n  height: 1rem;\n  display: block;\n  right: var(--vf-px-input);\n  top: 50%;\n  transform: translateY(-50%);\n}\n\n.vf-element-loader:before, .vf-element-loader:after {\n  position: absolute;\n  content: \"\";\n  top: 50%;\n  left: 50%;\n  margin: -0.5rem 0 0 -0.5rem;\n  width: 1rem;\n  height: 1rem;\n  border-radius: 100%;\n  border-color: var(--vf-primary) transparent transparent;\n  border-style: solid;\n  border-width: 2px;\n  box-shadow: 0 0 0 1px transparent;\n  box-sizing: border-box;\n}\n\n.vf-element-loader:before {\n  animation: vf-element-loader 2.4s infinite cubic-bezier(0.41, 0.26, 0.2, 0.62);\n}\n\n.vf-element-loader:after {\n  animation: vf-element-loader 2.4s infinite cubic-bezier(0.51, 0.09, 0.21, 0.8);\n}\n\n.vf-element-loader.vf-element-loader-sm {\n  right: var(--vf-px-input-sm);\n}\n\n.vf-element-loader.vf-element-loader-lg {\n  right: var(--vf-px-input-lg);\n}\n\n@keyframes vf-element-loader {\n  from {\n    transform: rotate(0);\n  }\n\n  to {\n    transform: rotate(2turn);\n  }\n}";
+var css_248z$1w = ".vf-floating-wrapper {\n  position: relative;\n}\n\n.vf-floating-label {\n  position: absolute;\n  z-index: 1;\n  left: var(--vf-px-input);\n  font-size: 0.6875rem;\n  background-color: var(--vf-bg-input);\n  padding: 0 1px;\n  line-height: 1px;\n  transition-property: box-shadow, color, background-color, border-color;\n  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);\n  transition-duration: 200ms;\n  opacity: 0;\n  visibility: hidden;\n  white-space: nowrap;\n  color: var(--vf-color-floating);\n  margin-top: var(--vf-floating-top);\n}\n\n.vf-floating-label.vf-floating-label-visible {\n  opacity: 1;\n  visibility: visible;\n}\n\n.vf-floating-label.vf-floating-label-sm {\n  left: var(--vf-px-input-sm);\n  margin-top: var(--vf-floating-top-sm);\n}\n\n.vf-floating-label.vf-floating-label-lg {\n  left: var(--vf-px-input-lg);\n  margin-top: var(--vf-floating-top-lg);\n  background-color: transparent !important;\n}\n\n.vf-floating-label.vf-floating-label-disabled {\n  background-color: var(--vf-bg-disabled);\n}\n\n.vf-floating-label.vf-floating-label-focus {\n  background-color: var(--vf-bg-input-focus);\n  color: var(--vf-color-floating-focus);\n}\n\n.vf-floating-label.vf-floating-label-danger {\n  background-color: var(--vf-bg-input-danger);\n  color: var(--vf-color-floating-danger);\n}\n\n.vf-floating-label.vf-floating-label-success {\n  background-color: var(--vf-bg-input-success);\n  color: var(--vf-color-floating-success);\n}\n\n.vf-input-group .vf-floating-label {\n  top: calc(var(--vf-border-width-input-t) * -1);\n}\n\n[dir=rtl] .vf-floating-label {\n  left: auto;\n  right: var(--vf-px-input);\n}\n\n[dir=rtl] .vf-floating-label.vf-floating-label-sm {\n  left: auto;\n  right: var(--vf-px-input-sm);\n}\n\n[dir=rtl] .vf-floating-label.vf-floating-label-lg {\n  left: auto;\n  right: var(--vf-px-input-lg);\n}";
 styleInject(css_248z$1w);
 
 /* script */
@@ -2675,8 +2821,22 @@ const __vue_script__$1z = script$1z;
     undefined
   );
 
-  var ElementLoader = __vue_component__$1z;
+  var ElementLabelFloating = __vue_component__$1z;
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2688,166 +2848,6 @@ const __vue_script__$1z = script$1z;
 //
 
   var script$1y = {
-    name: 'ElementLabelFloating',
-    data() {
-      return {
-        merge: true,
-        defaultClasses: {
-          container: '',
-          label: '',
-        }
-      }
-    }
-  };
-
-var css_248z$1v = "";
-styleInject(css_248z$1v);
-
-/* script */
-const __vue_script__$1y = script$1y;
-/* template */
-var __vue_render__$I = function () {
-  var _vm = this;
-  var _h = _vm.$createElement;
-  var _c = _vm._self._c || _h;
-  return _c("div", { class: _vm.classes.container }, [
-    _c("span", {
-      class: _vm.classes.label,
-      domProps: { innerHTML: _vm._s(_vm.floating) },
-    }),
-  ])
-};
-var __vue_staticRenderFns__$I = [];
-__vue_render__$I._withStripped = true;
-
-  /* style */
-  const __vue_inject_styles__$1y = undefined;
-  /* scoped */
-  const __vue_scope_id__$1y = undefined;
-  /* module identifier */
-  const __vue_module_identifier__$1y = undefined;
-  /* functional template */
-  const __vue_is_functional_template__$1y = false;
-  /* style inject */
-  
-  /* style inject SSR */
-  
-  /* style inject shadow dom */
-  
-
-  
-  const __vue_component__$1y = /*#__PURE__*/normalizeComponent(
-    { render: __vue_render__$I, staticRenderFns: __vue_staticRenderFns__$I },
-    __vue_inject_styles__$1y,
-    __vue_script__$1y,
-    __vue_scope_id__$1y,
-    __vue_is_functional_template__$1y,
-    __vue_module_identifier__$1y,
-    false,
-    undefined,
-    undefined,
-    undefined
-  );
-
-  var ElementLabelFloating$1 = __vue_component__$1y;
-
-var script$1x = {
-    name: 'ElementLabelFloating',
-    render: ElementLabelFloating$1.render,
-    data() {
-      return {
-        merge: true,
-        defaultClasses: {
-          container: 'vf-floating-wrapper',
-          label: 'vf-floating-label',
-          label_enabled: '',
-          label_disabled: 'vf-floating-label-disabled',
-          label_danger: 'vf-floating-label-danger',
-          label_success: 'vf-floating-label-success',
-          label_focused: 'vf-floating-label-focus',
-          label_sm: 'vf-floating-label-sm',
-          label_md: '',
-          label_lg: 'vf-floating-label-lg',
-          label_invisible: '',
-          label_visible: 'vf-floating-label-visible',
-          $label: (classes, { visible, Size, el$ }) => ([
-            classes.label,
-            classes[`label_${Size}`],
-            visible ? classes.label_visible : classes.label_invisible,
-            el$.focused ? classes.label_focused : null,
-            !el$.isDisabled && !el$.isDanger && !el$.isSuccess ? classes.label_enabled : null,
-            el$.isDisabled ? classes.label_disabled : null,
-            el$.isDanger ? classes.label_danger : null,
-            el$.isSuccess ? classes.label_success : null,
-          ]),
-        }
-      }
-    }
-  };
-
-var css_248z$1u = ".vf-floating-wrapper {\n  position: relative;\n}\n\n.vf-floating-label {\n  position: absolute;\n  z-index: 1;\n  left: var(--vf-px-input);\n  font-size: 0.6875rem;\n  background-color: var(--vf-bg-input);\n  padding: 0 1px;\n  line-height: 1px;\n  transition-property: box-shadow, color, background-color, border-color;\n  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);\n  transition-duration: 200ms;\n  opacity: 0;\n  visibility: hidden;\n  white-space: nowrap;\n  color: var(--vf-color-floating);\n  margin-top: var(--vf-floating-top);\n}\n\n.vf-floating-label.vf-floating-label-visible {\n  opacity: 1;\n  visibility: visible;\n}\n\n.vf-floating-label.vf-floating-label-sm {\n  left: var(--vf-px-input-sm);\n  margin-top: var(--vf-floating-top-sm);\n}\n\n.vf-floating-label.vf-floating-label-lg {\n  left: var(--vf-px-input-lg);\n  margin-top: var(--vf-floating-top-lg);\n  background-color: transparent !important;\n}\n\n.vf-floating-label.vf-floating-label-disabled {\n  background-color: var(--vf-bg-disabled);\n}\n\n.vf-floating-label.vf-floating-label-focus {\n  background-color: var(--vf-bg-input-focus);\n  color: var(--vf-color-floating-focus);\n}\n\n.vf-floating-label.vf-floating-label-danger {\n  background-color: var(--vf-bg-input-danger);\n  color: var(--vf-color-floating-danger);\n}\n\n.vf-floating-label.vf-floating-label-success {\n  background-color: var(--vf-bg-input-success);\n  color: var(--vf-color-floating-success);\n}\n\n.vf-input-group .vf-floating-label {\n  top: calc(var(--vf-border-width-input-t) * -1);\n}\n\n[dir=rtl] .vf-floating-label {\n  left: auto;\n  right: var(--vf-px-input);\n}\n\n[dir=rtl] .vf-floating-label.vf-floating-label-sm {\n  left: auto;\n  right: var(--vf-px-input-sm);\n}\n\n[dir=rtl] .vf-floating-label.vf-floating-label-lg {\n  left: auto;\n  right: var(--vf-px-input-lg);\n}";
-styleInject(css_248z$1u);
-
-/* script */
-const __vue_script__$1x = script$1x;
-/* template */
-
-  /* style */
-  const __vue_inject_styles__$1x = undefined;
-  /* scoped */
-  const __vue_scope_id__$1x = undefined;
-  /* module identifier */
-  const __vue_module_identifier__$1x = undefined;
-  /* functional template */
-  const __vue_is_functional_template__$1x = undefined;
-  /* style inject */
-  
-  /* style inject SSR */
-  
-  /* style inject shadow dom */
-  
-
-  
-  const __vue_component__$1x = /*#__PURE__*/normalizeComponent(
-    {},
-    __vue_inject_styles__$1x,
-    __vue_script__$1x,
-    __vue_scope_id__$1x,
-    __vue_is_functional_template__$1x,
-    __vue_module_identifier__$1x,
-    false,
-    undefined,
-    undefined,
-    undefined
-  );
-
-  var ElementLabelFloating = __vue_component__$1x;
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-  var script$1w = {
     name: 'ElementLabel',
     data() {
       return {
@@ -2860,13 +2860,13 @@ const __vue_script__$1x = script$1x;
     }
   };
 
-var css_248z$1t = "";
-styleInject(css_248z$1t);
+var css_248z$1v = "";
+styleInject(css_248z$1v);
 
 /* script */
-const __vue_script__$1w = script$1w;
+const __vue_script__$1y = script$1y;
 /* template */
-var __vue_render__$H = function () {
+var __vue_render__$I = function () {
   var _vm = this;
   var _h = _vm.$createElement;
   var _c = _vm._self._c || _h;
@@ -2922,17 +2922,17 @@ var __vue_render__$H = function () {
       })
     : _vm._e()
 };
-var __vue_staticRenderFns__$H = [];
-__vue_render__$H._withStripped = true;
+var __vue_staticRenderFns__$I = [];
+__vue_render__$I._withStripped = true;
 
   /* style */
-  const __vue_inject_styles__$1w = undefined;
+  const __vue_inject_styles__$1y = undefined;
   /* scoped */
-  const __vue_scope_id__$1w = undefined;
+  const __vue_scope_id__$1y = undefined;
   /* module identifier */
-  const __vue_module_identifier__$1w = undefined;
+  const __vue_module_identifier__$1y = undefined;
   /* functional template */
-  const __vue_is_functional_template__$1w = false;
+  const __vue_is_functional_template__$1y = false;
   /* style inject */
   
   /* style inject SSR */
@@ -2941,22 +2941,22 @@ __vue_render__$H._withStripped = true;
   
 
   
-  const __vue_component__$1w = /*#__PURE__*/normalizeComponent(
-    { render: __vue_render__$H, staticRenderFns: __vue_staticRenderFns__$H },
-    __vue_inject_styles__$1w,
-    __vue_script__$1w,
-    __vue_scope_id__$1w,
-    __vue_is_functional_template__$1w,
-    __vue_module_identifier__$1w,
+  const __vue_component__$1y = /*#__PURE__*/normalizeComponent(
+    { render: __vue_render__$I, staticRenderFns: __vue_staticRenderFns__$I },
+    __vue_inject_styles__$1y,
+    __vue_script__$1y,
+    __vue_scope_id__$1y,
+    __vue_is_functional_template__$1y,
+    __vue_module_identifier__$1y,
     false,
     undefined,
     undefined,
     undefined
   );
 
-  var ElementLabel$1 = __vue_component__$1w;
+  var ElementLabel$1 = __vue_component__$1y;
 
-var script$1v = {
+var script$1x = {
     name: 'ElementLabel',
     render: ElementLabel$1.render,
     data() {
@@ -2994,7 +2994,161 @@ var script$1v = {
     }
   };
 
-var css_248z$1s = "/* Styles can be found at scss/_label.scss */";
+var css_248z$1u = "/* Styles can be found at scss/_label.scss */";
+styleInject(css_248z$1u);
+
+/* script */
+const __vue_script__$1x = script$1x;
+/* template */
+
+  /* style */
+  const __vue_inject_styles__$1x = undefined;
+  /* scoped */
+  const __vue_scope_id__$1x = undefined;
+  /* module identifier */
+  const __vue_module_identifier__$1x = undefined;
+  /* functional template */
+  const __vue_is_functional_template__$1x = undefined;
+  /* style inject */
+  
+  /* style inject SSR */
+  
+  /* style inject shadow dom */
+  
+
+  
+  const __vue_component__$1x = /*#__PURE__*/normalizeComponent(
+    {},
+    __vue_inject_styles__$1x,
+    __vue_script__$1x,
+    __vue_scope_id__$1x,
+    __vue_is_functional_template__$1x,
+    __vue_module_identifier__$1x,
+    false,
+    undefined,
+    undefined,
+    undefined
+  );
+
+  var ElementLabel = __vue_component__$1x;
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+  var script$1w = {
+    name: 'ElementInfo',
+    data() {
+      return {
+        merge: true,
+        defaultClasses: {
+          container: '',
+          wrapper: '',
+          content: '',
+        }
+      }
+    }
+  };
+
+var css_248z$1t = "";
+styleInject(css_248z$1t);
+
+/* script */
+const __vue_script__$1w = script$1w;
+/* template */
+var __vue_render__$H = function () {
+  var _vm = this;
+  var _h = _vm.$createElement;
+  var _c = _vm._self._c || _h;
+  return _vm.info || _vm.isSlot
+    ? _c(
+        "span",
+        {
+          class: _vm.classes.container,
+          on: { mouseover: _vm.handleMouseOver },
+        },
+        [
+          _c("div", { class: _vm.classes.wrapper, attrs: { id: _vm.id } }, [
+            _vm.isSlot
+              ? _c(
+                  "span",
+                  { class: _vm.classes.content },
+                  [_vm._t("default")],
+                  2
+                )
+              : _c("span", {
+                  class: _vm.classes.content,
+                  domProps: { innerHTML: _vm._s(_vm.info) },
+                }),
+          ]),
+        ]
+      )
+    : _vm._e()
+};
+var __vue_staticRenderFns__$H = [];
+__vue_render__$H._withStripped = true;
+
+  /* style */
+  const __vue_inject_styles__$1w = undefined;
+  /* scoped */
+  const __vue_scope_id__$1w = undefined;
+  /* module identifier */
+  const __vue_module_identifier__$1w = undefined;
+  /* functional template */
+  const __vue_is_functional_template__$1w = false;
+  /* style inject */
+  
+  /* style inject SSR */
+  
+  /* style inject shadow dom */
+  
+
+  
+  const __vue_component__$1w = /*#__PURE__*/normalizeComponent(
+    { render: __vue_render__$H, staticRenderFns: __vue_staticRenderFns__$H },
+    __vue_inject_styles__$1w,
+    __vue_script__$1w,
+    __vue_scope_id__$1w,
+    __vue_is_functional_template__$1w,
+    __vue_module_identifier__$1w,
+    false,
+    undefined,
+    undefined,
+    undefined
+  );
+
+  var ElementInfo$1 = __vue_component__$1w;
+
+var script$1v = {
+    name: 'ElementInfo',
+    render: ElementInfo$1.render,
+    data() {
+      return {
+        merge: true,
+        defaultClasses: {
+          container: 'vf-element-info',
+          wrapper: 'vf-element-info-wrapper',
+          wrapper_left: 'vf-element-info-wrapper-left',
+          wrapper_right: 'vf-element-info-wrapper-right',
+          wrapper_top: 'vf-element-info-wrapper-top',
+          wrapper_bottom: 'vf-element-info-wrapper-bottom',
+          content: 'vf-element-info-content',
+          $wrapper: (classes, { position }) => ([
+            classes.wrapper,
+            classes[`wrapper_${position}`],
+          ]),
+        }
+      }
+    }
+  };
+
+var css_248z$1s = ".vf-element-info {\n  margin-left: 0.25rem;\n  position: relative;\n  top: 1px;\n  cursor: pointer;\n}\n\n.vf-element-info:before {\n  content: \"\";\n  mask-image: url(\"data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3Csvg width='15px' height='14px' viewBox='0 0 15 14' version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'%3E%3Cg stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'%3E%3Cpath d='M7.40520349,0.18129431 C11.1501134,0.18129431 14.1864373,3.21871306 14.1864373,6.96252814 C14.1864373,10.7085329 11.1501134,13.743762 7.40520349,13.743762 C3.6602936,13.743762 0.62396966,10.7085329 0.62396966,6.96252814 C0.62396966,3.21871306 3.6602936,0.18129431 7.40520349,0.18129431 Z M7.40520349,3.18909964 C6.77093148,3.18909964 6.25676873,3.70326238 6.25676873,4.3375344 C6.25676873,4.97180642 6.77093148,5.48596916 7.40520349,5.48596916 C8.03947551,5.48596916 8.55363825,4.97180642 8.55363825,4.3375344 C8.55363825,3.70326238 8.03947551,3.18909964 7.40520349,3.18909964 Z M8.93644984,10.1343956 L8.93644984,9.47814714 C8.93644984,9.29694183 8.78953094,9.15002293 8.60832562,9.15002293 L8.28020141,9.15002293 L8.28020141,6.41565445 C8.28020141,6.23444913 8.13328251,6.08753023 7.95207719,6.08753023 L6.20208136,6.08753023 C6.02087604,6.08753023 5.87395714,6.23444913 5.87395714,6.41565445 L5.87395714,7.07190288 C5.87395714,7.2531082 6.02087604,7.4000271 6.20208136,7.4000271 L6.53020558,7.4000271 L6.53020558,9.15002293 L6.20208136,9.15002293 C6.02087604,9.15002293 5.87395714,9.29694183 5.87395714,9.47814714 L5.87395714,10.1343956 C5.87395714,10.3156009 6.02087604,10.4625198 6.20208136,10.4625198 L8.60832562,10.4625198 C8.78953094,10.4625198 8.93644984,10.3156009 8.93644984,10.1343956 Z' id='info-circle' fill='currentColor'%3E%3C/path%3E%3C/g%3E%3C/svg%3E\");\n  -webkit-mask-image: url(\"data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3Csvg width='15px' height='14px' viewBox='0 0 15 14' version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'%3E%3Cg stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'%3E%3Cpath d='M7.40520349,0.18129431 C11.1501134,0.18129431 14.1864373,3.21871306 14.1864373,6.96252814 C14.1864373,10.7085329 11.1501134,13.743762 7.40520349,13.743762 C3.6602936,13.743762 0.62396966,10.7085329 0.62396966,6.96252814 C0.62396966,3.21871306 3.6602936,0.18129431 7.40520349,0.18129431 Z M7.40520349,3.18909964 C6.77093148,3.18909964 6.25676873,3.70326238 6.25676873,4.3375344 C6.25676873,4.97180642 6.77093148,5.48596916 7.40520349,5.48596916 C8.03947551,5.48596916 8.55363825,4.97180642 8.55363825,4.3375344 C8.55363825,3.70326238 8.03947551,3.18909964 7.40520349,3.18909964 Z M8.93644984,10.1343956 L8.93644984,9.47814714 C8.93644984,9.29694183 8.78953094,9.15002293 8.60832562,9.15002293 L8.28020141,9.15002293 L8.28020141,6.41565445 C8.28020141,6.23444913 8.13328251,6.08753023 7.95207719,6.08753023 L6.20208136,6.08753023 C6.02087604,6.08753023 5.87395714,6.23444913 5.87395714,6.41565445 L5.87395714,7.07190288 C5.87395714,7.2531082 6.02087604,7.4000271 6.20208136,7.4000271 L6.53020558,7.4000271 L6.53020558,9.15002293 L6.20208136,9.15002293 C6.02087604,9.15002293 5.87395714,9.29694183 5.87395714,9.47814714 L5.87395714,10.1343956 C5.87395714,10.3156009 6.02087604,10.4625198 6.20208136,10.4625198 L8.60832562,10.4625198 C8.78953094,10.4625198 8.93644984,10.3156009 8.93644984,10.1343956 Z' id='info-circle' fill='currentColor'%3E%3C/path%3E%3C/g%3E%3C/svg%3E\");\n  mask-position: center center;\n  -webkit-mask-position: center center;\n  mask-repeat: no-repeat;\n  -webkit-mask-repeat: no-repeat;\n  mask-size: contain;\n  -webkit-mask-size: contain;\n  background-color: var(--vf-bg-passive);\n  width: 0.875rem;\n  height: 0.875rem;\n  display: inline-block;\n}\n\n.vf-element-info:hover .vf-element-info-wrapper {\n  opacity: 1;\n  visibility: visible;\n}\n\n.vf-element-info-wrapper {\n  position: absolute;\n  opacity: 0;\n  visibility: hidden;\n  transition: 0.3s;\n  z-index: 1000;\n  width: 12.5rem;\n}\n\n.vf-element-info-wrapper.vf-element-info-wrapper-left {\n  top: -0.5625rem;\n  right: 1.375rem;\n}\n\n.vf-element-info-wrapper.vf-element-info-wrapper-right {\n  top: -0.5625rem;\n  left: 1.375rem;\n}\n\n.vf-element-info-wrapper.vf-element-info-wrapper-top {\n  bottom: 1.375rem;\n  left: 50%;\n  transform: translateX(-50%);\n}\n\n.vf-element-info-wrapper.vf-element-info-wrapper-bottom {\n  top: 1.375rem;\n  left: 50%;\n  transform: translateX(-50%);\n}\n\n.vf-element-info-content {\n  background: rgba(0, 0, 0, 0.85);\n  color: #FFFFFF;\n  border-radius: var(--vf-radius-small);\n  font-size: var(--vf-font-size-small);\n  line-height: var(--vf-line-height-small);\n  letter-spacing: var(--vf-letter-spacing-small);\n  padding: 0.3125rem 0.625rem;\n  font-style: normal;\n  display: inline-block;\n  position: relative;\n}\n\n.vf-element-info-content:after {\n  right: 100%;\n  top: 0.625rem;\n  border: solid transparent;\n  content: \"\";\n  height: 0;\n  width: 0;\n  position: absolute;\n  pointer-events: none;\n  border-color: rgba(0, 0, 0, 0);\n  border-right-color: rgba(0, 0, 0, 0.85);\n  border-width: 5px;\n}";
 styleInject(css_248z$1s);
 
 /* script */
@@ -3030,9 +3184,8 @@ const __vue_script__$1v = script$1v;
     undefined
   );
 
-  var ElementLabel = __vue_component__$1v;
+  var ElementInfo = __vue_component__$1v;
 
-//
 //
 //
 //
@@ -3043,14 +3196,12 @@ const __vue_script__$1v = script$1v;
 //
 
   var script$1u = {
-    name: 'ElementInfo',
+    name: 'ElementDescription',
     data() {
       return {
         merge: true,
         defaultClasses: {
           container: '',
-          wrapper: '',
-          content: '',
         }
       }
     }
@@ -3066,28 +3217,18 @@ var __vue_render__$G = function () {
   var _vm = this;
   var _h = _vm.$createElement;
   var _c = _vm._self._c || _h;
-  return _vm.info || _vm.isSlot
+  return _vm.description
+    ? _c("div", {
+        class: _vm.classes.container,
+        attrs: { id: _vm.id },
+        domProps: { innerHTML: _vm._s(_vm.description) },
+      })
+    : _vm.isSlot
     ? _c(
-        "span",
-        {
-          class: _vm.classes.container,
-          on: { mouseover: _vm.handleMouseOver },
-        },
-        [
-          _c("div", { class: _vm.classes.wrapper, attrs: { id: _vm.id } }, [
-            _vm.isSlot
-              ? _c(
-                  "span",
-                  { class: _vm.classes.content },
-                  [_vm._t("default")],
-                  2
-                )
-              : _c("span", {
-                  class: _vm.classes.content,
-                  domProps: { innerHTML: _vm._s(_vm.info) },
-                }),
-          ]),
-        ]
+        "div",
+        { class: _vm.classes.container, attrs: { id: _vm.id } },
+        [_vm._t("default")],
+        2
       )
     : _vm._e()
 };
@@ -3123,32 +3264,29 @@ __vue_render__$G._withStripped = true;
     undefined
   );
 
-  var ElementInfo$1 = __vue_component__$1u;
+  var ElementDescription$1 = __vue_component__$1u;
 
 var script$1t = {
-    name: 'ElementInfo',
-    render: ElementInfo$1.render,
+    name: 'ElementDescription',
+    render: ElementDescription$1.render,
     data() {
       return {
         merge: true,
         defaultClasses: {
-          container: 'vf-element-info',
-          wrapper: 'vf-element-info-wrapper',
-          wrapper_left: 'vf-element-info-wrapper-left',
-          wrapper_right: 'vf-element-info-wrapper-right',
-          wrapper_top: 'vf-element-info-wrapper-top',
-          wrapper_bottom: 'vf-element-info-wrapper-bottom',
-          content: 'vf-element-info-content',
-          $wrapper: (classes, { position }) => ([
-            classes.wrapper,
-            classes[`wrapper_${position}`],
+          container: 'vf-description',
+          container_sm: 'vf-description-sm',
+          container_md: '',
+          container_lg: 'vf-description-lg',
+          $container: (classes, { Size }) => ([
+            classes.container,
+            classes[`container_${Size}`],
           ]),
         }
       }
     }
   };
 
-var css_248z$1q = ".vf-element-info {\n  margin-left: 0.25rem;\n  position: relative;\n  top: 1px;\n  cursor: pointer;\n}\n\n.vf-element-info:before {\n  content: \"\";\n  mask-image: url(\"data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3Csvg width='15px' height='14px' viewBox='0 0 15 14' version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'%3E%3Cg stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'%3E%3Cpath d='M7.40520349,0.18129431 C11.1501134,0.18129431 14.1864373,3.21871306 14.1864373,6.96252814 C14.1864373,10.7085329 11.1501134,13.743762 7.40520349,13.743762 C3.6602936,13.743762 0.62396966,10.7085329 0.62396966,6.96252814 C0.62396966,3.21871306 3.6602936,0.18129431 7.40520349,0.18129431 Z M7.40520349,3.18909964 C6.77093148,3.18909964 6.25676873,3.70326238 6.25676873,4.3375344 C6.25676873,4.97180642 6.77093148,5.48596916 7.40520349,5.48596916 C8.03947551,5.48596916 8.55363825,4.97180642 8.55363825,4.3375344 C8.55363825,3.70326238 8.03947551,3.18909964 7.40520349,3.18909964 Z M8.93644984,10.1343956 L8.93644984,9.47814714 C8.93644984,9.29694183 8.78953094,9.15002293 8.60832562,9.15002293 L8.28020141,9.15002293 L8.28020141,6.41565445 C8.28020141,6.23444913 8.13328251,6.08753023 7.95207719,6.08753023 L6.20208136,6.08753023 C6.02087604,6.08753023 5.87395714,6.23444913 5.87395714,6.41565445 L5.87395714,7.07190288 C5.87395714,7.2531082 6.02087604,7.4000271 6.20208136,7.4000271 L6.53020558,7.4000271 L6.53020558,9.15002293 L6.20208136,9.15002293 C6.02087604,9.15002293 5.87395714,9.29694183 5.87395714,9.47814714 L5.87395714,10.1343956 C5.87395714,10.3156009 6.02087604,10.4625198 6.20208136,10.4625198 L8.60832562,10.4625198 C8.78953094,10.4625198 8.93644984,10.3156009 8.93644984,10.1343956 Z' id='info-circle' fill='currentColor'%3E%3C/path%3E%3C/g%3E%3C/svg%3E\");\n  -webkit-mask-image: url(\"data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3Csvg width='15px' height='14px' viewBox='0 0 15 14' version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'%3E%3Cg stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'%3E%3Cpath d='M7.40520349,0.18129431 C11.1501134,0.18129431 14.1864373,3.21871306 14.1864373,6.96252814 C14.1864373,10.7085329 11.1501134,13.743762 7.40520349,13.743762 C3.6602936,13.743762 0.62396966,10.7085329 0.62396966,6.96252814 C0.62396966,3.21871306 3.6602936,0.18129431 7.40520349,0.18129431 Z M7.40520349,3.18909964 C6.77093148,3.18909964 6.25676873,3.70326238 6.25676873,4.3375344 C6.25676873,4.97180642 6.77093148,5.48596916 7.40520349,5.48596916 C8.03947551,5.48596916 8.55363825,4.97180642 8.55363825,4.3375344 C8.55363825,3.70326238 8.03947551,3.18909964 7.40520349,3.18909964 Z M8.93644984,10.1343956 L8.93644984,9.47814714 C8.93644984,9.29694183 8.78953094,9.15002293 8.60832562,9.15002293 L8.28020141,9.15002293 L8.28020141,6.41565445 C8.28020141,6.23444913 8.13328251,6.08753023 7.95207719,6.08753023 L6.20208136,6.08753023 C6.02087604,6.08753023 5.87395714,6.23444913 5.87395714,6.41565445 L5.87395714,7.07190288 C5.87395714,7.2531082 6.02087604,7.4000271 6.20208136,7.4000271 L6.53020558,7.4000271 L6.53020558,9.15002293 L6.20208136,9.15002293 C6.02087604,9.15002293 5.87395714,9.29694183 5.87395714,9.47814714 L5.87395714,10.1343956 C5.87395714,10.3156009 6.02087604,10.4625198 6.20208136,10.4625198 L8.60832562,10.4625198 C8.78953094,10.4625198 8.93644984,10.3156009 8.93644984,10.1343956 Z' id='info-circle' fill='currentColor'%3E%3C/path%3E%3C/g%3E%3C/svg%3E\");\n  mask-position: center center;\n  -webkit-mask-position: center center;\n  mask-repeat: no-repeat;\n  -webkit-mask-repeat: no-repeat;\n  mask-size: contain;\n  -webkit-mask-size: contain;\n  background-color: var(--vf-bg-passive);\n  width: 0.875rem;\n  height: 0.875rem;\n  display: inline-block;\n}\n\n.vf-element-info:hover .vf-element-info-wrapper {\n  opacity: 1;\n  visibility: visible;\n}\n\n.vf-element-info-wrapper {\n  position: absolute;\n  opacity: 0;\n  visibility: hidden;\n  transition: 0.3s;\n  z-index: 1000;\n  width: 12.5rem;\n}\n\n.vf-element-info-wrapper.vf-element-info-wrapper-left {\n  top: -0.5625rem;\n  right: 1.375rem;\n}\n\n.vf-element-info-wrapper.vf-element-info-wrapper-right {\n  top: -0.5625rem;\n  left: 1.375rem;\n}\n\n.vf-element-info-wrapper.vf-element-info-wrapper-top {\n  bottom: 1.375rem;\n  left: 50%;\n  transform: translateX(-50%);\n}\n\n.vf-element-info-wrapper.vf-element-info-wrapper-bottom {\n  top: 1.375rem;\n  left: 50%;\n  transform: translateX(-50%);\n}\n\n.vf-element-info-content {\n  background: rgba(0, 0, 0, 0.85);\n  color: #FFFFFF;\n  border-radius: var(--vf-radius-small);\n  font-size: var(--vf-font-size-small);\n  line-height: var(--vf-line-height-small);\n  letter-spacing: var(--vf-letter-spacing-small);\n  padding: 0.3125rem 0.625rem;\n  font-style: normal;\n  display: inline-block;\n  position: relative;\n}\n\n.vf-element-info-content:after {\n  right: 100%;\n  top: 0.625rem;\n  border: solid transparent;\n  content: \"\";\n  height: 0;\n  width: 0;\n  position: absolute;\n  pointer-events: none;\n  border-color: rgba(0, 0, 0, 0);\n  border-right-color: rgba(0, 0, 0, 0.85);\n  border-width: 5px;\n}";
+var css_248z$1q = ".vf-description {\n  font-size: var(--vf-font-size-small);\n  line-height: var(--vf-line-height-small);\n  letter-spacing: var(--vf-letter-spacing-small);\n  color: var(--vf-color-muted);\n  margin-top: 0.25rem;\n}\n\n.vf-description.vf-description-sm {\n  font-size: var(--vf-font-size-small-sm);\n  line-height: var(--vf-line-height-small-sm);\n  letter-spacing: var(--vf-letter-spacing-small-sm);\n  margin-top: 0.125rem;\n}\n\n.vf-description.vf-description-lg {\n  font-size: var(--vf-font-size-small-lg);\n  line-height: var(--vf-line-height-small-lg);\n  letter-spacing: var(--vf-letter-spacing-small-lg);\n}";
 styleInject(css_248z$1q);
 
 /* script */
@@ -3184,8 +3322,10 @@ const __vue_script__$1t = script$1t;
     undefined
   );
 
-  var ElementInfo = __vue_component__$1t;
+  var ElementDescription = __vue_component__$1t;
 
+//
+//
 //
 //
 //
@@ -3196,7 +3336,7 @@ const __vue_script__$1t = script$1t;
 //
 
   var script$1s = {
-    name: 'ElementDescription',
+    name: 'ElementError',
     data() {
       return {
         merge: true,
@@ -3217,19 +3357,12 @@ var __vue_render__$F = function () {
   var _vm = this;
   var _h = _vm.$createElement;
   var _c = _vm._self._c || _h;
-  return _vm.description
+  return _vm.error
     ? _c("div", {
         class: _vm.classes.container,
-        attrs: { id: _vm.id },
-        domProps: { innerHTML: _vm._s(_vm.description) },
+        attrs: { id: _vm.id, "aria-live": "assertive" },
+        domProps: { innerHTML: _vm._s(_vm.error) },
       })
-    : _vm.isSlot
-    ? _c(
-        "div",
-        { class: _vm.classes.container, attrs: { id: _vm.id } },
-        [_vm._t("default")],
-        2
-      )
     : _vm._e()
 };
 var __vue_staticRenderFns__$F = [];
@@ -3264,19 +3397,19 @@ __vue_render__$F._withStripped = true;
     undefined
   );
 
-  var ElementDescription$1 = __vue_component__$1s;
+  var ElementError$1 = __vue_component__$1s;
 
 var script$1r = {
-    name: 'ElementDescription',
-    render: ElementDescription$1.render,
+    name: 'ElementError',
+    render: ElementError$1.render,
     data() {
       return {
         merge: true,
         defaultClasses: {
-          container: 'vf-description',
-          container_sm: 'vf-description-sm',
+          container: 'vf-element-error',
+          container_sm: 'vf-element-error-sm',
           container_md: '',
-          container_lg: 'vf-description-lg',
+          container_lg: 'vf-element-error-lg',
           $container: (classes, { Size }) => ([
             classes.container,
             classes[`container_${Size}`],
@@ -3286,7 +3419,7 @@ var script$1r = {
     }
   };
 
-var css_248z$1o = ".vf-description {\n  font-size: var(--vf-font-size-small);\n  line-height: var(--vf-line-height-small);\n  letter-spacing: var(--vf-letter-spacing-small);\n  color: var(--vf-color-muted);\n  margin-top: 0.25rem;\n}\n\n.vf-description.vf-description-sm {\n  font-size: var(--vf-font-size-small-sm);\n  line-height: var(--vf-line-height-small-sm);\n  letter-spacing: var(--vf-letter-spacing-small-sm);\n  margin-top: 0.125rem;\n}\n\n.vf-description.vf-description-lg {\n  font-size: var(--vf-font-size-small-lg);\n  line-height: var(--vf-line-height-small-lg);\n  letter-spacing: var(--vf-letter-spacing-small-lg);\n}";
+var css_248z$1o = ".vf-element-error {\n  font-size: var(--vf-font-size-small);\n  line-height: var(--vf-line-height-small);\n  letter-spacing: var(--vf-letter-spacing-small);\n  color: var(--vf-color-danger);\n  margin-top: 0.25rem;\n}\n\n.vf-element-error.vf-element-error-sm {\n  font-size: var(--vf-font-size-small-sm);\n  line-height: var(--vf-line-height-small-sm);\n  letter-spacing: var(--vf-letter-spacing-small-sm);\n  margin-top: 0.125rem;\n}\n\n.vf-element-error.vf-element-error-lg {\n  font-size: var(--vf-font-size-small-lg);\n  line-height: var(--vf-line-height-small-lg);\n  letter-spacing: var(--vf-letter-spacing-small-lg);\n}";
 styleInject(css_248z$1o);
 
 /* script */
@@ -3322,21 +3455,15 @@ const __vue_script__$1r = script$1r;
     undefined
   );
 
-  var ElementDescription = __vue_component__$1r;
+  var ElementError = __vue_component__$1r;
 
-//
-//
-//
-//
-//
-//
 //
 //
 //
 //
 
   var script$1q = {
-    name: 'ElementError',
+    name: 'ElementMessage',
     data() {
       return {
         merge: true,
@@ -3357,11 +3484,10 @@ var __vue_render__$E = function () {
   var _vm = this;
   var _h = _vm.$createElement;
   var _c = _vm._self._c || _h;
-  return _vm.error
+  return _vm.message
     ? _c("div", {
         class: _vm.classes.container,
-        attrs: { id: _vm.id, "aria-live": "assertive" },
-        domProps: { innerHTML: _vm._s(_vm.error) },
+        domProps: { innerHTML: _vm._s(_vm.message) },
       })
     : _vm._e()
 };
@@ -3397,19 +3523,19 @@ __vue_render__$E._withStripped = true;
     undefined
   );
 
-  var ElementError$1 = __vue_component__$1q;
+  var ElementMessage$1 = __vue_component__$1q;
 
 var script$1p = {
-    name: 'ElementError',
-    render: ElementError$1.render,
+    name: 'ElementMessage',
+    render: ElementMessage$1.render,
     data() {
       return {
         merge: true,
         defaultClasses: {
-          container: 'vf-element-error',
-          container_sm: 'vf-element-error-sm',
+          container: 'vf-element-message',
+          container_sm: 'vf-element-message-sm',
           container_md: '',
-          container_lg: 'vf-element-error-lg',
+          container_lg: 'vf-element-message-lg',
           $container: (classes, { Size }) => ([
             classes.container,
             classes[`container_${Size}`],
@@ -3419,7 +3545,7 @@ var script$1p = {
     }
   };
 
-var css_248z$1m = ".vf-element-error {\n  font-size: var(--vf-font-size-small);\n  line-height: var(--vf-line-height-small);\n  letter-spacing: var(--vf-letter-spacing-small);\n  color: var(--vf-color-danger);\n  margin-top: 0.25rem;\n}\n\n.vf-element-error.vf-element-error-sm {\n  font-size: var(--vf-font-size-small-sm);\n  line-height: var(--vf-line-height-small-sm);\n  letter-spacing: var(--vf-letter-spacing-small-sm);\n  margin-top: 0.125rem;\n}\n\n.vf-element-error.vf-element-error-lg {\n  font-size: var(--vf-font-size-small-lg);\n  line-height: var(--vf-line-height-small-lg);\n  letter-spacing: var(--vf-letter-spacing-small-lg);\n}";
+var css_248z$1m = ".vf-element-message {\n  font-size: var(--vf-font-size-small);\n  line-height: var(--vf-line-height-small);\n  letter-spacing: var(--vf-letter-spacing-small);\n  color: var(--vf-color-success);\n  margin-top: 0.25rem;\n}\n\n.vf-element-message.vf-element-message-sm {\n  font-size: var(--vf-font-size-small-sm);\n  line-height: var(--vf-line-height-small-sm);\n  letter-spacing: var(--vf-letter-spacing-small-sm);\n  margin-top: 0.125rem;\n}\n\n.vf-element-message.vf-element-message-lg {\n  font-size: var(--vf-font-size-small-lg);\n  line-height: var(--vf-line-height-small-lg);\n  letter-spacing: var(--vf-letter-spacing-small-lg);\n}";
 styleInject(css_248z$1m);
 
 /* script */
@@ -3455,15 +3581,19 @@ const __vue_script__$1p = script$1p;
     undefined
   );
 
-  var ElementError = __vue_component__$1p;
+  var ElementMessage = __vue_component__$1p;
 
+//
+//
+//
+//
 //
 //
 //
 //
 
   var script$1o = {
-    name: 'ElementMessage',
+    name: 'ElementText',
     data() {
       return {
         merge: true,
@@ -3484,11 +3614,13 @@ var __vue_render__$D = function () {
   var _vm = this;
   var _h = _vm.$createElement;
   var _c = _vm._self._c || _h;
-  return _vm.message
+  return _vm.content
     ? _c("div", {
         class: _vm.classes.container,
-        domProps: { innerHTML: _vm._s(_vm.message) },
+        domProps: { innerHTML: _vm._s(_vm.content) },
       })
+    : _vm.isSlot
+    ? _c("div", { class: _vm.classes.container }, [_vm._t("default")], 2)
     : _vm._e()
 };
 var __vue_staticRenderFns__$D = [];
@@ -3523,29 +3655,29 @@ __vue_render__$D._withStripped = true;
     undefined
   );
 
-  var ElementMessage$1 = __vue_component__$1o;
+  var ElementText$1 = __vue_component__$1o;
 
 var script$1n = {
-    name: 'ElementMessage',
-    render: ElementMessage$1.render,
+    name: 'ElementText',
+    render: ElementText$1.render,
     data() {
       return {
         merge: true,
         defaultClasses: {
-          container: 'vf-element-message',
-          container_sm: 'vf-element-message-sm',
-          container_md: '',
-          container_lg: 'vf-element-message-lg',
-          $container: (classes, { Size }) => ([
+          container: '',
+          container_before: '',
+          container_between: '',
+          container_after: '',
+          $container: (classes, { type }) => ([
             classes.container,
-            classes[`container_${Size}`],
+            classes[`container_${type}`]
           ]),
         }
       }
     }
   };
 
-var css_248z$1k = ".vf-element-message {\n  font-size: var(--vf-font-size-small);\n  line-height: var(--vf-line-height-small);\n  letter-spacing: var(--vf-letter-spacing-small);\n  color: var(--vf-color-success);\n  margin-top: 0.25rem;\n}\n\n.vf-element-message.vf-element-message-sm {\n  font-size: var(--vf-font-size-small-sm);\n  line-height: var(--vf-line-height-small-sm);\n  letter-spacing: var(--vf-letter-spacing-small-sm);\n  margin-top: 0.125rem;\n}\n\n.vf-element-message.vf-element-message-lg {\n  font-size: var(--vf-font-size-small-lg);\n  line-height: var(--vf-line-height-small-lg);\n  letter-spacing: var(--vf-letter-spacing-small-lg);\n}";
+var css_248z$1k = "";
 styleInject(css_248z$1k);
 
 /* script */
@@ -3581,8 +3713,19 @@ const __vue_script__$1n = script$1n;
     undefined
   );
 
-  var ElementMessage = __vue_component__$1n;
+  var ElementText = __vue_component__$1n;
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -3593,12 +3736,13 @@ const __vue_script__$1n = script$1n;
 //
 
   var script$1m = {
-    name: 'ElementText',
+    name: 'ElementAddon',
     data() {
       return {
         merge: true,
         defaultClasses: {
           container: '',
+          wrapper: '',
         }
       }
     }
@@ -3614,13 +3758,26 @@ var __vue_render__$C = function () {
   var _vm = this;
   var _h = _vm.$createElement;
   var _c = _vm._self._c || _h;
-  return _vm.content
-    ? _c("div", {
-        class: _vm.classes.container,
-        domProps: { innerHTML: _vm._s(_vm.content) },
-      })
+  return _vm.addon && _vm.isAddonComponent
+    ? _c("div", { class: _vm.classes.container }, [
+        _c(
+          "div",
+          { class: _vm.classes.wrapper },
+          [_c(_vm.addon, { tag: "component" })],
+          1
+        ),
+      ])
+    : _vm.addon
+    ? _c("div", { class: _vm.classes.container }, [
+        _c("div", {
+          class: _vm.classes.wrapper,
+          domProps: { innerHTML: _vm._s(_vm.addon) },
+        }),
+      ])
     : _vm.isSlot
-    ? _c("div", { class: _vm.classes.container }, [_vm._t("default")], 2)
+    ? _c("div", { class: _vm.classes.container }, [
+        _c("div", { class: _vm.classes.wrapper }, [_vm._t("default")], 2),
+      ])
     : _vm._e()
 };
 var __vue_staticRenderFns__$C = [];
@@ -3655,29 +3812,40 @@ __vue_render__$C._withStripped = true;
     undefined
   );
 
-  var ElementText$1 = __vue_component__$1m;
+  var ElementAddon$1 = __vue_component__$1m;
 
 var script$1l = {
-    name: 'ElementText',
-    render: ElementText$1.render,
+    name: 'ElementAddon',
+    render: ElementAddon$1.render,
     data() {
       return {
         merge: true,
         defaultClasses: {
-          container: '',
-          container_before: '',
-          container_between: '',
-          container_after: '',
-          $container: (classes, { type }) => ([
+          container: 'vf-addon',
+          container_before: 'vf-addon-before',
+          container_after: 'vf-addon-after',
+          container_sm: 'vf-addon-sm',
+          container_md: '',
+          container_lg: 'vf-addon-lg',
+          container_before_sm: '',
+          container_before_md: '',
+          container_before_lg: '',
+          container_after_sm: '',
+          container_after_md: '',
+          container_after_lg: '',
+          wrapper: 'vf-addon-wrapper',
+          $container: (classes, { type, Size }) => ([
             classes.container,
-            classes[`container_${type}`]
+            classes[`container_${Size}`],
+            classes[`container_${type}`],
+            classes[`container_${type}_${Size}`],
           ]),
         }
       }
     }
   };
 
-var css_248z$1i = "";
+var css_248z$1i = ".vf-addon {\n  background: var(--vf-bg-addon);\n  color: var(--vf-color-addon);\n  border-radius: var(--vf-radius-input);\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  flex: 0 0 0%;\n}\n\n.vf-addon.vf-addon-before {\n  border-top-right-radius: 0;\n  border-bottom-right-radius: 0;\n  padding: 0 var(--vf-space-addon) 0 var(--vf-px-input);\n}\n\n.vf-addon.vf-addon-before.vf-addon-sm {\n  padding: 0 var(--vf-space-addon-sm) 0 var(--vf-px-input-sm);\n}\n\n.vf-addon.vf-addon-before.vf-addon-lg {\n  padding: 0 var(--vf-space-addon-lg) 0 var(--vf-px-input-lg);\n}\n\n.vf-addon.vf-addon-after {\n  border-top-left-radius: 0;\n  border-bottom-left-radius: 0;\n  padding: 0 var(--vf-px-input) 0 var(--vf-space-addon);\n  order: 2;\n}\n\n.vf-addon.vf-addon-after.vf-addon-sm {\n  padding: 0 var(--vf-px-input-sm) 0 var(--vf-space-addon-sm);\n}\n\n.vf-addon.vf-addon-after.vf-addon-lg {\n  padding: 0 var(--vf-px-input-lg) 0 var(--vf-space-addon-lg);\n}\n\n.vf-addon-wrapper {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}";
 styleInject(css_248z$1i);
 
 /* script */
@@ -3713,8 +3881,85 @@ const __vue_script__$1l = script$1l;
     undefined
   );
 
-  var ElementText = __vue_component__$1l;
+  var ElementAddon = __vue_component__$1l;
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -3736,251 +3981,6 @@ const __vue_script__$1l = script$1l;
 //
 
   var script$1k = {
-    name: 'ElementAddon',
-    data() {
-      return {
-        merge: true,
-        defaultClasses: {
-          container: '',
-          wrapper: '',
-        }
-      }
-    }
-  };
-
-var css_248z$1h = "";
-styleInject(css_248z$1h);
-
-/* script */
-const __vue_script__$1k = script$1k;
-/* template */
-var __vue_render__$B = function () {
-  var _vm = this;
-  var _h = _vm.$createElement;
-  var _c = _vm._self._c || _h;
-  return _vm.addon && _vm.isAddonComponent
-    ? _c("div", { class: _vm.classes.container }, [
-        _c(
-          "div",
-          { class: _vm.classes.wrapper },
-          [_c(_vm.addon, { tag: "component" })],
-          1
-        ),
-      ])
-    : _vm.addon
-    ? _c("div", { class: _vm.classes.container }, [
-        _c("div", {
-          class: _vm.classes.wrapper,
-          domProps: { innerHTML: _vm._s(_vm.addon) },
-        }),
-      ])
-    : _vm.isSlot
-    ? _c("div", { class: _vm.classes.container }, [
-        _c("div", { class: _vm.classes.wrapper }, [_vm._t("default")], 2),
-      ])
-    : _vm._e()
-};
-var __vue_staticRenderFns__$B = [];
-__vue_render__$B._withStripped = true;
-
-  /* style */
-  const __vue_inject_styles__$1k = undefined;
-  /* scoped */
-  const __vue_scope_id__$1k = undefined;
-  /* module identifier */
-  const __vue_module_identifier__$1k = undefined;
-  /* functional template */
-  const __vue_is_functional_template__$1k = false;
-  /* style inject */
-  
-  /* style inject SSR */
-  
-  /* style inject shadow dom */
-  
-
-  
-  const __vue_component__$1k = /*#__PURE__*/normalizeComponent(
-    { render: __vue_render__$B, staticRenderFns: __vue_staticRenderFns__$B },
-    __vue_inject_styles__$1k,
-    __vue_script__$1k,
-    __vue_scope_id__$1k,
-    __vue_is_functional_template__$1k,
-    __vue_module_identifier__$1k,
-    false,
-    undefined,
-    undefined,
-    undefined
-  );
-
-  var ElementAddon$1 = __vue_component__$1k;
-
-var script$1j = {
-    name: 'ElementAddon',
-    render: ElementAddon$1.render,
-    data() {
-      return {
-        merge: true,
-        defaultClasses: {
-          container: 'vf-addon',
-          container_before: 'vf-addon-before',
-          container_after: 'vf-addon-after',
-          container_sm: 'vf-addon-sm',
-          container_md: '',
-          container_lg: 'vf-addon-lg',
-          container_before_sm: '',
-          container_before_md: '',
-          container_before_lg: '',
-          container_after_sm: '',
-          container_after_md: '',
-          container_after_lg: '',
-          wrapper: 'vf-addon-wrapper',
-          $container: (classes, { type, Size }) => ([
-            classes.container,
-            classes[`container_${Size}`],
-            classes[`container_${type}`],
-            classes[`container_${type}_${Size}`],
-          ]),
-        }
-      }
-    }
-  };
-
-var css_248z$1g = ".vf-addon {\n  background: var(--vf-bg-addon);\n  color: var(--vf-color-addon);\n  border-radius: var(--vf-radius-input);\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  flex: 0 0 0%;\n}\n\n.vf-addon.vf-addon-before {\n  border-top-right-radius: 0;\n  border-bottom-right-radius: 0;\n  padding: 0 var(--vf-space-addon) 0 var(--vf-px-input);\n}\n\n.vf-addon.vf-addon-before.vf-addon-sm {\n  padding: 0 var(--vf-space-addon-sm) 0 var(--vf-px-input-sm);\n}\n\n.vf-addon.vf-addon-before.vf-addon-lg {\n  padding: 0 var(--vf-space-addon-lg) 0 var(--vf-px-input-lg);\n}\n\n.vf-addon.vf-addon-after {\n  border-top-left-radius: 0;\n  border-bottom-left-radius: 0;\n  padding: 0 var(--vf-px-input) 0 var(--vf-space-addon);\n  order: 2;\n}\n\n.vf-addon.vf-addon-after.vf-addon-sm {\n  padding: 0 var(--vf-px-input-sm) 0 var(--vf-space-addon-sm);\n}\n\n.vf-addon.vf-addon-after.vf-addon-lg {\n  padding: 0 var(--vf-px-input-lg) 0 var(--vf-space-addon-lg);\n}\n\n.vf-addon-wrapper {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}";
-styleInject(css_248z$1g);
-
-/* script */
-const __vue_script__$1j = script$1j;
-/* template */
-
-  /* style */
-  const __vue_inject_styles__$1j = undefined;
-  /* scoped */
-  const __vue_scope_id__$1j = undefined;
-  /* module identifier */
-  const __vue_module_identifier__$1j = undefined;
-  /* functional template */
-  const __vue_is_functional_template__$1j = undefined;
-  /* style inject */
-  
-  /* style inject SSR */
-  
-  /* style inject shadow dom */
-  
-
-  
-  const __vue_component__$1j = /*#__PURE__*/normalizeComponent(
-    {},
-    __vue_inject_styles__$1j,
-    __vue_script__$1j,
-    __vue_scope_id__$1j,
-    __vue_is_functional_template__$1j,
-    __vue_module_identifier__$1j,
-    false,
-    undefined,
-    undefined,
-    undefined
-  );
-
-  var ElementAddon = __vue_component__$1j;
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-  var script$1i = {
     name: 'ButtonElement',
     data() {
       return {
@@ -3993,13 +3993,13 @@ const __vue_script__$1j = script$1j;
     }
   };
 
-var css_248z$1f = "";
-styleInject(css_248z$1f);
+var css_248z$1h = "";
+styleInject(css_248z$1h);
 
 /* script */
-const __vue_script__$1i = script$1i;
+const __vue_script__$1k = script$1k;
 /* template */
-var __vue_render__$A = function () {
+var __vue_render__$B = function () {
   var _vm = this;
   var _h = _vm.$createElement;
   var _c = _vm._self._c || _h;
@@ -4215,17 +4215,17 @@ var __vue_render__$A = function () {
     ),
   })
 };
-var __vue_staticRenderFns__$A = [];
-__vue_render__$A._withStripped = true;
+var __vue_staticRenderFns__$B = [];
+__vue_render__$B._withStripped = true;
 
   /* style */
-  const __vue_inject_styles__$1i = undefined;
+  const __vue_inject_styles__$1k = undefined;
   /* scoped */
-  const __vue_scope_id__$1i = undefined;
+  const __vue_scope_id__$1k = undefined;
   /* module identifier */
-  const __vue_module_identifier__$1i = undefined;
+  const __vue_module_identifier__$1k = undefined;
   /* functional template */
-  const __vue_is_functional_template__$1i = false;
+  const __vue_is_functional_template__$1k = false;
   /* style inject */
   
   /* style inject SSR */
@@ -4234,22 +4234,22 @@ __vue_render__$A._withStripped = true;
   
 
   
-  const __vue_component__$1i = /*#__PURE__*/normalizeComponent(
-    { render: __vue_render__$A, staticRenderFns: __vue_staticRenderFns__$A },
-    __vue_inject_styles__$1i,
-    __vue_script__$1i,
-    __vue_scope_id__$1i,
-    __vue_is_functional_template__$1i,
-    __vue_module_identifier__$1i,
+  const __vue_component__$1k = /*#__PURE__*/normalizeComponent(
+    { render: __vue_render__$B, staticRenderFns: __vue_staticRenderFns__$B },
+    __vue_inject_styles__$1k,
+    __vue_script__$1k,
+    __vue_scope_id__$1k,
+    __vue_is_functional_template__$1k,
+    __vue_module_identifier__$1k,
     false,
     undefined,
     undefined,
     undefined
   );
 
-  var ButtonElement$1 = __vue_component__$1i;
+  var ButtonElement$1 = __vue_component__$1k;
 
-var script$1h = {
+var script$1j = {
     name: 'ButtonElement',
     render: ButtonElement$1.render,
     data() {
@@ -4298,7 +4298,181 @@ var script$1h = {
     }
   };
 
-var css_248z$1e = "/* Some styles are contained in Vueform.vue */";
+var css_248z$1g = "/* Some styles are contained in Vueform.vue */";
+styleInject(css_248z$1g);
+
+/* script */
+const __vue_script__$1j = script$1j;
+/* template */
+
+  /* style */
+  const __vue_inject_styles__$1j = undefined;
+  /* scoped */
+  const __vue_scope_id__$1j = undefined;
+  /* module identifier */
+  const __vue_module_identifier__$1j = undefined;
+  /* functional template */
+  const __vue_is_functional_template__$1j = undefined;
+  /* style inject */
+  
+  /* style inject SSR */
+  
+  /* style inject shadow dom */
+  
+
+  
+  const __vue_component__$1j = /*#__PURE__*/normalizeComponent(
+    {},
+    __vue_inject_styles__$1j,
+    __vue_script__$1j,
+    __vue_scope_id__$1j,
+    __vue_is_functional_template__$1j,
+    __vue_module_identifier__$1j,
+    false,
+    undefined,
+    undefined,
+    undefined
+  );
+
+  var ButtonElement = __vue_component__$1j;
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+  var script$1i = {
+    name: 'CaptchaElement',
+    data() {
+      return {
+        merge: true,
+        defaultClasses: {
+          container: '',
+          wrapper: '',
+          captcha: '',
+        },
+      }
+    },
+  };
+
+var css_248z$1f = "";
+styleInject(css_248z$1f);
+
+/* script */
+const __vue_script__$1i = script$1i;
+/* template */
+var __vue_render__$A = function () {
+  var _vm = this;
+  var _h = _vm.$createElement;
+  var _c = _vm._self._c || _h;
+  return _c(_vm.elementLayout, {
+    ref: "container",
+    tag: "component",
+    scopedSlots: _vm._u(
+      [
+        {
+          key: "element",
+          fn: function () {
+            return [
+              _vm.shouldVerify
+                ? _c("div", { class: _vm.classes.wrapper }, [
+                    _c("div", {
+                      ref: "input",
+                      class: _vm.classes.captcha,
+                      attrs: { id: _vm.fieldId },
+                    }),
+                  ])
+                : _vm._e(),
+            ]
+          },
+          proxy: true,
+        },
+        _vm._l(_vm.elementSlots, function (component, slot) {
+          return {
+            key: slot,
+            fn: function () {
+              return [
+                _vm._t(
+                  slot,
+                  function () {
+                    return [
+                      _c(component, {
+                        tag: "component",
+                        attrs: { el$: _vm.el$ },
+                      }),
+                    ]
+                  },
+                  { el$: _vm.el$ }
+                ),
+              ]
+            },
+            proxy: true,
+          }
+        }),
+      ],
+      null,
+      true
+    ),
+  })
+};
+var __vue_staticRenderFns__$A = [];
+__vue_render__$A._withStripped = true;
+
+  /* style */
+  const __vue_inject_styles__$1i = undefined;
+  /* scoped */
+  const __vue_scope_id__$1i = undefined;
+  /* module identifier */
+  const __vue_module_identifier__$1i = undefined;
+  /* functional template */
+  const __vue_is_functional_template__$1i = false;
+  /* style inject */
+  
+  /* style inject SSR */
+  
+  /* style inject shadow dom */
+  
+
+  
+  const __vue_component__$1i = /*#__PURE__*/normalizeComponent(
+    { render: __vue_render__$A, staticRenderFns: __vue_staticRenderFns__$A },
+    __vue_inject_styles__$1i,
+    __vue_script__$1i,
+    __vue_scope_id__$1i,
+    __vue_is_functional_template__$1i,
+    __vue_module_identifier__$1i,
+    false,
+    undefined,
+    undefined,
+    undefined
+  );
+
+  var CaptchaElement$1 = __vue_component__$1i;
+
+var script$1h = {
+    name: 'CaptchaElement',
+    render: CaptchaElement$1.render,
+    data() {
+      return {
+        merge: true,
+        defaultClasses: {
+          container: '',
+          wrapper: '',
+          captcha: '',
+        }
+      }
+    }
+  };
+
+var css_248z$1e = "";
 styleInject(css_248z$1e);
 
 /* script */
@@ -4334,7 +4508,7 @@ const __vue_script__$1h = script$1h;
     undefined
   );
 
-  var ButtonElement = __vue_component__$1h;
+  var CaptchaElement = __vue_component__$1h;
 
 //
 //
@@ -24431,6 +24605,7 @@ var index = {
     ElementText,
     ElementAddon,
     ButtonElement,
+    CaptchaElement,
     CheckboxElement,
     CheckboxgroupElement,
     CheckboxgroupElement_tabs,
@@ -24477,4 +24652,4 @@ var index = {
   columns
 };
 
-export { ButtonElement, CheckboxElement, CheckboxgroupCheckbox, CheckboxgroupCheckbox_blocks, CheckboxgroupCheckbox_tabs, CheckboxgroupElement, CheckboxgroupElement_blocks, CheckboxgroupElement_tabs, DateElement, DatepickerWrapper, DatesElement, DragAndDrop, EditorElement, EditorWrapper, ElementAddon, ElementDescription, ElementError, ElementInfo, ElementLabel, ElementLabelFloating, ElementLayout, ElementLayoutInline, ElementLoader, ElementMessage, ElementText, FileElement, FilePreview, FilePreview_gallery, FilePreview_image, FormElements, FormErrors, FormLanguage, FormLanguages, FormMessages, FormStep, FormSteps, FormStepsControl, FormStepsControls, FormTab, FormTabs, GroupElement, HiddenElement, ListElement, LocationElement, MultifileElement, MultiselectElement, ObjectElement, RadioElement, RadiogroupElement, RadiogroupElement_blocks, RadiogroupElement_tabs, RadiogroupRadio, RadiogroupRadio_blocks, RadiogroupRadio_tabs, SelectElement, SliderElement, StaticElement, TEditorElement, TTextElement, TTextareaElement, TagsElement, TextElement, TextareaElement, ToggleElement, Vueform, classes, columns, index as default };
+export { ButtonElement, CaptchaElement, CheckboxElement, CheckboxgroupCheckbox, CheckboxgroupCheckbox_blocks, CheckboxgroupCheckbox_tabs, CheckboxgroupElement, CheckboxgroupElement_blocks, CheckboxgroupElement_tabs, DateElement, DatepickerWrapper, DatesElement, DragAndDrop, EditorElement, EditorWrapper, ElementAddon, ElementDescription, ElementError, ElementInfo, ElementLabel, ElementLabelFloating, ElementLayout, ElementLayoutInline, ElementLoader, ElementMessage, ElementText, FileElement, FilePreview, FilePreview_gallery, FilePreview_image, FormElements, FormErrors, FormLanguage, FormLanguages, FormMessages, FormStep, FormSteps, FormStepsControl, FormStepsControls, FormTab, FormTabs, GroupElement, HiddenElement, ListElement, LocationElement, MultifileElement, MultiselectElement, ObjectElement, RadioElement, RadiogroupElement, RadiogroupElement_blocks, RadiogroupElement_tabs, RadiogroupRadio, RadiogroupRadio_blocks, RadiogroupRadio_tabs, SelectElement, SliderElement, StaticElement, TEditorElement, TTextElement, TTextareaElement, TagsElement, TextElement, TextareaElement, ToggleElement, Vueform, classes, columns, index as default };

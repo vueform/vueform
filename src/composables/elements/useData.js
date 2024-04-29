@@ -111,11 +111,7 @@ const base = function(props, context, dependencies, options = {})
    */
   const reset = () => {
     if (!isDefault.value) {
-      console.log('resetting')
       resetting.value = true
-    } else {
-      console.log('not resetting')
-
     }
 
     setValue(cloneDeep(defaultValue.value))

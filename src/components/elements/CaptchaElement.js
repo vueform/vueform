@@ -24,6 +24,7 @@ import useFocus from './../../composables/elements/useFocus'
 import useCaptcha from './../../composables/elements/useCaptcha'
 import useValidation from './../../composables/elements/useValidation'
 import useDefault from './../../composables/elements/useDefault'
+import useFieldId from './../../composables/elements/useFieldId'
 
 import { captcha as useData } from './../../composables/elements/useData'
 import { captcha as useView } from './../../composables/elements/useView'
@@ -45,6 +46,11 @@ export default {
       default: 'captcha',
       private: true,
     },
+    id: {
+      required: false,
+      type: [String],
+      default: null
+    },
     default: {
       required: false,
       type: [String],
@@ -65,12 +71,24 @@ export default {
       type: [Array, String, Object],
       default: ['captcha']
     },
+    size: {
+      required: false,
+      type: [String],
+      default: undefined,
+      private: true,
+    },
 
+    fieldName: {
+      required: false,
+      type: [String],
+      '@default': 'name|label',
+      private: true,
+    },
     provider: {
       required: false,
       type: [String],
       default: null,
-      '@default': 'config.captchaProvider',
+      '@default': 'config.useProviders.captcha',
     },
     options: {
       required: false,
@@ -87,6 +105,7 @@ export default {
       usePath,
       useDisabled,
       useNullValue,
+      useFieldId,
       useFloating,
       useEvents,
       useBaseElement,

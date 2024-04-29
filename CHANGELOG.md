@@ -1,5 +1,12 @@
 [//]: # (Don't use <tags>)
 
+## v1.9.6
+
+> `2024-04-29`
+
+### 🎉 Feature
+- New [`CaptchaElement`](https://vueform.com/reference/captcha-element).
+
 ## v1.9.5
 
 > `2024-04-12`
