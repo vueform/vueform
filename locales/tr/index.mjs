@@ -160,6 +160,7 @@ export default {
       "array": ":attribute mutlaka :min - :max arasında öge içermelidir."
     },
     "boolean": ":attribute sadece doğru veya yanlış olmalıdır.",
+    "captcha": "Please verify that you are not a robot.",
     "confirmed": ":attribute tekrarı eşleşmiyor.",
     "date": ":attribute geçerli bir tarih değil.",
     "date_format": ":attribute mutlaka :format biçiminde olmalıdır.",

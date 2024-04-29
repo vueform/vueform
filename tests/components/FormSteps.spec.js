@@ -1349,7 +1349,15 @@ describe('FormSteps', () => {
       })
 
       form.vm.$vueform.services.axios = {
-        request: () => ({data:{}})
+        request: () => ({data:{}}),
+        isCancel: () => false,
+        CancelToken: {
+          source: () => ({
+            token: {
+              cancel: () => {}
+            }
+          })
+        },
       }
 
       let steps = form.findComponent({ name: 'FormSteps' })

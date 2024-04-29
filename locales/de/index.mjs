@@ -102,8 +102,8 @@ export default {
       ],
       "firstDayOfWeek": 1,
       "ordinal": function () {
-    return '';
-  },
+        return '';
+      },
       "rangeSeparator": " bis ",
       "weekAbbreviation": "KW",
       "scrollTitle": "Zum Ändern scrollen",
@@ -162,6 +162,7 @@ export default {
       "array": ":attribute muss zwischen :min & :max Elemente haben."
     },
     "boolean": ":attribute muss entweder true oder false sein.",
+    "captcha": "Please verify that you are not a robot.",
     "confirmed": ":attribute stimmt nicht mit der Bestätigung überein.",
     "date": ":attribute muss ein gültiges Datum sein.",
     "date_format": ":attribute entspricht nicht dem gültigen Format für :format.",

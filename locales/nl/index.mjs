@@ -161,6 +161,7 @@ export default {
       "array": ":attribute moet tussen :min en :max items bevatten."
     },
     "boolean": ":attribute moet ja of nee zijn.",
+    "captcha": "Please verify that you are not a robot.",
     "confirmed": ":attribute bevestiging komt niet overeen.",
     "date": ":attribute moet een datum bevatten.",
     "date_format": ":attribute moet een geldig datum formaat bevatten.",

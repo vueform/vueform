@@ -27,6 +27,7 @@ import DatepickerWrapper from './wrappers/DatepickerWrapper'
 import EditorWrapper from './wrappers/EditorWrapper'
 
 import ButtonElement from './elements/ButtonElement'
+import CaptchaElement from './elements/CaptchaElement'
 import CheckboxElement from './elements/CheckboxElement'
 import CheckboxgroupElement from './elements/CheckboxgroupElement'
 import DateElement from './elements/DateElement'
@@ -86,6 +87,7 @@ export default {
   DatepickerWrapper,
   EditorWrapper,
   ButtonElement,
+  CaptchaElement,
   CheckboxElement,
   CheckboxgroupElement,
   DateElement,
@@ -145,6 +147,7 @@ export {
   DatepickerWrapper,
   EditorWrapper,
   ButtonElement,
+  CaptchaElement,
   CheckboxElement,
   CheckboxgroupElement,
   DateElement,

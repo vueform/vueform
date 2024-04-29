@@ -100,8 +100,8 @@ export default {
       ],
       "firstDayOfWeek": 0,
       "ordinal": function () {
-    return '';
-  },
+        return '';
+      },
       "rangeSeparator": " 至 ",
       "weekAbbreviation": "週",
       "scrollTitle": "滾動切換",
@@ -160,6 +160,7 @@ export default {
       "array": ":attribute: 必須有 :min 至 :max 個項目。"
     },
     "boolean": ":attribute 必須是布爾值。",
+    "captcha": "Please verify that you are not a robot.",
     "confirmed": ":attribute 確認欄位的輸入並不相符。",
     "date": ":attribute 並非一個有效的日期。",
     "date_format": ":attribute 與 :format 格式不相符。",

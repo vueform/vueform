@@ -160,6 +160,7 @@ export default {
       "array": "Το πεδίο :attribute πρέπει να έχει μεταξύ :min - :max αντικείμενα."
     },
     "boolean": "Το πεδίο :attribute πρέπει να είναι true ή false.",
+    "captcha": "Please verify that you are not a robot.",
     "confirmed": "Η επιβεβαίωση του :attribute δεν ταιριάζει.",
     "date": "Το πεδίο :attribute δεν είναι έγκυρη ημερομηνία.",
     "date_format": "Το πεδίο :attribute δεν είναι της μορφής :format.",

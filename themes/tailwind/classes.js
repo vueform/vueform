@@ -435,6 +435,11 @@ export default {
       buttonClass,
     ]),
   },
+  CaptchaElement: {
+    container: '',
+    wrapper: '',
+    captcha: '',
+  },
   CheckboxElement: {
     ...checkbox,
     container: 'form-contains-link',

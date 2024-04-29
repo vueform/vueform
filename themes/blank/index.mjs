@@ -31,6 +31,7 @@ import DatepickerWrapper from './templates/wrappers/DatepickerWrapper.vue'
 import EditorWrapper from './templates/wrappers/EditorWrapper.vue'
 
 import ButtonElement from './templates/elements/ButtonElement.vue'
+import CaptchaElement from './templates/elements/CaptchaElement.vue'
 import CheckboxElement from './templates/elements/CheckboxElement.vue'
 import CheckboxgroupElement from './templates/elements/CheckboxgroupElement.vue'
 import CheckboxgroupElement_blocks from './templates/elements/CheckboxgroupElement.vue'
@@ -102,6 +103,7 @@ export default {
     ElementAddon,
 
     ButtonElement,
+    CaptchaElement,
     CheckboxElement,
     CheckboxgroupElement,
     CheckboxgroupElement_tabs,

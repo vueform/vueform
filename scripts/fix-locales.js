@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import en from './../locales/en'
+import en from './../locales/en/index.mjs'
 import fs from 'fs'
 import path, { resolve } from 'path'
 
@@ -40,5 +40,5 @@ locales.forEach((locale) => {
 
   content = content.replace('"%%%"', ordinal.toString().replace(/\r/, '\n    ').replace('ordinal', ''))
 
-  fs.writeFileSync(resolve(__dirname, './../locales', locale, 'index.js'), content)
+  fs.writeFileSync(resolve(__dirname, './../locales', locale, 'index.mjs'), content)
 })

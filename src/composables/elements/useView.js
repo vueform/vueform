@@ -148,4 +148,41 @@ const base = function(props, context, dependencies)
   }
 }
 
+const captcha = function(props, context, dependencies)
+{
+  const {
+    hidden,
+    visible: baseVisible,
+    Size,
+    View,
+    Views,
+    hide,
+    show,
+  } = base(props, context, dependencies)
+
+  // ============ DEPENDENCIES =============
+
+  const { shouldVerify } = dependencies
+
+  // =============== METHODS ===============
+
+  const visible = computed(() => {
+    return baseVisible.value && shouldVerify.value
+  })
+  
+  return {
+    hidden,
+    visible,
+    Size,
+    View,
+    Views,
+    hide,
+    show,
+  }
+}
+
 export default base
+
+export {
+  captcha,
+}

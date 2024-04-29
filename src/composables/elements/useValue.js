@@ -1,4 +1,5 @@
 import each from 'lodash/each'
+import isEqual from 'lodash/isEqual'
 import get from 'lodash/get'
 import cloneDeep from 'lodash/cloneDeep'
 import isEmpty from 'lodash/isEmpty'
@@ -105,6 +106,17 @@ const base = function(props, context, dependencies, /* istanbul ignore next */ o
     }
   }
   
+  /**
+   * Whether the element has its default value.
+   *
+   * @type {boolean}
+   */
+  const isDefault = computed(() => {
+    return isEqual(value.value, defaultValue.value)
+  })
+
+  // ============== WATCHERS ===============
+  
   /* istanbul ignore next: type can not be changed on the fly */
   watch(type, () => {
     value.value = defaultValue.value instanceof File ? defaultValue.value : cloneDeep(defaultValue.value)
@@ -115,6 +127,7 @@ const base = function(props, context, dependencies, /* istanbul ignore next */ o
     internalValue,
     value,
     model,
+    isDefault,
   }
 }
 
@@ -125,6 +138,7 @@ const list = function(props, context, dependencies, /* istanbul ignore next */ o
     internalValue,
     value,
     model,
+    isDefault,
   } = base(props, context, dependencies, {
     init: false,
   })
@@ -134,6 +148,7 @@ const list = function(props, context, dependencies, /* istanbul ignore next */ o
     internalValue,
     value,
     model,
+    isDefault,
   }
 }
 
@@ -143,6 +158,7 @@ const object = function(props, context, dependencies, /* istanbul ignore next */
     initialValue,
     internalValue,
     value,
+    isDefault,
   } = base(props, context, dependencies, {
     init: false,
   })
@@ -165,6 +181,7 @@ const object = function(props, context, dependencies, /* istanbul ignore next */
   return {
     internalValue,
     value,
+    isDefault,
   }
 }
 
@@ -256,9 +273,14 @@ const group = function(props, context, dependencies, /* istanbul ignore next */ 
       }
     },
   })
+
+  const isDefault = computed(() => {
+    return isEqual(value.value, defaultValue.value)
+  })
   
   return {
     value,
+    isDefault,
   }
 }
 
@@ -266,6 +288,7 @@ const multilingual = function(props, context, dependencies)
 {
   const {
     value,
+    isDefault,
   } = base(props, context, dependencies)
   
   // ============ DEPENDENCIES =============
@@ -290,6 +313,7 @@ const multilingual = function(props, context, dependencies)
   return {
     value,
     model,
+    isDefault,
   }
 }
 
@@ -321,6 +345,7 @@ const date = function(props, context, dependencies)
   const {
     value,
     initialValue,
+    isDefault,
   } = base(props, context, dependencies, {
     value: {
       get()
@@ -375,6 +400,7 @@ const date = function(props, context, dependencies)
     model,
     initialValue,
     internalValue,
+    isDefault,
   }
 }
 
@@ -406,6 +432,7 @@ const dates = function(props, context, dependencies)
   const {
     value,
     initialValue,
+    isDefault,
   } = base(props, context, dependencies, {
     value: {
       get()
@@ -467,6 +494,7 @@ const dates = function(props, context, dependencies)
     model,
     initialValue,
     internalValue,
+    isDefault,
   }
 }
 

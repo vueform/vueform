@@ -161,6 +161,7 @@ export default {
       "array": ":attribute ha de tenir entre :min - :max ítems."
     },
     "boolean": "El camp :attribute ha de ser verdader o fals",
+    "captcha": "Please verify that you are not a robot.",
     "confirmed": "La confirmació de :attribute no coincideix.",
     "date": ":attribute no és una data vàlida.",
     "date_format": "El camp :attribute no concorda amb el format :format.",
@@ -170,7 +171,7 @@ export default {
     "digits_between": ":attribute doit être entre :min et :max chiffres.",
     "dimensions": "Les dimensions de la imatge :attribute no són vàlides.",
     "distinct": "El camp :attribute té un valor duplicat.",
-    "email": ":attribute n\'est pas un email valide",
+    "email": ":attribute n'est pas un email valide",
     "exists": ":attribute és invàlid.",
     "file": "El camp :attribute ha de ser un arxiu.",
     "filled": "El camp :attribute és obligatori.",
@@ -215,7 +216,7 @@ export default {
     "mimes": ":attribute ha de ser un arxiu amb format: :values.",
     "mimetypes": ":attribute ha de ser un arxiu amb format: :values.",
     "min": {
-      "numeric": "La taille de :attribute doit être d\'au moins :min.",
+      "numeric": "La taille de :attribute doit être d'au moins :min.",
       "file": "El tamany de :attribute ha de ser dalmenys :min kilobytes.",
       "string": ":attribute doit contenir au moins :min caractères.",
       "array": ":attribute ha de tenir almenys :min ítems."

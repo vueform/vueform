@@ -10,6 +10,7 @@ import before from './before'
 import before_or_equal from './before_or_equal'
 import between from './between'
 import boolean from './boolean'
+import captcha from './captcha'
 import confirmed from './confirmed'
 import date from './date'
 import date_equals from './date_equals'
@@ -66,6 +67,7 @@ export {
   before_or_equal,
   between,
   boolean,
+  captcha,
   confirmed,
   date,
   date_equals,

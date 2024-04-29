@@ -160,6 +160,7 @@ export default {
       "array": ":Attribute harus memiliki :min sampai :max anggota."
     },
     "boolean": ":Attribute harus bernilai true atau false",
+    "captcha": "Please verify that you are not a robot.",
     "confirmed": "Konfirmasi :attribute tidak cocok.",
     "date": ":Attribute bukan tanggal yang valid.",
     "date_format": ":Attribute tidak cocok dengan format :format.",

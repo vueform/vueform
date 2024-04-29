@@ -160,6 +160,7 @@ export default {
       "array": "A(z) :attribute :min - :max közötti elemet kell, hogy tartalmazzon!"
     },
     "boolean": "A(z) :attribute mező csak true vagy false értéket kaphat!",
+    "captcha": "Please verify that you are not a robot.",
     "confirmed": "A(z) :attribute nem egyezik a megerősítéssel.",
     "date": "A(z) :attribute nem érvényes dátum.",
     "date_format": "A(z) :attribute nem egyezik az alábbi dátum formátummal :format!",

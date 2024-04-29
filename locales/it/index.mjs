@@ -160,6 +160,7 @@ export default {
       "array": ":attribute deve avere tra :min - :max elementi."
     },
     "boolean": "Il campo :attribute deve essere vero o falso.",
+    "captcha": "Please verify that you are not a robot.",
     "confirmed": "Il campo di conferma per :attribute non coincide.",
     "date": ":attribute non è una data valida.",
     "date_format": ":attribute non coincide con il formato :format.",

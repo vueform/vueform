@@ -160,6 +160,7 @@ export default {
       "array": ":Attribute musí mít rozsah :min - :max prvků."
     },
     "boolean": ":Attribute musí být true anebo false.",
+    "captcha": "Please verify that you are not a robot.",
     "confirmed": ":Attribute konfirmace se neshoduje.",
     "date": ":Attribute má neplatné datum.",
     "date_format": ":Attribute se neshoduje s formátem :format.",

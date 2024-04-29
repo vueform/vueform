@@ -100,8 +100,8 @@ export default {
       ],
       "firstDayOfWeek": 1,
       "ordinal": function () {
-    return '';
-  },
+        return '';
+      },
       "rangeSeparator": " to ",
       "weekAbbreviation": "Wk",
       "scrollTitle": "Scroll to increment",
@@ -160,6 +160,7 @@ export default {
       "array": "Поле :attribute має містити від :min до :max елементів."
     },
     "boolean": "Поле :attribute повинне містити логічний тип.",
+    "captcha": "Please verify that you are not a robot.",
     "confirmed": "Поле :attribute не збігається з підтвердженням.",
     "date": "Поле :attribute не є датою.",
     "date_format": "Поле :attribute не відповідає формату :format.",
