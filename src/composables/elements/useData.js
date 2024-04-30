@@ -215,9 +215,9 @@ const text = function(props, context, dependencies, options = {})
     let v = str
 
     if (typeof str === 'string') {
-      if (/^[-+]?\d+([\.,]\d+)?$/.test(str)) {
+      if (/^[-]?\d+([\.,]\d+)?$/.test(str)) {
         v = parseFloat(str.replace(',', '.'))
-      } else if (/^[-+]?\d+$/.test(str)) {
+      } else if (/^[-]?\d+$/.test(str)) {
         v = parseInt(str, 10)
       }
     }
