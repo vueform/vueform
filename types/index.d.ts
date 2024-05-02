@@ -237,6 +237,9 @@ export interface VueformElement extends DefineComponent {
   messages: object;
   fieldName: string;
   default: string | boolean | number | Array<any> | Date | object;
+  readonly: boolean;
+  provider: string;
+  options: object;
   text: string | object;
   trueValue: boolean | string | number;
   falseValue: boolean | string | number;
@@ -256,14 +259,13 @@ export interface VueformElement extends DefineComponent {
   max: string | Date | number;
   extendOptions: object;
   placeholder: string | object;
-  readonly: boolean;
   mode: string;
   debounce: number;
   onError: Function;
   onAlert: Function;
   accept: Array<any> | string;
   acceptMimes: Array<any>;
-  endpoint: string | Function;
+  endpoint: string | Function | promise;
   method: string;
   hideTools: Array<any>;
   onBlur: Function;
@@ -275,9 +277,9 @@ export interface VueformElement extends DefineComponent {
   auto: boolean;
   urls: object;
   methods: object;
-  uploadTempEndpoint: object | string | Function | boolean;
-  removeTempEndpoint: object | string | Function | boolean;
-  removeEndpoint: object | string | Function | boolean;
+  uploadTempEndpoint: object | string | Function | boolean | promise;
+  removeTempEndpoint: object | string | Function | boolean | promise;
+  removeEndpoint: object | string | Function | boolean | promise;
   params: object;
   softRemove: boolean;
   embed: boolean;
@@ -297,7 +299,6 @@ export interface VueformElement extends DefineComponent {
   order: string;
   orderBy: string;
   attrs: object;
-  provider: string;
   displayKey: string;
   storeFile: string;
   fields: object;
@@ -422,13 +423,16 @@ export interface VueformElement extends DefineComponent {
   Size: string;
   View: string;
   Views: object;
+  captchaOptions: boolean;
+  shouldVerify: boolean;
   data: object;
   requestData: object;
   defaultValue: any;
+  empty: boolean;
+  hasFloating: boolean;
   genericName: string;
   nullValue: any;
   dataPath: string;
-  Text: string;
   dirty: boolean;
   validated: boolean;
   invalid: boolean;
@@ -441,12 +445,12 @@ export interface VueformElement extends DefineComponent {
   isSuccess: boolean;
   value: any;
   model: any;
+  isDefault: boolean;
+  Text: string;
   resolvedOptions: Array<any>;
   displayDateFormat: string;
   valueDateFormat: string;
   loadDateFormat: string;
-  empty: boolean;
-  hasFloating: boolean;
   Placeholder: string;
   editorEndpoint: string;
   editorMethod: string;
@@ -494,6 +498,7 @@ export interface VueformElement extends DefineComponent {
   events: Array<any>;
   listeners: object;
   hidden: boolean;
+  Provider: object | null;
   localDisabled: boolean | null;
   input: HTMLElement;
   state: object;
@@ -530,14 +535,14 @@ export interface VueformElement extends DefineComponent {
   focus: () => void;
   hide: () => void;
   show: () => void;
+  initCaptcha: () => void;
+  destroyCaptcha: () => void;
   load: (value: any, format: boolean) => void;
   update: (value: any) => void;
   clear: () => void;
   reset: () => void;
   disable: () => void;
   enable: () => void;
-  check: () => void;
-  uncheck: () => void;
   validate: () => Promise;
   dirt: () => void;
   clean: () => void;
@@ -546,6 +551,8 @@ export interface VueformElement extends DefineComponent {
   initMessageBag: () => void;
   initValidation: () => void;
   reinitValidation: () => void;
+  check: () => void;
+  uncheck: () => void;
   resolveOptions: () => Promise;
   updateItems: (disable: boolean) => Promise;
   cleanupValue: (values: Array<any>) => void;
@@ -656,6 +663,9 @@ export interface VueformSchema {
   messages?: object;
   fieldName?: string;
   default?: string | boolean | number | Array<any> | Date | object;
+  readonly?: boolean;
+  provider?: string;
+  options?: object;
   text?: string | object;
   trueValue?: boolean | string | number;
   falseValue?: boolean | string | number;
@@ -675,14 +685,13 @@ export interface VueformSchema {
   max?: string | Date | number;
   extendOptions?: object;
   placeholder?: string | object;
-  readonly?: boolean;
   mode?: string;
   debounce?: number;
   onError?: Function;
   onAlert?: Function;
   accept?: Array<any> | string;
   acceptMimes?: Array<any>;
-  endpoint?: string | Function;
+  endpoint?: string | Function | promise;
   method?: string;
   hideTools?: Array<any>;
   onBlur?: Function;
@@ -694,9 +703,9 @@ export interface VueformSchema {
   auto?: boolean;
   urls?: object;
   methods?: object;
-  uploadTempEndpoint?: object | string | Function | boolean;
-  removeTempEndpoint?: object | string | Function | boolean;
-  removeEndpoint?: object | string | Function | boolean;
+  uploadTempEndpoint?: object | string | Function | boolean | promise;
+  removeTempEndpoint?: object | string | Function | boolean | promise;
+  removeEndpoint?: object | string | Function | boolean | promise;
   params?: object;
   softRemove?: boolean;
   embed?: boolean;
@@ -716,7 +725,6 @@ export interface VueformSchema {
   order?: string;
   orderBy?: string;
   attrs?: object;
-  provider?: string;
   displayKey?: string;
   storeFile?: string;
   fields?: object;
@@ -932,7 +940,7 @@ export interface VueformProps {
   displayErrors?: boolean;
   displayMessages?: boolean;
   messages?: object;
-  endpoint?: string | boolean | Function;
+  endpoint?: string | boolean | Function | promise;
   method?: string;
   prepare?: Function;
   formKey?: string | number;
@@ -966,6 +974,9 @@ export interface VueformProps {
   languages?: object;
   language?: string;
   locale?: string;
+  providers?: object;
+  useProviders?: object;
+  providerOptions?: object;
   onChange?: Function;
   onReset?: Function;
   onClear?: Function;
@@ -997,7 +1008,7 @@ export interface EditorWrapperProps {
   id?: string | number;
   accept?: Array<any>;
   acceptMimes?: Array<any>;
-  endpoint?: string | Function;
+  endpoint?: string | Function | promise;
   method?: string;
   disabled?: boolean;
   hideTools?: Array<any>;
@@ -1077,6 +1088,57 @@ export interface ButtonElementProps {
   align?: string;
 }
 
+export interface CaptchaElementProps {
+  name: string | number;
+  conditions?: Array<any>;
+  onBeforeCreate?: Function;
+  onCreated?: Function;
+  onBeforeMount?: Function;
+  onMounted?: Function;
+  onBeforeUpdate?: Function;
+  onUpdated?: Function;
+  onBeforeUnmount?: Function;
+  onUnmounted?: Function;
+  inline?: boolean;
+  layout?: string | object | boolean;
+  addClass?: Array<any> | object | string | Function;
+  removeClass?: Array<any> | object | Function;
+  replaceClass?: object | Function;
+  overrideClass?: Array<any> | object | string | Function;
+  addClasses?: object | Function;
+  replaceClasses?: object | Function;
+  removeClasses?: object | Function;
+  overrideClasses?: object | Function;
+  presets?: Array<any>;
+  view?: string;
+  views?: object;
+  size?: string;
+  columns?: object | string | number;
+  templates?: object;
+  description?: string | object;
+  info?: string | object;
+  infoPosition?: string;
+  label?: string | object | Function;
+  before?: object | string | number;
+  between?: object | string | number;
+  after?: object | string | number;
+  slots?: object;
+  onChange?: Function;
+  formatData?: Function;
+  formatLoad?: Function;
+  submit?: boolean;
+  rules?: Array<any> | string | object;
+  messages?: object;
+  fieldName?: string;
+  type?: string;
+  id?: string;
+  default?: string | boolean | number | Array<any> | Date | object;
+  disabled?: boolean;
+  readonly?: boolean;
+  provider?: string;
+  options?: object;
+}
+
 export interface CheckboxElementProps {
   name: string | number;
   conditions?: Array<any>;
@@ -1120,7 +1182,7 @@ export interface CheckboxElementProps {
   messages?: object;
   fieldName?: string;
   type?: string;
-  default?: string | boolean | number | Array<any> | Date | object;
+  default?: string | boolean | number;
   id?: string;
   text?: string | object;
   disabled?: boolean;
@@ -1355,7 +1417,7 @@ export interface EditorElementProps {
   onAlert?: Function;
   accept?: Array<any> | string;
   acceptMimes?: Array<any>;
-  endpoint?: string | Function;
+  endpoint?: string | Function | promise;
   method?: string;
   hideTools?: Array<any>;
   onBlur?: Function;
@@ -1417,9 +1479,9 @@ export interface FileElementProps {
   auto?: boolean;
   urls?: object;
   methods?: object;
-  uploadTempEndpoint?: object | string | Function | boolean;
-  removeTempEndpoint?: object | string | Function | boolean;
-  removeEndpoint?: object | string | Function | boolean;
+  uploadTempEndpoint?: object | string | Function | boolean | promise;
+  removeTempEndpoint?: object | string | Function | boolean | promise;
+  removeEndpoint?: object | string | Function | boolean | promise;
   params?: object;
   softRemove?: boolean;
   embed?: boolean;
@@ -1731,9 +1793,9 @@ export interface MultifileElementProps {
   url?: string | boolean;
   previewUrl?: string;
   auto?: boolean;
-  uploadTempEndpoint?: object | string | Function | boolean;
-  removeTempEndpoint?: object | string | Function | boolean;
-  removeEndpoint?: object | string | Function | boolean;
+  uploadTempEndpoint?: object | string | Function | boolean | promise;
+  removeTempEndpoint?: object | string | Function | boolean | promise;
+  removeEndpoint?: object | string | Function | boolean | promise;
   params?: object;
   softRemove?: boolean;
 }
@@ -2258,7 +2320,7 @@ export interface TEditorElementProps {
   onAlert?: Function;
   accept?: Array<any>;
   acceptMimes?: Array<any>;
-  endpoint?: string | Function;
+  endpoint?: string | Function | promise;
   method?: string;
   hideTools?: Array<any>;
   onBlur?: Function;
@@ -3473,6 +3535,9 @@ export declare class Vueform implements DefineComponent {
   languages: VueformProps['languages'];
   language: VueformProps['language'];
   locale: VueformProps['locale'];
+  providers: VueformProps['providers'];
+  useProviders: VueformProps['useProviders'];
+  providerOptions: VueformProps['providerOptions'];
   onChange: VueformProps['onChange'];
   onReset: VueformProps['onReset'];
   onClear: VueformProps['onClear'];
@@ -3940,6 +4005,188 @@ export declare class ButtonElement implements DefineComponent {
   };
 }
 
+export declare class CaptchaElement implements DefineComponent {
+  $props: CaptchaElementProps;
+
+  // Props
+  name: CaptchaElementProps['name'];
+  conditions: CaptchaElementProps['conditions'];
+  onBeforeCreate: CaptchaElementProps['onBeforeCreate'];
+  onCreated: CaptchaElementProps['onCreated'];
+  onBeforeMount: CaptchaElementProps['onBeforeMount'];
+  onMounted: CaptchaElementProps['onMounted'];
+  onBeforeUpdate: CaptchaElementProps['onBeforeUpdate'];
+  onUpdated: CaptchaElementProps['onUpdated'];
+  onBeforeUnmount: CaptchaElementProps['onBeforeUnmount'];
+  onUnmounted: CaptchaElementProps['onUnmounted'];
+  inline: CaptchaElementProps['inline'];
+  layout: CaptchaElementProps['layout'];
+  addClass: CaptchaElementProps['addClass'];
+  removeClass: CaptchaElementProps['removeClass'];
+  replaceClass: CaptchaElementProps['replaceClass'];
+  overrideClass: CaptchaElementProps['overrideClass'];
+  addClasses: CaptchaElementProps['addClasses'];
+  replaceClasses: CaptchaElementProps['replaceClasses'];
+  removeClasses: CaptchaElementProps['removeClasses'];
+  overrideClasses: CaptchaElementProps['overrideClasses'];
+  presets: CaptchaElementProps['presets'];
+  view: CaptchaElementProps['view'];
+  views: CaptchaElementProps['views'];
+  size: CaptchaElementProps['size'];
+  columns: CaptchaElementProps['columns'];
+  templates: CaptchaElementProps['templates'];
+  description: CaptchaElementProps['description'];
+  info: CaptchaElementProps['info'];
+  infoPosition: CaptchaElementProps['infoPosition'];
+  label: CaptchaElementProps['label'];
+  before: CaptchaElementProps['before'];
+  between: CaptchaElementProps['between'];
+  after: CaptchaElementProps['after'];
+  slots: CaptchaElementProps['slots'];
+  onChange: CaptchaElementProps['onChange'];
+  formatData: CaptchaElementProps['formatData'];
+  formatLoad: CaptchaElementProps['formatLoad'];
+  submit: CaptchaElementProps['submit'];
+  rules: CaptchaElementProps['rules'];
+  messages: CaptchaElementProps['messages'];
+  fieldName: CaptchaElementProps['fieldName'];
+  type: CaptchaElementProps['type'];
+  id: CaptchaElementProps['id'];
+  default: CaptchaElementProps['default'];
+  disabled: CaptchaElementProps['disabled'];
+  readonly: CaptchaElementProps['readonly'];
+  provider: CaptchaElementProps['provider'];
+  options: CaptchaElementProps['options'];
+
+  // Computed
+  el$: VueformElement;
+  isStatic: boolean;
+  isFileType: boolean;
+  isArrayType: boolean;
+  isImageType: boolean;
+  isObjectType: boolean;
+  isGroupType: boolean;
+  isListType: boolean;
+  isActive: boolean;
+  captchaOptions: boolean;
+  shouldVerify: boolean;
+  classes: object;
+  classesInstance: MergeClasses;
+  cols: object;
+  columnsClassesService: Columns;
+  columnsClasses: object;
+  available: boolean;
+  data: object;
+  requestData: object;
+  defaultValue: any;
+  isDisabled: boolean;
+  empty: boolean;
+  fieldId: string;
+  hasFloating: boolean;
+  genericName: string;
+  hasLabel: boolean;
+  Label: string | Component;
+  elementLayout: string | Component;
+  isLoading: boolean;
+  nullValue: any;
+  parent: VNode;
+  path: string;
+  dataPath: string;
+  flat: boolean;
+  elementSlots: object;
+  fieldSlots: object;
+  Templates: object;
+  template: object;
+  dirty: boolean;
+  validated: boolean;
+  invalid: boolean;
+  pending: boolean;
+  busy: boolean;
+  errors: Array<any>;
+  error: string;
+  validationRules: string | Array<any>;
+  isDanger: boolean;
+  isSuccess: boolean;
+  value: any;
+  model: any;
+  isDefault: boolean;
+  visible: boolean;
+  Size: string;
+  View: string;
+  Views: object;
+
+  // Data
+  active: boolean;
+  mounted: boolean;
+  container: HTMLElement;
+  Provider: object | null;
+  conditionList: Array<any>;
+  localDisabled: boolean | null;
+  events: Array<any>;
+  listeners: object;
+  input: HTMLElement;
+  state: object;
+  Validators: Array<any>;
+  messageBag: MessageBag;
+  resetting: boolean;
+  initialValue: any;
+  internalValue: any;
+  hidden: boolean;
+
+  // Injects
+  form$: Vueform;
+  theme: object;
+
+  // Methods
+  activate: () => void;
+  deactivate: () => void;
+  initCaptcha: () => void;
+  destroyCaptcha: () => void;
+  updateColumns: (value: number | Array<any>) => void;
+  updateConditions: () => void;
+  load: (value: any, format: boolean) => void;
+  update: (value: any) => void;
+  clear: () => void;
+  reset: () => void;
+  disable: () => void;
+  enable: () => void;
+  on: (event: string, callback: Function) => void;
+  off: (event: string) => void;
+  fire: (args: any) => void;
+  focus: () => void;
+  validate: () => Promise;
+  dirt: () => void;
+  clean: () => void;
+  clearMessages: () => void;
+  resetValidators: () => void;
+  initMessageBag: () => void;
+  initValidation: () => void;
+  reinitValidation: () => void;
+  hide: () => void;
+  show: () => void;
+
+  //Events
+  $emit(eventName: 'change', value: any): void;
+  $emit(eventName: 'beforeCreate', value: any): void;
+  $emit(eventName: 'created', value: any): void;
+  $emit(eventName: 'beforeMount', value: any): void;
+  $emit(eventName: 'mounted', value: any): void;
+  $emit(eventName: 'beforeUpdate', value: any): void;
+  $emit(eventName: 'updated', value: any): void;
+  $emit(eventName: 'beforeUnmount', value: any): void;
+  $emit(eventName: 'unmounted', value: any): void;
+
+  //Slots
+  $slots: {
+    'label': VNode[];
+    'info': VNode[];
+    'description': VNode[];
+    'before': VNode[];
+    'between': VNode[];
+    'after': VNode[];
+  };
+}
+
 export declare class CheckboxElement implements DefineComponent {
   $props: CheckboxElementProps;
 
@@ -4046,6 +4293,7 @@ export declare class CheckboxElement implements DefineComponent {
   isSuccess: boolean;
   value: any;
   model: any;
+  isDefault: boolean;
   visible: boolean;
   Size: string;
   View: string;
@@ -4228,6 +4476,7 @@ export declare class CheckboxgroupElement implements DefineComponent {
   isSuccess: boolean;
   value: any;
   model: any;
+  isDefault: boolean;
   visible: boolean;
   Size: string;
   View: string;
@@ -4436,6 +4685,7 @@ export declare class DateElement implements DefineComponent {
   isSuccess: boolean;
   value: any;
   model: any;
+  isDefault: boolean;
   visible: boolean;
   Size: string;
   View: string;
@@ -4633,6 +4883,7 @@ export declare class DatesElement implements DefineComponent {
   isSuccess: boolean;
   value: any;
   model: any;
+  isDefault: boolean;
   visible: boolean;
   Size: string;
   View: string;
@@ -4827,6 +5078,7 @@ export declare class EditorElement implements DefineComponent {
   isSuccess: boolean;
   value: any;
   model: any;
+  isDefault: boolean;
   visible: boolean;
   Size: string;
   View: string;
@@ -5037,6 +5289,7 @@ export declare class FileElement implements DefineComponent {
   validationRules: string | Array<any>;
   value: any;
   model: any;
+  isDefault: boolean;
   visible: boolean;
   Size: string;
   View: string;
@@ -5232,6 +5485,7 @@ export declare class GenericElement implements DefineComponent {
   isSuccess: boolean;
   value: any;
   model: any;
+  isDefault: boolean;
   visible: boolean;
   Size: string;
   View: string;
@@ -5408,6 +5662,7 @@ export declare class GroupElement implements DefineComponent {
   error: string;
   validationRules: string | Array<any>;
   value: any;
+  isDefault: boolean;
   visible: boolean;
   Size: string;
   View: string;
@@ -5542,6 +5797,7 @@ export declare class HiddenElement implements DefineComponent {
   isSuccess: boolean;
   value: any;
   model: any;
+  isDefault: boolean;
 
   // Data
   active: boolean;
@@ -5721,6 +5977,7 @@ export declare class ListElement implements DefineComponent {
   validationRules: string | Array<any>;
   value: any;
   model: any;
+  isDefault: boolean;
   visible: boolean;
   Size: string;
   View: string;
@@ -5926,6 +6183,7 @@ export declare class LocationElement implements DefineComponent {
   isDanger: boolean;
   value: any;
   model: any;
+  isDefault: boolean;
   visible: boolean;
   Size: string;
   View: string;
@@ -6147,6 +6405,7 @@ export declare class MultifileElement implements DefineComponent {
   validationRules: string | Array<any>;
   value: any;
   model: any;
+  isDefault: boolean;
   visible: boolean;
   Size: string;
   View: string;
@@ -6402,6 +6661,7 @@ export declare class MultiselectElement implements DefineComponent {
   isSuccess: boolean;
   value: any;
   model: any;
+  isDefault: boolean;
   visible: boolean;
   Size: string;
   View: string;
@@ -6611,6 +6871,7 @@ export declare class ObjectElement implements DefineComponent {
   error: string;
   validationRules: string | Array<any>;
   value: any;
+  isDefault: boolean;
   visible: boolean;
   Size: string;
   View: string;
@@ -6792,6 +7053,7 @@ export declare class RadioElement implements DefineComponent {
   isSuccess: boolean;
   value: any;
   model: any;
+  isDefault: boolean;
   visible: boolean;
   Size: string;
   View: string;
@@ -6974,6 +7236,7 @@ export declare class RadiogroupElement implements DefineComponent {
   isSuccess: boolean;
   value: any;
   model: any;
+  isDefault: boolean;
   visible: boolean;
   Size: string;
   View: string;
@@ -7210,6 +7473,7 @@ export declare class SelectElement implements DefineComponent {
   isSuccess: boolean;
   value: any;
   model: any;
+  isDefault: boolean;
   visible: boolean;
   Size: string;
   View: string;
@@ -7426,6 +7690,7 @@ export declare class SliderElement implements DefineComponent {
   validationRules: string | Array<any>;
   value: any;
   model: any;
+  isDefault: boolean;
   visible: boolean;
   Size: string;
   View: string;
@@ -7763,6 +8028,7 @@ export declare class TEditorElement implements DefineComponent {
   isSuccess: boolean;
   value: any;
   model: any;
+  isDefault: boolean;
   visible: boolean;
   Size: string;
   View: string;
@@ -7966,6 +8232,7 @@ export declare class TTextElement implements DefineComponent {
   isSuccess: boolean;
   value: any;
   model: any;
+  isDefault: boolean;
   visible: boolean;
   Size: string;
   View: string;
@@ -8171,6 +8438,7 @@ export declare class TTextareaElement implements DefineComponent {
   isSuccess: boolean;
   value: any;
   model: any;
+  isDefault: boolean;
   visible: boolean;
   Size: string;
   View: string;
@@ -8417,6 +8685,7 @@ export declare class TagsElement implements DefineComponent {
   isSuccess: boolean;
   value: any;
   model: any;
+  isDefault: boolean;
   visible: boolean;
   Size: string;
   View: string;
@@ -8646,6 +8915,7 @@ export declare class TextElement implements DefineComponent {
   isSuccess: boolean;
   value: any;
   model: any;
+  isDefault: boolean;
   visible: boolean;
   Size: string;
   View: string;
@@ -8849,6 +9119,7 @@ export declare class TextareaElement implements DefineComponent {
   isSuccess: boolean;
   value: any;
   model: any;
+  isDefault: boolean;
   visible: boolean;
   Size: string;
   View: string;
@@ -9044,6 +9315,7 @@ export declare class ToggleElement implements DefineComponent {
   isSuccess: boolean;
   value: any;
   model: any;
+  isDefault: boolean;
   visible: boolean;
   Size: string;
   View: string;
@@ -9154,6 +9426,7 @@ declare module 'vue' {
     FilePreview: typeof FilePreview;
     RadiogroupRadio: typeof RadiogroupRadio;
     ButtonElement: typeof ButtonElement;
+    CaptchaElement: typeof CaptchaElement;
     CheckboxElement: typeof CheckboxElement;
     CheckboxgroupElement: typeof CheckboxgroupElement;
     DateElement: typeof DateElement;

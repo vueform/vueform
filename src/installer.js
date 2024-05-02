@@ -93,7 +93,7 @@ export default function(config = baseConfig, components = {}, rules = {}) {
 
       // deep merge
       each([
-        'endpoints',
+        'endpoints', 'providers', 'useProviders', 'providerOptions',
       ], (attr) => {
           if (config[attr] !== undefined) {
             this.options.config[attr] = merge({}, this.options.config[attr], config[attr])

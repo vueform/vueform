@@ -100,8 +100,8 @@ export default {
       ],
       "firstDayOfWeek": 0,
       "ordinal": function () {
-    return '';
-  },
+        return '';
+      },
       "rangeSeparator": " até ",
       "weekAbbreviation": "Wk",
       "scrollTitle": "Scroll to increment",
@@ -160,6 +160,7 @@ export default {
       "array": "O campo :attribute deverá conter entre :min - :max elementos."
     },
     "boolean": "O campo :attribute deverá conter o valor verdadeiro ou falso.",
+    "captcha": "Please verify that you are not a robot.",
     "confirmed": "A confirmação para o campo :attribute não coincide.",
     "date": "O campo :attribute não contém uma data válida.",
     "date_format": "A data indicada para o campo :attribute não respeita o formato :format.",

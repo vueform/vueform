@@ -549,6 +549,11 @@ const list = function(props, context, dependencies)
    * @returns {Promise}
    */
   const validateValidators = async () => {
+    if (resetting.value) {
+      resetting.value = false
+      return
+    }
+
     if (form$.value.validation === false) {
       return
     }

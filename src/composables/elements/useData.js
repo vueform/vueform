@@ -28,6 +28,7 @@ const base = function(props, context, dependencies, options = {})
   const defaultValue = dependencies.defaultValue
   const nullValue = dependencies.nullValue
   const resetting = dependencies.resetting
+  const isDefault = dependencies.isDefault
   
   // =============== PRIVATE ===============
   
@@ -109,7 +110,10 @@ const base = function(props, context, dependencies, options = {})
    * @returns {void}
    */
   const reset = () => {
-    resetting.value = true
+    if (!isDefault.value) {
+      resetting.value = true
+    }
+
     setValue(cloneDeep(defaultValue.value))
     resetValidators()
   }
@@ -211,9 +215,9 @@ const text = function(props, context, dependencies, options = {})
     let v = str
 
     if (typeof str === 'string') {
-      if (/^[-+]?\d+([\.,]\d+)?$/.test(str)) {
+      if (/^[-]?\d+([\.,]\d+)?$/.test(str)) {
         v = parseFloat(str.replace(',', '.'))
-      } else if (/^[-+]?\d+$/.test(str)) {
+      } else if (/^[-]?\d+$/.test(str)) {
         v = parseInt(str, 10)
       }
     }
@@ -255,6 +259,7 @@ const select = function(props, context, dependencies, options = {})
   const defaultValue = dependencies.defaultValue
   const updateItems = dependencies.updateItems
   const resetting = dependencies.resetting
+  const isDefault = dependencies.isDefault
 
   // =============== PRIVATE ===============
 
@@ -269,13 +274,65 @@ const select = function(props, context, dependencies, options = {})
   // =============== METHODS ===============
 
   const reset = () => {
-    resetting.value = true
+    if (!isDefault.value) {
+      resetting.value = true
+    }
+
     setValue(cloneDeep(defaultValue.value))
     resetValidators()
 
     if (typeof items.value === 'string' && resolveOnLoad.value !== false) {
       updateItems()
     }
+  }
+
+  return {
+    data,
+    requestData,
+    load,
+    update,
+    clear,
+    reset,
+    prepare,
+  }
+}
+
+const captcha = function(props, context, dependencies, options = {})
+{
+  const {
+    data,
+    requestData,
+    load,
+    update,
+    clear: clearBase,
+    reset: resetBase,
+    prepare,
+  } = base(props, context, dependencies)
+
+  // ============ DEPENDENCIES =============
+
+  const { Provider } = dependencies
+
+  // =============== METHODS ===============
+
+  const clear = () => {
+    clearBase()
+
+    if (!Provider.value) {
+      return
+    }
+
+    Provider.value.reset()
+  }
+  
+  const reset = () => {
+    resetBase()
+
+    if (!Provider.value) {
+      return
+    }
+
+    Provider.value.reset()
   }
 
   return {
@@ -309,6 +366,7 @@ const object = function(props, context, dependencies)
   const children$ = dependencies.children$
   const children$Array = dependencies.children$Array
   const resetting = dependencies.resetting
+  const isDefault = dependencies.isDefault
 
   // ============== COMPUTED ===============
   
@@ -374,7 +432,10 @@ const object = function(props, context, dependencies)
   }
   
   const reset = () => {
-    resetting.value = true
+    if (!isDefault.value) {
+      resetting.value = true
+    }
+
     each(children$.value, (element$) => {
       if (element$.isStatic) {
         return
@@ -502,6 +563,7 @@ const list = function(props, context, dependencies, options)
   const fire = dependencies.fire
   const resetValidators = dependencies.resetValidators
   const resetting = dependencies.resetting
+  const isDefault = dependencies.isDefault
   
   // ================ DATA =================
   
@@ -611,7 +673,9 @@ const list = function(props, context, dependencies, options)
   }
   
   const reset = () => {
-    resetting.value = true
+    if (!isDefault.value) {
+      resetting.value = true
+    }
 
     value.value = cloneDeep(defaultValue.value)
 
@@ -1126,6 +1190,7 @@ export {
   select,
   multiselect,
   tags,
+  captcha,
 }
 
 export default base

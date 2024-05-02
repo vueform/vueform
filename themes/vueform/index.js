@@ -28,6 +28,7 @@ import ElementText from './templates/ElementText.vue'
 import ElementAddon from './templates/ElementAddon.vue'
 
 import ButtonElement from './templates/elements/ButtonElement.vue'
+import CaptchaElement from './templates/elements/CaptchaElement.vue'
 import CheckboxElement from './templates/elements/CheckboxElement.vue'
 import CheckboxgroupElement from './templates/elements/CheckboxgroupElement.vue'
 import CheckboxgroupElement_tabs from './templates/elements/CheckboxgroupElement_tabs.vue'
@@ -102,6 +103,7 @@ export default {
     ElementAddon,
 
     ButtonElement,
+    CaptchaElement,
     CheckboxElement,
     CheckboxgroupElement,
     CheckboxgroupElement_tabs,
@@ -176,6 +178,7 @@ export {
   ElementAddon,
 
   ButtonElement,
+  CaptchaElement,
   CheckboxElement,
   CheckboxgroupElement,
   CheckboxgroupElement_tabs,

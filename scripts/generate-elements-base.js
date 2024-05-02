@@ -5,6 +5,7 @@ const featuresPath = '/src/components/elements'
 const outputPath = __dirname + '/../api/generated/elements-base.js'
 const elements = [
   'button',
+  'captcha',
   'checkbox',
   'checkboxgroup',
   'date',

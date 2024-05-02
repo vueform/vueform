@@ -100,8 +100,8 @@ export default {
       ],
       "firstDayOfWeek": 0,
       "ordinal": function () {
-    return '';
-  },
+        return '';
+      },
       "rangeSeparator": " 至 ",
       "weekAbbreviation": "周",
       "scrollTitle": "滚动切换",
@@ -160,6 +160,7 @@ export default {
       "array": ":attribute 必须只有 :min - :max 个单元。"
     },
     "boolean": ":attribute 必须为布尔值。",
+    "captcha": "Please verify that you are not a robot.",
     "confirmed": ":attribute 两次输入不一致。",
     "date": ":attribute 不是一个有效的日期。",
     "date_format": ":attribute 的格式必须为 :format。",

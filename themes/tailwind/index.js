@@ -28,6 +28,7 @@ import ElementText from './../blank/templates/ElementText.vue'
 import ElementAddon from './../blank/templates/ElementAddon.vue'
 
 import ButtonElement from './../blank/templates/elements/ButtonElement.vue'
+import CaptchaElement from './../blank/templates/elements/CaptchaElement.vue'
 import CheckboxElement from './../blank/templates/elements/CheckboxElement.vue'
 import CheckboxgroupElement from './../blank/templates/elements/CheckboxgroupElement.vue'
 import CheckboxgroupElement_blocks from './../blank/templates/elements/CheckboxgroupElement.vue'
@@ -102,6 +103,7 @@ const theme = {
     ElementAddon,
 
     ButtonElement,
+    CaptchaElement,
     CheckboxElement,
     CheckboxgroupElement,
     CheckboxgroupElement_tabs,
@@ -178,6 +180,7 @@ export {
   ElementAddon,
 
   ButtonElement,
+  CaptchaElement,
   CheckboxElement,
   CheckboxgroupElement,
   CheckboxgroupElement_tabs,

@@ -1,12 +1,12 @@
 /*!
- * Vueform v1.9.5 (https://github.com/vueform/vueform)
+ * Vueform v1.9.6 (https://github.com/vueform/vueform)
  * Copyright (c) 2024 Adam Berecz <adam@vueform.com>
  * Licensed under the MIT License
  */
 
 import { resolveComponent, openBlock, createElementBlock, normalizeClass, withModifiers, renderSlot, createBlock, resolveDynamicComponent, createCommentVNode, createVNode, withCtx, Fragment, renderList, createElementVNode, toDisplayString, mergeProps, withDirectives, withKeys, vShow, createSlots, vModelCheckbox, vModelText, toRefs, getCurrentInstance, ref, computed, watch, nextTick, onMounted, onBeforeUnmount, Teleport, vModelSelect, vModelRadio, onUnmounted, normalizeProps, guardReactiveProps, normalizeStyle } from 'vue';
 
-var script$12 = {
+var script$13 = {
     data() {
       return {
         merge: true,
@@ -17,7 +17,7 @@ var script$12 = {
     }
   };
 
-function render$X(_ctx, _cache, $props, $setup, $data, $options) {
+function render$Y(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_FormElements = resolveComponent("FormElements");
 
   return (openBlock(), createElementBlock("form", {
@@ -53,10 +53,10 @@ function render$X(_ctx, _cache, $props, $setup, $data, $options) {
   ], 34 /* CLASS, NEED_HYDRATION */))
 }
 
-script$12.render = render$X;
-script$12.__file = "themes/blank/templates/Vueform.vue";
+script$13.render = render$Y;
+script$13.__file = "themes/blank/templates/Vueform.vue";
 
-var script$11 = {
+var script$12 = {
     name: 'FormErrors',
     data() {
       return {
@@ -69,9 +69,9 @@ var script$11 = {
     }
   };
 
-const _hoisted_1$H = ["innerHTML"];
+const _hoisted_1$I = ["innerHTML"];
 
-function render$W(_ctx, _cache, $props, $setup, $data, $options) {
+function render$X(_ctx, _cache, $props, $setup, $data, $options) {
   return (openBlock(), createElementBlock("div", {
     class: normalizeClass(_ctx.classes.container)
   }, [
@@ -80,15 +80,15 @@ function render$W(_ctx, _cache, $props, $setup, $data, $options) {
         class: normalizeClass(_ctx.classes.error),
         innerHTML: error,
         key: index
-      }, null, 10 /* CLASS, PROPS */, _hoisted_1$H))
+      }, null, 10 /* CLASS, PROPS */, _hoisted_1$I))
     }), 128 /* KEYED_FRAGMENT */))
   ], 2 /* CLASS */))
 }
 
-script$11.render = render$W;
-script$11.__file = "themes/blank/templates/FormErrors.vue";
+script$12.render = render$X;
+script$12.__file = "themes/blank/templates/FormErrors.vue";
 
-var script$10 = {
+var script$11 = {
     name: 'FormMessages',
     data() {
       return {
@@ -101,9 +101,9 @@ var script$10 = {
     }
   };
 
-const _hoisted_1$G = ["innerHTML"];
+const _hoisted_1$H = ["innerHTML"];
 
-function render$V(_ctx, _cache, $props, $setup, $data, $options) {
+function render$W(_ctx, _cache, $props, $setup, $data, $options) {
   return (openBlock(), createElementBlock("div", {
     class: normalizeClass(_ctx.classes.container)
   }, [
@@ -112,15 +112,15 @@ function render$V(_ctx, _cache, $props, $setup, $data, $options) {
         class: normalizeClass(_ctx.classes.message),
         innerHTML: message,
         key: index
-      }, null, 10 /* CLASS, PROPS */, _hoisted_1$G))
+      }, null, 10 /* CLASS, PROPS */, _hoisted_1$H))
     }), 128 /* KEYED_FRAGMENT */))
   ], 2 /* CLASS */))
 }
 
-script$10.render = render$V;
-script$10.__file = "themes/blank/templates/FormMessages.vue";
+script$11.render = render$W;
+script$11.__file = "themes/blank/templates/FormMessages.vue";
 
-var script$$ = {
+var script$10 = {
     name: 'FormLanguages',
     data() {
       return {
@@ -132,7 +132,7 @@ var script$$ = {
     }
   };
 
-function render$U(_ctx, _cache, $props, $setup, $data, $options) {
+function render$V(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_FormLanguage = resolveComponent("FormLanguage");
 
   return (openBlock(), createElementBlock("ul", {
@@ -151,10 +151,10 @@ function render$U(_ctx, _cache, $props, $setup, $data, $options) {
   ], 2 /* CLASS */))
 }
 
-script$$.render = render$U;
-script$$.__file = "themes/blank/templates/FormLanguages.vue";
+script$10.render = render$V;
+script$10.__file = "themes/blank/templates/FormLanguages.vue";
 
-var script$_ = {
+var script$$ = {
     name: 'FormLanguage',
     data() {
       return {
@@ -167,7 +167,7 @@ var script$_ = {
     }
   };
 
-function render$T(_ctx, _cache, $props, $setup, $data, $options) {
+function render$U(_ctx, _cache, $props, $setup, $data, $options) {
   return (openBlock(), createElementBlock("li", {
     class: normalizeClass(_ctx.classes.container)
   }, [
@@ -179,10 +179,10 @@ function render$T(_ctx, _cache, $props, $setup, $data, $options) {
   ], 2 /* CLASS */))
 }
 
-script$_.render = render$T;
-script$_.__file = "themes/blank/templates/FormLanguage.vue";
+script$$.render = render$U;
+script$$.__file = "themes/blank/templates/FormLanguage.vue";
 
-var script$Z = {
+var script$_ = {
     name: 'FormTabs',
     data() {
       return {
@@ -194,7 +194,7 @@ var script$Z = {
     },
   };
 
-function render$S(_ctx, _cache, $props, $setup, $data, $options) {
+function render$T(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_FormTab = resolveComponent("FormTab");
 
   return (openBlock(), createElementBlock("ul", {
@@ -203,7 +203,7 @@ function render$S(_ctx, _cache, $props, $setup, $data, $options) {
   }, [
     renderSlot(_ctx.$slots, "default", {}, () => [
       (openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.tabs, (tab, name, i) => {
-        return (openBlock(), createBlock(_component_FormTab, mergeProps(tab, {
+        return (openBlock(), createBlock(_component_FormTab, mergeProps({ ref_for: true }, tab, {
           name: name,
           index: i,
           key: name
@@ -213,10 +213,10 @@ function render$S(_ctx, _cache, $props, $setup, $data, $options) {
   ], 2 /* CLASS */))
 }
 
-script$Z.render = render$S;
-script$Z.__file = "themes/blank/templates/FormTabs.vue";
+script$_.render = render$T;
+script$_.__file = "themes/blank/templates/FormTabs.vue";
 
-var script$Y = {
+var script$Z = {
     name: 'FormTab',
     data() {
       return {
@@ -229,11 +229,11 @@ var script$Y = {
     }
   };
 
-const _hoisted_1$F = ["aria-selected"];
+const _hoisted_1$G = ["aria-selected"];
 const _hoisted_2$q = { key: 0 };
 const _hoisted_3$f = ["innerHTML"];
 
-function render$R(_ctx, _cache, $props, $setup, $data, $options) {
+function render$S(_ctx, _cache, $props, $setup, $data, $options) {
   return withDirectives((openBlock(), createElementBlock("li", {
     class: normalizeClass(_ctx.classes.container)
   }, [
@@ -256,16 +256,16 @@ function render$R(_ctx, _cache, $props, $setup, $data, $options) {
               createElementVNode("span", { innerHTML: _ctx.tabLabel }, null, 8 /* PROPS */, _hoisted_3$f)
             ], 2112 /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */))
       ])
-    ], 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_1$F)
+    ], 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_1$G)
   ], 2 /* CLASS */)), [
     [vShow, _ctx.visible]
   ])
 }
 
-script$Y.render = render$R;
-script$Y.__file = "themes/blank/templates/FormTab.vue";
+script$Z.render = render$S;
+script$Z.__file = "themes/blank/templates/FormTab.vue";
 
-var script$X = {
+var script$Y = {
     name: 'FormSteps',
     data() {
       return {
@@ -278,7 +278,7 @@ var script$X = {
     },
   };
 
-function render$Q(_ctx, _cache, $props, $setup, $data, $options) {
+function render$R(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_FormStep = resolveComponent("FormStep");
 
   return (openBlock(), createElementBlock("div", {
@@ -290,7 +290,7 @@ function render$Q(_ctx, _cache, $props, $setup, $data, $options) {
     }, [
       renderSlot(_ctx.$slots, "default", {}, () => [
         (openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.steps, (step, name) => {
-          return (openBlock(), createBlock(_component_FormStep, mergeProps(step, {
+          return (openBlock(), createBlock(_component_FormStep, mergeProps({ ref_for: true }, step, {
             name: name,
             key: name
           }), null, 16 /* FULL_PROPS */, ["name"]))
@@ -300,10 +300,10 @@ function render$Q(_ctx, _cache, $props, $setup, $data, $options) {
   ], 2 /* CLASS */))
 }
 
-script$X.render = render$Q;
-script$X.__file = "themes/blank/templates/FormSteps.vue";
+script$Y.render = render$R;
+script$Y.__file = "themes/blank/templates/FormSteps.vue";
 
-var script$W = {
+var script$X = {
     name: 'FormStepsControls',
     data() {
       return {
@@ -315,7 +315,7 @@ var script$W = {
     }
   };
 
-function render$P(_ctx, _cache, $props, $setup, $data, $options) {
+function render$Q(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_FormStepsControl = resolveComponent("FormStepsControl");
 
   return (openBlock(), createElementBlock("div", {
@@ -351,10 +351,10 @@ function render$P(_ctx, _cache, $props, $setup, $data, $options) {
   ], 2 /* CLASS */))
 }
 
-script$W.render = render$P;
-script$W.__file = "themes/blank/templates/FormStepsControls.vue";
+script$X.render = render$Q;
+script$X.__file = "themes/blank/templates/FormStepsControls.vue";
 
-var script$V = {
+var script$W = {
     name: 'FormStepsControl',
     data() {
       return {
@@ -366,11 +366,11 @@ var script$V = {
     }
   };
 
-const _hoisted_1$E = ["disabled"];
+const _hoisted_1$F = ["disabled"];
 const _hoisted_2$p = ["innerHTML", "disabled"];
 const _hoisted_3$e = ["disabled"];
 
-function render$O(_ctx, _cache, $props, $setup, $data, $options) {
+function render$P(_ctx, _cache, $props, $setup, $data, $options) {
   return (openBlock(), createElementBlock(Fragment, null, [
     createCommentVNode(" If label is a component "),
     (_ctx.visible && _ctx.label && _ctx.isLabelComponent)
@@ -382,7 +382,7 @@ function render$O(_ctx, _cache, $props, $setup, $data, $options) {
           onKeypress: _cache[1] || (_cache[1] = withKeys(withModifiers((...args) => (_ctx.handleClick && _ctx.handleClick(...args)), ["prevent"]), ["enter","space"]))
         }, [
           (openBlock(), createBlock(resolveDynamicComponent(_ctx.label), { step$: _ctx.current$ }, null, 8 /* PROPS */, ["step$"]))
-        ], 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_1$E))
+        ], 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_1$F))
       : (_ctx.visible && _ctx.label)
         ? (openBlock(), createElementBlock(Fragment, { key: 1 }, [
             createCommentVNode(" If label is HTML "),
@@ -410,10 +410,10 @@ function render$O(_ctx, _cache, $props, $setup, $data, $options) {
   ], 2112 /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */))
 }
 
-script$V.render = render$O;
-script$V.__file = "themes/blank/templates/FormStepsControl.vue";
+script$W.render = render$P;
+script$W.__file = "themes/blank/templates/FormStepsControl.vue";
 
-var script$U = {
+var script$V = {
     name: 'FormStep',
     data() {
       return {
@@ -426,11 +426,11 @@ var script$U = {
     }
   };
 
-const _hoisted_1$D = ["tabindex", "aria-selected"];
+const _hoisted_1$E = ["tabindex", "aria-selected"];
 const _hoisted_2$o = { key: 0 };
 const _hoisted_3$d = ["innerHTML"];
 
-function render$N(_ctx, _cache, $props, $setup, $data, $options) {
+function render$O(_ctx, _cache, $props, $setup, $data, $options) {
   return (_ctx.visible)
     ? (openBlock(), createElementBlock("li", {
         key: 0,
@@ -456,15 +456,15 @@ function render$N(_ctx, _cache, $props, $setup, $data, $options) {
                   createElementVNode("span", { innerHTML: _ctx.stepLabel }, null, 8 /* PROPS */, _hoisted_3$d)
                 ], 2112 /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */))
           ])
-        ], 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_1$D)
+        ], 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_1$E)
       ], 2 /* CLASS */))
     : createCommentVNode("v-if", true)
 }
 
-script$U.render = render$N;
-script$U.__file = "themes/blank/templates/FormStep.vue";
+script$V.render = render$O;
+script$V.__file = "themes/blank/templates/FormStep.vue";
 
-var script$T = {
+var script$U = {
     name: 'FormElements',
     data() {
       return {
@@ -476,13 +476,13 @@ var script$T = {
     },
   };
 
-function render$M(_ctx, _cache, $props, $setup, $data, $options) {
+function render$N(_ctx, _cache, $props, $setup, $data, $options) {
   return (openBlock(), createElementBlock("div", {
     class: normalizeClass(_ctx.classes.container)
   }, [
     renderSlot(_ctx.$slots, "default", {}, () => [
       (openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.schema, (element, name) => {
-        return (openBlock(), createBlock(resolveDynamicComponent(_ctx.component(element)), mergeProps(element, {
+        return (openBlock(), createBlock(resolveDynamicComponent(_ctx.component(element)), mergeProps({ ref_for: true }, element, {
           name: name,
           key: name
         }), null, 16 /* FULL_PROPS */, ["name"]))
@@ -491,10 +491,10 @@ function render$M(_ctx, _cache, $props, $setup, $data, $options) {
   ], 2 /* CLASS */))
 }
 
-script$T.render = render$M;
-script$T.__file = "themes/blank/templates/FormElements.vue";
+script$U.render = render$N;
+script$U.__file = "themes/blank/templates/FormElements.vue";
 
-var script$S = {
+var script$T = {
     name: 'ElementLayout',
     data() {
       return {
@@ -511,7 +511,7 @@ var script$S = {
     },
   };
 
-function render$L(_ctx, _cache, $props, $setup, $data, $options) {
+function render$M(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_ElementLabel = resolveComponent("ElementLabel");
   const _component_ElementText = resolveComponent("ElementText");
   const _component_ElementDescription = resolveComponent("ElementDescription");
@@ -582,10 +582,10 @@ function render$L(_ctx, _cache, $props, $setup, $data, $options) {
   ])
 }
 
-script$S.render = render$L;
-script$S.__file = "themes/blank/templates/ElementLayout.vue";
+script$T.render = render$M;
+script$T.__file = "themes/blank/templates/ElementLayout.vue";
 
-var script$R = {
+var script$S = {
     name: 'ElementLayoutInline',
     data() {
       return {
@@ -597,7 +597,7 @@ var script$R = {
     },
   };
 
-function render$K(_ctx, _cache, $props, $setup, $data, $options) {
+function render$L(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_ElementLabel = resolveComponent("ElementLabel");
   const _component_ElementText = resolveComponent("ElementText");
   const _component_ElementDescription = resolveComponent("ElementDescription");
@@ -645,10 +645,10 @@ function render$K(_ctx, _cache, $props, $setup, $data, $options) {
   ])
 }
 
-script$R.render = render$K;
-script$R.__file = "themes/blank/templates/ElementLayoutInline.vue";
+script$S.render = render$L;
+script$S.__file = "themes/blank/templates/ElementLayoutInline.vue";
 
-var script$Q = {
+var script$R = {
     name: 'ElementLoader',
     data() {
       return {
@@ -661,7 +661,7 @@ var script$Q = {
     }
   };
 
-function render$J(_ctx, _cache, $props, $setup, $data, $options) {
+function render$K(_ctx, _cache, $props, $setup, $data, $options) {
   return (openBlock(), createElementBlock("div", {
     class: normalizeClass(_ctx.classes.container)
   }, [
@@ -671,10 +671,10 @@ function render$J(_ctx, _cache, $props, $setup, $data, $options) {
   ], 2 /* CLASS */))
 }
 
-script$Q.render = render$J;
-script$Q.__file = "themes/blank/templates/ElementLoader.vue";
+script$R.render = render$K;
+script$R.__file = "themes/blank/templates/ElementLoader.vue";
 
-var script$P = {
+var script$Q = {
     name: 'ElementLabelFloating',
     data() {
       return {
@@ -687,23 +687,23 @@ var script$P = {
     }
   };
 
-const _hoisted_1$C = ["innerHTML"];
+const _hoisted_1$D = ["innerHTML"];
 
-function render$I(_ctx, _cache, $props, $setup, $data, $options) {
+function render$J(_ctx, _cache, $props, $setup, $data, $options) {
   return (openBlock(), createElementBlock("div", {
     class: normalizeClass(_ctx.classes.container)
   }, [
     createElementVNode("span", {
       class: normalizeClass(_ctx.classes.label),
       innerHTML: _ctx.floating
-    }, null, 10 /* CLASS, PROPS */, _hoisted_1$C)
+    }, null, 10 /* CLASS, PROPS */, _hoisted_1$D)
   ], 2 /* CLASS */))
 }
 
-script$P.render = render$I;
-script$P.__file = "themes/blank/templates/ElementLabelFloating.vue";
+script$Q.render = render$J;
+script$Q.__file = "themes/blank/templates/ElementLabelFloating.vue";
 
-var script$O = {
+var script$P = {
     name: 'ElementLabel',
     data() {
       return {
@@ -716,13 +716,13 @@ var script$O = {
     }
   };
 
-const _hoisted_1$B = ["for", "id"];
+const _hoisted_1$C = ["for", "id"];
 const _hoisted_2$n = ["for", "id"];
 const _hoisted_3$c = ["innerHTML"];
 const _hoisted_4$7 = ["for", "id"];
 const _hoisted_5$5 = ["for", "id"];
 
-function render$H(_ctx, _cache, $props, $setup, $data, $options) {
+function render$I(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_ElementInfo = resolveComponent("ElementInfo");
 
   return (openBlock(), createElementBlock(Fragment, null, [
@@ -747,7 +747,7 @@ function render$H(_ctx, _cache, $props, $setup, $data, $options) {
             ]),
             _: 3 /* FORWARDED */
           })
-        ], 10 /* CLASS, PROPS */, _hoisted_1$B))
+        ], 10 /* CLASS, PROPS */, _hoisted_1$C))
       : (_ctx.label)
         ? (openBlock(), createElementBlock(Fragment, { key: 1 }, [
             createCommentVNode(" If label is HTML "),
@@ -802,10 +802,10 @@ function render$H(_ctx, _cache, $props, $setup, $data, $options) {
   ], 2112 /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */))
 }
 
-script$O.render = render$H;
-script$O.__file = "themes/blank/templates/ElementLabel.vue";
+script$P.render = render$I;
+script$P.__file = "themes/blank/templates/ElementLabel.vue";
 
-var script$N = {
+var script$O = {
     name: 'ElementInfo',
     data() {
       return {
@@ -819,10 +819,10 @@ var script$N = {
     }
   };
 
-const _hoisted_1$A = ["id"];
+const _hoisted_1$B = ["id"];
 const _hoisted_2$m = ["innerHTML"];
 
-function render$G(_ctx, _cache, $props, $setup, $data, $options) {
+function render$H(_ctx, _cache, $props, $setup, $data, $options) {
   return (_ctx.info || _ctx.isSlot)
     ? (openBlock(), createElementBlock("span", {
         key: 0,
@@ -845,15 +845,15 @@ function render$G(_ctx, _cache, $props, $setup, $data, $options) {
                 class: normalizeClass(_ctx.classes.content),
                 innerHTML: _ctx.info
               }, null, 10 /* CLASS, PROPS */, _hoisted_2$m))
-        ], 10 /* CLASS, PROPS */, _hoisted_1$A)
+        ], 10 /* CLASS, PROPS */, _hoisted_1$B)
       ], 34 /* CLASS, NEED_HYDRATION */))
     : createCommentVNode("v-if", true)
 }
 
-script$N.render = render$G;
-script$N.__file = "themes/blank/templates/ElementInfo.vue";
+script$O.render = render$H;
+script$O.__file = "themes/blank/templates/ElementInfo.vue";
 
-var script$M = {
+var script$N = {
     name: 'ElementDescription',
     data() {
       return {
@@ -865,10 +865,10 @@ var script$M = {
     }
   };
 
-const _hoisted_1$z = ["innerHTML", "id"];
+const _hoisted_1$A = ["innerHTML", "id"];
 const _hoisted_2$l = ["id"];
 
-function render$F(_ctx, _cache, $props, $setup, $data, $options) {
+function render$G(_ctx, _cache, $props, $setup, $data, $options) {
   return (openBlock(), createElementBlock(Fragment, null, [
     createCommentVNode(" If description is HTML "),
     (_ctx.description)
@@ -877,7 +877,7 @@ function render$F(_ctx, _cache, $props, $setup, $data, $options) {
           class: normalizeClass(_ctx.classes.container),
           innerHTML: _ctx.description,
           id: _ctx.id
-        }, null, 10 /* CLASS, PROPS */, _hoisted_1$z))
+        }, null, 10 /* CLASS, PROPS */, _hoisted_1$A))
       : (_ctx.isSlot)
         ? (openBlock(), createElementBlock(Fragment, { key: 1 }, [
             createCommentVNode(" If description is a slot "),
@@ -892,10 +892,10 @@ function render$F(_ctx, _cache, $props, $setup, $data, $options) {
   ], 2112 /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */))
 }
 
-script$M.render = render$F;
-script$M.__file = "themes/blank/templates/ElementDescription.vue";
+script$N.render = render$G;
+script$N.__file = "themes/blank/templates/ElementDescription.vue";
 
-var script$L = {
+var script$M = {
     name: 'ElementError',
     data() {
       return {
@@ -907,9 +907,9 @@ var script$L = {
     }
   };
 
-const _hoisted_1$y = ["id", "innerHTML"];
+const _hoisted_1$z = ["id", "innerHTML"];
 
-function render$E(_ctx, _cache, $props, $setup, $data, $options) {
+function render$F(_ctx, _cache, $props, $setup, $data, $options) {
   return (_ctx.error)
     ? (openBlock(), createElementBlock("div", {
         key: 0,
@@ -917,15 +917,42 @@ function render$E(_ctx, _cache, $props, $setup, $data, $options) {
         id: _ctx.id,
         "aria-live": "assertive",
         innerHTML: _ctx.error
+      }, null, 10 /* CLASS, PROPS */, _hoisted_1$z))
+    : createCommentVNode("v-if", true)
+}
+
+script$M.render = render$F;
+script$M.__file = "themes/blank/templates/ElementError.vue";
+
+var script$L = {
+    name: 'ElementMessage',
+    data() {
+      return {
+        merge: true,
+        defaultClasses: {
+          container: '',
+        }
+      }
+    }
+  };
+
+const _hoisted_1$y = ["innerHTML"];
+
+function render$E(_ctx, _cache, $props, $setup, $data, $options) {
+  return (_ctx.message)
+    ? (openBlock(), createElementBlock("div", {
+        key: 0,
+        class: normalizeClass(_ctx.classes.container),
+        innerHTML: _ctx.message
       }, null, 10 /* CLASS, PROPS */, _hoisted_1$y))
     : createCommentVNode("v-if", true)
 }
 
 script$L.render = render$E;
-script$L.__file = "themes/blank/templates/ElementError.vue";
+script$L.__file = "themes/blank/templates/ElementMessage.vue";
 
 var script$K = {
-    name: 'ElementMessage',
+    name: 'ElementText',
     data() {
       return {
         merge: true,
@@ -939,33 +966,6 @@ var script$K = {
 const _hoisted_1$x = ["innerHTML"];
 
 function render$D(_ctx, _cache, $props, $setup, $data, $options) {
-  return (_ctx.message)
-    ? (openBlock(), createElementBlock("div", {
-        key: 0,
-        class: normalizeClass(_ctx.classes.container),
-        innerHTML: _ctx.message
-      }, null, 10 /* CLASS, PROPS */, _hoisted_1$x))
-    : createCommentVNode("v-if", true)
-}
-
-script$K.render = render$D;
-script$K.__file = "themes/blank/templates/ElementMessage.vue";
-
-var script$J = {
-    name: 'ElementText',
-    data() {
-      return {
-        merge: true,
-        defaultClasses: {
-          container: '',
-        }
-      }
-    }
-  };
-
-const _hoisted_1$w = ["innerHTML"];
-
-function render$C(_ctx, _cache, $props, $setup, $data, $options) {
   return (openBlock(), createElementBlock(Fragment, null, [
     createCommentVNode(" If content is HTML "),
     (_ctx.content)
@@ -973,7 +973,7 @@ function render$C(_ctx, _cache, $props, $setup, $data, $options) {
           key: 0,
           class: normalizeClass(_ctx.classes.container),
           innerHTML: _ctx.content
-        }, null, 10 /* CLASS, PROPS */, _hoisted_1$w))
+        }, null, 10 /* CLASS, PROPS */, _hoisted_1$x))
       : (_ctx.isSlot)
         ? (openBlock(), createElementBlock(Fragment, { key: 1 }, [
             createCommentVNode(" If content is a slot "),
@@ -987,10 +987,10 @@ function render$C(_ctx, _cache, $props, $setup, $data, $options) {
   ], 2112 /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */))
 }
 
-script$J.render = render$C;
-script$J.__file = "themes/blank/templates/ElementText.vue";
+script$K.render = render$D;
+script$K.__file = "themes/blank/templates/ElementText.vue";
 
-var script$I = {
+var script$J = {
     name: 'ElementAddon',
     data() {
       return {
@@ -1003,9 +1003,9 @@ var script$I = {
     }
   };
 
-const _hoisted_1$v = ["innerHTML"];
+const _hoisted_1$w = ["innerHTML"];
 
-function render$B(_ctx, _cache, $props, $setup, $data, $options) {
+function render$C(_ctx, _cache, $props, $setup, $data, $options) {
   return (openBlock(), createElementBlock(Fragment, null, [
     createCommentVNode(" If addon is a component "),
     (_ctx.addon && _ctx.isAddonComponent)
@@ -1028,7 +1028,7 @@ function render$B(_ctx, _cache, $props, $setup, $data, $options) {
               createElementVNode("div", {
                 class: normalizeClass(_ctx.classes.wrapper),
                 innerHTML: _ctx.addon
-              }, null, 10 /* CLASS, PROPS */, _hoisted_1$v)
+              }, null, 10 /* CLASS, PROPS */, _hoisted_1$w)
             ], 2 /* CLASS */)
           ], 2112 /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */))
         : (_ctx.isSlot)
@@ -1048,10 +1048,10 @@ function render$B(_ctx, _cache, $props, $setup, $data, $options) {
   ], 2112 /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */))
 }
 
-script$I.render = render$B;
-script$I.__file = "themes/blank/templates/ElementAddon.vue";
+script$J.render = render$C;
+script$J.__file = "themes/blank/templates/ElementAddon.vue";
 
-var script$H = {
+var script$I = {
     name: 'ButtonElement',
     data() {
       return {
@@ -1064,14 +1064,14 @@ var script$H = {
     }
   };
 
-const _hoisted_1$u = ["tabindex", "disabled"];
+const _hoisted_1$v = ["tabindex", "disabled"];
 const _hoisted_2$k = ["innerHTML", "tabindex", "disabled"];
 const _hoisted_3$b = ["tabindex", "disabled"];
 const _hoisted_4$6 = ["tabindex"];
 const _hoisted_5$4 = ["innerHTML", "tabindex"];
 const _hoisted_6$3 = ["tabindex"];
 
-function render$A(_ctx, _cache, $props, $setup, $data, $options) {
+function render$B(_ctx, _cache, $props, $setup, $data, $options) {
   return (openBlock(), createBlock(resolveDynamicComponent(_ctx.elementLayout), { ref: "container" }, createSlots({
     element: withCtx(() => [
       createCommentVNode(" Use `button` tag "),
@@ -1089,7 +1089,7 @@ function render$A(_ctx, _cache, $props, $setup, $data, $options) {
                   onClick: _cache[0] || (_cache[0] = withModifiers((...args) => (_ctx.handleClick && _ctx.handleClick(...args)), ["prevent"]))
                 }), [
                   (openBlock(), createBlock(resolveDynamicComponent(_ctx.buttonLabel)))
-                ], 16 /* FULL_PROPS */, _hoisted_1$u))
+                ], 16 /* FULL_PROPS */, _hoisted_1$v))
               : (_ctx.buttonLabel)
                 ? (openBlock(), createElementBlock(Fragment, { key: 1 }, [
                     createCommentVNode(" Use it as HTML "),
@@ -1180,8 +1180,58 @@ function render$A(_ctx, _cache, $props, $setup, $data, $options) {
   ]), 1536 /* NEED_PATCH, DYNAMIC_SLOTS */))
 }
 
+script$I.render = render$B;
+script$I.__file = "themes/blank/templates/elements/ButtonElement.vue";
+
+var script$H = {
+    name: 'CaptchaElement',
+    data() {
+      return {
+        merge: true,
+        defaultClasses: {
+          container: '',
+          wrapper: '',
+          captcha: '',
+        },
+      }
+    },
+  };
+
+const _hoisted_1$u = ["id"];
+
+function render$A(_ctx, _cache, $props, $setup, $data, $options) {
+  return (openBlock(), createBlock(resolveDynamicComponent(_ctx.elementLayout), { ref: "container" }, createSlots({
+    element: withCtx(() => [
+      (_ctx.shouldVerify)
+        ? (openBlock(), createElementBlock("div", {
+            key: 0,
+            class: normalizeClass(_ctx.classes.wrapper)
+          }, [
+            createElementVNode("div", {
+              id: _ctx.fieldId,
+              class: normalizeClass(_ctx.classes.captcha),
+              ref: "input"
+            }, null, 10 /* CLASS, PROPS */, _hoisted_1$u)
+          ], 2 /* CLASS */))
+        : createCommentVNode("v-if", true)
+    ]),
+    _: 2 /* DYNAMIC */
+  }, [
+    renderList(_ctx.elementSlots, (component, slot) => {
+      return {
+        name: slot,
+        fn: withCtx(() => [
+          renderSlot(_ctx.$slots, slot, { el$: _ctx.el$ }, () => [
+            (openBlock(), createBlock(resolveDynamicComponent(component), { el$: _ctx.el$ }, null, 8 /* PROPS */, ["el$"]))
+          ])
+        ])
+      }
+    })
+  ]), 1536 /* NEED_PATCH, DYNAMIC_SLOTS */))
+}
+
 script$H.render = render$A;
-script$H.__file = "themes/blank/templates/elements/ButtonElement.vue";
+script$H.__file = "themes/blank/templates/elements/CaptchaElement.vue";
 
 var script$G = {
     name: 'CheckboxElement',
@@ -1293,8 +1343,8 @@ function render$y(_ctx, _cache, $props, $setup, $data, $options) {
             attrs: _ctx.aria
           }, {
             default: withCtx((scope) => [
-              renderSlot(_ctx.$slots, "checkbox", mergeProps(scope, { el$: _ctx.el$ }), () => [
-                (openBlock(), createBlock(resolveDynamicComponent(_ctx.fieldSlots.checkbox), mergeProps(scope, { el$: _ctx.el$ }), null, 16 /* FULL_PROPS */, ["el$"]))
+              renderSlot(_ctx.$slots, "checkbox", mergeProps({ ref_for: true }, scope, { el$: _ctx.el$ }), () => [
+                (openBlock(), createBlock(resolveDynamicComponent(_ctx.fieldSlots.checkbox), mergeProps({ ref_for: true }, scope, { el$: _ctx.el$ }), null, 16 /* FULL_PROPS */, ["el$"]))
               ])
             ]),
             _: 2 /* DYNAMIC */
@@ -1544,7 +1594,7 @@ function render$v(_ctx, _cache, $props, $setup, $data, $options) {
       }, [
         renderSlot(_ctx.$slots, "default", {}, () => [
           (openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.children, (element, name) => {
-            return (openBlock(), createBlock(resolveDynamicComponent(_ctx.component(element)), mergeProps(element, {
+            return (openBlock(), createBlock(resolveDynamicComponent(_ctx.component(element)), mergeProps({ ref_for: true }, element, {
               name: name,
               key: name
             }), null, 16 /* FULL_PROPS */, ["name"]))
@@ -1648,7 +1698,10 @@ function render$t(_ctx, _cache, $props, $setup, $data, $options) {
           }, [
             renderSlot(_ctx.$slots, "default", { index: i }, () => [
               (_ctx.prototype.type)
-                ? (openBlock(), createBlock(resolveDynamicComponent(_ctx.component(_ctx.prototype)), mergeProps({ key: 0 }, _ctx.prototype, {
+                ? (openBlock(), createBlock(resolveDynamicComponent(_ctx.component(_ctx.prototype)), mergeProps({
+                    key: 0,
+                    ref_for: true
+                  }, _ctx.prototype, {
                     name: i,
                     key: i
                   }), null, 16 /* FULL_PROPS */, ["name"]))
@@ -1924,7 +1977,10 @@ function render$r(_ctx, _cache, $props, $setup, $data, $options) {
             class: normalizeClass(_ctx.classes.listItem)
           }, [
             (_ctx.prototype.type)
-              ? (openBlock(), createBlock(resolveDynamicComponent(_ctx.component(_ctx.prototype)), mergeProps({ key: 0 }, _ctx.prototype, {
+              ? (openBlock(), createBlock(resolveDynamicComponent(_ctx.component(_ctx.prototype)), mergeProps({
+                  key: 0,
+                  ref_for: true
+                }, _ctx.prototype, {
                   disabled: !_ctx.hasRemove,
                   embed: true,
                   name: i,
@@ -6960,7 +7016,7 @@ function render$o(_ctx, _cache, $props, $setup, $data, $options) {
       }, [
         renderSlot(_ctx.$slots, "default", {}, () => [
           (openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.children, (element, name) => {
-            return (openBlock(), createBlock(resolveDynamicComponent(_ctx.component(element)), mergeProps(element, {
+            return (openBlock(), createBlock(resolveDynamicComponent(_ctx.component(element)), mergeProps({ ref_for: true }, element, {
               embed: _ctx.embed,
               name: name,
               key: name,
@@ -7097,8 +7153,8 @@ function render$m(_ctx, _cache, $props, $setup, $data, $options) {
             attrs: _ctx.aria
           }, {
             default: withCtx((scope) => [
-              renderSlot(_ctx.$slots, "radio", mergeProps(scope, { el$: _ctx.el$ }), () => [
-                (openBlock(), createBlock(resolveDynamicComponent(_ctx.fieldSlots.radio), mergeProps(scope, { el$: _ctx.el$ }), null, 16 /* FULL_PROPS */, ["el$"]))
+              renderSlot(_ctx.$slots, "radio", mergeProps({ ref_for: true }, scope, { el$: _ctx.el$ }), () => [
+                (openBlock(), createBlock(resolveDynamicComponent(_ctx.fieldSlots.radio), mergeProps({ ref_for: true }, scope, { el$: _ctx.el$ }), null, 16 /* FULL_PROPS */, ["el$"]))
               ])
             ]),
             _: 2 /* DYNAMIC */
@@ -13330,6 +13386,11 @@ var classes = {
       return [classes.button, danger ? classes.button_danger : null, secondary ? classes.button_secondary : null, !danger && !secondary ? classes.button_primary : null, classes["button_".concat(Size)], isDisabled ? classes.button_disabled : null, !isDisabled && !isLoading ? classes.button_enabled : null, isLoading ? classes.button_loading : null, isLoading && danger ? classes.button_loading_danger : null, isLoading && secondary ? classes.button_loading_secondary : null, isLoading && !secondary && !danger ? classes.button_loading_primary : null, full ? classes.button_full : classes.button_not_full, align === 'left' ? classes.button_left : null, align === 'center' ? classes.button_center : null, align === 'right' ? classes.button_right : null, buttonClass];
     }
   },
+  CaptchaElement: {
+    container: '',
+    wrapper: '',
+    captcha: ''
+  },
   CheckboxElement: _objectSpread2(_objectSpread2({}, checkbox), {}, {
     container: 'form-contains-link',
     wrapper: 'flex align-start',
@@ -14856,30 +14917,31 @@ var classes = {
  */
 var theme = {
   templates: {
-    Vueform: script$12,
-    FormErrors: script$11,
-    FormMessages: script$10,
-    FormLanguages: script$$,
-    FormLanguage: script$_,
-    FormTabs: script$Z,
-    FormTab: script$Y,
-    FormSteps: script$X,
-    FormStepsControls: script$W,
-    FormStepsControl: script$V,
-    FormStep: script$U,
-    FormElements: script$T,
-    ElementLayout: script$S,
-    ElementLayoutInline: script$R,
-    ElementLoader: script$Q,
-    ElementLabelFloating: script$P,
-    ElementLabel: script$O,
-    ElementInfo: script$N,
-    ElementDescription: script$M,
-    ElementError: script$L,
-    ElementMessage: script$K,
-    ElementText: script$J,
-    ElementAddon: script$I,
-    ButtonElement: script$H,
+    Vueform: script$13,
+    FormErrors: script$12,
+    FormMessages: script$11,
+    FormLanguages: script$10,
+    FormLanguage: script$$,
+    FormTabs: script$_,
+    FormTab: script$Z,
+    FormSteps: script$Y,
+    FormStepsControls: script$X,
+    FormStepsControl: script$W,
+    FormStep: script$V,
+    FormElements: script$U,
+    ElementLayout: script$T,
+    ElementLayoutInline: script$S,
+    ElementLoader: script$R,
+    ElementLabelFloating: script$Q,
+    ElementLabel: script$P,
+    ElementInfo: script$O,
+    ElementDescription: script$N,
+    ElementError: script$M,
+    ElementMessage: script$L,
+    ElementText: script$K,
+    ElementAddon: script$J,
+    ButtonElement: script$I,
+    CaptchaElement: script$H,
     CheckboxElement: script$G,
     CheckboxgroupElement: script$F,
     CheckboxgroupElement_tabs: script$F,
@@ -14982,4 +15044,4 @@ var prefix = function prefix(_prefix) {
   });
 };
 
-export { script$H as ButtonElement, script$G as CheckboxElement, script$d as CheckboxgroupCheckbox, script$b as CheckboxgroupCheckbox_blocks, script$c as CheckboxgroupCheckbox_tabs, script$F as CheckboxgroupElement, script$F as CheckboxgroupElement_blocks, script$F as CheckboxgroupElement_tabs, script$E as DateElement, script$2 as DatepickerWrapper, script$D as DatesElement, script$a as DragAndDrop, script$h as EditorElement, script as EditorWrapper, script$I as ElementAddon, script$M as ElementDescription, script$L as ElementError, script$N as ElementInfo, script$O as ElementLabel, script$P as ElementLabelFloating, script$S as ElementLayout, script$R as ElementLayoutInline, script$Q as ElementLoader, script$K as ElementMessage, script$J as ElementText, script$C as FileElement, script$9 as FilePreview, script$7 as FilePreview_gallery, script$8 as FilePreview_image, script$T as FormElements, script$11 as FormErrors, script$_ as FormLanguage, script$$ as FormLanguages, script$10 as FormMessages, script$U as FormStep, script$X as FormSteps, script$V as FormStepsControl, script$W as FormStepsControls, script$Y as FormTab, script$Z as FormTabs, script$B as GroupElement, script$A as HiddenElement, script$z as ListElement, script$x as LocationElement, script$w as MultifileElement, script$u as MultiselectElement, script$t as ObjectElement, script$s as RadioElement, script$r as RadiogroupElement, script$r as RadiogroupElement_blocks, script$r as RadiogroupElement_tabs, script$6 as RadiogroupRadio, script$4 as RadiogroupRadio_blocks, script$5 as RadiogroupRadio_tabs, script$q as SelectElement, script$o as SliderElement, script$n as StaticElement, script$e as TEditorElement, script$f as TTextElement, script$g as TTextareaElement, script$m as TagsElement, script$k as TextElement, script$l as TextareaElement, script$i as ToggleElement, script$12 as Vueform, classes, columns, theme as default, prefix, prefixer };
+export { script$I as ButtonElement, script$H as CaptchaElement, script$G as CheckboxElement, script$d as CheckboxgroupCheckbox, script$b as CheckboxgroupCheckbox_blocks, script$c as CheckboxgroupCheckbox_tabs, script$F as CheckboxgroupElement, script$F as CheckboxgroupElement_blocks, script$F as CheckboxgroupElement_tabs, script$E as DateElement, script$2 as DatepickerWrapper, script$D as DatesElement, script$a as DragAndDrop, script$h as EditorElement, script as EditorWrapper, script$J as ElementAddon, script$N as ElementDescription, script$M as ElementError, script$O as ElementInfo, script$P as ElementLabel, script$Q as ElementLabelFloating, script$T as ElementLayout, script$S as ElementLayoutInline, script$R as ElementLoader, script$L as ElementMessage, script$K as ElementText, script$C as FileElement, script$9 as FilePreview, script$7 as FilePreview_gallery, script$8 as FilePreview_image, script$U as FormElements, script$12 as FormErrors, script$$ as FormLanguage, script$10 as FormLanguages, script$11 as FormMessages, script$V as FormStep, script$Y as FormSteps, script$W as FormStepsControl, script$X as FormStepsControls, script$Z as FormTab, script$_ as FormTabs, script$B as GroupElement, script$A as HiddenElement, script$z as ListElement, script$x as LocationElement, script$w as MultifileElement, script$u as MultiselectElement, script$t as ObjectElement, script$s as RadioElement, script$r as RadiogroupElement, script$r as RadiogroupElement_blocks, script$r as RadiogroupElement_tabs, script$6 as RadiogroupRadio, script$4 as RadiogroupRadio_blocks, script$5 as RadiogroupRadio_tabs, script$q as SelectElement, script$o as SliderElement, script$n as StaticElement, script$e as TEditorElement, script$f as TTextElement, script$g as TTextareaElement, script$m as TagsElement, script$k as TextElement, script$l as TextareaElement, script$i as ToggleElement, script$13 as Vueform, classes, columns, theme as default, prefix, prefixer };

@@ -100,8 +100,8 @@ export default {
       ],
       "firstDayOfWeek": 0,
       "ordinal": function () {
-    return '';
-  },
+        return '';
+      },
       "rangeSeparator": " から ",
       "weekAbbreviation": "Wk",
       "scrollTitle": "Scroll to increment",
@@ -160,6 +160,7 @@ export default {
       "array": ":attributeの項目は、:min個から:max個にしてください。"
     },
     "boolean": ":attributeには、trueかfalseを指定してください。",
+    "captcha": "Please verify that you are not a robot.",
     "confirmed": ":attributeと:attribute確認が一致しません。",
     "date": ":attributeは、正しい日付ではありません。",
     "date_format": ":attributeの形式は、:formatと合いません。",

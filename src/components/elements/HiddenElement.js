@@ -66,8 +66,8 @@ export default {
       useConditions,
       useValidation,
       useValue,
-      useData,
       useEmpty,
+      useData,
       useWatchValue,
       useFocus,
     ]

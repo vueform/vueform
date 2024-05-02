@@ -60,6 +60,9 @@ const base = function(props, context, dependencies = {})
     default: default_,
     disabled,
     loading,
+    providers,
+    useProviders,
+    providerOptions,
     onChange: _onChange,
     onReset: _onReset,
     onClear: _onClear,
@@ -343,7 +346,14 @@ const base = function(props, context, dependencies = {})
       onUnmounted: _onUnmounted.value,
     }
 
+    const toMerge = {
+      useProviders, providers, providerOptions,
+    }
+
     const defaults = {
+      providers: baseConfig.value.config.providers,
+      useProviders: baseConfig.value.config.useProviders,
+      providerOptions: baseConfig.value.config.providerOptions,
       languages: baseConfig.value.config.languages,
       language: baseConfig.value.config.language,
       endpoint: typeof baseConfig.value.config.endpoints.submit === 'function' ? baseConfig.value.config.endpoints.submit : baseConfig.value.config.endpoints.submit.url,
@@ -388,6 +398,10 @@ const base = function(props, context, dependencies = {})
 
     each(ifPropSet, (val, key) => {
       options[key] = userConfig.value[key] !== undefined ? userConfig.value[key] : (val && val.value !== null ? val.value : defaults[key])
+    })
+
+    each(toMerge, (val, key) => {
+      options[key] = merge({}, defaults[key], userConfig.value[key] || {}, val && val.value ? val.value : {})
     })
 
     return options

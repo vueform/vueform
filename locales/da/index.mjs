@@ -160,6 +160,7 @@ export default {
       "array": ":attribute skal indeholde mellem :min og :max elementer."
     },
     "boolean": ":attribute skal være sand eller falsk.",
+    "captcha": "Please verify that you are not a robot.",
     "confirmed": ":attribute er ikke det samme som bekræftelsesfeltet.",
     "date": ":attribute er ikke en gyldig dato.",
     "date_format": ":attribute matcher ikke formatet :format.",

@@ -414,6 +414,22 @@ export default {
       default: null
     },
 
+    providers: {
+      type: [Object],
+      required: false,
+      default: null,
+    },
+    useProviders: {
+      type: [Object],
+      required: false,
+      default: null
+    },
+    providerOptions: {
+      type: [Object],
+      required: false,
+      default: null
+    },
+
     onChange: {
       required: false,
       type: [Function],

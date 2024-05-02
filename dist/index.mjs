@@ -1,5 +1,5 @@
 /*!
- * Vueform v1.9.5 (https://github.com/vueform/vueform)
+ * Vueform v1.9.6 (https://github.com/vueform/vueform)
  * Copyright (c) 2024 Adam Berecz <adam@vueform.com>
  * Licensed under the MIT License
  */
@@ -6767,7 +6767,7 @@ var camelCase = createCompounder(function(result, word, index) {
 
 var camelCase_1 = camelCase;
 
-var base$1a = function base(props, context, dependencies) {
+var base$1b = function base(props, context, dependencies) {
   var options = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
   if (!options.events) {
     throw new Error('`events` option is required for useEvents');
@@ -6995,7 +6995,7 @@ function useModel (props, context, dependencies) {
   };
 }
 
-var base$19 = function base(props, context) {
+var base$1a = function base(props, context) {
   var {
     schema,
     tabs,
@@ -7037,6 +7037,9 @@ var base$19 = function base(props, context) {
     default: default_,
     disabled,
     loading,
+    providers,
+    useProviders,
+    providerOptions,
     onChange: _onChange,
     onReset: _onReset,
     onClear: _onClear,
@@ -7063,7 +7066,7 @@ var base$19 = function base(props, context) {
     fire,
     on,
     off
-  } = base$1a(props, context, {
+  } = base$1b(props, context, {
     form$: $this
   }, {
     events: evts
@@ -7342,7 +7345,15 @@ var base$19 = function base(props, context) {
       onBeforeUnmount: _onBeforeUnmount.value,
       onUnmounted: _onUnmounted.value
     };
+    var toMerge = {
+      useProviders,
+      providers,
+      providerOptions
+    };
     var defaults = {
+      providers: baseConfig.value.config.providers,
+      useProviders: baseConfig.value.config.useProviders,
+      providerOptions: baseConfig.value.config.providerOptions,
       languages: baseConfig.value.config.languages,
       language: baseConfig.value.config.language,
       endpoint: typeof baseConfig.value.config.endpoints.submit === 'function' ? baseConfig.value.config.endpoints.submit : baseConfig.value.config.endpoints.submit.url,
@@ -7385,6 +7396,9 @@ var base$19 = function base(props, context) {
     });
     each(ifPropSet, (val, key) => {
       options[key] = userConfig.value[key] !== undefined ? userConfig.value[key] : val && val.value !== null ? val.value : defaults[key];
+    });
+    each(toMerge, (val, key) => {
+      options[key] = merge_1({}, defaults[key], userConfig.value[key] || {}, val && val.value ? val.value : {});
     });
     return options;
   });
@@ -8474,7 +8488,7 @@ var base$19 = function base(props, context) {
   };
 };
 
-var base$18 = function base(props, context, dependencies) {
+var base$19 = function base(props, context, dependencies) {
   var componentName = context.name;
 
   // ============ DEPENDENCIES ============
@@ -8615,7 +8629,7 @@ var VueformComponent = {
       languagesRegistered,
       tabsRegistered,
       stepsRegistered
-    } = base$19(props, context);
+    } = base$1a(props, context);
     return {
       tabs$,
       steps$,
@@ -8754,7 +8768,7 @@ var VueformComponent = {
       default: null
     },
     endpoint: {
-      type: [String, Boolean, Function],
+      type: [String, Boolean, Function, Promise],
       required: false,
       default: null
     },
@@ -8920,6 +8934,21 @@ var VueformComponent = {
     },
     locale: {
       type: String,
+      required: false,
+      default: null
+    },
+    providers: {
+      type: [Object],
+      required: false,
+      default: null
+    },
+    useProviders: {
+      type: [Object],
+      required: false,
+      default: null
+    },
+    providerOptions: {
+      type: [Object],
       required: false,
       default: null
     },
@@ -10009,7 +10038,7 @@ function shouldApplyPlugin (name, plugin) {
 }
 
 var name = "@vueform/vueform";
-var version$1 = "1.9.5";
+var version$1 = "1.9.6";
 var description = "Open-Source Form Framework for Vue";
 var homepage = "https://vueform.com";
 var license = "MIT";
@@ -10961,6 +10990,21 @@ class boolean$1 extends Validator {
   check(value) {
     var accepted = [true, false, 0, 1, '0', '1'];
     return accepted.indexOf(value) !== -1;
+  }
+}
+
+class captcha$2 extends Validator {
+  get isAsync() {
+    return true;
+  }
+  check(value) {
+    var _this = this;
+    return _asyncToGenerator(function* () {
+      if (!_this.element$.shouldVerify) {
+        return true;
+      }
+      return yield _this.element$.Provider.validate(_this.element$.Provider.getResponse());
+    })();
   }
 }
 
@@ -13150,6 +13194,7 @@ var rules = /*#__PURE__*/Object.freeze({
   before_or_equal: before_or_equal,
   between: between,
   boolean: boolean$1,
+  captcha: captcha$2,
   confirmed: confirmed,
   date: date$4,
   date_equals: date_equals,
@@ -13813,6 +13858,104 @@ class Columns {
   }
 }
 
+class CaptchaProviderInterface {
+  constructor(element, options, el$) {}
+  init() {}
+  render() {}
+  reset() {}
+  getResponse() {}
+  validate(response) {
+    return _asyncToGenerator(function* () {})();
+  }
+}
+
+class Recaptcha2Provider extends CaptchaProviderInterface {
+  constructor(element, options, el$) {
+    super(element, options, el$);
+    _defineProperty$2(this, "src", 'https://www.google.com/recaptcha/api.js?onload=recaptcha2LoadCallback&render=explicit');
+    _defineProperty$2(this, "element", void 0);
+    _defineProperty$2(this, "options", {});
+    _defineProperty$2(this, "el$", {});
+    _defineProperty$2(this, "id", void 0);
+    _defineProperty$2(this, "rendered", false);
+    _defineProperty$2(this, "interval", void 0);
+    this.element = element;
+    this.options = options;
+    this.el$ = el$;
+    this.init();
+  }
+  init() {
+    this.loadScript();
+  }
+  render() {
+    this.id = window.grecaptcha.render(this.element, _objectSpread2$1({
+      callback: token => {
+        this.el$.update(token);
+      },
+      'expired-callback': () => {
+        this.el$.clear();
+      },
+      'error-callback': () => {
+        this.el$.clear();
+      }
+    }, this.options));
+    this.rendered = true;
+  }
+  reset() {
+    if (!this.rendered) {
+      return;
+    }
+    return window.grecaptcha.reset(this.id);
+  }
+  getResponse() {
+    return window.grecaptcha.getResponse(this.id);
+  }
+  validate(response) {
+    return _asyncToGenerator(function* () {
+      return !!response;
+    })();
+  }
+  loadScript() {
+    if (this.isCaptchaLoaded()) {
+      this.render();
+      return;
+    }
+    if (this.isScriptAdded()) {
+      this.interval = setInterval(() => {
+        if (this.isCaptchaLoaded()) {
+          this.render();
+          clearInterval(this.interval);
+        }
+      }, 500);
+      return;
+    }
+    window.recaptcha2LoadCallback = () => {
+      this.render();
+    };
+    var script = document.createElement('script');
+    script.src = this.src;
+    script.async = true;
+    script.defer = true;
+    document.head.appendChild(script);
+    script.onload = () => {};
+    script.onerror = () => {
+      console.error('Error loading reCAPTCHA!');
+    };
+  }
+  isCaptchaLoaded() {
+    return typeof window !== 'undefined' && window.grecaptcha;
+  }
+  isScriptAdded() {
+    var scripts = document.getElementsByTagName('script');
+    for (var i = 0; i < scripts.length; i++) {
+      if (scripts[i].src.includes('https://www.google.com/recaptcha/api.js')) {
+        return true;
+      }
+    }
+    return false;
+  }
+}
+
 var config = {
   /**
    * General
@@ -13908,9 +14051,23 @@ var config = {
   beforeSend: null,
   axios: {},
   /**
-   * Location
+   * Services
    */
   locationProvider: 'google',
+  providers: {
+    captcha: {
+      recaptcha2: Recaptcha2Provider
+    }
+  },
+  useProviders: {
+    captcha: 'recaptcha2'
+  },
+  providerOptions: {
+    recaptcha2: {
+      sitekey: '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI',
+      loadScript: true
+    }
+  },
   services: {
     algolia: {
       app_id: '',
@@ -13975,7 +14132,7 @@ function installer () {
       });
 
       // deep merge
-      each(['endpoints'], attr => {
+      each(['endpoints', 'providers', 'useProviders', 'providerOptions'], attr => {
         if (config[attr] !== undefined) {
           this.options.config[attr] = merge_1({}, this.options.config[attr], config[attr]);
         }
@@ -14220,7 +14377,7 @@ function installer () {
   return new Vueform();
 }
 
-var base$17 = function base(props, context, dependencies) {
+var base$18 = function base(props, context, dependencies) {
   // =============== INJECT ===============
 
   /**
@@ -14234,7 +14391,7 @@ var base$17 = function base(props, context, dependencies) {
   };
 };
 
-var base$16 = function base(props, context, dependencies) {
+var base$17 = function base(props, context, dependencies) {
   // =============== INJECT ===============
 
   /**
@@ -14248,7 +14405,7 @@ var base$16 = function base(props, context, dependencies) {
   };
 };
 
-var base$15 = function base(props, context, dependencies) {
+var base$16 = function base(props, context, dependencies) {
   // =============== INJECT ===============
 
   /**
@@ -14262,7 +14419,7 @@ var base$15 = function base(props, context, dependencies) {
   };
 };
 
-var base$14 = function base(props, context, dependencies) {
+var base$15 = function base(props, context, dependencies) {
   var {
     view
   } = toRefs(props);
@@ -14307,23 +14464,23 @@ var base$14 = function base(props, context, dependencies) {
   };
 };
 
-var base$13 = function base(props, context, dependencies) {
+var base$14 = function base(props, context, dependencies) {
   var componentName = context.name;
 
   // =============== INJECT ===============
 
   var {
     form$
-  } = base$17();
+  } = base$18();
   var {
     theme
-  } = base$16();
+  } = base$17();
   var {
     Size
-  } = base$15();
+  } = base$16();
   var {
     View
-  } = base$14(props, context);
+  } = base$15(props, context);
 
   // ============== COMPUTED ===============
 
@@ -14414,7 +14571,7 @@ var FormErrors = {
       classes,
       Templates,
       template
-    } = base$13(props, context);
+    } = base$14(props, context);
 
     // ============== COMPUTED ==============
 
@@ -14461,7 +14618,7 @@ var FormMessages = {
       classes,
       Templates,
       template
-    } = base$13(props, context);
+    } = base$14(props, context);
 
     // ============== COMPUTED ==============
 
@@ -14508,7 +14665,7 @@ var FormLanguages = {
       classes,
       Templates,
       template
-    } = base$13(props, context);
+    } = base$14(props, context);
 
     // ============== COMPUTED ==============
 
@@ -14607,7 +14764,7 @@ var FormLanguage = {
       classes,
       Templates,
       template
-    } = base$13(props, context);
+    } = base$14(props, context);
 
     // ============== COMPUTED ==============
 
@@ -14890,14 +15047,14 @@ var FormTabs = {
       classes,
       Templates,
       template
-    } = base$13(props, context);
+    } = base$14(props, context);
     var {
       events,
       listeners,
       on,
       off,
       fire
-    } = base$1a(props, context, {
+    } = base$1b(props, context, {
       form$
     }, {
       events: context.emits
@@ -15198,7 +15355,7 @@ var FormTabs = {
   }
 };
 
-var base$12 = function base(props, context, dependencies) {
+var base$13 = function base(props, context, dependencies) {
   var {
     parent,
     conditions
@@ -15287,7 +15444,7 @@ var list$5 = function list(props, context, dependencies) {
     additionalConditions,
     addConditions,
     removeConditions
-  } = base$12(props, context, dependencies);
+  } = base$13(props, context, dependencies);
   var {
     conditions
   } = toRefs(props);
@@ -15385,7 +15542,7 @@ function localize(object, $config, form$) {
   return object && typeof object === 'object' ? (object === null || object === void 0 ? void 0 : object[locale]) || (object === null || object === void 0 ? void 0 : object[locale.toUpperCase()]) || (object === null || object === void 0 ? void 0 : object[$config.i18n.fallbackLocale]) || (object === null || object === void 0 ? void 0 : object[$config.i18n.fallbackLocale.toUpperCase()]) || (object === null || object === void 0 ? void 0 : object[Object.keys(object)[0]]) || '' : object;
 }
 
-var base$11 = function base(props, context, dependencies) {
+var base$12 = function base(props, context, dependencies) {
   // ============ DEPENDENCIES ============
 
   var labelDefinition = dependencies.labelDefinition;
@@ -15530,18 +15687,18 @@ var FormTab = {
       classes,
       Templates,
       template
-    } = base$13(props, context);
+    } = base$14(props, context);
     var {
       available,
       conditionList,
       updateConditions
-    } = base$12(props, context, {
+    } = base$13(props, context, {
       form$
     });
     var {
       isLabelComponent,
       label: tabLabel_
-    } = base$11(props, context, {
+    } = base$12(props, context, {
       component$: form$,
       labelDefinition: label
     });
@@ -15551,7 +15708,7 @@ var FormTab = {
       on,
       off,
       fire
-    } = base$1a(props, context, {
+    } = base$1b(props, context, {
       form$
     }, {
       events: context.emits
@@ -15887,14 +16044,14 @@ var FormSteps = {
       classes,
       Templates,
       template
-    } = base$13(props, context);
+    } = base$14(props, context);
     var {
       events,
       listeners,
       on,
       off,
       fire
-    } = base$1a(props, context, {
+    } = base$1b(props, context, {
       form$
     }, {
       events: context.emits
@@ -16496,7 +16653,7 @@ var FormStepsControls = {
       classes,
       Templates,
       template
-    } = base$13(props, context);
+    } = base$14(props, context);
 
     // ============== PROVIDE ===============
 
@@ -16551,7 +16708,7 @@ var FormStepsControl = {
       classes,
       Templates,
       template
-    } = base$13(props, context);
+    } = base$14(props, context);
 
     // ============== COMPUTED ==============
 
@@ -16579,7 +16736,7 @@ var FormStepsControl = {
     var {
       isLabelComponent,
       label
-    } = base$11(props, context, {
+    } = base$12(props, context, {
       component$: form$,
       labelDefinition: baseLabel
     });
@@ -16871,18 +17028,18 @@ var FormStep = {
       classes,
       Templates,
       template
-    } = base$13(props, context);
+    } = base$14(props, context);
     var {
       available,
       conditionList,
       updateConditions
-    } = base$12(props, context, {
+    } = base$13(props, context, {
       form$
     });
     var {
       isLabelComponent,
       label: stepLabel_
-    } = base$11(props, context, {
+    } = base$12(props, context, {
       component$: form$,
       labelDefinition: label
     });
@@ -16892,7 +17049,7 @@ var FormStep = {
       on,
       off,
       fire
-    } = base$1a(props, context, {
+    } = base$1b(props, context, {
       form$
     }, {
       events: context.emits
@@ -17381,7 +17538,7 @@ var FormStep = {
   }
 };
 
-var base$10 = function base(props, context, dependencies) {
+var base$11 = function base(props, context, dependencies) {
   // ============== METHODS ===============
 
   /**
@@ -17421,10 +17578,10 @@ var FormElements = {
       classes,
       Templates,
       template
-    } = base$13(props, context);
+    } = base$14(props, context);
     var {
       component
-    } = base$10();
+    } = base$11();
 
     // ============ COMPUTED ============
 
@@ -17452,7 +17609,7 @@ var FormElements = {
   }
 };
 
-var base$$ = function base(props, context, dependencies) {
+var base$10 = function base(props, context, dependencies) {
   // =============== INJECT ===============
 
   /**
@@ -17466,26 +17623,26 @@ var base$$ = function base(props, context, dependencies) {
   };
 };
 
-var base$_ = function base(props, context, dependencies) {
+var base$$ = function base(props, context, dependencies) {
   var componentName = context.name;
 
   // =============== INJECT ===============
 
   var {
     form$
-  } = base$17();
+  } = base$18();
   var {
     el$
-  } = base$$();
+  } = base$10();
   var {
     theme
-  } = base$16();
+  } = base$17();
   var {
     Size
-  } = base$15();
+  } = base$16();
   var {
     View
-  } = base$14(props, context);
+  } = base$15(props, context);
 
   // ============== COMPUTED ===============
 
@@ -17584,7 +17741,7 @@ var ElementLayout = {
       Templates,
       template,
       theme
-    } = base$_(props, context);
+    } = base$$(props, context);
 
     // ============== COMPUTED ==============
 
@@ -17627,7 +17784,7 @@ var ElementLayoutInline = {
       Templates,
       template,
       theme
-    } = base$_(props, context);
+    } = base$$(props, context);
 
     // ============== COMPUTED ==============
 
@@ -17670,7 +17827,7 @@ var ElementLoader = {
       Templates,
       template,
       theme
-    } = base$_(props, context);
+    } = base$$(props, context);
     return {
       el$,
       form$,
@@ -17706,7 +17863,7 @@ var ElementLabelFloating = {
       Templates,
       template,
       theme
-    } = base$_(props, context);
+    } = base$$(props, context);
 
     // =============== INJECT ===============
 
@@ -17753,11 +17910,11 @@ var ElementLabel = {
       Templates,
       template,
       theme
-    } = base$_(props, context);
+    } = base$$(props, context);
     var {
       label,
       isLabelComponent
-    } = base$11(props, context, {
+    } = base$12(props, context, {
       labelDefinition: computed(() => {
         return el$.value.label;
       }),
@@ -17846,7 +18003,7 @@ var ElementInfo = {
       Templates,
       template,
       theme
-    } = base$_(props, context);
+    } = base$$(props, context);
 
     // =============== INJECT ===============
 
@@ -17969,7 +18126,7 @@ var ElementDescription = {
       Templates,
       template,
       theme
-    } = base$_(props, context);
+    } = base$$(props, context);
 
     // =============== INJECT ===============
 
@@ -18037,7 +18194,7 @@ var ElementError = {
       Templates,
       template,
       theme
-    } = base$_(props, context);
+    } = base$$(props, context);
 
     // ============== COMPUTED ==============
 
@@ -18089,7 +18246,7 @@ var ElementMessage = {
       Templates,
       template,
       theme
-    } = base$_(props, context);
+    } = base$$(props, context);
 
     // ============== COMPUTED ==============
 
@@ -18142,7 +18299,7 @@ var ElementText = {
       Templates,
       template,
       theme
-    } = base$_(props, context);
+    } = base$$(props, context);
 
     // =============== INJECT ===============
 
@@ -18221,7 +18378,7 @@ var DragAndDrop = {
       Templates,
       template,
       theme
-    } = base$_(props, context);
+    } = base$$(props, context);
 
     // ================ DATA ================
 
@@ -18336,7 +18493,7 @@ var ElementAddon = {
       Templates,
       template,
       theme
-    } = base$_(props, context);
+    } = base$$(props, context);
 
     // =============== INJECT ===============
 
@@ -21015,7 +21172,7 @@ var DatepickerWrapper = {
       Templates,
       template,
       theme
-    } = base$_(props, context);
+    } = base$$(props, context);
     var $this = getCurrentInstance().proxy;
 
     // ================ DATA ================
@@ -21256,7 +21413,7 @@ var EditorWrapper = {
     },
     endpoint: {
       required: false,
-      type: [String, Function],
+      type: [String, Function, Promise],
       default: null
     },
     method: {
@@ -21305,7 +21462,7 @@ var EditorWrapper = {
       Templates,
       template,
       theme
-    } = base$_(props, context);
+    } = base$$(props, context);
 
     // ================ DATA ================
 
@@ -21522,7 +21679,7 @@ var EditorWrapper = {
   }
 };
 
-var base$Z = function base(props, context, dependencies) {
+var base$_ = function base(props, context, dependencies) {
   var {
     label
   } = toRefs(props);
@@ -21590,7 +21747,7 @@ var base$Z = function base(props, context, dependencies) {
   };
 };
 
-var base$Y = function base(props, context, dependencies) {
+var base$Z = function base(props, context, dependencies) {
   var {
     columns,
     presets
@@ -21672,7 +21829,7 @@ var base$Y = function base(props, context, dependencies) {
   };
 };
 
-var base$X = function base(props, context, dependencies) {
+var base$Y = function base(props, context, dependencies) {
   var {
     size,
     view,
@@ -21803,8 +21960,40 @@ var base$X = function base(props, context, dependencies) {
     show
   };
 };
+var captcha$1 = function captcha(props, context, dependencies) {
+  var {
+    hidden,
+    visible: baseVisible,
+    Size,
+    View,
+    Views,
+    hide,
+    show
+  } = base$Y(props, context, dependencies);
 
-var base$W = function base(props, context, dependencies) {
+  // ============ DEPENDENCIES =============
+
+  var {
+    shouldVerify
+  } = dependencies;
+
+  // =============== METHODS ===============
+
+  var visible = computed(() => {
+    return baseVisible.value && shouldVerify.value;
+  });
+  return {
+    hidden,
+    visible,
+    Size,
+    View,
+    Views,
+    hide,
+    show
+  };
+};
+
+var base$X = function base(props, context, dependencies) {
   var {
     templates,
     presets
@@ -21851,7 +22040,7 @@ var base$W = function base(props, context, dependencies) {
   };
 };
 
-var base$V = function base(props, context, dependencies) {
+var base$W = function base(props, context, dependencies) {
   var options = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
   toRefs(props);
 
@@ -21931,7 +22120,7 @@ var base$V = function base(props, context, dependencies) {
   };
 };
 
-var base$U = function base(props, context, dependencies) {
+var base$V = function base(props, context, dependencies) {
   var {
     buttonLabel,
     buttonType,
@@ -22036,7 +22225,7 @@ var base$U = function base(props, context, dependencies) {
   };
 };
 
-var base$T = function base(props, context, dependencies) {
+var base$U = function base(props, context, dependencies) {
   var {
     layout,
     inline
@@ -22058,7 +22247,7 @@ var base$T = function base(props, context, dependencies) {
   };
 };
 
-var base$S = function base(props, context, dependencies) {
+var base$T = function base(props, context, dependencies) {
   var {
     id,
     name
@@ -22084,7 +22273,7 @@ var base$S = function base(props, context, dependencies) {
   };
 };
 
-var base$R = function base(props, context, dependencies) {
+var base$S = function base(props, context, dependencies) {
   // ============ DEPENDENCIES ============
 
   var {
@@ -22162,7 +22351,7 @@ function clone$1(value) {
 
 var clone_1 = clone$1;
 
-var base$Q = function base(props, context, dependencies) {
+var base$R = function base(props, context, dependencies) {
   var {
     disabled
   } = toRefs(props);
@@ -22222,7 +22411,7 @@ var checkboxgroup$3 = function checkboxgroup(props, context, dependencies) {
   var {
     localDisabled,
     isDisabled
-  } = base$Q(props);
+  } = base$R(props);
 
   // ================ DATA ================
 
@@ -22348,7 +22537,7 @@ var button$1 = function button(props, context, dependencies) {
 };
 var radiogroup$2 = checkboxgroup$3;
 
-var base$P = function base(props, context, dependencies) {
+var base$Q = function base(props, context, dependencies) {
   // ============ DEPENDENCIES ============
 
   var fieldId = dependencies.fieldId;
@@ -22430,7 +22619,7 @@ var checkbox$1 = function checkbox(props, context, dependencies) {
     labelId,
     infoId,
     errorId
-  } = base$P(props, context, dependencies);
+  } = base$Q(props, context, dependencies);
 
   // ============ DEPENDENCIES ============
 
@@ -22468,7 +22657,7 @@ var checkboxgroup$2 = function checkboxgroup(props, context, dependencies) {
     labelId,
     infoId,
     errorId
-  } = base$P(props, context, dependencies);
+  } = base$Q(props, context, dependencies);
 
   // ============ DEPENDENCIES ============
 
@@ -22501,7 +22690,7 @@ var button = function button(props, context, dependencies) {
     labelId,
     infoId,
     errorId
-  } = base$P(props, context, dependencies);
+  } = base$Q(props, context, dependencies);
 
   // ============ DEPENDENCIES ============
 
@@ -22530,7 +22719,7 @@ var static_$3 = function static_(props, context, dependencies) {
     labelId,
     infoId,
     errorId
-  } = base$P(props, context, dependencies);
+  } = base$Q(props, context, dependencies);
 
   // ============== COMPUTED ==============
 
@@ -22576,7 +22765,7 @@ var lowerFirst = createCaseFirst('toLowerCase');
 
 var lowerFirst_1 = lowerFirst;
 
-var base$O = function base(props, context, dependencies) {
+var base$P = function base(props, context, dependencies) {
   var {
     name
   } = toRefs(props);
@@ -22628,7 +22817,7 @@ var base$O = function base(props, context, dependencies) {
   };
 };
 
-var base$N = function base(props, context, dependencies) {
+var base$O = function base(props, context, dependencies) {
   var instantHooks = ['onBeforeCreate', 'onCreated'];
   var hooks = {
     onBeforeMount,
@@ -22647,7 +22836,7 @@ var base$N = function base(props, context, dependencies) {
   var {
     assignToParent,
     removeFromParent
-  } = base$O(props, context, {
+  } = base$P(props, context, {
     form$
   });
 
@@ -22849,7 +23038,7 @@ var list$4 = function list(props, context, dependencies) {
     container,
     activate,
     deactivate
-  } = base$N(props, context, dependencies);
+  } = base$O(props, context, dependencies);
 
   // ============== COMPUTED ==============
 
@@ -22891,7 +23080,7 @@ var object$7 = function object(props, context, dependencies) {
     container,
     activate,
     deactivate
-  } = base$N(props, context, dependencies);
+  } = base$O(props, context, dependencies);
 
   // ============== COMPUTED ==============
 
@@ -22930,7 +23119,7 @@ var group$7 = function group(props, context, dependencies) {
     container,
     activate,
     deactivate
-  } = base$N(props, context, dependencies);
+  } = base$O(props, context, dependencies);
 
   // ============== COMPUTED ==============
 
@@ -22971,7 +23160,7 @@ var file$3 = function file(props, context, dependencies) {
     container,
     activate,
     deactivate
-  } = base$N(props, context, dependencies);
+  } = base$O(props, context, dependencies);
 
   // ============== COMPUTED ==============
 
@@ -23013,7 +23202,7 @@ var static_$2 = function static_(props, context, dependencies) {
     container,
     activate,
     deactivate
-  } = base$N(props, context, dependencies);
+  } = base$O(props, context, dependencies);
 
   // ============== COMPUTED ==============
 
@@ -23042,7 +23231,7 @@ var dates$5 = list$4;
 var multiselect$4 = list$4;
 var tags$4 = list$4;
 
-var base$M = function base(props, context, dependencies) {
+var base$N = function base(props, context, dependencies) {
   var {
     name
   } = toRefs(props);
@@ -23115,7 +23304,7 @@ var group$6 = function group(props, context, dependencies) {
   var {
     path,
     parent
-  } = base$M(props, context, dependencies);
+  } = base$N(props, context, dependencies);
 
   // ============== COMPUTED ==============
 
@@ -23139,7 +23328,7 @@ var static_$1 = function static_(props, context, dependencies) {
     path,
     parent,
     flat
-  } = base$M(props, context, dependencies);
+  } = base$N(props, context, dependencies);
 
   // ============== COMPUTED ==============
 
@@ -23164,7 +23353,7 @@ function resolveDeps(props, context, options) {
   return deps;
 }
 
-var base$L = function base(props, context) {
+var base$M = function base(props, context) {
   var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
   var deps = resolveDeps(props, context, options);
   onMounted(() => {
@@ -23498,13 +23687,13 @@ var ButtonElement = {
     }
   },
   setup(props, context) {
-    context.features = [base$17, base$16, base$T, static_$1, base$1a, static_$2, button$1, base$12, base$Z, base$X, base$W, base$S, base$U, base$18, base$Y, base$V, button, base$R];
+    context.features = [base$18, base$17, base$U, static_$1, base$1b, static_$2, button$1, base$13, base$_, base$Y, base$X, base$T, base$V, base$19, base$Z, base$W, button, base$S];
     context.slots = ['label', 'info', 'description', 'before', 'between', 'after', 'default'];
     return _objectSpread2$1({}, static_(props, context));
   }
 };
 
-var base$K = function base(props, context, dependencies) {
+var base$L = function base(props, context, dependencies) {
   // ================ DATA ================
 
   /**
@@ -23518,1439 +23707,1065 @@ var base$K = function base(props, context, dependencies) {
   };
 };
 
-/**
- * The base implementation of `_.sortBy` which uses `comparer` to define the
- * sort order of `array` and replaces criteria objects with their corresponding
- * values.
- *
- * @private
- * @param {Array} array The array to sort.
- * @param {Function} comparer The function to define sort order.
- * @returns {Array} Returns `array`.
- */
-
-function baseSortBy$1(array, comparer) {
-  var length = array.length;
-
-  array.sort(comparer);
-  while (length--) {
-    array[length] = array[length].value;
-  }
-  return array;
-}
-
-var _baseSortBy = baseSortBy$1;
-
-var isSymbol = isSymbol_1;
-
-/**
- * Compares values to sort them in ascending order.
- *
- * @private
- * @param {*} value The value to compare.
- * @param {*} other The other value to compare.
- * @returns {number} Returns the sort order indicator for `value`.
- */
-function compareAscending$1(value, other) {
-  if (value !== other) {
-    var valIsDefined = value !== undefined,
-        valIsNull = value === null,
-        valIsReflexive = value === value,
-        valIsSymbol = isSymbol(value);
-
-    var othIsDefined = other !== undefined,
-        othIsNull = other === null,
-        othIsReflexive = other === other,
-        othIsSymbol = isSymbol(other);
-
-    if ((!othIsNull && !othIsSymbol && !valIsSymbol && value > other) ||
-        (valIsSymbol && othIsDefined && othIsReflexive && !othIsNull && !othIsSymbol) ||
-        (valIsNull && othIsDefined && othIsReflexive) ||
-        (!valIsDefined && othIsReflexive) ||
-        !valIsReflexive) {
-      return 1;
-    }
-    if ((!valIsNull && !valIsSymbol && !othIsSymbol && value < other) ||
-        (othIsSymbol && valIsDefined && valIsReflexive && !valIsNull && !valIsSymbol) ||
-        (othIsNull && valIsDefined && valIsReflexive) ||
-        (!othIsDefined && valIsReflexive) ||
-        !othIsReflexive) {
-      return -1;
-    }
-  }
-  return 0;
-}
-
-var _compareAscending = compareAscending$1;
-
-var compareAscending = _compareAscending;
-
-/**
- * Used by `_.orderBy` to compare multiple properties of a value to another
- * and stable sort them.
- *
- * If `orders` is unspecified, all values are sorted in ascending order. Otherwise,
- * specify an order of "desc" for descending or "asc" for ascending sort order
- * of corresponding values.
- *
- * @private
- * @param {Object} object The object to compare.
- * @param {Object} other The other object to compare.
- * @param {boolean[]|string[]} orders The order to sort by for each property.
- * @returns {number} Returns the sort order indicator for `object`.
- */
-function compareMultiple$1(object, other, orders) {
-  var index = -1,
-      objCriteria = object.criteria,
-      othCriteria = other.criteria,
-      length = objCriteria.length,
-      ordersLength = orders.length;
-
-  while (++index < length) {
-    var result = compareAscending(objCriteria[index], othCriteria[index]);
-    if (result) {
-      if (index >= ordersLength) {
-        return result;
-      }
-      var order = orders[index];
-      return result * (order == 'desc' ? -1 : 1);
-    }
-  }
-  // Fixes an `Array#sort` bug in the JS engine embedded in Adobe applications
-  // that causes it, under certain circumstances, to provide the same value for
-  // `object` and `other`. See https://github.com/jashkenas/underscore/pull/1247
-  // for more details.
-  //
-  // This also ensures a stable sort in V8 and other engines.
-  // See https://bugs.chromium.org/p/v8/issues/detail?id=90 for more details.
-  return object.index - other.index;
-}
-
-var _compareMultiple = compareMultiple$1;
-
-var arrayMap = _arrayMap,
-    baseGet = _baseGet,
-    baseIteratee = _baseIteratee,
-    baseMap = _baseMap,
-    baseSortBy = _baseSortBy,
-    baseUnary = _baseUnary,
-    compareMultiple = _compareMultiple,
-    identity = identity_1,
-    isArray = isArray_1;
-
-/**
- * The base implementation of `_.orderBy` without param guards.
- *
- * @private
- * @param {Array|Object} collection The collection to iterate over.
- * @param {Function[]|Object[]|string[]} iteratees The iteratees to sort by.
- * @param {string[]} orders The sort orders of `iteratees`.
- * @returns {Array} Returns the new sorted array.
- */
-function baseOrderBy$1(collection, iteratees, orders) {
-  if (iteratees.length) {
-    iteratees = arrayMap(iteratees, function(iteratee) {
-      if (isArray(iteratee)) {
-        return function(value) {
-          return baseGet(value, iteratee.length === 1 ? iteratee[0] : iteratee);
-        }
-      }
-      return iteratee;
-    });
-  } else {
-    iteratees = [identity];
-  }
-
-  var index = -1;
-  iteratees = arrayMap(iteratees, baseUnary(baseIteratee));
-
-  var result = baseMap(collection, function(value, key, collection) {
-    var criteria = arrayMap(iteratees, function(iteratee) {
-      return iteratee(value);
-    });
-    return { 'criteria': criteria, 'index': ++index, 'value': value };
-  });
-
-  return baseSortBy(result, function(object, other) {
-    return compareMultiple(object, other, orders);
-  });
-}
-
-var _baseOrderBy = baseOrderBy$1;
-
-var baseFlatten = _baseFlatten,
-    baseOrderBy = _baseOrderBy,
-    baseRest = _baseRest,
-    isIterateeCall = _isIterateeCall;
-
-/**
- * Creates an array of elements, sorted in ascending order by the results of
- * running each element in a collection thru each iteratee. This method
- * performs a stable sort, that is, it preserves the original sort order of
- * equal elements. The iteratees are invoked with one argument: (value).
- *
- * @static
- * @memberOf _
- * @since 0.1.0
- * @category Collection
- * @param {Array|Object} collection The collection to iterate over.
- * @param {...(Function|Function[])} [iteratees=[_.identity]]
- *  The iteratees to sort by.
- * @returns {Array} Returns the new sorted array.
- * @example
- *
- * var users = [
- *   { 'user': 'fred',   'age': 48 },
- *   { 'user': 'barney', 'age': 36 },
- *   { 'user': 'fred',   'age': 30 },
- *   { 'user': 'barney', 'age': 34 }
- * ];
- *
- * _.sortBy(users, [function(o) { return o.user; }]);
- * // => objects for [['barney', 36], ['barney', 34], ['fred', 48], ['fred', 30]]
- *
- * _.sortBy(users, ['user', 'age']);
- * // => objects for [['barney', 34], ['barney', 36], ['fred', 30], ['fred', 48]]
- */
-var sortBy = baseRest(function(collection, iteratees) {
-  if (collection == null) {
-    return [];
-  }
-  var length = iteratees.length;
-  if (length > 1 && isIterateeCall(collection, iteratees[0], iteratees[1])) {
-    iteratees = [];
-  } else if (length > 2 && isIterateeCall(iteratees[0], iteratees[1], iteratees[2])) {
-    iteratees = [iteratees[0]];
-  }
-  return baseOrderBy(collection, baseFlatten(iteratees, 1), []);
-});
-
-var sortBy_1 = sortBy;
-
 function checkDateFormat (format, date) {
   if (!(date instanceof Date) && moment(date, format).format(format) !== date) {
     console.warn("Wrong formatted date. Expected format: \"".concat(format, "\", received: \"").concat(date, "\""));
   }
 }
 
-var base$J = function base(props, context, dependencies) {
+var base$K = function base(props, context, dependencies) {
+  var _options$value, _options$value2;
   var options = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
   var {
-    submit,
-    formatData,
-    formatLoad,
-    name
-  } = toRefs(props);
-
-  // ============ DEPENDENCIES =============
-
-  var form$ = dependencies.form$;
-  var available = dependencies.available;
-  var value = dependencies.value;
-  var resetValidators = dependencies.resetValidators;
-  var defaultValue = dependencies.defaultValue;
-  var nullValue = dependencies.nullValue;
-  var resetting = dependencies.resetting;
-
-  // =============== PRIVATE ===============
-
-  /**
-   * Sets the value of the element.
-   *
-   *
-   * @param {any} val the value to be set
-   * @returns {void}
-   * @private
-   */
-  var setValue = val => {
-    if (options.setValue) {
-      return options.setValue(val);
-    }
-    value.value = val;
-  };
-
-  // ============== COMPUTED ===============
-
-  /**
-   * The value of the element in `{[name]: value}` value format. This gets merged with the parent component's data.
-   *
-   * @type {object}
-   */
-  var data = computed(() => {
-    return {
-      [name.value]: value.value
-    };
-  });
-
-  /**
-   * Same as `data` property except that it only includes the element's value if [`submit`](#option-submit) is not disabled and [`available`](#property-available) is `true` (has no [`conditions`](#option-conditions) or they are fulfilled).
-   *
-   * @type {object}
-   */
-  var requestData = computed(() => {
-    if (!available.value || !submit.value) {
-      return {};
-    }
-    return formatData.value ? formatData.value(name.value, value.value, form$.value) : {
-      [name.value]: value.value
-    };
-  });
-
-  // =============== METHODS ===============
-
-  /**
-   * Loads value to the element using optional [`formatLoad`](#option-format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.
-   *
-   * @param {any} value* the value to be loaded
-   * @param {boolean} format whether the loaded value should be formatted with [`formatLoad`](#option-format-load) before setting the value of the element (default: `false`)
-   * @returns {void}
-   */
-  var load = function load(val) {
-    var format = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
-    setValue(format && formatLoad.value ? formatLoad.value(val, form$.value) : val);
-  };
-
-  /**
-   * Updates the value of the element similarly to [`load`](#method-load), only that it can\'t format data.
-   *
-   * @param {any} value* the value to be set
-   * @returns {void}
-   */
-  var update = val => {
-    setValue(val);
-  };
-
-  /**
-   * Clears the element's value.
-   *
-   * @returns {void}
-   */
-  var clear = () => {
-    setValue(cloneDeep_1(nullValue.value));
-  };
-
-  /**
-   * Resets the element's value to [`default`](#option-default) (or empty if `default` is not provided). Also resets all the validation state for the element.
-   *
-   * @returns {void}
-   */
-  var reset = () => {
-    resetting.value = true;
-    setValue(cloneDeep_1(defaultValue.value));
-    resetValidators();
-  };
-
-  /**
-   * Prepares the element.
-   *
-   * @returns {Promise}
-   * @private
-   */
-  /* istanbul ignore next:@todo:adam missing implementation, but used in code */
-  var prepare = /*#__PURE__*/function () {
-    var _ref = _asyncToGenerator(function* () {});
-    return function prepare() {
-      return _ref.apply(this, arguments);
-    };
-  }();
-  return {
-    data,
-    requestData,
-    load,
-    update,
-    clear,
-    reset,
-    prepare
-  };
-};
-var text$2 = function text(props, context, dependencies) {
-  var {
-    submit,
-    formatData,
     name,
-    forceNumbers
+    type
   } = toRefs(props);
-  var {
-    load,
-    update,
-    clear,
-    reset,
-    prepare
-  } = base$J(props, context, dependencies);
 
   // ============ DEPENDENCIES =============
 
-  var form$ = dependencies.form$;
-  var available = dependencies.available;
-  var value = dependencies.value;
-
-  // =============== INJECT ===============
-
-  var config$ = inject('config$');
-
-  // =============== COMPUTED ==============
-
-  var data = computed(() => {
-    var v = value.value;
-    if (shouldForceNumbers()) {
-      v = stringToNumber(value.value);
-    }
-    return {
-      [name.value]: v
-    };
-  });
-  var requestData = computed(() => {
-    if (!available.value || !submit.value) {
-      return {};
-    }
-    var v = value.value;
-    if (shouldForceNumbers()) {
-      v = stringToNumber(value.value);
-    }
-    return formatData.value ? formatData.value(name.value, v, form$.value) : {
-      [name.value]: v
-    };
-  });
-
-  // =============== METHODS ===============
-
-  /**
-   * Whether the value should be converted to number/float.
-   *
-   * @returns {boolean}
-   * @private
-   */
-  var shouldForceNumbers = () => {
-    return forceNumbers.value || config$.value.config.forceNumbers && form$.value.options.forceNumbers !== false && forceNumbers.value !== false || form$.value.options.forceNumbers && forceNumbers.value !== false;
-  };
-
-  /**
-   * Converts string value to number or float.
-   *
-   * @param {any} str* the string to be converted
-   * @returns {number|float|string}
-   * @private
-   */
-  var stringToNumber = str => {
-    var v = str;
-    if (typeof str === 'string') {
-      if (/^[-+]?\d+([\.,]\d+)?$/.test(str)) {
-        v = parseFloat(str.replace(',', '.'));
-      } else if (/^[-+]?\d+$/.test(str)) {
-        v = parseInt(str, 10);
-      }
-    }
-    return v;
-  };
-  return {
-    data,
-    requestData,
-    load,
-    update,
-    clear,
-    reset,
-    prepare
-  };
-};
-var select$3 = function select(props, context, dependencies) {
-  var options = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
-  var {
-    resolveOnLoad,
-    items
-  } = toRefs(props);
-  var {
-    data,
-    requestData,
-    load,
-    update,
-    clear,
-    prepare
-  } = base$J(props, context, dependencies);
-
-  // ============ DEPENDENCIES =============
-
-  var value = dependencies.value;
-  var resetValidators = dependencies.resetValidators;
-  var defaultValue = dependencies.defaultValue;
-  var updateItems = dependencies.updateItems;
-  var resetting = dependencies.resetting;
-
-  // =============== PRIVATE ===============
-
-  var setValue = val => {
-    if (options.setValue) {
-      return options.setValue(val);
-    }
-    value.value = val;
-  };
-
-  // =============== METHODS ===============
-
-  var reset = () => {
-    resetting.value = true;
-    setValue(cloneDeep_1(defaultValue.value));
-    resetValidators();
-    if (typeof items.value === 'string' && resolveOnLoad.value !== false) {
-      updateItems();
-    }
-  };
-  return {
-    data,
-    requestData,
-    load,
-    update,
-    clear,
-    reset,
-    prepare
-  };
-};
-var object$6 = function object(props, context, dependencies) {
-  var {
-    name,
-    formatLoad,
-    formatData,
-    submit
-  } = toRefs(props);
-  var {
-    data
-  } = base$J(props, context, dependencies);
-
-  // ============ DEPENDENCIES =============
-
-  var form$ = dependencies.form$;
-  var available = dependencies.available;
-  var children$ = dependencies.children$;
-  var children$Array = dependencies.children$Array;
-  var resetting = dependencies.resetting;
-
-  // ============== COMPUTED ===============
-
-  var requestData = computed(() => {
-    if (!available.value || !submit.value) {
-      return {};
-    }
-    var requestData = {};
-    each(children$.value, element$ => {
-      if (element$.isStatic) {
-        return;
-      }
-      requestData = Object.assign({}, requestData, element$.requestData);
-    });
-    return formatData.value ? formatData.value(name.value, requestData, form$.value) : {
-      [name.value]: requestData
-    };
-  });
-
-  // =============== METHODS ===============
-
-  var load = function load(val) {
-    var format = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
-    var formatted = format && formatLoad.value ? formatLoad.value(val, form$.value) : val;
-    each(children$.value, element$ => {
-      if (element$.isStatic) {
-        return;
-      }
-      if (!element$.flat && formatted[element$.name] === undefined) {
-        element$.clear();
-        return;
-      }
-      element$.load(element$.flat ? formatted : formatted[element$.name], format);
-    });
-  };
-  var update = val => {
-    each(children$.value, element$ => {
-      if (element$.isStatic) {
-        return;
-      }
-      if (val[element$.name] === undefined && !element$.flat) {
-        return;
-      }
-      element$.update(element$.flat ? val : val[element$.name]);
-    });
-  };
-  var clear = () => {
-    each(children$.value, element$ => {
-      if (element$.isStatic) {
-        return;
-      }
-      element$.clear();
-    });
-  };
-  var reset = () => {
-    resetting.value = true;
-    each(children$.value, element$ => {
-      if (element$.isStatic) {
-        return;
-      }
-      element$.reset();
-    });
-  };
-  var prepare = /*#__PURE__*/function () {
-    var _ref2 = _asyncToGenerator(function* () {
-      yield asyncForEach(children$Array.value, /*#__PURE__*/function () {
-        var _ref3 = _asyncToGenerator(function* (e$) {
-          if (e$.prepare) {
-            yield e$.prepare();
-          }
-        });
-        return function (_x) {
-          return _ref3.apply(this, arguments);
-        };
-      }());
-    });
-    return function prepare() {
-      return _ref2.apply(this, arguments);
-    };
-  }();
-  return {
-    data,
-    requestData,
-    load,
-    update,
-    clear,
-    reset,
-    prepare
-  };
-};
-var group$5 = function group(props, context, dependencies) {
-  var {
-    name,
-    formatData,
-    submit
-  } = toRefs(props);
-  var {
-    load,
-    update,
-    clear,
-    reset,
-    prepare
-  } = object$6(props, context, dependencies);
-
-  // ============ DEPENDENCIES =============
-
-  var form$ = dependencies.form$;
-  var children$ = dependencies.children$;
-  var available = dependencies.available;
-  var value = dependencies.value;
-
-  // ============== COMPUTED ===============
-
-  /**
-   * The value of child elements in object. This gets merged with the parent component's data.
-   *
-   * @type {object}
-   */
-  var data = computed(() => {
-    return value.value;
-  });
-  var requestData = computed(() => {
-    if (!available.value || !submit.value) {
-      return {};
-    }
-    var requestData = {};
-    each(children$.value, element$ => {
-      if (element$.isStatic) {
-        return;
-      }
-      requestData = Object.assign({}, requestData, element$.requestData);
-    });
-    return formatData.value ? formatData.value(name.value, requestData, form$.value) : requestData;
-  });
-  return {
-    data,
-    requestData,
-    load,
-    update,
-    clear,
-    reset,
-    prepare
-  };
-};
-var list$3 = function list(props, context, dependencies, options) {
-  var {
-    name,
-    storeOrder,
-    formatLoad,
-    formatData,
-    order,
-    submit,
-    initial,
-    default: default_
-  } = toRefs(props);
-  var {
-    update,
-    clear,
-    data
-  } = base$J(props, context, dependencies);
-
-  // ============ DEPENDENCIES =============
-
-  var form$ = dependencies.form$;
-  var children$ = dependencies.children$;
-  var children$Array = dependencies.children$Array;
-  var available = dependencies.available;
-  var isDisabled = dependencies.isDisabled;
-  var value = dependencies.value;
-  var orderByName = dependencies.orderByName;
-  var refreshOrderStore = dependencies.refreshOrderStore;
-  var dataPath = dependencies.dataPath;
   var parent = dependencies.parent;
-  var nullValue = dependencies.nullValue;
   var defaultValue = dependencies.defaultValue;
-  var fire = dependencies.fire;
-  var resetValidators = dependencies.resetValidators;
-  var resetting = dependencies.resetting;
+  var dataPath = dependencies.dataPath;
+  var form$ = dependencies.form$;
+  dependencies.isObject;
+  dependencies.isGroup;
+  dependencies.isList;
 
   // ================ DATA =================
 
-  var initialValue = ref(get_1(form$.value.model, dataPath.value));
-
-  // ============== COMPUTED ===============
-
   /**
-   * Default value of the parent
+   * The initial value of the element.
+   * 
    *
    * @type {any}
    * @private
    */
-  var parentDefaultValue = computed(() => {
-    return parent && parent.value ? parent.value.defaultValue[name.value] : form$.value.options.default[name.value];
-  });
-  var requestData = computed(() => {
-    if (!available.value || !submit.value) {
-      return {};
-    }
-    var requestData = [];
-    each(children$.value, element$ => {
-      var val = element$.requestData[element$.name];
-      if (val !== undefined) {
-        requestData.push(val);
-      }
-    });
-    return formatData.value ? formatData.value(name.value, requestData, form$.value) : {
-      [name.value]: requestData
-    };
-  });
+  var initialValue = ref(undefined);
+  if (form$.value.isSync) {
+    initialValue.value = get_1(form$.value.model, dataPath.value);
+  } else if (parent.value && (parent.value.isObjectType || parent.value.isGroupType || parent.value.isListType)) {
+    initialValue.value = parent.value.value[name.value];
+  }
+
+  // ============== COMPUTED ===============
 
   /**
-   * Number of children.
+   * The store for the value of the element when we're not using external data (form's `v-model`).
    *
-   * @type {number}
+   * @type {any}
    * @private
    */
-  var length = computed(() => {
-    return Object.keys(value.value || /* istanbul ignore next: failsafe only */{}).length;
-  });
-
-  // =============== METHODS ===============
+  var internalValue = ref(defaultValue.value instanceof File ? defaultValue.value : cloneDeep_1(defaultValue.value));
 
   /**
-   * Appends a new item.
+   * The value of the element.
    *
-   * @param {any} value value of the appended element (optional)
-   * @returns {number} the index of the appended item
+   * @type {any}
    */
-  var add = function add() {
-    var val = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : undefined;
-    var focus = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
-    var newValue = storeOrder.value ? Object.assign({}, val || {}, {
-      [storeOrder.value]: val ? val[storeOrder.value] : undefined
-    }) : val;
-    value.value = refreshOrderStore(value.value.concat([newValue]));
-
-    // value.value = refreshOrderStore(value.value)
-
-    var index = value.value.length - 1;
-    fire('add', index, newValue, value.value);
-    if (focus) {
-      nextTick(() => {
-        children$Array.value[children$Array.value.length - 1].focus();
-      });
-    }
-    return index;
-  };
-
-  /**
-   * Removes an items by its index.
-   *
-   *
-   * @param {number} index* index of items to be removed
-   * @returns {void}
-   */
-  var remove = index => {
-    value.value = value.value.filter((v, i) => i !== index);
-    refreshOrderStore(value.value);
-    fire('remove', index, value.value);
-  };
-  var load = /*#__PURE__*/function () {
-    var _ref4 = _asyncToGenerator(function* (val) {
-      var format = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
-      var values = sortValue(format && formatLoad.value ? formatLoad.value(val, form$.value) : val);
-      clear();
-      yield nextTick();
-      for (var i = 0; i < values.length; i++) {
-        add();
+  var value = computed({
+    get: ((_options$value = options.value) === null || _options$value === void 0 ? void 0 : _options$value.get) || function () {
+      var value;
+      if (form$.value.isSync) {
+        value = get_1(form$.value.model, dataPath.value);
+      } else if (parent.value && (parent.value.isObjectType || parent.value.isGroupType || parent.value.isListType)) {
+        value = parent.value.value[name.value];
+      } else {
+        value = internalValue.value;
       }
-      yield nextTick();
-      each(children$.value, (child$, i) => {
-        child$.load(values[i], format);
-      });
-    });
-    return function load(_x2) {
-      return _ref4.apply(this, arguments);
-    };
-  }();
-  var reset = () => {
-    resetting.value = true;
-    value.value = cloneDeep_1(defaultValue.value);
-    resetValidators();
-    if (!value.value.length && initial.value > 0) {
-      for (var i = 0; i < initial.value; i++) {
-        add();
-      }
-
-      // NextTick is no longer required as validation
-      // happens with async/await anyway in children
-      // nextTick(() => {
-      children$Array.value.forEach(child$ => {
-        child$.reset();
-      });
-      // })
-    }
-    nextTick(() => {
-      refreshOrderStore(value.value);
-    });
-  };
-  var prepare = /*#__PURE__*/function () {
-    var _ref5 = _asyncToGenerator(function* () {
-      yield asyncForEach(children$Array.value, /*#__PURE__*/function () {
-        var _ref6 = _asyncToGenerator(function* (e$) {
-          if (e$.prepare) {
-            yield e$.prepare();
-          }
+      return value !== undefined ? value : ( /* istanbul ignore next: value is never undefined if default is set */defaultValue.value instanceof File ? defaultValue.value : cloneDeep_1(defaultValue.value));
+    },
+    set: ((_options$value2 = options.value) === null || _options$value2 === void 0 ? void 0 : _options$value2.set) || function (val) {
+      if (form$.value.isSync) {
+        form$.value.updateModel(dataPath.value, val);
+      } else if (parent.value && parent.value.isListType) {
+        var newValue = parent.value.value.map((v, k) => k == name.value ? val : v);
+        parent.value.update(newValue);
+      } else if (parent.value && (parent.value.isObjectType || parent.value.isGroupType)) {
+        parent.value.value = Object.assign({}, parent.value.value, {
+          [name.value]: val
         });
-        return function (_x3) {
-          return _ref6.apply(this, arguments);
-        };
-      }());
-    });
-    return function prepare() {
-      return _ref5.apply(this, arguments);
-    };
-  }();
-
-  /**
-   * Sorts value when `order` and `orderByName` is defined.
-   *
-   * @param {array} value value to be sorted
-   * @returns {array}
-   * @private
-   */
-  var sortValue = val => {
-    if (!order.value && !orderByName.value || !val) {
-      return val;
-    }
-    var desc = order.value && typeof order.value === 'string' && order.value.toUpperCase() == 'DESC';
-
-    /* istanbul ignore else: console.log() shows that the single run test falls into the else branch, but coverage does not detect */
-    if (orderByName.value) {
-      val = desc ? sortBy_1(val, orderByName.value).reverse() : sortBy_1(val, orderByName.value);
-    } else if (order.value) {
-      val = desc ? val.sort().reverse() : val.sort();
-    }
-    return val;
-  };
-
-  /**
-   * Handles the `add` event.
-   *
-   * @returns {void}
-   * @private
-   */
-  var handleAdd = () => {
-    if (isDisabled.value) {
-      return;
-    }
-    add(undefined, true);
-  };
-
-  /**
-   * Handles the `remove` event.
-   *
-   * @param {number} index* index of child to be removed
-   * @returns {void}
-   * @private
-   */
-  var handleRemove = index => {
-    if (isDisabled.value) {
-      return;
-    }
-    remove(index);
-  };
-
-  // ================ HOOKS ===============
-
-  if (initialValue.value === undefined && parentDefaultValue.value === undefined && default_.value === undefined) {
-    if (initial.value > 0) {
-      for (var i = 0; i < initial.value; i++) {
-        add();
+      } else {
+        internalValue.value = val;
       }
-    } else {
-      value.value = nullValue.value;
     }
-  } else if (initialValue.value === undefined) {
-    value.value = defaultValue.value;
+  });
+
+  /**
+   * Intermediary value between element's value and field's `v-model`. It is required when we need to transform the value format between the element and its field.
+   *
+   * @type {any}
+   */
+  var model = computed({
+    get() {
+      return value.value;
+    },
+    set(val) {
+      value.value = val;
+    }
+  });
+  if (options.init === undefined || options.init !== false) {
+    // If element's value was undefined initially (not found in v-model/data) then we need to set its value
+    if (initialValue.value === undefined) {
+      value.value = defaultValue.value instanceof File ? defaultValue.value : cloneDeep_1(defaultValue.value);
+    }
+  }
+
+  /**
+   * Whether the element has its default value.
+   *
+   * @type {boolean}
+   */
+  var isDefault = computed(() => {
+    return isEqual_1(value.value, defaultValue.value);
+  });
+
+  // ============== WATCHERS ===============
+
+  /* istanbul ignore next: type can not be changed on the fly */
+  watch(type, () => {
+    value.value = defaultValue.value instanceof File ? defaultValue.value : cloneDeep_1(defaultValue.value);
+  });
+  return {
+    initialValue,
+    internalValue,
+    value,
+    model,
+    isDefault
+  };
+};
+var list$3 = function list(props, context, dependencies) {
+  var {
+    initialValue,
+    internalValue,
+    value,
+    model,
+    isDefault
+  } = base$K(props, context, dependencies, {
+    init: false
+  });
+  return {
+    initialValue,
+    internalValue,
+    value,
+    model,
+    isDefault
+  };
+};
+var object$6 = function object(props, context, dependencies) {
+  var options = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
+  var {
+    initialValue,
+    internalValue,
+    value,
+    isDefault
+  } = base$K(props, context, dependencies, {
+    init: false
+  });
+
+  // ============ DEPENDENCIES =============
+
+  var defaultValue = dependencies.defaultValue;
+
+  // ================ HOOKS ================
+
+  /* istanbul ignore else */
+  if (options.init === undefined || /* istanbul ignore next: init will always be false */options.init !== false) {
+    if (initialValue.value === undefined) {
+      value.value = defaultValue.value;
+    } else {
+      value.value = Object.assign({}, defaultValue.value, value.value);
+    }
   }
   return {
-    requestData,
-    data,
-    length,
-    add,
-    remove,
-    load,
-    update,
-    clear,
-    reset,
-    handleAdd,
-    handleRemove,
-    prepare
+    internalValue,
+    value,
+    isDefault
+  };
+};
+var group$5 = function group(props, context, dependencies) {
+  var options = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
+  // ============ DEPENDENCIES =============
+
+  var parent = dependencies.parent;
+  var dataPath = dependencies.dataPath;
+  var defaultValue = dependencies.defaultValue;
+  var children$Array = dependencies.children$Array;
+  var form$ = dependencies.form$;
+  dependencies.isObject;
+  dependencies.isGroup;
+  dependencies.isList;
+
+  // ================ DATA =================
+
+  /**
+   * The store for the value of the element when we're not using external data (form's `v-model`).
+   *
+   * @type {any}
+   * @private
+   */
+  var internalValue = ref(cloneDeep_1(defaultValue.value));
+
+  // ============== COMPUTED ===============
+
+  var value = computed(options.value || {
+    get() {
+      var value;
+      if (form$.value.isSync) {
+        value = dataPath.value ? get_1(form$.value.model, dataPath.value) || {} : form$.value.model;
+      } else if (parent.value && (parent.value.isObjectType || parent.value.isGroupType)) {
+        value = parent.value.value;
+      } else {
+        value = internalValue.value;
+      }
+
+      // Filter out children values that parent has but not among group elements
+      var childKeys = children$Array.value.reduce((all, child$) => {
+        /* istanbul ignore else */
+        if (child$.isStatic || !child$) {
+          return all;
+        }
+        var keys = [];
+        if (!child$.flat) {
+          keys.push(child$.name);
+        } else {
+          var addGroupKeys = children$Array => {
+            children$Array.forEach(child$ => {
+              if (!child$.isStatic && child$.flat) {
+                addGroupKeys(child$.children$Array);
+              } /* istanbul ignore else */else if (!child$.isStatic) {
+                keys.push(child$.name);
+              }
+            });
+          };
+          addGroupKeys(child$.children$Array);
+        }
+        return all.concat(keys);
+      }, []);
+      var tempValue = {};
+      childKeys.forEach(key => {
+        /* istanbul ignore else */
+        if (value[key] !== undefined) {
+          tempValue[key] = value[key];
+        }
+      });
+      value = tempValue;
+      return value !== undefined ? value : /* istanbul ignore next: will never reach, internalValue is assigned at the beginning */cloneDeep_1(defaultValue.value);
+    },
+    set(val) {
+      if (form$.value.isSync) {
+        form$.value.updateModel(dataPath.value, val);
+      } else if (parent.value && (parent.value.isObjectType || parent.value.isGroupType)) {
+        parent.value.value = Object.assign({}, parent.value.value, val);
+      } else {
+        internalValue.value = val;
+      }
+    }
+  });
+  var isDefault = computed(() => {
+    return isEqual_1(value.value, defaultValue.value);
+  });
+  return {
+    value,
+    isDefault
+  };
+};
+var multilingual$7 = function multilingual(props, context, dependencies) {
+  var {
+    value,
+    isDefault
+  } = base$K(props, context, dependencies);
+
+  // ============ DEPENDENCIES =============
+
+  var language = dependencies.language;
+
+  // ============== COMPUTED ===============
+
+  var model = computed({
+    get() {
+      return value.value[language.value];
+    },
+    set(val) {
+      value.value = Object.assign({}, value.value, {
+        [language.value]: val
+      });
+    }
+  });
+  return {
+    value,
+    model,
+    isDefault
   };
 };
 var date$3 = function date(props, context, dependencies) {
   var {
-    formatLoad
-  } = toRefs(props);
-  var {
-    data,
-    requestData,
-    update,
-    clear,
-    reset,
-    prepare
-  } = base$J(props, context, dependencies);
-
-  // ============ DEPENDENCIES =============
-
-  var form$ = dependencies.form$;
-  var value = dependencies.value;
-  var loadDateFormat = dependencies.loadDateFormat;
-
-  // =============== METHODS ===============
-
-  var load = function load(val) {
-    var format = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
-    var formatted = format && formatLoad.value ? formatLoad.value(val, form$.value) : val;
-    checkDateFormat(loadDateFormat.value, formatted);
-    value.value = formatted instanceof Date || !formatted ? formatted : moment(formatted, loadDateFormat.value).toDate();
-  };
-  return {
-    data,
-    requestData,
-    load,
-    update,
-    clear,
-    reset,
-    prepare
-  };
-};
-var dates$4 = function dates(props, context, dependencies) {
-  var {
-    formatLoad
-  } = toRefs(props);
-  var {
-    data,
-    requestData,
-    update,
-    clear,
-    reset,
-    prepare
-  } = base$J(props, context, dependencies);
-
-  // ============ DEPENDENCIES =============
-
-  var form$ = dependencies.form$;
-  var value = dependencies.value;
-  var loadDateFormat = dependencies.loadDateFormat;
-
-  // =============== METHODS ===============
-
-  var load = function load(val) {
-    var format = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
-    var formatted = format && formatLoad.value ? formatLoad.value(val, form$.value) : val;
-    value.value = map_1(formatted, v => {
-      checkDateFormat(loadDateFormat.value, v);
-      return v instanceof Date ? v : moment(v, loadDateFormat.value).toDate();
-    });
-  };
-  return {
-    data,
-    requestData,
-    load,
-    update,
-    clear,
-    reset,
-    prepare
-  };
-};
-var multilingual$7 = function multilingual(props, context, dependencies) {
-  var options = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
-  var {
-    formatLoad
-  } = toRefs(props);
-  var {
-    data,
-    requestData,
-    clear,
-    reset,
-    prepare
-  } = base$J(props, context, dependencies, options);
-
-  // ============ DEPENDENCIES =============
-
-  var form$ = dependencies.form$;
-  var value = dependencies.value;
-  var language = dependencies.language;
-  var nullValue = dependencies.nullValue;
-
-  // =============== PRIVATE ===============
-
-  var setValue = val => {
-    if (options.setValue) {
-      return options.setValue(val);
-    }
-    value.value = val;
-  };
-
-  // =============== METHODS ===============
-
-  var load = function load(val) {
-    var format = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
-    var formatted = format && formatLoad.value ? formatLoad.value(val, form$.value) : val;
-    if (!isPlainObject_1(formatted)) {
-      throw new Error('Multilingual element requires an object to load');
-    }
-    setValue(Object.assign({}, clone_1(nullValue.value), formatted));
-  };
-  var update = val => {
-    var updateValue = val;
-    if (!isPlainObject_1(updateValue)) {
-      updateValue = {
-        [language.value]: val
-      };
-    }
-    setValue(Object.assign({}, value.value, updateValue));
-  };
-  return {
-    data,
-    requestData,
-    load,
-    update,
-    clear,
-    reset,
-    prepare
-  };
-};
-var editor = function editor(props, context, dependencies) {
-  var {
-    data,
-    requestData,
-    load,
-    update,
-    clear,
-    reset,
-    prepare
-  } = base$J(props, context, dependencies, {
-    setValue: val => {
-      value.value = val;
-      nextTick(() => {
-        input.value.update(val);
-      });
-    }
-  });
-
-  // ============ DEPENDENCIES =============
-
-  var input = dependencies.input;
-  var value = dependencies.value;
-  return {
-    data,
-    requestData,
-    load,
-    update,
-    clear,
-    reset,
-    prepare
-  };
-};
-var teditor = function teditor(props, context, dependencies) {
-  var {
-    data,
-    requestData,
-    load,
-    update,
-    clear,
-    reset,
-    prepare
-  } = multilingual$7(props, context, dependencies, {
-    setValue: val => {
-      value.value = val;
-      nextTick(() => {
-        input.value.update(val[language.value]);
-      });
-    }
-  });
-
-  // ============ DEPENDENCIES =============
-
-  var input = dependencies.input;
-  var model = dependencies.model;
-  var value = dependencies.value;
-  var language = dependencies.language;
-
-  // ============== WATCHERS ==============
-
-  watch(language, () => {
-    input.value.update(model.value);
-  });
-  return {
-    data,
-    requestData,
-    load,
-    update,
-    clear,
-    reset,
-    prepare
-  };
-};
-var file$2 = function file(props, context, dependencies) {
-  var {
-    load,
-    update,
-    clear,
-    reset,
-    prepare
-  } = base$J(props, context, dependencies);
-  var {
-    submit,
-    formatData,
     name
   } = toRefs(props);
 
   // ============ DEPENDENCIES =============
 
-  var form$ = dependencies.form$;
-  var available = dependencies.available;
-  var value = dependencies.value;
-
-  // ============== COMPUTED ===============
-
-  var data = computed(() => {
-    var _v;
-    var v = value.value;
-    if (typeof v === 'object' && (_v = v) !== null && _v !== void 0 && _v.__file__) {
-      v = v instanceof File ? v : _objectSpread2$1({}, v);
-      delete v.__file__;
-    }
-    return {
-      [name.value]: v
-    };
-  });
-  var requestData = computed(() => {
-    var _v2;
-    if (!available.value || !submit.value) {
-      return {};
-    }
-    var v = value.value;
-    if (typeof v === 'object' && (_v2 = v) !== null && _v2 !== void 0 && _v2.__file__) {
-      v = v instanceof File ? v : _objectSpread2$1({}, v);
-      delete v.__file__;
-    }
-    return formatData.value ? formatData.value(name.value, v, form$.value) : {
-      [name.value]: v
-    };
-  });
-  return {
-    data,
-    requestData,
-    load,
-    update,
-    clear,
-    reset,
-    prepare
-  };
-};
-var multifile$5 = function multifile(props, context, dependencies) {
-  var {
-    length,
-    add,
-    remove,
-    load,
-    update,
-    clear,
-    reset,
-    handleAdd,
-    handleRemove,
-    prepare
-  } = list$3(props, context, dependencies);
-  var {
-    submit,
-    formatData,
-    name
-  } = toRefs(props);
-
-  // ============ DEPENDENCIES =============
-
-  var form$ = dependencies.form$;
-  var available = dependencies.available;
-  var value = dependencies.value;
-  var children$ = dependencies.children$;
-
-  // ============== COMPUTED ===============
-
-  var data = computed(() => {
-    var val = value.value;
-    val = val.map(file => {
-      if (typeof file === 'object' && file !== null && file !== void 0 && file.__file__) {
-        var v = file instanceof File ? file : _objectSpread2$1({}, file);
-        delete v.__file__;
-        return v;
-      }
-      return file;
-    });
-    return {
-      [name.value]: val
-    };
-  });
-  var requestData = computed(() => {
-    if (!available.value || !submit.value) {
-      return {};
-    }
-    var requestData = [];
-    each(children$.value, element$ => {
-      var val = element$.requestData[element$.name];
-
-      /* istanbul ignore next: failsafe only */
-      if (val !== undefined) {
-        var _val;
-        if (typeof val === 'object' && (_val = val) !== null && _val !== void 0 && _val.__file__) {
-          var v = file$2 instanceof File ? file$2 : _objectSpread2$1({}, file$2);
-          delete v.__file__;
-          val = v;
-        }
-        requestData.push(val);
-      }
-    });
-    return formatData.value ? formatData.value(name.value, requestData, form$.value) : {
-      [name.value]: requestData
-    };
-  });
-  return {
-    requestData,
-    data,
-    length,
-    add,
-    remove,
-    load,
-    update,
-    clear,
-    reset,
-    handleAdd,
-    handleRemove,
-    prepare
-  };
-};
-var multiselect$3 = select$3;
-var tags$3 = select$3;
-
-var base$I = function base(props, context, dependencies) {
-  var {
-    default: default_,
-    name
-  } = toRefs(props);
-
-  // ============ DEPENDENCIES =============
-
-  var nullValue = dependencies.nullValue;
-  var form$ = dependencies.form$;
   var parent = dependencies.parent;
+  var valueDateFormat = dependencies.valueDateFormat;
+  var defaultValue = dependencies.defaultValue;
+  var dataPath = dependencies.dataPath;
+  var form$ = dependencies.form$;
+  dependencies.isObject;
+  dependencies.isGroup;
+  dependencies.isList;
 
-  // ============== COMPUTED ===============
+  // ================= PRE =================
 
   /**
-   * The default value of the element.
+   * The store for the value of the element when we're not using external data (form's `v-model`).
    *
    * @type {any}
    * @private
    */
-  var defaultValue = computed(() => {
-    var parentDefaultValue;
-    if (parent && parent.value && !parent.value.mounted) {
-      parentDefaultValue = parent.value.defaultValue[name.value];
-    } else if (!form$.value.mounted && form$.value.options.default[name.value] !== undefined) {
-      parentDefaultValue = form$.value.options.default[name.value];
+  var internalValue = ref(defaultValue.value instanceof File ? /* istanbul ignore next: @todo:adam date type will never have file instance default value */defaultValue.value : cloneDeep_1(defaultValue.value));
+  var {
+    value,
+    initialValue,
+    isDefault
+  } = base$K(props, context, dependencies, {
+    value: {
+      get() {
+        var value;
+        if (form$.value.isSync) {
+          value = get_1(form$.value.model, dataPath.value);
+        } else if (parent.value && (parent.value.isObjectType || parent.value.isGroupType || parent.value.isListType)) {
+          value = parent.value.value[name.value];
+        } else {
+          value = internalValue.value;
+        }
+        return value !== undefined ? value : ( /* istanbul ignore next: can not be undefined @todo:adam can not be file */defaultValue.value instanceof File ? defaultValue.value : cloneDeep_1(defaultValue.value));
+      },
+      set(val) {
+        // If the value is not a Date object check if it is matching the value format
+        if (!isEmpty_1(val) && !(val instanceof Date) && valueDateFormat.value !== false) {
+          checkDateFormat(valueDateFormat.value, val);
+        }
+        val = val && val instanceof Date && valueDateFormat.value !== false ? moment(val).format(valueDateFormat.value) : val;
+        if (form$.value.isSync) {
+          form$.value.updateModel(dataPath.value, val);
+        } else if (parent.value && parent.value.isListType) {
+          var newValue = parent.value.value.map((v, k) => k == name.value ? val : v);
+          parent.value.update(newValue);
+        } else if (parent.value && (parent.value.isObjectType || parent.value.isGroupType)) {
+          parent.value.value = Object.assign({}, parent.value.value, {
+            [name.value]: val
+          });
+        } else {
+          internalValue.value = val;
+        }
+      }
     }
-    if (parentDefaultValue !== undefined) {
-      return parentDefaultValue instanceof File ? new File([parentDefaultValue], parentDefaultValue.name, parentDefaultValue) : cloneDeep_1(parentDefaultValue);
-    }
-    if (default_.value !== undefined) {
-      return default_.value instanceof File ? new File([default_.value], default_.value.name, default_.value) : cloneDeep_1(default_.value);
-    }
-    return cloneDeep_1(nullValue.value);
+  });
+
+  // ============== COMPUTED ===============
+
+  var model = computed(() => {
+    return value.value instanceof Date || !value.value ? value.value : moment(value.value, valueDateFormat.value).toDate();
   });
   return {
-    defaultValue
+    value,
+    model,
+    initialValue,
+    internalValue,
+    isDefault
   };
 };
-var text$1 = function text(props, context, dependencies) {
+var dates$4 = function dates(props, context, dependencies) {
   var {
-    default: default_,
     name
   } = toRefs(props);
 
   // ============ DEPENDENCIES =============
 
-  var nullValue = dependencies.nullValue;
-  var form$ = dependencies.form$;
   var parent = dependencies.parent;
+  var valueDateFormat = dependencies.valueDateFormat;
+  var defaultValue = dependencies.defaultValue;
+  var dataPath = dependencies.dataPath;
+  var form$ = dependencies.form$;
+  dependencies.isObject;
+  dependencies.isGroup;
+  dependencies.isList;
+
+  // ================= PRE =================
+
+  /**
+   * The store for the value of the element when we're not using external data (form's `v-model`).
+   *
+   * @type {any}
+   * @private
+   */
+  var internalValue = ref(defaultValue.value instanceof File ? /* istanbul ignore next: @todo:adam date type will never have file instance default value */defaultValue.value : cloneDeep_1(defaultValue.value));
+  var {
+    value,
+    initialValue,
+    isDefault
+  } = base$K(props, context, dependencies, {
+    value: {
+      get() {
+        var value;
+        if (form$.value.isSync) {
+          value = get_1(form$.value.model, dataPath.value);
+        } else if (parent.value && (parent.value.isObjectType || parent.value.isGroupType || parent.value.isListType)) {
+          value = parent.value.value[name.value];
+        } else {
+          value = internalValue.value;
+        }
+        return value !== undefined ? value : ( /* istanbul ignore next: can not be undefined @todo:adam can not be file */defaultValue.value instanceof File ? defaultValue.value : cloneDeep_1(defaultValue.value));
+      },
+      set(val) {
+        if (!Array.isArray(val)) {
+          val = [val];
+        }
+        val = val.map(v => {
+          if (!isEmpty_1(v) && !(v instanceof Date) && valueDateFormat.value !== false) {
+            checkDateFormat(valueDateFormat.value, v);
+          }
+          return v && v instanceof Date && valueDateFormat.value !== false ? moment(v).format(valueDateFormat.value) : v;
+        });
+        if (form$.value.isSync) {
+          form$.value.updateModel(dataPath.value, val);
+        } else if (parent.value && parent.value.isListType) {
+          var newValue = parent.value.value.map((v, k) => k == name.value ? val : v);
+          parent.value.update(newValue);
+        } else if (parent.value && (parent.value.isObjectType || parent.value.isGroupType)) {
+          parent.value.value = Object.assign({}, parent.value.value, {
+            [name.value]: val
+          });
+        } else {
+          internalValue.value = val;
+        }
+      }
+    }
+  });
+
+  // ============== COMPUTED ===============
+
+  var model = computed(() => {
+    return value.value.map(v => {
+      return v instanceof Date || !v ? v : moment(v, valueDateFormat.value).toDate();
+    });
+  });
+  return {
+    value,
+    model,
+    initialValue,
+    internalValue,
+    isDefault
+  };
+};
+
+var base$J = function base(props, context, dependencies) {
+  // ============== COMPUTED ===============
+
+  /**
+   * The null value of the element.
+   *
+   * @type {any}
+   * @private
+   */
+  var nullValue = computed(() => {
+    return null;
+  });
+  return {
+    nullValue
+  };
+};
+var array$1 = function array(props, context, dependencies) {
+  // ============== COMPUTED ===============
+
+  var nullValue = computed(() => {
+    return [];
+  });
+  return {
+    nullValue
+  };
+};
+var boolean = function boolean(props, context, dependencies) {
+  var {
+    falseValue
+  } = toRefs(props);
+
+  // ============== COMPUTED ===============
+
+  var nullValue = computed(() => {
+    return falseValue.value;
+  });
+  return {
+    nullValue
+  };
+};
+var min = function min(props, context, dependencies) {
+  var {
+    min,
+    default: default_
+  } = toRefs(props);
+
+  // ============== COMPUTED ===============
+
+  var nullValue = computed(() => {
+    return default_.value !== undefined && isArray_1(default_.value) ? default_.value.map(v => min.value) : min.value;
+  });
+  return {
+    nullValue
+  };
+};
+var object$5 = function object(props, context, dependencies) {
+  // ============== COMPUTED ===============
+
+  var nullValue = computed(() => {
+    return {};
+  });
+  return {
+    nullValue
+  };
+};
+var location$2 = function location(props, context, dependencies) {
+  // ============== COMPUTED ===============
+
+  var nullValue = computed(() => {
+    return {
+      country: null,
+      country_code: null,
+      state: null,
+      state_code: null,
+      city: null,
+      zip: null,
+      address: null,
+      formatted_address: null,
+      lat: null,
+      lng: null
+    };
+  });
+  return {
+    nullValue
+  };
+};
+var multilingual$6 = function multilingual(props, context, dependencies) {
+  // ============ DEPENDENCIES ============
+
+  var languages = dependencies.languages;
+
+  // ============== COMPUTED ===============
+
+  var nullValue = computed(() => {
+    var value = {};
+    each(languages.value, code => {
+      value[code] = null;
+    });
+    return value;
+  });
+  return {
+    nullValue
+  };
+};
+var generic = function generic(props, context, dependencies) {
+  // ============== COMPUTED ===============
+
+  var nullValue = computed(() => {
+    return context.nullValue !== undefined ? context.nullValue : null;
+  });
+  return {
+    nullValue
+  };
+};
+
+var base$I = function base(props, context, dependencies) {
+  var {
+    name,
+    floating,
+    placeholder,
+    label,
+    fieldName
+  } = toRefs(props);
+
+  // ============ DEPENDENCIES ============
+
+  var form$ = dependencies.form$;
+  var Label = dependencies.Label;
 
   // =============== INJECT ===============
 
   var config$ = inject('config$');
 
-  // ============== COMPUTED ===============
+  // ============== COMPUTED ==============
 
   /**
-   * The default value of the element.
+   * The generic name of the element constructed from label / floating or element name.
    *
-   * @type {any}
-   * @private
+   * @type {string}
+   * @private.
    */
-  var defaultValue = computed(() => {
-    var parentDefaultValue;
-    if (parent && parent.value && !parent.value.mounted) {
-      parentDefaultValue = parent.value.defaultValue[name.value];
-    } else if (!form$.value.mounted && typeof form$.value.options.default[name.value] !== undefined) {
-      parentDefaultValue = form$.value.options.default[name.value];
+  var genericName = computed(() => {
+    if (fieldName && fieldName.value) {
+      return localize(fieldName.value, config$.value, form$.value);
+    } else if (label && label.value) {
+      return Label.value;
+    } else if (floating && floating.value) {
+      return localize(floating.value, config$.value, form$.value);
+    } else if (placeholder && placeholder.value && form$.value.options.floatPlaceholders) {
+      return localize(placeholder.value, config$.value, form$.value);
+    } else {
+      return upperFirst_1(name.value).replace(/_|-/g, ' ');
     }
-    if (parentDefaultValue !== undefined) {
-      return parentDefaultValue instanceof File ? new File([parentDefaultValue], parentDefaultValue.name, parentDefaultValue) : isPlainObject_1(parentDefaultValue) ? localize(cloneDeep_1(parentDefaultValue), config$.value, form$.value) : cloneDeep_1(parentDefaultValue);
-    }
-
-    /* istanbul ignore else */
-    if (default_.value !== undefined) {
-      /* istanbul ignore next: text can not have File as default */
-      return default_.value instanceof File ? new File([default_.value], default_.value.name, default_.value) : isPlainObject_1(default_.value) ? localize(cloneDeep_1(default_.value), config$.value, form$.value) : cloneDeep_1(default_.value);
-    }
-
-    /* istanbul ignore next: text will never fall into this case, because `default_.value` is never undefined but null */
-    return cloneDeep_1(nullValue.value);
   });
   return {
-    defaultValue
+    genericName
   };
 };
-var object$5 = function object(props, context, dependencies) {
+var file$2 = function file(props, context, dependencies) {
   var {
-    default: default_,
-    name
+    name,
+    embed,
+    label,
+    fieldName
   } = toRefs(props);
 
-  // ============ DEPENDENCIES =============
-
-  var nullValue = dependencies.nullValue;
-  var form$ = dependencies.form$;
-  var parent = dependencies.parent;
-
-  // ============== COMPUTED ===============
-
-  var defaultValue = computed(() => {
-    var parentDefaultValue;
-    if (parent && parent.value && !parent.value.mounted) {
-      parentDefaultValue = parent.value.defaultValue[name.value];
-    } else if (!form$.value.mounted && form$.value.options.default[name.value]) {
-      parentDefaultValue = form$.value.options.default[name.value];
-    }
-    if (parentDefaultValue !== undefined) {
-      return cloneDeep_1(merge_1({}, default_.value || /* istanbul ignore next: `default_.value` will never be undefined, because it is a hardwired `{}` */nullValue.value, parentDefaultValue));
-    }
-    if (Object.keys(default_.value).length > 0) {
-      return cloneDeep_1(default_.value);
-    }
-    return cloneDeep_1(nullValue.value);
-  });
-  return {
-    defaultValue
-  };
-};
-var group$4 = function group(props, context, dependencies) {
-  var {
-    default: default_
-  } = toRefs(props);
-
-  // ============ DEPENDENCIES =============
+  // ============ DEPENDENCIES ============
 
   var form$ = dependencies.form$;
-  var parent = dependencies.parent;
+  var Label = dependencies.Label;
+  var filename = dependencies.filename || /* istanbul ignore next: failsafe only */ref(null);
 
-  // ============== COMPUTED ===============
+  // =============== INJECT ===============
 
-  var defaultValue = computed(() => {
-    var parentDefaultValue = {};
-    if (parent && parent.value && !parent.value.mounted) {
-      parentDefaultValue = parent.value.defaultValue;
-    } else if (!form$.value.mounted && form$.value.options.default) {
-      //@todo:adam
-      parentDefaultValue = form$.value.options.default;
+  var config$ = inject('config$');
+
+  // ============== COMPUTED ==============
+
+  /**
+   * The generic name of the element constructed from label / floating, element name or default file name if name is a number.
+   *
+   * @type {string}
+   * @private.
+   */
+  var genericName = computed(() => {
+    if (embed.value && filename.value) {
+      return filename.value;
+    } else if (fieldName && fieldName.value) {
+      return localize(fieldName.value, config$.value, form$.value);
+    } else if (label.value) {
+      return Label.value;
+    } else {
+      return /^\d+$/.test(name.value) ? form$.value.translations.vueform.elements.file.defaultName : upperFirst_1(name.value).replace(/_|-/g, ' ');
     }
-    return cloneDeep_1(merge_1({}, default_.value, parentDefaultValue));
   });
   return {
-    defaultValue
-  };
-};
-var multilingual$6 = function multilingual(props, context, dependencies) {
-  var {
-    default: default_,
-    name
-  } = toRefs(props);
-
-  // ============ DEPENDENCIES =============
-
-  var nullValue = dependencies.nullValue;
-  var form$ = dependencies.form$;
-  var parent = dependencies.parent;
-
-  // ============== COMPUTED ===============
-
-  var defaultValue = computed(() => {
-    var parentDefaultValue;
-    if (parent && parent.value && !parent.value.mounted) {
-      parentDefaultValue = parent.value.defaultValue[name.value];
-    } else if (!form$.value.mounted && form$.value.options.default[name.value]) {
-      parentDefaultValue = form$.value.options.default[name.value];
-    }
-    if (parentDefaultValue !== undefined) {
-      return cloneDeep_1(Object.assign({}, clone_1(nullValue.value), parentDefaultValue));
-    }
-    if (default_.value === undefined) {
-      return clone_1(nullValue.value);
-    }
-    var def = clone_1(default_.value);
-    if (!isPlainObject_1(def)) {
-      var tempDefault = {};
-      each(nullValue.value, (v, language) => {
-        tempDefault[language] = def;
-      });
-      def = tempDefault;
-    }
-    return Object.assign({}, clone_1(nullValue.value), def);
-  });
-  return {
-    defaultValue
+    genericName
   };
 };
 
 var base$H = function base(props, context, dependencies) {
+  // ============ DEPENDENCIES ============
+
+  var value = dependencies.value;
+  var nullValue = dependencies.nullValue;
+
+  // ============== COMPUTED ==============
+
+  /**
+   * Whether the element has no value filled in.
+   *
+   * @type {boolean}
+   */
+  var empty = computed(() => {
+    return isEqual_1(value.value, nullValue.value) || [undefined, null, ''].indexOf(value.value) !== -1;
+  });
+  return {
+    empty
+  };
+};
+var multilingual$5 = function multilingual(props, context, dependencies) {
+  // ============ DEPENDENCIES ============
+
+  var value = dependencies.value;
+  var nullValue = dependencies.nullValue;
+  var language = dependencies.language;
+
+  // ============== COMPUTED ==============
+
+  var empty = computed(() => {
+    return value.value[language.value] == nullValue.value[language.value] || value.value[language.value] === '';
+  });
+  return {
+    empty
+  };
+};
+var array = function array(props, context, dependencies) {
+  // ============ DEPENDENCIES ============
+
+  var value = dependencies.value;
+  var nullValue = dependencies.nullValue;
+
+  // ============== COMPUTED ==============
+
+  var empty = computed(() => {
+    return isEqual_1(value.value, nullValue.value) || [undefined, null, ''].indexOf(value.value) !== -1 || value.value.length == 0;
+  });
+  return {
+    empty
+  };
+};
+
+var base$G = function base(props, context, dependencies) {
+  var {
+    loading
+  } = toRefs(props);
+
+  // ============ DEPENDENCIES ============
+
+  var pending = dependencies.pending;
+
+  // ============== COMPUTED ==============
+
+  /**
+   * Whether the element is in loading state.
+   *
+   * @type {boolean}
+   */
+  var isLoading = computed(() => {
+    return pending.value || loading.value;
+  });
+  return {
+    isLoading
+  };
+};
+
+var base$F = function base(props, context, dependencies) {
+  var {
+    floating,
+    placeholder
+  } = toRefs(props);
+
+  // ============ DEPENDENCIES ============
+
+  var form$ = dependencies.form$;
+
+  // ============== COMPUTED ==============
+
+  /**
+   * Whether the element floating label.
+   *
+   * @type {boolean}
+   */
+  var hasFloating = computed(() => {
+    return !!(!!floating.value || placeholder.value && form$.value.options.floatPlaceholders) && floating.value !== false;
+  });
+  return {
+    hasFloating
+  };
+};
+
+var base$E = function base(props, context, dependencies) {
+  // ============ DEPENDENCIES =============
+
+  var form$ = dependencies.form$;
+  var el$ = dependencies.el$;
+  var fire = dependencies.fire;
+  var dirt = dependencies.dirt;
+  var validate = dependencies.validate;
+  var value = dependencies.value;
+
+  // =============== METHODS ===============
+
+  var initWatcher = () => {
+    watch(value, (n, o) => {
+      if (dataEquals(n, o)) {
+        return;
+      }
+      fire('change', n, o, el$.value);
+
+      /* istanbul ignore else */
+      if (dirt) {
+        dirt();
+      }
+      if (validate && form$.value.shouldValidateOnChange) {
+        validate();
+      }
+    }, {
+      immediate: false,
+      deep: true
+    });
+  };
+  return {
+    initWatcher
+  };
+};
+var multilingual$4 = function multilingual(props, context, dependencies) {
+  // ============ DEPENDENCIES =============
+
+  var form$ = dependencies.form$;
+  var el$ = dependencies.el$;
+  var fire = dependencies.fire;
+  var dirt = dependencies.dirt;
+  var value = dependencies.value;
+  var language = dependencies.language;
+  var validateLanguage = dependencies.validateLanguage;
+
+  // =============== METHODS ===============
+
+  var initWatcher = () => {
+    watch(value, (n, o) => {
+      if (dataEquals(n, o)) {
+        return;
+      }
+      fire('change', n, o, el$.value);
+
+      /* istanbul ignore else */
+      if (dirt) {
+        dirt();
+      }
+      if (form$.value.shouldValidateOnChange) {
+        validateLanguage(language.value);
+      }
+    }, {
+      immediate: false,
+      deep: true
+    });
+  };
+  return {
+    initWatcher
+  };
+};
+var list$2 = function list(props, context, dependencies) {
+  // ============ DEPENDENCIES =============
+
+  var form$ = dependencies.form$;
+  var el$ = dependencies.el$;
+  var fire = dependencies.fire;
+  var dirt = dependencies.dirt;
+  var validateValidators = dependencies.validateValidators;
+  var value = dependencies.value;
+
+  // =============== METHODS ===============
+
+  var initWatcher = () => {
+    watch(value, (n, o) => {
+      if (dataEquals(n, o)) {
+        return;
+      }
+      fire('change', n, o, el$.value);
+
+      /* istanbul ignore else */
+      if (dirt) {
+        dirt();
+      }
+
+      /* istanbul ignore else */
+      if (validateValidators && form$.value.shouldValidateOnChange) {
+        validateValidators();
+      }
+    }, {
+      immediate: false,
+      deep: true
+    });
+  };
+  return {
+    initWatcher
+  };
+};
+var object$4 = function object(props, context, dependencies) {
+  // ============ DEPENDENCIES =============
+
+  var form$ = dependencies.form$;
+  var fire = dependencies.fire;
+  var value = dependencies.value;
+  var el$ = dependencies.el$;
+  var dirt = dependencies.dirt;
+  var validateValidators = dependencies.validateValidators;
+
+  // =============== METHODS ===============
+
+  var initWatcher = () => {
+    watch(value, (n, o) => {
+      if (dataEquals(n, o)) {
+        return;
+      }
+      fire('change', n, o, el$.value);
+
+      /* istanbul ignore else */
+      if (dirt) {
+        dirt();
+      }
+
+      /* istanbul ignore else */
+      if (validateValidators && form$.value.shouldValidateOnChange) {
+        validateValidators();
+      }
+    }, {
+      immediate: false,
+      deep: true
+    });
+  };
+  return {
+    initWatcher
+  };
+};
+var location$1 = function location(props, context, dependencies) {
+  var {
+    displayKey
+  } = toRefs(props);
+
+  // ============ DEPENDENCIES =============
+
+  var form$ = dependencies.form$;
+  var el$ = dependencies.el$;
+  var fire = dependencies.fire;
+  var dirt = dependencies.dirt;
+  var validate = dependencies.validate;
+  var value = dependencies.value;
+  var input = dependencies.input;
+
+  // =============== METHODS ===============
+
+  var initWatcher = () => {
+    watch(value, (n, o) => {
+      if (dataEquals(n, o)) {
+        return;
+      }
+      fire('change', n, o, el$.value);
+      dirt();
+      input.value.value = input.value && value.value && value.value[displayKey.value] !== undefined ? value.value[displayKey.value] : '';
+
+      /* istanbul ignore else */
+      if (validate && form$.value.shouldValidateOnChange) {
+        validate();
+      }
+    }, {
+      immediate: false,
+      deep: true
+    });
+  };
+  return {
+    initWatcher
+  };
+};
+var multifile$5 = list$2;
+var group$4 = object$4;
+
+var base$D = function base(props, context, dependencies) {
+  var {
+    provider: elementProvider,
+    options,
+    readonly
+  } = toRefs(props);
+
+  // ============ DEPENDENCIES ============
+
+  var {
+    form$,
+    input,
+    model,
+    nullValue,
+    messageBag,
+    validate,
+    el$,
+    invalid,
+    isDisabled,
+    resetValidators,
+    resetting,
+    initValidation
+  } = dependencies;
+
+  // ================ DATA ================
+
+  /**
+   * The captcha provider instance.
+   * @type {object|null}
+   */
+  var Provider = ref(null);
+
+  // ============== COMPUTED ==============
+
+  /**
+   * Whether the captcha should verify.
+   *
+   * @type {boolean}
+   */
+  var shouldVerify = computed(() => {
+    return !isDisabled.value && !readonly.value;
+  });
+
+  /**
+   * The captcha provider name.
+   *
+   * @type {string}
+   * @private
+   */
+  var provider = computed(() => {
+    return elementProvider.value || form$.value.options.useProviders.captcha;
+  });
+
+  /**
+   * The captcha options.
+   *
+   * @type {boolean}
+   */
+  var captchaOptions = computed(() => {
+    return _objectSpread2$1(_objectSpread2$1({}, form$.value.options.providerOptions[provider.value]), options.value);
+  });
+
+  // =============== METHODS ==============
+
+  /**
+   * Inits captcha provider.
+   *
+   * @returns {void}
+   */
+  var initCaptcha = () => {
+    model.value = nullValue.value;
+    Provider.value = new form$.value.options.providers.captcha[provider.value](input.value, captchaOptions.value, el$.value);
+  };
+
+  /**
+   * Destroys the captcha provider.
+   *
+   * @returns {void}
+   */
+  var destroyCaptcha = () => {
+    resetValidators();
+    Provider.value.reset();
+    model.value = nullValue.value;
+    Provider.value = null;
+  };
+
+  // ================ HOOKS ===============
+
+  onMounted(() => {
+    if (shouldVerify.value) {
+      initCaptcha();
+    }
+  });
+
+  // ============== WATCHERS ==============
+
+  watch(shouldVerify, /*#__PURE__*/function () {
+    var _ref = _asyncToGenerator(function* (n, o) {
+      if (!n) {
+        destroyCaptcha();
+      } else if (n) {
+        yield nextTick();
+        initCaptcha();
+        initValidation();
+      }
+    });
+    return function (_x, _x2) {
+      return _ref.apply(this, arguments);
+    };
+  }());
+  return {
+    Provider,
+    captchaOptions,
+    shouldVerify,
+    initCaptcha,
+    destroyCaptcha
+  };
+};
+
+var base$C = function base(props, context, dependencies) {
   var {
     rules
   } = toRefs(props);
@@ -25265,7 +25080,7 @@ var base$H = function base(props, context, dependencies) {
     reinitValidation
   };
 };
-var text = function text(props, context, dependencies) {
+var text$2 = function text(props, context, dependencies) {
   var {
     state,
     Validators,
@@ -25288,7 +25103,7 @@ var text = function text(props, context, dependencies) {
     initMessageBag,
     initValidation,
     reinitValidation
-  } = base$H(props, context, dependencies);
+  } = base$C(props, context, dependencies);
 
   // ============== COMPUTED ===============
 
@@ -25337,7 +25152,7 @@ var text = function text(props, context, dependencies) {
     reinitValidation
   };
 };
-var list$2 = function list(props, context, dependencies) {
+var list$1 = function list(props, context, dependencies) {
   // ============ DEPENDENCIES ============
 
   var {
@@ -25348,7 +25163,7 @@ var list$2 = function list(props, context, dependencies) {
     dirt,
     initValidation,
     resetting
-  } = base$H(props, context, dependencies);
+  } = base$C(props, context, dependencies);
   var form$ = dependencies.form$;
   var children$ = dependencies.children$;
 
@@ -25504,6 +25319,10 @@ var list$2 = function list(props, context, dependencies) {
    */
   var validateValidators = /*#__PURE__*/function () {
     var _ref4 = _asyncToGenerator(function* () {
+      if (resetting.value) {
+        resetting.value = false;
+        return;
+      }
       if (form$.value.validation === false) {
         return;
       }
@@ -25625,7 +25444,7 @@ var list$2 = function list(props, context, dependencies) {
     reinitValidation
   };
 };
-var multilingual$5 = function multilingual(props, context, dependencies) {
+var multilingual$3 = function multilingual(props, context, dependencies) {
   var {
     rules
   } = toRefs(props);
@@ -25641,7 +25460,7 @@ var multilingual$5 = function multilingual(props, context, dependencies) {
     messageBag,
     clearMessages,
     resetting
-  } = text(props, context, dependencies);
+  } = text$2(props, context, dependencies);
 
   // ================ DATA ================
 
@@ -25977,7 +25796,7 @@ var slider$1 = function slider(props, context, dependencies) {
     initMessageBag,
     initValidation,
     reinitValidation
-  } = base$H(props, context, dependencies);
+  } = base$C(props, context, dependencies);
 
   // =============== METHODS ==============
 
@@ -26076,7 +25895,7 @@ var file$1 = function file(props, context, dependencies) {
     initMessageBag,
     initValidation,
     reinitValidation
-  } = base$H(props, context, dependencies);
+  } = base$C(props, context, dependencies);
 
   // ============== COMPUTED ==============
 
@@ -26149,7 +25968,7 @@ var file$1 = function file(props, context, dependencies) {
     reinitValidation
   };
 };
-var location$2 = function location(props, context, dependencies) {
+var location = function location(props, context, dependencies) {
   var {
     displayKey
   } = toRefs(props);
@@ -26181,7 +26000,7 @@ var location$2 = function location(props, context, dependencies) {
     initMessageBag,
     initValidation,
     reinitValidation
-  } = text(props, context, dependencies);
+  } = text$2(props, context, dependencies);
 
   // =============== METHODS ==============
 
@@ -26242,701 +26061,1609 @@ var location$2 = function location(props, context, dependencies) {
     reinitValidation
   };
 };
-var group$3 = list$2;
-var object$4 = list$2;
+var group$3 = list$1;
+var object$3 = list$1;
 
-var base$G = function base(props, context, dependencies) {
+var base$B = function base(props, context, dependencies) {
   var {
-    name,
-    floating,
-    placeholder,
-    label,
-    fieldName
-  } = toRefs(props);
-
-  // ============ DEPENDENCIES ============
-
-  var form$ = dependencies.form$;
-  var Label = dependencies.Label;
-
-  // =============== INJECT ===============
-
-  var config$ = inject('config$');
-
-  // ============== COMPUTED ==============
-
-  /**
-   * The generic name of the element constructed from label / floating or element name.
-   *
-   * @type {string}
-   * @private.
-   */
-  var genericName = computed(() => {
-    if (fieldName && fieldName.value) {
-      return localize(fieldName.value, config$.value, form$.value);
-    } else if (label && label.value) {
-      return Label.value;
-    } else if (floating && floating.value) {
-      return localize(floating.value, config$.value, form$.value);
-    } else if (placeholder && placeholder.value && form$.value.options.floatPlaceholders) {
-      return localize(placeholder.value, config$.value, form$.value);
-    } else {
-      return upperFirst_1(name.value).replace(/_|-/g, ' ');
-    }
-  });
-  return {
-    genericName
-  };
-};
-var file = function file(props, context, dependencies) {
-  var {
-    name,
-    embed,
-    label,
-    fieldName
-  } = toRefs(props);
-
-  // ============ DEPENDENCIES ============
-
-  var form$ = dependencies.form$;
-  var Label = dependencies.Label;
-  var filename = dependencies.filename || /* istanbul ignore next: failsafe only */ref(null);
-
-  // =============== INJECT ===============
-
-  var config$ = inject('config$');
-
-  // ============== COMPUTED ==============
-
-  /**
-   * The generic name of the element constructed from label / floating, element name or default file name if name is a number.
-   *
-   * @type {string}
-   * @private.
-   */
-  var genericName = computed(() => {
-    if (embed.value && filename.value) {
-      return filename.value;
-    } else if (fieldName && fieldName.value) {
-      return localize(fieldName.value, config$.value, form$.value);
-    } else if (label.value) {
-      return Label.value;
-    } else {
-      return /^\d+$/.test(name.value) ? form$.value.translations.vueform.elements.file.defaultName : upperFirst_1(name.value).replace(/_|-/g, ' ');
-    }
-  });
-  return {
-    genericName
-  };
-};
-
-var base$F = function base(props, context, dependencies) {
-  var _options$value, _options$value2;
-  var options = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
-  var {
-    name,
-    type
+    default: default_,
+    name
   } = toRefs(props);
 
   // ============ DEPENDENCIES =============
 
-  var parent = dependencies.parent;
-  var defaultValue = dependencies.defaultValue;
-  var dataPath = dependencies.dataPath;
+  var nullValue = dependencies.nullValue;
   var form$ = dependencies.form$;
-  dependencies.isObject;
-  dependencies.isGroup;
-  dependencies.isList;
-
-  // ================ DATA =================
-
-  /**
-   * The initial value of the element.
-   * 
-   *
-   * @type {any}
-   * @private
-   */
-  var initialValue = ref(undefined);
-  if (form$.value.isSync) {
-    initialValue.value = get_1(form$.value.model, dataPath.value);
-  } else if (parent.value && (parent.value.isObjectType || parent.value.isGroupType || parent.value.isListType)) {
-    initialValue.value = parent.value.value[name.value];
-  }
+  var parent = dependencies.parent;
 
   // ============== COMPUTED ===============
 
   /**
-   * The store for the value of the element when we're not using external data (form's `v-model`).
+   * The default value of the element.
    *
    * @type {any}
    * @private
    */
-  var internalValue = ref(defaultValue.value instanceof File ? defaultValue.value : cloneDeep_1(defaultValue.value));
-
-  /**
-   * The value of the element.
-   *
-   * @type {any}
-   */
-  var value = computed({
-    get: ((_options$value = options.value) === null || _options$value === void 0 ? void 0 : _options$value.get) || function () {
-      var value;
-      if (form$.value.isSync) {
-        value = get_1(form$.value.model, dataPath.value);
-      } else if (parent.value && (parent.value.isObjectType || parent.value.isGroupType || parent.value.isListType)) {
-        value = parent.value.value[name.value];
-      } else {
-        value = internalValue.value;
-      }
-      return value !== undefined ? value : ( /* istanbul ignore next: value is never undefined if default is set */defaultValue.value instanceof File ? defaultValue.value : cloneDeep_1(defaultValue.value));
-    },
-    set: ((_options$value2 = options.value) === null || _options$value2 === void 0 ? void 0 : _options$value2.set) || function (val) {
-      if (form$.value.isSync) {
-        form$.value.updateModel(dataPath.value, val);
-      } else if (parent.value && parent.value.isListType) {
-        var newValue = parent.value.value.map((v, k) => k == name.value ? val : v);
-        parent.value.update(newValue);
-      } else if (parent.value && (parent.value.isObjectType || parent.value.isGroupType)) {
-        parent.value.value = Object.assign({}, parent.value.value, {
-          [name.value]: val
-        });
-      } else {
-        internalValue.value = val;
-      }
+  var defaultValue = computed(() => {
+    var parentDefaultValue;
+    if (parent && parent.value && !parent.value.mounted) {
+      parentDefaultValue = parent.value.defaultValue[name.value];
+    } else if (!form$.value.mounted && form$.value.options.default[name.value] !== undefined) {
+      parentDefaultValue = form$.value.options.default[name.value];
     }
-  });
-
-  /**
-   * Intermediary value between element's value and field's `v-model`. It is required when we need to transform the value format between the element and its field.
-   *
-   * @type {any}
-   */
-  var model = computed({
-    get() {
-      return value.value;
-    },
-    set(val) {
-      value.value = val;
+    if (parentDefaultValue !== undefined) {
+      return parentDefaultValue instanceof File ? new File([parentDefaultValue], parentDefaultValue.name, parentDefaultValue) : cloneDeep_1(parentDefaultValue);
     }
-  });
-  if (options.init === undefined || options.init !== false) {
-    // If element's value was undefined initially (not found in v-model/data) then we need to set its value
-    if (initialValue.value === undefined) {
-      value.value = defaultValue.value instanceof File ? defaultValue.value : cloneDeep_1(defaultValue.value);
+    if (default_.value !== undefined) {
+      return default_.value instanceof File ? new File([default_.value], default_.value.name, default_.value) : cloneDeep_1(default_.value);
     }
-  }
-
-  /* istanbul ignore next: type can not be changed on the fly */
-  watch(type, () => {
-    value.value = defaultValue.value instanceof File ? defaultValue.value : cloneDeep_1(defaultValue.value);
+    return cloneDeep_1(nullValue.value);
   });
   return {
-    initialValue,
-    internalValue,
-    value,
-    model
+    defaultValue
   };
 };
-var list$1 = function list(props, context, dependencies) {
+var text$1 = function text(props, context, dependencies) {
   var {
-    initialValue,
-    internalValue,
-    value,
-    model
-  } = base$F(props, context, dependencies, {
-    init: false
-  });
-  return {
-    initialValue,
-    internalValue,
-    value,
-    model
-  };
-};
-var object$3 = function object(props, context, dependencies) {
-  var options = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
-  var {
-    initialValue,
-    internalValue,
-    value
-  } = base$F(props, context, dependencies, {
-    init: false
-  });
+    default: default_,
+    name
+  } = toRefs(props);
 
   // ============ DEPENDENCIES =============
 
-  var defaultValue = dependencies.defaultValue;
+  var nullValue = dependencies.nullValue;
+  var form$ = dependencies.form$;
+  var parent = dependencies.parent;
 
-  // ================ HOOKS ================
+  // =============== INJECT ===============
 
-  /* istanbul ignore else */
-  if (options.init === undefined || /* istanbul ignore next: init will always be false */options.init !== false) {
-    if (initialValue.value === undefined) {
-      value.value = defaultValue.value;
-    } else {
-      value.value = Object.assign({}, defaultValue.value, value.value);
+  var config$ = inject('config$');
+
+  // ============== COMPUTED ===============
+
+  /**
+   * The default value of the element.
+   *
+   * @type {any}
+   * @private
+   */
+  var defaultValue = computed(() => {
+    var parentDefaultValue;
+    if (parent && parent.value && !parent.value.mounted) {
+      parentDefaultValue = parent.value.defaultValue[name.value];
+    } else if (!form$.value.mounted && typeof form$.value.options.default[name.value] !== undefined) {
+      parentDefaultValue = form$.value.options.default[name.value];
     }
-  }
+    if (parentDefaultValue !== undefined) {
+      return parentDefaultValue instanceof File ? new File([parentDefaultValue], parentDefaultValue.name, parentDefaultValue) : isPlainObject_1(parentDefaultValue) ? localize(cloneDeep_1(parentDefaultValue), config$.value, form$.value) : cloneDeep_1(parentDefaultValue);
+    }
+
+    /* istanbul ignore else */
+    if (default_.value !== undefined) {
+      /* istanbul ignore next: text can not have File as default */
+      return default_.value instanceof File ? new File([default_.value], default_.value.name, default_.value) : isPlainObject_1(default_.value) ? localize(cloneDeep_1(default_.value), config$.value, form$.value) : cloneDeep_1(default_.value);
+    }
+
+    /* istanbul ignore next: text will never fall into this case, because `default_.value` is never undefined but null */
+    return cloneDeep_1(nullValue.value);
+  });
   return {
-    internalValue,
-    value
+    defaultValue
+  };
+};
+var object$2 = function object(props, context, dependencies) {
+  var {
+    default: default_,
+    name
+  } = toRefs(props);
+
+  // ============ DEPENDENCIES =============
+
+  var nullValue = dependencies.nullValue;
+  var form$ = dependencies.form$;
+  var parent = dependencies.parent;
+
+  // ============== COMPUTED ===============
+
+  var defaultValue = computed(() => {
+    var parentDefaultValue;
+    if (parent && parent.value && !parent.value.mounted) {
+      parentDefaultValue = parent.value.defaultValue[name.value];
+    } else if (!form$.value.mounted && form$.value.options.default[name.value]) {
+      parentDefaultValue = form$.value.options.default[name.value];
+    }
+    if (parentDefaultValue !== undefined) {
+      return cloneDeep_1(merge_1({}, default_.value || /* istanbul ignore next: `default_.value` will never be undefined, because it is a hardwired `{}` */nullValue.value, parentDefaultValue));
+    }
+    if (Object.keys(default_.value).length > 0) {
+      return cloneDeep_1(default_.value);
+    }
+    return cloneDeep_1(nullValue.value);
+  });
+  return {
+    defaultValue
   };
 };
 var group$2 = function group(props, context, dependencies) {
-  var options = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
+  var {
+    default: default_
+  } = toRefs(props);
+
   // ============ DEPENDENCIES =============
 
-  var parent = dependencies.parent;
-  var dataPath = dependencies.dataPath;
-  var defaultValue = dependencies.defaultValue;
-  var children$Array = dependencies.children$Array;
   var form$ = dependencies.form$;
-  dependencies.isObject;
-  dependencies.isGroup;
-  dependencies.isList;
+  var parent = dependencies.parent;
+
+  // ============== COMPUTED ===============
+
+  var defaultValue = computed(() => {
+    var parentDefaultValue = {};
+    if (parent && parent.value && !parent.value.mounted) {
+      parentDefaultValue = parent.value.defaultValue;
+    } else if (!form$.value.mounted && form$.value.options.default) {
+      //@todo:adam
+      parentDefaultValue = form$.value.options.default;
+    }
+    return cloneDeep_1(merge_1({}, default_.value, parentDefaultValue));
+  });
+  return {
+    defaultValue
+  };
+};
+var multilingual$2 = function multilingual(props, context, dependencies) {
+  var {
+    default: default_,
+    name
+  } = toRefs(props);
+
+  // ============ DEPENDENCIES =============
+
+  var nullValue = dependencies.nullValue;
+  var form$ = dependencies.form$;
+  var parent = dependencies.parent;
+
+  // ============== COMPUTED ===============
+
+  var defaultValue = computed(() => {
+    var parentDefaultValue;
+    if (parent && parent.value && !parent.value.mounted) {
+      parentDefaultValue = parent.value.defaultValue[name.value];
+    } else if (!form$.value.mounted && form$.value.options.default[name.value]) {
+      parentDefaultValue = form$.value.options.default[name.value];
+    }
+    if (parentDefaultValue !== undefined) {
+      return cloneDeep_1(Object.assign({}, clone_1(nullValue.value), parentDefaultValue));
+    }
+    if (default_.value === undefined) {
+      return clone_1(nullValue.value);
+    }
+    var def = clone_1(default_.value);
+    if (!isPlainObject_1(def)) {
+      var tempDefault = {};
+      each(nullValue.value, (v, language) => {
+        tempDefault[language] = def;
+      });
+      def = tempDefault;
+    }
+    return Object.assign({}, clone_1(nullValue.value), def);
+  });
+  return {
+    defaultValue
+  };
+};
+
+/**
+ * The base implementation of `_.sortBy` which uses `comparer` to define the
+ * sort order of `array` and replaces criteria objects with their corresponding
+ * values.
+ *
+ * @private
+ * @param {Array} array The array to sort.
+ * @param {Function} comparer The function to define sort order.
+ * @returns {Array} Returns `array`.
+ */
+
+function baseSortBy$1(array, comparer) {
+  var length = array.length;
+
+  array.sort(comparer);
+  while (length--) {
+    array[length] = array[length].value;
+  }
+  return array;
+}
+
+var _baseSortBy = baseSortBy$1;
+
+var isSymbol = isSymbol_1;
+
+/**
+ * Compares values to sort them in ascending order.
+ *
+ * @private
+ * @param {*} value The value to compare.
+ * @param {*} other The other value to compare.
+ * @returns {number} Returns the sort order indicator for `value`.
+ */
+function compareAscending$1(value, other) {
+  if (value !== other) {
+    var valIsDefined = value !== undefined,
+        valIsNull = value === null,
+        valIsReflexive = value === value,
+        valIsSymbol = isSymbol(value);
+
+    var othIsDefined = other !== undefined,
+        othIsNull = other === null,
+        othIsReflexive = other === other,
+        othIsSymbol = isSymbol(other);
+
+    if ((!othIsNull && !othIsSymbol && !valIsSymbol && value > other) ||
+        (valIsSymbol && othIsDefined && othIsReflexive && !othIsNull && !othIsSymbol) ||
+        (valIsNull && othIsDefined && othIsReflexive) ||
+        (!valIsDefined && othIsReflexive) ||
+        !valIsReflexive) {
+      return 1;
+    }
+    if ((!valIsNull && !valIsSymbol && !othIsSymbol && value < other) ||
+        (othIsSymbol && valIsDefined && valIsReflexive && !valIsNull && !valIsSymbol) ||
+        (othIsNull && valIsDefined && valIsReflexive) ||
+        (!othIsDefined && valIsReflexive) ||
+        !othIsReflexive) {
+      return -1;
+    }
+  }
+  return 0;
+}
+
+var _compareAscending = compareAscending$1;
+
+var compareAscending = _compareAscending;
+
+/**
+ * Used by `_.orderBy` to compare multiple properties of a value to another
+ * and stable sort them.
+ *
+ * If `orders` is unspecified, all values are sorted in ascending order. Otherwise,
+ * specify an order of "desc" for descending or "asc" for ascending sort order
+ * of corresponding values.
+ *
+ * @private
+ * @param {Object} object The object to compare.
+ * @param {Object} other The other object to compare.
+ * @param {boolean[]|string[]} orders The order to sort by for each property.
+ * @returns {number} Returns the sort order indicator for `object`.
+ */
+function compareMultiple$1(object, other, orders) {
+  var index = -1,
+      objCriteria = object.criteria,
+      othCriteria = other.criteria,
+      length = objCriteria.length,
+      ordersLength = orders.length;
+
+  while (++index < length) {
+    var result = compareAscending(objCriteria[index], othCriteria[index]);
+    if (result) {
+      if (index >= ordersLength) {
+        return result;
+      }
+      var order = orders[index];
+      return result * (order == 'desc' ? -1 : 1);
+    }
+  }
+  // Fixes an `Array#sort` bug in the JS engine embedded in Adobe applications
+  // that causes it, under certain circumstances, to provide the same value for
+  // `object` and `other`. See https://github.com/jashkenas/underscore/pull/1247
+  // for more details.
+  //
+  // This also ensures a stable sort in V8 and other engines.
+  // See https://bugs.chromium.org/p/v8/issues/detail?id=90 for more details.
+  return object.index - other.index;
+}
+
+var _compareMultiple = compareMultiple$1;
+
+var arrayMap = _arrayMap,
+    baseGet = _baseGet,
+    baseIteratee = _baseIteratee,
+    baseMap = _baseMap,
+    baseSortBy = _baseSortBy,
+    baseUnary = _baseUnary,
+    compareMultiple = _compareMultiple,
+    identity = identity_1,
+    isArray = isArray_1;
+
+/**
+ * The base implementation of `_.orderBy` without param guards.
+ *
+ * @private
+ * @param {Array|Object} collection The collection to iterate over.
+ * @param {Function[]|Object[]|string[]} iteratees The iteratees to sort by.
+ * @param {string[]} orders The sort orders of `iteratees`.
+ * @returns {Array} Returns the new sorted array.
+ */
+function baseOrderBy$1(collection, iteratees, orders) {
+  if (iteratees.length) {
+    iteratees = arrayMap(iteratees, function(iteratee) {
+      if (isArray(iteratee)) {
+        return function(value) {
+          return baseGet(value, iteratee.length === 1 ? iteratee[0] : iteratee);
+        }
+      }
+      return iteratee;
+    });
+  } else {
+    iteratees = [identity];
+  }
+
+  var index = -1;
+  iteratees = arrayMap(iteratees, baseUnary(baseIteratee));
+
+  var result = baseMap(collection, function(value, key, collection) {
+    var criteria = arrayMap(iteratees, function(iteratee) {
+      return iteratee(value);
+    });
+    return { 'criteria': criteria, 'index': ++index, 'value': value };
+  });
+
+  return baseSortBy(result, function(object, other) {
+    return compareMultiple(object, other, orders);
+  });
+}
+
+var _baseOrderBy = baseOrderBy$1;
+
+var baseFlatten = _baseFlatten,
+    baseOrderBy = _baseOrderBy,
+    baseRest = _baseRest,
+    isIterateeCall = _isIterateeCall;
+
+/**
+ * Creates an array of elements, sorted in ascending order by the results of
+ * running each element in a collection thru each iteratee. This method
+ * performs a stable sort, that is, it preserves the original sort order of
+ * equal elements. The iteratees are invoked with one argument: (value).
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Collection
+ * @param {Array|Object} collection The collection to iterate over.
+ * @param {...(Function|Function[])} [iteratees=[_.identity]]
+ *  The iteratees to sort by.
+ * @returns {Array} Returns the new sorted array.
+ * @example
+ *
+ * var users = [
+ *   { 'user': 'fred',   'age': 48 },
+ *   { 'user': 'barney', 'age': 36 },
+ *   { 'user': 'fred',   'age': 30 },
+ *   { 'user': 'barney', 'age': 34 }
+ * ];
+ *
+ * _.sortBy(users, [function(o) { return o.user; }]);
+ * // => objects for [['barney', 36], ['barney', 34], ['fred', 48], ['fred', 30]]
+ *
+ * _.sortBy(users, ['user', 'age']);
+ * // => objects for [['barney', 34], ['barney', 36], ['fred', 30], ['fred', 48]]
+ */
+var sortBy = baseRest(function(collection, iteratees) {
+  if (collection == null) {
+    return [];
+  }
+  var length = iteratees.length;
+  if (length > 1 && isIterateeCall(collection, iteratees[0], iteratees[1])) {
+    iteratees = [];
+  } else if (length > 2 && isIterateeCall(iteratees[0], iteratees[1], iteratees[2])) {
+    iteratees = [iteratees[0]];
+  }
+  return baseOrderBy(collection, baseFlatten(iteratees, 1), []);
+});
+
+var sortBy_1 = sortBy;
+
+var base$A = function base(props, context, dependencies) {
+  var options = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
+  var {
+    submit,
+    formatData,
+    formatLoad,
+    name
+  } = toRefs(props);
+
+  // ============ DEPENDENCIES =============
+
+  var form$ = dependencies.form$;
+  var available = dependencies.available;
+  var value = dependencies.value;
+  var resetValidators = dependencies.resetValidators;
+  var defaultValue = dependencies.defaultValue;
+  var nullValue = dependencies.nullValue;
+  var resetting = dependencies.resetting;
+  var isDefault = dependencies.isDefault;
+
+  // =============== PRIVATE ===============
+
+  /**
+   * Sets the value of the element.
+   *
+   *
+   * @param {any} val the value to be set
+   * @returns {void}
+   * @private
+   */
+  var setValue = val => {
+    if (options.setValue) {
+      return options.setValue(val);
+    }
+    value.value = val;
+  };
+
+  // ============== COMPUTED ===============
+
+  /**
+   * The value of the element in `{[name]: value}` value format. This gets merged with the parent component's data.
+   *
+   * @type {object}
+   */
+  var data = computed(() => {
+    return {
+      [name.value]: value.value
+    };
+  });
+
+  /**
+   * Same as `data` property except that it only includes the element's value if [`submit`](#option-submit) is not disabled and [`available`](#property-available) is `true` (has no [`conditions`](#option-conditions) or they are fulfilled).
+   *
+   * @type {object}
+   */
+  var requestData = computed(() => {
+    if (!available.value || !submit.value) {
+      return {};
+    }
+    return formatData.value ? formatData.value(name.value, value.value, form$.value) : {
+      [name.value]: value.value
+    };
+  });
+
+  // =============== METHODS ===============
+
+  /**
+   * Loads value to the element using optional [`formatLoad`](#option-format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.
+   *
+   * @param {any} value* the value to be loaded
+   * @param {boolean} format whether the loaded value should be formatted with [`formatLoad`](#option-format-load) before setting the value of the element (default: `false`)
+   * @returns {void}
+   */
+  var load = function load(val) {
+    var format = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+    setValue(format && formatLoad.value ? formatLoad.value(val, form$.value) : val);
+  };
+
+  /**
+   * Updates the value of the element similarly to [`load`](#method-load), only that it can\'t format data.
+   *
+   * @param {any} value* the value to be set
+   * @returns {void}
+   */
+  var update = val => {
+    setValue(val);
+  };
+
+  /**
+   * Clears the element's value.
+   *
+   * @returns {void}
+   */
+  var clear = () => {
+    setValue(cloneDeep_1(nullValue.value));
+  };
+
+  /**
+   * Resets the element's value to [`default`](#option-default) (or empty if `default` is not provided). Also resets all the validation state for the element.
+   *
+   * @returns {void}
+   */
+  var reset = () => {
+    if (!isDefault.value) {
+      resetting.value = true;
+    }
+    setValue(cloneDeep_1(defaultValue.value));
+    resetValidators();
+  };
+
+  /**
+   * Prepares the element.
+   *
+   * @returns {Promise}
+   * @private
+   */
+  /* istanbul ignore next:@todo:adam missing implementation, but used in code */
+  var prepare = /*#__PURE__*/function () {
+    var _ref = _asyncToGenerator(function* () {});
+    return function prepare() {
+      return _ref.apply(this, arguments);
+    };
+  }();
+  return {
+    data,
+    requestData,
+    load,
+    update,
+    clear,
+    reset,
+    prepare
+  };
+};
+var text = function text(props, context, dependencies) {
+  var {
+    submit,
+    formatData,
+    name,
+    forceNumbers
+  } = toRefs(props);
+  var {
+    load,
+    update,
+    clear,
+    reset,
+    prepare
+  } = base$A(props, context, dependencies);
+
+  // ============ DEPENDENCIES =============
+
+  var form$ = dependencies.form$;
+  var available = dependencies.available;
+  var value = dependencies.value;
+
+  // =============== INJECT ===============
+
+  var config$ = inject('config$');
+
+  // =============== COMPUTED ==============
+
+  var data = computed(() => {
+    var v = value.value;
+    if (shouldForceNumbers()) {
+      v = stringToNumber(value.value);
+    }
+    return {
+      [name.value]: v
+    };
+  });
+  var requestData = computed(() => {
+    if (!available.value || !submit.value) {
+      return {};
+    }
+    var v = value.value;
+    if (shouldForceNumbers()) {
+      v = stringToNumber(value.value);
+    }
+    return formatData.value ? formatData.value(name.value, v, form$.value) : {
+      [name.value]: v
+    };
+  });
+
+  // =============== METHODS ===============
+
+  /**
+   * Whether the value should be converted to number/float.
+   *
+   * @returns {boolean}
+   * @private
+   */
+  var shouldForceNumbers = () => {
+    return forceNumbers.value || config$.value.config.forceNumbers && form$.value.options.forceNumbers !== false && forceNumbers.value !== false || form$.value.options.forceNumbers && forceNumbers.value !== false;
+  };
+
+  /**
+   * Converts string value to number or float.
+   *
+   * @param {any} str* the string to be converted
+   * @returns {number|float|string}
+   * @private
+   */
+  var stringToNumber = str => {
+    var v = str;
+    if (typeof str === 'string') {
+      if (/^[-+]?\d+([\.,]\d+)?$/.test(str)) {
+        v = parseFloat(str.replace(',', '.'));
+      } else if (/^[-+]?\d+$/.test(str)) {
+        v = parseInt(str, 10);
+      }
+    }
+    return v;
+  };
+  return {
+    data,
+    requestData,
+    load,
+    update,
+    clear,
+    reset,
+    prepare
+  };
+};
+var select$3 = function select(props, context, dependencies) {
+  var options = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
+  var {
+    resolveOnLoad,
+    items
+  } = toRefs(props);
+  var {
+    data,
+    requestData,
+    load,
+    update,
+    clear,
+    prepare
+  } = base$A(props, context, dependencies);
+
+  // ============ DEPENDENCIES =============
+
+  var value = dependencies.value;
+  var resetValidators = dependencies.resetValidators;
+  var defaultValue = dependencies.defaultValue;
+  var updateItems = dependencies.updateItems;
+  var resetting = dependencies.resetting;
+  var isDefault = dependencies.isDefault;
+
+  // =============== PRIVATE ===============
+
+  var setValue = val => {
+    if (options.setValue) {
+      return options.setValue(val);
+    }
+    value.value = val;
+  };
+
+  // =============== METHODS ===============
+
+  var reset = () => {
+    if (!isDefault.value) {
+      resetting.value = true;
+    }
+    setValue(cloneDeep_1(defaultValue.value));
+    resetValidators();
+    if (typeof items.value === 'string' && resolveOnLoad.value !== false) {
+      updateItems();
+    }
+  };
+  return {
+    data,
+    requestData,
+    load,
+    update,
+    clear,
+    reset,
+    prepare
+  };
+};
+var captcha = function captcha(props, context, dependencies) {
+  var {
+    data,
+    requestData,
+    load,
+    update,
+    clear: clearBase,
+    reset: resetBase,
+    prepare
+  } = base$A(props, context, dependencies);
+
+  // ============ DEPENDENCIES =============
+
+  var {
+    Provider
+  } = dependencies;
+
+  // =============== METHODS ===============
+
+  var clear = () => {
+    clearBase();
+    if (!Provider.value) {
+      return;
+    }
+    Provider.value.reset();
+  };
+  var reset = () => {
+    resetBase();
+    if (!Provider.value) {
+      return;
+    }
+    Provider.value.reset();
+  };
+  return {
+    data,
+    requestData,
+    load,
+    update,
+    clear,
+    reset,
+    prepare
+  };
+};
+var object$1 = function object(props, context, dependencies) {
+  var {
+    name,
+    formatLoad,
+    formatData,
+    submit
+  } = toRefs(props);
+  var {
+    data
+  } = base$A(props, context, dependencies);
+
+  // ============ DEPENDENCIES =============
+
+  var form$ = dependencies.form$;
+  var available = dependencies.available;
+  var children$ = dependencies.children$;
+  var children$Array = dependencies.children$Array;
+  var resetting = dependencies.resetting;
+  var isDefault = dependencies.isDefault;
+
+  // ============== COMPUTED ===============
+
+  var requestData = computed(() => {
+    if (!available.value || !submit.value) {
+      return {};
+    }
+    var requestData = {};
+    each(children$.value, element$ => {
+      if (element$.isStatic) {
+        return;
+      }
+      requestData = Object.assign({}, requestData, element$.requestData);
+    });
+    return formatData.value ? formatData.value(name.value, requestData, form$.value) : {
+      [name.value]: requestData
+    };
+  });
+
+  // =============== METHODS ===============
+
+  var load = function load(val) {
+    var format = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+    var formatted = format && formatLoad.value ? formatLoad.value(val, form$.value) : val;
+    each(children$.value, element$ => {
+      if (element$.isStatic) {
+        return;
+      }
+      if (!element$.flat && formatted[element$.name] === undefined) {
+        element$.clear();
+        return;
+      }
+      element$.load(element$.flat ? formatted : formatted[element$.name], format);
+    });
+  };
+  var update = val => {
+    each(children$.value, element$ => {
+      if (element$.isStatic) {
+        return;
+      }
+      if (val[element$.name] === undefined && !element$.flat) {
+        return;
+      }
+      element$.update(element$.flat ? val : val[element$.name]);
+    });
+  };
+  var clear = () => {
+    each(children$.value, element$ => {
+      if (element$.isStatic) {
+        return;
+      }
+      element$.clear();
+    });
+  };
+  var reset = () => {
+    if (!isDefault.value) {
+      resetting.value = true;
+    }
+    each(children$.value, element$ => {
+      if (element$.isStatic) {
+        return;
+      }
+      element$.reset();
+    });
+  };
+  var prepare = /*#__PURE__*/function () {
+    var _ref2 = _asyncToGenerator(function* () {
+      yield asyncForEach(children$Array.value, /*#__PURE__*/function () {
+        var _ref3 = _asyncToGenerator(function* (e$) {
+          if (e$.prepare) {
+            yield e$.prepare();
+          }
+        });
+        return function (_x) {
+          return _ref3.apply(this, arguments);
+        };
+      }());
+    });
+    return function prepare() {
+      return _ref2.apply(this, arguments);
+    };
+  }();
+  return {
+    data,
+    requestData,
+    load,
+    update,
+    clear,
+    reset,
+    prepare
+  };
+};
+var group$1 = function group(props, context, dependencies) {
+  var {
+    name,
+    formatData,
+    submit
+  } = toRefs(props);
+  var {
+    load,
+    update,
+    clear,
+    reset,
+    prepare
+  } = object$1(props, context, dependencies);
+
+  // ============ DEPENDENCIES =============
+
+  var form$ = dependencies.form$;
+  var children$ = dependencies.children$;
+  var available = dependencies.available;
+  var value = dependencies.value;
+
+  // ============== COMPUTED ===============
+
+  /**
+   * The value of child elements in object. This gets merged with the parent component's data.
+   *
+   * @type {object}
+   */
+  var data = computed(() => {
+    return value.value;
+  });
+  var requestData = computed(() => {
+    if (!available.value || !submit.value) {
+      return {};
+    }
+    var requestData = {};
+    each(children$.value, element$ => {
+      if (element$.isStatic) {
+        return;
+      }
+      requestData = Object.assign({}, requestData, element$.requestData);
+    });
+    return formatData.value ? formatData.value(name.value, requestData, form$.value) : requestData;
+  });
+  return {
+    data,
+    requestData,
+    load,
+    update,
+    clear,
+    reset,
+    prepare
+  };
+};
+var list = function list(props, context, dependencies, options) {
+  var {
+    name,
+    storeOrder,
+    formatLoad,
+    formatData,
+    order,
+    submit,
+    initial,
+    default: default_
+  } = toRefs(props);
+  var {
+    update,
+    clear,
+    data
+  } = base$A(props, context, dependencies);
+
+  // ============ DEPENDENCIES =============
+
+  var form$ = dependencies.form$;
+  var children$ = dependencies.children$;
+  var children$Array = dependencies.children$Array;
+  var available = dependencies.available;
+  var isDisabled = dependencies.isDisabled;
+  var value = dependencies.value;
+  var orderByName = dependencies.orderByName;
+  var refreshOrderStore = dependencies.refreshOrderStore;
+  var dataPath = dependencies.dataPath;
+  var parent = dependencies.parent;
+  var nullValue = dependencies.nullValue;
+  var defaultValue = dependencies.defaultValue;
+  var fire = dependencies.fire;
+  var resetValidators = dependencies.resetValidators;
+  var resetting = dependencies.resetting;
+  var isDefault = dependencies.isDefault;
 
   // ================ DATA =================
 
+  var initialValue = ref(get_1(form$.value.model, dataPath.value));
+
+  // ============== COMPUTED ===============
+
   /**
-   * The store for the value of the element when we're not using external data (form's `v-model`).
+   * Default value of the parent
    *
    * @type {any}
    * @private
    */
-  var internalValue = ref(cloneDeep_1(defaultValue.value));
-
-  // ============== COMPUTED ===============
-
-  var value = computed(options.value || {
-    get() {
-      var value;
-      if (form$.value.isSync) {
-        value = dataPath.value ? get_1(form$.value.model, dataPath.value) || {} : form$.value.model;
-      } else if (parent.value && (parent.value.isObjectType || parent.value.isGroupType)) {
-        value = parent.value.value;
-      } else {
-        value = internalValue.value;
-      }
-
-      // Filter out children values that parent has but not among group elements
-      var childKeys = children$Array.value.reduce((all, child$) => {
-        /* istanbul ignore else */
-        if (child$.isStatic || !child$) {
-          return all;
-        }
-        var keys = [];
-        if (!child$.flat) {
-          keys.push(child$.name);
-        } else {
-          var addGroupKeys = children$Array => {
-            children$Array.forEach(child$ => {
-              if (!child$.isStatic && child$.flat) {
-                addGroupKeys(child$.children$Array);
-              } /* istanbul ignore else */else if (!child$.isStatic) {
-                keys.push(child$.name);
-              }
-            });
-          };
-          addGroupKeys(child$.children$Array);
-        }
-        return all.concat(keys);
-      }, []);
-      var tempValue = {};
-      childKeys.forEach(key => {
-        /* istanbul ignore else */
-        if (value[key] !== undefined) {
-          tempValue[key] = value[key];
-        }
-      });
-      value = tempValue;
-      return value !== undefined ? value : /* istanbul ignore next: will never reach, internalValue is assigned at the beginning */cloneDeep_1(defaultValue.value);
-    },
-    set(val) {
-      if (form$.value.isSync) {
-        form$.value.updateModel(dataPath.value, val);
-      } else if (parent.value && (parent.value.isObjectType || parent.value.isGroupType)) {
-        parent.value.value = Object.assign({}, parent.value.value, val);
-      } else {
-        internalValue.value = val;
-      }
-    }
+  var parentDefaultValue = computed(() => {
+    return parent && parent.value ? parent.value.defaultValue[name.value] : form$.value.options.default[name.value];
   });
-  return {
-    value
+  var requestData = computed(() => {
+    if (!available.value || !submit.value) {
+      return {};
+    }
+    var requestData = [];
+    each(children$.value, element$ => {
+      var val = element$.requestData[element$.name];
+      if (val !== undefined) {
+        requestData.push(val);
+      }
+    });
+    return formatData.value ? formatData.value(name.value, requestData, form$.value) : {
+      [name.value]: requestData
+    };
+  });
+
+  /**
+   * Number of children.
+   *
+   * @type {number}
+   * @private
+   */
+  var length = computed(() => {
+    return Object.keys(value.value || /* istanbul ignore next: failsafe only */{}).length;
+  });
+
+  // =============== METHODS ===============
+
+  /**
+   * Appends a new item.
+   *
+   * @param {any} value value of the appended element (optional)
+   * @returns {number} the index of the appended item
+   */
+  var add = function add() {
+    var val = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : undefined;
+    var focus = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+    var newValue = storeOrder.value ? Object.assign({}, val || {}, {
+      [storeOrder.value]: val ? val[storeOrder.value] : undefined
+    }) : val;
+    value.value = refreshOrderStore(value.value.concat([newValue]));
+
+    // value.value = refreshOrderStore(value.value)
+
+    var index = value.value.length - 1;
+    fire('add', index, newValue, value.value);
+    if (focus) {
+      nextTick(() => {
+        children$Array.value[children$Array.value.length - 1].focus();
+      });
+    }
+    return index;
   };
-};
-var multilingual$4 = function multilingual(props, context, dependencies) {
-  var {
-    value
-  } = base$F(props, context, dependencies);
 
-  // ============ DEPENDENCIES =============
-
-  var language = dependencies.language;
-
-  // ============== COMPUTED ===============
-
-  var model = computed({
-    get() {
-      return value.value[language.value];
-    },
-    set(val) {
-      value.value = Object.assign({}, value.value, {
-        [language.value]: val
+  /**
+   * Removes an items by its index.
+   *
+   *
+   * @param {number} index* index of items to be removed
+   * @returns {void}
+   */
+  var remove = index => {
+    value.value = value.value.filter((v, i) => i !== index);
+    refreshOrderStore(value.value);
+    fire('remove', index, value.value);
+  };
+  var load = /*#__PURE__*/function () {
+    var _ref4 = _asyncToGenerator(function* (val) {
+      var format = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+      var values = sortValue(format && formatLoad.value ? formatLoad.value(val, form$.value) : val);
+      clear();
+      yield nextTick();
+      for (var i = 0; i < values.length; i++) {
+        add();
+      }
+      yield nextTick();
+      each(children$.value, (child$, i) => {
+        child$.load(values[i], format);
       });
+    });
+    return function load(_x2) {
+      return _ref4.apply(this, arguments);
+    };
+  }();
+  var reset = () => {
+    if (!isDefault.value) {
+      resetting.value = true;
     }
-  });
+    value.value = cloneDeep_1(defaultValue.value);
+    resetValidators();
+    if (!value.value.length && initial.value > 0) {
+      for (var i = 0; i < initial.value; i++) {
+        add();
+      }
+
+      // NextTick is no longer required as validation
+      // happens with async/await anyway in children
+      // nextTick(() => {
+      children$Array.value.forEach(child$ => {
+        child$.reset();
+      });
+      // })
+    }
+    nextTick(() => {
+      refreshOrderStore(value.value);
+    });
+  };
+  var prepare = /*#__PURE__*/function () {
+    var _ref5 = _asyncToGenerator(function* () {
+      yield asyncForEach(children$Array.value, /*#__PURE__*/function () {
+        var _ref6 = _asyncToGenerator(function* (e$) {
+          if (e$.prepare) {
+            yield e$.prepare();
+          }
+        });
+        return function (_x3) {
+          return _ref6.apply(this, arguments);
+        };
+      }());
+    });
+    return function prepare() {
+      return _ref5.apply(this, arguments);
+    };
+  }();
+
+  /**
+   * Sorts value when `order` and `orderByName` is defined.
+   *
+   * @param {array} value value to be sorted
+   * @returns {array}
+   * @private
+   */
+  var sortValue = val => {
+    if (!order.value && !orderByName.value || !val) {
+      return val;
+    }
+    var desc = order.value && typeof order.value === 'string' && order.value.toUpperCase() == 'DESC';
+
+    /* istanbul ignore else: console.log() shows that the single run test falls into the else branch, but coverage does not detect */
+    if (orderByName.value) {
+      val = desc ? sortBy_1(val, orderByName.value).reverse() : sortBy_1(val, orderByName.value);
+    } else if (order.value) {
+      val = desc ? val.sort().reverse() : val.sort();
+    }
+    return val;
+  };
+
+  /**
+   * Handles the `add` event.
+   *
+   * @returns {void}
+   * @private
+   */
+  var handleAdd = () => {
+    if (isDisabled.value) {
+      return;
+    }
+    add(undefined, true);
+  };
+
+  /**
+   * Handles the `remove` event.
+   *
+   * @param {number} index* index of child to be removed
+   * @returns {void}
+   * @private
+   */
+  var handleRemove = index => {
+    if (isDisabled.value) {
+      return;
+    }
+    remove(index);
+  };
+
+  // ================ HOOKS ===============
+
+  if (initialValue.value === undefined && parentDefaultValue.value === undefined && default_.value === undefined) {
+    if (initial.value > 0) {
+      for (var i = 0; i < initial.value; i++) {
+        add();
+      }
+    } else {
+      value.value = nullValue.value;
+    }
+  } else if (initialValue.value === undefined) {
+    value.value = defaultValue.value;
+  }
   return {
-    value,
-    model
+    requestData,
+    data,
+    length,
+    add,
+    remove,
+    load,
+    update,
+    clear,
+    reset,
+    handleAdd,
+    handleRemove,
+    prepare
   };
 };
 var date$2 = function date(props, context, dependencies) {
   var {
-    name
+    formatLoad
   } = toRefs(props);
+  var {
+    data,
+    requestData,
+    update,
+    clear,
+    reset,
+    prepare
+  } = base$A(props, context, dependencies);
 
   // ============ DEPENDENCIES =============
 
-  var parent = dependencies.parent;
-  var valueDateFormat = dependencies.valueDateFormat;
-  var defaultValue = dependencies.defaultValue;
-  var dataPath = dependencies.dataPath;
   var form$ = dependencies.form$;
-  dependencies.isObject;
-  dependencies.isGroup;
-  dependencies.isList;
+  var value = dependencies.value;
+  var loadDateFormat = dependencies.loadDateFormat;
 
-  // ================= PRE =================
+  // =============== METHODS ===============
 
-  /**
-   * The store for the value of the element when we're not using external data (form's `v-model`).
-   *
-   * @type {any}
-   * @private
-   */
-  var internalValue = ref(defaultValue.value instanceof File ? /* istanbul ignore next: @todo:adam date type will never have file instance default value */defaultValue.value : cloneDeep_1(defaultValue.value));
-  var {
-    value,
-    initialValue
-  } = base$F(props, context, dependencies, {
-    value: {
-      get() {
-        var value;
-        if (form$.value.isSync) {
-          value = get_1(form$.value.model, dataPath.value);
-        } else if (parent.value && (parent.value.isObjectType || parent.value.isGroupType || parent.value.isListType)) {
-          value = parent.value.value[name.value];
-        } else {
-          value = internalValue.value;
-        }
-        return value !== undefined ? value : ( /* istanbul ignore next: can not be undefined @todo:adam can not be file */defaultValue.value instanceof File ? defaultValue.value : cloneDeep_1(defaultValue.value));
-      },
-      set(val) {
-        // If the value is not a Date object check if it is matching the value format
-        if (!isEmpty_1(val) && !(val instanceof Date) && valueDateFormat.value !== false) {
-          checkDateFormat(valueDateFormat.value, val);
-        }
-        val = val && val instanceof Date && valueDateFormat.value !== false ? moment(val).format(valueDateFormat.value) : val;
-        if (form$.value.isSync) {
-          form$.value.updateModel(dataPath.value, val);
-        } else if (parent.value && parent.value.isListType) {
-          var newValue = parent.value.value.map((v, k) => k == name.value ? val : v);
-          parent.value.update(newValue);
-        } else if (parent.value && (parent.value.isObjectType || parent.value.isGroupType)) {
-          parent.value.value = Object.assign({}, parent.value.value, {
-            [name.value]: val
-          });
-        } else {
-          internalValue.value = val;
-        }
-      }
-    }
-  });
-
-  // ============== COMPUTED ===============
-
-  var model = computed(() => {
-    return value.value instanceof Date || !value.value ? value.value : moment(value.value, valueDateFormat.value).toDate();
-  });
+  var load = function load(val) {
+    var format = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+    var formatted = format && formatLoad.value ? formatLoad.value(val, form$.value) : val;
+    checkDateFormat(loadDateFormat.value, formatted);
+    value.value = formatted instanceof Date || !formatted ? formatted : moment(formatted, loadDateFormat.value).toDate();
+  };
   return {
-    value,
-    model,
-    initialValue,
-    internalValue
+    data,
+    requestData,
+    load,
+    update,
+    clear,
+    reset,
+    prepare
   };
 };
 var dates$3 = function dates(props, context, dependencies) {
   var {
+    formatLoad
+  } = toRefs(props);
+  var {
+    data,
+    requestData,
+    update,
+    clear,
+    reset,
+    prepare
+  } = base$A(props, context, dependencies);
+
+  // ============ DEPENDENCIES =============
+
+  var form$ = dependencies.form$;
+  var value = dependencies.value;
+  var loadDateFormat = dependencies.loadDateFormat;
+
+  // =============== METHODS ===============
+
+  var load = function load(val) {
+    var format = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+    var formatted = format && formatLoad.value ? formatLoad.value(val, form$.value) : val;
+    value.value = map_1(formatted, v => {
+      checkDateFormat(loadDateFormat.value, v);
+      return v instanceof Date ? v : moment(v, loadDateFormat.value).toDate();
+    });
+  };
+  return {
+    data,
+    requestData,
+    load,
+    update,
+    clear,
+    reset,
+    prepare
+  };
+};
+var multilingual$1 = function multilingual(props, context, dependencies) {
+  var options = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
+  var {
+    formatLoad
+  } = toRefs(props);
+  var {
+    data,
+    requestData,
+    clear,
+    reset,
+    prepare
+  } = base$A(props, context, dependencies, options);
+
+  // ============ DEPENDENCIES =============
+
+  var form$ = dependencies.form$;
+  var value = dependencies.value;
+  var language = dependencies.language;
+  var nullValue = dependencies.nullValue;
+
+  // =============== PRIVATE ===============
+
+  var setValue = val => {
+    if (options.setValue) {
+      return options.setValue(val);
+    }
+    value.value = val;
+  };
+
+  // =============== METHODS ===============
+
+  var load = function load(val) {
+    var format = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+    var formatted = format && formatLoad.value ? formatLoad.value(val, form$.value) : val;
+    if (!isPlainObject_1(formatted)) {
+      throw new Error('Multilingual element requires an object to load');
+    }
+    setValue(Object.assign({}, clone_1(nullValue.value), formatted));
+  };
+  var update = val => {
+    var updateValue = val;
+    if (!isPlainObject_1(updateValue)) {
+      updateValue = {
+        [language.value]: val
+      };
+    }
+    setValue(Object.assign({}, value.value, updateValue));
+  };
+  return {
+    data,
+    requestData,
+    load,
+    update,
+    clear,
+    reset,
+    prepare
+  };
+};
+var editor = function editor(props, context, dependencies) {
+  var {
+    data,
+    requestData,
+    load,
+    update,
+    clear,
+    reset,
+    prepare
+  } = base$A(props, context, dependencies, {
+    setValue: val => {
+      value.value = val;
+      nextTick(() => {
+        input.value.update(val);
+      });
+    }
+  });
+
+  // ============ DEPENDENCIES =============
+
+  var input = dependencies.input;
+  var value = dependencies.value;
+  return {
+    data,
+    requestData,
+    load,
+    update,
+    clear,
+    reset,
+    prepare
+  };
+};
+var teditor = function teditor(props, context, dependencies) {
+  var {
+    data,
+    requestData,
+    load,
+    update,
+    clear,
+    reset,
+    prepare
+  } = multilingual$1(props, context, dependencies, {
+    setValue: val => {
+      value.value = val;
+      nextTick(() => {
+        input.value.update(val[language.value]);
+      });
+    }
+  });
+
+  // ============ DEPENDENCIES =============
+
+  var input = dependencies.input;
+  var model = dependencies.model;
+  var value = dependencies.value;
+  var language = dependencies.language;
+
+  // ============== WATCHERS ==============
+
+  watch(language, () => {
+    input.value.update(model.value);
+  });
+  return {
+    data,
+    requestData,
+    load,
+    update,
+    clear,
+    reset,
+    prepare
+  };
+};
+var file = function file(props, context, dependencies) {
+  var {
+    load,
+    update,
+    clear,
+    reset,
+    prepare
+  } = base$A(props, context, dependencies);
+  var {
+    submit,
+    formatData,
     name
   } = toRefs(props);
 
   // ============ DEPENDENCIES =============
 
-  var parent = dependencies.parent;
-  var valueDateFormat = dependencies.valueDateFormat;
-  var defaultValue = dependencies.defaultValue;
-  var dataPath = dependencies.dataPath;
   var form$ = dependencies.form$;
-  dependencies.isObject;
-  dependencies.isGroup;
-  dependencies.isList;
-
-  // ================= PRE =================
-
-  /**
-   * The store for the value of the element when we're not using external data (form's `v-model`).
-   *
-   * @type {any}
-   * @private
-   */
-  var internalValue = ref(defaultValue.value instanceof File ? /* istanbul ignore next: @todo:adam date type will never have file instance default value */defaultValue.value : cloneDeep_1(defaultValue.value));
-  var {
-    value,
-    initialValue
-  } = base$F(props, context, dependencies, {
-    value: {
-      get() {
-        var value;
-        if (form$.value.isSync) {
-          value = get_1(form$.value.model, dataPath.value);
-        } else if (parent.value && (parent.value.isObjectType || parent.value.isGroupType || parent.value.isListType)) {
-          value = parent.value.value[name.value];
-        } else {
-          value = internalValue.value;
-        }
-        return value !== undefined ? value : ( /* istanbul ignore next: can not be undefined @todo:adam can not be file */defaultValue.value instanceof File ? defaultValue.value : cloneDeep_1(defaultValue.value));
-      },
-      set(val) {
-        if (!Array.isArray(val)) {
-          val = [val];
-        }
-        val = val.map(v => {
-          if (!isEmpty_1(v) && !(v instanceof Date) && valueDateFormat.value !== false) {
-            checkDateFormat(valueDateFormat.value, v);
-          }
-          return v && v instanceof Date && valueDateFormat.value !== false ? moment(v).format(valueDateFormat.value) : v;
-        });
-        if (form$.value.isSync) {
-          form$.value.updateModel(dataPath.value, val);
-        } else if (parent.value && parent.value.isListType) {
-          var newValue = parent.value.value.map((v, k) => k == name.value ? val : v);
-          parent.value.update(newValue);
-        } else if (parent.value && (parent.value.isObjectType || parent.value.isGroupType)) {
-          parent.value.value = Object.assign({}, parent.value.value, {
-            [name.value]: val
-          });
-        } else {
-          internalValue.value = val;
-        }
-      }
-    }
-  });
+  var available = dependencies.available;
+  var value = dependencies.value;
 
   // ============== COMPUTED ===============
 
-  var model = computed(() => {
-    return value.value.map(v => {
-      return v instanceof Date || !v ? v : moment(v, valueDateFormat.value).toDate();
-    });
+  var data = computed(() => {
+    var _v;
+    var v = value.value;
+    if (typeof v === 'object' && (_v = v) !== null && _v !== void 0 && _v.__file__) {
+      v = v instanceof File ? v : _objectSpread2$1({}, v);
+      delete v.__file__;
+    }
+    return {
+      [name.value]: v
+    };
+  });
+  var requestData = computed(() => {
+    var _v2;
+    if (!available.value || !submit.value) {
+      return {};
+    }
+    var v = value.value;
+    if (typeof v === 'object' && (_v2 = v) !== null && _v2 !== void 0 && _v2.__file__) {
+      v = v instanceof File ? v : _objectSpread2$1({}, v);
+      delete v.__file__;
+    }
+    return formatData.value ? formatData.value(name.value, v, form$.value) : {
+      [name.value]: v
+    };
   });
   return {
-    value,
-    model,
-    initialValue,
-    internalValue
+    data,
+    requestData,
+    load,
+    update,
+    clear,
+    reset,
+    prepare
   };
 };
-
-var base$E = function base(props, context, dependencies) {
-  // ============ DEPENDENCIES =============
-
-  var form$ = dependencies.form$;
-  var el$ = dependencies.el$;
-  var fire = dependencies.fire;
-  var dirt = dependencies.dirt;
-  var validate = dependencies.validate;
-  var value = dependencies.value;
-
-  // =============== METHODS ===============
-
-  var initWatcher = () => {
-    watch(value, (n, o) => {
-      if (dataEquals(n, o)) {
-        return;
-      }
-      fire('change', n, o, el$.value);
-
-      /* istanbul ignore else */
-      if (dirt) {
-        dirt();
-      }
-      if (validate && form$.value.shouldValidateOnChange) {
-        validate();
-      }
-    }, {
-      immediate: false,
-      deep: true
-    });
-  };
-  return {
-    initWatcher
-  };
-};
-var multilingual$3 = function multilingual(props, context, dependencies) {
-  // ============ DEPENDENCIES =============
-
-  var form$ = dependencies.form$;
-  var el$ = dependencies.el$;
-  var fire = dependencies.fire;
-  var dirt = dependencies.dirt;
-  var value = dependencies.value;
-  var language = dependencies.language;
-  var validateLanguage = dependencies.validateLanguage;
-
-  // =============== METHODS ===============
-
-  var initWatcher = () => {
-    watch(value, (n, o) => {
-      if (dataEquals(n, o)) {
-        return;
-      }
-      fire('change', n, o, el$.value);
-
-      /* istanbul ignore else */
-      if (dirt) {
-        dirt();
-      }
-      if (form$.value.shouldValidateOnChange) {
-        validateLanguage(language.value);
-      }
-    }, {
-      immediate: false,
-      deep: true
-    });
-  };
-  return {
-    initWatcher
-  };
-};
-var list = function list(props, context, dependencies) {
-  // ============ DEPENDENCIES =============
-
-  var form$ = dependencies.form$;
-  var el$ = dependencies.el$;
-  var fire = dependencies.fire;
-  var dirt = dependencies.dirt;
-  var validateValidators = dependencies.validateValidators;
-  var value = dependencies.value;
-
-  // =============== METHODS ===============
-
-  var initWatcher = () => {
-    watch(value, (n, o) => {
-      if (dataEquals(n, o)) {
-        return;
-      }
-      fire('change', n, o, el$.value);
-
-      /* istanbul ignore else */
-      if (dirt) {
-        dirt();
-      }
-
-      /* istanbul ignore else */
-      if (validateValidators && form$.value.shouldValidateOnChange) {
-        validateValidators();
-      }
-    }, {
-      immediate: false,
-      deep: true
-    });
-  };
-  return {
-    initWatcher
-  };
-};
-var object$2 = function object(props, context, dependencies) {
-  // ============ DEPENDENCIES =============
-
-  var form$ = dependencies.form$;
-  var fire = dependencies.fire;
-  var value = dependencies.value;
-  var el$ = dependencies.el$;
-  var dirt = dependencies.dirt;
-  var validateValidators = dependencies.validateValidators;
-
-  // =============== METHODS ===============
-
-  var initWatcher = () => {
-    watch(value, (n, o) => {
-      if (dataEquals(n, o)) {
-        return;
-      }
-      fire('change', n, o, el$.value);
-
-      /* istanbul ignore else */
-      if (dirt) {
-        dirt();
-      }
-
-      /* istanbul ignore else */
-      if (validateValidators && form$.value.shouldValidateOnChange) {
-        validateValidators();
-      }
-    }, {
-      immediate: false,
-      deep: true
-    });
-  };
-  return {
-    initWatcher
-  };
-};
-var location$1 = function location(props, context, dependencies) {
+var multifile$4 = function multifile(props, context, dependencies) {
   var {
-    displayKey
+    length,
+    add,
+    remove,
+    load,
+    update,
+    clear,
+    reset,
+    handleAdd,
+    handleRemove,
+    prepare
+  } = list(props, context, dependencies);
+  var {
+    submit,
+    formatData,
+    name
   } = toRefs(props);
 
   // ============ DEPENDENCIES =============
 
   var form$ = dependencies.form$;
-  var el$ = dependencies.el$;
-  var fire = dependencies.fire;
-  var dirt = dependencies.dirt;
-  var validate = dependencies.validate;
+  var available = dependencies.available;
   var value = dependencies.value;
-  var input = dependencies.input;
+  var children$ = dependencies.children$;
 
-  // =============== METHODS ===============
+  // ============== COMPUTED ===============
 
-  var initWatcher = () => {
-    watch(value, (n, o) => {
-      if (dataEquals(n, o)) {
-        return;
+  var data = computed(() => {
+    var val = value.value;
+    val = val.map(file => {
+      if (typeof file === 'object' && file !== null && file !== void 0 && file.__file__) {
+        var v = file instanceof File ? file : _objectSpread2$1({}, file);
+        delete v.__file__;
+        return v;
       }
-      fire('change', n, o, el$.value);
-      dirt();
-      input.value.value = input.value && value.value && value.value[displayKey.value] !== undefined ? value.value[displayKey.value] : '';
-
-      /* istanbul ignore else */
-      if (validate && form$.value.shouldValidateOnChange) {
-        validate();
-      }
-    }, {
-      immediate: false,
-      deep: true
+      return file;
     });
-  };
+    return {
+      [name.value]: val
+    };
+  });
+  var requestData = computed(() => {
+    if (!available.value || !submit.value) {
+      return {};
+    }
+    var requestData = [];
+    each(children$.value, element$ => {
+      var val = element$.requestData[element$.name];
+
+      /* istanbul ignore next: failsafe only */
+      if (val !== undefined) {
+        var _val;
+        if (typeof val === 'object' && (_val = val) !== null && _val !== void 0 && _val.__file__) {
+          var v = file instanceof File ? file : _objectSpread2$1({}, file);
+          delete v.__file__;
+          val = v;
+        }
+        requestData.push(val);
+      }
+    });
+    return formatData.value ? formatData.value(name.value, requestData, form$.value) : {
+      [name.value]: requestData
+    };
+  });
   return {
-    initWatcher
+    requestData,
+    data,
+    length,
+    add,
+    remove,
+    load,
+    update,
+    clear,
+    reset,
+    handleAdd,
+    handleRemove,
+    prepare
   };
 };
-var multifile$4 = list;
-var group$1 = object$2;
+var multiselect$3 = select$3;
+var tags$3 = select$3;
 
-var base$D = function base(props, context, dependencies) {
+var HasChange = {
+  props: {
+    onChange: {
+      required: false,
+      type: [Function],
+      default: null,
+      private: true
+    }
+  }
+};
+
+var HasData = {
+  props: {
+    formatData: {
+      required: false,
+      type: [Function],
+      default: null
+    },
+    formatLoad: {
+      required: false,
+      type: [Function],
+      default: null
+    },
+    submit: {
+      required: false,
+      type: [Boolean],
+      default: true
+    }
+  }
+};
+
+var HasValidation = {
+  props: {
+    rules: {
+      required: false,
+      type: [Array, String, Object],
+      default: null
+    },
+    messages: {
+      required: false,
+      type: [Object],
+      default: () => ({})
+    },
+    fieldName: {
+      required: false,
+      type: [String],
+      '@default': 'name|label'
+    }
+  }
+};
+
+var CaptchaElement = {
+  name: 'CaptchaElement',
+  mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
+  emits: ['change', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
+  props: {
+    type: {
+      required: false,
+      type: [String],
+      default: 'captcha',
+      private: true
+    },
+    id: {
+      required: false,
+      type: [String],
+      default: null
+    },
+    default: {
+      required: false,
+      type: [String],
+      default: null
+    },
+    disabled: {
+      required: false,
+      type: [Boolean],
+      default: false
+    },
+    readonly: {
+      required: false,
+      type: [Boolean],
+      default: false
+    },
+    rules: {
+      required: false,
+      type: [Array, String, Object],
+      default: ['captcha']
+    },
+    size: {
+      required: false,
+      type: [String],
+      default: undefined,
+      private: true
+    },
+    fieldName: {
+      required: false,
+      type: [String],
+      '@default': 'name|label',
+      private: true
+    },
+    provider: {
+      required: false,
+      type: [String],
+      default: null,
+      '@default': 'config.useProviders.captcha'
+    },
+    options: {
+      required: false,
+      type: [Object],
+      default: () => ({})
+    }
+  },
+  setup(props, context) {
+    context.features = [base$18, base$17, base$U, base$L, base$N, base$R, base$J, base$T, base$F, base$1b, base$O, base$B, base$13, base$C, base$G, base$K, base$D, base$H, captcha, base$_, base$I, captcha$1, base$X, base$19, base$Z, base$W, base$E, base$S];
+    context.slots = ['label', 'info', 'description', 'before', 'between', 'after'];
+    return _objectSpread2$1({}, base$M(props, context));
+  }
+};
+
+var base$z = function base(props, context, dependencies) {
   var {
     text
   } = toRefs(props);
@@ -26962,122 +27689,7 @@ var base$D = function base(props, context, dependencies) {
   };
 };
 
-var base$C = function base(props, context, dependencies) {
-  // ============== COMPUTED ===============
-
-  /**
-   * The null value of the element.
-   *
-   * @type {any}
-   * @private
-   */
-  var nullValue = computed(() => {
-    return null;
-  });
-  return {
-    nullValue
-  };
-};
-var array$1 = function array(props, context, dependencies) {
-  // ============== COMPUTED ===============
-
-  var nullValue = computed(() => {
-    return [];
-  });
-  return {
-    nullValue
-  };
-};
-var boolean = function boolean(props, context, dependencies) {
-  var {
-    falseValue
-  } = toRefs(props);
-
-  // ============== COMPUTED ===============
-
-  var nullValue = computed(() => {
-    return falseValue.value;
-  });
-  return {
-    nullValue
-  };
-};
-var min = function min(props, context, dependencies) {
-  var {
-    min,
-    default: default_
-  } = toRefs(props);
-
-  // ============== COMPUTED ===============
-
-  var nullValue = computed(() => {
-    return default_.value !== undefined && isArray_1(default_.value) ? default_.value.map(v => min.value) : min.value;
-  });
-  return {
-    nullValue
-  };
-};
-var object$1 = function object(props, context, dependencies) {
-  // ============== COMPUTED ===============
-
-  var nullValue = computed(() => {
-    return {};
-  });
-  return {
-    nullValue
-  };
-};
-var location = function location(props, context, dependencies) {
-  // ============== COMPUTED ===============
-
-  var nullValue = computed(() => {
-    return {
-      country: null,
-      country_code: null,
-      state: null,
-      state_code: null,
-      city: null,
-      zip: null,
-      address: null,
-      formatted_address: null,
-      lat: null,
-      lng: null
-    };
-  });
-  return {
-    nullValue
-  };
-};
-var multilingual$2 = function multilingual(props, context, dependencies) {
-  // ============ DEPENDENCIES ============
-
-  var languages = dependencies.languages;
-
-  // ============== COMPUTED ===============
-
-  var nullValue = computed(() => {
-    var value = {};
-    each(languages.value, code => {
-      value[code] = null;
-    });
-    return value;
-  });
-  return {
-    nullValue
-  };
-};
-var generic = function generic(props, context, dependencies) {
-  // ============== COMPUTED ===============
-
-  var nullValue = computed(() => {
-    return context.nullValue !== undefined ? context.nullValue : null;
-  });
-  return {
-    nullValue
-  };
-};
-
-var base$B = function base(props, context, dependencies) {
+var base$y = function base(props, context, dependencies) {
   var {
     trueValue,
     falseValue
@@ -27146,57 +27758,6 @@ var checkbox = function checkbox(props, context, dependencies) {
   };
 };
 
-var HasChange = {
-  props: {
-    onChange: {
-      required: false,
-      type: [Function],
-      default: null,
-      private: true
-    }
-  }
-};
-
-var HasData = {
-  props: {
-    formatData: {
-      required: false,
-      type: [Function],
-      default: null
-    },
-    formatLoad: {
-      required: false,
-      type: [Function],
-      default: null
-    },
-    submit: {
-      required: false,
-      type: [Boolean],
-      default: true
-    }
-  }
-};
-
-var HasValidation = {
-  props: {
-    rules: {
-      required: false,
-      type: [Array, String, Object],
-      default: null
-    },
-    messages: {
-      required: false,
-      type: [Object],
-      default: () => ({})
-    },
-    fieldName: {
-      required: false,
-      type: [String],
-      '@default': 'name|label'
-    }
-  }
-};
-
 var CheckboxElement = {
   name: 'CheckboxElement',
   mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
@@ -27246,13 +27807,13 @@ var CheckboxElement = {
     }
   },
   setup(props, context) {
-    context.features = [base$17, base$16, base$T, base$K, base$M, base$Q, boolean, base$S, base$1a, base$N, base$I, base$12, base$H, base$F, base$J, base$Z, base$G, base$X, base$W, base$18, base$Y, base$V, checkbox, checkbox$1, base$E, base$R, base$D];
+    context.features = [base$18, base$17, base$U, base$L, base$N, base$R, boolean, base$T, base$1b, base$O, base$B, base$13, base$C, base$K, base$A, base$_, base$I, base$Y, base$X, base$19, base$Z, base$W, checkbox, checkbox$1, base$E, base$S, base$z];
     context.slots = ['default', 'label', 'info', 'description', 'before', 'between', 'after'];
-    return _objectSpread2$1({}, base$L(props, context));
+    return _objectSpread2$1({}, base$M(props, context));
   }
 };
 
-var base$A = function base(props, context, dependencies) {
+var base$x = function base(props, context, dependencies) {
   // ============ DEPENDENCIES ============
 
   var value = dependencies.value;
@@ -27347,7 +27908,7 @@ var base$A = function base(props, context, dependencies) {
   };
 };
 
-var base$z = function base(props, context, dependencies) {
+var base$w = function base(props, context, dependencies) {
   var {
     items,
     valueProp,
@@ -27661,7 +28222,7 @@ var select$2 = function select(props, context, dependencies) {
     watchers,
     cleanupValue,
     resolveUrlAndSetWatchers
-  } = base$z(props, context, dependencies);
+  } = base$w(props, context, dependencies);
 
   // ================ HOOKS ===============
 
@@ -27684,7 +28245,7 @@ var checkboxgroup = function checkboxgroup(props, context, dependencies) {
     watchers,
     cleanupValue,
     resolveUrlAndSetWatchers
-  } = base$z(props, context, dependencies);
+  } = base$w(props, context, dependencies);
 
   // ============ DEPENDENCIES ============
 
@@ -27913,13 +28474,13 @@ var CheckboxgroupElement = {
     }
   },
   setup(props, context) {
-    context.features = [base$17, base$16, base$T, base$M, array$1, base$S, base$1a, checkboxgroup$1, checkboxgroup$3, base$I, base$F, checkboxgroup, base$12, base$H, base$A, base$J, base$Z, base$G, base$Y, base$X, base$W, base$18, base$V, checkboxgroup$2, base$E, base$R];
+    context.features = [base$18, base$17, base$U, base$N, array$1, base$T, base$1b, checkboxgroup$1, checkboxgroup$3, base$B, base$K, checkboxgroup, base$13, base$C, base$x, base$A, base$_, base$I, base$Z, base$Y, base$X, base$19, base$W, checkboxgroup$2, base$E, base$S];
     context.slots = ['checkbox', 'label', 'info', 'description', 'before', 'between', 'after'];
-    return _objectSpread2$1({}, base$L(props, context));
+    return _objectSpread2$1({}, base$M(props, context));
   }
 };
 
-var base$y = function base(props, context, dependencies) {
+var base$v = function base(props, context, dependencies) {
   var {
     addons,
     slots
@@ -27946,59 +28507,7 @@ var base$y = function base(props, context, dependencies) {
   };
 };
 
-var base$x = function base(props, context, dependencies) {
-  // ============ DEPENDENCIES ============
-
-  var value = dependencies.value;
-  var nullValue = dependencies.nullValue;
-
-  // ============== COMPUTED ==============
-
-  /**
-   * Whether the element has no value filled in.
-   *
-   * @type {boolean}
-   */
-  var empty = computed(() => {
-    return isEqual_1(value.value, nullValue.value) || [undefined, null, ''].indexOf(value.value) !== -1;
-  });
-  return {
-    empty
-  };
-};
-var multilingual$1 = function multilingual(props, context, dependencies) {
-  // ============ DEPENDENCIES ============
-
-  var value = dependencies.value;
-  var nullValue = dependencies.nullValue;
-  var language = dependencies.language;
-
-  // ============== COMPUTED ==============
-
-  var empty = computed(() => {
-    return value.value[language.value] == nullValue.value[language.value] || value.value[language.value] === '';
-  });
-  return {
-    empty
-  };
-};
-var array = function array(props, context, dependencies) {
-  // ============ DEPENDENCIES ============
-
-  var value = dependencies.value;
-  var nullValue = dependencies.nullValue;
-
-  // ============== COMPUTED ==============
-
-  var empty = computed(() => {
-    return isEqual_1(value.value, nullValue.value) || [undefined, null, ''].indexOf(value.value) !== -1 || value.value.length == 0;
-  });
-  return {
-    empty
-  };
-};
-
-var base$w = function base(props, context, dependencies) {
+var base$u = function base(props, context, dependencies) {
   var {
     displayFormat,
     valueFormat,
@@ -28148,7 +28657,7 @@ var dates$2 = function dates(props, context, dependencies) {
   };
 };
 
-var base$v = function base(props, context, dependencies) {
+var base$t = function base(props, context, dependencies) {
   // ============ DEPENDENCIES ============
 
   var value = dependencies.value;
@@ -28170,32 +28679,7 @@ var base$v = function base(props, context, dependencies) {
   };
 };
 
-var base$u = function base(props, context, dependencies) {
-  var {
-    floating,
-    placeholder
-  } = toRefs(props);
-
-  // ============ DEPENDENCIES ============
-
-  var form$ = dependencies.form$;
-
-  // ============== COMPUTED ==============
-
-  /**
-   * Whether the element floating label.
-   *
-   * @type {boolean}
-   */
-  var hasFloating = computed(() => {
-    return !!(!!floating.value || placeholder.value && form$.value.options.floatPlaceholders) && floating.value !== false;
-  });
-  return {
-    hasFloating
-  };
-};
-
-var base$t = function base(props, context, dependencies) {
+var base$s = function base(props, context, dependencies) {
   var {
     placeholder
   } = toRefs(props);
@@ -28884,7 +29368,7 @@ var toggle = function toggle(props, context, dependencies) {
   };
 };
 
-var base$s = function base(props, context, dependencies) {
+var base$r = function base(props, context, dependencies) {
   // ============ DEPENDENCIES ============
 
   var input = dependencies.input;
@@ -29093,9 +29577,9 @@ var DateElement = {
     }
   },
   setup(props, context) {
-    context.features = [base$17, base$16, base$T, base$K, base$M, base$Q, base$C, base$S, base$u, base$1a, base$N, base$y, base$w, date$1, base$I, base$12, base$H, date$2, date$3, base$x, base$Z, base$G, base$X, base$W, base$18, base$Y, base$V, base$v, date, base$P, base$E, base$R, base$t];
+    context.features = [base$18, base$17, base$U, base$L, base$N, base$R, base$J, base$T, base$F, base$1b, base$O, base$v, base$u, date$1, base$B, base$13, base$C, date$3, base$H, date$2, base$_, base$I, base$Y, base$X, base$19, base$Z, base$W, base$t, date, base$Q, base$E, base$S, base$s];
     context.slots = ['label', 'info', 'description', 'before', 'between', 'after', 'addon-before', 'addon-after'];
-    return _objectSpread2$1({}, base$L(props, context));
+    return _objectSpread2$1({}, base$M(props, context));
   }
 };
 
@@ -29190,13 +29674,13 @@ var DatesElement = {
     }
   },
   setup(props, context) {
-    context.features = [base$17, base$16, base$T, base$K, base$M, base$Q, array$1, base$S, base$u, base$1a, dates$5, base$y, dates$2, dates$1, base$I, dates$3, base$12, base$H, dates$4, base$x, base$Z, base$G, base$X, base$W, base$18, base$Y, base$V, base$v, dates, base$P, base$E, base$R, base$t];
+    context.features = [base$18, base$17, base$U, base$L, base$N, base$R, array$1, base$T, base$F, base$1b, dates$5, base$v, dates$2, dates$1, base$B, dates$4, base$13, base$C, base$H, dates$3, base$_, base$I, base$Y, base$X, base$19, base$Z, base$W, base$t, dates, base$Q, base$E, base$S, base$s];
     context.slots = ['label', 'info', 'description', 'before', 'between', 'after', 'addon-before', 'addon-after'];
-    return _objectSpread2$1({}, base$L(props, context));
+    return _objectSpread2$1({}, base$M(props, context));
   }
 };
 
-var base$r = function base(props, context, dependencies) {
+var base$q = function base(props, context, dependencies) {
   var {
     embed,
     auto,
@@ -29718,7 +30202,7 @@ var base$r = function base(props, context, dependencies) {
   };
 };
 
-var base$q = function base(props, context, dependencies) {
+var base$p = function base(props, context, dependencies) {
   // ============ DEPENDENCIES ============
 
   var form$ = dependencies.form$;
@@ -29788,7 +30272,7 @@ function checkFileType(file, accept) {
   });
 }
 
-var base$p = function base(props, context, dependencies) {
+var base$o = function base(props, context, dependencies) {
   var {
     accept,
     auto
@@ -29847,7 +30331,7 @@ var multifile$3 = function multifile(props, context, dependencies) {
   } = toRefs(props);
   var {
     canDrop
-  } = base$p(props, context, dependencies);
+  } = base$o(props, context, dependencies);
 
   // ============ DEPENDENCIES =============
 
@@ -29877,7 +30361,7 @@ var multifile$3 = function multifile(props, context, dependencies) {
   };
 };
 
-var base$o = function base(props, context, dependencies) {
+var base$n = function base(props, context, dependencies) {
   // ================ DATA ================
 
   /**
@@ -29891,7 +30375,7 @@ var base$o = function base(props, context, dependencies) {
   };
 };
 
-var base$n = function base(props, context, dependencies) {
+var base$m = function base(props, context, dependencies) {
   // ============ DEPENDENCIES ============
 
   var fire = dependencies.fire;
@@ -29999,19 +30483,19 @@ var FileElement = {
     },
     uploadTempEndpoint: {
       required: false,
-      type: [Object, String, Function, Boolean],
+      type: [Object, String, Function, Boolean, Promise],
       default: undefined,
       '@default': 'config.endpoints.uploadTempFile'
     },
     removeTempEndpoint: {
       required: false,
-      type: [Object, String, Function, Boolean],
+      type: [Object, String, Function, Boolean, Promise],
       default: undefined,
       '@default': 'config.endpoints.removeTempFile'
     },
     removeEndpoint: {
       required: false,
-      type: [Object, String, Function, Boolean],
+      type: [Object, String, Function, Boolean, Promise],
       default: undefined,
       '@default': 'config.endpoints.removeFile'
     },
@@ -30033,13 +30517,13 @@ var FileElement = {
     }
   },
   setup(props, context) {
-    context.features = [base$17, base$16, base$T, base$K, base$M, base$Q, base$C, base$o, base$S, base$1a, file$3, base$q, base$I, base$12, base$F, file$1, file$2, base$n, base$r, base$p, base$x, base$Z, file, base$X, base$W, base$18, base$Y, base$V, file$4, base$E, base$R];
+    context.features = [base$18, base$17, base$U, base$L, base$N, base$R, base$J, base$n, base$T, base$1b, file$3, base$p, base$B, base$13, base$K, file$1, base$H, file, base$m, base$q, base$o, base$_, file$2, base$Y, base$X, base$19, base$Z, base$W, file$4, base$E, base$S];
     context.slots = ['label', 'info', 'description', 'before', 'between', 'after'];
-    return _objectSpread2$1({}, base$L(props, context));
+    return _objectSpread2$1({}, base$M(props, context));
   }
 };
 
-var base$m = function base(props, context, dependencies) {
+var base$l = function base(props, context, dependencies) {
   // ============ DEPENDENCIES ============
 
   var model = dependencies.model;
@@ -30090,13 +30574,13 @@ var GenericElement = {
     }
   },
   setup(props, context) {
-    context.features = [base$17, base$16, base$T, base$K, base$M, base$Q, generic, base$S, base$1a, base$N, text$1, base$12, text, base$F, base$J, base$x, base$Z, base$G, base$X, base$W, base$18, base$Y, base$V, base$m, base$s, base$P, base$E, base$R];
+    context.features = [base$18, base$17, base$U, base$L, base$N, base$R, generic, base$T, base$1b, base$O, text$1, base$13, text$2, base$K, base$H, base$A, base$_, base$I, base$Y, base$X, base$19, base$Z, base$W, base$l, base$r, base$Q, base$E, base$S];
     context.slots = ['label', 'info', 'description', 'before', 'between', 'after'];
-    return _objectSpread2$1({}, base$L(props, context));
+    return _objectSpread2$1({}, base$M(props, context));
   }
 };
 
-var base$l = function base(props, context, dependencies) {
+var base$k = function base(props, context, dependencies) {
   // ================ DATA ================
 
   /**
@@ -30139,7 +30623,7 @@ var object = function object(props, context, dependencies) {
   var {
     children$Array,
     children$
-  } = base$l();
+  } = base$k();
 
   // ============== COMPUTED ==============
 
@@ -30204,9 +30688,9 @@ var GroupElement = {
     }
   },
   setup(props, context) {
-    context.features = [base$17, base$16, base$T, group$6, base$S, object$1, base$1a, group$7, group, group$4, base$Z, group$3, group$2, base$10, group$8, base$X, base$W, base$18, base$Y, base$V, group$5, base$P, group$1, base$R];
+    context.features = [base$18, base$17, base$U, group$6, base$T, object$5, base$1b, group$7, group, group$2, base$_, group$3, group$5, base$11, group$8, base$Y, base$X, base$19, base$Z, base$W, group$1, base$Q, group$4, base$S];
     context.slots = ['label', 'info', 'description', 'before', 'between', 'after'];
-    return _objectSpread2$1({}, base$L(props, context));
+    return _objectSpread2$1({}, base$M(props, context));
   }
 };
 
@@ -30238,8 +30722,8 @@ var HiddenElement = {
     }
   },
   setup(props, context) {
-    context.features = [base$17, base$16, base$K, base$M, base$C, base$G, base$S, base$W, base$1a, base$N, base$I, base$12, base$H, base$F, base$J, base$x, base$E, base$R];
-    return _objectSpread2$1({}, base$L(props, context));
+    context.features = [base$18, base$17, base$L, base$N, base$J, base$I, base$T, base$X, base$1b, base$O, base$B, base$13, base$C, base$K, base$H, base$A, base$E, base$S];
+    return _objectSpread2$1({}, base$M(props, context));
   }
 };
 
@@ -32892,7 +33376,7 @@ _extends(Remove, {
 Sortable.mount(new AutoScrollPlugin());
 Sortable.mount(Remove, Revert);
 
-var base$k = function base(props, context, dependencies, options) {
+var base$j = function base(props, context, dependencies, options) {
   var {
     sort
   } = toRefs(props);
@@ -33040,7 +33524,7 @@ var base$k = function base(props, context, dependencies, options) {
   };
 };
 
-var base$j = function base(props, context, dependencies) {
+var base$i = function base(props, context, dependencies) {
   // ================ DATA ================
 
   /**
@@ -33054,7 +33538,7 @@ var base$j = function base(props, context, dependencies) {
   };
 };
 
-var base$i = function base(props, context, dependencies, options) {
+var base$h = function base(props, context, dependencies, options) {
   var {
     storeOrder,
     orderBy,
@@ -33123,7 +33607,7 @@ var multifile$2 = function multifile(props, context, dependencies, options) {
   } = toRefs(props);
   var {
     refreshOrderStore
-  } = base$i(props, context, dependencies);
+  } = base$h(props, context, dependencies);
 
   // =============== METHODS ==============
 
@@ -33141,7 +33625,7 @@ var multifile$2 = function multifile(props, context, dependencies, options) {
   };
 };
 
-var base$h = function base(props, context, dependencies) {
+var base$g = function base(props, context, dependencies) {
   var {
     object,
     element
@@ -33272,7 +33756,7 @@ var multifile$1 = function multifile(props, context, dependencies) {
   };
 };
 
-var base$g = function base(props, context, dependencies) {
+var base$f = function base(props, context, dependencies) {
   var {
     controls,
     sort,
@@ -33484,13 +33968,13 @@ var ListElement = {
   },
   setup(props, context) {
     //@todo:adam useValue and useDefault should be before useOrder
-    context.features = [base$17, base$16, base$T, base$M, base$S, base$Q, array$1, base$h, base$l, base$j, base$i, base$1a, list$4, base$I, base$Z, base$G, base$10, list$5, list$2, list$1, base$g, array, base$Y, base$X, base$W, base$18, base$V, list$3, base$k, base$P, list, base$R];
+    context.features = [base$18, base$17, base$U, base$N, base$T, base$R, array$1, base$g, base$k, base$i, base$h, base$1b, list$4, base$B, base$_, base$I, base$11, list$5, list$1, list$3, base$f, array, base$Z, base$Y, base$X, base$19, base$W, list, base$j, base$Q, list$2, base$S];
     context.slots = ['label', 'info', 'description', 'before', 'between', 'after'];
-    return _objectSpread2$1({}, base$L(props, context));
+    return _objectSpread2$1({}, base$M(props, context));
   }
 };
 
-var base$f = function base(props, context, dependencies) {
+var base$e = function base(props, context, dependencies) {
   var options_ = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
   var {
     provider,
@@ -33728,13 +34212,13 @@ var LocationElement = {
     }
   },
   setup(props, context) {
-    context.features = [base$17, base$16, base$T, base$K, base$M, base$Q, location, base$S, base$u, base$1a, base$N, base$y, base$I, base$F, location$2, base$12, base$J, base$f, base$x, base$Z, base$G, base$X, base$W, base$18, base$Y, base$V, base$s, base$P, location$1, base$R, base$t];
+    context.features = [base$18, base$17, base$U, base$L, base$N, base$R, location$2, base$T, base$F, base$1b, base$O, base$v, base$B, base$K, location, base$13, base$H, base$A, base$e, base$_, base$I, base$Y, base$X, base$19, base$Z, base$W, base$r, base$Q, location$1, base$S, base$s];
     context.slots = ['label', 'info', 'description', 'before', 'between', 'after', 'addon-before', 'addon-after'];
     return _objectSpread2$1({}, location$3(props, context));
   }
 };
 
-var base$e = function base(props, context, dependencies) {
+var base$d = function base(props, context, dependencies) {
   // ============ DEPENDENCIES ============
 
   var isDisabled = dependencies.isDisabled;
@@ -33946,19 +34430,19 @@ var MultifileElement = {
     },
     uploadTempEndpoint: {
       required: false,
-      type: [Object, String, Function, Boolean],
+      type: [Object, String, Function, Boolean, Promise],
       default: undefined,
       '@default': 'config.endpoints.uploadTempFile'
     },
     removeTempEndpoint: {
       required: false,
-      type: [Object, String, Function, Boolean],
+      type: [Object, String, Function, Boolean, Promise],
       default: undefined,
       '@default': 'config.endpoints.removeTempFile'
     },
     removeEndpoint: {
       required: false,
-      type: [Object, String, Function, Boolean],
+      type: [Object, String, Function, Boolean, Promise],
       default: undefined,
       '@default': 'config.endpoints.removeFile'
     },
@@ -33974,13 +34458,13 @@ var MultifileElement = {
     }
   },
   setup(props, context) {
-    context.features = [base$17, base$16, base$T, base$M, base$Q, array$1, base$l, base$K, base$j, multifile$1, base$S, base$1a, list$4, base$I, base$Z, base$G, list$2, base$F, array, base$10, base$12, base$Y, base$X, base$W, base$V, multifile$2, multifile$5, base$e, multifile, multifile$3, base$18, base$k, base$P, multifile$4, base$R];
+    context.features = [base$18, base$17, base$U, base$N, base$R, array$1, base$k, base$L, base$i, multifile$1, base$T, base$1b, list$4, base$B, base$_, base$I, list$1, base$K, array, base$11, base$13, base$Z, base$Y, base$X, base$W, multifile$2, multifile$4, base$d, multifile, multifile$3, base$19, base$j, base$Q, multifile$5, base$S];
     context.slots = ['label', 'info', 'description', 'before', 'between', 'after'];
-    return _objectSpread2$1({}, base$L(props, context));
+    return _objectSpread2$1({}, base$M(props, context));
   }
 };
 
-var base$d = function base(props, context, dependencies) {
+var base$c = function base(props, context, dependencies) {
   // ============ DEPENDENCIES ============
 
   var fire = dependencies.fire;
@@ -34096,7 +34580,7 @@ function spliceMultiple(array, indexes) {
   return array;
 }
 
-var base$c = function base(props, context, dependencies) {
+var base$b = function base(props, context, dependencies) {
   // ============ DEPENDENCIES ============
 
   var value = dependencies.value;
@@ -34160,30 +34644,6 @@ var base$c = function base(props, context, dependencies) {
   return {
     select,
     deselect
-  };
-};
-
-var base$b = function base(props, context, dependencies) {
-  var {
-    loading
-  } = toRefs(props);
-
-  // ============ DEPENDENCIES ============
-
-  var pending = dependencies.pending;
-
-  // ============== COMPUTED ==============
-
-  /**
-   * Whether the element is in loading state.
-   *
-   * @type {boolean}
-   */
-  var isLoading = computed(() => {
-    return pending.value || loading.value;
-  });
-  return {
-    isLoading
   };
 };
 
@@ -34536,9 +34996,9 @@ var MultiselectElement = {
     }
   },
   setup(props, context) {
-    context.features = [base$17, base$16, base$T, base$K, base$M, base$Q, array$1, base$S, base$u, base$1a, multiselect$4, base$I, base$H, base$b, multiselect$1, base$F, multiselect$2, base$12, multiselect$3, array, base$Z, base$G, base$X, base$W, base$18, base$Y, base$V, base$d, base$c, multiselect, base$P, base$E, base$R, base$t];
+    context.features = [base$18, base$17, base$U, base$L, base$N, base$R, array$1, base$T, base$F, base$1b, multiselect$4, base$B, base$C, base$G, multiselect$1, base$K, multiselect$2, base$13, array, multiselect$3, base$_, base$I, base$Y, base$X, base$19, base$Z, base$W, base$c, base$b, multiselect, base$Q, base$E, base$S, base$s];
     context.slots = ['option', 'multiple-label', 'placeholder', 'group-label', 'before-list', 'after-list', 'no-results', 'no-options', 'caret', 'spinner', 'clear', 'label', 'info', 'description', 'before', 'between', 'after'];
-    return _objectSpread2$1({}, base$L(props, context));
+    return _objectSpread2$1({}, base$M(props, context));
   }
 };
 
@@ -34581,9 +35041,9 @@ var ObjectElement = {
     }
   },
   setup(props, context) {
-    context.features = [base$17, base$16, base$T, base$M, base$S, object$1, base$1a, object$7, object$5, object$3, base$Z, object, base$10, object$8, object$4, base$X, base$W, base$18, base$Y, base$V, object$6, base$P, object$2, base$R];
+    context.features = [base$18, base$17, base$U, base$N, base$T, object$5, base$1b, object$7, object$2, object$6, base$_, object, base$11, object$8, object$3, base$Y, base$X, base$19, base$Z, base$W, object$1, base$Q, object$4, base$S];
     context.slots = ['label', 'info', 'description', 'before', 'between', 'after'];
-    return _objectSpread2$1({}, base$L(props, context));
+    return _objectSpread2$1({}, base$M(props, context));
   }
 };
 
@@ -34735,9 +35195,9 @@ var RadioElement = {
     }
   },
   setup(props, context) {
-    context.features = [base$17, base$16, base$T, base$K, base$M, base$Q, base$S, base$1a, base$N, base$C, base$I, base$12, base$H, base$F, base$J, base$Z, base$G, base$X, base$W, base$18, base$Y, base$V, base$a, radio, base$E, base$R, base$D];
+    context.features = [base$18, base$17, base$U, base$L, base$N, base$R, base$T, base$1b, base$O, base$J, base$B, base$13, base$C, base$K, base$A, base$_, base$I, base$Y, base$X, base$19, base$Z, base$W, base$a, radio, base$E, base$S, base$z];
     context.slots = ['default', 'label', 'info', 'description', 'before', 'between', 'after'];
-    return _objectSpread2$1({}, base$L(props, context));
+    return _objectSpread2$1({}, base$M(props, context));
   }
 };
 
@@ -34785,9 +35245,9 @@ var RadiogroupElement = {
     }
   },
   setup(props, context) {
-    context.features = [base$17, base$16, base$T, base$M, base$C, base$S, base$1a, base$N, radiogroup$2, base$I, base$F, radiogroup, base$12, base$H, base$J, base$Z, base$G, base$X, base$W, base$18, base$Y, base$V, radiogroup$1, base$E, base$R];
+    context.features = [base$18, base$17, base$U, base$N, base$J, base$T, base$1b, base$O, radiogroup$2, base$B, base$K, radiogroup, base$13, base$C, base$A, base$_, base$I, base$Y, base$X, base$19, base$Z, base$W, radiogroup$1, base$E, base$S];
     context.slots = ['radio', 'label', 'info', 'description', 'before', 'between', 'after'];
-    return _objectSpread2$1({}, base$L(props, context));
+    return _objectSpread2$1({}, base$M(props, context));
   }
 };
 
@@ -35108,9 +35568,9 @@ var SelectElement = {
     }
   },
   setup(props, context) {
-    context.features = [base$17, base$16, base$T, base$K, base$M, base$Q, base$C, base$S, base$u, base$1a, base$N, base$I, base$H, base$b, select$1, base$F, select$2, base$12, select$3, base$x, base$Z, base$G, base$X, base$W, base$18, base$Y, base$V, base$d, select, base$P, base$E, base$R, base$t];
+    context.features = [base$18, base$17, base$U, base$L, base$N, base$R, base$J, base$T, base$F, base$1b, base$O, base$B, base$C, base$G, select$1, base$K, select$2, base$13, base$H, select$3, base$_, base$I, base$Y, base$X, base$19, base$Z, base$W, base$c, select, base$Q, base$E, base$S, base$s];
     context.slots = ['option', 'single-label', 'placeholder', 'group-label', 'before-list', 'after-list', 'no-results', 'no-options', 'caret', 'spinner', 'clear', 'label', 'info', 'description', 'before', 'between', 'after'];
-    return _objectSpread2$1({}, base$L(props, context));
+    return _objectSpread2$1({}, base$M(props, context));
   }
 };
 
@@ -35232,9 +35692,9 @@ var SliderElement = {
     }
   },
   setup(props, context) {
-    context.features = [base$17, base$16, base$T, base$K, base$M, base$Q, min, base$S, base$1a, base$N, base$I, slider, base$F, slider$1, base$12, base$J, base$Z, base$G, base$X, base$W, base$18, base$Y, base$V, base$v, base$9, base$P, base$E, base$R];
+    context.features = [base$18, base$17, base$U, base$L, base$N, base$R, min, base$T, base$1b, base$O, base$B, slider, base$K, slider$1, base$13, base$A, base$_, base$I, base$Y, base$X, base$19, base$Z, base$W, base$t, base$9, base$Q, base$E, base$S];
     context.slots = ['label', 'info', 'description', 'before', 'between', 'after'];
-    return _objectSpread2$1({}, base$L(props, context));
+    return _objectSpread2$1({}, base$M(props, context));
   }
 };
 
@@ -35409,7 +35869,7 @@ var StaticElement = {
     }
   },
   setup(props, context) {
-    context.features = [base$17, base$16, base$T, static_$1, base$1a, static_$2, base$12, base$Z, base$X, base$W, base$18, base$Y, base$V, base$S, static_$3, base$R, base$8];
+    context.features = [base$18, base$17, base$U, static_$1, base$1b, static_$2, base$13, base$_, base$Y, base$X, base$19, base$Z, base$W, base$T, static_$3, base$S, base$8];
     context.slots = ['default', 'label', 'info', 'description', 'before', 'between', 'after'];
     return _objectSpread2$1({}, static_(props, context));
   }
@@ -35745,9 +36205,9 @@ var TagsElement = {
     }
   },
   setup(props, context) {
-    context.features = [base$17, base$16, base$T, base$K, base$M, base$Q, array$1, base$S, base$u, base$1a, tags$4, base$I, base$H, base$b, tags$1, base$F, tags$2, base$12, tags$3, array, base$Z, base$G, base$X, base$W, base$18, base$Y, base$V, base$d, base$7, base$c, tags, base$P, base$E, base$R, base$t];
+    context.features = [base$18, base$17, base$U, base$L, base$N, base$R, array$1, base$T, base$F, base$1b, tags$4, base$B, base$C, base$G, tags$1, base$K, tags$2, base$13, array, tags$3, base$_, base$I, base$Y, base$X, base$19, base$Z, base$W, base$c, base$7, base$b, tags, base$Q, base$E, base$S, base$s];
     context.slots = ['tag', 'option', 'placeholder', 'group-label', 'before-list', 'after-list', 'no-results', 'no-options', 'caret', 'spinner', 'clear', 'label', 'info', 'description', 'before', 'between', 'after'];
-    return _objectSpread2$1({}, base$L(props, context));
+    return _objectSpread2$1({}, base$M(props, context));
   }
 };
 
@@ -35988,9 +36448,9 @@ var TextareaElement = {
     }
   },
   setup(props, context) {
-    context.features = [base$17, base$16, base$T, base$K, base$M, base$Q, base$C, base$S, base$u, base$1a, base$N, base$y, text$1, base$12, text, base$F, base$J, base$x, base$Z, base$G, base$X, base$W, base$18, base$Y, base$V, base$m, base$6, base$s, base$5, base$P, base$E, base$R, base$4, base$t];
+    context.features = [base$18, base$17, base$U, base$L, base$N, base$R, base$J, base$T, base$F, base$1b, base$O, base$v, text$1, base$13, text$2, base$K, base$H, base$A, base$_, base$I, base$Y, base$X, base$19, base$Z, base$W, base$l, base$6, base$r, base$5, base$Q, base$E, base$S, base$4, base$s];
     context.slots = ['label', 'info', 'description', 'before', 'between', 'after', 'addon-before', 'addon-after'];
-    return _objectSpread2$1({}, base$L(props, context));
+    return _objectSpread2$1({}, base$M(props, context));
   }
 };
 
@@ -36100,9 +36560,9 @@ var TextElement = {
     }
   },
   setup(props, context) {
-    context.features = [base$17, base$16, base$T, base$K, base$M, base$Q, base$C, base$S, base$u, base$1a, base$N, base$y, text$1, base$12, text, base$b, base$F, text$2, base$x, base$Z, base$G, base$X, base$W, base$18, base$Y, base$V, base$m, base$s, base$5, base$P, base$E, base$R, base$4, base$t];
+    context.features = [base$18, base$17, base$U, base$L, base$N, base$R, base$J, base$T, base$F, base$1b, base$O, base$v, text$1, base$13, text$2, base$G, base$K, base$H, text, base$_, base$I, base$Y, base$X, base$19, base$Z, base$W, base$l, base$r, base$5, base$Q, base$E, base$S, base$4, base$s];
     context.slots = ['label', 'info', 'description', 'before', 'between', 'after', 'addon-before', 'addon-after'];
-    return _objectSpread2$1({}, base$L(props, context));
+    return _objectSpread2$1({}, base$M(props, context));
   }
 };
 
@@ -36166,9 +36626,9 @@ var ToggleElement = {
     }
   },
   setup(props, context) {
-    context.features = [base$17, base$16, base$T, base$K, base$M, base$Q, boolean, base$S, base$1a, base$N, toggle, base$I, base$12, base$H, base$F, base$J, base$Z, base$G, base$X, base$W, base$18, base$Y, base$V, base$v, base$B, toggle$1, base$E, base$R, base$D];
+    context.features = [base$18, base$17, base$U, base$L, base$N, base$R, boolean, base$T, base$1b, base$O, toggle, base$B, base$13, base$C, base$K, base$A, base$_, base$I, base$Y, base$X, base$19, base$Z, base$W, base$t, base$y, toggle$1, base$E, base$S, base$z];
     context.slots = ['default', 'label', 'info', 'description', 'before', 'between', 'after'];
-    return _objectSpread2$1({}, base$L(props, context));
+    return _objectSpread2$1({}, base$M(props, context));
   }
 };
 
@@ -36323,7 +36783,7 @@ var EditorElement = {
     },
     endpoint: {
       required: false,
-      type: [String, Function],
+      type: [String, Function, Promise],
       default: null,
       '@default': 'config.endpoints.attachment.url'
     },
@@ -36346,9 +36806,9 @@ var EditorElement = {
     }
   },
   setup(props, context) {
-    context.features = [base$17, base$16, base$T, base$K, base$M, base$Q, base$C, base$S, base$1a, base$N, text$1, base$12, text, base$F, editor, base$x, base$Z, base$G, base$X, base$W, base$3, base$18, base$Y, base$V, base$m, base$2, base$n, base$5, base$P, base$E, editor$1, base$t];
+    context.features = [base$18, base$17, base$U, base$L, base$N, base$R, base$J, base$T, base$1b, base$O, text$1, base$13, text$2, base$K, base$H, editor, base$_, base$I, base$Y, base$X, base$3, base$19, base$Z, base$W, base$l, base$2, base$m, base$5, base$Q, base$E, editor$1, base$s];
     context.slots = ['label', 'info', 'description', 'before', 'between', 'after'];
-    return _objectSpread2$1({}, base$L(props, context));
+    return _objectSpread2$1({}, base$M(props, context));
   }
 };
 
@@ -36478,7 +36938,7 @@ var TTextareaElement = {
     }
   },
   setup(props, context) {
-    context.features = [base$17, base$16, base$T, base$K, base$M, base$Q, base$S, base$u, base$1a, base$N, base$y, base$1, multilingual$2, multilingual$6, multilingual$4, base$12, multilingual$5, multilingual$7, multilingual$1, base$Z, base$G, base$X, base$W, base$18, base$Y, base$V, base$m, multilingual, base$s, base$5, base$P, multilingual$3, base$R, base$4, base$t];
+    context.features = [base$18, base$17, base$U, base$L, base$N, base$R, base$T, base$F, base$1b, base$O, base$v, base$1, multilingual$6, multilingual$2, multilingual$7, base$13, multilingual$3, multilingual$5, multilingual$1, base$_, base$I, base$Y, base$X, base$19, base$Z, base$W, base$l, multilingual, base$r, base$5, base$Q, multilingual$4, base$S, base$4, base$s];
     context.slots = ['label', 'info', 'description', 'before', 'between', 'after', 'addon-before', 'addon-after'];
     return _objectSpread2$1({}, multilingual$8(props, context));
   }
@@ -36585,7 +37045,7 @@ var TTextElement = {
     }
   },
   setup(props, context) {
-    context.features = [base$17, base$16, base$T, base$K, base$M, base$Q, base$S, base$u, base$1a, base$N, base$y, base$1, multilingual$2, multilingual$6, multilingual$4, base$12, multilingual$5, base$b, multilingual$7, multilingual$1, base$Z, base$G, base$X, base$W, base$18, base$Y, base$V, base$m, base$s, base$5, base$P, multilingual$3, base$R, base$4, base$t];
+    context.features = [base$18, base$17, base$U, base$L, base$N, base$R, base$T, base$F, base$1b, base$O, base$v, base$1, multilingual$6, multilingual$2, multilingual$7, base$13, multilingual$3, base$G, multilingual$5, multilingual$1, base$_, base$I, base$Y, base$X, base$19, base$Z, base$W, base$l, base$r, base$5, base$Q, multilingual$4, base$S, base$4, base$s];
     context.slots = ['label', 'info', 'description', 'before', 'between', 'after', 'addon-before', 'addon-after'];
     return _objectSpread2$1({}, multilingual$8(props, context));
   }
@@ -36653,7 +37113,7 @@ var TEditorElement = {
     },
     endpoint: {
       required: false,
-      type: [String, Function],
+      type: [String, Function, Promise],
       default: null,
       '@default': 'config.endpoints.attachment.url'
     },
@@ -36676,7 +37136,7 @@ var TEditorElement = {
     }
   },
   setup(props, context) {
-    context.features = [base$17, base$16, base$T, base$K, base$M, base$Q, base$S, base$1a, base$N, base$1, multilingual$2, multilingual$6, multilingual$4, base$12, multilingual$5, teditor, multilingual$1, base$Z, base$G, base$X, base$W, base$3, base$18, base$Y, base$V, base$m, base$2, base$n, base$5, base$P, multilingual$3, base$R, base$t];
+    context.features = [base$18, base$17, base$U, base$L, base$N, base$R, base$T, base$1b, base$O, base$1, multilingual$6, multilingual$2, multilingual$7, base$13, multilingual$3, multilingual$5, teditor, base$_, base$I, base$Y, base$X, base$3, base$19, base$Z, base$W, base$l, base$2, base$m, base$5, base$Q, multilingual$4, base$S, base$s];
     context.slots = ['label', 'info', 'description', 'before', 'between', 'after'];
     return _objectSpread2$1({}, multilingual$8(props, context));
   }
@@ -36722,7 +37182,7 @@ var CheckboxgroupCheckbox = {
       Templates,
       template,
       theme
-    } = base$_(props, context);
+    } = base$$(props, context);
 
     // ============== COMPUTED ==============
 
@@ -37031,7 +37491,7 @@ var FilePreview = {
       Templates,
       template,
       theme
-    } = base$_(props, context);
+    } = base$$(props, context);
     var {
       visible,
       hasLink,
@@ -37163,7 +37623,7 @@ var RadiogroupRadio = {
       Templates,
       template,
       theme
-    } = base$_(props, context);
+    } = base$$(props, context);
 
     // ============== COMPUTED ==============
 
@@ -37275,6 +37735,7 @@ var index = {
   DatepickerWrapper,
   EditorWrapper,
   ButtonElement,
+  CaptchaElement,
   CheckboxElement,
   CheckboxgroupElement,
   DateElement,
@@ -37336,6 +37797,7 @@ var components = /*#__PURE__*/Object.freeze({
   DatepickerWrapper: DatepickerWrapper,
   EditorWrapper: EditorWrapper,
   ButtonElement: ButtonElement,
+  CaptchaElement: CaptchaElement,
   CheckboxElement: CheckboxElement,
   CheckboxgroupElement: CheckboxgroupElement,
   DateElement: DateElement,
@@ -37416,4 +37878,4 @@ installer(undefined, {
 
 var vueform = installer(undefined, _objectSpread2$1({}, components), _objectSpread2$1({}, rules));
 
-export { ButtonElement, CheckboxElement, CheckboxgroupCheckbox, CheckboxgroupElement, DateElement, DatepickerWrapper, DatesElement, DragAndDrop, EditorElement, EditorWrapper, ElementAddon, ElementDescription, ElementError, ElementInfo, ElementLabel, ElementLabelFloating, ElementLayout, ElementLayoutInline, ElementLoader, ElementMessage, ElementText, FileElement, FilePreview, FormElements, FormErrors, FormLanguage, FormLanguages, FormMessages, FormStep, FormSteps, FormStepsControl, FormStepsControls, FormTab, FormTabs, GenericElement, GroupElement, HiddenElement, ListElement, LocationElement, MultifileElement, MultiselectElement, ObjectElement, RadioElement, RadiogroupElement, RadiogroupRadio, SelectElement, SliderElement, StaticElement, TEditorElement, TTextElement, TTextareaElement, TagsElement, TextElement, TextareaElement, ToggleElement, Validator, VueformComponent as Vueform, VueformElement, accepted, active_url, after, after_or_equal, alpha, alpha_dash, alpha_num, array$2 as array, before, before_or_equal, between, boolean$1 as boolean, confirmed, date$4 as date, date_equals, date_format, vueform as default, defineConfig, defineElement, different, digits, digits_between, dimensions, distinct, element, email, exists, file$5 as file, filled, gt, gte, image, in_, in_array, installer, integer, ip, ipv4, ipv6, json, lt, lte, max, mimes, mimetypes, min$1 as min, not_in, not_regex, nullable, numeric, regex, required, same, size, string, timezone, unique, url, base$18 as useClasses, base$19 as useVueform, uuid, vueform };
+export { ButtonElement, CaptchaElement, CheckboxElement, CheckboxgroupCheckbox, CheckboxgroupElement, DateElement, DatepickerWrapper, DatesElement, DragAndDrop, EditorElement, EditorWrapper, ElementAddon, ElementDescription, ElementError, ElementInfo, ElementLabel, ElementLabelFloating, ElementLayout, ElementLayoutInline, ElementLoader, ElementMessage, ElementText, FileElement, FilePreview, FormElements, FormErrors, FormLanguage, FormLanguages, FormMessages, FormStep, FormSteps, FormStepsControl, FormStepsControls, FormTab, FormTabs, GenericElement, GroupElement, HiddenElement, ListElement, LocationElement, MultifileElement, MultiselectElement, ObjectElement, RadioElement, RadiogroupElement, RadiogroupRadio, SelectElement, SliderElement, StaticElement, TEditorElement, TTextElement, TTextareaElement, TagsElement, TextElement, TextareaElement, ToggleElement, Validator, VueformComponent as Vueform, VueformElement, accepted, active_url, after, after_or_equal, alpha, alpha_dash, alpha_num, array$2 as array, before, before_or_equal, between, boolean$1 as boolean, captcha$2 as captcha, confirmed, date$4 as date, date_equals, date_format, vueform as default, defineConfig, defineElement, different, digits, digits_between, dimensions, distinct, element, email, exists, file$5 as file, filled, gt, gte, image, in_, in_array, installer, integer, ip, ipv4, ipv6, json, lt, lte, max, mimes, mimetypes, min$1 as min, not_in, not_regex, nullable, numeric, regex, required, same, size, string, timezone, unique, url, base$19 as useClasses, base$1a as useVueform, uuid, vueform };

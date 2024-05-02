@@ -2,6 +2,7 @@ module.exports = {
   default: 'input field',
   AddressElement: 'address group',
   ButtonElement: 'button',
+  CaptchaElement: 'captcha',
   CheckboxElement: 'checkbox',
   CheckboxgroupElement: 'checkbox group',
   FileElement: 'file',

@@ -161,6 +161,7 @@ export default {
       "array": ":attribute doit avoir entre :min et :max éléments."
     },
     "boolean": "Le champ :attribute doit être vrai ou faux.",
+    "captcha": "Please verify that you are not a robot.",
     "confirmed": "La confirmation de :attribute ne correspond pas.",
     "date": ":attribute n'est pas une date valide.",
     "date_format": ":attribute ne correspond pas au format :format.",

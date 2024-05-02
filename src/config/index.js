@@ -1,3 +1,5 @@
+import Recaptcha2Provider from './../providers/captcha/Recaptcha2Provider'
+
 const config = {
   /**
    * General
@@ -103,14 +105,27 @@ const config = {
   axios: {},
 
   /**
-   * Location
+   * Services
    */
   locationProvider: 'google',
+  providers: {
+    captcha: {
+      recaptcha2: Recaptcha2Provider,
+    }
+  },
+  useProviders: {
+    captcha: 'recaptcha2'
+  },
+  providerOptions: {
+    recaptcha2: {
+      sitekey: '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI',
+    }
+  },
   services: {
     algolia: {
       app_id: '',
       api_key: '',
-    }
+    },
   },
 }
 
