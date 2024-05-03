@@ -22,6 +22,7 @@ import ElementMessage from './ElementMessage'
 import ElementText from './ElementText'
 import DragAndDrop from './DragAndDrop'
 import ElementAddon from './ElementAddon'
+import ElementAddonOptions from './ElementAddonOptions'
 
 import DatepickerWrapper from './wrappers/DatepickerWrapper'
 import EditorWrapper from './wrappers/EditorWrapper'
@@ -41,6 +42,7 @@ import LocationElement from './elements/LocationElement'
 import MultifileElement from './elements/MultifileElement'
 import MultiselectElement from './elements/MultiselectElement'
 import ObjectElement from './elements/ObjectElement'
+import PhoneElement from './elements/PhoneElement'
 import RadioElement from './elements/RadioElement'
 import RadiogroupElement from './elements/RadiogroupElement'
 import SelectElement from './elements/SelectElement'
@@ -84,6 +86,7 @@ export default {
   ElementText,
   DragAndDrop,
   ElementAddon,
+  ElementAddonOptions,
   DatepickerWrapper,
   EditorWrapper,
   ButtonElement,
@@ -101,6 +104,7 @@ export default {
   MultifileElement,
   MultiselectElement,
   ObjectElement,
+  PhoneElement,
   RadioElement,
   RadiogroupElement,
   SelectElement,
@@ -144,6 +148,7 @@ export {
   ElementText,
   DragAndDrop,
   ElementAddon,
+  ElementAddonOptions,
   DatepickerWrapper,
   EditorWrapper,
   ButtonElement,
@@ -161,6 +166,7 @@ export {
   MultifileElement,
   MultiselectElement,
   ObjectElement,
+  PhoneElement,
   RadioElement,
   RadiogroupElement,
   SelectElement,

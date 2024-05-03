@@ -22,4 +22,40 @@ const base = function(props, context, dependencies)
   }
 }
 
+const phone = function(props, context, dependencies)
+{
+  // ============ DEPENDENCIES ============
+  
+  const {
+    model,
+    input,
+  } = dependencies
+  
+  // ============== COMPUTED ==============
+  
+  const handleInput = (e) => {
+    let startsWithPlus = e.target.value.startsWith('+')
+    let value = e.target.value.substr(startsWithPlus ? 1 : 0)
+    let numbers = value.match(/\d+/g) || []
+    
+    if (numbers.length || startsWithPlus) {
+      value = '+'
+    }
+
+    value += numbers.join('')
+
+    input.value.value = value
+
+    model.value = value
+  }
+  
+  return {
+    handleInput,
+  }
+}
+
 export default base
+
+export {
+  phone,
+}

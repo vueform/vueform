@@ -26,6 +26,7 @@ import ElementError from './../blank/templates/ElementError.vue'
 import ElementMessage from './../blank/templates/ElementMessage.vue'
 import ElementText from './../blank/templates/ElementText.vue'
 import ElementAddon from './../blank/templates/ElementAddon.vue'
+import ElementAddonOptions from './../blank/templates/ElementAddonOptions.vue'
 
 import ButtonElement from './../blank/templates/elements/ButtonElement.vue'
 import CaptchaElement from './../blank/templates/elements/CaptchaElement.vue'
@@ -43,6 +44,7 @@ import LocationElement from './templates/elements/LocationElement.vue'
 import MultifileElement from './../blank/templates/elements/MultifileElement.vue'
 import MultiselectElement from './../blank/templates/elements/MultiselectElement.vue'
 import ObjectElement from './../blank/templates/elements/ObjectElement.vue'
+import PhoneElement from './../blank/templates/elements/PhoneElement.vue'
 import RadioElement from './../blank/templates/elements/RadioElement.vue'
 import RadiogroupElement from './../blank/templates/elements/RadiogroupElement.vue'
 import RadiogroupElement_blocks from './../blank/templates/elements/RadiogroupElement.vue'
@@ -101,6 +103,7 @@ const theme = {
     ElementMessage,
     ElementText,
     ElementAddon,
+    ElementAddonOptions,
 
     ButtonElement,
     CaptchaElement,
@@ -118,6 +121,7 @@ const theme = {
     MultifileElement,
     MultiselectElement,
     ObjectElement,
+    PhoneElement,
     RadioElement,
     RadiogroupElement,
     RadiogroupElement_tabs,
@@ -178,6 +182,7 @@ export {
   ElementMessage,
   ElementText,
   ElementAddon,
+  ElementAddonOptions,
 
   ButtonElement,
   CaptchaElement,
@@ -195,6 +200,7 @@ export {
   MultifileElement,
   MultiselectElement,
   ObjectElement,
+  PhoneElement,
   RadioElement,
   RadiogroupElement,
   RadiogroupElement_tabs,

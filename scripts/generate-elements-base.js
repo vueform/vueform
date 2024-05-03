@@ -19,6 +19,7 @@ const elements = [
   'multifile',
   'multiselect',
   'object',
+  'phone',
   'radio',
   'radiogroup',
   'select',

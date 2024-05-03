@@ -727,6 +727,20 @@ export default {
       embed ? classes.wrapper_embed : null,
     ]),
   },
+  PhoneElement: {
+    ...text,
+    option: 'flex items-center cursor-pointer py-1.25 px-3 whitespace-nowrap form-color-input',
+    option_active: 'form-bg-selected',
+    optionWrapper: 'flex items-center',
+    flag: 'bg-form-flags bg-[length:24px_4716px] overflow-hidden bg-no-repeat bg-[0px_0px] w-[24px] h-[16px]',
+    country: 'ml-3 rtl:ml-0 rtl:mr-3 font-semibold text-[15px] form-color-input flex',
+    number: 'ml-2 rtl:ml-0 rtl:mr-2 form-color-muted rtl:order-1',
+    placeholder: 'bg-form-flags bg-[length:24px_4716px] overflow-hidden bg-no-repeat bg-[0px_0px] w-[24px] h-[16px] opacity-60',
+    $option: (classes) => (active) => ([
+      classes.option,
+      active ? classes.option_active : null
+    ])
+  },
   RadioElement: {
     ...radio,
     container: '',
@@ -1266,6 +1280,27 @@ export default {
       classes[`container_${type}`],
       classes[`container_${type}_${Size}`],
     ]),
+  },
+  ElementAddonOptions: {
+    container: 'flex items-center form-ml-input rtl:ml-0 rtl:form-mr-input',
+    container_sm: 'form-ml-input-sm',
+    container_md: 'form-ml-input',
+    container_lg: 'form-ml-input-lg',
+    container_disabled: 'cursor-default opacity-50 pointer-events-none',
+    wrapper: 'flex items-center transition-all form-color-input hover:form-bg-selected focus:form-bg-selected outline-none rounded px-1 py-1 cursor-pointer',
+    caret: 'mask-bg mask-form-caret form-bg-icon w-2.5 h-4 ml-2 rtl:ml-0 rtl:mr-2',
+    dropdown: 'form-bg-input form-shadow-dropdown form-border-width-dropdown border-solid form-border-color-input fixed z-1000 overflow-x-scroll max-h-[calc(100vh-2rem)]',
+    option: 'flex items-center form-color-input cursor-pointer py-1.25 px-3 whitespace-nowrap',
+    option_active: 'form-bg-selected',
+    $container: (classes, { Size, el$ }) => ([
+      classes.container,
+      classes[`container_${Size}`],
+      el$.isDisabled || el$.readonly ? classes.container_disabled : null,
+    ]),
+    $option: (classes, { selected, pointed }) => (option) => ([
+      classes.option,
+      selected.index === option.index || pointed.index === option.index ? classes.option_active : null
+    ])
   },
   ElementDescription: {
     container: 'form-color-muted',

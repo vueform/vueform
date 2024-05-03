@@ -44,4 +44,39 @@ const base = function(props, context, dependencies)
   }
 }
 
+const phone = function(props, context, dependencies)
+{
+  const { 
+    fire,
+    model,
+    input,
+  } = dependencies
+  
+  // =============== METHODS ==============
+  
+  const handleKeydown = (e) => {
+    if (['Backspace', 'Delete', 'Tab', 'Escape', 'Enter', 'ArrowLeft', 'ArrowRight'].indexOf(e.key) !== -1 || e.ctrlKey || e.metaKey) {
+      return
+    }
+
+    if (/[0-9]/.test(e.key) && (!model.value || model.value.length < 16)) {
+      return
+    }
+
+    if (e.key === '+' && (!model.value || input.value.selectionStart === 0) && (!model.value || model.value.length < 16)) {
+      return
+    }
+
+    e.preventDefault()
+  }
+  
+  return {
+    handleKeydown,
+  }
+}
+
 export default base
+
+export {
+  phone,
+}
