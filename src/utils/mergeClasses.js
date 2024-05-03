@@ -337,7 +337,9 @@ export default class MergeClasses
     let classes = Array.isArray(target[prop]) ? flattenDeep(target[prop]) : target[prop]
 
     if (target[`$${prop}`]) {
-      return flattenDeep(target[`$${prop}`](mainTarget, this.component$.value))
+      let propVal = target[`$${prop}`](mainTarget, this.component$.value)
+
+      return typeof propVal === 'function' ? propVal : flattenDeep(propVal)
     }
 
     if (isPlainObject(classes)) {
