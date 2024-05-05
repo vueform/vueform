@@ -6,6 +6,8 @@
           :options="addonOptions"
           :placeholder="addonPlaceholder"
           @select="handleOptionSelect"
+          @open="handleOpen"
+          @close="handleClose"
           ref="options$"
         />
         <ElementLabelFloating v-if="hasFloating && !empty" :visible="!empty" />

@@ -5,7 +5,7 @@ import useEvents from './../composables/useEvents'
 
 export default {
   name: 'ElementAddonOptions',
-  emits: ['select'],
+  emits: ['select', 'open', 'close'],
   props: {
     options: {
       type: Array,
@@ -192,6 +192,7 @@ export default {
       window.removeEventListener('resize', handleResize)
       window.removeEventListener('scroll', handleScroll)
       search.value = ''
+      context.emit('close')
     }
 
     /**
@@ -220,6 +221,8 @@ export default {
         window.addEventListener('resize', handleResize)
         window.addEventListener('scroll', handleScroll)
       }, 0)
+
+      context.emit('open')
     }
 
     /**

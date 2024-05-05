@@ -189,36 +189,6 @@ const base = function(props, context, dependencies)
   // =============== METHODS ==============
 
   /**
-   * Handles option select.
-   *
-   * @param {object} option* the option to select (from `addonOptions`).
-   * @returns {void}
-   * @private
-   */
-  const handleOptionSelect = (option) => {
-    if (document.activeElement === input.value) {
-      context.emit('select', option, el$.value)
-      return
-    }
-
-    if (option.n === undefined) {
-      el$.value.clear()
-    } else {
-      let valueMatchesMask = option.m.map(m => `+${m[0]}`).find((m) => {
-        return value.value.startsWith(m)
-      })
-
-      if (!valueMatchesMask) {
-        el$.value.update(option.m.length === 1 ? `+${option.m[0][0]}` : option.n)
-      }
-
-      focus()
-    }
-    
-    context.emit('select', option, el$.value)
-  }
-
-  /**
    * Sets country flag according to current input value.
    * 
    * @returns {void}
@@ -266,6 +236,44 @@ const base = function(props, context, dependencies)
     }
   }
 
+  /**
+   * Handles option select.
+   *
+   * @param {object} option* the option to select (from `addonOptions`).
+   * @returns {void}
+   * @private
+   */
+  const handleOptionSelect = (option) => {
+    if (document.activeElement === input.value) {
+      context.emit('select', option, el$.value)
+      return
+    }
+
+    if (option.n === undefined) {
+      el$.value.clear()
+    } else {
+      let valueMatchesMask = option.m.map(m => `+${m[0]}`).find((m) => {
+        return value.value.startsWith(m)
+      })
+
+      if (!valueMatchesMask) {
+        el$.value.update(option.m.length === 1 ? `+${option.m[0][0]}` : option.n)
+      }
+
+      focus()
+    }
+    
+    context.emit('select', option, el$.value)
+  }
+
+  const handleOpen = () => {
+    context.emit('open', el$)
+  }
+
+  const handleClose = () => {
+    context.emit('close', el$)
+  }
+
   // =============== HOOKS ================
 
   onMounted(() => {
@@ -286,6 +294,8 @@ const base = function(props, context, dependencies)
     maskPluginInstalled,
     inputType,
     mask,
+    handleOpen,
+    handleClose,
   }
 }
 
