@@ -4,6 +4,12 @@ import countryPhones from './../../utils/countryPhones'
 const base = function(props, context, dependencies)
 {
   const {
+    include,
+    exclude,
+    mask: maskProp,
+  } = toRefs(props)
+
+  const {
     update,
     focus,
     value,
@@ -13,73 +19,13 @@ const base = function(props, context, dependencies)
     classes,
   } = dependencies
 
-  const {
-    include,
-    exclude,
-  } = toRefs(props)
-
   // ============== INJECTS ===============
 
 
   // ================ DATA ================
 
   const options$ = ref(null)
-
-  const addonOptions = countryPhones.filter((c) => {
-    if (!include.value.length && !exclude.value.length) {
-      return true
-    }
-
-    if (include.value.length) {
-      return include.value.map(c=>c.toUpperCase()).indexOf(c.code) !== -1
-    }
-
-    return exclude.value.map(c=>c.toUpperCase()).indexOf(c.code) === -1
-  }).map(c => ({
-    ...c,
-    value: c.code,
-    label: form$.value.translations.vueform.countries[c.code],
-    display: markRaw({
-      props: ['option', 'index', 'selected', 'pointed', 'el$'],
-      render() {
-        return h('div', {
-          class: classes.value.option(this.selected || this.pointed)
-        }, [
-          h('div', {
-            class: classes.value.optionWrapper,
-          }, [
-            h('div', {
-              class: classes.value.flag,
-              style: {
-                backgroundPosition: `0 -${(this.option.pos * 20) + 20}px`
-              }
-            }),
-            h('div', {
-              class: classes.value.country,
-            }, [
-              this.option.label,
-              h('span', {
-                class: classes.value.number,
-              }, [
-                this.option.prefix
-              ])
-            ])
-          ])
-        ])
-      },
-    }),
-    valueDisplay: markRaw({
-      props: ['option', 'el$'],
-      render() {
-        return h('div', {
-          class: classes.value.flag,
-          style: {
-            backgroundPosition: `0 -${(this.option.pos * 20) + 20}px`
-          }
-        })
-      }
-    }),
-  })).sort((a, b) => a.label.localeCompare(b.label)).map((c, i) => ({...c, index: i}))
+  const prevent = ref(false)
 
   const addonPlaceholder = markRaw({
     props: ['option', 'el$'],
@@ -87,7 +33,7 @@ const base = function(props, context, dependencies)
       return h('div', {
         class: classes.value.placeholder,
         style: {
-          backgroundPosition: `0 -${(this.option.pos * 20) + 20}px`
+          backgroundPosition: `0 -${(this.option.p * 20) + 20}px`
         }
       })
     }
@@ -95,54 +41,183 @@ const base = function(props, context, dependencies)
 
   // ============== COMPUTED ==============
 
- 
+  const addonOptions = computed(() => {
+    return countryPhones.filter((c) => {
+      if (!include.value.length && !exclude.value.length) {
+        return true
+      }
 
-  // =============== METHODS ==============
+      if (include.value.length) {
+        return include.value.map(c=>c.toUpperCase()).indexOf(c.c) !== -1
+      }
 
-  const handleOptionSelect = (option) => {
-    if (document.activeElement === input.value) {
+      return exclude.value.map(c=>c.toUpperCase()).indexOf(c.c) === -1
+    }).map(c => ({
+      ...c,
+      value: c.c,
+      label: form$.value.translations.vueform.countries[c.c],
+      display: markRaw({
+        props: ['option', 'index', 'selected', 'pointed', 'el$'],
+        render() {
+          return h('div', {
+            class: classes.value.option(this.selected || this.pointed)
+          }, [
+            h('div', {
+              class: classes.value.optionWrapper,
+            }, [
+              h('div', {
+                class: classes.value.flag,
+                style: {
+                  backgroundPosition: `0 -${(this.option.p * 20) + 20}px`
+                }
+              }),
+              h('div', {
+                class: classes.value.country,
+              }, [
+                this.option.label,
+                h('span', {
+                  class: classes.value.number,
+                }, [
+                  this.option.n
+                ])
+              ])
+            ])
+          ])
+        },
+      }),
+      valueDisplay: markRaw({
+        props: ['option', 'el$'],
+        render() {
+          return h('div', {
+            class: classes.value.flag,
+            style: {
+              backgroundPosition: `0 -${(this.option.p * 20) + 20}px`
+            }
+          })
+        }
+      }),
+    })).sort((a, b) => a.label.localeCompare(b.label)).map((c, i) => ({...c, index: i}))
+  })
+
+  const mask = computed(() => {
+    if (!maskPluginInstalled.value) {
       return
     }
 
-    update(option.prefix)
-    focus()
+    let masks = {}
 
+    addonOptions.value.forEach(c => c.m.forEach((m) => {
+      if (masks[m[1]] === undefined) {
+        masks[m[1]] = []
+      }
+
+      masks[m[1]].push(parseInt(m[0]))
+    }))
+
+    let mask = []
+
+    Object.keys(masks).forEach((m) => {
+      mask.push({
+        mask: m,
+        startsWith: masks[m],
+        placeholder: true,
+      })
+    })
+
+    mask.push({
+      mask: '{+}0000000[0000000]',
+      startsWith: '',
+    })
+
+    return {
+      mask,
+    }
+  })
+
+  const masks = computed(() => {
+    return addonOptions.value.reduce((prev, curr) => {
+      return curr.m.reduce((p, c) => {
+        return {
+          ...p,
+          [c[0]]: curr.c,
+        }
+      }, { ...prev })
+    }, {})
+  })
+
+  const maskPluginInstalled = computed(() => {
+    return !!maskProp
+  })
+
+  const inputType = computed(() => {
+    return maskPluginInstalled.value ? 'text' : 'tel'
+  })
+
+  // =============== METHODS ==============
+
+  const handleOptionSelect = async (option) => {
+    if (document.activeElement === input.value) {
+      context.emit('select', option, el$.value)
+      return
+    }
+
+    if (option.n === undefined) {
+      el$.value.clear()
+    } else {
+      let valueMatchesMask = option.m.map(m => `+${m[0]}`).find((m) => {
+        return value.value.startsWith(m)
+      })
+
+      if (!valueMatchesMask) {
+        el$.value.update(option.m.length === 1 ? `+${option.m[0][0]}` : option.n)
+      }
+
+      focus()
+    }
+    
     context.emit('select', option, el$.value)
   }
 
   const setFlag = () => {
-    if (!value.value || !value.value.startsWith('+')) {
+    if (!value.value) {
+      if (Object.keys(options$.value.selected).length) {
+        options$.value.reset()
+      }
+
       return
     }
 
-    if (value.value === options$.value.selected?.prefix) {
+    if (!value.value.startsWith('+') || value.value === options$.value.selected?.n) {
       return
     }
 
-    const first = value.value.charAt(1) || ''
-    const second = value.value.charAt(2) || ''
-    const third = value.value.charAt(3) || ''
+    let number = value.value.replace('+', '')
+    let lengths = [7, 5, 4, 3, 2, 1].filter((l) => number.length >= l)
+    let country
 
-    let match = addonOptions.find(c => [`+${first}`, `+${first+second}`, `+${first+second+third}`].indexOf(c.prefix) !== -1)
+    lengths.forEach((l) => {
+      if (country) {
+        return
+      }
 
-    if (!match) {
+      country = masks.value[number.slice(0, l)] || undefined
+    })
+
+    if (!country) {
+      if (Object.keys(options$.value.selected).length) {
+        options$.value.reset()
+      }
       return
     }
 
-    const overrides = {
-      '+1': 'US',
-      '+7': 'RU',
-      '+39': 'IT',
-      '+590': 'GP',
-      '+599': 'CW',
+    if (country === 'MF') {
+      country = 'GP'
     }
 
-    if (Object.keys(overrides).indexOf(match.prefix) !== -1) {
-      match = addonOptions.find(c => c.code === overrides[match.prefix])
-    }
+    let option = addonOptions.value.find(c => c.c === country)
 
-    if (match && options$.value.selected.index !== match.index) {
-      options$.value.selectOption(match)
+    if (options$.value.selected.index !== option.index) {
+      options$.value.selectOption(option)
     }
   }
 
@@ -163,6 +238,9 @@ const base = function(props, context, dependencies)
     addonOptions,
     handleOptionSelect,
     addonPlaceholder,
+    maskPluginInstalled,
+    inputType,
+    mask,
   }
 }
 

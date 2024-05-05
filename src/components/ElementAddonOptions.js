@@ -178,6 +178,11 @@ export default {
       fire('select', option)
     }
 
+    const reset = () => {
+      selected.value = {}
+      fire('select', {})
+    }
+
     const handleOptionPoint = (option) => {
       if (hoverDisabled.value) {
         return
@@ -391,6 +396,7 @@ export default {
       scrollToOption,
       scrollDropdown,
       selectOption,
+      reset,
       handleOptionPoint,
       handleOptionClick,
       handleSelectorClick,

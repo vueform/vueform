@@ -12,7 +12,7 @@
         <ElementLoader v-if="isLoading"/>
         <input
           :value="model"
-          type="tel"
+          :type="inputType"
           :name="name"
           :id="fieldId"
           :class="classes.input"

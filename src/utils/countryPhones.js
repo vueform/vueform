@@ -2,29 +2,29 @@ const us = '{+}0 (000) 000-0000'
 
 export default [
   {
+    // "country": "Afghanistan",
     "c": "AF",
     "n": "+93",
     "p": 0,
-    "country": "Afghanistan",
     "m": [
       ["93", "{+}00 00 000 0000"],
     ]
   },
   {
+    // "country": "Albania",
     "c": "AL",
     "n": "+355",
     "p": 1,
-    "country": "Albania",
     "m": [
       ["3554", "{+}000 0 000 0000"],
       ["355", "{+}000 00 000 0000"],
     ]
   },
   {
+    // "country": "Algeria",
     "c": "DZ",
     "n": "+213",
     "p": 2,
-    "country": "Algeria",
     "m": [
       ["2131", "{+}000 0 000 0000"],
       ["2132", "{+}000 0 000 0000"],
@@ -34,66 +34,66 @@ export default [
     ]
   },
   {
+    // "country": "American Samoa",
     "c": "AS",
     "n": "+1",
     "p": 3,
-    "country": "American Samoa",
     "m": [
       ["1684", us],
     ]
   },
   {
+    // "country": "Andorra",
     "c": "AD",
     "n": "+376",
     "p": 4,
-    "country": "Andorra",
     "m": [
       ["376", "{+}000 000 000"],
     ]
   },
   {
+    // "country": "Angola",
     "c": "AO",
     "n": "+244",
     "p": 5,
-    "country": "Angola",
     "m": [
       ["2449", "{+}000 000 000 0000"],
       ["244", "{+}000 000 000 000"],
     ]
   },
   {
+    // "country": "Anguilla",
     "c": "AI",
     "n": "+1",
     "p": 6,
-    "country": "Anguilla",
     "m": [
       ["1264", us],
     ]
   },
   {
+    // "country": "Antigua & Barbuda",
     "c": "AG",
     "n": "+1",
     "p": 7,
-    "country": "Antigua & Barbuda",
     "m": [
       ["1268", us],
     ]
   },
   {
+    // "country": "Argentina",
     "c": "AR",
     "n": "+54",
     "p": 8,
-    "country": "Argentina",
     "m": [
       ["549", "{+}00 0 000 000 0000"],
       ["54", "{+}00 000 000 0000"],
     ]
   },
   {
+    // "country": "Armenia",
     "c": "AM",
     "n": "+374",
     "p": 9,
-    "country": "Armenia",
     "m": [
       ["37493", "{+}000 00 000 000"],
       ["37494", "{+}000 00 000 000"],
@@ -109,47 +109,47 @@ export default [
     ]
   },
   {
+    // "country": "Aruba",
     "c": "AW",
     "n": "+297",
     "p": 10,
-    "country": "Aruba",
     "m": [
       ["297", "{+}000 000 0000"],
     ]
   },
   {
+    // "country": "Ascension Island",
     "c": "AC",
     "n": "+247",
     "p": 11,
-    "country": "Ascension Island",
     "m": [
       ["247", "{+}000 0000"],
     ]
   },
   {
+    // "country": "Australia",
     "c": "AU",
     "n": "+61",
     "p": 12,
-    "country": "Australia",
     "m": [
       ["61", "{+}00 0 0000 0000"],
       ["614", "{+}00 000 000 000"],
     ]
   },
   {
+    // "country": "Austria",
     "c": "AT",
     "n": "+43",
     "p": 13,
-    "country": "Austria",
     "m": [
       ["43", "{+}00 0000000[0000]"],
     ]
   },
   {
+    // "country": "Azerbaijan",
     "c": "AZ",
     "n": "+994",
     "p": 14,
-    "country": "Azerbaijan",
     "m": [
       ["9944", "{+}000 00 000 000"],
       ["9945", "{+}000 00 000 000"],
@@ -159,103 +159,103 @@ export default [
     ]
   },
   {
+    // "country": "Bahamas",
     "c": "BS",
     "n": "+1",
     "p": 15,
-    "country": "Bahamas",
     "m": [
       ["1242", us],
     ]
   },
   {
+    // "country": "Bahrain",
     "c": "BH",
     "n": "+973",
     "p": 16,
-    "country": "Bahrain",
     "m": [
       ["973", "{+}000 0000 0000"],
     ]
   },
   {
+    // "country": "Bangladesh",
     "c": "BD",
     "n": "+880",
     "p": 17,
-    "country": "Bangladesh",
     "m": [
       ["8801", "{+}000 00 0000 0000"],
       ["880", "{+}000 00 0000 0000[00]"],
     ]
   },
   {
+    // "country": "Barbados",
     "c": "BB",
     "n": "+1",
     "p": 18,
-    "country": "Barbados",
     "m": [
       ["1246", us],
     ]
   },
   {
+    // "country": "Belarus",
     "c": "BY",
     "n": "+375",
     "p": 19,
-    "country": "Belarus",
     "m": [
       ["375", "{+}000 000000000[0]"],
     ]
   },
   {
+    // "country": "Belgium",
     "c": "BE",
     "n": "+32",
     "p": 20,
-    "country": "Belgium",
     "m": [
       ["324", "{+}00 000 00 00 00"],
       ["32", "{+}00 0 000 00 00"],
     ]
   },
   {
+    // "country": "Belize",
     "c": "BZ",
     "n": "+501",
     "p": 21,
-    "country": "Belize",
     "m": [
       ["501", "{+}000 000-0000"],
     ]
   },
   {
+    // "country": "Benin",
     "c": "BJ",
     "n": "+229",
     "p": 22,
-    "country": "Benin",
     "m": [
       ["229", "{+}000 00 00 00 00"],
     ]
   },
   {
+    // "country": "Bermuda",
     "c": "BM",
     "n": "+1",
     "p": 23,
-    "country": "Bermuda",
     "m": [
       ["1441", us],
     ]
   },
   {
+    // "country": "Bhutan",
     "c": "BT",
     "n": "+975",
     "p": 24,
-    "country": "Bhutan",
     "m": [
       ["97517", "{+}000 00 000000"],
       ["975", "{+}000 0 00000[0]"],
     ]
   },
   {
+    // "country": "Bolivia",
     "c": "BO",
     "n": "+591",
     "p": 25,
-    "country": "Bolivia",
     "m": [
       ["5916", "{+}000 000 000 0000"],
       ["5917", "{+}000 000 000 0000"],
@@ -263,66 +263,66 @@ export default [
     ]
   },
   {
+    // "country": "Bosnia & Herzegovina",
     "c": "BA",
     "n": "+387",
     "p": 26,
-    "country": "Bosnia & Herzegovina",
     "m": [
       ["3876", "{+}000 00 000 000"],
       ["387", "{+}000 00 000 000[0]"],
     ]
   },
   {
+    // "country": "Botswana",
     "c": "BW",
     "n": "+267",
     "p": 27,
-    "country": "Botswana",
     "m": [
       ["2677", "{+}000 00 000 0000"],
       ["267", "{+}000 000 000000"],
     ]
   },
   {
+    // "country": "Brazil",
     "c": "BR",
     "n": "+55",
     "p": 28,
-    "country": "Brazil",
     "m": [
       ["55", "{+}00 00 0000 0000[0]"],
     ]
   },
   {
+    // "country": "British Indian Ocean Territory",
     "c": "IO",
     "n": "+246",
     "p": 29,
-    "country": "British Indian Ocean Territory",
     "m": [
       ["246", "{+}000 0000"],
     ]
   },
   {
+    // "country": "British Virgin Islands",
     "c": "VG",
     "n": "+1",
     "p": 30,
-    "country": "British Virgin Islands",
     "m": [
       ["1284", us],
     ]
   },
   {
+    // "country": "Brunei",
     "c": "BN",
     "n": "+673",
     "p": 31,
-    "country": "Brunei",
     "m": [
       ["673", "{+}000 000 0000"],
     ]
   },
   {
+    // "country": "Bulgaria",
     "c": "BG",
     "n": "+359",
     "p": 32,
-    "country": "Bulgaria",
     "m": [
       ["3598", "{+}000 00 000 0000"],
       ["3599", "{+}000 00 000 0000"],
@@ -330,46 +330,46 @@ export default [
     ]
   },
   {
+    // "country": "Burkina Faso",
     "c": "BF",
     "n": "+226",
     "p": 33,
-    "country": "Burkina Faso",
     "m": [
       ["226", "{+}000 00 00 00 00"],
     ]
   },
   {
+    // "country": "Burundi",
     "c": "BI",
     "n": "+257",
     "p": 34,
-    "country": "Burundi",
     "m": [
       ["257", "{+}000 00 00 00 00"],
     ]
   },
   {
+    // "country": "Cambodia",
     "c": "KH",
     "n": "+855",
     "p": 35,
-    "country": "Cambodia",
     "m": [
       ["855", "{+}000 000000000"],
     ]
   },
   {
+    // "country": "Cameroon",
     "c": "CM",
     "n": "+237",
     "p": 36,
-    "country": "Cameroon",
     "m": [
       ["237", "{+}000 0000 0000"],
     ]
   },
   {
+    // "country": "Canada",
     "c": "CA",
     "n": "+1",
     "p": 37,
-    "country": "Canada",
     "m": [
       ["1204", us],
       ["1226", us],
@@ -424,55 +424,55 @@ export default [
     ]
   },
   {
+    // "country": "Cape Verde",
     "c": "CV",
     "n": "+238",
     "p": 38,
-    "country": "Cape Verde",
     "m": [
       ["238", "{+}000 0000 000"],
     ]
   },
   {
+    // "country": "Caribbean Netherlands",
     "c": "BQ",
     "n": "+599",
     "p": 39,
-    "country": "Caribbean Netherlands",
     "m": [
       ["599", "{+}000 000 0000"],
     ]
   },
   {
+    // "country": "Cayman Islands",
     "c": "KY",
     "n": "+1",
     "p": 40,
-    "country": "Cayman Islands",
     "m": [
       ["1345", us],
     ]
   },
   {
+    // "country": "Central African Republic",
     "c": "CF",
     "n": "+236",
     "p": 41,
-    "country": "Central African Republic",
     "m": [
       ["236", "{+}000 00 00 00 00"],
     ]
   },
   {
+    // "country": "Chad",
     "c": "TD",
     "n": "+235",
     "p": 42,
-    "country": "Chad",
     "m": [
       ["235", "{+}000 00 00 00 00"],
     ]
   },
   {
+    // "country": "Chile",
     "c": "CL",
     "n": "+56",
     "p": 43,
-    "country": "Chile",
     "m": [
       ["562", "{+}00 0 0000 0000"],
       ["569", "{+}00 0 0000 0000"],
@@ -480,10 +480,10 @@ export default [
     ]
   },
   {
+    // "country": "China",
     "c": "CN",
     "n": "+86",
     "p": 44,
-    "country": "China",
     "m": [
       ["8613", "{+}00 000 0000 0000"],
       ["8615", "{+}00 000 0000 0000"],
@@ -492,111 +492,111 @@ export default [
     ]
   },
   {
+    // "country": "Colombia",
     "c": "CO",
     "n": "+57",
     "p": 45,
-    "country": "Colombia",
     "m": [
       ["573", "{+}00 000 000 0000"],
       ["57", "{+}00 0 000 0000"],
     ]
   },
   {
+    // "country": "Comoros",
     "c": "KM",
     "n": "+269",
     "p": 46,
-    "country": "Comoros",
     "m": [
       ["269", "{+}000 000 0000"],
     ]
   },
   {
+    // "country": "Congo - Brazzaville",
     "c": "CG",
     "n": "+242",
     "p": 47,
-    "country": "Congo - Brazzaville",
     "m": [
       ["242", "{+}000 00 000 000[0]"],
     ]
   },
   {
+    // "country": "Congo - Kinshasa",
     "c": "CD",
     "n": "+243",
     "p": 48,
-    "country": "Congo - Kinshasa",
     "m": [
       ["243", "{+}000 00 000 000[0]"],
     ]
   },
   {
+    // "country": "Cook Islands",
     "c": "CK",
     "n": "+682",
     "p": 49,
-    "country": "Cook Islands",
     "m": [
       ["682", "{+}000 00 000"],
     ]
   },
   {
+    // "country": "Costa Rica",
     "c": "CR",
     "n": "+506",
     "p": 50,
-    "country": "Costa Rica",
     "m": [
       ["506", "{+}000 0000 0000"],
     ]
   },
   {
+    // "country": "Côte d’Ivoire",
     "c": "CI",
     "n": "+225",
     "p": 51,
-    "country": "Côte d’Ivoire",
     "m": [
       ["225", "{+}000 00 00 00 00"],
     ]
   },
   {
+    // "country": "Croatia",
     "c": "HR",
     "n": "+385",
     "p": 52,
-    "country": "Croatia",
     "m": [
       ["385", "{+}000 00 000 0000"],
     ]
   },
   {
+    // "country": "Cuba",
     "c": "CU",
     "n": "+53",
     "p": 53,
-    "country": "Cuba",
     "m": [
       ["535", "{+}00 0 000 0000"],
       ["53", "{+}00 000000[0000]"],
     ]
   },
   {
+    // "country": "Curaçao",
     "c": "CW",
     "n": "+599",
     "p": 54,
-    "country": "Curaçao",
     "m": [
       ["5999", "{+}000 0 000 0000"],
     ]
   },
   {
+    // "country": "Cyprus",
     "c": "CY",
     "n": "+357",
     "p": 55,
-    "country": "Cyprus",
     "m": [
       ["357", "{+}000 00 000 000"],
     ]
   },
   {
+    // "country": "Czechia",
     "c": "CZ",
     "n": "+420",
     "p": 56,
-    "country": "Czechia",
     "m": [
       ["4206", "{+}000 000 000 000"],
       ["4207", "{+}000 000 000 000"],
@@ -604,37 +604,37 @@ export default [
     ]
   },
   {
+    // "country": "Denmark",
     "c": "DK",
     "n": "+45",
     "p": 57,
-    "country": "Denmark",
     "m": [
       ["45", "{+}00 00 00 00 00"],
     ]
   },
   {
+    // "country": "Djibouti",
     "c": "DJ",
     "n": "+253",
     "p": 58,
-    "country": "Djibouti",
     "m": [
       ["253", "{+}000 00 00 00 00"],
     ]
   },
   {
+    // "country": "Dominica",
     "c": "DM",
     "n": "+1",
     "p": 59,
-    "country": "Dominica",
     "m": [
       ["1767", us],
     ]
   },
   {
+    // "country": "Dominican Republic",
     "c": "DO",
     "n": "+1",
     "p": 60,
-    "country": "Dominican Republic",
     "m": [
       ["1809", us],
       ["1829", us],
@@ -642,19 +642,19 @@ export default [
     ]
   },
   {
+    // "country": "Ecuador",
     "c": "EC",
     "n": "+593",
     "p": 61,
-    "country": "Ecuador",
     "m": [
       ["593", "{+}000 00 0000 000"],
     ]
   },
   {
+    // "country": "Egypt",
     "c": "EG",
     "n": "+20",
     "p": 62,
-    "country": "Egypt",
     "m": [
       ["2010", "{+}00 000 0000 000"],
       ["2011", "{+}00 000 0000 000"],
@@ -667,128 +667,128 @@ export default [
     ]
   },
   {
+    // "country": "El Salvador",
     "c": "SV",
     "n": "+503",
     "p": 63,
-    "country": "El Salvador",
     "m": [
       ["503", "{+}000 0000 0000"],
     ]
   },
   {
+    // "country": "Equatorial Guinea",
     "c": "GQ",
     "n": "+240",
     "p": 64,
-    "country": "Equatorial Guinea",
     "m": [
       ["240", "{+}000 00 000 0000"],
     ]
   },
   {
+    // "country": "Eritrea",
     "c": "ER",
     "n": "+291",
     "p": 65,
-    "country": "Eritrea",
     "m": [
       ["291", "{+}000 0 000 000"],
     ]
   },
   {
+    // "country": "Estonia",
     "c": "EE",
     "n": "+372",
     "p": 66,
-    "country": "Estonia",
     "m": [
       ["372", "{+}000 0000 000[0]"],
     ]
   },
   {
+    // "country": "Eswatini",
     "c": "SZ",
     "n": "+268",
     "p": 67,
-    "country": "Eswatini",
     "m": [
       ["268", "{+}000 00 00 0000"],
     ]
   },
   {
+    // "country": "Ethiopia",
     "c": "ET",
     "n": "+251",
     "p": 68,
-    "country": "Ethiopia",
     "m": [
       ["2519", "{+}000 000 000 000"],
       ["251", "{+}000 00 000 0000"],
     ]
   },
   {
+    // "country": "Falkland Islands (Islas Malvinas)",
     "c": "FK",
     "n": "+500",
     "p": 69,
-    "country": "Falkland Islands (Islas Malvinas)",
     "m": [
       ["500", "{+}000 00000"],
     ]
   },
   {
+    // "country": "Faroe Islands",
     "c": "FO",
     "n": "+298",
     "p": 70,
-    "country": "Faroe Islands",
     "m": [
       ["298", "{+}000 000 000"],
     ]
   },
   {
+    // "country": "Fiji",
     "c": "FJ",
     "n": "+679",
     "p": 71,
-    "country": "Fiji",
     "m": [
       ["679", "{+}000 000 0000"],
     ]
   },
   {
+    // "country": "Finland",
     "c": "FI",
     "n": "+358",
     "p": 72,
-    "country": "Finland",
     "m": [
       ["358", "{+}000 0000[0000000]"],
     ]
   },
   {
+    // "country": "France",
     "c": "FR",
     "n": "+33",
     "p": 73,
-    "country": "France",
     "m": [
       ["33", "{+}00 000 000 000"],
     ]
   },
   {
+    // "country": "French Guiana",
     "c": "GF",
     "n": "+594",
     "p": 74,
-    "country": "French Guiana",
     "m": [
       ["594", "{+}000 000 00 00 00"],
     ]
   },
   {
+    // "country": "French Polynesia",
     "c": "PF",
     "n": "+689",
     "p": 75,
-    "country": "French Polynesia",
     "m": [
       ["689", "{+}000 00 00 00 00"],
     ]
   },
   {
+    // "country": "Gabon",
     "c": "GA",
     "n": "+241",
     "p": 76,
-    "country": "Gabon",
     "m": [
       ["24106", "{+}000 000 00 00 00"],
       ["24107", "{+}000 000 00 00 00"],
@@ -796,29 +796,29 @@ export default [
     ]
   },
   {
+    // "country": "Gambia",
     "c": "GM",
     "n": "+220",
     "p": 77,
-    "country": "Gambia",
     "m": [
       ["220", "{+}000 000 0000"],
     ]
   },
   {
+    // "country": "Georgia",
     "c": "GE",
     "n": "+995",
     "p": 78,
-    "country": "Georgia",
     "m": [
       ["99532", "{+}000 00 000 0000"],
       ["995", "{+}000 000 000 000[0]"],
     ]
   },
   {
+    // "country": "Germany",
     "c": "DE",
     "n": "+49",
     "p": 79,
-    "country": "Germany",
     "m": [
       ["4930", "{+}00 00 0000 0000"],
       ["4989", "{+}00 00 0000 0000"],
@@ -826,137 +826,137 @@ export default [
     ]
   },
   {
+    // "country": "Ghana",
     "c": "GH",
     "n": "+233",
     "p": 80,
-    "country": "Ghana",
     "m": [
       ["233", "{+}000 00 000 0000"],
     ]
   },
   {
+    // "country": "Gibraltar",
     "c": "GI",
     "n": "+350",
     "p": 81,
-    "country": "Gibraltar",
     "m": [
       ["350", "{+}000 0000 0000"],
     ]
   },
   {
+    // "country": "Greece",
     "c": "GR",
     "n": "+30",
     "p": 82,
-    "country": "Greece",
     "m": [
       ["3069", "{+}00 000 0000 000"],
       ["30", "{+}00 000 0000 000[0]"],
     ]
   },
   {
+    // "country": "Greenland",
     "c": "GL",
     "n": "+299",
     "p": 83,
-    "country": "Greenland",
     "m": [
       ["299", "{+}000 00 00 00"],
     ]
   },
   {
+    // "country": "Grenada",
     "c": "GD",
     "n": "+1",
     "p": 84,
-    "country": "Grenada",
     "m": [
       ["1473", us],
     ]
   },
   {
+    // "country": "Guadeloupe",
     "c": "GP",
     "n": "+590",
     "p": 85,
-    "country": "Guadeloupe",
     "m": [
-      ["590", "{+}000 000 00 00 00"],
+      ["590", "{+}000 000 0000"],
     ]
   },
   {
+    // "country": "Guam",
     "c": "GU",
     "n": "+1",
     "p": 86,
-    "country": "Guam",
     "m": [
       ["1671", us],
     ]
   },
   {
+    // "country": "Guatemala",
     "c": "GT",
     "n": "+502",
     "p": 87,
-    "country": "Guatemala",
     "m": [
       ["502", "{+}000 000 00000"],
     ]
   },
   {
+    // "country": "Guinea",
     "c": "GN",
     "n": "+224",
     "p": 88,
-    "country": "Guinea",
     "m": [
       ["224", "{+}000 0000 000[0]"],
     ]
   },
   {
+    // "country": "Guinea-Bissau",
     "c": "GW",
     "n": "+245",
     "p": 89,
-    "country": "Guinea-Bissau",
     "m": [
       ["245", "{+}000 000 0000"],
     ]
   },
   {
+    // "country": "Guyana",
     "c": "GY",
     "n": "+592",
     "p": 90,
-    "country": "Guyana",
     "m": [
       ["592", "{+}000 000 0000"],
     ]
   },
   {
+    // "country": "Haiti",
     "c": "HT",
     "n": "+509",
     "p": 91,
-    "country": "Haiti",
     "m": [
       ["509", "{+}000 00 00 0000"],
     ]
   },
   {
+    // "country": "Honduras",
     "c": "HN",
     "n": "+504",
     "p": 92,
-    "country": "Honduras",
     "m": [
       ["504", "{+}000 0000 0000"],
     ]
   },
   {
+    // "country": "Hong Kong",
     "c": "HK",
     "n": "+852",
     "p": 93,
-    "country": "Hong Kong",
     "m": [
       ["852", "{+}000 0000 0000"],
     ]
   },
   {
+    // "country": "Hungary",
     "c": "HU",
     "n": "+36",
     "p": 94,
-    "country": "Hungary",
     "m": [
       ["361", "{+}00 0 000 0000"],
       ["3620", "{+}00 00 000 0000"],
@@ -966,19 +966,19 @@ export default [
     ]
   },
   {
+    // "country": "Iceland",
     "c": "IS",
     "n": "+354",
     "p": 95,
-    "country": "Iceland",
     "m": [
       ["354", "{+}000 000 0000"],
     ]
   },
   {
+    // "country": "India",
     "c": "IN",
     "n": "+91",
     "p": 96,
-    "country": "India",
     "m": [
       ["916", "{+}00 000 000 0000"],
       ["917", "{+}00 000 000 0000"],
@@ -988,10 +988,10 @@ export default [
     ]
   },
   {
+    // "country": "Indonesia",
     "c": "ID",
     "n": "+62",
     "p": 97,
-    "country": "Indonesia",
     "m": [
       ["62361", "{+}00 000 000 000"],
       ["6221", "{+}00 00 0000 0000"],
@@ -1000,10 +1000,10 @@ export default [
     ]
   },
   {
+    // "country": "Iran",
     "c": "IR",
     "n": "+98",
     "p": 98,
-    "country": "Iran",
     "m": [
       ["98921", "{+}00 00 000 0000"],
       ["98951", "{+}00 00 000 0000"],
@@ -1012,10 +1012,10 @@ export default [
     ]
   },
   {
+    // "country": "Iraq",
     "c": "IQ",
     "n": "+964",
     "p": 99,
-    "country": "Iraq",
     "m": [
       ["9641", "{+}000 0 000 0000[0]"],
       ["9647", "{+}000 000 000 0000"],
@@ -1023,20 +1023,20 @@ export default [
     ]
   },
   {
+    // "country": "Ireland",
     "c": "IE",
     "n": "+353",
     "p": 100,
-    "country": "Ireland",
     "m": [
       ["3531", "{+}000 0 000 0000"],
       ["353", "{+}000 00 000 0000"],
     ]
   },
   {
+    // "country": "Israel",
     "c": "IL",
     "n": "+972",
     "p": 101,
-    "country": "Israel",
     "m": [
       ["9725", "{+}000 00 000 0000"],
       ["9727", "{+}000 00 000 0000"],
@@ -1044,29 +1044,29 @@ export default [
     ]
   },
   {
+    // "country": "Italy",
     "c": "IT",
     "n": "+39",
     "p": 102,
-    "country": "Italy",
     "m": [
       ["393", "{+}00 000 000 0000"],
       ["39", "{+}00 00 0000 0000"],
     ]
   },
   {
+    // "country": "Jamaica",
     "c": "JM",
     "n": "+1",
     "p": 103,
-    "country": "Jamaica",
     "m": [
       ["1876", us],
     ]
   },
   {
+    // "country": "Japan",
     "c": "JP",
     "n": "+81",
     "p": 104,
-    "country": "Japan",
     "m": [
       ["8170", "{+}00 00 0000 0000"],
       ["8180", "{+}00 00 0000 0000"],
@@ -1075,29 +1075,29 @@ export default [
     ]
   },
   {
+    // "country": "Jordan",
     "c": "JO",
     "n": "+962",
     "p": 105,
-    "country": "Jordan",
     "m": [
       ["9627", "{+}000 000 000 000"],
       ["962", "{+}000 0 000 0000"],
     ]
   },
   {
+    // "country": "Kazakhstan",
     "c": "KZ",
     "n": "+7",
     "p": 106,
-    "country": "Kazakhstan",
     "m": [
       ["77", "{+}0 000 000 0000"],
     ]
   },
   {
+    // "country": "Kenya",
     "c": "KE",
     "n": "+254",
     "p": 107,
-    "country": "Kenya",
     "m": [
       ["2541", "{+}000 000 000 000"],
       ["2547", "{+}000 000 000 000"],
@@ -1105,28 +1105,28 @@ export default [
     ]
   },
   {
+    // "country": "Kiribati",
     "c": "KI",
     "n": "+686",
     "p": 108,
-    "country": "Kiribati",
     "m": [
       ["686", "{+}000 00 000"],
     ]
   },
   {
+    // "country": "Kosovo",
     "c": "XK",
     "n": "+383",
     "p": 109,
-    "country": "Kosovo",
     "m": [
       ["383", "{+}000 00 000 000"],
     ]
   },
   {
+    // "country": "Kuwait",
     "c": "KW",
     "n": "+965",
     "p": 110,
-    "country": "Kuwait",
     "m": [
       ["9655", "{+}000 000 00000"],
       ["9656", "{+}000 000 00000"],
@@ -1135,19 +1135,19 @@ export default [
     ]
   },
   {
+    // "country": "Kyrgyzstan",
     "c": "KG",
     "n": "+996",
     "p": 111,
-    "country": "Kyrgyzstan",
     "m": [
       ["996", "{+}000 000 000 000"],
     ]
   },
   {
+    // "country": "Laos",
     "c": "LA",
     "n": "+856",
     "p": 112,
-    "country": "Laos",
     "m": [
       ["85620", "{+}000 00 0000 0000"],
       ["85630", "{+}000 00 0000 0000"],
@@ -1155,10 +1155,10 @@ export default [
     ]
   },
   {
+    // "country": "Latvia",
     "c": "LV",
     "n": "+371",
     "p": 113,
-    "country": "Latvia",
     "m": [
       ["3715", "{+}000 0 00 00000"],
       ["3716", "{+}000 0 00 00000"],
@@ -1167,10 +1167,10 @@ export default [
     ]
   },
   {
+    // "country": "Lebanon",
     "c": "LB",
     "n": "+961",
     "p": 114,
-    "country": "Lebanon",
     "m": [
       ["96170", "{+}000 00 000 000"],
       ["96171", "{+}000 00 000 000"],
@@ -1182,37 +1182,37 @@ export default [
     ]
   },
   {
+    // "country": "Lesotho",
     "c": "LS",
     "n": "+266",
     "p": 115,
-    "country": "Lesotho",
     "m": [
       ["266", "{+}000 000 000 000"],
     ]
   },
   {
+    // "country": "Liberia",
     "c": "LR",
     "n": "+231",
     "p": 116,
-    "country": "Liberia",
     "m": [
       ["231", "{+}000 000000[0000]"],
     ]
   },
   {
+    // "country": "Libya",
     "c": "LY",
     "n": "+218",
     "p": 117,
-    "country": "Libya",
     "m": [
       ["218", "{+}000 00 000 0000"],
     ]
   },
   {
+    // "country": "Liechtenstein",
     "c": "LI",
     "n": "+423",
     "p": 118,
-    "country": "Liechtenstein",
     "m": [
       ["42323", "{+}000 00 00000"],
       ["42375", "{+}000 00 00000"],
@@ -1220,558 +1220,558 @@ export default [
     ]
   },
   {
+    // "country": "Lithuania",
     "c": "LT",
     "n": "+370",
     "p": 119,
-    "country": "Lithuania",
     "m": [
       ["370", "{+}000 000 000 000"],
     ]
   },
   {
+    // "country": "Luxembourg",
     "c": "LU",
     "n": "+352",
     "p": 120,
-    "country": "Luxembourg",
     "m": [
       ["352", "{+}000 000 000 000"],
     ]
   },
   {
+    // "country": "Macao",
     "c": "MO",
     "n": "+853",
     "p": 121,
-    "country": "Macao",
     "m": [
       ["8536", "{+}000 000 0000[0]"],
       ["853", "{+}000 0000 000[0]"],
     ]
   },
   {
+    // "country": "Madagascar",
     "c": "MG",
     "n": "+261",
     "p": 122,
-    "country": "Madagascar",
     "m": [
       ["261", "{+}000 00 00 00000"],
     ]
   },
   {
+    // "country": "Malawi",
     "c": "MW",
     "n": "+265",
     "p": 123,
-    "country": "Malawi",
     "m": [
       ["265", "{+}000 000 000 000"],
     ]
   },
   {
+    // "country": "Malaysia",
     "c": "MY",
     "n": "+60",
     "p": 124,
-    "country": "Malaysia",
     "m": [
       ["60", "{+}00 0000000[000]"],
     ]
   },
   {
+    // "country": "Maldives",
     "c": "MV",
     "n": "+960",
     "p": 125,
-    "country": "Maldives",
     "m": [
       ["960", "{+}000 000 0000"],
     ]
   },
   {
+    // "country": "Mali",
     "c": "ML",
     "n": "+223",
     "p": 126,
-    "country": "Mali",
     "m": [
       ["223", "{+}000 00 00 0000"],
     ]
   },
   {
+    // "country": "Malta",
     "c": "MT",
     "n": "+356",
     "p": 127,
-    "country": "Malta",
     "m": [
       ["356", "{+}000 0000 000[0]"],
     ]
   },
   {
+    // "country": "Marshall Islands",
     "c": "MH",
     "n": "+692",
     "p": 128,
-    "country": "Marshall Islands",
     "m": [
       ["692", "{+}000 000 0000"],
     ]
   },
   {
+    // "country": "Martinique",
     "c": "MQ",
     "n": "+596",
     "p": 129,
-    "country": "Martinique",
     "m": [
       ["596", "{+}000 000 000 000"],
     ]
   },
   {
+    // "country": "Mauritania",
     "c": "MR",
     "n": "+222",
     "p": 130,
-    "country": "Mauritania",
     "m": [
       ["222", "{+}000 00 000 000"],
     ]
   },
   {
+    // "country": "Mauritius",
     "c": "MU",
     "n": "+230",
     "p": 131,
-    "country": "Mauritius",
     "m": [
       ["230", "{+}000 000 0000"],
     ]
   },
   {
+    // "country": "Mexico",
     "c": "MX",
     "n": "+52",
     "p": 132,
-    "country": "Mexico",
     "m": [
       ["52", "{+}00 000 000 0000"],
     ]
   },
   {
+    // "country": "Micronesia",
     "c": "FM",
     "n": "+691",
     "p": 133,
-    "country": "Micronesia",
     "m": [
       ["691", "{+}000 000 0000"],
     ]
   },
   {
+    // "country": "Moldova",
     "c": "MD",
     "n": "+373",
     "p": 134,
-    "country": "Moldova",
     "m": [
       ["373", "{+}000 000 00 000"],
     ]
   },
   {
+    // "country": "Monaco",
     "c": "MC",
     "n": "+377",
     "p": 135,
-    "country": "Monaco",
     "m": [
       ["377", "{+}000 00 00 00 00"],
     ]
   },
   {
+    // "country": "Mongolia",
     "c": "MN",
     "n": "+976",
     "p": 136,
-    "country": "Mongolia",
     "m": [
       ["976", "{+}000 00 00 0000"],
     ]
   },
   {
+    // "country": "Montenegro",
     "c": "ME",
     "n": "+382",
     "p": 137,
-    "country": "Montenegro",
     "m": [
       ["382", "{+}000 00 000 000"],
     ]
   },
   {
+    // "country": "Montserrat",
     "c": "MS",
     "n": "+1",
     "p": 138,
-    "country": "Montserrat",
     "m": [
       ["1664", us],
     ]
   },
   {
+    // "country": "Morocco",
     "c": "MA",
     "n": "+212",
     "p": 139,
-    "country": "Morocco",
     "m": [
       ["212", "{+}000 00 000 0000[0]"],
     ]
   },
   {
+    // "country": "Mozambique",
     "c": "MZ",
     "n": "+258",
     "p": 140,
-    "country": "Mozambique",
     "m": [
       ["258", "{+}000 00 000 000"],
     ]
   },
   {
+    // "country": "Myanmar (Burma)",
     "c": "MM",
     "n": "+95",
     "p": 141,
-    "country": "Myanmar (Burma)",
     "m": [
       ["95", "{+}00 0000000[0000]"],
     ]
   },
   {
+    // "country": "Namibia",
     "c": "NA",
     "n": "+264",
     "p": 142,
-    "country": "Namibia",
     "m": [
       ["264", "{+}000 000000[000000]"],
     ]
   },
   {
+    // "country": "Nauru",
     "c": "NR",
     "n": "+674",
     "p": 143,
-    "country": "Nauru",
     "m": [
       ["674", "{+}000 000000[000000]"],
     ]
   },
   {
+    // "country": "Nepal",
     "c": "NP",
     "n": "+977",
     "p": 144,
-    "country": "Nepal",
     "m": [
       ["977", "{+}000 000000[000000]"],
     ]
   },
   {
+    // "country": "Netherlands",
     "c": "NL",
     "n": "+31",
     "p": 145,
-    "country": "Netherlands",
     "m": [
       ["31", "{+}00 00 000 0000"],
     ]
   },
   {
+    // "country": "New Caledonia",
     "c": "NC",
     "n": "+687",
     "p": 146,
-    "country": "New Caledonia",
     "m": [
       ["687", "{+}000 000000[000000]"],
     ]
   },
   {
+    // "country": "New Zealand",
     "c": "NZ",
     "n": "+64",
     "p": 147,
-    "country": "New Zealand",
     "m": [
       ["642", "{+}00 000 000 000"],
       ["64", "{+}00 0 000 0000"],
     ]
   },
   {
+    // "country": "Nicaragua",
     "c": "NI",
     "n": "+505",
     "p": 148,
-    "country": "Nicaragua",
     "m": [
       ["505", "{+}000 000000[000000]"],
     ]
   },
   {
+    // "country": "Niger",
     "c": "NE",
     "n": "+227",
     "p": 149,
-    "country": "Niger",
     "m": [
       ["227", "{+}000 00000000[000]"],
     ]
   },
   {
+    // "country": "Nigeria",
     "c": "NG",
     "n": "+234",
     "p": 150,
-    "country": "Nigeria",
     "m": [
       ["234", "{+}000 000000[000000]"],
     ]
   },
   {
+    // "country": "Niue",
     "c": "NU",
     "n": "+683",
     "p": 151,
-    "country": "Niue",
     "m": [
       ["683", "{+}000 000000[000000]"],
     ]
   },
   {
+    // "country": "Norfolk Island",
     "c": "NF",
     "n": "+672",
     "p": 152,
-    "country": "Norfolk Island",
     "m": [
       ["672", "{+}000 000000[000000]"],
     ]
   },
   {
+    // "country": "North Korea",
     "c": "KP",
     "n": "+850",
     "p": 153,
-    "country": "North Korea",
     "m": [
       ["850", "{+}000 000000[0000000]"],
     ]
   },
   {
+    // "country": "North Macedonia",
     "c": "MK",
     "n": "+389",
     "p": 154,
-    "country": "North Macedonia",
     "m": [
       ["389", "{+}000 00 000 000"],
     ]
   },
   {
+    // "country": "Northern Mariana Islands",
     "c": "MP",
     "n": "+1",
     "p": 155,
-    "country": "Northern Mariana Islands",
     "m": [
       ["1670", us],
     ]
   },
   {
+    // "country": "Norway",
     "c": "NO",
     "n": "+47",
     "p": 156,
-    "country": "Norway",
     "m": [
       ["47", "{+}00 00 00 00 00"],
     ]
   },
   {
+    // "country": "Oman",
     "c": "OM",
     "n": "+968",
     "p": 157,
-    "country": "Oman",
     "m": [
       ["968", "{+}000 0000 0000"],
     ]
   },
   {
+    // "country": "Pakistan",
     "c": "PK",
     "n": "+92",
     "p": 158,
-    "country": "Pakistan",
     "m": [
       ["923", "{+}00 000 0000 000"],
       ["92", "{+}00 00 0000 0000"],
     ]
   },
   {
+    // "country": "Palau",
     "c": "PW",
     "n": "+680",
     "p": 159,
-    "country": "Palau",
     "m": [
       ["680", "{+}000 000000[000000]"],
     ]
   },
   {
+    // "country": "Palestine",
     "c": "PS",
     "n": "+970",
     "p": 160,
-    "country": "Palestine",
     "m": [
       ["970", "{+}000 000000[000000]"],
     ]
   },
   {
+    // "country": "Panama",
     "c": "PA",
     "n": "+507",
     "p": 161,
-    "country": "Panama",
     "m": [
       ["507", "{+}000 000 0000"],
     ]
   },
   {
+    // "country": "Papua New Guinea",
     "c": "PG",
     "n": "+675",
     "p": 162,
-    "country": "Papua New Guinea",
     "m": [
       ["675", "{+}000 00 000 000"],
     ]
   },
   {
+    // "country": "Paraguay",
     "c": "PY",
     "n": "+595",
     "p": 163,
-    "country": "Paraguay",
     "m": [
       ["595", "{+}000 00 000 0000"],
     ]
   },
   {
+    // "country": "Peru",
     "c": "PE",
     "n": "+51",
     "p": 164,
-    "country": "Peru",
     "m": [
       ["51", "{+}00 00 000 000"],
     ]
   },
   {
+    // "country": "Philippines",
     "c": "PH",
     "n": "+63",
     "p": 165,
-    "country": "Philippines",
     "m": [
       ["639", "{+}00 000 000 0000"],
       ["63", "{+}00 00 000 0000"],
     ]
   },
   {
+    // "country": "Poland",
     "c": "PL",
     "n": "+48",
     "p": 166,
-    "country": "Poland",
     "m": [
       ["485", "{+}00 000 000 000"],
       ["48", "{+}00 00 000 0000"],
     ]
   },
   {
+    // "country": "Portugal",
     "c": "PT",
     "n": "+351",
     "p": 167,
-    "country": "Portugal",
     "m": [
       ["351", "{+}000 000 000 000"],
     ]
   },
   {
+    // "country": "Puerto Rico",
     "c": "PR",
     "n": "+1",
     "p": 168,
-    "country": "Puerto Rico",
     "m": [
       ["1787", us],
       ["1939", us],
     ]
   },
   {
+    // "country": "Qatar",
     "c": "QA",
     "n": "+974",
     "p": 169,
-    "country": "Qatar",
     "m": [
       ["974", "{+}000 0000 0000"],
     ]
   },
   {
+    // "country": "Réunion",
     "c": "RE",
     "n": "+262",
     "p": 170,
-    "country": "Réunion",
     "m": [
       ["262", "{+}000 00000 0000"],
     ]
   },
   {
+    // "country": "Romania",
     "c": "RO",
     "n": "+40",
     "p": 171,
-    "country": "Romania",
     "m": [
       ["407", "{+}00 000 000 000"],
       ["40", "{+}00 00 000 0000"],
     ]
   },
   {
+    // "country": "Russia",
     "c": "RU",
     "n": "+7",
     "p": 172,
-    "country": "Russia",
     "m": [
       ["7", "{+}0 000 000 00 00"],
     ]
   },
   {
+    // "country": "Rwanda",
     "c": "RW",
     "n": "+250",
     "p": 173,
-    "country": "Rwanda",
     "m": [
       ["250", "{+}000 00 000 000"],
     ]
   },
   {
+    // "country": "Samoa",
     "c": "WS",
     "n": "+685",
     "p": 174,
-    "country": "Samoa",
     "m": [
       ["685", "{+}000 00 0000"],
     ]
   },
   {
+    // "country": "San Marino",
     "c": "SM",
     "n": "+378",
     "p": 175,
-    "country": "San Marino",
     "m": [
       ["378", "{+}000 0000 000000"],
     ]
   },
   {
+    // "country": "São Tomé & Príncipe",
     "c": "ST",
     "n": "+239",
     "p": 176,
-    "country": "São Tomé & Príncipe",
     "m": [
       ["239", "{+}000 00 00 00"],
     ]
   },
   {
+    // "country": "Saudi Arabia",
     "c": "SA",
     "n": "+966",
     "p": 177,
-    "country": "Saudi Arabia",
     "m": [
       ["96657", "{+}000 000 00 0000"],
       ["966", "{+}000 00 000 0000"],
     ]
   },
   {
+    // "country": "Senegal",
     "c": "SN",
     "n": "+221",
     "p": 178,
-    "country": "Senegal",
     "m": [
       ["221", "{+}000 00 000 0000"],
     ]
   },
   {
+    // "country": "Serbia",
     "c": "RS",
     "n": "+381",
     "p": 179,
-    "country": "Serbia",
     "m": [
       ["3816", "{+}000 000 000 000"],
       ["3817", "{+}000 000 000 000"],
@@ -1779,84 +1779,84 @@ export default [
     ]
   },
   {
+    // "country": "Seychelles",
     "c": "SC",
     "n": "+248",
     "p": 180,
-    "country": "Seychelles",
     "m": [
       ["248", "{+}000 000 0000"],
     ]
   },
   {
+    // "country": "Sierra Leone",
     "c": "SL",
     "n": "+232",
     "p": 181,
-    "country": "Sierra Leone",
     "m": [
       ["232", "{+}000 00 000 000"],
     ]
   },
   {
+    // "country": "Singapore",
     "c": "SG",
     "n": "+65",
     "p": 182,
-    "country": "Singapore",
     "m": [
       ["65", "{+}00 0000 0000"],
     ]
   },
   {
+    // "country": "Sint Maarten",
     "c": "SX",
     "n": "+1",
     "p": 183,
-    "country": "Sint Maarten",
     "m": [
       ["1721", us],
     ]
   },
   {
+    // "country": "Slovakia",
     "c": "SK",
     "n": "+421",
     "p": 184,
-    "country": "Slovakia",
     "m": [
       ["4219", "{+}000 000 000 0000"],
       ["421", "{+}000 00000000[00]"],
     ]
   },
   {
+    // "country": "Slovenia",
     "c": "SI",
     "n": "+386",
     "p": 185,
-    "country": "Slovenia",
     "m": [
       ["3863", "{+}000 00 000 000"],
       ["386", "{+}000 0000000[00]"],
     ]
   },
   {
+    // "country": "Solomon Islands",
     "c": "SB",
     "n": "+677",
     "p": 186,
-    "country": "Solomon Islands",
     "m": [
       ["677", "{+}000 00000"],
     ]
   },
   {
+    // "country": "Somalia",
     "c": "SO",
     "n": "+252",
     "p": 187,
-    "country": "Somalia",
     "m": [
       ["252", "{+}000 0 000 000"],
     ]
   },
   {
+    // "country": "South Africa",
     "c": "ZA",
     "n": "+27",
     "p": 188,
-    "country": "South Africa",
     "m": [
       ["276", "{+}00 000 000 000"],
       ["277", "{+}00 000 000 000"],
@@ -1865,28 +1865,28 @@ export default [
     ]
   },
   {
+    // "country": "South Korea",
     "c": "KR",
     "n": "+82",
     "p": 189,
-    "country": "South Korea",
     "m": [
       ["82", "{+}00 00000000[00]"],
     ]
   },
   {
+    // "country": "South Sudan",
     "c": "SS",
     "n": "+211",
     "p": 190,
-    "country": "South Sudan",
     "m": [
       ["211", "{+}000 0000000[00]"],
     ]
   },
   {
+    // "country": "Spain",
     "c": "ES",
     "n": "+34",
     "p": 191,
-    "country": "Spain",
     "m": [
       ["346", "{+}00 000 000 000"],
       ["347", "{+}00 000 000 000"],
@@ -1894,10 +1894,10 @@ export default [
     ]
   },
   {
+    // "country": "Sri Lanka",
     "c": "LK",
     "n": "+94",
     "p": 192,
-    "country": "Sri Lanka",
     "m": [
       ["947", "{+}00 000 000 0000"],
       ["948", "{+}00 000 000 0000"],
@@ -1906,91 +1906,91 @@ export default [
     ]
   },
   {
+    // "country": "St. Barthélemy",
     "c": "BL",
     "n": "+590",
     "p": 193,
-    "country": "St. Barthélemy",
     "m": [
       ["590", "{+}000 000 0000"],
     ]
   },
   {
+    // "country": "St. Helena",
     "c": "SH",
     "n": "+290",
     "p": 194,
-    "country": "St. Helena",
     "m": [
       ["290", "{+}000 0000"],
     ]
   },
   {
+    // "country": "St. Kitts & Nevis",
     "c": "KN",
     "n": "+1",
     "p": 195,
-    "country": "St. Kitts & Nevis",
     "m": [
       ["1869", us],
     ]
   },
   {
+    // "country": "St. Lucia",
     "c": "LC",
     "n": "+1",
     "p": 196,
-    "country": "St. Lucia",
     "m": [
       ["1758", us],
     ]
   },
   {
+    // "country": "St. Martin",
     "c": "MF",
     "n": "+590",
     "p": 197,
-    "country": "St. Martin",
     "m": [
       ["590", "{+}000 000 0000"],
     ]
   },
   {
+    // "country": "St. Pierre & Miquelon",
     "c": "PM",
     "n": "+508",
     "p": 198,
-    "country": "St. Pierre & Miquelon",
     "m": [
       ["508", "{+}000 00 00 00"],
     ]
   },
   {
+    // "country": "St. Vincent & Grenadines",
     "c": "VC",
     "n": "+1",
     "p": 199,
-    "country": "St. Vincent & Grenadines",
     "m": [
       ["1784", us],
     ]
   },
   {
+    // "country": "Sudan",
     "c": "SD",
     "n": "+249",
     "p": 200,
-    "country": "Sudan",
     "m": [
       ["249", "{+}000 00 000 0000"],
     ]
   },
   {
+    // "country": "Suriname",
     "c": "SR",
     "n": "+597",
     "p": 201,
-    "country": "Suriname",
     "m": [
       ["597", "{+}000 000 000"],
     ]
   },
   {
+    // "country": "Sweden",
     "c": "SE",
     "n": "+46",
     "p": 202,
-    "country": "Sweden",
     "m": [
       ["4613", "{+}00 00 00 00 00"],
       ["4618", "{+}00 00 00 00 00"],
@@ -2000,61 +2000,61 @@ export default [
     ]
   },
   {
+    // "country": "Switzerland",
     "c": "CH",
     "n": "+41",
     "p": 203,
-    "country": "Switzerland",
     "m": [
       ["417", "{+}00 000 000 000"],
       ["41", "{+}00 00 000 0000"],
     ]
   },
   {
+    // "country": "Syria",
     "c": "SY",
     "n": "+963",
     "p": 204,
-    "country": "Syria",
     "m": [
       ["9639", "{+}000 000 000 000"],
       ["963", "{+}000 00 000 0000"],
     ]
   },
   {
+    // "country": "Taiwan",
     "c": "TW",
     "n": "+886",
     "p": 205,
-    "country": "Taiwan",
     "m": [
       ["8869", "{+}000 000 000 000"],
       ["886", "{+}000 0 0000 0000"],
     ]
   },
   {
+    // "country": "Tajikistan",
     "c": "TJ",
     "n": "+992",
     "p": 206,
-    "country": "Tajikistan",
     "m": [
       ["992", "{+}000 00 000 0000"],
     ]
   },
   {
+    // "country": "Tanzania",
     "c": "TZ",
     "n": "+255",
     "p": 207,
-    "country": "Tanzania",
     "m": [
       ["255", "{+}000 00 000 0000"],
     ]
   },
   {
+    // "country": "Thailand",
     "c": "TH",
     "n": "+66",
     "p": 208,
-    "country": "Thailand",
     "m": [
-      ["6653", "{+}00 53 000 000"],
-      ["6676", "{+}00 76 000 000"],
+      ["6653", "{+}00 00 000 000"],
+      ["6676", "{+}00 00 000 000"],
       ["662", "{+}00 0 000 0000"],
       ["666", "{+}00 000 000 000"],
       ["668", "{+}00 000 000 000"],
@@ -2063,138 +2063,138 @@ export default [
     ]
   },
   {
+    // "country": "Timor-Leste",
     "c": "TL",
     "n": "+670",
     "p": 209,
-    "country": "Timor-Leste",
     "m": [
       ["670", "{+}000 000 0000"],
     ]
   },
   {
+    // "country": "Togo",
     "c": "TG",
     "n": "+228",
     "p": 210,
-    "country": "Togo",
     "m": [
       ["228", "{+}000 00 000 000"],
     ]
   },
   {
+    // "country": "Tokelau",
     "c": "TK",
     "n": "+690",
     "p": 211,
-    "country": "Tokelau",
     "m": [
       ["690", "{+}000 0000"],
     ]
   },
   {
+    // "country": "Tonga",
     "c": "TO",
     "n": "+676",
     "p": 212,
-    "country": "Tonga",
     "m": [
       ["676", "{+}000 00 000"],
     ]
   },
   {
+    // "country": "Trinidad & Tobago",
     "c": "TT",
     "n": "+1",
     "p": 213,
-    "country": "Trinidad & Tobago",
     "m": [
       ["1868", us],
     ]
   },
   {
+    // "country": "Tunisia",
     "c": "TN",
     "n": "+216",
     "p": 214,
-    "country": "Tunisia",
     "m": [
       ["216", "{+}000 00 000 000"],
     ]
   },
   {
+    // "country": "Türkiye",
     "c": "TR",
     "n": "+90",
     "p": 215,
-    "country": "Türkiye",
     "m": [
       ["90", "{+}00 000 000 0000"],
     ]
   },
   {
+    // "country": "Turkmenistan",
     "c": "TM",
     "n": "+993",
     "p": 216,
-    "country": "Turkmenistan",
     "m": [
       ["993", "{+}000 0 000 000"],
     ]
   },
   {
+    // "country": "Turks & Caicos Islands",
     "c": "TC",
     "n": "+1",
     "p": 217,
-    "country": "Turks & Caicos Islands",
     "m": [
       ["1649", us],
     ]
   },
   {
+    // "country": "Tuvalu",
     "c": "TV",
     "n": "+688",
     "p": 218,
-    "country": "Tuvalu",
     "m": [
       ["688", "{+}000 00 000"],
     ]
   },
   {
+    // "country": "U.S. Virgin Islands",
     "c": "VI",
     "n": "+1",
     "p": 219,
-    "country": "U.S. Virgin Islands",
     "m": [
       ["1340", us],
     ]
   },
   {
+    // "country": "Uganda",
     "c": "UG",
     "n": "+256",
     "p": 220,
-    "country": "Uganda",
     "m": [
       ["2567", "{+}000 000 000 000"],
       ["256", "{+}000 00 000 000[0]"],
     ]
   },
   {
+    // "country": "Ukraine",
     "c": "UA",
     "n": "+380",
     "p": 221,
-    "country": "Ukraine",
     "m": [
       ["380", "{+}000 00 000 0000"],
     ]
   },
   {
+    // "country": "United Arab Emirates",
     "c": "AE",
     "n": "+971",
     "p": 222,
-    "country": "United Arab Emirates",
     "m": [
       ["9715", "{+}000 00 000 0000"],
       ["971", "{+}000 0 000 0000"],
     ]
   },
   {
+    // "country": "United Kingdom",
     "c": "GB",
     "n": "+44",
     "p": 223,
-    "country": "United Kingdom",
     "m": [
       ["4420", "{+}00 00 0000 0000"],
       ["447", "{+}00 0000 000 000"],
@@ -2202,65 +2202,65 @@ export default [
     ]
   },
   {
+    // "country": "United States",
     "c": "US",
     "n": "+1",
     "p": 224,
-    "country": "United States",
     "m": [
       ["1", us],
     ]
   },
   {
+    // "country": "Uruguay",
     "c": "UY",
     "n": "+598",
     "p": 225,
-    "country": "Uruguay",
     "m": [
       ["598", "{+}000 0 000 00 00"],
     ]
   },
   {
+    // "country": "Uzbekistan",
     "c": "UZ",
     "n": "+998",
     "p": 226,
-    "country": "Uzbekistan",
     "m": [
       ["998", "{+}000 00 000 0000"],
     ]
   },
   {
+    // "country": "Vanuatu",
     "c": "VU",
     "n": "+678",
     "p": 227,
-    "country": "Vanuatu",
     "m": [
       ["678", "{+}000 00 0000"],
     ]
   },
   {
+    // "country": "Vatican City",
     "c": "VA",
     "n": "+39",
     "p": 228,
-    "country": "Vatican City",
     "m": [
       ["3906698", "{+}00 00 000 00000"],
       ["379", "{+}000 00 0000 0000"],
     ]
   },
   {
+    // "country": "Venezuela",
     "c": "VE",
     "n": "+58",
     "p": 229,
-    "country": "Venezuela",
     "m": [
       ["58", "{+}00 000 000 0000"],
     ]
   },
   {
+    // "country": "Vietnam",
     "c": "VN",
     "n": "+84",
     "p": 230,
-    "country": "Vietnam",
     "m": [
       ["843", "{+}00 000 000 000"],
       ["845", "{+}00 000 000 000"],
@@ -2270,39 +2270,39 @@ export default [
     ]
   },
   {
+    // "country": "Wallis & Futuna",
     "c": "WF",
     "n": "+681",
     "p": 231,
-    "country": "Wallis & Futuna",
     "m": [
       ["681", "{+}000 00 0000"],
     ]
   },
   {
+    // "country": "Yemen",
     "c": "YE",
     "n": "+967",
     "p": 232,
-    "country": "Yemen",
     "m": [
       ["9677", "{+}000 000 000 000"],
       ["967", "{+}000 0 000 000"],
     ]
   },
   {
+    // "country": "Zambia",
     "c": "ZM",
     "n": "+260",
     "p": 233,
-    "country": "Zambia",
     "m": [
       ["2609", "{+}000 000 000 000"],
       ["260", "{+}000 00 000 0000"],
     ]
   },
   {
+    // "country": "Zimbabwe",
     "c": "ZW",
     "n": "+263",
     "p": 234,
-    "country": "Zimbabwe",
     "m": [
       ["263", "{+}000 00 000 00[00]"],
     ]

@@ -732,10 +732,10 @@ export default {
     option: 'flex items-center cursor-pointer py-1.25 px-3 whitespace-nowrap form-color-input',
     option_active: 'form-bg-selected',
     optionWrapper: 'flex items-center',
-    flag: 'bg-form-flags bg-[length:24px_4716px] overflow-hidden bg-no-repeat bg-[0px_0px] w-[24px] h-[16px]',
+    flag: 'bg-form-flags bg-[length:24px_4716px] overflow-hidden rounded-sm bg-no-repeat bg-[0px_0px] w-[24px] h-[16px]',
     country: 'ml-3 rtl:ml-0 rtl:mr-3 font-semibold text-[15px] form-color-input flex',
     number: 'ml-2 rtl:ml-0 rtl:mr-2 form-color-muted rtl:order-1',
-    placeholder: 'bg-form-flags bg-[length:24px_4716px] overflow-hidden bg-no-repeat bg-[0px_0px] w-[24px] h-[16px] opacity-60',
+    placeholder: 'bg-form-flags bg-[length:24px_4716px] overflow-hidden bg-no-repeat rounded-sm bg-[0px_0px] w-[24px] h-[16px] opacity-60',
     $option: (classes) => (active) => ([
       classes.option,
       active ? classes.option_active : null

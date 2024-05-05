@@ -50,11 +50,16 @@ const phone = function(props, context, dependencies)
     fire,
     model,
     input,
+    el$,
   } = dependencies
   
   // =============== METHODS ==============
   
   const handleKeydown = (e) => {
+    if (el$.value.maskPluginInstalled) {
+      return
+    }
+
     if (['Backspace', 'Delete', 'Tab', 'Escape', 'Enter', 'ArrowLeft', 'ArrowRight'].indexOf(e.key) !== -1 || e.ctrlKey || e.metaKey) {
       return
     }

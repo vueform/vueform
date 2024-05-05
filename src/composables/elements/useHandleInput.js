@@ -29,11 +29,17 @@ const phone = function(props, context, dependencies)
   const {
     model,
     input,
+    el$,
   } = dependencies
   
   // ============== COMPUTED ==============
   
   const handleInput = (e) => {
+    if (el$.value.maskPluginInstalled) {
+      model.value = e.target.value
+      return
+    }
+
     let startsWithPlus = e.target.value.startsWith('+')
     let value = e.target.value.substr(startsWithPlus ? 1 : 0)
     let numbers = value.match(/\d+/g) || []
