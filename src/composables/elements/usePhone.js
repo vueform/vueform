@@ -9,6 +9,8 @@ const base = function(props, context, dependencies)
     mask: maskProp,
   } = toRefs(props)
 
+  // ============ DEPENDENCIES ============
+
   const {
     update,
     focus,
@@ -19,15 +21,21 @@ const base = function(props, context, dependencies)
     classes,
   } = dependencies
 
-  // ============== INJECTS ===============
-
-
   // ================ DATA ================
 
+  /**
+   * The country selector `ElementAddonOptions` component.
+   *
+   * @type {component}
+   */
   const options$ = ref(null)
-  const prevent = ref(false)
 
-  const addonPlaceholder = markRaw({
+  /**
+   * The placeholder component for `ElementAddonOptions` component.
+   *
+   * @type {component}
+   */
+  const addonPlaceholder = ref(markRaw({
     props: ['option', 'el$'],
     render() {
       return h('div', {
@@ -37,10 +45,15 @@ const base = function(props, context, dependencies)
         }
       })
     }
-  })
+  }))
 
   // ============== COMPUTED ==============
 
+  /**
+   * The options to display.
+   *
+   * @type {array}
+   */
   const addonOptions = computed(() => {
     return countryPhones.filter((c) => {
       if (!include.value.length && !exclude.value.length) {
@@ -99,6 +112,11 @@ const base = function(props, context, dependencies)
     })).sort((a, b) => a.label.localeCompare(b.label)).map((c, i) => ({...c, index: i}))
   })
 
+  /**
+   * The mask property if [@vueform/plugin-mask](https://github.com/vueform/plugin-mask) is installed (otherwise `undefined`).
+   *
+   * @type {object|undefined}
+   */
   const mask = computed(() => {
     if (!maskPluginInstalled.value) {
       return
@@ -133,7 +151,12 @@ const base = function(props, context, dependencies)
       mask,
     }
   })
-
+  
+  /**
+   * All the available masks for options, where key is the country prefix, value is the mask.
+   *
+   * @type {object}
+   */
   const masks = computed(() => {
     return addonOptions.value.reduce((prev, curr) => {
       return curr.m.reduce((p, c) => {
@@ -145,17 +168,34 @@ const base = function(props, context, dependencies)
     }, {})
   })
 
+  /**
+   * Whether [@vueform/plugin-mask](https://github.com/vueform/plugin-mask) is installed.
+   *
+   * @type {boolean}
+   */
   const maskPluginInstalled = computed(() => {
     return !!maskProp
   })
 
+  /**
+   * The type of the HTML input field (`text` if masks are enabled, `tel` otherwise).
+   * 
+   * @type {string}
+   */
   const inputType = computed(() => {
     return maskPluginInstalled.value ? 'text' : 'tel'
   })
 
   // =============== METHODS ==============
 
-  const handleOptionSelect = async (option) => {
+  /**
+   * Handles option select.
+   *
+   * @param {object} option* the option to select (from `addonOptions`).
+   * @returns {void}
+   * @private
+   */
+  const handleOptionSelect = (option) => {
     if (document.activeElement === input.value) {
       context.emit('select', option, el$.value)
       return
@@ -178,6 +218,11 @@ const base = function(props, context, dependencies)
     context.emit('select', option, el$.value)
   }
 
+  /**
+   * Sets country flag according to current input value.
+   * 
+   * @returns {void}
+   */
   const setFlag = () => {
     if (!value.value) {
       if (Object.keys(options$.value.selected).length) {

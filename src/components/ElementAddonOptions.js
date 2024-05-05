@@ -48,24 +48,111 @@ export default {
 
     // ================ DATA ================
 
+    /**
+     * Whether the country selector is open.
+     *
+     * @type {boolean}
+     */
     const isOpen = ref(false)
-    const selector = ref(null)
-    const dropdown = ref(null)
-    const left = ref(undefined)
-    const right = ref(undefined)
-    const top = ref(undefined)
-    const bottom = ref(undefined)
-    const search = ref('')
-    const searchTimeout = ref(null)
-    const hoverDisabled = ref(false)
-    const resizeTimeout = ref(null)
-    const fullScreen = ref(false)
 
+    /**
+     * The container div.
+     *
+     * @type {HTMLElement}
+     */
+    const selector = ref(null)
+
+    /**
+     * The dropdown container div.
+     *
+     * @type {HTMLElement}
+     */
+    const dropdown = ref(null)
+
+    /**
+     * The left position of the dropdown.
+     *
+     * @type {number|undefined}
+     */
+    const left = ref(undefined)
+
+    /**
+     * The right position of the dropdown.
+     *
+     * @type {number|undefined}
+     */
+    const right = ref(undefined)
+    
+    /**
+     * The top position of the dropdown.
+     *
+     * @type {number|undefined}
+     */
+    const top = ref(undefined)
+    
+    /**
+     * The bottom position of the dropdown.
+     *
+     * @type {number|undefined}
+     */
+    const bottom = ref(undefined)
+
+    /**
+     * The current search term.
+     *
+     * @type {string}
+     */
+    const search = ref('')
+
+    /**
+     * Store for search timeout.
+     *
+     * @type {object}
+     */
+    const searchTimeout = ref(null)
+
+    /**
+     * Store for resize timeout.
+     *
+     * @type {object}
+     */
+    const resizeTimeout = ref(null)
+
+    /**
+     * Whether selection on hover is disabled.
+     *
+     * @type {boolean}
+     */
+    const hoverDisabled = ref(false)
+
+    /**
+     * Whether the option list is from top to bottom.
+     *
+     * @type {boolean}
+     */
+    const fullHeight = ref(false)
+
+    /**
+     * The currently selected option.
+     *
+     * @type {object}
+     */
     const selected = ref({})
+
+    /**
+     * The currently pointed option.
+     *
+     * @type {object}
+     */
     const pointed = ref({})
 
     // ============== COMPUTED ==============
 
+    /**
+     * The option that should be focused according to current [`search`](#property-search) term.
+     *
+     * @type {array}
+     */
     const focused = computed(() => {
       if (!search.value) {
         return {}
@@ -74,8 +161,11 @@ export default {
       return options.value.find(o => o.label.toLowerCase().startsWith(search.value.toString().toLowerCase()))
     })
 
-    // =============== METHODS ==============
-
+    /**
+     * Additional `style` attribute for the dropdown (position values).
+     *
+     * @type {object}
+     */
     const style = computed(() => {
       return {
         left: left.value !== undefined ? `${left.value}px` : undefined,
@@ -85,10 +175,17 @@ export default {
       }
     })
 
+    // =============== METHODS ==============
+
+    /**
+     * Closes the dropdown.
+     * 
+     * @returns {void}
+     */
     const close = () => {
       top.value = undefined
       bottom.value = undefined
-      fullScreen.value = false
+      fullHeight.value = false
       isOpen.value = false
       document.removeEventListener('click', handleClickOutside)
       document.removeEventListener('keydown', handleKeydown)
@@ -97,6 +194,11 @@ export default {
       search.value = ''
     }
 
+    /**
+     * Opens the dropdown.
+     * 
+     * @returns {void}
+     */
     const open = async () => {
       isOpen.value = true
 
@@ -110,7 +212,7 @@ export default {
 
       resizeDropdown()
 
-      scrollDropdown()
+      scrollToSelected()
 
       setTimeout(() => {
         document.addEventListener('click', handleClickOutside)
@@ -120,8 +222,14 @@ export default {
       }, 0)
     }
 
+    /**
+     * Scroll the dropdown to an option.
+     * 
+     * @param {object} option* - an option object form [`options`](#option-options).
+     * @returns {void}
+     */
     const scrollToOption = (option) => {
-      if (fullScreen.value) {
+      if (fullHeight.value) {
         const selectorRect = selector.value.getBoundingClientRect()
         const optionRect = option.getBoundingClientRect()
 
@@ -143,7 +251,12 @@ export default {
       }
     }
 
-    const scrollDropdown = async () => {
+    /**
+     * Scroll to the currently selected option (async).
+     * 
+     * @returns {void}
+     */
+    const scrollToSelected = async () => {
       await nextTick()
 
       const option = document.querySelector(`[data-dropdown-for="${el$.value.fieldId}"] [data-selected="true"]`)
@@ -155,13 +268,18 @@ export default {
       scrollToOption(option)
     }
 
+    /**
+     * Resizes the dropdown to best fit into screen.
+     * 
+     * @returns {void}
+     */
     const resizeDropdown = () => {
       if (dropdown.value.getBoundingClientRect().height >= window.innerHeight - 32) {
-        fullScreen.value = true
+        fullHeight.value = true
         top.value = 16
         bottom.value = 16
       } else {
-        fullScreen.value = false
+        fullHeight.value = false
         
         top.value = selector.value.getBoundingClientRect().top
 
@@ -173,16 +291,33 @@ export default {
       }
     }
 
+    /**
+     * Select an option.
+     * 
+     * @param {object} option* - an option object form [`options`](#option-options).
+     * @returns {void}
+     */
     const selectOption = (option) => {
       selected.value = option
       fire('select', option)
     }
 
+    /**
+     * Removes the selected option.
+     * 
+     * @returns {void}
+     */
     const reset = () => {
       selected.value = {}
       fire('select', {})
     }
 
+    /**
+     * Handles pointing an option (sets [`pointed`](#property-pointed)).
+     * 
+     * @param {object} option* - an option object form [`options`](#option-options).
+     * @returns {void}
+     */
     const handleOptionPoint = (option) => {
       if (hoverDisabled.value) {
         return
@@ -191,16 +326,34 @@ export default {
       pointed.value = option
     }
 
+    /**
+     * Handle the click of an option.
+     * 
+     * @param {object} option* - an option object form [`options`](#option-options).
+     * @returns {void}
+     */
     const handleOptionClick = (option) => {
       selectOption(option)
       close()
       el$.value.input.focus()
     }
 
+    /**
+     * Handles the click of collapsed element.
+     * 
+     * @params {Event} event* - the Event
+     * @returns {void}
+     */
     const handleSelectorClick = (e) => {
       open()
     }
 
+    /**
+     * Handles the keydown even of the collapsed element when focused (async.
+     * 
+     * @params {Event} event* - the Event
+     * @returns {void}
+     */
     const handleSelectorKeydown = async (e) => {
       if (isOpen.value) {
         return
@@ -222,12 +375,24 @@ export default {
       }
     }
 
+    /**
+     * Handles clicking outside of the dropdown once opened (closes it).
+     * 
+     * @params {Event} event* - the Event
+     * @returns {void}
+     */
     const handleClickOutside = (e) => {
       if (!dropdown.value.contains(e.target)) {
         close()
       }
     }
 
+    /**
+     * Handles the keydown event when the dropdown is open.
+     * 
+     * @params {Event} event* - the Event
+     * @returns {void}
+     */
     const handleKeydown = (e) => {
       if (e.key === 'Escape') {
         close()
@@ -326,10 +491,20 @@ export default {
       }
     }
 
+    /**
+     * Handles the window resize event (closes the dropdown if open).
+     * 
+     * @returns {void}
+     */
     const handleResize = () => {
       close()
     }
 
+    /**
+     * Handles the window scroll event (resizes the dropdown if needed).
+     * 
+     * @returns {void}
+     */
     const handleScroll = () => {
       if (resizeTimeout.value) {
         clearTimeout(resizeTimeout.value)
@@ -394,7 +569,7 @@ export default {
 
       close,
       scrollToOption,
-      scrollDropdown,
+      scrollToSelected,
       selectOption,
       reset,
       handleOptionPoint,
