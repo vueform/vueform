@@ -58,7 +58,11 @@
           role="listbox"
           tabindex="-1"
         >
-          <template v-for="(option, index) in options" :key="option.value">
+          <div
+            v-for="(option, index) in options"
+            :class="classes.optionWrapper"
+            :key="option.value"
+          >
             <component
               v-if="option.display && typeof option.display === 'object' && [option.display.render || option.display.template]"
               :is="option.display"
@@ -104,7 +108,7 @@
               :tabindex="pointed.index === option.index ? 0 : -1"
               :aria-selected="selected.index === option.index"
             />
-          </template>
+          </div>
         </div>
       </Teleport>
     </div>

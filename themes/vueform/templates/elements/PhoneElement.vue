@@ -27,6 +27,7 @@
           input_focused: '',
           input_success: '',
           input_danger: '',
+          optionWrapper: '',
           option: 'vf-phone-option',
           option_active: 'vf-phone-option-active',
           optionWrapper: 'vf-phone-option-wrapper',
