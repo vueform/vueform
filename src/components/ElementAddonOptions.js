@@ -205,10 +205,14 @@ export default {
 
       await nextTick()
 
+      const selectorRect = selector.value.getBoundingClientRect()
+
       if (selector.value.closest('[dir="rtl"]')) {
-        right.value = window.innerWidth - (selector.value.offsetLeft + selector.value.offsetWidth)
+        left.value = undefined
+        right.value = window.innerWidth - (selectorRect.left + selectorRect.width)
       } else {
-        left.value = selector.value.offsetLeft
+        right.value = undefined
+        left.value = selectorRect.left
       }
 
       resizeDropdown()
