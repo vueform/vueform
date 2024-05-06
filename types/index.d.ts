@@ -350,6 +350,8 @@ export interface VueformElement extends DefineComponent {
   inputType: string;
   include: Array<any>;
   exclude: Array<any>;
+  unmask: ;
+  allowIncomplete: ;
   radioName: string;
   radioValue: boolean | string | number;
   canDeselect: boolean;
@@ -785,6 +787,8 @@ export interface VueformSchema {
   inputType?: string;
   include?: Array<any>;
   exclude?: Array<any>;
+  unmask?: ;
+  allowIncomplete?: ;
   radioName?: string;
   radioValue?: boolean | string | number;
   canDeselect?: boolean;
@@ -2022,6 +2026,8 @@ export interface PhoneElementProps {
   readonly?: boolean;
   include?: Array<any>;
   exclude?: Array<any>;
+  unmask: ;
+  allowIncomplete: ;
   attrs?: object;
   autocomplete?: string | number;
   loading?: boolean;
@@ -7137,6 +7143,8 @@ export declare class PhoneElement implements DefineComponent {
   readonly: PhoneElementProps['readonly'];
   include: PhoneElementProps['include'];
   exclude: PhoneElementProps['exclude'];
+  unmask: PhoneElementProps['unmask'];
+  allowIncomplete: PhoneElementProps['allowIncomplete'];
   attrs: PhoneElementProps['attrs'];
   autocomplete: PhoneElementProps['autocomplete'];
   loading: PhoneElementProps['loading'];

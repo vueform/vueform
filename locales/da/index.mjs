@@ -22,6 +22,9 @@ export default {
         "uploadButton": "Upload billeder",
         "dndTitle": "Upload billeder",
         "dndDescription": "Slip billeder eller klik her for at uploade"
+      },
+      "phone": {
+        "ariaLabel": "Select a country"
       }
     },
     "steps": {
@@ -398,6 +401,7 @@ export default {
     },
     "boolean": ":attribute skal være sand eller falsk.",
     "captcha": "Please verify that you are not a robot.",
+    "complete": "Please fill in a valid phone number.",
     "confirmed": ":attribute er ikke det samme som bekræftelsesfeltet.",
     "date": ":attribute er ikke en gyldig dato.",
     "date_format": ":attribute matcher ikke formatet :format.",

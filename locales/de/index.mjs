@@ -22,6 +22,9 @@ export default {
         "uploadButton": "Bilder hochladen",
         "dndTitle": "Bilder hochladen",
         "dndDescription": "Bild ablegen oder zum Hochladen hier klicken"
+      },
+      "phone": {
+        "ariaLabel": "Select a country"
       }
     },
     "steps": {
@@ -400,6 +403,7 @@ export default {
     },
     "boolean": ":attribute muss entweder true oder false sein.",
     "captcha": "Please verify that you are not a robot.",
+    "complete": "Please fill in a valid phone number.",
     "confirmed": ":attribute stimmt nicht mit der Bestätigung überein.",
     "date": ":attribute muss ein gültiges Datum sein.",
     "date_format": ":attribute entspricht nicht dem gültigen Format für :format.",

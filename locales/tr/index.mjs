@@ -22,6 +22,9 @@ export default {
         "uploadButton": "Resim yükle",
         "dndTitle": "Resim yükle",
         "dndDescription": "Resimleri bırakın veya yüklemek için buraya tıklayın"
+      },
+      "phone": {
+        "ariaLabel": "Select a country"
       }
     },
     "steps": {
@@ -398,6 +401,7 @@ export default {
     },
     "boolean": ":attribute sadece doğru veya yanlış olmalıdır.",
     "captcha": "Please verify that you are not a robot.",
+    "complete": "Please fill in a valid phone number.",
     "confirmed": ":attribute tekrarı eşleşmiyor.",
     "date": ":attribute geçerli bir tarih değil.",
     "date_format": ":attribute mutlaka :format biçiminde olmalıdır.",

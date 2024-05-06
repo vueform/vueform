@@ -390,7 +390,7 @@ export default {
       "WF": "Wallis & Futuna",
       "YE": "Yemen",
       "ZM": "Zambia",
-      "ZW": "Zimbabwe",
+      "ZW": "Zimbabwe"
     }
   },
   "validation": {

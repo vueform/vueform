@@ -22,6 +22,9 @@ export default {
         "uploadButton": "Képek feltöltése",
         "dndTitle": "Képek feltöltése",
         "dndDescription": "Képek feltöltéshez kattints ide vagy húzd ide a képeket"
+      },
+      "phone": {
+        "ariaLabel": "Select a country"
       }
     },
     "steps": {
@@ -398,6 +401,7 @@ export default {
     },
     "boolean": "A(z) :attribute mező csak true vagy false értéket kaphat!",
     "captcha": "Please verify that you are not a robot.",
+    "complete": "Please fill in a valid phone number.",
     "confirmed": "A(z) :attribute nem egyezik a megerősítéssel.",
     "date": "A(z) :attribute nem érvényes dátum.",
     "date_format": "A(z) :attribute nem egyezik az alábbi dátum formátummal :format!",

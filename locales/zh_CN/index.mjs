@@ -22,6 +22,9 @@ export default {
         "uploadButton": "上传图片",
         "dndTitle": "上传图片",
         "dndDescription": "删除图片或点击此处上传"
+      },
+      "phone": {
+        "ariaLabel": "Select a country"
       }
     },
     "steps": {
@@ -398,6 +401,7 @@ export default {
     },
     "boolean": ":attribute 必须为布尔值。",
     "captcha": "Please verify that you are not a robot.",
+    "complete": "Please fill in a valid phone number.",
     "confirmed": ":attribute 两次输入不一致。",
     "date": ":attribute 不是一个有效的日期。",
     "date_format": ":attribute 的格式必须为 :format。",

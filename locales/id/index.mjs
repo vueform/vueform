@@ -22,6 +22,9 @@ export default {
         "uploadButton": "Unggah gambar",
         "dndTitle": "Unggah gambar",
         "dndDescription": "Jatuhkan gambar atau klik di sini untuk mengunggah"
+      },
+      "phone": {
+        "ariaLabel": "Select a country"
       }
     },
     "steps": {
@@ -398,6 +401,7 @@ export default {
     },
     "boolean": ":Attribute harus bernilai true atau false",
     "captcha": "Please verify that you are not a robot.",
+    "complete": "Please fill in a valid phone number.",
     "confirmed": "Konfirmasi :attribute tidak cocok.",
     "date": ":Attribute bukan tanggal yang valid.",
     "date_format": ":Attribute tidak cocok dengan format :format.",

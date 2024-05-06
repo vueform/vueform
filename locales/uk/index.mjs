@@ -22,6 +22,9 @@ export default {
         "uploadButton": "Завантажити зображення",
         "dndTitle": "Завантажити зображення",
         "dndDescription": "Перемістіть зображення або натисніть тут, щоби завантажити"
+      },
+      "phone": {
+        "ariaLabel": "Select a country"
       }
     },
     "steps": {
@@ -398,6 +401,7 @@ export default {
     },
     "boolean": "Поле :attribute повинне містити логічний тип.",
     "captcha": "Please verify that you are not a robot.",
+    "complete": "Please fill in a valid phone number.",
     "confirmed": "Поле :attribute не збігається з підтвердженням.",
     "date": "Поле :attribute не є датою.",
     "date_format": "Поле :attribute не відповідає формату :format.",

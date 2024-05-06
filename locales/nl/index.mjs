@@ -22,6 +22,9 @@ export default {
         "uploadButton": "Afbeeldingen uploaden",
         "dndTitle": "Afbeeldingen uploaden",
         "dndDescription": "Sleep afbeeldingen of klik hier om te uploaden"
+      },
+      "phone": {
+        "ariaLabel": "Select a country"
       }
     },
     "steps": {
@@ -399,6 +402,7 @@ export default {
     },
     "boolean": ":attribute moet ja of nee zijn.",
     "captcha": "Please verify that you are not a robot.",
+    "complete": "Please fill in a valid phone number.",
     "confirmed": ":attribute bevestiging komt niet overeen.",
     "date": ":attribute moet een datum bevatten.",
     "date_format": ":attribute moet een geldig datum formaat bevatten.",

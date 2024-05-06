@@ -22,6 +22,9 @@ export default {
         "uploadButton": "Carica immagini",
         "dndTitle": "Carica immagini",
         "dndDescription": "Rilascia le immagini o clicca qui per caricarle"
+      },
+      "phone": {
+        "ariaLabel": "Select a country"
       }
     },
     "steps": {
@@ -398,6 +401,7 @@ export default {
     },
     "boolean": "Il campo :attribute deve essere vero o falso.",
     "captcha": "Please verify that you are not a robot.",
+    "complete": "Please fill in a valid phone number.",
     "confirmed": "Il campo di conferma per :attribute non coincide.",
     "date": ":attribute non è una data valida.",
     "date_format": ":attribute non coincide con il formato :format.",

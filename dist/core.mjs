@@ -10136,7 +10136,7 @@ var scripts = {
 	"generate:elements-base": "npx babel-node scripts/generate-elements-base.js --presets @babel/preset-env",
 	"generate:elements": "npx babel-node scripts/generate-elements.js --presets @babel/preset-env",
 	"generate:components": "npx babel-node scripts/generate-components.js --presets @babel/preset-env",
-	generate: "npm run generate:common-features; npm run generate:element-features; npm run generate:elements-base; npm run generate:elements; npm run generate:components; npm run generate:types",
+	generate: "npm run generate:common-features; npm run generate:element-features; npm run generate:elements-base; npm run generate:elements; npm run generate:components; npm run generate:types; npm run fix-locales",
 	"fix-locales": "npx babel-node --presets @babel/preset-env ./scripts/fix-locales.js"
 };
 var devDependencies = {
@@ -11006,6 +11006,21 @@ class captcha$2 extends Validator {
       }
       return yield _this.element$.Provider.validate(_this.element$.Provider.getResponse());
     })();
+  }
+}
+
+class complete extends Validator {
+  get debounce() {
+    if (this.attributes.debounce) {
+      return this.attributes.debounce;
+    }
+    if (this.element$.debounce) {
+      return this.element$.debounce;
+    }
+    return 1000;
+  }
+  check(value) {
+    return this.element$.Mask ? this.element$.Mask.masked.currentMask.isComplete : this.filled(value);
   }
 }
 
@@ -37362,6 +37377,16 @@ var PhoneElement = {
       type: [Array],
       default: () => []
     },
+    unmask: {
+      require: false,
+      type: Boolean,
+      default: false
+    },
+    allowIncomplete: {
+      require: false,
+      type: Boolean,
+      default: false
+    },
     attrs: {
       required: false,
       type: [Object],
@@ -40035,4 +40060,4 @@ var vueform = installer(undefined, {
   FormElements
 });
 
-export { ButtonElement, CaptchaElement, CheckboxElement, CheckboxgroupCheckbox, CheckboxgroupElement, DateElement, DatepickerWrapper, DatesElement, DragAndDrop, EditorElement, EditorWrapper, ElementAddon, ElementAddonOptions, ElementDescription, ElementError, ElementInfo, ElementLabel, ElementLabelFloating, ElementLayout, ElementLayoutInline, ElementLoader, ElementMessage, ElementText, FileElement, FilePreview, FormElements, FormErrors, FormLanguage, FormLanguages, FormMessages, FormStep, FormSteps, FormStepsControl, FormStepsControls, FormTab, FormTabs, GenericElement, GroupElement, HiddenElement, ListElement, LocationElement, MultifileElement, MultiselectElement, ObjectElement, PhoneElement, RadioElement, RadiogroupElement, RadiogroupRadio, SelectElement, SliderElement, StaticElement, TEditorElement, TTextElement, TTextareaElement, TagsElement, TextElement, TextareaElement, ToggleElement, Validator, VueformComponent as Vueform, VueformElement, accepted, active_url, after, after_or_equal, alpha, alpha_dash, alpha_num, array$2 as array, before, before_or_equal, between, boolean$1 as boolean, captcha$2 as captcha, confirmed, date$4 as date, date_equals, date_format, vueform as default, defineConfig, defineElement, different, digits, digits_between, dimensions, distinct, element, email, exists, file$5 as file, filled, gt, gte, image, in_, in_array, installer, integer, ip, ipv4, ipv6, json, lt, lte, max, mimes, mimetypes, min$1 as min, not_in, not_regex, nullable, numeric, regex, required, same, size, string, timezone, unique, url, base$1a as useClasses, base$1b as useVueform, uuid, vueform };
+export { ButtonElement, CaptchaElement, CheckboxElement, CheckboxgroupCheckbox, CheckboxgroupElement, DateElement, DatepickerWrapper, DatesElement, DragAndDrop, EditorElement, EditorWrapper, ElementAddon, ElementAddonOptions, ElementDescription, ElementError, ElementInfo, ElementLabel, ElementLabelFloating, ElementLayout, ElementLayoutInline, ElementLoader, ElementMessage, ElementText, FileElement, FilePreview, FormElements, FormErrors, FormLanguage, FormLanguages, FormMessages, FormStep, FormSteps, FormStepsControl, FormStepsControls, FormTab, FormTabs, GenericElement, GroupElement, HiddenElement, ListElement, LocationElement, MultifileElement, MultiselectElement, ObjectElement, PhoneElement, RadioElement, RadiogroupElement, RadiogroupRadio, SelectElement, SliderElement, StaticElement, TEditorElement, TTextElement, TTextareaElement, TagsElement, TextElement, TextareaElement, ToggleElement, Validator, VueformComponent as Vueform, VueformElement, accepted, active_url, after, after_or_equal, alpha, alpha_dash, alpha_num, array$2 as array, before, before_or_equal, between, boolean$1 as boolean, captcha$2 as captcha, complete, confirmed, date$4 as date, date_equals, date_format, vueform as default, defineConfig, defineElement, different, digits, digits_between, dimensions, distinct, element, email, exists, file$5 as file, filled, gt, gte, image, in_, in_array, installer, integer, ip, ipv4, ipv6, json, lt, lte, max, mimes, mimetypes, min$1 as min, not_in, not_regex, nullable, numeric, regex, required, same, size, string, timezone, unique, url, base$1a as useClasses, base$1b as useVueform, uuid, vueform };

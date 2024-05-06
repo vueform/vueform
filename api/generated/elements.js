@@ -25666,6 +25666,22 @@ module.exports = {
         required: false,
         private: false,
       },
+      unmask: {
+        required: 'undefined',
+        default: 'false',
+        localized: false,
+        types: [
+        ],
+        private: false,
+      },
+      allowIncomplete: {
+        required: 'undefined',
+        default: 'false',
+        localized: false,
+        types: [
+        ],
+        private: false,
+      },
       attrs: {
         required: 'false',
         default: '{}',

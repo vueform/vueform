@@ -22,6 +22,9 @@ export default {
         "uploadButton": "Nahrát obrázky",
         "dndTitle": "Nahrát obrázky",
         "dndDescription": "Presuňte obrázky nebo je nahrajte kliknutím sem"
+      },
+      "phone": {
+        "ariaLabel": "Select a country"
       }
     },
     "steps": {
@@ -398,6 +401,7 @@ export default {
     },
     "boolean": ":Attribute musí být true anebo false.",
     "captcha": "Please verify that you are not a robot.",
+    "complete": "Please fill in a valid phone number.",
     "confirmed": ":Attribute konfirmace se neshoduje.",
     "date": ":Attribute má neplatné datum.",
     "date_format": ":Attribute se neshoduje s formátem :format.",

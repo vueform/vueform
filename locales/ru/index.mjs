@@ -22,6 +22,9 @@ export default {
         "uploadButton": "Загрузка изображений",
         "dndTitle": "Загрузка изображений",
         "dndDescription": "Перетащите изображения или нажмите здесь, чтобы загрузить"
+      },
+      "phone": {
+        "ariaLabel": "Select a country"
       }
     },
     "steps": {
@@ -398,6 +401,7 @@ export default {
     },
     "boolean": "Значение поля :attribute должно быть логического типа.",
     "captcha": "Please verify that you are not a robot.",
+    "complete": "Please fill in a valid phone number.",
     "confirmed": "Значение поля :attribute не совпадает с подтверждаемым.",
     "date": "Значение поля :attribute не является датой.",
     "date_format": "Значение поля :attribute не соответствует формату даты :format.",

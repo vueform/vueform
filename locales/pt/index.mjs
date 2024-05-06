@@ -22,6 +22,9 @@ export default {
         "uploadButton": "Submeter imagens",
         "dndTitle": "Submeter imagens",
         "dndDescription": "Solte imagens ou clique aqui para submeter"
+      },
+      "phone": {
+        "ariaLabel": "Select a country"
       }
     },
     "steps": {
@@ -398,6 +401,7 @@ export default {
     },
     "boolean": "O campo :attribute deverá conter o valor verdadeiro ou falso.",
     "captcha": "Please verify that you are not a robot.",
+    "complete": "Please fill in a valid phone number.",
     "confirmed": "A confirmação para o campo :attribute não coincide.",
     "date": "O campo :attribute não contém uma data válida.",
     "date_format": "A data indicada para o campo :attribute não respeita o formato :format.",

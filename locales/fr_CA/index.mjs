@@ -22,6 +22,9 @@ export default {
         "uploadButton": "Importer des images",
         "dndTitle": "Importer des images",
         "dndDescription": "Glisser des images ou cliquer ici pour les télécharger"
+      },
+      "phone": {
+        "ariaLabel": "Select a country"
       }
     },
     "steps": {
@@ -399,6 +402,7 @@ export default {
     },
     "boolean": "Le champ :attribute doit être vrai ou faux.",
     "captcha": "Please verify that you are not a robot.",
+    "complete": "Please fill in a valid phone number.",
     "confirmed": "La confirmation de :attribute ne correspond pas.",
     "date": ":attribute n'est pas une date valide.",
     "date_format": ":attribute ne correspond pas au format :format.",
