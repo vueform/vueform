@@ -238,6 +238,439 @@ module.exports = {
     },
     "views": []
   },
+  "ElementAddonOptions": {
+    "inject": {
+      "form$": {
+        "public": true,
+        "types": [
+          "Vueform"
+        ],
+        "description": "The root form's component."
+      },
+      "el$": {
+        "public": true,
+        "types": [
+          "VueformElement"
+        ],
+        "description": "The parent element's component."
+      },
+      "Size": {
+        "public": true,
+        "types": [
+          "string"
+        ],
+        "description": "The size of the component."
+      },
+      "theme": {
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "The global theme object, which contains all the default templates and classes."
+      }
+    },
+    "computed": {
+      "View": {
+        "public": true,
+        "types": [
+          "string"
+        ],
+        "description": "The name of the resolved view for the component. This one should be used to determine the component's view in class functions."
+      },
+      "classesInstance": {
+        "public": false,
+        "types": [
+          "MergeClasses"
+        ],
+        "description": "The classes instance (for testing purpose)."
+      },
+      "classes": {
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "The component's classes."
+      },
+      "Templates": {
+        "public": false,
+        "types": [
+          "object"
+        ],
+        "description": "The list of templates available to the component."
+      },
+      "template": {
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "The component's template."
+      },
+      "style": {
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "Additional `style` attribute for the dropdown (position values)."
+      },
+      "focused": {
+        "public": true,
+        "types": [
+          "array"
+        ],
+        "description": "The option that should be focused according to current [`search`](#property-search) term."
+      }
+    },
+    "data": {
+      "events": {
+        "public": false,
+        "default": "[]",
+        "types": [
+          "array"
+        ],
+        "description": "Helper property used to store available events for the element."
+      },
+      "listeners": {
+        "public": false,
+        "default": "{}",
+        "types": [
+          "object"
+        ],
+        "description": "Helper property used to store listeners for events."
+      },
+      "isOpen": {
+        "public": true,
+        "types": [
+          "boolean"
+        ],
+        "description": "Whether the country selector is open."
+      },
+      "selector": {
+        "public": true,
+        "types": [
+          "HTMLElement"
+        ],
+        "description": "The container div."
+      },
+      "dropdown": {
+        "public": true,
+        "types": [
+          "HTMLElement"
+        ],
+        "description": "The dropdown container div."
+      },
+      "left": {
+        "public": true,
+        "types": [
+          "number",
+          "undefined"
+        ],
+        "description": "The left position of the dropdown."
+      },
+      "right": {
+        "public": true,
+        "types": [
+          "number",
+          "undefined"
+        ],
+        "description": "The right position of the dropdown."
+      },
+      "top": {
+        "public": true,
+        "types": [
+          "number",
+          "undefined"
+        ],
+        "description": "The top position of the dropdown."
+      },
+      "bottom": {
+        "public": true,
+        "types": [
+          "number",
+          "undefined"
+        ],
+        "description": "The bottom position of the dropdown."
+      },
+      "search": {
+        "public": true,
+        "types": [
+          "string"
+        ],
+        "description": "The current search term."
+      },
+      "searchTimeout": {
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "Store for search timeout."
+      },
+      "hoverDisabled": {
+        "public": true,
+        "types": [
+          "boolean"
+        ],
+        "description": "Whether selection on hover is disabled."
+      },
+      "selected": {
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "The currently selected option."
+      },
+      "pointed": {
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "The currently pointed option."
+      }
+    },
+    "methods": {
+      "on": {
+        "public": true,
+        "returns": "void",
+        "description": "Adds a listener for an event.",
+        "params": {
+          "event": {
+            "types": [
+              "string"
+            ],
+            "required": true,
+            "description": "name of the event to listen for"
+          },
+          "callback": {
+            "types": [
+              "function"
+            ],
+            "required": true,
+            "description": "callback to run when the event is triggered"
+          }
+        }
+      },
+      "off": {
+        "public": true,
+        "returns": "void",
+        "description": "Removes all listeners for an event.",
+        "params": {
+          "event": {
+            "types": [
+              "string"
+            ],
+            "required": true,
+            "description": "name of the event to remove"
+          }
+        }
+      },
+      "fire": {
+        "public": true,
+        "returns": "void",
+        "description": "Fires and emits an event.",
+        "params": {
+          "args": {
+            "types": [
+              "any"
+            ],
+            "required": false,
+            "description": "list of arguments to pass over to the event callback "
+          }
+        }
+      },
+      "close": {
+        "public": true,
+        "returns": "void",
+        "description": "Closes the dropdown."
+      },
+      "scrollToOption": {
+        "public": true,
+        "returns": "void",
+        "description": "Scroll the dropdown to an option.",
+        "params": {
+          "option": {
+            "types": [
+              "object"
+            ],
+            "required": true,
+            "description": "an option object form [`options`](#option-options)."
+          }
+        }
+      },
+      "scrollToSelected": {
+        "public": true,
+        "returns": "void",
+        "description": "Scroll to the currently selected option (async)."
+      },
+      "selectOption": {
+        "public": true,
+        "returns": "void",
+        "description": "Select an option.",
+        "params": {
+          "option": {
+            "types": [
+              "object"
+            ],
+            "required": true,
+            "description": "an option object form [`options`](#option-options)."
+          }
+        }
+      },
+      "reset": {
+        "public": true,
+        "returns": "void",
+        "description": "Removes the selected option."
+      },
+      "handleOptionPoint": {
+        "public": true,
+        "returns": "void",
+        "description": "Handles pointing an option (sets [`pointed`](#property-pointed)).",
+        "params": {
+          "option": {
+            "types": [
+              "object"
+            ],
+            "required": true,
+            "description": "an option object form [`options`](#option-options)."
+          }
+        }
+      },
+      "handleOptionClick": {
+        "public": true,
+        "returns": "void",
+        "description": "Handle the click of an option.",
+        "params": {
+          "option": {
+            "types": [
+              "object"
+            ],
+            "required": true,
+            "description": "an option object form [`options`](#option-options)."
+          }
+        }
+      },
+      "handleSelectorClick": {
+        "public": true,
+        "returns": "void",
+        "description": "Handles the click of collapsed element.",
+        "params": {
+          "event": {
+            "types": [
+              "Event"
+            ],
+            "required": true,
+            "description": "the Event"
+          }
+        }
+      },
+      "handleSelectorKeydown": {
+        "public": true,
+        "returns": "void",
+        "description": "Handles the keydown even of the collapsed element when focused (async.",
+        "params": {
+          "event": {
+            "types": [
+              "Event"
+            ],
+            "required": true,
+            "description": "the Event"
+          }
+        }
+      },
+      "handleClickOutside": {
+        "public": true,
+        "returns": "void",
+        "description": "Handles clicking outside of the dropdown once opened (closes it).",
+        "params": {
+          "event": {
+            "types": [
+              "Event"
+            ],
+            "required": true,
+            "description": "the Event"
+          }
+        }
+      },
+      "handleKeydown": {
+        "public": true,
+        "returns": "void",
+        "description": "Handles the keydown event when the dropdown is open.",
+        "params": {
+          "event": {
+            "types": [
+              "Event"
+            ],
+            "required": true,
+            "description": "the Event"
+          }
+        }
+      },
+      "handleResize": {
+        "public": true,
+        "returns": "void",
+        "description": "Handles the window resize event (closes the dropdown if open)."
+      }
+    },
+    "props": {
+      "options": {
+        "required": false,
+        "default": "[]",
+        "types": [
+          "array"
+        ]
+      },
+      "placeholder": {
+        "required": false,
+        "default": "",
+        "types": [
+          "string",
+          "number",
+          "object"
+        ]
+      }
+    },
+    "events": {
+      "select": {
+        "description": "Triggered when an option is selected when using [`native: false`](#option-native).",
+        "params": {
+          "option": {
+            "description": "the selected option",
+            "types": [
+              "object"
+            ]
+          },
+          "el$": {
+            "description": "the element's component",
+            "types": [
+              "component"
+            ]
+          }
+        }
+      },
+      "open": {
+        "description": "Triggered when the dropdown list is opened when using [`native: false`](#option-native).",
+        "params": {
+          "el$": {
+            "description": "the element's component",
+            "types": [
+              "component"
+            ]
+          }
+        }
+      },
+      "close": {
+        "description": "Triggered when the dropdown list is closed when using [`native: false`](#option-native).",
+        "params": {
+          "el$": {
+            "description": "the element's component",
+            "types": [
+              "component"
+            ]
+          }
+        }
+      }
+    },
+    "slots": {},
+    "views": []
+  },
   "ElementDescription": {
     "inject": {
       "el$": {

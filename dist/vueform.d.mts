@@ -2,6 +2,7 @@ declare module '@vueform/vueform/dist/vueform' {
   const obj: any;
   const DragAndDrop: any;
   const ElementAddon: any;
+  const ElementAddonOptions: any;
   const ElementDescription: any;
   const ElementError: any;
   const ElementInfo: any;
@@ -57,6 +58,7 @@ declare module '@vueform/vueform/dist/vueform' {
   const MultifileElement_gallery: any;
   const MultiselectElement: any;
   const ObjectElement: any;
+  const PhoneElement: any;
   const RadioElement: any;
   const RadiogroupElement: any;
   const RadiogroupElement_blocks: any;
@@ -79,6 +81,7 @@ declare module '@vueform/vueform/dist/vueform' {
     columns,
     DragAndDrop,
     ElementAddon,
+    ElementAddonOptions,
     ElementDescription,
     ElementError,
     ElementInfo,
@@ -134,6 +137,7 @@ declare module '@vueform/vueform/dist/vueform' {
     MultifileElement_gallery,
     MultiselectElement,
     ObjectElement,
+    PhoneElement,
     RadioElement,
     RadiogroupElement,
     RadiogroupElement_blocks,

@@ -348,6 +348,8 @@ export interface VueformElement extends DefineComponent {
   noResultsText: string | object;
   autocomplete: string | number;
   inputType: string;
+  include: Array<any>;
+  exclude: Array<any>;
   radioName: string;
   radioValue: boolean | string | number;
   canDeselect: boolean;
@@ -483,6 +485,10 @@ export interface VueformElement extends DefineComponent {
   preparing: boolean;
   hasUploading: boolean;
   storeFileName: string;
+  addonOptions: Array<any>;
+  maskPluginInstalled: boolean;
+  inputType: string;
+  mask: object | undefined;
   inputName: string;
   isHtml: boolean;
   componentContent: object;
@@ -522,6 +528,8 @@ export interface VueformElement extends DefineComponent {
   sorting: boolean;
   locationService: object | null;
   location: object;
+  options$: component;
+  addonPlaceholder: component;
 
   // Methods
   activate: () => void;
@@ -595,10 +603,11 @@ export interface VueformElement extends DefineComponent {
   handlePaste: (e: Event) => void;
   select: (options: string | Array<any>) => void;
   deselect: (options: string | Array<any>) => void;
+  handleKeydown: (e: Event) => void;
+  handleOptionSelect: (option: object) => void;
   handleUpdate: (val: string) => void;
   validateLanguage: (lang: string) => Promise;
   initState: () => void;
-  handleKeydown: (e: Event) => void;
   handleKeyup: (e: Event) => void;
   handleKeypress: (e: Event) => void;
   autosize: () => void;
@@ -774,6 +783,8 @@ export interface VueformSchema {
   noResultsText?: string | object;
   autocomplete?: string | number;
   inputType?: string;
+  include?: Array<any>;
+  exclude?: Array<any>;
   radioName?: string;
   radioValue?: boolean | string | number;
   canDeselect?: boolean;
@@ -819,6 +830,11 @@ export interface DragAndDropProps {
 
 export interface ElementAddonProps {
   type: string;
+}
+
+export interface ElementAddonOptionsProps {
+  options?: Array<any>;
+  placeholder?: string | number | object;
 }
 
 export interface ElementDescriptionProps {
@@ -1954,6 +1970,65 @@ export interface ObjectElementProps {
   onRemove?: Function;
 }
 
+export interface PhoneElementProps {
+  name: string | number;
+  conditions?: Array<any>;
+  onBeforeCreate?: Function;
+  onCreated?: Function;
+  onBeforeMount?: Function;
+  onMounted?: Function;
+  onBeforeUpdate?: Function;
+  onUpdated?: Function;
+  onBeforeUnmount?: Function;
+  onUnmounted?: Function;
+  inline?: boolean;
+  layout?: string | object | boolean;
+  addClass?: Array<any> | object | string | Function;
+  removeClass?: Array<any> | object | Function;
+  replaceClass?: object | Function;
+  overrideClass?: Array<any> | object | string | Function;
+  addClasses?: object | Function;
+  replaceClasses?: object | Function;
+  removeClasses?: object | Function;
+  overrideClasses?: object | Function;
+  presets?: Array<any>;
+  view?: string;
+  views?: object;
+  size?: string;
+  columns?: object | string | number;
+  templates?: object;
+  description?: string | object;
+  info?: string | object;
+  infoPosition?: string;
+  label?: string | object | Function;
+  before?: object | string | number;
+  between?: object | string | number;
+  after?: object | string | number;
+  slots?: object;
+  onChange?: Function;
+  formatData?: Function;
+  formatLoad?: Function;
+  submit?: boolean;
+  rules?: Array<any> | string | object;
+  messages?: object;
+  fieldName?: string;
+  type?: string;
+  default?: string | number | object;
+  debounce?: number;
+  disabled?: boolean;
+  floating?: string | boolean | object;
+  id?: string;
+  placeholder?: string | object;
+  readonly?: boolean;
+  include?: Array<any>;
+  exclude?: Array<any>;
+  attrs?: object;
+  autocomplete?: string | number;
+  loading?: boolean;
+  onBlur?: Function;
+  onSelect?: Function;
+}
+
 export interface RadioElementProps {
   name: string | number;
   conditions?: Array<any>;
@@ -2783,6 +2858,67 @@ export declare class ElementAddon implements DefineComponent {
   $slots: {
     'default': VNode[];
   };
+}
+
+export declare class ElementAddonOptions implements DefineComponent {
+  $props: ElementAddonOptionsProps;
+
+  // Props
+  options: ElementAddonOptionsProps['options'];
+  placeholder: ElementAddonOptionsProps['placeholder'];
+
+  // Computed
+  View: string;
+  classesInstance: MergeClasses;
+  classes: object;
+  Templates: object;
+  template: object;
+  style: object;
+  focused: Array<any>;
+
+  // Data
+  events: Array<any>;
+  listeners: object;
+  isOpen: boolean;
+  selector: HTMLElement;
+  dropdown: HTMLElement;
+  left: number | undefined;
+  right: number | undefined;
+  top: number | undefined;
+  bottom: number | undefined;
+  search: string;
+  searchTimeout: object;
+  hoverDisabled: boolean;
+  selected: object;
+  pointed: object;
+
+  // Injects
+  form$: Vueform;
+  el$: VueformElement;
+  Size: string;
+  theme: object;
+
+  // Methods
+  on: (event: string, callback: Function) => void;
+  off: (event: string) => void;
+  fire: (args?: any) => void;
+  close: () => void;
+  scrollToOption: (option: object) => void;
+  scrollToSelected: () => void;
+  selectOption: (option: object) => void;
+  reset: () => void;
+  handleOptionPoint: (option: object) => void;
+  handleOptionClick: (option: object) => void;
+  handleSelectorClick: (event: Event) => void;
+  handleSelectorKeydown: (event: Event) => void;
+  handleClickOutside: (event: Event) => void;
+  handleKeydown: (event: Event) => void;
+  handleResize: () => void;
+
+  //Events
+  $emit(eventName: 'select', value: any): void;
+  $emit(eventName: 'open', value: any): void;
+  $emit(eventName: 'close', value: any): void;
 }
 
 export declare class ElementDescription implements DefineComponent {
@@ -6946,6 +7082,215 @@ export declare class ObjectElement implements DefineComponent {
   };
 }
 
+export declare class PhoneElement implements DefineComponent {
+  $props: PhoneElementProps;
+
+  // Props
+  name: PhoneElementProps['name'];
+  conditions: PhoneElementProps['conditions'];
+  onBeforeCreate: PhoneElementProps['onBeforeCreate'];
+  onCreated: PhoneElementProps['onCreated'];
+  onBeforeMount: PhoneElementProps['onBeforeMount'];
+  onMounted: PhoneElementProps['onMounted'];
+  onBeforeUpdate: PhoneElementProps['onBeforeUpdate'];
+  onUpdated: PhoneElementProps['onUpdated'];
+  onBeforeUnmount: PhoneElementProps['onBeforeUnmount'];
+  onUnmounted: PhoneElementProps['onUnmounted'];
+  inline: PhoneElementProps['inline'];
+  layout: PhoneElementProps['layout'];
+  addClass: PhoneElementProps['addClass'];
+  removeClass: PhoneElementProps['removeClass'];
+  replaceClass: PhoneElementProps['replaceClass'];
+  overrideClass: PhoneElementProps['overrideClass'];
+  addClasses: PhoneElementProps['addClasses'];
+  replaceClasses: PhoneElementProps['replaceClasses'];
+  removeClasses: PhoneElementProps['removeClasses'];
+  overrideClasses: PhoneElementProps['overrideClasses'];
+  presets: PhoneElementProps['presets'];
+  view: PhoneElementProps['view'];
+  views: PhoneElementProps['views'];
+  size: PhoneElementProps['size'];
+  columns: PhoneElementProps['columns'];
+  templates: PhoneElementProps['templates'];
+  description: PhoneElementProps['description'];
+  info: PhoneElementProps['info'];
+  infoPosition: PhoneElementProps['infoPosition'];
+  label: PhoneElementProps['label'];
+  before: PhoneElementProps['before'];
+  between: PhoneElementProps['between'];
+  after: PhoneElementProps['after'];
+  slots: PhoneElementProps['slots'];
+  onChange: PhoneElementProps['onChange'];
+  formatData: PhoneElementProps['formatData'];
+  formatLoad: PhoneElementProps['formatLoad'];
+  submit: PhoneElementProps['submit'];
+  rules: PhoneElementProps['rules'];
+  messages: PhoneElementProps['messages'];
+  fieldName: PhoneElementProps['fieldName'];
+  type: PhoneElementProps['type'];
+  default: PhoneElementProps['default'];
+  debounce: PhoneElementProps['debounce'];
+  disabled: PhoneElementProps['disabled'];
+  floating: PhoneElementProps['floating'];
+  id: PhoneElementProps['id'];
+  placeholder: PhoneElementProps['placeholder'];
+  readonly: PhoneElementProps['readonly'];
+  include: PhoneElementProps['include'];
+  exclude: PhoneElementProps['exclude'];
+  attrs: PhoneElementProps['attrs'];
+  autocomplete: PhoneElementProps['autocomplete'];
+  loading: PhoneElementProps['loading'];
+  onBlur: PhoneElementProps['onBlur'];
+  onSelect: PhoneElementProps['onSelect'];
+
+  // Computed
+  descriptionId: string;
+  labelId: string;
+  infoId: string;
+  errorId: string;
+  aria: object;
+  el$: VueformElement;
+  isStatic: boolean;
+  isFileType: boolean;
+  isArrayType: boolean;
+  isImageType: boolean;
+  isObjectType: boolean;
+  isGroupType: boolean;
+  isListType: boolean;
+  isActive: boolean;
+  classes: object;
+  classesInstance: MergeClasses;
+  cols: object;
+  columnsClassesService: Columns;
+  columnsClasses: object;
+  available: boolean;
+  data: object;
+  requestData: object;
+  defaultValue: any;
+  isDisabled: boolean;
+  empty: boolean;
+  fieldId: string;
+  hasFloating: boolean;
+  genericName: string;
+  hasLabel: boolean;
+  Label: string | Component;
+  elementLayout: string | Component;
+  isLoading: boolean;
+  nullValue: any;
+  parent: VNode;
+  path: string;
+  dataPath: string;
+  flat: boolean;
+  addonOptions: Array<any>;
+  maskPluginInstalled: boolean;
+  inputType: string;
+  mask: object | undefined;
+  Placeholder: string;
+  elementSlots: object;
+  fieldSlots: object;
+  Templates: object;
+  template: object;
+  dirty: boolean;
+  validated: boolean;
+  invalid: boolean;
+  pending: boolean;
+  debouncing: boolean;
+  busy: boolean;
+  errors: Array<any>;
+  error: string;
+  validationRules: string | Array<any>;
+  isDanger: boolean;
+  isSuccess: boolean;
+  value: any;
+  model: any;
+  isDefault: boolean;
+  visible: boolean;
+  Size: string;
+  View: string;
+  Views: object;
+
+  // Data
+  active: boolean;
+  mounted: boolean;
+  container: HTMLElement;
+  conditionList: Array<any>;
+  localDisabled: boolean | null;
+  events: Array<any>;
+  listeners: object;
+  focused: boolean;
+  input: HTMLElement;
+  options$: component;
+  addonPlaceholder: component;
+  state: object;
+  Validators: Array<any>;
+  messageBag: MessageBag;
+  resetting: boolean;
+  initialValue: any;
+  internalValue: any;
+  hidden: boolean;
+
+  // Injects
+  form$: Vueform;
+  theme: object;
+
+  // Methods
+  activate: () => void;
+  deactivate: () => void;
+  updateColumns: (value: number | Array<any>) => void;
+  updateConditions: () => void;
+  load: (value: any, format: boolean) => void;
+  update: (value: any) => void;
+  clear: () => void;
+  reset: () => void;
+  disable: () => void;
+  enable: () => void;
+  on: (event: string, callback: Function) => void;
+  off: (event: string) => void;
+  fire: (args: any) => void;
+  focus: () => void;
+  handleBlur: () => void;
+  handleInput: (e: Event) => void;
+  handleKeydown: (e: Event) => void;
+  handleOptionSelect: (option: object) => void;
+  handleOpen: () => void;
+  handleClose: () => void;
+  validate: () => Promise;
+  dirt: () => void;
+  clean: () => void;
+  clearMessages: () => void;
+  resetValidators: () => void;
+  initMessageBag: () => void;
+  initValidation: () => void;
+  reinitValidation: () => void;
+  hide: () => void;
+  show: () => void;
+
+  //Events
+  $emit(eventName: 'change', value: any): void;
+  $emit(eventName: 'select', value: any): void;
+  $emit(eventName: 'open', value: any): void;
+  $emit(eventName: 'close', value: any): void;
+  $emit(eventName: 'blur', value: any): void;
+  $emit(eventName: 'beforeCreate', value: any): void;
+  $emit(eventName: 'created', value: any): void;
+  $emit(eventName: 'beforeMount', value: any): void;
+  $emit(eventName: 'mounted', value: any): void;
+  $emit(eventName: 'beforeUpdate', value: any): void;
+  $emit(eventName: 'updated', value: any): void;
+  $emit(eventName: 'beforeUnmount', value: any): void;
+  $emit(eventName: 'unmounted', value: any): void;
+
+  //Slots
+  $slots: {
+    'label': VNode[];
+    'info': VNode[];
+    'description': VNode[];
+    'before': VNode[];
+    'between': VNode[];
+    'after': VNode[];
+  };
+}
+
 export declare class RadioElement implements DefineComponent {
   $props: RadioElementProps;
 
@@ -9398,6 +9743,7 @@ declare module 'vue' {
   interface GlobalComponents {
     DragAndDrop: typeof DragAndDrop;
     ElementAddon: typeof ElementAddon;
+    ElementAddonOptions: typeof ElementAddonOptions;
     ElementDescription: typeof ElementDescription;
     ElementError: typeof ElementError;
     ElementInfo: typeof ElementInfo;
@@ -9441,6 +9787,7 @@ declare module 'vue' {
     MultifileElement: typeof MultifileElement;
     MultiselectElement: typeof MultiselectElement;
     ObjectElement: typeof ObjectElement;
+    PhoneElement: typeof PhoneElement;
     RadioElement: typeof RadioElement;
     RadiogroupElement: typeof RadiogroupElement;
     SelectElement: typeof SelectElement;

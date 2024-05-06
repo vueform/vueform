@@ -1,5 +1,5 @@
 /*!
- * Vueform v1.9.6 (https://github.com/vueform/vueform)
+ * Vueform v1.9.7 (https://github.com/vueform/vueform)
  * Copyright (c) 2024 Adam Berecz <adam@vueform.com>
  * Licensed under the MIT License
  */
@@ -6100,7 +6100,8 @@ class MergeClasses {
     }
     var classes = Array.isArray(target[prop]) ? flattenDeep_1(target[prop]) : target[prop];
     if (target["$".concat(prop)]) {
-      return flattenDeep_1(target["$".concat(prop)](mainTarget, this.component$.value));
+      var propVal = target["$".concat(prop)](mainTarget, this.component$.value);
+      return typeof propVal === 'function' ? propVal : flattenDeep_1(propVal);
     }
     if (isPlainObject_1(classes)) {
       classes = cloneDeep_1(classes);
@@ -6767,7 +6768,7 @@ var camelCase = createCompounder(function(result, word, index) {
 
 var camelCase_1 = camelCase;
 
-var base$1b = function base(props, context, dependencies) {
+var base$1c = function base(props, context, dependencies) {
   var options = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
   if (!options.events) {
     throw new Error('`events` option is required for useEvents');
@@ -6995,7 +6996,7 @@ function useModel (props, context, dependencies) {
   };
 }
 
-var base$1a = function base(props, context) {
+var base$1b = function base(props, context) {
   var {
     schema,
     tabs,
@@ -7066,7 +7067,7 @@ var base$1a = function base(props, context) {
     fire,
     on,
     off
-  } = base$1b(props, context, {
+  } = base$1c(props, context, {
     form$: $this
   }, {
     events: evts
@@ -8488,7 +8489,7 @@ var base$1a = function base(props, context) {
   };
 };
 
-var base$19 = function base(props, context, dependencies) {
+var base$1a = function base(props, context, dependencies) {
   var componentName = context.name;
 
   // ============ DEPENDENCIES ============
@@ -8629,7 +8630,7 @@ var VueformComponent = {
       languagesRegistered,
       tabsRegistered,
       stepsRegistered
-    } = base$1a(props, context);
+    } = base$1b(props, context);
     return {
       tabs$,
       steps$,
@@ -10038,7 +10039,7 @@ function shouldApplyPlugin (name, plugin) {
 }
 
 var name = "@vueform/vueform";
-var version$1 = "1.9.6";
+var version$1 = "1.9.7";
 var description = "Open-Source Form Framework for Vue";
 var homepage = "https://vueform.com";
 var license = "MIT";
@@ -13947,8 +13948,7 @@ var config = {
   },
   providerOptions: {
     recaptcha2: {
-      sitekey: '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI',
-      loadScript: true
+      sitekey: '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI'
     }
   },
   services: {
@@ -14260,7 +14260,7 @@ function installer () {
   return new Vueform();
 }
 
-var base$18 = function base(props, context, dependencies) {
+var base$19 = function base(props, context, dependencies) {
   // =============== INJECT ===============
 
   /**
@@ -14274,7 +14274,7 @@ var base$18 = function base(props, context, dependencies) {
   };
 };
 
-var base$17 = function base(props, context, dependencies) {
+var base$18 = function base(props, context, dependencies) {
   // =============== INJECT ===============
 
   /**
@@ -14288,7 +14288,7 @@ var base$17 = function base(props, context, dependencies) {
   };
 };
 
-var base$16 = function base(props, context, dependencies) {
+var base$17 = function base(props, context, dependencies) {
   // =============== INJECT ===============
 
   /**
@@ -14302,7 +14302,7 @@ var base$16 = function base(props, context, dependencies) {
   };
 };
 
-var base$15 = function base(props, context, dependencies) {
+var base$16 = function base(props, context, dependencies) {
   var {
     view
   } = toRefs(props);
@@ -14347,23 +14347,23 @@ var base$15 = function base(props, context, dependencies) {
   };
 };
 
-var base$14 = function base(props, context, dependencies) {
+var base$15 = function base(props, context, dependencies) {
   var componentName = context.name;
 
   // =============== INJECT ===============
 
   var {
     form$
-  } = base$18();
+  } = base$19();
   var {
     theme
-  } = base$17();
+  } = base$18();
   var {
     Size
-  } = base$16();
+  } = base$17();
   var {
     View
-  } = base$15(props, context);
+  } = base$16(props, context);
 
   // ============== COMPUTED ===============
 
@@ -14454,7 +14454,7 @@ var FormErrors = {
       classes,
       Templates,
       template
-    } = base$14(props, context);
+    } = base$15(props, context);
 
     // ============== COMPUTED ==============
 
@@ -14501,7 +14501,7 @@ var FormMessages = {
       classes,
       Templates,
       template
-    } = base$14(props, context);
+    } = base$15(props, context);
 
     // ============== COMPUTED ==============
 
@@ -14548,7 +14548,7 @@ var FormLanguages = {
       classes,
       Templates,
       template
-    } = base$14(props, context);
+    } = base$15(props, context);
 
     // ============== COMPUTED ==============
 
@@ -14647,7 +14647,7 @@ var FormLanguage = {
       classes,
       Templates,
       template
-    } = base$14(props, context);
+    } = base$15(props, context);
 
     // ============== COMPUTED ==============
 
@@ -14930,14 +14930,14 @@ var FormTabs = {
       classes,
       Templates,
       template
-    } = base$14(props, context);
+    } = base$15(props, context);
     var {
       events,
       listeners,
       on,
       off,
       fire
-    } = base$1b(props, context, {
+    } = base$1c(props, context, {
       form$
     }, {
       events: context.emits
@@ -15238,7 +15238,7 @@ var FormTabs = {
   }
 };
 
-var base$13 = function base(props, context, dependencies) {
+var base$14 = function base(props, context, dependencies) {
   var {
     parent,
     conditions
@@ -15327,7 +15327,7 @@ var list$5 = function list(props, context, dependencies) {
     additionalConditions,
     addConditions,
     removeConditions
-  } = base$13(props, context, dependencies);
+  } = base$14(props, context, dependencies);
   var {
     conditions
   } = toRefs(props);
@@ -15425,7 +15425,7 @@ function localize(object, $config, form$) {
   return object && typeof object === 'object' ? (object === null || object === void 0 ? void 0 : object[locale]) || (object === null || object === void 0 ? void 0 : object[locale.toUpperCase()]) || (object === null || object === void 0 ? void 0 : object[$config.i18n.fallbackLocale]) || (object === null || object === void 0 ? void 0 : object[$config.i18n.fallbackLocale.toUpperCase()]) || (object === null || object === void 0 ? void 0 : object[Object.keys(object)[0]]) || '' : object;
 }
 
-var base$12 = function base(props, context, dependencies) {
+var base$13 = function base(props, context, dependencies) {
   // ============ DEPENDENCIES ============
 
   var labelDefinition = dependencies.labelDefinition;
@@ -15570,18 +15570,18 @@ var FormTab = {
       classes,
       Templates,
       template
-    } = base$14(props, context);
+    } = base$15(props, context);
     var {
       available,
       conditionList,
       updateConditions
-    } = base$13(props, context, {
+    } = base$14(props, context, {
       form$
     });
     var {
       isLabelComponent,
       label: tabLabel_
-    } = base$12(props, context, {
+    } = base$13(props, context, {
       component$: form$,
       labelDefinition: label
     });
@@ -15591,7 +15591,7 @@ var FormTab = {
       on,
       off,
       fire
-    } = base$1b(props, context, {
+    } = base$1c(props, context, {
       form$
     }, {
       events: context.emits
@@ -15927,14 +15927,14 @@ var FormSteps = {
       classes,
       Templates,
       template
-    } = base$14(props, context);
+    } = base$15(props, context);
     var {
       events,
       listeners,
       on,
       off,
       fire
-    } = base$1b(props, context, {
+    } = base$1c(props, context, {
       form$
     }, {
       events: context.emits
@@ -16536,7 +16536,7 @@ var FormStepsControls = {
       classes,
       Templates,
       template
-    } = base$14(props, context);
+    } = base$15(props, context);
 
     // ============== PROVIDE ===============
 
@@ -16591,7 +16591,7 @@ var FormStepsControl = {
       classes,
       Templates,
       template
-    } = base$14(props, context);
+    } = base$15(props, context);
 
     // ============== COMPUTED ==============
 
@@ -16619,7 +16619,7 @@ var FormStepsControl = {
     var {
       isLabelComponent,
       label
-    } = base$12(props, context, {
+    } = base$13(props, context, {
       component$: form$,
       labelDefinition: baseLabel
     });
@@ -16911,18 +16911,18 @@ var FormStep = {
       classes,
       Templates,
       template
-    } = base$14(props, context);
+    } = base$15(props, context);
     var {
       available,
       conditionList,
       updateConditions
-    } = base$13(props, context, {
+    } = base$14(props, context, {
       form$
     });
     var {
       isLabelComponent,
       label: stepLabel_
-    } = base$12(props, context, {
+    } = base$13(props, context, {
       component$: form$,
       labelDefinition: label
     });
@@ -16932,7 +16932,7 @@ var FormStep = {
       on,
       off,
       fire
-    } = base$1b(props, context, {
+    } = base$1c(props, context, {
       form$
     }, {
       events: context.emits
@@ -17421,7 +17421,7 @@ var FormStep = {
   }
 };
 
-var base$11 = function base(props, context, dependencies) {
+var base$12 = function base(props, context, dependencies) {
   // ============== METHODS ===============
 
   /**
@@ -17461,10 +17461,10 @@ var FormElements = {
       classes,
       Templates,
       template
-    } = base$14(props, context);
+    } = base$15(props, context);
     var {
       component
-    } = base$11();
+    } = base$12();
 
     // ============ COMPUTED ============
 
@@ -17492,7 +17492,7 @@ var FormElements = {
   }
 };
 
-var base$10 = function base(props, context, dependencies) {
+var base$11 = function base(props, context, dependencies) {
   // =============== INJECT ===============
 
   /**
@@ -17506,26 +17506,26 @@ var base$10 = function base(props, context, dependencies) {
   };
 };
 
-var base$$ = function base(props, context, dependencies) {
+var base$10 = function base(props, context, dependencies) {
   var componentName = context.name;
 
   // =============== INJECT ===============
 
   var {
     form$
-  } = base$18();
+  } = base$19();
   var {
     el$
-  } = base$10();
+  } = base$11();
   var {
     theme
-  } = base$17();
+  } = base$18();
   var {
     Size
-  } = base$16();
+  } = base$17();
   var {
     View
-  } = base$15(props, context);
+  } = base$16(props, context);
 
   // ============== COMPUTED ===============
 
@@ -17624,7 +17624,7 @@ var ElementLayout = {
       Templates,
       template,
       theme
-    } = base$$(props, context);
+    } = base$10(props, context);
 
     // ============== COMPUTED ==============
 
@@ -17667,7 +17667,7 @@ var ElementLayoutInline = {
       Templates,
       template,
       theme
-    } = base$$(props, context);
+    } = base$10(props, context);
 
     // ============== COMPUTED ==============
 
@@ -17710,7 +17710,7 @@ var ElementLoader = {
       Templates,
       template,
       theme
-    } = base$$(props, context);
+    } = base$10(props, context);
     return {
       el$,
       form$,
@@ -17746,7 +17746,7 @@ var ElementLabelFloating = {
       Templates,
       template,
       theme
-    } = base$$(props, context);
+    } = base$10(props, context);
 
     // =============== INJECT ===============
 
@@ -17793,11 +17793,11 @@ var ElementLabel = {
       Templates,
       template,
       theme
-    } = base$$(props, context);
+    } = base$10(props, context);
     var {
       label,
       isLabelComponent
-    } = base$12(props, context, {
+    } = base$13(props, context, {
       labelDefinition: computed(() => {
         return el$.value.label;
       }),
@@ -17886,7 +17886,7 @@ var ElementInfo = {
       Templates,
       template,
       theme
-    } = base$$(props, context);
+    } = base$10(props, context);
 
     // =============== INJECT ===============
 
@@ -18009,7 +18009,7 @@ var ElementDescription = {
       Templates,
       template,
       theme
-    } = base$$(props, context);
+    } = base$10(props, context);
 
     // =============== INJECT ===============
 
@@ -18077,7 +18077,7 @@ var ElementError = {
       Templates,
       template,
       theme
-    } = base$$(props, context);
+    } = base$10(props, context);
 
     // ============== COMPUTED ==============
 
@@ -18129,7 +18129,7 @@ var ElementMessage = {
       Templates,
       template,
       theme
-    } = base$$(props, context);
+    } = base$10(props, context);
 
     // ============== COMPUTED ==============
 
@@ -18182,7 +18182,7 @@ var ElementText = {
       Templates,
       template,
       theme
-    } = base$$(props, context);
+    } = base$10(props, context);
 
     // =============== INJECT ===============
 
@@ -18261,7 +18261,7 @@ var DragAndDrop = {
       Templates,
       template,
       theme
-    } = base$$(props, context);
+    } = base$10(props, context);
 
     // ================ DATA ================
 
@@ -18376,7 +18376,7 @@ var ElementAddon = {
       Templates,
       template,
       theme
-    } = base$$(props, context);
+    } = base$10(props, context);
 
     // =============== INJECT ===============
 
@@ -18452,6 +18452,549 @@ var ElementAddon = {
       addon,
       isAddonComponent,
       isSlot
+    };
+  }
+};
+
+var ElementAddonOptions = {
+  name: 'ElementAddonOptions',
+  emits: ['select', 'open', 'close'],
+  props: {
+    options: {
+      type: Array,
+      required: false,
+      default: () => []
+    },
+    placeholder: {
+      type: [String, Number, Object],
+      required: false,
+      default: ''
+    }
+  },
+  setup(props, context) {
+    var {
+      options
+    } = toRefs(props);
+
+    // ============ DEPENDENCIES ============
+
+    var {
+      form$,
+      el$,
+      Size,
+      View,
+      classesInstance,
+      classes,
+      Templates,
+      template,
+      theme
+    } = base$10(props, context);
+    var {
+      events,
+      listeners,
+      on,
+      off,
+      fire
+    } = base$1c(props, context, {
+      form$
+    }, {
+      events: context.emits
+    });
+
+    // ================ DATA ================
+
+    /**
+     * Whether the country selector is open.
+     *
+     * @type {boolean}
+     */
+    var isOpen = ref(false);
+
+    /**
+     * The container div.
+     *
+     * @type {HTMLElement}
+     */
+    var selector = ref(null);
+
+    /**
+     * The dropdown container div.
+     *
+     * @type {HTMLElement}
+     */
+    var dropdown = ref(null);
+
+    /**
+     * The left position of the dropdown.
+     *
+     * @type {number|undefined}
+     */
+    var left = ref(undefined);
+
+    /**
+     * The right position of the dropdown.
+     *
+     * @type {number|undefined}
+     */
+    var right = ref(undefined);
+
+    /**
+     * The top position of the dropdown.
+     *
+     * @type {number|undefined}
+     */
+    var top = ref(undefined);
+
+    /**
+     * The bottom position of the dropdown.
+     *
+     * @type {number|undefined}
+     */
+    var bottom = ref(undefined);
+
+    /**
+     * The current search term.
+     *
+     * @type {string}
+     */
+    var search = ref('');
+
+    /**
+     * Store for search timeout.
+     *
+     * @type {object}
+     */
+    var searchTimeout = ref(null);
+
+    /**
+     * Store for resize timeout.
+     *
+     * @type {object}
+     */
+    var resizeTimeout = ref(null);
+
+    /**
+     * Whether selection on hover is disabled.
+     *
+     * @type {boolean}
+     */
+    var hoverDisabled = ref(false);
+
+    /**
+     * Whether the option list is from top to bottom.
+     *
+     * @type {boolean}
+     */
+    var fullHeight = ref(false);
+
+    /**
+     * The currently selected option.
+     *
+     * @type {object}
+     */
+    var selected = ref({});
+
+    /**
+     * The currently pointed option.
+     *
+     * @type {object}
+     */
+    var pointed = ref({});
+
+    // ============== COMPUTED ==============
+
+    /**
+     * The option that should be focused according to current [`search`](#property-search) term.
+     *
+     * @type {array}
+     */
+    var focused = computed(() => {
+      if (!search.value) {
+        return {};
+      }
+      return options.value.find(o => o.label.toLowerCase().startsWith(search.value.toString().toLowerCase()));
+    });
+
+    /**
+     * Additional `style` attribute for the dropdown (position values).
+     *
+     * @type {object}
+     */
+    var style = computed(() => {
+      return {
+        left: left.value !== undefined ? "".concat(left.value, "px") : undefined,
+        right: right.value !== undefined ? "".concat(right.value, "px") : undefined,
+        top: top.value !== undefined ? "".concat(top.value, "px") : undefined,
+        bottom: bottom.value !== undefined ? "".concat(bottom.value, "px") : 'auto'
+      };
+    });
+
+    // =============== METHODS ==============
+
+    /**
+     * Closes the dropdown.
+     * 
+     * @returns {void}
+     */
+    var close = () => {
+      top.value = undefined;
+      bottom.value = undefined;
+      fullHeight.value = false;
+      isOpen.value = false;
+      document.removeEventListener('click', handleClickOutside);
+      document.removeEventListener('keydown', handleKeydown);
+      window.removeEventListener('resize', handleResize);
+      window.removeEventListener('scroll', handleScroll);
+      search.value = '';
+      context.emit('close');
+    };
+
+    /**
+     * Opens the dropdown.
+     * 
+     * @returns {void}
+     */
+    var open = /*#__PURE__*/function () {
+      var _ref = _asyncToGenerator(function* () {
+        isOpen.value = true;
+        yield nextTick();
+        if (selector.value.closest('[dir="rtl"]')) {
+          right.value = window.innerWidth - (selector.value.offsetLeft + selector.value.offsetWidth);
+        } else {
+          left.value = selector.value.offsetLeft;
+        }
+        resizeDropdown();
+        scrollToSelected();
+        setTimeout(() => {
+          document.addEventListener('click', handleClickOutside);
+          document.addEventListener('keydown', handleKeydown);
+          window.addEventListener('resize', handleResize);
+          window.addEventListener('scroll', handleScroll);
+        }, 0);
+        context.emit('open');
+      });
+      return function open() {
+        return _ref.apply(this, arguments);
+      };
+    }();
+
+    /**
+     * Scroll the dropdown to an option.
+     * 
+     * @param {object} option* an option object form [`options`](#option-options).
+     * @returns {void}
+     */
+    var scrollToOption = option => {
+      if (fullHeight.value) {
+        var selectorRect = selector.value.getBoundingClientRect();
+        var optionRect = option.getBoundingClientRect();
+        var targetCenterY = selectorRect.top + selectorRect.height / 2;
+        var optionCenterY = optionRect.top + optionRect.height / 2;
+        var centerDiff = targetCenterY - optionCenterY;
+        var newScrollTop = dropdown.value.scrollTop - centerDiff;
+        dropdown.value.scrollTop = newScrollTop;
+      } else {
+        var _optionRect = option.getBoundingClientRect();
+        var dropdownRect = dropdown.value.getBoundingClientRect();
+        var optionTopWithinDiv = _optionRect.top - dropdownRect.top;
+        dropdown.value.scrollTop = optionTopWithinDiv + dropdown.value.scrollTop;
+      }
+    };
+
+    /**
+     * Scroll to the currently selected option (async).
+     * 
+     * @returns {void}
+     */
+    var scrollToSelected = /*#__PURE__*/function () {
+      var _ref2 = _asyncToGenerator(function* () {
+        yield nextTick();
+        var option = document.querySelector("[data-dropdown-for=\"".concat(el$.value.fieldId, "\"] [data-selected=\"true\"]"));
+        if (!option) {
+          return;
+        }
+        scrollToOption(option);
+      });
+      return function scrollToSelected() {
+        return _ref2.apply(this, arguments);
+      };
+    }();
+
+    /**
+     * Resizes the dropdown to best fit into screen.
+     * 
+     * @returns {void}
+     */
+    var resizeDropdown = () => {
+      if (dropdown.value.getBoundingClientRect().height >= window.innerHeight - 32) {
+        fullHeight.value = true;
+        top.value = 16;
+        bottom.value = 16;
+      } else {
+        fullHeight.value = false;
+        top.value = selector.value.getBoundingClientRect().top;
+        if (dropdown.value.getBoundingClientRect().height > window.innerHeight - selector.value.getBoundingClientRect().top - 16) {
+          bottom.value = 16;
+        } else {
+          bottom.value = undefined;
+        }
+      }
+    };
+
+    /**
+     * Select an option.
+     * 
+     * @param {object} option* an option object form [`options`](#option-options).
+     * @returns {void}
+     */
+    var selectOption = option => {
+      selected.value = option;
+      fire('select', option);
+    };
+
+    /**
+     * Removes the selected option.
+     * 
+     * @returns {void}
+     */
+    var reset = () => {
+      selected.value = {};
+      fire('select', {});
+    };
+
+    /**
+     * Handles pointing an option (sets [`pointed`](#property-pointed)).
+     * 
+     * @param {object} option* an option object form [`options`](#option-options).
+     * @returns {void}
+     */
+    var handleOptionPoint = option => {
+      if (hoverDisabled.value) {
+        return;
+      }
+      pointed.value = option;
+    };
+
+    /**
+     * Handle the click of an option.
+     * 
+     * @param {object} option* an option object form [`options`](#option-options).
+     * @returns {void}
+     */
+    var handleOptionClick = option => {
+      selectOption(option);
+      close();
+      el$.value.input.focus();
+    };
+
+    /**
+     * Handles the click of collapsed element.
+     * 
+     * @params {Event} event* the Event
+     * @returns {void}
+     */
+    var handleSelectorClick = e => {
+      open();
+    };
+
+    /**
+     * Handles the keydown even of the collapsed element when focused (async.
+     * 
+     * @params {Event} event* the Event
+     * @returns {void}
+     */
+    var handleSelectorKeydown = /*#__PURE__*/function () {
+      var _ref3 = _asyncToGenerator(function* (e) {
+        if (isOpen.value) {
+          return;
+        }
+        if (['Enter', ' ', 'ArrowDown', 'ArrowUp'].indexOf(e.key) !== -1) {
+          e.preventDefault();
+          open();
+          var index = selected.value.index !== undefined ? selected.value.index : pointed.value.index || 0;
+          var option = document.querySelector("[data-dropdown-for=\"".concat(el$.value.fieldId, "\"] [data-index=\"").concat(index, "\"]"));
+          pointed.value = options.value.find(c => c.index === index);
+          yield nextTick();
+          option.focus();
+        }
+      });
+      return function handleSelectorKeydown(_x) {
+        return _ref3.apply(this, arguments);
+      };
+    }();
+
+    /**
+     * Handles clicking outside of the dropdown once opened (closes it).
+     * 
+     * @params {Event} event* the Event
+     * @returns {void}
+     */
+    var handleClickOutside = e => {
+      if (!dropdown.value.contains(e.target)) {
+        close();
+      }
+    };
+
+    /**
+     * Handles the keydown event when the dropdown is open.
+     * 
+     * @params {Event} event* the Event
+     * @returns {void}
+     */
+    var handleKeydown = e => {
+      var _pointed$value;
+      if (e.key === 'Escape') {
+        close();
+        selector.value.focus();
+        return;
+      }
+      if (['Enter', ' '].indexOf(e.key) !== -1 && ((_pointed$value = pointed.value) === null || _pointed$value === void 0 ? void 0 : _pointed$value.index) !== undefined) {
+        e.preventDefault();
+        selectOption(pointed.value);
+        close();
+        el$.value.input.focus();
+        return;
+      }
+      if (e.key === 'Tab') {
+        e.preventDefault();
+        close();
+        el$.value.input.focus();
+        return;
+      }
+      if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        var index = pointed.value.index === undefined ? -1 : pointed.value.index;
+        var nextIndex = index + 1;
+        if (options.value.length < nextIndex + 1) {
+          nextIndex = 0;
+        }
+        hoverDisabled.value = true;
+        pointed.value = options.value.find(c => c.index === nextIndex);
+        var option = document.querySelector("[data-dropdown-for=\"".concat(el$.value.fieldId, "\"] [data-index=\"").concat(nextIndex, "\"]"));
+        scrollToOption(option);
+        option.focus();
+        setTimeout(() => {
+          hoverDisabled.value = false;
+        }, 2);
+        return;
+      }
+      if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        var _index = pointed.value.index || 0;
+        var prevIndex = _index - 1;
+        if (prevIndex < 0) {
+          prevIndex = options.value.length - 1;
+        }
+        hoverDisabled.value = true;
+        pointed.value = options.value.find(c => c.index === prevIndex);
+        var _option = document.querySelector("[data-dropdown-for=\"".concat(el$.value.fieldId, "\"] [data-index=\"").concat(prevIndex, "\"]"));
+        scrollToOption(_option);
+        _option.focus();
+        setTimeout(() => {
+          hoverDisabled.value = false;
+        }, 0);
+        return;
+      }
+      if (e.key === 'Backspace' && search.value.length) {
+        search.value = search.value.slice(0, -1);
+        return;
+      }
+      if (e.key.length === 1 && !e.ctrlKey && !e.metaKey && !e.altKey) {
+        search.value += e.key;
+        hoverDisabled.value = true;
+        if (searchTimeout.value) {
+          clearTimeout(searchTimeout.value);
+        }
+        searchTimeout.value = setTimeout(() => {
+          search.value = '';
+        }, 1000);
+        setTimeout(() => {
+          hoverDisabled.value = false;
+        }, 0);
+      }
+    };
+
+    /**
+     * Handles the window resize event (closes the dropdown if open).
+     * 
+     * @returns {void}
+     */
+    var handleResize = () => {
+      close();
+    };
+
+    /**
+     * Handles the window scroll event (resizes the dropdown if needed).
+     * 
+     * @returns {void}
+     */
+    var handleScroll = () => {
+      if (resizeTimeout.value) {
+        clearTimeout(resizeTimeout.value);
+      }
+      resizeTimeout.value = setTimeout(() => {
+        resizeDropdown();
+      }, 50);
+    };
+
+    // =============== HOOKS ================
+
+    onBeforeUnmount(() => {
+      close();
+    });
+
+    // ============== WATCHERS ==============
+
+    watch(focused, option => {
+      if (!option || option.index === undefined) {
+        return;
+      }
+      var optionEl = document.querySelector("[data-index=\"".concat(option.index, "\"]"));
+      scrollToOption(optionEl);
+      pointed.value = option;
+      optionEl.focus();
+    });
+    return {
+      form$,
+      el$,
+      Size,
+      View,
+      classesInstance,
+      classes,
+      Templates,
+      template,
+      theme,
+      events,
+      listeners,
+      on,
+      off,
+      fire,
+      isOpen,
+      selector,
+      dropdown,
+      left,
+      right,
+      top,
+      bottom,
+      style,
+      search,
+      searchTimeout,
+      hoverDisabled,
+      selected,
+      pointed,
+      focused,
+      close,
+      scrollToOption,
+      scrollToSelected,
+      selectOption,
+      reset,
+      handleOptionPoint,
+      handleOptionClick,
+      handleSelectorClick,
+      handleSelectorKeydown,
+      handleClickOutside,
+      handleKeydown,
+      handleResize
     };
   }
 };
@@ -21055,7 +21598,7 @@ var DatepickerWrapper = {
       Templates,
       template,
       theme
-    } = base$$(props, context);
+    } = base$10(props, context);
     var $this = getCurrentInstance().proxy;
 
     // ================ DATA ================
@@ -21345,7 +21888,7 @@ var EditorWrapper = {
       Templates,
       template,
       theme
-    } = base$$(props, context);
+    } = base$10(props, context);
 
     // ================ DATA ================
 
@@ -21562,7 +22105,7 @@ var EditorWrapper = {
   }
 };
 
-var base$_ = function base(props, context, dependencies) {
+var base$$ = function base(props, context, dependencies) {
   var {
     label
   } = toRefs(props);
@@ -21630,7 +22173,7 @@ var base$_ = function base(props, context, dependencies) {
   };
 };
 
-var base$Z = function base(props, context, dependencies) {
+var base$_ = function base(props, context, dependencies) {
   var {
     columns,
     presets
@@ -21712,7 +22255,7 @@ var base$Z = function base(props, context, dependencies) {
   };
 };
 
-var base$Y = function base(props, context, dependencies) {
+var base$Z = function base(props, context, dependencies) {
   var {
     size,
     view,
@@ -21852,7 +22395,7 @@ var captcha$1 = function captcha(props, context, dependencies) {
     Views,
     hide,
     show
-  } = base$Y(props, context, dependencies);
+  } = base$Z(props, context, dependencies);
 
   // ============ DEPENDENCIES =============
 
@@ -21876,7 +22419,7 @@ var captcha$1 = function captcha(props, context, dependencies) {
   };
 };
 
-var base$X = function base(props, context, dependencies) {
+var base$Y = function base(props, context, dependencies) {
   var {
     templates,
     presets
@@ -21923,7 +22466,7 @@ var base$X = function base(props, context, dependencies) {
   };
 };
 
-var base$W = function base(props, context, dependencies) {
+var base$X = function base(props, context, dependencies) {
   var options = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
   toRefs(props);
 
@@ -22003,7 +22546,7 @@ var base$W = function base(props, context, dependencies) {
   };
 };
 
-var base$V = function base(props, context, dependencies) {
+var base$W = function base(props, context, dependencies) {
   var {
     buttonLabel,
     buttonType,
@@ -22108,7 +22651,7 @@ var base$V = function base(props, context, dependencies) {
   };
 };
 
-var base$U = function base(props, context, dependencies) {
+var base$V = function base(props, context, dependencies) {
   var {
     layout,
     inline
@@ -22130,7 +22673,7 @@ var base$U = function base(props, context, dependencies) {
   };
 };
 
-var base$T = function base(props, context, dependencies) {
+var base$U = function base(props, context, dependencies) {
   var {
     id,
     name
@@ -22156,7 +22699,7 @@ var base$T = function base(props, context, dependencies) {
   };
 };
 
-var base$S = function base(props, context, dependencies) {
+var base$T = function base(props, context, dependencies) {
   // ============ DEPENDENCIES ============
 
   var {
@@ -22234,7 +22777,7 @@ function clone$1(value) {
 
 var clone_1 = clone$1;
 
-var base$R = function base(props, context, dependencies) {
+var base$S = function base(props, context, dependencies) {
   var {
     disabled
   } = toRefs(props);
@@ -22294,7 +22837,7 @@ var checkboxgroup$3 = function checkboxgroup(props, context, dependencies) {
   var {
     localDisabled,
     isDisabled
-  } = base$R(props);
+  } = base$S(props);
 
   // ================ DATA ================
 
@@ -22420,7 +22963,7 @@ var button$1 = function button(props, context, dependencies) {
 };
 var radiogroup$2 = checkboxgroup$3;
 
-var base$Q = function base(props, context, dependencies) {
+var base$R = function base(props, context, dependencies) {
   // ============ DEPENDENCIES ============
 
   var fieldId = dependencies.fieldId;
@@ -22502,7 +23045,7 @@ var checkbox$1 = function checkbox(props, context, dependencies) {
     labelId,
     infoId,
     errorId
-  } = base$Q(props, context, dependencies);
+  } = base$R(props, context, dependencies);
 
   // ============ DEPENDENCIES ============
 
@@ -22540,7 +23083,7 @@ var checkboxgroup$2 = function checkboxgroup(props, context, dependencies) {
     labelId,
     infoId,
     errorId
-  } = base$Q(props, context, dependencies);
+  } = base$R(props, context, dependencies);
 
   // ============ DEPENDENCIES ============
 
@@ -22573,7 +23116,7 @@ var button = function button(props, context, dependencies) {
     labelId,
     infoId,
     errorId
-  } = base$Q(props, context, dependencies);
+  } = base$R(props, context, dependencies);
 
   // ============ DEPENDENCIES ============
 
@@ -22602,7 +23145,7 @@ var static_$3 = function static_(props, context, dependencies) {
     labelId,
     infoId,
     errorId
-  } = base$Q(props, context, dependencies);
+  } = base$R(props, context, dependencies);
 
   // ============== COMPUTED ==============
 
@@ -22648,7 +23191,7 @@ var lowerFirst = createCaseFirst('toLowerCase');
 
 var lowerFirst_1 = lowerFirst;
 
-var base$P = function base(props, context, dependencies) {
+var base$Q = function base(props, context, dependencies) {
   var {
     name
   } = toRefs(props);
@@ -22700,7 +23243,7 @@ var base$P = function base(props, context, dependencies) {
   };
 };
 
-var base$O = function base(props, context, dependencies) {
+var base$P = function base(props, context, dependencies) {
   var instantHooks = ['onBeforeCreate', 'onCreated'];
   var hooks = {
     onBeforeMount,
@@ -22719,7 +23262,7 @@ var base$O = function base(props, context, dependencies) {
   var {
     assignToParent,
     removeFromParent
-  } = base$P(props, context, {
+  } = base$Q(props, context, {
     form$
   });
 
@@ -22921,7 +23464,7 @@ var list$4 = function list(props, context, dependencies) {
     container,
     activate,
     deactivate
-  } = base$O(props, context, dependencies);
+  } = base$P(props, context, dependencies);
 
   // ============== COMPUTED ==============
 
@@ -22963,7 +23506,7 @@ var object$7 = function object(props, context, dependencies) {
     container,
     activate,
     deactivate
-  } = base$O(props, context, dependencies);
+  } = base$P(props, context, dependencies);
 
   // ============== COMPUTED ==============
 
@@ -23002,7 +23545,7 @@ var group$7 = function group(props, context, dependencies) {
     container,
     activate,
     deactivate
-  } = base$O(props, context, dependencies);
+  } = base$P(props, context, dependencies);
 
   // ============== COMPUTED ==============
 
@@ -23043,7 +23586,7 @@ var file$3 = function file(props, context, dependencies) {
     container,
     activate,
     deactivate
-  } = base$O(props, context, dependencies);
+  } = base$P(props, context, dependencies);
 
   // ============== COMPUTED ==============
 
@@ -23085,7 +23628,7 @@ var static_$2 = function static_(props, context, dependencies) {
     container,
     activate,
     deactivate
-  } = base$O(props, context, dependencies);
+  } = base$P(props, context, dependencies);
 
   // ============== COMPUTED ==============
 
@@ -23114,7 +23657,7 @@ var dates$5 = list$4;
 var multiselect$4 = list$4;
 var tags$4 = list$4;
 
-var base$N = function base(props, context, dependencies) {
+var base$O = function base(props, context, dependencies) {
   var {
     name
   } = toRefs(props);
@@ -23187,7 +23730,7 @@ var group$6 = function group(props, context, dependencies) {
   var {
     path,
     parent
-  } = base$N(props, context, dependencies);
+  } = base$O(props, context, dependencies);
 
   // ============== COMPUTED ==============
 
@@ -23211,7 +23754,7 @@ var static_$1 = function static_(props, context, dependencies) {
     path,
     parent,
     flat
-  } = base$N(props, context, dependencies);
+  } = base$O(props, context, dependencies);
 
   // ============== COMPUTED ==============
 
@@ -23236,7 +23779,7 @@ function resolveDeps(props, context, options) {
   return deps;
 }
 
-var base$M = function base(props, context) {
+var base$N = function base(props, context) {
   var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
   var deps = resolveDeps(props, context, options);
   onMounted(() => {
@@ -23570,13 +24113,13 @@ var ButtonElement = {
     }
   },
   setup(props, context) {
-    context.features = [base$18, base$17, base$U, static_$1, base$1b, static_$2, button$1, base$13, base$_, base$Y, base$X, base$T, base$V, base$19, base$Z, base$W, button, base$S];
+    context.features = [base$19, base$18, base$V, static_$1, base$1c, static_$2, button$1, base$14, base$$, base$Z, base$Y, base$U, base$W, base$1a, base$_, base$X, button, base$T];
     context.slots = ['label', 'info', 'description', 'before', 'between', 'after', 'default'];
     return _objectSpread2$1({}, static_(props, context));
   }
 };
 
-var base$L = function base(props, context, dependencies) {
+var base$M = function base(props, context, dependencies) {
   // ================ DATA ================
 
   /**
@@ -23596,7 +24139,7 @@ function checkDateFormat (format, date) {
   }
 }
 
-var base$K = function base(props, context, dependencies) {
+var base$L = function base(props, context, dependencies) {
   var _options$value, _options$value2;
   var options = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
   var {
@@ -23723,7 +24266,7 @@ var list$3 = function list(props, context, dependencies) {
     value,
     model,
     isDefault
-  } = base$K(props, context, dependencies, {
+  } = base$L(props, context, dependencies, {
     init: false
   });
   return {
@@ -23741,7 +24284,7 @@ var object$6 = function object(props, context, dependencies) {
     internalValue,
     value,
     isDefault
-  } = base$K(props, context, dependencies, {
+  } = base$L(props, context, dependencies, {
     init: false
   });
 
@@ -23856,7 +24399,7 @@ var multilingual$7 = function multilingual(props, context, dependencies) {
   var {
     value,
     isDefault
-  } = base$K(props, context, dependencies);
+  } = base$L(props, context, dependencies);
 
   // ============ DEPENDENCIES =============
 
@@ -23909,7 +24452,7 @@ var date$3 = function date(props, context, dependencies) {
     value,
     initialValue,
     isDefault
-  } = base$K(props, context, dependencies, {
+  } = base$L(props, context, dependencies, {
     value: {
       get() {
         var value;
@@ -23986,7 +24529,7 @@ var dates$4 = function dates(props, context, dependencies) {
     value,
     initialValue,
     isDefault
-  } = base$K(props, context, dependencies, {
+  } = base$L(props, context, dependencies, {
     value: {
       get() {
         var value;
@@ -24041,7 +24584,7 @@ var dates$4 = function dates(props, context, dependencies) {
   };
 };
 
-var base$J = function base(props, context, dependencies) {
+var base$K = function base(props, context, dependencies) {
   // ============== COMPUTED ===============
 
   /**
@@ -24156,7 +24699,7 @@ var generic = function generic(props, context, dependencies) {
   };
 };
 
-var base$I = function base(props, context, dependencies) {
+var base$J = function base(props, context, dependencies) {
   var {
     name,
     floating,
@@ -24241,7 +24784,7 @@ var file$2 = function file(props, context, dependencies) {
   };
 };
 
-var base$H = function base(props, context, dependencies) {
+var base$I = function base(props, context, dependencies) {
   // ============ DEPENDENCIES ============
 
   var value = dependencies.value;
@@ -24293,7 +24836,7 @@ var array = function array(props, context, dependencies) {
   };
 };
 
-var base$G = function base(props, context, dependencies) {
+var base$H = function base(props, context, dependencies) {
   var {
     loading
   } = toRefs(props);
@@ -24317,7 +24860,7 @@ var base$G = function base(props, context, dependencies) {
   };
 };
 
-var base$F = function base(props, context, dependencies) {
+var base$G = function base(props, context, dependencies) {
   var {
     floating,
     placeholder
@@ -24342,7 +24885,7 @@ var base$F = function base(props, context, dependencies) {
   };
 };
 
-var base$E = function base(props, context, dependencies) {
+var base$F = function base(props, context, dependencies) {
   // ============ DEPENDENCIES =============
 
   var form$ = dependencies.form$;
@@ -24529,7 +25072,7 @@ var location$1 = function location(props, context, dependencies) {
 var multifile$5 = list$2;
 var group$4 = object$4;
 
-var base$D = function base(props, context, dependencies) {
+var base$E = function base(props, context, dependencies) {
   var {
     provider: elementProvider,
     options,
@@ -24648,7 +25191,7 @@ var base$D = function base(props, context, dependencies) {
   };
 };
 
-var base$C = function base(props, context, dependencies) {
+var base$D = function base(props, context, dependencies) {
   var {
     rules
   } = toRefs(props);
@@ -24986,7 +25529,7 @@ var text$2 = function text(props, context, dependencies) {
     initMessageBag,
     initValidation,
     reinitValidation
-  } = base$C(props, context, dependencies);
+  } = base$D(props, context, dependencies);
 
   // ============== COMPUTED ===============
 
@@ -25046,7 +25589,7 @@ var list$1 = function list(props, context, dependencies) {
     dirt,
     initValidation,
     resetting
-  } = base$C(props, context, dependencies);
+  } = base$D(props, context, dependencies);
   var form$ = dependencies.form$;
   var children$ = dependencies.children$;
 
@@ -25679,7 +26222,7 @@ var slider$1 = function slider(props, context, dependencies) {
     initMessageBag,
     initValidation,
     reinitValidation
-  } = base$C(props, context, dependencies);
+  } = base$D(props, context, dependencies);
 
   // =============== METHODS ==============
 
@@ -25778,7 +26321,7 @@ var file$1 = function file(props, context, dependencies) {
     initMessageBag,
     initValidation,
     reinitValidation
-  } = base$C(props, context, dependencies);
+  } = base$D(props, context, dependencies);
 
   // ============== COMPUTED ==============
 
@@ -25947,7 +26490,7 @@ var location = function location(props, context, dependencies) {
 var group$3 = list$1;
 var object$3 = list$1;
 
-var base$B = function base(props, context, dependencies) {
+var base$C = function base(props, context, dependencies) {
   var {
     default: default_,
     name
@@ -26344,7 +26887,7 @@ var sortBy = baseRest(function(collection, iteratees) {
 
 var sortBy_1 = sortBy;
 
-var base$A = function base(props, context, dependencies) {
+var base$B = function base(props, context, dependencies) {
   var options = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
   var {
     submit,
@@ -26490,7 +27033,7 @@ var text = function text(props, context, dependencies) {
     clear,
     reset,
     prepare
-  } = base$A(props, context, dependencies);
+  } = base$B(props, context, dependencies);
 
   // ============ DEPENDENCIES =============
 
@@ -26548,9 +27091,9 @@ var text = function text(props, context, dependencies) {
   var stringToNumber = str => {
     var v = str;
     if (typeof str === 'string') {
-      if (/^[-+]?\d+([\.,]\d+)?$/.test(str)) {
+      if (/^[-]?\d+([\.,]\d+)?$/.test(str)) {
         v = parseFloat(str.replace(',', '.'));
-      } else if (/^[-+]?\d+$/.test(str)) {
+      } else if (/^[-]?\d+$/.test(str)) {
         v = parseInt(str, 10);
       }
     }
@@ -26579,7 +27122,7 @@ var select$3 = function select(props, context, dependencies) {
     update,
     clear,
     prepare
-  } = base$A(props, context, dependencies);
+  } = base$B(props, context, dependencies);
 
   // ============ DEPENDENCIES =============
 
@@ -26630,7 +27173,7 @@ var captcha = function captcha(props, context, dependencies) {
     clear: clearBase,
     reset: resetBase,
     prepare
-  } = base$A(props, context, dependencies);
+  } = base$B(props, context, dependencies);
 
   // ============ DEPENDENCIES =============
 
@@ -26673,7 +27216,7 @@ var object$1 = function object(props, context, dependencies) {
   } = toRefs(props);
   var {
     data
-  } = base$A(props, context, dependencies);
+  } = base$B(props, context, dependencies);
 
   // ============ DEPENDENCIES =============
 
@@ -26844,7 +27387,7 @@ var list = function list(props, context, dependencies, options) {
     update,
     clear,
     data
-  } = base$A(props, context, dependencies);
+  } = base$B(props, context, dependencies);
 
   // ============ DEPENDENCIES =============
 
@@ -27093,7 +27636,7 @@ var date$2 = function date(props, context, dependencies) {
     clear,
     reset,
     prepare
-  } = base$A(props, context, dependencies);
+  } = base$B(props, context, dependencies);
 
   // ============ DEPENDENCIES =============
 
@@ -27130,7 +27673,7 @@ var dates$3 = function dates(props, context, dependencies) {
     clear,
     reset,
     prepare
-  } = base$A(props, context, dependencies);
+  } = base$B(props, context, dependencies);
 
   // ============ DEPENDENCIES =============
 
@@ -27169,7 +27712,7 @@ var multilingual$1 = function multilingual(props, context, dependencies) {
     clear,
     reset,
     prepare
-  } = base$A(props, context, dependencies, options);
+  } = base$B(props, context, dependencies, options);
 
   // ============ DEPENDENCIES =============
 
@@ -27225,7 +27768,7 @@ var editor = function editor(props, context, dependencies) {
     clear,
     reset,
     prepare
-  } = base$A(props, context, dependencies, {
+  } = base$B(props, context, dependencies, {
     setValue: val => {
       value.value = val;
       nextTick(() => {
@@ -27295,7 +27838,7 @@ var file = function file(props, context, dependencies) {
     clear,
     reset,
     prepare
-  } = base$A(props, context, dependencies);
+  } = base$B(props, context, dependencies);
   var {
     submit,
     formatData,
@@ -27540,13 +28083,13 @@ var CaptchaElement = {
     }
   },
   setup(props, context) {
-    context.features = [base$18, base$17, base$U, base$L, base$N, base$R, base$J, base$T, base$F, base$1b, base$O, base$B, base$13, base$C, base$G, base$K, base$D, base$H, captcha, base$_, base$I, captcha$1, base$X, base$19, base$Z, base$W, base$E, base$S];
+    context.features = [base$19, base$18, base$V, base$M, base$O, base$S, base$K, base$U, base$G, base$1c, base$P, base$C, base$14, base$D, base$H, base$L, base$E, base$I, captcha, base$$, base$J, captcha$1, base$Y, base$1a, base$_, base$X, base$F, base$T];
     context.slots = ['label', 'info', 'description', 'before', 'between', 'after'];
-    return _objectSpread2$1({}, base$M(props, context));
+    return _objectSpread2$1({}, base$N(props, context));
   }
 };
 
-var base$z = function base(props, context, dependencies) {
+var base$A = function base(props, context, dependencies) {
   var {
     text
   } = toRefs(props);
@@ -27572,7 +28115,7 @@ var base$z = function base(props, context, dependencies) {
   };
 };
 
-var base$y = function base(props, context, dependencies) {
+var base$z = function base(props, context, dependencies) {
   var {
     trueValue,
     falseValue
@@ -27690,13 +28233,13 @@ var CheckboxElement = {
     }
   },
   setup(props, context) {
-    context.features = [base$18, base$17, base$U, base$L, base$N, base$R, boolean, base$T, base$1b, base$O, base$B, base$13, base$C, base$K, base$A, base$_, base$I, base$Y, base$X, base$19, base$Z, base$W, checkbox, checkbox$1, base$E, base$S, base$z];
+    context.features = [base$19, base$18, base$V, base$M, base$O, base$S, boolean, base$U, base$1c, base$P, base$C, base$14, base$D, base$L, base$B, base$$, base$J, base$Z, base$Y, base$1a, base$_, base$X, checkbox, checkbox$1, base$F, base$T, base$A];
     context.slots = ['default', 'label', 'info', 'description', 'before', 'between', 'after'];
-    return _objectSpread2$1({}, base$M(props, context));
+    return _objectSpread2$1({}, base$N(props, context));
   }
 };
 
-var base$x = function base(props, context, dependencies) {
+var base$y = function base(props, context, dependencies) {
   // ============ DEPENDENCIES ============
 
   var value = dependencies.value;
@@ -27791,7 +28334,7 @@ var base$x = function base(props, context, dependencies) {
   };
 };
 
-var base$w = function base(props, context, dependencies) {
+var base$x = function base(props, context, dependencies) {
   var {
     items,
     valueProp,
@@ -28105,7 +28648,7 @@ var select$2 = function select(props, context, dependencies) {
     watchers,
     cleanupValue,
     resolveUrlAndSetWatchers
-  } = base$w(props, context, dependencies);
+  } = base$x(props, context, dependencies);
 
   // ================ HOOKS ===============
 
@@ -28128,7 +28671,7 @@ var checkboxgroup = function checkboxgroup(props, context, dependencies) {
     watchers,
     cleanupValue,
     resolveUrlAndSetWatchers
-  } = base$w(props, context, dependencies);
+  } = base$x(props, context, dependencies);
 
   // ============ DEPENDENCIES ============
 
@@ -28357,13 +28900,13 @@ var CheckboxgroupElement = {
     }
   },
   setup(props, context) {
-    context.features = [base$18, base$17, base$U, base$N, array$1, base$T, base$1b, checkboxgroup$1, checkboxgroup$3, base$B, base$K, checkboxgroup, base$13, base$C, base$x, base$A, base$_, base$I, base$Z, base$Y, base$X, base$19, base$W, checkboxgroup$2, base$E, base$S];
+    context.features = [base$19, base$18, base$V, base$O, array$1, base$U, base$1c, checkboxgroup$1, checkboxgroup$3, base$C, base$L, checkboxgroup, base$14, base$D, base$y, base$B, base$$, base$J, base$_, base$Z, base$Y, base$1a, base$X, checkboxgroup$2, base$F, base$T];
     context.slots = ['checkbox', 'label', 'info', 'description', 'before', 'between', 'after'];
-    return _objectSpread2$1({}, base$M(props, context));
+    return _objectSpread2$1({}, base$N(props, context));
   }
 };
 
-var base$v = function base(props, context, dependencies) {
+var base$w = function base(props, context, dependencies) {
   var {
     addons,
     slots
@@ -28390,7 +28933,7 @@ var base$v = function base(props, context, dependencies) {
   };
 };
 
-var base$u = function base(props, context, dependencies) {
+var base$v = function base(props, context, dependencies) {
   var {
     displayFormat,
     valueFormat,
@@ -28540,7 +29083,7 @@ var dates$2 = function dates(props, context, dependencies) {
   };
 };
 
-var base$t = function base(props, context, dependencies) {
+var base$u = function base(props, context, dependencies) {
   // ============ DEPENDENCIES ============
 
   var value = dependencies.value;
@@ -28562,7 +29105,7 @@ var base$t = function base(props, context, dependencies) {
   };
 };
 
-var base$s = function base(props, context, dependencies) {
+var base$t = function base(props, context, dependencies) {
   var {
     placeholder
   } = toRefs(props);
@@ -29251,7 +29794,7 @@ var toggle = function toggle(props, context, dependencies) {
   };
 };
 
-var base$r = function base(props, context, dependencies) {
+var base$s = function base(props, context, dependencies) {
   // ============ DEPENDENCIES ============
 
   var input = dependencies.input;
@@ -29460,9 +30003,9 @@ var DateElement = {
     }
   },
   setup(props, context) {
-    context.features = [base$18, base$17, base$U, base$L, base$N, base$R, base$J, base$T, base$F, base$1b, base$O, base$v, base$u, date$1, base$B, base$13, base$C, date$3, base$H, date$2, base$_, base$I, base$Y, base$X, base$19, base$Z, base$W, base$t, date, base$Q, base$E, base$S, base$s];
+    context.features = [base$19, base$18, base$V, base$M, base$O, base$S, base$K, base$U, base$G, base$1c, base$P, base$w, base$v, date$1, base$C, base$14, base$D, date$3, base$I, date$2, base$$, base$J, base$Z, base$Y, base$1a, base$_, base$X, base$u, date, base$R, base$F, base$T, base$t];
     context.slots = ['label', 'info', 'description', 'before', 'between', 'after', 'addon-before', 'addon-after'];
-    return _objectSpread2$1({}, base$M(props, context));
+    return _objectSpread2$1({}, base$N(props, context));
   }
 };
 
@@ -29557,13 +30100,13 @@ var DatesElement = {
     }
   },
   setup(props, context) {
-    context.features = [base$18, base$17, base$U, base$L, base$N, base$R, array$1, base$T, base$F, base$1b, dates$5, base$v, dates$2, dates$1, base$B, dates$4, base$13, base$C, base$H, dates$3, base$_, base$I, base$Y, base$X, base$19, base$Z, base$W, base$t, dates, base$Q, base$E, base$S, base$s];
+    context.features = [base$19, base$18, base$V, base$M, base$O, base$S, array$1, base$U, base$G, base$1c, dates$5, base$w, dates$2, dates$1, base$C, dates$4, base$14, base$D, base$I, dates$3, base$$, base$J, base$Z, base$Y, base$1a, base$_, base$X, base$u, dates, base$R, base$F, base$T, base$t];
     context.slots = ['label', 'info', 'description', 'before', 'between', 'after', 'addon-before', 'addon-after'];
-    return _objectSpread2$1({}, base$M(props, context));
+    return _objectSpread2$1({}, base$N(props, context));
   }
 };
 
-var base$q = function base(props, context, dependencies) {
+var base$r = function base(props, context, dependencies) {
   var {
     embed,
     auto,
@@ -30085,7 +30628,7 @@ var base$q = function base(props, context, dependencies) {
   };
 };
 
-var base$p = function base(props, context, dependencies) {
+var base$q = function base(props, context, dependencies) {
   // ============ DEPENDENCIES ============
 
   var form$ = dependencies.form$;
@@ -30155,7 +30698,7 @@ function checkFileType(file, accept) {
   });
 }
 
-var base$o = function base(props, context, dependencies) {
+var base$p = function base(props, context, dependencies) {
   var {
     accept,
     auto
@@ -30214,7 +30757,7 @@ var multifile$3 = function multifile(props, context, dependencies) {
   } = toRefs(props);
   var {
     canDrop
-  } = base$o(props, context, dependencies);
+  } = base$p(props, context, dependencies);
 
   // ============ DEPENDENCIES =============
 
@@ -30244,7 +30787,7 @@ var multifile$3 = function multifile(props, context, dependencies) {
   };
 };
 
-var base$n = function base(props, context, dependencies) {
+var base$o = function base(props, context, dependencies) {
   // ================ DATA ================
 
   /**
@@ -30258,7 +30801,7 @@ var base$n = function base(props, context, dependencies) {
   };
 };
 
-var base$m = function base(props, context, dependencies) {
+var base$n = function base(props, context, dependencies) {
   // ============ DEPENDENCIES ============
 
   var fire = dependencies.fire;
@@ -30400,13 +30943,13 @@ var FileElement = {
     }
   },
   setup(props, context) {
-    context.features = [base$18, base$17, base$U, base$L, base$N, base$R, base$J, base$n, base$T, base$1b, file$3, base$p, base$B, base$13, base$K, file$1, base$H, file, base$m, base$q, base$o, base$_, file$2, base$Y, base$X, base$19, base$Z, base$W, file$4, base$E, base$S];
+    context.features = [base$19, base$18, base$V, base$M, base$O, base$S, base$K, base$o, base$U, base$1c, file$3, base$q, base$C, base$14, base$L, file$1, base$I, file, base$n, base$r, base$p, base$$, file$2, base$Z, base$Y, base$1a, base$_, base$X, file$4, base$F, base$T];
     context.slots = ['label', 'info', 'description', 'before', 'between', 'after'];
-    return _objectSpread2$1({}, base$M(props, context));
+    return _objectSpread2$1({}, base$N(props, context));
   }
 };
 
-var base$l = function base(props, context, dependencies) {
+var base$m = function base(props, context, dependencies) {
   // ============ DEPENDENCIES ============
 
   var model = dependencies.model;
@@ -30422,6 +30965,43 @@ var base$l = function base(props, context, dependencies) {
    */
   var handleInput = e => {
     model.value = e.target.value;
+  };
+  return {
+    handleInput
+  };
+};
+var phone$1 = function phone(props, context, dependencies) {
+  // ============ DEPENDENCIES ============
+
+  var {
+    model,
+    input,
+    el$
+  } = dependencies;
+
+  // ============== COMPUTED ==============
+
+  /**
+   * Handles `input` event.
+   *
+   * @param {Event} e* event object
+   * @returns {void}
+   * @private
+   */
+  var handleInput = e => {
+    if (el$.value.maskPluginInstalled) {
+      model.value = e.target.value;
+      return;
+    }
+    var startsWithPlus = e.target.value.startsWith('+');
+    var value = e.target.value.substr(startsWithPlus ? 1 : 0);
+    var numbers = value.match(/\d+/g) || [];
+    if (numbers.length || startsWithPlus) {
+      value = '+';
+    }
+    value += numbers.join('');
+    input.value.value = value;
+    model.value = value;
   };
   return {
     handleInput
@@ -30457,13 +31037,13 @@ var GenericElement = {
     }
   },
   setup(props, context) {
-    context.features = [base$18, base$17, base$U, base$L, base$N, base$R, generic, base$T, base$1b, base$O, text$1, base$13, text$2, base$K, base$H, base$A, base$_, base$I, base$Y, base$X, base$19, base$Z, base$W, base$l, base$r, base$Q, base$E, base$S];
+    context.features = [base$19, base$18, base$V, base$M, base$O, base$S, generic, base$U, base$1c, base$P, text$1, base$14, text$2, base$L, base$I, base$B, base$$, base$J, base$Z, base$Y, base$1a, base$_, base$X, base$m, base$s, base$R, base$F, base$T];
     context.slots = ['label', 'info', 'description', 'before', 'between', 'after'];
-    return _objectSpread2$1({}, base$M(props, context));
+    return _objectSpread2$1({}, base$N(props, context));
   }
 };
 
-var base$k = function base(props, context, dependencies) {
+var base$l = function base(props, context, dependencies) {
   // ================ DATA ================
 
   /**
@@ -30506,7 +31086,7 @@ var object = function object(props, context, dependencies) {
   var {
     children$Array,
     children$
-  } = base$k();
+  } = base$l();
 
   // ============== COMPUTED ==============
 
@@ -30571,9 +31151,9 @@ var GroupElement = {
     }
   },
   setup(props, context) {
-    context.features = [base$18, base$17, base$U, group$6, base$T, object$5, base$1b, group$7, group, group$2, base$_, group$3, group$5, base$11, group$8, base$Y, base$X, base$19, base$Z, base$W, group$1, base$Q, group$4, base$S];
+    context.features = [base$19, base$18, base$V, group$6, base$U, object$5, base$1c, group$7, group, group$2, base$$, group$3, group$5, base$12, group$8, base$Z, base$Y, base$1a, base$_, base$X, group$1, base$R, group$4, base$T];
     context.slots = ['label', 'info', 'description', 'before', 'between', 'after'];
-    return _objectSpread2$1({}, base$M(props, context));
+    return _objectSpread2$1({}, base$N(props, context));
   }
 };
 
@@ -30605,8 +31185,8 @@ var HiddenElement = {
     }
   },
   setup(props, context) {
-    context.features = [base$18, base$17, base$L, base$N, base$J, base$I, base$T, base$X, base$1b, base$O, base$B, base$13, base$C, base$K, base$H, base$A, base$E, base$S];
-    return _objectSpread2$1({}, base$M(props, context));
+    context.features = [base$19, base$18, base$M, base$O, base$K, base$J, base$U, base$Y, base$1c, base$P, base$C, base$14, base$D, base$L, base$I, base$B, base$F, base$T];
+    return _objectSpread2$1({}, base$N(props, context));
   }
 };
 
@@ -33259,7 +33839,7 @@ _extends(Remove, {
 Sortable.mount(new AutoScrollPlugin());
 Sortable.mount(Remove, Revert);
 
-var base$j = function base(props, context, dependencies, options) {
+var base$k = function base(props, context, dependencies, options) {
   var {
     sort
   } = toRefs(props);
@@ -33407,7 +33987,7 @@ var base$j = function base(props, context, dependencies, options) {
   };
 };
 
-var base$i = function base(props, context, dependencies) {
+var base$j = function base(props, context, dependencies) {
   // ================ DATA ================
 
   /**
@@ -33421,7 +34001,7 @@ var base$i = function base(props, context, dependencies) {
   };
 };
 
-var base$h = function base(props, context, dependencies, options) {
+var base$i = function base(props, context, dependencies, options) {
   var {
     storeOrder,
     orderBy,
@@ -33490,7 +34070,7 @@ var multifile$2 = function multifile(props, context, dependencies, options) {
   } = toRefs(props);
   var {
     refreshOrderStore
-  } = base$h(props, context, dependencies);
+  } = base$i(props, context, dependencies);
 
   // =============== METHODS ==============
 
@@ -33508,7 +34088,7 @@ var multifile$2 = function multifile(props, context, dependencies, options) {
   };
 };
 
-var base$g = function base(props, context, dependencies) {
+var base$h = function base(props, context, dependencies) {
   var {
     object,
     element
@@ -33639,7 +34219,7 @@ var multifile$1 = function multifile(props, context, dependencies) {
   };
 };
 
-var base$f = function base(props, context, dependencies) {
+var base$g = function base(props, context, dependencies) {
   var {
     controls,
     sort,
@@ -33851,13 +34431,13 @@ var ListElement = {
   },
   setup(props, context) {
     //@todo:adam useValue and useDefault should be before useOrder
-    context.features = [base$18, base$17, base$U, base$N, base$T, base$R, array$1, base$g, base$k, base$i, base$h, base$1b, list$4, base$B, base$_, base$I, base$11, list$5, list$1, list$3, base$f, array, base$Z, base$Y, base$X, base$19, base$W, list, base$j, base$Q, list$2, base$S];
+    context.features = [base$19, base$18, base$V, base$O, base$U, base$S, array$1, base$h, base$l, base$j, base$i, base$1c, list$4, base$C, base$$, base$J, base$12, list$5, list$1, list$3, base$g, array, base$_, base$Z, base$Y, base$1a, base$X, list, base$k, base$R, list$2, base$T];
     context.slots = ['label', 'info', 'description', 'before', 'between', 'after'];
-    return _objectSpread2$1({}, base$M(props, context));
+    return _objectSpread2$1({}, base$N(props, context));
   }
 };
 
-var base$e = function base(props, context, dependencies) {
+var base$f = function base(props, context, dependencies) {
   var options_ = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
   var {
     provider,
@@ -34095,13 +34675,13 @@ var LocationElement = {
     }
   },
   setup(props, context) {
-    context.features = [base$18, base$17, base$U, base$L, base$N, base$R, location$2, base$T, base$F, base$1b, base$O, base$v, base$B, base$K, location, base$13, base$H, base$A, base$e, base$_, base$I, base$Y, base$X, base$19, base$Z, base$W, base$r, base$Q, location$1, base$S, base$s];
+    context.features = [base$19, base$18, base$V, base$M, base$O, base$S, location$2, base$U, base$G, base$1c, base$P, base$w, base$C, base$L, location, base$14, base$I, base$B, base$f, base$$, base$J, base$Z, base$Y, base$1a, base$_, base$X, base$s, base$R, location$1, base$T, base$t];
     context.slots = ['label', 'info', 'description', 'before', 'between', 'after', 'addon-before', 'addon-after'];
     return _objectSpread2$1({}, location$3(props, context));
   }
 };
 
-var base$d = function base(props, context, dependencies) {
+var base$e = function base(props, context, dependencies) {
   // ============ DEPENDENCIES ============
 
   var isDisabled = dependencies.isDisabled;
@@ -34341,13 +34921,13 @@ var MultifileElement = {
     }
   },
   setup(props, context) {
-    context.features = [base$18, base$17, base$U, base$N, base$R, array$1, base$k, base$L, base$i, multifile$1, base$T, base$1b, list$4, base$B, base$_, base$I, list$1, base$K, array, base$11, base$13, base$Z, base$Y, base$X, base$W, multifile$2, multifile$4, base$d, multifile, multifile$3, base$19, base$j, base$Q, multifile$5, base$S];
+    context.features = [base$19, base$18, base$V, base$O, base$S, array$1, base$l, base$M, base$j, multifile$1, base$U, base$1c, list$4, base$C, base$$, base$J, list$1, base$L, array, base$12, base$14, base$_, base$Z, base$Y, base$X, multifile$2, multifile$4, base$e, multifile, multifile$3, base$1a, base$k, base$R, multifile$5, base$T];
     context.slots = ['label', 'info', 'description', 'before', 'between', 'after'];
-    return _objectSpread2$1({}, base$M(props, context));
+    return _objectSpread2$1({}, base$N(props, context));
   }
 };
 
-var base$c = function base(props, context, dependencies) {
+var base$d = function base(props, context, dependencies) {
   // ============ DEPENDENCIES ============
 
   var fire = dependencies.fire;
@@ -34463,7 +35043,7 @@ function spliceMultiple(array, indexes) {
   return array;
 }
 
-var base$b = function base(props, context, dependencies) {
+var base$c = function base(props, context, dependencies) {
   // ============ DEPENDENCIES ============
 
   var value = dependencies.value;
@@ -34879,9 +35459,9 @@ var MultiselectElement = {
     }
   },
   setup(props, context) {
-    context.features = [base$18, base$17, base$U, base$L, base$N, base$R, array$1, base$T, base$F, base$1b, multiselect$4, base$B, base$C, base$G, multiselect$1, base$K, multiselect$2, base$13, array, multiselect$3, base$_, base$I, base$Y, base$X, base$19, base$Z, base$W, base$c, base$b, multiselect, base$Q, base$E, base$S, base$s];
+    context.features = [base$19, base$18, base$V, base$M, base$O, base$S, array$1, base$U, base$G, base$1c, multiselect$4, base$C, base$D, base$H, multiselect$1, base$L, multiselect$2, base$14, array, multiselect$3, base$$, base$J, base$Z, base$Y, base$1a, base$_, base$X, base$d, base$c, multiselect, base$R, base$F, base$T, base$t];
     context.slots = ['option', 'multiple-label', 'placeholder', 'group-label', 'before-list', 'after-list', 'no-results', 'no-options', 'caret', 'spinner', 'clear', 'label', 'info', 'description', 'before', 'between', 'after'];
-    return _objectSpread2$1({}, base$M(props, context));
+    return _objectSpread2$1({}, base$N(props, context));
   }
 };
 
@@ -34924,13 +35504,1900 @@ var ObjectElement = {
     }
   },
   setup(props, context) {
-    context.features = [base$18, base$17, base$U, base$N, base$T, object$5, base$1b, object$7, object$2, object$6, base$_, object, base$11, object$8, object$3, base$Y, base$X, base$19, base$Z, base$W, object$1, base$Q, object$4, base$S];
+    context.features = [base$19, base$18, base$V, base$O, base$U, object$5, base$1c, object$7, object$2, object$6, base$$, object, base$12, object$8, object$3, base$Z, base$Y, base$1a, base$_, base$X, object$1, base$R, object$4, base$T];
     context.slots = ['label', 'info', 'description', 'before', 'between', 'after'];
-    return _objectSpread2$1({}, base$M(props, context));
+    return _objectSpread2$1({}, base$N(props, context));
   }
 };
 
+var base$b = function base(props, context, dependencies) {
+  // ============ DEPENDENCIES ============
+
+  var fire = dependencies.fire;
+  var el$ = dependencies.el$;
+
+  // =============== METHODS ==============
+
+  /**
+   * Handles `blur` event.
+   *
+   * @returns {void}
+   * @private
+   */
+  var handleBlur = () => {
+    fire('blur', el$.value);
+  };
+  return {
+    handleBlur
+  };
+};
+
+var us = '{+}0 (000) 000-0000';
+var countryPhones = [{
+  // "country": "Afghanistan",
+  "c": "AF",
+  "n": "+93",
+  "p": 0,
+  "m": [["93", "{+}00 00 000 0000"]]
+}, {
+  // "country": "Albania",
+  "c": "AL",
+  "n": "+355",
+  "p": 1,
+  "m": [["3554", "{+}000 0 000 0000"], ["355", "{+}000 00 000 0000"]]
+}, {
+  // "country": "Algeria",
+  "c": "DZ",
+  "n": "+213",
+  "p": 2,
+  "m": [["2131", "{+}000 0 000 0000"], ["2132", "{+}000 0 000 0000"], ["2133", "{+}000 0 000 0000"], ["2134", "{+}000 0 000 0000"], ["213", "{+}000 00 000 0000"]]
+}, {
+  // "country": "American Samoa",
+  "c": "AS",
+  "n": "+1",
+  "p": 3,
+  "m": [["1684", us]]
+}, {
+  // "country": "Andorra",
+  "c": "AD",
+  "n": "+376",
+  "p": 4,
+  "m": [["376", "{+}000 000 000"]]
+}, {
+  // "country": "Angola",
+  "c": "AO",
+  "n": "+244",
+  "p": 5,
+  "m": [["2449", "{+}000 000 000 0000"], ["244", "{+}000 000 000 000"]]
+}, {
+  // "country": "Anguilla",
+  "c": "AI",
+  "n": "+1",
+  "p": 6,
+  "m": [["1264", us]]
+}, {
+  // "country": "Antigua & Barbuda",
+  "c": "AG",
+  "n": "+1",
+  "p": 7,
+  "m": [["1268", us]]
+}, {
+  // "country": "Argentina",
+  "c": "AR",
+  "n": "+54",
+  "p": 8,
+  "m": [["549", "{+}00 0 000 000 0000"], ["54", "{+}00 000 000 0000"]]
+}, {
+  // "country": "Armenia",
+  "c": "AM",
+  "n": "+374",
+  "p": 9,
+  "m": [["37493", "{+}000 00 000 000"], ["37494", "{+}000 00 000 000"], ["37498", "{+}000 00 000 000"], ["37477", "{+}000 00 000 000"], ["37491", "{+}000 00 000 000"], ["37496", "{+}000 00 000 000"], ["37499", "{+}000 00 000 000"], ["37455", "{+}000 00 000 000"], ["37495", "{+}000 00 000 000"], ["37441", "{+}000 00 000 000"], ["374", "{+}000 000 000 000"]]
+}, {
+  // "country": "Aruba",
+  "c": "AW",
+  "n": "+297",
+  "p": 10,
+  "m": [["297", "{+}000 000 0000"]]
+}, {
+  // "country": "Ascension Island",
+  "c": "AC",
+  "n": "+247",
+  "p": 11,
+  "m": [["247", "{+}000 0000"]]
+}, {
+  // "country": "Australia",
+  "c": "AU",
+  "n": "+61",
+  "p": 12,
+  "m": [["61", "{+}00 0 0000 0000"], ["614", "{+}00 000 000 000"]]
+}, {
+  // "country": "Austria",
+  "c": "AT",
+  "n": "+43",
+  "p": 13,
+  "m": [["43", "{+}00 0000000[0000]"]]
+}, {
+  // "country": "Azerbaijan",
+  "c": "AZ",
+  "n": "+994",
+  "p": 14,
+  "m": [["9944", "{+}000 00 000 000"], ["9945", "{+}000 00 000 000"], ["9946", "{+}000 00 000 000"], ["9947", "{+}000 00 000 000"], ["994", "{+}000 00 000 0000"]]
+}, {
+  // "country": "Bahamas",
+  "c": "BS",
+  "n": "+1",
+  "p": 15,
+  "m": [["1242", us]]
+}, {
+  // "country": "Bahrain",
+  "c": "BH",
+  "n": "+973",
+  "p": 16,
+  "m": [["973", "{+}000 0000 0000"]]
+}, {
+  // "country": "Bangladesh",
+  "c": "BD",
+  "n": "+880",
+  "p": 17,
+  "m": [["8801", "{+}000 00 0000 0000"], ["880", "{+}000 00 0000 0000[00]"]]
+}, {
+  // "country": "Barbados",
+  "c": "BB",
+  "n": "+1",
+  "p": 18,
+  "m": [["1246", us]]
+}, {
+  // "country": "Belarus",
+  "c": "BY",
+  "n": "+375",
+  "p": 19,
+  "m": [["375", "{+}000 000000000[0]"]]
+}, {
+  // "country": "Belgium",
+  "c": "BE",
+  "n": "+32",
+  "p": 20,
+  "m": [["324", "{+}00 000 00 00 00"], ["32", "{+}00 0 000 00 00"]]
+}, {
+  // "country": "Belize",
+  "c": "BZ",
+  "n": "+501",
+  "p": 21,
+  "m": [["501", "{+}000 000-0000"]]
+}, {
+  // "country": "Benin",
+  "c": "BJ",
+  "n": "+229",
+  "p": 22,
+  "m": [["229", "{+}000 00 00 00 00"]]
+}, {
+  // "country": "Bermuda",
+  "c": "BM",
+  "n": "+1",
+  "p": 23,
+  "m": [["1441", us]]
+}, {
+  // "country": "Bhutan",
+  "c": "BT",
+  "n": "+975",
+  "p": 24,
+  "m": [["97517", "{+}000 00 000000"], ["975", "{+}000 0 00000[0]"]]
+}, {
+  // "country": "Bolivia",
+  "c": "BO",
+  "n": "+591",
+  "p": 25,
+  "m": [["5916", "{+}000 000 000 0000"], ["5917", "{+}000 000 000 0000"], ["591", "{+}000 0 000 0000[0]"]]
+}, {
+  // "country": "Bosnia & Herzegovina",
+  "c": "BA",
+  "n": "+387",
+  "p": 26,
+  "m": [["3876", "{+}000 00 000 000"], ["387", "{+}000 00 000 000[0]"]]
+}, {
+  // "country": "Botswana",
+  "c": "BW",
+  "n": "+267",
+  "p": 27,
+  "m": [["2677", "{+}000 00 000 0000"], ["267", "{+}000 000 000000"]]
+}, {
+  // "country": "Brazil",
+  "c": "BR",
+  "n": "+55",
+  "p": 28,
+  "m": [["55", "{+}00 00 0000 0000[0]"]]
+}, {
+  // "country": "British Indian Ocean Territory",
+  "c": "IO",
+  "n": "+246",
+  "p": 29,
+  "m": [["246", "{+}000 0000"]]
+}, {
+  // "country": "British Virgin Islands",
+  "c": "VG",
+  "n": "+1",
+  "p": 30,
+  "m": [["1284", us]]
+}, {
+  // "country": "Brunei",
+  "c": "BN",
+  "n": "+673",
+  "p": 31,
+  "m": [["673", "{+}000 000 0000"]]
+}, {
+  // "country": "Bulgaria",
+  "c": "BG",
+  "n": "+359",
+  "p": 32,
+  "m": [["3598", "{+}000 00 000 0000"], ["3599", "{+}000 00 000 0000"], ["359", "{+}000 0000000[000]"]]
+}, {
+  // "country": "Burkina Faso",
+  "c": "BF",
+  "n": "+226",
+  "p": 33,
+  "m": [["226", "{+}000 00 00 00 00"]]
+}, {
+  // "country": "Burundi",
+  "c": "BI",
+  "n": "+257",
+  "p": 34,
+  "m": [["257", "{+}000 00 00 00 00"]]
+}, {
+  // "country": "Cambodia",
+  "c": "KH",
+  "n": "+855",
+  "p": 35,
+  "m": [["855", "{+}000 000000000"]]
+}, {
+  // "country": "Cameroon",
+  "c": "CM",
+  "n": "+237",
+  "p": 36,
+  "m": [["237", "{+}000 0000 0000"]]
+}, {
+  // "country": "Canada",
+  "c": "CA",
+  "n": "+1",
+  "p": 37,
+  "m": [["1204", us], ["1226", us], ["1236", us], ["1249", us], ["1250", us], ["1263", us], ["1289", us], ["1306", us], ["1343", us], ["1354", us], ["1365", us], ["1367", us], ["1368", us], ["1403", us], ["1416", us], ["1418", us], ["1431", us], ["1437", us], ["1438", us], ["1450", us], ["1468", us], ["1474", us], ["1506", us], ["1514", us], ["1519", us], ["1548", us], ["1579", us], ["1581", us], ["1584", us], ["1587", us], ["1604", us], ["1613", us], ["1639", us], ["1647", us], ["1672", us], ["1683", us], ["1705", us], ["1709", us], ["1742", us], ["1753", us], ["1778", us], ["1780", us], ["1782", us], ["1807", us], ["1819", us], ["1825", us], ["1867", us], ["1873", us], ["1902", us], ["1905", us]]
+}, {
+  // "country": "Cape Verde",
+  "c": "CV",
+  "n": "+238",
+  "p": 38,
+  "m": [["238", "{+}000 0000 000"]]
+}, {
+  // "country": "Caribbean Netherlands",
+  "c": "BQ",
+  "n": "+599",
+  "p": 39,
+  "m": [["599", "{+}000 000 0000"]]
+}, {
+  // "country": "Cayman Islands",
+  "c": "KY",
+  "n": "+1",
+  "p": 40,
+  "m": [["1345", us]]
+}, {
+  // "country": "Central African Republic",
+  "c": "CF",
+  "n": "+236",
+  "p": 41,
+  "m": [["236", "{+}000 00 00 00 00"]]
+}, {
+  // "country": "Chad",
+  "c": "TD",
+  "n": "+235",
+  "p": 42,
+  "m": [["235", "{+}000 00 00 00 00"]]
+}, {
+  // "country": "Chile",
+  "c": "CL",
+  "n": "+56",
+  "p": 43,
+  "m": [["562", "{+}00 0 0000 0000"], ["569", "{+}00 0 0000 0000"], ["56", "{+}00 00 0000 000[0]"]]
+}, {
+  // "country": "China",
+  "c": "CN",
+  "n": "+86",
+  "p": 44,
+  "m": [["8613", "{+}00 000 0000 0000"], ["8615", "{+}00 000 0000 0000"], ["8618", "{+}00 000 0000 0000"], ["86", "{+}00 00 0000 0000"]]
+}, {
+  // "country": "Colombia",
+  "c": "CO",
+  "n": "+57",
+  "p": 45,
+  "m": [["573", "{+}00 000 000 0000"], ["57", "{+}00 0 000 0000"]]
+}, {
+  // "country": "Comoros",
+  "c": "KM",
+  "n": "+269",
+  "p": 46,
+  "m": [["269", "{+}000 000 0000"]]
+}, {
+  // "country": "Congo - Brazzaville",
+  "c": "CG",
+  "n": "+242",
+  "p": 47,
+  "m": [["242", "{+}000 00 000 000[0]"]]
+}, {
+  // "country": "Congo - Kinshasa",
+  "c": "CD",
+  "n": "+243",
+  "p": 48,
+  "m": [["243", "{+}000 00 000 000[0]"]]
+}, {
+  // "country": "Cook Islands",
+  "c": "CK",
+  "n": "+682",
+  "p": 49,
+  "m": [["682", "{+}000 00 000"]]
+}, {
+  // "country": "Costa Rica",
+  "c": "CR",
+  "n": "+506",
+  "p": 50,
+  "m": [["506", "{+}000 0000 0000"]]
+}, {
+  // "country": "Côte d’Ivoire",
+  "c": "CI",
+  "n": "+225",
+  "p": 51,
+  "m": [["225", "{+}000 00 00 00 00"]]
+}, {
+  // "country": "Croatia",
+  "c": "HR",
+  "n": "+385",
+  "p": 52,
+  "m": [["385", "{+}000 00 000 0000"]]
+}, {
+  // "country": "Cuba",
+  "c": "CU",
+  "n": "+53",
+  "p": 53,
+  "m": [["535", "{+}00 0 000 0000"], ["53", "{+}00 000000[0000]"]]
+}, {
+  // "country": "Curaçao",
+  "c": "CW",
+  "n": "+599",
+  "p": 54,
+  "m": [["5999", "{+}000 0 000 0000"]]
+}, {
+  // "country": "Cyprus",
+  "c": "CY",
+  "n": "+357",
+  "p": 55,
+  "m": [["357", "{+}000 00 000 000"]]
+}, {
+  // "country": "Czechia",
+  "c": "CZ",
+  "n": "+420",
+  "p": 56,
+  "m": [["4206", "{+}000 000 000 000"], ["4207", "{+}000 000 000 000"], ["420", "{+}000 00 000 0000"]]
+}, {
+  // "country": "Denmark",
+  "c": "DK",
+  "n": "+45",
+  "p": 57,
+  "m": [["45", "{+}00 00 00 00 00"]]
+}, {
+  // "country": "Djibouti",
+  "c": "DJ",
+  "n": "+253",
+  "p": 58,
+  "m": [["253", "{+}000 00 00 00 00"]]
+}, {
+  // "country": "Dominica",
+  "c": "DM",
+  "n": "+1",
+  "p": 59,
+  "m": [["1767", us]]
+}, {
+  // "country": "Dominican Republic",
+  "c": "DO",
+  "n": "+1",
+  "p": 60,
+  "m": [["1809", us], ["1829", us], ["1849", us]]
+}, {
+  // "country": "Ecuador",
+  "c": "EC",
+  "n": "+593",
+  "p": 61,
+  "m": [["593", "{+}000 00 0000 000"]]
+}, {
+  // "country": "Egypt",
+  "c": "EG",
+  "n": "+20",
+  "p": 62,
+  "m": [["2010", "{+}00 000 0000 000"], ["2011", "{+}00 000 0000 000"], ["2012", "{+}00 000 0000 000"], ["2014", "{+}00 000 0000 000"], ["2016", "{+}00 000 0000 000"], ["202", "{+}00 0 0000 0000"], ["203", "{+}00 0 0000 0000"], ["20", "{+}00 000 0000 000"]]
+}, {
+  // "country": "El Salvador",
+  "c": "SV",
+  "n": "+503",
+  "p": 63,
+  "m": [["503", "{+}000 0000 0000"]]
+}, {
+  // "country": "Equatorial Guinea",
+  "c": "GQ",
+  "n": "+240",
+  "p": 64,
+  "m": [["240", "{+}000 00 000 0000"]]
+}, {
+  // "country": "Eritrea",
+  "c": "ER",
+  "n": "+291",
+  "p": 65,
+  "m": [["291", "{+}000 0 000 000"]]
+}, {
+  // "country": "Estonia",
+  "c": "EE",
+  "n": "+372",
+  "p": 66,
+  "m": [["372", "{+}000 0000 000[0]"]]
+}, {
+  // "country": "Eswatini",
+  "c": "SZ",
+  "n": "+268",
+  "p": 67,
+  "m": [["268", "{+}000 00 00 0000"]]
+}, {
+  // "country": "Ethiopia",
+  "c": "ET",
+  "n": "+251",
+  "p": 68,
+  "m": [["2519", "{+}000 000 000 000"], ["251", "{+}000 00 000 0000"]]
+}, {
+  // "country": "Falkland Islands (Islas Malvinas)",
+  "c": "FK",
+  "n": "+500",
+  "p": 69,
+  "m": [["500", "{+}000 00000"]]
+}, {
+  // "country": "Faroe Islands",
+  "c": "FO",
+  "n": "+298",
+  "p": 70,
+  "m": [["298", "{+}000 000 000"]]
+}, {
+  // "country": "Fiji",
+  "c": "FJ",
+  "n": "+679",
+  "p": 71,
+  "m": [["679", "{+}000 000 0000"]]
+}, {
+  // "country": "Finland",
+  "c": "FI",
+  "n": "+358",
+  "p": 72,
+  "m": [["358", "{+}000 0000[0000000]"]]
+}, {
+  // "country": "France",
+  "c": "FR",
+  "n": "+33",
+  "p": 73,
+  "m": [["33", "{+}00 000 000 000"]]
+}, {
+  // "country": "French Guiana",
+  "c": "GF",
+  "n": "+594",
+  "p": 74,
+  "m": [["594", "{+}000 000 00 00 00"]]
+}, {
+  // "country": "French Polynesia",
+  "c": "PF",
+  "n": "+689",
+  "p": 75,
+  "m": [["689", "{+}000 00 00 00 00"]]
+}, {
+  // "country": "Gabon",
+  "c": "GA",
+  "n": "+241",
+  "p": 76,
+  "m": [["24106", "{+}000 000 00 00 00"], ["24107", "{+}000 000 00 00 00"], ["241", "{+}000 00 00 00 00"]]
+}, {
+  // "country": "Gambia",
+  "c": "GM",
+  "n": "+220",
+  "p": 77,
+  "m": [["220", "{+}000 000 0000"]]
+}, {
+  // "country": "Georgia",
+  "c": "GE",
+  "n": "+995",
+  "p": 78,
+  "m": [["99532", "{+}000 00 000 0000"], ["995", "{+}000 000 000 000[0]"]]
+}, {
+  // "country": "Germany",
+  "c": "DE",
+  "n": "+49",
+  "p": 79,
+  "m": [["4930", "{+}00 00 0000 0000"], ["4989", "{+}00 00 0000 0000"], ["49", "{+}00 000 0000 000[0]"]]
+}, {
+  // "country": "Ghana",
+  "c": "GH",
+  "n": "+233",
+  "p": 80,
+  "m": [["233", "{+}000 00 000 0000"]]
+}, {
+  // "country": "Gibraltar",
+  "c": "GI",
+  "n": "+350",
+  "p": 81,
+  "m": [["350", "{+}000 0000 0000"]]
+}, {
+  // "country": "Greece",
+  "c": "GR",
+  "n": "+30",
+  "p": 82,
+  "m": [["3069", "{+}00 000 0000 000"], ["30", "{+}00 000 0000 000[0]"]]
+}, {
+  // "country": "Greenland",
+  "c": "GL",
+  "n": "+299",
+  "p": 83,
+  "m": [["299", "{+}000 00 00 00"]]
+}, {
+  // "country": "Grenada",
+  "c": "GD",
+  "n": "+1",
+  "p": 84,
+  "m": [["1473", us]]
+}, {
+  // "country": "Guadeloupe",
+  "c": "GP",
+  "n": "+590",
+  "p": 85,
+  "m": [["590", "{+}000 000 0000"]]
+}, {
+  // "country": "Guam",
+  "c": "GU",
+  "n": "+1",
+  "p": 86,
+  "m": [["1671", us]]
+}, {
+  // "country": "Guatemala",
+  "c": "GT",
+  "n": "+502",
+  "p": 87,
+  "m": [["502", "{+}000 000 00000"]]
+}, {
+  // "country": "Guinea",
+  "c": "GN",
+  "n": "+224",
+  "p": 88,
+  "m": [["224", "{+}000 0000 000[0]"]]
+}, {
+  // "country": "Guinea-Bissau",
+  "c": "GW",
+  "n": "+245",
+  "p": 89,
+  "m": [["245", "{+}000 000 0000"]]
+}, {
+  // "country": "Guyana",
+  "c": "GY",
+  "n": "+592",
+  "p": 90,
+  "m": [["592", "{+}000 000 0000"]]
+}, {
+  // "country": "Haiti",
+  "c": "HT",
+  "n": "+509",
+  "p": 91,
+  "m": [["509", "{+}000 00 00 0000"]]
+}, {
+  // "country": "Honduras",
+  "c": "HN",
+  "n": "+504",
+  "p": 92,
+  "m": [["504", "{+}000 0000 0000"]]
+}, {
+  // "country": "Hong Kong",
+  "c": "HK",
+  "n": "+852",
+  "p": 93,
+  "m": [["852", "{+}000 0000 0000"]]
+}, {
+  // "country": "Hungary",
+  "c": "HU",
+  "n": "+36",
+  "p": 94,
+  "m": [["361", "{+}00 0 000 0000"], ["3620", "{+}00 00 000 0000"], ["3630", "{+}00 00 000 0000"], ["3670", "{+}00 00 000 0000"], ["36", "{+}00 00 000 000[0]"]]
+}, {
+  // "country": "Iceland",
+  "c": "IS",
+  "n": "+354",
+  "p": 95,
+  "m": [["354", "{+}000 000 0000"]]
+}, {
+  // "country": "India",
+  "c": "IN",
+  "n": "+91",
+  "p": 96,
+  "m": [["916", "{+}00 000 000 0000"], ["917", "{+}00 000 000 0000"], ["918", "{+}00 000 000 0000"], ["919", "{+}00 000 000 0000"], ["91", "{+}00 00 0000 0000"]]
+}, {
+  // "country": "Indonesia",
+  "c": "ID",
+  "n": "+62",
+  "p": 97,
+  "m": [["62361", "{+}00 000 000 000"], ["6221", "{+}00 00 0000 0000"], ["628", "{+}00 000 0000 0000"], ["62", "{+}00 00000[000000]"]]
+}, {
+  // "country": "Iran",
+  "c": "IR",
+  "n": "+98",
+  "p": 98,
+  "m": [["98921", "{+}00 00 000 0000"], ["98951", "{+}00 00 000 0000"], ["989", "{+}00 000 000 0000"], ["98", "{+}00 00000000[00]"]]
+}, {
+  // "country": "Iraq",
+  "c": "IQ",
+  "n": "+964",
+  "p": 99,
+  "m": [["9641", "{+}000 0 000 0000[0]"], ["9647", "{+}000 000 000 0000"], ["964", "{+}000 000000[0000]"]]
+}, {
+  // "country": "Ireland",
+  "c": "IE",
+  "n": "+353",
+  "p": 100,
+  "m": [["3531", "{+}000 0 000 0000"], ["353", "{+}000 00 000 0000"]]
+}, {
+  // "country": "Israel",
+  "c": "IL",
+  "n": "+972",
+  "p": 101,
+  "m": [["9725", "{+}000 00 000 0000"], ["9727", "{+}000 00 000 0000"], ["972", "{+}000 0 000 0000"]]
+}, {
+  // "country": "Italy",
+  "c": "IT",
+  "n": "+39",
+  "p": 102,
+  "m": [["393", "{+}00 000 000 0000"], ["39", "{+}00 00 0000 0000"]]
+}, {
+  // "country": "Jamaica",
+  "c": "JM",
+  "n": "+1",
+  "p": 103,
+  "m": [["1876", us]]
+}, {
+  // "country": "Japan",
+  "c": "JP",
+  "n": "+81",
+  "p": 104,
+  "m": [["8170", "{+}00 00 0000 0000"], ["8180", "{+}00 00 0000 0000"], ["8190", "{+}00 00 0000 0000"], ["81", "{+}00 0 0000 0000"]]
+}, {
+  // "country": "Jordan",
+  "c": "JO",
+  "n": "+962",
+  "p": 105,
+  "m": [["9627", "{+}000 000 000 000"], ["962", "{+}000 0 000 0000"]]
+}, {
+  // "country": "Kazakhstan",
+  "c": "KZ",
+  "n": "+7",
+  "p": 106,
+  "m": [["77", "{+}0 000 000 0000"]]
+}, {
+  // "country": "Kenya",
+  "c": "KE",
+  "n": "+254",
+  "p": 107,
+  "m": [["2541", "{+}000 000 000 000"], ["2547", "{+}000 000 000 000"], ["254", "{+}000 00 000 0000"]]
+}, {
+  // "country": "Kiribati",
+  "c": "KI",
+  "n": "+686",
+  "p": 108,
+  "m": [["686", "{+}000 00 000"]]
+}, {
+  // "country": "Kosovo",
+  "c": "XK",
+  "n": "+383",
+  "p": 109,
+  "m": [["383", "{+}000 00 000 000"]]
+}, {
+  // "country": "Kuwait",
+  "c": "KW",
+  "n": "+965",
+  "p": 110,
+  "m": [["9655", "{+}000 000 00000"], ["9656", "{+}000 000 00000"], ["9659", "{+}000 000 00000"], ["965", "{+}000 0000 0000"]]
+}, {
+  // "country": "Kyrgyzstan",
+  "c": "KG",
+  "n": "+996",
+  "p": 111,
+  "m": [["996", "{+}000 000 000 000"]]
+}, {
+  // "country": "Laos",
+  "c": "LA",
+  "n": "+856",
+  "p": 112,
+  "m": [["85620", "{+}000 00 0000 0000"], ["85630", "{+}000 00 0000 0000"], ["856", "{+}000 00 000 000"]]
+}, {
+  // "country": "Latvia",
+  "c": "LV",
+  "n": "+371",
+  "p": 113,
+  "m": [["3715", "{+}000 0 00 00000"], ["3716", "{+}000 0 00 00000"], ["3717", "{+}000 0 00 00000"], ["371", "{+}000 000 00 000"]]
+}, {
+  // "country": "Lebanon",
+  "c": "LB",
+  "n": "+961",
+  "p": 114,
+  "m": [["96170", "{+}000 00 000 000"], ["96171", "{+}000 00 000 000"], ["96180", "{+}000 00 000 000"], ["96181", "{+}000 00 000 000"], ["96190", "{+}000 00 000 000"], ["96191", "{+}000 00 000 000"], ["961", "{+}000 0 000 000[0]"]]
+}, {
+  // "country": "Lesotho",
+  "c": "LS",
+  "n": "+266",
+  "p": 115,
+  "m": [["266", "{+}000 000 000 000"]]
+}, {
+  // "country": "Liberia",
+  "c": "LR",
+  "n": "+231",
+  "p": 116,
+  "m": [["231", "{+}000 000000[0000]"]]
+}, {
+  // "country": "Libya",
+  "c": "LY",
+  "n": "+218",
+  "p": 117,
+  "m": [["218", "{+}000 00 000 0000"]]
+}, {
+  // "country": "Liechtenstein",
+  "c": "LI",
+  "n": "+423",
+  "p": 118,
+  "m": [["42323", "{+}000 00 00000"], ["42375", "{+}000 00 00000"], ["423", "{+}000 000 0000"]]
+}, {
+  // "country": "Lithuania",
+  "c": "LT",
+  "n": "+370",
+  "p": 119,
+  "m": [["370", "{+}000 000 000 000"]]
+}, {
+  // "country": "Luxembourg",
+  "c": "LU",
+  "n": "+352",
+  "p": 120,
+  "m": [["352", "{+}000 000 000 000"]]
+}, {
+  // "country": "Macao",
+  "c": "MO",
+  "n": "+853",
+  "p": 121,
+  "m": [["8536", "{+}000 000 0000[0]"], ["853", "{+}000 0000 000[0]"]]
+}, {
+  // "country": "Madagascar",
+  "c": "MG",
+  "n": "+261",
+  "p": 122,
+  "m": [["261", "{+}000 00 00 00000"]]
+}, {
+  // "country": "Malawi",
+  "c": "MW",
+  "n": "+265",
+  "p": 123,
+  "m": [["265", "{+}000 000 000 000"]]
+}, {
+  // "country": "Malaysia",
+  "c": "MY",
+  "n": "+60",
+  "p": 124,
+  "m": [["60", "{+}00 0000000[000]"]]
+}, {
+  // "country": "Maldives",
+  "c": "MV",
+  "n": "+960",
+  "p": 125,
+  "m": [["960", "{+}000 000 0000"]]
+}, {
+  // "country": "Mali",
+  "c": "ML",
+  "n": "+223",
+  "p": 126,
+  "m": [["223", "{+}000 00 00 0000"]]
+}, {
+  // "country": "Malta",
+  "c": "MT",
+  "n": "+356",
+  "p": 127,
+  "m": [["356", "{+}000 0000 000[0]"]]
+}, {
+  // "country": "Marshall Islands",
+  "c": "MH",
+  "n": "+692",
+  "p": 128,
+  "m": [["692", "{+}000 000 0000"]]
+}, {
+  // "country": "Martinique",
+  "c": "MQ",
+  "n": "+596",
+  "p": 129,
+  "m": [["596", "{+}000 000 000 000"]]
+}, {
+  // "country": "Mauritania",
+  "c": "MR",
+  "n": "+222",
+  "p": 130,
+  "m": [["222", "{+}000 00 000 000"]]
+}, {
+  // "country": "Mauritius",
+  "c": "MU",
+  "n": "+230",
+  "p": 131,
+  "m": [["230", "{+}000 000 0000"]]
+}, {
+  // "country": "Mexico",
+  "c": "MX",
+  "n": "+52",
+  "p": 132,
+  "m": [["52", "{+}00 000 000 0000"]]
+}, {
+  // "country": "Micronesia",
+  "c": "FM",
+  "n": "+691",
+  "p": 133,
+  "m": [["691", "{+}000 000 0000"]]
+}, {
+  // "country": "Moldova",
+  "c": "MD",
+  "n": "+373",
+  "p": 134,
+  "m": [["373", "{+}000 000 00 000"]]
+}, {
+  // "country": "Monaco",
+  "c": "MC",
+  "n": "+377",
+  "p": 135,
+  "m": [["377", "{+}000 00 00 00 00"]]
+}, {
+  // "country": "Mongolia",
+  "c": "MN",
+  "n": "+976",
+  "p": 136,
+  "m": [["976", "{+}000 00 00 0000"]]
+}, {
+  // "country": "Montenegro",
+  "c": "ME",
+  "n": "+382",
+  "p": 137,
+  "m": [["382", "{+}000 00 000 000"]]
+}, {
+  // "country": "Montserrat",
+  "c": "MS",
+  "n": "+1",
+  "p": 138,
+  "m": [["1664", us]]
+}, {
+  // "country": "Morocco",
+  "c": "MA",
+  "n": "+212",
+  "p": 139,
+  "m": [["212", "{+}000 00 000 0000[0]"]]
+}, {
+  // "country": "Mozambique",
+  "c": "MZ",
+  "n": "+258",
+  "p": 140,
+  "m": [["258", "{+}000 00 000 000"]]
+}, {
+  // "country": "Myanmar (Burma)",
+  "c": "MM",
+  "n": "+95",
+  "p": 141,
+  "m": [["95", "{+}00 0000000[0000]"]]
+}, {
+  // "country": "Namibia",
+  "c": "NA",
+  "n": "+264",
+  "p": 142,
+  "m": [["264", "{+}000 000000[000000]"]]
+}, {
+  // "country": "Nauru",
+  "c": "NR",
+  "n": "+674",
+  "p": 143,
+  "m": [["674", "{+}000 000000[000000]"]]
+}, {
+  // "country": "Nepal",
+  "c": "NP",
+  "n": "+977",
+  "p": 144,
+  "m": [["977", "{+}000 000000[000000]"]]
+}, {
+  // "country": "Netherlands",
+  "c": "NL",
+  "n": "+31",
+  "p": 145,
+  "m": [["31", "{+}00 00 000 0000"]]
+}, {
+  // "country": "New Caledonia",
+  "c": "NC",
+  "n": "+687",
+  "p": 146,
+  "m": [["687", "{+}000 000000[000000]"]]
+}, {
+  // "country": "New Zealand",
+  "c": "NZ",
+  "n": "+64",
+  "p": 147,
+  "m": [["642", "{+}00 000 000 000"], ["64", "{+}00 0 000 0000"]]
+}, {
+  // "country": "Nicaragua",
+  "c": "NI",
+  "n": "+505",
+  "p": 148,
+  "m": [["505", "{+}000 000000[000000]"]]
+}, {
+  // "country": "Niger",
+  "c": "NE",
+  "n": "+227",
+  "p": 149,
+  "m": [["227", "{+}000 00000000[000]"]]
+}, {
+  // "country": "Nigeria",
+  "c": "NG",
+  "n": "+234",
+  "p": 150,
+  "m": [["234", "{+}000 000000[000000]"]]
+}, {
+  // "country": "Niue",
+  "c": "NU",
+  "n": "+683",
+  "p": 151,
+  "m": [["683", "{+}000 000000[000000]"]]
+}, {
+  // "country": "Norfolk Island",
+  "c": "NF",
+  "n": "+672",
+  "p": 152,
+  "m": [["672", "{+}000 000000[000000]"]]
+}, {
+  // "country": "North Korea",
+  "c": "KP",
+  "n": "+850",
+  "p": 153,
+  "m": [["850", "{+}000 000000[0000000]"]]
+}, {
+  // "country": "North Macedonia",
+  "c": "MK",
+  "n": "+389",
+  "p": 154,
+  "m": [["389", "{+}000 00 000 000"]]
+}, {
+  // "country": "Northern Mariana Islands",
+  "c": "MP",
+  "n": "+1",
+  "p": 155,
+  "m": [["1670", us]]
+}, {
+  // "country": "Norway",
+  "c": "NO",
+  "n": "+47",
+  "p": 156,
+  "m": [["47", "{+}00 00 00 00 00"]]
+}, {
+  // "country": "Oman",
+  "c": "OM",
+  "n": "+968",
+  "p": 157,
+  "m": [["968", "{+}000 0000 0000"]]
+}, {
+  // "country": "Pakistan",
+  "c": "PK",
+  "n": "+92",
+  "p": 158,
+  "m": [["923", "{+}00 000 0000 000"], ["92", "{+}00 00 0000 0000"]]
+}, {
+  // "country": "Palau",
+  "c": "PW",
+  "n": "+680",
+  "p": 159,
+  "m": [["680", "{+}000 000000[000000]"]]
+}, {
+  // "country": "Palestine",
+  "c": "PS",
+  "n": "+970",
+  "p": 160,
+  "m": [["970", "{+}000 000000[000000]"]]
+}, {
+  // "country": "Panama",
+  "c": "PA",
+  "n": "+507",
+  "p": 161,
+  "m": [["507", "{+}000 000 0000"]]
+}, {
+  // "country": "Papua New Guinea",
+  "c": "PG",
+  "n": "+675",
+  "p": 162,
+  "m": [["675", "{+}000 00 000 000"]]
+}, {
+  // "country": "Paraguay",
+  "c": "PY",
+  "n": "+595",
+  "p": 163,
+  "m": [["595", "{+}000 00 000 0000"]]
+}, {
+  // "country": "Peru",
+  "c": "PE",
+  "n": "+51",
+  "p": 164,
+  "m": [["51", "{+}00 00 000 000"]]
+}, {
+  // "country": "Philippines",
+  "c": "PH",
+  "n": "+63",
+  "p": 165,
+  "m": [["639", "{+}00 000 000 0000"], ["63", "{+}00 00 000 0000"]]
+}, {
+  // "country": "Poland",
+  "c": "PL",
+  "n": "+48",
+  "p": 166,
+  "m": [["485", "{+}00 000 000 000"], ["48", "{+}00 00 000 0000"]]
+}, {
+  // "country": "Portugal",
+  "c": "PT",
+  "n": "+351",
+  "p": 167,
+  "m": [["351", "{+}000 000 000 000"]]
+}, {
+  // "country": "Puerto Rico",
+  "c": "PR",
+  "n": "+1",
+  "p": 168,
+  "m": [["1787", us], ["1939", us]]
+}, {
+  // "country": "Qatar",
+  "c": "QA",
+  "n": "+974",
+  "p": 169,
+  "m": [["974", "{+}000 0000 0000"]]
+}, {
+  // "country": "Réunion",
+  "c": "RE",
+  "n": "+262",
+  "p": 170,
+  "m": [["262", "{+}000 00000 0000"]]
+}, {
+  // "country": "Romania",
+  "c": "RO",
+  "n": "+40",
+  "p": 171,
+  "m": [["407", "{+}00 000 000 000"], ["40", "{+}00 00 000 0000"]]
+}, {
+  // "country": "Russia",
+  "c": "RU",
+  "n": "+7",
+  "p": 172,
+  "m": [["7", "{+}0 000 000 00 00"]]
+}, {
+  // "country": "Rwanda",
+  "c": "RW",
+  "n": "+250",
+  "p": 173,
+  "m": [["250", "{+}000 00 000 000"]]
+}, {
+  // "country": "Samoa",
+  "c": "WS",
+  "n": "+685",
+  "p": 174,
+  "m": [["685", "{+}000 00 0000"]]
+}, {
+  // "country": "San Marino",
+  "c": "SM",
+  "n": "+378",
+  "p": 175,
+  "m": [["378", "{+}000 0000 000000"]]
+}, {
+  // "country": "São Tomé & Príncipe",
+  "c": "ST",
+  "n": "+239",
+  "p": 176,
+  "m": [["239", "{+}000 00 00 00"]]
+}, {
+  // "country": "Saudi Arabia",
+  "c": "SA",
+  "n": "+966",
+  "p": 177,
+  "m": [["96657", "{+}000 000 00 0000"], ["966", "{+}000 00 000 0000"]]
+}, {
+  // "country": "Senegal",
+  "c": "SN",
+  "n": "+221",
+  "p": 178,
+  "m": [["221", "{+}000 00 000 0000"]]
+}, {
+  // "country": "Serbia",
+  "c": "RS",
+  "n": "+381",
+  "p": 179,
+  "m": [["3816", "{+}000 000 000 000"], ["3817", "{+}000 000 000 000"], ["381", "{+}000 00 000 0000"]]
+}, {
+  // "country": "Seychelles",
+  "c": "SC",
+  "n": "+248",
+  "p": 180,
+  "m": [["248", "{+}000 000 0000"]]
+}, {
+  // "country": "Sierra Leone",
+  "c": "SL",
+  "n": "+232",
+  "p": 181,
+  "m": [["232", "{+}000 00 000 000"]]
+}, {
+  // "country": "Singapore",
+  "c": "SG",
+  "n": "+65",
+  "p": 182,
+  "m": [["65", "{+}00 0000 0000"]]
+}, {
+  // "country": "Sint Maarten",
+  "c": "SX",
+  "n": "+1",
+  "p": 183,
+  "m": [["1721", us]]
+}, {
+  // "country": "Slovakia",
+  "c": "SK",
+  "n": "+421",
+  "p": 184,
+  "m": [["4219", "{+}000 000 000 0000"], ["421", "{+}000 00000000[00]"]]
+}, {
+  // "country": "Slovenia",
+  "c": "SI",
+  "n": "+386",
+  "p": 185,
+  "m": [["3863", "{+}000 00 000 000"], ["386", "{+}000 0000000[00]"]]
+}, {
+  // "country": "Solomon Islands",
+  "c": "SB",
+  "n": "+677",
+  "p": 186,
+  "m": [["677", "{+}000 00000"]]
+}, {
+  // "country": "Somalia",
+  "c": "SO",
+  "n": "+252",
+  "p": 187,
+  "m": [["252", "{+}000 0 000 000"]]
+}, {
+  // "country": "South Africa",
+  "c": "ZA",
+  "n": "+27",
+  "p": 188,
+  "m": [["276", "{+}00 000 000 000"], ["277", "{+}00 000 000 000"], ["278", "{+}00 000 000 000"], ["27", "{+}00 00 000 0000"]]
+}, {
+  // "country": "South Korea",
+  "c": "KR",
+  "n": "+82",
+  "p": 189,
+  "m": [["82", "{+}00 00000000[00]"]]
+}, {
+  // "country": "South Sudan",
+  "c": "SS",
+  "n": "+211",
+  "p": 190,
+  "m": [["211", "{+}000 0000000[00]"]]
+}, {
+  // "country": "Spain",
+  "c": "ES",
+  "n": "+34",
+  "p": 191,
+  "m": [["346", "{+}00 000 000 000"], ["347", "{+}00 000 000 000"], ["34", "{+}00 00 000 000"]]
+}, {
+  // "country": "Sri Lanka",
+  "c": "LK",
+  "n": "+94",
+  "p": 192,
+  "m": [["947", "{+}00 000 000 0000"], ["948", "{+}00 000 000 0000"], ["949", "{+}00 000 000 0000"], ["94", "{+}00 00 000 0000"]]
+}, {
+  // "country": "St. Barthélemy",
+  "c": "BL",
+  "n": "+590",
+  "p": 193,
+  "m": [["590", "{+}000 000 0000"]]
+}, {
+  // "country": "St. Helena",
+  "c": "SH",
+  "n": "+290",
+  "p": 194,
+  "m": [["290", "{+}000 0000"]]
+}, {
+  // "country": "St. Kitts & Nevis",
+  "c": "KN",
+  "n": "+1",
+  "p": 195,
+  "m": [["1869", us]]
+}, {
+  // "country": "St. Lucia",
+  "c": "LC",
+  "n": "+1",
+  "p": 196,
+  "m": [["1758", us]]
+}, {
+  // "country": "St. Martin",
+  "c": "MF",
+  "n": "+590",
+  "p": 197,
+  "m": [["590", "{+}000 000 0000"]]
+}, {
+  // "country": "St. Pierre & Miquelon",
+  "c": "PM",
+  "n": "+508",
+  "p": 198,
+  "m": [["508", "{+}000 00 00 00"]]
+}, {
+  // "country": "St. Vincent & Grenadines",
+  "c": "VC",
+  "n": "+1",
+  "p": 199,
+  "m": [["1784", us]]
+}, {
+  // "country": "Sudan",
+  "c": "SD",
+  "n": "+249",
+  "p": 200,
+  "m": [["249", "{+}000 00 000 0000"]]
+}, {
+  // "country": "Suriname",
+  "c": "SR",
+  "n": "+597",
+  "p": 201,
+  "m": [["597", "{+}000 000 000"]]
+}, {
+  // "country": "Sweden",
+  "c": "SE",
+  "n": "+46",
+  "p": 202,
+  "m": [["4613", "{+}00 00 00 00 00"], ["4618", "{+}00 00 00 00 00"], ["467", "{+}00 00 000 00 00"], ["468", "{+}00 00 000 00 00"], ["46", "{+}00 0000000[0000]"]]
+}, {
+  // "country": "Switzerland",
+  "c": "CH",
+  "n": "+41",
+  "p": 203,
+  "m": [["417", "{+}00 000 000 000"], ["41", "{+}00 00 000 0000"]]
+}, {
+  // "country": "Syria",
+  "c": "SY",
+  "n": "+963",
+  "p": 204,
+  "m": [["9639", "{+}000 000 000 000"], ["963", "{+}000 00 000 0000"]]
+}, {
+  // "country": "Taiwan",
+  "c": "TW",
+  "n": "+886",
+  "p": 205,
+  "m": [["8869", "{+}000 000 000 000"], ["886", "{+}000 0 0000 0000"]]
+}, {
+  // "country": "Tajikistan",
+  "c": "TJ",
+  "n": "+992",
+  "p": 206,
+  "m": [["992", "{+}000 00 000 0000"]]
+}, {
+  // "country": "Tanzania",
+  "c": "TZ",
+  "n": "+255",
+  "p": 207,
+  "m": [["255", "{+}000 00 000 0000"]]
+}, {
+  // "country": "Thailand",
+  "c": "TH",
+  "n": "+66",
+  "p": 208,
+  "m": [["6653", "{+}00 00 000 000"], ["6676", "{+}00 00 000 000"], ["662", "{+}00 0 000 0000"], ["666", "{+}00 000 000 000"], ["668", "{+}00 000 000 000"], ["669", "{+}00 000 000 000"], ["66", "{+}00 00 000 000"]]
+}, {
+  // "country": "Timor-Leste",
+  "c": "TL",
+  "n": "+670",
+  "p": 209,
+  "m": [["670", "{+}000 000 0000"]]
+}, {
+  // "country": "Togo",
+  "c": "TG",
+  "n": "+228",
+  "p": 210,
+  "m": [["228", "{+}000 00 000 000"]]
+}, {
+  // "country": "Tokelau",
+  "c": "TK",
+  "n": "+690",
+  "p": 211,
+  "m": [["690", "{+}000 0000"]]
+}, {
+  // "country": "Tonga",
+  "c": "TO",
+  "n": "+676",
+  "p": 212,
+  "m": [["676", "{+}000 00 000"]]
+}, {
+  // "country": "Trinidad & Tobago",
+  "c": "TT",
+  "n": "+1",
+  "p": 213,
+  "m": [["1868", us]]
+}, {
+  // "country": "Tunisia",
+  "c": "TN",
+  "n": "+216",
+  "p": 214,
+  "m": [["216", "{+}000 00 000 000"]]
+}, {
+  // "country": "Türkiye",
+  "c": "TR",
+  "n": "+90",
+  "p": 215,
+  "m": [["90", "{+}00 000 000 0000"]]
+}, {
+  // "country": "Turkmenistan",
+  "c": "TM",
+  "n": "+993",
+  "p": 216,
+  "m": [["993", "{+}000 0 000 000"]]
+}, {
+  // "country": "Turks & Caicos Islands",
+  "c": "TC",
+  "n": "+1",
+  "p": 217,
+  "m": [["1649", us]]
+}, {
+  // "country": "Tuvalu",
+  "c": "TV",
+  "n": "+688",
+  "p": 218,
+  "m": [["688", "{+}000 00 000"]]
+}, {
+  // "country": "U.S. Virgin Islands",
+  "c": "VI",
+  "n": "+1",
+  "p": 219,
+  "m": [["1340", us]]
+}, {
+  // "country": "Uganda",
+  "c": "UG",
+  "n": "+256",
+  "p": 220,
+  "m": [["2567", "{+}000 000 000 000"], ["256", "{+}000 00 000 000[0]"]]
+}, {
+  // "country": "Ukraine",
+  "c": "UA",
+  "n": "+380",
+  "p": 221,
+  "m": [["380", "{+}000 00 000 0000"]]
+}, {
+  // "country": "United Arab Emirates",
+  "c": "AE",
+  "n": "+971",
+  "p": 222,
+  "m": [["9715", "{+}000 00 000 0000"], ["971", "{+}000 0 000 0000"]]
+}, {
+  // "country": "United Kingdom",
+  "c": "GB",
+  "n": "+44",
+  "p": 223,
+  "m": [["4420", "{+}00 00 0000 0000"], ["447", "{+}00 0000 000 000"], ["44", "{+}00 000 000 0000"]]
+}, {
+  // "country": "United States",
+  "c": "US",
+  "n": "+1",
+  "p": 224,
+  "m": [["1", us]]
+}, {
+  // "country": "Uruguay",
+  "c": "UY",
+  "n": "+598",
+  "p": 225,
+  "m": [["598", "{+}000 0 000 00 00"]]
+}, {
+  // "country": "Uzbekistan",
+  "c": "UZ",
+  "n": "+998",
+  "p": 226,
+  "m": [["998", "{+}000 00 000 0000"]]
+}, {
+  // "country": "Vanuatu",
+  "c": "VU",
+  "n": "+678",
+  "p": 227,
+  "m": [["678", "{+}000 00 0000"]]
+}, {
+  // "country": "Vatican City",
+  "c": "VA",
+  "n": "+39",
+  "p": 228,
+  "m": [["3906698", "{+}00 00 000 00000"], ["379", "{+}000 00 0000 0000"]]
+}, {
+  // "country": "Venezuela",
+  "c": "VE",
+  "n": "+58",
+  "p": 229,
+  "m": [["58", "{+}00 000 000 0000"]]
+}, {
+  // "country": "Vietnam",
+  "c": "VN",
+  "n": "+84",
+  "p": 230,
+  "m": [["843", "{+}00 000 000 000"], ["845", "{+}00 000 000 000"], ["847", "{+}00 000 000 000"], ["849", "{+}00 000 000 000"], ["84", "{+}00 00 0000 0000"]]
+}, {
+  // "country": "Wallis & Futuna",
+  "c": "WF",
+  "n": "+681",
+  "p": 231,
+  "m": [["681", "{+}000 00 0000"]]
+}, {
+  // "country": "Yemen",
+  "c": "YE",
+  "n": "+967",
+  "p": 232,
+  "m": [["9677", "{+}000 000 000 000"], ["967", "{+}000 0 000 000"]]
+}, {
+  // "country": "Zambia",
+  "c": "ZM",
+  "n": "+260",
+  "p": 233,
+  "m": [["2609", "{+}000 000 000 000"], ["260", "{+}000 00 000 0000"]]
+}, {
+  // "country": "Zimbabwe",
+  "c": "ZW",
+  "n": "+263",
+  "p": 234,
+  "m": [["263", "{+}000 00 000 00[00]"]]
+}];
+
 var base$a = function base(props, context, dependencies) {
+  var {
+    include,
+    exclude,
+    mask: maskProp
+  } = toRefs(props);
+
+  // ============ DEPENDENCIES ============
+
+  var {
+    update,
+    focus,
+    value,
+    input,
+    form$,
+    el$,
+    classes
+  } = dependencies;
+
+  // ================ DATA ================
+
+  /**
+   * The country selector `ElementAddonOptions` component.
+   *
+   * @type {component}
+   */
+  var options$ = ref(null);
+
+  /**
+   * The placeholder component for `ElementAddonOptions` component.
+   *
+   * @type {component}
+   */
+  var addonPlaceholder = ref(markRaw({
+    props: ['option', 'el$'],
+    render() {
+      return h('div', {
+        class: classes.value.placeholder,
+        style: {
+          backgroundPosition: "0 -".concat(this.option.p * 20 + 20, "px")
+        }
+      });
+    }
+  }));
+
+  // ============== COMPUTED ==============
+
+  /**
+   * The options to display.
+   *
+   * @type {array}
+   */
+  var addonOptions = computed(() => {
+    return countryPhones.filter(c => {
+      if (!include.value.length && !exclude.value.length) {
+        return true;
+      }
+      if (include.value.length) {
+        return include.value.map(c => c.toUpperCase()).indexOf(c.c) !== -1;
+      }
+      return exclude.value.map(c => c.toUpperCase()).indexOf(c.c) === -1;
+    }).map(c => _objectSpread2$1(_objectSpread2$1({}, c), {}, {
+      value: c.c,
+      label: form$.value.translations.vueform.countries[c.c],
+      display: markRaw({
+        props: ['option', 'index', 'selected', 'pointed', 'el$'],
+        render() {
+          return h('div', {
+            class: classes.value.option(this.selected || this.pointed)
+          }, [h('div', {
+            class: classes.value.optionWrapper
+          }, [h('div', {
+            class: classes.value.flag,
+            style: {
+              backgroundPosition: "0 -".concat(this.option.p * 20 + 20, "px")
+            }
+          }), h('div', {
+            class: classes.value.country
+          }, [this.option.label, h('span', {
+            class: classes.value.number
+          }, [this.option.n])])])]);
+        }
+      }),
+      valueDisplay: markRaw({
+        props: ['option', 'el$'],
+        render() {
+          return h('div', {
+            class: classes.value.flag,
+            style: {
+              backgroundPosition: "0 -".concat(this.option.p * 20 + 20, "px")
+            }
+          });
+        }
+      })
+    })).sort((a, b) => a.label.localeCompare(b.label)).map((c, i) => _objectSpread2$1(_objectSpread2$1({}, c), {}, {
+      index: i
+    }));
+  });
+
+  /**
+   * The mask property if [@vueform/plugin-mask](https://github.com/vueform/plugin-mask) is installed (otherwise `undefined`).
+   *
+   * @type {object|undefined}
+   */
+  var mask = computed(() => {
+    if (!maskPluginInstalled.value) {
+      return;
+    }
+    var masks = {};
+    addonOptions.value.forEach(c => c.m.forEach(m => {
+      if (masks[m[1]] === undefined) {
+        masks[m[1]] = [];
+      }
+      masks[m[1]].push(parseInt(m[0]));
+    }));
+    var mask = [];
+    Object.keys(masks).forEach(m => {
+      mask.push({
+        mask: m,
+        startsWith: masks[m],
+        placeholder: true
+      });
+    });
+    mask.push({
+      mask: '{+}0000000[0000000]',
+      startsWith: ''
+    });
+    return {
+      mask
+    };
+  });
+
+  /**
+   * All the available masks for options, where key is the country prefix, value is the mask.
+   *
+   * @type {object}
+   */
+  var masks = computed(() => {
+    return addonOptions.value.reduce((prev, curr) => {
+      return curr.m.reduce((p, c) => {
+        return _objectSpread2$1(_objectSpread2$1({}, p), {}, {
+          [c[0]]: curr.c
+        });
+      }, _objectSpread2$1({}, prev));
+    }, {});
+  });
+
+  /**
+   * Whether [@vueform/plugin-mask](https://github.com/vueform/plugin-mask) is installed.
+   *
+   * @type {boolean}
+   */
+  var maskPluginInstalled = computed(() => {
+    return !!maskProp;
+  });
+
+  /**
+   * The type of the HTML input field (`text` if masks are enabled, `tel` otherwise).
+   * 
+   * @type {string}
+   */
+  var inputType = computed(() => {
+    return maskPluginInstalled.value ? 'text' : 'tel';
+  });
+
+  // =============== METHODS ==============
+
+  /**
+   * Sets country flag according to current input value.
+   * 
+   * @returns {void}
+   */
+  var setFlag = () => {
+    var _options$$value$selec;
+    if (!value.value) {
+      if (Object.keys(options$.value.selected).length) {
+        options$.value.reset();
+      }
+      return;
+    }
+    if (!value.value.startsWith('+') || value.value === ((_options$$value$selec = options$.value.selected) === null || _options$$value$selec === void 0 ? void 0 : _options$$value$selec.n)) {
+      return;
+    }
+    var number = value.value.replace('+', '');
+    var lengths = [7, 5, 4, 3, 2, 1].filter(l => number.length >= l);
+    var country;
+    lengths.forEach(l => {
+      if (country) {
+        return;
+      }
+      country = masks.value[number.slice(0, l)] || undefined;
+    });
+    if (!country) {
+      if (Object.keys(options$.value.selected).length) {
+        options$.value.reset();
+      }
+      return;
+    }
+    if (country === 'MF') {
+      country = 'GP';
+    }
+    var option = addonOptions.value.find(c => c.c === country);
+    if (options$.value.selected.index !== option.index) {
+      options$.value.selectOption(option);
+    }
+  };
+
+  /**
+   * Handles option select.
+   *
+   * @param {object} option* the option to select (from `addonOptions`).
+   * @returns {void}
+   * @private
+   */
+  var handleOptionSelect = option => {
+    if (document.activeElement === input.value) {
+      context.emit('select', option, el$.value);
+      return;
+    }
+    if (option.n === undefined) {
+      el$.value.clear();
+    } else {
+      var valueMatchesMask = option.m.map(m => "+".concat(m[0])).find(m => {
+        return value.value.startsWith(m);
+      });
+      if (!valueMatchesMask) {
+        el$.value.update(option.m.length === 1 ? "+".concat(option.m[0][0]) : option.n);
+      }
+      focus();
+    }
+    context.emit('select', option, el$.value);
+  };
+
+  /**
+   * Handles dropdown open event (emits `@open` event).
+   *
+   * @returns {void}
+   */
+  var handleOpen = () => {
+    context.emit('open', el$);
+  };
+
+  /**
+   * Handles dropdown close event (emits `@close` event).
+   *
+   * @returns {void}
+   */
+  var handleClose = () => {
+    context.emit('close', el$);
+  };
+
+  // =============== HOOKS ================
+
+  onMounted(() => {
+    setFlag();
+  });
+
+  // ============== WATCHERS ==============
+
+  watch(value, n => {
+    setFlag();
+  });
+  return {
+    options$,
+    addonOptions,
+    handleOptionSelect,
+    addonPlaceholder,
+    maskPluginInstalled,
+    inputType,
+    mask,
+    handleOpen,
+    handleClose
+  };
+};
+
+var base$9 = function base(props, context, dependencies) {
+  var {
+    fire,
+    el$
+  } = dependencies;
+
+  // =============== METHODS ==============
+
+  /**
+   * Handles `keydown` event.
+   *
+   * @param {Event} e* event object
+   * @returns {void}
+   * @private
+   */
+  var handleKeydown = e => {
+    fire('keydown', e, el$.value);
+  };
+
+  /**
+   * Handles `keyup` event.
+   *
+   * @param {Event} e* event object
+   * @returns {void}
+   * @private
+   */
+  var handleKeyup = e => {
+    fire('keyup', e, el$.value);
+  };
+
+  /**
+   * Handles `keypress` event.
+   *
+   * @param {Event} e* event object
+   * @returns {void}
+   * @private
+   */
+  var handleKeypress = e => {
+    fire('keypress', e, el$.value);
+  };
+  return {
+    handleKeydown,
+    handleKeyup,
+    handleKeypress
+  };
+};
+var phone = function phone(props, context, dependencies) {
+  var {
+    fire,
+    model,
+    input,
+    el$
+  } = dependencies;
+
+  // =============== METHODS ==============
+
+  /**
+   * Handles `keydown` event.
+   *
+   * @param {Event} e* event object
+   * @returns {void}
+   * @private
+   */
+  var handleKeydown = e => {
+    if (el$.value.maskPluginInstalled) {
+      return;
+    }
+    if (['Backspace', 'Delete', 'Tab', 'Escape', 'Enter', 'ArrowLeft', 'ArrowRight'].indexOf(e.key) !== -1 || e.ctrlKey || e.metaKey) {
+      return;
+    }
+    if (/[0-9]/.test(e.key) && (!model.value || model.value.length < 16)) {
+      return;
+    }
+    if (e.key === '+' && (!model.value || input.value.selectionStart === 0) && (!model.value || model.value.length < 16)) {
+      return;
+    }
+    e.preventDefault();
+  };
+  return {
+    handleKeydown
+  };
+};
+
+var PhoneElement = {
+  name: 'PhoneElement',
+  mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
+  emits: ['change', 'select', 'open', 'close', 'blur', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
+  props: {
+    type: {
+      required: false,
+      type: [String],
+      default: 'text',
+      private: true
+    },
+    default: {
+      required: false,
+      type: [String, Number, Object],
+      localized: true,
+      default: null
+    },
+    debounce: {
+      required: false,
+      type: [Number],
+      default: null
+    },
+    disabled: {
+      required: false,
+      type: [Boolean],
+      default: false
+    },
+    floating: {
+      required: false,
+      type: [String, Boolean, Object],
+      localized: true,
+      default: null
+    },
+    id: {
+      required: false,
+      type: [String],
+      default: null
+    },
+    placeholder: {
+      required: false,
+      type: [String, Object],
+      localized: true,
+      default: null
+    },
+    readonly: {
+      required: false,
+      type: [Boolean],
+      default: false
+    },
+    include: {
+      required: false,
+      type: [Array],
+      default: () => []
+    },
+    exclude: {
+      required: false,
+      type: [Array],
+      default: () => []
+    },
+    attrs: {
+      required: false,
+      type: [Object],
+      default: () => ({})
+    },
+    autocomplete: {
+      required: false,
+      type: [String, Number],
+      default: null
+    },
+    loading: {
+      type: [Boolean],
+      required: false,
+      default: false
+    },
+    onBlur: {
+      required: false,
+      type: [Function],
+      default: null,
+      private: true
+    },
+    onSelect: {
+      required: false,
+      type: [Function],
+      default: null,
+      private: true
+    }
+  },
+  setup(props, context) {
+    context.features = [base$19, base$18, base$V, base$M, base$O, base$S, base$K, base$U, base$G, base$1c, base$P, text$1, base$14, text$2, base$H, base$L, base$I, base$B, base$$, base$J, base$Z, base$Y, base$1a, base$_, base$X, phone$1, base$s, base$b, base$R, base$F, base$T, phone, base$t, base$a];
+    context.slots = ['label', 'info', 'description', 'before', 'between', 'after'];
+    return _objectSpread2$1({}, base$N(props, context));
+  }
+};
+
+var base$8 = function base(props, context, dependencies) {
   var {
     radioName,
     radioValue
@@ -35078,9 +37545,9 @@ var RadioElement = {
     }
   },
   setup(props, context) {
-    context.features = [base$18, base$17, base$U, base$L, base$N, base$R, base$T, base$1b, base$O, base$J, base$B, base$13, base$C, base$K, base$A, base$_, base$I, base$Y, base$X, base$19, base$Z, base$W, base$a, radio, base$E, base$S, base$z];
+    context.features = [base$19, base$18, base$V, base$M, base$O, base$S, base$U, base$1c, base$P, base$K, base$C, base$14, base$D, base$L, base$B, base$$, base$J, base$Z, base$Y, base$1a, base$_, base$X, base$8, radio, base$F, base$T, base$A];
     context.slots = ['default', 'label', 'info', 'description', 'before', 'between', 'after'];
-    return _objectSpread2$1({}, base$M(props, context));
+    return _objectSpread2$1({}, base$N(props, context));
   }
 };
 
@@ -35128,9 +37595,9 @@ var RadiogroupElement = {
     }
   },
   setup(props, context) {
-    context.features = [base$18, base$17, base$U, base$N, base$J, base$T, base$1b, base$O, radiogroup$2, base$B, base$K, radiogroup, base$13, base$C, base$A, base$_, base$I, base$Y, base$X, base$19, base$Z, base$W, radiogroup$1, base$E, base$S];
+    context.features = [base$19, base$18, base$V, base$O, base$K, base$U, base$1c, base$P, radiogroup$2, base$C, base$L, radiogroup, base$14, base$D, base$B, base$$, base$J, base$Z, base$Y, base$1a, base$_, base$X, radiogroup$1, base$F, base$T];
     context.slots = ['radio', 'label', 'info', 'description', 'before', 'between', 'after'];
-    return _objectSpread2$1({}, base$M(props, context));
+    return _objectSpread2$1({}, base$N(props, context));
   }
 };
 
@@ -35451,13 +37918,13 @@ var SelectElement = {
     }
   },
   setup(props, context) {
-    context.features = [base$18, base$17, base$U, base$L, base$N, base$R, base$J, base$T, base$F, base$1b, base$O, base$B, base$C, base$G, select$1, base$K, select$2, base$13, base$H, select$3, base$_, base$I, base$Y, base$X, base$19, base$Z, base$W, base$c, select, base$Q, base$E, base$S, base$s];
+    context.features = [base$19, base$18, base$V, base$M, base$O, base$S, base$K, base$U, base$G, base$1c, base$P, base$C, base$D, base$H, select$1, base$L, select$2, base$14, base$I, select$3, base$$, base$J, base$Z, base$Y, base$1a, base$_, base$X, base$d, select, base$R, base$F, base$T, base$t];
     context.slots = ['option', 'single-label', 'placeholder', 'group-label', 'before-list', 'after-list', 'no-results', 'no-options', 'caret', 'spinner', 'clear', 'label', 'info', 'description', 'before', 'between', 'after'];
-    return _objectSpread2$1({}, base$M(props, context));
+    return _objectSpread2$1({}, base$N(props, context));
   }
 };
 
-var base$9 = function base(props, context, dependencies) {
+var base$7 = function base(props, context, dependencies) {
   var {
     lazy
   } = toRefs(props);
@@ -35575,13 +38042,13 @@ var SliderElement = {
     }
   },
   setup(props, context) {
-    context.features = [base$18, base$17, base$U, base$L, base$N, base$R, min, base$T, base$1b, base$O, base$B, slider, base$K, slider$1, base$13, base$A, base$_, base$I, base$Y, base$X, base$19, base$Z, base$W, base$t, base$9, base$Q, base$E, base$S];
+    context.features = [base$19, base$18, base$V, base$M, base$O, base$S, min, base$U, base$1c, base$P, base$C, slider, base$L, slider$1, base$14, base$B, base$$, base$J, base$Z, base$Y, base$1a, base$_, base$X, base$u, base$7, base$R, base$F, base$T];
     context.slots = ['label', 'info', 'description', 'before', 'between', 'after'];
-    return _objectSpread2$1({}, base$M(props, context));
+    return _objectSpread2$1({}, base$N(props, context));
   }
 };
 
-var base$8 = function base(props, context, dependencies) {
+var base$6 = function base(props, context, dependencies) {
   var {
     content
   } = toRefs(props);
@@ -35752,13 +38219,13 @@ var StaticElement = {
     }
   },
   setup(props, context) {
-    context.features = [base$18, base$17, base$U, static_$1, base$1b, static_$2, base$13, base$_, base$Y, base$X, base$19, base$Z, base$W, base$T, static_$3, base$S, base$8];
+    context.features = [base$19, base$18, base$V, static_$1, base$1c, static_$2, base$14, base$$, base$Z, base$Y, base$1a, base$_, base$X, base$U, static_$3, base$T, base$6];
     context.slots = ['default', 'label', 'info', 'description', 'before', 'between', 'after'];
     return _objectSpread2$1({}, static_(props, context));
   }
 };
 
-var base$7 = function base(props, context, dependencies) {
+var base$5 = function base(props, context, dependencies) {
   // ============ DEPENDENCIES ============
 
   var fire = dependencies.fire;
@@ -36088,13 +38555,13 @@ var TagsElement = {
     }
   },
   setup(props, context) {
-    context.features = [base$18, base$17, base$U, base$L, base$N, base$R, array$1, base$T, base$F, base$1b, tags$4, base$B, base$C, base$G, tags$1, base$K, tags$2, base$13, array, tags$3, base$_, base$I, base$Y, base$X, base$19, base$Z, base$W, base$c, base$7, base$b, tags, base$Q, base$E, base$S, base$s];
+    context.features = [base$19, base$18, base$V, base$M, base$O, base$S, array$1, base$U, base$G, base$1c, tags$4, base$C, base$D, base$H, tags$1, base$L, tags$2, base$14, array, tags$3, base$$, base$J, base$Z, base$Y, base$1a, base$_, base$X, base$d, base$5, base$c, tags, base$R, base$F, base$T, base$t];
     context.slots = ['tag', 'option', 'placeholder', 'group-label', 'before-list', 'after-list', 'no-results', 'no-options', 'caret', 'spinner', 'clear', 'label', 'info', 'description', 'before', 'between', 'after'];
-    return _objectSpread2$1({}, base$M(props, context));
+    return _objectSpread2$1({}, base$N(props, context));
   }
 };
 
-var base$6 = function base(props, context, dependencies) {
+var base$4 = function base(props, context, dependencies) {
   var {
     autogrow
   } = toRefs(props);
@@ -36148,7 +38615,7 @@ var base$6 = function base(props, context, dependencies) {
 var multilingual = function multilingual(props, context, dependencies) {
   var {
     autosize
-  } = base$6(props, context, dependencies);
+  } = base$4(props, context, dependencies);
 
   // ============ DEPENDENCIES ============
 
@@ -36163,75 +38630,6 @@ var multilingual = function multilingual(props, context, dependencies) {
   });
   return {
     autosize
-  };
-};
-
-var base$5 = function base(props, context, dependencies) {
-  // ============ DEPENDENCIES ============
-
-  var fire = dependencies.fire;
-  var el$ = dependencies.el$;
-
-  // =============== METHODS ==============
-
-  /**
-   * Handles `blur` event.
-   *
-   * @returns {void}
-   * @private
-   */
-  var handleBlur = () => {
-    fire('blur', el$.value);
-  };
-  return {
-    handleBlur
-  };
-};
-
-var base$4 = function base(props, context, dependencies) {
-  var {
-    fire,
-    el$
-  } = dependencies;
-
-  // =============== METHODS ==============
-
-  /**
-   * Handles `keydown` event.
-   *
-   * @param {Event} e* event object
-   * @returns {void}
-   * @private
-   */
-  var handleKeydown = e => {
-    fire('keydown', e, el$.value);
-  };
-
-  /**
-   * Handles `keyup` event.
-   *
-   * @param {Event} e* event object
-   * @returns {void}
-   * @private
-   */
-  var handleKeyup = e => {
-    fire('keyup', e, el$.value);
-  };
-
-  /**
-   * Handles `keypress` event.
-   *
-   * @param {Event} e* event object
-   * @returns {void}
-   * @private
-   */
-  var handleKeypress = e => {
-    fire('keypress', e, el$.value);
-  };
-  return {
-    handleKeydown,
-    handleKeyup,
-    handleKeypress
   };
 };
 
@@ -36331,9 +38729,9 @@ var TextareaElement = {
     }
   },
   setup(props, context) {
-    context.features = [base$18, base$17, base$U, base$L, base$N, base$R, base$J, base$T, base$F, base$1b, base$O, base$v, text$1, base$13, text$2, base$K, base$H, base$A, base$_, base$I, base$Y, base$X, base$19, base$Z, base$W, base$l, base$6, base$r, base$5, base$Q, base$E, base$S, base$4, base$s];
+    context.features = [base$19, base$18, base$V, base$M, base$O, base$S, base$K, base$U, base$G, base$1c, base$P, base$w, text$1, base$14, text$2, base$L, base$I, base$B, base$$, base$J, base$Z, base$Y, base$1a, base$_, base$X, base$m, base$4, base$s, base$b, base$R, base$F, base$T, base$9, base$t];
     context.slots = ['label', 'info', 'description', 'before', 'between', 'after', 'addon-before', 'addon-after'];
-    return _objectSpread2$1({}, base$M(props, context));
+    return _objectSpread2$1({}, base$N(props, context));
   }
 };
 
@@ -36443,9 +38841,9 @@ var TextElement = {
     }
   },
   setup(props, context) {
-    context.features = [base$18, base$17, base$U, base$L, base$N, base$R, base$J, base$T, base$F, base$1b, base$O, base$v, text$1, base$13, text$2, base$G, base$K, base$H, text, base$_, base$I, base$Y, base$X, base$19, base$Z, base$W, base$l, base$r, base$5, base$Q, base$E, base$S, base$4, base$s];
+    context.features = [base$19, base$18, base$V, base$M, base$O, base$S, base$K, base$U, base$G, base$1c, base$P, base$w, text$1, base$14, text$2, base$H, base$L, base$I, text, base$$, base$J, base$Z, base$Y, base$1a, base$_, base$X, base$m, base$s, base$b, base$R, base$F, base$T, base$9, base$t];
     context.slots = ['label', 'info', 'description', 'before', 'between', 'after', 'addon-before', 'addon-after'];
-    return _objectSpread2$1({}, base$M(props, context));
+    return _objectSpread2$1({}, base$N(props, context));
   }
 };
 
@@ -36509,9 +38907,9 @@ var ToggleElement = {
     }
   },
   setup(props, context) {
-    context.features = [base$18, base$17, base$U, base$L, base$N, base$R, boolean, base$T, base$1b, base$O, toggle, base$B, base$13, base$C, base$K, base$A, base$_, base$I, base$Y, base$X, base$19, base$Z, base$W, base$t, base$y, toggle$1, base$E, base$S, base$z];
+    context.features = [base$19, base$18, base$V, base$M, base$O, base$S, boolean, base$U, base$1c, base$P, toggle, base$C, base$14, base$D, base$L, base$B, base$$, base$J, base$Z, base$Y, base$1a, base$_, base$X, base$u, base$z, toggle$1, base$F, base$T, base$A];
     context.slots = ['default', 'label', 'info', 'description', 'before', 'between', 'after'];
-    return _objectSpread2$1({}, base$M(props, context));
+    return _objectSpread2$1({}, base$N(props, context));
   }
 };
 
@@ -36689,9 +39087,9 @@ var EditorElement = {
     }
   },
   setup(props, context) {
-    context.features = [base$18, base$17, base$U, base$L, base$N, base$R, base$J, base$T, base$1b, base$O, text$1, base$13, text$2, base$K, base$H, editor, base$_, base$I, base$Y, base$X, base$3, base$19, base$Z, base$W, base$l, base$2, base$m, base$5, base$Q, base$E, editor$1, base$s];
+    context.features = [base$19, base$18, base$V, base$M, base$O, base$S, base$K, base$U, base$1c, base$P, text$1, base$14, text$2, base$L, base$I, editor, base$$, base$J, base$Z, base$Y, base$3, base$1a, base$_, base$X, base$m, base$2, base$n, base$b, base$R, base$F, editor$1, base$t];
     context.slots = ['label', 'info', 'description', 'before', 'between', 'after'];
-    return _objectSpread2$1({}, base$M(props, context));
+    return _objectSpread2$1({}, base$N(props, context));
   }
 };
 
@@ -36821,7 +39219,7 @@ var TTextareaElement = {
     }
   },
   setup(props, context) {
-    context.features = [base$18, base$17, base$U, base$L, base$N, base$R, base$T, base$F, base$1b, base$O, base$v, base$1, multilingual$6, multilingual$2, multilingual$7, base$13, multilingual$3, multilingual$5, multilingual$1, base$_, base$I, base$Y, base$X, base$19, base$Z, base$W, base$l, multilingual, base$r, base$5, base$Q, multilingual$4, base$S, base$4, base$s];
+    context.features = [base$19, base$18, base$V, base$M, base$O, base$S, base$U, base$G, base$1c, base$P, base$w, base$1, multilingual$6, multilingual$2, multilingual$7, base$14, multilingual$3, multilingual$5, multilingual$1, base$$, base$J, base$Z, base$Y, base$1a, base$_, base$X, base$m, multilingual, base$s, base$b, base$R, multilingual$4, base$T, base$9, base$t];
     context.slots = ['label', 'info', 'description', 'before', 'between', 'after', 'addon-before', 'addon-after'];
     return _objectSpread2$1({}, multilingual$8(props, context));
   }
@@ -36928,7 +39326,7 @@ var TTextElement = {
     }
   },
   setup(props, context) {
-    context.features = [base$18, base$17, base$U, base$L, base$N, base$R, base$T, base$F, base$1b, base$O, base$v, base$1, multilingual$6, multilingual$2, multilingual$7, base$13, multilingual$3, base$G, multilingual$5, multilingual$1, base$_, base$I, base$Y, base$X, base$19, base$Z, base$W, base$l, base$r, base$5, base$Q, multilingual$4, base$S, base$4, base$s];
+    context.features = [base$19, base$18, base$V, base$M, base$O, base$S, base$U, base$G, base$1c, base$P, base$w, base$1, multilingual$6, multilingual$2, multilingual$7, base$14, multilingual$3, base$H, multilingual$5, multilingual$1, base$$, base$J, base$Z, base$Y, base$1a, base$_, base$X, base$m, base$s, base$b, base$R, multilingual$4, base$T, base$9, base$t];
     context.slots = ['label', 'info', 'description', 'before', 'between', 'after', 'addon-before', 'addon-after'];
     return _objectSpread2$1({}, multilingual$8(props, context));
   }
@@ -37019,7 +39417,7 @@ var TEditorElement = {
     }
   },
   setup(props, context) {
-    context.features = [base$18, base$17, base$U, base$L, base$N, base$R, base$T, base$1b, base$O, base$1, multilingual$6, multilingual$2, multilingual$7, base$13, multilingual$3, multilingual$5, teditor, base$_, base$I, base$Y, base$X, base$3, base$19, base$Z, base$W, base$l, base$2, base$m, base$5, base$Q, multilingual$4, base$S, base$s];
+    context.features = [base$19, base$18, base$V, base$M, base$O, base$S, base$U, base$1c, base$P, base$1, multilingual$6, multilingual$2, multilingual$7, base$14, multilingual$3, multilingual$5, teditor, base$$, base$J, base$Z, base$Y, base$3, base$1a, base$_, base$X, base$m, base$2, base$n, base$b, base$R, multilingual$4, base$T, base$t];
     context.slots = ['label', 'info', 'description', 'before', 'between', 'after'];
     return _objectSpread2$1({}, multilingual$8(props, context));
   }
@@ -37065,7 +39463,7 @@ var CheckboxgroupCheckbox = {
       Templates,
       template,
       theme
-    } = base$$(props, context);
+    } = base$10(props, context);
 
     // ============== COMPUTED ==============
 
@@ -37374,7 +39772,7 @@ var FilePreview = {
       Templates,
       template,
       theme
-    } = base$$(props, context);
+    } = base$10(props, context);
     var {
       visible,
       hasLink,
@@ -37506,7 +39904,7 @@ var RadiogroupRadio = {
       Templates,
       template,
       theme
-    } = base$$(props, context);
+    } = base$10(props, context);
 
     // ============== COMPUTED ==============
 
@@ -37637,4 +40035,4 @@ var vueform = installer(undefined, {
   FormElements
 });
 
-export { ButtonElement, CaptchaElement, CheckboxElement, CheckboxgroupCheckbox, CheckboxgroupElement, DateElement, DatepickerWrapper, DatesElement, DragAndDrop, EditorElement, EditorWrapper, ElementAddon, ElementDescription, ElementError, ElementInfo, ElementLabel, ElementLabelFloating, ElementLayout, ElementLayoutInline, ElementLoader, ElementMessage, ElementText, FileElement, FilePreview, FormElements, FormErrors, FormLanguage, FormLanguages, FormMessages, FormStep, FormSteps, FormStepsControl, FormStepsControls, FormTab, FormTabs, GenericElement, GroupElement, HiddenElement, ListElement, LocationElement, MultifileElement, MultiselectElement, ObjectElement, RadioElement, RadiogroupElement, RadiogroupRadio, SelectElement, SliderElement, StaticElement, TEditorElement, TTextElement, TTextareaElement, TagsElement, TextElement, TextareaElement, ToggleElement, Validator, VueformComponent as Vueform, VueformElement, accepted, active_url, after, after_or_equal, alpha, alpha_dash, alpha_num, array$2 as array, before, before_or_equal, between, boolean$1 as boolean, captcha$2 as captcha, confirmed, date$4 as date, date_equals, date_format, vueform as default, defineConfig, defineElement, different, digits, digits_between, dimensions, distinct, element, email, exists, file$5 as file, filled, gt, gte, image, in_, in_array, installer, integer, ip, ipv4, ipv6, json, lt, lte, max, mimes, mimetypes, min$1 as min, not_in, not_regex, nullable, numeric, regex, required, same, size, string, timezone, unique, url, base$19 as useClasses, base$1a as useVueform, uuid, vueform };
+export { ButtonElement, CaptchaElement, CheckboxElement, CheckboxgroupCheckbox, CheckboxgroupElement, DateElement, DatepickerWrapper, DatesElement, DragAndDrop, EditorElement, EditorWrapper, ElementAddon, ElementAddonOptions, ElementDescription, ElementError, ElementInfo, ElementLabel, ElementLabelFloating, ElementLayout, ElementLayoutInline, ElementLoader, ElementMessage, ElementText, FileElement, FilePreview, FormElements, FormErrors, FormLanguage, FormLanguages, FormMessages, FormStep, FormSteps, FormStepsControl, FormStepsControls, FormTab, FormTabs, GenericElement, GroupElement, HiddenElement, ListElement, LocationElement, MultifileElement, MultiselectElement, ObjectElement, PhoneElement, RadioElement, RadiogroupElement, RadiogroupRadio, SelectElement, SliderElement, StaticElement, TEditorElement, TTextElement, TTextareaElement, TagsElement, TextElement, TextareaElement, ToggleElement, Validator, VueformComponent as Vueform, VueformElement, accepted, active_url, after, after_or_equal, alpha, alpha_dash, alpha_num, array$2 as array, before, before_or_equal, between, boolean$1 as boolean, captcha$2 as captcha, confirmed, date$4 as date, date_equals, date_format, vueform as default, defineConfig, defineElement, different, digits, digits_between, dimensions, distinct, element, email, exists, file$5 as file, filled, gt, gte, image, in_, in_array, installer, integer, ip, ipv4, ipv6, json, lt, lte, max, mimes, mimetypes, min$1 as min, not_in, not_regex, nullable, numeric, regex, required, same, size, string, timezone, unique, url, base$1a as useClasses, base$1b as useVueform, uuid, vueform };

@@ -4240,6 +4240,24 @@ export default {
           }
         }
       }
+    },
+    "phone": {
+      "methods": {
+        "handleInput": {
+          "public": false,
+          "returns": "void",
+          "description": "Handles `input` event.",
+          "params": {
+            "e": {
+              "types": [
+                "Event"
+              ],
+              "required": true,
+              "description": "event object"
+            }
+          }
+        }
+      }
     }
   },
   "handleKeyEvents": {
@@ -4277,6 +4295,24 @@ export default {
           "public": false,
           "returns": "void",
           "description": "Handles `keypress` event.",
+          "params": {
+            "e": {
+              "types": [
+                "Event"
+              ],
+              "required": true,
+              "description": "event object"
+            }
+          }
+        }
+      }
+    },
+    "phone": {
+      "methods": {
+        "handleKeydown": {
+          "public": false,
+          "returns": "void",
+          "description": "Handles `keydown` event.",
           "params": {
             "e": {
               "types": [
@@ -4944,6 +4980,83 @@ export default {
             "VNode"
           ],
           "description": "The parent component of the element."
+        }
+      }
+    }
+  },
+  "phone": {
+    "base": {
+      "data": {
+        "options$": {
+          "public": true,
+          "types": [
+            "component"
+          ],
+          "description": "The country selector `ElementAddonOptions` component."
+        },
+        "addonPlaceholder": {
+          "public": true,
+          "types": [
+            "component"
+          ],
+          "description": "The placeholder component for `ElementAddonOptions` component."
+        }
+      },
+      "computed": {
+        "addonOptions": {
+          "public": true,
+          "types": [
+            "array"
+          ],
+          "description": "The options to display."
+        },
+        "maskPluginInstalled": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether [@vueform/plugin-mask](https://github.com/vueform/plugin-mask) is installed."
+        },
+        "inputType": {
+          "public": true,
+          "types": [
+            "string"
+          ],
+          "description": "The type of the HTML input field (`text` if masks are enabled, `tel` otherwise)."
+        },
+        "mask": {
+          "public": true,
+          "types": [
+            "object",
+            "undefined"
+          ],
+          "description": "The mask property if [@vueform/plugin-mask](https://github.com/vueform/plugin-mask) is installed (otherwise `undefined`)."
+        }
+      },
+      "methods": {
+        "handleOptionSelect": {
+          "public": false,
+          "returns": "void",
+          "description": "Handles option select.",
+          "params": {
+            "option": {
+              "types": [
+                "object"
+              ],
+              "required": true,
+              "description": "the option to select (from `addonOptions`)."
+            }
+          }
+        },
+        "handleOpen": {
+          "public": true,
+          "returns": "void",
+          "description": "Handles dropdown open event (emits `@open` event)."
+        },
+        "handleClose": {
+          "public": true,
+          "returns": "void",
+          "description": "Handles dropdown close event (emits `@close` event)."
         }
       }
     }

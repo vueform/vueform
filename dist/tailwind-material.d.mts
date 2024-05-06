@@ -2,6 +2,7 @@ declare module '@vueform/vueform/dist/tailwind-material' {
   const obj: any;
   const DragAndDrop: any;
   const ElementAddon: any;
+  const ElementAddonOptions: any;
   const ElementDescription: any;
   const ElementError: any;
   const ElementInfo: any;
@@ -57,6 +58,7 @@ declare module '@vueform/vueform/dist/tailwind-material' {
   const MultifileElement_gallery: any;
   const MultiselectElement: any;
   const ObjectElement: any;
+  const PhoneElement: any;
   const RadioElement: any;
   const RadiogroupElement: any;
   const RadiogroupElement_blocks: any;
@@ -82,6 +84,7 @@ declare module '@vueform/vueform/dist/tailwind-material' {
     columns,
     DragAndDrop,
     ElementAddon,
+    ElementAddonOptions,
     ElementDescription,
     ElementError,
     ElementInfo,
@@ -137,6 +140,7 @@ declare module '@vueform/vueform/dist/tailwind-material' {
     MultifileElement_gallery,
     MultiselectElement,
     ObjectElement,
+    PhoneElement,
     RadioElement,
     RadiogroupElement,
     RadiogroupElement_blocks,

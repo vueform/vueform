@@ -228,7 +228,7 @@ export default {
     /**
      * Scroll the dropdown to an option.
      * 
-     * @param {object} option* - an option object form [`options`](#option-options).
+     * @param {object} option* an option object form [`options`](#option-options).
      * @returns {void}
      */
     const scrollToOption = (option) => {
@@ -297,7 +297,7 @@ export default {
     /**
      * Select an option.
      * 
-     * @param {object} option* - an option object form [`options`](#option-options).
+     * @param {object} option* an option object form [`options`](#option-options).
      * @returns {void}
      */
     const selectOption = (option) => {
@@ -318,7 +318,7 @@ export default {
     /**
      * Handles pointing an option (sets [`pointed`](#property-pointed)).
      * 
-     * @param {object} option* - an option object form [`options`](#option-options).
+     * @param {object} option* an option object form [`options`](#option-options).
      * @returns {void}
      */
     const handleOptionPoint = (option) => {
@@ -332,7 +332,7 @@ export default {
     /**
      * Handle the click of an option.
      * 
-     * @param {object} option* - an option object form [`options`](#option-options).
+     * @param {object} option* an option object form [`options`](#option-options).
      * @returns {void}
      */
     const handleOptionClick = (option) => {
@@ -344,7 +344,7 @@ export default {
     /**
      * Handles the click of collapsed element.
      * 
-     * @params {Event} event* - the Event
+     * @params {Event} event* the Event
      * @returns {void}
      */
     const handleSelectorClick = (e) => {
@@ -354,7 +354,7 @@ export default {
     /**
      * Handles the keydown even of the collapsed element when focused (async.
      * 
-     * @params {Event} event* - the Event
+     * @params {Event} event* the Event
      * @returns {void}
      */
     const handleSelectorKeydown = async (e) => {
@@ -381,7 +381,7 @@ export default {
     /**
      * Handles clicking outside of the dropdown once opened (closes it).
      * 
-     * @params {Event} event* - the Event
+     * @params {Event} event* the Event
      * @returns {void}
      */
     const handleClickOutside = (e) => {
@@ -393,7 +393,7 @@ export default {
     /**
      * Handles the keydown event when the dropdown is open.
      * 
-     * @params {Event} event* - the Event
+     * @params {Event} event* the Event
      * @returns {void}
      */
     const handleKeydown = (e) => {
@@ -547,13 +547,11 @@ export default {
       Templates,
       template,
       theme,
-
       events,
       listeners,
       on,
       off,
       fire,
-
       isOpen,
       selector,
       dropdown,
@@ -567,9 +565,7 @@ export default {
       hoverDisabled,
       selected,
       pointed,
-
       focused,
-
       close,
       scrollToOption,
       scrollToSelected,

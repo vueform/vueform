@@ -69,8 +69,6 @@ additions.forEach(({ element, section, before, addition }) => {
 })
 
 
-console.log(elements.TextElement)
-
 const generate = () => {
   let contents = `module.exports = {\n`
 

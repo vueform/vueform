@@ -230,16 +230,21 @@ const Parser = class
         let variationReturns = []
         let l = i + 1
 
-        while(this.lines[l].match(/}/) === null) {
-          if (this.lines[l].match(/\/\//) === null && this.lines[i].match(/[^ ]+/) !== null) {
-            var variable = this.lines[l].match(/\s?([^:]+)/)[1].replace(/[,_]/,'').trim()
-            
-            if (variable) {
-              variationReturns.push(variable)
+        try {
+          while(this.lines[l].match(/}/) === null) {
+            if (this.lines[l].match(/\/\//) === null && this.lines[i].match(/[^ ]+/) !== null) {
+              var variable = this.lines[l].match(/\s?([^:]+)/)[1].replace(/[,_]/,'').trim()
+              
+              if (variable) {
+                variationReturns.push(variable)
+              }
             }
-          }
 
-          l++
+            l++
+          }
+        } catch (e) {
+          console.log(this.path, this.filename, l)
+          throw e
         }
           
         returns[variation] = variationReturns

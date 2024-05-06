@@ -1,5 +1,12 @@
 [//]: # (Don't use <tags>)
 
+## v1.9.7
+
+> `2024-05-06`
+
+### 🎉 Feature
+- New [`PhoneElement`](https://vueform.com/reference/phone-element).
+
 ## v1.9.6
 
 > `2024-04-29`

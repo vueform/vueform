@@ -34,6 +34,13 @@ const phone = function(props, context, dependencies)
   
   // ============== COMPUTED ==============
   
+  /**
+   * Handles `input` event.
+   *
+   * @param {Event} e* event object
+   * @returns {void}
+   * @private
+   */
   const handleInput = (e) => {
     if (el$.value.maskPluginInstalled) {
       model.value = e.target.value

@@ -55,6 +55,13 @@ const phone = function(props, context, dependencies)
   
   // =============== METHODS ==============
   
+  /**
+   * Handles `keydown` event.
+   *
+   * @param {Event} e* event object
+   * @returns {void}
+   * @private
+   */
   const handleKeydown = (e) => {
     if (el$.value.maskPluginInstalled) {
       return

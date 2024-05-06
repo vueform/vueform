@@ -266,10 +266,20 @@ const base = function(props, context, dependencies)
     context.emit('select', option, el$.value)
   }
 
+  /**
+   * Handles dropdown open event (emits `@open` event).
+   *
+   * @returns {void}
+   */
   const handleOpen = () => {
     context.emit('open', el$)
   }
 
+  /**
+   * Handles dropdown close event (emits `@close` event).
+   *
+   * @returns {void}
+   */
   const handleClose = () => {
     context.emit('close', el$)
   }

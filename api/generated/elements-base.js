@@ -796,6 +796,67 @@ export default {
       "unmounted"
     ]
   },
+  "phone": {
+    "features": [
+      "a11y",
+      "baseElement",
+      "classes",
+      "columns",
+      "conditions",
+      "data",
+      "default_text",
+      "disabled",
+      "empty",
+      "events",
+      "fieldId",
+      "floating",
+      "focus",
+      "focused",
+      "form$",
+      "genericName",
+      "handleBlur",
+      "handleInput_phone",
+      "handleKeyEvents_phone",
+      "input",
+      "label",
+      "layout",
+      "loading",
+      "nullValue",
+      "path",
+      "phone",
+      "placeholder",
+      "slots",
+      "templates",
+      "theme",
+      "validation_text",
+      "value",
+      "view",
+      "watchValue"
+    ],
+    "slots": [
+      "label",
+      "info",
+      "description",
+      "before",
+      "between",
+      "after"
+    ],
+    "events": [
+      "change",
+      "select",
+      "open",
+      "close",
+      "blur",
+      "beforeCreate",
+      "created",
+      "beforeMount",
+      "mounted",
+      "beforeUpdate",
+      "updated",
+      "beforeUnmount",
+      "unmounted"
+    ]
+  },
   "radio": {
     "features": [
       "a11y_radio",
