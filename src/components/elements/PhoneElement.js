@@ -101,6 +101,16 @@ export default {
       type: [Array],
       default: () => ([]),
     },
+    unmask: {
+      require: false,
+      type: Boolean,
+      default: false,
+    },
+    allowIncomplete: {
+      require: false,
+      type: Boolean,
+      default: false,
+    },
     attrs: {
       required: false,
       type: [Object],
