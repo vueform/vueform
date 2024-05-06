@@ -1,5 +1,5 @@
 import { ref, watch, nextTick, computed, inject, onBeforeUnmount, onMounted, h, markRaw, toRefs } from 'vue'
-import countryPhones from './../../utils/countryPhones'
+import countryPhones from '@vueform/country-phones'
 
 const base = function(props, context, dependencies)
 {
@@ -65,51 +65,53 @@ const base = function(props, context, dependencies)
       }
 
       return exclude.value.map(c=>c.toUpperCase()).indexOf(c.c) === -1
-    }).map(c => ({
-      ...c,
-      value: c.c,
-      label: form$.value.translations.vueform.countries[c.c],
-      display: markRaw({
-        props: ['option', 'index', 'selected', 'pointed', 'el$'],
-        render() {
-          return h('div', {
-            class: classes.value.option(this.selected || this.pointed)
-          }, [
-            h('div', {
-              class: classes.value.optionWrapper,
+    }).map((c) => {
+      return {
+        ...c,
+        value: c.c,
+        label: form$.value.translations.vueform.countries[c.c],
+        display: markRaw({
+          props: ['option', 'index', 'selected', 'pointed', 'el$'],
+          render() {
+            return h('div', {
+              class: classes.value.option(this.selected || this.pointed)
             }, [
               h('div', {
-                class: classes.value.flag,
-                style: {
-                  backgroundPosition: `0 -${(this.option.p * 20) + 20}px`
-                }
-              }),
-              h('div', {
-                class: classes.value.country,
+                class: classes.value.optionWrapper,
               }, [
-                this.option.label,
-                h('span', {
-                  class: classes.value.number,
+                h('div', {
+                  class: classes.value.flag,
+                  style: {
+                    backgroundPosition: `0 -${(this.option.p * 20) + 20}px`
+                  }
+                }),
+                h('div', {
+                  class: classes.value.country,
                 }, [
-                  this.option.n
+                  this.option.label,
+                  h('span', {
+                    class: classes.value.number,
+                  }, [
+                    this.option.n
+                  ])
                 ])
               ])
             ])
-          ])
-        },
-      }),
-      valueDisplay: markRaw({
-        props: ['option', 'el$'],
-        render() {
-          return h('div', {
-            class: classes.value.flag,
-            style: {
-              backgroundPosition: `0 -${(this.option.p * 20) + 20}px`
-            }
-          })
-        }
-      }),
-    })).sort((a, b) => a.label.localeCompare(b.label)).map((c, i) => ({...c, index: i}))
+          },
+        }),
+        valueDisplay: markRaw({
+          props: ['option', 'el$'],
+          render() {
+            return h('div', {
+              class: classes.value.flag,
+              style: {
+                backgroundPosition: `0 -${(this.option.p * 20) + 20}px`
+              }
+            })
+          }
+        })
+      }
+    }).sort((a, b) => a.label.localeCompare(b.label)).map((c, i) => ({...c, index: i}))
   })
 
   /**
