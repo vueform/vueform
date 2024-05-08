@@ -104,7 +104,7 @@
     position: absolute;
     top: 1rem;
     bottom: 1rem;
-    z-index: 1000;
+    z-index: 1002;
     overflow-x: scroll;
   }
 

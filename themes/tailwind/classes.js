@@ -1289,7 +1289,7 @@ export default {
     container_disabled: 'cursor-default opacity-50 pointer-events-none',
     wrapper: 'flex items-center transition-all form-color-input hover:form-bg-selected focus:form-bg-selected outline-none rounded px-1 py-1 cursor-pointer',
     caret: 'mask-bg mask-form-caret form-bg-icon w-2.5 h-4 ml-2 rtl:ml-0 rtl:mr-2',
-    dropdown: 'form-bg-input form-shadow-dropdown form-border-width-dropdown border-solid form-border-color-input fixed z-1000 overflow-x-scroll max-h-[calc(100vh-2rem)]',
+    dropdown: 'form-bg-input form-shadow-dropdown form-border-width-dropdown border-solid form-border-color-input fixed z-[1002] overflow-x-scroll max-h-[calc(100vh-2rem)]',
     optionWrapper: '',
     option: 'flex items-center form-color-input cursor-pointer py-1.25 px-3 whitespace-nowrap',
     option_active: 'form-bg-selected',
