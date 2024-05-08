@@ -49,7 +49,7 @@ export default {
     // ================ DATA ================
 
     /**
-     * Whether the country selector is open.
+     * Whether the dropdown list is open.
      *
      * @type {boolean}
      */
