@@ -49,7 +49,7 @@
 
       <Teleport to="body">
         <div
-          v-show="isOpen"
+          v-if="isOpen"
           :data-dropdown-for="el$.fieldId"
           :id="`dropdown-${el$.fieldId}`"
           :class="classes.dropdown"

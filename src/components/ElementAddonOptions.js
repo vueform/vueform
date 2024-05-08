@@ -356,7 +356,7 @@ export default {
     }
 
     /**
-     * Handles the keydown even of the collapsed element when focused (async.
+     * Handles the keydown even of the collapsed element when focused (async).
      * 
      * @params {Event} event* the Event
      * @returns {void}
@@ -371,12 +371,12 @@ export default {
 
         open()
 
+        await nextTick()
+
         const index = selected.value.index !== undefined ? selected.value.index : pointed.value.index || 0
         const option = document.querySelector(`[data-dropdown-for="${el$.value.fieldId}"] [data-index="${index}"]`)
 
         pointed.value = options.value.find(c => c.index === index)
-
-        await nextTick()
 
         option.focus()
       }
