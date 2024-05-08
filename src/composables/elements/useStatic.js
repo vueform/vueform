@@ -8,7 +8,10 @@ const base = function(props, context, dependencies)
   
   // ============ DEPENDENCIES ============
   
-  const fieldSlots = dependencies.fieldSlots
+  const {
+    fieldSlots,
+    el$
+  } = dependencies
   
   // ============== COMPUTED ==============
   
@@ -19,7 +22,16 @@ const base = function(props, context, dependencies)
    * @private
    */
   const isHtml = computed(() => {
-    return typeof content.value == 'string'
+    return typeof resolvedContent.value === 'string'
+  })
+
+  /**
+   * The resolved content if it is a string or a function.
+   *
+   * @type {any}
+   */
+  const resolvedContent = computed(() => {
+    return typeof content.value === 'function' ? content.value(el$.value) : content.value
   })
 
   /**
@@ -81,6 +93,7 @@ const base = function(props, context, dependencies)
     isHtml,
     componentContent,
     slotContent,
+    resolvedContent,
   }
 }
 

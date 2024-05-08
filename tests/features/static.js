@@ -19,7 +19,7 @@ export const isHtml = function (elementType, elementName, options) {
     expect(el.isHtml).toBe(true)
   })
   
-  it('should return true if content is string', () => {
+  it('should return false if content is component', () => {
     
     let form = createForm({
       schema: {
