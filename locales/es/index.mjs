@@ -401,7 +401,7 @@ export default {
     },
     "boolean": "El campo :attribute debe tener un valor verdadero o falso.",
     "captcha": "Please verify that you are not a robot.",
-    "complete": "Please fill in a valid phone number.",
+    "completed": "Please fill in a valid phone number.",
     "confirmed": "La confirmación de :attribute no coincide.",
     "date": ":attribute no es una fecha válida.",
     "date_format": ":attribute no corresponde al formato :format.",

@@ -401,7 +401,7 @@ export default {
     },
     "boolean": ":attribute 必须为布尔值。",
     "captcha": "Please verify that you are not a robot.",
-    "complete": "Please fill in a valid phone number.",
+    "completed": "Please fill in a valid phone number.",
     "confirmed": ":attribute 两次输入不一致。",
     "date": ":attribute 不是一个有效的日期。",
     "date_format": ":attribute 的格式必须为 :format。",

@@ -401,7 +401,7 @@ export default {
     },
     "boolean": "A(z) :attribute mező csak true vagy false értéket kaphat!",
     "captcha": "Please verify that you are not a robot.",
-    "complete": "Please fill in a valid phone number.",
+    "completed": "Please fill in a valid phone number.",
     "confirmed": "A(z) :attribute nem egyezik a megerősítéssel.",
     "date": "A(z) :attribute nem érvényes dátum.",
     "date_format": "A(z) :attribute nem egyezik az alábbi dátum formátummal :format!",

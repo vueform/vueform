@@ -402,7 +402,7 @@ export default {
     },
     "boolean": ":attribute moet ja of nee zijn.",
     "captcha": "Please verify that you are not a robot.",
-    "complete": "Please fill in a valid phone number.",
+    "completed": "Please fill in a valid phone number.",
     "confirmed": ":attribute bevestiging komt niet overeen.",
     "date": ":attribute moet een datum bevatten.",
     "date_format": ":attribute moet een geldig datum formaat bevatten.",

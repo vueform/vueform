@@ -401,7 +401,7 @@ export default {
     },
     "boolean": "Поле :attribute повинне містити логічний тип.",
     "captcha": "Please verify that you are not a robot.",
-    "complete": "Please fill in a valid phone number.",
+    "completed": "Please fill in a valid phone number.",
     "confirmed": "Поле :attribute не збігається з підтвердженням.",
     "date": "Поле :attribute не є датою.",
     "date_format": "Поле :attribute не відповідає формату :format.",

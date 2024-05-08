@@ -401,7 +401,7 @@ export default {
     },
     "boolean": ":Attribute musí byť pravda alebo nepravda.",
     "captcha": "Please verify that you are not a robot.",
-    "complete": "Please fill in a valid phone number.",
+    "completed": "Please fill in a valid phone number.",
     "confirmed": ":Attribute konfirmácia sa nezhoduje.",
     "date": ":Attribute má neplatný dátum.",
     "date_format": ":Attribute sa nezhoduje s formátom :format.",

@@ -402,7 +402,7 @@ export default {
     },
     "boolean": "Le champ :attribute doit être vrai ou faux.",
     "captcha": "Please verify that you are not a robot.",
-    "complete": "Please fill in a valid phone number.",
+    "completed": "Please fill in a valid phone number.",
     "confirmed": "La confirmation de :attribute ne correspond pas.",
     "date": ":attribute n'est pas une date valide.",
     "date_format": ":attribute ne correspond pas au format :format.",

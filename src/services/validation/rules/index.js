@@ -11,7 +11,7 @@ import before_or_equal from './before_or_equal'
 import between from './between'
 import boolean from './boolean'
 import captcha from './captcha'
-import complete from './complete'
+import completed from './completed'
 import confirmed from './confirmed'
 import date from './date'
 import date_equals from './date_equals'
@@ -69,7 +69,7 @@ export {
   between,
   boolean,
   captcha,
-  complete,
+  completed,
   confirmed,
   date,
   date_equals,

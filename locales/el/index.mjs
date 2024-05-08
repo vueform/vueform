@@ -401,7 +401,7 @@ export default {
     },
     "boolean": "Το πεδίο :attribute πρέπει να είναι true ή false.",
     "captcha": "Please verify that you are not a robot.",
-    "complete": "Please fill in a valid phone number.",
+    "completed": "Please fill in a valid phone number.",
     "confirmed": "Η επιβεβαίωση του :attribute δεν ταιριάζει.",
     "date": "Το πεδίο :attribute δεν είναι έγκυρη ημερομηνία.",
     "date_format": "Το πεδίο :attribute δεν είναι της μορφής :format.",

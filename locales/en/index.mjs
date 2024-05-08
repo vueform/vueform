@@ -412,7 +412,7 @@ export default {
     },
     "boolean": "The :attribute field must be true or false.",
     "captcha": "Please verify that you are not a robot.",
-    "complete": "Please fill in a valid phone number.",
+    "completed": "Please fill in a valid phone number.",
     "confirmed": "The :attribute confirmation does not match.",
     "date": "The :attribute is not a valid date.",
     "date_format": "The :attribute does not match the format :format.",

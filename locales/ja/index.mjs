@@ -401,7 +401,7 @@ export default {
     },
     "boolean": ":attributeには、trueかfalseを指定してください。",
     "captcha": "Please verify that you are not a robot.",
-    "complete": "Please fill in a valid phone number.",
+    "completed": "Please fill in a valid phone number.",
     "confirmed": ":attributeと:attribute確認が一致しません。",
     "date": ":attributeは、正しい日付ではありません。",
     "date_format": ":attributeの形式は、:formatと合いません。",
