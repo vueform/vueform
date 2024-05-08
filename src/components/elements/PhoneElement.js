@@ -103,12 +103,12 @@ export default {
     },
     unmask: {
       require: false,
-      type: Boolean,
+      type: [Boolean],
       default: false,
     },
     allowIncomplete: {
       require: false,
-      type: Boolean,
+      type: [Boolean],
       default: false,
     },
     attrs: {

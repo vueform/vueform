@@ -25671,7 +25671,6 @@ module.exports = {
         default: 'false',
         localized: false,
         types: [
-          'boolean',
         ],
         private: false,
       },
@@ -25680,7 +25679,6 @@ module.exports = {
         default: 'false',
         localized: false,
         types: [
-          'boolean',
         ],
         private: false,
       },
@@ -26618,7 +26616,7 @@ module.exports = {
        },
       },
       'select': {
-        description: 'Triggered when a country is selected (either by user or automatically as typed).',
+        description: 'Triggered when an option is selected when using [`native: false`](#option-native).',
         params: {
           option: {
             description: 'the selected option',
@@ -26635,7 +26633,7 @@ module.exports = {
        },
       },
       'open': {
-        description: 'Triggered when the dropdown list is opened.',
+        description: 'Triggered when the dropdown list is opened when using [`native: false`](#option-native).',
         params: {
           el$: {
             description: 'the element&apos;s component',

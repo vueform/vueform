@@ -4094,114 +4094,117 @@ var __vue_render__$D = function () {
         _c("div", { class: _vm.classes.caret }),
         _vm._v(" "),
         _c("Teleport", { attrs: { to: "body" } }, [
-          _c(
-            "div",
-            {
-              directives: [
-                {
-                  name: "show",
-                  rawName: "v-show",
-                  value: _vm.isOpen,
-                  expression: "isOpen",
-                },
-              ],
-              ref: "dropdown",
-              class: _vm.classes.dropdown,
-              style: _vm.style,
-              attrs: {
-                "data-dropdown-for": _vm.el$.fieldId,
-                id: "dropdown-" + _vm.el$.fieldId,
-                role: "listbox",
-                tabindex: "-1",
-              },
-            },
-            _vm._l(_vm.options, function (option, index) {
-              return _c(
+          _vm.isOpen
+            ? _c(
                 "div",
-                { key: option.value, class: _vm.classes.optionWrapper },
-                [
-                  option.display &&
-                  typeof option.display === "object" && [
-                    option.display.render || option.display.template,
-                  ]
-                    ? _c(option.display, {
-                        tag: "component",
-                        attrs: {
-                          el$: _vm.el$,
-                          option: option,
-                          index: index,
-                          selected: _vm.selected.index === option.index,
-                          pointed: _vm.pointed.index === option.index,
-                          "data-index": option.index,
-                          "data-selected": _vm.selected.index === option.index,
-                          role: "option",
-                          tabindex: _vm.pointed.index === option.index ? 0 : -1,
-                          "aria-selected": _vm.selected.index === option.index,
-                        },
-                        on: {
-                          mouseover: function ($event) {
-                            return _vm.handleOptionPoint(option)
-                          },
-                          click: function ($event) {
-                            return _vm.handleOptionClick(option)
-                          },
-                        },
-                      })
-                    : option.display && typeof option.display === "function"
-                    ? _c("div", {
-                        class: _vm.classes.option(option, index, _vm.el$),
-                        attrs: {
-                          "data-index": option.index,
-                          "data-selected": _vm.selected.index === option.index,
-                          role: "option",
-                          tabindex: _vm.pointed.index === option.index ? 0 : -1,
-                          "aria-selected": _vm.selected.index === option.index,
-                        },
-                        domProps: {
-                          innerHTML: _vm._s(
-                            option.display(
-                              option,
-                              index,
-                              _vm.selected.index === option.index,
-                              _vm.pointed.index === option.index,
-                              _vm.el$
-                            )
-                          ),
-                        },
-                        on: {
-                          mouseover: function ($event) {
-                            return _vm.handleOptionPoint(option)
-                          },
-                          click: function ($event) {
-                            return _vm.handleOptionClick(option)
-                          },
-                        },
-                      })
-                    : _c("div", {
-                        class: _vm.classes.option(option, index, _vm.el$),
-                        attrs: {
-                          "data-index": option.index,
-                          "data-selected": _vm.selected.index === option.index,
-                          role: "option",
-                          tabindex: _vm.pointed.index === option.index ? 0 : -1,
-                          "aria-selected": _vm.selected.index === option.index,
-                        },
-                        domProps: { innerHTML: _vm._s(option.label) },
-                        on: {
-                          mouseover: function ($event) {
-                            return _vm.handleOptionPoint(option)
-                          },
-                          click: function ($event) {
-                            return _vm.handleOptionClick(option)
-                          },
-                        },
-                      }),
-                ],
-                1
+                {
+                  ref: "dropdown",
+                  class: _vm.classes.dropdown,
+                  style: _vm.style,
+                  attrs: {
+                    "data-dropdown-for": _vm.el$.fieldId,
+                    id: "dropdown-" + _vm.el$.fieldId,
+                    role: "listbox",
+                    tabindex: "-1",
+                  },
+                },
+                _vm._l(_vm.options, function (option, index) {
+                  return _c(
+                    "div",
+                    { key: option.value, class: _vm.classes.optionWrapper },
+                    [
+                      option.display &&
+                      typeof option.display === "object" && [
+                        option.display.render || option.display.template,
+                      ]
+                        ? _c(option.display, {
+                            tag: "component",
+                            attrs: {
+                              el$: _vm.el$,
+                              option: option,
+                              index: index,
+                              selected: _vm.selected.index === option.index,
+                              pointed: _vm.pointed.index === option.index,
+                              "data-index": option.index,
+                              "data-selected":
+                                _vm.selected.index === option.index,
+                              role: "option",
+                              tabindex:
+                                _vm.pointed.index === option.index ? 0 : -1,
+                              "aria-selected":
+                                _vm.selected.index === option.index,
+                            },
+                            on: {
+                              mouseover: function ($event) {
+                                return _vm.handleOptionPoint(option)
+                              },
+                              click: function ($event) {
+                                return _vm.handleOptionClick(option)
+                              },
+                            },
+                          })
+                        : option.display && typeof option.display === "function"
+                        ? _c("div", {
+                            class: _vm.classes.option(option, index, _vm.el$),
+                            attrs: {
+                              "data-index": option.index,
+                              "data-selected":
+                                _vm.selected.index === option.index,
+                              role: "option",
+                              tabindex:
+                                _vm.pointed.index === option.index ? 0 : -1,
+                              "aria-selected":
+                                _vm.selected.index === option.index,
+                            },
+                            domProps: {
+                              innerHTML: _vm._s(
+                                option.display(
+                                  option,
+                                  index,
+                                  _vm.selected.index === option.index,
+                                  _vm.pointed.index === option.index,
+                                  _vm.el$
+                                )
+                              ),
+                            },
+                            on: {
+                              mouseover: function ($event) {
+                                return _vm.handleOptionPoint(option)
+                              },
+                              click: function ($event) {
+                                return _vm.handleOptionClick(option)
+                              },
+                            },
+                          })
+                        : _c("div", {
+                            class: _vm.classes.option(option, index, _vm.el$),
+                            attrs: {
+                              "data-index": option.index,
+                              "data-selected":
+                                _vm.selected.index === option.index,
+                              role: "option",
+                              tabindex:
+                                _vm.pointed.index === option.index ? 0 : -1,
+                              "aria-selected":
+                                _vm.selected.index === option.index,
+                            },
+                            domProps: { innerHTML: _vm._s(option.label) },
+                            on: {
+                              mouseover: function ($event) {
+                                return _vm.handleOptionPoint(option)
+                              },
+                              click: function ($event) {
+                                return _vm.handleOptionClick(option)
+                              },
+                            },
+                          }),
+                    ],
+                    1
+                  )
+                }),
+                0
               )
-            }),
-            0
-          ),
+            : _vm._e(),
         ]),
       ],
       2
@@ -4273,7 +4276,7 @@ var script$1n = {
     }
   };
 
-var css_248z$1k = ".vf-addon-options {\n  display: flex;\n  align-items: center;\n  margin-left: var(--vf-px-input);\n  font-size: var(--vf-font-size);\n  line-height: var(--vf-line-height);\n  letter-spacing: var(--vf-letter-spacing);\n}\n\n.vf-addon-options.vf-addon-options-sm {\n  margin-left: var(--vf-px-input-sm);\n  font-size: var(--vf-font-size-sm);\n  line-height: var(--vf-line-height-sm);\n  letter-spacing: var(--vf-letter-spacing-sm);\n}\n\n.vf-addon-options.vf-addon-options-lg {\n  margin-left: var(--vf-px-input-lg);\n  font-size: var(--vf-font-size-lg);\n  line-height: var(--vf-line-height-lg);\n  letter-spacing: var(--vf-letter-spacing-lg);\n}\n\n.vf-addon-options.vf-addon-options-disabled {\n  opacity: 0.5;\n  cursor: initial;\n  pointer-events: none;\n}\n\n.vf-addon-options-wrapper {\n  display: flex;\n  align-items: center;\n  border-radius: 4px;\n  padding: 4px 4px;\n  cursor: pointer;\n  transition-property: all;\n  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);\n  transition-duration: 150ms;\n  outline: none;\n}\n\n.vf-addon-options-wrapper:hover, .vf-addon-options-wrapper:focus {\n  background: var(--vf-bg-selected);\n}\n\n.vf-addon-options-caret {\n  mask-image: url(\"data:image/svg+xml,%3Csvg viewBox='0 0 320 512' fill='currentColor' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z'%3E%3C/path%3E%3C/svg%3E\");\n  -webkit-mask-image: url(\"data:image/svg+xml,%3Csvg viewBox='0 0 320 512' fill='currentColor' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z'%3E%3C/path%3E%3C/svg%3E\");\n  mask-position: center center;\n  -webkit-mask-position: center center;\n  mask-repeat: no-repeat;\n  -webkit-mask-repeat: no-repeat;\n  background-color: var(--vf-bg-icon);\n  color: var(--vf-color-input);\n  width: 0.625rem;\n  height: 1rem;\n  padding: 1px 0;\n  margin-left: 0.5rem;\n}\n\n.vf-addon-options-dropdown {\n  background-color: var(--vf-bg-input);\n  border-width: var(--vf-border-width-dropdown);\n  border-style: solid;\n  border-color: var(--vf-border-color-input);\n  box-shadow: var(--vf-shadow-dropdown);\n  color: var(--vf-color-input);\n  position: absolute;\n  top: 1rem;\n  bottom: 1rem;\n  z-index: 1000;\n  overflow-x: scroll;\n}\n\n.vf-addon-options-option {\n  display: flex;\n  align-items: center;\n  cursor: pointer;\n  padding: 0.3125rem 0.75rem;\n  white-space: nowrap;\n}\n\n.vf-addon-options-option-active {\n  background: var(--vf-bg-selected);\n}\n\n[dir=rtl] .vf-addon-options {\n  margin-left: 0;\n  margin-right: var(--vf-px-input);\n}\n\n[dir=rtl] .vf-addon-options.vf-addon-options-sm {\n  margin-left: 0;\n  margin-right: var(--vf-px-input-sm);\n}\n\n[dir=rtl] .vf-addon-options.vf-addon-options-lg {\n  margin-left: 0;\n  margin-right: var(--vf-px-input-lg);\n}\n\n[dir=rtl] .vf-addon-options-caret {\n  margin-left: 0;\n  margin-right: 0.5rem;\n}";
+var css_248z$1k = ".vf-addon-options {\n  display: flex;\n  align-items: center;\n  margin-left: var(--vf-px-input);\n  font-size: var(--vf-font-size);\n  line-height: var(--vf-line-height);\n  letter-spacing: var(--vf-letter-spacing);\n}\n\n.vf-addon-options.vf-addon-options-sm {\n  margin-left: var(--vf-px-input-sm);\n  font-size: var(--vf-font-size-sm);\n  line-height: var(--vf-line-height-sm);\n  letter-spacing: var(--vf-letter-spacing-sm);\n}\n\n.vf-addon-options.vf-addon-options-lg {\n  margin-left: var(--vf-px-input-lg);\n  font-size: var(--vf-font-size-lg);\n  line-height: var(--vf-line-height-lg);\n  letter-spacing: var(--vf-letter-spacing-lg);\n}\n\n.vf-addon-options.vf-addon-options-disabled {\n  opacity: 0.5;\n  cursor: initial;\n  pointer-events: none;\n}\n\n.vf-addon-options-wrapper {\n  display: flex;\n  align-items: center;\n  border-radius: 4px;\n  padding: 4px 4px;\n  cursor: pointer;\n  transition-property: all;\n  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);\n  transition-duration: 150ms;\n  outline: none;\n}\n\n.vf-addon-options-wrapper:hover, .vf-addon-options-wrapper:focus {\n  background: var(--vf-bg-selected);\n}\n\n.vf-addon-options-caret {\n  mask-image: url(\"data:image/svg+xml,%3Csvg viewBox='0 0 320 512' fill='currentColor' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z'%3E%3C/path%3E%3C/svg%3E\");\n  -webkit-mask-image: url(\"data:image/svg+xml,%3Csvg viewBox='0 0 320 512' fill='currentColor' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z'%3E%3C/path%3E%3C/svg%3E\");\n  mask-position: center center;\n  -webkit-mask-position: center center;\n  mask-repeat: no-repeat;\n  -webkit-mask-repeat: no-repeat;\n  background-color: var(--vf-bg-icon);\n  color: var(--vf-color-input);\n  width: 0.625rem;\n  height: 1rem;\n  padding: 1px 0;\n  margin-left: 0.5rem;\n}\n\n.vf-addon-options-dropdown {\n  background-color: var(--vf-bg-input);\n  border-width: var(--vf-border-width-dropdown);\n  border-style: solid;\n  border-color: var(--vf-border-color-input);\n  box-shadow: var(--vf-shadow-dropdown);\n  color: var(--vf-color-input);\n  position: absolute;\n  top: 1rem;\n  bottom: 1rem;\n  z-index: 1002;\n  overflow-x: scroll;\n}\n\n.vf-addon-options-option {\n  display: flex;\n  align-items: center;\n  cursor: pointer;\n  padding: 0.3125rem 0.75rem;\n  white-space: nowrap;\n}\n\n.vf-addon-options-option-active {\n  background: var(--vf-bg-selected);\n}\n\n[dir=rtl] .vf-addon-options {\n  margin-left: 0;\n  margin-right: var(--vf-px-input);\n}\n\n[dir=rtl] .vf-addon-options.vf-addon-options-sm {\n  margin-left: 0;\n  margin-right: var(--vf-px-input-sm);\n}\n\n[dir=rtl] .vf-addon-options.vf-addon-options-lg {\n  margin-left: 0;\n  margin-right: var(--vf-px-input-lg);\n}\n\n[dir=rtl] .vf-addon-options-caret {\n  margin-left: 0;\n  margin-right: 0.5rem;\n}";
 styleInject(css_248z$1k);
 
 /* script */

@@ -378,6 +378,19 @@ export default {
         },
       }
     },
+    PhoneElement: {
+      description: 'Triggered when a country is selected (either by user or automatically as typed).',
+      params: {
+        option: {
+          description: 'the selected option',
+          types: ['object'],
+        },
+        el$: {
+          description: 'the element\'s component',
+          types: ['component']
+        },
+      }
+    },
     FormLanguage: {
       description: 'Triggered when the language is selected by the user.',
       params: {
@@ -476,10 +489,28 @@ export default {
         },
       }
     },
+    PhoneElement: {
+      description: 'Triggered when the dropdown list is opened.',
+      params: {
+        el$: {
+          description: 'the element\'s component',
+          types: ['component']
+        },
+      }
+    },
   },
   close: {
     default: {
       description: 'Triggered when the dropdown list is closed when using [`native: false`](#option-native).',
+      params: {
+        el$: {
+          description: 'the element\'s component',
+          types: ['component']
+        },
+      }
+    },
+    TagsElement: {
+      description: 'Triggered when the dropdown list is closed.',
       params: {
         el$: {
           description: 'the element\'s component',

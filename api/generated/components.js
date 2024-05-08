@@ -564,7 +564,7 @@ module.exports = {
       "handleSelectorKeydown": {
         "public": true,
         "returns": "void",
-        "description": "Handles the keydown even of the collapsed element when focused (async.",
+        "description": "Handles the keydown even of the collapsed element when focused (async).",
         "params": {
           "event": {
             "types": [

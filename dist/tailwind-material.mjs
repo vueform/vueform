@@ -1131,66 +1131,67 @@ function render$D(_ctx, _cache, $props, $setup, $data, $options) {
         class: normalizeClass(_ctx.classes.caret)
       }, null, 2 /* CLASS */),
       (openBlock(), createBlock(Teleport, { to: "body" }, [
-        withDirectives(createElementVNode("div", {
-          "data-dropdown-for": _ctx.el$.fieldId,
-          id: `dropdown-${_ctx.el$.fieldId}`,
-          class: normalizeClass(_ctx.classes.dropdown),
-          style: normalizeStyle(_ctx.style),
-          ref: "dropdown",
-          role: "listbox",
-          tabindex: "-1"
-        }, [
-          (openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.options, (option, index) => {
-            return (openBlock(), createElementBlock("div", {
-              class: normalizeClass(_ctx.classes.optionWrapper),
-              key: option.value
+        (_ctx.isOpen)
+          ? (openBlock(), createElementBlock("div", {
+              key: 0,
+              "data-dropdown-for": _ctx.el$.fieldId,
+              id: `dropdown-${_ctx.el$.fieldId}`,
+              class: normalizeClass(_ctx.classes.dropdown),
+              style: normalizeStyle(_ctx.style),
+              ref: "dropdown",
+              role: "listbox",
+              tabindex: "-1"
             }, [
-              (option.display && typeof option.display === 'object' && [option.display.render || option.display.template])
-                ? (openBlock(), createBlock(resolveDynamicComponent(option.display), {
-                    key: 0,
-                    el$: _ctx.el$,
-                    option: option,
-                    index: index,
-                    selected: _ctx.selected.index === option.index,
-                    pointed: _ctx.pointed.index === option.index,
-                    "data-index": option.index,
-                    "data-selected": _ctx.selected.index === option.index,
-                    onMouseover: $event => (_ctx.handleOptionPoint(option)),
-                    onClick: $event => (_ctx.handleOptionClick(option)),
-                    role: "option",
-                    tabindex: _ctx.pointed.index === option.index ? 0 : -1,
-                    "aria-selected": _ctx.selected.index === option.index
-                  }, null, 40 /* PROPS, NEED_HYDRATION */, ["el$", "option", "index", "selected", "pointed", "data-index", "data-selected", "onMouseover", "onClick", "tabindex", "aria-selected"]))
-                : (option.display && typeof option.display === 'function')
-                  ? (openBlock(), createElementBlock("div", {
-                      key: 1,
-                      innerHTML: option.display(option, index, _ctx.selected.index === option.index, _ctx.pointed.index === option.index, _ctx.el$),
-                      class: normalizeClass(_ctx.classes.option(option, index, _ctx.el$)),
-                      "data-index": option.index,
-                      "data-selected": _ctx.selected.index === option.index,
-                      onMouseover: $event => (_ctx.handleOptionPoint(option)),
-                      onClick: $event => (_ctx.handleOptionClick(option)),
-                      role: "option",
-                      tabindex: _ctx.pointed.index === option.index ? 0 : -1,
-                      "aria-selected": _ctx.selected.index === option.index
-                    }, null, 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_7$2))
-                  : (openBlock(), createElementBlock("div", {
-                      key: 2,
-                      innerHTML: option.label,
-                      class: normalizeClass(_ctx.classes.option(option, index, _ctx.el$)),
-                      "data-index": option.index,
-                      "data-selected": _ctx.selected.index === option.index,
-                      onMouseover: $event => (_ctx.handleOptionPoint(option)),
-                      onClick: $event => (_ctx.handleOptionClick(option)),
-                      role: "option",
-                      tabindex: _ctx.pointed.index === option.index ? 0 : -1,
-                      "aria-selected": _ctx.selected.index === option.index
-                    }, null, 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_8$2))
-            ], 2 /* CLASS */))
-          }), 128 /* KEYED_FRAGMENT */))
-        ], 14 /* CLASS, STYLE, PROPS */, _hoisted_6$4), [
-          [vShow, _ctx.isOpen]
-        ])
+              (openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.options, (option, index) => {
+                return (openBlock(), createElementBlock("div", {
+                  class: normalizeClass(_ctx.classes.optionWrapper),
+                  key: option.value
+                }, [
+                  (option.display && typeof option.display === 'object' && [option.display.render || option.display.template])
+                    ? (openBlock(), createBlock(resolveDynamicComponent(option.display), {
+                        key: 0,
+                        el$: _ctx.el$,
+                        option: option,
+                        index: index,
+                        selected: _ctx.selected.index === option.index,
+                        pointed: _ctx.pointed.index === option.index,
+                        "data-index": option.index,
+                        "data-selected": _ctx.selected.index === option.index,
+                        onMouseover: $event => (_ctx.handleOptionPoint(option)),
+                        onClick: $event => (_ctx.handleOptionClick(option)),
+                        role: "option",
+                        tabindex: _ctx.pointed.index === option.index ? 0 : -1,
+                        "aria-selected": _ctx.selected.index === option.index
+                      }, null, 40 /* PROPS, NEED_HYDRATION */, ["el$", "option", "index", "selected", "pointed", "data-index", "data-selected", "onMouseover", "onClick", "tabindex", "aria-selected"]))
+                    : (option.display && typeof option.display === 'function')
+                      ? (openBlock(), createElementBlock("div", {
+                          key: 1,
+                          innerHTML: option.display(option, index, _ctx.selected.index === option.index, _ctx.pointed.index === option.index, _ctx.el$),
+                          class: normalizeClass(_ctx.classes.option(option, index, _ctx.el$)),
+                          "data-index": option.index,
+                          "data-selected": _ctx.selected.index === option.index,
+                          onMouseover: $event => (_ctx.handleOptionPoint(option)),
+                          onClick: $event => (_ctx.handleOptionClick(option)),
+                          role: "option",
+                          tabindex: _ctx.pointed.index === option.index ? 0 : -1,
+                          "aria-selected": _ctx.selected.index === option.index
+                        }, null, 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_7$2))
+                      : (openBlock(), createElementBlock("div", {
+                          key: 2,
+                          innerHTML: option.label,
+                          class: normalizeClass(_ctx.classes.option(option, index, _ctx.el$)),
+                          "data-index": option.index,
+                          "data-selected": _ctx.selected.index === option.index,
+                          onMouseover: $event => (_ctx.handleOptionPoint(option)),
+                          onClick: $event => (_ctx.handleOptionClick(option)),
+                          role: "option",
+                          tabindex: _ctx.pointed.index === option.index ? 0 : -1,
+                          "aria-selected": _ctx.selected.index === option.index
+                        }, null, 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_8$2))
+                ], 2 /* CLASS */))
+              }), 128 /* KEYED_FRAGMENT */))
+            ], 14 /* CLASS, STYLE, PROPS */, _hoisted_6$4))
+          : createCommentVNode("v-if", true)
       ]))
     ], 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_1$x)
   ], 2 /* CLASS */))
@@ -14548,7 +14549,7 @@ var classes = {
     container_disabled: 'cursor-default opacity-50 pointer-events-none',
     wrapper: 'flex items-center transition-all form-color-input hover:form-bg-selected focus:form-bg-selected outline-none rounded px-1 py-1 cursor-pointer',
     caret: 'mask-bg mask-form-caret form-bg-icon w-2.5 h-4 ml-2 rtl:ml-0 rtl:mr-2',
-    dropdown: 'form-bg-input form-shadow-dropdown form-border-width-dropdown border-solid form-border-color-input fixed z-1000 overflow-x-scroll max-h-[calc(100vh-2rem)]',
+    dropdown: 'form-bg-input form-shadow-dropdown form-border-width-dropdown border-solid form-border-color-input fixed z-[1002] overflow-x-scroll max-h-[calc(100vh-2rem)]',
     optionWrapper: '',
     option: 'flex items-center form-color-input cursor-pointer py-1.25 px-3 whitespace-nowrap',
     option_active: 'form-bg-selected',
