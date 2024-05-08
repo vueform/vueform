@@ -535,7 +535,7 @@ export default {
         return
       }
 
-      let optionEl = document.querySelector(`[data-index="${option.index}"]`)
+      let optionEl = document.querySelector(`[data-dropdown-for="${el$.value.fieldId}"] [data-index="${option.index}"]`)
       scrollToOption(optionEl)
       pointed.value = option
       optionEl.focus()
