@@ -1940,7 +1940,7 @@ export default {
         "captchaOptions": {
           "public": true,
           "types": [
-            "boolean"
+            "object"
           ],
           "description": "The captcha options."
         },
@@ -5333,6 +5333,13 @@ export default {
             "object"
           ],
           "description": "Resolves the content as slot."
+        },
+        "resolvedContent": {
+          "public": true,
+          "types": [
+            "any"
+          ],
+          "description": "The resolved content if it is a string or a function."
         }
       }
     }

@@ -18643,7 +18643,7 @@ var ElementAddonOptions = {
     // ================ DATA ================
 
     /**
-     * Whether the country selector is open.
+     * Whether the dropdown list is open.
      *
      * @type {boolean}
      */
@@ -25270,7 +25270,7 @@ var base$E = function base(props, context, dependencies) {
   /**
    * The captcha options.
    *
-   * @type {boolean}
+   * @type {object}
    */
   var captchaOptions = computed(() => {
     return _objectSpread2$1(_objectSpread2$1({}, form$.value.options.providerOptions[provider.value]), options.value);
@@ -38215,7 +38215,9 @@ var base$a = function base(props, context, dependencies) {
       if (!valueMatchesMask) {
         el$.value.update(option.m.length === 1 ? "+".concat(option.m[0][0]) : option.n);
       }
-      focus();
+      if (document.activeElement.closest('[data-dropdown-for]')) {
+        focus();
+      }
     }
     context.emit('select', option, el$.value);
   };
@@ -39107,7 +39109,10 @@ var base$6 = function base(props, context, dependencies) {
 
   // ============ DEPENDENCIES ============
 
-  var fieldSlots = dependencies.fieldSlots;
+  var {
+    fieldSlots,
+    el$
+  } = dependencies;
 
   // ============== COMPUTED ==============
 
@@ -39118,7 +39123,16 @@ var base$6 = function base(props, context, dependencies) {
    * @private
    */
   var isHtml = computed(() => {
-    return typeof content.value == 'string';
+    return typeof resolvedContent.value === 'string';
+  });
+
+  /**
+   * The resolved content if it is a string or a function.
+   *
+   * @type {any}
+   */
+  var resolvedContent = computed(() => {
+    return typeof content.value === 'function' ? content.value(el$.value) : content.value;
   });
 
   /**
@@ -39174,7 +39188,8 @@ var base$6 = function base(props, context, dependencies) {
   return {
     isHtml,
     componentContent,
-    slotContent
+    slotContent,
+    resolvedContent
   };
 };
 

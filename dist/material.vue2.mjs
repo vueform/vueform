@@ -19011,30 +19011,6 @@ const __vue_script__$H = script$H;
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
   var script$G = {
     name: 'StaticElement',
@@ -19071,7 +19047,7 @@ var __vue_render__$i = function () {
               fn: function () {
                 return [
                   _vm.isHtml &&
-                  (_vm.content || ["img", "hr"].indexOf(_vm.tag) !== -1)
+                  (_vm.resolvedContent || ["img", "hr"].indexOf(_vm.tag) !== -1)
                     ? [
                         !_vm.tag && _vm.allowHtml
                           ? _c(
@@ -19079,7 +19055,9 @@ var __vue_render__$i = function () {
                               _vm._b(
                                 {
                                   class: _vm.classes.content,
-                                  domProps: { innerHTML: _vm._s(_vm.content) },
+                                  domProps: {
+                                    innerHTML: _vm._s(_vm.resolvedContent),
+                                  },
                                 },
                                 "div",
                                 _vm.attrs,
@@ -19101,140 +19079,6 @@ var __vue_render__$i = function () {
                             )
                           : _vm._e(),
                         _vm._v(" "),
-                        _vm.tag === "p"
-                          ? _c("div", { class: _vm.classes.tag }, [
-                              _vm.allowHtml
-                                ? _c(
-                                    "p",
-                                    _vm._b(
-                                      {
-                                        domProps: {
-                                          innerHTML: _vm._s(_vm.content),
-                                        },
-                                      },
-                                      "p",
-                                      _vm.attrs,
-                                      false
-                                    )
-                                  )
-                                : _c("p", _vm._b({}, "p", _vm.attrs, false), [
-                                    _vm._v(_vm._s(_vm.content)),
-                                  ]),
-                            ])
-                          : _vm._e(),
-                        _vm._v(" "),
-                        _vm.tag === "h1"
-                          ? _c("div", { class: _vm.classes.tag }, [
-                              _vm.allowHtml
-                                ? _c(
-                                    "h1",
-                                    _vm._b(
-                                      {
-                                        domProps: {
-                                          innerHTML: _vm._s(_vm.content),
-                                        },
-                                      },
-                                      "h1",
-                                      _vm.attrs,
-                                      false
-                                    )
-                                  )
-                                : _c("h1", _vm._b({}, "h1", _vm.attrs, false), [
-                                    _vm._v(_vm._s(_vm.content)),
-                                  ]),
-                            ])
-                          : _vm._e(),
-                        _vm._v(" "),
-                        _vm.tag === "h2"
-                          ? _c("div", { class: _vm.classes.tag }, [
-                              _vm.allowHtml
-                                ? _c(
-                                    "h2",
-                                    _vm._b(
-                                      {
-                                        domProps: {
-                                          innerHTML: _vm._s(_vm.content),
-                                        },
-                                      },
-                                      "h2",
-                                      _vm.attrs,
-                                      false
-                                    )
-                                  )
-                                : _c("h2", _vm._b({}, "h2", _vm.attrs, false), [
-                                    _vm._v(_vm._s(_vm.content)),
-                                  ]),
-                            ])
-                          : _vm._e(),
-                        _vm._v(" "),
-                        _vm.tag === "h3"
-                          ? _c("div", { class: _vm.classes.tag }, [
-                              _vm.allowHtml
-                                ? _c(
-                                    "h3",
-                                    _vm._b(
-                                      {
-                                        domProps: {
-                                          innerHTML: _vm._s(_vm.content),
-                                        },
-                                      },
-                                      "h3",
-                                      _vm.attrs,
-                                      false
-                                    )
-                                  )
-                                : _c("h3", _vm._b({}, "h3", _vm.attrs, false), [
-                                    _vm._v(_vm._s(_vm.content)),
-                                  ]),
-                            ])
-                          : _vm._e(),
-                        _vm._v(" "),
-                        _vm.tag === "h4"
-                          ? _c("div", { class: _vm.classes.tag }, [
-                              _vm.allowHtml
-                                ? _c(
-                                    "h4",
-                                    _vm._b(
-                                      {
-                                        domProps: {
-                                          innerHTML: _vm._s(_vm.content),
-                                        },
-                                      },
-                                      "h4",
-                                      _vm.attrs,
-                                      false
-                                    )
-                                  )
-                                : _c("h4", _vm._b({}, "h4", _vm.attrs, false), [
-                                    _vm._v(_vm._s(_vm.content)),
-                                  ]),
-                            ])
-                          : _vm._e(),
-                        _vm._v(" "),
-                        _vm.tag === "blockquote"
-                          ? _c("div", { class: _vm.classes.tag }, [
-                              _vm.allowHtml
-                                ? _c(
-                                    "blockquote",
-                                    _vm._b(
-                                      {
-                                        domProps: {
-                                          innerHTML: _vm._s(_vm.content),
-                                        },
-                                      },
-                                      "blockquote",
-                                      _vm.attrs,
-                                      false
-                                    )
-                                  )
-                                : _c(
-                                    "blockquote",
-                                    _vm._b({}, "blockquote", _vm.attrs, false),
-                                    [_vm._v(_vm._s(_vm.content))]
-                                  ),
-                            ])
-                          : _vm._e(),
-                        _vm._v(" "),
                         _vm.tag === "a"
                           ? _c("div", { class: _vm.classes.tag }, [
                               _vm.allowHtml
@@ -19247,7 +19091,9 @@ var __vue_render__$i = function () {
                                           target: _vm.target,
                                         },
                                         domProps: {
-                                          innerHTML: _vm._s(_vm.content),
+                                          innerHTML: _vm._s(
+                                            _vm.resolvedContent
+                                          ),
                                         },
                                       },
                                       "a",
@@ -19268,18 +19114,14 @@ var __vue_render__$i = function () {
                                       _vm.attrs,
                                       false
                                     ),
-                                    [_vm._v(_vm._s(_vm.content))]
+                                    [_vm._v(_vm._s(_vm.resolvedContent))]
                                   ),
                             ])
-                          : _vm._e(),
-                        _vm._v(" "),
-                        _vm.tag === "hr"
+                          : _vm.tag === "hr"
                           ? _c("div", { class: _vm.classes.tag }, [
                               _c("hr", _vm._b({}, "hr", _vm.attrs, false)),
                             ])
-                          : _vm._e(),
-                        _vm._v(" "),
-                        _vm.tag === "img"
+                          : _vm.tag === "img"
                           ? _c("div", { class: _vm.classes.tag }, [
                               _vm.href
                                 ? _c(
@@ -19328,9 +19170,42 @@ var __vue_render__$i = function () {
                                     )
                                   ),
                             ])
-                          : _vm._e(),
+                          : _c(
+                              "div",
+                              { class: _vm.classes.tag },
+                              [
+                                _vm.allowHtml
+                                  ? _c(
+                                      _vm.tag,
+                                      _vm._b(
+                                        {
+                                          tag: "component",
+                                          domProps: {
+                                            innerHTML: _vm._s(
+                                              _vm.resolvedContent
+                                            ),
+                                          },
+                                        },
+                                        "component",
+                                        _vm.attrs,
+                                        false
+                                      )
+                                    )
+                                  : _c(
+                                      _vm.tag,
+                                      _vm._b(
+                                        { tag: "component" },
+                                        "component",
+                                        _vm.attrs,
+                                        false
+                                      ),
+                                      [_vm._v(_vm._s(_vm.resolvedContent))]
+                                    ),
+                              ],
+                              1
+                            ),
                       ]
-                    : _vm.content
+                    : _vm.resolvedContent
                     ? _c(_vm.componentContent, {
                         tag: "component",
                         attrs: { el$: _vm.el$ },
@@ -19381,7 +19256,7 @@ var __vue_render__$i = function () {
     : _vm.content && _vm.isHtml
     ? _c("div", {
         class: _vm.classes.content,
-        domProps: { innerHTML: _vm._s(_vm.content) },
+        domProps: { innerHTML: _vm._s(_vm.resolvedContent) },
       })
     : _vm.content
     ? _c(_vm.componentContent, { ref: "container", tag: "component" })

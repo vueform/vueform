@@ -391,6 +391,19 @@ export default {
         },
       }
     },
+    ElementAddonOptions: {
+      description: 'Triggered when an option is selected.',
+      params: {
+        option: {
+          description: 'the selected option',
+          types: ['object'],
+        },
+        el$: {
+          description: 'the element\'s component',
+          types: ['component']
+        },
+      }
+    },
     FormLanguage: {
       description: 'Triggered when the language is selected by the user.',
       params: {
@@ -498,6 +511,15 @@ export default {
         },
       }
     },
+    ElementAddonOptions: {
+      description: 'Triggered when the dropdown list is opened.',
+      params: {
+        el$: {
+          description: 'the element\'s component',
+          types: ['component']
+        },
+      }
+    },
   },
   close: {
     default: {
@@ -519,6 +541,15 @@ export default {
       }
     },
     TagsElement: {
+      description: 'Triggered when the dropdown list is closed.',
+      params: {
+        el$: {
+          description: 'the element\'s component',
+          types: ['component']
+        },
+      }
+    },
+    ElementAddonOptions: {
       description: 'Triggered when the dropdown list is closed.',
       params: {
         el$: {

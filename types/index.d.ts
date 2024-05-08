@@ -427,7 +427,7 @@ export interface VueformElement extends DefineComponent {
   Size: string;
   View: string;
   Views: object;
-  captchaOptions: boolean;
+  captchaOptions: object;
   shouldVerify: boolean;
   data: object;
   requestData: object;
@@ -495,6 +495,7 @@ export interface VueformElement extends DefineComponent {
   isHtml: boolean;
   componentContent: object;
   slotContent: object;
+  resolvedContent: any;
   language: string;
   languages: Array<any>;
 
@@ -4210,7 +4211,7 @@ export declare class CaptchaElement implements DefineComponent {
   isGroupType: boolean;
   isListType: boolean;
   isActive: boolean;
-  captchaOptions: boolean;
+  captchaOptions: object;
   shouldVerify: boolean;
   classes: object;
   classesInstance: MergeClasses;
@@ -8209,6 +8210,7 @@ export declare class StaticElement implements DefineComponent {
   isHtml: boolean;
   componentContent: object;
   slotContent: object;
+  resolvedContent: any;
   Templates: object;
   template: object;
   visible: boolean;

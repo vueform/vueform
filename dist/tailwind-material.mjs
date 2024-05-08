@@ -4,7 +4,7 @@
  * Licensed under the MIT License
  */
 
-import { resolveComponent, openBlock, createElementBlock, normalizeClass, withModifiers, renderSlot, createBlock, resolveDynamicComponent, createCommentVNode, createVNode, withCtx, Fragment, renderList, createElementVNode, toDisplayString, mergeProps, withDirectives, withKeys, vShow, Teleport, normalizeStyle, createSlots, vModelCheckbox, vModelText, toRefs, getCurrentInstance, ref, computed, watch, nextTick, onMounted, onBeforeUnmount, vModelSelect, vModelRadio, onUnmounted, normalizeProps, guardReactiveProps } from 'vue';
+import { resolveComponent, openBlock, createElementBlock, normalizeClass, withModifiers, renderSlot, createBlock, resolveDynamicComponent, createCommentVNode, createVNode, withCtx, Fragment, renderList, createElementVNode, toDisplayString, mergeProps, withDirectives, withKeys, vShow, Teleport, normalizeStyle, createSlots, vModelCheckbox, vModelText, toRefs, getCurrentInstance, ref, computed, watch, nextTick, onMounted, onBeforeUnmount, vModelSelect, vModelRadio, onUnmounted, normalizeProps, guardReactiveProps, createTextVNode } from 'vue';
 
 var script$15 = {
     data() {
@@ -1074,7 +1074,7 @@ const _hoisted_4$7 = ["innerHTML"];
 const _hoisted_5$5 = ["innerHTML"];
 const _hoisted_6$4 = ["data-dropdown-for", "id"];
 const _hoisted_7$2 = ["innerHTML", "data-index", "data-selected", "onMouseover", "onClick", "tabindex", "aria-selected"];
-const _hoisted_8$2 = ["innerHTML", "data-index", "data-selected", "onMouseover", "onClick", "tabindex", "aria-selected"];
+const _hoisted_8$1 = ["innerHTML", "data-index", "data-selected", "onMouseover", "onClick", "tabindex", "aria-selected"];
 
 function render$D(_ctx, _cache, $props, $setup, $data, $options) {
   return (openBlock(), createElementBlock("div", {
@@ -1187,7 +1187,7 @@ function render$D(_ctx, _cache, $props, $setup, $data, $options) {
                           role: "option",
                           tabindex: _ctx.pointed.index === option.index ? 0 : -1,
                           "aria-selected": _ctx.selected.index === option.index
-                        }, null, 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_8$2))
+                        }, null, 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_8$1))
                 ], 2 /* CLASS */))
               }), 128 /* KEYED_FRAGMENT */))
             ], 14 /* CLASS, STYLE, PROPS */, _hoisted_6$4))
@@ -6551,12 +6551,12 @@ const _hoisted_4$4 = ["onKeyup", "aria-label"];
 const _hoisted_5$3 = ["onClick"];
 const _hoisted_6$2 = ["type", "modelValue", "value", "id", "autocomplete", "aria-controls", "aria-placeholder", "aria-expanded", "aria-activedescendant", "aria-multiselectable"];
 const _hoisted_7$1 = ["innerHTML"];
-const _hoisted_8$1 = ["id"];
-const _hoisted_9$1 = ["id"];
-const _hoisted_10$1 = ["id", "aria-label", "aria-selected"];
-const _hoisted_11$1 = ["data-pointed", "onMouseenter", "onMousedown"];
-const _hoisted_12$1 = ["innerHTML"];
-const _hoisted_13$1 = ["aria-label"];
+const _hoisted_8 = ["id"];
+const _hoisted_9 = ["id"];
+const _hoisted_10 = ["id", "aria-label", "aria-selected"];
+const _hoisted_11 = ["data-pointed", "onMouseenter", "onMousedown"];
+const _hoisted_12 = ["innerHTML"];
+const _hoisted_13 = ["aria-label"];
 const _hoisted_14 = ["data-pointed", "data-selected", "onMouseenter", "onMousedown", "id", "aria-selected", "aria-label"];
 const _hoisted_15 = ["data-pointed", "data-selected", "onMouseenter", "onMousedown", "id", "aria-selected", "aria-label"];
 const _hoisted_16 = ["innerHTML"];
@@ -6816,9 +6816,9 @@ function render$r(_ctx, _cache, $props, $setup, $data, $options) {
                         }, () => [
                           createElementVNode("span", {
                             innerHTML: _ctx.localize(group[$props.groupLabel])
-                          }, null, 8 /* PROPS */, _hoisted_12$1)
+                          }, null, 8 /* PROPS */, _hoisted_12)
                         ])
-                      ], 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_11$1))
+                      ], 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_11))
                     : createCommentVNode("v-if", true),
                   createElementVNode("ul", {
                     class: normalizeClass(_ctx.classList.groupOptions),
@@ -6848,8 +6848,8 @@ function render$r(_ctx, _cache, $props, $setup, $data, $options) {
                         ])
                       ], 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_14))
                     }), 128 /* KEYED_FRAGMENT */))
-                  ], 10 /* CLASS, PROPS */, _hoisted_13$1)
-                ], 10 /* CLASS, PROPS */, _hoisted_10$1))
+                  ], 10 /* CLASS, PROPS */, _hoisted_13)
+                ], 10 /* CLASS, PROPS */, _hoisted_10))
               }), 128 /* KEYED_FRAGMENT */))
             : (openBlock(true), createElementBlock(Fragment, { key: 1 }, renderList(_ctx.fo, (option, i, key) => {
                 return (openBlock(), createElementBlock("li", {
@@ -6874,7 +6874,7 @@ function render$r(_ctx, _cache, $props, $setup, $data, $options) {
                   ])
                 ], 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_15))
               }), 128 /* KEYED_FRAGMENT */))
-        ], 10 /* CLASS, PROPS */, _hoisted_9$1),
+        ], 10 /* CLASS, PROPS */, _hoisted_9),
         (_ctx.noOptions)
           ? renderSlot(_ctx.$slots, "nooptions", { key: 0 }, () => [
               createElementVNode("div", {
@@ -6905,7 +6905,7 @@ function render$r(_ctx, _cache, $props, $setup, $data, $options) {
             ], 2 /* CLASS */))
           : createCommentVNode("v-if", true),
         renderSlot(_ctx.$slots, "afterlist", { options: _ctx.fo })
-      ], 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_8$1)
+      ], 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_8)
     ], 8 /* PROPS */, ["to", "disabled"])),
     createCommentVNode(" Hacky input element to show HTML5 required warning "),
     ($props.required)
@@ -11018,18 +11018,12 @@ var script$n = {
   };
 
 const _hoisted_1$f = ["innerHTML"];
-const _hoisted_2$a = ["innerHTML"];
-const _hoisted_3$8 = ["innerHTML"];
-const _hoisted_4$3 = ["innerHTML"];
-const _hoisted_5$2 = ["innerHTML"];
-const _hoisted_6$1 = ["innerHTML"];
+const _hoisted_2$a = ["href", "target", "innerHTML"];
+const _hoisted_3$8 = ["href", "target"];
+const _hoisted_4$3 = ["href", "target"];
+const _hoisted_5$2 = ["src", "alt", "title", "width", "height"];
+const _hoisted_6$1 = ["src", "alt", "title", "width", "height"];
 const _hoisted_7 = ["innerHTML"];
-const _hoisted_8 = ["href", "target", "innerHTML"];
-const _hoisted_9 = ["href", "target"];
-const _hoisted_10 = ["href", "target"];
-const _hoisted_11 = ["src", "alt", "title", "width", "height"];
-const _hoisted_12 = ["src", "alt", "title", "width", "height"];
-const _hoisted_13 = ["innerHTML"];
 
 function render$i(_ctx, _cache, $props, $setup, $data, $options) {
   return (_ctx.wrap)
@@ -11039,13 +11033,13 @@ function render$i(_ctx, _cache, $props, $setup, $data, $options) {
       }, createSlots({
         element: withCtx(() => [
           createCommentVNode(" If content is HTML "),
-          (_ctx.isHtml && (_ctx.content || ['img', 'hr'].indexOf(_ctx.tag) !== -1))
+          (_ctx.isHtml && (_ctx.resolvedContent || ['img', 'hr'].indexOf(_ctx.tag) !== -1))
             ? (openBlock(), createElementBlock(Fragment, { key: 0 }, [
                 (!_ctx.tag && _ctx.allowHtml)
                   ? (openBlock(), createElementBlock("div", mergeProps({
                       key: 0,
                       class: _ctx.classes.content,
-                      innerHTML: _ctx.content
+                      innerHTML: _ctx.resolvedContent
                     }, _ctx.attrs), null, 16 /* FULL_PROPS */, _hoisted_1$f))
                   : createCommentVNode("v-if", true),
                 (!_ctx.tag && !_ctx.allowHtml)
@@ -11054,87 +11048,9 @@ function render$i(_ctx, _cache, $props, $setup, $data, $options) {
                       class: _ctx.classes.content
                     }, _ctx.attrs), toDisplayString(_ctx.content), 17 /* TEXT, FULL_PROPS */))
                   : createCommentVNode("v-if", true),
-                (_ctx.tag === 'p')
-                  ? (openBlock(), createElementBlock("div", {
-                      key: 2,
-                      class: normalizeClass(_ctx.classes.tag)
-                    }, [
-                      (_ctx.allowHtml)
-                        ? (openBlock(), createElementBlock("p", mergeProps({
-                            key: 0,
-                            innerHTML: _ctx.content
-                          }, _ctx.attrs), null, 16 /* FULL_PROPS */, _hoisted_2$a))
-                        : (openBlock(), createElementBlock("p", normalizeProps(mergeProps({ key: 1 }, _ctx.attrs)), toDisplayString(_ctx.content), 17 /* TEXT, FULL_PROPS */))
-                    ], 2 /* CLASS */))
-                  : createCommentVNode("v-if", true),
-                (_ctx.tag === 'h1')
-                  ? (openBlock(), createElementBlock("div", {
-                      key: 3,
-                      class: normalizeClass(_ctx.classes.tag)
-                    }, [
-                      (_ctx.allowHtml)
-                        ? (openBlock(), createElementBlock("h1", mergeProps({
-                            key: 0,
-                            innerHTML: _ctx.content
-                          }, _ctx.attrs), null, 16 /* FULL_PROPS */, _hoisted_3$8))
-                        : (openBlock(), createElementBlock("h1", normalizeProps(mergeProps({ key: 1 }, _ctx.attrs)), toDisplayString(_ctx.content), 17 /* TEXT, FULL_PROPS */))
-                    ], 2 /* CLASS */))
-                  : createCommentVNode("v-if", true),
-                (_ctx.tag === 'h2')
-                  ? (openBlock(), createElementBlock("div", {
-                      key: 4,
-                      class: normalizeClass(_ctx.classes.tag)
-                    }, [
-                      (_ctx.allowHtml)
-                        ? (openBlock(), createElementBlock("h2", mergeProps({
-                            key: 0,
-                            innerHTML: _ctx.content
-                          }, _ctx.attrs), null, 16 /* FULL_PROPS */, _hoisted_4$3))
-                        : (openBlock(), createElementBlock("h2", normalizeProps(mergeProps({ key: 1 }, _ctx.attrs)), toDisplayString(_ctx.content), 17 /* TEXT, FULL_PROPS */))
-                    ], 2 /* CLASS */))
-                  : createCommentVNode("v-if", true),
-                (_ctx.tag === 'h3')
-                  ? (openBlock(), createElementBlock("div", {
-                      key: 5,
-                      class: normalizeClass(_ctx.classes.tag)
-                    }, [
-                      (_ctx.allowHtml)
-                        ? (openBlock(), createElementBlock("h3", mergeProps({
-                            key: 0,
-                            innerHTML: _ctx.content
-                          }, _ctx.attrs), null, 16 /* FULL_PROPS */, _hoisted_5$2))
-                        : (openBlock(), createElementBlock("h3", normalizeProps(mergeProps({ key: 1 }, _ctx.attrs)), toDisplayString(_ctx.content), 17 /* TEXT, FULL_PROPS */))
-                    ], 2 /* CLASS */))
-                  : createCommentVNode("v-if", true),
-                (_ctx.tag === 'h4')
-                  ? (openBlock(), createElementBlock("div", {
-                      key: 6,
-                      class: normalizeClass(_ctx.classes.tag)
-                    }, [
-                      (_ctx.allowHtml)
-                        ? (openBlock(), createElementBlock("h4", mergeProps({
-                            key: 0,
-                            innerHTML: _ctx.content
-                          }, _ctx.attrs), null, 16 /* FULL_PROPS */, _hoisted_6$1))
-                        : (openBlock(), createElementBlock("h4", normalizeProps(mergeProps({ key: 1 }, _ctx.attrs)), toDisplayString(_ctx.content), 17 /* TEXT, FULL_PROPS */))
-                    ], 2 /* CLASS */))
-                  : createCommentVNode("v-if", true),
-                (_ctx.tag === 'blockquote')
-                  ? (openBlock(), createElementBlock("div", {
-                      key: 7,
-                      class: normalizeClass(_ctx.classes.tag)
-                    }, [
-                      (_ctx.allowHtml)
-                        ? (openBlock(), createElementBlock("blockquote", mergeProps({
-                            key: 0,
-                            innerHTML: _ctx.content
-                          }, _ctx.attrs), null, 16 /* FULL_PROPS */, _hoisted_7))
-                        : (openBlock(), createElementBlock("blockquote", normalizeProps(mergeProps({ key: 1 }, _ctx.attrs)), toDisplayString(_ctx.content), 17 /* TEXT, FULL_PROPS */))
-                    ], 2 /* CLASS */))
-                  : createCommentVNode("v-if", true),
                 (_ctx.tag === 'a')
                   ? (openBlock(), createElementBlock("div", {
-                      key: 8,
+                      key: 2,
                       class: normalizeClass(_ctx.classes.tag)
                     }, [
                       (_ctx.allowHtml)
@@ -11142,53 +11058,66 @@ function render$i(_ctx, _cache, $props, $setup, $data, $options) {
                             key: 0,
                             href: _ctx.href,
                             target: _ctx.target
-                          }, _ctx.attrs, { innerHTML: _ctx.content }), null, 16 /* FULL_PROPS */, _hoisted_8))
+                          }, _ctx.attrs, { innerHTML: _ctx.resolvedContent }), null, 16 /* FULL_PROPS */, _hoisted_2$a))
                         : (openBlock(), createElementBlock("a", mergeProps({
                             key: 1,
                             href: _ctx.href,
                             target: _ctx.target
-                          }, _ctx.attrs), toDisplayString(_ctx.content), 17 /* TEXT, FULL_PROPS */, _hoisted_9))
+                          }, _ctx.attrs), toDisplayString(_ctx.resolvedContent), 17 /* TEXT, FULL_PROPS */, _hoisted_3$8))
                     ], 2 /* CLASS */))
-                  : createCommentVNode("v-if", true),
-                (_ctx.tag === 'hr')
-                  ? (openBlock(), createElementBlock("div", {
-                      key: 9,
-                      class: normalizeClass(_ctx.classes.tag)
-                    }, [
-                      createElementVNode("hr", normalizeProps(guardReactiveProps(_ctx.attrs)), null, 16 /* FULL_PROPS */)
-                    ], 2 /* CLASS */))
-                  : createCommentVNode("v-if", true),
-                (_ctx.tag === 'img')
-                  ? (openBlock(), createElementBlock("div", {
-                      key: 10,
-                      class: normalizeClass(_ctx.classes.tag)
-                    }, [
-                      (_ctx.href)
-                        ? (openBlock(), createElementBlock("a", {
-                            key: 0,
-                            href: _ctx.href,
-                            target: _ctx.target
-                          }, [
-                            createElementVNode("img", mergeProps({
-                              src: _ctx.src,
-                              alt: _ctx.alt,
-                              title: _ctx.title,
-                              width: _ctx.width,
-                              height: _ctx.height
-                            }, _ctx.attrs), null, 16 /* FULL_PROPS */, _hoisted_11)
-                          ], 8 /* PROPS */, _hoisted_10))
-                        : (openBlock(), createElementBlock("img", mergeProps({
-                            key: 1,
-                            src: _ctx.src,
-                            alt: _ctx.alt,
-                            title: _ctx.title,
-                            width: _ctx.width,
-                            height: _ctx.height
-                          }, _ctx.attrs), null, 16 /* FULL_PROPS */, _hoisted_12))
-                    ], 2 /* CLASS */))
-                  : createCommentVNode("v-if", true)
+                  : (_ctx.tag === 'hr')
+                    ? (openBlock(), createElementBlock("div", {
+                        key: 3,
+                        class: normalizeClass(_ctx.classes.tag)
+                      }, [
+                        createElementVNode("hr", normalizeProps(guardReactiveProps(_ctx.attrs)), null, 16 /* FULL_PROPS */)
+                      ], 2 /* CLASS */))
+                    : (_ctx.tag === 'img')
+                      ? (openBlock(), createElementBlock("div", {
+                          key: 4,
+                          class: normalizeClass(_ctx.classes.tag)
+                        }, [
+                          (_ctx.href)
+                            ? (openBlock(), createElementBlock("a", {
+                                key: 0,
+                                href: _ctx.href,
+                                target: _ctx.target
+                              }, [
+                                createElementVNode("img", mergeProps({
+                                  src: _ctx.src,
+                                  alt: _ctx.alt,
+                                  title: _ctx.title,
+                                  width: _ctx.width,
+                                  height: _ctx.height
+                                }, _ctx.attrs), null, 16 /* FULL_PROPS */, _hoisted_5$2)
+                              ], 8 /* PROPS */, _hoisted_4$3))
+                            : (openBlock(), createElementBlock("img", mergeProps({
+                                key: 1,
+                                src: _ctx.src,
+                                alt: _ctx.alt,
+                                title: _ctx.title,
+                                width: _ctx.width,
+                                height: _ctx.height
+                              }, _ctx.attrs), null, 16 /* FULL_PROPS */, _hoisted_6$1))
+                        ], 2 /* CLASS */))
+                      : (openBlock(), createElementBlock("div", {
+                          key: 5,
+                          class: normalizeClass(_ctx.classes.tag)
+                        }, [
+                          (_ctx.allowHtml)
+                            ? (openBlock(), createBlock(resolveDynamicComponent(_ctx.tag), mergeProps({
+                                key: 0,
+                                innerHTML: _ctx.resolvedContent
+                              }, _ctx.attrs), null, 16 /* FULL_PROPS */, ["innerHTML"]))
+                            : (openBlock(), createBlock(resolveDynamicComponent(_ctx.tag), normalizeProps(mergeProps({ key: 1 }, _ctx.attrs)), {
+                                default: withCtx(() => [
+                                  createTextVNode(toDisplayString(_ctx.resolvedContent), 1 /* TEXT */)
+                                ]),
+                                _: 1 /* STABLE */
+                              }, 16 /* FULL_PROPS */))
+                        ], 2 /* CLASS */))
               ], 64 /* STABLE_FRAGMENT */))
-            : (_ctx.content)
+            : (_ctx.resolvedContent)
               ? (openBlock(), createElementBlock(Fragment, { key: 1 }, [
                   createCommentVNode(" If content is component "),
                   (openBlock(), createBlock(resolveDynamicComponent(_ctx.componentContent), { el$: _ctx.el$ }, null, 8 /* PROPS */, ["el$"]))
@@ -11217,8 +11146,8 @@ function render$i(_ctx, _cache, $props, $setup, $data, $options) {
       ? (openBlock(), createElementBlock("div", {
           key: 1,
           class: normalizeClass(_ctx.classes.content),
-          innerHTML: _ctx.content
-        }, null, 10 /* CLASS, PROPS */, _hoisted_13))
+          innerHTML: _ctx.resolvedContent
+        }, null, 10 /* CLASS, PROPS */, _hoisted_7))
       : (_ctx.content)
         ? (openBlock(), createBlock(resolveDynamicComponent(_ctx.componentContent), {
             key: 2,

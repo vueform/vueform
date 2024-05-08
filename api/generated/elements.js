@@ -1894,7 +1894,7 @@ module.exports = {
       },
       captchaOptions: {
         types: [
-          'boolean',
+          'object',
         ],
         description: 'The captcha options.',
         private: false,
@@ -34537,6 +34537,13 @@ module.exports = {
         ],
         description: 'Resolves the content as slot.',
         private: true,
+      },
+      resolvedContent: {
+        types: [
+          'any',
+        ],
+        description: 'The resolved content if it is a string or a function.',
+        private: false,
       },
       Templates: {
         types: [

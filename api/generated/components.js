@@ -342,7 +342,7 @@ module.exports = {
         "types": [
           "boolean"
         ],
-        "description": "Whether the country selector is open."
+        "description": "Whether the dropdown list is open."
       },
       "selector": {
         "public": true,
@@ -629,7 +629,7 @@ module.exports = {
     },
     "events": {
       "select": {
-        "description": "Triggered when an option is selected when using [`native: false`](#option-native).",
+        "description": "Triggered when an option is selected.",
         "params": {
           "option": {
             "description": "the selected option",
@@ -646,7 +646,7 @@ module.exports = {
         }
       },
       "open": {
-        "description": "Triggered when the dropdown list is opened when using [`native: false`](#option-native).",
+        "description": "Triggered when the dropdown list is opened.",
         "params": {
           "el$": {
             "description": "the element's component",
@@ -657,7 +657,7 @@ module.exports = {
         }
       },
       "close": {
-        "description": "Triggered when the dropdown list is closed when using [`native: false`](#option-native).",
+        "description": "Triggered when the dropdown list is closed.",
         "params": {
           "el$": {
             "description": "the element's component",
