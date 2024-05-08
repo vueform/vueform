@@ -57,7 +57,7 @@ const base = function(props, context, dependencies)
   /**
    * The captcha options.
    *
-   * @type {boolean}
+   * @type {object}
    */
   const captchaOptions = computed(() => {
     return {
