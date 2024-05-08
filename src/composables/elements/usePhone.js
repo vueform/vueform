@@ -262,7 +262,9 @@ const base = function(props, context, dependencies)
         el$.value.update(option.m.length === 1 ? `+${option.m[0][0]}` : option.n)
       }
 
-      focus()
+      if (document.activeElement.closest('[data-dropdown-for]')) {
+        focus()
+      }
     }
     
     context.emit('select', option, el$.value)
