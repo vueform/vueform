@@ -8485,7 +8485,8 @@ var base$1b = function base(props, context) {
     errorsRegistered,
     languagesRegistered,
     tabsRegistered,
-    stepsRegistered
+    stepsRegistered,
+    mounted
   };
 };
 
@@ -8629,7 +8630,8 @@ var VueformComponent = {
       errorsRegistered,
       languagesRegistered,
       tabsRegistered,
-      stepsRegistered
+      stepsRegistered,
+      mounted
     } = base$1b(props, context);
     return {
       tabs$,
@@ -8717,7 +8719,8 @@ var VueformComponent = {
       errorsRegistered,
       languagesRegistered,
       tabsRegistered,
-      stepsRegistered
+      stepsRegistered,
+      mounted
     };
   },
   props: {

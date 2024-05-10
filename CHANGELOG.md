@@ -6,6 +6,12 @@
 
 ### 🎉 Feature
 - New [`PhoneElement`](https://vueform.com/reference/phone-element).
+- New `completed` rule.
+- Romanian translation (Thanks @u-alexandru 🙏)
+
+### 🐞 Bug Fixes
+- Fix for function static content with tags #229.
+- Allow h5-h6 tags #236.
 
 ## v1.9.6
 

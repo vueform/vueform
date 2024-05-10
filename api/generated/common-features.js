@@ -831,6 +831,14 @@ export default {
             "boolean"
           ],
           "description": "Whether FormSteps component is registered."
+        },
+        "mounted": {
+          "public": true,
+          "default": "false",
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the form has been mounted."
         }
       },
       "computed": {
