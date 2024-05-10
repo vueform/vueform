@@ -2,7 +2,7 @@
 
 ## v1.9.7
 
-> `2024-05-06`
+> `2024-05-10`
 
 ### 🎉 Feature
 - New [`PhoneElement`](https://vueform.com/reference/phone-element).
