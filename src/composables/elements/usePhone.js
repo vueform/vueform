@@ -125,22 +125,39 @@ const base = function(props, context, dependencies)
     }
 
     let masks = {}
+    let maskLengths = []
 
     addonOptions.value.forEach(c => c.m.forEach((m) => {
       if (masks[m[1]] === undefined) {
         masks[m[1]] = []
       }
 
-      masks[m[1]].push(parseInt(m[0]))
+      const length = m[0].toString().length
+
+      if (masks[m[1]][length] === undefined) {
+        masks[m[1]][length] = []
+      }
+
+      masks[m[1]][length].push(parseInt(m[0]))
+
+      if (maskLengths.indexOf(length) === -1) {
+        maskLengths.push(length)
+      }
     }))
+
+    maskLengths.sort().reverse()
 
     let mask = []
 
-    Object.keys(masks).forEach((m) => {
-      mask.push({
-        mask: m,
-        startsWith: masks[m],
-        placeholder: true,
+    maskLengths.forEach((length) => {
+      Object.keys(masks).forEach((m) => {
+        if (masks[m][length]) {
+          mask.push({
+            mask: m,
+            startsWith: masks[m][length],
+            placeholder: true,
+          })
+        }
       })
     })
 
