@@ -1,5 +1,5 @@
 /*!
- * Vueform v1.9.7 (https://github.com/vueform/vueform)
+ * Vueform v1.9.8 (https://github.com/vueform/vueform)
  * Copyright (c) 2024 Adam Berecz <adam@vueform.com>
  * Licensed under the MIT License
  */
@@ -10042,7 +10042,7 @@ function shouldApplyPlugin (name, plugin) {
 }
 
 var name = "@vueform/vueform";
-var version$1 = "1.9.7";
+var version$1 = "1.9.8";
 var description = "Open-Source Form Framework for Vue";
 var homepage = "https://vueform.com";
 var license = "MIT";
@@ -38099,18 +38099,31 @@ var base$a = function base(props, context, dependencies) {
       return;
     }
     var masks = {};
+    var maskLengths = [];
     addonOptions.value.forEach(c => c.m.forEach(m => {
       if (masks[m[1]] === undefined) {
         masks[m[1]] = [];
       }
-      masks[m[1]].push(parseInt(m[0]));
+      var length = m[0].toString().length;
+      if (masks[m[1]][length] === undefined) {
+        masks[m[1]][length] = [];
+      }
+      masks[m[1]][length].push(parseInt(m[0]));
+      if (maskLengths.indexOf(length) === -1) {
+        maskLengths.push(length);
+      }
     }));
+    maskLengths.sort().reverse();
     var mask = [];
-    Object.keys(masks).forEach(m => {
-      mask.push({
-        mask: m,
-        startsWith: masks[m],
-        placeholder: true
+    maskLengths.forEach(length => {
+      Object.keys(masks).forEach(m => {
+        if (masks[m][length]) {
+          mask.push({
+            mask: m,
+            startsWith: masks[m][length],
+            placeholder: true
+          });
+        }
       });
     });
     mask.push({

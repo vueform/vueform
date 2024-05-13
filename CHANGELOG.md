@@ -1,5 +1,12 @@
 [//]: # (Don't use <tags>)
 
+## v1.9.8
+
+> `2024-05-13`
+
+### 🐞 Bug Fixes
+- Phone mask order fix.
+
 ## v1.9.7
 
 > `2024-05-10`
