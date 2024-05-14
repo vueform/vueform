@@ -1,5 +1,12 @@
 [//]: # (Don't use <tags>)
 
+## v1.9.9
+
+> `2024-05-14`
+
+### 🐞 Bug Fixes
+- Trix updated to 2.1.1 for security fix.
+
 ## v1.9.8
 
 > `2024-05-13`

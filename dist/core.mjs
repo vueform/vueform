@@ -1,5 +1,5 @@
 /*!
- * Vueform v1.9.8 (https://github.com/vueform/vueform)
+ * Vueform v1.9.9 (https://github.com/vueform/vueform)
  * Copyright (c) 2024 Adam Berecz <adam@vueform.com>
  * Licensed under the MIT License
  */
@@ -8485,8 +8485,7 @@ var base$1b = function base(props, context) {
     errorsRegistered,
     languagesRegistered,
     tabsRegistered,
-    stepsRegistered,
-    mounted
+    stepsRegistered
   };
 };
 
@@ -8630,8 +8629,7 @@ var VueformComponent = {
       errorsRegistered,
       languagesRegistered,
       tabsRegistered,
-      stepsRegistered,
-      mounted
+      stepsRegistered
     } = base$1b(props, context);
     return {
       tabs$,
@@ -8719,8 +8717,7 @@ var VueformComponent = {
       errorsRegistered,
       languagesRegistered,
       tabsRegistered,
-      stepsRegistered,
-      mounted
+      stepsRegistered
     };
   },
   props: {
@@ -10042,7 +10039,7 @@ function shouldApplyPlugin (name, plugin) {
 }
 
 var name = "@vueform/vueform";
-var version$1 = "1.9.8";
+var version$1 = "1.9.9";
 var description = "Open-Source Form Framework for Vue";
 var homepage = "https://vueform.com";
 var license = "MIT";
@@ -10200,7 +10197,7 @@ var dependencies = {
 	moment: "^2.29.4",
 	nouislider: "^15.7.1",
 	sass: "^1.66.1",
-	trix: "^1.0.5",
+	trix: "^2.1.1",
 	wnumb: "^1.2.0"
 };
 var packageJson = {

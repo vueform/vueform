@@ -1,7 +1,7 @@
 {
   "private": false,
   "name": "@vueform/vueform",
-  "version": "1.9.8",
+  "version": "1.9.9",
   "description": "Open-Source Form Framework for Vue",
   "homepage": "https://vueform.com",
   "license": "MIT",
@@ -159,7 +159,7 @@
     "moment": "^2.29.4",
     "nouislider": "^15.7.1",
     "sass": "^1.66.1",
-    "trix": "^1.0.5",
+    "trix": "^2.1.1",
     "wnumb": "^1.2.0"
   }
 }

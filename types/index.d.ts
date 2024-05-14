@@ -3759,7 +3759,6 @@ export declare class Vueform implements DefineComponent {
   languagesRegistered: boolean;
   tabsRegistered: boolean;
   stepsRegistered: boolean;
-  mounted: boolean;
 
   // Methods
   prepareElements: () => Promise;
