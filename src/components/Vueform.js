@@ -96,7 +96,6 @@ export default {
       languagesRegistered,
       tabsRegistered,
       stepsRegistered,
-      mounted,
     } = useVueform(props, context)
 
     return {
@@ -186,7 +185,6 @@ export default {
       languagesRegistered,
       tabsRegistered,
       stepsRegistered,
-      mounted,
     }
   },
   props: {

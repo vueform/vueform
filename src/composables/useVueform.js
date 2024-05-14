@@ -1533,7 +1533,6 @@ const base = function(props, context, dependencies = {})
     languagesRegistered,
     tabsRegistered,
     stepsRegistered,
-    mounted,
   }
 }
 
