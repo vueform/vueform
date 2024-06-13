@@ -18,7 +18,6 @@ const base = function(props, context, dependencies)
    * The parent component of the element.
    *
    * @type {VNode}
-   * @private
    */
   const parent = computed(() => {
     const getParent = (parent, getParent) => {
