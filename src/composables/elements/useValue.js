@@ -226,7 +226,7 @@ const group = function(props, context, dependencies, /* istanbul ignore next */ 
       // Filter out children values that parent has but not among group elements
       let childKeys = children$Array.value.reduce((all, child$) => {
         /* istanbul ignore else */
-        if (child$.isStatic || !child$) {
+        if (!child$ || child$.isStatic) {
           return all
         }
         
