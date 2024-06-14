@@ -49,11 +49,11 @@ const base = function(props, context, dependencies)
   // =============== HOOKS ================
   
   onMounted(() => {
-    input.value.editor$.addEventListener('focus', () => {
+    input.value.editor$.$el.addEventListener('focus', () => {
       focused.value = true
     })
     
-    input.value.editor$.addEventListener('blur', () => {
+    input.value.editor$.$el.addEventListener('blur', () => {
       focused.value = false
     })
   })

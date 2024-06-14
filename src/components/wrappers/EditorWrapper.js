@@ -123,14 +123,17 @@ export default {
     })
 
     const editorComponent = computed(() => {
-      return h('trix-editor', {
-        ...attrs.value,
-        placeholder: placeholder.value,
-        disabled: disabled.value,
-        id: id.value,
-        input: `editor-input-${id.value}`,
-        ref: 'editor$',
-      })
+      return {
+        render() {
+          return h('trix-editor', {
+            ...attrs.value,
+            placeholder: placeholder.value,
+            disabled: disabled.value,
+            id: id.value,
+            input: `editor-input-${id.value}`,
+          })
+        }
+      }
     })
 
     // =============== METHODS ==============
@@ -284,17 +287,17 @@ export default {
         editor$.value.contentEditable = false
       }
 
-      editor$.value.addEventListener('trix-change', handleChange)
-      editor$.value.addEventListener('trix-blur', handleBlur)
-      editor$.value.addEventListener('trix-file-accept', handleFileAccept)
-      editor$.value.addEventListener('trix-attachment-add', handleAttachmentAdd)
+      editor$.value.$el.addEventListener('trix-change', handleChange)
+      editor$.value.$el.addEventListener('trix-blur', handleBlur)
+      editor$.value.$el.addEventListener('trix-file-accept', handleFileAccept)
+      editor$.value.$el.addEventListener('trix-attachment-add', handleAttachmentAdd)
     })
 
     onBeforeUnmount(() => {
-      editor$.value?.removeEventListener('trix-change', handleChange)
-      editor$.value?.removeEventListener('trix-blur', handleBlur)
-      editor$.value?.removeEventListener('trix-file-accept', handleFileAccept)
-      editor$.value?.removeEventListener('trix-attachment-add', handleAttachmentAdd)
+      editor$.value?.$el.removeEventListener('trix-change', handleChange)
+      editor$.value?.$el.removeEventListener('trix-blur', handleBlur)
+      editor$.value?.$el.removeEventListener('trix-file-accept', handleFileAccept)
+      editor$.value?.$el.removeEventListener('trix-attachment-add', handleAttachmentAdd)
     })
 
     return {

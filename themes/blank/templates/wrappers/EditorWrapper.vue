@@ -1,7 +1,7 @@
 <template>
   <div :class="classes.container">
     <input :id="`editor-input-${id}`" :value="value" type="hidden" />
-    <component :is="editorComponent" />
+    <component :is="editorComponent" ref="editor$" />
   </div>
 </template>
 
