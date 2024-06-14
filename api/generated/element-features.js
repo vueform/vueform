@@ -4897,7 +4897,7 @@ export default {
     "base": {
       "computed": {
         "parent": {
-          "public": false,
+          "public": true,
           "types": [
             "VNode"
           ],
@@ -4950,7 +4950,7 @@ export default {
           "description": "Whether the element is just a container of children but not nested on data level (eg. [`GroupElement`](group-element))"
         },
         "parent": {
-          "public": false,
+          "public": true,
           "types": [
             "VNode"
           ],
@@ -4975,7 +4975,7 @@ export default {
           "description": "Whether the element is just a container of children but not nested on data level (eg. [`GroupElement`](group-element))"
         },
         "parent": {
-          "public": false,
+          "public": true,
           "types": [
             "VNode"
           ],

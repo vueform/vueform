@@ -810,7 +810,7 @@ module.exports = {
           'VNode',
         ],
         description: 'The parent component of the element.',
-        private: true,
+        private: false,
       },
       elementSlots: {
         types: [
@@ -2046,7 +2046,7 @@ module.exports = {
           'VNode',
         ],
         description: 'The parent component of the element.',
-        private: true,
+        private: false,
       },
       path: {
         types: [
@@ -3484,7 +3484,7 @@ module.exports = {
           'VNode',
         ],
         description: 'The parent component of the element.',
-        private: true,
+        private: false,
       },
       path: {
         types: [
@@ -4933,7 +4933,7 @@ module.exports = {
           'VNode',
         ],
         description: 'The parent component of the element.',
-        private: true,
+        private: false,
       },
       path: {
         types: [
@@ -6715,7 +6715,7 @@ module.exports = {
           'VNode',
         ],
         description: 'The parent component of the element.',
-        private: true,
+        private: false,
       },
       path: {
         types: [
@@ -8308,7 +8308,7 @@ module.exports = {
           'VNode',
         ],
         description: 'The parent component of the element.',
-        private: true,
+        private: false,
       },
       path: {
         types: [
@@ -9867,7 +9867,7 @@ module.exports = {
           'VNode',
         ],
         description: 'The parent component of the element.',
-        private: true,
+        private: false,
       },
       path: {
         types: [
@@ -11647,7 +11647,7 @@ module.exports = {
           'VNode',
         ],
         description: 'The parent component of the element.',
-        private: true,
+        private: false,
       },
       path: {
         types: [
@@ -13134,7 +13134,7 @@ module.exports = {
           'VNode',
         ],
         description: 'The parent component of the element.',
-        private: true,
+        private: false,
       },
       path: {
         types: [
@@ -14535,7 +14535,7 @@ module.exports = {
           'VNode',
         ],
         description: 'The parent component of the element.',
-        private: true,
+        private: false,
       },
       elementSlots: {
         types: [
@@ -15527,7 +15527,7 @@ module.exports = {
           'VNode',
         ],
         description: 'The parent component of the element.',
-        private: true,
+        private: false,
       },
       path: {
         types: [
@@ -16983,7 +16983,7 @@ module.exports = {
           'VNode',
         ],
         description: 'The parent component of the element.',
-        private: true,
+        private: false,
       },
       path: {
         types: [
@@ -18695,7 +18695,7 @@ module.exports = {
           'VNode',
         ],
         description: 'The parent component of the element.',
-        private: true,
+        private: false,
       },
       path: {
         types: [
@@ -20496,7 +20496,7 @@ module.exports = {
           'VNode',
         ],
         description: 'The parent component of the element.',
-        private: true,
+        private: false,
       },
       path: {
         types: [
@@ -22747,7 +22747,7 @@ module.exports = {
           'VNode',
         ],
         description: 'The parent component of the element.',
-        private: true,
+        private: false,
       },
       path: {
         types: [
@@ -24547,7 +24547,7 @@ module.exports = {
           'VNode',
         ],
         description: 'The parent component of the element.',
-        private: true,
+        private: false,
       },
       path: {
         types: [
@@ -26114,7 +26114,7 @@ module.exports = {
           'VNode',
         ],
         description: 'The parent component of the element.',
-        private: true,
+        private: false,
       },
       path: {
         types: [
@@ -27689,7 +27689,7 @@ module.exports = {
           'VNode',
         ],
         description: 'The parent component of the element.',
-        private: true,
+        private: false,
       },
       path: {
         types: [
@@ -29146,7 +29146,7 @@ module.exports = {
           'VNode',
         ],
         description: 'The parent component of the element.',
-        private: true,
+        private: false,
       },
       path: {
         types: [
@@ -31247,7 +31247,7 @@ module.exports = {
           'VNode',
         ],
         description: 'The parent component of the element.',
-        private: true,
+        private: false,
       },
       path: {
         types: [
@@ -33134,7 +33134,7 @@ module.exports = {
           'VNode',
         ],
         description: 'The parent component of the element.',
-        private: true,
+        private: false,
       },
       path: {
         types: [
@@ -34501,7 +34501,7 @@ module.exports = {
           'VNode',
         ],
         description: 'The parent component of the element.',
-        private: true,
+        private: false,
       },
       elementSlots: {
         types: [
@@ -35825,7 +35825,7 @@ module.exports = {
           'VNode',
         ],
         description: 'The parent component of the element.',
-        private: true,
+        private: false,
       },
       path: {
         types: [
@@ -37483,7 +37483,7 @@ module.exports = {
           'VNode',
         ],
         description: 'The parent component of the element.',
-        private: true,
+        private: false,
       },
       path: {
         types: [
@@ -39188,7 +39188,7 @@ module.exports = {
           'VNode',
         ],
         description: 'The parent component of the element.',
-        private: true,
+        private: false,
       },
       path: {
         types: [
@@ -41336,7 +41336,7 @@ module.exports = {
           'VNode',
         ],
         description: 'The parent component of the element.',
-        private: true,
+        private: false,
       },
       path: {
         types: [
@@ -43361,7 +43361,7 @@ module.exports = {
           'VNode',
         ],
         description: 'The parent component of the element.',
-        private: true,
+        private: false,
       },
       path: {
         types: [
@@ -45047,7 +45047,7 @@ module.exports = {
           'VNode',
         ],
         description: 'The parent component of the element.',
-        private: true,
+        private: false,
       },
       path: {
         types: [
@@ -46659,7 +46659,7 @@ module.exports = {
           'VNode',
         ],
         description: 'The parent component of the element.',
-        private: true,
+        private: false,
       },
       path: {
         types: [

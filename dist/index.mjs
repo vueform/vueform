@@ -8,6 +8,39 @@ import { ref, toRefs, computed, watch, getCurrentInstance, provide, onBeforeMoun
 import axios from 'axios';
 import moment from 'moment';
 
+function asyncGeneratorStep(n, t, e, r, o, a, c) {
+  try {
+    var i = n[a](c),
+      u = i.value;
+  } catch (n) {
+    return void e(n);
+  }
+  i.done ? t(u) : Promise.resolve(u).then(r, o);
+}
+function _asyncToGenerator(n) {
+  return function () {
+    var t = this,
+      e = arguments;
+    return new Promise(function (r, o) {
+      var a = n.apply(t, e);
+      function _next(n) {
+        asyncGeneratorStep(a, r, o, _next, _throw, "next", n);
+      }
+      function _throw(n) {
+        asyncGeneratorStep(a, r, o, _next, _throw, "throw", n);
+      }
+      _next(void 0);
+    });
+  };
+}
+function _defineProperty$2(e, r, t) {
+  return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, {
+    value: t,
+    enumerable: !0,
+    configurable: !0,
+    writable: !0
+  }) : e[r] = t, e;
+}
 function ownKeys$1(e, r) {
   var t = Object.keys(e);
   if (Object.getOwnPropertySymbols) {
@@ -42,50 +75,6 @@ function _toPrimitive(t, r) {
 function _toPropertyKey(t) {
   var i = _toPrimitive(t, "string");
   return "symbol" == typeof i ? i : i + "";
-}
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
-  try {
-    var info = gen[key](arg);
-    var value = info.value;
-  } catch (error) {
-    reject(error);
-    return;
-  }
-  if (info.done) {
-    resolve(value);
-  } else {
-    Promise.resolve(value).then(_next, _throw);
-  }
-}
-function _asyncToGenerator(fn) {
-  return function () {
-    var self = this,
-      args = arguments;
-    return new Promise(function (resolve, reject) {
-      var gen = fn.apply(self, args);
-      function _next(value) {
-        asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);
-      }
-      function _throw(err) {
-        asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);
-      }
-      _next(undefined);
-    });
-  };
-}
-function _defineProperty$2(obj, key, value) {
-  key = _toPropertyKey(key);
-  if (key in obj) {
-    Object.defineProperty(obj, key, {
-      value: value,
-      enumerable: true,
-      configurable: true,
-      writable: true
-    });
-  } else {
-    obj[key] = value;
-  }
-  return obj;
 }
 
 var commonjsGlobal = typeof globalThis !== 'undefined' ? globalThis : typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
@@ -22060,13 +22049,16 @@ var EditorWrapper = {
       return method.value || form$.value.$vueform.config.endpoints.attachment.method;
     });
     var editorComponent = computed(() => {
-      return h('trix-editor', _objectSpread2$1(_objectSpread2$1({}, attrs.value), {}, {
-        placeholder: placeholder.value,
-        disabled: disabled.value,
-        id: id.value,
-        input: "editor-input-".concat(id.value),
-        ref: 'editor$'
-      }));
+      return {
+        render() {
+          return h('trix-editor', _objectSpread2$1(_objectSpread2$1({}, attrs.value), {}, {
+            placeholder: placeholder.value,
+            disabled: disabled.value,
+            id: id.value,
+            input: "editor-input-".concat(id.value)
+          }));
+        }
+      };
     });
 
     // =============== METHODS ==============
@@ -22212,17 +22204,17 @@ var EditorWrapper = {
       if (disabled.value) {
         editor$.value.contentEditable = false;
       }
-      editor$.value.addEventListener('trix-change', handleChange);
-      editor$.value.addEventListener('trix-blur', handleBlur);
-      editor$.value.addEventListener('trix-file-accept', handleFileAccept);
-      editor$.value.addEventListener('trix-attachment-add', handleAttachmentAdd);
+      editor$.value.$el.addEventListener('trix-change', handleChange);
+      editor$.value.$el.addEventListener('trix-blur', handleBlur);
+      editor$.value.$el.addEventListener('trix-file-accept', handleFileAccept);
+      editor$.value.$el.addEventListener('trix-attachment-add', handleAttachmentAdd);
     });
     onBeforeUnmount(() => {
       var _editor$$value, _editor$$value2, _editor$$value3, _editor$$value4;
-      (_editor$$value = editor$.value) === null || _editor$$value === void 0 || _editor$$value.removeEventListener('trix-change', handleChange);
-      (_editor$$value2 = editor$.value) === null || _editor$$value2 === void 0 || _editor$$value2.removeEventListener('trix-blur', handleBlur);
-      (_editor$$value3 = editor$.value) === null || _editor$$value3 === void 0 || _editor$$value3.removeEventListener('trix-file-accept', handleFileAccept);
-      (_editor$$value4 = editor$.value) === null || _editor$$value4 === void 0 || _editor$$value4.removeEventListener('trix-attachment-add', handleAttachmentAdd);
+      (_editor$$value = editor$.value) === null || _editor$$value === void 0 || _editor$$value.$el.removeEventListener('trix-change', handleChange);
+      (_editor$$value2 = editor$.value) === null || _editor$$value2 === void 0 || _editor$$value2.$el.removeEventListener('trix-blur', handleBlur);
+      (_editor$$value3 = editor$.value) === null || _editor$$value3 === void 0 || _editor$$value3.$el.removeEventListener('trix-file-accept', handleFileAccept);
+      (_editor$$value4 = editor$.value) === null || _editor$$value4 === void 0 || _editor$$value4.$el.removeEventListener('trix-attachment-add', handleAttachmentAdd);
     });
     return {
       el$,
@@ -23817,7 +23809,6 @@ var base$O = function base(props, context, dependencies) {
    * The parent component of the element.
    *
    * @type {VNode}
-   * @private
    */
   var parent = computed(() => {
     var getParent = (parent, getParent) => {
@@ -24489,7 +24480,7 @@ var group$5 = function group(props, context, dependencies) {
       // Filter out children values that parent has but not among group elements
       var childKeys = children$Array.value.reduce((all, child$) => {
         /* istanbul ignore else */
-        if (child$.isStatic || !child$) {
+        if (!child$ || child$.isStatic) {
           return all;
         }
         var keys = [];
@@ -35645,7 +35636,8 @@ var ObjectElement = {
       private: true
     }
   },
-  setup(props, context) {
+  setup(props, ctx) {
+    var context = _objectSpread2$1({}, ctx);
     context.features = [base$19, base$18, base$V, base$O, base$U, object$5, base$1c, object$7, object$2, object$6, base$$, object, base$12, object$8, object$3, base$Z, base$Y, base$1a, base$_, base$X, object$1, base$R, object$4, base$T];
     context.slots = ['label', 'info', 'description', 'before', 'between', 'after'];
     return _objectSpread2$1({}, base$N(props, context));
@@ -38221,7 +38213,7 @@ var base$a = function base(props, context, dependencies) {
     }
     if (option.n === undefined) {
       el$.value.clear();
-    } else {
+    } else if (maskPluginInstalled.value) {
       var valueMatchesMask = option.m.map(m => "+".concat(m[0])).find(m => {
         return value.value.startsWith(m);
       });
@@ -40040,10 +40032,10 @@ var base$3 = function base(props, context, dependencies) {
   // =============== HOOKS ================
 
   onMounted(() => {
-    input.value.editor$.addEventListener('focus', () => {
+    input.value.editor$.$el.addEventListener('focus', () => {
       focused.value = true;
     });
-    input.value.editor$.addEventListener('blur', () => {
+    input.value.editor$.$el.addEventListener('blur', () => {
       focused.value = false;
     });
   });
