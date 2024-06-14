@@ -65,6 +65,7 @@ module.exports = [
 
   'path',
   'dataPath',
+  'parent',
 
   'children$',
 
