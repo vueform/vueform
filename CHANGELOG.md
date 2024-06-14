@@ -1,5 +1,16 @@
 [//]: # (Don't use <tags>)
 
+## v1.9.10
+
+> `2024-06-14`
+
+### 🐞 Bug Fixes
+- Tailwind `preflight: false` fix #247
+- Text overflow with clear in select, fixes #221
+- ButtonLabel as function, fixes #258
+- Editor rendering in Vue 2, fixes #173
+- Phone error thrown when not using masks fix
+
 ## v1.9.9
 
 > `2024-05-14`

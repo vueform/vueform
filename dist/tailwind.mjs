@@ -1,5 +1,5 @@
 /*!
- * Vueform v1.9.9 (https://github.com/vueform/vueform)
+ * Vueform v1.9.10 (https://github.com/vueform/vueform)
  * Copyright (c) 2024 Adam Berecz <adam@vueform.com>
  * Licensed under the MIT License
  */
@@ -1246,7 +1246,7 @@ function render$C(_ctx, _cache, $props, $setup, $data, $options) {
             ..._ctx.button,
             ..._ctx.aria,
           }, {
-                      innerHTML: _ctx.buttonLabel,
+                      innerHTML: _ctx.resolvedButtonLabel,
                       tabindex: _ctx.isDisabled || _ctx.isLoading ? -1 : undefined,
                       class: _ctx.classes.button,
                       disabled: _ctx.isDisabled,
@@ -1291,7 +1291,7 @@ function render$C(_ctx, _cache, $props, $setup, $data, $options) {
             ..._ctx.button,
             ..._ctx.aria,
           }, {
-                      innerHTML: _ctx.buttonLabel,
+                      innerHTML: _ctx.resolvedButtonLabel,
                       tabindex: _ctx.isDisabled || _ctx.isLoading ? -1 : undefined,
                       class: _ctx.classes.button,
                       onClick: _cache[4] || (_cache[4] = (...args) => (_ctx.handleClick && _ctx.handleClick(...args)))
@@ -13844,9 +13844,9 @@ var classes = {
     inputWrapper: '',
     select: _objectSpread2(_objectSpread2({}, select), {}, {
       multipleLabel: 'flex items-center h-full absolute left-0 top-0 pointer-events-none bg-transparent rtl:left-auto rtl:right-0 rtl:pl-0',
-      multipleLabel_sm: 'form-py-input-sm form-pl-input-sm form-pr-select-no-clear-sm form-radius-input-sm form-text-sm form-min-h-input-height-inner-sm with-floating:form-p-input-floating-sm rtl:form-pr-input-sm rtl:form-pl-select-no-clear-sm',
-      multipleLabel_md: 'form-py-input form-pl-input form-pr-select-no-clear form-radius-input form-text form-min-h-input-height-inner with-floating:form-p-input-floating rtl:form-pr-input rtl:form-pl-select-no-clear',
-      multipleLabel_lg: 'form-py-input-lg form-pl-input-lg form-pr-select-no-clear-lg form-radius-input-lg form-text-lg form-min-h-input-height-inner-lg with-floating:form-p-input-floating-lg rtl:form-pr-input-lg rtl:form-pl-select-no-clear-lg',
+      multipleLabel_sm: 'form-py-input-sm form-pl-input-sm form-radius-input-sm form-text-sm form-min-h-input-height-inner-sm with-floating:form-p-input-floating-sm rtl:form-pr-input-sm',
+      multipleLabel_md: 'form-py-input form-pl-input form-radius-input form-text form-min-h-input-height-inner with-floating:form-p-input-floating rtl:form-pr-input',
+      multipleLabel_lg: 'form-py-input-lg form-pl-input-lg form-radius-input-lg form-text-lg form-min-h-input-height-inner-lg with-floating:form-p-input-floating-lg rtl:form-pr-input-lg',
       multipleLabel_caretClear_sm: 'form-pl-input-sm form-pr-select-sm with-floating:form-p-input-floating-sm rtl:form-pr-input-sm rtl:form-pl-select-sm',
       multipleLabel_caretClear_md: 'form-pl-input form-pr-select with-floating:form-p-input-floating rtl:form-pr-input rtl:form-pl-select',
       multipleLabel_caretClear_lg: 'form-pl-input-sm form-pr-select-sm with-floating:form-p-input-floating-sm rtl:form-pr-input-sm rtl:form-pl-select-sm',
@@ -14002,9 +14002,9 @@ var classes = {
     inputCaret_lg: 'form-mr-input-lg rtl:mr-0 rtl:form-ml-input-lg',
     select: _objectSpread2(_objectSpread2({}, select), {}, {
       singleLabel: 'flex items-center h-full max-w-full absolute left-0 top-0 pointer-events-none bg-transparent box-border rtl:left-auto rtl:right-0 rtl:pl-0',
-      singleLabel_sm: 'form-py-input-sm form-pl-input-sm form-pr-select-no-clear-sm form-radius-input-sm form-text-sm form-min-h-input-height-inner-sm with-floating:form-p-input-floating-sm rtl:form-pr-input-sm rtl:form-pl-select-no-clear-sm',
-      singleLabel_md: 'form-py-input form-pl-input form-pr-select-no-clear form-radius-input form-text form-min-h-input-height-inner with-floating:form-p-input-floating rtl:form-pr-input rtl:form-pl-select-no-clear',
-      singleLabel_lg: 'form-py-input-lg form-pl-input-lg form-pr-select-no-clear-lg form-radius-input-lg form-text-lg form-min-h-input-height-inner-lg with-floating:form-p-input-floating-lg rtl:form-pr-input-lg rtl:form-pl-select-no-clear-lg',
+      singleLabel_sm: 'form-py-input-sm form-pl-input-sm form-radius-input-sm form-text-sm form-min-h-input-height-inner-sm with-floating:form-p-input-floating-sm rtl:form-pr-input-sm',
+      singleLabel_md: 'form-py-input form-pl-input form-radius-input form-text form-min-h-input-height-inner with-floating:form-p-input-floating rtl:form-pr-input',
+      singleLabel_lg: 'form-py-input-lg form-pl-input-lg form-radius-input-lg form-text-lg form-min-h-input-height-inner-lg with-floating:form-p-input-floating-lg rtl:form-pr-input-lg',
       singleLabel_caretClear_sm: 'form-pl-input-sm form-pr-select-sm with-floating:form-p-input-floating-sm rtl:form-pr-input-sm rtl:form-pl-select-sm',
       singleLabel_caretClear_md: 'form-pl-input form-pr-select with-floating:form-p-input-floating rtl:form-pr-input rtl:form-pl-select',
       singleLabel_caretClear_lg: 'form-pl-input-sm form-pr-select-sm with-floating:form-p-input-floating-sm rtl:form-pr-input-sm rtl:form-pl-select-sm',

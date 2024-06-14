@@ -1,5 +1,5 @@
 /*!
- * Vueform v1.9.9 (https://github.com/vueform/vueform)
+ * Vueform v1.9.10 (https://github.com/vueform/vueform)
  * Copyright (c) 2024 Adam Berecz <adam@vueform.com>
  * Licensed under the MIT License
  */
@@ -4485,7 +4485,9 @@ var __vue_render__$C = function () {
                                     : undefined,
                                 disabled: _vm.isDisabled,
                               },
-                              domProps: { innerHTML: _vm._s(_vm.buttonLabel) },
+                              domProps: {
+                                innerHTML: _vm._s(_vm.resolvedButtonLabel),
+                              },
                               on: {
                                 click: function ($event) {
                                   $event.preventDefault();
@@ -4572,7 +4574,9 @@ var __vue_render__$C = function () {
                                     ? -1
                                     : undefined,
                               },
-                              domProps: { innerHTML: _vm._s(_vm.buttonLabel) },
+                              domProps: {
+                                innerHTML: _vm._s(_vm.resolvedButtonLabel),
+                              },
                               on: { click: _vm.handleClick },
                             },
                             "a",

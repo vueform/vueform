@@ -1,5 +1,5 @@
 /*!
- * Vueform v1.9.9 (https://github.com/vueform/vueform)
+ * Vueform v1.9.10 (https://github.com/vueform/vueform)
  * Copyright (c) 2024 Adam Berecz <adam@vueform.com>
  * Licensed under the MIT License
  */
@@ -1972,7 +1972,7 @@ function render$C(_ctx, _cache, $props, $setup, $data, $options) {
             ..._ctx.button,
             ..._ctx.aria,
           }, {
-                      innerHTML: _ctx.buttonLabel,
+                      innerHTML: _ctx.resolvedButtonLabel,
                       tabindex: _ctx.isDisabled || _ctx.isLoading ? -1 : undefined,
                       class: _ctx.classes.button,
                       disabled: _ctx.isDisabled,
@@ -2017,7 +2017,7 @@ function render$C(_ctx, _cache, $props, $setup, $data, $options) {
             ..._ctx.button,
             ..._ctx.aria,
           }, {
-                      innerHTML: _ctx.buttonLabel,
+                      innerHTML: _ctx.resolvedButtonLabel,
                       tabindex: _ctx.isDisabled || _ctx.isLoading ? -1 : undefined,
                       class: _ctx.classes.button,
                       onClick: _cache[4] || (_cache[4] = (...args) => (_ctx.handleClick && _ctx.handleClick(...args)))

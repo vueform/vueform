@@ -1,5 +1,5 @@
 /*!
- * Vueform v1.9.9 (https://github.com/vueform/vueform)
+ * Vueform v1.9.10 (https://github.com/vueform/vueform)
  * Copyright (c) 2024 Adam Berecz <adam@vueform.com>
  * Licensed under the MIT License
  */
@@ -10028,7 +10028,7 @@ function shouldApplyPlugin (name, plugin) {
 }
 
 var name = "@vueform/vueform";
-var version$1 = "1.9.9";
+var version$1 = "1.9.10";
 var description = "Open-Source Form Framework for Vue";
 var homepage = "https://vueform.com";
 var license = "MIT";
@@ -10175,16 +10175,16 @@ var devDependencies = {
 };
 var dependencies = {
 	"@popperjs/core": "^2.11.8",
-	"@vueform/country-phones": "^1.0.0",
-	"@vueform/multiselect": "^2.6.3",
-	"@vueform/slider": "^2.1.7",
-	"@vueform/toggle": "^2.1.3",
-	axios: "^1.5.0",
+	"@vueform/country-phones": "^1.0.3",
+	"@vueform/multiselect": "^2.6.8",
+	"@vueform/slider": "^2.1.10",
+	"@vueform/toggle": "^2.1.4",
+	axios: "^1.7.2",
 	color: "^4.2.3",
 	lodash: "^4.17.21",
 	"mini-svg-data-uri": "^1.4.4",
-	moment: "^2.29.4",
-	nouislider: "^15.7.1",
+	moment: "^2.30.1",
+	nouislider: "^15.8.0",
 	sass: "^1.66.1",
 	trix: "^2.1.1",
 	wnumb: "^1.2.0"
@@ -22633,6 +22633,9 @@ var base$W = function base(props, context, dependencies) {
     }
     return button;
   });
+  var resolvedButtonLabel = computed(() => {
+    return typeof buttonLabel.value === 'function' ? buttonLabel.value(el$.value) : buttonLabel.value;
+  });
 
   // =============== METHODS ==============
 
@@ -22662,6 +22665,7 @@ var base$W = function base(props, context, dependencies) {
   return {
     isButtonLabelComponent,
     button,
+    resolvedButtonLabel,
     isLoading,
     handleClick
   };
