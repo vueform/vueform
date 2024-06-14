@@ -78,6 +78,10 @@ const base = function(props, context, dependencies)
     
     return button
   })
+
+  const resolvedButtonLabel = computed(() => {
+    return typeof buttonLabel.value === 'function' ? buttonLabel.value(el$.value) : buttonLabel.value
+  })
   
   // =============== METHODS ==============
   
@@ -112,6 +116,7 @@ const base = function(props, context, dependencies)
   return {
     isButtonLabelComponent,
     button,
+    resolvedButtonLabel,
     isLoading,
     handleClick,
   }

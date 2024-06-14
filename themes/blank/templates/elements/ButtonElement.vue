@@ -25,7 +25,7 @@
             ...button,
             ...aria,
           }"
-          v-html="buttonLabel"
+          v-html="resolvedButtonLabel"
           :tabindex="isDisabled || isLoading ? -1 : undefined"
           :class="classes.button"
           :disabled="isDisabled"
@@ -69,7 +69,7 @@
             ...button,
             ...aria,
           }"
-          v-html="buttonLabel"
+          v-html="resolvedButtonLabel"
           :tabindex="isDisabled || isLoading ? -1 : undefined"
           :class="classes.button"
           @click="handleClick"
