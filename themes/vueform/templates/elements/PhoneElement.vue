@@ -27,6 +27,10 @@
           input_focused: '',
           input_success: '',
           input_danger: '',
+          optionsWrapper: 'vf-phone-options-wrapper',
+          optionsWrapper_sm: 'vf-phone-options-wrapper-sm',
+          optionsWrapper_md: '',
+          optionsWrapper_lg: 'vf-phone-options-wrapper-lg',
           optionWrapper: '',
           option: 'vf-phone-option',
           option_active: 'vf-phone-option-active',
@@ -35,6 +39,10 @@
           country: 'vf-phone-country',
           number: 'vf-phone-number',
           placeholder: 'vf-phone-flag vf-phone-flag-placeholder',
+          $optionsWrapper: (classes, { Size }) => ([
+            classes.optionsWrapper,
+            classes[`optionsWrapper_${Size}`],
+          ]),
           $option: (classes) => (active) => ([
             classes.option,
             active ? classes.option_active : null,
@@ -78,9 +86,23 @@
     background: var(--vf-bg-selected);
   }
 
+  .vf-phone-options-wrapper {
+    display: flex;
+    align-items: center;
+  }
+
   .vf-phone-option-wrapper {
     display: flex;
     align-items: center;
+    margin-left: var(--vf-px-input);
+
+    &.vf-phone-option-wrapper-sm {
+      margin-left: var(--vf-px-input-sm);
+    }
+
+    &.vf-phone-option-wrapper-lg {
+      margin-left: var(--vf-px-input-lg);
+    }
   }
 
   .vf-phone-flag {
@@ -109,6 +131,21 @@
   }
 
   [dir="rtl"] {
+    .vf-addon-options-wrapper {
+      margin-left: 0;
+      margin-right: var(--vf-px-input);
+
+      &.vf-addon-options-wrapper-sm {
+        margin-left: 0;
+        margin-right: var(--vf-px-input-sm);
+      }
+
+      &.vf-addon-options-wrapper-lg {
+        margin-left: 0;
+        margin-right: var(--vf-px-input-lg);
+      }
+    }
+
      .vf-phone-country {
       margin-left: 0;
       margin-right: 0.75rem;

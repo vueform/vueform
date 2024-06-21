@@ -2,14 +2,16 @@
   <component :is="elementLayout" ref="container">
     <template #element>
       <div :class="classes.inputContainer">
-        <ElementAddonOptions
-          :options="addonOptions"
-          :placeholder="addonPlaceholder"
-          @select="handleOptionSelect"
-          @open="handleOpen"
-          @close="handleClose"
-          ref="options$"
-        />
+        <div :class="classes.optionsWrapper">
+          <ElementAddonOptions
+            :options="addonOptions"
+            :placeholder="addonPlaceholder"
+            @select="handleOptionSelect"
+            @open="handleOpen"
+            @close="handleClose"
+            ref="options$"
+          />
+        </div>
         <ElementLabelFloating v-if="hasFloating && !empty" :visible="!empty" />
         <ElementLoader v-if="isLoading"/>
         <input
