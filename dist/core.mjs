@@ -18746,6 +18746,7 @@ var ElementAddonOptions = {
       } else {
         fullHeight.value = false;
         top.value = selector.value.getBoundingClientRect().top;
+        console.log(selector.value, top.value);
         if (dropdown.value.getBoundingClientRect().height > window.innerHeight - selector.value.getBoundingClientRect().top - 16) {
           bottom.value = 16;
         } else {
@@ -38869,6 +38870,145 @@ var SelectElement = {
   }
 };
 
+function useSignature (props, context, dependencies) {
+  toRefs(props);
+
+  // =============== PRIVATE ==============
+
+  // ================ DATA ================
+
+  var type$ = ref(null);
+  var addonOptions = ref([{
+    label: 'Type',
+    value: 'type',
+    index: 0
+  }, {
+    label: 'Draw',
+    value: 'draw',
+    index: 1
+  }, {
+    label: 'Upload',
+    value: 'upload',
+    index: 2
+  }]);
+  var addonPlaceholder = ref();
+
+  // ============== COMPUTED ==============
+
+  // =============== METHODS ==============
+
+  var handleOptionSelect = () => {};
+  var handleOpen = () => {};
+  var handleClose = () => {};
+
+  // ============== WATCHERS ==============
+
+  // =============== HOOKS ================
+
+  onMounted(() => {
+    type$.value.selected = addonOptions.value[0];
+  });
+  return {
+    type$,
+    addonOptions,
+    addonPlaceholder,
+    handleOptionSelect,
+    handleOpen,
+    handleClose
+  };
+}
+
+var SignatureElement = {
+  name: 'SignatureElement',
+  mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
+  emits: ['change', 'blur', 'keydown', 'keyup', 'keypress', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
+  props: {
+    type: {
+      required: false,
+      type: [String],
+      default: 'text',
+      private: true
+    },
+    id: {
+      required: false,
+      type: [String],
+      default: null
+    },
+    default: {
+      required: false,
+      type: [String, Number, Object],
+      localized: true,
+      default: null
+    },
+    debounce: {
+      required: false,
+      type: [Number],
+      default: null
+    },
+    disabled: {
+      required: false,
+      type: [Boolean],
+      default: false
+    },
+    readonly: {
+      required: false,
+      type: [Boolean],
+      default: false
+    },
+    width: {
+      required: false,
+      type: [Number, String],
+      default: 300
+    },
+    height: {
+      required: false,
+      type: [Number],
+      default: 200
+    },
+    placeholder: {
+      required: false,
+      type: [String, Object],
+      localized: true,
+      default: null
+    },
+    line: {
+      required: false,
+      type: [Boolean],
+      default: true
+    },
+    modes: {
+      required: false,
+      type: [Array],
+      default: () => ['draw', 'type', 'upload']
+    },
+    signatures: {
+      required: false,
+      type: [Array],
+      default: () => []
+    },
+    colors: {
+      required: false,
+      type: [Array],
+      default: () => ['#000000', '#2558b2', '#f22f30']
+    },
+    fonts: {
+      required: false,
+      type: [Array],
+      default: () => ['Caveat, cursive', '"La Belle Aurore", cursive', '"Dancing Script", cursive']
+    },
+    accept: {
+      required: false,
+      type: [Array],
+      default: () => ['jpg', 'png', 'svg']
+    }
+  },
+  setup(props, context) {
+    context.features = [base$19, base$18, base$V, base$M, base$O, base$S, base$K, base$U, base$1c, base$P, base$C, base$14, base$D, base$L, base$I, base$B, base$$, base$J, base$Z, base$Y, base$1a, base$_, base$X, base$s, base$R, base$F, base$T, base$m, base$t, useSignature];
+    context.slots = ['label', 'info', 'description', 'before', 'between', 'after', 'addon-before', 'addon-after'];
+    return _objectSpread2$1({}, base$N(props, context));
+  }
+};
+
 var base$7 = function base(props, context, dependencies) {
   var {
     lazy
@@ -40993,4 +41133,4 @@ var vueform = installer(undefined, {
   FormElements
 });
 
-export { ButtonElement, CaptchaElement, CheckboxElement, CheckboxgroupCheckbox, CheckboxgroupElement, DateElement, DatepickerWrapper, DatesElement, DragAndDrop, EditorElement, EditorWrapper, ElementAddon, ElementAddonOptions, ElementDescription, ElementError, ElementInfo, ElementLabel, ElementLabelFloating, ElementLayout, ElementLayoutInline, ElementLoader, ElementMessage, ElementText, FileElement, FilePreview, FormElements, FormErrors, FormLanguage, FormLanguages, FormMessages, FormStep, FormSteps, FormStepsControl, FormStepsControls, FormTab, FormTabs, GenericElement, GroupElement, HiddenElement, ListElement, LocationElement, MultifileElement, MultiselectElement, ObjectElement, PhoneElement, RadioElement, RadiogroupElement, RadiogroupRadio, SelectElement, SliderElement, StaticElement, TEditorElement, TTextElement, TTextareaElement, TagsElement, TextElement, TextareaElement, ToggleElement, Validator, VueformComponent as Vueform, VueformElement, accepted, active_url, after, after_or_equal, alpha, alpha_dash, alpha_num, array$2 as array, before, before_or_equal, between, boolean$1 as boolean, captcha$2 as captcha, completed, confirmed, date$4 as date, date_equals, date_format, vueform as default, defineConfig, defineElement, different, digits, digits_between, dimensions, distinct, element, email, exists, file$5 as file, filled, gt, gte, image, in_, in_array, installer, integer, ip, ipv4, ipv6, json, lt, lte, max, mimes, mimetypes, min$1 as min, not_in, not_regex, nullable, numeric, regex, required, same, size, string, timezone, unique, url, base$1a as useClasses, base$1b as useVueform, uuid, vueform };
+export { ButtonElement, CaptchaElement, CheckboxElement, CheckboxgroupCheckbox, CheckboxgroupElement, DateElement, DatepickerWrapper, DatesElement, DragAndDrop, EditorElement, EditorWrapper, ElementAddon, ElementAddonOptions, ElementDescription, ElementError, ElementInfo, ElementLabel, ElementLabelFloating, ElementLayout, ElementLayoutInline, ElementLoader, ElementMessage, ElementText, FileElement, FilePreview, FormElements, FormErrors, FormLanguage, FormLanguages, FormMessages, FormStep, FormSteps, FormStepsControl, FormStepsControls, FormTab, FormTabs, GenericElement, GroupElement, HiddenElement, ListElement, LocationElement, MultifileElement, MultiselectElement, ObjectElement, PhoneElement, RadioElement, RadiogroupElement, RadiogroupRadio, SelectElement, SignatureElement, SliderElement, StaticElement, TEditorElement, TTextElement, TTextareaElement, TagsElement, TextElement, TextareaElement, ToggleElement, Validator, VueformComponent as Vueform, VueformElement, accepted, active_url, after, after_or_equal, alpha, alpha_dash, alpha_num, array$2 as array, before, before_or_equal, between, boolean$1 as boolean, captcha$2 as captcha, completed, confirmed, date$4 as date, date_equals, date_format, vueform as default, defineConfig, defineElement, different, digits, digits_between, dimensions, distinct, element, email, exists, file$5 as file, filled, gt, gte, image, in_, in_array, installer, integer, ip, ipv4, ipv6, json, lt, lte, max, mimes, mimetypes, min$1 as min, not_in, not_regex, nullable, numeric, regex, required, same, size, string, timezone, unique, url, base$1a as useClasses, base$1b as useVueform, uuid, vueform };

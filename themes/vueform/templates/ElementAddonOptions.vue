@@ -37,20 +37,17 @@
   .vf-addon-options {
     display: flex;
     align-items: center;
-    margin-left: var(--vf-px-input);
     font-size: var(--vf-font-size);
     line-height: var(--vf-line-height);
     letter-spacing: var(--vf-letter-spacing);
 
     &.vf-addon-options-sm {
-      margin-left: var(--vf-px-input-sm);
       font-size: var(--vf-font-size-sm);
       line-height: var(--vf-line-height-sm);
       letter-spacing: var(--vf-letter-spacing-sm);
     }
 
     &.vf-addon-options-lg {
-      margin-left: var(--vf-px-input-lg);
       font-size: var(--vf-font-size-lg);
       line-height: var(--vf-line-height-lg);
       letter-spacing: var(--vf-letter-spacing-lg);
@@ -101,11 +98,10 @@
     border-color: var(--vf-border-color-input);
     box-shadow: var(--vf-shadow-dropdown);
     color: var(--vf-color-input);
-    position: absolute;
-    top: 1rem;
-    bottom: 1rem;
+    position: fixed;
     z-index: 1002;
     overflow-x: scroll;
+    max-height: calc(100vh - 2rem);
   }
 
   .vf-addon-options-option {
@@ -122,21 +118,6 @@
   }
 
   [dir="rtl"] {
-    .vf-addon-options {
-      margin-left: 0;
-      margin-right: var(--vf-px-input);
-
-      &.vf-addon-options-sm {
-        margin-left: 0;
-        margin-right: var(--vf-px-input-sm);
-      }
-
-      &.vf-addon-options-lg {
-        margin-left: 0;
-        margin-right: var(--vf-px-input-lg);
-      }
-    }
-
     .vf-addon-options-caret {
       margin-left: 0;
       margin-right: 0.5rem;

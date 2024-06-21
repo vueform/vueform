@@ -89,20 +89,20 @@
   .vf-phone-options-wrapper {
     display: flex;
     align-items: center;
+    margin-left: var(--vf-px-input);
+
+    &.vf-phone-options-wrapper-sm {
+      margin-left: var(--vf-px-input-sm);
+    }
+
+    &.vf-phone-options-wrapper-lg {
+      margin-left: var(--vf-px-input-lg);
+    }
   }
 
   .vf-phone-option-wrapper {
     display: flex;
     align-items: center;
-    margin-left: var(--vf-px-input);
-
-    &.vf-phone-option-wrapper-sm {
-      margin-left: var(--vf-px-input-sm);
-    }
-
-    &.vf-phone-option-wrapper-lg {
-      margin-left: var(--vf-px-input-lg);
-    }
   }
 
   .vf-phone-flag {
