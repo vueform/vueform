@@ -1,5 +1,5 @@
 /*!
- * Vueform v1.9.10 (https://github.com/vueform/vueform)
+ * Vueform v1.9.11 (https://github.com/vueform/vueform)
  * Copyright (c) 2024 Adam Berecz <adam@vueform.com>
  * Licensed under the MIT License
  */
@@ -25098,7 +25098,23 @@ var __vue_render__ = function () {
         domProps: { value: _vm.value },
       }),
       _vm._v(" "),
-      _c(_vm.editorComponent, { ref: "editor$", tag: "component" }),
+      _c(
+        "trix-editor",
+        _vm._b(
+          {
+            ref: "trix$",
+            on: {
+              "trix-change": _vm.handleChange,
+              "trix-blur": _vm.handleBlur,
+              "trix-file-accept": _vm.handleFileAccept,
+              "trix-attachment-add": _vm.handleAttachmentAdd,
+            },
+          },
+          "trix-editor",
+          _vm.options,
+          false
+        )
+      ),
     ],
     1
   )

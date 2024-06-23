@@ -1,5 +1,5 @@
 /*!
- * Vueform v1.9.10 (https://github.com/vueform/vueform)
+ * Vueform v1.9.11 (https://github.com/vueform/vueform)
  * Copyright (c) 2024 Adam Berecz <adam@vueform.com>
  * Licensed under the MIT License
  */
@@ -13091,6 +13091,8 @@ var script$1 = {
 const _hoisted_1 = ["id", "value"];
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
+  const _component_trix_editor = resolveComponent("trix-editor");
+
   return (openBlock(), createElementBlock("div", {
     class: normalizeClass(_ctx.classes.container)
   }, [
@@ -13099,7 +13101,13 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       value: _ctx.value,
       type: "hidden"
     }, null, 8 /* PROPS */, _hoisted_1),
-    (openBlock(), createBlock(resolveDynamicComponent(_ctx.editorComponent), { ref: "editor$" }, null, 512 /* NEED_PATCH */))
+    createVNode(_component_trix_editor, mergeProps(_ctx.options, {
+      onTrixChange: _ctx.handleChange,
+      onTrixBlur: _ctx.handleBlur,
+      onTrixFileAccept: _ctx.handleFileAccept,
+      onTrixAttachmentAdd: _ctx.handleAttachmentAdd,
+      ref: "trix$"
+    }), null, 16 /* FULL_PROPS */, ["onTrixChange", "onTrixBlur", "onTrixFileAccept", "onTrixAttachmentAdd"])
   ], 2 /* CLASS */))
 }
 

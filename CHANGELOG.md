@@ -1,5 +1,15 @@
 [//]: # (Don't use <tags>)
 
+## v1.9.11
+
+> `2024-06-23`
+
+### 🐞 Bug Fixes
+- Editor fix #173
+
+### 🎉 Feature
+- Korean translation (Thanks @tienipia 🙏)
+
 ## v1.9.10
 
 > `2024-06-14`

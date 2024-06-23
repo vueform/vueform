@@ -3875,9 +3875,10 @@ export declare class EditorWrapper implements DefineComponent {
   classes: object;
   Templates: object;
   template: object;
+  editor$: HTMLElement;
 
   // Data
-  editor$: HTMLElement;
+  trix$: HTMLElement;
 
   // Injects
   el$: VueformElement;
@@ -6203,7 +6204,6 @@ export declare class ListElement implements DefineComponent {
 
   //Slots
   $slots: {
-    'default': (slotProps: { index: number }) => VNode[];
     'label': VNode[];
     'info': VNode[];
     'description': VNode[];
