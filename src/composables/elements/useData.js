@@ -958,7 +958,7 @@ const editor = function(props, context, dependencies)
       value.value = val
       
       nextTick(() => {
-        input.value.update(val)
+        input.value?.update(val)
       })
     },
   })

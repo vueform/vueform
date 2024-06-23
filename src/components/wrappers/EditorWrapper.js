@@ -1,4 +1,4 @@
-import { ref, watch, onMounted, toRefs, computed, onBeforeUnmount, h } from 'vue'
+import { ref, watch, onMounted, toRefs, computed, onBeforeUnmount, h, nextTick, } from 'vue'
 import useElementComponent from './../../composables/useElementComponent'
 
 export default {
@@ -95,10 +95,21 @@ export default {
      * 
      * @type {HTMLElement}
      * @default null
+     * @private
      */
-    const editor$ = ref(null)
+    const trix$ = ref(null)
 
     // ============== COMPUTED ==============
+
+    /**
+     * The [`Trix`](https://github.com/basecamp/trix) instance.
+     * 
+     * @type {HTMLElement}
+     * @default null
+     */
+    const editor$ = computed(() => {
+      return trix$.value.$el || trix$.value
+    })
 
     const resolvedEndpoint = computed(() => {
       if (endpoint.value) {
@@ -122,17 +133,13 @@ export default {
       return method.value || form$.value.$vueform.config.endpoints.attachment.method
     })
 
-    const editorComponent = computed(() => {
+    const options = computed(() => {
       return {
-        render() {
-          return h('trix-editor', {
-            ...attrs.value,
-            placeholder: placeholder.value,
-            disabled: disabled.value,
-            id: id.value,
-            input: `editor-input-${id.value}`,
-          })
-        }
+        ...attrs.value,
+        placeholder: placeholder.value,
+        disabled: disabled.value,
+        id: id.value,
+        input: `editor-input-${id.value}`,
       }
     })
 
@@ -149,7 +156,17 @@ export default {
         val = String(val)
       }
 
-      editor$.value.editor.loadHTML(val)
+      if (val === null || val === undefined) {
+        val = ''
+      }
+
+      if (editor$.value.editor) {
+        editor$.value.editor.loadHTML(val)
+      } else {
+        setTimeout(() => {
+          editor$.value.editor?.loadHTML(val)
+        }, 0)
+      }
     }
 
     /**
@@ -280,26 +297,6 @@ export default {
       editor$.value.contentEditable = !val
     })
 
-    // ================ HOOKS ===============
-
-    onMounted(() => {
-      if (disabled.value) {
-        editor$.value.contentEditable = false
-      }
-
-      editor$.value.$el.addEventListener('trix-change', handleChange)
-      editor$.value.$el.addEventListener('trix-blur', handleBlur)
-      editor$.value.$el.addEventListener('trix-file-accept', handleFileAccept)
-      editor$.value.$el.addEventListener('trix-attachment-add', handleAttachmentAdd)
-    })
-
-    onBeforeUnmount(() => {
-      editor$.value?.$el.removeEventListener('trix-change', handleChange)
-      editor$.value?.$el.removeEventListener('trix-blur', handleBlur)
-      editor$.value?.$el.removeEventListener('trix-file-accept', handleFileAccept)
-      editor$.value?.$el.removeEventListener('trix-attachment-add', handleAttachmentAdd)
-    })
-
     return {
       el$,
       form$,
@@ -307,11 +304,12 @@ export default {
       View,
       classesInstance,
       resolvedEndpoint,
-      editorComponent,
+      options,
       theme,
       classes,
       Templates,
       template,
+      trix$,
       editor$,
       update,
       setOption,
