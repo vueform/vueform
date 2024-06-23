@@ -6203,6 +6203,7 @@ export declare class ListElement implements DefineComponent {
 
   //Slots
   $slots: {
+    'default': (slotProps: { index: number }) => VNode[];
     'label': VNode[];
     'info': VNode[];
     'description': VNode[];
