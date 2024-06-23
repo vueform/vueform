@@ -27,6 +27,15 @@ export default {
       },
       "phone": {
         "ariaLabel": "Select a country"
+      },
+      "signature": {
+        "type": "Type",
+        "draw": "Draw",
+        "upload": "Upload",
+        "font": "Select typeface",
+        "fontPlaceholder": "Your Name",
+        "placeholder": "Sign here",
+        "unsupportedFormat": "Unsupported file format. Accepted extenions are: :extensions"
       }
     },
     "steps": {

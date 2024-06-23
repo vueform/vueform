@@ -46,6 +46,7 @@ import PhoneElement from './elements/PhoneElement'
 import RadioElement from './elements/RadioElement'
 import RadiogroupElement from './elements/RadiogroupElement'
 import SelectElement from './elements/SelectElement'
+import SignatureElement from './elements/SignatureElement'
 import SliderElement from './elements/SliderElement'
 import StaticElement from './elements/StaticElement'
 import TagsElement from './elements/TagsElement'
@@ -108,6 +109,7 @@ export default {
   RadioElement,
   RadiogroupElement,
   SelectElement,
+  SignatureElement,
   SliderElement,
   StaticElement,
   TagsElement,
@@ -170,6 +172,7 @@ export {
   RadioElement,
   RadiogroupElement,
   SelectElement,
+  SignatureElement,
   SliderElement,
   StaticElement,
   TagsElement,

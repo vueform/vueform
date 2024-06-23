@@ -893,6 +893,9 @@ export default {
       classes[`inputCaret_${Size}`],
     ]),
   },
+  SignatureElement: {
+    container: '',
+  },
   SliderElement: {
     container: '',
     wrapper: '',
@@ -1292,15 +1295,21 @@ export default {
   ElementAddonOptions: {
     container: 'flex items-center',
     container_disabled: 'cursor-default opacity-50 pointer-events-none',
-    wrapper: 'flex items-center transition-all form-color-input hover:form-bg-selected focus:form-bg-selected outline-none rounded px-1 py-1 cursor-pointer',
+    wrapper: 'flex items-center transition-all form-color-input hover:form-bg-selected focus:form-bg-selected outline-none rounded cursor-pointer',
+    wrapper_default: 'px-1 py-1',
+    wrapper_relaxed: 'px-3 py-1.75',
     caret: 'mask-bg mask-form-caret form-bg-icon w-2.5 h-4 ml-2 rtl:ml-0 rtl:mr-2',
-    dropdown: 'form-bg-input form-shadow-dropdown form-border-width-dropdown border-solid form-border-color-input fixed z-[1002] overflow-x-scroll max-h-[calc(100vh-2rem)]',
+    dropdown: 'form-bg-input form-shadow-dropdown form-border-width-dropdown rounded border-solid form-border-color-input fixed z-[1002] overflow-x-scroll max-h-[calc(100vh-2rem)]',
     optionWrapper: '',
     option: 'flex items-center form-color-input cursor-pointer py-1.25 px-3 whitespace-nowrap',
     option_active: 'form-bg-selected',
     $container: (classes, { Size, el$ }) => ([
       classes.container,
       el$.isDisabled || el$.readonly ? classes.container_disabled : null,
+    ]),
+    $wrapper: (classes, { relaxed }) => ([
+      classes.wrapper,
+      relaxed ? classes.wrapper_relaxed : classes.wrapper_default,
     ]),
     $option: (classes, { selected, pointed }) => (option) => ([
       classes.option,

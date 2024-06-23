@@ -50,6 +50,7 @@ import RadiogroupElement from './../blank/templates/elements/RadiogroupElement.v
 import RadiogroupElement_blocks from './../blank/templates/elements/RadiogroupElement.vue'
 import RadiogroupElement_tabs from './../blank/templates/elements/RadiogroupElement.vue'
 import SelectElement from './../blank/templates/elements/SelectElement.vue'
+import SignatureElement from './../blank/templates/elements/SignatureElement.vue'
 import SliderElement from './../blank/templates/elements/SliderElement.vue'
 import StaticElement from './../blank/templates/elements/StaticElement.vue'
 import TagsElement from './../blank/templates/elements/TagsElement.vue'
@@ -127,6 +128,7 @@ const theme = {
     RadiogroupElement_tabs,
     RadiogroupElement_blocks,
     SelectElement,
+    SignatureElement,
     SliderElement,
     StaticElement,
     TagsElement,
@@ -206,6 +208,7 @@ export {
   RadiogroupElement_tabs,
   RadiogroupElement_blocks,
   SelectElement,
+  SignatureElement,
   SliderElement,
   StaticElement,
   TagsElement,

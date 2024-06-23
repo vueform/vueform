@@ -51,6 +51,7 @@ import RadiogroupElement from './templates/elements/RadiogroupElement.vue'
 import RadiogroupElement_blocks from './templates/elements/RadiogroupElement.vue'
 import RadiogroupElement_tabs from './templates/elements/RadiogroupElement.vue'
 import SelectElement from './templates/elements/SelectElement.vue'
+import SignatureElement from './templates/elements/SignatureElement.vue'
 import SliderElement from './templates/elements/SliderElement.vue'
 import StaticElement from './templates/elements/StaticElement.vue'
 import TagsElement from './templates/elements/TagsElement.vue'
@@ -123,6 +124,7 @@ export default {
     RadiogroupElement_tabs,
     RadiogroupElement_blocks,
     SelectElement,
+    SignatureElement,
     SliderElement,
     StaticElement,
     TagsElement,
