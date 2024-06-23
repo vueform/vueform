@@ -18,7 +18,7 @@ import location from './services/location/index'
 import condition from './services/condition/index'
 import i18n from './services/i18n/index'
 import columns from './services/columns/index'
-import { ref, markRaw } from 'vue'
+import { ref, markRaw, h } from 'vue'
 
 import baseConfig from './config'
 
@@ -362,6 +362,14 @@ export default function(config = baseConfig, components = {}, rules = {}) {
         case 3:
           if (minor < 3) {
             appOrVue.config.unwrapInjectedRef = true
+          }
+
+          if (!appOrVue.component('trix-editor')) {
+            appOrVue.component('trix-editor', {
+              render() {
+                return h('trix-editor')
+              }
+            })
           }
 
           appOrVue.config.globalProperties.$vueform = new Proxy($vueform, {
