@@ -17,10 +17,20 @@ export default {
       required: false,
       default: ''
     },
+    relaxed: {
+      type: [Boolean],
+      required: false,
+      default: false,
+    },
+    position: {
+      type: [String],
+      required: false,
+      default: 'over',
+    },
   },
   setup(props, context)
   {
-    const { options } = toRefs(props)
+    const { options, position } = toRefs(props)
 
     // ============ DEPENDENCIES ============
 
@@ -287,8 +297,16 @@ export default {
         bottom.value = 16
       } else {
         fullHeight.value = false
+
+        let selectorRect = selector.value.getBoundingClientRect()
+        let newTop = selectorRect.top
         
-        top.value = selector.value.getBoundingClientRect().top
+        if (position.value === 'bottom') {
+          newTop += selectorRect.height
+        } else if (position.value === 'top') {
+        }
+
+        top.value = newTop
 
         if (dropdown.value.getBoundingClientRect().height > window.innerHeight - selector.value.getBoundingClientRect().top - 16) {
           bottom.value = 16

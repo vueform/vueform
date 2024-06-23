@@ -14,6 +14,7 @@
           container_lg: 'vf-addon-options-lg',
           container_disabled: 'vf-addon-options-disabled',
           wrapper: 'vf-addon-options-wrapper',
+          wrapper_relaxed: 'vf-addon-options-wrapper-relaxed',
           caret: 'vf-addon-options-caret',
           dropdown: 'vf-addon-options-dropdown',
           option: 'vf-addon-options-option',
@@ -73,6 +74,10 @@
 
     &:hover, &:focus {
       background: var(--vf-bg-selected);
+    }
+
+    &.vf-addon-options-wrapper-relaxed {
+      padding: 6px 12px;
     }
   }
 
