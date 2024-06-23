@@ -148,7 +148,7 @@ const base = function(props, context, dependencies)
       fileUrl += '/'
     }
     
-    if (!fileUrl.match(/^http/) && !fileUrl.match(/^\//)) {
+    if (!fileUrl.match(/^(http|file)/) && !fileUrl.match(/^\//)) {
       fileUrl = '/' + fileUrl
     }
     
