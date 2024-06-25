@@ -5628,11 +5628,19 @@ module.exports = {
           "object"
         ],
         "description": "The component's template."
+      },
+      "editor$": {
+        "public": true,
+        "default": "null",
+        "types": [
+          "HTMLElement"
+        ],
+        "description": "The [`Trix`](https://github.com/basecamp/trix) instance."
       }
     },
     "data": {
-      "editor$": {
-        "public": true,
+      "trix$": {
+        "public": false,
         "default": "null",
         "types": [
           "HTMLElement"

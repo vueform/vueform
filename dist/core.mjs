@@ -1,10 +1,10 @@
 /*!
- * Vueform v1.9.10 (https://github.com/vueform/vueform)
+ * Vueform v1.9.12 (https://github.com/vueform/vueform)
  * Copyright (c) 2024 Adam Berecz <adam@vueform.com>
  * Licensed under the MIT License
  */
 
-import { ref, toRefs, computed, watch, getCurrentInstance, provide, onBeforeMount, onMounted, onBeforeUpdate, onUpdated, onBeforeUnmount, onUnmounted, markRaw, inject, nextTick, h, reactive } from 'vue';
+import { ref, toRefs, computed, watch, getCurrentInstance, provide, onBeforeMount, onMounted, onBeforeUpdate, onUpdated, onBeforeUnmount, onUnmounted, markRaw, h, inject, nextTick, reactive } from 'vue';
 import axios from 'axios';
 import moment from 'moment';
 
@@ -10028,7 +10028,7 @@ function shouldApplyPlugin (name, plugin) {
 }
 
 var name = "@vueform/vueform";
-var version$1 = "1.9.10";
+var version$1 = "1.9.12";
 var description = "Open-Source Form Framework for Vue";
 var homepage = "https://vueform.com";
 var license = "MIT";
@@ -14240,6 +14240,13 @@ function installer () {
         case 3:
           if (minor < 3) {
             appOrVue.config.unwrapInjectedRef = true;
+          }
+          if (!appOrVue.component('trix-editor')) {
+            appOrVue.component('trix-editor', {
+              render() {
+                return h('trix-editor');
+              }
+            });
           }
           appOrVue.config.globalProperties.$vueform = new Proxy($vueform, {
             get: (target, prop, receiver) => {
@@ -21911,11 +21918,21 @@ var EditorWrapper = {
      * 
      * @type {HTMLElement}
      * @default null
+     * @private
      */
-    var editor$ = ref(null);
+    var trix$ = ref(null);
 
     // ============== COMPUTED ==============
 
+    /**
+     * The [`Trix`](https://github.com/basecamp/trix) instance.
+     * 
+     * @type {HTMLElement}
+     * @default null
+     */
+    var editor$ = computed(() => {
+      return trix$.value.$el || trix$.value;
+    });
     var resolvedEndpoint = computed(() => {
       if (endpoint.value) {
         return typeof endpoint.value === 'function' ? endpoint.value : form$.value.$vueform.config.endpoints[endpoint.value] || endpoint.value;
@@ -21931,17 +21948,13 @@ var EditorWrapper = {
       }
       return method.value || form$.value.$vueform.config.endpoints.attachment.method;
     });
-    var editorComponent = computed(() => {
-      return {
-        render() {
-          return h('trix-editor', _objectSpread2$1(_objectSpread2$1({}, attrs.value), {}, {
-            placeholder: placeholder.value,
-            disabled: disabled.value,
-            id: id.value,
-            input: "editor-input-".concat(id.value)
-          }));
-        }
-      };
+    var options = computed(() => {
+      return _objectSpread2$1(_objectSpread2$1({}, attrs.value), {}, {
+        placeholder: placeholder.value,
+        disabled: disabled.value,
+        id: id.value,
+        input: "editor-input-".concat(id.value)
+      });
     });
 
     // =============== METHODS ==============
@@ -21956,7 +21969,17 @@ var EditorWrapper = {
       if (typeof val == 'number') {
         val = String(val);
       }
-      editor$.value.editor.loadHTML(val);
+      if (val === null || val === undefined) {
+        val = '';
+      }
+      if (editor$.value.editor) {
+        editor$.value.editor.loadHTML(val);
+      } else {
+        setTimeout(() => {
+          var _editor$$value$editor;
+          (_editor$$value$editor = editor$.value.editor) === null || _editor$$value$editor === void 0 || _editor$$value$editor.loadHTML(val);
+        }, 0);
+      }
     };
 
     /**
@@ -22080,25 +22103,6 @@ var EditorWrapper = {
     watch(disabled, val => {
       editor$.value.contentEditable = !val;
     });
-
-    // ================ HOOKS ===============
-
-    onMounted(() => {
-      if (disabled.value) {
-        editor$.value.contentEditable = false;
-      }
-      editor$.value.$el.addEventListener('trix-change', handleChange);
-      editor$.value.$el.addEventListener('trix-blur', handleBlur);
-      editor$.value.$el.addEventListener('trix-file-accept', handleFileAccept);
-      editor$.value.$el.addEventListener('trix-attachment-add', handleAttachmentAdd);
-    });
-    onBeforeUnmount(() => {
-      var _editor$$value, _editor$$value2, _editor$$value3, _editor$$value4;
-      (_editor$$value = editor$.value) === null || _editor$$value === void 0 || _editor$$value.$el.removeEventListener('trix-change', handleChange);
-      (_editor$$value2 = editor$.value) === null || _editor$$value2 === void 0 || _editor$$value2.$el.removeEventListener('trix-blur', handleBlur);
-      (_editor$$value3 = editor$.value) === null || _editor$$value3 === void 0 || _editor$$value3.$el.removeEventListener('trix-file-accept', handleFileAccept);
-      (_editor$$value4 = editor$.value) === null || _editor$$value4 === void 0 || _editor$$value4.$el.removeEventListener('trix-attachment-add', handleAttachmentAdd);
-    });
     return {
       el$,
       form$,
@@ -22106,11 +22110,12 @@ var EditorWrapper = {
       View,
       classesInstance,
       resolvedEndpoint,
-      editorComponent,
+      options,
       theme,
       classes,
       Templates,
       template,
+      trix$,
       editor$,
       update,
       setOption,
@@ -27792,7 +27797,8 @@ var editor = function editor(props, context, dependencies) {
     setValue: val => {
       value.value = val;
       nextTick(() => {
-        input.value.update(val);
+        var _input$value;
+        (_input$value = input.value) === null || _input$value === void 0 || _input$value.update(val);
       });
     }
   });
@@ -40058,10 +40064,10 @@ var base$3 = function base(props, context, dependencies) {
   // =============== HOOKS ================
 
   onMounted(() => {
-    input.value.editor$.$el.addEventListener('focus', () => {
+    input.value.editor$.addEventListener('focus', () => {
       focused.value = true;
     });
-    input.value.editor$.$el.addEventListener('blur', () => {
+    input.value.editor$.addEventListener('blur', () => {
       focused.value = false;
     });
   });

@@ -3875,9 +3875,10 @@ export declare class EditorWrapper implements DefineComponent {
   classes: object;
   Templates: object;
   template: object;
+  editor$: HTMLElement;
 
   // Data
-  editor$: HTMLElement;
+  trix$: HTMLElement;
 
   // Injects
   el$: VueformElement;
