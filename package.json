@@ -138,6 +138,7 @@
     "rollup-plugin-vue": "^6.0.0",
     "rollup-plugin-vue2": "npm:rollup-plugin-vue@^5.1.9",
     "sass-loader": "^7.1.0",
+    "signature_pad": "^5.0.2",
     "sortablejs": "^1.15.0",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.2",
     "vue": "3.3.13",

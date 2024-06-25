@@ -1,4 +1,5 @@
 import { computed, toRefs, ref, onMounted, watch, nextTick } from 'vue'
+import SignaturePad from 'signature_pad'
 
 export default function (props, context, dependencies)
 {
@@ -31,6 +32,7 @@ export default function (props, context, dependencies)
   const font$ = ref(null)
   const input$ = ref(null)
   const preview$ = ref(null)
+  const pad$ = ref(null)
   const file$ = ref(null)
   const upload$ = ref(null)
 
@@ -44,10 +46,14 @@ export default function (props, context, dependencies)
   const canvasWidth = ref(0)
   const canvasHeight = ref(0)
 
+  const pad = ref(null)
   const image = ref(null)
+  const created = ref(false)
+  const creating = ref(false)
+  const dragging = ref(false)
   const drawn = ref(false)
   const drawing = ref(false)
-  const dragging = ref(false)
+  const undos = ref([])
 
   // ============== COMPUTED ==============
 
@@ -65,7 +71,7 @@ export default function (props, context, dependencies)
     let div = document.createElement('div')
     
     return (('draggable' in div)
-        || /* istanbul ignore next: failsafe only, can not influence div from outside */ ('ondragstart' in div && 'ondrop' in div))
+        || ('ondragstart' in div && 'ondrop' in div))
       && 'FormData' in window
       && 'FileReader' in window
   })
@@ -95,23 +101,43 @@ export default function (props, context, dependencies)
   })
 
   const showInput = computed(() => {
-    return !uploaded.value && mode.value !== 'upload'
+    return !uploaded.value && mode.value === 'type'
   })
 
   const showPlaceholder = computed(() => {
-    return !text.value && mode.value !== 'upload'
+    return (!text.value && mode.value === 'type') ||
+           (!drawn.value && mode.value === 'draw')
+  })
+
+  const showUploadContainer = computed(() => {
+    return mode.value === 'upload'
   })
 
   const showUpload = computed(() => {
-    return mode.value === 'upload' && !drawn.value
+    return mode.value === 'upload' && !created.value
   })
 
   const showPreview = computed(() => {
-    return mode.value === 'upload' && drawn.value
+    return mode.value === 'upload' && created.value
+  })
+
+  const showPad = computed(() => {
+    return mode.value === 'draw'
+  })
+
+  const showUndos = computed(() => {
+    return mode.value === 'draw' && (undos.value.length || drawn.value)
   })
   
   const showColors = computed(() => {
-    return (mode.value === 'upload' && drawn.value) || text.value
+    return (
+      (mode.value === 'upload' && created.value) ||
+      mode.value === 'type' || mode.value === 'draw'
+    ) && !drawing.value
+  })
+  
+  const showModes = computed(() => {
+    return !drawing.value
   })
   
   const showFonts = computed(() => {
@@ -120,10 +146,11 @@ export default function (props, context, dependencies)
 
   const showClear = computed(() => {
     return (
-      (mode.value !== 'upload' && text.value) ||
-      (mode.value === 'upload' && drawn.value) ||
+      (mode.value === 'type' && text.value) ||
+      (mode.value === 'upload' && created.value) ||
+      (mode.value === 'draw' && drawn.value) ||
       uploaded.value
-    ) && !isDisabled.value && !readonly.value
+    ) && !isDisabled.value && !readonly.value && !drawing.value
   })
 
   const placeholderText = computed(() => {
@@ -132,6 +159,21 @@ export default function (props, context, dependencies)
 
   const fontText = computed(() => {
     return form$.value.translations.vueform.elements.signature.font
+  })
+
+  const padWidth = computed(() => {
+    return width.value * 2
+  })
+
+  const padHeight = computed(() => {
+    return height.value * 2
+  })
+
+  const padStyle = computed(() => {
+    return {
+      width: `${width.value}px`,
+      height: `${height.value}px`,
+    }
   })
 
   const wrapperStyle = computed(() => {
@@ -164,14 +206,16 @@ export default function (props, context, dependencies)
 
   // =============== METHODS ==============
 
-  const clearSignature = () => {
-    text.value = null
-    image.value = null
-    drawn.value = null
-    value.value = null
+  const drawingToImage = () => {
+    return new Promise((resolve, reject) => {
+      pad$.value.toBlob(function(blob) {
+        value.value = blob
+        resolve()
+      }, 'image/png')
+    })
   }
 
-  const createImage = () => {
+  const typingToImage = () => {
     return new Promise((resolve, reject) => {
       const canvas = document.createElement('canvas')
       const ctx = canvas.getContext('2d')
@@ -210,13 +254,13 @@ export default function (props, context, dependencies)
     })
   }
   
-  const imageToCanvas = () => {
+  const uploadToImage = () => {
     const canvas = preview$.value
     const ctx = canvas.getContext('2d')
     const img = new Image()
     img.src = URL.createObjectURL(image.value)
 
-    drawing.value = true
+    creating.value = true
 
     img.onload = function() {
       const maxWidth = upload$.value.getBoundingClientRect().width
@@ -272,10 +316,92 @@ export default function (props, context, dependencies)
       canvas.toBlob(function(blob) {
         value.value = blob
 
-        drawn.value = true
-        drawing.value = false
+        created.value = true
+        creating.value = false
       }, image.value.type)
     }
+  }
+
+  const initPad = () => {
+    if (pad.value || !pad$.value || modes.value.indexOf('draw') === -1) {
+      return
+    }
+
+    pad.value = new SignaturePad(pad$.value)
+
+    const ctx = pad$.value.getContext('2d')
+    ctx.setTransform(1, 0, 0, 1, 0, 0)
+    ctx.scale(2, 2)
+
+    setDrawColor()
+
+    pad.value.addEventListener('beginStroke', () => {
+      drawn.value = true
+      drawing.value = true
+      undos.value = []
+    })
+
+    pad.value.addEventListener('endStroke', () => {
+      drawing.value = false
+    })
+  }
+
+  const undo = () => {
+    if (!pad.value) {
+      return
+    }
+
+    var data = pad.value.toData()
+
+    if (!data.length) {
+      return
+    }
+
+    undos.value.push(data.pop())
+
+    pad.value.fromData(data)
+
+    if (!data.length) {
+      drawn.value = false
+    }
+  }
+
+  const redo = () => {
+    if (!pad.value || !undos.value.length) {
+      return
+    }
+
+    var data = pad.value.toData() || []
+
+    data.push(undos.value.pop())
+
+    pad.value.fromData(data)
+
+    drawn.value = true
+
+    setDrawColor()
+  }
+
+  const setDrawColor = () => {
+    const { r, g, b } = hexToRgb(color.value)
+    pad.value.penColor = `rgb(${r}, ${g}, ${b})`
+
+    if (drawn.value) {
+      pad.value.fromData(pad.value.toData().map(d => {
+        d.penColor = pad.value.penColor
+        return d
+      }))
+    }
+  }
+
+  const clearSignature = () => {
+    text.value = null
+    image.value = null
+    created.value = false
+    value.value = null
+    pad.value?.clear()
+    drawn.value = false
+    undos.value = []
   }
 
   const hexToRgb = (hex) => {
@@ -327,7 +453,11 @@ export default function (props, context, dependencies)
 
   const prepare = async () => {
     if (mode.value === 'type') {
-      await createImage()
+      await typingToImage()
+    }
+
+    if (mode.value === 'draw') {
+      await drawingToImage()
     }
   }
 
@@ -358,10 +488,10 @@ export default function (props, context, dependencies)
 
     if (checkFileExt(file, accept.value)) {
       image.value = file
-      imageToCanvas(image.value)
+      uploadToImage(image.value)
     } else {
       image.value = null
-      drawn.value = false
+      created.value = false
     }
 
     file$.value.value = ''
@@ -387,12 +517,12 @@ export default function (props, context, dependencies)
 
     if (!file) {
       image.value = null
-      drawn.value = false
+      created.value = false
       return
     }
     
     image.value = file
-    imageToCanvas(image.value)
+    uploadToImage(image.value)
   }
 
   // ============== WATCHERS ==============
@@ -404,13 +534,19 @@ export default function (props, context, dependencies)
   watch(mode, () => {
     clearSignature()
   })
+  
+  watch(modes, () => {
+    initPad()
+  })
 
   watch(color, () => {
-    if (mode.value !== 'upload' || !drawn.value || drawing.value) {
-      return
+    if (pad.value) {
+      setDrawColor()
     }
-
-    imageToCanvas()
+    
+    if (mode.value === 'upload' && created.value && !creating.value) {
+      uploadToImage()
+    }
   })
 
   // =============== HOOKS ================
@@ -421,8 +557,11 @@ export default function (props, context, dependencies)
       mode$.value.selected = resolvedModes.value[0]
     }
 
+    initPad()
+
     // Handling drag & drop
-    ['drag', 'dragstart', 'dragenter', 'dragleave', 'dragend'].forEach((event) => {
+    const evts = ['drag', 'dragstart', 'dragenter', 'dragleave', 'dragend']
+    evts.forEach((event) => {
       input.value.addEventListener(event, (e) => {
         e.preventDefault()
         e.stopPropagation()
@@ -471,6 +610,7 @@ export default function (props, context, dependencies)
     font$,
     input$,
     preview$,
+    pad$,
     file$,
     upload$,
     resolvedModes,
@@ -487,11 +627,11 @@ export default function (props, context, dependencies)
     input$,
     fontSize,
     handleClear,
-    createImage,
+    typingToImage,
     image,
     handleSelectClick,
     handleFileSelect,
-    drawn,
+    created,
     dragging,
     canDrop,
     clearStyle,
@@ -510,5 +650,18 @@ export default function (props, context, dependencies)
     showFonts,
     fontText,
     showClear,
+    pad,
+    drawing,
+    drawn,
+    undo,
+    redo,
+    undos,
+    padStyle,
+    padWidth,
+    padHeight,
+    showPad,
+    showUndos,
+    showModes,
+    showUploadContainer,
   }
 }

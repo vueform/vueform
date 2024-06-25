@@ -1,7 +1,7 @@
 <template>
   <component :is="elementLayout" ref="container">
     <template #element>
-      <div class="bg-gray-50 relative" ref="input" :style="wrapperStyle">
+      <div class="border border-gray-300 rounded-lg relative" ref="input" :style="wrapperStyle">
 
         <!-- Line -->
         <hr
@@ -13,7 +13,7 @@
         <!-- Loaded preview -->
         <div
           v-show="uploaded"
-          class="absolute left-4 right-4 top-0 bottom-0 flex items-center justify-center"
+          class="absolute inset-0 flex items-center justify-center"
         >
           <img :src="value" />
         </div>
@@ -28,7 +28,7 @@
             v-model="text"
             type="text"
             spellcheck="false"
-            class="bg-transparent absolute top-1/2 transform -translate-y-1/2 pr-5 text-center indent-5 transition-colors left-4 right-4"
+            class="bg-transparent absolute top-1/2 left-0 right-0 transform -translate-y-1/2 -mt-1.25 pr-9 text-center indent-9 transition-colors"
             :style="inputStyle"
             ref="input$"
           />
@@ -42,7 +42,7 @@
 
           <!-- Upload container -->
           <div
-            v-show="mode === 'upload'"
+            v-show="showUploadContainer"
             :class="[
               'absolute left-9 right-9 bottom-1/2 transform translate-y-1/2 transition-opacity',
               dragging ? 'opacity-50' : 'opacity-100'
@@ -54,7 +54,7 @@
               v-show="showUpload"
               :class="[
                 'flex flex-col items-center justify cente text-gray-400 text-center',
-                image && !drawn ? 'opacity-60 pointer-events-none' : null,
+                image && !created ? 'opacity-60 pointer-events-none' : null,
               ]"
             >
               <!-- DnD text -->
@@ -86,6 +86,16 @@
             />
           </div>
 
+          <!-- Pad -->
+          <canvas
+            v-show="showPad"
+            :width="padWidth"
+            :height="padHeight"
+            :style="padStyle"
+            class="absolute inset-0"
+            ref="pad$"
+          />
+
           <!-- Colors -->
           <div
             v-show="showColors"
@@ -110,6 +120,7 @@
 
             <!-- Mode -->
             <ElementAddonOptions
+              v-show="showModes"
               :options="resolvedModes"
               :placeholder="''"
               position="bottom"
@@ -128,6 +139,23 @@
               @select="handleFontSelect"
               ref="font$"
             />
+
+            <div
+              v-show="showUndos"
+              class="absolute right-3 top-3 flex items-center justify-center gap-3"
+            >
+              <div
+                class="mask-bg mask-form-trix-undo form-bg-icon w-3 h-3 cursor-pointer"
+                @click.stop="undo"
+              />
+              <div
+                :class="[
+                  'mask-bg mask-form-trix-redo form-bg-icon w-3 h-3',
+                  undos.length ? 'cursor-pointer' : 'opacity-50 cursor-not-allowed'
+                ]"
+                @click.stop="redo"
+              />
+            </div>
           </div>
         </div>
 
