@@ -208,6 +208,7 @@ export default function (props, context, dependencies)
       lineHeight: `${fontSize.value}px`,
       color: color.value,
       height: `${signatureHeight.value}px`,
+      '-webkit-font-smoothing': 'auto',
     }
   })
 
@@ -411,6 +412,16 @@ export default function (props, context, dependencies)
     undosLeft.value = data.length
   }
 
+  const clearSignature = () => {
+    text.value = null
+    image.value = null
+    created.value = false
+    value.value = null
+    pad.value?.clear()
+    drawn.value = false
+    undos.value = []
+  }
+
   const loadFonts = () => {
     fonts.value.forEach((font) => {
       const parts = font.split('@')
@@ -444,14 +455,35 @@ export default function (props, context, dependencies)
     }
   }
 
-  const clearSignature = () => {
-    text.value = null
-    image.value = null
-    created.value = false
-    value.value = null
-    pad.value?.clear()
-    drawn.value = false
-    undos.value = []
+  const adjustFontSize = () => {
+    const ua = navigator.userAgent.toLowerCase();
+    const isSafari = (ua.indexOf('safari') != -1 && ua.indexOf('chrome') == -1 && ua.indexOf('android') == -1)
+
+    const inputElement = input$.value
+    const styles = window.getComputedStyle(inputElement)
+    const textIndent = parseFloat(styles.textIndent)
+    const paddingRight = parseFloat(styles.paddingRight)
+    const maxWidth = inputElement.clientWidth - textIndent
+
+    let size = fontSize.value
+
+    while (inputElement.scrollWidth + (isSafari ? paddingRight : 0) - textIndent > maxWidth && size > minFontSize.value) {
+      size--
+      inputElement.style.fontSize = size + 'px'
+    }
+
+    while (inputElement.scrollWidth + (isSafari ? paddingRight : 0) - textIndent <= maxWidth && size < maxFontSize.value) {
+      inputElement.style.fontSize = (size + 1) + 'px'
+
+      if (inputElement.scrollWidth + (isSafari ? paddingRight : 0) - textIndent > maxWidth) {
+        inputElement.style.fontSize = size + 'px'
+        break
+      }
+
+      size++
+    }
+
+    fontSize.value = size
   }
 
   const hexToRgb = (hex) => {
@@ -478,27 +510,6 @@ export default function (props, context, dependencies)
     }
 
     return true
-  }
-
-  const adjustFontSize = () => {
-    const maxWidth = input$.value.clientWidth
-    let size = fontSize.value
-
-    while (input$.value.scrollWidth > maxWidth && size > minFontSize.value) {
-      size--
-      input$.value.style.fontSize = size + 'px'
-    }
-
-    while (input$.value.scrollWidth <= maxWidth && size < maxFontSize.value) {
-      input$.value.style.fontSize = (size + 1) + 'px'
-      if (input$.value.scrollWidth > maxWidth) {
-        input$.value.style.fontSize = size + 'px'
-        break
-      }
-      size++
-    }
-
-    fontSize.value = size
   }
 
   const handleInput = (e) => {
@@ -629,10 +640,6 @@ export default function (props, context, dependencies)
 
   // ============== WATCHERS ==============
 
-  watch([text, fontFamily], () => {
-    adjustFontSize()
-  }, { flush: 'post' })
-
   watch(mode, () => {
     clearSignature()
   })
@@ -717,6 +724,12 @@ export default function (props, context, dependencies)
       handleDrop(e)
       dragging.value = false
     })
+
+    watch([text, fontFamily], () => {
+      nextTick(() => {
+        adjustFontSize()
+      })
+    }, { flush: 'post' })
   })
 
   return {
