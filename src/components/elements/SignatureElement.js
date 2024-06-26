@@ -23,12 +23,12 @@ import useFocused from './../../composables/elements/useFocused'
 import useWatchValue from './../../composables/elements/useWatchValue'
 import useA11y from './../../composables/elements/useA11y'
 import useFocus from './../../composables/elements/useFocus'
-import useHandleInput from './../../composables/elements/useHandleInput'
 import usePlaceholder from './../../composables/elements/usePlaceholder'
 import useValidation from './../../composables/elements/useValidation'
 import useDefault from './../../composables/elements/useDefault'
-import useData from './../../composables/elements/useData'
 import useSignature from './../../composables/elements/useSignature'
+
+import { signature as useData } from './../../composables/elements/useData'
 
 import BaseElement from './../../mixins/BaseElement'
 import HasView from './../../mixins/HasView'
@@ -73,6 +73,11 @@ export default {
       type: [Boolean],
       default: false
     },
+    autoloadFonts: {
+      required: false,
+      type: [Boolean],
+      default: true
+    },
 
     width: {
       required: false,
@@ -91,7 +96,7 @@ export default {
     },
     placeholder: {
       required: false,
-      type: [String, Object],
+      type: [String, Object, Boolean],
       localized: true,
       default: null
     },
@@ -129,16 +134,14 @@ export default {
     fonts: {
       required: false,
       type: [Array],
-      default: () => ([
-        'cursive'
-      ]),
+      default: () => (['cursive']),
     },
     accept: {
       required: false,
       type: [Array],
       default: () => (['jpg', 'png', 'svg']),
     },
-    background: {
+    canClear: {
       required: false,
       type: [Boolean],
       default: true,
@@ -161,6 +164,8 @@ export default {
       useValidation,
       useValue,
       useEmpty,
+      usePlaceholder,
+      useSignature,
       useData,
       useLabel,
       useGenericName,
@@ -173,9 +178,6 @@ export default {
       useA11y,
       useWatchValue,
       useFocus,
-      useHandleInput,
-      usePlaceholder,
-      useSignature,
     ]
     context.slots = [
       'label', 'info', 'description', 'before',

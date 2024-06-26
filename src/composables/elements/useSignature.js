@@ -14,6 +14,10 @@ export default function (props, context, dependencies)
     maxFontSize,
     minFontSize,
     signatureHeight,
+    canClear,
+    line,
+    placeholder,
+    autoloadFonts,
   } = toRefs(props)
 
   // ============ DEPENDENCIES ============
@@ -24,6 +28,7 @@ export default function (props, context, dependencies)
     input,
     isDisabled,
     value,
+    Placeholder,
   } = dependencies
 
   // ================ DATA ================
@@ -36,9 +41,10 @@ export default function (props, context, dependencies)
   const file$ = ref(null)
   const upload$ = ref(null)
 
-  const mode = ref(modes.value[0] || 'draw')
-  const font = ref(fonts.value[0] || 'cursive')
-  const color = ref(colors.value[0] || '#000000')
+  const mode = ref(null)
+  const fontFamily = ref(null)
+  const fontWeight = ref(null)
+  const color = ref(null)
 
   const text = ref(null)
   const fontSize = ref(maxFontSize.value)
@@ -54,8 +60,17 @@ export default function (props, context, dependencies)
   const drawn = ref(false)
   const drawing = ref(false)
   const undos = ref([])
+  const undosLeft = ref(0)
 
   // ============== COMPUTED ==============
+
+  const fontFamilies = computed(() => {
+    return fonts.value.map(f => f.split('@')[0].replace('!', ''))
+  })
+
+  const fontWeights = computed(() => {
+    return fonts.value.map(f => f.split('@')[1] || 400)
+  })
 
   const uploaded = computed(() => {
     return typeof value.value === 'string'
@@ -87,8 +102,8 @@ export default function (props, context, dependencies)
   })
 
   const resolvedFonts = computed(() => {
-    return fonts.value.map((font, i) => ({
-      label: `<font style="font-family: ${font}">${
+    return fontFamilies.value.map((font, i) => ({
+      label: `<font style="font-family: ${font}; font-weight: ${fontWeights.value[i]}">${
         text.value?.trim() || form$.value.translations.vueform.elements.signature.fontPlaceholder
       }<font>`,
       value: i,
@@ -97,7 +112,7 @@ export default function (props, context, dependencies)
   })
 
   const showLine = computed(() => {
-    return mode.value !== 'upload'
+    return mode.value !== 'upload' && line.value
   })
 
   const showInput = computed(() => {
@@ -105,8 +120,10 @@ export default function (props, context, dependencies)
   })
 
   const showPlaceholder = computed(() => {
-    return (!text.value && mode.value === 'type') ||
-           (!drawn.value && mode.value === 'draw')
+    return (
+      (!text.value && mode.value === 'type') ||
+      (!drawn.value && mode.value === 'draw')
+    ) && placeholder.value !== false
   })
 
   const showUploadContainer = computed(() => {
@@ -126,7 +143,7 @@ export default function (props, context, dependencies)
   })
 
   const showUndos = computed(() => {
-    return mode.value === 'draw' && (undos.value.length || drawn.value)
+    return mode.value === 'draw' && (undos.value.length || drawn.value) && !drawing.value
   })
   
   const showColors = computed(() => {
@@ -137,11 +154,11 @@ export default function (props, context, dependencies)
   })
   
   const showModes = computed(() => {
-    return !drawing.value
+    return !drawing.value && modes.value.length > 1
   })
   
   const showFonts = computed(() => {
-    return mode.value === 'type' && resolvedFonts.value.length
+    return mode.value === 'type' && resolvedFonts.value.length > 1
   })
 
   const showClear = computed(() => {
@@ -150,11 +167,11 @@ export default function (props, context, dependencies)
       (mode.value === 'upload' && created.value) ||
       (mode.value === 'draw' && drawn.value) ||
       uploaded.value
-    ) && !isDisabled.value && !readonly.value && !drawing.value
+    ) && !isDisabled.value && !readonly.value && !drawing.value && canClear.value
   })
 
   const placeholderText = computed(() => {
-    return form$.value.translations.vueform.elements.signature.placeholder
+    return Placeholder.value || form$.value.translations.vueform.elements.signature.placeholder
   })
 
   const fontText = computed(() => {
@@ -185,8 +202,10 @@ export default function (props, context, dependencies)
 
   const inputStyle = computed(() => {
     return {
-      fontFamily: font.value,
+      fontFamily: fontFamily.value,
+      fontWeight: fontWeight.value,
       fontSize: `${fontSize.value}px`,
+      lineHeight: `${fontSize.value}px`,
       color: color.value,
       height: `${signatureHeight.value}px`,
     }
@@ -194,7 +213,7 @@ export default function (props, context, dependencies)
 
   const lineStyle = computed(() => {
     return {
-      transform: `translateY(calc(${fontSize.value / 2}px))`
+      transform: `translateY(calc(${fontSize.value / 2.2}px))`
     }
   })
 
@@ -235,7 +254,7 @@ export default function (props, context, dependencies)
 
         ctx.clearRect(0, 0, displayWidth, displayHeight)
 
-        ctx.font = `${fontSize.value}px ${font.value}`
+        ctx.font = `${fontWeight.value} ${fontSize.value}px ${fontFamily.value}`
         ctx.fillStyle = color.value
         ctx.textAlign = 'center'
         ctx.textBaseline = 'middle'
@@ -323,7 +342,7 @@ export default function (props, context, dependencies)
   }
 
   const initPad = () => {
-    if (pad.value || !pad$.value || modes.value.indexOf('draw') === -1) {
+    if (pad.value || !pad$.value || (modes.value.indexOf('draw') === -1 && modes.value.length)) {
       return
     }
 
@@ -335,7 +354,12 @@ export default function (props, context, dependencies)
 
     setDrawColor()
 
-    pad.value.addEventListener('beginStroke', () => {
+    pad.value.addEventListener('beginStroke', (e) => {
+      if (isDisabled.value || readonly.value) {
+        e.preventDefault()
+        return
+      }
+
       drawn.value = true
       drawing.value = true
       undos.value = []
@@ -343,6 +367,7 @@ export default function (props, context, dependencies)
 
     pad.value.addEventListener('endStroke', () => {
       drawing.value = false
+      undosLeft.value++
     })
   }
 
@@ -364,6 +389,8 @@ export default function (props, context, dependencies)
     if (!data.length) {
       drawn.value = false
     }
+
+    undosLeft.value = data.length
   }
 
   const redo = () => {
@@ -380,6 +407,29 @@ export default function (props, context, dependencies)
     drawn.value = true
 
     setDrawColor()
+
+    undosLeft.value = data.length
+  }
+
+  const loadFonts = () => {
+    fonts.value.forEach((font) => {
+      const parts = font.split('@')
+      const skip = parts[0].substr(0,1) === '!'
+
+      if (!skip) {
+        const family = parts[0].replace('!', '').replace(/\s/g, '+')
+        const weight = parts[1] || 400
+        const id = `font-${family}`
+
+         if (!document.getElementById(id)) {
+          const link = document.createElement('link')
+          link.id = id
+          link.rel = 'stylesheet'
+          link.href = `https://fonts.googleapis.com/css2?family=${family}:wght@${weight}&display=swap`;
+          document.head.appendChild(link)
+        }
+      }
+    })
   }
 
   const setDrawColor = () => {
@@ -451,39 +501,78 @@ export default function (props, context, dependencies)
     fontSize.value = size
   }
 
-  const prepare = async () => {
-    if (mode.value === 'type') {
-      await typingToImage()
+  const handleInput = (e) => {
+    if (isDisabled.value || readonly.value) {
+      return
     }
 
-    if (mode.value === 'draw') {
-      await drawingToImage()
-    }
+    text.value = e.target.value
   }
 
   const handleModeSelect = (value) => {
+    if (isDisabled.value || readonly.value) {
+      return
+    }
+
     mode.value = value.value
   }
 
   const handleColorSelect = (value) => {
+    if (isDisabled.value || readonly.value) {
+      return
+    }
+
     color.value = value
   }
 
   const handleFontSelect = (value) => {
     font$.value.selected = {}
 
-    font.value = fonts.value[value.value]
+    if (isDisabled.value || readonly.value) {
+      return
+    }
+
+    fontFamily.value = fontFamilies.value[value.index]
+    fontWeight.value = fontWeights.value[value.index]
   }
 
   const handleClear = () => {
+    if (isDisabled.value || readonly.value) {
+      return
+    }
+    
     clearSignature()
   }
 
+  const handleUndo = () => {
+    if (isDisabled.value || readonly.value) {
+      return
+    }
+
+    undo()
+  }
+
+  const handleRedo = () => {
+    if (isDisabled.value || readonly.value) {
+      return
+    }
+
+    redo()
+  }
+
   const handleSelectClick = () => {
+    if (isDisabled.value || readonly.value) {
+      return
+    }
+
     file$.value.click()
   }
 
   const handleFileSelect = (event) => {
+    if (isDisabled.value || readonly.value) {
+      return
+    }
+    
     const file = event.target.files[0]
 
     if (checkFileExt(file, accept.value)) {
@@ -505,7 +594,7 @@ export default function (props, context, dependencies)
    * @private
    */
   const handleDrop = (e) => {
-    if (isDisabled.value) {
+    if (isDisabled.value || readonly.value) {
       return
     }
     
@@ -525,9 +614,22 @@ export default function (props, context, dependencies)
     uploadToImage(image.value)
   }
 
+  const setDefaultMode = () => {
+    mode.value = modes.value[0] || 'draw'
+  }
+
+  const setDefaultFont = () => {
+    fontFamily.value = fontFamilies.value[0] || 'cursive'
+    fontWeight.value = fontWeights.value[0] || 400
+  }
+
+  const setDefaultColor = () => {
+    color.value = colors.value[0] || '#000000'
+  }
+
   // ============== WATCHERS ==============
 
-  watch([text, font], () => {
+  watch([text, fontFamily], () => {
     adjustFontSize()
   }, { flush: 'post' })
 
@@ -551,10 +653,22 @@ export default function (props, context, dependencies)
 
   // =============== HOOKS ================
 
+  setDefaultMode()
+  setDefaultFont()
+  setDefaultColor()
+
   onMounted(() => {
+    if (autoloadFonts.value) {
+      loadFonts()
+    }
+
     // Auto-select default mode
     if (mode$.value) {
-      mode$.value.selected = resolvedModes.value[0]
+      mode$.value.selected = resolvedModes.value[0] || {
+        label: form$.value.translations.vueform.elements.signature.draw,
+        value: 'draw',
+        index: 0,
+      }
     }
 
     initPad()
@@ -616,7 +730,6 @@ export default function (props, context, dependencies)
     resolvedModes,
     resolvedFonts,
     mode,
-    font,
     color,
     text,
     inputStyle,
@@ -636,7 +749,6 @@ export default function (props, context, dependencies)
     canDrop,
     clearStyle,
     uploaded,
-    prepare,
     canvasWidth,
     canvasHeight,
     wrapperStyle,
@@ -663,5 +775,12 @@ export default function (props, context, dependencies)
     showUndos,
     showModes,
     showUploadContainer,
+    undosLeft,
+    clearSignature,
+    drawingToImage,
+    typingToImage,
+    handleUndo,
+    handleRedo,
+    handleInput,
   }
 }

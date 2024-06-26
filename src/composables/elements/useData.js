@@ -1172,6 +1172,59 @@ const multifile = function(props, context, dependencies)
   }
 }
 
+const signature = function(props, context, dependencies)
+{
+  const {
+    data,
+    requestData,
+    load,
+    update,
+    clear: clearBase,
+    reset: resetBase,
+  } = base(props, context, dependencies)
+  
+  // ============ DEPENDENCIES =============
+  
+  const {
+    mode,
+    clearSignature,
+    typingToImage,
+    drawingToImage,
+  } = dependencies
+  
+  // ============== COMPUTED ===============
+  
+  const clear = () => {
+    clearBase()
+    clearSignature()
+  }
+  
+  const reset = () => {
+    clearSignature()
+    resetBase()
+  }
+
+  const prepare = async () => {
+    if (mode.value === 'type') {
+      await typingToImage()
+    }
+
+    if (mode.value === 'draw') {
+      await drawingToImage()
+    }
+  }
+  
+  return {
+    data,
+    requestData,
+    load,
+    update,
+    clear,
+    reset,
+    prepare,
+  }
+}
+
 const multiselect = select
 const tags = select
 
@@ -1191,6 +1244,7 @@ export {
   multiselect,
   tags,
   captcha,
+  signature,
 }
 
 export default base

@@ -1,7 +1,15 @@
 <template>
   <component :is="elementLayout" ref="container">
     <template #element>
-      <div class="border border-gray-300 rounded-lg relative" ref="input" :style="wrapperStyle">
+      <div
+        :class="[
+          'transition-input form-bg-input form-color-input form-border-width-input form-radius-large form-text form-border-color-input relative',
+          isDisabled ? 'form-bg-disabled form-color-disabled form-border-color-input cursor-not-allowed pointer-events-none' : '',
+          readonly ? 'pointer-events-none' : '',
+        ]"
+        :style="wrapperStyle"
+        ref="input"
+      >
 
         <!-- Line -->
         <hr
@@ -13,7 +21,10 @@
         <!-- Loaded preview -->
         <div
           v-show="uploaded"
-          class="absolute inset-0 flex items-center justify-center"
+          :class="[
+            'absolute inset-0 flex items-center justify-center',
+            isDisabled ? 'opacity-50' : ''
+          ]"
         >
           <img :src="value" />
         </div>
@@ -21,15 +32,22 @@
         <!-- Not loaded actions -->
         <div
           v-show="!uploaded"
+          :class="[
+            isDisabled ? 'opacity-50' : ''
+          ]"
         >
           <!-- Input -->
           <input
             v-show="showInput"
-            v-model="text"
+            :value="text"
             type="text"
             spellcheck="false"
-            class="bg-transparent absolute top-1/2 left-0 right-0 transform -translate-y-1/2 -mt-1.25 pr-9 text-center indent-9 transition-colors"
+            class="bg-transparent absolute top-1/2 left-0 right-0 transform -translate-y-1/2 pr-9 text-center indent-9 transition-colors"
+            :disabled="isDisabled"
+            :readonly="readonly"
             :style="inputStyle"
+            @input="handleInput"
+            @select="handleInput"
             ref="input$"
           />
 
@@ -140,20 +158,27 @@
               ref="font$"
             />
 
+            <!-- Undos -->
             <div
               v-show="showUndos"
               class="absolute right-3 top-3 flex items-center justify-center gap-3"
             >
+              <!-- Undo -->
               <div
-                class="mask-bg mask-form-trix-undo form-bg-icon w-3 h-3 cursor-pointer"
-                @click.stop="undo"
+                :class="[
+                  'mask-bg mask-form-trix-undo form-bg-icon w-3 h-3',
+                  undosLeft ? 'cursor-pointer' : 'opacity-50 cursor-not-allowed',
+                ]"
+                @click.stop="handleUndo"
               />
+
+              <!-- Redo -->
               <div
                 :class="[
                   'mask-bg mask-form-trix-redo form-bg-icon w-3 h-3',
                   undos.length ? 'cursor-pointer' : 'opacity-50 cursor-not-allowed'
                 ]"
-                @click.stop="redo"
+                @click.stop="handleRedo"
               />
             </div>
           </div>
