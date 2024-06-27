@@ -1,5 +1,6 @@
-import { computed, toRefs, ref, onMounted, watch, nextTick } from 'vue'
+import { computed, toRefs, ref, onMounted, watch, nextTick, onBeforeUnmount } from 'vue'
 import SignaturePad from 'signature_pad'
+import debounce from './../../utils/debounce'
 
 export default function (props, context, dependencies)
 {
@@ -18,6 +19,9 @@ export default function (props, context, dependencies)
     line,
     placeholder,
     autoloadFonts,
+    maxSize,
+    canUndo,
+    columns,
   } = toRefs(props)
 
   // ============ DEPENDENCIES ============
@@ -61,6 +65,8 @@ export default function (props, context, dependencies)
   const drawing = ref(false)
   const undos = ref([])
   const undosLeft = ref(0)
+
+  const resolvedWidth = ref(width.value === 'auto' ? 1 : width.value)
 
   // ============== COMPUTED ==============
 
@@ -111,6 +117,31 @@ export default function (props, context, dependencies)
     }))
   })
 
+  const colorable = computed(() => {
+    return mode.value !== 'upload' || ['image/png'].indexOf(image.value?.type) !== -1
+  })
+
+  const fileAccept = computed(() => {
+    return accept.value.reduce((prev, curr) => {
+      switch (curr) {
+        case 'jpg':
+          prev.push('image/jpg')
+          prev.push('image/jpeg')
+          break
+
+        case 'png':
+          prev.push('image/png')
+          break
+
+        case 'svg':
+          prev.push('image/svg+xml')
+          break
+      }
+
+      return prev
+    }, []).join(', ')
+  })
+
   const showLine = computed(() => {
     return mode.value !== 'upload' && line.value
   })
@@ -143,14 +174,14 @@ export default function (props, context, dependencies)
   })
 
   const showUndos = computed(() => {
-    return mode.value === 'draw' && (undos.value.length || drawn.value) && !drawing.value
+    return mode.value === 'draw' && (undos.value.length || drawn.value) && !drawing.value && canUndo.value
   })
   
   const showColors = computed(() => {
     return (
       (mode.value === 'upload' && created.value) ||
       mode.value === 'type' || mode.value === 'draw'
-    ) && !drawing.value
+    ) && !drawing.value && colors.value.length > 1 && colorable.value
   })
   
   const showModes = computed(() => {
@@ -179,7 +210,7 @@ export default function (props, context, dependencies)
   })
 
   const padWidth = computed(() => {
-    return width.value * 2
+    return resolvedWidth.value * 2
   })
 
   const padHeight = computed(() => {
@@ -188,16 +219,21 @@ export default function (props, context, dependencies)
 
   const padStyle = computed(() => {
     return {
-      width: `${width.value}px`,
+      width: `${resolvedWidth.value}px`,
       height: `${height.value}px`,
     }
   })
 
   const wrapperStyle = computed(() => {
-    return {
-      width: `${width.value}px`,
+    let style = {
       height: `${height.value}px`,
     }
+
+    if (width.value !== 'auto') {
+      style.width = `${width.value}px`
+    }
+
+    return style
   })
 
   const inputStyle = computed(() => {
@@ -215,12 +251,6 @@ export default function (props, context, dependencies)
   const lineStyle = computed(() => {
     return {
       transform: `translateY(calc(${fontSize.value / 2.2}px))`
-    }
-  })
-
-  const clearStyle = computed(() => {
-    return {
-      transform: `translateY(calc(-50% - ${signatureHeight.value*0.3667}px))`
     }
   })
 
@@ -315,15 +345,17 @@ export default function (props, context, dependencies)
       const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height)
       const data = imageData.data
 
-      // Custom color tint (hex code)
-      const hexColor = color.value
-      const tintColor = hexToRgb(hexColor)
+      if (colorable.value) {
+        // Custom color tint (hex code)
+        const hexColor = color.value
+        const tintColor = hexToRgb(hexColor)
 
-      // Apply custom color tint
-      for (let i = 0; i < data.length; i += 4) {
-          data[i] = tintColor.r
-          data[i + 1] = tintColor.g
-          data[i + 2] = tintColor.b
+        // Apply custom color tint
+        for (let i = 0; i < data.length; i += 4) {
+            data[i] = tintColor.r
+            data[i + 1] = tintColor.g
+            data[i + 2] = tintColor.b
+        }
       }
 
       // Put image data back to canvas
@@ -370,6 +402,22 @@ export default function (props, context, dependencies)
       drawing.value = false
       undosLeft.value++
     })
+  }
+
+  const resizePad = () => {
+    // pad$.value.width = canvas.offsetWidth * 2
+    // pad$.value.height = canvas.offsetHeight * 2
+
+    resolveWidth()
+
+    nextTick(() => {
+      pad$.value.getContext('2d').scale(2, 2)
+      pad.value.clear()
+    })
+  }
+
+  const resolveWidth = () => {
+    resolvedWidth.value = el$.value.$el.getBoundingClientRect().width
   }
 
   const undo = () => {
@@ -512,6 +560,19 @@ export default function (props, context, dependencies)
     return true
   }
 
+  const checkFileSize = (file) => {
+    if (maxSize.value === -1) {
+      return true
+    }
+
+    if (file.size / 1024 > maxSize.value) {
+      alert(`Max file size is ${maxSize.value} KBs`)
+      return false
+    }
+
+    return true
+  }
+
   const handleInput = (e) => {
     if (isDisabled.value || readonly.value) {
       return
@@ -586,7 +647,7 @@ export default function (props, context, dependencies)
     
     const file = event.target.files[0]
 
-    if (checkFileExt(file, accept.value)) {
+    if (checkFileExt(file) && checkFileSize(file)) {
       image.value = file
       uploadToImage(image.value)
     } else {
@@ -611,7 +672,7 @@ export default function (props, context, dependencies)
     
     let file = e.dataTransfer.files[0]
     
-    if (!checkFileExt(file, accept.value)) {
+    if (!checkFileExt(file) || !checkFileSize(file)) {
       return
     }
 
@@ -624,6 +685,8 @@ export default function (props, context, dependencies)
     image.value = file
     uploadToImage(image.value)
   }
+
+  const handleResize = debounce(resizePad, 200)
 
   const setDefaultMode = () => {
     mode.value = modes.value[0] || 'draw'
@@ -658,6 +721,10 @@ export default function (props, context, dependencies)
     }
   })
 
+  watch(columns, () => {
+    resizePad()
+  }, { flush: 'post' })
+
   // =============== HOOKS ================
 
   setDefaultMode()
@@ -669,6 +736,11 @@ export default function (props, context, dependencies)
       loadFonts()
     }
 
+    if (width.value === 'auto') {
+      resolveWidth()
+    }
+      
+
     // Auto-select default mode
     if (mode$.value) {
       mode$.value.selected = resolvedModes.value[0] || {
@@ -677,8 +749,6 @@ export default function (props, context, dependencies)
         index: 0,
       }
     }
-
-    initPad()
 
     // Handling drag & drop
     const evts = ['drag', 'dragstart', 'dragenter', 'dragleave', 'dragend']
@@ -725,11 +795,21 @@ export default function (props, context, dependencies)
       dragging.value = false
     })
 
+    nextTick(() => {
+      initPad()
+
+      window.addEventListener('resize', handleResize)
+    })
+
     watch([text, fontFamily], () => {
       nextTick(() => {
         adjustFontSize()
       })
     }, { flush: 'post' })
+  })
+
+  onBeforeUnmount(() => {
+    window.removeEventListener('resize', handleResize)
   })
 
   return {
@@ -760,7 +840,6 @@ export default function (props, context, dependencies)
     created,
     dragging,
     canDrop,
-    clearStyle,
     uploaded,
     canvasWidth,
     canvasHeight,
@@ -795,5 +874,8 @@ export default function (props, context, dependencies)
     handleUndo,
     handleRedo,
     handleInput,
+    resolvedWidth,
+    resizePad,
+    fileAccept,
   }
 }

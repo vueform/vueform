@@ -82,7 +82,7 @@ export default {
     width: {
       required: false,
       type: [Number, String],
-      default: 360,
+      default: 'auto',
     },
     height: {
       required: false,
@@ -141,7 +141,17 @@ export default {
       type: [Array],
       default: () => (['jpg', 'png', 'svg']),
     },
+    maxSize: { // KBs
+      required: false,
+      type: [Number],
+      default: -1,
+    },
     canClear: {
+      required: false,
+      type: [Boolean],
+      default: true,
+    },
+    canUndo: {
       required: false,
       type: [Boolean],
       default: true,

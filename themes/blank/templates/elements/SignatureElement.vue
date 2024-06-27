@@ -3,7 +3,7 @@
     <template #element>
       <div
         :class="[
-          'transition-input form-bg-input form-color-input form-border-width-input form-radius-large form-text form-border-color-input relative',
+          'transition-input form-bg-input form-color-input form-border-width-input form-radius-large form-text form-border-color-input relative w-full',
           isDisabled ? 'form-bg-disabled form-color-disabled form-border-color-input cursor-not-allowed pointer-events-none' : '',
           readonly ? 'pointer-events-none' : '',
         ]"
@@ -90,6 +90,7 @@
               <input
                 v-show="false"
                 type="file"
+                :accept="fileAccept"
                 @change="handleFileSelect"
                 ref="file$"
               />
@@ -187,8 +188,7 @@
         <!-- Clear -->
         <div
           v-if="showClear"
-          class="absolute top-1/2 transform right-6 text-sm text-gray-900"
-          :style="clearStyle"
+          class="absolute top-1/2 transform -translate-y-1/2 right-4 text-sm text-gray-900"
         >
           <div
             class="mask-bg mask-form-remove bg-gray-900 w-3 h-4 py-px box-content inline-block cursor-pointer"
