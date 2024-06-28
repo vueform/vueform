@@ -2,11 +2,7 @@
   <component :is="elementLayout" ref="container">
     <template #element>
       <div
-        :class="[
-          'transition-input form-bg-input form-color-input form-border-width-input form-radius-large form-text form-border-color-input relative w-full',
-          isDisabled ? 'form-bg-disabled form-color-disabled form-border-color-input cursor-not-allowed pointer-events-none' : '',
-          readonly ? 'pointer-events-none' : '',
-        ]"
+        :class="classes.wrapper"
         :style="wrapperStyle"
         ref="input"
       >
@@ -14,27 +10,27 @@
         <!-- Line -->
         <hr
           v-show="showLine"
-          class="absolute top-1/2 left-6 right-6 border-gray-300"
+          :class="classes.line"
           :style="lineStyle"
         />
 
         <!-- Loaded preview -->
         <div
           v-show="uploaded"
-          :class="[
-            'absolute inset-9 flex items-center justify-center',
-            isDisabled ? 'opacity-50' : ''
-          ]"
+          :class="classes.loadedWrapper"
         >
-          <img :src="value" />
+          <img
+            :src="value"
+            :alt="imgAltText"
+            :title="imgTitleText"
+            :class="classes.loadedImg"
+          />
         </div>
 
         <!-- Not loaded actions -->
         <div
           v-show="!uploaded"
-          :class="[
-            isDisabled ? 'opacity-50' : ''
-          ]"
+          :class="classes.innerWrapper"
         >
           <!-- Input -->
           <input
@@ -42,7 +38,7 @@
             :value="text"
             type="text"
             spellcheck="false"
-            class="bg-transparent absolute top-1/2 left-0 right-0 transform -translate-y-1/2 pr-9 text-center indent-9 transition-colors h-[8.5rem]"
+            :class="classes.input"
             :disabled="isDisabled"
             :readonly="readonly"
             :style="inputStyle"
@@ -54,35 +50,32 @@
           <!-- Placeholder -->
           <div 
             v-show="showPlaceholder"
-            class="absolute left-0 right-0 bottom-[50%] transform translate-y-1/2 pointer-events-none text-gray-400 text-center"
+            :class="classes.placeholder"
             v-html="placeholderText"
           />
 
           <!-- Upload container -->
           <div
             v-show="showUploadContainer"
-            :class="[
-              'absolute left-9 right-9 bottom-1/2 transform translate-y-1/2 transition-opacity',
-              dragging ? 'opacity-50' : 'opacity-100'
-            ]"
+            :class="classes.uploadContainer"
             ref="upload$"
           >
             <!-- File upload -->
             <div
               v-show="showUpload"
-              :class="[
-                'flex flex-col items-center justify cente text-gray-400 text-center',
-                image && !created ? 'opacity-60 pointer-events-none' : null,
-              ]"
+              :class="classes.uploadWrapper"
             >
               <!-- DnD text -->
-              <div v-if="canDrop">
+              <div
+                v-if="droppable"
+                :class="classes.dndText"  
+              >
                 Drop an image here or
               </div>
 
               <!-- Select button -->
               <div
-                class="bg-primary-500 text-white rounded px-3 py-2 mt-1 cursor-pointer transition-transform hover:scale-[1.05]"
+                :class="classes.uploadButton"
                 @click="handleSelectClick"
               >Select image</div>
 
@@ -101,7 +94,7 @@
               v-show="showPreview"
               :width="canvasWidth"
               :height="canvasHeight"
-              class="mx-auto"
+              :class="classes.uploadPreview"
               ref="preview$"
             />
           </div>
@@ -112,23 +105,20 @@
             :width="padWidth"
             :height="padHeight"
             :style="padStyle"
-            class="absolute inset-0"
+            :class="classes.pad"
             ref="pad$"
           />
 
           <!-- Colors -->
           <div
             v-show="showColors"
-            class="absolute bottom-5 left-1/2 transform -translate-x-1/2 flex flex-row gap-2"
+            :class="classes.colors"
           >
             <svg
               v-for="c in colors"
               width="12"
               height="12"
-              :class="[
-                'transform transition-transform cursor-pointer',
-                color === c ? 'scale-[1.4]' : 'hover:scale-[1.4] '
-              ]"
+              :class="classes.color(c)"
               @click="handleColorSelect(c)"
             >
               <circle cx="6" cy="6" r="6" :fill="c" />
@@ -136,7 +126,7 @@
           </div>
 
           <!-- Actions -->
-          <div class="absolute top-2 left-3 right-3 flex items-center justify-between opacity-50 transition-opacity hover:opacity-100">
+          <div :class="classes.actions">
 
             <!-- Mode -->
             <ElementAddonOptions
@@ -163,23 +153,17 @@
             <!-- Undos -->
             <div
               v-show="showUndos"
-              class="absolute right-3 top-3 flex items-center justify-center gap-3"
+              :class="classes.undosWrapper"
             >
               <!-- Undo -->
               <div
-                :class="[
-                  'mask-bg mask-form-trix-undo form-bg-icon w-3 h-3',
-                  undosLeft ? 'cursor-pointer' : 'opacity-50 cursor-not-allowed',
-                ]"
+                :class="classes.undo"
                 @click.stop="handleUndo"
               />
 
               <!-- Redo -->
               <div
-                :class="[
-                  'mask-bg mask-form-trix-redo form-bg-icon w-3 h-3',
-                  redos.length ? 'cursor-pointer' : 'opacity-50 cursor-not-allowed'
-                ]"
+                :class="classes.redo"
                 @click.stop="handleRedo"
               />
             </div>
@@ -189,10 +173,10 @@
         <!-- Clear -->
         <div
           v-if="showClear"
-          class="absolute top-1/2 transform -translate-y-1/2 right-4 text-sm text-gray-900"
+          :class="classes.clearWrapper"
         >
           <div
-            class="mask-bg mask-form-remove bg-gray-900 w-3 h-4 py-px box-content inline-block cursor-pointer"
+            :class="classes.clear"
             @click="handleClear"
           ></div>
         </div>

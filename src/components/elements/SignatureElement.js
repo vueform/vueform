@@ -79,10 +79,10 @@ export default {
       default: true
     },
 
-    width: {
+    maxWidth: {
       required: false,
       type: [Number, String],
-      default: 'auto',
+      default: 480,
     },
     height: {
       required: false,
@@ -92,12 +92,12 @@ export default {
     uploadWidth: {
       required: false,
       type: [Number],
-      default: 300,
+      default: 480,
     },
     uploadHeight: {
       required: false,
       type: [Number],
-      default: 100,
+      default: 160,
     },
     placeholder: {
       required: false,
@@ -136,6 +136,11 @@ export default {
       type: [Array],
       default: () => (['#000000', '#2558b2', '#f22f30']),
     },
+    invertColors: {
+      required: false,
+      type: [Array],
+      default: () => (['#000000']),
+    },
     fonts: {
       required: false,
       type: [Array],
@@ -150,10 +155,10 @@ export default {
       type: [Array],
       default: () => (['jpg', 'png', 'svg']),
     },
-    maxSize: { // KBs
+    maxSize: {
       required: false,
       type: [Number],
-      default: -1,
+      default: 2048,
     },
     canClear: {
       required: false,
@@ -161,6 +166,11 @@ export default {
       default: true,
     },
     canUndo: {
+      required: false,
+      type: [Boolean],
+      default: true,
+    },
+    canDrop: {
       required: false,
       type: [Boolean],
       default: true,

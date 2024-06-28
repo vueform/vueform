@@ -33,7 +33,10 @@ export default {
         "font": "Select typeface",
         "fontPlaceholder": "Your Name",
         "placeholder": "Sign here",
-        "unsupportedFormat": "Unsupported file format. Accepted extenions are: :extensions"
+        "unsupportedFormat": "Unsupported file format. Accepted extenions are: :extensions",
+        "maxSizeError": "Max file size is :max KBs",
+        "imgAlt": "Signature",
+        "imgTitle": "Signature",
       }
     },
     "steps": {

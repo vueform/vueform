@@ -9,7 +9,7 @@ export default function (props, context, dependencies)
     colors,
     modes,
     accept,
-    width,
+    maxWidth,
     height,
     readonly,
     maxFontSize,
@@ -23,6 +23,7 @@ export default function (props, context, dependencies)
     columns,
     uploadWidth,
     uploadHeight,
+    canDrop,
   } = toRefs(props)
 
   // ============ DEPENDENCIES ============
@@ -207,11 +208,11 @@ export default function (props, context, dependencies)
   const undosLeft = ref(0)
 
   /**
-   * The max width of the signature element (based on the container width).
+   * The current width of the signature element.
    *
    * @type {number}
    */
-  const maxWidth = ref(0)
+  const width = ref(0)
 
   // ============== COMPUTED ==============
 
@@ -243,17 +244,27 @@ export default function (props, context, dependencies)
   })
 
   /**
+   * Whether the uploaded file is being processed for preview.
+   *
+   * @type {boolean}
+   */
+  const processing = computed(() => {
+    return image.value && !created.value
+  })
+
+  /**
    * Whether `drop` is enabled and browser supports dragging.
    *
    * @type {boolean}
    */
-  const canDrop = computed(() => {
+  const droppable = computed(() => {
     let div = document.createElement('div')
     
     return (('draggable' in div)
         || ('ondragstart' in div && 'ondrop' in div))
       && 'FormData' in window
       && 'FileReader' in window
+      && canDrop.value
   })
 
   /**
@@ -450,6 +461,24 @@ export default function (props, context, dependencies)
   })
 
   /**
+   * The text of the img alt attribute.
+   *
+   * @type {string}
+   */
+  const imgAltText = computed(() => {
+    return form$.value.translations.vueform.elements.signature.imgAlt
+  })
+
+  /**
+   * The text of the img title attribute.
+   *
+   * @type {string}
+   */
+  const imgTitleText = computed(() => {
+    return form$.value.translations.vueform.elements.signature.imgTitle
+  })
+
+  /**
    * The current text of font selector options.
    *
    * @type {string}
@@ -464,7 +493,7 @@ export default function (props, context, dependencies)
    * @type {number}
    */
   const padWidth = computed(() => {
-    return maxWidth.value * 2
+    return width.value * 2
   })
 
   /**
@@ -483,7 +512,7 @@ export default function (props, context, dependencies)
    */
   const padStyle = computed(() => {
     return {
-      width: `${maxWidth.value}px`,
+      width: `${width.value}px`,
       height: `${height.value}px`,
     }
   })
@@ -498,8 +527,8 @@ export default function (props, context, dependencies)
       height: `${height.value}px`,
     }
 
-    if (width.value !== 'auto') {
-      style.width = `${width.value}px`
+    if (maxWidth.value !== false) {
+      style.maxWidth = `${maxWidth.value}px`
     }
 
     return style
@@ -575,10 +604,12 @@ export default function (props, context, dependencies)
    * @returns {void}
    */
   const resizePad = () => {
-    setMaxWidth()
+    setWidth()
 
     nextTick(() => {
-      pad$.value.getContext('2d').scale(2, 2)
+      const ctx = pad$.value.getContext('2d')
+      ctx.setTransform(1, 0, 0, 1, 0, 0)
+      ctx.scale(2, 2)
       clearDrawnSignature()
     })
   }
@@ -1028,7 +1059,9 @@ export default function (props, context, dependencies)
     }
 
     if (file.size / 1024 > maxSize.value) {
-      alert(`Max file size is ${maxSize.value} KBs`)
+      alert(form$.value.__(form$.value.translations.vueform.elements.signature.maxSizeError, {
+        max: maxSize.value,
+      }))
       return false
     }
 
@@ -1036,12 +1069,12 @@ export default function (props, context, dependencies)
   }
 
   /**
-   * Sets the [`maxWidth`](#property-max-width) to the current element width.
+   * Sets the [`width`](#property-width) to the current element width.
    *
    * @returns {void}
    */
-  const setMaxWidth = () => {
-    maxWidth.value = el$.value.$el.getBoundingClientRect().width
+  const setWidth = () => {
+    width.value = input.value.getBoundingClientRect().width
   }
 
   /**
@@ -1280,9 +1313,7 @@ export default function (props, context, dependencies)
       loadFonts()
     }
 
-    if (width.value === 'auto') {
-      setMaxWidth()
-    }
+    setWidth()
 
     setPreviewDimensions()
 
@@ -1410,12 +1441,13 @@ export default function (props, context, dependencies)
     drawing,
     redos,
     undosLeft,
-    maxWidth,
+    width,
 
     fontFamilies,
     fontWeights,
     uploaded,
-    canDrop,
+    processing,
+    droppable,
     resolvedModes,
     resolvedFonts,
     colorable,
@@ -1433,6 +1465,8 @@ export default function (props, context, dependencies)
     showFonts,
     showClear,
     placeholderText,
+    imgAltText,
+    imgTitleText,
     fontText,
     padWidth,
     padHeight,
@@ -1456,7 +1490,7 @@ export default function (props, context, dependencies)
     hexToRgb,
     checkFileExt,
     checkFileSize,
-    setMaxWidth,
+    setWidth,
     setDefaultMode,
     setDefaultFont,
     setDefaultColor,
