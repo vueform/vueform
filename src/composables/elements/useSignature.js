@@ -519,6 +519,17 @@ export default function (props, context, dependencies)
     }
   })
 
+  /**
+   * The style attributes of the signature line.
+   *
+   * @type {}
+   */
+  const lineStyle = computed(() => {
+    return {
+      transform: `translateY(calc(${fontSize.value / 2.2}px))`
+    }
+  })
+
   // =============== METHODS ==============
 
   /**
@@ -638,15 +649,14 @@ export default function (props, context, dependencies)
 
     creating.value = true
 
+    setPreviewDimensions()
+
     img.onload = function() {
       const maxWidth = upload$.value.getBoundingClientRect().width
       const maxHeight = input.value.getBoundingClientRect().height * 0.6
 
       let targetWidth = img.width
       let targetHeight = img.height
-
-      canvas.width = maxWidth
-      canvas.height = maxHeight
 
       if (targetWidth > maxWidth || targetHeight > maxHeight) {
         if (targetWidth / targetHeight > maxWidth / maxHeight) {
@@ -920,6 +930,16 @@ export default function (props, context, dependencies)
   }
 
   /**
+   * Sets the [`canvasWidth`](#property-canvas-width) and [`canvasHeight`](#property-canvas-width) to the current element width and 60% of max height.
+   *
+   * @returns {void}
+   */
+  const setPreviewDimensions = () => {
+    canvasWidth.value = upload$.value.getBoundingClientRect().width
+    canvasHeight.value = input.value.getBoundingClientRect().height * 0.6
+  }
+
+  /**
    * Sets the [`mode`](#property-mode) to the first available mode from [`modes`](#option-modes). If none found, `draw` will be set.
    *
    * @returns {void}
@@ -1138,7 +1158,8 @@ export default function (props, context, dependencies)
     if (width.value === 'auto') {
       setMaxWidth()
     }
-      
+
+    setPreviewDimensions()
 
     // Auto-select default mode
     if (mode$.value) {
@@ -1225,7 +1246,6 @@ export default function (props, context, dependencies)
     }, { flush: 'post' })
 
     watch(mode, () => {
-      console.log(1)
       clearSignature()
     })
 
@@ -1294,6 +1314,7 @@ export default function (props, context, dependencies)
     padStyle,
     wrapperStyle,
     inputStyle,
+    lineStyle,
 
     initPad,
     resizePad,

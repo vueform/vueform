@@ -15,6 +15,7 @@
         <hr
           v-show="showLine"
           class="absolute top-1/2 left-6 right-6 border-gray-300"
+          :style="lineStyle"
         />
 
         <!-- Loaded preview -->
