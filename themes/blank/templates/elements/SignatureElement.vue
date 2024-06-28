@@ -42,7 +42,7 @@
             :value="text"
             type="text"
             spellcheck="false"
-            class="bg-transparent absolute top-1/2 left-0 right-0 transform -translate-y-1/2 pr-9 text-center indent-9 transition-colors"
+            class="bg-transparent absolute top-1/2 left-0 right-0 transform -translate-y-1/2 pr-9 text-center indent-9 transition-colors h-[8.5rem]"
             :disabled="isDisabled"
             :readonly="readonly"
             :style="inputStyle"
@@ -101,6 +101,7 @@
               v-show="showPreview"
               :width="canvasWidth"
               :height="canvasHeight"
+              class="mx-auto"
               ref="preview$"
             />
           </div>

@@ -89,11 +89,6 @@ export default {
       type: [Number],
       default: 230,
     },
-    signatureHeight: {
-      required: false,
-      type: [Number],
-      default: 80,
-    },
     placeholder: {
       required: false,
       type: [String, Object, Boolean],

@@ -14,7 +14,6 @@ export default function (props, context, dependencies)
     readonly,
     maxFontSize,
     minFontSize,
-    signatureHeight,
     canClear,
     line,
     placeholder,
@@ -243,7 +242,6 @@ export default function (props, context, dependencies)
       fontSize: `${fontSize.value}px`,
       lineHeight: `${fontSize.value}px`,
       color: color.value,
-      height: `${signatureHeight.value}px`,
       '-webkit-font-smoothing': 'auto',
     }
   })
@@ -255,6 +253,45 @@ export default function (props, context, dependencies)
   })
 
   // =============== METHODS ==============
+
+  const initPad = () => {
+    if (pad.value || !pad$.value || (modes.value.indexOf('draw') === -1 && modes.value.length)) {
+      return
+    }
+
+    pad.value = new SignaturePad(pad$.value)
+
+    const ctx = pad$.value.getContext('2d')
+    ctx.setTransform(1, 0, 0, 1, 0, 0)
+    ctx.scale(2, 2)
+
+    setDrawColor()
+
+    pad.value.addEventListener('beginStroke', (e) => {
+      if (isDisabled.value || readonly.value) {
+        e.preventDefault()
+        return
+      }
+
+      drawn.value = true
+      drawing.value = true
+      undos.value = []
+    })
+
+    pad.value.addEventListener('endStroke', () => {
+      drawing.value = false
+      undosLeft.value++
+    })
+  }
+
+  const resizePad = () => {
+    resolveWidth()
+
+    nextTick(() => {
+      pad$.value.getContext('2d').scale(2, 2)
+      pad.value.clear()
+    })
+  }
 
   const drawingToImage = () => {
     return new Promise((resolve, reject) => {
@@ -352,9 +389,9 @@ export default function (props, context, dependencies)
 
         // Apply custom color tint
         for (let i = 0; i < data.length; i += 4) {
-            data[i] = tintColor.r
-            data[i + 1] = tintColor.g
-            data[i + 2] = tintColor.b
+          data[i] = tintColor.r
+          data[i + 1] = tintColor.g
+          data[i + 2] = tintColor.b
         }
       }
 
@@ -370,54 +407,8 @@ export default function (props, context, dependencies)
 
         created.value = true
         creating.value = false
-      }, image.value.type)
+      }, 'image/png')
     }
-  }
-
-  const initPad = () => {
-    if (pad.value || !pad$.value || (modes.value.indexOf('draw') === -1 && modes.value.length)) {
-      return
-    }
-
-    pad.value = new SignaturePad(pad$.value)
-
-    const ctx = pad$.value.getContext('2d')
-    ctx.setTransform(1, 0, 0, 1, 0, 0)
-    ctx.scale(2, 2)
-
-    setDrawColor()
-
-    pad.value.addEventListener('beginStroke', (e) => {
-      if (isDisabled.value || readonly.value) {
-        e.preventDefault()
-        return
-      }
-
-      drawn.value = true
-      drawing.value = true
-      undos.value = []
-    })
-
-    pad.value.addEventListener('endStroke', () => {
-      drawing.value = false
-      undosLeft.value++
-    })
-  }
-
-  const resizePad = () => {
-    // pad$.value.width = canvas.offsetWidth * 2
-    // pad$.value.height = canvas.offsetHeight * 2
-
-    resolveWidth()
-
-    nextTick(() => {
-      pad$.value.getContext('2d').scale(2, 2)
-      pad.value.clear()
-    })
-  }
-
-  const resolveWidth = () => {
-    resolvedWidth.value = el$.value.$el.getBoundingClientRect().width
   }
 
   const undo = () => {
@@ -573,6 +564,38 @@ export default function (props, context, dependencies)
     return true
   }
 
+  const resolveWidth = () => {
+    resolvedWidth.value = el$.value.$el.getBoundingClientRect().width
+  }
+
+  const setDefaultMode = () => {
+    mode.value = modes.value[0] || 'draw'
+  }
+
+  const setDefaultFont = () => {
+    fontFamily.value = fontFamilies.value[0] || 'cursive'
+    fontWeight.value = fontWeights.value[0] || 400
+  }
+
+  const setDefaultColor = () => {
+    color.value = colors.value[0] || '#000000'
+  }
+
+  const setFont = (index) => {
+    fontFamily.value = fontFamilies.value[value.index]
+    fontWeight.value = fontWeights.value[value.index]
+  }
+
+  const setImage = (file) => {
+    if (checkFileExt(file) && checkFileSize(file)) {
+      image.value = file
+      uploadToImage(image.value)
+    } else {
+      image.value = null
+      created.value = false
+    }
+  }
+
   const handleInput = (e) => {
     if (isDisabled.value || readonly.value) {
       return
@@ -604,8 +627,7 @@ export default function (props, context, dependencies)
       return
     }
 
-    fontFamily.value = fontFamilies.value[value.index]
-    fontWeight.value = fontWeights.value[value.index]
+    setFont(value.index)
   }
 
   const handleClear = () => {
@@ -647,13 +669,7 @@ export default function (props, context, dependencies)
     
     const file = event.target.files[0]
 
-    if (checkFileExt(file) && checkFileSize(file)) {
-      image.value = file
-      uploadToImage(image.value)
-    } else {
-      image.value = null
-      created.value = false
-    }
+    setImage(file)
 
     file$.value.value = ''
   }
@@ -672,58 +688,10 @@ export default function (props, context, dependencies)
     
     let file = e.dataTransfer.files[0]
     
-    if (!checkFileExt(file) || !checkFileSize(file)) {
-      return
-    }
-
-    if (!file) {
-      image.value = null
-      created.value = false
-      return
-    }
-    
-    image.value = file
-    uploadToImage(image.value)
+    setImage(file)
   }
 
   const handleResize = debounce(resizePad, 200)
-
-  const setDefaultMode = () => {
-    mode.value = modes.value[0] || 'draw'
-  }
-
-  const setDefaultFont = () => {
-    fontFamily.value = fontFamilies.value[0] || 'cursive'
-    fontWeight.value = fontWeights.value[0] || 400
-  }
-
-  const setDefaultColor = () => {
-    color.value = colors.value[0] || '#000000'
-  }
-
-  // ============== WATCHERS ==============
-
-  watch(mode, () => {
-    clearSignature()
-  })
-  
-  watch(modes, () => {
-    initPad()
-  })
-
-  watch(color, () => {
-    if (pad.value) {
-      setDrawColor()
-    }
-    
-    if (mode.value === 'upload' && created.value && !creating.value) {
-      uploadToImage()
-    }
-  })
-
-  watch(columns, () => {
-    resizePad()
-  }, { flush: 'post' })
 
   // =============== HOOKS ================
 
@@ -801,6 +769,35 @@ export default function (props, context, dependencies)
       window.addEventListener('resize', handleResize)
     })
 
+    // ============== WATCHERS ==============
+  
+    watch(modes, () => {
+      initPad()
+    })
+
+    watch(color, () => {
+      if (pad.value) {
+        setDrawColor()
+      }
+      
+      if (mode.value === 'upload' && created.value && !creating.value) {
+        uploadToImage()
+      }
+    })
+
+    watch(columns, () => {
+      resizePad()
+
+      if (mode.value === 'upload' && created.value && !creating.value) {
+        uploadToImage()
+      }
+    }, { flush: 'post' })
+
+    watch(mode, () => {
+      console.log(1)
+      clearSignature()
+    })
+
     watch([text, fontFamily], () => {
       nextTick(() => {
         adjustFontSize()
@@ -820,62 +817,83 @@ export default function (props, context, dependencies)
     pad$,
     file$,
     upload$,
-    resolvedModes,
-    resolvedFonts,
     mode,
+    fontFamily,
+    fontWeight,
     color,
     text,
-    inputStyle,
-    lineStyle,
-    handleModeSelect,
-    handleColorSelect,
-    handleFontSelect,
-    input$,
     fontSize,
-    handleClear,
-    typingToImage,
-    image,
-    handleSelectClick,
-    handleFileSelect,
-    created,
-    dragging,
-    canDrop,
-    uploaded,
     canvasWidth,
     canvasHeight,
-    wrapperStyle,
+    pad,
+    image,
+    created,
+    creating,
+    dragging,
+    drawn,
+    drawing,
+    undos,
+    undosLeft,
+    resolvedWidth,
+
+    fontFamilies,
+    fontWeights,
+    uploaded,
+    canDrop,
+    resolvedModes,
+    resolvedFonts,
+    colorable,
+    fileAccept,
     showLine,
     showInput,
     showPlaceholder,
-    placeholderText,
+    showUploadContainer,
     showUpload,
     showPreview,
-    showColors,
-    showFonts,
-    fontText,
-    showClear,
-    pad,
-    drawing,
-    drawn,
-    undo,
-    redo,
-    undos,
-    padStyle,
-    padWidth,
-    padHeight,
     showPad,
     showUndos,
+    showColors,
     showModes,
-    showUploadContainer,
-    undosLeft,
-    clearSignature,
+    showFonts,
+    showClear,
+    placeholderText,
+    fontText,
+    padWidth,
+    padHeight,
+    padStyle,
+    wrapperStyle,
+    inputStyle,
+    lineStyle,
+
+    initPad,
+    resizePad,
     drawingToImage,
     typingToImage,
+    uploadToImage,
+    undo,
+    redo,
+    clearSignature,
+    loadFonts,
+    setDrawColor,
+    adjustFontSize,
+    hexToRgb,
+    checkFileExt,
+    checkFileSize,
+    resolveWidth,
+    setDefaultMode,
+    setDefaultFont,
+    setDefaultColor,
+    setFont,
+    handleInput,
+    handleModeSelect,
+    handleColorSelect,
+    handleFontSelect,
+    handleClear,
     handleUndo,
     handleRedo,
-    handleInput,
-    resolvedWidth,
-    resizePad,
-    fileAccept,
+    handleSelectClick,
+    handleFileSelect,
+    handleDrop,
+    handleResize,
   }
 }
