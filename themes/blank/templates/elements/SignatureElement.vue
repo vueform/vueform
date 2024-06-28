@@ -92,8 +92,8 @@
             <!-- Preview -->
             <canvas
               v-show="showPreview"
-              :width="canvasWidth"
-              :height="canvasHeight"
+              :width="uploadWidth"
+              :height="uploadHeight"
               :class="classes.uploadPreview"
               ref="preview$"
             />

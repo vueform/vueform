@@ -131,20 +131,6 @@ export default function (props, context, dependencies)
   const text = ref(null)
 
   /**
-   * The width attribute of [preview$](#property-preview_).
-   *
-   * @type {number}
-   */
-  const canvasWidth = ref(0)
-
-  /**
-   * The height attribute of [preview$](#property-preview_).
-   *
-   * @type {}
-   */
-  const canvasHeight = ref(0)
-
-  /**
    * The [Signature Pad](https://github.com/szimek/signature_pad) instance.
    *
    * @type {}
@@ -298,15 +284,6 @@ export default function (props, context, dependencies)
   })
 
   /**
-   * Whether the signature color can be changed.
-   *
-   * @type {boolean}
-   */
-  const colorable = computed(() => {
-    return mode.value !== 'upload' || ['image/png'].indexOf(image.value?.type) !== -1
-  })
-
-  /**
    * The list of MIME types formatted for the file input attribute.
    *
    * @type {string}
@@ -416,7 +393,7 @@ export default function (props, context, dependencies)
     return (
       (mode.value === 'upload' && created.value) ||
       mode.value === 'type' || mode.value === 'draw'
-    ) && !drawing.value && colors.value.length > 1 && colorable.value
+    ) && !drawing.value && colors.value.length > 1
   })
   
   /**
@@ -753,107 +730,98 @@ export default function (props, context, dependencies)
    * @returns {void}
    */
   const uploadToImage = () => {
-    const canvas = preview$.value
-    const ctx = canvas.getContext('2d')
-    const img = new Image()
-    img.src = URL.createObjectURL(image.value)
+    if (!image.value) {
+      return
+    }
+  
+    const file = image.value
+    const reader = new FileReader();
 
     creating.value = true
 
-    setPreviewDimensions()
+    reader.onload = function(e) {
+      const img = new Image()
 
-    img.onload = function() {
-      const maxWidth = upload$.value.getBoundingClientRect().width
-      const maxHeight = input.value.getBoundingClientRect().height * 0.6
+      img.onload = function() {
+        const canvas = document.createElement('canvas')
+        const ctx = canvas.getContext('2d')
+        
+        // Set canvas size to the image size
+        canvas.width = img.width
+        canvas.height = img.height
+        
+        // Draw the image on the canvas
+        ctx.drawImage(img, 0, 0)
 
-      let targetWidth = img.width
-      let targetHeight = img.height
+        // Get image data
+        const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height)
+        const data = imageData.data
 
-      if (targetWidth > maxWidth || targetHeight > maxHeight) {
-        if (targetWidth / targetHeight > maxWidth / maxHeight) {
-          targetWidth = maxWidth
-          targetHeight = Math.floor((maxWidth / img.width) * img.height)
-        } else {
-          targetHeight = maxHeight
-          targetWidth = Math.floor((maxHeight / img.height) * img.width)
-        }
-      }
+        // Get the selected color
+        const colorHex = color.value
+        const colorRGB = hexToRgb(colorHex)
 
-      const offsetX = Math.floor((maxWidth - targetWidth) / 2)
-      const offsetY = Math.floor((maxHeight - targetHeight) / 2)
-
-      // Clear canvas
-      ctx.clearRect(0, 0, canvas.width, canvas.height)
-
-      // Draw image on canvas with centering
-      ctx.drawImage(img, offsetX, offsetY, targetWidth, targetHeight)
-
-      // Get image data from the canvas
-      const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height)
-      const data = imageData.data
-
-      if (colorable.value) {
-        // Custom color tint (hex code)
-        const hexColor = color.value
-        const tintColor = hexToRgb(hexColor)
-
-        // Apply custom color tint
+        // Remove the background and change signature color to the selected color
+        const threshold = 220
         for (let i = 0; i < data.length; i += 4) {
-          data[i] = tintColor.r
-          data[i + 1] = tintColor.g
-          data[i + 2] = tintColor.b
+          const r = data[i]
+          const g = data[i + 1]
+          const b = data[i + 2]
+
+          // If the pixel is light, make it transparent
+          if (r > threshold && g > threshold && b > threshold) {
+            data[i + 3] = 0
+          } else {
+            // Change the color to the selected color
+            data[i] = colorRGB.r
+            data[i + 1] = colorRGB.g
+            data[i + 2] = colorRGB.b
+          }
         }
 
-        // Put tinted image data back to canvas
+        // Put the processed image data back on the canvas
         ctx.putImageData(imageData, 0, 0)
-      }
 
-      // Create a new canvas for the resized image
-      const resizedCanvas = document.createElement('canvas')
-      const resizedCtx = resizedCanvas.getContext('2d')
-      const resizedWidth = uploadWidth.value
-      const resizedHeight = uploadHeight.value
+        // Draw the processed image on the main canvas
+        const mainCanvas = preview$.value
+        const mainCtx = mainCanvas.getContext('2d')
 
-      resizedCanvas.width = resizedWidth
-      resizedCanvas.height = resizedHeight
-
-      // Calculate the new target dimensions while maintaining the aspect ratio
-      let newTargetWidth = targetWidth
-      let newTargetHeight = targetHeight
-
-      if (newTargetWidth > resizedWidth || newTargetHeight > resizedHeight) {
-        if (newTargetWidth / newTargetHeight > resizedWidth / resizedHeight) {
-          newTargetWidth = resizedWidth
-          newTargetHeight = Math.floor((resizedWidth / targetWidth) * targetHeight)
-        } else {
-          newTargetHeight = resizedHeight
-          newTargetWidth = Math.floor((resizedHeight / targetHeight) * targetWidth)
+        // Clear the main canvas
+        mainCtx.clearRect(0, 0, mainCanvas.width, mainCanvas.height)
+        
+        // Calculate the dimensions to keep aspect ratio within uploadWidth x uploadHeight
+        const targetWidth = uploadWidth.value
+        const targetHeight = uploadHeight.value
+        let newWidth = targetWidth
+        let newHeight = newWidth / (img.width / img.height)
+        if (newHeight > targetHeight) {
+          newHeight = targetHeight
+          newWidth = newHeight * (img.width / img.height)
         }
+        
+        // Center the image on the main canvas
+        const xOffset = (targetWidth - newWidth) / 2
+        const yOffset = (targetHeight - newHeight) / 2
+
+        // Draw the image on the main canvas
+        mainCtx.drawImage(canvas, 0, 0, img.width, img.height, xOffset, yOffset, newWidth, newHeight)
+
+        // Convert the resized canvas to Blob
+        mainCanvas.toBlob(function(blob) {
+          value.value = blob
+
+          created.value = true
+          creating.value = false
+
+          // Clean up the helper canvas
+          canvas.remove()
+        }, 'image/png')
       }
 
-      const newOffsetX = Math.floor((resizedWidth - newTargetWidth) / 2)
-      const newOffsetY = Math.floor((resizedHeight - newTargetHeight) / 2)
-
-      // Draw the original canvas content onto the resized canvas with proper scaling
-      resizedCtx.drawImage(canvas, offsetX, offsetY, targetWidth, targetHeight, newOffsetX, newOffsetY, newTargetWidth, newTargetHeight)
-
-      // Put image data back to the resized canvas
-      // resizedCtx.putImageData(imageData, 0, 0)
-
-      // Revoke the object URL to release memory
-      URL.revokeObjectURL(img.src)
-
-      // Convert the resized canvas to Blob
-      resizedCanvas.toBlob(function(blob) {
-        value.value = blob
-
-        created.value = true
-        creating.value = false
-
-        // Clean up the resized canvas
-        resizedCanvas.remove()
-      }, 'image/png')
+      img.src = e.target.result
     }
+      
+    reader.readAsDataURL(file)
   }
 
   /**
@@ -1075,16 +1043,6 @@ export default function (props, context, dependencies)
    */
   const setWidth = () => {
     width.value = input.value.getBoundingClientRect().width
-  }
-
-  /**
-   * Sets the [`canvasWidth`](#property-canvas-width) and [`canvasHeight`](#property-canvas-width) to the current element width and 60% of max height.
-   *
-   * @returns {void}
-   */
-  const setPreviewDimensions = () => {
-    canvasWidth.value = upload$.value.getBoundingClientRect().width
-    canvasHeight.value = input.value.getBoundingClientRect().height * 0.6
   }
 
   /**
@@ -1315,8 +1273,6 @@ export default function (props, context, dependencies)
 
     setWidth()
 
-    setPreviewDimensions()
-
     // Auto-select default mode
     if (mode$.value) {
       mode$.value.selected = resolvedModes.value[0] || {
@@ -1430,8 +1386,6 @@ export default function (props, context, dependencies)
     color,
     text,
     fontSize,
-    canvasWidth,
-    canvasHeight,
     pad,
     image,
     created,
@@ -1450,7 +1404,6 @@ export default function (props, context, dependencies)
     droppable,
     resolvedModes,
     resolvedFonts,
-    colorable,
     fileAccept,
     showLine,
     showInput,

@@ -916,7 +916,7 @@ export default {
     uploadWrapper_processing: 'opacity-60 pointer-events-none',
     dndText: '',
     uploadButton: 'bg-primary-500 text-white rounded px-3 py-2 mt-1 cursor-pointer transition-transform hover:scale-[1.05]',
-    uploadPreview: 'mx-auto',
+    uploadPreview: 'w-full mx-auto',
     pad: 'absolute inset-0',
     pad_invert: 'dark:filter dark:invert',
     colors: 'absolute bottom-5 left-1/2 transform -translate-x-1/2 flex flex-row gap-2',
