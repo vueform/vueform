@@ -35,48 +35,207 @@ export default function (props, context, dependencies)
   } = dependencies
 
   // ================ DATA ================
-
+   
+  /**
+   * The signature mode selector.
+   *
+   * @type {ElementAddonOptions}
+   */
   const mode$ = ref(null)
+
+  /**
+   * The font style selector.
+   *
+   * @type {ElementAddonOptions}
+   */
   const font$ = ref(null)
+
+  /**
+   * The input field when [`mode`](#property-mode) is 'type`.
+   *
+   * @type {HTMLInputElement}
+   */
   const input$ = ref(null)
+
+  /**
+   * The canvas that shows the preview of an uploaded signature when [`mode`](#property-mode) is 'upload`.
+   *
+   * @type {HTMLCanvasElement}
+   */
   const preview$ = ref(null)
+
+  /**
+   * The canvas that allows drawning signature when [`mode`](#property-mode) is 'draw`.
+   *
+   * @type {HTMLCanvasElement}
+   */
   const pad$ = ref(null)
+
+  /**
+   * The file input field when [`mode`](#property-mode) is 'upload` (it's invisible).
+   *
+   * @type {HTMLInputElement}
+   */
   const file$ = ref(null)
+
+  /**
+   * The DOM that contains upload related parts.
+   *
+   * @type {HTMLElement}
+   */
   const upload$ = ref(null)
 
+  /**
+   * The current signature mode (`draw`, `type` or `upload`).
+   *
+   * @type {string}
+   */
   const mode = ref(null)
-  const fontFamily = ref(null)
-  const fontWeight = ref(null)
-  const color = ref(null)
 
-  const text = ref(null)
+  /**
+   * The current font family.
+   *
+   * @type {string}
+   */
+  const fontFamily = ref(null)
+
+  /**
+   * The current font weight.
+   *
+   * @type {string}
+   */
+  const fontWeight = ref(null)
+
+  /**
+   * The current font size.
+   *
+   * @type {}
+   */
   const fontSize = ref(maxFontSize.value)
 
+  /**
+   * The hex code of the current signature color.
+   *
+   * @type {string}
+   */
+  const color = ref(null)
+
+  /**
+   * The input value used when [`mode`](#property-mode) is 'type`.
+   *
+   * @type {string}
+   */
+  const text = ref(null)
+
+  /**
+   * The width attribute of [preview$](#property-preview_).
+   *
+   * @type {number}
+   */
   const canvasWidth = ref(0)
+
+  /**
+   * The height attribute of [preview$](#property-preview_).
+   *
+   * @type {}
+   */
   const canvasHeight = ref(0)
 
+  /**
+   * The [Signature Pad](https://github.com/szimek/signature_pad) instance.
+   *
+   * @type {}
+   */
   const pad = ref(null)
+
+  /**
+   * The file (image) selected by the user when [`mode`](#property-mode) is 'upload`.
+   *
+   * @type {File}
+   */
   const image = ref(null)
+
+  /**
+   * Whether the image preview is already created when [`mode`](#property-mode) is 'upload`.
+   *
+   * @type {boolean}
+   */
   const created = ref(false)
+
+  /**
+   * Whether the image preview is being created when [`mode`](#property-mode) is 'upload`.
+   *
+   * @type {boolean}
+   */
   const creating = ref(false)
+
+  /**
+   * Whether a file is being dragged over the element when [`mode`](#property-mode) is 'upload`.
+   *
+   * @type {boolean}
+   */
   const dragging = ref(false)
+
+  /**
+   * Whether the canvas contains any drawn signature when [`mode`](#property-mode) is 'draw`.
+   *
+   * @type {boolean}
+   */
   const drawn = ref(false)
+
+  /**
+   * Whether a signature is currently being drawn when [`mode`](#property-mode) is 'draw`.
+   *
+   * @type {boolean}
+   */
   const drawing = ref(false)
-  const undos = ref([])
+
+  /**
+   * The list of available redos.
+   *
+   * @type {array}
+   */
+  const redos = ref([])
+
+  /**
+   * The number available undos.
+   *
+   * @type {number}
+   */
   const undosLeft = ref(0)
 
-  const resolvedWidth = ref(width.value === 'auto' ? 1 : width.value)
+  /**
+   * The max width of the signature element (based on the container width).
+   *
+   * @type {number}
+   */
+  const maxWidth = ref(0)
 
   // ============== COMPUTED ==============
 
+  /**
+   * The available font families.
+   *
+   * @type {array}
+   */
   const fontFamilies = computed(() => {
     return fonts.value.map(f => f.split('@')[0].replace('!', ''))
   })
 
+  /**
+   * The available font weights.
+   *
+   * @type {array}
+   */
   const fontWeights = computed(() => {
     return fonts.value.map(f => f.split('@')[1] || 400)
   })
 
+  /**
+   * Whether a signature (as URL) was loaded to the element.
+   *
+   * @type {boolean}
+   */
   const uploaded = computed(() => {
     return typeof value.value === 'string'
   })
@@ -85,7 +244,6 @@ export default function (props, context, dependencies)
    * Whether `drop` is enabled and browser supports dragging.
    *
    * @type {boolean}
-   * @private
    */
   const canDrop = computed(() => {
     let div = document.createElement('div')
@@ -96,6 +254,11 @@ export default function (props, context, dependencies)
       && 'FileReader' in window
   })
 
+  /**
+   * The list of [`modes`](#option-modes) formatted for mode selector.
+   *
+   * @type {array}
+   */
   const resolvedModes = computed(() => {
     return modes.value.filter(m => ['type', 'draw', 'upload'].indexOf(m) !== -1).map((mode, i) => {
       return {
@@ -106,6 +269,11 @@ export default function (props, context, dependencies)
     })
   })
 
+  /**
+   * The list of [`fonts`](#option-fonts) formatted for fonts selector.
+   *
+   * @type {}
+   */
   const resolvedFonts = computed(() => {
     return fontFamilies.value.map((font, i) => ({
       label: `<font style="font-family: ${font}; font-weight: ${fontWeights.value[i]}">${
@@ -116,15 +284,25 @@ export default function (props, context, dependencies)
     }))
   })
 
+  /**
+   * Whether the signature color can be changed.
+   *
+   * @type {boolean}
+   */
   const colorable = computed(() => {
     return mode.value !== 'upload' || ['image/png'].indexOf(image.value?.type) !== -1
   })
 
+  /**
+   * The list of MIME types formatted for the file input attribute.
+   *
+   * @type {string}
+   */
   const fileAccept = computed(() => {
     return accept.value.reduce((prev, curr) => {
       switch (curr) {
         case 'jpg':
-          prev.push('image/jpg')
+        case 'jpeg':
           prev.push('image/jpeg')
           break
 
@@ -141,14 +319,29 @@ export default function (props, context, dependencies)
     }, []).join(', ')
   })
 
+  /**
+   * Whether the signature line should be shown.
+   *
+   * @type {boolean}
+   */
   const showLine = computed(() => {
     return mode.value !== 'upload' && line.value
   })
 
+  /**
+   * Whether the signature text input should be shown.
+   *
+   * @type {boolean}
+   */
   const showInput = computed(() => {
     return !uploaded.value && mode.value === 'type'
   })
 
+  /**
+   * Whether the signature placeholder should be shown.
+   *
+   * @type {boolean}
+   */
   const showPlaceholder = computed(() => {
     return (
       (!text.value && mode.value === 'type') ||
@@ -156,26 +349,56 @@ export default function (props, context, dependencies)
     ) && placeholder.value !== false
   })
 
+  /**
+   * Whether the upload container should be shown.
+   *
+   * @type {boolean}
+   */
   const showUploadContainer = computed(() => {
     return mode.value === 'upload'
   })
 
+  /**
+   * Whether the file upload controllers should be shown.
+   *
+   * @type {boolean}
+   */
   const showUpload = computed(() => {
     return mode.value === 'upload' && !created.value
   })
 
+  /**
+   * Whether file upload preview should be shown.
+   *
+   * @type {boolean}
+   */
   const showPreview = computed(() => {
     return mode.value === 'upload' && created.value
   })
 
+  /**
+   * Whether signature draw pad should be shown.
+   *
+   * @type {boolean}
+   */
   const showPad = computed(() => {
     return mode.value === 'draw'
   })
 
+  /**
+   * Whether undo and redo buttons should be shown.
+   *
+   * @type {boolean}
+   */
   const showUndos = computed(() => {
-    return mode.value === 'draw' && (undos.value.length || drawn.value) && !drawing.value && canUndo.value
+    return mode.value === 'draw' && (redos.value.length || drawn.value) && !drawing.value && canUndo.value
   })
   
+  /**
+   * Whether color selector should be shown.
+   *
+   * @type {boolean}
+   */
   const showColors = computed(() => {
     return (
       (mode.value === 'upload' && created.value) ||
@@ -183,14 +406,29 @@ export default function (props, context, dependencies)
     ) && !drawing.value && colors.value.length > 1 && colorable.value
   })
   
+  /**
+   * Whether mode selector should be shown.
+   *
+   * @type {boolean}
+   */
   const showModes = computed(() => {
     return !drawing.value && modes.value.length > 1
   })
   
+  /**
+   * Whether font selector should be shown.
+   *
+   * @type {boolean}
+   */
   const showFonts = computed(() => {
     return mode.value === 'type' && resolvedFonts.value.length > 1
   })
 
+  /**
+   * Whether clear button should be shown.
+   *
+   * @type {boolean}
+   */
   const showClear = computed(() => {
     return (
       (mode.value === 'type' && text.value) ||
@@ -200,29 +438,59 @@ export default function (props, context, dependencies)
     ) && !isDisabled.value && !readonly.value && !drawing.value && canClear.value
   })
 
+  /**
+   * The text of the placeholder.
+   *
+   * @type {string}
+   */
   const placeholderText = computed(() => {
     return Placeholder.value || form$.value.translations.vueform.elements.signature.placeholder
   })
 
+  /**
+   * The current text of font selector options.
+   *
+   * @type {string}
+   */
   const fontText = computed(() => {
     return form$.value.translations.vueform.elements.signature.font
   })
 
+  /**
+   * The width of signature pad.
+   *
+   * @type {number}
+   */
   const padWidth = computed(() => {
-    return resolvedWidth.value * 2
+    return maxWidth.value * 2
   })
 
+  /**
+   * The height of signature pad.
+   *
+   * @type {number}
+   */
   const padHeight = computed(() => {
     return height.value * 2
   })
 
+  /**
+   * The style attributes of the signature pad.
+   *
+   * @type {object}
+   */
   const padStyle = computed(() => {
     return {
-      width: `${resolvedWidth.value}px`,
+      width: `${maxWidth.value}px`,
       height: `${height.value}px`,
     }
   })
 
+  /**
+   * The style attributes of the signature wrapper.
+   *
+   * @type {object}
+   */
   const wrapperStyle = computed(() => {
     let style = {
       height: `${height.value}px`,
@@ -235,6 +503,11 @@ export default function (props, context, dependencies)
     return style
   })
 
+  /**
+   * The style attributes of the signature input when [`mode`](#property-mode) is 'type`.
+   *
+   * @type {}
+   */
   const inputStyle = computed(() => {
     return {
       fontFamily: fontFamily.value,
@@ -246,14 +519,13 @@ export default function (props, context, dependencies)
     }
   })
 
-  const lineStyle = computed(() => {
-    return {
-      transform: `translateY(calc(${fontSize.value / 2.2}px))`
-    }
-  })
-
   // =============== METHODS ==============
 
+  /**
+   * Initalizes the [Signature Pad](https://github.com/szimek/signature_pad).
+   *
+   * @returns {void}
+   */
   const initPad = () => {
     if (pad.value || !pad$.value || (modes.value.indexOf('draw') === -1 && modes.value.length)) {
       return
@@ -275,7 +547,7 @@ export default function (props, context, dependencies)
 
       drawn.value = true
       drawing.value = true
-      undos.value = []
+      redos.value = []
     })
 
     pad.value.addEventListener('endStroke', () => {
@@ -284,15 +556,25 @@ export default function (props, context, dependencies)
     })
   }
 
+  /**
+   * Resizes the signature pad to the current max width and clears any drawings.
+   *
+   * @returns {void}
+   */
   const resizePad = () => {
-    resolveWidth()
+    setMaxWidth()
 
     nextTick(() => {
       pad$.value.getContext('2d').scale(2, 2)
-      pad.value.clear()
+      clearDrawnSignature()
     })
   }
 
+  /**
+   * Sets the element value as Blob from the current drawing.
+   *
+   * @returns {void}
+   */
   const drawingToImage = () => {
     return new Promise((resolve, reject) => {
       pad$.value.toBlob(function(blob) {
@@ -302,6 +584,11 @@ export default function (props, context, dependencies)
     })
   }
 
+  /**
+   * Sets the element value as Blob from the currently typed signature.
+   *_
+   * @returns {void}
+   */
   const typingToImage = () => {
     return new Promise((resolve, reject) => {
       const canvas = document.createElement('canvas')
@@ -329,9 +616,6 @@ export default function (props, context, dependencies)
 
         ctx.fillText(text.value, displayWidth / 2, displayHeight / 2)
 
-        const dataURL = canvas.toDataURL()
-        image.value = dataURL
-
         canvas.toBlob(function(blob) {
           value.value = blob
           canvas.remove()
@@ -341,6 +625,11 @@ export default function (props, context, dependencies)
     })
   }
   
+  /**
+   * Sets the element value as Blob from the currently uploaded signature.
+   *
+   * @returns {void}
+   */
   const uploadToImage = () => {
     const canvas = preview$.value
     const ctx = canvas.getContext('2d')
@@ -411,6 +700,11 @@ export default function (props, context, dependencies)
     }
   }
 
+  /**
+   * Undoes the last drawing when [`mode`](#property-mode) is 'draw`.
+   *
+   * @returns {void}
+   */
   const undo = () => {
     if (!pad.value) {
       return
@@ -422,7 +716,7 @@ export default function (props, context, dependencies)
       return
     }
 
-    undos.value.push(data.pop())
+    redos.value.push(data.pop())
 
     pad.value.fromData(data)
 
@@ -433,14 +727,19 @@ export default function (props, context, dependencies)
     undosLeft.value = data.length
   }
 
+  /**
+   * Redoes the last drawing when [`mode`](#property-mode) is 'draw`.
+   *
+   * @returns {void}
+   */
   const redo = () => {
-    if (!pad.value || !undos.value.length) {
+    if (!pad.value || !redos.value.length) {
       return
     }
 
     var data = pad.value.toData() || []
 
-    data.push(undos.value.pop())
+    data.push(redos.value.pop())
 
     pad.value.fromData(data)
 
@@ -451,16 +750,35 @@ export default function (props, context, dependencies)
     undosLeft.value = data.length
   }
 
+  /**
+   * Clears the signature in all forms (drawn, typed, uploaded, loaded).
+   *
+   * @returns {void}
+   */
   const clearSignature = () => {
     text.value = null
     image.value = null
     created.value = false
     value.value = null
-    pad.value?.clear()
-    drawn.value = false
-    undos.value = []
+    clearDrawnSignature()
   }
 
+  /**
+   * Clears the drawn signature.
+   *
+   * @returns {void}
+   */
+  const clearDrawnSignature = () => {
+    pad.value?.clear()
+    drawn.value = false
+    redos.value = []
+  }
+
+  /**
+   * Loads Google Fonts dynamically by adding `<link>` tags to `<head>`.
+   *
+   * @returns {void}
+   */
   const loadFonts = () => {
     fonts.value.forEach((font) => {
       const parts = font.split('@')
@@ -482,6 +800,11 @@ export default function (props, context, dependencies)
     })
   }
 
+  /**
+   * Sets the drawing color of the signature pad.
+   *
+   * @returns {void}
+   */
   const setDrawColor = () => {
     const { r, g, b } = hexToRgb(color.value)
     pad.value.penColor = `rgb(${r}, ${g}, ${b})`
@@ -494,6 +817,11 @@ export default function (props, context, dependencies)
     }
   }
 
+  /**
+   * Adjusts the typed signature's font size to fit into the input without overflow until [`minSize`](#option-min-size) or [`maxSize`](#option-max-size) is reached.
+   *
+   * @returns {void}
+   */
   const adjustFontSize = () => {
     const ua = navigator.userAgent.toLowerCase();
     const isSafari = (ua.indexOf('safari') != -1 && ua.indexOf('chrome') == -1 && ua.indexOf('android') == -1)
@@ -525,6 +853,12 @@ export default function (props, context, dependencies)
     fontSize.value = size
   }
 
+  /**
+   * Converts a HEX color to RGB.
+   *
+   * @param {string} hex* the color in HEX format
+   * @returns {string}
+   */
   const hexToRgb = (hex) => {
     hex = hex.replace(/^#/, '')
     let bigint = parseInt(hex, 16)
@@ -534,6 +868,12 @@ export default function (props, context, dependencies)
     return { r, g, b }
   }
 
+  /**
+   * Checks if a file complies with [`accept`](#option-accept) list and throws an alert if not.
+   *
+   * @param {File} file* the file to check
+   * @returns {boolean}
+   */
   const checkFileExt = (file) => {
     const accepted = accept.value.indexOf('jpg') !== -1 && accept.value.indexOf('jpeg') === -1
       ? accept.value.concat(['jpeg']) : accept.value
@@ -551,6 +891,12 @@ export default function (props, context, dependencies)
     return true
   }
 
+  /**
+   * Checks if a file is under the allowed [`maxSize`](#option-max-size) and throws an alert if not.
+   *
+   * @param {File} file* the file to check
+   * @returns {boolean}
+   */
   const checkFileSize = (file) => {
     if (maxSize.value === -1) {
       return true
@@ -564,28 +910,60 @@ export default function (props, context, dependencies)
     return true
   }
 
-  const resolveWidth = () => {
-    resolvedWidth.value = el$.value.$el.getBoundingClientRect().width
+  /**
+   * Sets the [`maxWidth`](#property-max-width) to the current element width.
+   *
+   * @returns {void}
+   */
+  const setMaxWidth = () => {
+    maxWidth.value = el$.value.$el.getBoundingClientRect().width
   }
 
+  /**
+   * Sets the [`mode`](#property-mode) to the first available mode from [`modes`](#option-modes). If none found, `draw` will be set.
+   *
+   * @returns {void}
+   */
   const setDefaultMode = () => {
     mode.value = modes.value[0] || 'draw'
   }
 
+  /**
+   * Sets the [`fontFamily`](#property-font-family) and [`fontWeight`](#property-font-weight) to the first available from [`fonts`](#option-fonts). If none found, `cursive` and `400` will be set.
+   *
+   * @returns {void}
+   */
   const setDefaultFont = () => {
     fontFamily.value = fontFamilies.value[0] || 'cursive'
     fontWeight.value = fontWeights.value[0] || 400
   }
 
+  /**
+   * Sets the [`color`](#property-color) to the first available color from [`colors`](#option-colors). If none found, `#000000` will be set.
+   *
+   * @returns {void}
+   */
   const setDefaultColor = () => {
     color.value = colors.value[0] || '#000000'
   }
 
+  /**
+   * Sets the [`fontFamily`](#property-font-family) and [`fontWeight`](#property-font-weight) by the index of a font from [`fonts`](#option-fonts).
+   *
+   * @param {number} index* the index of the font in [`fonts`](#option-fonts)
+   * @returns {void}
+   */
   const setFont = (index) => {
     fontFamily.value = fontFamilies.value[value.index]
     fontWeight.value = fontWeights.value[value.index]
   }
 
+  /**
+   * Checks the file contstraints and sets the value of [`image`](#property-image) and renders the selected file preview when [`mode`](#property-mode) is 'upload`. If file constraints are not met it clears both.
+   *
+   * @param {File} file* the file to set as image
+   * @returns {void}
+   */
   const setImage = (file) => {
     if (checkFileExt(file) && checkFileSize(file)) {
       image.value = file
@@ -596,6 +974,12 @@ export default function (props, context, dependencies)
     }
   }
 
+  /**
+   * Handles the input event of the input field.
+   *
+   * @param {Event} e the Event object
+   * @returns {void}
+   */
   const handleInput = (e) => {
     if (isDisabled.value || readonly.value) {
       return
@@ -604,6 +988,12 @@ export default function (props, context, dependencies)
     text.value = e.target.value
   }
 
+  /**
+   * Handles the mode select.
+   *
+   * @param {object} value* the selected mode object (from [`resolvedModes`](#property-resolved-modes))
+   * @returns {void}
+   */
   const handleModeSelect = (value) => {
     if (isDisabled.value || readonly.value) {
       return
@@ -612,6 +1002,12 @@ export default function (props, context, dependencies)
     mode.value = value.value
   }
 
+  /**
+   * Handles the color select.
+   *
+   * @param {string} value the color to select (HEX)
+   * @returns {void}
+   */
   const handleColorSelect = (value) => {
     if (isDisabled.value || readonly.value) {
       return
@@ -620,6 +1016,12 @@ export default function (props, context, dependencies)
     color.value = value
   }
 
+  /**
+   * Handles the font select.
+   *
+   * @param {object} value* the selected font object (from [`resolvedFonts`](#property-resolved-fonts))
+   * @returns {void}
+   */
   const handleFontSelect = (value) => {
     font$.value.selected = {}
 
@@ -630,6 +1032,11 @@ export default function (props, context, dependencies)
     setFont(value.index)
   }
 
+  /**
+   * Handle the clear button action.
+   *
+   * @returns {void}
+   */
   const handleClear = () => {
     if (isDisabled.value || readonly.value) {
       return
@@ -638,6 +1045,11 @@ export default function (props, context, dependencies)
     clearSignature()
   }
 
+  /**
+   * Handles the undo button action.
+   *
+   * @returns {void}
+   */
   const handleUndo = () => {
     if (isDisabled.value || readonly.value) {
       return
@@ -646,6 +1058,11 @@ export default function (props, context, dependencies)
     undo()
   }
 
+  /**
+   * Handles the redo button action.
+   *
+   * @returns {void}
+   */
   const handleRedo = () => {
     if (isDisabled.value || readonly.value) {
       return
@@ -654,6 +1071,11 @@ export default function (props, context, dependencies)
     redo()
   }
 
+  /**
+   * Handles the file select button action.
+   *
+   * @returns {void}
+   */
   const handleSelectClick = () => {
     if (isDisabled.value || readonly.value) {
       return
@@ -662,6 +1084,11 @@ export default function (props, context, dependencies)
     file$.value.click()
   }
 
+  /**
+   * Handles the file selection.
+   *
+   * @returns {void}
+   */
   const handleFileSelect = (event) => {
     if (isDisabled.value || readonly.value) {
       return
@@ -675,11 +1102,10 @@ export default function (props, context, dependencies)
   }
 
   /**
-   * Handles the `drop` event.
+   * Handles the drop event.
    *
-   * @param {Event} e* event object
+   * @param {Event} e* the Event object
    * @returns {void}
-   * @private
    */
   const handleDrop = (e) => {
     if (isDisabled.value || readonly.value) {
@@ -691,6 +1117,11 @@ export default function (props, context, dependencies)
     setImage(file)
   }
 
+  /**
+   * Handles the window resize event with debounce.
+   *
+   * @returns {void}
+   */
   const handleResize = debounce(resizePad, 200)
 
   // =============== HOOKS ================
@@ -705,7 +1136,7 @@ export default function (props, context, dependencies)
     }
 
     if (width.value === 'auto') {
-      resolveWidth()
+      setMaxWidth()
     }
       
 
@@ -832,9 +1263,9 @@ export default function (props, context, dependencies)
     dragging,
     drawn,
     drawing,
-    undos,
+    redos,
     undosLeft,
-    resolvedWidth,
+    maxWidth,
 
     fontFamilies,
     fontWeights,
@@ -863,7 +1294,6 @@ export default function (props, context, dependencies)
     padStyle,
     wrapperStyle,
     inputStyle,
-    lineStyle,
 
     initPad,
     resizePad,
@@ -873,13 +1303,14 @@ export default function (props, context, dependencies)
     undo,
     redo,
     clearSignature,
+    clearDrawnSignature,
     loadFonts,
     setDrawColor,
     adjustFontSize,
     hexToRgb,
     checkFileExt,
     checkFileSize,
-    resolveWidth,
+    setMaxWidth,
     setDefaultMode,
     setDefaultFont,
     setDefaultColor,

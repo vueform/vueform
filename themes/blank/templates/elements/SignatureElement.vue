@@ -15,7 +15,6 @@
         <hr
           v-show="showLine"
           class="absolute top-1/2 left-6 right-6 border-gray-300"
-          :style="lineStyle"
         />
 
         <!-- Loaded preview -->
@@ -178,7 +177,7 @@
               <div
                 :class="[
                   'mask-bg mask-form-trix-redo form-bg-icon w-3 h-3',
-                  undos.length ? 'cursor-pointer' : 'opacity-50 cursor-not-allowed'
+                  redos.length ? 'cursor-pointer' : 'opacity-50 cursor-not-allowed'
                 ]"
                 @click.stop="handleRedo"
               />
