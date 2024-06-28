@@ -37,6 +37,8 @@ export default {
         "maxSizeError": "Max file size is :max KBs",
         "imgAlt": "Signature",
         "imgTitle": "Signature",
+        "undo": "Undo",
+        "redo": "Redo",
       }
     },
     "steps": {

@@ -196,7 +196,7 @@ const vueform = plugin((context) => {
         },
         'input::placeholder, textarea::placeholder': {
           'opacity': '1',
-          'color': theme('colors.gray.400', '#9ca3af'),
+          'color': 'var(--vf-color-placeholder)',
         },
         'button, [role="button"]': {
           'cursor': 'pointer',

@@ -284,7 +284,7 @@ export default function (props, context, dependencies)
     return fontFamilies.value.map((font, i) => ({
       label: `<font style="font-family: ${font}; font-weight: ${fontWeights.value[i]}">${
         text.value?.trim() || form$.value.translations.vueform.elements.signature.fontPlaceholder
-      }<font>`,
+      }</font>`,
       value: i,
       index: i,
     }))
@@ -469,6 +469,24 @@ export default function (props, context, dependencies)
    */
   const fontText = computed(() => {
     return form$.value.translations.vueform.elements.signature.font
+  })
+
+  /**
+   * The undo button's title.
+   *
+   * @type {string}
+   */
+  const undoText = computed(() => {
+    return form$.value.translations.vueform.elements.signature.undo
+  })
+
+  /**
+   * The redo button's title.
+   *
+   * @type {string}
+   */
+  const redoText = computed(() => {
+    return form$.value.translations.vueform.elements.signature.redo
   })
 
   /**
@@ -961,7 +979,7 @@ export default function (props, context, dependencies)
     const styles = window.getComputedStyle(inputElement)
     const textIndent = parseFloat(styles.textIndent)
     const paddingRight = parseFloat(styles.paddingRight)
-    const maxWidth = inputElement.clientWidth - textIndent
+    const maxWidth = Math.ceil(inputElement.getBoundingClientRect().width) - textIndent
 
     let size = fontSize.value
 
@@ -1448,6 +1466,8 @@ export default function (props, context, dependencies)
     imgAltText,
     imgTitleText,
     fontText,
+    undoText,
+    redoText,
     padWidth,
     padHeight,
     padStyle,

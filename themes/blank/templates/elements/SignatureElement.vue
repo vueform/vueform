@@ -158,12 +158,14 @@
               <!-- Undo -->
               <div
                 :class="classes.undo"
+                :title="undoText"
                 @click.stop="handleUndo"
               />
 
               <!-- Redo -->
               <div
                 :class="classes.redo"
+                :title="redoText"
                 @click.stop="handleRedo"
               />
             </div>
