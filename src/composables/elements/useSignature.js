@@ -21,6 +21,8 @@ export default function (props, context, dependencies)
     maxSize,
     canUndo,
     columns,
+    uploadWidth,
+    uploadHeight,
   } = toRefs(props)
 
   // ============ DEPENDENCIES ============
@@ -588,16 +590,89 @@ export default function (props, context, dependencies)
    */
   const drawingToImage = () => {
     return new Promise((resolve, reject) => {
-      pad$.value.toBlob(function(blob) {
+      const originalCanvas = pad$.value
+      const originalCtx = originalCanvas.getContext('2d')
+
+      // Get the image data from the canvas
+      const imageData = originalCtx.getImageData(0, 0, originalCanvas.width, originalCanvas.height)
+      const data = imageData.data
+
+      // Find the bounding box of the drawing
+      let minX = originalCanvas.width, minY = originalCanvas.height, maxX = 0, maxY = 0
+
+      for (let y = 0; y < originalCanvas.height; y++) {
+        for (let x = 0; x < originalCanvas.width; x++) {
+          const index = (y * originalCanvas.width + x) * 4
+          if (data[index + 3] > 0) { // alpha channel > 0 means there's a drawn pixel
+            if (x < minX) minX = x
+            if (y < minY) minY = y
+            if (x > maxX) maxX = x
+            if (y > maxY) maxY = y
+          }
+        }
+      }
+
+      // Check if there is any drawing
+      if (minX > maxX || minY > maxY) {
+        reject(new Error('No drawing found on the canvas.'))
+        return
+      }
+
+      // Create a new canvas for the bounding box of the drawing
+      const drawingWidth = maxX - minX + 1
+      const drawingHeight = maxY - minY + 1
+      const drawingCanvas = document.createElement('canvas')
+      const drawingCtx = drawingCanvas.getContext('2d')
+
+      drawingCanvas.width = drawingWidth
+      drawingCanvas.height = drawingHeight
+
+      drawingCtx.putImageData(imageData, -minX, -minY)
+
+      // Create a new canvas for the resized image
+      const resizedCanvas = document.createElement('canvas')
+      const resizedCtx = resizedCanvas.getContext('2d')
+      const resizedWidth = uploadWidth.value
+      const resizedHeight = uploadHeight.value
+
+      resizedCanvas.width = resizedWidth
+      resizedCanvas.height = resizedHeight
+
+      // Calculate the new target dimensions while maintaining the aspect ratio
+      let targetWidth = drawingWidth
+      let targetHeight = drawingHeight
+
+      if (targetWidth > resizedWidth || targetHeight > resizedHeight) {
+        if (targetWidth / targetHeight > resizedWidth / resizedHeight) {
+          targetWidth = resizedWidth
+          targetHeight = Math.floor((resizedWidth / drawingWidth) * drawingHeight)
+        } else {
+          targetHeight = resizedHeight
+          targetWidth = Math.floor((resizedHeight / drawingHeight) * drawingWidth)
+        }
+      }
+
+      const offsetX = Math.floor((resizedWidth - targetWidth) / 2)
+      const offsetY = Math.floor((resizedHeight - targetHeight) / 2)
+
+      // Draw the original canvas content onto the resized canvas with proper scaling
+      resizedCtx.drawImage(drawingCanvas, 0, 0, drawingWidth, drawingHeight, offsetX, offsetY, targetWidth, targetHeight)
+
+      // Convert the resized canvas to Blob
+      resizedCanvas.toBlob(function(blob) {
         value.value = blob
         resolve()
+
+        // Clean up the resized canvas
+        resizedCanvas.remove()
       }, 'image/png')
     })
   }
 
+
   /**
    * Sets the element value as Blob from the currently typed signature.
-   *_
+   *
    * @returns {void}
    */
   const typingToImage = () => {
@@ -605,22 +680,27 @@ export default function (props, context, dependencies)
       const canvas = document.createElement('canvas')
       const ctx = canvas.getContext('2d')
 
-      const inputRect = input$.value.getBoundingClientRect()
+      const displayWidth = uploadWidth.value
+      const displayHeight = uploadHeight.value
 
-      const displayWidth = inputRect.width
-      const displayHeight = inputRect.height
-
-      const dpr = 2
-
-      canvas.width = displayWidth * dpr
-      canvas.height = displayHeight * dpr
+      canvas.width = displayWidth
+      canvas.height = displayHeight
 
       nextTick(() => {
-        ctx.scale(dpr, dpr)
-
         ctx.clearRect(0, 0, displayWidth, displayHeight)
 
-        ctx.font = `${fontWeight.value} ${fontSize.value}px ${fontFamily.value}`
+        // Determine the maximum font size that fits within the canvas
+        let fontSize = displayHeight / 2 // Start with a large font size
+        ctx.font = `${fontWeight.value} ${fontSize}px ${fontFamily.value}`
+
+        // Measure the text width and adjust font size to fit within the canvas
+        let textWidth = ctx.measureText(text.value).width
+        while (textWidth > displayWidth - 10 && fontSize > 10) { // 10px padding
+          fontSize -= 1
+          ctx.font = `${fontWeight.value} ${fontSize}px ${fontFamily.value}`
+          textWidth = ctx.measureText(text.value).width
+        }
+
         ctx.fillStyle = color.value
         ctx.textAlign = 'center'
         ctx.textBaseline = 'middle'
@@ -677,7 +757,7 @@ export default function (props, context, dependencies)
       // Draw image on canvas with centering
       ctx.drawImage(img, offsetX, offsetY, targetWidth, targetHeight)
 
-      // Get image data
+      // Get image data from the canvas
       const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height)
       const data = imageData.data
 
@@ -692,20 +772,55 @@ export default function (props, context, dependencies)
           data[i + 1] = tintColor.g
           data[i + 2] = tintColor.b
         }
+
+        // Put tinted image data back to canvas
+        ctx.putImageData(imageData, 0, 0)
       }
 
-      // Put image data back to canvas
-      ctx.putImageData(imageData, 0, 0)
+      // Create a new canvas for the resized image
+      const resizedCanvas = document.createElement('canvas')
+      const resizedCtx = resizedCanvas.getContext('2d')
+      const resizedWidth = uploadWidth.value
+      const resizedHeight = uploadHeight.value
+
+      resizedCanvas.width = resizedWidth
+      resizedCanvas.height = resizedHeight
+
+      // Calculate the new target dimensions while maintaining the aspect ratio
+      let newTargetWidth = targetWidth
+      let newTargetHeight = targetHeight
+
+      if (newTargetWidth > resizedWidth || newTargetHeight > resizedHeight) {
+        if (newTargetWidth / newTargetHeight > resizedWidth / resizedHeight) {
+          newTargetWidth = resizedWidth
+          newTargetHeight = Math.floor((resizedWidth / targetWidth) * targetHeight)
+        } else {
+          newTargetHeight = resizedHeight
+          newTargetWidth = Math.floor((resizedHeight / targetHeight) * targetWidth)
+        }
+      }
+
+      const newOffsetX = Math.floor((resizedWidth - newTargetWidth) / 2)
+      const newOffsetY = Math.floor((resizedHeight - newTargetHeight) / 2)
+
+      // Draw the original canvas content onto the resized canvas with proper scaling
+      resizedCtx.drawImage(canvas, offsetX, offsetY, targetWidth, targetHeight, newOffsetX, newOffsetY, newTargetWidth, newTargetHeight)
+
+      // Put image data back to the resized canvas
+      // resizedCtx.putImageData(imageData, 0, 0)
 
       // Revoke the object URL to release memory
       URL.revokeObjectURL(img.src)
 
-      // Convert canvas to Blob
-      canvas.toBlob(function(blob) {
+      // Convert the resized canvas to Blob
+      resizedCanvas.toBlob(function(blob) {
         value.value = blob
 
         created.value = true
         creating.value = false
+
+        // Clean up the resized canvas
+        resizedCanvas.remove()
       }, 'image/png')
     }
   }
@@ -970,10 +1085,10 @@ export default function (props, context, dependencies)
   /**
    * Sets the [`fontFamily`](#property-font-family) and [`fontWeight`](#property-font-weight) by the index of a font from [`fonts`](#option-fonts).
    *
-   * @param {number} index* the index of the font in [`fonts`](#option-fonts)
+   * @param {object} value* the selected font object (from [`resolvedFonts`](#property-resolved-fonts))
    * @returns {void}
    */
-  const setFont = (index) => {
+  const setFont = (value) => {
     fontFamily.value = fontFamilies.value[value.index]
     fontWeight.value = fontWeights.value[value.index]
   }
@@ -1049,7 +1164,7 @@ export default function (props, context, dependencies)
       return
     }
 
-    setFont(value.index)
+    setFont(value)
   }
 
   /**
@@ -1138,11 +1253,21 @@ export default function (props, context, dependencies)
   }
 
   /**
-   * Handles the window resize event with debounce.
+   * Handles the window resize event.
    *
    * @returns {void}
    */
-  const handleResize = debounce(resizePad, 200)
+  const handleResize = () => {
+    resizePad()
+    adjustFontSize()
+  }
+
+  /**
+   * Handler with debounce for resize event.
+   *
+   * @returns {void}
+   */
+  const handleResizeDebounce = debounce(handleResize, 200)
 
   // =============== HOOKS ================
 
@@ -1218,7 +1343,7 @@ export default function (props, context, dependencies)
     nextTick(() => {
       initPad()
 
-      window.addEventListener('resize', handleResize)
+      window.addEventListener('resize', handleResizeDebounce)
     })
 
     // ============== WATCHERS ==============
@@ -1238,7 +1363,7 @@ export default function (props, context, dependencies)
     })
 
     watch(columns, () => {
-      resizePad()
+      handleResize()
 
       if (mode.value === 'upload' && created.value && !creating.value) {
         uploadToImage()
@@ -1257,7 +1382,7 @@ export default function (props, context, dependencies)
   })
 
   onBeforeUnmount(() => {
-    window.removeEventListener('resize', handleResize)
+    window.removeEventListener('resize', handleResizeDebounce)
   })
 
   return {
@@ -1347,5 +1472,6 @@ export default function (props, context, dependencies)
     handleFileSelect,
     handleDrop,
     handleResize,
+    handleResizeDebounce,
   }
 }

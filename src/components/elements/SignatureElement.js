@@ -87,7 +87,17 @@ export default {
     height: {
       required: false,
       type: [Number],
-      default: 230,
+      default: 160,
+    },
+    uploadWidth: {
+      required: false,
+      type: [Number],
+      default: 300,
+    },
+    uploadHeight: {
+      required: false,
+      type: [Number],
+      default: 100,
     },
     placeholder: {
       required: false,
@@ -129,7 +139,11 @@ export default {
     fonts: {
       required: false,
       type: [Array],
-      default: () => (['cursive']),
+      default: () => ([
+        'Caveat@400',
+        'Sacramento@400',
+        'Dancing Script@400'
+      ]),
     },
     accept: {
       required: false,

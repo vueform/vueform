@@ -22,7 +22,7 @@
         <div
           v-show="uploaded"
           :class="[
-            'absolute inset-0 flex items-center justify-center',
+            'absolute inset-9 flex items-center justify-center',
             isDisabled ? 'opacity-50' : ''
           ]"
         >
