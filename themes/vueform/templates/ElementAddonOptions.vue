@@ -24,6 +24,10 @@
             classes[`container_${Size}`],
             el$.isDisabled || el$.readonly ? classes.container_disabled : null,
           ]),
+          $wrapper: (classes, { relaxed }) => ([
+            classes.wrapper,
+            relaxed ? classes.wrapper_relaxed : classes.wrapper_default,
+          ]),
           $option: (classes, { selected, pointed }) => (option) => ([
             classes.option,
             selected.index === option.index || pointed.index === option.index ? classes.option_active : null
