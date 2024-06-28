@@ -200,6 +200,13 @@ export default function (props, context, dependencies)
    */
   const width = ref(0)
 
+  /**
+   * The last width of the element.
+   *
+   * @type {number}
+   */
+  const lastWidth = ref(0)
+
   // ============== COMPUTED ==============
 
   /**
@@ -1046,6 +1053,15 @@ export default function (props, context, dependencies)
   }
 
   /**
+   * Sets the [`lastWidth`](#property-last-width) to the current element width.
+   *
+   * @returns {void}
+   */
+  const setLastWidth = () => {
+    lastWidth.value = input.value.getBoundingClientRect().width
+  }
+
+  /**
    * Sets the [`mode`](#property-mode) to the first available mode from [`modes`](#option-modes). If none found, `draw` will be set.
    *
    * @returns {void}
@@ -1249,6 +1265,10 @@ export default function (props, context, dependencies)
    * @returns {void}
    */
   const handleResize = () => {
+    if (lastWidth.value === input.value.getBoundingClientRect().width) {
+      return
+    }
+
     resizePad()
     adjustFontSize()
   }
@@ -1258,7 +1278,9 @@ export default function (props, context, dependencies)
    *
    * @returns {void}
    */
-  const handleResizeDebounce = debounce(handleResize, 200)
+  const handleResizeDebounce = debounce(handleResize, 200, () => {
+    setLastWidth()
+  })
 
   // =============== HOOKS ================
 
@@ -1350,12 +1372,16 @@ export default function (props, context, dependencies)
     })
 
     watch(columns, () => {
-      handleResize()
+      setLastWidth()
 
-      if (mode.value === 'upload' && created.value && !creating.value) {
-        uploadToImage()
-      }
-    }, { flush: 'post' })
+      nextTick(() => {
+        handleResize()
+
+        if (mode.value === 'upload' && created.value && !creating.value) {
+          uploadToImage()
+        }
+      })
+    })
 
     watch(mode, () => {
       clearSignature()
@@ -1396,6 +1422,7 @@ export default function (props, context, dependencies)
     redos,
     undosLeft,
     width,
+    lastWidth,
 
     fontFamilies,
     fontWeights,
@@ -1444,6 +1471,7 @@ export default function (props, context, dependencies)
     checkFileExt,
     checkFileSize,
     setWidth,
+    setLastWidth,
     setDefaultMode,
     setDefaultFont,
     setDefaultColor,
