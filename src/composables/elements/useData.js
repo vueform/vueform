@@ -5,7 +5,6 @@ import sortBy from 'lodash/sortBy'
 import map from 'lodash/map'
 import isPlainObject from 'lodash/isPlainObject'
 import clone from 'lodash/clone'
-import moment from 'moment'
 import { computed, nextTick, toRefs, watch, ref, inject } from 'vue'
 import checkDateFormat from './../../utils/checkDateFormat'
 import asyncForEach from './../../utils/asyncForEach'
@@ -811,13 +810,15 @@ const date = function(props, context, dependencies)
   const form$ = dependencies.form$
   const value = dependencies.value
   const loadDateFormat = dependencies.loadDateFormat
+
+  const moment = form$.value.$vueform.services.moment
   
   // =============== METHODS ===============
   
   const load = (val, format = false) => {
     let formatted = format && formatLoad.value ? formatLoad.value(val, form$.value) : val
     
-    checkDateFormat(loadDateFormat.value, formatted)
+    checkDateFormat(loadDateFormat.value, formatted, moment)
     
     value.value = formatted instanceof Date || !formatted ? formatted : moment(formatted, loadDateFormat.value).toDate()
   }
@@ -853,6 +854,8 @@ const dates = function(props, context, dependencies)
   const form$ = dependencies.form$
   const value = dependencies.value
   const loadDateFormat = dependencies.loadDateFormat
+
+  const moment = form$.value.$vueform.services.moment
   
   // =============== METHODS ===============
   
@@ -860,7 +863,7 @@ const dates = function(props, context, dependencies)
     let formatted = format && formatLoad.value ? formatLoad.value(val, form$.value) : val
     
     value.value = map(formatted, (v) => {
-      checkDateFormat(loadDateFormat.value, v)
+      checkDateFormat(loadDateFormat.value, v, moment)
       
       return v instanceof Date ? v : moment(v, loadDateFormat.value).toDate()
     })

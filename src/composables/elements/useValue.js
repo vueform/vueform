@@ -3,7 +3,6 @@ import isEqual from 'lodash/isEqual'
 import get from 'lodash/get'
 import cloneDeep from 'lodash/cloneDeep'
 import isEmpty from 'lodash/isEmpty'
-import moment from 'moment'
 import { computed, ref, toRefs, watch } from 'vue'
 import checkDateFormat from '../../utils/checkDateFormat'
 
@@ -331,6 +330,8 @@ const date = function(props, context, dependencies)
   const isObject = dependencies.isObject
   const isGroup = dependencies.isGroup
   const isList = dependencies.isList
+
+  const moment = form$.value.$vueform.services.moment
   
   // ================= PRE =================
   
@@ -366,7 +367,7 @@ const date = function(props, context, dependencies)
       {
         // If the value is not a Date object check if it is matching the value format
         if (!isEmpty(val) && !(val instanceof Date) && valueDateFormat.value !== false) {
-          checkDateFormat(valueDateFormat.value, val)
+          checkDateFormat(valueDateFormat.value, val, moment)
         }
         
         val = val && val instanceof Date && valueDateFormat.value !== false
@@ -418,6 +419,8 @@ const dates = function(props, context, dependencies)
   const isObject = dependencies.isObject
   const isGroup = dependencies.isGroup
   const isList = dependencies.isList
+
+  const moment = form$.value.$vueform.services.moment
   
   // ================= PRE =================
   
@@ -457,7 +460,7 @@ const dates = function(props, context, dependencies)
         
         val = val.map((v) => {
           if (!isEmpty(v) && !(v instanceof Date) && valueDateFormat.value !== false) {
-            checkDateFormat(valueDateFormat.value, v)
+            checkDateFormat(valueDateFormat.value, v, moment)
           }
           
           return v && v instanceof Date && valueDateFormat.value !== false

@@ -9,6 +9,8 @@ import defaultTheme from './../../themes/vueform'
 import en from './../../locales/en'
 import de from './../../locales/de'
 
+import moment from 'moment'
+
 export default function createVueformInstaller (options = {}) {
   let theme = options.theme || defaultTheme
 
@@ -31,7 +33,7 @@ export default function createVueformInstaller (options = {}) {
     }
   })
 
-  const VueformInstaller = installer(finalConfig, components, rules)
+  const VueformInstaller = installer(finalConfig, components, rules, { moment })
 
   return {
     VueformInstaller,

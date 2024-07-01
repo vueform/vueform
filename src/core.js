@@ -5,6 +5,7 @@ import Validator from './services/validation/validator'
 import installer from './installer'
 import element from './element'
 import defineConfig from './defineConfig'
+import moment from 'moment'
 
 const VueformElement = element
 const defineElement = element
@@ -17,7 +18,7 @@ import {
 const vueform = installer(undefined, {
   Vueform: VueformComponent,
   FormElements,
-})
+}, {}, { moment })
 
 export {
   useVueform,

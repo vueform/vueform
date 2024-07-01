@@ -1,5 +1,4 @@
 import map from 'lodash/map'
-import moment from 'moment'
 import checkDateFormat from './../../utils/checkDateFormat'
 import localize from './../../utils/localize'
 import { computed, toRefs, ref, inject } from 'vue'
@@ -23,6 +22,9 @@ const date = function(props, context, dependencies)
   const isDisabled = dependencies.isDisabled
   const displayDateFormat = dependencies.displayDateFormat
   const valueDateFormat = dependencies.valueDateFormat
+  const form$ = dependencies.form$
+
+  const moment = form$.value.$vueform.services.moment
   
   // ============== COMPUTED ==============
   
@@ -39,7 +41,7 @@ const date = function(props, context, dependencies)
     }
     
     return map(disables.value, (disabledDate) => {
-      checkDateFormat(valueDateFormat.value, disabledDate)
+      checkDateFormat(valueDateFormat.value, disabledDate, moment)
       
       return disabledDate instanceof Date ? disabledDate : moment(disabledDate, valueDateFormat.value, true).toDate()
     })
@@ -56,7 +58,7 @@ const date = function(props, context, dependencies)
       return null
     }
     
-    checkDateFormat(valueDateFormat.value, min.value)
+    checkDateFormat(valueDateFormat.value, min.value, moment)
     
     return min.value instanceof Date ? min.value : moment(min.value, valueDateFormat.value, true).toDate()
   })
@@ -72,7 +74,7 @@ const date = function(props, context, dependencies)
       return null
     }
     
-    checkDateFormat(valueDateFormat.value, max.value)
+    checkDateFormat(valueDateFormat.value, max.value, moment)
     
     return max.value instanceof Date ? max.value : moment(max.value, valueDateFormat.value, true).toDate()
   })

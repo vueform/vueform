@@ -1,5 +1,5 @@
 /*!
- * Vueform v1.9.12 (https://github.com/vueform/vueform)
+ * Vueform v1.9.13 (https://github.com/vueform/vueform)
  * Copyright (c) 2024 Adam Berecz <adam@vueform.com>
  * Licensed under the MIT License
  */

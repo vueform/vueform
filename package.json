@@ -1,7 +1,7 @@
 {
   "private": false,
   "name": "@vueform/vueform",
-  "version": "1.9.12",
+  "version": "1.9.13",
   "description": "Open-Source Form Framework for Vue",
   "homepage": "https://vueform.com",
   "license": "MIT",
@@ -38,6 +38,8 @@
     "./locales/*.js": "./locales/*/index.mjs",
     "./locales/*": "./locales/*/index.mjs",
     "./src/*": "./src/*",
+    "./src/components": "./src/components/index.js",
+    "./src/services/validation/rules": "./src/services/validation/rules/index.js",
     "./types/*": "./types/*",
     "./dist/*.js": "./dist/*.mjs",
     "./dist/*": "./dist/*.mjs",
