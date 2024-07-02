@@ -1,5 +1,5 @@
 /*!
- * Vueform v1.9.13 (https://github.com/vueform/vueform)
+ * Vueform v1.10.0 (https://github.com/vueform/vueform)
  * Copyright (c) 2024 Adam Berecz <adam@vueform.com>
  * Licensed under the MIT License
  */
@@ -230,8 +230,8 @@ var script$10 = {
   };
 
 const _hoisted_1$J = ["aria-selected"];
-const _hoisted_2$r = { key: 0 };
-const _hoisted_3$g = ["innerHTML"];
+const _hoisted_2$s = { key: 0 };
+const _hoisted_3$h = ["innerHTML"];
 
 function render$V(_ctx, _cache, $props, $setup, $data, $options) {
   return withDirectives((openBlock(), createElementBlock("li", {
@@ -248,12 +248,12 @@ function render$V(_ctx, _cache, $props, $setup, $data, $options) {
       renderSlot(_ctx.$slots, "default", {}, () => [
         createCommentVNode(" If label is a component "),
         (_ctx.isLabelComponent)
-          ? (openBlock(), createElementBlock("span", _hoisted_2$r, [
+          ? (openBlock(), createElementBlock("span", _hoisted_2$s, [
               (openBlock(), createBlock(resolveDynamicComponent(_ctx.tabLabel), { form$: _ctx.form$ }, null, 8 /* PROPS */, ["form$"]))
             ]))
           : (openBlock(), createElementBlock(Fragment, { key: 1 }, [
               createCommentVNode(" If label is HTML "),
-              createElementVNode("span", { innerHTML: _ctx.tabLabel }, null, 8 /* PROPS */, _hoisted_3$g)
+              createElementVNode("span", { innerHTML: _ctx.tabLabel }, null, 8 /* PROPS */, _hoisted_3$h)
             ], 2112 /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */))
       ])
     ], 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_1$J)
@@ -367,8 +367,8 @@ var script$Z = {
   };
 
 const _hoisted_1$I = ["disabled"];
-const _hoisted_2$q = ["innerHTML", "disabled"];
-const _hoisted_3$f = ["disabled"];
+const _hoisted_2$r = ["innerHTML", "disabled"];
+const _hoisted_3$g = ["disabled"];
 
 function render$S(_ctx, _cache, $props, $setup, $data, $options) {
   return (openBlock(), createElementBlock(Fragment, null, [
@@ -392,7 +392,7 @@ function render$S(_ctx, _cache, $props, $setup, $data, $options) {
               class: normalizeClass(_ctx.classes.button),
               onClick: _cache[2] || (_cache[2] = withModifiers((...args) => (_ctx.handleClick && _ctx.handleClick(...args)), ["prevent"])),
               onKeypress: _cache[3] || (_cache[3] = withKeys(withModifiers((...args) => (_ctx.handleClick && _ctx.handleClick(...args)), ["prevent"]), ["enter","space"]))
-            }, null, 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_2$q)
+            }, null, 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_2$r)
           ], 2112 /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */))
         : (_ctx.visible)
           ? (openBlock(), createElementBlock(Fragment, { key: 2 }, [
@@ -404,7 +404,7 @@ function render$S(_ctx, _cache, $props, $setup, $data, $options) {
                 onKeypress: _cache[5] || (_cache[5] = withKeys(withModifiers((...args) => (_ctx.handleClick && _ctx.handleClick(...args)), ["prevent"]), ["enter","space"]))
               }, [
                 renderSlot(_ctx.$slots, "default")
-              ], 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_3$f)
+              ], 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_3$g)
             ], 2112 /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */))
           : createCommentVNode("v-if", true)
   ], 2112 /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */))
@@ -427,8 +427,8 @@ var script$Y = {
   };
 
 const _hoisted_1$H = ["tabindex", "aria-selected"];
-const _hoisted_2$p = { key: 0 };
-const _hoisted_3$e = ["innerHTML"];
+const _hoisted_2$q = { key: 0 };
+const _hoisted_3$f = ["innerHTML"];
 
 function render$R(_ctx, _cache, $props, $setup, $data, $options) {
   return (_ctx.visible)
@@ -448,12 +448,12 @@ function render$R(_ctx, _cache, $props, $setup, $data, $options) {
           renderSlot(_ctx.$slots, "default", {}, () => [
             createCommentVNode(" If label is a component "),
             (_ctx.isLabelComponent)
-              ? (openBlock(), createElementBlock("span", _hoisted_2$p, [
+              ? (openBlock(), createElementBlock("span", _hoisted_2$q, [
                   (openBlock(), createBlock(resolveDynamicComponent(_ctx.stepLabel), { form$: _ctx.form$ }, null, 8 /* PROPS */, ["form$"]))
                 ]))
               : (openBlock(), createElementBlock(Fragment, { key: 1 }, [
                   createCommentVNode(" If label is HTML "),
-                  createElementVNode("span", { innerHTML: _ctx.stepLabel }, null, 8 /* PROPS */, _hoisted_3$e)
+                  createElementVNode("span", { innerHTML: _ctx.stepLabel }, null, 8 /* PROPS */, _hoisted_3$f)
                 ], 2112 /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */))
           ])
         ], 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_1$H)
@@ -717,10 +717,10 @@ var script$S = {
   };
 
 const _hoisted_1$F = ["for", "id"];
-const _hoisted_2$o = ["for", "id"];
-const _hoisted_3$d = ["innerHTML"];
-const _hoisted_4$8 = ["for", "id"];
-const _hoisted_5$6 = ["for", "id"];
+const _hoisted_2$p = ["for", "id"];
+const _hoisted_3$e = ["innerHTML"];
+const _hoisted_4$9 = ["for", "id"];
+const _hoisted_5$7 = ["for", "id"];
 
 function render$L(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_ElementInfo = resolveComponent("ElementInfo");
@@ -759,14 +759,14 @@ function render$L(_ctx, _cache, $props, $setup, $data, $options) {
               createElementVNode("span", {
                 class: normalizeClass(_ctx.classes.wrapper),
                 innerHTML: _ctx.label
-              }, null, 10 /* CLASS, PROPS */, _hoisted_3$d),
+              }, null, 10 /* CLASS, PROPS */, _hoisted_3$e),
               createVNode(_component_ElementInfo, null, {
                 default: withCtx(() => [
                   renderSlot(_ctx.$slots, "info")
                 ]),
                 _: 3 /* FORWARDED */
               })
-            ], 10 /* CLASS, PROPS */, _hoisted_2$o)
+            ], 10 /* CLASS, PROPS */, _hoisted_2$p)
           ], 2112 /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */))
         : (_ctx.isSlot)
           ? (openBlock(), createElementBlock(Fragment, { key: 2 }, [
@@ -787,7 +787,7 @@ function render$L(_ctx, _cache, $props, $setup, $data, $options) {
                   ]),
                   _: 3 /* FORWARDED */
                 })
-              ], 10 /* CLASS, PROPS */, _hoisted_4$8)
+              ], 10 /* CLASS, PROPS */, _hoisted_4$9)
             ], 2112 /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */))
           : (_ctx.hasLabel)
             ? (openBlock(), createElementBlock(Fragment, { key: 3 }, [
@@ -796,7 +796,7 @@ function render$L(_ctx, _cache, $props, $setup, $data, $options) {
                   class: normalizeClass(_ctx.classes.container),
                   for: _ctx.name,
                   id: _ctx.id
-                }, null, 10 /* CLASS, PROPS */, _hoisted_5$6)
+                }, null, 10 /* CLASS, PROPS */, _hoisted_5$7)
               ], 2112 /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */))
             : createCommentVNode("v-if", true)
   ], 2112 /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */))
@@ -820,7 +820,7 @@ var script$R = {
   };
 
 const _hoisted_1$E = ["id"];
-const _hoisted_2$n = ["innerHTML"];
+const _hoisted_2$o = ["innerHTML"];
 
 function render$K(_ctx, _cache, $props, $setup, $data, $options) {
   return (_ctx.info || _ctx.isSlot)
@@ -844,7 +844,7 @@ function render$K(_ctx, _cache, $props, $setup, $data, $options) {
                 key: 1,
                 class: normalizeClass(_ctx.classes.content),
                 innerHTML: _ctx.info
-              }, null, 10 /* CLASS, PROPS */, _hoisted_2$n))
+              }, null, 10 /* CLASS, PROPS */, _hoisted_2$o))
         ], 10 /* CLASS, PROPS */, _hoisted_1$E)
       ], 34 /* CLASS, NEED_HYDRATION */))
     : createCommentVNode("v-if", true)
@@ -866,7 +866,7 @@ var script$Q = {
   };
 
 const _hoisted_1$D = ["innerHTML", "id"];
-const _hoisted_2$m = ["id"];
+const _hoisted_2$n = ["id"];
 
 function render$J(_ctx, _cache, $props, $setup, $data, $options) {
   return (openBlock(), createElementBlock(Fragment, null, [
@@ -886,7 +886,7 @@ function render$J(_ctx, _cache, $props, $setup, $data, $options) {
               id: _ctx.id
             }, [
               renderSlot(_ctx.$slots, "default")
-            ], 10 /* CLASS, PROPS */, _hoisted_2$m)
+            ], 10 /* CLASS, PROPS */, _hoisted_2$n)
           ], 2112 /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */))
         : createCommentVNode("v-if", true)
   ], 2112 /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */))
@@ -1067,31 +1067,31 @@ var script$L = {
     },
   };
 
-const _hoisted_1$y = ["aria-expanded", "aria-controls", "aria-label"];
-const _hoisted_2$l = ["innerHTML"];
-const _hoisted_3$c = ["innerHTML"];
-const _hoisted_4$7 = ["innerHTML"];
-const _hoisted_5$5 = ["innerHTML"];
-const _hoisted_6$4 = ["data-dropdown-for", "id"];
-const _hoisted_7$2 = ["innerHTML", "data-index", "data-selected", "onMouseover", "onClick", "tabindex", "aria-selected"];
-const _hoisted_8$1 = ["innerHTML", "data-index", "data-selected", "onMouseover", "onClick", "tabindex", "aria-selected"];
+const _hoisted_1$y = ["aria-expanded", "aria-controls", "tabindex"];
+const _hoisted_2$m = ["innerHTML"];
+const _hoisted_3$d = ["innerHTML"];
+const _hoisted_4$8 = ["innerHTML"];
+const _hoisted_5$6 = ["innerHTML"];
+const _hoisted_6$5 = ["data-dropdown-for", "id"];
+const _hoisted_7$3 = ["innerHTML", "data-index", "data-selected", "onMouseover", "onClick", "tabindex", "aria-selected"];
+const _hoisted_8$2 = ["innerHTML", "data-index", "data-selected", "onMouseover", "onClick", "tabindex", "aria-selected"];
 
 function render$E(_ctx, _cache, $props, $setup, $data, $options) {
   return (openBlock(), createElementBlock("div", {
     class: normalizeClass(_ctx.classes.container)
   }, [
-    createElementVNode("div", {
-      class: normalizeClass(_ctx.classes.wrapper),
+    createElementVNode("div", mergeProps({
+      class: _ctx.classes.wrapper,
       onClick: _cache[0] || (_cache[0] = (...args) => (_ctx.handleSelectorClick && _ctx.handleSelectorClick(...args))),
-      onKeydown: _cache[1] || (_cache[1] = (...args) => (_ctx.handleSelectorKeydown && _ctx.handleSelectorKeydown(...args))),
-      ref: "selector",
+      onKeydown: _cache[1] || (_cache[1] = (...args) => (_ctx.handleSelectorKeydown && _ctx.handleSelectorKeydown(...args)))
+    }, _ctx.aria, {
       "aria-expanded": _ctx.isOpen,
       "aria-haspopup": "listbox",
       "aria-controls": `dropdown-${_ctx.el$.fieldId}`,
-      "aria-label": _ctx.form$.translations.vueform.elements.phone.ariaLabel,
       role: "button",
-      tabindex: "0"
-    }, [
+      tabindex: _ctx.el$.isDisabled || _ctx.el$.readonly ? undefined : 0,
+      ref: "selector"
+    }), [
       (Object.keys(_ctx.selected).length)
         ? (openBlock(), createElementBlock(Fragment, { key: 0 }, [
             (_ctx.selected.valueDisplay && typeof _ctx.selected.valueDisplay === 'object' && [_ctx.selected.valueDisplay.render || _ctx.selected.valueDisplay.template])
@@ -1104,11 +1104,11 @@ function render$E(_ctx, _cache, $props, $setup, $data, $options) {
                 ? (openBlock(), createElementBlock("div", {
                     key: 1,
                     innerHTML: _ctx.selected.valueDisplay(_ctx.selected, _ctx.el$)
-                  }, null, 8 /* PROPS */, _hoisted_2$l))
+                  }, null, 8 /* PROPS */, _hoisted_2$m))
                 : (openBlock(), createElementBlock("div", {
                     key: 2,
                     innerHTML: _ctx.selected.label
-                  }, null, 8 /* PROPS */, _hoisted_3$c))
+                  }, null, 8 /* PROPS */, _hoisted_3$d))
           ], 64 /* STABLE_FRAGMENT */))
         : (openBlock(), createElementBlock(Fragment, { key: 1 }, [
             (_ctx.placeholder && typeof _ctx.placeholder === 'object' && [_ctx.placeholder.render || _ctx.placeholder.template])
@@ -1121,11 +1121,11 @@ function render$E(_ctx, _cache, $props, $setup, $data, $options) {
                 ? (openBlock(), createElementBlock("div", {
                     key: 1,
                     innerHTML: _ctx.placeholder(_ctx.selected, _ctx.el$)
-                  }, null, 8 /* PROPS */, _hoisted_4$7))
+                  }, null, 8 /* PROPS */, _hoisted_4$8))
                 : (openBlock(), createElementBlock("div", {
                     key: 2,
                     innerHTML: _ctx.placeholder
-                  }, null, 8 /* PROPS */, _hoisted_5$5))
+                  }, null, 8 /* PROPS */, _hoisted_5$6))
           ], 64 /* STABLE_FRAGMENT */)),
       createElementVNode("div", {
         class: normalizeClass(_ctx.classes.caret)
@@ -1175,7 +1175,7 @@ function render$E(_ctx, _cache, $props, $setup, $data, $options) {
                           role: "option",
                           tabindex: _ctx.pointed.index === option.index ? 0 : -1,
                           "aria-selected": _ctx.selected.index === option.index
-                        }, null, 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_7$2))
+                        }, null, 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_7$3))
                       : (openBlock(), createElementBlock("div", {
                           key: 2,
                           innerHTML: option.label,
@@ -1187,13 +1187,13 @@ function render$E(_ctx, _cache, $props, $setup, $data, $options) {
                           role: "option",
                           tabindex: _ctx.pointed.index === option.index ? 0 : -1,
                           "aria-selected": _ctx.selected.index === option.index
-                        }, null, 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_8$1))
+                        }, null, 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_8$2))
                 ], 2 /* CLASS */))
               }), 128 /* KEYED_FRAGMENT */))
-            ], 14 /* CLASS, STYLE, PROPS */, _hoisted_6$4))
+            ], 14 /* CLASS, STYLE, PROPS */, _hoisted_6$5))
           : createCommentVNode("v-if", true)
       ]))
-    ], 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_1$y)
+    ], 16 /* FULL_PROPS */, _hoisted_1$y)
   ], 2 /* CLASS */))
 }
 
@@ -1214,11 +1214,11 @@ var script$K = {
   };
 
 const _hoisted_1$x = ["tabindex", "disabled"];
-const _hoisted_2$k = ["innerHTML", "tabindex", "disabled"];
-const _hoisted_3$b = ["tabindex", "disabled"];
-const _hoisted_4$6 = ["tabindex"];
-const _hoisted_5$4 = ["innerHTML", "tabindex"];
-const _hoisted_6$3 = ["tabindex"];
+const _hoisted_2$l = ["innerHTML", "tabindex", "disabled"];
+const _hoisted_3$c = ["tabindex", "disabled"];
+const _hoisted_4$7 = ["tabindex"];
+const _hoisted_5$5 = ["innerHTML", "tabindex"];
+const _hoisted_6$4 = ["tabindex"];
 
 function render$D(_ctx, _cache, $props, $setup, $data, $options) {
   return (openBlock(), createBlock(resolveDynamicComponent(_ctx.elementLayout), { ref: "container" }, createSlots({
@@ -1251,7 +1251,7 @@ function render$D(_ctx, _cache, $props, $setup, $data, $options) {
                       class: _ctx.classes.button,
                       disabled: _ctx.isDisabled,
                       onClick: _cache[1] || (_cache[1] = withModifiers((...args) => (_ctx.handleClick && _ctx.handleClick(...args)), ["prevent"]))
-                    }), null, 16 /* FULL_PROPS */, _hoisted_2$k)
+                    }), null, 16 /* FULL_PROPS */, _hoisted_2$l)
                   ], 2112 /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */))
                 : (openBlock(), createElementBlock(Fragment, { key: 2 }, [
                     createCommentVNode(" Use it as slot "),
@@ -1267,7 +1267,7 @@ function render$D(_ctx, _cache, $props, $setup, $data, $options) {
                       renderSlot(_ctx.$slots, "default", { el$: _ctx.el$ }, () => [
                         (openBlock(), createBlock(resolveDynamicComponent(_ctx.fieldSlots.default), { el$: _ctx.el$ }, null, 8 /* PROPS */, ["el$"]))
                       ])
-                    ], 16 /* FULL_PROPS */, _hoisted_3$b)
+                    ], 16 /* FULL_PROPS */, _hoisted_3$c)
                   ], 2112 /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */))
           ], 64 /* STABLE_FRAGMENT */))
         : (openBlock(), createElementBlock(Fragment, { key: 1 }, [
@@ -1283,7 +1283,7 @@ function render$D(_ctx, _cache, $props, $setup, $data, $options) {
                   onClick: _cache[3] || (_cache[3] = (...args) => (_ctx.handleClick && _ctx.handleClick(...args)))
                 }), [
                   (openBlock(), createBlock(resolveDynamicComponent(_ctx.buttonLabel)))
-                ], 16 /* FULL_PROPS */, _hoisted_4$6))
+                ], 16 /* FULL_PROPS */, _hoisted_4$7))
               : (_ctx.buttonLabel)
                 ? (openBlock(), createElementBlock(Fragment, { key: 1 }, [
                     createCommentVNode(" Use it as HTML "),
@@ -1295,7 +1295,7 @@ function render$D(_ctx, _cache, $props, $setup, $data, $options) {
                       tabindex: _ctx.isDisabled || _ctx.isLoading ? -1 : undefined,
                       class: _ctx.classes.button,
                       onClick: _cache[4] || (_cache[4] = (...args) => (_ctx.handleClick && _ctx.handleClick(...args)))
-                    }), null, 16 /* FULL_PROPS */, _hoisted_5$4)
+                    }), null, 16 /* FULL_PROPS */, _hoisted_5$5)
                   ], 2112 /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */))
                 : (openBlock(), createElementBlock(Fragment, { key: 2 }, [
                     createCommentVNode(" Use it as slot "),
@@ -1310,7 +1310,7 @@ function render$D(_ctx, _cache, $props, $setup, $data, $options) {
                       renderSlot(_ctx.$slots, "default", { el$: _ctx.el$ }, () => [
                         (openBlock(), createBlock(resolveDynamicComponent(_ctx.fieldSlots.default), { el$: _ctx.el$ }, null, 8 /* PROPS */, ["el$"]))
                       ])
-                    ], 16 /* FULL_PROPS */, _hoisted_6$3)
+                    ], 16 /* FULL_PROPS */, _hoisted_6$4)
                   ], 2112 /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */))
           ], 64 /* STABLE_FRAGMENT */))
     ]),
@@ -1398,7 +1398,7 @@ var script$I = {
   };
 
 const _hoisted_1$v = ["name", "id", "true-value", "false-value", "disabled"];
-const _hoisted_2$j = ["innerHTML"];
+const _hoisted_2$k = ["innerHTML"];
 
 function render$B(_ctx, _cache, $props, $setup, $data, $options) {
   return (openBlock(), createBlock(resolveDynamicComponent(_ctx.elementLayout), { ref: "container" }, createSlots({
@@ -1426,7 +1426,7 @@ function render$B(_ctx, _cache, $props, $setup, $data, $options) {
               key: 0,
               class: normalizeClass(_ctx.classes.text),
               innerHTML: _ctx.Text
-            }, null, 10 /* CLASS, PROPS */, _hoisted_2$j))
+            }, null, 10 /* CLASS, PROPS */, _hoisted_2$k))
           : (openBlock(), createElementBlock(Fragment, { key: 1 }, [
               createCommentVNode(" If label is slot "),
               createElementVNode("span", {
@@ -1644,7 +1644,7 @@ var script$E = {
   };
 
 const _hoisted_1$t = ["aria-labelledby", "aria-placeholder"];
-const _hoisted_2$i = ["id", "accept"];
+const _hoisted_2$j = ["id", "accept"];
 
 function render$y(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_DragAndDrop = resolveComponent("DragAndDrop");
@@ -1685,7 +1685,7 @@ function render$y(_ctx, _cache, $props, $setup, $data, $options) {
             accept: _ctx.accept,
             onChange: _cache[2] || (_cache[2] = (...args) => (_ctx.handleChange && _ctx.handleChange(...args))),
             ref: "input"
-          }, null, 40 /* PROPS, NEED_HYDRATION */, _hoisted_2$i)), [
+          }, null, 40 /* PROPS, NEED_HYDRATION */, _hoisted_2$j)), [
             [vShow, false]
           ])
         : createCommentVNode("v-if", true),
@@ -1783,7 +1783,7 @@ const _hoisted_1$r = {
   key: 0,
   ref: "container"
 };
-const _hoisted_2$h = ["name", "id"];
+const _hoisted_2$i = ["name", "id"];
 
 function render$w(_ctx, _cache, $props, $setup, $data, $options) {
   return (!_ctx.meta)
@@ -1794,7 +1794,7 @@ function render$w(_ctx, _cache, $props, $setup, $data, $options) {
           name: _ctx.name,
           id: _ctx.fieldId,
           ref: "input"
-        }, null, 8 /* PROPS */, _hoisted_2$h), [
+        }, null, 8 /* PROPS */, _hoisted_2$i), [
           [vModelText, _ctx.value]
         ])
       ], 512 /* NEED_PATCH */))
@@ -1824,9 +1824,9 @@ var script$B = {
   };
 
 const _hoisted_1$q = ["aria-labelledby"];
-const _hoisted_2$g = ["data-id"];
-const _hoisted_3$a = ["aria-roledescription", "id", "onClick", "onKeypress"];
-const _hoisted_4$5 = ["id", "innerHTML"];
+const _hoisted_2$h = ["data-id"];
+const _hoisted_3$b = ["aria-roledescription", "id", "onClick", "onKeypress"];
+const _hoisted_4$6 = ["id", "innerHTML"];
 
 function render$v(_ctx, _cache, $props, $setup, $data, $options) {
   return (openBlock(), createBlock(resolveDynamicComponent(_ctx.elementLayout), { ref: "container" }, createSlots({
@@ -1883,9 +1883,9 @@ function render$v(_ctx, _cache, $props, $setup, $data, $options) {
                   createElementVNode("span", {
                     class: normalizeClass(_ctx.classes.removeIcon)
                   }, null, 2 /* CLASS */)
-                ], 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_3$a))
+                ], 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_3$b))
               : createCommentVNode("v-if", true)
-          ], 10 /* CLASS, PROPS */, _hoisted_2$g))
+          ], 10 /* CLASS, PROPS */, _hoisted_2$h))
         }), 128 /* KEYED_FRAGMENT */))
       ], 10 /* CLASS, PROPS */, _hoisted_1$q),
       createCommentVNode(" Add button "),
@@ -1899,7 +1899,7 @@ function render$v(_ctx, _cache, $props, $setup, $data, $options) {
             innerHTML: _ctx.addLabel,
             role: "button",
             tabindex: "0"
-          }, null, 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_4$5))
+          }, null, 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_4$6))
         : createCommentVNode("v-if", true)
     ]),
     _: 2 /* DYNAMIC */
@@ -2068,7 +2068,7 @@ var script$y = {
   };
 
 const _hoisted_1$o = ["aria-labelledby", "aria-placeholder"];
-const _hoisted_2$f = ["id", "accept", "disabled"];
+const _hoisted_2$g = ["id", "accept", "disabled"];
 
 function render$t(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_DragAndDrop = resolveComponent("DragAndDrop");
@@ -2112,7 +2112,7 @@ function render$t(_ctx, _cache, $props, $setup, $data, $options) {
         accept: _ctx.accept,
         disabled: _ctx.isDisabled,
         ref: "input"
-      }, null, 40 /* PROPS, NEED_HYDRATION */, _hoisted_2$f), [
+      }, null, 40 /* PROPS, NEED_HYDRATION */, _hoisted_2$g), [
         [vShow, false]
       ]),
       withDirectives((openBlock(), createElementBlock("div", {
@@ -6507,18 +6507,18 @@ var script$x = {
   };
 
 const _hoisted_1$n = ["id", "dir"];
-const _hoisted_2$e = ["tabindex", "aria-controls", "aria-placeholder", "aria-expanded", "aria-activedescendant", "aria-multiselectable", "role"];
-const _hoisted_3$9 = ["type", "modelValue", "value", "autocomplete", "id", "aria-controls", "aria-placeholder", "aria-expanded", "aria-activedescendant", "aria-multiselectable"];
-const _hoisted_4$4 = ["onKeyup", "aria-label"];
-const _hoisted_5$3 = ["onClick"];
-const _hoisted_6$2 = ["type", "modelValue", "value", "id", "autocomplete", "aria-controls", "aria-placeholder", "aria-expanded", "aria-activedescendant", "aria-multiselectable"];
-const _hoisted_7$1 = ["innerHTML"];
-const _hoisted_8 = ["id"];
-const _hoisted_9 = ["id"];
-const _hoisted_10 = ["id", "aria-label", "aria-selected"];
-const _hoisted_11 = ["data-pointed", "onMouseenter", "onClick"];
-const _hoisted_12 = ["innerHTML"];
-const _hoisted_13 = ["aria-label"];
+const _hoisted_2$f = ["tabindex", "aria-controls", "aria-placeholder", "aria-expanded", "aria-activedescendant", "aria-multiselectable", "role"];
+const _hoisted_3$a = ["type", "modelValue", "value", "autocomplete", "id", "aria-controls", "aria-placeholder", "aria-expanded", "aria-activedescendant", "aria-multiselectable"];
+const _hoisted_4$5 = ["onKeyup", "aria-label"];
+const _hoisted_5$4 = ["onClick"];
+const _hoisted_6$3 = ["type", "modelValue", "value", "id", "autocomplete", "aria-controls", "aria-placeholder", "aria-expanded", "aria-activedescendant", "aria-multiselectable"];
+const _hoisted_7$2 = ["innerHTML"];
+const _hoisted_8$1 = ["id"];
+const _hoisted_9$1 = ["id"];
+const _hoisted_10$1 = ["id", "aria-label", "aria-selected"];
+const _hoisted_11$1 = ["data-pointed", "onMouseenter", "onClick"];
+const _hoisted_12$1 = ["innerHTML"];
+const _hoisted_13$1 = ["aria-label"];
 const _hoisted_14 = ["data-pointed", "data-selected", "onMouseenter", "onClick", "id", "aria-selected", "aria-label"];
 const _hoisted_15 = ["data-pointed", "data-selected", "onMouseenter", "onClick", "id", "aria-selected", "aria-label"];
 const _hoisted_16 = ["innerHTML"];
@@ -6574,7 +6574,7 @@ function render$s(_ctx, _cache, $props, $setup, $data, $options) {
           }, {
             ...$props.attrs,
             ..._ctx.arias,
-          }), null, 16 /* FULL_PROPS */, _hoisted_3$9))
+          }), null, 16 /* FULL_PROPS */, _hoisted_3$a))
         : createCommentVNode("v-if", true),
       createCommentVNode(" Tags (with search) "),
       ($props.mode == 'tags')
@@ -6611,9 +6611,9 @@ function render$s(_ctx, _cache, $props, $setup, $data, $options) {
                         createElementVNode("span", {
                           class: normalizeClass(_ctx.classList.tagRemoveIcon)
                         }, null, 2 /* CLASS */)
-                      ], 10 /* CLASS, PROPS */, _hoisted_5$3))
+                      ], 10 /* CLASS, PROPS */, _hoisted_5$4))
                     : createCommentVNode("v-if", true)
-                ], 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_4$4))
+                ], 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_4$5))
               ])
             }), 256 /* UNKEYED_FRAGMENT */)),
             createElementVNode("div", {
@@ -6647,7 +6647,7 @@ function render$s(_ctx, _cache, $props, $setup, $data, $options) {
                   }, {
                 ...$props.attrs,
                 ..._ctx.arias,
-              }), null, 16 /* FULL_PROPS */, _hoisted_6$2))
+              }), null, 16 /* FULL_PROPS */, _hoisted_6$3))
                 : createCommentVNode("v-if", true)
             ], 2 /* CLASS */)
           ], 2 /* CLASS */))
@@ -6676,7 +6676,7 @@ function render$s(_ctx, _cache, $props, $setup, $data, $options) {
             createElementVNode("div", {
               class: normalizeClass(_ctx.classList.multipleLabel),
               innerHTML: _ctx.multipleLabelText
-            }, null, 10 /* CLASS, PROPS */, _hoisted_7$1)
+            }, null, 10 /* CLASS, PROPS */, _hoisted_7$2)
           ])
         : createCommentVNode("v-if", true),
       createCommentVNode(" Placeholder "),
@@ -6733,7 +6733,7 @@ function render$s(_ctx, _cache, $props, $setup, $data, $options) {
             }, null, 2 /* CLASS */)
           ])
         : createCommentVNode("v-if", true)
-    ], 16 /* FULL_PROPS */, _hoisted_2$e),
+    ], 16 /* FULL_PROPS */, _hoisted_2$f),
     createCommentVNode(" Options "),
     (openBlock(), createBlock(Teleport, {
       to: $props.appendTo || 'body',
@@ -6778,9 +6778,9 @@ function render$s(_ctx, _cache, $props, $setup, $data, $options) {
                         }, () => [
                           createElementVNode("span", {
                             innerHTML: _ctx.localize(group[$props.groupLabel])
-                          }, null, 8 /* PROPS */, _hoisted_12)
+                          }, null, 8 /* PROPS */, _hoisted_12$1)
                         ])
-                      ], 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_11))
+                      ], 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_11$1))
                     : createCommentVNode("v-if", true),
                   createElementVNode("ul", {
                     class: normalizeClass(_ctx.classList.groupOptions),
@@ -6810,8 +6810,8 @@ function render$s(_ctx, _cache, $props, $setup, $data, $options) {
                         ])
                       ], 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_14))
                     }), 128 /* KEYED_FRAGMENT */))
-                  ], 10 /* CLASS, PROPS */, _hoisted_13)
-                ], 10 /* CLASS, PROPS */, _hoisted_10))
+                  ], 10 /* CLASS, PROPS */, _hoisted_13$1)
+                ], 10 /* CLASS, PROPS */, _hoisted_10$1))
               }), 128 /* KEYED_FRAGMENT */))
             : (openBlock(true), createElementBlock(Fragment, { key: 1 }, renderList(_ctx.fo, (option, i, key) => {
                 return (openBlock(), createElementBlock("li", {
@@ -6836,7 +6836,7 @@ function render$s(_ctx, _cache, $props, $setup, $data, $options) {
                   ])
                 ], 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_15))
               }), 128 /* KEYED_FRAGMENT */))
-        ], 10 /* CLASS, PROPS */, _hoisted_9),
+        ], 10 /* CLASS, PROPS */, _hoisted_9$1),
         (_ctx.noOptions)
           ? renderSlot(_ctx.$slots, "nooptions", { key: 0 }, () => [
               createElementVNode("div", {
@@ -6867,7 +6867,7 @@ function render$s(_ctx, _cache, $props, $setup, $data, $options) {
             ], 2 /* CLASS */))
           : createCommentVNode("v-if", true),
         renderSlot(_ctx.$slots, "afterlist", { options: _ctx.fo })
-      ], 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_8)
+      ], 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_8$1)
     ], 8 /* PROPS */, ["to", "disabled"])),
     createCommentVNode(" Hacky input element to show HTML5 required warning "),
     ($props.required)
@@ -6975,7 +6975,7 @@ var script$w = {
   };
 
 const _hoisted_1$m = ["name", "id", "disabled"];
-const _hoisted_2$d = ["value"];
+const _hoisted_2$e = ["value"];
 
 function render$r(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_ElementLabelFloating = resolveComponent("ElementLabelFloating");
@@ -7010,7 +7010,7 @@ function render$r(_ctx, _cache, $props, $setup, $data, $options) {
                 return (openBlock(), createElementBlock("option", {
                   value: option.value,
                   key: index
-                }, toDisplayString(option.label), 9 /* TEXT, PROPS */, _hoisted_2$d))
+                }, toDisplayString(option.label), 9 /* TEXT, PROPS */, _hoisted_2$e))
               }), 128 /* KEYED_FRAGMENT */))
             ], 16 /* FULL_PROPS */, _hoisted_1$m), [
               [vModelSelect, _ctx.value]
@@ -7187,11 +7187,12 @@ function render$p(_ctx, _cache, $props, $setup, $data, $options) {
           createVNode(_component_ElementAddonOptions, {
             options: _ctx.addonOptions,
             placeholder: _ctx.addonPlaceholder,
+            aria: _ctx.optionsAria,
             onSelect: _ctx.handleOptionSelect,
             onOpen: _ctx.handleOpen,
             onClose: _ctx.handleClose,
             ref: "options$"
-          }, null, 8 /* PROPS */, ["options", "placeholder", "onSelect", "onOpen", "onClose"])
+          }, null, 8 /* PROPS */, ["options", "placeholder", "aria", "onSelect", "onOpen", "onClose"])
         ], 2 /* CLASS */),
         (_ctx.hasFloating && !_ctx.empty)
           ? (openBlock(), createBlock(_component_ElementLabelFloating, {
@@ -7258,7 +7259,7 @@ var script$t = {
   };
 
 const _hoisted_1$j = ["value", "name", "id", "disabled"];
-const _hoisted_2$c = ["innerHTML"];
+const _hoisted_2$d = ["innerHTML"];
 
 function render$o(_ctx, _cache, $props, $setup, $data, $options) {
   return (openBlock(), createBlock(resolveDynamicComponent(_ctx.elementLayout), { ref: "container" }, createSlots({
@@ -7285,7 +7286,7 @@ function render$o(_ctx, _cache, $props, $setup, $data, $options) {
               key: 0,
               class: normalizeClass(_ctx.classes.text),
               innerHTML: _ctx.Text
-            }, null, 10 /* CLASS, PROPS */, _hoisted_2$c))
+            }, null, 10 /* CLASS, PROPS */, _hoisted_2$d))
           : (openBlock(), createElementBlock(Fragment, { key: 1 }, [
               createCommentVNode(" If label is slot "),
               createElementVNode("span", {
@@ -7438,7 +7439,7 @@ var script$r = {
   };
 
 const _hoisted_1$h = ["name", "id", "disabled"];
-const _hoisted_2$b = ["value"];
+const _hoisted_2$c = ["value"];
 
 function render$m(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_ElementLabelFloating = resolveComponent("ElementLabelFloating");
@@ -7472,7 +7473,7 @@ function render$m(_ctx, _cache, $props, $setup, $data, $options) {
                 return (openBlock(), createElementBlock("option", {
                   value: option.value,
                   key: index
-                }, toDisplayString(option.label), 9 /* TEXT, PROPS */, _hoisted_2$b))
+                }, toDisplayString(option.label), 9 /* TEXT, PROPS */, _hoisted_2$c))
               }), 128 /* KEYED_FRAGMENT */))
             ], 16 /* FULL_PROPS */, _hoisted_1$h), [
               [vModelSelect, _ctx.value]
@@ -7578,26 +7579,248 @@ var script$q = {
     },
   };
 
-const _hoisted_1$g = {
-  class: "w-[300px] h-[200px] border border-gray-200 border-dashed bg-white relative",
-  ref: "input"
-};
+const _hoisted_1$g = ["tabindex", "aria-label"];
+const _hoisted_2$b = ["src", "alt", "title"];
+const _hoisted_3$9 = ["title", "tabindex", "aria-label"];
+const _hoisted_4$4 = ["title", "tabindex", "aria-label"];
+const _hoisted_5$3 = ["value", "disabled", "readonly", "aria-label"];
+const _hoisted_6$2 = ["innerHTML"];
+const _hoisted_7$1 = ["tabindex", "aria-label"];
+const _hoisted_8 = ["accept"];
+const _hoisted_9 = ["width", "height"];
+const _hoisted_10 = ["width", "height", "tabindex", "aria-label"];
+const _hoisted_11 = ["tabindex", "aria-label", "aria-selected", "onClick", "onKeydown"];
+const _hoisted_12 = ["fill"];
+const _hoisted_13 = ["tabindex", "aria-label"];
 
 function render$l(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_ElementAddonOptions = resolveComponent("ElementAddonOptions");
 
   return (openBlock(), createBlock(resolveDynamicComponent(_ctx.elementLayout), { ref: "container" }, createSlots({
     element: withCtx(() => [
-      createElementVNode("div", _hoisted_1$g, [
-        createVNode(_component_ElementAddonOptions, {
-          options: _ctx.addonOptions,
-          placeholder: _ctx.addonPlaceholder,
-          onSelect: _ctx.handleOptionSelect,
-          onOpen: _ctx.handleOpen,
-          onClose: _ctx.handleClose,
-          ref: "type$"
-        }, null, 8 /* PROPS */, ["options", "placeholder", "onSelect", "onOpen", "onClose"])
-      ], 512 /* NEED_PATCH */)
+      createElementVNode("div", {
+        class: normalizeClass(_ctx.classes.wrapper),
+        style: normalizeStyle(_ctx.wrapperStyle),
+        tabindex: _ctx.isDisabled ? undefined : 0,
+        "aria-label": _ctx.wrapperAriaLabel,
+        onKeydown: _cache[11] || (_cache[11] = withKeys((...args) => (_ctx.handleMouseLeave && _ctx.handleMouseLeave(...args)), ["tab","escape"])),
+        onMouseleave: _cache[12] || (_cache[12] = (...args) => (_ctx.handleMouseLeave && _ctx.handleMouseLeave(...args))),
+        ref: "input"
+      }, [
+        createCommentVNode(" Line "),
+        withDirectives(createElementVNode("hr", {
+          class: normalizeClass(_ctx.classes.line),
+          style: normalizeStyle(_ctx.lineStyle),
+          "aria-hidden": "true"
+        }, null, 6 /* CLASS, STYLE */), [
+          [vShow, _ctx.showLine]
+        ]),
+        createCommentVNode(" Loaded preview "),
+        withDirectives(createElementVNode("div", {
+          class: normalizeClass(_ctx.classes.loadedWrapper)
+        }, [
+          createElementVNode("img", {
+            src: _ctx.value,
+            alt: _ctx.imgAltText,
+            title: _ctx.imgTitleText,
+            class: normalizeClass(_ctx.classes.loadedImg)
+          }, null, 10 /* CLASS, PROPS */, _hoisted_2$b)
+        ], 2 /* CLASS */), [
+          [vShow, _ctx.uploaded]
+        ]),
+        createCommentVNode(" Not loaded actions "),
+        withDirectives(createElementVNode("div", {
+          class: normalizeClass(_ctx.classes.innerWrapper)
+        }, [
+          createCommentVNode(" Actions "),
+          createElementVNode("div", {
+            class: normalizeClass(_ctx.classes.actions)
+          }, [
+            createCommentVNode(" Mode "),
+            withDirectives(createVNode(_component_ElementAddonOptions, {
+              options: _ctx.resolvedModes,
+              placeholder: '',
+              position: "bottom",
+              relaxed: "",
+              aria: _ctx.modeSelectorAria,
+              onSelect: _ctx.handleModeSelect,
+              ref: "mode$"
+            }, null, 8 /* PROPS */, ["options", "aria", "onSelect"]), [
+              [vShow, _ctx.showModes]
+            ]),
+            createCommentVNode(" Fonts "),
+            withDirectives(createVNode(_component_ElementAddonOptions, {
+              options: _ctx.resolvedFonts,
+              placeholder: _ctx.fontText,
+              position: "bottom",
+              relaxed: "",
+              aria: _ctx.fontSelectorAria,
+              onSelect: _ctx.handleFontSelect,
+              ref: "font$"
+            }, null, 8 /* PROPS */, ["options", "placeholder", "aria", "onSelect"]), [
+              [vShow, _ctx.showFonts]
+            ]),
+            createCommentVNode(" Undos "),
+            withDirectives(createElementVNode("div", {
+              class: normalizeClass(_ctx.classes.undosWrapper)
+            }, [
+              createCommentVNode(" Undo "),
+              createElementVNode("div", {
+                class: normalizeClass(_ctx.classes.undo),
+                title: _ctx.undoText,
+                role: "button",
+                tabindex: _ctx.undosLeft ? _ctx.tabindex : undefined ,
+                "aria-label": _ctx.undoText,
+                onClick: _cache[0] || (_cache[0] = withModifiers((...args) => (_ctx.handleUndo && _ctx.handleUndo(...args)), ["stop"])),
+                onKeydown: _cache[1] || (_cache[1] = withKeys(withModifiers((...args) => (_ctx.handleUndo && _ctx.handleUndo(...args)), ["prevent"]), ["space","enter"]))
+              }, null, 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_3$9),
+              createCommentVNode(" Redo "),
+              createElementVNode("div", {
+                class: normalizeClass(_ctx.classes.redo),
+                title: _ctx.redoText,
+                role: "button",
+                tabindex: _ctx.redos.length ? _ctx.tabindex : undefined,
+                "aria-label": _ctx.redoText,
+                onClick: _cache[2] || (_cache[2] = withModifiers((...args) => (_ctx.handleRedo && _ctx.handleRedo(...args)), ["stop"])),
+                onKeydown: _cache[3] || (_cache[3] = withKeys(withModifiers((...args) => (_ctx.handleRedo && _ctx.handleRedo(...args)), ["prevent"]), ["space","enter"]))
+              }, null, 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_4$4)
+            ], 2 /* CLASS */), [
+              [vShow, _ctx.showUndos]
+            ])
+          ], 2 /* CLASS */),
+          createCommentVNode(" Input "),
+          withDirectives(createElementVNode("input", {
+            value: _ctx.text,
+            type: "text",
+            spellcheck: "false",
+            class: normalizeClass(_ctx.classes.input),
+            disabled: _ctx.isDisabled,
+            readonly: _ctx.readonly,
+            style: normalizeStyle(_ctx.inputStyle),
+            "aria-label": _ctx.inputAriaLabel,
+            onInput: _cache[4] || (_cache[4] = (...args) => (_ctx.handleInput && _ctx.handleInput(...args))),
+            onSelect: _cache[5] || (_cache[5] = (...args) => (_ctx.handleInput && _ctx.handleInput(...args))),
+            ref: "input$"
+          }, null, 46 /* CLASS, STYLE, PROPS, NEED_HYDRATION */, _hoisted_5$3), [
+            [vShow, _ctx.showInput]
+          ]),
+          createCommentVNode(" Placeholder "),
+          withDirectives(createElementVNode("div", {
+            class: normalizeClass(_ctx.classes.placeholder),
+            innerHTML: _ctx.placeholderText
+          }, null, 10 /* CLASS, PROPS */, _hoisted_6$2), [
+            [vShow, _ctx.showPlaceholder]
+          ]),
+          createCommentVNode(" Upload container "),
+          withDirectives(createElementVNode("div", {
+            class: normalizeClass(_ctx.classes.uploadContainer),
+            ref: "upload$"
+          }, [
+            createCommentVNode(" File upload "),
+            withDirectives(createElementVNode("div", {
+              class: normalizeClass(_ctx.classes.uploadWrapper)
+            }, [
+              createCommentVNode(" DnD text "),
+              (_ctx.droppable)
+                ? (openBlock(), createElementBlock("div", {
+                    key: 0,
+                    class: normalizeClass(_ctx.classes.dndText)
+                  }, toDisplayString(_ctx.dndText), 3 /* TEXT, CLASS */))
+                : createCommentVNode("v-if", true),
+              createCommentVNode(" Select button "),
+              createElementVNode("div", {
+                class: normalizeClass(_ctx.classes.uploadButton),
+                tabindex: _ctx.tabindex,
+                role: "button",
+                "aria-label": _ctx.uploadButtonText,
+                onClick: _cache[6] || (_cache[6] = (...args) => (_ctx.handleSelectClick && _ctx.handleSelectClick(...args))),
+                onKeydown: _cache[7] || (_cache[7] = withKeys(withModifiers((...args) => (_ctx.handleSelectClick && _ctx.handleSelectClick(...args)), ["prevent"]), ["space","enter"])),
+                ref: "uploadButton$"
+              }, toDisplayString(_ctx.uploadButtonText), 43 /* TEXT, CLASS, PROPS, NEED_HYDRATION */, _hoisted_7$1),
+              createCommentVNode(" Hidden file input "),
+              withDirectives(createElementVNode("input", {
+                type: "file",
+                accept: _ctx.fileAccept,
+                onChange: _cache[8] || (_cache[8] = (...args) => (_ctx.handleFileSelect && _ctx.handleFileSelect(...args))),
+                ref: "file$"
+              }, null, 40 /* PROPS, NEED_HYDRATION */, _hoisted_8), [
+                [vShow, false]
+              ])
+            ], 2 /* CLASS */), [
+              [vShow, _ctx.showUpload]
+            ]),
+            createCommentVNode(" Preview "),
+            withDirectives(createElementVNode("canvas", {
+              width: _ctx.uploadWidth,
+              height: _ctx.uploadHeight,
+              class: normalizeClass(_ctx.classes.uploadPreview),
+              ref: "preview$"
+            }, null, 10 /* CLASS, PROPS */, _hoisted_9), [
+              [vShow, _ctx.showPreview]
+            ])
+          ], 2 /* CLASS */), [
+            [vShow, _ctx.showUploadContainer]
+          ]),
+          createCommentVNode(" Pad "),
+          withDirectives(createElementVNode("canvas", {
+            width: _ctx.padWidth,
+            height: _ctx.padHeight,
+            style: normalizeStyle(_ctx.padStyle),
+            class: normalizeClass(_ctx.classes.pad),
+            tabindex: _ctx.tabindex,
+            "aria-label": _ctx.padAriaLabel,
+            ref: "pad$"
+          }, null, 14 /* CLASS, STYLE, PROPS */, _hoisted_10), [
+            [vShow, _ctx.showPad]
+          ]),
+          createCommentVNode(" Colors "),
+          withDirectives(createElementVNode("div", {
+            class: normalizeClass(_ctx.classes.colors),
+            role: "listbox"
+          }, [
+            (openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.colors, (c) => {
+              return (openBlock(), createElementBlock("svg", {
+                width: "12",
+                height: "12",
+                class: normalizeClass(_ctx.classes.color(c)),
+                role: "option",
+                tabindex: _ctx.tabindex,
+                "aria-label": `${_ctx.colorAriaLabel} ${c}`,
+                "aria-selected": c === _ctx.color,
+                onClick: $event => (_ctx.handleColorSelect(c)),
+                onKeydown: withKeys(withModifiers($event => (_ctx.handleColorSelect(c)), ["prevent"]), ["space","enter"])
+              }, [
+                createElementVNode("circle", {
+                  cx: "6",
+                  cy: "6",
+                  r: "6",
+                  fill: c
+                }, null, 8 /* PROPS */, _hoisted_12)
+              ], 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_11))
+            }), 256 /* UNKEYED_FRAGMENT */))
+          ], 2 /* CLASS */), [
+            [vShow, _ctx.showColors]
+          ])
+        ], 2 /* CLASS */), [
+          [vShow, !_ctx.uploaded]
+        ]),
+        createCommentVNode(" Clear "),
+        (_ctx.showClear)
+          ? (openBlock(), createElementBlock("div", {
+              key: 0,
+              class: normalizeClass(_ctx.classes.clearWrapper)
+            }, [
+              createElementVNode("div", {
+                class: normalizeClass(_ctx.classes.clear),
+                tabindex: _ctx.tabindex,
+                role: "button",
+                "aria-label": _ctx.clearAriaLabel,
+                onClick: _cache[9] || (_cache[9] = (...args) => (_ctx.handleClear && _ctx.handleClear(...args))),
+                onKeydown: _cache[10] || (_cache[10] = withKeys(withModifiers((...args) => (_ctx.handleClear && _ctx.handleClear(...args)), ["prevent"]), ["enter","space"]))
+              }, null, 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_13)
+            ], 2 /* CLASS */))
+          : createCommentVNode("v-if", true)
+      ], 46 /* CLASS, STYLE, PROPS, NEED_HYDRATION */, _hoisted_1$g)
     ]),
     _: 2 /* DYNAMIC */
   }, [
@@ -14099,7 +14322,118 @@ var classes = {
       return [classes.inputCaret, classes["inputCaret_".concat(Size)]];
     }
   },
-  SignatureElement: _objectSpread2({}, text),
+  SignatureElement: {
+    container: '',
+    wrapper: 'transition-input form-border-width-input form-text relative w-full',
+    wrapper_sm: 'form-radius-large-sm',
+    wrapper_md: 'form-radius-large',
+    wrapper_lg: 'form-radius-large-lg',
+    wrapper_disabled: 'form-bg-disabled form-color-disabled form-border-color-input cursor-not-allowed pointer-events-none',
+    wrapper_enabled: 'form-bg-input form-color-input form-border-color-input focused:form-ring focused:form-border-color-input-focus',
+    wrapper_readonly: 'pointer-events-none',
+    line: 'absolute top-1/2 left-6 right-6 border-gray-300 dark:border-dark-500',
+    loadedWrapper: 'absolute left-9 right-9 top-0 bottom-0 flex items-center justify-center',
+    loadedWrapper_disabled: 'opacity-50',
+    loadedWrapper_enabled: '',
+    loadedImg: '',
+    innerWrapper: '',
+    innerWrapper_disabled: 'opacity-50',
+    innerWrapper_enabled: '',
+    input: 'bg-transparent absolute top-1/2 left-0 right-0 transform -translate-y-1/2 pr-9 text-center indent-9 transition-colors h-[8.5rem] rtl:pr-0 rtl:pl-9',
+    input_invert: 'dark:filter dark:invert',
+    placeholder: 'absolute left-0 right-0 bottom-[50%] transform translate-y-1/2 pointer-events-none text-gray-400 text-center dark:text-dark-500',
+    uploadContainer: 'absolute left-9 right-9 bottom-1/2 transform translate-y-1/2 transition-opacity',
+    uploadContainer_dragging: 'opacity-50',
+    uploadContainer_not_dragging: '',
+    uploadWrapper: 'flex flex-col items-center justify cente text-gray-400 text-center',
+    uploadWrapper_processing: 'opacity-60 pointer-events-none',
+    dndText: 'text-gray-700 dark:text-dark-200',
+    uploadButton: 'inline-block transition form-border-width-btn form-shadow-btn focus:outline-zero form-bg-btn-secondary form-color-btn-secondary form-border-color-btn-secondary cursor-pointer transition-transform ease-linear focus:form-ring transform hover:scale-105 form-p-btn form-radius-btn form-text',
+    uploadPreview: 'w-full mx-auto',
+    pad: 'absolute inset-0',
+    pad_invert: 'dark:filter dark:invert',
+    colors: 'absolute bottom-5 left-1/2 transform -translate-x-1/2 flex flex-row gap-2',
+    color: 'transform transition-transform cursor-pointer rounded-full outline-none focus-visible:form-ring',
+    color_invert: 'dark:filter dark:invert',
+    color_active: 'scale-[1.4]',
+    color_inactive: 'hover:scale-[1.4]',
+    actions: 'absolute top-2 left-3 right-3 flex items-center justify-between opacity-50 transition-opacity z-1 hover:opacity-100',
+    undosWrapper: 'absolute right-3 top-3 flex items-center justify-center gap-3 rtl:right-auto rtl:left-3',
+    undo: 'mask-bg mask-form-trix-undo form-bg-icon w-3 h-3',
+    undo_enabled: 'cursor-pointer focus-visible:opacity-80',
+    undo_disabled: 'opacity-50 cursor-not-allowed',
+    redo: 'mask-bg mask-form-trix-redo form-bg-icon w-3 h-3',
+    redo_enabled: 'cursor-pointer focus-visible:opacity-80',
+    redo_disabled: 'opacity-50 cursor-not-allowed',
+    clearWrapper: 'absolute top-1/2 transform -translate-y-1/2 right-4 text-sm',
+    clear: 'mask-bg mask-form-remove form-bg-input-color w-3 h-4 py-px box-content inline-block cursor-pointer focus-visible:opacity-60',
+    $wrapper: (classes, _ref55) => {
+      var {
+        isDisabled,
+        readonly,
+        Size
+      } = _ref55;
+      return [classes.wrapper, classes["wrapper_".concat(Size)], isDisabled ? classes.wrapper_disabled : classes.wrapper_enabled, readonly ? classes.wrapper_readonly : null];
+    },
+    $loadedWrapper: (classes, _ref56) => {
+      var {
+        isDisabled
+      } = _ref56;
+      return [classes.loadedWrapper, isDisabled ? classes.loadedWrapper_disabled : classes.loadedWrapper_enabled];
+    },
+    $innerWrapper: (classes, _ref57) => {
+      var {
+        isDisabled
+      } = _ref57;
+      return [classes.innerWrapper, isDisabled ? classes.innerWrapper_disabled : classes.innerWrapper_enabled];
+    },
+    $input: (classes, _ref58) => {
+      var {
+        invertColors,
+        color
+      } = _ref58;
+      return [classes.input, invertColors.indexOf(color) !== -1 ? classes.input_invert : null];
+    },
+    $uploadContainer: (classes, _ref59) => {
+      var {
+        dragging
+      } = _ref59;
+      return [classes.uploadContainer, dragging ? classes.uploadContainer_dragging : classes.uploadContainer_not_dragging];
+    },
+    $uploadWrapper: (classes, _ref60) => {
+      var {
+        processing
+      } = _ref60;
+      return [classes.uploadWrapper, processing ? classes.uploadWrapper_processing : null];
+    },
+    $pad: (classes, _ref61) => {
+      var {
+        invertColors,
+        color
+      } = _ref61;
+      return [classes.pad, invertColors.indexOf(color) !== -1 ? classes.pad_invert : null];
+    },
+    $color: (classes, _ref62) => {
+      var {
+        color,
+        invertColors,
+        mode
+      } = _ref62;
+      return c => [classes.color, c === color ? classes.color_active : classes.color_inactive, invertColors.indexOf(c) !== -1 && mode !== 'upload' ? classes.color_invert : null];
+    },
+    $undo: (classes, _ref63) => {
+      var {
+        undosLeft
+      } = _ref63;
+      return [classes.undo, undosLeft ? classes.undo_enabled : classes.undo_disabled];
+    },
+    $redo: (classes, _ref64) => {
+      var {
+        redos
+      } = _ref64;
+      return [classes.redo, redos.length ? classes.redo_enabled : classes.redo_disabled];
+    }
+  },
   SliderElement: {
     container: '',
     wrapper: '',
@@ -14171,83 +14505,83 @@ var classes = {
       draggable: 'cursor-ew-resize v:cursor-ns-resize',
       tap: 'slider-state-tap',
       drag: 'slider-state-drag',
-      $target: (classes, _ref55) => {
-        var {
-          Size
-        } = _ref55;
-        return [classes.slider.target, classes.slider["target_".concat(Size)]];
-      },
-      $horizontal: (classes, _ref56) => {
-        var {
-          Size
-        } = _ref56;
-        return [classes.slider.horizontal, classes.slider["horizontal_".concat(Size)]];
-      },
-      $vertical: (classes, _ref57) => {
-        var {
-          Size
-        } = _ref57;
-        return [classes.slider.vertical, classes.slider["vertical_".concat(Size)]];
-      },
-      $base: (classes, _ref58) => {
-        var {
-          Size
-        } = _ref58;
-        return [classes.slider.base, classes.slider["base_".concat(Size)]];
-      },
-      $connects: (classes, _ref59) => {
-        var {
-          Size
-        } = _ref59;
-        return [classes.slider.connects, classes.slider["connects_".concat(Size)]];
-      },
-      $connect: (classes, _ref60) => {
-        var {
-          Size
-        } = _ref60;
-        return [classes.slider.connect, classes.slider["connect_".concat(Size)]];
-      },
-      $handle: (classes, _ref61) => {
-        var {
-          Size
-        } = _ref61;
-        return [classes.slider.handle, classes.slider["handle_".concat(Size)]];
-      },
-      $tooltip: (classes, _ref62) => {
-        var {
-          Size
-        } = _ref62;
-        return [classes.slider.tooltip, classes.slider["tooltip_".concat(Size)]];
-      },
-      $tooltipTop: (classes, _ref63) => {
-        var {
-          Size
-        } = _ref63;
-        return [classes.slider.tooltipTop, classes.slider["tooltipTop_".concat(Size)]];
-      },
-      $tooltipBottom: (classes, _ref64) => {
-        var {
-          Size
-        } = _ref64;
-        return [classes.slider.tooltipBottom, classes.slider["tooltipBottom_".concat(Size)]];
-      },
-      $tooltipLeft: (classes, _ref65) => {
+      $target: (classes, _ref65) => {
         var {
           Size
         } = _ref65;
-        return [classes.slider.tooltipLeft, classes.slider["tooltipLeft_".concat(Size)]];
+        return [classes.slider.target, classes.slider["target_".concat(Size)]];
       },
-      $tooltipRight: (classes, _ref66) => {
+      $horizontal: (classes, _ref66) => {
         var {
           Size
         } = _ref66;
+        return [classes.slider.horizontal, classes.slider["horizontal_".concat(Size)]];
+      },
+      $vertical: (classes, _ref67) => {
+        var {
+          Size
+        } = _ref67;
+        return [classes.slider.vertical, classes.slider["vertical_".concat(Size)]];
+      },
+      $base: (classes, _ref68) => {
+        var {
+          Size
+        } = _ref68;
+        return [classes.slider.base, classes.slider["base_".concat(Size)]];
+      },
+      $connects: (classes, _ref69) => {
+        var {
+          Size
+        } = _ref69;
+        return [classes.slider.connects, classes.slider["connects_".concat(Size)]];
+      },
+      $connect: (classes, _ref70) => {
+        var {
+          Size
+        } = _ref70;
+        return [classes.slider.connect, classes.slider["connect_".concat(Size)]];
+      },
+      $handle: (classes, _ref71) => {
+        var {
+          Size
+        } = _ref71;
+        return [classes.slider.handle, classes.slider["handle_".concat(Size)]];
+      },
+      $tooltip: (classes, _ref72) => {
+        var {
+          Size
+        } = _ref72;
+        return [classes.slider.tooltip, classes.slider["tooltip_".concat(Size)]];
+      },
+      $tooltipTop: (classes, _ref73) => {
+        var {
+          Size
+        } = _ref73;
+        return [classes.slider.tooltipTop, classes.slider["tooltipTop_".concat(Size)]];
+      },
+      $tooltipBottom: (classes, _ref74) => {
+        var {
+          Size
+        } = _ref74;
+        return [classes.slider.tooltipBottom, classes.slider["tooltipBottom_".concat(Size)]];
+      },
+      $tooltipLeft: (classes, _ref75) => {
+        var {
+          Size
+        } = _ref75;
+        return [classes.slider.tooltipLeft, classes.slider["tooltipLeft_".concat(Size)]];
+      },
+      $tooltipRight: (classes, _ref76) => {
+        var {
+          Size
+        } = _ref76;
         return [classes.slider.tooltipRight, classes.slider["tooltipRight_".concat(Size)]];
       }
     },
-    $wrapper: (classes, _ref67) => {
+    $wrapper: (classes, _ref77) => {
       var {
         Size
-      } = _ref67;
+      } = _ref77;
       return [classes.wrapper, classes["wrapper_".concat(Size)]];
     }
   },
@@ -14306,22 +14640,22 @@ var classes = {
     tag_a_lg: '',
     tag_hr: 'form-static-tag-hr-wrapper form-border-color-hr form-py-hr',
     tag_img: 'form-static-tag-img',
-    $content: (classes, _ref68) => {
+    $content: (classes, _ref78) => {
       var {
         Size,
         top,
         bottom
-      } = _ref68;
+      } = _ref78;
       return [classes.content, classes["content_".concat(Size)], top >= 1 ? classes["content_top_".concat(top)] : null, bottom >= 1 ? classes["content_bottom_".concat(bottom)] : null];
     },
-    $tag: (classes, _ref69) => {
+    $tag: (classes, _ref79) => {
       var {
         Size,
         tag,
         align,
         top,
         bottom
-      } = _ref69;
+      } = _ref79;
       return [classes.tag, classes["tag_".concat(Size)], classes["tag_".concat(tag)], classes["tag_".concat(tag, "_").concat(Size)] || null, align === 'left' ? classes.tag_left : null, align === 'center' ? classes.tag_center : null, align === 'right' ? classes.tag_right : null, top >= 1 ? classes["tag_top_".concat(top)] : null, bottom >= 1 ? classes["tag_bottom_".concat(bottom)] : null];
     }
   },
@@ -14357,46 +14691,46 @@ var classes = {
       tagsSearch_md: 'form-text',
       tagsSearch_lg: 'form-text-lg',
       tagsSearchCopy: 'invisible whitespace-pre-wrap inline-block h-px',
-      $tags: (classes, _ref70) => {
+      $tags: (classes, _ref80) => {
         var {
           Size
-        } = _ref70;
+        } = _ref80;
         return [classes.select.tags, classes.select["tags_".concat(Size)]];
       },
-      $tag: (classes, _ref71) => {
+      $tag: (classes, _ref81) => {
         var {
           Size
-        } = _ref71;
+        } = _ref81;
         return [classes.select.tag, classes.select["tag_".concat(Size)]];
       },
-      $tagWrapper: (classes, _ref72) => {
+      $tagWrapper: (classes, _ref82) => {
         var {
           breakTags
-        } = _ref72;
+        } = _ref82;
         return [classes.select.tagWrapper, !breakTags.value ? classes.select.tagWrapper_noBreak : null];
       },
-      $tagDisabled: (classes, _ref73) => {
+      $tagDisabled: (classes, _ref83) => {
         var {
           Size
-        } = _ref73;
+        } = _ref83;
         return [classes.select.tagDisabled, classes.select["tagDisabled_".concat(Size)]];
       },
-      $tagRemove: (classes, _ref74) => {
+      $tagRemove: (classes, _ref84) => {
         var {
           Size
-        } = _ref74;
+        } = _ref84;
         return [classes.select.tagRemove, classes.select["tagRemove_".concat(Size)]];
       },
-      $tagsSearchWrapper: (classes, _ref75) => {
+      $tagsSearchWrapper: (classes, _ref85) => {
         var {
           Size
-        } = _ref75;
+        } = _ref85;
         return [classes.select.tagsSearchWrapper, classes.select["tagsSearchWrapper_".concat(Size)]];
       },
-      $tagsSearch: (classes, _ref76) => {
+      $tagsSearch: (classes, _ref86) => {
         var {
           Size
-        } = _ref76;
+        } = _ref86;
         return [classes.select.tagsSearch, classes.select["tagsSearch_".concat(Size)]];
       }
     })
@@ -14444,43 +14778,43 @@ var classes = {
       label_sm: 'form-w-toggle-label-sm',
       label_md: 'form-w-toggle-label',
       label_lg: 'form-w-toggle-label-lg',
-      $container: (classes, _ref77) => {
+      $container: (classes, _ref87) => {
         var {
           Size,
           isDisabled
-        } = _ref77;
+        } = _ref87;
         return [classes.toggle.container, classes.toggle["container_".concat(Size)], !isDisabled ? classes.toggle.container_enabled : classes.toggle.container_disabled];
       },
-      $toggle: (classes, _ref78) => {
+      $toggle: (classes, _ref88) => {
         var {
           Size
-        } = _ref78;
+        } = _ref88;
         return [classes.toggle.toggle, classes.toggle["toggle_".concat(Size)]];
       },
-      $handle: (classes, _ref79) => {
+      $handle: (classes, _ref89) => {
         var {
           Size
-        } = _ref79;
+        } = _ref89;
         return [classes.toggle.handle, classes.toggle["handle_".concat(Size)]];
       },
-      $label: (classes, _ref80) => {
+      $label: (classes, _ref90) => {
         var {
           Size
-        } = _ref80;
+        } = _ref90;
         return [classes.toggle.label, classes.toggle["label_".concat(Size)]];
       }
     },
-    $text: (classes, _ref81) => {
+    $text: (classes, _ref91) => {
       var {
         Size,
         align
-      } = _ref81;
+      } = _ref91;
       return [classes.text, classes["text_".concat(Size)], align === 'left' ? [classes.text_left, classes["text_left_".concat(Size)]] : null, align === 'right' ? [classes.text_right, classes["text_right_".concat(Size)]] : null];
     },
-    $wrapper: (classes, _ref82) => {
+    $wrapper: (classes, _ref92) => {
       var {
         align
-      } = _ref82;
+      } = _ref92;
       return [classes.wrapper, align === 'left' ? classes.wrapper_left : null, align === 'right' ? classes.wrapper_right : null];
     }
   },
@@ -14508,10 +14842,10 @@ var classes = {
     container_hideAttach: 'form-editor-hide-attach',
     container_hideUndo: 'form-editor-hide-undo',
     container_hideRedo: 'form-editor-hide-redo',
-    $container: (classes, _ref83) => {
+    $container: (classes, _ref93) => {
       var {
         hideTools
-      } = _ref83;
+      } = _ref93;
       return [classes.container].concat(hideTools.map(t => classes["container_hide".concat(t.split('-').map(s => s.charAt(0).toUpperCase() + s.slice(1)).join(''))]));
     }
   },
@@ -14530,35 +14864,43 @@ var classes = {
     container_after_md: 'form-radius-input-r form-pr-input form-pl-space-addon',
     container_after_lg: 'form-radius-input-r-lg form-pr-input-lg form-pl-space-addon-lg',
     wrapper: 'contents items-center justify-center',
-    $container: (classes, _ref84) => {
+    $container: (classes, _ref94) => {
       var {
         type,
         Size
-      } = _ref84;
+      } = _ref94;
       return [classes.container, classes["container_".concat(Size)], classes["container_".concat(type)], classes["container_".concat(type, "_").concat(Size)]];
     }
   },
   ElementAddonOptions: {
     container: 'flex items-center',
     container_disabled: 'cursor-default opacity-50 pointer-events-none',
-    wrapper: 'flex items-center transition-all form-color-input hover:form-bg-selected focus:form-bg-selected outline-none rounded px-1 py-1 cursor-pointer',
+    wrapper: 'flex items-center transition-all form-color-input hover:form-bg-selected focus:form-bg-selected outline-none rounded cursor-pointer whitespace-nowrap',
+    wrapper_default: 'px-1 py-1',
+    wrapper_relaxed: 'px-3 py-1.75',
     caret: 'mask-bg mask-form-caret form-bg-icon w-2.5 h-4 ml-2 rtl:ml-0 rtl:mr-2',
-    dropdown: 'form-bg-input form-shadow-dropdown form-border-width-dropdown border-solid form-border-color-input fixed z-[1002] overflow-x-scroll max-h-[calc(100vh-2rem)]',
+    dropdown: 'form-bg-input form-shadow-dropdown form-border-width-dropdown rounded border-solid form-border-color-input fixed z-[1002] overflow-x-scroll max-h-[calc(100vh-2rem)]',
     optionWrapper: '',
     option: 'flex items-center form-color-input cursor-pointer py-1.25 px-3 whitespace-nowrap',
     option_active: 'form-bg-selected',
-    $container: (classes, _ref85) => {
+    $container: (classes, _ref95) => {
       var {
         Size,
         el$
-      } = _ref85;
+      } = _ref95;
       return [classes.container, el$.isDisabled || el$.readonly ? classes.container_disabled : null];
     },
-    $option: (classes, _ref86) => {
+    $wrapper: (classes, _ref96) => {
+      var {
+        relaxed
+      } = _ref96;
+      return [classes.wrapper, relaxed ? classes.wrapper_relaxed : classes.wrapper_default];
+    },
+    $option: (classes, _ref97) => {
       var {
         selected,
         pointed
-      } = _ref86;
+      } = _ref97;
       return option => [classes.option, selected.index === option.index || pointed.index === option.index ? classes.option_active : null];
     }
   },
@@ -14567,10 +14909,10 @@ var classes = {
     container_sm: 'form-text-small-sm mt-0.5',
     container_md: 'form-text-small mt-1',
     container_lg: 'form-text-small-lg mt-1',
-    $container: (classes, _ref87) => {
+    $container: (classes, _ref98) => {
       var {
         Size
-      } = _ref87;
+      } = _ref98;
       return [classes.container, classes["container_".concat(Size)]];
     }
   },
@@ -14579,10 +14921,10 @@ var classes = {
     container_sm: 'form-text-small-sm mt-0.5',
     container_md: 'form-text-small mt-1',
     container_lg: 'form-text-small-lg mt-1',
-    $container: (classes, _ref88) => {
+    $container: (classes, _ref99) => {
       var {
         Size
-      } = _ref88;
+      } = _ref99;
       return [classes.container, classes["container_".concat(Size)]];
     }
   },
@@ -14594,10 +14936,10 @@ var classes = {
     wrapper_top: 'left-1/2 transform -translate-x-1/2 bottom-8 justify-center',
     wrapper_bottom: 'left-1/2 transform -translate-x-1/2 top-6 justify-center',
     content: 'bg-black bg-opacity-90 text-white rounded-md form-text-small py-1 px-2.5 not-italic inline-block relative',
-    $wrapper: (classes, _ref89) => {
+    $wrapper: (classes, _ref100) => {
       var {
         position
-      } = _ref89;
+      } = _ref100;
       return [classes.wrapper, classes["wrapper_".concat(position)]];
     }
   },
@@ -14643,11 +14985,11 @@ var classes = {
     container_horizontal_md_2XL: '2xl:form-pr-gutter 2xl:text-type:form-pt-input-border 2xl:pb-0',
     container_horizontal_lg_2XL: '2xl:form-pr-gutter-lg 2xl:text-type:form-pt-input-border-lg 2xl:pb-0',
     wrapper: '',
-    $container: (classes, _ref90) => {
+    $container: (classes, _ref101) => {
       var {
         el$,
         Size
-      } = _ref90;
+      } = _ref101;
       return [classes.container, classes["container_".concat(Size)], !el$.inline ? el$.columnsClasses.label : null, el$.cols.default.label < 12 ? classes["container_horizontal_".concat(Size)] : classes["container_vertical_".concat(Size)], ...(Object.keys(el$.cols).length > 1 ? (el$.$vueform.config.breakpoints || ['sm', 'md', 'lg', 'xl', '2xl']).map(breakpoint => {
         var _el$$cols$breakpoint;
         if (!((_el$$cols$breakpoint = el$.cols[breakpoint]) !== null && _el$$cols$breakpoint !== void 0 && _el$$cols$breakpoint.label)) {
@@ -14670,12 +15012,12 @@ var classes = {
     label_lg: 'form-left-input-lg form-mt-floating-lg rtl:left-auto rtl:form-right-input-lg',
     label_invisible: 'opacity-0 invisible',
     label_visible: 'opacity-100 visible',
-    $label: (classes, _ref91) => {
+    $label: (classes, _ref102) => {
       var {
         visible,
         Size,
         el$
-      } = _ref91;
+      } = _ref102;
       return [classes.label, classes["label_".concat(Size)], visible ? classes.label_visible : classes.label_invisible, el$.focused && !el$.isDanger && !el$.isSuccess ? classes.label_focused : null, !el$.isDisabled && !el$.isDanger && !el$.isSuccess ? classes.label_enabled : null, el$.isDisabled ? classes.label_disabled : null, el$.isDanger ? classes.label_danger : null, el$.isSuccess ? classes.label_success : null];
     }
   },
@@ -14690,33 +15032,33 @@ var classes = {
     innerWrapperBefore: 'col-span-12',
     innerWrapper: '',
     innerWrapperAfter: 'col-span-12',
-    $container: (classes, _ref92) => {
+    $container: (classes, _ref103) => {
       var {
         el$,
         Size
-      } = _ref92;
+      } = _ref103;
       return [classes.container, classes["container_".concat(Size)], el$.columnsClasses.container, el$.classes.container, !el$.isStatic && el$.errors && !!el$.errors.length ? classes.container_error : null];
     },
-    $innerContainer: (classes, _ref93) => {
+    $innerContainer: (classes, _ref104) => {
       var {
         el$
-      } = _ref93;
+      } = _ref104;
       return [classes.innerContainer, el$.columnsClasses.innerContainer];
     },
-    $innerWrapper: (classes, _ref94) => {
+    $innerWrapper: (classes, _ref105) => {
       var {
         el$
-      } = _ref94;
+      } = _ref105;
       return [classes.innerWrapper, el$.columnsClasses.wrapper];
     }
   },
   ElementLayoutInline: {
     container: 'flex',
     container_error: 'has-error',
-    $container: (classes, _ref95) => {
+    $container: (classes, _ref106) => {
       var {
         el$
-      } = _ref95;
+      } = _ref106;
       return [classes.container, !el$.isStatic && el$.errors && !!el$.errors.length ? classes.container_error : null, el$.classes.container];
     }
   },
@@ -14726,10 +15068,10 @@ var classes = {
     loader_sm: 'form-top-input-border-sm form-mr-input-sm mt-0.5',
     loader_md: 'form-top-input-border form-mr-input mt-1',
     loader_lg: 'form-top-input-border-lg form-mr-input-lg mt-1',
-    $loader: (classes, _ref96) => {
+    $loader: (classes, _ref107) => {
       var {
         Size
-      } = _ref96;
+      } = _ref107;
       return [classes.loader, classes["loader_".concat(Size)]];
     }
   },
@@ -14738,10 +15080,10 @@ var classes = {
     container_sm: 'form-text-small-sm mt-0.5',
     container_md: 'form-text-small mt-1',
     container_lg: 'form-text-small-lg mt-1',
-    $container: (classes, _ref97) => {
+    $container: (classes, _ref108) => {
       var {
         Size
-      } = _ref97;
+      } = _ref108;
       return [classes.container, classes["container_".concat(Size)]];
     }
   },
@@ -14750,10 +15092,10 @@ var classes = {
     container_before: '',
     container_between: '',
     container_after: '',
-    $container: (classes, _ref98) => {
+    $container: (classes, _ref109) => {
       var {
         type
-      } = _ref98;
+      } = _ref109;
       return [classes.container, classes["container_".concat(type)]];
     }
   },
@@ -14762,10 +15104,10 @@ var classes = {
     container_sm: 'form-gap-x-gutter-sm form-gap-y-gutter-sm',
     container_md: 'form-gap-x-gutter form-gap-y-gutter',
     container_lg: 'form-gap-x-gutter-lg form-gap-y-gutter-lg',
-    $container: (classes, _ref99) => {
+    $container: (classes, _ref110) => {
       var {
         Size
-      } = _ref99;
+      } = _ref110;
       return [classes.container, classes["container_".concat(Size)]];
     }
   },
@@ -14775,10 +15117,10 @@ var classes = {
     container_md: 'form-radius-input form-text form-mb-gutter py-2 px-3',
     container_lg: 'form-radius-input-lg form-text-lg form-mb-gutter-lg py-3 px-4',
     error: '',
-    $container: (classes, _ref100) => {
+    $container: (classes, _ref111) => {
       var {
         Size
-      } = _ref100;
+      } = _ref111;
       return [classes.container, classes["container_".concat(Size)]];
     }
   },
@@ -14792,11 +15134,11 @@ var classes = {
     wrapper_sm: 'py-1.5 px-3.5',
     wrapper_md: 'py-2 px-4',
     wrapper_lg: 'py-2 px-4',
-    $wrapper: (classes, _ref101) => {
+    $wrapper: (classes, _ref112) => {
       var {
         selected,
         Size
-      } = _ref101;
+      } = _ref112;
       return [classes.wrapper, classes["wrapper_".concat(Size)], selected ? classes.wrapper_active : classes.wrapper_inactive];
     }
   },
@@ -14805,10 +15147,10 @@ var classes = {
     container_sm: 'form-mb-gutter form-text-sm',
     container_md: 'form-mb-gutter-lg form-text',
     container_lg: 'form-mb-gutter-lg form-text-lg',
-    $container: (classes, _ref102) => {
+    $container: (classes, _ref113) => {
       var {
         Size
-      } = _ref102;
+      } = _ref113;
       return [classes.container, classes["container_".concat(Size)]];
     }
   },
@@ -14818,10 +15160,10 @@ var classes = {
     container_md: 'form-radius-input form-text form-mb-gutter py-2 px-3',
     container_lg: 'form-radius-input-lg form-text-lg form-mb-gutter-lg py-3 px-4',
     message: '',
-    $container: (classes, _ref103) => {
+    $container: (classes, _ref114) => {
       var {
         Size
-      } = _ref103;
+      } = _ref114;
       return [classes.container, classes["container_".concat(Size)]];
     }
   },
@@ -14837,14 +15179,14 @@ var classes = {
     container_incompleted: '',
     container_pending: 'form-step-pending',
     wrapper: '',
-    $container: (classes, _ref104) => {
+    $container: (classes, _ref115) => {
       var {
         active,
         isDisabled,
         completed,
         invalid,
         pending
-      } = _ref104;
+      } = _ref115;
       return [classes.container, active ? classes.container_active : classes.container_inactive, isDisabled ? classes.container_disabled : classes.container_enabled, completed ? classes.container_completed : classes.container_incompleted, invalid ? classes.container_invalid : classes.container_valid, pending ? classes.container_pending : null];
     }
   },
@@ -14854,10 +15196,10 @@ var classes = {
     container_md: 'form-mb-gutter-lg form-text',
     container_lg: 'form-mb-gutter-lg form-text-lg',
     wrapper: 'flex justify-between overflow-x-auto',
-    $container: (classes, _ref105) => {
+    $container: (classes, _ref116) => {
       var {
         Size
-      } = _ref105;
+      } = _ref116;
       return [classes.container, classes["container_".concat(Size)]];
     }
   },
@@ -14877,13 +15219,13 @@ var classes = {
     button_sm: 'form-p-btn-sm form-radius-btn-sm form-text-sm',
     button_md: 'form-p-btn form-radius-btn form-text',
     button_lg: 'form-p-btn-lg form-radius-btn-lg form-text-lg',
-    $button: (classes, _ref106) => {
+    $button: (classes, _ref117) => {
       var {
         isDisabled,
         isLoading,
         type,
         Size
-      } = _ref106;
+      } = _ref117;
       return [classes.button, classes["button_".concat(Size)], classes["button_".concat(type)], isDisabled && !isLoading ? classes["button_".concat(type, "_disabled")] : null, !isDisabled && !isLoading ? classes["button_".concat(type, "_enabled")] : null, isLoading ? classes["button_".concat(type, "_loading")] : null];
     }
   },
@@ -14892,10 +15234,10 @@ var classes = {
     container_sm: 'form-mt-gutter form-text-sm',
     container_md: 'form-mt-gutter-lg form-text',
     container_lg: 'form-mt-gutter-lg form-text-lg',
-    $container: (classes, _ref107) => {
+    $container: (classes, _ref118) => {
       var {
         Size
-      } = _ref107;
+      } = _ref118;
       return [classes.container, classes["container_".concat(Size)]];
     }
   },
@@ -14909,15 +15251,15 @@ var classes = {
     wrapper_sm: 'py-1.5 px-3.5',
     wrapper_md: 'py-2 px-4',
     wrapper_lg: 'py-2 px-4',
-    $container: (classes, _ref108) => {
+    $container: (classes, _ref119) => {
       return [classes.container];
     },
-    $wrapper: (classes, _ref109) => {
+    $wrapper: (classes, _ref120) => {
       var {
         active,
         invalid,
         Size
-      } = _ref109;
+      } = _ref120;
       return [classes.wrapper, classes["wrapper_".concat(Size)], active ? classes.wrapper_active : classes.wrapper_inactive, invalid ? classes.wrapper_invalid : classes.wrapper_valid];
     }
   },
@@ -14926,10 +15268,10 @@ var classes = {
     container_sm: 'form-mb-gutter form-text-sm',
     container_md: 'form-mb-gutter-lg form-text',
     container_lg: 'form-mb-gutter-lg form-text-lg',
-    $container: (classes, _ref110) => {
+    $container: (classes, _ref121) => {
       var {
         Size
-      } = _ref110;
+      } = _ref121;
       return [classes.container, classes["container_".concat(Size)]];
     }
   },
@@ -14946,7 +15288,7 @@ var classes = {
     input_lg: checkbox.input_lg + ' form-mt-checkbox-lg'
   }),
   CheckboxgroupCheckbox_tabs: _objectSpread2(_objectSpread2({}, groupTabs), {}, {
-    $wrapper: (classes, _ref111) => {
+    $wrapper: (classes, _ref122) => {
       var {
         index,
         items,
@@ -14954,12 +15296,12 @@ var classes = {
         value,
         isDisabled,
         Size
-      } = _ref111;
+      } = _ref122;
       return [classes.wrapper, classes["wrapper_".concat(Size)], index < Object.keys(items).length - 1 ? classes.wrapper_not_last : null, index === 0 ? classes.wrapper_first : null, index === 0 ? classes["wrapper_first_".concat(Size)] : null, index === Object.keys(items).length - 1 ? classes.wrapper_last : null, index === Object.keys(items).length - 1 ? classes["wrapper_last_".concat(Size)] : null, el$.value.indexOf(value) !== -1 ? classes.wrapper_selected : classes.wrapper_unselected, isDisabled ? classes.wrapper_disabled : null];
     }
   }),
   CheckboxgroupCheckbox_blocks: _objectSpread2(_objectSpread2(_objectSpread2({}, checkbox), groupBlocks), {}, {
-    $wrapper: (classes, _ref112) => {
+    $wrapper: (classes, _ref123) => {
       var {
         index,
         items,
@@ -14967,13 +15309,13 @@ var classes = {
         value,
         isDisabled,
         Size
-      } = _ref112;
+      } = _ref123;
       return [classes.wrapper, classes["wrapper_".concat(Size)], index < Object.keys(items).length - 1 ? classes.wrapper_not_last : null, index === 0 ? classes.wrapper_first : null, index === 0 ? classes["wrapper_first_".concat(Size)] : null, index === Object.keys(items).length - 1 ? classes.wrapper_last : null, index === Object.keys(items).length - 1 ? classes["wrapper_last_".concat(Size)] : null, el$.value.indexOf(value) !== -1 ? classes.wrapper_selected : classes.wrapper_unselected, isDisabled ? classes.wrapper_disabled : null];
     },
-    $description: (classes, _ref113) => {
+    $description: (classes, _ref124) => {
       var {
         Size
-      } = _ref113;
+      } = _ref124;
       return [classes.description, classes["description_".concat(Size)]];
     }
   }),
@@ -14989,12 +15331,12 @@ var classes = {
     icon: 'inline-block w-9 h-8 mask-bg mask-form-inbox-in form-bg-primary',
     title: 'font-semibold mt-3',
     description: '',
-    $container: (classes, _ref114) => {
+    $container: (classes, _ref125) => {
       var {
         dragging,
         disabled,
         Size
-      } = _ref114;
+      } = _ref125;
       return [classes.container, classes["container_".concat(Size)], dragging ? classes.container_active : classes.container_inactive, disabled ? classes.container_disabled : classes.container_enabled];
     }
   },
@@ -15019,10 +15361,10 @@ var classes = {
     remove: 'flex w-4 h-4 items-center justify-center form-bg-passive form-color-passive rounded-full transition filter hover:brightness-90 form-hidden group-hover:form-inline-block',
     removeIcon: 'mask-bg mask-form-remove-light form-bg-input-color mask-size-3 block w-full h-full',
     assistiveText: 'form-assistive-text',
-    $container: (classes, _ref115) => {
+    $container: (classes, _ref126) => {
       var {
         Size
-      } = _ref115;
+      } = _ref126;
       return [classes.container, classes["container_".concat(Size)]];
     }
   },
@@ -15057,23 +15399,23 @@ var classes = {
     remove: 'flex w-4 h-4 items-center justify-center form-bg-passive form-color-passive rounded-full transition filter hover:brightness-90 form-hidden group-hover:form-inline-block',
     removeIcon: 'mask-bg mask-form-remove-light form-bg-input-color mask-size-3 block w-full h-full',
     assistiveText: 'form-assistive-text',
-    $image: (classes, _ref116) => {
+    $image: (classes, _ref127) => {
       var {
         hasLink,
         Size
-      } = _ref116;
+      } = _ref127;
       return [classes.image, classes["image_".concat(Size)], hasLink ? classes.image_link : classes.image_static];
     },
-    $img: (classes, _ref117) => {
+    $img: (classes, _ref128) => {
       var {
         Size
-      } = _ref117;
+      } = _ref128;
       return [classes.img, classes["img_".concat(Size)]];
     },
-    $progressBar: (classes, _ref118) => {
+    $progressBar: (classes, _ref129) => {
       var {
         Size
-      } = _ref118;
+      } = _ref129;
       return [classes.progressBar, classes["progressBar_".concat(Size)]];
     }
   },
@@ -15106,28 +15448,28 @@ var classes = {
     remove: 'flex w-4 h-4 items-center justify-center form-bg-passive form-color-passive absolute top-0.5 right-0.5 mt-px mr-px form-hidden rounded-full transition filter hover:brightness-90 group-hover:form-inline-block ',
     removeIcon: 'mask-bg mask-form-remove-light form-bg-input-color mask-size-3 block w-full h-full',
     assistiveText: 'form-assistive-text',
-    $container: (classes, _ref119) => {
+    $container: (classes, _ref130) => {
       var {
         Size
-      } = _ref119;
+      } = _ref130;
       return [classes.container, classes["container_".concat(Size)]];
     },
-    $image: (classes, _ref120) => {
+    $image: (classes, _ref131) => {
       var {
         Size
-      } = _ref120;
+      } = _ref131;
       return [classes.image, classes["image_".concat(Size)]];
     },
-    $img: (classes, _ref121) => {
+    $img: (classes, _ref132) => {
       var {
         Size
-      } = _ref121;
+      } = _ref132;
       return [classes.img, classes["img_".concat(Size)]];
     },
-    $overlay: (classes, _ref122) => {
+    $overlay: (classes, _ref133) => {
       var {
         Size
-      } = _ref122;
+      } = _ref133;
       return [classes.overlay, classes["overlay_".concat(Size)]];
     }
   },
@@ -15140,7 +15482,7 @@ var classes = {
     input_lg: radio.input_lg + ' form-mt-checkbox-lg'
   }),
   RadiogroupRadio_tabs: _objectSpread2(_objectSpread2({}, groupTabs), {}, {
-    $wrapper: (classes, _ref123) => {
+    $wrapper: (classes, _ref134) => {
       var {
         index,
         items,
@@ -15148,12 +15490,12 @@ var classes = {
         value,
         isDisabled,
         Size
-      } = _ref123;
+      } = _ref134;
       return [classes.wrapper, classes["wrapper_".concat(Size)], index < Object.keys(items).length - 1 ? classes.wrapper_not_last : null, index === 0 ? classes.wrapper_first : null, index === 0 ? classes["wrapper_first_".concat(Size)] : null, index === Object.keys(items).length - 1 ? classes.wrapper_last : null, index === Object.keys(items).length - 1 ? classes["wrapper_last_".concat(Size)] : null, el$.value == value ? classes.wrapper_selected : classes.wrapper_unselected, isDisabled ? classes.wrapper_disabled : null];
     }
   }),
   RadiogroupRadio_blocks: _objectSpread2(_objectSpread2(_objectSpread2({}, radio), groupBlocks), {}, {
-    $wrapper: (classes, _ref124) => {
+    $wrapper: (classes, _ref135) => {
       var {
         index,
         items,
@@ -15161,13 +15503,13 @@ var classes = {
         value,
         isDisabled,
         Size
-      } = _ref124;
+      } = _ref135;
       return [classes.wrapper, classes["wrapper_".concat(Size)], index < Object.keys(items).length - 1 ? classes.wrapper_not_last : null, index === 0 ? classes.wrapper_first : null, index === 0 ? classes["wrapper_first_".concat(Size)] : null, index === Object.keys(items).length - 1 ? classes.wrapper_last : null, index === Object.keys(items).length - 1 ? classes["wrapper_last_".concat(Size)] : null, el$.value == value ? classes.wrapper_selected : classes.wrapper_unselected, isDisabled ? classes.wrapper_disabled : null];
     },
-    $description: (classes, _ref125) => {
+    $description: (classes, _ref136) => {
       var {
         Size
-      } = _ref125;
+      } = _ref136;
       return [classes.description, classes["description_".concat(Size)]];
     }
   })

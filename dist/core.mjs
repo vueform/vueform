@@ -1,5 +1,5 @@
 /*!
- * Vueform v1.9.13 (https://github.com/vueform/vueform)
+ * Vueform v1.10.0 (https://github.com/vueform/vueform)
  * Copyright (c) 2024 Adam Berecz <adam@vueform.com>
  * Licensed under the MIT License
  */
@@ -10031,7 +10031,7 @@ function shouldApplyPlugin (name, plugin) {
 }
 
 var name = "@vueform/vueform";
-var version$1 = "1.9.13";
+var version$1 = "1.10.0";
 var description = "Open-Source Form Framework for Vue";
 var homepage = "https://vueform.com";
 var license = "MIT";
@@ -10170,6 +10170,7 @@ var devDependencies = {
 	"rollup-plugin-vue": "^6.0.0",
 	"rollup-plugin-vue2": "npm:rollup-plugin-vue@^5.1.9",
 	"sass-loader": "^7.1.0",
+	signature_pad: "^5.0.2",
 	sortablejs: "^1.15.0",
 	tailwindcss: "npm:@tailwindcss/postcss7-compat@^2.0.2",
 	vue: "3.3.13",
@@ -18488,7 +18489,7 @@ var ElementAddonOptions = {
   emits: ['select', 'open', 'close'],
   props: {
     options: {
-      type: Array,
+      type: [Array],
       required: false,
       default: () => []
     },
@@ -18496,11 +18497,27 @@ var ElementAddonOptions = {
       type: [String, Number, Object],
       required: false,
       default: ''
+    },
+    relaxed: {
+      type: [Boolean],
+      required: false,
+      default: false
+    },
+    position: {
+      type: [String],
+      required: false,
+      default: 'over'
+    },
+    aria: {
+      type: [Object],
+      required: false,
+      default: () => ({})
     }
   },
   setup(props, context) {
     var {
-      options
+      options,
+      position
     } = toRefs(props);
 
     // ============ DEPENDENCIES ============
@@ -18762,8 +18779,12 @@ var ElementAddonOptions = {
         bottom.value = 16;
       } else {
         fullHeight.value = false;
-        top.value = selector.value.getBoundingClientRect().top;
-        console.log(selector.value, top.value);
+        var selectorRect = selector.value.getBoundingClientRect();
+        var newTop = selectorRect.top;
+        if (position.value === 'bottom') {
+          newTop += selectorRect.height;
+        } else if (position.value === 'top') ;
+        top.value = newTop;
         if (dropdown.value.getBoundingClientRect().height > window.innerHeight - selector.value.getBoundingClientRect().top - 16) {
           bottom.value = 16;
         } else {
@@ -19191,7 +19212,7 @@ var pad = function (number, length) {
     return ("000" + number).slice(length * -1);
 };
 var int = function (bool) { return (bool === true ? 1 : 0); };
-function debounce(fn, wait) {
+function debounce$1(fn, wait) {
     var t;
     return function () {
         var _this = this;
@@ -19811,8 +19832,8 @@ function FlatpickrInstance(element, instanceConfig) {
             setupMobile();
             return;
         }
-        var debouncedResize = debounce(onResize, 50);
-        self._debouncedChange = debounce(triggerChange, DEBOUNCED_CHANGE_MS);
+        var debouncedResize = debounce$1(onResize, 50);
+        self._debouncedChange = debounce$1(triggerChange, DEBOUNCED_CHANGE_MS);
         if (self.daysContainer && !/iPhone|iPad|iPod/i.test(navigator.userAgent))
             bind(self.daysContainer, "mouseover", function (e) {
                 if (self.config.mode === "range")
@@ -23198,6 +23219,36 @@ var static_$3 = function static_(props, context, dependencies) {
     infoId,
     errorId,
     aria
+  };
+};
+var phone$2 = function phone(props, context, dependencies) {
+  toRefs(props);
+  var {
+    descriptionId,
+    labelId,
+    infoId,
+    errorId,
+    aria
+  } = base$R(props, context, dependencies);
+
+  // ============ DEPENDENCIES ============
+
+  var form$ = dependencies.form$;
+
+  // ============== COMPUTED ==============
+
+  var optionsAria = computed(() => {
+    return {
+      'aria-label': form$.value.translations.vueform.elements.phone.ariaLabel
+    };
+  });
+  return {
+    descriptionId,
+    labelId,
+    infoId,
+    errorId,
+    aria,
+    optionsAria
   };
 };
 var radiogroup$1 = checkboxgroup$2;
@@ -28009,6 +28060,58 @@ var multifile$4 = function multifile(props, context, dependencies) {
     prepare
   };
 };
+var signature = function signature(props, context, dependencies) {
+  var {
+    data,
+    requestData,
+    load,
+    update,
+    clear: clearBase,
+    reset: resetBase
+  } = base$B(props, context, dependencies);
+
+  // ============ DEPENDENCIES =============
+
+  var {
+    mode,
+    clearSignature,
+    typingToImage,
+    drawingToImage
+  } = dependencies;
+
+  // ============== COMPUTED ===============
+
+  var clear = () => {
+    clearBase();
+    clearSignature();
+  };
+  var reset = () => {
+    clearSignature();
+    resetBase();
+  };
+  var prepare = /*#__PURE__*/function () {
+    var _ref7 = _asyncToGenerator(function* () {
+      if (mode.value === 'type') {
+        yield typingToImage();
+      }
+      if (mode.value === 'draw') {
+        yield drawingToImage();
+      }
+    });
+    return function prepare() {
+      return _ref7.apply(this, arguments);
+    };
+  }();
+  return {
+    data,
+    requestData,
+    load,
+    update,
+    clear,
+    reset,
+    prepare
+  };
+};
 var multiselect$3 = select$3;
 var tags$3 = select$3;
 
@@ -30279,7 +30382,7 @@ var base$r = function base(props, context, dependencies) {
     if (!fileUrl.match(/\/$/)) {
       fileUrl += '/';
     }
-    if (!fileUrl.match(/^http/) && !fileUrl.match(/^\//)) {
+    if (!fileUrl.match(/^(http|file)/) && !fileUrl.match(/^\//)) {
       fileUrl = '/' + fileUrl;
     }
     return fileUrl;
@@ -31696,7 +31799,7 @@ function isRectEqual(rect1, rect2) {
   return Math.round(rect1.top) === Math.round(rect2.top) && Math.round(rect1.left) === Math.round(rect2.left) && Math.round(rect1.height) === Math.round(rect2.height) && Math.round(rect1.width) === Math.round(rect2.width);
 }
 var _throttleTimeout;
-function throttle(callback, ms) {
+function throttle$1(callback, ms) {
   return function () {
     if (!_throttleTimeout) {
       var args = arguments,
@@ -33555,7 +33658,7 @@ Sortable.utils = {
     return !!closest(el, selector, el, false);
   },
   extend: extend,
-  throttle: throttle,
+  throttle: throttle$1,
   closest: closest,
   toggleClass: toggleClass,
   clone: clone,
@@ -33725,7 +33828,7 @@ function clearAutoScrolls() {
 function clearPointerElemChangedInterval() {
   clearInterval(pointerElemChangedInterval);
 }
-var autoScroll = throttle(function (evt, options, rootEl, isFallback) {
+var autoScroll = throttle$1(function (evt, options, rootEl, isFallback) {
   // Bug: https://bugzilla.mozilla.org/show_bug.cgi?id=505521
   if (!options.scroll) return;
   var x = (evt.touches ? evt.touches[0] : evt).clientX,
@@ -38360,7 +38463,7 @@ var PhoneElement = {
     }
   },
   setup(props, context) {
-    context.features = [base$19, base$18, base$V, base$M, base$O, base$S, base$K, base$U, base$G, base$1c, base$P, text$1, base$14, text$2, base$H, base$L, base$I, base$B, base$$, base$J, base$Z, base$Y, base$1a, base$_, base$X, phone$1, base$s, base$b, base$R, base$F, base$T, phone, base$t, base$a];
+    context.features = [base$19, base$18, base$V, base$M, base$O, base$S, base$K, base$U, base$G, base$1c, base$P, text$1, base$14, text$2, base$H, base$L, base$I, base$B, base$$, base$J, base$Z, base$Y, base$1a, base$_, base$X, phone$1, base$s, base$b, phone$2, base$F, base$T, phone, base$t, base$a];
     context.slots = ['label', 'info', 'description', 'before', 'between', 'after'];
     return _objectSpread2$1({}, base$N(props, context));
   }
@@ -38893,51 +38996,2213 @@ var SelectElement = {
   }
 };
 
-function useSignature (props, context, dependencies) {
-  toRefs(props);
+/*!
+ * Signature Pad v5.0.2 | https://github.com/szimek/signature_pad
+ * (c) 2024 Szymon Nowak | Released under the MIT license
+ */
 
-  // =============== PRIVATE ==============
+class Point {
+    constructor(x, y, pressure, time) {
+        if (isNaN(x) || isNaN(y)) {
+            throw new Error(`Point is invalid: (${x}, ${y})`);
+        }
+        this.x = +x;
+        this.y = +y;
+        this.pressure = pressure || 0;
+        this.time = time || Date.now();
+    }
+    distanceTo(start) {
+        return Math.sqrt(Math.pow(this.x - start.x, 2) + Math.pow(this.y - start.y, 2));
+    }
+    equals(other) {
+        return (this.x === other.x &&
+            this.y === other.y &&
+            this.pressure === other.pressure &&
+            this.time === other.time);
+    }
+    velocityFrom(start) {
+        return this.time !== start.time
+            ? this.distanceTo(start) / (this.time - start.time)
+            : 0;
+    }
+}
+
+class Bezier {
+    static fromPoints(points, widths) {
+        const c2 = this.calculateControlPoints(points[0], points[1], points[2]).c2;
+        const c3 = this.calculateControlPoints(points[1], points[2], points[3]).c1;
+        return new Bezier(points[1], c2, c3, points[2], widths.start, widths.end);
+    }
+    static calculateControlPoints(s1, s2, s3) {
+        const dx1 = s1.x - s2.x;
+        const dy1 = s1.y - s2.y;
+        const dx2 = s2.x - s3.x;
+        const dy2 = s2.y - s3.y;
+        const m1 = { x: (s1.x + s2.x) / 2.0, y: (s1.y + s2.y) / 2.0 };
+        const m2 = { x: (s2.x + s3.x) / 2.0, y: (s2.y + s3.y) / 2.0 };
+        const l1 = Math.sqrt(dx1 * dx1 + dy1 * dy1);
+        const l2 = Math.sqrt(dx2 * dx2 + dy2 * dy2);
+        const dxm = m1.x - m2.x;
+        const dym = m1.y - m2.y;
+        const k = l2 / (l1 + l2);
+        const cm = { x: m2.x + dxm * k, y: m2.y + dym * k };
+        const tx = s2.x - cm.x;
+        const ty = s2.y - cm.y;
+        return {
+            c1: new Point(m1.x + tx, m1.y + ty),
+            c2: new Point(m2.x + tx, m2.y + ty),
+        };
+    }
+    constructor(startPoint, control2, control1, endPoint, startWidth, endWidth) {
+        this.startPoint = startPoint;
+        this.control2 = control2;
+        this.control1 = control1;
+        this.endPoint = endPoint;
+        this.startWidth = startWidth;
+        this.endWidth = endWidth;
+    }
+    length() {
+        const steps = 10;
+        let length = 0;
+        let px;
+        let py;
+        for (let i = 0; i <= steps; i += 1) {
+            const t = i / steps;
+            const cx = this.point(t, this.startPoint.x, this.control1.x, this.control2.x, this.endPoint.x);
+            const cy = this.point(t, this.startPoint.y, this.control1.y, this.control2.y, this.endPoint.y);
+            if (i > 0) {
+                const xdiff = cx - px;
+                const ydiff = cy - py;
+                length += Math.sqrt(xdiff * xdiff + ydiff * ydiff);
+            }
+            px = cx;
+            py = cy;
+        }
+        return length;
+    }
+    point(t, start, c1, c2, end) {
+        return (start * (1.0 - t) * (1.0 - t) * (1.0 - t))
+            + (3.0 * c1 * (1.0 - t) * (1.0 - t) * t)
+            + (3.0 * c2 * (1.0 - t) * t * t)
+            + (end * t * t * t);
+    }
+}
+
+class SignatureEventTarget {
+    constructor() {
+        try {
+            this._et = new EventTarget();
+        }
+        catch (error) {
+            this._et = document;
+        }
+    }
+    addEventListener(type, listener, options) {
+        this._et.addEventListener(type, listener, options);
+    }
+    dispatchEvent(event) {
+        return this._et.dispatchEvent(event);
+    }
+    removeEventListener(type, callback, options) {
+        this._et.removeEventListener(type, callback, options);
+    }
+}
+
+function throttle(fn, wait = 250) {
+    let previous = 0;
+    let timeout = null;
+    let result;
+    let storedContext;
+    let storedArgs;
+    const later = () => {
+        previous = Date.now();
+        timeout = null;
+        result = fn.apply(storedContext, storedArgs);
+        if (!timeout) {
+            storedContext = null;
+            storedArgs = [];
+        }
+    };
+    return function wrapper(...args) {
+        const now = Date.now();
+        const remaining = wait - (now - previous);
+        storedContext = this;
+        storedArgs = args;
+        if (remaining <= 0 || remaining > wait) {
+            if (timeout) {
+                clearTimeout(timeout);
+                timeout = null;
+            }
+            previous = now;
+            result = fn.apply(storedContext, storedArgs);
+            if (!timeout) {
+                storedContext = null;
+                storedArgs = [];
+            }
+        }
+        else if (!timeout) {
+            timeout = window.setTimeout(later, remaining);
+        }
+        return result;
+    };
+}
+
+class SignaturePad extends SignatureEventTarget {
+    constructor(canvas, options = {}) {
+        var _a, _b, _c;
+        super();
+        this.canvas = canvas;
+        this._drawingStroke = false;
+        this._isEmpty = true;
+        this._lastPoints = [];
+        this._data = [];
+        this._lastVelocity = 0;
+        this._lastWidth = 0;
+        this._handleMouseDown = (event) => {
+            if (!this._isLeftButtonPressed(event, true) || this._drawingStroke) {
+                return;
+            }
+            this._strokeBegin(this._pointerEventToSignatureEvent(event));
+        };
+        this._handleMouseMove = (event) => {
+            if (!this._isLeftButtonPressed(event, true) || !this._drawingStroke) {
+                this._strokeEnd(this._pointerEventToSignatureEvent(event), false);
+                return;
+            }
+            this._strokeMoveUpdate(this._pointerEventToSignatureEvent(event));
+        };
+        this._handleMouseUp = (event) => {
+            if (this._isLeftButtonPressed(event)) {
+                return;
+            }
+            this._strokeEnd(this._pointerEventToSignatureEvent(event));
+        };
+        this._handleTouchStart = (event) => {
+            if (event.targetTouches.length !== 1 || this._drawingStroke) {
+                return;
+            }
+            if (event.cancelable) {
+                event.preventDefault();
+            }
+            this._strokeBegin(this._touchEventToSignatureEvent(event));
+        };
+        this._handleTouchMove = (event) => {
+            if (event.targetTouches.length !== 1) {
+                return;
+            }
+            if (event.cancelable) {
+                event.preventDefault();
+            }
+            if (!this._drawingStroke) {
+                this._strokeEnd(this._touchEventToSignatureEvent(event), false);
+                return;
+            }
+            this._strokeMoveUpdate(this._touchEventToSignatureEvent(event));
+        };
+        this._handleTouchEnd = (event) => {
+            if (event.targetTouches.length !== 0) {
+                return;
+            }
+            if (event.cancelable) {
+                event.preventDefault();
+            }
+            this.canvas.removeEventListener('touchmove', this._handleTouchMove);
+            this._strokeEnd(this._touchEventToSignatureEvent(event));
+        };
+        this._handlePointerDown = (event) => {
+            if (!this._isLeftButtonPressed(event) || this._drawingStroke) {
+                return;
+            }
+            event.preventDefault();
+            this._strokeBegin(this._pointerEventToSignatureEvent(event));
+        };
+        this._handlePointerMove = (event) => {
+            if (!this._isLeftButtonPressed(event, true) || !this._drawingStroke) {
+                this._strokeEnd(this._pointerEventToSignatureEvent(event), false);
+                return;
+            }
+            event.preventDefault();
+            this._strokeMoveUpdate(this._pointerEventToSignatureEvent(event));
+        };
+        this._handlePointerUp = (event) => {
+            if (this._isLeftButtonPressed(event)) {
+                return;
+            }
+            event.preventDefault();
+            this._strokeEnd(this._pointerEventToSignatureEvent(event));
+        };
+        this.velocityFilterWeight = options.velocityFilterWeight || 0.7;
+        this.minWidth = options.minWidth || 0.5;
+        this.maxWidth = options.maxWidth || 2.5;
+        this.throttle = (_a = options.throttle) !== null && _a !== void 0 ? _a : 16;
+        this.minDistance = (_b = options.minDistance) !== null && _b !== void 0 ? _b : 5;
+        this.dotSize = options.dotSize || 0;
+        this.penColor = options.penColor || 'black';
+        this.backgroundColor = options.backgroundColor || 'rgba(0,0,0,0)';
+        this.compositeOperation = options.compositeOperation || 'source-over';
+        this.canvasContextOptions = (_c = options.canvasContextOptions) !== null && _c !== void 0 ? _c : {};
+        this._strokeMoveUpdate = this.throttle
+            ? throttle(SignaturePad.prototype._strokeUpdate, this.throttle)
+            : SignaturePad.prototype._strokeUpdate;
+        this._ctx = canvas.getContext('2d', this.canvasContextOptions);
+        this.clear();
+        this.on();
+    }
+    clear() {
+        const { _ctx: ctx, canvas } = this;
+        ctx.fillStyle = this.backgroundColor;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        this._data = [];
+        this._reset(this._getPointGroupOptions());
+        this._isEmpty = true;
+    }
+    fromDataURL(dataUrl, options = {}) {
+        return new Promise((resolve, reject) => {
+            const image = new Image();
+            const ratio = options.ratio || window.devicePixelRatio || 1;
+            const width = options.width || this.canvas.width / ratio;
+            const height = options.height || this.canvas.height / ratio;
+            const xOffset = options.xOffset || 0;
+            const yOffset = options.yOffset || 0;
+            this._reset(this._getPointGroupOptions());
+            image.onload = () => {
+                this._ctx.drawImage(image, xOffset, yOffset, width, height);
+                resolve();
+            };
+            image.onerror = (error) => {
+                reject(error);
+            };
+            image.crossOrigin = 'anonymous';
+            image.src = dataUrl;
+            this._isEmpty = false;
+        });
+    }
+    toDataURL(type = 'image/png', encoderOptions) {
+        switch (type) {
+            case 'image/svg+xml':
+                if (typeof encoderOptions !== 'object') {
+                    encoderOptions = undefined;
+                }
+                return `data:image/svg+xml;base64,${btoa(this.toSVG(encoderOptions))}`;
+            default:
+                if (typeof encoderOptions !== 'number') {
+                    encoderOptions = undefined;
+                }
+                return this.canvas.toDataURL(type, encoderOptions);
+        }
+    }
+    on() {
+        this.canvas.style.touchAction = 'none';
+        this.canvas.style.msTouchAction = 'none';
+        this.canvas.style.userSelect = 'none';
+        const isIOS = /Macintosh/.test(navigator.userAgent) && 'ontouchstart' in document;
+        if (window.PointerEvent && !isIOS) {
+            this._handlePointerEvents();
+        }
+        else {
+            this._handleMouseEvents();
+            if ('ontouchstart' in window) {
+                this._handleTouchEvents();
+            }
+        }
+    }
+    off() {
+        this.canvas.style.touchAction = 'auto';
+        this.canvas.style.msTouchAction = 'auto';
+        this.canvas.style.userSelect = 'auto';
+        this.canvas.removeEventListener('pointerdown', this._handlePointerDown);
+        this.canvas.removeEventListener('mousedown', this._handleMouseDown);
+        this.canvas.removeEventListener('touchstart', this._handleTouchStart);
+        this._removeMoveUpEventListeners();
+    }
+    _getListenerFunctions() {
+        var _a;
+        const canvasWindow = window.document === this.canvas.ownerDocument
+            ? window
+            : (_a = this.canvas.ownerDocument.defaultView) !== null && _a !== void 0 ? _a : this.canvas.ownerDocument;
+        return {
+            addEventListener: canvasWindow.addEventListener.bind(canvasWindow),
+            removeEventListener: canvasWindow.removeEventListener.bind(canvasWindow),
+        };
+    }
+    _removeMoveUpEventListeners() {
+        const { removeEventListener } = this._getListenerFunctions();
+        removeEventListener('pointermove', this._handlePointerMove);
+        removeEventListener('pointerup', this._handlePointerUp);
+        removeEventListener('mousemove', this._handleMouseMove);
+        removeEventListener('mouseup', this._handleMouseUp);
+        removeEventListener('touchmove', this._handleTouchMove);
+        removeEventListener('touchend', this._handleTouchEnd);
+    }
+    isEmpty() {
+        return this._isEmpty;
+    }
+    fromData(pointGroups, { clear = true } = {}) {
+        if (clear) {
+            this.clear();
+        }
+        this._fromData(pointGroups, this._drawCurve.bind(this), this._drawDot.bind(this));
+        this._data = this._data.concat(pointGroups);
+    }
+    toData() {
+        return this._data;
+    }
+    _isLeftButtonPressed(event, only) {
+        if (only) {
+            return event.buttons === 1;
+        }
+        return (event.buttons & 1) === 1;
+    }
+    _pointerEventToSignatureEvent(event) {
+        return {
+            event: event,
+            type: event.type,
+            x: event.clientX,
+            y: event.clientY,
+            pressure: 'pressure' in event ? event.pressure : 0,
+        };
+    }
+    _touchEventToSignatureEvent(event) {
+        const touch = event.changedTouches[0];
+        return {
+            event: event,
+            type: event.type,
+            x: touch.clientX,
+            y: touch.clientY,
+            pressure: touch.force,
+        };
+    }
+    _getPointGroupOptions(group) {
+        return {
+            penColor: group && 'penColor' in group ? group.penColor : this.penColor,
+            dotSize: group && 'dotSize' in group ? group.dotSize : this.dotSize,
+            minWidth: group && 'minWidth' in group ? group.minWidth : this.minWidth,
+            maxWidth: group && 'maxWidth' in group ? group.maxWidth : this.maxWidth,
+            velocityFilterWeight: group && 'velocityFilterWeight' in group
+                ? group.velocityFilterWeight
+                : this.velocityFilterWeight,
+            compositeOperation: group && 'compositeOperation' in group
+                ? group.compositeOperation
+                : this.compositeOperation,
+        };
+    }
+    _strokeBegin(event) {
+        const cancelled = !this.dispatchEvent(new CustomEvent('beginStroke', { detail: event, cancelable: true }));
+        if (cancelled) {
+            return;
+        }
+        const { addEventListener } = this._getListenerFunctions();
+        switch (event.event.type) {
+            case 'mousedown':
+                addEventListener('mousemove', this._handleMouseMove);
+                addEventListener('mouseup', this._handleMouseUp);
+                break;
+            case 'touchstart':
+                addEventListener('touchmove', this._handleTouchMove);
+                addEventListener('touchend', this._handleTouchEnd);
+                break;
+            case 'pointerdown':
+                addEventListener('pointermove', this._handlePointerMove);
+                addEventListener('pointerup', this._handlePointerUp);
+                break;
+        }
+        this._drawingStroke = true;
+        const pointGroupOptions = this._getPointGroupOptions();
+        const newPointGroup = Object.assign(Object.assign({}, pointGroupOptions), { points: [] });
+        this._data.push(newPointGroup);
+        this._reset(pointGroupOptions);
+        this._strokeUpdate(event);
+    }
+    _strokeUpdate(event) {
+        if (!this._drawingStroke) {
+            return;
+        }
+        if (this._data.length === 0) {
+            this._strokeBegin(event);
+            return;
+        }
+        this.dispatchEvent(new CustomEvent('beforeUpdateStroke', { detail: event }));
+        const point = this._createPoint(event.x, event.y, event.pressure);
+        const lastPointGroup = this._data[this._data.length - 1];
+        const lastPoints = lastPointGroup.points;
+        const lastPoint = lastPoints.length > 0 && lastPoints[lastPoints.length - 1];
+        const isLastPointTooClose = lastPoint
+            ? point.distanceTo(lastPoint) <= this.minDistance
+            : false;
+        const pointGroupOptions = this._getPointGroupOptions(lastPointGroup);
+        if (!lastPoint || !(lastPoint && isLastPointTooClose)) {
+            const curve = this._addPoint(point, pointGroupOptions);
+            if (!lastPoint) {
+                this._drawDot(point, pointGroupOptions);
+            }
+            else if (curve) {
+                this._drawCurve(curve, pointGroupOptions);
+            }
+            lastPoints.push({
+                time: point.time,
+                x: point.x,
+                y: point.y,
+                pressure: point.pressure,
+            });
+        }
+        this.dispatchEvent(new CustomEvent('afterUpdateStroke', { detail: event }));
+    }
+    _strokeEnd(event, shouldUpdate = true) {
+        this._removeMoveUpEventListeners();
+        if (!this._drawingStroke) {
+            return;
+        }
+        if (shouldUpdate) {
+            this._strokeUpdate(event);
+        }
+        this._drawingStroke = false;
+        this.dispatchEvent(new CustomEvent('endStroke', { detail: event }));
+    }
+    _handlePointerEvents() {
+        this._drawingStroke = false;
+        this.canvas.addEventListener('pointerdown', this._handlePointerDown);
+    }
+    _handleMouseEvents() {
+        this._drawingStroke = false;
+        this.canvas.addEventListener('mousedown', this._handleMouseDown);
+    }
+    _handleTouchEvents() {
+        this.canvas.addEventListener('touchstart', this._handleTouchStart);
+    }
+    _reset(options) {
+        this._lastPoints = [];
+        this._lastVelocity = 0;
+        this._lastWidth = (options.minWidth + options.maxWidth) / 2;
+        this._ctx.fillStyle = options.penColor;
+        this._ctx.globalCompositeOperation = options.compositeOperation;
+    }
+    _createPoint(x, y, pressure) {
+        const rect = this.canvas.getBoundingClientRect();
+        return new Point(x - rect.left, y - rect.top, pressure, new Date().getTime());
+    }
+    _addPoint(point, options) {
+        const { _lastPoints } = this;
+        _lastPoints.push(point);
+        if (_lastPoints.length > 2) {
+            if (_lastPoints.length === 3) {
+                _lastPoints.unshift(_lastPoints[0]);
+            }
+            const widths = this._calculateCurveWidths(_lastPoints[1], _lastPoints[2], options);
+            const curve = Bezier.fromPoints(_lastPoints, widths);
+            _lastPoints.shift();
+            return curve;
+        }
+        return null;
+    }
+    _calculateCurveWidths(startPoint, endPoint, options) {
+        const velocity = options.velocityFilterWeight * endPoint.velocityFrom(startPoint) +
+            (1 - options.velocityFilterWeight) * this._lastVelocity;
+        const newWidth = this._strokeWidth(velocity, options);
+        const widths = {
+            end: newWidth,
+            start: this._lastWidth,
+        };
+        this._lastVelocity = velocity;
+        this._lastWidth = newWidth;
+        return widths;
+    }
+    _strokeWidth(velocity, options) {
+        return Math.max(options.maxWidth / (velocity + 1), options.minWidth);
+    }
+    _drawCurveSegment(x, y, width) {
+        const ctx = this._ctx;
+        ctx.moveTo(x, y);
+        ctx.arc(x, y, width, 0, 2 * Math.PI, false);
+        this._isEmpty = false;
+    }
+    _drawCurve(curve, options) {
+        const ctx = this._ctx;
+        const widthDelta = curve.endWidth - curve.startWidth;
+        const drawSteps = Math.ceil(curve.length()) * 2;
+        ctx.beginPath();
+        ctx.fillStyle = options.penColor;
+        for (let i = 0; i < drawSteps; i += 1) {
+            const t = i / drawSteps;
+            const tt = t * t;
+            const ttt = tt * t;
+            const u = 1 - t;
+            const uu = u * u;
+            const uuu = uu * u;
+            let x = uuu * curve.startPoint.x;
+            x += 3 * uu * t * curve.control1.x;
+            x += 3 * u * tt * curve.control2.x;
+            x += ttt * curve.endPoint.x;
+            let y = uuu * curve.startPoint.y;
+            y += 3 * uu * t * curve.control1.y;
+            y += 3 * u * tt * curve.control2.y;
+            y += ttt * curve.endPoint.y;
+            const width = Math.min(curve.startWidth + ttt * widthDelta, options.maxWidth);
+            this._drawCurveSegment(x, y, width);
+        }
+        ctx.closePath();
+        ctx.fill();
+    }
+    _drawDot(point, options) {
+        const ctx = this._ctx;
+        const width = options.dotSize > 0
+            ? options.dotSize
+            : (options.minWidth + options.maxWidth) / 2;
+        ctx.beginPath();
+        this._drawCurveSegment(point.x, point.y, width);
+        ctx.closePath();
+        ctx.fillStyle = options.penColor;
+        ctx.fill();
+    }
+    _fromData(pointGroups, drawCurve, drawDot) {
+        for (const group of pointGroups) {
+            const { points } = group;
+            const pointGroupOptions = this._getPointGroupOptions(group);
+            if (points.length > 1) {
+                for (let j = 0; j < points.length; j += 1) {
+                    const basicPoint = points[j];
+                    const point = new Point(basicPoint.x, basicPoint.y, basicPoint.pressure, basicPoint.time);
+                    if (j === 0) {
+                        this._reset(pointGroupOptions);
+                    }
+                    const curve = this._addPoint(point, pointGroupOptions);
+                    if (curve) {
+                        drawCurve(curve, pointGroupOptions);
+                    }
+                }
+            }
+            else {
+                this._reset(pointGroupOptions);
+                drawDot(points[0], pointGroupOptions);
+            }
+        }
+    }
+    toSVG({ includeBackgroundColor = false } = {}) {
+        const pointGroups = this._data;
+        const ratio = Math.max(window.devicePixelRatio || 1, 1);
+        const minX = 0;
+        const minY = 0;
+        const maxX = this.canvas.width / ratio;
+        const maxY = this.canvas.height / ratio;
+        const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+        svg.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+        svg.setAttribute('xmlns:xlink', 'http://www.w3.org/1999/xlink');
+        svg.setAttribute('viewBox', `${minX} ${minY} ${maxX} ${maxY}`);
+        svg.setAttribute('width', maxX.toString());
+        svg.setAttribute('height', maxY.toString());
+        if (includeBackgroundColor && this.backgroundColor) {
+            const rect = document.createElement('rect');
+            rect.setAttribute('width', '100%');
+            rect.setAttribute('height', '100%');
+            rect.setAttribute('fill', this.backgroundColor);
+            svg.appendChild(rect);
+        }
+        this._fromData(pointGroups, (curve, { penColor }) => {
+            const path = document.createElement('path');
+            if (!isNaN(curve.control1.x) &&
+                !isNaN(curve.control1.y) &&
+                !isNaN(curve.control2.x) &&
+                !isNaN(curve.control2.y)) {
+                const attr = `M ${curve.startPoint.x.toFixed(3)},${curve.startPoint.y.toFixed(3)} ` +
+                    `C ${curve.control1.x.toFixed(3)},${curve.control1.y.toFixed(3)} ` +
+                    `${curve.control2.x.toFixed(3)},${curve.control2.y.toFixed(3)} ` +
+                    `${curve.endPoint.x.toFixed(3)},${curve.endPoint.y.toFixed(3)}`;
+                path.setAttribute('d', attr);
+                path.setAttribute('stroke-width', (curve.endWidth * 2.25).toFixed(3));
+                path.setAttribute('stroke', penColor);
+                path.setAttribute('fill', 'none');
+                path.setAttribute('stroke-linecap', 'round');
+                svg.appendChild(path);
+            }
+        }, (point, { penColor, dotSize, minWidth, maxWidth }) => {
+            const circle = document.createElement('circle');
+            const size = dotSize > 0 ? dotSize : (minWidth + maxWidth) / 2;
+            circle.setAttribute('r', size.toString());
+            circle.setAttribute('cx', point.x.toString());
+            circle.setAttribute('cy', point.y.toString());
+            circle.setAttribute('fill', penColor);
+            svg.appendChild(circle);
+        });
+        return svg.outerHTML;
+    }
+}
+
+function debounce(func, wait, onStart) {
+  var timeout;
+  return function () {
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+    if (!timeout) {
+      onStart();
+    } else {
+      clearTimeout(timeout);
+    }
+    timeout = setTimeout(() => {
+      timeout = null;
+      func.apply(this, args);
+    }, wait);
+  };
+}
+
+function useSignature (props, context, dependencies) {
+  var {
+    fonts,
+    colors,
+    modes,
+    accept,
+    maxWidth,
+    height,
+    readonly,
+    maxFontSize,
+    minFontSize,
+    canClear,
+    line,
+    placeholder,
+    autoloadFonts,
+    maxSize,
+    canUndo,
+    columns,
+    uploadWidth,
+    uploadHeight,
+    canDrop
+  } = toRefs(props);
+
+  // ============ DEPENDENCIES ============
+
+  var {
+    el$,
+    form$,
+    input,
+    isDisabled,
+    value,
+    Placeholder
+  } = dependencies;
 
   // ================ DATA ================
 
-  var type$ = ref(null);
-  var addonOptions = ref([{
-    label: 'Type',
-    value: 'type',
-    index: 0
-  }, {
-    label: 'Draw',
-    value: 'draw',
-    index: 1
-  }, {
-    label: 'Upload',
-    value: 'upload',
-    index: 2
-  }]);
-  var addonPlaceholder = ref();
+  /**
+   * The signature mode selector.
+   *
+   * @type {ElementAddonOptions}
+   */
+  var mode$ = ref(null);
+
+  /**
+   * The font style selector.
+   *
+   * @type {ElementAddonOptions}
+   */
+  var font$ = ref(null);
+
+  /**
+   * The input field when [`mode`](#property-mode) is 'type`.
+   *
+   * @type {HTMLInputElement}
+   */
+  var input$ = ref(null);
+
+  /**
+   * The canvas that shows the preview of an uploaded signature when [`mode`](#property-mode) is 'upload`.
+   *
+   * @type {HTMLCanvasElement}
+   */
+  var preview$ = ref(null);
+
+  /**
+   * The canvas that allows drawning signature when [`mode`](#property-mode) is 'draw`.
+   *
+   * @type {HTMLCanvasElement}
+   */
+  var pad$ = ref(null);
+
+  /**
+   * The file input field when [`mode`](#property-mode) is 'upload` (it's invisible).
+   *
+   * @type {HTMLInputElement}
+   */
+  var file$ = ref(null);
+
+  /**
+   * The DOM that contains upload related parts.
+   *
+   * @type {HTMLElement}
+   */
+  var upload$ = ref(null);
+
+  /**
+   * The upload button.
+   *
+   * @type {HTMLElement}
+   */
+  var uploadButton$ = ref(null);
+
+  /**
+   * The current signature mode (`draw`, `type` or `upload`).
+   *
+   * @type {string}
+   */
+  var mode = ref(null);
+
+  /**
+   * The current font family.
+   *
+   * @type {string}
+   */
+  var fontFamily = ref(null);
+
+  /**
+   * The current font weight.
+   *
+   * @type {string}
+   */
+  var fontWeight = ref(null);
+
+  /**
+   * The current font size.
+   *
+   * @type {}
+   */
+  var fontSize = ref(maxFontSize.value);
+
+  /**
+   * The hex code of the current signature color.
+   *
+   * @type {string}
+   */
+  var color = ref(null);
+
+  /**
+   * The input value used when [`mode`](#property-mode) is 'type`.
+   *
+   * @type {string}
+   */
+  var text = ref(null);
+
+  /**
+   * The [Signature Pad](https://github.com/szimek/signature_pad) instance.
+   *
+   * @type {}
+   */
+  var pad = ref(null);
+
+  /**
+   * The file (image) selected by the user when [`mode`](#property-mode) is 'upload`.
+   *
+   * @type {File}
+   */
+  var image = ref(null);
+
+  /**
+   * Whether the image preview is already created when [`mode`](#property-mode) is 'upload`.
+   *
+   * @type {boolean}
+   */
+  var created = ref(false);
+
+  /**
+   * Whether the image preview is being created when [`mode`](#property-mode) is 'upload`.
+   *
+   * @type {boolean}
+   */
+  var creating = ref(false);
+
+  /**
+   * Whether a file is being dragged over the element when [`mode`](#property-mode) is 'upload`.
+   *
+   * @type {boolean}
+   */
+  var dragging = ref(false);
+
+  /**
+   * Whether the canvas contains any drawn signature when [`mode`](#property-mode) is 'draw`.
+   *
+   * @type {boolean}
+   */
+  var drawn = ref(false);
+
+  /**
+   * Whether a signature is currently being drawn when [`mode`](#property-mode) is 'draw`.
+   *
+   * @type {boolean}
+   */
+  var drawing = ref(false);
+
+  /**
+   * The list of available redos.
+   *
+   * @type {array}
+   */
+  var redos = ref([]);
+
+  /**
+   * The number available undos.
+   *
+   * @type {number}
+   */
+  var undosLeft = ref(0);
+
+  /**
+   * The current width of the signature element.
+   *
+   * @type {number}
+   */
+  var width = ref(0);
+
+  /**
+   * The last width of the element.
+   *
+   * @type {number}
+   */
+  var lastWidth = ref(0);
+
+  /**
+   * Whether the mouse is over after starting to draw a signature.
+   * 
+   * @type {boolean}
+   */
+  var isMouseOver = ref(false);
 
   // ============== COMPUTED ==============
 
+  /**
+   * The available font families.
+   *
+   * @type {array}
+   */
+  var fontFamilies = computed(() => {
+    return fonts.value.map(f => f.split('@')[0].replace('!', ''));
+  });
+
+  /**
+   * The available font weights.
+   *
+   * @type {array}
+   */
+  var fontWeights = computed(() => {
+    return fonts.value.map(f => f.split('@')[1] || 400);
+  });
+
+  /**
+   * Whether a signature (as URL) was loaded to the element.
+   *
+   * @type {boolean}
+   */
+  var uploaded = computed(() => {
+    return typeof value.value === 'string';
+  });
+
+  /**
+   * Whether the uploaded file is being processed for preview.
+   *
+   * @type {boolean}
+   */
+  var processing = computed(() => {
+    return image.value && !created.value;
+  });
+
+  /**
+   * Whether `drop` is enabled and browser supports dragging.
+   *
+   * @type {boolean}
+   */
+  var droppable = computed(() => {
+    var div = document.createElement('div');
+    return ('draggable' in div || 'ondragstart' in div && 'ondrop' in div) && 'FormData' in window && 'FileReader' in window && canDrop.value;
+  });
+
+  /**
+   * The list of [`modes`](#option-modes) formatted for mode selector.
+   *
+   * @type {array}
+   */
+  var resolvedModes = computed(() => {
+    return modes.value.filter(m => ['type', 'draw', 'upload'].indexOf(m) !== -1).map((mode, i) => {
+      return {
+        label: form$.value.translations.vueform.elements.signature[mode],
+        value: mode,
+        index: i
+      };
+    });
+  });
+
+  /**
+   * The list of [`fonts`](#option-fonts) formatted for fonts selector.
+   *
+   * @type {}
+   */
+  var resolvedFonts = computed(() => {
+    return fontFamilies.value.map((font, i) => {
+      var _text$value;
+      return {
+        label: "<div><span style=\"font-family: ".concat(font, "; font-weight: ").concat(fontWeights.value[i], "\" aria-hidden=\"true\">").concat(((_text$value = text.value) === null || _text$value === void 0 ? void 0 : _text$value.trim()) || form$.value.translations.vueform.elements.signature.fontPlaceholder, "</span><span style=\"position: absolute; left: -9999px; opacity: 0;\">").concat(font, "</span></div>"),
+        value: i,
+        index: i
+      };
+    });
+  });
+
+  /**
+   * The list of MIME types formatted for the file input attribute.
+   *
+   * @type {string}
+   */
+  var fileAccept = computed(() => {
+    return accept.value.reduce((prev, curr) => {
+      switch (curr) {
+        case 'jpg':
+        case 'jpeg':
+          prev.push('image/jpeg');
+          break;
+        case 'png':
+          prev.push('image/png');
+          break;
+        case 'svg':
+          prev.push('image/svg+xml');
+          break;
+      }
+      return prev;
+    }, []).join(', ');
+  });
+
+  /**
+   * Whether the signature line should be shown.
+   *
+   * @type {boolean}
+   */
+  var showLine = computed(() => {
+    return mode.value !== 'upload' && line.value;
+  });
+
+  /**
+   * Whether the signature text input should be shown.
+   *
+   * @type {boolean}
+   */
+  var showInput = computed(() => {
+    return !uploaded.value && mode.value === 'type';
+  });
+
+  /**
+   * Whether the signature placeholder should be shown.
+   *
+   * @type {boolean}
+   */
+  var showPlaceholder = computed(() => {
+    return (!text.value && mode.value === 'type' || !drawn.value && mode.value === 'draw') && placeholder.value !== false;
+  });
+
+  /**
+   * Whether the upload container should be shown.
+   *
+   * @type {boolean}
+   */
+  var showUploadContainer = computed(() => {
+    return mode.value === 'upload';
+  });
+
+  /**
+   * Whether the file upload controllers should be shown.
+   *
+   * @type {boolean}
+   */
+  var showUpload = computed(() => {
+    return mode.value === 'upload' && !created.value;
+  });
+
+  /**
+   * Whether file upload preview should be shown.
+   *
+   * @type {boolean}
+   */
+  var showPreview = computed(() => {
+    return mode.value === 'upload' && created.value;
+  });
+
+  /**
+   * Whether signature draw pad should be shown.
+   *
+   * @type {boolean}
+   */
+  var showPad = computed(() => {
+    return mode.value === 'draw';
+  });
+
+  /**
+   * Whether undo and redo buttons should be shown.
+   *
+   * @type {boolean}
+   */
+  var showUndos = computed(() => {
+    return mode.value === 'draw' && (redos.value.length || drawn.value) && !drawing.value && canUndo.value;
+  });
+
+  /**
+   * Whether color selector should be shown.
+   *
+   * @type {boolean}
+   */
+  var showColors = computed(() => {
+    return (mode.value === 'upload' && created.value || mode.value === 'type' || mode.value === 'draw') && !drawing.value && colors.value.length > 1 && !isMouseOver.value;
+  });
+
+  /**
+   * Whether mode selector should be shown.
+   *
+   * @type {boolean}
+   */
+  var showModes = computed(() => {
+    return !drawing.value && modes.value.length > 1 && !isMouseOver.value;
+  });
+
+  /**
+   * Whether font selector should be shown.
+   *
+   * @type {boolean}
+   */
+  var showFonts = computed(() => {
+    return mode.value === 'type' && resolvedFonts.value.length > 1;
+  });
+
+  /**
+   * Whether clear button should be shown.
+   *
+   * @type {boolean}
+   */
+  var showClear = computed(() => {
+    return (mode.value === 'type' && text.value || mode.value === 'upload' && created.value || mode.value === 'draw' && drawn.value || uploaded.value) && !isDisabled.value && !readonly.value && !drawing.value && canClear.value;
+  });
+
+  /**
+   * The tabindex of focusable DOM parts.
+   * 
+   * @type {number|undefined}
+   */
+  var tabindex = computed(() => {
+    return isDisabled.value || readonly.value ? undefined : 0;
+  });
+
+  /**
+   * The text of the placeholder.
+   *
+   * @type {string}
+   */
+  var placeholderText = computed(() => {
+    return Placeholder.value || form$.value.translations.vueform.elements.signature.placeholder;
+  });
+
+  /**
+   * The text of the drag and drop area.
+   *
+   * @type {string}
+   */
+  var dndText = computed(() => {
+    return 'Drop an image here or';
+  });
+
+  /**
+   * The text of the upload button.
+   *
+   * @type {string}
+   */
+  var uploadButtonText = computed(() => {
+    return 'Select image';
+  });
+
+  /**
+   * The text of the img alt attribute.
+   *
+   * @type {string}
+   */
+  var imgAltText = computed(() => {
+    return form$.value.translations.vueform.elements.signature.imgAlt;
+  });
+
+  /**
+   * The text of the img title attribute.
+   *
+   * @type {string}
+   */
+  var imgTitleText = computed(() => {
+    return form$.value.translations.vueform.elements.signature.imgTitle;
+  });
+
+  /**
+   * The current text of font selector options.
+   *
+   * @type {string}
+   */
+  var fontText = computed(() => {
+    return form$.value.translations.vueform.elements.signature.font;
+  });
+
+  /**
+   * The undo button's title.
+   *
+   * @type {string}
+   */
+  var undoText = computed(() => {
+    return form$.value.translations.vueform.elements.signature.undo;
+  });
+
+  /**
+   * The redo button's title.
+   *
+   * @type {string}
+   */
+  var redoText = computed(() => {
+    return form$.value.translations.vueform.elements.signature.redo;
+  });
+
+  /**
+   * The aria attributes of the mode selector.
+   *
+   * @type {object}
+   */
+  var modeSelectorAria = computed(() => {
+    return {
+      'aria-label': form$.value.translations.vueform.elements.signature.modeSelectorAriaLabel
+    };
+  });
+
+  /**
+   * The aria attributes of the font selector.
+   *
+   * @type {object}
+   */
+  var fontSelectorAria = computed(() => {
+    return {
+      'aria-label': form$.value.translations.vueform.elements.signature.fontSelectorAriaLabel
+    };
+  });
+
+  /**
+   * The aria label of the signature wrapper.
+   *
+   * @type {string}
+   */
+  var wrapperAriaLabel = computed(() => {
+    return form$.value.translations.vueform.elements.signature.wrapperAriaLabel;
+  });
+
+  /**
+   * The aria label of the text input field.
+   *
+   * @type {string}
+   */
+  var inputAriaLabel = computed(() => {
+    return form$.value.translations.vueform.elements.signature.inputAriaLabel;
+  });
+
+  /**
+   * The aria label of the signature pad.
+   *
+   * @type {string}
+   */
+  var padAriaLabel = computed(() => {
+    return form$.value.translations.vueform.elements.signature.padAriaLabel;
+  });
+
+  /**
+   * The aria label of the clear button.
+   *
+   * @type {string}
+   */
+  var clearAriaLabel = computed(() => {
+    return form$.value.translations.vueform.elements.signature.clearAriaLabel;
+  });
+
+  /**
+   * The aria label of a color.
+   *
+   * @type {string}
+   */
+  var colorAriaLabel = computed(() => {
+    return form$.value.translations.vueform.elements.signature.colorAriaLabel;
+  });
+
+  /**
+   * The width of signature pad.
+   *
+   * @type {number}
+   */
+  var padWidth = computed(() => {
+    return width.value * 2;
+  });
+
+  /**
+   * The height of signature pad.
+   *
+   * @type {number}
+   */
+  var padHeight = computed(() => {
+    return height.value * 2;
+  });
+
+  /**
+   * The style attributes of the signature pad.
+   *
+   * @type {object}
+   */
+  var padStyle = computed(() => {
+    return {
+      width: "".concat(width.value, "px"),
+      height: "".concat(height.value, "px")
+    };
+  });
+
+  /**
+   * The style attributes of the signature wrapper.
+   *
+   * @type {object}
+   */
+  var wrapperStyle = computed(() => {
+    var style = {
+      height: "".concat(height.value, "px")
+    };
+    if (maxWidth.value !== false) {
+      style.maxWidth = "".concat(maxWidth.value, "px");
+    }
+    return style;
+  });
+
+  /**
+   * The style attributes of the signature input when [`mode`](#property-mode) is 'type`.
+   *
+   * @type {}
+   */
+  var inputStyle = computed(() => {
+    return {
+      fontFamily: fontFamily.value,
+      fontWeight: fontWeight.value,
+      fontSize: "".concat(fontSize.value, "px"),
+      lineHeight: "".concat(fontSize.value, "px"),
+      color: color.value,
+      '-webkit-font-smoothing': 'auto'
+    };
+  });
+
+  /**
+   * The style attributes of the signature line.
+   *
+   * @type {}
+   */
+  var lineStyle = computed(() => {
+    return {
+      transform: "translateY(calc(".concat(fontSize.value / 2.2, "px))")
+    };
+  });
+
   // =============== METHODS ==============
 
-  var handleOptionSelect = () => {};
-  var handleOpen = () => {};
-  var handleClose = () => {};
+  /**
+   * Initalizes the [Signature Pad](https://github.com/szimek/signature_pad).
+   *
+   * @returns {void}
+   */
+  var initPad = () => {
+    if (pad.value || !pad$.value || modes.value.indexOf('draw') === -1 && modes.value.length) {
+      return;
+    }
+    pad.value = new SignaturePad(pad$.value);
+    var ctx = pad$.value.getContext('2d');
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+    ctx.scale(2, 2);
+    setDrawColor();
+    pad.value.addEventListener('beginStroke', e => {
+      if (isDisabled.value || readonly.value) {
+        e.preventDefault();
+        return;
+      }
+      isMouseOver.value = true;
+      drawn.value = true;
+      drawing.value = true;
+      redos.value = [];
+    });
+    pad.value.addEventListener('endStroke', () => {
+      drawing.value = false;
+      undosLeft.value++;
+    });
+  };
 
-  // ============== WATCHERS ==============
+  /**
+   * Resizes the signature pad to the current max width and clears any drawings.
+   *
+   * @returns {void}
+   */
+  var resizePad = () => {
+    setWidth();
+    nextTick(() => {
+      var ctx = pad$.value.getContext('2d');
+      ctx.setTransform(1, 0, 0, 1, 0, 0);
+      ctx.scale(2, 2);
+      clearDrawnSignature();
+    });
+  };
+
+  /**
+   * Sets the element value as Blob from the current drawing.
+   *
+   * @returns {void}
+   */
+  var drawingToImage = () => {
+    return new Promise((resolve, reject) => {
+      var originalCanvas = pad$.value;
+      var originalCtx = originalCanvas.getContext('2d');
+
+      // Get the image data from the canvas
+      var imageData = originalCtx.getImageData(0, 0, originalCanvas.width, originalCanvas.height);
+      var data = imageData.data;
+
+      // Find the bounding box of the drawing
+      var minX = originalCanvas.width,
+        minY = originalCanvas.height,
+        maxX = 0,
+        maxY = 0;
+      for (var y = 0; y < originalCanvas.height; y++) {
+        for (var x = 0; x < originalCanvas.width; x++) {
+          var index = (y * originalCanvas.width + x) * 4;
+          if (data[index + 3] > 0) {
+            // alpha channel > 0 means there's a drawn pixel
+            if (x < minX) minX = x;
+            if (y < minY) minY = y;
+            if (x > maxX) maxX = x;
+            if (y > maxY) maxY = y;
+          }
+        }
+      }
+
+      // Check if there is any drawing
+      if (minX > maxX || minY > maxY) {
+        reject(new Error('No drawing found on the canvas.'));
+        return;
+      }
+
+      // Create a new canvas for the bounding box of the drawing
+      var drawingWidth = maxX - minX + 1;
+      var drawingHeight = maxY - minY + 1;
+      var drawingCanvas = document.createElement('canvas');
+      var drawingCtx = drawingCanvas.getContext('2d');
+      drawingCanvas.width = drawingWidth;
+      drawingCanvas.height = drawingHeight;
+      drawingCtx.putImageData(imageData, -minX, -minY);
+
+      // Create a new canvas for the resized image
+      var resizedCanvas = document.createElement('canvas');
+      var resizedCtx = resizedCanvas.getContext('2d');
+      var resizedWidth = uploadWidth.value;
+      var resizedHeight = uploadHeight.value;
+      resizedCanvas.width = resizedWidth;
+      resizedCanvas.height = resizedHeight;
+
+      // Calculate the new target dimensions while maintaining the aspect ratio
+      var targetWidth = drawingWidth;
+      var targetHeight = drawingHeight;
+      if (targetWidth > resizedWidth || targetHeight > resizedHeight) {
+        if (targetWidth / targetHeight > resizedWidth / resizedHeight) {
+          targetWidth = resizedWidth;
+          targetHeight = Math.floor(resizedWidth / drawingWidth * drawingHeight);
+        } else {
+          targetHeight = resizedHeight;
+          targetWidth = Math.floor(resizedHeight / drawingHeight * drawingWidth);
+        }
+      }
+      var offsetX = Math.floor((resizedWidth - targetWidth) / 2);
+      var offsetY = Math.floor((resizedHeight - targetHeight) / 2);
+
+      // Draw the original canvas content onto the resized canvas with proper scaling
+      resizedCtx.drawImage(drawingCanvas, 0, 0, drawingWidth, drawingHeight, offsetX, offsetY, targetWidth, targetHeight);
+
+      // Convert the resized canvas to Blob
+      resizedCanvas.toBlob(function (blob) {
+        value.value = blob;
+        resolve();
+
+        // Clean up the resized canvas
+        resizedCanvas.remove();
+      }, 'image/png');
+    });
+  };
+
+  /**
+   * Sets the element value as Blob from the currently typed signature.
+   *
+   * @returns {void}
+   */
+  var typingToImage = () => {
+    return new Promise((resolve, reject) => {
+      var canvas = document.createElement('canvas');
+      var ctx = canvas.getContext('2d');
+      var displayWidth = uploadWidth.value;
+      var displayHeight = uploadHeight.value;
+      canvas.width = displayWidth;
+      canvas.height = displayHeight;
+      nextTick(() => {
+        ctx.clearRect(0, 0, displayWidth, displayHeight);
+
+        // Determine the maximum font size that fits within the canvas
+        var fontSize = displayHeight / 2; // Start with a large font size
+        ctx.font = "".concat(fontWeight.value, " ").concat(fontSize, "px ").concat(fontFamily.value);
+
+        // Measure the text width and adjust font size to fit within the canvas
+        var textWidth = ctx.measureText(text.value).width;
+        while (textWidth > displayWidth - 10 && fontSize > 10) {
+          // 10px padding
+          fontSize -= 1;
+          ctx.font = "".concat(fontWeight.value, " ").concat(fontSize, "px ").concat(fontFamily.value);
+          textWidth = ctx.measureText(text.value).width;
+        }
+        ctx.fillStyle = color.value;
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(text.value, displayWidth / 2, displayHeight / 2);
+        canvas.toBlob(function (blob) {
+          value.value = blob;
+          canvas.remove();
+          resolve();
+        }, 'image/png');
+      });
+    });
+  };
+
+  /**
+   * Sets the element value as Blob from the currently uploaded signature.
+   *
+   * @returns {void}
+   */
+  var uploadToImage = () => {
+    if (!image.value) {
+      return;
+    }
+    var file = image.value;
+    var reader = new FileReader();
+    creating.value = true;
+    reader.onload = function (e) {
+      var img = new Image();
+      img.onload = function () {
+        var canvas = document.createElement('canvas');
+        var ctx = canvas.getContext('2d');
+
+        // Set canvas size to the image size
+        canvas.width = img.width;
+        canvas.height = img.height;
+
+        // Draw the image on the canvas
+        ctx.drawImage(img, 0, 0);
+
+        // Get image data
+        var imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        var data = imageData.data;
+
+        // Get the selected color
+        var colorHex = color.value;
+        var colorRGB = hexToRgb(colorHex);
+
+        // Remove the background and change signature color to the selected color
+        var threshold = 220;
+        for (var i = 0; i < data.length; i += 4) {
+          var r = data[i];
+          var g = data[i + 1];
+          var b = data[i + 2];
+
+          // If the pixel is light, make it transparent
+          if (r > threshold && g > threshold && b > threshold) {
+            data[i + 3] = 0;
+          } else {
+            // Change the color to the selected color
+            data[i] = colorRGB.r;
+            data[i + 1] = colorRGB.g;
+            data[i + 2] = colorRGB.b;
+          }
+        }
+
+        // Put the processed image data back on the canvas
+        ctx.putImageData(imageData, 0, 0);
+
+        // Draw the processed image on the main canvas
+        var mainCanvas = preview$.value;
+        var mainCtx = mainCanvas.getContext('2d');
+
+        // Clear the main canvas
+        mainCtx.clearRect(0, 0, mainCanvas.width, mainCanvas.height);
+
+        // Calculate the dimensions to keep aspect ratio within uploadWidth x uploadHeight
+        var targetWidth = uploadWidth.value;
+        var targetHeight = uploadHeight.value;
+        var newWidth = targetWidth;
+        var newHeight = newWidth / (img.width / img.height);
+        if (newHeight > targetHeight) {
+          newHeight = targetHeight;
+          newWidth = newHeight * (img.width / img.height);
+        }
+
+        // Center the image on the main canvas
+        var xOffset = (targetWidth - newWidth) / 2;
+        var yOffset = (targetHeight - newHeight) / 2;
+
+        // Draw the image on the main canvas
+        mainCtx.drawImage(canvas, 0, 0, img.width, img.height, xOffset, yOffset, newWidth, newHeight);
+
+        // Convert the resized canvas to Blob
+        mainCanvas.toBlob(function (blob) {
+          value.value = blob;
+          created.value = true;
+          creating.value = false;
+
+          // Clean up the helper canvas
+          canvas.remove();
+        }, 'image/png');
+      };
+      img.src = e.target.result;
+    };
+    reader.readAsDataURL(file);
+  };
+
+  /**
+   * Undoes the last drawing when [`mode`](#property-mode) is 'draw`.
+   *
+   * @returns {void}
+   */
+  var undo = () => {
+    if (!pad.value) {
+      return;
+    }
+    var data = pad.value.toData();
+    if (!data.length) {
+      return;
+    }
+    redos.value.push(data.pop());
+    pad.value.fromData(data);
+    if (!data.length) {
+      drawn.value = false;
+    }
+    undosLeft.value = data.length;
+  };
+
+  /**
+   * Redoes the last drawing when [`mode`](#property-mode) is 'draw`.
+   *
+   * @returns {void}
+   */
+  var redo = () => {
+    if (!pad.value || !redos.value.length) {
+      return;
+    }
+    var data = pad.value.toData() || [];
+    data.push(redos.value.pop());
+    pad.value.fromData(data);
+    drawn.value = true;
+    setDrawColor();
+    undosLeft.value = data.length;
+  };
+
+  /**
+   * Clears the signature in all forms (drawn, typed, uploaded, loaded).
+   *
+   * @returns {void}
+   */
+  var clearSignature = () => {
+    text.value = null;
+    image.value = null;
+    created.value = false;
+    value.value = null;
+    clearDrawnSignature();
+  };
+
+  /**
+   * Clears the drawn signature.
+   *
+   * @returns {void}
+   */
+  var clearDrawnSignature = () => {
+    var _pad$value;
+    (_pad$value = pad.value) === null || _pad$value === void 0 || _pad$value.clear();
+    drawn.value = false;
+    redos.value = [];
+  };
+
+  /**
+   * Loads Google Fonts dynamically by adding `<link>` tags to `<head>`.
+   *
+   * @returns {void}
+   */
+  var loadFonts = () => {
+    fonts.value.forEach(font => {
+      var parts = font.split('@');
+      var skip = parts[0].substr(0, 1) === '!';
+      if (!skip) {
+        var family = parts[0].replace('!', '').replace(/\s/g, '+');
+        var weight = parts[1] || 400;
+        var id = "font-".concat(family);
+        if (!document.getElementById(id)) {
+          var link = document.createElement('link');
+          link.id = id;
+          link.rel = 'stylesheet';
+          link.href = "https://fonts.googleapis.com/css2?family=".concat(family, ":wght@").concat(weight, "&display=swap");
+          document.head.appendChild(link);
+        }
+      }
+    });
+  };
+
+  /**
+   * Sets the drawing color of the signature pad.
+   *
+   * @returns {void}
+   */
+  var setDrawColor = () => {
+    var {
+      r,
+      g,
+      b
+    } = hexToRgb(color.value);
+    pad.value.penColor = "rgb(".concat(r, ", ").concat(g, ", ").concat(b, ")");
+    if (drawn.value) {
+      pad.value.fromData(pad.value.toData().map(d => {
+        d.penColor = pad.value.penColor;
+        return d;
+      }));
+    }
+  };
+
+  /**
+   * Adjusts the typed signature's font size to fit into the input without overflow until [`minSize`](#option-min-size) or [`maxSize`](#option-max-size) is reached.
+   *
+   * @returns {void}
+   */
+  var adjustFontSize = () => {
+    var ua = navigator.userAgent.toLowerCase();
+    var isSafari = ua.indexOf('safari') != -1 && ua.indexOf('chrome') == -1 && ua.indexOf('android') == -1;
+    var inputElement = input$.value;
+    var styles = window.getComputedStyle(inputElement);
+    var textIndent = parseFloat(styles.textIndent);
+    var paddingRight = parseFloat(styles.paddingRight);
+    var maxWidth = Math.ceil(inputElement.getBoundingClientRect().width) - textIndent;
+    var size = fontSize.value;
+    while (inputElement.scrollWidth + (isSafari ? paddingRight : 0) - textIndent > maxWidth && size > minFontSize.value) {
+      size--;
+      inputElement.style.fontSize = size + 'px';
+    }
+    while (inputElement.scrollWidth + (isSafari ? paddingRight : 0) - textIndent <= maxWidth && size < maxFontSize.value) {
+      inputElement.style.fontSize = size + 1 + 'px';
+      if (inputElement.scrollWidth + (isSafari ? paddingRight : 0) - textIndent > maxWidth) {
+        inputElement.style.fontSize = size + 'px';
+        break;
+      }
+      size++;
+    }
+    fontSize.value = size;
+  };
+
+  /**
+   * Converts a HEX color to RGB.
+   *
+   * @param {string} hex* the color in HEX format
+   * @returns {string}
+   */
+  var hexToRgb = hex => {
+    hex = hex.replace(/^#/, '');
+    var bigint = parseInt(hex, 16);
+    var r = bigint >> 16 & 255;
+    var g = bigint >> 8 & 255;
+    var b = bigint & 255;
+    return {
+      r,
+      g,
+      b
+    };
+  };
+
+  /**
+   * Checks if a file complies with [`accept`](#option-accept) list and throws an alert if not.
+   *
+   * @param {File} file* the file to check
+   * @returns {boolean}
+   */
+  var checkFileExt = file => {
+    var accepted = accept.value.indexOf('jpg') !== -1 && accept.value.indexOf('jpeg') === -1 ? accept.value.concat(['jpeg']) : accept.value;
+    var valid = file && accepted.indexOf(file === null || file === void 0 ? void 0 : file.name.split('.').pop()) !== -1;
+    if (!valid) {
+      alert(form$.value.__(form$.value.translations.vueform.elements.signature.unsupportedFormat, {
+        extensions: accept.value.join(', ')
+      }));
+      return false;
+    }
+    return true;
+  };
+
+  /**
+   * Checks if a file is under the allowed [`maxSize`](#option-max-size) and throws an alert if not.
+   *
+   * @param {File} file* the file to check
+   * @returns {boolean}
+   */
+  var checkFileSize = file => {
+    if (maxSize.value === -1) {
+      return true;
+    }
+    if (file.size / 1024 > maxSize.value) {
+      alert(form$.value.__(form$.value.translations.vueform.elements.signature.maxSizeError, {
+        max: maxSize.value
+      }));
+      return false;
+    }
+    return true;
+  };
+
+  /**
+   * Sets the [`width`](#property-width) to the current element width.
+   *
+   * @returns {void}
+   */
+  var setWidth = () => {
+    width.value = input.value.getBoundingClientRect().width;
+  };
+
+  /**
+   * Sets the [`lastWidth`](#property-last-width) to the current element width.
+   *
+   * @returns {void}
+   */
+  var setLastWidth = () => {
+    lastWidth.value = input.value.getBoundingClientRect().width;
+  };
+
+  /**
+   * Sets the [`mode`](#property-mode) to the first available mode from [`modes`](#option-modes). If none found, `draw` will be set.
+   *
+   * @returns {void}
+   */
+  var setDefaultMode = () => {
+    mode.value = modes.value[0] || 'draw';
+  };
+
+  /**
+   * Sets the [`fontFamily`](#property-font-family) and [`fontWeight`](#property-font-weight) to the first available from [`fonts`](#option-fonts). If none found, `cursive` and `400` will be set.
+   *
+   * @returns {void}
+   */
+  var setDefaultFont = () => {
+    fontFamily.value = fontFamilies.value[0] || 'cursive';
+    fontWeight.value = fontWeights.value[0] || 400;
+  };
+
+  /**
+   * Sets the [`color`](#property-color) to the first available color from [`colors`](#option-colors). If none found, `#000000` will be set.
+   *
+   * @returns {void}
+   */
+  var setDefaultColor = () => {
+    color.value = colors.value[0] || '#000000';
+  };
+
+  /**
+   * Sets the [`fontFamily`](#property-font-family) and [`fontWeight`](#property-font-weight) by the index of a font from [`fonts`](#option-fonts).
+   *
+   * @param {object} value* the selected font object (from [`resolvedFonts`](#property-resolved-fonts))
+   * @returns {void}
+   */
+  var setFont = value => {
+    fontFamily.value = fontFamilies.value[value.index];
+    fontWeight.value = fontWeights.value[value.index];
+  };
+
+  /**
+   * Checks the file contstraints and sets the value of [`image`](#property-image) and renders the selected file preview when [`mode`](#property-mode) is 'upload`. If file constraints are not met it clears both.
+   *
+   * @param {File} file* the file to set as image
+   * @returns {void}
+   */
+  var setImage = file => {
+    if (checkFileExt(file) && checkFileSize(file)) {
+      image.value = file;
+      uploadToImage(image.value);
+    } else {
+      image.value = null;
+      created.value = false;
+    }
+  };
+
+  /**
+   * Handles the input event of the input field.
+   *
+   * @param {Event} e the Event object
+   * @returns {void}
+   */
+  var handleInput = e => {
+    if (isDisabled.value || readonly.value) {
+      return;
+    }
+    text.value = e.target.value;
+  };
+
+  /**
+   * Handles the mode select.
+   *
+   * @param {object} value* the selected mode object (from [`resolvedModes`](#property-resolved-modes))
+   * @returns {void}
+   */
+  var handleModeSelect = value => {
+    if (isDisabled.value || readonly.value) {
+      return;
+    }
+    mode.value = value.value;
+    nextTick(() => {
+      if (mode.value === 'draw') {
+        pad$.value.focus();
+      } else if (mode.value === 'type') {
+        input$.value.focus();
+      } else if (mode.value === 'upload') {
+        uploadButton$.value.focus();
+      }
+    });
+  };
+
+  /**
+   * Handles the color select.
+   *
+   * @param {string} value the color to select (HEX)
+   * @returns {void}
+   */
+  var handleColorSelect = value => {
+    if (isDisabled.value || readonly.value) {
+      return;
+    }
+    color.value = value;
+  };
+
+  /**
+   * Handles the font select.
+   *
+   * @param {object} value* the selected font object (from [`resolvedFonts`](#property-resolved-fonts))
+   * @returns {void}
+   */
+  var handleFontSelect = value => {
+    font$.value.selected = {};
+    if (isDisabled.value || readonly.value) {
+      return;
+    }
+    setFont(value);
+  };
+
+  /**
+   * Handle the clear button action.
+   *
+   * @returns {void}
+   */
+  var handleClear = () => {
+    if (isDisabled.value || readonly.value) {
+      return;
+    }
+    if (!uploaded.value) {
+      if (mode.value === 'draw') {
+        pad$.value.focus();
+      } else if (mode.value === 'type') {
+        input$.value.focus();
+      } else if (mode.value === 'upload') {
+        uploadButton$.value.focus();
+      }
+    }
+    clearSignature();
+    isMouseOver.value = false;
+  };
+
+  /**
+   * Handles the undo button action.
+   *
+   * @returns {void}
+   */
+  var handleUndo = () => {
+    if (isDisabled.value || readonly.value) {
+      return;
+    }
+    undo();
+    isMouseOver.value = false;
+  };
+
+  /**
+   * Handles the redo button action.
+   *
+   * @returns {void}
+   */
+  var handleRedo = () => {
+    if (isDisabled.value || readonly.value) {
+      return;
+    }
+    redo();
+    isMouseOver.value = false;
+  };
+
+  /**
+   * Handles the file select button action.
+   *
+   * @returns {void}
+   */
+  var handleSelectClick = () => {
+    if (isDisabled.value || readonly.value) {
+      return;
+    }
+    file$.value.click();
+  };
+
+  /**
+   * Handles the file selection.
+   *
+   * @returns {void}
+   */
+  var handleFileSelect = event => {
+    if (isDisabled.value || readonly.value) {
+      return;
+    }
+    var file = event.target.files[0];
+    setImage(file);
+    file$.value.value = '';
+  };
+
+  /**
+   * Handles the drop event.
+   *
+   * @param {Event} e* the Event object
+   * @returns {void}
+   */
+  var handleDrop = e => {
+    if (isDisabled.value || readonly.value) {
+      return;
+    }
+    var file = e.dataTransfer.files[0];
+    setImage(file);
+  };
+
+  /**
+   * Handles the mouse leave event of the wrapper.
+   * 
+   * @returns {void}
+   */
+  var handleMouseLeave = () => {
+    isMouseOver.value = false;
+  };
+
+  /**
+   * Handles the window resize event.
+   *
+   * @returns {void}
+   */
+  var handleResize = () => {
+    if (lastWidth.value === input.value.getBoundingClientRect().width) {
+      return;
+    }
+    resizePad();
+    adjustFontSize();
+  };
+
+  /**
+   * Handler with debounce for resize event.
+   *
+   * @returns {void}
+   */
+  var handleResizeDebounce = debounce(handleResize, 200, () => {
+    setLastWidth();
+  });
 
   // =============== HOOKS ================
 
+  setDefaultMode();
+  setDefaultFont();
+  setDefaultColor();
   onMounted(() => {
-    type$.value.selected = addonOptions.value[0];
+    if (autoloadFonts.value) {
+      loadFonts();
+    }
+    setWidth();
+
+    // Auto-select default mode
+    if (mode$.value) {
+      mode$.value.selected = resolvedModes.value[0] || {
+        label: form$.value.translations.vueform.elements.signature.draw,
+        value: 'draw',
+        index: 0
+      };
+    }
+
+    // Handling drag & drop
+    var evts = ['drag', 'dragstart', 'dragenter', 'dragleave', 'dragend'];
+    evts.forEach(event => {
+      input.value.addEventListener(event, e => {
+        e.preventDefault();
+        e.stopPropagation();
+        if (['dragleave', 'dragend'].indexOf(event) === -1) {
+          return;
+        }
+        if (isDisabled.value) {
+          return;
+        }
+        dragging.value = false;
+      });
+    });
+    input.value.addEventListener('dragover', e => {
+      e.preventDefault();
+      e.stopPropagation();
+      if (isDisabled.value) {
+        return;
+      }
+      if (dragging.value !== true) {
+        dragging.value = true;
+      }
+    });
+
+    // listening for the actual drop event
+    input.value.addEventListener('drop', e => {
+      e.preventDefault();
+      e.stopPropagation();
+      if (isDisabled.value) {
+        return;
+      }
+      handleDrop(e);
+      dragging.value = false;
+    });
+    nextTick(() => {
+      initPad();
+      window.addEventListener('resize', handleResizeDebounce);
+    });
+
+    // ============== WATCHERS ==============
+
+    watch(modes, () => {
+      initPad();
+    });
+    watch(color, () => {
+      if (pad.value) {
+        setDrawColor();
+      }
+      if (mode.value === 'upload' && created.value && !creating.value) {
+        uploadToImage();
+      }
+    });
+    watch(columns, () => {
+      setLastWidth();
+      nextTick(() => {
+        handleResize();
+        if (mode.value === 'upload' && created.value && !creating.value) {
+          uploadToImage();
+        }
+      });
+    });
+    watch(mode, () => {
+      clearSignature();
+    });
+    watch([text, fontFamily], () => {
+      nextTick(() => {
+        adjustFontSize();
+      });
+    }, {
+      flush: 'post'
+    });
+  });
+  onBeforeUnmount(() => {
+    window.removeEventListener('resize', handleResizeDebounce);
   });
   return {
-    type$,
-    addonOptions,
-    addonPlaceholder,
-    handleOptionSelect,
-    handleOpen,
-    handleClose
+    mode$,
+    font$,
+    input$,
+    preview$,
+    pad$,
+    file$,
+    upload$,
+    uploadButton$,
+    mode,
+    fontFamily,
+    fontWeight,
+    color,
+    text,
+    fontSize,
+    pad,
+    image,
+    created,
+    creating,
+    dragging,
+    drawn,
+    drawing,
+    redos,
+    undosLeft,
+    width,
+    lastWidth,
+    fontFamilies,
+    fontWeights,
+    uploaded,
+    processing,
+    droppable,
+    resolvedModes,
+    resolvedFonts,
+    fileAccept,
+    showLine,
+    showInput,
+    showPlaceholder,
+    showUploadContainer,
+    showUpload,
+    showPreview,
+    showPad,
+    showUndos,
+    showColors,
+    showModes,
+    showFonts,
+    showClear,
+    tabindex,
+    placeholderText,
+    dndText,
+    uploadButtonText,
+    imgAltText,
+    imgTitleText,
+    fontText,
+    undoText,
+    redoText,
+    modeSelectorAria,
+    fontSelectorAria,
+    wrapperAriaLabel,
+    inputAriaLabel,
+    padAriaLabel,
+    colorAriaLabel,
+    clearAriaLabel,
+    padWidth,
+    padHeight,
+    padStyle,
+    wrapperStyle,
+    inputStyle,
+    lineStyle,
+    initPad,
+    resizePad,
+    drawingToImage,
+    typingToImage,
+    uploadToImage,
+    undo,
+    redo,
+    clearSignature,
+    clearDrawnSignature,
+    loadFonts,
+    setDrawColor,
+    adjustFontSize,
+    hexToRgb,
+    checkFileExt,
+    checkFileSize,
+    setWidth,
+    setLastWidth,
+    setDefaultMode,
+    setDefaultFont,
+    setDefaultColor,
+    setFont,
+    handleInput,
+    handleModeSelect,
+    handleColorSelect,
+    handleFontSelect,
+    handleClear,
+    handleUndo,
+    handleRedo,
+    handleSelectClick,
+    handleFileSelect,
+    handleDrop,
+    handleMouseLeave,
+    handleResize,
+    handleResizeDebounce
   };
 }
 
@@ -38978,19 +41243,34 @@ var SignatureElement = {
       type: [Boolean],
       default: false
     },
-    width: {
+    autoloadFonts: {
+      required: false,
+      type: [Boolean],
+      default: true
+    },
+    maxWidth: {
       required: false,
       type: [Number, String],
-      default: 300
+      default: 'auto'
     },
     height: {
       required: false,
       type: [Number],
-      default: 200
+      default: 160
+    },
+    uploadWidth: {
+      required: false,
+      type: [Number],
+      default: 480
+    },
+    uploadHeight: {
+      required: false,
+      type: [Number],
+      default: 160
     },
     placeholder: {
       required: false,
-      type: [String, Object],
+      type: [String, Object, Boolean],
       localized: true,
       default: null
     },
@@ -38998,6 +41278,16 @@ var SignatureElement = {
       required: false,
       type: [Boolean],
       default: true
+    },
+    minFontSize: {
+      required: false,
+      type: [Number],
+      default: 10
+    },
+    maxFontSize: {
+      required: false,
+      type: [Number],
+      default: 60
     },
     modes: {
       required: false,
@@ -39014,19 +41304,44 @@ var SignatureElement = {
       type: [Array],
       default: () => ['#000000', '#2558b2', '#f22f30']
     },
+    invertColors: {
+      required: false,
+      type: [Array],
+      default: () => ['#000000']
+    },
     fonts: {
       required: false,
       type: [Array],
-      default: () => ['Caveat, cursive', '"La Belle Aurore", cursive', '"Dancing Script", cursive']
+      default: () => ['Caveat@400', 'Sacramento@400', 'Dancing Script@400']
     },
     accept: {
       required: false,
       type: [Array],
       default: () => ['jpg', 'png', 'svg']
+    },
+    maxSize: {
+      required: false,
+      type: [Number],
+      default: 2048
+    },
+    canClear: {
+      required: false,
+      type: [Boolean],
+      default: true
+    },
+    canUndo: {
+      required: false,
+      type: [Boolean],
+      default: true
+    },
+    canDrop: {
+      required: false,
+      type: [Boolean],
+      default: true
     }
   },
   setup(props, context) {
-    context.features = [base$19, base$18, base$V, base$M, base$O, base$S, base$K, base$U, base$1c, base$P, base$C, base$14, base$D, base$L, base$I, base$B, base$$, base$J, base$Z, base$Y, base$1a, base$_, base$X, base$s, base$R, base$F, base$T, base$m, base$t, useSignature];
+    context.features = [base$19, base$18, base$V, base$M, base$O, base$S, base$K, base$U, base$1c, base$P, base$C, base$14, base$D, base$L, base$I, base$t, useSignature, signature, base$$, base$J, base$Z, base$Y, base$1a, base$_, base$X, base$s, base$R, base$F, base$T];
     context.slots = ['label', 'info', 'description', 'before', 'between', 'after', 'addon-before', 'addon-after'];
     return _objectSpread2$1({}, base$N(props, context));
   }

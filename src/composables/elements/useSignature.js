@@ -1590,7 +1590,6 @@ export default function (props, context, dependencies)
     undosLeft,
     width,
     lastWidth,
-
     fontFamilies,
     fontWeights,
     uploaded,
@@ -1633,7 +1632,6 @@ export default function (props, context, dependencies)
     wrapperStyle,
     inputStyle,
     lineStyle,
-
     initPad,
     resizePad,
     drawingToImage,

@@ -1,5 +1,12 @@
 [//]: # (Don't use <tags>)
 
+## v1.10.0
+
+> `2024-07-03`
+
+### 🎉 Feature
+- New [`SignatureElement`](https://vueform.com/reference/signature-element).
+
 ## v1.9.13
 
 > `2024-07-01`

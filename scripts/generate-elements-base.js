@@ -23,6 +23,7 @@ const elements = [
   'radio',
   'radiogroup',
   'select',
+  'signature',
   'slider',
   'static',
   'tags',

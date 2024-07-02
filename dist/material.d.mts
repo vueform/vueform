@@ -64,6 +64,7 @@ declare module '@vueform/vueform/dist/material' {
   const RadiogroupElement_blocks: any;
   const RadiogroupElement_tabs: any;
   const SelectElement: any;
+  const SignatureElement: any;
   const SliderElement: any;
   const StaticElement: any;
   const TEditorElement: any;
@@ -143,6 +144,7 @@ declare module '@vueform/vueform/dist/material' {
     RadiogroupElement_blocks,
     RadiogroupElement_tabs,
     SelectElement,
+    SignatureElement,
     SliderElement,
     StaticElement,
     TEditorElement,

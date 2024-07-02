@@ -1,5 +1,5 @@
 /*!
- * Vueform v1.9.13 (https://github.com/vueform/vueform)
+ * Vueform v1.10.0 (https://github.com/vueform/vueform)
  * Copyright (c) 2024 Adam Berecz <adam@vueform.com>
  * Licensed under the MIT License
  */
@@ -403,8 +403,8 @@ var script$1Y = {
   };
 
 const _hoisted_1$J = ["aria-selected"];
-const _hoisted_2$r = { key: 0 };
-const _hoisted_3$g = ["innerHTML"];
+const _hoisted_2$s = { key: 0 };
+const _hoisted_3$h = ["innerHTML"];
 
 function render$V(_ctx, _cache, $props, $setup, $data, $options) {
   return withDirectives((openBlock(), createElementBlock("li", {
@@ -421,12 +421,12 @@ function render$V(_ctx, _cache, $props, $setup, $data, $options) {
       renderSlot(_ctx.$slots, "default", {}, () => [
         createCommentVNode(" If label is a component "),
         (_ctx.isLabelComponent)
-          ? (openBlock(), createElementBlock("span", _hoisted_2$r, [
+          ? (openBlock(), createElementBlock("span", _hoisted_2$s, [
               (openBlock(), createBlock(resolveDynamicComponent(_ctx.tabLabel), { form$: _ctx.form$ }, null, 8 /* PROPS */, ["form$"]))
             ]))
           : (openBlock(), createElementBlock(Fragment, { key: 1 }, [
               createCommentVNode(" If label is HTML "),
-              createElementVNode("span", { innerHTML: _ctx.tabLabel }, null, 8 /* PROPS */, _hoisted_3$g)
+              createElementVNode("span", { innerHTML: _ctx.tabLabel }, null, 8 /* PROPS */, _hoisted_3$h)
             ], 2112 /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */))
       ])
     ], 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_1$J)
@@ -626,8 +626,8 @@ var script$1S = {
   };
 
 const _hoisted_1$I = ["disabled"];
-const _hoisted_2$q = ["innerHTML", "disabled"];
-const _hoisted_3$f = ["disabled"];
+const _hoisted_2$r = ["innerHTML", "disabled"];
+const _hoisted_3$g = ["disabled"];
 
 function render$S(_ctx, _cache, $props, $setup, $data, $options) {
   return (openBlock(), createElementBlock(Fragment, null, [
@@ -651,7 +651,7 @@ function render$S(_ctx, _cache, $props, $setup, $data, $options) {
               class: normalizeClass(_ctx.classes.button),
               onClick: _cache[2] || (_cache[2] = withModifiers((...args) => (_ctx.handleClick && _ctx.handleClick(...args)), ["prevent"])),
               onKeypress: _cache[3] || (_cache[3] = withKeys(withModifiers((...args) => (_ctx.handleClick && _ctx.handleClick(...args)), ["prevent"]), ["enter","space"]))
-            }, null, 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_2$q)
+            }, null, 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_2$r)
           ], 2112 /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */))
         : (_ctx.visible)
           ? (openBlock(), createElementBlock(Fragment, { key: 2 }, [
@@ -663,7 +663,7 @@ function render$S(_ctx, _cache, $props, $setup, $data, $options) {
                 onKeypress: _cache[5] || (_cache[5] = withKeys(withModifiers((...args) => (_ctx.handleClick && _ctx.handleClick(...args)), ["prevent"]), ["enter","space"]))
               }, [
                 renderSlot(_ctx.$slots, "default")
-              ], 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_3$f)
+              ], 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_3$g)
             ], 2112 /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */))
           : createCommentVNode("v-if", true)
   ], 2112 /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */))
@@ -722,8 +722,8 @@ var script$1Q = {
   };
 
 const _hoisted_1$H = ["tabindex", "aria-selected"];
-const _hoisted_2$p = { key: 0 };
-const _hoisted_3$e = ["innerHTML"];
+const _hoisted_2$q = { key: 0 };
+const _hoisted_3$f = ["innerHTML"];
 
 function render$R(_ctx, _cache, $props, $setup, $data, $options) {
   return (_ctx.visible)
@@ -743,12 +743,12 @@ function render$R(_ctx, _cache, $props, $setup, $data, $options) {
           renderSlot(_ctx.$slots, "default", {}, () => [
             createCommentVNode(" If label is a component "),
             (_ctx.isLabelComponent)
-              ? (openBlock(), createElementBlock("span", _hoisted_2$p, [
+              ? (openBlock(), createElementBlock("span", _hoisted_2$q, [
                   (openBlock(), createBlock(resolveDynamicComponent(_ctx.stepLabel), { form$: _ctx.form$ }, null, 8 /* PROPS */, ["form$"]))
                 ]))
               : (openBlock(), createElementBlock(Fragment, { key: 1 }, [
                   createCommentVNode(" If label is HTML "),
-                  createElementVNode("span", { innerHTML: _ctx.stepLabel }, null, 8 /* PROPS */, _hoisted_3$e)
+                  createElementVNode("span", { innerHTML: _ctx.stepLabel }, null, 8 /* PROPS */, _hoisted_3$f)
                 ], 2112 /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */))
           ])
         ], 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_1$H)
@@ -1203,10 +1203,10 @@ var script$1E = {
   };
 
 const _hoisted_1$F = ["for", "id"];
-const _hoisted_2$o = ["for", "id"];
-const _hoisted_3$d = ["innerHTML"];
-const _hoisted_4$8 = ["for", "id"];
-const _hoisted_5$6 = ["for", "id"];
+const _hoisted_2$p = ["for", "id"];
+const _hoisted_3$e = ["innerHTML"];
+const _hoisted_4$9 = ["for", "id"];
+const _hoisted_5$7 = ["for", "id"];
 
 function render$L(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_ElementInfo = resolveComponent("ElementInfo");
@@ -1245,14 +1245,14 @@ function render$L(_ctx, _cache, $props, $setup, $data, $options) {
               createElementVNode("span", {
                 class: normalizeClass(_ctx.classes.wrapper),
                 innerHTML: _ctx.label
-              }, null, 10 /* CLASS, PROPS */, _hoisted_3$d),
+              }, null, 10 /* CLASS, PROPS */, _hoisted_3$e),
               createVNode(_component_ElementInfo, null, {
                 default: withCtx(() => [
                   renderSlot(_ctx.$slots, "info")
                 ]),
                 _: 3 /* FORWARDED */
               })
-            ], 10 /* CLASS, PROPS */, _hoisted_2$o)
+            ], 10 /* CLASS, PROPS */, _hoisted_2$p)
           ], 2112 /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */))
         : (_ctx.isSlot)
           ? (openBlock(), createElementBlock(Fragment, { key: 2 }, [
@@ -1273,7 +1273,7 @@ function render$L(_ctx, _cache, $props, $setup, $data, $options) {
                   ]),
                   _: 3 /* FORWARDED */
                 })
-              ], 10 /* CLASS, PROPS */, _hoisted_4$8)
+              ], 10 /* CLASS, PROPS */, _hoisted_4$9)
             ], 2112 /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */))
           : (_ctx.hasLabel)
             ? (openBlock(), createElementBlock(Fragment, { key: 3 }, [
@@ -1282,7 +1282,7 @@ function render$L(_ctx, _cache, $props, $setup, $data, $options) {
                   class: normalizeClass(_ctx.classes.container),
                   for: _ctx.name,
                   id: _ctx.id
-                }, null, 10 /* CLASS, PROPS */, _hoisted_5$6)
+                }, null, 10 /* CLASS, PROPS */, _hoisted_5$7)
               ], 2112 /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */))
             : createCommentVNode("v-if", true)
   ], 2112 /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */))
@@ -1349,7 +1349,7 @@ var script$1C = {
   };
 
 const _hoisted_1$E = ["id"];
-const _hoisted_2$n = ["innerHTML"];
+const _hoisted_2$o = ["innerHTML"];
 
 function render$K(_ctx, _cache, $props, $setup, $data, $options) {
   return (_ctx.info || _ctx.isSlot)
@@ -1373,7 +1373,7 @@ function render$K(_ctx, _cache, $props, $setup, $data, $options) {
                 key: 1,
                 class: normalizeClass(_ctx.classes.content),
                 innerHTML: _ctx.info
-              }, null, 10 /* CLASS, PROPS */, _hoisted_2$n))
+              }, null, 10 /* CLASS, PROPS */, _hoisted_2$o))
         ], 10 /* CLASS, PROPS */, _hoisted_1$E)
       ], 34 /* CLASS, NEED_HYDRATION */))
     : createCommentVNode("v-if", true)
@@ -1423,7 +1423,7 @@ var script$1A = {
   };
 
 const _hoisted_1$D = ["innerHTML", "id"];
-const _hoisted_2$m = ["id"];
+const _hoisted_2$n = ["id"];
 
 function render$J(_ctx, _cache, $props, $setup, $data, $options) {
   return (openBlock(), createElementBlock(Fragment, null, [
@@ -1443,7 +1443,7 @@ function render$J(_ctx, _cache, $props, $setup, $data, $options) {
               id: _ctx.id
             }, [
               renderSlot(_ctx.$slots, "default")
-            ], 10 /* CLASS, PROPS */, _hoisted_2$m)
+            ], 10 /* CLASS, PROPS */, _hoisted_2$n)
           ], 2112 /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */))
         : createCommentVNode("v-if", true)
   ], 2112 /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */))
@@ -1757,31 +1757,31 @@ var script$1q = {
     },
   };
 
-const _hoisted_1$y = ["aria-expanded", "aria-controls", "aria-label"];
-const _hoisted_2$l = ["innerHTML"];
-const _hoisted_3$c = ["innerHTML"];
-const _hoisted_4$7 = ["innerHTML"];
-const _hoisted_5$5 = ["innerHTML"];
-const _hoisted_6$4 = ["data-dropdown-for", "id"];
-const _hoisted_7$2 = ["innerHTML", "data-index", "data-selected", "onMouseover", "onClick", "tabindex", "aria-selected"];
-const _hoisted_8$1 = ["innerHTML", "data-index", "data-selected", "onMouseover", "onClick", "tabindex", "aria-selected"];
+const _hoisted_1$y = ["aria-expanded", "aria-controls", "tabindex"];
+const _hoisted_2$m = ["innerHTML"];
+const _hoisted_3$d = ["innerHTML"];
+const _hoisted_4$8 = ["innerHTML"];
+const _hoisted_5$6 = ["innerHTML"];
+const _hoisted_6$5 = ["data-dropdown-for", "id"];
+const _hoisted_7$3 = ["innerHTML", "data-index", "data-selected", "onMouseover", "onClick", "tabindex", "aria-selected"];
+const _hoisted_8$2 = ["innerHTML", "data-index", "data-selected", "onMouseover", "onClick", "tabindex", "aria-selected"];
 
 function render$E(_ctx, _cache, $props, $setup, $data, $options) {
   return (openBlock(), createElementBlock("div", {
     class: normalizeClass(_ctx.classes.container)
   }, [
-    createElementVNode("div", {
-      class: normalizeClass(_ctx.classes.wrapper),
+    createElementVNode("div", mergeProps({
+      class: _ctx.classes.wrapper,
       onClick: _cache[0] || (_cache[0] = (...args) => (_ctx.handleSelectorClick && _ctx.handleSelectorClick(...args))),
-      onKeydown: _cache[1] || (_cache[1] = (...args) => (_ctx.handleSelectorKeydown && _ctx.handleSelectorKeydown(...args))),
-      ref: "selector",
+      onKeydown: _cache[1] || (_cache[1] = (...args) => (_ctx.handleSelectorKeydown && _ctx.handleSelectorKeydown(...args)))
+    }, _ctx.aria, {
       "aria-expanded": _ctx.isOpen,
       "aria-haspopup": "listbox",
       "aria-controls": `dropdown-${_ctx.el$.fieldId}`,
-      "aria-label": _ctx.form$.translations.vueform.elements.phone.ariaLabel,
       role: "button",
-      tabindex: "0"
-    }, [
+      tabindex: _ctx.el$.isDisabled || _ctx.el$.readonly ? undefined : 0,
+      ref: "selector"
+    }), [
       (Object.keys(_ctx.selected).length)
         ? (openBlock(), createElementBlock(Fragment, { key: 0 }, [
             (_ctx.selected.valueDisplay && typeof _ctx.selected.valueDisplay === 'object' && [_ctx.selected.valueDisplay.render || _ctx.selected.valueDisplay.template])
@@ -1794,11 +1794,11 @@ function render$E(_ctx, _cache, $props, $setup, $data, $options) {
                 ? (openBlock(), createElementBlock("div", {
                     key: 1,
                     innerHTML: _ctx.selected.valueDisplay(_ctx.selected, _ctx.el$)
-                  }, null, 8 /* PROPS */, _hoisted_2$l))
+                  }, null, 8 /* PROPS */, _hoisted_2$m))
                 : (openBlock(), createElementBlock("div", {
                     key: 2,
                     innerHTML: _ctx.selected.label
-                  }, null, 8 /* PROPS */, _hoisted_3$c))
+                  }, null, 8 /* PROPS */, _hoisted_3$d))
           ], 64 /* STABLE_FRAGMENT */))
         : (openBlock(), createElementBlock(Fragment, { key: 1 }, [
             (_ctx.placeholder && typeof _ctx.placeholder === 'object' && [_ctx.placeholder.render || _ctx.placeholder.template])
@@ -1811,11 +1811,11 @@ function render$E(_ctx, _cache, $props, $setup, $data, $options) {
                 ? (openBlock(), createElementBlock("div", {
                     key: 1,
                     innerHTML: _ctx.placeholder(_ctx.selected, _ctx.el$)
-                  }, null, 8 /* PROPS */, _hoisted_4$7))
+                  }, null, 8 /* PROPS */, _hoisted_4$8))
                 : (openBlock(), createElementBlock("div", {
                     key: 2,
                     innerHTML: _ctx.placeholder
-                  }, null, 8 /* PROPS */, _hoisted_5$5))
+                  }, null, 8 /* PROPS */, _hoisted_5$6))
           ], 64 /* STABLE_FRAGMENT */)),
       createElementVNode("div", {
         class: normalizeClass(_ctx.classes.caret)
@@ -1865,7 +1865,7 @@ function render$E(_ctx, _cache, $props, $setup, $data, $options) {
                           role: "option",
                           tabindex: _ctx.pointed.index === option.index ? 0 : -1,
                           "aria-selected": _ctx.selected.index === option.index
-                        }, null, 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_7$2))
+                        }, null, 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_7$3))
                       : (openBlock(), createElementBlock("div", {
                           key: 2,
                           innerHTML: option.label,
@@ -1877,13 +1877,13 @@ function render$E(_ctx, _cache, $props, $setup, $data, $options) {
                           role: "option",
                           tabindex: _ctx.pointed.index === option.index ? 0 : -1,
                           "aria-selected": _ctx.selected.index === option.index
-                        }, null, 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_8$1))
+                        }, null, 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_8$2))
                 ], 2 /* CLASS */))
               }), 128 /* KEYED_FRAGMENT */))
-            ], 14 /* CLASS, STYLE, PROPS */, _hoisted_6$4))
+            ], 14 /* CLASS, STYLE, PROPS */, _hoisted_6$5))
           : createCommentVNode("v-if", true)
       ]))
-    ], 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_1$y)
+    ], 16 /* FULL_PROPS */, _hoisted_1$y)
   ], 2 /* CLASS */))
 }
 
@@ -1903,6 +1903,7 @@ var script$1p = {
           container_lg: 'vf-addon-options-lg',
           container_disabled: 'vf-addon-options-disabled',
           wrapper: 'vf-addon-options-wrapper',
+          wrapper_relaxed: 'vf-addon-options-wrapper-relaxed',
           caret: 'vf-addon-options-caret',
           dropdown: 'vf-addon-options-dropdown',
           option: 'vf-addon-options-option',
@@ -1911,6 +1912,10 @@ var script$1p = {
             classes.container,
             classes[`container_${Size}`],
             el$.isDisabled || el$.readonly ? classes.container_disabled : null,
+          ]),
+          $wrapper: (classes, { relaxed }) => ([
+            classes.wrapper,
+            relaxed ? classes.wrapper_relaxed : classes.wrapper_default,
           ]),
           $option: (classes, { selected, pointed }) => (option) => ([
             classes.option,
@@ -1921,7 +1926,7 @@ var script$1p = {
     }
   };
 
-var css_248z$H = ".vf-addon-options {\n  display: flex;\n  align-items: center;\n  font-size: var(--vf-font-size);\n  line-height: var(--vf-line-height);\n  letter-spacing: var(--vf-letter-spacing);\n}\n\n.vf-addon-options.vf-addon-options-sm {\n  font-size: var(--vf-font-size-sm);\n  line-height: var(--vf-line-height-sm);\n  letter-spacing: var(--vf-letter-spacing-sm);\n}\n\n.vf-addon-options.vf-addon-options-lg {\n  font-size: var(--vf-font-size-lg);\n  line-height: var(--vf-line-height-lg);\n  letter-spacing: var(--vf-letter-spacing-lg);\n}\n\n.vf-addon-options.vf-addon-options-disabled {\n  opacity: 0.5;\n  cursor: initial;\n  pointer-events: none;\n}\n\n.vf-addon-options-wrapper {\n  display: flex;\n  align-items: center;\n  border-radius: 4px;\n  padding: 4px 4px;\n  cursor: pointer;\n  transition-property: all;\n  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);\n  transition-duration: 150ms;\n  outline: none;\n}\n\n.vf-addon-options-wrapper:hover, .vf-addon-options-wrapper:focus {\n  background: var(--vf-bg-selected);\n}\n\n.vf-addon-options-caret {\n  mask-image: url(\"data:image/svg+xml,%3Csvg viewBox='0 0 320 512' fill='currentColor' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z'%3E%3C/path%3E%3C/svg%3E\");\n  -webkit-mask-image: url(\"data:image/svg+xml,%3Csvg viewBox='0 0 320 512' fill='currentColor' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z'%3E%3C/path%3E%3C/svg%3E\");\n  mask-position: center center;\n  -webkit-mask-position: center center;\n  mask-repeat: no-repeat;\n  -webkit-mask-repeat: no-repeat;\n  background-color: var(--vf-bg-icon);\n  color: var(--vf-color-input);\n  width: 0.625rem;\n  height: 1rem;\n  padding: 1px 0;\n  margin-left: 0.5rem;\n}\n\n.vf-addon-options-dropdown {\n  background-color: var(--vf-bg-input);\n  border-width: var(--vf-border-width-dropdown);\n  border-style: solid;\n  border-color: var(--vf-border-color-input);\n  box-shadow: var(--vf-shadow-dropdown);\n  color: var(--vf-color-input);\n  position: fixed;\n  z-index: 1002;\n  overflow-x: scroll;\n  max-height: calc(100vh - 2rem);\n}\n\n.vf-addon-options-option {\n  display: flex;\n  align-items: center;\n  cursor: pointer;\n  padding: 0.3125rem 0.75rem;\n  white-space: nowrap;\n}\n\n.vf-addon-options-option-active {\n  background: var(--vf-bg-selected);\n}\n\n[dir=rtl] .vf-addon-options-caret {\n  margin-left: 0;\n  margin-right: 0.5rem;\n}";
+var css_248z$H = ".vf-addon-options {\n  display: flex;\n  align-items: center;\n  font-size: var(--vf-font-size);\n  line-height: var(--vf-line-height);\n  letter-spacing: var(--vf-letter-spacing);\n}\n\n.vf-addon-options.vf-addon-options-sm {\n  font-size: var(--vf-font-size-sm);\n  line-height: var(--vf-line-height-sm);\n  letter-spacing: var(--vf-letter-spacing-sm);\n}\n\n.vf-addon-options.vf-addon-options-lg {\n  font-size: var(--vf-font-size-lg);\n  line-height: var(--vf-line-height-lg);\n  letter-spacing: var(--vf-letter-spacing-lg);\n}\n\n.vf-addon-options.vf-addon-options-disabled {\n  opacity: 0.5;\n  cursor: initial;\n  pointer-events: none;\n}\n\n.vf-addon-options-wrapper {\n  display: flex;\n  align-items: center;\n  border-radius: 4px;\n  padding: 4px 4px;\n  cursor: pointer;\n  transition-property: all;\n  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);\n  transition-duration: 150ms;\n  outline: none;\n}\n\n.vf-addon-options-wrapper:hover, .vf-addon-options-wrapper:focus {\n  background: var(--vf-bg-selected);\n}\n\n.vf-addon-options-wrapper.vf-addon-options-wrapper-relaxed {\n  padding: 6px 12px;\n}\n\n.vf-addon-options-caret {\n  mask-image: url(\"data:image/svg+xml,%3Csvg viewBox='0 0 320 512' fill='currentColor' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z'%3E%3C/path%3E%3C/svg%3E\");\n  -webkit-mask-image: url(\"data:image/svg+xml,%3Csvg viewBox='0 0 320 512' fill='currentColor' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z'%3E%3C/path%3E%3C/svg%3E\");\n  mask-position: center center;\n  -webkit-mask-position: center center;\n  mask-repeat: no-repeat;\n  -webkit-mask-repeat: no-repeat;\n  background-color: var(--vf-bg-icon);\n  color: var(--vf-color-input);\n  width: 0.625rem;\n  height: 1rem;\n  padding: 1px 0;\n  margin-left: 0.5rem;\n}\n\n.vf-addon-options-dropdown {\n  background-color: var(--vf-bg-input);\n  border-width: var(--vf-border-width-dropdown);\n  border-style: solid;\n  border-color: var(--vf-border-color-input);\n  box-shadow: var(--vf-shadow-dropdown);\n  color: var(--vf-color-input);\n  position: fixed;\n  z-index: 1002;\n  overflow-x: scroll;\n  max-height: calc(100vh - 2rem);\n}\n\n.vf-addon-options-option {\n  display: flex;\n  align-items: center;\n  cursor: pointer;\n  padding: 0.3125rem 0.75rem;\n  white-space: nowrap;\n}\n\n.vf-addon-options-option-active {\n  background: var(--vf-bg-selected);\n}\n\n[dir=rtl] .vf-addon-options-caret {\n  margin-left: 0;\n  margin-right: 0.5rem;\n}";
 styleInject(css_248z$H);
 
 script$1p.__file = "themes/vueform/templates/ElementAddonOptions.vue";
@@ -1940,11 +1945,11 @@ var script$1o = {
   };
 
 const _hoisted_1$x = ["tabindex", "disabled"];
-const _hoisted_2$k = ["innerHTML", "tabindex", "disabled"];
-const _hoisted_3$b = ["tabindex", "disabled"];
-const _hoisted_4$6 = ["tabindex"];
-const _hoisted_5$4 = ["innerHTML", "tabindex"];
-const _hoisted_6$3 = ["tabindex"];
+const _hoisted_2$l = ["innerHTML", "tabindex", "disabled"];
+const _hoisted_3$c = ["tabindex", "disabled"];
+const _hoisted_4$7 = ["tabindex"];
+const _hoisted_5$5 = ["innerHTML", "tabindex"];
+const _hoisted_6$4 = ["tabindex"];
 
 function render$D(_ctx, _cache, $props, $setup, $data, $options) {
   return (openBlock(), createBlock(resolveDynamicComponent(_ctx.elementLayout), { ref: "container" }, createSlots({
@@ -1977,7 +1982,7 @@ function render$D(_ctx, _cache, $props, $setup, $data, $options) {
                       class: _ctx.classes.button,
                       disabled: _ctx.isDisabled,
                       onClick: _cache[1] || (_cache[1] = withModifiers((...args) => (_ctx.handleClick && _ctx.handleClick(...args)), ["prevent"]))
-                    }), null, 16 /* FULL_PROPS */, _hoisted_2$k)
+                    }), null, 16 /* FULL_PROPS */, _hoisted_2$l)
                   ], 2112 /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */))
                 : (openBlock(), createElementBlock(Fragment, { key: 2 }, [
                     createCommentVNode(" Use it as slot "),
@@ -1993,7 +1998,7 @@ function render$D(_ctx, _cache, $props, $setup, $data, $options) {
                       renderSlot(_ctx.$slots, "default", { el$: _ctx.el$ }, () => [
                         (openBlock(), createBlock(resolveDynamicComponent(_ctx.fieldSlots.default), { el$: _ctx.el$ }, null, 8 /* PROPS */, ["el$"]))
                       ])
-                    ], 16 /* FULL_PROPS */, _hoisted_3$b)
+                    ], 16 /* FULL_PROPS */, _hoisted_3$c)
                   ], 2112 /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */))
           ], 64 /* STABLE_FRAGMENT */))
         : (openBlock(), createElementBlock(Fragment, { key: 1 }, [
@@ -2009,7 +2014,7 @@ function render$D(_ctx, _cache, $props, $setup, $data, $options) {
                   onClick: _cache[3] || (_cache[3] = (...args) => (_ctx.handleClick && _ctx.handleClick(...args)))
                 }), [
                   (openBlock(), createBlock(resolveDynamicComponent(_ctx.buttonLabel)))
-                ], 16 /* FULL_PROPS */, _hoisted_4$6))
+                ], 16 /* FULL_PROPS */, _hoisted_4$7))
               : (_ctx.buttonLabel)
                 ? (openBlock(), createElementBlock(Fragment, { key: 1 }, [
                     createCommentVNode(" Use it as HTML "),
@@ -2021,7 +2026,7 @@ function render$D(_ctx, _cache, $props, $setup, $data, $options) {
                       tabindex: _ctx.isDisabled || _ctx.isLoading ? -1 : undefined,
                       class: _ctx.classes.button,
                       onClick: _cache[4] || (_cache[4] = (...args) => (_ctx.handleClick && _ctx.handleClick(...args)))
-                    }), null, 16 /* FULL_PROPS */, _hoisted_5$4)
+                    }), null, 16 /* FULL_PROPS */, _hoisted_5$5)
                   ], 2112 /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */))
                 : (openBlock(), createElementBlock(Fragment, { key: 2 }, [
                     createCommentVNode(" Use it as slot "),
@@ -2036,7 +2041,7 @@ function render$D(_ctx, _cache, $props, $setup, $data, $options) {
                       renderSlot(_ctx.$slots, "default", { el$: _ctx.el$ }, () => [
                         (openBlock(), createBlock(resolveDynamicComponent(_ctx.fieldSlots.default), { el$: _ctx.el$ }, null, 8 /* PROPS */, ["el$"]))
                       ])
-                    ], 16 /* FULL_PROPS */, _hoisted_6$3)
+                    ], 16 /* FULL_PROPS */, _hoisted_6$4)
                   ], 2112 /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */))
           ], 64 /* STABLE_FRAGMENT */))
     ]),
@@ -2195,7 +2200,7 @@ var script$1k = {
   };
 
 const _hoisted_1$v = ["name", "id", "true-value", "false-value", "disabled"];
-const _hoisted_2$j = ["innerHTML"];
+const _hoisted_2$k = ["innerHTML"];
 
 function render$B(_ctx, _cache, $props, $setup, $data, $options) {
   return (openBlock(), createBlock(resolveDynamicComponent(_ctx.elementLayout), { ref: "container" }, createSlots({
@@ -2223,7 +2228,7 @@ function render$B(_ctx, _cache, $props, $setup, $data, $options) {
               key: 0,
               class: normalizeClass(_ctx.classes.text),
               innerHTML: _ctx.Text
-            }, null, 10 /* CLASS, PROPS */, _hoisted_2$j))
+            }, null, 10 /* CLASS, PROPS */, _hoisted_2$k))
           : (openBlock(), createElementBlock(Fragment, { key: 1 }, [
               createCommentVNode(" If label is slot "),
               createElementVNode("span", {
@@ -2684,7 +2689,7 @@ var script$1a = {
   };
 
 const _hoisted_1$t = ["aria-labelledby", "aria-placeholder"];
-const _hoisted_2$i = ["id", "accept"];
+const _hoisted_2$j = ["id", "accept"];
 
 function render$y(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_DragAndDrop = resolveComponent("DragAndDrop");
@@ -2725,7 +2730,7 @@ function render$y(_ctx, _cache, $props, $setup, $data, $options) {
             accept: _ctx.accept,
             onChange: _cache[2] || (_cache[2] = (...args) => (_ctx.handleChange && _ctx.handleChange(...args))),
             ref: "input"
-          }, null, 40 /* PROPS, NEED_HYDRATION */, _hoisted_2$i)), [
+          }, null, 40 /* PROPS, NEED_HYDRATION */, _hoisted_2$j)), [
             [vShow, false]
           ])
         : createCommentVNode("v-if", true),
@@ -2885,7 +2890,7 @@ const _hoisted_1$r = {
   key: 0,
   ref: "container"
 };
-const _hoisted_2$h = ["name", "id"];
+const _hoisted_2$i = ["name", "id"];
 
 function render$w(_ctx, _cache, $props, $setup, $data, $options) {
   return (!_ctx.meta)
@@ -2896,7 +2901,7 @@ function render$w(_ctx, _cache, $props, $setup, $data, $options) {
           name: _ctx.name,
           id: _ctx.fieldId,
           ref: "input"
-        }, null, 8 /* PROPS */, _hoisted_2$h), [
+        }, null, 8 /* PROPS */, _hoisted_2$i), [
           [vModelText, _ctx.value]
         ])
       ], 512 /* NEED_PATCH */))
@@ -2939,9 +2944,9 @@ var script$14 = {
   };
 
 const _hoisted_1$q = ["aria-labelledby"];
-const _hoisted_2$g = ["data-id"];
-const _hoisted_3$a = ["aria-roledescription", "id", "onClick", "onKeypress"];
-const _hoisted_4$5 = ["id", "innerHTML"];
+const _hoisted_2$h = ["data-id"];
+const _hoisted_3$b = ["aria-roledescription", "id", "onClick", "onKeypress"];
+const _hoisted_4$6 = ["id", "innerHTML"];
 
 function render$v(_ctx, _cache, $props, $setup, $data, $options) {
   return (openBlock(), createBlock(resolveDynamicComponent(_ctx.elementLayout), { ref: "container" }, createSlots({
@@ -2998,9 +3003,9 @@ function render$v(_ctx, _cache, $props, $setup, $data, $options) {
                   createElementVNode("span", {
                     class: normalizeClass(_ctx.classes.removeIcon)
                   }, null, 2 /* CLASS */)
-                ], 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_3$a))
+                ], 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_3$b))
               : createCommentVNode("v-if", true)
-          ], 10 /* CLASS, PROPS */, _hoisted_2$g))
+          ], 10 /* CLASS, PROPS */, _hoisted_2$h))
         }), 128 /* KEYED_FRAGMENT */))
       ], 10 /* CLASS, PROPS */, _hoisted_1$q),
       createCommentVNode(" Add button "),
@@ -3014,7 +3019,7 @@ function render$v(_ctx, _cache, $props, $setup, $data, $options) {
             innerHTML: _ctx.addLabel,
             role: "button",
             tabindex: "0"
-          }, null, 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_4$5))
+          }, null, 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_4$6))
         : createCommentVNode("v-if", true)
     ]),
     _: 2 /* DYNAMIC */
@@ -3256,7 +3261,7 @@ var script$10 = {
   };
 
 const _hoisted_1$o = ["aria-labelledby", "aria-placeholder"];
-const _hoisted_2$f = ["id", "accept", "disabled"];
+const _hoisted_2$g = ["id", "accept", "disabled"];
 
 function render$t(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_DragAndDrop = resolveComponent("DragAndDrop");
@@ -3300,7 +3305,7 @@ function render$t(_ctx, _cache, $props, $setup, $data, $options) {
         accept: _ctx.accept,
         disabled: _ctx.isDisabled,
         ref: "input"
-      }, null, 40 /* PROPS, NEED_HYDRATION */, _hoisted_2$f), [
+      }, null, 40 /* PROPS, NEED_HYDRATION */, _hoisted_2$g), [
         [vShow, false]
       ]),
       withDirectives((openBlock(), createElementBlock("div", {
@@ -7779,18 +7784,18 @@ var script$_ = {
   };
 
 const _hoisted_1$n = ["id", "dir"];
-const _hoisted_2$e = ["tabindex", "aria-controls", "aria-placeholder", "aria-expanded", "aria-activedescendant", "aria-multiselectable", "role"];
-const _hoisted_3$9 = ["type", "modelValue", "value", "autocomplete", "id", "aria-controls", "aria-placeholder", "aria-expanded", "aria-activedescendant", "aria-multiselectable"];
-const _hoisted_4$4 = ["onKeyup", "aria-label"];
-const _hoisted_5$3 = ["onClick"];
-const _hoisted_6$2 = ["type", "modelValue", "value", "id", "autocomplete", "aria-controls", "aria-placeholder", "aria-expanded", "aria-activedescendant", "aria-multiselectable"];
-const _hoisted_7$1 = ["innerHTML"];
-const _hoisted_8 = ["id"];
-const _hoisted_9 = ["id"];
-const _hoisted_10 = ["id", "aria-label", "aria-selected"];
-const _hoisted_11 = ["data-pointed", "onMouseenter", "onClick"];
-const _hoisted_12 = ["innerHTML"];
-const _hoisted_13 = ["aria-label"];
+const _hoisted_2$f = ["tabindex", "aria-controls", "aria-placeholder", "aria-expanded", "aria-activedescendant", "aria-multiselectable", "role"];
+const _hoisted_3$a = ["type", "modelValue", "value", "autocomplete", "id", "aria-controls", "aria-placeholder", "aria-expanded", "aria-activedescendant", "aria-multiselectable"];
+const _hoisted_4$5 = ["onKeyup", "aria-label"];
+const _hoisted_5$4 = ["onClick"];
+const _hoisted_6$3 = ["type", "modelValue", "value", "id", "autocomplete", "aria-controls", "aria-placeholder", "aria-expanded", "aria-activedescendant", "aria-multiselectable"];
+const _hoisted_7$2 = ["innerHTML"];
+const _hoisted_8$1 = ["id"];
+const _hoisted_9$1 = ["id"];
+const _hoisted_10$1 = ["id", "aria-label", "aria-selected"];
+const _hoisted_11$1 = ["data-pointed", "onMouseenter", "onClick"];
+const _hoisted_12$1 = ["innerHTML"];
+const _hoisted_13$1 = ["aria-label"];
 const _hoisted_14 = ["data-pointed", "data-selected", "onMouseenter", "onClick", "id", "aria-selected", "aria-label"];
 const _hoisted_15 = ["data-pointed", "data-selected", "onMouseenter", "onClick", "id", "aria-selected", "aria-label"];
 const _hoisted_16 = ["innerHTML"];
@@ -7846,7 +7851,7 @@ function render$s(_ctx, _cache, $props, $setup, $data, $options) {
           }, {
             ...$props.attrs,
             ..._ctx.arias,
-          }), null, 16 /* FULL_PROPS */, _hoisted_3$9))
+          }), null, 16 /* FULL_PROPS */, _hoisted_3$a))
         : createCommentVNode("v-if", true),
       createCommentVNode(" Tags (with search) "),
       ($props.mode == 'tags')
@@ -7883,9 +7888,9 @@ function render$s(_ctx, _cache, $props, $setup, $data, $options) {
                         createElementVNode("span", {
                           class: normalizeClass(_ctx.classList.tagRemoveIcon)
                         }, null, 2 /* CLASS */)
-                      ], 10 /* CLASS, PROPS */, _hoisted_5$3))
+                      ], 10 /* CLASS, PROPS */, _hoisted_5$4))
                     : createCommentVNode("v-if", true)
-                ], 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_4$4))
+                ], 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_4$5))
               ])
             }), 256 /* UNKEYED_FRAGMENT */)),
             createElementVNode("div", {
@@ -7919,7 +7924,7 @@ function render$s(_ctx, _cache, $props, $setup, $data, $options) {
                   }, {
                 ...$props.attrs,
                 ..._ctx.arias,
-              }), null, 16 /* FULL_PROPS */, _hoisted_6$2))
+              }), null, 16 /* FULL_PROPS */, _hoisted_6$3))
                 : createCommentVNode("v-if", true)
             ], 2 /* CLASS */)
           ], 2 /* CLASS */))
@@ -7948,7 +7953,7 @@ function render$s(_ctx, _cache, $props, $setup, $data, $options) {
             createElementVNode("div", {
               class: normalizeClass(_ctx.classList.multipleLabel),
               innerHTML: _ctx.multipleLabelText
-            }, null, 10 /* CLASS, PROPS */, _hoisted_7$1)
+            }, null, 10 /* CLASS, PROPS */, _hoisted_7$2)
           ])
         : createCommentVNode("v-if", true),
       createCommentVNode(" Placeholder "),
@@ -8005,7 +8010,7 @@ function render$s(_ctx, _cache, $props, $setup, $data, $options) {
             }, null, 2 /* CLASS */)
           ])
         : createCommentVNode("v-if", true)
-    ], 16 /* FULL_PROPS */, _hoisted_2$e),
+    ], 16 /* FULL_PROPS */, _hoisted_2$f),
     createCommentVNode(" Options "),
     (openBlock(), createBlock(Teleport, {
       to: $props.appendTo || 'body',
@@ -8050,9 +8055,9 @@ function render$s(_ctx, _cache, $props, $setup, $data, $options) {
                         }, () => [
                           createElementVNode("span", {
                             innerHTML: _ctx.localize(group[$props.groupLabel])
-                          }, null, 8 /* PROPS */, _hoisted_12)
+                          }, null, 8 /* PROPS */, _hoisted_12$1)
                         ])
-                      ], 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_11))
+                      ], 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_11$1))
                     : createCommentVNode("v-if", true),
                   createElementVNode("ul", {
                     class: normalizeClass(_ctx.classList.groupOptions),
@@ -8082,8 +8087,8 @@ function render$s(_ctx, _cache, $props, $setup, $data, $options) {
                         ])
                       ], 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_14))
                     }), 128 /* KEYED_FRAGMENT */))
-                  ], 10 /* CLASS, PROPS */, _hoisted_13)
-                ], 10 /* CLASS, PROPS */, _hoisted_10))
+                  ], 10 /* CLASS, PROPS */, _hoisted_13$1)
+                ], 10 /* CLASS, PROPS */, _hoisted_10$1))
               }), 128 /* KEYED_FRAGMENT */))
             : (openBlock(true), createElementBlock(Fragment, { key: 1 }, renderList(_ctx.fo, (option, i, key) => {
                 return (openBlock(), createElementBlock("li", {
@@ -8108,7 +8113,7 @@ function render$s(_ctx, _cache, $props, $setup, $data, $options) {
                   ])
                 ], 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_15))
               }), 128 /* KEYED_FRAGMENT */))
-        ], 10 /* CLASS, PROPS */, _hoisted_9),
+        ], 10 /* CLASS, PROPS */, _hoisted_9$1),
         (_ctx.noOptions)
           ? renderSlot(_ctx.$slots, "nooptions", { key: 0 }, () => [
               createElementVNode("div", {
@@ -8139,7 +8144,7 @@ function render$s(_ctx, _cache, $props, $setup, $data, $options) {
             ], 2 /* CLASS */))
           : createCommentVNode("v-if", true),
         renderSlot(_ctx.$slots, "afterlist", { options: _ctx.fo })
-      ], 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_8)
+      ], 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_8$1)
     ], 8 /* PROPS */, ["to", "disabled"])),
     createCommentVNode(" Hacky input element to show HTML5 required warning "),
     ($props.required)
@@ -8247,7 +8252,7 @@ var script$Z = {
   };
 
 const _hoisted_1$m = ["name", "id", "disabled"];
-const _hoisted_2$d = ["value"];
+const _hoisted_2$e = ["value"];
 
 function render$r(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_ElementLabelFloating = resolveComponent("ElementLabelFloating");
@@ -8282,7 +8287,7 @@ function render$r(_ctx, _cache, $props, $setup, $data, $options) {
                 return (openBlock(), createElementBlock("option", {
                   value: option.value,
                   key: index
-                }, toDisplayString(option.label), 9 /* TEXT, PROPS */, _hoisted_2$d))
+                }, toDisplayString(option.label), 9 /* TEXT, PROPS */, _hoisted_2$e))
               }), 128 /* KEYED_FRAGMENT */))
             ], 16 /* FULL_PROPS */, _hoisted_1$m), [
               [vModelSelect, _ctx.value]
@@ -8700,11 +8705,12 @@ function render$p(_ctx, _cache, $props, $setup, $data, $options) {
           createVNode(_component_ElementAddonOptions, {
             options: _ctx.addonOptions,
             placeholder: _ctx.addonPlaceholder,
+            aria: _ctx.optionsAria,
             onSelect: _ctx.handleOptionSelect,
             onOpen: _ctx.handleOpen,
             onClose: _ctx.handleClose,
             ref: "options$"
-          }, null, 8 /* PROPS */, ["options", "placeholder", "onSelect", "onOpen", "onClose"])
+          }, null, 8 /* PROPS */, ["options", "placeholder", "aria", "onSelect", "onOpen", "onClose"])
         ], 2 /* CLASS */),
         (_ctx.hasFloating && !_ctx.empty)
           ? (openBlock(), createBlock(_component_ElementLabelFloating, {
@@ -8845,7 +8851,7 @@ var script$T = {
   };
 
 const _hoisted_1$j = ["value", "name", "id", "disabled"];
-const _hoisted_2$c = ["innerHTML"];
+const _hoisted_2$d = ["innerHTML"];
 
 function render$o(_ctx, _cache, $props, $setup, $data, $options) {
   return (openBlock(), createBlock(resolveDynamicComponent(_ctx.elementLayout), { ref: "container" }, createSlots({
@@ -8872,7 +8878,7 @@ function render$o(_ctx, _cache, $props, $setup, $data, $options) {
               key: 0,
               class: normalizeClass(_ctx.classes.text),
               innerHTML: _ctx.Text
-            }, null, 10 /* CLASS, PROPS */, _hoisted_2$c))
+            }, null, 10 /* CLASS, PROPS */, _hoisted_2$d))
           : (openBlock(), createElementBlock(Fragment, { key: 1 }, [
               createCommentVNode(" If label is slot "),
               createElementVNode("span", {
@@ -9158,7 +9164,7 @@ var script$N = {
   };
 
 const _hoisted_1$h = ["name", "id", "disabled"];
-const _hoisted_2$b = ["value"];
+const _hoisted_2$c = ["value"];
 
 function render$m(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_ElementLabelFloating = resolveComponent("ElementLabelFloating");
@@ -9192,7 +9198,7 @@ function render$m(_ctx, _cache, $props, $setup, $data, $options) {
                 return (openBlock(), createElementBlock("option", {
                   value: option.value,
                   key: index
-                }, toDisplayString(option.label), 9 /* TEXT, PROPS */, _hoisted_2$b))
+                }, toDisplayString(option.label), 9 /* TEXT, PROPS */, _hoisted_2$c))
               }), 128 /* KEYED_FRAGMENT */))
             ], 16 /* FULL_PROPS */, _hoisted_1$h), [
               [vModelSelect, _ctx.value]
@@ -9540,26 +9546,248 @@ var script$L = {
     },
   };
 
-const _hoisted_1$g = {
-  class: "w-[300px] h-[200px] border border-gray-200 border-dashed bg-white relative",
-  ref: "input"
-};
+const _hoisted_1$g = ["tabindex", "aria-label"];
+const _hoisted_2$b = ["src", "alt", "title"];
+const _hoisted_3$9 = ["title", "tabindex", "aria-label"];
+const _hoisted_4$4 = ["title", "tabindex", "aria-label"];
+const _hoisted_5$3 = ["value", "disabled", "readonly", "aria-label"];
+const _hoisted_6$2 = ["innerHTML"];
+const _hoisted_7$1 = ["tabindex", "aria-label"];
+const _hoisted_8 = ["accept"];
+const _hoisted_9 = ["width", "height"];
+const _hoisted_10 = ["width", "height", "tabindex", "aria-label"];
+const _hoisted_11 = ["tabindex", "aria-label", "aria-selected", "onClick", "onKeydown"];
+const _hoisted_12 = ["fill"];
+const _hoisted_13 = ["tabindex", "aria-label"];
 
 function render$l(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_ElementAddonOptions = resolveComponent("ElementAddonOptions");
 
   return (openBlock(), createBlock(resolveDynamicComponent(_ctx.elementLayout), { ref: "container" }, createSlots({
     element: withCtx(() => [
-      createElementVNode("div", _hoisted_1$g, [
-        createVNode(_component_ElementAddonOptions, {
-          options: _ctx.addonOptions,
-          placeholder: _ctx.addonPlaceholder,
-          onSelect: _ctx.handleOptionSelect,
-          onOpen: _ctx.handleOpen,
-          onClose: _ctx.handleClose,
-          ref: "type$"
-        }, null, 8 /* PROPS */, ["options", "placeholder", "onSelect", "onOpen", "onClose"])
-      ], 512 /* NEED_PATCH */)
+      createElementVNode("div", {
+        class: normalizeClass(_ctx.classes.wrapper),
+        style: normalizeStyle(_ctx.wrapperStyle),
+        tabindex: _ctx.isDisabled ? undefined : 0,
+        "aria-label": _ctx.wrapperAriaLabel,
+        onKeydown: _cache[11] || (_cache[11] = withKeys((...args) => (_ctx.handleMouseLeave && _ctx.handleMouseLeave(...args)), ["tab","escape"])),
+        onMouseleave: _cache[12] || (_cache[12] = (...args) => (_ctx.handleMouseLeave && _ctx.handleMouseLeave(...args))),
+        ref: "input"
+      }, [
+        createCommentVNode(" Line "),
+        withDirectives(createElementVNode("hr", {
+          class: normalizeClass(_ctx.classes.line),
+          style: normalizeStyle(_ctx.lineStyle),
+          "aria-hidden": "true"
+        }, null, 6 /* CLASS, STYLE */), [
+          [vShow, _ctx.showLine]
+        ]),
+        createCommentVNode(" Loaded preview "),
+        withDirectives(createElementVNode("div", {
+          class: normalizeClass(_ctx.classes.loadedWrapper)
+        }, [
+          createElementVNode("img", {
+            src: _ctx.value,
+            alt: _ctx.imgAltText,
+            title: _ctx.imgTitleText,
+            class: normalizeClass(_ctx.classes.loadedImg)
+          }, null, 10 /* CLASS, PROPS */, _hoisted_2$b)
+        ], 2 /* CLASS */), [
+          [vShow, _ctx.uploaded]
+        ]),
+        createCommentVNode(" Not loaded actions "),
+        withDirectives(createElementVNode("div", {
+          class: normalizeClass(_ctx.classes.innerWrapper)
+        }, [
+          createCommentVNode(" Actions "),
+          createElementVNode("div", {
+            class: normalizeClass(_ctx.classes.actions)
+          }, [
+            createCommentVNode(" Mode "),
+            withDirectives(createVNode(_component_ElementAddonOptions, {
+              options: _ctx.resolvedModes,
+              placeholder: '',
+              position: "bottom",
+              relaxed: "",
+              aria: _ctx.modeSelectorAria,
+              onSelect: _ctx.handleModeSelect,
+              ref: "mode$"
+            }, null, 8 /* PROPS */, ["options", "aria", "onSelect"]), [
+              [vShow, _ctx.showModes]
+            ]),
+            createCommentVNode(" Fonts "),
+            withDirectives(createVNode(_component_ElementAddonOptions, {
+              options: _ctx.resolvedFonts,
+              placeholder: _ctx.fontText,
+              position: "bottom",
+              relaxed: "",
+              aria: _ctx.fontSelectorAria,
+              onSelect: _ctx.handleFontSelect,
+              ref: "font$"
+            }, null, 8 /* PROPS */, ["options", "placeholder", "aria", "onSelect"]), [
+              [vShow, _ctx.showFonts]
+            ]),
+            createCommentVNode(" Undos "),
+            withDirectives(createElementVNode("div", {
+              class: normalizeClass(_ctx.classes.undosWrapper)
+            }, [
+              createCommentVNode(" Undo "),
+              createElementVNode("div", {
+                class: normalizeClass(_ctx.classes.undo),
+                title: _ctx.undoText,
+                role: "button",
+                tabindex: _ctx.undosLeft ? _ctx.tabindex : undefined ,
+                "aria-label": _ctx.undoText,
+                onClick: _cache[0] || (_cache[0] = withModifiers((...args) => (_ctx.handleUndo && _ctx.handleUndo(...args)), ["stop"])),
+                onKeydown: _cache[1] || (_cache[1] = withKeys(withModifiers((...args) => (_ctx.handleUndo && _ctx.handleUndo(...args)), ["prevent"]), ["space","enter"]))
+              }, null, 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_3$9),
+              createCommentVNode(" Redo "),
+              createElementVNode("div", {
+                class: normalizeClass(_ctx.classes.redo),
+                title: _ctx.redoText,
+                role: "button",
+                tabindex: _ctx.redos.length ? _ctx.tabindex : undefined,
+                "aria-label": _ctx.redoText,
+                onClick: _cache[2] || (_cache[2] = withModifiers((...args) => (_ctx.handleRedo && _ctx.handleRedo(...args)), ["stop"])),
+                onKeydown: _cache[3] || (_cache[3] = withKeys(withModifiers((...args) => (_ctx.handleRedo && _ctx.handleRedo(...args)), ["prevent"]), ["space","enter"]))
+              }, null, 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_4$4)
+            ], 2 /* CLASS */), [
+              [vShow, _ctx.showUndos]
+            ])
+          ], 2 /* CLASS */),
+          createCommentVNode(" Input "),
+          withDirectives(createElementVNode("input", {
+            value: _ctx.text,
+            type: "text",
+            spellcheck: "false",
+            class: normalizeClass(_ctx.classes.input),
+            disabled: _ctx.isDisabled,
+            readonly: _ctx.readonly,
+            style: normalizeStyle(_ctx.inputStyle),
+            "aria-label": _ctx.inputAriaLabel,
+            onInput: _cache[4] || (_cache[4] = (...args) => (_ctx.handleInput && _ctx.handleInput(...args))),
+            onSelect: _cache[5] || (_cache[5] = (...args) => (_ctx.handleInput && _ctx.handleInput(...args))),
+            ref: "input$"
+          }, null, 46 /* CLASS, STYLE, PROPS, NEED_HYDRATION */, _hoisted_5$3), [
+            [vShow, _ctx.showInput]
+          ]),
+          createCommentVNode(" Placeholder "),
+          withDirectives(createElementVNode("div", {
+            class: normalizeClass(_ctx.classes.placeholder),
+            innerHTML: _ctx.placeholderText
+          }, null, 10 /* CLASS, PROPS */, _hoisted_6$2), [
+            [vShow, _ctx.showPlaceholder]
+          ]),
+          createCommentVNode(" Upload container "),
+          withDirectives(createElementVNode("div", {
+            class: normalizeClass(_ctx.classes.uploadContainer),
+            ref: "upload$"
+          }, [
+            createCommentVNode(" File upload "),
+            withDirectives(createElementVNode("div", {
+              class: normalizeClass(_ctx.classes.uploadWrapper)
+            }, [
+              createCommentVNode(" DnD text "),
+              (_ctx.droppable)
+                ? (openBlock(), createElementBlock("div", {
+                    key: 0,
+                    class: normalizeClass(_ctx.classes.dndText)
+                  }, toDisplayString(_ctx.dndText), 3 /* TEXT, CLASS */))
+                : createCommentVNode("v-if", true),
+              createCommentVNode(" Select button "),
+              createElementVNode("div", {
+                class: normalizeClass(_ctx.classes.uploadButton),
+                tabindex: _ctx.tabindex,
+                role: "button",
+                "aria-label": _ctx.uploadButtonText,
+                onClick: _cache[6] || (_cache[6] = (...args) => (_ctx.handleSelectClick && _ctx.handleSelectClick(...args))),
+                onKeydown: _cache[7] || (_cache[7] = withKeys(withModifiers((...args) => (_ctx.handleSelectClick && _ctx.handleSelectClick(...args)), ["prevent"]), ["space","enter"])),
+                ref: "uploadButton$"
+              }, toDisplayString(_ctx.uploadButtonText), 43 /* TEXT, CLASS, PROPS, NEED_HYDRATION */, _hoisted_7$1),
+              createCommentVNode(" Hidden file input "),
+              withDirectives(createElementVNode("input", {
+                type: "file",
+                accept: _ctx.fileAccept,
+                onChange: _cache[8] || (_cache[8] = (...args) => (_ctx.handleFileSelect && _ctx.handleFileSelect(...args))),
+                ref: "file$"
+              }, null, 40 /* PROPS, NEED_HYDRATION */, _hoisted_8), [
+                [vShow, false]
+              ])
+            ], 2 /* CLASS */), [
+              [vShow, _ctx.showUpload]
+            ]),
+            createCommentVNode(" Preview "),
+            withDirectives(createElementVNode("canvas", {
+              width: _ctx.uploadWidth,
+              height: _ctx.uploadHeight,
+              class: normalizeClass(_ctx.classes.uploadPreview),
+              ref: "preview$"
+            }, null, 10 /* CLASS, PROPS */, _hoisted_9), [
+              [vShow, _ctx.showPreview]
+            ])
+          ], 2 /* CLASS */), [
+            [vShow, _ctx.showUploadContainer]
+          ]),
+          createCommentVNode(" Pad "),
+          withDirectives(createElementVNode("canvas", {
+            width: _ctx.padWidth,
+            height: _ctx.padHeight,
+            style: normalizeStyle(_ctx.padStyle),
+            class: normalizeClass(_ctx.classes.pad),
+            tabindex: _ctx.tabindex,
+            "aria-label": _ctx.padAriaLabel,
+            ref: "pad$"
+          }, null, 14 /* CLASS, STYLE, PROPS */, _hoisted_10), [
+            [vShow, _ctx.showPad]
+          ]),
+          createCommentVNode(" Colors "),
+          withDirectives(createElementVNode("div", {
+            class: normalizeClass(_ctx.classes.colors),
+            role: "listbox"
+          }, [
+            (openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.colors, (c) => {
+              return (openBlock(), createElementBlock("svg", {
+                width: "12",
+                height: "12",
+                class: normalizeClass(_ctx.classes.color(c)),
+                role: "option",
+                tabindex: _ctx.tabindex,
+                "aria-label": `${_ctx.colorAriaLabel} ${c}`,
+                "aria-selected": c === _ctx.color,
+                onClick: $event => (_ctx.handleColorSelect(c)),
+                onKeydown: withKeys(withModifiers($event => (_ctx.handleColorSelect(c)), ["prevent"]), ["space","enter"])
+              }, [
+                createElementVNode("circle", {
+                  cx: "6",
+                  cy: "6",
+                  r: "6",
+                  fill: c
+                }, null, 8 /* PROPS */, _hoisted_12)
+              ], 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_11))
+            }), 256 /* UNKEYED_FRAGMENT */))
+          ], 2 /* CLASS */), [
+            [vShow, _ctx.showColors]
+          ])
+        ], 2 /* CLASS */), [
+          [vShow, !_ctx.uploaded]
+        ]),
+        createCommentVNode(" Clear "),
+        (_ctx.showClear)
+          ? (openBlock(), createElementBlock("div", {
+              key: 0,
+              class: normalizeClass(_ctx.classes.clearWrapper)
+            }, [
+              createElementVNode("div", {
+                class: normalizeClass(_ctx.classes.clear),
+                tabindex: _ctx.tabindex,
+                role: "button",
+                "aria-label": _ctx.clearAriaLabel,
+                onClick: _cache[9] || (_cache[9] = (...args) => (_ctx.handleClear && _ctx.handleClear(...args))),
+                onKeydown: _cache[10] || (_cache[10] = withKeys(withModifiers((...args) => (_ctx.handleClear && _ctx.handleClear(...args)), ["prevent"]), ["enter","space"]))
+              }, null, 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_13)
+            ], 2 /* CLASS */))
+          : createCommentVNode("v-if", true)
+      ], 46 /* CLASS, STYLE, PROPS, NEED_HYDRATION */, _hoisted_1$g)
     ]),
     _: 2 /* DYNAMIC */
   }, [
@@ -9586,49 +9814,99 @@ var script$K = {
       return {
         merge: true,
         defaultClasses: {
-          container: 'vf-text-type',
-          inputContainer: 'vf-input-group',
-          inputContainer_sm: 'vf-input-group-sm',
-          inputContainer_md: '',
-          inputContainer_lg: 'vf-input-group-lg',
-          inputContainer_default: '',
-          inputContainer_disabled: 'vf-input-group-disabled',
-          inputContainer_focused: 'vf-input-group-focused',
-          inputContainer_success: 'vf-input-group-success',
-          inputContainer_danger: 'vf-input-group-danger',
-          input: 'vf-input-field',
-          input_sm: '',
-          input_md: '',
-          input_lg: '',
-          input_enabled: '',
-          input_disabled: '',
-          input_focused: '',
-          input_success: '',
-          input_danger: '',
-          $inputContainer: (classes, { isDisabled, Size, isSuccess, isDanger, focused }) => ([
-            classes.inputContainer,
-            classes[`inputContainer_${Size}`],
-            isDisabled ? classes.inputContainer_disabled : null,
-            !isDisabled && !isSuccess && !isDanger ? classes.inputContainer_default : null,
-            !isDisabled && focused ? classes.inputContainer_focused : null,
-            !isDisabled && isSuccess ? classes.inputContainer_success : null,
-            !isDisabled && isDanger ? classes.inputContainer_danger : null,
+          container: '',
+          wrapper: 'vf-signature',
+          wrapper_sm: 'vf-signature-sm',
+          wrapper_md: '',
+          wrapper_lg: 'vf-signature-lg',
+          wrapper_disabled: 'vf-signature-disabled',
+          wrapper_enabled: '',
+          wrapper_readonly: 'vf-signature-readonly',
+          line: 'vf-signature-line',
+          loadedWrapper: 'vf-signature-loaded-wrapper',
+          loadedWrapper_disabled: 'vf-signature-loaded-wrapper-disabled',
+          loadedWrapper_enabled: '',
+          loadedImg: 'vf-signature-loaded-img',
+          innerWrapper: 'vf-signature-inner-wrapper',
+          innerWrapper_disabled: 'vf-signature-inner-wrapper-disabled',
+          innerWrapper_enabled: '',
+          input: 'vf-signature-input',
+          input_invert: 'vf-signature-input-invert',
+          placeholder: 'vf-signature-placeholder',
+          uploadContainer: 'vf-signature-upload-container',
+          uploadContainer_dragging: 'vf-signature-upload-container-dragging',
+          uploadContainer_not_dragging: '',
+          uploadWrapper: 'vf-signature-upload-wrapper',
+          uploadWrapper_processing: 'vf-signature-upload-wrapper-processing',
+          dndText: 'vf-signature-dnd-text',
+          uploadButton: 'vf-btn vf-btn-secondary',
+          uploadPreview: 'vf-signature-upload-preview',
+          pad: 'vf-signature-pad',
+          pad_invert: 'vf-signature-pad-invert',
+          colors: 'vf-signature-colors',
+          color: 'vf-signature-color',
+          color_invert: 'vf-signature-color-invert',
+          color_active: 'vf-signature-color-active',
+          color_inactive: '',
+          actions: 'vf-signature-actions',
+          undosWrapper: 'vf-signature-undos-wrapper',
+          undo: 'vf-signature-undo',
+          undo_enabled: '',
+          undo_disabled: 'vf-signature-undo-disabled',
+          redo: 'vf-signature-redo',
+          redo_enabled: '',
+          redo_disabled: 'vf-signature-redo-disabled',
+          clearWrapper: 'vf-signature-clear-wrapper',
+          clear: 'vf-signature-clear',
+          $wrapper: (classes, { isDisabled, readonly, Size }) => ([
+            classes.wrapper,
+            classes[`wrapper_${Size}`],
+            isDisabled ? classes.wrapper_disabled : classes.wrapper_enabled,
+            readonly ? classes.wrapper_readonly : null,
           ]),
-          $input: (classes, { isDisabled, Size, isSuccess, isDanger, focused }) => ([
+          $loadedWrapper: (classes, { isDisabled }) => ([
+            classes.loadedWrapper,
+            isDisabled ? classes.loadedWrapper_disabled : classes.loadedWrapper_enabled,
+          ]),
+          $innerWrapper: (classes, { isDisabled }) => ([
+            classes.innerWrapper,
+            isDisabled ? classes.innerWrapper_disabled : classes.innerWrapper_enabled,
+          ]),
+          $input: (classes, { invertColors, color }) => ([
             classes.input,
-            classes[`input_${Size}`],
-            isDisabled ? classes.input_disabled : null,
-            !isDisabled && !isSuccess && !isDanger && !focused  ? classes.input_enabled : null,
-            !isDisabled && focused && !isSuccess && !isDanger ? classes.input_focused : null,
-            !isDisabled && isDanger ? classes.input_danger : null,
-            !isDisabled && isSuccess ? classes.input_success : null,
+            invertColors.indexOf(color) !== -1 ? classes.input_invert : null,
+          ]),
+          $uploadContainer: (classes, { dragging }) => ([
+            classes.uploadContainer,
+            dragging ? classes.uploadContainer_dragging : classes.uploadContainer_not_dragging,
+          ]),
+          $uploadWrapper: (classes, { processing }) => ([
+            classes.uploadWrapper,
+            processing ? classes.uploadWrapper_processing : null,
+          ]),
+          $pad: (classes, { invertColors, color }) => ([
+            classes.pad,
+            invertColors.indexOf(color) !== -1 ? classes.pad_invert : null,
+          ]),
+          $color: (classes, { color, invertColors, mode }) => (c) => ([
+            classes.color,
+            c === color ? classes.color_active : classes.color_inactive,
+            invertColors.indexOf(c) !== -1 && mode !== 'upload' ? classes.color_invert : null,
+          ]),
+          $undo: (classes, { undosLeft }) => ([
+            classes.undo,
+            undosLeft ? classes.undo_enabled : classes.undo_disabled,
+          ]),
+          $redo: (classes, { redos }) => ([
+            classes.redo,
+            redos.length ? classes.redo_enabled : classes.redo_disabled,
           ]),
         }
       }
     },
   };
 
-var css_248z$m = "/* Some styles are contained in Vueform.vue */";
+var css_248z$m = ".vf-signature {\n  position: relative;\n  font-family: inherit;\n  transition-property: box-shadow, color, background-color, border-color;\n  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);\n  transition-duration: 200ms;\n  border-style: solid;\n  border-width: var(--vf-border-width-input-t) var(--vf-border-width-input-r) var(--vf-border-width-input-b) var(--vf-border-width-input-l);\n  background-color: var(--vf-bg-input);\n  color: var(--vf-color-input);\n  border-color: var(--vf-border-color-input);\n  font-size: var(--vf-font-size);\n  line-height: var(--vf-line-height);\n  letter-spacing: var(--vf-letter-spacing);\n  border-radius: var(--vf-radius-large);\n}\n\n.vf-signature:focus {\n  outline: var(--vf-ring-width) solid var(--vf-ring-color);\n  border-color: var(--vf-border-color-input-focus);\n}\n\n.vf-signature.vf-signature-sm {\n  font-size: var(--vf-font-size-sm);\n  line-height: var(--vf-line-height-sm);\n  letter-spacing: var(--vf-letter-spacing-sm);\n  border-radius: var(--vf-radius-large-sm);\n}\n\n.vf-signature.vf-signature-lg {\n  font-size: var(--vf-font-size-lg);\n  line-height: var(--vf-line-height-lg);\n  letter-spacing: var(--vf-letter-spacing-lg);\n  border-radius: var(--vf-radius-large-lg);\n}\n\n.vf-signature.vf-signature-disabled {\n  background-color: var(--vf-bg-disabled);\n  color: var(--vf-color-disabled);\n  cursor: not-allowed;\n  pointer-events: none;\n}\n\n.vf-signature.vf-signature-readonly {\n  pointer-events: none;\n}\n\n.vf-signature-line {\n  position: absolute;\n  top: 50%;\n  left: 1.5rem;\n  right: 1.5rem;\n  border-color: var(--vf-gray-300);\n}\n\n.vf-signature-loaded-wrapper {\n  position: absolute;\n  left: 2.25rem;\n  right: 2.25rem;\n  top: 0;\n  bottom: 0;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n\n.vf-signature-loaded-wrapper.vf-signature-loaded-wrapper-disabled {\n  opacity: 0.5;\n}\n\n.vf-signature-inner-wrapper.vf-signature-inner-wrapper-disabled {\n  opacity: 0.5;\n}\n\n.vf-signature-input {\n  background: transparent;\n  position: absolute;\n  top: 50%;\n  left: 0;\n  right: 0;\n  transform: translateY(-50%);\n  padding: 0 2.25rem 0 0;\n  text-align: center;\n  text-indent: 2.25rem;\n  transition-property: box-shadow, color, background-color, border-color;\n  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);\n  transition-duration: 200ms;\n  height: 8.5rem;\n}\n\n.vf-signature-placeholder {\n  position: absolute;\n  left: 0;\n  right: 0;\n  bottom: 50%;\n  transform: translateY(50%);\n  pointer-events: none;\n  color: var(--vf-color-placeholder);\n  text-align: center;\n}\n\n.vf-signature-upload-container {\n  position: absolute;\n  left: 2.25rem;\n  right: 2.25rem;\n  bottom: 50%;\n  transform: translateY(50%);\n  transition-property: opacity;\n  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);\n  transition-duration: 200ms;\n}\n\n.vf-signature-upload-container.vf-signature-upload-container-dragging {\n  opacity: 0.5;\n}\n\n.vf-signature-upload-wrapper {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  text-align: center;\n}\n\n.vf-signature-upload-wrapper.vf-signature-upload-wrapper-processing {\n  opacity: 0.6;\n  pointer-events: none;\n}\n\n.vf-signature-dnd-text {\n  color: var(--vf-text-700);\n}\n\n.vf-signature-upload-preview {\n  width: 100%;\n  margin: 0 auto;\n}\n\n.vf-signature-pad {\n  position: absolute;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  top: 0;\n}\n\n.vf-signature-colors {\n  position: absolute;\n  bottom: 1.25rem;\n  left: 50%;\n  transform: translateX(-50%);\n  display: flex;\n  flex-direction: row;\n  gap: 0.5rem;\n}\n\n.vf-signature-color {\n  transition-property: transform;\n  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);\n  transition-duration: 200ms;\n  cursor: pointer;\n  outline: none;\n  border-radius: 50%;\n}\n\n.vf-signature-color:hover, .vf-signature-color.vf-signature-color-active {\n  transform: scale(1.4);\n}\n\n.vf-signature-color:focus-visible {\n  outline: var(--vf-ring-width) solid var(--vf-ring-color);\n}\n\n.vf-signature-actions {\n  position: absolute;\n  top: 0.5rem;\n  left: 0.75rem;\n  right: 0.75rem;\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  opacity: 0.5;\n  transition-property: opacity;\n  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);\n  transition-duration: 200ms;\n  z-index: 1;\n}\n\n.vf-signature-actions:hover {\n  opacity: 1;\n}\n\n.vf-signature-undos-wrapper {\n  position: absolute;\n  right: 0.75rem;\n  top: 0.75rem;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  gap: 0.75rem;\n}\n\n.vf-signature-undo,\n.vf-signature-redo {\n  mask-repeat: no-repeat;\n  -webkit-mask-repeat: no-repeat;\n  mask-position: center center;\n  -webkit-mask-position: center center;\n  mask-size: contain;\n  -webkit-mask-size: contain;\n  background-color: var(--vf-bg-icon);\n  cursor: pointer;\n  width: 0.75rem;\n  height: 0.75rem;\n}\n\n.vf-signature-undo:focus-visible,\n.vf-signature-redo:focus-visible {\n  opacity: 0.8;\n}\n\n.vf-signature-undo {\n  mask-image: url(\"data:image/svg+xml,%3csvg viewBox='0 0 512 512' fill='currentColor' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M255.545 8c-66.269.119-126.438 26.233-170.86 68.685L48.971 40.971C33.851 25.851 8 36.559 8 57.941V192c0 13.255 10.745 24 24 24h134.059c21.382 0 32.09-25.851 16.971-40.971l-41.75-41.75c30.864-28.899 70.801-44.907 113.23-45.273 92.398-.798 170.283 73.977 169.484 169.442C423.236 348.009 349.816 424 256 424c-41.127 0-79.997-14.678-110.63-41.556-4.743-4.161-11.906-3.908-16.368.553L89.34 422.659c-4.872 4.872-4.631 12.815.482 17.433C133.798 479.813 192.074 504 256 504c136.966 0 247.999-111.033 248-247.998C504.001 119.193 392.354 7.755 255.545 8z'%3e%3c/path%3e%3c/svg%3e\");\n  -webkit-mask-image: url(\"data:image/svg+xml,%3csvg viewBox='0 0 512 512' fill='currentColor' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M255.545 8c-66.269.119-126.438 26.233-170.86 68.685L48.971 40.971C33.851 25.851 8 36.559 8 57.941V192c0 13.255 10.745 24 24 24h134.059c21.382 0 32.09-25.851 16.971-40.971l-41.75-41.75c30.864-28.899 70.801-44.907 113.23-45.273 92.398-.798 170.283 73.977 169.484 169.442C423.236 348.009 349.816 424 256 424c-41.127 0-79.997-14.678-110.63-41.556-4.743-4.161-11.906-3.908-16.368.553L89.34 422.659c-4.872 4.872-4.631 12.815.482 17.433C133.798 479.813 192.074 504 256 504c136.966 0 247.999-111.033 248-247.998C504.001 119.193 392.354 7.755 255.545 8z'%3e%3c/path%3e%3c/svg%3e\");\n}\n\n.vf-signature-undo.vf-signature-undo-disabled {\n  cursor: not-allowed;\n  opacity: 0.5;\n}\n\n.vf-signature-redo {\n  mask-image: url(\"data:image/svg+xml,%3csvg viewBox='0 0 512 512' fill='currentColor' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M256.455 8c66.269.119 126.437 26.233 170.859 68.685l35.715-35.715C478.149 25.851 504 36.559 504 57.941V192c0 13.255-10.745 24-24 24H345.941c-21.382 0-32.09-25.851-16.971-40.971l41.75-41.75c-30.864-28.899-70.801-44.907-113.23-45.273-92.398-.798-170.283 73.977-169.484 169.442C88.764 348.009 162.184 424 256 424c41.127 0 79.997-14.678 110.629-41.556 4.743-4.161 11.906-3.908 16.368.553l39.662 39.662c4.872 4.872 4.631 12.815-.482 17.433C378.202 479.813 319.926 504 256 504 119.034 504 8.001 392.967 8 256.002 7.999 119.193 119.646 7.755 256.455 8z'%3e%3c/path%3e%3c/svg%3e\");\n  -webkit-mask-image: url(\"data:image/svg+xml,%3csvg viewBox='0 0 512 512' fill='currentColor' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M256.455 8c66.269.119 126.437 26.233 170.859 68.685l35.715-35.715C478.149 25.851 504 36.559 504 57.941V192c0 13.255-10.745 24-24 24H345.941c-21.382 0-32.09-25.851-16.971-40.971l41.75-41.75c-30.864-28.899-70.801-44.907-113.23-45.273-92.398-.798-170.283 73.977-169.484 169.442C88.764 348.009 162.184 424 256 424c41.127 0 79.997-14.678 110.629-41.556 4.743-4.161 11.906-3.908 16.368.553l39.662 39.662c4.872 4.872 4.631 12.815-.482 17.433C378.202 479.813 319.926 504 256 504 119.034 504 8.001 392.967 8 256.002 7.999 119.193 119.646 7.755 256.455 8z'%3e%3c/path%3e%3c/svg%3e\");\n}\n\n.vf-signature-redo.vf-signature-redo-disabled {\n  cursor: not-allowed;\n  opacity: 0.5;\n}\n\n.vf-signature-clear-wrapper {\n  position: absolute;\n  top: 50%;\n  transform: translateY(-50%);\n  right: 1rem;\n  font-size: 14px;\n}\n\n.vf-signature-clear {\n  mask-image: url(\"data:image/svg+xml,%3Csvg viewBox='0 0 320 512' fill='currentColor' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M207.6 256l107.72-107.72c6.23-6.23 6.23-16.34 0-22.58l-25.03-25.03c-6.23-6.23-16.34-6.23-22.58 0L160 208.4 52.28 100.68c-6.23-6.23-16.34-6.23-22.58 0L4.68 125.7c-6.23 6.23-6.23 16.34 0 22.58L112.4 256 4.68 363.72c-6.23 6.23-6.23 16.34 0 22.58l25.03 25.03c6.23 6.23 16.34 6.23 22.58 0L160 303.6l107.72 107.72c6.23 6.23 16.34 6.23 22.58 0l25.03-25.03c6.23-6.23 6.23-16.34 0-22.58L207.6 256z'%3E%3C/path%3E%3C/svg%3E\");\n  -webkit-mask-image: url(\"data:image/svg+xml,%3Csvg viewBox='0 0 320 512' fill='currentColor' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M207.6 256l107.72-107.72c6.23-6.23 6.23-16.34 0-22.58l-25.03-25.03c-6.23-6.23-16.34-6.23-22.58 0L160 208.4 52.28 100.68c-6.23-6.23-16.34-6.23-22.58 0L4.68 125.7c-6.23 6.23-6.23 16.34 0 22.58L112.4 256 4.68 363.72c-6.23 6.23-6.23 16.34 0 22.58l25.03 25.03c6.23 6.23 16.34 6.23 22.58 0L160 303.6l107.72 107.72c6.23 6.23 16.34 6.23 22.58 0l25.03-25.03c6.23-6.23 6.23-16.34 0-22.58L207.6 256z'%3E%3C/path%3E%3C/svg%3E\");\n  mask-position: center;\n  -webkit-mask-position: center;\n  mask-repeat: no-repeat;\n  -webkit-mask-repeat: no-repeat;\n  mask-size: contain;\n  -webkit-mask-size: contain;\n  background-color: var(--vf-color-input);\n  width: 0.75rem;\n  height: 1rem;\n  padding: 1px 0;\n  box-sizing: content-box;\n  display: inline-block;\n  cursor: pointer;\n}\n\n.vf-signature-clear:focus-visible {\n  opacity: 0.8;\n}\n\n.dark .vf-signature-line {\n  border-color: var(--vf-dark-500);\n}\n\n.dark .vf-signature-input-invert,\n.dark .vf-signature-pad-invert,\n.dark .vf-signature-color-invert {\n  filter: invert(1);\n}\n\n.dark .vf-signature-dnd-text {\n  color: var(--vf-dark-200);\n}\n\n.dark .vf-signature-undo,\n.dark .vf-signature-redo {\n  background: var(--vf-dark-300);\n}\n\n[dir=rtl] .vf-signature-input {\n  padding: 0 0 0 2.25rem;\n}\n\n[dir=rtl] .vf-signature-undos-wrapper {\n  right: auto;\n  left: 0.75rem;\n}";
 styleInject(css_248z$m);
 
 script$K.__file = "themes/vueform/templates/elements/SignatureElement.vue";

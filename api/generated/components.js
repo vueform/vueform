@@ -625,6 +625,27 @@ module.exports = {
           "number",
           "object"
         ]
+      },
+      "relaxed": {
+        "required": false,
+        "default": false,
+        "types": [
+          "boolean"
+        ]
+      },
+      "position": {
+        "required": false,
+        "default": "over",
+        "types": [
+          "string"
+        ]
+      },
+      "aria": {
+        "required": false,
+        "default": "{}",
+        "types": [
+          "object"
+        ]
       }
     },
     "events": {

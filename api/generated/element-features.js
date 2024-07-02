@@ -195,6 +195,45 @@ export default {
         }
       }
     },
+    "phone": {
+      "computed": {
+        "descriptionId": {
+          "public": false,
+          "types": [
+            "string"
+          ],
+          "description": "The `id` of the related description component."
+        },
+        "labelId": {
+          "public": false,
+          "types": [
+            "string"
+          ],
+          "description": "The `id` of the related label component."
+        },
+        "infoId": {
+          "public": false,
+          "types": [
+            "string"
+          ],
+          "description": "The `id` of the related description component."
+        },
+        "errorId": {
+          "public": false,
+          "types": [
+            "string"
+          ],
+          "description": "The `id` of the related error component."
+        },
+        "aria": {
+          "public": true,
+          "types": [
+            "object"
+          ],
+          "description": "The `aria-*` attributes of the input."
+        }
+      }
+    },
     "radiogroup": {
       "computed": {
         "descriptionId": {
@@ -3320,6 +3359,71 @@ export default {
         }
       }
     },
+    "signature": {
+      "computed": {
+        "data": {
+          "public": true,
+          "types": [
+            "object"
+          ],
+          "description": "The value of the element in `{[name]: value}` value format. This gets merged with the parent component's data."
+        },
+        "requestData": {
+          "public": true,
+          "types": [
+            "object"
+          ],
+          "description": "Same as `data` property except that it only includes the element's value if [`submit`](#option-submit) is not disabled and [`available`](#property-available) is `true` (has no [`conditions`](#option-conditions) or they are fulfilled)."
+        }
+      },
+      "methods": {
+        "load": {
+          "public": true,
+          "returns": "void",
+          "description": "Loads value to the element using optional [`formatLoad`](#option-format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.",
+          "params": {
+            "value": {
+              "types": [
+                "any"
+              ],
+              "required": true,
+              "description": "the value to be loaded"
+            },
+            "format": {
+              "types": [
+                "boolean"
+              ],
+              "required": false,
+              "description": "whether the loaded value should be formatted with [`formatLoad`](#option-format-load) before setting the value of the element (default: `false`)"
+            }
+          }
+        },
+        "update": {
+          "public": true,
+          "returns": "void",
+          "description": "Updates the value of the element similarly to [`load`](#method-load), only that it can\\'t format data.",
+          "params": {
+            "value": {
+              "types": [
+                "any"
+              ],
+              "required": true,
+              "description": "the value to be set"
+            }
+          }
+        },
+        "clear": {
+          "public": true,
+          "returns": "void",
+          "description": "Clears the element's value."
+        },
+        "reset": {
+          "public": true,
+          "returns": "void",
+          "description": "Resets the element's value to [`default`](#option-default) (or empty if `default` is not provided). Also resets all the validation state for the element."
+        }
+      }
+    },
     "multiselect": {
       "computed": {
         "data": {
@@ -5218,6 +5322,732 @@ export default {
               "description": "value(s) of the option(s) to deselect"
             }
           }
+        }
+      }
+    }
+  },
+  "signature": {
+    "base": {
+      "data": {
+        "mode$": {
+          "public": true,
+          "types": [
+            "ElementAddonOptions"
+          ],
+          "description": "The signature mode selector."
+        },
+        "font$": {
+          "public": true,
+          "types": [
+            "ElementAddonOptions"
+          ],
+          "description": "The font style selector."
+        },
+        "input$": {
+          "public": true,
+          "types": [
+            "HTMLInputElement"
+          ],
+          "description": "The input field when [`mode`](#property-mode) is 'type`."
+        },
+        "preview$": {
+          "public": true,
+          "types": [
+            "HTMLCanvasElement"
+          ],
+          "description": "The canvas that shows the preview of an uploaded signature when [`mode`](#property-mode) is 'upload`."
+        },
+        "pad$": {
+          "public": true,
+          "types": [
+            "HTMLCanvasElement"
+          ],
+          "description": "The canvas that allows drawning signature when [`mode`](#property-mode) is 'draw`."
+        },
+        "file$": {
+          "public": true,
+          "types": [
+            "HTMLInputElement"
+          ],
+          "description": "The file input field when [`mode`](#property-mode) is 'upload` (it's invisible)."
+        },
+        "upload$": {
+          "public": true,
+          "types": [
+            "HTMLElement"
+          ],
+          "description": "The DOM that contains upload related parts."
+        },
+        "uploadButton$": {
+          "public": true,
+          "types": [
+            "HTMLElement"
+          ],
+          "description": "The upload button."
+        },
+        "mode": {
+          "public": true,
+          "types": [
+            "string"
+          ],
+          "description": "The current signature mode (`draw`, `type` or `upload`)."
+        },
+        "fontFamily": {
+          "public": true,
+          "types": [
+            "string"
+          ],
+          "description": "The current font family."
+        },
+        "fontWeight": {
+          "public": true,
+          "types": [
+            "string"
+          ],
+          "description": "The current font weight."
+        },
+        "color": {
+          "public": true,
+          "types": [
+            "string"
+          ],
+          "description": "The hex code of the current signature color."
+        },
+        "text": {
+          "public": true,
+          "types": [
+            "string"
+          ],
+          "description": "The input value used when [`mode`](#property-mode) is 'type`."
+        },
+        "fontSize": {
+          "public": true,
+          "types": [
+            ""
+          ],
+          "description": "The current font size."
+        },
+        "pad": {
+          "public": true,
+          "types": [
+            ""
+          ],
+          "description": "The [Signature Pad](https://github.com/szimek/signature_pad) instance."
+        },
+        "image": {
+          "public": true,
+          "types": [
+            "File"
+          ],
+          "description": "The file (image) selected by the user when [`mode`](#property-mode) is 'upload`."
+        },
+        "created": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the image preview is already created when [`mode`](#property-mode) is 'upload`."
+        },
+        "creating": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the image preview is being created when [`mode`](#property-mode) is 'upload`."
+        },
+        "dragging": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether a file is being dragged over the element when [`mode`](#property-mode) is 'upload`."
+        },
+        "drawn": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the canvas contains any drawn signature when [`mode`](#property-mode) is 'draw`."
+        },
+        "drawing": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether a signature is currently being drawn when [`mode`](#property-mode) is 'draw`."
+        },
+        "redos": {
+          "public": true,
+          "types": [
+            "array"
+          ],
+          "description": "The list of available redos."
+        },
+        "undosLeft": {
+          "public": true,
+          "types": [
+            "number"
+          ],
+          "description": "The number available undos."
+        },
+        "width": {
+          "public": true,
+          "types": [
+            "number"
+          ],
+          "description": "The current width of the signature element."
+        },
+        "lastWidth": {
+          "public": true,
+          "types": [
+            "number"
+          ],
+          "description": "The last width of the element."
+        }
+      },
+      "computed": {
+        "fontFamilies": {
+          "public": true,
+          "types": [
+            "array"
+          ],
+          "description": "The available font families."
+        },
+        "fontWeights": {
+          "public": true,
+          "types": [
+            "array"
+          ],
+          "description": "The available font weights."
+        },
+        "uploaded": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether a signature (as URL) was loaded to the element."
+        },
+        "processing": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the uploaded file is being processed for preview."
+        },
+        "droppable": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether `drop` is enabled and browser supports dragging."
+        },
+        "resolvedModes": {
+          "public": true,
+          "types": [
+            "array"
+          ],
+          "description": "The list of [`modes`](#option-modes) formatted for mode selector."
+        },
+        "resolvedFonts": {
+          "public": true,
+          "types": [
+            ""
+          ],
+          "description": "The list of [`fonts`](#option-fonts) formatted for fonts selector."
+        },
+        "fileAccept": {
+          "public": true,
+          "types": [
+            "string"
+          ],
+          "description": "The list of MIME types formatted for the file input attribute."
+        },
+        "showLine": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the signature line should be shown."
+        },
+        "showInput": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the signature text input should be shown."
+        },
+        "showPlaceholder": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the signature placeholder should be shown."
+        },
+        "showUploadContainer": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the upload container should be shown."
+        },
+        "showUpload": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the file upload controllers should be shown."
+        },
+        "showPreview": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether file upload preview should be shown."
+        },
+        "showPad": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether signature draw pad should be shown."
+        },
+        "showUndos": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether undo and redo buttons should be shown."
+        },
+        "showColors": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether color selector should be shown."
+        },
+        "showModes": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether mode selector should be shown."
+        },
+        "showFonts": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether font selector should be shown."
+        },
+        "showClear": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether clear button should be shown."
+        },
+        "tabindex": {
+          "public": true,
+          "types": [
+            "number",
+            "undefined"
+          ],
+          "description": "The tabindex of focusable DOM parts."
+        },
+        "placeholderText": {
+          "public": true,
+          "types": [
+            "string"
+          ],
+          "description": "The text of the placeholder."
+        },
+        "dndText": {
+          "public": true,
+          "types": [
+            "string"
+          ],
+          "description": "The text of the drag and drop area."
+        },
+        "uploadButtonText": {
+          "public": true,
+          "types": [
+            "string"
+          ],
+          "description": "The text of the upload button."
+        },
+        "imgAltText": {
+          "public": true,
+          "types": [
+            "string"
+          ],
+          "description": "The text of the img alt attribute."
+        },
+        "imgTitleText": {
+          "public": true,
+          "types": [
+            "string"
+          ],
+          "description": "The text of the img title attribute."
+        },
+        "fontText": {
+          "public": true,
+          "types": [
+            "string"
+          ],
+          "description": "The current text of font selector options."
+        },
+        "undoText": {
+          "public": true,
+          "types": [
+            "string"
+          ],
+          "description": "The undo button's title."
+        },
+        "redoText": {
+          "public": true,
+          "types": [
+            "string"
+          ],
+          "description": "The redo button's title."
+        },
+        "modeSelectorAria": {
+          "public": true,
+          "types": [
+            "object"
+          ],
+          "description": "The aria attributes of the mode selector."
+        },
+        "fontSelectorAria": {
+          "public": true,
+          "types": [
+            "object"
+          ],
+          "description": "The aria attributes of the font selector."
+        },
+        "wrapperAriaLabel": {
+          "public": true,
+          "types": [
+            "string"
+          ],
+          "description": "The aria label of the signature wrapper."
+        },
+        "inputAriaLabel": {
+          "public": true,
+          "types": [
+            "string"
+          ],
+          "description": "The aria label of the text input field."
+        },
+        "padAriaLabel": {
+          "public": true,
+          "types": [
+            "string"
+          ],
+          "description": "The aria label of the signature pad."
+        },
+        "colorAriaLabel": {
+          "public": true,
+          "types": [
+            "string"
+          ],
+          "description": "The aria label of a color."
+        },
+        "clearAriaLabel": {
+          "public": true,
+          "types": [
+            "string"
+          ],
+          "description": "The aria label of the clear button."
+        },
+        "padWidth": {
+          "public": true,
+          "types": [
+            "number"
+          ],
+          "description": "The width of signature pad."
+        },
+        "padHeight": {
+          "public": true,
+          "types": [
+            "number"
+          ],
+          "description": "The height of signature pad."
+        },
+        "padStyle": {
+          "public": true,
+          "types": [
+            "object"
+          ],
+          "description": "The style attributes of the signature pad."
+        },
+        "wrapperStyle": {
+          "public": true,
+          "types": [
+            "object"
+          ],
+          "description": "The style attributes of the signature wrapper."
+        },
+        "inputStyle": {
+          "public": true,
+          "types": [
+            ""
+          ],
+          "description": "The style attributes of the signature input when [`mode`](#property-mode) is 'type`."
+        },
+        "lineStyle": {
+          "public": true,
+          "types": [
+            ""
+          ],
+          "description": "The style attributes of the signature line."
+        }
+      },
+      "methods": {
+        "initPad": {
+          "public": true,
+          "returns": "void",
+          "description": "Initalizes the [Signature Pad](https://github.com/szimek/signature_pad)."
+        },
+        "resizePad": {
+          "public": true,
+          "returns": "void",
+          "description": "Resizes the signature pad to the current max width and clears any drawings."
+        },
+        "drawingToImage": {
+          "public": true,
+          "returns": "void",
+          "description": "Sets the element value as Blob from the current drawing."
+        },
+        "typingToImage": {
+          "public": true,
+          "returns": "void",
+          "description": "Sets the element value as Blob from the currently typed signature."
+        },
+        "uploadToImage": {
+          "public": true,
+          "returns": "void",
+          "description": "Sets the element value as Blob from the currently uploaded signature."
+        },
+        "undo": {
+          "public": true,
+          "returns": "void",
+          "description": "Undoes the last drawing when [`mode`](#property-mode) is 'draw`."
+        },
+        "redo": {
+          "public": true,
+          "returns": "void",
+          "description": "Redoes the last drawing when [`mode`](#property-mode) is 'draw`."
+        },
+        "clearSignature": {
+          "public": true,
+          "returns": "void",
+          "description": "Clears the signature in all forms (drawn, typed, uploaded, loaded)."
+        },
+        "clearDrawnSignature": {
+          "public": true,
+          "returns": "void",
+          "description": "Clears the drawn signature."
+        },
+        "loadFonts": {
+          "public": true,
+          "returns": "void",
+          "description": "Loads Google Fonts dynamically by adding `<link>` tags to `<head>`."
+        },
+        "setDrawColor": {
+          "public": true,
+          "returns": "void",
+          "description": "Sets the drawing color of the signature pad."
+        },
+        "adjustFontSize": {
+          "public": true,
+          "returns": "void",
+          "description": "Adjusts the typed signature's font size to fit into the input without overflow until [`minSize`](#option-min-size) or [`maxSize`](#option-max-size) is reached."
+        },
+        "hexToRgb": {
+          "public": true,
+          "returns": "string",
+          "description": "Converts a HEX color to RGB.",
+          "params": {
+            "hex": {
+              "types": [
+                "string"
+              ],
+              "required": true,
+              "description": "the color in HEX format"
+            }
+          }
+        },
+        "checkFileExt": {
+          "public": true,
+          "returns": "boolean",
+          "description": "Checks if a file complies with [`accept`](#option-accept) list and throws an alert if not.",
+          "params": {
+            "file": {
+              "types": [
+                "File"
+              ],
+              "required": true,
+              "description": "the file to check"
+            }
+          }
+        },
+        "checkFileSize": {
+          "public": true,
+          "returns": "boolean",
+          "description": "Checks if a file is under the allowed [`maxSize`](#option-max-size) and throws an alert if not.",
+          "params": {
+            "file": {
+              "types": [
+                "File"
+              ],
+              "required": true,
+              "description": "the file to check"
+            }
+          }
+        },
+        "setWidth": {
+          "public": true,
+          "returns": "void",
+          "description": "Sets the [`width`](#property-width) to the current element width."
+        },
+        "setLastWidth": {
+          "public": true,
+          "returns": "void",
+          "description": "Sets the [`lastWidth`](#property-last-width) to the current element width."
+        },
+        "setDefaultMode": {
+          "public": true,
+          "returns": "void",
+          "description": "Sets the [`mode`](#property-mode) to the first available mode from [`modes`](#option-modes). If none found, `draw` will be set."
+        },
+        "setDefaultFont": {
+          "public": true,
+          "returns": "void",
+          "description": "Sets the [`fontFamily`](#property-font-family) and [`fontWeight`](#property-font-weight) to the first available from [`fonts`](#option-fonts). If none found, `cursive` and `400` will be set."
+        },
+        "setDefaultColor": {
+          "public": true,
+          "returns": "void",
+          "description": "Sets the [`color`](#property-color) to the first available color from [`colors`](#option-colors). If none found, `#000000` will be set."
+        },
+        "setFont": {
+          "public": true,
+          "returns": "void",
+          "description": "Sets the [`fontFamily`](#property-font-family) and [`fontWeight`](#property-font-weight) by the index of a font from [`fonts`](#option-fonts).",
+          "params": {
+            "value": {
+              "types": [
+                "object"
+              ],
+              "required": true,
+              "description": "the selected font object (from [`resolvedFonts`](#property-resolved-fonts))"
+            }
+          }
+        },
+        "handleInput": {
+          "public": true,
+          "returns": "void",
+          "description": "Handles the input event of the input field.",
+          "params": {
+            "e": {
+              "types": [
+                "Event"
+              ],
+              "required": false,
+              "description": "the Event object"
+            }
+          }
+        },
+        "handleModeSelect": {
+          "public": true,
+          "returns": "void",
+          "description": "Handles the mode select.",
+          "params": {
+            "value": {
+              "types": [
+                "object"
+              ],
+              "required": true,
+              "description": "the selected mode object (from [`resolvedModes`](#property-resolved-modes))"
+            }
+          }
+        },
+        "handleColorSelect": {
+          "public": true,
+          "returns": "void",
+          "description": "Handles the color select.",
+          "params": {
+            "value": {
+              "types": [
+                "string"
+              ],
+              "required": false,
+              "description": "the color to select (HEX)"
+            }
+          }
+        },
+        "handleFontSelect": {
+          "public": true,
+          "returns": "void",
+          "description": "Handles the font select.",
+          "params": {
+            "value": {
+              "types": [
+                "object"
+              ],
+              "required": true,
+              "description": "the selected font object (from [`resolvedFonts`](#property-resolved-fonts))"
+            }
+          }
+        },
+        "handleClear": {
+          "public": true,
+          "returns": "void",
+          "description": "Handle the clear button action."
+        },
+        "handleUndo": {
+          "public": true,
+          "returns": "void",
+          "description": "Handles the undo button action."
+        },
+        "handleRedo": {
+          "public": true,
+          "returns": "void",
+          "description": "Handles the redo button action."
+        },
+        "handleSelectClick": {
+          "public": true,
+          "returns": "void",
+          "description": "Handles the file select button action."
+        },
+        "handleFileSelect": {
+          "public": true,
+          "returns": "void",
+          "description": "Handles the file selection."
+        },
+        "handleDrop": {
+          "public": true,
+          "returns": "void",
+          "description": "Handles the drop event.",
+          "params": {
+            "e": {
+              "types": [
+                "Event"
+              ],
+              "required": true,
+              "description": "the Event object"
+            }
+          }
+        },
+        "handleMouseLeave": {
+          "public": true,
+          "returns": "void",
+          "description": "Handles the mouse leave event of the wrapper."
+        },
+        "handleResize": {
+          "public": true,
+          "returns": "void",
+          "description": "Handles the window resize event."
         }
       }
     }

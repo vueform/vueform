@@ -32193,6 +32193,2423 @@ module.exports = {
     },
     views: [],
   },
+  SignatureElement: {
+    props: {
+      name: {
+        required: 'true',
+        default: 'undefined',
+        localized: false,
+        types: [
+          'string',
+          'number',
+        ],
+        required: true,
+        private: false,
+      },
+      conditions: {
+        required: 'false',
+        default: '[]',
+        localized: false,
+        types: [
+          'array',
+        ],
+        required: false,
+        private: false,
+      },
+      onBeforeCreate: {
+        required: 'false',
+        default: 'null',
+        localized: false,
+        types: [
+          'function',
+        ],
+        required: false,
+        private: true,
+      },
+      onCreated: {
+        required: 'false',
+        default: 'null',
+        localized: false,
+        types: [
+          'function',
+        ],
+        required: false,
+        private: true,
+      },
+      onBeforeMount: {
+        required: 'false',
+        default: 'null',
+        localized: false,
+        types: [
+          'function',
+        ],
+        required: false,
+        private: true,
+      },
+      onMounted: {
+        required: 'false',
+        default: 'null',
+        localized: false,
+        types: [
+          'function',
+        ],
+        required: false,
+        private: true,
+      },
+      onBeforeUpdate: {
+        required: 'false',
+        default: 'null',
+        localized: false,
+        types: [
+          'function',
+        ],
+        required: false,
+        private: true,
+      },
+      onUpdated: {
+        required: 'false',
+        default: 'null',
+        localized: false,
+        types: [
+          'function',
+        ],
+        required: false,
+        private: true,
+      },
+      onBeforeUnmount: {
+        required: 'false',
+        default: 'null',
+        localized: false,
+        types: [
+          'function',
+        ],
+        required: false,
+        private: true,
+      },
+      onUnmounted: {
+        required: 'false',
+        default: 'null',
+        localized: false,
+        types: [
+          'function',
+        ],
+        required: false,
+        private: true,
+      },
+      inline: {
+        required: 'false',
+        default: 'false',
+        localized: false,
+        types: [
+          'boolean',
+        ],
+        required: false,
+        private: false,
+      },
+      layout: {
+        required: 'false',
+        default: 'ElementLayout',
+        localized: false,
+        types: [
+          'string',
+          'object',
+          'boolean',
+        ],
+        required: false,
+        private: true,
+      },
+      addClass: {
+        required: 'false',
+        default: 'null',
+        localized: false,
+        types: [
+          'array',
+          'object',
+          'string',
+          'function',
+        ],
+        required: false,
+        private: false,
+      },
+      removeClass: {
+        required: 'false',
+        default: 'null',
+        localized: false,
+        types: [
+          'array',
+          'object',
+          'function',
+        ],
+        required: false,
+        private: false,
+      },
+      replaceClass: {
+        required: 'false',
+        default: 'null',
+        localized: false,
+        types: [
+          'object',
+          'function',
+        ],
+        required: false,
+        private: false,
+      },
+      overrideClass: {
+        required: 'false',
+        default: 'null',
+        localized: false,
+        types: [
+          'array',
+          'object',
+          'string',
+          'function',
+        ],
+        required: false,
+        private: false,
+      },
+      addClasses: {
+        required: 'false',
+        default: '{}',
+        localized: false,
+        types: [
+          'object',
+          'function',
+        ],
+        required: false,
+        private: false,
+      },
+      replaceClasses: {
+        required: 'false',
+        default: '{}',
+        localized: false,
+        types: [
+          'object',
+          'function',
+        ],
+        required: false,
+        private: false,
+      },
+      removeClasses: {
+        required: 'false',
+        default: '{}',
+        localized: false,
+        types: [
+          'object',
+          'function',
+        ],
+        required: false,
+        private: false,
+      },
+      overrideClasses: {
+        required: 'false',
+        default: '{}',
+        localized: false,
+        types: [
+          'object',
+          'function',
+        ],
+        required: false,
+        private: false,
+      },
+      presets: {
+        required: 'false',
+        default: '[]',
+        localized: false,
+        types: [
+          'array',
+        ],
+        required: false,
+        private: false,
+      },
+      view: {
+        required: 'false',
+        default: 'undefined',
+        localized: false,
+        types: [
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
+      views: {
+        required: 'false',
+        default: '{}',
+        localized: false,
+        types: [
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      size: {
+        required: 'false',
+        default: 'undefined',
+        localized: false,
+        types: [
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
+      columns: {
+        required: 'false',
+        default: 'null',
+        localized: false,
+        types: [
+          'object',
+          'string',
+          'number',
+        ],
+        required: false,
+        private: false,
+      },
+      templates: {
+        required: 'false',
+        default: '{}',
+        localized: false,
+        types: [
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      description: {
+        required: 'false',
+        default: 'null',
+        localized: true,
+        types: [
+          'string',
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      info: {
+        required: 'false',
+        default: 'null',
+        localized: true,
+        types: [
+          'string',
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      infoPosition: {
+        required: 'false',
+        default: 'right',
+        localized: false,
+        types: [
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
+      label: {
+        required: 'false',
+        default: 'null',
+        localized: true,
+        types: [
+          'string',
+          'object',
+          'function',
+        ],
+        required: false,
+        private: false,
+      },
+      before: {
+        required: 'false',
+        default: 'null',
+        localized: true,
+        types: [
+          'object',
+          'string',
+          'number',
+        ],
+        required: false,
+        private: false,
+      },
+      between: {
+        required: 'false',
+        default: 'null',
+        localized: true,
+        types: [
+          'object',
+          'string',
+          'number',
+        ],
+        required: false,
+        private: false,
+      },
+      after: {
+        required: 'false',
+        default: 'null',
+        localized: true,
+        types: [
+          'object',
+          'string',
+          'number',
+        ],
+        required: false,
+        private: false,
+      },
+      slots: {
+        required: 'false',
+        default: '{}',
+        localized: false,
+        types: [
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      onChange: {
+        required: 'false',
+        default: 'null',
+        localized: false,
+        types: [
+          'function',
+        ],
+        required: false,
+        private: true,
+      },
+      formatData: {
+        required: 'false',
+        default: 'null',
+        localized: false,
+        types: [
+          'function',
+        ],
+        required: false,
+        private: false,
+      },
+      formatLoad: {
+        required: 'false',
+        default: 'null',
+        localized: false,
+        types: [
+          'function',
+        ],
+        required: false,
+        private: false,
+      },
+      submit: {
+        required: 'false',
+        default: 'true',
+        localized: false,
+        types: [
+          'boolean',
+        ],
+        required: false,
+        private: false,
+      },
+      rules: {
+        required: 'false',
+        default: 'null',
+        localized: false,
+        types: [
+          'array',
+          'string',
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      messages: {
+        required: 'false',
+        default: '{}',
+        localized: false,
+        types: [
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      fieldName: {
+        required: 'false',
+        default: 'name|label',
+        localized: false,
+        types: [
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
+      type: {
+        required: 'false',
+        default: 'text',
+        localized: false,
+        types: [
+          'string',
+        ],
+        required: false,
+        private: true,
+      },
+      id: {
+        required: 'false',
+        default: 'null',
+        localized: false,
+        types: [
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
+      default: {
+        required: 'false',
+        default: 'null',
+        localized: true,
+        types: [
+          'string',
+          'number',
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      debounce: {
+        required: 'false',
+        default: 'null',
+        localized: false,
+        types: [
+          'number',
+        ],
+        required: false,
+        private: false,
+      },
+      disabled: {
+        required: 'false',
+        default: 'false',
+        localized: false,
+        types: [
+          'boolean',
+        ],
+        required: false,
+        private: false,
+      },
+      readonly: {
+        required: 'false',
+        default: 'false',
+        localized: false,
+        types: [
+          'boolean',
+        ],
+        required: false,
+        private: false,
+      },
+      autoloadFonts: {
+        required: 'false',
+        default: 'true',
+        localized: false,
+        types: [
+          'boolean',
+        ],
+        required: false,
+        private: false,
+      },
+      maxWidth: {
+        required: 'false',
+        default: 'auto',
+        localized: false,
+        types: [
+          'number',
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
+      height: {
+        required: 'false',
+        default: '160',
+        localized: false,
+        types: [
+          'number',
+        ],
+        required: false,
+        private: false,
+      },
+      uploadWidth: {
+        required: 'false',
+        default: '480',
+        localized: false,
+        types: [
+          'number',
+        ],
+        required: false,
+        private: false,
+      },
+      uploadHeight: {
+        required: 'false',
+        default: '160',
+        localized: false,
+        types: [
+          'number',
+        ],
+        required: false,
+        private: false,
+      },
+      placeholder: {
+        required: 'false',
+        default: 'null',
+        localized: true,
+        types: [
+          'string',
+          'object',
+          'boolean',
+        ],
+        required: false,
+        private: false,
+      },
+      line: {
+        required: 'false',
+        default: 'true',
+        localized: false,
+        types: [
+          'boolean',
+        ],
+        required: false,
+        private: false,
+      },
+      minFontSize: {
+        required: 'false',
+        default: '10',
+        localized: false,
+        types: [
+          'number',
+        ],
+        required: false,
+        private: false,
+      },
+      maxFontSize: {
+        required: 'false',
+        default: '60',
+        localized: false,
+        types: [
+          'number',
+        ],
+        required: false,
+        private: false,
+      },
+      modes: {
+        required: 'false',
+        default: '["draw","type","upload"]',
+        localized: false,
+        types: [
+          'array',
+        ],
+        required: false,
+        private: false,
+      },
+      signatures: {
+        required: 'false',
+        default: '[]',
+        localized: false,
+        types: [
+          'array',
+        ],
+        required: false,
+        private: false,
+      },
+      colors: {
+        required: 'false',
+        default: '["#000000","#2558b2","#f22f30"]',
+        localized: false,
+        types: [
+          'array',
+        ],
+        required: false,
+        private: false,
+      },
+      invertColors: {
+        required: 'false',
+        default: '["#000000"]',
+        localized: false,
+        types: [
+          'array',
+        ],
+        required: false,
+        private: false,
+      },
+      fonts: {
+        required: 'false',
+        default: '["Caveat@400","Sacramento@400","Dancing Script@400"]',
+        localized: false,
+        types: [
+          'array',
+        ],
+        required: false,
+        private: false,
+      },
+      accept: {
+        required: 'false',
+        default: '["jpg","png","svg"]',
+        localized: false,
+        types: [
+          'array',
+        ],
+        required: false,
+        private: false,
+      },
+      maxSize: {
+        required: 'false',
+        default: '2048',
+        localized: false,
+        types: [
+          'number',
+        ],
+        required: false,
+        private: false,
+      },
+      canClear: {
+        required: 'false',
+        default: 'true',
+        localized: false,
+        types: [
+          'boolean',
+        ],
+        required: false,
+        private: false,
+      },
+      canUndo: {
+        required: 'false',
+        default: 'true',
+        localized: false,
+        types: [
+          'boolean',
+        ],
+        required: false,
+        private: false,
+      },
+      canDrop: {
+        required: 'false',
+        default: 'true',
+        localized: false,
+        types: [
+          'boolean',
+        ],
+        required: false,
+        private: false,
+      },
+    },
+    data: {
+      active: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is hidden internally by core components like tabs or steps. Only intended for reading.',
+        default: 'true',
+        private: true,
+      },
+      mounted: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element has been already mounted.',
+        default: 'true',
+        private: false,
+      },
+      container: {
+        types: [
+          'HTMLElement',
+        ],
+        description: 'The ref to the outermost DOM of the element.',
+        private: false,
+      },
+      conditionList: {
+        types: [
+          'array',
+        ],
+        description: 'The current conditions of the element.',
+        private: true,
+      },
+      localDisabled: {
+        types: [
+          'boolean',
+          'null',
+        ],
+        description: 'Helper to store whether the element is disabled via api (with .disable()).',
+        default: 'null',
+        private: true,
+      },
+      events: {
+        types: [
+          'array',
+        ],
+        description: 'Helper property used to store available events for the element.',
+        default: '[]',
+        private: true,
+      },
+      listeners: {
+        types: [
+          'object',
+        ],
+        description: 'Helper property used to store listeners for events.',
+        default: '{}',
+        private: true,
+      },
+      focused: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is focused.',
+        private: false,
+      },
+      input: {
+        types: [
+          'HTMLElement',
+        ],
+        description: 'The main input field of the element.',
+        private: false,
+      },
+      mode$: {
+        types: [
+          'ElementAddonOptions',
+        ],
+        description: 'The signature mode selector.',
+        private: false,
+      },
+      font$: {
+        types: [
+          'ElementAddonOptions',
+        ],
+        description: 'The font style selector.',
+        private: false,
+      },
+      input$: {
+        types: [
+          'HTMLInputElement',
+        ],
+        description: 'The input field when [`mode`](#property-mode) is &apos;type`.',
+        private: false,
+      },
+      preview$: {
+        types: [
+          'HTMLCanvasElement',
+        ],
+        description: 'The canvas that shows the preview of an uploaded signature when [`mode`](#property-mode) is &apos;upload`.',
+        private: false,
+      },
+      pad$: {
+        types: [
+          'HTMLCanvasElement',
+        ],
+        description: 'The canvas that allows drawning signature when [`mode`](#property-mode) is &apos;draw`.',
+        private: false,
+      },
+      file$: {
+        types: [
+          'HTMLInputElement',
+        ],
+        description: 'The file input field when [`mode`](#property-mode) is &apos;upload` (it&apos;s invisible).',
+        private: false,
+      },
+      upload$: {
+        types: [
+          'HTMLElement',
+        ],
+        description: 'The DOM that contains upload related parts.',
+        private: false,
+      },
+      uploadButton$: {
+        types: [
+          'HTMLElement',
+        ],
+        description: 'The upload button.',
+        private: false,
+      },
+      mode: {
+        types: [
+          'string',
+        ],
+        description: 'The current signature mode (`draw`, `type` or `upload`).',
+        private: false,
+      },
+      fontFamily: {
+        types: [
+          'string',
+        ],
+        description: 'The current font family.',
+        private: false,
+      },
+      fontWeight: {
+        types: [
+          'string',
+        ],
+        description: 'The current font weight.',
+        private: false,
+      },
+      color: {
+        types: [
+          'string',
+        ],
+        description: 'The hex code of the current signature color.',
+        private: false,
+      },
+      text: {
+        types: [
+          'string',
+        ],
+        description: 'The input value used when [`mode`](#property-mode) is &apos;type`.',
+        private: false,
+      },
+      fontSize: {
+        types: [
+          '',
+        ],
+        description: 'The current font size.',
+        private: false,
+      },
+      pad: {
+        types: [
+          '',
+        ],
+        description: 'The [Signature Pad](https://github.com/szimek/signature_pad) instance.',
+        private: false,
+      },
+      image: {
+        types: [
+          'File',
+        ],
+        description: 'The file (image) selected by the user when [`mode`](#property-mode) is &apos;upload`.',
+        private: false,
+      },
+      created: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the image preview is already created when [`mode`](#property-mode) is &apos;upload`.',
+        private: false,
+      },
+      creating: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the image preview is being created when [`mode`](#property-mode) is &apos;upload`.',
+        private: false,
+      },
+      dragging: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether a file is being dragged over the element when [`mode`](#property-mode) is &apos;upload`.',
+        private: false,
+      },
+      drawn: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the canvas contains any drawn signature when [`mode`](#property-mode) is &apos;draw`.',
+        private: false,
+      },
+      drawing: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether a signature is currently being drawn when [`mode`](#property-mode) is &apos;draw`.',
+        private: false,
+      },
+      redos: {
+        types: [
+          'array',
+        ],
+        description: 'The list of available redos.',
+        private: false,
+      },
+      undosLeft: {
+        types: [
+          'number',
+        ],
+        description: 'The number available undos.',
+        private: false,
+      },
+      width: {
+        types: [
+          'number',
+        ],
+        description: 'The current width of the signature element.',
+        private: false,
+      },
+      lastWidth: {
+        types: [
+          'number',
+        ],
+        description: 'The last width of the element.',
+        private: false,
+      },
+      state: {
+        types: [
+          'object',
+        ],
+        description: 'Helper property used to store the element states.',
+        default: '{ dirty: false, validate: true }',
+        private: true,
+      },
+      Validators: {
+        types: [
+          'array',
+        ],
+        description: 'An array containing all the validators of the element.',
+        default: '[]',
+        private: true,
+      },
+      messageBag: {
+        types: [
+          'MessageBag',
+        ],
+        description: 'Instance of MessageBag service. Custom errors and messages [can be added](/docs/validating-elements#custom-errors-and-messages).',
+        default: 'MessageBag',
+        private: false,
+      },
+      resetting: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is currently being resetet (no validation should happen).',
+        default: 'false',
+        private: true,
+      },
+      initialValue: {
+        types: [
+          'any',
+        ],
+        description: 'The initial value of the element.',
+        private: true,
+      },
+      internalValue: {
+        types: [
+          'any',
+        ],
+        description: 'The store for the value of the element when we&apos;re not using external data (form&apos;s `v-model`).',
+        private: true,
+      },
+      hidden: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element was hidden programmatically with [`show()`](#method-show) or [`hide()`](#method-hide) methods.',
+        default: 'false',
+        private: false,
+      },
+    },
+    computed: {
+      descriptionId: {
+        types: [
+          'string',
+        ],
+        description: 'The `id` of the related description component.',
+        private: true,
+      },
+      labelId: {
+        types: [
+          'string',
+        ],
+        description: 'The `id` of the related label component.',
+        private: true,
+      },
+      infoId: {
+        types: [
+          'string',
+        ],
+        description: 'The `id` of the related description component.',
+        private: true,
+      },
+      errorId: {
+        types: [
+          'string',
+        ],
+        description: 'The `id` of the related error component.',
+        private: true,
+      },
+      aria: {
+        types: [
+          'object',
+        ],
+        description: 'The `aria-*` attributes of the input.',
+        private: false,
+      },
+      el$: {
+        types: [
+          'VueformElement',
+        ],
+        description: 'The element&apos;s component.',
+        private: false,
+      },
+      isStatic: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is static (does not have any data or validation).',
+        private: true,
+      },
+      isFileType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element&apos;s value is a file.',
+        private: true,
+      },
+      isArrayType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element&apos;s value is an array.',
+        private: true,
+      },
+      isImageType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element&apos;s value is an image.',
+        private: true,
+      },
+      isObjectType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is a nested object.',
+        private: true,
+      },
+      isGroupType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is a nested group.',
+        private: true,
+      },
+      isListType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is a list.',
+        private: true,
+      },
+      isActive: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element should be visible when using `tabs` or `steps`.',
+        private: true,
+      },
+      classes: {
+        types: [
+          'object',
+        ],
+        description: 'The component&apos;s classes.',
+        private: false,
+      },
+      classesInstance: {
+        types: [
+          'MergeClasses',
+        ],
+        description: 'The classes instance (for testing purpose).',
+        private: true,
+      },
+      cols: {
+        types: [
+          'object',
+        ],
+        description: 'The `cols` property of the Columns service instance.',
+        private: true,
+      },
+      columnsClassesService: {
+        types: [
+          'Columns',
+        ],
+        description: 'The classes service instance.',
+        private: true,
+      },
+      columnsClasses: {
+        types: [
+          'object',
+        ],
+        description: 'Calculated column sizes and classes for the element.',
+        private: true,
+      },
+      available: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether no [`conditions`](#option-conditions) are defined or they are all fulfilled.',
+        private: false,
+      },
+      data: {
+        types: [
+          'object',
+        ],
+        description: 'The value of the element in `{[name]: value}` value format. This gets merged with the parent component&apos;s data.',
+        private: false,
+      },
+      requestData: {
+        types: [
+          'object',
+        ],
+        description: 'Same as `data` property except that it only includes the element&apos;s value if [`submit`](#option-submit) is not disabled and [`available`](#property-available) is `true` (has no [`conditions`](#option-conditions) or they are fulfilled).',
+        private: false,
+      },
+      defaultValue: {
+        types: [
+          'any',
+        ],
+        description: 'The default value of the element.',
+        private: true,
+      },
+      isDisabled: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is disabled.',
+        private: false,
+      },
+      empty: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element has no value filled in.',
+        private: false,
+      },
+      fieldId: {
+        types: [
+          'string',
+        ],
+        description: 'The `id` of the <%field%>. If [`id`](#option-id) is not provided [`path`](#option-path) will be used.',
+        private: false,
+      },
+      genericName: {
+        types: [
+          'string',
+        ],
+        description: 'The generic name of the element constructed from label / floating or element name.',
+        private: true,
+      },
+      hasLabel: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element has a [`label`](#option-label) option, a [#label](#slot-label) slot or `Vueform` component&apos;s [`forceLabels`](vueform#option-force-labels) option is `true`.',
+        private: false,
+      },
+      Label: {
+        types: [
+          'string',
+          'Component',
+        ],
+        description: 'The localized label of the element.',
+        private: true,
+      },
+      elementLayout: {
+        types: [
+          'string',
+          'Component',
+        ],
+        description: 'The current layout of the element.',
+        private: true,
+      },
+      nullValue: {
+        types: [
+          'any',
+        ],
+        description: 'The null value of the element.',
+        private: true,
+      },
+      parent: {
+        types: [
+          'VNode',
+        ],
+        description: 'The parent component of the element.',
+        private: false,
+      },
+      path: {
+        types: [
+          'string',
+        ],
+        description: 'The path of the element using dot `.` syntax.',
+        private: false,
+      },
+      dataPath: {
+        types: [
+          'string',
+        ],
+        description: 'The path of the element&apos;s data using dot `.` syntax.',
+        private: false,
+      },
+      flat: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is just a container of children but not nested on data level (eg. [`GroupElement`](group-element))',
+        private: true,
+      },
+      Placeholder: {
+        types: [
+          'string',
+        ],
+        description: 'The localized placeholder of the element.',
+        private: false,
+      },
+      fontFamilies: {
+        types: [
+          'array',
+        ],
+        description: 'The available font families.',
+        private: false,
+      },
+      fontWeights: {
+        types: [
+          'array',
+        ],
+        description: 'The available font weights.',
+        private: false,
+      },
+      uploaded: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether a signature (as URL) was loaded to the element.',
+        private: false,
+      },
+      processing: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the uploaded file is being processed for preview.',
+        private: false,
+      },
+      droppable: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether `drop` is enabled and browser supports dragging.',
+        private: false,
+      },
+      resolvedModes: {
+        types: [
+          'array',
+        ],
+        description: 'The list of [`modes`](#option-modes) formatted for mode selector.',
+        private: false,
+      },
+      resolvedFonts: {
+        types: [
+          '',
+        ],
+        description: 'The list of [`fonts`](#option-fonts) formatted for fonts selector.',
+        private: false,
+      },
+      fileAccept: {
+        types: [
+          'string',
+        ],
+        description: 'The list of MIME types formatted for the file input attribute.',
+        private: false,
+      },
+      showLine: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the signature line should be shown.',
+        private: false,
+      },
+      showInput: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the signature text input should be shown.',
+        private: false,
+      },
+      showPlaceholder: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the signature placeholder should be shown.',
+        private: false,
+      },
+      showUploadContainer: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the upload container should be shown.',
+        private: false,
+      },
+      showUpload: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the file upload controllers should be shown.',
+        private: false,
+      },
+      showPreview: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether file upload preview should be shown.',
+        private: false,
+      },
+      showPad: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether signature draw pad should be shown.',
+        private: false,
+      },
+      showUndos: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether undo and redo buttons should be shown.',
+        private: false,
+      },
+      showColors: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether color selector should be shown.',
+        private: false,
+      },
+      showModes: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether mode selector should be shown.',
+        private: false,
+      },
+      showFonts: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether font selector should be shown.',
+        private: false,
+      },
+      showClear: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether clear button should be shown.',
+        private: false,
+      },
+      tabindex: {
+        types: [
+          'number',
+          'undefined',
+        ],
+        description: 'The tabindex of focusable DOM parts.',
+        private: false,
+      },
+      placeholderText: {
+        types: [
+          'string',
+        ],
+        description: 'The text of the placeholder.',
+        private: false,
+      },
+      dndText: {
+        types: [
+          'string',
+        ],
+        description: 'The text of the drag and drop area.',
+        private: false,
+      },
+      uploadButtonText: {
+        types: [
+          'string',
+        ],
+        description: 'The text of the upload button.',
+        private: false,
+      },
+      imgAltText: {
+        types: [
+          'string',
+        ],
+        description: 'The text of the img alt attribute.',
+        private: false,
+      },
+      imgTitleText: {
+        types: [
+          'string',
+        ],
+        description: 'The text of the img title attribute.',
+        private: false,
+      },
+      fontText: {
+        types: [
+          'string',
+        ],
+        description: 'The current text of font selector options.',
+        private: false,
+      },
+      undoText: {
+        types: [
+          'string',
+        ],
+        description: 'The undo button&apos;s title.',
+        private: false,
+      },
+      redoText: {
+        types: [
+          'string',
+        ],
+        description: 'The redo button&apos;s title.',
+        private: false,
+      },
+      modeSelectorAria: {
+        types: [
+          'object',
+        ],
+        description: 'The aria attributes of the mode selector.',
+        private: false,
+      },
+      fontSelectorAria: {
+        types: [
+          'object',
+        ],
+        description: 'The aria attributes of the font selector.',
+        private: false,
+      },
+      wrapperAriaLabel: {
+        types: [
+          'string',
+        ],
+        description: 'The aria label of the signature wrapper.',
+        private: false,
+      },
+      inputAriaLabel: {
+        types: [
+          'string',
+        ],
+        description: 'The aria label of the text input field.',
+        private: false,
+      },
+      padAriaLabel: {
+        types: [
+          'string',
+        ],
+        description: 'The aria label of the signature pad.',
+        private: false,
+      },
+      colorAriaLabel: {
+        types: [
+          'string',
+        ],
+        description: 'The aria label of a color.',
+        private: false,
+      },
+      clearAriaLabel: {
+        types: [
+          'string',
+        ],
+        description: 'The aria label of the clear button.',
+        private: false,
+      },
+      padWidth: {
+        types: [
+          'number',
+        ],
+        description: 'The width of signature pad.',
+        private: false,
+      },
+      padHeight: {
+        types: [
+          'number',
+        ],
+        description: 'The height of signature pad.',
+        private: false,
+      },
+      padStyle: {
+        types: [
+          'object',
+        ],
+        description: 'The style attributes of the signature pad.',
+        private: false,
+      },
+      wrapperStyle: {
+        types: [
+          'object',
+        ],
+        description: 'The style attributes of the signature wrapper.',
+        private: false,
+      },
+      inputStyle: {
+        types: [
+          '',
+        ],
+        description: 'The style attributes of the signature input when [`mode`](#property-mode) is &apos;type`.',
+        private: false,
+      },
+      lineStyle: {
+        types: [
+          '',
+        ],
+        description: 'The style attributes of the signature line.',
+        private: false,
+      },
+      elementSlots: {
+        types: [
+          'object',
+        ],
+        description: 'Slots of the element.',
+        private: true,
+      },
+      fieldSlots: {
+        types: [
+          'object',
+        ],
+        description: 'Slots related to the element&apos;s field. E.g. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, e.g. `option` or `single-label` for `SelectElement`.',
+        private: true,
+      },
+      Templates: {
+        types: [
+          'object',
+        ],
+        description: 'The list of templates available to the element.',
+        private: true,
+      },
+      template: {
+        types: [
+          'object',
+        ],
+        description: 'The component&apos;s template.',
+        private: false,
+      },
+      dirty: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element&apos;s value was modified.',
+        private: false,
+      },
+      validated: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element was already validated at least once.',
+        private: false,
+      },
+      invalid: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element has any failing rules.',
+        private: false,
+      },
+      pending: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element has any async rules in progress.',
+        private: false,
+      },
+      busy: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is `pending`.',
+        private: false,
+      },
+      errors: {
+        types: [
+          'array',
+        ],
+        description: 'All the errors of `MessageBag`.',
+        private: false,
+      },
+      error: {
+        types: [
+          'string',
+        ],
+        description: 'The first error of `MessageBag`.',
+        private: false,
+      },
+      validationRules: {
+        types: [
+          'string',
+          'array',
+        ],
+        description: 'The element&apos;s validation rules.',
+        private: true,
+      },
+      isDanger: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element has errors.',
+        private: false,
+      },
+      isSuccess: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element has been filled in successfully.',
+        private: false,
+      },
+      value: {
+        types: [
+          'any',
+        ],
+        description: 'The value of the element.',
+        private: false,
+      },
+      model: {
+        types: [
+          'any',
+        ],
+        description: 'Intermediary value between element&apos;s value and field&apos;s `v-model`. It is required when we need to transform the value format between the element and its field.',
+        private: false,
+      },
+      isDefault: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element has its default value.',
+        private: false,
+      },
+      visible: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is visible. It&apos;s `false` when `available` or `active` is `false` or `hidden` is `true`.',
+        private: false,
+      },
+      Size: {
+        types: [
+          'string',
+        ],
+        description: 'The resolved size of the element and all of its child components.',
+        private: false,
+      },
+      View: {
+        types: [
+          'string',
+        ],
+        description: 'The name of the resolved view for the component and the default view for its child components. Child component views can be overridden with [`views`](#option-views) option. This one should be used to determine the component&apos;s view in class functions.',
+        private: false,
+      },
+      Views: {
+        types: [
+          'object',
+        ],
+        description: 'The name of the views for the components.',
+        private: true,
+      },
+    },
+    methods: {
+      activate: {
+        description: 'Sets the `active` property of the element to `true`.',
+        returns: 'void',
+        private: true,
+      },
+      deactivate: {
+        description: 'Sets the `active` property of the element to `false`.',
+        returns: 'void',
+        private: true,
+      },
+      updateColumns: {
+        description: 'Update columns programmatically.',
+        returns: 'void',
+        params: {
+          value: {
+            types: [
+              'number',
+              'array',
+            ],
+            required: 'true',
+            description: 'the new value for columns option',
+          },
+        },
+        private: true,
+      },
+      updateConditions: {
+        description: 'Updates element conditions after they have been changed.',
+        returns: 'void',
+        private: true,
+      },
+      load: {
+        description: 'Loads value to the element using optional [`formatLoad`](#option-format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.',
+        returns: 'void',
+        params: {
+          value: {
+            types: [
+              'any',
+            ],
+            required: 'true',
+            description: 'the value to be loaded',
+          },
+          format: {
+            types: [
+              'boolean',
+            ],
+            required: 'false',
+            description: 'whether the loaded value should be formatted with [`formatLoad`](#option-format-load) before setting the value of the element (default: `false`)',
+          },
+        },
+        private: false,
+      },
+      update: {
+        description: 'Updates the value of the element similarly to [`load`](#method-load), only that it can\&apos;t format data.',
+        returns: 'void',
+        params: {
+          value: {
+            types: [
+              'any',
+            ],
+            required: 'true',
+            description: 'the value to be set',
+          },
+        },
+        private: false,
+      },
+      clear: {
+        description: 'Clears the element&apos;s value.',
+        returns: 'void',
+        private: false,
+      },
+      reset: {
+        description: 'Resets the element&apos;s value to [`default`](#option-default) (or empty if `default` is not provided). Also resets all the validation state for the element.',
+        returns: 'void',
+        private: false,
+      },
+      disable: {
+        description: 'Disables the element.',
+        returns: 'void',
+        private: false,
+      },
+      enable: {
+        description: 'Enables the element even if it is disabled by [`disabled`](#disabled) option.',
+        returns: 'void',
+        private: false,
+      },
+      on: {
+        description: 'Adds a listener for an event.',
+        returns: 'void',
+        params: {
+          event: {
+            types: [
+              'string',
+            ],
+            required: 'true',
+            description: 'name of the event to listen for',
+          },
+          callback: {
+            types: [
+              'function',
+            ],
+            required: 'true',
+            description: 'callback to run when the event is triggered',
+          },
+        },
+        private: false,
+      },
+      off: {
+        description: 'Removes all listeners for an event.',
+        returns: 'void',
+        params: {
+          event: {
+            types: [
+              'string',
+            ],
+            required: 'true',
+            description: 'name of the event to remove',
+          },
+        },
+        private: false,
+      },
+      fire: {
+        description: 'Fires and emits an event.',
+        returns: 'void',
+        params: {
+          args: {
+            types: [
+              'any',
+            ],
+            required: 'false',
+            description: 'list of arguments to pass over to the event callback ',
+          },
+        },
+        private: false,
+      },
+      focus: {
+        description: 'Focuses the first focusable part of the element.',
+        returns: 'void',
+        private: true,
+      },
+      initPad: {
+        description: 'Initalizes the [Signature Pad](https://github.com/szimek/signature_pad).',
+        returns: 'void',
+        private: false,
+      },
+      resizePad: {
+        description: 'Resizes the signature pad to the current max width and clears any drawings.',
+        returns: 'void',
+        private: false,
+      },
+      drawingToImage: {
+        description: 'Sets the element value as Blob from the current drawing.',
+        returns: 'void',
+        private: false,
+      },
+      typingToImage: {
+        description: 'Sets the element value as Blob from the currently typed signature.',
+        returns: 'void',
+        private: false,
+      },
+      uploadToImage: {
+        description: 'Sets the element value as Blob from the currently uploaded signature.',
+        returns: 'void',
+        private: false,
+      },
+      undo: {
+        description: 'Undoes the last drawing when [`mode`](#property-mode) is &apos;draw`.',
+        returns: 'void',
+        private: false,
+      },
+      redo: {
+        description: 'Redoes the last drawing when [`mode`](#property-mode) is &apos;draw`.',
+        returns: 'void',
+        private: false,
+      },
+      clearSignature: {
+        description: 'Clears the signature in all forms (drawn, typed, uploaded, loaded).',
+        returns: 'void',
+        private: false,
+      },
+      clearDrawnSignature: {
+        description: 'Clears the drawn signature.',
+        returns: 'void',
+        private: false,
+      },
+      loadFonts: {
+        description: 'Loads Google Fonts dynamically by adding `<link>` tags to `<head>`.',
+        returns: 'void',
+        private: false,
+      },
+      setDrawColor: {
+        description: 'Sets the drawing color of the signature pad.',
+        returns: 'void',
+        private: false,
+      },
+      adjustFontSize: {
+        description: 'Adjusts the typed signature&apos;s font size to fit into the input without overflow until [`minSize`](#option-min-size) or [`maxSize`](#option-max-size) is reached.',
+        returns: 'void',
+        private: false,
+      },
+      hexToRgb: {
+        description: 'Converts a HEX color to RGB.',
+        returns: 'string',
+        params: {
+          hex: {
+            types: [
+              'string',
+            ],
+            required: 'true',
+            description: 'the color in HEX format',
+          },
+        },
+        private: false,
+      },
+      checkFileExt: {
+        description: 'Checks if a file complies with [`accept`](#option-accept) list and throws an alert if not.',
+        returns: 'boolean',
+        params: {
+          file: {
+            types: [
+              'File',
+            ],
+            required: 'true',
+            description: 'the file to check',
+          },
+        },
+        private: false,
+      },
+      checkFileSize: {
+        description: 'Checks if a file is under the allowed [`maxSize`](#option-max-size) and throws an alert if not.',
+        returns: 'boolean',
+        params: {
+          file: {
+            types: [
+              'File',
+            ],
+            required: 'true',
+            description: 'the file to check',
+          },
+        },
+        private: false,
+      },
+      setWidth: {
+        description: 'Sets the [`width`](#property-width) to the current element width.',
+        returns: 'void',
+        private: false,
+      },
+      setLastWidth: {
+        description: 'Sets the [`lastWidth`](#property-last-width) to the current element width.',
+        returns: 'void',
+        private: false,
+      },
+      setDefaultMode: {
+        description: 'Sets the [`mode`](#property-mode) to the first available mode from [`modes`](#option-modes). If none found, `draw` will be set.',
+        returns: 'void',
+        private: false,
+      },
+      setDefaultFont: {
+        description: 'Sets the [`fontFamily`](#property-font-family) and [`fontWeight`](#property-font-weight) to the first available from [`fonts`](#option-fonts). If none found, `cursive` and `400` will be set.',
+        returns: 'void',
+        private: false,
+      },
+      setDefaultColor: {
+        description: 'Sets the [`color`](#property-color) to the first available color from [`colors`](#option-colors). If none found, `#000000` will be set.',
+        returns: 'void',
+        private: false,
+      },
+      setFont: {
+        description: 'Sets the [`fontFamily`](#property-font-family) and [`fontWeight`](#property-font-weight) by the index of a font from [`fonts`](#option-fonts).',
+        returns: 'void',
+        params: {
+          value: {
+            types: [
+              'object',
+            ],
+            required: 'true',
+            description: 'the selected font object (from [`resolvedFonts`](#property-resolved-fonts))',
+          },
+        },
+        private: false,
+      },
+      handleInput: {
+        description: 'Handles the input event of the input field.',
+        returns: 'void',
+        params: {
+          e: {
+            types: [
+              'Event',
+            ],
+            required: 'false',
+            description: 'the Event object',
+          },
+        },
+        private: false,
+      },
+      handleModeSelect: {
+        description: 'Handles the mode select.',
+        returns: 'void',
+        params: {
+          value: {
+            types: [
+              'object',
+            ],
+            required: 'true',
+            description: 'the selected mode object (from [`resolvedModes`](#property-resolved-modes))',
+          },
+        },
+        private: false,
+      },
+      handleColorSelect: {
+        description: 'Handles the color select.',
+        returns: 'void',
+        params: {
+          value: {
+            types: [
+              'string',
+            ],
+            required: 'false',
+            description: 'the color to select (HEX)',
+          },
+        },
+        private: false,
+      },
+      handleFontSelect: {
+        description: 'Handles the font select.',
+        returns: 'void',
+        params: {
+          value: {
+            types: [
+              'object',
+            ],
+            required: 'true',
+            description: 'the selected font object (from [`resolvedFonts`](#property-resolved-fonts))',
+          },
+        },
+        private: false,
+      },
+      handleClear: {
+        description: 'Handle the clear button action.',
+        returns: 'void',
+        private: false,
+      },
+      handleUndo: {
+        description: 'Handles the undo button action.',
+        returns: 'void',
+        private: false,
+      },
+      handleRedo: {
+        description: 'Handles the redo button action.',
+        returns: 'void',
+        private: false,
+      },
+      handleSelectClick: {
+        description: 'Handles the file select button action.',
+        returns: 'void',
+        private: false,
+      },
+      handleFileSelect: {
+        description: 'Handles the file selection.',
+        returns: 'void',
+        private: false,
+      },
+      handleDrop: {
+        description: 'Handles the drop event.',
+        returns: 'void',
+        params: {
+          e: {
+            types: [
+              'Event',
+            ],
+            required: 'true',
+            description: 'the Event object',
+          },
+        },
+        private: false,
+      },
+      handleMouseLeave: {
+        description: 'Handles the mouse leave event of the wrapper.',
+        returns: 'void',
+        private: false,
+      },
+      handleResize: {
+        description: 'Handles the window resize event.',
+        returns: 'void',
+        private: false,
+      },
+      validate: {
+        description: 'Checks each validation rule for the element (async).',
+        returns: 'Promise',
+        private: false,
+      },
+      dirt: {
+        description: 'Flag the element as dirty.',
+        returns: 'void',
+        private: true,
+      },
+      clean: {
+        description: 'Removes the element&apos;s `dirty` state.',
+        returns: 'void',
+        private: false,
+      },
+      clearMessages: {
+        description: 'Clears the manually added messages from the [`messageBag`](#property-message-bag).',
+        returns: 'void',
+        private: false,
+      },
+      resetValidators: {
+        description: 'Sets the validators to default state.',
+        returns: 'void',
+        private: false,
+      },
+      initMessageBag: {
+        description: 'Initializes MessageBag service.',
+        returns: 'void',
+        private: true,
+      },
+      initValidation: {
+        description: 'Initializes validators.',
+        returns: 'void',
+        private: true,
+      },
+      reinitValidation: {
+        description: 'Re-initializes validators when rules have changed.',
+        returns: 'void',
+        private: false,
+      },
+      hide: {
+        description: 'Hides the element.',
+        returns: 'void',
+        private: false,
+      },
+      show: {
+        description: 'Shows the element if it was hidden with [`hide()`](#method-hide) method.',
+        returns: 'void',
+        private: false,
+      },
+    },
+    inject: {
+      form$: {
+        types: [
+          'Vueform',
+        ],
+        description: 'The root form&apos;s component.',
+        private: false,
+      },
+      theme: {
+        types: [
+          'object',
+        ],
+        description: 'The global theme object, which contains all the default templates and classes.',
+        private: false,
+      },
+    },
+    events: {
+      'change': {
+        description: 'Triggered when the element&apos;s value is changed.',
+        params: {
+          newValue: {
+            description: 'the new value',
+            types: [
+              'string',
+            ]
+          },
+          oldValue: {
+            description: 'the old value',
+            types: [
+              'string',
+            ]
+          },
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'blur': {
+        description: 'Triggered when the input is blurred.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'keydown': {
+        description: 'Triggered on keydown.',
+        params: {
+          Event: {
+            description: 'the Event object',
+            types: [
+              'Event',
+            ]
+          },
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'keyup': {
+        description: 'Triggered on keyup.',
+        params: {
+          Event: {
+            description: 'the Event object',
+            types: [
+              'Event',
+            ]
+          },
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'keypress': {
+        description: 'Triggered on keypress.',
+        params: {
+          Event: {
+            description: 'the Event object',
+            types: [
+              'Event',
+            ]
+          },
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'beforeCreate': {
+        description: 'Triggered in beforeCreate hook.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'created': {
+        description: 'Triggered in created hook.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'beforeMount': {
+        description: 'Triggered in beforeMount hook.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'mounted': {
+        description: 'Triggered in mounted hook.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'beforeUpdate': {
+        description: 'Triggered in beforeUpdate hook.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'updated': {
+        description: 'Triggered in updated hook.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'beforeUnmount': {
+        description: 'Triggered in beforeUnmount (or beforeDestroy in Vue 2) hook.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'unmounted': {
+        description: 'Triggered in unmounted (or destroyed in Vue 2) hook.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+    },
+    slots: {
+      'label': {
+        description: 'Renders a label for the element in [`ElementLabel`](element-label) component.',
+        props: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ],
+          },
+        },
+      },
+      'info': {
+        description: 'Renders an info icon in [`ElementInfo`](element-info) component next the the element label. When the icon is hovered it shows the content of this slot. The element needs to have a label to render this.',
+        props: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ],
+          },
+        },
+      },
+      'description': {
+        description: 'Renders description for the element in [`ElementDescription`](element-description) component.',
+        props: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ],
+          },
+        },
+      },
+      'before': {
+        description: 'Renders an [`ElementText`](element-text) component before the <%field%>.',
+        props: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ],
+          },
+        },
+      },
+      'between': {
+        description: 'Renders an [`ElementText`](element-text) component after the <%field%> and before description.',
+        props: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ],
+          },
+        },
+      },
+      'after': {
+        description: 'Renders an [`ElementText`](element-text) component after the description and error.',
+        props: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ],
+          },
+        },
+      },
+      'addon-before': {
+        description: 'Prepends an addon to the <%field%>.',
+        props: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ],
+          },
+        },
+      },
+      'addon-after': {
+        description: 'Appends an addon to the <%field%>.',
+        props: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ],
+          },
+        },
+      },
+    },
+    views: [],
+  },
   SliderElement: {
     props: {
       name: {

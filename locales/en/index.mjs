@@ -47,7 +47,7 @@ export default {
         "inputAriaLabel": "Type your signature here",
         "padAriaLabel": "Draw your signature in the box. Seek assistance if you need to.",
         "clearAriaLabel": "Clear signature",
-        "colorAriaLabel": "Select color: ",
+        "colorAriaLabel": "Select color: "
       }
     },
     "steps": {

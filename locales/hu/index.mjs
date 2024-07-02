@@ -25,6 +25,29 @@ export default {
       },
       "phone": {
         "ariaLabel": "Select a country"
+      },
+      "signature": {
+        "type": "Type",
+        "draw": "Draw",
+        "upload": "Upload",
+        "font": "Select typeface",
+        "fontPlaceholder": "Your Name",
+        "placeholder": "Sign here",
+        "unsupportedFormat": "Unsupported file format. Accepted extenions are: :extensions",
+        "maxSizeError": "Max file size is :max KBs",
+        "imgAlt": "Signature",
+        "imgTitle": "Signature",
+        "undo": "Undo",
+        "redo": "Redo",
+        "dnd": "Drop an image here or",
+        "uploadButton": "Select image",
+        "modeSelectorAriaLabel": "Select signature mode",
+        "fontSelectorAriaLabel": "Select typeface",
+        "wrapperAriaLabel": "Signature input",
+        "inputAriaLabel": "Type your signature here",
+        "padAriaLabel": "Draw your signature in the box. Seek assistance if you need to.",
+        "clearAriaLabel": "Clear signature",
+        "colorAriaLabel": "Select color: "
       }
     },
     "steps": {
