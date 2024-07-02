@@ -2,16 +2,17 @@ import isArray from 'lodash/isArray'
 import includes from 'lodash/includes'
 import startsWith from 'lodash/startsWith'
 import endsWith from 'lodash/endsWith'
-import moment from 'moment'
 import normalize from './normalize'
 
-export default function(actual, operator, expected, el$) {
+export default function(actual, operator, expected, el$, form$) {
   if (!operator) {
     return false
   }
 
   actual = Array.isArray(actual) ? actual.map(e => normalize(e)) : normalize(actual)
   expected = Array.isArray(expected) ? expected.map(e => normalize(e)) : normalize(expected)
+
+  const moment = form$.$vueform.services.moment
   
   switch (operator.toLowerCase()) {
     case '>':

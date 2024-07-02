@@ -1,6 +1,5 @@
 import each from 'lodash/each'
 import isEqual from 'lodash/isEqual'
-import moment from 'moment'
 import { toRefs, watch, computed, ref, nextTick, onMounted, getCurrentInstance } from 'vue'
 import useElementComponent from '../../composables/useElementComponent'
 import flatpickr from 'flatpickr'
@@ -51,6 +50,8 @@ export default {
       template,
       theme,
     } = useElementComponent(props, context)
+
+    const moment = form$.value.$vueform.services.moment
 
     const $this = getCurrentInstance().proxy
 

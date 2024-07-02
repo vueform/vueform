@@ -105,7 +105,7 @@ const config = {
   axios: {},
 
   /**
-   * Services
+   * Providers
    */
   locationProvider: 'google',
   providers: {
@@ -121,6 +121,10 @@ const config = {
       sitekey: '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI',
     }
   },
+
+  /**
+   * Services
+   */
   services: {
     algolia: {
       app_id: '',

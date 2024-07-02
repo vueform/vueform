@@ -1,5 +1,12 @@
 [//]: # (Don't use <tags>)
 
+## v1.9.13
+
+> `2024-07-01`
+
+### 🎉 Feature
+- Moving `moment` to services, making it tree-shakeable.
+
 ## v1.9.12
 
 > `2024-06-24`

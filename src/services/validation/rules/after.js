@@ -1,6 +1,5 @@
 import isArray from 'lodash/isArray'
 import each from 'lodash/each'
-import moment from 'moment'
 import Validator from './../validator'
 
 export default class after extends Validator {
@@ -53,24 +52,24 @@ export default class after extends Validator {
      switch (this.dateType) {
       case 'relative':
         if (this.param === 'today') {
-          date = moment().startOf('day')
+          date = this.moment().startOf('day')
         }
 
         if (this.param === 'tomorrow') {
-          date = moment().startOf('day').add(1, 'days')
+          date = this.moment().startOf('day').add(1, 'days')
         }
 
         if (this.param === 'yesterday') {
-          date = moment().startOf('day').subtract(1, 'days')
+          date = this.moment().startOf('day').subtract(1, 'days')
         }
         break
 
       case 'element':
-        date = moment(this.other$.value, this.otherFormat)
+        date = this.moment(this.other$.value, this.otherFormat)
         break
 
       case 'absolute':
-        date = moment(this.param, this.format)
+        date = this.moment(this.param, this.format)
         break
     }
 
@@ -112,6 +111,6 @@ export default class after extends Validator {
   }
 
   checkDate(value) {
-    return moment(value, this.format).isAfter(moment(this.date, this.otherFormat))
+    return this.moment(value, this.format).isAfter(this.moment(this.date, this.otherFormat))
   }
 }

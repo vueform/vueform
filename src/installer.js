@@ -22,7 +22,7 @@ import { ref, markRaw, h } from 'vue'
 
 import baseConfig from './config'
 
-export default function(config = baseConfig, components = {}, rules = {}) {
+export default function(config = baseConfig, components = {}, rules = {}, services = {}) {
   const Vueform = class {
     constructor() {
       this.options = {
@@ -48,6 +48,7 @@ export default function(config = baseConfig, components = {}, rules = {}) {
           location,
           condition,
           columns,
+          ...services,
         },
         version: packageJson.version,
       }

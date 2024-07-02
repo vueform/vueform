@@ -63,6 +63,10 @@ const Validator = class {
     this.init()
   }
 
+  get moment() {
+    return this.form$.$vueform.services.moment
+  }
+
   get name() {
     return this.rule.name
   }

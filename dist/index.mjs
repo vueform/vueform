@@ -1,5 +1,5 @@
 /*!
- * Vueform v1.9.12 (https://github.com/vueform/vueform)
+ * Vueform v1.9.13 (https://github.com/vueform/vueform)
  * Copyright (c) 2024 Adam Berecz <adam@vueform.com>
  * Licensed under the MIT License
  */
@@ -9317,6 +9317,9 @@ var Validator = class {
     });
     this.init();
   }
+  get moment() {
+    return this.form$.$vueform.services.moment;
+  }
   get name() {
     return this.rule.name;
   }
@@ -10028,7 +10031,7 @@ function shouldApplyPlugin (name, plugin) {
 }
 
 var name = "@vueform/vueform";
-var version$1 = "1.9.12";
+var version$1 = "1.9.13";
 var description = "Open-Source Form Framework for Vue";
 var homepage = "https://vueform.com";
 var license = "MIT";
@@ -10065,6 +10068,8 @@ var exports = {
 	"./locales/*.js": "./locales/*/index.mjs",
 	"./locales/*": "./locales/*/index.mjs",
 	"./src/*": "./src/*",
+	"./src/components": "./src/components/index.js",
+	"./src/services/validation/rules": "./src/services/validation/rules/index.js",
 	"./types/*": "./types/*",
 	"./dist/*.js": "./dist/*.mjs",
 	"./dist/*": "./dist/*.mjs",
@@ -10576,12 +10581,13 @@ function endsWith(string, target, position) {
 
 var endsWith_1 = endsWith;
 
-function compare (actual, operator, expected, el$) {
+function compare (actual, operator, expected, el$, form$) {
   if (!operator) {
     return false;
   }
   actual = Array.isArray(actual) ? actual.map(e => normalize(e)) : normalize(actual);
   expected = Array.isArray(expected) ? expected.map(e => normalize(e)) : normalize(expected);
+  var moment = form$.$vueform.services.moment;
   switch (operator.toLowerCase()) {
     case '>':
       return isArray_1(actual) ? actual.every(a => a > expected) : actual > expected;
@@ -10782,7 +10788,7 @@ var Factory = class {
     return (form$, Validator, el$) => {
       var actual = get_1(form$.requestData, field);
       var expected = value;
-      return compare(actual, operator, expected, this.element$);
+      return compare(actual, operator, expected, this.element$, form$);
     };
   }
 };
@@ -10855,20 +10861,20 @@ class after extends Validator {
     switch (this.dateType) {
       case 'relative':
         if (this.param === 'today') {
-          date = moment().startOf('day');
+          date = this.moment().startOf('day');
         }
         if (this.param === 'tomorrow') {
-          date = moment().startOf('day').add(1, 'days');
+          date = this.moment().startOf('day').add(1, 'days');
         }
         if (this.param === 'yesterday') {
-          date = moment().startOf('day').subtract(1, 'days');
+          date = this.moment().startOf('day').subtract(1, 'days');
         }
         break;
       case 'element':
-        date = moment(this.other$.value, this.otherFormat);
+        date = this.moment(this.other$.value, this.otherFormat);
         break;
       case 'absolute':
-        date = moment(this.param, this.format);
+        date = this.moment(this.param, this.format);
         break;
     }
     return date;
@@ -10902,13 +10908,13 @@ class after extends Validator {
     return this.checkDate(value);
   }
   checkDate(value) {
-    return moment(value, this.format).isAfter(moment(this.date, this.otherFormat));
+    return this.moment(value, this.format).isAfter(this.moment(this.date, this.otherFormat));
   }
 }
 
 class after_or_equal extends after {
   checkDate(value) {
-    return moment(value, this.format).isSameOrAfter(moment(this.date, this.otherFormat));
+    return this.moment(value, this.format).isSameOrAfter(this.moment(this.date, this.otherFormat));
   }
 }
 
@@ -10944,13 +10950,13 @@ class array$2 extends Validator {
 
 class before extends after {
   checkDate(value) {
-    return moment(value, this.format).isBefore(moment(this.date, this.otherFormat));
+    return this.moment(value, this.format).isBefore(this.moment(this.date, this.otherFormat));
   }
 }
 
 class before_or_equal extends after {
   checkDate(value) {
-    return moment(value, this.format).isSameOrBefore(moment(this.date, this.otherFormat));
+    return this.moment(value, this.format).isSameOrBefore(this.moment(this.date, this.otherFormat));
   }
 }
 
@@ -12381,7 +12387,7 @@ class date_format extends Validator {
     return this.attributes[0];
   }
   check(value) {
-    return value && moment(value, this.format).format(this.format) === value;
+    return value && this.moment(value, this.format).format(this.format) === value;
   }
 }
 
@@ -13696,7 +13702,7 @@ var check = (condition, elementPath, form$, el$) => {
     };
   };
   var compareValues = (actual, expected, operator) => {
-    return compare(actual, operator, expected, el$);
+    return compare(actual, operator, expected, el$, form$);
   };
   if (typeof condition == 'function') {
     return checkFunction();
@@ -14063,7 +14069,7 @@ var config = {
   beforeSend: null,
   axios: {},
   /**
-   * Services
+   * Providers
    */
   locationProvider: 'google',
   providers: {
@@ -14079,6 +14085,9 @@ var config = {
       sitekey: '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI'
     }
   },
+  /**
+   * Services
+   */
   services: {
     algolia: {
       app_id: '',
@@ -14091,6 +14100,7 @@ function installer () {
   var config$1 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : config;
   var components = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
   var rules = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+  var services = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
   var Vueform = class {
     constructor() {
       this.options = {
@@ -14103,7 +14113,7 @@ function installer () {
         plugins: config$1.plugins || [],
         i18n: null,
         vueVersion: null,
-        services: {
+        services: _objectSpread2$1({
           validation,
           axios,
           messageBag,
@@ -14111,7 +14121,7 @@ function installer () {
           location: location$4,
           condition,
           columns: Columns
-        },
+        }, services),
         version: packageJson.version
       };
     }
@@ -21738,6 +21748,7 @@ var DatepickerWrapper = {
       template,
       theme
     } = base$10(props, context);
+    var moment = form$.value.$vueform.services.moment;
     var $this = getCurrentInstance().proxy;
 
     // ================ DATA ================
@@ -24276,7 +24287,7 @@ var base$M = function base(props, context, dependencies) {
   };
 };
 
-function checkDateFormat (format, date) {
+function checkDateFormat (format, date, moment) {
   if (!(date instanceof Date) && moment(date, format).format(format) !== date) {
     console.warn("Wrong formatted date. Expected format: \"".concat(format, "\", received: \"").concat(date, "\""));
   }
@@ -24581,6 +24592,7 @@ var date$3 = function date(props, context, dependencies) {
   dependencies.isObject;
   dependencies.isGroup;
   dependencies.isList;
+  var moment = form$.value.$vueform.services.moment;
 
   // ================= PRE =================
 
@@ -24611,7 +24623,7 @@ var date$3 = function date(props, context, dependencies) {
       set(val) {
         // If the value is not a Date object check if it is matching the value format
         if (!isEmpty_1(val) && !(val instanceof Date) && valueDateFormat.value !== false) {
-          checkDateFormat(valueDateFormat.value, val);
+          checkDateFormat(valueDateFormat.value, val, moment);
         }
         val = val && val instanceof Date && valueDateFormat.value !== false ? moment(val).format(valueDateFormat.value) : val;
         if (form$.value.isSync) {
@@ -24658,6 +24670,7 @@ var dates$4 = function dates(props, context, dependencies) {
   dependencies.isObject;
   dependencies.isGroup;
   dependencies.isList;
+  var moment = form$.value.$vueform.services.moment;
 
   // ================= PRE =================
 
@@ -24691,7 +24704,7 @@ var dates$4 = function dates(props, context, dependencies) {
         }
         val = val.map(v => {
           if (!isEmpty_1(v) && !(v instanceof Date) && valueDateFormat.value !== false) {
-            checkDateFormat(valueDateFormat.value, v);
+            checkDateFormat(valueDateFormat.value, v, moment);
           }
           return v && v instanceof Date && valueDateFormat.value !== false ? moment(v).format(valueDateFormat.value) : v;
         });
@@ -27786,13 +27799,14 @@ var date$2 = function date(props, context, dependencies) {
   var form$ = dependencies.form$;
   var value = dependencies.value;
   var loadDateFormat = dependencies.loadDateFormat;
+  var moment = form$.value.$vueform.services.moment;
 
   // =============== METHODS ===============
 
   var load = function load(val) {
     var format = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
     var formatted = format && formatLoad.value ? formatLoad.value(val, form$.value) : val;
-    checkDateFormat(loadDateFormat.value, formatted);
+    checkDateFormat(loadDateFormat.value, formatted, moment);
     value.value = formatted instanceof Date || !formatted ? formatted : moment(formatted, loadDateFormat.value).toDate();
   };
   return {
@@ -27823,6 +27837,7 @@ var dates$3 = function dates(props, context, dependencies) {
   var form$ = dependencies.form$;
   var value = dependencies.value;
   var loadDateFormat = dependencies.loadDateFormat;
+  var moment = form$.value.$vueform.services.moment;
 
   // =============== METHODS ===============
 
@@ -27830,7 +27845,7 @@ var dates$3 = function dates(props, context, dependencies) {
     var format = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
     var formatted = format && formatLoad.value ? formatLoad.value(val, form$.value) : val;
     value.value = map_1(formatted, v => {
-      checkDateFormat(loadDateFormat.value, v);
+      checkDateFormat(loadDateFormat.value, v, moment);
       return v instanceof Date ? v : moment(v, loadDateFormat.value).toDate();
     });
   };
@@ -29293,6 +29308,8 @@ var date$1 = function date(props, context, dependencies) {
   var isDisabled = dependencies.isDisabled;
   var displayDateFormat = dependencies.displayDateFormat;
   var valueDateFormat = dependencies.valueDateFormat;
+  var form$ = dependencies.form$;
+  var moment = form$.value.$vueform.services.moment;
 
   // ============== COMPUTED ==============
 
@@ -29308,7 +29325,7 @@ var date$1 = function date(props, context, dependencies) {
       return [];
     }
     return map_1(disables.value, disabledDate => {
-      checkDateFormat(valueDateFormat.value, disabledDate);
+      checkDateFormat(valueDateFormat.value, disabledDate, moment);
       return disabledDate instanceof Date ? disabledDate : moment(disabledDate, valueDateFormat.value, true).toDate();
     });
   });
@@ -29323,7 +29340,7 @@ var date$1 = function date(props, context, dependencies) {
     if (!min.value) {
       return null;
     }
-    checkDateFormat(valueDateFormat.value, min.value);
+    checkDateFormat(valueDateFormat.value, min.value, moment);
     return min.value instanceof Date ? min.value : moment(min.value, valueDateFormat.value, true).toDate();
   });
 
@@ -29337,7 +29354,7 @@ var date$1 = function date(props, context, dependencies) {
     if (!max.value) {
       return null;
     }
-    checkDateFormat(valueDateFormat.value, max.value);
+    checkDateFormat(valueDateFormat.value, max.value, moment);
     return max.value instanceof Date ? max.value : moment(max.value, valueDateFormat.value, true).toDate();
   });
 
@@ -41383,8 +41400,12 @@ var defineElement = element;
 installer(undefined, {
   Vueform: VueformComponent,
   FormElements
+}, {}, {
+  moment
 });
 
-var vueform = installer(undefined, _objectSpread2$1({}, components), _objectSpread2$1({}, rules));
+var vueform = installer(undefined, _objectSpread2$1({}, components), _objectSpread2$1({}, rules), {
+  moment
+});
 
 export { ButtonElement, CaptchaElement, CheckboxElement, CheckboxgroupCheckbox, CheckboxgroupElement, DateElement, DatepickerWrapper, DatesElement, DragAndDrop, EditorElement, EditorWrapper, ElementAddon, ElementAddonOptions, ElementDescription, ElementError, ElementInfo, ElementLabel, ElementLabelFloating, ElementLayout, ElementLayoutInline, ElementLoader, ElementMessage, ElementText, FileElement, FilePreview, FormElements, FormErrors, FormLanguage, FormLanguages, FormMessages, FormStep, FormSteps, FormStepsControl, FormStepsControls, FormTab, FormTabs, GenericElement, GroupElement, HiddenElement, ListElement, LocationElement, MultifileElement, MultiselectElement, ObjectElement, PhoneElement, RadioElement, RadiogroupElement, RadiogroupRadio, SelectElement, SignatureElement, SliderElement, StaticElement, TEditorElement, TTextElement, TTextareaElement, TagsElement, TextElement, TextareaElement, ToggleElement, Validator, VueformComponent as Vueform, VueformElement, accepted, active_url, after, after_or_equal, alpha, alpha_dash, alpha_num, array$2 as array, before, before_or_equal, between, boolean$1 as boolean, captcha$2 as captcha, completed, confirmed, date$4 as date, date_equals, date_format, vueform as default, defineConfig, defineElement, different, digits, digits_between, dimensions, distinct, element, email, exists, file$5 as file, filled, gt, gte, image, in_, in_array, installer, integer, ip, ipv4, ipv6, json, lt, lte, max, mimes, mimetypes, min$1 as min, not_in, not_regex, nullable, numeric, regex, required, same, size, string, timezone, unique, url, base$1a as useClasses, base$1b as useVueform, uuid, vueform };

@@ -1,5 +1,4 @@
 import Validator from './../validator'
-import moment from 'moment'
 
 export default class date_format extends Validator {
   get messageParams() {
@@ -14,6 +13,6 @@ export default class date_format extends Validator {
   }
 
   check(value) {
-    return value && moment(value, this.format).format(this.format) === value
+    return value && this.moment(value, this.format).format(this.format) === value
   }
 }
