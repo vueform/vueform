@@ -82,7 +82,7 @@ export default {
     maxWidth: {
       required: false,
       type: [Number, String],
-      default: 480,
+      default: 'auto',
     },
     height: {
       required: false,

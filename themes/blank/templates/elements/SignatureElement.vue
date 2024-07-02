@@ -4,6 +4,10 @@
       <div
         :class="classes.wrapper"
         :style="wrapperStyle"
+        :tabindex="isDisabled ? undefined : 0"
+        :aria-label="wrapperAriaLabel"
+        @keydown.tab.escape="handleMouseLeave"
+        @mouseleave="handleMouseLeave"
         ref="input"
       >
 
@@ -12,6 +16,7 @@
           v-show="showLine"
           :class="classes.line"
           :style="lineStyle"
+          aria-hidden="true"
         />
 
         <!-- Loaded preview -->
@@ -32,6 +37,62 @@
           v-show="!uploaded"
           :class="classes.innerWrapper"
         >
+          <!-- Actions -->
+          <div :class="classes.actions">
+
+            <!-- Mode -->
+            <ElementAddonOptions
+              v-show="showModes"
+              :options="resolvedModes"
+              :placeholder="''"
+              position="bottom"
+              relaxed
+              :aria="modeSelectorAria"
+              @select="handleModeSelect"
+              ref="mode$"
+            />
+
+            <!-- Fonts -->
+            <ElementAddonOptions
+              v-show="showFonts"
+              :options="resolvedFonts"
+              :placeholder="fontText"
+              position="bottom"
+              relaxed
+              :aria="fontSelectorAria"
+              @select="handleFontSelect"
+              ref="font$"
+            />
+
+            <!-- Undos -->
+            <div
+              v-show="showUndos"
+              :class="classes.undosWrapper"
+            >
+              <!-- Undo -->
+              <div
+                :class="classes.undo"
+                :title="undoText"
+                role="button"
+                :tabindex="undosLeft ? tabindex : undefined "
+                :aria-label="undoText"
+                @click.stop="handleUndo"
+                @keydown.space.enter.prevent="handleUndo"
+              />
+
+              <!-- Redo -->
+              <div
+                :class="classes.redo"
+                :title="redoText"
+                role="button"
+                :tabindex="redos.length ? tabindex : undefined"
+                :aria-label="redoText"
+                @click.stop="handleRedo"
+                @keydown.space.enter.prevent="handleRedo"
+              />
+            </div>
+          </div>
+
           <!-- Input -->
           <input
             v-show="showInput"
@@ -42,6 +103,7 @@
             :disabled="isDisabled"
             :readonly="readonly"
             :style="inputStyle"
+            :aria-label="inputAriaLabel"
             @input="handleInput"
             @select="handleInput"
             ref="input$"
@@ -70,14 +132,19 @@
                 v-if="droppable"
                 :class="classes.dndText"  
               >
-                Drop an image here or
+                {{ dndText }}
               </div>
 
               <!-- Select button -->
               <div
                 :class="classes.uploadButton"
+                :tabindex="tabindex"
+                role="button"
+                :aria-label="uploadButtonText"
                 @click="handleSelectClick"
-              >Select image</div>
+                @keydown.space.enter.prevent="handleSelectClick"
+                ref="uploadButton$"
+              >{{ uploadButtonText }}</div>
 
               <!-- Hidden file input -->
               <input
@@ -106,6 +173,8 @@
             :height="padHeight"
             :style="padStyle"
             :class="classes.pad"
+            :tabindex="tabindex"
+            :aria-label="padAriaLabel"
             ref="pad$"
           />
 
@@ -113,62 +182,22 @@
           <div
             v-show="showColors"
             :class="classes.colors"
+            role="listbox"
           >
             <svg
               v-for="c in colors"
               width="12"
               height="12"
               :class="classes.color(c)"
+              role="option"
+              :tabindex="tabindex"
+              :aria-label="`${colorAriaLabel} ${c}`"
+              :aria-selected="c === color"
               @click="handleColorSelect(c)"
+              @keydown.space.enter.prevent="handleColorSelect(c)"
             >
               <circle cx="6" cy="6" r="6" :fill="c" />
             </svg>
-          </div>
-
-          <!-- Actions -->
-          <div :class="classes.actions">
-
-            <!-- Mode -->
-            <ElementAddonOptions
-              v-show="showModes"
-              :options="resolvedModes"
-              :placeholder="''"
-              position="bottom"
-              relaxed
-              @select="handleModeSelect"
-              ref="mode$"
-            />
-
-            <!-- Fonts -->
-            <ElementAddonOptions
-              v-show="showFonts"
-              :options="resolvedFonts"
-              :placeholder="fontText"
-              position="bottom"
-              relaxed
-              @select="handleFontSelect"
-              ref="font$"
-            />
-
-            <!-- Undos -->
-            <div
-              v-show="showUndos"
-              :class="classes.undosWrapper"
-            >
-              <!-- Undo -->
-              <div
-                :class="classes.undo"
-                :title="undoText"
-                @click.stop="handleUndo"
-              />
-
-              <!-- Redo -->
-              <div
-                :class="classes.redo"
-                :title="redoText"
-                @click.stop="handleRedo"
-              />
-            </div>
           </div>
         </div>
 
@@ -179,7 +208,11 @@
         >
           <div
             :class="classes.clear"
+            :tabindex="tabindex"
+            role="button"
+            :aria-label="clearAriaLabel"
             @click="handleClear"
+            @keydown.enter.space.prevent="handleClear"
           ></div>
         </div>
       </div>

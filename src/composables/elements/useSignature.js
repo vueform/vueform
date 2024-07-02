@@ -89,6 +89,13 @@ export default function (props, context, dependencies)
   const upload$ = ref(null)
 
   /**
+   * The upload button.
+   *
+   * @type {HTMLElement}
+   */
+  const uploadButton$ = ref(null)
+
+  /**
    * The current signature mode (`draw`, `type` or `upload`).
    *
    * @type {string}
@@ -207,6 +214,13 @@ export default function (props, context, dependencies)
    */
   const lastWidth = ref(0)
 
+  /**
+   * Whether the mouse is over after starting to draw a signature.
+   * 
+   * @type {boolean}
+   */
+  const isMouseOver = ref(false)
+
   // ============== COMPUTED ==============
 
   /**
@@ -282,9 +296,9 @@ export default function (props, context, dependencies)
    */
   const resolvedFonts = computed(() => {
     return fontFamilies.value.map((font, i) => ({
-      label: `<font style="font-family: ${font}; font-weight: ${fontWeights.value[i]}">${
+      label: `<div><span style="font-family: ${font}; font-weight: ${fontWeights.value[i]}" aria-hidden="true">${
         text.value?.trim() || form$.value.translations.vueform.elements.signature.fontPlaceholder
-      }</font>`,
+      }</span><span style="position: absolute; left: -9999px; opacity: 0;">${font}</span></div>`,
       value: i,
       index: i,
     }))
@@ -400,7 +414,7 @@ export default function (props, context, dependencies)
     return (
       (mode.value === 'upload' && created.value) ||
       mode.value === 'type' || mode.value === 'draw'
-    ) && !drawing.value && colors.value.length > 1
+    ) && !drawing.value && colors.value.length > 1 && !isMouseOver.value
   })
   
   /**
@@ -409,7 +423,7 @@ export default function (props, context, dependencies)
    * @type {boolean}
    */
   const showModes = computed(() => {
-    return !drawing.value && modes.value.length > 1
+    return !drawing.value && modes.value.length > 1 && !isMouseOver.value
   })
   
   /**
@@ -436,12 +450,39 @@ export default function (props, context, dependencies)
   })
 
   /**
+   * The tabindex of focusable DOM parts.
+   * 
+   * @type {number|undefined}
+   */
+  const tabindex = computed(() => {
+    return isDisabled.value || readonly.value ? undefined : 0
+  })
+
+  /**
    * The text of the placeholder.
    *
    * @type {string}
    */
   const placeholderText = computed(() => {
     return Placeholder.value || form$.value.translations.vueform.elements.signature.placeholder
+  })
+
+  /**
+   * The text of the drag and drop area.
+   *
+   * @type {string}
+   */
+  const dndText = computed(() => {
+    return 'Drop an image here or'
+  })
+
+  /**
+   * The text of the upload button.
+   *
+   * @type {string}
+   */
+  const uploadButtonText = computed(() => {
+    return 'Select image'
   })
 
   /**
@@ -487,6 +528,73 @@ export default function (props, context, dependencies)
    */
   const redoText = computed(() => {
     return form$.value.translations.vueform.elements.signature.redo
+  })
+
+  /**
+   * The aria attributes of the mode selector.
+   *
+   * @type {object}
+   */
+  const modeSelectorAria = computed(() => {
+    return {
+      'aria-label': form$.value.translations.vueform.elements.signature.modeSelectorAriaLabel
+    }
+  })
+
+  /**
+   * The aria attributes of the font selector.
+   *
+   * @type {object}
+   */
+  const fontSelectorAria = computed(() => {
+    return {
+      'aria-label': form$.value.translations.vueform.elements.signature.fontSelectorAriaLabel,
+    }
+  })
+
+  /**
+   * The aria label of the signature wrapper.
+   *
+   * @type {string}
+   */
+  const wrapperAriaLabel = computed(() => {
+    return form$.value.translations.vueform.elements.signature.wrapperAriaLabel
+  })
+
+  /**
+   * The aria label of the text input field.
+   *
+   * @type {string}
+   */
+  const inputAriaLabel = computed(() => {
+    return form$.value.translations.vueform.elements.signature.inputAriaLabel
+  })
+
+  /**
+   * The aria label of the signature pad.
+   *
+   * @type {string}
+   */
+  const padAriaLabel = computed(() => {
+    return form$.value.translations.vueform.elements.signature.padAriaLabel
+  })
+
+  /**
+   * The aria label of the clear button.
+   *
+   * @type {string}
+   */
+  const clearAriaLabel = computed(() => {
+    return form$.value.translations.vueform.elements.signature.clearAriaLabel
+  })
+
+  /**
+   * The aria label of a color.
+   *
+   * @type {string}
+   */
+  const colorAriaLabel = computed(() => {
+    return form$.value.translations.vueform.elements.signature.colorAriaLabel
   })
 
   /**
@@ -589,6 +697,7 @@ export default function (props, context, dependencies)
         return
       }
 
+      isMouseOver.value = true
       drawn.value = true
       drawing.value = true
       redos.value = []
@@ -1160,6 +1269,18 @@ export default function (props, context, dependencies)
     }
 
     mode.value = value.value
+
+    nextTick(() => {
+      if (mode.value === 'draw') {
+        pad$.value.focus()
+      }
+      else if (mode.value === 'type') {
+        input$.value.focus()
+      }
+      else if (mode.value === 'upload') {
+        uploadButton$.value.focus()
+      }
+    })
   }
 
   /**
@@ -1201,8 +1322,22 @@ export default function (props, context, dependencies)
     if (isDisabled.value || readonly.value) {
       return
     }
+
+    if (!uploaded.value) {
+      if (mode.value === 'draw') {
+        pad$.value.focus()
+      }
+      else if (mode.value === 'type') {
+        input$.value.focus()
+      }
+      else if (mode.value === 'upload') {
+        uploadButton$.value.focus()
+      }
+    }
     
     clearSignature()
+
+    isMouseOver.value = false
   }
 
   /**
@@ -1216,6 +1351,8 @@ export default function (props, context, dependencies)
     }
 
     undo()
+
+    isMouseOver.value = false
   }
 
   /**
@@ -1229,6 +1366,8 @@ export default function (props, context, dependencies)
     }
 
     redo()
+
+    isMouseOver.value = false
   }
 
   /**
@@ -1275,6 +1414,15 @@ export default function (props, context, dependencies)
     let file = e.dataTransfer.files[0]
     
     setImage(file)
+  }
+
+  /**
+   * Handles the mouse leave event of the wrapper.
+   * 
+   * @returns {void}
+   */
+  const handleMouseLeave = () => {
+    isMouseOver.value = false
   }
 
   /**
@@ -1424,6 +1572,7 @@ export default function (props, context, dependencies)
     pad$,
     file$,
     upload$,
+    uploadButton$,
     mode,
     fontFamily,
     fontWeight,
@@ -1462,12 +1611,22 @@ export default function (props, context, dependencies)
     showModes,
     showFonts,
     showClear,
+    tabindex,
     placeholderText,
+    dndText,
+    uploadButtonText,
     imgAltText,
     imgTitleText,
     fontText,
     undoText,
     redoText,
+    modeSelectorAria,
+    fontSelectorAria,
+    wrapperAriaLabel,
+    inputAriaLabel,
+    padAriaLabel,
+    colorAriaLabel,
+    clearAriaLabel,
     padWidth,
     padHeight,
     padStyle,
@@ -1506,6 +1665,7 @@ export default function (props, context, dependencies)
     handleSelectClick,
     handleFileSelect,
     handleDrop,
+    handleMouseLeave,
     handleResize,
     handleResizeDebounce,
   }

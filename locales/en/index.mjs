@@ -39,6 +39,15 @@ export default {
         "imgTitle": "Signature",
         "undo": "Undo",
         "redo": "Redo",
+        "dnd": "Drop an image here or",
+        "uploadButton": "Select image",
+        "modeSelectorAriaLabel": "Select signature mode",
+        "fontSelectorAriaLabel": "Select typeface",
+        "wrapperAriaLabel": "Signature input",
+        "inputAriaLabel": "Type your signature here",
+        "padAriaLabel": "Draw your signature in the box. Seek assistance if you need to.",
+        "clearAriaLabel": "Clear signature",
+        "colorAriaLabel": "Select color: ",
       }
     },
     "steps": {

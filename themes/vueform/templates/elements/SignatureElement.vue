@@ -120,6 +120,11 @@
     letter-spacing: var(--vf-letter-spacing);
     border-radius: var(--vf-radius-large);
 
+    &:focus {
+      outline: var(--vf-ring-width) solid var(--vf-ring-color);
+      border-color: var(--vf-border-color-input-focus);
+    }
+
     &.vf-signature-sm {
       font-size: var(--vf-font-size-sm);
       line-height: var(--vf-line-height-sm);
@@ -265,10 +270,16 @@
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     transition-duration: 200ms;
     cursor: pointer;
+    outline: none;
+    border-radius: 50%;
 
     &:hover,
     &.vf-signature-color-active {
       transform: scale(1.4);
+    }
+
+    &:focus-visible {
+      outline: var(--vf-ring-width) solid var(--vf-ring-color);
     }
   }
 
@@ -284,6 +295,7 @@
     transition-property: opacity;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     transition-duration: 200ms;
+    z-index: 1;
 
     &:hover {
       opacity: 1;
@@ -312,6 +324,10 @@
     cursor: pointer;
     width: 0.75rem;
     height: 0.75rem;
+
+    &:focus-visible {
+      opacity: 0.8;
+    }
   }
 
   .vf-signature-undo {
@@ -358,6 +374,10 @@
     box-sizing: content-box;
     display: inline-block;
     cursor: pointer;
+
+    &:focus-visible {
+      opacity: 0.8;
+    }
   }
 
   .dark {
