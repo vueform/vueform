@@ -24,30 +24,30 @@ export default {
         "dndDescription": "Перетащите изображения или нажмите здесь, чтобы загрузить"
       },
       "phone": {
-        "ariaLabel": "Select a country"
+        "ariaLabel": "Выберите страну"
       },
       "signature": {
-        "type": "Type",
-        "draw": "Draw",
-        "upload": "Upload",
-        "font": "Select typeface",
-        "fontPlaceholder": "Your Name",
-        "placeholder": "Sign here",
-        "unsupportedFormat": "Unsupported file format. Accepted extenions are: :extensions",
-        "maxSizeError": "Max file size is :max KBs",
-        "imgAlt": "Signature",
-        "imgTitle": "Signature",
-        "undo": "Undo",
-        "redo": "Redo",
-        "dnd": "Drop an image here or",
-        "uploadButton": "Select image",
-        "modeSelectorAriaLabel": "Select signature mode",
-        "fontSelectorAriaLabel": "Select typeface",
-        "wrapperAriaLabel": "Signature input",
-        "inputAriaLabel": "Type your signature here",
-        "padAriaLabel": "Draw your signature in the box. Seek assistance if you need to.",
-        "clearAriaLabel": "Clear signature",
-        "colorAriaLabel": "Select color: "
+        "type": "Текст",
+        "draw": "Рисовать",
+        "upload": "Загрузить",
+        "font": "Выберите шрифт",
+        "fontPlaceholder": "Ваше имя",
+        "placeholder": "Подпишите здесь",
+        "unsupportedFormat": "Неподдерживаемый формат файла. Принимаемые расширения: :extensions",
+        "maxSizeError": "Максимальный размер файла :max КБ",
+        "imgAlt": "Подпись",
+        "imgTitle": "Подпись",
+        "undo": "Отменить",
+        "redo": "Повторить",
+        "dnd": "Перетащите изображение сюда или",
+        "uploadButton": "Выберите изображение",
+        "modeSelectorAriaLabel": "Выберите режим подписи",
+        "fontSelectorAriaLabel": "Выберите шрифт",
+        "wrapperAriaLabel": "Поле для подписи",
+        "inputAriaLabel": "Введите вашу подпись здесь",
+        "padAriaLabel": "Нарисуйте вашу подпись в поле. Обратитесь за помощью, если она вам нужна.",
+        "clearAriaLabel": "Очистить подпись",
+        "colorAriaLabel": "Выберите цвет: "
       }
     },
     "steps": {

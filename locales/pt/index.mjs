@@ -24,30 +24,30 @@ export default {
         "dndDescription": "Solte imagens ou clique aqui para submeter"
       },
       "phone": {
-        "ariaLabel": "Select a country"
+        "ariaLabel": "Selecione um país"
       },
       "signature": {
-        "type": "Type",
-        "draw": "Draw",
-        "upload": "Upload",
-        "font": "Select typeface",
-        "fontPlaceholder": "Your Name",
-        "placeholder": "Sign here",
-        "unsupportedFormat": "Unsupported file format. Accepted extenions are: :extensions",
-        "maxSizeError": "Max file size is :max KBs",
-        "imgAlt": "Signature",
-        "imgTitle": "Signature",
-        "undo": "Undo",
-        "redo": "Redo",
-        "dnd": "Drop an image here or",
-        "uploadButton": "Select image",
-        "modeSelectorAriaLabel": "Select signature mode",
-        "fontSelectorAriaLabel": "Select typeface",
-        "wrapperAriaLabel": "Signature input",
-        "inputAriaLabel": "Type your signature here",
-        "padAriaLabel": "Draw your signature in the box. Seek assistance if you need to.",
-        "clearAriaLabel": "Clear signature",
-        "colorAriaLabel": "Select color: "
+        "type": "Texto",
+        "draw": "Desenhar",
+        "upload": "Carregar",
+        "font": "Selecione a fonte",
+        "fontPlaceholder": "Seu nome",
+        "placeholder": "Assine aqui",
+        "unsupportedFormat": "Formato de arquivo não suportado. As extensões aceitas são: :extensions",
+        "maxSizeError": "O tamanho máximo do arquivo é :max KB",
+        "imgAlt": "Assinatura",
+        "imgTitle": "Assinatura",
+        "undo": "Desfazer",
+        "redo": "Refazer",
+        "dnd": "Solte uma imagem aqui ou",
+        "uploadButton": "Selecione uma imagem",
+        "modeSelectorAriaLabel": "Selecione o modo de assinatura",
+        "fontSelectorAriaLabel": "Selecione a fonte",
+        "wrapperAriaLabel": "Campo de assinatura",
+        "inputAriaLabel": "Digite sua assinatura aqui",
+        "padAriaLabel": "Desenhe sua assinatura na caixa. Peça ajuda se precisar.",
+        "clearAriaLabel": "Limpar assinatura",
+        "colorAriaLabel": "Selecione a cor: "
       }
     },
     "steps": {

@@ -24,30 +24,30 @@ export default {
         "dndDescription": "Presuňte obrázky alebo ich nahrajte kliknutím sem"
       },
       "phone": {
-        "ariaLabel": "Select a country"
+        "ariaLabel": "Vyberte krajinu"
       },
       "signature": {
-        "type": "Type",
-        "draw": "Draw",
-        "upload": "Upload",
-        "font": "Select typeface",
-        "fontPlaceholder": "Your Name",
-        "placeholder": "Sign here",
-        "unsupportedFormat": "Unsupported file format. Accepted extenions are: :extensions",
-        "maxSizeError": "Max file size is :max KBs",
-        "imgAlt": "Signature",
-        "imgTitle": "Signature",
-        "undo": "Undo",
-        "redo": "Redo",
-        "dnd": "Drop an image here or",
-        "uploadButton": "Select image",
-        "modeSelectorAriaLabel": "Select signature mode",
-        "fontSelectorAriaLabel": "Select typeface",
-        "wrapperAriaLabel": "Signature input",
-        "inputAriaLabel": "Type your signature here",
-        "padAriaLabel": "Draw your signature in the box. Seek assistance if you need to.",
-        "clearAriaLabel": "Clear signature",
-        "colorAriaLabel": "Select color: "
+        "type": "Text",
+        "draw": "Kresliť",
+        "upload": "Nahrať",
+        "font": "Vyberte písmo",
+        "fontPlaceholder": "Vaše meno",
+        "placeholder": "Podpíšte sa tu",
+        "unsupportedFormat": "Nepodporovaný formát súboru. Akceptované prípony sú: :extensions",
+        "maxSizeError": "Maximálna veľkosť súboru je :max KB",
+        "imgAlt": "Podpis",
+        "imgTitle": "Podpis",
+        "undo": "Späť",
+        "redo": "Znova",
+        "dnd": "Presuňte obrázok sem alebo",
+        "uploadButton": "Vyberte obrázok",
+        "modeSelectorAriaLabel": "Vyberte režim podpisu",
+        "fontSelectorAriaLabel": "Vyberte písmo",
+        "wrapperAriaLabel": "Vstup pre podpis",
+        "inputAriaLabel": "Zadajte svoj podpis sem",
+        "padAriaLabel": "Nakreslite svoj podpis do rámčeka. Požiadajte o pomoc, ak ju potrebujete.",
+        "clearAriaLabel": "Vymazať podpis",
+        "colorAriaLabel": "Vyberte farbu: "
       }
     },
     "steps": {

@@ -24,30 +24,30 @@ export default {
         "dndDescription": "Rilascia le immagini o clicca qui per caricarle"
       },
       "phone": {
-        "ariaLabel": "Select a country"
+        "ariaLabel": "Seleziona un paese"
       },
       "signature": {
-        "type": "Type",
-        "draw": "Draw",
-        "upload": "Upload",
-        "font": "Select typeface",
-        "fontPlaceholder": "Your Name",
-        "placeholder": "Sign here",
-        "unsupportedFormat": "Unsupported file format. Accepted extenions are: :extensions",
-        "maxSizeError": "Max file size is :max KBs",
-        "imgAlt": "Signature",
-        "imgTitle": "Signature",
-        "undo": "Undo",
-        "redo": "Redo",
-        "dnd": "Drop an image here or",
-        "uploadButton": "Select image",
-        "modeSelectorAriaLabel": "Select signature mode",
-        "fontSelectorAriaLabel": "Select typeface",
-        "wrapperAriaLabel": "Signature input",
-        "inputAriaLabel": "Type your signature here",
-        "padAriaLabel": "Draw your signature in the box. Seek assistance if you need to.",
-        "clearAriaLabel": "Clear signature",
-        "colorAriaLabel": "Select color: "
+        "type": "Testo",
+        "draw": "Disegna",
+        "upload": "Carica",
+        "font": "Seleziona carattere",
+        "fontPlaceholder": "Il tuo nome",
+        "placeholder": "Firma qui",
+        "unsupportedFormat": "Formato di file non supportato. Le estensioni accettate sono: :extensions",
+        "maxSizeError": "La dimensione massima del file è :max KB",
+        "imgAlt": "Firma",
+        "imgTitle": "Firma",
+        "undo": "Annulla",
+        "redo": "Ripristina",
+        "dnd": "Trascina un'immagine qui o",
+        "uploadButton": "Seleziona immagine",
+        "modeSelectorAriaLabel": "Seleziona modalità firma",
+        "fontSelectorAriaLabel": "Seleziona carattere",
+        "wrapperAriaLabel": "Campo firma",
+        "inputAriaLabel": "Digita la tua firma qui",
+        "padAriaLabel": "Disegna la tua firma nella casella. Chiedi assistenza se ne hai bisogno.",
+        "clearAriaLabel": "Cancella firma",
+        "colorAriaLabel": "Seleziona colore: "
       }
     },
     "steps": {

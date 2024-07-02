@@ -24,30 +24,30 @@ export default {
         "dndDescription": "Slip billeder eller klik her for at uploade"
       },
       "phone": {
-        "ariaLabel": "Select a country"
+        "ariaLabel": "Vælg et land"
       },
       "signature": {
-        "type": "Type",
-        "draw": "Draw",
+        "type": "Tekst",
+        "draw": "Tegn",
         "upload": "Upload",
-        "font": "Select typeface",
-        "fontPlaceholder": "Your Name",
-        "placeholder": "Sign here",
-        "unsupportedFormat": "Unsupported file format. Accepted extenions are: :extensions",
-        "maxSizeError": "Max file size is :max KBs",
-        "imgAlt": "Signature",
-        "imgTitle": "Signature",
-        "undo": "Undo",
-        "redo": "Redo",
-        "dnd": "Drop an image here or",
-        "uploadButton": "Select image",
-        "modeSelectorAriaLabel": "Select signature mode",
-        "fontSelectorAriaLabel": "Select typeface",
-        "wrapperAriaLabel": "Signature input",
-        "inputAriaLabel": "Type your signature here",
-        "padAriaLabel": "Draw your signature in the box. Seek assistance if you need to.",
-        "clearAriaLabel": "Clear signature",
-        "colorAriaLabel": "Select color: "
+        "font": "Vælg skrifttype",
+        "fontPlaceholder": "Dit navn",
+        "placeholder": "Underskriv her",
+        "unsupportedFormat": "Ikke-understøttet filformat. Acceptable udvidelser er: :extensions",
+        "maxSizeError": "Maksimal filstørrelse er :max KB",
+        "imgAlt": "Underskrift",
+        "imgTitle": "Underskrift",
+        "undo": "Fortryd",
+        "redo": "Gendan",
+        "dnd": "Slip et billede her eller",
+        "uploadButton": "Vælg billede",
+        "modeSelectorAriaLabel": "Vælg underskriftsmodus",
+        "fontSelectorAriaLabel": "Vælg skrifttype",
+        "wrapperAriaLabel": "Underskriftsfelt",
+        "inputAriaLabel": "Skriv din underskrift her",
+        "padAriaLabel": "Tegn din underskrift i boksen. Søg hjælp, hvis du har brug for det.",
+        "clearAriaLabel": "Ryd underskrift",
+        "colorAriaLabel": "Vælg farve: "
       }
     },
     "steps": {

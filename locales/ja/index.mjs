@@ -24,30 +24,30 @@ export default {
         "dndDescription": "画像をドロップするか、ここをクリックしてアップロードしてください"
       },
       "phone": {
-        "ariaLabel": "Select a country"
+        "ariaLabel": "国を選択"
       },
       "signature": {
-        "type": "Type",
-        "draw": "Draw",
-        "upload": "Upload",
-        "font": "Select typeface",
-        "fontPlaceholder": "Your Name",
-        "placeholder": "Sign here",
-        "unsupportedFormat": "Unsupported file format. Accepted extenions are: :extensions",
-        "maxSizeError": "Max file size is :max KBs",
-        "imgAlt": "Signature",
-        "imgTitle": "Signature",
-        "undo": "Undo",
-        "redo": "Redo",
-        "dnd": "Drop an image here or",
-        "uploadButton": "Select image",
-        "modeSelectorAriaLabel": "Select signature mode",
-        "fontSelectorAriaLabel": "Select typeface",
-        "wrapperAriaLabel": "Signature input",
-        "inputAriaLabel": "Type your signature here",
-        "padAriaLabel": "Draw your signature in the box. Seek assistance if you need to.",
-        "clearAriaLabel": "Clear signature",
-        "colorAriaLabel": "Select color: "
+        "type": "テキスト",
+        "draw": "描く",
+        "upload": "アップロード",
+        "font": "フォントを選択",
+        "fontPlaceholder": "あなたの名前",
+        "placeholder": "ここにサイン",
+        "unsupportedFormat": "サポートされていないファイル形式です。受け入れられる拡張子は: :extensions",
+        "maxSizeError": "最大ファイルサイズは:max KBです",
+        "imgAlt": "署名",
+        "imgTitle": "署名",
+        "undo": "元に戻す",
+        "redo": "やり直し",
+        "dnd": "ここに画像をドロップするか",
+        "uploadButton": "画像を選択",
+        "modeSelectorAriaLabel": "署名モードを選択",
+        "fontSelectorAriaLabel": "フォントを選択",
+        "wrapperAriaLabel": "署名入力",
+        "inputAriaLabel": "ここに署名を入力",
+        "padAriaLabel": "ボックスに署名を描いてください。必要に応じて支援を求めてください。",
+        "clearAriaLabel": "署名をクリア",
+        "colorAriaLabel": "色を選択: "
       }
     },
     "steps": {

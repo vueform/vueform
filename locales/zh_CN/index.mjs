@@ -24,30 +24,30 @@ export default {
         "dndDescription": "删除图片或点击此处上传"
       },
       "phone": {
-        "ariaLabel": "Select a country"
+        "ariaLabel": "选择一个国家"
       },
       "signature": {
-        "type": "Type",
-        "draw": "Draw",
-        "upload": "Upload",
-        "font": "Select typeface",
-        "fontPlaceholder": "Your Name",
-        "placeholder": "Sign here",
-        "unsupportedFormat": "Unsupported file format. Accepted extenions are: :extensions",
-        "maxSizeError": "Max file size is :max KBs",
-        "imgAlt": "Signature",
-        "imgTitle": "Signature",
-        "undo": "Undo",
-        "redo": "Redo",
-        "dnd": "Drop an image here or",
-        "uploadButton": "Select image",
-        "modeSelectorAriaLabel": "Select signature mode",
-        "fontSelectorAriaLabel": "Select typeface",
-        "wrapperAriaLabel": "Signature input",
-        "inputAriaLabel": "Type your signature here",
-        "padAriaLabel": "Draw your signature in the box. Seek assistance if you need to.",
-        "clearAriaLabel": "Clear signature",
-        "colorAriaLabel": "Select color: "
+        "type": "文本",
+        "draw": "绘制",
+        "upload": "上传",
+        "font": "选择字体",
+        "fontPlaceholder": "您的名字",
+        "placeholder": "在此签名",
+        "unsupportedFormat": "不支持的文件格式。接受的扩展名是：:extensions",
+        "maxSizeError": "最大文件大小为 :max KB",
+        "imgAlt": "签名",
+        "imgTitle": "签名",
+        "undo": "撤销",
+        "redo": "重做",
+        "dnd": "将图像拖放到此处或",
+        "uploadButton": "选择图像",
+        "modeSelectorAriaLabel": "选择签名模式",
+        "fontSelectorAriaLabel": "选择字体",
+        "wrapperAriaLabel": "签名输入",
+        "inputAriaLabel": "在此输入您的签名",
+        "padAriaLabel": "在框中绘制您的签名。如需帮助，请寻求协助。",
+        "clearAriaLabel": "清除签名",
+        "colorAriaLabel": "选择颜色："
       }
     },
     "steps": {

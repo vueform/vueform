@@ -24,30 +24,30 @@ export default {
         "dndDescription": "Jatuhkan gambar atau klik di sini untuk mengunggah"
       },
       "phone": {
-        "ariaLabel": "Select a country"
+        "ariaLabel": "Pilih negara"
       },
       "signature": {
-        "type": "Type",
-        "draw": "Draw",
-        "upload": "Upload",
-        "font": "Select typeface",
-        "fontPlaceholder": "Your Name",
-        "placeholder": "Sign here",
-        "unsupportedFormat": "Unsupported file format. Accepted extenions are: :extensions",
-        "maxSizeError": "Max file size is :max KBs",
-        "imgAlt": "Signature",
-        "imgTitle": "Signature",
-        "undo": "Undo",
-        "redo": "Redo",
-        "dnd": "Drop an image here or",
-        "uploadButton": "Select image",
-        "modeSelectorAriaLabel": "Select signature mode",
-        "fontSelectorAriaLabel": "Select typeface",
-        "wrapperAriaLabel": "Signature input",
-        "inputAriaLabel": "Type your signature here",
-        "padAriaLabel": "Draw your signature in the box. Seek assistance if you need to.",
-        "clearAriaLabel": "Clear signature",
-        "colorAriaLabel": "Select color: "
+        "type": "Teks",
+        "draw": "Gambar",
+        "upload": "Unggah",
+        "font": "Pilih jenis huruf",
+        "fontPlaceholder": "Nama Anda",
+        "placeholder": "Tandatangan di sini",
+        "unsupportedFormat": "Format file tidak didukung. Ekstensi yang diterima adalah: :extensions",
+        "maxSizeError": "Ukuran file maksimum adalah :max KB",
+        "imgAlt": "Tandatangan",
+        "imgTitle": "Tandatangan",
+        "undo": "Urungkan",
+        "redo": "Ulangi",
+        "dnd": "Jatuhkan gambar di sini atau",
+        "uploadButton": "Pilih gambar",
+        "modeSelectorAriaLabel": "Pilih mode tanda tangan",
+        "fontSelectorAriaLabel": "Pilih jenis huruf",
+        "wrapperAriaLabel": "Input tanda tangan",
+        "inputAriaLabel": "Ketik tanda tangan Anda di sini",
+        "padAriaLabel": "Gambar tanda tangan Anda di kotak. Minta bantuan jika Anda membutuhkannya.",
+        "clearAriaLabel": "Hapus tanda tangan",
+        "colorAriaLabel": "Pilih warna: "
       }
     },
     "steps": {

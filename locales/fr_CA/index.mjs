@@ -24,30 +24,30 @@ export default {
         "dndDescription": "Glisser des images ou cliquer ici pour les télécharger"
       },
       "phone": {
-        "ariaLabel": "Select a country"
+        "ariaLabel": "Sélectionnez un pays"
       },
       "signature": {
-        "type": "Type",
-        "draw": "Draw",
-        "upload": "Upload",
-        "font": "Select typeface",
-        "fontPlaceholder": "Your Name",
-        "placeholder": "Sign here",
-        "unsupportedFormat": "Unsupported file format. Accepted extenions are: :extensions",
-        "maxSizeError": "Max file size is :max KBs",
+        "type": "Texte",
+        "draw": "Dessiner",
+        "upload": "Télécharger",
+        "font": "Sélectionner la police",
+        "fontPlaceholder": "Votre nom",
+        "placeholder": "Signez ici",
+        "unsupportedFormat": "Format de fichier non pris en charge. Les extensions acceptées sont : :extensions",
+        "maxSizeError": "La taille maximale du fichier est de :max KB",
         "imgAlt": "Signature",
         "imgTitle": "Signature",
-        "undo": "Undo",
-        "redo": "Redo",
-        "dnd": "Drop an image here or",
-        "uploadButton": "Select image",
-        "modeSelectorAriaLabel": "Select signature mode",
-        "fontSelectorAriaLabel": "Select typeface",
-        "wrapperAriaLabel": "Signature input",
-        "inputAriaLabel": "Type your signature here",
-        "padAriaLabel": "Draw your signature in the box. Seek assistance if you need to.",
-        "clearAriaLabel": "Clear signature",
-        "colorAriaLabel": "Select color: "
+        "undo": "Annuler",
+        "redo": "Rétablir",
+        "dnd": "Déposez une image ici ou",
+        "uploadButton": "Sélectionner l'image",
+        "modeSelectorAriaLabel": "Sélectionnez le mode de signature",
+        "fontSelectorAriaLabel": "Sélectionner la police",
+        "wrapperAriaLabel": "Champ de signature",
+        "inputAriaLabel": "Tapez votre signature ici",
+        "padAriaLabel": "Dessinez votre signature dans la case. Demandez de l'aide si vous en avez besoin.",
+        "clearAriaLabel": "Effacer la signature",
+        "colorAriaLabel": "Sélectionner la couleur : "
       }
     },
     "steps": {

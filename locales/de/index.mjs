@@ -24,30 +24,30 @@ export default {
         "dndDescription": "Bild ablegen oder zum Hochladen hier klicken"
       },
       "phone": {
-        "ariaLabel": "Select a country"
+        "ariaLabel": "Wählen Sie ein Land"
       },
       "signature": {
-        "type": "Type",
-        "draw": "Draw",
-        "upload": "Upload",
-        "font": "Select typeface",
-        "fontPlaceholder": "Your Name",
-        "placeholder": "Sign here",
-        "unsupportedFormat": "Unsupported file format. Accepted extenions are: :extensions",
-        "maxSizeError": "Max file size is :max KBs",
-        "imgAlt": "Signature",
-        "imgTitle": "Signature",
-        "undo": "Undo",
-        "redo": "Redo",
-        "dnd": "Drop an image here or",
-        "uploadButton": "Select image",
-        "modeSelectorAriaLabel": "Select signature mode",
-        "fontSelectorAriaLabel": "Select typeface",
-        "wrapperAriaLabel": "Signature input",
-        "inputAriaLabel": "Type your signature here",
-        "padAriaLabel": "Draw your signature in the box. Seek assistance if you need to.",
-        "clearAriaLabel": "Clear signature",
-        "colorAriaLabel": "Select color: "
+        "type": "Text",
+        "draw": "Zeichnen",
+        "upload": "Hochladen",
+        "font": "Schriftart auswählen",
+        "fontPlaceholder": "Ihr Name",
+        "placeholder": "Hier unterschreiben",
+        "unsupportedFormat": "Nicht unterstütztes Dateiformat. Akzeptierte Erweiterungen sind: :extensions",
+        "maxSizeError": "Maximale Dateigröße beträgt :max KB",
+        "imgAlt": "Unterschrift",
+        "imgTitle": "Unterschrift",
+        "undo": "Rückgängig",
+        "redo": "Wiederherstellen",
+        "dnd": "Ziehen Sie ein Bild hierher oder",
+        "uploadButton": "Bild auswählen",
+        "modeSelectorAriaLabel": "Signaturmodus auswählen",
+        "fontSelectorAriaLabel": "Schriftart auswählen",
+        "wrapperAriaLabel": "Unterschriftseingabe",
+        "inputAriaLabel": "Geben Sie hier Ihre Unterschrift ein",
+        "padAriaLabel": "Zeichnen Sie Ihre Unterschrift in das Feld. Bitten Sie um Hilfe, wenn Sie diese benötigen.",
+        "clearAriaLabel": "Unterschrift löschen",
+        "colorAriaLabel": "Farbe auswählen: "
       }
     },
     "steps": {

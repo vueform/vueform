@@ -24,30 +24,30 @@ export default {
         "dndDescription": "Suelte las imágenes o haga clic aquí para cargar."
       },
       "phone": {
-        "ariaLabel": "Select a country"
+        "ariaLabel": "Seleccione un país"
       },
       "signature": {
-        "type": "Type",
-        "draw": "Draw",
-        "upload": "Upload",
-        "font": "Select typeface",
-        "fontPlaceholder": "Your Name",
-        "placeholder": "Sign here",
-        "unsupportedFormat": "Unsupported file format. Accepted extenions are: :extensions",
-        "maxSizeError": "Max file size is :max KBs",
-        "imgAlt": "Signature",
-        "imgTitle": "Signature",
-        "undo": "Undo",
-        "redo": "Redo",
-        "dnd": "Drop an image here or",
-        "uploadButton": "Select image",
-        "modeSelectorAriaLabel": "Select signature mode",
-        "fontSelectorAriaLabel": "Select typeface",
-        "wrapperAriaLabel": "Signature input",
-        "inputAriaLabel": "Type your signature here",
-        "padAriaLabel": "Draw your signature in the box. Seek assistance if you need to.",
-        "clearAriaLabel": "Clear signature",
-        "colorAriaLabel": "Select color: "
+        "type": "Texto",
+        "draw": "Dibujar",
+        "upload": "Subir",
+        "font": "Seleccionar tipo de letra",
+        "fontPlaceholder": "Tu nombre",
+        "placeholder": "Firme aquí",
+        "unsupportedFormat": "Formato de archivo no soportado. Las extensiones aceptadas son: :extensions",
+        "maxSizeError": "El tamaño máximo del archivo es :max KB",
+        "imgAlt": "Firma",
+        "imgTitle": "Firma",
+        "undo": "Deshacer",
+        "redo": "Rehacer",
+        "dnd": "Suelta una imagen aquí o",
+        "uploadButton": "Seleccionar imagen",
+        "modeSelectorAriaLabel": "Seleccionar modo de firma",
+        "fontSelectorAriaLabel": "Seleccionar tipo de letra",
+        "wrapperAriaLabel": "Campo de firma",
+        "inputAriaLabel": "Escriba su firma aquí",
+        "padAriaLabel": "Dibuje su firma en el recuadro. Pida ayuda si la necesita.",
+        "clearAriaLabel": "Borrar firma",
+        "colorAriaLabel": "Seleccionar color: "
       }
     },
     "steps": {

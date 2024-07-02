@@ -24,30 +24,30 @@ export default {
         "dndDescription": "Képek feltöltéshez kattints ide vagy húzd ide a képeket"
       },
       "phone": {
-        "ariaLabel": "Select a country"
+        "ariaLabel": "Válasszon országot"
       },
       "signature": {
-        "type": "Type",
-        "draw": "Draw",
-        "upload": "Upload",
-        "font": "Select typeface",
-        "fontPlaceholder": "Your Name",
-        "placeholder": "Sign here",
-        "unsupportedFormat": "Unsupported file format. Accepted extenions are: :extensions",
-        "maxSizeError": "Max file size is :max KBs",
-        "imgAlt": "Signature",
-        "imgTitle": "Signature",
-        "undo": "Undo",
-        "redo": "Redo",
-        "dnd": "Drop an image here or",
-        "uploadButton": "Select image",
-        "modeSelectorAriaLabel": "Select signature mode",
-        "fontSelectorAriaLabel": "Select typeface",
-        "wrapperAriaLabel": "Signature input",
-        "inputAriaLabel": "Type your signature here",
-        "padAriaLabel": "Draw your signature in the box. Seek assistance if you need to.",
-        "clearAriaLabel": "Clear signature",
-        "colorAriaLabel": "Select color: "
+        "type": "Szöveg",
+        "draw": "Rajzolás",
+        "upload": "Feltöltés",
+        "font": "Betűtípus kiválasztása",
+        "fontPlaceholder": "Az Ön neve",
+        "placeholder": "Írja alá itt",
+        "unsupportedFormat": "Nem támogatott fájlformátum. Elfogadott kiterjesztések: :extensions",
+        "maxSizeError": "A maximális fájlméret :max KB",
+        "imgAlt": "Aláírás",
+        "imgTitle": "Aláírás",
+        "undo": "Visszavonás",
+        "redo": "Újra",
+        "dnd": "Húzzon ide egy képet vagy",
+        "uploadButton": "Válasszon képet",
+        "modeSelectorAriaLabel": "Válasszon aláírási módot",
+        "fontSelectorAriaLabel": "Betűtípus kiválasztása",
+        "wrapperAriaLabel": "Aláírási mező",
+        "inputAriaLabel": "Írja be ide az aláírását",
+        "padAriaLabel": "Rajzolja meg az aláírását a mezőbe. Kérjen segítséget, ha szüksége van rá.",
+        "clearAriaLabel": "Aláírás törlése",
+        "colorAriaLabel": "Válasszon színt: "
       }
     },
     "steps": {

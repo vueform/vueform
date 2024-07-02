@@ -24,30 +24,30 @@ export default {
         "dndDescription": "Resimleri bırakın veya yüklemek için buraya tıklayın"
       },
       "phone": {
-        "ariaLabel": "Select a country"
+        "ariaLabel": "Bir ülke seçin"
       },
       "signature": {
-        "type": "Type",
-        "draw": "Draw",
-        "upload": "Upload",
-        "font": "Select typeface",
-        "fontPlaceholder": "Your Name",
-        "placeholder": "Sign here",
-        "unsupportedFormat": "Unsupported file format. Accepted extenions are: :extensions",
-        "maxSizeError": "Max file size is :max KBs",
-        "imgAlt": "Signature",
-        "imgTitle": "Signature",
-        "undo": "Undo",
-        "redo": "Redo",
-        "dnd": "Drop an image here or",
-        "uploadButton": "Select image",
-        "modeSelectorAriaLabel": "Select signature mode",
-        "fontSelectorAriaLabel": "Select typeface",
-        "wrapperAriaLabel": "Signature input",
-        "inputAriaLabel": "Type your signature here",
-        "padAriaLabel": "Draw your signature in the box. Seek assistance if you need to.",
-        "clearAriaLabel": "Clear signature",
-        "colorAriaLabel": "Select color: "
+        "type": "Metin",
+        "draw": "Çiz",
+        "upload": "Yükle",
+        "font": "Yazı tipini seçin",
+        "fontPlaceholder": "Adınız",
+        "placeholder": "Buraya imzalayın",
+        "unsupportedFormat": "Desteklenmeyen dosya formatı. Kabul edilen uzantılar: :extensions",
+        "maxSizeError": "Maksimum dosya boyutu :max KB",
+        "imgAlt": "İmza",
+        "imgTitle": "İmza",
+        "undo": "Geri al",
+        "redo": "Yinele",
+        "dnd": "Bir resmi buraya bırakın veya",
+        "uploadButton": "Resim seçin",
+        "modeSelectorAriaLabel": "İmza modunu seçin",
+        "fontSelectorAriaLabel": "Yazı tipini seçin",
+        "wrapperAriaLabel": "İmza girişi",
+        "inputAriaLabel": "İmzanızı buraya yazın",
+        "padAriaLabel": "İmzanızı kutuya çizin. Yardım gerekiyorsa yardım alın.",
+        "clearAriaLabel": "İmzayı temizle",
+        "colorAriaLabel": "Renk seçin: "
       }
     },
     "steps": {

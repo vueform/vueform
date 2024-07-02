@@ -24,30 +24,30 @@ export default {
         "dndDescription": "Перемістіть зображення або натисніть тут, щоби завантажити"
       },
       "phone": {
-        "ariaLabel": "Select a country"
+        "ariaLabel": "Виберіть країну"
       },
       "signature": {
-        "type": "Type",
-        "draw": "Draw",
-        "upload": "Upload",
-        "font": "Select typeface",
-        "fontPlaceholder": "Your Name",
-        "placeholder": "Sign here",
-        "unsupportedFormat": "Unsupported file format. Accepted extenions are: :extensions",
-        "maxSizeError": "Max file size is :max KBs",
-        "imgAlt": "Signature",
-        "imgTitle": "Signature",
-        "undo": "Undo",
-        "redo": "Redo",
-        "dnd": "Drop an image here or",
-        "uploadButton": "Select image",
-        "modeSelectorAriaLabel": "Select signature mode",
-        "fontSelectorAriaLabel": "Select typeface",
-        "wrapperAriaLabel": "Signature input",
-        "inputAriaLabel": "Type your signature here",
-        "padAriaLabel": "Draw your signature in the box. Seek assistance if you need to.",
-        "clearAriaLabel": "Clear signature",
-        "colorAriaLabel": "Select color: "
+        "type": "Текст",
+        "draw": "Малювати",
+        "upload": "Завантажити",
+        "font": "Виберіть шрифт",
+        "fontPlaceholder": "Ваше ім'я",
+        "placeholder": "Підпишіться тут",
+        "unsupportedFormat": "Непідтримуваний формат файлу. Прийняті розширення: :extensions",
+        "maxSizeError": "Максимальний розмір файлу :max КБ",
+        "imgAlt": "Підпис",
+        "imgTitle": "Підпис",
+        "undo": "Скасувати",
+        "redo": "Повторити",
+        "dnd": "Перетягніть зображення сюди або",
+        "uploadButton": "Виберіть зображення",
+        "modeSelectorAriaLabel": "Виберіть режим підпису",
+        "fontSelectorAriaLabel": "Виберіть шрифт",
+        "wrapperAriaLabel": "Поле для підпису",
+        "inputAriaLabel": "Введіть свій підпис тут",
+        "padAriaLabel": "Намалюйте свій підпис у полі. Зверніться за допомогою, якщо це необхідно.",
+        "clearAriaLabel": "Очистити підпис",
+        "colorAriaLabel": "Виберіть колір: "
       }
     },
     "steps": {

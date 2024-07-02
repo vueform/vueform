@@ -24,30 +24,30 @@ export default {
         "dndDescription": "Αποθέστε εικόνες ή κάντε κλικ εδώ για μεταφόρτωση"
       },
       "phone": {
-        "ariaLabel": "Select a country"
+        "ariaLabel": "Επιλέξτε χώρα"
       },
       "signature": {
-        "type": "Type",
-        "draw": "Draw",
-        "upload": "Upload",
-        "font": "Select typeface",
-        "fontPlaceholder": "Your Name",
-        "placeholder": "Sign here",
-        "unsupportedFormat": "Unsupported file format. Accepted extenions are: :extensions",
-        "maxSizeError": "Max file size is :max KBs",
-        "imgAlt": "Signature",
-        "imgTitle": "Signature",
-        "undo": "Undo",
-        "redo": "Redo",
-        "dnd": "Drop an image here or",
-        "uploadButton": "Select image",
-        "modeSelectorAriaLabel": "Select signature mode",
-        "fontSelectorAriaLabel": "Select typeface",
-        "wrapperAriaLabel": "Signature input",
-        "inputAriaLabel": "Type your signature here",
-        "padAriaLabel": "Draw your signature in the box. Seek assistance if you need to.",
-        "clearAriaLabel": "Clear signature",
-        "colorAriaLabel": "Select color: "
+        "type": "Κείμενο",
+        "draw": "Σχεδιάστε",
+        "upload": "Μεταφόρτωση",
+        "font": "Επιλέξτε γραμματοσειρά",
+        "fontPlaceholder": "Το όνομά σας",
+        "placeholder": "Υπογράψτε εδώ",
+        "unsupportedFormat": "Μη υποστηριζόμενη μορφή αρχείου. Αποδεκτές επεκτάσεις είναι: :extensions",
+        "maxSizeError": "Το μέγιστο μέγεθος αρχείου είναι :max KB",
+        "imgAlt": "Υπογραφή",
+        "imgTitle": "Υπογραφή",
+        "undo": "Αναίρεση",
+        "redo": "Επανάληψη",
+        "dnd": "Σύρετε μια εικόνα εδώ ή",
+        "uploadButton": "Επιλέξτε εικόνα",
+        "modeSelectorAriaLabel": "Επιλέξτε τρόπο υπογραφής",
+        "fontSelectorAriaLabel": "Επιλέξτε γραμματοσειρά",
+        "wrapperAriaLabel": "Πεδίο υπογραφής",
+        "inputAriaLabel": "Πληκτρολογήστε την υπογραφή σας εδώ",
+        "padAriaLabel": "Σχεδιάστε την υπογραφή σας στο πλαίσιο. Ζητήστε βοήθεια αν τη χρειάζεστε.",
+        "clearAriaLabel": "Διαγραφή υπογραφής",
+        "colorAriaLabel": "Επιλέξτε χρώμα: "
       }
     },
     "steps": {

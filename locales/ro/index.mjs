@@ -24,30 +24,30 @@ export default {
         "dndDescription": "Trage imagini sau apasă aici pentru a încărca"
       },
       "phone": {
-        "ariaLabel": "Selectează o țară"
+        "ariaLabel": "Selectați o țară"
       },
       "signature": {
-        "type": "Type",
-        "draw": "Draw",
-        "upload": "Upload",
-        "font": "Select typeface",
-        "fontPlaceholder": "Your Name",
-        "placeholder": "Sign here",
-        "unsupportedFormat": "Unsupported file format. Accepted extenions are: :extensions",
-        "maxSizeError": "Max file size is :max KBs",
-        "imgAlt": "Signature",
-        "imgTitle": "Signature",
-        "undo": "Undo",
-        "redo": "Redo",
-        "dnd": "Drop an image here or",
-        "uploadButton": "Select image",
-        "modeSelectorAriaLabel": "Select signature mode",
-        "fontSelectorAriaLabel": "Select typeface",
-        "wrapperAriaLabel": "Signature input",
-        "inputAriaLabel": "Type your signature here",
-        "padAriaLabel": "Draw your signature in the box. Seek assistance if you need to.",
-        "clearAriaLabel": "Clear signature",
-        "colorAriaLabel": "Select color: "
+        "type": "Text",
+        "draw": "Desenați",
+        "upload": "Încărcați",
+        "font": "Selectați fontul",
+        "fontPlaceholder": "Numele tău",
+        "placeholder": "Semnați aici",
+        "unsupportedFormat": "Format de fișier neacceptat. Extensiile acceptate sunt: :extensions",
+        "maxSizeError": "Dimensiunea maximă a fișierului este :max KB",
+        "imgAlt": "Semnătură",
+        "imgTitle": "Semnătură",
+        "undo": "Anulați",
+        "redo": "Refacere",
+        "dnd": "Trageți o imagine aici sau",
+        "uploadButton": "Selectați imaginea",
+        "modeSelectorAriaLabel": "Selectați modul de semnătură",
+        "fontSelectorAriaLabel": "Selectați fontul",
+        "wrapperAriaLabel": "Câmp de semnătură",
+        "inputAriaLabel": "Introduceți semnătura dvs. aici",
+        "padAriaLabel": "Desenați semnătura dvs. în căsuță. Cereți ajutor dacă aveți nevoie.",
+        "clearAriaLabel": "Ștergeți semnătura",
+        "colorAriaLabel": "Selectați culoarea: "
       }
     },
     "steps": {
