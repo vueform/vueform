@@ -216,6 +216,40 @@ const static_ = function(props, context, dependencies)
   }
 }
 
+const phone = function(props, context, dependencies)
+{
+  const { text } = toRefs(props)
+  
+  const {
+    descriptionId,
+    labelId,
+    infoId,
+    errorId,
+    aria,
+  } = base(props, context, dependencies)
+  
+  // ============ DEPENDENCIES ============
+  
+  const form$ = dependencies.form$
+  
+  // ============== COMPUTED ==============
+
+  const optionsAria = computed(() => {
+    return {
+      'aria-label': form$.value.translations.vueform.elements.phone.ariaLabel,
+    }
+  })
+  
+  return {
+    descriptionId,
+    labelId,
+    infoId,
+    errorId,
+    aria,
+    optionsAria,
+  }
+}
+
 const radiogroup = checkboxgroup
 const radio = checkbox
 const toggle = checkbox
@@ -230,6 +264,7 @@ export {
   file,
   static_,
   button,
+  phone,
 }
 
 export default base

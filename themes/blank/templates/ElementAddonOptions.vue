@@ -4,14 +4,13 @@
       :class="classes.wrapper"
       @click="handleSelectorClick"
       @keydown="handleSelectorKeydown"
-      ref="selector"
-
+      v-bind="aria"
       :aria-expanded="isOpen"
       aria-haspopup="listbox"
       :aria-controls="`dropdown-${el$.fieldId}`"
-      :aria-label="form$.translations.vueform.elements.phone.ariaLabel"
       role="button"
-      tabindex="0"
+      :tabindex="el$.isDisabled || el$.readonly ? undefined : 0"
+      ref="selector"
     >
       <template v-if="Object.keys(selected).length">
         <component

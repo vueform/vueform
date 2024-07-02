@@ -8,7 +8,7 @@ export default {
   emits: ['select', 'open', 'close'],
   props: {
     options: {
-      type: Array,
+      type: [Array],
       required: false,
       default: () => ([])
     },
@@ -26,6 +26,11 @@ export default {
       type: [String],
       required: false,
       default: 'over',
+    },
+    aria: {
+      type: [Object],
+      required: false,
+      default: () => ({})
     },
   },
   setup(props, context)

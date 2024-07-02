@@ -6,6 +6,7 @@
           <ElementAddonOptions
             :options="addonOptions"
             :placeholder="addonPlaceholder"
+            :aria="optionsAria"
             @select="handleOptionSelect"
             @open="handleOpen"
             @close="handleClose"
