@@ -43,6 +43,8 @@ export default function(actual, operator, expected, el$, form$) {
         return !actual.length
       } else if (actual && actual instanceof File) {
         return false
+      } else if (actual && actual instanceof Blob) {
+        return false
       } else if (actual && typeof actual === 'object') {
         let values = Object.values(actual)
 
@@ -55,6 +57,8 @@ export default function(actual, operator, expected, el$, form$) {
       if (isArray(actual)) {
         return !!actual.length
       } else if (actual && actual instanceof File) {
+        return true
+      } else if (actual && actual instanceof Blob) {
         return true
       } else if (actual && typeof actual === 'object') {
         let values = Object.values(actual)
