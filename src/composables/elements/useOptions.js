@@ -228,6 +228,7 @@ const select = function(props, context, dependencies)
     addOptionOn,
     appendTo,
     appendToBody,
+    allowAbsent,
   } = toRefs(props)
   
   // ============ DEPENDENCIES ============
@@ -293,6 +294,7 @@ const select = function(props, context, dependencies)
       addOptionOn: addOptionOn.value,
       appendTo: appendTo.value,
       appendToBody: appendToBody.value,
+      allowAbsent: allowAbsent.value,
     }
   })
   
@@ -353,6 +355,7 @@ const multiselect = function(props, context, dependencies)
     addOptionOn,
     appendTo,
     appendToBody,
+    allowAbsent,
   } = toRefs(props)
   
   // ============ DEPENDENCIES ============
@@ -430,6 +433,7 @@ const multiselect = function(props, context, dependencies)
       addOptionOn: addOptionOn.value,
       appendTo: appendTo.value,
       appendToBody: appendToBody.value,
+      allowAbsent: allowAbsent.value,
     }
   })
   
@@ -488,6 +492,7 @@ const tags = function(props, context, dependencies)
     breakTags,
     appendTo,
     appendToBody,
+    allowAbsent,
   } = toRefs(props)
   
   // ============ DEPENDENCIES ============
@@ -570,6 +575,7 @@ const tags = function(props, context, dependencies)
       breakTags: breakTags.value,
       appendTo: appendTo.value,
       appendToBody: appendToBody.value,
+      allowAbsent: allowAbsent.value,
     }
   })
   

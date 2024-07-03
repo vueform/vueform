@@ -194,6 +194,12 @@ export default {
       default: () => (['enter']),
       native: false,
     },
+    allowAbsent: {
+      type: [Boolean],
+      required: false,
+      default: false,
+      native: false,
+    },
 
     object: {
       type: [Boolean],
