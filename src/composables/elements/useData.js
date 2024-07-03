@@ -1193,6 +1193,10 @@ const signature = function(props, context, dependencies)
     clearSignature,
     typingToImage,
     drawingToImage,
+    uploaded,
+    setDefaultMode,
+    setDefaultFont,
+    setDefaultColor,
   } = dependencies
   
   // ============== COMPUTED ===============
@@ -1204,10 +1208,17 @@ const signature = function(props, context, dependencies)
   
   const reset = () => {
     clearSignature()
+    setDefaultMode(true)
+    setDefaultFont(true)
+    setDefaultColor()
     resetBase()
   }
 
   const prepare = async () => {
+    if (uploaded.value) {
+      return
+    }
+
     if (mode.value === 'type') {
       await typingToImage()
     }

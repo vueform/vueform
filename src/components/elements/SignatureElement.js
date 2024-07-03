@@ -73,7 +73,7 @@ export default {
       type: [Boolean],
       default: false
     },
-    autoloadFonts: {
+    autoload: {
       required: false,
       type: [Boolean],
       default: true
@@ -125,11 +125,6 @@ export default {
       required: false,
       type: [Array],
       default: () => (['draw', 'type', 'upload']),
-    },
-    signatures: {
-      required: false,
-      type: [Array],
-      default: () => ([]),
     },
     colors: {
       required: false,

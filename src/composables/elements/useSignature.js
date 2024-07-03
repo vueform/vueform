@@ -17,7 +17,7 @@ export default function (props, context, dependencies)
     canClear,
     line,
     placeholder,
-    autoloadFonts,
+    autoload,
     maxSize,
     canUndo,
     columns,
@@ -54,28 +54,28 @@ export default function (props, context, dependencies)
   const font$ = ref(null)
 
   /**
-   * The input field when [`mode`](#property-mode) is 'type`.
+   * The input field when [`mode`](#property-mode) is `type`.
    *
    * @type {HTMLInputElement}
    */
   const input$ = ref(null)
 
   /**
-   * The canvas that shows the preview of an uploaded signature when [`mode`](#property-mode) is 'upload`.
+   * The canvas that shows the preview of an uploaded signature when [`mode`](#property-mode) is `upload`.
    *
    * @type {HTMLCanvasElement}
    */
   const preview$ = ref(null)
 
   /**
-   * The canvas that allows drawning signature when [`mode`](#property-mode) is 'draw`.
+   * The canvas that allows drawning signature when [`mode`](#property-mode) is `draw`.
    *
    * @type {HTMLCanvasElement}
    */
   const pad$ = ref(null)
 
   /**
-   * The file input field when [`mode`](#property-mode) is 'upload` (it's invisible).
+   * The file input field when [`mode`](#property-mode) is `upload` (it's invisible).
    *
    * @type {HTMLInputElement}
    */
@@ -131,7 +131,7 @@ export default function (props, context, dependencies)
   const color = ref(null)
 
   /**
-   * The input value used when [`mode`](#property-mode) is 'type`.
+   * The input value used when [`mode`](#property-mode) is `type`.
    *
    * @type {string}
    */
@@ -145,42 +145,42 @@ export default function (props, context, dependencies)
   const pad = ref(null)
 
   /**
-   * The file (image) selected by the user when [`mode`](#property-mode) is 'upload`.
+   * The file (image) selected by the user when [`mode`](#property-mode) is `upload`.
    *
    * @type {File}
    */
   const image = ref(null)
 
   /**
-   * Whether the image preview is already created when [`mode`](#property-mode) is 'upload`.
+   * Whether the image preview is already created when [`mode`](#property-mode) is `upload`.
    *
    * @type {boolean}
    */
   const created = ref(false)
 
   /**
-   * Whether the image preview is being created when [`mode`](#property-mode) is 'upload`.
+   * Whether the image preview is being created when [`mode`](#property-mode) is `upload`.
    *
    * @type {boolean}
    */
   const creating = ref(false)
 
   /**
-   * Whether a file is being dragged over the element when [`mode`](#property-mode) is 'upload`.
+   * Whether a file is being dragged over the element when [`mode`](#property-mode) is `upload`.
    *
    * @type {boolean}
    */
   const dragging = ref(false)
 
   /**
-   * Whether the canvas contains any drawn signature when [`mode`](#property-mode) is 'draw`.
+   * Whether the canvas contains any drawn signature when [`mode`](#property-mode) is `draw`.
    *
    * @type {boolean}
    */
   const drawn = ref(false)
 
   /**
-   * Whether a signature is currently being drawn when [`mode`](#property-mode) is 'draw`.
+   * Whether a signature is currently being drawn when [`mode`](#property-mode) is `draw`.
    *
    * @type {boolean}
    */
@@ -220,6 +220,13 @@ export default function (props, context, dependencies)
    * @type {boolean}
    */
   const isMouseOver = ref(false)
+
+  /**
+   * Whether the mouse is over after starting to draw a signature.
+   * 
+   * @type {number}
+   */
+  const debouncer = ref(0)
 
   // ============== COMPUTED ==============
 
@@ -637,7 +644,7 @@ export default function (props, context, dependencies)
       height: `${height.value}px`,
     }
 
-    if (maxWidth.value !== false) {
+    if (maxWidth.value !== 'auto') {
       style.maxWidth = `${maxWidth.value}px`
     }
 
@@ -645,7 +652,7 @@ export default function (props, context, dependencies)
   })
 
   /**
-   * The style attributes of the signature input when [`mode`](#property-mode) is 'type`.
+   * The style attributes of the signature input when [`mode`](#property-mode) is `type`.
    *
    * @type {}
    */
@@ -706,6 +713,8 @@ export default function (props, context, dependencies)
     pad.value.addEventListener('endStroke', () => {
       drawing.value = false
       undosLeft.value++
+
+      debounceTransform(drawingToImage, 500)
     })
   }
 
@@ -819,6 +828,11 @@ export default function (props, context, dependencies)
    */
   const typingToImage = () => {
     return new Promise((resolve, reject) => {
+      if (!text.value) {
+        reject(new Error('No signature was typed.'))
+        return
+      }
+
       const canvas = document.createElement('canvas')
       const ctx = canvas.getContext('2d')
 
@@ -959,7 +973,7 @@ export default function (props, context, dependencies)
   }
 
   /**
-   * Undoes the last drawing when [`mode`](#property-mode) is 'draw`.
+   * Undoes the last drawing when [`mode`](#property-mode) is `draw`.
    *
    * @returns {void}
    */
@@ -983,10 +997,12 @@ export default function (props, context, dependencies)
     }
 
     undosLeft.value = data.length
+
+    debounceTransform(drawingToImage, 500)
   }
 
   /**
-   * Redoes the last drawing when [`mode`](#property-mode) is 'draw`.
+   * Redoes the last drawing when [`mode`](#property-mode) is `draw`.
    *
    * @returns {void}
    */
@@ -1006,6 +1022,8 @@ export default function (props, context, dependencies)
     setDrawColor()
 
     undosLeft.value = data.length
+
+    debounceTransform(drawingToImage, 500)
   }
 
   /**
@@ -1081,6 +1099,11 @@ export default function (props, context, dependencies)
    * @returns {void}
    */
   const adjustFontSize = () => {
+    if (!text.value) {
+      fontSize.value = maxFontSize.value
+      return
+    }
+
     const ua = navigator.userAgent.toLowerCase();
     const isSafari = (ua.indexOf('safari') != -1 && ua.indexOf('chrome') == -1 && ua.indexOf('android') == -1)
 
@@ -1193,8 +1216,16 @@ export default function (props, context, dependencies)
    *
    * @returns {void}
    */
-  const setDefaultMode = () => {
+  const setDefaultMode = (setDropdown = false) => {
     mode.value = modes.value[0] || 'draw'
+
+    if (setDropdown) {
+      mode$.value.selected = resolvedModes.value[0] || {
+        label: form$.value.translations.vueform.elements.signature.draw,
+        value: 'draw',
+        index: 0,
+      }
+    }
   }
 
   /**
@@ -1202,9 +1233,14 @@ export default function (props, context, dependencies)
    *
    * @returns {void}
    */
-  const setDefaultFont = () => {
+  const setDefaultFont = (setDropdown = false) => {
     fontFamily.value = fontFamilies.value[0] || 'cursive'
     fontWeight.value = fontWeights.value[0] || 400
+
+    if (setDropdown) {
+      font$.value.selected = {}
+      font$.value.pointed = {}
+    }
   }
 
   /**
@@ -1228,7 +1264,7 @@ export default function (props, context, dependencies)
   }
 
   /**
-   * Checks the file contstraints and sets the value of [`image`](#property-image) and renders the selected file preview when [`mode`](#property-mode) is 'upload`. If file constraints are not met it clears both.
+   * Checks the file contstraints and sets the value of [`image`](#property-image) and renders the selected file preview when [`mode`](#property-mode) is `upload`. If file constraints are not met it clears both.
    *
    * @param {File} file* the file to set as image
    * @returns {void}
@@ -1241,6 +1277,20 @@ export default function (props, context, dependencies)
       image.value = null
       created.value = false
     }
+  }
+
+  const debounceTransform = (method, ms = 1000) => {
+    if (debouncer.value) {
+      clearTimeout(debouncer.value)
+    }
+
+    debouncer.value = setTimeout(async () => {
+      try {
+        await method.call()
+      } catch (e) {
+        value.value = null
+      }
+    }, ms)
   }
 
   /**
@@ -1455,7 +1505,7 @@ export default function (props, context, dependencies)
   setDefaultColor()
 
   onMounted(() => {
-    if (autoloadFonts.value) {
+    if (autoload.value) {
       loadFonts()
     }
 
@@ -1523,8 +1573,13 @@ export default function (props, context, dependencies)
 
     // ============== WATCHERS ==============
   
+    watch(maxFontSize, () => {
+      adjustFontSize()
+    }, { flush: 'post' })
+  
     watch(modes, () => {
       initPad()
+      setDefaultMode(true)
     })
 
     watch(color, () => {
@@ -1553,11 +1608,26 @@ export default function (props, context, dependencies)
       clearSignature()
     })
 
+    watch([height, maxWidth], () => {
+      resizePad()
+      adjustFontSize()
+    }, { flush: 'post' })
+
     watch([text, fontFamily], () => {
       nextTick(() => {
         adjustFontSize()
       })
     }, { flush: 'post' })
+
+    watch(text, () => {
+      debounceTransform(typingToImage, 1000)
+    }, { flush: 'post' })
+
+    watch(fonts, () => {
+      if (autoload.value) {
+        loadFonts()
+      }
+    })
   })
 
   onBeforeUnmount(() => {
