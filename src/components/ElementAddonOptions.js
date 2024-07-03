@@ -412,7 +412,7 @@ export default {
      * @returns {void}
      */
     const handleClickOutside = (e) => {
-      if (!dropdown.value.contains(e.target)) {
+      if (!dropdown.value?.contains(e.target)) {
         close()
       }
     }
