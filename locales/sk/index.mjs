@@ -27,7 +27,7 @@ export default {
         "ariaLabel": "Vyberte krajinu"
       },
       "signature": {
-        "type": "Text",
+        "type": "Písať",
         "draw": "Kresliť",
         "upload": "Nahrať",
         "font": "Vyberte písmo",

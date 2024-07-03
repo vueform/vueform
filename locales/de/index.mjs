@@ -27,7 +27,7 @@ export default {
         "ariaLabel": "Wählen Sie ein Land"
       },
       "signature": {
-        "type": "Text",
+        "type": "Tippen",
         "draw": "Zeichnen",
         "upload": "Hochladen",
         "font": "Schriftart auswählen",

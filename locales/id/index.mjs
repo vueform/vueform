@@ -27,7 +27,7 @@ export default {
         "ariaLabel": "Pilih negara"
       },
       "signature": {
-        "type": "Teks",
+        "type": "Mengetik",
         "draw": "Gambar",
         "upload": "Unggah",
         "font": "Pilih jenis huruf",

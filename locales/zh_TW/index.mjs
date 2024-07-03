@@ -27,7 +27,7 @@ export default {
         "ariaLabel": "選擇一個國家"
       },
       "signature": {
-        "type": "文本",
+        "type": "打字",
         "draw": "繪製",
         "upload": "上傳",
         "font": "選擇字體",

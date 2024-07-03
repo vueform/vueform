@@ -27,7 +27,7 @@ export default {
         "ariaLabel": "Selecteer een land"
       },
       "signature": {
-        "type": "Tekst",
+        "type": "Typen",
         "draw": "Tekenen",
         "upload": "Uploaden",
         "font": "Selecteer lettertype",

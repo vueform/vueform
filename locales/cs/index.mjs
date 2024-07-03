@@ -27,7 +27,7 @@ export default {
         "ariaLabel": "Vyberte zemi"
       },
       "signature": {
-        "type": "Text",
+        "type": "Psát",
         "draw": "Kreslit",
         "upload": "Nahrát",
         "font": "Vyberte písmo",

@@ -27,7 +27,7 @@ export default {
         "ariaLabel": "Vælg et land"
       },
       "signature": {
-        "type": "Tekst",
+        "type": "Skriv",
         "draw": "Tegn",
         "upload": "Upload",
         "font": "Vælg skrifttype",

@@ -27,7 +27,7 @@ export default {
         "ariaLabel": "국가 선택"
       },
       "signature": {
-        "type": "텍스트",
+        "type": "타입하다",
         "draw": "그리기",
         "upload": "업로드",
         "font": "글꼴 선택",

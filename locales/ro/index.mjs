@@ -27,7 +27,7 @@ export default {
         "ariaLabel": "Selectați o țară"
       },
       "signature": {
-        "type": "Text",
+        "type": "Tasta",
         "draw": "Desenați",
         "upload": "Încărcați",
         "font": "Selectați fontul",

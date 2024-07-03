@@ -27,7 +27,7 @@ export default {
         "ariaLabel": "Válasszon országot"
       },
       "signature": {
-        "type": "Szöveg",
+        "type": "Gépel",
         "draw": "Rajzolás",
         "upload": "Feltöltés",
         "font": "Betűtípus kiválasztása",

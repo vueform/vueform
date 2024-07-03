@@ -27,7 +27,7 @@ export default {
         "ariaLabel": "Bir ülke seçin"
       },
       "signature": {
-        "type": "Metin",
+        "type": "Yazmak",
         "draw": "Çiz",
         "upload": "Yükle",
         "font": "Yazı tipini seçin",
