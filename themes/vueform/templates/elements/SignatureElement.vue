@@ -156,7 +156,7 @@
     top: 50%;
     left: 1.5rem;
     right: 1.5rem;
-    border-color: var(--vf-gray-300);
+    border-color: var(--vf-border-color-signature-hr);
   }
 
   .vf-signature-loaded-wrapper {
@@ -381,10 +381,6 @@
   }
 
   .dark {
-    .vf-signature-line {
-      border-color: var(--vf-dark-500);
-    }
-
     .vf-signature-input-invert,
     .vf-signature-pad-invert,
     .vf-signature-color-invert {
