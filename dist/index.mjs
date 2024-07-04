@@ -5934,7 +5934,7 @@ class MergeClasses {
     var locals = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
     each(this.pick(merge, locals ? LOCALS_KEYS : MERGE_KEYS), (mergables, key) => {
       if (typeof mergables === 'function') {
-        mergables = mergables(this.component$.value.form$, 'el$' in this.component$.value && typeof this.component$.value.el$ === 'object' ? this.component$.value.el$ : undefined);
+        mergables = mergables(this.component$.value.form$, 'el$' in this.component$.value && typeof this.component$.value.el$ === 'object' ? this.component$.value.el$ : undefined, this.component$.value);
       }
       switch (key) {
         case 'addClasses':
@@ -10605,6 +10605,8 @@ function compare (actual, operator, expected, el$, form$) {
         return !actual.length;
       } else if (actual && actual instanceof File) {
         return false;
+      } else if (actual && actual instanceof Blob) {
+        return false;
       } else if (actual && typeof actual === 'object') {
         var values = Object.values(actual);
         return !values.length || values.every(v => ['', null, undefined].indexOf(v) !== -1);
@@ -10615,6 +10617,8 @@ function compare (actual, operator, expected, el$, form$) {
       if (isArray_1(actual)) {
         return !!actual.length;
       } else if (actual && actual instanceof File) {
+        return true;
+      } else if (actual && actual instanceof Blob) {
         return true;
       } else if (actual && typeof actual === 'object') {
         var _values = Object.values(actual);
@@ -19000,7 +19004,8 @@ var ElementAddonOptions = {
      * @returns {void}
      */
     var handleClickOutside = e => {
-      if (!dropdown.value.contains(e.target)) {
+      var _dropdown$value;
+      if (!((_dropdown$value = dropdown.value) !== null && _dropdown$value !== void 0 && _dropdown$value.contains(e.target))) {
         close();
       }
     };
@@ -28194,7 +28199,11 @@ var signature = function signature(props, context, dependencies) {
     mode,
     clearSignature,
     typingToImage,
-    drawingToImage
+    drawingToImage,
+    uploaded,
+    setDefaultMode,
+    setDefaultFont,
+    setDefaultColor
   } = dependencies;
 
   // ============== COMPUTED ===============
@@ -28205,10 +28214,16 @@ var signature = function signature(props, context, dependencies) {
   };
   var reset = () => {
     clearSignature();
+    setDefaultMode(true);
+    setDefaultFont(true);
+    setDefaultColor();
     resetBase();
   };
   var prepare = /*#__PURE__*/function () {
     var _ref7 = _asyncToGenerator(function* () {
+      if (uploaded.value) {
+        return;
+      }
       if (mode.value === 'type') {
         yield typingToImage();
       }
@@ -29599,7 +29614,8 @@ var select$1 = function select(props, context, dependencies) {
     appendNewOption,
     addOptionOn,
     appendTo,
-    appendToBody
+    appendToBody,
+    allowAbsent
   } = toRefs(props);
 
   // ============ DEPENDENCIES ============
@@ -29665,7 +29681,8 @@ var select$1 = function select(props, context, dependencies) {
       appendNewOption: appendNewOption.value,
       addOptionOn: addOptionOn.value,
       appendTo: appendTo.value,
-      appendToBody: appendToBody.value
+      appendToBody: appendToBody.value,
+      allowAbsent: allowAbsent.value
     };
   });
 
@@ -29722,7 +29739,8 @@ var multiselect$1 = function multiselect(props, context, dependencies) {
     appendNewOption,
     addOptionOn,
     appendTo,
-    appendToBody
+    appendToBody,
+    allowAbsent
   } = toRefs(props);
 
   // ============ DEPENDENCIES ============
@@ -29796,7 +29814,8 @@ var multiselect$1 = function multiselect(props, context, dependencies) {
       appendNewOption: appendNewOption.value,
       addOptionOn: addOptionOn.value,
       appendTo: appendTo.value,
-      appendToBody: appendToBody.value
+      appendToBody: appendToBody.value,
+      allowAbsent: allowAbsent.value
     };
   });
 
@@ -29851,7 +29870,8 @@ var tags$1 = function tags(props, context, dependencies) {
     addOptionOn,
     breakTags,
     appendTo,
-    appendToBody
+    appendToBody,
+    allowAbsent
   } = toRefs(props);
 
   // ============ DEPENDENCIES ============
@@ -29934,7 +29954,8 @@ var tags$1 = function tags(props, context, dependencies) {
       addOptionOn: addOptionOn.value,
       breakTags: breakTags.value,
       appendTo: appendTo.value,
-      appendToBody: appendToBody.value
+      appendToBody: appendToBody.value,
+      allowAbsent: allowAbsent.value
     };
   });
 
@@ -31254,6 +31275,7 @@ var phone$1 = function phone(props, context, dependencies) {
    */
   var handleInput = e => {
     if (el$.value.maskPluginInstalled) {
+      console.log(1111);
       model.value = e.target.value;
       return;
     }
@@ -35546,6 +35568,12 @@ var MultiselectElement = {
       default: () => ['enter'],
       native: false
     },
+    allowAbsent: {
+      type: [Boolean],
+      required: false,
+      default: false,
+      native: false
+    },
     object: {
       type: [Boolean],
       required: false,
@@ -38121,6 +38149,7 @@ var base$a = function base(props, context, dependencies) {
     update,
     focus,
     value,
+    model,
     input,
     form$,
     el$,
@@ -38297,16 +38326,19 @@ var base$a = function base(props, context, dependencies) {
    */
   var setFlag = () => {
     var _options$$value$selec;
-    if (!value.value) {
+    console.log(11, model.value);
+    if (!model.value) {
       if (Object.keys(options$.value.selected).length) {
         options$.value.reset();
       }
       return;
     }
-    if (!value.value.startsWith('+') || value.value === ((_options$$value$selec = options$.value.selected) === null || _options$$value$selec === void 0 ? void 0 : _options$$value$selec.n)) {
+    console.log(22);
+    if (!model.value.startsWith('+') || model.value === ((_options$$value$selec = options$.value.selected) === null || _options$$value$selec === void 0 ? void 0 : _options$$value$selec.n)) {
       return;
     }
-    var number = value.value.replace('+', '');
+    console.log(33);
+    var number = model.value.replace('+', '');
     var lengths = [7, 5, 4, 3, 2, 1].filter(l => number.length >= l);
     var country;
     lengths.forEach(l => {
@@ -38345,8 +38377,8 @@ var base$a = function base(props, context, dependencies) {
     if (option.n === undefined) {
       el$.value.clear();
     } else if (maskPluginInstalled.value) {
-      var valueMatchesMask = option.m.map(m => "+".concat(m[0])).find(m => {
-        return value.value.startsWith(m);
+      var valueMatchesMask = model.value && option.m.map(m => "+".concat(m[0])).find(m => {
+        return model.value.startsWith(m);
       });
       if (!valueMatchesMask) {
         el$.value.update(option.m.length === 1 ? "+".concat(option.m[0][0]) : option.n);
@@ -38384,8 +38416,10 @@ var base$a = function base(props, context, dependencies) {
 
   // ============== WATCHERS ==============
 
-  watch(value, n => {
+  watch(model, n => {
     setFlag();
+  }, {
+    flush: 'pre'
   });
   return {
     options$,
@@ -38465,6 +38499,7 @@ var phone = function phone(props, context, dependencies) {
    */
   var handleKeydown = e => {
     if (el$.value.maskPluginInstalled) {
+      // model.value = e.target.value
       return;
     }
     if (['Backspace', 'Delete', 'Tab', 'Escape', 'Enter', 'ArrowLeft', 'ArrowRight'].indexOf(e.key) !== -1 || e.ctrlKey || e.metaKey) {
@@ -38941,6 +38976,12 @@ var SelectElement = {
       type: [Array],
       required: false,
       default: () => ['enter'],
+      native: false
+    },
+    allowAbsent: {
+      type: [Boolean],
+      required: false,
+      default: false,
       native: false
     },
     object: {
@@ -39777,7 +39818,7 @@ function useSignature (props, context, dependencies) {
     canClear,
     line,
     placeholder,
-    autoloadFonts,
+    autoload,
     maxSize,
     canUndo,
     columns,
@@ -39814,28 +39855,28 @@ function useSignature (props, context, dependencies) {
   var font$ = ref(null);
 
   /**
-   * The input field when [`mode`](#property-mode) is 'type`.
+   * The input field when [`mode`](#property-mode) is `type`.
    *
    * @type {HTMLInputElement}
    */
   var input$ = ref(null);
 
   /**
-   * The canvas that shows the preview of an uploaded signature when [`mode`](#property-mode) is 'upload`.
+   * The canvas that shows the preview of an uploaded signature when [`mode`](#property-mode) is `upload`.
    *
    * @type {HTMLCanvasElement}
    */
   var preview$ = ref(null);
 
   /**
-   * The canvas that allows drawning signature when [`mode`](#property-mode) is 'draw`.
+   * The canvas that allows drawning signature when [`mode`](#property-mode) is `draw`.
    *
    * @type {HTMLCanvasElement}
    */
   var pad$ = ref(null);
 
   /**
-   * The file input field when [`mode`](#property-mode) is 'upload` (it's invisible).
+   * The file input field when [`mode`](#property-mode) is `upload` (it's invisible).
    *
    * @type {HTMLInputElement}
    */
@@ -39891,7 +39932,7 @@ function useSignature (props, context, dependencies) {
   var color = ref(null);
 
   /**
-   * The input value used when [`mode`](#property-mode) is 'type`.
+   * The input value used when [`mode`](#property-mode) is `type`.
    *
    * @type {string}
    */
@@ -39905,42 +39946,42 @@ function useSignature (props, context, dependencies) {
   var pad = ref(null);
 
   /**
-   * The file (image) selected by the user when [`mode`](#property-mode) is 'upload`.
+   * The file (image) selected by the user when [`mode`](#property-mode) is `upload`.
    *
    * @type {File}
    */
   var image = ref(null);
 
   /**
-   * Whether the image preview is already created when [`mode`](#property-mode) is 'upload`.
+   * Whether the image preview is already created when [`mode`](#property-mode) is `upload`.
    *
    * @type {boolean}
    */
   var created = ref(false);
 
   /**
-   * Whether the image preview is being created when [`mode`](#property-mode) is 'upload`.
+   * Whether the image preview is being created when [`mode`](#property-mode) is `upload`.
    *
    * @type {boolean}
    */
   var creating = ref(false);
 
   /**
-   * Whether a file is being dragged over the element when [`mode`](#property-mode) is 'upload`.
+   * Whether a file is being dragged over the element when [`mode`](#property-mode) is `upload`.
    *
    * @type {boolean}
    */
   var dragging = ref(false);
 
   /**
-   * Whether the canvas contains any drawn signature when [`mode`](#property-mode) is 'draw`.
+   * Whether the canvas contains any drawn signature when [`mode`](#property-mode) is `draw`.
    *
    * @type {boolean}
    */
   var drawn = ref(false);
 
   /**
-   * Whether a signature is currently being drawn when [`mode`](#property-mode) is 'draw`.
+   * Whether a signature is currently being drawn when [`mode`](#property-mode) is `draw`.
    *
    * @type {boolean}
    */
@@ -39980,6 +40021,13 @@ function useSignature (props, context, dependencies) {
    * @type {boolean}
    */
   var isMouseOver = ref(false);
+
+  /**
+   * Whether the mouse is over after starting to draw a signature.
+   * 
+   * @type {number}
+   */
+  var debouncer = ref(0);
 
   // ============== COMPUTED ==============
 
@@ -40378,14 +40426,14 @@ function useSignature (props, context, dependencies) {
     var style = {
       height: "".concat(height.value, "px")
     };
-    if (maxWidth.value !== false) {
+    if (maxWidth.value !== 'auto') {
       style.maxWidth = "".concat(maxWidth.value, "px");
     }
     return style;
   });
 
   /**
-   * The style attributes of the signature input when [`mode`](#property-mode) is 'type`.
+   * The style attributes of the signature input when [`mode`](#property-mode) is `type`.
    *
    * @type {}
    */
@@ -40440,6 +40488,7 @@ function useSignature (props, context, dependencies) {
     pad.value.addEventListener('endStroke', () => {
       drawing.value = false;
       undosLeft.value++;
+      debounceTransform(drawingToImage, 500);
     });
   };
 
@@ -40549,6 +40598,10 @@ function useSignature (props, context, dependencies) {
    */
   var typingToImage = () => {
     return new Promise((resolve, reject) => {
+      if (!text.value) {
+        reject(new Error('No signature was typed.'));
+        return;
+      }
       var canvas = document.createElement('canvas');
       var ctx = canvas.getContext('2d');
       var displayWidth = uploadWidth.value;
@@ -40677,7 +40730,7 @@ function useSignature (props, context, dependencies) {
   };
 
   /**
-   * Undoes the last drawing when [`mode`](#property-mode) is 'draw`.
+   * Undoes the last drawing when [`mode`](#property-mode) is `draw`.
    *
    * @returns {void}
    */
@@ -40695,10 +40748,11 @@ function useSignature (props, context, dependencies) {
       drawn.value = false;
     }
     undosLeft.value = data.length;
+    debounceTransform(drawingToImage, 500);
   };
 
   /**
-   * Redoes the last drawing when [`mode`](#property-mode) is 'draw`.
+   * Redoes the last drawing when [`mode`](#property-mode) is `draw`.
    *
    * @returns {void}
    */
@@ -40712,6 +40766,7 @@ function useSignature (props, context, dependencies) {
     drawn.value = true;
     setDrawColor();
     undosLeft.value = data.length;
+    debounceTransform(drawingToImage, 500);
   };
 
   /**
@@ -40789,6 +40844,10 @@ function useSignature (props, context, dependencies) {
    * @returns {void}
    */
   var adjustFontSize = () => {
+    if (!text.value) {
+      fontSize.value = maxFontSize.value;
+      return;
+    }
     var ua = navigator.userAgent.toLowerCase();
     var isSafari = ua.indexOf('safari') != -1 && ua.indexOf('chrome') == -1 && ua.indexOf('android') == -1;
     var inputElement = input$.value;
@@ -40891,8 +40950,16 @@ function useSignature (props, context, dependencies) {
    *
    * @returns {void}
    */
-  var setDefaultMode = () => {
+  var setDefaultMode = function setDefaultMode() {
+    var setDropdown = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
     mode.value = modes.value[0] || 'draw';
+    if (setDropdown) {
+      mode$.value.selected = resolvedModes.value[0] || {
+        label: form$.value.translations.vueform.elements.signature.draw,
+        value: 'draw',
+        index: 0
+      };
+    }
   };
 
   /**
@@ -40900,9 +40967,14 @@ function useSignature (props, context, dependencies) {
    *
    * @returns {void}
    */
-  var setDefaultFont = () => {
+  var setDefaultFont = function setDefaultFont() {
+    var setDropdown = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
     fontFamily.value = fontFamilies.value[0] || 'cursive';
     fontWeight.value = fontWeights.value[0] || 400;
+    if (setDropdown) {
+      font$.value.selected = {};
+      font$.value.pointed = {};
+    }
   };
 
   /**
@@ -40926,7 +40998,7 @@ function useSignature (props, context, dependencies) {
   };
 
   /**
-   * Checks the file contstraints and sets the value of [`image`](#property-image) and renders the selected file preview when [`mode`](#property-mode) is 'upload`. If file constraints are not met it clears both.
+   * Checks the file contstraints and sets the value of [`image`](#property-image) and renders the selected file preview when [`mode`](#property-mode) is `upload`. If file constraints are not met it clears both.
    *
    * @param {File} file* the file to set as image
    * @returns {void}
@@ -40939,6 +41011,19 @@ function useSignature (props, context, dependencies) {
       image.value = null;
       created.value = false;
     }
+  };
+  var debounceTransform = function debounceTransform(method) {
+    var ms = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1000;
+    if (debouncer.value) {
+      clearTimeout(debouncer.value);
+    }
+    debouncer.value = setTimeout( /*#__PURE__*/_asyncToGenerator(function* () {
+      try {
+        yield method.call();
+      } catch (e) {
+        value.value = null;
+      }
+    }), ms);
   };
 
   /**
@@ -41128,7 +41213,7 @@ function useSignature (props, context, dependencies) {
   setDefaultFont();
   setDefaultColor();
   onMounted(() => {
-    if (autoloadFonts.value) {
+    if (autoload.value) {
       loadFonts();
     }
     setWidth();
@@ -41185,8 +41270,14 @@ function useSignature (props, context, dependencies) {
 
     // ============== WATCHERS ==============
 
+    watch(maxFontSize, () => {
+      adjustFontSize();
+    }, {
+      flush: 'post'
+    });
     watch(modes, () => {
       initPad();
+      setDefaultMode(true);
     });
     watch(color, () => {
       if (pad.value) {
@@ -41208,12 +41299,28 @@ function useSignature (props, context, dependencies) {
     watch(mode, () => {
       clearSignature();
     });
+    watch([height, maxWidth], () => {
+      resizePad();
+      adjustFontSize();
+    }, {
+      flush: 'post'
+    });
     watch([text, fontFamily], () => {
       nextTick(() => {
         adjustFontSize();
       });
     }, {
       flush: 'post'
+    });
+    watch(text, () => {
+      debounceTransform(typingToImage, 1000);
+    }, {
+      flush: 'post'
+    });
+    watch(fonts, () => {
+      if (autoload.value) {
+        loadFonts();
+      }
     });
   });
   onBeforeUnmount(() => {
@@ -41361,7 +41468,7 @@ var SignatureElement = {
       type: [Boolean],
       default: false
     },
-    autoloadFonts: {
+    autoload: {
       required: false,
       type: [Boolean],
       default: true
@@ -41411,11 +41518,6 @@ var SignatureElement = {
       required: false,
       type: [Array],
       default: () => ['draw', 'type', 'upload']
-    },
-    signatures: {
-      required: false,
-      type: [Array],
-      default: () => []
     },
     colors: {
       required: false,
@@ -41951,6 +42053,12 @@ var TagsElement = {
       type: [Array],
       required: false,
       default: () => ['enter']
+    },
+    allowAbsent: {
+      type: [Boolean],
+      required: false,
+      default: false,
+      native: false
     },
     object: {
       type: [Boolean],

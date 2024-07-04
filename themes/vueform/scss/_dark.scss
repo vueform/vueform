@@ -68,6 +68,7 @@ $vf-dark-mode-selector: '.dark, .dark *, .dark :before, .dark :after' !default;
   --vf-border-color-btn-secondary: var(--vf-dark-700);
   --vf-border-color-blockquote: var(--vf-dark-700);
   --vf-border-color-hr: var(--vf-dark-700);
+  --vf-border-color-signature-hr: var(--vf-dark-500);
 }
 
 #{$vf-dark-mode-selector} {

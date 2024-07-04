@@ -204,6 +204,7 @@
   --vf-color-btn-secondary: var(--vf-gray-700);
   --vf-border-color-blockquote: var(--vf-gray-300);
   --vf-border-color-hr: var(--vf-gray-400);
+  --vf-border-color-signature-hr: var(--vf-gray-400);
   --vf-border-color-input: var(--vf-gray-600);
   --vf-border-color-input-focus: var(--vf-primary);
   --vf-border-color-input-hover: var(--vf-border-color-input);
@@ -368,4 +369,5 @@
   --vf-border-color-btn-secondary: var(--vf-dark-700);
   --vf-border-color-blockquote: var(--vf-dark-700);
   --vf-border-color-hr: var(--vf-dark-700);
+  --vf-border-color-signature-hr: var(--vf-dark-500);
 }

@@ -554,6 +554,7 @@ const vueform = plugin((context) => {
         '--vf-border-color-btn-secondary': theme('form.borderColors.btnSecondary'),
         '--vf-border-color-blockquote': theme('form.borderColors.blockquote'),
         '--vf-border-color-hr': theme('form.borderColors.hr'),
+        '--vf-border-color-signature-hr': theme('form.borderColors.signatureHr'),
 
         '--vf-border-width-input-t': Array.isArray(theme('form.borderWidths.input')) ? theme('form.borderWidths.input')[0] : theme('form.borderWidths.input'),
         '--vf-border-width-input-r': Array.isArray(theme('form.borderWidths.input')) ? theme('form.borderWidths.input')[1] : theme('form.borderWidths.input'),
@@ -735,6 +736,7 @@ const vueform = plugin((context) => {
       '--vf-border-color-btn-secondary': theme('form.borderColorsDark.btnSecondary'),
       '--vf-border-color-blockquote': theme('form.borderColorsDark.blockquote'),
       '--vf-border-color-hr': theme('form.borderColorsDark.hr'),
+      '--vf-border-color-signature-hr': theme('form.borderColorsDark.signatureHr'),
 
       '--vf-shadow-input': theme('form.shadowsDark.input'),
       '--vf-shadow-input-hover': theme('form.shadowsDark.inputHover'),
@@ -1755,6 +1757,9 @@ const vueform = plugin((context) => {
     },
     '.form-border-color-hr': {
       borderColor: 'var(--vf-border-color-hr)'
+    },
+    '.form-border-color-signature-hr': {
+      borderColor: 'var(--vf-border-color-signature-hr)'
     },
 
     '.form-border-width-btn': {
@@ -3023,6 +3028,7 @@ const vueform = plugin((context) => {
           btnSecondary: 'var(--vf-gray-200)',
           blockquote: 'var(--vf-gray-300)',
           hr: 'var(--vf-gray-300)',
+          signatureHr: 'var(--vf-gray-300)',
         },
 
         shadows: {
@@ -3108,6 +3114,7 @@ const vueform = plugin((context) => {
           btnSecondary: 'var(--vf-dark-700)',
           blockquote: 'var(--vf-dark-700)',
           hr: 'var(--vf-dark-700)',
+          signatureHr: 'var(--vf-dark-500)',
         },
 
         shadowsDark: {
