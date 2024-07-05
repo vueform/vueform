@@ -2,13 +2,13 @@ export default {
   "vueform": {
     "elements": {
       "list": {
-        "add": "+ Ajoutez le ficher",
+        "add": "+ Ajouter le fichier",
         "remove": "&times;"
       },
       "file": {
         "defaultName": "Fichier",
         "dndTitle": "Téléchargez le fichier",
-        "dndDescription": "Déposez le ficher ou cliquez ici pour le télécharger.",
+        "dndDescription": "Déposez le fichier ou cliquez ici pour le télécharger.",
         "removeConfirm": "En supprimant le fichier, il sera définitivement supprimé. Êtes-vous sûr de vouloir procéder ?",
         "select": "Télécharger les fichiers.",
         "upload": "Télécharger"
@@ -16,12 +16,12 @@ export default {
       "multifile": {
         "uploadButton": "Télécharger les fichiers.",
         "dndTitle": "Télécharger les fichiers.",
-        "dndDescription": "Déposer les fichiers ou cliquer ici pour les télécharger. Télécharger des images."
+        "dndDescription": "Déposez les fichiers ou cliquez ici pour les télécharger. Télécharger des images."
       },
       "gallery": {
         "uploadButton": "Importer des images",
         "dndTitle": "Importer des images",
-        "dndDescription": "Glisser des images ou cliquer ici pour les télécharger"
+        "dndDescription": "Glissez des images ou cliquez ici pour les télécharger"
       },
       "phone": {
         "ariaLabel": "Sélectionnez un pays"
@@ -34,7 +34,7 @@ export default {
         "fontPlaceholder": "Votre nom",
         "placeholder": "Signez ici",
         "unsupportedFormat": "Format de fichier non pris en charge. Les extensions acceptées sont : :extensions",
-        "maxSizeError": "La taille maximale du fichier est de :max KB",
+        "maxSizeError": "La taille maximale du fichier est de :max Ko",
         "imgAlt": "Signature",
         "imgTitle": "Signature",
         "undo": "Annuler",
@@ -156,7 +156,7 @@ export default {
     "multiselect": {
       "multipleLabelOne": "1 option sélectionnée",
       "multipleLabelMore": ":options options sélectionnées",
-      "noResults": "Aucunes options trouvées",
+      "noResults": "Aucune option trouvée",
       "noOptions": "La liste est vide"
     },
     "defaultMessage": "Champ invalide",
@@ -165,7 +165,7 @@ export default {
         "description": "Appuyez sur Retour arrière pour supprimer"
       },
       "list": {
-        "remove": "Bouton supprimer l'élément"
+        "remove": "Bouton de suppression de l'élément"
       }
     },
     "countries": {
