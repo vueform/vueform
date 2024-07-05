@@ -2,7 +2,7 @@
 
 ## v1.10.0
 
-> `2024-07-03`
+> `2024-07-05`
 
 ### 🎉 Feature
 - New [`SignatureElement`](https://vueform.com/reference/signature-element).
