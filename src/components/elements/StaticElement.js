@@ -113,7 +113,9 @@ export default {
       default: 0,
     },
   },
-  setup(props, context) {
+  setup(props, ctx) {
+    const context = { ...ctx }
+    
     context.features = [
       useForm$,
       useTheme,

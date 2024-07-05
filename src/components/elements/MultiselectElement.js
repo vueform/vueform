@@ -402,7 +402,9 @@ export default {
       default: () => ({})
     },
   },
-  setup(props, context) {
+  setup(props, ctx) {
+    const context = { ...ctx }
+    
     context.features = [
       useForm$,
       useTheme,
