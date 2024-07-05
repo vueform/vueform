@@ -14,7 +14,7 @@ function getAllFoldersInDirectory(directoryPath, excludedFolders = []) {
     const isDirectory = fs.statSync(itemPath).isDirectory();
 
     // Check if the folder should be excluded
-    if (isDirectory && !excludedFolders.includes(item)) {
+    if (isDirectory && !excludedFolders.includes(item) && item.split('.') !== 'js') {
       folders.push(item);
     }
   });
@@ -28,7 +28,7 @@ const locales = getAllFoldersInDirectory(resolve(__dirname, './../locales'))
 const final = {}
 
 locales.forEach((locale) => {
-  const file = require(resolve(__dirname, './../locales', locale)).default
+  const file = require(resolve(__dirname, './../locales', locale, 'index.mjs')).default
 
   let ordinal = file.vueform.datepicker.ordinal || function () { return '' }
 
