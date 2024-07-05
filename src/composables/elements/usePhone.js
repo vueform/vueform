@@ -271,9 +271,9 @@ const base = function(props, context, dependencies)
     if (option.n === undefined) {
       el$.value.clear()
     } else if (maskPluginInstalled.value) {
-      let valueMatchesMask = option.m.map(m => `+${m[0]}`).find((m) => {
+      let valueMatchesMask = value.value ? option.m.map(m => `+${m[0]}`).find((m) => {
         return value.value.startsWith(m)
-      })
+      }) : false
 
       if (!valueMatchesMask) {
         el$.value.update(option.m.length === 1 ? `+${option.m[0][0]}` : option.n)
