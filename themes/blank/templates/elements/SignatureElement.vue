@@ -6,6 +6,7 @@
         :style="wrapperStyle"
         :tabindex="isDisabled ? undefined : 0"
         :aria-label="wrapperAriaLabel"
+        :id="id"
         @keydown.tab.escape="handleMouseLeave"
         @mouseleave="handleMouseLeave"
         ref="input"

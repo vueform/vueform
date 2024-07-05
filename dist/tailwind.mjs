@@ -7579,7 +7579,7 @@ var script$q = {
     },
   };
 
-const _hoisted_1$g = ["tabindex", "aria-label"];
+const _hoisted_1$g = ["tabindex", "aria-label", "id"];
 const _hoisted_2$b = ["src", "alt", "title"];
 const _hoisted_3$9 = ["title", "tabindex", "aria-label"];
 const _hoisted_4$4 = ["title", "tabindex", "aria-label"];
@@ -7603,6 +7603,7 @@ function render$l(_ctx, _cache, $props, $setup, $data, $options) {
         style: normalizeStyle(_ctx.wrapperStyle),
         tabindex: _ctx.isDisabled ? undefined : 0,
         "aria-label": _ctx.wrapperAriaLabel,
+        id: _ctx.id,
         onKeydown: _cache[11] || (_cache[11] = withKeys((...args) => (_ctx.handleMouseLeave && _ctx.handleMouseLeave(...args)), ["tab","escape"])),
         onMouseleave: _cache[12] || (_cache[12] = (...args) => (_ctx.handleMouseLeave && _ctx.handleMouseLeave(...args))),
         ref: "input"
@@ -14332,10 +14333,10 @@ var classes = {
     wrapper_enabled: 'form-bg-input form-color-input form-border-color-input focused:form-ring focused:form-border-color-input-focus',
     wrapper_readonly: 'pointer-events-none',
     line: 'absolute top-1/2 left-6 right-6 form-border-color-signature-hr',
-    loadedWrapper: 'absolute left-9 right-9 top-0 bottom-0 flex items-center justify-center',
+    loadedWrapper: 'absolute left-9 right-9 form-border-width-input border-transparent top-0 bottom-0 flex items-center justify-center',
     loadedWrapper_disabled: 'opacity-50',
     loadedWrapper_enabled: '',
-    loadedImg: '',
+    loadedImg: 'max-h-full',
     innerWrapper: '',
     innerWrapper_disabled: 'opacity-50',
     innerWrapper_enabled: '',
@@ -14349,7 +14350,7 @@ var classes = {
     uploadWrapper_processing: 'opacity-60 pointer-events-none',
     dndText: 'form-color-input',
     uploadButton: 'inline-block transition form-border-width-btn form-shadow-btn focus:outline-zero form-bg-btn-secondary form-color-btn-secondary form-border-color-btn-secondary cursor-pointer transition-transform ease-linear focus:form-ring transform hover:scale-105 form-p-btn form-radius-btn form-text',
-    uploadPreview: 'w-full mx-auto',
+    uploadPreview: 'mx-auto',
     pad: 'absolute inset-0',
     pad_invert: 'dark:filter dark:invert',
     colors: 'absolute bottom-5 left-1/2 transform -translate-x-1/2 flex flex-row gap-2',

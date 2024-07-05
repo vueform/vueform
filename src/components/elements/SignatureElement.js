@@ -39,7 +39,7 @@ import HasValidation from './../../mixins/HasValidation'
 export default {
   name: 'SignatureElement',
   mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
-  emits: ['change', 'blur', 'keydown', 'keyup', 'keypress', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
+  emits: ['change', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
   props: {
     type: {
       required: false,
@@ -73,12 +73,45 @@ export default {
       type: [Boolean],
       default: false
     },
+    modes: {
+      required: false,
+      type: [Array],
+      default: () => (['draw', 'type', 'upload']),
+    },
+    fonts: {
+      required: false,
+      type: [Array],
+      default: () => ([
+        'Caveat@400',
+        'Sacramento@400',
+        'Dancing Script@400'
+      ]),
+    },
     autoload: {
       required: false,
       type: [Boolean],
       default: true
     },
-
+    minFontSize: {
+      required: false,
+      type: [Number],
+      default: 10,
+    },
+    maxFontSize: {
+      required: false,
+      type: [Number],
+      default: 60,
+    },
+    colors: {
+      required: false,
+      type: [Array],
+      default: () => (['#000000', '#2558b2', '#f22f30']),
+    },
+    invertColors: {
+      required: false,
+      type: [Array],
+      default: () => (['#000000']),
+    },
     maxWidth: {
       required: false,
       type: [Number, String],
@@ -99,6 +132,16 @@ export default {
       type: [Number],
       default: 160,
     },
+    maxSize: {
+      required: false,
+      type: [Number],
+      default: 2048,
+    },
+    accept: {
+      required: false,
+      type: [Array],
+      default: () => (['jpg', 'png', 'svg']),
+    },
     placeholder: {
       required: false,
       type: [String, Object, Boolean],
@@ -109,51 +152,6 @@ export default {
       required: false,
       type: [Boolean],
       default: true,
-    },
-    minFontSize: {
-      required: false,
-      type: [Number],
-      default: 10,
-    },
-    maxFontSize: {
-      required: false,
-      type: [Number],
-      default: 60,
-    },
-
-    modes: {
-      required: false,
-      type: [Array],
-      default: () => (['draw', 'type', 'upload']),
-    },
-    colors: {
-      required: false,
-      type: [Array],
-      default: () => (['#000000', '#2558b2', '#f22f30']),
-    },
-    invertColors: {
-      required: false,
-      type: [Array],
-      default: () => (['#000000']),
-    },
-    fonts: {
-      required: false,
-      type: [Array],
-      default: () => ([
-        'Caveat@400',
-        'Sacramento@400',
-        'Dancing Script@400'
-      ]),
-    },
-    accept: {
-      required: false,
-      type: [Array],
-      default: () => (['jpg', 'png', 'svg']),
-    },
-    maxSize: {
-      required: false,
-      type: [Number],
-      default: 2048,
     },
     canClear: {
       required: false,

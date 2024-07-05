@@ -1075,10 +1075,6 @@ export default {
     ],
     "events": [
       "change",
-      "blur",
-      "keydown",
-      "keyup",
-      "keypress",
       "beforeCreate",
       "created",
       "beforeMount",

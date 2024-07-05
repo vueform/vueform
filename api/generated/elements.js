@@ -22048,6 +22048,17 @@ module.exports = {
         required: false,
         private: false,
       },
+      allowAbsent: {
+        required: 'false',
+        default: 'false',
+        localized: false,
+        types: [
+          'boolean',
+        ],
+        native: false,
+        required: false,
+        private: false,
+      },
       object: {
         required: 'false',
         default: 'false',
@@ -30570,6 +30581,17 @@ module.exports = {
         required: false,
         private: false,
       },
+      allowAbsent: {
+        required: 'false',
+        default: 'false',
+        localized: false,
+        types: [
+          'boolean',
+        ],
+        native: false,
+        required: false,
+        private: false,
+      },
       object: {
         required: 'false',
         default: 'false',
@@ -32697,12 +32719,72 @@ module.exports = {
         required: false,
         private: false,
       },
-      autoloadFonts: {
+      modes: {
+        required: 'false',
+        default: '["draw","type","upload"]',
+        localized: false,
+        types: [
+          'array',
+        ],
+        required: false,
+        private: false,
+      },
+      fonts: {
+        required: 'false',
+        default: '["Caveat@400","Sacramento@400","Dancing Script@400"]',
+        localized: false,
+        types: [
+          'array',
+        ],
+        required: false,
+        private: false,
+      },
+      autoload: {
         required: 'false',
         default: 'true',
         localized: false,
         types: [
           'boolean',
+        ],
+        required: false,
+        private: false,
+      },
+      minFontSize: {
+        required: 'false',
+        default: '10',
+        localized: false,
+        types: [
+          'number',
+        ],
+        required: false,
+        private: false,
+      },
+      maxFontSize: {
+        required: 'false',
+        default: '60',
+        localized: false,
+        types: [
+          'number',
+        ],
+        required: false,
+        private: false,
+      },
+      colors: {
+        required: 'false',
+        default: '["#000000","#2558b2","#f22f30"]',
+        localized: false,
+        types: [
+          'array',
+        ],
+        required: false,
+        private: false,
+      },
+      invertColors: {
+        required: 'false',
+        default: '["#000000"]',
+        localized: false,
+        types: [
+          'array',
         ],
         required: false,
         private: false,
@@ -32748,6 +32830,26 @@ module.exports = {
         required: false,
         private: false,
       },
+      maxSize: {
+        required: 'false',
+        default: '2048',
+        localized: false,
+        types: [
+          'number',
+        ],
+        required: false,
+        private: false,
+      },
+      accept: {
+        required: 'false',
+        default: '["jpg","png","svg"]',
+        localized: false,
+        types: [
+          'array',
+        ],
+        required: false,
+        private: false,
+      },
       placeholder: {
         required: 'false',
         default: 'null',
@@ -32766,96 +32868,6 @@ module.exports = {
         localized: false,
         types: [
           'boolean',
-        ],
-        required: false,
-        private: false,
-      },
-      minFontSize: {
-        required: 'false',
-        default: '10',
-        localized: false,
-        types: [
-          'number',
-        ],
-        required: false,
-        private: false,
-      },
-      maxFontSize: {
-        required: 'false',
-        default: '60',
-        localized: false,
-        types: [
-          'number',
-        ],
-        required: false,
-        private: false,
-      },
-      modes: {
-        required: 'false',
-        default: '["draw","type","upload"]',
-        localized: false,
-        types: [
-          'array',
-        ],
-        required: false,
-        private: false,
-      },
-      signatures: {
-        required: 'false',
-        default: '[]',
-        localized: false,
-        types: [
-          'array',
-        ],
-        required: false,
-        private: false,
-      },
-      colors: {
-        required: 'false',
-        default: '["#000000","#2558b2","#f22f30"]',
-        localized: false,
-        types: [
-          'array',
-        ],
-        required: false,
-        private: false,
-      },
-      invertColors: {
-        required: 'false',
-        default: '["#000000"]',
-        localized: false,
-        types: [
-          'array',
-        ],
-        required: false,
-        private: false,
-      },
-      fonts: {
-        required: 'false',
-        default: '["Caveat@400","Sacramento@400","Dancing Script@400"]',
-        localized: false,
-        types: [
-          'array',
-        ],
-        required: false,
-        private: false,
-      },
-      accept: {
-        required: 'false',
-        default: '["jpg","png","svg"]',
-        localized: false,
-        types: [
-          'array',
-        ],
-        required: false,
-        private: false,
-      },
-      maxSize: {
-        required: 'false',
-        default: '2048',
-        localized: false,
-        types: [
-          'number',
         ],
         required: false,
         private: false,
@@ -32979,28 +32991,28 @@ module.exports = {
         types: [
           'HTMLInputElement',
         ],
-        description: 'The input field when [`mode`](#property-mode) is &apos;type`.',
+        description: 'The input field when [`mode`](#property-mode) is `type`.',
         private: false,
       },
       preview$: {
         types: [
           'HTMLCanvasElement',
         ],
-        description: 'The canvas that shows the preview of an uploaded signature when [`mode`](#property-mode) is &apos;upload`.',
+        description: 'The canvas that shows the preview of an uploaded signature when [`mode`](#property-mode) is `upload`.',
         private: false,
       },
       pad$: {
         types: [
           'HTMLCanvasElement',
         ],
-        description: 'The canvas that allows drawning signature when [`mode`](#property-mode) is &apos;draw`.',
+        description: 'The canvas that allows drawning signature when [`mode`](#property-mode) is `draw`.',
         private: false,
       },
       file$: {
         types: [
           'HTMLInputElement',
         ],
-        description: 'The file input field when [`mode`](#property-mode) is &apos;upload` (it&apos;s invisible).',
+        description: 'The file input field when [`mode`](#property-mode) is `upload` (it&apos;s invisible).',
         private: false,
       },
       upload$: {
@@ -33049,7 +33061,7 @@ module.exports = {
         types: [
           'string',
         ],
-        description: 'The input value used when [`mode`](#property-mode) is &apos;type`.',
+        description: 'The input value used when [`mode`](#property-mode) is `type`.',
         private: false,
       },
       fontSize: {
@@ -33070,42 +33082,42 @@ module.exports = {
         types: [
           'File',
         ],
-        description: 'The file (image) selected by the user when [`mode`](#property-mode) is &apos;upload`.',
+        description: 'The file (image) selected by the user when [`mode`](#property-mode) is `upload`.',
         private: false,
       },
       created: {
         types: [
           'boolean',
         ],
-        description: 'Whether the image preview is already created when [`mode`](#property-mode) is &apos;upload`.',
+        description: 'Whether the image preview is already created when [`mode`](#property-mode) is `upload`.',
         private: false,
       },
       creating: {
         types: [
           'boolean',
         ],
-        description: 'Whether the image preview is being created when [`mode`](#property-mode) is &apos;upload`.',
+        description: 'Whether the image preview is being created when [`mode`](#property-mode) is `upload`.',
         private: false,
       },
       dragging: {
         types: [
           'boolean',
         ],
-        description: 'Whether a file is being dragged over the element when [`mode`](#property-mode) is &apos;upload`.',
+        description: 'Whether a file is being dragged over the element when [`mode`](#property-mode) is `upload`.',
         private: false,
       },
       drawn: {
         types: [
           'boolean',
         ],
-        description: 'Whether the canvas contains any drawn signature when [`mode`](#property-mode) is &apos;draw`.',
+        description: 'Whether the canvas contains any drawn signature when [`mode`](#property-mode) is `draw`.',
         private: false,
       },
       drawing: {
         types: [
           'boolean',
         ],
-        description: 'Whether a signature is currently being drawn when [`mode`](#property-mode) is &apos;draw`.',
+        description: 'Whether a signature is currently being drawn when [`mode`](#property-mode) is `draw`.',
         private: false,
       },
       redos: {
@@ -33731,7 +33743,7 @@ module.exports = {
         types: [
           '',
         ],
-        description: 'The style attributes of the signature input when [`mode`](#property-mode) is &apos;type`.',
+        description: 'The style attributes of the signature input when [`mode`](#property-mode) is `type`.',
         private: false,
       },
       lineStyle: {
@@ -34056,12 +34068,12 @@ module.exports = {
         private: false,
       },
       undo: {
-        description: 'Undoes the last drawing when [`mode`](#property-mode) is &apos;draw`.',
+        description: 'Undoes the last drawing when [`mode`](#property-mode) is `draw`.',
         returns: 'void',
         private: false,
       },
       redo: {
-        description: 'Redoes the last drawing when [`mode`](#property-mode) is &apos;draw`.',
+        description: 'Redoes the last drawing when [`mode`](#property-mode) is `draw`.',
         returns: 'void',
         private: false,
       },
@@ -34357,68 +34369,6 @@ module.exports = {
             description: 'the old value',
             types: [
               'string',
-            ]
-          },
-          el$: {
-            description: 'the element&apos;s component',
-            types: [
-              'component',
-            ]
-          },
-       },
-      },
-      'blur': {
-        description: 'Triggered when the input is blurred.',
-        params: {
-          el$: {
-            description: 'the element&apos;s component',
-            types: [
-              'component',
-            ]
-          },
-       },
-      },
-      'keydown': {
-        description: 'Triggered on keydown.',
-        params: {
-          Event: {
-            description: 'the Event object',
-            types: [
-              'Event',
-            ]
-          },
-          el$: {
-            description: 'the element&apos;s component',
-            types: [
-              'component',
-            ]
-          },
-       },
-      },
-      'keyup': {
-        description: 'Triggered on keyup.',
-        params: {
-          Event: {
-            description: 'the Event object',
-            types: [
-              'Event',
-            ]
-          },
-          el$: {
-            description: 'the element&apos;s component',
-            types: [
-              'component',
-            ]
-          },
-       },
-      },
-      'keypress': {
-        description: 'Triggered on keypress.',
-        params: {
-          Event: {
-            description: 'the Event object',
-            types: [
-              'Event',
             ]
           },
           el$: {
@@ -43066,6 +43016,17 @@ module.exports = {
         types: [
           'array',
         ],
+        required: false,
+        private: false,
+      },
+      allowAbsent: {
+        required: 'false',
+        default: 'false',
+        localized: false,
+        types: [
+          'boolean',
+        ],
+        native: false,
         required: false,
         private: false,
       },

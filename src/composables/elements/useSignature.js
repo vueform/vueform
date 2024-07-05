@@ -35,6 +35,7 @@ export default function (props, context, dependencies)
     isDisabled,
     value,
     Placeholder,
+    available,
   } = dependencies
 
   // ================ DATA ================
@@ -430,7 +431,7 @@ export default function (props, context, dependencies)
    * @type {boolean}
    */
   const showModes = computed(() => {
-    return !drawing.value && modes.value.length > 1 && !isMouseOver.value
+    return !drawing.value && modes.value.length > 1
   })
   
   /**
@@ -686,35 +687,43 @@ export default function (props, context, dependencies)
    * @returns {void}
    */
   const initPad = () => {
-    if (pad.value || !pad$.value || (modes.value.indexOf('draw') === -1 && modes.value.length)) {
+    if (pad.value || !pad$.value || (modes.value.indexOf('draw') === -1 && modes.value.length) || !available.value) {
       return
     }
 
-    pad.value = new SignaturePad(pad$.value)
+    if (!width.value) {
+      setWidth()
+    }
 
-    const ctx = pad$.value.getContext('2d')
-    ctx.setTransform(1, 0, 0, 1, 0, 0)
-    ctx.scale(2, 2)
+    nextTick(() => {
 
-    setDrawColor()
+      pad.value = new SignaturePad(pad$.value)
 
-    pad.value.addEventListener('beginStroke', (e) => {
-      if (isDisabled.value || readonly.value) {
-        e.preventDefault()
-        return
-      }
+      const ctx = pad$.value.getContext('2d')
+      ctx.setTransform(1, 0, 0, 1, 0, 0)
+      ctx.scale(2, 2)
 
-      isMouseOver.value = true
-      drawn.value = true
-      drawing.value = true
-      redos.value = []
-    })
+      setDrawColor()
 
-    pad.value.addEventListener('endStroke', () => {
-      drawing.value = false
-      undosLeft.value++
+      pad.value.addEventListener('beginStroke', (e) => {
+        if (isDisabled.value || readonly.value) {
+          e.preventDefault()
+          return
+        }
 
-      debounceTransform(drawingToImage, 500)
+        isMouseOver.value = true
+        drawn.value = true
+        drawing.value = true
+        redos.value = []
+      })
+
+      pad.value.addEventListener('endStroke', () => {
+        drawing.value = false
+        undosLeft.value++
+
+        debounceTransform(drawingToImage, 500)
+      })
+      
     })
   }
 
@@ -1457,7 +1466,7 @@ export default function (props, context, dependencies)
    * @returns {void}
    */
   const handleDrop = (e) => {
-    if (isDisabled.value || readonly.value) {
+    if (isDisabled.value || readonly.value || !droppable.value) {
       return
     }
     
@@ -1531,7 +1540,7 @@ export default function (props, context, dependencies)
           return
         }
 
-        if (isDisabled.value) {
+        if (isDisabled.value || !droppable.value) {
           return
         }
 
@@ -1543,7 +1552,7 @@ export default function (props, context, dependencies)
       e.preventDefault()
       e.stopPropagation()
 
-      if (isDisabled.value) {
+      if (isDisabled.value || !droppable.value) {
         return
       }
       
@@ -1557,7 +1566,7 @@ export default function (props, context, dependencies)
       e.preventDefault()
       e.stopPropagation()
 
-      if (isDisabled.value) {
+      if (isDisabled.value || !droppable.value) {
         return
       }
 
@@ -1581,6 +1590,12 @@ export default function (props, context, dependencies)
       initPad()
       setDefaultMode(true)
     })
+  
+    watch(available, () => {
+      nextTick(() => {
+        initPad()
+      })
+    }, { flush: 'post' })
 
     watch(color, () => {
       if (pad.value) {

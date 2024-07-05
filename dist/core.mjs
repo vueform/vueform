@@ -39717,7 +39717,8 @@ function useSignature (props, context, dependencies) {
     input,
     isDisabled,
     value,
-    Placeholder
+    Placeholder,
+    available
   } = dependencies;
 
   // ================ DATA ================
@@ -40100,7 +40101,7 @@ function useSignature (props, context, dependencies) {
    * @type {boolean}
    */
   var showModes = computed(() => {
-    return !drawing.value && modes.value.length > 1 && !isMouseOver.value;
+    return !drawing.value && modes.value.length > 1;
   });
 
   /**
@@ -40349,28 +40350,33 @@ function useSignature (props, context, dependencies) {
    * @returns {void}
    */
   var initPad = () => {
-    if (pad.value || !pad$.value || modes.value.indexOf('draw') === -1 && modes.value.length) {
+    if (pad.value || !pad$.value || modes.value.indexOf('draw') === -1 && modes.value.length || !available.value) {
       return;
     }
-    pad.value = new SignaturePad(pad$.value);
-    var ctx = pad$.value.getContext('2d');
-    ctx.setTransform(1, 0, 0, 1, 0, 0);
-    ctx.scale(2, 2);
-    setDrawColor();
-    pad.value.addEventListener('beginStroke', e => {
-      if (isDisabled.value || readonly.value) {
-        e.preventDefault();
-        return;
-      }
-      isMouseOver.value = true;
-      drawn.value = true;
-      drawing.value = true;
-      redos.value = [];
-    });
-    pad.value.addEventListener('endStroke', () => {
-      drawing.value = false;
-      undosLeft.value++;
-      debounceTransform(drawingToImage, 500);
+    if (!width.value) {
+      setWidth();
+    }
+    nextTick(() => {
+      pad.value = new SignaturePad(pad$.value);
+      var ctx = pad$.value.getContext('2d');
+      ctx.setTransform(1, 0, 0, 1, 0, 0);
+      ctx.scale(2, 2);
+      setDrawColor();
+      pad.value.addEventListener('beginStroke', e => {
+        if (isDisabled.value || readonly.value) {
+          e.preventDefault();
+          return;
+        }
+        isMouseOver.value = true;
+        drawn.value = true;
+        drawing.value = true;
+        redos.value = [];
+      });
+      pad.value.addEventListener('endStroke', () => {
+        drawing.value = false;
+        undosLeft.value++;
+        debounceTransform(drawingToImage, 500);
+      });
     });
   };
 
@@ -41051,7 +41057,7 @@ function useSignature (props, context, dependencies) {
    * @returns {void}
    */
   var handleDrop = e => {
-    if (isDisabled.value || readonly.value) {
+    if (isDisabled.value || readonly.value || !droppable.value) {
       return;
     }
     var file = e.dataTransfer.files[0];
@@ -41118,7 +41124,7 @@ function useSignature (props, context, dependencies) {
         if (['dragleave', 'dragend'].indexOf(event) === -1) {
           return;
         }
-        if (isDisabled.value) {
+        if (isDisabled.value || !droppable.value) {
           return;
         }
         dragging.value = false;
@@ -41127,7 +41133,7 @@ function useSignature (props, context, dependencies) {
     input.value.addEventListener('dragover', e => {
       e.preventDefault();
       e.stopPropagation();
-      if (isDisabled.value) {
+      if (isDisabled.value || !droppable.value) {
         return;
       }
       if (dragging.value !== true) {
@@ -41139,7 +41145,7 @@ function useSignature (props, context, dependencies) {
     input.value.addEventListener('drop', e => {
       e.preventDefault();
       e.stopPropagation();
-      if (isDisabled.value) {
+      if (isDisabled.value || !droppable.value) {
         return;
       }
       handleDrop(e);
@@ -41160,6 +41166,13 @@ function useSignature (props, context, dependencies) {
     watch(modes, () => {
       initPad();
       setDefaultMode(true);
+    });
+    watch(available, () => {
+      nextTick(() => {
+        initPad();
+      });
+    }, {
+      flush: 'post'
     });
     watch(color, () => {
       if (pad.value) {
@@ -41316,7 +41329,7 @@ function useSignature (props, context, dependencies) {
 var SignatureElement = {
   name: 'SignatureElement',
   mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
-  emits: ['change', 'blur', 'keydown', 'keyup', 'keypress', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
+  emits: ['change', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
   props: {
     type: {
       required: false,
@@ -41350,10 +41363,40 @@ var SignatureElement = {
       type: [Boolean],
       default: false
     },
+    modes: {
+      required: false,
+      type: [Array],
+      default: () => ['draw', 'type', 'upload']
+    },
+    fonts: {
+      required: false,
+      type: [Array],
+      default: () => ['Caveat@400', 'Sacramento@400', 'Dancing Script@400']
+    },
     autoload: {
       required: false,
       type: [Boolean],
       default: true
+    },
+    minFontSize: {
+      required: false,
+      type: [Number],
+      default: 10
+    },
+    maxFontSize: {
+      required: false,
+      type: [Number],
+      default: 60
+    },
+    colors: {
+      required: false,
+      type: [Array],
+      default: () => ['#000000', '#2558b2', '#f22f30']
+    },
+    invertColors: {
+      required: false,
+      type: [Array],
+      default: () => ['#000000']
     },
     maxWidth: {
       required: false,
@@ -41375,6 +41418,16 @@ var SignatureElement = {
       type: [Number],
       default: 160
     },
+    maxSize: {
+      required: false,
+      type: [Number],
+      default: 2048
+    },
+    accept: {
+      required: false,
+      type: [Array],
+      default: () => ['jpg', 'png', 'svg']
+    },
     placeholder: {
       required: false,
       type: [String, Object, Boolean],
@@ -41385,46 +41438,6 @@ var SignatureElement = {
       required: false,
       type: [Boolean],
       default: true
-    },
-    minFontSize: {
-      required: false,
-      type: [Number],
-      default: 10
-    },
-    maxFontSize: {
-      required: false,
-      type: [Number],
-      default: 60
-    },
-    modes: {
-      required: false,
-      type: [Array],
-      default: () => ['draw', 'type', 'upload']
-    },
-    colors: {
-      required: false,
-      type: [Array],
-      default: () => ['#000000', '#2558b2', '#f22f30']
-    },
-    invertColors: {
-      required: false,
-      type: [Array],
-      default: () => ['#000000']
-    },
-    fonts: {
-      required: false,
-      type: [Array],
-      default: () => ['Caveat@400', 'Sacramento@400', 'Dancing Script@400']
-    },
-    accept: {
-      required: false,
-      type: [Array],
-      default: () => ['jpg', 'png', 'svg']
-    },
-    maxSize: {
-      required: false,
-      type: [Number],
-      default: 2048
     },
     canClear: {
       required: false,

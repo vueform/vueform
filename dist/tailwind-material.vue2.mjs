@@ -12010,6 +12010,7 @@ __vue_render__$m._withStripped = true;
 //
 //
 //
+//
 
   var script$q = {
     name: 'SignatureElement',
@@ -12053,6 +12054,7 @@ var __vue_render__$l = function () {
                   attrs: {
                     tabindex: _vm.isDisabled ? undefined : 0,
                     "aria-label": _vm.wrapperAriaLabel,
+                    id: _vm.id,
                   },
                   on: {
                     keydown: function ($event) {
@@ -21521,25 +21523,25 @@ var classes = {
     wrapper_disabled: 'form-bg-disabled form-color-disabled form-border-color-input cursor-not-allowed pointer-events-none',
     wrapper_enabled: 'form-bg-input form-color-input form-border-color-input focused:form-ring focused:form-border-color-input-focus',
     wrapper_readonly: 'pointer-events-none',
-    line: 'absolute top-1/2 left-6 right-6 border-gray-300 dark:border-dark-500',
-    loadedWrapper: 'absolute left-9 right-9 top-0 bottom-0 flex items-center justify-center',
+    line: 'absolute top-1/2 left-6 right-6 form-border-color-signature-hr',
+    loadedWrapper: 'absolute left-9 right-9 form-border-width-input border-transparent top-0 bottom-0 flex items-center justify-center',
     loadedWrapper_disabled: 'opacity-50',
     loadedWrapper_enabled: '',
-    loadedImg: '',
+    loadedImg: 'max-h-full',
     innerWrapper: '',
     innerWrapper_disabled: 'opacity-50',
     innerWrapper_enabled: '',
     input: 'bg-transparent absolute top-1/2 left-0 right-0 transform -translate-y-1/2 pr-9 text-center indent-9 transition-colors h-[8.5rem] rtl:pr-0 rtl:pl-9',
     input_invert: 'dark:filter dark:invert',
-    placeholder: 'absolute left-0 right-0 bottom-[50%] transform translate-y-1/2 pointer-events-none text-gray-400 text-center dark:text-dark-500',
+    placeholder: 'absolute left-0 right-0 bottom-[50%] transform translate-y-1/2 pointer-events-none form-color-placeholder text-center',
     uploadContainer: 'absolute left-9 right-9 bottom-1/2 transform translate-y-1/2 transition-opacity',
     uploadContainer_dragging: 'opacity-50',
     uploadContainer_not_dragging: '',
     uploadWrapper: 'flex flex-col items-center justify cente text-gray-400 text-center',
     uploadWrapper_processing: 'opacity-60 pointer-events-none',
-    dndText: 'text-gray-700 dark:text-dark-200',
+    dndText: 'form-color-input',
     uploadButton: 'inline-block transition form-border-width-btn form-shadow-btn focus:outline-zero form-bg-btn-secondary form-color-btn-secondary form-border-color-btn-secondary cursor-pointer transition-transform ease-linear focus:form-ring transform hover:scale-105 form-p-btn form-radius-btn form-text',
-    uploadPreview: 'w-full mx-auto',
+    uploadPreview: 'mx-auto',
     pad: 'absolute inset-0',
     pad_invert: 'dark:filter dark:invert',
     colors: 'absolute bottom-5 left-1/2 transform -translate-x-1/2 flex flex-row gap-2',

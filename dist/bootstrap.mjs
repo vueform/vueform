@@ -9546,7 +9546,7 @@ var script$L = {
     },
   };
 
-const _hoisted_1$g = ["tabindex", "aria-label"];
+const _hoisted_1$g = ["tabindex", "aria-label", "id"];
 const _hoisted_2$b = ["src", "alt", "title"];
 const _hoisted_3$9 = ["title", "tabindex", "aria-label"];
 const _hoisted_4$4 = ["title", "tabindex", "aria-label"];
@@ -9570,6 +9570,7 @@ function render$l(_ctx, _cache, $props, $setup, $data, $options) {
         style: normalizeStyle(_ctx.wrapperStyle),
         tabindex: _ctx.isDisabled ? undefined : 0,
         "aria-label": _ctx.wrapperAriaLabel,
+        id: _ctx.id,
         onKeydown: _cache[11] || (_cache[11] = withKeys((...args) => (_ctx.handleMouseLeave && _ctx.handleMouseLeave(...args)), ["tab","escape"])),
         onMouseleave: _cache[12] || (_cache[12] = (...args) => (_ctx.handleMouseLeave && _ctx.handleMouseLeave(...args))),
         ref: "input"

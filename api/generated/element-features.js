@@ -5348,28 +5348,28 @@ export default {
           "types": [
             "HTMLInputElement"
           ],
-          "description": "The input field when [`mode`](#property-mode) is 'type`."
+          "description": "The input field when [`mode`](#property-mode) is `type`."
         },
         "preview$": {
           "public": true,
           "types": [
             "HTMLCanvasElement"
           ],
-          "description": "The canvas that shows the preview of an uploaded signature when [`mode`](#property-mode) is 'upload`."
+          "description": "The canvas that shows the preview of an uploaded signature when [`mode`](#property-mode) is `upload`."
         },
         "pad$": {
           "public": true,
           "types": [
             "HTMLCanvasElement"
           ],
-          "description": "The canvas that allows drawning signature when [`mode`](#property-mode) is 'draw`."
+          "description": "The canvas that allows drawning signature when [`mode`](#property-mode) is `draw`."
         },
         "file$": {
           "public": true,
           "types": [
             "HTMLInputElement"
           ],
-          "description": "The file input field when [`mode`](#property-mode) is 'upload` (it's invisible)."
+          "description": "The file input field when [`mode`](#property-mode) is `upload` (it's invisible)."
         },
         "upload$": {
           "public": true,
@@ -5418,7 +5418,7 @@ export default {
           "types": [
             "string"
           ],
-          "description": "The input value used when [`mode`](#property-mode) is 'type`."
+          "description": "The input value used when [`mode`](#property-mode) is `type`."
         },
         "fontSize": {
           "public": true,
@@ -5439,42 +5439,42 @@ export default {
           "types": [
             "File"
           ],
-          "description": "The file (image) selected by the user when [`mode`](#property-mode) is 'upload`."
+          "description": "The file (image) selected by the user when [`mode`](#property-mode) is `upload`."
         },
         "created": {
           "public": true,
           "types": [
             "boolean"
           ],
-          "description": "Whether the image preview is already created when [`mode`](#property-mode) is 'upload`."
+          "description": "Whether the image preview is already created when [`mode`](#property-mode) is `upload`."
         },
         "creating": {
           "public": true,
           "types": [
             "boolean"
           ],
-          "description": "Whether the image preview is being created when [`mode`](#property-mode) is 'upload`."
+          "description": "Whether the image preview is being created when [`mode`](#property-mode) is `upload`."
         },
         "dragging": {
           "public": true,
           "types": [
             "boolean"
           ],
-          "description": "Whether a file is being dragged over the element when [`mode`](#property-mode) is 'upload`."
+          "description": "Whether a file is being dragged over the element when [`mode`](#property-mode) is `upload`."
         },
         "drawn": {
           "public": true,
           "types": [
             "boolean"
           ],
-          "description": "Whether the canvas contains any drawn signature when [`mode`](#property-mode) is 'draw`."
+          "description": "Whether the canvas contains any drawn signature when [`mode`](#property-mode) is `draw`."
         },
         "drawing": {
           "public": true,
           "types": [
             "boolean"
           ],
-          "description": "Whether a signature is currently being drawn when [`mode`](#property-mode) is 'draw`."
+          "description": "Whether a signature is currently being drawn when [`mode`](#property-mode) is `draw`."
         },
         "redos": {
           "public": true,
@@ -5792,7 +5792,7 @@ export default {
           "types": [
             ""
           ],
-          "description": "The style attributes of the signature input when [`mode`](#property-mode) is 'type`."
+          "description": "The style attributes of the signature input when [`mode`](#property-mode) is `type`."
         },
         "lineStyle": {
           "public": true,
@@ -5831,12 +5831,12 @@ export default {
         "undo": {
           "public": true,
           "returns": "void",
-          "description": "Undoes the last drawing when [`mode`](#property-mode) is 'draw`."
+          "description": "Undoes the last drawing when [`mode`](#property-mode) is `draw`."
         },
         "redo": {
           "public": true,
           "returns": "void",
-          "description": "Redoes the last drawing when [`mode`](#property-mode) is 'draw`."
+          "description": "Redoes the last drawing when [`mode`](#property-mode) is `draw`."
         },
         "clearSignature": {
           "public": true,
