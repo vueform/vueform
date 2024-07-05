@@ -504,10 +504,10 @@ export default {
       "array": ":attribute debe contener :size elementos."
     },
     "string": "El campo :attribute debe ser una cadena de caracteres.",
-    "timezone": ":Attribute debe ser una zona horaria válida.",
+    "timezone": ":attribute debe ser una zona horaria válida.",
     "unique": "El campo :attribute ya ha sido registrado.",
     "uploaded": "The :attribute failed to upload.",
-    "url": ":Attribute debe ser una URL válida.",
+    "url": ":attribute debe ser una URL válida.",
     "uuid": "El campo :attribute debe ser un UUID válido.",
     "remote": "The :attribute field is invalid."
   }
