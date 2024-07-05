@@ -120,7 +120,7 @@ export default function (props, context, dependencies)
   /**
    * The current font size.
    *
-   * @type {}
+   * @type {number}
    */
   const fontSize = ref(maxFontSize.value)
 
@@ -141,7 +141,7 @@ export default function (props, context, dependencies)
   /**
    * The [Signature Pad](https://github.com/szimek/signature_pad) instance.
    *
-   * @type {}
+   * @type {object}
    */
   const pad = ref(null)
 
@@ -300,7 +300,7 @@ export default function (props, context, dependencies)
   /**
    * The list of [`fonts`](#option-fonts) formatted for fonts selector.
    *
-   * @type {}
+   * @type {array}
    */
   const resolvedFonts = computed(() => {
     return fontFamilies.value.map((font, i) => ({
@@ -655,7 +655,7 @@ export default function (props, context, dependencies)
   /**
    * The style attributes of the signature input when [`mode`](#property-mode) is `type`.
    *
-   * @type {}
+   * @type {object}
    */
   const inputStyle = computed(() => {
     return {
@@ -671,7 +671,7 @@ export default function (props, context, dependencies)
   /**
    * The style attributes of the signature line.
    *
-   * @type {}
+   * @type {object}
    */
   const lineStyle = computed(() => {
     return {

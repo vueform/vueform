@@ -512,7 +512,7 @@ export interface VueformElement extends DefineComponent {
   processing: boolean;
   droppable: boolean;
   resolvedModes: Array<any>;
-  resolvedFonts: ;
+  resolvedFonts: Array<any>;
   fileAccept: string;
   showLine: boolean;
   showInput: boolean;
@@ -546,8 +546,8 @@ export interface VueformElement extends DefineComponent {
   padHeight: number;
   padStyle: object;
   wrapperStyle: object;
-  inputStyle: ;
-  lineStyle: ;
+  inputStyle: object;
+  lineStyle: object;
   isHtml: boolean;
   componentContent: object;
   slotContent: object;
@@ -602,8 +602,8 @@ export interface VueformElement extends DefineComponent {
   fontWeight: string;
   color: string;
   text: string;
-  fontSize: ;
-  pad: ;
+  fontSize: number;
+  pad: object;
   image: File;
   created: boolean;
   creating: boolean;
@@ -8252,7 +8252,7 @@ export declare class SignatureElement implements DefineComponent {
   processing: boolean;
   droppable: boolean;
   resolvedModes: Array<any>;
-  resolvedFonts: ;
+  resolvedFonts: Array<any>;
   fileAccept: string;
   showLine: boolean;
   showInput: boolean;
@@ -8286,8 +8286,8 @@ export declare class SignatureElement implements DefineComponent {
   padHeight: number;
   padStyle: object;
   wrapperStyle: object;
-  inputStyle: ;
-  lineStyle: ;
+  inputStyle: object;
+  lineStyle: object;
   elementSlots: object;
   fieldSlots: object;
   Templates: object;
@@ -8333,8 +8333,8 @@ export declare class SignatureElement implements DefineComponent {
   fontWeight: string;
   color: string;
   text: string;
-  fontSize: ;
-  pad: ;
+  fontSize: number;
+  pad: object;
   image: File;
   created: boolean;
   creating: boolean;

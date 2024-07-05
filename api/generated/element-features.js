@@ -5423,14 +5423,14 @@ export default {
         "fontSize": {
           "public": true,
           "types": [
-            ""
+            "number"
           ],
           "description": "The current font size."
         },
         "pad": {
           "public": true,
           "types": [
-            ""
+            "object"
           ],
           "description": "The [Signature Pad](https://github.com/szimek/signature_pad) instance."
         },
@@ -5551,7 +5551,7 @@ export default {
         "resolvedFonts": {
           "public": true,
           "types": [
-            ""
+            "array"
           ],
           "description": "The list of [`fonts`](#option-fonts) formatted for fonts selector."
         },
@@ -5790,14 +5790,14 @@ export default {
         "inputStyle": {
           "public": true,
           "types": [
-            ""
+            "object"
           ],
           "description": "The style attributes of the signature input when [`mode`](#property-mode) is `type`."
         },
         "lineStyle": {
           "public": true,
           "types": [
-            ""
+            "object"
           ],
           "description": "The style attributes of the signature line."
         }

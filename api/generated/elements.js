@@ -33066,14 +33066,14 @@ module.exports = {
       },
       fontSize: {
         types: [
-          '',
+          'number',
         ],
         description: 'The current font size.',
         private: false,
       },
       pad: {
         types: [
-          '',
+          'object',
         ],
         description: 'The [Signature Pad](https://github.com/szimek/signature_pad) instance.',
         private: false,
@@ -33502,7 +33502,7 @@ module.exports = {
       },
       resolvedFonts: {
         types: [
-          '',
+          'array',
         ],
         description: 'The list of [`fonts`](#option-fonts) formatted for fonts selector.',
         private: false,
@@ -33741,14 +33741,14 @@ module.exports = {
       },
       inputStyle: {
         types: [
-          '',
+          'object',
         ],
         description: 'The style attributes of the signature input when [`mode`](#property-mode) is `type`.',
         private: false,
       },
       lineStyle: {
         types: [
-          '',
+          'object',
         ],
         description: 'The style attributes of the signature line.',
         private: false,
