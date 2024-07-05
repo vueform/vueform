@@ -14350,7 +14350,7 @@ var classes = {
     uploadWrapper_processing: 'opacity-60 pointer-events-none',
     dndText: 'form-color-input',
     uploadButton: 'inline-block transition form-border-width-btn form-shadow-btn focus:outline-zero form-bg-btn-secondary form-color-btn-secondary form-border-color-btn-secondary cursor-pointer transition-transform ease-linear focus:form-ring transform hover:scale-105 form-p-btn form-radius-btn form-text',
-    uploadPreview: 'mx-auto',
+    uploadPreview: 'max-w-full mx-auto',
     pad: 'absolute inset-0',
     pad_invert: 'dark:filter dark:invert',
     colors: 'absolute bottom-5 left-1/2 transform -translate-x-1/2 flex flex-row gap-2',

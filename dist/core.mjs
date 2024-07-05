@@ -31157,7 +31157,6 @@ var phone$1 = function phone(props, context, dependencies) {
    */
   var handleInput = e => {
     if (el$.value.maskPluginInstalled) {
-      console.log(1111);
       model.value = e.target.value;
       return;
     }
@@ -38031,7 +38030,6 @@ var base$a = function base(props, context, dependencies) {
     update,
     focus,
     value,
-    model,
     input,
     form$,
     el$,
@@ -38208,19 +38206,16 @@ var base$a = function base(props, context, dependencies) {
    */
   var setFlag = () => {
     var _options$$value$selec;
-    console.log(11, model.value);
-    if (!model.value) {
+    if (!value.value) {
       if (Object.keys(options$.value.selected).length) {
         options$.value.reset();
       }
       return;
     }
-    console.log(22);
-    if (!model.value.startsWith('+') || model.value === ((_options$$value$selec = options$.value.selected) === null || _options$$value$selec === void 0 ? void 0 : _options$$value$selec.n)) {
+    if (!value.value.startsWith('+') || value.value === ((_options$$value$selec = options$.value.selected) === null || _options$$value$selec === void 0 ? void 0 : _options$$value$selec.n)) {
       return;
     }
-    console.log(33);
-    var number = model.value.replace('+', '');
+    var number = value.value.replace('+', '');
     var lengths = [7, 5, 4, 3, 2, 1].filter(l => number.length >= l);
     var country;
     lengths.forEach(l => {
@@ -38259,9 +38254,9 @@ var base$a = function base(props, context, dependencies) {
     if (option.n === undefined) {
       el$.value.clear();
     } else if (maskPluginInstalled.value) {
-      var valueMatchesMask = model.value && option.m.map(m => "+".concat(m[0])).find(m => {
-        return model.value.startsWith(m);
-      });
+      var valueMatchesMask = value.value ? option.m.map(m => "+".concat(m[0])).find(m => {
+        return value.value.startsWith(m);
+      }) : false;
       if (!valueMatchesMask) {
         el$.value.update(option.m.length === 1 ? "+".concat(option.m[0][0]) : option.n);
       }
@@ -38298,10 +38293,8 @@ var base$a = function base(props, context, dependencies) {
 
   // ============== WATCHERS ==============
 
-  watch(model, n => {
+  watch(value, n => {
     setFlag();
-  }, {
-    flush: 'pre'
   });
   return {
     options$,
@@ -38381,7 +38374,6 @@ var phone = function phone(props, context, dependencies) {
    */
   var handleKeydown = e => {
     if (el$.value.maskPluginInstalled) {
-      // model.value = e.target.value
       return;
     }
     if (['Backspace', 'Delete', 'Tab', 'Escape', 'Enter', 'ArrowLeft', 'ArrowRight'].indexOf(e.key) !== -1 || e.ctrlKey || e.metaKey) {

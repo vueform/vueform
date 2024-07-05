@@ -6,6 +6,10 @@
 
 ### 🎉 Feature
 - New [`SignatureElement`](https://vueform.com/reference/signature-element).
+- Added `allowAbsent` options for selects.
+
+### 🐞 Bug Fixes
+- Don't throw error on phone flag select with empty value.
 
 ## v1.9.13
 
