@@ -55,6 +55,7 @@ export const fieldOptions = function (elementType, elementName, options) {
     expect(el.fieldOptions.addOptionOn).toStrictEqual(el.addOptionOn)
     expect(el.fieldOptions.appendTo).toStrictEqual(el.appendTo)
     expect(el.fieldOptions.appendToBody).toStrictEqual(el.appendToBody)
+    expect(el.fieldOptions.allowAbsent).toStrictEqual(el.allowAbsent)
   })
   
   it('should extend `options` from schema', () => {
@@ -111,6 +112,7 @@ export const fieldOptions = function (elementType, elementName, options) {
     expect(el.fieldOptions.addOptionOn).toStrictEqual(el.addOptionOn)
     expect(el.fieldOptions.appendTo).toStrictEqual(el.appendTo)
     expect(el.fieldOptions.appendToBody).toStrictEqual(el.appendToBody)
+    expect(el.fieldOptions.allowAbsent).toStrictEqual(el.allowAbsent)
     expect(el.fieldOptions.custom).toStrictEqual('option')
   })
   

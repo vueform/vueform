@@ -4558,6 +4558,39 @@ export default {
           "description": "The main input field of the element."
         }
       }
+    },
+    "select": {
+      "data": {
+        "input": {
+          "public": true,
+          "types": [
+            "HTMLElement"
+          ],
+          "description": "The main input field of the element, which can be a [`Multiselect`](https://github.com/vueform/multiselect) component."
+        }
+      }
+    },
+    "multiselect": {
+      "data": {
+        "input": {
+          "public": true,
+          "types": [
+            "HTMLElement"
+          ],
+          "description": "The main input field of the element, which can be a [`Multiselect`](https://github.com/vueform/multiselect) component."
+        }
+      }
+    },
+    "tags": {
+      "data": {
+        "input": {
+          "public": true,
+          "types": [
+            "HTMLElement"
+          ],
+          "description": "The main input field of the element, which can be a [`Multiselect`](https://github.com/vueform/multiselect) component."
+        }
+      }
     }
   },
   "label": {

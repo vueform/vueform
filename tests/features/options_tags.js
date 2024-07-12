@@ -110,6 +110,7 @@ export const fieldOptions = function (elementType, elementName, options) {
       breakTags: el.breakTags,
       appendTo: el.appendTo,
       appendToBody: el.appendToBody,
+      allowAbsent: el.allowAbsent,
     })
   })
   
@@ -168,6 +169,7 @@ export const fieldOptions = function (elementType, elementName, options) {
       breakTags: el.breakTags,
       appendTo: el.appendTo,
       appendToBody: el.appendToBody,
+      allowAbsent: el.allowAbsent,
       custom: 'option'
     })
   })

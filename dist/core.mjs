@@ -1,5 +1,5 @@
 /*!
- * Vueform v1.10.0 (https://github.com/vueform/vueform)
+ * Vueform v1.10.1 (https://github.com/vueform/vueform)
  * Copyright (c) 2024 Adam Berecz <adam@vueform.com>
  * Licensed under the MIT License
  */
@@ -10031,7 +10031,7 @@ function shouldApplyPlugin (name, plugin) {
 }
 
 var name = "@vueform/vueform";
-var version$1 = "1.10.0";
+var version$1 = "1.10.1";
 var description = "Open-Source Form Framework for Vue";
 var homepage = "https://vueform.com";
 var license = "MIT";
@@ -23747,8 +23747,8 @@ var static_$2 = function static_(props, context, dependencies) {
 };
 var checkboxgroup$1 = list$4;
 var dates$5 = list$4;
-var multiselect$4 = list$4;
-var tags$4 = list$4;
+var multiselect$5 = list$4;
+var tags$5 = list$4;
 
 var base$O = function base(props, context, dependencies) {
   var {
@@ -24225,6 +24225,21 @@ var base$M = function base(props, context, dependencies) {
     input
   };
 };
+var select$4 = function select(props, context, dependencies) {
+  // ================ DATA ================
+
+  /**
+   * The main input field of the element, which can be a [`Multiselect`](https://github.com/vueform/multiselect) component.
+   *
+   * @type {HTMLElement}
+   */
+  var input = ref(null);
+  return {
+    input
+  };
+};
+var multiselect$4 = select$4;
+var tags$4 = select$4;
 
 function checkDateFormat (format, date, moment) {
   if (!(date instanceof Date) && moment(date, format).format(format) !== date) {
@@ -35646,7 +35661,7 @@ var MultiselectElement = {
   },
   setup(props, ctx) {
     var context = _objectSpread2$1({}, ctx);
-    context.features = [base$19, base$18, base$V, base$M, base$O, base$S, array$1, base$U, base$G, base$1c, multiselect$4, base$C, base$D, base$H, multiselect$1, base$L, multiselect$2, base$14, array, multiselect$3, base$$, base$J, base$Z, base$Y, base$1a, base$_, base$X, base$d, base$c, multiselect, base$R, base$F, base$T, base$t];
+    context.features = [base$19, base$18, base$V, multiselect$4, base$O, base$S, array$1, base$U, base$G, base$1c, multiselect$5, base$C, base$D, base$H, multiselect$1, base$L, multiselect$2, base$14, array, multiselect$3, base$$, base$J, base$Z, base$Y, base$1a, base$_, base$X, base$d, base$c, multiselect, base$R, base$F, base$T, base$t];
     context.slots = ['option', 'multiple-label', 'placeholder', 'group-label', 'before-list', 'after-list', 'no-results', 'no-options', 'caret', 'spinner', 'clear', 'label', 'info', 'description', 'before', 'between', 'after'];
     return _objectSpread2$1({}, base$N(props, context));
   }
@@ -39041,7 +39056,7 @@ var SelectElement = {
   },
   setup(props, ctx) {
     var context = _objectSpread2$1({}, ctx);
-    context.features = [base$19, base$18, base$V, base$M, base$O, base$S, base$K, base$U, base$G, base$1c, base$P, base$C, base$D, base$H, select$1, base$L, select$2, base$14, base$I, select$3, base$$, base$J, base$Z, base$Y, base$1a, base$_, base$X, base$d, select, base$R, base$F, base$T, base$t];
+    context.features = [base$19, base$18, base$V, select$4, base$O, base$S, base$K, base$U, base$G, base$1c, base$P, base$C, base$D, base$H, select$1, base$L, select$2, base$14, base$I, select$3, base$$, base$J, base$Z, base$Y, base$1a, base$_, base$X, base$d, select, base$R, base$F, base$T, base$t];
     context.slots = ['option', 'single-label', 'placeholder', 'group-label', 'before-list', 'after-list', 'no-results', 'no-options', 'caret', 'spinner', 'clear', 'label', 'info', 'description', 'before', 'between', 'after'];
     return _objectSpread2$1({}, base$N(props, context));
   }
@@ -39813,7 +39828,7 @@ function useSignature (props, context, dependencies) {
   /**
    * The current font size.
    *
-   * @type {}
+   * @type {number}
    */
   var fontSize = ref(maxFontSize.value);
 
@@ -39834,7 +39849,7 @@ function useSignature (props, context, dependencies) {
   /**
    * The [Signature Pad](https://github.com/szimek/signature_pad) instance.
    *
-   * @type {}
+   * @type {object}
    */
   var pad = ref(null);
 
@@ -39988,7 +40003,7 @@ function useSignature (props, context, dependencies) {
   /**
    * The list of [`fonts`](#option-fonts) formatted for fonts selector.
    *
-   * @type {}
+   * @type {array}
    */
   var resolvedFonts = computed(() => {
     return fontFamilies.value.map((font, i) => {
@@ -40328,7 +40343,7 @@ function useSignature (props, context, dependencies) {
   /**
    * The style attributes of the signature input when [`mode`](#property-mode) is `type`.
    *
-   * @type {}
+   * @type {object}
    */
   var inputStyle = computed(() => {
     return {
@@ -40344,7 +40359,7 @@ function useSignature (props, context, dependencies) {
   /**
    * The style attributes of the signature line.
    *
-   * @type {}
+   * @type {object}
    */
   var lineStyle = computed(() => {
     return {
@@ -42126,7 +42141,7 @@ var TagsElement = {
   },
   setup(props, ctx) {
     var context = _objectSpread2$1({}, ctx);
-    context.features = [base$19, base$18, base$V, base$M, base$O, base$S, array$1, base$U, base$G, base$1c, tags$4, base$C, base$D, base$H, tags$1, base$L, tags$2, base$14, array, tags$3, base$$, base$J, base$Z, base$Y, base$1a, base$_, base$X, base$d, base$5, base$c, tags, base$R, base$F, base$T, base$t];
+    context.features = [base$19, base$18, base$V, tags$4, base$O, base$S, array$1, base$U, base$G, base$1c, tags$5, base$C, base$D, base$H, tags$1, base$L, tags$2, base$14, array, tags$3, base$$, base$J, base$Z, base$Y, base$1a, base$_, base$X, base$d, base$5, base$c, tags, base$R, base$F, base$T, base$t];
     context.slots = ['tag', 'option', 'placeholder', 'group-label', 'before-list', 'after-list', 'no-results', 'no-options', 'caret', 'spinner', 'clear', 'label', 'info', 'description', 'before', 'between', 'after'];
     return _objectSpread2$1({}, base$N(props, context));
   }

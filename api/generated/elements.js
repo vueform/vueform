@@ -22454,7 +22454,7 @@ module.exports = {
         types: [
           'HTMLElement',
         ],
-        description: 'The main input field of the element.',
+        description: 'The main input field of the element, which can be a [`Multiselect`](https://github.com/vueform/multiselect) component.',
         private: false,
       },
       state: {
@@ -30965,7 +30965,7 @@ module.exports = {
         types: [
           'HTMLElement',
         ],
-        description: 'The main input field of the element.',
+        description: 'The main input field of the element, which can be a [`Multiselect`](https://github.com/vueform/multiselect) component.',
         private: false,
       },
       state: {
@@ -43410,7 +43410,7 @@ module.exports = {
         types: [
           'HTMLElement',
         ],
-        description: 'The main input field of the element.',
+        description: 'The main input field of the element, which can be a [`Multiselect`](https://github.com/vueform/multiselect) component.',
         private: false,
       },
       state: {
