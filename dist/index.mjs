@@ -28636,7 +28636,8 @@ var base$x = function base(props, context, dependencies) {
     labelProp,
     dataKey,
     searchParam,
-    clearOnRefetch
+    clearOnRefetch,
+    object
   } = toRefs(props);
 
   // ============ DEPENDENCIES ============
@@ -28877,7 +28878,7 @@ var base$x = function base(props, context, dependencies) {
       value.value = cloneDeep_1(nullValue.value);
       return;
     }
-    if (!Array.isArray(nullValue.value) && value.value && values.indexOf(value.value) === -1) {
+    if (!Array.isArray(nullValue.value) && value.value && values.indexOf(object.value ? value.value[valueProp.value] : value.value) === -1) {
       value.value = cloneDeep_1(nullValue.value);
     } else if (Array.isArray(nullValue.value) && value.value.length) {
       value.value = value.value.filter(v => {
