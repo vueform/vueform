@@ -9,7 +9,7 @@ import replaceWildcards from './../../utils/replaceWildcards'
 const base = function(props, context, dependencies)
 {
   const {
-    items, valueProp, labelProp, dataKey, searchParam, clearOnRefetch,
+    items, valueProp, labelProp, dataKey, searchParam, clearOnRefetch, object,
   } = toRefs(props)
   
   // ============ DEPENDENCIES ============
@@ -234,7 +234,7 @@ const base = function(props, context, dependencies)
       return
     }
 
-    if (!Array.isArray(nullValue.value) && value.value && values.indexOf(value.value) === -1) {
+    if (!Array.isArray(nullValue.value) && value.value && values.indexOf(object.value ? value.value[valueProp.value] : value.value) === -1) {
       value.value = cloneDeep(nullValue.value)
     }
     else if (Array.isArray(nullValue.value) && value.value.length) {
