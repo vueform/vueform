@@ -17,8 +17,19 @@ const base = function(props, context, dependencies)
     fire('blur', el$.value)
   }
   
+  /**
+   * Handles `focus` event.
+   *
+   * @returns {void}
+   * @private
+   */
+  const handleFocus = () => {
+    fire('focus', el$.value)
+  }
+  
   return {
     handleBlur,
+    handleFocus,
   }
 }
 
