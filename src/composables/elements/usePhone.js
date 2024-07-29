@@ -221,7 +221,7 @@ const base = function(props, context, dependencies)
       return
     }
 
-    if (!value.value.startsWith('+') || value.value === options$.value.selected?.n) {
+    if ((value.value && !value.value.toString().startsWith('+')) || value.value === options$.value.selected?.n) {
       return
     }
 
