@@ -38,6 +38,7 @@
           @keypress="handleKeypress"
           @input="handleInput"
           @blur="handleBlur"
+          @focus="handleFocus"
           ref="input"
        />
       </div>

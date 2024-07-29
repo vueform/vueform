@@ -26,6 +26,7 @@
           @input="handleInput"
           @select="handleInput"
           @blur="handleBlur"
+          @focus="handleFocus"
           ref="input"
        />
       </div>
