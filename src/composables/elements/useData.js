@@ -354,10 +354,6 @@ const object = function(props, context, dependencies)
     submit,
   } = toRefs(props)
   
-  const {
-    data,
-  } = base(props, context, dependencies)
-  
   // ============ DEPENDENCIES =============
   
   const form$ = dependencies.form$
@@ -368,6 +364,20 @@ const object = function(props, context, dependencies)
   const isDefault = dependencies.isDefault
 
   // ============== COMPUTED ===============
+  
+  const data = computed(() => {
+    let data = {}
+    
+    each(children$.value, (element$) => {
+      if (element$.isStatic) {
+        return
+      }
+      
+      data = Object.assign({}, data, element$.data)
+    })
+    
+    return { [name.value]: data }
+  })
   
   const requestData = computed(() => {
     if (!available.value || !submit.value) {
@@ -494,7 +504,17 @@ const group = function(props, context, dependencies)
    * @type {object}
    */
   const data = computed(() => {
-    return value.value
+    let data = {}
+    
+    each(children$.value, (element$) => {
+      if (element$.isStatic) {
+        return
+      }
+      
+      data = Object.assign({}, data, element$.data)
+    })
+    
+    return data
   })
   
   const requestData = computed(() => {
