@@ -55,6 +55,17 @@ export default {
       }
     }
   },
+  focus: {
+    default: {
+      description: 'Triggered when the input is focused.',
+      params: {
+        el$: {
+          description: 'the element\'s component',
+          types: ['component']
+        },
+      }
+    }
+  },
   keydown: {
     default: {
       description: 'Triggered on keydown.',

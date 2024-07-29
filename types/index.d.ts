@@ -657,6 +657,7 @@ export interface VueformElement extends DefineComponent {
   handleChange: (val: any) => void;
   handleAlert: (message: string) => void;
   handleBlur: () => void;
+  handleFocus: () => void;
   handleError: (error: Error) => void;
   handleInput: (e: Event) => void;
   handleDrop: (e: Event) => void;
@@ -5470,6 +5471,7 @@ export declare class EditorElement implements DefineComponent {
   focus: () => void;
   handleAlert: (message: string) => void;
   handleBlur: () => void;
+  handleFocus: () => void;
   handleError: (error: Error) => void;
   handleInput: (e: Event) => void;
   validate: () => Promise;
@@ -7463,6 +7465,7 @@ export declare class PhoneElement implements DefineComponent {
   fire: (args: any) => void;
   focus: () => void;
   handleBlur: () => void;
+  handleFocus: () => void;
   handleInput: (e: Event) => void;
   handleKeydown: (e: Event) => void;
   handleOptionSelect: (option: object) => void;
@@ -7485,6 +7488,7 @@ export declare class PhoneElement implements DefineComponent {
   $emit(eventName: 'open', value: any): void;
   $emit(eventName: 'close', value: any): void;
   $emit(eventName: 'blur', value: any): void;
+  $emit(eventName: 'focus', value: any): void;
   $emit(eventName: 'beforeCreate', value: any): void;
   $emit(eventName: 'created', value: any): void;
   $emit(eventName: 'beforeMount', value: any): void;
@@ -8933,6 +8937,7 @@ export declare class TEditorElement implements DefineComponent {
   focus: () => void;
   handleAlert: (message: string) => void;
   handleBlur: () => void;
+  handleFocus: () => void;
   handleError: (error: Error) => void;
   handleInput: (e: Event) => void;
   validate: () => Promise;
@@ -9136,6 +9141,7 @@ export declare class TTextElement implements DefineComponent {
   fire: (args: any) => void;
   focus: () => void;
   handleBlur: () => void;
+  handleFocus: () => void;
   handleInput: (e: Event) => void;
   handleKeydown: (e: Event) => void;
   handleKeyup: (e: Event) => void;
@@ -9156,6 +9162,7 @@ export declare class TTextElement implements DefineComponent {
   //Events
   $emit(eventName: 'change', value: any): void;
   $emit(eventName: 'blur', value: any): void;
+  $emit(eventName: 'focus', value: any): void;
   $emit(eventName: 'keydown', value: any): void;
   $emit(eventName: 'keyup', value: any): void;
   $emit(eventName: 'keypress', value: any): void;
@@ -9343,6 +9350,7 @@ export declare class TTextareaElement implements DefineComponent {
   fire: (args: any) => void;
   focus: () => void;
   handleBlur: () => void;
+  handleFocus: () => void;
   handleInput: (e: Event) => void;
   handleKeydown: (e: Event) => void;
   handleKeyup: (e: Event) => void;
@@ -9363,6 +9371,7 @@ export declare class TTextareaElement implements DefineComponent {
   //Events
   $emit(eventName: 'change', value: any): void;
   $emit(eventName: 'blur', value: any): void;
+  $emit(eventName: 'focus', value: any): void;
   $emit(eventName: 'keydown', value: any): void;
   $emit(eventName: 'keyup', value: any): void;
   $emit(eventName: 'keypress', value: any): void;
@@ -9822,6 +9831,7 @@ export declare class TextElement implements DefineComponent {
   fire: (args: any) => void;
   focus: () => void;
   handleBlur: () => void;
+  handleFocus: () => void;
   handleInput: (e: Event) => void;
   handleKeydown: (e: Event) => void;
   handleKeyup: (e: Event) => void;
@@ -9840,6 +9850,7 @@ export declare class TextElement implements DefineComponent {
   //Events
   $emit(eventName: 'change', value: any): void;
   $emit(eventName: 'blur', value: any): void;
+  $emit(eventName: 'focus', value: any): void;
   $emit(eventName: 'keydown', value: any): void;
   $emit(eventName: 'keyup', value: any): void;
   $emit(eventName: 'keypress', value: any): void;
@@ -10027,6 +10038,7 @@ export declare class TextareaElement implements DefineComponent {
   fire: (args: any) => void;
   focus: () => void;
   handleBlur: () => void;
+  handleFocus: () => void;
   handleInput: (e: Event) => void;
   handleKeydown: (e: Event) => void;
   handleKeyup: (e: Event) => void;
@@ -10045,6 +10057,7 @@ export declare class TextareaElement implements DefineComponent {
   //Events
   $emit(eventName: 'change', value: any): void;
   $emit(eventName: 'blur', value: any): void;
+  $emit(eventName: 'focus', value: any): void;
   $emit(eventName: 'keydown', value: any): void;
   $emit(eventName: 'keyup', value: any): void;
   $emit(eventName: 'keypress', value: any): void;

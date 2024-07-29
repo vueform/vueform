@@ -847,6 +847,7 @@ export default {
       "open",
       "close",
       "blur",
+      "focus",
       "beforeCreate",
       "created",
       "beforeMount",
@@ -1304,6 +1305,7 @@ export default {
     "events": [
       "change",
       "blur",
+      "focus",
       "keydown",
       "keyup",
       "keypress",
@@ -1367,6 +1369,7 @@ export default {
     "events": [
       "change",
       "blur",
+      "focus",
       "keydown",
       "keyup",
       "keypress",
@@ -1543,6 +1546,7 @@ export default {
     "events": [
       "change",
       "blur",
+      "focus",
       "keydown",
       "keyup",
       "keypress",
@@ -1608,6 +1612,7 @@ export default {
     "events": [
       "change",
       "blur",
+      "focus",
       "keydown",
       "keyup",
       "keypress",

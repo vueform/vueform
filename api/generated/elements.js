@@ -10212,6 +10212,11 @@ module.exports = {
         returns: 'void',
         private: true,
       },
+      handleFocus: {
+        description: 'Handles `focus` event.',
+        returns: 'void',
+        private: true,
+      },
       handleError: {
         description: 'Handles `error` event.',
         returns: 'void',
@@ -26485,6 +26490,11 @@ module.exports = {
         returns: 'void',
         private: true,
       },
+      handleFocus: {
+        description: 'Handles `focus` event.',
+        returns: 'void',
+        private: true,
+      },
       handleInput: {
         description: 'Handles `input` event.',
         returns: 'void',
@@ -26669,6 +26679,17 @@ module.exports = {
       },
       'blur': {
         description: 'Triggered when the input is blurred.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'focus': {
+        description: 'Triggered when the input is focused.',
         params: {
           el$: {
             description: 'the element&apos;s component',
@@ -38537,6 +38558,11 @@ module.exports = {
         returns: 'void',
         private: true,
       },
+      handleFocus: {
+        description: 'Handles `focus` event.',
+        returns: 'void',
+        private: true,
+      },
       handleError: {
         description: 'Handles `error` event.',
         returns: 'void',
@@ -40181,6 +40207,11 @@ module.exports = {
         returns: 'void',
         private: true,
       },
+      handleFocus: {
+        description: 'Handles `focus` event.',
+        returns: 'void',
+        private: true,
+      },
       handleInput: {
         description: 'Handles `input` event.',
         returns: 'void',
@@ -40349,6 +40380,17 @@ module.exports = {
       },
       'blur': {
         description: 'Triggered when the input is blurred.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'focus': {
+        description: 'Triggered when the input is focused.',
         params: {
           el$: {
             description: 'the element&apos;s component',
@@ -41891,6 +41933,11 @@ module.exports = {
         returns: 'void',
         private: true,
       },
+      handleFocus: {
+        description: 'Handles `focus` event.',
+        returns: 'void',
+        private: true,
+      },
       handleInput: {
         description: 'Handles `input` event.',
         returns: 'void',
@@ -42059,6 +42106,17 @@ module.exports = {
       },
       'blur': {
         description: 'Triggered when the input is blurred.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'focus': {
+        description: 'Triggered when the input is focused.',
         params: {
           el$: {
             description: 'the element&apos;s component',
@@ -46070,6 +46128,11 @@ module.exports = {
         returns: 'void',
         private: true,
       },
+      handleFocus: {
+        description: 'Handles `focus` event.',
+        returns: 'void',
+        private: true,
+      },
       handleInput: {
         description: 'Handles `input` event.',
         returns: 'void',
@@ -46219,6 +46282,17 @@ module.exports = {
       },
       'blur': {
         description: 'Triggered when the input is blurred.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'focus': {
+        description: 'Triggered when the input is focused.',
         params: {
           el$: {
             description: 'the element&apos;s component',
@@ -47761,6 +47835,11 @@ module.exports = {
         returns: 'void',
         private: true,
       },
+      handleFocus: {
+        description: 'Handles `focus` event.',
+        returns: 'void',
+        private: true,
+      },
       handleInput: {
         description: 'Handles `input` event.',
         returns: 'void',
@@ -47910,6 +47989,17 @@ module.exports = {
       },
       'blur': {
         description: 'Triggered when the input is blurred.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'focus': {
+        description: 'Triggered when the input is focused.',
         params: {
           el$: {
             description: 'the element&apos;s component',

@@ -4282,6 +4282,11 @@ export default {
           "public": false,
           "returns": "void",
           "description": "Handles `blur` event."
+        },
+        "handleFocus": {
+          "public": false,
+          "returns": "void",
+          "description": "Handles `focus` event."
         }
       }
     }

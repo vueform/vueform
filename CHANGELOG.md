@@ -1,5 +1,17 @@
 [//]: # (Don't use <tags>)
 
+## v1.10.2
+
+> `2024-07-29`
+
+### 🎉 Feature
+- Added `@focus` event to text, textarea and phone.
+
+### 🐞 Bug Fixes
+- Don't cleanup select on refetch when object
+- `forceNumbers` should work in nested elements #285
+- Phone element should update when using `sync` #280
+
 ## v1.10.1
 
 > `2024-07-05`

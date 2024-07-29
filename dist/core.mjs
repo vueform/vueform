@@ -1,5 +1,5 @@
 /*!
- * Vueform v1.10.1 (https://github.com/vueform/vueform)
+ * Vueform v1.10.2 (https://github.com/vueform/vueform)
  * Copyright (c) 2024 Adam Berecz <adam@vueform.com>
  * Licensed under the MIT License
  */
@@ -6131,7 +6131,7 @@ class MergeClasses {
   }
 }
 
-var getFormData = function getFormData(data, formData, namespace) {
+var _getFormData = function getFormData(data, formData, namespace) {
   if (formData === undefined) {
     formData = new FormData();
   }
@@ -6140,11 +6140,11 @@ var getFormData = function getFormData(data, formData, namespace) {
   }
   if (isArray_1(data)) {
     each(data, (value, key) => {
-      getFormData(value, formData, namespace + '[' + key + ']');
+      _getFormData(value, formData, namespace + '[' + key + ']');
     });
   } else if (isPlainObject_1(data)) {
     each(data, (value, key) => {
-      getFormData(value, formData, namespace ? namespace + '[' + key + ']' : key);
+      _getFormData(value, formData, namespace ? namespace + '[' + key + ']' : key);
     });
   } else {
     formData.append(namespace, data === null ? '' : data);
@@ -6308,20 +6308,20 @@ var fileToObject = function fileToObject(file) {
     type: file.type
   };
 };
-var dataToComperable = function dataToComperable(data) {
+var _dataToComperable = function dataToComperable(data) {
   if (data instanceof File) {
     return fileToObject(data);
   } else if (data instanceof Date) {
     return data.toString();
   } else if (Array.isArray(data)) {
-    return data.map(dataToComperable);
+    return data.map(_dataToComperable);
   } else if (typeof data === 'object' && data !== null) {
-    return mapValues_1(data, dataToComperable);
+    return mapValues_1(data, _dataToComperable);
   }
   return data;
 };
 function dataEquals(a, b) {
-  return isEqual_1(dataToComperable(a), dataToComperable(b));
+  return isEqual_1(_dataToComperable(a), _dataToComperable(b));
 }
 
 function isComponentRegistered (vm, component) {
@@ -6340,7 +6340,7 @@ var flatten$3 = source => {
   });
   return collection;
 };
-var collect = function collect(elements, pages) {
+var _collect = function collect(elements, pages) {
   var prefix = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : '';
   var createMember = name => {
     var element = elements[name];
@@ -6351,10 +6351,10 @@ var collect = function collect(elements, pages) {
       type: element.type
     };
     if (['group', 'object'].indexOf(element.type) !== -1 && Object.keys(element.schema || {}).length) {
-      member.children = collect(element.schema, null, path);
+      member.children = _collect(element.schema, null, path);
     }
     if (element.type === 'list' && Object.keys((element === null || element === void 0 ? void 0 : element.element) || {}).length) {
-      member.children = collect({
+      member.children = _collect({
         0: element.element
       }, null, path);
     }
@@ -7462,7 +7462,7 @@ var base$1b = function base(props, context) {
    * @type {array}
    */
   var tree = computed(() => {
-    return collect(formSchema.value, hasTabs.value ? formTabs.value : formSteps.value);
+    return _collect(formSchema.value, hasTabs.value ? formTabs.value : formSteps.value);
   });
 
   /**
@@ -8272,7 +8272,7 @@ var base$1b = function base(props, context) {
   * @returns {FormData}
   */
   var convertFormData = data => {
-    return getFormData(data);
+    return _getFormData(data);
   };
 
   /**
@@ -10031,7 +10031,7 @@ function shouldApplyPlugin (name, plugin) {
 }
 
 var name = "@vueform/vueform";
-var version$1 = "1.10.1";
+var version$1 = "1.10.2";
 var description = "Open-Source Form Framework for Vue";
 var homepage = "https://vueform.com";
 var license = "MIT";
@@ -10182,7 +10182,7 @@ var devDependencies = {
 var dependencies = {
 	"@popperjs/core": "^2.11.8",
 	"@vueform/country-phones": "^1.0.3",
-	"@vueform/multiselect": "^2.6.8",
+	"@vueform/multiselect": "^2.6.9",
 	"@vueform/slider": "^2.1.10",
 	"@vueform/toggle": "^2.1.4",
 	axios: "^1.7.2",
@@ -12642,11 +12642,11 @@ function reduce(collection, iteratee, accumulator) {
 
 var reduce_1 = reduce;
 
-var flattenKeys = function flattenKeys(obj) {
+var _flattenKeys = function flattenKeys(obj) {
   var path = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
   return !isObject_1(obj) ? {
     [path.join('.')]: obj
-  } : reduce_1(obj, (cum, next, key) => merge_1(cum, flattenKeys(next, [...path, key])), {});
+  } : reduce_1(obj, (cum, next, key) => merge_1(cum, _flattenKeys(next, [...path, key])), {});
 };
 
 class distinct extends Validator {
@@ -12659,7 +12659,7 @@ class distinct extends Validator {
     };
     var pattern = pregQuote(attributeName, '#').replace('\\*', '[^.]+');
     var data = {};
-    each(flattenKeys(attributeData), (v, k) => {
+    each(_flattenKeys(attributeData), (v, k) => {
       if (k != attribute && k.match('^' + pattern + '$') !== null) {
         data[k] = v;
       }
@@ -27324,9 +27324,6 @@ var object$1 = function object(props, context, dependencies) {
     formatData,
     submit
   } = toRefs(props);
-  var {
-    data
-  } = base$B(props, context, dependencies);
 
   // ============ DEPENDENCIES =============
 
@@ -27339,6 +27336,18 @@ var object$1 = function object(props, context, dependencies) {
 
   // ============== COMPUTED ===============
 
+  var data = computed(() => {
+    var data = {};
+    each(children$.value, element$ => {
+      if (element$.isStatic) {
+        return;
+      }
+      data = Object.assign({}, data, element$.data);
+    });
+    return {
+      [name.value]: data
+    };
+  });
   var requestData = computed(() => {
     if (!available.value || !submit.value) {
       return {};
@@ -27447,7 +27456,7 @@ var group$1 = function group(props, context, dependencies) {
   var form$ = dependencies.form$;
   var children$ = dependencies.children$;
   var available = dependencies.available;
-  var value = dependencies.value;
+  dependencies.value;
 
   // ============== COMPUTED ===============
 
@@ -27457,7 +27466,14 @@ var group$1 = function group(props, context, dependencies) {
    * @type {object}
    */
   var data = computed(() => {
-    return value.value;
+    var data = {};
+    each(children$.value, element$ => {
+      if (element$.isStatic) {
+        return;
+      }
+      data = Object.assign({}, data, element$.data);
+    });
+    return data;
   });
   var requestData = computed(() => {
     if (!available.value || !submit.value) {
@@ -30589,7 +30605,7 @@ var base$r = function base(props, context, dependencies) {
       }
       request.value = axios.value.CancelToken.source();
       try {
-        var data = getFormData(Object.assign({}, params.value, {
+        var data = _getFormData(Object.assign({}, params.value, {
           file: value.value,
           formKey: form$.value.options.formKey,
           path: path.value
@@ -35731,8 +35747,19 @@ var base$b = function base(props, context, dependencies) {
   var handleBlur = () => {
     fire('blur', el$.value);
   };
+
+  /**
+   * Handles `focus` event.
+   *
+   * @returns {void}
+   * @private
+   */
+  var handleFocus = () => {
+    fire('focus', el$.value);
+  };
   return {
-    handleBlur
+    handleBlur,
+    handleFocus
   };
 };
 
@@ -38242,7 +38269,7 @@ var base$a = function base(props, context, dependencies) {
       }
       return;
     }
-    if (!value.value.startsWith('+') || value.value === ((_options$$value$selec = options$.value.selected) === null || _options$$value$selec === void 0 ? void 0 : _options$$value$selec.n)) {
+    if (value.value && !value.value.toString().startsWith('+') || value.value === ((_options$$value$selec = options$.value.selected) === null || _options$$value$selec === void 0 ? void 0 : _options$$value$selec.n)) {
       return;
     }
     var number = value.value.replace('+', '');
@@ -38425,7 +38452,7 @@ var phone = function phone(props, context, dependencies) {
 var PhoneElement = {
   name: 'PhoneElement',
   mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
-  emits: ['change', 'select', 'open', 'close', 'blur', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
+  emits: ['change', 'select', 'open', 'close', 'blur', 'focus', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
   props: {
     type: {
       required: false,
@@ -42223,7 +42250,7 @@ var multilingual = function multilingual(props, context, dependencies) {
 var TextareaElement = {
   name: 'TextareaElement',
   mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
-  emits: ['change', 'blur', 'keydown', 'keyup', 'keypress', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
+  emits: ['change', 'blur', 'focus', 'keydown', 'keyup', 'keypress', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
   props: {
     type: {
       required: false,
@@ -42326,7 +42353,7 @@ var TextareaElement = {
 var TextElement = {
   name: 'TextElement',
   mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
-  emits: ['change', 'blur', 'keydown', 'keyup', 'keypress', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
+  emits: ['change', 'blur', 'focus', 'keydown', 'keyup', 'keypress', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
   props: {
     type: {
       required: false,
@@ -42717,7 +42744,7 @@ var base$1 = function base(props, context, dependencies) {
 var TTextareaElement = {
   name: 'TTextareaElement',
   mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
-  emits: ['change', 'blur', 'keydown', 'keyup', 'keypress', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
+  emits: ['change', 'blur', 'focus', 'keydown', 'keyup', 'keypress', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
   props: {
     type: {
       required: false,
@@ -42820,7 +42847,7 @@ var TTextareaElement = {
 var TTextElement = {
   name: 'TTextElement',
   mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
-  emits: ['change', 'blur', 'keydown', 'keyup', 'keypress', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
+  emits: ['change', 'blur', 'focus', 'keydown', 'keyup', 'keypress', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
   props: {
     type: {
       required: false,
