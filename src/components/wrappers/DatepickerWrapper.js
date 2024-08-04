@@ -91,7 +91,7 @@ export default {
      * @private
      */
     const locale = computed(() => {
-      return $this.$vueform.i18n.locales[$this.$vueform.i18n.locale]?.vueform?.datepicker ||
+      return $this.$vueform.i18n.locales[form$.value.locale$]?.vueform?.datepicker ||
              $this.$vueform.i18n.locales[$this.$vueform.i18n.fallbackLocale]?.vueform?.datepicker || {}
     })
 
