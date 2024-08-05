@@ -1,5 +1,5 @@
 /*!
- * Vueform v1.10.2 (https://github.com/vueform/vueform)
+ * Vueform v1.10.3 (https://github.com/vueform/vueform)
  * Copyright (c) 2024 Adam Berecz <adam@vueform.com>
  * Licensed under the MIT License
  */
@@ -8711,6 +8711,10 @@ function useOptions (props, context, dep)
 
         return { [valueProp.value]: key, [trackBy.value[0]]: val, [label.value]: val}
       });
+    }
+
+    if (!Array.isArray(uo)) {
+      return []
     }
 
     // Transforming an plain arrays to an array of objects
@@ -23303,59 +23307,64 @@ var __vue_render__$a = function () {
         "default",
         function () {
           return [
-            _c("div", { class: _vm.classes.wrapper }, [
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.el$.model,
-                    expression: "el$.model",
+            _c(
+              "div",
+              { class: _vm.classes.wrapper, attrs: { title: _vm.item.label } },
+              [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.el$.model,
+                      expression: "el$.model",
+                    },
+                  ],
+                  class: _vm.classes.input,
+                  attrs: {
+                    type: "checkbox",
+                    id: _vm.id,
+                    name: _vm.name,
+                    disabled: _vm.isDisabled,
                   },
-                ],
-                class: _vm.classes.input,
-                attrs: {
-                  type: "checkbox",
-                  id: _vm.id,
-                  name: _vm.name,
-                  disabled: _vm.isDisabled,
-                },
-                domProps: {
-                  value: _vm.value,
-                  checked: Array.isArray(_vm.el$.model)
-                    ? _vm._i(_vm.el$.model, _vm.value) > -1
-                    : _vm.el$.model,
-                },
-                on: {
-                  change: function ($event) {
-                    var $$a = _vm.el$.model,
-                      $$el = $event.target,
-                      $$c = $$el.checked ? true : false;
-                    if (Array.isArray($$a)) {
-                      var $$v = _vm.value,
-                        $$i = _vm._i($$a, $$v);
-                      if ($$el.checked) {
-                        $$i < 0 && _vm.$set(_vm.el$, "model", $$a.concat([$$v]));
+                  domProps: {
+                    value: _vm.value,
+                    checked: Array.isArray(_vm.el$.model)
+                      ? _vm._i(_vm.el$.model, _vm.value) > -1
+                      : _vm.el$.model,
+                  },
+                  on: {
+                    change: function ($event) {
+                      var $$a = _vm.el$.model,
+                        $$el = $event.target,
+                        $$c = $$el.checked ? true : false;
+                      if (Array.isArray($$a)) {
+                        var $$v = _vm.value,
+                          $$i = _vm._i($$a, $$v);
+                        if ($$el.checked) {
+                          $$i < 0 &&
+                            _vm.$set(_vm.el$, "model", $$a.concat([$$v]));
+                        } else {
+                          $$i > -1 &&
+                            _vm.$set(
+                              _vm.el$,
+                              "model",
+                              $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                            );
+                        }
                       } else {
-                        $$i > -1 &&
-                          _vm.$set(
-                            _vm.el$,
-                            "model",
-                            $$a.slice(0, $$i).concat($$a.slice($$i + 1))
-                          );
+                        _vm.$set(_vm.el$, "model", $$c);
                       }
-                    } else {
-                      _vm.$set(_vm.el$, "model", $$c);
-                    }
+                    },
                   },
-                },
-              }),
-              _vm._v(" "),
-              _c("span", {
-                class: _vm.classes.text,
-                domProps: { innerHTML: _vm._s("" + _vm.item.label) },
-              }),
-            ]),
+                }),
+                _vm._v(" "),
+                _c("span", {
+                  class: _vm.classes.text,
+                  domProps: { innerHTML: _vm._s("" + _vm.item.label) },
+                }),
+              ]
+            ),
           ]
         },
         {
@@ -25455,39 +25464,43 @@ var __vue_render__$3 = function () {
         "default",
         function () {
           return [
-            _c("div", { class: _vm.classes.wrapper }, [
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.el$.model,
-                    expression: "el$.model",
+            _c(
+              "div",
+              { class: _vm.classes.wrapper, attrs: { title: _vm.item.label } },
+              [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.el$.model,
+                      expression: "el$.model",
+                    },
+                  ],
+                  class: _vm.classes.input,
+                  attrs: {
+                    type: "radio",
+                    name: _vm.name,
+                    id: _vm.id,
+                    disabled: _vm.isDisabled,
                   },
-                ],
-                class: _vm.classes.input,
-                attrs: {
-                  type: "radio",
-                  name: _vm.name,
-                  id: _vm.id,
-                  disabled: _vm.isDisabled,
-                },
-                domProps: {
-                  value: _vm.value,
-                  checked: _vm._q(_vm.el$.model, _vm.value),
-                },
-                on: {
-                  change: function ($event) {
-                    return _vm.$set(_vm.el$, "model", _vm.value)
+                  domProps: {
+                    value: _vm.value,
+                    checked: _vm._q(_vm.el$.model, _vm.value),
                   },
-                },
-              }),
-              _vm._v(" "),
-              _c("span", {
-                class: _vm.classes.text,
-                domProps: { innerHTML: _vm._s("" + _vm.item.label) },
-              }),
-            ]),
+                  on: {
+                    change: function ($event) {
+                      return _vm.$set(_vm.el$, "model", _vm.value)
+                    },
+                  },
+                }),
+                _vm._v(" "),
+                _c("span", {
+                  class: _vm.classes.text,
+                  domProps: { innerHTML: _vm._s("" + _vm.item.label) },
+                }),
+              ]
+            ),
           ]
         },
         {

@@ -1,5 +1,16 @@
 [//]: # (Don't use <tags>)
 
+## v1.10.3
+
+> `2024-08-05`
+
+### 🎉 Feature
+- Show label on Checkbox/Radio tab hover.
+- Swedish locale.
+
+### 🐞 Bug Fixes
+- Datepicker locale fix when it comes from form prop.
+
 ## v1.10.2
 
 > `2024-07-29`

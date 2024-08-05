@@ -1,5 +1,5 @@
 /*!
- * Vueform v1.10.2 (https://github.com/vueform/vueform)
+ * Vueform v1.10.3 (https://github.com/vueform/vueform)
  * Copyright (c) 2024 Adam Berecz <adam@vueform.com>
  * Licensed under the MIT License
  */
@@ -10031,7 +10031,7 @@ function shouldApplyPlugin (name, plugin) {
 }
 
 var name = "@vueform/vueform";
-var version$1 = "1.10.2";
+var version$1 = "1.10.3";
 var description = "Open-Source Form Framework for Vue";
 var homepage = "https://vueform.com";
 var license = "MIT";
@@ -21696,7 +21696,7 @@ var DatepickerWrapper = {
      */
     var locale = computed(() => {
       var _$this$$vueform$i18n$, _$this$$vueform$i18n$2;
-      return ((_$this$$vueform$i18n$ = $this.$vueform.i18n.locales[$this.$vueform.i18n.locale]) === null || _$this$$vueform$i18n$ === void 0 || (_$this$$vueform$i18n$ = _$this$$vueform$i18n$.vueform) === null || _$this$$vueform$i18n$ === void 0 ? void 0 : _$this$$vueform$i18n$.datepicker) || ((_$this$$vueform$i18n$2 = $this.$vueform.i18n.locales[$this.$vueform.i18n.fallbackLocale]) === null || _$this$$vueform$i18n$2 === void 0 || (_$this$$vueform$i18n$2 = _$this$$vueform$i18n$2.vueform) === null || _$this$$vueform$i18n$2 === void 0 ? void 0 : _$this$$vueform$i18n$2.datepicker) || {};
+      return ((_$this$$vueform$i18n$ = $this.$vueform.i18n.locales[form$.value.locale$]) === null || _$this$$vueform$i18n$ === void 0 || (_$this$$vueform$i18n$ = _$this$$vueform$i18n$.vueform) === null || _$this$$vueform$i18n$ === void 0 ? void 0 : _$this$$vueform$i18n$.datepicker) || ((_$this$$vueform$i18n$2 = $this.$vueform.i18n.locales[$this.$vueform.i18n.fallbackLocale]) === null || _$this$$vueform$i18n$2 === void 0 || (_$this$$vueform$i18n$2 = _$this$$vueform$i18n$2.vueform) === null || _$this$$vueform$i18n$2 === void 0 ? void 0 : _$this$$vueform$i18n$2.datepicker) || {};
     });
 
     /**

@@ -1,5 +1,5 @@
 /*!
- * Vueform v1.10.2 (https://github.com/vueform/vueform)
+ * Vueform v1.10.3 (https://github.com/vueform/vueform)
  * Copyright (c) 2024 Adam Berecz <adam@vueform.com>
  * Licensed under the MIT License
  */
@@ -719,7 +719,7 @@ var script$S = {
 const _hoisted_1$F = ["for", "id"];
 const _hoisted_2$p = ["for", "id"];
 const _hoisted_3$e = ["innerHTML"];
-const _hoisted_4$9 = ["for", "id"];
+const _hoisted_4$b = ["for", "id"];
 const _hoisted_5$7 = ["for", "id"];
 
 function render$L(_ctx, _cache, $props, $setup, $data, $options) {
@@ -787,7 +787,7 @@ function render$L(_ctx, _cache, $props, $setup, $data, $options) {
                   ]),
                   _: 3 /* FORWARDED */
                 })
-              ], 10 /* CLASS, PROPS */, _hoisted_4$9)
+              ], 10 /* CLASS, PROPS */, _hoisted_4$b)
             ], 2112 /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */))
           : (_ctx.hasLabel)
             ? (openBlock(), createElementBlock(Fragment, { key: 3 }, [
@@ -1070,7 +1070,7 @@ var script$L = {
 const _hoisted_1$y = ["aria-expanded", "aria-controls", "tabindex"];
 const _hoisted_2$m = ["innerHTML"];
 const _hoisted_3$d = ["innerHTML"];
-const _hoisted_4$8 = ["innerHTML"];
+const _hoisted_4$a = ["innerHTML"];
 const _hoisted_5$6 = ["innerHTML"];
 const _hoisted_6$5 = ["data-dropdown-for", "id"];
 const _hoisted_7$3 = ["innerHTML", "data-index", "data-selected", "onMouseover", "onClick", "tabindex", "aria-selected"];
@@ -1121,7 +1121,7 @@ function render$E(_ctx, _cache, $props, $setup, $data, $options) {
                 ? (openBlock(), createElementBlock("div", {
                     key: 1,
                     innerHTML: _ctx.placeholder(_ctx.selected, _ctx.el$)
-                  }, null, 8 /* PROPS */, _hoisted_4$8))
+                  }, null, 8 /* PROPS */, _hoisted_4$a))
                 : (openBlock(), createElementBlock("div", {
                     key: 2,
                     innerHTML: _ctx.placeholder
@@ -1216,7 +1216,7 @@ var script$K = {
 const _hoisted_1$x = ["tabindex", "disabled"];
 const _hoisted_2$l = ["innerHTML", "tabindex", "disabled"];
 const _hoisted_3$c = ["tabindex", "disabled"];
-const _hoisted_4$7 = ["tabindex"];
+const _hoisted_4$9 = ["tabindex"];
 const _hoisted_5$5 = ["innerHTML", "tabindex"];
 const _hoisted_6$4 = ["tabindex"];
 
@@ -1283,7 +1283,7 @@ function render$D(_ctx, _cache, $props, $setup, $data, $options) {
                   onClick: _cache[3] || (_cache[3] = (...args) => (_ctx.handleClick && _ctx.handleClick(...args)))
                 }), [
                   (openBlock(), createBlock(resolveDynamicComponent(_ctx.buttonLabel)))
-                ], 16 /* FULL_PROPS */, _hoisted_4$7))
+                ], 16 /* FULL_PROPS */, _hoisted_4$9))
               : (_ctx.buttonLabel)
                 ? (openBlock(), createElementBlock(Fragment, { key: 1 }, [
                     createCommentVNode(" Use it as HTML "),
@@ -1826,7 +1826,7 @@ var script$B = {
 const _hoisted_1$q = ["aria-labelledby"];
 const _hoisted_2$h = ["data-id"];
 const _hoisted_3$b = ["aria-roledescription", "id", "onClick", "onKeypress"];
-const _hoisted_4$6 = ["id", "innerHTML"];
+const _hoisted_4$8 = ["id", "innerHTML"];
 
 function render$v(_ctx, _cache, $props, $setup, $data, $options) {
   return (openBlock(), createBlock(resolveDynamicComponent(_ctx.elementLayout), { ref: "container" }, createSlots({
@@ -1899,7 +1899,7 @@ function render$v(_ctx, _cache, $props, $setup, $data, $options) {
             innerHTML: _ctx.addLabel,
             role: "button",
             tabindex: "0"
-          }, null, 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_4$6))
+          }, null, 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_4$8))
         : createCommentVNode("v-if", true)
     ]),
     _: 2 /* DYNAMIC */
@@ -3037,6 +3037,10 @@ function useOptions (props, context, dep)
 
         return { [valueProp.value]: key, [trackBy.value[0]]: val, [label.value]: val}
       });
+    }
+
+    if (!Array.isArray(uo)) {
+      return []
     }
 
     // Transforming an plain arrays to an array of objects
@@ -6509,7 +6513,7 @@ var script$x = {
 const _hoisted_1$n = ["id", "dir"];
 const _hoisted_2$f = ["tabindex", "aria-controls", "aria-placeholder", "aria-expanded", "aria-activedescendant", "aria-multiselectable", "role"];
 const _hoisted_3$a = ["type", "modelValue", "value", "autocomplete", "id", "aria-controls", "aria-placeholder", "aria-expanded", "aria-activedescendant", "aria-multiselectable"];
-const _hoisted_4$5 = ["onKeyup", "aria-label"];
+const _hoisted_4$7 = ["onKeyup", "aria-label"];
 const _hoisted_5$4 = ["onClick"];
 const _hoisted_6$3 = ["type", "modelValue", "value", "id", "autocomplete", "aria-controls", "aria-placeholder", "aria-expanded", "aria-activedescendant", "aria-multiselectable"];
 const _hoisted_7$2 = ["innerHTML"];
@@ -6613,7 +6617,7 @@ function render$s(_ctx, _cache, $props, $setup, $data, $options) {
                         }, null, 2 /* CLASS */)
                       ], 10 /* CLASS, PROPS */, _hoisted_5$4))
                     : createCommentVNode("v-if", true)
-                ], 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_4$5))
+                ], 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_4$7))
               ])
             }), 256 /* UNKEYED_FRAGMENT */)),
             createElementVNode("div", {
@@ -7583,7 +7587,7 @@ var script$q = {
 const _hoisted_1$g = ["tabindex", "aria-label", "id"];
 const _hoisted_2$b = ["src", "alt", "title"];
 const _hoisted_3$9 = ["title", "tabindex", "aria-label"];
-const _hoisted_4$4 = ["title", "tabindex", "aria-label"];
+const _hoisted_4$6 = ["title", "tabindex", "aria-label"];
 const _hoisted_5$3 = ["value", "disabled", "readonly", "aria-label"];
 const _hoisted_6$2 = ["innerHTML"];
 const _hoisted_7$1 = ["tabindex", "aria-label"];
@@ -7685,7 +7689,7 @@ function render$l(_ctx, _cache, $props, $setup, $data, $options) {
                 "aria-label": _ctx.redoText,
                 onClick: _cache[2] || (_cache[2] = withModifiers((...args) => (_ctx.handleRedo && _ctx.handleRedo(...args)), ["stop"])),
                 onKeydown: _cache[3] || (_cache[3] = withKeys(withModifiers((...args) => (_ctx.handleRedo && _ctx.handleRedo(...args)), ["prevent"]), ["space","enter"]))
-              }, null, 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_4$4)
+              }, null, 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_4$6)
             ], 2 /* CLASS */), [
               [vShow, _ctx.showUndos]
             ])
@@ -11321,7 +11325,7 @@ var script$n = {
 const _hoisted_1$f = ["innerHTML"];
 const _hoisted_2$a = ["href", "target", "innerHTML"];
 const _hoisted_3$8 = ["href", "target"];
-const _hoisted_4$3 = ["href", "target"];
+const _hoisted_4$5 = ["href", "target"];
 const _hoisted_5$2 = ["src", "alt", "title", "width", "height"];
 const _hoisted_6$1 = ["src", "alt", "title", "width", "height"];
 const _hoisted_7 = ["innerHTML"];
@@ -11391,7 +11395,7 @@ function render$i(_ctx, _cache, $props, $setup, $data, $options) {
                                   width: _ctx.width,
                                   height: _ctx.height
                                 }, _ctx.attrs), null, 16 /* FULL_PROPS */, _hoisted_5$2)
-                              ], 8 /* PROPS */, _hoisted_4$3))
+                              ], 8 /* PROPS */, _hoisted_4$5))
                             : (openBlock(), createElementBlock("img", mergeProps({
                                 key: 1,
                                 src: _ctx.src,
@@ -12122,7 +12126,7 @@ function useStyle (props, context, dependencies)
 const _hoisted_1$c = ["tabindex", "aria-checked", "aria-describedby", "aria-labelledby"];
 const _hoisted_2$9 = ["id", "name", "value", "checked", "disabled"];
 const _hoisted_3$7 = ["innerHTML"];
-const _hoisted_4$2 = ["checked"];
+const _hoisted_4$4 = ["checked"];
 
 function render$e(_ctx, _cache, $props, $setup, $data, $options) {
   return (openBlock(), createElementBlock("div", mergeProps({
@@ -12181,7 +12185,7 @@ function render$e(_ctx, _cache, $props, $setup, $data, $options) {
             "aria-hidden": "true",
             tabindex: "-1",
             required: ""
-          }, null, 8 /* PROPS */, _hoisted_4$2))
+          }, null, 8 /* PROPS */, _hoisted_4$4))
         : createCommentVNode("v-if", true)
     ], 2 /* CLASS */)
   ], 16 /* FULL_PROPS */, _hoisted_1$c))
@@ -12455,8 +12459,9 @@ var script$c = {
   };
 
 const _hoisted_1$9 = ["aria-checked"];
-const _hoisted_2$7 = ["value", "id", "name", "disabled"];
-const _hoisted_3$6 = ["innerHTML"];
+const _hoisted_2$7 = ["title"];
+const _hoisted_3$6 = ["value", "id", "name", "disabled"];
+const _hoisted_4$3 = ["innerHTML"];
 
 function render$a(_ctx, _cache, $props, $setup, $data, $options) {
   return (openBlock(), createElementBlock("label", mergeProps(_ctx.attrs, {
@@ -12477,7 +12482,8 @@ function render$a(_ctx, _cache, $props, $setup, $data, $options) {
       index: _ctx.index
     }), () => [
       createElementVNode("div", {
-        class: normalizeClass(_ctx.classes.wrapper)
+        class: normalizeClass(_ctx.classes.wrapper),
+        title: _ctx.item.label
       }, [
         withDirectives(createElementVNode("input", {
           type: "checkbox",
@@ -12487,14 +12493,14 @@ function render$a(_ctx, _cache, $props, $setup, $data, $options) {
           class: normalizeClass(_ctx.classes.input),
           name: _ctx.name,
           disabled: _ctx.isDisabled
-        }, null, 10 /* CLASS, PROPS */, _hoisted_2$7), [
+        }, null, 10 /* CLASS, PROPS */, _hoisted_3$6), [
           [vModelCheckbox, _ctx.el$.model]
         ]),
         createElementVNode("span", {
           class: normalizeClass(_ctx.classes.text),
           innerHTML: `${_ctx.item.label}`
-        }, null, 10 /* CLASS, PROPS */, _hoisted_3$6)
-      ], 2 /* CLASS */)
+        }, null, 10 /* CLASS, PROPS */, _hoisted_4$3)
+      ], 10 /* CLASS, PROPS */, _hoisted_2$7)
     ])
   ], 16 /* FULL_PROPS */, _hoisted_1$9))
 }
@@ -12791,7 +12797,7 @@ var script$8 = {
 const _hoisted_1$6 = ["aria-labelledby", "aria-placeholder", "aria-describedby"];
 const _hoisted_2$4 = ["id"];
 const _hoisted_3$3 = ["href"];
-const _hoisted_4$1 = ["src", "alt", "title"];
+const _hoisted_4$2 = ["src", "alt", "title"];
 const _hoisted_5$1 = ["src", "alt", "title"];
 const _hoisted_6 = ["href"];
 
@@ -12829,7 +12835,7 @@ function render$6(_ctx, _cache, $props, $setup, $data, $options) {
               alt: _ctx.filename,
               title: _ctx.filename,
               "aria-hidden": "true"
-            }, null, 10 /* CLASS, PROPS */, _hoisted_4$1)
+            }, null, 10 /* CLASS, PROPS */, _hoisted_4$2)
           ], 10 /* CLASS, PROPS */, _hoisted_3$3))
         : (openBlock(), createElementBlock("span", {
             key: 1,
@@ -12967,7 +12973,7 @@ var script$7 = {
 const _hoisted_1$5 = ["aria-labelledby", "aria-placeholder", "aria-role", "aria-describedby"];
 const _hoisted_2$3 = ["id"];
 const _hoisted_3$2 = ["href"];
-const _hoisted_4 = ["src", "alt", "title"];
+const _hoisted_4$1 = ["src", "alt", "title"];
 const _hoisted_5 = ["src", "alt", "title"];
 
 function render$5(_ctx, _cache, $props, $setup, $data, $options) {
@@ -13002,7 +13008,7 @@ function render$5(_ctx, _cache, $props, $setup, $data, $options) {
             alt: _ctx.filename,
             title: _ctx.filename,
             "aria-hidden": "true"
-          }, null, 10 /* CLASS, PROPS */, _hoisted_4)
+          }, null, 10 /* CLASS, PROPS */, _hoisted_4$1)
         ], 10 /* CLASS, PROPS */, _hoisted_3$2))
       : (openBlock(), createElementBlock("div", {
           key: 1,
@@ -13162,8 +13168,9 @@ var script$5 = {
   };
 
 const _hoisted_1$3 = ["aria-checked"];
-const _hoisted_2$1 = ["value", "name", "id", "disabled"];
-const _hoisted_3$1 = ["innerHTML"];
+const _hoisted_2$1 = ["title"];
+const _hoisted_3$1 = ["value", "name", "id", "disabled"];
+const _hoisted_4 = ["innerHTML"];
 
 function render$3(_ctx, _cache, $props, $setup, $data, $options) {
   return (openBlock(), createElementBlock("label", mergeProps(_ctx.attrs, {
@@ -13184,7 +13191,8 @@ function render$3(_ctx, _cache, $props, $setup, $data, $options) {
       index: _ctx.index
     }), () => [
       createElementVNode("div", {
-        class: normalizeClass(_ctx.classes.wrapper)
+        class: normalizeClass(_ctx.classes.wrapper),
+        title: _ctx.item.label
       }, [
         withDirectives(createElementVNode("input", {
           type: "radio",
@@ -13194,14 +13202,14 @@ function render$3(_ctx, _cache, $props, $setup, $data, $options) {
           name: _ctx.name,
           id: _ctx.id,
           disabled: _ctx.isDisabled
-        }, null, 10 /* CLASS, PROPS */, _hoisted_2$1), [
+        }, null, 10 /* CLASS, PROPS */, _hoisted_3$1), [
           [vModelRadio, _ctx.el$.model]
         ]),
         createElementVNode("span", {
           class: normalizeClass(_ctx.classes.text),
           innerHTML: `${_ctx.item.label}`
-        }, null, 10 /* CLASS, PROPS */, _hoisted_3$1)
-      ], 2 /* CLASS */)
+        }, null, 10 /* CLASS, PROPS */, _hoisted_4)
+      ], 10 /* CLASS, PROPS */, _hoisted_2$1)
     ])
   ], 16 /* FULL_PROPS */, _hoisted_1$3))
 }
