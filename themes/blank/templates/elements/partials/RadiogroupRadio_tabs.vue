@@ -18,7 +18,7 @@
       :items="items"
       :index="index"
     >
-      <div :class="classes.wrapper">
+      <div :class="classes.wrapper" :title="item.label">
         <input
           type="radio"
           v-model="el$.model"
