@@ -39,9 +39,9 @@ export default {
     /**
      * The addon definition.
      * ponent.
-  *
-  * @type {string|function|Component}
-  * @private
+     *
+     * @type {string|function|Component}
+     * @private
      */
     const baseAddon = computed(() => {
       return el$.value.addons[type.value]
