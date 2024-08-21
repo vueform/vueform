@@ -308,6 +308,10 @@ export default {
 
       next$.value.enable()
       next$.value.select()
+
+      nextTick(() => {
+        form$.value.$el.scrollIntoView({ behavior: 'smooth' })
+      })
     }
 
     /**
@@ -382,6 +386,10 @@ export default {
 
       if (invalid.value) {
         firstInvalid$.value.select()
+
+        nextTick(() => {
+          form$.value.scrollToFirstInvalid()
+        })
         return
       }
 

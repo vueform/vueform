@@ -77,6 +77,7 @@ export default {
       resetValidators,
       convertFormData,
       submit,
+      scrollToFirstInvalid,
       send,
       cancel,
       disableValidation,
@@ -166,6 +167,7 @@ export default {
       resetValidators,
       convertFormData,
       submit,
+      scrollToFirstInvalid,
       send,
       cancel,
       disableValidation,
@@ -219,6 +221,11 @@ export default {
 
     validateOn: {
       type: String,
+      required: false,
+      default: null
+    },
+    scrollToInvalid: {
+      type: Boolean,
       required: false,
       default: null
     },

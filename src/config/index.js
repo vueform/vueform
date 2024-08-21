@@ -50,6 +50,7 @@ const config = {
    */
   rules: {},
   validateOn: 'change|step',
+  scrollToInvalid: true,
 
   /**
    * Data

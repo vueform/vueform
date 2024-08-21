@@ -12,6 +12,8 @@ import MergeClasses from './../utils/mergeClasses'
 import convertFormDataUtil from './../utils/convertFormData'
 import asyncForEach from './../utils/asyncForEach'
 import dataEquals from './../utils/dataEquals'
+import findScrollableParent from './../utils/findScrollableParent'
+import scrollIntoView from './../utils/scrollIntoView'
 import isComponentRegistered from './../utils/isComponentRegistered'
 import { flatten as flattrenTree, collect as collectTree } from './../utils/tree'
 import useEvents from './useEvents'
@@ -47,6 +49,7 @@ const base = function(props, context, dependencies = {})
     language,
     locale,
     validateOn,
+    scrollToInvalid,
     forceLabels,
     floatPlaceholders,
     multilingual,
@@ -319,7 +322,7 @@ const base = function(props, context, dependencies = {})
 
     // Prop options will override Component.data() options
     const override = {
-      columns, languages, language, theme, method, validateOn,
+      columns, languages, language, theme, method, validateOn, scrollToInvalid,
       messages, formKey, multilingual, formatLoad, formatData, prepare, default: default_, formData, templates,
       addClass, removeClass, replaceClass, overrideClass,
       addClasses, removeClasses, replaceClasses, overrideClasses, presets,
@@ -359,6 +362,7 @@ const base = function(props, context, dependencies = {})
       endpoint: typeof baseConfig.value.config.endpoints.submit === 'function' ? baseConfig.value.config.endpoints.submit : baseConfig.value.config.endpoints.submit.url,
       method: typeof baseConfig.value.config.endpoints.submit === 'function' ? null : baseConfig.value.config.endpoints.submit.method,
       validateOn: baseConfig.value.config.validateOn,
+      scrollToInvalid: baseConfig.value.config.scrollToInvalid,
       displayErrors: baseConfig.value.config.displayErrors,
       displayMessages: baseConfig.value.config.displayMessages,
       forceLabels: baseConfig.value.config.forceLabels,
@@ -1108,12 +1112,55 @@ const base = function(props, context, dependencies = {})
     })
   }
 
+  const scrollToFirstInvalid = () => {
+    if (!options.value.scrollToInvalid) {
+      return
+    }
+
+    const findFirstInvalid$ = (schema, prefix = '') => {
+      let firstInvalid$
+
+      Object.keys(schema).forEach((key) => {
+        if (firstInvalid$) {
+          return
+        }
+
+        const path = prefix ? `${prefix}.${key}` : key
+        const e$ = el$(path)
+
+        if (e$ && !e$.isStatic && e$.available && e$.invalid) {
+          if (e$.isObjectType || e$.isGroupType) {
+            firstInvalid$ = findFirstInvalid$(e$.schema, path)
+          } else if (e$.isListType) {
+            firstInvalid$ = findFirstInvalid$(e$.children$, path)
+          } else {
+            firstInvalid$ = e$
+          }
+        }
+      })
+
+      return firstInvalid$
+    }
+
+    const firstInvalid$ = findFirstInvalid$(orderedSchema.value)
+    const scrollableParent = findScrollableParent(firstInvalid$.$el)
+
+    if (firstInvalid$) {
+      if (scrollableParent) {
+        scrollIntoView(firstInvalid$.$el, scrollableParent)
+      } else {
+        firstInvalid$.$el.scrollIntoView({behavior:'smooth'})
+      }
+    }
+  }
+
   /**
    * Validates and prepares elements then submits the form (async).
    *
    * @returns {Promise}
    */
   const submit = async () => {
+    console.log(111)
     if (isDisabled.value) {
       return
     }
@@ -1121,8 +1168,11 @@ const base = function(props, context, dependencies = {})
     await validate()
 
     if (invalid.value) {
+    console.log(222)
+      scrollToFirstInvalid()
       return
     }
+    console.log(333)
 
     preparing.value = true
 
@@ -1514,6 +1564,7 @@ const base = function(props, context, dependencies = {})
     resetValidators,
     convertFormData,
     submit,
+    scrollToFirstInvalid,
     send,
     cancel,
     disableValidation,
