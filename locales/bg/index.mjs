@@ -171,7 +171,7 @@ export default {
     },
     "defaultMessage": "Невалидно поле",
     "a11y": {
-      "file:": {
+      "file": {
         "description": "Натиснете Backspace за премахване"
       },
       "list": {
