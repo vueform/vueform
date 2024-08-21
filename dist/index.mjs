@@ -6324,6 +6324,36 @@ function dataEquals(a, b) {
   return isEqual_1(_dataToComperable(a), _dataToComperable(b));
 }
 
+var findScrollableParent = (element => {
+  var currentElement = element.parentElement;
+  while (currentElement && currentElement !== document.body) {
+    var overflowY = window.getComputedStyle(currentElement).overflowY;
+    var overflowX = window.getComputedStyle(currentElement).overflowX;
+    var isScrollableY = (overflowY === 'scroll' || overflowY === 'auto') && currentElement.scrollHeight > currentElement.clientHeight;
+    var isScrollableX = (overflowX === 'scroll' || overflowX === 'auto') && currentElement.scrollWidth > currentElement.clientWidth;
+    if (isScrollableY || isScrollableX) {
+      return currentElement;
+    }
+    currentElement = currentElement.parentElement;
+  }
+  return null;
+});
+
+var scrollIntoView = ((element, scrollableParent) => {
+  if (!scrollableParent) {
+    return;
+  }
+  var elementRect = element.getBoundingClientRect();
+  var parentRect = scrollableParent.getBoundingClientRect();
+  var offsetTop = elementRect.top - parentRect.top + scrollableParent.scrollTop;
+  var offsetLeft = elementRect.left - parentRect.left + scrollableParent.scrollLeft;
+  scrollableParent.scrollTo({
+    top: offsetTop,
+    left: offsetLeft,
+    behavior: 'smooth'
+  });
+});
+
 function isComponentRegistered (vm, component) {
   return vm.appContext !== undefined ? typeof vm.appContext.app.component(component) !== 'string' : !!vm.proxy.$root.$options.components[component];
 }
@@ -7014,6 +7044,8 @@ var base$1b = function base(props, context) {
     language,
     locale,
     validateOn,
+    scrollToInvalid,
+    showRequired,
     forceLabels,
     floatPlaceholders,
     multilingual,
@@ -7285,6 +7317,8 @@ var base$1b = function base(props, context) {
       theme,
       method,
       validateOn,
+      scrollToInvalid,
+      showRequired,
       messages,
       formKey,
       multilingual,
@@ -7349,6 +7383,8 @@ var base$1b = function base(props, context) {
       endpoint: typeof baseConfig.value.config.endpoints.submit === 'function' ? baseConfig.value.config.endpoints.submit : baseConfig.value.config.endpoints.submit.url,
       method: typeof baseConfig.value.config.endpoints.submit === 'function' ? null : baseConfig.value.config.endpoints.submit.method,
       validateOn: baseConfig.value.config.validateOn,
+      scrollToInvalid: baseConfig.value.config.scrollToInvalid,
+      showRequired: baseConfig.value.config.showRequired,
       displayErrors: baseConfig.value.config.displayErrors,
       displayMessages: baseConfig.value.config.displayMessages,
       forceLabels: baseConfig.value.config.forceLabels,
@@ -8054,6 +8090,43 @@ var base$1b = function base(props, context) {
       e$.resetValidators();
     });
   };
+  var scrollToFirstInvalid = () => {
+    if (!options.value.scrollToInvalid) {
+      return;
+    }
+    var _findFirstInvalid$ = function findFirstInvalid$(schema) {
+      var prefix = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
+      var firstInvalid$;
+      Object.keys(schema).forEach(key => {
+        if (firstInvalid$) {
+          return;
+        }
+        var path = prefix ? "".concat(prefix, ".").concat(key) : key;
+        var e$ = el$(path);
+        if (e$ && !e$.isStatic && e$.available && e$.invalid) {
+          if (e$.isObjectType || e$.isGroupType) {
+            firstInvalid$ = _findFirstInvalid$(e$.schema, path);
+          } else if (e$.isListType) {
+            firstInvalid$ = _findFirstInvalid$(e$.children$, path);
+          } else {
+            firstInvalid$ = e$;
+          }
+        }
+      });
+      return firstInvalid$;
+    };
+    var firstInvalid$ = _findFirstInvalid$(orderedSchema.value);
+    var scrollableParent = findScrollableParent(firstInvalid$.$el);
+    if (firstInvalid$) {
+      if (scrollableParent) {
+        scrollIntoView(firstInvalid$.$el, scrollableParent);
+      } else {
+        firstInvalid$.$el.scrollIntoView({
+          behavior: 'smooth'
+        });
+      }
+    }
+  };
 
   /**
    * Validates and prepares elements then submits the form (async).
@@ -8062,13 +8135,17 @@ var base$1b = function base(props, context) {
    */
   var submit = /*#__PURE__*/function () {
     var _ref5 = _asyncToGenerator(function* () {
+      console.log(111);
       if (isDisabled.value) {
         return;
       }
       yield validate();
       if (invalid.value) {
+        console.log(222);
+        scrollToFirstInvalid();
         return;
       }
+      console.log(333);
       preparing.value = true;
       try {
         yield prepareElements();
@@ -8456,6 +8533,7 @@ var base$1b = function base(props, context) {
     resetValidators,
     convertFormData,
     submit,
+    scrollToFirstInvalid,
     send,
     cancel,
     disableValidation,
@@ -8600,6 +8678,7 @@ var VueformComponent = {
       resetValidators,
       convertFormData,
       submit,
+      scrollToFirstInvalid,
       send,
       cancel,
       disableValidation,
@@ -8688,6 +8767,7 @@ var VueformComponent = {
       resetValidators,
       convertFormData,
       submit,
+      scrollToFirstInvalid,
       send,
       cancel,
       disableValidation,
@@ -8739,6 +8819,16 @@ var VueformComponent = {
     },
     validateOn: {
       type: String,
+      required: false,
+      default: null
+    },
+    scrollToInvalid: {
+      type: Boolean,
+      required: false,
+      default: null
+    },
+    showRequired: {
+      type: Array,
       required: false,
       default: null
     },
@@ -14025,6 +14115,8 @@ var config = {
    */
   rules: {},
   validateOn: 'change|step',
+  scrollToInvalid: true,
+  showRequired: [],
   /**
    * Data
    */
@@ -14165,7 +14257,7 @@ function installer () {
       });
 
       // replace
-      each(['columns', 'forceLabels', 'displayErrors', 'floatPlaceholders', 'displayErrors', 'displayMessages', 'language', 'locale', 'fallbackLocale', 'orderFrom', 'validateOn', 'formData', 'beforeSend', 'locationProvider', 'classHelpers', 'env', 'usePresets', 'plugins', 'size', 'apiKey', 'forceNumbers'], attr => {
+      each(['columns', 'forceLabels', 'displayErrors', 'floatPlaceholders', 'displayErrors', 'displayMessages', 'language', 'locale', 'fallbackLocale', 'orderFrom', 'validateOn', 'formData', 'beforeSend', 'locationProvider', 'classHelpers', 'env', 'usePresets', 'plugins', 'size', 'apiKey', 'forceNumbers', 'scrollToInvalid', 'showRequired'], attr => {
         if (config[attr] !== undefined) {
           this.options.config[attr] = config[attr];
         }
@@ -16361,6 +16453,11 @@ var FormSteps = {
       fire('next', next$.value);
       next$.value.enable();
       next$.value.select();
+      nextTick(() => {
+        form$.value.$el.scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
     };
 
     /**
@@ -16435,6 +16532,9 @@ var FormSteps = {
         yield form$.value.submit();
         if (invalid.value) {
           firstInvalid$.value.select();
+          nextTick(() => {
+            form$.value.scrollToFirstInvalid();
+          });
           return;
         }
 
@@ -17910,7 +18010,12 @@ var ElementLabelFloating = {
      * @type {string}
      */
     var floating = computed(() => {
-      return localize(el$.value.floating || ( /* istanbul ignore next: tested, but not covered */form$.value.options.floatPlaceholders ? el$.value.placeholder : null), config$.value, form$.value);
+      var _form$$value$options$;
+      var floating = localize(el$.value.floating || ( /* istanbul ignore next: tested, but not covered */form$.value.options.floatPlaceholders ? el$.value.placeholder : null), config$.value, form$.value);
+      if (el$.value.isRequired && ((_form$$value$options$ = form$.value.options.showRequired) === null || _form$$value$options$ === void 0 ? void 0 : _form$$value$options$.indexOf('floating')) !== -1) {
+        floating += '*';
+      }
+      return floating;
     });
     return {
       el$,
@@ -18306,6 +18411,62 @@ var ElementMessage = {
   }
 };
 
+var ElementRequired = {
+  name: 'ElementRequired',
+  slots: ['default'],
+  setup(props, context) {
+    // ============ DEPENDENCIES ============
+
+    var {
+      el$,
+      form$,
+      Size,
+      View,
+      classesInstance,
+      classes,
+      Templates,
+      template,
+      theme
+    } = base$10(props, context);
+
+    // ============== COMPUTED ==============
+
+    /**
+     * Whether the required sign (*) should be visible.
+     * 
+     * @type {boolean}
+     */
+    var visible = computed(() => {
+      var _form$$value$options$;
+      return el$.value.isRequired && ((_form$$value$options$ = form$.value.options.showRequired) === null || _form$$value$options$ === void 0 ? void 0 : _form$$value$options$.indexOf('label')) !== -1;
+    });
+
+    /**
+     * Whether the required is provided as a slot.
+     *
+     * @type {boolean}
+     * @private
+     */
+    var isSlot = computed(() => {
+      var _el$$value$slots, _el$$value$$slots, _el$$value$$scopedSlo;
+      return !!((_el$$value$slots = el$.value.slots) !== null && _el$$value$slots !== void 0 && _el$$value$slots.required || (_el$$value$$slots = el$.value.$slots) !== null && _el$$value$$slots !== void 0 && _el$$value$$slots.required || ( /* istanbul ignore next: Vue2 is not checked */form$.value.$vueform.vueVersion === 2 && (_el$$value$$scopedSlo = el$.value.$scopedSlots) !== null && _el$$value$$scopedSlo !== void 0 && _el$$value$$scopedSlo.required));
+    });
+    return {
+      el$,
+      form$,
+      Size,
+      View,
+      classesInstance,
+      classes,
+      Templates,
+      template,
+      theme,
+      visible,
+      isSlot
+    };
+  }
+};
+
 var ElementText = {
   name: 'ElementText',
   slots: ['default'],
@@ -18537,9 +18698,9 @@ var ElementAddon = {
     /**
      * The addon definition.
      * ponent.
-    *
-    * @type {string|function|Component}
-    * @private
+     *
+     * @type {string|function|Component}
+     * @private
      */
     var baseAddon = computed(() => {
       return el$.value.addons[type.value];
@@ -22653,7 +22814,7 @@ var base$X = function base(props, context, dependencies) {
 
   // =============== OPTIONS ==============
 
-  var defaultElementSlots = ['label', 'info', 'description', 'before', 'between', 'after'];
+  var defaultElementSlots = ['label', 'info', 'required', 'description', 'before', 'between', 'after'];
   var defaultFieldSlots = ['checkbox', 'radio', 'option', 'single-label', 'multiple-label', 'tag', 'no-results', 'no-options', 'after-list', 'before-list', 'placeholder', 'group-label', 'caret', 'clear', 'spinner', 'option', 'default', 'addon-before', 'addon-after'];
 
   // ============== COMPUTED ==============
@@ -24325,7 +24486,7 @@ var ButtonElement = {
   setup(props, ctx) {
     var context = _objectSpread2$1({}, ctx);
     context.features = [base$19, base$18, base$V, static_$1, base$1c, static_$2, button$1, base$14, base$$, base$Z, base$Y, base$U, base$W, base$1a, base$_, base$X, button, base$T];
-    context.slots = ['label', 'info', 'description', 'before', 'between', 'after', 'default'];
+    context.slots = ['label', 'info', 'required', 'description', 'before', 'between', 'after', 'default'];
     return _objectSpread2$1({}, static_(props, context));
   }
 };
@@ -25428,6 +25589,7 @@ var base$D = function base(props, context, dependencies) {
 
   var form$ = dependencies.form$;
   var path = dependencies.path;
+  var el$ = dependencies.el$;
 
   // ================ DATA ================
 
@@ -25592,6 +25754,24 @@ var base$D = function base(props, context, dependencies) {
     return validationRules.value && validationRules.value.length > 0 && state.value.validated && !invalid.value || (!validationRules.value || !validationRules.value.length) && dirty.value;
   });
 
+  /**
+   * Whether the element is required (has required rule).
+   * 
+   * @type {boolean}
+   */
+  var isRequired = computed(() => {
+    return Validators.value.some(Validator => {
+      var _Validator$conditions;
+      if (Validator.name !== 'required') {
+        return;
+      }
+      if (!((_Validator$conditions = Validator.conditions) !== null && _Validator$conditions !== void 0 && _Validator$conditions.length)) {
+        return true;
+      }
+      return Validator.conditions(form$.value, Validator, el$.value);
+    });
+  });
+
   // =============== METHODS ===============
 
   /**
@@ -25724,6 +25904,7 @@ var base$D = function base(props, context, dependencies) {
     validationRules,
     isDanger,
     isSuccess,
+    isRequired,
     validate,
     dirt,
     clean,
@@ -25749,6 +25930,7 @@ var text$2 = function text(props, context, dependencies) {
     validationRules,
     isDanger,
     isSuccess,
+    isRequired,
     validate,
     dirt,
     clean,
@@ -25796,6 +25978,7 @@ var text$2 = function text(props, context, dependencies) {
     validationRules,
     isDanger,
     isSuccess,
+    isRequired,
     validate,
     dirt,
     clean,
@@ -25816,7 +25999,8 @@ var list$1 = function list(props, context, dependencies) {
     validationRules,
     dirt,
     initValidation,
-    resetting
+    resetting,
+    isRequired
   } = base$D(props, context, dependencies);
   var form$ = dependencies.form$;
   var children$ = dependencies.children$;
@@ -26081,6 +26265,7 @@ var list$1 = function list(props, context, dependencies) {
     pending,
     debouncing,
     busy,
+    isRequired,
     validatorErrors,
     childrenErrors,
     errors,
@@ -26269,6 +26454,19 @@ var multilingual$3 = function multilingual(props, context, dependencies) {
       invalid: true
     }) || (!validationRules.value[language.value] || !validationRules.value[language.value].length) && state.value.dirty[language.value];
   });
+  var isRequired = computed(() => {
+    var _Validators$value;
+    return (_Validators$value = Validators.value) === null || _Validators$value === void 0 || (_Validators$value = _Validators$value[language.value]) === null || _Validators$value === void 0 ? void 0 : _Validators$value.some(Validator => {
+      var _Validator$conditions2;
+      if (Validator.name !== 'required') {
+        return;
+      }
+      if (!((_Validator$conditions2 = Validator.conditions) !== null && _Validator$conditions2 !== void 0 && _Validator$conditions2.length)) {
+        return true;
+      }
+      return Validator.conditions(form$.value, Validator, el$.value);
+    });
+  });
 
   // =============== METHODS ===============
 
@@ -26414,6 +26612,7 @@ var multilingual$3 = function multilingual(props, context, dependencies) {
     validationRules,
     isDanger,
     isSuccess,
+    isRequired,
     validate,
     validateLanguage,
     dirt,
@@ -26440,6 +26639,7 @@ var slider$1 = function slider(props, context, dependencies) {
     invalid,
     pending,
     busy,
+    isRequired,
     errors,
     error,
     validationRules,
@@ -26510,6 +26710,7 @@ var slider$1 = function slider(props, context, dependencies) {
     invalid,
     pending,
     busy,
+    isRequired,
     errors,
     error,
     validationRules,
@@ -26539,6 +26740,7 @@ var file$1 = function file(props, context, dependencies) {
     validated,
     invalid,
     pending,
+    isRequired,
     errors,
     error,
     validationRules,
@@ -26609,6 +26811,7 @@ var file$1 = function file(props, context, dependencies) {
     invalid,
     pending,
     busy,
+    isRequired,
     errors,
     error,
     validationRules,
@@ -26642,6 +26845,7 @@ var location = function location(props, context, dependencies) {
     pending,
     debouncing,
     busy,
+    isRequired,
     errors,
     error,
     validationRules,
@@ -26700,6 +26904,7 @@ var location = function location(props, context, dependencies) {
     pending,
     debouncing,
     busy,
+    isRequired,
     errors,
     error,
     validationRules,
@@ -28394,7 +28599,7 @@ var CaptchaElement = {
   setup(props, ctx) {
     var context = _objectSpread2$1({}, ctx);
     context.features = [base$19, base$18, base$V, base$M, base$O, base$S, base$K, base$U, base$G, base$1c, base$P, base$C, base$14, base$D, base$H, base$L, base$E, base$I, captcha, base$$, base$J, captcha$1, base$Y, base$1a, base$_, base$X, base$F, base$T];
-    context.slots = ['label', 'info', 'description', 'before', 'between', 'after'];
+    context.slots = ['label', 'info', 'required', 'description', 'before', 'between', 'after'];
     return _objectSpread2$1({}, base$N(props, context));
   }
 };
@@ -28545,7 +28750,7 @@ var CheckboxElement = {
   setup(props, ctx) {
     var context = _objectSpread2$1({}, ctx);
     context.features = [base$19, base$18, base$V, base$M, base$O, base$S, boolean, base$U, base$1c, base$P, base$C, base$14, base$D, base$L, base$B, base$$, base$J, base$Z, base$Y, base$1a, base$_, base$X, checkbox, checkbox$1, base$F, base$T, base$A];
-    context.slots = ['default', 'label', 'info', 'description', 'before', 'between', 'after'];
+    context.slots = ['default', 'label', 'info', 'required', 'description', 'before', 'between', 'after'];
     return _objectSpread2$1({}, base$N(props, context));
   }
 };
@@ -29214,7 +29419,7 @@ var CheckboxgroupElement = {
   setup(props, ctx) {
     var context = _objectSpread2$1({}, ctx);
     context.features = [base$19, base$18, base$V, base$O, array$1, base$U, base$1c, checkboxgroup$1, checkboxgroup$3, base$C, base$L, checkboxgroup, base$14, base$D, base$y, base$B, base$$, base$J, base$_, base$Z, base$Y, base$1a, base$X, checkboxgroup$2, base$F, base$T];
-    context.slots = ['checkbox', 'label', 'info', 'description', 'before', 'between', 'after'];
+    context.slots = ['checkbox', 'label', 'info', 'required', 'description', 'before', 'between', 'after'];
     return _objectSpread2$1({}, base$N(props, context));
   }
 };
@@ -29422,6 +29627,9 @@ var base$t = function base(props, context, dependencies) {
   var {
     placeholder
   } = toRefs(props);
+  var {
+    el$
+  } = dependencies;
 
   // =============== INJECT ===============
 
@@ -29437,7 +29645,12 @@ var base$t = function base(props, context, dependencies) {
    *
    */
   var Placeholder = computed(() => {
-    return localize(placeholder.value, config$.value, form$.value);
+    var _form$$value$options$;
+    var Placeholder = localize(placeholder.value, config$.value, form$.value);
+    if (el$.value.isRequired && ((_form$$value$options$ = form$.value.options.showRequired) === null || _form$$value$options$ === void 0 ? void 0 : _form$$value$options$.indexOf('placeholder')) !== -1) {
+      Placeholder += '*';
+    }
+    return Placeholder;
   });
   return {
     Placeholder
@@ -30326,7 +30539,7 @@ var DateElement = {
   setup(props, ctx) {
     var context = _objectSpread2$1({}, ctx);
     context.features = [base$19, base$18, base$V, base$M, base$O, base$S, base$K, base$U, base$G, base$1c, base$P, base$w, base$v, date$1, base$C, base$14, base$D, date$3, base$I, date$2, base$$, base$J, base$Z, base$Y, base$1a, base$_, base$X, base$u, date, base$R, base$F, base$T, base$t];
-    context.slots = ['label', 'info', 'description', 'before', 'between', 'after', 'addon-before', 'addon-after'];
+    context.slots = ['label', 'info', 'required', 'description', 'before', 'between', 'after', 'addon-before', 'addon-after'];
     return _objectSpread2$1({}, base$N(props, context));
   }
 };
@@ -30424,7 +30637,7 @@ var DatesElement = {
   setup(props, ctx) {
     var context = _objectSpread2$1({}, ctx);
     context.features = [base$19, base$18, base$V, base$M, base$O, base$S, array$1, base$U, base$G, base$1c, dates$5, base$w, dates$2, dates$1, base$C, dates$4, base$14, base$D, base$I, dates$3, base$$, base$J, base$Z, base$Y, base$1a, base$_, base$X, base$u, dates, base$R, base$F, base$T, base$t];
-    context.slots = ['label', 'info', 'description', 'before', 'between', 'after', 'addon-before', 'addon-after'];
+    context.slots = ['label', 'info', 'required', 'description', 'before', 'between', 'after', 'addon-before', 'addon-after'];
     return _objectSpread2$1({}, base$N(props, context));
   }
 };
@@ -31268,7 +31481,7 @@ var FileElement = {
   setup(props, ctx) {
     var context = _objectSpread2$1({}, ctx);
     context.features = [base$19, base$18, base$V, base$M, base$O, base$S, base$K, base$o, base$U, base$1c, file$3, base$q, base$C, base$14, base$L, file$1, base$I, file, base$n, base$r, base$p, base$$, file$2, base$Z, base$Y, base$1a, base$_, base$X, file$4, base$F, base$T];
-    context.slots = ['label', 'info', 'description', 'before', 'between', 'after'];
+    context.slots = ['label', 'info', 'required', 'description', 'before', 'between', 'after'];
     return _objectSpread2$1({}, base$N(props, context));
   }
 };
@@ -31363,7 +31576,7 @@ var GenericElement = {
   setup(props, ctx) {
     var context = _objectSpread2$1({}, ctx);
     context.features = [base$19, base$18, base$V, base$M, base$O, base$S, generic, base$U, base$1c, base$P, text$1, base$14, text$2, base$L, base$I, base$B, base$$, base$J, base$Z, base$Y, base$1a, base$_, base$X, base$m, base$s, base$R, base$F, base$T];
-    context.slots = ['label', 'info', 'description', 'before', 'between', 'after'];
+    context.slots = ['label', 'info', 'required', 'description', 'before', 'between', 'after'];
     return _objectSpread2$1({}, base$N(props, context));
   }
 };
@@ -31478,7 +31691,7 @@ var GroupElement = {
   setup(props, ctx) {
     var context = _objectSpread2$1({}, ctx);
     context.features = [base$19, base$18, base$V, group$6, base$U, object$5, base$1c, group$7, group, group$2, base$$, group$3, group$5, base$12, group$8, base$Z, base$Y, base$1a, base$_, base$X, group$1, base$R, group$4, base$T];
-    context.slots = ['label', 'info', 'description', 'before', 'between', 'after'];
+    context.slots = ['label', 'info', 'required', 'description', 'before', 'between', 'after'];
     return _objectSpread2$1({}, base$N(props, context));
   }
 };
@@ -34760,7 +34973,7 @@ var ListElement = {
     var context = _objectSpread2$1({}, ctx);
     //@todo:adam useValue and useDefault should be before useOrder
     context.features = [base$19, base$18, base$V, base$O, base$U, base$S, array$1, base$h, base$l, base$j, base$i, base$1c, list$4, base$C, base$$, base$J, base$12, list$5, list$1, list$3, base$g, array, base$_, base$Z, base$Y, base$1a, base$X, list, base$k, base$R, list$2, base$T];
-    context.slots = ['label', 'info', 'description', 'before', 'between', 'after'];
+    context.slots = ['label', 'info', 'required', 'description', 'before', 'between', 'after'];
     return _objectSpread2$1({}, base$N(props, context));
   }
 };
@@ -35005,7 +35218,7 @@ var LocationElement = {
   setup(props, ctx) {
     var context = _objectSpread2$1({}, ctx);
     context.features = [base$19, base$18, base$V, base$M, base$O, base$S, location$2, base$U, base$G, base$1c, base$P, base$w, base$C, base$L, location, base$14, base$I, base$B, base$f, base$$, base$J, base$Z, base$Y, base$1a, base$_, base$X, base$s, base$R, location$1, base$T, base$t];
-    context.slots = ['label', 'info', 'description', 'before', 'between', 'after', 'addon-before', 'addon-after'];
+    context.slots = ['label', 'info', 'required', 'description', 'before', 'between', 'after', 'addon-before', 'addon-after'];
     return _objectSpread2$1({}, location$3(props, context));
   }
 };
@@ -35252,7 +35465,7 @@ var MultifileElement = {
   setup(props, ctx) {
     var context = _objectSpread2$1({}, ctx);
     context.features = [base$19, base$18, base$V, base$O, base$S, array$1, base$l, base$M, base$j, multifile$1, base$U, base$1c, list$4, base$C, base$$, base$J, list$1, base$L, array, base$12, base$14, base$_, base$Z, base$Y, base$X, multifile$2, multifile$4, base$e, multifile, multifile$3, base$1a, base$k, base$R, multifile$5, base$T];
-    context.slots = ['label', 'info', 'description', 'before', 'between', 'after'];
+    context.slots = ['label', 'info', 'required', 'description', 'before', 'between', 'after'];
     return _objectSpread2$1({}, base$N(props, context));
   }
 };
@@ -35797,7 +36010,7 @@ var MultiselectElement = {
   setup(props, ctx) {
     var context = _objectSpread2$1({}, ctx);
     context.features = [base$19, base$18, base$V, multiselect$4, base$O, base$S, array$1, base$U, base$G, base$1c, multiselect$5, base$C, base$D, base$H, multiselect$1, base$L, multiselect$2, base$14, array, multiselect$3, base$$, base$J, base$Z, base$Y, base$1a, base$_, base$X, base$d, base$c, multiselect, base$R, base$F, base$T, base$t];
-    context.slots = ['option', 'multiple-label', 'placeholder', 'group-label', 'before-list', 'after-list', 'no-results', 'no-options', 'caret', 'spinner', 'clear', 'label', 'info', 'description', 'before', 'between', 'after'];
+    context.slots = ['option', 'multiple-label', 'placeholder', 'group-label', 'before-list', 'after-list', 'no-results', 'no-options', 'caret', 'spinner', 'clear', 'label', 'info', 'required', 'description', 'before', 'between', 'after'];
     return _objectSpread2$1({}, base$N(props, context));
   }
 };
@@ -35843,7 +36056,7 @@ var ObjectElement = {
   setup(props, ctx) {
     var context = _objectSpread2$1({}, ctx);
     context.features = [base$19, base$18, base$V, base$O, base$U, object$5, base$1c, object$7, object$2, object$6, base$$, object, base$12, object$8, object$3, base$Z, base$Y, base$1a, base$_, base$X, object$1, base$R, object$4, base$T];
-    context.slots = ['label', 'info', 'description', 'before', 'between', 'after'];
+    context.slots = ['label', 'info', 'required', 'description', 'before', 'between', 'after'];
     return _objectSpread2$1({}, base$N(props, context));
   }
 };
@@ -38667,7 +38880,7 @@ var PhoneElement = {
   setup(props, ctx) {
     var context = _objectSpread2$1({}, ctx);
     context.features = [base$19, base$18, base$V, base$M, base$O, base$S, base$K, base$U, base$G, base$1c, base$P, text$1, base$14, text$2, base$H, base$L, base$I, base$B, base$$, base$J, base$Z, base$Y, base$1a, base$_, base$X, phone$1, base$s, base$b, phone$2, base$F, base$T, phone, base$t, base$a];
-    context.slots = ['label', 'info', 'description', 'before', 'between', 'after'];
+    context.slots = ['label', 'info', 'required', 'description', 'before', 'between', 'after'];
     return _objectSpread2$1({}, base$N(props, context));
   }
 };
@@ -38822,7 +39035,7 @@ var RadioElement = {
   setup(props, ctx) {
     var context = _objectSpread2$1({}, ctx);
     context.features = [base$19, base$18, base$V, base$M, base$O, base$S, base$U, base$1c, base$P, base$K, base$C, base$14, base$D, base$L, base$B, base$$, base$J, base$Z, base$Y, base$1a, base$_, base$X, base$8, radio, base$F, base$T, base$A];
-    context.slots = ['default', 'label', 'info', 'description', 'before', 'between', 'after'];
+    context.slots = ['default', 'label', 'info', 'required', 'description', 'before', 'between', 'after'];
     return _objectSpread2$1({}, base$N(props, context));
   }
 };
@@ -38873,7 +39086,7 @@ var RadiogroupElement = {
   setup(props, ctx) {
     var context = _objectSpread2$1({}, ctx);
     context.features = [base$19, base$18, base$V, base$O, base$K, base$U, base$1c, base$P, radiogroup$2, base$C, base$L, radiogroup, base$14, base$D, base$B, base$$, base$J, base$Z, base$Y, base$1a, base$_, base$X, radiogroup$1, base$F, base$T];
-    context.slots = ['radio', 'label', 'info', 'description', 'before', 'between', 'after'];
+    context.slots = ['radio', 'label', 'info', 'required', 'description', 'before', 'between', 'after'];
     return _objectSpread2$1({}, base$N(props, context));
   }
 };
@@ -39203,7 +39416,7 @@ var SelectElement = {
   setup(props, ctx) {
     var context = _objectSpread2$1({}, ctx);
     context.features = [base$19, base$18, base$V, select$4, base$O, base$S, base$K, base$U, base$G, base$1c, base$P, base$C, base$D, base$H, select$1, base$L, select$2, base$14, base$I, select$3, base$$, base$J, base$Z, base$Y, base$1a, base$_, base$X, base$d, select, base$R, base$F, base$T, base$t];
-    context.slots = ['option', 'single-label', 'placeholder', 'group-label', 'before-list', 'after-list', 'no-results', 'no-options', 'caret', 'spinner', 'clear', 'label', 'info', 'description', 'before', 'between', 'after'];
+    context.slots = ['option', 'single-label', 'placeholder', 'group-label', 'before-list', 'after-list', 'no-results', 'no-options', 'caret', 'spinner', 'clear', 'label', 'info', 'required', 'description', 'before', 'between', 'after'];
     return _objectSpread2$1({}, base$N(props, context));
   }
 };
@@ -41629,7 +41842,7 @@ var SignatureElement = {
   setup(props, ctx) {
     var context = _objectSpread2$1({}, ctx);
     context.features = [base$19, base$18, base$V, base$M, base$O, base$S, base$K, base$U, base$1c, base$P, base$C, base$14, base$D, base$L, base$I, base$t, useSignature, signature, base$$, base$J, base$Z, base$Y, base$1a, base$_, base$X, base$s, base$R, base$F, base$T];
-    context.slots = ['label', 'info', 'description', 'before', 'between', 'after', 'addon-before', 'addon-after'];
+    context.slots = ['label', 'info', 'required', 'description', 'before', 'between', 'after', 'addon-before', 'addon-after'];
     return _objectSpread2$1({}, base$N(props, context));
   }
 };
@@ -41754,7 +41967,7 @@ var SliderElement = {
   setup(props, ctx) {
     var context = _objectSpread2$1({}, ctx);
     context.features = [base$19, base$18, base$V, base$M, base$O, base$S, min, base$U, base$1c, base$P, base$C, slider, base$L, slider$1, base$14, base$B, base$$, base$J, base$Z, base$Y, base$1a, base$_, base$X, base$u, base$7, base$R, base$F, base$T];
-    context.slots = ['label', 'info', 'description', 'before', 'between', 'after'];
+    context.slots = ['label', 'info', 'required', 'description', 'before', 'between', 'after'];
     return _objectSpread2$1({}, base$N(props, context));
   }
 };
@@ -41945,7 +42158,7 @@ var StaticElement = {
   setup(props, ctx) {
     var context = _objectSpread2$1({}, ctx);
     context.features = [base$19, base$18, base$V, static_$1, base$1c, static_$2, base$14, base$$, base$Z, base$Y, base$1a, base$_, base$X, base$U, static_$3, base$T, base$6];
-    context.slots = ['default', 'label', 'info', 'description', 'before', 'between', 'after'];
+    context.slots = ['default', 'label', 'info', 'required', 'description', 'before', 'between', 'after'];
     return _objectSpread2$1({}, static_(props, context));
   }
 };
@@ -42288,7 +42501,7 @@ var TagsElement = {
   setup(props, ctx) {
     var context = _objectSpread2$1({}, ctx);
     context.features = [base$19, base$18, base$V, tags$4, base$O, base$S, array$1, base$U, base$G, base$1c, tags$5, base$C, base$D, base$H, tags$1, base$L, tags$2, base$14, array, tags$3, base$$, base$J, base$Z, base$Y, base$1a, base$_, base$X, base$d, base$5, base$c, tags, base$R, base$F, base$T, base$t];
-    context.slots = ['tag', 'option', 'placeholder', 'group-label', 'before-list', 'after-list', 'no-results', 'no-options', 'caret', 'spinner', 'clear', 'label', 'info', 'description', 'before', 'between', 'after'];
+    context.slots = ['tag', 'option', 'placeholder', 'group-label', 'before-list', 'after-list', 'no-results', 'no-options', 'caret', 'spinner', 'clear', 'label', 'info', 'required', 'description', 'before', 'between', 'after'];
     return _objectSpread2$1({}, base$N(props, context));
   }
 };
@@ -42463,7 +42676,7 @@ var TextareaElement = {
   setup(props, ctx) {
     var context = _objectSpread2$1({}, ctx);
     context.features = [base$19, base$18, base$V, base$M, base$O, base$S, base$K, base$U, base$G, base$1c, base$P, base$w, text$1, base$14, text$2, base$L, base$I, base$B, base$$, base$J, base$Z, base$Y, base$1a, base$_, base$X, base$m, base$4, base$s, base$b, base$R, base$F, base$T, base$9, base$t];
-    context.slots = ['label', 'info', 'description', 'before', 'between', 'after', 'addon-before', 'addon-after'];
+    context.slots = ['label', 'info', 'required', 'description', 'before', 'between', 'after', 'addon-before', 'addon-after'];
     return _objectSpread2$1({}, base$N(props, context));
   }
 };
@@ -42575,8 +42788,8 @@ var TextElement = {
   },
   setup(props, ctx) {
     var context = _objectSpread2$1({}, ctx);
-    context.features = [base$19, base$18, base$V, base$M, base$O, base$S, base$K, base$U, base$G, base$1c, base$P, base$w, text$1, base$14, text$2, base$H, base$L, base$I, text, base$$, base$J, base$Z, base$Y, base$1a, base$_, base$X, base$m, base$s, base$b, base$R, base$F, base$T, base$9, base$t];
-    context.slots = ['label', 'info', 'description', 'before', 'between', 'after', 'addon-before', 'addon-after'];
+    context.features = [base$19, base$18, base$V, base$M, base$O, base$S, base$K, base$U, base$1c, base$P, base$w, text$1, base$14, text$2, base$H, base$L, base$I, text, base$$, base$J, base$Z, base$Y, base$1a, base$_, base$X, base$m, base$s, base$b, base$R, base$F, base$T, base$9, base$G, base$t];
+    context.slots = ['label', 'info', 'required', 'required', 'description', 'before', 'between', 'after', 'addon-before', 'addon-after'];
     return _objectSpread2$1({}, base$N(props, context));
   }
 };
@@ -42643,7 +42856,7 @@ var ToggleElement = {
   setup(props, ctx) {
     var context = _objectSpread2$1({}, ctx);
     context.features = [base$19, base$18, base$V, base$M, base$O, base$S, boolean, base$U, base$1c, base$P, toggle, base$C, base$14, base$D, base$L, base$B, base$$, base$J, base$Z, base$Y, base$1a, base$_, base$X, base$u, base$z, toggle$1, base$F, base$T, base$A];
-    context.slots = ['default', 'label', 'info', 'description', 'before', 'between', 'after'];
+    context.slots = ['default', 'label', 'info', 'required', 'description', 'before', 'between', 'after'];
     return _objectSpread2$1({}, base$N(props, context));
   }
 };
@@ -42824,7 +43037,7 @@ var EditorElement = {
   setup(props, ctx) {
     var context = _objectSpread2$1({}, ctx);
     context.features = [base$19, base$18, base$V, base$M, base$O, base$S, base$K, base$U, base$1c, base$P, text$1, base$14, text$2, base$L, base$I, editor, base$$, base$J, base$Z, base$Y, base$3, base$1a, base$_, base$X, base$m, base$2, base$n, base$b, base$R, base$F, editor$1, base$t];
-    context.slots = ['label', 'info', 'description', 'before', 'between', 'after'];
+    context.slots = ['label', 'info', 'required', 'description', 'before', 'between', 'after'];
     return _objectSpread2$1({}, base$N(props, context));
   }
 };
@@ -42957,7 +43170,7 @@ var TTextareaElement = {
   setup(props, ctx) {
     var context = _objectSpread2$1({}, ctx);
     context.features = [base$19, base$18, base$V, base$M, base$O, base$S, base$U, base$G, base$1c, base$P, base$w, base$1, multilingual$6, multilingual$2, multilingual$7, base$14, multilingual$3, multilingual$5, multilingual$1, base$$, base$J, base$Z, base$Y, base$1a, base$_, base$X, base$m, multilingual, base$s, base$b, base$R, multilingual$4, base$T, base$9, base$t];
-    context.slots = ['label', 'info', 'description', 'before', 'between', 'after', 'addon-before', 'addon-after'];
+    context.slots = ['label', 'info', 'required', 'description', 'before', 'between', 'after', 'addon-before', 'addon-after'];
     return _objectSpread2$1({}, multilingual$8(props, context));
   }
 };
@@ -43065,7 +43278,7 @@ var TTextElement = {
   setup(props, ctx) {
     var context = _objectSpread2$1({}, ctx);
     context.features = [base$19, base$18, base$V, base$M, base$O, base$S, base$U, base$G, base$1c, base$P, base$w, base$1, multilingual$6, multilingual$2, multilingual$7, base$14, multilingual$3, base$H, multilingual$5, multilingual$1, base$$, base$J, base$Z, base$Y, base$1a, base$_, base$X, base$m, base$s, base$b, base$R, multilingual$4, base$T, base$9, base$t];
-    context.slots = ['label', 'info', 'description', 'before', 'between', 'after', 'addon-before', 'addon-after'];
+    context.slots = ['label', 'info', 'required', 'description', 'before', 'between', 'after', 'addon-before', 'addon-after'];
     return _objectSpread2$1({}, multilingual$8(props, context));
   }
 };
@@ -43157,7 +43370,7 @@ var TEditorElement = {
   setup(props, ctx) {
     var context = _objectSpread2$1({}, ctx);
     context.features = [base$19, base$18, base$V, base$M, base$O, base$S, base$U, base$1c, base$P, base$1, multilingual$6, multilingual$2, multilingual$7, base$14, multilingual$3, multilingual$5, teditor, base$$, base$J, base$Z, base$Y, base$3, base$1a, base$_, base$X, base$m, base$2, base$n, base$b, base$R, multilingual$4, base$T, base$t];
-    context.slots = ['label', 'info', 'description', 'before', 'between', 'after'];
+    context.slots = ['label', 'info', 'required', 'description', 'before', 'between', 'after'];
     return _objectSpread2$1({}, multilingual$8(props, context));
   }
 };
@@ -43749,6 +43962,7 @@ var index = {
   ElementDescription,
   ElementError,
   ElementMessage,
+  ElementRequired,
   ElementText,
   DragAndDrop,
   ElementAddon,
@@ -43814,6 +44028,7 @@ var components = /*#__PURE__*/Object.freeze({
   ElementDescription: ElementDescription,
   ElementError: ElementError,
   ElementMessage: ElementMessage,
+  ElementRequired: ElementRequired,
   ElementText: ElementText,
   DragAndDrop: DragAndDrop,
   ElementAddon: ElementAddon,
@@ -43908,4 +44123,4 @@ var vueform = installer(undefined, _objectSpread2$1({}, components), _objectSpre
   moment
 });
 
-export { ButtonElement, CaptchaElement, CheckboxElement, CheckboxgroupCheckbox, CheckboxgroupElement, DateElement, DatepickerWrapper, DatesElement, DragAndDrop, EditorElement, EditorWrapper, ElementAddon, ElementAddonOptions, ElementDescription, ElementError, ElementInfo, ElementLabel, ElementLabelFloating, ElementLayout, ElementLayoutInline, ElementLoader, ElementMessage, ElementText, FileElement, FilePreview, FormElements, FormErrors, FormLanguage, FormLanguages, FormMessages, FormStep, FormSteps, FormStepsControl, FormStepsControls, FormTab, FormTabs, GenericElement, GroupElement, HiddenElement, ListElement, LocationElement, MultifileElement, MultiselectElement, ObjectElement, PhoneElement, RadioElement, RadiogroupElement, RadiogroupRadio, SelectElement, SignatureElement, SliderElement, StaticElement, TEditorElement, TTextElement, TTextareaElement, TagsElement, TextElement, TextareaElement, ToggleElement, Validator, VueformComponent as Vueform, VueformElement, accepted, active_url, after, after_or_equal, alpha, alpha_dash, alpha_num, array$2 as array, before, before_or_equal, between, boolean$1 as boolean, captcha$2 as captcha, completed, confirmed, date$4 as date, date_equals, date_format, vueform as default, defineConfig, defineElement, different, digits, digits_between, dimensions, distinct, element, email, exists, file$5 as file, filled, gt, gte, image, in_, in_array, installer, integer, ip, ipv4, ipv6, json, lt, lte, max, mimes, mimetypes, min$1 as min, not_in, not_regex, nullable, numeric, regex, required, same, size, string, timezone, unique, url, base$1a as useClasses, base$1b as useVueform, uuid, vueform };
+export { ButtonElement, CaptchaElement, CheckboxElement, CheckboxgroupCheckbox, CheckboxgroupElement, DateElement, DatepickerWrapper, DatesElement, DragAndDrop, EditorElement, EditorWrapper, ElementAddon, ElementAddonOptions, ElementDescription, ElementError, ElementInfo, ElementLabel, ElementLabelFloating, ElementLayout, ElementLayoutInline, ElementLoader, ElementMessage, ElementRequired, ElementText, FileElement, FilePreview, FormElements, FormErrors, FormLanguage, FormLanguages, FormMessages, FormStep, FormSteps, FormStepsControl, FormStepsControls, FormTab, FormTabs, GenericElement, GroupElement, HiddenElement, ListElement, LocationElement, MultifileElement, MultiselectElement, ObjectElement, PhoneElement, RadioElement, RadiogroupElement, RadiogroupRadio, SelectElement, SignatureElement, SliderElement, StaticElement, TEditorElement, TTextElement, TTextareaElement, TagsElement, TextElement, TextareaElement, ToggleElement, Validator, VueformComponent as Vueform, VueformElement, accepted, active_url, after, after_or_equal, alpha, alpha_dash, alpha_num, array$2 as array, before, before_or_equal, between, boolean$1 as boolean, captcha$2 as captcha, completed, confirmed, date$4 as date, date_equals, date_format, vueform as default, defineConfig, defineElement, different, digits, digits_between, dimensions, distinct, element, email, exists, file$5 as file, filled, gt, gte, image, in_, in_array, installer, integer, ip, ipv4, ipv6, json, lt, lte, max, mimes, mimetypes, min$1 as min, not_in, not_regex, nullable, numeric, regex, required, same, size, string, timezone, unique, url, base$1a as useClasses, base$1b as useVueform, uuid, vueform };

@@ -229,6 +229,11 @@ export default {
       required: false,
       default: null
     },
+    showRequired: {
+      type: Array,
+      required: false,
+      default: null
+    },
     displayErrors: {
       type: Boolean,
       required: false,

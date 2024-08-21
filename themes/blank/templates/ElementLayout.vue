@@ -4,6 +4,7 @@
       <ElementLabel>
         <template #default><slot name="label"/></template>
         <template #info><slot name="info"/></template>
+        <template #required><slot name="required"/></template>
       </ElementLabel>
 
       <div :class="classes.innerContainer">

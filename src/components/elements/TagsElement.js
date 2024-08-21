@@ -416,7 +416,7 @@ export default {
       'caret',
       'spinner',
       'clear',
-      'label', 'info', 'description', 'before', 'between', 'after',
+      'label', 'info', 'required', 'description', 'before', 'between', 'after',
     ]
 
     return {

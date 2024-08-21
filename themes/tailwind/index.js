@@ -24,6 +24,7 @@ import ElementInfo from './../blank/templates/ElementInfo.vue'
 import ElementDescription from './../blank/templates/ElementDescription.vue'
 import ElementError from './../blank/templates/ElementError.vue'
 import ElementMessage from './../blank/templates/ElementMessage.vue'
+import ElementRequired from './../blank/templates/ElementRequired.vue'
 import ElementText from './../blank/templates/ElementText.vue'
 import ElementAddon from './../blank/templates/ElementAddon.vue'
 import ElementAddonOptions from './../blank/templates/ElementAddonOptions.vue'
@@ -102,6 +103,7 @@ const theme = {
     ElementDescription,
     ElementError,
     ElementMessage,
+    ElementRequired,
     ElementText,
     ElementAddon,
     ElementAddonOptions,
@@ -182,6 +184,7 @@ export {
   ElementDescription,
   ElementError,
   ElementMessage,
+  ElementRequired,
   ElementText,
   ElementAddon,
   ElementAddonOptions,

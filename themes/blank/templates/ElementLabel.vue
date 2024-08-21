@@ -3,18 +3,21 @@
   <label v-if="label && isLabelComponent" :class="classes.container" :for="name" :id="id">
     <span :class="classes.wrapper"><component v-if="isLabelComponent" :is="label"/></span>
     <ElementInfo><slot name="info"/></ElementInfo>
+    <ElementRequired><slot name="required"/></ElementRequired>
   </label>
 
   <!-- If label is HTML -->
   <label v-else-if="label" :class="classes.container" :for="name" :id="id">
     <span :class="classes.wrapper" v-html="label"></span>
     <ElementInfo><slot name="info"/></ElementInfo>
+    <ElementRequired><slot name="required"/></ElementRequired>
   </label>
 
   <!-- If label is a slot -->
   <label v-else-if="isSlot" :class="classes.container" :for="name" :id="id">
     <span :class="classes.wrapper"><slot/></span>
     <ElementInfo><slot name="info"/></ElementInfo>
+    <ElementRequired><slot name="required"/></ElementRequired>
   </label>
 
   <!-- If labels are forced but has no value -->

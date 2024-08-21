@@ -26,6 +26,7 @@ export default function createVueformInstaller (options = {}) {
     }),
     locale: 'en',
     languages: {en:'English',fr:'French'},
+    showRequired: ['label', 'placeholder', 'floating'],
   }, options.config || {}, {
     endpoints: {
       ...config.endpoints,

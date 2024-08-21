@@ -17,6 +17,7 @@ const base = function(props, context, dependencies)
   
   const form$ = dependencies.form$
   const path = dependencies.path
+  const el$ = dependencies.el$
   
   // ================ DATA ================
   
@@ -179,6 +180,25 @@ const base = function(props, context, dependencies)
     return (validationRules.value && validationRules.value.length > 0 && state.value.validated && !invalid.value) ||
       ((!validationRules.value || !validationRules.value.length) && dirty.value)
   })
+
+  /**
+   * Whether the element is required (has required rule).
+   * 
+   * @type {boolean}
+   */
+  const isRequired = computed(() => {
+    return Validators.value.some((Validator) => {
+      if (Validator.name !== 'required') {
+        return
+      }
+
+      if (!Validator.conditions?.length) {
+        return true
+      }
+
+      return Validator.conditions(form$.value, Validator, el$.value)
+    })
+  })
   
   // =============== METHODS ===============
   
@@ -311,6 +331,7 @@ const base = function(props, context, dependencies)
     validationRules,
     isDanger,
     isSuccess,
+    isRequired,
     validate,
     dirt,
     clean,
@@ -338,6 +359,7 @@ const text = function(props, context, dependencies)
     validationRules,
     isDanger,
     isSuccess,
+    isRequired,
     validate,
     dirt,
     clean,
@@ -384,6 +406,7 @@ const text = function(props, context, dependencies)
     validationRules,
     isDanger,
     isSuccess,
+    isRequired,
     validate,
     dirt,
     clean,
@@ -407,6 +430,7 @@ const list = function(props, context, dependencies)
     dirt,
     initValidation,
     resetting,
+    isRequired,
   } = base(props, context, dependencies)
   
   const form$ = dependencies.form$
@@ -657,6 +681,7 @@ const list = function(props, context, dependencies)
     pending,
     debouncing,
     busy,
+    isRequired,
     validatorErrors,
     childrenErrors,
     errors,
@@ -864,6 +889,20 @@ const multilingual = function(props, context, dependencies)
     return (validationRules.value[language.value] && validationRules.value[language.value].length > 0 && state.value.validated[language.value] && !some(Validators.value[language.value], { invalid: true })) ||
       ((!validationRules.value[language.value] || !validationRules.value[language.value].length) && state.value.dirty[language.value])
   })
+
+  const isRequired = computed(() => {
+    return Validators.value?.[language.value]?.some((Validator) => {
+      if (Validator.name !== 'required') {
+        return
+      }
+
+      if (!Validator.conditions?.length) {
+        return true
+      }
+
+      return Validator.conditions(form$.value, Validator, el$.value)
+    })
+  })
   
   // =============== METHODS ===============
   
@@ -1007,6 +1046,7 @@ const multilingual = function(props, context, dependencies)
     validationRules,
     isDanger,
     isSuccess,
+    isRequired,
     validate,
     validateLanguage,
     dirt,
@@ -1036,6 +1076,7 @@ const slider = function(props, context, dependencies)
     invalid,
     pending,
     busy,
+    isRequired,
     errors,
     error,
     validationRules,
@@ -1091,6 +1132,7 @@ const slider = function(props, context, dependencies)
     invalid,
     pending,
     busy,
+    isRequired,
     errors,
     error,
     validationRules,
@@ -1123,6 +1165,7 @@ const file = function(props, context, dependencies)
     validated,
     invalid,
     pending,
+    isRequired,
     errors,
     error,
     validationRules,
@@ -1193,6 +1236,7 @@ const file = function(props, context, dependencies)
     invalid,
     pending,
     busy,
+    isRequired,
     errors,
     error,
     validationRules,
@@ -1229,6 +1273,7 @@ const location = function(props, context, dependencies)
     pending,
     debouncing,
     busy,
+    isRequired,
     errors,
     error,
     validationRules,
@@ -1282,6 +1327,7 @@ const location = function(props, context, dependencies)
     pending,
     debouncing,
     busy,
+    isRequired,
     errors,
     error,
     validationRules,

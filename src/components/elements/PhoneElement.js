@@ -180,7 +180,7 @@ export default {
       usePhone,
     ]
     context.slots = [
-      'label', 'info', 'description', 'before',
+      'label', 'info', 'required', 'description', 'before',
       'between', 'after',
     ]
 

@@ -76,6 +76,12 @@ const configs = {
       label: 'Label',
     }
   },
+  required: {
+    default: {
+      label: 'Label',
+      rules: 'required',
+    }
+  },
   checkbox: {
     default: {
       items: [1,2,3],

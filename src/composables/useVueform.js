@@ -50,6 +50,7 @@ const base = function(props, context, dependencies = {})
     locale,
     validateOn,
     scrollToInvalid,
+    showRequired,
     forceLabels,
     floatPlaceholders,
     multilingual,
@@ -322,7 +323,7 @@ const base = function(props, context, dependencies = {})
 
     // Prop options will override Component.data() options
     const override = {
-      columns, languages, language, theme, method, validateOn, scrollToInvalid,
+      columns, languages, language, theme, method, validateOn, scrollToInvalid, showRequired,
       messages, formKey, multilingual, formatLoad, formatData, prepare, default: default_, formData, templates,
       addClass, removeClass, replaceClass, overrideClass,
       addClasses, removeClasses, replaceClasses, overrideClasses, presets,
@@ -363,6 +364,7 @@ const base = function(props, context, dependencies = {})
       method: typeof baseConfig.value.config.endpoints.submit === 'function' ? null : baseConfig.value.config.endpoints.submit.method,
       validateOn: baseConfig.value.config.validateOn,
       scrollToInvalid: baseConfig.value.config.scrollToInvalid,
+      showRequired: baseConfig.value.config.showRequired,
       displayErrors: baseConfig.value.config.displayErrors,
       displayMessages: baseConfig.value.config.displayMessages,
       forceLabels: baseConfig.value.config.forceLabels,
@@ -1148,7 +1150,7 @@ const base = function(props, context, dependencies = {})
     if (firstInvalid$) {
       if (scrollableParent) {
         scrollIntoView(firstInvalid$.$el, scrollableParent)
-      } else {
+      } else if (firstInvalid$.$el.scrollIntoView) {
         firstInvalid$.$el.scrollIntoView({behavior:'smooth'})
       }
     }
@@ -1160,7 +1162,6 @@ const base = function(props, context, dependencies = {})
    * @returns {Promise}
    */
   const submit = async () => {
-    console.log(111)
     if (isDisabled.value) {
       return
     }
@@ -1168,11 +1169,9 @@ const base = function(props, context, dependencies = {})
     await validate()
 
     if (invalid.value) {
-    console.log(222)
       scrollToFirstInvalid()
       return
     }
-    console.log(333)
 
     preparing.value = true
 

@@ -108,7 +108,7 @@ export default {
       useFocus,
     ]
     context.slots = [
-      'checkbox', 'label', 'info', 'description', 'before',
+      'checkbox', 'label', 'info', 'required', 'description', 'before',
       'between', 'after',
     ]
 

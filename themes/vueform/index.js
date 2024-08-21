@@ -24,6 +24,7 @@ import ElementInfo from './templates/ElementInfo.vue'
 import ElementDescription from './templates/ElementDescription.vue'
 import ElementError from './templates/ElementError.vue'
 import ElementMessage from './templates/ElementMessage.vue'
+import ElementRequired from './templates/ElementRequired.vue'
 import ElementText from './templates/ElementText.vue'
 import ElementAddon from './templates/ElementAddon.vue'
 import ElementAddonOptions from './templates/ElementAddonOptions.vue'
@@ -102,6 +103,7 @@ export default {
     ElementDescription,
     ElementError,
     ElementMessage,
+    ElementRequired,
     ElementText,
     ElementAddon,
     ElementAddonOptions,
@@ -180,6 +182,7 @@ export {
   ElementDescription,
   ElementError,
   ElementMessage,
+  ElementRequired,
   ElementText,
   ElementAddon,
   ElementAddonOptions,

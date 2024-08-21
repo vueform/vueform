@@ -24,6 +24,7 @@ export default {
     "slots": [
       "label",
       "info",
+      "required",
       "description",
       "before",
       "between",
@@ -76,6 +77,7 @@ export default {
     "slots": [
       "label",
       "info",
+      "required",
       "description",
       "before",
       "between",
@@ -127,6 +129,7 @@ export default {
       "default",
       "label",
       "info",
+      "required",
       "description",
       "before",
       "between",
@@ -177,6 +180,7 @@ export default {
       "checkbox",
       "label",
       "info",
+      "required",
       "description",
       "before",
       "between",
@@ -233,6 +237,7 @@ export default {
     "slots": [
       "label",
       "info",
+      "required",
       "description",
       "before",
       "between",
@@ -291,6 +296,7 @@ export default {
     "slots": [
       "label",
       "info",
+      "required",
       "description",
       "before",
       "between",
@@ -347,6 +353,7 @@ export default {
     "slots": [
       "label",
       "info",
+      "required",
       "description",
       "before",
       "between",
@@ -400,6 +407,7 @@ export default {
     "slots": [
       "label",
       "info",
+      "required",
       "description",
       "before",
       "between",
@@ -447,6 +455,7 @@ export default {
     "slots": [
       "label",
       "info",
+      "required",
       "description",
       "before",
       "between",
@@ -536,6 +545,7 @@ export default {
     "slots": [
       "label",
       "info",
+      "required",
       "description",
       "before",
       "between",
@@ -593,6 +603,7 @@ export default {
     "slots": [
       "label",
       "info",
+      "required",
       "description",
       "before",
       "between",
@@ -653,6 +664,7 @@ export default {
     "slots": [
       "label",
       "info",
+      "required",
       "description",
       "before",
       "between",
@@ -724,6 +736,7 @@ export default {
       "clear",
       "label",
       "info",
+      "required",
       "description",
       "before",
       "between",
@@ -778,6 +791,7 @@ export default {
     "slots": [
       "label",
       "info",
+      "required",
       "description",
       "before",
       "between",
@@ -836,6 +850,7 @@ export default {
     "slots": [
       "label",
       "info",
+      "required",
       "description",
       "before",
       "between",
@@ -892,6 +907,7 @@ export default {
       "default",
       "label",
       "info",
+      "required",
       "description",
       "before",
       "between",
@@ -941,6 +957,7 @@ export default {
       "radio",
       "label",
       "info",
+      "required",
       "description",
       "before",
       "between",
@@ -1008,6 +1025,7 @@ export default {
       "clear",
       "label",
       "info",
+      "required",
       "description",
       "before",
       "between",
@@ -1067,6 +1085,7 @@ export default {
     "slots": [
       "label",
       "info",
+      "required",
       "description",
       "before",
       "between",
@@ -1120,6 +1139,7 @@ export default {
     "slots": [
       "label",
       "info",
+      "required",
       "description",
       "before",
       "between",
@@ -1162,6 +1182,7 @@ export default {
       "default",
       "label",
       "info",
+      "required",
       "description",
       "before",
       "between",
@@ -1230,6 +1251,7 @@ export default {
       "clear",
       "label",
       "info",
+      "required",
       "description",
       "before",
       "between",
@@ -1295,6 +1317,7 @@ export default {
     "slots": [
       "label",
       "info",
+      "required",
       "description",
       "before",
       "between",
@@ -1359,6 +1382,8 @@ export default {
     "slots": [
       "label",
       "info",
+      "required",
+      "required",
       "description",
       "before",
       "between",
@@ -1419,6 +1444,7 @@ export default {
       "default",
       "label",
       "info",
+      "required",
       "description",
       "before",
       "between",
@@ -1474,6 +1500,7 @@ export default {
     "slots": [
       "label",
       "info",
+      "required",
       "description",
       "before",
       "between",
@@ -1536,6 +1563,7 @@ export default {
     "slots": [
       "label",
       "info",
+      "required",
       "description",
       "before",
       "between",
@@ -1602,6 +1630,7 @@ export default {
     "slots": [
       "label",
       "info",
+      "required",
       "description",
       "before",
       "between",
@@ -1666,6 +1695,7 @@ export default {
     "slots": [
       "label",
       "info",
+      "required",
       "description",
       "before",
       "between",

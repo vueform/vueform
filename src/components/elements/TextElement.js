@@ -160,7 +160,6 @@ export default {
       useDisabled,
       useNullValue,
       useFieldId,
-      useFloating,
       useEvents,
       useBaseElement,
       useAddons,
@@ -185,10 +184,11 @@ export default {
       useWatchValue,
       useFocus,
       useHandleKeyEvents,
+      useFloating,
       usePlaceholder,
     ]
     context.slots = [
-      'label', 'info', 'description', 'before',
+      'label', 'info', 'required', 'required', 'description', 'before',
       'between', 'after', 'addon-before', 'addon-after',
     ]
 

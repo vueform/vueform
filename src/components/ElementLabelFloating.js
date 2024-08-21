@@ -38,7 +38,13 @@ export default {
      * @type {string}
      */
     const floating = computed(() => {
-      return localize(el$.value.floating || /* istanbul ignore next: tested, but not covered */ (form$.value.options.floatPlaceholders ? el$.value.placeholder : null), config$.value, form$.value)
+      let floating = localize(el$.value.floating || /* istanbul ignore next: tested, but not covered */ (form$.value.options.floatPlaceholders ? el$.value.placeholder : null), config$.value, form$.value)
+
+      if (el$.value.isRequired && form$.value.options.showRequired?.indexOf('floating') !== -1) {
+        floating += '*'
+      }
+
+      return floating
     })
     
     return {

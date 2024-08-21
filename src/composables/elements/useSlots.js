@@ -14,7 +14,7 @@ const base = function(props, context, dependencies, /* istanbul ignore next */ o
   // =============== OPTIONS ==============
   
   const defaultElementSlots = [
-    'label', 'info', 'description',
+    'label', 'info', 'required', 'description',
     'before', 'between', 'after',
   ]
   

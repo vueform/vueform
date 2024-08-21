@@ -162,7 +162,7 @@ export default {
       usePlaceholder,
     ]
     context.slots = [
-      'label', 'info', 'description',
+      'label', 'info', 'required', 'description',
       'before', 'between', 'after',
     ]
 

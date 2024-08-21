@@ -1574,6 +1574,9 @@ export default {
       classes[`container_${Size}`],
     ]),
   },
+  ElementRequired: {
+    container: '',
+  },
   ElementText: {
     container: '',
     container_before: '',

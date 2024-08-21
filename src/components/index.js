@@ -19,6 +19,7 @@ import ElementInfo from './ElementInfo'
 import ElementDescription from './ElementDescription'
 import ElementError from './ElementError'
 import ElementMessage from './ElementMessage'
+import ElementRequired from './ElementRequired'
 import ElementText from './ElementText'
 import DragAndDrop from './DragAndDrop'
 import ElementAddon from './ElementAddon'
@@ -84,6 +85,7 @@ export default {
   ElementDescription,
   ElementError,
   ElementMessage,
+  ElementRequired,
   ElementText,
   DragAndDrop,
   ElementAddon,
@@ -147,6 +149,7 @@ export {
   ElementDescription,
   ElementError,
   ElementMessage,
+  ElementRequired,
   ElementText,
   DragAndDrop,
   ElementAddon,

@@ -194,7 +194,7 @@ export default {
       useFocus,
     ]
     context.slots = [
-      'label', 'info', 'description',
+      'label', 'info', 'required', 'description',
       'before', 'between', 'after',
     ]
 

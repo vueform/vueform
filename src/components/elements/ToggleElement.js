@@ -130,7 +130,7 @@ export default {
       useText,
     ]
     context.slots = [
-      'default', 'label', 'info', 'description',
+      'default', 'label', 'info', 'required', 'description',
       'before', 'between', 'after', 
     ]
 
