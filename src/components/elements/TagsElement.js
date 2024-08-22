@@ -26,6 +26,7 @@ import useLoading from './../../composables/elements/useLoading'
 import useA11y from './../../composables/elements/useA11y'
 import useFocus from './../../composables/elements/useFocus'
 import usePlaceholder from './../../composables/elements/usePlaceholder'
+import useEl$ from './../../composables/elements/useEl$'
 
 import { array as useNullValue } from './../../composables/elements/useNullValue'
 import { array as useEmpty } from './../../composables/elements/useEmpty'
@@ -60,7 +61,7 @@ export default {
     },
     disabled: {
       required: false,
-      type: [Boolean],
+      type: [Boolean, Function, Array, Object],
       default: false
     },
     floating: {
@@ -368,17 +369,18 @@ export default {
     const context = { ...ctx }
     
     context.features = [
+      useEl$,
       useForm$,
       useTheme,
       useLayout,
       useInput,
       usePath,
-      useDisabled,
       useNullValue,
       useFieldId,
       useFloating,
       useEvents,
       useBaseElement,
+      useDisabled,
       useDefault,
       useValidation,
       useLoading,

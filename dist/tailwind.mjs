@@ -1139,7 +1139,7 @@ function render$E(_ctx, _cache, $props, $setup, $data, $options) {
       "aria-haspopup": "listbox",
       "aria-controls": `dropdown-${_ctx.el$.fieldId}`,
       role: "button",
-      tabindex: _ctx.el$.isDisabled || _ctx.el$.readonly ? undefined : 0,
+      tabindex: _ctx.el$.isDisabled || _ctx.el$.isReadonly ? undefined : 0,
       ref: "selector"
     }), [
       (Object.keys(_ctx.selected).length)
@@ -1636,7 +1636,7 @@ function render$z(_ctx, _cache, $props, $setup, $data, $options) {
             class: normalizeClass(_ctx.classes.input),
             placeholder: _ctx.Placeholder,
             disabled: _ctx.isDisabled,
-            readonly: _ctx.readonly,
+            readonly: _ctx.isReadonly,
             attrs: _ctx.aria,
             onChange: _ctx.handleChange,
             ref: "input"
@@ -2034,7 +2034,7 @@ function render$u(_ctx, _cache, $props, $setup, $data, $options) {
           class: _ctx.classes.input,
           placeholder: _ctx.Placeholder,
           disabled: _ctx.isDisabled,
-          readonly: _ctx.readonly,
+          readonly: _ctx.isReadonly,
           "aria-labelledby": _ctx.labelId,
           autocomplete: "off"
         }, _ctx.attrs, {
@@ -7262,7 +7262,7 @@ function render$p(_ctx, _cache, $props, $setup, $data, $options) {
           placeholder: _ctx.Placeholder,
           autocomplete: _ctx.autocomplete,
           disabled: _ctx.isDisabled,
-          readonly: _ctx.readonly
+          readonly: _ctx.isReadonly
         }, {
             ..._ctx.attrs,
             ..._ctx.aria,
@@ -7747,7 +7747,7 @@ function render$l(_ctx, _cache, $props, $setup, $data, $options) {
             spellcheck: "false",
             class: normalizeClass(_ctx.classes.input),
             disabled: _ctx.isDisabled,
-            readonly: _ctx.readonly,
+            readonly: _ctx.isReadonly,
             style: normalizeStyle(_ctx.inputStyle),
             "aria-label": _ctx.inputAriaLabel,
             onInput: _cache[4] || (_cache[4] = (...args) => (_ctx.handleInput && _ctx.handleInput(...args))),
@@ -11738,7 +11738,7 @@ function render$g(_ctx, _cache, $props, $setup, $data, $options) {
           class: _ctx.classes.input,
           placeholder: _ctx.Placeholder,
           disabled: _ctx.isDisabled,
-          readonly: _ctx.readonly,
+          readonly: _ctx.isReadonly,
           rows: _ctx.rows
         }, {
             ..._ctx.attrs,
@@ -11843,7 +11843,7 @@ function render$f(_ctx, _cache, $props, $setup, $data, $options) {
           placeholder: _ctx.Placeholder,
           autocomplete: _ctx.autocomplete,
           disabled: _ctx.isDisabled,
-          readonly: _ctx.readonly
+          readonly: _ctx.isReadonly
         }, {
             ..._ctx.attrs,
             ..._ctx.aria,

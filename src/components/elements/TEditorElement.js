@@ -24,6 +24,7 @@ import useHandleBlur from './../../composables/elements/useHandleBlur'
 import useA11y from './../../composables/elements/useA11y'
 import useFocus from './../../composables/elements/useFocus'
 import usePlaceholder from './../../composables/elements/usePlaceholder'
+import useEl$ from './../../composables/elements/useEl$'
 
 import { teditor as useData } from './../../composables/elements/useData'
 import { multilingual as useNullValue } from './../../composables/elements/useNullValue'
@@ -64,7 +65,7 @@ export default {
     },
     disabled: {
       required: false,
-      type: [Boolean],
+      type: [Boolean, Function, Array, Object],
       default: false
     },
     id: {
@@ -129,15 +130,16 @@ export default {
     const context = { ...ctx }
     
     context.features = [
+      useEl$,
       useForm$,
       useTheme,
       useLayout,
       useInput,
       usePath,
-      useDisabled,
       useFieldId,
       useEvents,
       useBaseElement,
+      useDisabled,
       useLanguages,
       useNullValue,
       useDefault,

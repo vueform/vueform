@@ -25,6 +25,7 @@ import useWatchValue from './../../composables/elements/useWatchValue'
 import useSlots from './../../composables/elements/useSlots'
 import useClasses from './../../composables/elements/useClasses'
 import useFocus from './../../composables/elements/useFocus'
+import useEl$ from './../../composables/elements/useEl$'
 
 import { file as useBaseElement } from './../../composables/elements/useBaseElement'
 import { file as useValidation } from './../../composables/elements/useValidation'
@@ -56,7 +57,7 @@ export default {
     },
     disabled: {
       required: false,
-      type: [Boolean],
+      type: [Boolean, Function, Array, Object],
       default: false
     },
     id: {
@@ -161,17 +162,18 @@ export default {
     const context = { ...ctx }
     
     context.features = [
+      useEl$,
       useForm$,
       useTheme,
       useLayout,
       useInput,
       usePath,
-      useDisabled,
       useNullValue,
       useRemoving,
       useFieldId,
       useEvents,
       useBaseElement,
+      useDisabled,
       useRequest,
       useDefault,
       useConditions,

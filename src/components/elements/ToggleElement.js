@@ -25,6 +25,7 @@ import useHandleChange from './../../composables/elements/useHandleChange'
 import useWatchValue from './../../composables/elements/useWatchValue'
 import useFocus from './../../composables/elements/useFocus'
 import useText from './../../composables/elements/useText'
+import useEl$ from './../../composables/elements/useEl$'
 
 import { toggle as useA11y } from './../../composables/elements/useA11y'
 import { toggle as useOptions } from './../../composables/elements/useOptions'
@@ -54,7 +55,7 @@ export default {
     },
     disabled: {
       required: false,
-      type: [Boolean],
+      type: [Boolean, Function, Array, Object],
       default: false
     },
     id: {
@@ -99,16 +100,17 @@ export default {
     const context = { ...ctx }
     
     context.features = [
+      useEl$,
       useForm$,
       useTheme,
       useLayout,
       useInput,
       usePath,
-      useDisabled,
       useNullValue,
       useFieldId,
       useEvents,
       useBaseElement,
+      useDisabled,
       useOptions,
       useDefault,
       useConditions,

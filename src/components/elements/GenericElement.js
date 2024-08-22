@@ -24,6 +24,7 @@ import useFocused from './../../composables/elements/useFocused'
 import useFocus from './../../composables/elements/useFocus'
 import useWatchValue from './../../composables/elements/useWatchValue'
 import useA11y from './../../composables/elements/useA11y'
+import useEl$ from './../../composables/elements/useEl$'
 
 import { text as useValidation } from './../../composables/elements/useValidation'
 import { text as useDefault } from './../../composables/elements/useDefault'
@@ -54,7 +55,7 @@ export default {
     },
     disabled: {
       required: false,
-      type: [Boolean],
+      type: [Boolean, Function, Array, Object],
       default: false
     },
     default: {
@@ -67,16 +68,17 @@ export default {
     const context = { ...ctx }
     
     context.features = [
+      useEl$,
       useForm$,
       useTheme,
       useLayout,
       useInput,
       usePath,
-      useDisabled,
       useNullValue,
       useFieldId,
       useEvents,
       useBaseElement,
+      useDisabled,
       useDefault,
       useConditions,
       useValidation,

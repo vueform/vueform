@@ -23,6 +23,7 @@ import useClasses from './../../composables/elements/useClasses'
 import useFieldId from './../../composables/elements/useFieldId'
 import useA11y from './../../composables/elements/useA11y'
 import useFocus from './../../composables/elements/useFocus'
+import useEl$ from './../../composables/elements/useEl$'
 
 import { array as useNullValue } from './../../composables/elements/useNullValue'
 import { array as useEmpty } from './../../composables/elements/useEmpty'
@@ -62,7 +63,7 @@ export default {
     },
     disabled: {
       required: false,
-      type: [Boolean],
+      type: [Boolean, Function, Array, Object],
       default: false
     },
     onAdd: {
@@ -149,12 +150,13 @@ export default {
     const context = { ...ctx }
      //@todo:adam useValue and useDefault should be before useOrder
     context.features = [
+      useEl$,
+      useEl$,
       useForm$,
       useTheme,
       useLayout,
       usePath,
       useFieldId,
-      useDisabled,
       useNullValue,
       usePrototype,
       useChildren,
@@ -162,6 +164,7 @@ export default {
       useOrder,
       useEvents,
       useBaseElement,
+      useDisabled,
       useDefault,
       useLabel,
       useGenericName,

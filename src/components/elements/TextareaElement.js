@@ -31,6 +31,8 @@ import useFocus from './../../composables/elements/useFocus'
 import useHandleKeyEvents from './../../composables/elements/useHandleKeyEvents'
 import usePlaceholder from './../../composables/elements/usePlaceholder'
 import useData from './../../composables/elements/useData'
+import useReadonly from './../../composables/elements/useReadonly'
+import useEl$ from './../../composables/elements/useEl$'
 
 import { text as useValidation } from './../../composables/elements/useValidation'
 import { text as useDefault } from './../../composables/elements/useDefault'
@@ -81,7 +83,7 @@ export default {
     },
     disabled: {
       required: false,
-      type: [Boolean],
+      type: [Boolean, Function, Array, Object],
       default: false
     },
     floating: {
@@ -103,7 +105,7 @@ export default {
     },
     readonly: {
       required: false,
-      type: [Boolean],
+      type: [Boolean, Function, Array, Object],
       default: false
     },
     attrs: {
@@ -141,17 +143,19 @@ export default {
     const context = { ...ctx }
     
     context.features = [
+      useEl$,
       useForm$,
       useTheme,
       useLayout,
       useInput,
       usePath,
-      useDisabled,
       useNullValue,
       useFieldId,
       useFloating,
       useEvents,
       useBaseElement,
+      useDisabled,
+      useReadonly,
       useAddons,
       useDefault,
       useConditions,

@@ -9,6 +9,8 @@ const base = function(props, context, dependencies)
   const {
     disabled,
   } = toRefs(props)
+
+  const { el$, form$, path } = dependencies
   
   // ================ DATA ================
   
@@ -29,7 +31,29 @@ const base = function(props, context, dependencies)
    * @type {boolean}
    */
   const isDisabled = computed(() => {
-    return (disabled.value && localDisabled.value !== false) || localDisabled.value === true
+    if (localDisabled.value === true) {
+      return true
+    }
+
+    if (localDisabled.value === false) {
+      return false
+    }
+
+    if (typeof disabled.value === 'function') {
+      return disabled.value(el$.value, form$.value)
+    }
+
+    if (Array.isArray(disabled.value)) {
+      return disabled.value.every((condition) => {
+        return form$.value.$vueform.services.condition.check(condition, path.value, form$.value, el$.value)
+      })
+    }
+
+    if (typeof disabled.value === 'object' && disabled.value && disabled.value.value !== undefined) {
+      return disabled.value.value
+    }
+
+    return disabled.value
   })
   
   // =============== METHODS ==============

@@ -24,6 +24,7 @@ import useHandleChange from './../../composables/elements/useHandleChange'
 import useHandleUpdate from './../../composables/elements/useHandleUpdate'
 import useA11y from './../../composables/elements/useA11y'
 import useFocus from './../../composables/elements/useFocus'
+import useEl$ from './../../composables/elements/useEl$'
 
 import { slider as useValidation } from './../../composables/elements/useValidation'
 import { slider as useOptions } from './../../composables/elements/useOptions'
@@ -53,7 +54,7 @@ export default {
     },
     disabled: {
       required: false,
-      type: [Boolean],
+      type: [Boolean, Function, Array, Object],
       default: false
     },
     id: {
@@ -127,16 +128,17 @@ export default {
     const context = { ...ctx }
     
     context.features = [
+      useEl$,
       useForm$,
       useTheme,
       useLayout,
       useInput,
       usePath,
-      useDisabled,
       useNullValue,
       useFieldId,
       useEvents,
       useBaseElement,
+      useDisabled,
       useDefault,
       useOptions,
       useValue,

@@ -20,6 +20,7 @@ import useValue from './../../composables/elements/useValue'
 import useWatchValue from './../../composables/elements/useWatchValue'
 import useSlots from './../../composables/elements/useSlots'
 import useFocus from './../../composables/elements/useFocus'
+import useEl$ from './../../composables/elements/useEl$'
 
 import { array as useNullValue } from './../../composables/elements/useNullValue'
 import { checkboxgroup as useDisabled } from './../../composables/elements/useDisabled'
@@ -62,7 +63,7 @@ export default {
     },
     disabled: {
       required: false,
-      type: [Boolean],
+      type: [Boolean, Function, Array, Object],
       default: false
     },
     disables: {
@@ -80,6 +81,7 @@ export default {
     const context = { ...ctx }
     
     context.features = [
+      useEl$,
       useForm$,
       useTheme,
       useLayout,

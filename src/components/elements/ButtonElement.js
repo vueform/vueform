@@ -12,6 +12,7 @@ import useEvents from './../../composables/useEvents'
 import useClasses from './../../composables/elements/useClasses'
 import useFieldId from './../../composables/elements/useFieldId'
 import useFocus from './../../composables/elements/useFocus'
+import useEl$ from './../../composables/elements/useEl$'
 
 import { button as useDisabled } from './../../composables/elements/useDisabled'
 import { button as useA11y } from './../../composables/elements/useA11y'
@@ -55,7 +56,7 @@ export default {
     },
     disabled: {
       required: false,
-      type: [Function, Boolean],
+      type: [Boolean, Function, Array, Object],
       default: false
     },
     loading: {
@@ -114,6 +115,7 @@ export default {
     const context = { ...ctx }
     
     context.features = [
+      useEl$,
       useForm$,
       useTheme,
       useLayout,

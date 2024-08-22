@@ -9,7 +9,7 @@
       aria-haspopup="listbox"
       :aria-controls="`dropdown-${el$.fieldId}`"
       role="button"
-      :tabindex="el$.isDisabled || el$.readonly ? undefined : 0"
+      :tabindex="el$.isDisabled || el$.isReadonly ? undefined : 0"
       ref="selector"
     >
       <template v-if="Object.keys(selected).length">

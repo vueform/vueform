@@ -27,6 +27,7 @@ import useClasses from './../../composables/elements/useClasses'
 import useHandleBlur from './../../composables/elements/useHandleBlur'
 import useA11y from './../../composables/elements/useA11y'
 import usePlaceholder from './../../composables/elements/usePlaceholder'
+import useEl$ from './../../composables/elements/useEl$'
 
 import { editor as useFocus } from './../../composables/elements/useFocus'
 import { editor as useData } from './../../composables/elements/useData'
@@ -63,7 +64,7 @@ export default {
     },
     disabled: {
       required: false,
-      type: [Boolean],
+      type: [Boolean, Function, Array, Object],
       default: false
     },
     id: {
@@ -128,16 +129,17 @@ export default {
     const context = { ...ctx }
     
     context.features = [
+      useEl$,
       useForm$,
       useTheme,
       useLayout,
       useInput,
       usePath,
-      useDisabled,
       useNullValue,
       useFieldId,
       useEvents,
       useBaseElement,
+      useDisabled,
       useDefault,
       useConditions,
       useValidation,

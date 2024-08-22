@@ -13,6 +13,7 @@ import useElements from './../../composables/useElements'
 import useEvents from './../../composables/useEvents'
 import useA11y from './../../composables/elements/useA11y'
 import useFocus from './../../composables/elements/useFocus'
+import useEl$ from './../../composables/elements/useEl$'
 
 import { group as useBaseElement } from './../../composables/elements/useBaseElement'
 import { group as useValue } from './../../composables/elements/useValue'
@@ -62,6 +63,7 @@ export default {
     const context = { ...ctx }
     
     context.features = [
+      useEl$,
       useForm$,
       useTheme,
       useLayout,

@@ -16,6 +16,8 @@ import useElements from './../../composables/useElements'
 import useEvents from './../../composables/useEvents'
 import useWatchValue from './../../composables/elements/useWatchValue'
 import useFocus from './../../composables/elements/useFocus'
+import useReadonly from './../../composables/elements/useReadonly'
+import useEl$ from './../../composables/elements/useEl$'
 
 import { address as useLocation } from './../../composables/elements/useLocation'
 import { address as useChildren } from './../../composables/elements/useChildren'
@@ -48,7 +50,7 @@ export default {
     },
     disabled: {
       required: false,
-      type: [Boolean],
+      type: [Boolean, Function, Array, Object],
       default: false
     },
     provider: {
@@ -63,7 +65,7 @@ export default {
     },
     readonly: {
       required: false,
-      type: [Boolean],
+      type: [Boolean, Function, Array, Object],
       default: false
     },
     required: {
@@ -81,14 +83,16 @@ export default {
     const context = { ...ctx }
     
     context.features = [
+      useEl$,
       useForm$,
       useTheme,
       useLayout,
       usePath,
-      useDisabled,
       useNullValue,
       useEvents,
       useBaseElement,
+      useDisabled,
+      useReadonly,
       useDefault,
       useValue,
       useLabel,

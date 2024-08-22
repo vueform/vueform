@@ -22,7 +22,7 @@
           :class="classes.input"
           :placeholder="Placeholder"
           :disabled="isDisabled"
-          :readonly="readonly"
+          :readonly="isReadonly"
           :aria-labelledby="labelId"
           autocomplete="off"
           v-bind="attrs"

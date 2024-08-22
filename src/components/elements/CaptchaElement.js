@@ -25,6 +25,8 @@ import useCaptcha from './../../composables/elements/useCaptcha'
 import useValidation from './../../composables/elements/useValidation'
 import useDefault from './../../composables/elements/useDefault'
 import useFieldId from './../../composables/elements/useFieldId'
+import useReadonly from './../../composables/elements/useReadonly'
+import useEl$ from './../../composables/elements/useEl$'
 
 import { captcha as useData } from './../../composables/elements/useData'
 import { captcha as useView } from './../../composables/elements/useView'
@@ -58,12 +60,12 @@ export default {
     },
     disabled: {
       required: false,
-      type: [Boolean],
+      type: [Boolean, Function, Array, Object],
       default: false
     },
     readonly: {
       required: false,
-      type: [Boolean],
+      type: [Boolean, Function, Array, Object],
       default: false
     },
     rules: {
@@ -100,17 +102,19 @@ export default {
     const context = { ...ctx }
     
     context.features = [
+      useEl$,
       useForm$,
       useTheme,
       useLayout,
       useInput,
       usePath,
-      useDisabled,
       useNullValue,
       useFieldId,
       useFloating,
       useEvents,
       useBaseElement,
+      useDisabled,
+      useReadonly,
       useDefault,
       useConditions,
       useValidation,

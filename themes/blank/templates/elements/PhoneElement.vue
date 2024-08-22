@@ -24,7 +24,7 @@
           :placeholder="Placeholder" 
           :autocomplete="autocomplete"
           :disabled="isDisabled"
-          :readonly="readonly"
+          :readonly="isReadonly"
           v-bind="{
             ...attrs,
             ...aria,

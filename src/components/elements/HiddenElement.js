@@ -17,6 +17,7 @@ import useEmpty from './../../composables/elements/useEmpty'
 import useTemplates from './../../composables/elements/useTemplates'
 import useWatchValue from './../../composables/elements/useWatchValue'
 import useFocus from './../../composables/elements/useFocus'
+import useEl$ from './../../composables/elements/useEl$'
 
 import BaseElement from './../../mixins/BaseElement'
 import HasChange from './../../mixins/HasChange'
@@ -54,6 +55,7 @@ export default {
     const context = { ...ctx }
     
     context.features = [
+      useEl$,
       useForm$,
       useTheme,
       useInput,

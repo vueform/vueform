@@ -25,6 +25,7 @@ import useClasses from './../../composables/elements/useClasses'
 import useA11y from './../../composables/elements/useA11y'
 import useFocus from './../../composables/elements/useFocus'
 import usePlaceholder from './../../composables/elements/usePlaceholder'
+import useEl$ from './../../composables/elements/useEl$'
 
 import { multiselect as useInput } from './../../composables/elements/useInput'
 import { multiselect as useFocused } from './../../composables/elements/useFocused'
@@ -59,7 +60,7 @@ export default {
     },
     disabled: {
       required: false,
-      type: [Boolean],
+      type: [Boolean, Function, Array, Object],
       default: false
     },
     floating: {
@@ -406,17 +407,18 @@ export default {
     const context = { ...ctx }
     
     context.features = [
+      useEl$,
       useForm$,
       useTheme,
       useLayout,
       useInput,
       usePath,
-      useDisabled,
       useNullValue,
       useFieldId,
       useFloating,
       useEvents,
       useBaseElement,
+      useDisabled,
       useDefault,
       useValidation,
       useLoading,

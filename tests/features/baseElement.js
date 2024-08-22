@@ -103,11 +103,6 @@ export const isActive = function (elementType, elementName, options) {
   })
 }
 
-export const el$ = function (elementType, elementName, options) {
-  // @todo
-}
-
-
 export const activate = function (elementType, elementNAme, options) {
 
   it('should activate element', () => {

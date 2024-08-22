@@ -12,6 +12,7 @@ import useEvents from './../../composables/useEvents'
 import useStatic from './../../composables/elements/useStatic'
 import useFieldId from './../../composables/elements/useFieldId'
 import useFocus from './../../composables/elements/useFocus'
+import useEl$ from './../../composables/elements/useEl$'
 
 import { static_ as useBaseElement } from './../../composables/elements/useBaseElement'
 import { static_ as usePath } from './../../composables/elements/usePath'
@@ -117,6 +118,7 @@ export default {
     const context = { ...ctx }
     
     context.features = [
+      useEl$,
       useForm$,
       useTheme,
       useLayout,

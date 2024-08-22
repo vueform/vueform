@@ -21,6 +21,7 @@ import useEvents from './../../composables/useEvents'
 import useFieldId from './../../composables/elements/useFieldId'
 import useWatchValue from './../../composables/elements/useWatchValue'
 import useFocus from './../../composables/elements/useFocus'
+import useEl$ from './../../composables/elements/useEl$'
 
 import { radiogroup as useDisabled } from './../../composables/elements/useDisabled'
 import { radiogroup as useAsyncItems } from './../../composables/elements/useAsyncItems'
@@ -50,7 +51,7 @@ export default {
     },
     disabled: {
       required: false,
-      type: [Boolean],
+      type: [Boolean, Function, Array, Object],
       default: false
     },
     id: {
@@ -79,6 +80,7 @@ export default {
     const context = { ...ctx }
     
     context.features = [
+      useEl$,
       useForm$,
       useTheme,
       useLayout,

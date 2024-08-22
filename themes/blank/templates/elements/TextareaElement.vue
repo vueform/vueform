@@ -26,7 +26,7 @@
           :class="classes.input"
           :placeholder="Placeholder"
           :disabled="isDisabled"
-          :readonly="readonly"
+          :readonly="isReadonly"
           :rows="rows"
           v-bind="{
             ...attrs,

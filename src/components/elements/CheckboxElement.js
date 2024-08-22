@@ -23,6 +23,7 @@ import useSlots from './../../composables/elements/useSlots'
 import useClasses from './../../composables/elements/useClasses'
 import useFocus from './../../composables/elements/useFocus'
 import useText from './../../composables/elements/useText'
+import useEl$ from './../../composables/elements/useEl$'
 
 import { boolean as useNullValue } from './../../composables/elements/useNullValue'
 import { checkbox as useToggle } from './../../composables/elements/useToggle'
@@ -63,7 +64,7 @@ export default {
     },
     disabled: {
       required: false,
-      type: [Boolean],
+      type: [Boolean, Function, Array, Object],
       default: false
     },
     trueValue: {
@@ -86,16 +87,17 @@ export default {
     const context = { ...ctx }
     
     context.features = [
+      useEl$,
       useForm$,
       useTheme,
       useLayout,
       useInput,
       usePath,
-      useDisabled,
       useNullValue,
       useFieldId,
       useEvents,
       useBaseElement,
+      useDisabled,
       useDefault,
       useConditions,
       useValidation,

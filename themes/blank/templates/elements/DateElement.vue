@@ -24,7 +24,7 @@
             :class="classes.input"
             :placeholder="Placeholder"
             :disabled="isDisabled"
-            :readonly="readonly"
+            :readonly="isReadonly"
             :attrs="aria"
             @change="handleChange"
             ref="input"

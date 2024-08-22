@@ -26,6 +26,7 @@ const base = function(props, context, dependencies)
   // ============ DEPENDENCIES ============
   
   const form$ = dependencies.form$
+  const el$ = dependencies.el$
   const fire = dependencies.fire
   
   const {
@@ -143,15 +144,6 @@ const base = function(props, context, dependencies)
     return active.value
   })
   
-  /**
-   * The element's component.
-   *
-   * @type {VueformElement}
-   */
-  const el$ = computed(() => {
-    return currentInstance.proxy
-  })
-  
   // ============== METHODS ===============
   
   /**
@@ -174,15 +166,6 @@ const base = function(props, context, dependencies)
     active.value = false
   }
   
-  // ============== PROVIDES ==============
-  
-  /**
-   * The element's component.
-   *
-   * @type {VueformElement}
-   */
-  provide('el$', el$)
-  
   // ================ HOOKS ===============
   
   onBeforeMount(() => {
@@ -196,7 +179,7 @@ const base = function(props, context, dependencies)
   onBeforeUnmount(() => {
     removeFromParent(currentInstance.proxy.$parent, removeFromParent)
   })
-  
+
   Object.values(instantHooks).forEach((hook) => {
     fire(lowerFirst(hook.replace('on', '')), el$.value)
   })
@@ -208,7 +191,6 @@ const base = function(props, context, dependencies)
   })
   
   return {
-    el$,
     isStatic,
     isFileType,
     isArrayType,
@@ -228,7 +210,6 @@ const base = function(props, context, dependencies)
 const list = function(props, context, dependencies)
 {
   const {
-    el$,
     isStatic,
     isFileType,
     isImageType,
@@ -253,7 +234,6 @@ const list = function(props, context, dependencies)
   })
   
   return {
-    el$,
     isStatic,
     isFileType,
     isArrayType,
@@ -273,7 +253,6 @@ const list = function(props, context, dependencies)
 const object = function(props, context, dependencies)
 {
   const {
-    el$,
     isStatic,
     isFileType,
     isArrayType,
@@ -295,7 +274,6 @@ const object = function(props, context, dependencies)
   })
   
   return {
-    el$,
     isStatic,
     isFileType,
     isArrayType,
@@ -315,7 +293,6 @@ const object = function(props, context, dependencies)
 const group = function(props, context, dependencies)
 {
   const {
-    el$,
     isStatic,
     isFileType,
     isArrayType,
@@ -337,7 +314,6 @@ const group = function(props, context, dependencies)
   })
   
   return {
-    el$,
     isStatic,
     isFileType,
     isArrayType,
@@ -361,7 +337,6 @@ const file = function(props, context, dependencies)
   } = toRefs(props)
   
   const {
-    el$,
     isStatic,
     isArrayType,
     isObjectType,
@@ -386,7 +361,6 @@ const file = function(props, context, dependencies)
   })
   
   return {
-    el$,
     isStatic,
     isFileType,
     isArrayType,
@@ -406,7 +380,6 @@ const file = function(props, context, dependencies)
 const static_ = function(props, context, dependencies)
 {
   const {
-    el$,
     isArrayType,
     isFileType,
     isImageType,
@@ -428,7 +401,6 @@ const static_ = function(props, context, dependencies)
   })
   
   return {
-    el$,
     isStatic,
     isFileType,
     isArrayType,

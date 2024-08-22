@@ -27,6 +27,8 @@ import usePlaceholder from './../../composables/elements/usePlaceholder'
 import useValidation from './../../composables/elements/useValidation'
 import useDefault from './../../composables/elements/useDefault'
 import useSignature from './../../composables/elements/useSignature'
+import useReadonly from './../../composables/elements/useReadonly'
+import useEl$ from './../../composables/elements/useEl$'
 
 import { signature as useData } from './../../composables/elements/useData'
 
@@ -65,12 +67,12 @@ export default {
     },
     disabled: {
       required: false,
-      type: [Boolean],
+      type: [Boolean, Function, Array, Object],
       default: false
     },
     readonly: {
       required: false,
-      type: [Boolean],
+      type: [Boolean, Function, Array, Object],
       default: false
     },
     modes: {
@@ -173,16 +175,18 @@ export default {
     const context = { ...ctx }
     
     context.features = [
+      useEl$,
       useForm$,
       useTheme,
       useLayout,
       useInput,
       usePath,
-      useDisabled,
       useNullValue,
       useFieldId,
       useEvents,
       useBaseElement,
+      useDisabled,
+      useReadonly,
       useDefault,
       useConditions,
       useValidation,

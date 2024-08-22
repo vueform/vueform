@@ -26,6 +26,8 @@ import useA11y from './../../composables/elements/useA11y'
 import useFocus from './../../composables/elements/useFocus'
 import useHandleKeyEvents from './../../composables/elements/useHandleKeyEvents'
 import usePlaceholder from './../../composables/elements/usePlaceholder'
+import useReadonly from './../../composables/elements/useReadonly'
+import useEl$ from './../../composables/elements/useEl$'
 
 import { multilingual as useValue } from './../../composables/elements/useValue'
 import { multilingual as useData } from './../../composables/elements/useData'
@@ -77,7 +79,7 @@ export default {
     },
     disabled: {
       required: false,
-      type: [Boolean],
+      type: [Boolean, Function, Array, Object],
       default: false
     },
     floating: {
@@ -109,7 +111,7 @@ export default {
     },
     readonly: {
       required: false,
-      type: [Boolean],
+      type: [Boolean, Function, Array, Object],
       default: false
     },
     loading: {
@@ -146,16 +148,18 @@ export default {
     const context = { ...ctx }
     
     context.features = [
+      useEl$,
       useForm$,
       useTheme,
       useLayout,
       useInput,
       usePath,
-      useDisabled,
       useFieldId,
       useFloating,
       useEvents,
       useBaseElement,
+      useDisabled,
+      useReadonly,
       useAddons,
       useLanguages,
       useNullValue,

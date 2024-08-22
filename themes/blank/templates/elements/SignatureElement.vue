@@ -102,7 +102,7 @@
             spellcheck="false"
             :class="classes.input"
             :disabled="isDisabled"
-            :readonly="readonly"
+            :readonly="isReadonly"
             :style="inputStyle"
             :aria-label="inputAriaLabel"
             @input="handleInput"

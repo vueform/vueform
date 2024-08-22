@@ -25,6 +25,7 @@ import useWatchValue from './../../composables/elements/useWatchValue'
 import useClasses from './../../composables/elements/useClasses'
 import useFocus from './../../composables/elements/useFocus'
 import useText from './../../composables/elements/useText'
+import useEl$ from './../../composables/elements/useEl$'
 
 import { radio as useA11y } from './../../composables/elements/useA11y'
 
@@ -52,7 +53,7 @@ export default {
     },
     disabled: {
       required: false,
-      type: [Boolean],
+      type: [Boolean, Function, Array, Object],
       default: false
     },
     id: {
@@ -86,15 +87,16 @@ export default {
     const context = { ...ctx }
     
     context.features = [
+      useEl$,
       useForm$,
       useTheme,
       useLayout,
       useInput,
       usePath,
-      useDisabled,
       useFieldId,
       useEvents,
       useBaseElement,
+      useDisabled,
       useNullValue,
       useDefault,
       useConditions,

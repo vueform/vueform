@@ -25,6 +25,8 @@ import useClasses from './../../composables/elements/useClasses'
 import useA11y from './../../composables/elements/useA11y'
 import useFocus from './../../composables/elements/useFocus'
 import usePlaceholder from './../../composables/elements/usePlaceholder'
+import useReadonly from './../../composables/elements/useReadonly'
+import useEl$ from './../../composables/elements/useEl$'
 
 import { dates as useValue } from './../../composables/elements/useValue'
 import { dates as useData } from './../../composables/elements/useData'
@@ -64,7 +66,7 @@ export default {
     },
     disabled: {
       required: false,
-      type: [Boolean],
+      type: [Boolean, Function, Array, Object],
       default: false
     },
     floating: {
@@ -126,7 +128,7 @@ export default {
     },
     readonly: {
       required: false,
-      type: [Boolean],
+      type: [Boolean, Function, Array, Object],
       default: false
     },
   },
@@ -134,17 +136,19 @@ export default {
     const context = { ...ctx }
     
     context.features = [
+      useEl$,
       useForm$,
       useTheme,
       useLayout,
       useInput,
       usePath,
-      useDisabled,
       useNullValue,
       useFieldId,
       useFloating,
       useEvents,
       useBaseElement,
+      useDisabled,
+      useReadonly,
       useAddons,
       useDateFormat,
       useOptions,
