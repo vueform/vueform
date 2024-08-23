@@ -4975,7 +4975,10 @@ module.exports = {
         "required": false,
         "default": null,
         "types": [
-          "boolean"
+          "boolean",
+          "function",
+          "object",
+          "array"
         ]
       },
       "columns": {

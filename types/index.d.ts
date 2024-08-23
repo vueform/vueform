@@ -1111,7 +1111,7 @@ export interface VueformProps {
   formatData?: Function;
   formatLoad?: Function;
   loading?: boolean;
-  disabled?: boolean;
+  disabled?: boolean | Function | object | Array<any>;
   columns?: object;
   forceLabels?: boolean;
   floatPlaceholders?: boolean;
