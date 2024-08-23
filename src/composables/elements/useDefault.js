@@ -32,7 +32,7 @@ const base = function(props, context, dependencies)
     
     if (parent && parent.value && !parent.value.mounted) {
       parentDefaultValue = parent.value.defaultValue[name.value]
-    } else if (!form$.value.mounted && form$.value.options.default[name.value] !== undefined) {
+    } else if (form$.value.options.default[name.value] !== undefined) {
       parentDefaultValue = form$.value.options.default[name.value]
     }
     
@@ -86,7 +86,7 @@ const text = function(props, context, dependencies)
     
     if (parent && parent.value && !parent.value.mounted) {
       parentDefaultValue = parent.value.defaultValue[name.value]
-    } else if (!form$.value.mounted && typeof form$.value.options.default[name.value] !== undefined) {
+    } else if (typeof form$.value.options.default[name.value] !== undefined) {
       parentDefaultValue = form$.value.options.default[name.value]
     }
 
@@ -137,7 +137,7 @@ const object = function(props, context, dependencies)
     
     if (parent && parent.value && !parent.value.mounted) {
       parentDefaultValue = parent.value.defaultValue[name.value]
-    } else if (!form$.value.mounted && form$.value.options.default[name.value]) {
+    } else if (form$.value.options.default[name.value]) {
       parentDefaultValue = form$.value.options.default[name.value]
     }
     
@@ -175,7 +175,7 @@ const group = function(props, context, dependencies)
     
     if (parent && parent.value && !parent.value.mounted) {
       parentDefaultValue = parent.value.defaultValue
-    } else if (!form$.value.mounted && form$.value.options.default) { //@todo:adam
+    } else if (form$.value.options.default) { //@todo:adam
       parentDefaultValue = form$.value.options.default
     }
     
@@ -207,7 +207,7 @@ const multilingual = function(props, context, dependencies)
     
     if (parent && parent.value && !parent.value.mounted) {
       parentDefaultValue = parent.value.defaultValue[name.value]
-    } else if (!form$.value.mounted && form$.value.options.default[name.value]) {
+    } else if (form$.value.options.default[name.value]) {
       parentDefaultValue = form$.value.options.default[name.value]
     }
     
