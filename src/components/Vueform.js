@@ -318,7 +318,7 @@ export default {
       default: null,
     },
     disabled: {
-      type: Boolean,
+      type: [Boolean, Function, Object, Array],
       required: false,
       default: null,
     },

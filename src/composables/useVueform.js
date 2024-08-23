@@ -705,7 +705,27 @@ const base = function(props, context, dependencies = {})
    * @type {boolean}
    */
   const isDisabled = computed(() => {
-    return (invalid.value && shouldValidateOnChange.value) || busy.value || options.value.disabled
+    if ((invalid.value && shouldValidateOnChange.value) || busy.value) {
+      return true
+    }
+
+    if (typeof options.value.disabled === 'boolean') {
+      return options.value.disabled
+    }
+
+    if (typeof options.value.disabled === 'object' && options.value.disabled && options.value.disabled.value !== undefined) {
+      return options.value.disabled.value
+    }
+
+    if (typeof options.value.disabled === 'function') {
+      return options.value.disabled(form$.value)
+    }
+
+    if (Array.isArray(options.value.disabled)) {
+      return options.value.disabled.every((condition) => {
+        return $this.$vueform.services.condition.check(condition, null, form$.value)
+      })
+    }
   })
 
   /**
