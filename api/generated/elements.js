@@ -428,8 +428,10 @@ module.exports = {
         default: 'false',
         localized: false,
         types: [
-          'function',
           'boolean',
+          'function',
+          'array',
+          'object',
         ],
         required: false,
         private: false,
@@ -628,13 +630,6 @@ module.exports = {
         description: 'The `aria-*` attributes of the input.',
         private: false,
       },
-      el$: {
-        types: [
-          'VueformElement',
-        ],
-        description: 'The element&apos;s component.',
-        private: false,
-      },
       isStatic: {
         types: [
           'boolean',
@@ -759,6 +754,13 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the button is disabled.',
+        private: false,
+      },
+      el$: {
+        types: [
+          'VueformElement',
+        ],
+        description: 'The element&apos;s component.',
         private: false,
       },
       fieldId: {
@@ -1667,6 +1669,9 @@ module.exports = {
         localized: false,
         types: [
           'boolean',
+          'function',
+          'array',
+          'object',
         ],
         required: false,
         private: false,
@@ -1677,6 +1682,9 @@ module.exports = {
         localized: false,
         types: [
           'boolean',
+          'function',
+          'array',
+          'object',
         ],
         required: false,
         private: false,
@@ -1829,13 +1837,6 @@ module.exports = {
       },
     },
     computed: {
-      el$: {
-        types: [
-          'VueformElement',
-        ],
-        description: 'The element&apos;s component.',
-        private: false,
-      },
       isStatic: {
         types: [
           'boolean',
@@ -1976,6 +1977,13 @@ module.exports = {
         description: 'Whether the element is disabled.',
         private: false,
       },
+      el$: {
+        types: [
+          'VueformElement',
+        ],
+        description: 'The element&apos;s component.',
+        private: false,
+      },
       empty: {
         types: [
           'boolean',
@@ -2068,6 +2076,13 @@ module.exports = {
         ],
         description: 'Whether the element is just a container of children but not nested on data level (eg. [`GroupElement`](group-element))',
         private: true,
+      },
+      isReadonly: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is readonly.',
+        private: false,
       },
       elementSlots: {
         types: [
@@ -2166,6 +2181,13 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element has been filled in successfully.',
+        private: false,
+      },
+      isRequired: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is required (has required rule).',
         private: false,
       },
       value: {
@@ -2571,6 +2593,7 @@ module.exports = {
           },
         },
       },
+      'required': {},
       'description': {
         description: 'Renders description for the element in [`ElementDescription`](element-description) component.',
         props: {
@@ -3109,6 +3132,9 @@ module.exports = {
         localized: false,
         types: [
           'boolean',
+          'function',
+          'array',
+          'object',
         ],
         required: false,
         private: false,
@@ -3302,13 +3328,6 @@ module.exports = {
         description: 'The `aria-*` attributes of the input.',
         private: false,
       },
-      el$: {
-        types: [
-          'VueformElement',
-        ],
-        description: 'The element&apos;s component.',
-        private: false,
-      },
       isStatic: {
         types: [
           'boolean',
@@ -3433,6 +3452,13 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element is disabled.',
+        private: false,
+      },
+      el$: {
+        types: [
+          'VueformElement',
+        ],
+        description: 'The element&apos;s component.',
         private: false,
       },
       fieldId: {
@@ -3611,6 +3637,13 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element has been filled in successfully.',
+        private: false,
+      },
+      isRequired: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is required (has required rule).',
         private: false,
       },
       value: {
@@ -4027,6 +4060,7 @@ module.exports = {
           },
         },
       },
+      'required': {},
       'description': {
         description: 'Renders description for the element in [`ElementDescription`](element-description) component.',
         props: {
@@ -4565,6 +4599,9 @@ module.exports = {
         localized: false,
         types: [
           'boolean',
+          'function',
+          'array',
+          'object',
         ],
         required: false,
         private: false,
@@ -4751,13 +4788,6 @@ module.exports = {
         description: 'Contains the available items. If [`items`](#option-items) are async this contains the resolved items.',
         private: false,
       },
-      el$: {
-        types: [
-          'VueformElement',
-        ],
-        description: 'The element&apos;s component.',
-        private: false,
-      },
       isStatic: {
         types: [
           'boolean',
@@ -4882,6 +4912,13 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element is disabled.',
+        private: false,
+      },
+      el$: {
+        types: [
+          'VueformElement',
+        ],
+        description: 'The element&apos;s component.',
         private: false,
       },
       fieldId: {
@@ -5053,6 +5090,13 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element has been filled in successfully.',
+        private: false,
+      },
+      isRequired: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is required (has required rule).',
         private: false,
       },
       value: {
@@ -5650,6 +5694,7 @@ module.exports = {
           },
         },
       },
+      'required': {},
       'description': {
         description: 'Renders description for the element in [`ElementDescription`](element-description) component.',
         props: {
@@ -6176,6 +6221,9 @@ module.exports = {
         localized: false,
         types: [
           'boolean',
+          'function',
+          'array',
+          'object',
         ],
         required: false,
         private: false,
@@ -6332,6 +6380,9 @@ module.exports = {
         localized: false,
         types: [
           'boolean',
+          'function',
+          'array',
+          'object',
         ],
         required: false,
         private: false,
@@ -6498,13 +6549,6 @@ module.exports = {
         description: 'The `aria-*` attributes of the input.',
         private: false,
       },
-      el$: {
-        types: [
-          'VueformElement',
-        ],
-        description: 'The element&apos;s component.',
-        private: false,
-      },
       isStatic: {
         types: [
           'boolean',
@@ -6652,6 +6696,13 @@ module.exports = {
         description: 'Whether the element is disabled.',
         private: false,
       },
+      el$: {
+        types: [
+          'VueformElement',
+        ],
+        description: 'The element&apos;s component.',
+        private: false,
+      },
       empty: {
         types: [
           'boolean',
@@ -6743,6 +6794,13 @@ module.exports = {
           'string',
         ],
         description: 'The localized placeholder of the element.',
+        private: false,
+      },
+      isReadonly: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is readonly.',
         private: false,
       },
       elementSlots: {
@@ -6842,6 +6900,13 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element has been filled in successfully.',
+        private: false,
+      },
+      isRequired: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is required (has required rule).',
         private: false,
       },
       value: {
@@ -7251,6 +7316,7 @@ module.exports = {
           },
         },
       },
+      'required': {},
       'description': {
         description: 'Renders description for the element in [`ElementDescription`](element-description) component.',
         props: {
@@ -7798,6 +7864,9 @@ module.exports = {
         localized: false,
         types: [
           'boolean',
+          'function',
+          'array',
+          'object',
         ],
         required: false,
         private: false,
@@ -7925,6 +7994,9 @@ module.exports = {
         localized: false,
         types: [
           'boolean',
+          'function',
+          'array',
+          'object',
         ],
         required: false,
         private: false,
@@ -8091,13 +8163,6 @@ module.exports = {
         description: 'The `aria-*` attributes of the input.',
         private: false,
       },
-      el$: {
-        types: [
-          'VueformElement',
-        ],
-        description: 'The element&apos;s component.',
-        private: false,
-      },
       isStatic: {
         types: [
           'boolean',
@@ -8245,6 +8310,13 @@ module.exports = {
         description: 'Whether the element is disabled.',
         private: false,
       },
+      el$: {
+        types: [
+          'VueformElement',
+        ],
+        description: 'The element&apos;s component.',
+        private: false,
+      },
       empty: {
         types: [
           'boolean',
@@ -8336,6 +8408,13 @@ module.exports = {
           'string',
         ],
         description: 'The localized placeholder of the element.',
+        private: false,
+      },
+      isReadonly: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is readonly.',
         private: false,
       },
       elementSlots: {
@@ -8435,6 +8514,13 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element has been filled in successfully.',
+        private: false,
+      },
+      isRequired: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is required (has required rule).',
         private: false,
       },
       value: {
@@ -8844,6 +8930,7 @@ module.exports = {
           },
         },
       },
+      'required': {},
       'description': {
         description: 'Renders description for the element in [`ElementDescription`](element-description) component.',
         props: {
@@ -9393,6 +9480,9 @@ module.exports = {
         localized: false,
         types: [
           'boolean',
+          'function',
+          'array',
+          'object',
         ],
         required: false,
         private: false,
@@ -9662,13 +9752,6 @@ module.exports = {
         description: 'The `aria-*` attributes of the input.',
         private: false,
       },
-      el$: {
-        types: [
-          'VueformElement',
-        ],
-        description: 'The element&apos;s component.',
-        private: false,
-      },
       isStatic: {
         types: [
           'boolean',
@@ -9810,6 +9893,13 @@ module.exports = {
         description: 'The method to use to upload attachment. Can be changed by setting [`method`](#method) option.',
         default: '`config.endpoints.attachment.method`',
         private: true,
+      },
+      el$: {
+        types: [
+          'VueformElement',
+        ],
+        description: 'The element&apos;s component.',
+        private: false,
       },
       empty: {
         types: [
@@ -10001,6 +10091,13 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element has been filled in successfully.',
+        private: false,
+      },
+      isRequired: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is required (has required rule).',
         private: false,
       },
       value: {
@@ -10481,6 +10578,7 @@ module.exports = {
           },
         },
       },
+      'required': {},
       'description': {
         description: 'Renders description for the element in [`ElementDescription`](element-description) component.',
         props: {
@@ -10997,6 +11095,9 @@ module.exports = {
         localized: false,
         types: [
           'boolean',
+          'function',
+          'array',
+          'object',
         ],
         required: false,
         private: false,
@@ -11385,13 +11486,6 @@ module.exports = {
         description: 'The `aria-*` attributes of the input.',
         private: false,
       },
-      el$: {
-        types: [
-          'VueformElement',
-        ],
-        description: 'The element&apos;s component.',
-        private: false,
-      },
       isStatic: {
         types: [
           'boolean',
@@ -11524,6 +11618,13 @@ module.exports = {
         ],
         description: 'Whether `drop` is enabled and browser supports dragging.',
         private: true,
+      },
+      el$: {
+        types: [
+          'VueformElement',
+        ],
+        description: 'The element&apos;s component.',
+        private: false,
       },
       empty: {
         types: [
@@ -11743,6 +11844,13 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element is `pending`, `debouncing`, `uploading` or `removing`.',
+        private: false,
+      },
+      isRequired: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is required (has required rule).',
         private: false,
       },
       errors: {
@@ -12257,6 +12365,7 @@ module.exports = {
           },
         },
       },
+      'required': {},
       'description': {
         description: 'Renders description for the element in [`ElementDescription`](element-description) component.',
         props: {
@@ -12772,6 +12881,9 @@ module.exports = {
         localized: false,
         types: [
           'boolean',
+          'function',
+          'array',
+          'object',
         ],
         required: false,
         private: false,
@@ -12950,13 +13062,6 @@ module.exports = {
         description: 'The `aria-*` attributes of the input.',
         private: false,
       },
-      el$: {
-        types: [
-          'VueformElement',
-        ],
-        description: 'The element&apos;s component.',
-        private: false,
-      },
       isStatic: {
         types: [
           'boolean',
@@ -13081,6 +13186,13 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element is disabled.',
+        private: false,
+      },
+      el$: {
+        types: [
+          'VueformElement',
+        ],
+        description: 'The element&apos;s component.',
         private: false,
       },
       empty: {
@@ -13266,6 +13378,13 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element has been filled in successfully.',
+        private: false,
+      },
+      isRequired: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is required (has required rule).',
         private: false,
       },
       value: {
@@ -13675,6 +13794,7 @@ module.exports = {
           },
         },
       },
+      'required': {},
       'description': {
         description: 'Renders description for the element in [`ElementDescription`](element-description) component.',
         props: {
@@ -14337,13 +14457,6 @@ module.exports = {
         description: 'The `aria-*` attributes of the input.',
         private: false,
       },
-      el$: {
-        types: [
-          'VueformElement',
-        ],
-        description: 'The element&apos;s component.',
-        private: false,
-      },
       isStatic: {
         types: [
           'boolean',
@@ -14476,6 +14589,13 @@ module.exports = {
         ],
         description: 'The default value of the element.',
         private: true,
+      },
+      el$: {
+        types: [
+          'VueformElement',
+        ],
+        description: 'The element&apos;s component.',
+        private: false,
       },
       fieldId: {
         types: [
@@ -14610,6 +14730,13 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element or any of its children is `pending` or `debouncing`.',
+        private: false,
+      },
+      isRequired: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is required (has required rule).',
         private: false,
       },
       childrenErrors: {
@@ -15041,6 +15168,7 @@ module.exports = {
           },
         },
       },
+      'required': {},
       'description': {
         description: 'Renders description for the element in [`ElementDescription`](element-description) component.',
         props: {
@@ -15408,13 +15536,6 @@ module.exports = {
       },
     },
     computed: {
-      el$: {
-        types: [
-          'VueformElement',
-        ],
-        description: 'The element&apos;s component.',
-        private: false,
-      },
       isStatic: {
         types: [
           'boolean',
@@ -15498,6 +15619,13 @@ module.exports = {
         ],
         description: 'The default value of the element.',
         private: true,
+      },
+      el$: {
+        types: [
+          'VueformElement',
+        ],
+        description: 'The element&apos;s component.',
+        private: false,
       },
       empty: {
         types: [
@@ -15638,6 +15766,13 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element has been filled in successfully.',
+        private: false,
+      },
+      isRequired: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is required (has required rule).',
         private: false,
       },
       value: {
@@ -16429,6 +16564,9 @@ module.exports = {
         localized: false,
         types: [
           'boolean',
+          'function',
+          'array',
+          'object',
         ],
         required: false,
         private: false,
@@ -16750,13 +16888,6 @@ module.exports = {
         description: 'The `aria-*` attributes of the input.',
         private: false,
       },
-      el$: {
-        types: [
-          'VueformElement',
-        ],
-        description: 'The element&apos;s component.',
-        private: false,
-      },
       isStatic: {
         types: [
           'boolean',
@@ -16923,6 +17054,13 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element is disabled.',
+        private: false,
+      },
+      el$: {
+        types: [
+          'VueformElement',
+        ],
+        description: 'The element&apos;s component.',
         private: false,
       },
       empty: {
@@ -17100,6 +17238,13 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element or any of its children is `pending` or `debouncing`.',
+        private: false,
+      },
+      isRequired: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is required (has required rule).',
         private: false,
       },
       childrenErrors: {
@@ -17702,6 +17847,7 @@ module.exports = {
           },
         },
       },
+      'required': {},
       'description': {
         description: 'Renders description for the element in [`ElementDescription`](element-description) component.',
         props: {
@@ -18227,6 +18373,9 @@ module.exports = {
         localized: false,
         types: [
           'boolean',
+          'function',
+          'array',
+          'object',
         ],
         required: false,
         private: false,
@@ -18270,6 +18419,9 @@ module.exports = {
         localized: false,
         types: [
           'boolean',
+          'function',
+          'array',
+          'object',
         ],
         required: false,
         private: false,
@@ -18503,13 +18655,6 @@ module.exports = {
         description: 'The `aria-*` attributes of the input.',
         private: false,
       },
-      el$: {
-        types: [
-          'VueformElement',
-        ],
-        description: 'The element&apos;s component.',
-        private: false,
-      },
       isStatic: {
         types: [
           'boolean',
@@ -18636,6 +18781,13 @@ module.exports = {
         description: 'Whether the element is disabled.',
         private: false,
       },
+      el$: {
+        types: [
+          'VueformElement',
+        ],
+        description: 'The element&apos;s component.',
+        private: false,
+      },
       empty: {
         types: [
           'boolean',
@@ -18730,6 +18882,13 @@ module.exports = {
         description: 'The localized placeholder of the element.',
         private: false,
       },
+      isReadonly: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is readonly.',
+        private: false,
+      },
       elementSlots: {
         types: [
           'object',
@@ -18798,6 +18957,13 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element is `pending` or `debouncing`.',
+        private: false,
+      },
+      isRequired: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is required (has required rule).',
         private: false,
       },
       errors: {
@@ -19260,6 +19426,7 @@ module.exports = {
           },
         },
       },
+      'required': {},
       'description': {
         description: 'Renders description for the element in [`ElementDescription`](element-description) component.',
         props: {
@@ -19807,6 +19974,9 @@ module.exports = {
         localized: false,
         types: [
           'boolean',
+          'function',
+          'array',
+          'object',
         ],
         required: false,
         private: false,
@@ -20249,13 +20419,6 @@ module.exports = {
         description: 'The `aria-*` attributes of the input.',
         private: false,
       },
-      el$: {
-        types: [
-          'VueformElement',
-        ],
-        description: 'The element&apos;s component.',
-        private: false,
-      },
       isStatic: {
         types: [
           'boolean',
@@ -20423,6 +20586,13 @@ module.exports = {
         ],
         description: 'Whether `drop` is enabled and browser supports dragging.',
         private: true,
+      },
+      el$: {
+        types: [
+          'VueformElement',
+        ],
+        description: 'The element&apos;s component.',
+        private: false,
       },
       empty: {
         types: [
@@ -20620,6 +20790,13 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element or any of its children is `pending` or `debouncing`.',
+        private: false,
+      },
+      isRequired: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is required (has required rule).',
         private: false,
       },
       childrenErrors: {
@@ -21255,6 +21432,7 @@ module.exports = {
           },
         },
       },
+      'required': {},
       'description': {
         description: 'Renders description for the element in [`ElementDescription`](element-description) component.',
         props: {
@@ -21770,6 +21948,9 @@ module.exports = {
         localized: false,
         types: [
           'boolean',
+          'function',
+          'array',
+          'object',
         ],
         required: false,
         private: false,
@@ -22560,13 +22741,6 @@ module.exports = {
         description: 'Contains the resolved options.',
         private: false,
       },
-      el$: {
-        types: [
-          'VueformElement',
-        ],
-        description: 'The element&apos;s component.',
-        private: false,
-      },
       isStatic: {
         types: [
           'boolean',
@@ -22691,6 +22865,13 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element is disabled.',
+        private: false,
+      },
+      el$: {
+        types: [
+          'VueformElement',
+        ],
+        description: 'The element&apos;s component.',
         private: false,
       },
       empty: {
@@ -22890,6 +23071,13 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element has been filled in successfully.',
+        private: false,
+      },
+      isRequired: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is required (has required rule).',
         private: false,
       },
       value: {
@@ -23692,6 +23880,7 @@ module.exports = {
           },
         },
       },
+      'required': {},
       'description': {
         description: 'Renders description for the element in [`ElementDescription`](element-description) component.',
         props: {
@@ -24381,13 +24570,6 @@ module.exports = {
         description: 'The `aria-*` attributes of the input.',
         private: false,
       },
-      el$: {
-        types: [
-          'VueformElement',
-        ],
-        description: 'The element&apos;s component.',
-        private: false,
-      },
       isStatic: {
         types: [
           'boolean',
@@ -24520,6 +24702,13 @@ module.exports = {
         ],
         description: 'The default value of the element.',
         private: true,
+      },
+      el$: {
+        types: [
+          'VueformElement',
+        ],
+        description: 'The element&apos;s component.',
+        private: false,
       },
       fieldId: {
         types: [
@@ -24654,6 +24843,13 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element or any of its children is `pending` or `debouncing`.',
+        private: false,
+      },
+      isRequired: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is required (has required rule).',
         private: false,
       },
       childrenErrors: {
@@ -25088,6 +25284,7 @@ module.exports = {
           },
         },
       },
+      'required': {},
       'description': {
         description: 'Renders description for the element in [`ElementDescription`](element-description) component.',
         props: {
@@ -25615,6 +25812,9 @@ module.exports = {
         localized: false,
         types: [
           'boolean',
+          'function',
+          'array',
+          'object',
         ],
         required: false,
         private: false,
@@ -25658,6 +25858,9 @@ module.exports = {
         localized: false,
         types: [
           'boolean',
+          'function',
+          'array',
+          'object',
         ],
         required: false,
         private: false,
@@ -25927,13 +26130,6 @@ module.exports = {
         description: 'The `aria-*` attributes of the input.',
         private: false,
       },
-      el$: {
-        types: [
-          'VueformElement',
-        ],
-        description: 'The element&apos;s component.',
-        private: false,
-      },
       isStatic: {
         types: [
           'boolean',
@@ -26058,6 +26254,13 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element is disabled.',
+        private: false,
+      },
+      el$: {
+        types: [
+          'VueformElement',
+        ],
+        description: 'The element&apos;s component.',
         private: false,
       },
       empty: {
@@ -26189,6 +26392,13 @@ module.exports = {
         description: 'The localized placeholder of the element.',
         private: false,
       },
+      isReadonly: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is readonly.',
+        private: false,
+      },
       elementSlots: {
         types: [
           'object',
@@ -26293,6 +26503,13 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element has been filled in successfully.',
+        private: false,
+      },
+      isRequired: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is required (has required rule).',
         private: false,
       },
       value: {
@@ -26811,6 +27028,7 @@ module.exports = {
           },
         },
       },
+      'required': {},
       'description': {
         description: 'Renders description for the element in [`ElementDescription`](element-description) component.',
         props: {
@@ -27327,6 +27545,9 @@ module.exports = {
         localized: false,
         types: [
           'boolean',
+          'function',
+          'array',
+          'object',
         ],
         required: false,
         private: false,
@@ -27539,13 +27760,6 @@ module.exports = {
         description: 'The `aria-*` attributes of the input.',
         private: false,
       },
-      el$: {
-        types: [
-          'VueformElement',
-        ],
-        description: 'The element&apos;s component.',
-        private: false,
-      },
       isStatic: {
         types: [
           'boolean',
@@ -27670,6 +27884,13 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element is disabled.',
+        private: false,
+      },
+      el$: {
+        types: [
+          'VueformElement',
+        ],
+        description: 'The element&apos;s component.',
         private: false,
       },
       fieldId: {
@@ -27855,6 +28076,13 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element has been filled in successfully.',
+        private: false,
+      },
+      isRequired: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is required (has required rule).',
         private: false,
       },
       value: {
@@ -28271,6 +28499,7 @@ module.exports = {
           },
         },
       },
+      'required': {},
       'description': {
         description: 'Renders description for the element in [`ElementDescription`](element-description) component.',
         props: {
@@ -28787,6 +29016,9 @@ module.exports = {
         localized: false,
         types: [
           'boolean',
+          'function',
+          'array',
+          'object',
         ],
         required: false,
         private: false,
@@ -28996,13 +29228,6 @@ module.exports = {
         description: 'Contains the available items. If [`items`](#option-items) are async this contains the resolved items.',
         private: false,
       },
-      el$: {
-        types: [
-          'VueformElement',
-        ],
-        description: 'The element&apos;s component.',
-        private: false,
-      },
       isStatic: {
         types: [
           'boolean',
@@ -29127,6 +29352,13 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element is disabled.',
+        private: false,
+      },
+      el$: {
+        types: [
+          'VueformElement',
+        ],
+        description: 'The element&apos;s component.',
         private: false,
       },
       fieldId: {
@@ -29298,6 +29530,13 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element has been filled in successfully.',
+        private: false,
+      },
+      isRequired: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is required (has required rule).',
         private: false,
       },
       value: {
@@ -29838,6 +30077,7 @@ module.exports = {
           },
         },
       },
+      'required': {},
       'description': {
         description: 'Renders description for the element in [`ElementDescription`](element-description) component.',
         props: {
@@ -30355,6 +30595,9 @@ module.exports = {
         localized: false,
         types: [
           'boolean',
+          'function',
+          'array',
+          'object',
         ],
         required: false,
         private: false,
@@ -31087,13 +31330,6 @@ module.exports = {
         description: 'Contains the resolved options.',
         private: false,
       },
-      el$: {
-        types: [
-          'VueformElement',
-        ],
-        description: 'The element&apos;s component.',
-        private: false,
-      },
       isStatic: {
         types: [
           'boolean',
@@ -31218,6 +31454,13 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element is disabled.',
+        private: false,
+      },
+      el$: {
+        types: [
+          'VueformElement',
+        ],
+        description: 'The element&apos;s component.',
         private: false,
       },
       empty: {
@@ -31417,6 +31660,13 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element has been filled in successfully.',
+        private: false,
+      },
+      isRequired: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is required (has required rule).',
         private: false,
       },
       value: {
@@ -32189,6 +32439,7 @@ module.exports = {
           },
         },
       },
+      'required': {},
       'description': {
         description: 'Renders description for the element in [`ElementDescription`](element-description) component.',
         props: {
@@ -32726,6 +32977,9 @@ module.exports = {
         localized: false,
         types: [
           'boolean',
+          'function',
+          'array',
+          'object',
         ],
         required: false,
         private: false,
@@ -32736,6 +32990,9 @@ module.exports = {
         localized: false,
         types: [
           'boolean',
+          'function',
+          'array',
+          'object',
         ],
         required: false,
         private: false,
@@ -33260,13 +33517,6 @@ module.exports = {
         description: 'The `aria-*` attributes of the input.',
         private: false,
       },
-      el$: {
-        types: [
-          'VueformElement',
-        ],
-        description: 'The element&apos;s component.',
-        private: false,
-      },
       isStatic: {
         types: [
           'boolean',
@@ -33393,6 +33643,13 @@ module.exports = {
         description: 'Whether the element is disabled.',
         private: false,
       },
+      el$: {
+        types: [
+          'VueformElement',
+        ],
+        description: 'The element&apos;s component.',
+        private: false,
+      },
       empty: {
         types: [
           'boolean',
@@ -33477,6 +33734,13 @@ module.exports = {
           'string',
         ],
         description: 'The localized placeholder of the element.',
+        private: false,
+      },
+      isReadonly: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is readonly.',
         private: false,
       },
       fontFamilies: {
@@ -33871,6 +34135,13 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element has been filled in successfully.',
+        private: false,
+      },
+      isRequired: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is required (has required rule).',
         private: false,
       },
       value: {
@@ -34512,6 +34783,7 @@ module.exports = {
           },
         },
       },
+      'required': {},
       'description': {
         description: 'Renders description for the element in [`ElementDescription`](element-description) component.',
         props: {
@@ -35050,6 +35322,9 @@ module.exports = {
         localized: false,
         types: [
           'boolean',
+          'function',
+          'array',
+          'object',
         ],
         required: false,
         private: false,
@@ -35340,13 +35615,6 @@ module.exports = {
         description: 'The `aria-*` attributes of the input.',
         private: false,
       },
-      el$: {
-        types: [
-          'VueformElement',
-        ],
-        description: 'The element&apos;s component.',
-        private: false,
-      },
       isStatic: {
         types: [
           'boolean',
@@ -35471,6 +35739,13 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element is disabled.',
+        private: false,
+      },
+      el$: {
+        types: [
+          'VueformElement',
+        ],
+        description: 'The element&apos;s component.',
         private: false,
       },
       fieldId: {
@@ -35606,6 +35881,13 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element is `pending`.',
+        private: false,
+      },
+      isRequired: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is required (has required rule).',
         private: false,
       },
       errors: {
@@ -36051,6 +36333,7 @@ module.exports = {
           },
         },
       },
+      'required': {},
       'description': {
         description: 'Renders description for the element in [`ElementDescription`](element-description) component.',
         props: {
@@ -36735,13 +37018,6 @@ module.exports = {
         description: 'The `aria-*` attributes of the input.',
         private: false,
       },
-      el$: {
-        types: [
-          'VueformElement',
-        ],
-        description: 'The element&apos;s component.',
-        private: false,
-      },
       isStatic: {
         types: [
           'boolean',
@@ -36838,6 +37114,13 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether no [`conditions`](#option-conditions) are defined or they are all fulfilled.',
+        private: false,
+      },
+      el$: {
+        types: [
+          'VueformElement',
+        ],
+        description: 'The element&apos;s component.',
         private: false,
       },
       fieldId: {
@@ -37739,6 +38022,9 @@ module.exports = {
         localized: false,
         types: [
           'boolean',
+          'function',
+          'array',
+          'object',
         ],
         required: false,
         private: false,
@@ -37994,13 +38280,6 @@ module.exports = {
         description: 'The `aria-*` attributes of the input.',
         private: false,
       },
-      el$: {
-        types: [
-          'VueformElement',
-        ],
-        description: 'The element&apos;s component.',
-        private: false,
-      },
       isStatic: {
         types: [
           'boolean',
@@ -38142,6 +38421,13 @@ module.exports = {
         description: 'The method to use to upload attachment. Can be changed by setting [`method`](#method) option.',
         default: '`config.endpoints.attachment.method`',
         private: true,
+      },
+      el$: {
+        types: [
+          'VueformElement',
+        ],
+        description: 'The element&apos;s component.',
+        private: false,
       },
       empty: {
         types: [
@@ -38347,6 +38633,13 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the field has been filled in successfully.',
+        private: false,
+      },
+      isRequired: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is required (has required rule).',
         private: false,
       },
       value: {
@@ -38846,6 +39139,7 @@ module.exports = {
           },
         },
       },
+      'required': {},
       'description': {
         description: 'Renders description for the element in [`ElementDescription`](element-description) component.',
         props: {
@@ -39394,6 +39688,9 @@ module.exports = {
         localized: false,
         types: [
           'boolean',
+          'function',
+          'array',
+          'object',
         ],
         required: false,
         private: false,
@@ -39457,6 +39754,9 @@ module.exports = {
         localized: false,
         types: [
           'boolean',
+          'function',
+          'array',
+          'object',
         ],
         required: false,
         private: false,
@@ -39659,13 +39959,6 @@ module.exports = {
         description: 'The `aria-*` attributes of the input.',
         private: false,
       },
-      el$: {
-        types: [
-          'VueformElement',
-        ],
-        description: 'The element&apos;s component.',
-        private: false,
-      },
       isStatic: {
         types: [
           'boolean',
@@ -39792,6 +40085,13 @@ module.exports = {
         description: 'Whether the element is disabled.',
         private: false,
       },
+      el$: {
+        types: [
+          'VueformElement',
+        ],
+        description: 'The element&apos;s component.',
+        private: false,
+      },
       empty: {
         types: [
           'boolean',
@@ -39906,6 +40206,13 @@ module.exports = {
         description: 'The localized placeholder of the element.',
         private: false,
       },
+      isReadonly: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is readonly.',
+        private: false,
+      },
       elementSlots: {
         types: [
           'object',
@@ -40010,6 +40317,13 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the field has been filled in successfully.',
+        private: false,
+      },
+      isRequired: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is required (has required rule).',
         private: false,
       },
       value: {
@@ -40563,6 +40877,7 @@ module.exports = {
           },
         },
       },
+      'required': {},
       'description': {
         description: 'Renders description for the element in [`ElementDescription`](element-description) component.',
         props: {
@@ -41142,6 +41457,9 @@ module.exports = {
         localized: false,
         types: [
           'boolean',
+          'function',
+          'array',
+          'object',
         ],
         required: false,
         private: false,
@@ -41185,6 +41503,9 @@ module.exports = {
         localized: false,
         types: [
           'boolean',
+          'function',
+          'array',
+          'object',
         ],
         required: false,
         private: false,
@@ -41387,13 +41708,6 @@ module.exports = {
         description: 'The `aria-*` attributes of the input.',
         private: false,
       },
-      el$: {
-        types: [
-          'VueformElement',
-        ],
-        description: 'The element&apos;s component.',
-        private: false,
-      },
       isStatic: {
         types: [
           'boolean',
@@ -41520,6 +41834,13 @@ module.exports = {
         description: 'Whether the element is disabled.',
         private: false,
       },
+      el$: {
+        types: [
+          'VueformElement',
+        ],
+        description: 'The element&apos;s component.',
+        private: false,
+      },
       empty: {
         types: [
           'boolean',
@@ -41627,6 +41948,13 @@ module.exports = {
         description: 'The localized placeholder of the element.',
         private: false,
       },
+      isReadonly: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is readonly.',
+        private: false,
+      },
       elementSlots: {
         types: [
           'object',
@@ -41731,6 +42059,13 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the field has been filled in successfully.',
+        private: false,
+      },
+      isRequired: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is required (has required rule).',
         private: false,
       },
       value: {
@@ -42289,6 +42624,7 @@ module.exports = {
           },
         },
       },
+      'required': {},
       'description': {
         description: 'Renders description for the element in [`ElementDescription`](element-description) component.',
         props: {
@@ -42826,6 +43162,9 @@ module.exports = {
         localized: false,
         types: [
           'boolean',
+          'function',
+          'array',
+          'object',
         ],
         required: false,
         private: false,
@@ -43569,13 +43908,6 @@ module.exports = {
         description: 'Contains the resolved options.',
         private: false,
       },
-      el$: {
-        types: [
-          'VueformElement',
-        ],
-        description: 'The element&apos;s component.',
-        private: false,
-      },
       isStatic: {
         types: [
           'boolean',
@@ -43700,6 +44032,13 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element is disabled.',
+        private: false,
+      },
+      el$: {
+        types: [
+          'VueformElement',
+        ],
+        description: 'The element&apos;s component.',
         private: false,
       },
       empty: {
@@ -43899,6 +44238,13 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element has been filled in successfully.',
+        private: false,
+      },
+      isRequired: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is required (has required rule).',
         private: false,
       },
       value: {
@@ -44744,6 +45090,7 @@ module.exports = {
           },
         },
       },
+      'required': {},
       'description': {
         description: 'Renders description for the element in [`ElementDescription`](element-description) component.',
         props: {
@@ -45271,6 +45618,9 @@ module.exports = {
         localized: false,
         types: [
           'boolean',
+          'function',
+          'array',
+          'object',
         ],
         required: false,
         private: false,
@@ -45314,6 +45664,9 @@ module.exports = {
         localized: false,
         types: [
           'boolean',
+          'function',
+          'array',
+          'object',
         ],
         required: false,
         private: false,
@@ -45594,13 +45947,6 @@ module.exports = {
         description: 'The `aria-*` attributes of the input.',
         private: false,
       },
-      el$: {
-        types: [
-          'VueformElement',
-        ],
-        description: 'The element&apos;s component.',
-        private: false,
-      },
       isStatic: {
         types: [
           'boolean',
@@ -45727,6 +46073,13 @@ module.exports = {
         description: 'Whether the element is disabled.',
         private: false,
       },
+      el$: {
+        types: [
+          'VueformElement',
+        ],
+        description: 'The element&apos;s component.',
+        private: false,
+      },
       empty: {
         types: [
           'boolean',
@@ -45825,6 +46178,13 @@ module.exports = {
           'string',
         ],
         description: 'The localized placeholder of the element.',
+        private: false,
+      },
+      isReadonly: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is readonly.',
         private: false,
       },
       elementSlots: {
@@ -45931,6 +46291,13 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element has been filled in successfully.',
+        private: false,
+      },
+      isRequired: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is required (has required rule).',
         private: false,
       },
       value: {
@@ -46465,6 +46832,8 @@ module.exports = {
           },
         },
       },
+      'required': {},
+      'required': {},
       'description': {
         description: 'Renders description for the element in [`ElementDescription`](element-description) component.',
         props: {
@@ -47044,6 +47413,9 @@ module.exports = {
         localized: false,
         types: [
           'boolean',
+          'function',
+          'array',
+          'object',
         ],
         required: false,
         private: false,
@@ -47087,6 +47459,9 @@ module.exports = {
         localized: false,
         types: [
           'boolean',
+          'function',
+          'array',
+          'object',
         ],
         required: false,
         private: false,
@@ -47303,13 +47678,6 @@ module.exports = {
         description: 'The `aria-*` attributes of the input.',
         private: false,
       },
-      el$: {
-        types: [
-          'VueformElement',
-        ],
-        description: 'The element&apos;s component.',
-        private: false,
-      },
       isStatic: {
         types: [
           'boolean',
@@ -47436,6 +47804,13 @@ module.exports = {
         description: 'Whether the element is disabled.',
         private: false,
       },
+      el$: {
+        types: [
+          'VueformElement',
+        ],
+        description: 'The element&apos;s component.',
+        private: false,
+      },
       empty: {
         types: [
           'boolean',
@@ -47527,6 +47902,13 @@ module.exports = {
           'string',
         ],
         description: 'The localized placeholder of the element.',
+        private: false,
+      },
+      isReadonly: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is readonly.',
         private: false,
       },
       elementSlots: {
@@ -47633,6 +48015,13 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element has been filled in successfully.',
+        private: false,
+      },
+      isRequired: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is required (has required rule).',
         private: false,
       },
       value: {
@@ -48172,6 +48561,7 @@ module.exports = {
           },
         },
       },
+      'required': {},
       'description': {
         description: 'Renders description for the element in [`ElementDescription`](element-description) component.',
         props: {
@@ -48711,6 +49101,9 @@ module.exports = {
         localized: false,
         types: [
           'boolean',
+          'function',
+          'array',
+          'object',
         ],
         required: false,
         private: false,
@@ -48945,13 +49338,6 @@ module.exports = {
         description: 'The `aria-*` attributes of the input.',
         private: false,
       },
-      el$: {
-        types: [
-          'VueformElement',
-        ],
-        description: 'The element&apos;s component.',
-        private: false,
-      },
       isStatic: {
         types: [
           'boolean',
@@ -49076,6 +49462,13 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element is disabled.',
+        private: false,
+      },
+      el$: {
+        types: [
+          'VueformElement',
+        ],
+        description: 'The element&apos;s component.',
         private: false,
       },
       fieldId: {
@@ -49254,6 +49647,13 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element has been filled in successfully.',
+        private: false,
+      },
+      isRequired: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is required (has required rule).',
         private: false,
       },
       value: {
@@ -49684,6 +50084,7 @@ module.exports = {
           },
         },
       },
+      'required': {},
       'description': {
         description: 'Renders description for the element in [`ElementDescription`](element-description) component.',
         props: {

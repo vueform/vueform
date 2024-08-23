@@ -12,6 +12,7 @@ declare module '@vueform/vueform/dist/tailwind-material' {
   const ElementLayoutInline: any;
   const ElementLoader: any;
   const ElementMessage: any;
+  const ElementRequired: any;
   const ElementText: any;
   const FormElements: any;
   const FormErrors: any;
@@ -95,6 +96,7 @@ declare module '@vueform/vueform/dist/tailwind-material' {
     ElementLayoutInline,
     ElementLoader,
     ElementMessage,
+    ElementRequired,
     ElementText,
     FormElements,
     FormErrors,

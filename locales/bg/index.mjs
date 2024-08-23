@@ -429,7 +429,7 @@ export default {
     "before_or_equal": ":attribute трябва да бъде дата преди или равна на :date.",
     "between": {
       "numeric": ":attribute трябва да бъде между :min и :max.",
-      "file":       ":attribute трябва да бъде между :min и :max килобайта.",
+      "file": ":attribute трябва да бъде между :min и :max килобайта.",
       "string": ":attribute трябва да бъде между :min и :max символа.",
       "array": ":attribute трябва да има между :min и :max елемента."
     },

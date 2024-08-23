@@ -218,7 +218,7 @@ export interface VueformElement extends DefineComponent {
   buttonType: string;
   buttonClass: string | Array<any> | object;
   id: string;
-  disabled: Function | boolean;
+  disabled: boolean | Function | Array<any> | object;
   loading: Function | boolean;
   href: string;
   target: string;
@@ -237,7 +237,7 @@ export interface VueformElement extends DefineComponent {
   messages: object;
   fieldName: string;
   default: string | boolean | number | Array<any> | Date | object;
-  readonly: boolean;
+  readonly: boolean | Function | Array<any> | object;
   provider: string;
   options: object;
   text: string | object;
@@ -408,7 +408,6 @@ export interface VueformElement extends DefineComponent {
   infoId: string;
   errorId: string;
   aria: object;
-  el$: VueformElement;
   isStatic: boolean;
   isFileType: boolean;
   isArrayType: boolean;
@@ -427,6 +426,7 @@ export interface VueformElement extends DefineComponent {
   columnsClasses: object;
   available: boolean;
   isDisabled: boolean;
+  el$: VueformElement;
   fieldId: string;
   hasLabel: boolean;
   Label: string | Component;
@@ -452,6 +452,7 @@ export interface VueformElement extends DefineComponent {
   genericName: string;
   nullValue: any;
   dataPath: string;
+  isReadonly: boolean;
   dirty: boolean;
   validated: boolean;
   invalid: boolean;
@@ -462,6 +463,7 @@ export interface VueformElement extends DefineComponent {
   validationRules: string | Array<any>;
   isDanger: boolean;
   isSuccess: boolean;
+  isRequired: boolean;
   value: any;
   model: any;
   isDefault: boolean;
@@ -768,7 +770,7 @@ export interface VueformSchema {
   buttonType?: string;
   buttonClass?: string | Array<any> | object;
   id?: string;
-  disabled?: Function | boolean;
+  disabled?: boolean | Function | Array<any> | object;
   loading?: Function | boolean;
   href?: string;
   target?: string;
@@ -787,7 +789,7 @@ export interface VueformSchema {
   messages?: object;
   fieldName?: string;
   default?: string | boolean | number | Array<any> | Date | object;
-  readonly?: boolean;
+  readonly?: boolean | Function | Array<any> | object;
   provider?: string;
   options?: object;
   text?: string | object;
@@ -1002,6 +1004,9 @@ export interface ElementLoaderProps {
 export interface ElementMessageProps {
 }
 
+export interface ElementRequiredProps {
+}
+
 export interface ElementTextProps {
   type: string;
 }
@@ -1088,6 +1093,8 @@ export interface VueformProps {
   steps?: object;
   stepsControls?: boolean;
   validateOn?: string;
+  scrollToInvalid?: boolean;
+  showRequired?: Array<any>;
   displayErrors?: boolean;
   displayMessages?: boolean;
   messages?: object;
@@ -1226,7 +1233,7 @@ export interface ButtonElementProps {
   buttonType?: string;
   buttonClass?: string | Array<any> | object;
   id?: string;
-  disabled?: Function | boolean;
+  disabled?: boolean | Function | Array<any> | object;
   loading?: Function | boolean;
   href?: string;
   target?: string;
@@ -1284,8 +1291,8 @@ export interface CaptchaElementProps {
   type?: string;
   id?: string;
   default?: string | boolean | number | Array<any> | Date | object;
-  disabled?: boolean;
-  readonly?: boolean;
+  disabled?: boolean | Function | Array<any> | object;
+  readonly?: boolean | Function | Array<any> | object;
   provider?: string;
   options?: object;
 }
@@ -1336,7 +1343,7 @@ export interface CheckboxElementProps {
   default?: string | boolean | number;
   id?: string;
   text?: string | object;
-  disabled?: boolean;
+  disabled?: boolean | Function | Array<any> | object;
   trueValue?: boolean | string | number;
   falseValue?: boolean | string | number;
   align?: string;
@@ -1388,7 +1395,7 @@ export interface CheckboxgroupElementProps {
   default?: Array<any>;
   id?: string;
   items?: object | Array<any> | Function | string;
-  disabled?: boolean;
+  disabled?: boolean | Function | Array<any> | object;
   disables?: Array<any>;
   clearOnRefetch?: boolean;
 }
@@ -1438,7 +1445,7 @@ export interface DateElementProps {
   type?: string;
   default?: string | Date;
   addons?: object;
-  disabled?: boolean;
+  disabled?: boolean | Function | Array<any> | object;
   floating?: string | boolean | object;
   id?: string;
   displayFormat?: string;
@@ -1453,7 +1460,7 @@ export interface DateElementProps {
   disables?: Array<any>;
   extendOptions?: object;
   placeholder?: string | object | boolean;
-  readonly?: boolean;
+  readonly?: boolean | Function | Array<any> | object;
 }
 
 export interface DatesElementProps {
@@ -1501,7 +1508,7 @@ export interface DatesElementProps {
   type?: string;
   default?: Array<any>;
   addons?: object;
-  disabled?: boolean;
+  disabled?: boolean | Function | Array<any> | object;
   floating?: string | boolean | object;
   id?: string;
   displayFormat?: string;
@@ -1513,7 +1520,7 @@ export interface DatesElementProps {
   disables?: Array<any>;
   extendOptions?: object;
   placeholder?: string | object;
-  readonly?: boolean;
+  readonly?: boolean | Function | Array<any> | object;
 }
 
 export interface EditorElementProps {
@@ -1561,7 +1568,7 @@ export interface EditorElementProps {
   type?: string;
   default?: string | number | object;
   debounce?: number;
-  disabled?: boolean;
+  disabled?: boolean | Function | Array<any> | object;
   id?: string;
   placeholder?: string | object;
   onError?: Function;
@@ -1618,7 +1625,7 @@ export interface FileElementProps {
   fieldName?: string;
   type?: string;
   default?: string | object;
-  disabled?: boolean;
+  disabled?: boolean | Function | Array<any> | object;
   id?: string;
   onRemove?: Function;
   onError?: Function;
@@ -1682,7 +1689,7 @@ export interface GenericElementProps {
   fieldName?: string;
   type?: string;
   id?: string;
-  disabled?: boolean;
+  disabled?: boolean | Function | Array<any> | object;
   default?: string | number | object;
 }
 
@@ -1805,7 +1812,7 @@ export interface ListElementProps {
   type?: string;
   default?: Array<any>;
   id?: string;
-  disabled?: boolean;
+  disabled?: boolean | Function | Array<any> | object;
   onAdd?: Function;
   onRemove?: Function;
   onSort?: Function;
@@ -1867,11 +1874,11 @@ export interface LocationElementProps {
   type?: string;
   default?: object;
   debounce?: number;
-  disabled?: boolean;
+  disabled?: boolean | Function | Array<any> | object;
   floating?: string | boolean | object;
   id?: string;
   placeholder?: string | object;
-  readonly?: boolean;
+  readonly?: boolean | Function | Array<any> | object;
   attrs?: object;
   addons?: object;
   provider?: string;
@@ -1924,7 +1931,7 @@ export interface MultifileElementProps {
   type?: string;
   default?: Array<any>;
   initial?: number;
-  disabled?: boolean;
+  disabled?: boolean | Function | Array<any> | object;
   id?: string;
   onAdd?: Function;
   onRemove?: Function;
@@ -1995,7 +2002,7 @@ export interface MultiselectElementProps {
   fieldName?: string;
   type?: string;
   default?: Array<any>;
-  disabled?: boolean;
+  disabled?: boolean | Function | Array<any> | object;
   floating?: string | boolean | object;
   id?: string;
   placeholder?: string | object;
@@ -2151,11 +2158,11 @@ export interface PhoneElementProps {
   type?: string;
   default?: string | number | object;
   debounce?: number;
-  disabled?: boolean;
+  disabled?: boolean | Function | Array<any> | object;
   floating?: string | boolean | object;
   id?: string;
   placeholder?: string | object;
-  readonly?: boolean;
+  readonly?: boolean | Function | Array<any> | object;
   include?: Array<any>;
   exclude?: Array<any>;
   unmask: boolean;
@@ -2211,7 +2218,7 @@ export interface RadioElementProps {
   fieldName?: string;
   type?: string;
   default?: string | number;
-  disabled?: boolean;
+  disabled?: boolean | Function | Array<any> | object;
   id?: string;
   radioName?: string;
   radioValue?: boolean | string | number;
@@ -2263,7 +2270,7 @@ export interface RadiogroupElementProps {
   fieldName?: string;
   type?: string;
   default?: string | number;
-  disabled?: boolean;
+  disabled?: boolean | Function | Array<any> | object;
   id?: string;
   items?: object | Array<any> | Function | string;
   disables?: Array<any>;
@@ -2314,7 +2321,7 @@ export interface SelectElementProps {
   fieldName?: string;
   type?: string;
   default?: string | number | object;
-  disabled?: boolean;
+  disabled?: boolean | Function | Array<any> | object;
   floating?: string | boolean | object;
   id?: string;
   placeholder?: string | object;
@@ -2414,8 +2421,8 @@ export interface SignatureElementProps {
   id?: string;
   default?: string | number | object;
   debounce?: number;
-  disabled?: boolean;
-  readonly?: boolean;
+  disabled?: boolean | Function | Array<any> | object;
+  readonly?: boolean | Function | Array<any> | object;
   modes?: Array<any>;
   fonts?: Array<any>;
   autoload?: boolean;
@@ -2480,7 +2487,7 @@ export interface SliderElementProps {
   fieldName?: string;
   type?: string;
   default?: number | Array<any>;
-  disabled?: boolean;
+  disabled?: boolean | Function | Array<any> | object;
   id?: string;
   min?: number;
   max?: number;
@@ -2595,7 +2602,7 @@ export interface TEditorElementProps {
   type?: string;
   default?: object | string | number;
   debounce?: number;
-  disabled?: boolean;
+  disabled?: boolean | Function | Array<any> | object;
   id?: string;
   placeholder?: string | object;
   onError?: Function;
@@ -2655,13 +2662,13 @@ export interface TTextElementProps {
   addons?: object;
   autocomplete?: string | number;
   debounce?: number;
-  disabled?: boolean;
+  disabled?: boolean | Function | Array<any> | object;
   floating?: string | boolean | object;
   id?: string;
   inputType?: string;
   attrs?: object;
   placeholder?: string | object;
-  readonly?: boolean;
+  readonly?: boolean | Function | Array<any> | object;
   loading?: boolean;
   onBlur?: Function;
   onKeydown?: Function;
@@ -2717,11 +2724,11 @@ export interface TTextareaElementProps {
   autogrow?: boolean;
   rows?: number;
   debounce?: number;
-  disabled?: boolean;
+  disabled?: boolean | Function | Array<any> | object;
   floating?: string | boolean | object;
   id?: string;
   placeholder?: string | object;
-  readonly?: boolean;
+  readonly?: boolean | Function | Array<any> | object;
   attrs?: object;
   onBlur?: Function;
   onKeydown?: Function;
@@ -2773,7 +2780,7 @@ export interface TagsElementProps {
   fieldName?: string;
   type?: string;
   default?: Array<any>;
-  disabled?: boolean;
+  disabled?: boolean | Function | Array<any> | object;
   floating?: string | boolean | object;
   id?: string;
   placeholder?: string | object;
@@ -2876,11 +2883,11 @@ export interface TextElementProps {
   type?: string;
   default?: string | number | object;
   debounce?: number;
-  disabled?: boolean;
+  disabled?: boolean | Function | Array<any> | object;
   floating?: string | boolean | object;
   id?: string;
   placeholder?: string | object;
-  readonly?: boolean;
+  readonly?: boolean | Function | Array<any> | object;
   inputType?: string;
   forceNumbers?: boolean;
   attrs?: object;
@@ -2941,11 +2948,11 @@ export interface TextareaElementProps {
   autogrow?: boolean;
   rows?: number;
   debounce?: number;
-  disabled?: boolean;
+  disabled?: boolean | Function | Array<any> | object;
   floating?: string | boolean | object;
   id?: string;
   placeholder?: string | object;
-  readonly?: boolean;
+  readonly?: boolean | Function | Array<any> | object;
   attrs?: object;
   onBlur?: Function;
   onKeydown?: Function;
@@ -2997,7 +3004,7 @@ export interface ToggleElementProps {
   fieldName?: string;
   type?: string;
   default?: string | number | boolean;
-  disabled?: boolean;
+  disabled?: boolean | Function | Array<any> | object;
   id?: string;
   text?: string | object;
   labels?: object;
@@ -3349,6 +3356,30 @@ export declare class ElementMessage implements DefineComponent {
   form$: Vueform;
   Size: string;
   theme: object;
+}
+
+export declare class ElementRequired implements DefineComponent {
+  $props: ElementRequiredProps;
+
+  // Computed
+  View: string;
+  classesInstance: MergeClasses;
+  classes: object;
+  Templates: object;
+  template: object;
+  visible: boolean;
+  isSlot: boolean;
+
+  // Injects
+  el$: VueformElement;
+  form$: Vueform;
+  Size: string;
+  theme: object;
+
+  //Slots
+  $slots: {
+    'default': VNode[];
+  };
 }
 
 export declare class ElementText implements DefineComponent {
@@ -3845,6 +3876,8 @@ export declare class Vueform implements DefineComponent {
   steps: VueformProps['steps'];
   stepsControls: VueformProps['stepsControls'];
   validateOn: VueformProps['validateOn'];
+  scrollToInvalid: VueformProps['scrollToInvalid'];
+  showRequired: VueformProps['showRequired'];
   displayErrors: VueformProps['displayErrors'];
   displayMessages: VueformProps['displayMessages'];
   messages: VueformProps['messages'];
@@ -4269,7 +4302,6 @@ export declare class ButtonElement implements DefineComponent {
   infoId: string;
   errorId: string;
   aria: object;
-  el$: VueformElement;
   isStatic: boolean;
   isFileType: boolean;
   isArrayType: boolean;
@@ -4288,6 +4320,7 @@ export declare class ButtonElement implements DefineComponent {
   columnsClasses: object;
   available: boolean;
   isDisabled: boolean;
+  el$: VueformElement;
   fieldId: string;
   hasLabel: boolean;
   Label: string | Component;
@@ -4407,7 +4440,6 @@ export declare class CaptchaElement implements DefineComponent {
   options: CaptchaElementProps['options'];
 
   // Computed
-  el$: VueformElement;
   isStatic: boolean;
   isFileType: boolean;
   isArrayType: boolean;
@@ -4428,6 +4460,7 @@ export declare class CaptchaElement implements DefineComponent {
   requestData: object;
   defaultValue: any;
   isDisabled: boolean;
+  el$: VueformElement;
   empty: boolean;
   fieldId: string;
   hasFloating: boolean;
@@ -4441,6 +4474,7 @@ export declare class CaptchaElement implements DefineComponent {
   path: string;
   dataPath: string;
   flat: boolean;
+  isReadonly: boolean;
   elementSlots: object;
   fieldSlots: object;
   Templates: object;
@@ -4455,6 +4489,7 @@ export declare class CaptchaElement implements DefineComponent {
   validationRules: string | Array<any>;
   isDanger: boolean;
   isSuccess: boolean;
+  isRequired: boolean;
   value: any;
   model: any;
   isDefault: boolean;
@@ -4528,6 +4563,7 @@ export declare class CaptchaElement implements DefineComponent {
   $slots: {
     'label': VNode[];
     'info': VNode[];
+    'required': VNode[];
     'description': VNode[];
     'before': VNode[];
     'between': VNode[];
@@ -4595,7 +4631,6 @@ export declare class CheckboxElement implements DefineComponent {
   infoId: string;
   errorId: string;
   aria: object;
-  el$: VueformElement;
   isStatic: boolean;
   isFileType: boolean;
   isArrayType: boolean;
@@ -4614,6 +4649,7 @@ export declare class CheckboxElement implements DefineComponent {
   requestData: object;
   defaultValue: any;
   isDisabled: boolean;
+  el$: VueformElement;
   fieldId: string;
   genericName: string;
   hasLabel: boolean;
@@ -4639,6 +4675,7 @@ export declare class CheckboxElement implements DefineComponent {
   validationRules: string | Array<any>;
   isDanger: boolean;
   isSuccess: boolean;
+  isRequired: boolean;
   value: any;
   model: any;
   isDefault: boolean;
@@ -4712,6 +4749,7 @@ export declare class CheckboxElement implements DefineComponent {
     'default': VNode[];
     'label': VNode[];
     'info': VNode[];
+    'required': VNode[];
     'description': VNode[];
     'before': VNode[];
     'between': VNode[];
@@ -4779,7 +4817,6 @@ export declare class CheckboxgroupElement implements DefineComponent {
   errorId: string;
   aria: object;
   resolvedOptions: Array<any>;
-  el$: VueformElement;
   isStatic: boolean;
   isFileType: boolean;
   isArrayType: boolean;
@@ -4798,6 +4835,7 @@ export declare class CheckboxgroupElement implements DefineComponent {
   requestData: object;
   defaultValue: any;
   isDisabled: boolean;
+  el$: VueformElement;
   fieldId: string;
   genericName: string;
   hasLabel: boolean;
@@ -4822,6 +4860,7 @@ export declare class CheckboxgroupElement implements DefineComponent {
   validationRules: string | Array<any>;
   isDanger: boolean;
   isSuccess: boolean;
+  isRequired: boolean;
   value: any;
   model: any;
   isDefault: boolean;
@@ -4904,6 +4943,7 @@ export declare class CheckboxgroupElement implements DefineComponent {
     'checkbox': VNode[];
     'label': VNode[];
     'info': VNode[];
+    'required': VNode[];
     'description': VNode[];
     'before': VNode[];
     'between': VNode[];
@@ -4982,7 +5022,6 @@ export declare class DateElement implements DefineComponent {
   infoId: string;
   errorId: string;
   aria: object;
-  el$: VueformElement;
   isStatic: boolean;
   isFileType: boolean;
   isArrayType: boolean;
@@ -5004,6 +5043,7 @@ export declare class DateElement implements DefineComponent {
   loadDateFormat: string;
   defaultValue: any;
   isDisabled: boolean;
+  el$: VueformElement;
   empty: boolean;
   fieldId: string;
   hasFloating: boolean;
@@ -5017,6 +5057,7 @@ export declare class DateElement implements DefineComponent {
   dataPath: string;
   flat: boolean;
   Placeholder: string;
+  isReadonly: boolean;
   elementSlots: object;
   fieldSlots: object;
   Templates: object;
@@ -5031,6 +5072,7 @@ export declare class DateElement implements DefineComponent {
   validationRules: string | Array<any>;
   isDanger: boolean;
   isSuccess: boolean;
+  isRequired: boolean;
   value: any;
   model: any;
   isDefault: boolean;
@@ -5103,6 +5145,7 @@ export declare class DateElement implements DefineComponent {
   $slots: {
     'label': VNode[];
     'info': VNode[];
+    'required': VNode[];
     'description': VNode[];
     'before': VNode[];
     'between': VNode[];
@@ -5180,7 +5223,6 @@ export declare class DatesElement implements DefineComponent {
   infoId: string;
   errorId: string;
   aria: object;
-  el$: VueformElement;
   isStatic: boolean;
   isFileType: boolean;
   isArrayType: boolean;
@@ -5202,6 +5244,7 @@ export declare class DatesElement implements DefineComponent {
   loadDateFormat: string;
   defaultValue: any;
   isDisabled: boolean;
+  el$: VueformElement;
   empty: boolean;
   fieldId: string;
   hasFloating: boolean;
@@ -5215,6 +5258,7 @@ export declare class DatesElement implements DefineComponent {
   dataPath: string;
   flat: boolean;
   Placeholder: string;
+  isReadonly: boolean;
   elementSlots: object;
   fieldSlots: object;
   Templates: object;
@@ -5229,6 +5273,7 @@ export declare class DatesElement implements DefineComponent {
   validationRules: string | Array<any>;
   isDanger: boolean;
   isSuccess: boolean;
+  isRequired: boolean;
   value: any;
   model: any;
   isDefault: boolean;
@@ -5301,6 +5346,7 @@ export declare class DatesElement implements DefineComponent {
   $slots: {
     'label': VNode[];
     'info': VNode[];
+    'required': VNode[];
     'description': VNode[];
     'before': VNode[];
     'between': VNode[];
@@ -5376,7 +5422,6 @@ export declare class EditorElement implements DefineComponent {
   infoId: string;
   errorId: string;
   aria: object;
-  el$: VueformElement;
   isStatic: boolean;
   isFileType: boolean;
   isArrayType: boolean;
@@ -5397,6 +5442,7 @@ export declare class EditorElement implements DefineComponent {
   isDisabled: boolean;
   editorEndpoint: string;
   editorMethod: string;
+  el$: VueformElement;
   empty: boolean;
   fieldId: string;
   genericName: string;
@@ -5424,6 +5470,7 @@ export declare class EditorElement implements DefineComponent {
   validationRules: string | Array<any>;
   isDanger: boolean;
   isSuccess: boolean;
+  isRequired: boolean;
   value: any;
   model: any;
   isDefault: boolean;
@@ -5503,6 +5550,7 @@ export declare class EditorElement implements DefineComponent {
   $slots: {
     'label': VNode[];
     'info': VNode[];
+    'required': VNode[];
     'description': VNode[];
     'before': VNode[];
     'between': VNode[];
@@ -5582,7 +5630,6 @@ export declare class FileElement implements DefineComponent {
   infoId: string;
   errorId: string;
   aria: object;
-  el$: VueformElement;
   isStatic: boolean;
   isFileType: boolean;
   isArrayType: boolean;
@@ -5602,6 +5649,7 @@ export declare class FileElement implements DefineComponent {
   defaultValue: any;
   isDisabled: boolean;
   canDrop: boolean;
+  el$: VueformElement;
   empty: boolean;
   fieldId: string;
   endpoints: object;
@@ -5633,6 +5681,7 @@ export declare class FileElement implements DefineComponent {
   invalid: boolean;
   pending: boolean;
   busy: boolean;
+  isRequired: boolean;
   errors: Array<any>;
   error: string;
   validationRules: string | Array<any>;
@@ -5724,6 +5773,7 @@ export declare class FileElement implements DefineComponent {
   $slots: {
     'label': VNode[];
     'info': VNode[];
+    'required': VNode[];
     'description': VNode[];
     'before': VNode[];
     'between': VNode[];
@@ -5787,7 +5837,6 @@ export declare class GenericElement implements DefineComponent {
   infoId: string;
   errorId: string;
   aria: object;
-  el$: VueformElement;
   isStatic: boolean;
   isFileType: boolean;
   isArrayType: boolean;
@@ -5806,6 +5855,7 @@ export declare class GenericElement implements DefineComponent {
   requestData: object;
   defaultValue: any;
   isDisabled: boolean;
+  el$: VueformElement;
   empty: boolean;
   fieldId: string;
   genericName: string;
@@ -5832,6 +5882,7 @@ export declare class GenericElement implements DefineComponent {
   validationRules: string | Array<any>;
   isDanger: boolean;
   isSuccess: boolean;
+  isRequired: boolean;
   value: any;
   model: any;
   isDefault: boolean;
@@ -5904,6 +5955,7 @@ export declare class GenericElement implements DefineComponent {
   $slots: {
     'label': VNode[];
     'info': VNode[];
+    'required': VNode[];
     'description': VNode[];
     'before': VNode[];
     'between': VNode[];
@@ -5967,7 +6019,6 @@ export declare class GroupElement implements DefineComponent {
   infoId: string;
   errorId: string;
   aria: object;
-  el$: VueformElement;
   isStatic: boolean;
   isFileType: boolean;
   isArrayType: boolean;
@@ -5987,6 +6038,7 @@ export declare class GroupElement implements DefineComponent {
   data: object;
   requestData: object;
   defaultValue: any;
+  el$: VueformElement;
   fieldId: string;
   hasLabel: boolean;
   Label: string | Component;
@@ -6006,6 +6058,7 @@ export declare class GroupElement implements DefineComponent {
   pending: boolean;
   debouncing: boolean;
   busy: boolean;
+  isRequired: boolean;
   childrenErrors: Array<any>;
   errors: Array<any>;
   error: string;
@@ -6077,6 +6130,7 @@ export declare class GroupElement implements DefineComponent {
   $slots: {
     'label': VNode[];
     'info': VNode[];
+    'required': VNode[];
     'description': VNode[];
     'before': VNode[];
     'between': VNode[];
@@ -6111,7 +6165,6 @@ export declare class HiddenElement implements DefineComponent {
   meta: HiddenElementProps['meta'];
 
   // Computed
-  el$: VueformElement;
   isStatic: boolean;
   isFileType: boolean;
   isArrayType: boolean;
@@ -6124,6 +6177,7 @@ export declare class HiddenElement implements DefineComponent {
   data: object;
   requestData: object;
   defaultValue: any;
+  el$: VueformElement;
   empty: boolean;
   fieldId: string;
   genericName: string;
@@ -6144,6 +6198,7 @@ export declare class HiddenElement implements DefineComponent {
   validationRules: string | Array<any>;
   isDanger: boolean;
   isSuccess: boolean;
+  isRequired: boolean;
   value: any;
   model: any;
   isDefault: boolean;
@@ -6270,7 +6325,6 @@ export declare class ListElement implements DefineComponent {
   infoId: string;
   errorId: string;
   aria: object;
-  el$: VueformElement;
   isStatic: boolean;
   isFileType: boolean;
   isArrayType: boolean;
@@ -6295,6 +6349,7 @@ export declare class ListElement implements DefineComponent {
   length: number;
   defaultValue: any;
   isDisabled: boolean;
+  el$: VueformElement;
   empty: boolean;
   fieldId: string;
   genericName: string;
@@ -6320,6 +6375,7 @@ export declare class ListElement implements DefineComponent {
   pending: boolean;
   debouncing: boolean;
   busy: boolean;
+  isRequired: boolean;
   childrenErrors: Array<any>;
   errors: Array<any>;
   error: string;
@@ -6411,6 +6467,7 @@ export declare class ListElement implements DefineComponent {
   $slots: {
     'label': VNode[];
     'info': VNode[];
+    'required': VNode[];
     'description': VNode[];
     'before': VNode[];
     'between': VNode[];
@@ -6483,7 +6540,6 @@ export declare class LocationElement implements DefineComponent {
   infoId: string;
   errorId: string;
   aria: object;
-  el$: VueformElement;
   isStatic: boolean;
   isFileType: boolean;
   isArrayType: boolean;
@@ -6502,6 +6558,7 @@ export declare class LocationElement implements DefineComponent {
   requestData: object;
   defaultValue: any;
   isDisabled: boolean;
+  el$: VueformElement;
   empty: boolean;
   fieldId: string;
   hasFloating: boolean;
@@ -6515,6 +6572,7 @@ export declare class LocationElement implements DefineComponent {
   dataPath: string;
   flat: boolean;
   Placeholder: string;
+  isReadonly: boolean;
   elementSlots: object;
   fieldSlots: object;
   Templates: object;
@@ -6525,6 +6583,7 @@ export declare class LocationElement implements DefineComponent {
   pending: boolean;
   debouncing: boolean;
   busy: boolean;
+  isRequired: boolean;
   errors: Array<any>;
   error: string;
   validationRules: string | Array<any>;
@@ -6606,6 +6665,7 @@ export declare class LocationElement implements DefineComponent {
   $slots: {
     'label': VNode[];
     'info': VNode[];
+    'required': VNode[];
     'description': VNode[];
     'before': VNode[];
     'between': VNode[];
@@ -6695,7 +6755,6 @@ export declare class MultifileElement implements DefineComponent {
   infoId: string;
   errorId: string;
   aria: object;
-  el$: VueformElement;
   isStatic: boolean;
   isFileType: boolean;
   isArrayType: boolean;
@@ -6720,6 +6779,7 @@ export declare class MultifileElement implements DefineComponent {
   defaultValue: any;
   isDisabled: boolean;
   canDrop: boolean;
+  el$: VueformElement;
   empty: boolean;
   fieldId: string;
   genericName: string;
@@ -6748,6 +6808,7 @@ export declare class MultifileElement implements DefineComponent {
   pending: boolean;
   debouncing: boolean;
   busy: boolean;
+  isRequired: boolean;
   childrenErrors: Array<any>;
   errors: Array<any>;
   error: string;
@@ -6843,6 +6904,7 @@ export declare class MultifileElement implements DefineComponent {
   $slots: {
     'label': VNode[];
     'info': VNode[];
+    'required': VNode[];
     'description': VNode[];
     'before': VNode[];
     'between': VNode[];
@@ -6962,7 +7024,6 @@ export declare class MultiselectElement implements DefineComponent {
   errorId: string;
   aria: object;
   resolvedOptions: Array<any>;
-  el$: VueformElement;
   isStatic: boolean;
   isFileType: boolean;
   isArrayType: boolean;
@@ -6981,6 +7042,7 @@ export declare class MultiselectElement implements DefineComponent {
   requestData: object;
   defaultValue: any;
   isDisabled: boolean;
+  el$: VueformElement;
   empty: boolean;
   fieldId: string;
   hasFloating: boolean;
@@ -7009,6 +7071,7 @@ export declare class MultiselectElement implements DefineComponent {
   validationRules: string | Array<any>;
   isDanger: boolean;
   isSuccess: boolean;
+  isRequired: boolean;
   value: any;
   model: any;
   isDefault: boolean;
@@ -7112,6 +7175,7 @@ export declare class MultiselectElement implements DefineComponent {
     'clear': VNode[];
     'label': VNode[];
     'info': VNode[];
+    'required': VNode[];
     'description': VNode[];
     'before': VNode[];
     'between': VNode[];
@@ -7177,7 +7241,6 @@ export declare class ObjectElement implements DefineComponent {
   infoId: string;
   errorId: string;
   aria: object;
-  el$: VueformElement;
   isStatic: boolean;
   isFileType: boolean;
   isArrayType: boolean;
@@ -7197,6 +7260,7 @@ export declare class ObjectElement implements DefineComponent {
   data: object;
   requestData: object;
   defaultValue: any;
+  el$: VueformElement;
   fieldId: string;
   hasLabel: boolean;
   Label: string | Component;
@@ -7216,6 +7280,7 @@ export declare class ObjectElement implements DefineComponent {
   pending: boolean;
   debouncing: boolean;
   busy: boolean;
+  isRequired: boolean;
   childrenErrors: Array<any>;
   errors: Array<any>;
   error: string;
@@ -7289,6 +7354,7 @@ export declare class ObjectElement implements DefineComponent {
   $slots: {
     'label': VNode[];
     'info': VNode[];
+    'required': VNode[];
     'description': VNode[];
     'before': VNode[];
     'between': VNode[];
@@ -7365,7 +7431,6 @@ export declare class PhoneElement implements DefineComponent {
   infoId: string;
   errorId: string;
   aria: object;
-  el$: VueformElement;
   isStatic: boolean;
   isFileType: boolean;
   isArrayType: boolean;
@@ -7384,6 +7449,7 @@ export declare class PhoneElement implements DefineComponent {
   requestData: object;
   defaultValue: any;
   isDisabled: boolean;
+  el$: VueformElement;
   empty: boolean;
   fieldId: string;
   hasFloating: boolean;
@@ -7402,6 +7468,7 @@ export declare class PhoneElement implements DefineComponent {
   inputType: string;
   mask: object | undefined;
   Placeholder: string;
+  isReadonly: boolean;
   elementSlots: object;
   fieldSlots: object;
   Templates: object;
@@ -7417,6 +7484,7 @@ export declare class PhoneElement implements DefineComponent {
   validationRules: string | Array<any>;
   isDanger: boolean;
   isSuccess: boolean;
+  isRequired: boolean;
   value: any;
   model: any;
   isDefault: boolean;
@@ -7502,6 +7570,7 @@ export declare class PhoneElement implements DefineComponent {
   $slots: {
     'label': VNode[];
     'info': VNode[];
+    'required': VNode[];
     'description': VNode[];
     'before': VNode[];
     'between': VNode[];
@@ -7569,7 +7638,6 @@ export declare class RadioElement implements DefineComponent {
   infoId: string;
   errorId: string;
   aria: object;
-  el$: VueformElement;
   isStatic: boolean;
   isFileType: boolean;
   isArrayType: boolean;
@@ -7588,6 +7656,7 @@ export declare class RadioElement implements DefineComponent {
   requestData: object;
   defaultValue: any;
   isDisabled: boolean;
+  el$: VueformElement;
   fieldId: string;
   genericName: string;
   hasLabel: boolean;
@@ -7614,6 +7683,7 @@ export declare class RadioElement implements DefineComponent {
   validationRules: string | Array<any>;
   isDanger: boolean;
   isSuccess: boolean;
+  isRequired: boolean;
   value: any;
   model: any;
   isDefault: boolean;
@@ -7687,6 +7757,7 @@ export declare class RadioElement implements DefineComponent {
     'default': VNode[];
     'label': VNode[];
     'info': VNode[];
+    'required': VNode[];
     'description': VNode[];
     'before': VNode[];
     'between': VNode[];
@@ -7754,7 +7825,6 @@ export declare class RadiogroupElement implements DefineComponent {
   errorId: string;
   aria: object;
   resolvedOptions: Array<any>;
-  el$: VueformElement;
   isStatic: boolean;
   isFileType: boolean;
   isArrayType: boolean;
@@ -7773,6 +7843,7 @@ export declare class RadiogroupElement implements DefineComponent {
   requestData: object;
   defaultValue: any;
   isDisabled: boolean;
+  el$: VueformElement;
   fieldId: string;
   genericName: string;
   hasLabel: boolean;
@@ -7797,6 +7868,7 @@ export declare class RadiogroupElement implements DefineComponent {
   validationRules: string | Array<any>;
   isDanger: boolean;
   isSuccess: boolean;
+  isRequired: boolean;
   value: any;
   model: any;
   isDefault: boolean;
@@ -7874,6 +7946,7 @@ export declare class RadiogroupElement implements DefineComponent {
     'radio': VNode[];
     'label': VNode[];
     'info': VNode[];
+    'required': VNode[];
     'description': VNode[];
     'before': VNode[];
     'between': VNode[];
@@ -7988,7 +8061,6 @@ export declare class SelectElement implements DefineComponent {
   errorId: string;
   aria: object;
   resolvedOptions: Array<any>;
-  el$: VueformElement;
   isStatic: boolean;
   isFileType: boolean;
   isArrayType: boolean;
@@ -8007,6 +8079,7 @@ export declare class SelectElement implements DefineComponent {
   requestData: object;
   defaultValue: any;
   isDisabled: boolean;
+  el$: VueformElement;
   empty: boolean;
   fieldId: string;
   hasFloating: boolean;
@@ -8035,6 +8108,7 @@ export declare class SelectElement implements DefineComponent {
   validationRules: string | Array<any>;
   isDanger: boolean;
   isSuccess: boolean;
+  isRequired: boolean;
   value: any;
   model: any;
   isDefault: boolean;
@@ -8136,6 +8210,7 @@ export declare class SelectElement implements DefineComponent {
     'clear': VNode[];
     'label': VNode[];
     'info': VNode[];
+    'required': VNode[];
     'description': VNode[];
     'before': VNode[];
     'between': VNode[];
@@ -8219,7 +8294,6 @@ export declare class SignatureElement implements DefineComponent {
   infoId: string;
   errorId: string;
   aria: object;
-  el$: VueformElement;
   isStatic: boolean;
   isFileType: boolean;
   isArrayType: boolean;
@@ -8238,6 +8312,7 @@ export declare class SignatureElement implements DefineComponent {
   requestData: object;
   defaultValue: any;
   isDisabled: boolean;
+  el$: VueformElement;
   empty: boolean;
   fieldId: string;
   genericName: string;
@@ -8250,6 +8325,7 @@ export declare class SignatureElement implements DefineComponent {
   dataPath: string;
   flat: boolean;
   Placeholder: string;
+  isReadonly: boolean;
   fontFamilies: Array<any>;
   fontWeights: Array<any>;
   uploaded: boolean;
@@ -8306,6 +8382,7 @@ export declare class SignatureElement implements DefineComponent {
   validationRules: string | Array<any>;
   isDanger: boolean;
   isSuccess: boolean;
+  isRequired: boolean;
   value: any;
   model: any;
   isDefault: boolean;
@@ -8435,6 +8512,7 @@ export declare class SignatureElement implements DefineComponent {
   $slots: {
     'label': VNode[];
     'info': VNode[];
+    'required': VNode[];
     'description': VNode[];
     'before': VNode[];
     'between': VNode[];
@@ -8512,7 +8590,6 @@ export declare class SliderElement implements DefineComponent {
   infoId: string;
   errorId: string;
   aria: object;
-  el$: VueformElement;
   isStatic: boolean;
   isFileType: boolean;
   isArrayType: boolean;
@@ -8531,6 +8608,7 @@ export declare class SliderElement implements DefineComponent {
   requestData: object;
   defaultValue: any;
   isDisabled: boolean;
+  el$: VueformElement;
   fieldId: string;
   genericName: string;
   hasLabel: boolean;
@@ -8550,6 +8628,7 @@ export declare class SliderElement implements DefineComponent {
   invalid: boolean;
   pending: boolean;
   busy: boolean;
+  isRequired: boolean;
   errors: Array<any>;
   error: string;
   validationRules: string | Array<any>;
@@ -8625,6 +8704,7 @@ export declare class SliderElement implements DefineComponent {
   $slots: {
     'label': VNode[];
     'info': VNode[];
+    'required': VNode[];
     'description': VNode[];
     'before': VNode[];
     'between': VNode[];
@@ -8694,7 +8774,6 @@ export declare class StaticElement implements DefineComponent {
   infoId: string;
   errorId: string;
   aria: object;
-  el$: VueformElement;
   isStatic: boolean;
   isFileType: boolean;
   isArrayType: boolean;
@@ -8709,6 +8788,7 @@ export declare class StaticElement implements DefineComponent {
   columnsClassesService: Columns;
   columnsClasses: object;
   available: boolean;
+  el$: VueformElement;
   fieldId: string;
   hasLabel: boolean;
   Label: string | Component;
@@ -8842,7 +8922,6 @@ export declare class TEditorElement implements DefineComponent {
   infoId: string;
   errorId: string;
   aria: object;
-  el$: VueformElement;
   isStatic: boolean;
   isFileType: boolean;
   isArrayType: boolean;
@@ -8863,6 +8942,7 @@ export declare class TEditorElement implements DefineComponent {
   isDisabled: boolean;
   editorEndpoint: string;
   editorMethod: string;
+  el$: VueformElement;
   empty: boolean;
   fieldId: string;
   genericName: string;
@@ -8892,6 +8972,7 @@ export declare class TEditorElement implements DefineComponent {
   validationRules: string | Array<any>;
   isDanger: boolean;
   isSuccess: boolean;
+  isRequired: boolean;
   value: any;
   model: any;
   isDefault: boolean;
@@ -8971,6 +9052,7 @@ export declare class TEditorElement implements DefineComponent {
   $slots: {
     'label': VNode[];
     'info': VNode[];
+    'required': VNode[];
     'description': VNode[];
     'before': VNode[];
     'between': VNode[];
@@ -9047,7 +9129,6 @@ export declare class TTextElement implements DefineComponent {
   infoId: string;
   errorId: string;
   aria: object;
-  el$: VueformElement;
   isStatic: boolean;
   isFileType: boolean;
   isArrayType: boolean;
@@ -9066,6 +9147,7 @@ export declare class TTextElement implements DefineComponent {
   requestData: object;
   defaultValue: any;
   isDisabled: boolean;
+  el$: VueformElement;
   empty: boolean;
   fieldId: string;
   hasFloating: boolean;
@@ -9082,6 +9164,7 @@ export declare class TTextElement implements DefineComponent {
   dataPath: string;
   flat: boolean;
   Placeholder: string;
+  isReadonly: boolean;
   elementSlots: object;
   fieldSlots: object;
   Templates: object;
@@ -9097,6 +9180,7 @@ export declare class TTextElement implements DefineComponent {
   validationRules: string | Array<any>;
   isDanger: boolean;
   isSuccess: boolean;
+  isRequired: boolean;
   value: any;
   model: any;
   isDefault: boolean;
@@ -9179,6 +9263,7 @@ export declare class TTextElement implements DefineComponent {
   $slots: {
     'label': VNode[];
     'info': VNode[];
+    'required': VNode[];
     'description': VNode[];
     'before': VNode[];
     'between': VNode[];
@@ -9256,7 +9341,6 @@ export declare class TTextareaElement implements DefineComponent {
   infoId: string;
   errorId: string;
   aria: object;
-  el$: VueformElement;
   isStatic: boolean;
   isFileType: boolean;
   isArrayType: boolean;
@@ -9275,6 +9359,7 @@ export declare class TTextareaElement implements DefineComponent {
   requestData: object;
   defaultValue: any;
   isDisabled: boolean;
+  el$: VueformElement;
   empty: boolean;
   fieldId: string;
   hasFloating: boolean;
@@ -9290,6 +9375,7 @@ export declare class TTextareaElement implements DefineComponent {
   dataPath: string;
   flat: boolean;
   Placeholder: string;
+  isReadonly: boolean;
   elementSlots: object;
   fieldSlots: object;
   Templates: object;
@@ -9305,6 +9391,7 @@ export declare class TTextareaElement implements DefineComponent {
   validationRules: string | Array<any>;
   isDanger: boolean;
   isSuccess: boolean;
+  isRequired: boolean;
   value: any;
   model: any;
   isDefault: boolean;
@@ -9388,6 +9475,7 @@ export declare class TTextareaElement implements DefineComponent {
   $slots: {
     'label': VNode[];
     'info': VNode[];
+    'required': VNode[];
     'description': VNode[];
     'before': VNode[];
     'between': VNode[];
@@ -9508,7 +9596,6 @@ export declare class TagsElement implements DefineComponent {
   errorId: string;
   aria: object;
   resolvedOptions: Array<any>;
-  el$: VueformElement;
   isStatic: boolean;
   isFileType: boolean;
   isArrayType: boolean;
@@ -9527,6 +9614,7 @@ export declare class TagsElement implements DefineComponent {
   requestData: object;
   defaultValue: any;
   isDisabled: boolean;
+  el$: VueformElement;
   empty: boolean;
   fieldId: string;
   hasFloating: boolean;
@@ -9555,6 +9643,7 @@ export declare class TagsElement implements DefineComponent {
   validationRules: string | Array<any>;
   isDanger: boolean;
   isSuccess: boolean;
+  isRequired: boolean;
   value: any;
   model: any;
   isDefault: boolean;
@@ -9660,6 +9749,7 @@ export declare class TagsElement implements DefineComponent {
     'clear': VNode[];
     'label': VNode[];
     'info': VNode[];
+    'required': VNode[];
     'description': VNode[];
     'before': VNode[];
     'between': VNode[];
@@ -9737,7 +9827,6 @@ export declare class TextElement implements DefineComponent {
   infoId: string;
   errorId: string;
   aria: object;
-  el$: VueformElement;
   isStatic: boolean;
   isFileType: boolean;
   isArrayType: boolean;
@@ -9756,6 +9845,7 @@ export declare class TextElement implements DefineComponent {
   requestData: object;
   defaultValue: any;
   isDisabled: boolean;
+  el$: VueformElement;
   empty: boolean;
   fieldId: string;
   hasFloating: boolean;
@@ -9770,6 +9860,7 @@ export declare class TextElement implements DefineComponent {
   dataPath: string;
   flat: boolean;
   Placeholder: string;
+  isReadonly: boolean;
   elementSlots: object;
   fieldSlots: object;
   Templates: object;
@@ -9785,6 +9876,7 @@ export declare class TextElement implements DefineComponent {
   validationRules: string | Array<any>;
   isDanger: boolean;
   isSuccess: boolean;
+  isRequired: boolean;
   value: any;
   model: any;
   isDefault: boolean;
@@ -9867,6 +9959,7 @@ export declare class TextElement implements DefineComponent {
   $slots: {
     'label': VNode[];
     'info': VNode[];
+    'required': VNode[];
     'description': VNode[];
     'before': VNode[];
     'between': VNode[];
@@ -9944,7 +10037,6 @@ export declare class TextareaElement implements DefineComponent {
   infoId: string;
   errorId: string;
   aria: object;
-  el$: VueformElement;
   isStatic: boolean;
   isFileType: boolean;
   isArrayType: boolean;
@@ -9963,6 +10055,7 @@ export declare class TextareaElement implements DefineComponent {
   requestData: object;
   defaultValue: any;
   isDisabled: boolean;
+  el$: VueformElement;
   empty: boolean;
   fieldId: string;
   hasFloating: boolean;
@@ -9976,6 +10069,7 @@ export declare class TextareaElement implements DefineComponent {
   dataPath: string;
   flat: boolean;
   Placeholder: string;
+  isReadonly: boolean;
   elementSlots: object;
   fieldSlots: object;
   Templates: object;
@@ -9991,6 +10085,7 @@ export declare class TextareaElement implements DefineComponent {
   validationRules: string | Array<any>;
   isDanger: boolean;
   isSuccess: boolean;
+  isRequired: boolean;
   value: any;
   model: any;
   isDefault: boolean;
@@ -10074,6 +10169,7 @@ export declare class TextareaElement implements DefineComponent {
   $slots: {
     'label': VNode[];
     'info': VNode[];
+    'required': VNode[];
     'description': VNode[];
     'before': VNode[];
     'between': VNode[];
@@ -10145,7 +10241,6 @@ export declare class ToggleElement implements DefineComponent {
   infoId: string;
   errorId: string;
   aria: object;
-  el$: VueformElement;
   isStatic: boolean;
   isFileType: boolean;
   isArrayType: boolean;
@@ -10164,6 +10259,7 @@ export declare class ToggleElement implements DefineComponent {
   requestData: object;
   defaultValue: any;
   isDisabled: boolean;
+  el$: VueformElement;
   fieldId: string;
   genericName: string;
   hasLabel: boolean;
@@ -10189,6 +10285,7 @@ export declare class ToggleElement implements DefineComponent {
   validationRules: string | Array<any>;
   isDanger: boolean;
   isSuccess: boolean;
+  isRequired: boolean;
   value: any;
   model: any;
   isDefault: boolean;
@@ -10263,6 +10360,7 @@ export declare class ToggleElement implements DefineComponent {
     'default': VNode[];
     'label': VNode[];
     'info': VNode[];
+    'required': VNode[];
     'description': VNode[];
     'before': VNode[];
     'between': VNode[];
@@ -10284,6 +10382,7 @@ declare module 'vue' {
     ElementLayoutInline: typeof ElementLayoutInline;
     ElementLoader: typeof ElementLoader;
     ElementMessage: typeof ElementMessage;
+    ElementRequired: typeof ElementRequired;
     ElementText: typeof ElementText;
     FormElements: typeof FormElements;
     FormErrors: typeof FormErrors;

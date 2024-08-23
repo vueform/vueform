@@ -881,13 +881,6 @@ export default {
   "baseElement": {
     "base": {
       "computed": {
-        "el$": {
-          "public": true,
-          "types": [
-            "VueformElement"
-          ],
-          "description": "The element's component."
-        },
         "isStatic": {
           "public": false,
           "types": [
@@ -985,13 +978,6 @@ export default {
     },
     "list": {
       "computed": {
-        "el$": {
-          "public": true,
-          "types": [
-            "VueformElement"
-          ],
-          "description": "The element's component."
-        },
         "isStatic": {
           "public": false,
           "types": [
@@ -1089,13 +1075,6 @@ export default {
     },
     "object": {
       "computed": {
-        "el$": {
-          "public": true,
-          "types": [
-            "VueformElement"
-          ],
-          "description": "The element's component."
-        },
         "isStatic": {
           "public": false,
           "types": [
@@ -1193,13 +1172,6 @@ export default {
     },
     "group": {
       "computed": {
-        "el$": {
-          "public": true,
-          "types": [
-            "VueformElement"
-          ],
-          "description": "The element's component."
-        },
         "isStatic": {
           "public": false,
           "types": [
@@ -1297,13 +1269,6 @@ export default {
     },
     "file": {
       "computed": {
-        "el$": {
-          "public": true,
-          "types": [
-            "VueformElement"
-          ],
-          "description": "The element's component."
-        },
         "isStatic": {
           "public": false,
           "types": [
@@ -1401,13 +1366,6 @@ export default {
     },
     "static": {
       "computed": {
-        "el$": {
-          "public": true,
-          "types": [
-            "VueformElement"
-          ],
-          "description": "The element's component."
-        },
         "isStatic": {
           "public": false,
           "types": [
@@ -1505,13 +1463,6 @@ export default {
     },
     "checkboxgroup": {
       "computed": {
-        "el$": {
-          "public": true,
-          "types": [
-            "VueformElement"
-          ],
-          "description": "The element's component."
-        },
         "isStatic": {
           "public": false,
           "types": [
@@ -1609,13 +1560,6 @@ export default {
     },
     "dates": {
       "computed": {
-        "el$": {
-          "public": true,
-          "types": [
-            "VueformElement"
-          ],
-          "description": "The element's component."
-        },
         "isStatic": {
           "public": false,
           "types": [
@@ -1713,13 +1657,6 @@ export default {
     },
     "multiselect": {
       "computed": {
-        "el$": {
-          "public": true,
-          "types": [
-            "VueformElement"
-          ],
-          "description": "The element's component."
-        },
         "isStatic": {
           "public": false,
           "types": [
@@ -1817,13 +1754,6 @@ export default {
     },
     "tags": {
       "computed": {
-        "el$": {
-          "public": true,
-          "types": [
-            "VueformElement"
-          ],
-          "description": "The element's component."
-        },
         "isStatic": {
           "public": false,
           "types": [
@@ -3928,6 +3858,19 @@ export default {
       }
     }
   },
+  "el$": {
+    "base": {
+      "computed": {
+        "el$": {
+          "public": true,
+          "types": [
+            "VueformElement"
+          ],
+          "description": "The element's component."
+        }
+      }
+    }
+  },
   "empty": {
     "base": {
       "computed": {
@@ -5286,6 +5229,19 @@ export default {
       }
     }
   },
+  "readonly": {
+    "base": {
+      "computed": {
+        "isReadonly": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is readonly."
+        }
+      }
+    }
+  },
   "removing": {
     "base": {
       "data": {
@@ -6382,6 +6338,13 @@ export default {
             "boolean"
           ],
           "description": "Whether the element has been filled in successfully."
+        },
+        "isRequired": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is required (has required rule)."
         }
       },
       "methods": {
@@ -6540,6 +6503,13 @@ export default {
             "boolean"
           ],
           "description": "Whether the element has been filled in successfully."
+        },
+        "isRequired": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is required (has required rule)."
         }
       },
       "methods": {
@@ -6662,6 +6632,13 @@ export default {
             "boolean"
           ],
           "description": "Whether the element or any of its children is `pending` or `debouncing`."
+        },
+        "isRequired": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is required (has required rule)."
         },
         "childrenErrors": {
           "public": false,
@@ -6859,6 +6836,13 @@ export default {
             "boolean"
           ],
           "description": "Whether the field has been filled in successfully."
+        },
+        "isRequired": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is required (has required rule)."
         }
       },
       "methods": {
@@ -6993,6 +6977,13 @@ export default {
             "boolean"
           ],
           "description": "Whether the element is `pending`."
+        },
+        "isRequired": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is required (has required rule)."
         },
         "errors": {
           "public": true,
@@ -7130,6 +7121,13 @@ export default {
             "boolean"
           ],
           "description": "Whether the element is `pending`, `debouncing`, `uploading` or `removing`."
+        },
+        "isRequired": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is required (has required rule)."
         },
         "errors": {
           "public": true,
@@ -7274,6 +7272,13 @@ export default {
             "boolean"
           ],
           "description": "Whether the element is `pending` or `debouncing`."
+        },
+        "isRequired": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is required (has required rule)."
         },
         "errors": {
           "public": true,
@@ -7432,6 +7437,13 @@ export default {
             "boolean"
           ],
           "description": "Whether the element or any of its children is `pending` or `debouncing`."
+        },
+        "isRequired": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is required (has required rule)."
         },
         "childrenErrors": {
           "public": false,
@@ -7593,6 +7605,13 @@ export default {
             "boolean"
           ],
           "description": "Whether the element or any of its children is `pending` or `debouncing`."
+        },
+        "isRequired": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is required (has required rule)."
         },
         "childrenErrors": {
           "public": false,

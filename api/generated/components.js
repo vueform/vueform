@@ -1567,6 +1567,97 @@ module.exports = {
     "slots": {},
     "views": []
   },
+  "ElementRequired": {
+    "inject": {
+      "el$": {
+        "public": true,
+        "types": [
+          "VueformElement"
+        ],
+        "description": "The parent element's component."
+      },
+      "form$": {
+        "public": true,
+        "types": [
+          "Vueform"
+        ],
+        "description": "The root form's component."
+      },
+      "Size": {
+        "public": true,
+        "types": [
+          "string"
+        ],
+        "description": "The size of the component."
+      },
+      "theme": {
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "The global theme object, which contains all the default templates and classes."
+      }
+    },
+    "computed": {
+      "View": {
+        "public": true,
+        "types": [
+          "string"
+        ],
+        "description": "The name of the resolved view for the component. This one should be used to determine the component's view in class functions."
+      },
+      "classesInstance": {
+        "public": false,
+        "types": [
+          "MergeClasses"
+        ],
+        "description": "The classes instance (for testing purpose)."
+      },
+      "classes": {
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "The component's classes."
+      },
+      "Templates": {
+        "public": false,
+        "types": [
+          "object"
+        ],
+        "description": "The list of templates available to the component."
+      },
+      "template": {
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "The component's template."
+      },
+      "visible": {
+        "public": true,
+        "types": [
+          "boolean"
+        ],
+        "description": "Whether the required sign (*) should be visible."
+      },
+      "isSlot": {
+        "public": false,
+        "types": [
+          "boolean"
+        ],
+        "description": "Whether the required is provided as a slot."
+      }
+    },
+    "props": {},
+    "events": {},
+    "slots": {
+      "default": {
+        "description": ""
+      }
+    },
+    "views": []
+  },
   "ElementText": {
     "inject": {
       "el$": {
@@ -4750,6 +4841,20 @@ module.exports = {
         "default": null,
         "types": [
           "string"
+        ]
+      },
+      "scrollToInvalid": {
+        "required": false,
+        "default": null,
+        "types": [
+          "boolean"
+        ]
+      },
+      "showRequired": {
+        "required": false,
+        "default": null,
+        "types": [
+          "array"
         ]
       },
       "displayErrors": {
