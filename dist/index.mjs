@@ -1,5 +1,5 @@
 /*!
- * Vueform v1.10.3 (https://github.com/vueform/vueform)
+ * Vueform v1.10.4 (https://github.com/vueform/vueform)
  * Copyright (c) 2024 Adam Berecz <adam@vueform.com>
  * Licensed under the MIT License
  */
@@ -10134,7 +10134,7 @@ function shouldApplyPlugin (name, plugin) {
 }
 
 var name = "@vueform/vueform";
-var version$1 = "1.10.3";
+var version$1 = "1.10.4";
 var description = "Open-Source Form Framework for Vue";
 var homepage = "https://vueform.com";
 var license = "MIT";
@@ -26983,7 +26983,7 @@ var base$D = function base(props, context, dependencies) {
     var parentDefaultValue;
     if (parent && parent.value && !parent.value.mounted) {
       parentDefaultValue = parent.value.defaultValue[name.value];
-    } else if (!form$.value.mounted && form$.value.options.default[name.value] !== undefined) {
+    } else if (form$.value.options.default[name.value] !== undefined) {
       parentDefaultValue = form$.value.options.default[name.value];
     }
     if (parentDefaultValue !== undefined) {
@@ -27026,7 +27026,7 @@ var text$1 = function text(props, context, dependencies) {
     var parentDefaultValue;
     if (parent && parent.value && !parent.value.mounted) {
       parentDefaultValue = parent.value.defaultValue[name.value];
-    } else if (!form$.value.mounted && typeof form$.value.options.default[name.value] !== undefined) {
+    } else if (typeof form$.value.options.default[name.value] !== undefined) {
       parentDefaultValue = form$.value.options.default[name.value];
     }
     if (parentDefaultValue !== undefined) {
@@ -27064,7 +27064,7 @@ var object$2 = function object(props, context, dependencies) {
     var parentDefaultValue;
     if (parent && parent.value && !parent.value.mounted) {
       parentDefaultValue = parent.value.defaultValue[name.value];
-    } else if (!form$.value.mounted && form$.value.options.default[name.value]) {
+    } else if (form$.value.options.default[name.value]) {
       parentDefaultValue = form$.value.options.default[name.value];
     }
     if (parentDefaultValue !== undefined) {
@@ -27095,7 +27095,7 @@ var group$2 = function group(props, context, dependencies) {
     var parentDefaultValue = {};
     if (parent && parent.value && !parent.value.mounted) {
       parentDefaultValue = parent.value.defaultValue;
-    } else if (!form$.value.mounted && form$.value.options.default) {
+    } else if (form$.value.options.default) {
       //@todo:adam
       parentDefaultValue = form$.value.options.default;
     }
@@ -27123,7 +27123,7 @@ var multilingual$2 = function multilingual(props, context, dependencies) {
     var parentDefaultValue;
     if (parent && parent.value && !parent.value.mounted) {
       parentDefaultValue = parent.value.defaultValue[name.value];
-    } else if (!form$.value.mounted && form$.value.options.default[name.value]) {
+    } else if (form$.value.options.default[name.value]) {
       parentDefaultValue = form$.value.options.default[name.value];
     }
     if (parentDefaultValue !== undefined) {

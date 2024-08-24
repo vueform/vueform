@@ -1,5 +1,21 @@
 [//]: # (Don't use <tags>)
 
+## v1.10.4
+
+> `2024-08-24`
+
+### 🎉 Feature
+- Conditional `readonly` and `disabled` for elements.
+- Pass function / ref / computed to `readonly` and `disabled` for elements.
+- Conditional / function / ref / computed for form `disabled`.
+- Optionally show * for label, placeholder and floating when the element has `required` rule.
+- Scroll to first invalid element.
+- Scroll to top on next step.
+- Added Bulgarian locale (thanks @itwseood 🙏)
+
+### 🐞 Bug Fixes
+- Fixed `useDefault` warn for form$.mounted.
+
 ## v1.10.3
 
 > `2024-08-05`
