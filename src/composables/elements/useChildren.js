@@ -75,7 +75,11 @@ const object = function(props, context, dependencies, /* istanbul ignore next */
       let newChildren$Array = []
       
       each(newValue, (child, name) => {
-        newChildren$Array.push(children$Array.value[children$Array.value.map(e$ => normalize(e$.name)).indexOf(normalize(name))])
+        const child$ = children$Array.value[children$Array.value.map(e$ => normalize(e$.name)).indexOf(normalize(name))]
+
+        if (child$) {
+          newChildren$Array.push(child$)
+        }
       })
       
       children$Array.value = newChildren$Array
