@@ -138,6 +138,7 @@ export default {
         ...attrs.value,
         placeholder: placeholder.value,
         disabled: disabled.value,
+        contentEditable: !disabled.value,
         id: id.value,
         input: `editor-input-${id.value}`,
       }

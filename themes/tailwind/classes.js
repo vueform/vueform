@@ -168,7 +168,7 @@ const editor = {
   input: 'border-solid transition-input duration-200 form-border-width-input form-shadow-input',
   input_focused: 'form-focus',
   input_default: inputStates.default,
-  input_disabled: inputStates.disabled,
+  input_disabled: 'form-bg-disabled form-color-disabled form-border-color-input form-editor-disabled',
   input_success: inputStates.success,
   input_danger: inputStates.danger,
   input_sm: 'form-radius-large-sm form-editor-sm',

@@ -68,6 +68,7 @@
       float: left;
       border: 0;
       background: none;
+      cursor: pointer;
 
       &.trix-active {
         background-color: var(--vf-bg-selected);
@@ -76,20 +77,6 @@
 
       &:not(.trix-active):hover {
         background-color: var(--vf-bg-selected);
-
-        .is-disabled & {
-          background: transparent;
-          cursor: default;
-        }
-      }
-
-      &:not(:disabled) {
-        cursor: pointer;
-      }
-
-      .is-disabled & {
-        cursor: default;
-        pointer-events: none;
       }
     }
 
@@ -416,10 +403,7 @@
       border-radius: 0;
       border-width: 0;
       outline: 0;
-
-      &:not(:disabled) {
-        cursor: pointer;
-      }
+      cursor: pointer;
     }
 
     .trix-button--remove {
