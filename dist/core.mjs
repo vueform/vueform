@@ -1,5 +1,5 @@
 /*!
- * Vueform v1.10.4 (https://github.com/vueform/vueform)
+ * Vueform v1.10.5 (https://github.com/vueform/vueform)
  * Copyright (c) 2024 Adam Berecz <adam@vueform.com>
  * Licensed under the MIT License
  */
@@ -10134,7 +10134,7 @@ function shouldApplyPlugin (name, plugin) {
 }
 
 var name = "@vueform/vueform";
-var version$1 = "1.10.4";
+var version$1 = "1.10.5";
 var description = "Open-Source Form Framework for Vue";
 var homepage = "https://vueform.com";
 var license = "MIT";
@@ -22165,6 +22165,7 @@ var EditorWrapper = {
       return _objectSpread2$1(_objectSpread2$1({}, attrs.value), {}, {
         placeholder: placeholder.value,
         disabled: disabled.value,
+        contentEditable: !disabled.value,
         id: id.value,
         input: "editor-input-".concat(id.value)
       });
@@ -31599,7 +31600,10 @@ var object = function object(props, context, dependencies) {
     watch(schema, newValue => {
       var newChildren$Array = [];
       each(newValue, (child, name) => {
-        newChildren$Array.push(children$Array.value[children$Array.value.map(e$ => normalize(e$.name)).indexOf(normalize(name))]);
+        var child$ = children$Array.value[children$Array.value.map(e$ => normalize(e$.name)).indexOf(normalize(name))];
+        if (child$) {
+          newChildren$Array.push(child$);
+        }
       });
       children$Array.value = newChildren$Array;
     }, {

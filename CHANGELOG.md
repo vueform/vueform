@@ -1,5 +1,13 @@
 [//]: # (Don't use <tags>)
 
+## v1.10.5
+
+> `2024-09-10`
+
+### 🐞 Bug Fixes
+- Skip undefined child when setting object children array.
+- Disabled Editor element fix #325.
+
 ## v1.10.4
 
 > `2024-08-24`
