@@ -50,6 +50,7 @@ const base = function(props, context, dependencies = {})
     locale,
     validateOn,
     scrollToInvalid,
+    scrollOnNext,
     showRequired,
     forceLabels,
     floatPlaceholders,
@@ -323,7 +324,7 @@ const base = function(props, context, dependencies = {})
 
     // Prop options will override Component.data() options
     const override = {
-      columns, languages, language, theme, method, validateOn, scrollToInvalid, showRequired,
+      columns, languages, language, theme, method, validateOn, showRequired,
       messages, formKey, multilingual, formatLoad, formatData, prepare, default: default_, formData, templates,
       addClass, removeClass, replaceClass, overrideClass,
       addClasses, removeClasses, replaceClasses, overrideClasses, presets,
@@ -334,7 +335,7 @@ const base = function(props, context, dependencies = {})
     // (otherwise will use the value defined in `defaults` or `undefined` if not)
     const ifPropSet = {
       stepsControls, displayErrors, displayMessages, forceLabels, disabled, loading,
-      floatPlaceholders, endpoint, forceNumbers,
+      floatPlaceholders, endpoint, forceNumbers, scrollOnNext, scrollToInvalid,
       onChange: _onChange.value,
       onReset: _onReset.value,
       onClear: _onClear.value,
@@ -364,6 +365,7 @@ const base = function(props, context, dependencies = {})
       method: typeof baseConfig.value.config.endpoints.submit === 'function' ? null : baseConfig.value.config.endpoints.submit.method,
       validateOn: baseConfig.value.config.validateOn,
       scrollToInvalid: baseConfig.value.config.scrollToInvalid,
+      scrollOnNext: baseConfig.value.config.scrollOnNext,
       showRequired: baseConfig.value.config.showRequired,
       displayErrors: baseConfig.value.config.displayErrors,
       displayMessages: baseConfig.value.config.displayMessages,

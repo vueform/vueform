@@ -309,7 +309,7 @@ export default {
       next$.value.enable()
       next$.value.select()
 
-      if (form$.value.$el.scrollIntoView) {
+      if (form$.value.options.scrollOnNext && form$.value.$el.scrollIntoView) {
         nextTick(() => {
           form$.value.$el.scrollIntoView({ behavior: 'smooth' })
         })

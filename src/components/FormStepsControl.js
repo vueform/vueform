@@ -182,6 +182,7 @@ export default {
       }
       
       if (current$.value.invalid) {
+        form$.value.scrollToFirstInvalid()
         return
       }
 

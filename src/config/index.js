@@ -54,6 +54,11 @@ const config = {
   showRequired: [],
 
   /**
+   * Steps
+   */
+  scrollOnNext: true,
+
+  /**
    * Data
    */
   forceNumbers: false,

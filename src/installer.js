@@ -106,7 +106,7 @@ export default function(config = baseConfig, components = {}, rules = {}, servic
         'columns', 'forceLabels', 'displayErrors', 'floatPlaceholders', 'displayErrors', 'displayMessages',
         'language', 'locale', 'fallbackLocale', 'orderFrom', 'validateOn', 'formData', 'beforeSend',
         'locationProvider', 'classHelpers', 'env', 'usePresets', 'plugins', 'size', 'apiKey', 'forceNumbers',
-        'scrollToInvalid', 'showRequired',
+        'scrollToInvalid', 'showRequired', 'scrollOnNext',
       ], (attr) => {
           if (config[attr] !== undefined) {
             this.options.config[attr] = config[attr]

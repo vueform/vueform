@@ -78,6 +78,7 @@ export default {
       convertFormData,
       submit,
       scrollToFirstInvalid,
+      scrollOnNext,
       send,
       cancel,
       disableValidation,
@@ -168,6 +169,7 @@ export default {
       convertFormData,
       submit,
       scrollToFirstInvalid,
+      scrollOnNext,
       send,
       cancel,
       disableValidation,
@@ -217,6 +219,11 @@ export default {
       required: false,
       default: null,
       '@default': true,
+    },
+    scrollOnNext: {
+      type: Boolean,
+      required: false,
+      default: null
     },
 
     validateOn: {
