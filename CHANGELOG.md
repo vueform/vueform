@@ -1,5 +1,15 @@
 [//]: # (Don't use <tags>)
 
+## v1.10.6
+
+> `2024-09-11`
+
+### 🎉 Feature
+- Be able to disable scroll-to-top feature on step next by setting `scrollOnNext` in config or at `Vueform` component #321.
+
+### 🐞 Bug Fixes
+- Disable `uploadTempFile` endpoint from config fix #317.
+
 ## v1.10.5
 
 > `2024-09-10`

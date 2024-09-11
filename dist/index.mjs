@@ -1,5 +1,5 @@
 /*!
- * Vueform v1.10.5 (https://github.com/vueform/vueform)
+ * Vueform v1.10.6 (https://github.com/vueform/vueform)
  * Copyright (c) 2024 Adam Berecz <adam@vueform.com>
  * Licensed under the MIT License
  */
@@ -7045,6 +7045,7 @@ var base$1d = function base(props, context) {
     locale,
     validateOn,
     scrollToInvalid,
+    scrollOnNext,
     showRequired,
     forceLabels,
     floatPlaceholders,
@@ -7317,7 +7318,6 @@ var base$1d = function base(props, context) {
       theme,
       method,
       validateOn,
-      scrollToInvalid,
       showRequired,
       messages,
       formKey,
@@ -7355,6 +7355,8 @@ var base$1d = function base(props, context) {
       floatPlaceholders,
       endpoint,
       forceNumbers,
+      scrollOnNext,
+      scrollToInvalid,
       onChange: _onChange.value,
       onReset: _onReset.value,
       onClear: _onClear.value,
@@ -7384,6 +7386,7 @@ var base$1d = function base(props, context) {
       method: typeof baseConfig.value.config.endpoints.submit === 'function' ? null : baseConfig.value.config.endpoints.submit.method,
       validateOn: baseConfig.value.config.validateOn,
       scrollToInvalid: baseConfig.value.config.scrollToInvalid,
+      scrollOnNext: baseConfig.value.config.scrollOnNext,
       showRequired: baseConfig.value.config.showRequired,
       displayErrors: baseConfig.value.config.displayErrors,
       displayMessages: baseConfig.value.config.displayMessages,
@@ -8692,6 +8695,7 @@ var VueformComponent = {
       convertFormData,
       submit,
       scrollToFirstInvalid,
+      scrollOnNext,
       send,
       cancel,
       disableValidation,
@@ -8781,6 +8785,7 @@ var VueformComponent = {
       convertFormData,
       submit,
       scrollToFirstInvalid,
+      scrollOnNext,
       send,
       cancel,
       disableValidation,
@@ -8829,6 +8834,11 @@ var VueformComponent = {
       required: false,
       default: null,
       '@default': true
+    },
+    scrollOnNext: {
+      type: Boolean,
+      required: false,
+      default: null
     },
     validateOn: {
       type: String,
@@ -10134,7 +10144,7 @@ function shouldApplyPlugin (name, plugin) {
 }
 
 var name = "@vueform/vueform";
-var version$1 = "1.10.5";
+var version$1 = "1.10.6";
 var description = "Open-Source Form Framework for Vue";
 var homepage = "https://vueform.com";
 var license = "MIT";
@@ -14131,6 +14141,10 @@ var config = {
   scrollToInvalid: true,
   showRequired: [],
   /**
+   * Steps
+   */
+  scrollOnNext: true,
+  /**
    * Data
    */
   forceNumbers: false,
@@ -14270,7 +14284,7 @@ function installer () {
       });
 
       // replace
-      each(['columns', 'forceLabels', 'displayErrors', 'floatPlaceholders', 'displayErrors', 'displayMessages', 'language', 'locale', 'fallbackLocale', 'orderFrom', 'validateOn', 'formData', 'beforeSend', 'locationProvider', 'classHelpers', 'env', 'usePresets', 'plugins', 'size', 'apiKey', 'forceNumbers', 'scrollToInvalid', 'showRequired'], attr => {
+      each(['columns', 'forceLabels', 'displayErrors', 'floatPlaceholders', 'displayErrors', 'displayMessages', 'language', 'locale', 'fallbackLocale', 'orderFrom', 'validateOn', 'formData', 'beforeSend', 'locationProvider', 'classHelpers', 'env', 'usePresets', 'plugins', 'size', 'apiKey', 'forceNumbers', 'scrollToInvalid', 'showRequired', 'scrollOnNext'], attr => {
         if (config[attr] !== undefined) {
           this.options.config[attr] = config[attr];
         }
@@ -16466,7 +16480,7 @@ var FormSteps = {
       fire('next', next$.value);
       next$.value.enable();
       next$.value.select();
-      if (form$.value.$el.scrollIntoView) {
+      if (form$.value.options.scrollOnNext && form$.value.$el.scrollIntoView) {
         nextTick(() => {
           form$.value.$el.scrollIntoView({
             behavior: 'smooth'
@@ -16988,6 +17002,7 @@ var FormStepsControl = {
           yield current$.value.validate();
         }
         if (current$.value.invalid) {
+          form$.value.scrollToFirstInvalid();
           return;
         }
         current$.value.complete();
@@ -30794,6 +30809,9 @@ var base$r = function base(props, context, dependencies) {
     var endpoints = {};
     Object.keys(propEndpoints).forEach(name => {
       var endpoint = configEndpoints[name];
+      if (endpoint === false) {
+        endpoint = f => f;
+      }
       if (urls.value[name]) {
         endpoint = {
           url: urls.value[name],

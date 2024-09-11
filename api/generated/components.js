@@ -4836,6 +4836,13 @@ module.exports = {
           "boolean"
         ]
       },
+      "scrollOnNext": {
+        "required": false,
+        "default": null,
+        "types": [
+          "boolean"
+        ]
+      },
       "validateOn": {
         "required": false,
         "default": null,

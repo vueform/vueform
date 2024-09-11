@@ -1092,6 +1092,7 @@ export interface VueformProps {
   tabs?: object;
   steps?: object;
   stepsControls?: boolean;
+  scrollOnNext?: boolean;
   validateOn?: string;
   scrollToInvalid?: boolean;
   showRequired?: Array<any>;
@@ -3875,6 +3876,7 @@ export declare class Vueform implements DefineComponent {
   tabs: VueformProps['tabs'];
   steps: VueformProps['steps'];
   stepsControls: VueformProps['stepsControls'];
+  scrollOnNext: VueformProps['scrollOnNext'];
   validateOn: VueformProps['validateOn'];
   scrollToInvalid: VueformProps['scrollToInvalid'];
   showRequired: VueformProps['showRequired'];
