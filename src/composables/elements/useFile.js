@@ -85,6 +85,10 @@ const base = function(props, context, dependencies)
     
     Object.keys(propEndpoints).forEach((name) => {
       let endpoint = configEndpoints[name]
+
+      if (endpoint === false) {
+        endpoint = f => f
+      }
       
       if (urls.value[name]) {
         endpoint = {
@@ -344,7 +348,7 @@ const base = function(props, context, dependencies)
       hasUploadError.value = false
       
       let response
-      
+
       if (typeof endpoints.value.uploadTempFile === 'function') {
         response = await endpoints.value.uploadTempFile(value.value, el$.value)
       } else {
