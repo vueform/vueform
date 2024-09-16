@@ -1,5 +1,12 @@
 [//]: # (Don't use <tags>)
 
+## v1.10.7
+
+> `2024-09-16`
+
+### 🎉 Feature
+- Bumping Multiselect dependency.
+
 ## v1.10.6
 
 > `2024-09-11`

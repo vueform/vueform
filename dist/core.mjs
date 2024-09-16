@@ -6324,7 +6324,7 @@ function dataEquals(a, b) {
   return isEqual_1(_dataToComperable(a), _dataToComperable(b));
 }
 
-var findScrollableParent = (element => {
+var findScrollableParent = element => {
   var currentElement = element.parentElement;
   while (currentElement && currentElement !== document.body) {
     var overflowY = window.getComputedStyle(currentElement).overflowY;
@@ -6337,9 +6337,9 @@ var findScrollableParent = (element => {
     currentElement = currentElement.parentElement;
   }
   return null;
-});
+};
 
-var scrollIntoView = ((element, scrollableParent) => {
+var scrollIntoView = (element, scrollableParent) => {
   if (!scrollableParent) {
     return;
   }
@@ -6352,7 +6352,7 @@ var scrollIntoView = ((element, scrollableParent) => {
     left: offsetLeft,
     behavior: 'smooth'
   });
-});
+};
 
 function isComponentRegistered (vm, component) {
   return vm.appContext !== undefined ? typeof vm.appContext.app.component(component) !== 'string' : !!vm.proxy.$root.$options.components[component];
@@ -9695,7 +9695,7 @@ var Validator = class {
           resolve();
           clearTimeout(_this4.debouncer);
         }
-        _this4.debouncer = setTimeout( /*#__PURE__*/_asyncToGenerator(function* () {
+        _this4.debouncer = setTimeout(/*#__PURE__*/_asyncToGenerator(function* () {
           yield _this4._validate(value);
           _this4.debouncer = null;
           resolve();
@@ -10144,7 +10144,7 @@ function shouldApplyPlugin (name, plugin) {
 }
 
 var name = "@vueform/vueform";
-var version$1 = "1.10.6";
+var version$1 = "1.10.7";
 var description = "Open-Source Form Framework for Vue";
 var homepage = "https://vueform.com";
 var license = "MIT";
@@ -10295,7 +10295,7 @@ var devDependencies = {
 var dependencies = {
 	"@popperjs/core": "^2.11.8",
 	"@vueform/country-phones": "^1.0.3",
-	"@vueform/multiselect": "^2.6.9",
+	"@vueform/multiselect": "^2.6.10",
 	"@vueform/slider": "^2.1.10",
 	"@vueform/toggle": "^2.1.4",
 	axios: "^1.7.2",
@@ -17923,7 +17923,7 @@ var ElementLabelFloating = {
      */
     var floating = computed(() => {
       var _form$$value$options$;
-      var floating = localize(el$.value.floating || ( /* istanbul ignore next: tested, but not covered */form$.value.options.floatPlaceholders ? el$.value.placeholder : null), config$.value, form$.value);
+      var floating = localize(el$.value.floating || (/* istanbul ignore next: tested, but not covered */form$.value.options.floatPlaceholders ? el$.value.placeholder : null), config$.value, form$.value);
       if (el$.value.isRequired && ((_form$$value$options$ = form$.value.options.showRequired) === null || _form$$value$options$ === void 0 ? void 0 : _form$$value$options$.indexOf('floating')) !== -1) {
         floating += '*';
       }
@@ -18010,7 +18010,7 @@ var ElementLabel = {
      */
     var isSlot = computed(() => {
       var _el$$value$slots, _el$$value$$slots, _el$$value$$scopedSlo;
-      return !!((_el$$value$slots = el$.value.slots) !== null && _el$$value$slots !== void 0 && _el$$value$slots.label || (_el$$value$$slots = el$.value.$slots) !== null && _el$$value$$slots !== void 0 && _el$$value$$slots.label || ( /* istanbul ignore next: Vue2 is not checked */form$.value.$vueform.vueVersion === 2 && (_el$$value$$scopedSlo = el$.value.$scopedSlots) !== null && _el$$value$$scopedSlo !== void 0 && _el$$value$$scopedSlo.label));
+      return !!((_el$$value$slots = el$.value.slots) !== null && _el$$value$slots !== void 0 && _el$$value$slots.label || (_el$$value$$slots = el$.value.$slots) !== null && _el$$value$$slots !== void 0 && _el$$value$$slots.label || (/* istanbul ignore next: Vue2 is not checked */form$.value.$vueform.vueVersion === 2 && (_el$$value$$scopedSlo = el$.value.$scopedSlots) !== null && _el$$value$$scopedSlo !== void 0 && _el$$value$$scopedSlo.label));
     });
     return {
       el$,
@@ -18098,7 +18098,7 @@ var ElementInfo = {
      */
     var isSlot = computed(() => {
       var _el$$value$slots, _el$$value$$slots, _el$$value$$scopedSlo;
-      return !!((_el$$value$slots = el$.value.slots) !== null && _el$$value$slots !== void 0 && _el$$value$slots.info || (_el$$value$$slots = el$.value.$slots) !== null && _el$$value$$slots !== void 0 && _el$$value$$slots.info || ( /* istanbul ignore next: Vue2 is not checked */form$.value.$vueform.vueVersion === 2 && (_el$$value$$scopedSlo = el$.value.$scopedSlots) !== null && _el$$value$$scopedSlo !== void 0 && _el$$value$$scopedSlo.info));
+      return !!((_el$$value$slots = el$.value.slots) !== null && _el$$value$slots !== void 0 && _el$$value$slots.info || (_el$$value$$slots = el$.value.$slots) !== null && _el$$value$$slots !== void 0 && _el$$value$$slots.info || (/* istanbul ignore next: Vue2 is not checked */form$.value.$vueform.vueVersion === 2 && (_el$$value$$scopedSlo = el$.value.$scopedSlots) !== null && _el$$value$$scopedSlo !== void 0 && _el$$value$$scopedSlo.info));
     });
 
     // =============== METHODS ==============
@@ -18210,7 +18210,7 @@ var ElementDescription = {
      */
     var isSlot = computed(() => {
       var _el$$value$slots, _el$$value$$slots, _el$$value$$scopedSlo;
-      return !!((_el$$value$slots = el$.value.slots) !== null && _el$$value$slots !== void 0 && _el$$value$slots.description || (_el$$value$$slots = el$.value.$slots) !== null && _el$$value$$slots !== void 0 && _el$$value$$slots.description || ( /* istanbul ignore next: Vue2 is not checked */form$.value.$vueform.vueVersion === 2 && (_el$$value$$scopedSlo = el$.value.$scopedSlots) !== null && _el$$value$$scopedSlo !== void 0 && _el$$value$$scopedSlo.description));
+      return !!((_el$$value$slots = el$.value.slots) !== null && _el$$value$slots !== void 0 && _el$$value$slots.description || (_el$$value$$slots = el$.value.$slots) !== null && _el$$value$$slots !== void 0 && _el$$value$$slots.description || (/* istanbul ignore next: Vue2 is not checked */form$.value.$vueform.vueVersion === 2 && (_el$$value$$scopedSlo = el$.value.$scopedSlots) !== null && _el$$value$$scopedSlo !== void 0 && _el$$value$$scopedSlo.description));
     });
     return {
       el$,
@@ -18361,7 +18361,7 @@ var ElementRequired = {
      */
     var isSlot = computed(() => {
       var _el$$value$slots, _el$$value$$slots, _el$$value$$scopedSlo;
-      return !!((_el$$value$slots = el$.value.slots) !== null && _el$$value$slots !== void 0 && _el$$value$slots.required || (_el$$value$$slots = el$.value.$slots) !== null && _el$$value$$slots !== void 0 && _el$$value$$slots.required || ( /* istanbul ignore next: Vue2 is not checked */form$.value.$vueform.vueVersion === 2 && (_el$$value$$scopedSlo = el$.value.$scopedSlots) !== null && _el$$value$$scopedSlo !== void 0 && _el$$value$$scopedSlo.required));
+      return !!((_el$$value$slots = el$.value.slots) !== null && _el$$value$slots !== void 0 && _el$$value$slots.required || (_el$$value$$slots = el$.value.$slots) !== null && _el$$value$$slots !== void 0 && _el$$value$$slots.required || (/* istanbul ignore next: Vue2 is not checked */form$.value.$vueform.vueVersion === 2 && (_el$$value$$scopedSlo = el$.value.$scopedSlots) !== null && _el$$value$$scopedSlo !== void 0 && _el$$value$$scopedSlo.required));
     });
     return {
       el$,
@@ -18431,7 +18431,7 @@ var ElementText = {
      */
     var isSlot = computed(() => {
       var _el$$value$slots, _el$$value$$slots, _el$$value$$scopedSlo;
-      return !!((_el$$value$slots = el$.value.slots) !== null && _el$$value$slots !== void 0 && _el$$value$slots[type.value] || (_el$$value$$slots = el$.value.$slots) !== null && _el$$value$$slots !== void 0 && _el$$value$$slots[type.value] || ( /* istanbul ignore next: Vue2 is not checked */form$.value.$vueform.vueVersion === 2 && (_el$$value$$scopedSlo = el$.value.$scopedSlots) !== null && _el$$value$$scopedSlo !== void 0 && _el$$value$$scopedSlo[type.value]));
+      return !!((_el$$value$slots = el$.value.slots) !== null && _el$$value$slots !== void 0 && _el$$value$slots[type.value] || (_el$$value$$slots = el$.value.$slots) !== null && _el$$value$$slots !== void 0 && _el$$value$$slots[type.value] || (/* istanbul ignore next: Vue2 is not checked */form$.value.$vueform.vueVersion === 2 && (_el$$value$$scopedSlo = el$.value.$scopedSlots) !== null && _el$$value$$scopedSlo !== void 0 && _el$$value$$scopedSlo[type.value]));
     });
     return {
       el$,
@@ -18660,7 +18660,7 @@ var ElementAddon = {
     var isSlot = computed(() => {
       var _el$$value$slots, _el$$value$$slots, _el$$value$$scopedSlo;
       // @todo:adam last condition is a duplicate of the first one
-      return !!((_el$$value$slots = el$.value.slots) !== null && _el$$value$slots !== void 0 && _el$$value$slots["addon-".concat(type.value)] || (_el$$value$$slots = el$.value.$slots) !== null && _el$$value$$slots !== void 0 && _el$$value$$slots["addon-".concat(type.value)] || ( /* istanbul ignore next: Vue2 is not checked */form$.value.$vueform.vueVersion === 2 && (_el$$value$$scopedSlo = el$.value.$scopedSlots) !== null && _el$$value$$scopedSlo !== void 0 && _el$$value$$scopedSlo["addon-".concat(type.value)]) || /* istanbul ignore next */el$.value.slots["addon-".concat(type.value)]);
+      return !!((_el$$value$slots = el$.value.slots) !== null && _el$$value$slots !== void 0 && _el$$value$slots["addon-".concat(type.value)] || (_el$$value$$slots = el$.value.$slots) !== null && _el$$value$$slots !== void 0 && _el$$value$$slots["addon-".concat(type.value)] || (/* istanbul ignore next: Vue2 is not checked */form$.value.$vueform.vueVersion === 2 && (_el$$value$$scopedSlo = el$.value.$scopedSlots) !== null && _el$$value$$scopedSlo !== void 0 && _el$$value$$scopedSlo["addon-".concat(type.value)]) || /* istanbul ignore next */el$.value.slots["addon-".concat(type.value)]);
     });
     return {
       el$,
@@ -22380,7 +22380,7 @@ var base$11 = function base(props, context, dependencies) {
    */
   var hasLabel = computed(() => {
     var _el$$value$$slots, _el$$value$$scopedSlo;
-    return !!(form$.value.options.forceLabels || label.value || el$.value.slots.label || (_el$$value$$slots = el$.value.$slots) !== null && _el$$value$$slots !== void 0 && _el$$value$$slots.label || ( /* istanbul ignore next: vue2 */form$.value.$vueform.vueVersion === 2 && (_el$$value$$scopedSlo = el$.value.$scopedSlots) !== null && _el$$value$$scopedSlo !== void 0 && _el$$value$$scopedSlo.label));
+    return !!(form$.value.options.forceLabels || label.value || el$.value.slots.label || (_el$$value$$slots = el$.value.$slots) !== null && _el$$value$$slots !== void 0 && _el$$value$$slots.label || (/* istanbul ignore next: vue2 */form$.value.$vueform.vueVersion === 2 && (_el$$value$$scopedSlo = el$.value.$scopedSlots) !== null && _el$$value$$scopedSlo !== void 0 && _el$$value$$scopedSlo.label));
   });
 
   /**
@@ -24519,7 +24519,7 @@ var base$M = function base(props, context, dependencies) {
       } else {
         value = internalValue.value;
       }
-      return value !== undefined ? value : ( /* istanbul ignore next: value is never undefined if default is set */defaultValue.value instanceof File ? defaultValue.value : cloneDeep_1(defaultValue.value));
+      return value !== undefined ? value : (/* istanbul ignore next: value is never undefined if default is set */defaultValue.value instanceof File ? defaultValue.value : cloneDeep_1(defaultValue.value));
     },
     set: ((_options$value2 = options.value) === null || _options$value2 === void 0 ? void 0 : _options$value2.set) || function (val) {
       if (form$.value.isSync) {
@@ -24785,7 +24785,7 @@ var date$3 = function date(props, context, dependencies) {
         } else {
           value = internalValue.value;
         }
-        return value !== undefined ? value : ( /* istanbul ignore next: can not be undefined @todo:adam can not be file */defaultValue.value instanceof File ? defaultValue.value : cloneDeep_1(defaultValue.value));
+        return value !== undefined ? value : (/* istanbul ignore next: can not be undefined @todo:adam can not be file */defaultValue.value instanceof File ? defaultValue.value : cloneDeep_1(defaultValue.value));
       },
       set(val) {
         // If the value is not a Date object check if it is matching the value format
@@ -24863,7 +24863,7 @@ var dates$4 = function dates(props, context, dependencies) {
         } else {
           value = internalValue.value;
         }
-        return value !== undefined ? value : ( /* istanbul ignore next: can not be undefined @todo:adam can not be file */defaultValue.value instanceof File ? defaultValue.value : cloneDeep_1(defaultValue.value));
+        return value !== undefined ? value : (/* istanbul ignore next: can not be undefined @todo:adam can not be file */defaultValue.value instanceof File ? defaultValue.value : cloneDeep_1(defaultValue.value));
       },
       set(val) {
         if (!Array.isArray(val)) {
@@ -29409,11 +29409,11 @@ var base$w = function base(props, context, dependencies) {
 
   var hasAddonBefore = computed(() => {
     var _el$$value$$slots, _el$$value$$scopedSlo;
-    return !!(addons.value.before || (_el$$value$$slots = el$.value.$slots) !== null && _el$$value$$slots !== void 0 && _el$$value$$slots['addon-before'] || ( /* istanbul ignore next */form$.value.$vueform.vueVersion === 2 && (_el$$value$$scopedSlo = el$.value.$scopedSlots) !== null && _el$$value$$scopedSlo !== void 0 && _el$$value$$scopedSlo['addon-before']) || slots.value['addon-before']);
+    return !!(addons.value.before || (_el$$value$$slots = el$.value.$slots) !== null && _el$$value$$slots !== void 0 && _el$$value$$slots['addon-before'] || (/* istanbul ignore next */form$.value.$vueform.vueVersion === 2 && (_el$$value$$scopedSlo = el$.value.$scopedSlots) !== null && _el$$value$$scopedSlo !== void 0 && _el$$value$$scopedSlo['addon-before']) || slots.value['addon-before']);
   });
   var hasAddonAfter = computed(() => {
     var _el$$value$$slots2, _el$$value$$scopedSlo2;
-    return !!(addons.value.after || (_el$$value$$slots2 = el$.value.$slots) !== null && _el$$value$$slots2 !== void 0 && _el$$value$$slots2['addon-after'] || ( /* istanbul ignore next */form$.value.$vueform.vueVersion === 2 && (_el$$value$$scopedSlo2 = el$.value.$scopedSlots) !== null && _el$$value$$scopedSlo2 !== void 0 && _el$$value$$scopedSlo2['addon-after']) || slots.value['addon-after']);
+    return !!(addons.value.after || (_el$$value$$slots2 = el$.value.$slots) !== null && _el$$value$$slots2 !== void 0 && _el$$value$$slots2['addon-after'] || (/* istanbul ignore next */form$.value.$vueform.vueVersion === 2 && (_el$$value$$scopedSlo2 = el$.value.$scopedSlots) !== null && _el$$value$$scopedSlo2 !== void 0 && _el$$value$$scopedSlo2['addon-after']) || slots.value['addon-after']);
   });
   return {
     hasAddonBefore,
@@ -31229,7 +31229,7 @@ var base$p = function base(props, context, dependencies) {
    */
   var canDrop = computed(() => {
     var div = document.createElement('div');
-    return ('draggable' in div || ( /* istanbul ignore next: failsafe only, can not influence div from outside */'ondragstart' in div && 'ondrop' in div)) && 'FormData' in window && 'FileReader' in window;
+    return ('draggable' in div || (/* istanbul ignore next: failsafe only, can not influence div from outside */'ondragstart' in div && 'ondrop' in div)) && 'FormData' in window && 'FileReader' in window;
   });
 
   // =============== METHODS ==============
@@ -31707,7 +31707,7 @@ var HiddenElement = {
 };
 
 /**!
- * Sortable 1.15.2
+ * Sortable 1.15.3
  * @author	RubaXa   <trash@rubaxa.org>
  * @author	owenm    <owen23355@gmail.com>
  * @license MIT
@@ -31811,7 +31811,7 @@ function _objectWithoutProperties(source, excluded) {
   return target;
 }
 
-var version = "1.15.2";
+var version = "1.15.3";
 
 function userAgent(pattern) {
   if (typeof window !== 'undefined' && window.navigator) {
@@ -33130,7 +33130,7 @@ Sortable.prototype = /** @lends Sortable.prototype */{
           }
           target = parent; // store last element
         }
-        /* jshint boss:true */ while (parent = parent.parentNode);
+        /* jshint boss:true */ while (parent = getParentOrHost(parent));
       }
       _unhideGhostForTarget();
     }
@@ -34036,7 +34036,8 @@ Sortable.utils = {
   nextTick: _nextTick,
   cancelNextTick: _cancelNextTick,
   detectDirection: _detectDirection,
-  getChild: getChild
+  getChild: getChild,
+  expando: expando
 };
 
 /**
@@ -39398,7 +39399,7 @@ var SelectElement = {
 };
 
 /*!
- * Signature Pad v5.0.2 | https://github.com/szimek/signature_pad
+ * Signature Pad v5.0.3 | https://github.com/szimek/signature_pad
  * (c) 2024 Szymon Nowak | Released under the MIT license
  */
 
@@ -39445,7 +39446,7 @@ class Bezier {
         const l2 = Math.sqrt(dx2 * dx2 + dy2 * dy2);
         const dxm = m1.x - m2.x;
         const dym = m1.y - m2.y;
-        const k = l2 / (l1 + l2);
+        const k = l1 + l2 == 0 ? 0 : l2 / (l1 + l2);
         const cm = { x: m2.x + dxm * k, y: m2.y + dym * k };
         const tx = s2.x - cm.x;
         const ty = s2.y - cm.y;
@@ -41265,7 +41266,7 @@ function useSignature (props, context, dependencies) {
     if (debouncer.value) {
       clearTimeout(debouncer.value);
     }
-    debouncer.value = setTimeout( /*#__PURE__*/_asyncToGenerator(function* () {
+    debouncer.value = setTimeout(/*#__PURE__*/_asyncToGenerator(function* () {
       try {
         yield method.call();
       } catch (e) {
