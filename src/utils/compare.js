@@ -149,5 +149,13 @@ export default function(actual, operator, expected, el$, form$) {
 
     case '*':
       return includes(actual, expected)
+
+    default:
+      const customOperators = form$.$vueform.config.operators || {}
+
+      if (customOperators[operator]) {
+        return customOperators[operator](actual, expected, el$, form$)
+      }
+
   }
 }

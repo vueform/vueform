@@ -64,6 +64,11 @@ const config = {
   forceNumbers: false,
 
   /**
+   * Condition
+   */
+  operators: {},
+
+  /**
    * Submitting
    */
   endpoints: {

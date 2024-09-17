@@ -75,7 +75,7 @@ export default function(config = baseConfig, components = {}, rules = {}, servic
 
       // merge (config)
       each([
-        'languages', 'services', 'presets', 'views',
+        'languages', 'services', 'presets', 'views', 'operators',
       ], (attr) => {
           if (config[attr] !== undefined) {
             this.options.config[attr] = Object.assign({}, this.options.config[attr], config[attr])
