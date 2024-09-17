@@ -1,5 +1,5 @@
 /*!
- * Vueform v1.10.6 (https://github.com/vueform/vueform)
+ * Vueform v1.10.8 (https://github.com/vueform/vueform)
  * Copyright (c) 2024 Adam Berecz <adam@vueform.com>
  * Licensed under the MIT License
  */
@@ -10144,7 +10144,7 @@ function shouldApplyPlugin (name, plugin) {
 }
 
 var name = "@vueform/vueform";
-var version$1 = "1.10.7";
+var version$1 = "1.10.8";
 var description = "Open-Source Form Framework for Vue";
 var homepage = "https://vueform.com";
 var license = "MIT";
@@ -10804,6 +10804,11 @@ function compare (actual, operator, expected, el$, form$) {
       return endsWith_1(actual, expected);
     case '*':
       return includes_1(actual, expected);
+    default:
+      var customOperators = form$.$vueform.config.operators || {};
+      if (customOperators[operator]) {
+        return customOperators[operator](actual, expected, el$, form$);
+      }
   }
 }
 
@@ -14149,6 +14154,10 @@ var config = {
    */
   forceNumbers: false,
   /**
+   * Condition
+   */
+  operators: {},
+  /**
    * Submitting
    */
   endpoints: {
@@ -14265,7 +14274,7 @@ function installer () {
       });
 
       // merge (config)
-      each(['languages', 'services', 'presets', 'views'], attr => {
+      each(['languages', 'services', 'presets', 'views', 'operators'], attr => {
         if (config[attr] !== undefined) {
           this.options.config[attr] = Object.assign({}, this.options.config[attr], config[attr]);
         }
