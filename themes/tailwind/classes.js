@@ -598,6 +598,9 @@ export default {
   LocationElement: {
     ...text,
   },
+  MatrixElement: {
+    container: '',
+  },
   MultifileElement: {
     container: 'form-text-type',
     list: '',

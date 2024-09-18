@@ -42,6 +42,7 @@ import GroupElement from './../blank/templates/elements/GroupElement.vue'
 import HiddenElement from './../blank/templates/elements/HiddenElement.vue'
 import ListElement from './../blank/templates/elements/ListElement.vue'
 import LocationElement from './templates/elements/LocationElement.vue'
+import MatrixElement from './../blank/templates/elements/MatrixElement.vue'
 import MultifileElement from './../blank/templates/elements/MultifileElement.vue'
 import MultiselectElement from './../blank/templates/elements/MultiselectElement.vue'
 import ObjectElement from './../blank/templates/elements/ObjectElement.vue'
@@ -121,6 +122,7 @@ const theme = {
     HiddenElement,
     ListElement,
     LocationElement,
+    MatrixElement,
     MultifileElement,
     MultiselectElement,
     ObjectElement,
@@ -202,6 +204,7 @@ export {
   HiddenElement,
   ListElement,
   LocationElement,
+  MatrixElement,
   MultifileElement,
   MultiselectElement,
   ObjectElement,
