@@ -1,7 +1,40 @@
 <template>
   <component :is="elementLayout" ref="container">
     <template #element>
-      Matrix
+      <table class="w-full">
+        <thead>
+          <tr>
+            <th class="text-center"></th>
+            <th
+              v-for="(column, i) in resolvedColumns"
+              class="text-center"
+              v-html="column.label"
+            ></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="(row, i) in resolvedRows">
+            <td
+              v-html="row.label"
+              class="text-left"
+              style="vertical-align: center;"
+            ></td>
+            <td
+              v-for="(column, i) in resolvedColumns"
+              class="text-center items-center justify-center"
+            >
+              <label>
+                <RadioElement
+                  :name="`${row.value}_${column.value}`"
+                  :radio-value="true"
+                  :radio-name="row.value"
+                  add-class="inline-flex"
+                />
+              </label>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </template>
     <!-- Default element slots -->
     <template v-for="(component, slot) in elementSlots" #[slot]><slot :name="slot" :el$="el$"><component :is="component" :el$="el$"/></slot></template>
