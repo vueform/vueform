@@ -9,7 +9,7 @@ export default {
       required: true
     },
     value: {
-      type: [String, Number],
+      type: [String, Number, Boolean],
       required: true
     },
     items: {
