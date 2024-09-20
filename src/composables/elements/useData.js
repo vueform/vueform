@@ -567,6 +567,7 @@ const list = function(props, context, dependencies, options)
   
   // ============ DEPENDENCIES =============
   
+  const el$ = dependencies.el$
   const form$ = dependencies.form$
   const children$ = dependencies.children$
   const children$Array = dependencies.children$Array
@@ -647,7 +648,7 @@ const list = function(props, context, dependencies, options)
     
     let index = value.value.length - 1
     
-    fire('add', index, newValue, value.value)
+    fire('add', index, newValue, value.value, el$.value)
     
     if (focus) {
       nextTick(() => {
@@ -670,7 +671,7 @@ const list = function(props, context, dependencies, options)
     
     refreshOrderStore(value.value)
     
-    fire('remove', index, value.value)
+    fire('remove', index, value.value, el$.value)
   }
   
   const load = async (val, format = false) => {
