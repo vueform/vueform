@@ -1,5 +1,12 @@
 [//]: # (Don't use <tags>)
 
+## v1.10.10
+
+> `2024-09-20`
+
+### 🎉 Feature
+- Added boolean type to radiogroup element.
+
 ## v1.10.9
 
 > `2024-09-20`
