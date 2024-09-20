@@ -46,7 +46,7 @@ export default {
     },
     default: {
       required: false,
-      type: [String, Number],
+      type: [String, Number, Boolean],
       default: null
     },
     disabled: {
