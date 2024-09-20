@@ -13,7 +13,7 @@ export default class size extends Validator {
   } 
 
   check(value) {
-    if (!value) {
+    if (typeof value !== 'number' && !value) {
       return true
     }
 
