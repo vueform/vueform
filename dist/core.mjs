@@ -1,5 +1,5 @@
 /*!
- * Vueform v1.10.8 (https://github.com/vueform/vueform)
+ * Vueform v1.10.9 (https://github.com/vueform/vueform)
  * Copyright (c) 2024 Adam Berecz <adam@vueform.com>
  * Licensed under the MIT License
  */
@@ -10144,7 +10144,7 @@ function shouldApplyPlugin (name, plugin) {
 }
 
 var name = "@vueform/vueform";
-var version$1 = "1.10.8";
+var version$1 = "1.10.9";
 var description = "Open-Source Form Framework for Vue";
 var homepage = "https://vueform.com";
 var license = "MIT";
@@ -11098,7 +11098,7 @@ class between extends Validator {
     return this.attributes[1];
   }
   check(value) {
-    if (!value) {
+    if (typeof value !== 'number' && !value) {
       return true;
     }
     var size = this.size(value);
@@ -13010,7 +13010,7 @@ class max extends Validator {
     return this.attributes[0];
   }
   check(value) {
-    if (!value) {
+    if (typeof value !== 'number' && !value) {
       return true;
     }
     return this.size(value) <= this.max;
@@ -13071,7 +13071,7 @@ class min$1 extends Validator {
     return this.attributes[0];
   }
   check(value) {
-    if (!value) {
+    if (typeof value !== 'number' && !value) {
       return true;
     }
     return this.size(value) >= this.min;
@@ -13151,7 +13151,7 @@ class size extends Validator {
     return this.attributes[0];
   }
   check(value) {
-    if (!value) {
+    if (typeof value !== 'number' && !value) {
       return true;
     }
     return this.size(value) == this.size_;
@@ -27819,6 +27819,7 @@ var list = function list(props, context, dependencies, options) {
 
   // ============ DEPENDENCIES =============
 
+  var el$ = dependencies.el$;
   var form$ = dependencies.form$;
   var children$ = dependencies.children$;
   var children$Array = dependencies.children$Array;
@@ -27896,7 +27897,7 @@ var list = function list(props, context, dependencies, options) {
     // value.value = refreshOrderStore(value.value)
 
     var index = value.value.length - 1;
-    fire('add', index, newValue, value.value);
+    fire('add', index, newValue, value.value, el$.value);
     if (focus) {
       nextTick(() => {
         children$Array.value[children$Array.value.length - 1].focus();
@@ -27915,7 +27916,7 @@ var list = function list(props, context, dependencies, options) {
   var remove = index => {
     value.value = value.value.filter((v, i) => i !== index);
     refreshOrderStore(value.value);
-    fire('remove', index, value.value);
+    fire('remove', index, value.value, el$.value);
   };
   var load = /*#__PURE__*/function () {
     var _ref4 = _asyncToGenerator(function* (val) {
@@ -34372,6 +34373,7 @@ var base$k = function base(props, context, dependencies, options) {
 
   // ============ DEPENDENCIES ============
 
+  var el$ = dependencies.el$;
   var isDisabled = dependencies.isDisabled;
   var fire = dependencies.fire;
   var refreshOrderStore = dependencies.refreshOrderStore;
@@ -34465,7 +34467,7 @@ var base$k = function base(props, context, dependencies, options) {
     valueClone.splice(newIndex, 0, valueClone.splice(oldIndex, 1)[0]);
     value.value = valueClone;
     refreshOrderStore(value.value);
-    fire('sort', value.value, oldIndex, newIndex, children$Array.value[newIndex]);
+    fire('sort', value.value, oldIndex, newIndex, children$Array.value[newIndex], el$.value);
   };
 
   // ============== WATCHERS ==============
@@ -43369,7 +43371,7 @@ var CheckboxgroupCheckbox = {
       required: true
     },
     value: {
-      type: [String, Number],
+      type: [String, Number, Boolean],
       required: true
     },
     items: {
@@ -43810,7 +43812,7 @@ var RadiogroupRadio = {
       required: true
     },
     value: {
-      type: [String, Number],
+      type: [String, Number, Boolean],
       required: true
     },
     items: {
