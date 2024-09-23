@@ -4,7 +4,7 @@ const base = function(props, context, dependencies)
 {
   const {
     rows,
-    columns,
+    cols,
   } = toRefs(props)
   
   // ============== COMPUTED ==============
@@ -18,7 +18,7 @@ const base = function(props, context, dependencies)
   })
   
   const resolvedColumns = computed(() => {
-    return columns.value.map((col) => {
+    return cols.value.map((col) => {
       return typeof col === 'string' || typeof col === 'number'
         ? { value: col, label: col }
         : col

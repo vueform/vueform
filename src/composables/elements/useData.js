@@ -1260,6 +1260,78 @@ const signature = function(props, context, dependencies)
   }
 }
 
+const matrix = function(props, context, dependencies, options = {})
+{
+  const {
+    resolveOnLoad,
+    items,
+    name,
+  } = toRefs(props)
+
+  const {
+    requestData,
+    load,
+    update,
+    clear,
+    reset,
+    prepare,
+  } = base(props, context, dependencies)
+
+  // ============ DEPENDENCIES =============
+
+  const { 
+    form$,
+    available,
+    children$,
+    children$Array,
+    resetting,
+    isDefault,
+    resolvedRows,
+    resolvedColumns,
+   } = dependencies
+
+  // =============== PRIVATE ===============
+
+  // =============== COMPUTED ==============
+
+
+
+  // ============== COMPUTED ===============
+  
+  const data = computed(() => {
+    let data = {}
+    
+    resolvedRows.value.forEach((row, r) => {
+      let rowValue = null
+
+      resolvedColumns.value.forEach((column, c) => {
+        let colValue = children$.value[`${name.value}_${r}_${c}`].value
+        
+        if (colValue) {
+          rowValue = column.value
+        }
+      })
+
+
+      data[row.value] = rowValue
+    })
+    
+    return { [name.value]: data }
+  })
+
+  // =============== METHODS ===============
+
+  return {
+    data,
+    requestData,
+    load,
+    update,
+    clear,
+    reset,
+    prepare,
+  }
+}
+
 const multiselect = select
 const tags = select
 
@@ -1280,6 +1352,7 @@ export {
   tags,
   captcha,
   signature,
+  matrix,
 }
 
 export default base

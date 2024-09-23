@@ -6,26 +6,23 @@
           <tr>
             <th class="text-center"></th>
             <th
-              v-for="(column, i) in resolvedColumns"
+              v-for="(column, c) in resolvedColumns"
               class="text-center"
               v-html="column.label"
             ></th>
           </tr>
         </thead>
         <tbody>
-          <tr v-for="(row, i) in resolvedRows">
+          <tr v-for="(row, r) in resolvedRows">
             <td
               v-html="row.label"
               class="text-left"
               style="vertical-align: center;"
             ></td>
-            <td
-              v-for="(column, i) in resolvedColumns"
-              class="text-center items-center justify-center"
-            >
-              <label>
+            <td v-for="(column, c) in resolvedColumns">
+              <label class="flex text-center items-center justify-center">
                 <RadioElement
-                  :name="`${row.value}_${column.value}`"
+                  :name="`${name}_${r}_${c}`"
                   :radio-value="true"
                   :radio-name="row.value"
                   add-class="inline-flex"

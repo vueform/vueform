@@ -21,11 +21,12 @@ import { object as useBaseElement } from './../../composables/elements/useBaseEl
 import { object as useDefault } from './../../composables/elements/useDefault'
 import { object as useValue } from './../../composables/elements/useValue'
 import { object as useNullValue } from './../../composables/elements/useNullValue'
-import { object as useData } from './../../composables/elements/useData'
 import { object as useChildren } from './../../composables/elements/useChildren'
 import { object as useValidation } from './../../composables/elements/useValidation'
 import { object as useWatchValue } from './../../composables/elements/useWatchValue'
 import { object as useConditions } from './../../composables/useConditions'
+
+import { matrix as useData } from './../../composables/elements/useData'
 
 import BaseElement from './../../mixins/BaseElement'
 import HasView from './../../mixins/HasView'
@@ -74,7 +75,7 @@ export default {
       type: [Array],
       default: () => ([])
     },
-    columns: {
+    cols: {
       required: false,
       type: [Array],
       default: () => ([])
@@ -120,11 +121,11 @@ export default {
       useClasses,
       useColumns,
       useSlots,
+      useMatrix,
       useData,
       useA11y,
       useWatchValue,
       useFocus,
-      useMatrix,
     ]
     context.slots = [
       'label', 'info', 'required', 'description',
