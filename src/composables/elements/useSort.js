@@ -10,6 +10,7 @@ const base = function(props, context, dependencies, options)
   
   // ============ DEPENDENCIES ============
   
+  const el$ = dependencies.el$
   const isDisabled = dependencies.isDisabled
   const fire = dependencies.fire
   const refreshOrderStore = dependencies.refreshOrderStore
@@ -103,7 +104,7 @@ const base = function(props, context, dependencies, options)
     
     refreshOrderStore(value.value)
     
-    fire('sort', value.value, oldIndex, newIndex, children$Array.value[newIndex])
+    fire('sort', value.value, oldIndex, newIndex, children$Array.value[newIndex], el$.value)
   }
   
   // ============== WATCHERS ==============

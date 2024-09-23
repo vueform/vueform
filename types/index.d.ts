@@ -1176,7 +1176,7 @@ export interface EditorWrapperProps {
 
 export interface CheckboxgroupCheckboxProps {
   item: object | string | number;
-  value: string | number;
+  value: string | number | boolean;
   items: object | Array<any>;
   index: number;
   attrs?: object;
@@ -1188,7 +1188,7 @@ export interface FilePreviewProps {
 
 export interface RadiogroupRadioProps {
   item: object | string | number;
-  value: string | number;
+  value: string | number | boolean;
   items: object | Array<any>;
   index: number;
   attrs?: object;
@@ -2270,7 +2270,7 @@ export interface RadiogroupElementProps {
   messages?: object;
   fieldName?: string;
   type?: string;
-  default?: string | number;
+  default?: string | number | boolean;
   disabled?: boolean | Function | Array<any> | object;
   id?: string;
   items?: object | Array<any> | Function | string;

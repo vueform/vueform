@@ -392,7 +392,7 @@ export const remove = function (elementType, elementName, options) {
       
       el.remove(1)
       
-      expect(onRemoveMock).toHaveBeenCalledWith(1, el.value)
+      expect(onRemoveMock).toHaveBeenCalledWith(1, el.value, el)
       
       // destroy(form) // teardown
     })

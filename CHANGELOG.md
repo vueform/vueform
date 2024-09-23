@@ -1,5 +1,23 @@
 [//]: # (Don't use <tags>)
 
+## v1.10.10
+
+> `2024-09-20`
+
+### 🎉 Feature
+- Added boolean type to radiogroup element.
+
+## v1.10.9
+
+> `2024-09-20`
+
+### 🎉 Feature
+- Added boolean type to cb/radio options.
+- Added el$ to add, remove, sort events.
+
+### 🐞 Bug Fixes
+- Min, max, size, between rule fixes with int 0
+
 ## v1.10.8
 
 > `2024-09-17`

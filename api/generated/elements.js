@@ -29006,6 +29006,7 @@ module.exports = {
         types: [
           'string',
           'number',
+          'boolean',
         ],
         required: false,
         private: false,

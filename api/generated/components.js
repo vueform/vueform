@@ -6117,7 +6117,8 @@ module.exports = {
         "required": true,
         "types": [
           "string",
-          "number"
+          "number",
+          "boolean"
         ]
       },
       "items": {
@@ -6495,7 +6496,8 @@ module.exports = {
         "required": true,
         "types": [
           "string",
-          "number"
+          "number",
+          "boolean"
         ]
       },
       "items": {
