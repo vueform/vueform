@@ -1266,6 +1266,7 @@ const matrix = function(props, context, dependencies, options = {})
     resolveOnLoad,
     items,
     name,
+    inputType,
   } = toRefs(props)
 
   const {
@@ -1307,8 +1308,21 @@ const matrix = function(props, context, dependencies, options = {})
       resolvedColumns.value.forEach((column, c) => {
         let colValue = children$.value[`${name.value}_${r}_${c}`].value
         
-        if (colValue) {
-          rowValue = column.value
+        switch (inputType.value) {
+          case 'radio':
+            if (colValue) {
+              rowValue = column.value
+            }
+            break
+
+          case 'checkbox':
+            if (colValue) {
+              rowValue = [
+                ...(rowValue || []),
+                column.value,
+              ]
+            }
+            break
         }
       })
 
