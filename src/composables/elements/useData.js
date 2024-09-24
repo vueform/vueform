@@ -5,6 +5,7 @@ import sortBy from 'lodash/sortBy'
 import map from 'lodash/map'
 import isPlainObject from 'lodash/isPlainObject'
 import clone from 'lodash/clone'
+import isEqual from 'lodash/isEqual'
 import { computed, nextTick, toRefs, watch, ref, inject } from 'vue'
 import checkDateFormat from './../../utils/checkDateFormat'
 import asyncForEach from './../../utils/asyncForEach'
@@ -1295,7 +1296,14 @@ const matrix = function(props, context, dependencies, options = {})
 
   // =============== COMPUTED ==============
 
+  const dataType = computed(() => {
+    return resolvedColumns.value.some(c => c.inputType && !isEqual(c.inputType, inputType.value)) || (inputType.value !== 'radio' && inputType.value !== 'checkbox')
+      ? 'object'
+      : inputType.value === 'radio'
+        ? 'assoc'
+        : 'array'
 
+  })
 
   // ============== COMPUTED ===============
   
@@ -1303,27 +1311,36 @@ const matrix = function(props, context, dependencies, options = {})
     let data = {}
     
     resolvedRows.value.forEach((row, r) => {
-      let rowValue = null
+      let rowValue = dataType.value === 'object'
+        ? {}
+        : dataType.value === 'array'
+          ? []
+          : null
 
       resolvedColumns.value.forEach((column, c) => {
         let colValue = children$.value[`${name.value}_${r}_${c}`].value
 
-        if (column.inputType || (inputType.value !== 'radio' && inputType.value !== 'checkbox')) {
-          rowValue = {
-            ...(rowValue || {}),
-            [column.value]: colValue,
-          }
-        } else if (inputType.value === 'radio') {
-          if (colValue) {
-            rowValue = column.value
-          }
-        } else if (inputType.value === 'checkbox') {
-          if (colValue) {
-            rowValue = [
-              ...(rowValue || []),
-              column.value,
-            ]
-          }
+        switch (dataType.value) {
+          case 'array':
+            if (colValue) {
+              rowValue = [
+                ...(rowValue || []),
+                column.value,
+              ]
+            }
+            break
+
+          case 'assoc':
+            if (colValue) {
+              rowValue = column.value
+            }
+            break
+
+          default:
+            rowValue = {
+              ...(rowValue || {}),
+              [column.value]: colValue,
+            }
         }
       })
 

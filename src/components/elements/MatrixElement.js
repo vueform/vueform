@@ -70,11 +70,6 @@ export default {
       type: [String, Object],
       default: 'radio',
     },
-    items: {
-      required: false,
-      type: [Array, Object],
-      default: () => ([]),
-    },
     rows: {
       required: false,
       type: [Array],
@@ -95,7 +90,7 @@ export default {
       type: [Boolean],
       default: false
     },
-    equalWidths: {
+    equalWidthColumns: {
       required: false,
       type: [Boolean],
       default: true
