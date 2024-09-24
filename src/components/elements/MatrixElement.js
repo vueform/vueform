@@ -80,15 +80,23 @@ export default {
       type: [Array],
       default: () => ([]),
     },
+    // Whether all cells should be equal width
     equal: {
       required: false,
       type: [Boolean],
       default: false,
     },
+    // The exact widths of columns in relative (`%`) or absolute value (`px`, `rem`, etc).
     widths: {
       required: false,
       type: [Array],
       default: () => ([]),
+    },
+    // User horizontal padding between cells
+    padding: {
+      required: false,
+      type: [Boolean],
+      default: false,
     },
   },
   setup(props, ctx) {

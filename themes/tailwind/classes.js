@@ -605,10 +605,15 @@ export default {
     rowTitle: '',
     colTitle: 'text-center',
     cell: '',
+    cell_padding: 'form-px-input',
     wrapper: 'flex text-center items-center justify-center',
     $grid: (classes, { equal }) => ([
       classes.grid,
       equal ? classes.grid_equal : null,
+    ]),
+    $cell: (classes, { padding }) => ([
+      classes.cell,
+      padding ? classes.cell_padding : null,
     ]),
   },
   MultifileElement: {
