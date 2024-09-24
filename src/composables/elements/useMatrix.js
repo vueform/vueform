@@ -51,12 +51,17 @@ const base = function(props, context, dependencies)
       width: widths.value[index]
     }
   }
+
+  const resolveColInputType = (col) => {
+    return col.inputType || inputType.value
+  }
   
   return {
     resolvedRows,
     resolvedColumns,
     inputTypeComponent,
     getColStyle,
+    resolveColInputType,
   }
 }
 

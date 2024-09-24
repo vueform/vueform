@@ -15,17 +15,23 @@
         </thead>
         <tbody>
           <tr v-for="(row, r) in resolvedRows">
-            <td :class="classes.rowTitle" v-html="row.label"></td>
-            <td :class="classes.cell" v-for="(column, c) in resolvedColumns">
+            <td
+              :class="classes.rowTitle"
+              v-html="row.label"
+            ></td>
+            <td
+              v-for="(column, c) in resolvedColumns"
+              :class="classes.cell"
+            >
               <label :class="classes.wrapper">
                 <RadioElement
-                  v-if="column.inputType === 'radio' || (!column.inputType && inputType === 'radio')"
+                  v-if="resolveColInputType(column) === 'radio'"
                   :name="`${name}_${r}_${c}`"
                   :radio-value="true"
                   :radio-name="row.value"
                 />
                 <CheckboxElement
-                  v-else-if="column.inputType === 'checkbox' || (!column.inputType && inputType === 'checkbox')"
+                  v-else-if="resolveColInputType(column) === 'checkbox'"
                   :name="`${name}_${r}_${c}`"
                   :true-value="true"
                   :false-name="false"
