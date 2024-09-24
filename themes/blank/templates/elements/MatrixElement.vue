@@ -4,11 +4,14 @@
       <table :class="classes.grid">
         <thead>
           <tr>
-            <th :class="classes.colTitle" :style="getColStyle(0)"></th>
+            <th
+              :class="classes.colTitle"
+              :style="getColStyle(0)"
+            ></th>
             <th
               v-for="(column, c) in resolvedColumns"
               :class="classes.colTitle"
-               :style="getColStyle(c+1)"
+              :style="getColStyle(c+1)"
               v-html="column.label"
             ></th>
           </tr>
