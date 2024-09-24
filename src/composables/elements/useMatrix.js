@@ -1,6 +1,7 @@
-import { computed, toRefs } from 'vue'
+import { computed, toRefs, inject } from 'vue'
 import upperFirst from 'lodash/upperFirst'
 import camelCase from 'lodash/camelCase'
+import localize from './../../utils/localize'
 
 const base = function(props, context, dependencies)
 {
@@ -10,6 +11,10 @@ const base = function(props, context, dependencies)
     inputType,
     widths,
   } = toRefs(props)
+
+  const { form$ } = dependencies
+
+  const config$ = inject('config$')
   
   // ============== COMPUTED ==============
   
@@ -18,7 +23,7 @@ const base = function(props, context, dependencies)
       return typeof row === 'string' || typeof row === 'number'
         ? { value: row, label: row }
         : row
-    })
+    }).map(r => ({ ...r, label: localize(r.label, config$.value, form$.value) }))
   })
   
   const resolvedColumns = computed(() => {
@@ -26,7 +31,7 @@ const base = function(props, context, dependencies)
       return typeof col === 'string' || typeof col === 'number'
         ? { value: col, label: col }
         : col
-    })
+    }).map(r => ({ ...r, label: localize(r.label, config$.value, form$.value) }))
   })
 
   // =============== METHODS ==============
