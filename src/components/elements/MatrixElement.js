@@ -70,6 +70,11 @@ export default {
       type: [String, Object],
       default: 'radio',
     },
+    items: {
+      required: false,
+      type: [Array, Object],
+      default: () => ([]),
+    },
     rows: {
       required: false,
       type: [Array],

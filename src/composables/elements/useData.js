@@ -1307,22 +1307,23 @@ const matrix = function(props, context, dependencies, options = {})
 
       resolvedColumns.value.forEach((column, c) => {
         let colValue = children$.value[`${name.value}_${r}_${c}`].value
-        
-        switch (inputType.value) {
-          case 'radio':
-            if (colValue) {
-              rowValue = column.value
-            }
-            break
 
-          case 'checkbox':
-            if (colValue) {
-              rowValue = [
-                ...(rowValue || []),
-                column.value,
-              ]
-            }
-            break
+        if (column.inputType || (inputType.value !== 'radio' && inputType.value !== 'checkbox')) {
+          rowValue = {
+            ...(rowValue || {}),
+            [column.value]: colValue,
+          }
+        } else if (inputType.value === 'radio') {
+          if (colValue) {
+            rowValue = column.value
+          }
+        } else if (inputType.value === 'checkbox') {
+          if (colValue) {
+            rowValue = [
+              ...(rowValue || []),
+              column.value,
+            ]
+          }
         }
       })
 

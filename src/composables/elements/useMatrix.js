@@ -1,10 +1,13 @@
 import { computed, toRefs } from 'vue'
+import upperFirst from 'lodash/upperFirst'
+import camelCase from 'lodash/camelCase'
 
 const base = function(props, context, dependencies)
 {
   const {
     rows,
     cols,
+    inputType,
   } = toRefs(props)
   
   // ============== COMPUTED ==============
@@ -24,10 +27,19 @@ const base = function(props, context, dependencies)
         : col
     })
   })
+
+  // =============== METHODS ==============
+
+  const inputTypeComponent = (column) => {
+    const element = column.inputType || inputType.value
+
+    return `${upperFirst(camelCase(element.type))}Element`
+  }
   
   return {
     resolvedRows,
     resolvedColumns,
+    inputTypeComponent,
   }
 }
 
