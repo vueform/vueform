@@ -600,13 +600,14 @@ export default {
   },
   MatrixElement: {
     container: '',
-    grid: 'w-full',
+    wrapper: 'overflow-x-auto',
+    grid: 'w-auto min-w-full',
     grid_equal: 'table-fixed',
     rowTitle: '',
-    colTitle: 'text-center',
+    colTitle: 'text-center form-px-input',
     cell: '',
     cell_padding: 'form-px-input',
-    wrapper: 'flex text-center items-center justify-center',
+    cellWrapper: 'flex text-center items-center justify-center h-full',
     $grid: (classes, { equal }) => ([
       classes.grid,
       equal ? classes.grid_equal : null,

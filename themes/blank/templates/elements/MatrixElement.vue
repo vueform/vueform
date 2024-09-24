@@ -1,8 +1,8 @@
 <template>
   <component :is="elementLayout" ref="container">
     <template #element>
-      <table :class="classes.grid">
-        <thead>
+      <div :class="classes.wrapper">
+        <table :class="classes.grid">
           <tr>
             <th
               :class="classes.colTitle"
@@ -15,8 +15,6 @@
               v-html="column.label"
             ></th>
           </tr>
-        </thead>
-        <tbody>
           <tr v-for="(row, r) in resolvedRows">
             <td
               :class="classes.rowTitle"
@@ -26,7 +24,7 @@
               v-for="(column, c) in resolvedColumns"
               :class="classes.cell"
             >
-              <label :class="classes.wrapper">
+              <label :class="classes.cellWrapper">
                 <RadioElement
                   v-if="resolveColInputType(column) === 'radio'"
                   :name="`${name}_${r}_${c}`"
@@ -49,8 +47,8 @@
               </label>
             </td>
           </tr>
-        </tbody>
-      </table>
+        </table>
+      </div>
     </template>
     <!-- Default element slots -->
     <template v-for="(component, slot) in elementSlots" #[slot]><slot :name="slot" :el$="el$"><component :is="component" :el$="el$"/></slot></template>
