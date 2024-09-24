@@ -600,6 +600,16 @@ export default {
   },
   MatrixElement: {
     container: '',
+    grid: 'w-full',
+    grid_equal: 'table-fixed',
+    rowTitle: '',
+    colTitle: 'text-center',
+    cell: '',
+    wrapper: 'flex text-center items-center justify-center',
+    $grid: (classes, { equal }) => ([
+      classes.grid,
+      equal ? classes.grid_equal : null,
+    ]),
   },
   MultifileElement: {
     container: 'form-text-type',

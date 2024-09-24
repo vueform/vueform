@@ -1,22 +1,23 @@
 <template>
   <component :is="elementLayout" ref="container">
     <template #element>
-      <table class="w-full">
+      <table :class="classes.grid">
         <thead>
           <tr>
-            <th class="text-center"></th>
+            <th :class="classes.colTitle" :style="getColStyle(0)"></th>
             <th
               v-for="(column, c) in resolvedColumns"
-              class="text-center"
+              :class="classes.colTitle"
+               :style="getColStyle(c+1)"
               v-html="column.label"
             ></th>
           </tr>
         </thead>
         <tbody>
           <tr v-for="(row, r) in resolvedRows">
-            <td v-html="row.label"></td>
-            <td v-for="(column, c) in resolvedColumns">
-              <label class="flex text-center items-center justify-center">
+            <td :class="classes.rowTitle" v-html="row.label"></td>
+            <td :class="classes.cell" v-for="(column, c) in resolvedColumns">
+              <label :class="classes.wrapper">
                 <RadioElement
                   v-if="column.inputType === 'radio' || (!column.inputType && inputType === 'radio')"
                   :name="`${name}_${r}_${c}`"

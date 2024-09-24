@@ -73,27 +73,22 @@ export default {
     rows: {
       required: false,
       type: [Array],
-      default: () => ([])
+      default: () => ([]),
     },
     cols: {
       required: false,
       type: [Array],
-      default: () => ([])
+      default: () => ([]),
     },
-    nowrapColumns: {
+    equal: {
       required: false,
       type: [Boolean],
-      default: false
+      default: false,
     },
-    nowrapRows: {
+    widths: {
       required: false,
-      type: [Boolean],
-      default: false
-    },
-    equalWidthColumns: {
-      required: false,
-      type: [Boolean],
-      default: true
+      type: [Array],
+      default: () => ([]),
     },
   },
   setup(props, ctx) {

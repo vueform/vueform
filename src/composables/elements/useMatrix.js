@@ -8,6 +8,7 @@ const base = function(props, context, dependencies)
     rows,
     cols,
     inputType,
+    widths,
   } = toRefs(props)
   
   // ============== COMPUTED ==============
@@ -35,11 +36,22 @@ const base = function(props, context, dependencies)
 
     return `${upperFirst(camelCase(element.type))}Element`
   }
+
+  const getColStyle = (index) => {
+    if (widths.value[index] === undefined) {
+      return
+    }
+
+    return {
+      width: widths.value[index]
+    }
+  }
   
   return {
     resolvedRows,
     resolvedColumns,
     inputTypeComponent,
+    getColStyle,
   }
 }
 
