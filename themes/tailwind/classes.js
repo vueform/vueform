@@ -606,7 +606,7 @@ export default {
     rowTitle: 'pr-3',
     rowTitle_wrap: '',
     rowTitle_nowrap: 'whitespace-nowrap',
-    colTitle: 'text-center px-3',
+    colTitle: 'font-normal text-center px-3',
     colTitle_wrap: '',
     colTitle_nowrap: 'whitespace-nowrap',
     cell: '',
