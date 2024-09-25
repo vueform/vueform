@@ -84,7 +84,7 @@ export default {
     equal: {
       required: false,
       type: [Boolean],
-      default: false,
+      default: true,
     },
     // The exact widths of columns in relative (`%`) or absolute value (`px`, `rem`, etc).
     widths: {
@@ -97,6 +97,17 @@ export default {
       required: false,
       type: [Boolean],
       default: false,
+    },
+    // 
+    rowWrap: {
+      required: false,
+      type: [Boolean],
+      default: false,
+    },
+    colWrap: {
+      required: false,
+      type: [Boolean],
+      default: true,
     },
   },
   setup(props, ctx) {

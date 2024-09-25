@@ -603,8 +603,12 @@ export default {
     wrapper: 'overflow-x-auto',
     grid: 'w-auto min-w-full',
     grid_equal: 'table-fixed',
-    rowTitle: '',
+    rowTitle: 'pr-3',
+    rowTitle_wrap: '',
+    rowTitle_nowrap: 'whitespace-nowrap',
     colTitle: 'text-center px-3',
+    colTitle_wrap: '',
+    colTitle_nowrap: 'whitespace-nowrap',
     cell: '',
     cell_padding: 'px-3',
     cellWrapper: 'flex text-center items-center justify-center h-full',
@@ -615,6 +619,14 @@ export default {
     $cell: (classes, { padding }) => ([
       classes.cell,
       padding ? classes.cell_padding : null,
+    ]),
+    $rowTitle: (classes, { rowWrap }) => ([
+      classes.rowTitle,
+      rowWrap ? classes.rowTitle_wrap : classes.rowTitle_nowrap,
+    ]),
+    $colTitle: (classes, { colWrap }) => ([
+      classes.colTitle,
+      colWrap ? classes.colTitle_wrap : classes.colTitle_nowrap,
     ]),
   },
   MultifileElement: {
