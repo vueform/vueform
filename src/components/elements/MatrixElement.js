@@ -80,6 +80,7 @@ export default {
       type: [Array],
       default: () => ([]),
     },
+
     // Whether all cells should be equal width
     equal: {
       required: false,
@@ -92,13 +93,13 @@ export default {
       type: [Array],
       default: () => ([]),
     },
+
     // User horizontal padding between cells
     padding: {
       required: false,
       type: [Boolean],
-      default: false,
+      default: true,
     },
-    // 
     rowWrap: {
       required: false,
       type: [Boolean],
