@@ -1271,7 +1271,6 @@ const matrix = function(props, context, dependencies, options = {})
   } = toRefs(props)
 
   const {
-    requestData,
     load,
     update,
     clear,
@@ -1318,6 +1317,58 @@ const matrix = function(props, context, dependencies, options = {})
           : null
 
       resolvedColumns.value.forEach((column, c) => {
+        let colValue = children$.value[`${name.value}_${r}_${c}`].value
+
+        switch (dataType.value) {
+          case 'array':
+            if (colValue) {
+              rowValue = [
+                ...(rowValue || []),
+                column.value,
+              ]
+            }
+            break
+
+          case 'assoc':
+            if (colValue) {
+              rowValue = column.value
+            }
+            break
+
+          default:
+            rowValue = {
+              ...(rowValue || {}),
+              [column.value]: colValue,
+            }
+        }
+      })
+
+
+      data[row.value] = rowValue
+    })
+    
+    return { [name.value]: data }
+  })
+  
+  const requestData = computed(() => {
+    let data = {}
+    
+    resolvedRows.value.forEach((row, r) => {
+      if (!row.available) {
+        return
+      }
+
+      let rowValue = dataType.value === 'object'
+        ? {}
+        : dataType.value === 'array'
+          ? []
+          : null
+
+      resolvedColumns.value.forEach((column, c) => {
+        if (!column.available) {
+          return
+        }
+
         let colValue = children$.value[`${name.value}_${r}_${c}`].value
 
         switch (dataType.value) {

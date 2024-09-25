@@ -8,45 +8,54 @@
               :class="classes.colTitle"
               :style="getColStyle(0)"
             ></th>
-            <th
-              v-for="(column, c) in resolvedColumns"
-              :class="classes.colTitle"
-              :style="getColStyle(c+1)"
-              v-html="column.label"
-            ></th>
+            <template v-for="(column, c) in resolvedColumns">
+              <th
+                v-show="column.available"
+                :class="classes.colTitle"
+                :style="getColStyle(c+1)"
+                v-html="column.label"
+              ></th>
+            </template>
           </tr>
-          <tr v-for="(row, r) in resolvedRows">
-            <td
-              :class="classes.rowTitle"
-              v-html="row.label"
-            ></td>
-            <td
-              v-for="(column, c) in resolvedColumns"
-              :class="classes.cell"
-            >
-              <div :class="classes.cellWrapper">
-                <RadioElement
-                  v-if="resolveColInputType(column) === 'radio'"
-                  :name="`${name}_${r}_${c}`"
-                  :radio-value="true"
-                  :radio-name="row.value"
-                />
-                <CheckboxElement
-                  v-else-if="resolveColInputType(column) === 'checkbox'"
-                  :name="`${name}_${r}_${c}`"
-                  :true-value="true"
-                  :false-name="false"
-                />
-                <component
-                  v-else
-                  :is="inputTypeComponent(column)"
-                  :name="`${name}_${r}_${c}`"
-                  add-class="w-full"
-                  v-bind="column.inputType || inputType"
-                />
-              </div>
-            </td>
-          </tr>
+          <template v-for="(row, r) in resolvedRows">
+            <tr v-show="row.available">
+              <td
+                :class="classes.rowTitle"
+                v-html="row.label"
+              ></td>
+              <template v-for="(column, c) in resolvedColumns">
+                <td
+                  v-show="column.available"
+                  :class="classes.cell"
+                >
+                  <div :class="classes.cellWrapper">
+                    <RadioElement
+                      v-if="resolveColInputType(column) === 'radio'"
+                      :conditions="resolveConditions(row, column)"
+                      :name="`${name}_${r}_${c}`"
+                      :radio-value="true"
+                      :radio-name="row.value"
+                    />
+                    <CheckboxElement
+                      v-else-if="resolveColInputType(column) === 'checkbox'"
+                      :conditions="resolveConditions(row, column)"
+                      :name="`${name}_${r}_${c}`"
+                      :true-value="true"
+                      :false-name="false"
+                    />
+                    <component
+                      v-else
+                      :is="inputTypeComponent(column)"
+                      :conditions="resolveConditions(row, column)"
+                      :name="`${name}_${r}_${c}`"
+                      add-class="w-full"
+                      v-bind="column.inputType || inputType"
+                    />
+                  </div>
+                </td>
+              </template>
+            </tr>
+          </template>
         </table>
       </div>
     </template>
