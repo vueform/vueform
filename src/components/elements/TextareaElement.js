@@ -30,12 +30,13 @@ import useA11y from './../../composables/elements/useA11y'
 import useFocus from './../../composables/elements/useFocus'
 import useHandleKeyEvents from './../../composables/elements/useHandleKeyEvents'
 import usePlaceholder from './../../composables/elements/usePlaceholder'
-import useData from './../../composables/elements/useData'
 import useReadonly from './../../composables/elements/useReadonly'
 import useEl$ from './../../composables/elements/useEl$'
 
 import { text as useValidation } from './../../composables/elements/useValidation'
 import { text as useDefault } from './../../composables/elements/useDefault'
+
+import { textarea as useData } from './../../composables/elements/useData'
 
 import BaseElement from './../../mixins/BaseElement'
 import HasView from './../../mixins/HasView'
@@ -162,6 +163,7 @@ export default {
       useValidation,
       useValue,
       useEmpty,
+      useAutogrow,
       useData,
       useLabel,
       useGenericName,
@@ -171,7 +173,6 @@ export default {
       useColumns,
       useSlots,
       useHandleInput,
-      useAutogrow,
       useFocused,
       useHandleBlur,
       useA11y,

@@ -235,6 +235,69 @@ const text = function(props, context, dependencies, options = {})
   }
 }
 
+const textarea = function(props, context, dependencies, options = {})
+{
+  const {
+    data,
+    requestData,
+    load: baseLoad,
+    update: baseUpdate,
+    clear: baseClear,
+    reset: baseReset,
+    prepare,
+  } = base(props, context, dependencies)
+
+  // ============ DEPENDENCIES =============
+
+  const {
+    autosize,
+  } = dependencies
+  
+  // =============== METHODS ===============
+  
+  const load = (val, format = false) => {
+    baseLoad(val, format)
+
+    nextTick(() => {
+      autosize()
+    })
+  }
+  
+  const update = (val) => {
+    baseUpdate(val)
+
+    nextTick(() => {
+      autosize()
+    })
+  }
+  
+  const clear = () => {
+    baseClear()
+
+    nextTick(() => {
+      autosize()
+    })
+  }
+  
+  const reset = () => {
+    baseReset()
+
+    nextTick(() => {
+      autosize()
+    })
+  }
+
+  return {
+    data,
+    requestData,
+    load,
+    update,
+    clear,
+    reset,
+    prepare,
+  }
+}
+
 const select = function(props, context, dependencies, options = {})
 {
   const {
@@ -1265,6 +1328,7 @@ const tags = select
 
 export {
   text,
+  textarea,
   date,
   dates,
   object,
