@@ -604,9 +604,9 @@ export default {
     grid: 'w-auto min-w-full',
     grid_equal: 'table-fixed',
     rowTitle: '',
-    colTitle: 'text-center form-px-input',
+    colTitle: 'text-center px-3',
     cell: '',
-    cell_padding: 'form-px-input',
+    cell_padding: 'px-3',
     cellWrapper: 'flex text-center items-center justify-center h-full',
     $grid: (classes, { equal }) => ([
       classes.grid,

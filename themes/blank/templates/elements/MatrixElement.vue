@@ -24,7 +24,7 @@
               v-for="(column, c) in resolvedColumns"
               :class="classes.cell"
             >
-              <label :class="classes.cellWrapper">
+              <div :class="classes.cellWrapper">
                 <RadioElement
                   v-if="resolveColInputType(column) === 'radio'"
                   :name="`${name}_${r}_${c}`"
@@ -44,7 +44,7 @@
                   add-class="w-full"
                   v-bind="column.inputType || inputType"
                 />
-              </label>
+              </div>
             </td>
           </tr>
         </table>
