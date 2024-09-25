@@ -16,6 +16,8 @@ import useA11y from './../../composables/elements/useA11y'
 import useFocus from './../../composables/elements/useFocus'
 import useEl$ from './../../composables/elements/useEl$'
 import useMatrix from './../../composables/elements/useMatrix'
+import useDisabled from './../../composables/elements/useDisabled'
+import useReadonly from './../../composables/elements/useReadonly'
 
 import { object as useBaseElement } from './../../composables/elements/useBaseElement'
 import { object as useDefault } from './../../composables/elements/useDefault'
@@ -141,6 +143,8 @@ export default {
       useA11y,
       useWatchValue,
       useFocus,
+      useDisabled,
+      useReadonly,
     ]
     context.slots = [
       'label', 'info', 'required', 'description',

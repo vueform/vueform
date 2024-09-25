@@ -31,6 +31,8 @@
                   <div :class="classes.cellWrapper">
                     <RadioElement
                       v-if="resolveColInputType(column) === 'radio'"
+                      :disabled="isDisabled"
+                      :readonly="isReadonly"
                       :conditions="resolveConditions(row, column)"
                       :name="`${name}_${r}_${c}`"
                       :radio-value="true"
@@ -38,6 +40,8 @@
                     />
                     <CheckboxElement
                       v-else-if="resolveColInputType(column) === 'checkbox'"
+                      :disabled="isDisabled"
+                      :readonly="isReadonly"
                       :conditions="resolveConditions(row, column)"
                       :name="`${name}_${r}_${c}`"
                       :true-value="true"
@@ -46,6 +50,8 @@
                     <component
                       v-else
                       :is="inputTypeComponent(column)"
+                      :disabled="isDisabled"
+                      :readonly="isReadonly"
                       :conditions="resolveConditions(row, column)"
                       :name="`${name}_${r}_${c}`"
                       add-class="w-full"
