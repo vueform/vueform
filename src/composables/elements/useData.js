@@ -1279,6 +1279,7 @@ const matrix = function(props, context, dependencies, options = {})
   // ============ DEPENDENCIES =============
 
   const { 
+    el$,
     form$,
     available,
     children$,
@@ -1304,54 +1305,30 @@ const matrix = function(props, context, dependencies, options = {})
   // ============== COMPUTED ===============
   
   const data = computed(() => {
-    let data = {}
-    
-    resolvedRows.value.forEach((row, r) => {
-      let rowValue = dataType.value === 'object'
-        ? {}
-        : dataType.value === 'array'
-          ? []
-          : null
-
-      resolvedColumns.value.forEach((column, c) => {
-        let colValue = children$.value[`${name.value}_${r}_${c}`].value
-
-        switch (dataType.value) {
-          case 'array':
-            if (colValue) {
-              rowValue = [
-                ...(rowValue || []),
-                column.value,
-              ]
-            }
-            break
-
-          case 'assoc':
-            if (colValue) {
-              rowValue = column.value
-            }
-            break
-
-          default:
-            rowValue = {
-              ...(rowValue || {}),
-              [column.value]: colValue,
-            }
-        }
-      })
-
-
-      data[row.value] = rowValue
-    })
-    
-    return { [name.value]: data }
+    return { [name.value]: transformData() }
   })
   
   const requestData = computed(() => {
-    let data = {}
+    return { [name.value]: transformData(true) }
+  })
+
+  // =============== METHODS ===============
+  
+  const load = (val, format = false) => {
+    let formatted = format && formatLoad.value ? formatLoad.value(val, form$.value) : val
+    
+    setData(formatted, 'load')
+  }
+  
+  const update = (val) => {
+    setData(val, 'update')
+  }
+
+  const transformData = (skipUnavailable = false) => {
+    const data = {}
     
     resolvedRows.value.forEach((row, r) => {
-      if (!row.available) {
+      if (!row.available && skipUnavailable) {
         return
       }
 
@@ -1362,7 +1339,7 @@ const matrix = function(props, context, dependencies, options = {})
           : null
 
       resolvedColumns.value.forEach((column, c) => {
-        if (!column.available) {
+        if (!column.available && skipUnavailable) {
           return
         }
 
@@ -1395,38 +1372,11 @@ const matrix = function(props, context, dependencies, options = {})
 
       data[row.value] = rowValue
     })
-    
-    return { [name.value]: data }
-  })
 
-  // =============== METHODS ===============
-  
-  const load = (val, format = false) => {
-    let formatted = format && formatLoad.value ? formatLoad.value(val, form$.value) : val
-    
-    resolvedRows.value.forEach((row, r) => {
-      resolvedColumns.value.forEach((column, c) => {
-        const rowValue = formatted[row.value] || {}
-        const cell$ = children$.value[`${name.value}_${r}_${c}`]
-
-        switch (dataType.value) {
-          case 'assoc':
-            cell$.load(column.value === rowValue)
-            break
-
-          case 'array':
-            cell$.load(rowValue.indexOf(column.value) !== -1)
-            break
-
-          default:
-            cell$.load(rowValue[column.value])
-            break
-        }
-      })
-    })
+    return data
   }
-  
-  const update = (val) => {
+
+  const setData = (val, action) => {
     resolvedRows.value.forEach((row, r) => {
       resolvedColumns.value.forEach((column, c) => {
         const rowValue = val[row.value] || {}
@@ -1434,15 +1384,15 @@ const matrix = function(props, context, dependencies, options = {})
 
         switch (dataType.value) {
           case 'assoc':
-            cell$.update(column.value === rowValue)
+            cell$[action](column.value === rowValue)
             break
 
           case 'array':
-            cell$.update(rowValue.indexOf(column.value) !== -1)
+            cell$[action](rowValue.indexOf(column.value) !== -1)
             break
 
           default:
-            cell$.update(rowValue[column.value])
+            cell$[action](rowValue[column.value])
             break
         }
       })
