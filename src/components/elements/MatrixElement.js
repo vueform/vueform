@@ -18,9 +18,9 @@ import useEl$ from './../../composables/elements/useEl$'
 import useMatrix from './../../composables/elements/useMatrix'
 import useDisabled from './../../composables/elements/useDisabled'
 import useReadonly from './../../composables/elements/useReadonly'
+import useDataType from './../../composables/elements/useDataType'
 
 import { object as useBaseElement } from './../../composables/elements/useBaseElement'
-import { object as useDefault } from './../../composables/elements/useDefault'
 import { object as useValue } from './../../composables/elements/useValue'
 import { object as useNullValue } from './../../composables/elements/useNullValue'
 import { object as useChildren } from './../../composables/elements/useChildren'
@@ -29,6 +29,7 @@ import { object as useWatchValue } from './../../composables/elements/useWatchVa
 import { object as useConditions } from './../../composables/useConditions'
 
 import { matrix as useData } from './../../composables/elements/useData'
+import { matrix as useDefault } from './../../composables/elements/useDefault'
 
 import BaseElement from './../../mixins/BaseElement'
 import HasView from './../../mixins/HasView'
@@ -126,6 +127,8 @@ export default {
       useNullValue,
       useEvents,
       useBaseElement,
+      useMatrix,
+      useDataType,
       useDefault,
       useValue,
       useLabel,
@@ -138,7 +141,6 @@ export default {
       useClasses,
       useColumns,
       useSlots,
-      useMatrix,
       useData,
       useA11y,
       useWatchValue,

@@ -157,6 +157,60 @@ const object = function(props, context, dependencies)
   }
 }
 
+const matrix = function(props, context, dependencies)
+{
+  const {
+    rows,
+    cols,
+    name,
+  } = toRefs(props)
+
+  const {
+    defaultValue: defaultValueBase,
+  } = object(props, context, dependencies)
+  
+  // ============ DEPENDENCIES =============
+  
+  const {
+    nullValue,
+    form$,
+    parent,
+    dataType,
+  } = dependencies
+  
+  // ============== COMPUTED ===============
+  
+  const defaultValue = computed(() => {
+    const base = defaultValueBase.value
+
+    const defaultValue = {}
+
+    rows.value.forEach((row, r) => {
+      cols.value.forEach((col, c) => {
+        switch (dataType.value) {
+          case 'assoc':
+            defaultValue[`${name.value}_${r}_${c}`] = base[row.value] === col.value
+            break
+
+          case 'array':
+            defaultValue[`${name.value}_${r}_${c}`] = base[row.value].indexOf(col.value) !== -1
+            break
+
+          default:
+            defaultValue[`${name.value}_${r}_${c}`] = base[row.value][col.value]
+            break
+        }
+      })
+    })
+
+    return defaultValue
+  })
+  
+  return {
+    defaultValue,
+  }
+}
+
 const group = function(props, context, dependencies)
 {
   const {
@@ -244,6 +298,7 @@ export {
   group,
   multilingual,
   text,
+  matrix,
 }
 
 export default base

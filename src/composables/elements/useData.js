@@ -1288,19 +1288,8 @@ const matrix = function(props, context, dependencies, options = {})
     isDefault,
     resolvedRows,
     resolvedColumns,
+    dataType,
    } = dependencies
-
-  // =============== PRIVATE ===============
-
-  // =============== COMPUTED ==============
-
-  const dataType = computed(() => {
-    return resolvedColumns.value.some(c => c.inputType && !isEqual(c.inputType, inputType.value)) || (inputType.value !== 'radio' && inputType.value !== 'checkbox')
-      ? 'object'
-      : inputType.value === 'radio'
-        ? 'assoc'
-        : 'array'
-  })
 
   // ============== COMPUTED ===============
   
@@ -1398,8 +1387,6 @@ const matrix = function(props, context, dependencies, options = {})
       })
     })
   }
-
-  // =============== METHODS ===============
 
   return {
     data,
