@@ -38,6 +38,7 @@
                       :radio-value="true"
                       :radio-name="row.value"
                       standalone
+                      inline
                     />
                     <CheckboxElement
                       v-else-if="resolveColInputType(column) === 'checkbox'"
@@ -48,6 +49,7 @@
                       :true-value="true"
                       :false-name="false"
                       standalone
+                      inline
                     />
                     <component
                       v-else
