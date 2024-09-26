@@ -100,7 +100,7 @@ export default {
     padding: {
       required: false,
       type: [Boolean],
-      default: true,
+      default: false,
     },
     rowWrap: {
       required: false,
