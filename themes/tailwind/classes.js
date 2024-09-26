@@ -84,10 +84,12 @@ const checkbox = {
   input_right_sm: 'form-ml-space-checkbox-sm',
   input_right_md: 'form-ml-space-checkbox',
   input_right_lg: 'form-ml-space-checkbox-lg',
-  $input: (classes, { isDisabled, Size }) => ([
+  input_standalone: '!ml-0 !mr-0 !mt-0',
+  $input: (classes, { isDisabled, Size, standalone }) => ([
     classes.input,
     classes[`input_${Size}`],
     !isDisabled  ? classes.input_default : classes.input_disabled,
+    standalone ? classes.input_standalone : null,
   ]),
 }
 
@@ -106,10 +108,12 @@ const radio = {
   input_right_sm: 'form-ml-space-checkbox-sm',
   input_right_md: 'form-ml-space-checkbox',
   input_right_lg: 'form-ml-space-checkbox-lg',
-  $input: (classes, { isDisabled, Size }) => ([
+  input_standalone: '!ml-0 !mr-0 !mt-0',
+  $input: (classes, { isDisabled, Size, standalone }) => ([
     classes.input,
     classes[`input_${Size}`],
     !isDisabled  ? classes.input_default : classes.input_disabled,
+    standalone ? classes.input_standalone : null,
   ]),
 }
 
@@ -463,7 +467,7 @@ export default {
       align === 'left' ? classes.wrapper_left : null,
       align === 'right' ? classes.wrapper_right : null,
     ]),
-    $input: (classes, { isDisabled, Size, isDanger, align }) => ([
+    $input: (classes, { isDisabled, Size, isDanger, align, standalone }) => ([
       classes.input,
       classes[`input_${Size}`],
       !isDisabled && !isDanger ? classes.input_default : null,
@@ -471,6 +475,7 @@ export default {
       isDanger ? classes.input_danger : null,
       align === 'left' ? [classes.input_left, classes[`input_left_${Size}`]] : null,
       align === 'right' ? [classes.input_right, classes[`input_right_${Size}`]] : null,
+      standalone ? classes.input_standalone : null,
     ]),
     $text: (classes, { align }) => ([
       classes.text,
@@ -803,7 +808,7 @@ export default {
       align === 'left' ? classes.wrapper_left : null,
       align === 'right' ? classes.wrapper_right : null,
     ]),
-    $input: (classes, { isDisabled, Size, isDanger, align }) => ([
+    $input: (classes, { isDisabled, Size, isDanger, align, standalone }) => ([
       classes.input,
       classes[`input_${Size}`],
       !isDisabled && !isDanger ? classes.input_default : null,
@@ -811,6 +816,7 @@ export default {
       isDanger ? classes.input_danger : null,
       align === 'left' ? [classes.input_left, classes[`input_left_${Size}`]] : null,
       align === 'right' ? [classes.input_right, classes[`input_right_${Size}`]] : null,
+      standalone ? classes.input_standalone : null,
     ]),
     $text: (classes, { align }) => ([
       classes.text,

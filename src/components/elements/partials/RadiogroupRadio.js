@@ -25,6 +25,11 @@ export default {
       type: [Object],
       default: () => ({})
     },
+    standalone: {
+      required: false,
+      type: [Boolean],
+      default: false,
+    },
   },
   setup(props, context)
   {
