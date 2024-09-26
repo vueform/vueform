@@ -1271,8 +1271,6 @@ const matrix = function(props, context, dependencies, options = {})
   } = toRefs(props)
 
   const {
-    load,
-    update,
     clear,
     reset,
     prepare,
@@ -1301,7 +1299,6 @@ const matrix = function(props, context, dependencies, options = {})
       : inputType.value === 'radio'
         ? 'assoc'
         : 'array'
-
   })
 
   // ============== COMPUTED ===============
@@ -1401,6 +1398,56 @@ const matrix = function(props, context, dependencies, options = {})
     
     return { [name.value]: data }
   })
+
+  // =============== METHODS ===============
+  
+  const load = (val, format = false) => {
+    let formatted = format && formatLoad.value ? formatLoad.value(val, form$.value) : val
+    
+    resolvedRows.value.forEach((row, r) => {
+      resolvedColumns.value.forEach((column, c) => {
+        const rowValue = formatted[row.value] || {}
+        const cell$ = children$.value[`${name.value}_${r}_${c}`]
+
+        switch (dataType.value) {
+          case 'assoc':
+            cell$.load(column.value === rowValue)
+            break
+
+          case 'array':
+            cell$.load(rowValue.indexOf(column.value) !== -1)
+            break
+
+          default:
+            cell$.load(rowValue[column.value])
+            break
+        }
+      })
+    })
+  }
+  
+  const update = (val) => {
+    resolvedRows.value.forEach((row, r) => {
+      resolvedColumns.value.forEach((column, c) => {
+        const rowValue = val[row.value] || {}
+        const cell$ = children$.value[`${name.value}_${r}_${c}`]
+
+        switch (dataType.value) {
+          case 'assoc':
+            cell$.update(column.value === rowValue)
+            break
+
+          case 'array':
+            cell$.update(rowValue.indexOf(column.value) !== -1)
+            break
+
+          default:
+            cell$.update(rowValue[column.value])
+            break
+        }
+      })
+    })
+  }
 
   // =============== METHODS ===============
 
