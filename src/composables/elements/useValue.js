@@ -32,7 +32,29 @@ const base = function(props, context, dependencies, /* istanbul ignore next */ o
   const initialValue = ref(undefined)
   
   if (form$.value.isSync) {
-    initialValue.value = get(form$.value.model, dataPath.value)
+    if (parent.value && parent.value.isMatrixType) {
+      const row = name.value.split('_')[1]
+      const col = name.value.split('_')[2]
+
+      const rowValue = parent.value.resolvedRows[row].value
+      const colValue = parent.value.resolvedColumns[col].value
+
+      switch (parent.value.dataType) {
+        case 'assoc':
+          initialValue.value = get(form$.value.model, `${parent.value.dataPath}.${rowValue}`) === colValue
+          break
+
+        case 'array':
+          initialValue.value = get(form$.value.model, `${parent.value.dataPath}.${rowValue}`).indexOf(colValue) !== -1
+          break
+
+        default:
+          initialValue.value = get(form$.value.model, `${parent.value.dataPath}.${rowValue}.${colValue}`)
+          break
+      }
+    } else {
+      initialValue.value = get(form$.value.model, dataPath.value)
+    }
   } else if (parent.value && (parent.value.isObjectType || parent.value.isGroupType || parent.value.isListType)) {
     initialValue.value = parent.value.value[name.value]
   }
@@ -57,7 +79,31 @@ const base = function(props, context, dependencies, /* istanbul ignore next */ o
       let value
       
       if (form$.value.isSync) {
-        value = get(form$.value.model, dataPath.value)
+        if (parent.value && parent.value.isMatrixType) {
+          const row = name.value.split('_')[1]
+          const col = name.value.split('_')[2]
+
+          const rowValue = parent.value.resolvedRows[row].value
+          const colValue = parent.value.resolvedColumns[col].value
+
+          const val = get(form$.value.model, `${parent.value.dataPath}.${rowValue}`)
+
+          switch (parent.value.dataType) {
+            case 'assoc':
+              value = val === colValue
+              break
+
+            case 'array':
+              value = val && val.indexOf(colValue) !== -1
+              break
+
+            default:
+              value = val?.[colValue]
+              break
+          }
+        } else {
+          value = get(form$.value.model, dataPath.value)
+        }
       } else if (parent.value && (parent.value.isObjectType || parent.value.isGroupType || parent.value.isListType)) {
         value = parent.value.value[name.value]
       } else {
@@ -68,7 +114,49 @@ const base = function(props, context, dependencies, /* istanbul ignore next */ o
     },
     set: options.value?.set || function (val) {
       if (form$.value.isSync) {
-        form$.value.updateModel(dataPath.value, val)
+        if (parent.value && parent.value.isMatrixType) {
+          const row = name.value.split('_')[1]
+          const col = name.value.split('_')[2]
+
+          const rowValue = parent.value.resolvedRows[row].value
+          const colValue = parent.value.resolvedColumns[col].value
+
+          const oldValue = get(form$.value.model, `${parent.value.dataPath}.${rowValue}`)
+
+          let newValue
+
+          switch (parent.value.dataType) {
+            case 'assoc':
+              if (val) {
+                newValue = colValue
+              } else if (oldValue === colValue) {
+                newValue = null
+              }
+              break
+
+            case 'array':
+              newValue = oldValue?.filter(v => v !== colValue) || []
+
+              if (val) {
+                newValue.push(colValue)
+              }
+              break
+
+            default:
+              newValue = {
+                ...(oldValue || {}),
+                [colValue]: val,
+              }
+
+              break
+          }
+          
+          if (newValue !== undefined) {
+            form$.value.updateModel(`${parent.value.dataPath}.${rowValue}`, newValue)
+          }
+        } else {
+          form$.value.updateModel(dataPath.value, val)
+        }
       } else if (parent.value && parent.value.isListType) {
         const newValue = parent.value.value.map((v, k) => k == name.value ? val : v)
         parent.value.update(newValue)

@@ -193,11 +193,11 @@ const matrix = function(props, context, dependencies)
             break
 
           case 'array':
-            defaultValue[`${name.value}_${r}_${c}`] = base[row.value].indexOf(col.value) !== -1
+            defaultValue[`${name.value}_${r}_${c}`] = base[row.value] && base[row.value].indexOf(col.value) !== -1
             break
 
           default:
-            defaultValue[`${name.value}_${r}_${c}`] = base[row.value][col.value]
+            defaultValue[`${name.value}_${r}_${c}`] = base[row.value]?.[col.value] || null
             break
         }
       })

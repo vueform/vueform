@@ -1274,7 +1274,7 @@ const matrix = function(props, context, dependencies, options = {})
     clear,
     reset,
     prepare,
-  } = base(props, context, dependencies)
+  } = object(props, context, dependencies)
 
   // ============ DEPENDENCIES =============
 

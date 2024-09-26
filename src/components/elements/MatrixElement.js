@@ -20,7 +20,6 @@ import useDisabled from './../../composables/elements/useDisabled'
 import useReadonly from './../../composables/elements/useReadonly'
 import useDataType from './../../composables/elements/useDataType'
 
-import { object as useBaseElement } from './../../composables/elements/useBaseElement'
 import { object as useValue } from './../../composables/elements/useValue'
 import { object as useNullValue } from './../../composables/elements/useNullValue'
 import { object as useChildren } from './../../composables/elements/useChildren'
@@ -28,6 +27,7 @@ import { object as useValidation } from './../../composables/elements/useValidat
 import { object as useWatchValue } from './../../composables/elements/useWatchValue'
 import { object as useConditions } from './../../composables/useConditions'
 
+import { matrix as useBaseElement } from './../../composables/elements/useBaseElement'
 import { matrix as useData } from './../../composables/elements/useData'
 import { matrix as useDefault } from './../../composables/elements/useDefault'
 
