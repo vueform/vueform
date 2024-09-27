@@ -113,7 +113,7 @@ const base = function(props, context, dependencies, /* istanbul ignore next */ o
         const col = parent.value.resolvedColumns[name.value.split('_')[2]]
 
         const matrixModel = form$.value.isSync
-          ? get(form$.value.model, 'parent.value.dataPath')
+          ? get(form$.value.model, parent.value.dataPath)
           : parent.value.value
 
         const rowModel = matrixModel[row.value]

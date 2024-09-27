@@ -119,7 +119,7 @@ const text = function(props, context, dependencies)
           break
 
         default:
-          parentDefaultValue = rowModel[col.value]
+          parentDefaultValue = rowModel?.[col.value]
           break
       }
     } else if (parent && parent.value && !parent.value.mounted) {
