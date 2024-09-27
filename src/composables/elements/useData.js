@@ -1352,7 +1352,6 @@ const matrix = function(props, context, dependencies, options = {})
             break
 
           default:
-            console.log(name.value, column.value, cellValue)
             rowValue = {
               ...(rowValue || {}),
               [column.value]: cellValue,

@@ -31,46 +31,31 @@ const base = function(props, context, dependencies, /* istanbul ignore next */ o
    */
   const initialValue = ref(undefined)
   
-  if (form$.value.isSync) {
-    if (parent.value && parent.value.isMatrixType) {
-      const row = parent.value.resolvedRows[name.value.split('_')[1]]
-      const col = parent.value.resolvedColumns[name.value.split('_')[2]]
-
-      switch (parent.value.dataType) {
-        case 'assoc':
-          initialValue.value = get(form$.value.model, `${parent.value.dataPath}.${row.value}`) === col.value
-          break
-
-        case 'array':
-          initialValue.value = Array.isArray(get(form$.value.model, `${parent.value.dataPath}.${row.value}`)) && get(form$.value.model, `${parent.value.dataPath}.${row.value}`).includes(col.value)
-          break
-
-        default:
-          initialValue.value = get(form$.value.model, `${parent.value.dataPath}.${row.value}.${col.value}`)
-          break
-      }
-    } else {
-      initialValue.value = get(form$.value.model, dataPath.value)
-    }
-  // }
-  // else if (parent.value && (parent.value.isObjectType || parent.value.isGroupType || parent.value.isListType)) {
-  //   initialValue.value = parent.value.value[name.value] 
-  } else if (parent.value && parent.value.isMatrixType) {
+  if (parent.value && parent.value.isMatrixType) {
     const row = parent.value.resolvedRows[name.value.split('_')[1]]
     const col = parent.value.resolvedColumns[name.value.split('_')[2]]
 
+    let rowModel = form$.value.isSync
+      ? get(form$.value.model, `${parent.value.dataPath}.${row.value}`)
+      : parent.value.value[row.value]
+
     switch (parent.value.dataType) {
       case 'assoc':
-        initialValue.value = parent.value.value[row.value] === col.value ? true : null
+        initialValue.value = rowModel === col.value ? true : null
         break
 
       case 'array':
-        initialValue.value = Array.isArray(parent.value.value[row.value]) && parent.value.value[row.value].includes(col.value)
+        initialValue.value = Array.isArray(rowModel) && rowModel.includes(col.value)
         break
 
       default:
-        initialValue.value = parent.value.value[row.value]?.[col.value] || null
+        initialValue.value = rowModel?.[col.value]
     }
+  } else if (form$.value.isSync) {
+    initialValue.value = get(form$.value.model, dataPath.value)
+  }
+  else if (parent.value && (parent.value.isObjectType || parent.value.isGroupType || parent.value.isListType)) {
+    initialValue.value = parent.value.value[name.value] 
   }
   
   // ============== COMPUTED ===============
@@ -92,140 +77,80 @@ const base = function(props, context, dependencies, /* istanbul ignore next */ o
     get: options.value?.get || function () {
       let value
       
-      if (form$.value.isSync) {
-        if (parent.value && parent.value.isMatrixType) {
-          const row = parent.value.resolvedRows[name.value.split('_')[1]]
-          const col = parent.value.resolvedColumns[name.value.split('_')[2]]
-
-          const val = get(form$.value.model, `${parent.value.dataPath}.${row.value}`)
-
-          switch (parent.value.dataType) {
-            case 'assoc':
-              value = val === col.value
-              break
-
-            case 'array':
-              value = val && val.indexOf(col.value) !== -1
-              break
-
-            default:
-              value = val?.[col.value]
-              break
-          }
-        } else {
-          value = get(form$.value.model, dataPath.value)
-        }
-      // } else if (parent.value && (parent.value.isObjectType || parent.value.isGroupType || parent.value.isListType)) {
-      //   value = parent.value.value[name.value]
-      } else if (parent.value && (parent.value.isMatrixType)) {
+      if (parent.value && parent.value.isMatrixType) {
         const row = parent.value.resolvedRows[name.value.split('_')[1]]
         const col = parent.value.resolvedColumns[name.value.split('_')[2]]
 
+        const rowModel = form$.value.isSync
+          ? get(form$.value.model, `${parent.value.dataPath}.${row.value}`)
+          : parent.value.value[row.value]
+
         switch (parent.value.dataType) {
           case 'assoc':
-            value = parent.value.value[row.value] === col.value ? true : null
+            value = rowModel === col.value ? true : null
             break
 
           case 'array':
-            value = Array.isArray(parent.value.value[row.value]) && parent.value.value[row.value].includes(col.value) ? true : false
+            value = Array.isArray(rowModel) && rowModel.includes(col.value) ? true : false
             break
 
           default:
-            value = parent.value.value[row.value]?.[col.value]
+            value = rowModel?.[col.value]
         }
-        
-      // } else {
-      //   value = internalValue.value
+      } else if (form$.value.isSync) {
+        value = get(form$.value.model, dataPath.value)
+      } else if (parent.value && (parent.value.isObjectType || parent.value.isGroupType || parent.value.isListType)) {
+        value = parent.value.value[name.value]
+      } else {
+        value = internalValue.value
       }
       
       return value !== undefined ? value : /* istanbul ignore next: value is never undefined if default is set */ (defaultValue.value instanceof File ? defaultValue.value : cloneDeep(defaultValue.value))
     },
     set: options.value?.set || function (val) {
-      if (form$.value.isSync) {
-        if (parent.value && parent.value.isMatrixType) {
+      if (parent.value && parent.value.isMatrixType) {
         const row = parent.value.resolvedRows[name.value.split('_')[1]]
         const col = parent.value.resolvedColumns[name.value.split('_')[2]]
 
-          const oldValue = get(form$.value.model, `${parent.value.dataPath}.${row.value}`)
+        const matrixModel = form$.value.isSync
+          ? get(form$.value.model, 'parent.value.dataPath')
+          : parent.value.value
 
-          let newValue
-
-          switch (parent.value.dataType) {
-            case 'assoc':
-              if (val) {
-                newValue = col.value
-              } else if (oldValue === col.value) {
-                newValue = null
-              }
-              break
-
-            case 'array':
-              newValue = oldValue?.filter(v => v !== col.value) || []
-
-              if (val) {
-                newValue.push(col.value)
-              }
-              break
-
-            default:
-              newValue = {
-                ...(oldValue || {}),
-                [col.value]: val,
-              }
-
-              break
-          }
-          
-          if (newValue !== undefined) {
-            form$.value.updateModel(`${parent.value.dataPath}.${row.value}`, newValue)
-          }
-        } else {
-          form$.value.updateModel(dataPath.value, val)
-        }
-      // }
-      // else if (parent.value && parent.value.isListType) {
-      //   const newValue = parent.value.value.map((v, k) => k == name.value ? val : v)
-      //   parent.value.update(newValue)
-      // } else if (parent.value && (parent.value.isObjectType || parent.value.isGroupType)) {
-      //   parent.value.value = Object.assign({}, parent.value.value, {
-      //     [name.value]: val,
-      //   })
-      } else if (parent.value && parent.value.isMatrixType) {
-        const row = parent.value.resolvedRows[name.value.split('_')[1]]
-        const col = parent.value.resolvedColumns[name.value.split('_')[2]]
-
-        const oldValue = parent.value.value[row.value]
+        const rowModel = matrixModel[row.value]
 
         let newValue
 
         switch (parent.value.dataType) {
           case 'assoc':
+            let assocValue
+
             if (val) {
-              newValue = col.value
-            } else if (oldValue === col.value || (oldValue && typeof oldValue !== typeof col.value)) {
-              newValue = null
+              assocValue = col.value
+            } else if (rowModel === col.value || (rowModel && typeof rowModel !== typeof col.value)) {
+              assocValue = null
             }
 
-            if (newValue !== undefined) {
-              parent.value.value = {
-                ...parent.value.value,
-                [row.value]: newValue,
-              }
+            newValue = {
+              ...matrixModel,
+            }
+
+            if (assocValue !== undefined) {
+              newValue[row.value] = assocValue
             }
             break
 
           case 'array':
-            newValue = []
+            let arrayValue = []
 
             parent.value.resolvedColumns.forEach((column, c) => {
-              if ((Array.isArray(parent.value.value[row.value]) && parent.value.value[row.value].includes(column.value) && column.value !== col.value) || (column.value === col.value && val)) {
-                newValue.push(column.value)
+              if ((Array.isArray(rowModel) && rowModel.includes(column.value) && column.value !== col.value) || (column.value === col.value && val)) {
+                arrayValue.push(column.value)
               }
             })
 
-            parent.value.value = {
-              ...parent.value.value,
-              [row.value]: newValue
+            newValue = {
+              ...matrixModel,
+              [row.value]: arrayValue
             }
             break
 
@@ -234,9 +159,9 @@ const base = function(props, context, dependencies, /* istanbul ignore next */ o
 
             parent.value.resolvedRows.forEach((Row, r) => {
               newParentValue[Row.value] = {
-                ...Object.keys(parent.value.value[Row.value]).filter(k => parent.value.resolvedColumns.map(c => c.value).includes(k)).reduce((prev, curr) => ({
+                ...Object.keys(matrixModel[Row.value]).filter(k => parent.value.resolvedColumns.map(c => c.value).includes(k)).reduce((prev, curr) => ({
                   ...prev,
-                  [curr]: parent.value.value[Row.value][curr]
+                  [curr]: matrixModel[Row.value][curr]
                 }), {})
               }
 
@@ -249,10 +174,27 @@ const base = function(props, context, dependencies, /* istanbul ignore next */ o
               }
             })
 
-            parent.value.value = newParentValue
+            newValue = newParentValue
         }
-      // } else {
-      //   internalValue.value = val
+
+        if (form$.value.isSync) {
+          form$.value.updateModel(parent.value.dataPath, newValue)
+        } else {
+          parent.value.value = newValue
+        }
+        // }
+      } else if (form$.value.isSync) {
+        form$.value.updateModel(dataPath.value, val)
+      }
+      else if (parent.value && parent.value.isListType) {
+        const newValue = parent.value.value.map((v, k) => k == name.value ? val : v)
+        parent.value.update(newValue)
+      } else if (parent.value && (parent.value.isObjectType || parent.value.isGroupType)) {
+        parent.value.value = Object.assign({}, parent.value.value, {
+          [name.value]: val,
+        })
+      } else {
+        internalValue.value = val
       }
     },
   })
