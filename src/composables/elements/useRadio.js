@@ -1,4 +1,4 @@
-import { ref, watch, toRefs, onMounted, computed } from 'vue'
+import { ref, watch, toRefs, onMounted, computed, nextTick } from 'vue'
 
 const base = function(props, context, dependencies)
 {

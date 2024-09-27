@@ -163,11 +163,8 @@ const matrix = function(props, context, dependencies)
     rows,
     cols,
     name,
+    default: default_,
   } = toRefs(props)
-
-  const {
-    defaultValue: defaultValueBase,
-  } = object(props, context, dependencies)
   
   // ============ DEPENDENCIES =============
   
@@ -181,24 +178,35 @@ const matrix = function(props, context, dependencies)
   // ============== COMPUTED ===============
   
   const defaultValue = computed(() => {
-    const base = defaultValueBase.value
+    let parentDefaultValue
+    
+    if (parent && parent.value && !parent.value.mounted) {
+      parentDefaultValue = parent.value.defaultValue[name.value]
+    } else if (form$.value.options.default[name.value]) {
+      parentDefaultValue = form$.value.options.default[name.value]
+    }
 
-    const defaultValue = {}
+    const defaultValue = parentDefaultValue || default_.value || {}
 
     rows.value.forEach((row, r) => {
       cols.value.forEach((col, c) => {
         switch (dataType.value) {
           case 'assoc':
-            defaultValue[`${name.value}_${r}_${c}`] = base[row.value] === col.value
+            defaultValue[row.value] = defaultValue[row.value] === col.value ? col.value : null
             break
 
           case 'array':
-            defaultValue[`${name.value}_${r}_${c}`] = base[row.value] && base[row.value].indexOf(col.value) !== -1
+            defaultValue[row.value] = [
+              ...(defaultValue[row.value] || []),
+              ...(defaultValue[row.value] && defaultValue[row.value].indexOf(col.value) !== -1 ? [col.value] : [])
+            ]
             break
 
           default:
-            defaultValue[`${name.value}_${r}_${c}`] = base[row.value]?.[col.value] || null
-            break
+            defaultValue[row.value] = {
+              ...(defaultValue[row.value] || {}),
+              [col.value]: defaultValue[row.value]?.[col.value] || null,
+            }
         }
       })
     })

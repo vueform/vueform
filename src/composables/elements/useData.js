@@ -1289,6 +1289,7 @@ const matrix = function(props, context, dependencies, options = {})
     resolvedRows,
     resolvedColumns,
     dataType,
+    defaultValue,
    } = dependencies
 
   // ============== COMPUTED ===============
@@ -1332,11 +1333,11 @@ const matrix = function(props, context, dependencies, options = {})
           return
         }
 
-        let colValue = children$.value[`${name.value}_${r}_${c}`].value
+        let cellValue = children$.value[`${name.value}_${r}_${c}`].value
 
         switch (dataType.value) {
           case 'array':
-            if (colValue) {
+            if (cellValue) {
               rowValue = [
                 ...(rowValue || []),
                 column.value,
@@ -1345,15 +1346,16 @@ const matrix = function(props, context, dependencies, options = {})
             break
 
           case 'assoc':
-            if (colValue) {
+            if (cellValue) {
               rowValue = column.value
             }
             break
 
           default:
+            console.log(name.value, column.value, cellValue)
             rowValue = {
               ...(rowValue || {}),
-              [column.value]: colValue,
+              [column.value]: cellValue,
             }
         }
       })
@@ -1387,6 +1389,10 @@ const matrix = function(props, context, dependencies, options = {})
       })
     })
   }
+
+  watch(inputType, () => {
+    reset()
+  }, { flush: 'post' })
 
   return {
     data,

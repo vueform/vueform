@@ -20,8 +20,6 @@ import useDisabled from './../../composables/elements/useDisabled'
 import useReadonly from './../../composables/elements/useReadonly'
 import useDataType from './../../composables/elements/useDataType'
 
-import { object as useValue } from './../../composables/elements/useValue'
-import { object as useNullValue } from './../../composables/elements/useNullValue'
 import { object as useChildren } from './../../composables/elements/useChildren'
 import { object as useValidation } from './../../composables/elements/useValidation'
 import { object as useWatchValue } from './../../composables/elements/useWatchValue'
@@ -29,7 +27,9 @@ import { object as useConditions } from './../../composables/useConditions'
 
 import { matrix as useBaseElement } from './../../composables/elements/useBaseElement'
 import { matrix as useData } from './../../composables/elements/useData'
+import { matrix as useValue } from './../../composables/elements/useValue'
 import { matrix as useDefault } from './../../composables/elements/useDefault'
+import { matrix as useNullValue } from './../../composables/elements/useNullValue'
 
 import BaseElement from './../../mixins/BaseElement'
 import HasView from './../../mixins/HasView'
@@ -124,11 +124,11 @@ export default {
       useLayout,
       usePath,
       useFieldId,
-      useNullValue,
       useEvents,
       useBaseElement,
       useMatrix,
       useDataType,
+      useNullValue,
       useDefault,
       useValue,
       useLabel,

@@ -85,6 +85,25 @@ const object = function(props, context, dependencies)
   }
 }
 
+const matrix = function(props, context, dependencies)
+{
+  const {
+    dataType,
+    resolvedColumns,
+    resolvedRows,
+  } = dependencies
+
+  // ============== COMPUTED ===============
+  
+  const nullValue = computed(() => {
+    return {}
+  })
+  
+  return {
+    nullValue,
+  }
+}
+
 const location = function(props, context, dependencies)
 {
   // ============== COMPUTED ===============
@@ -175,6 +194,7 @@ export {
   location,
   address,
   generic,
+  matrix,
 }
 
 export default base
