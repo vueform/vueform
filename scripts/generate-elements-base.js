@@ -16,6 +16,7 @@ const elements = [
   'hidden',
   'list',
   'location',
+  'matrix',
   'multifile',
   'multiselect',
   'object',

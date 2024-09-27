@@ -6140,6 +6140,13 @@ module.exports = {
         "types": [
           "object"
         ]
+      },
+      "standalone": {
+        "required": false,
+        "default": false,
+        "types": [
+          "boolean"
+        ]
       }
     },
     "events": {},
@@ -6518,6 +6525,13 @@ module.exports = {
         "default": "{}",
         "types": [
           "object"
+        ]
+      },
+      "standalone": {
+        "required": false,
+        "default": false,
+        "types": [
+          "boolean"
         ]
       }
     },

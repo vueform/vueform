@@ -243,6 +243,7 @@ export interface VueformElement extends DefineComponent {
   text: string | object;
   trueValue: boolean | string | number;
   falseValue: boolean | string | number;
+  standalone: boolean;
   items: object | Array<any> | Function | string;
   disables: Array<any>;
   clearOnRefetch: boolean;
@@ -300,6 +301,14 @@ export interface VueformElement extends DefineComponent {
   orderBy: string;
   attrs: object;
   displayKey: string;
+  inputType: string | object;
+  rows: Array<any> | number;
+  cols: Array<any>;
+  equal: boolean;
+  widths: Array<any>;
+  padding: boolean;
+  rowWrap: boolean;
+  colWrap: boolean;
   storeFile: string;
   fields: object;
   file: object;
@@ -348,7 +357,6 @@ export interface VueformElement extends DefineComponent {
   noOptionsText: string | object;
   noResultsText: string | object;
   autocomplete: string | number;
-  inputType: string;
   include: Array<any>;
   exclude: Array<any>;
   unmask: boolean;
@@ -395,7 +403,6 @@ export interface VueformElement extends DefineComponent {
   onKeyup: Function;
   onKeypress: Function;
   autogrow: boolean;
-  rows: number;
   onTag: Function;
   breakTags: boolean;
   showOptions: boolean;
@@ -414,6 +421,7 @@ export interface VueformElement extends DefineComponent {
   isImageType: boolean;
   isObjectType: boolean;
   isGroupType: boolean;
+  isMatrixType: boolean;
   isListType: boolean;
   isActive: boolean;
   isButtonLabelComponent: boolean;
@@ -795,6 +803,7 @@ export interface VueformSchema {
   text?: string | object;
   trueValue?: boolean | string | number;
   falseValue?: boolean | string | number;
+  standalone?: boolean;
   items?: object | Array<any> | Function | string;
   disables?: Array<any>;
   clearOnRefetch?: boolean;
@@ -852,6 +861,14 @@ export interface VueformSchema {
   orderBy?: string;
   attrs?: object;
   displayKey?: string;
+  inputType?: string | object;
+  rows?: Array<any> | number;
+  cols?: Array<any>;
+  equal?: boolean;
+  widths?: Array<any>;
+  padding?: boolean;
+  rowWrap?: boolean;
+  colWrap?: boolean;
   storeFile?: string;
   fields?: object;
   file?: object;
@@ -900,7 +917,6 @@ export interface VueformSchema {
   noOptionsText?: string | object;
   noResultsText?: string | object;
   autocomplete?: string | number;
-  inputType?: string;
   include?: Array<any>;
   exclude?: Array<any>;
   unmask?: boolean;
@@ -947,7 +963,6 @@ export interface VueformSchema {
   onKeyup?: Function;
   onKeypress?: Function;
   autogrow?: boolean;
-  rows?: number;
   onTag?: Function;
   breakTags?: boolean;
   showOptions?: boolean;
@@ -1180,6 +1195,7 @@ export interface CheckboxgroupCheckboxProps {
   items: object | Array<any>;
   index: number;
   attrs?: object;
+  standalone?: boolean;
 }
 
 export interface FilePreviewProps {
@@ -1192,6 +1208,7 @@ export interface RadiogroupRadioProps {
   items: object | Array<any>;
   index: number;
   attrs?: object;
+  standalone?: boolean;
 }
 
 export interface ButtonElementProps {
@@ -1348,6 +1365,7 @@ export interface CheckboxElementProps {
   trueValue?: boolean | string | number;
   falseValue?: boolean | string | number;
   align?: string;
+  standalone?: boolean;
 }
 
 export interface CheckboxgroupElementProps {
@@ -1887,6 +1905,63 @@ export interface LocationElementProps {
   extendOptions?: object;
 }
 
+export interface MatrixElementProps {
+  name: string | number;
+  conditions?: Array<any>;
+  onBeforeCreate?: Function;
+  onCreated?: Function;
+  onBeforeMount?: Function;
+  onMounted?: Function;
+  onBeforeUpdate?: Function;
+  onUpdated?: Function;
+  onBeforeUnmount?: Function;
+  onUnmounted?: Function;
+  inline?: boolean;
+  layout?: string | object | boolean;
+  addClass?: Array<any> | object | string | Function;
+  removeClass?: Array<any> | object | Function;
+  replaceClass?: object | Function;
+  overrideClass?: Array<any> | object | string | Function;
+  addClasses?: object | Function;
+  replaceClasses?: object | Function;
+  removeClasses?: object | Function;
+  overrideClasses?: object | Function;
+  presets?: Array<any>;
+  view?: string;
+  views?: object;
+  size?: string;
+  columns?: object | string | number;
+  templates?: object;
+  description?: string | object;
+  info?: string | object;
+  infoPosition?: string;
+  label?: string | object | Function;
+  before?: object | string | number;
+  between?: object | string | number;
+  after?: object | string | number;
+  slots?: object;
+  onChange?: Function;
+  formatData?: Function;
+  formatLoad?: Function;
+  submit?: boolean;
+  rules?: Array<any> | string | object;
+  messages?: object;
+  fieldName?: string;
+  type?: string;
+  default?: object;
+  id?: string;
+  disabled?: boolean | Function | Array<any> | object;
+  readonly?: boolean | Function | Array<any> | object;
+  inputType?: string | object;
+  rows?: Array<any> | number;
+  cols?: Array<any>;
+  equal?: boolean;
+  widths?: Array<any>;
+  padding?: boolean;
+  rowWrap?: boolean;
+  colWrap?: boolean;
+}
+
 export interface MultifileElementProps {
   name: string | number;
   conditions?: Array<any>;
@@ -2225,6 +2300,7 @@ export interface RadioElementProps {
   radioValue?: boolean | string | number;
   text?: string | object;
   align?: string;
+  standalone?: boolean;
 }
 
 export interface RadiogroupElementProps {
@@ -4149,6 +4225,7 @@ export declare class CheckboxgroupCheckbox implements DefineComponent {
   items: CheckboxgroupCheckboxProps['items'];
   index: CheckboxgroupCheckboxProps['index'];
   attrs: CheckboxgroupCheckboxProps['attrs'];
+  standalone: CheckboxgroupCheckboxProps['standalone'];
 
   // Computed
   View: string;
@@ -4221,6 +4298,7 @@ export declare class RadiogroupRadio implements DefineComponent {
   items: RadiogroupRadioProps['items'];
   index: RadiogroupRadioProps['index'];
   attrs: RadiogroupRadioProps['attrs'];
+  standalone: RadiogroupRadioProps['standalone'];
 
   // Computed
   View: string;
@@ -4310,6 +4388,7 @@ export declare class ButtonElement implements DefineComponent {
   isImageType: boolean;
   isObjectType: boolean;
   isGroupType: boolean;
+  isMatrixType: boolean;
   isListType: boolean;
   isActive: boolean;
   isButtonLabelComponent: boolean;
@@ -4449,6 +4528,7 @@ export declare class CaptchaElement implements DefineComponent {
   isObjectType: boolean;
   isGroupType: boolean;
   isListType: boolean;
+  isMatrixType: boolean;
   isActive: boolean;
   captchaOptions: object;
   shouldVerify: boolean;
@@ -4626,6 +4706,7 @@ export declare class CheckboxElement implements DefineComponent {
   trueValue: CheckboxElementProps['trueValue'];
   falseValue: CheckboxElementProps['falseValue'];
   align: CheckboxElementProps['align'];
+  standalone: CheckboxElementProps['standalone'];
 
   // Computed
   descriptionId: string;
@@ -4640,6 +4721,7 @@ export declare class CheckboxElement implements DefineComponent {
   isObjectType: boolean;
   isGroupType: boolean;
   isListType: boolean;
+  isMatrixType: boolean;
   isActive: boolean;
   classes: object;
   classesInstance: MergeClasses;
@@ -4825,6 +4907,7 @@ export declare class CheckboxgroupElement implements DefineComponent {
   isImageType: boolean;
   isObjectType: boolean;
   isGroupType: boolean;
+  isMatrixType: boolean;
   isListType: boolean;
   isActive: boolean;
   classes: object;
@@ -5031,6 +5114,7 @@ export declare class DateElement implements DefineComponent {
   isObjectType: boolean;
   isGroupType: boolean;
   isListType: boolean;
+  isMatrixType: boolean;
   isActive: boolean;
   classes: object;
   classesInstance: MergeClasses;
@@ -5231,6 +5315,7 @@ export declare class DatesElement implements DefineComponent {
   isImageType: boolean;
   isObjectType: boolean;
   isGroupType: boolean;
+  isMatrixType: boolean;
   isListType: boolean;
   isActive: boolean;
   classes: object;
@@ -5431,6 +5516,7 @@ export declare class EditorElement implements DefineComponent {
   isObjectType: boolean;
   isGroupType: boolean;
   isListType: boolean;
+  isMatrixType: boolean;
   isActive: boolean;
   classes: object;
   classesInstance: MergeClasses;
@@ -5638,6 +5724,7 @@ export declare class FileElement implements DefineComponent {
   isImageType: boolean;
   isObjectType: boolean;
   isGroupType: boolean;
+  isMatrixType: boolean;
   isListType: boolean;
   isActive: boolean;
   classes: object;
@@ -5846,6 +5933,7 @@ export declare class GenericElement implements DefineComponent {
   isObjectType: boolean;
   isGroupType: boolean;
   isListType: boolean;
+  isMatrixType: boolean;
   isActive: boolean;
   classes: object;
   classesInstance: MergeClasses;
@@ -6027,6 +6115,7 @@ export declare class GroupElement implements DefineComponent {
   isImageType: boolean;
   isObjectType: boolean;
   isGroupType: boolean;
+  isMatrixType: boolean;
   isListType: boolean;
   isActive: boolean;
   children: object;
@@ -6174,6 +6263,7 @@ export declare class HiddenElement implements DefineComponent {
   isObjectType: boolean;
   isGroupType: boolean;
   isListType: boolean;
+  isMatrixType: boolean;
   isActive: boolean;
   available: boolean;
   data: object;
@@ -6333,6 +6423,7 @@ export declare class ListElement implements DefineComponent {
   isImageType: boolean;
   isObjectType: boolean;
   isGroupType: boolean;
+  isMatrixType: boolean;
   isListType: boolean;
   isActive: boolean;
   children$: object;
@@ -6549,6 +6640,7 @@ export declare class LocationElement implements DefineComponent {
   isObjectType: boolean;
   isGroupType: boolean;
   isListType: boolean;
+  isMatrixType: boolean;
   isActive: boolean;
   classes: object;
   classesInstance: MergeClasses;
@@ -6677,6 +6769,200 @@ export declare class LocationElement implements DefineComponent {
   };
 }
 
+export declare class MatrixElement implements DefineComponent {
+  $props: MatrixElementProps;
+
+  // Props
+  name: MatrixElementProps['name'];
+  conditions: MatrixElementProps['conditions'];
+  onBeforeCreate: MatrixElementProps['onBeforeCreate'];
+  onCreated: MatrixElementProps['onCreated'];
+  onBeforeMount: MatrixElementProps['onBeforeMount'];
+  onMounted: MatrixElementProps['onMounted'];
+  onBeforeUpdate: MatrixElementProps['onBeforeUpdate'];
+  onUpdated: MatrixElementProps['onUpdated'];
+  onBeforeUnmount: MatrixElementProps['onBeforeUnmount'];
+  onUnmounted: MatrixElementProps['onUnmounted'];
+  inline: MatrixElementProps['inline'];
+  layout: MatrixElementProps['layout'];
+  addClass: MatrixElementProps['addClass'];
+  removeClass: MatrixElementProps['removeClass'];
+  replaceClass: MatrixElementProps['replaceClass'];
+  overrideClass: MatrixElementProps['overrideClass'];
+  addClasses: MatrixElementProps['addClasses'];
+  replaceClasses: MatrixElementProps['replaceClasses'];
+  removeClasses: MatrixElementProps['removeClasses'];
+  overrideClasses: MatrixElementProps['overrideClasses'];
+  presets: MatrixElementProps['presets'];
+  view: MatrixElementProps['view'];
+  views: MatrixElementProps['views'];
+  size: MatrixElementProps['size'];
+  columns: MatrixElementProps['columns'];
+  templates: MatrixElementProps['templates'];
+  description: MatrixElementProps['description'];
+  info: MatrixElementProps['info'];
+  infoPosition: MatrixElementProps['infoPosition'];
+  label: MatrixElementProps['label'];
+  before: MatrixElementProps['before'];
+  between: MatrixElementProps['between'];
+  after: MatrixElementProps['after'];
+  slots: MatrixElementProps['slots'];
+  onChange: MatrixElementProps['onChange'];
+  formatData: MatrixElementProps['formatData'];
+  formatLoad: MatrixElementProps['formatLoad'];
+  submit: MatrixElementProps['submit'];
+  rules: MatrixElementProps['rules'];
+  messages: MatrixElementProps['messages'];
+  fieldName: MatrixElementProps['fieldName'];
+  type: MatrixElementProps['type'];
+  default: MatrixElementProps['default'];
+  id: MatrixElementProps['id'];
+  disabled: MatrixElementProps['disabled'];
+  readonly: MatrixElementProps['readonly'];
+  inputType: MatrixElementProps['inputType'];
+  rows: MatrixElementProps['rows'];
+  cols: MatrixElementProps['cols'];
+  equal: MatrixElementProps['equal'];
+  widths: MatrixElementProps['widths'];
+  padding: MatrixElementProps['padding'];
+  rowWrap: MatrixElementProps['rowWrap'];
+  colWrap: MatrixElementProps['colWrap'];
+
+  // Computed
+  descriptionId: string;
+  labelId: string;
+  infoId: string;
+  errorId: string;
+  aria: object;
+  isStatic: boolean;
+  isFileType: boolean;
+  isArrayType: boolean;
+  isImageType: boolean;
+  isObjectType: boolean;
+  isGroupType: boolean;
+  isMatrixType: boolean;
+  isListType: boolean;
+  isActive: boolean;
+  children: object;
+  children$: object;
+  classes: object;
+  classesInstance: MergeClasses;
+  cols: object;
+  columnsClassesService: Columns;
+  columnsClasses: object;
+  available: boolean;
+  data: object;
+  requestData: object;
+  defaultValue: any;
+  isDisabled: boolean;
+  el$: VueformElement;
+  fieldId: string;
+  hasLabel: boolean;
+  Label: string | Component;
+  elementLayout: string | Component;
+  nullValue: any;
+  parent: VNode;
+  path: string;
+  dataPath: string;
+  flat: boolean;
+  isReadonly: boolean;
+  elementSlots: object;
+  fieldSlots: object;
+  Templates: object;
+  template: object;
+  dirty: boolean;
+  validated: boolean;
+  invalid: boolean;
+  pending: boolean;
+  debouncing: boolean;
+  busy: boolean;
+  isRequired: boolean;
+  childrenErrors: Array<any>;
+  errors: Array<any>;
+  error: string;
+  validationRules: string | Array<any>;
+  value: any;
+  model: any;
+  isDefault: boolean;
+  visible: boolean;
+  Size: string;
+  View: string;
+  Views: object;
+
+  // Data
+  active: boolean;
+  mounted: boolean;
+  container: HTMLElement;
+  children$Array: Array<any>;
+  conditionList: Array<any>;
+  localDisabled: boolean | null;
+  events: Array<any>;
+  listeners: object;
+  state: object;
+  Validators: Array<any>;
+  messageBag: MessageBag;
+  resetting: boolean;
+  initialValue: any;
+  internalValue: any;
+  hidden: boolean;
+
+  // Injects
+  form$: Vueform;
+  theme: object;
+
+  // Methods
+  activate: () => void;
+  deactivate: () => void;
+  updateColumns: (value: number | Array<any>) => void;
+  updateConditions: () => void;
+  load: (value: any, format: boolean) => void;
+  update: (value: any) => void;
+  clear: () => void;
+  reset: () => void;
+  disable: () => void;
+  enable: () => void;
+  component: (element: string) => string;
+  on: (event: string, callback: Function) => void;
+  off: (event: string) => void;
+  fire: (args: any) => void;
+  focus: () => void;
+  validate: () => Promise;
+  validateValidators: () => Promise;
+  validateChildren: () => Promise;
+  dirt: () => void;
+  clean: () => void;
+  clearMessages: () => void;
+  resetValidators: () => void;
+  initMessageBag: () => void;
+  initValidation: () => void;
+  reinitValidation: () => void;
+  hide: () => void;
+  show: () => void;
+
+  //Events
+  $emit(eventName: 'change', value: any): void;
+  $emit(eventName: 'remove', value: any): void;
+  $emit(eventName: 'beforeCreate', value: any): void;
+  $emit(eventName: 'created', value: any): void;
+  $emit(eventName: 'beforeMount', value: any): void;
+  $emit(eventName: 'mounted', value: any): void;
+  $emit(eventName: 'beforeUpdate', value: any): void;
+  $emit(eventName: 'updated', value: any): void;
+  $emit(eventName: 'beforeUnmount', value: any): void;
+  $emit(eventName: 'unmounted', value: any): void;
+
+  //Slots
+  $slots: {
+    'label': VNode[];
+    'info': VNode[];
+    'required': VNode[];
+    'description': VNode[];
+    'before': VNode[];
+    'between': VNode[];
+    'after': VNode[];
+  };
+}
+
 export declare class MultifileElement implements DefineComponent {
   $props: MultifileElementProps;
 
@@ -6763,6 +7049,7 @@ export declare class MultifileElement implements DefineComponent {
   isImageType: boolean;
   isObjectType: boolean;
   isGroupType: boolean;
+  isMatrixType: boolean;
   isListType: boolean;
   isActive: boolean;
   children$: object;
@@ -7032,6 +7319,7 @@ export declare class MultiselectElement implements DefineComponent {
   isImageType: boolean;
   isObjectType: boolean;
   isGroupType: boolean;
+  isMatrixType: boolean;
   isListType: boolean;
   isActive: boolean;
   classes: object;
@@ -7249,6 +7537,7 @@ export declare class ObjectElement implements DefineComponent {
   isImageType: boolean;
   isObjectType: boolean;
   isGroupType: boolean;
+  isMatrixType: boolean;
   isListType: boolean;
   isActive: boolean;
   children: object;
@@ -7440,6 +7729,7 @@ export declare class PhoneElement implements DefineComponent {
   isObjectType: boolean;
   isGroupType: boolean;
   isListType: boolean;
+  isMatrixType: boolean;
   isActive: boolean;
   classes: object;
   classesInstance: MergeClasses;
@@ -7633,6 +7923,7 @@ export declare class RadioElement implements DefineComponent {
   radioValue: RadioElementProps['radioValue'];
   text: RadioElementProps['text'];
   align: RadioElementProps['align'];
+  standalone: RadioElementProps['standalone'];
 
   // Computed
   descriptionId: string;
@@ -7647,6 +7938,7 @@ export declare class RadioElement implements DefineComponent {
   isObjectType: boolean;
   isGroupType: boolean;
   isListType: boolean;
+  isMatrixType: boolean;
   isActive: boolean;
   classes: object;
   classesInstance: MergeClasses;
@@ -7834,6 +8126,7 @@ export declare class RadiogroupElement implements DefineComponent {
   isObjectType: boolean;
   isGroupType: boolean;
   isListType: boolean;
+  isMatrixType: boolean;
   isActive: boolean;
   classes: object;
   classesInstance: MergeClasses;
@@ -8070,6 +8363,7 @@ export declare class SelectElement implements DefineComponent {
   isObjectType: boolean;
   isGroupType: boolean;
   isListType: boolean;
+  isMatrixType: boolean;
   isActive: boolean;
   classes: object;
   classesInstance: MergeClasses;
@@ -8303,6 +8597,7 @@ export declare class SignatureElement implements DefineComponent {
   isObjectType: boolean;
   isGroupType: boolean;
   isListType: boolean;
+  isMatrixType: boolean;
   isActive: boolean;
   classes: object;
   classesInstance: MergeClasses;
@@ -8599,6 +8894,7 @@ export declare class SliderElement implements DefineComponent {
   isObjectType: boolean;
   isGroupType: boolean;
   isListType: boolean;
+  isMatrixType: boolean;
   isActive: boolean;
   classes: object;
   classesInstance: MergeClasses;
@@ -8782,6 +9078,7 @@ export declare class StaticElement implements DefineComponent {
   isImageType: boolean;
   isObjectType: boolean;
   isGroupType: boolean;
+  isMatrixType: boolean;
   isListType: boolean;
   isActive: boolean;
   classes: object;
@@ -8931,6 +9228,7 @@ export declare class TEditorElement implements DefineComponent {
   isObjectType: boolean;
   isGroupType: boolean;
   isListType: boolean;
+  isMatrixType: boolean;
   isActive: boolean;
   classes: object;
   classesInstance: MergeClasses;
@@ -9138,6 +9436,7 @@ export declare class TTextElement implements DefineComponent {
   isObjectType: boolean;
   isGroupType: boolean;
   isListType: boolean;
+  isMatrixType: boolean;
   isActive: boolean;
   classes: object;
   classesInstance: MergeClasses;
@@ -9350,6 +9649,7 @@ export declare class TTextareaElement implements DefineComponent {
   isObjectType: boolean;
   isGroupType: boolean;
   isListType: boolean;
+  isMatrixType: boolean;
   isActive: boolean;
   classes: object;
   classesInstance: MergeClasses;
@@ -9604,6 +9904,7 @@ export declare class TagsElement implements DefineComponent {
   isImageType: boolean;
   isObjectType: boolean;
   isGroupType: boolean;
+  isMatrixType: boolean;
   isListType: boolean;
   isActive: boolean;
   classes: object;
@@ -9836,6 +10137,7 @@ export declare class TextElement implements DefineComponent {
   isObjectType: boolean;
   isGroupType: boolean;
   isListType: boolean;
+  isMatrixType: boolean;
   isActive: boolean;
   classes: object;
   classesInstance: MergeClasses;
@@ -10046,6 +10348,7 @@ export declare class TextareaElement implements DefineComponent {
   isObjectType: boolean;
   isGroupType: boolean;
   isListType: boolean;
+  isMatrixType: boolean;
   isActive: boolean;
   classes: object;
   classesInstance: MergeClasses;
@@ -10250,6 +10553,7 @@ export declare class ToggleElement implements DefineComponent {
   isObjectType: boolean;
   isGroupType: boolean;
   isListType: boolean;
+  isMatrixType: boolean;
   isActive: boolean;
   classes: object;
   classesInstance: MergeClasses;
@@ -10416,6 +10720,7 @@ declare module 'vue' {
     HiddenElement: typeof HiddenElement;
     ListElement: typeof ListElement;
     LocationElement: typeof LocationElement;
+    MatrixElement: typeof MatrixElement;
     MultifileElement: typeof MultifileElement;
     MultiselectElement: typeof MultiselectElement;
     ObjectElement: typeof ObjectElement;

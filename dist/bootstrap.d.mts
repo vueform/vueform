@@ -54,6 +54,7 @@ declare module '@vueform/vueform/dist/bootstrap' {
   const HiddenElement: any;
   const ListElement: any;
   const LocationElement: any;
+  const MatrixElement: any;
   const MultifileElement: any;
   const MultifileElement_image: any;
   const MultifileElement_gallery: any;
@@ -135,6 +136,7 @@ declare module '@vueform/vueform/dist/bootstrap' {
     HiddenElement,
     ListElement,
     LocationElement,
+    MatrixElement,
     MultifileElement,
     MultifileElement_image,
     MultifileElement_gallery,

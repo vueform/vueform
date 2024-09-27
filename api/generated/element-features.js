@@ -930,6 +930,13 @@ export default {
           ],
           "description": "Whether the element is a list."
         },
+        "isMatrixType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is a matrix."
+        },
         "isActive": {
           "public": false,
           "types": [
@@ -1019,6 +1026,13 @@ export default {
             "boolean"
           ],
           "description": "Whether the element is a nested group."
+        },
+        "isMatrixType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is a matrix."
         },
         "isListType": {
           "public": false,
@@ -1117,6 +1131,13 @@ export default {
           ],
           "description": "Whether the element is a nested group."
         },
+        "isMatrixType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is a matrix."
+        },
         "isListType": {
           "public": false,
           "types": [
@@ -1213,6 +1234,117 @@ export default {
             "boolean"
           ],
           "description": "Whether the element is a nested group."
+        },
+        "isMatrixType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is a matrix."
+        },
+        "isListType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is a list."
+        },
+        "isActive": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element should be visible when using `tabs` or `steps`."
+        }
+      },
+      "data": {
+        "active": {
+          "public": false,
+          "default": "true",
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is hidden internally by core components like tabs or steps. Only intended for reading."
+        },
+        "mounted": {
+          "public": true,
+          "default": "true",
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element has been already mounted."
+        },
+        "container": {
+          "public": true,
+          "types": [
+            "HTMLElement"
+          ],
+          "description": "The ref to the outermost DOM of the element."
+        }
+      },
+      "methods": {
+        "activate": {
+          "public": false,
+          "returns": "void",
+          "description": "Sets the `active` property of the element to `true`."
+        },
+        "deactivate": {
+          "public": false,
+          "returns": "void",
+          "description": "Sets the `active` property of the element to `false`."
+        }
+      }
+    },
+    "matrix": {
+      "computed": {
+        "isStatic": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is static (does not have any data or validation)."
+        },
+        "isFileType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element's value is a file."
+        },
+        "isArrayType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element's value is an array."
+        },
+        "isImageType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element's value is an image."
+        },
+        "isObjectType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is a nested object."
+        },
+        "isGroupType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is a nested group."
+        },
+        "isMatrixType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is a matrix."
         },
         "isListType": {
           "public": false,
@@ -1311,6 +1443,13 @@ export default {
           ],
           "description": "Whether the element is a nested group."
         },
+        "isMatrixType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is a matrix."
+        },
         "isListType": {
           "public": false,
           "types": [
@@ -1407,6 +1546,13 @@ export default {
             "boolean"
           ],
           "description": "Whether the element is a nested group."
+        },
+        "isMatrixType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is a matrix."
         },
         "isListType": {
           "public": false,
@@ -1505,6 +1651,13 @@ export default {
           ],
           "description": "Whether the element is a nested group."
         },
+        "isMatrixType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is a matrix."
+        },
         "isListType": {
           "public": false,
           "types": [
@@ -1601,6 +1754,13 @@ export default {
             "boolean"
           ],
           "description": "Whether the element is a nested group."
+        },
+        "isMatrixType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is a matrix."
         },
         "isListType": {
           "public": false,
@@ -1699,6 +1859,13 @@ export default {
           ],
           "description": "Whether the element is a nested group."
         },
+        "isMatrixType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is a matrix."
+        },
         "isListType": {
           "public": false,
           "types": [
@@ -1795,6 +1962,13 @@ export default {
             "boolean"
           ],
           "description": "Whether the element is a nested group."
+        },
+        "isMatrixType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is a matrix."
         },
         "isListType": {
           "public": false,
@@ -3354,6 +3528,71 @@ export default {
         }
       }
     },
+    "matrix": {
+      "computed": {
+        "data": {
+          "public": true,
+          "types": [
+            "object"
+          ],
+          "description": "The value of the element in `{[name]: value}` value format. This gets merged with the parent component's data."
+        },
+        "requestData": {
+          "public": true,
+          "types": [
+            "object"
+          ],
+          "description": "Same as `data` property except that it only includes the element's value if [`submit`](#option-submit) is not disabled and [`available`](#property-available) is `true` (has no [`conditions`](#option-conditions) or they are fulfilled)."
+        }
+      },
+      "methods": {
+        "load": {
+          "public": true,
+          "returns": "void",
+          "description": "Loads value to the element using optional [`formatLoad`](#option-format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.",
+          "params": {
+            "value": {
+              "types": [
+                "any"
+              ],
+              "required": true,
+              "description": "the value to be loaded"
+            },
+            "format": {
+              "types": [
+                "boolean"
+              ],
+              "required": false,
+              "description": "whether the loaded value should be formatted with [`formatLoad`](#option-format-load) before setting the value of the element (default: `false`)"
+            }
+          }
+        },
+        "update": {
+          "public": true,
+          "returns": "void",
+          "description": "Updates the value of the element similarly to [`load`](#method-load), only that it can\\'t format data.",
+          "params": {
+            "value": {
+              "types": [
+                "any"
+              ],
+              "required": true,
+              "description": "the value to be set"
+            }
+          }
+        },
+        "clear": {
+          "public": true,
+          "returns": "void",
+          "description": "Clears the element's value."
+        },
+        "reset": {
+          "public": true,
+          "returns": "void",
+          "description": "Resets the element's value to [`default`](#option-default) (or empty if `default` is not provided). Also resets all the validation state for the element."
+        }
+      }
+    },
     "multiselect": {
       "computed": {
         "data": {
@@ -3485,6 +3724,9 @@ export default {
       }
     }
   },
+  "dataType": {
+    "base": {}
+  },
   "dateFormat": {
     "base": {
       "computed": {
@@ -3561,6 +3803,17 @@ export default {
       }
     },
     "object": {
+      "computed": {
+        "defaultValue": {
+          "public": false,
+          "types": [
+            "any"
+          ],
+          "description": "The default value of the element."
+        }
+      }
+    },
+    "matrix": {
       "computed": {
         "defaultValue": {
           "public": false,
@@ -4767,6 +5020,9 @@ export default {
       }
     }
   },
+  "matrix": {
+    "base": {}
+  },
   "multifile": {
     "base": {
       "computed": {
@@ -4854,6 +5110,17 @@ export default {
       }
     },
     "object": {
+      "computed": {
+        "nullValue": {
+          "public": false,
+          "types": [
+            "any"
+          ],
+          "description": "The null value of the element."
+        }
+      }
+    },
+    "matrix": {
       "computed": {
         "nullValue": {
           "public": false,
@@ -7699,6 +7966,47 @@ export default {
   },
   "value": {
     "base": {
+      "data": {
+        "initialValue": {
+          "public": false,
+          "types": [
+            "any"
+          ],
+          "description": "The initial value of the element."
+        },
+        "internalValue": {
+          "public": false,
+          "types": [
+            "any"
+          ],
+          "description": "The store for the value of the element when we're not using external data (form's `v-model`)."
+        }
+      },
+      "computed": {
+        "value": {
+          "public": true,
+          "types": [
+            "any"
+          ],
+          "description": "The value of the element."
+        },
+        "model": {
+          "public": true,
+          "types": [
+            "any"
+          ],
+          "description": "Intermediary value between element's value and field's `v-model`. It is required when we need to transform the value format between the element and its field."
+        },
+        "isDefault": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element has its default value."
+        }
+      }
+    },
+    "matrix": {
       "data": {
         "initialValue": {
           "public": false,
