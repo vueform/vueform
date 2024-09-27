@@ -30,12 +30,31 @@ const base = function(props, context, dependencies)
   const defaultValue = computed(() => {
     let parentDefaultValue
     
-    if (parent && parent.value && !parent.value.mounted) {
+    if (parent && parent.value && parent.value.isMatrixType) {
+      const row = parent.value.resolvedRows[name.value.split('_')[1]]
+      const col = parent.value.resolvedColumns[name.value.split('_')[2]]
+
+      const rowModel = parent.value.defaultValue[row.value]
+
+      switch (parent.value.dataType) {
+        case 'assoc':
+          parentDefaultValue = rowModel === col.value ? true : null
+          break
+
+        case 'array':
+          parentDefaultValue = Array.isArray(rowModel) && rowModel.includes(col.value)
+          break
+
+        default:
+          parentDefaultValue = rowModel[col.value]
+          break
+      }
+    } else if (parent && parent.value && !parent.value.mounted) {
       parentDefaultValue = parent.value.defaultValue[name.value]
     } else if (form$.value.options.default[name.value] !== undefined) {
       parentDefaultValue = form$.value.options.default[name.value]
     }
-    
+
     if (parentDefaultValue !== undefined) {
       return parentDefaultValue instanceof File
         ? new File([parentDefaultValue], parentDefaultValue.name, parentDefaultValue)
@@ -84,9 +103,28 @@ const text = function(props, context, dependencies)
   const defaultValue = computed(() => {
     let parentDefaultValue
     
-    if (parent && parent.value && !parent.value.mounted) {
+    if (parent && parent.value && parent.value.isMatrixType) {
+      const row = parent.value.resolvedRows[name.value.split('_')[1]]
+      const col = parent.value.resolvedColumns[name.value.split('_')[2]]
+
+      const rowModel = parent.value.defaultValue[row.value]
+
+      switch (parent.value.dataType) {
+        case 'assoc':
+          parentDefaultValue = rowModel === col.value ? true : null
+          break
+
+        case 'array':
+          parentDefaultValue = Array.isArray(rowModel) && rowModel.includes(col.value)
+          break
+
+        default:
+          parentDefaultValue = rowModel[col.value]
+          break
+      }
+    } else if (parent && parent.value && !parent.value.mounted) {
       parentDefaultValue = parent.value.defaultValue[name.value]
-    } else if (typeof form$.value.options.default[name.value] !== undefined) {
+    } else if (form$.value.options.default[name.value] !== undefined) {
       parentDefaultValue = form$.value.options.default[name.value]
     }
 
@@ -187,6 +225,10 @@ const matrix = function(props, context, dependencies)
     }
 
     const defaultValue = parentDefaultValue || default_.value || {}
+
+    if (Object.keys(defaultValue).length) {
+      return defaultValue
+    }
 
     rows.value.forEach((row, r) => {
       cols.value.forEach((col, c) => {
