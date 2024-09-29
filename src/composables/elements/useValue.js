@@ -5,6 +5,8 @@ import cloneDeep from 'lodash/cloneDeep'
 import isEmpty from 'lodash/isEmpty'
 import { computed, ref, toRefs, watch, onMounted } from 'vue'
 import checkDateFormat from '../../utils/checkDateFormat'
+import getRowKey from '../../utils/getRowKey'
+import getColKey from '../../utils/getColKey'
 
 const base = function(props, context, dependencies, /* istanbul ignore next */ options = {})
 {
@@ -32,8 +34,8 @@ const base = function(props, context, dependencies, /* istanbul ignore next */ o
   const initialValue = ref(undefined)
   
   if (parent.value && parent.value.isMatrixType) {
-    const row = parent.value.resolvedRows[name.value.split('_')[1]]
-    const col = parent.value.resolvedColumns[name.value.split('_')[2]]
+    const row = parent.value.resolvedRows[getRowKey(name.value)]
+    const col = parent.value.resolvedColumns[getColKey(name.value)]
 
     let rowModel = form$.value.isSync
       ? get(form$.value.model, `${parent.value.dataPath}.${row.value}`)
@@ -78,8 +80,8 @@ const base = function(props, context, dependencies, /* istanbul ignore next */ o
       let value
       
       if (parent.value && parent.value.isMatrixType) {
-        const row = parent.value.resolvedRows[name.value.split('_')[1]]
-        const col = parent.value.resolvedColumns[name.value.split('_')[2]]
+        const row = parent.value.resolvedRows[getRowKey(name.value)]
+        const col = parent.value.resolvedColumns[getColKey(name.value)]
 
         const rowModel = form$.value.isSync
           ? get(form$.value.model, `${parent.value.dataPath}.${row.value}`)
@@ -109,8 +111,8 @@ const base = function(props, context, dependencies, /* istanbul ignore next */ o
     },
     set: options.value?.set || function (val) {
       if (parent.value && parent.value.isMatrixType) {
-        const row = parent.value.resolvedRows[name.value.split('_')[1]]
-        const col = parent.value.resolvedColumns[name.value.split('_')[2]]
+        const row = parent.value.resolvedRows[getRowKey(name.value)]
+        const col = parent.value.resolvedColumns[getColKey(name.value)]
 
         const matrixModel = form$.value.isSync
           ? get(form$.value.model, parent.value.dataPath)
@@ -182,7 +184,6 @@ const base = function(props, context, dependencies, /* istanbul ignore next */ o
         } else {
           parent.value.value = newValue
         }
-        // }
       } else if (form$.value.isSync) {
         form$.value.updateModel(dataPath.value, val)
       }
@@ -293,11 +294,11 @@ const matrix = function(props, context, dependencies, /* istanbul ignore next */
       if (form$.value.isSync) {
         value = get(form$.value.model, dataPath.value)
 
-      // // If parent is a container or list
-      // } else if (parent.value && (parent.value.isObjectType || parent.value.isGroupType || parent.value.isListType)) {
-      //   value = parent.value.value[name.value]
+      // If parent is a container or list
+      } else if (parent.value && (parent.value.isObjectType || parent.value.isGroupType || parent.value.isListType)) {
+        value = parent.value.value[name.value]
 
-      // // If has no parent
+      // If has no parent
       } else {
         value = internalValue.value
       }
@@ -308,20 +309,20 @@ const matrix = function(props, context, dependencies, /* istanbul ignore next */
       // // If sync
       if (form$.value.isSync) {
         form$.value.updateModel(dataPath.value, val)
-      // }
+      }
 
-      // // If parent is list
-      // else if (parent.value && parent.value.isListType) {
-      //   parent.value.update(parent.value.value.map((v, k) => k == name.value ? val : v))
-      // }
+      // If parent is list
+      else if (parent.value && parent.value.isListType) {
+        parent.value.update(parent.value.value.map((v, k) => k == name.value ? val : v))
+      }
 
-      // // If parent is container
-      // else if (parent.value && (parent.value.isObjectType || parent.value.isGroupType)) {
-      //   parent.value.value = Object.assign({}, parent.value.value, {
-      //     [name.value]: val,
-      //   })
+      // If parent is container
+      else if (parent.value && (parent.value.isObjectType || parent.value.isGroupType)) {
+        parent.value.value = Object.assign({}, parent.value.value, {
+          [name.value]: val,
+        })
 
-      // // If has no parent
+      // If has no parent
       } else {
         internalValue.value = val
       }

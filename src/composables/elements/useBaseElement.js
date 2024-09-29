@@ -313,6 +313,7 @@ const group = function(props, context, dependencies)
     isArrayType,
     isImageType,
     isObjectType,
+    isMatrixType,
     isListType,
     isActive,
     active,

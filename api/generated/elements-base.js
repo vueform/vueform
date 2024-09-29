@@ -659,7 +659,7 @@ export default {
       "label",
       "layout",
       "matrix",
-      "nullValue_matrix",
+      "nullValue_object",
       "path",
       "readonly",
       "slots",

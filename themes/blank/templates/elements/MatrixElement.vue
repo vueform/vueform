@@ -36,7 +36,7 @@
                       :conditions="resolveConditions(row, column)"
                       :name="`${name}_${r}_${c}`"
                       :radio-value="true"
-                      :radio-name="row.value"
+                      :radio-name="`${path}_${r}_${c}`"
                       standalone
                       inline
                     />

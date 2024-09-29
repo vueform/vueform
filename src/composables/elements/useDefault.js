@@ -5,6 +5,8 @@ import merge from 'lodash/merge'
 import clone from 'lodash/clone'
 import { computed, toRefs, inject } from 'vue'
 import localize from '../../utils/localize'
+import getRowKey from '../../utils/getRowKey'
+import getColKey from '../../utils/getColKey'
 
 const base = function(props, context, dependencies)
 {
@@ -31,8 +33,8 @@ const base = function(props, context, dependencies)
     let parentDefaultValue
     
     if (parent && parent.value && parent.value.isMatrixType) {
-      const row = parent.value.resolvedRows[name.value.split('_')[1]]
-      const col = parent.value.resolvedColumns[name.value.split('_')[2]]
+      const row = parent.value.resolvedRows[getRowKey(name.value)]
+      const col = parent.value.resolvedColumns[getColKey(name.value)]
 
       const rowModel = parent.value.defaultValue[row.value]
 
@@ -49,7 +51,7 @@ const base = function(props, context, dependencies)
           parentDefaultValue = rowModel[col.value]
           break
       }
-    } else if (parent && parent.value && !parent.value.mounted) {
+    } else if (parent && parent.value) {
       parentDefaultValue = parent.value.defaultValue[name.value]
     } else if (form$.value.options.default[name.value] !== undefined) {
       parentDefaultValue = form$.value.options.default[name.value]
@@ -104,8 +106,8 @@ const text = function(props, context, dependencies)
     let parentDefaultValue
     
     if (parent && parent.value && parent.value.isMatrixType) {
-      const row = parent.value.resolvedRows[name.value.split('_')[1]]
-      const col = parent.value.resolvedColumns[name.value.split('_')[2]]
+      const row = parent.value.resolvedRows[getRowKey(name.value)]
+      const col = parent.value.resolvedColumns[getColKey(name.value)]
 
       const rowModel = parent.value.defaultValue[row.value]
 
@@ -122,7 +124,7 @@ const text = function(props, context, dependencies)
           parentDefaultValue = rowModel?.[col.value]
           break
       }
-    } else if (parent && parent.value && !parent.value.mounted) {
+    } else if (parent && parent.value) {
       parentDefaultValue = parent.value.defaultValue[name.value]
     } else if (form$.value.options.default[name.value] !== undefined) {
       parentDefaultValue = form$.value.options.default[name.value]
@@ -173,7 +175,7 @@ const object = function(props, context, dependencies)
   const defaultValue = computed(() => {
     let parentDefaultValue
     
-    if (parent && parent.value && !parent.value.mounted) {
+    if (parent && parent.value) {
       parentDefaultValue = parent.value.defaultValue[name.value]
     } else if (form$.value.options.default[name.value]) {
       parentDefaultValue = form$.value.options.default[name.value]
@@ -198,8 +200,6 @@ const object = function(props, context, dependencies)
 const matrix = function(props, context, dependencies)
 {
   const {
-    rows,
-    cols,
     name,
     default: default_,
   } = toRefs(props)
@@ -211,6 +211,8 @@ const matrix = function(props, context, dependencies)
     form$,
     parent,
     dataType,
+    resolvedRows,
+    resolvedColumns,
   } = dependencies
   
   // ============== COMPUTED ===============
@@ -218,7 +220,7 @@ const matrix = function(props, context, dependencies)
   const defaultValue = computed(() => {
     let parentDefaultValue
     
-    if (parent && parent.value && !parent.value.mounted) {
+    if (parent && parent.value) {
       parentDefaultValue = parent.value.defaultValue[name.value]
     } else if (form$.value.options.default[name.value]) {
       parentDefaultValue = form$.value.options.default[name.value]
@@ -230,8 +232,8 @@ const matrix = function(props, context, dependencies)
       return defaultValue
     }
 
-    rows.value.forEach((row, r) => {
-      cols.value.forEach((col, c) => {
+    resolvedRows.value.forEach((row, r) => {
+      resolvedColumns.value.forEach((col, c) => {
         switch (dataType.value) {
           case 'assoc':
             defaultValue[row.value] = defaultValue[row.value] === col.value ? col.value : null
@@ -277,7 +279,7 @@ const group = function(props, context, dependencies)
   const defaultValue = computed(() => {
     let parentDefaultValue = {}
     
-    if (parent && parent.value && !parent.value.mounted) {
+    if (parent && parent.value) {
       parentDefaultValue = parent.value.defaultValue
     } else if (form$.value.options.default) { //@todo:adam
       parentDefaultValue = form$.value.options.default
@@ -309,7 +311,7 @@ const multilingual = function(props, context, dependencies)
   const defaultValue = computed(() => {
     let parentDefaultValue
     
-    if (parent && parent.value && !parent.value.mounted) {
+    if (parent && parent.value) {
       parentDefaultValue = parent.value.defaultValue[name.value]
     } else if (form$.value.options.default[name.value]) {
       parentDefaultValue = form$.value.options.default[name.value]
