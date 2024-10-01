@@ -19,10 +19,10 @@ import useMatrix from './../../composables/elements/useMatrix'
 import useDisabled from './../../composables/elements/useDisabled'
 import useReadonly from './../../composables/elements/useReadonly'
 import useDataType from './../../composables/elements/useDataType'
+import useGenericName from './../../composables/elements/useGenericName'
+import useWatchValue from './../../composables/elements/useWatchValue'
 
 import { object as useChildren } from './../../composables/elements/useChildren'
-import { object as useValidation } from './../../composables/elements/useValidation'
-import { object as useWatchValue } from './../../composables/elements/useWatchValue'
 import { object as useConditions } from './../../composables/useConditions'
 import { object as useNullValue } from './../../composables/elements/useNullValue'
 
@@ -30,6 +30,7 @@ import { matrix as useBaseElement } from './../../composables/elements/useBaseEl
 import { matrix as useData } from './../../composables/elements/useData'
 import { matrix as useValue } from './../../composables/elements/useValue'
 import { matrix as useDefault } from './../../composables/elements/useDefault'
+import { matrix as useValidation } from './../../composables/elements/useValidation'
 
 import BaseElement from './../../mixins/BaseElement'
 import HasView from './../../mixins/HasView'
@@ -169,6 +170,7 @@ export default {
       useDefault,
       useValue,
       useLabel,
+      useGenericName,
       useChildren,
       useElements,
       useConditions,

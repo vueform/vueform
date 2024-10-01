@@ -328,7 +328,9 @@ const Validator = class {
   }
 
   filled(value) {
-    if (value === undefined || (value === null && value !== this.element$.trueValue) || value === this.element$.falseValue) {
+    if (this.element$.useCustomFilled) {
+      return this.element$.isFilled
+    } else if (value === undefined || (value === null && value !== this.element$.trueValue) || value === this.element$.falseValue) {
       return false;
     }
     else if (this.isNumeric && trim(value) === '') {
