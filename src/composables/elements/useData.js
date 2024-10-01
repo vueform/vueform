@@ -1269,6 +1269,10 @@ const matrix = function(props, context, dependencies, options = {})
     name,
     inputType,
     rows,
+    canAdd,
+    canRemove,
+    min,
+    max,
   } = toRefs(props)
 
   const {
@@ -1292,6 +1296,9 @@ const matrix = function(props, context, dependencies, options = {})
     dataType,
     defaultValue,
     value,
+    computedRows,
+    rowsCount,
+    hasDynamicRows,
    } = dependencies
 
   // ============== COMPUTED ===============
@@ -1304,6 +1311,14 @@ const matrix = function(props, context, dependencies, options = {})
     return { [name.value]: transformData(true) }
   })
 
+  const allowAdd = computed(() => {
+    return hasDynamicRows.value && canAdd.value && (max.value === -1 || max.value > Object.keys(data.value).length)
+  })
+
+  const allowRemove = computed(() => {
+    return hasDynamicRows.value && canRemove.value && (min.value === -1 || min.value < Object.keys(data.value).length)
+  })
+
   // =============== METHODS ===============
   
   const load = (val, format = false) => {
@@ -1314,6 +1329,31 @@ const matrix = function(props, context, dependencies, options = {})
   
   const update = (val) => {
     setData(val, 'update')
+  }
+
+  const add = () => {
+    rowsCount.value++
+  }
+
+  const remove = (i) => {
+    const newValue = { ...value.value }
+
+    delete newValue[i]
+
+    value.value = Object.values(newValue).reduce((prev, curr, i) => ({
+      ...prev,
+      [i]: curr,
+    }), {})
+    
+    rowsCount.value--
+  }
+
+  const handleAdd = () => {
+    add()
+  }
+
+  const handleRemove = (i) => {
+    remove(i)
   }
 
   const transformData = (skipUnavailable = false) => {
@@ -1391,16 +1431,45 @@ const matrix = function(props, context, dependencies, options = {})
     })
   }
 
-  watch(inputType, () => {
+  watch(inputType, (n, o) => {
+    if (isEqual(n, o)) {
+      return
+    }
+
     reset()
   }, { flush: 'post' })
 
-  watch(rows, () => {
-    if (dataType.value === 'assoc' || dataType.value === 'array') {
-      value.value = cloneDeep(defaultValue.value)
+  watch(computedRows, (n, o) => {
+    const oldLength = typeof o === 'number' ? o : Object.keys(o).length
+    const newLength = typeof n === 'number' ? n : Object.keys(n).length
+
+    const dir = oldLength > newLength ? 'decrease' : 'increase'
+    const diff = dir === 'increase' ? newLength - oldLength : oldLength - newLength
+
+    const nextIndex = newLength - 1
+    const lastIndex = newLength
+
+    let newValue = { ...value.value }
+
+    if (dir === 'increase') {
+      switch (dataType.value) {
+        case 'assoc':
+        case 'array':
+          for (let i = 0; i < diff; i++) {
+            newValue[nextIndex+i] = cloneDeep(defaultValue.value[nextIndex+i])
+          }
+          break
+      }
     } else {
-      reset()
+      for (let i = 0; i < diff; i++) {
+        if (newValue[lastIndex-i] !== undefined) {
+          delete newValue[lastIndex]
+        }
+      }
     }
+
+    value.value = newValue
+
   }, { flush: 'post' })
 
   return {
@@ -1411,6 +1480,12 @@ const matrix = function(props, context, dependencies, options = {})
     clear,
     reset,
     prepare,
+    allowAdd,
+    allowRemove,
+    handleAdd,
+    handleRemove,
+    add,
+    remove,
   }
 }
 

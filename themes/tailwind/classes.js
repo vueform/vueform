@@ -608,6 +608,7 @@ export default {
     wrapper: 'overflow-x-auto',
     grid: 'w-auto min-w-full',
     grid_equal: 'table-fixed',
+    row: 'group/row relative',
     rowTitle: 'pr-3',
     rowTitle_wrap: '',
     rowTitle_nowrap: 'whitespace-nowrap',
@@ -620,6 +621,12 @@ export default {
     cellWrapper_sm: 'form-min-h-input-height-inner-sm',
     cellWrapper_md: 'form-min-h-input-height-inner',
     cellWrapper_lg: 'form-min-h-input-height-inner-lg',
+    remove: 'absolute z-999 w-4 h-4 box-content p-0.5 top-px left-0 form-bg-passive rounded-full transform -translate-x-1/2 -translate-y-1/2 transition opacity-0 filter hover:brightness-90 group-hover/row:opacity-100 focus:opacity-100',
+    removeIcon: 'mask-bg mask-form-remove-light form-bg-passive-color mask-size-3 block w-full h-full',
+    add: 'inline-block form-bg-primary form-border-width-btn form-border-color-primary form-color-on-primary form-shadow-btn ease-linear transition-transform transform hover:scale-105 focus:form-ring',
+    add_sm: 'form-mt-gutter-sm form-radius-small-sm form-text-small-sm form-p-btn-small-sm',
+    add_md: 'form-mt-gutter form-radius-small form-text-small form-p-btn-small',
+    add_lg: 'form-mt-gutter-lg form-radius-small-lg form-text-small-lg form-p-btn-small-lg',
     $grid: (classes, { equal }) => ([
       classes.grid,
       equal ? classes.grid_equal : null,
@@ -639,6 +646,10 @@ export default {
     $cellWrapper: (classes, { Size }) => ([
       classes.cellWrapper,
       classes[`cellWrapper_${Size}`],
+    ]),
+    $add: (classes, { Size }) => ([
+      classes.add,
+      classes[`add_${Size}`],
     ]),
   },
   MultifileElement: {

@@ -76,7 +76,7 @@ export default {
     rows: {
       required: false,
       type: [Array, Object, Number],
-      default: () => ([]),
+      default: 1,
     },
     cols: {
       required: false,
@@ -122,6 +122,33 @@ export default {
       required: false,
       type: [Boolean],
       default: true,
+    },
+
+    addText: {
+      required: false,
+      type: [String],
+      default: null,
+      '@default': 'locale.elements.list.add',
+    },
+    canAdd: {
+      required: false,
+      type: [Boolean],
+      default: true,
+    },
+    canRemove: {
+      required: false,
+      type: [Boolean],
+      default: true,
+    },
+    min: {
+      required: false,
+      type: [Number, String],
+      default: -1,
+    },
+    max: {
+      required: false,
+      type: [Number, String],
+      default: -1,
     },
   },
   setup(props, ctx) {

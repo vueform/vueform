@@ -19,7 +19,10 @@
             </template>
           </tr>
           <template v-for="(row, r) in resolvedRows">
-            <tr v-show="row.available">
+            <tr
+              v-show="row.available"
+              :class="classes.row"
+            >
               <td
                 v-if="!hideRows"
                 :class="classes.rowTitle"
@@ -30,6 +33,20 @@
                   v-show="column.available"
                   :class="classes.cell"
                 >
+                  <!-- Remove button -->
+                  <div
+                    v-if="allowRemove && !c"
+                    :aria-roledescription="form$.translations.vueform.a11y.list.remove"
+                    :class="classes.remove"
+                    :id="`${path}-${r}-remove-button`"
+                    @click.prevent="handleRemove(r)"
+                    @keypress.space.enter="handleRemove(r)"
+                    role="button"
+                    tabindex="0"
+                  >
+                    <span :class="classes.removeIcon"></span>
+                  </div>
+                  
                   <div :class="classes.cellWrapper">
                     <RadioElement
                       v-if="resolveColInputType(column) === 'radio'"
@@ -70,6 +87,18 @@
           </template>
         </table>
       </div>
+
+      <!-- Add button -->
+      <div
+        v-if="allowAdd"
+        :class="classes.add"
+        :id="`${fieldId}-add-button`"
+        @click.prevent="handleAdd"
+        @keypress.enter.space="handleAdd"
+        v-html="'+ Add'"
+        role="button"
+        tabindex="0"
+      />
     </template>
     <!-- Default element slots -->
     <template v-for="(component, slot) in elementSlots" #[slot]><slot :name="slot" :el$="el$"><component :is="component" :el$="el$"/></slot></template>

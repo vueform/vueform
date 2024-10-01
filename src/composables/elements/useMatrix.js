@@ -1,4 +1,4 @@
-import { computed, toRefs, inject } from 'vue'
+import { computed, toRefs, inject, ref, watch } from 'vue'
 import upperFirst from 'lodash/upperFirst'
 import camelCase from 'lodash/camelCase'
 import localize from './../../utils/localize'
@@ -19,15 +19,33 @@ const base = function(props, context, dependencies)
   } = dependencies
 
   const config$ = inject('config$')
-  
-  // ============== COMPUTED ==============
-  
-  const resolvedRows = computed(() => {
-    let resolvedRows = rows.value
 
-    if (rows.value && (typeof rows.value === 'object' && !Array.isArray(rows.value))) {
-      resolvedRows = Object.keys(rows.value).map((key) => ({
-        value: [key], label: rows.value[key],
+  const rowsCount = ref(typeof rows.value === 'number' ? rows.value : null)
+
+  // ============== COMPUTED ==============
+
+  const hasDynamicRows = computed(() => {
+    return typeof rows.value === 'number'
+  })
+
+  const computedRows = computed(() => {
+    return typeof rows.value === 'number'
+      ? rowsCount.value
+      : rows.value
+  })
+
+  const resolvedRows = computed(() => {
+    let resolvedRows = computedRows.value
+
+    if (typeof resolvedRows === 'number') {
+      resolvedRows = [...Array(resolvedRows)].map((r, i) => ({
+        value: i, label: i
+      }))
+    }
+
+    if (resolvedRows && (typeof resolvedRows === 'object' && !Array.isArray(resolvedRows))) {
+      resolvedRows = Object.keys(resolvedRows).map((key) => ({
+        value: [key], label: resolvedRows[key],
       }))
     }
 
@@ -86,6 +104,14 @@ const base = function(props, context, dependencies)
       ...(column.conditions || []),
     ]
   }
+
+  watch(rows, (n, o) => {
+    if (typeof n !== 'number') {
+      rowsCount.value = null
+    } else {
+      rowsCount.value = n
+    }
+  })
   
   return {
     resolvedRows,
@@ -94,6 +120,9 @@ const base = function(props, context, dependencies)
     getColStyle,
     resolveColInputType,
     resolveConditions,
+    hasDynamicRows,
+    rowsCount,
+    computedRows,
   }
 }
 
