@@ -635,6 +635,10 @@ export default {
       classes.cell,
       padding ? classes.cell_padding : null,
     ]),
+    $cell: (classes, { padding }) => (column) => ([
+      classes.cell,
+      (padding && column.padding !== false) || column.padding ? classes.cell_padding : null,
+    ]),
     $rowTitle: (classes, { rowWrap }) => ([
       classes.rowTitle,
       rowWrap ? classes.rowTitle_wrap : classes.rowTitle_nowrap,

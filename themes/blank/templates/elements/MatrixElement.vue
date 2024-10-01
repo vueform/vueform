@@ -31,7 +31,7 @@
               <template v-for="(column, c) in resolvedColumns">
                 <td
                   v-show="column.available"
-                  :class="classes.cell"
+                  :class="classes.cell(column)"
                 >
                   <!-- Remove button -->
                   <div
