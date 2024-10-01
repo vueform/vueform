@@ -1299,6 +1299,7 @@ const matrix = function(props, context, dependencies, options = {})
     computedRows,
     rowsCount,
     hasDynamicRows,
+    fire,
    } = dependencies
 
   // ============== COMPUTED ===============
@@ -1332,10 +1333,17 @@ const matrix = function(props, context, dependencies, options = {})
   }
 
   const add = () => {
+    const oldValue = { ...value.value }
+
     rowsCount.value++
+
+    nextTick(() => {
+      fire('add', rowsCount.value - 1, value.value, oldValue, el$.value)
+    })
   }
 
   const remove = (i) => {
+    const oldValue = { ...value.value }
     const newValue = { ...value.value }
 
     delete newValue[i]
@@ -1346,6 +1354,8 @@ const matrix = function(props, context, dependencies, options = {})
     }), {})
     
     rowsCount.value--
+
+    fire('remove', i, value.value, oldValue, el$.value)
   }
 
   const handleAdd = () => {
