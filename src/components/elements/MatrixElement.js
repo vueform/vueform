@@ -75,13 +75,23 @@ export default {
     },
     rows: {
       required: false,
-      type: [Array],
+      type: [Array, Object, Number],
       default: () => ([]),
     },
     cols: {
       required: false,
-      type: [Array],
+      type: [Array, Object],
       default: () => ([]),
+    },
+    hideRows: {
+      required: false,
+      type: [Boolean],
+      default: false,
+    },
+    hideCols: {
+      required: false,
+      type: [Boolean],
+      default: false,
     },
 
     // Whether all cells should be equal width

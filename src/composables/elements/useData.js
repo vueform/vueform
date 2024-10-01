@@ -743,7 +743,7 @@ const list = function(props, context, dependencies, options)
     
     const desc = order.value && typeof order.value === 'string' && order.value.toUpperCase() == 'DESC'
     
-    /* istanbul ignore else: console.log() shows that the single run test falls into the else branch, but coverage does not detect */
+    /* istanbul ignore else */
     if (orderByName.value) {
       val = desc ? sortBy(val, orderByName.value).reverse() : sortBy(val, orderByName.value)
     } else if (order.value) {
@@ -1268,6 +1268,7 @@ const matrix = function(props, context, dependencies, options = {})
     items,
     name,
     inputType,
+    rows,
   } = toRefs(props)
 
   const {
@@ -1290,6 +1291,7 @@ const matrix = function(props, context, dependencies, options = {})
     resolvedColumns,
     dataType,
     defaultValue,
+    value,
    } = dependencies
 
   // ============== COMPUTED ===============
@@ -1333,7 +1335,7 @@ const matrix = function(props, context, dependencies, options = {})
           return
         }
 
-        let cellValue = children$.value[`${name.value}_${r}_${c}`].value
+        let cellValue = children$.value[`${name.value}_${r}_${c}`]?.value
 
         switch (dataType.value) {
           case 'array':
@@ -1391,6 +1393,14 @@ const matrix = function(props, context, dependencies, options = {})
 
   watch(inputType, () => {
     reset()
+  }, { flush: 'post' })
+
+  watch(rows, () => {
+    if (dataType.value === 'assoc' || dataType.value === 'array') {
+      value.value = cloneDeep(defaultValue.value)
+    } else {
+      reset()
+    }
   }, { flush: 'post' })
 
   return {

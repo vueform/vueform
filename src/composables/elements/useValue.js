@@ -161,7 +161,7 @@ const base = function(props, context, dependencies, /* istanbul ignore next */ o
 
             parent.value.resolvedRows.forEach((Row, r) => {
               newParentValue[Row.value] = {
-                ...Object.keys(matrixModel[Row.value]).filter(k => parent.value.resolvedColumns.map(c => c.value).includes(k)).reduce((prev, curr) => ({
+                ...Object.keys(matrixModel[Row.value] || {}).filter(k => parent.value.resolvedColumns.map(c => c.value).includes(k)).reduce((prev, curr) => ({
                   ...prev,
                   [curr]: matrixModel[Row.value][curr]
                 }), {})
@@ -251,17 +251,19 @@ const base = function(props, context, dependencies, /* istanbul ignore next */ o
 const matrix = function(props, context, dependencies, /* istanbul ignore next */ options = {})
 {
   
-  const { name, type } = toRefs(props)
+  const { name, type, rows } = toRefs(props)
   
   // ============ DEPENDENCIES =============
   
-  const parent = dependencies.parent
-  const defaultValue = dependencies.defaultValue
-  const dataPath = dependencies.dataPath
-  const form$ = dependencies.form$
-  const isObject = dependencies.isObject
-  const isGroup = dependencies.isGroup
-  const isList = dependencies.isList
+  const {
+    parent,
+    defaultValue,
+    dataPath,
+    form$,
+    isObject,
+    isGroup,
+    isList,
+  } = dependencies
   
   // ================ DATA =================
   
@@ -356,7 +358,7 @@ const matrix = function(props, context, dependencies, /* istanbul ignore next */
   // ============== WATCHERS ===============
   
   watch(type, () => {
-    value.value = defaultValue.value instanceof File ? defaultValue.value : cloneDeep(defaultValue.value)
+    value.value = cloneDeep(defaultValue.value)
   })
   
   return {

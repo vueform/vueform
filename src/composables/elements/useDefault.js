@@ -48,7 +48,7 @@ const base = function(props, context, dependencies)
           break
 
         default:
-          parentDefaultValue = rowModel[col.value]
+          parentDefaultValue = rowModel?.[col.value]
           break
       }
     } else if (parent && parent.value) {
@@ -226,7 +226,7 @@ const matrix = function(props, context, dependencies)
       parentDefaultValue = form$.value.options.default[name.value]
     }
 
-    const defaultValue = parentDefaultValue || default_.value || {}
+    const defaultValue = parentDefaultValue || cloneDeep(default_.value)
 
     if (Object.keys(defaultValue).length) {
       return defaultValue
@@ -249,7 +249,7 @@ const matrix = function(props, context, dependencies)
           default:
             defaultValue[row.value] = {
               ...(defaultValue[row.value] || {}),
-              [col.value]: defaultValue[row.value]?.[col.value] || null,
+              [col.value]: defaultValue[row.value]?.[col.value] || undefined,
             }
         }
       })

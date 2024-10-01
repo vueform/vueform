@@ -1,4 +1,5 @@
 import { toRefs, computed } from 'vue'
+import isEqual from 'lodash/isEqual'
 
 const base = function(props, context, dependencies)
 {

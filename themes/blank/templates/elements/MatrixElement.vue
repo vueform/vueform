@@ -3,8 +3,9 @@
     <template #element>
       <div :class="classes.wrapper">
         <table :class="classes.grid">
-          <tr>
+          <tr v-if="!hideCols">
             <th
+              v-if="!hideRows"
               :class="classes.colTitle"
               :style="getColStyle(0)"
             ></th>
@@ -20,6 +21,7 @@
           <template v-for="(row, r) in resolvedRows">
             <tr v-show="row.available">
               <td
+                v-if="!hideRows"
                 :class="classes.rowTitle"
                 v-html="row.label"
               ></td>

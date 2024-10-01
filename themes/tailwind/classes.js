@@ -617,6 +617,9 @@ export default {
     cell: '',
     cell_padding: 'px-3',
     cellWrapper: 'flex text-center items-center justify-center h-full',
+    cellWrapper_sm: 'form-min-h-input-height-inner-sm',
+    cellWrapper_md: 'form-min-h-input-height-inner',
+    cellWrapper_lg: 'form-min-h-input-height-inner-lg',
     $grid: (classes, { equal }) => ([
       classes.grid,
       equal ? classes.grid_equal : null,
@@ -632,6 +635,10 @@ export default {
     $colTitle: (classes, { colWrap }) => ([
       classes.colTitle,
       colWrap ? classes.colTitle_wrap : classes.colTitle_nowrap,
+    ]),
+    $cellWrapper: (classes, { Size }) => ([
+      classes.cellWrapper,
+      classes[`cellWrapper_${Size}`],
     ]),
   },
   MultifileElement: {
