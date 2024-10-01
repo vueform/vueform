@@ -95,7 +95,7 @@
         :id="`${fieldId}-add-button`"
         @click.prevent="handleAdd"
         @keypress.enter.space="handleAdd"
-        v-html="'+ Add'"
+        v-html="addLabel"
         role="button"
         tabindex="0"
       />

@@ -10,6 +10,7 @@ const base = function(props, context, dependencies)
     cols,
     inputType,
     widths,
+    addText,
   } = toRefs(props)
 
   const {
@@ -75,6 +76,15 @@ const base = function(props, context, dependencies)
     .map(r => ({ ...r, label: localize(r.label, config$.value, form$.value) }))
     .map(r => ({ ...r, available: !r.conditions || !r.conditions.some((condition) => !form$.value.$vueform.services.condition.check(condition, path.value, form$.value, el$.value)) }))
   })
+  
+  /**
+   * The label of add button.
+   *
+   * @type {string}
+   */
+  const addLabel = computed(() => {
+    return addText.value || form$.value.translations.vueform.elements.list.add
+  })
 
   // =============== METHODS ==============
 
@@ -123,6 +133,7 @@ const base = function(props, context, dependencies)
     hasDynamicRows,
     rowsCount,
     computedRows,
+    addLabel,
   }
 }
 
