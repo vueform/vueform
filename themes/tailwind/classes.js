@@ -631,13 +631,9 @@ export default {
       classes.grid,
       equal ? classes.grid_equal : null,
     ]),
-    $cell: (classes, { padding }) => ([
-      classes.cell,
-      padding ? classes.cell_padding : null,
-    ]),
     $cell: (classes, { padding }) => (column) => ([
       classes.cell,
-      (padding && column.padding !== false) || column.padding ? classes.cell_padding : null,
+      (padding && column?.padding !== false) || column?.padding ? classes.cell_padding : null,
     ]),
     $rowTitle: (classes, { rowWrap }) => ([
       classes.rowTitle,
