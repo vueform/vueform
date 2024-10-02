@@ -144,6 +144,11 @@ export default {
       type: [Number, String],
       default: -1,
     },
+    lines: {
+      required: false,
+      type: [Boolean],
+      default: false,
+    },
   },
   setup(props, ctx) {
     const context = { ...ctx }

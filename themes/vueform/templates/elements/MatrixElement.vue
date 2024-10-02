@@ -12,6 +12,7 @@
           wrapper: 'vf-matrix-wrapper',
           grid: 'vf-matrix-grid',
           row: 'vf-matrix-row',
+          row_lines: 'vf-matrix-row-lines',
           rowTitle: 'vf-matrix-row-title',
           rowTitle_wrap: 'vf-matrix-wra',
           rowTitle_nowrap: 'vf-matrix-nowrap',
@@ -33,6 +34,10 @@
           $cell: (classes, { padding }) => (column) => ([
             classes.cell,
             (padding && column?.padding !== false) || column?.padding ? classes.cell_padding : null,
+          ]),
+          $row: (classes, { lines }) => ([
+            classes.row,
+            lines ? classes.row_lines : null,
           ]),
           $rowTitle: (classes, { rowWrap }) => ([
             classes.rowTitle,
@@ -70,6 +75,10 @@
 
   .vf-matrix-row {
     position: relative;
+  }
+
+  .vf-matrix-row-lines {
+    border-top: 1px solid var(--vf-border-color-input);
   }
 
   .vf-matrix-row-title {

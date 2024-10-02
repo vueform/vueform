@@ -608,6 +608,7 @@ export default {
     wrapper: 'overflow-x-auto form-bg-input',
     grid: 'min-w-full',
     row: 'group/row relative',
+    row_lines: 'border-t form-border-color-input',
     rowTitle: 'pr-3 sticky left-0 form-bg-input',
     rowTitle_wrap: '',
     rowTitle_nowrap: 'whitespace-nowrap',
@@ -629,6 +630,10 @@ export default {
     $cell: (classes, { padding }) => (column) => ([
       classes.cell,
       (padding && column?.padding !== false) || column?.padding ? classes.cell_padding : null,
+    ]),
+    $row: (classes, { lines }) => ([
+      classes.row,
+      lines ? classes.row_lines : null,
     ]),
     $rowTitle: (classes, { rowWrap }) => ([
       classes.rowTitle,
