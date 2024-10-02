@@ -116,8 +116,7 @@
   .vf-matrix-remove {
     position: absolute;
     left: 0;
-    transform: translateY(-50%);
-    top: 50%;
+    top: 0;
     z-index: 999;
     background-color: var(--vf-bg-passive);
     border-radius: 999px;
