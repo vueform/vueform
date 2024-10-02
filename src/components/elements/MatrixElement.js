@@ -95,17 +95,10 @@ export default {
       default: false,
     },
 
-    // Whether all cells should be equal width
-    equal: {
+    minWidth: {
       required: false,
-      type: [Boolean],
-      default: true,
-    },
-    // The exact widths of columns in relative (`%`) or absolute value (`px`, `rem`, etc).
-    widths: {
-      required: false,
-      type: [Array],
-      default: () => ([]),
+      type: [Number, String],
+      default: 0,
     },
 
     // User horizontal padding between cells

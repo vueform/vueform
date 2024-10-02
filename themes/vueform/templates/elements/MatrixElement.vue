@@ -11,7 +11,6 @@
           container: 'vf-matrix',
           wrapper: 'vf-matrix-wrapper',
           grid: 'vf-matrix-grid',
-          grid_equal: 'vf-matrix-grid-equal',
           row: 'vf-matrix-row',
           rowTitle: 'vf-matrix-row-title',
           rowTitle_wrap: 'vf-matrix-wra',
@@ -31,10 +30,6 @@
           add_sm: 'vf-btn-small-sm vf-matrix-add-sm',
           add_md: '',
           add_lg: 'vf-btn-small-lg vf-matrix-add-lg',
-          $grid: (classes, { equal }) => ([
-            classes.grid,
-            equal ? classes.grid_equal : null,
-          ]),
           $cell: (classes, { padding }) => (column) => ([
             classes.cell,
             (padding && column?.padding !== false) || column?.padding ? classes.cell_padding : null,
@@ -66,15 +61,11 @@
 
   .vf-matrix-wrapper {
     overflow-x: auto;
+    background: var(--vf-bg-input);
   }
 
   .vf-matrix-grid {
-    width: auto;
     min-width: 100%;
-  }
-
-  .vf-matrix-grid-equal {
-    table-layout: fixed;
   }
 
   .vf-matrix-row {
@@ -83,6 +74,9 @@
 
   .vf-matrix-row-title {
     padding: 0 0.75rem 0 0;
+    position: sticky;
+    left: 0;
+    background: var(--vf-bg-input);
   }
 
   .vf-matrix-nowrap {
@@ -122,12 +116,13 @@
   .vf-matrix-remove {
     position: absolute;
     left: 0;
-    transform: translateX(-50%) translateY(-50%);
-    top: 0;
+    transform: translateY(-50%);
+    top: 50%;
     z-index: 999;
     background-color: var(--vf-bg-passive);
     border-radius: 999px;
     transition: .15s;
+    opacity: 0;
 
     &:hover {
       filter: brightness(0.9);
@@ -155,10 +150,12 @@
     background-color: var(--vf-color-passive);
   }
 
-  .vf-matrix-row:hover {
-    .vf-matrix-remove {
-      visibility: visible;
-      opacity: 1;
+  .vf-matrix-row {
+    &:hover {
+      .vf-matrix-remove {
+        visibility: visible;
+        opacity: 1;
+      }
     }
   }
 

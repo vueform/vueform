@@ -24,6 +24,7 @@
           input_lg: 'vf-radio-lg',
           input_left: 'vf-radio-left',
           input_right: 'vf-radio-right',
+          input_standalone: 'vf-radio-standalone',
           text: 'vf-radio-text',
           text_left: 'vf-radio-text-left',
           text_right: 'vf-radio-text-right',
@@ -33,13 +34,14 @@
             align === 'left' ? classes.wrapper_left : null,
             align === 'right' ? classes.wrapper_right : null,
           ]),
-          $input: (classes, { isDisabled, Size, isDanger, align }) => ([
+          $input: (classes, { isDisabled, Size, isDanger, align, standalone }) => ([
             classes.input,
             classes[`input_${Size}`],
             isDisabled ? classes.input_disabled : classes.input_enabled,
             !isDisabled && isDanger ? classes.input_danger : null,
             align === 'left' ? classes.input_left : null,
             align === 'right' ? classes.input_right : null,
+            standalone ? classes.input_standalone : null,
           ]),
           $text: (classes, { align }) => ([
             classes.text,

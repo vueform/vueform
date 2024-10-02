@@ -9,8 +9,9 @@ const base = function(props, context, dependencies)
     rows,
     cols,
     inputType,
-    widths,
+    minWidth,
     addText,
+    hideRows,
   } = toRefs(props)
 
   const {
@@ -95,13 +96,16 @@ const base = function(props, context, dependencies)
   }
 
   const getColStyle = (index) => {
-    if (widths.value[index] === undefined) {
-      return
+    const col = resolvedColumns.value?.[index - 1] || {}
+    const minW = col?.minWidth || minWidth.value || 0
+
+    const style = {}
+
+    if (minW) {
+      style.minWidth = `${minW}px`
     }
 
-    return {
-      width: widths.value[index]
-    }
+    return style
   }
 
   const resolveColInputType = (col) => {

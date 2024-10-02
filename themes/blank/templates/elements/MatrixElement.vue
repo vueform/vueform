@@ -3,12 +3,13 @@
     <template #element>
       <div :class="classes.wrapper">
         <table :class="classes.grid">
+          
           <tr v-if="!hideCols">
-            <th
+            <td
               v-if="!hideRows"
-              :class="classes.colTitle"
+              :class="classes.rowTitle"
               :style="getColStyle(0)"
-            ></th>
+            ></td>
             <template v-for="(column, c) in resolvedColumns">
               <th
                 v-show="column.available"
