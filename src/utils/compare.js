@@ -48,7 +48,21 @@ export default function(actual, operator, expected, el$, form$) {
       } else if (actual && typeof actual === 'object') {
         let values = Object.values(actual)
 
-        return !values.length || values.every(v => ['', null, undefined].indexOf(v) !== -1)
+        return !values.length || values.every((v) => {
+          if (Array.isArray(v)) {
+            return !v.length
+          } else if (v && typeof v === 'object') {
+            return Object.values(v).every((ov) => {
+              if (Array.isArray(ov)) {
+                return !ov.length
+              } else {
+                return ['', null, undefined].indexOf(ov) !== -1
+              }
+            })
+          } else {
+            return ['', null, undefined].indexOf(v) !== -1
+          }
+        })
       } else {
         return ['', null, undefined].indexOf(actual) !== -1
       }
@@ -63,7 +77,21 @@ export default function(actual, operator, expected, el$, form$) {
       } else if (actual && typeof actual === 'object') {
         let values = Object.values(actual)
 
-        return values.length && values.some(v => ['', null, undefined].indexOf(v) === -1)
+        return values.length && values.some((v) => {
+          if (Array.isArray(v)) {
+            return v.length
+          } else if (v && typeof v === 'object') {
+            return Object.values(v).some((ov) => {
+              if (Array.isArray(ov)) {
+                return ov.length
+              } else {
+                return ['', null, undefined].indexOf(ov) === -1
+              }
+            })
+          } else {
+            return ['', null, undefined].indexOf(v) === -1
+          }
+        })
       } else {
         return ['', null, undefined].indexOf(actual) === -1
       }

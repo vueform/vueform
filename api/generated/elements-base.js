@@ -656,6 +656,7 @@ export default {
       "fieldId",
       "focus",
       "form$",
+      "genericName",
       "label",
       "layout",
       "matrix",
@@ -665,10 +666,10 @@ export default {
       "slots",
       "templates",
       "theme",
-      "validation_object",
+      "validation_matrix",
       "value_matrix",
       "view",
-      "watchValue_object"
+      "watchValue"
     ],
     "slots": [
       "label",
