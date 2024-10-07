@@ -74,6 +74,7 @@ export default {
       type: [String, Object],
       default: 'radio',
     },
+    
     rows: {
       required: false,
       type: [Array, Object, Number],

@@ -96,6 +96,10 @@ const base = function(props, context, dependencies)
   }
 
   const getColStyle = (index) => {
+    if (!index) {
+      return
+    }
+    
     const col = resolvedColumns.value?.[index - 1] || {}
     const minW = col?.minWidth || minWidth.value || 0
 
