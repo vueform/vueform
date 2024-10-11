@@ -615,14 +615,17 @@ export default {
     colTitle: 'font-normal text-center px-3',
     colTitle_wrap: '',
     colTitle_nowrap: 'whitespace-nowrap',
-    cell: '',
+    colTitleWrapper: '',
+    cell: 'relative',
     cell_padding: 'px-3',
     cellWrapper: 'flex text-center items-center justify-center h-full',
+    cellWrapper: 'h-full',
     cellWrapper_sm: 'form-min-h-input-height-inner-sm',
     cellWrapper_md: 'form-min-h-input-height-inner',
     cellWrapper_lg: 'form-min-h-input-height-inner-lg',
-    remove: 'absolute z-999 w-4 h-4 box-content p-0.5 top-0 left-0 form-bg-passive rounded-full transition opacity-0 filter hover:brightness-90 group-hover/row:opacity-100 focus:opacity-100',
+    remove: 'w-4 h-4 box-content p-0.5 form-bg-passive rounded-full transition filter hover:brightness-90',
     removeIcon: 'mask-bg mask-form-remove-light form-bg-passive-color mask-size-3 block w-full h-full',
+    remove_hover: 'absolute z-999 top-1/2 right-0 transform -translate-y-1/2 opacity-0 group-hover/row:opacity-100 focus:opacity-100',
     add: 'inline-block form-bg-primary form-border-width-btn form-border-color-primary form-color-on-primary form-shadow-btn ease-linear transition-transform transform hover:scale-105 focus:form-ring',
     add_sm: 'form-mt-gutter-sm form-radius-small-sm form-text-small-sm form-p-btn-small-sm',
     add_md: 'form-mt-gutter form-radius-small form-text-small form-p-btn-small',
@@ -650,6 +653,10 @@ export default {
     $add: (classes, { Size }) => ([
       classes.add,
       classes[`add_${Size}`],
+    ]),
+    $remove: (classes, { removeHover }) => ([
+      classes.remove,
+      removeHover ? classes.remove_hover : null
     ]),
   },
   MultifileElement: {
