@@ -1276,8 +1276,8 @@ const matrix = function(props, context, dependencies, options = {})
   } = toRefs(props)
 
   const {
-    clear,
-    reset,
+    clear: baseClear,
+    reset: baseReset,
     prepare,
   } = object(props, context, dependencies)
 
@@ -1313,11 +1313,11 @@ const matrix = function(props, context, dependencies, options = {})
   })
 
   const allowAdd = computed(() => {
-    return hasDynamicRows.value && canAdd.value && (max.value === -1 || max.value > Object.keys(data.value).length)
+    return hasDynamicRows.value && canAdd.value && (max.value === -1 || max.value > Object.keys(value.value).length)
   })
 
   const allowRemove = computed(() => {
-    return hasDynamicRows.value && canRemove.value && (min.value === -1 || min.value < Object.keys(data.value).length)
+    return hasDynamicRows.value && canRemove.value && (min.value === -1 || min.value < Object.keys(value.value).length)
   })
 
   // =============== METHODS ===============
@@ -1330,6 +1330,22 @@ const matrix = function(props, context, dependencies, options = {})
   
   const update = (val) => {
     setData(val, 'update')
+  }
+
+  const clear = () => {
+    baseClear()
+
+    if (hasDynamicRows.value) {
+      rowsCount.value = rows.value
+    }
+  }
+
+  const reset = () => {
+    baseReset()
+
+    if (hasDynamicRows.value) {
+      rowsCount.value = rows.value
+    }
   }
 
   const add = () => {
@@ -1367,7 +1383,7 @@ const matrix = function(props, context, dependencies, options = {})
   }
 
   const transformData = (skipUnavailable = false) => {
-    const data = {}
+    let data = {}
     
     resolvedRows.value.forEach((row, r) => {
       if (!row.available && skipUnavailable) {
@@ -1415,10 +1431,19 @@ const matrix = function(props, context, dependencies, options = {})
       data[row.value] = rowValue
     })
 
+    if (hasDynamicRows.value) {
+      data = Object.values(data)
+    }
+
     return data
   }
 
-  const setData = (val, action) => {
+  const setData = async (val, action) => {
+    if (hasDynamicRows.value) {
+      rowsCount.value = Object.keys(val).length
+      await nextTick()
+    }
+
     resolvedRows.value.forEach((row, r) => {
       resolvedColumns.value.forEach((column, c) => {
         const rowValue = val[row.value] || {}
@@ -1457,7 +1482,7 @@ const matrix = function(props, context, dependencies, options = {})
     const diff = dir === 'increase' ? newLength - oldLength : oldLength - newLength
 
     const nextIndex = newLength - 1
-    const lastIndex = newLength
+    const lastIndex = oldLength - 1
 
     let newValue = { ...value.value }
 
@@ -1473,7 +1498,7 @@ const matrix = function(props, context, dependencies, options = {})
     } else {
       for (let i = 0; i < diff; i++) {
         if (newValue[lastIndex-i] !== undefined) {
-          delete newValue[lastIndex]
+          delete newValue[lastIndex-i]
         }
       }
     }

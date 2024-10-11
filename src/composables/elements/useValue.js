@@ -263,6 +263,7 @@ const matrix = function(props, context, dependencies, /* istanbul ignore next */
     isObject,
     isGroup,
     isList,
+    hasDynamicRows,
   } = dependencies
   
   // ================ DATA =================
@@ -305,7 +306,13 @@ const matrix = function(props, context, dependencies, /* istanbul ignore next */
         value = internalValue.value
       }
 
-      return value !== undefined ? value : cloneDeep(defaultValue.value)
+      value = value !== undefined ? value : cloneDeep(defaultValue.value)
+
+      if (hasDynamicRows.value) {
+        value = Object.values(value)
+      }
+
+      return value
     },
     set: function (val) {
       // // If sync
