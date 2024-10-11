@@ -41,7 +41,7 @@ import HasValidation from './../../mixins/HasValidation'
 export default {
   name: 'MatrixElement',
   mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
-  emits: ['change', 'remove', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
+  emits: ['change', 'add', 'remove', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
   props: {
     type: {
       required: false,
@@ -74,41 +74,13 @@ export default {
       type: [String, Object],
       default: 'radio',
     },
-    
-    rows: {
-      required: false,
-      type: [Array, Object, Number],
-      default: 1,
-    },
+
     cols: {
       required: false,
       type: [Array, Object],
       default: () => ([]),
     },
-    hideRows: {
-      required: false,
-      type: [Boolean],
-      default: false,
-    },
     hideCols: {
-      required: false,
-      type: [Boolean],
-      default: false,
-    },
-
-    minWidth: {
-      required: false,
-      type: [Number, String],
-      default: 0,
-    },
-
-    // User horizontal padding between cells
-    padding: {
-      required: false,
-      type: [Boolean],
-      default: false,
-    },
-    rowWrap: {
       required: false,
       type: [Boolean],
       default: false,
@@ -116,24 +88,18 @@ export default {
     colWrap: {
       required: false,
       type: [Boolean],
-      default: true,
+      default: false,
     },
-
-    addText: {
+    items: {
       required: false,
-      type: [String],
-      default: null,
-      '@default': 'locale.elements.list.add',
+      type: [Array, Object, String, Function],
+      default: () => ([]),
     },
-    canAdd: {
+    
+    rows: {
       required: false,
-      type: [Boolean],
-      default: true,
-    },
-    canRemove: {
-      required: false,
-      type: [Boolean],
-      default: true,
+      type: [Array, Object, Number],
+      default: 1,
     },
     min: {
       required: false,
@@ -145,10 +111,58 @@ export default {
       type: [Number, String],
       default: -1,
     },
+    canAdd: {
+      required: false,
+      type: [Boolean],
+      default: true,
+    },
+    canRemove: {
+      required: false,
+      type: [Boolean],
+      default: true,
+    },
+    addText: {
+      required: false,
+      type: [String],
+      default: null,
+      '@default': 'locale.elements.list.add',
+    },
+    hideRows: {
+      required: false,
+      type: [Boolean],
+      default: false,
+    },
+    rowWrap: {
+      required: false,
+      type: [Boolean],
+      default: false,
+    },
+
+    minWidth: {
+      required: false,
+      type: [Number, String],
+      default: 0,
+    },
+    maxWidth: {
+      required: false,
+      type: [Number, String],
+      default: 0,
+    },
+    // User horizontal padding between cells
+    padding: {
+      required: false,
+      type: [Boolean],
+      default: false,
+    },
     lines: {
       required: false,
       type: [Boolean],
       default: false,
+    },
+    removeHover: {
+      type: [Boolean],
+      required: false,
+      default: true,
     },
   },
   setup(props, ctx) {
