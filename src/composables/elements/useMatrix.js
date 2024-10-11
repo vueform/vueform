@@ -12,6 +12,8 @@ const base = function(props, context, dependencies)
     minWidth,
     addText,
     hideRows,
+    items,
+    maxWidth,
   } = toRefs(props)
 
   const {
@@ -91,8 +93,9 @@ const base = function(props, context, dependencies)
 
   const inputTypeComponent = (column) => {
     const element = column.inputType || inputType.value
+    const type = typeof element === 'string' ? element : element.type
 
-    return `${upperFirst(camelCase(element.type))}Element`
+    return `${upperFirst(camelCase(type))}Element`
   }
 
   const getColStyle = (index) => {
@@ -102,6 +105,7 @@ const base = function(props, context, dependencies)
     
     const col = resolvedColumns.value?.[index - 1] || {}
     const minW = col?.minWidth || minWidth.value || 0
+    const maxW = col?.maxWidth || maxWidth.value || 0
 
     const style = {}
 
@@ -109,11 +113,19 @@ const base = function(props, context, dependencies)
       style.minWidth = `${minW}px`
     }
 
+    if (maxW) {
+      style.maxWidth = `${maxW}px`
+    }
+
     return style
   }
 
   const resolveColInputType = (col) => {
     return col.inputType || inputType.value
+  }
+
+  const resolveItems = (col) => {
+    return col.items || items.value
   }
 
   const resolveConditions = (row, column) => {
@@ -142,6 +154,7 @@ const base = function(props, context, dependencies)
     rowsCount,
     computedRows,
     addLabel,
+    resolveItems,
   }
 }
 
