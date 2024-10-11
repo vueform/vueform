@@ -6,17 +6,18 @@
           
           <tr v-if="!hideCols">
             <td
-              v-if="!hideRows"
+              v-if="!hideRows && hasDynamicRows && !removeHover"
               :class="classes.rowTitle"
               :style="getColStyle(0)"
-            ></td>
+            ><div :class="classes.colTitleWrapper">&nbsp;</div></td>
             <template v-for="(column, c) in resolvedColumns">
               <th
                 v-show="column.available"
                 :class="classes.colTitle"
                 :style="getColStyle(c+1)"
-                v-html="column.label"
-              ></th>
+              >
+                <div :class="classes.colTitleWrapper" v-html="column.label" />
+              </th>
             </template>
           </tr>
           <template v-for="(row, r) in resolvedRows">
@@ -25,29 +26,32 @@
               :class="classes.row"
             >
               <td
-                v-if="!hideRows"
+                v-if="!hideRows && hasDynamicRows && !removeHover"
                 :class="classes.rowTitle"
-                v-html="row.label"
-              ></td>
+              >
+                <div
+                  v-if="hasDynamicRows && allowRemove"
+                  :aria-roledescription="form$.translations.vueform.a11y.list.remove"
+                  :class="classes.remove"
+                  :id="`${path}-${r}-remove-button`"
+                  @click.prevent="handleRemove(r)"
+                  @keypress.space.enter="handleRemove(r)"
+                  role="button"
+                  tabindex="0"
+                >
+                  <span :class="classes.removeIcon"></span>
+                </div>
+
+                <div
+                  v-else
+                  v-html="row.label"  
+                />
+              </td>
               <template v-for="(column, c) in resolvedColumns">
                 <td
                   v-show="column.available"
                   :class="classes.cell(column)"
-                >
-                  <!-- Remove button -->
-                  <div
-                    v-if="allowRemove && !c"
-                    :aria-roledescription="form$.translations.vueform.a11y.list.remove"
-                    :class="classes.remove"
-                    :id="`${path}-${r}-remove-button`"
-                    @click.prevent="handleRemove(r)"
-                    @keypress.space.enter="handleRemove(r)"
-                    role="button"
-                    tabindex="0"
-                  >
-                    <span :class="classes.removeIcon"></span>
-                  </div>
-                  
+                > 
                   <div :class="classes.cellWrapper">
                     <RadioElement
                       v-if="resolveColInputType(column) === 'radio'"
@@ -71,6 +75,23 @@
                       standalone
                       inline
                     />
+                    <TextElement
+                      v-else-if="resolveColInputType(column) === 'text'"
+                      :disabled="isDisabled"
+                      :readonly="isReadonly"
+                      :conditions="resolveConditions(row, column)"
+                      :name="`${name}_${r}_${c}`"
+                    />
+                    <SelectElement
+                      v-else-if="['select', 'multiselect', 'tags'].includes(resolveColInputType(column))"
+                      :is="inputTypeComponent(column)"
+                      :disabled="isDisabled"
+                      :readonly="isReadonly"
+                      :conditions="resolveConditions(row, column)"
+                      :name="`${name}_${r}_${c}`"
+                      :items="resolveItems(column)"
+                      append-to-body
+                    />
                     <component
                       v-else
                       :is="inputTypeComponent(column)"
@@ -81,6 +102,19 @@
                       add-class="w-full"
                       v-bind="column.inputType || inputType"
                     />
+                  </div>
+
+                  <div
+                    v-if="hasDynamicRows && allowRemove && removeHover && c + 1 === resolvedColumns.length"
+                    :aria-roledescription="form$.translations.vueform.a11y.list.remove"
+                    :class="classes.remove"
+                    :id="`${path}-${r}-remove-button`"
+                    @click.prevent="handleRemove(r)"
+                    @keypress.space.enter="handleRemove(r)"
+                    role="button"
+                    tabindex="0"
+                  >
+                    <span :class="classes.removeIcon"></span>
                   </div>
                 </td>
               </template>
