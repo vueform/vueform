@@ -11,7 +11,7 @@
             <div v-if="rowsVisible && colsVisible" :class="[stickCols || stickRows ? 'sticky bg-white' : null, stickCols ? 'top-0' : null, stickRows ? 'left-0' : null]" />
             <!-- Column headers -->
             <template v-for="(col, c) in resolvedColumns">
-              <div v-if="colsVisible && col.available" v-html="col.label" :class="[stickCols ? 'sticky top-0 bg-white z-1' : '', 'flex items-center justify-center text-center form-min-h-input-height-inner']" />
+              <div v-if="colsVisible && col.available" v-html="col.label" :class="[stickCols ? 'sticky top-0 bg-white z-1' : '', padding ? 'px-2' : null, 'flex items-center justify-center text-center form-min-h-input-height-inner']" />
             </template>
             <!-- Remove column -->
             <div v-if="allowRemove" class="bg-white sticky right-0 w-10" />

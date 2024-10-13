@@ -17,6 +17,7 @@ const base = function(props, context, dependencies)
     rowWrap,
     templateColumns,
     hideCols,
+    colWrap,
     gap,
     rowTitleMaxWidth,
     canRemove,
@@ -75,7 +76,11 @@ const base = function(props, context, dependencies)
     if (!gridTemplateColumns) {
       gridTemplateColumns = []
 
-      const min = typeof minWidth.value === 'number' ? `${minWidth.value}px` : minWidth.value
+      const min = typeof minWidth.value === 'number' 
+        ? `${minWidth.value}px`
+        : colWrap.value && minWidth.value === 'max-content'
+          ? 'min-content'
+          : minWidth.value
       const max = typeof maxWidth.value === 'number' ? `${maxWidth.value}px` : maxWidth.value
 
       // Row label column

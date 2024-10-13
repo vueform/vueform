@@ -176,7 +176,7 @@ export default {
     padding: { // done
       required: false,
       type: [Boolean],
-      default: false,
+      default: true,
     },
   },
   setup(props, ctx) {
