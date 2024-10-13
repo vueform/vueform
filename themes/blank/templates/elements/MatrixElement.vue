@@ -22,11 +22,7 @@
             <div v-if="rowsVisible && row.available" v-html="row.label" :class="[stickRows ? 'sticky left-0 bg-white' : null, 'flex items-center pr-2']" />
             <!-- Input cells -->
             <template v-for="(col, c) in resolvedColumns">
-              <div v-if="row.available && col.available" :class="[
-                'grid items-center form-min-h-input-height-inner',
-                ['radio', 'checkbox', 'toggle'].includes(resolveType(col)) ? 'justify-center' : null,
-                padding ? 'px-2' : null,
-              ]">
+              <div v-if="row.available && col.available" :class="['grid items-center form-min-h-input-height-inner', ['radio', 'checkbox', 'toggle'].includes(resolveType(col)) ? 'justify-center' : null, padding ? 'px-2' : null]">
                 <RadioElement
                   v-if="resolveColInputType(col) === 'radio'"
                   :disabled="isDisabled"
