@@ -264,6 +264,10 @@ const matrix = function(props, context, dependencies, /* istanbul ignore next */
     isGroup,
     isList,
     hasDynamicRows,
+    computedRows,
+    resolvedRows,
+    resolvedColumns,
+    rowsCount,
   } = dependencies
   
   // ================ DATA =================
@@ -349,6 +353,10 @@ const matrix = function(props, context, dependencies, /* istanbul ignore next */
     },
   })
   
+  const isDefault = computed(() => {
+    return isEqual(value.value, defaultValue.value)
+  })
+  
   if (initialValue.value === undefined) {
     value.value = defaultValue.value
   } else {
@@ -357,10 +365,6 @@ const matrix = function(props, context, dependencies, /* istanbul ignore next */
       ...value.value
     }
   }
-  
-  const isDefault = computed(() => {
-    return isEqual(value.value, defaultValue.value)
-  })
 
   // ============== WATCHERS ===============
   

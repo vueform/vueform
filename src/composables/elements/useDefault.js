@@ -3,7 +3,8 @@ import cloneDeep from 'lodash/cloneDeep'
 import isPlainObject from 'lodash/isPlainObject'
 import merge from 'lodash/merge'
 import clone from 'lodash/clone'
-import { computed, toRefs, inject } from 'vue'
+import isEqual from 'lodash/isEqual'
+import { computed, toRefs, inject, ref } from 'vue'
 import localize from '../../utils/localize'
 import getRowKey from '../../utils/getRowKey'
 import getColKey from '../../utils/getColKey'
@@ -17,9 +18,11 @@ const base = function(props, context, dependencies)
   
   // ============ DEPENDENCIES =============
   
-  const nullValue = dependencies.nullValue
-  const form$ = dependencies.form$
-  const parent = dependencies.parent
+  const {
+    nullValue,
+    form$,
+    parent,
+  } = dependencies
   
   // ============== COMPUTED ===============
   
@@ -210,9 +213,12 @@ const matrix = function(props, context, dependencies)
     nullValue,
     form$,
     parent,
-    dataType,
+    hasDynamicRows,
+    computedRows,
     resolvedRows,
     resolvedColumns,
+    rowsCount,
+    dataType,
   } = dependencies
   
   // ============== COMPUTED ===============

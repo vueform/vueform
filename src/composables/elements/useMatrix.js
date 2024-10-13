@@ -14,70 +14,38 @@ const base = function(props, context, dependencies)
     hideRows,
     items,
     maxWidth,
+    rowWrap,
+    templateColumns,
+    hideCols,
+    gap,
+    rowTitleMaxWidth,
+    canRemove,
+    canAdd,
+    min,
+    max,
   } = toRefs(props)
 
   const {
     el$,
     form$,
     path,
+    hasDynamicRows,
+    resolvedRows,
+    resolvedColumns,
+    rowsCount,
+    value,
   } = dependencies
 
   const config$ = inject('config$')
 
-  const rowsCount = ref(typeof rows.value === 'number' ? rows.value : null)
-
   // ============== COMPUTED ==============
 
-  const hasDynamicRows = computed(() => {
-    return typeof rows.value === 'number'
+  const allowAdd = computed(() => {
+    return hasDynamicRows.value && canAdd.value && (max.value === -1 || max.value > Object.keys(value.value).length)
   })
 
-  const computedRows = computed(() => {
-    return typeof rows.value === 'number'
-      ? rowsCount.value
-      : rows.value
-  })
-
-  const resolvedRows = computed(() => {
-    let resolvedRows = computedRows.value
-
-    if (typeof resolvedRows === 'number') {
-      resolvedRows = [...Array(resolvedRows)].map((r, i) => ({
-        value: i, label: i
-      }))
-    }
-
-    if (resolvedRows && (typeof resolvedRows === 'object' && !Array.isArray(resolvedRows))) {
-      resolvedRows = Object.keys(resolvedRows).map((key) => ({
-        value: [key], label: resolvedRows[key],
-      }))
-    }
-
-    return resolvedRows.map((row) => {
-      return typeof row === 'string' || typeof row === 'number'
-        ? { value: row, label: row }
-        : row
-    })
-    .map(r => ({ ...r, label: localize(r.label, config$.value, form$.value) }))
-    .map(r => ({ ...r, available: !r.conditions || !r.conditions.some((condition) => !form$.value.$vueform.services.condition.check(condition, path.value, form$.value, el$.value)) }))
-  })
-  
-  const resolvedColumns = computed(() => {
-    let resolvedColumns = cols.value
-
-    if (cols.value && (typeof cols.value === 'object' && !Array.isArray(cols.value))) {
-      resolvedColumns = Object.keys(cols.value).map((key) => ({
-        value: [key], label: cols.value[key],
-      }))
-    }
-
-    return resolvedColumns.map((col) => {
-      return typeof col === 'string' || typeof col === 'number'
-        ? { value: col, label: col }
-        : col
-    })
-    .map(r => ({ ...r, label: localize(r.label, config$.value, form$.value) }))
-    .map(r => ({ ...r, available: !r.conditions || !r.conditions.some((condition) => !form$.value.$vueform.services.condition.check(condition, path.value, form$.value, el$.value)) }))
+  const allowRemove = computed(() => {
+    return hasDynamicRows.value && canRemove.value && (min.value === -1 || min.value < Object.keys(value.value).length)
   })
   
   /**
@@ -87,6 +55,62 @@ const base = function(props, context, dependencies)
    */
   const addLabel = computed(() => {
     return addText.value || form$.value.translations.vueform.elements.list.add
+  })
+
+  const rowsVisible = computed(() => {
+    if (hasDynamicRows.value) {
+      return false
+    }
+
+    return !hideRows.value
+  })
+
+  const colsVisible = computed(() => {
+    return !hideCols.value
+  })
+
+  const gridStyle = computed(() => {
+    let gridTemplateColumns = templateColumns.value
+
+    if (!gridTemplateColumns) {
+      gridTemplateColumns = []
+
+      const min = typeof minWidth.value === 'number' ? `${minWidth.value}px` : minWidth.value
+      const max = typeof maxWidth.value === 'number' ? `${maxWidth.value}px` : maxWidth.value
+
+      // Row label column
+      if (rowsVisible.value) {
+        const firstColMin = rowWrap.value
+          ? rowTitleMaxWidth.value
+            ? 'min-content'
+            : typeof minWidth.value === 'number'
+              ? `${minWidth.value}px` 
+              : minWidth.value
+            : 'max-content'
+            
+        const firstColMax = rowWrap.value ? rowTitleMaxWidth.value : 'max-content'
+
+        gridTemplateColumns.push(`minmax(${firstColMin}, ${firstColMax})`)
+      }
+
+      resolvedColumns.value.forEach((col, i) => {
+        const colMin = typeof col.minWidth === 'number' ? `${col.minWidth}px` : col.minWidth !== undefined ? col.minWidth : min
+        const colMax = typeof col.maxWidth === 'number' ? `${col.maxWidth}px` : col.maxWidth !== undefined ? col.maxWidth : max
+
+        gridTemplateColumns.push(`minmax(${colMin}, ${colMax})`)
+      })
+
+      if (allowRemove.value) {
+        gridTemplateColumns.push(`minmax(max-content, max-content)`)
+      }
+
+      gridTemplateColumns = gridTemplateColumns.join(' ')
+    }
+
+    return {
+      'grid-template-columns': gridTemplateColumns,
+      'gap': gap.value !== 0 ? `${gap.value}px` : undefined,
+    }
   })
 
   // =============== METHODS ==============
@@ -124,6 +148,14 @@ const base = function(props, context, dependencies)
     return col.inputType || inputType.value
   }
 
+  const resolveType = (col) => {
+    if (col.inputType) {
+      return col.inputType?.type || col.inputType
+    }
+
+    return inputType.value?.type || inputType.value
+  }
+
   const resolveItems = (col) => {
     return col.items || items.value
   }
@@ -134,27 +166,20 @@ const base = function(props, context, dependencies)
       ...(column.conditions || []),
     ]
   }
-
-  watch(rows, (n, o) => {
-    if (typeof n !== 'number') {
-      rowsCount.value = null
-    } else {
-      rowsCount.value = n
-    }
-  })
   
   return {
-    resolvedRows,
-    resolvedColumns,
     inputTypeComponent,
     getColStyle,
     resolveColInputType,
     resolveConditions,
-    hasDynamicRows,
-    rowsCount,
-    computedRows,
     addLabel,
     resolveItems,
+    gridStyle,
+    rowsVisible,
+    colsVisible,
+    resolveType,
+    allowAdd,
+    allowRemove,
   }
 }
 

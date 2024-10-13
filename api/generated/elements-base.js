@@ -682,6 +682,7 @@ export default {
     ],
     "events": [
       "change",
+      "add",
       "remove",
       "beforeCreate",
       "created",

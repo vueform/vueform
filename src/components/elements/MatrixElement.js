@@ -18,9 +18,9 @@ import useEl$ from './../../composables/elements/useEl$'
 import useMatrix from './../../composables/elements/useMatrix'
 import useDisabled from './../../composables/elements/useDisabled'
 import useReadonly from './../../composables/elements/useReadonly'
-import useDataType from './../../composables/elements/useDataType'
 import useGenericName from './../../composables/elements/useGenericName'
 import useWatchValue from './../../composables/elements/useWatchValue'
+import useCells from './../../composables/elements/useCells'
 
 import { object as useChildren } from './../../composables/elements/useChildren'
 import { object as useConditions } from './../../composables/useConditions'
@@ -75,12 +75,12 @@ export default {
       default: 'radio',
     },
 
-    cols: {
+    cols: { // done
       required: false,
       type: [Array, Object],
       default: () => ([]),
     },
-    hideCols: {
+    hideCols: { // done
       required: false,
       type: [Boolean],
       default: false,
@@ -90,79 +90,93 @@ export default {
       type: [Boolean],
       default: false,
     },
-    items: {
+    items: { // done
       required: false,
       type: [Array, Object, String, Function],
       default: () => ([]),
     },
+    stickCols: {
+      required: false,
+      type: [Boolean],
+      default: false,
+    },
     
-    rows: {
+    rows: { // done
       required: false,
       type: [Array, Object, Number],
       default: 1,
     },
-    min: {
+    min: { // done
       required: false,
       type: [Number, String],
       default: -1,
     },
-    max: {
+    max: { // done
       required: false,
       type: [Number, String],
       default: -1,
     },
-    canAdd: {
+    canAdd: { // done
       required: false,
       type: [Boolean],
       default: true,
     },
-    canRemove: {
+    canRemove: { // done
       required: false,
       type: [Boolean],
       default: true,
     },
-    addText: {
+    addText: { // done
       required: false,
       type: [String],
       default: null,
       '@default': 'locale.elements.list.add',
     },
-    hideRows: {
+    hideRows: { // done
       required: false,
       type: [Boolean],
       default: false,
     },
-    rowWrap: {
+    rowWrap: { // done
+      required: false,
+      type: [Boolean],
+      default: true,
+    },
+    stickRows: {
       required: false,
       type: [Boolean],
       default: false,
+    },
+    templateColumns: { // done
+      required: false,
+      type: [String],
+      default: null,
+    },
+    gap: { // done
+      required: false,
+      type: [String, Number],
+      default: 0,
     },
 
-    minWidth: {
+    minWidth: { // done
       required: false,
       type: [Number, String],
-      default: 0,
+      default: 'max-content',
     },
-    maxWidth: {
+    maxWidth: { // done
       required: false,
       type: [Number, String],
-      default: 0,
+      default: '1fr',
     },
-    // User horizontal padding between cells
-    padding: {
+    rowTitleMaxWidth: { // done
+      required: false,
+      type: [Number, String],
+      default: '3fr',
+    },
+    padding: { // done
       required: false,
       type: [Boolean],
       default: false,
-    },
-    lines: {
-      required: false,
-      type: [Boolean],
-      default: false,
-    },
-    removeHover: {
-      type: [Boolean],
-      required: false,
-      default: true,
     },
   },
   setup(props, ctx) {
@@ -177,11 +191,11 @@ export default {
       useFieldId,
       useEvents,
       useBaseElement,
-      useMatrix,
-      useDataType,
+      useCells,
       useNullValue,
       useDefault,
       useValue,
+      useMatrix,
       useLabel,
       useGenericName,
       useChildren,

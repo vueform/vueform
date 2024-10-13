@@ -1300,6 +1300,8 @@ const matrix = function(props, context, dependencies, options = {})
     rowsCount,
     hasDynamicRows,
     fire,
+    allowRemove,
+    allowAdd,
    } = dependencies
 
   // ============== COMPUTED ===============
@@ -1310,14 +1312,6 @@ const matrix = function(props, context, dependencies, options = {})
   
   const requestData = computed(() => {
     return { [name.value]: transformData(true) }
-  })
-
-  const allowAdd = computed(() => {
-    return hasDynamicRows.value && canAdd.value && (max.value === -1 || max.value > Object.keys(value.value).length)
-  })
-
-  const allowRemove = computed(() => {
-    return hasDynamicRows.value && canRemove.value && (min.value === -1 || min.value < Object.keys(value.value).length)
   })
 
   // =============== METHODS ===============
@@ -1515,8 +1509,6 @@ const matrix = function(props, context, dependencies, options = {})
     clear,
     reset,
     prepare,
-    allowAdd,
-    allowRemove,
     handleAdd,
     handleRemove,
     add,

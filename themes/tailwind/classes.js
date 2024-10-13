@@ -625,7 +625,6 @@ export default {
     cellWrapper_lg: 'form-min-h-input-height-inner-lg',
     remove: 'w-4 h-4 box-content p-0.5 form-bg-passive rounded-full transition filter hover:brightness-90',
     removeIcon: 'mask-bg mask-form-remove-light form-bg-passive-color mask-size-3 block w-full h-full',
-    remove_hover: 'absolute z-999 top-1/2 right-0 transform -translate-y-1/2 opacity-0 group-hover/row:opacity-100 focus:opacity-100',
     add: 'inline-block form-bg-primary form-border-width-btn form-border-color-primary form-color-on-primary form-shadow-btn ease-linear transition-transform transform hover:scale-105 focus:form-ring',
     add_sm: 'form-mt-gutter-sm form-radius-small-sm form-text-small-sm form-p-btn-small-sm',
     add_md: 'form-mt-gutter form-radius-small form-text-small form-p-btn-small',

@@ -1,126 +1,98 @@
 <template>
   <component :is="elementLayout" ref="container">
     <template #element>
-      <div :class="classes.wrapper">
-        <table :class="classes.grid">
-          
-          <tr v-if="!hideCols">
-            <td
-              v-if="!hideRows && hasDynamicRows && !removeHover"
-              :class="classes.rowTitle"
-              :style="getColStyle(0)"
-            ><div :class="classes.colTitleWrapper">&nbsp;</div></td>
-            <template v-for="(column, c) in resolvedColumns">
-              <th
-                v-show="column.available"
-                :class="classes.colTitle"
-                :style="getColStyle(c+1)"
-              >
-                <div :class="classes.colTitleWrapper" v-html="column.label" />
-              </th>
+      <div class="">
+        <div
+          class="grid overflow-auto max-h-[160px]"
+          :style="gridStyle"
+        >
+          <!-- Header row -->
+            <!-- First empty column -->
+            <div v-if="rowsVisible && colsVisible" :class="[stickCols || stickRows ? 'sticky bg-white' : null, stickCols ? 'top-0' : null, stickRows ? 'left-0' : null]" />
+            <!-- Column headers -->
+            <template v-for="(col, c) in resolvedColumns">
+              <div v-if="colsVisible && col.available" v-html="col.label" :class="[stickCols ? 'sticky top-0 bg-white z-1' : '', 'flex items-center justify-center text-center form-min-h-input-height-inner']" />
             </template>
-          </tr>
+            <!-- Remove column -->
+            <div v-if="allowRemove" class="bg-white sticky right-0 w-10" />
+
+          <!-- Content rows -->
           <template v-for="(row, r) in resolvedRows">
-            <tr
-              v-show="row.available"
-              :class="classes.row"
-            >
-              <td
-                v-if="!hideRows && hasDynamicRows && !removeHover"
-                :class="classes.rowTitle"
-              >
-                <div
-                  v-if="hasDynamicRows && allowRemove"
-                  :aria-roledescription="form$.translations.vueform.a11y.list.remove"
-                  :class="classes.remove"
-                  :id="`${path}-${r}-remove-button`"
-                  @click.prevent="handleRemove(r)"
-                  @keypress.space.enter="handleRemove(r)"
-                  role="button"
-                  tabindex="0"
-                >
-                  <span :class="classes.removeIcon"></span>
-                </div>
-
-                <div
-                  v-else
-                  v-html="row.label"  
+            <!-- Row label -->
+            <div v-if="rowsVisible && row.available" v-html="row.label" :class="[stickRows ? 'sticky left-0 bg-white' : null, 'flex items-center pr-2']" />
+            <!-- Input cells -->
+            <template v-for="(col, c) in resolvedColumns">
+              <div v-if="row.available && col.available" :class="[
+                'grid items-center form-min-h-input-height-inner',
+                ['radio', 'checkbox', 'toggle'].includes(resolveType(col)) ? 'justify-center' : null,
+                padding ? 'px-2' : null,
+              ]">
+                <RadioElement
+                  v-if="resolveColInputType(col) === 'radio'"
+                  :disabled="isDisabled"
+                  :readonly="isReadonly"
+                  :columns="{ label: 6 }"
+                  :conditions="resolveConditions(row, col)"
+                  :name="`${name}_${r}_${c}`"
+                  :radio-value="true"
+                  :radio-name="`${path}_${r}_${c}`"
+                  standalone
                 />
-              </td>
-              <template v-for="(column, c) in resolvedColumns">
-                <td
-                  v-show="column.available"
-                  :class="classes.cell(column)"
-                > 
-                  <div :class="classes.cellWrapper">
-                    <RadioElement
-                      v-if="resolveColInputType(column) === 'radio'"
-                      :disabled="isDisabled"
-                      :readonly="isReadonly"
-                      :conditions="resolveConditions(row, column)"
-                      :name="`${name}_${r}_${c}`"
-                      :radio-value="true"
-                      :radio-name="`${path}_${r}_${c}`"
-                      standalone
-                      inline
-                    />
-                    <CheckboxElement
-                      v-else-if="resolveColInputType(column) === 'checkbox'"
-                      :disabled="isDisabled"
-                      :readonly="isReadonly"
-                      :conditions="resolveConditions(row, column)"
-                      :name="`${name}_${r}_${c}`"
-                      :true-value="true"
-                      :false-name="false"
-                      standalone
-                      inline
-                    />
-                    <TextElement
-                      v-else-if="resolveColInputType(column) === 'text'"
-                      :disabled="isDisabled"
-                      :readonly="isReadonly"
-                      :conditions="resolveConditions(row, column)"
-                      :name="`${name}_${r}_${c}`"
-                    />
-                    <SelectElement
-                      v-else-if="['select', 'multiselect', 'tags'].includes(resolveColInputType(column))"
-                      :is="inputTypeComponent(column)"
-                      :disabled="isDisabled"
-                      :readonly="isReadonly"
-                      :conditions="resolveConditions(row, column)"
-                      :name="`${name}_${r}_${c}`"
-                      :items="resolveItems(column)"
-                      append-to-body
-                    />
-                    <component
-                      v-else
-                      :is="inputTypeComponent(column)"
-                      :disabled="isDisabled"
-                      :readonly="isReadonly"
-                      :conditions="resolveConditions(row, column)"
-                      :name="`${name}_${r}_${c}`"
-                      add-class="w-full"
-                      v-bind="column.inputType || inputType"
-                    />
-                  </div>
-
-                  <div
-                    v-if="hasDynamicRows && allowRemove && removeHover && c + 1 === resolvedColumns.length"
-                    :aria-roledescription="form$.translations.vueform.a11y.list.remove"
-                    :class="classes.remove"
-                    :id="`${path}-${r}-remove-button`"
-                    @click.prevent="handleRemove(r)"
-                    @keypress.space.enter="handleRemove(r)"
-                    role="button"
-                    tabindex="0"
-                  >
-                    <span :class="classes.removeIcon"></span>
-                  </div>
-                </td>
-              </template>
-            </tr>
+                <CheckboxElement
+                  v-else-if="resolveColInputType(col) === 'checkbox'"
+                  :disabled="isDisabled"
+                  :readonly="isReadonly"
+                  :conditions="resolveConditions(row, col)"
+                  :name="`${name}_${r}_${c}`"
+                  :true-value="true"
+                  :false-name="false"
+                  standalone
+                />
+                <TextElement
+                  v-else-if="resolveColInputType(col) === 'text'"
+                  :disabled="isDisabled"
+                  :readonly="isReadonly"
+                  :conditions="resolveConditions(row, col)"
+                  :name="`${name}_${r}_${c}`"
+                />
+                <SelectElement
+                  v-else-if="['select', 'multiselect', 'tags'].includes(resolveColInputType(col))"
+                  :is="inputTypeComponent(col)"
+                  :disabled="isDisabled"
+                  :readonly="isReadonly"
+                  :conditions="resolveConditions(row, col)"
+                  :name="`${name}_${r}_${c}`"
+                  :items="resolveItems(col)"
+                  append-to-body
+                />
+                <component
+                  v-else
+                  :is="inputTypeComponent(col)"
+                  :disabled="isDisabled"
+                  :readonly="isReadonly"
+                  :conditions="resolveConditions(row, col)"
+                  :name="`${name}_${r}_${c}`"
+                  add-class="w-full"
+                  v-bind="col.inputType || inputType"
+                />
+              </div>
+            </template>
+            <!-- Remove column -->
+            <div v-if="allowRemove" class="bg-white sticky right-0 flex items-center justify-center w-10">
+              <div
+                :aria-roledescription="form$.translations.vueform.a11y.list.remove"
+                :class="classes.remove"
+                :id="`${path}-${r}-remove-button`"
+                @click.prevent="handleRemove(r)"
+                @keypress.space.enter="handleRemove(r)"
+                role="button"
+                tabindex="0"
+              >
+                <span :class="classes.removeIcon"></span>
+              </div>
+            </div>
           </template>
-        </table>
+        </div>
       </div>
 
       <!-- Add button -->
