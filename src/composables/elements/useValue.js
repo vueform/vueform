@@ -161,7 +161,7 @@ const base = function(props, context, dependencies, /* istanbul ignore next */ o
 
             parent.value.resolvedRows.forEach((Row, r) => {
               newParentValue[Row.value] = {
-                ...Object.keys(matrixModel[Row.value] || {}).filter(k => parent.value.resolvedColumns.map(c => c.value).includes(k)).reduce((prev, curr) => ({
+                ...Object.keys(matrixModel[Row.value] || {}).filter(k => parent.value.resolvedColumns.map(c => String(c.value)).includes(k)).reduce((prev, curr) => ({
                   ...prev,
                   [curr]: matrixModel[Row.value][curr]
                 }), {})
