@@ -19,7 +19,6 @@ const base = function(props, context, dependencies)
     hideCols,
     colWrap,
     gap,
-    rowTitleMaxWidth,
     canRemove,
     canAdd,
     min,
@@ -73,38 +72,30 @@ const base = function(props, context, dependencies)
   const gridStyle = computed(() => {
     let gridTemplateColumns = templateColumns.value
 
+    if (typeof templateColumns.value === 'function') {
+      gridTemplateColumns = templateColumns.value(el$.value)
+    }
+
     if (!gridTemplateColumns) {
       gridTemplateColumns = []
 
-      const min = typeof minWidth.value === 'number' 
-        ? `${minWidth.value}px`
-        : colWrap.value && minWidth.value === 'max-content'
-          ? 'min-content'
-          : minWidth.value
-      const max = typeof maxWidth.value === 'number' ? `${maxWidth.value}px` : maxWidth.value
-
       // Row label column
       if (rowsVisible.value) {
-        const firstColMin = rowWrap.value
-          ? rowTitleMaxWidth.value
-            ? 'min-content'
-            : typeof minWidth.value === 'number'
-              ? `${minWidth.value}px` 
-              : minWidth.value
-            : 'max-content'
-            
-        const firstColMax = rowWrap.value ? rowTitleMaxWidth.value : 'max-content'
-
-        gridTemplateColumns.push(`minmax(${firstColMin}, ${firstColMax})`)
+        gridTemplateColumns.push(`minmax(min-content, auto)`)
       }
 
+      // Cells
+      const min = resolveWidth(minWidth.value, 'min-content')
+      const max = resolveWidth(maxWidth.value, '1fr')
+
       resolvedColumns.value.forEach((col, i) => {
-        const colMin = typeof col.minWidth === 'number' ? `${col.minWidth}px` : col.minWidth !== undefined ? col.minWidth : min
-        const colMax = typeof col.maxWidth === 'number' ? `${col.maxWidth}px` : col.maxWidth !== undefined ? col.maxWidth : max
+        const colMin = resolveWidth(col.minWidth, min)
+        const colMax = resolveWidth(col.maxWidth, max)
 
         gridTemplateColumns.push(`minmax(${colMin}, ${colMax})`)
       })
 
+      // Remove column
       if (allowRemove.value) {
         gridTemplateColumns.push(`minmax(max-content, max-content)`)
       }
@@ -119,6 +110,10 @@ const base = function(props, context, dependencies)
   })
 
   // =============== METHODS ==============
+
+  const resolveWidth = (width, def) => {
+    return typeof width === 'number' ? `${width}px` : width !== undefined ? width : def
+  }
 
   const inputTypeComponent = (column) => {
     const element = column.inputType || inputType.value

@@ -74,28 +74,28 @@ export default {
       type: [String, Object],
       default: 'radio',
     },
+    items: { // done
+      required: false,
+      type: [Array, Object, String, Function],
+      default: () => ([]),
+    },
 
     cols: { // done
       required: false,
       type: [Array, Object],
       default: () => ([]),
     },
+    colWrap: {
+      required: false,
+      type: [Boolean],
+      default: true,
+    },
     hideCols: { // done
       required: false,
       type: [Boolean],
       default: false,
     },
-    colWrap: {
-      required: false,
-      type: [Boolean],
-      default: false,
-    },
-    items: { // done
-      required: false,
-      type: [Array, Object, String, Function],
-      default: () => ([]),
-    },
-    stickCols: {
+    stickyCols: {
       required: false,
       type: [Boolean],
       default: false,
@@ -105,6 +105,21 @@ export default {
       required: false,
       type: [Array, Object, Number],
       default: 1,
+    },
+    rowWrap: { // done
+      required: false,
+      type: [Boolean],
+      default: true,
+    },
+    hideRows: { // done
+      required: false,
+      type: [Boolean],
+      default: false,
+    },
+    stickyRows: {
+      required: false,
+      type: [Boolean],
+      default: false,
     },
     min: { // done
       required: false,
@@ -132,51 +147,31 @@ export default {
       default: null,
       '@default': 'locale.elements.list.add',
     },
-    hideRows: { // done
-      required: false,
-      type: [Boolean],
-      default: false,
-    },
-    rowWrap: { // done
-      required: false,
-      type: [Boolean],
-      default: true,
-    },
-    stickRows: {
-      required: false,
-      type: [Boolean],
-      default: false,
-    },
-    templateColumns: { // done
-      required: false,
-      type: [String],
-      default: null,
-    },
-    gap: { // done
-      required: false,
-      type: [String, Number],
-      default: 0,
-    },
 
     minWidth: { // done
       required: false,
       type: [Number, String],
-      default: 'max-content',
+      default: 'min-content',
     },
     maxWidth: { // done
       required: false,
       type: [Number, String],
       default: '1fr',
     },
-    rowTitleMaxWidth: { // done
+    gap: { // done
       required: false,
-      type: [Number, String],
-      default: '3fr',
+      type: [String, Number],
+      default: 16,
     },
     padding: { // done
       required: false,
       type: [Boolean],
-      default: true,
+      default: false,
+    },
+    templateColumns: { // done
+      required: false,
+      type: [String, Function],
+      default: null,
     },
   },
   setup(props, ctx) {

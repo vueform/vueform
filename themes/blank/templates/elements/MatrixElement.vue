@@ -3,15 +3,15 @@
     <template #element>
       <div class="">
         <div
-          class="grid overflow-auto max-h-[160px]"
+          class="grid overflow-auto"
           :style="gridStyle"
         >
           <!-- Header row -->
             <!-- First empty column -->
-            <div v-if="rowsVisible && colsVisible" :class="[stickCols || stickRows ? 'sticky bg-white' : null, stickCols ? 'top-0' : null, stickRows ? 'left-0' : null]" />
+            <div v-if="rowsVisible && colsVisible" :class="[stickyCols || stickyRows ? 'sticky bg-white' : null, stickyCols ? 'top-0' : null, stickyRows ? 'left-0' : null]" />
             <!-- Column headers -->
             <template v-for="(col, c) in resolvedColumns">
-              <div v-if="colsVisible && col.available" v-html="col.label" :class="[stickCols ? 'sticky top-0 bg-white z-1' : '', padding ? 'px-2' : null, 'flex items-center justify-center text-center form-min-h-input-height-inner']" />
+              <div v-if="colsVisible && col.available" v-html="col.label" :class="[stickyCols ? 'sticky top-0 bg-white z-1' : '', padding ? 'px-2' : null, colWrap ? null : 'whitespace-nowrap', 'flex items-center justify-center text-center form-min-h-input-height-inner']" />
             </template>
             <!-- Remove column -->
             <div v-if="allowRemove" class="bg-white sticky right-0 w-10" />
@@ -19,7 +19,7 @@
           <!-- Content rows -->
           <template v-for="(row, r) in resolvedRows">
             <!-- Row label -->
-            <div v-if="rowsVisible && row.available" v-html="row.label" :class="[stickRows ? 'sticky left-0 bg-white' : null, 'flex items-center pr-2']" />
+            <div v-if="rowsVisible && row.available" v-html="row.label" :class="[stickyRows ? 'sticky left-0 bg-white' : null, rowWrap ? null : 'whitespace-nowrap', 'flex items-center pr-2']" />
             <!-- Input cells -->
             <template v-for="(col, c) in resolvedColumns">
               <div v-if="row.available && col.available" :class="['grid items-center form-min-h-input-height-inner', ['radio', 'checkbox', 'toggle'].includes(resolveType(col)) ? 'justify-center' : null, padding ? 'px-2' : null]">
