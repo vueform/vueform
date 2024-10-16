@@ -38,6 +38,10 @@ const base = function(props, context, dependencies)
 
   const config$ = inject('config$')
 
+  // ================ DATA ================
+
+  const grid = ref(null)
+
   // ============== COMPUTED ==============
 
   const allowAdd = computed(() => {
@@ -88,7 +92,7 @@ const base = function(props, context, dependencies)
       const min = resolveWidth(minWidth.value, 'min-content')
       const max = resolveWidth(maxWidth.value, '1fr')
 
-      resolvedColumns.value.forEach((col, i) => {
+      el$.value.resolvedColumns.filter(c => c.available).forEach((col, i) => {
         const colMin = resolveWidth(col.minWidth, min)
         const colMax = resolveWidth(col.maxWidth, max)
 
@@ -168,6 +172,7 @@ const base = function(props, context, dependencies)
   }
   
   return {
+    grid,
     inputTypeComponent,
     getColStyle,
     resolveColInputType,
