@@ -642,11 +642,11 @@ export default {
     "features": [
       "a11y",
       "baseElement_matrix",
+      "cells",
       "children_object",
       "classes",
       "columns",
       "conditions_object",
-      "dataType",
       "data_matrix",
       "default_matrix",
       "disabled",
