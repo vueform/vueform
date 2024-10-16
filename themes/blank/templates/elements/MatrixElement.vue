@@ -5,21 +5,25 @@
         <div
           class="grid overflow-auto"
           :style="gridStyle"
+          ref="grid"
         >
           <!-- Header row -->
+          <!-- <div class="contents relative"> -->
             <!-- First empty column -->
-            <div v-if="rowsVisible && colsVisible" :class="[stickyCols || stickyRows ? 'sticky bg-white' : null, stickyCols ? 'top-0' : null, stickyRows ? 'left-0' : null]" />
+            <div v-if="rowsVisible && colsVisible" :class="[stickyCols || stickyRows ? 'sticky' : null, stickyCols ? 'top-px' : null, stickyRows ? 'left-px' : null]" />
             <!-- Column headers -->
             <template v-for="(col, c) in resolvedColumns">
-              <div v-if="colsVisible && col.available" v-html="col.label" :class="[stickyCols ? 'sticky top-0 bg-white z-1' : '', padding ? 'px-2' : null, colWrap ? null : 'whitespace-nowrap', 'flex items-center justify-center text-center form-min-h-input-height-inner']" />
+              <div v-if="colsVisible && col.available" v-html="col.label" :class="[stickyCols ? 'sticky top-px backdrop-blur-3xl z-1' : '', padding ? 'px-2' : null, colWrap ? null : 'whitespace-nowrap', 'flex items-center justify-center text-center form-min-h-input-height-inner']" />
             </template>
             <!-- Remove column -->
-            <div v-if="allowRemove" class="bg-white sticky right-0 w-10" />
+            <div v-if="allowRemove && colsVisible" />
+          <!-- </div> -->
 
           <!-- Content rows -->
+          <!-- <div class="contents relative" v-for="(row, r) in resolvedRows"> -->
           <template v-for="(row, r) in resolvedRows">
             <!-- Row label -->
-            <div v-if="rowsVisible && row.available" v-html="row.label" :class="[stickyRows ? 'sticky left-0 bg-white' : null, rowWrap ? null : 'whitespace-nowrap', 'flex items-center pr-2']" />
+            <div v-if="rowsVisible && row.available" v-html="row.label" :class="[stickyRows ? 'sticky left-px backdrop-blur-3xl z-1' : null, rowWrap ? null : 'whitespace-nowrap', 'flex items-center pr-2']" />
             <!-- Input cells -->
             <template v-for="(col, c) in resolvedColumns">
               <div v-if="row.available && col.available" :class="['grid items-center form-min-h-input-height-inner', ['radio', 'checkbox', 'toggle'].includes(resolveType(col)) ? 'justify-center' : null, padding ? 'px-2' : null]">
@@ -52,14 +56,32 @@
                   :name="`${name}_${r}_${c}`"
                 />
                 <SelectElement
-                  v-else-if="['select', 'multiselect', 'tags'].includes(resolveColInputType(col))"
-                  :is="inputTypeComponent(col)"
+                  v-else-if="resolveColInputType(col) === 'select'"
+                  :disabled="isDisabled"
+                  :readonly="isReadonly"
+                  :conditions="resolveConditions(row, col)"
+                  :name="`${name}_${r}_${c}`"
+                  :items="resolveItems(col)"
+                />
+                <TagsElement
+                  v-else-if="resolveColInputType(col) === 'tags'"
                   :disabled="isDisabled"
                   :readonly="isReadonly"
                   :conditions="resolveConditions(row, col)"
                   :name="`${name}_${r}_${c}`"
                   :items="resolveItems(col)"
                   append-to-body
+                  search
+                />
+                <ToggleElement
+                  v-else-if="resolveColInputType(col) === 'toggle'"
+                  :disabled="isDisabled"
+                  :readonly="isReadonly"
+                  :conditions="resolveConditions(row, col)"
+                  :name="`${name}_${r}_${c}`"
+                  :true-value="true"
+                  :false-name="false"
+                  standalone
                 />
                 <component
                   v-else
@@ -74,7 +96,7 @@
               </div>
             </template>
             <!-- Remove column -->
-            <div v-if="allowRemove" class="bg-white sticky right-0 flex items-center justify-center w-10">
+            <div v-if="allowRemove" class="backdrop-blur-3xl sticky right-0 flex items-center justify-center w-10">
               <div
                 :aria-roledescription="form$.translations.vueform.a11y.list.remove"
                 :class="classes.remove"
@@ -87,6 +109,7 @@
                 <span :class="classes.removeIcon"></span>
               </div>
             </div>
+          <!-- </div> -->
           </template>
         </div>
       </div>
