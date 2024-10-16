@@ -219,6 +219,7 @@ const matrix = function(props, context, dependencies)
     resolvedColumns,
     rowsCount,
     dataType,
+    el$,
   } = dependencies
   
   // ============== COMPUTED ===============
