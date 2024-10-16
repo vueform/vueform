@@ -1302,6 +1302,7 @@ const matrix = function(props, context, dependencies, options = {})
     fire,
     allowRemove,
     allowAdd,
+    grid,
    } = dependencies
 
   // ============== COMPUTED ===============
@@ -1339,6 +1340,11 @@ const matrix = function(props, context, dependencies, options = {})
 
     if (hasDynamicRows.value) {
       rowsCount.value = rows.value
+    }
+
+    if (grid.value) {
+      grid.value.scrollTop = 0
+      grid.value.scrollLeft = 0
     }
   }
 
@@ -1438,8 +1444,8 @@ const matrix = function(props, context, dependencies, options = {})
       await nextTick()
     }
 
-    resolvedRows.value.forEach((row, r) => {
-      resolvedColumns.value.forEach((column, c) => {
+    el$.value.resolvedRows.forEach((row, r) => {
+      el$.value.resolvedColumns.forEach((column, c) => {
         const rowValue = val[row.value] || {}
         const cell$ = children$.value[`${name.value}_${r}_${c}`]
 
