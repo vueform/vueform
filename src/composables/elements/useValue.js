@@ -696,7 +696,7 @@ const date = function(props, context, dependencies)
 
               parent.value.resolvedRows.forEach((Row, r) => {
                 newParentValue[Row.value] = {
-                  ...Object.keys(matrixModel[Row.value] || {}).filter(k => parent.value.resolvedColumns.map(c => c.value).includes(k)).reduce((prev, curr) => ({
+                  ...Object.keys(matrixModel[Row.value] || {}).filter(k => parent.value.resolvedColumns.map(c => String(c.value)).includes(k)).reduce((prev, curr) => ({
                     ...prev,
                     [curr]: matrixModel[Row.value][curr]
                   }), {})
@@ -791,21 +791,21 @@ const dates = function(props, context, dependencies)
           const row = parent.value.resolvedRows[getRowKey(name.value)]
           const col = parent.value.resolvedColumns[getColKey(name.value)]
 
-          let rowModel = form$.value.isSync
+          const rowModel = form$.value.isSync
             ? get(form$.value.model, `${parent.value.dataPath}.${row.value}`)
             : parent.value.value[row.value]
 
           switch (parent.value.dataType) {
             case 'assoc':
-              initialValue.value = rowModel === col.value ? true : null
+              value = rowModel === col.value ? true : null
               break
 
             case 'array':
-              initialValue.value = Array.isArray(rowModel) && rowModel.includes(col.value)
+              value = Array.isArray(rowModel) && rowModel.includes(col.value) ? true : false
               break
 
             default:
-              initialValue.value = rowModel?.[col.value]
+              value = rowModel?.[col.value]
           }
         } else if (form$.value.isSync) {
           value = get(form$.value.model, dataPath.value)
@@ -884,7 +884,7 @@ const dates = function(props, context, dependencies)
 
               parent.value.resolvedRows.forEach((Row, r) => {
                 newParentValue[Row.value] = {
-                  ...Object.keys(matrixModel[Row.value] || {}).filter(k => parent.value.resolvedColumns.map(c => c.value).includes(k)).reduce((prev, curr) => ({
+                  ...Object.keys(matrixModel[Row.value] || {}).filter(k => parent.value.resolvedColumns.map(c => String(c.value)).includes(k)).reduce((prev, curr) => ({
                     ...prev,
                     [curr]: matrixModel[Row.value][curr]
                   }), {})
@@ -901,6 +901,8 @@ const dates = function(props, context, dependencies)
 
               newValue = newParentValue
           }
+
+          console.log('set', newValue)
 
           if (form$.value.isSync) {
             form$.value.updateModel(parent.value.dataPath, newValue)
