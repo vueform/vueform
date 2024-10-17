@@ -484,7 +484,7 @@ export default {
     ]),
   },
   CheckboxgroupElement: {
-    container: '',
+    container: 'form-view-default',
     wrapper: 'flex flex-col justify-start',
     wrapper_sm: '',
     wrapper_md: '',
@@ -495,7 +495,7 @@ export default {
     ]),
   },
   CheckboxgroupElement_tabs: {
-    container: 'form-text-type',
+    container: 'form-text-type form-view-tabs',
     wrapper: 'grid grid-flow-col form-shadow-input',
     wrapper_sm: 'form-radius-large-sm',
     wrapper_md: 'form-radius-large',
@@ -506,7 +506,7 @@ export default {
     ]),
   },
   CheckboxgroupElement_blocks: {
-    container: '',
+    container: 'form-view-blocks',
     wrapper: 'flex flex-col justify-start form-shadow-input',
     wrapper_sm: 'form-radius-large-sm',
     wrapper_md: 'form-radius-large',
@@ -605,49 +605,48 @@ export default {
   },
   MatrixElement: {
     container: '',
-    wrapper: 'overflow-x-auto form-bg-input',
-    grid: 'min-w-full',
-    row: 'group/row relative',
-    row_lines: 'border-t form-border-color-input',
-    rowTitle: 'pr-3 sticky left-0 form-bg-input',
-    rowTitle_wrap: '',
-    rowTitle_nowrap: 'whitespace-nowrap',
-    colTitle: 'font-normal text-center px-3',
-    colTitle_wrap: '',
-    colTitle_nowrap: 'whitespace-nowrap',
-    colTitleWrapper: '',
-    cell: 'relative',
-    cell_padding: 'px-3',
-    cellWrapper: 'flex text-center items-center justify-center h-full',
-    cellWrapper: 'h-full',
-    cellWrapper_sm: 'form-min-h-input-height-inner-sm',
-    cellWrapper_md: 'form-min-h-input-height-inner',
-    cellWrapper_lg: 'form-min-h-input-height-inner-lg',
+    grid: 'grid ',
+    grid_scrollable: 'grid overflow-auto',
+    headerFirst: '',
+    header: 'flex items-center justify-center text-center form-min-h-input-height-inner',
+    header_padding: 'px-2',
+    header_sticky: 'sticky top-0 backdrop-blur-3xl z-1',
+    header_wrap: '',
+    header_nowrap: 'whitespace-nowrap',
+    headerRemove: '',
+    rowLabel: 'flex items-center pr-2',
+    rowLabel_sticky: 'sticky left-0 backdrop-blur-3xl z-1',
+    rowLabel_wrap: '',
+    rowLabel_nowrap: 'whitespace-nowrap',
+    cell: 'grid items-center form-min-h-input-height-inner',
+    cell_padding: 'px-2',
+    cell_centered: 'justify-center',
+    rowRemove: 'backdrop-blur-3xl sticky right-0 flex items-center justify-center w-10',
     remove: 'w-4 h-4 box-content p-0.5 form-bg-passive rounded-full transition filter hover:brightness-90',
     removeIcon: 'mask-bg mask-form-remove-light form-bg-passive-color mask-size-3 block w-full h-full',
     add: 'inline-block form-bg-primary form-border-width-btn form-border-color-primary form-color-on-primary form-shadow-btn ease-linear transition-transform transform hover:scale-105 focus:form-ring',
     add_sm: 'form-mt-gutter-sm form-radius-small-sm form-text-small-sm form-p-btn-small-sm',
     add_md: 'form-mt-gutter form-radius-small form-text-small form-p-btn-small',
     add_lg: 'form-mt-gutter-lg form-radius-small-lg form-text-small-lg form-p-btn-small-lg',
-    $cell: (classes, { padding }) => (column) => ([
+    $grid: (classes, { scrollable }) => ([
+      classes.grid,
+      scrollable ? classes.grid_scrollable : null,
+    ]),
+    $header: (classes, { padding, stickyCols, colWrap }) => ([
+      classes.header,
+      padding ? classes.header_padding : null,
+      stickyCols ? classes.header_sticky : null,
+      colWrap ? classes.header_wrap : classes.header_nowrap,
+    ]),
+    $rowLabel: (classes, { stickyRows, rowWrap }) => ([
+      classes.rowLabel,
+      stickyRows ? classes.rowLabel_sticky : null,
+      rowWrap ? classes.rowLabel_wrap : classes.rowLabel_nowrap,
+    ]),
+    $cell: (classes, { padding, centered }) => (type) => ([
       classes.cell,
-      (padding && column?.padding !== false) || column?.padding ? classes.cell_padding : null,
-    ]),
-    $row: (classes, { lines }) => ([
-      classes.row,
-      lines ? classes.row_lines : null,
-    ]),
-    $rowTitle: (classes, { rowWrap }) => ([
-      classes.rowTitle,
-      rowWrap ? classes.rowTitle_wrap : classes.rowTitle_nowrap,
-    ]),
-    $colTitle: (classes, { colWrap }) => ([
-      classes.colTitle,
-      colWrap ? classes.colTitle_wrap : classes.colTitle_nowrap,
-    ]),
-    $cellWrapper: (classes, { Size }) => ([
-      classes.cellWrapper,
-      classes[`cellWrapper_${Size}`],
+      padding ? classes.cell_padding : null,
+      ['radio', 'checkbox', 'toggle'].includes(type) ? classes.cell_centered : null,
     ]),
     $add: (classes, { Size }) => ([
       classes.add,
@@ -849,7 +848,7 @@ export default {
     ]),
   },
   RadiogroupElement: {
-    container: '',
+    container: 'form-view-default',
     wrapper: 'flex flex-col justify-start',
     wrapper_sm: '',
     wrapper_md: '',
@@ -860,7 +859,7 @@ export default {
     ]),
   },
   RadiogroupElement_tabs: {
-    container: ' form-text-type',
+    container: 'form-text-type form-view-tabs',
     wrapper: 'grid grid-flow-col grid form-shadow-input',
     wrapper_sm: 'form-radius-large-sm',
     wrapper_md: 'form-radius-large',
@@ -871,7 +870,7 @@ export default {
     ]),
   },
   RadiogroupElement_blocks: {
-    container: '',
+    container: 'form-view-blocks',
     wrapper: 'flex flex-col justify-start form-shadow-input',
     wrapper_sm: 'form-radius-large-sm',
     wrapper_md: 'form-radius-large',
@@ -1810,7 +1809,7 @@ export default {
   // Slots
   CheckboxgroupCheckbox: {
     ...checkbox,
-    container: 'flex align-start cursor-pointer',
+    wrapper: 'flex align-start cursor-pointer form-view-default',
     text: '',
     input: checkbox.input + ' form-shadow-handles',
     input_sm: checkbox.input_sm + ' form-mt-checkbox-sm',
@@ -1819,6 +1818,7 @@ export default {
   },
   CheckboxgroupCheckbox_tabs: {
     ...groupTabs,
+    container: groupTabs.container + '  form-view-tabs',
     $wrapper: (classes, { index, items, el$, value, isDisabled, Size }) => ([
       classes.wrapper,
       classes[`wrapper_${Size}`],
@@ -1834,6 +1834,7 @@ export default {
   CheckboxgroupCheckbox_blocks: {
     ...checkbox,
     ...groupBlocks,
+    container: groupBlocks.container + '  form-view-blocks',
     $wrapper: (classes, { index, items, el$, value, isDisabled, Size }) => ([
       classes.wrapper,
       classes[`wrapper_${Size}`],
@@ -1988,7 +1989,7 @@ export default {
   },
   RadiogroupRadio: {
     ...radio,
-    container: 'flex align-start cursor-pointer',
+    container: 'flex align-start cursor-pointer form-view-default',
     text: '',
     input: radio.input + ' form-shadow-handles',
     input_sm: radio.input_sm + ' form-mt-checkbox-sm',
@@ -1997,6 +1998,7 @@ export default {
   },
   RadiogroupRadio_tabs: {
     ...groupTabs,
+    container: groupTabs.container + '  form-view-tabs',
     $wrapper: (classes, { index, items, el$, value, isDisabled, Size }) => ([
       classes.wrapper,
       classes[`wrapper_${Size}`],
@@ -2012,6 +2014,7 @@ export default {
   RadiogroupRadio_blocks: {
     ...radio,
     ...groupBlocks,
+    container: groupBlocks.container + '  form-view-blocks',
     $wrapper: (classes, { index, items, el$, value, isDisabled, Size }) => ([
       classes.wrapper,
       classes[`wrapper_${Size}`],

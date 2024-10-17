@@ -168,6 +168,11 @@ export default {
       type: [Boolean],
       default: false,
     },
+    scrollable: {
+      required: false,
+      type: [Boolean],
+      default: false,
+    },
     templateColumns: { // done
       required: false,
       type: [String, Function],
