@@ -19,12 +19,12 @@ import useMatrix from './../../composables/elements/useMatrix'
 import useDisabled from './../../composables/elements/useDisabled'
 import useReadonly from './../../composables/elements/useReadonly'
 import useGenericName from './../../composables/elements/useGenericName'
-import useWatchValue from './../../composables/elements/useWatchValue'
 import useCells from './../../composables/elements/useCells'
 
 import { object as useChildren } from './../../composables/elements/useChildren'
 import { object as useConditions } from './../../composables/useConditions'
 import { object as useNullValue } from './../../composables/elements/useNullValue'
+import { object as useWatchValue } from './../../composables/elements/useWatchValue'
 
 import { matrix as useBaseElement } from './../../composables/elements/useBaseElement'
 import { matrix as useData } from './../../composables/elements/useData'

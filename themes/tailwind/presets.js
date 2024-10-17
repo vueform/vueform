@@ -7,10 +7,11 @@ export default {
         cell_stretch: '!items-stretch',
         headerFirst: 'form-border-width-table !border-r-0 !border-b-0 form-border-color-table form-bg-table-header',
         header: 'form-border-width-table !border-r-0 !border-b-0 form-border-color-table form-bg-table-header',
-        headerRemove: 'form-border-width-table !border-b-0 form-border-color-table form-bg-table-header',
+        headerRemove: 'form-border-width-table !border-r-0 !border-b-0 form-border-color-table form-bg-table-header',
         rowLabel: 'form-border-width-table !border-r-0 !border-b-0 form-border-color-table px-2 text-center form-bg-table-header',
-        rowRemove: 'form-border-width-table !border-b-0 form-border-color-table bg-gray-100 form-bg-table-header',
-        removeIcon: 'dark:!bg-dark-100'
+        rowRemove: 'form-border-width-table !border-r-0 !border-b-0 form-border-color-table bg-gray-100 form-bg-table-header',
+        removeIcon: 'dark:!bg-dark-100',
+        container: '[&>div>div>.form-inner-wrapper-after]:!block [&>div>div>.form-inner-wrapper-before]:!block [&.form-container-error]:before:hidden'
       },
       TextElement: {
         inputContainer: 'h-full',
@@ -80,9 +81,10 @@ export default {
       },
       ElementLayout: {
         outerWrapper: 'h-full',
-        innerWrapperBefore: 'hidden',
+        innerWrapperBefore: 'hidden form-inner-wrapper-before',
         innerWrapper: 'h-full',
-        innerWrapperAfter: 'hidden',
+        innerWrapperAfter: 'hidden form-inner-wrapper-after',
+        container_error: 'relative before:content-[""] before:absolute before:inset-0 before:z-2 before:shadow-[inset_0_0_0_1px_var(--vf-danger)] before:pointer-events-none form-container-error',
       },
       SliderElement: {
         wrapper: 'h-full w-full flex items-center justify-center',
@@ -128,6 +130,15 @@ export default {
       RadiogroupRadio: {
         wrapper: 'border-l',
         wrapper_first: '!border-l-0',
+      },
+      CheckboxElement: {
+        container: '[&.form-container-error]:before:hidden'
+      },
+      RadioElement: {
+        container: '[&.form-container-error]:before:hidden'
+      },
+      ToggleElement: {
+        container: '[&.form-container-error]:before:hidden'
       },
     },
     replaceClasses: {

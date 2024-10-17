@@ -1408,7 +1408,6 @@ const matrix = function(props, context, dependencies)
     pending,
     busy,
     errors,
-    error,
     validationRules,
     isDanger,
     isSuccess,
@@ -1421,9 +1420,13 @@ const matrix = function(props, context, dependencies)
     initMessageBag,
     initValidation,
     reinitValidation,
-  } = base(props, context, dependencies)
+  } = object(props, context, dependencies)
   
   // ============== COMPUTED ==============
+
+  const error = computed(() => {
+    return errors.value?.[0]
+  })
   
   const useCustomFilled = computed(() => {
     return true
