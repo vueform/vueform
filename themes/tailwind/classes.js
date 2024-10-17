@@ -1809,6 +1809,7 @@ export default {
   // Slots
   CheckboxgroupCheckbox: {
     ...checkbox,
+    container: 'flex align-start cursor-pointer',
     wrapper: 'flex align-start cursor-pointer form-view-default',
     text: '',
     input: checkbox.input + ' form-shadow-handles',
@@ -1818,7 +1819,7 @@ export default {
   },
   CheckboxgroupCheckbox_tabs: {
     ...groupTabs,
-    container: groupTabs.container + '  form-view-tabs',
+    container: groupTabs.container + ' form-view-tabs',
     $wrapper: (classes, { index, items, el$, value, isDisabled, Size }) => ([
       classes.wrapper,
       classes[`wrapper_${Size}`],
@@ -1834,7 +1835,7 @@ export default {
   CheckboxgroupCheckbox_blocks: {
     ...checkbox,
     ...groupBlocks,
-    container: groupBlocks.container + '  form-view-blocks',
+    container: groupBlocks.container + ' form-view-blocks',
     $wrapper: (classes, { index, items, el$, value, isDisabled, Size }) => ([
       classes.wrapper,
       classes[`wrapper_${Size}`],
@@ -1998,7 +1999,7 @@ export default {
   },
   RadiogroupRadio_tabs: {
     ...groupTabs,
-    container: groupTabs.container + '  form-view-tabs',
+    container: groupTabs.container + ' form-view-tabs',
     $wrapper: (classes, { index, items, el$, value, isDisabled, Size }) => ([
       classes.wrapper,
       classes[`wrapper_${Size}`],
@@ -2014,7 +2015,7 @@ export default {
   RadiogroupRadio_blocks: {
     ...radio,
     ...groupBlocks,
-    container: groupBlocks.container + '  form-view-blocks',
+    container: groupBlocks.container + ' form-view-blocks',
     $wrapper: (classes, { index, items, el$, value, isDisabled, Size }) => ([
       classes.wrapper,
       classes[`wrapper_${Size}`],
