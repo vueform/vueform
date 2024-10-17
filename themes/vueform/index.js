@@ -80,6 +80,7 @@ import EditorWrapper from './templates/wrappers/EditorWrapper.vue'
 
 import columns from './columns'
 import classes from './classes'
+import presets from './presets'
 
 export default {
   templates: {
@@ -160,6 +161,7 @@ export default {
   },
   classes,
   columns,
+  presets,
 }
 
 export {
@@ -240,4 +242,5 @@ export {
   
   classes,
   columns,
+  presets,
 }

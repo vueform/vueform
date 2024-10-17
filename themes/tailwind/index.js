@@ -80,6 +80,7 @@ import EditorWrapper from './templates/wrappers/EditorWrapper.vue'
 
 import columns from './columns'
 import classes from './classes'
+import presets from './presets'
 
 const theme = {
   templates: {
@@ -160,6 +161,7 @@ const theme = {
   },
   classes,
   columns,
+  presets,
 }
 
 export default theme
@@ -242,6 +244,7 @@ export {
   
   classes,
   columns,
+  presets,
 }
 
 const prefixer = function (classes, prefix) {
