@@ -132,7 +132,7 @@ const base = function(props, context, dependencies)
   }
 
   const resolveComponentName = (rowIndex, colIndex) => {
-    return `${name.value}_${rowIndex}_${colIndex}`
+    return `${path.value.replace(/\./g, '__')}_${rowIndex}_${colIndex}`
   }
 
   const resolveComponentProps = (row, col, rowIndex, colIndex) => {
