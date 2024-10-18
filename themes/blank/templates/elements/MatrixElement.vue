@@ -22,11 +22,13 @@
           <div v-if="rowsVisible && row.available" v-html="row.label" :class="classes.rowLabel" />
           <!-- Input cells -->
           <template v-for="(col, c) in resolvedColumns">
-            <div v-if="row.available && col.available" :class="classes.cell(resolveType(col))">
-              <component
-                :is="resolveComponentType(col)"
-                v-bind="resolveComponentProps(row, col, r, c)"
-              />
+            <div v-if="row.available && col.available" :class="classes.cell">
+              <div :class="classes.cellWrapper(resolveColType(col), resolveComponentName(r, c))">
+                <component
+                  :is="resolveComponentType(col)"
+                  v-bind="resolveComponentProps(row, col, r, c)"
+                />
+              </div>
             </div>
           </template>
           <!-- Remove column -->

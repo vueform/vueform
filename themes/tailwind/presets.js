@@ -4,14 +4,16 @@ export default {
       MatrixElement: {
         grid: 'form-border-width-table !border-l-0 !border-t-0 form-border-color-table !gap-0',
         cell: 'form-border-width-table !border-r-0 !border-b-0 form-border-color-table form-bg-input',
-        cell_stretch: '!items-stretch',
+        cellWrapper_stretch: '!items-stretch',
+        cellWrapper_error: 'relative after:content-[""] after:absolute after:inset-0 after:shadow-[inset_0_0_0_1px_var(--vf-danger)] after:pointer-events-none',
+        cellWrapper_success: 'relative after:content-[""] after:absolute after:inset-0 after:shadow-[inset_0_0_0_1px_green] after:pointer-events-none',
         headerFirst: 'form-border-width-table !border-r-0 !border-b-0 form-border-color-table form-bg-table-header',
         header: 'form-border-width-table !border-r-0 !border-b-0 form-border-color-table form-bg-table-header',
         headerRemove: 'form-border-width-table !border-r-0 !border-b-0 form-border-color-table form-bg-table-header',
         rowLabel: 'form-border-width-table !border-r-0 !border-b-0 form-border-color-table px-2 text-center form-bg-table-header',
         rowRemove: 'form-border-width-table !border-r-0 !border-b-0 form-border-color-table bg-gray-100 form-bg-table-header',
         removeIcon: 'dark:!bg-dark-100',
-        container: '[&>div>div>.form-inner-wrapper-after]:!block [&>div>div>.form-inner-wrapper-before]:!block [&.form-container-error]:before:hidden'
+        container: '[&>div>div>.form-inner-wrapper-after]:!block [&>div>div>.form-inner-wrapper-before]:!block'
       },
       TextElement: {
         inputContainer: 'h-full',
@@ -84,7 +86,6 @@ export default {
         innerWrapperBefore: 'hidden form-inner-wrapper-before',
         innerWrapper: 'h-full',
         innerWrapperAfter: 'hidden form-inner-wrapper-after',
-        container_error: 'relative before:content-[""] before:absolute before:inset-0 before:z-2 before:shadow-[inset_0_0_0_1px_var(--vf-danger)] before:pointer-events-none form-container-error',
       },
       SliderElement: {
         wrapper: 'h-full w-full flex items-center justify-center',
@@ -205,8 +206,7 @@ export default {
     },
     removeClasses: {
       MatrixElement: {
-        cell_padding: 'px-2',
-        cell_padding: 'px-2',
+        cellWrapper_padding: 'px-2',
       },
       TextElement: {
         inputContainer: ['form-border-width-input'],
@@ -381,14 +381,16 @@ export default {
     },
     overrideClasses: {
       MatrixElement: {
-        $cell: (classes, { padding, centered }) => (type) => {
+        $cellWrapper: (classes, { padding, centered, cells$ }) => (type, name) => {
           const isStandalone = ['radio', 'checkbox', 'toggle'].includes(type)
           
           return [
-            classes.cell,
-            padding ? classes.cell_padding : null,
-            isStandalone ? classes.cell_centered : null,
-            !isStandalone ? classes.cell_stretch : null,
+            classes.cellWrapper,
+            padding ? classes.cellWrapper_padding : null,
+            isStandalone ? classes.cellWrapper_centered : null,
+            !isStandalone ? classes.cellWrapper_stretch : null,
+            cells$[name]?.error ? classes.cellWrapper_error : null,
+            cells$[name]?.isSuccess ? classes.cellWrapper_success : null,
           ]
         },
       }

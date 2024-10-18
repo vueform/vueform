@@ -24,7 +24,10 @@ const base = function(props, context, dependencies)
 
   // ================ DATA =================
 
+  const cells$ = ref({})
+
   const rowsCount = ref(typeof rows.value === 'number' ? rows.value : null)
+
   // =============== COMPUTED ==============
 
   const dataType = computed(() => {
@@ -104,6 +107,7 @@ const base = function(props, context, dependencies)
     resolvedColumns,
     rowsCount,
     dataType,
+    cells$,
   }
 }
 

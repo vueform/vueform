@@ -21,6 +21,10 @@ const base = function(props, context, dependencies, options = {})
   * @private
   */
   const assignToParent = ($parent, assignToParent) => {
+    if ($parent.cells$) {
+      form$.value.$set($parent.cells$, name.value, currentInstance.proxy)
+    }
+
     if ($parent.children$Array) {
       $parent.children$Array.push(currentInstance.proxy)
     }
@@ -40,6 +44,10 @@ const base = function(props, context, dependencies, options = {})
   * @private
   */
   const removeFromParent = ($parent, removeFromParent) => {
+    if ($parent.cells$) {
+      form$.value.$delete($parent.cells$, name.value)
+    }
+    
     if ($parent.children$Array) {
       $parent.children$Array.splice($parent.children$Array.map(e$=>normalize(e$.name)).indexOf(normalize(name.value)), 1)
     }

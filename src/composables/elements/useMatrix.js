@@ -24,6 +24,7 @@ const base = function(props, context, dependencies)
     min,
     max,
     presets,
+    name,
   } = toRefs(props)
 
   const {
@@ -130,6 +131,10 @@ const base = function(props, context, dependencies)
     return `${upperFirst(camelCase(type))}Element`
   }
 
+  const resolveComponentName = (rowIndex, colIndex) => {
+    return `${name.value}_${rowIndex}_${colIndex}`
+  }
+
   const resolveComponentProps = (row, col, rowIndex, colIndex) => {
     const type = resolveColInputType(col)
 
@@ -138,8 +143,8 @@ const base = function(props, context, dependencies)
       displayErrors: false,
       disabled: isDisabled.value,
       readonly: isReadonly.value,
-      conditions: resolveConditions(row, col),
-      name: `${name.value}_${rowIndex}_${colIndex}`,
+      conditions: resolveColConditions(row, col),
+      name: resolveComponentName(rowIndex, colIndex),
       presets: presets.value,
     }
 
@@ -210,16 +215,12 @@ const base = function(props, context, dependencies)
     return col.inputType || inputType.value
   }
 
-  const resolveType = (col) => {
+  const resolveColType = (col) => {
     if (col.inputType) {
       return col.inputType?.type || col.inputType
     }
 
     return inputType.value?.type || inputType.value
-  }
-
-  const resolveItems = (col) => {
-    return col.items || items.value
   }
 
   const resolveColProps = (col) => {
@@ -230,7 +231,7 @@ const base = function(props, context, dependencies)
       : {}
   }
 
-  const resolveConditions = (row, column) => {
+  const resolveColConditions = (row, column) => {
     return [
       ...(row.conditions || []),
       ...(column.conditions || []),
@@ -241,15 +242,15 @@ const base = function(props, context, dependencies)
     grid,
     resolveComponentType,
     resolveComponentProps,
+    resolveComponentName,
     getColStyle,
     resolveColInputType,
-    resolveConditions,
+    resolveColConditions,
     addLabel,
-    resolveItems,
     gridStyle,
     rowsVisible,
     colsVisible,
-    resolveType,
+    resolveColType,
     allowAdd,
     allowRemove,
   }
