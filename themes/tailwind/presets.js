@@ -31,7 +31,7 @@ const add = {
     wrapper: 'h-full',
   },
   groupItems: {
-    wrapper: 'border-l',
+    wrapper: '!border-r-0 !border-t-0 !border-b-0',
     wrapper_first: '!border-l-0',
   },
 }
@@ -113,7 +113,6 @@ const remove = {
     wrapper_last_sm: ['form-radius-input-r-sm', 'form-radius-large-b-sm'],
     wrapper_last_md: ['form-radius-input-r', 'form-radius-large-b'],
     wrapper_last_lg: ['form-radius-input-r-lg', 'form-radius-large-b-lg'],
-    wrapper: ['form-border-width-input'],
   },
 }
 
@@ -124,7 +123,7 @@ export default {
         grid: 'form-border-width-table !border-l-0 !border-t-0 form-border-color-table !gap-0',
         cell: 'form-border-width-table !border-r-0 !border-b-0 form-border-color-table form-bg-input',
         cellWrapper_stretch: '!items-stretch',
-        cellWrapper_error: 'relative after:content-[""] after:absolute after:inset-0 after:shadow-[inset_0_0_0_1px_var(--vf-danger)] after:pointer-events-none',
+        cellWrapper_error: 'relative after:content-[""] after:absolute after:-inset-px after:shadow-[inset_0_0_0_1px_var(--vf-danger)] after:pointer-events-none',
         headerFirst: 'form-border-width-table !border-r-0 !border-b-0 form-border-color-table form-bg-table-header',
         header: 'form-border-width-table !border-r-0 !border-b-0 form-border-color-table form-bg-table-header',
         headerRemove: 'form-border-width-table !border-r-0 !border-b-0 form-border-color-table form-bg-table-header',
