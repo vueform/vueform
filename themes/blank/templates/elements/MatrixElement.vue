@@ -7,19 +7,16 @@
         ref="grid"
       >
         <!-- Header row -->
-        <!-- <div class="contents relative"> -->
-          <!-- First empty column -->
-          <div v-if="rowsVisible && colsVisible" :class="classes.headerFirst" />
-          <!-- Column headers -->
-          <template v-for="(col, c) in resolvedColumns">
-            <div v-if="colsVisible && col.available" v-html="col.label":class="classes.header" />
-          </template>
-          <!-- Remove column -->
-          <div v-if="allowRemove && colsVisible" :class="classes.headerRemove" />
-        <!-- </div> -->
+        <!-- First empty column -->
+        <div v-if="rowsVisible && colsVisible" :class="classes.headerFirst" />
+        <!-- Column headers -->
+        <template v-for="(col, c) in resolvedColumns">
+          <div v-if="colsVisible && col.available" v-html="col.label":class="classes.header" />
+        </template>
+        <!-- Remove column -->
+        <div v-if="allowRemove && colsVisible" :class="classes.headerRemove" />
 
         <!-- Content rows -->
-        <!-- <div class="contents relative" v-for="(row, r) in resolvedRows"> -->
         <template v-for="(row, r) in resolvedRows">
           <!-- Row label -->
           <div v-if="rowsVisible && row.available" v-html="row.label" :class="classes.rowLabel" />
@@ -46,7 +43,6 @@
               <span :class="classes.removeIcon"></span>
             </div>
           </div>
-        <!-- </div> -->
         </template>
       </div>
 
