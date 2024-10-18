@@ -195,9 +195,11 @@ export default {
       useNullValue,
       useDefault,
       useValue,
-      useMatrix,
       useLabel,
       useGenericName,
+      useDisabled,
+      useReadonly,
+      useMatrix,
       useChildren,
       useElements,
       useConditions,
@@ -211,8 +213,6 @@ export default {
       useA11y,
       useWatchValue,
       useFocus,
-      useDisabled,
-      useReadonly,
     ]
     context.slots = [
       'label', 'info', 'required', 'description',

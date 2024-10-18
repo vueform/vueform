@@ -23,6 +23,7 @@ const base = function(props, context, dependencies)
     canAdd,
     min,
     max,
+    presets,
   } = toRefs(props)
 
   const {
@@ -34,6 +35,9 @@ const base = function(props, context, dependencies)
     resolvedColumns,
     rowsCount,
     value,
+    genericName,
+    isDisabled,
+    isReadonly,
   } = dependencies
 
   const config$ = inject('config$')
@@ -119,11 +123,65 @@ const base = function(props, context, dependencies)
     return typeof width === 'number' ? `${width}px` : width !== undefined ? width : def
   }
 
-  const inputTypeComponent = (column) => {
+  const resolveComponentType = (column) => {
     const element = column.inputType || inputType.value
     const type = typeof element === 'string' ? element : element.type
 
     return `${upperFirst(camelCase(type))}Element`
+  }
+
+  const resolveComponentProps = (row, col, rowIndex, colIndex) => {
+    const type = resolveColInputType(col)
+
+    let props = {
+      fieldName: `${genericName.value} / ${hasDynamicRows.value ? `#${row.label+1}` : row.label} / ${col.label}`,
+      displayErrors: false,
+      disabled: isDisabled.value,
+      readonly: isReadonly.value,
+      conditions: resolveConditions(row, col),
+      name: `${name.value}_${rowIndex}_${colIndex}`,
+      presets: presets.value,
+    }
+
+    switch (type) {
+      case 'radio':
+        props.radioValue = true
+        props.radioName = props.name
+        props.standalone = true
+        break
+
+      case 'checkbox':
+      case 'toggle':
+        props.standalone = true
+        break
+
+      case 'textarea':
+        props.rows = 1
+        break
+
+      case 'select':
+        props.items = items.value
+        break
+
+      case 'tags':
+        props.items = items.value
+        props.closeOnSelect = false
+        props.appendToBody = true
+        props.search = true
+        break
+
+      default:
+        props = {
+          ...props,
+          ...resolveColProps(col),
+          presets: [
+            ...props.presets,
+            ...(col?.inputType?.presets || inputType.value?.presets || []),
+          ]
+        }
+    }
+
+    return props
   }
 
   const getColStyle = (index) => {
@@ -164,6 +222,14 @@ const base = function(props, context, dependencies)
     return col.items || items.value
   }
 
+  const resolveColProps = (col) => {
+    const type = resolveColInputType(col)
+
+    return typeof type === 'object'
+      ? type
+      : {}
+  }
+
   const resolveConditions = (row, column) => {
     return [
       ...(row.conditions || []),
@@ -173,7 +239,8 @@ const base = function(props, context, dependencies)
   
   return {
     grid,
-    inputTypeComponent,
+    resolveComponentType,
+    resolveComponentProps,
     getColStyle,
     resolveColInputType,
     resolveConditions,
