@@ -27,6 +27,7 @@
                 <component
                   :is="resolveComponentType(col)"
                   v-bind="resolveComponentProps(row, col, r, c)"
+                  rules="required"
                 />
               </div>
             </div>
