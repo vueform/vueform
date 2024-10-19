@@ -344,7 +344,7 @@ const select = {
 }
 
 const groupTabs = {
-  container: 'flex align-start cursor-pointer',
+  container: 'flex cursor-pointer',
   wrapper: 'flex items-center justify-center w-full border-solid form-border-width-input',
   wrapper_not_last: '!border-r-0',
   wrapper_first: '',
@@ -366,7 +366,7 @@ const groupTabs = {
 }
 
 const groupBlocks = {
-  container: 'flex align-start cursor-pointer form-bg-input',
+  container: 'flex cursor-pointer form-bg-input',
   container_sm: 'form-radius-large-sm',
   container_md: 'form-radius-large',
   container_lg: 'form-radius-large',
@@ -447,7 +447,7 @@ export default {
   CheckboxElement: {
     ...checkbox,
     container: 'form-contains-link',
-    wrapper: 'flex align-start',
+    wrapper: 'flex',
     wrapper_sm: 'form-text-sm',
     wrapper_md: 'form-text',
     wrapper_lg: 'form-text-lg',
@@ -827,7 +827,7 @@ export default {
   RadioElement: {
     ...radio,
     container: '',
-    wrapper: 'flex align-start rtl:justify-start',
+    wrapper: 'flex rtl:justify-start',
     wrapper_sm: 'form-text-sm',
     wrapper_md: 'form-text',
     wrapper_lg: 'form-text-lg',
@@ -1825,8 +1825,8 @@ export default {
   // Slots
   CheckboxgroupCheckbox: {
     ...checkbox,
-    container: 'flex align-start cursor-pointer',
-    wrapper: 'flex align-start cursor-pointer form-view-default',
+    container: 'flex cursor-pointer',
+    wrapper: 'flex cursor-pointer form-view-default',
     text: '',
     input: checkbox.input + ' form-shadow-handles',
     input_sm: checkbox.input_sm + ' form-mt-checkbox-sm',
@@ -2006,7 +2006,7 @@ export default {
   },
   RadiogroupRadio: {
     ...radio,
-    container: 'flex align-start cursor-pointer form-view-default',
+    container: 'flex cursor-pointer form-view-default',
     text: '',
     input: radio.input + ' form-shadow-handles',
     input_sm: radio.input_sm + ' form-mt-checkbox-sm',
