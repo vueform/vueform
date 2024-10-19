@@ -9,30 +9,21 @@ const add = {
     input: 'min-h-full',
   },
   selects: {
-    wrapper: 'h-full',
-    inputWrapper: 'h-full',
     input: 'h-full focus:relative focus:z-1',
+    inputWrapper: 'h-full',
     inputCaret: 'z-[2]',
     select: {
+      container: 'h-full',
+      containerActive: 'relative z-1',
       wrapper: 'h-full',
-      inputWrapper: 'h-full',
-      container: 'h-full focus:relative',
-      containerActive: 'z-1',
     }
   },
   editors: {
     input: 'h-full flex flex-col [&>trix-editor]:h-full',
     input_focused: 'relative z-1',
   },
-  standalones: {
-    container: '[&.form-container-error]:before:hidden'
-  },
   groups: {
     wrapper: 'h-full',
-  },
-  groupItems: {
-    wrapper: '!border-r-0 !border-t-0 !border-b-0',
-    wrapper_first: '!border-l-0',
   },
 }
 
@@ -46,11 +37,14 @@ const replace = {
     container: {
       'form-view-default': 'px-2 py-1',
       'form-view-tabs': '',
+      'form-view-blocks': '[&>div>div>div>div>label:first-of-type>div]:border-t-0',
+      'form-view-tabs': '[&>div>div>div>div>label:first-of-type>div]:border-l-0',
     },
   },
   groupItems: {
     container: {
-      'form-view-blocks': '[&>div]:border-l-0'
+      'form-view-tabs': '[&>div]:border-b-0 [&>div]:border-t-0 [&>div]:border-r-0',
+      'form-view-blocks': 'flex-1 [&>div]:border-l-0 [&>div]:border-b-0 [&>div]:border-r-0',
     }
   }
 }
@@ -120,17 +114,17 @@ export default {
   'matrix-table': {
     addClasses: {
       MatrixElement: {
+        container: '[&>div>div>.form-inner-wrapper-after]:!block [&>div>div>.form-inner-wrapper-before]:!block',
         grid: 'form-border-width-table !border-l-0 !border-t-0 form-border-color-table !gap-0',
-        cell: 'form-border-width-table !border-r-0 !border-b-0 form-border-color-table form-bg-input',
-        cellWrapper_stretch: '!items-stretch',
-        cellWrapper_error: 'relative after:content-[""] after:absolute after:-inset-px after:shadow-[inset_0_0_0_1px_var(--vf-danger)] after:pointer-events-none',
         headerFirst: 'form-border-width-table !border-r-0 !border-b-0 form-border-color-table form-bg-table-header',
         header: 'form-border-width-table !border-r-0 !border-b-0 form-border-color-table form-bg-table-header',
         headerRemove: 'form-border-width-table !border-r-0 !border-b-0 form-border-color-table form-bg-table-header',
         rowLabel: 'form-border-width-table !border-r-0 !border-b-0 form-border-color-table px-2 text-center form-bg-table-header',
+        cell: 'form-border-width-table !border-r-0 !border-b-0 form-border-color-table form-bg-input',
+        cellWrapper_stretch: '!items-stretch',
+        cellWrapper_error: 'relative after:content-[""] after:absolute after:-inset-px after:shadow-[inset_0_0_0_1px_var(--vf-danger)] after:pointer-events-none',
         rowRemove: 'form-border-width-table !border-r-0 !border-b-0 form-border-color-table bg-gray-100 form-bg-table-header',
         removeIcon: 'dark:!bg-dark-100',
-        container: '[&>div>div>.form-inner-wrapper-after]:!block [&>div>div>.form-inner-wrapper-before]:!block'
       },
       TextElement: add.inputs,
       TTextElement: add.inputs,
@@ -151,9 +145,6 @@ export default {
       CheckboxgroupCheckbox: add.groupItems,
       RadiogroupElement: add.groups,
       RadiogroupRadio: add.groupItems,
-      CheckboxElement: add.standalones,
-      RadioElement: add.standalones,
-      ToggleElement: add.standalones,
       ButtonElement: {
         button_enabled: 'hover:brightness-95',
         button_not_full: 'w-full',
