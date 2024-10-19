@@ -107,7 +107,7 @@
     letter-spacing: var(--vf-letter-spacing);
 
     &.vf-radio-blocks-not-last {
-      border-bottom: 0;
+      border-bottom-width: 0;
     }
 
     &.vf-radio-blocks-first {

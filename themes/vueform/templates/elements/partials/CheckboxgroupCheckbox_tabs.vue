@@ -48,7 +48,6 @@
   /* Some styles are contained in Vueform.vue & CheckboxgroupElement.vue */
   .vf-checkbox-tabs-container {
     display: flex;
-    align-items: flex-start;
     cursor: pointer;
   }
 

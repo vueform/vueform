@@ -13,7 +13,7 @@
         merge: true,
         defaultClasses: {
           container: 'vf-text-type',
-          input: 'vf-input',
+          input: 'vf-input vf-native-multiselect',
           input_enabled: '',
           input_disabled: '',
           input_success: 'vf-input-success',
@@ -21,7 +21,7 @@
           input_sm: 'vf-input-sm',
           input_md: '',
           input_lg: 'vf-input-lg',
-          inputWrapper: '',
+          inputWrapper: 'vf-native-multiselect-wrapper',
           select: {
             multipleLabel: 'vf-multiselect-multiple-label',
             multipleLabel_sm: 'vf-multiselect-multiple-label-sm',

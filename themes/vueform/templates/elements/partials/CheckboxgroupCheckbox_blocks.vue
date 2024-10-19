@@ -106,7 +106,7 @@
     background: var(--vf-bg-input);
 
     &.vf-checkbox-blocks-not-last {
-      border-bottom: 0;
+      border-bottom-width: 0;
     }
 
     &.vf-checkbox-blocks-first {

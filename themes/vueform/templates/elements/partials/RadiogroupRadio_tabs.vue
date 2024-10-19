@@ -46,7 +46,6 @@
   /* Some styles are contained in Vueform.vue & RadiogroupElement.vue */
   .vf-radio-tabs-container {
     display: flex;
-    align-items: flex-start;
     cursor: pointer;
   }
 

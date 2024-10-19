@@ -18,6 +18,7 @@
           header_wrap: 'is-wrap',
           header_nowrap: 'is-nowrap',
           header_sm: 'vf-matrix-header-sm',
+          header_md: '',
           header_lg: 'vf-matrix-header-lg',
           headerRemove: 'vf-matrix-header-remove',
           rowLabel: 'vf-matrix-row-label',
@@ -25,6 +26,9 @@
           rowLabel_wrap: 'is-wrap',
           rowLabel_nowrap: 'is-nowrap',
           cell: 'vf-matrix-cell',
+          cell_sm: 'vf-matrix-cell-sm',
+          cell_md: '',
+          cell_lg: 'vf-matrix-cell-lg',
           cellWrapper: 'vf-matrix-cell-wrapper',
           cellWrapper_padding: 'has-padding',
           cellWrapper_centered: 'is-centered',
@@ -246,6 +250,318 @@
 
     &.vf-matrix-add-lg {
       margin-top: var(--vf-gutter-lg);
+    }
+  }
+
+  .vf-matrix-table {
+    .vf-matrix-container {
+      
+    }
+
+    .vf-matrix-grid {
+      border-right: var(--vf-border-width-table) solid var(--vf-border-color-table);
+      border-bottom: var(--vf-border-width-table) solid var(--vf-border-color-table);
+      gap: 0 !important;
+    }
+
+    .vf-matrix-header-first,
+    .vf-matrix-header,
+    .vf-matrix-header-remove,
+    .vf-matrix-row-label,
+    .vf-matrix-cell,
+    .vf-matrix-row-remove {
+      border-left: var(--vf-border-width-table) solid var(--vf-border-color-table);
+      border-top: var(--vf-border-width-table) solid var(--vf-border-color-table);
+    }
+
+    .vf-matrix-header-first,
+    .vf-matrix-header,
+    .vf-matrix-header-remove,
+    .vf-matrix-row-label,
+    .vf-matrix-row-remove, {
+      background: var(--vf-bg-table-header);
+    }
+
+    .vf-matrix-cell {
+      background: var(--vf-bg-input);
+    }
+
+    .vf-matrix-header {
+      &.is-sticky {
+        top: -1px;
+      }
+    }
+
+    .vf-matrix-row-label {
+      
+      &.is-sticky {
+        left: -1px;
+      }
+    }
+
+    .vf-matrix-cell-wrapper {
+      &.has-padding {
+        padding-left: 0;
+        padding-right: 0;
+      }
+
+      &.is-stretch {
+        align-items: stretch;
+      }
+
+      &.has-error {
+        position: relative;
+
+        &:after {
+          content: '';
+          position: absolute;
+          inset: -1px;
+          box-shadow: inset 0 0 0 1px var(--vf-danger);
+          pointer-events: none;
+        }
+      }
+    }
+
+    .vf-matrix-remove-icon {
+      
+    }
+
+    .vf-matrix-header-first {
+      
+    }
+  }
+
+  .vf-matrix-table {
+    &.is-stretch {
+      align-items: stretch;
+    }
+
+    /* Layout */
+
+    .vf-layout-inner-wrapper-before,
+    .vf-layout-inner-wrapper-after {
+      display: none;
+    }
+    
+    .vf-layout-inner-wrapper,
+    .vf-element-layout-outer-wrapper {
+      height: 100%;
+    }
+    
+    /* Text inputs */
+
+    .vf-input-group {
+      border: 0;
+      border-radius: 0;
+      height: 100%;
+
+      &.vf-input-group-focused {
+        position: relative;
+        z-index: 1;
+      }
+
+      &.vf-input-group-sm {
+        height: 100%;
+      }
+    }
+
+    .vf-input {
+      height: 100%;
+    }
+
+    /* Native select */
+
+    .vf-native-select {
+      height: 100%;
+      border: 0;
+      border-radius: 0;
+
+      &:focus {
+        position: relative;
+        z-index: 1;
+      }
+    }
+
+    .vf-native-select-wrapper {
+      height: 100%;
+    }
+
+    .vf-native-select-caret {
+      z-index: 2;
+    }
+
+    /* Select */
+
+    .vf-multiselect {
+      height: 100%;
+      border: 0;
+      border-radius: 0;
+    }
+
+    /* Native multiselect */
+
+    .vf-multiselect-active {
+      position: relative;
+      z-index: 1;
+    }
+
+    .vf-multiselect-wrapper {
+      height: 100%;
+    }
+
+    .vf-native-multiselect {
+      height: 100%;
+      border: 0;
+      border-radius: 0;
+
+      &:focus {
+        position: relative;
+        z-index: 1;
+      }
+    }
+
+    .vf-native-multiselect-wrapper {
+      height: 100%;
+    }
+
+    /* Editor */
+
+    .vf-editor {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      border: 0;
+      border-radius: 0;
+
+      &.vf-editor-focused {
+        position: relative;
+        z-index: 1;
+      }
+    }
+
+    trix-editor {
+      height: 100%;
+    }
+
+    /* Tabs */
+
+    .vf-checkboxgroup-view-default,
+    .vf-radiogroup-view-default {
+      padding: 0.25rem 0.5rem;
+    }
+
+    .vf-checkboxgroup-tabs-wrapper,
+    .vf-radiogroup-tabs-wrapper {
+      height: 100%;
+      border-radius: 0;
+    }
+
+    .vf-checkbox-tabs,
+    .vf-radio-tabs {
+      border-width: 0;
+      border-left-width: 1px;
+    }
+
+    .vf-checkbox-tabs.vf-checkbox-tabs-first,
+    .vf-radio-tabs.vf-radio-tabs-first {
+      border: 0;
+    }
+
+    .vf-checkbox-tabs.vf-checkbox-tabs-first,
+    .vf-checkbox-tabs.vf-checkbox-tabs-last,
+    .vf-radio-tabs.vf-radio-tabs-first,
+    .vf-radio-tabs.vf-radio-tabs-last {
+      border-radius: 0;
+    }
+
+    /* Blocks */
+
+    .vf-checkbox-blocks,
+    .vf-radio-blocks {
+      border-width: 0;
+      min-height: 100%;
+    }
+
+    .vf-checkbox-blocks.vf-checkbox-blocks-not-last,
+    .vf-radio-blocks.vf-radio-blocks-not-last {
+      border-bottom-width: 1px;
+    }
+
+    .vf-checkbox-blocks.vf-checkbox-blocks-last,
+    .vf-radio-blocks.vf-radio-blocks-last {
+      border: 0;
+    }
+
+    .vf-checkboxgroup-blocks-wrapper,
+    .vf-radiogroup-blocks-wrapper {
+      height: 100%;
+      border-radius: 0;
+    }
+
+    .vf-checkbox-blocks-container,
+    .vf-radio-blocks-container {
+      flex: 1;
+    }
+
+    .vf-checkbox-blocks.vf-checkbox-blocks-first,
+    .vf-checkbox-blocks.vf-checkbox-blocks-last,
+    .vf-radio-blocks.vf-radio-blocks-first,
+    .vf-radio-blocks.vf-radio-blocks-last {
+      border-radius: 0;
+    }
+
+    /* Slider */
+
+    .vf-slider-wrapper {
+      height: 100%;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 0;
+    }
+
+    .vf-slider-target {
+      width: 100%;
+      margin-left: 1rem;
+      margin-right: 1rem;
+    }
+
+    /* Slider */
+
+    .vf-matrix-grid {
+      .vf-btn {
+        width: 100%;
+        border-radius: 0;
+
+        &:hover:not(:disabled):not(.vf-btn-loading) {
+          transform: none;
+          filter: brightness(0.95);
+        }
+
+        &:focus {
+          position: relative;
+          z-index: 1;
+        }
+      }
+    }
+
+    /* Static */
+
+    .vf-static {
+      height: 100%;
+    }
+
+    /* File previews */
+
+    .vf-file-preview-wrapper,
+    .vf-file-preview-image-wrapper,
+    .vf-file-preview-gallery-wrapper {
+      padding: 0.25rem;
+    }
+
+    .vf-multifile-list {
+      margin-top: 0;
     }
   }
 </style>
