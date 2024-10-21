@@ -278,8 +278,9 @@
     .vf-matrix-header,
     .vf-matrix-header-remove,
     .vf-matrix-row-label,
-    .vf-matrix-row-remove, {
+    .vf-matrix-row-remove {
       background: var(--vf-bg-table-header);
+      color: var(--vf-color-table-header);
     }
 
     .vf-matrix-cell {

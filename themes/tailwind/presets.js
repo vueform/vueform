@@ -117,7 +117,7 @@ export default {
         container: '[&>div>div>.form-inner-wrapper-after]:!block [&>div>div>.form-inner-wrapper-before]:!block',
         grid: 'form-border-width-table !border-l-0 !border-t-0 form-border-color-table !gap-0',
         headerFirst: 'form-border-width-table !border-r-0 !border-b-0 form-border-color-table form-bg-table-header',
-        header: 'form-border-width-table !border-r-0 !border-b-0 form-border-color-table form-bg-table-header',
+        header: 'form-border-width-table !border-r-0 !border-b-0 form-border-color-table form-bg-table-header form-color-table-header',
         headerRemove: 'form-border-width-table !border-r-0 !border-b-0 form-border-color-table form-bg-table-header',
         rowLabel: 'form-border-width-table !border-r-0 !border-b-0 form-border-color-table px-2 text-center form-bg-table-header',
         cell: 'form-border-width-table !border-r-0 !border-b-0 form-border-color-table form-bg-input',
