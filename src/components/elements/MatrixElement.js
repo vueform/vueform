@@ -171,7 +171,7 @@ export default {
     scrollable: {
       required: false,
       type: [Boolean],
-      default: false,
+      default: true,
     },
     templateColumns: { // done
       required: false,
