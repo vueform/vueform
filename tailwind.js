@@ -1831,6 +1831,12 @@ const vueform = plugin((context) => {
     '.form-mb-tag-3': {
       marginBottom: 'var(--vf-space-static-tag-3)',
     },
+    '.-form-mb-border-width-table': {
+      marginBottom: 'calc(var(--vf-border-width-table)*-1)',
+    },
+    '.-form-mr-border-width-table': {
+      marginRight: 'calc(var(--vf-border-width-table)*-1)',
+    },
 
     '.form-hide-empty-img:not([src])': {
       opacity: 0,
