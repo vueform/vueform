@@ -2,7 +2,7 @@
   <component :is="elementLayout" ref="container">
     <template #element>
       <div
-        :class="classes.grid"
+        :class="[classes.grid, 'max-h-[200px]']"
         :style="gridStyle"
         ref="grid"
       >
@@ -27,7 +27,6 @@
                 <component
                   :is="resolveComponentType(col)"
                   v-bind="resolveComponentProps(row, col, r, c)"
-                  rules="required"
                 />
               </div>
             </div>
