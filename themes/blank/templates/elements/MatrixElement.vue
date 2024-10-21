@@ -2,7 +2,7 @@
   <component :is="elementLayout" ref="container">
     <template #element>
       <div
-        :class="[classes.grid, 'max-h-[200px]']"
+        :class="classes.grid"
         :style="gridStyle"
         ref="grid"
       >
