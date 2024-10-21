@@ -1303,6 +1303,7 @@ const matrix = function(props, context, dependencies, options = {})
     allowRemove,
     allowAdd,
     grid,
+    resolveComponentName,
    } = dependencies
 
   // ============== COMPUTED ===============
@@ -1401,7 +1402,7 @@ const matrix = function(props, context, dependencies, options = {})
           return
         }
 
-        let cellValue = children$.value[`${name.value}_${r}_${c}`]?.value
+        let cellValue = children$.value[resolveComponentName(r, c)]?.value
 
         switch (dataType.value) {
           case 'array':

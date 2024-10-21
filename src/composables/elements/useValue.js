@@ -139,9 +139,9 @@ const matrix = function(props, context, dependencies, /* istanbul ignore next */
 
   // If parent is a container
   }
-  // else if (parent.value && (parent.value.isObjectType || parent.value.isGroupType || parent.value.isListType)) {
-  //   initialValue.value = parent.value.value[name.value]
-  // }
+  else if (parent.value && (parent.value.isObjectType || parent.value.isGroupType || parent.value.isListType)) {
+    initialValue.value = parent.value.value[name.value]
+  }
   
   // ============== COMPUTED ===============
   
