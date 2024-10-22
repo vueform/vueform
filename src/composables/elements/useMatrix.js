@@ -165,10 +165,13 @@ const base = function(props, context, dependencies)
         break
 
       case 'select':
+      case 'checkboxgroup':
+      case 'radiogroup':
         props.items = items.value
         break
 
       case 'tags':
+      case 'multiselect':
         props.items = items.value
         props.closeOnSelect = false
         props.appendToBody = true
@@ -184,6 +187,27 @@ const base = function(props, context, dependencies)
             ...(col?.inputType?.presets || inputType.value?.presets || []),
           ]
         }
+
+        if (props.items && !props.items?.length) {
+          props.items = items.value
+        }
+
+        if (['radio', 'checkbox', 'toggle'].includes(props.type)) {
+          props.standalone = true
+        }
+
+        if (['select', 'multiselect', 'tags'].includes(props.type)) {
+          props.closeOnSelect = true
+          props.appendToBody = true
+        }
+    }
+
+    if (items.value.length && !props.items) {
+      props.items = items.value
+    }
+
+    if (col.items?.length && !props.items) {
+      props.items = col.items
     }
 
     return props
