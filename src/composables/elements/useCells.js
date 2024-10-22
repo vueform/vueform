@@ -31,11 +31,19 @@ const base = function(props, context, dependencies)
   // =============== COMPUTED ==============
 
   const dataType = computed(() => {
-    return resolvedColumns.value.some(c => c.inputType && !isEqual(c.inputType, inputType.value)) || (inputType.value !== 'radio' && inputType.value !== 'checkbox')
-      ? 'object'
-      : inputType.value === 'radio'
-        ? 'assoc'
-        : 'array'
+    const type = inputType.value?.type || inputType.value
+    const assocTypes = ['radio']
+    const arrayTypes = ['checkbox', 'toggle']
+    
+    if (resolvedColumns.value.every(c => assocTypes.includes(c.inputType?.type || c.inputType || type))) {
+      return 'assoc'
+    }
+
+    if (resolvedColumns.value.every(c => arrayTypes.includes(c.inputType?.type || c.inputType || type))) {
+      return 'array'
+    }
+
+    return 'object'
   })
 
   const computedRows = computed(() => {
