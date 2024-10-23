@@ -26,7 +26,8 @@
               <div :class="classes.cellWrapper(resolveColType(col), resolveComponentName(r, c))">
                 <component
                   :is="resolveComponentType(col)"
-                  v-bind="resolveComponentProps(row, col, r, c)"
+                  v-bind="cells[r][c]"
+                  :key="cells[r][c].name"
                 />
               </div>
             </div>

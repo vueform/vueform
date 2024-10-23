@@ -118,6 +118,22 @@ const base = function(props, context, dependencies)
     }
   })
 
+  const cells = computed(() => {
+    const rows = []
+
+    resolvedRows.value.forEach((row, r) => {
+      const cols = []
+
+      resolvedColumns.value.forEach((col, c) => {
+        cols.push(resolveComponentProps(row, col, r, c))
+      })
+
+      rows.push(cols)
+    })
+
+    return rows
+  })
+
   // =============== METHODS ==============
 
   const resolveWidth = (width, def) => {
@@ -143,9 +159,12 @@ const base = function(props, context, dependencies)
       displayErrors: false,
       disabled: isDisabled.value,
       readonly: isReadonly.value,
-      conditions: resolveColConditions(row, col),
       name: resolveComponentName(rowIndex, colIndex),
       presets: presets.value,
+    }
+
+    if (row.conditions || col.conditions) {
+      props.conditions = resolveColConditions(row, col)
     }
 
     switch (type) {
@@ -182,10 +201,12 @@ const base = function(props, context, dependencies)
         props = {
           ...props,
           ...resolveColProps(col),
-          presets: [
-            ...props.presets,
-            ...(col?.inputType?.presets || inputType.value?.presets || []),
-          ]
+        }
+
+        const presets = col?.inputType?.presets || inputType.value?.presets || []
+
+        if (presets.length) {
+          props.presets.push(...presets)
         }
 
         if (props.items && !props.items?.length) {
@@ -277,6 +298,7 @@ const base = function(props, context, dependencies)
     resolveColType,
     allowAdd,
     allowRemove,
+    cells,
   }
 }
 

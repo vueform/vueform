@@ -605,7 +605,7 @@ export default {
   },
   MatrixElement: {
     container: '',
-    grid: 'grid ',
+    grid: 'grid',
     grid_scrollable: 'grid overflow-auto',
     headerFirst: '',
     header: 'flex items-center justify-center text-center',
