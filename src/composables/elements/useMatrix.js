@@ -159,7 +159,6 @@ const base = function(props, context, dependencies)
       displayErrors: false,
       disabled: isDisabled.value,
       readonly: isReadonly.value,
-      name: resolveComponentName(rowIndex, colIndex),
       presets: presets.value,
     }
 
@@ -230,6 +229,8 @@ const base = function(props, context, dependencies)
     if (col.items?.length && !props.items) {
       props.items = col.items
     }
+
+    props.name = resolveComponentName(rowIndex, colIndex)
 
     return props
   }
