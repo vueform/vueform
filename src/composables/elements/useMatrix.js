@@ -97,7 +97,7 @@ const base = function(props, context, dependencies)
       const min = resolveWidth(minWidth.value, 'min-content')
       const max = resolveWidth(maxWidth.value, '1fr')
 
-      resolvedColumns.value.filter(c => c.available).forEach((col, i) => {
+      el$.value.resolvedColumns.filter(c => c.available).forEach((col, i) => {
         const colMin = resolveWidth(col.minWidth, min)
         const colMax = resolveWidth(col.maxWidth, max)
 
@@ -217,8 +217,11 @@ const base = function(props, context, dependencies)
         }
 
         if (['select', 'multiselect', 'tags'].includes(props.type)) {
-          props.closeOnSelect = true
           props.appendToBody = true
+        }
+
+        if (['multiselect', 'tags'].includes(props.type)) {
+          props.closeOnSelect = false
         }
     }
 
