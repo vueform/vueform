@@ -126,7 +126,7 @@ export default {
         rowLabel_not_sticky: '!border-r-0',
         cell: 'form-border-width-table !border-r-0 !border-b-0 form-border-color-table form-bg-input',
         cellWrapper_stretch: '!items-stretch',
-        cellWrapper_error: 'relative after:content-[""] after:absolute after:-inset-px after:shadow-[inset_0_0_0_1px_var(--vf-danger)] after:pointer-events-none',
+        cellWrapper_error: 'relative after:content-[""] after:absolute after:inset-0 after:shadow-[inset_0_0_0_1px_var(--vf-danger)] after:pointer-events-none',
         rowRemove: 'form-border-width-table !border-r-0 !border-b-0 form-border-color-table bg-gray-100 form-bg-table-header',
         removeIcon: 'dark:!bg-dark-100',
       },

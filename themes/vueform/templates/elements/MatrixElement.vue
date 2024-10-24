@@ -342,7 +342,7 @@
         &:after {
           content: '';
           position: absolute;
-          inset: -1px;
+          inset: 0px;
           box-shadow: inset 0 0 0 1px var(--vf-danger);
           pointer-events: none;
         }
