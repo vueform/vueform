@@ -295,10 +295,13 @@
     .vf-matrix-header-first,
     .vf-matrix-header,
     .vf-matrix-header-remove,
-    .vf-matrix-row-label,
-    .vf-matrix-row-remove {
+    .vf-matrix-row-label {
       background: var(--vf-bg-table-header);
       color: var(--vf-color-table-header);
+    }
+
+    .vf-matrix-row-remove {
+      background: var(--vf-bg-table-header);
     }
 
     .vf-matrix-cell {

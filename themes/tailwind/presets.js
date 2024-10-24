@@ -37,8 +37,8 @@ const replace = {
     container: {
       'form-view-default': 'px-2 py-1',
       'form-view-tabs': '',
-      'form-view-blocks': '[&>div>div>div>div>label:first-of-type>div]:border-t-0',
-      'form-view-tabs': '[&>div>div>div>div>label:first-of-type>div]:border-l-0',
+      'form-view-blocks': '[&_label:first-of-type>div]:border-t-0',
+      'form-view-tabs': '[&_label:first-of-type>div]:border-l-0',
     },
   },
   groupItems: {
@@ -121,7 +121,7 @@ export default {
         header_sticky: '-form-mb-border-width-table',
         header_not_sticky: '!border-b-0',
         headerRemove: 'form-border-width-table !border-r-0 !border-b-0 form-border-color-table form-bg-table-header',
-        rowLabel: 'form-border-width-table !border-b-0 form-border-color-table px-2 text-center form-bg-table-header',
+        rowLabel: 'form-border-width-table !border-b-0 form-border-color-table px-2 text-center form-bg-table-header form-color-table-header',
         rowLabel_sticky: '-form-mr-border-width-table',
         rowLabel_not_sticky: '!border-r-0',
         cell: 'form-border-width-table !border-r-0 !border-b-0 form-border-color-table form-bg-input',
@@ -147,6 +147,9 @@ export default {
       TEditorElement: add.editors,
       CheckboxgroupElement: add.groups,
       CheckboxgroupCheckbox: add.groupItems,
+      CheckboxgroupCheckbox_blocks: {
+        container: 'xxxx',
+      },
       RadiogroupElement: add.groups,
       RadiogroupRadio: add.groupItems,
       ButtonElement: {
