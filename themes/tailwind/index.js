@@ -247,29 +247,72 @@ export {
   presets,
 }
 
-const prefixer = function (classes, prefix) {
+const prefixer = function (classes, presets, prefix) {
   let prefixedClasses = {}
+  let prefixedPresets = {}
 
   const prefixClass = (class_) => {
     let res
 
     try {
-      res = class_.split(' ').map((c) => {
-        if (c.match(/:/)) {
-          return c.replace(':', `:${prefix}`)
+      res = class_.split(' ').map((str) => {
+        if (!str) {
+          return ''
         }
-        if (c.match(/!/)) {
-          return c.replace('!', `!${prefix}`)
+
+        // Case 1: If the string starts with "!", add "tw-" after "!"
+        if (str.startsWith('!')) {
+            return str.replace(/^!(.*)$/, '!tw-$1');
         }
-        
-        return (c.length ? `${prefix}${c}` : c)
+
+        // Case 2: If the string starts with a modifier (e.g., md:block), only prefix the classname
+        if (/^[a-z]+:/.test(str)) {
+            return str.replace(/([a-z]+:)(!?)([a-zA-Z.-]+)(?:-(\[[^\]]+\]))?/g, (match, modifier, important, className, optionalSize) => {
+                let prefixedClass = important ? `!tw-${className}` : `tw-${className}`;
+                return `${modifier}${prefixedClass}${optionalSize || ''}`;
+            });
+        }
+
+        // Case 3: If the string starts with "[", apply prefixing rules inside and after the brackets
+        if (str.startsWith('[')) {
+            return str.replace(/\[(.*?)\]:(!?)([a-zA-Z.-]+)(?:-(\[[^\]]+\]))?/g, (match, inner, important, className, optionalSize) => {
+                inner = inner.replace(/\.([a-zA-Z0-9_-]+)/g, '.tw-$1');
+                let prefixedClass = important ? `!tw-${className}` : `tw-${className}`;
+                return `[${inner}]:${important}${prefixedClass}${optionalSize || ''}`;
+            });
+        }
+
+        // Case 4: If none of the above, simply prefix the entire string
+        return `tw-${str}`;
       }).join(' ')
     } catch (e) {
       console.error('Couldn\'t prefix class: ', class_, e)
     }
 
     return res
-  } 
+  }
+
+  const prefixPresets = (obj, prefixKey = false) => {
+    if (typeof obj === 'string') {
+      return prefixClass(obj)
+    }
+
+    if (Array.isArray(obj)) {
+      return obj.map(item => prefixPresets(item, prefixKey))
+    }
+
+    if (typeof obj === 'object' && obj !== null) {
+      const newObj = {}
+      for (const key in obj) {
+        if (obj.hasOwnProperty(key)) {
+          newObj[typeof obj[key] === 'string' && prefixKey ? prefixClass(key) : key] = prefixPresets(obj[key], prefixKey)
+        }
+      }
+      return newObj
+    }
+
+    return obj
+  }
 
   for (const componentName in classes) {
     if (classes.hasOwnProperty(componentName)) {
@@ -302,12 +345,25 @@ const prefixer = function (classes, prefix) {
     }
   }
 
-  return prefixedClasses
+  Object.keys(presets).forEach((preset) => {
+    prefixedPresets[preset] = {
+      addClasses: prefixPresets(presets[preset].addClasses),
+      removeClasses: prefixPresets(presets[preset].removeClasses),
+      replaceClasses: prefixPresets(presets[preset].replaceClasses, true),
+      overrideClasses: prefixPresets(presets[preset].overrideClasses),
+    }
+  })
+
+
+  return {
+    classes: prefixedClasses,
+    presets: prefixedPresets,
+  }
 }
 
 const prefix = function (prefix) {
   return Object.assign({}, theme, {
-    classes: prefixer(classes, prefix),
+    ...prefixer(classes, presets, prefix),
     columns: (breakpoint, size) => {
       return columns(breakpoint, size, prefix)
     }

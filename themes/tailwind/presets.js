@@ -147,9 +147,6 @@ export default {
       TEditorElement: add.editors,
       CheckboxgroupElement: add.groups,
       CheckboxgroupCheckbox: add.groupItems,
-      CheckboxgroupCheckbox_blocks: {
-        container: 'xxxx',
-      },
       RadiogroupElement: add.groups,
       RadiogroupRadio: add.groupItems,
       ButtonElement: {
