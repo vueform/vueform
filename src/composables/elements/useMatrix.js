@@ -45,14 +45,29 @@ const base = function(props, context, dependencies)
 
   // ================ DATA ================
 
+  /**
+   * The HTML element of the matrix grix.
+   * 
+   * @type {HTMLElement}
+   */
   const grid = ref(null)
 
   // ============== COMPUTED ==============
 
+  /**
+   * Whether rows can be added when rows are dynamic.
+   * 
+   * @type {boolean}
+   */
   const allowAdd = computed(() => {
     return hasDynamicRows.value && canAdd.value && (max.value === -1 || max.value > Object.keys(value.value).length)
   })
 
+  /**
+   * Whether rows can be removed when rows are dynamic.
+   * 
+   * @type {boolean}
+   */
   const allowRemove = computed(() => {
     return hasDynamicRows.value && canRemove.value && (min.value === -1 || min.value < Object.keys(value.value).length)
   })
@@ -66,6 +81,11 @@ const base = function(props, context, dependencies)
     return addText.value || form$.value.translations.vueform.elements.list.add
   })
 
+  /**
+   * Whether row labels should be displayed.
+   * 
+   * @type {boolean}
+   */
   const rowsVisible = computed(() => {
     if (hasDynamicRows.value) {
       return false
@@ -74,6 +94,11 @@ const base = function(props, context, dependencies)
     return !hideRows.value
   })
 
+  /**
+   * Whether column headers should be displayed.
+   * 
+   * @type {boolean}
+   */
   const colsVisible = computed(() => {
     return !hideCols.value
   })
@@ -118,6 +143,11 @@ const base = function(props, context, dependencies)
     }
   })
 
+  /**
+   * The component props of the cells.
+   * 
+   * @type {array}
+   */
   const cells = computed(() => {
     const rows = []
 
@@ -136,10 +166,23 @@ const base = function(props, context, dependencies)
 
   // =============== METHODS ==============
 
+  /**
+   * Resolves the `width` property to either `px` or plain value,
+   *
+   * @returns {string}
+   * @param {number|string} width* the width to be resolved
+   * @param {number|string} def* the default value to be used if width is `undefined`
+   */
   const resolveWidth = (width, def) => {
     return typeof width === 'number' ? `${width}px` : width !== undefined ? width : def
   }
 
+  /**
+   * Resolves the cell component type (for `:is`) based on a column object.
+   *
+   * @returns {string}
+   * @param {object} column* the column definition object
+   */
   const resolveComponentType = (column) => {
     const element = column.inputType || inputType.value
     const type = typeof element === 'string' ? element : element.type
@@ -147,10 +190,26 @@ const base = function(props, context, dependencies)
     return `${upperFirst(camelCase(type))}Element`
   }
 
+  /**
+   * Resolves the cell component name based on row and column index.
+   *
+   * @returns {string}
+   * @param {number} rowIndex* the index of the row
+   * @param {number} colIndex* the index of the column
+   */
   const resolveComponentName = (rowIndex, colIndex) => {
     return `${path.value.replace(/\./g, '__')}_${rowIndex}_${colIndex}`
   }
 
+  /**
+   * Resolves the cell component properties.
+   *
+   * @returns {object}
+   * @param {object} row* the row definition object
+   * @param {object} col* the column definition object
+   * @param {number} rowIndex* the index of the row
+   * @param {number} colIndex* the index of the column
+   */
   const resolveComponentProps = (row, col, rowIndex, colIndex) => {
     const type = resolveColInputType(col)
 
@@ -238,6 +297,12 @@ const base = function(props, context, dependencies)
     return props
   }
 
+  /**
+   * Returns the style of a colum based on its index.
+   *
+   * @returns {object}
+   * @param {object} index* the index of the column
+   */
   const getColStyle = (index) => {
     if (!index) {
       return
@@ -260,10 +325,22 @@ const base = function(props, context, dependencies)
     return style
   }
 
+  /**
+   * Resolves the input type of a column.
+   *
+   * @returns {object|string}
+   * @param {object} col* the column definition object
+   */
   const resolveColInputType = (col) => {
     return col.inputType || inputType.value
   }
 
+  /**
+   * Resolves the type of the input field of a column.
+   *
+   * @returns {string}
+   * @param {object} col* the column definition object
+   */
   const resolveColType = (col) => {
     if (col.inputType) {
       return col.inputType?.type || col.inputType
@@ -272,6 +349,12 @@ const base = function(props, context, dependencies)
     return inputType.value?.type || inputType.value
   }
 
+  /**
+   * Resolves the properties of the input type if any.
+   *
+   * @returns {object}
+   * @param {object} col* the column definition object
+   */
   const resolveColProps = (col) => {
     const type = resolveColInputType(col)
 
@@ -280,10 +363,17 @@ const base = function(props, context, dependencies)
       : {}
   }
 
-  const resolveColConditions = (row, column) => {
+  /**
+   * Resolves the conditions of a cell based on row and column.
+   *
+   * @returns {object}
+   * @param {object} row* the row definition object
+   * @param {object} col* the column definition object
+   */
+  const resolveColConditions = (row, col) => {
     return [
       ...(row.conditions || []),
-      ...(column.conditions || []),
+      ...(col.conditions || []),
     ]
   }
   

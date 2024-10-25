@@ -24,12 +24,27 @@ const base = function(props, context, dependencies)
 
   // ================ DATA =================
 
+  /**
+   * The instances of cells.
+   *
+   * @type {object}
+   */
   const cells$ = ref({})
 
+  /**
+   * The count of current rows when rows are dynamic.
+   *
+   * @type {number}
+   */
   const rowsCount = ref(typeof rows.value === 'number' ? rows.value : null)
 
   // =============== COMPUTED ==============
 
+  /**
+   * The data structure type of the matrix. Can be: `assoc`, `array` or `object`.
+   *
+   * @type {array}
+   */
   const dataType = computed(() => {
     const type = inputType.value?.type || inputType.value
     const assocTypes = ['radio']
@@ -46,12 +61,22 @@ const base = function(props, context, dependencies)
     return 'object'
   })
 
+  /**
+   * The value of `rows` or `rowsCount` if rows are dynamic.
+   *
+   * @type {number|array}
+   */
   const computedRows = computed(() => {
     return typeof rows.value === 'number'
       ? rowsCount.value
       : rows.value
   })
 
+  /**
+   * The rows of the matrix to be displayed.
+   * 
+   * @type {array}
+   */
   const resolvedRows = computed(() => {
     let resolvedRows = computedRows.value
 
@@ -76,6 +101,11 @@ const base = function(props, context, dependencies)
     .map(r => ({ ...r, available: !r.conditions || !r.conditions.some((condition) => !form$.value.$vueform.services.condition.check(condition, path.value, form$.value, el$.value)) }))
   })
   
+  /**
+   * The columns of the matrix to be displayed.
+   * 
+   * @type {array}
+   */
   const resolvedColumns = computed(() => {
     let resolvedColumns = cols.value
 
@@ -94,6 +124,11 @@ const base = function(props, context, dependencies)
     .map(r => ({ ...r, available: !r.conditions || !r.conditions.some((condition) => !form$.value.$vueform.services.condition.check(condition, path.value, form$.value, el$.value)) }))
   })
 
+  /**
+   * Whether the matrix has dynamic rows.
+   * 
+   * @type {boolean}
+   */
   const hasDynamicRows = computed(() => {
     return typeof rows.value === 'number'
   })
