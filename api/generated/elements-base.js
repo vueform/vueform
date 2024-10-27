@@ -669,7 +669,7 @@ export default {
       "validation_matrix",
       "value_matrix",
       "view",
-      "watchValue"
+      "watchValue_object"
     ],
     "slots": [
       "label",
@@ -1469,7 +1469,6 @@ export default {
     "slots": [
       "label",
       "info",
-      "required",
       "required",
       "description",
       "before",

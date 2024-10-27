@@ -6,7 +6,51 @@
 
 import { resolveComponent, openBlock, createElementBlock, normalizeClass, withModifiers, renderSlot, createBlock, resolveDynamicComponent, createCommentVNode, createVNode, withCtx, Fragment, renderList, createElementVNode, toDisplayString, mergeProps, withDirectives, withKeys, vShow, createTextVNode, Teleport, normalizeStyle, createSlots, vModelCheckbox, vModelText, toRefs, getCurrentInstance, customRef, ref, computed, watch, nextTick, onMounted, onBeforeUnmount, shallowRef, vModelSelect, vModelRadio, onUnmounted, normalizeProps, guardReactiveProps } from 'vue';
 
-var script$17 = {
+function _defineProperty(e, r, t) {
+  return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, {
+    value: t,
+    enumerable: !0,
+    configurable: !0,
+    writable: !0
+  }) : e[r] = t, e;
+}
+function ownKeys(e, r) {
+  var t = Object.keys(e);
+  if (Object.getOwnPropertySymbols) {
+    var o = Object.getOwnPropertySymbols(e);
+    r && (o = o.filter(function (r) {
+      return Object.getOwnPropertyDescriptor(e, r).enumerable;
+    })), t.push.apply(t, o);
+  }
+  return t;
+}
+function _objectSpread2(e) {
+  for (var r = 1; r < arguments.length; r++) {
+    var t = null != arguments[r] ? arguments[r] : {};
+    r % 2 ? ownKeys(Object(t), !0).forEach(function (r) {
+      _defineProperty(e, r, t[r]);
+    }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) {
+      Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r));
+    });
+  }
+  return e;
+}
+function _toPrimitive(t, r) {
+  if ("object" != typeof t || !t) return t;
+  var e = t[Symbol.toPrimitive];
+  if (void 0 !== e) {
+    var i = e.call(t, r || "default");
+    if ("object" != typeof i) return i;
+    throw new TypeError("@@toPrimitive must return a primitive value.");
+  }
+  return ("string" === r ? String : Number)(t);
+}
+function _toPropertyKey(t) {
+  var i = _toPrimitive(t, "string");
+  return "symbol" == typeof i ? i : i + "";
+}
+
+var script$18 = {
     data() {
       return {
         merge: true,
@@ -17,7 +61,7 @@ var script$17 = {
     }
   };
 
-function render$10(_ctx, _cache, $props, $setup, $data, $options) {
+function render$11(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_FormElements = resolveComponent("FormElements");
 
   return (openBlock(), createElementBlock("form", {
@@ -53,10 +97,10 @@ function render$10(_ctx, _cache, $props, $setup, $data, $options) {
   ], 34 /* CLASS, NEED_HYDRATION */))
 }
 
-script$17.render = render$10;
-script$17.__file = "themes/blank/templates/Vueform.vue";
+script$18.render = render$11;
+script$18.__file = "themes/blank/templates/Vueform.vue";
 
-var script$16 = {
+var script$17 = {
     name: 'FormErrors',
     data() {
       return {
@@ -69,9 +113,9 @@ var script$16 = {
     }
   };
 
-const _hoisted_1$L = ["innerHTML"];
+const _hoisted_1$M = ["innerHTML"];
 
-function render$$(_ctx, _cache, $props, $setup, $data, $options) {
+function render$10(_ctx, _cache, $props, $setup, $data, $options) {
   return (openBlock(), createElementBlock("div", {
     class: normalizeClass(_ctx.classes.container)
   }, [
@@ -80,15 +124,15 @@ function render$$(_ctx, _cache, $props, $setup, $data, $options) {
         class: normalizeClass(_ctx.classes.error),
         innerHTML: error,
         key: index
-      }, null, 10 /* CLASS, PROPS */, _hoisted_1$L))
+      }, null, 10 /* CLASS, PROPS */, _hoisted_1$M))
     }), 128 /* KEYED_FRAGMENT */))
   ], 2 /* CLASS */))
 }
 
-script$16.render = render$$;
-script$16.__file = "themes/blank/templates/FormErrors.vue";
+script$17.render = render$10;
+script$17.__file = "themes/blank/templates/FormErrors.vue";
 
-var script$15 = {
+var script$16 = {
     name: 'FormMessages',
     data() {
       return {
@@ -101,9 +145,9 @@ var script$15 = {
     }
   };
 
-const _hoisted_1$K = ["innerHTML"];
+const _hoisted_1$L = ["innerHTML"];
 
-function render$_(_ctx, _cache, $props, $setup, $data, $options) {
+function render$$(_ctx, _cache, $props, $setup, $data, $options) {
   return (openBlock(), createElementBlock("div", {
     class: normalizeClass(_ctx.classes.container)
   }, [
@@ -112,15 +156,15 @@ function render$_(_ctx, _cache, $props, $setup, $data, $options) {
         class: normalizeClass(_ctx.classes.message),
         innerHTML: message,
         key: index
-      }, null, 10 /* CLASS, PROPS */, _hoisted_1$K))
+      }, null, 10 /* CLASS, PROPS */, _hoisted_1$L))
     }), 128 /* KEYED_FRAGMENT */))
   ], 2 /* CLASS */))
 }
 
-script$15.render = render$_;
-script$15.__file = "themes/blank/templates/FormMessages.vue";
+script$16.render = render$$;
+script$16.__file = "themes/blank/templates/FormMessages.vue";
 
-var script$14 = {
+var script$15 = {
     name: 'FormLanguages',
     data() {
       return {
@@ -132,7 +176,7 @@ var script$14 = {
     }
   };
 
-function render$Z(_ctx, _cache, $props, $setup, $data, $options) {
+function render$_(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_FormLanguage = resolveComponent("FormLanguage");
 
   return (openBlock(), createElementBlock("ul", {
@@ -151,10 +195,10 @@ function render$Z(_ctx, _cache, $props, $setup, $data, $options) {
   ], 2 /* CLASS */))
 }
 
-script$14.render = render$Z;
-script$14.__file = "themes/blank/templates/FormLanguages.vue";
+script$15.render = render$_;
+script$15.__file = "themes/blank/templates/FormLanguages.vue";
 
-var script$13 = {
+var script$14 = {
     name: 'FormLanguage',
     data() {
       return {
@@ -167,7 +211,7 @@ var script$13 = {
     }
   };
 
-function render$Y(_ctx, _cache, $props, $setup, $data, $options) {
+function render$Z(_ctx, _cache, $props, $setup, $data, $options) {
   return (openBlock(), createElementBlock("li", {
     class: normalizeClass(_ctx.classes.container)
   }, [
@@ -179,10 +223,10 @@ function render$Y(_ctx, _cache, $props, $setup, $data, $options) {
   ], 2 /* CLASS */))
 }
 
-script$13.render = render$Y;
-script$13.__file = "themes/blank/templates/FormLanguage.vue";
+script$14.render = render$Z;
+script$14.__file = "themes/blank/templates/FormLanguage.vue";
 
-var script$12 = {
+var script$13 = {
     name: 'FormTabs',
     data() {
       return {
@@ -194,7 +238,7 @@ var script$12 = {
     },
   };
 
-function render$X(_ctx, _cache, $props, $setup, $data, $options) {
+function render$Y(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_FormTab = resolveComponent("FormTab");
 
   return (openBlock(), createElementBlock("ul", {
@@ -213,10 +257,10 @@ function render$X(_ctx, _cache, $props, $setup, $data, $options) {
   ], 2 /* CLASS */))
 }
 
-script$12.render = render$X;
-script$12.__file = "themes/blank/templates/FormTabs.vue";
+script$13.render = render$Y;
+script$13.__file = "themes/blank/templates/FormTabs.vue";
 
-var script$11 = {
+var script$12 = {
     name: 'FormTab',
     data() {
       return {
@@ -229,11 +273,11 @@ var script$11 = {
     }
   };
 
-const _hoisted_1$J = ["aria-selected"];
-const _hoisted_2$s = { key: 0 };
-const _hoisted_3$h = ["innerHTML"];
+const _hoisted_1$K = ["aria-selected"];
+const _hoisted_2$t = { key: 0 };
+const _hoisted_3$i = ["innerHTML"];
 
-function render$W(_ctx, _cache, $props, $setup, $data, $options) {
+function render$X(_ctx, _cache, $props, $setup, $data, $options) {
   return withDirectives((openBlock(), createElementBlock("li", {
     class: normalizeClass(_ctx.classes.container)
   }, [
@@ -248,24 +292,24 @@ function render$W(_ctx, _cache, $props, $setup, $data, $options) {
       renderSlot(_ctx.$slots, "default", {}, () => [
         createCommentVNode(" If label is a component "),
         (_ctx.isLabelComponent)
-          ? (openBlock(), createElementBlock("span", _hoisted_2$s, [
+          ? (openBlock(), createElementBlock("span", _hoisted_2$t, [
               (openBlock(), createBlock(resolveDynamicComponent(_ctx.tabLabel), { form$: _ctx.form$ }, null, 8 /* PROPS */, ["form$"]))
             ]))
           : (openBlock(), createElementBlock(Fragment, { key: 1 }, [
               createCommentVNode(" If label is HTML "),
-              createElementVNode("span", { innerHTML: _ctx.tabLabel }, null, 8 /* PROPS */, _hoisted_3$h)
+              createElementVNode("span", { innerHTML: _ctx.tabLabel }, null, 8 /* PROPS */, _hoisted_3$i)
             ], 2112 /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */))
       ])
-    ], 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_1$J)
+    ], 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_1$K)
   ], 2 /* CLASS */)), [
     [vShow, _ctx.visible]
   ])
 }
 
-script$11.render = render$W;
-script$11.__file = "themes/blank/templates/FormTab.vue";
+script$12.render = render$X;
+script$12.__file = "themes/blank/templates/FormTab.vue";
 
-var script$10 = {
+var script$11 = {
     name: 'FormSteps',
     data() {
       return {
@@ -278,7 +322,7 @@ var script$10 = {
     },
   };
 
-function render$V(_ctx, _cache, $props, $setup, $data, $options) {
+function render$W(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_FormStep = resolveComponent("FormStep");
 
   return (openBlock(), createElementBlock("div", {
@@ -300,10 +344,10 @@ function render$V(_ctx, _cache, $props, $setup, $data, $options) {
   ], 2 /* CLASS */))
 }
 
-script$10.render = render$V;
-script$10.__file = "themes/blank/templates/FormSteps.vue";
+script$11.render = render$W;
+script$11.__file = "themes/blank/templates/FormSteps.vue";
 
-var script$$ = {
+var script$10 = {
     name: 'FormStepsControls',
     data() {
       return {
@@ -315,7 +359,7 @@ var script$$ = {
     }
   };
 
-function render$U(_ctx, _cache, $props, $setup, $data, $options) {
+function render$V(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_FormStepsControl = resolveComponent("FormStepsControl");
 
   return (openBlock(), createElementBlock("div", {
@@ -351,10 +395,10 @@ function render$U(_ctx, _cache, $props, $setup, $data, $options) {
   ], 2 /* CLASS */))
 }
 
-script$$.render = render$U;
-script$$.__file = "themes/blank/templates/FormStepsControls.vue";
+script$10.render = render$V;
+script$10.__file = "themes/blank/templates/FormStepsControls.vue";
 
-var script$_ = {
+var script$$ = {
     name: 'FormStepsControl',
     data() {
       return {
@@ -366,11 +410,11 @@ var script$_ = {
     }
   };
 
-const _hoisted_1$I = ["disabled"];
-const _hoisted_2$r = ["innerHTML", "disabled"];
-const _hoisted_3$g = ["disabled"];
+const _hoisted_1$J = ["disabled"];
+const _hoisted_2$s = ["innerHTML", "disabled"];
+const _hoisted_3$h = ["disabled"];
 
-function render$T(_ctx, _cache, $props, $setup, $data, $options) {
+function render$U(_ctx, _cache, $props, $setup, $data, $options) {
   return (openBlock(), createElementBlock(Fragment, null, [
     createCommentVNode(" If label is a component "),
     (_ctx.visible && _ctx.label && _ctx.isLabelComponent)
@@ -382,7 +426,7 @@ function render$T(_ctx, _cache, $props, $setup, $data, $options) {
           onKeypress: _cache[1] || (_cache[1] = withKeys(withModifiers((...args) => (_ctx.handleClick && _ctx.handleClick(...args)), ["prevent"]), ["enter","space"]))
         }, [
           (openBlock(), createBlock(resolveDynamicComponent(_ctx.label), { step$: _ctx.current$ }, null, 8 /* PROPS */, ["step$"]))
-        ], 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_1$I))
+        ], 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_1$J))
       : (_ctx.visible && _ctx.label)
         ? (openBlock(), createElementBlock(Fragment, { key: 1 }, [
             createCommentVNode(" If label is HTML "),
@@ -392,7 +436,7 @@ function render$T(_ctx, _cache, $props, $setup, $data, $options) {
               class: normalizeClass(_ctx.classes.button),
               onClick: _cache[2] || (_cache[2] = withModifiers((...args) => (_ctx.handleClick && _ctx.handleClick(...args)), ["prevent"])),
               onKeypress: _cache[3] || (_cache[3] = withKeys(withModifiers((...args) => (_ctx.handleClick && _ctx.handleClick(...args)), ["prevent"]), ["enter","space"]))
-            }, null, 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_2$r)
+            }, null, 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_2$s)
           ], 2112 /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */))
         : (_ctx.visible)
           ? (openBlock(), createElementBlock(Fragment, { key: 2 }, [
@@ -404,16 +448,16 @@ function render$T(_ctx, _cache, $props, $setup, $data, $options) {
                 onKeypress: _cache[5] || (_cache[5] = withKeys(withModifiers((...args) => (_ctx.handleClick && _ctx.handleClick(...args)), ["prevent"]), ["enter","space"]))
               }, [
                 renderSlot(_ctx.$slots, "default")
-              ], 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_3$g)
+              ], 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_3$h)
             ], 2112 /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */))
           : createCommentVNode("v-if", true)
   ], 2112 /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */))
 }
 
-script$_.render = render$T;
-script$_.__file = "themes/blank/templates/FormStepsControl.vue";
+script$$.render = render$U;
+script$$.__file = "themes/blank/templates/FormStepsControl.vue";
 
-var script$Z = {
+var script$_ = {
     name: 'FormStep',
     data() {
       return {
@@ -426,11 +470,11 @@ var script$Z = {
     }
   };
 
-const _hoisted_1$H = ["tabindex", "aria-selected"];
-const _hoisted_2$q = { key: 0 };
-const _hoisted_3$f = ["innerHTML"];
+const _hoisted_1$I = ["tabindex", "aria-selected"];
+const _hoisted_2$r = { key: 0 };
+const _hoisted_3$g = ["innerHTML"];
 
-function render$S(_ctx, _cache, $props, $setup, $data, $options) {
+function render$T(_ctx, _cache, $props, $setup, $data, $options) {
   return (_ctx.visible)
     ? (openBlock(), createElementBlock("li", {
         key: 0,
@@ -448,23 +492,23 @@ function render$S(_ctx, _cache, $props, $setup, $data, $options) {
           renderSlot(_ctx.$slots, "default", {}, () => [
             createCommentVNode(" If label is a component "),
             (_ctx.isLabelComponent)
-              ? (openBlock(), createElementBlock("span", _hoisted_2$q, [
+              ? (openBlock(), createElementBlock("span", _hoisted_2$r, [
                   (openBlock(), createBlock(resolveDynamicComponent(_ctx.stepLabel), { form$: _ctx.form$ }, null, 8 /* PROPS */, ["form$"]))
                 ]))
               : (openBlock(), createElementBlock(Fragment, { key: 1 }, [
                   createCommentVNode(" If label is HTML "),
-                  createElementVNode("span", { innerHTML: _ctx.stepLabel }, null, 8 /* PROPS */, _hoisted_3$f)
+                  createElementVNode("span", { innerHTML: _ctx.stepLabel }, null, 8 /* PROPS */, _hoisted_3$g)
                 ], 2112 /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */))
           ])
-        ], 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_1$H)
+        ], 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_1$I)
       ], 2 /* CLASS */))
     : createCommentVNode("v-if", true)
 }
 
-script$Z.render = render$S;
-script$Z.__file = "themes/blank/templates/FormStep.vue";
+script$_.render = render$T;
+script$_.__file = "themes/blank/templates/FormStep.vue";
 
-var script$Y = {
+var script$Z = {
     name: 'FormElements',
     data() {
       return {
@@ -476,7 +520,7 @@ var script$Y = {
     },
   };
 
-function render$R(_ctx, _cache, $props, $setup, $data, $options) {
+function render$S(_ctx, _cache, $props, $setup, $data, $options) {
   return (openBlock(), createElementBlock("div", {
     class: normalizeClass(_ctx.classes.container)
   }, [
@@ -491,10 +535,10 @@ function render$R(_ctx, _cache, $props, $setup, $data, $options) {
   ], 2 /* CLASS */))
 }
 
-script$Y.render = render$R;
-script$Y.__file = "themes/blank/templates/FormElements.vue";
+script$Z.render = render$S;
+script$Z.__file = "themes/blank/templates/FormElements.vue";
 
-var script$X = {
+var script$Y = {
     name: 'ElementLayout',
     data() {
       return {
@@ -511,7 +555,7 @@ var script$X = {
     },
   };
 
-function render$Q(_ctx, _cache, $props, $setup, $data, $options) {
+function render$R(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_ElementLabel = resolveComponent("ElementLabel");
   const _component_ElementText = resolveComponent("ElementText");
   const _component_ElementDescription = resolveComponent("ElementDescription");
@@ -585,10 +629,10 @@ function render$Q(_ctx, _cache, $props, $setup, $data, $options) {
   ])
 }
 
-script$X.render = render$Q;
-script$X.__file = "themes/blank/templates/ElementLayout.vue";
+script$Y.render = render$R;
+script$Y.__file = "themes/blank/templates/ElementLayout.vue";
 
-var script$W = {
+var script$X = {
     name: 'ElementLayoutInline',
     data() {
       return {
@@ -600,7 +644,7 @@ var script$W = {
     },
   };
 
-function render$P(_ctx, _cache, $props, $setup, $data, $options) {
+function render$Q(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_ElementLabel = resolveComponent("ElementLabel");
   const _component_ElementText = resolveComponent("ElementText");
   const _component_ElementDescription = resolveComponent("ElementDescription");
@@ -648,10 +692,10 @@ function render$P(_ctx, _cache, $props, $setup, $data, $options) {
   ])
 }
 
-script$W.render = render$P;
-script$W.__file = "themes/blank/templates/ElementLayoutInline.vue";
+script$X.render = render$Q;
+script$X.__file = "themes/blank/templates/ElementLayoutInline.vue";
 
-var script$V = {
+var script$W = {
     name: 'ElementLoader',
     data() {
       return {
@@ -664,7 +708,7 @@ var script$V = {
     }
   };
 
-function render$O(_ctx, _cache, $props, $setup, $data, $options) {
+function render$P(_ctx, _cache, $props, $setup, $data, $options) {
   return (openBlock(), createElementBlock("div", {
     class: normalizeClass(_ctx.classes.container)
   }, [
@@ -674,10 +718,10 @@ function render$O(_ctx, _cache, $props, $setup, $data, $options) {
   ], 2 /* CLASS */))
 }
 
-script$V.render = render$O;
-script$V.__file = "themes/blank/templates/ElementLoader.vue";
+script$W.render = render$P;
+script$W.__file = "themes/blank/templates/ElementLoader.vue";
 
-var script$U = {
+var script$V = {
     name: 'ElementLabelFloating',
     data() {
       return {
@@ -690,23 +734,23 @@ var script$U = {
     }
   };
 
-const _hoisted_1$G = ["innerHTML"];
+const _hoisted_1$H = ["innerHTML"];
 
-function render$N(_ctx, _cache, $props, $setup, $data, $options) {
+function render$O(_ctx, _cache, $props, $setup, $data, $options) {
   return (openBlock(), createElementBlock("div", {
     class: normalizeClass(_ctx.classes.container)
   }, [
     createElementVNode("span", {
       class: normalizeClass(_ctx.classes.label),
       innerHTML: _ctx.floating
-    }, null, 10 /* CLASS, PROPS */, _hoisted_1$G)
+    }, null, 10 /* CLASS, PROPS */, _hoisted_1$H)
   ], 2 /* CLASS */))
 }
 
-script$U.render = render$N;
-script$U.__file = "themes/blank/templates/ElementLabelFloating.vue";
+script$V.render = render$O;
+script$V.__file = "themes/blank/templates/ElementLabelFloating.vue";
 
-var script$T = {
+var script$U = {
     name: 'ElementLabel',
     data() {
       return {
@@ -719,13 +763,13 @@ var script$T = {
     }
   };
 
-const _hoisted_1$F = ["for", "id"];
-const _hoisted_2$p = ["for", "id"];
-const _hoisted_3$e = ["innerHTML"];
-const _hoisted_4$b = ["for", "id"];
+const _hoisted_1$G = ["for", "id"];
+const _hoisted_2$q = ["for", "id"];
+const _hoisted_3$f = ["innerHTML"];
+const _hoisted_4$c = ["for", "id"];
 const _hoisted_5$7 = ["for", "id"];
 
-function render$M(_ctx, _cache, $props, $setup, $data, $options) {
+function render$N(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_ElementInfo = resolveComponent("ElementInfo");
   const _component_ElementRequired = resolveComponent("ElementRequired");
 
@@ -757,7 +801,7 @@ function render$M(_ctx, _cache, $props, $setup, $data, $options) {
             ]),
             _: 3 /* FORWARDED */
           })
-        ], 10 /* CLASS, PROPS */, _hoisted_1$F))
+        ], 10 /* CLASS, PROPS */, _hoisted_1$G))
       : (_ctx.label)
         ? (openBlock(), createElementBlock(Fragment, { key: 1 }, [
             createCommentVNode(" If label is HTML "),
@@ -769,7 +813,7 @@ function render$M(_ctx, _cache, $props, $setup, $data, $options) {
               createElementVNode("span", {
                 class: normalizeClass(_ctx.classes.wrapper),
                 innerHTML: _ctx.label
-              }, null, 10 /* CLASS, PROPS */, _hoisted_3$e),
+              }, null, 10 /* CLASS, PROPS */, _hoisted_3$f),
               createVNode(_component_ElementInfo, null, {
                 default: withCtx(() => [
                   renderSlot(_ctx.$slots, "info")
@@ -782,7 +826,7 @@ function render$M(_ctx, _cache, $props, $setup, $data, $options) {
                 ]),
                 _: 3 /* FORWARDED */
               })
-            ], 10 /* CLASS, PROPS */, _hoisted_2$p)
+            ], 10 /* CLASS, PROPS */, _hoisted_2$q)
           ], 2112 /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */))
         : (_ctx.isSlot)
           ? (openBlock(), createElementBlock(Fragment, { key: 2 }, [
@@ -809,7 +853,7 @@ function render$M(_ctx, _cache, $props, $setup, $data, $options) {
                   ]),
                   _: 3 /* FORWARDED */
                 })
-              ], 10 /* CLASS, PROPS */, _hoisted_4$b)
+              ], 10 /* CLASS, PROPS */, _hoisted_4$c)
             ], 2112 /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */))
           : (_ctx.hasLabel)
             ? (openBlock(), createElementBlock(Fragment, { key: 3 }, [
@@ -824,10 +868,10 @@ function render$M(_ctx, _cache, $props, $setup, $data, $options) {
   ], 2112 /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */))
 }
 
-script$T.render = render$M;
-script$T.__file = "themes/blank/templates/ElementLabel.vue";
+script$U.render = render$N;
+script$U.__file = "themes/blank/templates/ElementLabel.vue";
 
-var script$S = {
+var script$T = {
     name: 'ElementInfo',
     data() {
       return {
@@ -841,10 +885,10 @@ var script$S = {
     }
   };
 
-const _hoisted_1$E = ["id"];
-const _hoisted_2$o = ["innerHTML"];
+const _hoisted_1$F = ["id"];
+const _hoisted_2$p = ["innerHTML"];
 
-function render$L(_ctx, _cache, $props, $setup, $data, $options) {
+function render$M(_ctx, _cache, $props, $setup, $data, $options) {
   return (_ctx.info || _ctx.isSlot)
     ? (openBlock(), createElementBlock("span", {
         key: 0,
@@ -866,16 +910,16 @@ function render$L(_ctx, _cache, $props, $setup, $data, $options) {
                 key: 1,
                 class: normalizeClass(_ctx.classes.content),
                 innerHTML: _ctx.info
-              }, null, 10 /* CLASS, PROPS */, _hoisted_2$o))
-        ], 10 /* CLASS, PROPS */, _hoisted_1$E)
+              }, null, 10 /* CLASS, PROPS */, _hoisted_2$p))
+        ], 10 /* CLASS, PROPS */, _hoisted_1$F)
       ], 34 /* CLASS, NEED_HYDRATION */))
     : createCommentVNode("v-if", true)
 }
 
-script$S.render = render$L;
-script$S.__file = "themes/blank/templates/ElementInfo.vue";
+script$T.render = render$M;
+script$T.__file = "themes/blank/templates/ElementInfo.vue";
 
-var script$R = {
+var script$S = {
     name: 'ElementDescription',
     data() {
       return {
@@ -887,10 +931,10 @@ var script$R = {
     }
   };
 
-const _hoisted_1$D = ["innerHTML", "id"];
-const _hoisted_2$n = ["id"];
+const _hoisted_1$E = ["innerHTML", "id"];
+const _hoisted_2$o = ["id"];
 
-function render$K(_ctx, _cache, $props, $setup, $data, $options) {
+function render$L(_ctx, _cache, $props, $setup, $data, $options) {
   return (openBlock(), createElementBlock(Fragment, null, [
     createCommentVNode(" If description is HTML "),
     (_ctx.description)
@@ -899,7 +943,7 @@ function render$K(_ctx, _cache, $props, $setup, $data, $options) {
           class: normalizeClass(_ctx.classes.container),
           innerHTML: _ctx.description,
           id: _ctx.id
-        }, null, 10 /* CLASS, PROPS */, _hoisted_1$D))
+        }, null, 10 /* CLASS, PROPS */, _hoisted_1$E))
       : (_ctx.isSlot)
         ? (openBlock(), createElementBlock(Fragment, { key: 1 }, [
             createCommentVNode(" If description is a slot "),
@@ -908,16 +952,16 @@ function render$K(_ctx, _cache, $props, $setup, $data, $options) {
               id: _ctx.id
             }, [
               renderSlot(_ctx.$slots, "default")
-            ], 10 /* CLASS, PROPS */, _hoisted_2$n)
+            ], 10 /* CLASS, PROPS */, _hoisted_2$o)
           ], 2112 /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */))
         : createCommentVNode("v-if", true)
   ], 2112 /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */))
 }
 
-script$R.render = render$K;
-script$R.__file = "themes/blank/templates/ElementDescription.vue";
+script$S.render = render$L;
+script$S.__file = "themes/blank/templates/ElementDescription.vue";
 
-var script$Q = {
+var script$R = {
     name: 'ElementError',
     data() {
       return {
@@ -929,24 +973,24 @@ var script$Q = {
     }
   };
 
-const _hoisted_1$C = ["id", "innerHTML"];
+const _hoisted_1$D = ["id", "innerHTML"];
 
-function render$J(_ctx, _cache, $props, $setup, $data, $options) {
-  return (_ctx.error)
+function render$K(_ctx, _cache, $props, $setup, $data, $options) {
+  return (_ctx.showError)
     ? (openBlock(), createElementBlock("div", {
         key: 0,
         class: normalizeClass(_ctx.classes.container),
         id: _ctx.id,
         "aria-live": "assertive",
         innerHTML: _ctx.error
-      }, null, 10 /* CLASS, PROPS */, _hoisted_1$C))
+      }, null, 10 /* CLASS, PROPS */, _hoisted_1$D))
     : createCommentVNode("v-if", true)
 }
 
-script$Q.render = render$J;
-script$Q.__file = "themes/blank/templates/ElementError.vue";
+script$R.render = render$K;
+script$R.__file = "themes/blank/templates/ElementError.vue";
 
-var script$P = {
+var script$Q = {
     name: 'ElementMessage',
     data() {
       return {
@@ -958,22 +1002,22 @@ var script$P = {
     }
   };
 
-const _hoisted_1$B = ["innerHTML"];
+const _hoisted_1$C = ["innerHTML"];
 
-function render$I(_ctx, _cache, $props, $setup, $data, $options) {
+function render$J(_ctx, _cache, $props, $setup, $data, $options) {
   return (_ctx.message)
     ? (openBlock(), createElementBlock("div", {
         key: 0,
         class: normalizeClass(_ctx.classes.container),
         innerHTML: _ctx.message
-      }, null, 10 /* CLASS, PROPS */, _hoisted_1$B))
+      }, null, 10 /* CLASS, PROPS */, _hoisted_1$C))
     : createCommentVNode("v-if", true)
 }
 
-script$P.render = render$I;
-script$P.__file = "themes/blank/templates/ElementMessage.vue";
+script$Q.render = render$J;
+script$Q.__file = "themes/blank/templates/ElementMessage.vue";
 
-var script$O = {
+var script$P = {
     name: 'ElementRequired',
     data() {
       return {
@@ -985,7 +1029,7 @@ var script$O = {
     }
   };
 
-function render$H(_ctx, _cache, $props, $setup, $data, $options) {
+function render$I(_ctx, _cache, $props, $setup, $data, $options) {
   return (_ctx.visible)
     ? (openBlock(), createElementBlock("div", {
         key: 0,
@@ -998,10 +1042,10 @@ function render$H(_ctx, _cache, $props, $setup, $data, $options) {
     : createCommentVNode("v-if", true)
 }
 
-script$O.render = render$H;
-script$O.__file = "themes/blank/templates/ElementRequired.vue";
+script$P.render = render$I;
+script$P.__file = "themes/blank/templates/ElementRequired.vue";
 
-var script$N = {
+var script$O = {
     name: 'ElementText',
     data() {
       return {
@@ -1013,9 +1057,9 @@ var script$N = {
     }
   };
 
-const _hoisted_1$A = ["innerHTML"];
+const _hoisted_1$B = ["innerHTML"];
 
-function render$G(_ctx, _cache, $props, $setup, $data, $options) {
+function render$H(_ctx, _cache, $props, $setup, $data, $options) {
   return (openBlock(), createElementBlock(Fragment, null, [
     createCommentVNode(" If content is HTML "),
     (_ctx.content)
@@ -1023,7 +1067,7 @@ function render$G(_ctx, _cache, $props, $setup, $data, $options) {
           key: 0,
           class: normalizeClass(_ctx.classes.container),
           innerHTML: _ctx.content
-        }, null, 10 /* CLASS, PROPS */, _hoisted_1$A))
+        }, null, 10 /* CLASS, PROPS */, _hoisted_1$B))
       : (_ctx.isSlot)
         ? (openBlock(), createElementBlock(Fragment, { key: 1 }, [
             createCommentVNode(" If content is a slot "),
@@ -1037,10 +1081,10 @@ function render$G(_ctx, _cache, $props, $setup, $data, $options) {
   ], 2112 /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */))
 }
 
-script$N.render = render$G;
-script$N.__file = "themes/blank/templates/ElementText.vue";
+script$O.render = render$H;
+script$O.__file = "themes/blank/templates/ElementText.vue";
 
-var script$M = {
+var script$N = {
     name: 'ElementAddon',
     data() {
       return {
@@ -1053,9 +1097,9 @@ var script$M = {
     }
   };
 
-const _hoisted_1$z = ["innerHTML"];
+const _hoisted_1$A = ["innerHTML"];
 
-function render$F(_ctx, _cache, $props, $setup, $data, $options) {
+function render$G(_ctx, _cache, $props, $setup, $data, $options) {
   return (openBlock(), createElementBlock(Fragment, null, [
     createCommentVNode(" If addon is a component "),
     (_ctx.addon && _ctx.isAddonComponent)
@@ -1078,7 +1122,7 @@ function render$F(_ctx, _cache, $props, $setup, $data, $options) {
               createElementVNode("div", {
                 class: normalizeClass(_ctx.classes.wrapper),
                 innerHTML: _ctx.addon
-              }, null, 10 /* CLASS, PROPS */, _hoisted_1$z)
+              }, null, 10 /* CLASS, PROPS */, _hoisted_1$A)
             ], 2 /* CLASS */)
           ], 2112 /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */))
         : (_ctx.isSlot)
@@ -1098,10 +1142,10 @@ function render$F(_ctx, _cache, $props, $setup, $data, $options) {
   ], 2112 /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */))
 }
 
-script$M.render = render$F;
-script$M.__file = "themes/blank/templates/ElementAddon.vue";
+script$N.render = render$G;
+script$N.__file = "themes/blank/templates/ElementAddon.vue";
 
-var script$L = {
+var script$M = {
     name: 'ElementAddonOptions',
     data() {
       return {
@@ -1117,16 +1161,16 @@ var script$L = {
     },
   };
 
-const _hoisted_1$y = ["aria-expanded", "aria-controls", "tabindex"];
-const _hoisted_2$m = ["innerHTML"];
-const _hoisted_3$d = ["innerHTML"];
-const _hoisted_4$a = ["innerHTML"];
+const _hoisted_1$z = ["aria-expanded", "aria-controls", "tabindex"];
+const _hoisted_2$n = ["innerHTML"];
+const _hoisted_3$e = ["innerHTML"];
+const _hoisted_4$b = ["innerHTML"];
 const _hoisted_5$6 = ["innerHTML"];
 const _hoisted_6$5 = ["data-dropdown-for", "id"];
 const _hoisted_7$3 = ["innerHTML", "data-index", "data-selected", "onMouseover", "onClick", "tabindex", "aria-selected"];
 const _hoisted_8$2 = ["innerHTML", "data-index", "data-selected", "onMouseover", "onClick", "tabindex", "aria-selected"];
 
-function render$E(_ctx, _cache, $props, $setup, $data, $options) {
+function render$F(_ctx, _cache, $props, $setup, $data, $options) {
   return (openBlock(), createElementBlock("div", {
     class: normalizeClass(_ctx.classes.container)
   }, [
@@ -1154,11 +1198,11 @@ function render$E(_ctx, _cache, $props, $setup, $data, $options) {
                 ? (openBlock(), createElementBlock("div", {
                     key: 1,
                     innerHTML: _ctx.selected.valueDisplay(_ctx.selected, _ctx.el$)
-                  }, null, 8 /* PROPS */, _hoisted_2$m))
+                  }, null, 8 /* PROPS */, _hoisted_2$n))
                 : (openBlock(), createElementBlock("div", {
                     key: 2,
                     innerHTML: _ctx.selected.label
-                  }, null, 8 /* PROPS */, _hoisted_3$d))
+                  }, null, 8 /* PROPS */, _hoisted_3$e))
           ], 64 /* STABLE_FRAGMENT */))
         : (openBlock(), createElementBlock(Fragment, { key: 1 }, [
             (_ctx.placeholder && typeof _ctx.placeholder === 'object' && [_ctx.placeholder.render || _ctx.placeholder.template])
@@ -1171,7 +1215,7 @@ function render$E(_ctx, _cache, $props, $setup, $data, $options) {
                 ? (openBlock(), createElementBlock("div", {
                     key: 1,
                     innerHTML: _ctx.placeholder(_ctx.selected, _ctx.el$)
-                  }, null, 8 /* PROPS */, _hoisted_4$a))
+                  }, null, 8 /* PROPS */, _hoisted_4$b))
                 : (openBlock(), createElementBlock("div", {
                     key: 2,
                     innerHTML: _ctx.placeholder
@@ -1243,14 +1287,14 @@ function render$E(_ctx, _cache, $props, $setup, $data, $options) {
             ], 14 /* CLASS, STYLE, PROPS */, _hoisted_6$5))
           : createCommentVNode("v-if", true)
       ]))
-    ], 16 /* FULL_PROPS */, _hoisted_1$y)
+    ], 16 /* FULL_PROPS */, _hoisted_1$z)
   ], 2 /* CLASS */))
 }
 
-script$L.render = render$E;
-script$L.__file = "themes/blank/templates/ElementAddonOptions.vue";
+script$M.render = render$F;
+script$M.__file = "themes/blank/templates/ElementAddonOptions.vue";
 
-var script$K = {
+var script$L = {
     name: 'ButtonElement',
     data() {
       return {
@@ -1263,14 +1307,14 @@ var script$K = {
     }
   };
 
-const _hoisted_1$x = ["tabindex", "disabled"];
-const _hoisted_2$l = ["innerHTML", "tabindex", "disabled"];
-const _hoisted_3$c = ["tabindex", "disabled"];
-const _hoisted_4$9 = ["tabindex"];
+const _hoisted_1$y = ["tabindex", "disabled"];
+const _hoisted_2$m = ["innerHTML", "tabindex", "disabled"];
+const _hoisted_3$d = ["tabindex", "disabled"];
+const _hoisted_4$a = ["tabindex"];
 const _hoisted_5$5 = ["innerHTML", "tabindex"];
 const _hoisted_6$4 = ["tabindex"];
 
-function render$D(_ctx, _cache, $props, $setup, $data, $options) {
+function render$E(_ctx, _cache, $props, $setup, $data, $options) {
   return (openBlock(), createBlock(resolveDynamicComponent(_ctx.elementLayout), { ref: "container" }, createSlots({
     element: withCtx(() => [
       createCommentVNode(" Use `button` tag "),
@@ -1288,7 +1332,7 @@ function render$D(_ctx, _cache, $props, $setup, $data, $options) {
                   onClick: _cache[0] || (_cache[0] = withModifiers((...args) => (_ctx.handleClick && _ctx.handleClick(...args)), ["prevent"]))
                 }), [
                   (openBlock(), createBlock(resolveDynamicComponent(_ctx.buttonLabel)))
-                ], 16 /* FULL_PROPS */, _hoisted_1$x))
+                ], 16 /* FULL_PROPS */, _hoisted_1$y))
               : (_ctx.buttonLabel)
                 ? (openBlock(), createElementBlock(Fragment, { key: 1 }, [
                     createCommentVNode(" Use it as HTML "),
@@ -1301,7 +1345,7 @@ function render$D(_ctx, _cache, $props, $setup, $data, $options) {
                       class: _ctx.classes.button,
                       disabled: _ctx.isDisabled,
                       onClick: _cache[1] || (_cache[1] = withModifiers((...args) => (_ctx.handleClick && _ctx.handleClick(...args)), ["prevent"]))
-                    }), null, 16 /* FULL_PROPS */, _hoisted_2$l)
+                    }), null, 16 /* FULL_PROPS */, _hoisted_2$m)
                   ], 2112 /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */))
                 : (openBlock(), createElementBlock(Fragment, { key: 2 }, [
                     createCommentVNode(" Use it as slot "),
@@ -1317,7 +1361,7 @@ function render$D(_ctx, _cache, $props, $setup, $data, $options) {
                       renderSlot(_ctx.$slots, "default", { el$: _ctx.el$ }, () => [
                         (openBlock(), createBlock(resolveDynamicComponent(_ctx.fieldSlots.default), { el$: _ctx.el$ }, null, 8 /* PROPS */, ["el$"]))
                       ])
-                    ], 16 /* FULL_PROPS */, _hoisted_3$c)
+                    ], 16 /* FULL_PROPS */, _hoisted_3$d)
                   ], 2112 /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */))
           ], 64 /* STABLE_FRAGMENT */))
         : (openBlock(), createElementBlock(Fragment, { key: 1 }, [
@@ -1333,7 +1377,7 @@ function render$D(_ctx, _cache, $props, $setup, $data, $options) {
                   onClick: _cache[3] || (_cache[3] = (...args) => (_ctx.handleClick && _ctx.handleClick(...args)))
                 }), [
                   (openBlock(), createBlock(resolveDynamicComponent(_ctx.buttonLabel)))
-                ], 16 /* FULL_PROPS */, _hoisted_4$9))
+                ], 16 /* FULL_PROPS */, _hoisted_4$a))
               : (_ctx.buttonLabel)
                 ? (openBlock(), createElementBlock(Fragment, { key: 1 }, [
                     createCommentVNode(" Use it as HTML "),
@@ -1379,10 +1423,10 @@ function render$D(_ctx, _cache, $props, $setup, $data, $options) {
   ]), 1536 /* NEED_PATCH, DYNAMIC_SLOTS */))
 }
 
-script$K.render = render$D;
-script$K.__file = "themes/blank/templates/elements/ButtonElement.vue";
+script$L.render = render$E;
+script$L.__file = "themes/blank/templates/elements/ButtonElement.vue";
 
-var script$J = {
+var script$K = {
     name: 'CaptchaElement',
     data() {
       return {
@@ -1396,9 +1440,9 @@ var script$J = {
     },
   };
 
-const _hoisted_1$w = ["id"];
+const _hoisted_1$x = ["id"];
 
-function render$C(_ctx, _cache, $props, $setup, $data, $options) {
+function render$D(_ctx, _cache, $props, $setup, $data, $options) {
   return (openBlock(), createBlock(resolveDynamicComponent(_ctx.elementLayout), { ref: "container" }, createSlots({
     element: withCtx(() => [
       (_ctx.shouldVerify)
@@ -1410,7 +1454,7 @@ function render$C(_ctx, _cache, $props, $setup, $data, $options) {
               id: _ctx.fieldId,
               class: normalizeClass(_ctx.classes.captcha),
               ref: "input"
-            }, null, 10 /* CLASS, PROPS */, _hoisted_1$w)
+            }, null, 10 /* CLASS, PROPS */, _hoisted_1$x)
           ], 2 /* CLASS */))
         : createCommentVNode("v-if", true)
     ]),
@@ -1429,10 +1473,10 @@ function render$C(_ctx, _cache, $props, $setup, $data, $options) {
   ]), 1536 /* NEED_PATCH, DYNAMIC_SLOTS */))
 }
 
-script$J.render = render$C;
-script$J.__file = "themes/blank/templates/elements/CaptchaElement.vue";
+script$K.render = render$D;
+script$K.__file = "themes/blank/templates/elements/CaptchaElement.vue";
 
-var script$I = {
+var script$J = {
     name: 'CheckboxElement',
     data() {
       return {
@@ -1447,10 +1491,10 @@ var script$I = {
     }
   };
 
-const _hoisted_1$v = ["name", "id", "true-value", "false-value", "disabled"];
-const _hoisted_2$k = ["innerHTML"];
+const _hoisted_1$w = ["name", "id", "true-value", "false-value", "disabled"];
+const _hoisted_2$l = ["innerHTML"];
 
-function render$B(_ctx, _cache, $props, $setup, $data, $options) {
+function render$C(_ctx, _cache, $props, $setup, $data, $options) {
   return (openBlock(), createBlock(resolveDynamicComponent(_ctx.elementLayout), { ref: "container" }, createSlots({
     element: withCtx(() => [
       createElementVNode("label", {
@@ -1467,7 +1511,7 @@ function render$B(_ctx, _cache, $props, $setup, $data, $options) {
           "false-value": _ctx.falseValue,
           disabled: _ctx.isDisabled,
           ref: "input"
-        }), null, 16 /* FULL_PROPS */, _hoisted_1$v), [
+        }), null, 16 /* FULL_PROPS */, _hoisted_1$w), [
           [vModelCheckbox, _ctx.value]
         ]),
         createCommentVNode(" If label is HTML "),
@@ -1476,7 +1520,7 @@ function render$B(_ctx, _cache, $props, $setup, $data, $options) {
               key: 0,
               class: normalizeClass(_ctx.classes.text),
               innerHTML: _ctx.Text
-            }, null, 10 /* CLASS, PROPS */, _hoisted_2$k))
+            }, null, 10 /* CLASS, PROPS */, _hoisted_2$l))
           : (openBlock(), createElementBlock(Fragment, { key: 1 }, [
               createCommentVNode(" If label is slot "),
               createElementVNode("span", {
@@ -1504,10 +1548,10 @@ function render$B(_ctx, _cache, $props, $setup, $data, $options) {
   ]), 1536 /* NEED_PATCH, DYNAMIC_SLOTS */))
 }
 
-script$I.render = render$B;
-script$I.__file = "themes/blank/templates/elements/CheckboxElement.vue";
+script$J.render = render$C;
+script$J.__file = "themes/blank/templates/elements/CheckboxElement.vue";
 
-var script$H = {
+var script$I = {
     name: 'CheckboxgroupElement',
     data() {
       return {
@@ -1520,9 +1564,9 @@ var script$H = {
     }
   };
 
-const _hoisted_1$u = ["aria-labelledby"];
+const _hoisted_1$v = ["aria-labelledby"];
 
-function render$A(_ctx, _cache, $props, $setup, $data, $options) {
+function render$B(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_CheckboxgroupCheckbox = resolveComponent("CheckboxgroupCheckbox");
 
   return (openBlock(), createBlock(resolveDynamicComponent(_ctx.elementLayout), { ref: "container" }, createSlots({
@@ -1549,7 +1593,7 @@ function render$A(_ctx, _cache, $props, $setup, $data, $options) {
             _: 2 /* DYNAMIC */
           }, 1032 /* PROPS, DYNAMIC_SLOTS */, ["items", "index", "item", "value", "attrs"]))
         }), 128 /* KEYED_FRAGMENT */))
-      ], 10 /* CLASS, PROPS */, _hoisted_1$u)
+      ], 10 /* CLASS, PROPS */, _hoisted_1$v)
     ]),
     _: 2 /* DYNAMIC */
   }, [
@@ -1566,10 +1610,10 @@ function render$A(_ctx, _cache, $props, $setup, $data, $options) {
   ]), 1536 /* NEED_PATCH, DYNAMIC_SLOTS */))
 }
 
-script$H.render = render$A;
-script$H.__file = "themes/blank/templates/elements/CheckboxgroupElement.vue";
+script$I.render = render$B;
+script$I.__file = "themes/blank/templates/elements/CheckboxgroupElement.vue";
 
-var script$G = {
+var script$H = {
     name: 'DateElement',
     data() {
       return {
@@ -1584,7 +1628,7 @@ var script$G = {
     }
   };
 
-function render$z(_ctx, _cache, $props, $setup, $data, $options) {
+function render$A(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_ElementAddon = resolveComponent("ElementAddon");
   const _component_ElementLabelFloating = resolveComponent("ElementLabelFloating");
   const _component_DatepickerWrapper = resolveComponent("DatepickerWrapper");
@@ -1659,13 +1703,13 @@ function render$z(_ctx, _cache, $props, $setup, $data, $options) {
   ]), 1536 /* NEED_PATCH, DYNAMIC_SLOTS */))
 }
 
-script$G.render = render$z;
-script$G.__file = "themes/blank/templates/elements/DateElement.vue";
+script$H.render = render$A;
+script$H.__file = "themes/blank/templates/elements/DateElement.vue";
 
-var script$F = {
+var script$G = {
     name: 'DatesElement',
-    render: script$G.render,
-    staticRenderFns: script$G.staticRenderFns,
+    render: script$H.render,
+    staticRenderFns: script$H.staticRenderFns,
     data() {
       return {
         merge: true,
@@ -1678,9 +1722,9 @@ var script$F = {
     }
   };
 
-script$F.__file = "themes/blank/templates/elements/DatesElement.vue";
+script$G.__file = "themes/blank/templates/elements/DatesElement.vue";
 
-var script$E = {
+var script$F = {
     name: 'FileElement',
     data() {
       return {
@@ -1693,10 +1737,10 @@ var script$E = {
     }
   };
 
-const _hoisted_1$t = ["aria-labelledby", "aria-placeholder"];
-const _hoisted_2$j = ["id", "accept"];
+const _hoisted_1$u = ["aria-labelledby", "aria-placeholder"];
+const _hoisted_2$k = ["id", "accept"];
 
-function render$y(_ctx, _cache, $props, $setup, $data, $options) {
+function render$z(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_DragAndDrop = resolveComponent("DragAndDrop");
   const _component_FilePreview = resolveComponent("FilePreview");
 
@@ -1723,7 +1767,7 @@ function render$y(_ctx, _cache, $props, $setup, $data, $options) {
                 onKeypress: _cache[1] || (_cache[1] = withKeys((...args) => (_ctx.handleClick && _ctx.handleClick(...args)), ["enter","space"])),
                 role: "button",
                 tabindex: "0"
-              }), toDisplayString(_ctx.form$.translations.vueform.elements[_ctx.type].select), 17 /* TEXT, FULL_PROPS */, _hoisted_1$t)
+              }), toDisplayString(_ctx.form$.translations.vueform.elements[_ctx.type].select), 17 /* TEXT, FULL_PROPS */, _hoisted_1$u)
             ], 2112 /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */))
           : createCommentVNode("v-if", true),
       createCommentVNode(" Hidden file input "),
@@ -1735,7 +1779,7 @@ function render$y(_ctx, _cache, $props, $setup, $data, $options) {
             accept: _ctx.accept,
             onChange: _cache[2] || (_cache[2] = (...args) => (_ctx.handleChange && _ctx.handleChange(...args))),
             ref: "input"
-          }, null, 40 /* PROPS, NEED_HYDRATION */, _hoisted_2$j)), [
+          }, null, 40 /* PROPS, NEED_HYDRATION */, _hoisted_2$k)), [
             [vShow, false]
           ])
         : createCommentVNode("v-if", true),
@@ -1762,10 +1806,10 @@ function render$y(_ctx, _cache, $props, $setup, $data, $options) {
   ]), 1536 /* NEED_PATCH, DYNAMIC_SLOTS */))
 }
 
-script$E.render = render$y;
-script$E.__file = "themes/blank/templates/elements/FileElement.vue";
+script$F.render = render$z;
+script$F.__file = "themes/blank/templates/elements/FileElement.vue";
 
-var script$D = {
+var script$E = {
     name: 'GroupElement',
     data() {
       return {
@@ -1778,9 +1822,9 @@ var script$D = {
     },
   };
 
-const _hoisted_1$s = ["aria-labelledby"];
+const _hoisted_1$t = ["aria-labelledby"];
 
-function render$x(_ctx, _cache, $props, $setup, $data, $options) {
+function render$y(_ctx, _cache, $props, $setup, $data, $options) {
   return (openBlock(), createBlock(resolveDynamicComponent(_ctx.elementLayout), {
     multiple: true,
     ref: "container"
@@ -1799,7 +1843,7 @@ function render$x(_ctx, _cache, $props, $setup, $data, $options) {
             }), null, 16 /* FULL_PROPS */, ["name"]))
           }), 128 /* KEYED_FRAGMENT */))
         ])
-      ], 10 /* CLASS, PROPS */, _hoisted_1$s)
+      ], 10 /* CLASS, PROPS */, _hoisted_1$t)
     ]),
     _: 2 /* DYNAMIC */
   }, [
@@ -1816,10 +1860,10 @@ function render$x(_ctx, _cache, $props, $setup, $data, $options) {
   ]), 1536 /* NEED_PATCH, DYNAMIC_SLOTS */))
 }
 
-script$D.render = render$x;
-script$D.__file = "themes/blank/templates/elements/GroupElement.vue";
+script$E.render = render$y;
+script$E.__file = "themes/blank/templates/elements/GroupElement.vue";
 
-var script$C = {
+var script$D = {
     name: 'HiddenElement',
     data() {
       return {
@@ -1829,32 +1873,32 @@ var script$C = {
     },
   };
 
-const _hoisted_1$r = {
+const _hoisted_1$s = {
   key: 0,
   ref: "container"
 };
-const _hoisted_2$i = ["name", "id"];
+const _hoisted_2$j = ["name", "id"];
 
-function render$w(_ctx, _cache, $props, $setup, $data, $options) {
+function render$x(_ctx, _cache, $props, $setup, $data, $options) {
   return (!_ctx.meta)
-    ? (openBlock(), createElementBlock("span", _hoisted_1$r, [
+    ? (openBlock(), createElementBlock("span", _hoisted_1$s, [
         withDirectives(createElementVNode("input", {
           "onUpdate:modelValue": _cache[0] || (_cache[0] = $event => ((_ctx.value) = $event)),
           type: "hidden",
           name: _ctx.name,
           id: _ctx.fieldId,
           ref: "input"
-        }, null, 8 /* PROPS */, _hoisted_2$i), [
+        }, null, 8 /* PROPS */, _hoisted_2$j), [
           [vModelText, _ctx.value]
         ])
       ], 512 /* NEED_PATCH */))
     : createCommentVNode("v-if", true)
 }
 
-script$C.render = render$w;
-script$C.__file = "themes/blank/templates/elements/HiddenElement.vue";
+script$D.render = render$x;
+script$D.__file = "themes/blank/templates/elements/HiddenElement.vue";
 
-var script$B = {
+var script$C = {
     name: 'ListElement',
     data() {
       return {
@@ -1873,12 +1917,12 @@ var script$B = {
     },
   };
 
-const _hoisted_1$q = ["aria-labelledby"];
-const _hoisted_2$h = ["data-id"];
-const _hoisted_3$b = ["aria-roledescription", "id", "onClick", "onKeypress"];
-const _hoisted_4$8 = ["id", "innerHTML"];
+const _hoisted_1$r = ["aria-labelledby"];
+const _hoisted_2$i = ["data-id"];
+const _hoisted_3$c = ["aria-roledescription", "id", "onClick", "onKeypress"];
+const _hoisted_4$9 = ["id", "innerHTML"];
 
-function render$v(_ctx, _cache, $props, $setup, $data, $options) {
+function render$w(_ctx, _cache, $props, $setup, $data, $options) {
   return (openBlock(), createBlock(resolveDynamicComponent(_ctx.elementLayout), { ref: "container" }, createSlots({
     element: withCtx(() => [
       createCommentVNode(" Sorting container "),
@@ -1933,11 +1977,11 @@ function render$v(_ctx, _cache, $props, $setup, $data, $options) {
                   createElementVNode("span", {
                     class: normalizeClass(_ctx.classes.removeIcon)
                   }, null, 2 /* CLASS */)
-                ], 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_3$b))
+                ], 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_3$c))
               : createCommentVNode("v-if", true)
-          ], 10 /* CLASS, PROPS */, _hoisted_2$h))
+          ], 10 /* CLASS, PROPS */, _hoisted_2$i))
         }), 128 /* KEYED_FRAGMENT */))
-      ], 10 /* CLASS, PROPS */, _hoisted_1$q),
+      ], 10 /* CLASS, PROPS */, _hoisted_1$r),
       createCommentVNode(" Add button "),
       (_ctx.hasAdd)
         ? (openBlock(), createElementBlock("div", {
@@ -1949,7 +1993,7 @@ function render$v(_ctx, _cache, $props, $setup, $data, $options) {
             innerHTML: _ctx.addLabel,
             role: "button",
             tabindex: "0"
-          }, null, 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_4$8))
+          }, null, 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_4$9))
         : createCommentVNode("v-if", true)
     ]),
     _: 2 /* DYNAMIC */
@@ -1967,10 +2011,10 @@ function render$v(_ctx, _cache, $props, $setup, $data, $options) {
   ]), 1536 /* NEED_PATCH, DYNAMIC_SLOTS */))
 }
 
-script$B.render = render$v;
-script$B.__file = "themes/blank/templates/elements/ListElement.vue";
+script$C.render = render$w;
+script$C.__file = "themes/blank/templates/elements/ListElement.vue";
 
-var script$A = {
+var script$B = {
     name: 'LocationElement',
     data() {
       return {
@@ -1984,9 +2028,9 @@ var script$A = {
     }
   };
 
-const _hoisted_1$p = ["name", "id", "placeholder", "disabled", "readonly", "aria-labelledby"];
+const _hoisted_1$q = ["name", "id", "placeholder", "disabled", "readonly", "aria-labelledby"];
 
-function render$u(_ctx, _cache, $props, $setup, $data, $options) {
+function render$v(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_ElementAddon = resolveComponent("ElementAddon");
   const _component_ElementLabelFloating = resolveComponent("ElementLabelFloating");
 
@@ -2040,7 +2084,7 @@ function render$u(_ctx, _cache, $props, $setup, $data, $options) {
         }, _ctx.attrs, {
           ref: "input",
           onBlur: _cache[0] || (_cache[0] = (...args) => (_ctx.handleLocationBlur && _ctx.handleLocationBlur(...args)))
-        }), null, 16 /* FULL_PROPS */, _hoisted_1$p)
+        }), null, 16 /* FULL_PROPS */, _hoisted_1$q)
       ], 2 /* CLASS */)
     ]),
     _: 2 /* DYNAMIC */
@@ -2058,13 +2102,13 @@ function render$u(_ctx, _cache, $props, $setup, $data, $options) {
   ]), 1536 /* NEED_PATCH, DYNAMIC_SLOTS */))
 }
 
-script$A.render = render$u;
-script$A.__file = "themes/blank/templates/elements/LocationElement.vue";
+script$B.render = render$v;
+script$B.__file = "themes/blank/templates/elements/LocationElement.vue";
 
-var script$z = {
+var script$A = {
     name: 'LocationElement',
-    render: script$A.render,
-    data: script$A.data,
+    render: script$B.render,
+    data: script$B.data,
   };
 
 function styleInject(css, ref) {
@@ -2097,7 +2141,145 @@ function styleInject(css, ref) {
 var css_248z$2 = "/* Google */\n\n.pac-container {\n  border-color: var(--vf-border-color-input);\n  background: var(--vf-bg-input);\n}\n\n.pac-item {\n  display: flex;\n  align-items: center;\n  padding: 0.375rem 0.75rem;\n  border-color: var(--vf-border-color-input);\n  background: var(--vf-bg-input);\n  color: var(--vf-color-input);\n  cursor: pointer;\n}\n\n.pac-item > span:last-of-type {\n  font-size: 0.75rem;\n  color: var(--vf-color-muted);\n}\n\n.pac-item:hover, .pac-item.pac-item-selected {\n  background: var(--vf-bg-selected);\n}\n\n.pac-item-query {\n  font-size: 0.875rem;\n  line-height: 1;\n  margin-right: 0.25rem;\n  padding-right: 0.25rem;\n  color: var(--vf-color-input);\n}\n\n.pac-icon-marker {\n  mask-repeat: no-repeat;\n  -webkit-mask-repeat: no-repeat;\n  mask-position: center center;\n  -webkit-mask-position: center center;\n  mask-size: contain;\n  -webkit-mask-size: contain;\n  mask-image: url(\"data:image/svg+xml,%3csvg viewBox='0 0 384 512' fill='currentColor' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M172.268 501.67C26.97 291.031 0 269.413 0 192 0 85.961 85.961 0 192 0s192 85.961 192 192c0 77.413-26.97 99.031-172.268 309.67-9.535 13.774-29.93 13.773-39.464 0zM192 272c44.183 0 80-35.817 80-80s-35.817-80-80-80-80 35.817-80 80 35.817 80 80 80z'%3e%3c/path%3e%3c/svg%3e\");\n  -webkit-mask-image: url(\"data:image/svg+xml,%3csvg viewBox='0 0 384 512' fill='currentColor' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M172.268 501.67C26.97 291.031 0 269.413 0 192 0 85.961 85.961 0 192 0s192 85.961 192 192c0 77.413-26.97 99.031-172.268 309.67-9.535 13.774-29.93 13.773-39.464 0zM192 272c44.183 0 80-35.817 80-80s-35.817-80-80-80-80 35.817-80 80 35.817 80 80 80z'%3e%3c/path%3e%3c/svg%3e\");\n  background: var(--vf-bg-icon);\n  width: 0.875rem;\n  width: 0.875rem;\n  margin-right: 0.75rem;\n  margin-top: 0;\n  padding-top: 1px;\n  padding-bottom: 1px;\n  box-sizing: content-box;\n  flex-shrink: 0;\n}\n\n.pac-logo:after {\n  margin-left: 0.625rem;\n  margin-right: 0.625rem;\n  margin-bottom: 0.625rem;\n}\n\n.pac-icon, .hdpi .pac-icon {\n  background-image: none;\n}";
 styleInject(css_248z$2);
 
-script$z.__file = "themes/tailwind/templates/elements/LocationElement.vue";
+script$A.__file = "themes/tailwind/templates/elements/LocationElement.vue";
+
+var script$z = {
+    name: 'MatrixElement',
+    data() {
+      return {
+        merge: true,
+        defaultClasses: {
+          container: '',
+        },
+      }
+    },
+  };
+
+const _hoisted_1$p = ["innerHTML"];
+const _hoisted_2$h = ["innerHTML"];
+const _hoisted_3$b = ["aria-roledescription", "id", "onClick", "onKeypress"];
+const _hoisted_4$8 = ["id", "innerHTML"];
+
+function render$u(_ctx, _cache, $props, $setup, $data, $options) {
+  return (openBlock(), createBlock(resolveDynamicComponent(_ctx.elementLayout), { ref: "container" }, createSlots({
+    element: withCtx(() => [
+      createElementVNode("div", {
+        class: normalizeClass(_ctx.classes.grid),
+        style: normalizeStyle(_ctx.gridStyle),
+        ref: "grid"
+      }, [
+        createCommentVNode(" Header row "),
+        createCommentVNode(" First empty column "),
+        (_ctx.rowsVisible && _ctx.colsVisible)
+          ? (openBlock(), createElementBlock("div", {
+              key: 0,
+              class: normalizeClass(_ctx.classes.headerFirst)
+            }, null, 2 /* CLASS */))
+          : createCommentVNode("v-if", true),
+        createCommentVNode(" Column headers "),
+        (openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.resolvedColumns, (col, c) => {
+          return (openBlock(), createElementBlock(Fragment, null, [
+            (_ctx.colsVisible && col.available)
+              ? (openBlock(), createElementBlock("div", {
+                  key: 0,
+                  innerHTML: col.label,
+                  class: normalizeClass(_ctx.classes.header)
+                }, null, 10 /* CLASS, PROPS */, _hoisted_1$p))
+              : createCommentVNode("v-if", true)
+          ], 64 /* STABLE_FRAGMENT */))
+        }), 256 /* UNKEYED_FRAGMENT */)),
+        createCommentVNode(" Remove column "),
+        (_ctx.allowRemove && _ctx.colsVisible)
+          ? (openBlock(), createElementBlock("div", {
+              key: 1,
+              class: normalizeClass(_ctx.classes.headerRemove)
+            }, null, 2 /* CLASS */))
+          : createCommentVNode("v-if", true),
+        createCommentVNode(" Content rows "),
+        (openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.resolvedRows, (row, r) => {
+          return (openBlock(), createElementBlock(Fragment, null, [
+            createCommentVNode(" Row label "),
+            (_ctx.rowsVisible && row.available)
+              ? (openBlock(), createElementBlock("div", {
+                  key: 0,
+                  innerHTML: row.label,
+                  class: normalizeClass(_ctx.classes.rowLabel)
+                }, null, 10 /* CLASS, PROPS */, _hoisted_2$h))
+              : createCommentVNode("v-if", true),
+            createCommentVNode(" Input cells "),
+            (openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.resolvedColumns, (col, c) => {
+              return (openBlock(), createElementBlock(Fragment, null, [
+                (row.available && col.available)
+                  ? (openBlock(), createElementBlock("div", {
+                      key: 0,
+                      class: normalizeClass(_ctx.classes.cell)
+                    }, [
+                      createElementVNode("div", {
+                        class: normalizeClass(_ctx.classes.cellWrapper(_ctx.resolveColType(col), _ctx.resolveComponentName(r, c)))
+                      }, [
+                        (openBlock(), createBlock(resolveDynamicComponent(_ctx.resolveComponentType(col)), mergeProps({ ref_for: true }, _ctx.cells[r][c], {
+                          key: _ctx.cells[r][c].name
+                        }), null, 16 /* FULL_PROPS */))
+                      ], 2 /* CLASS */)
+                    ], 2 /* CLASS */))
+                  : createCommentVNode("v-if", true)
+              ], 64 /* STABLE_FRAGMENT */))
+            }), 256 /* UNKEYED_FRAGMENT */)),
+            createCommentVNode(" Remove column "),
+            (_ctx.allowRemove)
+              ? (openBlock(), createElementBlock("div", {
+                  key: 1,
+                  class: normalizeClass(_ctx.classes.rowRemove)
+                }, [
+                  createElementVNode("div", {
+                    "aria-roledescription": _ctx.form$.translations.vueform.a11y.list.remove,
+                    class: normalizeClass(_ctx.classes.remove),
+                    id: `${_ctx.path}-${r}-remove-button`,
+                    onClick: withModifiers($event => (_ctx.handleRemove(r)), ["prevent"]),
+                    onKeypress: withKeys($event => (_ctx.handleRemove(r)), ["space","enter"]),
+                    role: "button",
+                    tabindex: "0"
+                  }, [
+                    createElementVNode("span", {
+                      class: normalizeClass(_ctx.classes.removeIcon)
+                    }, null, 2 /* CLASS */)
+                  ], 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_3$b)
+                ], 2 /* CLASS */))
+              : createCommentVNode("v-if", true)
+          ], 64 /* STABLE_FRAGMENT */))
+        }), 256 /* UNKEYED_FRAGMENT */))
+      ], 6 /* CLASS, STYLE */),
+      createCommentVNode(" Add button "),
+      (_ctx.allowAdd)
+        ? (openBlock(), createElementBlock("div", {
+            key: 0,
+            class: normalizeClass(_ctx.classes.add),
+            id: `${_ctx.fieldId}-add-button`,
+            onClick: _cache[0] || (_cache[0] = withModifiers((...args) => (_ctx.handleAdd && _ctx.handleAdd(...args)), ["prevent"])),
+            onKeypress: _cache[1] || (_cache[1] = withKeys((...args) => (_ctx.handleAdd && _ctx.handleAdd(...args)), ["enter","space"])),
+            innerHTML: _ctx.addLabel,
+            role: "button",
+            tabindex: "0"
+          }, null, 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_4$8))
+        : createCommentVNode("v-if", true)
+    ]),
+    _: 2 /* DYNAMIC */
+  }, [
+    renderList(_ctx.elementSlots, (component, slot) => {
+      return {
+        name: slot,
+        fn: withCtx(() => [
+          renderSlot(_ctx.$slots, slot, { el$: _ctx.el$ }, () => [
+            (openBlock(), createBlock(resolveDynamicComponent(component), { el$: _ctx.el$ }, null, 8 /* PROPS */, ["el$"]))
+          ])
+        ])
+      }
+    })
+  ]), 1536 /* NEED_PATCH, DYNAMIC_SLOTS */))
+}
+
+script$z.render = render$u;
+script$z.__file = "themes/blank/templates/elements/MatrixElement.vue";
 
 var script$y = {
     name: 'MultifileElement',
@@ -12335,20 +12517,22 @@ function render$d(_ctx, _cache, $props, $setup, $data, $options) {
           onInput: _ctx.handleChange,
           ref: "input"
         }), null, 16 /* FULL_PROPS */, ["value", "modelValue", "classes", "name", "id", "aria", "onInput"]),
-        (_ctx.Text)
+        (!_ctx.standalone && _ctx.Text)
           ? (openBlock(), createElementBlock("span", {
               key: 0,
               class: normalizeClass(_ctx.classes.text),
               innerHTML: _ctx.Text
             }, null, 10 /* CLASS, PROPS */, _hoisted_1$b))
-          : (openBlock(), createElementBlock("span", {
-              key: 1,
-              class: normalizeClass(_ctx.classes.text)
-            }, [
-              renderSlot(_ctx.$slots, "default", { el$: _ctx.el$ }, () => [
-                (openBlock(), createBlock(resolveDynamicComponent(_ctx.fieldSlots.default), { el$: _ctx.el$ }, null, 8 /* PROPS */, ["el$"]))
-              ])
-            ], 2 /* CLASS */))
+          : (!_ctx.standalone)
+            ? (openBlock(), createElementBlock("span", {
+                key: 1,
+                class: normalizeClass(_ctx.classes.text)
+              }, [
+                renderSlot(_ctx.$slots, "default", { el$: _ctx.el$ }, () => [
+                  (openBlock(), createBlock(resolveDynamicComponent(_ctx.fieldSlots.default), { el$: _ctx.el$ }, null, 8 /* PROPS */, ["el$"]))
+                ])
+              ], 2 /* CLASS */))
+            : createCommentVNode("v-if", true)
       ], 2 /* CLASS */)
     ]),
     _: 2 /* DYNAMIC */
@@ -13482,50 +13666,6 @@ function columns (breakpoint, size) {
   }
 }
 
-function _defineProperty(e, r, t) {
-  return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, {
-    value: t,
-    enumerable: !0,
-    configurable: !0,
-    writable: !0
-  }) : e[r] = t, e;
-}
-function ownKeys(e, r) {
-  var t = Object.keys(e);
-  if (Object.getOwnPropertySymbols) {
-    var o = Object.getOwnPropertySymbols(e);
-    r && (o = o.filter(function (r) {
-      return Object.getOwnPropertyDescriptor(e, r).enumerable;
-    })), t.push.apply(t, o);
-  }
-  return t;
-}
-function _objectSpread2(e) {
-  for (var r = 1; r < arguments.length; r++) {
-    var t = null != arguments[r] ? arguments[r] : {};
-    r % 2 ? ownKeys(Object(t), !0).forEach(function (r) {
-      _defineProperty(e, r, t[r]);
-    }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) {
-      Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r));
-    });
-  }
-  return e;
-}
-function _toPrimitive(t, r) {
-  if ("object" != typeof t || !t) return t;
-  var e = t[Symbol.toPrimitive];
-  if (void 0 !== e) {
-    var i = e.call(t, r || "default");
-    if ("object" != typeof i) return i;
-    throw new TypeError("@@toPrimitive must return a primitive value.");
-  }
-  return ("string" === r ? String : Number)(t);
-}
-function _toPropertyKey(t) {
-  var i = _toPrimitive(t, "string");
-  return "symbol" == typeof i ? i : i + "";
-}
-
 // prefix
 
 var inputStates = {
@@ -13554,12 +13694,14 @@ var checkbox = {
   input_right_sm: 'form-ml-space-checkbox-sm',
   input_right_md: 'form-ml-space-checkbox',
   input_right_lg: 'form-ml-space-checkbox-lg',
+  input_standalone: '!ml-0 !mr-0 !mt-0',
   $input: (classes, _ref) => {
     var {
       isDisabled,
-      Size
+      Size,
+      standalone
     } = _ref;
-    return [classes.input, classes["input_".concat(Size)], !isDisabled ? classes.input_default : classes.input_disabled];
+    return [classes.input, classes["input_".concat(Size)], !isDisabled ? classes.input_default : classes.input_disabled, standalone ? classes.input_standalone : null];
   }
 };
 var radio = {
@@ -13577,12 +13719,14 @@ var radio = {
   input_right_sm: 'form-ml-space-checkbox-sm',
   input_right_md: 'form-ml-space-checkbox',
   input_right_lg: 'form-ml-space-checkbox-lg',
+  input_standalone: '!ml-0 !mr-0 !mt-0',
   $input: (classes, _ref2) => {
     var {
       isDisabled,
-      Size
+      Size,
+      standalone
     } = _ref2;
-    return [classes.input, classes["input_".concat(Size)], !isDisabled ? classes.input_default : classes.input_disabled];
+    return [classes.input, classes["input_".concat(Size)], !isDisabled ? classes.input_default : classes.input_disabled, standalone ? classes.input_standalone : null];
   }
 };
 var text = {
@@ -13837,7 +13981,7 @@ var select = {
   }
 };
 var groupTabs = {
-  container: 'flex align-start cursor-pointer',
+  container: 'flex cursor-pointer',
   wrapper: 'flex items-center justify-center w-full border-solid form-border-width-input',
   wrapper_not_last: '!border-r-0',
   wrapper_first: '',
@@ -13858,7 +14002,7 @@ var groupTabs = {
   text: ''
 };
 var groupBlocks = {
-  container: 'flex align-start cursor-pointer form-bg-input',
+  container: 'flex cursor-pointer form-bg-input',
   container_sm: 'form-radius-large-sm',
   container_md: 'form-radius-large',
   container_lg: 'form-radius-large',
@@ -13934,7 +14078,7 @@ var classes = {
   },
   CheckboxElement: _objectSpread2(_objectSpread2({}, checkbox), {}, {
     container: 'form-contains-link',
-    wrapper: 'flex align-start',
+    wrapper: 'flex',
     wrapper_sm: 'form-text-sm',
     wrapper_md: 'form-text',
     wrapper_lg: 'form-text-lg',
@@ -13960,9 +14104,10 @@ var classes = {
         isDisabled,
         Size,
         isDanger,
-        align
+        align,
+        standalone
       } = _ref23;
-      return [classes.input, classes["input_".concat(Size)], !isDisabled && !isDanger ? classes.input_default : null, isDisabled ? classes.input_disabled : null, isDanger ? classes.input_danger : null, align === 'left' ? [classes.input_left, classes["input_left_".concat(Size)]] : null, align === 'right' ? [classes.input_right, classes["input_right_".concat(Size)]] : null];
+      return [classes.input, classes["input_".concat(Size)], !isDisabled && !isDanger ? classes.input_default : null, isDisabled ? classes.input_disabled : null, isDanger ? classes.input_danger : null, align === 'left' ? [classes.input_left, classes["input_left_".concat(Size)]] : null, align === 'right' ? [classes.input_right, classes["input_right_".concat(Size)]] : null, standalone ? classes.input_standalone : null];
     },
     $text: (classes, _ref24) => {
       var {
@@ -13972,7 +14117,7 @@ var classes = {
     }
   }),
   CheckboxgroupElement: {
-    container: '',
+    container: 'form-view-default',
     wrapper: 'flex flex-col justify-start',
     wrapper_sm: '',
     wrapper_md: '',
@@ -13985,7 +14130,7 @@ var classes = {
     }
   },
   CheckboxgroupElement_tabs: {
-    container: 'form-text-type',
+    container: 'form-text-type form-view-tabs',
     wrapper: 'grid grid-flow-col form-shadow-input',
     wrapper_sm: 'form-radius-large-sm',
     wrapper_md: 'form-radius-large',
@@ -13998,7 +14143,7 @@ var classes = {
     }
   },
   CheckboxgroupElement_blocks: {
-    container: '',
+    container: 'form-view-blocks',
     wrapper: 'flex flex-col justify-start form-shadow-input',
     wrapper_sm: 'form-radius-large-sm',
     wrapper_md: 'form-radius-large',
@@ -14105,6 +14250,94 @@ var classes = {
     }
   },
   LocationElement: _objectSpread2({}, text),
+  MatrixElement: {
+    container: '',
+    grid: 'grid',
+    grid_scrollable: 'grid overflow-auto',
+    headerFirst: '',
+    header: 'flex items-center justify-center text-center',
+    header_padding: 'px-2',
+    header_sticky: 'sticky top-0 backdrop-blur-3xl z-1',
+    header_not_sticky: '',
+    header_wrap: '',
+    header_nowrap: 'whitespace-nowrap',
+    header_sm: 'form-min-h-input-height-inner-sm',
+    header_md: 'form-min-h-input-height-inner',
+    header_lg: 'form-min-h-input-height-inner-lg',
+    headerRemove: '',
+    rowLabel: 'flex items-center pr-2',
+    rowLabel_sticky: 'sticky left-0 backdrop-blur-3xl z-1',
+    rowLabel_not_sticky: '',
+    rowLabel_wrap: '',
+    rowLabel_nowrap: 'whitespace-nowrap',
+    cell: 'grid items-center',
+    cell_sm: 'form-min-h-input-height-inner-sm',
+    cell_md: 'form-min-h-input-height-inner',
+    cell_lg: 'form-min-h-input-height-inner-lg',
+    cellWrapper: 'w-full h-full grid items-center',
+    cellWrapper_padding: 'px-2',
+    cellWrapper_centered: 'justify-center',
+    cellWrapper_error: '',
+    cellWrapper_success: '',
+    rowRemove: 'backdrop-blur-3xl sticky right-0 flex items-center justify-center w-10',
+    remove: 'w-4 h-4 box-content p-0.5 form-bg-passive rounded-full transition filter hover:brightness-90',
+    removeIcon: 'mask-bg mask-form-remove-light form-bg-passive-color mask-size-3 block w-full h-full',
+    add: 'inline-block form-bg-primary form-border-width-btn form-border-color-primary form-color-on-primary form-shadow-btn ease-linear transition-transform transform hover:scale-105 focus:form-ring',
+    add_sm: 'form-mt-gutter-sm form-radius-small-sm form-text-small-sm form-p-btn-small-sm',
+    add_md: 'form-mt-gutter form-radius-small form-text-small form-p-btn-small',
+    add_lg: 'form-mt-gutter-lg form-radius-small-lg form-text-small-lg form-p-btn-small-lg',
+    $grid: (classes, _ref35) => {
+      var {
+        scrollable
+      } = _ref35;
+      return [classes.grid, scrollable ? classes.grid_scrollable : null];
+    },
+    $header: (classes, _ref36) => {
+      var {
+        Size,
+        padding,
+        stickyCols,
+        colWrap
+      } = _ref36;
+      return [classes.header, classes["header_".concat(Size)], padding ? classes.header_padding : null, stickyCols ? classes.header_sticky : classes.header_not_sticky, colWrap ? classes.header_wrap : classes.header_nowrap];
+    },
+    $rowLabel: (classes, _ref37) => {
+      var {
+        stickyRows,
+        rowWrap
+      } = _ref37;
+      return [classes.rowLabel, stickyRows ? classes.rowLabel_sticky : classes.rowLabel_not_sticky, rowWrap ? classes.rowLabel_wrap : classes.rowLabel_nowrap];
+    },
+    $cell: (classes, _ref38) => {
+      var {
+        Size
+      } = _ref38;
+      return [classes.cell, classes["cell_".concat(Size)]];
+    },
+    $cellWrapper: (classes, _ref39) => {
+      var {
+        padding,
+        centered,
+        cells$
+      } = _ref39;
+      return (type, name) => {
+        var _cells$$name, _cells$$name2;
+        return [classes.cellWrapper, padding ? classes.cellWrapper_padding : null, ['radio', 'checkbox', 'toggle'].includes(type) ? classes.cellWrapper_centered : null, (_cells$$name = cells$[name]) !== null && _cells$$name !== void 0 && _cells$$name.error ? classes.cellWrapper_error : null, (_cells$$name2 = cells$[name]) !== null && _cells$$name2 !== void 0 && _cells$$name2.isSuccess ? classes.cellWrapper_success : null];
+      };
+    },
+    $add: (classes, _ref40) => {
+      var {
+        Size
+      } = _ref40;
+      return [classes.add, classes["add_".concat(Size)]];
+    },
+    $remove: (classes, _ref41) => {
+      var {
+        removeHover
+      } = _ref41;
+      return [classes.remove, removeHover ? classes.remove_hover : null];
+    }
+  },
   MultifileElement: {
     container: 'form-text-type',
     list: '',
@@ -14150,34 +14383,34 @@ var classes = {
     button_sm: 'form-p-btn-sm form-radius-btn-sm form-text-sm',
     button_md: 'form-p-btn form-radius-btn form-text',
     button_lg: 'form-p-btn-lg form-radius-btn-lg form-text-lg',
-    $list: (classes, _ref35) => {
+    $list: (classes, _ref42) => {
       var {
         isDisabled,
         sorting,
         view,
         Size
-      } = _ref35;
+      } = _ref42;
       return [classes.list, classes["list_".concat(Size)], isDisabled ? classes.list_disabled : null, sorting ? classes.list_sorting : null, classes["list_".concat(view)], classes["list_".concat(view, "_").concat(Size)]];
     },
-    $handle: (classes, _ref36) => {
+    $handle: (classes, _ref43) => {
       var {
         view,
         Size
-      } = _ref36;
+      } = _ref43;
       return [classes.handle, classes["handle_".concat(view)], classes["handle_".concat(view, "_").concat(Size)]];
     },
-    $handleIcon: (classes, _ref37) => {
+    $handleIcon: (classes, _ref44) => {
       var {
         view
-      } = _ref37;
+      } = _ref44;
       return [classes.handleIcon, classes["handleIcon_".concat(view)]];
     },
-    $button: (classes, _ref38) => {
+    $button: (classes, _ref45) => {
       var {
         isDisabled,
         preparing,
         Size
-      } = _ref38;
+      } = _ref45;
       return [classes.button, classes["button_".concat(Size)], !isDisabled && !preparing ? classes.button_enabled : null, isDisabled || preparing ? classes.button_disabled : null];
     }
   },
@@ -14209,22 +14442,22 @@ var classes = {
       multipleLabel_noCaretClear_sm: 'form-pl-input-sm form-pr-input-sm with-floating:form-p-input-floating-sm rtl:form-pr-input-sm rtl:form-pl-input-sm',
       multipleLabel_noCaretClear_md: 'form-pl-input form-pr-input with-floating:form-p-input-floating rtl:form-pr-input rtl:form-pl-input',
       multipleLabel_noCaretClear_lg: 'form-pl-input-lg form-pr-input-lg with-floating:form-p-input-floating-lg rtl:form-pr-input-lg rtl:form-pl-input-lg',
-      $multipleLabel: (classes, _ref39) => {
+      $multipleLabel: (classes, _ref46) => {
         var {
           Size,
           caret,
           canClear
-        } = _ref39;
+        } = _ref46;
         return [classes.select.multipleLabel, classes.select["multipleLabel_".concat(Size)], canClear && caret ? classes.select["multipleLabel_caretClear_".concat(Size)] : null, !caret && canClear ? classes.select["multipleLabel_noCaret_".concat(Size)] : null, !canClear && caret ? classes.select["multipleLabel_noClear_".concat(Size)] : null, !canClear && !caret ? classes.select["multipleLabel_noCaretClear_".concat(Size)] : null];
       }
     }),
-    $input: (classes, _ref40) => {
+    $input: (classes, _ref47) => {
       var {
         isDisabled,
         Size,
         isDanger,
         isSuccess
-      } = _ref40;
+      } = _ref47;
       return [classes.input, classes["input_".concat(Size)], isDisabled ? classes.input_disabled : null, !isDisabled && !isSuccess && !isDanger ? classes.input_default : null, !isDisabled && isDanger ? classes.input_danger : null, !isDisabled && isSuccess ? classes.input_success : null];
     }
   },
@@ -14235,11 +14468,11 @@ var classes = {
     wrapper_md: 'form-gap-gutter',
     wrapper_lg: 'form-gap-gutter-lg',
     wrapper_embed: '!block',
-    $wrapper: (classes, _ref41) => {
+    $wrapper: (classes, _ref48) => {
       var {
         Size,
         embed
-      } = _ref41;
+      } = _ref48;
       return [classes.wrapper, classes["wrapper_".concat(Size)], embed ? classes.wrapper_embed : null];
     }
   },
@@ -14255,17 +14488,17 @@ var classes = {
     country: 'ml-3 rtl:ml-0 rtl:mr-3 font-semibold text-[15px] form-color-input flex',
     number: 'ml-2 rtl:ml-0 rtl:mr-2 form-color-muted rtl:order-1',
     placeholder: 'bg-form-flags bg-[length:24px_4716px] overflow-hidden bg-no-repeat rounded-sm bg-[0px_0px] w-[24px] h-[16px] opacity-60',
-    $optionsWrapper: (classes, _ref42) => {
+    $optionsWrapper: (classes, _ref49) => {
       var {
         Size
-      } = _ref42;
+      } = _ref49;
       return [classes.optionsWrapper, classes["optionsWrapper_".concat(Size)]];
     },
     $option: classes => active => [classes.option, active ? classes.option_active : null]
   }),
   RadioElement: _objectSpread2(_objectSpread2({}, radio), {}, {
     container: '',
-    wrapper: 'flex align-start rtl:justify-start',
+    wrapper: 'flex rtl:justify-start',
     wrapper_sm: 'form-text-sm',
     wrapper_md: 'form-text',
     wrapper_lg: 'form-text-lg',
@@ -14279,65 +14512,66 @@ var classes = {
     text: 'cursor-pointer',
     text_left: 'rtl:-order-1',
     text_right: '-order-1 rtl:order-none',
-    $wrapper: (classes, _ref43) => {
+    $wrapper: (classes, _ref50) => {
       var {
         Size,
         align
-      } = _ref43;
+      } = _ref50;
       return [classes.wrapper, classes["wrapper_".concat(Size)], align === 'left' ? classes.wrapper_left : null, align === 'right' ? classes.wrapper_right : null];
     },
-    $input: (classes, _ref44) => {
+    $input: (classes, _ref51) => {
       var {
         isDisabled,
         Size,
         isDanger,
-        align
-      } = _ref44;
-      return [classes.input, classes["input_".concat(Size)], !isDisabled && !isDanger ? classes.input_default : null, isDisabled ? classes.input_disabled : null, isDanger ? classes.input_danger : null, align === 'left' ? [classes.input_left, classes["input_left_".concat(Size)]] : null, align === 'right' ? [classes.input_right, classes["input_right_".concat(Size)]] : null];
+        align,
+        standalone
+      } = _ref51;
+      return [classes.input, classes["input_".concat(Size)], !isDisabled && !isDanger ? classes.input_default : null, isDisabled ? classes.input_disabled : null, isDanger ? classes.input_danger : null, align === 'left' ? [classes.input_left, classes["input_left_".concat(Size)]] : null, align === 'right' ? [classes.input_right, classes["input_right_".concat(Size)]] : null, standalone ? classes.input_standalone : null];
     },
-    $text: (classes, _ref45) => {
+    $text: (classes, _ref52) => {
       var {
         align
-      } = _ref45;
+      } = _ref52;
       return [classes.text, align === 'left' ? classes.text_left : null, align === 'right' ? classes.text_right : null];
     }
   }),
   RadiogroupElement: {
-    container: '',
+    container: 'form-view-default',
     wrapper: 'flex flex-col justify-start',
     wrapper_sm: '',
     wrapper_md: '',
     wrapper_lg: '',
-    $wrapper: (classes, _ref46) => {
+    $wrapper: (classes, _ref53) => {
       var {
         Size
-      } = _ref46;
+      } = _ref53;
       return [classes.wrapper, classes["wrapper_".concat(Size)]];
     }
   },
   RadiogroupElement_tabs: {
-    container: ' form-text-type',
+    container: 'form-text-type form-view-tabs',
     wrapper: 'grid grid-flow-col grid form-shadow-input',
     wrapper_sm: 'form-radius-large-sm',
     wrapper_md: 'form-radius-large',
     wrapper_lg: 'form-radius-large-lg',
-    $wrapper: (classes, _ref47) => {
+    $wrapper: (classes, _ref54) => {
       var {
         Size
-      } = _ref47;
+      } = _ref54;
       return [classes.wrapper, classes["wrapper_".concat(Size)]];
     }
   },
   RadiogroupElement_blocks: {
-    container: '',
+    container: 'form-view-blocks',
     wrapper: 'flex flex-col justify-start form-shadow-input',
     wrapper_sm: 'form-radius-large-sm',
     wrapper_md: 'form-radius-large',
     wrapper_lg: 'form-radius-large-lg',
-    $wrapper: (classes, _ref48) => {
+    $wrapper: (classes, _ref55) => {
       var {
         Size
-      } = _ref48;
+      } = _ref55;
       return [classes.wrapper, classes["wrapper_".concat(Size)]];
     }
   },
@@ -14379,46 +14613,46 @@ var classes = {
       singleLabel_noCaretClear_lg: 'form-pl-input-lg form-pr-input-lg with-floating:form-p-input-floating-lg rtl:form-pr-input-lg rtl:form-pl-input-lg',
       singleLabelText: 'overflow-hidden block whitespace-nowrap max-w-full',
       singleLabelText_truncate: 'overflow-ellipsis',
-      $singleLabel: (classes, _ref49) => {
+      $singleLabel: (classes, _ref56) => {
         var {
           Size,
           caret,
           canClear
-        } = _ref49;
+        } = _ref56;
         return [classes.select.singleLabel, classes.select["singleLabel_".concat(Size)], canClear && caret ? classes.select["singleLabel_caretClear_".concat(Size)] : null, !caret && canClear ? classes.select["singleLabel_noCaret_".concat(Size)] : null, !canClear && caret ? classes.select["singleLabel_noClear_".concat(Size)] : null, !canClear && !caret ? classes.select["singleLabel_noCaretClear_".concat(Size)] : null];
       },
-      $singleLabelText: (classes, _ref50) => {
+      $singleLabelText: (classes, _ref57) => {
         var {
           truncate
-        } = _ref50;
+        } = _ref57;
         return [classes.select.singleLabelText, truncate ? classes.select["singleLabelText_truncate"] : null];
       }
     }),
-    $input: (classes, _ref51) => {
+    $input: (classes, _ref58) => {
       var {
         isDisabled,
         Size,
         isSuccess,
         isDanger
-      } = _ref51;
+      } = _ref58;
       return [classes.input, classes["input_".concat(Size)], isDisabled ? classes.input_disabled : null, !isDisabled && !isSuccess && !isDanger ? classes.input_default : null, !isDisabled && isDanger ? classes.input_danger : null, !isDisabled && isSuccess ? classes.input_success : null];
     },
-    $inputWrapper: (classes, _ref52) => {
+    $inputWrapper: (classes, _ref59) => {
       var {
         Size
-      } = _ref52;
+      } = _ref59;
       return [classes.inputWrapper, classes["inputWrapper_".concat(Size)]];
     },
-    $inputPlaceholder: (classes, _ref53) => {
+    $inputPlaceholder: (classes, _ref60) => {
       var {
         Size
-      } = _ref53;
+      } = _ref60;
       return [classes.inputPlaceholder, classes["inputPlaceholder_".concat(Size)]];
     },
-    $inputCaret: (classes, _ref54) => {
+    $inputCaret: (classes, _ref61) => {
       var {
         Size
-      } = _ref54;
+      } = _ref61;
       return [classes.inputCaret, classes["inputCaret_".concat(Size)]];
     }
   },
@@ -14467,70 +14701,70 @@ var classes = {
     redo_disabled: 'opacity-50 cursor-not-allowed',
     clearWrapper: 'absolute top-1/2 transform -translate-y-1/2 right-4 text-sm',
     clear: 'mask-bg mask-form-remove form-bg-input-color w-3 h-4 py-px box-content inline-block cursor-pointer focus-visible:opacity-60',
-    $wrapper: (classes, _ref55) => {
+    $wrapper: (classes, _ref62) => {
       var {
         isDisabled,
         readonly,
         Size
-      } = _ref55;
+      } = _ref62;
       return [classes.wrapper, classes["wrapper_".concat(Size)], isDisabled ? classes.wrapper_disabled : classes.wrapper_enabled, readonly ? classes.wrapper_readonly : null];
     },
-    $loadedWrapper: (classes, _ref56) => {
+    $loadedWrapper: (classes, _ref63) => {
       var {
         isDisabled
-      } = _ref56;
+      } = _ref63;
       return [classes.loadedWrapper, isDisabled ? classes.loadedWrapper_disabled : classes.loadedWrapper_enabled];
     },
-    $innerWrapper: (classes, _ref57) => {
+    $innerWrapper: (classes, _ref64) => {
       var {
         isDisabled
-      } = _ref57;
+      } = _ref64;
       return [classes.innerWrapper, isDisabled ? classes.innerWrapper_disabled : classes.innerWrapper_enabled];
     },
-    $input: (classes, _ref58) => {
+    $input: (classes, _ref65) => {
       var {
         invertColors,
         color
-      } = _ref58;
+      } = _ref65;
       return [classes.input, invertColors.indexOf(color) !== -1 ? classes.input_invert : null];
     },
-    $uploadContainer: (classes, _ref59) => {
+    $uploadContainer: (classes, _ref66) => {
       var {
         dragging
-      } = _ref59;
+      } = _ref66;
       return [classes.uploadContainer, dragging ? classes.uploadContainer_dragging : classes.uploadContainer_not_dragging];
     },
-    $uploadWrapper: (classes, _ref60) => {
+    $uploadWrapper: (classes, _ref67) => {
       var {
         processing
-      } = _ref60;
+      } = _ref67;
       return [classes.uploadWrapper, processing ? classes.uploadWrapper_processing : null];
     },
-    $pad: (classes, _ref61) => {
+    $pad: (classes, _ref68) => {
       var {
         invertColors,
         color
-      } = _ref61;
+      } = _ref68;
       return [classes.pad, invertColors.indexOf(color) !== -1 ? classes.pad_invert : null];
     },
-    $color: (classes, _ref62) => {
+    $color: (classes, _ref69) => {
       var {
         color,
         invertColors,
         mode
-      } = _ref62;
+      } = _ref69;
       return c => [classes.color, c === color ? classes.color_active : classes.color_inactive, invertColors.indexOf(c) !== -1 && mode !== 'upload' ? classes.color_invert : null];
     },
-    $undo: (classes, _ref63) => {
+    $undo: (classes, _ref70) => {
       var {
         undosLeft
-      } = _ref63;
+      } = _ref70;
       return [classes.undo, undosLeft ? classes.undo_enabled : classes.undo_disabled];
     },
-    $redo: (classes, _ref64) => {
+    $redo: (classes, _ref71) => {
       var {
         redos
-      } = _ref64;
+      } = _ref71;
       return [classes.redo, redos.length ? classes.redo_enabled : classes.redo_disabled];
     }
   },
@@ -14605,83 +14839,83 @@ var classes = {
       draggable: 'cursor-ew-resize v:cursor-ns-resize',
       tap: 'slider-state-tap',
       drag: 'slider-state-drag',
-      $target: (classes, _ref65) => {
-        var {
-          Size
-        } = _ref65;
-        return [classes.slider.target, classes.slider["target_".concat(Size)]];
-      },
-      $horizontal: (classes, _ref66) => {
-        var {
-          Size
-        } = _ref66;
-        return [classes.slider.horizontal, classes.slider["horizontal_".concat(Size)]];
-      },
-      $vertical: (classes, _ref67) => {
-        var {
-          Size
-        } = _ref67;
-        return [classes.slider.vertical, classes.slider["vertical_".concat(Size)]];
-      },
-      $base: (classes, _ref68) => {
-        var {
-          Size
-        } = _ref68;
-        return [classes.slider.base, classes.slider["base_".concat(Size)]];
-      },
-      $connects: (classes, _ref69) => {
-        var {
-          Size
-        } = _ref69;
-        return [classes.slider.connects, classes.slider["connects_".concat(Size)]];
-      },
-      $connect: (classes, _ref70) => {
-        var {
-          Size
-        } = _ref70;
-        return [classes.slider.connect, classes.slider["connect_".concat(Size)]];
-      },
-      $handle: (classes, _ref71) => {
-        var {
-          Size
-        } = _ref71;
-        return [classes.slider.handle, classes.slider["handle_".concat(Size)]];
-      },
-      $tooltip: (classes, _ref72) => {
+      $target: (classes, _ref72) => {
         var {
           Size
         } = _ref72;
-        return [classes.slider.tooltip, classes.slider["tooltip_".concat(Size)]];
+        return [classes.slider.target, classes.slider["target_".concat(Size)]];
       },
-      $tooltipTop: (classes, _ref73) => {
+      $horizontal: (classes, _ref73) => {
         var {
           Size
         } = _ref73;
-        return [classes.slider.tooltipTop, classes.slider["tooltipTop_".concat(Size)]];
+        return [classes.slider.horizontal, classes.slider["horizontal_".concat(Size)]];
       },
-      $tooltipBottom: (classes, _ref74) => {
+      $vertical: (classes, _ref74) => {
         var {
           Size
         } = _ref74;
-        return [classes.slider.tooltipBottom, classes.slider["tooltipBottom_".concat(Size)]];
+        return [classes.slider.vertical, classes.slider["vertical_".concat(Size)]];
       },
-      $tooltipLeft: (classes, _ref75) => {
+      $base: (classes, _ref75) => {
         var {
           Size
         } = _ref75;
-        return [classes.slider.tooltipLeft, classes.slider["tooltipLeft_".concat(Size)]];
+        return [classes.slider.base, classes.slider["base_".concat(Size)]];
       },
-      $tooltipRight: (classes, _ref76) => {
+      $connects: (classes, _ref76) => {
         var {
           Size
         } = _ref76;
+        return [classes.slider.connects, classes.slider["connects_".concat(Size)]];
+      },
+      $connect: (classes, _ref77) => {
+        var {
+          Size
+        } = _ref77;
+        return [classes.slider.connect, classes.slider["connect_".concat(Size)]];
+      },
+      $handle: (classes, _ref78) => {
+        var {
+          Size
+        } = _ref78;
+        return [classes.slider.handle, classes.slider["handle_".concat(Size)]];
+      },
+      $tooltip: (classes, _ref79) => {
+        var {
+          Size
+        } = _ref79;
+        return [classes.slider.tooltip, classes.slider["tooltip_".concat(Size)]];
+      },
+      $tooltipTop: (classes, _ref80) => {
+        var {
+          Size
+        } = _ref80;
+        return [classes.slider.tooltipTop, classes.slider["tooltipTop_".concat(Size)]];
+      },
+      $tooltipBottom: (classes, _ref81) => {
+        var {
+          Size
+        } = _ref81;
+        return [classes.slider.tooltipBottom, classes.slider["tooltipBottom_".concat(Size)]];
+      },
+      $tooltipLeft: (classes, _ref82) => {
+        var {
+          Size
+        } = _ref82;
+        return [classes.slider.tooltipLeft, classes.slider["tooltipLeft_".concat(Size)]];
+      },
+      $tooltipRight: (classes, _ref83) => {
+        var {
+          Size
+        } = _ref83;
         return [classes.slider.tooltipRight, classes.slider["tooltipRight_".concat(Size)]];
       }
     },
-    $wrapper: (classes, _ref77) => {
+    $wrapper: (classes, _ref84) => {
       var {
         Size
-      } = _ref77;
+      } = _ref84;
       return [classes.wrapper, classes["wrapper_".concat(Size)]];
     }
   },
@@ -14740,22 +14974,22 @@ var classes = {
     tag_a_lg: '',
     tag_hr: 'form-static-tag-hr-wrapper form-border-color-hr form-py-hr',
     tag_img: 'form-static-tag-img',
-    $content: (classes, _ref78) => {
+    $content: (classes, _ref85) => {
       var {
         Size,
         top,
         bottom
-      } = _ref78;
+      } = _ref85;
       return [classes.content, classes["content_".concat(Size)], top >= 1 ? classes["content_top_".concat(top)] : null, bottom >= 1 ? classes["content_bottom_".concat(bottom)] : null];
     },
-    $tag: (classes, _ref79) => {
+    $tag: (classes, _ref86) => {
       var {
         Size,
         tag,
         align,
         top,
         bottom
-      } = _ref79;
+      } = _ref86;
       return [classes.tag, classes["tag_".concat(Size)], classes["tag_".concat(tag)], classes["tag_".concat(tag, "_").concat(Size)] || null, align === 'left' ? classes.tag_left : null, align === 'center' ? classes.tag_center : null, align === 'right' ? classes.tag_right : null, top >= 1 ? classes["tag_top_".concat(top)] : null, bottom >= 1 ? classes["tag_bottom_".concat(bottom)] : null];
     }
   },
@@ -14791,46 +15025,46 @@ var classes = {
       tagsSearch_md: 'form-text',
       tagsSearch_lg: 'form-text-lg',
       tagsSearchCopy: 'invisible whitespace-pre-wrap inline-block h-px',
-      $tags: (classes, _ref80) => {
+      $tags: (classes, _ref87) => {
         var {
           Size
-        } = _ref80;
+        } = _ref87;
         return [classes.select.tags, classes.select["tags_".concat(Size)]];
       },
-      $tag: (classes, _ref81) => {
+      $tag: (classes, _ref88) => {
         var {
           Size
-        } = _ref81;
+        } = _ref88;
         return [classes.select.tag, classes.select["tag_".concat(Size)]];
       },
-      $tagWrapper: (classes, _ref82) => {
+      $tagWrapper: (classes, _ref89) => {
         var {
           breakTags
-        } = _ref82;
+        } = _ref89;
         return [classes.select.tagWrapper, !breakTags.value ? classes.select.tagWrapper_noBreak : null];
       },
-      $tagDisabled: (classes, _ref83) => {
+      $tagDisabled: (classes, _ref90) => {
         var {
           Size
-        } = _ref83;
+        } = _ref90;
         return [classes.select.tagDisabled, classes.select["tagDisabled_".concat(Size)]];
       },
-      $tagRemove: (classes, _ref84) => {
+      $tagRemove: (classes, _ref91) => {
         var {
           Size
-        } = _ref84;
+        } = _ref91;
         return [classes.select.tagRemove, classes.select["tagRemove_".concat(Size)]];
       },
-      $tagsSearchWrapper: (classes, _ref85) => {
+      $tagsSearchWrapper: (classes, _ref92) => {
         var {
           Size
-        } = _ref85;
+        } = _ref92;
         return [classes.select.tagsSearchWrapper, classes.select["tagsSearchWrapper_".concat(Size)]];
       },
-      $tagsSearch: (classes, _ref86) => {
+      $tagsSearch: (classes, _ref93) => {
         var {
           Size
-        } = _ref86;
+        } = _ref93;
         return [classes.select.tagsSearch, classes.select["tagsSearch_".concat(Size)]];
       }
     })
@@ -14878,43 +15112,43 @@ var classes = {
       label_sm: 'form-w-toggle-label-sm',
       label_md: 'form-w-toggle-label',
       label_lg: 'form-w-toggle-label-lg',
-      $container: (classes, _ref87) => {
+      $container: (classes, _ref94) => {
         var {
           Size,
           isDisabled
-        } = _ref87;
+        } = _ref94;
         return [classes.toggle.container, classes.toggle["container_".concat(Size)], !isDisabled ? classes.toggle.container_enabled : classes.toggle.container_disabled];
       },
-      $toggle: (classes, _ref88) => {
+      $toggle: (classes, _ref95) => {
         var {
           Size
-        } = _ref88;
+        } = _ref95;
         return [classes.toggle.toggle, classes.toggle["toggle_".concat(Size)]];
       },
-      $handle: (classes, _ref89) => {
+      $handle: (classes, _ref96) => {
         var {
           Size
-        } = _ref89;
+        } = _ref96;
         return [classes.toggle.handle, classes.toggle["handle_".concat(Size)]];
       },
-      $label: (classes, _ref90) => {
+      $label: (classes, _ref97) => {
         var {
           Size
-        } = _ref90;
+        } = _ref97;
         return [classes.toggle.label, classes.toggle["label_".concat(Size)]];
       }
     },
-    $text: (classes, _ref91) => {
+    $text: (classes, _ref98) => {
       var {
         Size,
         align
-      } = _ref91;
+      } = _ref98;
       return [classes.text, classes["text_".concat(Size)], align === 'left' ? [classes.text_left, classes["text_left_".concat(Size)]] : null, align === 'right' ? [classes.text_right, classes["text_right_".concat(Size)]] : null];
     },
-    $wrapper: (classes, _ref92) => {
+    $wrapper: (classes, _ref99) => {
       var {
         align
-      } = _ref92;
+      } = _ref99;
       return [classes.wrapper, align === 'left' ? classes.wrapper_left : null, align === 'right' ? classes.wrapper_right : null];
     }
   },
@@ -14942,10 +15176,10 @@ var classes = {
     container_hideAttach: 'form-editor-hide-attach',
     container_hideUndo: 'form-editor-hide-undo',
     container_hideRedo: 'form-editor-hide-redo',
-    $container: (classes, _ref93) => {
+    $container: (classes, _ref100) => {
       var {
         hideTools
-      } = _ref93;
+      } = _ref100;
       return [classes.container].concat(hideTools.map(t => classes["container_hide".concat(t.split('-').map(s => s.charAt(0).toUpperCase() + s.slice(1)).join(''))]));
     }
   },
@@ -14964,11 +15198,11 @@ var classes = {
     container_after_md: 'form-radius-input-r form-pr-input form-pl-space-addon',
     container_after_lg: 'form-radius-input-r-lg form-pr-input-lg form-pl-space-addon-lg',
     wrapper: 'contents items-center justify-center',
-    $container: (classes, _ref94) => {
+    $container: (classes, _ref101) => {
       var {
         type,
         Size
-      } = _ref94;
+      } = _ref101;
       return [classes.container, classes["container_".concat(Size)], classes["container_".concat(type)], classes["container_".concat(type, "_").concat(Size)]];
     }
   },
@@ -14983,24 +15217,24 @@ var classes = {
     optionWrapper: '',
     option: 'flex items-center form-color-input cursor-pointer py-1.25 px-3 whitespace-nowrap',
     option_active: 'form-bg-selected',
-    $container: (classes, _ref95) => {
+    $container: (classes, _ref102) => {
       var {
         Size,
         el$
-      } = _ref95;
+      } = _ref102;
       return [classes.container, el$.isDisabled || el$.readonly ? classes.container_disabled : null];
     },
-    $wrapper: (classes, _ref96) => {
+    $wrapper: (classes, _ref103) => {
       var {
         relaxed
-      } = _ref96;
+      } = _ref103;
       return [classes.wrapper, relaxed ? classes.wrapper_relaxed : classes.wrapper_default];
     },
-    $option: (classes, _ref97) => {
+    $option: (classes, _ref104) => {
       var {
         selected,
         pointed
-      } = _ref97;
+      } = _ref104;
       return option => [classes.option, selected.index === option.index || pointed.index === option.index ? classes.option_active : null];
     }
   },
@@ -15009,10 +15243,10 @@ var classes = {
     container_sm: 'form-text-small-sm mt-0.5',
     container_md: 'form-text-small mt-1',
     container_lg: 'form-text-small-lg mt-1',
-    $container: (classes, _ref98) => {
+    $container: (classes, _ref105) => {
       var {
         Size
-      } = _ref98;
+      } = _ref105;
       return [classes.container, classes["container_".concat(Size)]];
     }
   },
@@ -15021,10 +15255,10 @@ var classes = {
     container_sm: 'form-text-small-sm mt-0.5',
     container_md: 'form-text-small mt-1',
     container_lg: 'form-text-small-lg mt-1',
-    $container: (classes, _ref99) => {
+    $container: (classes, _ref106) => {
       var {
         Size
-      } = _ref99;
+      } = _ref106;
       return [classes.container, classes["container_".concat(Size)]];
     }
   },
@@ -15036,10 +15270,10 @@ var classes = {
     wrapper_top: 'left-1/2 transform -translate-x-1/2 bottom-8 justify-center',
     wrapper_bottom: 'left-1/2 transform -translate-x-1/2 top-6 justify-center',
     content: 'bg-black bg-opacity-90 text-white rounded-md form-text-small py-1 px-2.5 not-italic inline-block relative',
-    $wrapper: (classes, _ref100) => {
+    $wrapper: (classes, _ref107) => {
       var {
         position
-      } = _ref100;
+      } = _ref107;
       return [classes.wrapper, classes["wrapper_".concat(position)]];
     }
   },
@@ -15085,11 +15319,11 @@ var classes = {
     container_horizontal_md_2XL: '2xl:form-pr-gutter 2xl:text-type:form-pt-input-border 2xl:pb-0',
     container_horizontal_lg_2XL: '2xl:form-pr-gutter-lg 2xl:text-type:form-pt-input-border-lg 2xl:pb-0',
     wrapper: '',
-    $container: (classes, _ref101) => {
+    $container: (classes, _ref108) => {
       var {
         el$,
         Size
-      } = _ref101;
+      } = _ref108;
       return [classes.container, classes["container_".concat(Size)], !el$.inline ? el$.columnsClasses.label : null, el$.cols.default.label < 12 ? classes["container_horizontal_".concat(Size)] : classes["container_vertical_".concat(Size)], ...(Object.keys(el$.cols).length > 1 ? (el$.$vueform.config.breakpoints || ['sm', 'md', 'lg', 'xl', '2xl']).map(breakpoint => {
         var _el$$cols$breakpoint;
         if (!((_el$$cols$breakpoint = el$.cols[breakpoint]) !== null && _el$$cols$breakpoint !== void 0 && _el$$cols$breakpoint.label)) {
@@ -15112,12 +15346,12 @@ var classes = {
     label_lg: 'form-left-input-lg form-mt-floating-lg rtl:left-auto rtl:form-right-input-lg',
     label_invisible: 'opacity-0 invisible',
     label_visible: 'opacity-100 visible',
-    $label: (classes, _ref102) => {
+    $label: (classes, _ref109) => {
       var {
         visible,
         Size,
         el$
-      } = _ref102;
+      } = _ref109;
       return [classes.label, classes["label_".concat(Size)], visible ? classes.label_visible : classes.label_invisible, el$.focused && !el$.isDanger && !el$.isSuccess ? classes.label_focused : null, !el$.isDisabled && !el$.isDanger && !el$.isSuccess ? classes.label_enabled : null, el$.isDisabled ? classes.label_disabled : null, el$.isDanger ? classes.label_danger : null, el$.isSuccess ? classes.label_success : null];
     }
   },
@@ -15132,33 +15366,33 @@ var classes = {
     innerWrapperBefore: 'col-span-12',
     innerWrapper: '',
     innerWrapperAfter: 'col-span-12',
-    $container: (classes, _ref103) => {
+    $container: (classes, _ref110) => {
       var {
         el$,
         Size
-      } = _ref103;
+      } = _ref110;
       return [classes.container, classes["container_".concat(Size)], el$.columnsClasses.container, el$.classes.container, !el$.isStatic && el$.errors && !!el$.errors.length ? classes.container_error : null];
     },
-    $innerContainer: (classes, _ref104) => {
+    $innerContainer: (classes, _ref111) => {
       var {
         el$
-      } = _ref104;
+      } = _ref111;
       return [classes.innerContainer, el$.columnsClasses.innerContainer];
     },
-    $innerWrapper: (classes, _ref105) => {
+    $innerWrapper: (classes, _ref112) => {
       var {
         el$
-      } = _ref105;
+      } = _ref112;
       return [classes.innerWrapper, el$.columnsClasses.wrapper];
     }
   },
   ElementLayoutInline: {
     container: 'flex',
     container_error: 'has-error',
-    $container: (classes, _ref106) => {
+    $container: (classes, _ref113) => {
       var {
         el$
-      } = _ref106;
+      } = _ref113;
       return [classes.container, !el$.isStatic && el$.errors && !!el$.errors.length ? classes.container_error : null, el$.classes.container];
     }
   },
@@ -15168,10 +15402,10 @@ var classes = {
     loader_sm: 'form-top-input-border-sm form-mr-input-sm mt-0.5',
     loader_md: 'form-top-input-border form-mr-input mt-1',
     loader_lg: 'form-top-input-border-lg form-mr-input-lg mt-1',
-    $loader: (classes, _ref107) => {
+    $loader: (classes, _ref114) => {
       var {
         Size
-      } = _ref107;
+      } = _ref114;
       return [classes.loader, classes["loader_".concat(Size)]];
     }
   },
@@ -15180,10 +15414,10 @@ var classes = {
     container_sm: 'form-text-small-sm mt-0.5',
     container_md: 'form-text-small mt-1',
     container_lg: 'form-text-small-lg mt-1',
-    $container: (classes, _ref108) => {
+    $container: (classes, _ref115) => {
       var {
         Size
-      } = _ref108;
+      } = _ref115;
       return [classes.container, classes["container_".concat(Size)]];
     }
   },
@@ -15195,10 +15429,10 @@ var classes = {
     container_before: '',
     container_between: '',
     container_after: '',
-    $container: (classes, _ref109) => {
+    $container: (classes, _ref116) => {
       var {
         type
-      } = _ref109;
+      } = _ref116;
       return [classes.container, classes["container_".concat(type)]];
     }
   },
@@ -15207,10 +15441,10 @@ var classes = {
     container_sm: 'form-gap-x-gutter-sm form-gap-y-gutter-sm',
     container_md: 'form-gap-x-gutter form-gap-y-gutter',
     container_lg: 'form-gap-x-gutter-lg form-gap-y-gutter-lg',
-    $container: (classes, _ref110) => {
+    $container: (classes, _ref117) => {
       var {
         Size
-      } = _ref110;
+      } = _ref117;
       return [classes.container, classes["container_".concat(Size)]];
     }
   },
@@ -15220,10 +15454,10 @@ var classes = {
     container_md: 'form-radius-input form-text form-mb-gutter py-2 px-3',
     container_lg: 'form-radius-input-lg form-text-lg form-mb-gutter-lg py-3 px-4',
     error: '',
-    $container: (classes, _ref111) => {
+    $container: (classes, _ref118) => {
       var {
         Size
-      } = _ref111;
+      } = _ref118;
       return [classes.container, classes["container_".concat(Size)]];
     }
   },
@@ -15237,11 +15471,11 @@ var classes = {
     wrapper_sm: 'py-1.5 px-3.5',
     wrapper_md: 'py-2 px-4',
     wrapper_lg: 'py-2 px-4',
-    $wrapper: (classes, _ref112) => {
+    $wrapper: (classes, _ref119) => {
       var {
         selected,
         Size
-      } = _ref112;
+      } = _ref119;
       return [classes.wrapper, classes["wrapper_".concat(Size)], selected ? classes.wrapper_active : classes.wrapper_inactive];
     }
   },
@@ -15250,10 +15484,10 @@ var classes = {
     container_sm: 'form-mb-gutter form-text-sm',
     container_md: 'form-mb-gutter-lg form-text',
     container_lg: 'form-mb-gutter-lg form-text-lg',
-    $container: (classes, _ref113) => {
+    $container: (classes, _ref120) => {
       var {
         Size
-      } = _ref113;
+      } = _ref120;
       return [classes.container, classes["container_".concat(Size)]];
     }
   },
@@ -15263,10 +15497,10 @@ var classes = {
     container_md: 'form-radius-input form-text form-mb-gutter py-2 px-3',
     container_lg: 'form-radius-input-lg form-text-lg form-mb-gutter-lg py-3 px-4',
     message: '',
-    $container: (classes, _ref114) => {
+    $container: (classes, _ref121) => {
       var {
         Size
-      } = _ref114;
+      } = _ref121;
       return [classes.container, classes["container_".concat(Size)]];
     }
   },
@@ -15282,14 +15516,14 @@ var classes = {
     container_incompleted: '',
     container_pending: 'form-step-pending',
     wrapper: '',
-    $container: (classes, _ref115) => {
+    $container: (classes, _ref122) => {
       var {
         active,
         isDisabled,
         completed,
         invalid,
         pending
-      } = _ref115;
+      } = _ref122;
       return [classes.container, active ? classes.container_active : classes.container_inactive, isDisabled ? classes.container_disabled : classes.container_enabled, completed ? classes.container_completed : classes.container_incompleted, invalid ? classes.container_invalid : classes.container_valid, pending ? classes.container_pending : null];
     }
   },
@@ -15299,10 +15533,10 @@ var classes = {
     container_md: 'form-mb-gutter-lg form-text',
     container_lg: 'form-mb-gutter-lg form-text-lg',
     wrapper: 'flex justify-between overflow-x-auto',
-    $container: (classes, _ref116) => {
+    $container: (classes, _ref123) => {
       var {
         Size
-      } = _ref116;
+      } = _ref123;
       return [classes.container, classes["container_".concat(Size)]];
     }
   },
@@ -15322,13 +15556,13 @@ var classes = {
     button_sm: 'form-p-btn-sm form-radius-btn-sm form-text-sm',
     button_md: 'form-p-btn form-radius-btn form-text',
     button_lg: 'form-p-btn-lg form-radius-btn-lg form-text-lg',
-    $button: (classes, _ref117) => {
+    $button: (classes, _ref124) => {
       var {
         isDisabled,
         isLoading,
         type,
         Size
-      } = _ref117;
+      } = _ref124;
       return [classes.button, classes["button_".concat(Size)], classes["button_".concat(type)], isDisabled && !isLoading ? classes["button_".concat(type, "_disabled")] : null, !isDisabled && !isLoading ? classes["button_".concat(type, "_enabled")] : null, isLoading ? classes["button_".concat(type, "_loading")] : null];
     }
   },
@@ -15337,10 +15571,10 @@ var classes = {
     container_sm: 'form-mt-gutter form-text-sm',
     container_md: 'form-mt-gutter-lg form-text',
     container_lg: 'form-mt-gutter-lg form-text-lg',
-    $container: (classes, _ref118) => {
+    $container: (classes, _ref125) => {
       var {
         Size
-      } = _ref118;
+      } = _ref125;
       return [classes.container, classes["container_".concat(Size)]];
     }
   },
@@ -15354,15 +15588,15 @@ var classes = {
     wrapper_sm: 'py-1.5 px-3.5',
     wrapper_md: 'py-2 px-4',
     wrapper_lg: 'py-2 px-4',
-    $container: (classes, _ref119) => {
+    $container: (classes, _ref126) => {
       return [classes.container];
     },
-    $wrapper: (classes, _ref120) => {
+    $wrapper: (classes, _ref127) => {
       var {
         active,
         invalid,
         Size
-      } = _ref120;
+      } = _ref127;
       return [classes.wrapper, classes["wrapper_".concat(Size)], active ? classes.wrapper_active : classes.wrapper_inactive, invalid ? classes.wrapper_invalid : classes.wrapper_valid];
     }
   },
@@ -15371,10 +15605,10 @@ var classes = {
     container_sm: 'form-mb-gutter form-text-sm',
     container_md: 'form-mb-gutter-lg form-text',
     container_lg: 'form-mb-gutter-lg form-text-lg',
-    $container: (classes, _ref121) => {
+    $container: (classes, _ref128) => {
       var {
         Size
-      } = _ref121;
+      } = _ref128;
       return [classes.container, classes["container_".concat(Size)]];
     }
   },
@@ -15383,7 +15617,8 @@ var classes = {
   },
   // Slots
   CheckboxgroupCheckbox: _objectSpread2(_objectSpread2({}, checkbox), {}, {
-    container: 'flex align-start cursor-pointer',
+    container: 'flex cursor-pointer',
+    wrapper: 'flex cursor-pointer form-view-default',
     text: '',
     input: checkbox.input + ' form-shadow-handles',
     input_sm: checkbox.input_sm + ' form-mt-checkbox-sm',
@@ -15391,7 +15626,9 @@ var classes = {
     input_lg: checkbox.input_lg + ' form-mt-checkbox-lg'
   }),
   CheckboxgroupCheckbox_tabs: _objectSpread2(_objectSpread2({}, groupTabs), {}, {
-    $wrapper: (classes, _ref122) => {
+    container: groupTabs.container + ' form-view-tabs',
+    $wrapper: (classes, _ref129) => {
+      var _el$$value;
       var {
         index,
         items,
@@ -15399,12 +15636,14 @@ var classes = {
         value,
         isDisabled,
         Size
-      } = _ref122;
-      return [classes.wrapper, classes["wrapper_".concat(Size)], index < Object.keys(items).length - 1 ? classes.wrapper_not_last : null, index === 0 ? classes.wrapper_first : null, index === 0 ? classes["wrapper_first_".concat(Size)] : null, index === Object.keys(items).length - 1 ? classes.wrapper_last : null, index === Object.keys(items).length - 1 ? classes["wrapper_last_".concat(Size)] : null, el$.value.indexOf(value) !== -1 ? classes.wrapper_selected : classes.wrapper_unselected, isDisabled ? classes.wrapper_disabled : null];
+      } = _ref129;
+      return [classes.wrapper, classes["wrapper_".concat(Size)], index < Object.keys(items).length - 1 ? classes.wrapper_not_last : null, index === 0 ? classes.wrapper_first : null, index === 0 ? classes["wrapper_first_".concat(Size)] : null, index === Object.keys(items).length - 1 ? classes.wrapper_last : null, index === Object.keys(items).length - 1 ? classes["wrapper_last_".concat(Size)] : null, el$.value && ((_el$$value = el$.value) === null || _el$$value === void 0 ? void 0 : _el$$value.indexOf(value)) !== -1 ? classes.wrapper_selected : classes.wrapper_unselected, isDisabled ? classes.wrapper_disabled : null];
     }
   }),
   CheckboxgroupCheckbox_blocks: _objectSpread2(_objectSpread2(_objectSpread2({}, checkbox), groupBlocks), {}, {
-    $wrapper: (classes, _ref123) => {
+    container: groupBlocks.container + ' form-view-blocks',
+    $wrapper: (classes, _ref130) => {
+      var _el$$value2;
       var {
         index,
         items,
@@ -15412,13 +15651,13 @@ var classes = {
         value,
         isDisabled,
         Size
-      } = _ref123;
-      return [classes.wrapper, classes["wrapper_".concat(Size)], index < Object.keys(items).length - 1 ? classes.wrapper_not_last : null, index === 0 ? classes.wrapper_first : null, index === 0 ? classes["wrapper_first_".concat(Size)] : null, index === Object.keys(items).length - 1 ? classes.wrapper_last : null, index === Object.keys(items).length - 1 ? classes["wrapper_last_".concat(Size)] : null, el$.value.indexOf(value) !== -1 ? classes.wrapper_selected : classes.wrapper_unselected, isDisabled ? classes.wrapper_disabled : null];
+      } = _ref130;
+      return [classes.wrapper, classes["wrapper_".concat(Size)], index < Object.keys(items).length - 1 ? classes.wrapper_not_last : null, index === 0 ? classes.wrapper_first : null, index === 0 ? classes["wrapper_first_".concat(Size)] : null, index === Object.keys(items).length - 1 ? classes.wrapper_last : null, index === Object.keys(items).length - 1 ? classes["wrapper_last_".concat(Size)] : null, el$.value && ((_el$$value2 = el$.value) === null || _el$$value2 === void 0 ? void 0 : _el$$value2.indexOf(value)) !== -1 ? classes.wrapper_selected : classes.wrapper_unselected, isDisabled ? classes.wrapper_disabled : null];
     },
-    $description: (classes, _ref124) => {
+    $description: (classes, _ref131) => {
       var {
         Size
-      } = _ref124;
+      } = _ref131;
       return [classes.description, classes["description_".concat(Size)]];
     }
   }),
@@ -15434,12 +15673,12 @@ var classes = {
     icon: 'inline-block w-9 h-8 mask-bg mask-form-inbox-in form-bg-primary',
     title: 'font-semibold mt-3',
     description: '',
-    $container: (classes, _ref125) => {
+    $container: (classes, _ref132) => {
       var {
         dragging,
         disabled,
         Size
-      } = _ref125;
+      } = _ref132;
       return [classes.container, classes["container_".concat(Size)], dragging ? classes.container_active : classes.container_inactive, disabled ? classes.container_disabled : classes.container_enabled];
     }
   },
@@ -15464,10 +15703,10 @@ var classes = {
     remove: 'flex w-4 h-4 items-center justify-center form-bg-passive form-color-passive rounded-full transition filter hover:brightness-90 form-hidden group-hover:form-inline-block',
     removeIcon: 'mask-bg mask-form-remove-light form-bg-input-color mask-size-3 block w-full h-full',
     assistiveText: 'form-assistive-text',
-    $container: (classes, _ref126) => {
+    $container: (classes, _ref133) => {
       var {
         Size
-      } = _ref126;
+      } = _ref133;
       return [classes.container, classes["container_".concat(Size)]];
     }
   },
@@ -15502,23 +15741,23 @@ var classes = {
     remove: 'flex w-4 h-4 items-center justify-center form-bg-passive form-color-passive rounded-full transition filter hover:brightness-90 form-hidden group-hover:form-inline-block',
     removeIcon: 'mask-bg mask-form-remove-light form-bg-input-color mask-size-3 block w-full h-full',
     assistiveText: 'form-assistive-text',
-    $image: (classes, _ref127) => {
+    $image: (classes, _ref134) => {
       var {
         hasLink,
         Size
-      } = _ref127;
+      } = _ref134;
       return [classes.image, classes["image_".concat(Size)], hasLink ? classes.image_link : classes.image_static];
     },
-    $img: (classes, _ref128) => {
+    $img: (classes, _ref135) => {
       var {
         Size
-      } = _ref128;
+      } = _ref135;
       return [classes.img, classes["img_".concat(Size)]];
     },
-    $progressBar: (classes, _ref129) => {
+    $progressBar: (classes, _ref136) => {
       var {
         Size
-      } = _ref129;
+      } = _ref136;
       return [classes.progressBar, classes["progressBar_".concat(Size)]];
     }
   },
@@ -15551,33 +15790,33 @@ var classes = {
     remove: 'flex w-4 h-4 items-center justify-center form-bg-passive form-color-passive absolute top-0.5 right-0.5 mt-px mr-px form-hidden rounded-full transition filter hover:brightness-90 group-hover:form-inline-block ',
     removeIcon: 'mask-bg mask-form-remove-light form-bg-input-color mask-size-3 block w-full h-full',
     assistiveText: 'form-assistive-text',
-    $container: (classes, _ref130) => {
+    $container: (classes, _ref137) => {
       var {
         Size
-      } = _ref130;
+      } = _ref137;
       return [classes.container, classes["container_".concat(Size)]];
     },
-    $image: (classes, _ref131) => {
+    $image: (classes, _ref138) => {
       var {
         Size
-      } = _ref131;
+      } = _ref138;
       return [classes.image, classes["image_".concat(Size)]];
     },
-    $img: (classes, _ref132) => {
+    $img: (classes, _ref139) => {
       var {
         Size
-      } = _ref132;
+      } = _ref139;
       return [classes.img, classes["img_".concat(Size)]];
     },
-    $overlay: (classes, _ref133) => {
+    $overlay: (classes, _ref140) => {
       var {
         Size
-      } = _ref133;
+      } = _ref140;
       return [classes.overlay, classes["overlay_".concat(Size)]];
     }
   },
   RadiogroupRadio: _objectSpread2(_objectSpread2({}, radio), {}, {
-    container: 'flex align-start cursor-pointer',
+    container: 'flex cursor-pointer form-view-default',
     text: '',
     input: radio.input + ' form-shadow-handles',
     input_sm: radio.input_sm + ' form-mt-checkbox-sm',
@@ -15585,7 +15824,8 @@ var classes = {
     input_lg: radio.input_lg + ' form-mt-checkbox-lg'
   }),
   RadiogroupRadio_tabs: _objectSpread2(_objectSpread2({}, groupTabs), {}, {
-    $wrapper: (classes, _ref134) => {
+    container: groupTabs.container + ' form-view-tabs',
+    $wrapper: (classes, _ref141) => {
       var {
         index,
         items,
@@ -15593,12 +15833,13 @@ var classes = {
         value,
         isDisabled,
         Size
-      } = _ref134;
+      } = _ref141;
       return [classes.wrapper, classes["wrapper_".concat(Size)], index < Object.keys(items).length - 1 ? classes.wrapper_not_last : null, index === 0 ? classes.wrapper_first : null, index === 0 ? classes["wrapper_first_".concat(Size)] : null, index === Object.keys(items).length - 1 ? classes.wrapper_last : null, index === Object.keys(items).length - 1 ? classes["wrapper_last_".concat(Size)] : null, el$.value == value ? classes.wrapper_selected : classes.wrapper_unselected, isDisabled ? classes.wrapper_disabled : null];
     }
   }),
   RadiogroupRadio_blocks: _objectSpread2(_objectSpread2(_objectSpread2({}, radio), groupBlocks), {}, {
-    $wrapper: (classes, _ref135) => {
+    container: groupBlocks.container + ' form-view-blocks',
+    $wrapper: (classes, _ref142) => {
       var {
         index,
         items,
@@ -15606,63 +15847,308 @@ var classes = {
         value,
         isDisabled,
         Size
-      } = _ref135;
+      } = _ref142;
       return [classes.wrapper, classes["wrapper_".concat(Size)], index < Object.keys(items).length - 1 ? classes.wrapper_not_last : null, index === 0 ? classes.wrapper_first : null, index === 0 ? classes["wrapper_first_".concat(Size)] : null, index === Object.keys(items).length - 1 ? classes.wrapper_last : null, index === Object.keys(items).length - 1 ? classes["wrapper_last_".concat(Size)] : null, el$.value == value ? classes.wrapper_selected : classes.wrapper_unselected, isDisabled ? classes.wrapper_disabled : null];
     },
-    $description: (classes, _ref136) => {
+    $description: (classes, _ref143) => {
       var {
         Size
-      } = _ref136;
+      } = _ref143;
       return [classes.description, classes["description_".concat(Size)]];
     }
   })
 };
 
-/**
- * =========
- * Templates
- * =========
- */
+var add = {
+  inputs: {
+    inputContainer: 'h-full',
+    inputContainer_focused: 'relative z-1'
+  },
+  textareas: {
+    inputContainer: 'h-full',
+    inputContainer_focused: 'relative z-1',
+    input: 'min-h-full'
+  },
+  selects: {
+    input: 'h-full focus:relative focus:z-1',
+    inputWrapper: 'h-full',
+    inputCaret: 'z-[2]',
+    select: {
+      container: 'h-full',
+      containerActive: 'relative z-1',
+      wrapper: 'h-full'
+    }
+  },
+  editors: {
+    input: 'h-full flex flex-col [&>trix-editor]:h-full',
+    input_focused: 'relative z-1'
+  },
+  groups: {
+    wrapper: 'h-full'
+  }
+};
+var replace = {
+  inputs: {
+    inputContainer_sm: {
+      'form-h-input-height-sm': 'form-min-h-input-height-sm'
+    },
+    inputContainer_md: {
+      'form-h-input-height': 'form-min-h-input-height'
+    },
+    inputContainer_lg: {
+      'form-h-input-height-lg': 'form-min-h-input-height-lg'
+    }
+  },
+  groups: {
+    container: {
+      'form-view-default': 'px-2 py-1',
+      'form-view-tabs': '',
+      'form-view-blocks': '[&_label:first-of-type>div]:border-t-0',
+      'form-view-tabs': '[&_label:first-of-type>div]:border-l-0'
+    }
+  },
+  groupItems: {
+    container: {
+      'form-view-tabs': '[&>div]:border-b-0 [&>div]:border-t-0 [&>div]:border-r-0',
+      'form-view-blocks': 'flex-1 [&>div]:border-l-0 [&>div]:border-b-0 [&>div]:border-r-0'
+    }
+  }
+};
+var remove = {
+  inputs: {
+    inputContainer: ['form-border-width-input'],
+    inputContainer_sm: ['form-radius-input-sm'],
+    inputContainer_md: ['form-radius-input'],
+    inputContainer_lg: ['form-radius-input-lg'],
+    input_sm: ['form-radius-input-sm'],
+    input_md: ['form-radius-input'],
+    input_lg: ['form-radius-input-lg']
+  },
+  textareas: {
+    inputContainer: ['form-border-width-input'],
+    inputContainer_sm: ['form-radius-large-sm'],
+    inputContainer_md: ['form-radius-large'],
+    inputContainer_lg: ['form-radius-large-lg'],
+    input_sm: ['form-radius-large-sm'],
+    input_md: ['form-radius-large'],
+    input_lg: ['form-radius-large-lg']
+  },
+  selects: {
+    input: ['form-border-width-input'],
+    input_sm: ['form-radius-input-sm'],
+    input_md: ['form-radius-input'],
+    input_lg: ['form-radius-input-lg'],
+    select: {
+      container: ['form-border-width-input'],
+      container_sm: ['form-radius-input-sm'],
+      container_md: ['form-radius-input'],
+      container_lg: ['form-radius-input-lg']
+    }
+  },
+  editors: {
+    input: ['form-border-width-input'],
+    input_sm: ['form-radius-large-sm'],
+    input_md: ['form-radius-large'],
+    input_lg: ['form-radius-large-lg']
+  },
+  files: {
+    button_sm: ['form-radius-btn-sm'],
+    button_md: ['form-radius-btn'],
+    button_lg: ['form-radius-btn-lg'],
+    button_enabled: ['hover:scale-105']
+  },
+  groups: {
+    wrapper_sm: ['form-radius-large-sm'],
+    wrapper_md: ['form-radius-large'],
+    wrapper_lg: ['form-radius-large-lg']
+  },
+  groupItems: {
+    container_sm: ['form-radius-large-sm'],
+    container_md: ['form-radius-large'],
+    container_lg: ['form-radius-large-lg'],
+    wrapper_first_sm: ['form-radius-input-l-sm', 'form-radius-large-t-sm'],
+    wrapper_first_md: ['form-radius-input-l', 'form-radius-large-t'],
+    wrapper_first_lg: ['form-radius-input-l-lg', 'form-radius-large-t-lg'],
+    wrapper_last_sm: ['form-radius-input-r-sm', 'form-radius-large-b-sm'],
+    wrapper_last_md: ['form-radius-input-r', 'form-radius-large-b'],
+    wrapper_last_lg: ['form-radius-input-r-lg', 'form-radius-large-b-lg']
+  }
+};
+var presets = {
+  'matrix-table': {
+    addClasses: {
+      MatrixElement: {
+        container: '[&>div>div>.form-inner-wrapper-after]:!block [&>div>div>.form-inner-wrapper-before]:!block',
+        grid: 'form-border-width-table !border-l-0 !border-t-0 form-border-color-table !gap-0',
+        headerFirst: 'form-border-width-table !border-r-0 !border-b-0 form-border-color-table form-bg-table-header',
+        header: 'form-border-width-table !border-r-0 form-border-color-table form-bg-table-header form-color-table-header',
+        header_sticky: '-form-mb-border-width-table',
+        header_not_sticky: '!border-b-0',
+        headerRemove: 'form-border-width-table !border-r-0 !border-b-0 form-border-color-table form-bg-table-header',
+        rowLabel: 'form-border-width-table !border-b-0 form-border-color-table px-2 text-center form-bg-table-header form-color-table-header',
+        rowLabel_sticky: '-form-mr-border-width-table',
+        rowLabel_not_sticky: '!border-r-0',
+        cell: 'form-border-width-table !border-r-0 !border-b-0 form-border-color-table form-bg-input',
+        cellWrapper_stretch: '!items-stretch',
+        cellWrapper_error: 'relative after:content-[""] after:absolute after:inset-0 after:shadow-[inset_0_0_0_1px_var(--vf-danger)] after:pointer-events-none',
+        rowRemove: 'form-border-width-table !border-r-0 !border-b-0 form-border-color-table bg-gray-100 form-bg-table-header',
+        removeIcon: 'dark:!bg-dark-100'
+      },
+      TextElement: add.inputs,
+      TTextElement: add.inputs,
+      LocationElement: add.inputs,
+      PhoneElement: add.inputs,
+      DateElement: add.inputs,
+      DatesElement: add.inputs,
+      TextareaElement: add.textareas,
+      TTextareaElement: add.textareas,
+      SelectElement: add.selects,
+      MultiselectElement: add.selects,
+      TagsElement: {
+        select: add.selects.select
+      },
+      EditorElement: add.editors,
+      TEditorElement: add.editors,
+      CheckboxgroupElement: add.groups,
+      CheckboxgroupCheckbox: add.groupItems,
+      RadiogroupElement: add.groups,
+      RadiogroupRadio: add.groupItems,
+      ButtonElement: {
+        button_enabled: 'hover:brightness-95',
+        button_not_full: 'w-full'
+      },
+      FileElement: {
+        button: 'text-center w-full focus:relative focus:z-1 hover:brightness-95'
+      },
+      FilePreview: {
+        wrapper: 'py-1 px-1'
+      },
+      MultifileElement: {
+        button: 'text-center w-full focus:relative focus:z-1 hover:brightness-95',
+        list: 'py-1 px-1'
+      },
+      SliderElement: {
+        wrapper: 'h-full w-full flex items-center justify-center',
+        slider: {
+          target: 'w-full mx-4'
+        }
+      },
+      StaticElement: {
+        content: 'h-full'
+      },
+      ElementLayout: {
+        outerWrapper: 'h-full',
+        innerWrapperBefore: 'hidden form-inner-wrapper-before',
+        innerWrapper: 'h-full',
+        innerWrapperAfter: 'hidden form-inner-wrapper-after'
+      }
+    },
+    replaceClasses: {
+      TextElement: replace.inputs,
+      TTextElement: replace.inputs,
+      DateElement: replace.inputs,
+      DatesElement: replace.inputs,
+      LocationElement: replace.inputs,
+      PhoneElement: replace.inputs,
+      CheckboxgroupElement: replace.groups,
+      RadiogroupElement: replace.groups,
+      CheckboxgroupCheckbox: replace.groupItems,
+      RadiogroupRadio: replace.groupItems
+    },
+    removeClasses: {
+      MatrixElement: {
+        cellWrapper_padding: 'px-2'
+      },
+      TextElement: remove.inputs,
+      DateElement: remove.inputs,
+      DatesElement: remove.inputs,
+      TTextElement: remove.inputs,
+      LocationElement: remove.inputs,
+      PhoneElement: remove.inputs,
+      TextareaElement: remove.textareas,
+      TTextareaElement: remove.textareas,
+      SelectElement: remove.selects,
+      MultiselectElement: remove.selects,
+      TagsElement: {
+        select: remove.selects.select
+      },
+      EditorElement: remove.editors,
+      TEditorElement: remove.editors,
+      ButtonElement: {
+        button_sm: ['form-radius-btn-sm'],
+        button_md: ['form-radius-btn'],
+        button_lg: ['form-radius-btn-lg'],
+        button_enabled: ['hover:scale-105']
+      },
+      FileElement: remove.files,
+      MultifileElement: _objectSpread2(_objectSpread2({}, remove.files), {}, {
+        list_md: ['form-mt-gutter']
+      }),
+      CheckboxgroupElement: remove.groups,
+      RadiogroupElement: remove.groups,
+      CheckboxgroupCheckbox: remove.groupItems,
+      RadiogroupRadio: remove.groupItems
+    },
+    overrideClasses: {
+      MatrixElement: {
+        $cellWrapper: (classes, _ref) => {
+          var {
+            padding,
+            centered,
+            cells$
+          } = _ref;
+          return (type, name) => {
+            var _cells$$name, _cells$$name2;
+            var isStandalone = ['radio', 'checkbox', 'toggle'].includes(type);
+            return [classes.cellWrapper, padding ? classes.cellWrapper_padding : null, isStandalone ? classes.cellWrapper_centered : null, !isStandalone ? classes.cellWrapper_stretch : null, (_cells$$name = cells$[name]) !== null && _cells$$name !== void 0 && _cells$$name.error ? classes.cellWrapper_error : null, (_cells$$name2 = cells$[name]) !== null && _cells$$name2 !== void 0 && _cells$$name2.isSuccess ? classes.cellWrapper_success : null];
+          };
+        }
+      }
+    }
+  }
+};
+
 var theme = {
   templates: {
-    Vueform: script$17,
-    FormErrors: script$16,
-    FormMessages: script$15,
-    FormLanguages: script$14,
-    FormLanguage: script$13,
-    FormTabs: script$12,
-    FormTab: script$11,
-    FormSteps: script$10,
-    FormStepsControls: script$$,
-    FormStepsControl: script$_,
-    FormStep: script$Z,
-    FormElements: script$Y,
-    ElementLayout: script$X,
-    ElementLayoutInline: script$W,
-    ElementLoader: script$V,
-    ElementLabelFloating: script$U,
-    ElementLabel: script$T,
-    ElementInfo: script$S,
-    ElementDescription: script$R,
-    ElementError: script$Q,
-    ElementMessage: script$P,
-    ElementRequired: script$O,
-    ElementText: script$N,
-    ElementAddon: script$M,
-    ElementAddonOptions: script$L,
-    ButtonElement: script$K,
-    CaptchaElement: script$J,
-    CheckboxElement: script$I,
-    CheckboxgroupElement: script$H,
-    CheckboxgroupElement_tabs: script$H,
-    CheckboxgroupElement_blocks: script$H,
-    DateElement: script$G,
-    DatesElement: script$F,
-    FileElement: script$E,
-    GroupElement: script$D,
-    HiddenElement: script$C,
-    ListElement: script$B,
-    LocationElement: script$z,
+    Vueform: script$18,
+    FormErrors: script$17,
+    FormMessages: script$16,
+    FormLanguages: script$15,
+    FormLanguage: script$14,
+    FormTabs: script$13,
+    FormTab: script$12,
+    FormSteps: script$11,
+    FormStepsControls: script$10,
+    FormStepsControl: script$$,
+    FormStep: script$_,
+    FormElements: script$Z,
+    ElementLayout: script$Y,
+    ElementLayoutInline: script$X,
+    ElementLoader: script$W,
+    ElementLabelFloating: script$V,
+    ElementLabel: script$U,
+    ElementInfo: script$T,
+    ElementDescription: script$S,
+    ElementError: script$R,
+    ElementMessage: script$Q,
+    ElementRequired: script$P,
+    ElementText: script$O,
+    ElementAddon: script$N,
+    ElementAddonOptions: script$M,
+    ButtonElement: script$L,
+    CaptchaElement: script$K,
+    CheckboxElement: script$J,
+    CheckboxgroupElement: script$I,
+    CheckboxgroupElement_tabs: script$I,
+    CheckboxgroupElement_blocks: script$I,
+    DateElement: script$H,
+    DatesElement: script$G,
+    FileElement: script$F,
+    GroupElement: script$E,
+    HiddenElement: script$D,
+    ListElement: script$C,
+    LocationElement: script$A,
+    MatrixElement: script$z,
     MultifileElement: script$y,
     MultiselectElement: script$w,
     ObjectElement: script$v,
@@ -15697,27 +16183,69 @@ var theme = {
     EditorWrapper: script
   },
   classes,
-  columns: columns
+  columns: columns,
+  presets
 };
 var index = theme;
-var prefixer = function prefixer(classes, prefix) {
+var prefixer = function prefixer(classes, presets, prefix) {
   var prefixedClasses = {};
+  var prefixedPresets = {};
   var prefixClass = class_ => {
     var res;
     try {
-      res = class_.split(' ').map(c => {
-        if (c.match(/:/)) {
-          return c.replace(':', ":".concat(prefix));
+      res = class_.split(' ').map(str => {
+        if (!str) {
+          return '';
         }
-        if (c.match(/!/)) {
-          return c.replace('!', "!".concat(prefix));
+
+        // Case 1: If the string starts with "!", add "tw-" after "!"
+        if (str.startsWith('!')) {
+          return str.replace(/^!(.*)$/, '!tw-$1');
         }
-        return c.length ? "".concat(prefix).concat(c) : c;
+
+        // Case 2: If the string starts with a modifier (e.g., md:block), only prefix the classname
+        if (/^[a-z]+:/.test(str)) {
+          return str.replace(/([a-z]+:)(!?)([a-zA-Z.-]+)(?:-(\[[^\]]+\]))?/g, (match, modifier, important, className, optionalSize) => {
+            var prefixedClass = important ? "!tw-".concat(className) : "tw-".concat(className);
+            return "".concat(modifier).concat(prefixedClass).concat(optionalSize || '');
+          });
+        }
+
+        // Case 3: If the string starts with "[", apply prefixing rules inside and after the brackets
+        if (str.startsWith('[')) {
+          return str.replace(/\[(.*?)\]:(!?)([a-zA-Z.-]+)(?:-(\[[^\]]+\]))?/g, (match, inner, important, className, optionalSize) => {
+            inner = inner.replace(/\.([a-zA-Z0-9_-]+)/g, '.tw-$1');
+            var prefixedClass = important ? "!tw-".concat(className) : "tw-".concat(className);
+            return "[".concat(inner, "]:").concat(important).concat(prefixedClass).concat(optionalSize || '');
+          });
+        }
+
+        // Case 4: If none of the above, simply prefix the entire string
+        return "tw-".concat(str);
       }).join(' ');
     } catch (e) {
       console.error('Couldn\'t prefix class: ', class_, e);
     }
     return res;
+  };
+  var _prefixPresets = function prefixPresets(obj) {
+    var prefixKey = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+    if (typeof obj === 'string') {
+      return prefixClass(obj);
+    }
+    if (Array.isArray(obj)) {
+      return obj.map(item => _prefixPresets(item, prefixKey));
+    }
+    if (typeof obj === 'object' && obj !== null) {
+      var newObj = {};
+      for (var key in obj) {
+        if (obj.hasOwnProperty(key)) {
+          newObj[typeof obj[key] === 'string' && prefixKey ? prefixClass(key) : key] = _prefixPresets(obj[key], prefixKey);
+        }
+      }
+      return newObj;
+    }
+    return obj;
   };
   for (var componentName in classes) {
     if (classes.hasOwnProperty(componentName)) {
@@ -15746,15 +16274,25 @@ var prefixer = function prefixer(classes, prefix) {
       }
     }
   }
-  return prefixedClasses;
+  Object.keys(presets).forEach(preset => {
+    prefixedPresets[preset] = {
+      addClasses: _prefixPresets(presets[preset].addClasses),
+      removeClasses: _prefixPresets(presets[preset].removeClasses),
+      replaceClasses: _prefixPresets(presets[preset].replaceClasses, true),
+      overrideClasses: _prefixPresets(presets[preset].overrideClasses)
+    };
+  });
+  return {
+    classes: prefixedClasses,
+    presets: prefixedPresets
+  };
 };
 var prefix = function prefix(_prefix) {
-  return Object.assign({}, theme, {
-    classes: prefixer(classes, _prefix),
+  return Object.assign({}, theme, _objectSpread2(_objectSpread2({}, prefixer(classes, presets)), {}, {
     columns: (breakpoint, size) => {
       return columns(breakpoint, size, _prefix);
     }
-  });
+  }));
 };
 
-export { script$K as ButtonElement, script$J as CaptchaElement, script$I as CheckboxElement, script$d as CheckboxgroupCheckbox, script$b as CheckboxgroupCheckbox_blocks, script$c as CheckboxgroupCheckbox_tabs, script$H as CheckboxgroupElement, script$H as CheckboxgroupElement_blocks, script$H as CheckboxgroupElement_tabs, script$G as DateElement, script$2 as DatepickerWrapper, script$F as DatesElement, script$a as DragAndDrop, script$h as EditorElement, script as EditorWrapper, script$M as ElementAddon, script$L as ElementAddonOptions, script$R as ElementDescription, script$Q as ElementError, script$S as ElementInfo, script$T as ElementLabel, script$U as ElementLabelFloating, script$X as ElementLayout, script$W as ElementLayoutInline, script$V as ElementLoader, script$P as ElementMessage, script$O as ElementRequired, script$N as ElementText, script$E as FileElement, script$9 as FilePreview, script$7 as FilePreview_gallery, script$8 as FilePreview_image, script$Y as FormElements, script$16 as FormErrors, script$13 as FormLanguage, script$14 as FormLanguages, script$15 as FormMessages, script$Z as FormStep, script$10 as FormSteps, script$_ as FormStepsControl, script$$ as FormStepsControls, script$11 as FormTab, script$12 as FormTabs, script$D as GroupElement, script$C as HiddenElement, script$B as ListElement, script$z as LocationElement, script$y as MultifileElement, script$w as MultiselectElement, script$v as ObjectElement, script$u as PhoneElement, script$t as RadioElement, script$s as RadiogroupElement, script$s as RadiogroupElement_blocks, script$s as RadiogroupElement_tabs, script$6 as RadiogroupRadio, script$4 as RadiogroupRadio_blocks, script$5 as RadiogroupRadio_tabs, script$r as SelectElement, script$q as SignatureElement, script$o as SliderElement, script$n as StaticElement, script$e as TEditorElement, script$f as TTextElement, script$g as TTextareaElement, script$m as TagsElement, script$k as TextElement, script$l as TextareaElement, script$i as ToggleElement, script$17 as Vueform, classes, columns, index as default, prefix, prefixer };
+export { script$L as ButtonElement, script$K as CaptchaElement, script$J as CheckboxElement, script$d as CheckboxgroupCheckbox, script$b as CheckboxgroupCheckbox_blocks, script$c as CheckboxgroupCheckbox_tabs, script$I as CheckboxgroupElement, script$I as CheckboxgroupElement_blocks, script$I as CheckboxgroupElement_tabs, script$H as DateElement, script$2 as DatepickerWrapper, script$G as DatesElement, script$a as DragAndDrop, script$h as EditorElement, script as EditorWrapper, script$N as ElementAddon, script$M as ElementAddonOptions, script$S as ElementDescription, script$R as ElementError, script$T as ElementInfo, script$U as ElementLabel, script$V as ElementLabelFloating, script$Y as ElementLayout, script$X as ElementLayoutInline, script$W as ElementLoader, script$Q as ElementMessage, script$P as ElementRequired, script$O as ElementText, script$F as FileElement, script$9 as FilePreview, script$7 as FilePreview_gallery, script$8 as FilePreview_image, script$Z as FormElements, script$17 as FormErrors, script$14 as FormLanguage, script$15 as FormLanguages, script$16 as FormMessages, script$_ as FormStep, script$11 as FormSteps, script$$ as FormStepsControl, script$10 as FormStepsControls, script$12 as FormTab, script$13 as FormTabs, script$E as GroupElement, script$D as HiddenElement, script$C as ListElement, script$A as LocationElement, script$z as MatrixElement, script$y as MultifileElement, script$w as MultiselectElement, script$v as ObjectElement, script$u as PhoneElement, script$t as RadioElement, script$s as RadiogroupElement, script$s as RadiogroupElement_blocks, script$s as RadiogroupElement_tabs, script$6 as RadiogroupRadio, script$4 as RadiogroupRadio_blocks, script$5 as RadiogroupRadio_tabs, script$r as SelectElement, script$q as SignatureElement, script$o as SliderElement, script$n as StaticElement, script$e as TEditorElement, script$f as TTextElement, script$g as TTextareaElement, script$m as TagsElement, script$k as TextElement, script$l as TextareaElement, script$i as ToggleElement, script$18 as Vueform, classes, columns, index as default, prefix, prefixer, presets };

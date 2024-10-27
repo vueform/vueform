@@ -297,7 +297,11 @@ export default {
           description: 'the element value after the item is added',
           types: ['array']
         },
-      }
+        el$: {
+          description: 'the element\'s component',
+          types: ['component']
+        },
+      },
     },
     MultifileElement: {
       description: 'Triggered when a new item is added to the list.',
@@ -314,12 +318,37 @@ export default {
           description: 'the element\'s value after the item is added',
           types: ['array']
         },
+        el$: {
+          description: 'the element\'s component',
+          types: ['component']
+        },
+      }
+    },
+    MatrixElement: {
+      description: 'Triggered when a new row is added.',
+      params: {
+        index: {
+          description: 'the index of the added row',
+          types: ['number']
+        },
+        newValue: {
+          description: 'the element\'s value after the row is added',
+          types: ['array']
+        },
+        oldValue: {
+          description: 'the element\'s value before the row is added',
+          types: ['array']
+        },
+        el$: {
+          description: 'the element\'s component',
+          types: ['component']
+        },
       }
     },
   },
   remove: {
     default: {
-      description: 'Triggered when a new item is removed from the list.',
+      description: 'Triggered when an item is removed from the list.',
       params: {
         index: {
           description: 'the index of the removed item',
@@ -329,6 +358,10 @@ export default {
           description: 'the element\'s value after the item is removed',
           types: ['array']
         },
+        el$: {
+          description: 'the element\'s component',
+          types: ['component']
+        },
       }
     },
     ObjectElement: {
@@ -337,6 +370,27 @@ export default {
     },
     FileElement: {
       description: 'Triggered after the file is removed.',
+    },
+    MatrixElement: {
+      description: 'Triggered when a row is removed.',
+      params: {
+        index: {
+          description: 'the index of the removed item',
+          types: ['number']
+        },
+        newValue: {
+          description: 'the element\'s value after the row is removed',
+          types: ['array']
+        },
+        oldValue: {
+          description: 'the element\'s value before the row is removed',
+          types: ['array']
+        },
+        el$: {
+          description: 'the element\'s component',
+          types: ['component']
+        },
+      },
     },
   },
   sort: {

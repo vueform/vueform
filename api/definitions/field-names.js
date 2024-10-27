@@ -9,6 +9,7 @@ module.exports = {
   GroupElement: 'group',
   HiddenElement: 'hidden input',
   ListElement: 'list',
+  MatrixElement: 'matrix',
   MultifileElement: 'file list',
   MultiselectElement: 'multiselect',
   ObjectElement: 'object group',

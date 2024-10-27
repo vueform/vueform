@@ -139,7 +139,11 @@ const base = function(props, context, dependencies)
 
     return {
       'grid-template-columns': gridTemplateColumns,
-      'gap': gap.value !== 0 ? `${gap.value}px` : undefined,
+      'gap': gap.value !== 0
+        ? typeof gap.value === 'number'
+          ? `${gap.value}px`
+          : gap.value
+        : undefined,
     }
   })
 

@@ -1640,6 +1640,16 @@ module.exports = {
         required: false,
         private: true,
       },
+      displayErrors: {
+        required: 'false',
+        default: 'true',
+        localized: false,
+        types: [
+          'boolean',
+        ],
+        required: false,
+        private: false,
+      },
       type: {
         required: 'false',
         default: 'captcha',
@@ -2202,6 +2212,20 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element is required (has required rule).',
+        private: false,
+      },
+      useCustomFilled: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element should use a custom logic for checking if it is filled when validating.',
+        private: false,
+      },
+      isFilled: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is filled is `useCustomFilled` is `true`.',
         private: false,
       },
       value: {
@@ -3097,6 +3121,16 @@ module.exports = {
         required: false,
         private: false,
       },
+      displayErrors: {
+        required: 'false',
+        default: 'true',
+        localized: false,
+        types: [
+          'boolean',
+        ],
+        required: false,
+        private: false,
+      },
       type: {
         required: 'false',
         default: 'checkbox',
@@ -3675,6 +3709,20 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element is required (has required rule).',
+        private: false,
+      },
+      useCustomFilled: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element should use a custom logic for checking if it is filled when validating.',
+        private: false,
+      },
+      isFilled: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is filled is `useCustomFilled` is `true`.',
         private: false,
       },
       value: {
@@ -4581,6 +4629,16 @@ module.exports = {
         required: false,
         private: false,
       },
+      displayErrors: {
+        required: 'false',
+        default: 'true',
+        localized: false,
+        types: [
+          'boolean',
+        ],
+        required: false,
+        private: false,
+      },
       type: {
         required: 'false',
         default: 'checkboxgroup',
@@ -5135,6 +5193,20 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element is required (has required rule).',
+        private: false,
+      },
+      useCustomFilled: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element should use a custom logic for checking if it is filled when validating.',
+        private: false,
+      },
+      isFilled: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is filled is `useCustomFilled` is `true`.',
         private: false,
       },
       value: {
@@ -6222,6 +6294,16 @@ module.exports = {
         required: false,
         private: false,
       },
+      displayErrors: {
+        required: 'false',
+        default: 'true',
+        localized: false,
+        types: [
+          'boolean',
+        ],
+        required: false,
+        private: false,
+      },
       type: {
         required: 'false',
         default: 'date',
@@ -6952,6 +7034,20 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element is required (has required rule).',
+        private: false,
+      },
+      useCustomFilled: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element should use a custom logic for checking if it is filled when validating.',
+        private: false,
+      },
+      isFilled: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is filled is `useCustomFilled` is `true`.',
         private: false,
       },
       value: {
@@ -7873,6 +7969,16 @@ module.exports = {
         required: false,
         private: false,
       },
+      displayErrors: {
+        required: 'false',
+        default: 'true',
+        localized: false,
+        types: [
+          'boolean',
+        ],
+        required: false,
+        private: false,
+      },
       type: {
         required: 'false',
         default: 'dates',
@@ -8573,6 +8679,20 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element is required (has required rule).',
+        private: false,
+      },
+      useCustomFilled: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element should use a custom logic for checking if it is filled when validating.',
+        private: false,
+      },
+      isFilled: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is filled is `useCustomFilled` is `true`.',
         private: false,
       },
       value: {
@@ -9494,6 +9614,16 @@ module.exports = {
         required: false,
         private: false,
       },
+      displayErrors: {
+        required: 'false',
+        default: 'true',
+        localized: false,
+        types: [
+          'boolean',
+        ],
+        required: false,
+        private: false,
+      },
       type: {
         required: 'false',
         default: 'editor',
@@ -10157,6 +10287,20 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element is required (has required rule).',
+        private: false,
+      },
+      useCustomFilled: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element should use a custom logic for checking if it is filled when validating.',
+        private: false,
+      },
+      isFilled: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is filled is `useCustomFilled` is `true`.',
         private: false,
       },
       value: {
@@ -11127,6 +11271,16 @@ module.exports = {
         required: false,
         private: false,
       },
+      displayErrors: {
+        required: 'false',
+        default: 'true',
+        localized: false,
+        types: [
+          'boolean',
+        ],
+        required: false,
+        private: false,
+      },
       type: {
         required: 'false',
         default: 'file',
@@ -11917,6 +12071,20 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element is required (has required rule).',
+        private: false,
+      },
+      useCustomFilled: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element should use a custom logic for checking if it is filled when validating.',
+        private: false,
+      },
+      isFilled: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is filled is `useCustomFilled` is `true`.',
         private: false,
       },
       errors: {
@@ -12921,6 +13089,16 @@ module.exports = {
         required: false,
         private: false,
       },
+      displayErrors: {
+        required: 'false',
+        default: 'true',
+        localized: false,
+        types: [
+          'boolean',
+        ],
+        required: false,
+        private: false,
+      },
       type: {
         required: 'false',
         default: '',
@@ -13458,6 +13636,20 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element is required (has required rule).',
+        private: false,
+      },
+      useCustomFilled: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element should use a custom logic for checking if it is filled when validating.',
+        private: false,
+      },
+      isFilled: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is filled is `useCustomFilled` is `true`.',
         private: false,
       },
       value: {
@@ -14357,6 +14549,16 @@ module.exports = {
         required: false,
         private: false,
       },
+      displayErrors: {
+        required: 'false',
+        default: 'true',
+        localized: false,
+        types: [
+          'boolean',
+        ],
+        required: false,
+        private: false,
+      },
       type: {
         required: 'false',
         default: 'group',
@@ -14817,6 +15019,20 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element is required (has required rule).',
+        private: false,
+      },
+      useCustomFilled: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element should use a custom logic for checking if it is filled when validating.',
+        private: false,
+      },
+      isFilled: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is filled is `useCustomFilled` is `true`.',
         private: false,
       },
       childrenErrors: {
@@ -15471,6 +15687,16 @@ module.exports = {
         required: false,
         private: false,
       },
+      displayErrors: {
+        required: 'false',
+        default: 'true',
+        localized: false,
+        types: [
+          'boolean',
+        ],
+        required: false,
+        private: false,
+      },
       type: {
         required: 'false',
         default: 'hidden',
@@ -15860,6 +16086,20 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element is required (has required rule).',
+        private: false,
+      },
+      useCustomFilled: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element should use a custom logic for checking if it is filled when validating.',
+        private: false,
+      },
+      isFilled: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is filled is `useCustomFilled` is `true`.',
         private: false,
       },
       value: {
@@ -16615,6 +16855,16 @@ module.exports = {
         required: false,
         private: false,
       },
+      displayErrors: {
+        required: 'false',
+        default: 'true',
+        localized: false,
+        types: [
+          'boolean',
+        ],
+        required: false,
+        private: false,
+      },
       type: {
         required: 'false',
         default: 'list',
@@ -17341,6 +17591,20 @@ module.exports = {
         description: 'Whether the element is required (has required rule).',
         private: false,
       },
+      useCustomFilled: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element should use a custom logic for checking if it is filled when validating.',
+        private: false,
+      },
+      isFilled: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is filled is `useCustomFilled` is `true`.',
+        private: false,
+      },
       childrenErrors: {
         types: [
           'array',
@@ -17781,10 +18045,16 @@ module.exports = {
               'array',
             ]
           },
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
        },
       },
       'remove': {
-        description: 'Triggered when a new item is removed from the list.',
+        description: 'Triggered when an item is removed from the list.',
         params: {
           index: {
             description: 'the index of the removed item',
@@ -17796,6 +18066,12 @@ module.exports = {
             description: 'the element&apos;s value after the item is removed',
             types: [
               'array',
+            ]
+          },
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
             ]
           },
        },
@@ -18427,6 +18703,16 @@ module.exports = {
         localized: false,
         types: [
           'string',
+        ],
+        required: false,
+        private: false,
+      },
+      displayErrors: {
+        required: 'false',
+        default: 'true',
+        localized: false,
+        types: [
+          'boolean',
         ],
         required: false,
         private: false,
@@ -19065,6 +19351,20 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element is required (has required rule).',
+        private: false,
+      },
+      useCustomFilled: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element should use a custom logic for checking if it is filled when validating.',
+        private: false,
+      },
+      isFilled: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is filled is `useCustomFilled` is `true`.',
         private: false,
       },
       errors: {
@@ -20039,6 +20339,16 @@ module.exports = {
         required: false,
         private: false,
       },
+      displayErrors: {
+        required: 'false',
+        default: 'true',
+        localized: false,
+        types: [
+          'boolean',
+        ],
+        required: false,
+        private: false,
+      },
       type: {
         required: 'false',
         default: 'object',
@@ -20106,12 +20416,15 @@ module.exports = {
         required: false,
         private: false,
       },
-      rows: {
+      items: {
         required: 'false',
         default: '[]',
         localized: false,
         types: [
           'array',
+          'object',
+          'string',
+          'function',
         ],
         required: false,
         private: false,
@@ -20122,11 +20435,12 @@ module.exports = {
         localized: false,
         types: [
           'array',
+          'object',
         ],
         required: false,
         private: false,
       },
-      equal: {
+      colWrap: {
         required: 'false',
         default: 'true',
         localized: false,
@@ -20136,12 +20450,149 @@ module.exports = {
         required: false,
         private: false,
       },
-      widths: {
+      hideCols: {
         required: 'false',
-        default: '[]',
+        default: 'false',
+        localized: false,
+        types: [
+          'boolean',
+        ],
+        required: false,
+        private: false,
+      },
+      stickyCols: {
+        required: 'false',
+        default: 'false',
+        localized: false,
+        types: [
+          'boolean',
+        ],
+        required: false,
+        private: false,
+      },
+      rows: {
+        required: 'false',
+        default: '1',
         localized: false,
         types: [
           'array',
+          'object',
+          'number',
+        ],
+        required: false,
+        private: false,
+      },
+      rowWrap: {
+        required: 'false',
+        default: 'true',
+        localized: false,
+        types: [
+          'boolean',
+        ],
+        required: false,
+        private: false,
+      },
+      hideRows: {
+        required: 'false',
+        default: 'false',
+        localized: false,
+        types: [
+          'boolean',
+        ],
+        required: false,
+        private: false,
+      },
+      stickyRows: {
+        required: 'false',
+        default: 'false',
+        localized: false,
+        types: [
+          'boolean',
+        ],
+        required: false,
+        private: false,
+      },
+      min: {
+        required: 'false',
+        default: '-1',
+        localized: false,
+        types: [
+          'number',
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
+      max: {
+        required: 'false',
+        default: '-1',
+        localized: false,
+        types: [
+          'number',
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
+      canAdd: {
+        required: 'false',
+        default: 'true',
+        localized: false,
+        types: [
+          'boolean',
+        ],
+        required: false,
+        private: false,
+      },
+      canRemove: {
+        required: 'false',
+        default: 'true',
+        localized: false,
+        types: [
+          'boolean',
+        ],
+        required: false,
+        private: false,
+      },
+      addText: {
+        required: 'false',
+        default: 'locale.elements.list.add',
+        localized: false,
+        types: [
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
+      minWidth: {
+        required: 'false',
+        default: 'min-content',
+        localized: false,
+        types: [
+          'number',
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
+      maxWidth: {
+        required: 'false',
+        default: '1fr',
+        localized: false,
+        types: [
+          'number',
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
+      gap: {
+        required: 'false',
+        default: '16',
+        localized: false,
+        types: [
+          'string',
+          'number',
         ],
         required: false,
         private: false,
@@ -20156,9 +20607,9 @@ module.exports = {
         required: false,
         private: false,
       },
-      rowWrap: {
+      scrollable: {
         required: 'false',
-        default: 'false',
+        default: 'true',
         localized: false,
         types: [
           'boolean',
@@ -20166,12 +20617,13 @@ module.exports = {
         required: false,
         private: false,
       },
-      colWrap: {
+      templateColumns: {
         required: 'false',
-        default: 'true',
+        default: 'null',
         localized: false,
         types: [
-          'boolean',
+          'string',
+          'function',
         ],
         required: false,
         private: false,
@@ -20199,6 +20651,20 @@ module.exports = {
           'HTMLElement',
         ],
         description: 'The ref to the outermost DOM of the element.',
+        private: false,
+      },
+      rowsCount: {
+        types: [
+          'number',
+        ],
+        description: 'The count of current rows when rows are dynamic.',
+        private: false,
+      },
+      cells$: {
+        types: [
+          'object',
+        ],
+        description: 'The instances of cells.',
         private: false,
       },
       children$Array: {
@@ -20240,6 +20706,13 @@ module.exports = {
         description: 'Helper property used to store listeners for events.',
         default: '{}',
         private: true,
+      },
+      grid: {
+        types: [
+          'HTMLElement',
+        ],
+        description: 'The HTML element of the matrix grix.',
+        private: false,
       },
       state: {
         types: [
@@ -20395,6 +20868,42 @@ module.exports = {
         description: 'Whether the element should be visible when using `tabs` or `steps`.',
         private: true,
       },
+      hasDynamicRows: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the matrix has dynamic rows.',
+        private: false,
+      },
+      computedRows: {
+        types: [
+          'number',
+          'array',
+        ],
+        description: 'The value of `rows` or `rowsCount` if rows are dynamic.',
+        private: false,
+      },
+      resolvedRows: {
+        types: [
+          'array',
+        ],
+        description: 'The rows of the matrix to be displayed.',
+        private: false,
+      },
+      resolvedColumns: {
+        types: [
+          'array',
+        ],
+        description: 'The columns of the matrix to be displayed.',
+        private: false,
+      },
+      dataType: {
+        types: [
+          'array',
+        ],
+        description: 'The data structure type of the matrix. Can be: `assoc`, `array` or `object`.',
+        private: false,
+      },
       children: {
         types: [
           'object',
@@ -20493,6 +21002,13 @@ module.exports = {
         description: 'The `id` of the <%field%>. If [`id`](#option-id) is not provided [`path`](#option-path) will be used.',
         private: false,
       },
+      genericName: {
+        types: [
+          'string',
+        ],
+        description: 'The generic name of the element constructed from label / floating or element name.',
+        private: true,
+      },
       hasLabel: {
         types: [
           'boolean',
@@ -20515,6 +21031,48 @@ module.exports = {
         ],
         description: 'The current layout of the element.',
         private: true,
+      },
+      addLabel: {
+        types: [
+          'string',
+        ],
+        description: 'The label of add button.',
+        private: false,
+      },
+      rowsVisible: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether row labels should be displayed.',
+        private: false,
+      },
+      colsVisible: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether column headers should be displayed.',
+        private: false,
+      },
+      allowAdd: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether rows can be added when rows are dynamic.',
+        private: false,
+      },
+      allowRemove: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether rows can be removed when rows are dynamic.',
+        private: false,
+      },
+      cells: {
+        types: [
+          'array',
+        ],
+        description: 'The component props of the cells.',
+        private: false,
       },
       nullValue: {
         types: [
@@ -20590,57 +21148,36 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether the element&apos;s or any of its children&apos;s value was modified.',
+        description: 'Whether the element&apos;s value was modified.',
         private: false,
       },
       validated: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element and all of its children was already validated at least once.',
+        description: 'Whether the element was already validated at least once.',
         private: false,
       },
       invalid: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element or any of its children has any failing rules.',
+        description: 'Whether the element has any failing rules.',
         private: false,
       },
       pending: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element or any of its children has any async rules in progress.',
-        private: false,
-      },
-      debouncing: {
-        types: [
-          'boolean',
-        ],
-        description: 'Whether the element or any of its children have a validation rule with pending debounce.',
+        description: 'Whether the element has any async rules in progress.',
         private: false,
       },
       busy: {
         types: [
           'boolean',
         ],
-        description: 'Whether the element or any of its children is `pending` or `debouncing`.',
+        description: 'Whether the element is `pending`.',
         private: false,
-      },
-      isRequired: {
-        types: [
-          'boolean',
-        ],
-        description: 'Whether the element is required (has required rule).',
-        private: false,
-      },
-      childrenErrors: {
-        types: [
-          'array',
-        ],
-        description: 'The list of errors collected from children.',
-        private: true,
       },
       errors: {
         types: [
@@ -20663,6 +21200,41 @@ module.exports = {
         ],
         description: 'The element&apos;s validation rules.',
         private: true,
+      },
+      isDanger: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element has errors.',
+        private: false,
+      },
+      isSuccess: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element has been filled in successfully.',
+        private: false,
+      },
+      isRequired: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is required (has required rule).',
+        private: false,
+      },
+      useCustomFilled: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element should use a custom logic for checking if it is filled when validating.',
+        private: false,
+      },
+      isFilled: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is filled is `useCustomFilled` is `true`.',
+        private: false,
       },
       value: {
         types: [
@@ -20868,18 +21440,141 @@ module.exports = {
         returns: 'void',
         private: true,
       },
+      resolveComponentType: {
+        description: 'Resolves the cell component type (for `:is`) based on a column object.',
+        returns: 'string',
+        params: {
+          column: {
+            types: [
+              'object',
+            ],
+            required: 'true',
+            description: 'the column definition object',
+          },
+        },
+        private: false,
+      },
+      resolveComponentProps: {
+        description: 'Resolves the cell component properties.',
+        returns: 'object',
+        params: {
+          row: {
+            types: [
+              'object',
+            ],
+            required: 'true',
+            description: 'the row definition object',
+          },
+          col: {
+            types: [
+              'object',
+            ],
+            required: 'true',
+            description: 'the column definition object',
+          },
+          rowIndex: {
+            types: [
+              'number',
+            ],
+            required: 'true',
+            description: 'the index of the row',
+          },
+          colIndex: {
+            types: [
+              'number',
+            ],
+            required: 'true',
+            description: 'the index of the column',
+          },
+        },
+        private: false,
+      },
+      resolveComponentName: {
+        description: 'Resolves the cell component name based on row and column index.',
+        returns: 'string',
+        params: {
+          rowIndex: {
+            types: [
+              'number',
+            ],
+            required: 'true',
+            description: 'the index of the row',
+          },
+          colIndex: {
+            types: [
+              'number',
+            ],
+            required: 'true',
+            description: 'the index of the column',
+          },
+        },
+        private: false,
+      },
+      getColStyle: {
+        description: 'Returns the style of a colum based on its index.',
+        returns: 'object',
+        params: {
+          index: {
+            types: [
+              'object',
+            ],
+            required: 'true',
+            description: 'the index of the column',
+          },
+        },
+        private: false,
+      },
+      resolveColInputType: {
+        description: 'Resolves the input type of a column.',
+        returns: 'object|string',
+        params: {
+          col: {
+            types: [
+              'object',
+            ],
+            required: 'true',
+            description: 'the column definition object',
+          },
+        },
+        private: false,
+      },
+      resolveColConditions: {
+        description: 'Resolves the conditions of a cell based on row and column.',
+        returns: 'object',
+        params: {
+          row: {
+            types: [
+              'object',
+            ],
+            required: 'true',
+            description: 'the row definition object',
+          },
+          col: {
+            types: [
+              'object',
+            ],
+            required: 'true',
+            description: 'the column definition object',
+          },
+        },
+        private: false,
+      },
+      resolveColType: {
+        description: 'Resolves the type of the input field of a column.',
+        returns: 'string',
+        params: {
+          col: {
+            types: [
+              'object',
+            ],
+            required: 'true',
+            description: 'the column definition object',
+          },
+        },
+        private: false,
+      },
       validate: {
-        description: 'Checks each validation rule for the element and validates children (async).',
-        returns: 'Promise',
-        private: false,
-      },
-      validateValidators: {
         description: 'Checks each validation rule for the element (async).',
-        returns: 'Promise',
-        private: false,
-      },
-      validateChildren: {
-        description: 'Validates every child (async).',
         returns: 'Promise',
         private: false,
       },
@@ -20969,8 +21664,37 @@ module.exports = {
           },
        },
       },
+      'add': {
+        description: 'Triggered when a new row is added.',
+        params: {
+          index: {
+            description: 'the index of the added row',
+            types: [
+              'number',
+            ]
+          },
+          newValue: {
+            description: 'the element&apos;s value after the row is added',
+            types: [
+              'array',
+            ]
+          },
+          oldValue: {
+            description: 'the element&apos;s value before the row is added',
+            types: [
+              'array',
+            ]
+          },
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
       'remove': {
-        description: 'Triggered when a new item is removed from the list.',
+        description: 'Triggered when a row is removed.',
         params: {
           index: {
             description: 'the index of the removed item',
@@ -20978,10 +21702,22 @@ module.exports = {
               'number',
             ]
           },
-          value: {
-            description: 'the element&apos;s value after the item is removed',
+          newValue: {
+            description: 'the element&apos;s value after the row is removed',
             types: [
               'array',
+            ]
+          },
+          oldValue: {
+            description: 'the element&apos;s value before the row is removed',
+            types: [
+              'array',
+            ]
+          },
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
             ]
           },
        },
@@ -21584,6 +22320,16 @@ module.exports = {
         localized: false,
         types: [
           'string',
+        ],
+        required: false,
+        private: false,
+      },
+      displayErrors: {
+        required: 'false',
+        default: 'true',
+        localized: false,
+        types: [
+          'boolean',
         ],
         required: false,
         private: false,
@@ -22456,6 +23202,20 @@ module.exports = {
         description: 'Whether the element is required (has required rule).',
         private: false,
       },
+      useCustomFilled: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element should use a custom logic for checking if it is filled when validating.',
+        private: false,
+      },
+      isFilled: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is filled is `useCustomFilled` is `true`.',
+        private: false,
+      },
       childrenErrors: {
         types: [
           'array',
@@ -22929,10 +23689,16 @@ module.exports = {
               'array',
             ]
           },
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
        },
       },
       'remove': {
-        description: 'Triggered when a new item is removed from the list.',
+        description: 'Triggered when an item is removed from the list.',
         params: {
           index: {
             description: 'the index of the removed item',
@@ -22944,6 +23710,12 @@ module.exports = {
             description: 'the element&apos;s value after the item is removed',
             types: [
               'array',
+            ]
+          },
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
             ]
           },
        },
@@ -23575,6 +24347,16 @@ module.exports = {
         localized: false,
         types: [
           'string',
+        ],
+        required: false,
+        private: false,
+      },
+      displayErrors: {
+        required: 'false',
+        default: 'true',
+        localized: false,
+        types: [
+          'boolean',
         ],
         required: false,
         private: false,
@@ -24742,6 +25524,20 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element is required (has required rule).',
+        private: false,
+      },
+      useCustomFilled: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element should use a custom logic for checking if it is filled when validating.',
+        private: false,
+      },
+      isFilled: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is filled is `useCustomFilled` is `true`.',
         private: false,
       },
       value: {
@@ -26034,6 +26830,16 @@ module.exports = {
         required: false,
         private: false,
       },
+      displayErrors: {
+        required: 'false',
+        default: 'true',
+        localized: false,
+        types: [
+          'boolean',
+        ],
+        required: false,
+        private: false,
+      },
       type: {
         required: 'false',
         default: 'object',
@@ -26521,6 +27327,20 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element is required (has required rule).',
+        private: false,
+      },
+      useCustomFilled: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element should use a custom logic for checking if it is filled when validating.',
+        private: false,
+      },
+      isFilled: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is filled is `useCustomFilled` is `true`.',
         private: false,
       },
       childrenErrors: {
@@ -27445,6 +28265,16 @@ module.exports = {
         required: false,
         private: false,
       },
+      displayErrors: {
+        required: 'false',
+        default: 'true',
+        localized: false,
+        types: [
+          'boolean',
+        ],
+        required: false,
+        private: false,
+      },
       type: {
         required: 'false',
         default: 'text',
@@ -28188,6 +29018,20 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element is required (has required rule).',
+        private: false,
+      },
+      useCustomFilled: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element should use a custom logic for checking if it is filled when validating.',
+        private: false,
+      },
+      isFilled: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is filled is `useCustomFilled` is `true`.',
         private: false,
       },
       value: {
@@ -29196,6 +30040,16 @@ module.exports = {
         required: false,
         private: false,
       },
+      displayErrors: {
+        required: 'false',
+        default: 'true',
+        localized: false,
+        types: [
+          'boolean',
+        ],
+        required: false,
+        private: false,
+      },
       type: {
         required: 'false',
         default: 'radio',
@@ -29778,6 +30632,20 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element is required (has required rule).',
+        private: false,
+      },
+      useCustomFilled: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element should use a custom logic for checking if it is filled when validating.',
+        private: false,
+      },
+      isFilled: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is filled is `useCustomFilled` is `true`.',
         private: false,
       },
       value: {
@@ -30684,6 +31552,16 @@ module.exports = {
         required: false,
         private: false,
       },
+      displayErrors: {
+        required: 'false',
+        default: 'true',
+        localized: false,
+        types: [
+          'boolean',
+        ],
+        required: false,
+        private: false,
+      },
       type: {
         required: 'false',
         default: 'radiogroup',
@@ -31240,6 +32118,20 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element is required (has required rule).',
+        private: false,
+      },
+      useCustomFilled: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element should use a custom logic for checking if it is filled when validating.',
+        private: false,
+      },
+      isFilled: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is filled is `useCustomFilled` is `true`.',
         private: false,
       },
       value: {
@@ -32266,6 +33158,16 @@ module.exports = {
         localized: false,
         types: [
           'string',
+        ],
+        required: false,
+        private: false,
+      },
+      displayErrors: {
+        required: 'false',
+        default: 'true',
+        localized: false,
+        types: [
+          'boolean',
         ],
         required: false,
         private: false,
@@ -33377,6 +34279,20 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element is required (has required rule).',
+        private: false,
+      },
+      useCustomFilled: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element should use a custom logic for checking if it is filled when validating.',
+        private: false,
+      },
+      isFilled: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is filled is `useCustomFilled` is `true`.',
         private: false,
       },
       value: {
@@ -34639,6 +35555,16 @@ module.exports = {
         required: false,
         private: false,
       },
+      displayErrors: {
+        required: 'false',
+        default: 'true',
+        localized: false,
+        types: [
+          'boolean',
+        ],
+        required: false,
+        private: false,
+      },
       type: {
         required: 'false',
         default: 'text',
@@ -35861,6 +36787,20 @@ module.exports = {
         description: 'Whether the element is required (has required rule).',
         private: false,
       },
+      useCustomFilled: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element should use a custom logic for checking if it is filled when validating.',
+        private: false,
+      },
+      isFilled: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is filled is `useCustomFilled` is `true`.',
+        private: false,
+      },
       value: {
         types: [
           'any',
@@ -37012,6 +37952,16 @@ module.exports = {
         required: false,
         private: false,
       },
+      displayErrors: {
+        required: 'false',
+        default: 'true',
+        localized: false,
+        types: [
+          'boolean',
+        ],
+        required: false,
+        private: false,
+      },
       type: {
         required: 'false',
         default: 'slider',
@@ -37612,6 +38562,20 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element is required (has required rule).',
+        private: false,
+      },
+      useCustomFilled: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element should use a custom logic for checking if it is filled when validating.',
+        private: false,
+      },
+      isFilled: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is filled is `useCustomFilled` is `true`.',
         private: false,
       },
       errors: {
@@ -39715,6 +40679,16 @@ module.exports = {
         required: false,
         private: false,
       },
+      displayErrors: {
+        required: 'false',
+        default: 'true',
+        localized: false,
+        types: [
+          'boolean',
+        ],
+        required: false,
+        private: false,
+      },
       type: {
         required: 'false',
         default: 't-editor',
@@ -40378,6 +41352,20 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element is required (has required rule).',
+        private: false,
+      },
+      useCustomFilled: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element should use a custom logic for checking if it is filled when validating.',
+        private: false,
+      },
+      isFilled: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is filled is `useCustomFilled` is `true`.',
         private: false,
       },
       value: {
@@ -41367,6 +42355,16 @@ module.exports = {
         required: false,
         private: false,
       },
+      displayErrors: {
+        required: 'false',
+        default: 'true',
+        localized: false,
+        types: [
+          'boolean',
+        ],
+        required: false,
+        private: false,
+      },
       type: {
         required: 'false',
         default: 't-text',
@@ -42069,6 +43067,20 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element is required (has required rule).',
+        private: false,
+      },
+      useCustomFilled: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element should use a custom logic for checking if it is filled when validating.',
+        private: false,
+      },
+      isFilled: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is filled is `useCustomFilled` is `true`.',
         private: false,
       },
       value: {
@@ -43134,6 +44146,16 @@ module.exports = {
         required: false,
         private: false,
       },
+      displayErrors: {
+        required: 'false',
+        default: 'true',
+        localized: false,
+        types: [
+          'boolean',
+        ],
+        required: false,
+        private: false,
+      },
       type: {
         required: 'false',
         default: 't-textarea',
@@ -43818,6 +44840,20 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element is required (has required rule).',
+        private: false,
+      },
+      useCustomFilled: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element should use a custom logic for checking if it is filled when validating.',
+        private: false,
+      },
+      isFilled: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is filled is `useCustomFilled` is `true`.',
         private: false,
       },
       value: {
@@ -44884,6 +45920,16 @@ module.exports = {
         localized: false,
         types: [
           'string',
+        ],
+        required: false,
+        private: false,
+      },
+      displayErrors: {
+        required: 'false',
+        default: 'true',
+        localized: false,
+        types: [
+          'boolean',
         ],
         required: false,
         private: false,
@@ -46004,6 +47050,20 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element is required (has required rule).',
+        private: false,
+      },
+      useCustomFilled: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element should use a custom logic for checking if it is filled when validating.',
+        private: false,
+      },
+      isFilled: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is filled is `useCustomFilled` is `true`.',
         private: false,
       },
       value: {
@@ -47339,6 +48399,16 @@ module.exports = {
         required: false,
         private: false,
       },
+      displayErrors: {
+        required: 'false',
+        default: 'true',
+        localized: false,
+        types: [
+          'boolean',
+        ],
+        required: false,
+        private: false,
+      },
       type: {
         required: 'false',
         default: 'text',
@@ -48066,6 +49136,20 @@ module.exports = {
         description: 'Whether the element is required (has required rule).',
         private: false,
       },
+      useCustomFilled: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element should use a custom logic for checking if it is filled when validating.',
+        private: false,
+      },
+      isFilled: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is filled is `useCustomFilled` is `true`.',
+        private: false,
+      },
       value: {
         types: [
           'any',
@@ -48599,7 +49683,6 @@ module.exports = {
         },
       },
       'required': {},
-      'required': {},
       'description': {
         description: 'Renders description for the element in [`ElementDescription`](element-description) component.',
         props: {
@@ -49107,6 +50190,16 @@ module.exports = {
         localized: false,
         types: [
           'string',
+        ],
+        required: false,
+        private: false,
+      },
+      displayErrors: {
+        required: 'false',
+        default: 'true',
+        localized: false,
+        types: [
+          'boolean',
         ],
         required: false,
         private: false,
@@ -49795,6 +50888,20 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element is required (has required rule).',
+        private: false,
+      },
+      useCustomFilled: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element should use a custom logic for checking if it is filled when validating.',
+        private: false,
+      },
+      isFilled: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is filled is `useCustomFilled` is `true`.',
         private: false,
       },
       value: {
@@ -50846,6 +51953,16 @@ module.exports = {
         required: false,
         private: false,
       },
+      displayErrors: {
+        required: 'false',
+        default: 'true',
+        localized: false,
+        types: [
+          'boolean',
+        ],
+        required: false,
+        private: false,
+      },
       type: {
         required: 'false',
         default: 'toggle',
@@ -50952,6 +52069,16 @@ module.exports = {
         localized: false,
         types: [
           'string',
+        ],
+        required: false,
+        private: false,
+      },
+      standalone: {
+        required: 'false',
+        default: 'false',
+        localized: false,
+        types: [
+          'boolean',
         ],
         required: false,
         private: false,
@@ -51434,6 +52561,20 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element is required (has required rule).',
+        private: false,
+      },
+      useCustomFilled: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element should use a custom logic for checking if it is filled when validating.',
+        private: false,
+      },
+      isFilled: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is filled is `useCustomFilled` is `true`.',
         private: false,
       },
       value: {

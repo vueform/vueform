@@ -864,6 +864,13 @@ module.exports = {
         ],
         "description": "The first error of the element."
       },
+      "showError": {
+        "public": true,
+        "types": [
+          "boolean"
+        ],
+        "description": "Whether to show the error."
+      },
       "id": {
         "public": true,
         "types": [

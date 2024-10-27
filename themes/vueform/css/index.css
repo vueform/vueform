@@ -180,6 +180,7 @@
   --vf-bg-btn: var(--vf-primary);
   --vf-bg-btn-danger: var(--vf-danger);
   --vf-bg-btn-secondary: var(--vf-gray-200);
+  --vf-bg-table-header: var(--vf-gray-100);
   --vf-color-on-primary: #ffffff;
   --vf-color-input: var(--vf-gray-800);
   --vf-color-input-hover: var(--vf-color-input);
@@ -202,6 +203,7 @@
   --vf-color-btn: var(--vf-color-on-primary);
   --vf-color-btn-danger: #ffffff;
   --vf-color-btn-secondary: var(--vf-gray-700);
+  --vf-color-table-header: inherit;
   --vf-border-color-input: var(--vf-gray-300);
   --vf-border-color-input-focus: var(--vf-primary);
   --vf-border-color-input-hover: var(--vf-border-color-input);
@@ -222,6 +224,7 @@
   --vf-border-color-blockquote: var(--vf-gray-300);
   --vf-border-color-hr: var(--vf-gray-300);
   --vf-border-color-signature-hr: var(--vf-gray-300);
+  --vf-border-color-table: var(--vf-gray-300);
   --vf-border-width-input-t: 1px;
   --vf-border-width-input-r: 1px;
   --vf-border-width-input-b: 1px;
@@ -239,6 +242,7 @@
   --vf-border-width-toggle: 0.125rem;
   --vf-border-width-tag: 1px;
   --vf-border-width-blockquote: 3px;
+  --vf-border-width-table: 1px;
   --vf-shadow-input: 0px 0px 0px 0px rgba(0,0,0,0);
   --vf-shadow-input-hover: 0px 0px 0px 0px rgba(0,0,0,0);
   --vf-shadow-input-focus: 0px 0px 0px 0px rgba(0,0,0,0);
@@ -328,6 +332,7 @@
   --vf-bg-btn: var(--vf-primary);
   --vf-bg-btn-danger: var(--vf-danger);
   --vf-bg-btn-secondary: var(--vf-dark-700);
+  --vf-bg-table-header: var(--vf-dark-500);
   --vf-color-on-primary: #ffffff;
   --vf-color-input: var(--vf-dark-100);
   --vf-color-input-hover: var(--vf-color-input);
@@ -350,6 +355,7 @@
   --vf-color-btn: var(--vf-color-on-primary);
   --vf-color-btn-danger: #ffffff;
   --vf-color-btn-secondary: var(--vf-dark-300);
+  --vf-color-table-header: inherit;
   --vf-border-color-input: var(--vf-dark-800);
   --vf-border-color-input-focus: var(--vf-primary);
   --vf-border-color-input-hover: var(--vf-border-color-input);
@@ -370,6 +376,7 @@
   --vf-border-color-blockquote: var(--vf-dark-700);
   --vf-border-color-hr: var(--vf-dark-700);
   --vf-border-color-signature-hr: var(--vf-dark-500);
+  --vf-border-color-table: var(--vf-dark-400);
 }
 
 /*
@@ -1539,6 +1546,11 @@ form ::placeholder {
   margin-top: calc((var(--vf-line-height-lg) - var(--vf-checkbox-size-lg)) / 2);
 }
 
+.vf-checkbox.vf-checkbox-standalone {
+  margin-right: 0;
+  margin-top: 0;
+}
+
 .vf-checkbox-text {
   cursor: pointer;
 }
@@ -1639,6 +1651,11 @@ form ::placeholder {
   height: var(--vf-checkbox-size-lg);
   margin-right: var(--vf-space-checkbox-lg);
   margin-top: calc((var(--vf-line-height-lg) - var(--vf-checkbox-size-lg)) / 2);
+}
+
+.vf-radio.vf-radio-standalone {
+  margin-right: 0;
+  margin-top: 0;
 }
 
 .vf-radio-text {
@@ -1868,6 +1885,10 @@ body[dir=rtl] .vf-checkbox:checked:after {
   right: calc(var(--vf-border-width-checkbox-l) * -1);
 }
 
+body[dir=rtl] .vf-checkbox.vf-checkbox-standalone {
+  margin-left: 0;
+}
+
 body[dir=rtl] .vf-checkbox-left {
   margin-left: 0;
   margin-right: var(--vf-space-checkbox);
@@ -1901,6 +1922,10 @@ body[dir=rtl] .vf-radio.vf-radio-sm {
 body[dir=rtl] .vf-radio.vf-radio-lg {
   margin-right: 0;
   margin-left: var(--vf-space-checkbox-lg);
+}
+
+body[dir=rtl] .vf-radio.vf-radio-standalone {
+  margin-left: 0;
 }
 
 body[dir=rtl] .vf-radio-left {
