@@ -199,6 +199,24 @@ const base = function(props, context, dependencies)
       return Validator.conditions(form$.value, Validator, el$.value)
     })
   })
+
+  /**
+   * Whether the element should use a custom logic for checking if it is filled when validating.
+   * 
+   * @type {boolean}
+   */
+  const useCustomFilled = computed(() => {
+    return false
+  })
+
+  /**
+   * Whether the element is filled is `useCustomFilled` is `true`.
+   * 
+   * @type {boolean}
+   */
+  const isFilled = computed(() => {
+    return true
+  })
   
   // =============== METHODS ===============
   
@@ -332,6 +350,8 @@ const base = function(props, context, dependencies)
     isDanger,
     isSuccess,
     isRequired,
+    useCustomFilled,
+    isFilled,
     validate,
     dirt,
     clean,
@@ -360,6 +380,8 @@ const text = function(props, context, dependencies)
     isDanger,
     isSuccess,
     isRequired,
+    useCustomFilled,
+    isFilled,
     validate,
     dirt,
     clean,
@@ -407,6 +429,8 @@ const text = function(props, context, dependencies)
     isDanger,
     isSuccess,
     isRequired,
+    useCustomFilled,
+    isFilled,
     validate,
     dirt,
     clean,
@@ -431,6 +455,8 @@ const list = function(props, context, dependencies)
     initValidation,
     resetting,
     isRequired,
+    useCustomFilled,
+    isFilled,
   } = base(props, context, dependencies)
   
   const form$ = dependencies.form$
@@ -682,6 +708,8 @@ const list = function(props, context, dependencies)
     debouncing,
     busy,
     isRequired,
+    useCustomFilled,
+    isFilled,
     validatorErrors,
     childrenErrors,
     errors,
@@ -718,6 +746,8 @@ const multilingual = function(props, context, dependencies)
     messageBag,
     clearMessages,
     resetting,
+    useCustomFilled,
+    isFilled,
   } = text(props, context, dependencies)
   
   // ================ DATA ================
@@ -1047,6 +1077,8 @@ const multilingual = function(props, context, dependencies)
     isDanger,
     isSuccess,
     isRequired,
+    useCustomFilled,
+    isFilled,
     validate,
     validateLanguage,
     dirt,
@@ -1077,6 +1109,8 @@ const slider = function(props, context, dependencies)
     pending,
     busy,
     isRequired,
+    useCustomFilled,
+    isFilled,
     errors,
     error,
     validationRules,
@@ -1133,6 +1167,8 @@ const slider = function(props, context, dependencies)
     pending,
     busy,
     isRequired,
+    useCustomFilled,
+    isFilled,
     errors,
     error,
     validationRules,
@@ -1166,6 +1202,8 @@ const file = function(props, context, dependencies)
     invalid,
     pending,
     isRequired,
+    useCustomFilled,
+    isFilled,
     errors,
     error,
     validationRules,
@@ -1237,6 +1275,8 @@ const file = function(props, context, dependencies)
     pending,
     busy,
     isRequired,
+    useCustomFilled,
+    isFilled,
     errors,
     error,
     validationRules,
@@ -1274,6 +1314,8 @@ const location = function(props, context, dependencies)
     debouncing,
     busy,
     isRequired,
+    useCustomFilled,
+    isFilled,
     errors,
     error,
     validationRules,
@@ -1328,11 +1370,112 @@ const location = function(props, context, dependencies)
     debouncing,
     busy,
     isRequired,
+    useCustomFilled,
+    isFilled,
     errors,
     error,
     validationRules,
     isSuccess,
     isDanger,
+    validate,
+    dirt,
+    clean,
+    clearMessages,
+    resetValidators,
+    initMessageBag,
+    initValidation,
+    reinitValidation,
+  }
+}
+
+const matrix = function(props, context, dependencies)
+{
+  // ============ DEPENDENCIES ============
+  
+  const {
+    value,
+    dataType,
+  } = dependencies
+  
+  const {
+    state,
+    Validators,
+    messageBag,
+    resetting,
+    dirty,
+    validated,
+    invalid,
+    pending,
+    busy,
+    errors,
+    validationRules,
+    isDanger,
+    isSuccess,
+    isRequired,
+    validate,
+    dirt,
+    clean,
+    clearMessages,
+    resetValidators,
+    initMessageBag,
+    initValidation,
+    reinitValidation,
+  } = object(props, context, dependencies)
+  
+  // ============== COMPUTED ==============
+
+  const error = computed(() => {
+    return errors.value?.[0]
+  })
+  
+  const useCustomFilled = computed(() => {
+    return true
+  })
+
+  const isFilled = computed(() => {
+    switch (dataType.value) {
+      case 'assoc':
+        return Object.values(value.value).every(v => v !== null)
+        break
+
+      case 'array':
+        return Object.values(value.value).every(v => v.length)
+        break
+
+      case 'object':
+        return Object.values(value.value).every(v => Object.values(v).every((sv) => {
+          if (Array.isArray(sv)) {
+            return sv.length
+          } else if (sv instanceof File) {
+            return sv.name !== ''
+          } else if (typeof sv === 'string') {
+            return sv.trim() !== ''
+          } else {
+            return sv !== undefined && sv !== null
+          }
+        }))
+        break
+    }
+  })
+  
+  return {
+    state,
+    Validators,
+    messageBag,
+    resetting,
+    dirty,
+    validated,
+    invalid,
+    pending,
+    busy,
+    errors,
+    error,
+    validationRules,
+    isDanger,
+    isSuccess,
+    isRequired,
+    useCustomFilled,
+    isFilled,
     validate,
     dirt,
     clean,
@@ -1356,6 +1499,7 @@ export {
   file,
   location,
   text,
+  matrix,
 }
 
 export default base

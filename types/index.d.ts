@@ -236,6 +236,7 @@ export interface VueformElement extends DefineComponent {
   rules: Array<any> | string | object;
   messages: object;
   fieldName: string;
+  displayErrors: boolean;
   default: string | boolean | number | Array<any> | Date | object;
   readonly: boolean | Function | Array<any> | object;
   provider: string;
@@ -243,6 +244,7 @@ export interface VueformElement extends DefineComponent {
   text: string | object;
   trueValue: boolean | string | number;
   falseValue: boolean | string | number;
+  standalone: boolean;
   items: object | Array<any> | Function | string;
   disables: Array<any>;
   clearOnRefetch: boolean;
@@ -300,6 +302,23 @@ export interface VueformElement extends DefineComponent {
   orderBy: string;
   attrs: object;
   displayKey: string;
+  inputType: string | object;
+  cols: Array<any> | object;
+  colWrap: boolean;
+  hideCols: boolean;
+  stickyCols: boolean;
+  rows: Array<any> | object | number;
+  rowWrap: boolean;
+  hideRows: boolean;
+  stickyRows: boolean;
+  canAdd: boolean;
+  canRemove: boolean;
+  minWidth: number | string;
+  maxWidth: number | string;
+  gap: string | number;
+  padding: boolean;
+  scrollable: boolean;
+  templateColumns: string | Function;
   storeFile: string;
   fields: object;
   file: object;
@@ -348,7 +367,6 @@ export interface VueformElement extends DefineComponent {
   noOptionsText: string | object;
   noResultsText: string | object;
   autocomplete: string | number;
-  inputType: string;
   include: Array<any>;
   exclude: Array<any>;
   unmask: boolean;
@@ -364,7 +382,6 @@ export interface VueformElement extends DefineComponent {
   maxFontSize: number;
   colors: Array<any>;
   invertColors: Array<any>;
-  maxWidth: number | string;
   height: number | string;
   uploadWidth: number;
   uploadHeight: number;
@@ -395,7 +412,6 @@ export interface VueformElement extends DefineComponent {
   onKeyup: Function;
   onKeypress: Function;
   autogrow: boolean;
-  rows: number;
   onTag: Function;
   breakTags: boolean;
   showOptions: boolean;
@@ -414,6 +430,7 @@ export interface VueformElement extends DefineComponent {
   isImageType: boolean;
   isObjectType: boolean;
   isGroupType: boolean;
+  isMatrixType: boolean;
   isListType: boolean;
   isActive: boolean;
   isButtonLabelComponent: boolean;
@@ -464,6 +481,8 @@ export interface VueformElement extends DefineComponent {
   isDanger: boolean;
   isSuccess: boolean;
   isRequired: boolean;
+  useCustomFilled: boolean;
+  isFilled: boolean;
   value: any;
   model: any;
   isDefault: boolean;
@@ -501,6 +520,16 @@ export interface VueformElement extends DefineComponent {
   isObject: boolean;
   isSortable: boolean;
   defaultOptions: object;
+  hasDynamicRows: boolean;
+  computedRows: number | Array<any>;
+  resolvedRows: Array<any>;
+  resolvedColumns: Array<any>;
+  dataType: Array<any>;
+  rowsVisible: boolean;
+  colsVisible: boolean;
+  allowAdd: boolean;
+  allowRemove: boolean;
+  cells: Array<any>;
   preparing: boolean;
   hasUploading: boolean;
   storeFileName: string;
@@ -589,6 +618,9 @@ export interface VueformElement extends DefineComponent {
   sorting: boolean;
   locationService: object | null;
   location: object;
+  rowsCount: number;
+  cells$: object;
+  grid: HTMLElement;
   options$: component;
   addonPlaceholder: component;
   mode$: ElementAddonOptions;
@@ -681,6 +713,13 @@ export interface VueformElement extends DefineComponent {
   handleAddressChange: (data: object, raw: object) => void;
   handleLocationBlur: () => void;
   initLocationService: () => void;
+  resolveComponentType: (column: object) => string;
+  resolveComponentProps: (row: object, col: object, rowIndex: number, colIndex: number) => object;
+  resolveComponentName: (rowIndex: number, colIndex: number) => string;
+  getColStyle: (index: object) => object;
+  resolveColInputType: (col: object) => object | string;
+  resolveColConditions: (row: object, col: object) => object;
+  resolveColType: (col: object) => string;
   handleSelect: (option: object) => void;
   handleDeselect: (option: object) => void;
   handleSearchChange: (searchQuery: string) => void;
@@ -788,6 +827,7 @@ export interface VueformSchema {
   rules?: Array<any> | string | object;
   messages?: object;
   fieldName?: string;
+  displayErrors?: boolean;
   default?: string | boolean | number | Array<any> | Date | object;
   readonly?: boolean | Function | Array<any> | object;
   provider?: string;
@@ -795,6 +835,7 @@ export interface VueformSchema {
   text?: string | object;
   trueValue?: boolean | string | number;
   falseValue?: boolean | string | number;
+  standalone?: boolean;
   items?: object | Array<any> | Function | string;
   disables?: Array<any>;
   clearOnRefetch?: boolean;
@@ -852,6 +893,23 @@ export interface VueformSchema {
   orderBy?: string;
   attrs?: object;
   displayKey?: string;
+  inputType?: string | object;
+  cols?: Array<any> | object;
+  colWrap?: boolean;
+  hideCols?: boolean;
+  stickyCols?: boolean;
+  rows?: Array<any> | object | number;
+  rowWrap?: boolean;
+  hideRows?: boolean;
+  stickyRows?: boolean;
+  canAdd?: boolean;
+  canRemove?: boolean;
+  minWidth?: number | string;
+  maxWidth?: number | string;
+  gap?: string | number;
+  padding?: boolean;
+  scrollable?: boolean;
+  templateColumns?: string | Function;
   storeFile?: string;
   fields?: object;
   file?: object;
@@ -900,7 +958,6 @@ export interface VueformSchema {
   noOptionsText?: string | object;
   noResultsText?: string | object;
   autocomplete?: string | number;
-  inputType?: string;
   include?: Array<any>;
   exclude?: Array<any>;
   unmask?: boolean;
@@ -916,7 +973,6 @@ export interface VueformSchema {
   maxFontSize?: number;
   colors?: Array<any>;
   invertColors?: Array<any>;
-  maxWidth?: number | string;
   height?: number | string;
   uploadWidth?: number;
   uploadHeight?: number;
@@ -947,7 +1003,6 @@ export interface VueformSchema {
   onKeyup?: Function;
   onKeypress?: Function;
   autogrow?: boolean;
-  rows?: number;
   onTag?: Function;
   breakTags?: boolean;
   showOptions?: boolean;
@@ -1180,6 +1235,7 @@ export interface CheckboxgroupCheckboxProps {
   items: object | Array<any>;
   index: number;
   attrs?: object;
+  standalone?: boolean;
 }
 
 export interface FilePreviewProps {
@@ -1192,6 +1248,7 @@ export interface RadiogroupRadioProps {
   items: object | Array<any>;
   index: number;
   attrs?: object;
+  standalone?: boolean;
 }
 
 export interface ButtonElementProps {
@@ -1289,6 +1346,7 @@ export interface CaptchaElementProps {
   rules?: Array<any> | string | object;
   messages?: object;
   fieldName?: string;
+  displayErrors?: boolean;
   type?: string;
   id?: string;
   default?: string | boolean | number | Array<any> | Date | object;
@@ -1340,6 +1398,7 @@ export interface CheckboxElementProps {
   rules?: Array<any> | string | object;
   messages?: object;
   fieldName?: string;
+  displayErrors?: boolean;
   type?: string;
   default?: string | boolean | number;
   id?: string;
@@ -1348,6 +1407,7 @@ export interface CheckboxElementProps {
   trueValue?: boolean | string | number;
   falseValue?: boolean | string | number;
   align?: string;
+  standalone?: boolean;
 }
 
 export interface CheckboxgroupElementProps {
@@ -1392,6 +1452,7 @@ export interface CheckboxgroupElementProps {
   rules?: Array<any> | string | object;
   messages?: object;
   fieldName?: string;
+  displayErrors?: boolean;
   type?: string;
   default?: Array<any>;
   id?: string;
@@ -1443,6 +1504,7 @@ export interface DateElementProps {
   rules?: Array<any> | string | object;
   messages?: object;
   fieldName?: string;
+  displayErrors?: boolean;
   type?: string;
   default?: string | Date;
   addons?: object;
@@ -1506,6 +1568,7 @@ export interface DatesElementProps {
   rules?: Array<any> | string | object;
   messages?: object;
   fieldName?: string;
+  displayErrors?: boolean;
   type?: string;
   default?: Array<any>;
   addons?: object;
@@ -1566,6 +1629,7 @@ export interface EditorElementProps {
   rules?: Array<any> | string | object;
   messages?: object;
   fieldName?: string;
+  displayErrors?: boolean;
   type?: string;
   default?: string | number | object;
   debounce?: number;
@@ -1624,6 +1688,7 @@ export interface FileElementProps {
   rules?: Array<any> | string | object;
   messages?: object;
   fieldName?: string;
+  displayErrors?: boolean;
   type?: string;
   default?: string | object;
   disabled?: boolean | Function | Array<any> | object;
@@ -1688,6 +1753,7 @@ export interface GenericElementProps {
   rules?: Array<any> | string | object;
   messages?: object;
   fieldName?: string;
+  displayErrors?: boolean;
   type?: string;
   id?: string;
   disabled?: boolean | Function | Array<any> | object;
@@ -1736,6 +1802,7 @@ export interface GroupElementProps {
   rules?: Array<any> | string | object;
   messages?: object;
   fieldName?: string;
+  displayErrors?: boolean;
   type?: string;
   default?: object;
   id?: string;
@@ -1762,6 +1829,7 @@ export interface HiddenElementProps {
   rules?: Array<any> | string | object;
   messages?: object;
   fieldName?: string;
+  displayErrors?: boolean;
   type?: string;
   default?: string | number | object;
   id?: string;
@@ -1810,6 +1878,7 @@ export interface ListElementProps {
   rules?: Array<any> | string | object;
   messages?: object;
   fieldName?: string;
+  displayErrors?: boolean;
   type?: string;
   default?: Array<any>;
   id?: string;
@@ -1872,6 +1941,7 @@ export interface LocationElementProps {
   rules?: Array<any> | string | object;
   messages?: object;
   fieldName?: string;
+  displayErrors?: boolean;
   type?: string;
   default?: object;
   debounce?: number;
@@ -1885,6 +1955,77 @@ export interface LocationElementProps {
   provider?: string;
   displayKey?: string;
   extendOptions?: object;
+}
+
+export interface MatrixElementProps {
+  name: string | number;
+  conditions?: Array<any>;
+  onBeforeCreate?: Function;
+  onCreated?: Function;
+  onBeforeMount?: Function;
+  onMounted?: Function;
+  onBeforeUpdate?: Function;
+  onUpdated?: Function;
+  onBeforeUnmount?: Function;
+  onUnmounted?: Function;
+  inline?: boolean;
+  layout?: string | object | boolean;
+  addClass?: Array<any> | object | string | Function;
+  removeClass?: Array<any> | object | Function;
+  replaceClass?: object | Function;
+  overrideClass?: Array<any> | object | string | Function;
+  addClasses?: object | Function;
+  replaceClasses?: object | Function;
+  removeClasses?: object | Function;
+  overrideClasses?: object | Function;
+  presets?: Array<any>;
+  view?: string;
+  views?: object;
+  size?: string;
+  columns?: object | string | number;
+  templates?: object;
+  description?: string | object;
+  info?: string | object;
+  infoPosition?: string;
+  label?: string | object | Function;
+  before?: object | string | number;
+  between?: object | string | number;
+  after?: object | string | number;
+  slots?: object;
+  onChange?: Function;
+  formatData?: Function;
+  formatLoad?: Function;
+  submit?: boolean;
+  rules?: Array<any> | string | object;
+  messages?: object;
+  fieldName?: string;
+  displayErrors?: boolean;
+  type?: string;
+  default?: object;
+  id?: string;
+  disabled?: boolean | Function | Array<any> | object;
+  readonly?: boolean | Function | Array<any> | object;
+  inputType?: string | object;
+  items?: Array<any> | object | string | Function;
+  cols?: Array<any> | object;
+  colWrap?: boolean;
+  hideCols?: boolean;
+  stickyCols?: boolean;
+  rows?: Array<any> | object | number;
+  rowWrap?: boolean;
+  hideRows?: boolean;
+  stickyRows?: boolean;
+  min?: number | string;
+  max?: number | string;
+  canAdd?: boolean;
+  canRemove?: boolean;
+  addText?: string;
+  minWidth?: number | string;
+  maxWidth?: number | string;
+  gap?: string | number;
+  padding?: boolean;
+  scrollable?: boolean;
+  templateColumns?: string | Function;
 }
 
 export interface MultifileElementProps {
@@ -1929,6 +2070,7 @@ export interface MultifileElementProps {
   rules?: Array<any> | string | object;
   messages?: object;
   fieldName?: string;
+  displayErrors?: boolean;
   type?: string;
   default?: Array<any>;
   initial?: number;
@@ -2001,6 +2143,7 @@ export interface MultiselectElementProps {
   rules?: Array<any> | string | object;
   messages?: object;
   fieldName?: string;
+  displayErrors?: boolean;
   type?: string;
   default?: Array<any>;
   disabled?: boolean | Function | Array<any> | object;
@@ -2104,6 +2247,7 @@ export interface ObjectElementProps {
   rules?: Array<any> | string | object;
   messages?: object;
   fieldName?: string;
+  displayErrors?: boolean;
   type?: string;
   default?: object;
   id?: string;
@@ -2156,6 +2300,7 @@ export interface PhoneElementProps {
   rules?: Array<any> | string | object;
   messages?: object;
   fieldName?: string;
+  displayErrors?: boolean;
   type?: string;
   default?: string | number | object;
   debounce?: number;
@@ -2217,6 +2362,7 @@ export interface RadioElementProps {
   rules?: Array<any> | string | object;
   messages?: object;
   fieldName?: string;
+  displayErrors?: boolean;
   type?: string;
   default?: string | number;
   disabled?: boolean | Function | Array<any> | object;
@@ -2225,6 +2371,7 @@ export interface RadioElementProps {
   radioValue?: boolean | string | number;
   text?: string | object;
   align?: string;
+  standalone?: boolean;
 }
 
 export interface RadiogroupElementProps {
@@ -2269,6 +2416,7 @@ export interface RadiogroupElementProps {
   rules?: Array<any> | string | object;
   messages?: object;
   fieldName?: string;
+  displayErrors?: boolean;
   type?: string;
   default?: string | number | boolean;
   disabled?: boolean | Function | Array<any> | object;
@@ -2320,6 +2468,7 @@ export interface SelectElementProps {
   rules?: Array<any> | string | object;
   messages?: object;
   fieldName?: string;
+  displayErrors?: boolean;
   type?: string;
   default?: string | number | object;
   disabled?: boolean | Function | Array<any> | object;
@@ -2418,6 +2567,7 @@ export interface SignatureElementProps {
   rules?: Array<any> | string | object;
   messages?: object;
   fieldName?: string;
+  displayErrors?: boolean;
   type?: string;
   id?: string;
   default?: string | number | object;
@@ -2486,6 +2636,7 @@ export interface SliderElementProps {
   rules?: Array<any> | string | object;
   messages?: object;
   fieldName?: string;
+  displayErrors?: boolean;
   type?: string;
   default?: number | Array<any>;
   disabled?: boolean | Function | Array<any> | object;
@@ -2600,6 +2751,7 @@ export interface TEditorElementProps {
   rules?: Array<any> | string | object;
   messages?: object;
   fieldName?: string;
+  displayErrors?: boolean;
   type?: string;
   default?: object | string | number;
   debounce?: number;
@@ -2658,6 +2810,7 @@ export interface TTextElementProps {
   rules?: Array<any> | string | object;
   messages?: object;
   fieldName?: string;
+  displayErrors?: boolean;
   type?: string;
   default?: object | string | number;
   addons?: object;
@@ -2719,6 +2872,7 @@ export interface TTextareaElementProps {
   rules?: Array<any> | string | object;
   messages?: object;
   fieldName?: string;
+  displayErrors?: boolean;
   type?: string;
   default?: object | string | number;
   addons?: object;
@@ -2779,6 +2933,7 @@ export interface TagsElementProps {
   rules?: Array<any> | string | object;
   messages?: object;
   fieldName?: string;
+  displayErrors?: boolean;
   type?: string;
   default?: Array<any>;
   disabled?: boolean | Function | Array<any> | object;
@@ -2881,6 +3036,7 @@ export interface TextElementProps {
   rules?: Array<any> | string | object;
   messages?: object;
   fieldName?: string;
+  displayErrors?: boolean;
   type?: string;
   default?: string | number | object;
   debounce?: number;
@@ -2943,6 +3099,7 @@ export interface TextareaElementProps {
   rules?: Array<any> | string | object;
   messages?: object;
   fieldName?: string;
+  displayErrors?: boolean;
   type?: string;
   default?: string | number | object;
   addons?: object;
@@ -3003,6 +3160,7 @@ export interface ToggleElementProps {
   rules?: Array<any> | string | object;
   messages?: object;
   fieldName?: string;
+  displayErrors?: boolean;
   type?: string;
   default?: string | number | boolean;
   disabled?: boolean | Function | Array<any> | object;
@@ -3013,6 +3171,7 @@ export interface ToggleElementProps {
   falseValue?: boolean | string | number;
   extendOptions?: object;
   align?: string;
+  standalone?: boolean;
 }
 
 export declare class DragAndDrop implements DefineComponent {
@@ -3175,6 +3334,7 @@ export declare class ElementError implements DefineComponent {
   Templates: object;
   template: object;
   error: string;
+  showError: boolean;
   id: string;
 
   // Injects
@@ -4149,6 +4309,7 @@ export declare class CheckboxgroupCheckbox implements DefineComponent {
   items: CheckboxgroupCheckboxProps['items'];
   index: CheckboxgroupCheckboxProps['index'];
   attrs: CheckboxgroupCheckboxProps['attrs'];
+  standalone: CheckboxgroupCheckboxProps['standalone'];
 
   // Computed
   View: string;
@@ -4221,6 +4382,7 @@ export declare class RadiogroupRadio implements DefineComponent {
   items: RadiogroupRadioProps['items'];
   index: RadiogroupRadioProps['index'];
   attrs: RadiogroupRadioProps['attrs'];
+  standalone: RadiogroupRadioProps['standalone'];
 
   // Computed
   View: string;
@@ -4310,6 +4472,7 @@ export declare class ButtonElement implements DefineComponent {
   isImageType: boolean;
   isObjectType: boolean;
   isGroupType: boolean;
+  isMatrixType: boolean;
   isListType: boolean;
   isActive: boolean;
   isButtonLabelComponent: boolean;
@@ -4433,6 +4596,7 @@ export declare class CaptchaElement implements DefineComponent {
   rules: CaptchaElementProps['rules'];
   messages: CaptchaElementProps['messages'];
   fieldName: CaptchaElementProps['fieldName'];
+  displayErrors: CaptchaElementProps['displayErrors'];
   type: CaptchaElementProps['type'];
   id: CaptchaElementProps['id'];
   default: CaptchaElementProps['default'];
@@ -4449,6 +4613,7 @@ export declare class CaptchaElement implements DefineComponent {
   isObjectType: boolean;
   isGroupType: boolean;
   isListType: boolean;
+  isMatrixType: boolean;
   isActive: boolean;
   captchaOptions: object;
   shouldVerify: boolean;
@@ -4492,6 +4657,8 @@ export declare class CaptchaElement implements DefineComponent {
   isDanger: boolean;
   isSuccess: boolean;
   isRequired: boolean;
+  useCustomFilled: boolean;
+  isFilled: boolean;
   value: any;
   model: any;
   isDefault: boolean;
@@ -4618,6 +4785,7 @@ export declare class CheckboxElement implements DefineComponent {
   rules: CheckboxElementProps['rules'];
   messages: CheckboxElementProps['messages'];
   fieldName: CheckboxElementProps['fieldName'];
+  displayErrors: CheckboxElementProps['displayErrors'];
   type: CheckboxElementProps['type'];
   default: CheckboxElementProps['default'];
   id: CheckboxElementProps['id'];
@@ -4626,6 +4794,7 @@ export declare class CheckboxElement implements DefineComponent {
   trueValue: CheckboxElementProps['trueValue'];
   falseValue: CheckboxElementProps['falseValue'];
   align: CheckboxElementProps['align'];
+  standalone: CheckboxElementProps['standalone'];
 
   // Computed
   descriptionId: string;
@@ -4640,6 +4809,7 @@ export declare class CheckboxElement implements DefineComponent {
   isObjectType: boolean;
   isGroupType: boolean;
   isListType: boolean;
+  isMatrixType: boolean;
   isActive: boolean;
   classes: object;
   classesInstance: MergeClasses;
@@ -4678,6 +4848,8 @@ export declare class CheckboxElement implements DefineComponent {
   isDanger: boolean;
   isSuccess: boolean;
   isRequired: boolean;
+  useCustomFilled: boolean;
+  isFilled: boolean;
   value: any;
   model: any;
   isDefault: boolean;
@@ -4804,6 +4976,7 @@ export declare class CheckboxgroupElement implements DefineComponent {
   rules: CheckboxgroupElementProps['rules'];
   messages: CheckboxgroupElementProps['messages'];
   fieldName: CheckboxgroupElementProps['fieldName'];
+  displayErrors: CheckboxgroupElementProps['displayErrors'];
   type: CheckboxgroupElementProps['type'];
   default: CheckboxgroupElementProps['default'];
   id: CheckboxgroupElementProps['id'];
@@ -4825,6 +4998,7 @@ export declare class CheckboxgroupElement implements DefineComponent {
   isImageType: boolean;
   isObjectType: boolean;
   isGroupType: boolean;
+  isMatrixType: boolean;
   isListType: boolean;
   isActive: boolean;
   classes: object;
@@ -4863,6 +5037,8 @@ export declare class CheckboxgroupElement implements DefineComponent {
   isDanger: boolean;
   isSuccess: boolean;
   isRequired: boolean;
+  useCustomFilled: boolean;
+  isFilled: boolean;
   value: any;
   model: any;
   isDefault: boolean;
@@ -4998,6 +5174,7 @@ export declare class DateElement implements DefineComponent {
   rules: DateElementProps['rules'];
   messages: DateElementProps['messages'];
   fieldName: DateElementProps['fieldName'];
+  displayErrors: DateElementProps['displayErrors'];
   type: DateElementProps['type'];
   default: DateElementProps['default'];
   addons: DateElementProps['addons'];
@@ -5031,6 +5208,7 @@ export declare class DateElement implements DefineComponent {
   isObjectType: boolean;
   isGroupType: boolean;
   isListType: boolean;
+  isMatrixType: boolean;
   isActive: boolean;
   classes: object;
   classesInstance: MergeClasses;
@@ -5075,6 +5253,8 @@ export declare class DateElement implements DefineComponent {
   isDanger: boolean;
   isSuccess: boolean;
   isRequired: boolean;
+  useCustomFilled: boolean;
+  isFilled: boolean;
   value: any;
   model: any;
   isDefault: boolean;
@@ -5202,6 +5382,7 @@ export declare class DatesElement implements DefineComponent {
   rules: DatesElementProps['rules'];
   messages: DatesElementProps['messages'];
   fieldName: DatesElementProps['fieldName'];
+  displayErrors: DatesElementProps['displayErrors'];
   type: DatesElementProps['type'];
   default: DatesElementProps['default'];
   addons: DatesElementProps['addons'];
@@ -5231,6 +5412,7 @@ export declare class DatesElement implements DefineComponent {
   isImageType: boolean;
   isObjectType: boolean;
   isGroupType: boolean;
+  isMatrixType: boolean;
   isListType: boolean;
   isActive: boolean;
   classes: object;
@@ -5276,6 +5458,8 @@ export declare class DatesElement implements DefineComponent {
   isDanger: boolean;
   isSuccess: boolean;
   isRequired: boolean;
+  useCustomFilled: boolean;
+  isFilled: boolean;
   value: any;
   model: any;
   isDefault: boolean;
@@ -5403,6 +5587,7 @@ export declare class EditorElement implements DefineComponent {
   rules: EditorElementProps['rules'];
   messages: EditorElementProps['messages'];
   fieldName: EditorElementProps['fieldName'];
+  displayErrors: EditorElementProps['displayErrors'];
   type: EditorElementProps['type'];
   default: EditorElementProps['default'];
   debounce: EditorElementProps['debounce'];
@@ -5431,6 +5616,7 @@ export declare class EditorElement implements DefineComponent {
   isObjectType: boolean;
   isGroupType: boolean;
   isListType: boolean;
+  isMatrixType: boolean;
   isActive: boolean;
   classes: object;
   classesInstance: MergeClasses;
@@ -5473,6 +5659,8 @@ export declare class EditorElement implements DefineComponent {
   isDanger: boolean;
   isSuccess: boolean;
   isRequired: boolean;
+  useCustomFilled: boolean;
+  isFilled: boolean;
   value: any;
   model: any;
   isDefault: boolean;
@@ -5605,6 +5793,7 @@ export declare class FileElement implements DefineComponent {
   rules: FileElementProps['rules'];
   messages: FileElementProps['messages'];
   fieldName: FileElementProps['fieldName'];
+  displayErrors: FileElementProps['displayErrors'];
   type: FileElementProps['type'];
   default: FileElementProps['default'];
   disabled: FileElementProps['disabled'];
@@ -5638,6 +5827,7 @@ export declare class FileElement implements DefineComponent {
   isImageType: boolean;
   isObjectType: boolean;
   isGroupType: boolean;
+  isMatrixType: boolean;
   isListType: boolean;
   isActive: boolean;
   classes: object;
@@ -5684,6 +5874,8 @@ export declare class FileElement implements DefineComponent {
   pending: boolean;
   busy: boolean;
   isRequired: boolean;
+  useCustomFilled: boolean;
+  isFilled: boolean;
   errors: Array<any>;
   error: string;
   validationRules: string | Array<any>;
@@ -5828,6 +6020,7 @@ export declare class GenericElement implements DefineComponent {
   rules: GenericElementProps['rules'];
   messages: GenericElementProps['messages'];
   fieldName: GenericElementProps['fieldName'];
+  displayErrors: GenericElementProps['displayErrors'];
   type: GenericElementProps['type'];
   id: GenericElementProps['id'];
   disabled: GenericElementProps['disabled'];
@@ -5846,6 +6039,7 @@ export declare class GenericElement implements DefineComponent {
   isObjectType: boolean;
   isGroupType: boolean;
   isListType: boolean;
+  isMatrixType: boolean;
   isActive: boolean;
   classes: object;
   classesInstance: MergeClasses;
@@ -5885,6 +6079,8 @@ export declare class GenericElement implements DefineComponent {
   isDanger: boolean;
   isSuccess: boolean;
   isRequired: boolean;
+  useCustomFilled: boolean;
+  isFilled: boolean;
   value: any;
   model: any;
   isDefault: boolean;
@@ -6010,6 +6206,7 @@ export declare class GroupElement implements DefineComponent {
   rules: GroupElementProps['rules'];
   messages: GroupElementProps['messages'];
   fieldName: GroupElementProps['fieldName'];
+  displayErrors: GroupElementProps['displayErrors'];
   type: GroupElementProps['type'];
   default: GroupElementProps['default'];
   id: GroupElementProps['id'];
@@ -6027,6 +6224,7 @@ export declare class GroupElement implements DefineComponent {
   isImageType: boolean;
   isObjectType: boolean;
   isGroupType: boolean;
+  isMatrixType: boolean;
   isListType: boolean;
   isActive: boolean;
   children: object;
@@ -6061,6 +6259,8 @@ export declare class GroupElement implements DefineComponent {
   debouncing: boolean;
   busy: boolean;
   isRequired: boolean;
+  useCustomFilled: boolean;
+  isFilled: boolean;
   childrenErrors: Array<any>;
   errors: Array<any>;
   error: string;
@@ -6161,6 +6361,7 @@ export declare class HiddenElement implements DefineComponent {
   rules: HiddenElementProps['rules'];
   messages: HiddenElementProps['messages'];
   fieldName: HiddenElementProps['fieldName'];
+  displayErrors: HiddenElementProps['displayErrors'];
   type: HiddenElementProps['type'];
   default: HiddenElementProps['default'];
   id: HiddenElementProps['id'];
@@ -6174,6 +6375,7 @@ export declare class HiddenElement implements DefineComponent {
   isObjectType: boolean;
   isGroupType: boolean;
   isListType: boolean;
+  isMatrixType: boolean;
   isActive: boolean;
   available: boolean;
   data: object;
@@ -6201,6 +6403,8 @@ export declare class HiddenElement implements DefineComponent {
   isDanger: boolean;
   isSuccess: boolean;
   isRequired: boolean;
+  useCustomFilled: boolean;
+  isFilled: boolean;
   value: any;
   model: any;
   isDefault: boolean;
@@ -6302,6 +6506,7 @@ export declare class ListElement implements DefineComponent {
   rules: ListElementProps['rules'];
   messages: ListElementProps['messages'];
   fieldName: ListElementProps['fieldName'];
+  displayErrors: ListElementProps['displayErrors'];
   type: ListElementProps['type'];
   default: ListElementProps['default'];
   id: ListElementProps['id'];
@@ -6333,6 +6538,7 @@ export declare class ListElement implements DefineComponent {
   isImageType: boolean;
   isObjectType: boolean;
   isGroupType: boolean;
+  isMatrixType: boolean;
   isListType: boolean;
   isActive: boolean;
   children$: object;
@@ -6378,6 +6584,8 @@ export declare class ListElement implements DefineComponent {
   debouncing: boolean;
   busy: boolean;
   isRequired: boolean;
+  useCustomFilled: boolean;
+  isFilled: boolean;
   childrenErrors: Array<any>;
   errors: Array<any>;
   error: string;
@@ -6522,6 +6730,7 @@ export declare class LocationElement implements DefineComponent {
   rules: LocationElementProps['rules'];
   messages: LocationElementProps['messages'];
   fieldName: LocationElementProps['fieldName'];
+  displayErrors: LocationElementProps['displayErrors'];
   type: LocationElementProps['type'];
   default: LocationElementProps['default'];
   debounce: LocationElementProps['debounce'];
@@ -6549,6 +6758,7 @@ export declare class LocationElement implements DefineComponent {
   isObjectType: boolean;
   isGroupType: boolean;
   isListType: boolean;
+  isMatrixType: boolean;
   isActive: boolean;
   classes: object;
   classesInstance: MergeClasses;
@@ -6586,6 +6796,8 @@ export declare class LocationElement implements DefineComponent {
   debouncing: boolean;
   busy: boolean;
   isRequired: boolean;
+  useCustomFilled: boolean;
+  isFilled: boolean;
   errors: Array<any>;
   error: string;
   validationRules: string | Array<any>;
@@ -6677,6 +6889,237 @@ export declare class LocationElement implements DefineComponent {
   };
 }
 
+export declare class MatrixElement implements DefineComponent {
+  $props: MatrixElementProps;
+
+  // Props
+  name: MatrixElementProps['name'];
+  conditions: MatrixElementProps['conditions'];
+  onBeforeCreate: MatrixElementProps['onBeforeCreate'];
+  onCreated: MatrixElementProps['onCreated'];
+  onBeforeMount: MatrixElementProps['onBeforeMount'];
+  onMounted: MatrixElementProps['onMounted'];
+  onBeforeUpdate: MatrixElementProps['onBeforeUpdate'];
+  onUpdated: MatrixElementProps['onUpdated'];
+  onBeforeUnmount: MatrixElementProps['onBeforeUnmount'];
+  onUnmounted: MatrixElementProps['onUnmounted'];
+  inline: MatrixElementProps['inline'];
+  layout: MatrixElementProps['layout'];
+  addClass: MatrixElementProps['addClass'];
+  removeClass: MatrixElementProps['removeClass'];
+  replaceClass: MatrixElementProps['replaceClass'];
+  overrideClass: MatrixElementProps['overrideClass'];
+  addClasses: MatrixElementProps['addClasses'];
+  replaceClasses: MatrixElementProps['replaceClasses'];
+  removeClasses: MatrixElementProps['removeClasses'];
+  overrideClasses: MatrixElementProps['overrideClasses'];
+  presets: MatrixElementProps['presets'];
+  view: MatrixElementProps['view'];
+  views: MatrixElementProps['views'];
+  size: MatrixElementProps['size'];
+  columns: MatrixElementProps['columns'];
+  templates: MatrixElementProps['templates'];
+  description: MatrixElementProps['description'];
+  info: MatrixElementProps['info'];
+  infoPosition: MatrixElementProps['infoPosition'];
+  label: MatrixElementProps['label'];
+  before: MatrixElementProps['before'];
+  between: MatrixElementProps['between'];
+  after: MatrixElementProps['after'];
+  slots: MatrixElementProps['slots'];
+  onChange: MatrixElementProps['onChange'];
+  formatData: MatrixElementProps['formatData'];
+  formatLoad: MatrixElementProps['formatLoad'];
+  submit: MatrixElementProps['submit'];
+  rules: MatrixElementProps['rules'];
+  messages: MatrixElementProps['messages'];
+  fieldName: MatrixElementProps['fieldName'];
+  displayErrors: MatrixElementProps['displayErrors'];
+  type: MatrixElementProps['type'];
+  default: MatrixElementProps['default'];
+  id: MatrixElementProps['id'];
+  disabled: MatrixElementProps['disabled'];
+  readonly: MatrixElementProps['readonly'];
+  inputType: MatrixElementProps['inputType'];
+  items: MatrixElementProps['items'];
+  cols: MatrixElementProps['cols'];
+  colWrap: MatrixElementProps['colWrap'];
+  hideCols: MatrixElementProps['hideCols'];
+  stickyCols: MatrixElementProps['stickyCols'];
+  rows: MatrixElementProps['rows'];
+  rowWrap: MatrixElementProps['rowWrap'];
+  hideRows: MatrixElementProps['hideRows'];
+  stickyRows: MatrixElementProps['stickyRows'];
+  min: MatrixElementProps['min'];
+  max: MatrixElementProps['max'];
+  canAdd: MatrixElementProps['canAdd'];
+  canRemove: MatrixElementProps['canRemove'];
+  addText: MatrixElementProps['addText'];
+  minWidth: MatrixElementProps['minWidth'];
+  maxWidth: MatrixElementProps['maxWidth'];
+  gap: MatrixElementProps['gap'];
+  padding: MatrixElementProps['padding'];
+  scrollable: MatrixElementProps['scrollable'];
+  templateColumns: MatrixElementProps['templateColumns'];
+
+  // Computed
+  descriptionId: string;
+  labelId: string;
+  infoId: string;
+  errorId: string;
+  aria: object;
+  isStatic: boolean;
+  isFileType: boolean;
+  isArrayType: boolean;
+  isImageType: boolean;
+  isObjectType: boolean;
+  isGroupType: boolean;
+  isMatrixType: boolean;
+  isListType: boolean;
+  isActive: boolean;
+  hasDynamicRows: boolean;
+  computedRows: number | Array<any>;
+  resolvedRows: Array<any>;
+  resolvedColumns: Array<any>;
+  dataType: Array<any>;
+  children: object;
+  children$: object;
+  classes: object;
+  classesInstance: MergeClasses;
+  cols: object;
+  columnsClassesService: Columns;
+  columnsClasses: object;
+  available: boolean;
+  data: object;
+  requestData: object;
+  defaultValue: any;
+  isDisabled: boolean;
+  el$: VueformElement;
+  fieldId: string;
+  genericName: string;
+  hasLabel: boolean;
+  Label: string | Component;
+  elementLayout: string | Component;
+  addLabel: string;
+  rowsVisible: boolean;
+  colsVisible: boolean;
+  allowAdd: boolean;
+  allowRemove: boolean;
+  cells: Array<any>;
+  nullValue: any;
+  parent: VNode;
+  path: string;
+  dataPath: string;
+  flat: boolean;
+  isReadonly: boolean;
+  elementSlots: object;
+  fieldSlots: object;
+  Templates: object;
+  template: object;
+  dirty: boolean;
+  validated: boolean;
+  invalid: boolean;
+  pending: boolean;
+  busy: boolean;
+  errors: Array<any>;
+  error: string;
+  validationRules: string | Array<any>;
+  isDanger: boolean;
+  isSuccess: boolean;
+  isRequired: boolean;
+  useCustomFilled: boolean;
+  isFilled: boolean;
+  value: any;
+  model: any;
+  isDefault: boolean;
+  visible: boolean;
+  Size: string;
+  View: string;
+  Views: object;
+
+  // Data
+  active: boolean;
+  mounted: boolean;
+  container: HTMLElement;
+  rowsCount: number;
+  cells$: object;
+  children$Array: Array<any>;
+  conditionList: Array<any>;
+  localDisabled: boolean | null;
+  events: Array<any>;
+  listeners: object;
+  grid: HTMLElement;
+  state: object;
+  Validators: Array<any>;
+  messageBag: MessageBag;
+  resetting: boolean;
+  initialValue: any;
+  internalValue: any;
+  hidden: boolean;
+
+  // Injects
+  form$: Vueform;
+  theme: object;
+
+  // Methods
+  activate: () => void;
+  deactivate: () => void;
+  updateColumns: (value: number | Array<any>) => void;
+  updateConditions: () => void;
+  load: (value: any, format: boolean) => void;
+  update: (value: any) => void;
+  clear: () => void;
+  reset: () => void;
+  disable: () => void;
+  enable: () => void;
+  component: (element: string) => string;
+  on: (event: string, callback: Function) => void;
+  off: (event: string) => void;
+  fire: (args: any) => void;
+  focus: () => void;
+  resolveComponentType: (column: object) => string;
+  resolveComponentProps: (row: object, col: object, rowIndex: number, colIndex: number) => object;
+  resolveComponentName: (rowIndex: number, colIndex: number) => string;
+  getColStyle: (index: object) => object;
+  resolveColInputType: (col: object) => object | string;
+  resolveColConditions: (row: object, col: object) => object;
+  resolveColType: (col: object) => string;
+  validate: () => Promise;
+  dirt: () => void;
+  clean: () => void;
+  clearMessages: () => void;
+  resetValidators: () => void;
+  initMessageBag: () => void;
+  initValidation: () => void;
+  reinitValidation: () => void;
+  hide: () => void;
+  show: () => void;
+
+  //Events
+  $emit(eventName: 'change', value: any): void;
+  $emit(eventName: 'add', value: any): void;
+  $emit(eventName: 'remove', value: any): void;
+  $emit(eventName: 'beforeCreate', value: any): void;
+  $emit(eventName: 'created', value: any): void;
+  $emit(eventName: 'beforeMount', value: any): void;
+  $emit(eventName: 'mounted', value: any): void;
+  $emit(eventName: 'beforeUpdate', value: any): void;
+  $emit(eventName: 'updated', value: any): void;
+  $emit(eventName: 'beforeUnmount', value: any): void;
+  $emit(eventName: 'unmounted', value: any): void;
+
+  //Slots
+  $slots: {
+    'label': VNode[];
+    'info': VNode[];
+    'required': VNode[];
+    'description': VNode[];
+    'before': VNode[];
+    'between': VNode[];
+    'after': VNode[];
+  };
+}
+
 export declare class MultifileElement implements DefineComponent {
   $props: MultifileElementProps;
 
@@ -6722,6 +7165,7 @@ export declare class MultifileElement implements DefineComponent {
   rules: MultifileElementProps['rules'];
   messages: MultifileElementProps['messages'];
   fieldName: MultifileElementProps['fieldName'];
+  displayErrors: MultifileElementProps['displayErrors'];
   type: MultifileElementProps['type'];
   default: MultifileElementProps['default'];
   initial: MultifileElementProps['initial'];
@@ -6763,6 +7207,7 @@ export declare class MultifileElement implements DefineComponent {
   isImageType: boolean;
   isObjectType: boolean;
   isGroupType: boolean;
+  isMatrixType: boolean;
   isListType: boolean;
   isActive: boolean;
   children$: object;
@@ -6811,6 +7256,8 @@ export declare class MultifileElement implements DefineComponent {
   debouncing: boolean;
   busy: boolean;
   isRequired: boolean;
+  useCustomFilled: boolean;
+  isFilled: boolean;
   childrenErrors: Array<any>;
   errors: Array<any>;
   error: string;
@@ -6959,6 +7406,7 @@ export declare class MultiselectElement implements DefineComponent {
   rules: MultiselectElementProps['rules'];
   messages: MultiselectElementProps['messages'];
   fieldName: MultiselectElementProps['fieldName'];
+  displayErrors: MultiselectElementProps['displayErrors'];
   type: MultiselectElementProps['type'];
   default: MultiselectElementProps['default'];
   disabled: MultiselectElementProps['disabled'];
@@ -7032,6 +7480,7 @@ export declare class MultiselectElement implements DefineComponent {
   isImageType: boolean;
   isObjectType: boolean;
   isGroupType: boolean;
+  isMatrixType: boolean;
   isListType: boolean;
   isActive: boolean;
   classes: object;
@@ -7074,6 +7523,8 @@ export declare class MultiselectElement implements DefineComponent {
   isDanger: boolean;
   isSuccess: boolean;
   isRequired: boolean;
+  useCustomFilled: boolean;
+  isFilled: boolean;
   value: any;
   model: any;
   isDefault: boolean;
@@ -7230,6 +7681,7 @@ export declare class ObjectElement implements DefineComponent {
   rules: ObjectElementProps['rules'];
   messages: ObjectElementProps['messages'];
   fieldName: ObjectElementProps['fieldName'];
+  displayErrors: ObjectElementProps['displayErrors'];
   type: ObjectElementProps['type'];
   default: ObjectElementProps['default'];
   id: ObjectElementProps['id'];
@@ -7249,6 +7701,7 @@ export declare class ObjectElement implements DefineComponent {
   isImageType: boolean;
   isObjectType: boolean;
   isGroupType: boolean;
+  isMatrixType: boolean;
   isListType: boolean;
   isActive: boolean;
   children: object;
@@ -7283,6 +7736,8 @@ export declare class ObjectElement implements DefineComponent {
   debouncing: boolean;
   busy: boolean;
   isRequired: boolean;
+  useCustomFilled: boolean;
+  isFilled: boolean;
   childrenErrors: Array<any>;
   errors: Array<any>;
   error: string;
@@ -7409,6 +7864,7 @@ export declare class PhoneElement implements DefineComponent {
   rules: PhoneElementProps['rules'];
   messages: PhoneElementProps['messages'];
   fieldName: PhoneElementProps['fieldName'];
+  displayErrors: PhoneElementProps['displayErrors'];
   type: PhoneElementProps['type'];
   default: PhoneElementProps['default'];
   debounce: PhoneElementProps['debounce'];
@@ -7440,6 +7896,7 @@ export declare class PhoneElement implements DefineComponent {
   isObjectType: boolean;
   isGroupType: boolean;
   isListType: boolean;
+  isMatrixType: boolean;
   isActive: boolean;
   classes: object;
   classesInstance: MergeClasses;
@@ -7487,6 +7944,8 @@ export declare class PhoneElement implements DefineComponent {
   isDanger: boolean;
   isSuccess: boolean;
   isRequired: boolean;
+  useCustomFilled: boolean;
+  isFilled: boolean;
   value: any;
   model: any;
   isDefault: boolean;
@@ -7625,6 +8084,7 @@ export declare class RadioElement implements DefineComponent {
   rules: RadioElementProps['rules'];
   messages: RadioElementProps['messages'];
   fieldName: RadioElementProps['fieldName'];
+  displayErrors: RadioElementProps['displayErrors'];
   type: RadioElementProps['type'];
   default: RadioElementProps['default'];
   disabled: RadioElementProps['disabled'];
@@ -7633,6 +8093,7 @@ export declare class RadioElement implements DefineComponent {
   radioValue: RadioElementProps['radioValue'];
   text: RadioElementProps['text'];
   align: RadioElementProps['align'];
+  standalone: RadioElementProps['standalone'];
 
   // Computed
   descriptionId: string;
@@ -7647,6 +8108,7 @@ export declare class RadioElement implements DefineComponent {
   isObjectType: boolean;
   isGroupType: boolean;
   isListType: boolean;
+  isMatrixType: boolean;
   isActive: boolean;
   classes: object;
   classesInstance: MergeClasses;
@@ -7686,6 +8148,8 @@ export declare class RadioElement implements DefineComponent {
   isDanger: boolean;
   isSuccess: boolean;
   isRequired: boolean;
+  useCustomFilled: boolean;
+  isFilled: boolean;
   value: any;
   model: any;
   isDefault: boolean;
@@ -7812,6 +8276,7 @@ export declare class RadiogroupElement implements DefineComponent {
   rules: RadiogroupElementProps['rules'];
   messages: RadiogroupElementProps['messages'];
   fieldName: RadiogroupElementProps['fieldName'];
+  displayErrors: RadiogroupElementProps['displayErrors'];
   type: RadiogroupElementProps['type'];
   default: RadiogroupElementProps['default'];
   disabled: RadiogroupElementProps['disabled'];
@@ -7834,6 +8299,7 @@ export declare class RadiogroupElement implements DefineComponent {
   isObjectType: boolean;
   isGroupType: boolean;
   isListType: boolean;
+  isMatrixType: boolean;
   isActive: boolean;
   classes: object;
   classesInstance: MergeClasses;
@@ -7871,6 +8337,8 @@ export declare class RadiogroupElement implements DefineComponent {
   isDanger: boolean;
   isSuccess: boolean;
   isRequired: boolean;
+  useCustomFilled: boolean;
+  isFilled: boolean;
   value: any;
   model: any;
   isDefault: boolean;
@@ -8001,6 +8469,7 @@ export declare class SelectElement implements DefineComponent {
   rules: SelectElementProps['rules'];
   messages: SelectElementProps['messages'];
   fieldName: SelectElementProps['fieldName'];
+  displayErrors: SelectElementProps['displayErrors'];
   type: SelectElementProps['type'];
   default: SelectElementProps['default'];
   disabled: SelectElementProps['disabled'];
@@ -8070,6 +8539,7 @@ export declare class SelectElement implements DefineComponent {
   isObjectType: boolean;
   isGroupType: boolean;
   isListType: boolean;
+  isMatrixType: boolean;
   isActive: boolean;
   classes: object;
   classesInstance: MergeClasses;
@@ -8111,6 +8581,8 @@ export declare class SelectElement implements DefineComponent {
   isDanger: boolean;
   isSuccess: boolean;
   isRequired: boolean;
+  useCustomFilled: boolean;
+  isFilled: boolean;
   value: any;
   model: any;
   isDefault: boolean;
@@ -8265,6 +8737,7 @@ export declare class SignatureElement implements DefineComponent {
   rules: SignatureElementProps['rules'];
   messages: SignatureElementProps['messages'];
   fieldName: SignatureElementProps['fieldName'];
+  displayErrors: SignatureElementProps['displayErrors'];
   type: SignatureElementProps['type'];
   id: SignatureElementProps['id'];
   default: SignatureElementProps['default'];
@@ -8303,6 +8776,7 @@ export declare class SignatureElement implements DefineComponent {
   isObjectType: boolean;
   isGroupType: boolean;
   isListType: boolean;
+  isMatrixType: boolean;
   isActive: boolean;
   classes: object;
   classesInstance: MergeClasses;
@@ -8385,6 +8859,8 @@ export declare class SignatureElement implements DefineComponent {
   isDanger: boolean;
   isSuccess: boolean;
   isRequired: boolean;
+  useCustomFilled: boolean;
+  isFilled: boolean;
   value: any;
   model: any;
   isDefault: boolean;
@@ -8569,6 +9045,7 @@ export declare class SliderElement implements DefineComponent {
   rules: SliderElementProps['rules'];
   messages: SliderElementProps['messages'];
   fieldName: SliderElementProps['fieldName'];
+  displayErrors: SliderElementProps['displayErrors'];
   type: SliderElementProps['type'];
   default: SliderElementProps['default'];
   disabled: SliderElementProps['disabled'];
@@ -8599,6 +9076,7 @@ export declare class SliderElement implements DefineComponent {
   isObjectType: boolean;
   isGroupType: boolean;
   isListType: boolean;
+  isMatrixType: boolean;
   isActive: boolean;
   classes: object;
   classesInstance: MergeClasses;
@@ -8631,6 +9109,8 @@ export declare class SliderElement implements DefineComponent {
   pending: boolean;
   busy: boolean;
   isRequired: boolean;
+  useCustomFilled: boolean;
+  isFilled: boolean;
   errors: Array<any>;
   error: string;
   validationRules: string | Array<any>;
@@ -8782,6 +9262,7 @@ export declare class StaticElement implements DefineComponent {
   isImageType: boolean;
   isObjectType: boolean;
   isGroupType: boolean;
+  isMatrixType: boolean;
   isListType: boolean;
   isActive: boolean;
   classes: object;
@@ -8903,6 +9384,7 @@ export declare class TEditorElement implements DefineComponent {
   rules: TEditorElementProps['rules'];
   messages: TEditorElementProps['messages'];
   fieldName: TEditorElementProps['fieldName'];
+  displayErrors: TEditorElementProps['displayErrors'];
   type: TEditorElementProps['type'];
   default: TEditorElementProps['default'];
   debounce: TEditorElementProps['debounce'];
@@ -8931,6 +9413,7 @@ export declare class TEditorElement implements DefineComponent {
   isObjectType: boolean;
   isGroupType: boolean;
   isListType: boolean;
+  isMatrixType: boolean;
   isActive: boolean;
   classes: object;
   classesInstance: MergeClasses;
@@ -8975,6 +9458,8 @@ export declare class TEditorElement implements DefineComponent {
   isDanger: boolean;
   isSuccess: boolean;
   isRequired: boolean;
+  useCustomFilled: boolean;
+  isFilled: boolean;
   value: any;
   model: any;
   isDefault: boolean;
@@ -9107,6 +9592,7 @@ export declare class TTextElement implements DefineComponent {
   rules: TTextElementProps['rules'];
   messages: TTextElementProps['messages'];
   fieldName: TTextElementProps['fieldName'];
+  displayErrors: TTextElementProps['displayErrors'];
   type: TTextElementProps['type'];
   default: TTextElementProps['default'];
   addons: TTextElementProps['addons'];
@@ -9138,6 +9624,7 @@ export declare class TTextElement implements DefineComponent {
   isObjectType: boolean;
   isGroupType: boolean;
   isListType: boolean;
+  isMatrixType: boolean;
   isActive: boolean;
   classes: object;
   classesInstance: MergeClasses;
@@ -9183,6 +9670,8 @@ export declare class TTextElement implements DefineComponent {
   isDanger: boolean;
   isSuccess: boolean;
   isRequired: boolean;
+  useCustomFilled: boolean;
+  isFilled: boolean;
   value: any;
   model: any;
   isDefault: boolean;
@@ -9320,6 +9809,7 @@ export declare class TTextareaElement implements DefineComponent {
   rules: TTextareaElementProps['rules'];
   messages: TTextareaElementProps['messages'];
   fieldName: TTextareaElementProps['fieldName'];
+  displayErrors: TTextareaElementProps['displayErrors'];
   type: TTextareaElementProps['type'];
   default: TTextareaElementProps['default'];
   addons: TTextareaElementProps['addons'];
@@ -9350,6 +9840,7 @@ export declare class TTextareaElement implements DefineComponent {
   isObjectType: boolean;
   isGroupType: boolean;
   isListType: boolean;
+  isMatrixType: boolean;
   isActive: boolean;
   classes: object;
   classesInstance: MergeClasses;
@@ -9394,6 +9885,8 @@ export declare class TTextareaElement implements DefineComponent {
   isDanger: boolean;
   isSuccess: boolean;
   isRequired: boolean;
+  useCustomFilled: boolean;
+  isFilled: boolean;
   value: any;
   model: any;
   isDefault: boolean;
@@ -9532,6 +10025,7 @@ export declare class TagsElement implements DefineComponent {
   rules: TagsElementProps['rules'];
   messages: TagsElementProps['messages'];
   fieldName: TagsElementProps['fieldName'];
+  displayErrors: TagsElementProps['displayErrors'];
   type: TagsElementProps['type'];
   default: TagsElementProps['default'];
   disabled: TagsElementProps['disabled'];
@@ -9604,6 +10098,7 @@ export declare class TagsElement implements DefineComponent {
   isImageType: boolean;
   isObjectType: boolean;
   isGroupType: boolean;
+  isMatrixType: boolean;
   isListType: boolean;
   isActive: boolean;
   classes: object;
@@ -9646,6 +10141,8 @@ export declare class TagsElement implements DefineComponent {
   isDanger: boolean;
   isSuccess: boolean;
   isRequired: boolean;
+  useCustomFilled: boolean;
+  isFilled: boolean;
   value: any;
   model: any;
   isDefault: boolean;
@@ -9804,6 +10301,7 @@ export declare class TextElement implements DefineComponent {
   rules: TextElementProps['rules'];
   messages: TextElementProps['messages'];
   fieldName: TextElementProps['fieldName'];
+  displayErrors: TextElementProps['displayErrors'];
   type: TextElementProps['type'];
   default: TextElementProps['default'];
   debounce: TextElementProps['debounce'];
@@ -9836,6 +10334,7 @@ export declare class TextElement implements DefineComponent {
   isObjectType: boolean;
   isGroupType: boolean;
   isListType: boolean;
+  isMatrixType: boolean;
   isActive: boolean;
   classes: object;
   classesInstance: MergeClasses;
@@ -9879,6 +10378,8 @@ export declare class TextElement implements DefineComponent {
   isDanger: boolean;
   isSuccess: boolean;
   isRequired: boolean;
+  useCustomFilled: boolean;
+  isFilled: boolean;
   value: any;
   model: any;
   isDefault: boolean;
@@ -10016,6 +10517,7 @@ export declare class TextareaElement implements DefineComponent {
   rules: TextareaElementProps['rules'];
   messages: TextareaElementProps['messages'];
   fieldName: TextareaElementProps['fieldName'];
+  displayErrors: TextareaElementProps['displayErrors'];
   type: TextareaElementProps['type'];
   default: TextareaElementProps['default'];
   addons: TextareaElementProps['addons'];
@@ -10046,6 +10548,7 @@ export declare class TextareaElement implements DefineComponent {
   isObjectType: boolean;
   isGroupType: boolean;
   isListType: boolean;
+  isMatrixType: boolean;
   isActive: boolean;
   classes: object;
   classesInstance: MergeClasses;
@@ -10088,6 +10591,8 @@ export declare class TextareaElement implements DefineComponent {
   isDanger: boolean;
   isSuccess: boolean;
   isRequired: boolean;
+  useCustomFilled: boolean;
+  isFilled: boolean;
   value: any;
   model: any;
   isDefault: boolean;
@@ -10226,6 +10731,7 @@ export declare class ToggleElement implements DefineComponent {
   rules: ToggleElementProps['rules'];
   messages: ToggleElementProps['messages'];
   fieldName: ToggleElementProps['fieldName'];
+  displayErrors: ToggleElementProps['displayErrors'];
   type: ToggleElementProps['type'];
   default: ToggleElementProps['default'];
   disabled: ToggleElementProps['disabled'];
@@ -10236,6 +10742,7 @@ export declare class ToggleElement implements DefineComponent {
   falseValue: ToggleElementProps['falseValue'];
   extendOptions: ToggleElementProps['extendOptions'];
   align: ToggleElementProps['align'];
+  standalone: ToggleElementProps['standalone'];
 
   // Computed
   descriptionId: string;
@@ -10250,6 +10757,7 @@ export declare class ToggleElement implements DefineComponent {
   isObjectType: boolean;
   isGroupType: boolean;
   isListType: boolean;
+  isMatrixType: boolean;
   isActive: boolean;
   classes: object;
   classesInstance: MergeClasses;
@@ -10288,6 +10796,8 @@ export declare class ToggleElement implements DefineComponent {
   isDanger: boolean;
   isSuccess: boolean;
   isRequired: boolean;
+  useCustomFilled: boolean;
+  isFilled: boolean;
   value: any;
   model: any;
   isDefault: boolean;
@@ -10416,6 +10926,7 @@ declare module 'vue' {
     HiddenElement: typeof HiddenElement;
     ListElement: typeof ListElement;
     LocationElement: typeof LocationElement;
+    MatrixElement: typeof MatrixElement;
     MultifileElement: typeof MultifileElement;
     MultiselectElement: typeof MultiselectElement;
     ObjectElement: typeof ObjectElement;

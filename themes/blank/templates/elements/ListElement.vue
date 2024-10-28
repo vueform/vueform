@@ -11,7 +11,7 @@
               v-bind="prototype"
               :name="i"
               :key="i"
-           />
+            />
           </slot>
 
           <!-- Sort handle -->

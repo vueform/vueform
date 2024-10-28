@@ -8,7 +8,7 @@
       return {
         merge: true,
         defaultClasses: {
-          container: '',
+          container: 'vf-checkboxgroup-view-default',
           wrapper: 'vf-checkboxgroup-wrapper',
           wrapper_sm: 'vf-checkboxgroup-wrapper-sm',
           wrapper_md: '',

@@ -180,6 +180,7 @@
   --vf-bg-btn: var(--vf-primary);
   --vf-bg-btn-danger: var(--vf-danger);
   --vf-bg-btn-secondary: var(--vf-gray-200);
+  --vf-bg-table-header: var(--vf-gray-300);
   --vf-color-input: var(--vf-gray-900);
   --vf-color-input-focus: var(--vf-color-input);
   --vf-color-input-hover: var(--vf-color-input);
@@ -202,6 +203,7 @@
   --vf-color-btn: var(--vf-color-on-primary);
   --vf-color-btn-danger: #ffffff;
   --vf-color-btn-secondary: var(--vf-gray-700);
+  --vf-color-table-header: inherit;
   --vf-border-color-blockquote: var(--vf-gray-300);
   --vf-border-color-hr: var(--vf-gray-400);
   --vf-border-color-signature-hr: var(--vf-gray-400);
@@ -222,6 +224,7 @@
   --vf-border-color-btn: var(--vf-primary);
   --vf-border-color-btn-danger: var(--vf-danger);
   --vf-border-color-btn-secondary: var(--vf-gray-200);
+  --vf-border-color-table: var(--vf-gray-300);
   --vf-border-width-input-t: 0px;
   --vf-border-width-input-r: 0px;
   --vf-border-width-input-b: 1px;
@@ -239,6 +242,7 @@
   --vf-border-width-btn: 1px;
   --vf-border-width-tag: 1px;
   --vf-border-width-blockquote: 3px;
+  --vf-border-width-table: 1px;
   --vf-shadow-input: 0px 0px 0px 0px rgba(0,0,0,0);
   --vf-shadow-input-hover: 0px 0px 0px 0px rgba(0,0,0,0);
   --vf-shadow-input-focus: 0px 0px 0px 0px rgba(0,0,0,0);

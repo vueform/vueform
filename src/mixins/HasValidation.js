@@ -14,6 +14,11 @@ export default {
       required: false,
       type: [String],
       '@default': 'name|label'
-    }
+    },
+    displayErrors: {
+      required: false,
+      type: [Boolean],
+      default: true,
+    },
   }
 }

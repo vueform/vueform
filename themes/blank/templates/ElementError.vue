@@ -1,6 +1,6 @@
 <template>
   <div
-    v-if="error"
+    v-if="showError"
     :class="classes.container"
     :id="id"
     aria-live="assertive"

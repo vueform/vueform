@@ -82,6 +82,11 @@ export default {
       type: [String],
       default: undefined,
     },
+    standalone: {
+      required: false,
+      type: [Boolean],
+      default: false,
+    },
   },
   setup(props, ctx) {
     const context = { ...ctx }

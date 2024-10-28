@@ -135,6 +135,16 @@ const base = function(props, context, dependencies)
   })
   
   /**
+   * Whether the element is a matrix.
+   *
+   * @type {boolean}
+   * @private
+   */
+  const isMatrixType = computed(() => {
+    return false
+  })
+  
+  /**
    * Whether the element should be visible when using `tabs` or `steps`.
    *
    * @type {boolean}
@@ -198,6 +208,7 @@ const base = function(props, context, dependencies)
     isObjectType,
     isGroupType,
     isListType,
+    isMatrixType,
     isActive,
     active,
     mounted,
@@ -215,6 +226,7 @@ const list = function(props, context, dependencies)
     isImageType,
     isObjectType,
     isGroupType,
+    isMatrixType,
     isActive,
     active,
     mounted,
@@ -240,6 +252,7 @@ const list = function(props, context, dependencies)
     isImageType,
     isObjectType,
     isGroupType,
+    isMatrixType,
     isListType,
     isActive,
     active,
@@ -258,6 +271,7 @@ const object = function(props, context, dependencies)
     isArrayType,
     isImageType,
     isGroupType,
+    isMatrixType,
     isListType,
     isActive,
     active,
@@ -280,6 +294,7 @@ const object = function(props, context, dependencies)
     isImageType,
     isObjectType,
     isGroupType,
+    isMatrixType,
     isListType,
     isActive,
     active,
@@ -298,6 +313,7 @@ const group = function(props, context, dependencies)
     isArrayType,
     isImageType,
     isObjectType,
+    isMatrixType,
     isListType,
     isActive,
     active,
@@ -320,6 +336,49 @@ const group = function(props, context, dependencies)
     isImageType,
     isObjectType,
     isGroupType,
+    isMatrixType,
+    isListType,
+    isActive,
+    active,
+    mounted,
+    container,
+    activate,
+    deactivate,
+  }
+}
+
+const matrix = function(props, context, dependencies)
+{
+  const {
+    isStatic,
+    isFileType,
+    isArrayType,
+    isImageType,
+    isObjectType,
+    isGroupType,
+    isListType,
+    isActive,
+    active,
+    mounted,
+    container,
+    activate,
+    deactivate,
+  } = base(props, context, dependencies)
+  
+  // ============== COMPUTED ==============
+  
+  const isMatrixType = computed(() => {
+    return true
+  })
+  
+  return {
+    isStatic,
+    isFileType,
+    isArrayType,
+    isImageType,
+    isObjectType,
+    isGroupType,
+    isMatrixType,
     isListType,
     isActive,
     active,
@@ -341,6 +400,7 @@ const file = function(props, context, dependencies)
     isArrayType,
     isObjectType,
     isGroupType,
+    isMatrixType,
     isListType,
     isActive,
     active,
@@ -367,6 +427,7 @@ const file = function(props, context, dependencies)
     isImageType,
     isObjectType,
     isGroupType,
+    isMatrixType,
     isListType,
     isActive,
     active,
@@ -385,6 +446,7 @@ const static_ = function(props, context, dependencies)
     isImageType,
     isObjectType,
     isGroupType,
+    isMatrixType,
     isListType,
     isActive,
     active,
@@ -407,6 +469,7 @@ const static_ = function(props, context, dependencies)
     isImageType,
     isObjectType,
     isGroupType,
+    isMatrixType,
     isListType,
     isActive,
     active,
@@ -425,6 +488,7 @@ const tags = list
 export {
   object,
   group,
+  matrix,
   list,
   checkboxgroup,
   dates,

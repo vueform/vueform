@@ -25,6 +25,7 @@ $vf-dark-mode-selector: '.dark, .dark *, .dark :before, .dark :after' !default;
   --vf-bg-btn: var(--vf-primary);
   --vf-bg-btn-danger: var(--vf-danger);
   --vf-bg-btn-secondary: var(--vf-dark-700);
+  --vf-bg-table-header: var(--vf-dark-500);
 
   --vf-color-on-primary: #ffffff; // Used when text is displayed on primary color
   --vf-color-input: var(--vf-dark-100);
@@ -48,6 +49,7 @@ $vf-dark-mode-selector: '.dark, .dark *, .dark :before, .dark :after' !default;
   --vf-color-btn: var(--vf-color-on-primary);
   --vf-color-btn-danger: #ffffff;
   --vf-color-btn-secondary: var(--vf-dark-300);
+  --vf-color-table-header: inherit;
 
   --vf-border-color-input: var(--vf-dark-800);
   --vf-border-color-input-focus: var(--vf-primary);
@@ -69,6 +71,7 @@ $vf-dark-mode-selector: '.dark, .dark *, .dark :before, .dark :after' !default;
   --vf-border-color-blockquote: var(--vf-dark-700);
   --vf-border-color-hr: var(--vf-dark-700);
   --vf-border-color-signature-hr: var(--vf-dark-500);
+  --vf-border-color-table: var(--vf-dark-400);
 }
 
 #{$vf-dark-mode-selector} {

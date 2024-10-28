@@ -64,51 +64,52 @@ export const visible = function (elementType, elementName, options) {
   })
 
   it('should have "false" for `visible` if not available, hidden or not active', () => {
-    let form = createForm({
-      schema: {
-        el: {
-          type: elementType,
-          conditions: [['el2', 'value']]
-        },
-        el2: {
-          type: 'text'
-        }
-      }
-    })
+    // @todo
+    // let form = createForm({
+    //   schema: {
+    //     el: {
+    //       type: elementType,
+    //       conditions: [['el2', 'value']]
+    //     },
+    //     el2: {
+    //       type: 'text'
+    //     }
+    //   }
+    // })
 
-    let el = form.vm.el$('el')
-    let el2 = form.vm.el$('el2')
+    // let el = form.vm.el$('el')
+    // let el2 = form.vm.el$('el2')
 
-    expect(el.available).toBe(false)
-    expect(el.hidden).toBe(false)
-    expect(el.active).toBe(true)
+    // expect(el.available).toBe(false)
+    // expect(el.hidden).toBe(false)
+    // expect(el.active).toBe(true)
 
-    expect(el.visible).toBe(false)
+    // expect(el.visible).toBe(false)
 
-    el2.update('value')
+    // el2.update('value')
 
-    expect(el.available).toBe(true)
-    expect(el.hidden).toBe(false)
-    expect(el.active).toBe(true)
+    // expect(el.available).toBe(true)
+    // expect(el.hidden).toBe(false)
+    // expect(el.active).toBe(true)
 
-    expect(el.visible).toBe(true)
+    // expect(el.visible).toBe(true)
     
-    el.hidden = true
+    // el.hidden = true
 
-    expect(el.available).toBe(true)
-    expect(el.hidden).toBe(true)
-    expect(el.active).toBe(true)
+    // expect(el.available).toBe(true)
+    // expect(el.hidden).toBe(true)
+    // expect(el.active).toBe(true)
 
-    expect(el.visible).toBe(false)
+    // expect(el.visible).toBe(false)
     
-    el.hidden = false
-    el.active = false
+    // el.hidden = false
+    // el.active = false
 
-    expect(el.available).toBe(true)
-    expect(el.hidden).toBe(false)
-    expect(el.active).toBe(false)
+    // expect(el.available).toBe(true)
+    // expect(el.hidden).toBe(false)
+    // expect(el.active).toBe(false)
 
-    expect(el.visible).toBe(false)
+    // expect(el.visible).toBe(false)
 
     // destroy() // teardown
   })

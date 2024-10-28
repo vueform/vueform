@@ -638,6 +638,62 @@ export default {
       "unmounted"
     ]
   },
+  "matrix": {
+    "features": [
+      "a11y",
+      "baseElement_matrix",
+      "cells",
+      "children_object",
+      "classes",
+      "columns",
+      "conditions_object",
+      "data_matrix",
+      "default_matrix",
+      "disabled",
+      "el$",
+      "elements",
+      "events",
+      "fieldId",
+      "focus",
+      "form$",
+      "genericName",
+      "label",
+      "layout",
+      "matrix",
+      "nullValue_object",
+      "path",
+      "readonly",
+      "slots",
+      "templates",
+      "theme",
+      "validation_matrix",
+      "value_matrix",
+      "view",
+      "watchValue_object"
+    ],
+    "slots": [
+      "label",
+      "info",
+      "required",
+      "description",
+      "before",
+      "between",
+      "after"
+    ],
+    "events": [
+      "change",
+      "add",
+      "remove",
+      "beforeCreate",
+      "created",
+      "beforeMount",
+      "mounted",
+      "beforeUpdate",
+      "updated",
+      "beforeUnmount",
+      "unmounted"
+    ]
+  },
   "multifile": {
     "features": [
       "a11y",
@@ -1413,7 +1469,6 @@ export default {
     "slots": [
       "label",
       "info",
-      "required",
       "required",
       "description",
       "before",

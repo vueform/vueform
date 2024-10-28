@@ -24,6 +24,7 @@
           input_lg: 'vf-checkbox-lg',
           input_left: 'vf-checkbox-left',
           input_right: 'vf-checkbox-right',
+          input_standalone: 'vf-checkbox-standalone',
           text: 'vf-checkbox-text',
           text_left: 'vf-checkbox-text-left',
           text_right: 'vf-checkbox-text-right',
@@ -33,13 +34,14 @@
             align === 'left' ? classes.wrapper_left : null,
             align === 'right' ? classes.wrapper_right : null,
           ]),
-          $input: (classes, { isDisabled, Size, isDanger, align }) => ([
+          $input: (classes, { isDisabled, Size, isDanger, align, standalone }) => ([
             classes.input,
             classes[`input_${Size}`],
             isDisabled ? classes.input_disabled : classes.input_enabled,
             !isDisabled && isDanger ? classes.input_danger : null,
             align === 'left' ? classes.input_left : null,
             align === 'right' ? classes.input_right : null,
+            standalone ? classes.input_standalone : null,
           ]),
           $text: (classes, { align }) => ([
             classes.text,

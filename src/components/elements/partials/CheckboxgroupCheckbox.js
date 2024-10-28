@@ -25,6 +25,11 @@ export default {
       type: [Object],
       default: () => ({})
     },
+    standalone: {
+      required: false,
+      type: [Boolean],
+      default: false,
+    },
   },
   setup(props, context)
   {
@@ -59,7 +64,7 @@ export default {
      * @type {boolean}
      */
     const checked = computed(() => {
-      return el$.value.value.indexOf(String(value.value)) !== -1 || el$.value.value.indexOf(Number(value.value)) !== -1
+      return el$.value.value?.indexOf(String(value.value)) !== -1 || el$.value.value?.indexOf(Number(value.value)) !== -1
     })
 
     /**

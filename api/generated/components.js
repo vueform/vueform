@@ -864,6 +864,13 @@ module.exports = {
         ],
         "description": "The first error of the element."
       },
+      "showError": {
+        "public": true,
+        "types": [
+          "boolean"
+        ],
+        "description": "Whether to show the error."
+      },
       "id": {
         "public": true,
         "types": [
@@ -6140,6 +6147,13 @@ module.exports = {
         "types": [
           "object"
         ]
+      },
+      "standalone": {
+        "required": false,
+        "default": false,
+        "types": [
+          "boolean"
+        ]
       }
     },
     "events": {},
@@ -6518,6 +6532,13 @@ module.exports = {
         "default": "{}",
         "types": [
           "object"
+        ]
+      },
+      "standalone": {
+        "required": false,
+        "default": false,
+        "types": [
+          "boolean"
         ]
       }
     },

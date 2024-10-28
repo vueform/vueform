@@ -1,12 +1,12 @@
 /*!
- * Vueform v1.10.10 (https://github.com/vueform/vueform)
+ * Vueform v1.11.0 (https://github.com/vueform/vueform)
  * Copyright (c) 2024 Adam Berecz <adam@vueform.com>
  * Licensed under the MIT License
  */
 
 import { resolveComponent, openBlock, createElementBlock, normalizeClass, withModifiers, renderSlot, createBlock, resolveDynamicComponent, createCommentVNode, createVNode, withCtx, Fragment, renderList, createElementVNode, toDisplayString, mergeProps, withDirectives, withKeys, vShow, createTextVNode, Teleport, normalizeStyle, createSlots, vModelCheckbox, vModelText, toRefs, getCurrentInstance, customRef, ref, computed, watch, nextTick, onMounted, onBeforeUnmount, shallowRef, vModelSelect, vModelRadio, onUnmounted, normalizeProps, guardReactiveProps } from 'vue';
 
-var script$2a = {
+var script$2c = {
     data() {
       return {
         merge: true,
@@ -17,7 +17,7 @@ var script$2a = {
     }
   };
 
-function render$10(_ctx, _cache, $props, $setup, $data, $options) {
+function render$11(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_FormElements = resolveComponent("FormElements");
 
   return (openBlock(), createElementBlock("form", {
@@ -53,12 +53,12 @@ function render$10(_ctx, _cache, $props, $setup, $data, $options) {
   ], 34 /* CLASS, NEED_HYDRATION */))
 }
 
-script$2a.render = render$10;
-script$2a.__file = "themes/blank/templates/Vueform.vue";
+script$2c.render = render$11;
+script$2c.__file = "themes/blank/templates/Vueform.vue";
 
-var script$29 = {
+var script$2b = {
     name: 'Vueform',
-    render: script$2a.render,
+    render: script$2c.render,
     data() {
       return {
         merge: true,
@@ -69,9 +69,9 @@ var script$29 = {
     },
   };
 
-script$29.__file = "themes/vueform/templates/Vueform.vue";
+script$2b.__file = "themes/vueform/templates/Vueform.vue";
 
-var script$28 = {
+var script$2a = {
     name: 'FormErrors',
     data() {
       return {
@@ -84,9 +84,9 @@ var script$28 = {
     }
   };
 
-const _hoisted_1$L = ["innerHTML"];
+const _hoisted_1$M = ["innerHTML"];
 
-function render$$(_ctx, _cache, $props, $setup, $data, $options) {
+function render$10(_ctx, _cache, $props, $setup, $data, $options) {
   return (openBlock(), createElementBlock("div", {
     class: normalizeClass(_ctx.classes.container)
   }, [
@@ -95,17 +95,17 @@ function render$$(_ctx, _cache, $props, $setup, $data, $options) {
         class: normalizeClass(_ctx.classes.error),
         innerHTML: error,
         key: index
-      }, null, 10 /* CLASS, PROPS */, _hoisted_1$L))
+      }, null, 10 /* CLASS, PROPS */, _hoisted_1$M))
     }), 128 /* KEYED_FRAGMENT */))
   ], 2 /* CLASS */))
 }
 
-script$28.render = render$$;
-script$28.__file = "themes/blank/templates/FormErrors.vue";
+script$2a.render = render$10;
+script$2a.__file = "themes/blank/templates/FormErrors.vue";
 
-var script$27 = {
+var script$29 = {
     name: 'FormErrors',
-    render: script$28.render,
+    render: script$2a.render,
     data() {
       return {
         merge: true,
@@ -151,12 +151,12 @@ function styleInject(css, ref) {
   }
 }
 
-var css_248z$10 = ".vf-errors {\n  background: var(--vf-bg-danger);\n  color: var(--vf-color-danger);\n  border-radius: var(--vf-radius-input);\n  margin-bottom: var(--vf-gutter);\n  font-size: var(--vf-font-size);\n  line-height: var(--vf-line-height);\n  letter-spacing: var(--vf-letter-spacing);\n  padding: 0.5rem 0.75rem;\n}\n\n.vf-errors.vf-errors-sm {\n  border-radius: var(--vf-radius-input-sm);\n  margin-bottom: var(--vf-gutter-sm);\n  font-size: var(--vf-font-size-sm);\n  line-height: var(--vf-line-height-sm);\n  letter-spacing: var(--vf-letter-spacing-sm);\n  padding: 0.5rem 0.75rem;\n}\n\n.vf-errors.vf-errors-lg {\n  border-radius: var(--vf-radius-input-lg);\n  margin-bottom: var(--vf-gutter-lg);\n  font-size: var(--vf-font-size-lg);\n  line-height: var(--vf-line-height-lg);\n  letter-spacing: var(--vf-letter-spacing-lg);\n  padding: 0.75rem 1rem;\n}";
-styleInject(css_248z$10);
+var css_248z$11 = ".vf-errors {\n  background: var(--vf-bg-danger);\n  color: var(--vf-color-danger);\n  border-radius: var(--vf-radius-input);\n  margin-bottom: var(--vf-gutter);\n  font-size: var(--vf-font-size);\n  line-height: var(--vf-line-height);\n  letter-spacing: var(--vf-letter-spacing);\n  padding: 0.5rem 0.75rem;\n}\n\n.vf-errors.vf-errors-sm {\n  border-radius: var(--vf-radius-input-sm);\n  margin-bottom: var(--vf-gutter-sm);\n  font-size: var(--vf-font-size-sm);\n  line-height: var(--vf-line-height-sm);\n  letter-spacing: var(--vf-letter-spacing-sm);\n  padding: 0.5rem 0.75rem;\n}\n\n.vf-errors.vf-errors-lg {\n  border-radius: var(--vf-radius-input-lg);\n  margin-bottom: var(--vf-gutter-lg);\n  font-size: var(--vf-font-size-lg);\n  line-height: var(--vf-line-height-lg);\n  letter-spacing: var(--vf-letter-spacing-lg);\n  padding: 0.75rem 1rem;\n}";
+styleInject(css_248z$11);
 
-script$27.__file = "themes/vueform/templates/FormErrors.vue";
+script$29.__file = "themes/vueform/templates/FormErrors.vue";
 
-var script$26 = {
+var script$28 = {
     name: 'FormMessages',
     data() {
       return {
@@ -169,9 +169,9 @@ var script$26 = {
     }
   };
 
-const _hoisted_1$K = ["innerHTML"];
+const _hoisted_1$L = ["innerHTML"];
 
-function render$_(_ctx, _cache, $props, $setup, $data, $options) {
+function render$$(_ctx, _cache, $props, $setup, $data, $options) {
   return (openBlock(), createElementBlock("div", {
     class: normalizeClass(_ctx.classes.container)
   }, [
@@ -180,17 +180,17 @@ function render$_(_ctx, _cache, $props, $setup, $data, $options) {
         class: normalizeClass(_ctx.classes.message),
         innerHTML: message,
         key: index
-      }, null, 10 /* CLASS, PROPS */, _hoisted_1$K))
+      }, null, 10 /* CLASS, PROPS */, _hoisted_1$L))
     }), 128 /* KEYED_FRAGMENT */))
   ], 2 /* CLASS */))
 }
 
-script$26.render = render$_;
-script$26.__file = "themes/blank/templates/FormMessages.vue";
+script$28.render = render$$;
+script$28.__file = "themes/blank/templates/FormMessages.vue";
 
-var script$25 = {
+var script$27 = {
     name: 'FormMessages',
-    render: script$26.render,
+    render: script$28.render,
     data() {
       return {
         merge: true,
@@ -209,12 +209,12 @@ var script$25 = {
     }
   };
 
-var css_248z$$ = ".vf-messages {\n  background: var(--vf-bg-success);\n  color: var(--vf-color-success);\n  border-radius: var(--vf-radius-input);\n  margin-bottom: var(--vf-gutter);\n  font-size: var(--vf-font-size);\n  line-height: var(--vf-line-height);\n  letter-spacing: var(--vf-letter-spacing);\n  padding: 0.5rem 0.75rem;\n}\n\n.vf-messages.vf-messages-sm {\n  border-radius: var(--vf-radius-input-sm);\n  margin-bottom: var(--vf-gutter-sm);\n  font-size: var(--vf-font-size-sm);\n  line-height: var(--vf-line-height-sm);\n  letter-spacing: var(--vf-letter-spacing-sm);\n  padding: 0.5rem 0.75rem;\n}\n\n.vf-messages.vf-messages-lg {\n  border-radius: var(--vf-radius-input-lg);\n  margin-bottom: var(--vf-gutter-lg);\n  font-size: var(--vf-font-size-lg);\n  line-height: var(--vf-line-height-lg);\n  letter-spacing: var(--vf-letter-spacing-lg);\n  padding: 0.75rem 1rem;\n}";
-styleInject(css_248z$$);
+var css_248z$10 = ".vf-messages {\n  background: var(--vf-bg-success);\n  color: var(--vf-color-success);\n  border-radius: var(--vf-radius-input);\n  margin-bottom: var(--vf-gutter);\n  font-size: var(--vf-font-size);\n  line-height: var(--vf-line-height);\n  letter-spacing: var(--vf-letter-spacing);\n  padding: 0.5rem 0.75rem;\n}\n\n.vf-messages.vf-messages-sm {\n  border-radius: var(--vf-radius-input-sm);\n  margin-bottom: var(--vf-gutter-sm);\n  font-size: var(--vf-font-size-sm);\n  line-height: var(--vf-line-height-sm);\n  letter-spacing: var(--vf-letter-spacing-sm);\n  padding: 0.5rem 0.75rem;\n}\n\n.vf-messages.vf-messages-lg {\n  border-radius: var(--vf-radius-input-lg);\n  margin-bottom: var(--vf-gutter-lg);\n  font-size: var(--vf-font-size-lg);\n  line-height: var(--vf-line-height-lg);\n  letter-spacing: var(--vf-letter-spacing-lg);\n  padding: 0.75rem 1rem;\n}";
+styleInject(css_248z$10);
 
-script$25.__file = "themes/vueform/templates/FormMessages.vue";
+script$27.__file = "themes/vueform/templates/FormMessages.vue";
 
-var script$24 = {
+var script$26 = {
     name: 'FormLanguages',
     data() {
       return {
@@ -226,7 +226,7 @@ var script$24 = {
     }
   };
 
-function render$Z(_ctx, _cache, $props, $setup, $data, $options) {
+function render$_(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_FormLanguage = resolveComponent("FormLanguage");
 
   return (openBlock(), createElementBlock("ul", {
@@ -245,12 +245,12 @@ function render$Z(_ctx, _cache, $props, $setup, $data, $options) {
   ], 2 /* CLASS */))
 }
 
-script$24.render = render$Z;
-script$24.__file = "themes/blank/templates/FormLanguages.vue";
+script$26.render = render$_;
+script$26.__file = "themes/blank/templates/FormLanguages.vue";
 
-var script$23 = {
+var script$25 = {
     name: 'FormLanguages',
-    render: script$24.render,
+    render: script$26.render,
     data() {
       return {
         merge: true,
@@ -268,12 +268,12 @@ var script$23 = {
     }
   };
 
-var css_248z$_ = ".vf-languages {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  list-style: none;\n  padding: 0;\n  margin: 0 0 var(--vf-gutter-lg) 0;\n  font-size: var(--vf-font-size);\n  line-height: var(--vf-line-height);\n  letter-spacing: var(--vf-letter-spacing);\n}\n\n.vf-languages.vf-languages-sm {\n  margin: 0 0 var(--vf-gutter) 0;\n  font-size: var(--vf-font-size-sm);\n  line-height: var(--vf-line-height-sm);\n  letter-spacing: var(--vf-letter-spacing-sm);\n}\n\n.vf-languages.vf-languages-lg {\n  margin: 0 0 var(--vf-gutter-lg) 0;\n  font-size: var(--vf-font-size-lg);\n  line-height: var(--vf-line-height-lg);\n  letter-spacing: var(--vf-letter-spacing-lg);\n}";
-styleInject(css_248z$_);
+var css_248z$$ = ".vf-languages {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  list-style: none;\n  padding: 0;\n  margin: 0 0 var(--vf-gutter-lg) 0;\n  font-size: var(--vf-font-size);\n  line-height: var(--vf-line-height);\n  letter-spacing: var(--vf-letter-spacing);\n}\n\n.vf-languages.vf-languages-sm {\n  margin: 0 0 var(--vf-gutter) 0;\n  font-size: var(--vf-font-size-sm);\n  line-height: var(--vf-line-height-sm);\n  letter-spacing: var(--vf-letter-spacing-sm);\n}\n\n.vf-languages.vf-languages-lg {\n  margin: 0 0 var(--vf-gutter-lg) 0;\n  font-size: var(--vf-font-size-lg);\n  line-height: var(--vf-line-height-lg);\n  letter-spacing: var(--vf-letter-spacing-lg);\n}";
+styleInject(css_248z$$);
 
-script$23.__file = "themes/vueform/templates/FormLanguages.vue";
+script$25.__file = "themes/vueform/templates/FormLanguages.vue";
 
-var script$22 = {
+var script$24 = {
     name: 'FormLanguage',
     data() {
       return {
@@ -286,7 +286,7 @@ var script$22 = {
     }
   };
 
-function render$Y(_ctx, _cache, $props, $setup, $data, $options) {
+function render$Z(_ctx, _cache, $props, $setup, $data, $options) {
   return (openBlock(), createElementBlock("li", {
     class: normalizeClass(_ctx.classes.container)
   }, [
@@ -298,12 +298,12 @@ function render$Y(_ctx, _cache, $props, $setup, $data, $options) {
   ], 2 /* CLASS */))
 }
 
-script$22.render = render$Y;
-script$22.__file = "themes/blank/templates/FormLanguage.vue";
+script$24.render = render$Z;
+script$24.__file = "themes/blank/templates/FormLanguage.vue";
 
-var script$21 = {
+var script$23 = {
     name: 'FormLanguage',
-    render: script$22.render,
+    render: script$24.render,
     data() {
       return {
         merge: true,
@@ -325,12 +325,12 @@ var script$21 = {
     }
   };
 
-var css_248z$Z = ".vf-language {\n  flex-grow: 1;\n  flex-shrink: 1;\n  width: 100%;\n}\n\n.vf-language-wrapper {\n  padding: 0.5rem 1rem;\n  display: block;\n  margin-left: 1px;\n  margin-right: 1px;\n  text-decoration: none;\n  border-bottom: 2px solid transparent;\n  color: var(--vf-color-input);\n  text-align: center;\n}\n\n.vf-language-wrapper:hover {\n  text-decoration: none;\n}\n\n.vf-language-wrapper.vf-language-wrapper-sm {\n  padding: 0.375rem 0.875rem;\n}\n\n.vf-language-wrapper.vf-language-wrapper-lg {\n  padding: 0.5rem 1rem;\n}\n\n.vf-language-wrapper.vf-language-wrapper-active {\n  border-color: var(--vf-primary);\n}\n\n.vf-language-wrapper.vf-language-wrapper-invalid {\n  border-color: var(--vf-danger);\n  color: var(--vf-color-danger);\n}";
-styleInject(css_248z$Z);
+var css_248z$_ = ".vf-language {\n  flex-grow: 1;\n  flex-shrink: 1;\n  width: 100%;\n}\n\n.vf-language-wrapper {\n  padding: 0.5rem 1rem;\n  display: block;\n  margin-left: 1px;\n  margin-right: 1px;\n  text-decoration: none;\n  border-bottom: 2px solid transparent;\n  color: var(--vf-color-input);\n  text-align: center;\n}\n\n.vf-language-wrapper:hover {\n  text-decoration: none;\n}\n\n.vf-language-wrapper.vf-language-wrapper-sm {\n  padding: 0.375rem 0.875rem;\n}\n\n.vf-language-wrapper.vf-language-wrapper-lg {\n  padding: 0.5rem 1rem;\n}\n\n.vf-language-wrapper.vf-language-wrapper-active {\n  border-color: var(--vf-primary);\n}\n\n.vf-language-wrapper.vf-language-wrapper-invalid {\n  border-color: var(--vf-danger);\n  color: var(--vf-color-danger);\n}";
+styleInject(css_248z$_);
 
-script$21.__file = "themes/vueform/templates/FormLanguage.vue";
+script$23.__file = "themes/vueform/templates/FormLanguage.vue";
 
-var script$20 = {
+var script$22 = {
     name: 'FormTabs',
     data() {
       return {
@@ -342,7 +342,7 @@ var script$20 = {
     },
   };
 
-function render$X(_ctx, _cache, $props, $setup, $data, $options) {
+function render$Y(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_FormTab = resolveComponent("FormTab");
 
   return (openBlock(), createElementBlock("ul", {
@@ -361,12 +361,12 @@ function render$X(_ctx, _cache, $props, $setup, $data, $options) {
   ], 2 /* CLASS */))
 }
 
-script$20.render = render$X;
-script$20.__file = "themes/blank/templates/FormTabs.vue";
+script$22.render = render$Y;
+script$22.__file = "themes/blank/templates/FormTabs.vue";
 
-var script$1$ = {
+var script$21 = {
     name: 'FormTabs',
-    render: script$20.render,
+    render: script$22.render,
     data() {
       return {
         merge: true,
@@ -384,12 +384,12 @@ var script$1$ = {
     }
   };
 
-var css_248z$Y = ".vf-tabs {\n  display: flex;\n  align-items: flex-end;\n  list-style: none;\n  padding: 0;\n  margin: 0 0 var(--vf-gutter) 0;\n  font-size: var(--vf-font-size);\n  line-height: var(--vf-line-height);\n  letter-spacing: var(--vf-letter-spacing);\n}\n\n.vf-tabs.vf-tabs-sm {\n  margin: 0 0 var(--vf-gutter) 0;\n  font-size: var(--vf-font-size-sm);\n  line-height: var(--vf-line-height-sm);\n  letter-spacing: var(--vf-letter-spacing-sm);\n}\n\n.vf-tabs.vf-tabs-lg {\n  margin: 0 0 var(--vf-gutter-lg) 0;\n  font-size: var(--vf-font-size-lg);\n  line-height: var(--vf-line-height-lg);\n  letter-spacing: var(--vf-letter-spacing-lg);\n}";
-styleInject(css_248z$Y);
+var css_248z$Z = ".vf-tabs {\n  display: flex;\n  align-items: flex-end;\n  list-style: none;\n  padding: 0;\n  margin: 0 0 var(--vf-gutter) 0;\n  font-size: var(--vf-font-size);\n  line-height: var(--vf-line-height);\n  letter-spacing: var(--vf-letter-spacing);\n}\n\n.vf-tabs.vf-tabs-sm {\n  margin: 0 0 var(--vf-gutter) 0;\n  font-size: var(--vf-font-size-sm);\n  line-height: var(--vf-line-height-sm);\n  letter-spacing: var(--vf-letter-spacing-sm);\n}\n\n.vf-tabs.vf-tabs-lg {\n  margin: 0 0 var(--vf-gutter-lg) 0;\n  font-size: var(--vf-font-size-lg);\n  line-height: var(--vf-line-height-lg);\n  letter-spacing: var(--vf-letter-spacing-lg);\n}";
+styleInject(css_248z$Z);
 
-script$1$.__file = "themes/vueform/templates/FormTabs.vue";
+script$21.__file = "themes/vueform/templates/FormTabs.vue";
 
-var script$1_ = {
+var script$20 = {
     name: 'FormTab',
     data() {
       return {
@@ -402,11 +402,11 @@ var script$1_ = {
     }
   };
 
-const _hoisted_1$J = ["aria-selected"];
-const _hoisted_2$s = { key: 0 };
-const _hoisted_3$h = ["innerHTML"];
+const _hoisted_1$K = ["aria-selected"];
+const _hoisted_2$t = { key: 0 };
+const _hoisted_3$i = ["innerHTML"];
 
-function render$W(_ctx, _cache, $props, $setup, $data, $options) {
+function render$X(_ctx, _cache, $props, $setup, $data, $options) {
   return withDirectives((openBlock(), createElementBlock("li", {
     class: normalizeClass(_ctx.classes.container)
   }, [
@@ -421,26 +421,26 @@ function render$W(_ctx, _cache, $props, $setup, $data, $options) {
       renderSlot(_ctx.$slots, "default", {}, () => [
         createCommentVNode(" If label is a component "),
         (_ctx.isLabelComponent)
-          ? (openBlock(), createElementBlock("span", _hoisted_2$s, [
+          ? (openBlock(), createElementBlock("span", _hoisted_2$t, [
               (openBlock(), createBlock(resolveDynamicComponent(_ctx.tabLabel), { form$: _ctx.form$ }, null, 8 /* PROPS */, ["form$"]))
             ]))
           : (openBlock(), createElementBlock(Fragment, { key: 1 }, [
               createCommentVNode(" If label is HTML "),
-              createElementVNode("span", { innerHTML: _ctx.tabLabel }, null, 8 /* PROPS */, _hoisted_3$h)
+              createElementVNode("span", { innerHTML: _ctx.tabLabel }, null, 8 /* PROPS */, _hoisted_3$i)
             ], 2112 /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */))
       ])
-    ], 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_1$J)
+    ], 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_1$K)
   ], 2 /* CLASS */)), [
     [vShow, _ctx.visible]
   ])
 }
 
-script$1_.render = render$W;
-script$1_.__file = "themes/blank/templates/FormTab.vue";
+script$20.render = render$X;
+script$20.__file = "themes/blank/templates/FormTab.vue";
 
-var script$1Z = {
+var script$1$ = {
     name: 'FormTab',
-    render: script$1_.render,
+    render: script$20.render,
     data() {
       return {
         merge: true,
@@ -468,12 +468,12 @@ var script$1Z = {
     }
   };
 
-var css_248z$X = ".vf-tab-wrapper {\n  padding: 0.5rem 1rem;\n  display: block;\n  margin-left: 1px;\n  margin-right: 1px;\n  text-decoration: none;\n  border-bottom: 2px solid transparent;\n  color: var(--vf-color-input);\n}\n\n.vf-tab-wrapper:hover {\n  text-decoration: none;\n}\n\n.vf-tab-wrapper.vf-tab-wrapper-sm {\n  padding: 0.375rem 0.875rem;\n}\n\n.vf-tab-wrapper.vf-tab-wrapper-lg {\n  padding: 0.5rem 1rem;\n}\n\n.vf-tab-wrapper.vf-tab-wrapper-active {\n  border-color: var(--vf-primary);\n}\n\n.vf-tab-wrapper.vf-tab-wrapper-invalid {\n  border-color: var(--vf-danger);\n  color: var(--vf-color-danger);\n}";
-styleInject(css_248z$X);
+var css_248z$Y = ".vf-tab-wrapper {\n  padding: 0.5rem 1rem;\n  display: block;\n  margin-left: 1px;\n  margin-right: 1px;\n  text-decoration: none;\n  border-bottom: 2px solid transparent;\n  color: var(--vf-color-input);\n}\n\n.vf-tab-wrapper:hover {\n  text-decoration: none;\n}\n\n.vf-tab-wrapper.vf-tab-wrapper-sm {\n  padding: 0.375rem 0.875rem;\n}\n\n.vf-tab-wrapper.vf-tab-wrapper-lg {\n  padding: 0.5rem 1rem;\n}\n\n.vf-tab-wrapper.vf-tab-wrapper-active {\n  border-color: var(--vf-primary);\n}\n\n.vf-tab-wrapper.vf-tab-wrapper-invalid {\n  border-color: var(--vf-danger);\n  color: var(--vf-color-danger);\n}";
+styleInject(css_248z$Y);
 
-script$1Z.__file = "themes/vueform/templates/FormTab.vue";
+script$1$.__file = "themes/vueform/templates/FormTab.vue";
 
-var script$1Y = {
+var script$1_ = {
     name: 'FormSteps',
     data() {
       return {
@@ -486,7 +486,7 @@ var script$1Y = {
     },
   };
 
-function render$V(_ctx, _cache, $props, $setup, $data, $options) {
+function render$W(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_FormStep = resolveComponent("FormStep");
 
   return (openBlock(), createElementBlock("div", {
@@ -508,12 +508,12 @@ function render$V(_ctx, _cache, $props, $setup, $data, $options) {
   ], 2 /* CLASS */))
 }
 
-script$1Y.render = render$V;
-script$1Y.__file = "themes/blank/templates/FormSteps.vue";
+script$1_.render = render$W;
+script$1_.__file = "themes/blank/templates/FormSteps.vue";
 
-var script$1X = {
+var script$1Z = {
     name: 'FormSteps',
-    render: script$1Y.render,
+    render: script$1_.render,
     data() {
       return {
         merge: true,
@@ -532,12 +532,12 @@ var script$1X = {
     }
   };
 
-var css_248z$W = ".vf-steps-container {\n  width: 100%;\n  position: relative;\n  margin: 0 0 var(--vf-gutter-lg) 0;\n  font-size: var(--vf-font-size);\n  line-height: var(--vf-line-height);\n  letter-spacing: var(--vf-letter-spacing);\n}\n\n.vf-steps-container:before {\n  content: \" \";\n  display: inline-block;\n  background: var(--vf-bg-passive);\n  position: absolute;\n  top: 0.375rem;\n  left: 0.125rem;\n  right: 0.125rem;\n  height: 0.25rem;\n}\n\n.vf-steps-container.vf-steps-container-sm {\n  margin: 0 0 var(--vf-gutter) 0;\n  font-size: var(--vf-font-size-sm);\n  line-height: var(--vf-line-height-sm);\n  letter-spacing: var(--vf-letter-spacing-sm);\n}\n\n.vf-steps-container.vf-steps-container-lg {\n  margin: 0 0 var(--vf-gutter-lg) 0;\n  font-size: var(--vf-font-size-lg);\n  line-height: var(--vf-line-height-lg);\n  letter-spacing: var(--vf-letter-spacing-lg);\n}\n\n.vf-steps-wrapper {\n  list-style: none;\n  display: flex;\n  justify-content: space-between;\n  padding: 0;\n  overflow-x: auto;\n}";
-styleInject(css_248z$W);
+var css_248z$X = ".vf-steps-container {\n  width: 100%;\n  position: relative;\n  margin: 0 0 var(--vf-gutter-lg) 0;\n  font-size: var(--vf-font-size);\n  line-height: var(--vf-line-height);\n  letter-spacing: var(--vf-letter-spacing);\n}\n\n.vf-steps-container:before {\n  content: \" \";\n  display: inline-block;\n  background: var(--vf-bg-passive);\n  position: absolute;\n  top: 0.375rem;\n  left: 0.125rem;\n  right: 0.125rem;\n  height: 0.25rem;\n}\n\n.vf-steps-container.vf-steps-container-sm {\n  margin: 0 0 var(--vf-gutter) 0;\n  font-size: var(--vf-font-size-sm);\n  line-height: var(--vf-line-height-sm);\n  letter-spacing: var(--vf-letter-spacing-sm);\n}\n\n.vf-steps-container.vf-steps-container-lg {\n  margin: 0 0 var(--vf-gutter-lg) 0;\n  font-size: var(--vf-font-size-lg);\n  line-height: var(--vf-line-height-lg);\n  letter-spacing: var(--vf-letter-spacing-lg);\n}\n\n.vf-steps-wrapper {\n  list-style: none;\n  display: flex;\n  justify-content: space-between;\n  padding: 0;\n  overflow-x: auto;\n}";
+styleInject(css_248z$X);
 
-script$1X.__file = "themes/vueform/templates/FormSteps.vue";
+script$1Z.__file = "themes/vueform/templates/FormSteps.vue";
 
-var script$1W = {
+var script$1Y = {
     name: 'FormStepsControls',
     data() {
       return {
@@ -549,7 +549,7 @@ var script$1W = {
     }
   };
 
-function render$U(_ctx, _cache, $props, $setup, $data, $options) {
+function render$V(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_FormStepsControl = resolveComponent("FormStepsControl");
 
   return (openBlock(), createElementBlock("div", {
@@ -585,12 +585,12 @@ function render$U(_ctx, _cache, $props, $setup, $data, $options) {
   ], 2 /* CLASS */))
 }
 
-script$1W.render = render$U;
-script$1W.__file = "themes/blank/templates/FormStepsControls.vue";
+script$1Y.render = render$V;
+script$1Y.__file = "themes/blank/templates/FormStepsControls.vue";
 
-var script$1V = {
+var script$1X = {
     name: 'FormStepsControls',
-    render: script$1W.render,
+    render: script$1Y.render,
     data() {
       return {
         merge: true,
@@ -608,12 +608,12 @@ var script$1V = {
     }
   };
 
-var css_248z$V = ".vf-steps-controls {\n  display: flex;\n  justify-content: space-between;\n  margin: var(--vf-gutter-lg) 0 0 0;\n  font-size: var(--vf-font-size);\n  line-height: var(--vf-line-height);\n  letter-spacing: var(--vf-letter-spacing);\n}\n\n.vf-steps-controls.vf-steps-controls-sm {\n  margin: var(--vf-gutter) 0 0 0;\n  font-size: var(--vf-font-size-sm);\n  line-height: var(--vf-line-height-sm);\n  letter-spacing: var(--vf-letter-spacing-md);\n}\n\n.vf-steps-controls.vf-steps-controls-lg {\n  margin: var(--vf-gutter-lg) 0 0 0;\n  font-size: var(--vf-font-size-lg);\n  line-height: var(--vf-line-height-lg);\n  letter-spacing: var(--vf-letter-spacing-lg);\n}";
-styleInject(css_248z$V);
+var css_248z$W = ".vf-steps-controls {\n  display: flex;\n  justify-content: space-between;\n  margin: var(--vf-gutter-lg) 0 0 0;\n  font-size: var(--vf-font-size);\n  line-height: var(--vf-line-height);\n  letter-spacing: var(--vf-letter-spacing);\n}\n\n.vf-steps-controls.vf-steps-controls-sm {\n  margin: var(--vf-gutter) 0 0 0;\n  font-size: var(--vf-font-size-sm);\n  line-height: var(--vf-line-height-sm);\n  letter-spacing: var(--vf-letter-spacing-md);\n}\n\n.vf-steps-controls.vf-steps-controls-lg {\n  margin: var(--vf-gutter-lg) 0 0 0;\n  font-size: var(--vf-font-size-lg);\n  line-height: var(--vf-line-height-lg);\n  letter-spacing: var(--vf-letter-spacing-lg);\n}";
+styleInject(css_248z$W);
 
-script$1V.__file = "themes/vueform/templates/FormStepsControls.vue";
+script$1X.__file = "themes/vueform/templates/FormStepsControls.vue";
 
-var script$1U = {
+var script$1W = {
     name: 'FormStepsControl',
     data() {
       return {
@@ -625,11 +625,11 @@ var script$1U = {
     }
   };
 
-const _hoisted_1$I = ["disabled"];
-const _hoisted_2$r = ["innerHTML", "disabled"];
-const _hoisted_3$g = ["disabled"];
+const _hoisted_1$J = ["disabled"];
+const _hoisted_2$s = ["innerHTML", "disabled"];
+const _hoisted_3$h = ["disabled"];
 
-function render$T(_ctx, _cache, $props, $setup, $data, $options) {
+function render$U(_ctx, _cache, $props, $setup, $data, $options) {
   return (openBlock(), createElementBlock(Fragment, null, [
     createCommentVNode(" If label is a component "),
     (_ctx.visible && _ctx.label && _ctx.isLabelComponent)
@@ -641,7 +641,7 @@ function render$T(_ctx, _cache, $props, $setup, $data, $options) {
           onKeypress: _cache[1] || (_cache[1] = withKeys(withModifiers((...args) => (_ctx.handleClick && _ctx.handleClick(...args)), ["prevent"]), ["enter","space"]))
         }, [
           (openBlock(), createBlock(resolveDynamicComponent(_ctx.label), { step$: _ctx.current$ }, null, 8 /* PROPS */, ["step$"]))
-        ], 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_1$I))
+        ], 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_1$J))
       : (_ctx.visible && _ctx.label)
         ? (openBlock(), createElementBlock(Fragment, { key: 1 }, [
             createCommentVNode(" If label is HTML "),
@@ -651,7 +651,7 @@ function render$T(_ctx, _cache, $props, $setup, $data, $options) {
               class: normalizeClass(_ctx.classes.button),
               onClick: _cache[2] || (_cache[2] = withModifiers((...args) => (_ctx.handleClick && _ctx.handleClick(...args)), ["prevent"])),
               onKeypress: _cache[3] || (_cache[3] = withKeys(withModifiers((...args) => (_ctx.handleClick && _ctx.handleClick(...args)), ["prevent"]), ["enter","space"]))
-            }, null, 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_2$r)
+            }, null, 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_2$s)
           ], 2112 /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */))
         : (_ctx.visible)
           ? (openBlock(), createElementBlock(Fragment, { key: 2 }, [
@@ -663,18 +663,18 @@ function render$T(_ctx, _cache, $props, $setup, $data, $options) {
                 onKeypress: _cache[5] || (_cache[5] = withKeys(withModifiers((...args) => (_ctx.handleClick && _ctx.handleClick(...args)), ["prevent"]), ["enter","space"]))
               }, [
                 renderSlot(_ctx.$slots, "default")
-              ], 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_3$g)
+              ], 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_3$h)
             ], 2112 /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */))
           : createCommentVNode("v-if", true)
   ], 2112 /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */))
 }
 
-script$1U.render = render$T;
-script$1U.__file = "themes/blank/templates/FormStepsControl.vue";
+script$1W.render = render$U;
+script$1W.__file = "themes/blank/templates/FormStepsControl.vue";
 
-var script$1T = {
+var script$1V = {
     name: 'FormStepsControl',
-    render: script$1U.render,
+    render: script$1W.render,
     data() {
       return {
         merge: true,
@@ -706,9 +706,9 @@ var script$1T = {
     }
   };
 
-script$1T.__file = "themes/vueform/templates/FormStepsControl.vue";
+script$1V.__file = "themes/vueform/templates/FormStepsControl.vue";
 
-var script$1S = {
+var script$1U = {
     name: 'FormStep',
     data() {
       return {
@@ -721,11 +721,11 @@ var script$1S = {
     }
   };
 
-const _hoisted_1$H = ["tabindex", "aria-selected"];
-const _hoisted_2$q = { key: 0 };
-const _hoisted_3$f = ["innerHTML"];
+const _hoisted_1$I = ["tabindex", "aria-selected"];
+const _hoisted_2$r = { key: 0 };
+const _hoisted_3$g = ["innerHTML"];
 
-function render$S(_ctx, _cache, $props, $setup, $data, $options) {
+function render$T(_ctx, _cache, $props, $setup, $data, $options) {
   return (_ctx.visible)
     ? (openBlock(), createElementBlock("li", {
         key: 0,
@@ -743,25 +743,25 @@ function render$S(_ctx, _cache, $props, $setup, $data, $options) {
           renderSlot(_ctx.$slots, "default", {}, () => [
             createCommentVNode(" If label is a component "),
             (_ctx.isLabelComponent)
-              ? (openBlock(), createElementBlock("span", _hoisted_2$q, [
+              ? (openBlock(), createElementBlock("span", _hoisted_2$r, [
                   (openBlock(), createBlock(resolveDynamicComponent(_ctx.stepLabel), { form$: _ctx.form$ }, null, 8 /* PROPS */, ["form$"]))
                 ]))
               : (openBlock(), createElementBlock(Fragment, { key: 1 }, [
                   createCommentVNode(" If label is HTML "),
-                  createElementVNode("span", { innerHTML: _ctx.stepLabel }, null, 8 /* PROPS */, _hoisted_3$f)
+                  createElementVNode("span", { innerHTML: _ctx.stepLabel }, null, 8 /* PROPS */, _hoisted_3$g)
                 ], 2112 /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */))
           ])
-        ], 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_1$H)
+        ], 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_1$I)
       ], 2 /* CLASS */))
     : createCommentVNode("v-if", true)
 }
 
-script$1S.render = render$S;
-script$1S.__file = "themes/blank/templates/FormStep.vue";
+script$1U.render = render$T;
+script$1U.__file = "themes/blank/templates/FormStep.vue";
 
-var script$1R = {
+var script$1T = {
     name: 'FormStep',
-    render: script$1S.render,
+    render: script$1U.render,
     data() {
       return {
         merge: true,
@@ -790,12 +790,12 @@ var script$1R = {
     }
   };
 
-var css_248z$U = ".vf-step {\n  display: block;\n  position: relative;\n  white-space: nowrap;\n  flex: 1 1;\n  text-align: center;\n  padding: 1.25rem 0.625rem 0;\n}\n\n.vf-step a {\n  text-decoration: none !important;\n  color: inherit;\n}\n\n.vf-step a:hover, .vf-step a:focus, .vf-step a:active {\n  text-decoration: none !important;\n  color: inherit;\n}\n\n.vf-step a:before {\n  content: \" \";\n  display: inline-block;\n  width: 1rem;\n  height: 1rem;\n  position: absolute;\n  background: var(--vf-primary);\n  border-radius: 50%;\n  left: 50%;\n  transform: translateX(-50%);\n  top: 0px;\n}\n\n.vf-step a:after {\n  content: \" \";\n  display: inline-block;\n  width: 0.5rem;\n  height: 0.5rem;\n  position: absolute;\n  background: #FFFFFF;\n  border-radius: 50%;\n  left: calc(50% - 0.25rem);\n  transform: scale(0);\n  top: 0.25rem;\n  transition: transform 0.3s ease-in-out;\n}\n\n.vf-step:first-of-type {\n  padding-left: 0;\n  text-align: left;\n}\n\n.vf-step:first-of-type:before {\n  display: none;\n}\n\n.vf-step:first-of-type:after {\n  left: 0;\n}\n\n.vf-step:first-of-type a:before {\n  left: 0;\n  transform: none;\n}\n\n.vf-step:first-of-type a:after {\n  left: 0.25rem;\n  transform: scale(0);\n}\n\n.vf-step:last-of-type {\n  padding-right: 0;\n  text-align: right;\n}\n\n.vf-step:last-of-type:after {\n  display: none;\n}\n\n.vf-step:last-of-type:before {\n  right: 0;\n}\n\n.vf-step:last-of-type a:before {\n  right: 0;\n  left: auto;\n  left: initial;\n  transform: none;\n}\n\n.vf-step:last-of-type a:after {\n  left: auto;\n  left: initial;\n  transform: scale(0);\n  right: 0.25rem;\n}\n\n.vf-step.vf-step-disabled:before {\n  background: var(--vf-bg-passive);\n  left: -100%;\n}\n\n.vf-step.vf-step-disabled a {\n  color: var(--vf-color-passive);\n}\n\n.vf-step.vf-step-disabled a:before {\n  background: var(--vf-bg-passive);\n}\n\n.vf-step.vf-step-completed + .vf-step:not(.vf-step-completed):before {\n  content: \" \";\n  display: inline-block;\n  background: var(--vf-primary);\n  position: absolute;\n  top: 0.375rem;\n  left: 0px;\n  right: 50%;\n  height: 0.25rem;\n}\n\n.vf-step.vf-step-completed + .vf-step:last-of-type:before {\n  right: 0px;\n}\n\n.vf-step.vf-step-completed:before {\n  content: \" \";\n  display: inline-block;\n  background: var(--vf-primary);\n  position: absolute;\n  top: 0.375rem;\n  left: 0px;\n  right: 0px;\n  height: 0.25rem;\n}\n\n.vf-step.vf-step-completed a:after {\n  mask-image: url('data:image/svg+xml;utf8,<svg aria-hidden=\"true\" focusable=\"false\" data-prefix=\"fas\" data-icon=\"check\" class=\"svg-inline--fa fa-check fa-w-16\" role=\"img\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 512 512\"><path fill=\"white\" d=\"M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z\"></path></svg>');\n  -webkit-mask-image: url('data:image/svg+xml;utf8,<svg aria-hidden=\"true\" focusable=\"false\" data-prefix=\"fas\" data-icon=\"check\" class=\"svg-inline--fa fa-check fa-w-16\" role=\"img\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 512 512\"><path fill=\"white\" d=\"M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z\"></path></svg>');\n  mask-size: 0.5rem 0.5rem;\n  -webkit-mask-size: 0.5rem 0.5rem;\n  mask-position: 0 0;\n  -webkit-mask-position: 0 0;\n  mask-repeat: no-repeat;\n  -webkit-mask-repeat: no-repeat;\n  background-color: var(--vf-color-on-primary);\n  border-radius: 0;\n  transform: scale(1);\n}\n\n.vf-step.vf-step-active a:after {\n  mask-image: none;\n  -webkit-mask-image: none;\n  background-color: var(--vf-color-on-primary);\n  top: 0.25rem;\n  transform: scale(1);\n  border-radius: 50%;\n}\n\n.vf-step.vf-step-invalid a {\n  color: var(--vf-bg-btn-danger);\n}\n\n.vf-step.vf-step-invalid a:before {\n  background-color: var(--vf-bg-btn-danger);\n}\n\n.vf-step.vf-step-invalid a:after {\n  mask-image: url('data:image/svg+xml;utf8,<svg aria-hidden=\"true\" focusable=\"false\" data-prefix=\"fas\" data-icon=\"exclamation\" class=\"svg-inline--fa fa-exclamation fa-w-6\" role=\"img\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 192 512\"><path fill=\"white\" d=\"M176 432c0 44.112-35.888 80-80 80s-80-35.888-80-80 35.888-80 80-80 80 35.888 80 80zM25.26 25.199l13.6 272C39.499 309.972 50.041 320 62.83 320h66.34c12.789 0 23.331-10.028 23.97-22.801l13.6-272C167.425 11.49 156.496 0 142.77 0H49.23C35.504 0 24.575 11.49 25.26 25.199z\"></path></svg>');\n  -webkit-mask-image: url('data:image/svg+xml;utf8,<svg aria-hidden=\"true\" focusable=\"false\" data-prefix=\"fas\" data-icon=\"exclamation\" class=\"svg-inline--fa fa-exclamation fa-w-6\" role=\"img\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 192 512\"><path fill=\"white\" d=\"M176 432c0 44.112-35.888 80-80 80s-80-35.888-80-80 35.888-80 80-80 80 35.888 80 80zM25.26 25.199l13.6 272C39.499 309.972 50.041 320 62.83 320h66.34c12.789 0 23.331-10.028 23.97-22.801l13.6-272C167.425 11.49 156.496 0 142.77 0H49.23C35.504 0 24.575 11.49 25.26 25.199z\"></path></svg>');\n  mask-size: 0.5rem 0.5rem;\n  -webkit-mask-size: 0.5rem 0.5rem;\n  mask-position: 0 0;\n  -webkit-mask-position: 0 0;\n  mask-repeat: no-repeat;\n  -webkit-mask-repeat: no-repeat;\n  background-color: var(--vf-color-btn-danger);\n  width: 0.5rem;\n  height: 0.5rem;\n  top: 0.25rem;\n  border-radius: 0;\n}\n\n.vf-step.vf-step-invalid.vf-step-active a:after {\n  mask-image: none;\n  -webkit-mask-image: none;\n  background-color: var(--vf-color-on-primary);\n  transform: scale(1);\n  border-radius: 50%;\n}\n\n.vf-step.vf-step-pending a:after {\n  animation: 1s linear infinite step-loading;\n  background: var(--vf-color-btn-danger);\n  top: 0.25rem;\n  border-radius: 50%;\n}\n\n@keyframes step-loading {\n  0% {\n    transform: scale(0.5);\n  }\n\n  20% {\n    transform: scale(1.2);\n  }\n\n  100% {\n    transform: scale(0.5);\n  }\n}";
-styleInject(css_248z$U);
+var css_248z$V = ".vf-step {\n  display: block;\n  position: relative;\n  white-space: nowrap;\n  flex: 1 1;\n  text-align: center;\n  padding: 1.25rem 0.625rem 0;\n}\n\n.vf-step a {\n  text-decoration: none !important;\n  color: inherit;\n}\n\n.vf-step a:hover, .vf-step a:focus, .vf-step a:active {\n  text-decoration: none !important;\n  color: inherit;\n}\n\n.vf-step a:before {\n  content: \" \";\n  display: inline-block;\n  width: 1rem;\n  height: 1rem;\n  position: absolute;\n  background: var(--vf-primary);\n  border-radius: 50%;\n  left: 50%;\n  transform: translateX(-50%);\n  top: 0px;\n}\n\n.vf-step a:after {\n  content: \" \";\n  display: inline-block;\n  width: 0.5rem;\n  height: 0.5rem;\n  position: absolute;\n  background: #FFFFFF;\n  border-radius: 50%;\n  left: calc(50% - 0.25rem);\n  transform: scale(0);\n  top: 0.25rem;\n  transition: transform 0.3s ease-in-out;\n}\n\n.vf-step:first-of-type {\n  padding-left: 0;\n  text-align: left;\n}\n\n.vf-step:first-of-type:before {\n  display: none;\n}\n\n.vf-step:first-of-type:after {\n  left: 0;\n}\n\n.vf-step:first-of-type a:before {\n  left: 0;\n  transform: none;\n}\n\n.vf-step:first-of-type a:after {\n  left: 0.25rem;\n  transform: scale(0);\n}\n\n.vf-step:last-of-type {\n  padding-right: 0;\n  text-align: right;\n}\n\n.vf-step:last-of-type:after {\n  display: none;\n}\n\n.vf-step:last-of-type:before {\n  right: 0;\n}\n\n.vf-step:last-of-type a:before {\n  right: 0;\n  left: auto;\n  left: initial;\n  transform: none;\n}\n\n.vf-step:last-of-type a:after {\n  left: auto;\n  left: initial;\n  transform: scale(0);\n  right: 0.25rem;\n}\n\n.vf-step.vf-step-disabled:before {\n  background: var(--vf-bg-passive);\n  left: -100%;\n}\n\n.vf-step.vf-step-disabled a {\n  color: var(--vf-color-passive);\n}\n\n.vf-step.vf-step-disabled a:before {\n  background: var(--vf-bg-passive);\n}\n\n.vf-step.vf-step-completed + .vf-step:not(.vf-step-completed):before {\n  content: \" \";\n  display: inline-block;\n  background: var(--vf-primary);\n  position: absolute;\n  top: 0.375rem;\n  left: 0px;\n  right: 50%;\n  height: 0.25rem;\n}\n\n.vf-step.vf-step-completed + .vf-step:last-of-type:before {\n  right: 0px;\n}\n\n.vf-step.vf-step-completed:before {\n  content: \" \";\n  display: inline-block;\n  background: var(--vf-primary);\n  position: absolute;\n  top: 0.375rem;\n  left: 0px;\n  right: 0px;\n  height: 0.25rem;\n}\n\n.vf-step.vf-step-completed a:after {\n  mask-image: url('data:image/svg+xml;utf8,<svg aria-hidden=\"true\" focusable=\"false\" data-prefix=\"fas\" data-icon=\"check\" class=\"svg-inline--fa fa-check fa-w-16\" role=\"img\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 512 512\"><path fill=\"white\" d=\"M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z\"></path></svg>');\n  -webkit-mask-image: url('data:image/svg+xml;utf8,<svg aria-hidden=\"true\" focusable=\"false\" data-prefix=\"fas\" data-icon=\"check\" class=\"svg-inline--fa fa-check fa-w-16\" role=\"img\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 512 512\"><path fill=\"white\" d=\"M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z\"></path></svg>');\n  mask-size: 0.5rem 0.5rem;\n  -webkit-mask-size: 0.5rem 0.5rem;\n  mask-position: 0 0;\n  -webkit-mask-position: 0 0;\n  mask-repeat: no-repeat;\n  -webkit-mask-repeat: no-repeat;\n  background-color: var(--vf-color-on-primary);\n  border-radius: 0;\n  transform: scale(1);\n}\n\n.vf-step.vf-step-active a:after {\n  mask-image: none;\n  -webkit-mask-image: none;\n  background-color: var(--vf-color-on-primary);\n  top: 0.25rem;\n  transform: scale(1);\n  border-radius: 50%;\n}\n\n.vf-step.vf-step-invalid a {\n  color: var(--vf-bg-btn-danger);\n}\n\n.vf-step.vf-step-invalid a:before {\n  background-color: var(--vf-bg-btn-danger);\n}\n\n.vf-step.vf-step-invalid a:after {\n  mask-image: url('data:image/svg+xml;utf8,<svg aria-hidden=\"true\" focusable=\"false\" data-prefix=\"fas\" data-icon=\"exclamation\" class=\"svg-inline--fa fa-exclamation fa-w-6\" role=\"img\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 192 512\"><path fill=\"white\" d=\"M176 432c0 44.112-35.888 80-80 80s-80-35.888-80-80 35.888-80 80-80 80 35.888 80 80zM25.26 25.199l13.6 272C39.499 309.972 50.041 320 62.83 320h66.34c12.789 0 23.331-10.028 23.97-22.801l13.6-272C167.425 11.49 156.496 0 142.77 0H49.23C35.504 0 24.575 11.49 25.26 25.199z\"></path></svg>');\n  -webkit-mask-image: url('data:image/svg+xml;utf8,<svg aria-hidden=\"true\" focusable=\"false\" data-prefix=\"fas\" data-icon=\"exclamation\" class=\"svg-inline--fa fa-exclamation fa-w-6\" role=\"img\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 192 512\"><path fill=\"white\" d=\"M176 432c0 44.112-35.888 80-80 80s-80-35.888-80-80 35.888-80 80-80 80 35.888 80 80zM25.26 25.199l13.6 272C39.499 309.972 50.041 320 62.83 320h66.34c12.789 0 23.331-10.028 23.97-22.801l13.6-272C167.425 11.49 156.496 0 142.77 0H49.23C35.504 0 24.575 11.49 25.26 25.199z\"></path></svg>');\n  mask-size: 0.5rem 0.5rem;\n  -webkit-mask-size: 0.5rem 0.5rem;\n  mask-position: 0 0;\n  -webkit-mask-position: 0 0;\n  mask-repeat: no-repeat;\n  -webkit-mask-repeat: no-repeat;\n  background-color: var(--vf-color-btn-danger);\n  width: 0.5rem;\n  height: 0.5rem;\n  top: 0.25rem;\n  border-radius: 0;\n}\n\n.vf-step.vf-step-invalid.vf-step-active a:after {\n  mask-image: none;\n  -webkit-mask-image: none;\n  background-color: var(--vf-color-on-primary);\n  transform: scale(1);\n  border-radius: 50%;\n}\n\n.vf-step.vf-step-pending a:after {\n  animation: 1s linear infinite step-loading;\n  background: var(--vf-color-btn-danger);\n  top: 0.25rem;\n  border-radius: 50%;\n}\n\n@keyframes step-loading {\n  0% {\n    transform: scale(0.5);\n  }\n\n  20% {\n    transform: scale(1.2);\n  }\n\n  100% {\n    transform: scale(0.5);\n  }\n}";
+styleInject(css_248z$V);
 
-script$1R.__file = "themes/vueform/templates/FormStep.vue";
+script$1T.__file = "themes/vueform/templates/FormStep.vue";
 
-var script$1Q = {
+var script$1S = {
     name: 'FormElements',
     data() {
       return {
@@ -807,7 +807,7 @@ var script$1Q = {
     },
   };
 
-function render$R(_ctx, _cache, $props, $setup, $data, $options) {
+function render$S(_ctx, _cache, $props, $setup, $data, $options) {
   return (openBlock(), createElementBlock("div", {
     class: normalizeClass(_ctx.classes.container)
   }, [
@@ -822,12 +822,12 @@ function render$R(_ctx, _cache, $props, $setup, $data, $options) {
   ], 2 /* CLASS */))
 }
 
-script$1Q.render = render$R;
-script$1Q.__file = "themes/blank/templates/FormElements.vue";
+script$1S.render = render$S;
+script$1S.__file = "themes/blank/templates/FormElements.vue";
 
-var script$1P = {
+var script$1R = {
     name: 'FormElements',
-    render: script$1Q.render,
+    render: script$1S.render,
     data() {
       return {
         merge: true,
@@ -845,12 +845,12 @@ var script$1P = {
     }
   };
 
-var css_248z$T = "/* Some styles are contained in Vueform.vue */";
-styleInject(css_248z$T);
+var css_248z$U = "/* Some styles are contained in Vueform.vue */";
+styleInject(css_248z$U);
 
-script$1P.__file = "themes/vueform/templates/FormElements.vue";
+script$1R.__file = "themes/vueform/templates/FormElements.vue";
 
-var script$1O = {
+var script$1Q = {
     name: 'ElementLayout',
     data() {
       return {
@@ -867,7 +867,7 @@ var script$1O = {
     },
   };
 
-function render$Q(_ctx, _cache, $props, $setup, $data, $options) {
+function render$R(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_ElementLabel = resolveComponent("ElementLabel");
   const _component_ElementText = resolveComponent("ElementText");
   const _component_ElementDescription = resolveComponent("ElementDescription");
@@ -941,12 +941,12 @@ function render$Q(_ctx, _cache, $props, $setup, $data, $options) {
   ])
 }
 
-script$1O.render = render$Q;
-script$1O.__file = "themes/blank/templates/ElementLayout.vue";
+script$1Q.render = render$R;
+script$1Q.__file = "themes/blank/templates/ElementLayout.vue";
 
-var script$1N = {
+var script$1P = {
     name: 'ElementLayout',
-    render: script$1O.render,
+    render: script$1Q.render,
     data() {
       return {
         merge: true,
@@ -981,12 +981,12 @@ var script$1N = {
     }
   };
 
-var css_248z$S = "/* Some styles are contained in Vueform.vue */\n\n.vf-element-layout {\n  font-size: var(--vf-font-size);\n  line-height: var(--vf-line-height);\n  letter-spacing: var(--vf-letter-spacing);\n}\n\n.vf-element-layout.vf-element-layout-sm {\n  font-size: var(--vf-font-size-sm);\n  line-height: var(--vf-line-height-sm);\n  letter-spacing: var(--vf-letter-spacing-sm);\n}\n\n.vf-element-layout.vf-element-layout-lg {\n  font-size: var(--vf-font-size-lg);\n  line-height: var(--vf-line-height-lg);\n  letter-spacing: var(--vf-letter-spacing-lg);\n}\n\n.vf-layout-inner-container {\n  flex: 1 1 0%;\n  display: grid;\n  grid-template-columns: repeat(12, minmax(0, 1fr));\n}\n\n.vf-layout-inner-container .vf-layout-inner-wrapper,\n.vf-layout-inner-container .vf-layout-inner-wrapper-before,\n.vf-layout-inner-container .vf-layout-inner-wrapper-after {\n  padding-left: 0;\n  padding-right: 0;\n}\n\n.vf-layout-inner-wrapper-before,\n.vf-layout-inner-wrapper-after {\n  grid-column: span 12/span 12;\n  padding-left: var(--vf-gutter);\n  padding-right: var(--vf-gutter);\n}\n\n.vf-element-layout-outer-wrapper {\n  display: grid;\n  grid-template-columns: repeat(12, minmax(0, 1fr));\n}";
-styleInject(css_248z$S);
+var css_248z$T = "/* Some styles are contained in Vueform.vue */\n\n.vf-element-layout {\n  font-size: var(--vf-font-size);\n  line-height: var(--vf-line-height);\n  letter-spacing: var(--vf-letter-spacing);\n}\n\n.vf-element-layout.vf-element-layout-sm {\n  font-size: var(--vf-font-size-sm);\n  line-height: var(--vf-line-height-sm);\n  letter-spacing: var(--vf-letter-spacing-sm);\n}\n\n.vf-element-layout.vf-element-layout-lg {\n  font-size: var(--vf-font-size-lg);\n  line-height: var(--vf-line-height-lg);\n  letter-spacing: var(--vf-letter-spacing-lg);\n}\n\n.vf-layout-inner-container {\n  flex: 1 1 0%;\n  display: grid;\n  grid-template-columns: repeat(12, minmax(0, 1fr));\n}\n\n.vf-layout-inner-container .vf-layout-inner-wrapper,\n.vf-layout-inner-container .vf-layout-inner-wrapper-before,\n.vf-layout-inner-container .vf-layout-inner-wrapper-after {\n  padding-left: 0;\n  padding-right: 0;\n}\n\n.vf-layout-inner-wrapper-before,\n.vf-layout-inner-wrapper-after {\n  grid-column: span 12/span 12;\n  padding-left: var(--vf-gutter);\n  padding-right: var(--vf-gutter);\n}\n\n.vf-element-layout-outer-wrapper {\n  display: grid;\n  grid-template-columns: repeat(12, minmax(0, 1fr));\n}";
+styleInject(css_248z$T);
 
-script$1N.__file = "themes/vueform/templates/ElementLayout.vue";
+script$1P.__file = "themes/vueform/templates/ElementLayout.vue";
 
-var script$1M = {
+var script$1O = {
     name: 'ElementLayoutInline',
     data() {
       return {
@@ -998,7 +998,7 @@ var script$1M = {
     },
   };
 
-function render$P(_ctx, _cache, $props, $setup, $data, $options) {
+function render$Q(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_ElementLabel = resolveComponent("ElementLabel");
   const _component_ElementText = resolveComponent("ElementText");
   const _component_ElementDescription = resolveComponent("ElementDescription");
@@ -1046,12 +1046,12 @@ function render$P(_ctx, _cache, $props, $setup, $data, $options) {
   ])
 }
 
-script$1M.render = render$P;
-script$1M.__file = "themes/blank/templates/ElementLayoutInline.vue";
+script$1O.render = render$Q;
+script$1O.__file = "themes/blank/templates/ElementLayoutInline.vue";
 
-var script$1L = {
+var script$1N = {
     name: 'ElementLayoutInline',
-    render: script$1M.render,
+    render: script$1O.render,
     data() {
       return {
         merge: true,
@@ -1067,12 +1067,12 @@ var script$1L = {
     }
   };
 
-var css_248z$R = ".vf-inline-layout {\n  display: flex;\n}";
-styleInject(css_248z$R);
+var css_248z$S = ".vf-inline-layout {\n  display: flex;\n}";
+styleInject(css_248z$S);
 
-script$1L.__file = "themes/vueform/templates/ElementLayoutInline.vue";
+script$1N.__file = "themes/vueform/templates/ElementLayoutInline.vue";
 
-var script$1K = {
+var script$1M = {
     name: 'ElementLoader',
     data() {
       return {
@@ -1085,7 +1085,7 @@ var script$1K = {
     }
   };
 
-function render$O(_ctx, _cache, $props, $setup, $data, $options) {
+function render$P(_ctx, _cache, $props, $setup, $data, $options) {
   return (openBlock(), createElementBlock("div", {
     class: normalizeClass(_ctx.classes.container)
   }, [
@@ -1095,12 +1095,12 @@ function render$O(_ctx, _cache, $props, $setup, $data, $options) {
   ], 2 /* CLASS */))
 }
 
-script$1K.render = render$O;
-script$1K.__file = "themes/blank/templates/ElementLoader.vue";
+script$1M.render = render$P;
+script$1M.__file = "themes/blank/templates/ElementLoader.vue";
 
-var script$1J = {
+var script$1L = {
     name: 'ElementLoader',
-    render: script$1K.render,
+    render: script$1M.render,
     data() {
       return {
         merge: true,
@@ -1119,12 +1119,12 @@ var script$1J = {
     }
   };
 
-var css_248z$Q = ".vf-element-loader-container {\n  position: relative;\n  z-index: 1;\n  order: 1;\n}\n\n.vf-element-loader {\n  position: absolute;\n  width: 1rem;\n  height: 1rem;\n  display: block;\n  right: var(--vf-px-input);\n  top: 50%;\n  transform: translateY(-50%);\n}\n\n.vf-element-loader:before, .vf-element-loader:after {\n  position: absolute;\n  content: \"\";\n  top: 50%;\n  left: 50%;\n  margin: -0.5rem 0 0 -0.5rem;\n  width: 1rem;\n  height: 1rem;\n  border-radius: 100%;\n  border-color: var(--vf-primary) transparent transparent;\n  border-style: solid;\n  border-width: 2px;\n  box-shadow: 0 0 0 1px transparent;\n  box-sizing: border-box;\n}\n\n.vf-element-loader:before {\n  animation: vf-element-loader 2.4s infinite cubic-bezier(0.41, 0.26, 0.2, 0.62);\n}\n\n.vf-element-loader:after {\n  animation: vf-element-loader 2.4s infinite cubic-bezier(0.51, 0.09, 0.21, 0.8);\n}\n\n.vf-element-loader.vf-element-loader-sm {\n  right: var(--vf-px-input-sm);\n}\n\n.vf-element-loader.vf-element-loader-lg {\n  right: var(--vf-px-input-lg);\n}\n\n@keyframes vf-element-loader {\n  from {\n    transform: rotate(0);\n  }\n\n  to {\n    transform: rotate(2turn);\n  }\n}";
-styleInject(css_248z$Q);
+var css_248z$R = ".vf-element-loader-container {\n  position: relative;\n  z-index: 1;\n  order: 1;\n}\n\n.vf-element-loader {\n  position: absolute;\n  width: 1rem;\n  height: 1rem;\n  display: block;\n  right: var(--vf-px-input);\n  top: 50%;\n  transform: translateY(-50%);\n}\n\n.vf-element-loader:before, .vf-element-loader:after {\n  position: absolute;\n  content: \"\";\n  top: 50%;\n  left: 50%;\n  margin: -0.5rem 0 0 -0.5rem;\n  width: 1rem;\n  height: 1rem;\n  border-radius: 100%;\n  border-color: var(--vf-primary) transparent transparent;\n  border-style: solid;\n  border-width: 2px;\n  box-shadow: 0 0 0 1px transparent;\n  box-sizing: border-box;\n}\n\n.vf-element-loader:before {\n  animation: vf-element-loader 2.4s infinite cubic-bezier(0.41, 0.26, 0.2, 0.62);\n}\n\n.vf-element-loader:after {\n  animation: vf-element-loader 2.4s infinite cubic-bezier(0.51, 0.09, 0.21, 0.8);\n}\n\n.vf-element-loader.vf-element-loader-sm {\n  right: var(--vf-px-input-sm);\n}\n\n.vf-element-loader.vf-element-loader-lg {\n  right: var(--vf-px-input-lg);\n}\n\n@keyframes vf-element-loader {\n  from {\n    transform: rotate(0);\n  }\n\n  to {\n    transform: rotate(2turn);\n  }\n}";
+styleInject(css_248z$R);
 
-script$1J.__file = "themes/vueform/templates/ElementLoader.vue";
+script$1L.__file = "themes/vueform/templates/ElementLoader.vue";
 
-var script$1I = {
+var script$1K = {
     name: 'ElementLabelFloating',
     data() {
       return {
@@ -1137,25 +1137,25 @@ var script$1I = {
     }
   };
 
-const _hoisted_1$G = ["innerHTML"];
+const _hoisted_1$H = ["innerHTML"];
 
-function render$N(_ctx, _cache, $props, $setup, $data, $options) {
+function render$O(_ctx, _cache, $props, $setup, $data, $options) {
   return (openBlock(), createElementBlock("div", {
     class: normalizeClass(_ctx.classes.container)
   }, [
     createElementVNode("span", {
       class: normalizeClass(_ctx.classes.label),
       innerHTML: _ctx.floating
-    }, null, 10 /* CLASS, PROPS */, _hoisted_1$G)
+    }, null, 10 /* CLASS, PROPS */, _hoisted_1$H)
   ], 2 /* CLASS */))
 }
 
-script$1I.render = render$N;
-script$1I.__file = "themes/blank/templates/ElementLabelFloating.vue";
+script$1K.render = render$O;
+script$1K.__file = "themes/blank/templates/ElementLabelFloating.vue";
 
-var script$1H = {
+var script$1J = {
     name: 'ElementLabelFloating',
-    render: script$1I.render,
+    render: script$1K.render,
     data() {
       return {
         merge: true,
@@ -1187,12 +1187,12 @@ var script$1H = {
     }
   };
 
-var css_248z$P = ".vf-floating-wrapper {\n  position: relative;\n}\n\n.vf-floating-label {\n  position: absolute;\n  z-index: 1;\n  left: var(--vf-px-input);\n  font-size: 0.6875rem;\n  background-color: var(--vf-bg-input);\n  padding: 0 1px;\n  line-height: 1px;\n  transition-property: box-shadow, color, background-color, border-color;\n  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);\n  transition-duration: 200ms;\n  opacity: 0;\n  visibility: hidden;\n  white-space: nowrap;\n  color: var(--vf-color-floating);\n  margin-top: var(--vf-floating-top);\n}\n\n.vf-floating-label.vf-floating-label-visible {\n  opacity: 1;\n  visibility: visible;\n}\n\n.vf-floating-label.vf-floating-label-sm {\n  left: var(--vf-px-input-sm);\n  margin-top: var(--vf-floating-top-sm);\n}\n\n.vf-floating-label.vf-floating-label-lg {\n  left: var(--vf-px-input-lg);\n  margin-top: var(--vf-floating-top-lg);\n  background-color: transparent !important;\n}\n\n.vf-floating-label.vf-floating-label-disabled {\n  background-color: var(--vf-bg-disabled);\n}\n\n.vf-floating-label.vf-floating-label-focus {\n  background-color: var(--vf-bg-input-focus);\n  color: var(--vf-color-floating-focus);\n}\n\n.vf-floating-label.vf-floating-label-danger {\n  background-color: var(--vf-bg-input-danger);\n  color: var(--vf-color-floating-danger);\n}\n\n.vf-floating-label.vf-floating-label-success {\n  background-color: var(--vf-bg-input-success);\n  color: var(--vf-color-floating-success);\n}\n\n.vf-input-group .vf-floating-label {\n  top: calc(var(--vf-border-width-input-t) * -1);\n}\n\n[dir=rtl] .vf-floating-label {\n  left: auto;\n  right: var(--vf-px-input);\n}\n\n[dir=rtl] .vf-floating-label.vf-floating-label-sm {\n  left: auto;\n  right: var(--vf-px-input-sm);\n}\n\n[dir=rtl] .vf-floating-label.vf-floating-label-lg {\n  left: auto;\n  right: var(--vf-px-input-lg);\n}";
-styleInject(css_248z$P);
+var css_248z$Q = ".vf-floating-wrapper {\n  position: relative;\n}\n\n.vf-floating-label {\n  position: absolute;\n  z-index: 1;\n  left: var(--vf-px-input);\n  font-size: 0.6875rem;\n  background-color: var(--vf-bg-input);\n  padding: 0 1px;\n  line-height: 1px;\n  transition-property: box-shadow, color, background-color, border-color;\n  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);\n  transition-duration: 200ms;\n  opacity: 0;\n  visibility: hidden;\n  white-space: nowrap;\n  color: var(--vf-color-floating);\n  margin-top: var(--vf-floating-top);\n}\n\n.vf-floating-label.vf-floating-label-visible {\n  opacity: 1;\n  visibility: visible;\n}\n\n.vf-floating-label.vf-floating-label-sm {\n  left: var(--vf-px-input-sm);\n  margin-top: var(--vf-floating-top-sm);\n}\n\n.vf-floating-label.vf-floating-label-lg {\n  left: var(--vf-px-input-lg);\n  margin-top: var(--vf-floating-top-lg);\n  background-color: transparent !important;\n}\n\n.vf-floating-label.vf-floating-label-disabled {\n  background-color: var(--vf-bg-disabled);\n}\n\n.vf-floating-label.vf-floating-label-focus {\n  background-color: var(--vf-bg-input-focus);\n  color: var(--vf-color-floating-focus);\n}\n\n.vf-floating-label.vf-floating-label-danger {\n  background-color: var(--vf-bg-input-danger);\n  color: var(--vf-color-floating-danger);\n}\n\n.vf-floating-label.vf-floating-label-success {\n  background-color: var(--vf-bg-input-success);\n  color: var(--vf-color-floating-success);\n}\n\n.vf-input-group .vf-floating-label {\n  top: calc(var(--vf-border-width-input-t) * -1);\n}\n\n[dir=rtl] .vf-floating-label {\n  left: auto;\n  right: var(--vf-px-input);\n}\n\n[dir=rtl] .vf-floating-label.vf-floating-label-sm {\n  left: auto;\n  right: var(--vf-px-input-sm);\n}\n\n[dir=rtl] .vf-floating-label.vf-floating-label-lg {\n  left: auto;\n  right: var(--vf-px-input-lg);\n}";
+styleInject(css_248z$Q);
 
-script$1H.__file = "themes/vueform/templates/ElementLabelFloating.vue";
+script$1J.__file = "themes/vueform/templates/ElementLabelFloating.vue";
 
-var script$1G = {
+var script$1I = {
     name: 'ElementLabel',
     data() {
       return {
@@ -1205,13 +1205,13 @@ var script$1G = {
     }
   };
 
-const _hoisted_1$F = ["for", "id"];
-const _hoisted_2$p = ["for", "id"];
-const _hoisted_3$e = ["innerHTML"];
-const _hoisted_4$b = ["for", "id"];
+const _hoisted_1$G = ["for", "id"];
+const _hoisted_2$q = ["for", "id"];
+const _hoisted_3$f = ["innerHTML"];
+const _hoisted_4$c = ["for", "id"];
 const _hoisted_5$7 = ["for", "id"];
 
-function render$M(_ctx, _cache, $props, $setup, $data, $options) {
+function render$N(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_ElementInfo = resolveComponent("ElementInfo");
   const _component_ElementRequired = resolveComponent("ElementRequired");
 
@@ -1243,7 +1243,7 @@ function render$M(_ctx, _cache, $props, $setup, $data, $options) {
             ]),
             _: 3 /* FORWARDED */
           })
-        ], 10 /* CLASS, PROPS */, _hoisted_1$F))
+        ], 10 /* CLASS, PROPS */, _hoisted_1$G))
       : (_ctx.label)
         ? (openBlock(), createElementBlock(Fragment, { key: 1 }, [
             createCommentVNode(" If label is HTML "),
@@ -1255,7 +1255,7 @@ function render$M(_ctx, _cache, $props, $setup, $data, $options) {
               createElementVNode("span", {
                 class: normalizeClass(_ctx.classes.wrapper),
                 innerHTML: _ctx.label
-              }, null, 10 /* CLASS, PROPS */, _hoisted_3$e),
+              }, null, 10 /* CLASS, PROPS */, _hoisted_3$f),
               createVNode(_component_ElementInfo, null, {
                 default: withCtx(() => [
                   renderSlot(_ctx.$slots, "info")
@@ -1268,7 +1268,7 @@ function render$M(_ctx, _cache, $props, $setup, $data, $options) {
                 ]),
                 _: 3 /* FORWARDED */
               })
-            ], 10 /* CLASS, PROPS */, _hoisted_2$p)
+            ], 10 /* CLASS, PROPS */, _hoisted_2$q)
           ], 2112 /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */))
         : (_ctx.isSlot)
           ? (openBlock(), createElementBlock(Fragment, { key: 2 }, [
@@ -1295,7 +1295,7 @@ function render$M(_ctx, _cache, $props, $setup, $data, $options) {
                   ]),
                   _: 3 /* FORWARDED */
                 })
-              ], 10 /* CLASS, PROPS */, _hoisted_4$b)
+              ], 10 /* CLASS, PROPS */, _hoisted_4$c)
             ], 2112 /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */))
           : (_ctx.hasLabel)
             ? (openBlock(), createElementBlock(Fragment, { key: 3 }, [
@@ -1310,12 +1310,12 @@ function render$M(_ctx, _cache, $props, $setup, $data, $options) {
   ], 2112 /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */))
 }
 
-script$1G.render = render$M;
-script$1G.__file = "themes/blank/templates/ElementLabel.vue";
+script$1I.render = render$N;
+script$1I.__file = "themes/blank/templates/ElementLabel.vue";
 
-var script$1F = {
+var script$1H = {
     name: 'ElementLabel',
-    render: script$1G.render,
+    render: script$1I.render,
     data() {
       return {
         merge: true,
@@ -1351,12 +1351,12 @@ var script$1F = {
     }
   };
 
-var css_248z$O = "/* Styles can be found at scss/_label.scss */";
-styleInject(css_248z$O);
+var css_248z$P = "/* Styles can be found at scss/_label.scss */";
+styleInject(css_248z$P);
 
-script$1F.__file = "themes/vueform/templates/ElementLabel.vue";
+script$1H.__file = "themes/vueform/templates/ElementLabel.vue";
 
-var script$1E = {
+var script$1G = {
     name: 'ElementInfo',
     data() {
       return {
@@ -1370,10 +1370,10 @@ var script$1E = {
     }
   };
 
-const _hoisted_1$E = ["id"];
-const _hoisted_2$o = ["innerHTML"];
+const _hoisted_1$F = ["id"];
+const _hoisted_2$p = ["innerHTML"];
 
-function render$L(_ctx, _cache, $props, $setup, $data, $options) {
+function render$M(_ctx, _cache, $props, $setup, $data, $options) {
   return (_ctx.info || _ctx.isSlot)
     ? (openBlock(), createElementBlock("span", {
         key: 0,
@@ -1395,18 +1395,18 @@ function render$L(_ctx, _cache, $props, $setup, $data, $options) {
                 key: 1,
                 class: normalizeClass(_ctx.classes.content),
                 innerHTML: _ctx.info
-              }, null, 10 /* CLASS, PROPS */, _hoisted_2$o))
-        ], 10 /* CLASS, PROPS */, _hoisted_1$E)
+              }, null, 10 /* CLASS, PROPS */, _hoisted_2$p))
+        ], 10 /* CLASS, PROPS */, _hoisted_1$F)
       ], 34 /* CLASS, NEED_HYDRATION */))
     : createCommentVNode("v-if", true)
 }
 
-script$1E.render = render$L;
-script$1E.__file = "themes/blank/templates/ElementInfo.vue";
+script$1G.render = render$M;
+script$1G.__file = "themes/blank/templates/ElementInfo.vue";
 
-var script$1D = {
+var script$1F = {
     name: 'ElementInfo',
-    render: script$1E.render,
+    render: script$1G.render,
     data() {
       return {
         merge: true,
@@ -1427,12 +1427,12 @@ var script$1D = {
     }
   };
 
-var css_248z$N = ".vf-element-info {\n  margin-left: 0.25rem;\n  position: relative;\n  top: 1px;\n  cursor: pointer;\n}\n\n.vf-element-info:before {\n  content: \"\";\n  mask-image: url(\"data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3Csvg width='15px' height='14px' viewBox='0 0 15 14' version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'%3E%3Cg stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'%3E%3Cpath d='M7.40520349,0.18129431 C11.1501134,0.18129431 14.1864373,3.21871306 14.1864373,6.96252814 C14.1864373,10.7085329 11.1501134,13.743762 7.40520349,13.743762 C3.6602936,13.743762 0.62396966,10.7085329 0.62396966,6.96252814 C0.62396966,3.21871306 3.6602936,0.18129431 7.40520349,0.18129431 Z M7.40520349,3.18909964 C6.77093148,3.18909964 6.25676873,3.70326238 6.25676873,4.3375344 C6.25676873,4.97180642 6.77093148,5.48596916 7.40520349,5.48596916 C8.03947551,5.48596916 8.55363825,4.97180642 8.55363825,4.3375344 C8.55363825,3.70326238 8.03947551,3.18909964 7.40520349,3.18909964 Z M8.93644984,10.1343956 L8.93644984,9.47814714 C8.93644984,9.29694183 8.78953094,9.15002293 8.60832562,9.15002293 L8.28020141,9.15002293 L8.28020141,6.41565445 C8.28020141,6.23444913 8.13328251,6.08753023 7.95207719,6.08753023 L6.20208136,6.08753023 C6.02087604,6.08753023 5.87395714,6.23444913 5.87395714,6.41565445 L5.87395714,7.07190288 C5.87395714,7.2531082 6.02087604,7.4000271 6.20208136,7.4000271 L6.53020558,7.4000271 L6.53020558,9.15002293 L6.20208136,9.15002293 C6.02087604,9.15002293 5.87395714,9.29694183 5.87395714,9.47814714 L5.87395714,10.1343956 C5.87395714,10.3156009 6.02087604,10.4625198 6.20208136,10.4625198 L8.60832562,10.4625198 C8.78953094,10.4625198 8.93644984,10.3156009 8.93644984,10.1343956 Z' id='info-circle' fill='currentColor'%3E%3C/path%3E%3C/g%3E%3C/svg%3E\");\n  -webkit-mask-image: url(\"data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3Csvg width='15px' height='14px' viewBox='0 0 15 14' version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'%3E%3Cg stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'%3E%3Cpath d='M7.40520349,0.18129431 C11.1501134,0.18129431 14.1864373,3.21871306 14.1864373,6.96252814 C14.1864373,10.7085329 11.1501134,13.743762 7.40520349,13.743762 C3.6602936,13.743762 0.62396966,10.7085329 0.62396966,6.96252814 C0.62396966,3.21871306 3.6602936,0.18129431 7.40520349,0.18129431 Z M7.40520349,3.18909964 C6.77093148,3.18909964 6.25676873,3.70326238 6.25676873,4.3375344 C6.25676873,4.97180642 6.77093148,5.48596916 7.40520349,5.48596916 C8.03947551,5.48596916 8.55363825,4.97180642 8.55363825,4.3375344 C8.55363825,3.70326238 8.03947551,3.18909964 7.40520349,3.18909964 Z M8.93644984,10.1343956 L8.93644984,9.47814714 C8.93644984,9.29694183 8.78953094,9.15002293 8.60832562,9.15002293 L8.28020141,9.15002293 L8.28020141,6.41565445 C8.28020141,6.23444913 8.13328251,6.08753023 7.95207719,6.08753023 L6.20208136,6.08753023 C6.02087604,6.08753023 5.87395714,6.23444913 5.87395714,6.41565445 L5.87395714,7.07190288 C5.87395714,7.2531082 6.02087604,7.4000271 6.20208136,7.4000271 L6.53020558,7.4000271 L6.53020558,9.15002293 L6.20208136,9.15002293 C6.02087604,9.15002293 5.87395714,9.29694183 5.87395714,9.47814714 L5.87395714,10.1343956 C5.87395714,10.3156009 6.02087604,10.4625198 6.20208136,10.4625198 L8.60832562,10.4625198 C8.78953094,10.4625198 8.93644984,10.3156009 8.93644984,10.1343956 Z' id='info-circle' fill='currentColor'%3E%3C/path%3E%3C/g%3E%3C/svg%3E\");\n  mask-position: center center;\n  -webkit-mask-position: center center;\n  mask-repeat: no-repeat;\n  -webkit-mask-repeat: no-repeat;\n  mask-size: contain;\n  -webkit-mask-size: contain;\n  background-color: var(--vf-bg-passive);\n  width: 0.875rem;\n  height: 0.875rem;\n  display: inline-block;\n}\n\n.vf-element-info:hover .vf-element-info-wrapper {\n  opacity: 1;\n  visibility: visible;\n}\n\n.vf-element-info-wrapper {\n  position: absolute;\n  opacity: 0;\n  visibility: hidden;\n  transition: 0.3s;\n  z-index: 1000;\n  width: 12.5rem;\n}\n\n.vf-element-info-wrapper.vf-element-info-wrapper-left {\n  top: -0.5625rem;\n  right: 1.375rem;\n}\n\n.vf-element-info-wrapper.vf-element-info-wrapper-right {\n  top: -0.5625rem;\n  left: 1.375rem;\n}\n\n.vf-element-info-wrapper.vf-element-info-wrapper-top {\n  bottom: 1.375rem;\n  left: 50%;\n  transform: translateX(-50%);\n}\n\n.vf-element-info-wrapper.vf-element-info-wrapper-bottom {\n  top: 1.375rem;\n  left: 50%;\n  transform: translateX(-50%);\n}\n\n.vf-element-info-content {\n  background: rgba(0, 0, 0, 0.85);\n  color: #FFFFFF;\n  border-radius: var(--vf-radius-small);\n  font-size: var(--vf-font-size-small);\n  line-height: var(--vf-line-height-small);\n  letter-spacing: var(--vf-letter-spacing-small);\n  padding: 0.3125rem 0.625rem;\n  font-style: normal;\n  display: inline-block;\n  position: relative;\n}\n\n.vf-element-info-content:after {\n  right: 100%;\n  top: 0.625rem;\n  border: solid transparent;\n  content: \"\";\n  height: 0;\n  width: 0;\n  position: absolute;\n  pointer-events: none;\n  border-color: rgba(0, 0, 0, 0);\n  border-right-color: rgba(0, 0, 0, 0.85);\n  border-width: 5px;\n}";
-styleInject(css_248z$N);
+var css_248z$O = ".vf-element-info {\n  margin-left: 0.25rem;\n  position: relative;\n  top: 1px;\n  cursor: pointer;\n}\n\n.vf-element-info:before {\n  content: \"\";\n  mask-image: url(\"data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3Csvg width='15px' height='14px' viewBox='0 0 15 14' version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'%3E%3Cg stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'%3E%3Cpath d='M7.40520349,0.18129431 C11.1501134,0.18129431 14.1864373,3.21871306 14.1864373,6.96252814 C14.1864373,10.7085329 11.1501134,13.743762 7.40520349,13.743762 C3.6602936,13.743762 0.62396966,10.7085329 0.62396966,6.96252814 C0.62396966,3.21871306 3.6602936,0.18129431 7.40520349,0.18129431 Z M7.40520349,3.18909964 C6.77093148,3.18909964 6.25676873,3.70326238 6.25676873,4.3375344 C6.25676873,4.97180642 6.77093148,5.48596916 7.40520349,5.48596916 C8.03947551,5.48596916 8.55363825,4.97180642 8.55363825,4.3375344 C8.55363825,3.70326238 8.03947551,3.18909964 7.40520349,3.18909964 Z M8.93644984,10.1343956 L8.93644984,9.47814714 C8.93644984,9.29694183 8.78953094,9.15002293 8.60832562,9.15002293 L8.28020141,9.15002293 L8.28020141,6.41565445 C8.28020141,6.23444913 8.13328251,6.08753023 7.95207719,6.08753023 L6.20208136,6.08753023 C6.02087604,6.08753023 5.87395714,6.23444913 5.87395714,6.41565445 L5.87395714,7.07190288 C5.87395714,7.2531082 6.02087604,7.4000271 6.20208136,7.4000271 L6.53020558,7.4000271 L6.53020558,9.15002293 L6.20208136,9.15002293 C6.02087604,9.15002293 5.87395714,9.29694183 5.87395714,9.47814714 L5.87395714,10.1343956 C5.87395714,10.3156009 6.02087604,10.4625198 6.20208136,10.4625198 L8.60832562,10.4625198 C8.78953094,10.4625198 8.93644984,10.3156009 8.93644984,10.1343956 Z' id='info-circle' fill='currentColor'%3E%3C/path%3E%3C/g%3E%3C/svg%3E\");\n  -webkit-mask-image: url(\"data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3Csvg width='15px' height='14px' viewBox='0 0 15 14' version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'%3E%3Cg stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'%3E%3Cpath d='M7.40520349,0.18129431 C11.1501134,0.18129431 14.1864373,3.21871306 14.1864373,6.96252814 C14.1864373,10.7085329 11.1501134,13.743762 7.40520349,13.743762 C3.6602936,13.743762 0.62396966,10.7085329 0.62396966,6.96252814 C0.62396966,3.21871306 3.6602936,0.18129431 7.40520349,0.18129431 Z M7.40520349,3.18909964 C6.77093148,3.18909964 6.25676873,3.70326238 6.25676873,4.3375344 C6.25676873,4.97180642 6.77093148,5.48596916 7.40520349,5.48596916 C8.03947551,5.48596916 8.55363825,4.97180642 8.55363825,4.3375344 C8.55363825,3.70326238 8.03947551,3.18909964 7.40520349,3.18909964 Z M8.93644984,10.1343956 L8.93644984,9.47814714 C8.93644984,9.29694183 8.78953094,9.15002293 8.60832562,9.15002293 L8.28020141,9.15002293 L8.28020141,6.41565445 C8.28020141,6.23444913 8.13328251,6.08753023 7.95207719,6.08753023 L6.20208136,6.08753023 C6.02087604,6.08753023 5.87395714,6.23444913 5.87395714,6.41565445 L5.87395714,7.07190288 C5.87395714,7.2531082 6.02087604,7.4000271 6.20208136,7.4000271 L6.53020558,7.4000271 L6.53020558,9.15002293 L6.20208136,9.15002293 C6.02087604,9.15002293 5.87395714,9.29694183 5.87395714,9.47814714 L5.87395714,10.1343956 C5.87395714,10.3156009 6.02087604,10.4625198 6.20208136,10.4625198 L8.60832562,10.4625198 C8.78953094,10.4625198 8.93644984,10.3156009 8.93644984,10.1343956 Z' id='info-circle' fill='currentColor'%3E%3C/path%3E%3C/g%3E%3C/svg%3E\");\n  mask-position: center center;\n  -webkit-mask-position: center center;\n  mask-repeat: no-repeat;\n  -webkit-mask-repeat: no-repeat;\n  mask-size: contain;\n  -webkit-mask-size: contain;\n  background-color: var(--vf-bg-passive);\n  width: 0.875rem;\n  height: 0.875rem;\n  display: inline-block;\n}\n\n.vf-element-info:hover .vf-element-info-wrapper {\n  opacity: 1;\n  visibility: visible;\n}\n\n.vf-element-info-wrapper {\n  position: absolute;\n  opacity: 0;\n  visibility: hidden;\n  transition: 0.3s;\n  z-index: 1000;\n  width: 12.5rem;\n}\n\n.vf-element-info-wrapper.vf-element-info-wrapper-left {\n  top: -0.5625rem;\n  right: 1.375rem;\n}\n\n.vf-element-info-wrapper.vf-element-info-wrapper-right {\n  top: -0.5625rem;\n  left: 1.375rem;\n}\n\n.vf-element-info-wrapper.vf-element-info-wrapper-top {\n  bottom: 1.375rem;\n  left: 50%;\n  transform: translateX(-50%);\n}\n\n.vf-element-info-wrapper.vf-element-info-wrapper-bottom {\n  top: 1.375rem;\n  left: 50%;\n  transform: translateX(-50%);\n}\n\n.vf-element-info-content {\n  background: rgba(0, 0, 0, 0.85);\n  color: #FFFFFF;\n  border-radius: var(--vf-radius-small);\n  font-size: var(--vf-font-size-small);\n  line-height: var(--vf-line-height-small);\n  letter-spacing: var(--vf-letter-spacing-small);\n  padding: 0.3125rem 0.625rem;\n  font-style: normal;\n  display: inline-block;\n  position: relative;\n}\n\n.vf-element-info-content:after {\n  right: 100%;\n  top: 0.625rem;\n  border: solid transparent;\n  content: \"\";\n  height: 0;\n  width: 0;\n  position: absolute;\n  pointer-events: none;\n  border-color: rgba(0, 0, 0, 0);\n  border-right-color: rgba(0, 0, 0, 0.85);\n  border-width: 5px;\n}";
+styleInject(css_248z$O);
 
-script$1D.__file = "themes/vueform/templates/ElementInfo.vue";
+script$1F.__file = "themes/vueform/templates/ElementInfo.vue";
 
-var script$1C = {
+var script$1E = {
     name: 'ElementDescription',
     data() {
       return {
@@ -1444,10 +1444,10 @@ var script$1C = {
     }
   };
 
-const _hoisted_1$D = ["innerHTML", "id"];
-const _hoisted_2$n = ["id"];
+const _hoisted_1$E = ["innerHTML", "id"];
+const _hoisted_2$o = ["id"];
 
-function render$K(_ctx, _cache, $props, $setup, $data, $options) {
+function render$L(_ctx, _cache, $props, $setup, $data, $options) {
   return (openBlock(), createElementBlock(Fragment, null, [
     createCommentVNode(" If description is HTML "),
     (_ctx.description)
@@ -1456,7 +1456,7 @@ function render$K(_ctx, _cache, $props, $setup, $data, $options) {
           class: normalizeClass(_ctx.classes.container),
           innerHTML: _ctx.description,
           id: _ctx.id
-        }, null, 10 /* CLASS, PROPS */, _hoisted_1$D))
+        }, null, 10 /* CLASS, PROPS */, _hoisted_1$E))
       : (_ctx.isSlot)
         ? (openBlock(), createElementBlock(Fragment, { key: 1 }, [
             createCommentVNode(" If description is a slot "),
@@ -1465,18 +1465,18 @@ function render$K(_ctx, _cache, $props, $setup, $data, $options) {
               id: _ctx.id
             }, [
               renderSlot(_ctx.$slots, "default")
-            ], 10 /* CLASS, PROPS */, _hoisted_2$n)
+            ], 10 /* CLASS, PROPS */, _hoisted_2$o)
           ], 2112 /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */))
         : createCommentVNode("v-if", true)
   ], 2112 /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */))
 }
 
-script$1C.render = render$K;
-script$1C.__file = "themes/blank/templates/ElementDescription.vue";
+script$1E.render = render$L;
+script$1E.__file = "themes/blank/templates/ElementDescription.vue";
 
-var script$1B = {
+var script$1D = {
     name: 'ElementDescription',
-    render: script$1C.render,
+    render: script$1E.render,
     data() {
       return {
         merge: true,
@@ -1494,12 +1494,12 @@ var script$1B = {
     }
   };
 
-var css_248z$M = ".vf-description {\n  font-size: var(--vf-font-size-small);\n  line-height: var(--vf-line-height-small);\n  letter-spacing: var(--vf-letter-spacing-small);\n  color: var(--vf-color-muted);\n  margin-top: 0.25rem;\n}\n\n.vf-description.vf-description-sm {\n  font-size: var(--vf-font-size-small-sm);\n  line-height: var(--vf-line-height-small-sm);\n  letter-spacing: var(--vf-letter-spacing-small-sm);\n  margin-top: 0.125rem;\n}\n\n.vf-description.vf-description-lg {\n  font-size: var(--vf-font-size-small-lg);\n  line-height: var(--vf-line-height-small-lg);\n  letter-spacing: var(--vf-letter-spacing-small-lg);\n}";
-styleInject(css_248z$M);
+var css_248z$N = ".vf-description {\n  font-size: var(--vf-font-size-small);\n  line-height: var(--vf-line-height-small);\n  letter-spacing: var(--vf-letter-spacing-small);\n  color: var(--vf-color-muted);\n  margin-top: 0.25rem;\n}\n\n.vf-description.vf-description-sm {\n  font-size: var(--vf-font-size-small-sm);\n  line-height: var(--vf-line-height-small-sm);\n  letter-spacing: var(--vf-letter-spacing-small-sm);\n  margin-top: 0.125rem;\n}\n\n.vf-description.vf-description-lg {\n  font-size: var(--vf-font-size-small-lg);\n  line-height: var(--vf-line-height-small-lg);\n  letter-spacing: var(--vf-letter-spacing-small-lg);\n}";
+styleInject(css_248z$N);
 
-script$1B.__file = "themes/vueform/templates/ElementDescription.vue";
+script$1D.__file = "themes/vueform/templates/ElementDescription.vue";
 
-var script$1A = {
+var script$1C = {
     name: 'ElementError',
     data() {
       return {
@@ -1511,26 +1511,26 @@ var script$1A = {
     }
   };
 
-const _hoisted_1$C = ["id", "innerHTML"];
+const _hoisted_1$D = ["id", "innerHTML"];
 
-function render$J(_ctx, _cache, $props, $setup, $data, $options) {
-  return (_ctx.error)
+function render$K(_ctx, _cache, $props, $setup, $data, $options) {
+  return (_ctx.showError)
     ? (openBlock(), createElementBlock("div", {
         key: 0,
         class: normalizeClass(_ctx.classes.container),
         id: _ctx.id,
         "aria-live": "assertive",
         innerHTML: _ctx.error
-      }, null, 10 /* CLASS, PROPS */, _hoisted_1$C))
+      }, null, 10 /* CLASS, PROPS */, _hoisted_1$D))
     : createCommentVNode("v-if", true)
 }
 
-script$1A.render = render$J;
-script$1A.__file = "themes/blank/templates/ElementError.vue";
+script$1C.render = render$K;
+script$1C.__file = "themes/blank/templates/ElementError.vue";
 
-var script$1z = {
+var script$1B = {
     name: 'ElementError',
-    render: script$1A.render,
+    render: script$1C.render,
     data() {
       return {
         merge: true,
@@ -1548,12 +1548,12 @@ var script$1z = {
     }
   };
 
-var css_248z$L = ".vf-element-error {\n  font-size: var(--vf-font-size-small);\n  line-height: var(--vf-line-height-small);\n  letter-spacing: var(--vf-letter-spacing-small);\n  color: var(--vf-color-danger);\n  margin-top: 0.25rem;\n}\n\n.vf-element-error.vf-element-error-sm {\n  font-size: var(--vf-font-size-small-sm);\n  line-height: var(--vf-line-height-small-sm);\n  letter-spacing: var(--vf-letter-spacing-small-sm);\n  margin-top: 0.125rem;\n}\n\n.vf-element-error.vf-element-error-lg {\n  font-size: var(--vf-font-size-small-lg);\n  line-height: var(--vf-line-height-small-lg);\n  letter-spacing: var(--vf-letter-spacing-small-lg);\n}";
-styleInject(css_248z$L);
+var css_248z$M = ".vf-element-error {\n  font-size: var(--vf-font-size-small);\n  line-height: var(--vf-line-height-small);\n  letter-spacing: var(--vf-letter-spacing-small);\n  color: var(--vf-color-danger);\n  margin-top: 0.25rem;\n}\n\n.vf-element-error.vf-element-error-sm {\n  font-size: var(--vf-font-size-small-sm);\n  line-height: var(--vf-line-height-small-sm);\n  letter-spacing: var(--vf-letter-spacing-small-sm);\n  margin-top: 0.125rem;\n}\n\n.vf-element-error.vf-element-error-lg {\n  font-size: var(--vf-font-size-small-lg);\n  line-height: var(--vf-line-height-small-lg);\n  letter-spacing: var(--vf-letter-spacing-small-lg);\n}";
+styleInject(css_248z$M);
 
-script$1z.__file = "themes/vueform/templates/ElementError.vue";
+script$1B.__file = "themes/vueform/templates/ElementError.vue";
 
-var script$1y = {
+var script$1A = {
     name: 'ElementMessage',
     data() {
       return {
@@ -1565,24 +1565,24 @@ var script$1y = {
     }
   };
 
-const _hoisted_1$B = ["innerHTML"];
+const _hoisted_1$C = ["innerHTML"];
 
-function render$I(_ctx, _cache, $props, $setup, $data, $options) {
+function render$J(_ctx, _cache, $props, $setup, $data, $options) {
   return (_ctx.message)
     ? (openBlock(), createElementBlock("div", {
         key: 0,
         class: normalizeClass(_ctx.classes.container),
         innerHTML: _ctx.message
-      }, null, 10 /* CLASS, PROPS */, _hoisted_1$B))
+      }, null, 10 /* CLASS, PROPS */, _hoisted_1$C))
     : createCommentVNode("v-if", true)
 }
 
-script$1y.render = render$I;
-script$1y.__file = "themes/blank/templates/ElementMessage.vue";
+script$1A.render = render$J;
+script$1A.__file = "themes/blank/templates/ElementMessage.vue";
 
-var script$1x = {
+var script$1z = {
     name: 'ElementMessage',
-    render: script$1y.render,
+    render: script$1A.render,
     data() {
       return {
         merge: true,
@@ -1600,12 +1600,12 @@ var script$1x = {
     }
   };
 
-var css_248z$K = ".vf-element-message {\n  font-size: var(--vf-font-size-small);\n  line-height: var(--vf-line-height-small);\n  letter-spacing: var(--vf-letter-spacing-small);\n  color: var(--vf-color-success);\n  margin-top: 0.25rem;\n}\n\n.vf-element-message.vf-element-message-sm {\n  font-size: var(--vf-font-size-small-sm);\n  line-height: var(--vf-line-height-small-sm);\n  letter-spacing: var(--vf-letter-spacing-small-sm);\n  margin-top: 0.125rem;\n}\n\n.vf-element-message.vf-element-message-lg {\n  font-size: var(--vf-font-size-small-lg);\n  line-height: var(--vf-line-height-small-lg);\n  letter-spacing: var(--vf-letter-spacing-small-lg);\n}";
-styleInject(css_248z$K);
+var css_248z$L = ".vf-element-message {\n  font-size: var(--vf-font-size-small);\n  line-height: var(--vf-line-height-small);\n  letter-spacing: var(--vf-letter-spacing-small);\n  color: var(--vf-color-success);\n  margin-top: 0.25rem;\n}\n\n.vf-element-message.vf-element-message-sm {\n  font-size: var(--vf-font-size-small-sm);\n  line-height: var(--vf-line-height-small-sm);\n  letter-spacing: var(--vf-letter-spacing-small-sm);\n  margin-top: 0.125rem;\n}\n\n.vf-element-message.vf-element-message-lg {\n  font-size: var(--vf-font-size-small-lg);\n  line-height: var(--vf-line-height-small-lg);\n  letter-spacing: var(--vf-letter-spacing-small-lg);\n}";
+styleInject(css_248z$L);
 
-script$1x.__file = "themes/vueform/templates/ElementMessage.vue";
+script$1z.__file = "themes/vueform/templates/ElementMessage.vue";
 
-var script$1w = {
+var script$1y = {
     name: 'ElementRequired',
     data() {
       return {
@@ -1617,7 +1617,7 @@ var script$1w = {
     }
   };
 
-function render$H(_ctx, _cache, $props, $setup, $data, $options) {
+function render$I(_ctx, _cache, $props, $setup, $data, $options) {
   return (_ctx.visible)
     ? (openBlock(), createElementBlock("div", {
         key: 0,
@@ -1630,12 +1630,12 @@ function render$H(_ctx, _cache, $props, $setup, $data, $options) {
     : createCommentVNode("v-if", true)
 }
 
-script$1w.render = render$H;
-script$1w.__file = "themes/blank/templates/ElementRequired.vue";
+script$1y.render = render$I;
+script$1y.__file = "themes/blank/templates/ElementRequired.vue";
 
-var script$1v = {
+var script$1x = {
     name: 'ElementRequired',
-    render: script$1w.render,
+    render: script$1y.render,
     data() {
       return {
         merge: true,
@@ -1646,12 +1646,12 @@ var script$1v = {
     }
   };
 
-var css_248z$J = "";
-styleInject(css_248z$J);
+var css_248z$K = "";
+styleInject(css_248z$K);
 
-script$1v.__file = "themes/vueform/templates/ElementRequired.vue";
+script$1x.__file = "themes/vueform/templates/ElementRequired.vue";
 
-var script$1u = {
+var script$1w = {
     name: 'ElementText',
     data() {
       return {
@@ -1663,9 +1663,9 @@ var script$1u = {
     }
   };
 
-const _hoisted_1$A = ["innerHTML"];
+const _hoisted_1$B = ["innerHTML"];
 
-function render$G(_ctx, _cache, $props, $setup, $data, $options) {
+function render$H(_ctx, _cache, $props, $setup, $data, $options) {
   return (openBlock(), createElementBlock(Fragment, null, [
     createCommentVNode(" If content is HTML "),
     (_ctx.content)
@@ -1673,7 +1673,7 @@ function render$G(_ctx, _cache, $props, $setup, $data, $options) {
           key: 0,
           class: normalizeClass(_ctx.classes.container),
           innerHTML: _ctx.content
-        }, null, 10 /* CLASS, PROPS */, _hoisted_1$A))
+        }, null, 10 /* CLASS, PROPS */, _hoisted_1$B))
       : (_ctx.isSlot)
         ? (openBlock(), createElementBlock(Fragment, { key: 1 }, [
             createCommentVNode(" If content is a slot "),
@@ -1687,12 +1687,12 @@ function render$G(_ctx, _cache, $props, $setup, $data, $options) {
   ], 2112 /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */))
 }
 
-script$1u.render = render$G;
-script$1u.__file = "themes/blank/templates/ElementText.vue";
+script$1w.render = render$H;
+script$1w.__file = "themes/blank/templates/ElementText.vue";
 
-var script$1t = {
+var script$1v = {
     name: 'ElementText',
-    render: script$1u.render,
+    render: script$1w.render,
     data() {
       return {
         merge: true,
@@ -1710,9 +1710,9 @@ var script$1t = {
     }
   };
 
-script$1t.__file = "themes/vueform/templates/ElementText.vue";
+script$1v.__file = "themes/vueform/templates/ElementText.vue";
 
-var script$1s = {
+var script$1u = {
     name: 'ElementAddon',
     data() {
       return {
@@ -1725,9 +1725,9 @@ var script$1s = {
     }
   };
 
-const _hoisted_1$z = ["innerHTML"];
+const _hoisted_1$A = ["innerHTML"];
 
-function render$F(_ctx, _cache, $props, $setup, $data, $options) {
+function render$G(_ctx, _cache, $props, $setup, $data, $options) {
   return (openBlock(), createElementBlock(Fragment, null, [
     createCommentVNode(" If addon is a component "),
     (_ctx.addon && _ctx.isAddonComponent)
@@ -1750,7 +1750,7 @@ function render$F(_ctx, _cache, $props, $setup, $data, $options) {
               createElementVNode("div", {
                 class: normalizeClass(_ctx.classes.wrapper),
                 innerHTML: _ctx.addon
-              }, null, 10 /* CLASS, PROPS */, _hoisted_1$z)
+              }, null, 10 /* CLASS, PROPS */, _hoisted_1$A)
             ], 2 /* CLASS */)
           ], 2112 /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */))
         : (_ctx.isSlot)
@@ -1770,12 +1770,12 @@ function render$F(_ctx, _cache, $props, $setup, $data, $options) {
   ], 2112 /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */))
 }
 
-script$1s.render = render$F;
-script$1s.__file = "themes/blank/templates/ElementAddon.vue";
+script$1u.render = render$G;
+script$1u.__file = "themes/blank/templates/ElementAddon.vue";
 
-var script$1r = {
+var script$1t = {
     name: 'ElementAddon',
-    render: script$1s.render,
+    render: script$1u.render,
     data() {
       return {
         merge: true,
@@ -1804,12 +1804,12 @@ var script$1r = {
     }
   };
 
-var css_248z$I = ".vf-addon {\n  background: var(--vf-bg-addon);\n  color: var(--vf-color-addon);\n  border-radius: var(--vf-radius-input);\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  flex: 0 0 0%;\n}\n\n.vf-addon.vf-addon-before {\n  border-top-right-radius: 0;\n  border-bottom-right-radius: 0;\n  padding: 0 var(--vf-space-addon) 0 var(--vf-px-input);\n}\n\n.vf-addon.vf-addon-before.vf-addon-sm {\n  padding: 0 var(--vf-space-addon-sm) 0 var(--vf-px-input-sm);\n}\n\n.vf-addon.vf-addon-before.vf-addon-lg {\n  padding: 0 var(--vf-space-addon-lg) 0 var(--vf-px-input-lg);\n}\n\n.vf-addon.vf-addon-after {\n  border-top-left-radius: 0;\n  border-bottom-left-radius: 0;\n  padding: 0 var(--vf-px-input) 0 var(--vf-space-addon);\n  order: 2;\n}\n\n.vf-addon.vf-addon-after.vf-addon-sm {\n  padding: 0 var(--vf-px-input-sm) 0 var(--vf-space-addon-sm);\n}\n\n.vf-addon.vf-addon-after.vf-addon-lg {\n  padding: 0 var(--vf-px-input-lg) 0 var(--vf-space-addon-lg);\n}\n\n.vf-addon-wrapper {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}";
-styleInject(css_248z$I);
+var css_248z$J = ".vf-addon {\n  background: var(--vf-bg-addon);\n  color: var(--vf-color-addon);\n  border-radius: var(--vf-radius-input);\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  flex: 0 0 0%;\n}\n\n.vf-addon.vf-addon-before {\n  border-top-right-radius: 0;\n  border-bottom-right-radius: 0;\n  padding: 0 var(--vf-space-addon) 0 var(--vf-px-input);\n}\n\n.vf-addon.vf-addon-before.vf-addon-sm {\n  padding: 0 var(--vf-space-addon-sm) 0 var(--vf-px-input-sm);\n}\n\n.vf-addon.vf-addon-before.vf-addon-lg {\n  padding: 0 var(--vf-space-addon-lg) 0 var(--vf-px-input-lg);\n}\n\n.vf-addon.vf-addon-after {\n  border-top-left-radius: 0;\n  border-bottom-left-radius: 0;\n  padding: 0 var(--vf-px-input) 0 var(--vf-space-addon);\n  order: 2;\n}\n\n.vf-addon.vf-addon-after.vf-addon-sm {\n  padding: 0 var(--vf-px-input-sm) 0 var(--vf-space-addon-sm);\n}\n\n.vf-addon.vf-addon-after.vf-addon-lg {\n  padding: 0 var(--vf-px-input-lg) 0 var(--vf-space-addon-lg);\n}\n\n.vf-addon-wrapper {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}";
+styleInject(css_248z$J);
 
-script$1r.__file = "themes/vueform/templates/ElementAddon.vue";
+script$1t.__file = "themes/vueform/templates/ElementAddon.vue";
 
-var script$1q = {
+var script$1s = {
     name: 'ElementAddonOptions',
     data() {
       return {
@@ -1825,16 +1825,16 @@ var script$1q = {
     },
   };
 
-const _hoisted_1$y = ["aria-expanded", "aria-controls", "tabindex"];
-const _hoisted_2$m = ["innerHTML"];
-const _hoisted_3$d = ["innerHTML"];
-const _hoisted_4$a = ["innerHTML"];
+const _hoisted_1$z = ["aria-expanded", "aria-controls", "tabindex"];
+const _hoisted_2$n = ["innerHTML"];
+const _hoisted_3$e = ["innerHTML"];
+const _hoisted_4$b = ["innerHTML"];
 const _hoisted_5$6 = ["innerHTML"];
 const _hoisted_6$5 = ["data-dropdown-for", "id"];
 const _hoisted_7$3 = ["innerHTML", "data-index", "data-selected", "onMouseover", "onClick", "tabindex", "aria-selected"];
 const _hoisted_8$2 = ["innerHTML", "data-index", "data-selected", "onMouseover", "onClick", "tabindex", "aria-selected"];
 
-function render$E(_ctx, _cache, $props, $setup, $data, $options) {
+function render$F(_ctx, _cache, $props, $setup, $data, $options) {
   return (openBlock(), createElementBlock("div", {
     class: normalizeClass(_ctx.classes.container)
   }, [
@@ -1862,11 +1862,11 @@ function render$E(_ctx, _cache, $props, $setup, $data, $options) {
                 ? (openBlock(), createElementBlock("div", {
                     key: 1,
                     innerHTML: _ctx.selected.valueDisplay(_ctx.selected, _ctx.el$)
-                  }, null, 8 /* PROPS */, _hoisted_2$m))
+                  }, null, 8 /* PROPS */, _hoisted_2$n))
                 : (openBlock(), createElementBlock("div", {
                     key: 2,
                     innerHTML: _ctx.selected.label
-                  }, null, 8 /* PROPS */, _hoisted_3$d))
+                  }, null, 8 /* PROPS */, _hoisted_3$e))
           ], 64 /* STABLE_FRAGMENT */))
         : (openBlock(), createElementBlock(Fragment, { key: 1 }, [
             (_ctx.placeholder && typeof _ctx.placeholder === 'object' && [_ctx.placeholder.render || _ctx.placeholder.template])
@@ -1879,7 +1879,7 @@ function render$E(_ctx, _cache, $props, $setup, $data, $options) {
                 ? (openBlock(), createElementBlock("div", {
                     key: 1,
                     innerHTML: _ctx.placeholder(_ctx.selected, _ctx.el$)
-                  }, null, 8 /* PROPS */, _hoisted_4$a))
+                  }, null, 8 /* PROPS */, _hoisted_4$b))
                 : (openBlock(), createElementBlock("div", {
                     key: 2,
                     innerHTML: _ctx.placeholder
@@ -1951,16 +1951,16 @@ function render$E(_ctx, _cache, $props, $setup, $data, $options) {
             ], 14 /* CLASS, STYLE, PROPS */, _hoisted_6$5))
           : createCommentVNode("v-if", true)
       ]))
-    ], 16 /* FULL_PROPS */, _hoisted_1$y)
+    ], 16 /* FULL_PROPS */, _hoisted_1$z)
   ], 2 /* CLASS */))
 }
 
-script$1q.render = render$E;
-script$1q.__file = "themes/blank/templates/ElementAddonOptions.vue";
+script$1s.render = render$F;
+script$1s.__file = "themes/blank/templates/ElementAddonOptions.vue";
 
-var script$1p = {
+var script$1r = {
     name: 'ElementAddonOptions',
-    render: script$1q.render,
+    render: script$1s.render,
     data() {
       return {
         merge: true,
@@ -1994,12 +1994,12 @@ var script$1p = {
     }
   };
 
-var css_248z$H = ".vf-addon-options {\n  display: flex;\n  align-items: center;\n  font-size: var(--vf-font-size);\n  line-height: var(--vf-line-height);\n  letter-spacing: var(--vf-letter-spacing);\n}\n\n.vf-addon-options.vf-addon-options-sm {\n  font-size: var(--vf-font-size-sm);\n  line-height: var(--vf-line-height-sm);\n  letter-spacing: var(--vf-letter-spacing-sm);\n}\n\n.vf-addon-options.vf-addon-options-lg {\n  font-size: var(--vf-font-size-lg);\n  line-height: var(--vf-line-height-lg);\n  letter-spacing: var(--vf-letter-spacing-lg);\n}\n\n.vf-addon-options.vf-addon-options-disabled {\n  opacity: 0.5;\n  cursor: initial;\n  pointer-events: none;\n}\n\n.vf-addon-options-wrapper {\n  display: flex;\n  align-items: center;\n  border-radius: 4px;\n  padding: 4px 4px;\n  cursor: pointer;\n  transition-property: all;\n  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);\n  transition-duration: 150ms;\n  outline: none;\n}\n\n.vf-addon-options-wrapper:hover, .vf-addon-options-wrapper:focus {\n  background: var(--vf-bg-selected);\n}\n\n.vf-addon-options-wrapper.vf-addon-options-wrapper-relaxed {\n  padding: 6px 12px;\n}\n\n.vf-addon-options-caret {\n  mask-image: url(\"data:image/svg+xml,%3Csvg viewBox='0 0 320 512' fill='currentColor' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z'%3E%3C/path%3E%3C/svg%3E\");\n  -webkit-mask-image: url(\"data:image/svg+xml,%3Csvg viewBox='0 0 320 512' fill='currentColor' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z'%3E%3C/path%3E%3C/svg%3E\");\n  mask-position: center center;\n  -webkit-mask-position: center center;\n  mask-repeat: no-repeat;\n  -webkit-mask-repeat: no-repeat;\n  background-color: var(--vf-bg-icon);\n  color: var(--vf-color-input);\n  width: 0.625rem;\n  height: 1rem;\n  padding: 1px 0;\n  margin-left: 0.5rem;\n}\n\n.vf-addon-options-dropdown {\n  background-color: var(--vf-bg-input);\n  border-width: var(--vf-border-width-dropdown);\n  border-style: solid;\n  border-color: var(--vf-border-color-input);\n  box-shadow: var(--vf-shadow-dropdown);\n  color: var(--vf-color-input);\n  position: fixed;\n  z-index: 1002;\n  overflow-x: scroll;\n  max-height: calc(100vh - 2rem);\n}\n\n.vf-addon-options-option {\n  display: flex;\n  align-items: center;\n  cursor: pointer;\n  padding: 0.3125rem 0.75rem;\n  white-space: nowrap;\n}\n\n.vf-addon-options-option-active {\n  background: var(--vf-bg-selected);\n}\n\n[dir=rtl] .vf-addon-options-caret {\n  margin-left: 0;\n  margin-right: 0.5rem;\n}";
-styleInject(css_248z$H);
+var css_248z$I = ".vf-addon-options {\n  display: flex;\n  align-items: center;\n  font-size: var(--vf-font-size);\n  line-height: var(--vf-line-height);\n  letter-spacing: var(--vf-letter-spacing);\n}\n\n.vf-addon-options.vf-addon-options-sm {\n  font-size: var(--vf-font-size-sm);\n  line-height: var(--vf-line-height-sm);\n  letter-spacing: var(--vf-letter-spacing-sm);\n}\n\n.vf-addon-options.vf-addon-options-lg {\n  font-size: var(--vf-font-size-lg);\n  line-height: var(--vf-line-height-lg);\n  letter-spacing: var(--vf-letter-spacing-lg);\n}\n\n.vf-addon-options.vf-addon-options-disabled {\n  opacity: 0.5;\n  cursor: initial;\n  pointer-events: none;\n}\n\n.vf-addon-options-wrapper {\n  display: flex;\n  align-items: center;\n  border-radius: 4px;\n  padding: 4px 4px;\n  cursor: pointer;\n  transition-property: all;\n  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);\n  transition-duration: 150ms;\n  outline: none;\n}\n\n.vf-addon-options-wrapper:hover, .vf-addon-options-wrapper:focus {\n  background: var(--vf-bg-selected);\n}\n\n.vf-addon-options-wrapper.vf-addon-options-wrapper-relaxed {\n  padding: 6px 12px;\n}\n\n.vf-addon-options-caret {\n  mask-image: url(\"data:image/svg+xml,%3Csvg viewBox='0 0 320 512' fill='currentColor' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z'%3E%3C/path%3E%3C/svg%3E\");\n  -webkit-mask-image: url(\"data:image/svg+xml,%3Csvg viewBox='0 0 320 512' fill='currentColor' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z'%3E%3C/path%3E%3C/svg%3E\");\n  mask-position: center center;\n  -webkit-mask-position: center center;\n  mask-repeat: no-repeat;\n  -webkit-mask-repeat: no-repeat;\n  background-color: var(--vf-bg-icon);\n  color: var(--vf-color-input);\n  width: 0.625rem;\n  height: 1rem;\n  padding: 1px 0;\n  margin-left: 0.5rem;\n}\n\n.vf-addon-options-dropdown {\n  background-color: var(--vf-bg-input);\n  border-width: var(--vf-border-width-dropdown);\n  border-style: solid;\n  border-color: var(--vf-border-color-input);\n  box-shadow: var(--vf-shadow-dropdown);\n  color: var(--vf-color-input);\n  position: fixed;\n  z-index: 1002;\n  overflow-x: scroll;\n  max-height: calc(100vh - 2rem);\n}\n\n.vf-addon-options-option {\n  display: flex;\n  align-items: center;\n  cursor: pointer;\n  padding: 0.3125rem 0.75rem;\n  white-space: nowrap;\n}\n\n.vf-addon-options-option-active {\n  background: var(--vf-bg-selected);\n}\n\n[dir=rtl] .vf-addon-options-caret {\n  margin-left: 0;\n  margin-right: 0.5rem;\n}";
+styleInject(css_248z$I);
 
-script$1p.__file = "themes/vueform/templates/ElementAddonOptions.vue";
+script$1r.__file = "themes/vueform/templates/ElementAddonOptions.vue";
 
-var script$1o = {
+var script$1q = {
     name: 'ButtonElement',
     data() {
       return {
@@ -2012,14 +2012,14 @@ var script$1o = {
     }
   };
 
-const _hoisted_1$x = ["tabindex", "disabled"];
-const _hoisted_2$l = ["innerHTML", "tabindex", "disabled"];
-const _hoisted_3$c = ["tabindex", "disabled"];
-const _hoisted_4$9 = ["tabindex"];
+const _hoisted_1$y = ["tabindex", "disabled"];
+const _hoisted_2$m = ["innerHTML", "tabindex", "disabled"];
+const _hoisted_3$d = ["tabindex", "disabled"];
+const _hoisted_4$a = ["tabindex"];
 const _hoisted_5$5 = ["innerHTML", "tabindex"];
 const _hoisted_6$4 = ["tabindex"];
 
-function render$D(_ctx, _cache, $props, $setup, $data, $options) {
+function render$E(_ctx, _cache, $props, $setup, $data, $options) {
   return (openBlock(), createBlock(resolveDynamicComponent(_ctx.elementLayout), { ref: "container" }, createSlots({
     element: withCtx(() => [
       createCommentVNode(" Use `button` tag "),
@@ -2037,7 +2037,7 @@ function render$D(_ctx, _cache, $props, $setup, $data, $options) {
                   onClick: _cache[0] || (_cache[0] = withModifiers((...args) => (_ctx.handleClick && _ctx.handleClick(...args)), ["prevent"]))
                 }), [
                   (openBlock(), createBlock(resolveDynamicComponent(_ctx.buttonLabel)))
-                ], 16 /* FULL_PROPS */, _hoisted_1$x))
+                ], 16 /* FULL_PROPS */, _hoisted_1$y))
               : (_ctx.buttonLabel)
                 ? (openBlock(), createElementBlock(Fragment, { key: 1 }, [
                     createCommentVNode(" Use it as HTML "),
@@ -2050,7 +2050,7 @@ function render$D(_ctx, _cache, $props, $setup, $data, $options) {
                       class: _ctx.classes.button,
                       disabled: _ctx.isDisabled,
                       onClick: _cache[1] || (_cache[1] = withModifiers((...args) => (_ctx.handleClick && _ctx.handleClick(...args)), ["prevent"]))
-                    }), null, 16 /* FULL_PROPS */, _hoisted_2$l)
+                    }), null, 16 /* FULL_PROPS */, _hoisted_2$m)
                   ], 2112 /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */))
                 : (openBlock(), createElementBlock(Fragment, { key: 2 }, [
                     createCommentVNode(" Use it as slot "),
@@ -2066,7 +2066,7 @@ function render$D(_ctx, _cache, $props, $setup, $data, $options) {
                       renderSlot(_ctx.$slots, "default", { el$: _ctx.el$ }, () => [
                         (openBlock(), createBlock(resolveDynamicComponent(_ctx.fieldSlots.default), { el$: _ctx.el$ }, null, 8 /* PROPS */, ["el$"]))
                       ])
-                    ], 16 /* FULL_PROPS */, _hoisted_3$c)
+                    ], 16 /* FULL_PROPS */, _hoisted_3$d)
                   ], 2112 /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */))
           ], 64 /* STABLE_FRAGMENT */))
         : (openBlock(), createElementBlock(Fragment, { key: 1 }, [
@@ -2082,7 +2082,7 @@ function render$D(_ctx, _cache, $props, $setup, $data, $options) {
                   onClick: _cache[3] || (_cache[3] = (...args) => (_ctx.handleClick && _ctx.handleClick(...args)))
                 }), [
                   (openBlock(), createBlock(resolveDynamicComponent(_ctx.buttonLabel)))
-                ], 16 /* FULL_PROPS */, _hoisted_4$9))
+                ], 16 /* FULL_PROPS */, _hoisted_4$a))
               : (_ctx.buttonLabel)
                 ? (openBlock(), createElementBlock(Fragment, { key: 1 }, [
                     createCommentVNode(" Use it as HTML "),
@@ -2128,12 +2128,12 @@ function render$D(_ctx, _cache, $props, $setup, $data, $options) {
   ]), 1536 /* NEED_PATCH, DYNAMIC_SLOTS */))
 }
 
-script$1o.render = render$D;
-script$1o.__file = "themes/blank/templates/elements/ButtonElement.vue";
+script$1q.render = render$E;
+script$1q.__file = "themes/blank/templates/elements/ButtonElement.vue";
 
-var script$1n = {
+var script$1p = {
     name: 'ButtonElement',
-    render: script$1o.render,
+    render: script$1q.render,
     data() {
       return {
         merge: true,
@@ -2180,12 +2180,12 @@ var script$1n = {
     }
   };
 
-var css_248z$G = "/* Some styles are contained in Vueform.vue */";
-styleInject(css_248z$G);
+var css_248z$H = "/* Some styles are contained in Vueform.vue */";
+styleInject(css_248z$H);
 
-script$1n.__file = "themes/vueform/templates/elements/ButtonElement.vue";
+script$1p.__file = "themes/vueform/templates/elements/ButtonElement.vue";
 
-var script$1m = {
+var script$1o = {
     name: 'CaptchaElement',
     data() {
       return {
@@ -2199,9 +2199,9 @@ var script$1m = {
     },
   };
 
-const _hoisted_1$w = ["id"];
+const _hoisted_1$x = ["id"];
 
-function render$C(_ctx, _cache, $props, $setup, $data, $options) {
+function render$D(_ctx, _cache, $props, $setup, $data, $options) {
   return (openBlock(), createBlock(resolveDynamicComponent(_ctx.elementLayout), { ref: "container" }, createSlots({
     element: withCtx(() => [
       (_ctx.shouldVerify)
@@ -2213,7 +2213,7 @@ function render$C(_ctx, _cache, $props, $setup, $data, $options) {
               id: _ctx.fieldId,
               class: normalizeClass(_ctx.classes.captcha),
               ref: "input"
-            }, null, 10 /* CLASS, PROPS */, _hoisted_1$w)
+            }, null, 10 /* CLASS, PROPS */, _hoisted_1$x)
           ], 2 /* CLASS */))
         : createCommentVNode("v-if", true)
     ]),
@@ -2232,12 +2232,12 @@ function render$C(_ctx, _cache, $props, $setup, $data, $options) {
   ]), 1536 /* NEED_PATCH, DYNAMIC_SLOTS */))
 }
 
-script$1m.render = render$C;
-script$1m.__file = "themes/blank/templates/elements/CaptchaElement.vue";
+script$1o.render = render$D;
+script$1o.__file = "themes/blank/templates/elements/CaptchaElement.vue";
 
-var script$1l = {
+var script$1n = {
     name: 'CaptchaElement',
-    render: script$1m.render,
+    render: script$1o.render,
     data() {
       return {
         merge: true,
@@ -2250,9 +2250,9 @@ var script$1l = {
     }
   };
 
-script$1l.__file = "themes/vueform/templates/elements/CaptchaElement.vue";
+script$1n.__file = "themes/vueform/templates/elements/CaptchaElement.vue";
 
-var script$1k = {
+var script$1m = {
     name: 'CheckboxElement',
     data() {
       return {
@@ -2267,10 +2267,10 @@ var script$1k = {
     }
   };
 
-const _hoisted_1$v = ["name", "id", "true-value", "false-value", "disabled"];
-const _hoisted_2$k = ["innerHTML"];
+const _hoisted_1$w = ["name", "id", "true-value", "false-value", "disabled"];
+const _hoisted_2$l = ["innerHTML"];
 
-function render$B(_ctx, _cache, $props, $setup, $data, $options) {
+function render$C(_ctx, _cache, $props, $setup, $data, $options) {
   return (openBlock(), createBlock(resolveDynamicComponent(_ctx.elementLayout), { ref: "container" }, createSlots({
     element: withCtx(() => [
       createElementVNode("label", {
@@ -2287,7 +2287,7 @@ function render$B(_ctx, _cache, $props, $setup, $data, $options) {
           "false-value": _ctx.falseValue,
           disabled: _ctx.isDisabled,
           ref: "input"
-        }), null, 16 /* FULL_PROPS */, _hoisted_1$v), [
+        }), null, 16 /* FULL_PROPS */, _hoisted_1$w), [
           [vModelCheckbox, _ctx.value]
         ]),
         createCommentVNode(" If label is HTML "),
@@ -2296,7 +2296,7 @@ function render$B(_ctx, _cache, $props, $setup, $data, $options) {
               key: 0,
               class: normalizeClass(_ctx.classes.text),
               innerHTML: _ctx.Text
-            }, null, 10 /* CLASS, PROPS */, _hoisted_2$k))
+            }, null, 10 /* CLASS, PROPS */, _hoisted_2$l))
           : (openBlock(), createElementBlock(Fragment, { key: 1 }, [
               createCommentVNode(" If label is slot "),
               createElementVNode("span", {
@@ -2324,12 +2324,12 @@ function render$B(_ctx, _cache, $props, $setup, $data, $options) {
   ]), 1536 /* NEED_PATCH, DYNAMIC_SLOTS */))
 }
 
-script$1k.render = render$B;
-script$1k.__file = "themes/blank/templates/elements/CheckboxElement.vue";
+script$1m.render = render$C;
+script$1m.__file = "themes/blank/templates/elements/CheckboxElement.vue";
 
-var script$1j = {
+var script$1l = {
     name: 'CheckboxElement',
-    render: script$1k.render,
+    render: script$1m.render,
     data() {
       return {
         merge: true,
@@ -2350,6 +2350,7 @@ var script$1j = {
           input_lg: 'vf-checkbox-lg',
           input_left: 'vf-checkbox-left',
           input_right: 'vf-checkbox-right',
+          input_standalone: 'vf-checkbox-standalone',
           text: 'vf-checkbox-text',
           text_left: 'vf-checkbox-text-left',
           text_right: 'vf-checkbox-text-right',
@@ -2359,13 +2360,14 @@ var script$1j = {
             align === 'left' ? classes.wrapper_left : null,
             align === 'right' ? classes.wrapper_right : null,
           ]),
-          $input: (classes, { isDisabled, Size, isDanger, align }) => ([
+          $input: (classes, { isDisabled, Size, isDanger, align, standalone }) => ([
             classes.input,
             classes[`input_${Size}`],
             isDisabled ? classes.input_disabled : classes.input_enabled,
             !isDisabled && isDanger ? classes.input_danger : null,
             align === 'left' ? classes.input_left : null,
             align === 'right' ? classes.input_right : null,
+            standalone ? classes.input_standalone : null,
           ]),
           $text: (classes, { align }) => ([
             classes.text,
@@ -2377,12 +2379,12 @@ var script$1j = {
     }
   };
 
-var css_248z$F = "/* Some styles are contained in Vueform.vue */";
-styleInject(css_248z$F);
+var css_248z$G = "/* Some styles are contained in Vueform.vue */";
+styleInject(css_248z$G);
 
-script$1j.__file = "themes/vueform/templates/elements/CheckboxElement.vue";
+script$1l.__file = "themes/vueform/templates/elements/CheckboxElement.vue";
 
-var script$1i = {
+var script$1k = {
     name: 'CheckboxgroupElement',
     data() {
       return {
@@ -2395,9 +2397,9 @@ var script$1i = {
     }
   };
 
-const _hoisted_1$u = ["aria-labelledby"];
+const _hoisted_1$v = ["aria-labelledby"];
 
-function render$A(_ctx, _cache, $props, $setup, $data, $options) {
+function render$B(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_CheckboxgroupCheckbox = resolveComponent("CheckboxgroupCheckbox");
 
   return (openBlock(), createBlock(resolveDynamicComponent(_ctx.elementLayout), { ref: "container" }, createSlots({
@@ -2424,7 +2426,7 @@ function render$A(_ctx, _cache, $props, $setup, $data, $options) {
             _: 2 /* DYNAMIC */
           }, 1032 /* PROPS, DYNAMIC_SLOTS */, ["items", "index", "item", "value", "attrs"]))
         }), 128 /* KEYED_FRAGMENT */))
-      ], 10 /* CLASS, PROPS */, _hoisted_1$u)
+      ], 10 /* CLASS, PROPS */, _hoisted_1$v)
     ]),
     _: 2 /* DYNAMIC */
   }, [
@@ -2441,17 +2443,17 @@ function render$A(_ctx, _cache, $props, $setup, $data, $options) {
   ]), 1536 /* NEED_PATCH, DYNAMIC_SLOTS */))
 }
 
-script$1i.render = render$A;
-script$1i.__file = "themes/blank/templates/elements/CheckboxgroupElement.vue";
+script$1k.render = render$B;
+script$1k.__file = "themes/blank/templates/elements/CheckboxgroupElement.vue";
 
-var script$1h = {
+var script$1j = {
     name: 'CheckboxgroupElement',
-    render: script$1i.render,
+    render: script$1k.render,
     data() {
       return {
         merge: true,
         defaultClasses: {
-          container: '',
+          container: 'vf-checkboxgroup-view-default',
           wrapper: 'vf-checkboxgroup-wrapper',
           wrapper_sm: 'vf-checkboxgroup-wrapper-sm',
           wrapper_md: '',
@@ -2465,19 +2467,19 @@ var script$1h = {
     }
   };
 
-var css_248z$E = ".vf-checkboxgroup-wrapper {\n  cursor: pointer;\n}\n\n.vf-checkboxgroup-wrapper .vf-checkbox-container {\n  padding-top: 0;\n}";
-styleInject(css_248z$E);
+var css_248z$F = ".vf-checkboxgroup-wrapper {\n  cursor: pointer;\n}\n\n.vf-checkboxgroup-wrapper .vf-checkbox-container {\n  padding-top: 0;\n}";
+styleInject(css_248z$F);
 
-script$1h.__file = "themes/vueform/templates/elements/CheckboxgroupElement.vue";
+script$1j.__file = "themes/vueform/templates/elements/CheckboxgroupElement.vue";
 
-var script$1g = {
+var script$1i = {
     name: 'CheckboxgroupElement_tabs',
-    render: script$1i.render,
+    render: script$1k.render,
     data() {
       return {
         merge: true,
         defaultClasses: {
-          container: '',
+          container: 'vf-checkboxgroup-view-tabs',
           wrapper: 'vf-checkboxgroup-tabs-wrapper',
           wrapper_sm: 'vf-checkboxgroup-tabs-wrapper-sm',
           wrapper_md: '',
@@ -2491,19 +2493,19 @@ var script$1g = {
     }
   };
 
-var css_248z$D = ".vf-checkboxgroup-tabs-wrapper {\n  display: grid;\n  grid-auto-flow: column;\n  box-shadow: var(--vf-shadow-input);\n  border-radius: var(--vf-radius-large);\n}\n\n.vf-checkboxgroup-tabs-wrapper.vf-checkboxgroup-tabs-wrapper-sm {\n  border-radius: var(--vf-radius-large-sm);\n}\n\n.vf-checkboxgroup-tabs-wrapper.vf-checkboxgroup-tabs-wrapper-lg {\n  border-radius: var(--vf-radius-large-lg);\n}";
-styleInject(css_248z$D);
+var css_248z$E = ".vf-checkboxgroup-tabs-wrapper {\n  display: grid;\n  grid-auto-flow: column;\n  box-shadow: var(--vf-shadow-input);\n  border-radius: var(--vf-radius-large);\n}\n\n.vf-checkboxgroup-tabs-wrapper.vf-checkboxgroup-tabs-wrapper-sm {\n  border-radius: var(--vf-radius-large-sm);\n}\n\n.vf-checkboxgroup-tabs-wrapper.vf-checkboxgroup-tabs-wrapper-lg {\n  border-radius: var(--vf-radius-large-lg);\n}";
+styleInject(css_248z$E);
 
-script$1g.__file = "themes/vueform/templates/elements/CheckboxgroupElement_tabs.vue";
+script$1i.__file = "themes/vueform/templates/elements/CheckboxgroupElement_tabs.vue";
 
-var script$1f = {
+var script$1h = {
     name: 'CheckboxgroupElement_blocks',
-    render: script$1i.render,
+    render: script$1k.render,
     data() {
       return {
         merge: true,
         defaultClasses: {
-          container: '',
+          container: 'vf-checkboxgroup-view-blocks',
           wrapper: 'vf-checkboxgroup-blocks-wrapper',
           wrapper_sm: 'vf-checkboxgroup-blocks-wrapper-sm',
           wrapper_md: '',
@@ -2517,12 +2519,12 @@ var script$1f = {
     }
   };
 
-var css_248z$C = ".vf-checkboxgroup-blocks-wrapper {\n  display: flex;\n  flex-direction: column;\n  justify-content: flex-start;\n  box-shadow: var(--vf-shadow-input);\n  border-radius: var(--vf-radius-large);\n}\n\n.vf-checkboxgroup-blocks-wrapper.vf-checkboxgroup-blocks-wrapper-sm {\n  border-radius: var(--vf-radius-large-sm);\n}\n\n.vf-checkboxgroup-blocks-wrapper.vf-checkboxgroup-blocks-wrapper-lg {\n  border-radius: var(--vf-radius-large-lg);\n}";
-styleInject(css_248z$C);
+var css_248z$D = ".vf-checkboxgroup-blocks-wrapper {\n  display: flex;\n  flex-direction: column;\n  justify-content: flex-start;\n  box-shadow: var(--vf-shadow-input);\n  border-radius: var(--vf-radius-large);\n}\n\n.vf-checkboxgroup-blocks-wrapper.vf-checkboxgroup-blocks-wrapper-sm {\n  border-radius: var(--vf-radius-large-sm);\n}\n\n.vf-checkboxgroup-blocks-wrapper.vf-checkboxgroup-blocks-wrapper-lg {\n  border-radius: var(--vf-radius-large-lg);\n}";
+styleInject(css_248z$D);
 
-script$1f.__file = "themes/vueform/templates/elements/CheckboxgroupElement_blocks.vue";
+script$1h.__file = "themes/vueform/templates/elements/CheckboxgroupElement_blocks.vue";
 
-var script$1e = {
+var script$1g = {
     name: 'DateElement',
     data() {
       return {
@@ -2537,7 +2539,7 @@ var script$1e = {
     }
   };
 
-function render$z(_ctx, _cache, $props, $setup, $data, $options) {
+function render$A(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_ElementAddon = resolveComponent("ElementAddon");
   const _component_ElementLabelFloating = resolveComponent("ElementLabelFloating");
   const _component_DatepickerWrapper = resolveComponent("DatepickerWrapper");
@@ -2612,12 +2614,12 @@ function render$z(_ctx, _cache, $props, $setup, $data, $options) {
   ]), 1536 /* NEED_PATCH, DYNAMIC_SLOTS */))
 }
 
-script$1e.render = render$z;
-script$1e.__file = "themes/blank/templates/elements/DateElement.vue";
+script$1g.render = render$A;
+script$1g.__file = "themes/blank/templates/elements/DateElement.vue";
 
-var script$1d = {
+var script$1f = {
     name: 'DateElement',
-    render: script$1e.render,
+    render: script$1g.render,
     data() {
       return {
         merge: true,
@@ -2665,15 +2667,15 @@ var script$1d = {
     }
   };
 
-var css_248z$B = "/* Some styles are contained in Vueform.vue & DatepickerWrapper.vue */\n\n.vf-datepicker-wrapper {\n  display: block;\n  width: 100%;\n  height: 100%;\n}";
-styleInject(css_248z$B);
+var css_248z$C = "/* Some styles are contained in Vueform.vue & DatepickerWrapper.vue */\n\n.vf-datepicker-wrapper {\n  display: block;\n  width: 100%;\n  height: 100%;\n}";
+styleInject(css_248z$C);
 
-script$1d.__file = "themes/vueform/templates/elements/DateElement.vue";
+script$1f.__file = "themes/vueform/templates/elements/DateElement.vue";
 
-var script$1c = {
+var script$1e = {
     name: 'DatesElement',
-    render: script$1e.render,
-    staticRenderFns: script$1e.staticRenderFns,
+    render: script$1g.render,
+    staticRenderFns: script$1g.staticRenderFns,
     data() {
       return {
         merge: true,
@@ -2686,11 +2688,11 @@ var script$1c = {
     }
   };
 
-script$1c.__file = "themes/blank/templates/elements/DatesElement.vue";
+script$1e.__file = "themes/blank/templates/elements/DatesElement.vue";
 
-var script$1b = {
+var script$1d = {
     name: 'DatesElement',
-    render: script$1c.render,
+    render: script$1e.render,
     data() {
       return {
         merge: true,
@@ -2738,12 +2740,12 @@ var script$1b = {
     }
   };
 
-var css_248z$A = "/* Some styles are contained in Vueform.vue & DatepickerWrapper.vue */";
-styleInject(css_248z$A);
+var css_248z$B = "/* Some styles are contained in Vueform.vue & DatepickerWrapper.vue */";
+styleInject(css_248z$B);
 
-script$1b.__file = "themes/vueform/templates/elements/DatesElement.vue";
+script$1d.__file = "themes/vueform/templates/elements/DatesElement.vue";
 
-var script$1a = {
+var script$1c = {
     name: 'FileElement',
     data() {
       return {
@@ -2756,10 +2758,10 @@ var script$1a = {
     }
   };
 
-const _hoisted_1$t = ["aria-labelledby", "aria-placeholder"];
-const _hoisted_2$j = ["id", "accept"];
+const _hoisted_1$u = ["aria-labelledby", "aria-placeholder"];
+const _hoisted_2$k = ["id", "accept"];
 
-function render$y(_ctx, _cache, $props, $setup, $data, $options) {
+function render$z(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_DragAndDrop = resolveComponent("DragAndDrop");
   const _component_FilePreview = resolveComponent("FilePreview");
 
@@ -2786,7 +2788,7 @@ function render$y(_ctx, _cache, $props, $setup, $data, $options) {
                 onKeypress: _cache[1] || (_cache[1] = withKeys((...args) => (_ctx.handleClick && _ctx.handleClick(...args)), ["enter","space"])),
                 role: "button",
                 tabindex: "0"
-              }), toDisplayString(_ctx.form$.translations.vueform.elements[_ctx.type].select), 17 /* TEXT, FULL_PROPS */, _hoisted_1$t)
+              }), toDisplayString(_ctx.form$.translations.vueform.elements[_ctx.type].select), 17 /* TEXT, FULL_PROPS */, _hoisted_1$u)
             ], 2112 /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */))
           : createCommentVNode("v-if", true),
       createCommentVNode(" Hidden file input "),
@@ -2798,7 +2800,7 @@ function render$y(_ctx, _cache, $props, $setup, $data, $options) {
             accept: _ctx.accept,
             onChange: _cache[2] || (_cache[2] = (...args) => (_ctx.handleChange && _ctx.handleChange(...args))),
             ref: "input"
-          }, null, 40 /* PROPS, NEED_HYDRATION */, _hoisted_2$j)), [
+          }, null, 40 /* PROPS, NEED_HYDRATION */, _hoisted_2$k)), [
             [vShow, false]
           ])
         : createCommentVNode("v-if", true),
@@ -2825,12 +2827,12 @@ function render$y(_ctx, _cache, $props, $setup, $data, $options) {
   ]), 1536 /* NEED_PATCH, DYNAMIC_SLOTS */))
 }
 
-script$1a.render = render$y;
-script$1a.__file = "themes/blank/templates/elements/FileElement.vue";
+script$1c.render = render$z;
+script$1c.__file = "themes/blank/templates/elements/FileElement.vue";
 
-var script$19 = {
+var script$1b = {
     name: 'FileElement',
-    render: script$1a.render,
+    render: script$1c.render,
     data() {
       return {
         merge: true,
@@ -2859,12 +2861,12 @@ var script$19 = {
     }
   };
 
-var css_248z$z = "/* Some styles are contained in Vueform.vue */";
-styleInject(css_248z$z);
+var css_248z$A = "/* Some styles are contained in Vueform.vue */";
+styleInject(css_248z$A);
 
-script$19.__file = "themes/vueform/templates/elements/FileElement.vue";
+script$1b.__file = "themes/vueform/templates/elements/FileElement.vue";
 
-var script$18 = {
+var script$1a = {
     name: 'GroupElement',
     data() {
       return {
@@ -2877,9 +2879,9 @@ var script$18 = {
     },
   };
 
-const _hoisted_1$s = ["aria-labelledby"];
+const _hoisted_1$t = ["aria-labelledby"];
 
-function render$x(_ctx, _cache, $props, $setup, $data, $options) {
+function render$y(_ctx, _cache, $props, $setup, $data, $options) {
   return (openBlock(), createBlock(resolveDynamicComponent(_ctx.elementLayout), {
     multiple: true,
     ref: "container"
@@ -2898,7 +2900,7 @@ function render$x(_ctx, _cache, $props, $setup, $data, $options) {
             }), null, 16 /* FULL_PROPS */, ["name"]))
           }), 128 /* KEYED_FRAGMENT */))
         ])
-      ], 10 /* CLASS, PROPS */, _hoisted_1$s)
+      ], 10 /* CLASS, PROPS */, _hoisted_1$t)
     ]),
     _: 2 /* DYNAMIC */
   }, [
@@ -2915,12 +2917,12 @@ function render$x(_ctx, _cache, $props, $setup, $data, $options) {
   ]), 1536 /* NEED_PATCH, DYNAMIC_SLOTS */))
 }
 
-script$18.render = render$x;
-script$18.__file = "themes/blank/templates/elements/GroupElement.vue";
+script$1a.render = render$y;
+script$1a.__file = "themes/blank/templates/elements/GroupElement.vue";
 
-var script$17 = {
+var script$19 = {
     name: 'GroupElement',
-    render: script$18.render,
+    render: script$1a.render,
     data() {
       return {
         merge: true,
@@ -2939,12 +2941,12 @@ var script$17 = {
     }
   };
 
-var css_248z$y = "/* Some styles are contained in Vueform.vue */";
-styleInject(css_248z$y);
+var css_248z$z = "/* Some styles are contained in Vueform.vue */";
+styleInject(css_248z$z);
 
-script$17.__file = "themes/vueform/templates/elements/GroupElement.vue";
+script$19.__file = "themes/vueform/templates/elements/GroupElement.vue";
 
-var script$16 = {
+var script$18 = {
     name: 'HiddenElement',
     data() {
       return {
@@ -2954,34 +2956,34 @@ var script$16 = {
     },
   };
 
-const _hoisted_1$r = {
+const _hoisted_1$s = {
   key: 0,
   ref: "container"
 };
-const _hoisted_2$i = ["name", "id"];
+const _hoisted_2$j = ["name", "id"];
 
-function render$w(_ctx, _cache, $props, $setup, $data, $options) {
+function render$x(_ctx, _cache, $props, $setup, $data, $options) {
   return (!_ctx.meta)
-    ? (openBlock(), createElementBlock("span", _hoisted_1$r, [
+    ? (openBlock(), createElementBlock("span", _hoisted_1$s, [
         withDirectives(createElementVNode("input", {
           "onUpdate:modelValue": _cache[0] || (_cache[0] = $event => ((_ctx.value) = $event)),
           type: "hidden",
           name: _ctx.name,
           id: _ctx.fieldId,
           ref: "input"
-        }, null, 8 /* PROPS */, _hoisted_2$i), [
+        }, null, 8 /* PROPS */, _hoisted_2$j), [
           [vModelText, _ctx.value]
         ])
       ], 512 /* NEED_PATCH */))
     : createCommentVNode("v-if", true)
 }
 
-script$16.render = render$w;
-script$16.__file = "themes/blank/templates/elements/HiddenElement.vue";
+script$18.render = render$x;
+script$18.__file = "themes/blank/templates/elements/HiddenElement.vue";
 
-var script$15 = {
+var script$17 = {
     name: 'HiddenElement',
-    render: script$16.render,
+    render: script$18.render,
     data() {
       return {
         merge: true,
@@ -2990,9 +2992,9 @@ var script$15 = {
     }
   };
 
-script$15.__file = "themes/vueform/templates/elements/HiddenElement.vue";
+script$17.__file = "themes/vueform/templates/elements/HiddenElement.vue";
 
-var script$14 = {
+var script$16 = {
     name: 'ListElement',
     data() {
       return {
@@ -3011,12 +3013,12 @@ var script$14 = {
     },
   };
 
-const _hoisted_1$q = ["aria-labelledby"];
-const _hoisted_2$h = ["data-id"];
-const _hoisted_3$b = ["aria-roledescription", "id", "onClick", "onKeypress"];
-const _hoisted_4$8 = ["id", "innerHTML"];
+const _hoisted_1$r = ["aria-labelledby"];
+const _hoisted_2$i = ["data-id"];
+const _hoisted_3$c = ["aria-roledescription", "id", "onClick", "onKeypress"];
+const _hoisted_4$9 = ["id", "innerHTML"];
 
-function render$v(_ctx, _cache, $props, $setup, $data, $options) {
+function render$w(_ctx, _cache, $props, $setup, $data, $options) {
   return (openBlock(), createBlock(resolveDynamicComponent(_ctx.elementLayout), { ref: "container" }, createSlots({
     element: withCtx(() => [
       createCommentVNode(" Sorting container "),
@@ -3071,11 +3073,11 @@ function render$v(_ctx, _cache, $props, $setup, $data, $options) {
                   createElementVNode("span", {
                     class: normalizeClass(_ctx.classes.removeIcon)
                   }, null, 2 /* CLASS */)
-                ], 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_3$b))
+                ], 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_3$c))
               : createCommentVNode("v-if", true)
-          ], 10 /* CLASS, PROPS */, _hoisted_2$h))
+          ], 10 /* CLASS, PROPS */, _hoisted_2$i))
         }), 128 /* KEYED_FRAGMENT */))
-      ], 10 /* CLASS, PROPS */, _hoisted_1$q),
+      ], 10 /* CLASS, PROPS */, _hoisted_1$r),
       createCommentVNode(" Add button "),
       (_ctx.hasAdd)
         ? (openBlock(), createElementBlock("div", {
@@ -3087,7 +3089,7 @@ function render$v(_ctx, _cache, $props, $setup, $data, $options) {
             innerHTML: _ctx.addLabel,
             role: "button",
             tabindex: "0"
-          }, null, 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_4$8))
+          }, null, 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_4$9))
         : createCommentVNode("v-if", true)
     ]),
     _: 2 /* DYNAMIC */
@@ -3105,12 +3107,12 @@ function render$v(_ctx, _cache, $props, $setup, $data, $options) {
   ]), 1536 /* NEED_PATCH, DYNAMIC_SLOTS */))
 }
 
-script$14.render = render$v;
-script$14.__file = "themes/blank/templates/elements/ListElement.vue";
+script$16.render = render$w;
+script$16.__file = "themes/blank/templates/elements/ListElement.vue";
 
-var script$13 = {
+var script$15 = {
     name: 'ListElement',
-    render: script$14.render,
+    render: script$16.render,
     data() {
       return {
         merge: true,
@@ -3160,12 +3162,12 @@ var script$13 = {
     }
   };
 
-var css_248z$x = "/* Some styles are contained in Vueform.vue */\n\n.vf-rowset > .vf-row {\n  position: relative;\n}\n\n.vf-rowset > .vf-row:hover > .vf-list-remove, .vf-rowset > .vf-row:hover > .vf-list-handle {\n  visibility: visible;\n  opacity: 1;\n}\n\n.vf-rowset.vf-list-sorting > div:hover .vf-list-handle, .vf-rowset.vf-list-sorting > div:hover .vf-list-remove {\n  visibility: hidden;\n  opacity: 0;\n}\n\n.vf-list-remove, .vf-list-handle {\n  opacity: 0;\n  transition: 0.3s;\n}\n\n.vf-list-remove span, .vf-list-handle span {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  background-repeat: no-repeat;\n  background-position: center center;\n}\n\n.vf-list-remove {\n  position: absolute;\n  left: 0;\n  transform: translateX(-50%) translateY(-50%);\n  top: 0;\n  z-index: 999;\n  background-color: var(--vf-bg-passive);\n  border-radius: 999px;\n  transition: 0.15s;\n}\n\n.vf-list-remove:hover {\n  filter: brightness(0.9);\n}\n\n.vf-list-remove:focus {\n  opacity: 1;\n}\n\n.vf-list-remove-icon {\n  display: flex;\n  width: 1.125rem;\n  height: 1.125rem;\n  align-items: center;\n  justify-content: center;\n  mask-image: url(\"data:image/svg+xml,%3Csvg viewBox='0 0 320 512' fill='currentColor' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M207.6 256l107.72-107.72c6.23-6.23 6.23-16.34 0-22.58l-25.03-25.03c-6.23-6.23-16.34-6.23-22.58 0L160 208.4 52.28 100.68c-6.23-6.23-16.34-6.23-22.58 0L4.68 125.7c-6.23 6.23-6.23 16.34 0 22.58L112.4 256 4.68 363.72c-6.23 6.23-6.23 16.34 0 22.58l25.03 25.03c6.23 6.23 16.34 6.23 22.58 0L160 303.6l107.72 107.72c6.23 6.23 16.34 6.23 22.58 0l25.03-25.03c6.23-6.23 6.23-16.34 0-22.58L207.6 256z'%3E%3C/path%3E%3C/svg%3E\");\n  -webkit-mask-image: url(\"data:image/svg+xml,%3Csvg viewBox='0 0 320 512' fill='currentColor' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M207.6 256l107.72-107.72c6.23-6.23 6.23-16.34 0-22.58l-25.03-25.03c-6.23-6.23-16.34-6.23-22.58 0L160 208.4 52.28 100.68c-6.23-6.23-16.34-6.23-22.58 0L4.68 125.7c-6.23 6.23-6.23 16.34 0 22.58L112.4 256 4.68 363.72c-6.23 6.23-6.23 16.34 0 22.58l25.03 25.03c6.23 6.23 16.34 6.23 22.58 0L160 303.6l107.72 107.72c6.23 6.23 16.34 6.23 22.58 0l25.03-25.03c6.23-6.23 6.23-16.34 0-22.58L207.6 256z'%3E%3C/path%3E%3C/svg%3E\");\n  mask-size: 0.75rem 0.75rem;\n  -webkit-mask-size: 0.75rem 0.75rem;\n  mask-repeat: no-repeat;\n  -webkit-mask-repeat: no-repeat;\n  mask-position: center center;\n  -webkit-mask-position: center center;\n  background-color: var(--vf-color-passive);\n}\n\n.vf-list-handle {\n  position: absolute;\n  left: 0;\n  transform: translateX(-100%);\n  top: 0;\n  cursor: grab;\n  z-index: 999;\n}\n\n.vf-list-handle:active {\n  cursor: grabbing;\n}\n\n.vf-list-handle-icon {\n  width: var(--vf-min-height-input);\n  height: var(--vf-min-height-input);\n  mask-image: url(\"data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3Csvg width='11px' height='9px' viewBox='0 0 11 9' version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'%3E%3C!-- Generator: Sketch 52.6 (67491) - http://www.bohemiancoding.com/sketch --%3E%3Ctitle%3Ebars%3C/title%3E%3Cdesc%3ECreated with Sketch.%3C/desc%3E%3Cg id='Page-1' stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'%3E%3Cpath d='M10.0418527,0.894571939 L0.309709821,0.894571939 C0.235791888,0.894571939 0.17578125,0.834156736 0.17578125,0.759740479 L0.17578125,0.220414636 C0.17578125,0.145998379 0.235791888,0.0855831754 0.309709821,0.0855831754 L10.0418527,0.0855831754 C10.1157706,0.0855831754 10.1757812,0.145998379 10.1757812,0.220414636 L10.1757812,0.759740479 C10.1757812,0.834156736 10.1157706,0.894571939 10.0418527,0.894571939 Z M10.0418527,4.8049452 L0.309709821,4.8049452 C0.235791888,4.8049452 0.17578125,4.74453 0.17578125,4.67011374 L0.17578125,4.1307879 C0.17578125,4.05637164 0.235791888,3.99595644 0.309709821,3.99595644 L10.0418527,3.99595644 C10.1157706,3.99595644 10.1757812,4.05637164 10.1757812,4.1307879 L10.1757812,4.67011374 C10.1757812,4.74453 10.1157706,4.8049452 10.0418527,4.8049452 Z M10.0418527,8.80953919 L0.309709821,8.80953919 C0.235791888,8.80953919 0.17578125,8.74912399 0.17578125,8.67470773 L0.17578125,8.13538189 C0.17578125,8.06096563 0.235791888,8.00055043 0.309709821,8.00055043 L10.0418527,8.00055043 C10.1157706,8.00055043 10.1757812,8.06096563 10.1757812,8.13538189 L10.1757812,8.67470773 C10.1757812,8.74912399 10.1157706,8.80953919 10.0418527,8.80953919 Z' id='bars' fill='currentColor' %3E%3C/path%3E%3C/g%3E%3C/svg%3E\");\n  -webkit-mask-image: url(\"data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3Csvg width='11px' height='9px' viewBox='0 0 11 9' version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'%3E%3C!-- Generator: Sketch 52.6 (67491) - http://www.bohemiancoding.com/sketch --%3E%3Ctitle%3Ebars%3C/title%3E%3Cdesc%3ECreated with Sketch.%3C/desc%3E%3Cg id='Page-1' stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'%3E%3Cpath d='M10.0418527,0.894571939 L0.309709821,0.894571939 C0.235791888,0.894571939 0.17578125,0.834156736 0.17578125,0.759740479 L0.17578125,0.220414636 C0.17578125,0.145998379 0.235791888,0.0855831754 0.309709821,0.0855831754 L10.0418527,0.0855831754 C10.1157706,0.0855831754 10.1757812,0.145998379 10.1757812,0.220414636 L10.1757812,0.759740479 C10.1757812,0.834156736 10.1157706,0.894571939 10.0418527,0.894571939 Z M10.0418527,4.8049452 L0.309709821,4.8049452 C0.235791888,4.8049452 0.17578125,4.74453 0.17578125,4.67011374 L0.17578125,4.1307879 C0.17578125,4.05637164 0.235791888,3.99595644 0.309709821,3.99595644 L10.0418527,3.99595644 C10.1157706,3.99595644 10.1757812,4.05637164 10.1757812,4.1307879 L10.1757812,4.67011374 C10.1757812,4.74453 10.1157706,4.8049452 10.0418527,4.8049452 Z M10.0418527,8.80953919 L0.309709821,8.80953919 C0.235791888,8.80953919 0.17578125,8.74912399 0.17578125,8.67470773 L0.17578125,8.13538189 C0.17578125,8.06096563 0.235791888,8.00055043 0.309709821,8.00055043 L10.0418527,8.00055043 C10.1157706,8.00055043 10.1757812,8.06096563 10.1757812,8.13538189 L10.1757812,8.67470773 C10.1757812,8.74912399 10.1157706,8.80953919 10.0418527,8.80953919 Z' id='bars' fill='currentColor' %3E%3C/path%3E%3C/g%3E%3C/svg%3E\");\n  mask-size: 0.7rem 0.7rem;\n  -webkit-mask-size: 0.7rem 0.7rem;\n  mask-repeat: no-repeat;\n  -webkit-mask-repeat: no-repeat;\n  mask-position: center center;\n  -webkit-mask-position: center center;\n  background-color: var(--vf-color-passive);\n}\n\n.vf-list-handle-sm .vf-list-handle-icon {\n  width: var(--vf-min-height-input-sm);\n  height: var(--vf-min-height-input-sm);\n}\n\n.vf-list-handle-lg .vf-list-handle-icon {\n  width: var(--vf-min-height-input-lg);\n  height: var(--vf-min-height-input-lg);\n}\n\n.vf-btn-list-add {\n  margin-top: var(--vf-gutter);\n}\n\n.vf-btn-list-add.vf-btn-list-add-sm {\n  margin-top: var(--vf-gutter-sm);\n}\n\n.vf-btn-list-add.vf-btn-list-add-lg {\n  margin-top: var(--vf-gutter-lg);\n}\n\n.sortable-ghost {\n  opacity: 0.6;\n}";
-styleInject(css_248z$x);
+var css_248z$y = "/* Some styles are contained in Vueform.vue */\n\n.vf-rowset > .vf-row {\n  position: relative;\n}\n\n.vf-rowset > .vf-row:hover > .vf-list-remove, .vf-rowset > .vf-row:hover > .vf-list-handle {\n  visibility: visible;\n  opacity: 1;\n}\n\n.vf-rowset.vf-list-sorting > div:hover .vf-list-handle, .vf-rowset.vf-list-sorting > div:hover .vf-list-remove {\n  visibility: hidden;\n  opacity: 0;\n}\n\n.vf-list-remove, .vf-list-handle {\n  opacity: 0;\n  transition: 0.3s;\n}\n\n.vf-list-remove span, .vf-list-handle span {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  background-repeat: no-repeat;\n  background-position: center center;\n}\n\n.vf-list-remove {\n  position: absolute;\n  left: 0;\n  transform: translateX(-50%) translateY(-50%);\n  top: 0;\n  z-index: 999;\n  background-color: var(--vf-bg-passive);\n  border-radius: 999px;\n  transition: 0.15s;\n}\n\n.vf-list-remove:hover {\n  filter: brightness(0.9);\n}\n\n.vf-list-remove:focus {\n  opacity: 1;\n}\n\n.vf-list-remove-icon {\n  display: flex;\n  width: 1.125rem;\n  height: 1.125rem;\n  align-items: center;\n  justify-content: center;\n  mask-image: url(\"data:image/svg+xml,%3Csvg viewBox='0 0 320 512' fill='currentColor' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M207.6 256l107.72-107.72c6.23-6.23 6.23-16.34 0-22.58l-25.03-25.03c-6.23-6.23-16.34-6.23-22.58 0L160 208.4 52.28 100.68c-6.23-6.23-16.34-6.23-22.58 0L4.68 125.7c-6.23 6.23-6.23 16.34 0 22.58L112.4 256 4.68 363.72c-6.23 6.23-6.23 16.34 0 22.58l25.03 25.03c6.23 6.23 16.34 6.23 22.58 0L160 303.6l107.72 107.72c6.23 6.23 16.34 6.23 22.58 0l25.03-25.03c6.23-6.23 6.23-16.34 0-22.58L207.6 256z'%3E%3C/path%3E%3C/svg%3E\");\n  -webkit-mask-image: url(\"data:image/svg+xml,%3Csvg viewBox='0 0 320 512' fill='currentColor' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M207.6 256l107.72-107.72c6.23-6.23 6.23-16.34 0-22.58l-25.03-25.03c-6.23-6.23-16.34-6.23-22.58 0L160 208.4 52.28 100.68c-6.23-6.23-16.34-6.23-22.58 0L4.68 125.7c-6.23 6.23-6.23 16.34 0 22.58L112.4 256 4.68 363.72c-6.23 6.23-6.23 16.34 0 22.58l25.03 25.03c6.23 6.23 16.34 6.23 22.58 0L160 303.6l107.72 107.72c6.23 6.23 16.34 6.23 22.58 0l25.03-25.03c6.23-6.23 6.23-16.34 0-22.58L207.6 256z'%3E%3C/path%3E%3C/svg%3E\");\n  mask-size: 0.75rem 0.75rem;\n  -webkit-mask-size: 0.75rem 0.75rem;\n  mask-repeat: no-repeat;\n  -webkit-mask-repeat: no-repeat;\n  mask-position: center center;\n  -webkit-mask-position: center center;\n  background-color: var(--vf-color-passive);\n}\n\n.vf-list-handle {\n  position: absolute;\n  left: 0;\n  transform: translateX(-100%);\n  top: 0;\n  cursor: grab;\n  z-index: 999;\n}\n\n.vf-list-handle:active {\n  cursor: grabbing;\n}\n\n.vf-list-handle-icon {\n  width: var(--vf-min-height-input);\n  height: var(--vf-min-height-input);\n  mask-image: url(\"data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3Csvg width='11px' height='9px' viewBox='0 0 11 9' version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'%3E%3C!-- Generator: Sketch 52.6 (67491) - http://www.bohemiancoding.com/sketch --%3E%3Ctitle%3Ebars%3C/title%3E%3Cdesc%3ECreated with Sketch.%3C/desc%3E%3Cg id='Page-1' stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'%3E%3Cpath d='M10.0418527,0.894571939 L0.309709821,0.894571939 C0.235791888,0.894571939 0.17578125,0.834156736 0.17578125,0.759740479 L0.17578125,0.220414636 C0.17578125,0.145998379 0.235791888,0.0855831754 0.309709821,0.0855831754 L10.0418527,0.0855831754 C10.1157706,0.0855831754 10.1757812,0.145998379 10.1757812,0.220414636 L10.1757812,0.759740479 C10.1757812,0.834156736 10.1157706,0.894571939 10.0418527,0.894571939 Z M10.0418527,4.8049452 L0.309709821,4.8049452 C0.235791888,4.8049452 0.17578125,4.74453 0.17578125,4.67011374 L0.17578125,4.1307879 C0.17578125,4.05637164 0.235791888,3.99595644 0.309709821,3.99595644 L10.0418527,3.99595644 C10.1157706,3.99595644 10.1757812,4.05637164 10.1757812,4.1307879 L10.1757812,4.67011374 C10.1757812,4.74453 10.1157706,4.8049452 10.0418527,4.8049452 Z M10.0418527,8.80953919 L0.309709821,8.80953919 C0.235791888,8.80953919 0.17578125,8.74912399 0.17578125,8.67470773 L0.17578125,8.13538189 C0.17578125,8.06096563 0.235791888,8.00055043 0.309709821,8.00055043 L10.0418527,8.00055043 C10.1157706,8.00055043 10.1757812,8.06096563 10.1757812,8.13538189 L10.1757812,8.67470773 C10.1757812,8.74912399 10.1157706,8.80953919 10.0418527,8.80953919 Z' id='bars' fill='currentColor' %3E%3C/path%3E%3C/g%3E%3C/svg%3E\");\n  -webkit-mask-image: url(\"data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3Csvg width='11px' height='9px' viewBox='0 0 11 9' version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'%3E%3C!-- Generator: Sketch 52.6 (67491) - http://www.bohemiancoding.com/sketch --%3E%3Ctitle%3Ebars%3C/title%3E%3Cdesc%3ECreated with Sketch.%3C/desc%3E%3Cg id='Page-1' stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'%3E%3Cpath d='M10.0418527,0.894571939 L0.309709821,0.894571939 C0.235791888,0.894571939 0.17578125,0.834156736 0.17578125,0.759740479 L0.17578125,0.220414636 C0.17578125,0.145998379 0.235791888,0.0855831754 0.309709821,0.0855831754 L10.0418527,0.0855831754 C10.1157706,0.0855831754 10.1757812,0.145998379 10.1757812,0.220414636 L10.1757812,0.759740479 C10.1757812,0.834156736 10.1157706,0.894571939 10.0418527,0.894571939 Z M10.0418527,4.8049452 L0.309709821,4.8049452 C0.235791888,4.8049452 0.17578125,4.74453 0.17578125,4.67011374 L0.17578125,4.1307879 C0.17578125,4.05637164 0.235791888,3.99595644 0.309709821,3.99595644 L10.0418527,3.99595644 C10.1157706,3.99595644 10.1757812,4.05637164 10.1757812,4.1307879 L10.1757812,4.67011374 C10.1757812,4.74453 10.1157706,4.8049452 10.0418527,4.8049452 Z M10.0418527,8.80953919 L0.309709821,8.80953919 C0.235791888,8.80953919 0.17578125,8.74912399 0.17578125,8.67470773 L0.17578125,8.13538189 C0.17578125,8.06096563 0.235791888,8.00055043 0.309709821,8.00055043 L10.0418527,8.00055043 C10.1157706,8.00055043 10.1757812,8.06096563 10.1757812,8.13538189 L10.1757812,8.67470773 C10.1757812,8.74912399 10.1157706,8.80953919 10.0418527,8.80953919 Z' id='bars' fill='currentColor' %3E%3C/path%3E%3C/g%3E%3C/svg%3E\");\n  mask-size: 0.7rem 0.7rem;\n  -webkit-mask-size: 0.7rem 0.7rem;\n  mask-repeat: no-repeat;\n  -webkit-mask-repeat: no-repeat;\n  mask-position: center center;\n  -webkit-mask-position: center center;\n  background-color: var(--vf-color-passive);\n}\n\n.vf-list-handle-sm .vf-list-handle-icon {\n  width: var(--vf-min-height-input-sm);\n  height: var(--vf-min-height-input-sm);\n}\n\n.vf-list-handle-lg .vf-list-handle-icon {\n  width: var(--vf-min-height-input-lg);\n  height: var(--vf-min-height-input-lg);\n}\n\n.vf-btn-list-add {\n  margin-top: var(--vf-gutter);\n}\n\n.vf-btn-list-add.vf-btn-list-add-sm {\n  margin-top: var(--vf-gutter-sm);\n}\n\n.vf-btn-list-add.vf-btn-list-add-lg {\n  margin-top: var(--vf-gutter-lg);\n}\n\n.sortable-ghost {\n  opacity: 0.6;\n}";
+styleInject(css_248z$y);
 
-script$13.__file = "themes/vueform/templates/elements/ListElement.vue";
+script$15.__file = "themes/vueform/templates/elements/ListElement.vue";
 
-var script$12 = {
+var script$14 = {
     name: 'LocationElement',
     data() {
       return {
@@ -3179,9 +3181,9 @@ var script$12 = {
     }
   };
 
-const _hoisted_1$p = ["name", "id", "placeholder", "disabled", "readonly", "aria-labelledby"];
+const _hoisted_1$q = ["name", "id", "placeholder", "disabled", "readonly", "aria-labelledby"];
 
-function render$u(_ctx, _cache, $props, $setup, $data, $options) {
+function render$v(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_ElementAddon = resolveComponent("ElementAddon");
   const _component_ElementLabelFloating = resolveComponent("ElementLabelFloating");
 
@@ -3235,7 +3237,7 @@ function render$u(_ctx, _cache, $props, $setup, $data, $options) {
         }, _ctx.attrs, {
           ref: "input",
           onBlur: _cache[0] || (_cache[0] = (...args) => (_ctx.handleLocationBlur && _ctx.handleLocationBlur(...args)))
-        }), null, 16 /* FULL_PROPS */, _hoisted_1$p)
+        }), null, 16 /* FULL_PROPS */, _hoisted_1$q)
       ], 2 /* CLASS */)
     ]),
     _: 2 /* DYNAMIC */
@@ -3253,12 +3255,12 @@ function render$u(_ctx, _cache, $props, $setup, $data, $options) {
   ]), 1536 /* NEED_PATCH, DYNAMIC_SLOTS */))
 }
 
-script$12.render = render$u;
-script$12.__file = "themes/blank/templates/elements/LocationElement.vue";
+script$14.render = render$v;
+script$14.__file = "themes/blank/templates/elements/LocationElement.vue";
 
-var script$11 = {
+var script$13 = {
     name: 'LocationElement',
-    render: script$12.render,
+    render: script$14.render,
     data() {
       return {
         merge: true,
@@ -3305,10 +3307,235 @@ var script$11 = {
     }
   };
 
-var css_248z$w = "/* Google */\n\n.pac-container {\n  border-color: var(--vf-border-color-input);\n  background: var(--vf-bg-input);\n}\n\n.pac-item {\n  display: flex;\n  align-items: center;\n  padding: 0.375rem 0.75rem;\n  border-color: var(--vf-border-color-input);\n  background: var(--vf-bg-input);\n  color: var(--vf-color-input);\n  cursor: pointer;\n}\n\n.pac-item > span:last-of-type {\n  font-size: 0.75rem;\n  color: var(--vf-color-muted);\n}\n\n.pac-item:hover, .pac-item.pac-item-selected {\n  background: var(--vf-bg-selected);\n}\n\n.pac-item-query {\n  font-size: 0.875rem;\n  line-height: 1;\n  margin-right: 0.25rem;\n  padding-right: 0.25rem;\n  color: var(--vf-color-input);\n}\n\n.pac-icon-marker {\n  mask-image: url(\"data:image/svg+xml,%3csvg viewBox='0 0 384 512' fill='currentColor' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M172.268 501.67C26.97 291.031 0 269.413 0 192 0 85.961 85.961 0 192 0s192 85.961 192 192c0 77.413-26.97 99.031-172.268 309.67-9.535 13.774-29.93 13.773-39.464 0zM192 272c44.183 0 80-35.817 80-80s-35.817-80-80-80-80 35.817-80 80 35.817 80 80 80z'%3e%3c/path%3e%3c/svg%3e\");\n  -webkit-mask-image: url(\"data:image/svg+xml,%3csvg viewBox='0 0 384 512' fill='currentColor' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M172.268 501.67C26.97 291.031 0 269.413 0 192 0 85.961 85.961 0 192 0s192 85.961 192 192c0 77.413-26.97 99.031-172.268 309.67-9.535 13.774-29.93 13.773-39.464 0zM192 272c44.183 0 80-35.817 80-80s-35.817-80-80-80-80 35.817-80 80 35.817 80 80 80z'%3e%3c/path%3e%3c/svg%3e\");\n  mask-repeat: no-repeat;\n  -webkit-mask-repeat: no-repeat;\n  mask-position: center center;\n  -webkit-mask-position: center center;\n  mask-size: contain;\n  -webkit-mask-size: contain;\n  background: var(--vf-bg-icon);\n  width: 0.875rem;\n  width: 0.875rem;\n  margin-right: 0.75rem;\n  margin-top: 0;\n  padding-top: 1px;\n  padding-bottom: 1px;\n  box-sizing: content-box;\n  flex-shrink: 0;\n}\n\n.pac-logo:after {\n  margin-left: 0.625rem;\n  margin-right: 0.625rem;\n  margin-bottom: 0.625rem;\n}\n\n.pac-icon, .hdpi .pac-icon {\n  background-image: none;\n}";
+var css_248z$x = "/* Google */\n\n.pac-container {\n  border-color: var(--vf-border-color-input);\n  background: var(--vf-bg-input);\n}\n\n.pac-item {\n  display: flex;\n  align-items: center;\n  padding: 0.375rem 0.75rem;\n  border-color: var(--vf-border-color-input);\n  background: var(--vf-bg-input);\n  color: var(--vf-color-input);\n  cursor: pointer;\n}\n\n.pac-item > span:last-of-type {\n  font-size: 0.75rem;\n  color: var(--vf-color-muted);\n}\n\n.pac-item:hover, .pac-item.pac-item-selected {\n  background: var(--vf-bg-selected);\n}\n\n.pac-item-query {\n  font-size: 0.875rem;\n  line-height: 1;\n  margin-right: 0.25rem;\n  padding-right: 0.25rem;\n  color: var(--vf-color-input);\n}\n\n.pac-icon-marker {\n  mask-image: url(\"data:image/svg+xml,%3csvg viewBox='0 0 384 512' fill='currentColor' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M172.268 501.67C26.97 291.031 0 269.413 0 192 0 85.961 85.961 0 192 0s192 85.961 192 192c0 77.413-26.97 99.031-172.268 309.67-9.535 13.774-29.93 13.773-39.464 0zM192 272c44.183 0 80-35.817 80-80s-35.817-80-80-80-80 35.817-80 80 35.817 80 80 80z'%3e%3c/path%3e%3c/svg%3e\");\n  -webkit-mask-image: url(\"data:image/svg+xml,%3csvg viewBox='0 0 384 512' fill='currentColor' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M172.268 501.67C26.97 291.031 0 269.413 0 192 0 85.961 85.961 0 192 0s192 85.961 192 192c0 77.413-26.97 99.031-172.268 309.67-9.535 13.774-29.93 13.773-39.464 0zM192 272c44.183 0 80-35.817 80-80s-35.817-80-80-80-80 35.817-80 80 35.817 80 80 80z'%3e%3c/path%3e%3c/svg%3e\");\n  mask-repeat: no-repeat;\n  -webkit-mask-repeat: no-repeat;\n  mask-position: center center;\n  -webkit-mask-position: center center;\n  mask-size: contain;\n  -webkit-mask-size: contain;\n  background: var(--vf-bg-icon);\n  width: 0.875rem;\n  width: 0.875rem;\n  margin-right: 0.75rem;\n  margin-top: 0;\n  padding-top: 1px;\n  padding-bottom: 1px;\n  box-sizing: content-box;\n  flex-shrink: 0;\n}\n\n.pac-logo:after {\n  margin-left: 0.625rem;\n  margin-right: 0.625rem;\n  margin-bottom: 0.625rem;\n}\n\n.pac-icon, .hdpi .pac-icon {\n  background-image: none;\n}";
+styleInject(css_248z$x);
+
+script$13.__file = "themes/vueform/templates/elements/LocationElement.vue";
+
+var script$12 = {
+    name: 'MatrixElement',
+    data() {
+      return {
+        merge: true,
+        defaultClasses: {
+          container: '',
+        },
+      }
+    },
+  };
+
+const _hoisted_1$p = ["innerHTML"];
+const _hoisted_2$h = ["innerHTML"];
+const _hoisted_3$b = ["aria-roledescription", "id", "onClick", "onKeypress"];
+const _hoisted_4$8 = ["id", "innerHTML"];
+
+function render$u(_ctx, _cache, $props, $setup, $data, $options) {
+  return (openBlock(), createBlock(resolveDynamicComponent(_ctx.elementLayout), { ref: "container" }, createSlots({
+    element: withCtx(() => [
+      createElementVNode("div", {
+        class: normalizeClass(_ctx.classes.grid),
+        style: normalizeStyle(_ctx.gridStyle),
+        ref: "grid"
+      }, [
+        createCommentVNode(" Header row "),
+        createCommentVNode(" First empty column "),
+        (_ctx.rowsVisible && _ctx.colsVisible)
+          ? (openBlock(), createElementBlock("div", {
+              key: 0,
+              class: normalizeClass(_ctx.classes.headerFirst)
+            }, null, 2 /* CLASS */))
+          : createCommentVNode("v-if", true),
+        createCommentVNode(" Column headers "),
+        (openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.resolvedColumns, (col, c) => {
+          return (openBlock(), createElementBlock(Fragment, null, [
+            (_ctx.colsVisible && col.available)
+              ? (openBlock(), createElementBlock("div", {
+                  key: 0,
+                  innerHTML: col.label,
+                  class: normalizeClass(_ctx.classes.header)
+                }, null, 10 /* CLASS, PROPS */, _hoisted_1$p))
+              : createCommentVNode("v-if", true)
+          ], 64 /* STABLE_FRAGMENT */))
+        }), 256 /* UNKEYED_FRAGMENT */)),
+        createCommentVNode(" Remove column "),
+        (_ctx.allowRemove && _ctx.colsVisible)
+          ? (openBlock(), createElementBlock("div", {
+              key: 1,
+              class: normalizeClass(_ctx.classes.headerRemove)
+            }, null, 2 /* CLASS */))
+          : createCommentVNode("v-if", true),
+        createCommentVNode(" Content rows "),
+        (openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.resolvedRows, (row, r) => {
+          return (openBlock(), createElementBlock(Fragment, null, [
+            createCommentVNode(" Row label "),
+            (_ctx.rowsVisible && row.available)
+              ? (openBlock(), createElementBlock("div", {
+                  key: 0,
+                  innerHTML: row.label,
+                  class: normalizeClass(_ctx.classes.rowLabel)
+                }, null, 10 /* CLASS, PROPS */, _hoisted_2$h))
+              : createCommentVNode("v-if", true),
+            createCommentVNode(" Input cells "),
+            (openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.resolvedColumns, (col, c) => {
+              return (openBlock(), createElementBlock(Fragment, null, [
+                (row.available && col.available)
+                  ? (openBlock(), createElementBlock("div", {
+                      key: 0,
+                      class: normalizeClass(_ctx.classes.cell)
+                    }, [
+                      createElementVNode("div", {
+                        class: normalizeClass(_ctx.classes.cellWrapper(_ctx.resolveColType(col), _ctx.resolveComponentName(r, c)))
+                      }, [
+                        (openBlock(), createBlock(resolveDynamicComponent(_ctx.resolveComponentType(col)), mergeProps({ ref_for: true }, _ctx.cells[r][c], {
+                          key: _ctx.cells[r][c].name
+                        }), null, 16 /* FULL_PROPS */))
+                      ], 2 /* CLASS */)
+                    ], 2 /* CLASS */))
+                  : createCommentVNode("v-if", true)
+              ], 64 /* STABLE_FRAGMENT */))
+            }), 256 /* UNKEYED_FRAGMENT */)),
+            createCommentVNode(" Remove column "),
+            (_ctx.allowRemove)
+              ? (openBlock(), createElementBlock("div", {
+                  key: 1,
+                  class: normalizeClass(_ctx.classes.rowRemove)
+                }, [
+                  createElementVNode("div", {
+                    "aria-roledescription": _ctx.form$.translations.vueform.a11y.list.remove,
+                    class: normalizeClass(_ctx.classes.remove),
+                    id: `${_ctx.path}-${r}-remove-button`,
+                    onClick: withModifiers($event => (_ctx.handleRemove(r)), ["prevent"]),
+                    onKeypress: withKeys($event => (_ctx.handleRemove(r)), ["space","enter"]),
+                    role: "button",
+                    tabindex: "0"
+                  }, [
+                    createElementVNode("span", {
+                      class: normalizeClass(_ctx.classes.removeIcon)
+                    }, null, 2 /* CLASS */)
+                  ], 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_3$b)
+                ], 2 /* CLASS */))
+              : createCommentVNode("v-if", true)
+          ], 64 /* STABLE_FRAGMENT */))
+        }), 256 /* UNKEYED_FRAGMENT */))
+      ], 6 /* CLASS, STYLE */),
+      createCommentVNode(" Add button "),
+      (_ctx.allowAdd)
+        ? (openBlock(), createElementBlock("div", {
+            key: 0,
+            class: normalizeClass(_ctx.classes.add),
+            id: `${_ctx.fieldId}-add-button`,
+            onClick: _cache[0] || (_cache[0] = withModifiers((...args) => (_ctx.handleAdd && _ctx.handleAdd(...args)), ["prevent"])),
+            onKeypress: _cache[1] || (_cache[1] = withKeys((...args) => (_ctx.handleAdd && _ctx.handleAdd(...args)), ["enter","space"])),
+            innerHTML: _ctx.addLabel,
+            role: "button",
+            tabindex: "0"
+          }, null, 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_4$8))
+        : createCommentVNode("v-if", true)
+    ]),
+    _: 2 /* DYNAMIC */
+  }, [
+    renderList(_ctx.elementSlots, (component, slot) => {
+      return {
+        name: slot,
+        fn: withCtx(() => [
+          renderSlot(_ctx.$slots, slot, { el$: _ctx.el$ }, () => [
+            (openBlock(), createBlock(resolveDynamicComponent(component), { el$: _ctx.el$ }, null, 8 /* PROPS */, ["el$"]))
+          ])
+        ])
+      }
+    })
+  ]), 1536 /* NEED_PATCH, DYNAMIC_SLOTS */))
+}
+
+script$12.render = render$u;
+script$12.__file = "themes/blank/templates/elements/MatrixElement.vue";
+
+var script$11 = {
+    name: 'MatrixElement',
+    render: script$12.render,
+    data() {
+      return {
+        merge: true,
+        defaultClasses: {
+          container: 'vf-matrix-container',
+          grid: 'vf-matrix-grid',
+          grid_scrollable: 'is-scrollable',
+          headerFirst: 'vf-matrix-header-first',
+          header: 'vf-matrix-header',
+          header_padding: 'has-padding',
+          header_sticky: 'is-sticky',
+          header_not_sticky: 'is-not-sticky',
+          header_wrap: 'is-wrap',
+          header_nowrap: 'is-nowrap',
+          header_sm: 'vf-matrix-header-sm',
+          header_md: '',
+          header_lg: 'vf-matrix-header-lg',
+          headerRemove: 'vf-matrix-header-remove',
+          rowLabel: 'vf-matrix-row-label',
+          rowLabel_sticky: 'is-sticky',
+          rowLabel_not_sticky: 'is-not-sticky',
+          rowLabel_wrap: 'is-wrap',
+          rowLabel_nowrap: 'is-nowrap',
+          cell: 'vf-matrix-cell',
+          cell_sm: 'vf-matrix-cell-sm',
+          cell_md: '',
+          cell_lg: 'vf-matrix-cell-lg',
+          cellWrapper: 'vf-matrix-cell-wrapper',
+          cellWrapper_padding: 'has-padding',
+          cellWrapper_centered: 'is-centered',
+          cellWrapper_error: 'has-error',
+          cellWrapper_success: 'has-success',
+          rowRemove: 'vf-matrix-row-remove',
+          remove: 'vf-matrix-remove',
+          removeIcon: 'vf-matrix-remove-icon',
+          add: 'vf-btn vf-btn-primary vf-btn-small vf-matrix-add',
+          add_sm: 'vf-btn-small-sm vf-matrix-add-sm',
+          add_md: '',
+          add_lg: 'vf-btn-small-lg vf-matrix-add-lg',
+          $grid: (classes, { scrollable }) => ([
+            classes.grid,
+            scrollable ? classes.grid_scrollable : null,
+          ]),
+          $header: (classes, { Size, padding, stickyCols, colWrap }) => ([
+            classes.header,
+            classes[`header_${Size}`],
+            padding ? classes.header_padding : null,
+            stickyCols ? classes.header_sticky : null,
+            colWrap ? classes.header_wrap : classes.header_nowrap,
+          ]),
+          $rowLabel: (classes, { stickyRows, rowWrap }) => ([
+            classes.rowLabel,
+            stickyRows ? classes.rowLabel_sticky : null,
+            rowWrap ? classes.rowLabel_wrap : classes.rowLabel_nowrap,
+          ]),
+          $cell: (classes, { Size }) => ([
+            classes.cell,
+            classes[`cell_${Size}`],
+          ]),
+          $cellWrapper: (classes, { padding, centered, cells$ }) => (type, name) => ([
+            classes.cellWrapper,
+            padding ? classes.cellWrapper_padding : null,
+            ['radio', 'checkbox', 'toggle'].includes(type) ? classes.cellWrapper_centered : null,
+            cells$[name]?.error ? classes.cellWrapper_error : null,
+            cells$[name]?.isSuccess ? classes.cellWrapper_success : null,
+          ]),
+          $add: (classes, { Size }) => ([
+            classes.add,
+            classes[`add_${Size}`],
+          ]),
+          $remove: (classes, { removeHover }) => ([
+            classes.remove,
+            removeHover ? classes.remove_hover : null
+          ]),
+        }
+      }
+    },
+  };
+
+var css_248z$w = ".vf-matrix-grid {\n  display: grid;\n}\n\n.vf-matrix-grid.is-scrollable {\n  overflow: auto;\n}\n\n.vf-matrix-header {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  text-align: center;\n  min-height: var(--vf-min-height-input);\n}\n\n.vf-matrix-header.has-padding {\n  padding-left: 0.5rem;\n  padding-right: 0.5rem;\n}\n\n.vf-matrix-header.is-sticky {\n  position: sticky;\n  top: 0;\n  -webkit-backdrop-filter: blur(64px);\n          backdrop-filter: blur(64px);\n  z-index: 1;\n}\n\n.vf-matrix-header.is-nowrap {\n  white-space: nowrap;\n}\n\n.vf-matrix-header.vf-matrix-header-sm {\n  min-height: var(--vf-min-height-input-sm);\n}\n\n.vf-matrix-header.vf-matrix-header-lg {\n  min-height: var(--vf-min-height-input-lg);\n}\n\n.vf-matrix-row-label {\n  display: flex;\n  align-items: center;\n  padding-right: 0.5rem;\n}\n\n.vf-matrix-row-label.is-sticky {\n  position: sticky;\n  left: 0;\n  -webkit-backdrop-filter: blur(64px);\n          backdrop-filter: blur(64px);\n  z-index: 1;\n}\n\n.vf-matrix-row-label.is-nowrap {\n  white-space: nowrap;\n}\n\n.vf-matrix-cell {\n  display: grid;\n  align-items: center;\n  min-height: var(--vf-min-height-input);\n}\n\n.vf-matrix-cell.vf-matrix-cell-sm {\n  min-height: var(--vf-min-height-input-sm);\n}\n\n.vf-matrix-cell.vf-matrix-cell-lg {\n  min-height: var(--vf-min-height-input-lg);\n}\n\n.vf-matrix-cell-wrapper {\n  width: 100%;\n  height: 100%;\n  display: grid;\n  align-items: center;\n}\n\n.vf-matrix-cell-wrapper.has-padding {\n  padding-left: 0.5rem;\n  padding-right: 0.5rem;\n}\n\n.vf-matrix-cell-wrapper.is-centered {\n  justify-content: center;\n}\n\n.vf-matrix-row-remove {\n  position: sticky;\n  right: 0;\n  -webkit-backdrop-filter: blur(64px);\n          backdrop-filter: blur(64px);\n  z-index: 1;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  width: 2.5rem;\n}\n\n.vf-matrix-remove {\n  width: 1rem;\n  height: 1rem;\n  padding: 0.125rem;\n  box-sizing: content-box;\n  background-color: var(--vf-bg-passive);\n  border-radius: 999px;\n  transition: 0.15s;\n}\n\n.vf-matrix-remove:hover {\n  filter: brightness(0.9);\n}\n\n.vf-matrix-remove-icon {\n  display: flex;\n  width: 100%;\n  height: 100%;\n  align-items: center;\n  justify-content: center;\n  mask-image: url(\"data:image/svg+xml,%3Csvg viewBox='0 0 320 512' fill='currentColor' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M207.6 256l107.72-107.72c6.23-6.23 6.23-16.34 0-22.58l-25.03-25.03c-6.23-6.23-16.34-6.23-22.58 0L160 208.4 52.28 100.68c-6.23-6.23-16.34-6.23-22.58 0L4.68 125.7c-6.23 6.23-6.23 16.34 0 22.58L112.4 256 4.68 363.72c-6.23 6.23-6.23 16.34 0 22.58l25.03 25.03c6.23 6.23 16.34 6.23 22.58 0L160 303.6l107.72 107.72c6.23 6.23 16.34 6.23 22.58 0l25.03-25.03c6.23-6.23 6.23-16.34 0-22.58L207.6 256z'%3E%3C/path%3E%3C/svg%3E\");\n  -webkit-mask-image: url(\"data:image/svg+xml,%3Csvg viewBox='0 0 320 512' fill='currentColor' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M207.6 256l107.72-107.72c6.23-6.23 6.23-16.34 0-22.58l-25.03-25.03c-6.23-6.23-16.34-6.23-22.58 0L160 208.4 52.28 100.68c-6.23-6.23-16.34-6.23-22.58 0L4.68 125.7c-6.23 6.23-6.23 16.34 0 22.58L112.4 256 4.68 363.72c-6.23 6.23-6.23 16.34 0 22.58l25.03 25.03c6.23 6.23 16.34 6.23 22.58 0L160 303.6l107.72 107.72c6.23 6.23 16.34 6.23 22.58 0l25.03-25.03c6.23-6.23 6.23-16.34 0-22.58L207.6 256z'%3E%3C/path%3E%3C/svg%3E\");\n  mask-size: 0.75rem 0.75rem;\n  -webkit-mask-size: 0.75rem 0.75rem;\n  mask-repeat: no-repeat;\n  -webkit-mask-repeat: no-repeat;\n  mask-position: center center;\n  -webkit-mask-position: center center;\n  background-color: var(--vf-color-passive);\n}\n\n.vf-matrix-add {\n  margin-top: var(--vf-gutter);\n}\n\n.vf-matrix-add.vf-matrix-add-sm {\n  margin-top: var(--vf-gutter-sm);\n}\n\n.vf-matrix-add.vf-matrix-add-lg {\n  margin-top: var(--vf-gutter-lg);\n}\n\n.vf-matrix-table {\n  /* Layout */\n  /* Text inputs */\n  /* Native select */\n  /* Select */\n  /* Native multiselect */\n  /* Editor */\n  /* Tabs */\n  /* Blocks */\n  /* Slider */\n  /* Slider */\n  /* Static */\n  /* File previews */\n}\n\n.vf-matrix-table.is-stretch {\n  align-items: stretch;\n}\n\n.vf-matrix-table .vf-matrix-grid {\n  border-right: var(--vf-border-width-table) solid var(--vf-border-color-table);\n  border-bottom: var(--vf-border-width-table) solid var(--vf-border-color-table);\n  gap: 0 !important;\n}\n\n.vf-matrix-table .vf-matrix-header-first,\n.vf-matrix-table .vf-matrix-header,\n.vf-matrix-table .vf-matrix-header-remove,\n.vf-matrix-table .vf-matrix-row-label,\n.vf-matrix-table .vf-matrix-cell,\n.vf-matrix-table .vf-matrix-row-remove {\n  border-left: var(--vf-border-width-table) solid var(--vf-border-color-table);\n  border-top: var(--vf-border-width-table) solid var(--vf-border-color-table);\n}\n\n.vf-matrix-table .vf-matrix-header.is-sticky {\n  border-bottom: var(--vf-border-width-table) solid var(--vf-border-color-table);\n}\n\n.vf-matrix-table .vf-matrix-row-label.is-sticky {\n  border-right: var(--vf-border-width-table) solid var(--vf-border-color-table);\n}\n\n.vf-matrix-table .vf-matrix-header-first,\n.vf-matrix-table .vf-matrix-header,\n.vf-matrix-table .vf-matrix-header-remove,\n.vf-matrix-table .vf-matrix-row-label {\n  background: var(--vf-bg-table-header);\n  color: var(--vf-color-table-header);\n}\n\n.vf-matrix-table .vf-matrix-row-remove {\n  background: var(--vf-bg-table-header);\n}\n\n.vf-matrix-table .vf-matrix-cell {\n  background: var(--vf-bg-input);\n}\n\n.vf-matrix-table .vf-matrix-header.is-sticky {\n  margin-bottom: calc(var(--vf-border-width-table) * -1);\n}\n\n.vf-matrix-table .vf-matrix-header.is-not-sticky {\n  border-bottom-width: 0;\n}\n\n.vf-matrix-table .vf-matrix-row-label.is-sticky {\n  margin-right: calc(var(--vf-border-width-table) * -1);\n}\n\n.vf-matrix-table .vf-matrix-row-label.is-not-sticky {\n  border-right-width: 0;\n}\n\n.vf-matrix-table .vf-matrix-cell-wrapper.has-padding {\n  padding-left: 0;\n  padding-right: 0;\n}\n\n.vf-matrix-table .vf-matrix-cell-wrapper.is-stretch {\n  align-items: stretch;\n}\n\n.vf-matrix-table .vf-matrix-cell-wrapper.has-error {\n  position: relative;\n}\n\n.vf-matrix-table .vf-matrix-cell-wrapper.has-error:after {\n  content: \"\";\n  position: absolute;\n  inset: 0px;\n  box-shadow: inset 0 0 0 1px var(--vf-danger);\n  pointer-events: none;\n}\n\n.vf-matrix-table .vf-matrix-row-label {\n  padding-left: 0.5rem;\n}\n\n.vf-matrix-table .vf-matrix-cell-wrapper > .vf-element-layout > .vf-element-layout-outer-wrapper > .vf-layout-inner-container > .vf-layout-inner-wrapper-before, .vf-matrix-table .vf-matrix-cell-wrapper > .vf-element-layout > .vf-element-layout-outer-wrapper > .vf-layout-inner-container > .vf-layout-inner-wrapper-after {\n  display: none;\n}\n\n.vf-matrix-table .vf-layout-inner-wrapper,\n.vf-matrix-table .vf-element-layout-outer-wrapper {\n  height: 100%;\n}\n\n.vf-matrix-table .vf-input-group {\n  border: 0;\n  border-radius: 0;\n  height: 100%;\n}\n\n.vf-matrix-table .vf-input-group.vf-input-group-focused {\n  position: relative;\n  z-index: 1;\n}\n\n.vf-matrix-table .vf-input-group.vf-input-group-sm {\n  height: 100%;\n}\n\n.vf-matrix-table .vf-input {\n  height: 100%;\n}\n\n.vf-matrix-table .vf-native-select {\n  height: 100%;\n  border: 0;\n  border-radius: 0;\n}\n\n.vf-matrix-table .vf-native-select:focus {\n  position: relative;\n  z-index: 1;\n}\n\n.vf-matrix-table .vf-native-select-wrapper {\n  height: 100%;\n}\n\n.vf-matrix-table .vf-native-select-caret {\n  z-index: 2;\n}\n\n.vf-matrix-table .vf-multiselect {\n  height: 100%;\n  border: 0;\n  border-radius: 0;\n}\n\n.vf-matrix-table .vf-multiselect-active {\n  position: relative;\n  z-index: 1;\n}\n\n.vf-matrix-table .vf-multiselect-wrapper {\n  height: 100%;\n}\n\n.vf-matrix-table .vf-native-multiselect {\n  height: 100%;\n  border: 0;\n  border-radius: 0;\n}\n\n.vf-matrix-table .vf-native-multiselect:focus {\n  position: relative;\n  z-index: 1;\n}\n\n.vf-matrix-table .vf-native-multiselect-wrapper {\n  height: 100%;\n}\n\n.vf-matrix-table .vf-editor {\n  height: 100%;\n  display: flex;\n  flex-direction: column;\n  border: 0;\n  border-radius: 0;\n}\n\n.vf-matrix-table .vf-editor.vf-editor-focused {\n  position: relative;\n  z-index: 1;\n}\n\n.vf-matrix-table trix-editor {\n  height: 100%;\n}\n\n.vf-matrix-table .vf-checkboxgroup-view-default,\n.vf-matrix-table .vf-radiogroup-view-default {\n  padding: 0.25rem 0.5rem;\n}\n\n.vf-matrix-table .vf-checkboxgroup-tabs-wrapper,\n.vf-matrix-table .vf-radiogroup-tabs-wrapper {\n  height: 100%;\n  border-radius: 0;\n}\n\n.vf-matrix-table .vf-checkbox-tabs,\n.vf-matrix-table .vf-radio-tabs {\n  border-width: 0;\n  border-left-width: var(--vf-border-width-input-t);\n}\n\n.vf-matrix-table .vf-checkbox-tabs.vf-checkbox-tabs-first,\n.vf-matrix-table .vf-radio-tabs.vf-radio-tabs-first {\n  border: 0;\n}\n\n.vf-matrix-table .vf-checkbox-tabs.vf-checkbox-tabs-first,\n.vf-matrix-table .vf-checkbox-tabs.vf-checkbox-tabs-last,\n.vf-matrix-table .vf-radio-tabs.vf-radio-tabs-first,\n.vf-matrix-table .vf-radio-tabs.vf-radio-tabs-last {\n  border-radius: 0;\n}\n\n.vf-matrix-table .vf-checkbox-blocks,\n.vf-matrix-table .vf-radio-blocks {\n  border-width: 0;\n  min-height: 100%;\n}\n\n.vf-matrix-table .vf-checkbox-blocks:not(.vf-checkbox-blocks-first),\n.vf-matrix-table .vf-radio-blocks:not(.vf-radio-blocks-first) {\n  border-top-width: var(--vf-border-width-input-t);\n}\n\n.vf-matrix-table .vf-checkboxgroup-blocks-wrapper,\n.vf-matrix-table .vf-radiogroup-blocks-wrapper {\n  height: 100%;\n  border-radius: 0;\n}\n\n.vf-matrix-table .vf-checkbox-blocks-container,\n.vf-matrix-table .vf-radio-blocks-container {\n  flex: 1;\n}\n\n.vf-matrix-table .vf-checkbox-blocks.vf-checkbox-blocks-first,\n.vf-matrix-table .vf-checkbox-blocks.vf-checkbox-blocks-last,\n.vf-matrix-table .vf-radio-blocks.vf-radio-blocks-first,\n.vf-matrix-table .vf-radio-blocks.vf-radio-blocks-last {\n  border-radius: 0;\n}\n\n.vf-matrix-table .vf-slider-wrapper {\n  height: 100%;\n  width: 100%;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  margin-top: 0;\n}\n\n.vf-matrix-table .vf-slider-target {\n  width: 100%;\n  margin-left: 1rem;\n  margin-right: 1rem;\n}\n\n.vf-matrix-table .vf-matrix-grid .vf-btn {\n  width: 100%;\n  border-radius: 0;\n}\n\n.vf-matrix-table .vf-matrix-grid .vf-btn:hover:not(:disabled):not(.vf-btn-loading) {\n  transform: none;\n  filter: brightness(0.95);\n}\n\n.vf-matrix-table .vf-matrix-grid .vf-btn:focus {\n  position: relative;\n  z-index: 1;\n}\n\n.vf-matrix-table .vf-static {\n  height: 100%;\n}\n\n.vf-matrix-table .vf-file-preview-wrapper,\n.vf-matrix-table .vf-file-preview-image-wrapper,\n.vf-matrix-table .vf-file-preview-gallery-wrapper {\n  padding: 0.25rem;\n}\n\n.vf-matrix-table .vf-multifile-list {\n  margin-top: 0;\n}";
 styleInject(css_248z$w);
 
-script$11.__file = "themes/vueform/templates/elements/LocationElement.vue";
+script$11.__file = "themes/vueform/templates/elements/MatrixElement.vue";
 
 var script$10 = {
     name: 'MultifileElement',
@@ -8497,7 +8724,7 @@ var script$Y = {
         merge: true,
         defaultClasses: {
           container: 'vf-text-type',
-          input: 'vf-input',
+          input: 'vf-input vf-native-multiselect',
           input_enabled: '',
           input_disabled: '',
           input_success: 'vf-input-success',
@@ -8505,7 +8732,7 @@ var script$Y = {
           input_sm: 'vf-input-sm',
           input_md: '',
           input_lg: 'vf-input-lg',
-          inputWrapper: '',
+          inputWrapper: 'vf-native-multiselect-wrapper',
           select: {
             multipleLabel: 'vf-multiselect-multiple-label',
             multipleLabel_sm: 'vf-multiselect-multiple-label-sm',
@@ -9043,6 +9270,7 @@ var script$S = {
           input_lg: 'vf-radio-lg',
           input_left: 'vf-radio-left',
           input_right: 'vf-radio-right',
+          input_standalone: 'vf-radio-standalone',
           text: 'vf-radio-text',
           text_left: 'vf-radio-text-left',
           text_right: 'vf-radio-text-right',
@@ -9052,13 +9280,14 @@ var script$S = {
             align === 'left' ? classes.wrapper_left : null,
             align === 'right' ? classes.wrapper_right : null,
           ]),
-          $input: (classes, { isDisabled, Size, isDanger, align }) => ([
+          $input: (classes, { isDisabled, Size, isDanger, align, standalone }) => ([
             classes.input,
             classes[`input_${Size}`],
             isDisabled ? classes.input_disabled : classes.input_enabled,
             !isDisabled && isDanger ? classes.input_danger : null,
             align === 'left' ? classes.input_left : null,
             align === 'right' ? classes.input_right : null,
+            standalone ? classes.input_standalone : null,
           ]),
           $text: (classes, { align }) => ([
             classes.text,
@@ -9144,7 +9373,7 @@ var script$Q = {
       return {
         merge: true,
         defaultClasses: {
-          container: '',
+          container: 'vf-radiogroup-view-default',
           wrapper: 'vf-radiogroup-wrapper',
           wrapper_sm: 'vf-radiogroup-wrapper-sm',
           wrapper_md: '',
@@ -9170,7 +9399,7 @@ var script$P = {
       return {
         merge: true,
         defaultClasses: {
-          container: '',
+          container: 'vf-radiogroup-view-tabs',
           wrapper: 'vf-radiogroup-tabs-wrapper',
           wrapper_sm: 'vf-radiogroup-tabs-wrapper-sm',
           wrapper_md: '',
@@ -9196,7 +9425,7 @@ var script$O = {
       return {
         merge: true,
         defaultClasses: {
-          container: '',
+          container: 'vf-radiogroup-view-blocks',
           wrapper: 'vf-radiogroup-blocks-wrapper',
           wrapper_sm: 'vf-radiogroup-blocks-wrapper-sm',
           wrapper_md: '',
@@ -14989,20 +15218,22 @@ function render$d(_ctx, _cache, $props, $setup, $data, $options) {
           onInput: _ctx.handleChange,
           ref: "input"
         }), null, 16 /* FULL_PROPS */, ["value", "modelValue", "classes", "name", "id", "aria", "onInput"]),
-        (_ctx.Text)
+        (!_ctx.standalone && _ctx.Text)
           ? (openBlock(), createElementBlock("span", {
               key: 0,
               class: normalizeClass(_ctx.classes.text),
               innerHTML: _ctx.Text
             }, null, 10 /* CLASS, PROPS */, _hoisted_1$b))
-          : (openBlock(), createElementBlock("span", {
-              key: 1,
-              class: normalizeClass(_ctx.classes.text)
-            }, [
-              renderSlot(_ctx.$slots, "default", { el$: _ctx.el$ }, () => [
-                (openBlock(), createBlock(resolveDynamicComponent(_ctx.fieldSlots.default), { el$: _ctx.el$ }, null, 8 /* PROPS */, ["el$"]))
-              ])
-            ], 2 /* CLASS */))
+          : (!_ctx.standalone)
+            ? (openBlock(), createElementBlock("span", {
+                key: 1,
+                class: normalizeClass(_ctx.classes.text)
+              }, [
+                renderSlot(_ctx.$slots, "default", { el$: _ctx.el$ }, () => [
+                  (openBlock(), createBlock(resolveDynamicComponent(_ctx.fieldSlots.default), { el$: _ctx.el$ }, null, 8 /* PROPS */, ["el$"]))
+                ])
+              ], 2 /* CLASS */))
+            : createCommentVNode("v-if", true)
       ], 2 /* CLASS */)
     ]),
     _: 2 /* DYNAMIC */
@@ -15232,7 +15463,7 @@ var script$s = {
           inputContainer_focused: 'vf-input-group-focused',
           inputContainer_success: 'vf-input-group-success',
           inputContainer_danger: 'vf-input-group-danger',
-          input: 'vf-field',
+          input: 'vf-input-field',
           input_sm: '',
           input_md: '',
           input_lg: '',
@@ -15581,7 +15812,7 @@ var script$k = {
             index === 0 ? classes[`wrapper_first_${Size}`] : null,
             index === Object.keys(items).length - 1 ? classes.wrapper_last : null,
             index === Object.keys(items).length - 1 ? classes[`wrapper_last_${Size}`] : null,
-            el$.value.indexOf(value) !== -1 ? classes.wrapper_selected : classes.wrapper_unselected,
+            el$.value?.indexOf(value) !== -1 ? classes.wrapper_selected : classes.wrapper_unselected,
             isDisabled ? classes.wrapper_disabled : null,
           ])
         }
@@ -15589,7 +15820,7 @@ var script$k = {
     }
   };
 
-var css_248z$a = "/* Some styles are contained in Vueform.vue & CheckboxgroupElement.vue */\n\n.vf-checkbox-tabs-container {\n  display: flex;\n  align-items: flex-start;\n  cursor: pointer;\n}\n\n.vf-checkbox-tabs {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  border-style: solid;\n  border-width: var(--vf-border-width-input-t) var(--vf-border-width-input-r) var(--vf-border-width-input-b) var(--vf-border-width-input-l);\n  border-color: var(--vf-border-color-input);\n  padding: var(--vf-py-group-tabs) var(--vf-px-group-tabs);\n  width: 100%;\n  background: var(--vf-bg-input);\n  color: var(--vf-color-input);\n  font-size: var(--vf-font-size);\n  line-height: var(--vf-line-height);\n  letter-spacing: var(--vf-letter-spacing);\n}\n\n.vf-checkbox-tabs.vf-checkbox-tabs-not-last {\n  border-right: 0;\n}\n\n.vf-checkbox-tabs.vf-checkbox-tabs-first {\n  border-radius: var(--vf-radius-input);\n  border-top-right-radius: 0;\n  border-bottom-right-radius: 0;\n}\n\n.vf-checkbox-tabs.vf-checkbox-tabs-first.vf-checkbox-tabs-first-sm {\n  border-radius: var(--vf-radius-input-sm);\n  border-top-right-radius: 0;\n  border-bottom-right-radius: 0;\n}\n\n.vf-checkbox-tabs.vf-checkbox-tabs-first.vf-checkbox-tabs-first-lg {\n  border-radius: var(--vf-radius-input-lg);\n  border-top-right-radius: 0;\n  border-bottom-right-radius: 0;\n}\n\n.vf-checkbox-tabs.vf-checkbox-tabs-last {\n  border-radius: var(--vf-radius-input-lg);\n  border-top-left-radius: 0;\n  border-bottom-left-radius: 0;\n}\n\n.vf-checkbox-tabs.vf-checkbox-tabs-last.vf-checkbox-tabs-last-sm {\n  border-radius: var(--vf-radius-input-sm);\n  border-top-left-radius: 0;\n  border-bottom-left-radius: 0;\n}\n\n.vf-checkbox-tabs.vf-checkbox-tabs-last.vf-checkbox-tabs-last-lg {\n  border-radius: var(--vf-radius-input-lg);\n  border-top-left-radius: 0;\n  border-bottom-left-radius: 0;\n}\n\n.vf-checkbox-tabs.vf-checkbox-tabs-selected {\n  background-color: var(--vf-primary);\n  border-color: rgba(0, 0, 0, 0.15);\n  color: var(--vf-color-on-primary);\n}\n\n.vf-checkbox-tabs.vf-checkbox-tabs-unselected {\n  border-color: var(--vf-border-color-input);\n}\n\n.vf-checkbox-tabs.vf-checkbox-tabs-unselected:hover:not(.vf-radio-tabs-disabled) {\n  background-color: var(--vf-bg-input-hover);\n  color: var(--vf-color-input-hover);\n}\n\n.vf-checkbox-tabs.vf-checkbox-tabs-disabled {\n  opacity: 0.5;\n}\n\n.vf-checkbox-tabs.vf-checkbox-tabs-sm {\n  padding: var(--vf-py-group-tabs-sm) var(--vf-px-group-tabs-sm);\n  font-size: var(--vf-font-size-sm);\n  line-height: var(--vf-line-height-sm);\n  letter-spacing: var(--vf-letter-spacing-sm);\n}\n\n.vf-checkbox-tabs.vf-checkbox-tabs-lg {\n  padding: var(--vf-py-group-tabs-lg) var(--vf-px-group-tabs-lg);\n  font-size: var(--vf-font-size-lg);\n  line-height: var(--vf-line-height-lg);\n  letter-spacing: var(--vf-letter-spacing-lg);\n}\n\n.vf-checkbox-tabs-input {\n  display: none;\n}";
+var css_248z$a = "/* Some styles are contained in Vueform.vue & CheckboxgroupElement.vue */\n\n.vf-checkbox-tabs-container {\n  display: flex;\n  cursor: pointer;\n}\n\n.vf-checkbox-tabs {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  border-style: solid;\n  border-width: var(--vf-border-width-input-t) var(--vf-border-width-input-r) var(--vf-border-width-input-b) var(--vf-border-width-input-l);\n  border-color: var(--vf-border-color-input);\n  padding: var(--vf-py-group-tabs) var(--vf-px-group-tabs);\n  width: 100%;\n  background: var(--vf-bg-input);\n  color: var(--vf-color-input);\n  font-size: var(--vf-font-size);\n  line-height: var(--vf-line-height);\n  letter-spacing: var(--vf-letter-spacing);\n}\n\n.vf-checkbox-tabs.vf-checkbox-tabs-not-last {\n  border-right: 0;\n}\n\n.vf-checkbox-tabs.vf-checkbox-tabs-first {\n  border-radius: var(--vf-radius-input);\n  border-top-right-radius: 0;\n  border-bottom-right-radius: 0;\n}\n\n.vf-checkbox-tabs.vf-checkbox-tabs-first.vf-checkbox-tabs-first-sm {\n  border-radius: var(--vf-radius-input-sm);\n  border-top-right-radius: 0;\n  border-bottom-right-radius: 0;\n}\n\n.vf-checkbox-tabs.vf-checkbox-tabs-first.vf-checkbox-tabs-first-lg {\n  border-radius: var(--vf-radius-input-lg);\n  border-top-right-radius: 0;\n  border-bottom-right-radius: 0;\n}\n\n.vf-checkbox-tabs.vf-checkbox-tabs-last {\n  border-radius: var(--vf-radius-input-lg);\n  border-top-left-radius: 0;\n  border-bottom-left-radius: 0;\n}\n\n.vf-checkbox-tabs.vf-checkbox-tabs-last.vf-checkbox-tabs-last-sm {\n  border-radius: var(--vf-radius-input-sm);\n  border-top-left-radius: 0;\n  border-bottom-left-radius: 0;\n}\n\n.vf-checkbox-tabs.vf-checkbox-tabs-last.vf-checkbox-tabs-last-lg {\n  border-radius: var(--vf-radius-input-lg);\n  border-top-left-radius: 0;\n  border-bottom-left-radius: 0;\n}\n\n.vf-checkbox-tabs.vf-checkbox-tabs-selected {\n  background-color: var(--vf-primary);\n  border-color: rgba(0, 0, 0, 0.15);\n  color: var(--vf-color-on-primary);\n}\n\n.vf-checkbox-tabs.vf-checkbox-tabs-unselected {\n  border-color: var(--vf-border-color-input);\n}\n\n.vf-checkbox-tabs.vf-checkbox-tabs-unselected:hover:not(.vf-radio-tabs-disabled) {\n  background-color: var(--vf-bg-input-hover);\n  color: var(--vf-color-input-hover);\n}\n\n.vf-checkbox-tabs.vf-checkbox-tabs-disabled {\n  opacity: 0.5;\n}\n\n.vf-checkbox-tabs.vf-checkbox-tabs-sm {\n  padding: var(--vf-py-group-tabs-sm) var(--vf-px-group-tabs-sm);\n  font-size: var(--vf-font-size-sm);\n  line-height: var(--vf-line-height-sm);\n  letter-spacing: var(--vf-letter-spacing-sm);\n}\n\n.vf-checkbox-tabs.vf-checkbox-tabs-lg {\n  padding: var(--vf-py-group-tabs-lg) var(--vf-px-group-tabs-lg);\n  font-size: var(--vf-font-size-lg);\n  line-height: var(--vf-line-height-lg);\n  letter-spacing: var(--vf-letter-spacing-lg);\n}\n\n.vf-checkbox-tabs-input {\n  display: none;\n}";
 styleInject(css_248z$a);
 
 script$k.__file = "themes/vueform/templates/elements/partials/CheckboxgroupCheckbox_tabs.vue";
@@ -15714,7 +15945,7 @@ var script$i = {
             index === 0 ? classes[`wrapper_first_${Size}`] : null,
             index === Object.keys(items).length - 1 ? classes.wrapper_last : null,
             index === Object.keys(items).length - 1 ? classes[`wrapper_last_${Size}`] : null,
-            el$.value.indexOf(value) !== -1 ? classes.wrapper_selected : classes.wrapper_unselected,
+            el$.value && el$.value?.indexOf(value) !== -1 ? classes.wrapper_selected : classes.wrapper_unselected,
             isDisabled ? classes.wrapper_disabled : null,
           ]),
           $input: (classes, { isDisabled, Size }) => ([
@@ -15731,7 +15962,7 @@ var script$i = {
     }
   };
 
-var css_248z$9 = "/* Some styles are contained in Vueform.vue & CheckboxgroupElement.vue */\n\n.vf-checkbox-blocks-container {\n  display: flex;\n  align-items: flex-start;\n  cursor: pointer;\n  border-radius: var(--vf-radius-large);\n}\n\n.vf-checkbox-blocks-container .vf-checkbox {\n  margin-top: 0;\n}\n\n.vf-checkbox-blocks-container.vf-checkbox-blocks-container-sm {\n  border-radius: var(--vf-radius-large-sm);\n}\n\n.vf-checkbox-blocks-container.vf-checkbox-blocks-container-lg {\n  border-radius: var(--vf-radius-large-lg);\n}\n\n.vf-checkbox-blocks {\n  display: flex;\n  align-items: center;\n  border-style: solid;\n  border-width: var(--vf-border-width-input-t) var(--vf-border-width-input-r) var(--vf-border-width-input-b) var(--vf-border-width-input-l);\n  border-color: var(--vf-border-color-input);\n  width: 100%;\n  padding: var(--vf-py-group-blocks) var(--vf-px-group-blocks);\n  color: var(--vf-color-input);\n  font-size: var(--vf-font-size);\n  line-height: var(--vf-line-height);\n  letter-spacing: var(--vf-letter-spacing);\n  background: var(--vf-bg-input);\n}\n\n.vf-checkbox-blocks.vf-checkbox-blocks-not-last {\n  border-bottom: 0;\n}\n\n.vf-checkbox-blocks.vf-checkbox-blocks-first {\n  border-radius: var(--vf-radius-large);\n  border-bottom-left-radius: 0;\n  border-bottom-right-radius: 0;\n}\n\n.vf-checkbox-blocks.vf-checkbox-blocks-first.vf-checkbox-blocks-first-sm {\n  border-radius: var(--vf-radius-large-sm);\n  border-bottom-left-radius: 0;\n  border-bottom-right-radius: 0;\n}\n\n.vf-checkbox-blocks.vf-checkbox-blocks-first.vf-checkbox-blocks-first-lg {\n  border-radius: var(--vf-radius-large-lg);\n  border-bottom-left-radius: 0;\n  border-bottom-right-radius: 0;\n}\n\n.vf-checkbox-blocks.vf-checkbox-blocks-last {\n  border-radius: var(--vf-radius-large);\n  border-top-left-radius: 0;\n  border-top-right-radius: 0;\n}\n\n.vf-checkbox-blocks.vf-checkbox-blocks-last.vf-checkbox-blocks-last-sm {\n  border-radius: var(--vf-radius-large-sm);\n  border-top-left-radius: 0;\n  border-top-right-radius: 0;\n}\n\n.vf-checkbox-blocks.vf-checkbox-blocks-last.vf-checkbox-blocks-last-lg {\n  border-radius: var(--vf-radius-large-lg);\n  border-top-left-radius: 0;\n  border-top-right-radius: 0;\n}\n\n.vf-checkbox-blocks.vf-checkbox-blocks-selected {\n  background-color: var(--vf-bg-selected);\n}\n\n.vf-checkbox-blocks.vf-checkbox-blocks-disabled {\n  opacity: 0.5;\n}\n\n.vf-checkbox-blocks.vf-checkbox-blocks-sm {\n  padding: var(--vf-py-group-blocks-sm) var(--vf-px-group-blocks-sm);\n  font-size: var(--vf-font-size-sm);\n  line-height: var(--vf-line-height-sm);\n  letter-spacing: var(--vf-letter-spacing-sm);\n}\n\n.vf-checkbox-blocks.vf-checkbox-blocks-lg {\n  padding: var(--vf-py-group-blocks-lg) var(--vf-px-group-blocks-lg);\n  font-size: var(--vf-font-size-lg);\n  line-height: var(--vf-line-height-lg);\n  letter-spacing: var(--vf-letter-spacing-lg);\n}\n\n.vf-checkbox-blocks-text-wrapper {\n  margin-left: 0.5rem;\n}\n\n.vf-checkbox-blocks-description {\n  color: var(--vf-color-muted);\n  font-size: var(--vf-font-size-small);\n  line-height: var(--vf-line-height-small);\n  letter-spacing: var(--vf-letter-spacing-small);\n  margin-top: -0.125rem;\n}\n\n.vf-checkbox-blocks-description.vf-checkbox-blocks-description-sm {\n  font-size: var(--vf-font-size-small-sm);\n  line-height: var(--vf-line-height-small-sm);\n  letter-spacing: var(--vf-letter-spacing-small-sm);\n  margin-top: -0.125rem;\n}\n\n.vf-checkbox-blocks-description.vf-checkbox-blocks-description-lg {\n  font-size: var(--vf-font-size-small-lg);\n  line-height: var(--vf-line-height-small-lg);\n  letter-spacing: var(--vf-letter-spacing-small-lg);\n  margin-top: -0.125rem;\n}";
+var css_248z$9 = "/* Some styles are contained in Vueform.vue & CheckboxgroupElement.vue */\n\n.vf-checkbox-blocks-container {\n  display: flex;\n  align-items: flex-start;\n  cursor: pointer;\n  border-radius: var(--vf-radius-large);\n}\n\n.vf-checkbox-blocks-container .vf-checkbox {\n  margin-top: 0;\n}\n\n.vf-checkbox-blocks-container.vf-checkbox-blocks-container-sm {\n  border-radius: var(--vf-radius-large-sm);\n}\n\n.vf-checkbox-blocks-container.vf-checkbox-blocks-container-lg {\n  border-radius: var(--vf-radius-large-lg);\n}\n\n.vf-checkbox-blocks {\n  display: flex;\n  align-items: center;\n  border-style: solid;\n  border-width: var(--vf-border-width-input-t) var(--vf-border-width-input-r) var(--vf-border-width-input-b) var(--vf-border-width-input-l);\n  border-color: var(--vf-border-color-input);\n  width: 100%;\n  padding: var(--vf-py-group-blocks) var(--vf-px-group-blocks);\n  color: var(--vf-color-input);\n  font-size: var(--vf-font-size);\n  line-height: var(--vf-line-height);\n  letter-spacing: var(--vf-letter-spacing);\n  background: var(--vf-bg-input);\n}\n\n.vf-checkbox-blocks.vf-checkbox-blocks-not-last {\n  border-bottom-width: 0;\n}\n\n.vf-checkbox-blocks.vf-checkbox-blocks-first {\n  border-radius: var(--vf-radius-large);\n  border-bottom-left-radius: 0;\n  border-bottom-right-radius: 0;\n}\n\n.vf-checkbox-blocks.vf-checkbox-blocks-first.vf-checkbox-blocks-first-sm {\n  border-radius: var(--vf-radius-large-sm);\n  border-bottom-left-radius: 0;\n  border-bottom-right-radius: 0;\n}\n\n.vf-checkbox-blocks.vf-checkbox-blocks-first.vf-checkbox-blocks-first-lg {\n  border-radius: var(--vf-radius-large-lg);\n  border-bottom-left-radius: 0;\n  border-bottom-right-radius: 0;\n}\n\n.vf-checkbox-blocks.vf-checkbox-blocks-last {\n  border-radius: var(--vf-radius-large);\n  border-top-left-radius: 0;\n  border-top-right-radius: 0;\n}\n\n.vf-checkbox-blocks.vf-checkbox-blocks-last.vf-checkbox-blocks-last-sm {\n  border-radius: var(--vf-radius-large-sm);\n  border-top-left-radius: 0;\n  border-top-right-radius: 0;\n}\n\n.vf-checkbox-blocks.vf-checkbox-blocks-last.vf-checkbox-blocks-last-lg {\n  border-radius: var(--vf-radius-large-lg);\n  border-top-left-radius: 0;\n  border-top-right-radius: 0;\n}\n\n.vf-checkbox-blocks.vf-checkbox-blocks-selected {\n  background-color: var(--vf-bg-selected);\n}\n\n.vf-checkbox-blocks.vf-checkbox-blocks-disabled {\n  opacity: 0.5;\n}\n\n.vf-checkbox-blocks.vf-checkbox-blocks-sm {\n  padding: var(--vf-py-group-blocks-sm) var(--vf-px-group-blocks-sm);\n  font-size: var(--vf-font-size-sm);\n  line-height: var(--vf-line-height-sm);\n  letter-spacing: var(--vf-letter-spacing-sm);\n}\n\n.vf-checkbox-blocks.vf-checkbox-blocks-lg {\n  padding: var(--vf-py-group-blocks-lg) var(--vf-px-group-blocks-lg);\n  font-size: var(--vf-font-size-lg);\n  line-height: var(--vf-line-height-lg);\n  letter-spacing: var(--vf-letter-spacing-lg);\n}\n\n.vf-checkbox-blocks-text-wrapper {\n  margin-left: 0.5rem;\n}\n\n.vf-checkbox-blocks-description {\n  color: var(--vf-color-muted);\n  font-size: var(--vf-font-size-small);\n  line-height: var(--vf-line-height-small);\n  letter-spacing: var(--vf-letter-spacing-small);\n  margin-top: -0.125rem;\n}\n\n.vf-checkbox-blocks-description.vf-checkbox-blocks-description-sm {\n  font-size: var(--vf-font-size-small-sm);\n  line-height: var(--vf-line-height-small-sm);\n  letter-spacing: var(--vf-letter-spacing-small-sm);\n  margin-top: -0.125rem;\n}\n\n.vf-checkbox-blocks-description.vf-checkbox-blocks-description-lg {\n  font-size: var(--vf-font-size-small-lg);\n  line-height: var(--vf-line-height-small-lg);\n  letter-spacing: var(--vf-letter-spacing-small-lg);\n  margin-top: -0.125rem;\n}";
 styleInject(css_248z$9);
 
 script$i.__file = "themes/vueform/templates/elements/partials/CheckboxgroupCheckbox_blocks.vue";
@@ -16642,7 +16873,7 @@ var script$6 = {
     }
   };
 
-var css_248z$3 = "/* Some styles are contained in Vueform.vue & RadiogroupElement.vue */\n\n.vf-radio-tabs-container {\n  display: flex;\n  align-items: flex-start;\n  cursor: pointer;\n}\n\n.vf-radio-tabs {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  border-style: solid;\n  border-width: var(--vf-border-width-input-t) var(--vf-border-width-input-r) var(--vf-border-width-input-b) var(--vf-border-width-input-l);\n  border-color: var(--vf-border-color-input);\n  padding: var(--vf-py-group-tabs) var(--vf-px-group-tabs);\n  width: 100%;\n  background: var(--vf-bg-input);\n  color: var(--vf-color-input);\n  font-size: var(--vf-font-size);\n  line-height: var(--vf-line-height);\n  letter-spacing: var(--vf-letter-spacing);\n}\n\n.vf-radio-tabs.vf-radio-tabs-not-last {\n  border-right: 0;\n}\n\n.vf-radio-tabs.vf-radio-tabs-first {\n  border-radius: var(--vf-radius-input);\n  border-top-right-radius: 0;\n  border-bottom-right-radius: 0;\n}\n\n.vf-radio-tabs.vf-radio-tabs-first.vf-radio-tabs-first-sm {\n  border-radius: var(--vf-radius-input-sm);\n  border-top-right-radius: 0;\n  border-bottom-right-radius: 0;\n}\n\n.vf-radio-tabs.vf-radio-tabs-first.vf-radio-tabs-first-lg {\n  border-radius: var(--vf-radius-input-lg);\n  border-top-right-radius: 0;\n  border-bottom-right-radius: 0;\n}\n\n.vf-radio-tabs.vf-radio-tabs-last {\n  border-radius: var(--vf-radius-input-lg);\n  border-top-left-radius: 0;\n  border-bottom-left-radius: 0;\n}\n\n.vf-radio-tabs.vf-radio-tabs-last.vf-radio-tabs-last-sm {\n  border-radius: var(--vf-radius-input-sm);\n  border-top-left-radius: 0;\n  border-bottom-left-radius: 0;\n}\n\n.vf-radio-tabs.vf-radio-tabs-last.vf-radio-tabs-last-lg {\n  border-radius: var(--vf-radius-input-lg);\n  border-top-left-radius: 0;\n  border-bottom-left-radius: 0;\n}\n\n.vf-radio-tabs.vf-radio-tabs-selected {\n  background-color: var(--vf-primary);\n  border-color: rgba(0, 0, 0, 0.15);\n  color: var(--vf-color-on-primary);\n}\n\n.vf-radio-tabs.vf-radio-tabs-unselected {\n  border-color: var(--vf-border-color-input);\n}\n\n.vf-radio-tabs.vf-radio-tabs-unselected:hover:not(.vf-radio-tabs-disabled) {\n  background-color: var(--vf-bg-input-hover);\n  color: var(--vf-color-input-hover);\n}\n\n.vf-radio-tabs.vf-radio-tabs-disabled {\n  opacity: 0.5;\n}\n\n.vf-radio-tabs.vf-radio-tabs-sm {\n  padding: var(--vf-py-group-tabs-sm) var(--vf-px-group-tabs-sm);\n  font-size: var(--vf-font-size-sm);\n  line-height: var(--vf-line-height-sm);\n  letter-spacing: var(--vf-letter-spacing-sm);\n}\n\n.vf-radio-tabs.vf-radio-tabs-lg {\n  padding: var(--vf-py-group-tabs-lg) var(--vf-px-group-tabs-lg);\n  font-size: var(--vf-font-size-lg);\n  line-height: var(--vf-line-height-lg);\n  letter-spacing: var(--vf-letter-spacing-lg);\n}\n\n.vf-radio-tabs-input {\n  display: none;\n}";
+var css_248z$3 = "/* Some styles are contained in Vueform.vue & RadiogroupElement.vue */\n\n.vf-radio-tabs-container {\n  display: flex;\n  cursor: pointer;\n}\n\n.vf-radio-tabs {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  border-style: solid;\n  border-width: var(--vf-border-width-input-t) var(--vf-border-width-input-r) var(--vf-border-width-input-b) var(--vf-border-width-input-l);\n  border-color: var(--vf-border-color-input);\n  padding: var(--vf-py-group-tabs) var(--vf-px-group-tabs);\n  width: 100%;\n  background: var(--vf-bg-input);\n  color: var(--vf-color-input);\n  font-size: var(--vf-font-size);\n  line-height: var(--vf-line-height);\n  letter-spacing: var(--vf-letter-spacing);\n}\n\n.vf-radio-tabs.vf-radio-tabs-not-last {\n  border-right: 0;\n}\n\n.vf-radio-tabs.vf-radio-tabs-first {\n  border-radius: var(--vf-radius-input);\n  border-top-right-radius: 0;\n  border-bottom-right-radius: 0;\n}\n\n.vf-radio-tabs.vf-radio-tabs-first.vf-radio-tabs-first-sm {\n  border-radius: var(--vf-radius-input-sm);\n  border-top-right-radius: 0;\n  border-bottom-right-radius: 0;\n}\n\n.vf-radio-tabs.vf-radio-tabs-first.vf-radio-tabs-first-lg {\n  border-radius: var(--vf-radius-input-lg);\n  border-top-right-radius: 0;\n  border-bottom-right-radius: 0;\n}\n\n.vf-radio-tabs.vf-radio-tabs-last {\n  border-radius: var(--vf-radius-input-lg);\n  border-top-left-radius: 0;\n  border-bottom-left-radius: 0;\n}\n\n.vf-radio-tabs.vf-radio-tabs-last.vf-radio-tabs-last-sm {\n  border-radius: var(--vf-radius-input-sm);\n  border-top-left-radius: 0;\n  border-bottom-left-radius: 0;\n}\n\n.vf-radio-tabs.vf-radio-tabs-last.vf-radio-tabs-last-lg {\n  border-radius: var(--vf-radius-input-lg);\n  border-top-left-radius: 0;\n  border-bottom-left-radius: 0;\n}\n\n.vf-radio-tabs.vf-radio-tabs-selected {\n  background-color: var(--vf-primary);\n  border-color: rgba(0, 0, 0, 0.15);\n  color: var(--vf-color-on-primary);\n}\n\n.vf-radio-tabs.vf-radio-tabs-unselected {\n  border-color: var(--vf-border-color-input);\n}\n\n.vf-radio-tabs.vf-radio-tabs-unselected:hover:not(.vf-radio-tabs-disabled) {\n  background-color: var(--vf-bg-input-hover);\n  color: var(--vf-color-input-hover);\n}\n\n.vf-radio-tabs.vf-radio-tabs-disabled {\n  opacity: 0.5;\n}\n\n.vf-radio-tabs.vf-radio-tabs-sm {\n  padding: var(--vf-py-group-tabs-sm) var(--vf-px-group-tabs-sm);\n  font-size: var(--vf-font-size-sm);\n  line-height: var(--vf-line-height-sm);\n  letter-spacing: var(--vf-letter-spacing-sm);\n}\n\n.vf-radio-tabs.vf-radio-tabs-lg {\n  padding: var(--vf-py-group-tabs-lg) var(--vf-px-group-tabs-lg);\n  font-size: var(--vf-font-size-lg);\n  line-height: var(--vf-line-height-lg);\n  letter-spacing: var(--vf-letter-spacing-lg);\n}\n\n.vf-radio-tabs-input {\n  display: none;\n}";
 styleInject(css_248z$3);
 
 script$6.__file = "themes/vueform/templates/elements/partials/RadiogroupRadio_tabs.vue";
@@ -16784,7 +17015,7 @@ var script$4 = {
     }
   };
 
-var css_248z$2 = "/* Some styles are contained in Vueform.vue & RadiogroupElement.vue */\n\n.vf-radio-blocks-container {\n  display: flex;\n  align-items: flex-start;\n  cursor: pointer;\n  background: var(--vf-bg-input);\n  border-radius: var(--vf-radius-large);\n}\n\n.vf-radio-blocks-container .vf-radio {\n  margin-top: 0;\n}\n\n.vf-radio-blocks-container.vf-radio-blocks-container-sm {\n  border-radius: var(--vf-radius-large-sm);\n}\n\n.vf-radio-blocks-container.vf-radio-blocks-container-lg {\n  border-radius: var(--vf-radius-large-lg);\n}\n\n.vf-radio-blocks {\n  display: flex;\n  align-items: center;\n  border-style: solid;\n  border-width: var(--vf-border-width-input-t) var(--vf-border-width-input-r) var(--vf-border-width-input-b) var(--vf-border-width-input-l);\n  border-color: var(--vf-border-color-input);\n  width: 100%;\n  padding: var(--vf-py-group-blocks) var(--vf-px-group-blocks);\n  background: var(--vf-bg-input);\n  color: var(--vf-color-input);\n  font-size: var(--vf-font-size);\n  line-height: var(--vf-line-height);\n  letter-spacing: var(--vf-letter-spacing);\n}\n\n.vf-radio-blocks.vf-radio-blocks-not-last {\n  border-bottom: 0;\n}\n\n.vf-radio-blocks.vf-radio-blocks-first {\n  border-radius: var(--vf-radius-large);\n  border-bottom-left-radius: 0;\n  border-bottom-right-radius: 0;\n}\n\n.vf-radio-blocks.vf-radio-blocks-first.vf-radio-blocks-first-sm {\n  border-radius: var(--vf-radius-large-sm);\n  border-bottom-left-radius: 0;\n  border-bottom-right-radius: 0;\n}\n\n.vf-radio-blocks.vf-radio-blocks-first.vf-radio-blocks-first-lg {\n  border-radius: var(--vf-radius-large-lg);\n  border-bottom-left-radius: 0;\n  border-bottom-right-radius: 0;\n}\n\n.vf-radio-blocks.vf-radio-blocks-last {\n  border-radius: var(--vf-radius-large);\n  border-top-left-radius: 0;\n  border-top-right-radius: 0;\n}\n\n.vf-radio-blocks.vf-radio-blocks-last.vf-radio-blocks-last-sm {\n  border-radius: var(--vf-radius-large-sm);\n  border-top-left-radius: 0;\n  border-top-right-radius: 0;\n}\n\n.vf-radio-blocks.vf-radio-blocks-last.vf-radio-blocks-last-lg {\n  border-radius: var(--vf-radius-large-lg);\n  border-top-left-radius: 0;\n  border-top-right-radius: 0;\n}\n\n.vf-radio-blocks.vf-radio-blocks-selected {\n  background-color: var(--vf-bg-selected);\n}\n\n.vf-radio-blocks.vf-radio-blocks-disabled {\n  opacity: 0.5;\n}\n\n.vf-radio-blocks.vf-radio-blocks-sm {\n  padding: var(--vf-py-group-blocks-sm) var(--vf-px-group-blocks-sm);\n  font-size: var(--vf-font-size-sm);\n  line-height: var(--vf-line-height-sm);\n  letter-spacing: var(--vf-letter-spacing-sm);\n}\n\n.vf-radio-blocks.vf-radio-blocks-lg {\n  padding: var(--vf-py-group-blocks-lg) var(--vf-px-group-blocks-lg);\n  font-size: var(--vf-font-size-lg);\n  line-height: var(--vf-line-height-lg);\n  letter-spacing: var(--vf-letter-spacing-lg);\n}\n\n.vf-radio-blocks-text-wrapper {\n  margin-left: 0.5rem;\n}\n\n.vf-radio-blocks-description {\n  color: var(--vf-color-muted);\n  font-size: var(--vf-font-size-small);\n  line-height: var(--vf-line-height-small);\n  letter-spacing: var(--vf-letter-spacing-small);\n  margin-top: -0.125rem;\n}\n\n.vf-radio-blocks-description.vf-radio-blocks-description-sm {\n  font-size: var(--vf-font-size-small-sm);\n  line-height: var(--vf-line-height-small-sm);\n  letter-spacing: var(--vf-letter-spacing-small-sm);\n  margin-top: -0.125rem;\n}\n\n.vf-radio-blocks-description.vf-radio-blocks-description-lg {\n  font-size: var(--vf-font-size-small-lg);\n  line-height: var(--vf-line-height-small-lg);\n  letter-spacing: var(--vf-letter-spacing-small-lg);\n  margin-top: -0.125rem;\n}";
+var css_248z$2 = "/* Some styles are contained in Vueform.vue & RadiogroupElement.vue */\n\n.vf-radio-blocks-container {\n  display: flex;\n  align-items: flex-start;\n  cursor: pointer;\n  background: var(--vf-bg-input);\n  border-radius: var(--vf-radius-large);\n}\n\n.vf-radio-blocks-container .vf-radio {\n  margin-top: 0;\n}\n\n.vf-radio-blocks-container.vf-radio-blocks-container-sm {\n  border-radius: var(--vf-radius-large-sm);\n}\n\n.vf-radio-blocks-container.vf-radio-blocks-container-lg {\n  border-radius: var(--vf-radius-large-lg);\n}\n\n.vf-radio-blocks {\n  display: flex;\n  align-items: center;\n  border-style: solid;\n  border-width: var(--vf-border-width-input-t) var(--vf-border-width-input-r) var(--vf-border-width-input-b) var(--vf-border-width-input-l);\n  border-color: var(--vf-border-color-input);\n  width: 100%;\n  padding: var(--vf-py-group-blocks) var(--vf-px-group-blocks);\n  background: var(--vf-bg-input);\n  color: var(--vf-color-input);\n  font-size: var(--vf-font-size);\n  line-height: var(--vf-line-height);\n  letter-spacing: var(--vf-letter-spacing);\n}\n\n.vf-radio-blocks.vf-radio-blocks-not-last {\n  border-bottom-width: 0;\n}\n\n.vf-radio-blocks.vf-radio-blocks-first {\n  border-radius: var(--vf-radius-large);\n  border-bottom-left-radius: 0;\n  border-bottom-right-radius: 0;\n}\n\n.vf-radio-blocks.vf-radio-blocks-first.vf-radio-blocks-first-sm {\n  border-radius: var(--vf-radius-large-sm);\n  border-bottom-left-radius: 0;\n  border-bottom-right-radius: 0;\n}\n\n.vf-radio-blocks.vf-radio-blocks-first.vf-radio-blocks-first-lg {\n  border-radius: var(--vf-radius-large-lg);\n  border-bottom-left-radius: 0;\n  border-bottom-right-radius: 0;\n}\n\n.vf-radio-blocks.vf-radio-blocks-last {\n  border-radius: var(--vf-radius-large);\n  border-top-left-radius: 0;\n  border-top-right-radius: 0;\n}\n\n.vf-radio-blocks.vf-radio-blocks-last.vf-radio-blocks-last-sm {\n  border-radius: var(--vf-radius-large-sm);\n  border-top-left-radius: 0;\n  border-top-right-radius: 0;\n}\n\n.vf-radio-blocks.vf-radio-blocks-last.vf-radio-blocks-last-lg {\n  border-radius: var(--vf-radius-large-lg);\n  border-top-left-radius: 0;\n  border-top-right-radius: 0;\n}\n\n.vf-radio-blocks.vf-radio-blocks-selected {\n  background-color: var(--vf-bg-selected);\n}\n\n.vf-radio-blocks.vf-radio-blocks-disabled {\n  opacity: 0.5;\n}\n\n.vf-radio-blocks.vf-radio-blocks-sm {\n  padding: var(--vf-py-group-blocks-sm) var(--vf-px-group-blocks-sm);\n  font-size: var(--vf-font-size-sm);\n  line-height: var(--vf-line-height-sm);\n  letter-spacing: var(--vf-letter-spacing-sm);\n}\n\n.vf-radio-blocks.vf-radio-blocks-lg {\n  padding: var(--vf-py-group-blocks-lg) var(--vf-px-group-blocks-lg);\n  font-size: var(--vf-font-size-lg);\n  line-height: var(--vf-line-height-lg);\n  letter-spacing: var(--vf-letter-spacing-lg);\n}\n\n.vf-radio-blocks-text-wrapper {\n  margin-left: 0.5rem;\n}\n\n.vf-radio-blocks-description {\n  color: var(--vf-color-muted);\n  font-size: var(--vf-font-size-small);\n  line-height: var(--vf-line-height-small);\n  letter-spacing: var(--vf-letter-spacing-small);\n  margin-top: -0.125rem;\n}\n\n.vf-radio-blocks-description.vf-radio-blocks-description-sm {\n  font-size: var(--vf-font-size-small-sm);\n  line-height: var(--vf-line-height-small-sm);\n  letter-spacing: var(--vf-letter-spacing-small-sm);\n  margin-top: -0.125rem;\n}\n\n.vf-radio-blocks-description.vf-radio-blocks-description-lg {\n  font-size: var(--vf-font-size-small-lg);\n  line-height: var(--vf-line-height-small-lg);\n  letter-spacing: var(--vf-letter-spacing-small-lg);\n  margin-top: -0.125rem;\n}";
 styleInject(css_248z$2);
 
 script$4.__file = "themes/vueform/templates/elements/partials/RadiogroupRadio_blocks.vue";
@@ -16925,6 +17156,33 @@ function columns (breakpoint, size) {
 
 var classes = {};
 
+var presets = {
+  'matrix-table': {
+    addClasses: {
+      MatrixElement: {
+        container: 'vf-matrix-table',
+        cellWrapper_stretch: 'is-stretch'
+      }
+    },
+    overrideClasses: {
+      MatrixElement: {
+        $cellWrapper: (classes, _ref) => {
+          var {
+            padding,
+            centered,
+            cells$
+          } = _ref;
+          return (type, name) => {
+            var _cells$$name, _cells$$name2;
+            var isStandalone = ['radio', 'checkbox', 'toggle'].includes(type);
+            return [classes.cellWrapper, padding ? classes.cellWrapper_padding : null, isStandalone ? classes.cellWrapper_centered : null, !isStandalone ? classes.cellWrapper_stretch : null, (_cells$$name = cells$[name]) !== null && _cells$$name !== void 0 && _cells$$name.error ? classes.cellWrapper_error : null, (_cells$$name2 = cells$[name]) !== null && _cells$$name2 !== void 0 && _cells$$name2.isSuccess ? classes.cellWrapper_success : null];
+          };
+        }
+      }
+    }
+  }
+};
+
 /**
  * =========
  * Templates
@@ -16932,44 +17190,45 @@ var classes = {};
  */
 var base = {
   templates: {
-    Vueform: script$29,
-    FormErrors: script$27,
-    FormMessages: script$25,
-    FormLanguages: script$23,
-    FormLanguage: script$21,
-    FormTabs: script$1$,
-    FormTab: script$1Z,
-    FormSteps: script$1X,
-    FormStepsControls: script$1V,
-    FormStepsControl: script$1T,
-    FormStep: script$1R,
-    FormElements: script$1P,
-    ElementLayout: script$1N,
-    ElementLayoutInline: script$1L,
-    ElementLoader: script$1J,
-    ElementLabelFloating: script$1H,
-    ElementLabel: script$1F,
-    ElementInfo: script$1D,
-    ElementDescription: script$1B,
-    ElementError: script$1z,
-    ElementMessage: script$1x,
-    ElementRequired: script$1v,
-    ElementText: script$1t,
-    ElementAddon: script$1r,
-    ElementAddonOptions: script$1p,
-    ButtonElement: script$1n,
-    CaptchaElement: script$1l,
-    CheckboxElement: script$1j,
-    CheckboxgroupElement: script$1h,
-    CheckboxgroupElement_tabs: script$1g,
-    CheckboxgroupElement_blocks: script$1f,
-    DateElement: script$1d,
-    DatesElement: script$1b,
-    FileElement: script$19,
-    GroupElement: script$17,
-    HiddenElement: script$15,
-    ListElement: script$13,
-    LocationElement: script$11,
+    Vueform: script$2b,
+    FormErrors: script$29,
+    FormMessages: script$27,
+    FormLanguages: script$25,
+    FormLanguage: script$23,
+    FormTabs: script$21,
+    FormTab: script$1$,
+    FormSteps: script$1Z,
+    FormStepsControls: script$1X,
+    FormStepsControl: script$1V,
+    FormStep: script$1T,
+    FormElements: script$1R,
+    ElementLayout: script$1P,
+    ElementLayoutInline: script$1N,
+    ElementLoader: script$1L,
+    ElementLabelFloating: script$1J,
+    ElementLabel: script$1H,
+    ElementInfo: script$1F,
+    ElementDescription: script$1D,
+    ElementError: script$1B,
+    ElementMessage: script$1z,
+    ElementRequired: script$1x,
+    ElementText: script$1v,
+    ElementAddon: script$1t,
+    ElementAddonOptions: script$1r,
+    ButtonElement: script$1p,
+    CaptchaElement: script$1n,
+    CheckboxElement: script$1l,
+    CheckboxgroupElement: script$1j,
+    CheckboxgroupElement_tabs: script$1i,
+    CheckboxgroupElement_blocks: script$1h,
+    DateElement: script$1f,
+    DatesElement: script$1d,
+    FileElement: script$1b,
+    GroupElement: script$19,
+    HiddenElement: script$17,
+    ListElement: script$15,
+    LocationElement: script$13,
+    MatrixElement: script$11,
     MultifileElement: script$$,
     MultiselectElement: script$Y,
     ObjectElement: script$W,
@@ -17004,7 +17263,8 @@ var base = {
     EditorWrapper: script
   },
   classes,
-  columns
+  columns,
+  presets
 };
 
-export { script$1n as ButtonElement, script$1l as CaptchaElement, script$1j as CheckboxElement, script$m as CheckboxgroupCheckbox, script$i as CheckboxgroupCheckbox_blocks, script$k as CheckboxgroupCheckbox_tabs, script$1h as CheckboxgroupElement, script$1f as CheckboxgroupElement_blocks, script$1g as CheckboxgroupElement_tabs, script$1d as DateElement, script$2 as DatepickerWrapper, script$1b as DatesElement, script$g as DragAndDrop, script$u as EditorElement, script as EditorWrapper, script$1r as ElementAddon, script$1p as ElementAddonOptions, script$1B as ElementDescription, script$1z as ElementError, script$1D as ElementInfo, script$1F as ElementLabel, script$1H as ElementLabelFloating, script$1N as ElementLayout, script$1L as ElementLayoutInline, script$1J as ElementLoader, script$1x as ElementMessage, script$1v as ElementRequired, script$1t as ElementText, script$19 as FileElement, script$e as FilePreview, script$a as FilePreview_gallery, script$c as FilePreview_image, script$1P as FormElements, script$27 as FormErrors, script$21 as FormLanguage, script$23 as FormLanguages, script$25 as FormMessages, script$1R as FormStep, script$1X as FormSteps, script$1T as FormStepsControl, script$1V as FormStepsControls, script$1Z as FormTab, script$1$ as FormTabs, script$17 as GroupElement, script$15 as HiddenElement, script$13 as ListElement, script$11 as LocationElement, script$$ as MultifileElement, script$Y as MultiselectElement, script$W as ObjectElement, script$U as PhoneElement, script$S as RadioElement, script$Q as RadiogroupElement, script$O as RadiogroupElement_blocks, script$P as RadiogroupElement_tabs, script$8 as RadiogroupRadio, script$4 as RadiogroupRadio_blocks, script$6 as RadiogroupRadio_tabs, script$M as SelectElement, script$K as SignatureElement, script$H as SliderElement, script$F as StaticElement, script$o as TEditorElement, script$q as TTextElement, script$s as TTextareaElement, script$D as TagsElement, script$z as TextElement, script$B as TextareaElement, script$w as ToggleElement, script$29 as Vueform, classes, columns, base as default };
+export { script$1p as ButtonElement, script$1n as CaptchaElement, script$1l as CheckboxElement, script$m as CheckboxgroupCheckbox, script$i as CheckboxgroupCheckbox_blocks, script$k as CheckboxgroupCheckbox_tabs, script$1j as CheckboxgroupElement, script$1h as CheckboxgroupElement_blocks, script$1i as CheckboxgroupElement_tabs, script$1f as DateElement, script$2 as DatepickerWrapper, script$1d as DatesElement, script$g as DragAndDrop, script$u as EditorElement, script as EditorWrapper, script$1t as ElementAddon, script$1r as ElementAddonOptions, script$1D as ElementDescription, script$1B as ElementError, script$1F as ElementInfo, script$1H as ElementLabel, script$1J as ElementLabelFloating, script$1P as ElementLayout, script$1N as ElementLayoutInline, script$1L as ElementLoader, script$1z as ElementMessage, script$1x as ElementRequired, script$1v as ElementText, script$1b as FileElement, script$e as FilePreview, script$a as FilePreview_gallery, script$c as FilePreview_image, script$1R as FormElements, script$29 as FormErrors, script$23 as FormLanguage, script$25 as FormLanguages, script$27 as FormMessages, script$1T as FormStep, script$1Z as FormSteps, script$1V as FormStepsControl, script$1X as FormStepsControls, script$1$ as FormTab, script$21 as FormTabs, script$19 as GroupElement, script$17 as HiddenElement, script$15 as ListElement, script$13 as LocationElement, script$11 as MatrixElement, script$$ as MultifileElement, script$Y as MultiselectElement, script$W as ObjectElement, script$U as PhoneElement, script$S as RadioElement, script$Q as RadiogroupElement, script$O as RadiogroupElement_blocks, script$P as RadiogroupElement_tabs, script$8 as RadiogroupRadio, script$4 as RadiogroupRadio_blocks, script$6 as RadiogroupRadio_tabs, script$M as SelectElement, script$K as SignatureElement, script$H as SliderElement, script$F as StaticElement, script$o as TEditorElement, script$q as TTextElement, script$s as TTextareaElement, script$D as TagsElement, script$z as TextElement, script$B as TextareaElement, script$w as ToggleElement, script$2b as Vueform, classes, columns, base as default, presets };

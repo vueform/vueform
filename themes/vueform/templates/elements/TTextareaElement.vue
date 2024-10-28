@@ -18,7 +18,7 @@
           inputContainer_focused: 'vf-input-group-focused',
           inputContainer_success: 'vf-input-group-success',
           inputContainer_danger: 'vf-input-group-danger',
-          input: 'vf-field',
+          input: 'vf-input-field',
           input_sm: '',
           input_md: '',
           input_lg: '',

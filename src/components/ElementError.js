@@ -29,6 +29,15 @@ export default {
     const error = computed(() => {
       return el$.value.error
     })
+    
+    /**
+     * Whether to show the error.
+     * 
+     * @type {boolean}
+     */
+    const showError = computed(() => {
+      return error.value && el$.value.displayErrors
+    })
 
     /**
      * The `id` attribute of the container.
@@ -50,6 +59,7 @@ export default {
       Templates,
       template,
       error,
+      showError,
       id,
     }
   },

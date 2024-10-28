@@ -1,5 +1,5 @@
 /*!
- * Vueform v1.10.10 (https://github.com/vueform/vueform)
+ * Vueform v1.11.0 (https://github.com/vueform/vueform)
  * Copyright (c) 2024 Adam Berecz <adam@vueform.com>
  * Licensed under the MIT License
  */
@@ -6787,7 +6787,7 @@ var camelCase = createCompounder(function(result, word, index) {
 
 var camelCase_1 = camelCase;
 
-var base$1e = function base(props, context, dependencies) {
+var base$1g = function base(props, context, dependencies) {
   var options = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
   if (!options.events) {
     throw new Error('`events` option is required for useEvents');
@@ -7015,7 +7015,7 @@ function useModel (props, context, dependencies) {
   };
 }
 
-var base$1d = function base(props, context) {
+var base$1f = function base(props, context) {
   var {
     schema,
     tabs,
@@ -7089,7 +7089,7 @@ var base$1d = function base(props, context) {
     fire,
     on,
     off
-  } = base$1e(props, context, {
+  } = base$1g(props, context, {
     form$: $this
   }, {
     events: evts
@@ -8135,15 +8135,16 @@ var base$1d = function base(props, context) {
       return firstInvalid$;
     };
     var firstInvalid$ = _findFirstInvalid$(orderedSchema.value);
+    if (!firstInvalid$) {
+      return;
+    }
     var scrollableParent = findScrollableParent(firstInvalid$.$el);
-    if (firstInvalid$) {
-      if (scrollableParent) {
-        scrollIntoView(firstInvalid$.$el, scrollableParent);
-      } else if (firstInvalid$.$el.scrollIntoView) {
-        firstInvalid$.$el.scrollIntoView({
-          behavior: 'smooth'
-        });
-      }
+    if (scrollableParent) {
+      scrollIntoView(firstInvalid$.$el, scrollableParent);
+    } else if (firstInvalid$.$el.scrollIntoView) {
+      firstInvalid$.$el.scrollIntoView({
+        behavior: 'smooth'
+      });
     }
   };
 
@@ -8572,7 +8573,7 @@ var base$1d = function base(props, context) {
   };
 };
 
-var base$1c = function base(props, context, dependencies) {
+var base$1e = function base(props, context, dependencies) {
   var componentName = context.name;
 
   // ============ DEPENDENCIES ============
@@ -8715,7 +8716,7 @@ var VueformComponent = {
       languagesRegistered,
       tabsRegistered,
       stepsRegistered
-    } = base$1d(props, context);
+    } = base$1f(props, context);
     return {
       tabs$,
       steps$,
@@ -9649,7 +9650,9 @@ var Validator = class {
     return String(value).length;
   }
   filled(value) {
-    if (value === undefined || value === null && value !== this.element$.trueValue || value === this.element$.falseValue) {
+    if (this.element$.useCustomFilled) {
+      return this.element$.isFilled;
+    } else if (value === undefined || value === null && value !== this.element$.trueValue || value === this.element$.falseValue) {
       return false;
     } else if (this.isNumeric && trim_1(value) === '') {
       return false;
@@ -10144,7 +10147,7 @@ function shouldApplyPlugin (name, plugin) {
 }
 
 var name = "@vueform/vueform";
-var version$1 = "1.10.10";
+var version$1 = "1.11.0";
 var description = "Open-Source Form Framework for Vue";
 var homepage = "https://vueform.com";
 var license = "MIT";
@@ -10722,7 +10725,21 @@ function compare (actual, operator, expected, el$, form$) {
         return false;
       } else if (actual && typeof actual === 'object') {
         var values = Object.values(actual);
-        return !values.length || values.every(v => ['', null, undefined].indexOf(v) !== -1);
+        return !values.length || values.every(v => {
+          if (Array.isArray(v)) {
+            return !v.length;
+          } else if (v && typeof v === 'object') {
+            return Object.values(v).every(ov => {
+              if (Array.isArray(ov)) {
+                return !ov.length;
+              } else {
+                return ['', null, undefined].indexOf(ov) !== -1;
+              }
+            });
+          } else {
+            return ['', null, undefined].indexOf(v) !== -1;
+          }
+        });
       } else {
         return ['', null, undefined].indexOf(actual) !== -1;
       }
@@ -10735,7 +10752,21 @@ function compare (actual, operator, expected, el$, form$) {
         return true;
       } else if (actual && typeof actual === 'object') {
         var _values = Object.values(actual);
-        return _values.length && _values.some(v => ['', null, undefined].indexOf(v) === -1);
+        return _values.length && _values.some(v => {
+          if (Array.isArray(v)) {
+            return v.length;
+          } else if (v && typeof v === 'object') {
+            return Object.values(v).some(ov => {
+              if (Array.isArray(ov)) {
+                return ov.length;
+              } else {
+                return ['', null, undefined].indexOf(ov) === -1;
+              }
+            });
+          } else {
+            return ['', null, undefined].indexOf(v) === -1;
+          }
+        });
       } else {
         return ['', null, undefined].indexOf(actual) === -1;
       }
@@ -14141,6 +14172,7 @@ function installer () {
       };
     }
     config(config) {
+      var _config$theme;
       // merge
       each(['theme', 'templates', 'locales', 'rules'], attr => {
         if (config[attr] !== undefined) {
@@ -14180,6 +14212,7 @@ function installer () {
           this.options.config[attr] = config[attr];
         }
       });
+      this.options.config.presets = _objectSpread2$1(_objectSpread2$1({}, this.options.config.presets || {}), ((_config$theme = config.theme) === null || _config$theme === void 0 ? void 0 : _config$theme.presets) || {});
       if (config.elements) {
         config.elements.forEach(element => {
           components[element.name] = omit_1(element, ['render', 'staticRenderFns', 'components']);
@@ -14420,7 +14453,7 @@ function installer () {
   return new Vueform();
 }
 
-var base$1b = function base(props, context, dependencies) {
+var base$1d = function base(props, context, dependencies) {
   // =============== INJECT ===============
 
   /**
@@ -14434,7 +14467,7 @@ var base$1b = function base(props, context, dependencies) {
   };
 };
 
-var base$1a = function base(props, context, dependencies) {
+var base$1c = function base(props, context, dependencies) {
   // =============== INJECT ===============
 
   /**
@@ -14448,7 +14481,7 @@ var base$1a = function base(props, context, dependencies) {
   };
 };
 
-var base$19 = function base(props, context, dependencies) {
+var base$1b = function base(props, context, dependencies) {
   // =============== INJECT ===============
 
   /**
@@ -14462,7 +14495,7 @@ var base$19 = function base(props, context, dependencies) {
   };
 };
 
-var base$18 = function base(props, context, dependencies) {
+var base$1a = function base(props, context, dependencies) {
   var {
     view
   } = toRefs(props);
@@ -14507,23 +14540,23 @@ var base$18 = function base(props, context, dependencies) {
   };
 };
 
-var base$17 = function base(props, context, dependencies) {
+var base$19 = function base(props, context, dependencies) {
   var componentName = context.name;
 
   // =============== INJECT ===============
 
   var {
     form$
-  } = base$1b();
+  } = base$1d();
   var {
     theme
-  } = base$1a();
+  } = base$1c();
   var {
     Size
-  } = base$19();
+  } = base$1b();
   var {
     View
-  } = base$18(props, context);
+  } = base$1a(props, context);
 
   // ============== COMPUTED ===============
 
@@ -14614,7 +14647,7 @@ var FormErrors = {
       classes,
       Templates,
       template
-    } = base$17(props, context);
+    } = base$19(props, context);
 
     // ============== COMPUTED ==============
 
@@ -14661,7 +14694,7 @@ var FormMessages = {
       classes,
       Templates,
       template
-    } = base$17(props, context);
+    } = base$19(props, context);
 
     // ============== COMPUTED ==============
 
@@ -14708,7 +14741,7 @@ var FormLanguages = {
       classes,
       Templates,
       template
-    } = base$17(props, context);
+    } = base$19(props, context);
 
     // ============== COMPUTED ==============
 
@@ -14807,7 +14840,7 @@ var FormLanguage = {
       classes,
       Templates,
       template
-    } = base$17(props, context);
+    } = base$19(props, context);
 
     // ============== COMPUTED ==============
 
@@ -15090,14 +15123,14 @@ var FormTabs = {
       classes,
       Templates,
       template
-    } = base$17(props, context);
+    } = base$19(props, context);
     var {
       events,
       listeners,
       on,
       off,
       fire
-    } = base$1e(props, context, {
+    } = base$1g(props, context, {
       form$
     }, {
       events: context.emits
@@ -15398,7 +15431,7 @@ var FormTabs = {
   }
 };
 
-var base$16 = function base(props, context, dependencies) {
+var base$18 = function base(props, context, dependencies) {
   var {
     parent,
     conditions
@@ -15487,7 +15520,7 @@ var list$5 = function list(props, context, dependencies) {
     additionalConditions,
     addConditions,
     removeConditions
-  } = base$16(props, context, dependencies);
+  } = base$18(props, context, dependencies);
   var {
     conditions
   } = toRefs(props);
@@ -15585,7 +15618,7 @@ function localize(object, $config, form$) {
   return object && typeof object === 'object' ? (object === null || object === void 0 ? void 0 : object[locale]) || (object === null || object === void 0 ? void 0 : object[locale.toUpperCase()]) || (object === null || object === void 0 ? void 0 : object[$config.i18n.fallbackLocale]) || (object === null || object === void 0 ? void 0 : object[$config.i18n.fallbackLocale.toUpperCase()]) || (object === null || object === void 0 ? void 0 : object[Object.keys(object)[0]]) || '' : object;
 }
 
-var base$15 = function base(props, context, dependencies) {
+var base$17 = function base(props, context, dependencies) {
   // ============ DEPENDENCIES ============
 
   var labelDefinition = dependencies.labelDefinition;
@@ -15730,18 +15763,18 @@ var FormTab = {
       classes,
       Templates,
       template
-    } = base$17(props, context);
+    } = base$19(props, context);
     var {
       available,
       conditionList,
       updateConditions
-    } = base$16(props, context, {
+    } = base$18(props, context, {
       form$
     });
     var {
       isLabelComponent,
       label: tabLabel_
-    } = base$15(props, context, {
+    } = base$17(props, context, {
       component$: form$,
       labelDefinition: label
     });
@@ -15751,7 +15784,7 @@ var FormTab = {
       on,
       off,
       fire
-    } = base$1e(props, context, {
+    } = base$1g(props, context, {
       form$
     }, {
       events: context.emits
@@ -16087,14 +16120,14 @@ var FormSteps = {
       classes,
       Templates,
       template
-    } = base$17(props, context);
+    } = base$19(props, context);
     var {
       events,
       listeners,
       on,
       off,
       fire
-    } = base$1e(props, context, {
+    } = base$1g(props, context, {
       form$
     }, {
       events: context.emits
@@ -16706,7 +16739,7 @@ var FormStepsControls = {
       classes,
       Templates,
       template
-    } = base$17(props, context);
+    } = base$19(props, context);
 
     // ============== PROVIDE ===============
 
@@ -16761,7 +16794,7 @@ var FormStepsControl = {
       classes,
       Templates,
       template
-    } = base$17(props, context);
+    } = base$19(props, context);
 
     // ============== COMPUTED ==============
 
@@ -16789,7 +16822,7 @@ var FormStepsControl = {
     var {
       isLabelComponent,
       label
-    } = base$15(props, context, {
+    } = base$17(props, context, {
       component$: form$,
       labelDefinition: baseLabel
     });
@@ -17082,18 +17115,18 @@ var FormStep = {
       classes,
       Templates,
       template
-    } = base$17(props, context);
+    } = base$19(props, context);
     var {
       available,
       conditionList,
       updateConditions
-    } = base$16(props, context, {
+    } = base$18(props, context, {
       form$
     });
     var {
       isLabelComponent,
       label: stepLabel_
-    } = base$15(props, context, {
+    } = base$17(props, context, {
       component$: form$,
       labelDefinition: label
     });
@@ -17103,7 +17136,7 @@ var FormStep = {
       on,
       off,
       fire
-    } = base$1e(props, context, {
+    } = base$1g(props, context, {
       form$
     }, {
       events: context.emits
@@ -17592,7 +17625,7 @@ var FormStep = {
   }
 };
 
-var base$14 = function base(props, context, dependencies) {
+var base$16 = function base(props, context, dependencies) {
   // ============== METHODS ===============
 
   /**
@@ -17632,10 +17665,10 @@ var FormElements = {
       classes,
       Templates,
       template
-    } = base$17(props, context);
+    } = base$19(props, context);
     var {
       component
-    } = base$14();
+    } = base$16();
 
     // ============ COMPUTED ============
 
@@ -17663,7 +17696,7 @@ var FormElements = {
   }
 };
 
-var base$13 = function base(props, context, dependencies) {
+var base$15 = function base(props, context, dependencies) {
   // =============== INJECT ===============
 
   /**
@@ -17677,26 +17710,26 @@ var base$13 = function base(props, context, dependencies) {
   };
 };
 
-var base$12 = function base(props, context, dependencies) {
+var base$14 = function base(props, context, dependencies) {
   var componentName = context.name;
 
   // =============== INJECT ===============
 
   var {
     form$
-  } = base$1b();
+  } = base$1d();
   var {
     el$
-  } = base$13();
+  } = base$15();
   var {
     theme
-  } = base$1a();
+  } = base$1c();
   var {
     Size
-  } = base$19();
+  } = base$1b();
   var {
     View
-  } = base$18(props, context);
+  } = base$1a(props, context);
 
   // ============== COMPUTED ===============
 
@@ -17795,7 +17828,7 @@ var ElementLayout = {
       Templates,
       template,
       theme
-    } = base$12(props, context);
+    } = base$14(props, context);
 
     // ============== COMPUTED ==============
 
@@ -17838,7 +17871,7 @@ var ElementLayoutInline = {
       Templates,
       template,
       theme
-    } = base$12(props, context);
+    } = base$14(props, context);
 
     // ============== COMPUTED ==============
 
@@ -17881,7 +17914,7 @@ var ElementLoader = {
       Templates,
       template,
       theme
-    } = base$12(props, context);
+    } = base$14(props, context);
     return {
       el$,
       form$,
@@ -17917,7 +17950,7 @@ var ElementLabelFloating = {
       Templates,
       template,
       theme
-    } = base$12(props, context);
+    } = base$14(props, context);
 
     // =============== INJECT ===============
 
@@ -17969,11 +18002,11 @@ var ElementLabel = {
       Templates,
       template,
       theme
-    } = base$12(props, context);
+    } = base$14(props, context);
     var {
       label,
       isLabelComponent
-    } = base$15(props, context, {
+    } = base$17(props, context, {
       labelDefinition: computed(() => {
         return el$.value.label;
       }),
@@ -18062,7 +18095,7 @@ var ElementInfo = {
       Templates,
       template,
       theme
-    } = base$12(props, context);
+    } = base$14(props, context);
 
     // =============== INJECT ===============
 
@@ -18185,7 +18218,7 @@ var ElementDescription = {
       Templates,
       template,
       theme
-    } = base$12(props, context);
+    } = base$14(props, context);
 
     // =============== INJECT ===============
 
@@ -18253,7 +18286,7 @@ var ElementError = {
       Templates,
       template,
       theme
-    } = base$12(props, context);
+    } = base$14(props, context);
 
     // ============== COMPUTED ==============
 
@@ -18264,6 +18297,15 @@ var ElementError = {
      */
     var error = computed(() => {
       return el$.value.error;
+    });
+
+    /**
+     * Whether to show the error.
+     * 
+     * @type {boolean}
+     */
+    var showError = computed(() => {
+      return error.value && el$.value.displayErrors;
     });
 
     /**
@@ -18285,6 +18327,7 @@ var ElementError = {
       Templates,
       template,
       error,
+      showError,
       id
     };
   }
@@ -18305,7 +18348,7 @@ var ElementMessage = {
       Templates,
       template,
       theme
-    } = base$12(props, context);
+    } = base$14(props, context);
 
     // ============== COMPUTED ==============
 
@@ -18348,7 +18391,7 @@ var ElementRequired = {
       Templates,
       template,
       theme
-    } = base$12(props, context);
+    } = base$14(props, context);
 
     // ============== COMPUTED ==============
 
@@ -18414,7 +18457,7 @@ var ElementText = {
       Templates,
       template,
       theme
-    } = base$12(props, context);
+    } = base$14(props, context);
 
     // =============== INJECT ===============
 
@@ -18493,7 +18536,7 @@ var DragAndDrop = {
       Templates,
       template,
       theme
-    } = base$12(props, context);
+    } = base$14(props, context);
 
     // ================ DATA ================
 
@@ -18608,7 +18651,7 @@ var ElementAddon = {
       Templates,
       template,
       theme
-    } = base$12(props, context);
+    } = base$14(props, context);
 
     // =============== INJECT ===============
 
@@ -18736,14 +18779,14 @@ var ElementAddonOptions = {
       Templates,
       template,
       theme
-    } = base$12(props, context);
+    } = base$14(props, context);
     var {
       events,
       listeners,
       on,
       off,
       fire
-    } = base$1e(props, context, {
+    } = base$1g(props, context, {
       form$
     }, {
       events: context.emits
@@ -21855,7 +21898,7 @@ var DatepickerWrapper = {
       Templates,
       template,
       theme
-    } = base$12(props, context);
+    } = base$14(props, context);
     var moment = form$.value.$vueform.services.moment;
     var $this = getCurrentInstance().proxy;
 
@@ -22146,7 +22189,7 @@ var EditorWrapper = {
       Templates,
       template,
       theme
-    } = base$12(props, context);
+    } = base$14(props, context);
 
     // ================ DATA ================
 
@@ -22365,7 +22408,7 @@ var EditorWrapper = {
   }
 };
 
-var base$11 = function base(props, context, dependencies) {
+var base$13 = function base(props, context, dependencies) {
   var {
     label
   } = toRefs(props);
@@ -22433,7 +22476,7 @@ var base$11 = function base(props, context, dependencies) {
   };
 };
 
-var base$10 = function base(props, context, dependencies) {
+var base$12 = function base(props, context, dependencies) {
   var {
     columns,
     presets
@@ -22515,7 +22558,7 @@ var base$10 = function base(props, context, dependencies) {
   };
 };
 
-var base$$ = function base(props, context, dependencies) {
+var base$11 = function base(props, context, dependencies) {
   var {
     size,
     view,
@@ -22655,7 +22698,7 @@ var captcha$1 = function captcha(props, context, dependencies) {
     Views,
     hide,
     show
-  } = base$$(props, context, dependencies);
+  } = base$11(props, context, dependencies);
 
   // ============ DEPENDENCIES =============
 
@@ -22679,7 +22722,7 @@ var captcha$1 = function captcha(props, context, dependencies) {
   };
 };
 
-var base$_ = function base(props, context, dependencies) {
+var base$10 = function base(props, context, dependencies) {
   var {
     templates,
     presets
@@ -22726,7 +22769,7 @@ var base$_ = function base(props, context, dependencies) {
   };
 };
 
-var base$Z = function base(props, context, dependencies) {
+var base$$ = function base(props, context, dependencies) {
   var options = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
   toRefs(props);
 
@@ -22806,7 +22849,7 @@ var base$Z = function base(props, context, dependencies) {
   };
 };
 
-var base$Y = function base(props, context, dependencies) {
+var base$_ = function base(props, context, dependencies) {
   var {
     buttonLabel,
     buttonType,
@@ -22915,7 +22958,7 @@ var base$Y = function base(props, context, dependencies) {
   };
 };
 
-var base$X = function base(props, context, dependencies) {
+var base$Z = function base(props, context, dependencies) {
   var {
     layout,
     inline
@@ -22937,7 +22980,7 @@ var base$X = function base(props, context, dependencies) {
   };
 };
 
-var base$W = function base(props, context, dependencies) {
+var base$Y = function base(props, context, dependencies) {
   var {
     id,
     name
@@ -22963,7 +23006,7 @@ var base$W = function base(props, context, dependencies) {
   };
 };
 
-var base$V = function base(props, context, dependencies) {
+var base$X = function base(props, context, dependencies) {
   // ============ DEPENDENCIES ============
 
   var {
@@ -23004,7 +23047,7 @@ var editor$1 = function editor(props, context, dependencies) {
   };
 };
 
-var base$U = function base(props, context, dependencies) {
+var base$W = function base(props, context, dependencies) {
   var currentInstance = getCurrentInstance();
 
   // ============== COMPUTED ==============
@@ -23068,7 +23111,7 @@ function clone$1(value) {
 
 var clone_1 = clone$1;
 
-var base$T = function base(props, context, dependencies) {
+var base$V = function base(props, context, dependencies) {
   var {
     disabled
   } = toRefs(props);
@@ -23150,7 +23193,7 @@ var checkboxgroup$3 = function checkboxgroup(props, context, dependencies) {
   var {
     localDisabled,
     isDisabled
-  } = base$T(props, context, dependencies);
+  } = base$V(props, context, dependencies);
 
   // ================ DATA ================
 
@@ -23276,7 +23319,7 @@ var button$1 = function button(props, context, dependencies) {
 };
 var radiogroup$2 = checkboxgroup$3;
 
-var base$S = function base(props, context, dependencies) {
+var base$U = function base(props, context, dependencies) {
   // ============ DEPENDENCIES ============
 
   var fieldId = dependencies.fieldId;
@@ -23358,7 +23401,7 @@ var checkbox$1 = function checkbox(props, context, dependencies) {
     labelId,
     infoId,
     errorId
-  } = base$S(props, context, dependencies);
+  } = base$U(props, context, dependencies);
 
   // ============ DEPENDENCIES ============
 
@@ -23396,7 +23439,7 @@ var checkboxgroup$2 = function checkboxgroup(props, context, dependencies) {
     labelId,
     infoId,
     errorId
-  } = base$S(props, context, dependencies);
+  } = base$U(props, context, dependencies);
 
   // ============ DEPENDENCIES ============
 
@@ -23429,7 +23472,7 @@ var button = function button(props, context, dependencies) {
     labelId,
     infoId,
     errorId
-  } = base$S(props, context, dependencies);
+  } = base$U(props, context, dependencies);
 
   // ============ DEPENDENCIES ============
 
@@ -23458,7 +23501,7 @@ var static_$3 = function static_(props, context, dependencies) {
     labelId,
     infoId,
     errorId
-  } = base$S(props, context, dependencies);
+  } = base$U(props, context, dependencies);
 
   // ============== COMPUTED ==============
 
@@ -23484,7 +23527,7 @@ var phone$2 = function phone(props, context, dependencies) {
     infoId,
     errorId,
     aria
-  } = base$S(props, context, dependencies);
+  } = base$U(props, context, dependencies);
 
   // ============ DEPENDENCIES ============
 
@@ -23534,7 +23577,7 @@ var lowerFirst = createCaseFirst('toLowerCase');
 
 var lowerFirst_1 = lowerFirst;
 
-var base$R = function base(props, context, dependencies) {
+var base$T = function base(props, context, dependencies) {
   var {
     name
   } = toRefs(props);
@@ -23555,6 +23598,9 @@ var base$R = function base(props, context, dependencies) {
   * @private
   */
   var assignToParent = ($parent, assignToParent) => {
+    if ($parent.cells$) {
+      form$.value.$set($parent.cells$, name.value, currentInstance.proxy);
+    }
     if ($parent.children$Array) {
       $parent.children$Array.push(currentInstance.proxy);
     } else if ($parent.elements$) {
@@ -23572,6 +23618,9 @@ var base$R = function base(props, context, dependencies) {
   * @private
   */
   var removeFromParent = ($parent, removeFromParent) => {
+    if ($parent.cells$) {
+      form$.value.$delete($parent.cells$, name.value);
+    }
     if ($parent.children$Array) {
       $parent.children$Array.splice($parent.children$Array.map(e$ => normalize(e$.name)).indexOf(normalize(name.value)), 1);
     } else if ($parent.elements$) {
@@ -23586,7 +23635,7 @@ var base$R = function base(props, context, dependencies) {
   };
 };
 
-var base$Q = function base(props, context, dependencies) {
+var base$S = function base(props, context, dependencies) {
   var instantHooks = ['onBeforeCreate', 'onCreated'];
   var hooks = {
     onBeforeMount,
@@ -23606,7 +23655,7 @@ var base$Q = function base(props, context, dependencies) {
   var {
     assignToParent,
     removeFromParent
-  } = base$R(props, context, {
+  } = base$T(props, context, {
     form$
   });
 
@@ -23709,6 +23758,16 @@ var base$Q = function base(props, context, dependencies) {
   });
 
   /**
+   * Whether the element is a matrix.
+   *
+   * @type {boolean}
+   * @private
+   */
+  var isMatrixType = computed(() => {
+    return false;
+  });
+
+  /**
    * Whether the element should be visible when using `tabs` or `steps`.
    *
    * @type {boolean}
@@ -23767,6 +23826,7 @@ var base$Q = function base(props, context, dependencies) {
     isObjectType,
     isGroupType,
     isListType,
+    isMatrixType,
     isActive,
     active,
     mounted,
@@ -23782,13 +23842,14 @@ var list$4 = function list(props, context, dependencies) {
     isImageType,
     isObjectType,
     isGroupType,
+    isMatrixType,
     isActive,
     active,
     mounted,
     container,
     activate,
     deactivate
-  } = base$Q(props, context, dependencies);
+  } = base$S(props, context, dependencies);
 
   // ============== COMPUTED ==============
 
@@ -23805,6 +23866,7 @@ var list$4 = function list(props, context, dependencies) {
     isImageType,
     isObjectType,
     isGroupType,
+    isMatrixType,
     isListType,
     isActive,
     active,
@@ -23821,6 +23883,7 @@ var object$7 = function object(props, context, dependencies) {
     isArrayType,
     isImageType,
     isGroupType,
+    isMatrixType,
     isListType,
     isActive,
     active,
@@ -23828,7 +23891,7 @@ var object$7 = function object(props, context, dependencies) {
     container,
     activate,
     deactivate
-  } = base$Q(props, context, dependencies);
+  } = base$S(props, context, dependencies);
 
   // ============== COMPUTED ==============
 
@@ -23842,6 +23905,7 @@ var object$7 = function object(props, context, dependencies) {
     isImageType,
     isObjectType,
     isGroupType,
+    isMatrixType,
     isListType,
     isActive,
     active,
@@ -23858,6 +23922,7 @@ var group$7 = function group(props, context, dependencies) {
     isArrayType,
     isImageType,
     isObjectType,
+    isMatrixType,
     isListType,
     isActive,
     active,
@@ -23865,7 +23930,7 @@ var group$7 = function group(props, context, dependencies) {
     container,
     activate,
     deactivate
-  } = base$Q(props, context, dependencies);
+  } = base$S(props, context, dependencies);
 
   // ============== COMPUTED ==============
 
@@ -23879,6 +23944,46 @@ var group$7 = function group(props, context, dependencies) {
     isImageType,
     isObjectType,
     isGroupType,
+    isMatrixType,
+    isListType,
+    isActive,
+    active,
+    mounted,
+    container,
+    activate,
+    deactivate
+  };
+};
+var matrix$5 = function matrix(props, context, dependencies) {
+  var {
+    isStatic,
+    isFileType,
+    isArrayType,
+    isImageType,
+    isObjectType,
+    isGroupType,
+    isListType,
+    isActive,
+    active,
+    mounted,
+    container,
+    activate,
+    deactivate
+  } = base$S(props, context, dependencies);
+
+  // ============== COMPUTED ==============
+
+  var isMatrixType = computed(() => {
+    return true;
+  });
+  return {
+    isStatic,
+    isFileType,
+    isArrayType,
+    isImageType,
+    isObjectType,
+    isGroupType,
+    isMatrixType,
     isListType,
     isActive,
     active,
@@ -23897,6 +24002,7 @@ var file$3 = function file(props, context, dependencies) {
     isArrayType,
     isObjectType,
     isGroupType,
+    isMatrixType,
     isListType,
     isActive,
     active,
@@ -23904,7 +24010,7 @@ var file$3 = function file(props, context, dependencies) {
     container,
     activate,
     deactivate
-  } = base$Q(props, context, dependencies);
+  } = base$S(props, context, dependencies);
 
   // ============== COMPUTED ==============
 
@@ -23921,6 +24027,7 @@ var file$3 = function file(props, context, dependencies) {
     isImageType,
     isObjectType,
     isGroupType,
+    isMatrixType,
     isListType,
     isActive,
     active,
@@ -23937,6 +24044,7 @@ var static_$2 = function static_(props, context, dependencies) {
     isImageType,
     isObjectType,
     isGroupType,
+    isMatrixType,
     isListType,
     isActive,
     active,
@@ -23944,7 +24052,7 @@ var static_$2 = function static_(props, context, dependencies) {
     container,
     activate,
     deactivate
-  } = base$Q(props, context, dependencies);
+  } = base$S(props, context, dependencies);
 
   // ============== COMPUTED ==============
 
@@ -23958,6 +24066,7 @@ var static_$2 = function static_(props, context, dependencies) {
     isImageType,
     isObjectType,
     isGroupType,
+    isMatrixType,
     isListType,
     isActive,
     active,
@@ -23972,7 +24081,7 @@ var dates$5 = list$4;
 var multiselect$5 = list$4;
 var tags$5 = list$4;
 
-var base$P = function base(props, context, dependencies) {
+var base$R = function base(props, context, dependencies) {
   var {
     name
   } = toRefs(props);
@@ -24044,7 +24153,7 @@ var group$6 = function group(props, context, dependencies) {
   var {
     path,
     parent
-  } = base$P(props, context, dependencies);
+  } = base$R(props, context, dependencies);
 
   // ============== COMPUTED ==============
 
@@ -24068,7 +24177,7 @@ var static_$1 = function static_(props, context, dependencies) {
     path,
     parent,
     flat
-  } = base$P(props, context, dependencies);
+  } = base$R(props, context, dependencies);
 
   // ============== COMPUTED ==============
 
@@ -24093,7 +24202,7 @@ function resolveDeps(props, context, options) {
   return deps;
 }
 
-var base$O = function base(props, context) {
+var base$Q = function base(props, context) {
   var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
   var deps = resolveDeps(props, context, options);
   onMounted(() => {
@@ -24428,13 +24537,13 @@ var ButtonElement = {
   },
   setup(props, ctx) {
     var context = _objectSpread2$1({}, ctx);
-    context.features = [base$U, base$1b, base$1a, base$X, static_$1, base$1e, static_$2, button$1, base$16, base$11, base$$, base$_, base$W, base$Y, base$1c, base$10, base$Z, button, base$V];
+    context.features = [base$W, base$1d, base$1c, base$Z, static_$1, base$1g, static_$2, button$1, base$18, base$13, base$11, base$10, base$Y, base$_, base$1e, base$12, base$$, button, base$X];
     context.slots = ['label', 'info', 'description', 'before', 'between', 'after', 'default'];
     return _objectSpread2$1({}, static_(props, context));
   }
 };
 
-var base$N = function base(props, context, dependencies) {
+var base$P = function base(props, context, dependencies) {
   // ================ DATA ================
 
   /**
@@ -24469,12 +24578,128 @@ function checkDateFormat (format, date, moment) {
   }
 }
 
-var base$M = function base(props, context, dependencies) {
+var getRowKey = name => {
+  var parts = name.split('_');
+  return parts[parts.length - 2];
+};
+
+var getColKey = name => {
+  var parts = name.split('_');
+  return parts[parts.length - 1];
+};
+
+var valueGet = _ref => {
+  var {
+    parent,
+    name,
+    form$,
+    dataPath,
+    internalValue,
+    defaultValue
+  } = _ref;
+  var value;
+  if (parent.value && parent.value.isMatrixType) {
+    var row = parent.value.resolvedRows[getRowKey(name.value)];
+    var col = parent.value.resolvedColumns[getColKey(name.value)];
+    var rowModel = form$.value.isSync ? get_1(form$.value.model, "".concat(parent.value.dataPath, ".").concat(row.value)) : parent.value.value[row.value];
+    switch (parent.value.dataType) {
+      case 'assoc':
+        value = rowModel === col.value ? true : null;
+        break;
+      case 'array':
+        value = Array.isArray(rowModel) && rowModel.includes(col.value);
+        break;
+      default:
+        value = rowModel === null || rowModel === void 0 ? void 0 : rowModel[col.value];
+    }
+  } else if (form$.value.isSync) {
+    value = get_1(form$.value.model, dataPath.value);
+  } else if (parent.value && (parent.value.isObjectType || parent.value.isGroupType || parent.value.isListType)) {
+    value = parent.value.value[name.value];
+  } else {
+    value = internalValue === null || internalValue === void 0 ? void 0 : internalValue.value;
+  }
+  return value !== undefined ? value : (defaultValue === null || defaultValue === void 0 ? void 0 : defaultValue.value) instanceof File ? defaultValue === null || defaultValue === void 0 ? void 0 : defaultValue.value : cloneDeep_1(defaultValue === null || defaultValue === void 0 ? void 0 : defaultValue.value);
+};
+
+var valueSet = (val, _ref) => {
+  var {
+    parent,
+    name,
+    form$,
+    dataPath,
+    internalValue
+  } = _ref;
+  if (parent.value && parent.value.isMatrixType) {
+    var row = parent.value.resolvedRows[getRowKey(name.value)];
+    var col = parent.value.resolvedColumns[getColKey(name.value)];
+    var matrixModel = form$.value.isSync ? get_1(form$.value.model, parent.value.dataPath) : parent.value.value;
+    var rowModel = matrixModel[row.value];
+    var newValue;
+    switch (parent.value.dataType) {
+      case 'assoc':
+        var assocValue;
+        if (val) {
+          assocValue = col.value;
+        } else if (rowModel === col.value || rowModel && typeof rowModel !== typeof col.value) {
+          assocValue = null;
+        }
+        newValue = _objectSpread2$1({}, matrixModel);
+        if (assocValue !== undefined) {
+          newValue[row.value] = assocValue;
+        }
+        break;
+      case 'array':
+        var arrayValue = [];
+        parent.value.resolvedColumns.forEach((column, c) => {
+          if (Array.isArray(rowModel) && rowModel.includes(column.value) && column.value !== col.value || column.value === col.value && val) {
+            arrayValue.push(column.value);
+          }
+        });
+        newValue = _objectSpread2$1(_objectSpread2$1({}, matrixModel), {}, {
+          [row.value]: arrayValue
+        });
+        break;
+      default:
+        var newParentValue = {};
+        parent.value.resolvedRows.forEach((Row, r) => {
+          newParentValue[Row.value] = _objectSpread2$1({}, Object.keys(matrixModel[Row.value] || {}).filter(k => parent.value.resolvedColumns.map(c => String(c.value)).includes(k)).reduce((prev, curr) => _objectSpread2$1(_objectSpread2$1({}, prev), {}, {
+            [curr]: matrixModel[Row.value][curr]
+          }), {}));
+          if (Row.value === row.value) {
+            parent.value.resolvedColumns.forEach((Column, c) => {
+              newParentValue[row.value][Column.value] = Column.value === col.value ? val : newParentValue[row.value][Column.value];
+            });
+          }
+        });
+        newValue = newParentValue;
+    }
+    if (form$.value.isSync) {
+      form$.value.updateModel(parent.value.dataPath, newValue);
+    } else {
+      parent.value.value = newValue;
+    }
+  } else if (form$.value.isSync) {
+    form$.value.updateModel(dataPath.value, val);
+  } else if (parent.value && parent.value.isListType) {
+    var _newValue = parent.value.value.map((v, k) => k == name.value ? val : v);
+    parent.value.update(_newValue);
+  } else if (parent.value && (parent.value.isObjectType || parent.value.isGroupType)) {
+    parent.value.value = Object.assign({}, parent.value.value, {
+      [name.value]: val
+    });
+  } else {
+    internalValue.value = val;
+  }
+};
+
+var base$O = function base(props, context, dependencies) {
   var _options$value, _options$value2;
   var options = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
   var {
     name,
-    type
+    type,
+    inputType
   } = toRefs(props);
 
   // ============ DEPENDENCIES =============
@@ -24496,12 +24721,12 @@ var base$M = function base(props, context, dependencies) {
    * @type {any}
    * @private
    */
-  var initialValue = ref(undefined);
-  if (form$.value.isSync) {
-    initialValue.value = get_1(form$.value.model, dataPath.value);
-  } else if (parent.value && (parent.value.isObjectType || parent.value.isGroupType || parent.value.isListType)) {
-    initialValue.value = parent.value.value[name.value];
-  }
+  var initialValue = ref(valueGet({
+    parent,
+    name,
+    form$,
+    dataPath
+  }));
 
   // ============== COMPUTED ===============
 
@@ -24520,29 +24745,23 @@ var base$M = function base(props, context, dependencies) {
    */
   var value = computed({
     get: ((_options$value = options.value) === null || _options$value === void 0 ? void 0 : _options$value.get) || function () {
-      var value;
-      if (form$.value.isSync) {
-        value = get_1(form$.value.model, dataPath.value);
-      } else if (parent.value && (parent.value.isObjectType || parent.value.isGroupType || parent.value.isListType)) {
-        value = parent.value.value[name.value];
-      } else {
-        value = internalValue.value;
-      }
-      return value !== undefined ? value : (/* istanbul ignore next: value is never undefined if default is set */defaultValue.value instanceof File ? defaultValue.value : cloneDeep_1(defaultValue.value));
+      return valueGet({
+        parent,
+        name,
+        form$,
+        dataPath,
+        internalValue,
+        defaultValue
+      });
     },
     set: ((_options$value2 = options.value) === null || _options$value2 === void 0 ? void 0 : _options$value2.set) || function (val) {
-      if (form$.value.isSync) {
-        form$.value.updateModel(dataPath.value, val);
-      } else if (parent.value && parent.value.isListType) {
-        var newValue = parent.value.value.map((v, k) => k == name.value ? val : v);
-        parent.value.update(newValue);
-      } else if (parent.value && (parent.value.isObjectType || parent.value.isGroupType)) {
-        parent.value.value = Object.assign({}, parent.value.value, {
-          [name.value]: val
-        });
-      } else {
-        internalValue.value = val;
-      }
+      return valueSet(val, {
+        parent,
+        name,
+        form$,
+        dataPath,
+        internalValue
+      });
     }
   });
 
@@ -24559,12 +24778,6 @@ var base$M = function base(props, context, dependencies) {
       value.value = val;
     }
   });
-  if (options.init === undefined || options.init !== false) {
-    // If element's value was undefined initially (not found in v-model/data) then we need to set its value
-    if (initialValue.value === undefined) {
-      value.value = defaultValue.value instanceof File ? defaultValue.value : cloneDeep_1(defaultValue.value);
-    }
-  }
 
   /**
    * Whether the element has its default value.
@@ -24574,12 +24787,139 @@ var base$M = function base(props, context, dependencies) {
   var isDefault = computed(() => {
     return isEqual_1(value.value, defaultValue.value);
   });
+  if (options.init === undefined || options.init !== false) {
+    // If element's value was undefined initially (not found in v-model/data) then we need to set its value
+    if (initialValue.value === undefined) {
+      value.value = defaultValue.value instanceof File ? defaultValue.value : cloneDeep_1(defaultValue.value);
+    }
+  }
 
   // ============== WATCHERS ===============
 
   /* istanbul ignore next: type can not be changed on the fly */
   watch(type, () => {
     value.value = defaultValue.value instanceof File ? defaultValue.value : cloneDeep_1(defaultValue.value);
+  });
+  return {
+    initialValue,
+    internalValue,
+    value,
+    model,
+    isDefault
+  };
+};
+var matrix$4 = function matrix(props, context, dependencies) {
+  var {
+    name,
+    type,
+    rows
+  } = toRefs(props);
+
+  // ============ DEPENDENCIES =============
+
+  var {
+    parent,
+    defaultValue,
+    dataPath,
+    form$,
+    isObject,
+    isGroup,
+    isList,
+    hasDynamicRows,
+    computedRows,
+    resolvedRows,
+    resolvedColumns,
+    rowsCount
+  } = dependencies;
+
+  // ================ DATA =================
+
+  var initialValue = ref(undefined);
+
+  // If sync
+  if (form$.value.isSync) {
+    initialValue.value = get_1(form$.value.model, dataPath.value);
+
+    // If parent is a container
+  } else if (parent.value && (parent.value.isObjectType || parent.value.isGroupType || parent.value.isListType)) {
+    initialValue.value = parent.value.value[name.value];
+  }
+
+  // ============== COMPUTED ===============
+
+  var internalValue = ref(cloneDeep_1(defaultValue.value));
+
+  /**
+   * The value of the element.
+   *
+   * @type {any}
+   */
+  var value = computed({
+    get: function get() {
+      var value;
+
+      // If sync
+      if (form$.value.isSync) {
+        value = get_1(form$.value.model, dataPath.value);
+
+        // If parent is a container or list
+      } else if (parent.value && (parent.value.isObjectType || parent.value.isGroupType || parent.value.isListType)) {
+        value = parent.value.value[name.value];
+
+        // If has no parent
+      } else {
+        value = internalValue.value;
+      }
+      value = value !== undefined ? value : cloneDeep_1(defaultValue.value);
+      if (hasDynamicRows.value) {
+        value = Object.values(value);
+      }
+      return value;
+    },
+    set: function set(val) {
+      // // If sync
+      if (form$.value.isSync) {
+        form$.value.updateModel(dataPath.value, val);
+      }
+
+      // If parent is list
+      else if (parent.value && parent.value.isListType) {
+        parent.value.update(parent.value.value.map((v, k) => k == name.value ? val : v));
+      }
+
+      // If parent is container
+      else if (parent.value && (parent.value.isObjectType || parent.value.isGroupType)) {
+        parent.value.value = Object.assign({}, parent.value.value, {
+          [name.value]: val
+        });
+
+        // If has no parent
+      } else {
+        internalValue.value = val;
+      }
+    }
+  });
+  var model = computed({
+    get() {
+      return value.value;
+    },
+    set(val) {
+      value.value = val;
+    }
+  });
+  var isDefault = computed(() => {
+    return isEqual_1(value.value, defaultValue.value);
+  });
+  if (initialValue.value === undefined) {
+    value.value = defaultValue.value;
+  } else {
+    value.value = _objectSpread2$1(_objectSpread2$1({}, defaultValue.value), value.value);
+  }
+
+  // ============== WATCHERS ===============
+
+  watch(type, () => {
+    value.value = cloneDeep_1(defaultValue.value);
   });
   return {
     initialValue,
@@ -24596,7 +24936,7 @@ var list$3 = function list(props, context, dependencies) {
     value,
     model,
     isDefault
-  } = base$M(props, context, dependencies, {
+  } = base$O(props, context, dependencies, {
     init: false
   });
   return {
@@ -24614,7 +24954,7 @@ var object$6 = function object(props, context, dependencies) {
     internalValue,
     value,
     isDefault
-  } = base$M(props, context, dependencies, {
+  } = base$O(props, context, dependencies, {
     init: false
   });
 
@@ -24729,7 +25069,7 @@ var multilingual$7 = function multilingual(props, context, dependencies) {
   var {
     value,
     isDefault
-  } = base$M(props, context, dependencies);
+  } = base$O(props, context, dependencies);
 
   // ============ DEPENDENCIES =============
 
@@ -24778,23 +25118,22 @@ var date$3 = function date(props, context, dependencies) {
    * @type {any}
    * @private
    */
-  var internalValue = ref(defaultValue.value instanceof File ? /* istanbul ignore next: @todo:adam date type will never have file instance default value */defaultValue.value : cloneDeep_1(defaultValue.value));
+  var internalValue = ref(cloneDeep_1(defaultValue.value));
   var {
     value,
     initialValue,
     isDefault
-  } = base$M(props, context, dependencies, {
+  } = base$O(props, context, dependencies, {
     value: {
       get() {
-        var value;
-        if (form$.value.isSync) {
-          value = get_1(form$.value.model, dataPath.value);
-        } else if (parent.value && (parent.value.isObjectType || parent.value.isGroupType || parent.value.isListType)) {
-          value = parent.value.value[name.value];
-        } else {
-          value = internalValue.value;
-        }
-        return value !== undefined ? value : (/* istanbul ignore next: can not be undefined @todo:adam can not be file */defaultValue.value instanceof File ? defaultValue.value : cloneDeep_1(defaultValue.value));
+        return valueGet({
+          parent,
+          name,
+          form$,
+          dataPath,
+          internalValue,
+          defaultValue
+        });
       },
       set(val) {
         // If the value is not a Date object check if it is matching the value format
@@ -24802,18 +25141,13 @@ var date$3 = function date(props, context, dependencies) {
           checkDateFormat(valueDateFormat.value, val, moment);
         }
         val = val && val instanceof Date && valueDateFormat.value !== false ? moment(val).format(valueDateFormat.value) : val;
-        if (form$.value.isSync) {
-          form$.value.updateModel(dataPath.value, val);
-        } else if (parent.value && parent.value.isListType) {
-          var newValue = parent.value.value.map((v, k) => k == name.value ? val : v);
-          parent.value.update(newValue);
-        } else if (parent.value && (parent.value.isObjectType || parent.value.isGroupType)) {
-          parent.value.value = Object.assign({}, parent.value.value, {
-            [name.value]: val
-          });
-        } else {
-          internalValue.value = val;
-        }
+        return valueSet(val, {
+          parent,
+          name,
+          form$,
+          dataPath,
+          internalValue
+        });
       }
     }
   });
@@ -24856,23 +25190,22 @@ var dates$4 = function dates(props, context, dependencies) {
    * @type {any}
    * @private
    */
-  var internalValue = ref(defaultValue.value instanceof File ? /* istanbul ignore next: @todo:adam date type will never have file instance default value */defaultValue.value : cloneDeep_1(defaultValue.value));
+  var internalValue = ref(cloneDeep_1(defaultValue.value));
   var {
     value,
     initialValue,
     isDefault
-  } = base$M(props, context, dependencies, {
+  } = base$O(props, context, dependencies, {
     value: {
       get() {
-        var value;
-        if (form$.value.isSync) {
-          value = get_1(form$.value.model, dataPath.value);
-        } else if (parent.value && (parent.value.isObjectType || parent.value.isGroupType || parent.value.isListType)) {
-          value = parent.value.value[name.value];
-        } else {
-          value = internalValue.value;
-        }
-        return value !== undefined ? value : (/* istanbul ignore next: can not be undefined @todo:adam can not be file */defaultValue.value instanceof File ? defaultValue.value : cloneDeep_1(defaultValue.value));
+        return valueGet({
+          parent,
+          name,
+          form$,
+          dataPath,
+          internalValue,
+          defaultValue
+        });
       },
       set(val) {
         if (!Array.isArray(val)) {
@@ -24884,18 +25217,13 @@ var dates$4 = function dates(props, context, dependencies) {
           }
           return v && v instanceof Date && valueDateFormat.value !== false ? moment(v).format(valueDateFormat.value) : v;
         });
-        if (form$.value.isSync) {
-          form$.value.updateModel(dataPath.value, val);
-        } else if (parent.value && parent.value.isListType) {
-          var newValue = parent.value.value.map((v, k) => k == name.value ? val : v);
-          parent.value.update(newValue);
-        } else if (parent.value && (parent.value.isObjectType || parent.value.isGroupType)) {
-          parent.value.value = Object.assign({}, parent.value.value, {
-            [name.value]: val
-          });
-        } else {
-          internalValue.value = val;
-        }
+        return valueSet(val, {
+          parent,
+          name,
+          form$,
+          dataPath,
+          internalValue
+        });
       }
     }
   });
@@ -24916,7 +25244,7 @@ var dates$4 = function dates(props, context, dependencies) {
   };
 };
 
-var base$L = function base(props, context, dependencies) {
+var base$N = function base(props, context, dependencies) {
   // ============== COMPUTED ===============
 
   /**
@@ -25031,7 +25359,7 @@ var generic = function generic(props, context, dependencies) {
   };
 };
 
-var base$K = function base(props, context, dependencies) {
+var base$M = function base(props, context, dependencies) {
   var {
     name,
     floating,
@@ -25116,7 +25444,7 @@ var file$2 = function file(props, context, dependencies) {
   };
 };
 
-var base$J = function base(props, context, dependencies) {
+var base$L = function base(props, context, dependencies) {
   // ============ DEPENDENCIES ============
 
   var value = dependencies.value;
@@ -25168,7 +25496,7 @@ var array = function array(props, context, dependencies) {
   };
 };
 
-var base$I = function base(props, context, dependencies) {
+var base$K = function base(props, context, dependencies) {
   var {
     loading
   } = toRefs(props);
@@ -25192,7 +25520,7 @@ var base$I = function base(props, context, dependencies) {
   };
 };
 
-var base$H = function base(props, context, dependencies) {
+var base$J = function base(props, context, dependencies) {
   var {
     floating,
     placeholder
@@ -25217,7 +25545,7 @@ var base$H = function base(props, context, dependencies) {
   };
 };
 
-var base$G = function base(props, context, dependencies) {
+var base$I = function base(props, context, dependencies) {
   // ============ DEPENDENCIES =============
 
   var form$ = dependencies.form$;
@@ -25404,7 +25732,7 @@ var location$1 = function location(props, context, dependencies) {
 var multifile$5 = list$2;
 var group$4 = object$4;
 
-var base$F = function base(props, context, dependencies) {
+var base$H = function base(props, context, dependencies) {
   var {
     provider: elementProvider,
     options,
@@ -25523,7 +25851,7 @@ var base$F = function base(props, context, dependencies) {
   };
 };
 
-var base$E = function base(props, context, dependencies) {
+var base$G = function base(props, context, dependencies) {
   var {
     rules
   } = toRefs(props);
@@ -25715,6 +26043,24 @@ var base$E = function base(props, context, dependencies) {
     });
   });
 
+  /**
+   * Whether the element should use a custom logic for checking if it is filled when validating.
+   * 
+   * @type {boolean}
+   */
+  var useCustomFilled = computed(() => {
+    return false;
+  });
+
+  /**
+   * Whether the element is filled is `useCustomFilled` is `true`.
+   * 
+   * @type {boolean}
+   */
+  var isFilled = computed(() => {
+    return true;
+  });
+
   // =============== METHODS ===============
 
   /**
@@ -25848,6 +26194,8 @@ var base$E = function base(props, context, dependencies) {
     isDanger,
     isSuccess,
     isRequired,
+    useCustomFilled,
+    isFilled,
     validate,
     dirt,
     clean,
@@ -25874,6 +26222,8 @@ var text$2 = function text(props, context, dependencies) {
     isDanger,
     isSuccess,
     isRequired,
+    useCustomFilled,
+    isFilled,
     validate,
     dirt,
     clean,
@@ -25882,7 +26232,7 @@ var text$2 = function text(props, context, dependencies) {
     initMessageBag,
     initValidation,
     reinitValidation
-  } = base$E(props, context, dependencies);
+  } = base$G(props, context, dependencies);
 
   // ============== COMPUTED ===============
 
@@ -25922,6 +26272,8 @@ var text$2 = function text(props, context, dependencies) {
     isDanger,
     isSuccess,
     isRequired,
+    useCustomFilled,
+    isFilled,
     validate,
     dirt,
     clean,
@@ -25943,8 +26295,10 @@ var list$1 = function list(props, context, dependencies) {
     dirt,
     initValidation,
     resetting,
-    isRequired
-  } = base$E(props, context, dependencies);
+    isRequired,
+    useCustomFilled,
+    isFilled
+  } = base$G(props, context, dependencies);
   var form$ = dependencies.form$;
   var children$ = dependencies.children$;
 
@@ -26209,6 +26563,8 @@ var list$1 = function list(props, context, dependencies) {
     debouncing,
     busy,
     isRequired,
+    useCustomFilled,
+    isFilled,
     validatorErrors,
     childrenErrors,
     errors,
@@ -26241,7 +26597,9 @@ var multilingual$3 = function multilingual(props, context, dependencies) {
   var {
     messageBag,
     clearMessages,
-    resetting
+    resetting,
+    useCustomFilled,
+    isFilled
   } = text$2(props, context, dependencies);
 
   // ================ DATA ================
@@ -26556,6 +26914,8 @@ var multilingual$3 = function multilingual(props, context, dependencies) {
     isDanger,
     isSuccess,
     isRequired,
+    useCustomFilled,
+    isFilled,
     validate,
     validateLanguage,
     dirt,
@@ -26583,6 +26943,8 @@ var slider$1 = function slider(props, context, dependencies) {
     pending,
     busy,
     isRequired,
+    useCustomFilled,
+    isFilled,
     errors,
     error,
     validationRules,
@@ -26593,7 +26955,7 @@ var slider$1 = function slider(props, context, dependencies) {
     initMessageBag,
     initValidation,
     reinitValidation
-  } = base$E(props, context, dependencies);
+  } = base$G(props, context, dependencies);
 
   // =============== METHODS ==============
 
@@ -26654,6 +27016,8 @@ var slider$1 = function slider(props, context, dependencies) {
     pending,
     busy,
     isRequired,
+    useCustomFilled,
+    isFilled,
     errors,
     error,
     validationRules,
@@ -26684,6 +27048,8 @@ var file$1 = function file(props, context, dependencies) {
     invalid,
     pending,
     isRequired,
+    useCustomFilled,
+    isFilled,
     errors,
     error,
     validationRules,
@@ -26694,7 +27060,7 @@ var file$1 = function file(props, context, dependencies) {
     initMessageBag,
     initValidation,
     reinitValidation
-  } = base$E(props, context, dependencies);
+  } = base$G(props, context, dependencies);
 
   // ============== COMPUTED ==============
 
@@ -26755,6 +27121,8 @@ var file$1 = function file(props, context, dependencies) {
     pending,
     busy,
     isRequired,
+    useCustomFilled,
+    isFilled,
     errors,
     error,
     validationRules,
@@ -26789,6 +27157,8 @@ var location = function location(props, context, dependencies) {
     debouncing,
     busy,
     isRequired,
+    useCustomFilled,
+    isFilled,
     errors,
     error,
     validationRules,
@@ -26848,6 +27218,8 @@ var location = function location(props, context, dependencies) {
     debouncing,
     busy,
     isRequired,
+    useCustomFilled,
+    isFilled,
     errors,
     error,
     validationRules,
@@ -26863,10 +27235,99 @@ var location = function location(props, context, dependencies) {
     reinitValidation
   };
 };
+var matrix$3 = function matrix(props, context, dependencies) {
+  // ============ DEPENDENCIES ============
+
+  var {
+    value,
+    dataType
+  } = dependencies;
+  var {
+    state,
+    Validators,
+    messageBag,
+    resetting,
+    dirty,
+    validated,
+    invalid,
+    pending,
+    busy,
+    errors,
+    validationRules,
+    isDanger,
+    isSuccess,
+    isRequired,
+    validate,
+    dirt,
+    clean,
+    clearMessages,
+    resetValidators,
+    initMessageBag,
+    initValidation,
+    reinitValidation
+  } = object$3(props, context, dependencies);
+
+  // ============== COMPUTED ==============
+
+  var error = computed(() => {
+    var _errors$value;
+    return (_errors$value = errors.value) === null || _errors$value === void 0 ? void 0 : _errors$value[0];
+  });
+  var useCustomFilled = computed(() => {
+    return true;
+  });
+  var isFilled = computed(() => {
+    switch (dataType.value) {
+      case 'assoc':
+        return Object.values(value.value).every(v => v !== null);
+      case 'array':
+        return Object.values(value.value).every(v => v.length);
+      case 'object':
+        return Object.values(value.value).every(v => Object.values(v).every(sv => {
+          if (Array.isArray(sv)) {
+            return sv.length;
+          } else if (sv instanceof File) {
+            return sv.name !== '';
+          } else if (typeof sv === 'string') {
+            return sv.trim() !== '';
+          } else {
+            return sv !== undefined && sv !== null;
+          }
+        }));
+    }
+  });
+  return {
+    state,
+    Validators,
+    messageBag,
+    resetting,
+    dirty,
+    validated,
+    invalid,
+    pending,
+    busy,
+    errors,
+    error,
+    validationRules,
+    isDanger,
+    isSuccess,
+    isRequired,
+    useCustomFilled,
+    isFilled,
+    validate,
+    dirt,
+    clean,
+    clearMessages,
+    resetValidators,
+    initMessageBag,
+    initValidation,
+    reinitValidation
+  };
+};
 var group$3 = list$1;
 var object$3 = list$1;
 
-var base$D = function base(props, context, dependencies) {
+var base$F = function base(props, context, dependencies) {
   var {
     default: default_,
     name
@@ -26874,9 +27335,11 @@ var base$D = function base(props, context, dependencies) {
 
   // ============ DEPENDENCIES =============
 
-  var nullValue = dependencies.nullValue;
-  var form$ = dependencies.form$;
-  var parent = dependencies.parent;
+  var {
+    nullValue,
+    form$,
+    parent
+  } = dependencies;
 
   // ============== COMPUTED ===============
 
@@ -26888,7 +27351,22 @@ var base$D = function base(props, context, dependencies) {
    */
   var defaultValue = computed(() => {
     var parentDefaultValue;
-    if (parent && parent.value && !parent.value.mounted) {
+    if (parent && parent.value && parent.value.isMatrixType) {
+      var row = parent.value.resolvedRows[getRowKey(name.value)];
+      var col = parent.value.resolvedColumns[getColKey(name.value)];
+      var rowModel = parent.value.defaultValue[row.value];
+      switch (parent.value.dataType) {
+        case 'assoc':
+          parentDefaultValue = rowModel === col.value ? true : null;
+          break;
+        case 'array':
+          parentDefaultValue = Array.isArray(rowModel) && rowModel.includes(col.value);
+          break;
+        default:
+          parentDefaultValue = rowModel === null || rowModel === void 0 ? void 0 : rowModel[col.value];
+          break;
+      }
+    } else if (parent && parent.value) {
       parentDefaultValue = parent.value.defaultValue[name.value];
     } else if (form$.value.options.default[name.value] !== undefined) {
       parentDefaultValue = form$.value.options.default[name.value];
@@ -26931,9 +27409,24 @@ var text$1 = function text(props, context, dependencies) {
    */
   var defaultValue = computed(() => {
     var parentDefaultValue;
-    if (parent && parent.value && !parent.value.mounted) {
+    if (parent && parent.value && parent.value.isMatrixType) {
+      var row = parent.value.resolvedRows[getRowKey(name.value)];
+      var col = parent.value.resolvedColumns[getColKey(name.value)];
+      var rowModel = parent.value.defaultValue[row.value];
+      switch (parent.value.dataType) {
+        case 'assoc':
+          parentDefaultValue = rowModel === col.value ? true : null;
+          break;
+        case 'array':
+          parentDefaultValue = Array.isArray(rowModel) && rowModel.includes(col.value);
+          break;
+        default:
+          parentDefaultValue = rowModel === null || rowModel === void 0 ? void 0 : rowModel[col.value];
+          break;
+      }
+    } else if (parent && parent.value) {
       parentDefaultValue = parent.value.defaultValue[name.value];
-    } else if (typeof form$.value.options.default[name.value] !== undefined) {
+    } else if (form$.value.options.default[name.value] !== undefined) {
       parentDefaultValue = form$.value.options.default[name.value];
     }
     if (parentDefaultValue !== undefined) {
@@ -26969,7 +27462,7 @@ var object$2 = function object(props, context, dependencies) {
 
   var defaultValue = computed(() => {
     var parentDefaultValue;
-    if (parent && parent.value && !parent.value.mounted) {
+    if (parent && parent.value) {
       parentDefaultValue = parent.value.defaultValue[name.value];
     } else if (form$.value.options.default[name.value]) {
       parentDefaultValue = form$.value.options.default[name.value];
@@ -26981,6 +27474,63 @@ var object$2 = function object(props, context, dependencies) {
       return cloneDeep_1(default_.value);
     }
     return cloneDeep_1(nullValue.value);
+  });
+  return {
+    defaultValue
+  };
+};
+var matrix$2 = function matrix(props, context, dependencies) {
+  var {
+    name,
+    default: default_
+  } = toRefs(props);
+
+  // ============ DEPENDENCIES =============
+
+  var {
+    nullValue,
+    form$,
+    parent,
+    hasDynamicRows,
+    computedRows,
+    resolvedRows,
+    resolvedColumns,
+    rowsCount,
+    dataType,
+    el$
+  } = dependencies;
+
+  // ============== COMPUTED ===============
+
+  var defaultValue = computed(() => {
+    var parentDefaultValue;
+    if (parent && parent.value) {
+      parentDefaultValue = parent.value.defaultValue[name.value];
+    } else if (form$.value.options.default[name.value]) {
+      parentDefaultValue = form$.value.options.default[name.value];
+    }
+    var defaultValue = parentDefaultValue || cloneDeep_1(default_.value);
+    if (Object.keys(defaultValue).length) {
+      return defaultValue;
+    }
+    resolvedRows.value.forEach((row, r) => {
+      resolvedColumns.value.forEach((col, c) => {
+        var _defaultValue$row$val;
+        switch (dataType.value) {
+          case 'assoc':
+            defaultValue[row.value] = defaultValue[row.value] === col.value ? col.value : null;
+            break;
+          case 'array':
+            defaultValue[row.value] = [...(defaultValue[row.value] || []), ...(defaultValue[row.value] && defaultValue[row.value].indexOf(col.value) !== -1 ? [col.value] : [])];
+            break;
+          default:
+            defaultValue[row.value] = _objectSpread2$1(_objectSpread2$1({}, defaultValue[row.value] || {}), {}, {
+              [col.value]: ((_defaultValue$row$val = defaultValue[row.value]) === null || _defaultValue$row$val === void 0 ? void 0 : _defaultValue$row$val[col.value]) || undefined
+            });
+        }
+      });
+    });
+    return defaultValue;
   });
   return {
     defaultValue
@@ -27000,7 +27550,7 @@ var group$2 = function group(props, context, dependencies) {
 
   var defaultValue = computed(() => {
     var parentDefaultValue = {};
-    if (parent && parent.value && !parent.value.mounted) {
+    if (parent && parent.value) {
       parentDefaultValue = parent.value.defaultValue;
     } else if (form$.value.options.default) {
       //@todo:adam
@@ -27028,7 +27578,7 @@ var multilingual$2 = function multilingual(props, context, dependencies) {
 
   var defaultValue = computed(() => {
     var parentDefaultValue;
-    if (parent && parent.value && !parent.value.mounted) {
+    if (parent && parent.value) {
       parentDefaultValue = parent.value.defaultValue[name.value];
     } else if (form$.value.options.default[name.value]) {
       parentDefaultValue = form$.value.options.default[name.value];
@@ -27054,7 +27604,7 @@ var multilingual$2 = function multilingual(props, context, dependencies) {
   };
 };
 
-var base$C = function base(props, context, dependencies) {
+var base$E = function base(props, context, dependencies) {
   var {
     readonly
   } = toRefs(props);
@@ -27299,7 +27849,7 @@ var sortBy = baseRest(function(collection, iteratees) {
 
 var sortBy_1 = sortBy;
 
-var base$B = function base(props, context, dependencies) {
+var base$D = function base(props, context, dependencies) {
   var options = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
   var {
     submit,
@@ -27445,7 +27995,7 @@ var text = function text(props, context, dependencies) {
     clear,
     reset,
     prepare
-  } = base$B(props, context, dependencies);
+  } = base$D(props, context, dependencies);
 
   // ============ DEPENDENCIES =============
 
@@ -27534,7 +28084,7 @@ var select$3 = function select(props, context, dependencies) {
     update,
     clear,
     prepare
-  } = base$B(props, context, dependencies);
+  } = base$D(props, context, dependencies);
 
   // ============ DEPENDENCIES =============
 
@@ -27585,7 +28135,7 @@ var captcha = function captcha(props, context, dependencies) {
     clear: clearBase,
     reset: resetBase,
     prepare
-  } = base$B(props, context, dependencies);
+  } = base$D(props, context, dependencies);
 
   // ============ DEPENDENCIES =============
 
@@ -27815,7 +28365,7 @@ var list = function list(props, context, dependencies, options) {
     update,
     clear,
     data
-  } = base$B(props, context, dependencies);
+  } = base$D(props, context, dependencies);
 
   // ============ DEPENDENCIES =============
 
@@ -27990,7 +28540,7 @@ var list = function list(props, context, dependencies, options) {
     }
     var desc = order.value && typeof order.value === 'string' && order.value.toUpperCase() == 'DESC';
 
-    /* istanbul ignore else: console.log() shows that the single run test falls into the else branch, but coverage does not detect */
+    /* istanbul ignore else */
     if (orderByName.value) {
       val = desc ? sortBy_1(val, orderByName.value).reverse() : sortBy_1(val, orderByName.value);
     } else if (order.value) {
@@ -28065,7 +28615,7 @@ var date$2 = function date(props, context, dependencies) {
     clear,
     reset,
     prepare
-  } = base$B(props, context, dependencies);
+  } = base$D(props, context, dependencies);
 
   // ============ DEPENDENCIES =============
 
@@ -28103,7 +28653,7 @@ var dates$3 = function dates(props, context, dependencies) {
     clear,
     reset,
     prepare
-  } = base$B(props, context, dependencies);
+  } = base$D(props, context, dependencies);
 
   // ============ DEPENDENCIES =============
 
@@ -28143,7 +28693,7 @@ var multilingual$1 = function multilingual(props, context, dependencies) {
     clear,
     reset,
     prepare
-  } = base$B(props, context, dependencies, options);
+  } = base$D(props, context, dependencies, options);
 
   // ============ DEPENDENCIES =============
 
@@ -28199,7 +28749,7 @@ var editor = function editor(props, context, dependencies) {
     clear,
     reset,
     prepare
-  } = base$B(props, context, dependencies, {
+  } = base$D(props, context, dependencies, {
     setValue: val => {
       value.value = val;
       nextTick(() => {
@@ -28270,7 +28820,7 @@ var file = function file(props, context, dependencies) {
     clear,
     reset,
     prepare
-  } = base$B(props, context, dependencies);
+  } = base$D(props, context, dependencies);
   var {
     submit,
     formatData,
@@ -28408,7 +28958,7 @@ var signature = function signature(props, context, dependencies) {
     update,
     clear: clearBase,
     reset: resetBase
-  } = base$B(props, context, dependencies);
+  } = base$D(props, context, dependencies);
 
   // ============ DEPENDENCIES =============
 
@@ -28462,6 +29012,227 @@ var signature = function signature(props, context, dependencies) {
     prepare
   };
 };
+var matrix$1 = function matrix(props, context, dependencies) {
+  var {
+    resolveOnLoad,
+    items,
+    name,
+    inputType,
+    rows,
+    canAdd,
+    canRemove,
+    min,
+    max
+  } = toRefs(props);
+  var {
+    clear: baseClear,
+    reset: baseReset,
+    prepare
+  } = object$1(props, context, dependencies);
+
+  // ============ DEPENDENCIES =============
+
+  var {
+    el$,
+    form$,
+    available,
+    children$,
+    children$Array,
+    resetting,
+    isDefault,
+    resolvedRows,
+    resolvedColumns,
+    dataType,
+    defaultValue,
+    value,
+    computedRows,
+    rowsCount,
+    hasDynamicRows,
+    fire,
+    allowRemove,
+    allowAdd,
+    grid,
+    resolveComponentName
+  } = dependencies;
+
+  // ============== COMPUTED ===============
+
+  var data = computed(() => {
+    return {
+      [name.value]: transformData()
+    };
+  });
+  var requestData = computed(() => {
+    return {
+      [name.value]: transformData(true)
+    };
+  });
+
+  // =============== METHODS ===============
+
+  var load = function load(val) {
+    var format = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+    var formatted = format && formatLoad.value ? formatLoad.value(val, form$.value) : val;
+    setData(formatted, 'load');
+  };
+  var update = val => {
+    setData(val, 'update');
+  };
+  var clear = () => {
+    baseClear();
+    if (hasDynamicRows.value) {
+      rowsCount.value = rows.value;
+    }
+  };
+  var reset = () => {
+    baseReset();
+    if (hasDynamicRows.value) {
+      rowsCount.value = rows.value;
+    }
+    if (grid.value) {
+      grid.value.scrollTop = 0;
+      grid.value.scrollLeft = 0;
+    }
+  };
+  var add = () => {
+    var oldValue = _objectSpread2$1({}, value.value);
+    rowsCount.value++;
+    nextTick(() => {
+      fire('add', rowsCount.value - 1, value.value, oldValue, el$.value);
+    });
+  };
+  var remove = i => {
+    var oldValue = _objectSpread2$1({}, value.value);
+    var newValue = _objectSpread2$1({}, value.value);
+    delete newValue[i];
+    value.value = Object.values(newValue).reduce((prev, curr, i) => _objectSpread2$1(_objectSpread2$1({}, prev), {}, {
+      [i]: curr
+    }), {});
+    rowsCount.value--;
+    fire('remove', i, value.value, oldValue, el$.value);
+  };
+  var handleAdd = () => {
+    add();
+  };
+  var handleRemove = i => {
+    remove(i);
+  };
+  var transformData = function transformData() {
+    var skipUnavailable = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+    var data = {};
+    resolvedRows.value.forEach((row, r) => {
+      if (!row.available && skipUnavailable) {
+        return;
+      }
+      var rowValue = dataType.value === 'object' ? {} : dataType.value === 'array' ? [] : null;
+      resolvedColumns.value.forEach((column, c) => {
+        var _children$$value$reso;
+        if (!column.available && skipUnavailable) {
+          return;
+        }
+        var cellValue = (_children$$value$reso = children$.value[resolveComponentName(r, c)]) === null || _children$$value$reso === void 0 ? void 0 : _children$$value$reso.value;
+        switch (dataType.value) {
+          case 'array':
+            if (cellValue) {
+              rowValue = [...(rowValue || []), column.value];
+            }
+            break;
+          case 'assoc':
+            if (cellValue) {
+              rowValue = column.value;
+            }
+            break;
+          default:
+            rowValue = _objectSpread2$1(_objectSpread2$1({}, rowValue || {}), {}, {
+              [column.value]: cellValue
+            });
+        }
+      });
+      data[row.value] = rowValue;
+    });
+    if (hasDynamicRows.value) {
+      data = Object.values(data);
+    }
+    return data;
+  };
+  var setData = /*#__PURE__*/function () {
+    var _ref8 = _asyncToGenerator(function* (val, action) {
+      if (hasDynamicRows.value) {
+        rowsCount.value = Object.keys(val).length;
+        yield nextTick();
+      }
+      el$.value.resolvedRows.forEach((row, r) => {
+        el$.value.resolvedColumns.forEach((column, c) => {
+          var rowValue = val[row.value] || {};
+          var cell$ = children$.value[resolveComponentName(r, c)];
+          switch (dataType.value) {
+            case 'assoc':
+              cell$[action](column.value === rowValue);
+              break;
+            case 'array':
+              cell$[action](rowValue.indexOf(column.value) !== -1);
+              break;
+            default:
+              cell$[action](rowValue[column.value]);
+              break;
+          }
+        });
+      });
+    });
+    return function setData(_x4, _x5) {
+      return _ref8.apply(this, arguments);
+    };
+  }();
+  watch(inputType, (n, o) => {
+    if (isEqual_1(n, o)) {
+      return;
+    }
+    reset();
+  }, {
+    flush: 'post'
+  });
+  watch(computedRows, (n, o) => {
+    var oldLength = typeof o === 'number' ? o : Object.keys(o).length;
+    var newLength = typeof n === 'number' ? n : Object.keys(n).length;
+    var dir = oldLength > newLength ? 'decrease' : 'increase';
+    var diff = dir === 'increase' ? newLength - oldLength : oldLength - newLength;
+    var nextIndex = newLength - 1;
+    var lastIndex = oldLength - 1;
+    var newValue = _objectSpread2$1({}, value.value);
+    if (dir === 'increase') {
+      switch (dataType.value) {
+        case 'assoc':
+        case 'array':
+          for (var i = 0; i < diff; i++) {
+            newValue[nextIndex + i] = cloneDeep_1(defaultValue.value[nextIndex + i]);
+          }
+          break;
+      }
+    } else {
+      for (var _i = 0; _i < diff; _i++) {
+        if (newValue[lastIndex - _i] !== undefined) {
+          delete newValue[lastIndex - _i];
+        }
+      }
+    }
+    value.value = newValue;
+  }, {
+    flush: 'post'
+  });
+  return {
+    data,
+    requestData,
+    load,
+    update,
+    clear,
+    reset,
+    prepare,
+    handleAdd,
+    handleRemove,
+    add,
+    remove
+  };
+};
 var multiselect$3 = select$3;
 var tags$3 = select$3;
 
@@ -28512,6 +29283,11 @@ var HasValidation = {
       required: false,
       type: [String],
       '@default': 'name|label'
+    },
+    displayErrors: {
+      required: false,
+      type: [Boolean],
+      default: true
     }
   }
 };
@@ -28578,13 +29354,13 @@ var CaptchaElement = {
   },
   setup(props, ctx) {
     var context = _objectSpread2$1({}, ctx);
-    context.features = [base$U, base$1b, base$1a, base$X, base$N, base$P, base$L, base$W, base$H, base$1e, base$Q, base$T, base$C, base$D, base$16, base$E, base$I, base$M, base$F, base$J, captcha, base$11, base$K, captcha$1, base$_, base$1c, base$10, base$Z, base$G, base$V];
+    context.features = [base$W, base$1d, base$1c, base$Z, base$P, base$R, base$N, base$Y, base$J, base$1g, base$S, base$V, base$E, base$F, base$18, base$G, base$K, base$O, base$H, base$L, captcha, base$13, base$M, captcha$1, base$10, base$1e, base$12, base$$, base$I, base$X];
     context.slots = ['label', 'info', 'required', 'description', 'before', 'between', 'after'];
-    return _objectSpread2$1({}, base$O(props, context));
+    return _objectSpread2$1({}, base$Q(props, context));
   }
 };
 
-var base$A = function base(props, context, dependencies) {
+var base$C = function base(props, context, dependencies) {
   var {
     text
   } = toRefs(props);
@@ -28610,7 +29386,7 @@ var base$A = function base(props, context, dependencies) {
   };
 };
 
-var base$z = function base(props, context, dependencies) {
+var base$B = function base(props, context, dependencies) {
   var {
     trueValue,
     falseValue
@@ -28725,17 +29501,22 @@ var CheckboxElement = {
       required: false,
       type: [String],
       default: undefined
+    },
+    standalone: {
+      required: false,
+      type: [Boolean],
+      default: false
     }
   },
   setup(props, ctx) {
     var context = _objectSpread2$1({}, ctx);
-    context.features = [base$U, base$1b, base$1a, base$X, base$N, base$P, boolean, base$W, base$1e, base$Q, base$T, base$D, base$16, base$E, base$M, base$B, base$11, base$K, base$$, base$_, base$1c, base$10, base$Z, checkbox, checkbox$1, base$G, base$V, base$A];
+    context.features = [base$W, base$1d, base$1c, base$Z, base$P, base$R, boolean, base$Y, base$1g, base$S, base$V, base$F, base$18, base$G, base$O, base$D, base$13, base$M, base$11, base$10, base$1e, base$12, base$$, checkbox, checkbox$1, base$I, base$X, base$C];
     context.slots = ['default', 'label', 'info', 'required', 'description', 'before', 'between', 'after'];
-    return _objectSpread2$1({}, base$O(props, context));
+    return _objectSpread2$1({}, base$Q(props, context));
   }
 };
 
-var base$y = function base(props, context, dependencies) {
+var base$A = function base(props, context, dependencies) {
   // ============ DEPENDENCIES ============
 
   var value = dependencies.value;
@@ -28830,7 +29611,7 @@ var base$y = function base(props, context, dependencies) {
   };
 };
 
-var base$x = function base(props, context, dependencies) {
+var base$z = function base(props, context, dependencies) {
   var {
     items,
     valueProp,
@@ -29145,7 +29926,7 @@ var select$2 = function select(props, context, dependencies) {
     watchers,
     cleanupValue,
     resolveUrlAndSetWatchers
-  } = base$x(props, context, dependencies);
+  } = base$z(props, context, dependencies);
 
   // ================ HOOKS ===============
 
@@ -29168,7 +29949,7 @@ var checkboxgroup = function checkboxgroup(props, context, dependencies) {
     watchers,
     cleanupValue,
     resolveUrlAndSetWatchers
-  } = base$x(props, context, dependencies);
+  } = base$z(props, context, dependencies);
 
   // ============ DEPENDENCIES ============
 
@@ -29398,13 +30179,13 @@ var CheckboxgroupElement = {
   },
   setup(props, ctx) {
     var context = _objectSpread2$1({}, ctx);
-    context.features = [base$U, base$1b, base$1a, base$X, base$P, array$1, base$W, base$1e, checkboxgroup$1, checkboxgroup$3, base$D, base$M, checkboxgroup, base$16, base$E, base$y, base$B, base$11, base$K, base$10, base$$, base$_, base$1c, base$Z, checkboxgroup$2, base$G, base$V];
+    context.features = [base$W, base$1d, base$1c, base$Z, base$R, array$1, base$Y, base$1g, checkboxgroup$1, checkboxgroup$3, base$F, base$O, checkboxgroup, base$18, base$G, base$A, base$D, base$13, base$M, base$12, base$11, base$10, base$1e, base$$, checkboxgroup$2, base$I, base$X];
     context.slots = ['checkbox', 'label', 'info', 'required', 'description', 'before', 'between', 'after'];
-    return _objectSpread2$1({}, base$O(props, context));
+    return _objectSpread2$1({}, base$Q(props, context));
   }
 };
 
-var base$w = function base(props, context, dependencies) {
+var base$y = function base(props, context, dependencies) {
   var {
     addons,
     slots
@@ -29431,7 +30212,7 @@ var base$w = function base(props, context, dependencies) {
   };
 };
 
-var base$v = function base(props, context, dependencies) {
+var base$x = function base(props, context, dependencies) {
   var {
     displayFormat,
     valueFormat,
@@ -29581,7 +30362,7 @@ var dates$2 = function dates(props, context, dependencies) {
   };
 };
 
-var base$u = function base(props, context, dependencies) {
+var base$w = function base(props, context, dependencies) {
   // ============ DEPENDENCIES ============
 
   var value = dependencies.value;
@@ -29603,7 +30384,7 @@ var base$u = function base(props, context, dependencies) {
   };
 };
 
-var base$t = function base(props, context, dependencies) {
+var base$v = function base(props, context, dependencies) {
   var {
     placeholder
   } = toRefs(props);
@@ -30308,7 +31089,7 @@ var toggle = function toggle(props, context, dependencies) {
   };
 };
 
-var base$s = function base(props, context, dependencies) {
+var base$u = function base(props, context, dependencies) {
   // ============ DEPENDENCIES ============
 
   var input = dependencies.input;
@@ -30518,9 +31299,9 @@ var DateElement = {
   },
   setup(props, ctx) {
     var context = _objectSpread2$1({}, ctx);
-    context.features = [base$U, base$1b, base$1a, base$X, base$N, base$P, base$L, base$W, base$H, base$1e, base$Q, base$T, base$C, base$w, base$v, date$1, base$D, base$16, base$E, date$3, base$J, date$2, base$11, base$K, base$$, base$_, base$1c, base$10, base$Z, base$u, date, base$S, base$G, base$V, base$t];
+    context.features = [base$W, base$1d, base$1c, base$Z, base$P, base$R, base$N, base$Y, base$J, base$1g, base$S, base$V, base$E, base$y, base$x, date$1, base$F, base$18, base$G, date$3, base$L, date$2, base$13, base$M, base$11, base$10, base$1e, base$12, base$$, base$w, date, base$U, base$I, base$X, base$v];
     context.slots = ['label', 'info', 'required', 'description', 'before', 'between', 'after', 'addon-before', 'addon-after'];
-    return _objectSpread2$1({}, base$O(props, context));
+    return _objectSpread2$1({}, base$Q(props, context));
   }
 };
 
@@ -30616,13 +31397,13 @@ var DatesElement = {
   },
   setup(props, ctx) {
     var context = _objectSpread2$1({}, ctx);
-    context.features = [base$U, base$1b, base$1a, base$X, base$N, base$P, array$1, base$W, base$H, base$1e, dates$5, base$T, base$C, base$w, dates$2, dates$1, base$D, dates$4, base$16, base$E, base$J, dates$3, base$11, base$K, base$$, base$_, base$1c, base$10, base$Z, base$u, dates, base$S, base$G, base$V, base$t];
+    context.features = [base$W, base$1d, base$1c, base$Z, base$P, base$R, array$1, base$Y, base$J, base$1g, dates$5, base$V, base$E, base$y, dates$2, dates$1, base$F, dates$4, base$18, base$G, base$L, dates$3, base$13, base$M, base$11, base$10, base$1e, base$12, base$$, base$w, dates, base$U, base$I, base$X, base$v];
     context.slots = ['label', 'info', 'required', 'description', 'before', 'between', 'after', 'addon-before', 'addon-after'];
-    return _objectSpread2$1({}, base$O(props, context));
+    return _objectSpread2$1({}, base$Q(props, context));
   }
 };
 
-var base$r = function base(props, context, dependencies) {
+var base$t = function base(props, context, dependencies) {
   var {
     embed,
     auto,
@@ -31147,7 +31928,7 @@ var base$r = function base(props, context, dependencies) {
   };
 };
 
-var base$q = function base(props, context, dependencies) {
+var base$s = function base(props, context, dependencies) {
   // ============ DEPENDENCIES ============
 
   var form$ = dependencies.form$;
@@ -31217,7 +31998,7 @@ function checkFileType(file, accept) {
   });
 }
 
-var base$p = function base(props, context, dependencies) {
+var base$r = function base(props, context, dependencies) {
   var {
     accept,
     auto
@@ -31276,7 +32057,7 @@ var multifile$3 = function multifile(props, context, dependencies) {
   } = toRefs(props);
   var {
     canDrop
-  } = base$p(props, context, dependencies);
+  } = base$r(props, context, dependencies);
 
   // ============ DEPENDENCIES =============
 
@@ -31306,7 +32087,7 @@ var multifile$3 = function multifile(props, context, dependencies) {
   };
 };
 
-var base$o = function base(props, context, dependencies) {
+var base$q = function base(props, context, dependencies) {
   // ================ DATA ================
 
   /**
@@ -31320,7 +32101,7 @@ var base$o = function base(props, context, dependencies) {
   };
 };
 
-var base$n = function base(props, context, dependencies) {
+var base$p = function base(props, context, dependencies) {
   // ============ DEPENDENCIES ============
 
   var fire = dependencies.fire;
@@ -31463,13 +32244,13 @@ var FileElement = {
   },
   setup(props, ctx) {
     var context = _objectSpread2$1({}, ctx);
-    context.features = [base$U, base$1b, base$1a, base$X, base$N, base$P, base$L, base$o, base$W, base$1e, file$3, base$T, base$q, base$D, base$16, base$M, file$1, base$J, file, base$n, base$r, base$p, base$11, file$2, base$$, base$_, base$1c, base$10, base$Z, file$4, base$G, base$V];
+    context.features = [base$W, base$1d, base$1c, base$Z, base$P, base$R, base$N, base$q, base$Y, base$1g, file$3, base$V, base$s, base$F, base$18, base$O, file$1, base$L, file, base$p, base$t, base$r, base$13, file$2, base$11, base$10, base$1e, base$12, base$$, file$4, base$I, base$X];
     context.slots = ['label', 'info', 'required', 'description', 'before', 'between', 'after'];
-    return _objectSpread2$1({}, base$O(props, context));
+    return _objectSpread2$1({}, base$Q(props, context));
   }
 };
 
-var base$m = function base(props, context, dependencies) {
+var base$o = function base(props, context, dependencies) {
   // ============ DEPENDENCIES ============
 
   var model = dependencies.model;
@@ -31558,13 +32339,13 @@ var GenericElement = {
   },
   setup(props, ctx) {
     var context = _objectSpread2$1({}, ctx);
-    context.features = [base$U, base$1b, base$1a, base$X, base$N, base$P, generic, base$W, base$1e, base$Q, base$T, text$1, base$16, text$2, base$M, base$J, base$B, base$11, base$K, base$$, base$_, base$1c, base$10, base$Z, base$m, base$s, base$S, base$G, base$V];
+    context.features = [base$W, base$1d, base$1c, base$Z, base$P, base$R, generic, base$Y, base$1g, base$S, base$V, text$1, base$18, text$2, base$O, base$L, base$D, base$13, base$M, base$11, base$10, base$1e, base$12, base$$, base$o, base$u, base$U, base$I, base$X];
     context.slots = ['label', 'info', 'required', 'description', 'before', 'between', 'after'];
-    return _objectSpread2$1({}, base$O(props, context));
+    return _objectSpread2$1({}, base$Q(props, context));
   }
 };
 
-var base$l = function base(props, context, dependencies) {
+var base$n = function base(props, context, dependencies) {
   // ================ DATA ================
 
   /**
@@ -31607,7 +32388,7 @@ var object = function object(props, context, dependencies) {
   var {
     children$Array,
     children$
-  } = base$l();
+  } = base$n();
 
   // ============== COMPUTED ==============
 
@@ -31676,9 +32457,9 @@ var GroupElement = {
   },
   setup(props, ctx) {
     var context = _objectSpread2$1({}, ctx);
-    context.features = [base$U, base$1b, base$1a, base$X, group$6, base$W, object$5, base$1e, group$7, group, group$2, base$11, group$3, group$5, base$14, group$8, base$$, base$_, base$1c, base$10, base$Z, group$1, base$S, group$4, base$V];
+    context.features = [base$W, base$1d, base$1c, base$Z, group$6, base$Y, object$5, base$1g, group$7, group, group$2, base$13, group$3, group$5, base$16, group$8, base$11, base$10, base$1e, base$12, base$$, group$1, base$U, group$4, base$X];
     context.slots = ['label', 'info', 'required', 'description', 'before', 'between', 'after'];
-    return _objectSpread2$1({}, base$O(props, context));
+    return _objectSpread2$1({}, base$Q(props, context));
   }
 };
 
@@ -31711,8 +32492,8 @@ var HiddenElement = {
   },
   setup(props, ctx) {
     var context = _objectSpread2$1({}, ctx);
-    context.features = [base$U, base$1b, base$1a, base$N, base$P, base$L, base$K, base$W, base$_, base$1e, base$Q, base$D, base$16, base$E, base$M, base$J, base$B, base$G, base$V];
-    return _objectSpread2$1({}, base$O(props, context));
+    context.features = [base$W, base$1d, base$1c, base$P, base$R, base$N, base$M, base$Y, base$10, base$1g, base$S, base$F, base$18, base$G, base$O, base$L, base$D, base$I, base$X];
+    return _objectSpread2$1({}, base$Q(props, context));
   }
 };
 
@@ -34366,7 +35147,7 @@ _extends(Remove, {
 Sortable.mount(new AutoScrollPlugin());
 Sortable.mount(Remove, Revert);
 
-var base$k = function base(props, context, dependencies, options) {
+var base$m = function base(props, context, dependencies, options) {
   var {
     sort
   } = toRefs(props);
@@ -34515,7 +35296,7 @@ var base$k = function base(props, context, dependencies, options) {
   };
 };
 
-var base$j = function base(props, context, dependencies) {
+var base$l = function base(props, context, dependencies) {
   // ================ DATA ================
 
   /**
@@ -34529,7 +35310,7 @@ var base$j = function base(props, context, dependencies) {
   };
 };
 
-var base$i = function base(props, context, dependencies, options) {
+var base$k = function base(props, context, dependencies, options) {
   var {
     storeOrder,
     orderBy,
@@ -34598,7 +35379,7 @@ var multifile$2 = function multifile(props, context, dependencies, options) {
   } = toRefs(props);
   var {
     refreshOrderStore
-  } = base$i(props, context, dependencies);
+  } = base$k(props, context, dependencies);
 
   // =============== METHODS ==============
 
@@ -34616,7 +35397,7 @@ var multifile$2 = function multifile(props, context, dependencies, options) {
   };
 };
 
-var base$h = function base(props, context, dependencies) {
+var base$j = function base(props, context, dependencies) {
   var {
     object,
     element
@@ -34747,7 +35528,7 @@ var multifile$1 = function multifile(props, context, dependencies) {
   };
 };
 
-var base$g = function base(props, context, dependencies) {
+var base$i = function base(props, context, dependencies) {
   var {
     controls,
     sort,
@@ -34960,13 +35741,13 @@ var ListElement = {
   setup(props, ctx) {
     var context = _objectSpread2$1({}, ctx);
     //@todo:adam useValue and useDefault should be before useOrder
-    context.features = [base$U, base$U, base$1b, base$1a, base$X, base$P, base$W, array$1, base$h, base$l, base$j, base$i, base$1e, list$4, base$T, base$D, base$11, base$K, base$14, list$5, list$1, list$3, base$g, array, base$10, base$$, base$_, base$1c, base$Z, list, base$k, base$S, list$2, base$V];
+    context.features = [base$W, base$W, base$1d, base$1c, base$Z, base$R, base$Y, array$1, base$j, base$n, base$l, base$k, base$1g, list$4, base$V, base$F, base$13, base$M, base$16, list$5, list$1, list$3, base$i, array, base$12, base$11, base$10, base$1e, base$$, list, base$m, base$U, list$2, base$X];
     context.slots = ['label', 'info', 'required', 'description', 'before', 'between', 'after'];
-    return _objectSpread2$1({}, base$O(props, context));
+    return _objectSpread2$1({}, base$Q(props, context));
   }
 };
 
-var base$f = function base(props, context, dependencies) {
+var base$h = function base(props, context, dependencies) {
   var options_ = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
   var {
     provider,
@@ -35205,9 +35986,674 @@ var LocationElement = {
   },
   setup(props, ctx) {
     var context = _objectSpread2$1({}, ctx);
-    context.features = [base$U, base$1b, base$1a, base$X, base$N, base$P, location$2, base$W, base$H, base$1e, base$Q, base$T, base$C, base$w, base$D, base$M, location, base$16, base$J, base$B, base$f, base$11, base$K, base$$, base$_, base$1c, base$10, base$Z, base$s, base$S, location$1, base$V, base$t];
+    context.features = [base$W, base$1d, base$1c, base$Z, base$P, base$R, location$2, base$Y, base$J, base$1g, base$S, base$V, base$E, base$y, base$F, base$O, location, base$18, base$L, base$D, base$h, base$13, base$M, base$11, base$10, base$1e, base$12, base$$, base$u, base$U, location$1, base$X, base$v];
     context.slots = ['label', 'info', 'required', 'description', 'before', 'between', 'after', 'addon-before', 'addon-after'];
     return _objectSpread2$1({}, location$3(props, context));
+  }
+};
+
+var base$g = function base(props, context, dependencies) {
+  var {
+    rows,
+    cols,
+    inputType,
+    minWidth,
+    addText,
+    hideRows,
+    items,
+    maxWidth,
+    rowWrap,
+    templateColumns,
+    hideCols,
+    colWrap,
+    gap,
+    canRemove,
+    canAdd,
+    min,
+    max,
+    presets,
+    name
+  } = toRefs(props);
+  var {
+    el$,
+    form$,
+    path,
+    hasDynamicRows,
+    resolvedRows,
+    resolvedColumns,
+    rowsCount,
+    value,
+    genericName,
+    isDisabled,
+    isReadonly
+  } = dependencies;
+  inject('config$');
+
+  // ================ DATA ================
+
+  /**
+   * The HTML element of the matrix grix.
+   * 
+   * @type {HTMLElement}
+   */
+  var grid = ref(null);
+
+  // ============== COMPUTED ==============
+
+  /**
+   * Whether rows can be added when rows are dynamic.
+   * 
+   * @type {boolean}
+   */
+  var allowAdd = computed(() => {
+    return hasDynamicRows.value && canAdd.value && (max.value === -1 || max.value > Object.keys(value.value).length);
+  });
+
+  /**
+   * Whether rows can be removed when rows are dynamic.
+   * 
+   * @type {boolean}
+   */
+  var allowRemove = computed(() => {
+    return hasDynamicRows.value && canRemove.value && (min.value === -1 || min.value < Object.keys(value.value).length);
+  });
+
+  /**
+   * The label of add button.
+   *
+   * @type {string}
+   */
+  var addLabel = computed(() => {
+    return addText.value || form$.value.translations.vueform.elements.list.add;
+  });
+
+  /**
+   * Whether row labels should be displayed.
+   * 
+   * @type {boolean}
+   */
+  var rowsVisible = computed(() => {
+    if (hasDynamicRows.value) {
+      return false;
+    }
+    return !hideRows.value;
+  });
+
+  /**
+   * Whether column headers should be displayed.
+   * 
+   * @type {boolean}
+   */
+  var colsVisible = computed(() => {
+    return !hideCols.value;
+  });
+  var gridStyle = computed(() => {
+    var gridTemplateColumns = templateColumns.value;
+    if (typeof templateColumns.value === 'function') {
+      gridTemplateColumns = templateColumns.value(el$.value);
+    }
+    if (!gridTemplateColumns) {
+      gridTemplateColumns = [];
+
+      // Row label column
+      if (rowsVisible.value) {
+        gridTemplateColumns.push("minmax(min-content, auto)");
+      }
+
+      // Cells
+      var _min = resolveWidth(minWidth.value, 'min-content');
+      var _max = resolveWidth(maxWidth.value, '1fr');
+      el$.value.resolvedColumns.filter(c => c.available).forEach((col, i) => {
+        var colMin = resolveWidth(col.minWidth, _min);
+        var colMax = resolveWidth(col.maxWidth, _max);
+        gridTemplateColumns.push("minmax(".concat(colMin, ", ").concat(colMax, ")"));
+      });
+
+      // Remove column
+      if (allowRemove.value) {
+        gridTemplateColumns.push("minmax(max-content, max-content)");
+      }
+      gridTemplateColumns = gridTemplateColumns.join(' ');
+    }
+    return {
+      'grid-template-columns': gridTemplateColumns,
+      'gap': gap.value !== 0 ? typeof gap.value === 'number' ? "".concat(gap.value, "px") : gap.value : undefined
+    };
+  });
+
+  /**
+   * The component props of the cells.
+   * 
+   * @type {array}
+   */
+  var cells = computed(() => {
+    var rows = [];
+    resolvedRows.value.forEach((row, r) => {
+      var cols = [];
+      resolvedColumns.value.forEach((col, c) => {
+        cols.push(resolveComponentProps(row, col, r, c));
+      });
+      rows.push(cols);
+    });
+    return rows;
+  });
+
+  // =============== METHODS ==============
+
+  /**
+   * Resolves the `width` property to either `px` or plain value,
+   *
+   * @returns {string}
+   * @param {number|string} width* the width to be resolved
+   * @param {number|string} def* the default value to be used if width is `undefined`
+   */
+  var resolveWidth = (width, def) => {
+    return typeof width === 'number' ? "".concat(width, "px") : width !== undefined ? width : def;
+  };
+
+  /**
+   * Resolves the cell component type (for `:is`) based on a column object.
+   *
+   * @returns {string}
+   * @param {object} column* the column definition object
+   */
+  var resolveComponentType = column => {
+    var element = column.inputType || inputType.value;
+    var type = typeof element === 'string' ? element : element.type;
+    return "".concat(upperFirst_1(camelCase_1(type)), "Element");
+  };
+
+  /**
+   * Resolves the cell component name based on row and column index.
+   *
+   * @returns {string}
+   * @param {number} rowIndex* the index of the row
+   * @param {number} colIndex* the index of the column
+   */
+  var resolveComponentName = (rowIndex, colIndex) => {
+    return "".concat(path.value.replace(/\./g, '__'), "_").concat(rowIndex, "_").concat(colIndex);
+  };
+
+  /**
+   * Resolves the cell component properties.
+   *
+   * @returns {object}
+   * @param {object} row* the row definition object
+   * @param {object} col* the column definition object
+   * @param {number} rowIndex* the index of the row
+   * @param {number} colIndex* the index of the column
+   */
+  var resolveComponentProps = (row, col, rowIndex, colIndex) => {
+    var _col$inputType, _inputType$value, _props$items, _col$items;
+    var type = resolveColInputType(col);
+    var props = {
+      fieldName: "".concat(genericName.value, " / ").concat(hasDynamicRows.value ? "#".concat(row.label + 1) : row.label, " / ").concat(col.label),
+      displayErrors: false,
+      disabled: isDisabled.value,
+      readonly: isReadonly.value,
+      presets: presets.value
+    };
+    if (row.conditions || col.conditions) {
+      props.conditions = resolveColConditions(row, col);
+    }
+    switch (type) {
+      case 'radio':
+        props.radioValue = true;
+        props.radioName = props.name;
+        props.standalone = true;
+        break;
+      case 'checkbox':
+      case 'toggle':
+        props.standalone = true;
+        break;
+      case 'textarea':
+        props.rows = 1;
+        break;
+      case 'select':
+      case 'checkboxgroup':
+      case 'radiogroup':
+        props.items = items.value;
+        break;
+      case 'tags':
+      case 'multiselect':
+        props.items = items.value;
+        props.closeOnSelect = false;
+        props.appendToBody = true;
+        props.search = true;
+        break;
+      default:
+        props = _objectSpread2$1(_objectSpread2$1({}, props), resolveColProps(col));
+        var _presets = (col === null || col === void 0 || (_col$inputType = col.inputType) === null || _col$inputType === void 0 ? void 0 : _col$inputType.presets) || ((_inputType$value = inputType.value) === null || _inputType$value === void 0 ? void 0 : _inputType$value.presets) || [];
+        if (_presets.length) {
+          props.presets.push(..._presets);
+        }
+        if (props.items && !((_props$items = props.items) !== null && _props$items !== void 0 && _props$items.length)) {
+          props.items = items.value;
+        }
+        if (['radio', 'checkbox', 'toggle'].includes(props.type)) {
+          props.standalone = true;
+        }
+        if (['select', 'multiselect', 'tags'].includes(props.type)) {
+          props.appendToBody = true;
+        }
+        if (['multiselect', 'tags'].includes(props.type)) {
+          props.closeOnSelect = false;
+        }
+    }
+    if (items.value.length && !props.items) {
+      props.items = items.value;
+    }
+    if ((_col$items = col.items) !== null && _col$items !== void 0 && _col$items.length && !props.items) {
+      props.items = col.items;
+    }
+    props.name = resolveComponentName(rowIndex, colIndex);
+    return props;
+  };
+
+  /**
+   * Returns the style of a colum based on its index.
+   *
+   * @returns {object}
+   * @param {object} index* the index of the column
+   */
+  var getColStyle = index => {
+    var _resolvedColumns$valu;
+    if (!index) {
+      return;
+    }
+    var col = ((_resolvedColumns$valu = resolvedColumns.value) === null || _resolvedColumns$valu === void 0 ? void 0 : _resolvedColumns$valu[index - 1]) || {};
+    var minW = (col === null || col === void 0 ? void 0 : col.minWidth) || minWidth.value || 0;
+    var maxW = (col === null || col === void 0 ? void 0 : col.maxWidth) || maxWidth.value || 0;
+    var style = {};
+    if (minW) {
+      style.minWidth = "".concat(minW, "px");
+    }
+    if (maxW) {
+      style.maxWidth = "".concat(maxW, "px");
+    }
+    return style;
+  };
+
+  /**
+   * Resolves the input type of a column.
+   *
+   * @returns {object|string}
+   * @param {object} col* the column definition object
+   */
+  var resolveColInputType = col => {
+    return col.inputType || inputType.value;
+  };
+
+  /**
+   * Resolves the type of the input field of a column.
+   *
+   * @returns {string}
+   * @param {object} col* the column definition object
+   */
+  var resolveColType = col => {
+    var _inputType$value2;
+    if (col.inputType) {
+      var _col$inputType2;
+      return ((_col$inputType2 = col.inputType) === null || _col$inputType2 === void 0 ? void 0 : _col$inputType2.type) || col.inputType;
+    }
+    return ((_inputType$value2 = inputType.value) === null || _inputType$value2 === void 0 ? void 0 : _inputType$value2.type) || inputType.value;
+  };
+
+  /**
+   * Resolves the properties of the input type if any.
+   *
+   * @returns {object}
+   * @param {object} col* the column definition object
+   */
+  var resolveColProps = col => {
+    var type = resolveColInputType(col);
+    return typeof type === 'object' ? type : {};
+  };
+
+  /**
+   * Resolves the conditions of a cell based on row and column.
+   *
+   * @returns {object}
+   * @param {object} row* the row definition object
+   * @param {object} col* the column definition object
+   */
+  var resolveColConditions = (row, col) => {
+    return [...(row.conditions || []), ...(col.conditions || [])];
+  };
+  return {
+    grid,
+    resolveComponentType,
+    resolveComponentProps,
+    resolveComponentName,
+    getColStyle,
+    resolveColInputType,
+    resolveColConditions,
+    addLabel,
+    gridStyle,
+    rowsVisible,
+    colsVisible,
+    resolveColType,
+    allowAdd,
+    allowRemove,
+    cells
+  };
+};
+
+var base$f = function base(props, context, dependencies) {
+  var {
+    rows,
+    cols,
+    inputType
+  } = toRefs(props);
+
+  // ============ DEPENDENCIES =============
+
+  var {
+    form$,
+    el$,
+    path
+  } = dependencies;
+
+  // =============== INJECTS ===============
+
+  var config$ = inject('config$');
+
+  // ================ DATA =================
+
+  /**
+   * The instances of cells.
+   *
+   * @type {object}
+   */
+  var cells$ = ref({});
+
+  /**
+   * The count of current rows when rows are dynamic.
+   *
+   * @type {number}
+   */
+  var rowsCount = ref(typeof rows.value === 'number' ? rows.value : null);
+
+  // =============== COMPUTED ==============
+
+  /**
+   * The data structure type of the matrix. Can be: `assoc`, `array` or `object`.
+   *
+   * @type {array}
+   */
+  var dataType = computed(() => {
+    var _inputType$value;
+    var type = ((_inputType$value = inputType.value) === null || _inputType$value === void 0 ? void 0 : _inputType$value.type) || inputType.value;
+    var assocTypes = ['radio'];
+    var arrayTypes = ['checkbox', 'toggle'];
+    if (resolvedColumns.value.every(c => {
+      var _c$inputType;
+      return assocTypes.includes(((_c$inputType = c.inputType) === null || _c$inputType === void 0 ? void 0 : _c$inputType.type) || c.inputType || type);
+    })) {
+      return 'assoc';
+    }
+    if (resolvedColumns.value.every(c => {
+      var _c$inputType2;
+      return arrayTypes.includes(((_c$inputType2 = c.inputType) === null || _c$inputType2 === void 0 ? void 0 : _c$inputType2.type) || c.inputType || type);
+    })) {
+      return 'array';
+    }
+    return 'object';
+  });
+
+  /**
+   * The value of `rows` or `rowsCount` if rows are dynamic.
+   *
+   * @type {number|array}
+   */
+  var computedRows = computed(() => {
+    return typeof rows.value === 'number' ? rowsCount.value : rows.value;
+  });
+
+  /**
+   * The rows of the matrix to be displayed.
+   * 
+   * @type {array}
+   */
+  var resolvedRows = computed(() => {
+    var resolvedRows = computedRows.value;
+    if (typeof resolvedRows === 'number') {
+      resolvedRows = [...Array(resolvedRows)].map((r, i) => ({
+        value: i,
+        label: i
+      }));
+    }
+    if (resolvedRows && typeof resolvedRows === 'object' && !Array.isArray(resolvedRows)) {
+      resolvedRows = Object.keys(resolvedRows).map(key => ({
+        value: [key],
+        label: resolvedRows[key]
+      }));
+    }
+    return resolvedRows.map(row => {
+      return typeof row === 'string' || typeof row === 'number' ? {
+        value: row,
+        label: row
+      } : row;
+    }).map(r => _objectSpread2$1(_objectSpread2$1({}, r), {}, {
+      label: localize(r.label, config$.value, form$.value)
+    })).map(r => _objectSpread2$1(_objectSpread2$1({}, r), {}, {
+      available: !r.conditions || !r.conditions.some(condition => !form$.value.$vueform.services.condition.check(condition, path.value, form$.value, el$.value))
+    }));
+  });
+
+  /**
+   * The columns of the matrix to be displayed.
+   * 
+   * @type {array}
+   */
+  var resolvedColumns = computed(() => {
+    var resolvedColumns = cols.value;
+    if (cols.value && typeof cols.value === 'object' && !Array.isArray(cols.value)) {
+      resolvedColumns = Object.keys(cols.value).map(key => ({
+        value: [key],
+        label: cols.value[key]
+      }));
+    }
+    return resolvedColumns.map(col => {
+      return typeof col === 'string' || typeof col === 'number' ? {
+        value: col,
+        label: col
+      } : col;
+    }).map(r => _objectSpread2$1(_objectSpread2$1({}, r), {}, {
+      label: localize(r.label, config$.value, form$.value)
+    })).map(r => _objectSpread2$1(_objectSpread2$1({}, r), {}, {
+      available: !r.conditions || !r.conditions.some(condition => !form$.value.$vueform.services.condition.check(condition, path.value, form$.value, el$.value))
+    }));
+  });
+
+  /**
+   * Whether the matrix has dynamic rows.
+   * 
+   * @type {boolean}
+   */
+  var hasDynamicRows = computed(() => {
+    return typeof rows.value === 'number';
+  });
+
+  // ============== WEATCHERS ==============
+
+  watch(rows, (n, o) => {
+    if (typeof n !== 'number') {
+      rowsCount.value = null;
+    } else {
+      rowsCount.value = n;
+    }
+  });
+  return {
+    hasDynamicRows,
+    computedRows,
+    resolvedRows,
+    resolvedColumns,
+    rowsCount,
+    dataType,
+    cells$
+  };
+};
+
+var MatrixElement = {
+  name: 'MatrixElement',
+  mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
+  emits: ['change', 'add', 'remove', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
+  props: {
+    type: {
+      required: false,
+      type: [String],
+      default: 'object',
+      private: true
+    },
+    default: {
+      required: false,
+      type: [Object],
+      default: () => ({})
+    },
+    id: {
+      required: false,
+      type: [String],
+      default: null
+    },
+    disabled: {
+      required: false,
+      type: [Boolean, Function, Array, Object],
+      default: false
+    },
+    readonly: {
+      required: false,
+      type: [Boolean, Function, Array, Object],
+      default: false
+    },
+    inputType: {
+      required: false,
+      type: [String, Object],
+      default: 'radio'
+    },
+    items: {
+      // done
+      required: false,
+      type: [Array, Object, String, Function],
+      default: () => []
+    },
+    cols: {
+      // done
+      required: false,
+      type: [Array, Object],
+      default: () => []
+    },
+    colWrap: {
+      required: false,
+      type: [Boolean],
+      default: true
+    },
+    hideCols: {
+      // done
+      required: false,
+      type: [Boolean],
+      default: false
+    },
+    stickyCols: {
+      required: false,
+      type: [Boolean],
+      default: false
+    },
+    rows: {
+      // done
+      required: false,
+      type: [Array, Object, Number],
+      default: 1
+    },
+    rowWrap: {
+      // done
+      required: false,
+      type: [Boolean],
+      default: true
+    },
+    hideRows: {
+      // done
+      required: false,
+      type: [Boolean],
+      default: false
+    },
+    stickyRows: {
+      required: false,
+      type: [Boolean],
+      default: false
+    },
+    min: {
+      // done
+      required: false,
+      type: [Number, String],
+      default: -1
+    },
+    max: {
+      // done
+      required: false,
+      type: [Number, String],
+      default: -1
+    },
+    canAdd: {
+      // done
+      required: false,
+      type: [Boolean],
+      default: true
+    },
+    canRemove: {
+      // done
+      required: false,
+      type: [Boolean],
+      default: true
+    },
+    addText: {
+      // done
+      required: false,
+      type: [String],
+      default: null,
+      '@default': 'locale.elements.list.add'
+    },
+    minWidth: {
+      // done
+      required: false,
+      type: [Number, String],
+      default: 'min-content'
+    },
+    maxWidth: {
+      // done
+      required: false,
+      type: [Number, String],
+      default: '1fr'
+    },
+    gap: {
+      // done
+      required: false,
+      type: [String, Number],
+      default: 16
+    },
+    padding: {
+      // done
+      required: false,
+      type: [Boolean],
+      default: false
+    },
+    scrollable: {
+      required: false,
+      type: [Boolean],
+      default: true
+    },
+    templateColumns: {
+      // done
+      required: false,
+      type: [String, Function],
+      default: null
+    }
+  },
+  setup(props, ctx) {
+    var context = _objectSpread2$1({}, ctx);
+    context.features = [base$W, base$1d, base$1c, base$Z, base$R, base$Y, base$1g, matrix$5, base$f, object$5, matrix$2, matrix$4, base$13, base$M, base$V, base$E, base$g, object, base$16, object$8, matrix$3, base$11, base$10, base$1e, base$12, base$$, matrix$1, base$U, object$4, base$X];
+    context.slots = ['label', 'info', 'required', 'description', 'before', 'between', 'after'];
+    return _objectSpread2$1({}, base$Q(props, context));
   }
 };
 
@@ -35452,9 +36898,9 @@ var MultifileElement = {
   },
   setup(props, ctx) {
     var context = _objectSpread2$1({}, ctx);
-    context.features = [base$U, base$1b, base$1a, base$X, base$P, base$T, array$1, base$l, base$N, base$j, multifile$1, base$W, base$1e, list$4, base$D, base$11, base$K, list$1, base$M, array, base$14, base$16, base$10, base$$, base$_, base$Z, multifile$2, multifile$4, base$e, multifile, multifile$3, base$1c, base$k, base$S, multifile$5, base$V];
+    context.features = [base$W, base$1d, base$1c, base$Z, base$R, base$V, array$1, base$n, base$P, base$l, multifile$1, base$Y, base$1g, list$4, base$F, base$13, base$M, list$1, base$O, array, base$16, base$18, base$12, base$11, base$10, base$$, multifile$2, multifile$4, base$e, multifile, multifile$3, base$1e, base$m, base$U, multifile$5, base$X];
     context.slots = ['label', 'info', 'required', 'description', 'before', 'between', 'after'];
-    return _objectSpread2$1({}, base$O(props, context));
+    return _objectSpread2$1({}, base$Q(props, context));
   }
 };
 
@@ -35997,9 +37443,9 @@ var MultiselectElement = {
   },
   setup(props, ctx) {
     var context = _objectSpread2$1({}, ctx);
-    context.features = [base$U, base$1b, base$1a, base$X, multiselect$4, base$P, array$1, base$W, base$H, base$1e, multiselect$5, base$T, base$D, base$E, base$I, multiselect$1, base$M, multiselect$2, base$16, array, multiselect$3, base$11, base$K, base$$, base$_, base$1c, base$10, base$Z, base$d, base$c, multiselect, base$S, base$G, base$V, base$t];
+    context.features = [base$W, base$1d, base$1c, base$Z, multiselect$4, base$R, array$1, base$Y, base$J, base$1g, multiselect$5, base$V, base$F, base$G, base$K, multiselect$1, base$O, multiselect$2, base$18, array, multiselect$3, base$13, base$M, base$11, base$10, base$1e, base$12, base$$, base$d, base$c, multiselect, base$U, base$I, base$X, base$v];
     context.slots = ['option', 'multiple-label', 'placeholder', 'group-label', 'before-list', 'after-list', 'no-results', 'no-options', 'caret', 'spinner', 'clear', 'label', 'info', 'required', 'description', 'before', 'between', 'after'];
-    return _objectSpread2$1({}, base$O(props, context));
+    return _objectSpread2$1({}, base$Q(props, context));
   }
 };
 
@@ -36043,9 +37489,9 @@ var ObjectElement = {
   },
   setup(props, ctx) {
     var context = _objectSpread2$1({}, ctx);
-    context.features = [base$U, base$1b, base$1a, base$X, base$P, base$W, object$5, base$1e, object$7, object$2, object$6, base$11, object, base$14, object$8, object$3, base$$, base$_, base$1c, base$10, base$Z, object$1, base$S, object$4, base$V];
+    context.features = [base$W, base$1d, base$1c, base$Z, base$R, base$Y, object$5, base$1g, object$7, object$2, object$6, base$13, object, base$16, object$8, object$3, base$11, base$10, base$1e, base$12, base$$, object$1, base$U, object$4, base$X];
     context.slots = ['label', 'info', 'required', 'description', 'before', 'between', 'after'];
-    return _objectSpread2$1({}, base$O(props, context));
+    return _objectSpread2$1({}, base$Q(props, context));
   }
 };
 
@@ -38867,9 +40313,9 @@ var PhoneElement = {
   },
   setup(props, ctx) {
     var context = _objectSpread2$1({}, ctx);
-    context.features = [base$U, base$1b, base$1a, base$X, base$N, base$P, base$L, base$W, base$H, base$1e, base$Q, base$T, base$C, text$1, base$16, text$2, base$I, base$M, base$J, base$B, base$11, base$K, base$$, base$_, base$1c, base$10, base$Z, phone$1, base$s, base$b, phone$2, base$G, base$V, phone, base$t, base$a];
+    context.features = [base$W, base$1d, base$1c, base$Z, base$P, base$R, base$N, base$Y, base$J, base$1g, base$S, base$V, base$E, text$1, base$18, text$2, base$K, base$O, base$L, base$D, base$13, base$M, base$11, base$10, base$1e, base$12, base$$, phone$1, base$u, base$b, phone$2, base$I, base$X, phone, base$v, base$a];
     context.slots = ['label', 'info', 'required', 'description', 'before', 'between', 'after'];
-    return _objectSpread2$1({}, base$O(props, context));
+    return _objectSpread2$1({}, base$Q(props, context));
   }
 };
 
@@ -39018,13 +40464,18 @@ var RadioElement = {
       required: false,
       type: [String],
       default: undefined
+    },
+    standalone: {
+      required: false,
+      type: [Boolean],
+      default: false
     }
   },
   setup(props, ctx) {
     var context = _objectSpread2$1({}, ctx);
-    context.features = [base$U, base$1b, base$1a, base$X, base$N, base$P, base$W, base$1e, base$Q, base$T, base$L, base$D, base$16, base$E, base$M, base$B, base$11, base$K, base$$, base$_, base$1c, base$10, base$Z, base$8, radio, base$G, base$V, base$A];
+    context.features = [base$W, base$1d, base$1c, base$Z, base$P, base$R, base$Y, base$1g, base$S, base$V, base$N, base$F, base$18, base$G, base$O, base$D, base$13, base$M, base$11, base$10, base$1e, base$12, base$$, base$8, radio, base$I, base$X, base$C];
     context.slots = ['default', 'label', 'info', 'required', 'description', 'before', 'between', 'after'];
-    return _objectSpread2$1({}, base$O(props, context));
+    return _objectSpread2$1({}, base$Q(props, context));
   }
 };
 
@@ -39073,9 +40524,9 @@ var RadiogroupElement = {
   },
   setup(props, ctx) {
     var context = _objectSpread2$1({}, ctx);
-    context.features = [base$U, base$1b, base$1a, base$X, base$P, base$L, base$W, base$1e, base$Q, radiogroup$2, base$D, base$M, radiogroup, base$16, base$E, base$B, base$11, base$K, base$$, base$_, base$1c, base$10, base$Z, radiogroup$1, base$G, base$V];
+    context.features = [base$W, base$1d, base$1c, base$Z, base$R, base$N, base$Y, base$1g, base$S, radiogroup$2, base$F, base$O, radiogroup, base$18, base$G, base$D, base$13, base$M, base$11, base$10, base$1e, base$12, base$$, radiogroup$1, base$I, base$X];
     context.slots = ['radio', 'label', 'info', 'required', 'description', 'before', 'between', 'after'];
-    return _objectSpread2$1({}, base$O(props, context));
+    return _objectSpread2$1({}, base$Q(props, context));
   }
 };
 
@@ -39403,9 +40854,9 @@ var SelectElement = {
   },
   setup(props, ctx) {
     var context = _objectSpread2$1({}, ctx);
-    context.features = [base$U, base$1b, base$1a, base$X, select$4, base$P, base$L, base$W, base$H, base$1e, base$Q, base$T, base$D, base$E, base$I, select$1, base$M, select$2, base$16, base$J, select$3, base$11, base$K, base$$, base$_, base$1c, base$10, base$Z, base$d, select, base$S, base$G, base$V, base$t];
+    context.features = [base$W, base$1d, base$1c, base$Z, select$4, base$R, base$N, base$Y, base$J, base$1g, base$S, base$V, base$F, base$G, base$K, select$1, base$O, select$2, base$18, base$L, select$3, base$13, base$M, base$11, base$10, base$1e, base$12, base$$, base$d, select, base$U, base$I, base$X, base$v];
     context.slots = ['option', 'single-label', 'placeholder', 'group-label', 'before-list', 'after-list', 'no-results', 'no-options', 'caret', 'spinner', 'clear', 'label', 'info', 'required', 'description', 'before', 'between', 'after'];
-    return _objectSpread2$1({}, base$O(props, context));
+    return _objectSpread2$1({}, base$Q(props, context));
   }
 };
 
@@ -41829,9 +43280,9 @@ var SignatureElement = {
   },
   setup(props, ctx) {
     var context = _objectSpread2$1({}, ctx);
-    context.features = [base$U, base$1b, base$1a, base$X, base$N, base$P, base$L, base$W, base$1e, base$Q, base$T, base$C, base$D, base$16, base$E, base$M, base$J, base$t, useSignature, signature, base$11, base$K, base$$, base$_, base$1c, base$10, base$Z, base$s, base$S, base$G, base$V];
+    context.features = [base$W, base$1d, base$1c, base$Z, base$P, base$R, base$N, base$Y, base$1g, base$S, base$V, base$E, base$F, base$18, base$G, base$O, base$L, base$v, useSignature, signature, base$13, base$M, base$11, base$10, base$1e, base$12, base$$, base$u, base$U, base$I, base$X];
     context.slots = ['label', 'info', 'required', 'description', 'before', 'between', 'after', 'addon-before', 'addon-after'];
-    return _objectSpread2$1({}, base$O(props, context));
+    return _objectSpread2$1({}, base$Q(props, context));
   }
 };
 
@@ -41954,9 +43405,9 @@ var SliderElement = {
   },
   setup(props, ctx) {
     var context = _objectSpread2$1({}, ctx);
-    context.features = [base$U, base$1b, base$1a, base$X, base$N, base$P, min, base$W, base$1e, base$Q, base$T, base$D, slider, base$M, slider$1, base$16, base$B, base$11, base$K, base$$, base$_, base$1c, base$10, base$Z, base$u, base$7, base$S, base$G, base$V];
+    context.features = [base$W, base$1d, base$1c, base$Z, base$P, base$R, min, base$Y, base$1g, base$S, base$V, base$F, slider, base$O, slider$1, base$18, base$D, base$13, base$M, base$11, base$10, base$1e, base$12, base$$, base$w, base$7, base$U, base$I, base$X];
     context.slots = ['label', 'info', 'required', 'description', 'before', 'between', 'after'];
-    return _objectSpread2$1({}, base$O(props, context));
+    return _objectSpread2$1({}, base$Q(props, context));
   }
 };
 
@@ -42145,7 +43596,7 @@ var StaticElement = {
   },
   setup(props, ctx) {
     var context = _objectSpread2$1({}, ctx);
-    context.features = [base$U, base$1b, base$1a, base$X, static_$1, base$1e, static_$2, base$16, base$11, base$$, base$_, base$1c, base$10, base$Z, base$W, static_$3, base$V, base$6];
+    context.features = [base$W, base$1d, base$1c, base$Z, static_$1, base$1g, static_$2, base$18, base$13, base$11, base$10, base$1e, base$12, base$$, base$Y, static_$3, base$X, base$6];
     context.slots = ['default', 'label', 'info', 'description', 'before', 'between', 'after'];
     return _objectSpread2$1({}, static_(props, context));
   }
@@ -42488,9 +43939,9 @@ var TagsElement = {
   },
   setup(props, ctx) {
     var context = _objectSpread2$1({}, ctx);
-    context.features = [base$U, base$1b, base$1a, base$X, tags$4, base$P, array$1, base$W, base$H, base$1e, tags$5, base$T, base$D, base$E, base$I, tags$1, base$M, tags$2, base$16, array, tags$3, base$11, base$K, base$$, base$_, base$1c, base$10, base$Z, base$d, base$5, base$c, tags, base$S, base$G, base$V, base$t];
+    context.features = [base$W, base$1d, base$1c, base$Z, tags$4, base$R, array$1, base$Y, base$J, base$1g, tags$5, base$V, base$F, base$G, base$K, tags$1, base$O, tags$2, base$18, array, tags$3, base$13, base$M, base$11, base$10, base$1e, base$12, base$$, base$d, base$5, base$c, tags, base$U, base$I, base$X, base$v];
     context.slots = ['tag', 'option', 'placeholder', 'group-label', 'before-list', 'after-list', 'no-results', 'no-options', 'caret', 'spinner', 'clear', 'label', 'info', 'required', 'description', 'before', 'between', 'after'];
-    return _objectSpread2$1({}, base$O(props, context));
+    return _objectSpread2$1({}, base$Q(props, context));
   }
 };
 
@@ -42663,9 +44114,9 @@ var TextareaElement = {
   },
   setup(props, ctx) {
     var context = _objectSpread2$1({}, ctx);
-    context.features = [base$U, base$1b, base$1a, base$X, base$N, base$P, base$L, base$W, base$H, base$1e, base$Q, base$T, base$C, base$w, text$1, base$16, text$2, base$M, base$J, base$B, base$11, base$K, base$$, base$_, base$1c, base$10, base$Z, base$m, base$4, base$s, base$b, base$S, base$G, base$V, base$9, base$t];
+    context.features = [base$W, base$1d, base$1c, base$Z, base$P, base$R, base$N, base$Y, base$J, base$1g, base$S, base$V, base$E, base$y, text$1, base$18, text$2, base$O, base$L, base$D, base$13, base$M, base$11, base$10, base$1e, base$12, base$$, base$o, base$4, base$u, base$b, base$U, base$I, base$X, base$9, base$v];
     context.slots = ['label', 'info', 'required', 'description', 'before', 'between', 'after', 'addon-before', 'addon-after'];
-    return _objectSpread2$1({}, base$O(props, context));
+    return _objectSpread2$1({}, base$Q(props, context));
   }
 };
 
@@ -42776,9 +44227,9 @@ var TextElement = {
   },
   setup(props, ctx) {
     var context = _objectSpread2$1({}, ctx);
-    context.features = [base$U, base$1b, base$1a, base$X, base$N, base$P, base$L, base$W, base$1e, base$Q, base$T, base$C, base$w, text$1, base$16, text$2, base$I, base$M, base$J, text, base$11, base$K, base$$, base$_, base$1c, base$10, base$Z, base$m, base$s, base$b, base$S, base$G, base$V, base$9, base$H, base$t];
-    context.slots = ['label', 'info', 'required', 'required', 'description', 'before', 'between', 'after', 'addon-before', 'addon-after'];
-    return _objectSpread2$1({}, base$O(props, context));
+    context.features = [base$W, base$1d, base$1c, base$Z, base$P, base$R, base$N, base$Y, base$1g, base$S, base$V, base$E, base$y, text$1, base$18, text$2, base$K, base$O, base$L, text, base$13, base$M, base$11, base$10, base$1e, base$12, base$$, base$o, base$u, base$b, base$U, base$I, base$X, base$9, base$J, base$v];
+    context.slots = ['label', 'info', 'required', 'description', 'before', 'between', 'after', 'addon-before', 'addon-after'];
+    return _objectSpread2$1({}, base$Q(props, context));
   }
 };
 
@@ -42839,13 +44290,18 @@ var ToggleElement = {
       required: false,
       type: [String],
       default: undefined
+    },
+    standalone: {
+      required: false,
+      type: [Boolean],
+      default: false
     }
   },
   setup(props, ctx) {
     var context = _objectSpread2$1({}, ctx);
-    context.features = [base$U, base$1b, base$1a, base$X, base$N, base$P, boolean, base$W, base$1e, base$Q, base$T, toggle, base$D, base$16, base$E, base$M, base$B, base$11, base$K, base$$, base$_, base$1c, base$10, base$Z, base$u, base$z, toggle$1, base$G, base$V, base$A];
+    context.features = [base$W, base$1d, base$1c, base$Z, base$P, base$R, boolean, base$Y, base$1g, base$S, base$V, toggle, base$F, base$18, base$G, base$O, base$D, base$13, base$M, base$11, base$10, base$1e, base$12, base$$, base$w, base$B, toggle$1, base$I, base$X, base$C];
     context.slots = ['default', 'label', 'info', 'required', 'description', 'before', 'between', 'after'];
-    return _objectSpread2$1({}, base$O(props, context));
+    return _objectSpread2$1({}, base$Q(props, context));
   }
 };
 
@@ -43024,9 +44480,9 @@ var EditorElement = {
   },
   setup(props, ctx) {
     var context = _objectSpread2$1({}, ctx);
-    context.features = [base$U, base$1b, base$1a, base$X, base$N, base$P, base$L, base$W, base$1e, base$Q, base$T, text$1, base$16, text$2, base$M, base$J, editor, base$11, base$K, base$$, base$_, base$3, base$1c, base$10, base$Z, base$m, base$2, base$n, base$b, base$S, base$G, editor$1, base$t];
+    context.features = [base$W, base$1d, base$1c, base$Z, base$P, base$R, base$N, base$Y, base$1g, base$S, base$V, text$1, base$18, text$2, base$O, base$L, editor, base$13, base$M, base$11, base$10, base$3, base$1e, base$12, base$$, base$o, base$2, base$p, base$b, base$U, base$I, editor$1, base$v];
     context.slots = ['label', 'info', 'required', 'description', 'before', 'between', 'after'];
-    return _objectSpread2$1({}, base$O(props, context));
+    return _objectSpread2$1({}, base$Q(props, context));
   }
 };
 
@@ -43157,7 +44613,7 @@ var TTextareaElement = {
   },
   setup(props, ctx) {
     var context = _objectSpread2$1({}, ctx);
-    context.features = [base$U, base$1b, base$1a, base$X, base$N, base$P, base$W, base$H, base$1e, base$Q, base$T, base$C, base$w, base$1, multilingual$6, multilingual$2, multilingual$7, base$16, multilingual$3, multilingual$5, multilingual$1, base$11, base$K, base$$, base$_, base$1c, base$10, base$Z, base$m, multilingual, base$s, base$b, base$S, multilingual$4, base$V, base$9, base$t];
+    context.features = [base$W, base$1d, base$1c, base$Z, base$P, base$R, base$Y, base$J, base$1g, base$S, base$V, base$E, base$y, base$1, multilingual$6, multilingual$2, multilingual$7, base$18, multilingual$3, multilingual$5, multilingual$1, base$13, base$M, base$11, base$10, base$1e, base$12, base$$, base$o, multilingual, base$u, base$b, base$U, multilingual$4, base$X, base$9, base$v];
     context.slots = ['label', 'info', 'required', 'description', 'before', 'between', 'after', 'addon-before', 'addon-after'];
     return _objectSpread2$1({}, multilingual$8(props, context));
   }
@@ -43265,7 +44721,7 @@ var TTextElement = {
   },
   setup(props, ctx) {
     var context = _objectSpread2$1({}, ctx);
-    context.features = [base$U, base$1b, base$1a, base$X, base$N, base$P, base$W, base$H, base$1e, base$Q, base$T, base$C, base$w, base$1, multilingual$6, multilingual$2, multilingual$7, base$16, multilingual$3, base$I, multilingual$5, multilingual$1, base$11, base$K, base$$, base$_, base$1c, base$10, base$Z, base$m, base$s, base$b, base$S, multilingual$4, base$V, base$9, base$t];
+    context.features = [base$W, base$1d, base$1c, base$Z, base$P, base$R, base$Y, base$J, base$1g, base$S, base$V, base$E, base$y, base$1, multilingual$6, multilingual$2, multilingual$7, base$18, multilingual$3, base$K, multilingual$5, multilingual$1, base$13, base$M, base$11, base$10, base$1e, base$12, base$$, base$o, base$u, base$b, base$U, multilingual$4, base$X, base$9, base$v];
     context.slots = ['label', 'info', 'required', 'description', 'before', 'between', 'after', 'addon-before', 'addon-after'];
     return _objectSpread2$1({}, multilingual$8(props, context));
   }
@@ -43357,7 +44813,7 @@ var TEditorElement = {
   },
   setup(props, ctx) {
     var context = _objectSpread2$1({}, ctx);
-    context.features = [base$U, base$1b, base$1a, base$X, base$N, base$P, base$W, base$1e, base$Q, base$T, base$1, multilingual$6, multilingual$2, multilingual$7, base$16, multilingual$3, multilingual$5, teditor, base$11, base$K, base$$, base$_, base$3, base$1c, base$10, base$Z, base$m, base$2, base$n, base$b, base$S, multilingual$4, base$V, base$t];
+    context.features = [base$W, base$1d, base$1c, base$Z, base$P, base$R, base$Y, base$1g, base$S, base$V, base$1, multilingual$6, multilingual$2, multilingual$7, base$18, multilingual$3, multilingual$5, teditor, base$13, base$M, base$11, base$10, base$3, base$1e, base$12, base$$, base$o, base$2, base$p, base$b, base$U, multilingual$4, base$X, base$v];
     context.slots = ['label', 'info', 'required', 'description', 'before', 'between', 'after'];
     return _objectSpread2$1({}, multilingual$8(props, context));
   }
@@ -43386,6 +44842,11 @@ var CheckboxgroupCheckbox = {
       required: false,
       type: [Object],
       default: () => ({})
+    },
+    standalone: {
+      required: false,
+      type: [Boolean],
+      default: false
     }
   },
   setup(props, context) {
@@ -43403,7 +44864,7 @@ var CheckboxgroupCheckbox = {
       Templates,
       template,
       theme
-    } = base$12(props, context);
+    } = base$14(props, context);
 
     // ============== COMPUTED ==============
 
@@ -43423,7 +44884,8 @@ var CheckboxgroupCheckbox = {
      * @type {boolean}
      */
     var checked = computed(() => {
-      return el$.value.value.indexOf(String(value.value)) !== -1 || el$.value.value.indexOf(Number(value.value)) !== -1;
+      var _el$$value$value, _el$$value$value2;
+      return ((_el$$value$value = el$.value.value) === null || _el$$value$value === void 0 ? void 0 : _el$$value$value.indexOf(String(value.value))) !== -1 || ((_el$$value$value2 = el$.value.value) === null || _el$$value$value2 === void 0 ? void 0 : _el$$value$value2.indexOf(Number(value.value))) !== -1;
     });
 
     /**
@@ -43712,7 +45174,7 @@ var FilePreview = {
       Templates,
       template,
       theme
-    } = base$12(props, context);
+    } = base$14(props, context);
     var {
       visible,
       hasLink,
@@ -43827,6 +45289,11 @@ var RadiogroupRadio = {
       required: false,
       type: [Object],
       default: () => ({})
+    },
+    standalone: {
+      required: false,
+      type: [Boolean],
+      default: false
     }
   },
   setup(props, context) {
@@ -43844,7 +45311,7 @@ var RadiogroupRadio = {
       Templates,
       template,
       theme
-    } = base$12(props, context);
+    } = base$14(props, context);
 
     // ============== COMPUTED ==============
 
@@ -43977,4 +45444,4 @@ var vueform = installer(undefined, {
   moment
 });
 
-export { ButtonElement, CaptchaElement, CheckboxElement, CheckboxgroupCheckbox, CheckboxgroupElement, DateElement, DatepickerWrapper, DatesElement, DragAndDrop, EditorElement, EditorWrapper, ElementAddon, ElementAddonOptions, ElementDescription, ElementError, ElementInfo, ElementLabel, ElementLabelFloating, ElementLayout, ElementLayoutInline, ElementLoader, ElementMessage, ElementRequired, ElementText, FileElement, FilePreview, FormElements, FormErrors, FormLanguage, FormLanguages, FormMessages, FormStep, FormSteps, FormStepsControl, FormStepsControls, FormTab, FormTabs, GenericElement, GroupElement, HiddenElement, ListElement, LocationElement, MultifileElement, MultiselectElement, ObjectElement, PhoneElement, RadioElement, RadiogroupElement, RadiogroupRadio, SelectElement, SignatureElement, SliderElement, StaticElement, TEditorElement, TTextElement, TTextareaElement, TagsElement, TextElement, TextareaElement, ToggleElement, Validator, VueformComponent as Vueform, VueformElement, accepted, active_url, after, after_or_equal, alpha, alpha_dash, alpha_num, array$2 as array, before, before_or_equal, between, boolean$1 as boolean, captcha$2 as captcha, completed, confirmed, date$4 as date, date_equals, date_format, vueform as default, defineConfig, defineElement, different, digits, digits_between, dimensions, distinct, element, email, exists, file$5 as file, filled, gt, gte, image, in_, in_array, installer, integer, ip, ipv4, ipv6, json, lt, lte, max, mimes, mimetypes, min$1 as min, not_in, not_regex, nullable, numeric, regex, required, same, size, string, timezone, unique, url, base$1c as useClasses, base$1d as useVueform, uuid, vueform };
+export { ButtonElement, CaptchaElement, CheckboxElement, CheckboxgroupCheckbox, CheckboxgroupElement, DateElement, DatepickerWrapper, DatesElement, DragAndDrop, EditorElement, EditorWrapper, ElementAddon, ElementAddonOptions, ElementDescription, ElementError, ElementInfo, ElementLabel, ElementLabelFloating, ElementLayout, ElementLayoutInline, ElementLoader, ElementMessage, ElementRequired, ElementText, FileElement, FilePreview, FormElements, FormErrors, FormLanguage, FormLanguages, FormMessages, FormStep, FormSteps, FormStepsControl, FormStepsControls, FormTab, FormTabs, GenericElement, GroupElement, HiddenElement, ListElement, LocationElement, MatrixElement, MultifileElement, MultiselectElement, ObjectElement, PhoneElement, RadioElement, RadiogroupElement, RadiogroupRadio, SelectElement, SignatureElement, SliderElement, StaticElement, TEditorElement, TTextElement, TTextareaElement, TagsElement, TextElement, TextareaElement, ToggleElement, Validator, VueformComponent as Vueform, VueformElement, accepted, active_url, after, after_or_equal, alpha, alpha_dash, alpha_num, array$2 as array, before, before_or_equal, between, boolean$1 as boolean, captcha$2 as captcha, completed, confirmed, date$4 as date, date_equals, date_format, vueform as default, defineConfig, defineElement, different, digits, digits_between, dimensions, distinct, element, email, exists, file$5 as file, filled, gt, gte, image, in_, in_array, installer, integer, ip, ipv4, ipv6, json, lt, lte, max, mimes, mimetypes, min$1 as min, not_in, not_regex, nullable, numeric, regex, required, same, size, string, timezone, unique, url, base$1e as useClasses, base$1f as useVueform, uuid, vueform };

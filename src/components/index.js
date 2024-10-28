@@ -40,6 +40,7 @@ import GroupElement from './elements/GroupElement'
 import HiddenElement from './elements/HiddenElement'
 import ListElement from './elements/ListElement'
 import LocationElement from './elements/LocationElement'
+import MatrixElement from './elements/MatrixElement'
 import MultifileElement from './elements/MultifileElement'
 import MultiselectElement from './elements/MultiselectElement'
 import ObjectElement from './elements/ObjectElement'
@@ -104,6 +105,7 @@ export default {
   HiddenElement,
   ListElement,
   LocationElement,
+  MatrixElement,
   MultifileElement,
   MultiselectElement,
   ObjectElement,
@@ -168,6 +170,7 @@ export {
   HiddenElement,
   ListElement,
   LocationElement,
+  MatrixElement,
   MultifileElement,
   MultiselectElement,
   ObjectElement,

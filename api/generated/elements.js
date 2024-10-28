@@ -672,6 +672,13 @@ module.exports = {
         description: 'Whether the element is a nested group.',
         private: true,
       },
+      isMatrixType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is a matrix.',
+        private: true,
+      },
       isListType: {
         types: [
           'boolean',
@@ -1633,6 +1640,16 @@ module.exports = {
         required: false,
         private: true,
       },
+      displayErrors: {
+        required: 'false',
+        default: 'true',
+        localized: false,
+        types: [
+          'boolean',
+        ],
+        required: false,
+        private: false,
+      },
       type: {
         required: 'false',
         default: 'captcha',
@@ -1884,6 +1901,13 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element is a list.',
+        private: true,
+      },
+      isMatrixType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is a matrix.',
         private: true,
       },
       isActive: {
@@ -2188,6 +2212,20 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element is required (has required rule).',
+        private: false,
+      },
+      useCustomFilled: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element should use a custom logic for checking if it is filled when validating.',
+        private: false,
+      },
+      isFilled: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is filled is `useCustomFilled` is `true`.',
         private: false,
       },
       value: {
@@ -3083,6 +3121,16 @@ module.exports = {
         required: false,
         private: false,
       },
+      displayErrors: {
+        required: 'false',
+        default: 'true',
+        localized: false,
+        types: [
+          'boolean',
+        ],
+        required: false,
+        private: false,
+      },
       type: {
         required: 'false',
         default: 'checkbox',
@@ -3169,6 +3217,16 @@ module.exports = {
         localized: false,
         types: [
           'string',
+        ],
+        required: false,
+        private: false,
+      },
+      standalone: {
+        required: 'false',
+        default: 'false',
+        localized: false,
+        types: [
+          'boolean',
         ],
         required: false,
         private: false,
@@ -3375,6 +3433,13 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element is a list.',
+        private: true,
+      },
+      isMatrixType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is a matrix.',
         private: true,
       },
       isActive: {
@@ -3644,6 +3709,20 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element is required (has required rule).',
+        private: false,
+      },
+      useCustomFilled: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element should use a custom logic for checking if it is filled when validating.',
+        private: false,
+      },
+      isFilled: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is filled is `useCustomFilled` is `true`.',
         private: false,
       },
       value: {
@@ -4550,6 +4629,16 @@ module.exports = {
         required: false,
         private: false,
       },
+      displayErrors: {
+        required: 'false',
+        default: 'true',
+        localized: false,
+        types: [
+          'boolean',
+        ],
+        required: false,
+        private: false,
+      },
       type: {
         required: 'false',
         default: 'checkboxgroup',
@@ -4830,6 +4919,13 @@ module.exports = {
         description: 'Whether the element is a nested group.',
         private: true,
       },
+      isMatrixType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is a matrix.',
+        private: true,
+      },
       isListType: {
         types: [
           'boolean',
@@ -5097,6 +5193,20 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element is required (has required rule).',
+        private: false,
+      },
+      useCustomFilled: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element should use a custom logic for checking if it is filled when validating.',
+        private: false,
+      },
+      isFilled: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is filled is `useCustomFilled` is `true`.',
         private: false,
       },
       value: {
@@ -6184,6 +6294,16 @@ module.exports = {
         required: false,
         private: false,
       },
+      displayErrors: {
+        required: 'false',
+        default: 'true',
+        localized: false,
+        types: [
+          'boolean',
+        ],
+        required: false,
+        private: false,
+      },
       type: {
         required: 'false',
         default: 'date',
@@ -6598,6 +6718,13 @@ module.exports = {
         description: 'Whether the element is a list.',
         private: true,
       },
+      isMatrixType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is a matrix.',
+        private: true,
+      },
       isActive: {
         types: [
           'boolean',
@@ -6907,6 +7034,20 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element is required (has required rule).',
+        private: false,
+      },
+      useCustomFilled: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element should use a custom logic for checking if it is filled when validating.',
+        private: false,
+      },
+      isFilled: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is filled is `useCustomFilled` is `true`.',
         private: false,
       },
       value: {
@@ -7828,6 +7969,16 @@ module.exports = {
         required: false,
         private: false,
       },
+      displayErrors: {
+        required: 'false',
+        default: 'true',
+        localized: false,
+        types: [
+          'boolean',
+        ],
+        required: false,
+        private: false,
+      },
       type: {
         required: 'false',
         default: 'dates',
@@ -8205,6 +8356,13 @@ module.exports = {
         description: 'Whether the element is a nested group.',
         private: true,
       },
+      isMatrixType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is a matrix.',
+        private: true,
+      },
       isListType: {
         types: [
           'boolean',
@@ -8521,6 +8679,20 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element is required (has required rule).',
+        private: false,
+      },
+      useCustomFilled: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element should use a custom logic for checking if it is filled when validating.',
+        private: false,
+      },
+      isFilled: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is filled is `useCustomFilled` is `true`.',
         private: false,
       },
       value: {
@@ -9442,6 +9614,16 @@ module.exports = {
         required: false,
         private: false,
       },
+      displayErrors: {
+        required: 'false',
+        default: 'true',
+        localized: false,
+        types: [
+          'boolean',
+        ],
+        required: false,
+        private: false,
+      },
       type: {
         required: 'false',
         default: 'editor',
@@ -9801,6 +9983,13 @@ module.exports = {
         description: 'Whether the element is a list.',
         private: true,
       },
+      isMatrixType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is a matrix.',
+        private: true,
+      },
       isActive: {
         types: [
           'boolean',
@@ -10098,6 +10287,20 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element is required (has required rule).',
+        private: false,
+      },
+      useCustomFilled: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element should use a custom logic for checking if it is filled when validating.',
+        private: false,
+      },
+      isFilled: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is filled is `useCustomFilled` is `true`.',
         private: false,
       },
       value: {
@@ -11068,6 +11271,16 @@ module.exports = {
         required: false,
         private: false,
       },
+      displayErrors: {
+        required: 'false',
+        default: 'true',
+        localized: false,
+        types: [
+          'boolean',
+        ],
+        required: false,
+        private: false,
+      },
       type: {
         required: 'false',
         default: 'file',
@@ -11528,6 +11741,13 @@ module.exports = {
         description: 'Whether the element is a nested group.',
         private: true,
       },
+      isMatrixType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is a matrix.',
+        private: true,
+      },
       isListType: {
         types: [
           'boolean',
@@ -11851,6 +12071,20 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element is required (has required rule).',
+        private: false,
+      },
+      useCustomFilled: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element should use a custom logic for checking if it is filled when validating.',
+        private: false,
+      },
+      isFilled: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is filled is `useCustomFilled` is `true`.',
         private: false,
       },
       errors: {
@@ -12855,6 +13089,16 @@ module.exports = {
         required: false,
         private: false,
       },
+      displayErrors: {
+        required: 'false',
+        default: 'true',
+        localized: false,
+        types: [
+          'boolean',
+        ],
+        required: false,
+        private: false,
+      },
       type: {
         required: 'false',
         default: '',
@@ -13109,6 +13353,13 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element is a list.',
+        private: true,
+      },
+      isMatrixType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is a matrix.',
         private: true,
       },
       isActive: {
@@ -13385,6 +13636,20 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element is required (has required rule).',
+        private: false,
+      },
+      useCustomFilled: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element should use a custom logic for checking if it is filled when validating.',
+        private: false,
+      },
+      isFilled: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is filled is `useCustomFilled` is `true`.',
         private: false,
       },
       value: {
@@ -14284,6 +14549,16 @@ module.exports = {
         required: false,
         private: false,
       },
+      displayErrors: {
+        required: 'false',
+        default: 'true',
+        localized: false,
+        types: [
+          'boolean',
+        ],
+        required: false,
+        private: false,
+      },
       type: {
         required: 'false',
         default: 'group',
@@ -14497,6 +14772,13 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element is a nested group.',
+        private: true,
+      },
+      isMatrixType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is a matrix.',
         private: true,
       },
       isListType: {
@@ -14737,6 +15019,20 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element is required (has required rule).',
+        private: false,
+      },
+      useCustomFilled: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element should use a custom logic for checking if it is filled when validating.',
+        private: false,
+      },
+      isFilled: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is filled is `useCustomFilled` is `true`.',
         private: false,
       },
       childrenErrors: {
@@ -15391,6 +15687,16 @@ module.exports = {
         required: false,
         private: false,
       },
+      displayErrors: {
+        required: 'false',
+        default: 'true',
+        localized: false,
+        types: [
+          'boolean',
+        ],
+        required: false,
+        private: false,
+      },
       type: {
         required: 'false',
         default: 'hidden',
@@ -15585,6 +15891,13 @@ module.exports = {
         description: 'Whether the element is a list.',
         private: true,
       },
+      isMatrixType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is a matrix.',
+        private: true,
+      },
       isActive: {
         types: [
           'boolean',
@@ -15773,6 +16086,20 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element is required (has required rule).',
+        private: false,
+      },
+      useCustomFilled: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element should use a custom logic for checking if it is filled when validating.',
+        private: false,
+      },
+      isFilled: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is filled is `useCustomFilled` is `true`.',
         private: false,
       },
       value: {
@@ -16528,6 +16855,16 @@ module.exports = {
         required: false,
         private: false,
       },
+      displayErrors: {
+        required: 'false',
+        default: 'true',
+        localized: false,
+        types: [
+          'boolean',
+        ],
+        required: false,
+        private: false,
+      },
       type: {
         required: 'false',
         default: 'list',
@@ -16930,6 +17267,13 @@ module.exports = {
         description: 'Whether the element is a nested group.',
         private: true,
       },
+      isMatrixType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is a matrix.',
+        private: true,
+      },
       isListType: {
         types: [
           'boolean',
@@ -17245,6 +17589,20 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element is required (has required rule).',
+        private: false,
+      },
+      useCustomFilled: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element should use a custom logic for checking if it is filled when validating.',
+        private: false,
+      },
+      isFilled: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is filled is `useCustomFilled` is `true`.',
         private: false,
       },
       childrenErrors: {
@@ -17687,10 +18045,16 @@ module.exports = {
               'array',
             ]
           },
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
        },
       },
       'remove': {
-        description: 'Triggered when a new item is removed from the list.',
+        description: 'Triggered when an item is removed from the list.',
         params: {
           index: {
             description: 'the index of the removed item',
@@ -17702,6 +18066,12 @@ module.exports = {
             description: 'the element&apos;s value after the item is removed',
             types: [
               'array',
+            ]
+          },
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
             ]
           },
        },
@@ -18337,6 +18707,16 @@ module.exports = {
         required: false,
         private: false,
       },
+      displayErrors: {
+        required: 'false',
+        default: 'true',
+        localized: false,
+        types: [
+          'boolean',
+        ],
+        required: false,
+        private: false,
+      },
       type: {
         required: 'false',
         default: 'location',
@@ -18704,6 +19084,13 @@ module.exports = {
         description: 'Whether the element is a list.',
         private: true,
       },
+      isMatrixType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is a matrix.',
+        private: true,
+      },
       isActive: {
         types: [
           'boolean',
@@ -18964,6 +19351,20 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element is required (has required rule).',
+        private: false,
+      },
+      useCustomFilled: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element should use a custom logic for checking if it is filled when validating.',
+        private: false,
+      },
+      isFilled: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is filled is `useCustomFilled` is `true`.',
         private: false,
       },
       errors: {
@@ -19496,6 +19897,1991 @@ module.exports = {
     },
     views: [],
   },
+  MatrixElement: {
+    props: {
+      name: {
+        required: 'true',
+        default: 'undefined',
+        localized: false,
+        types: [
+          'string',
+          'number',
+        ],
+        required: true,
+        private: false,
+      },
+      conditions: {
+        required: 'false',
+        default: '[]',
+        localized: false,
+        types: [
+          'array',
+        ],
+        required: false,
+        private: false,
+      },
+      onBeforeCreate: {
+        required: 'false',
+        default: 'null',
+        localized: false,
+        types: [
+          'function',
+        ],
+        required: false,
+        private: true,
+      },
+      onCreated: {
+        required: 'false',
+        default: 'null',
+        localized: false,
+        types: [
+          'function',
+        ],
+        required: false,
+        private: true,
+      },
+      onBeforeMount: {
+        required: 'false',
+        default: 'null',
+        localized: false,
+        types: [
+          'function',
+        ],
+        required: false,
+        private: true,
+      },
+      onMounted: {
+        required: 'false',
+        default: 'null',
+        localized: false,
+        types: [
+          'function',
+        ],
+        required: false,
+        private: true,
+      },
+      onBeforeUpdate: {
+        required: 'false',
+        default: 'null',
+        localized: false,
+        types: [
+          'function',
+        ],
+        required: false,
+        private: true,
+      },
+      onUpdated: {
+        required: 'false',
+        default: 'null',
+        localized: false,
+        types: [
+          'function',
+        ],
+        required: false,
+        private: true,
+      },
+      onBeforeUnmount: {
+        required: 'false',
+        default: 'null',
+        localized: false,
+        types: [
+          'function',
+        ],
+        required: false,
+        private: true,
+      },
+      onUnmounted: {
+        required: 'false',
+        default: 'null',
+        localized: false,
+        types: [
+          'function',
+        ],
+        required: false,
+        private: true,
+      },
+      inline: {
+        required: 'false',
+        default: 'false',
+        localized: false,
+        types: [
+          'boolean',
+        ],
+        required: false,
+        private: false,
+      },
+      layout: {
+        required: 'false',
+        default: 'ElementLayout',
+        localized: false,
+        types: [
+          'string',
+          'object',
+          'boolean',
+        ],
+        required: false,
+        private: true,
+      },
+      addClass: {
+        required: 'false',
+        default: 'null',
+        localized: false,
+        types: [
+          'array',
+          'object',
+          'string',
+          'function',
+        ],
+        required: false,
+        private: false,
+      },
+      removeClass: {
+        required: 'false',
+        default: 'null',
+        localized: false,
+        types: [
+          'array',
+          'object',
+          'function',
+        ],
+        required: false,
+        private: false,
+      },
+      replaceClass: {
+        required: 'false',
+        default: 'null',
+        localized: false,
+        types: [
+          'object',
+          'function',
+        ],
+        required: false,
+        private: false,
+      },
+      overrideClass: {
+        required: 'false',
+        default: 'null',
+        localized: false,
+        types: [
+          'array',
+          'object',
+          'string',
+          'function',
+        ],
+        required: false,
+        private: false,
+      },
+      addClasses: {
+        required: 'false',
+        default: '{}',
+        localized: false,
+        types: [
+          'object',
+          'function',
+        ],
+        required: false,
+        private: false,
+      },
+      replaceClasses: {
+        required: 'false',
+        default: '{}',
+        localized: false,
+        types: [
+          'object',
+          'function',
+        ],
+        required: false,
+        private: false,
+      },
+      removeClasses: {
+        required: 'false',
+        default: '{}',
+        localized: false,
+        types: [
+          'object',
+          'function',
+        ],
+        required: false,
+        private: false,
+      },
+      overrideClasses: {
+        required: 'false',
+        default: '{}',
+        localized: false,
+        types: [
+          'object',
+          'function',
+        ],
+        required: false,
+        private: false,
+      },
+      presets: {
+        required: 'false',
+        default: '[]',
+        localized: false,
+        types: [
+          'array',
+        ],
+        required: false,
+        private: false,
+      },
+      view: {
+        required: 'false',
+        default: 'undefined',
+        localized: false,
+        types: [
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
+      views: {
+        required: 'false',
+        default: '{}',
+        localized: false,
+        types: [
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      size: {
+        required: 'false',
+        default: 'undefined',
+        localized: false,
+        types: [
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
+      columns: {
+        required: 'false',
+        default: 'null',
+        localized: false,
+        types: [
+          'object',
+          'string',
+          'number',
+        ],
+        required: false,
+        private: false,
+      },
+      templates: {
+        required: 'false',
+        default: '{}',
+        localized: false,
+        types: [
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      description: {
+        required: 'false',
+        default: 'null',
+        localized: true,
+        types: [
+          'string',
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      info: {
+        required: 'false',
+        default: 'null',
+        localized: true,
+        types: [
+          'string',
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      infoPosition: {
+        required: 'false',
+        default: 'right',
+        localized: false,
+        types: [
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
+      label: {
+        required: 'false',
+        default: 'null',
+        localized: true,
+        types: [
+          'string',
+          'object',
+          'function',
+        ],
+        required: false,
+        private: false,
+      },
+      before: {
+        required: 'false',
+        default: 'null',
+        localized: true,
+        types: [
+          'object',
+          'string',
+          'number',
+        ],
+        required: false,
+        private: false,
+      },
+      between: {
+        required: 'false',
+        default: 'null',
+        localized: true,
+        types: [
+          'object',
+          'string',
+          'number',
+        ],
+        required: false,
+        private: false,
+      },
+      after: {
+        required: 'false',
+        default: 'null',
+        localized: true,
+        types: [
+          'object',
+          'string',
+          'number',
+        ],
+        required: false,
+        private: false,
+      },
+      slots: {
+        required: 'false',
+        default: '{}',
+        localized: false,
+        types: [
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      onChange: {
+        required: 'false',
+        default: 'null',
+        localized: false,
+        types: [
+          'function',
+        ],
+        required: false,
+        private: true,
+      },
+      formatData: {
+        required: 'false',
+        default: 'null',
+        localized: false,
+        types: [
+          'function',
+        ],
+        required: false,
+        private: false,
+      },
+      formatLoad: {
+        required: 'false',
+        default: 'null',
+        localized: false,
+        types: [
+          'function',
+        ],
+        required: false,
+        private: false,
+      },
+      submit: {
+        required: 'false',
+        default: 'true',
+        localized: false,
+        types: [
+          'boolean',
+        ],
+        required: false,
+        private: false,
+      },
+      rules: {
+        required: 'false',
+        default: 'null',
+        localized: false,
+        types: [
+          'array',
+          'string',
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      messages: {
+        required: 'false',
+        default: '{}',
+        localized: false,
+        types: [
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      fieldName: {
+        required: 'false',
+        default: 'name|label',
+        localized: false,
+        types: [
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
+      displayErrors: {
+        required: 'false',
+        default: 'true',
+        localized: false,
+        types: [
+          'boolean',
+        ],
+        required: false,
+        private: false,
+      },
+      type: {
+        required: 'false',
+        default: 'object',
+        localized: false,
+        types: [
+          'string',
+        ],
+        required: false,
+        private: true,
+      },
+      default: {
+        required: 'false',
+        default: '{}',
+        localized: false,
+        types: [
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      id: {
+        required: 'false',
+        default: 'null',
+        localized: false,
+        types: [
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
+      disabled: {
+        required: 'false',
+        default: 'false',
+        localized: false,
+        types: [
+          'boolean',
+          'function',
+          'array',
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      readonly: {
+        required: 'false',
+        default: 'false',
+        localized: false,
+        types: [
+          'boolean',
+          'function',
+          'array',
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      inputType: {
+        required: 'false',
+        default: 'radio',
+        localized: false,
+        types: [
+          'string',
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      items: {
+        required: 'false',
+        default: '[]',
+        localized: false,
+        types: [
+          'array',
+          'object',
+          'string',
+          'function',
+        ],
+        required: false,
+        private: false,
+      },
+      cols: {
+        required: 'false',
+        default: '[]',
+        localized: false,
+        types: [
+          'array',
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
+      colWrap: {
+        required: 'false',
+        default: 'true',
+        localized: false,
+        types: [
+          'boolean',
+        ],
+        required: false,
+        private: false,
+      },
+      hideCols: {
+        required: 'false',
+        default: 'false',
+        localized: false,
+        types: [
+          'boolean',
+        ],
+        required: false,
+        private: false,
+      },
+      stickyCols: {
+        required: 'false',
+        default: 'false',
+        localized: false,
+        types: [
+          'boolean',
+        ],
+        required: false,
+        private: false,
+      },
+      rows: {
+        required: 'false',
+        default: '1',
+        localized: false,
+        types: [
+          'array',
+          'object',
+          'number',
+        ],
+        required: false,
+        private: false,
+      },
+      rowWrap: {
+        required: 'false',
+        default: 'true',
+        localized: false,
+        types: [
+          'boolean',
+        ],
+        required: false,
+        private: false,
+      },
+      hideRows: {
+        required: 'false',
+        default: 'false',
+        localized: false,
+        types: [
+          'boolean',
+        ],
+        required: false,
+        private: false,
+      },
+      stickyRows: {
+        required: 'false',
+        default: 'false',
+        localized: false,
+        types: [
+          'boolean',
+        ],
+        required: false,
+        private: false,
+      },
+      min: {
+        required: 'false',
+        default: '-1',
+        localized: false,
+        types: [
+          'number',
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
+      max: {
+        required: 'false',
+        default: '-1',
+        localized: false,
+        types: [
+          'number',
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
+      canAdd: {
+        required: 'false',
+        default: 'true',
+        localized: false,
+        types: [
+          'boolean',
+        ],
+        required: false,
+        private: false,
+      },
+      canRemove: {
+        required: 'false',
+        default: 'true',
+        localized: false,
+        types: [
+          'boolean',
+        ],
+        required: false,
+        private: false,
+      },
+      addText: {
+        required: 'false',
+        default: 'locale.elements.list.add',
+        localized: false,
+        types: [
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
+      minWidth: {
+        required: 'false',
+        default: 'min-content',
+        localized: false,
+        types: [
+          'number',
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
+      maxWidth: {
+        required: 'false',
+        default: '1fr',
+        localized: false,
+        types: [
+          'number',
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
+      gap: {
+        required: 'false',
+        default: '16',
+        localized: false,
+        types: [
+          'string',
+          'number',
+        ],
+        required: false,
+        private: false,
+      },
+      padding: {
+        required: 'false',
+        default: 'false',
+        localized: false,
+        types: [
+          'boolean',
+        ],
+        required: false,
+        private: false,
+      },
+      scrollable: {
+        required: 'false',
+        default: 'true',
+        localized: false,
+        types: [
+          'boolean',
+        ],
+        required: false,
+        private: false,
+      },
+      templateColumns: {
+        required: 'false',
+        default: 'null',
+        localized: false,
+        types: [
+          'string',
+          'function',
+        ],
+        required: false,
+        private: false,
+      },
+    },
+    data: {
+      active: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is hidden internally by core components like tabs or steps. Only intended for reading.',
+        default: 'true',
+        private: true,
+      },
+      mounted: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element has been already mounted.',
+        default: 'true',
+        private: false,
+      },
+      container: {
+        types: [
+          'HTMLElement',
+        ],
+        description: 'The ref to the outermost DOM of the element.',
+        private: false,
+      },
+      rowsCount: {
+        types: [
+          'number',
+        ],
+        description: 'The count of current rows when rows are dynamic.',
+        private: false,
+      },
+      cells$: {
+        types: [
+          'object',
+        ],
+        description: 'The instances of cells.',
+        private: false,
+      },
+      children$Array: {
+        types: [
+          'array',
+        ],
+        description: 'List of child element components.',
+        default: '[array]',
+        private: true,
+      },
+      conditionList: {
+        types: [
+          'array',
+        ],
+        description: 'The current conditions of the element.',
+        private: true,
+      },
+      localDisabled: {
+        types: [
+          'boolean',
+          'null',
+        ],
+        description: 'Helper to store whether the element is disabled via api (with .disable()).',
+        default: 'null',
+        private: true,
+      },
+      events: {
+        types: [
+          'array',
+        ],
+        description: 'Helper property used to store available events for the element.',
+        default: '[]',
+        private: true,
+      },
+      listeners: {
+        types: [
+          'object',
+        ],
+        description: 'Helper property used to store listeners for events.',
+        default: '{}',
+        private: true,
+      },
+      grid: {
+        types: [
+          'HTMLElement',
+        ],
+        description: 'The HTML element of the matrix grix.',
+        private: false,
+      },
+      state: {
+        types: [
+          'object',
+        ],
+        description: 'Helper property used to store the element states.',
+        default: '{ dirty: false, validate: true }',
+        private: true,
+      },
+      Validators: {
+        types: [
+          'array',
+        ],
+        description: 'An array containing all the validators of the element.',
+        default: '[]',
+        private: true,
+      },
+      messageBag: {
+        types: [
+          'MessageBag',
+        ],
+        description: 'Instance of MessageBag service. Custom errors and messages [can be added](/docs/validating-elements#custom-errors-and-messages).',
+        default: 'MessageBag',
+        private: false,
+      },
+      resetting: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is currently being resetet (no validation should happen).',
+        default: 'false',
+        private: true,
+      },
+      initialValue: {
+        types: [
+          'any',
+        ],
+        description: 'The initial value of the element.',
+        private: true,
+      },
+      internalValue: {
+        types: [
+          'any',
+        ],
+        description: 'The store for the value of the element when we&apos;re not using external data (form&apos;s `v-model`).',
+        private: true,
+      },
+      hidden: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element was hidden programmatically with [`show()`](#method-show) or [`hide()`](#method-hide) methods.',
+        default: 'false',
+        private: false,
+      },
+    },
+    computed: {
+      descriptionId: {
+        types: [
+          'string',
+        ],
+        description: 'The `id` of the related description component.',
+        private: true,
+      },
+      labelId: {
+        types: [
+          'string',
+        ],
+        description: 'The `id` of the related label component.',
+        private: true,
+      },
+      infoId: {
+        types: [
+          'string',
+        ],
+        description: 'The `id` of the related description component.',
+        private: true,
+      },
+      errorId: {
+        types: [
+          'string',
+        ],
+        description: 'The `id` of the related error component.',
+        private: true,
+      },
+      aria: {
+        types: [
+          'object',
+        ],
+        description: 'The `aria-*` attributes of the input.',
+        private: false,
+      },
+      isStatic: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is static (does not have any data or validation).',
+        private: true,
+      },
+      isFileType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element&apos;s value is a file.',
+        private: true,
+      },
+      isArrayType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element&apos;s value is an array.',
+        private: true,
+      },
+      isImageType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element&apos;s value is an image.',
+        private: true,
+      },
+      isObjectType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is a nested object.',
+        private: true,
+      },
+      isGroupType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is a nested group.',
+        private: true,
+      },
+      isMatrixType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is a matrix.',
+        private: true,
+      },
+      isListType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is a list.',
+        private: true,
+      },
+      isActive: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element should be visible when using `tabs` or `steps`.',
+        private: true,
+      },
+      hasDynamicRows: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the matrix has dynamic rows.',
+        private: false,
+      },
+      computedRows: {
+        types: [
+          'number',
+          'array',
+        ],
+        description: 'The value of `rows` or `rowsCount` if rows are dynamic.',
+        private: false,
+      },
+      resolvedRows: {
+        types: [
+          'array',
+        ],
+        description: 'The rows of the matrix to be displayed.',
+        private: false,
+      },
+      resolvedColumns: {
+        types: [
+          'array',
+        ],
+        description: 'The columns of the matrix to be displayed.',
+        private: false,
+      },
+      dataType: {
+        types: [
+          'array',
+        ],
+        description: 'The data structure type of the matrix. Can be: `assoc`, `array` or `object`.',
+        private: false,
+      },
+      children: {
+        types: [
+          'object',
+        ],
+        description: 'Schema of child elements.',
+        private: true,
+      },
+      children$: {
+        types: [
+          'object',
+        ],
+        description: 'Child element components.',
+        private: false,
+      },
+      classes: {
+        types: [
+          'object',
+        ],
+        description: 'The component&apos;s classes.',
+        private: false,
+      },
+      classesInstance: {
+        types: [
+          'MergeClasses',
+        ],
+        description: 'The classes instance (for testing purpose).',
+        private: true,
+      },
+      cols: {
+        types: [
+          'object',
+        ],
+        description: 'The `cols` property of the Columns service instance.',
+        private: true,
+      },
+      columnsClassesService: {
+        types: [
+          'Columns',
+        ],
+        description: 'The classes service instance.',
+        private: true,
+      },
+      columnsClasses: {
+        types: [
+          'object',
+        ],
+        description: 'Calculated column sizes and classes for the element.',
+        private: true,
+      },
+      available: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether no [`conditions`](#option-conditions) are defined or they are all fulfilled.',
+        private: false,
+      },
+      data: {
+        types: [
+          'object',
+        ],
+        description: 'The value of the element in `{[name]: value}` value format. This gets merged with the parent component&apos;s data.',
+        private: false,
+      },
+      requestData: {
+        types: [
+          'object',
+        ],
+        description: 'Same as `data` property except that it only includes the element&apos;s value if [`submit`](#option-submit) is not disabled and [`available`](#property-available) is `true` (has no [`conditions`](#option-conditions) or they are fulfilled).',
+        private: false,
+      },
+      defaultValue: {
+        types: [
+          'any',
+        ],
+        description: 'The default value of the element.',
+        private: true,
+      },
+      isDisabled: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is disabled.',
+        private: false,
+      },
+      el$: {
+        types: [
+          'VueformElement',
+        ],
+        description: 'The element&apos;s component.',
+        private: false,
+      },
+      fieldId: {
+        types: [
+          'string',
+        ],
+        description: 'The `id` of the <%field%>. If [`id`](#option-id) is not provided [`path`](#option-path) will be used.',
+        private: false,
+      },
+      genericName: {
+        types: [
+          'string',
+        ],
+        description: 'The generic name of the element constructed from label / floating or element name.',
+        private: true,
+      },
+      hasLabel: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element has a [`label`](#option-label) option, a [#label](#slot-label) slot or `Vueform` component&apos;s [`forceLabels`](vueform#option-force-labels) option is `true`.',
+        private: false,
+      },
+      Label: {
+        types: [
+          'string',
+          'Component',
+        ],
+        description: 'The localized label of the element.',
+        private: true,
+      },
+      elementLayout: {
+        types: [
+          'string',
+          'Component',
+        ],
+        description: 'The current layout of the element.',
+        private: true,
+      },
+      addLabel: {
+        types: [
+          'string',
+        ],
+        description: 'The label of add button.',
+        private: false,
+      },
+      rowsVisible: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether row labels should be displayed.',
+        private: false,
+      },
+      colsVisible: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether column headers should be displayed.',
+        private: false,
+      },
+      allowAdd: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether rows can be added when rows are dynamic.',
+        private: false,
+      },
+      allowRemove: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether rows can be removed when rows are dynamic.',
+        private: false,
+      },
+      cells: {
+        types: [
+          'array',
+        ],
+        description: 'The component props of the cells.',
+        private: false,
+      },
+      nullValue: {
+        types: [
+          'any',
+        ],
+        description: 'The null value of the element.',
+        private: true,
+      },
+      parent: {
+        types: [
+          'VNode',
+        ],
+        description: 'The parent component of the element.',
+        private: false,
+      },
+      path: {
+        types: [
+          'string',
+        ],
+        description: 'The path of the element using dot `.` syntax.',
+        private: false,
+      },
+      dataPath: {
+        types: [
+          'string',
+        ],
+        description: 'The path of the element&apos;s data using dot `.` syntax.',
+        private: false,
+      },
+      flat: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is just a container of children but not nested on data level (eg. [`GroupElement`](group-element))',
+        private: true,
+      },
+      isReadonly: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is readonly.',
+        private: false,
+      },
+      elementSlots: {
+        types: [
+          'object',
+        ],
+        description: 'Slots of the element.',
+        private: true,
+      },
+      fieldSlots: {
+        types: [
+          'object',
+        ],
+        description: 'Slots related to the element&apos;s field. E.g. an "elementSlot" is something related to the element, like `label`, `description`, etc. A "fieldSlot" is something that related to the field within the element, e.g. `option` or `single-label` for `SelectElement`.',
+        private: true,
+      },
+      Templates: {
+        types: [
+          'object',
+        ],
+        description: 'The list of templates available to the element.',
+        private: true,
+      },
+      template: {
+        types: [
+          'object',
+        ],
+        description: 'The component&apos;s template.',
+        private: false,
+      },
+      dirty: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element&apos;s value was modified.',
+        private: false,
+      },
+      validated: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element was already validated at least once.',
+        private: false,
+      },
+      invalid: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element has any failing rules.',
+        private: false,
+      },
+      pending: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element has any async rules in progress.',
+        private: false,
+      },
+      busy: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is `pending`.',
+        private: false,
+      },
+      errors: {
+        types: [
+          'array',
+        ],
+        description: 'All the errors of `MessageBag`.',
+        private: false,
+      },
+      error: {
+        types: [
+          'string',
+        ],
+        description: 'The first error of `MessageBag`.',
+        private: false,
+      },
+      validationRules: {
+        types: [
+          'string',
+          'array',
+        ],
+        description: 'The element&apos;s validation rules.',
+        private: true,
+      },
+      isDanger: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element has errors.',
+        private: false,
+      },
+      isSuccess: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element has been filled in successfully.',
+        private: false,
+      },
+      isRequired: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is required (has required rule).',
+        private: false,
+      },
+      useCustomFilled: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element should use a custom logic for checking if it is filled when validating.',
+        private: false,
+      },
+      isFilled: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is filled is `useCustomFilled` is `true`.',
+        private: false,
+      },
+      value: {
+        types: [
+          'any',
+        ],
+        description: 'The value of the element.',
+        private: false,
+      },
+      model: {
+        types: [
+          'any',
+        ],
+        description: 'Intermediary value between element&apos;s value and field&apos;s `v-model`. It is required when we need to transform the value format between the element and its field.',
+        private: false,
+      },
+      isDefault: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element has its default value.',
+        private: false,
+      },
+      visible: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is visible. It&apos;s `false` when `available` or `active` is `false` or `hidden` is `true`.',
+        private: false,
+      },
+      Size: {
+        types: [
+          'string',
+        ],
+        description: 'The resolved size of the element and all of its child components.',
+        private: false,
+      },
+      View: {
+        types: [
+          'string',
+        ],
+        description: 'The name of the resolved view for the component and the default view for its child components. Child component views can be overridden with [`views`](#option-views) option. This one should be used to determine the component&apos;s view in class functions.',
+        private: false,
+      },
+      Views: {
+        types: [
+          'object',
+        ],
+        description: 'The name of the views for the components.',
+        private: true,
+      },
+    },
+    methods: {
+      activate: {
+        description: 'Sets the `active` property of the element to `true`.',
+        returns: 'void',
+        private: true,
+      },
+      deactivate: {
+        description: 'Sets the `active` property of the element to `false`.',
+        returns: 'void',
+        private: true,
+      },
+      updateColumns: {
+        description: 'Update columns programmatically.',
+        returns: 'void',
+        params: {
+          value: {
+            types: [
+              'number',
+              'array',
+            ],
+            required: 'true',
+            description: 'the new value for columns option',
+          },
+        },
+        private: true,
+      },
+      updateConditions: {
+        description: 'Updates element conditions after they have been changed.',
+        returns: 'void',
+        private: true,
+      },
+      load: {
+        description: 'Loads value to the element using optional [`formatLoad`](#option-format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.',
+        returns: 'void',
+        params: {
+          value: {
+            types: [
+              'any',
+            ],
+            required: 'true',
+            description: 'the value to be loaded',
+          },
+          format: {
+            types: [
+              'boolean',
+            ],
+            required: 'false',
+            description: 'whether the loaded value should be formatted with [`formatLoad`](#option-format-load) before setting the value of the element (default: `false`)',
+          },
+        },
+        private: false,
+      },
+      update: {
+        description: 'Updates the value of the element similarly to [`load`](#method-load), only that it can\&apos;t format data.',
+        returns: 'void',
+        params: {
+          value: {
+            types: [
+              'any',
+            ],
+            required: 'true',
+            description: 'the value to be set',
+          },
+        },
+        private: false,
+      },
+      clear: {
+        description: 'Clears the element&apos;s value.',
+        returns: 'void',
+        private: false,
+      },
+      reset: {
+        description: 'Resets the element&apos;s value to [`default`](#option-default) (or empty if `default` is not provided). Also resets all the validation state for the element.',
+        returns: 'void',
+        private: false,
+      },
+      disable: {
+        description: 'Disables the element.',
+        returns: 'void',
+        private: false,
+      },
+      enable: {
+        description: 'Enables the element even if it is disabled by [`disabled`](#disabled) option.',
+        returns: 'void',
+        private: false,
+      },
+      component: {
+        description: 'Transforms an element `type` into the element&apos;s component name.',
+        returns: 'string',
+        params: {
+          element: {
+            types: [
+              'string',
+            ],
+            required: 'true',
+            description: 'element `type`',
+          },
+        },
+        private: true,
+      },
+      on: {
+        description: 'Adds a listener for an event.',
+        returns: 'void',
+        params: {
+          event: {
+            types: [
+              'string',
+            ],
+            required: 'true',
+            description: 'name of the event to listen for',
+          },
+          callback: {
+            types: [
+              'function',
+            ],
+            required: 'true',
+            description: 'callback to run when the event is triggered',
+          },
+        },
+        private: false,
+      },
+      off: {
+        description: 'Removes all listeners for an event.',
+        returns: 'void',
+        params: {
+          event: {
+            types: [
+              'string',
+            ],
+            required: 'true',
+            description: 'name of the event to remove',
+          },
+        },
+        private: false,
+      },
+      fire: {
+        description: 'Fires and emits an event.',
+        returns: 'void',
+        params: {
+          args: {
+            types: [
+              'any',
+            ],
+            required: 'false',
+            description: 'list of arguments to pass over to the event callback ',
+          },
+        },
+        private: false,
+      },
+      focus: {
+        description: 'Focuses the first focusable part of the element.',
+        returns: 'void',
+        private: true,
+      },
+      resolveComponentType: {
+        description: 'Resolves the cell component type (for `:is`) based on a column object.',
+        returns: 'string',
+        params: {
+          column: {
+            types: [
+              'object',
+            ],
+            required: 'true',
+            description: 'the column definition object',
+          },
+        },
+        private: false,
+      },
+      resolveComponentProps: {
+        description: 'Resolves the cell component properties.',
+        returns: 'object',
+        params: {
+          row: {
+            types: [
+              'object',
+            ],
+            required: 'true',
+            description: 'the row definition object',
+          },
+          col: {
+            types: [
+              'object',
+            ],
+            required: 'true',
+            description: 'the column definition object',
+          },
+          rowIndex: {
+            types: [
+              'number',
+            ],
+            required: 'true',
+            description: 'the index of the row',
+          },
+          colIndex: {
+            types: [
+              'number',
+            ],
+            required: 'true',
+            description: 'the index of the column',
+          },
+        },
+        private: false,
+      },
+      resolveComponentName: {
+        description: 'Resolves the cell component name based on row and column index.',
+        returns: 'string',
+        params: {
+          rowIndex: {
+            types: [
+              'number',
+            ],
+            required: 'true',
+            description: 'the index of the row',
+          },
+          colIndex: {
+            types: [
+              'number',
+            ],
+            required: 'true',
+            description: 'the index of the column',
+          },
+        },
+        private: false,
+      },
+      getColStyle: {
+        description: 'Returns the style of a colum based on its index.',
+        returns: 'object',
+        params: {
+          index: {
+            types: [
+              'object',
+            ],
+            required: 'true',
+            description: 'the index of the column',
+          },
+        },
+        private: false,
+      },
+      resolveColInputType: {
+        description: 'Resolves the input type of a column.',
+        returns: 'object|string',
+        params: {
+          col: {
+            types: [
+              'object',
+            ],
+            required: 'true',
+            description: 'the column definition object',
+          },
+        },
+        private: false,
+      },
+      resolveColConditions: {
+        description: 'Resolves the conditions of a cell based on row and column.',
+        returns: 'object',
+        params: {
+          row: {
+            types: [
+              'object',
+            ],
+            required: 'true',
+            description: 'the row definition object',
+          },
+          col: {
+            types: [
+              'object',
+            ],
+            required: 'true',
+            description: 'the column definition object',
+          },
+        },
+        private: false,
+      },
+      resolveColType: {
+        description: 'Resolves the type of the input field of a column.',
+        returns: 'string',
+        params: {
+          col: {
+            types: [
+              'object',
+            ],
+            required: 'true',
+            description: 'the column definition object',
+          },
+        },
+        private: false,
+      },
+      validate: {
+        description: 'Checks each validation rule for the element (async).',
+        returns: 'Promise',
+        private: false,
+      },
+      dirt: {
+        description: 'Flag the element as dirty.',
+        returns: 'void',
+        private: true,
+      },
+      clean: {
+        description: 'Removes the element&apos;s `dirty` state.',
+        returns: 'void',
+        private: false,
+      },
+      clearMessages: {
+        description: 'Clears the manually added messages from the [`messageBag`](#property-message-bag).',
+        returns: 'void',
+        private: false,
+      },
+      resetValidators: {
+        description: 'Sets the validators to default state.',
+        returns: 'void',
+        private: false,
+      },
+      initMessageBag: {
+        description: 'Initializes MessageBag service.',
+        returns: 'void',
+        private: true,
+      },
+      initValidation: {
+        description: 'Initializes validators.',
+        returns: 'void',
+        private: true,
+      },
+      reinitValidation: {
+        description: 'Re-initializes validators when rules have changed.',
+        returns: 'void',
+        private: false,
+      },
+      hide: {
+        description: 'Hides the element.',
+        returns: 'void',
+        private: false,
+      },
+      show: {
+        description: 'Shows the element if it was hidden with [`hide()`](#method-hide) method.',
+        returns: 'void',
+        private: false,
+      },
+    },
+    inject: {
+      form$: {
+        types: [
+          'Vueform',
+        ],
+        description: 'The root form&apos;s component.',
+        private: false,
+      },
+      theme: {
+        types: [
+          'object',
+        ],
+        description: 'The global theme object, which contains all the default templates and classes.',
+        private: false,
+      },
+    },
+    events: {
+      'change': {
+        description: 'Triggered when the element&apos;s value is changed.',
+        params: {
+          newValue: {
+            description: 'the new value',
+            types: [
+              'string',
+            ]
+          },
+          oldValue: {
+            description: 'the old value',
+            types: [
+              'string',
+            ]
+          },
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'add': {
+        description: 'Triggered when a new row is added.',
+        params: {
+          index: {
+            description: 'the index of the added row',
+            types: [
+              'number',
+            ]
+          },
+          newValue: {
+            description: 'the element&apos;s value after the row is added',
+            types: [
+              'array',
+            ]
+          },
+          oldValue: {
+            description: 'the element&apos;s value before the row is added',
+            types: [
+              'array',
+            ]
+          },
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'remove': {
+        description: 'Triggered when a row is removed.',
+        params: {
+          index: {
+            description: 'the index of the removed item',
+            types: [
+              'number',
+            ]
+          },
+          newValue: {
+            description: 'the element&apos;s value after the row is removed',
+            types: [
+              'array',
+            ]
+          },
+          oldValue: {
+            description: 'the element&apos;s value before the row is removed',
+            types: [
+              'array',
+            ]
+          },
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'beforeCreate': {
+        description: 'Triggered in beforeCreate hook.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'created': {
+        description: 'Triggered in created hook.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'beforeMount': {
+        description: 'Triggered in beforeMount hook.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'mounted': {
+        description: 'Triggered in mounted hook.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'beforeUpdate': {
+        description: 'Triggered in beforeUpdate hook.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'updated': {
+        description: 'Triggered in updated hook.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'beforeUnmount': {
+        description: 'Triggered in beforeUnmount (or beforeDestroy in Vue 2) hook.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'unmounted': {
+        description: 'Triggered in unmounted (or destroyed in Vue 2) hook.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+    },
+    slots: {
+      'label': {
+        description: 'Renders a label for the element in [`ElementLabel`](element-label) component.',
+        props: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ],
+          },
+        },
+      },
+      'info': {
+        description: 'Renders an info icon in [`ElementInfo`](element-info) component next the the element label. When the icon is hovered it shows the content of this slot. The element needs to have a label to render this.',
+        props: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ],
+          },
+        },
+      },
+      'required': {},
+      'description': {
+        description: 'Renders description for the element in [`ElementDescription`](element-description) component.',
+        props: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ],
+          },
+        },
+      },
+      'before': {
+        description: 'Renders an [`ElementText`](element-text) component before the <%field%>.',
+        props: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ],
+          },
+        },
+      },
+      'between': {
+        description: 'Renders an [`ElementText`](element-text) component after the <%field%> and before description.',
+        props: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ],
+          },
+        },
+      },
+      'after': {
+        description: 'Renders an [`ElementText`](element-text) component after the description and error.',
+        props: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ],
+          },
+        },
+      },
+    },
+    views: [],
+  },
   MultifileElement: {
     props: {
       name: {
@@ -19934,6 +22320,16 @@ module.exports = {
         localized: false,
         types: [
           'string',
+        ],
+        required: false,
+        private: false,
+      },
+      displayErrors: {
+        required: 'false',
+        default: 'true',
+        localized: false,
+        types: [
+          'boolean',
         ],
         required: false,
         private: false,
@@ -20461,6 +22857,13 @@ module.exports = {
         description: 'Whether the element is a nested group.',
         private: true,
       },
+      isMatrixType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is a matrix.',
+        private: true,
+      },
       isListType: {
         types: [
           'boolean',
@@ -20797,6 +23200,20 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element is required (has required rule).',
+        private: false,
+      },
+      useCustomFilled: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element should use a custom logic for checking if it is filled when validating.',
+        private: false,
+      },
+      isFilled: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is filled is `useCustomFilled` is `true`.',
         private: false,
       },
       childrenErrors: {
@@ -21272,10 +23689,16 @@ module.exports = {
               'array',
             ]
           },
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
        },
       },
       'remove': {
-        description: 'Triggered when a new item is removed from the list.',
+        description: 'Triggered when an item is removed from the list.',
         params: {
           index: {
             description: 'the index of the removed item',
@@ -21287,6 +23710,12 @@ module.exports = {
             description: 'the element&apos;s value after the item is removed',
             types: [
               'array',
+            ]
+          },
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
             ]
           },
        },
@@ -21918,6 +24347,16 @@ module.exports = {
         localized: false,
         types: [
           'string',
+        ],
+        required: false,
+        private: false,
+      },
+      displayErrors: {
+        required: 'false',
+        default: 'true',
+        localized: false,
+        types: [
+          'boolean',
         ],
         required: false,
         private: false,
@@ -22783,6 +25222,13 @@ module.exports = {
         description: 'Whether the element is a nested group.',
         private: true,
       },
+      isMatrixType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is a matrix.',
+        private: true,
+      },
       isListType: {
         types: [
           'boolean',
@@ -23078,6 +25524,20 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element is required (has required rule).',
+        private: false,
+      },
+      useCustomFilled: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element should use a custom logic for checking if it is filled when validating.',
+        private: false,
+      },
+      isFilled: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is filled is `useCustomFilled` is `true`.',
         private: false,
       },
       value: {
@@ -24370,6 +26830,16 @@ module.exports = {
         required: false,
         private: false,
       },
+      displayErrors: {
+        required: 'false',
+        default: 'true',
+        localized: false,
+        types: [
+          'boolean',
+        ],
+        required: false,
+        private: false,
+      },
       type: {
         required: 'false',
         default: 'object',
@@ -24612,6 +27082,13 @@ module.exports = {
         description: 'Whether the element is a nested group.',
         private: true,
       },
+      isMatrixType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is a matrix.',
+        private: true,
+      },
       isListType: {
         types: [
           'boolean',
@@ -24850,6 +27327,20 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element is required (has required rule).',
+        private: false,
+      },
+      useCustomFilled: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element should use a custom logic for checking if it is filled when validating.',
+        private: false,
+      },
+      isFilled: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is filled is `useCustomFilled` is `true`.',
         private: false,
       },
       childrenErrors: {
@@ -25774,6 +28265,16 @@ module.exports = {
         required: false,
         private: false,
       },
+      displayErrors: {
+        required: 'false',
+        default: 'true',
+        localized: false,
+        types: [
+          'boolean',
+        ],
+        required: false,
+        private: false,
+      },
       type: {
         required: 'false',
         default: 'text',
@@ -26179,6 +28680,13 @@ module.exports = {
         description: 'Whether the element is a list.',
         private: true,
       },
+      isMatrixType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is a matrix.',
+        private: true,
+      },
       isActive: {
         types: [
           'boolean',
@@ -26510,6 +29018,20 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element is required (has required rule).',
+        private: false,
+      },
+      useCustomFilled: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element should use a custom logic for checking if it is filled when validating.',
+        private: false,
+      },
+      isFilled: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is filled is `useCustomFilled` is `true`.',
         private: false,
       },
       value: {
@@ -27518,6 +30040,16 @@ module.exports = {
         required: false,
         private: false,
       },
+      displayErrors: {
+        required: 'false',
+        default: 'true',
+        localized: false,
+        types: [
+          'boolean',
+        ],
+        required: false,
+        private: false,
+      },
       type: {
         required: 'false',
         default: 'radio',
@@ -27601,6 +30133,16 @@ module.exports = {
         localized: false,
         types: [
           'string',
+        ],
+        required: false,
+        private: false,
+      },
+      standalone: {
+        required: 'false',
+        default: 'false',
+        localized: false,
+        types: [
+          'boolean',
         ],
         required: false,
         private: false,
@@ -27807,6 +30349,13 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element is a list.',
+        private: true,
+      },
+      isMatrixType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is a matrix.',
         private: true,
       },
       isActive: {
@@ -28083,6 +30632,20 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element is required (has required rule).',
+        private: false,
+      },
+      useCustomFilled: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element should use a custom logic for checking if it is filled when validating.',
+        private: false,
+      },
+      isFilled: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is filled is `useCustomFilled` is `true`.',
         private: false,
       },
       value: {
@@ -28989,6 +31552,16 @@ module.exports = {
         required: false,
         private: false,
       },
+      displayErrors: {
+        required: 'false',
+        default: 'true',
+        localized: false,
+        types: [
+          'boolean',
+        ],
+        required: false,
+        private: false,
+      },
       type: {
         required: 'false',
         default: 'radiogroup',
@@ -29278,6 +31851,13 @@ module.exports = {
         description: 'Whether the element is a list.',
         private: true,
       },
+      isMatrixType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is a matrix.',
+        private: true,
+      },
       isActive: {
         types: [
           'boolean',
@@ -29538,6 +32118,20 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element is required (has required rule).',
+        private: false,
+      },
+      useCustomFilled: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element should use a custom logic for checking if it is filled when validating.',
+        private: false,
+      },
+      isFilled: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is filled is `useCustomFilled` is `true`.',
         private: false,
       },
       value: {
@@ -30568,6 +33162,16 @@ module.exports = {
         required: false,
         private: false,
       },
+      displayErrors: {
+        required: 'false',
+        default: 'true',
+        localized: false,
+        types: [
+          'boolean',
+        ],
+        required: false,
+        private: false,
+      },
       type: {
         required: 'false',
         default: 'select',
@@ -31380,6 +33984,13 @@ module.exports = {
         description: 'Whether the element is a list.',
         private: true,
       },
+      isMatrixType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is a matrix.',
+        private: true,
+      },
       isActive: {
         types: [
           'boolean',
@@ -31668,6 +34279,20 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element is required (has required rule).',
+        private: false,
+      },
+      useCustomFilled: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element should use a custom logic for checking if it is filled when validating.',
+        private: false,
+      },
+      isFilled: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is filled is `useCustomFilled` is `true`.',
         private: false,
       },
       value: {
@@ -32930,6 +35555,16 @@ module.exports = {
         required: false,
         private: false,
       },
+      displayErrors: {
+        required: 'false',
+        default: 'true',
+        localized: false,
+        types: [
+          'boolean',
+        ],
+        required: false,
+        private: false,
+      },
       type: {
         required: 'false',
         default: 'text',
@@ -33567,6 +36202,13 @@ module.exports = {
         description: 'Whether the element is a list.',
         private: true,
       },
+      isMatrixType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is a matrix.',
+        private: true,
+      },
       isActive: {
         types: [
           'boolean',
@@ -34143,6 +36785,20 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element is required (has required rule).',
+        private: false,
+      },
+      useCustomFilled: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element should use a custom logic for checking if it is filled when validating.',
+        private: false,
+      },
+      isFilled: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is filled is `useCustomFilled` is `true`.',
         private: false,
       },
       value: {
@@ -35296,6 +37952,16 @@ module.exports = {
         required: false,
         private: false,
       },
+      displayErrors: {
+        required: 'false',
+        default: 'true',
+        localized: false,
+        types: [
+          'boolean',
+        ],
+        required: false,
+        private: false,
+      },
       type: {
         required: 'false',
         default: 'slider',
@@ -35665,6 +38331,13 @@ module.exports = {
         description: 'Whether the element is a list.',
         private: true,
       },
+      isMatrixType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is a matrix.',
+        private: true,
+      },
       isActive: {
         types: [
           'boolean',
@@ -35889,6 +38562,20 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element is required (has required rule).',
+        private: false,
+      },
+      useCustomFilled: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element should use a custom logic for checking if it is filled when validating.',
+        private: false,
+      },
+      isFilled: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is filled is `useCustomFilled` is `true`.',
         private: false,
       },
       errors: {
@@ -37061,6 +39748,13 @@ module.exports = {
         description: 'Whether the element is a nested group.',
         private: true,
       },
+      isMatrixType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is a matrix.',
+        private: true,
+      },
       isListType: {
         types: [
           'boolean',
@@ -37985,6 +40679,16 @@ module.exports = {
         required: false,
         private: false,
       },
+      displayErrors: {
+        required: 'false',
+        default: 'true',
+        localized: false,
+        types: [
+          'boolean',
+        ],
+        required: false,
+        private: false,
+      },
       type: {
         required: 'false',
         default: 't-editor',
@@ -38330,6 +41034,13 @@ module.exports = {
         description: 'Whether the element is a list.',
         private: true,
       },
+      isMatrixType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is a matrix.',
+        private: true,
+      },
       isActive: {
         types: [
           'boolean',
@@ -38641,6 +41352,20 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element is required (has required rule).',
+        private: false,
+      },
+      useCustomFilled: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element should use a custom logic for checking if it is filled when validating.',
+        private: false,
+      },
+      isFilled: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is filled is `useCustomFilled` is `true`.',
         private: false,
       },
       value: {
@@ -39630,6 +42355,16 @@ module.exports = {
         required: false,
         private: false,
       },
+      displayErrors: {
+        required: 'false',
+        default: 'true',
+        localized: false,
+        types: [
+          'boolean',
+        ],
+        required: false,
+        private: false,
+      },
       type: {
         required: 'false',
         default: 't-text',
@@ -40009,6 +42744,13 @@ module.exports = {
         description: 'Whether the element is a list.',
         private: true,
       },
+      isMatrixType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is a matrix.',
+        private: true,
+      },
       isActive: {
         types: [
           'boolean',
@@ -40325,6 +43067,20 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element is required (has required rule).',
+        private: false,
+      },
+      useCustomFilled: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element should use a custom logic for checking if it is filled when validating.',
+        private: false,
+      },
+      isFilled: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is filled is `useCustomFilled` is `true`.',
         private: false,
       },
       value: {
@@ -41390,6 +44146,16 @@ module.exports = {
         required: false,
         private: false,
       },
+      displayErrors: {
+        required: 'false',
+        default: 'true',
+        localized: false,
+        types: [
+          'boolean',
+        ],
+        required: false,
+        private: false,
+      },
       type: {
         required: 'false',
         default: 't-textarea',
@@ -41758,6 +44524,13 @@ module.exports = {
         description: 'Whether the element is a list.',
         private: true,
       },
+      isMatrixType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is a matrix.',
+        private: true,
+      },
       isActive: {
         types: [
           'boolean',
@@ -42067,6 +44840,20 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element is required (has required rule).',
+        private: false,
+      },
+      useCustomFilled: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element should use a custom logic for checking if it is filled when validating.',
+        private: false,
+      },
+      isFilled: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is filled is `useCustomFilled` is `true`.',
         private: false,
       },
       value: {
@@ -43137,6 +45924,16 @@ module.exports = {
         required: false,
         private: false,
       },
+      displayErrors: {
+        required: 'false',
+        default: 'true',
+        localized: false,
+        types: [
+          'boolean',
+        ],
+        required: false,
+        private: false,
+      },
       type: {
         required: 'false',
         default: 'tags',
@@ -43951,6 +46748,13 @@ module.exports = {
         description: 'Whether the element is a nested group.',
         private: true,
       },
+      isMatrixType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is a matrix.',
+        private: true,
+      },
       isListType: {
         types: [
           'boolean',
@@ -44246,6 +47050,20 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element is required (has required rule).',
+        private: false,
+      },
+      useCustomFilled: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element should use a custom logic for checking if it is filled when validating.',
+        private: false,
+      },
+      isFilled: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is filled is `useCustomFilled` is `true`.',
         private: false,
       },
       value: {
@@ -45581,6 +48399,16 @@ module.exports = {
         required: false,
         private: false,
       },
+      displayErrors: {
+        required: 'false',
+        default: 'true',
+        localized: false,
+        types: [
+          'boolean',
+        ],
+        required: false,
+        private: false,
+      },
       type: {
         required: 'false',
         default: 'text',
@@ -45997,6 +48825,13 @@ module.exports = {
         description: 'Whether the element is a list.',
         private: true,
       },
+      isMatrixType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is a matrix.',
+        private: true,
+      },
       isActive: {
         types: [
           'boolean',
@@ -46299,6 +49134,20 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element is required (has required rule).',
+        private: false,
+      },
+      useCustomFilled: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element should use a custom logic for checking if it is filled when validating.',
+        private: false,
+      },
+      isFilled: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is filled is `useCustomFilled` is `true`.',
         private: false,
       },
       value: {
@@ -46834,7 +49683,6 @@ module.exports = {
         },
       },
       'required': {},
-      'required': {},
       'description': {
         description: 'Renders description for the element in [`ElementDescription`](element-description) component.',
         props: {
@@ -47346,6 +50194,16 @@ module.exports = {
         required: false,
         private: false,
       },
+      displayErrors: {
+        required: 'false',
+        default: 'true',
+        localized: false,
+        types: [
+          'boolean',
+        ],
+        required: false,
+        private: false,
+      },
       type: {
         required: 'false',
         default: 'textarea',
@@ -47728,6 +50586,13 @@ module.exports = {
         description: 'Whether the element is a list.',
         private: true,
       },
+      isMatrixType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is a matrix.',
+        private: true,
+      },
       isActive: {
         types: [
           'boolean',
@@ -48023,6 +50888,20 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element is required (has required rule).',
+        private: false,
+      },
+      useCustomFilled: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element should use a custom logic for checking if it is filled when validating.',
+        private: false,
+      },
+      isFilled: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is filled is `useCustomFilled` is `true`.',
         private: false,
       },
       value: {
@@ -49074,6 +51953,16 @@ module.exports = {
         required: false,
         private: false,
       },
+      displayErrors: {
+        required: 'false',
+        default: 'true',
+        localized: false,
+        types: [
+          'boolean',
+        ],
+        required: false,
+        private: false,
+      },
       type: {
         required: 'false',
         default: 'toggle',
@@ -49180,6 +52069,16 @@ module.exports = {
         localized: false,
         types: [
           'string',
+        ],
+        required: false,
+        private: false,
+      },
+      standalone: {
+        required: 'false',
+        default: 'false',
+        localized: false,
+        types: [
+          'boolean',
         ],
         required: false,
         private: false,
@@ -49386,6 +52285,13 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element is a list.',
+        private: true,
+      },
+      isMatrixType: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is a matrix.',
         private: true,
       },
       isActive: {
@@ -49655,6 +52561,20 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether the element is required (has required rule).',
+        private: false,
+      },
+      useCustomFilled: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element should use a custom logic for checking if it is filled when validating.',
+        private: false,
+      },
+      isFilled: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is filled is `useCustomFilled` is `true`.',
         private: false,
       },
       value: {

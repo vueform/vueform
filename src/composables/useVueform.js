@@ -1167,14 +1167,17 @@ const base = function(props, context, dependencies = {})
     }
 
     const firstInvalid$ = findFirstInvalid$(orderedSchema.value)
+
+    if (!firstInvalid$) {
+      return
+    }
+
     const scrollableParent = findScrollableParent(firstInvalid$.$el)
 
-    if (firstInvalid$) {
-      if (scrollableParent) {
-        scrollIntoView(firstInvalid$.$el, scrollableParent)
-      } else if (firstInvalid$.$el.scrollIntoView) {
-        firstInvalid$.$el.scrollIntoView({behavior:'smooth'})
-      }
+    if (scrollableParent) {
+      scrollIntoView(firstInvalid$.$el, scrollableParent)
+    } else if (firstInvalid$.$el.scrollIntoView) {
+      firstInvalid$.$el.scrollIntoView({behavior:'smooth'})
     }
   }
 

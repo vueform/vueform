@@ -5,6 +5,7 @@ import sortBy from 'lodash/sortBy'
 import map from 'lodash/map'
 import isPlainObject from 'lodash/isPlainObject'
 import clone from 'lodash/clone'
+import isEqual from 'lodash/isEqual'
 import { computed, nextTick, toRefs, watch, ref, inject } from 'vue'
 import checkDateFormat from './../../utils/checkDateFormat'
 import asyncForEach from './../../utils/asyncForEach'
@@ -805,7 +806,7 @@ const list = function(props, context, dependencies, options)
     
     const desc = order.value && typeof order.value === 'string' && order.value.toUpperCase() == 'DESC'
     
-    /* istanbul ignore else: console.log() shows that the single run test falls into the else branch, but coverage does not detect */
+    /* istanbul ignore else */
     if (orderByName.value) {
       val = desc ? sortBy(val, orderByName.value).reverse() : sortBy(val, orderByName.value)
     } else if (order.value) {
@@ -1323,6 +1324,268 @@ const signature = function(props, context, dependencies)
   }
 }
 
+const matrix = function(props, context, dependencies, options = {})
+{
+  const {
+    resolveOnLoad,
+    items,
+    name,
+    inputType,
+    rows,
+    canAdd,
+    canRemove,
+    min,
+    max,
+  } = toRefs(props)
+
+  const {
+    clear: baseClear,
+    reset: baseReset,
+    prepare,
+  } = object(props, context, dependencies)
+
+  // ============ DEPENDENCIES =============
+
+  const { 
+    el$,
+    form$,
+    available,
+    children$,
+    children$Array,
+    resetting,
+    isDefault,
+    resolvedRows,
+    resolvedColumns,
+    dataType,
+    defaultValue,
+    value,
+    computedRows,
+    rowsCount,
+    hasDynamicRows,
+    fire,
+    allowRemove,
+    allowAdd,
+    grid,
+    resolveComponentName,
+   } = dependencies
+
+  // ============== COMPUTED ===============
+  
+  const data = computed(() => {
+    return { [name.value]: transformData() }
+  })
+  
+  const requestData = computed(() => {
+    return { [name.value]: transformData(true) }
+  })
+
+  // =============== METHODS ===============
+  
+  const load = (val, format = false) => {
+    let formatted = format && formatLoad.value ? formatLoad.value(val, form$.value) : val
+    
+    setData(formatted, 'load')
+  }
+  
+  const update = (val) => {
+    setData(val, 'update')
+  }
+
+  const clear = () => {
+    baseClear()
+
+    if (hasDynamicRows.value) {
+      rowsCount.value = rows.value
+    }
+  }
+
+  const reset = () => {
+    baseReset()
+
+    if (hasDynamicRows.value) {
+      rowsCount.value = rows.value
+    }
+
+    if (grid.value) {
+      grid.value.scrollTop = 0
+      grid.value.scrollLeft = 0
+    }
+  }
+
+  const add = () => {
+    const oldValue = { ...value.value }
+
+    rowsCount.value++
+
+    nextTick(() => {
+      fire('add', rowsCount.value - 1, value.value, oldValue, el$.value)
+    })
+  }
+
+  const remove = (i) => {
+    const oldValue = { ...value.value }
+    const newValue = { ...value.value }
+
+    delete newValue[i]
+
+    value.value = Object.values(newValue).reduce((prev, curr, i) => ({
+      ...prev,
+      [i]: curr,
+    }), {})
+    
+    rowsCount.value--
+
+    fire('remove', i, value.value, oldValue, el$.value)
+  }
+
+  const handleAdd = () => {
+    add()
+  }
+
+  const handleRemove = (i) => {
+    remove(i)
+  }
+
+  const transformData = (skipUnavailable = false) => {
+    let data = {}
+    
+    resolvedRows.value.forEach((row, r) => {
+      if (!row.available && skipUnavailable) {
+        return
+      }
+
+      let rowValue = dataType.value === 'object'
+        ? {}
+        : dataType.value === 'array'
+          ? []
+          : null
+
+      resolvedColumns.value.forEach((column, c) => {
+        if (!column.available && skipUnavailable) {
+          return
+        }
+
+        let cellValue = children$.value[resolveComponentName(r, c)]?.value
+
+        switch (dataType.value) {
+          case 'array':
+            if (cellValue) {
+              rowValue = [
+                ...(rowValue || []),
+                column.value,
+              ]
+            }
+            break
+
+          case 'assoc':
+            if (cellValue) {
+              rowValue = column.value
+            }
+            break
+
+          default:
+            rowValue = {
+              ...(rowValue || {}),
+              [column.value]: cellValue,
+            }
+        }
+      })
+
+
+      data[row.value] = rowValue
+    })
+
+    if (hasDynamicRows.value) {
+      data = Object.values(data)
+    }
+
+    return data
+  }
+
+  const setData = async (val, action) => {
+    if (hasDynamicRows.value) {
+      rowsCount.value = Object.keys(val).length
+      await nextTick()
+    }
+
+    el$.value.resolvedRows.forEach((row, r) => {
+      el$.value.resolvedColumns.forEach((column, c) => {
+        const rowValue = val[row.value] || {}
+        const cell$ = children$.value[resolveComponentName(r,c)]
+
+        switch (dataType.value) {
+          case 'assoc':
+            cell$[action](column.value === rowValue)
+            break
+
+          case 'array':
+            cell$[action](rowValue.indexOf(column.value) !== -1)
+            break
+
+          default:
+            cell$[action](rowValue[column.value])
+            break
+        }
+      })
+    })
+  }
+
+  watch(inputType, (n, o) => {
+    if (isEqual(n, o)) {
+      return
+    }
+
+    reset()
+  }, { flush: 'post' })
+
+  watch(computedRows, (n, o) => {
+    const oldLength = typeof o === 'number' ? o : Object.keys(o).length
+    const newLength = typeof n === 'number' ? n : Object.keys(n).length
+
+    const dir = oldLength > newLength ? 'decrease' : 'increase'
+    const diff = dir === 'increase' ? newLength - oldLength : oldLength - newLength
+
+    const nextIndex = newLength - 1
+    const lastIndex = oldLength - 1
+
+    let newValue = { ...value.value }
+
+    if (dir === 'increase') {
+      switch (dataType.value) {
+        case 'assoc':
+        case 'array':
+          for (let i = 0; i < diff; i++) {
+            newValue[nextIndex+i] = cloneDeep(defaultValue.value[nextIndex+i])
+          }
+          break
+      }
+    } else {
+      for (let i = 0; i < diff; i++) {
+        if (newValue[lastIndex-i] !== undefined) {
+          delete newValue[lastIndex-i]
+        }
+      }
+    }
+
+    value.value = newValue
+
+  }, { flush: 'post' })
+
+  return {
+    data,
+    requestData,
+    load,
+    update,
+    clear,
+    reset,
+    prepare,
+    handleAdd,
+    handleRemove,
+    add,
+    remove,
+  }
+}
+
 const multiselect = select
 const tags = select
 
@@ -1344,6 +1607,7 @@ export {
   tags,
   captcha,
   signature,
+  matrix,
 }
 
 export default base

@@ -13,9 +13,9 @@
           :aria="aria"
           @input="handleChange"
           ref="input"
-       />
-        <span v-if="Text" :class="classes.text" v-html="Text"></span>
-        <span v-else :class="classes.text"><slot :el$="el$"><component :is="fieldSlots.default" :el$="el$"/></slot></span>
+        />
+        <span v-if="!standalone && Text" :class="classes.text" v-html="Text"></span>
+        <span v-else-if="!standalone" :class="classes.text"><slot :el$="el$"><component :is="fieldSlots.default" :el$="el$"/></slot></span>
       </div>
     </template>
 

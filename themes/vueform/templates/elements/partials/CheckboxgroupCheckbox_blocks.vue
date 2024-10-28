@@ -52,7 +52,7 @@
             index === 0 ? classes[`wrapper_first_${Size}`] : null,
             index === Object.keys(items).length - 1 ? classes.wrapper_last : null,
             index === Object.keys(items).length - 1 ? classes[`wrapper_last_${Size}`] : null,
-            el$.value.indexOf(value) !== -1 ? classes.wrapper_selected : classes.wrapper_unselected,
+            el$.value && el$.value?.indexOf(value) !== -1 ? classes.wrapper_selected : classes.wrapper_unselected,
             isDisabled ? classes.wrapper_disabled : null,
           ]),
           $input: (classes, { isDisabled, Size }) => ([
@@ -106,7 +106,7 @@
     background: var(--vf-bg-input);
 
     &.vf-checkbox-blocks-not-last {
-      border-bottom: 0;
+      border-bottom-width: 0;
     }
 
     &.vf-checkbox-blocks-first {

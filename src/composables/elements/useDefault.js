@@ -3,8 +3,11 @@ import cloneDeep from 'lodash/cloneDeep'
 import isPlainObject from 'lodash/isPlainObject'
 import merge from 'lodash/merge'
 import clone from 'lodash/clone'
-import { computed, toRefs, inject } from 'vue'
+import isEqual from 'lodash/isEqual'
+import { computed, toRefs, inject, ref } from 'vue'
 import localize from '../../utils/localize'
+import getRowKey from '../../utils/getRowKey'
+import getColKey from '../../utils/getColKey'
 
 const base = function(props, context, dependencies)
 {
@@ -15,9 +18,11 @@ const base = function(props, context, dependencies)
   
   // ============ DEPENDENCIES =============
   
-  const nullValue = dependencies.nullValue
-  const form$ = dependencies.form$
-  const parent = dependencies.parent
+  const {
+    nullValue,
+    form$,
+    parent,
+  } = dependencies
   
   // ============== COMPUTED ===============
   
@@ -30,12 +35,31 @@ const base = function(props, context, dependencies)
   const defaultValue = computed(() => {
     let parentDefaultValue
     
-    if (parent && parent.value && !parent.value.mounted) {
+    if (parent && parent.value && parent.value.isMatrixType) {
+      const row = parent.value.resolvedRows[getRowKey(name.value)]
+      const col = parent.value.resolvedColumns[getColKey(name.value)]
+
+      const rowModel = parent.value.defaultValue[row.value]
+
+      switch (parent.value.dataType) {
+        case 'assoc':
+          parentDefaultValue = rowModel === col.value ? true : null
+          break
+
+        case 'array':
+          parentDefaultValue = Array.isArray(rowModel) && rowModel.includes(col.value)
+          break
+
+        default:
+          parentDefaultValue = rowModel?.[col.value]
+          break
+      }
+    } else if (parent && parent.value) {
       parentDefaultValue = parent.value.defaultValue[name.value]
     } else if (form$.value.options.default[name.value] !== undefined) {
       parentDefaultValue = form$.value.options.default[name.value]
     }
-    
+
     if (parentDefaultValue !== undefined) {
       return parentDefaultValue instanceof File
         ? new File([parentDefaultValue], parentDefaultValue.name, parentDefaultValue)
@@ -84,9 +108,28 @@ const text = function(props, context, dependencies)
   const defaultValue = computed(() => {
     let parentDefaultValue
     
-    if (parent && parent.value && !parent.value.mounted) {
+    if (parent && parent.value && parent.value.isMatrixType) {
+      const row = parent.value.resolvedRows[getRowKey(name.value)]
+      const col = parent.value.resolvedColumns[getColKey(name.value)]
+
+      const rowModel = parent.value.defaultValue[row.value]
+
+      switch (parent.value.dataType) {
+        case 'assoc':
+          parentDefaultValue = rowModel === col.value ? true : null
+          break
+
+        case 'array':
+          parentDefaultValue = Array.isArray(rowModel) && rowModel.includes(col.value)
+          break
+
+        default:
+          parentDefaultValue = rowModel?.[col.value]
+          break
+      }
+    } else if (parent && parent.value) {
       parentDefaultValue = parent.value.defaultValue[name.value]
-    } else if (typeof form$.value.options.default[name.value] !== undefined) {
+    } else if (form$.value.options.default[name.value] !== undefined) {
       parentDefaultValue = form$.value.options.default[name.value]
     }
 
@@ -135,7 +178,7 @@ const object = function(props, context, dependencies)
   const defaultValue = computed(() => {
     let parentDefaultValue
     
-    if (parent && parent.value && !parent.value.mounted) {
+    if (parent && parent.value) {
       parentDefaultValue = parent.value.defaultValue[name.value]
     } else if (form$.value.options.default[name.value]) {
       parentDefaultValue = form$.value.options.default[name.value]
@@ -150,6 +193,76 @@ const object = function(props, context, dependencies)
     }
     
     return cloneDeep(nullValue.value)
+  })
+  
+  return {
+    defaultValue,
+  }
+}
+
+const matrix = function(props, context, dependencies)
+{
+  const {
+    name,
+    default: default_,
+  } = toRefs(props)
+  
+  // ============ DEPENDENCIES =============
+  
+  const {
+    nullValue,
+    form$,
+    parent,
+    hasDynamicRows,
+    computedRows,
+    resolvedRows,
+    resolvedColumns,
+    rowsCount,
+    dataType,
+    el$,
+  } = dependencies
+  
+  // ============== COMPUTED ===============
+  
+  const defaultValue = computed(() => {
+    let parentDefaultValue
+    
+    if (parent && parent.value) {
+      parentDefaultValue = parent.value.defaultValue[name.value]
+    } else if (form$.value.options.default[name.value]) {
+      parentDefaultValue = form$.value.options.default[name.value]
+    }
+
+    const defaultValue = parentDefaultValue || cloneDeep(default_.value)
+
+    if (Object.keys(defaultValue).length) {
+      return defaultValue
+    }
+
+    resolvedRows.value.forEach((row, r) => {
+      resolvedColumns.value.forEach((col, c) => {
+        switch (dataType.value) {
+          case 'assoc':
+            defaultValue[row.value] = defaultValue[row.value] === col.value ? col.value : null
+            break
+
+          case 'array':
+            defaultValue[row.value] = [
+              ...(defaultValue[row.value] || []),
+              ...(defaultValue[row.value] && defaultValue[row.value].indexOf(col.value) !== -1 ? [col.value] : [])
+            ]
+            break
+
+          default:
+            defaultValue[row.value] = {
+              ...(defaultValue[row.value] || {}),
+              [col.value]: defaultValue[row.value]?.[col.value] || undefined,
+            }
+        }
+      })
+    })
+
+    return defaultValue
   })
   
   return {
@@ -173,7 +286,7 @@ const group = function(props, context, dependencies)
   const defaultValue = computed(() => {
     let parentDefaultValue = {}
     
-    if (parent && parent.value && !parent.value.mounted) {
+    if (parent && parent.value) {
       parentDefaultValue = parent.value.defaultValue
     } else if (form$.value.options.default) { //@todo:adam
       parentDefaultValue = form$.value.options.default
@@ -205,7 +318,7 @@ const multilingual = function(props, context, dependencies)
   const defaultValue = computed(() => {
     let parentDefaultValue
     
-    if (parent && parent.value && !parent.value.mounted) {
+    if (parent && parent.value) {
       parentDefaultValue = parent.value.defaultValue[name.value]
     } else if (form$.value.options.default[name.value]) {
       parentDefaultValue = form$.value.options.default[name.value]
@@ -244,6 +357,7 @@ export {
   group,
   multilingual,
   text,
+  matrix,
 }
 
 export default base

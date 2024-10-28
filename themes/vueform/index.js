@@ -42,6 +42,7 @@ import GroupElement from './templates/elements/GroupElement.vue'
 import HiddenElement from './templates/elements/HiddenElement.vue'
 import ListElement from './templates/elements/ListElement.vue'
 import LocationElement from './templates/elements/LocationElement.vue'
+import MatrixElement from './templates/elements/MatrixElement.vue'
 import MultifileElement from './templates/elements/MultifileElement.vue'
 import MultiselectElement from './templates/elements/MultiselectElement.vue'
 import ObjectElement from './templates/elements/ObjectElement.vue'
@@ -79,6 +80,7 @@ import EditorWrapper from './templates/wrappers/EditorWrapper.vue'
 
 import columns from './columns'
 import classes from './classes'
+import presets from './presets'
 
 export default {
   templates: {
@@ -121,6 +123,7 @@ export default {
     HiddenElement,
     ListElement,
     LocationElement,
+    MatrixElement,
     MultifileElement,
     MultiselectElement,
     ObjectElement,
@@ -158,6 +161,7 @@ export default {
   },
   classes,
   columns,
+  presets,
 }
 
 export {
@@ -200,6 +204,7 @@ export {
   HiddenElement,
   ListElement,
   LocationElement,
+  MatrixElement,
   MultifileElement,
   MultiselectElement,
   ObjectElement,
@@ -237,4 +242,5 @@ export {
   
   classes,
   columns,
+  presets,
 }

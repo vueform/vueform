@@ -9,7 +9,7 @@ module.exports = [
   'default', 'forceNumbers', 'formatData', 'formatLoad', 'submit',
 
   // Validation
-  'rules', 'fieldName', 'debounce', 'messages',
+  'rules', 'fieldName', 'debounce', 'messages', 'displayErrors',
 
   // Conditions
   'conditions',

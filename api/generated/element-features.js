@@ -930,6 +930,13 @@ export default {
           ],
           "description": "Whether the element is a list."
         },
+        "isMatrixType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is a matrix."
+        },
         "isActive": {
           "public": false,
           "types": [
@@ -1019,6 +1026,13 @@ export default {
             "boolean"
           ],
           "description": "Whether the element is a nested group."
+        },
+        "isMatrixType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is a matrix."
         },
         "isListType": {
           "public": false,
@@ -1117,6 +1131,13 @@ export default {
           ],
           "description": "Whether the element is a nested group."
         },
+        "isMatrixType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is a matrix."
+        },
         "isListType": {
           "public": false,
           "types": [
@@ -1213,6 +1234,117 @@ export default {
             "boolean"
           ],
           "description": "Whether the element is a nested group."
+        },
+        "isMatrixType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is a matrix."
+        },
+        "isListType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is a list."
+        },
+        "isActive": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element should be visible when using `tabs` or `steps`."
+        }
+      },
+      "data": {
+        "active": {
+          "public": false,
+          "default": "true",
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is hidden internally by core components like tabs or steps. Only intended for reading."
+        },
+        "mounted": {
+          "public": true,
+          "default": "true",
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element has been already mounted."
+        },
+        "container": {
+          "public": true,
+          "types": [
+            "HTMLElement"
+          ],
+          "description": "The ref to the outermost DOM of the element."
+        }
+      },
+      "methods": {
+        "activate": {
+          "public": false,
+          "returns": "void",
+          "description": "Sets the `active` property of the element to `true`."
+        },
+        "deactivate": {
+          "public": false,
+          "returns": "void",
+          "description": "Sets the `active` property of the element to `false`."
+        }
+      }
+    },
+    "matrix": {
+      "computed": {
+        "isStatic": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is static (does not have any data or validation)."
+        },
+        "isFileType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element's value is a file."
+        },
+        "isArrayType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element's value is an array."
+        },
+        "isImageType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element's value is an image."
+        },
+        "isObjectType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is a nested object."
+        },
+        "isGroupType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is a nested group."
+        },
+        "isMatrixType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is a matrix."
         },
         "isListType": {
           "public": false,
@@ -1311,6 +1443,13 @@ export default {
           ],
           "description": "Whether the element is a nested group."
         },
+        "isMatrixType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is a matrix."
+        },
         "isListType": {
           "public": false,
           "types": [
@@ -1407,6 +1546,13 @@ export default {
             "boolean"
           ],
           "description": "Whether the element is a nested group."
+        },
+        "isMatrixType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is a matrix."
         },
         "isListType": {
           "public": false,
@@ -1505,6 +1651,13 @@ export default {
           ],
           "description": "Whether the element is a nested group."
         },
+        "isMatrixType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is a matrix."
+        },
         "isListType": {
           "public": false,
           "types": [
@@ -1601,6 +1754,13 @@ export default {
             "boolean"
           ],
           "description": "Whether the element is a nested group."
+        },
+        "isMatrixType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is a matrix."
         },
         "isListType": {
           "public": false,
@@ -1699,6 +1859,13 @@ export default {
           ],
           "description": "Whether the element is a nested group."
         },
+        "isMatrixType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is a matrix."
+        },
         "isListType": {
           "public": false,
           "types": [
@@ -1795,6 +1962,13 @@ export default {
             "boolean"
           ],
           "description": "Whether the element is a nested group."
+        },
+        "isMatrixType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is a matrix."
         },
         "isListType": {
           "public": false,
@@ -1931,6 +2105,64 @@ export default {
           "public": true,
           "returns": "void",
           "description": "Destroys the captcha provider."
+        }
+      }
+    }
+  },
+  "cells": {
+    "base": {
+      "computed": {
+        "hasDynamicRows": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the matrix has dynamic rows."
+        },
+        "computedRows": {
+          "public": true,
+          "types": [
+            "number",
+            "array"
+          ],
+          "description": "The value of `rows` or `rowsCount` if rows are dynamic."
+        },
+        "resolvedRows": {
+          "public": true,
+          "types": [
+            "array"
+          ],
+          "description": "The rows of the matrix to be displayed."
+        },
+        "resolvedColumns": {
+          "public": true,
+          "types": [
+            "array"
+          ],
+          "description": "The columns of the matrix to be displayed."
+        },
+        "dataType": {
+          "public": true,
+          "types": [
+            "array"
+          ],
+          "description": "The data structure type of the matrix. Can be: `assoc`, `array` or `object`."
+        }
+      },
+      "data": {
+        "rowsCount": {
+          "public": true,
+          "types": [
+            "number"
+          ],
+          "description": "The count of current rows when rows are dynamic."
+        },
+        "cells$": {
+          "public": true,
+          "types": [
+            "object"
+          ],
+          "description": "The instances of cells."
         }
       }
     }
@@ -3354,6 +3586,71 @@ export default {
         }
       }
     },
+    "matrix": {
+      "computed": {
+        "data": {
+          "public": true,
+          "types": [
+            "object"
+          ],
+          "description": "The value of the element in `{[name]: value}` value format. This gets merged with the parent component's data."
+        },
+        "requestData": {
+          "public": true,
+          "types": [
+            "object"
+          ],
+          "description": "Same as `data` property except that it only includes the element's value if [`submit`](#option-submit) is not disabled and [`available`](#property-available) is `true` (has no [`conditions`](#option-conditions) or they are fulfilled)."
+        }
+      },
+      "methods": {
+        "load": {
+          "public": true,
+          "returns": "void",
+          "description": "Loads value to the element using optional [`formatLoad`](#option-format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.",
+          "params": {
+            "value": {
+              "types": [
+                "any"
+              ],
+              "required": true,
+              "description": "the value to be loaded"
+            },
+            "format": {
+              "types": [
+                "boolean"
+              ],
+              "required": false,
+              "description": "whether the loaded value should be formatted with [`formatLoad`](#option-format-load) before setting the value of the element (default: `false`)"
+            }
+          }
+        },
+        "update": {
+          "public": true,
+          "returns": "void",
+          "description": "Updates the value of the element similarly to [`load`](#method-load), only that it can\\'t format data.",
+          "params": {
+            "value": {
+              "types": [
+                "any"
+              ],
+              "required": true,
+              "description": "the value to be set"
+            }
+          }
+        },
+        "clear": {
+          "public": true,
+          "returns": "void",
+          "description": "Clears the element's value."
+        },
+        "reset": {
+          "public": true,
+          "returns": "void",
+          "description": "Resets the element's value to [`default`](#option-default) (or empty if `default` is not provided). Also resets all the validation state for the element."
+        }
+      }
+    },
     "multiselect": {
       "computed": {
         "data": {
@@ -3561,6 +3858,17 @@ export default {
       }
     },
     "object": {
+      "computed": {
+        "defaultValue": {
+          "public": false,
+          "types": [
+            "any"
+          ],
+          "description": "The default value of the element."
+        }
+      }
+    },
+    "matrix": {
       "computed": {
         "defaultValue": {
           "public": false,
@@ -4763,6 +5071,198 @@ export default {
           "public": true,
           "returns": "void",
           "description": "Initializes location service. Can be used to re-initialize location service."
+        }
+      }
+    }
+  },
+  "matrix": {
+    "base": {
+      "data": {
+        "grid": {
+          "public": true,
+          "types": [
+            "HTMLElement"
+          ],
+          "description": "The HTML element of the matrix grix."
+        }
+      },
+      "methods": {
+        "resolveComponentType": {
+          "public": true,
+          "returns": "string",
+          "description": "Resolves the cell component type (for `:is`) based on a column object.",
+          "params": {
+            "column": {
+              "types": [
+                "object"
+              ],
+              "required": true,
+              "description": "the column definition object"
+            }
+          }
+        },
+        "resolveComponentProps": {
+          "public": true,
+          "returns": "object",
+          "description": "Resolves the cell component properties.",
+          "params": {
+            "row": {
+              "types": [
+                "object"
+              ],
+              "required": true,
+              "description": "the row definition object"
+            },
+            "col": {
+              "types": [
+                "object"
+              ],
+              "required": true,
+              "description": "the column definition object"
+            },
+            "rowIndex": {
+              "types": [
+                "number"
+              ],
+              "required": true,
+              "description": "the index of the row"
+            },
+            "colIndex": {
+              "types": [
+                "number"
+              ],
+              "required": true,
+              "description": "the index of the column"
+            }
+          }
+        },
+        "resolveComponentName": {
+          "public": true,
+          "returns": "string",
+          "description": "Resolves the cell component name based on row and column index.",
+          "params": {
+            "rowIndex": {
+              "types": [
+                "number"
+              ],
+              "required": true,
+              "description": "the index of the row"
+            },
+            "colIndex": {
+              "types": [
+                "number"
+              ],
+              "required": true,
+              "description": "the index of the column"
+            }
+          }
+        },
+        "getColStyle": {
+          "public": true,
+          "returns": "object",
+          "description": "Returns the style of a colum based on its index.",
+          "params": {
+            "index": {
+              "types": [
+                "object"
+              ],
+              "required": true,
+              "description": "the index of the column"
+            }
+          }
+        },
+        "resolveColInputType": {
+          "public": true,
+          "returns": "object|string",
+          "description": "Resolves the input type of a column.",
+          "params": {
+            "col": {
+              "types": [
+                "object"
+              ],
+              "required": true,
+              "description": "the column definition object"
+            }
+          }
+        },
+        "resolveColConditions": {
+          "public": true,
+          "returns": "object",
+          "description": "Resolves the conditions of a cell based on row and column.",
+          "params": {
+            "row": {
+              "types": [
+                "object"
+              ],
+              "required": true,
+              "description": "the row definition object"
+            },
+            "col": {
+              "types": [
+                "object"
+              ],
+              "required": true,
+              "description": "the column definition object"
+            }
+          }
+        },
+        "resolveColType": {
+          "public": true,
+          "returns": "string",
+          "description": "Resolves the type of the input field of a column.",
+          "params": {
+            "col": {
+              "types": [
+                "object"
+              ],
+              "required": true,
+              "description": "the column definition object"
+            }
+          }
+        }
+      },
+      "computed": {
+        "addLabel": {
+          "public": true,
+          "types": [
+            "string"
+          ],
+          "description": "The label of add button."
+        },
+        "rowsVisible": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether row labels should be displayed."
+        },
+        "colsVisible": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether column headers should be displayed."
+        },
+        "allowAdd": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether rows can be added when rows are dynamic."
+        },
+        "allowRemove": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether rows can be removed when rows are dynamic."
+        },
+        "cells": {
+          "public": true,
+          "types": [
+            "array"
+          ],
+          "description": "The component props of the cells."
         }
       }
     }
@@ -6345,6 +6845,20 @@ export default {
             "boolean"
           ],
           "description": "Whether the element is required (has required rule)."
+        },
+        "useCustomFilled": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element should use a custom logic for checking if it is filled when validating."
+        },
+        "isFilled": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is filled is `useCustomFilled` is `true`."
         }
       },
       "methods": {
@@ -6510,6 +7024,20 @@ export default {
             "boolean"
           ],
           "description": "Whether the element is required (has required rule)."
+        },
+        "useCustomFilled": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element should use a custom logic for checking if it is filled when validating."
+        },
+        "isFilled": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is filled is `useCustomFilled` is `true`."
         }
       },
       "methods": {
@@ -6639,6 +7167,20 @@ export default {
             "boolean"
           ],
           "description": "Whether the element is required (has required rule)."
+        },
+        "useCustomFilled": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element should use a custom logic for checking if it is filled when validating."
+        },
+        "isFilled": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is filled is `useCustomFilled` is `true`."
         },
         "childrenErrors": {
           "public": false,
@@ -6843,6 +7385,20 @@ export default {
             "boolean"
           ],
           "description": "Whether the element is required (has required rule)."
+        },
+        "useCustomFilled": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element should use a custom logic for checking if it is filled when validating."
+        },
+        "isFilled": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is filled is `useCustomFilled` is `true`."
         }
       },
       "methods": {
@@ -6984,6 +7540,20 @@ export default {
             "boolean"
           ],
           "description": "Whether the element is required (has required rule)."
+        },
+        "useCustomFilled": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element should use a custom logic for checking if it is filled when validating."
+        },
+        "isFilled": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is filled is `useCustomFilled` is `true`."
         },
         "errors": {
           "public": true,
@@ -7128,6 +7698,20 @@ export default {
             "boolean"
           ],
           "description": "Whether the element is required (has required rule)."
+        },
+        "useCustomFilled": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element should use a custom logic for checking if it is filled when validating."
+        },
+        "isFilled": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is filled is `useCustomFilled` is `true`."
         },
         "errors": {
           "public": true,
@@ -7280,6 +7864,20 @@ export default {
           ],
           "description": "Whether the element is required (has required rule)."
         },
+        "useCustomFilled": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element should use a custom logic for checking if it is filled when validating."
+        },
+        "isFilled": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is filled is `useCustomFilled` is `true`."
+        },
         "errors": {
           "public": true,
           "types": [
@@ -7322,6 +7920,178 @@ export default {
           "public": true,
           "returns": "Promise",
           "description": "Checks each validation rule for the element on [`displayKey`](#option-display-key) property of the location object (async)."
+        },
+        "dirt": {
+          "public": false,
+          "returns": "void",
+          "description": "Flag the element as dirty."
+        },
+        "clean": {
+          "public": true,
+          "returns": "void",
+          "description": "Removes the element's `dirty` state."
+        },
+        "clearMessages": {
+          "public": true,
+          "returns": "void",
+          "description": "Clears the manually added messages from the [`messageBag`](#property-message-bag)."
+        },
+        "resetValidators": {
+          "public": true,
+          "returns": "void",
+          "description": "Sets the validators to default state."
+        },
+        "initMessageBag": {
+          "public": false,
+          "returns": "void",
+          "description": "Initializes MessageBag service."
+        },
+        "initValidation": {
+          "public": false,
+          "returns": "void",
+          "description": "Initializes validators."
+        },
+        "reinitValidation": {
+          "public": true,
+          "returns": "void",
+          "description": "Re-initializes validators when rules have changed."
+        }
+      }
+    },
+    "matrix": {
+      "data": {
+        "state": {
+          "public": false,
+          "default": "{ dirty: false, validate: true }",
+          "types": [
+            "object"
+          ],
+          "description": "Helper property used to store the element states."
+        },
+        "Validators": {
+          "public": false,
+          "default": "[]",
+          "types": [
+            "array"
+          ],
+          "description": "An array containing all the validators of the element."
+        },
+        "messageBag": {
+          "public": true,
+          "default": "MessageBag",
+          "types": [
+            "MessageBag"
+          ],
+          "description": "Instance of MessageBag service. Custom errors and messages [can be added](/docs/validating-elements#custom-errors-and-messages)."
+        },
+        "resetting": {
+          "public": false,
+          "default": "false",
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is currently being resetet (no validation should happen)."
+        }
+      },
+      "computed": {
+        "dirty": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element's value was modified."
+        },
+        "validated": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element was already validated at least once."
+        },
+        "invalid": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element has any failing rules."
+        },
+        "pending": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element has any async rules in progress."
+        },
+        "busy": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is `pending`."
+        },
+        "errors": {
+          "public": true,
+          "types": [
+            "array"
+          ],
+          "description": "All the errors of `MessageBag`."
+        },
+        "error": {
+          "public": true,
+          "types": [
+            "string"
+          ],
+          "description": "The first error of `MessageBag`."
+        },
+        "validationRules": {
+          "public": false,
+          "types": [
+            "string",
+            "array"
+          ],
+          "description": "The element's validation rules."
+        },
+        "isDanger": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element has errors."
+        },
+        "isSuccess": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element has been filled in successfully."
+        },
+        "isRequired": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is required (has required rule)."
+        },
+        "useCustomFilled": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element should use a custom logic for checking if it is filled when validating."
+        },
+        "isFilled": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is filled is `useCustomFilled` is `true`."
+        }
+      },
+      "methods": {
+        "validate": {
+          "public": true,
+          "returns": "Promise",
+          "description": "Checks each validation rule for the element (async)."
         },
         "dirt": {
           "public": false,
@@ -7444,6 +8214,20 @@ export default {
             "boolean"
           ],
           "description": "Whether the element is required (has required rule)."
+        },
+        "useCustomFilled": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element should use a custom logic for checking if it is filled when validating."
+        },
+        "isFilled": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is filled is `useCustomFilled` is `true`."
         },
         "childrenErrors": {
           "public": false,
@@ -7613,6 +8397,20 @@ export default {
           ],
           "description": "Whether the element is required (has required rule)."
         },
+        "useCustomFilled": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element should use a custom logic for checking if it is filled when validating."
+        },
+        "isFilled": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is filled is `useCustomFilled` is `true`."
+        },
         "childrenErrors": {
           "public": false,
           "types": [
@@ -7699,6 +8497,47 @@ export default {
   },
   "value": {
     "base": {
+      "data": {
+        "initialValue": {
+          "public": false,
+          "types": [
+            "any"
+          ],
+          "description": "The initial value of the element."
+        },
+        "internalValue": {
+          "public": false,
+          "types": [
+            "any"
+          ],
+          "description": "The store for the value of the element when we're not using external data (form's `v-model`)."
+        }
+      },
+      "computed": {
+        "value": {
+          "public": true,
+          "types": [
+            "any"
+          ],
+          "description": "The value of the element."
+        },
+        "model": {
+          "public": true,
+          "types": [
+            "any"
+          ],
+          "description": "Intermediary value between element's value and field's `v-model`. It is required when we need to transform the value format between the element and its field."
+        },
+        "isDefault": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element has its default value."
+        }
+      }
+    },
+    "matrix": {
       "data": {
         "initialValue": {
           "public": false,

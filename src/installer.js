@@ -113,6 +113,11 @@ export default function(config = baseConfig, components = {}, rules = {}, servic
           }
       })
 
+      this.options.config.presets = {
+        ...(this.options.config.presets || {}),
+        ...(config.theme?.presets || {}),
+      }
+
       if (config.elements) {
         config.elements.forEach((element) => {
           components[element.name] = omit(element, ['render', 'staticRenderFns', 'components'])

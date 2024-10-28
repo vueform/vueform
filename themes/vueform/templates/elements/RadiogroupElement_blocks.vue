@@ -8,7 +8,7 @@
       return {
         merge: true,
         defaultClasses: {
-          container: '',
+          container: 'vf-radiogroup-view-blocks',
           wrapper: 'vf-radiogroup-blocks-wrapper',
           wrapper_sm: 'vf-radiogroup-blocks-wrapper-sm',
           wrapper_md: '',
