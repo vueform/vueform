@@ -6,6 +6,7 @@
 
 ### 🎉 Feature
 - New [`MatrixElement`](https://vueform.com/reference/matrix-element) element.
+- Arabic translation (thanks @omaralalwi 🙏)
 
 ## v1.10.10
 
