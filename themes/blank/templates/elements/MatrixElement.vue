@@ -11,7 +11,7 @@
         <div v-if="rowsVisible && colsVisible" :class="classes.headerFirst" />
         <!-- Column headers -->
         <template v-for="(col, c) in resolvedColumns">
-          <div v-if="colsVisible && col.available" v-html="col.label":class="classes.header" />
+          <div v-if="colsVisible" v-show="col.available" v-html="col.label" :class="classes.header" />
         </template>
         <!-- Remove column -->
         <div v-if="allowRemove && colsVisible" :class="classes.headerRemove" />
@@ -19,10 +19,10 @@
         <!-- Content rows -->
         <template v-for="(row, r) in resolvedRows">
           <!-- Row label -->
-          <div v-if="rowsVisible && row.available" v-html="row.label" :class="classes.rowLabel" />
+          <div v-if="rowsVisible" v-show="row.available" v-html="row.label" :class="classes.rowLabel" />
           <!-- Input cells -->
           <template v-for="(col, c) in resolvedColumns">
-            <div v-if="row.available && col.available" :class="classes.cell">
+            <div v-show="row.available && col.available" :class="classes.cell">
               <div :class="classes.cellWrapper(resolveColType(col), resolveComponentName(r, c))">
                 <component
                   :is="resolveComponentType(col)"
