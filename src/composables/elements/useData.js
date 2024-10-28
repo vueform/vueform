@@ -1448,7 +1448,7 @@ const matrix = function(props, context, dependencies, options = {})
     el$.value.resolvedRows.forEach((row, r) => {
       el$.value.resolvedColumns.forEach((column, c) => {
         const rowValue = val[row.value] || {}
-        const cell$ = children$.value[`${name.value}_${r}_${c}`]
+        const cell$ = children$.value[resolveComponentName(r,c)]
 
         switch (dataType.value) {
           case 'assoc':

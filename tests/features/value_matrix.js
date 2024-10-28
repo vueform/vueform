@@ -594,21 +594,21 @@ export const value = function (elementType, elementName, options) {
 
         switch (type) {
           case 'radio':
-            el.children$[`${elName}_0_0`].check()
+            el.children$[`${el.path.replace(/\./g, '__')}_0_0`].check()
             await nextTick()
             expect(elChangeMock).toHaveBeenNthCalledWith(3, { ...dataNull[type], red: 'apple' }, dataNull[type], el)
             expect(formChangeMock).toHaveBeenNthCalledWith(3, createDataObj({ ...dataNull[type], red: 'apple' }, parentType), createDataObj(dataNull[type], parentType), form.vm)
             break
 
           case 'checkbox':
-            el.children$[`${elName}_0_0`].check()
+            el.children$[`${el.path.replace(/\./g, '__')}_0_0`].check()
             await nextTick()
             expect(elChangeMock).toHaveBeenNthCalledWith(3, { ...dataNull[type], red: ['apple'] }, dataNull[type], el)
             expect(formChangeMock).toHaveBeenNthCalledWith(3, createDataObj({ ...dataNull[type], red: ['apple'] }, parentType), createDataObj(dataNull[type], parentType), form.vm)
             break
 
           case 'text':
-            el.children$[`${elName}_0_0`].update('aaa')
+            el.children$[`${el.path.replace(/\./g, '__')}_0_0`].update('aaa')
             await nextTick()
             expect(elChangeMock).toHaveBeenNthCalledWith(3, { ...dataNull[type], red: { apple: 'aaa', pear: null, orange: null } }, dataNull[type], el)
             expect(formChangeMock).toHaveBeenNthCalledWith(3, createDataObj({ ...dataNull[type], red: { apple: 'aaa', pear: null, orange: null } }, parentType), createDataObj(dataNull[type], parentType), form.vm)

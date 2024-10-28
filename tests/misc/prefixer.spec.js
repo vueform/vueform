@@ -131,7 +131,7 @@ xl:tw-col-span-12
         input_disabled: 'form-bg-disabled checked:form-border checked:form-border-color',
         $input,
       }
-    }, 'tw-')).toEqual({
+    }, 'tw-').classes).toEqual({
       TextElement: {
         input: 'tw-flex-shrink-0 tw-appearance-none checked:tw-border-0',
         input_enabled: 'checked:tw-form-bg-primary',

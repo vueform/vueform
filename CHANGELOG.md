@@ -1,5 +1,12 @@
 [//]: # (Don't use <tags>)
 
+## v1.11.0
+
+> `2024-10-28`
+
+### 🎉 Feature
+- New [`MatrixElement`](https://vueform.com/reference/matrix-element) element.
+
 ## v1.10.10
 
 > `2024-09-20`
