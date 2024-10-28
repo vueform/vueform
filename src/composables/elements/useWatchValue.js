@@ -118,12 +118,14 @@ const object = function(props, context, dependencies, /* istanbul ignore next */
 {
   // ============ DEPENDENCIES =============
   
-  const form$ = dependencies.form$
-  const fire = dependencies.fire
-  const value = dependencies.value
-  const el$ = dependencies.el$
-  const dirt = dependencies.dirt
-  const validateValidators = dependencies.validateValidators
+  const {
+    form$,
+    fire,
+    value,
+    el$,
+    dirt,
+    validateValidators,
+  } = dependencies
   
   // =============== METHODS ===============
   
