@@ -1,5 +1,5 @@
 /*!
- * Vueform v1.10.10 (https://github.com/vueform/vueform)
+ * Vueform v1.11.0 (https://github.com/vueform/vueform)
  * Copyright (c) 2024 Adam Berecz <adam@vueform.com>
  * Licensed under the MIT License
  */
@@ -10147,7 +10147,7 @@ function shouldApplyPlugin (name, plugin) {
 }
 
 var name = "@vueform/vueform";
-var version$1 = "1.10.10";
+var version$1 = "1.11.0";
 var description = "Open-Source Form Framework for Vue";
 var homepage = "https://vueform.com";
 var license = "MIT";
@@ -29164,7 +29164,7 @@ var matrix$1 = function matrix(props, context, dependencies) {
       el$.value.resolvedRows.forEach((row, r) => {
         el$.value.resolvedColumns.forEach((column, c) => {
           var rowValue = val[row.value] || {};
-          var cell$ = children$.value["".concat(name.value, "_").concat(r, "_").concat(c)];
+          var cell$ = children$.value[resolveComponentName(r, c)];
           switch (dataType.value) {
             case 'assoc':
               cell$[action](column.value === rowValue);
