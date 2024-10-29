@@ -1,6 +1,8 @@
 import { computed, toRefs, inject, ref, watch } from 'vue'
 import upperFirst from 'lodash/upperFirst'
 import camelCase from 'lodash/camelCase'
+import isEqual from 'lodash/isEqual'
+import cloneDeep from 'lodash/cloneDeep'
 import localize from './../../utils/localize'
 
 const base = function(props, context, dependencies)
@@ -39,6 +41,7 @@ const base = function(props, context, dependencies)
     genericName,
     isDisabled,
     isReadonly,
+    defaultValue,
   } = dependencies
 
   const config$ = inject('config$')
@@ -168,6 +171,19 @@ const base = function(props, context, dependencies)
     return rows
   })
 
+  /**
+   * The array of cell input types.
+   * 
+   * @type {array}
+   */
+  const inputTypes = computed(() => {
+    return cells.value.reduce((prev, curr) => {
+      prev.push(...curr.map((cell) => cell.type))
+
+      return prev
+    }, [])
+  })
+
   // =============== METHODS ==============
 
   /**
@@ -176,6 +192,7 @@ const base = function(props, context, dependencies)
    * @returns {string}
    * @param {number|string} width* the width to be resolved
    * @param {number|string} def* the default value to be used if width is `undefined`
+   * @private
    */
   const resolveWidth = (width, def) => {
     return typeof width === 'number' ? `${width}px` : width !== undefined ? width : def
@@ -358,6 +375,7 @@ const base = function(props, context, dependencies)
    *
    * @returns {object}
    * @param {object} col* the column definition object
+   * @private
    */
   const resolveColProps = (col) => {
     const type = resolveColInputType(col)
@@ -380,6 +398,14 @@ const base = function(props, context, dependencies)
       ...(col.conditions || []),
     ]
   }
+
+  watch([inputType, inputTypes], (n, o) => {
+    if (isEqual(n[0], o[0]) && isEqual(n[1], o[1])) {
+      return
+    }
+
+    value.value = cloneDeep(defaultValue.value)
+  }, { flush: 'pre' })
   
   return {
     grid,
@@ -397,6 +423,7 @@ const base = function(props, context, dependencies)
     allowAdd,
     allowRemove,
     cells,
+    inputTypes,
   }
 }
 

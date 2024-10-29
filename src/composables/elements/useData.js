@@ -1530,14 +1530,6 @@ const matrix = function(props, context, dependencies, options = {})
     })
   }
 
-  watch(inputType, (n, o) => {
-    if (isEqual(n, o)) {
-      return
-    }
-
-    reset()
-  }, { flush: 'post' })
-
   watch(computedRows, (n, o) => {
     const oldLength = typeof o === 'number' ? o : Object.keys(o).length
     const newLength = typeof n === 'number' ? n : Object.keys(n).length
