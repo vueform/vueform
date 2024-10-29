@@ -7666,8 +7666,16 @@ var __vue_render__$u = function () {
                   _vm._v(" "),
                   _vm._l(_vm.resolvedColumns, function (col, c) {
                     return [
-                      _vm.colsVisible && col.available
+                      _vm.colsVisible
                         ? _c("div", {
+                            directives: [
+                              {
+                                name: "show",
+                                rawName: "v-show",
+                                value: col.available,
+                                expression: "col.available",
+                              },
+                            ],
                             class: _vm.classes.header,
                             domProps: { innerHTML: _vm._s(col.label) },
                           })
@@ -7681,8 +7689,16 @@ var __vue_render__$u = function () {
                   _vm._v(" "),
                   _vm._l(_vm.resolvedRows, function (row, r) {
                     return [
-                      _vm.rowsVisible && row.available
+                      _vm.rowsVisible
                         ? _c("div", {
+                            directives: [
+                              {
+                                name: "show",
+                                rawName: "v-show",
+                                value: row.available,
+                                expression: "row.available",
+                              },
+                            ],
                             class: _vm.classes.rowLabel,
                             domProps: { innerHTML: _vm._s(row.label) },
                           })
@@ -7690,34 +7706,46 @@ var __vue_render__$u = function () {
                       _vm._v(" "),
                       _vm._l(_vm.resolvedColumns, function (col, c) {
                         return [
-                          row.available && col.available
-                            ? _c("div", { class: _vm.classes.cell }, [
-                                _c(
-                                  "div",
-                                  {
-                                    class: _vm.classes.cellWrapper(
-                                      _vm.resolveColType(col),
-                                      _vm.resolveComponentName(r, c)
-                                    ),
-                                  },
-                                  [
-                                    _c(
-                                      _vm.resolveComponentType(col),
-                                      _vm._b(
-                                        {
-                                          key: _vm.cells[r][c].name,
-                                          tag: "component",
-                                        },
-                                        "component",
-                                        _vm.cells[r][c],
-                                        false
-                                      )
-                                    ),
-                                  ],
-                                  1
-                                ),
-                              ])
-                            : _vm._e(),
+                          _c(
+                            "div",
+                            {
+                              directives: [
+                                {
+                                  name: "show",
+                                  rawName: "v-show",
+                                  value: row.available && col.available,
+                                  expression: "row.available && col.available",
+                                },
+                              ],
+                              class: _vm.classes.cell,
+                            },
+                            [
+                              _c(
+                                "div",
+                                {
+                                  class: _vm.classes.cellWrapper(
+                                    _vm.resolveColType(col),
+                                    _vm.resolveComponentName(r, c)
+                                  ),
+                                },
+                                [
+                                  _c(
+                                    _vm.resolveComponentType(col),
+                                    _vm._b(
+                                      {
+                                        key: _vm.cells[r][c].name,
+                                        tag: "component",
+                                      },
+                                      "component",
+                                      _vm.cells[r][c],
+                                      false
+                                    )
+                                  ),
+                                ],
+                                1
+                              ),
+                            ]
+                          ),
                         ]
                       }),
                       _vm._v(" "),

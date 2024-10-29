@@ -530,6 +530,7 @@ export interface VueformElement extends DefineComponent {
   allowAdd: boolean;
   allowRemove: boolean;
   cells: Array<any>;
+  inputTypes: Array<any>;
   preparing: boolean;
   hasUploading: boolean;
   storeFileName: string;
@@ -7006,6 +7007,7 @@ export declare class MatrixElement implements DefineComponent {
   allowAdd: boolean;
   allowRemove: boolean;
   cells: Array<any>;
+  inputTypes: Array<any>;
   nullValue: any;
   parent: VNode;
   path: string;
@@ -7021,14 +7023,12 @@ export declare class MatrixElement implements DefineComponent {
   invalid: boolean;
   pending: boolean;
   busy: boolean;
-  errors: Array<any>;
-  error: string;
-  validationRules: string | Array<any>;
-  isDanger: boolean;
-  isSuccess: boolean;
   isRequired: boolean;
   useCustomFilled: boolean;
   isFilled: boolean;
+  errors: Array<any>;
+  error: string;
+  validationRules: string | Array<any>;
   value: any;
   model: any;
   isDefault: boolean;

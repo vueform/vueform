@@ -25774,12 +25774,14 @@ var list$2 = function list(props, context, dependencies) {
 var object$4 = function object(props, context, dependencies) {
   // ============ DEPENDENCIES =============
 
-  var form$ = dependencies.form$;
-  var fire = dependencies.fire;
-  var value = dependencies.value;
-  var el$ = dependencies.el$;
-  var dirt = dependencies.dirt;
-  var validateValidators = dependencies.validateValidators;
+  var {
+    form$,
+    fire,
+    value,
+    el$,
+    dirt,
+    validateValidators
+  } = dependencies;
 
   // =============== METHODS ===============
 
@@ -27369,13 +27371,16 @@ var matrix$3 = function matrix(props, context, dependencies) {
     validated,
     invalid,
     pending,
+    debouncing,
     busy,
+    isRequired,
+    validatorErrors,
+    childrenErrors,
     errors,
     validationRules,
-    isDanger,
-    isSuccess,
-    isRequired,
     validate,
+    validateValidators,
+    validateChildren,
     dirt,
     clean,
     clearMessages,
@@ -27423,16 +27428,19 @@ var matrix$3 = function matrix(props, context, dependencies) {
     validated,
     invalid,
     pending,
+    debouncing,
     busy,
-    errors,
-    error,
-    validationRules,
-    isDanger,
-    isSuccess,
     isRequired,
     useCustomFilled,
     isFilled,
+    validatorErrors,
+    childrenErrors,
+    errors,
+    error,
+    validationRules,
     validate,
+    validateValidators,
+    validateChildren,
     dirt,
     clean,
     clearMessages,
@@ -28178,6 +28186,60 @@ var text = function text(props, context, dependencies) {
       }
     }
     return v;
+  };
+  return {
+    data,
+    requestData,
+    load,
+    update,
+    clear,
+    reset,
+    prepare
+  };
+};
+var textarea = function textarea(props, context, dependencies) {
+  var {
+    data,
+    requestData,
+    load: baseLoad,
+    update: baseUpdate,
+    clear: baseClear,
+    reset: baseReset,
+    prepare
+  } = base$D(props, context, dependencies);
+
+  // ============ DEPENDENCIES =============
+
+  var {
+    autosize
+  } = dependencies;
+
+  // =============== METHODS ===============
+
+  var load = function load(val) {
+    var format = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+    baseLoad(val, format);
+    nextTick(() => {
+      autosize();
+    });
+  };
+  var update = val => {
+    baseUpdate(val);
+    nextTick(() => {
+      autosize();
+    });
+  };
+  var clear = () => {
+    baseClear();
+    nextTick(() => {
+      autosize();
+    });
+  };
+  var reset = () => {
+    baseReset();
+    nextTick(() => {
+      autosize();
+    });
   };
   return {
     data,
@@ -29301,14 +29363,6 @@ var matrix$1 = function matrix(props, context, dependencies) {
       return _ref8.apply(this, arguments);
     };
   }();
-  watch(inputType, (n, o) => {
-    if (isEqual_1(n, o)) {
-      return;
-    }
-    reset();
-  }, {
-    flush: 'post'
-  });
   watch(computedRows, (n, o) => {
     var oldLength = typeof o === 'number' ? o : Object.keys(o).length;
     var newLength = typeof n === 'number' ? n : Object.keys(n).length;
@@ -36143,7 +36197,8 @@ var base$g = function base(props, context, dependencies) {
     value,
     genericName,
     isDisabled,
-    isReadonly
+    isReadonly,
+    defaultValue
   } = dependencies;
   inject('config$');
 
@@ -36256,6 +36311,18 @@ var base$g = function base(props, context, dependencies) {
     return rows;
   });
 
+  /**
+   * The array of cell input types.
+   * 
+   * @type {array}
+   */
+  var inputTypes = computed(() => {
+    return cells.value.reduce((prev, curr) => {
+      prev.push(...curr.map(cell => cell.type));
+      return prev;
+    }, []);
+  });
+
   // =============== METHODS ==============
 
   /**
@@ -36264,6 +36331,7 @@ var base$g = function base(props, context, dependencies) {
    * @returns {string}
    * @param {number|string} width* the width to be resolved
    * @param {number|string} def* the default value to be used if width is `undefined`
+   * @private
    */
   var resolveWidth = (width, def) => {
     return typeof width === 'number' ? "".concat(width, "px") : width !== undefined ? width : def;
@@ -36422,6 +36490,7 @@ var base$g = function base(props, context, dependencies) {
    *
    * @returns {object}
    * @param {object} col* the column definition object
+   * @private
    */
   var resolveColProps = col => {
     var type = resolveColInputType(col);
@@ -36438,6 +36507,14 @@ var base$g = function base(props, context, dependencies) {
   var resolveColConditions = (row, col) => {
     return [...(row.conditions || []), ...(col.conditions || [])];
   };
+  watch([inputType, inputTypes], (n, o) => {
+    if (isEqual_1(n[0], o[0]) && isEqual_1(n[1], o[1])) {
+      return;
+    }
+    value.value = cloneDeep_1(defaultValue.value);
+  }, {
+    flush: 'pre'
+  });
   return {
     grid,
     resolveComponentType,
@@ -36453,7 +36530,8 @@ var base$g = function base(props, context, dependencies) {
     resolveColType,
     allowAdd,
     allowRemove,
-    cells
+    cells,
+    inputTypes
   };
 };
 
@@ -44232,7 +44310,7 @@ var TextareaElement = {
   },
   setup(props, ctx) {
     var context = _objectSpread2$1({}, ctx);
-    context.features = [base$W, base$1d, base$1c, base$Z, base$P, base$R, base$N, base$Y, base$J, base$1g, base$S, base$V, base$E, base$y, text$1, base$18, text$2, base$O, base$L, base$D, base$13, base$M, base$11, base$10, base$1e, base$12, base$$, base$o, base$4, base$u, base$b, base$U, base$I, base$X, base$9, base$v];
+    context.features = [base$W, base$1d, base$1c, base$Z, base$P, base$R, base$N, base$Y, base$J, base$1g, base$S, base$V, base$E, base$y, text$1, base$18, text$2, base$O, base$L, base$4, textarea, base$13, base$M, base$11, base$10, base$1e, base$12, base$$, base$o, base$u, base$b, base$U, base$I, base$X, base$9, base$v];
     context.slots = ['label', 'info', 'required', 'description', 'before', 'between', 'after', 'addon-before', 'addon-after'];
     return _objectSpread2$1({}, base$Q(props, context));
   }

@@ -21074,6 +21074,13 @@ module.exports = {
         description: 'The component props of the cells.',
         private: false,
       },
+      inputTypes: {
+        types: [
+          'array',
+        ],
+        description: 'The array of cell input types.',
+        private: false,
+      },
       nullValue: {
         types: [
           'any',
@@ -21179,6 +21186,27 @@ module.exports = {
         description: 'Whether the element is `pending`.',
         private: false,
       },
+      isRequired: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is required (has required rule).',
+        private: false,
+      },
+      useCustomFilled: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element should use a custom logic for checking if it is filled when validating.',
+        private: false,
+      },
+      isFilled: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element is filled is `useCustomFilled` is `true`.',
+        private: false,
+      },
       errors: {
         types: [
           'array',
@@ -21200,41 +21228,6 @@ module.exports = {
         ],
         description: 'The element&apos;s validation rules.',
         private: true,
-      },
-      isDanger: {
-        types: [
-          'boolean',
-        ],
-        description: 'Whether the element has errors.',
-        private: false,
-      },
-      isSuccess: {
-        types: [
-          'boolean',
-        ],
-        description: 'Whether the element has been filled in successfully.',
-        private: false,
-      },
-      isRequired: {
-        types: [
-          'boolean',
-        ],
-        description: 'Whether the element is required (has required rule).',
-        private: false,
-      },
-      useCustomFilled: {
-        types: [
-          'boolean',
-        ],
-        description: 'Whether the element should use a custom logic for checking if it is filled when validating.',
-        private: false,
-      },
-      isFilled: {
-        types: [
-          'boolean',
-        ],
-        description: 'Whether the element is filled is `useCustomFilled` is `true`.',
-        private: false,
       },
       value: {
         types: [

@@ -1369,7 +1369,7 @@ export default {
       "classes",
       "columns",
       "conditions",
-      "data",
+      "data_textarea",
       "default_text",
       "disabled",
       "el$",

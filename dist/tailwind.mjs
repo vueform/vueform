@@ -2179,12 +2179,14 @@ function render$u(_ctx, _cache, $props, $setup, $data, $options) {
         createCommentVNode(" Column headers "),
         (openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.resolvedColumns, (col, c) => {
           return (openBlock(), createElementBlock(Fragment, null, [
-            (_ctx.colsVisible && col.available)
-              ? (openBlock(), createElementBlock("div", {
+            (_ctx.colsVisible)
+              ? withDirectives((openBlock(), createElementBlock("div", {
                   key: 0,
                   innerHTML: col.label,
                   class: normalizeClass(_ctx.classes.header)
-                }, null, 10 /* CLASS, PROPS */, _hoisted_1$p))
+                }, null, 10 /* CLASS, PROPS */, _hoisted_1$p)), [
+                  [vShow, col.available]
+                ])
               : createCommentVNode("v-if", true)
           ], 64 /* STABLE_FRAGMENT */))
         }), 256 /* UNKEYED_FRAGMENT */)),
@@ -2199,31 +2201,30 @@ function render$u(_ctx, _cache, $props, $setup, $data, $options) {
         (openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.resolvedRows, (row, r) => {
           return (openBlock(), createElementBlock(Fragment, null, [
             createCommentVNode(" Row label "),
-            (_ctx.rowsVisible && row.available)
-              ? (openBlock(), createElementBlock("div", {
+            (_ctx.rowsVisible)
+              ? withDirectives((openBlock(), createElementBlock("div", {
                   key: 0,
                   innerHTML: row.label,
                   class: normalizeClass(_ctx.classes.rowLabel)
-                }, null, 10 /* CLASS, PROPS */, _hoisted_2$h))
+                }, null, 10 /* CLASS, PROPS */, _hoisted_2$h)), [
+                  [vShow, row.available]
+                ])
               : createCommentVNode("v-if", true),
             createCommentVNode(" Input cells "),
             (openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.resolvedColumns, (col, c) => {
-              return (openBlock(), createElementBlock(Fragment, null, [
-                (row.available && col.available)
-                  ? (openBlock(), createElementBlock("div", {
-                      key: 0,
-                      class: normalizeClass(_ctx.classes.cell)
-                    }, [
-                      createElementVNode("div", {
-                        class: normalizeClass(_ctx.classes.cellWrapper(_ctx.resolveColType(col), _ctx.resolveComponentName(r, c)))
-                      }, [
-                        (openBlock(), createBlock(resolveDynamicComponent(_ctx.resolveComponentType(col)), mergeProps({ ref_for: true }, _ctx.cells[r][c], {
-                          key: _ctx.cells[r][c].name
-                        }), null, 16 /* FULL_PROPS */))
-                      ], 2 /* CLASS */)
-                    ], 2 /* CLASS */))
-                  : createCommentVNode("v-if", true)
-              ], 64 /* STABLE_FRAGMENT */))
+              return withDirectives((openBlock(), createElementBlock("div", {
+                class: normalizeClass(_ctx.classes.cell)
+              }, [
+                createElementVNode("div", {
+                  class: normalizeClass(_ctx.classes.cellWrapper(_ctx.resolveColType(col), _ctx.resolveComponentName(r, c)))
+                }, [
+                  (openBlock(), createBlock(resolveDynamicComponent(_ctx.resolveComponentType(col)), mergeProps({ ref_for: true }, _ctx.cells[r][c], {
+                    key: _ctx.cells[r][c].name
+                  }), null, 16 /* FULL_PROPS */))
+                ], 2 /* CLASS */)
+              ], 2 /* CLASS */)), [
+                [vShow, row.available && col.available]
+              ])
             }), 256 /* UNKEYED_FRAGMENT */)),
             createCommentVNode(" Remove column "),
             (_ctx.allowRemove)
