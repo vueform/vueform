@@ -2,7 +2,7 @@
 
 ## v1.11.0
 
-> `2024-10-28`
+> `2024-10-29`
 
 ### 🎉 Feature
 - New [`MatrixElement`](https://vueform.com/reference/matrix-element) element.
