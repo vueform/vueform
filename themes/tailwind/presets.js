@@ -110,6 +110,112 @@ const remove = {
   },
 }
 
+const tableInputs = {
+  add: {
+    TextElement: add.inputs,
+    TTextElement: add.inputs,
+    LocationElement: add.inputs,
+    PhoneElement: add.inputs,
+    DateElement: add.inputs,
+    DatesElement: add.inputs,
+    TextareaElement: add.textareas,
+    TTextareaElement: add.textareas,
+    SelectElement: add.selects,
+    MultiselectElement: add.selects,
+    TagsElement: {
+      select: add.selects.select,
+    },
+    EditorElement: add.editors,
+    TEditorElement: add.editors,
+    CheckboxgroupElement: add.groups,
+    CheckboxgroupCheckbox: add.groupItems,
+    RadiogroupElement: add.groups,
+    RadiogroupRadio: add.groupItems,
+    ButtonElement: {
+      button_enabled: 'hover:brightness-95',
+      button_not_full: 'w-full',
+    },
+    FileElement: {
+      button: 'text-center w-full focus:relative focus:z-1 hover:brightness-95',
+    },
+    FilePreview: {
+      wrapper: 'py-1 px-1'
+    },
+    MultifileElement: {
+      button: 'text-center w-full focus:relative focus:z-1 hover:brightness-95',
+      list: 'py-1 px-1'
+    },
+    SliderElement: {
+      wrapper: 'h-full w-full flex items-center justify-center',
+      slider: {
+        target: 'w-full mx-4'
+      }
+    },
+    SignatureElement: {
+      wrapper: 'min-w-[100px]',
+    },
+    StaticElement: {
+      content: 'h-full'
+    },
+    ElementLayout: {
+      outerWrapper: 'h-full',
+      innerWrapperBefore: 'hidden form-inner-wrapper-before',
+      innerWrapper: 'h-full',
+      innerWrapperAfter: 'hidden form-inner-wrapper-after',
+    },
+  },
+  replace: {
+    TextElement: replace.inputs,
+    TTextElement: replace.inputs,
+    DateElement: replace.inputs,
+    DatesElement: replace.inputs,
+    LocationElement: replace.inputs,
+    PhoneElement: replace.inputs,
+    CheckboxgroupElement: replace.groups,
+    RadiogroupElement: replace.groups,
+    CheckboxgroupCheckbox: replace.groupItems,
+    RadiogroupRadio: replace.groupItems,
+  },
+  remove: {
+    TextElement: remove.inputs,
+    DateElement: remove.inputs,
+    DatesElement: remove.inputs,
+    TTextElement: remove.inputs,
+    LocationElement: remove.inputs,
+    PhoneElement: remove.inputs,
+    TextareaElement: remove.textareas,
+    TTextareaElement: remove.textareas,
+    SelectElement: remove.selects,
+    MultiselectElement: remove.selects,
+    TagsElement: {
+      select: remove.selects.select,
+    },
+    EditorElement: remove.editors,
+    TEditorElement: remove.editors,
+    ButtonElement: {
+      button_sm: ['form-radius-btn-sm'],
+      button_md: ['form-radius-btn'],
+      button_lg: ['form-radius-btn-lg'],
+      button_enabled: ['hover:scale-105']
+    },
+    FileElement: remove.files,
+    MultifileElement: {
+      ...remove.files,
+      list_md: ['form-mt-gutter'],
+    },
+    CheckboxgroupElement: remove.groups,
+    RadiogroupElement: remove.groups,
+    CheckboxgroupCheckbox: remove.groupItems,
+    RadiogroupRadio: remove.groupItems,
+    SignatureElement: {
+      wrapper: ['form-border-width-input'],
+      wrapper_sm: ['form-radius-large-sm'],
+      wrapper_md: ['form-radius-large'],
+      wrapper_lg: ['form-radius-large-lg'],
+    },
+  },
+}
+
 export default {
   'matrix-table': {
     addClasses: {
@@ -130,101 +236,16 @@ export default {
         rowRemove: 'form-border-width-table !border-r-0 !border-b-0 form-border-color-table bg-gray-100 form-bg-table-header',
         removeIcon: 'dark:!bg-dark-100',
       },
-      TextElement: add.inputs,
-      TTextElement: add.inputs,
-      LocationElement: add.inputs,
-      PhoneElement: add.inputs,
-      DateElement: add.inputs,
-      DatesElement: add.inputs,
-      TextareaElement: add.textareas,
-      TTextareaElement: add.textareas,
-      SelectElement: add.selects,
-      MultiselectElement: add.selects,
-      TagsElement: {
-        select: add.selects.select,
-      },
-      EditorElement: add.editors,
-      TEditorElement: add.editors,
-      CheckboxgroupElement: add.groups,
-      CheckboxgroupCheckbox: add.groupItems,
-      RadiogroupElement: add.groups,
-      RadiogroupRadio: add.groupItems,
-      ButtonElement: {
-        button_enabled: 'hover:brightness-95',
-        button_not_full: 'w-full',
-      },
-      FileElement: {
-        button: 'text-center w-full focus:relative focus:z-1 hover:brightness-95',
-      },
-      FilePreview: {
-        wrapper: 'py-1 px-1'
-      },
-      MultifileElement: {
-        button: 'text-center w-full focus:relative focus:z-1 hover:brightness-95',
-        list: 'py-1 px-1'
-      },
-      SliderElement: {
-        wrapper: 'h-full w-full flex items-center justify-center',
-        slider: {
-          target: 'w-full mx-4'
-        }
-      },
-      StaticElement: {
-        content: 'h-full'
-      },
-      ElementLayout: {
-        outerWrapper: 'h-full',
-        innerWrapperBefore: 'hidden form-inner-wrapper-before',
-        innerWrapper: 'h-full',
-        innerWrapperAfter: 'hidden form-inner-wrapper-after',
-      },
+      ...tableInputs.add,
     },
     replaceClasses: {
-      TextElement: replace.inputs,
-      TTextElement: replace.inputs,
-      DateElement: replace.inputs,
-      DatesElement: replace.inputs,
-      LocationElement: replace.inputs,
-      PhoneElement: replace.inputs,
-      CheckboxgroupElement: replace.groups,
-      RadiogroupElement: replace.groups,
-      CheckboxgroupCheckbox: replace.groupItems,
-      RadiogroupRadio: replace.groupItems,
+      ...tableInputs.replace,
     },
     removeClasses: {
       MatrixElement: {
         cellWrapper_padding: 'px-2',
       },
-      TextElement: remove.inputs,
-      DateElement: remove.inputs,
-      DatesElement: remove.inputs,
-      TTextElement: remove.inputs,
-      LocationElement: remove.inputs,
-      PhoneElement: remove.inputs,
-      TextareaElement: remove.textareas,
-      TTextareaElement: remove.textareas,
-      SelectElement: remove.selects,
-      MultiselectElement: remove.selects,
-      TagsElement: {
-        select: remove.selects.select,
-      },
-      EditorElement: remove.editors,
-      TEditorElement: remove.editors,
-      ButtonElement: {
-        button_sm: ['form-radius-btn-sm'],
-        button_md: ['form-radius-btn'],
-        button_lg: ['form-radius-btn-lg'],
-        button_enabled: ['hover:scale-105']
-      },
-      FileElement: remove.files,
-      MultifileElement: {
-        ...remove.files,
-        list_md: ['form-mt-gutter'],
-      },
-      CheckboxgroupElement: remove.groups,
-      RadiogroupElement: remove.groups,
-      CheckboxgroupCheckbox: remove.groupItems,
-      RadiogroupRadio: remove.groupItems,
+      ...tableInputs.remove,
     },
     overrideClasses: {
       MatrixElement: {
@@ -242,5 +263,26 @@ export default {
         },
       }
     }
-  }
+  },
+
+  'table-spreadsheet': {
+    addClasses: {
+      TableElement: {
+        table: 'form-border-width-table !border-l-0 !border-t-0 form-border-color-table',
+        td: 'form-border-width-table !border-r-0 !border-b-0 form-border-color-table',
+      },
+      ...tableInputs.add,
+    },
+    replaceClasses: {
+      ...tableInputs.replace,
+    },
+    removeClasses: {
+      TableElement: {
+        td_sm: ['form-p-table-sm'],
+        td_md: ['form-p-table'],
+        td_lg: ['form-p-table-lg'],
+      },
+      ...tableInputs.remove,
+    },
+  },
 }

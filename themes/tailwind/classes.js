@@ -1258,6 +1258,51 @@ export default {
       bottom >= 1 ? classes[`tag_bottom_${bottom}`] : null,
     ]),
   },
+  TableElement: {
+    container: '',
+    wrapper: 'grid grid-cols-12',
+    wrapper_sm: 'form-gap-gutter-sm',
+    wrapper_md: 'form-gap-gutter',
+    wrapper_lg: 'form-gap-gutter-lg',
+    table: 'col-span-12',
+    tr: '',
+    td: 'h-px p-0',
+    td_td: '',
+    td_top: 'align-top',
+    td_middle: 'align-center',
+    td_bottom: 'align-bottom',
+    td_baseline: 'align-baseline',
+    td_left: 'text-left',
+    td_center: 'text-center',
+    td_right: 'text-right',
+    td_th: 'text-left font-bold',
+    fieldWrapper: 'w-full h-full grid items-center !items-stretch',
+    textWrapper: 'inline-flex items-center',
+    textWrapper_sm: 'form-min-h-input-height-sm form-p-input-sm',
+    textWrapper_md: 'form-min-h-input-height form-p-input',
+    textWrapper_lg: 'form-min-h-input-height-lg form-p-input-lg',
+    text: '',
+    $wrapper: (classes, { Size }) => ([
+      classes.wrapper,
+      classes[`wrapper_${Size}`]
+    ]),
+    $fieldWrapper: (classes, {  }) => (schema) => ([
+      classes.fieldWrapper,
+    ]),
+    $textWrapper: (classes, { Size }) => ([
+      classes.textWrapper,
+      classes[`textWrapper_${Size}`]
+    ]),
+    $tr: (classes, {  }) => (rowIndex, totalRows) => ([
+      classes.tr,
+    ]),
+    $td: (classes, { heading, Size }) => (align, valign, rowIndex, colIndex, totalRows, totalCols) => ([
+      classes.td,
+      classes[`td_${align}`],
+      classes[`td_${valign}`],
+      !rowIndex && heading ? classes.td_th : classes.td_td,
+    ]),
+  },
   TagsElement: {
     container: 'form-text-type',
     select: {

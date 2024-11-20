@@ -51,6 +51,7 @@ import SelectElement from './elements/SelectElement'
 import SignatureElement from './elements/SignatureElement'
 import SliderElement from './elements/SliderElement'
 import StaticElement from './elements/StaticElement'
+import TableElement from './elements/TableElement'
 import TagsElement from './elements/TagsElement'
 import TextareaElement from './elements/TextareaElement'
 import TextElement from './elements/TextElement'
@@ -116,6 +117,7 @@ export default {
   SignatureElement,
   SliderElement,
   StaticElement,
+  TableElement,
   TagsElement,
   TextareaElement,
   TextElement,
@@ -181,6 +183,7 @@ export {
   SignatureElement,
   SliderElement,
   StaticElement,
+  TableElement,
   TagsElement,
   TextareaElement,
   TextElement,

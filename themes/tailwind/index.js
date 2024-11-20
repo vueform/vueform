@@ -55,6 +55,7 @@ import SelectElement from './../blank/templates/elements/SelectElement.vue'
 import SignatureElement from './../blank/templates/elements/SignatureElement.vue'
 import SliderElement from './../blank/templates/elements/SliderElement.vue'
 import StaticElement from './../blank/templates/elements/StaticElement.vue'
+import TableElement from './../blank/templates/elements/TableElement.vue'
 import TagsElement from './../blank/templates/elements/TagsElement.vue'
 import TextareaElement from './../blank/templates/elements/TextareaElement.vue'
 import TextElement from './../blank/templates/elements/TextElement.vue'
@@ -136,6 +137,7 @@ const theme = {
     SignatureElement,
     SliderElement,
     StaticElement,
+    TableElement,
     TagsElement,
     TextareaElement,
     TextElement,
@@ -219,6 +221,7 @@ export {
   SignatureElement,
   SliderElement,
   StaticElement,
+  TableElement,
   TagsElement,
   TextareaElement,
   TextElement,
