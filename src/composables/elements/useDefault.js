@@ -55,7 +55,7 @@ const base = function(props, context, dependencies)
           break
       }
     } else if (parent && parent.value) {
-      parentDefaultValue = parent.value.defaultValue[name.value]
+      parentDefaultValue = parent.value.defaultValue?.[name.value]
     } else if (form$.value.options.default[name.value] !== undefined) {
       parentDefaultValue = form$.value.options.default[name.value]
     }
