@@ -84,7 +84,7 @@ export default (val, { parent, name, form$, dataPath, internalValue }) => {
   else if (parent.value && parent.value.isListType) {
     const newValue = parent.value.value.map((v, k) => k == name.value ? val : v)
     parent.value.update(newValue)
-  } else if (parent.value && (parent.value.isObjectType || parent.value.isGroupType)) {
+  } else if (parent.value && (parent.value.isObjectType || parent.value.isGroupType || parent.value.isTableType)) {
     parent.value.value = Object.assign({}, parent.value.value, {
       [name.value]: val,
     })

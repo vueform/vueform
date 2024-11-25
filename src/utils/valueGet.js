@@ -29,7 +29,7 @@ export default ({ parent, name, form$, dataPath, internalValue, defaultValue}) =
   } else if (form$.value.isSync) {
     value = get(form$.value.model, dataPath.value)
   }
-  else if (parent.value && (parent.value.isObjectType || parent.value.isGroupType || parent.value.isListType)) {
+  else if (parent.value && (parent.value.isObjectType || parent.value.isGroupType || parent.value.isTableType || parent.value.isListType)) {
     value = parent.value.value[name.value] 
   } else {
     value = internalValue?.value

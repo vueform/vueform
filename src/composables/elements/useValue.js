@@ -139,7 +139,7 @@ const matrix = function(props, context, dependencies, /* istanbul ignore next */
 
   // If parent is a container
   }
-  else if (parent.value && (parent.value.isObjectType || parent.value.isGroupType || parent.value.isListType)) {
+  else if (parent.value && (parent.value.isObjectType || parent.value.isGroupType || parent.value.isTableType || parent.value.isListType)) {
     initialValue.value = parent.value.value[name.value]
   }
   
@@ -161,7 +161,7 @@ const matrix = function(props, context, dependencies, /* istanbul ignore next */
         value = get(form$.value.model, dataPath.value)
 
       // If parent is a container or list
-      } else if (parent.value && (parent.value.isObjectType || parent.value.isGroupType || parent.value.isListType)) {
+      } else if (parent.value && (parent.value.isObjectType || parent.value.isGroupType || parent.value.isTableType || parent.value.isListType)) {
         value = parent.value.value[name.value]
 
       // If has no parent
@@ -189,7 +189,7 @@ const matrix = function(props, context, dependencies, /* istanbul ignore next */
       }
 
       // If parent is container
-      else if (parent.value && (parent.value.isObjectType || parent.value.isGroupType)) {
+      else if (parent.value && (parent.value.isObjectType || parent.value.isGroupType || parent.value.isTableType)) {
         parent.value.value = Object.assign({}, parent.value.value, {
           [name.value]: val,
         })
@@ -326,7 +326,7 @@ const group = function(props, context, dependencies, /* istanbul ignore next */ 
 
       if (form$.value.isSync) {
         value = dataPath.value ? (get(form$.value.model, dataPath.value) || {}) : form$.value.model
-      } else if (parent.value && (parent.value.isObjectType || parent.value.isGroupType)) {
+      } else if (parent.value && (parent.value.isObjectType || parent.value.isGroupType || parent.value.isTableType)) {
         value = parent.value.value
       } else {
         value = internalValue.value
@@ -375,7 +375,7 @@ const group = function(props, context, dependencies, /* istanbul ignore next */ 
     {
       if (form$.value.isSync) {
         form$.value.updateModel(dataPath.value, val)
-      } else if (parent.value && (parent.value.isObjectType || parent.value.isGroupType)) {
+      } else if (parent.value && (parent.value.isObjectType || parent.value.isGroupType || parent.value.isTableType)) {
         parent.value.value = Object.assign({}, parent.value.value, val)
       } else {
         internalValue.value = val
