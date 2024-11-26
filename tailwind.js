@@ -1355,6 +1355,10 @@ const vueform = plugin((context) => {
       paddingRight: `var(--vf-gutter${size})`,
     }
 
+    plain[`.${e(`form-p-0.5gutter${suffix}`)}`] = {
+      padding: `calc(var(--vf-gutter${size}) / 2)`,
+    }
+
     responsive[`.form-pr-gutter${suffix}`] = {
       paddingRight: `var(--vf-gutter${size})`,
     }

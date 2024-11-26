@@ -1265,8 +1265,11 @@ export default {
     wrapper_md: 'form-gap-gutter',
     wrapper_lg: 'form-gap-gutter-lg',
     table: 'col-span-12',
-    tr: '',
-    td: 'h-px p-0',
+    tr: '[&:first-of-type>td]:pt-0 [&:last-of-type>td]:pb-0',
+    td: 'h-px relative first-of-type:pl-0 last-of-type:pr-0',
+    td_sm: 'form-p-0.5gutter-sm',
+    td_md: 'form-p-0.5gutter',
+    td_lg: 'form-p-0.5gutter-lg',
     td_td: '',
     td_top: 'align-top',
     td_middle: 'align-center',
@@ -1277,6 +1280,9 @@ export default {
     td_right: 'text-right',
     td_th: 'text-left font-bold',
     fieldWrapper: 'w-full h-full grid items-center !items-stretch',
+    fieldWrapper_sm: 'form-min-h-input-height-sm',
+    fieldWrapper_md: 'form-min-h-input-height',
+    fieldWrapper_lg: 'form-min-h-input-height-lg',
     textWrapper: 'inline-flex items-center',
     textWrapper_sm: 'form-min-h-input-height-sm form-p-input-sm',
     textWrapper_md: 'form-min-h-input-height form-p-input',
@@ -1286,8 +1292,9 @@ export default {
       classes.wrapper,
       classes[`wrapper_${Size}`]
     ]),
-    $fieldWrapper: (classes, {  }) => (schema) => ([
+    $fieldWrapper: (classes, { Size }) => (schema) => ([
       classes.fieldWrapper,
+      classes[`fieldWrapper_${Size}`]
     ]),
     $textWrapper: (classes, { Size }) => ([
       classes.textWrapper,
@@ -1296,11 +1303,12 @@ export default {
     $tr: (classes, {  }) => (rowIndex, totalRows) => ([
       classes.tr,
     ]),
-    $td: (classes, { heading, Size }) => (align, valign, rowIndex, colIndex, totalRows, totalCols) => ([
+    $td: (classes, { heading, Size, tr }) => (align, valign, rowIndex, colIndex, totalRows, totalCols) => ([
       classes.td,
+      classes[`td_${Size}`],
       classes[`td_${align}`],
       classes[`td_${valign}`],
-      !rowIndex && heading ? classes.td_th : classes.td_td,
+      !rowIndex && heading && tr && tr.length ? classes.td_th : classes.td_td,
     ]),
   },
   TagsElement: {

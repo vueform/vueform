@@ -269,18 +269,30 @@ export default {
     addClasses: {
       TableElement: {
         table: 'form-border-width-table !border-l-0 !border-t-0 form-border-color-table',
-        td: 'form-border-width-table !border-r-0 !border-b-0 form-border-color-table',
+        td: 'form-border-width-table !border-r-0 !border-b-0 form-border-color-table p-0',
       },
       ...tableInputs.add,
+      StaticElement: {
+        ...tableInputs.add.StaticElement,
+        content_sm: 'form-p-input-sm',
+        content_md: 'form-p-input',
+        content_lg: 'form-p-input-lg',
+        tag_p_sm: 'form-p-input-sm',
+        tag_p_md: 'form-p-input',
+        tag_p_lg: 'form-p-input-lg',
+      },
+      ElementLabel: {
+        container: 'hidden',
+      },
     },
     replaceClasses: {
       ...tableInputs.replace,
     },
     removeClasses: {
       TableElement: {
-        td_sm: ['form-p-table-sm'],
-        td_md: ['form-p-table'],
-        td_lg: ['form-p-table-lg'],
+        td_sm: ['form-p-0.5gutter-sm'],
+        td_md: ['form-p-0.5gutter'],
+        td_lg: ['form-p-0.5gutter-lg'],
       },
       ...tableInputs.remove,
     },
