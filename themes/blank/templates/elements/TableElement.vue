@@ -39,7 +39,7 @@
 
 <script>
   export default {
-    name: 'GroupElement',
+    name: 'TableElement',
     data() {
       return {
         merge: true,
