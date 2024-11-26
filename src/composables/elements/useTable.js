@@ -15,6 +15,10 @@ const base = function(props, context, dependencies)
     grow,
     translate,
     presets,
+    cols,
+    rows,
+    name,
+    inputType,
   } = toRefs(props)
 
   const {
@@ -28,10 +32,41 @@ const base = function(props, context, dependencies)
   // ================ DATA ================
 
   const resolvedRows = computed(() => {
-    const rows = []
+    const resolvedRows = []
+
+    if (!tr.value || !tr.value.length) {
+      for (let r = 0; r < rows.value; r++) {
+        const resolvedCols = []
+
+        for (let c = 0; c < cols.value; c++) {
+          const col = {
+            type: 'td',
+            slot: `cell_${r}_${c}`,
+            align: alignProp.value,
+            valign: valignProp.value,
+            name: resolveComponentName(r, c),
+          }
+
+          if (inputType.value) {
+            col.schema = {
+              ...inputType.value,
+              presets: presets.value,
+            }
+            col.component = `${upperFirst(camelCase(col.schema.type))}Element`
+          }
+
+
+          resolvedCols.push(col)
+        }
+
+        resolvedRows.push(resolvedCols)
+      }
+
+      return resolvedRows
+    }
 
     tr.value.forEach((row, r) => {
-      const cols = []
+      const resolvedCols = []
 
       row.forEach((column, c) => {
         let content = column
@@ -50,7 +85,7 @@ const base = function(props, context, dependencies)
           attrs = column[5] || {}
         }
 
-        const col = {
+        let col = {
           colspan,
           rowspan,
           align,
@@ -60,40 +95,28 @@ const base = function(props, context, dependencies)
           slot: `cell_${r}_${c}`,
         }
 
-        if (typeof content === 'string') {
-          col.content = content
-        }
-        else if (content === null) {
-          const type = translate.value
-            ? grow.value ? 't-textarea' : 't-text'
-            : grow.value ? 'textarea' : 'text'
-
-          col.schema = {
-            type,
-          }
-
-          if (type.includes('textarea')) {
-            col.schema.rows = 1
+        if (typeof content === 'string' || !content) {
+          col.content = content || ''
+        } else {
+          col = {
+            ...col,
+            component: `${upperFirst(camelCase(content.type))}Element`,
+            name: content.name || resolveComponentName(r, c),
+            schema: {
+              ...content,
+              displayErrors: false,
+              presets: presets.value,
+            },
           }
         }
-        else {
-          col.schema = content
-        }
 
-        if (col.schema) {
-          col.component = `${upperFirst(camelCase(col.schema.type))}Element`
-          col.name = col.schema.name || resolveComponentName(r, c)
-          col.schema.displayErrors = false
-          col.schema.presets = presets.value
-        }
-
-        cols.push(col)
+        resolvedCols.push(col)
       })
 
-      rows.push(cols)
+      resolvedRows.push(resolvedCols)
     })
 
-    return rows
+    return resolvedRows
   })
 
   /**
@@ -104,7 +127,7 @@ const base = function(props, context, dependencies)
    * @param {number} colIndex* the index of the column
    */
   const resolveComponentName = (rowIndex, colIndex) => {
-    return `${path.value.replace(/\./g, '__')}_${rowIndex}_${colIndex}`
+    return `${name.value}_${rowIndex}_${colIndex}`
   }
   
   return {

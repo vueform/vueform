@@ -16,7 +16,6 @@ import useFocus from './../../composables/elements/useFocus'
 import useEl$ from './../../composables/elements/useEl$'
 import useTable from './../../composables/elements/useTable'
 
-import { group as useBaseElement } from './../../composables/elements/useBaseElement'
 import { group as useValue } from './../../composables/elements/useValue'
 import { group as useDefault } from './../../composables/elements/useDefault'
 import { group as usePath } from './../../composables/elements/usePath'
@@ -26,6 +25,8 @@ import { group as useData } from './../../composables/elements/useData'
 import { group as useWatchValue } from './../../composables/elements/useWatchValue'
 import { group as useConditions } from './../../composables/useConditions'
 import { object as useNullValue } from './../../composables/elements/useNullValue'
+
+import { table as useBaseElement } from './../../composables/elements/useBaseElement'
 
 import BaseElement from './../../mixins/BaseElement'
 import HasView from './../../mixins/HasView'
@@ -59,6 +60,16 @@ export default {
       type: [Object],
       default: () => ({})
     },
+    cols: {
+      required: false,
+      type: [Number],
+      default: 1,
+    },
+    rows: {
+      required: false,
+      type: [Number],
+      default: 1,
+    },
     tr: {
       required: false,
       type: [Array],
@@ -79,15 +90,10 @@ export default {
       type: [String],
       default: 'top',
     },
-    grow: {
+    inputType: {
       required: false,
-      type: [Boolean],
-      default: true,
-    },
-    translate: {
-      required: false,
-      type: [Boolean],
-      default: false,
+      type: [Object],
+      default: () => ({ type: 'text' }),
     },
   },
   setup(props, ctx) {
