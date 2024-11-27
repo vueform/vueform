@@ -858,11 +858,12 @@ const vueform = plugin((context) => {
 
     // grid
     plain[`.form-gap-gutter${suffix}`] = {
-      gap: `var(--vf-gutter${size})`,
+      columnGap: `min(calc(100% / 12), var(--vf-gutter${size}))`,
+      rowGap: `var(--vf-gutter${size})`,
     }
 
     plain[`.form-gap-x-gutter${suffix}`] = {
-      columnGap: `var(--vf-gutter${size})`,
+      columnGap: `min(calc(100% / 12), var(--vf-gutter${size}))`,
     }
 
     plain[`.form-gap-y-gutter${suffix}`] = {
