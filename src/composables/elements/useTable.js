@@ -4,6 +4,7 @@ import camelCase from 'lodash/camelCase'
 import isEqual from 'lodash/isEqual'
 import cloneDeep from 'lodash/cloneDeep'
 import localize from './../../utils/localize'
+import walkCells from './../../utils/walkCells'
 
 const base = function(props, context, dependencies)
 {
@@ -12,13 +13,10 @@ const base = function(props, context, dependencies)
     heading,
     align: alignProp,
     valign: valignProp,
-    grow,
-    translate,
     presets,
     cols,
     rows,
     name,
-    inputType,
   } = toRefs(props)
 
   const {
@@ -33,71 +31,33 @@ const base = function(props, context, dependencies)
 
   const resolvedRows = computed(() => {
     const resolvedRows = []
+    let grid = tr.value
 
-    if (!tr.value || !tr.value.length) {
-      for (let r = 0; r < rows.value; r++) {
-        const resolvedCols = []
-
-        for (let c = 0; c < cols.value; c++) {
-          const col = {
-            type: 'td',
-            slot: `cell_${r}_${c}`,
-            align: alignProp.value,
-            valign: valignProp.value,
-            name: resolveComponentName(r, c),
-          }
-
-          if (inputType.value) {
-            col.schema = {
-              ...inputType.value,
-              presets: presets.value,
-            }
-            col.component = `${upperFirst(camelCase(col.schema.type))}Element`
-          }
-
-
-          resolvedCols.push(col)
-        }
-
-        resolvedRows.push(resolvedCols)
-      }
-
-      return resolvedRows
+    if (!grid || !grid.length) {
+      grid = [...Array(rows.value)].map(r => [...Array(cols.value)].map(c => null))
     }
 
-    tr.value.forEach((row, r) => {
+    grid = grid.map(cols => cols.map(cell => Array.isArray(cell) ? cell : [cell]))
+
+    grid.forEach((cols, r) => {
       const resolvedCols = []
 
-      row.forEach((column, c) => {
-        let content = column
-        let colspan = undefined
-        let rowspan = undefined
-        let align = alignProp.value
-        let valign = valignProp.value
-        let attrs = {}
-
-        if (Array.isArray(column)) {
-          content = column[0]
-          colspan = column[1] || undefined
-          rowspan = column[2] || undefined
-          align = column[3] || align
-          valign = column[4] || valign
-          attrs = column[5] || {}
-        }
-
+      cols.forEach(([
+        content, colspan, rowspan, align, valign, attrs
+      ], c) => {
         let col = {
-          colspan,
-          rowspan,
-          align,
-          valign,
-          attrs,
-          type: !r && heading.value ? 'th' : 'td',
+          content,
+          colspan: colspan || 1,
+          rowspan: rowspan || 1,
+          align: align || alignProp.value,
+          valign: valign || valignProp.value,
+          attrs: attrs || {},
+          row: r,
+          col: c,
           slot: `cell_${r}_${c}`,
         }
 
-        if (typeof content === 'string' || !content) {
-          col.content = content || ''
-        } else {
+        if (content && typeof content === 'object') {
           col = {
             ...col,
             component: `${upperFirst(camelCase(content.type))}Element`,
@@ -110,13 +70,32 @@ const base = function(props, context, dependencies)
           }
         }
 
-        resolvedCols.push(col)
+        resolvedCols.push([col, col.colspan, col.rowspan, col.align])
       })
 
       resolvedRows.push(resolvedCols)
     })
 
     return resolvedRows
+  })
+
+  const cells = computed(() => {
+    const grid = resolvedRows.value
+
+    const cells = []
+
+    walkCells(resolvedRows.value, ({ field, colspan, rowspan, colIndex, rowIndex, rowStart, colStart, rowEnd, colEnd }) => {
+      cells.push({
+        ...field,
+        col: colIndex,
+        row: rowIndex,
+        style: colspan > 1 || rowspan > 1
+          ? { 'grid-area': `${rowStart + 1} / ${colStart + 1} / ${rowEnd + 2} / ${colEnd + 2}` }
+          : {}
+      })
+    })
+
+    return cells
   })
 
   /**
@@ -131,6 +110,7 @@ const base = function(props, context, dependencies)
   }
   
   return {
+    cells,
     resolvedRows,
     resolveComponentName,
   }

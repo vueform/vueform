@@ -90,11 +90,6 @@ export default {
       type: [String],
       default: 'top',
     },
-    inputType: {
-      required: false,
-      type: [Object],
-      default: () => ({ type: 'text' }),
-    },
   },
   setup(props, ctx) {
     const context = { ...ctx }

@@ -1265,11 +1265,8 @@ export default {
     wrapper_md: 'form-gap-gutter',
     wrapper_lg: 'form-gap-gutter-lg',
     table: 'col-span-12',
-    tr: '[&:first-of-type>td]:pt-0 [&:last-of-type>td]:pb-0',
-    td: 'h-px relative first-of-type:pl-0 last-of-type:pr-0',
-    td_sm: 'form-p-0.5gutter-sm',
-    td_md: 'form-p-0.5gutter',
-    td_lg: 'form-p-0.5gutter-lg',
+    tr: '',
+    td: 'relative',
     td_td: '',
     td_top: 'align-top',
     td_middle: 'align-center',
@@ -1303,12 +1300,11 @@ export default {
     $tr: (classes, {  }) => (rowIndex, totalRows) => ([
       classes.tr,
     ]),
-    $td: (classes, { heading, Size, tr }) => (align, valign, rowIndex, colIndex, totalRows, totalCols) => ([
+    $td: (classes, { heading, Size, tr }) => (align, valign, rowIndex, colIndex) => ([
       classes.td,
-      classes[`td_${Size}`],
       classes[`td_${align}`],
       classes[`td_${valign}`],
-      !rowIndex && heading && tr && tr.length ? classes.td_th : classes.td_td,
+      // !rowIndex && heading && tr && tr.length ? classes.td_th : classes.td_td,
     ]),
   },
   TagsElement: {
