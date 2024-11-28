@@ -56,7 +56,7 @@ const base = function(props, context, dependencies)
    * @type {object}
    * @private
    */
-  const cols = computed(() => {
+  const computedCols = computed(() => {
     return columnsClassesService.value.cols
   })
   
@@ -78,7 +78,7 @@ const base = function(props, context, dependencies)
   }, { immediate: false, deep: true })
   
   return {
-    cols,
+    computedCols,
     columnsClassesService,
     columnsClasses,
     updateColumns,
