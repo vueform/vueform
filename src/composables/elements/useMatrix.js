@@ -177,11 +177,10 @@ const base = function(props, context, dependencies)
    * @type {array}
    */
   const inputTypes = computed(() => {
-    return cells.value.reduce((prev, curr) => {
-      prev.push(...curr.map((cell) => cell.type))
-
-      return prev
-    }, [])
+    return resolvedColumns.value.map((col, c) => resolveComponentProps({ }, col, 0, c)).reduce((prev, curr) => [
+      ...prev,
+      curr.type,
+    ], [])
   })
 
   // =============== METHODS ==============
