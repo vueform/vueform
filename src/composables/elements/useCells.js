@@ -138,7 +138,6 @@ const base = function(props, context, dependencies)
   // ============== WEATCHERS ==============
 
   watch(rows, (n, o) => {
-    console.log('rows updates', n, o)
     if (typeof n !== 'number') {
       rowsCount.value = null
     } else {
