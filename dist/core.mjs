@@ -1,5 +1,5 @@
 /*!
- * Vueform v1.11.0 (https://github.com/vueform/vueform)
+ * Vueform v1.11.1 (https://github.com/vueform/vueform)
  * Copyright (c) 2024 Adam Berecz <adam@vueform.com>
  * Licensed under the MIT License
  */
@@ -10147,7 +10147,7 @@ function shouldApplyPlugin (name, plugin) {
 }
 
 var name = "@vueform/vueform";
-var version$1 = "1.11.0";
+var version$1 = "1.11.1";
 var description = "Open-Source Form Framework for Vue";
 var homepage = "https://vueform.com";
 var license = "MIT";
@@ -36199,10 +36199,7 @@ var base$g = function base(props, context, dependencies) {
    * @type {array}
    */
   var inputTypes = computed(() => {
-    return cells.value.reduce((prev, curr) => {
-      prev.push(...curr.map(cell => cell.type));
-      return prev;
-    }, []);
+    return resolvedColumns.value.map((col, c) => resolveComponentProps({}, col, 0, c)).reduce((prev, curr) => [...prev, curr.type], []);
   });
 
   // =============== METHODS ==============
@@ -36485,7 +36482,7 @@ var base$f = function base(props, context, dependencies) {
    * @type {number|array}
    */
   var computedRows = computed(() => {
-    return typeof rows.value === 'number' ? rowsCount.value : rows.value;
+    return typeof rows.value === 'number' ? rowsCount.value === null ? 1 : rowsCount.value : rows.value;
   });
 
   /**
@@ -36561,6 +36558,8 @@ var base$f = function base(props, context, dependencies) {
     } else {
       rowsCount.value = n;
     }
+  }, {
+    flush: 'pre'
   });
   return {
     hasDynamicRows,
@@ -40939,7 +40938,7 @@ var SelectElement = {
 };
 
 /*!
- * Signature Pad v5.0.3 | https://github.com/szimek/signature_pad
+ * Signature Pad v5.0.4 | https://github.com/szimek/signature_pad
  * (c) 2024 Szymon Nowak | Released under the MIT license
  */
 
@@ -41035,7 +41034,7 @@ class SignatureEventTarget {
         try {
             this._et = new EventTarget();
         }
-        catch (error) {
+        catch (_a) {
             this._et = document;
         }
     }
@@ -41152,13 +41151,16 @@ class SignaturePad extends SignatureEventTarget {
             this._strokeEnd(this._touchEventToSignatureEvent(event));
         };
         this._handlePointerDown = (event) => {
-            if (!this._isLeftButtonPressed(event) || this._drawingStroke) {
+            if (!event.isPrimary || !this._isLeftButtonPressed(event) || this._drawingStroke) {
                 return;
             }
             event.preventDefault();
             this._strokeBegin(this._pointerEventToSignatureEvent(event));
         };
         this._handlePointerMove = (event) => {
+            if (!event.isPrimary) {
+                return;
+            }
             if (!this._isLeftButtonPressed(event, true) || !this._drawingStroke) {
                 this._strokeEnd(this._pointerEventToSignatureEvent(event), false);
                 return;
@@ -41167,7 +41169,7 @@ class SignaturePad extends SignatureEventTarget {
             this._strokeMoveUpdate(this._pointerEventToSignatureEvent(event));
         };
         this._handlePointerUp = (event) => {
-            if (this._isLeftButtonPressed(event)) {
+            if (!event.isPrimary || this._isLeftButtonPressed(event)) {
                 return;
             }
             event.preventDefault();
