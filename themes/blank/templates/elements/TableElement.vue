@@ -6,7 +6,7 @@
           <table :class="classes.table">
             <tr v-for="(row, r) in resolvedRows" :class="classes.tr(r, resolvedRows.length)">
               <component v-for="(col, c) in row" :is="col.type"
-                :class="classes.td(col.align, col.valign, r, c, resolvedRows.length, row.length)"
+                :class="classes.td"
                 :colspan="col.colspan"
                 :rowspan="col.rowspan"
                 v-bind="col.attrs"

@@ -268,7 +268,7 @@ export default {
   'table-spreadsheet': {
     addClasses: {
       TableElement: {
-        table: 'form-border-width-table !border-l-0 !border-t-0 form-border-color-table',
+        grid: 'form-border-width-table !border-l-0 !border-t-0 form-border-color-table',
         td: 'form-border-width-table !border-r-0 !border-b-0 form-border-color-table p-0',
       },
       ...tableInputs.add,
@@ -290,9 +290,9 @@ export default {
     },
     removeClasses: {
       TableElement: {
-        td_sm: ['form-p-0.5gutter-sm'],
-        td_md: ['form-p-0.5gutter'],
-        td_lg: ['form-p-0.5gutter-lg'],
+        grid_sm: ['form-gap-gutter-sm'],
+        grid_md: ['form-gap-gutter'],
+        grid_lg: ['form-gap-gutter-lg'],
       },
       ...tableInputs.remove,
     },

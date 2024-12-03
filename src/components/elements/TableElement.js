@@ -88,7 +88,7 @@ export default {
     valign: {
       required: false,
       type: [String],
-      default: 'top',
+      default: 'baseline',
     },
   },
   setup(props, ctx) {
