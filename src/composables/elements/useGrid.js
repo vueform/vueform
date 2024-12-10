@@ -9,7 +9,7 @@ import walkCells from './../../utils/walkCells'
 const base = function(props, context, dependencies)
 {
   const {
-    tr,
+    grid,
     align: alignProp,
     valign: valignProp,
     presets,
@@ -53,15 +53,15 @@ const base = function(props, context, dependencies)
 
   const resolvedRows = computed(() => {
     const resolvedRows = []
-    let grid = tr.value
+    let rows = grid.value
 
-    if (!grid || !grid.length) {
-      grid = [...Array(rows.value)].map(r => [...Array(cols.value)].map(c => null))
+    if (!rows || !rows.length) {
+      rows = [...Array(rows.value)].map(r => [...Array(cols.value)].map(c => null))
     }
 
-    grid = grid.map(cols => cols.map(cell => Array.isArray(cell) ? cell : [cell]))
+    rows = rows.map(cols => cols.map(cell => Array.isArray(cell) ? cell : [cell]))
 
-    grid.forEach((cols, r) => {
+    rows.forEach((cols, r) => {
       const resolvedCols = []
 
       cols.forEach(([

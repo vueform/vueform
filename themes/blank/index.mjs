@@ -40,6 +40,7 @@ import CheckboxgroupElement_tabs from './templates/elements/CheckboxgroupElement
 import DateElement from './templates/elements/DateElement.vue'
 import DatesElement from './templates/elements/DatesElement.vue'
 import FileElement from './templates/elements/FileElement.vue'
+import GridElement from './templates/elements/GridElement.vue'
 import GroupElement from './templates/elements/GroupElement.vue'
 import HiddenElement from './templates/elements/HiddenElement.vue'
 import ListElement from './templates/elements/ListElement.vue'
@@ -115,6 +116,7 @@ export default {
     DateElement,
     DatesElement,
     FileElement,
+    GridElement,
     GroupElement,
     HiddenElement,
     ListElement,

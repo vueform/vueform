@@ -1269,7 +1269,6 @@ export default {
     grid_left: '',
     grid_center: 'mx-auto',
     grid_right: 'ml-auto',
-    tr: '',
     td: 'relative',
     fieldWrapper: 'w-full h-full grid',
     fieldWrapper_sm: 'form-min-h-input-height-sm',
@@ -1318,9 +1317,6 @@ export default {
       classes[`textWrapper_${Size}`],
       classes[`textWrapper_${align}`],
       classes[`textWrapper_${valign}`],
-    ]),
-    $tr: (classes, {  }) => (rowIndex, totalRows) => ([
-      classes.tr,
     ]),
   },
   TagsElement: {

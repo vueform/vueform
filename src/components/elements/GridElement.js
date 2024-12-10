@@ -70,7 +70,7 @@ export default {
       type: [Number],
       default: 1,
     },
-    tr: {
+    grid: {
       required: false,
       type: [Array],
       default: () => ([])

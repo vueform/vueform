@@ -39,7 +39,7 @@
 
 <script>
   export default {
-    name: 'TableElement',
+    name: 'GridElement',
     data() {
       return {
         merge: true,

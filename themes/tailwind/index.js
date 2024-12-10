@@ -38,6 +38,7 @@ import CheckboxgroupElement_tabs from './../blank/templates/elements/Checkboxgro
 import DateElement from './../blank/templates/elements/DateElement.vue'
 import DatesElement from './../blank/templates/elements/DatesElement.vue'
 import FileElement from './../blank/templates/elements/FileElement.vue'
+import GridElement from './../blank/templates/elements/GridElement.vue'
 import GroupElement from './../blank/templates/elements/GroupElement.vue'
 import HiddenElement from './../blank/templates/elements/HiddenElement.vue'
 import ListElement from './../blank/templates/elements/ListElement.vue'
@@ -55,7 +56,6 @@ import SelectElement from './../blank/templates/elements/SelectElement.vue'
 import SignatureElement from './../blank/templates/elements/SignatureElement.vue'
 import SliderElement from './../blank/templates/elements/SliderElement.vue'
 import StaticElement from './../blank/templates/elements/StaticElement.vue'
-import TableElement from './../blank/templates/elements/TableElement.vue'
 import TagsElement from './../blank/templates/elements/TagsElement.vue'
 import TextareaElement from './../blank/templates/elements/TextareaElement.vue'
 import TextElement from './../blank/templates/elements/TextElement.vue'
@@ -120,6 +120,7 @@ const theme = {
     DateElement,
     DatesElement,
     FileElement,
+    GridElement,
     GroupElement,
     HiddenElement,
     ListElement,
@@ -137,7 +138,6 @@ const theme = {
     SignatureElement,
     SliderElement,
     StaticElement,
-    TableElement,
     TagsElement,
     TextareaElement,
     TextElement,
@@ -204,6 +204,7 @@ export {
   DateElement,
   DatesElement,
   FileElement,
+  GridElement,
   GroupElement,
   HiddenElement,
   ListElement,
@@ -221,7 +222,6 @@ export {
   SignatureElement,
   SliderElement,
   StaticElement,
-  TableElement,
   TagsElement,
   TextareaElement,
   TextElement,
