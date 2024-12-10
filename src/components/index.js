@@ -36,6 +36,7 @@ import DateElement from './elements/DateElement'
 import DatesElement from './elements/DatesElement'
 import FileElement from './elements/FileElement'
 import GenericElement from './elements/GenericElement'
+import GridElement from './elements/GridElement'
 import GroupElement from './elements/GroupElement'
 import HiddenElement from './elements/HiddenElement'
 import ListElement from './elements/ListElement'
@@ -51,7 +52,6 @@ import SelectElement from './elements/SelectElement'
 import SignatureElement from './elements/SignatureElement'
 import SliderElement from './elements/SliderElement'
 import StaticElement from './elements/StaticElement'
-import TableElement from './elements/TableElement'
 import TagsElement from './elements/TagsElement'
 import TextareaElement from './elements/TextareaElement'
 import TextElement from './elements/TextElement'
@@ -102,6 +102,7 @@ export default {
   DatesElement,
   FileElement,
   GenericElement,
+  GridElement,
   GroupElement,
   HiddenElement,
   ListElement,
@@ -117,7 +118,6 @@ export default {
   SignatureElement,
   SliderElement,
   StaticElement,
-  TableElement,
   TagsElement,
   TextareaElement,
   TextElement,
@@ -168,6 +168,7 @@ export {
   DatesElement,
   FileElement,
   GenericElement,
+  GridElement,
   GroupElement,
   HiddenElement,
   ListElement,
@@ -183,7 +184,6 @@ export {
   SignatureElement,
   SliderElement,
   StaticElement,
-  TableElement,
   TagsElement,
   TextareaElement,
   TextElement,

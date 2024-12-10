@@ -1258,7 +1258,7 @@ export default {
       bottom >= 1 ? classes[`tag_bottom_${bottom}`] : null,
     ]),
   },
-  TableElement: {
+  GridElement: {
     container: '',
     container_scrollable: 'overflow-x-auto',
     grid: 'grid grid-cols-12',

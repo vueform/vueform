@@ -145,12 +145,12 @@ const base = function(props, context, dependencies)
   })
   
   /**
-   * Whether the element is a table.
+   * Whether the element is a grid.
    *
    * @type {boolean}
    * @private
    */
-  const isTableType = computed(() => {
+  const isGridType = computed(() => {
     return false
   })
   
@@ -219,7 +219,7 @@ const base = function(props, context, dependencies)
     isGroupType,
     isListType,
     isMatrixType,
-    isTableType,
+    isGridType,
     isActive,
     active,
     mounted,
@@ -238,7 +238,7 @@ const list = function(props, context, dependencies)
     isObjectType,
     isGroupType,
     isMatrixType,
-    isTableType,
+    isGridType,
     isActive,
     active,
     mounted,
@@ -265,7 +265,7 @@ const list = function(props, context, dependencies)
     isObjectType,
     isGroupType,
     isMatrixType,
-    isTableType,
+    isGridType,
     isListType,
     isActive,
     active,
@@ -286,7 +286,7 @@ const checkboxgroup = function(props, context, dependencies)
     isGroupType,
     isListType,
     isMatrixType,
-    isTableType,
+    isGridType,
     isActive,
     active,
     mounted,
@@ -309,7 +309,7 @@ const checkboxgroup = function(props, context, dependencies)
     isObjectType,
     isGroupType,
     isMatrixType,
-    isTableType,
+    isGridType,
     isListType,
     isActive,
     active,
@@ -329,7 +329,7 @@ const object = function(props, context, dependencies)
     isImageType,
     isGroupType,
     isMatrixType,
-    isTableType,
+    isGridType,
     isListType,
     isActive,
     active,
@@ -353,7 +353,7 @@ const object = function(props, context, dependencies)
     isObjectType,
     isGroupType,
     isMatrixType,
-    isTableType,
+    isGridType,
     isListType,
     isActive,
     active,
@@ -373,7 +373,7 @@ const group = function(props, context, dependencies)
     isImageType,
     isObjectType,
     isMatrixType,
-    isTableType,
+    isGridType,
     isListType,
     isActive,
     active,
@@ -397,7 +397,7 @@ const group = function(props, context, dependencies)
     isObjectType,
     isGroupType,
     isMatrixType,
-    isTableType,
+    isGridType,
     isListType,
     isActive,
     active,
@@ -418,7 +418,7 @@ const matrix = function(props, context, dependencies)
     isObjectType,
     isGroupType,
     isListType,
-    isTableType,
+    isGridType,
     isActive,
     active,
     mounted,
@@ -441,7 +441,7 @@ const matrix = function(props, context, dependencies)
     isObjectType,
     isGroupType,
     isMatrixType,
-    isTableType,
+    isGridType,
     isListType,
     isActive,
     active,
@@ -452,7 +452,7 @@ const matrix = function(props, context, dependencies)
   }
 }
 
-const table = function(props, context, dependencies)
+const grid = function(props, context, dependencies)
 {
   const {
     isStatic,
@@ -473,7 +473,7 @@ const table = function(props, context, dependencies)
   
   // ============== COMPUTED ==============
   
-  const isTableType = computed(() => {
+  const isGridType = computed(() => {
     return true
   })
   
@@ -485,7 +485,7 @@ const table = function(props, context, dependencies)
     isObjectType,
     isGroupType,
     isMatrixType,
-    isTableType,
+    isGridType,
     isListType,
     isActive,
     active,
@@ -508,7 +508,7 @@ const file = function(props, context, dependencies)
     isObjectType,
     isGroupType,
     isMatrixType,
-    isTableType,
+    isGridType,
     isListType,
     isActive,
     active,
@@ -536,7 +536,7 @@ const file = function(props, context, dependencies)
     isObjectType,
     isGroupType,
     isMatrixType,
-    isTableType,
+    isGridType,
     isListType,
     isActive,
     active,
@@ -556,7 +556,7 @@ const static_ = function(props, context, dependencies)
     isObjectType,
     isGroupType,
     isMatrixType,
-    isTableType,
+    isGridType,
     isListType,
     isActive,
     active,
@@ -580,7 +580,7 @@ const static_ = function(props, context, dependencies)
     isObjectType,
     isGroupType,
     isMatrixType,
-    isTableType,
+    isGridType,
     isListType,
     isActive,
     active,
@@ -606,7 +606,7 @@ export {
   tags,
   file,
   static_,
-  table,
+  grid,
 }
 
 export default base

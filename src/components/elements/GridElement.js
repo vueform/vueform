@@ -14,7 +14,7 @@ import useEvents from './../../composables/useEvents'
 import useA11y from './../../composables/elements/useA11y'
 import useFocus from './../../composables/elements/useFocus'
 import useEl$ from './../../composables/elements/useEl$'
-import useTable from './../../composables/elements/useTable'
+import useGrid from './../../composables/elements/useGrid'
 
 import { group as useValue } from './../../composables/elements/useValue'
 import { group as useDefault } from './../../composables/elements/useDefault'
@@ -26,7 +26,7 @@ import { group as useWatchValue } from './../../composables/elements/useWatchVal
 import { group as useConditions } from './../../composables/useConditions'
 import { object as useNullValue } from './../../composables/elements/useNullValue'
 
-import { table as useBaseElement } from './../../composables/elements/useBaseElement'
+import { grid as useBaseElement } from './../../composables/elements/useBaseElement'
 
 import BaseElement from './../../mixins/BaseElement'
 import HasView from './../../mixins/HasView'
@@ -35,7 +35,7 @@ import HasData from './../../mixins/HasData'
 import HasValidation from './../../mixins/HasValidation'
 
 export default {
-  name: 'TableElement',
+  name: 'GridElement',
   mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
   emits: ['change', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
   props: {
@@ -145,7 +145,7 @@ export default {
       useA11y,
       useWatchValue,
       useFocus,
-      useTable,
+      useGrid,
     ]
     context.slots = [
       'label', 'info', 'required', 'description',

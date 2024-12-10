@@ -265,9 +265,9 @@ export default {
     }
   },
 
-  'table-spreadsheet': {
+  'grid-table': {
     addClasses: {
-      TableElement: {
+      GridElement: {
         grid: 'form-border-width-table !border-l-0 !border-t-0 form-border-color-table',
         td: 'form-border-width-table !border-r-0 !border-b-0 form-border-color-table p-0 form-bg-input',
       },
@@ -304,7 +304,7 @@ export default {
       ...tableInputs.replace,
     },
     removeClasses: {
-      TableElement: {
+      GridElement: {
         grid_sm: ['form-gap-gutter-sm'],
         grid_md: ['form-gap-gutter'],
         grid_lg: ['form-gap-gutter-lg'],
@@ -312,7 +312,7 @@ export default {
       ...tableInputs.remove,
     },
     overrideClasses: {
-      TableElement: {
+      GridElement: {
         $td: (classes, { colHeader, rowHeader }) => ({ col, row }) => [
           classes.td,
           (colHeader && col === 0) || (rowHeader && row === 0) ? 'form-bg-table-header form-color-table-header' : null,
