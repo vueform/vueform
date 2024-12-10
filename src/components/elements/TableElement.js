@@ -75,11 +75,6 @@ export default {
       type: [Array],
       default: () => ([])
     },
-    heading: {
-      required: false,
-      type: [Boolean],
-      default: true,
-    },
     align: {
       required: false,
       type: [String],
@@ -89,6 +84,36 @@ export default {
       required: false,
       type: [String],
       default: 'baseline',
+    },
+    widths: {
+      required: false,
+      type: [Array],
+      default: () => ([]),
+    },
+    minWidth: {
+      required: false,
+      type: [String, Number],
+      default: 0,
+    },
+    maxWidth: {
+      required: false,
+      type: [String, Number],
+      default: -1,
+    },
+    scrollable: {
+      required: false,
+      type: [Boolean],
+      default: true,
+    },
+    colHeader: {
+      required: false,
+      type: [Boolean],
+      default: false,
+    },
+    rowHeader: {
+      required: false,
+      type: [Boolean],
+      default: false,
     },
   },
   setup(props, ctx) {

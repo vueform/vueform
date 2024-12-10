@@ -1260,10 +1260,15 @@ export default {
   },
   TableElement: {
     container: '',
+    container_scrollable: 'overflow-x-auto',
     grid: 'grid grid-cols-12',
     grid_sm: 'form-gap-gutter-sm',
     grid_md: 'form-gap-gutter',
     grid_lg: 'form-gap-gutter-lg',
+    grid_auto: '',
+    grid_left: '',
+    grid_center: 'mx-auto',
+    grid_right: 'ml-auto',
     tr: '',
     td: 'relative',
     fieldWrapper: 'w-full h-full grid',
@@ -1281,26 +1286,34 @@ export default {
     textWrapper_sm: 'form-min-h-input-height-sm form-p-input-sm',
     textWrapper_md: 'form-min-h-input-height form-p-input',
     textWrapper_lg: 'form-min-h-input-height-lg form-p-input-lg',
-    textWrapper_left: 'justify-left',
-    textWrapper_center: 'justify-center',
-    textWrapper_right: 'justify-right',
+    textWrapper_left: 'justify-start text-left',
+    textWrapper_center: 'justify-center text-center',
+    textWrapper_right: 'justify-end text-right',
     textWrapper_justify: 'justify-stretch text-justify',
     textWrapper_top: 'items-start',
     textWrapper_middle: 'items-center',
     textWrapper_bottom: 'items-end',
     textWrapper_baseline: 'items-stretch',
     text: '',
-    $grid: (classes, { Size }) => ([
-      classes.grid,
-      classes[`grid_${Size}`]
+    $container: (classes, { scrollable }) => ([
+      classes.container,
+      scrollable ? classes.container_scrollable : null,
     ]),
-    $fieldWrapper: (classes, { Size }) => (schema, align, valign, rowIndex, colIndex) => ([
+    $grid: (classes, { Size, align }) => ([
+      classes.grid,
+      classes[`grid_${Size}`],
+      classes[`grid_${align}`],
+    ]),
+    $td: (classes, {  }) => () => ([
+      classes.td,
+    ]),
+    $fieldWrapper: (classes, { Size }) => ({ schema, align, valign, rowIndex, colIndex }) => ([
       classes.fieldWrapper,
       classes[`fieldWrapper_${Size}`],
       classes[`fieldWrapper_${align}`],
       classes[`fieldWrapper_${valign}`],
     ]),
-    $textWrapper: (classes, { Size }) => (align, valign, rowIndex, colIndex) => ([
+    $textWrapper: (classes, { Size }) => ({ align, valign, rowIndex, colIndex }) => ([
       classes.textWrapper,
       classes[`textWrapper_${Size}`],
       classes[`textWrapper_${align}`],

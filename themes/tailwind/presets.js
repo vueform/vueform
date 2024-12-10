@@ -269,7 +269,7 @@ export default {
     addClasses: {
       TableElement: {
         grid: 'form-border-width-table !border-l-0 !border-t-0 form-border-color-table',
-        td: 'form-border-width-table !border-r-0 !border-b-0 form-border-color-table p-0',
+        td: 'form-border-width-table !border-r-0 !border-b-0 form-border-color-table p-0 form-bg-input',
       },
       ...tableInputs.add,
       StaticElement: {
@@ -277,12 +277,27 @@ export default {
         content_sm: 'form-p-input-sm',
         content_md: 'form-p-input',
         content_lg: 'form-p-input-lg',
-        tag_p_sm: 'form-p-input-sm',
-        tag_p_md: 'form-p-input',
-        tag_p_lg: 'form-p-input-lg',
+        tag_sm: 'form-p-input-sm',
+        tag_md: 'form-p-input',
+        tag_lg: 'form-p-input-lg',
       },
       ElementLabel: {
         container: 'hidden',
+      },
+      CheckboxElement: {
+        wrapper_sm: 'form-p-input-sm',
+        wrapper_md: 'form-p-input',
+        wrapper_lg: 'form-p-input-lg',
+      },
+      RadioElement: {
+        wrapper_sm: 'form-p-input-sm',
+        wrapper_md: 'form-p-input',
+        wrapper_lg: 'form-p-input-lg',
+      },
+      ToggleElement: {
+        wrapper_sm: 'form-p-input-sm',
+        wrapper_md: 'form-p-input',
+        wrapper_lg: 'form-p-input-lg',
       },
     },
     replaceClasses: {
@@ -296,5 +311,21 @@ export default {
       },
       ...tableInputs.remove,
     },
+    overrideClasses: {
+      TableElement: {
+        $td: (classes, { colHeader, rowHeader }) => ({ col, row }) => [
+          classes.td,
+          (colHeader && col === 0) || (rowHeader && row === 0) ? 'form-bg-table-header form-color-table-header' : null,
+        ],
+      },
+      ToggleElement: {
+        $wrapper: (classes, { align, Size }) => ([
+          classes.wrapper,
+          classes[`wrapper_${Size}`],
+          align === 'left' ? classes.wrapper_left : null,
+          align === 'right' ? classes.wrapper_right : null,
+        ]),
+      }
+    }
   },
 }

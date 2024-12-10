@@ -10,13 +10,15 @@ const base = function(props, context, dependencies)
 {
   const {
     tr,
-    heading,
     align: alignProp,
     valign: valignProp,
     presets,
     cols,
     rows,
     name,
+    widths,
+    minWidth,
+    maxWidth,
   } = toRefs(props)
 
   const {
@@ -28,6 +30,26 @@ const base = function(props, context, dependencies)
   const config$ = inject('config$')
 
   // ================ DATA ================
+
+  const gridStyle = computed(() => {
+    const colWidths = []
+
+    for (let c = 0; c < parseInt(cols.value); c++) {
+      colWidths.push(widths.value[c] || '1fr')
+    }
+
+    return {
+      'grid-template-columns': colWidths.join(' '),
+      'grid-template-rows': `repeat(${rows.value}, auto)`,
+      'min-width': typeof minWidth.value === 'number'
+        ? `${minWidth.value}px`
+        : minWidth.value,
+      'max-width': typeof maxWidth.value === 'number'
+        ? maxWidth.value > 0 ? `${maxWidth.value}px` : undefined
+        : maxWidth.value,
+
+    }
+  })
 
   const resolvedRows = computed(() => {
     const resolvedRows = []
@@ -89,6 +111,10 @@ const base = function(props, context, dependencies)
         ...field,
         col: colIndex,
         row: rowIndex,
+        colStart,
+        rowStart,
+        colEnd,
+        rowEnd,
         style: colspan > 1 || rowspan > 1
           ? { 'grid-area': `${rowStart + 1} / ${colStart + 1} / ${rowEnd + 2} / ${colEnd + 2}` }
           : {}
@@ -111,6 +137,7 @@ const base = function(props, context, dependencies)
   
   return {
     cells,
+    gridStyle,
     resolvedRows,
     resolveComponentName,
   }
