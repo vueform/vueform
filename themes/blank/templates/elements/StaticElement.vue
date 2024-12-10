@@ -24,7 +24,7 @@
           <img v-else :src="src" :alt="alt" :title="title" :width="width" :height="height" v-bind="attrs" />
         </div>
         
-        <div v-else :class="classes.tag">
+        <div v-else-if="tag" :class="classes.tag">
           <component :is="tag" v-if="allowHtml" v-html="resolvedContent" v-bind="attrs"></component>
           <component :is="tag" v-else v-bind="attrs">{{ resolvedContent }}</component>
         </div>
