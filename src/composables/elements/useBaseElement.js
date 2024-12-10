@@ -276,6 +276,50 @@ const list = function(props, context, dependencies)
   }
 }
 
+const checkboxgroup = function(props, context, dependencies)
+{
+  const {
+    isStatic,
+    isFileType,
+    isImageType,
+    isObjectType,
+    isGroupType,
+    isListType,
+    isMatrixType,
+    isTableType,
+    isActive,
+    active,
+    mounted,
+    container,
+    activate,
+    deactivate,
+  } = base(props, context, dependencies)
+  
+  // ============== COMPUTED ==============
+  
+  const isArrayType = computed(() => {
+    return false
+  })
+  
+  return {
+    isStatic,
+    isFileType,
+    isArrayType,
+    isImageType,
+    isObjectType,
+    isGroupType,
+    isMatrixType,
+    isTableType,
+    isListType,
+    isActive,
+    active,
+    mounted,
+    container,
+    activate,
+    deactivate,
+  }
+}
+
 const object = function(props, context, dependencies)
 {
   const {
@@ -547,10 +591,9 @@ const static_ = function(props, context, dependencies)
   }
 }
 
-const checkboxgroup = list
-const dates = list
-const multiselect = list
-const tags = list
+const dates = checkboxgroup
+const multiselect = checkboxgroup
+const tags = checkboxgroup
 
 export {
   object,
