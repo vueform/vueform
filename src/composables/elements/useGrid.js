@@ -1,9 +1,6 @@
 import { computed, toRefs, inject, ref, watch } from 'vue'
 import upperFirst from 'lodash/upperFirst'
 import camelCase from 'lodash/camelCase'
-import isEqual from 'lodash/isEqual'
-import cloneDeep from 'lodash/cloneDeep'
-import localize from './../../utils/localize'
 import walkCells from './../../utils/walkCells'
 
 const base = function(props, context, dependencies)
@@ -29,7 +26,11 @@ const base = function(props, context, dependencies)
 
   const config$ = inject('config$')
 
-  // ================ DATA ================
+  // ============== COMPUTED ==============
+
+  const isTableView = computed(() => {
+    return presets.value.includes('grid-table')
+  })
 
   const gridStyle = computed(() => {
     const colWidths = []
@@ -124,6 +125,8 @@ const base = function(props, context, dependencies)
     return cells
   })
 
+  // ============== METHODS ===============
+
   /**
    * Resolves the cell component name based on row and column index.
    *
@@ -137,6 +140,7 @@ const base = function(props, context, dependencies)
   
   return {
     cells,
+    isTableView,
     gridStyle,
     resolvedRows,
     resolveComponentName,

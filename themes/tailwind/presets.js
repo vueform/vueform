@@ -269,7 +269,7 @@ export default {
     addClasses: {
       GridElement: {
         grid: 'form-border-width-table !border-l-0 !border-t-0 form-border-color-table',
-        td: 'form-border-width-table !border-r-0 !border-b-0 form-border-color-table p-0 form-bg-input',
+        cell: 'form-border-width-table !border-r-0 !border-b-0 form-border-color-table p-0 form-bg-input',
       },
       ...tableInputs.add,
       StaticElement: {
@@ -313,8 +313,8 @@ export default {
     },
     overrideClasses: {
       GridElement: {
-        $td: (classes, { colHeader, rowHeader }) => ({ col, row }) => [
-          classes.td,
+        $cell: (classes, { colHeader, rowHeader }) => ({ col, row }) => [
+          classes.cell,
           (colHeader && col === 0) || (rowHeader && row === 0) ? 'form-bg-table-header form-color-table-header' : null,
         ],
       },
