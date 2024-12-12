@@ -38,7 +38,7 @@ export default {
       GridElement: {
         $cell: (classes, { colHeader, rowHeader }) => ({ colStart, rowStart }) => [
           classes.cell,
-          (colHeader && colStart === 0) || (rowHeader && rowStart === 0) ? 'form-bg-table-header form-color-table-header' : null,
+          (rowHeader && colStart === 0) || (colHeader && rowStart === 0) ? 'form-bg-table-header form-color-table-header' : null,
         ],
       },
       ToggleElement: {

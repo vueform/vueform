@@ -451,15 +451,21 @@ form ::placeholder {
 .vf-row {
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
-  gap: var(--vf-gutter);
+  -moz-column-gap: min(8.3333333333%, var(--vf-gutter-sm));
+  column-gap: min(8.3333333333%, var(--vf-gutter-sm));
+  row-gap: var(--vf-gutter-lg);
 }
 
 .vf-row.vf-row-sm {
-  gap: var(--vf-gutter-sm);
+  -moz-column-gap: min(8.3333333333%, var(--vf-gutter-sm));
+  column-gap: min(8.3333333333%, var(--vf-gutter-sm));
+  row-gap: var(--vf-gutter-sm);
 }
 
 .vf-row.vf-row-lg {
-  gap: var(--vf-gutter-lg);
+  -moz-column-gap: min(8.3333333333%, var(--vf-gutter-lg));
+  column-gap: min(8.3333333333%, var(--vf-gutter-lg));
+  row-gap: var(--vf-gutter-lg);
 }
 
 .vf-row.vf-row-embed {

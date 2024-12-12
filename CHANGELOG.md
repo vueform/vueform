@@ -1,5 +1,13 @@
 [//]: # (Don't use <tags>)
 
+## v1.12.0
+
+> `2024-12-12`
+
+### 🎉 Feature
+- New [`GridElement`](https://vueform.com/reference/grid-element) element.
+- No more min width for elements (11 * gutter) because of grid gap.
+
 ## v1.11.0
 
 > `2024-10-29`

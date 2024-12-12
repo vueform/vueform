@@ -523,15 +523,21 @@ form ::placeholder {
 .vf-row {
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
-  gap: var(--vf-gutter);
+  -moz-column-gap: min(8.3333333333%, var(--vf-gutter-sm));
+  column-gap: min(8.3333333333%, var(--vf-gutter-sm));
+  row-gap: var(--vf-gutter-lg);
 }
 
 .vf-row.vf-row-sm {
-  gap: var(--vf-gutter-sm);
+  -moz-column-gap: min(8.3333333333%, var(--vf-gutter-sm));
+  column-gap: min(8.3333333333%, var(--vf-gutter-sm));
+  row-gap: var(--vf-gutter-sm);
 }
 
 .vf-row.vf-row-lg {
-  gap: var(--vf-gutter-lg);
+  -moz-column-gap: min(8.3333333333%, var(--vf-gutter-lg));
+  column-gap: min(8.3333333333%, var(--vf-gutter-lg));
+  row-gap: var(--vf-gutter-lg);
 }
 
 .vf-row.vf-row-embed {
@@ -2326,4 +2332,438 @@ body[dir=rtl] .vf-radio-text-left {
     padding-top: calc(var(--vf-border-width-input-t) + var(--vf-py-input-lg));
     padding-right: var(--vf-gutter-lg);
   }
+}
+
+.vf-matrix-table,
+.vf-grid-table {
+  /* Layout */
+  /* Text inputs */
+  /* Native select */
+  /* Select */
+  /* Native multiselect */
+  /* Editor */
+  /* Tabs */
+  /* Blocks */
+  /* Slider */
+  /* Slider */
+  /* Static */
+  /* File previews */
+}
+
+.vf-matrix-table.is-stretch,
+.vf-grid-table.is-stretch {
+  align-items: stretch;
+}
+
+.vf-matrix-table .vf-matrix-grid,
+.vf-grid-table .vf-matrix-grid {
+  border-right: var(--vf-border-width-table) solid var(--vf-border-color-table);
+  border-bottom: var(--vf-border-width-table) solid var(--vf-border-color-table);
+  gap: 0 !important;
+}
+
+.vf-matrix-table .vf-matrix-header-first,
+.vf-matrix-table .vf-matrix-header,
+.vf-matrix-table .vf-matrix-header-remove,
+.vf-matrix-table .vf-matrix-row-label,
+.vf-matrix-table .vf-matrix-cell,
+.vf-matrix-table .vf-matrix-row-remove,
+.vf-grid-table .vf-matrix-header-first,
+.vf-grid-table .vf-matrix-header,
+.vf-grid-table .vf-matrix-header-remove,
+.vf-grid-table .vf-matrix-row-label,
+.vf-grid-table .vf-matrix-cell,
+.vf-grid-table .vf-matrix-row-remove {
+  border-left: var(--vf-border-width-table) solid var(--vf-border-color-table);
+  border-top: var(--vf-border-width-table) solid var(--vf-border-color-table);
+}
+
+.vf-matrix-table .vf-matrix-header.is-sticky,
+.vf-grid-table .vf-matrix-header.is-sticky {
+  border-bottom: var(--vf-border-width-table) solid var(--vf-border-color-table);
+}
+
+.vf-matrix-table .vf-matrix-row-label.is-sticky,
+.vf-grid-table .vf-matrix-row-label.is-sticky {
+  border-right: var(--vf-border-width-table) solid var(--vf-border-color-table);
+}
+
+.vf-matrix-table .vf-matrix-header-first,
+.vf-matrix-table .vf-matrix-header,
+.vf-matrix-table .vf-matrix-header-remove,
+.vf-matrix-table .vf-matrix-row-label,
+.vf-grid-table .vf-matrix-header-first,
+.vf-grid-table .vf-matrix-header,
+.vf-grid-table .vf-matrix-header-remove,
+.vf-grid-table .vf-matrix-row-label {
+  background: var(--vf-bg-table-header);
+  color: var(--vf-color-table-header);
+}
+
+.vf-matrix-table .vf-matrix-row-remove,
+.vf-grid-table .vf-matrix-row-remove {
+  background: var(--vf-bg-table-header);
+}
+
+.vf-matrix-table .vf-matrix-cell,
+.vf-grid-table .vf-matrix-cell {
+  background: var(--vf-bg-input);
+}
+
+.vf-matrix-table .vf-matrix-header.is-sticky,
+.vf-grid-table .vf-matrix-header.is-sticky {
+  margin-bottom: calc(var(--vf-border-width-table) * -1);
+}
+
+.vf-matrix-table .vf-matrix-header.is-not-sticky,
+.vf-grid-table .vf-matrix-header.is-not-sticky {
+  border-bottom-width: 0;
+}
+
+.vf-matrix-table .vf-matrix-row-label.is-sticky,
+.vf-grid-table .vf-matrix-row-label.is-sticky {
+  margin-right: calc(var(--vf-border-width-table) * -1);
+}
+
+.vf-matrix-table .vf-matrix-row-label.is-not-sticky,
+.vf-grid-table .vf-matrix-row-label.is-not-sticky {
+  border-right-width: 0;
+}
+
+.vf-matrix-table .vf-matrix-cell-wrapper.has-padding,
+.vf-grid-table .vf-matrix-cell-wrapper.has-padding {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.vf-matrix-table .vf-matrix-cell-wrapper.is-stretch,
+.vf-grid-table .vf-matrix-cell-wrapper.is-stretch {
+  align-items: stretch;
+}
+
+.vf-matrix-table .vf-matrix-cell-wrapper.has-error,
+.vf-grid-table .vf-matrix-cell-wrapper.has-error {
+  position: relative;
+}
+
+.vf-matrix-table .vf-matrix-cell-wrapper.has-error:after,
+.vf-grid-table .vf-matrix-cell-wrapper.has-error:after {
+  content: "";
+  position: absolute;
+  inset: 0px;
+  box-shadow: inset 0 0 0 1px var(--vf-danger);
+  pointer-events: none;
+}
+
+.vf-matrix-table .vf-matrix-row-label,
+.vf-grid-table .vf-matrix-row-label {
+  padding-left: 0.5rem;
+}
+
+.vf-matrix-table .vf-grid,
+.vf-grid-table .vf-grid {
+  border-right: var(--vf-border-width-table) solid var(--vf-border-color-table);
+  border-bottom: var(--vf-border-width-table) solid var(--vf-border-color-table);
+  gap: 0;
+}
+
+.vf-matrix-table .vf-grid-cell,
+.vf-grid-table .vf-grid-cell {
+  border-left: var(--vf-border-width-table) solid var(--vf-border-color-table);
+  border-top: var(--vf-border-width-table) solid var(--vf-border-color-table);
+  background: var(--vf-bg-input);
+}
+
+.vf-matrix-table .vf-matrix-cell-wrapper > .vf-element-layout > .vf-element-layout-outer-wrapper > .vf-layout-inner-container > .vf-layout-inner-wrapper-before, .vf-matrix-table .vf-matrix-cell-wrapper > .vf-element-layout > .vf-element-layout-outer-wrapper > .vf-layout-inner-container > .vf-layout-inner-wrapper-after,
+.vf-grid-table .vf-matrix-cell-wrapper > .vf-element-layout > .vf-element-layout-outer-wrapper > .vf-layout-inner-container > .vf-layout-inner-wrapper-before,
+.vf-grid-table .vf-matrix-cell-wrapper > .vf-element-layout > .vf-element-layout-outer-wrapper > .vf-layout-inner-container > .vf-layout-inner-wrapper-after {
+  display: none;
+}
+
+.vf-matrix-table .vf-layout-inner-wrapper,
+.vf-matrix-table .vf-element-layout-outer-wrapper,
+.vf-grid-table .vf-layout-inner-wrapper,
+.vf-grid-table .vf-element-layout-outer-wrapper {
+  height: 100%;
+}
+
+.vf-matrix-table .vf-input-group,
+.vf-grid-table .vf-input-group {
+  border: 0;
+  border-radius: 0;
+  height: 100%;
+}
+
+.vf-matrix-table .vf-input-group.vf-input-group-focused,
+.vf-grid-table .vf-input-group.vf-input-group-focused {
+  position: relative;
+  z-index: 1;
+}
+
+.vf-matrix-table .vf-input-group.vf-input-group-sm,
+.vf-grid-table .vf-input-group.vf-input-group-sm {
+  height: 100%;
+}
+
+.vf-matrix-table .vf-input,
+.vf-grid-table .vf-input {
+  height: 100%;
+}
+
+.vf-matrix-table .vf-native-select,
+.vf-grid-table .vf-native-select {
+  height: 100%;
+  border: 0;
+  border-radius: 0;
+}
+
+.vf-matrix-table .vf-native-select:focus,
+.vf-grid-table .vf-native-select:focus {
+  position: relative;
+  z-index: 1;
+}
+
+.vf-matrix-table .vf-native-select-wrapper,
+.vf-grid-table .vf-native-select-wrapper {
+  height: 100%;
+}
+
+.vf-matrix-table .vf-native-select-caret,
+.vf-grid-table .vf-native-select-caret {
+  z-index: 2;
+}
+
+.vf-matrix-table .vf-multiselect,
+.vf-grid-table .vf-multiselect {
+  height: 100%;
+  border: 0;
+  border-radius: 0;
+}
+
+.vf-matrix-table .vf-multiselect-active,
+.vf-grid-table .vf-multiselect-active {
+  position: relative;
+  z-index: 1;
+}
+
+.vf-matrix-table .vf-multiselect-wrapper,
+.vf-grid-table .vf-multiselect-wrapper {
+  height: 100%;
+}
+
+.vf-matrix-table .vf-native-multiselect,
+.vf-grid-table .vf-native-multiselect {
+  height: 100%;
+  border: 0;
+  border-radius: 0;
+}
+
+.vf-matrix-table .vf-native-multiselect:focus,
+.vf-grid-table .vf-native-multiselect:focus {
+  position: relative;
+  z-index: 1;
+}
+
+.vf-matrix-table .vf-native-multiselect-wrapper,
+.vf-grid-table .vf-native-multiselect-wrapper {
+  height: 100%;
+}
+
+.vf-matrix-table .vf-editor,
+.vf-grid-table .vf-editor {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  border: 0;
+  border-radius: 0;
+}
+
+.vf-matrix-table .vf-editor.vf-editor-focused,
+.vf-grid-table .vf-editor.vf-editor-focused {
+  position: relative;
+  z-index: 1;
+}
+
+.vf-matrix-table trix-editor,
+.vf-grid-table trix-editor {
+  height: 100%;
+}
+
+.vf-matrix-table .vf-checkboxgroup-view-default,
+.vf-matrix-table .vf-radiogroup-view-default,
+.vf-grid-table .vf-checkboxgroup-view-default,
+.vf-grid-table .vf-radiogroup-view-default {
+  padding: 0.25rem 0.5rem;
+}
+
+.vf-matrix-table .vf-checkboxgroup-tabs-wrapper,
+.vf-matrix-table .vf-radiogroup-tabs-wrapper,
+.vf-grid-table .vf-checkboxgroup-tabs-wrapper,
+.vf-grid-table .vf-radiogroup-tabs-wrapper {
+  height: 100%;
+  border-radius: 0;
+}
+
+.vf-matrix-table .vf-checkbox-tabs,
+.vf-matrix-table .vf-radio-tabs,
+.vf-grid-table .vf-checkbox-tabs,
+.vf-grid-table .vf-radio-tabs {
+  border-width: 0;
+  border-left-width: var(--vf-border-width-input-t);
+}
+
+.vf-matrix-table .vf-checkbox-tabs.vf-checkbox-tabs-first,
+.vf-matrix-table .vf-radio-tabs.vf-radio-tabs-first,
+.vf-grid-table .vf-checkbox-tabs.vf-checkbox-tabs-first,
+.vf-grid-table .vf-radio-tabs.vf-radio-tabs-first {
+  border: 0;
+}
+
+.vf-matrix-table .vf-checkbox-tabs.vf-checkbox-tabs-first,
+.vf-matrix-table .vf-checkbox-tabs.vf-checkbox-tabs-last,
+.vf-matrix-table .vf-radio-tabs.vf-radio-tabs-first,
+.vf-matrix-table .vf-radio-tabs.vf-radio-tabs-last,
+.vf-grid-table .vf-checkbox-tabs.vf-checkbox-tabs-first,
+.vf-grid-table .vf-checkbox-tabs.vf-checkbox-tabs-last,
+.vf-grid-table .vf-radio-tabs.vf-radio-tabs-first,
+.vf-grid-table .vf-radio-tabs.vf-radio-tabs-last {
+  border-radius: 0;
+}
+
+.vf-matrix-table .vf-checkbox-blocks,
+.vf-matrix-table .vf-radio-blocks,
+.vf-grid-table .vf-checkbox-blocks,
+.vf-grid-table .vf-radio-blocks {
+  border-width: 0;
+  min-height: 100%;
+}
+
+.vf-matrix-table .vf-checkbox-blocks:not(.vf-checkbox-blocks-first),
+.vf-matrix-table .vf-radio-blocks:not(.vf-radio-blocks-first),
+.vf-grid-table .vf-checkbox-blocks:not(.vf-checkbox-blocks-first),
+.vf-grid-table .vf-radio-blocks:not(.vf-radio-blocks-first) {
+  border-top-width: var(--vf-border-width-input-t);
+}
+
+.vf-matrix-table .vf-checkboxgroup-blocks-wrapper,
+.vf-matrix-table .vf-radiogroup-blocks-wrapper,
+.vf-grid-table .vf-checkboxgroup-blocks-wrapper,
+.vf-grid-table .vf-radiogroup-blocks-wrapper {
+  height: 100%;
+  border-radius: 0;
+}
+
+.vf-matrix-table .vf-checkbox-blocks-container,
+.vf-matrix-table .vf-radio-blocks-container,
+.vf-grid-table .vf-checkbox-blocks-container,
+.vf-grid-table .vf-radio-blocks-container {
+  flex: 1;
+}
+
+.vf-matrix-table .vf-checkbox-blocks.vf-checkbox-blocks-first,
+.vf-matrix-table .vf-checkbox-blocks.vf-checkbox-blocks-last,
+.vf-matrix-table .vf-radio-blocks.vf-radio-blocks-first,
+.vf-matrix-table .vf-radio-blocks.vf-radio-blocks-last,
+.vf-grid-table .vf-checkbox-blocks.vf-checkbox-blocks-first,
+.vf-grid-table .vf-checkbox-blocks.vf-checkbox-blocks-last,
+.vf-grid-table .vf-radio-blocks.vf-radio-blocks-first,
+.vf-grid-table .vf-radio-blocks.vf-radio-blocks-last {
+  border-radius: 0;
+}
+
+.vf-matrix-table .vf-slider-wrapper,
+.vf-grid-table .vf-slider-wrapper {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0;
+}
+
+.vf-matrix-table .vf-slider-target,
+.vf-grid-table .vf-slider-target {
+  width: 100%;
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+.vf-matrix-table .vf-grid .vf-btn,
+.vf-matrix-table .vf-matrix-grid .vf-btn,
+.vf-grid-table .vf-grid .vf-btn,
+.vf-grid-table .vf-matrix-grid .vf-btn {
+  width: 100%;
+  border-radius: 0;
+}
+
+.vf-matrix-table .vf-grid .vf-btn:hover:not(:disabled):not(.vf-btn-loading),
+.vf-matrix-table .vf-matrix-grid .vf-btn:hover:not(:disabled):not(.vf-btn-loading),
+.vf-grid-table .vf-grid .vf-btn:hover:not(:disabled):not(.vf-btn-loading),
+.vf-grid-table .vf-matrix-grid .vf-btn:hover:not(:disabled):not(.vf-btn-loading) {
+  transform: none;
+  filter: brightness(0.95);
+}
+
+.vf-matrix-table .vf-grid .vf-btn:focus,
+.vf-matrix-table .vf-matrix-grid .vf-btn:focus,
+.vf-grid-table .vf-grid .vf-btn:focus,
+.vf-grid-table .vf-matrix-grid .vf-btn:focus {
+  position: relative;
+  z-index: 1;
+}
+
+.vf-matrix-table .vf-static,
+.vf-grid-table .vf-static {
+  height: 100%;
+}
+
+.vf-matrix-table .vf-file-preview-wrapper,
+.vf-matrix-table .vf-file-preview-image-wrapper,
+.vf-matrix-table .vf-file-preview-gallery-wrapper,
+.vf-grid-table .vf-file-preview-wrapper,
+.vf-grid-table .vf-file-preview-image-wrapper,
+.vf-grid-table .vf-file-preview-gallery-wrapper {
+  padding: 0.25rem;
+}
+
+.vf-matrix-table .vf-multifile-list,
+.vf-grid-table .vf-multifile-list {
+  margin-top: 0;
+}
+
+.vf-grid-table .vf-grid-field-wrapper > .vf-element-layout > .vf-element-layout-outer-wrapper > .vf-layout-inner-container > .vf-layout-inner-wrapper-before, .vf-grid-table .vf-grid-field-wrapper > .vf-element-layout > .vf-element-layout-outer-wrapper > .vf-layout-inner-container > .vf-layout-inner-wrapper-after {
+  display: none;
+}
+
+.vf-grid-table .vf-grid-field-wrapper .vf-label {
+  display: none;
+}
+
+.vf-grid-table .vf-static,
+.vf-grid-table .vf-static-tag,
+.vf-grid-table .vf-checkbox-wrapper,
+.vf-grid-table .vf-radio-wrapper,
+.vf-grid-table .vf-toggle-wrapper {
+  padding: var(--vf-py-input) var(--vf-px-input);
+}
+
+.vf-grid-table .vf-static-sm,
+.vf-grid-table .vf-static-tag-sm,
+.vf-grid-table .vf-checkbox-wrapper-sm,
+.vf-grid-table .vf-radio-wrapper-sm,
+.vf-grid-table .vf-toggle-wrapper-sm {
+  padding: var(--vf-py-input-sm) var(--vf-px-input-sm);
+}
+
+.vf-grid-table .vf-static-lg,
+.vf-grid-table .vf-static-tag-lg,
+.vf-grid-table .vf-checkbox-wrapper-lg,
+.vf-grid-table .vf-radio-wrapper-lg,
+.vf-grid-table .vf-toggle-wrapper-lg {
+  padding: var(--vf-py-input-lg) var(--vf-px-input-lg);
+}
+
+.vf-grid-table .vf-signature {
+  border: none;
+  border-radius: 0;
 }

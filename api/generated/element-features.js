@@ -937,6 +937,13 @@ export default {
           ],
           "description": "Whether the element is a matrix."
         },
+        "isGridType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is a grid."
+        },
         "isActive": {
           "public": false,
           "types": [
@@ -1034,525 +1041,12 @@ export default {
           ],
           "description": "Whether the element is a matrix."
         },
-        "isListType": {
+        "isGridType": {
           "public": false,
           "types": [
             "boolean"
           ],
-          "description": "Whether the element is a list."
-        },
-        "isActive": {
-          "public": false,
-          "types": [
-            "boolean"
-          ],
-          "description": "Whether the element should be visible when using `tabs` or `steps`."
-        }
-      },
-      "data": {
-        "active": {
-          "public": false,
-          "default": "true",
-          "types": [
-            "boolean"
-          ],
-          "description": "Whether the element is hidden internally by core components like tabs or steps. Only intended for reading."
-        },
-        "mounted": {
-          "public": true,
-          "default": "true",
-          "types": [
-            "boolean"
-          ],
-          "description": "Whether the element has been already mounted."
-        },
-        "container": {
-          "public": true,
-          "types": [
-            "HTMLElement"
-          ],
-          "description": "The ref to the outermost DOM of the element."
-        }
-      },
-      "methods": {
-        "activate": {
-          "public": false,
-          "returns": "void",
-          "description": "Sets the `active` property of the element to `true`."
-        },
-        "deactivate": {
-          "public": false,
-          "returns": "void",
-          "description": "Sets the `active` property of the element to `false`."
-        }
-      }
-    },
-    "object": {
-      "computed": {
-        "isStatic": {
-          "public": false,
-          "types": [
-            "boolean"
-          ],
-          "description": "Whether the element is static (does not have any data or validation)."
-        },
-        "isFileType": {
-          "public": false,
-          "types": [
-            "boolean"
-          ],
-          "description": "Whether the element's value is a file."
-        },
-        "isArrayType": {
-          "public": false,
-          "types": [
-            "boolean"
-          ],
-          "description": "Whether the element's value is an array."
-        },
-        "isImageType": {
-          "public": false,
-          "types": [
-            "boolean"
-          ],
-          "description": "Whether the element's value is an image."
-        },
-        "isObjectType": {
-          "public": false,
-          "types": [
-            "boolean"
-          ],
-          "description": "Whether the element is a nested object."
-        },
-        "isGroupType": {
-          "public": false,
-          "types": [
-            "boolean"
-          ],
-          "description": "Whether the element is a nested group."
-        },
-        "isMatrixType": {
-          "public": false,
-          "types": [
-            "boolean"
-          ],
-          "description": "Whether the element is a matrix."
-        },
-        "isListType": {
-          "public": false,
-          "types": [
-            "boolean"
-          ],
-          "description": "Whether the element is a list."
-        },
-        "isActive": {
-          "public": false,
-          "types": [
-            "boolean"
-          ],
-          "description": "Whether the element should be visible when using `tabs` or `steps`."
-        }
-      },
-      "data": {
-        "active": {
-          "public": false,
-          "default": "true",
-          "types": [
-            "boolean"
-          ],
-          "description": "Whether the element is hidden internally by core components like tabs or steps. Only intended for reading."
-        },
-        "mounted": {
-          "public": true,
-          "default": "true",
-          "types": [
-            "boolean"
-          ],
-          "description": "Whether the element has been already mounted."
-        },
-        "container": {
-          "public": true,
-          "types": [
-            "HTMLElement"
-          ],
-          "description": "The ref to the outermost DOM of the element."
-        }
-      },
-      "methods": {
-        "activate": {
-          "public": false,
-          "returns": "void",
-          "description": "Sets the `active` property of the element to `true`."
-        },
-        "deactivate": {
-          "public": false,
-          "returns": "void",
-          "description": "Sets the `active` property of the element to `false`."
-        }
-      }
-    },
-    "group": {
-      "computed": {
-        "isStatic": {
-          "public": false,
-          "types": [
-            "boolean"
-          ],
-          "description": "Whether the element is static (does not have any data or validation)."
-        },
-        "isFileType": {
-          "public": false,
-          "types": [
-            "boolean"
-          ],
-          "description": "Whether the element's value is a file."
-        },
-        "isArrayType": {
-          "public": false,
-          "types": [
-            "boolean"
-          ],
-          "description": "Whether the element's value is an array."
-        },
-        "isImageType": {
-          "public": false,
-          "types": [
-            "boolean"
-          ],
-          "description": "Whether the element's value is an image."
-        },
-        "isObjectType": {
-          "public": false,
-          "types": [
-            "boolean"
-          ],
-          "description": "Whether the element is a nested object."
-        },
-        "isGroupType": {
-          "public": false,
-          "types": [
-            "boolean"
-          ],
-          "description": "Whether the element is a nested group."
-        },
-        "isMatrixType": {
-          "public": false,
-          "types": [
-            "boolean"
-          ],
-          "description": "Whether the element is a matrix."
-        },
-        "isListType": {
-          "public": false,
-          "types": [
-            "boolean"
-          ],
-          "description": "Whether the element is a list."
-        },
-        "isActive": {
-          "public": false,
-          "types": [
-            "boolean"
-          ],
-          "description": "Whether the element should be visible when using `tabs` or `steps`."
-        }
-      },
-      "data": {
-        "active": {
-          "public": false,
-          "default": "true",
-          "types": [
-            "boolean"
-          ],
-          "description": "Whether the element is hidden internally by core components like tabs or steps. Only intended for reading."
-        },
-        "mounted": {
-          "public": true,
-          "default": "true",
-          "types": [
-            "boolean"
-          ],
-          "description": "Whether the element has been already mounted."
-        },
-        "container": {
-          "public": true,
-          "types": [
-            "HTMLElement"
-          ],
-          "description": "The ref to the outermost DOM of the element."
-        }
-      },
-      "methods": {
-        "activate": {
-          "public": false,
-          "returns": "void",
-          "description": "Sets the `active` property of the element to `true`."
-        },
-        "deactivate": {
-          "public": false,
-          "returns": "void",
-          "description": "Sets the `active` property of the element to `false`."
-        }
-      }
-    },
-    "matrix": {
-      "computed": {
-        "isStatic": {
-          "public": false,
-          "types": [
-            "boolean"
-          ],
-          "description": "Whether the element is static (does not have any data or validation)."
-        },
-        "isFileType": {
-          "public": false,
-          "types": [
-            "boolean"
-          ],
-          "description": "Whether the element's value is a file."
-        },
-        "isArrayType": {
-          "public": false,
-          "types": [
-            "boolean"
-          ],
-          "description": "Whether the element's value is an array."
-        },
-        "isImageType": {
-          "public": false,
-          "types": [
-            "boolean"
-          ],
-          "description": "Whether the element's value is an image."
-        },
-        "isObjectType": {
-          "public": false,
-          "types": [
-            "boolean"
-          ],
-          "description": "Whether the element is a nested object."
-        },
-        "isGroupType": {
-          "public": false,
-          "types": [
-            "boolean"
-          ],
-          "description": "Whether the element is a nested group."
-        },
-        "isMatrixType": {
-          "public": false,
-          "types": [
-            "boolean"
-          ],
-          "description": "Whether the element is a matrix."
-        },
-        "isListType": {
-          "public": false,
-          "types": [
-            "boolean"
-          ],
-          "description": "Whether the element is a list."
-        },
-        "isActive": {
-          "public": false,
-          "types": [
-            "boolean"
-          ],
-          "description": "Whether the element should be visible when using `tabs` or `steps`."
-        }
-      },
-      "data": {
-        "active": {
-          "public": false,
-          "default": "true",
-          "types": [
-            "boolean"
-          ],
-          "description": "Whether the element is hidden internally by core components like tabs or steps. Only intended for reading."
-        },
-        "mounted": {
-          "public": true,
-          "default": "true",
-          "types": [
-            "boolean"
-          ],
-          "description": "Whether the element has been already mounted."
-        },
-        "container": {
-          "public": true,
-          "types": [
-            "HTMLElement"
-          ],
-          "description": "The ref to the outermost DOM of the element."
-        }
-      },
-      "methods": {
-        "activate": {
-          "public": false,
-          "returns": "void",
-          "description": "Sets the `active` property of the element to `true`."
-        },
-        "deactivate": {
-          "public": false,
-          "returns": "void",
-          "description": "Sets the `active` property of the element to `false`."
-        }
-      }
-    },
-    "file": {
-      "computed": {
-        "isStatic": {
-          "public": false,
-          "types": [
-            "boolean"
-          ],
-          "description": "Whether the element is static (does not have any data or validation)."
-        },
-        "isFileType": {
-          "public": false,
-          "types": [
-            "boolean"
-          ],
-          "description": "Whether the element's value is a file."
-        },
-        "isArrayType": {
-          "public": false,
-          "types": [
-            "boolean"
-          ],
-          "description": "Whether the element's value is an array."
-        },
-        "isImageType": {
-          "public": false,
-          "types": [
-            "boolean"
-          ],
-          "description": "Whether the element's value is an image."
-        },
-        "isObjectType": {
-          "public": false,
-          "types": [
-            "boolean"
-          ],
-          "description": "Whether the element is a nested object."
-        },
-        "isGroupType": {
-          "public": false,
-          "types": [
-            "boolean"
-          ],
-          "description": "Whether the element is a nested group."
-        },
-        "isMatrixType": {
-          "public": false,
-          "types": [
-            "boolean"
-          ],
-          "description": "Whether the element is a matrix."
-        },
-        "isListType": {
-          "public": false,
-          "types": [
-            "boolean"
-          ],
-          "description": "Whether the element is a list."
-        },
-        "isActive": {
-          "public": false,
-          "types": [
-            "boolean"
-          ],
-          "description": "Whether the element should be visible when using `tabs` or `steps`."
-        }
-      },
-      "data": {
-        "active": {
-          "public": false,
-          "default": "true",
-          "types": [
-            "boolean"
-          ],
-          "description": "Whether the element is hidden internally by core components like tabs or steps. Only intended for reading."
-        },
-        "mounted": {
-          "public": true,
-          "default": "true",
-          "types": [
-            "boolean"
-          ],
-          "description": "Whether the element has been already mounted."
-        },
-        "container": {
-          "public": true,
-          "types": [
-            "HTMLElement"
-          ],
-          "description": "The ref to the outermost DOM of the element."
-        }
-      },
-      "methods": {
-        "activate": {
-          "public": false,
-          "returns": "void",
-          "description": "Sets the `active` property of the element to `true`."
-        },
-        "deactivate": {
-          "public": false,
-          "returns": "void",
-          "description": "Sets the `active` property of the element to `false`."
-        }
-      }
-    },
-    "static": {
-      "computed": {
-        "isStatic": {
-          "public": false,
-          "types": [
-            "boolean"
-          ],
-          "description": "Whether the element is static (does not have any data or validation)."
-        },
-        "isFileType": {
-          "public": false,
-          "types": [
-            "boolean"
-          ],
-          "description": "Whether the element's value is a file."
-        },
-        "isArrayType": {
-          "public": false,
-          "types": [
-            "boolean"
-          ],
-          "description": "Whether the element's value is an array."
-        },
-        "isImageType": {
-          "public": false,
-          "types": [
-            "boolean"
-          ],
-          "description": "Whether the element's value is an image."
-        },
-        "isObjectType": {
-          "public": false,
-          "types": [
-            "boolean"
-          ],
-          "description": "Whether the element is a nested object."
-        },
-        "isGroupType": {
-          "public": false,
-          "types": [
-            "boolean"
-          ],
-          "description": "Whether the element is a nested group."
-        },
-        "isMatrixType": {
-          "public": false,
-          "types": [
-            "boolean"
-          ],
-          "description": "Whether the element is a matrix."
+          "description": "Whether the element is a grid."
         },
         "isListType": {
           "public": false,
@@ -1658,6 +1152,679 @@ export default {
           ],
           "description": "Whether the element is a matrix."
         },
+        "isGridType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is a grid."
+        },
+        "isListType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is a list."
+        },
+        "isActive": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element should be visible when using `tabs` or `steps`."
+        }
+      },
+      "data": {
+        "active": {
+          "public": false,
+          "default": "true",
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is hidden internally by core components like tabs or steps. Only intended for reading."
+        },
+        "mounted": {
+          "public": true,
+          "default": "true",
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element has been already mounted."
+        },
+        "container": {
+          "public": true,
+          "types": [
+            "HTMLElement"
+          ],
+          "description": "The ref to the outermost DOM of the element."
+        }
+      },
+      "methods": {
+        "activate": {
+          "public": false,
+          "returns": "void",
+          "description": "Sets the `active` property of the element to `true`."
+        },
+        "deactivate": {
+          "public": false,
+          "returns": "void",
+          "description": "Sets the `active` property of the element to `false`."
+        }
+      }
+    },
+    "object": {
+      "computed": {
+        "isStatic": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is static (does not have any data or validation)."
+        },
+        "isFileType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element's value is a file."
+        },
+        "isArrayType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element's value is an array."
+        },
+        "isImageType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element's value is an image."
+        },
+        "isObjectType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is a nested object."
+        },
+        "isGroupType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is a nested group."
+        },
+        "isMatrixType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is a matrix."
+        },
+        "isGridType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is a grid."
+        },
+        "isListType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is a list."
+        },
+        "isActive": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element should be visible when using `tabs` or `steps`."
+        }
+      },
+      "data": {
+        "active": {
+          "public": false,
+          "default": "true",
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is hidden internally by core components like tabs or steps. Only intended for reading."
+        },
+        "mounted": {
+          "public": true,
+          "default": "true",
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element has been already mounted."
+        },
+        "container": {
+          "public": true,
+          "types": [
+            "HTMLElement"
+          ],
+          "description": "The ref to the outermost DOM of the element."
+        }
+      },
+      "methods": {
+        "activate": {
+          "public": false,
+          "returns": "void",
+          "description": "Sets the `active` property of the element to `true`."
+        },
+        "deactivate": {
+          "public": false,
+          "returns": "void",
+          "description": "Sets the `active` property of the element to `false`."
+        }
+      }
+    },
+    "group": {
+      "computed": {
+        "isStatic": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is static (does not have any data or validation)."
+        },
+        "isFileType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element's value is a file."
+        },
+        "isArrayType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element's value is an array."
+        },
+        "isImageType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element's value is an image."
+        },
+        "isObjectType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is a nested object."
+        },
+        "isGroupType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is a nested group."
+        },
+        "isMatrixType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is a matrix."
+        },
+        "isGridType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is a grid."
+        },
+        "isListType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is a list."
+        },
+        "isActive": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element should be visible when using `tabs` or `steps`."
+        }
+      },
+      "data": {
+        "active": {
+          "public": false,
+          "default": "true",
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is hidden internally by core components like tabs or steps. Only intended for reading."
+        },
+        "mounted": {
+          "public": true,
+          "default": "true",
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element has been already mounted."
+        },
+        "container": {
+          "public": true,
+          "types": [
+            "HTMLElement"
+          ],
+          "description": "The ref to the outermost DOM of the element."
+        }
+      },
+      "methods": {
+        "activate": {
+          "public": false,
+          "returns": "void",
+          "description": "Sets the `active` property of the element to `true`."
+        },
+        "deactivate": {
+          "public": false,
+          "returns": "void",
+          "description": "Sets the `active` property of the element to `false`."
+        }
+      }
+    },
+    "matrix": {
+      "computed": {
+        "isStatic": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is static (does not have any data or validation)."
+        },
+        "isFileType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element's value is a file."
+        },
+        "isArrayType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element's value is an array."
+        },
+        "isImageType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element's value is an image."
+        },
+        "isObjectType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is a nested object."
+        },
+        "isGroupType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is a nested group."
+        },
+        "isMatrixType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is a matrix."
+        },
+        "isGridType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is a grid."
+        },
+        "isListType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is a list."
+        },
+        "isActive": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element should be visible when using `tabs` or `steps`."
+        }
+      },
+      "data": {
+        "active": {
+          "public": false,
+          "default": "true",
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is hidden internally by core components like tabs or steps. Only intended for reading."
+        },
+        "mounted": {
+          "public": true,
+          "default": "true",
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element has been already mounted."
+        },
+        "container": {
+          "public": true,
+          "types": [
+            "HTMLElement"
+          ],
+          "description": "The ref to the outermost DOM of the element."
+        }
+      },
+      "methods": {
+        "activate": {
+          "public": false,
+          "returns": "void",
+          "description": "Sets the `active` property of the element to `true`."
+        },
+        "deactivate": {
+          "public": false,
+          "returns": "void",
+          "description": "Sets the `active` property of the element to `false`."
+        }
+      }
+    },
+    "grid": {
+      "computed": {
+        "isStatic": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is static (does not have any data or validation)."
+        },
+        "isFileType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element's value is a file."
+        },
+        "isArrayType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element's value is an array."
+        },
+        "isImageType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element's value is an image."
+        },
+        "isObjectType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is a nested object."
+        },
+        "isGroupType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is a nested group."
+        },
+        "isMatrixType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is a matrix."
+        },
+        "isGridType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is a grid."
+        },
+        "isListType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is a list."
+        },
+        "isActive": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element should be visible when using `tabs` or `steps`."
+        }
+      },
+      "data": {
+        "active": {
+          "public": false,
+          "default": "true",
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is hidden internally by core components like tabs or steps. Only intended for reading."
+        },
+        "mounted": {
+          "public": true,
+          "default": "true",
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element has been already mounted."
+        },
+        "container": {
+          "public": true,
+          "types": [
+            "HTMLElement"
+          ],
+          "description": "The ref to the outermost DOM of the element."
+        }
+      },
+      "methods": {
+        "activate": {
+          "public": false,
+          "returns": "void",
+          "description": "Sets the `active` property of the element to `true`."
+        },
+        "deactivate": {
+          "public": false,
+          "returns": "void",
+          "description": "Sets the `active` property of the element to `false`."
+        }
+      }
+    },
+    "file": {
+      "computed": {
+        "isStatic": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is static (does not have any data or validation)."
+        },
+        "isFileType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element's value is a file."
+        },
+        "isArrayType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element's value is an array."
+        },
+        "isImageType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element's value is an image."
+        },
+        "isObjectType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is a nested object."
+        },
+        "isGroupType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is a nested group."
+        },
+        "isMatrixType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is a matrix."
+        },
+        "isGridType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is a grid."
+        },
+        "isListType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is a list."
+        },
+        "isActive": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element should be visible when using `tabs` or `steps`."
+        }
+      },
+      "data": {
+        "active": {
+          "public": false,
+          "default": "true",
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is hidden internally by core components like tabs or steps. Only intended for reading."
+        },
+        "mounted": {
+          "public": true,
+          "default": "true",
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element has been already mounted."
+        },
+        "container": {
+          "public": true,
+          "types": [
+            "HTMLElement"
+          ],
+          "description": "The ref to the outermost DOM of the element."
+        }
+      },
+      "methods": {
+        "activate": {
+          "public": false,
+          "returns": "void",
+          "description": "Sets the `active` property of the element to `true`."
+        },
+        "deactivate": {
+          "public": false,
+          "returns": "void",
+          "description": "Sets the `active` property of the element to `false`."
+        }
+      }
+    },
+    "static": {
+      "computed": {
+        "isStatic": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is static (does not have any data or validation)."
+        },
+        "isFileType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element's value is a file."
+        },
+        "isArrayType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element's value is an array."
+        },
+        "isImageType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element's value is an image."
+        },
+        "isObjectType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is a nested object."
+        },
+        "isGroupType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is a nested group."
+        },
+        "isMatrixType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is a matrix."
+        },
+        "isGridType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is a grid."
+        },
         "isListType": {
           "public": false,
           "types": [
@@ -1761,6 +1928,13 @@ export default {
             "boolean"
           ],
           "description": "Whether the element is a matrix."
+        },
+        "isGridType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is a grid."
         },
         "isListType": {
           "public": false,
@@ -1866,6 +2040,13 @@ export default {
           ],
           "description": "Whether the element is a matrix."
         },
+        "isGridType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is a grid."
+        },
         "isListType": {
           "public": false,
           "types": [
@@ -1969,6 +2150,13 @@ export default {
             "boolean"
           ],
           "description": "Whether the element is a matrix."
+        },
+        "isGridType": {
+          "public": false,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is a grid."
         },
         "isListType": {
           "public": false,
@@ -2402,7 +2590,7 @@ export default {
   "columns": {
     "base": {
       "computed": {
-        "cols": {
+        "computedCols": {
           "public": false,
           "types": [
             "object"
@@ -4567,6 +4755,63 @@ export default {
             "string"
           ],
           "description": "The generic name of the element constructed from label / floating, element name or default file name if name is a number."
+        }
+      }
+    }
+  },
+  "grid": {
+    "base": {
+      "computed": {
+        "cells": {
+          "public": true,
+          "types": [
+            "array"
+          ],
+          "description": "The list of cells that should be displayed in the grid."
+        },
+        "isTableView": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is in table view (has `grid-table` preset)."
+        },
+        "gridStyle": {
+          "public": true,
+          "types": [
+            "object"
+          ],
+          "description": "The `style` properties that should be added to the grid's DOM element."
+        },
+        "resolvedRows": {
+          "public": true,
+          "types": [
+            "array"
+          ],
+          "description": "The cells that should be displayed in a row format."
+        }
+      },
+      "methods": {
+        "resolveComponentName": {
+          "public": true,
+          "returns": "string",
+          "description": "Resolves the cell component name based on row and column index.",
+          "params": {
+            "rowIndex": {
+              "types": [
+                "number"
+              ],
+              "required": true,
+              "description": "the index of the row"
+            },
+            "colIndex": {
+              "types": [
+                "number"
+              ],
+              "required": true,
+              "description": "the index of the column"
+            }
+          }
         }
       }
     }
@@ -7156,6 +7401,188 @@ export default {
       }
     },
     "list": {
+      "data": {
+        "state": {
+          "public": false,
+          "default": "{ dirty: false, validate: true }",
+          "types": [
+            "object"
+          ],
+          "description": "Helper property used to store the element states."
+        },
+        "Validators": {
+          "public": false,
+          "default": "[]",
+          "types": [
+            "array"
+          ],
+          "description": "An array containing all the validators of the element."
+        },
+        "messageBag": {
+          "public": true,
+          "default": "MessageBag",
+          "types": [
+            "MessageBag"
+          ],
+          "description": "Instance of MessageBag service. Custom errors and messages [can be added](/docs/validating-elements#custom-errors-and-messages)."
+        },
+        "resetting": {
+          "public": false,
+          "default": "false",
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is currently being resetet (no validation should happen)."
+        }
+      },
+      "computed": {
+        "dirty": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element's or any of its children's value was modified."
+        },
+        "validated": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element and all of its children was already validated at least once."
+        },
+        "invalid": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element or any of its children has any failing rules."
+        },
+        "pending": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element or any of its children has any async rules in progress."
+        },
+        "debouncing": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element or any of its children have a validation rule with pending debounce."
+        },
+        "busy": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element or any of its children is `pending` or `debouncing`."
+        },
+        "isRequired": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is required (has required rule)."
+        },
+        "useCustomFilled": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element should use a custom logic for checking if it is filled when validating."
+        },
+        "isFilled": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element is filled is `useCustomFilled` is `true`."
+        },
+        "childrenErrors": {
+          "public": false,
+          "types": [
+            "array"
+          ],
+          "description": "The list of errors collected from children."
+        },
+        "errors": {
+          "public": true,
+          "types": [
+            "array"
+          ],
+          "description": "All the errors of `MessageBag`."
+        },
+        "error": {
+          "public": true,
+          "types": [
+            "string"
+          ],
+          "description": "The first error of `MessageBag`."
+        },
+        "validationRules": {
+          "public": false,
+          "types": [
+            "string",
+            "array"
+          ],
+          "description": "The element's validation rules."
+        }
+      },
+      "methods": {
+        "validate": {
+          "public": true,
+          "returns": "Promise",
+          "description": "Checks each validation rule for the element and validates children (async)."
+        },
+        "validateValidators": {
+          "public": true,
+          "returns": "Promise",
+          "description": "Checks each validation rule for the element (async)."
+        },
+        "validateChildren": {
+          "public": true,
+          "returns": "Promise",
+          "description": "Validates every child (async)."
+        },
+        "dirt": {
+          "public": false,
+          "returns": "void",
+          "description": "Flag the element as dirty."
+        },
+        "clean": {
+          "public": true,
+          "returns": "void",
+          "description": "Removes the element's `dirty` state."
+        },
+        "clearMessages": {
+          "public": true,
+          "returns": "void",
+          "description": "Clears the manually added messages from the [`messageBag`](#property-message-bag)."
+        },
+        "resetValidators": {
+          "public": true,
+          "returns": "void",
+          "description": "Sets the validators to default state."
+        },
+        "initMessageBag": {
+          "public": false,
+          "returns": "void",
+          "description": "Initializes MessageBag service."
+        },
+        "initValidation": {
+          "public": false,
+          "returns": "void",
+          "description": "Initializes validators."
+        },
+        "reinitValidation": {
+          "public": true,
+          "returns": "void",
+          "description": "Re-initializes validators when rules have changed."
+        }
+      }
+    },
+    "grid": {
       "data": {
         "state": {
           "public": false,

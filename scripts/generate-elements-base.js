@@ -11,6 +11,7 @@ const elements = [
   'date',
   'dates',
   'file',
+  'grid',
   'generic',
   'group',
   'hidden',

@@ -50,6 +50,7 @@ declare module '@vueform/vueform/dist/tailwind-material' {
   const FileElement_image: any;
   const FileElement_gallery: any;
   const GenericElement: any;
+  const GridElement: any;
   const GroupElement: any;
   const HiddenElement: any;
   const ListElement: any;
@@ -135,6 +136,7 @@ declare module '@vueform/vueform/dist/tailwind-material' {
     FileElement_image,
     FileElement_gallery,
     GenericElement,
+    GridElement,
     GroupElement,
     HiddenElement,
     ListElement,

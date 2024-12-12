@@ -382,6 +382,56 @@ export default {
       "unmounted"
     ]
   },
+  "grid": {
+    "features": [
+      "a11y",
+      "baseElement_grid",
+      "children_group",
+      "classes",
+      "columns",
+      "conditions_group",
+      "data_group",
+      "default_group",
+      "el$",
+      "elements",
+      "events",
+      "fieldId",
+      "focus",
+      "form$",
+      "grid",
+      "label",
+      "layout",
+      "nullValue_object",
+      "path_group",
+      "slots",
+      "templates",
+      "theme",
+      "validation_grid",
+      "value_group",
+      "view",
+      "watchValue_group"
+    ],
+    "slots": [
+      "label",
+      "info",
+      "required",
+      "description",
+      "before",
+      "between",
+      "after"
+    ],
+    "events": [
+      "change",
+      "beforeCreate",
+      "created",
+      "beforeMount",
+      "mounted",
+      "beforeUpdate",
+      "updated",
+      "beforeUnmount",
+      "unmounted"
+    ]
+  },
   "generic": {
     "features": [
       "a11y",

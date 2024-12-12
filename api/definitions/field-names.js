@@ -6,6 +6,7 @@ module.exports = {
   CheckboxElement: 'checkbox',
   CheckboxgroupElement: 'checkbox group',
   FileElement: 'file',
+  GridElement: 'grid',
   GroupElement: 'group',
   HiddenElement: 'hidden input',
   ListElement: 'list',
