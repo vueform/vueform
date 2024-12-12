@@ -103,7 +103,7 @@ export default {
     scrollable: {
       required: false,
       type: [Boolean],
-      default: true,
+      default: false,
     },
     colHeader: {
       required: false,
