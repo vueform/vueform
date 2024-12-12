@@ -23,13 +23,13 @@
             classes.container,
             classes[`container_${Size}`],
             !el$.inline ? el$.columnsClasses.label : null,
-            el$.cols.default.label < 12 ? classes[`container_horizontal_${Size}`] : classes[`container_vertical_${Size}`],
-            ...(Object.keys(el$.cols).length > 1 ? (el$.$vueform.config.breakpoints||['sm', 'md', 'lg', 'xl', '2xl']).map((breakpoint) => {
-              if (!el$.cols[breakpoint]?.label) {
+            el$.computedCols.default.label < 12 ? classes[`container_horizontal_${Size}`] : classes[`container_vertical_${Size}`],
+            ...(Object.keys(el$.computedCols).length > 1 ? (el$.$vueform.config.breakpoints||['sm', 'md', 'lg', 'xl', '2xl']).map((breakpoint) => {
+              if (!el$.computedCols[breakpoint]?.label) {
                 return null
               }
 
-              return el$.cols[breakpoint].label < 12
+              return el$.computedCols[breakpoint].label < 12
                 ? classes[`container_horizontal_${Size}`].map(c => `vf-${breakpoint}:${c}`).join(' ')
                 : classes[`container_vertical_${Size}`].map(c => `vf-${breakpoint}:${c}`).join(' ')
             }) : []),

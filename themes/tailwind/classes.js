@@ -550,14 +550,10 @@ export default {
   GridElement: {
     container: '',
     container_scrollable: 'overflow-x-auto',
-    grid: 'grid grid-cols-12',
+    grid: 'grid',
     grid_sm: 'form-gap-gutter-sm',
     grid_md: 'form-gap-gutter',
     grid_lg: 'form-gap-gutter-lg',
-    grid_auto: '',
-    grid_left: '',
-    grid_center: 'mx-auto',
-    grid_right: 'ml-auto',
     cell: 'relative',
     fieldWrapper: 'w-full h-full grid',
     fieldWrapper_sm: 'form-min-h-input-height-sm',
@@ -590,7 +586,6 @@ export default {
     $grid: (classes, { Size, align }) => ([
       classes.grid,
       classes[`grid_${Size}`],
-      classes[`grid_${align}`],
     ]),
     $cell: (classes, {  }) => () => ([
       classes.cell,

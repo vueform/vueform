@@ -22,5 +22,33 @@ export default {
         },
       }
     }
+  },
+  'grid-table': {
+    addClasses: {
+      GridElement: {
+        container: 'vf-grid-table',
+      },
+      ToggleElement: {
+        wrapper_sm: 'vf-toggle-wrapper-sm',
+        wrapper_md: '',
+        wrapper_lg: 'vf-toggle-wrapper-lg',
+      }
+    },
+    overrideClasses: {
+      GridElement: {
+        $cell: (classes, { colHeader, rowHeader }) => ({ colStart, rowStart }) => [
+          classes.cell,
+          (colHeader && colStart === 0) || (rowHeader && rowStart === 0) ? 'form-bg-table-header form-color-table-header' : null,
+        ],
+      },
+      ToggleElement: {
+        $wrapper: (classes, { align, Size }) => ([
+          classes.wrapper,
+          classes[`wrapper_${Size}`],
+          align === 'left' ? classes.wrapper_left : null,
+          align === 'right' ? classes.wrapper_right : null,
+        ]),
+      }
+    }
   }
 }
