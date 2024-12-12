@@ -313,9 +313,9 @@ export default {
     },
     overrideClasses: {
       GridElement: {
-        $cell: (classes, { colHeader, rowHeader }) => ({ col, row }) => [
+        $cell: (classes, { colHeader, rowHeader }) => ({ colStart, rowStart }) => [
           classes.cell,
-          (colHeader && col === 0) || (rowHeader && row === 0) ? 'form-bg-table-header form-color-table-header' : null,
+          (colHeader && colStart === 0) || (rowHeader && rowStart === 0) ? 'form-bg-table-header form-color-table-header' : null,
         ],
       },
       ToggleElement: {
