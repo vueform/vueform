@@ -28,6 +28,11 @@ const base = function(props, context, dependencies)
 
   // ============== COMPUTED ==============
 
+  /**
+   * The list of cells that should be displayed in the grid.
+   *
+   * @type {array}
+   */
   const cells = computed(() => {
     const grid = resolvedRows.value
 
@@ -51,6 +56,11 @@ const base = function(props, context, dependencies)
     return cells
   })
 
+  /**
+   * The cells that should be displayed in a row format.
+   *
+   * @type {array}
+   */
   const resolvedRows = computed(() => {
     const resolvedRows = []
     let rows = grid.value
@@ -100,6 +110,11 @@ const base = function(props, context, dependencies)
     return resolvedRows
   })
 
+  /**
+   * The `style` properties that should be added to the grid's DOM element.
+   *
+   * @type {object}
+   */
   const gridStyle = computed(() => {
     const colWidths = []
 
@@ -120,6 +135,11 @@ const base = function(props, context, dependencies)
     }
   })
 
+  /**
+   * Whether the element is in table view (has `grid-table` preset).
+   *
+   * @type {boolean}
+   */
   const isTableView = computed(() => {
     return presets.value.includes('grid-table')
   })
