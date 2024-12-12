@@ -298,7 +298,7 @@ const checkboxgroup = function(props, context, dependencies)
   // ============== COMPUTED ==============
   
   const isArrayType = computed(() => {
-    return false
+    return true
   })
   
   return {
