@@ -55,11 +55,6 @@ export default {
       type: [String],
       default: null
     },
-    schema: {
-      required: false,
-      type: [Object],
-      default: () => ({})
-    },
     cols: {
       required: false,
       type: [Number],

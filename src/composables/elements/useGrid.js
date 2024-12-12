@@ -63,7 +63,7 @@ const base = function(props, context, dependencies)
    */
   const resolvedRows = computed(() => {
     const resolvedRows = []
-    let rows = grid.value
+    let rows = grid.value || []
 
     if (!rows || !rows.length) {
       rows = [...Array(rows.value)].map(r => [...Array(cols.value)].map(c => null))
