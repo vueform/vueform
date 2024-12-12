@@ -8,6 +8,14 @@
 - New [`GridElement`](https://vueform.com/reference/grid-element) element.
 - No more min width for elements (11 * gutter) because of grid gap.
 
+## v1.11.1
+
+> `2024-11-30`
+
+### 🐞 Bug Fixes
+- Keep content on adding dynamic matrix rows #368.
+- Don't throw error when switching between static/dynamic matrix rows.
+
 ## v1.11.0
 
 > `2024-10-29`

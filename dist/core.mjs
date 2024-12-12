@@ -36668,10 +36668,7 @@ var base$g = function base(props, context, dependencies) {
    * @type {array}
    */
   var inputTypes = computed(() => {
-    return cells.value.reduce((prev, curr) => {
-      prev.push(...curr.map(cell => cell.type));
-      return prev;
-    }, []);
+    return resolvedColumns.value.map((col, c) => resolveComponentProps({}, col, 0, c)).reduce((prev, curr) => [...prev, curr.type], []);
   });
 
   // =============== METHODS ==============
@@ -36954,7 +36951,7 @@ var base$f = function base(props, context, dependencies) {
    * @type {number|array}
    */
   var computedRows = computed(() => {
-    return typeof rows.value === 'number' ? rowsCount.value : rows.value;
+    return typeof rows.value === 'number' ? rowsCount.value === null ? 1 : rowsCount.value : rows.value;
   });
 
   /**
@@ -37030,6 +37027,8 @@ var base$f = function base(props, context, dependencies) {
     } else {
       rowsCount.value = n;
     }
+  }, {
+    flush: 'pre'
   });
   return {
     hasDynamicRows,

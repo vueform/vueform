@@ -68,7 +68,9 @@ const base = function(props, context, dependencies)
    */
   const computedRows = computed(() => {
     return typeof rows.value === 'number'
-      ? rowsCount.value
+      ? rowsCount.value === null
+        ? 1
+        : rowsCount.value
       : rows.value
   })
 
@@ -141,7 +143,7 @@ const base = function(props, context, dependencies)
     } else {
       rowsCount.value = n
     }
-  })
+  }, { flush: 'pre' })
   
   return {
     hasDynamicRows,
