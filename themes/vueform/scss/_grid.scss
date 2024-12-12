@@ -17,14 +17,17 @@ $grid-columns: 12 !default;
 .vf-row {
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
-  gap: var(--vf-gutter);
+  column-gap: min(calc(100% / 12), var(--vf-gutter-sm));
+  row-gap: var(--vf-gutter-lg);
 
   &.vf-row-sm {
-    gap: var(--vf-gutter-sm);
+    column-gap: min(calc(100% / 12), var(--vf-gutter-sm));
+    row-gap: var(--vf-gutter-sm);
   }
 
   &.vf-row-lg {
-    gap: var(--vf-gutter-lg);
+    column-gap: min(calc(100% / 12), var(--vf-gutter-lg));
+    row-gap: var(--vf-gutter-lg);
   }
 
   &.vf-row-embed {
