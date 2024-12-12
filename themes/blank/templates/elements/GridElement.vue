@@ -1,34 +1,45 @@
 <template>
   <component :is="elementLayout" :multiple="true" ref="container">
     <template #element>
-      <div :class="classes.wrapper" role="group" :aria-labelledby="labelId">
-        <slot>
-          <table :class="classes.table">
-            <tr v-for="(row, r) in resolvedRows" :class="classes.tr(r, resolvedRows.length)">
-              <component v-for="(col, c) in row" :is="col.type"
-                :class="classes.td"
-                :colspan="col.colspan"
-                :rowspan="col.rowspan"
-                v-bind="col.attrs"
-              >
-                <div v-if="col.schema" :class="classes.fieldWrapper(col.schema)">
-                  <slot :name="col.slot">
-                    <component :is="col.component"
-                      :name="col.name"
-                      :key="col.name"
-                      v-bind="col.schema"
-                    />
-                  </slot>
-                </div>
-                <div v-else :class="classes.textWrapper">
-                  <slot :name="col.slot">
-                    <span :class="classes.text" v-html="col.content" />
-                  </slot>
-                </div>
-              </component>
-            </tr>
-          </table>
-        </slot>
+      <div
+        :class="classes.grid"
+        :style="gridStyle"
+        role="group"
+        :aria-labelledby="labelId"
+      >
+        <div v-for="(cell, c) in cells"
+          :class="classes.cell(cell)"
+          :style="cell.style"
+          v-bind="cell.attrs"
+          :data-col="cell.col"
+          :data-row="cell.row"
+          :data-col-start="cell.colStart"
+          :data-col-end="cell.colEnd"
+          :data-row-start="cell.rowStart"
+          :data-row-end="cell.rowEnd"
+        >
+          <div
+            v-if="cell.schema"
+            :class="classes.fieldWrapper(cell)"
+          >
+            <slot :name="cell.slot">
+              <component :is="cell.component"
+                :name="cell.name"
+                :key="cell.name"
+                v-bind="cell.schema"
+              />
+            </slot>
+          </div>
+          <div v-else :class="classes.textWrapper(cell)">
+            <slot :name="cell.slot">
+              <span
+                v-if="cell.content"
+                :class="classes.text"
+                v-html="cell.content"
+              />
+            </slot>
+          </div>
+        </div>
       </div>
     </template>
 
