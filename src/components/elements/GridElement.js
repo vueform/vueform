@@ -19,7 +19,6 @@ import useGrid from './../../composables/elements/useGrid'
 import { group as useValue } from './../../composables/elements/useValue'
 import { group as useDefault } from './../../composables/elements/useDefault'
 import { group as usePath } from './../../composables/elements/usePath'
-import { group as useValidation } from './../../composables/elements/useValidation'
 import { group as useChildren } from './../../composables/elements/useChildren'
 import { group as useData } from './../../composables/elements/useData'
 import { group as useWatchValue } from './../../composables/elements/useWatchValue'
@@ -27,6 +26,7 @@ import { group as useConditions } from './../../composables/useConditions'
 import { object as useNullValue } from './../../composables/elements/useNullValue'
 
 import { grid as useBaseElement } from './../../composables/elements/useBaseElement'
+import { grid as useValidation } from './../../composables/elements/useValidation'
 
 import BaseElement from './../../mixins/BaseElement'
 import HasView from './../../mixins/HasView'
@@ -132,6 +132,7 @@ export default {
       useChildren,
       useDefault,
       useLabel,
+      useGrid,
       useValidation,
       useValue,
       useElements,
@@ -145,7 +146,6 @@ export default {
       useA11y,
       useWatchValue,
       useFocus,
-      useGrid,
     ]
     context.slots = [
       'label', 'info', 'required', 'description',

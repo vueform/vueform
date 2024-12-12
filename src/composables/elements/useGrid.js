@@ -28,28 +28,27 @@ const base = function(props, context, dependencies)
 
   // ============== COMPUTED ==============
 
-  const isTableView = computed(() => {
-    return presets.value.includes('grid-table')
-  })
+  const cells = computed(() => {
+    const grid = resolvedRows.value
 
-  const gridStyle = computed(() => {
-    const colWidths = []
+    const cells = []
 
-    for (let c = 0; c < parseInt(cols.value); c++) {
-      colWidths.push(widths.value[c] || '1fr')
-    }
+    walkCells(resolvedRows.value, ({ field, colspan, rowspan, colIndex, rowIndex, rowStart, colStart, rowEnd, colEnd }) => {
+      cells.push({
+        ...field,
+        col: colIndex,
+        row: rowIndex,
+        colStart,
+        rowStart,
+        colEnd,
+        rowEnd,
+        style: colspan > 1 || rowspan > 1
+          ? { 'grid-area': `${rowStart + 1} / ${colStart + 1} / ${rowEnd + 2} / ${colEnd + 2}` }
+          : {}
+      })
+    })
 
-    return {
-      'grid-template-columns': colWidths.join(' '),
-      'grid-template-rows': `repeat(${rows.value}, auto)`,
-      'min-width': typeof minWidth.value === 'number'
-        ? `${minWidth.value}px`
-        : minWidth.value,
-      'max-width': typeof maxWidth.value === 'number'
-        ? maxWidth.value > 0 ? `${maxWidth.value}px` : undefined
-        : maxWidth.value,
-
-    }
+    return cells
   })
 
   const resolvedRows = computed(() => {
@@ -87,7 +86,6 @@ const base = function(props, context, dependencies)
             name: content.name || resolveComponentName(r, c),
             schema: {
               ...content,
-              displayErrors: false,
               presets: presets.value,
             },
           }
@@ -102,27 +100,28 @@ const base = function(props, context, dependencies)
     return resolvedRows
   })
 
-  const cells = computed(() => {
-    const grid = resolvedRows.value
+  const gridStyle = computed(() => {
+    const colWidths = []
 
-    const cells = []
+    for (let c = 0; c < parseInt(cols.value); c++) {
+      colWidths.push(widths.value[c] || '1fr')
+    }
 
-    walkCells(resolvedRows.value, ({ field, colspan, rowspan, colIndex, rowIndex, rowStart, colStart, rowEnd, colEnd }) => {
-      cells.push({
-        ...field,
-        col: colIndex,
-        row: rowIndex,
-        colStart,
-        rowStart,
-        colEnd,
-        rowEnd,
-        style: colspan > 1 || rowspan > 1
-          ? { 'grid-area': `${rowStart + 1} / ${colStart + 1} / ${rowEnd + 2} / ${colEnd + 2}` }
-          : {}
-      })
-    })
+    return {
+      'grid-template-columns': colWidths.join(' '),
+      'grid-template-rows': `repeat(${rows.value}, auto)`,
+      'min-width': typeof minWidth.value === 'number'
+        ? `${minWidth.value}px`
+        : minWidth.value,
+      'max-width': typeof maxWidth.value === 'number'
+        ? maxWidth.value > 0 ? `${maxWidth.value}px` : undefined
+        : maxWidth.value,
 
-    return cells
+    }
+  })
+
+  const isTableView = computed(() => {
+    return presets.value.includes('grid-table')
   })
 
   // ============== METHODS ===============

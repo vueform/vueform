@@ -268,6 +268,7 @@ export default {
   'grid-table': {
     addClasses: {
       GridElement: {
+        container: '[&>div>div>.form-inner-wrapper-after]:!block [&>div>div>.form-inner-wrapper-before]:!block [&>div>label.form-element-label]:!flex',
         grid: 'form-border-width-table !border-l-0 !border-t-0 form-border-color-table',
         cell: 'form-border-width-table !border-r-0 !border-b-0 form-border-color-table p-0 form-bg-input',
       },
@@ -282,7 +283,7 @@ export default {
         tag_lg: 'form-p-input-lg',
       },
       ElementLabel: {
-        container: 'hidden',
+        container: 'hidden form-element-label',
       },
       CheckboxElement: {
         wrapper_sm: 'form-p-input-sm',

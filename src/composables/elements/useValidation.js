@@ -728,6 +728,88 @@ const list = function(props, context, dependencies)
   }
 }
 
+
+
+const grid = function(props, context, dependencies)
+{
+  // ============ DEPENDENCIES ============
+  
+  const {
+    state,
+    Validators,
+    messageBag,
+    resetting,
+    dirty,
+    validated,
+    invalid,
+    pending,
+    debouncing,
+    busy,
+    isRequired,
+    useCustomFilled,
+    isFilled,
+    validatorErrors,
+    childrenErrors,
+    errors,
+    validationRules,
+    validate,
+    validateValidators,
+    validateChildren,
+    dirt,
+    clean,
+    clearMessages,
+    resetValidators,
+    initMessageBag,
+    initValidation,
+    reinitValidation,
+  } = list(props, context, dependencies)
+  
+  const {
+    form$,
+    children$,
+    isTableView,
+  } = dependencies
+  
+  // ============== COMPUTED ==============
+  
+  const error = computed(() => {
+    return isTableView.value
+      ? head(messageBag.value.errors)
+      : head(validatorErrors.value)
+  })
+  
+  return {
+    state,
+    Validators,
+    messageBag,
+    resetting,
+    dirty,
+    validated,
+    invalid,
+    pending,
+    debouncing,
+    busy,
+    isRequired,
+    useCustomFilled,
+    isFilled,
+    validatorErrors,
+    childrenErrors,
+    errors,
+    error,
+    validationRules,
+    validate,
+    validateValidators,
+    validateChildren,
+    dirt,
+    clean,
+    clearMessages,
+    resetValidators,
+    initMessageBag,
+    initValidation,
+    reinitValidation,
+  }
+}
+
 const multilingual = function(props, context, dependencies)
 {
   const {
@@ -1506,6 +1588,7 @@ export {
   location,
   text,
   matrix,
+  grid,
 }
 
 export default base
