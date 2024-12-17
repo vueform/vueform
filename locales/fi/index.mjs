@@ -62,52 +62,52 @@ export default {
     "datepicker": {
       "weekdays": {
         "shorthand": [
-          "Su",
-          "Ma",
-          "Ti",
-          "Ke",
-          "To",
-          "Pe",
-          "La"
+          "su",
+          "ma",
+          "ti",
+          "ke",
+          "to",
+          "pe",
+          "la"
         ],
         "longhand": [
-          "Sunnuntai",
-          "Maanantai",
-          "Tiistai",
-          "Keskiviikko",
-          "Torstai",
-          "Perjantai",
-          "Lauantai"
+          "sunnuntai",
+          "maanantai",
+          "tiistai",
+          "keskiviikko",
+          "torstai",
+          "perjantai",
+          "lauantai"
         ]
       },
       "months": {
         "shorthand": [
-          "Tammi",
-          "Helmi",
-          "Maalis",
-          "Huhti",
-          "Touko",
-          "Kesä",
-          "Heinä",
-          "Elo",
-          "Syys",
-          "Loka",
-          "Marras",
-          "Joulu"
+          "tammi",
+          "helmi",
+          "maalis",
+          "huhti",
+          "touko",
+          "kesä",
+          "heinä",
+          "elo",
+          "syys",
+          "loka",
+          "marras",
+          "joulu"
         ],
         "longhand": [
-          "Tammikuu",
-          "Helmikuu",
-          "Maaliskuu",
-          "Huhtikuu",
-          "Toukokuu",
-          "Kesäkuu",
-          "Heinäkuu",
-          "Elokuu",
-          "Syyskuu",
-          "Lokakuu",
-          "Marraskuu",
-          "Joulukuu"
+          "tammikuu",
+          "helmikuu",
+          "maaliskuu",
+          "huhtikuu",
+          "toukokuu",
+          "kesäkuu",
+          "heinäkuu",
+          "elokuu",
+          "syyskuu",
+          "lokakuu",
+          "marraskuu",
+          "joulukuu"
         ]
       },
       "daysInMonth": [
@@ -124,7 +124,7 @@ export default {
         30,
         31
       ],
-      "firstDayOfWeek": 0,
+      "firstDayOfWeek": 1,
       "ordinal": function () {
         return ".";
       },
