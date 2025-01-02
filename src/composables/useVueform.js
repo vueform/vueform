@@ -1141,22 +1141,19 @@ const base = function(props, context, dependencies = {})
       return
     }
 
-    const findFirstInvalid$ = (schema, prefix = '') => {
+    const findFirstInvalid$ = (elements$) => {
       let firstInvalid$
 
-      Object.keys(schema).forEach((key) => {
+      Object.keys(elements$).forEach((key) => {
         if (firstInvalid$) {
           return
         }
 
-        const path = prefix ? `${prefix}.${key}` : key
-        const e$ = el$(path)
+        const e$ = elements$[key]
 
         if (e$ && !e$.isStatic && e$.available && e$.invalid) {
-          if (e$.isObjectType || e$.isGroupType) {
-            firstInvalid$ = findFirstInvalid$(e$.schema, path)
-          } else if (e$.isListType) {
-            firstInvalid$ = findFirstInvalid$(e$.children$, path)
+          if (e$.isObjectType || e$.isGroupType || e$.isListType || e$.isGridType) {
+            firstInvalid$ = findFirstInvalid$(e$.children$)
           } else {
             firstInvalid$ = e$
           }
@@ -1166,7 +1163,7 @@ const base = function(props, context, dependencies = {})
       return firstInvalid$
     }
 
-    const firstInvalid$ = findFirstInvalid$(orderedSchema.value)
+    const firstInvalid$ = findFirstInvalid$(elements$.value)
 
     if (!firstInvalid$) {
       return
