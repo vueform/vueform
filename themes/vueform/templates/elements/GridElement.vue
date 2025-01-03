@@ -145,6 +145,7 @@
   display: flex;
   min-height: var(--vf-min-height-input);
   padding: var(--vf-py-input) var(--vf-px-input);
+  overflow-wrap: break-word;
 }
 
 .vf-grid-text-wrapper-sm {
@@ -191,5 +192,9 @@
 
 .vf-grid-text-wrapper-baseline {
   align-items: stretch;
+}
+
+.vf-grid-text {
+  width: 100%;
 }
 </style>

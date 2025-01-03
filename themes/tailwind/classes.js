@@ -566,7 +566,7 @@ export default {
     fieldWrapper_middle: 'items-center',
     fieldWrapper_bottom: 'items-end',
     fieldWrapper_baseline: 'items-stretch',
-    textWrapper: 'w-full h-full flex',
+    textWrapper: 'w-full h-full flex break-words',
     textWrapper_sm: 'form-min-h-input-height-sm form-p-input-sm',
     textWrapper_md: 'form-min-h-input-height form-p-input',
     textWrapper_lg: 'form-min-h-input-height-lg form-p-input-lg',
@@ -578,7 +578,7 @@ export default {
     textWrapper_middle: 'items-center',
     textWrapper_bottom: 'items-end',
     textWrapper_baseline: 'items-stretch',
-    text: '',
+    text: 'w-full',
     $container: (classes, { scrollable }) => ([
       classes.container,
       scrollable ? classes.container_scrollable : null,
