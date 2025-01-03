@@ -1,5 +1,17 @@
 [//]: # (Don't use <tags>)
 
+## v1.12.1
+
+> `2025-01-03`
+
+### 🎉 Feature
+- Allow translatable static content.
+- Finish translation (thanks @samimha @kooderi 🙏)
+
+### 🐞 Bug Fixes
+- Grid cell overflow issue fix
+- Scroll to first invalid element fix #381
+
 ## v1.12.0
 
 > `2024-12-12`

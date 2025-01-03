@@ -1,6 +1,6 @@
 /*!
- * Vueform v1.12.0 (https://github.com/vueform/vueform)
- * Copyright (c) 2024 Adam Berecz <adam@vueform.com>
+ * Vueform v1.12.1 (https://github.com/vueform/vueform)
+ * Copyright (c) 2025 Adam Berecz <adam@vueform.com>
  * Licensed under the MIT License
  */
 
@@ -8113,20 +8113,16 @@ var base$1g = function base(props, context) {
     if (!options.value.scrollToInvalid) {
       return;
     }
-    var _findFirstInvalid$ = function findFirstInvalid$(schema) {
-      var prefix = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
+    var findFirstInvalid$ = elements$ => {
       var firstInvalid$;
-      Object.keys(schema).forEach(key => {
+      Object.keys(elements$).forEach(key => {
         if (firstInvalid$) {
           return;
         }
-        var path = prefix ? "".concat(prefix, ".").concat(key) : key;
-        var e$ = el$(path);
+        var e$ = elements$[key];
         if (e$ && !e$.isStatic && e$.available && e$.invalid) {
-          if (e$.isObjectType || e$.isGroupType) {
-            firstInvalid$ = _findFirstInvalid$(e$.schema, path);
-          } else if (e$.isListType) {
-            firstInvalid$ = _findFirstInvalid$(e$.children$, path);
+          if (e$.isObjectType || e$.isGroupType || e$.isListType || e$.isGridType) {
+            firstInvalid$ = findFirstInvalid$(e$.children$);
           } else {
             firstInvalid$ = e$;
           }
@@ -8134,7 +8130,7 @@ var base$1g = function base(props, context) {
       });
       return firstInvalid$;
     };
-    var firstInvalid$ = _findFirstInvalid$(orderedSchema.value);
+    var firstInvalid$ = findFirstInvalid$(elements$.value);
     if (!firstInvalid$) {
       return;
     }
@@ -10147,7 +10143,7 @@ function shouldApplyPlugin (name, plugin) {
 }
 
 var name = "@vueform/vueform";
-var version$1 = "1.12.0";
+var version$1 = "1.12.1";
 var description = "Open-Source Form Framework for Vue";
 var homepage = "https://vueform.com";
 var license = "MIT";
@@ -44087,8 +44083,13 @@ var base$6 = function base(props, context, dependencies) {
 
   var {
     fieldSlots,
-    el$
+    el$,
+    form$
   } = dependencies;
+
+  // =============== INJECT ===============
+
+  var config$ = inject('config$');
 
   // ============== COMPUTED ==============
 
@@ -44108,7 +44109,17 @@ var base$6 = function base(props, context, dependencies) {
    * @type {any}
    */
   var resolvedContent = computed(() => {
-    return typeof content.value === 'function' ? content.value(el$.value) : content.value;
+    var _content$value, _content$value2;
+    var resolvedContent = typeof content.value === 'function' ? content.value(el$.value) : content.value;
+
+    // Content is multilingual
+    if (content.value && typeof content.value === 'object' && !((_content$value = content.value) !== null && _content$value !== void 0 && _content$value.render) && !((_content$value2 = content.value) !== null && _content$value2 !== void 0 && _content$value2.template)) {
+      resolvedContent = Object.keys(resolvedContent).reduce((prev, curr) => _objectSpread2$1(_objectSpread2$1({}, prev), {}, {
+        [curr]: typeof resolvedContent[curr] === 'function' ? resolvedContent[curr](el$.value) : resolvedContent[curr]
+      }), {});
+      resolvedContent = localize(resolvedContent, config$.value, form$.value);
+    }
+    return resolvedContent;
   });
 
   /**
@@ -44118,11 +44129,11 @@ var base$6 = function base(props, context, dependencies) {
    * @private
    */
   var componentContent = computed(() => {
-    var _content$value, _content$value2;
-    if (!((_content$value = content.value) !== null && _content$value !== void 0 && _content$value.render) && !((_content$value2 = content.value) !== null && _content$value2 !== void 0 && _content$value2.template)) {
-      return content.value;
+    var _resolvedContent$valu, _resolvedContent$valu2;
+    if (!((_resolvedContent$valu = resolvedContent.value) !== null && _resolvedContent$valu !== void 0 && _resolvedContent$valu.render) && !((_resolvedContent$valu2 = resolvedContent.value) !== null && _resolvedContent$valu2 !== void 0 && _resolvedContent$valu2.template)) {
+      return resolvedContent.value;
     }
-    return resolveComponent(content.value);
+    return resolveComponent(resolvedContent.value);
   });
 
   /**
