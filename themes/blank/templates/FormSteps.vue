@@ -1,6 +1,6 @@
 <template>
-  <div :class="classes.container" role="tablist">
-    <ul :class="classes.wrapper">
+  <div :class="classes.container">
+    <ul :class="classes.wrapper" role="tablist">
       <slot>
         <FormStep
           v-for="(step, name) in steps"
