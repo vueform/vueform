@@ -282,6 +282,8 @@ const base = function(props, context, dependencies)
       if (document.activeElement.closest('[data-dropdown-for]')) {
         focus()
       }
+    } else {
+      el$.value.update(option.n)
     }
     
     context.emit('select', option, el$.value)
