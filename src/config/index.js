@@ -67,6 +67,7 @@ const config = {
    * Condition
    */
   operators: {},
+  strictConditions: false,
 
   /**
    * Submitting

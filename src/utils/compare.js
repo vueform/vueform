@@ -9,6 +9,8 @@ export default function(actual, operator, expected, el$, form$) {
     return false
   }
 
+  const strict = form$.$vueform.config.strictConditions
+
   actual = Array.isArray(actual) ? actual.map(e => normalize(e)) : normalize(actual)
   expected = Array.isArray(expected) ? expected.map(e => normalize(e)) : normalize(expected)
 
@@ -22,18 +24,30 @@ export default function(actual, operator, expected, el$, form$) {
 
     case '>=':
       return isArray(actual)
-        ? actual.every(a => a >= expected)
-        : actual >= expected
+        ? strict
+          ? actual.every(a => a >= expected && a !== null && a !== undefined && a !== '')
+          : actual.every(a => a >= expected)
+        : strict
+          ? actual >= expected && actual !== null && actual !== undefined && actual !== ''
+          : actual >= expected
 
     case '<':
       return isArray(actual)
-        ? actual.every(a => a < expected)
-        : actual < expected
+        ? strict
+          ? actual.every(a => a < expected && a !== null && a !== undefined && a !== '')
+          : actual.every(a => a < expected)
+        : strict
+          ? actual < expected && actual !== null && actual !== undefined && actual !== ''
+          : actual < expected
 
     case '<=':
       return isArray(actual)
-        ? actual.every(a => a <= expected)
-        : actual <= expected
+        ? strict
+          ? actual.every(a => a <= expected && a !== null && a !== undefined && a !== '')
+          : actual.every(a => a <= expected)
+        : strict
+          ? actual <= expected && actual !== null && actual !== undefined && actual !== ''
+          : actual <= expected
 
     case 'between':
       return actual > expected[0] && actual < expected[1]
