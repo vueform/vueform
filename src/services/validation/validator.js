@@ -33,7 +33,7 @@ const Validator = class {
     this.watchers = {}
     
     this.dependents.forEach((dependent) => {
-      watch(computed(() => get(this.form$.data, dependent)), () => {
+      watch(computed(() => this.form$.el$(dependent).value), () => {
         if (this.element$.validated) {
 
           // we need to revalidate the whole element

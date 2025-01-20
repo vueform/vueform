@@ -135,7 +135,7 @@ const Factory = class {
     )
 
     return (form$, Validator, el$) => {
-      var actual = get(form$.requestData, field)
+      var actual = form$.el$(field)?.value
       var expected = value
 
       return compare(actual, operator, expected, this.element$, form$)
