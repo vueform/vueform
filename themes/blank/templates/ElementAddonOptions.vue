@@ -61,6 +61,8 @@
             v-for="(option, index) in options"
             :class="classes.optionWrapper"
             :key="option.value"
+            @mouseover="handleOptionPoint(option)"
+            @click="handleOptionClick(option)"
           >
             <component
               v-if="option.display && typeof option.display === 'object' && [option.display.render || option.display.template]"
@@ -72,8 +74,6 @@
               :pointed="pointed.index === option.index"
               :data-index="option.index"
               :data-selected="selected.index === option.index"
-              @mouseover="handleOptionPoint(option)"
-              @click="handleOptionClick(option)"
 
               role="option"
               :tabindex="pointed.index === option.index ? 0 : -1"
@@ -86,8 +86,6 @@
               :class="classes.option(option, index, el$)"
               :data-index="option.index"
               :data-selected="selected.index === option.index"
-              @mouseover="handleOptionPoint(option)"
-              @click="handleOptionClick(option)"
 
               role="option"
               :tabindex="pointed.index === option.index ? 0 : -1"
@@ -100,8 +98,6 @@
               :class="classes.option(option, index, el$)"
               :data-index="option.index"
               :data-selected="selected.index === option.index"
-              @mouseover="handleOptionPoint(option)"
-              @click="handleOptionClick(option)"
 
               role="option"
               :tabindex="pointed.index === option.index ? 0 : -1"
