@@ -1,5 +1,5 @@
 /*!
- * Vueform v1.12.1 (https://github.com/vueform/vueform)
+ * Vueform v1.12.2 (https://github.com/vueform/vueform)
  * Copyright (c) 2025 Adam Berecz <adam@vueform.com>
  * Licensed under the MIT License
  */
@@ -9400,7 +9400,7 @@ var Validator = class {
     this.lastValue = null;
     this.watchers = {};
     this.dependents.forEach(dependent => {
-      watch(computed(() => get_1(this.form$.data, dependent)), () => {
+      watch(computed(() => this.form$.el$(dependent).value), () => {
         if (this.element$.validated) {
           // we need to revalidate the whole element
           if (this.name === 'nullable') {
@@ -10143,7 +10143,7 @@ function shouldApplyPlugin (name, plugin) {
 }
 
 var name = "@vueform/vueform";
-var version$1 = "1.12.1";
+var version$1 = "1.12.2";
 var description = "Open-Source Form Framework for Vue";
 var homepage = "https://vueform.com";
 var license = "MIT";
@@ -10698,6 +10698,7 @@ function compare (actual, operator, expected, el$, form$) {
   if (!operator) {
     return false;
   }
+  var strict = form$.$vueform.config.strictConditions;
   actual = Array.isArray(actual) ? actual.map(e => normalize(e)) : normalize(actual);
   expected = Array.isArray(expected) ? expected.map(e => normalize(e)) : normalize(expected);
   var moment = form$.$vueform.services.moment;
@@ -10705,11 +10706,11 @@ function compare (actual, operator, expected, el$, form$) {
     case '>':
       return isArray_1(actual) ? actual.every(a => a > expected) : actual > expected;
     case '>=':
-      return isArray_1(actual) ? actual.every(a => a >= expected) : actual >= expected;
+      return isArray_1(actual) ? strict ? actual.every(a => a >= expected && a !== null && a !== undefined && a !== '') : actual.every(a => a >= expected) : strict ? actual >= expected && actual !== null && actual !== undefined && actual !== '' : actual >= expected;
     case '<':
-      return isArray_1(actual) ? actual.every(a => a < expected) : actual < expected;
+      return isArray_1(actual) ? strict ? actual.every(a => a < expected && a !== null && a !== undefined && a !== '') : actual.every(a => a < expected) : strict ? actual < expected && actual !== null && actual !== undefined && actual !== '' : actual < expected;
     case '<=':
-      return isArray_1(actual) ? actual.every(a => a <= expected) : actual <= expected;
+      return isArray_1(actual) ? strict ? actual.every(a => a <= expected && a !== null && a !== undefined && a !== '') : actual.every(a => a <= expected) : strict ? actual <= expected && actual !== null && actual !== undefined && actual !== '' : actual <= expected;
     case 'between':
       return actual > expected[0] && actual < expected[1];
     case 'empty':
@@ -10936,7 +10937,8 @@ var Factory = class {
     var operator = condition.length == 3 || ['empty', 'not_empty', 'today'].indexOf(condition[1]) !== -1 ? condition[1] : '==';
     var value = condition.length == 3 ? condition[2] : ['empty', 'not_empty', 'today'].indexOf(condition[1]) === -1 ? condition[1] : true;
     return (form$, Validator, el$) => {
-      var actual = get_1(form$.requestData, field);
+      var _form$$el$;
+      var actual = (_form$$el$ = form$.el$(field)) === null || _form$$el$ === void 0 ? void 0 : _form$$el$.value;
       var expected = value;
       return compare(actual, operator, expected, this.element$, form$);
     };
@@ -14184,6 +14186,7 @@ var config = {
    * Condition
    */
   operators: {},
+  strictConditions: false,
   /**
    * Submitting
    */
@@ -14321,7 +14324,7 @@ function installer () {
       });
 
       // replace
-      each(['columns', 'forceLabels', 'displayErrors', 'floatPlaceholders', 'displayErrors', 'displayMessages', 'language', 'locale', 'fallbackLocale', 'orderFrom', 'validateOn', 'formData', 'beforeSend', 'locationProvider', 'classHelpers', 'env', 'usePresets', 'plugins', 'size', 'apiKey', 'forceNumbers', 'scrollToInvalid', 'showRequired', 'scrollOnNext'], attr => {
+      each(['columns', 'forceLabels', 'displayErrors', 'floatPlaceholders', 'displayErrors', 'displayMessages', 'language', 'locale', 'fallbackLocale', 'orderFrom', 'validateOn', 'formData', 'beforeSend', 'locationProvider', 'classHelpers', 'env', 'usePresets', 'plugins', 'size', 'apiKey', 'forceNumbers', 'scrollToInvalid', 'showRequired', 'scrollOnNext', 'strictConditions'], attr => {
         if (config[attr] !== undefined) {
           this.options.config[attr] = config[attr];
         }
@@ -40745,6 +40748,8 @@ var base$a = function base(props, context, dependencies) {
       if (document.activeElement.closest('[data-dropdown-for]')) {
         focus();
       }
+    } else {
+      el$.value.update(option.n);
     }
     context.emit('select', option, el$.value);
   };

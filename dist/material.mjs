@@ -1,5 +1,5 @@
 /*!
- * Vueform v1.12.1 (https://github.com/vueform/vueform)
+ * Vueform v1.12.2 (https://github.com/vueform/vueform)
  * Copyright (c) 2025 Adam Berecz <adam@vueform.com>
  * Licensed under the MIT License
  */
@@ -490,11 +490,11 @@ function render$X(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_FormStep = resolveComponent("FormStep");
 
   return (openBlock(), createElementBlock("div", {
-    class: normalizeClass(_ctx.classes.container),
-    role: "tablist"
+    class: normalizeClass(_ctx.classes.container)
   }, [
     createElementVNode("ul", {
-      class: normalizeClass(_ctx.classes.wrapper)
+      class: normalizeClass(_ctx.classes.wrapper),
+      role: "tablist"
     }, [
       renderSlot(_ctx.$slots, "default", {}, () => [
         (openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.steps, (step, name) => {

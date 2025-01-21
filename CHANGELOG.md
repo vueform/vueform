@@ -1,5 +1,17 @@
 [//]: # (Don't use <tags>)
 
+## v1.12.2
+
+> `2025-01-21`
+
+### 🎉 Feature
+- Added `strictConditions` config options to solve #347.
+
+### 🐞 Bug Fixes
+- Conditional rules nested path fix #355
+- Phone number prefix not inserted without mask fix #360
+- Form steps aria label misplacement fix #378
+
 ## v1.12.1
 
 > `2025-01-03`

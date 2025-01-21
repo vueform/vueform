@@ -1,5 +1,5 @@
 /*!
- * Vueform v1.12.1 (https://github.com/vueform/vueform)
+ * Vueform v1.12.2 (https://github.com/vueform/vueform)
  * Copyright (c) 2025 Adam Berecz <adam@vueform.com>
  * Licensed under the MIT License
  */
@@ -884,32 +884,28 @@ var __vue_render__$X = function () {
   var _vm = this;
   var _h = _vm.$createElement;
   var _c = _vm._self._c || _h;
-  return _c(
-    "div",
-    { class: _vm.classes.container, attrs: { role: "tablist" } },
-    [
-      _c(
-        "ul",
-        { class: _vm.classes.wrapper },
-        [
-          _vm._t("default", function () {
-            return _vm._l(_vm.steps, function (step, name) {
-              return _c(
+  return _c("div", { class: _vm.classes.container }, [
+    _c(
+      "ul",
+      { class: _vm.classes.wrapper, attrs: { role: "tablist" } },
+      [
+        _vm._t("default", function () {
+          return _vm._l(_vm.steps, function (step, name) {
+            return _c(
+              "FormStep",
+              _vm._b(
+                { key: name, attrs: { name: name } },
                 "FormStep",
-                _vm._b(
-                  { key: name, attrs: { name: name } },
-                  "FormStep",
-                  step,
-                  false
-                )
+                step,
+                false
               )
-            })
-          }),
-        ],
-        2
-      ),
-    ]
-  )
+            )
+          })
+        }),
+      ],
+      2
+    ),
+  ])
 };
 var __vue_staticRenderFns__$X = [];
 __vue_render__$X._withStripped = true;
