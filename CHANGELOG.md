@@ -1,5 +1,12 @@
 [//]: # (Don't use <tags>)
 
+## v1.12.3
+
+> `2025-01-21`
+
+### 🐞 Bug Fixes
+- Move phone list option hover/click evts to wrapper.
+
 ## v1.12.2
 
 > `2025-01-21`

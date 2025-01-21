@@ -1,5 +1,5 @@
 /*!
- * Vueform v1.12.2 (https://github.com/vueform/vueform)
+ * Vueform v1.12.3 (https://github.com/vueform/vueform)
  * Copyright (c) 2025 Adam Berecz <adam@vueform.com>
  * Licensed under the MIT License
  */
@@ -1831,8 +1831,9 @@ const _hoisted_3$f = ["innerHTML"];
 const _hoisted_4$b = ["innerHTML"];
 const _hoisted_5$6 = ["innerHTML"];
 const _hoisted_6$5 = ["data-dropdown-for", "id"];
-const _hoisted_7$3 = ["innerHTML", "data-index", "data-selected", "onMouseover", "onClick", "tabindex", "aria-selected"];
-const _hoisted_8$2 = ["innerHTML", "data-index", "data-selected", "onMouseover", "onClick", "tabindex", "aria-selected"];
+const _hoisted_7$3 = ["onMouseover", "onClick"];
+const _hoisted_8$2 = ["innerHTML", "data-index", "data-selected", "tabindex", "aria-selected"];
+const _hoisted_9$2 = ["innerHTML", "data-index", "data-selected", "tabindex", "aria-selected"];
 
 function render$G(_ctx, _cache, $props, $setup, $data, $options) {
   return (openBlock(), createElementBlock("div", {
@@ -1903,7 +1904,9 @@ function render$G(_ctx, _cache, $props, $setup, $data, $options) {
               (openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.options, (option, index) => {
                 return (openBlock(), createElementBlock("div", {
                   class: normalizeClass(_ctx.classes.optionWrapper),
-                  key: option.value
+                  key: option.value,
+                  onMouseover: $event => (_ctx.handleOptionPoint(option)),
+                  onClick: $event => (_ctx.handleOptionClick(option))
                 }, [
                   (option.display && typeof option.display === 'object' && [option.display.render || option.display.template])
                     ? (openBlock(), createBlock(resolveDynamicComponent(option.display), {
@@ -1915,12 +1918,10 @@ function render$G(_ctx, _cache, $props, $setup, $data, $options) {
                         pointed: _ctx.pointed.index === option.index,
                         "data-index": option.index,
                         "data-selected": _ctx.selected.index === option.index,
-                        onMouseover: $event => (_ctx.handleOptionPoint(option)),
-                        onClick: $event => (_ctx.handleOptionClick(option)),
                         role: "option",
                         tabindex: _ctx.pointed.index === option.index ? 0 : -1,
                         "aria-selected": _ctx.selected.index === option.index
-                      }, null, 40 /* PROPS, NEED_HYDRATION */, ["el$", "option", "index", "selected", "pointed", "data-index", "data-selected", "onMouseover", "onClick", "tabindex", "aria-selected"]))
+                      }, null, 8 /* PROPS */, ["el$", "option", "index", "selected", "pointed", "data-index", "data-selected", "tabindex", "aria-selected"]))
                     : (option.display && typeof option.display === 'function')
                       ? (openBlock(), createElementBlock("div", {
                           key: 1,
@@ -1928,25 +1929,21 @@ function render$G(_ctx, _cache, $props, $setup, $data, $options) {
                           class: normalizeClass(_ctx.classes.option(option, index, _ctx.el$)),
                           "data-index": option.index,
                           "data-selected": _ctx.selected.index === option.index,
-                          onMouseover: $event => (_ctx.handleOptionPoint(option)),
-                          onClick: $event => (_ctx.handleOptionClick(option)),
                           role: "option",
                           tabindex: _ctx.pointed.index === option.index ? 0 : -1,
                           "aria-selected": _ctx.selected.index === option.index
-                        }, null, 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_7$3))
+                        }, null, 10 /* CLASS, PROPS */, _hoisted_8$2))
                       : (openBlock(), createElementBlock("div", {
                           key: 2,
                           innerHTML: option.label,
                           class: normalizeClass(_ctx.classes.option(option, index, _ctx.el$)),
                           "data-index": option.index,
                           "data-selected": _ctx.selected.index === option.index,
-                          onMouseover: $event => (_ctx.handleOptionPoint(option)),
-                          onClick: $event => (_ctx.handleOptionClick(option)),
                           role: "option",
                           tabindex: _ctx.pointed.index === option.index ? 0 : -1,
                           "aria-selected": _ctx.selected.index === option.index
-                        }, null, 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_8$2))
-                ], 2 /* CLASS */))
+                        }, null, 10 /* CLASS, PROPS */, _hoisted_9$2))
+                ], 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_7$3))
               }), 128 /* KEYED_FRAGMENT */))
             ], 14 /* CLASS, STYLE, PROPS */, _hoisted_6$5))
           : createCommentVNode("v-if", true)

@@ -1,5 +1,5 @@
 /*!
- * Vueform v1.12.2 (https://github.com/vueform/vueform)
+ * Vueform v1.12.3 (https://github.com/vueform/vueform)
  * Copyright (c) 2025 Adam Berecz <adam@vueform.com>
  * Licensed under the MIT License
  */
@@ -4133,10 +4133,6 @@ const __vue_script__$1v = script$1v;
 //
 //
 //
-//
-//
-//
-//
 
   var script$1u = {
     name: 'ElementAddonOptions',
@@ -4252,7 +4248,18 @@ var __vue_render__$G = function () {
                 _vm._l(_vm.options, function (option, index) {
                   return _c(
                     "div",
-                    { key: option.value, class: _vm.classes.optionWrapper },
+                    {
+                      key: option.value,
+                      class: _vm.classes.optionWrapper,
+                      on: {
+                        mouseover: function ($event) {
+                          return _vm.handleOptionPoint(option)
+                        },
+                        click: function ($event) {
+                          return _vm.handleOptionClick(option)
+                        },
+                      },
+                    },
                     [
                       option.display &&
                       typeof option.display === "object" && [
@@ -4274,14 +4281,6 @@ var __vue_render__$G = function () {
                                 _vm.pointed.index === option.index ? 0 : -1,
                               "aria-selected":
                                 _vm.selected.index === option.index,
-                            },
-                            on: {
-                              mouseover: function ($event) {
-                                return _vm.handleOptionPoint(option)
-                              },
-                              click: function ($event) {
-                                return _vm.handleOptionClick(option)
-                              },
                             },
                           })
                         : option.display && typeof option.display === "function"
@@ -4308,14 +4307,6 @@ var __vue_render__$G = function () {
                                 )
                               ),
                             },
-                            on: {
-                              mouseover: function ($event) {
-                                return _vm.handleOptionPoint(option)
-                              },
-                              click: function ($event) {
-                                return _vm.handleOptionClick(option)
-                              },
-                            },
                           })
                         : _c("div", {
                             class: _vm.classes.option(option, index, _vm.el$),
@@ -4330,14 +4321,6 @@ var __vue_render__$G = function () {
                                 _vm.selected.index === option.index,
                             },
                             domProps: { innerHTML: _vm._s(option.label) },
-                            on: {
-                              mouseover: function ($event) {
-                                return _vm.handleOptionPoint(option)
-                              },
-                              click: function ($event) {
-                                return _vm.handleOptionClick(option)
-                              },
-                            },
                           }),
                     ],
                     1
