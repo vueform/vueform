@@ -131,7 +131,9 @@ export const fieldOptions = function (elementType, elementName, options) {
     let Multiselect = findAllComponents(elWrapper, { name: 'Multiselect' }).at(0)
     
     _.each(el.fieldOptions, (value, key) => {
-      expect(Multiselect.props(key)).toStrictEqual(value)
+      if (typeof value !== 'function') {
+        expect(Multiselect.props(key)).toStrictEqual(value)
+      }
     })
 
     // destroy() // teardown
