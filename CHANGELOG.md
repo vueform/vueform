@@ -1,5 +1,15 @@
 [//]: # (Don't use <tags>)
 
+## v1.12.4
+
+> `2025-03-01`
+
+### 🐞 Bug Fixes
+- Conditions didn't respect parent unavailability #384
+- Don't throw error if conditional rule dependent isn't found
+- Empty Validators if rules are empty
+- Show translated placeholders for native selects
+
 ## v1.12.3
 
 > `2025-01-21`
