@@ -309,6 +309,7 @@ const base = function(props, context, dependencies)
   const initValidation = () => {
     /* istanbul ignore else */
     if (!validationRules.value) {
+      Validators.value = []
       return
     }
     
@@ -319,7 +320,7 @@ const base = function(props, context, dependencies)
     validatorFactory.value = new form$.value.$vueform.services.validation.factory(path.value, form$.value)
     
     Validators.value = []
-    
+
     each(validatorFactory.value.makeAll(validationRules.value), (Validator) => {
       Validators.value.push(Validator)
     })
