@@ -14003,7 +14003,7 @@ var __vue_render__$r = function () {
                     !_vm.isDisabled &&
                     _vm.type == "select"
                       ? _c("span", { class: _vm.classes.inputPlaceholder }, [
-                          _vm._v(_vm._s(_vm.placeholder)),
+                          _vm._v(_vm._s(_vm.Placeholder)),
                         ])
                       : _vm._e(),
                   ])
@@ -15761,7 +15761,7 @@ var __vue_render__$m = function () {
                     !_vm.isDisabled &&
                     _vm.type == "select"
                       ? _c("span", { class: _vm.classes.inputPlaceholder }, [
-                          _vm._v(_vm._s(_vm.placeholder)),
+                          _vm._v(_vm._s(_vm.Placeholder)),
                         ])
                       : _vm._e(),
                     _vm._v(" "),

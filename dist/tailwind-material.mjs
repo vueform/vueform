@@ -7387,7 +7387,7 @@ function render$r(_ctx, _cache, $props, $setup, $data, $options) {
               ? (openBlock(), createElementBlock("span", {
                   key: 0,
                   class: normalizeClass(_ctx.classes.inputPlaceholder)
-                }, toDisplayString(_ctx. placeholder), 3 /* TEXT, CLASS */))
+                }, toDisplayString(_ctx.Placeholder), 3 /* TEXT, CLASS */))
               : createCommentVNode("v-if", true)
           ], 2 /* CLASS */))
         : (openBlock(), createElementBlock(Fragment, { key: 2 }, [
@@ -7851,7 +7851,7 @@ function render$m(_ctx, _cache, $props, $setup, $data, $options) {
               ? (openBlock(), createElementBlock("span", {
                   key: 0,
                   class: normalizeClass(_ctx.classes.inputPlaceholder)
-                }, toDisplayString(_ctx. placeholder), 3 /* TEXT, CLASS */))
+                }, toDisplayString(_ctx.Placeholder), 3 /* TEXT, CLASS */))
               : createCommentVNode("v-if", true),
             createElementVNode("span", {
               class: normalizeClass(_ctx.classes.inputCaret)

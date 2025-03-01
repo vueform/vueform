@@ -9400,7 +9400,10 @@ var Validator = class {
     this.lastValue = null;
     this.watchers = {};
     this.dependents.forEach(dependent => {
-      watch(computed(() => this.form$.el$(dependent).value), () => {
+      watch(computed(() => {
+        var _this$form$$el$;
+        return (_this$form$$el$ = this.form$.el$(dependent)) === null || _this$form$$el$ === void 0 ? void 0 : _this$form$$el$.value;
+      }), () => {
         if (this.element$.validated) {
           // we need to revalidate the whole element
           if (this.name === 'nullable') {
@@ -15432,7 +15435,6 @@ var FormTabs = {
 
 var base$19 = function base(props, context, dependencies) {
   var {
-    parent,
     conditions
   } = toRefs(props);
 
@@ -15441,6 +15443,7 @@ var base$19 = function base(props, context, dependencies) {
   var form$ = dependencies.form$;
   var path = dependencies.path || ref(null);
   var el$ = dependencies.el$ || ref(undefined);
+  var parent = dependencies.parent;
 
   // ================ DATA ================
 
@@ -26262,6 +26265,7 @@ var base$H = function base(props, context, dependencies) {
   var initValidation = () => {
     /* istanbul ignore else */
     if (!validationRules.value) {
+      Validators.value = [];
       return;
     }
 
