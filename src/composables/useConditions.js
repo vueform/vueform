@@ -4,7 +4,6 @@ import { computed, toRefs, ref } from 'vue'
 const base = function(props, context, dependencies)
 {
   const {
-    parent,
     conditions,
   } = toRefs(props)
 
@@ -13,6 +12,7 @@ const base = function(props, context, dependencies)
   const form$ = dependencies.form$
   const path = dependencies.path || ref(null)
   const el$ = dependencies.el$ || ref(undefined)
+  const parent = dependencies.parent
 
   // ================ DATA ================
 
