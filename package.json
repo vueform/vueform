@@ -46,7 +46,7 @@
     "./dist/*.css": "./dist/*.css",
     "./tailwind": "./tailwind.js",
     "./tailwind.js": "./tailwind.js",
-    "./tailwind.v4.js": "./tailwind.4v.js",
+    "./tailwind.v4.js": "./tailwind.v4.js",
     "./vite": "./vite.js",
     "./vite.js": "./vite.js",
     "./vite.d.ts": "./vite.d.ts",
