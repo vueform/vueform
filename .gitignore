@@ -61,3 +61,4 @@ Temporary Items
 fixtures-temp
 .pnpm-store
 bun.lockb
+/bun.lock

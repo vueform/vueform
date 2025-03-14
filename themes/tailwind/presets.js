@@ -36,7 +36,6 @@ const replace = {
   groups: {
     container: {
       'form-view-default': 'px-2 py-1',
-      'form-view-tabs': '',
       'form-view-blocks': '[&_label:first-of-type>div]:border-t-0',
       'form-view-tabs': '[&_label:first-of-type>div]:border-l-0',
     },
@@ -224,11 +223,11 @@ export default {
         grid: 'form-border-width-table !border-l-0 !border-t-0 form-border-color-table !gap-0',
         headerFirst: 'form-border-width-table !border-r-0 !border-b-0 form-border-color-table form-bg-table-header',
         header: 'form-border-width-table !border-r-0 form-border-color-table form-bg-table-header form-color-table-header',
-        header_sticky: '-form-mb-border-width-table',
+        header_sticky: 'reduce-by-form-mb-border-width-table',
         header_not_sticky: '!border-b-0',
         headerRemove: 'form-border-width-table !border-r-0 !border-b-0 form-border-color-table form-bg-table-header',
         rowLabel: 'form-border-width-table !border-b-0 form-border-color-table px-2 text-center form-bg-table-header form-color-table-header',
-        rowLabel_sticky: '-form-mr-border-width-table',
+        rowLabel_sticky: 'reduce-by-form-mr-border-width-table',
         rowLabel_not_sticky: '!border-r-0',
         cell: 'form-border-width-table !border-r-0 !border-b-0 form-border-color-table form-bg-input',
         cellWrapper_stretch: '!items-stretch',
