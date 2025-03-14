@@ -52,17 +52,19 @@ const upperFirst = (string) => {
 }
 
 const vueform = plugin((context) => {
-  const { theme, addBase, addUtilities, addVariant, e, config } = context
+  const { theme, addBase, addUtilities, addVariant, config } = context
+  // @TODO check what was escaped in tailwind3 and try to replicate it or use a similar method
+  const e = (s) => s;
   const prefix = context.matchComponents === undefined ? context.prefix : s => s
   const version = context.matchComponents === undefined ? 2 : 3
-  const vfDarkMode = typeof config === 'function' && config()?.vfDarkMode === false ? false : true
+  const vfDarkMode = !(typeof config === 'function' && config()?.vfDarkMode === false)
   const darkMode = typeof config === 'function' && config()?.darkMode ? config()?.darkMode : false
 
   const darkModeSelector = darkMode === 'class' ? '.dark, .dark *, .dark :before, .dark :after' : (
     Array.isArray(darkMode) ? darkMode[1] : '@media (prefers-color-scheme: dark)'
   )
 
-  const preflight = config('corePlugins').indexOf('preflight') !== -1
+  const preflight = true;
 
   // Testing output
   // fs.writeFileSync(path.resolve(__dirname, './tw.txt'),  ? 'a' : 'b')
@@ -1332,10 +1334,6 @@ const vueform = plugin((context) => {
 
         plain[`.${e(`form-${side}-${gutterSize}gutter${suffix}`)}`] = {
           [`${attr[side]}`]: `calc(var(--vf-gutter${size}) * ${gutterSize||1})`
-        }
-        
-        plain[`.${e(`-form-${side}-${gutterSize}gutter${suffix}`)}`] = {
-          [`${attr[side]}`]: `calc(var(--vf-gutter${size}) * (-${gutterSize||1}))`
         }
       })
     })

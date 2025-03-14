@@ -10191,6 +10191,7 @@ var exports = {
 	"./dist/*.css": "./dist/*.css",
 	"./tailwind": "./tailwind.js",
 	"./tailwind.js": "./tailwind.js",
+	"./tailwind.4v.js": "./tailwind.4v.js",
 	"./vite": "./vite.js",
 	"./vite.js": "./vite.js",
 	"./vite.d.ts": "./vite.d.ts",
@@ -41530,8 +41531,8 @@ var SelectElement = {
 };
 
 /*!
- * Signature Pad v5.0.4 | https://github.com/szimek/signature_pad
- * (c) 2024 Szymon Nowak | Released under the MIT license
+ * Signature Pad v5.0.5 | https://github.com/szimek/signature_pad
+ * (c) 2025 Szymon Nowak | Released under the MIT license
  */
 
 class Point {
