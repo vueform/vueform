@@ -2258,14 +2258,6 @@ const vueform = plugin((context) => {
         height: '100%',
       }
     },
-    'body[dir="rtl"]': {
-      '.form-bg-icon-check': {
-        '&::after': {
-          left: 'auto',
-          right: 'calc(var(--vf-border-width-checkbox-l) * (-1))',
-        }
-      },
-    }
   }
 
   const focusable = {
@@ -2388,6 +2380,17 @@ const vueform = plugin((context) => {
       top: 'calc(var(--vf-border-width-input-t) * (-1))'
     }
   }
+
+  addBase({
+    'body[dir="rtl"]': {
+      '.form-bg-icon-check': {
+        '&::after': {
+          left: 'auto',
+          right: 'calc(var(--vf-border-width-checkbox-l) * (-1))',
+        }
+      },
+    }
+  });
 
   addUtilities(plain)
   addUtilities(hoverable, ['hover'])
