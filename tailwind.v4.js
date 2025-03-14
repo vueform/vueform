@@ -1335,10 +1335,6 @@ const vueform = plugin((context) => {
         plain[`.${e(`form-${side}-${gutterSize}gutter${suffix}`)}`] = {
           [`${attr[side]}`]: `calc(var(--vf-gutter${size}) * ${gutterSize||1})`
         }
-        
-        plain[`.${e(`-form-${side}-${gutterSize}gutter${suffix}`)}`] = {
-          [`${attr[side]}`]: `calc(var(--vf-gutter${size}) * (-${gutterSize||1}))`
-        }
       })
     })
 
