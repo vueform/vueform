@@ -10191,7 +10191,6 @@ var exports = {
 	"./dist/*.css": "./dist/*.css",
 	"./tailwind": "./tailwind.js",
 	"./tailwind.js": "./tailwind.js",
-	"./tailwind.4v.js": "./tailwind.4v.js",
 	"./vite": "./vite.js",
 	"./vite.js": "./vite.js",
 	"./vite.d.ts": "./vite.d.ts",
@@ -10246,6 +10245,7 @@ var scripts = {
 	"generate:elements-base": "npx babel-node scripts/generate-elements-base.js --presets @babel/preset-env",
 	"generate:elements": "npx babel-node scripts/generate-elements.js --presets @babel/preset-env",
 	"generate:components": "npx babel-node scripts/generate-components.js --presets @babel/preset-env",
+	"generate:tailwindV4": "npx babel-node scripts/generate.tailwind.v4.js --presets @babel/preset-env",
 	generate: "npm run generate:common-features; npm run generate:element-features; npm run generate:elements-base; npm run generate:elements; npm run generate:components; npm run generate:types; npm run fix-locales",
 	"fix-locales": "npx babel-node --presets @babel/preset-env ./scripts/fix-locales.js"
 };
