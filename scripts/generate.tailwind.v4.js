@@ -55,29 +55,34 @@ const upperFirst = (string) => {
     return string.charAt(0).toUpperCase() + string.slice(1)
 }
 
-const cssIfy = (rules, keyTransform = kebabCase) => {
+const cssIfy = (rules, spaces=4, keyTransform = kebabCase) => {
     return Object.keys(rules)
         .reduce(
             (coll, key) =>
                 isObject(rules[key])
-                    ? `${coll}${key} { ${cssIfy(rules[key])} }`
-                    : `${coll}${keyTransform(key)}: ${rules[key]};\n`, "\n"
+                    ? `${coll}${key} { ${cssIfy(rules[key], spaces+2)} }`
+                    : `${coll}${keyTransform(key)}: ${rules[key]};\n${" ".repeat(spaces)}`,
+            `\n${" ".repeat(spaces)}`
         );
+}
+
+const removeInitialDot = (string) => {
+    return string.replace(/^\./, '');
 }
 
 const buildVueformCss = () => {
     const theme = (s) => s;
-    const addUtilities = (content) => {
+    const addUtilities = (content, key) => {
         // content is most probably a record key => rules
-        return Object.keys(content)
+        const rules = Object.keys(content)
             .map((key) => {
-              const contentParsed = cssIfy(content[key]);
-              if(contentParsed === "\n") return false;
-              return `${key} { ${contentParsed} }`
+              const contentParsed = cssIfy(content[key], 8);
+              if(/^[\s\n]*$/.test(contentParsed)) return false;
+              return `@utility ${removeInitialDot(key)} { ${contentParsed} }`
             })
-            .filter(Boolean).join("\n");
+            .filter(Boolean).join("\n    ");
+        return rules;
     }
-    const addVariant = (key, content) => `@custom-variant ${key} { ${content} { @slot } }`;
 
     const e = (s) => s.replace(/\//, '\\/').replace(/\./, '\\.');
 
@@ -1831,56 +1836,28 @@ const buildVueformCss = () => {
     }
 
 
-    pluginCss.push(addUtilities(plain));
-    pluginCss.push(addUtilities(hoverable));
-    pluginCss.push(addUtilities(groupHoverable));
-    pluginCss.push(addUtilities(checkable));
-    pluginCss.push(addUtilities(focusable));
-    pluginCss.push(addUtilities(formFocusable));
-    pluginCss.push(addUtilities(formFocusHoverable));
-    pluginCss.push(addUtilities(checkedFocusable));
-    pluginCss.push(addUtilities(checkedHoverable));
-    pluginCss.push(addUtilities(activable));
-    pluginCss.push(addUtilities(disableable));
-    pluginCss.push(addUtilities(important));
-    pluginCss.push(addUtilities(withFloating));
-    pluginCss.push(addUtilities(inInputGroup));
-    pluginCss.push(addUtilities(h));
-    pluginCss.push(addUtilities(v));
-    pluginCss.push(addUtilities(mergeH));
-    pluginCss.push(addUtilities(mergeV));
-    pluginCss.push(addUtilities(fullWidth));
-    pluginCss.push(addUtilities(textType));
-    pluginCss.push(addUtilities(rtl));
-    pluginCss.push(addUtilities(infoGroupHoverable));
-
-    pluginCss.push(addVariant('h', '.slider-horizontal &'));
-    pluginCss.push(addVariant('v', '.slider-vertical &'));
-    pluginCss.push(addVariant('merge-h', '.slider-horizontal .slider-origin > &'));
-    pluginCss.push(addVariant('merge-h', '.slider-vertical .slider-origin > &'));
-    pluginCss.push(addVariant('h-txt-rtl', '.slider-horizontal.slider-txt-rtl &'));
-    pluginCss.push(addVariant('tap', '.slider-state-tap &'));
-    pluginCss.push(addVariant('disabled', '[disabled] &, &[disabled]'));
-    pluginCss.push(addVariant('checked-focused', '&:checked:focus'));
-    pluginCss.push(addVariant('checked-hover', '&:checked:hover'));
-    pluginCss.push(addVariant('tt-focus', '.slider-tooltip-focus:not(.slider-focused) &'));
-    pluginCss.push(addVariant('tt-focused', '.slider-tooltip-focus.slider-focused&:not(.slider-tooltip-hidden)'));
-    pluginCss.push(addVariant('tt-drag', '.slider-tooltip-drag:not(.slider-state-drag) &'));
-    pluginCss.push(addVariant('tt-dragging', '.slider-tooltip-drag.slider-state-drag &:not(.slider-tooltip-hidden), .slider-tooltip-drag.slider-active &'));
-    pluginCss.push(addVariant('important', '&!'));
-
-    pluginCss.push(addVariant('with-floating', '.label-floating ~ &, .label-floating ~ div &'));
-    pluginCss.push(addVariant('focused', '&.form-focus, &:focus'));
-    pluginCss.push(addVariant('focused-hover', '&.form-focus:hover, &:focus:hover'));
-
-    pluginCss.push(addVariant('list-group-hover', '.form-list-group:hover > &'));
-    pluginCss.push(addVariant('info-group-hover', '.form-info-group:hover > &'));
-    pluginCss.push(addVariant('in-input-group', '.form-input-group &'));
-    pluginCss.push(addVariant('ghost', '.sortable-ghost &'));
-
-    pluginCss.push(addVariant('full-width', '.col-span-12 &'))
-    pluginCss.push(addVariant('text-type', '.form-text-type &'))
-
+    pluginCss.push(addUtilities(plain, 'plain'));
+    pluginCss.push(addUtilities(hoverable, 'hoverable'));
+    pluginCss.push(addUtilities(groupHoverable, 'groupHoverable'));
+    pluginCss.push(addUtilities(checkable, 'checkable'));
+    pluginCss.push(addUtilities(focusable, 'focusable'));
+    pluginCss.push(addUtilities(formFocusable, 'formFocusable'));
+    pluginCss.push(addUtilities(formFocusHoverable, 'formFocusHoverable'));
+    pluginCss.push(addUtilities(checkedFocusable, 'checkedFocusable'));
+    pluginCss.push(addUtilities(checkedHoverable, 'checkedHoverable'));
+    pluginCss.push(addUtilities(activable, 'activable'));
+    pluginCss.push(addUtilities(disableable, 'disableable'));
+    pluginCss.push(addUtilities(important, 'important'));
+    pluginCss.push(addUtilities(withFloating, 'withFloating'));
+    pluginCss.push(addUtilities(inInputGroup, 'inInputGroup'));
+    pluginCss.push(addUtilities(h, 'h'));
+    pluginCss.push(addUtilities(v, 'v'));
+    pluginCss.push(addUtilities(mergeH, 'mergeH'));
+    pluginCss.push(addUtilities(mergeV, 'mergeV'));
+    pluginCss.push(addUtilities(fullWidth, 'fullWidth'));
+    pluginCss.push(addUtilities(textType, 'textType'));
+    pluginCss.push(addUtilities(rtl, 'rtl'));
+    pluginCss.push(addUtilities(infoGroupHoverable, 'infoGroupHoverable'));
 
     const formVars = {
         primary: '#07bf9b',
@@ -3071,8 +3048,37 @@ const buildVueformCss = () => {
     return `
 @include tailwind;
 
+@custom-variant h (&:where(.slider-horizontal, .slider-horizontal *));
+@custom-variant v (&:where(.slider-vertical, .slider-vertical *));
+@custom-variant merge-h (&:where(.slider-horizontal .slider-origin > *));
+@custom-variant merge-v (&:where(.slider-vertical .slider-origin > *));
+@custom-variant h-txt-rtl (&:where(.slider-horizontal.slider-txt-rtl, .slider-horizontal.slider-txt-rtl *));
+@custom-variant  tap (&:where(.slider-state-tap, .slider-state-tap *));
+@custom-variant  disabled (&:where([disabled], [disabled] *))
+@custom-variant checked-focused (&:checked:focus);
+@custom-variant checked-hover (&:checked:hover);
+@custom-variant tt-focus (&:where(.slider-tooltip-focus:not(.slider-focused), .slider-tooltip-focus:not(.slider-focused) *));
+@custom-variant tt-focused (&:where(.slider-tooltip-focus.slider-focused *):not(.slider-tooltip-hidden))
+@custom-variant tt-drag (&:where(.slider-tooltip-drag:not(.slider-state-drag) *));
+@custom-variant tt-dragging {
+    &:where(.slider-tooltip-drag.slider-state-drag *):not(.slider-tooltip-hidden), 
+    &:where(.slider-tooltip-drag.slider-active *) { 
+        @slot; 
+    }
+}
+@custom-variant important (&!);
+@custom-variant with-floating {.label-floating ~ &, .label-floating ~ div & { @slot; }}
+@custom-variant focused (&:where(.form-focus), &:focus);
+@custom-variant focused-hover (&:where(.form-focus):hover, &:focus:hover);
+@custom-variant list-group-hover (&:where(.form-list-group:hover > *));
+@custom-variant info-group-hover (&:where(.form-info-group:hover > *));
+@custom-variant in-input-group (&:where(.form-input-group, .form-input-group *));
+@custom-variant ghost (&:where(.sortable-ghost, .sortable-ghost *));
+@custom-variant full-width (&:where(.col-span-12, .col-span-12 *));
+@custom-variant text-type (&:where(.form-text-type, .form-text-type *));
+
 @theme {
-  ${cssIfy(vfBaseThemeVars, (s)=>s)}
+  ${cssIfy(vfBaseThemeVars, 0, (s)=>s)}
   
   ${formVarsDefined}
   ${themeExtensionStrings}
@@ -3101,7 +3107,7 @@ const buildVueformCss = () => {
 
 @dark {
     :root{
-        ${cssIfy(darkVars,(s)=>s)}
+        ${cssIfy(darkVars,8, (s)=>s)}
     }
 }
 
