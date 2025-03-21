@@ -1072,10 +1072,6 @@ const vueform = plugin((context) => {
       marginTop: `var(--vf-floating-top${size})`,
     }
 
-    plain[`.-form-mb-input${suffix}`] = {
-      marginBottom: `calc(var(--vf-py-input${size}) * (-1))`,
-    }
-
     plain['.form-pt-0'] = {
       paddingTop: '0px'
     }
@@ -1836,10 +1832,10 @@ const vueform = plugin((context) => {
     '.form-mb-tag-3': {
       marginBottom: 'var(--vf-space-static-tag-3)',
     },
-    '.-form-mb-border-width-table': {
+    '.reduce-by-form-mb-border-width-table': {
       marginBottom: 'calc(var(--vf-border-width-table)*-1)',
     },
-    '.-form-mr-border-width-table': {
+    '.reduce-by-form-mr-border-width-table': {
       marginRight: 'calc(var(--vf-border-width-table)*-1)',
     },
 
@@ -2390,7 +2386,7 @@ const vueform = plugin((context) => {
   }
 
   const inInputGroup = {
-    '.-form-top-border-width-input-t': {
+    '.reduce-by-form-top-border-width-input-t': {
       top: 'calc(var(--vf-border-width-input-t) * (-1))'
     }
   }

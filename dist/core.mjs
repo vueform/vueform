@@ -10245,6 +10245,7 @@ var scripts = {
 	"generate:elements-base": "npx babel-node scripts/generate-elements-base.js --presets @babel/preset-env",
 	"generate:elements": "npx babel-node scripts/generate-elements.js --presets @babel/preset-env",
 	"generate:components": "npx babel-node scripts/generate-components.js --presets @babel/preset-env",
+	"generate:tailwindV4": "npx babel-node scripts/generate.tailwind.v4.js --presets @babel/preset-env",
 	generate: "npm run generate:common-features; npm run generate:element-features; npm run generate:elements-base; npm run generate:elements; npm run generate:components; npm run generate:types; npm run fix-locales",
 	"fix-locales": "npx babel-node --presets @babel/preset-env ./scripts/fix-locales.js"
 };
@@ -41412,8 +41413,8 @@ var SelectElement = {
 };
 
 /*!
- * Signature Pad v5.0.4 | https://github.com/szimek/signature_pad
- * (c) 2024 Szymon Nowak | Released under the MIT license
+ * Signature Pad v5.0.5 | https://github.com/szimek/signature_pad
+ * (c) 2025 Szymon Nowak | Released under the MIT license
  */
 
 class Point {
