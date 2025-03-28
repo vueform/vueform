@@ -80,6 +80,7 @@
   display: grid;
   column-gap: min(calc(100% / 12), var(--vf-gutter));
   row-gap: var(--vf-gutter);
+  width: fit-content;
 }
 
 .vf-grid-sm {

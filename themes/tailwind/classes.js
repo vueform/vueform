@@ -550,7 +550,7 @@ export default {
   GridElement: {
     container: '',
     container_scrollable: 'overflow-x-auto',
-    grid: 'grid',
+    grid: 'grid w-fit',
     grid_sm: 'form-gap-gutter-sm',
     grid_md: 'form-gap-gutter',
     grid_lg: 'form-gap-gutter-lg',
