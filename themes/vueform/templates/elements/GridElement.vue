@@ -14,6 +14,8 @@
           grid_sm: 'vf-grid-sm',
           grid_md: '',
           grid_lg: 'vf-grid-lg',
+          grid_fit: 'vf-grid-fit',
+          grid_nofit: '',
           cell: 'vf-grid-cell',
           fieldWrapper: 'vf-grid-field-wrapper',
           fieldWrapper_sm: 'vf-grid-field-wrapper-sm',
@@ -43,9 +45,10 @@
             classes.container,
             scrollable ? classes.container_scrollable : null,
           ]),
-          $grid: (classes, { Size, align }) => ([
+          $grid: (classes, { Size, align, fitWidth }) => ([
             classes.grid,
             classes[`grid_${Size}`],
+            fitWidth ? classes.grid_fit : classes.grid_nofit,
           ]),
           $cell: (classes, {  }) => () => ([
             classes.cell,
@@ -80,7 +83,6 @@
   display: grid;
   column-gap: min(calc(100% / 12), var(--vf-gutter));
   row-gap: var(--vf-gutter);
-  width: fit-content;
 }
 
 .vf-grid-sm {
@@ -91,6 +93,10 @@
 .vf-grid-lg {
   column-gap: min(calc(100% / 12), var(--vf-gutter-lg));
   row-gap: var(--vf-gutter-lg);
+}
+
+.vf-grid-fit {
+  width: fit-content;
 }
 
 .vf-grid-cell {

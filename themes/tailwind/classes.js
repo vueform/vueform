@@ -550,10 +550,12 @@ export default {
   GridElement: {
     container: '',
     container_scrollable: 'overflow-x-auto',
-    grid: 'grid w-fit',
+    grid: 'grid',
     grid_sm: 'form-gap-gutter-sm',
     grid_md: 'form-gap-gutter',
     grid_lg: 'form-gap-gutter-lg',
+    grid_fit: 'w-fit',
+    grid_nofit: '',
     cell: 'relative',
     fieldWrapper: 'w-full h-full grid',
     fieldWrapper_sm: 'form-min-h-input-height-sm',
@@ -583,9 +585,10 @@ export default {
       classes.container,
       scrollable ? classes.container_scrollable : null,
     ]),
-    $grid: (classes, { Size, align }) => ([
+    $grid: (classes, { Size, align, fitWidth }) => ([
       classes.grid,
       classes[`grid_${Size}`],
+      fitWidth ? classes.grid_fit : classes.grid_nofit,
     ]),
     $cell: (classes, {  }) => () => ([
       classes.cell,

@@ -119,7 +119,8 @@ const base = function(props, context, dependencies)
     const colWidths = []
 
     for (let c = 0; c < parseInt(cols.value); c++) {
-      colWidths.push(widths.value[c] || '1fr')
+      const width = widths.value[c]
+      colWidths.push(typeof width === 'number' || /\d$/.test(width) ? `${width}px` : (width || '1fr'))
     }
 
     return {
@@ -133,6 +134,30 @@ const base = function(props, context, dependencies)
         : maxWidth.value,
 
     }
+  })
+
+  /**
+   * Whether the element width should be fitted to the columns, because each columns have strictly specified widths in non-grid relative values.
+   *
+   * @type {boolean}
+   */
+  const fitWidth = computed(() => {
+    if (widths.value.length < cols.value) {
+      return false
+    }
+
+    const units = [
+      'cm', 'mm', 'in', 'px', 'pt', 'pc',
+      'em', 'ex', 'ch', 'rem', 'vw', 'vh', 'vmin', 'vmax'
+    ]
+
+    return widths.value
+      .slice(0, cols.value)
+      .every(width =>
+        typeof width === 'number' ||
+        (width && units.some(unit => width.endsWith(unit))) ||
+        /\d$/.test(width)
+      )
   })
 
   /**
@@ -159,6 +184,7 @@ const base = function(props, context, dependencies)
   
   return {
     cells,
+    fitWidth,
     isTableView,
     gridStyle,
     resolvedRows,
