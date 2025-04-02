@@ -12,7 +12,6 @@ const base = function(props, context, dependencies)
   // ============ DEPENDENCIES ============
 
   const {
-    update,
     focus,
     value,
     input,
@@ -281,6 +280,7 @@ const base = function(props, context, dependencies)
 
       if (document.activeElement.closest('[data-dropdown-for]')) {
         focus()
+        input.value.setSelectionRange(input.value.value.length, input.value.value.length)
       }
     } else {
       el$.value.update(option.n)
