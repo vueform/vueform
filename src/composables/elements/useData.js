@@ -1327,15 +1327,8 @@ const signature = function(props, context, dependencies)
 const matrix = function(props, context, dependencies, options = {})
 {
   const {
-    resolveOnLoad,
-    items,
     name,
-    inputType,
     rows,
-    canAdd,
-    canRemove,
-    min,
-    max,
   } = toRefs(props)
 
   const {
@@ -1349,11 +1342,7 @@ const matrix = function(props, context, dependencies, options = {})
   const { 
     el$,
     form$,
-    available,
     children$,
-    children$Array,
-    resetting,
-    isDefault,
     resolvedRows,
     resolvedColumns,
     dataType,
@@ -1363,8 +1352,6 @@ const matrix = function(props, context, dependencies, options = {})
     rowsCount,
     hasDynamicRows,
     fire,
-    allowRemove,
-    allowAdd,
     grid,
     resolveComponentName,
    } = dependencies

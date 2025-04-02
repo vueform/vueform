@@ -3,14 +3,14 @@ import isEqual from 'lodash/isEqual'
 import get from 'lodash/get'
 import cloneDeep from 'lodash/cloneDeep'
 import isEmpty from 'lodash/isEmpty'
-import { computed, ref, toRefs, watch, onMounted } from 'vue'
+import { computed, ref, toRefs, watch } from 'vue'
 import checkDateFormat from '../../utils/checkDateFormat'
 import valueGet from '../../utils/valueGet'
 import valueSet from '../../utils/valueSet'
 
 const base = function(props, context, dependencies, /* istanbul ignore next */ options = {})
 {
-  const { name, type, inputType } = toRefs(props)
+  const { name, type } = toRefs(props)
   
   // ============ DEPENDENCIES =============
   
@@ -18,9 +18,6 @@ const base = function(props, context, dependencies, /* istanbul ignore next */ o
   const defaultValue = dependencies.defaultValue
   const dataPath = dependencies.dataPath
   const form$ = dependencies.form$
-  const isObject = dependencies.isObject
-  const isGroup = dependencies.isGroup
-  const isList = dependencies.isList
   
   // ================ DATA =================
   
@@ -110,7 +107,7 @@ const base = function(props, context, dependencies, /* istanbul ignore next */ o
 const matrix = function(props, context, dependencies, /* istanbul ignore next */ options = {})
 {
   
-  const { name, type, rows } = toRefs(props)
+  const { name, type } = toRefs(props)
   
   // ============ DEPENDENCIES =============
   
@@ -119,14 +116,7 @@ const matrix = function(props, context, dependencies, /* istanbul ignore next */
     defaultValue,
     dataPath,
     form$,
-    isObject,
-    isGroup,
-    isList,
     hasDynamicRows,
-    computedRows,
-    resolvedRows,
-    resolvedColumns,
-    rowsCount,
   } = dependencies
   
   // ================ DATA =================
@@ -303,9 +293,6 @@ const group = function(props, context, dependencies, /* istanbul ignore next */ 
   const defaultValue = dependencies.defaultValue
   const children$Array = dependencies.children$Array
   const form$ = dependencies.form$
-  const isObject = dependencies.isObject
-  const isGroup = dependencies.isGroup
-  const isList = dependencies.isList
   
   // ================ DATA =================
   
@@ -437,9 +424,6 @@ const date = function(props, context, dependencies)
   const defaultValue = dependencies.defaultValue
   const dataPath = dependencies.dataPath
   const form$ = dependencies.form$
-  const isObject = dependencies.isObject
-  const isGroup = dependencies.isGroup
-  const isList = dependencies.isList
 
   const moment = form$.value.$vueform.services.moment
   
@@ -505,9 +489,6 @@ const dates = function(props, context, dependencies)
   const defaultValue = dependencies.defaultValue
   const dataPath = dependencies.dataPath
   const form$ = dependencies.form$
-  const isObject = dependencies.isObject
-  const isGroup = dependencies.isGroup
-  const isList = dependencies.isList
 
   const moment = form$.value.$vueform.services.moment
   
