@@ -14,10 +14,12 @@ const base = function(props, context, dependencies, /* istanbul ignore next */ o
   
   // ============ DEPENDENCIES =============
   
-  const parent = dependencies.parent
-  const defaultValue = dependencies.defaultValue
-  const dataPath = dependencies.dataPath
-  const form$ = dependencies.form$
+  const {
+    parent,
+    defaultValue,
+    dataPath,
+    form$,
+  } = dependencies
   
   // ================ DATA =================
   
@@ -29,8 +31,6 @@ const base = function(props, context, dependencies, /* istanbul ignore next */ o
    * @private
    */
   const initialValue = ref(valueGet({ parent, name, form$, dataPath }))
-  
-  
   
   // ============== COMPUTED ===============
   
@@ -93,6 +93,62 @@ const base = function(props, context, dependencies, /* istanbul ignore next */ o
   /* istanbul ignore next: type can not be changed on the fly */
   watch(type, () => {
     value.value = defaultValue.value instanceof File ? defaultValue.value : cloneDeep(defaultValue.value)
+  })
+  
+  return {
+    initialValue,
+    internalValue,
+    value,
+    model,
+    isDefault,
+  }
+}
+
+const text = function(props, context, dependencies, /* istanbul ignore next */ options = {})
+{
+  const { name } = toRefs(props)
+
+  const {
+    initialValue,
+    internalValue,
+    isDefault,
+  } = base(props, context, dependencies)
+  
+  // ============ DEPENDENCIES =============
+  
+  const {
+    parent,
+    defaultValue,
+    dataPath,
+    form$,
+    shouldForceNumbers,
+    stringToNumber
+  } = dependencies
+  
+  // ============== COMPUTED ===============
+
+  const value = computed({
+    get: options.value?.get || function () {
+      return valueGet({ parent, name, form$, dataPath, internalValue, defaultValue })
+    },
+    set: options.value?.set || function (val) {
+      if (shouldForceNumbers()) {
+        val = stringToNumber(val)
+      }
+
+      return valueSet(val, { parent, name, form$, dataPath, internalValue })
+    },
+  })
+  
+  const model = computed({
+    get()
+    {
+      return value.value
+    },
+    set(val)
+    {
+      value.value = val
+    },
   })
   
   return {
@@ -551,6 +607,7 @@ const dates = function(props, context, dependencies)
 }
 
 export {
+  text,
   date,
   dates,
   multilingual,

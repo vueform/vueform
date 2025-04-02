@@ -7,7 +7,6 @@ import useInput from './../../composables/elements/useInput'
 import useAddons from './../../composables/elements/useAddons'
 import usePath from './../../composables/elements/usePath'
 import useConditions from './../../composables/useConditions'
-import useValue from './../../composables/elements/useValue'
 import useNullValue from './../../composables/elements/useNullValue'
 import useLabel from './../../composables/elements/useLabel'
 import useColumns from './../../composables/elements/useColumns'
@@ -31,11 +30,13 @@ import useFocus from './../../composables/elements/useFocus'
 import useHandleKeyEvents from './../../composables/elements/useHandleKeyEvents'
 import usePlaceholder from './../../composables/elements/usePlaceholder'
 import useReadonly from './../../composables/elements/useReadonly'
+import useNumbers from './../../composables/elements/useNumbers'
 import useEl$ from './../../composables/elements/useEl$'
 
 import { text as useValidation } from './../../composables/elements/useValidation'
 import { text as useDefault } from './../../composables/elements/useDefault'
 import { text as useData } from './../../composables/elements/useData'
+import { text as useValue } from './../../composables/elements/useValue'
 
 import BaseElement from './../../mixins/BaseElement'
 import HasView from './../../mixins/HasView'
@@ -171,6 +172,7 @@ export default {
       useConditions,
       useValidation,
       useLoading,
+      useNumbers,
       useValue,
       useEmpty,
       useData,

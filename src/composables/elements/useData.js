@@ -145,7 +145,6 @@ const text = function(props, context, dependencies, options = {})
     submit,
     formatData,
     name,
-    forceNumbers,
   } = toRefs(props)
 
   const {
@@ -158,13 +157,13 @@ const text = function(props, context, dependencies, options = {})
 
   // ============ DEPENDENCIES =============
 
-  const form$ = dependencies.form$
-  const available = dependencies.available
-  const value = dependencies.value
-  
-  // =============== INJECT ===============
-  
-  const config$ = inject('config$')
+  const {
+    form$,
+    available,
+    value,
+    shouldForceNumbers,
+    stringToNumber,
+  } = dependencies
 
   // =============== COMPUTED ==============
 
@@ -192,39 +191,6 @@ const text = function(props, context, dependencies, options = {})
     return formatData.value ? formatData.value(name.value, v, form$.value) : { [name.value]: v }
   })
   
-  // =============== METHODS ===============
-
-  /**
-   * Whether the value should be converted to number/float.
-   *
-   * @returns {boolean}
-   * @private
-   */
-  const shouldForceNumbers = () => {
-    return forceNumbers.value || (config$.value.config.forceNumbers && form$.value.options.forceNumbers !== false && forceNumbers.value !== false) || (form$.value.options.forceNumbers && forceNumbers.value !== false)
-  }
-
-  /**
-   * Converts string value to number or float.
-   *
-   * @param {any} str* the string to be converted
-   * @returns {number|float|string}
-   * @private
-   */
-  const stringToNumber = (str) => {
-    let v = str
-
-    if (typeof str === 'string') {
-      if (/^[-]?\d+([\.,]\d+)?$/.test(str)) {
-        v = parseFloat(str.replace(',', '.'))
-      } else if (/^[-]?\d+$/.test(str)) {
-        v = parseInt(str, 10)
-      }
-    }
-
-    return v
-  }
-
   return {
     data,
     requestData,
