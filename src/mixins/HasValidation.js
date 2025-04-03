@@ -12,7 +12,7 @@ export default {
     },
     fieldName: {
       required: false,
-      type: [String],
+      type: [String, Object],
       '@default': 'name|label'
     },
     displayErrors: {
