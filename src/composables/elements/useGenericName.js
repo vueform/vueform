@@ -30,17 +30,21 @@ const base = function(props, context, dependencies)
    * @private.
    */
   const genericName = computed(() => {
+    let genericName
+
     if (fieldName && fieldName.value) {
-      return localize(fieldName.value, config$.value, form$.value)
+      genericName = localize(fieldName.value, config$.value, form$.value)
     } else if (label && label.value) {
-      return Label.value
+      genericName = Label.value
     } else if (floating && floating.value) {
-      return localize(floating.value, config$.value, form$.value)
+      genericName = localize(floating.value, config$.value, form$.value)
     } else if (placeholder && placeholder.value && form$.value.options.floatPlaceholders) {
-      return localize(placeholder.value, config$.value, form$.value)
+      genericName = localize(placeholder.value, config$.value, form$.value)
     } else {
-      return upperFirst(name.value).replace(/_|-/g, ' ')
+      genericName = upperFirst(name.value).replace(/_|-/g, ' ')
     }
+
+    return form$.value.$vueform.sanitize(genericName)
   })
   
   return {
@@ -76,17 +80,21 @@ const file = function(props, context, dependencies)
    * @private.
    */
   const genericName = computed(() => {
+    let genericName
+
     if (embed.value && filename.value) {
-      return filename.value
+      genericName = filename.value
     } else if (fieldName && fieldName.value) {
-      return localize(fieldName.value, config$.value, form$.value)
+      genericName = localize(fieldName.value, config$.value, form$.value)
     } else if (label.value) {
-      return Label.value
+      genericName = Label.value
     } else {
-      return /^\d+$/.test(name.value)
+      genericName = /^\d+$/.test(name.value)
         ? form$.value.translations.vueform.elements.file.defaultName
         : upperFirst(name.value).replace(/_|-/g, ' ')
     }
+
+    return form$.value.$vueform.sanitize(genericName)
   })
   
   return {
