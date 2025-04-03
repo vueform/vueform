@@ -1,4 +1,4 @@
-import { computed, toRefs, inject } from 'vue'
+import { computed, toRefs, inject } from 'vue'
 import useElementComponent from './../composables/useElementComponent'
 import isVueComponent from './../utils/isVueComponent'
 import localize from './../utils/localize'
@@ -60,8 +60,8 @@ export default {
       if (!isAddonComponent.value) {
         addon = localize(addon, config$.value, form$.value)
       }
-
-      return addon
+      
+      return form$.value.$vueform.sanitize(addon)
     })
     
     /**

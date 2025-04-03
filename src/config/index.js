@@ -116,6 +116,9 @@ const config = {
   },
   beforeSend: null,
   axios: {},
+  sanitize: true,
+  sanitizeOptions: {},
+  sanitizeInit: DOMPurify => DOMPurify,
 
   /**
    * Providers

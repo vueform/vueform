@@ -45,7 +45,7 @@ export default {
      * @type {string}
      */
     const info = computed(() => {
-      return localize(el$.value.info, config$.value, form$.value)
+      return form$.value.$vueform.sanitize(localize(el$.value.info, config$.value, form$.value))
     })
 
     /**

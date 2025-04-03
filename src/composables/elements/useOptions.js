@@ -261,8 +261,8 @@ const select = function(props, context, dependencies)
     return {
       mode: 'single',
       searchable: search.value || create.value,
-      noOptionsText: noOptionsText.value || form$.value.translations.vueform.multiselect.noOptions,
-      noResultsText: noResultsText.value || form$.value.translations.vueform.multiselect.noResults,
+      noOptionsText: form$.value.$vueform.sanitize(noOptionsText.value || form$.value.translations.vueform.multiselect.noOptions),
+      noResultsText: form$.value.$vueform.sanitize(noResultsText.value || form$.value.translations.vueform.multiselect.noResults),
       locale: Object.keys(config$.value.i18n.locales).length > 1 ? config$.value.i18n.locale : null, //@todo:adam can not be localized on form level
       fallbackLocale: config$.value.i18n.fallbackLocale,
       label: labelProp.value,
@@ -388,16 +388,18 @@ const multiselect = function(props, context, dependencies)
     return {
       mode: 'multiple',
       searchable: search.value || create.value,
-      noOptionsText: noOptionsText.value || form$.value.translations.vueform.multiselect.noOptions,
-      noResultsText: noResultsText.value || form$.value.translations.vueform.multiselect.noResults,
-      multipleLabel: multipleLabel.value || ((val, select$) => {
-        return val && val.length > 1
-          ? (multipleLabelMultiple.value
-              ? multipleLabelMultiple.value.replace(':x:', val.length)
-              : form$.value.__(form$.value.translations.vueform.multiselect.multipleLabelMore, { options: val.length })
-          )
-          : multipleLabelSingle.value || form$.value.translations.vueform.multiselect.multipleLabelOne
-      }),
+      noOptionsText: form$.value.$vueform.sanitize(noOptionsText.value || form$.value.translations.vueform.multiselect.noOptions),
+      noResultsText: form$.value.$vueform.sanitize(noResultsText.value || form$.value.translations.vueform.multiselect.noResults),
+      multipleLabel: typeof multipleLabel.value === 'function'
+        ? (val, select$) => form$.value.$vueform.sanitize(multipleLabel.value(val, select$))
+        : ((val, select$) => {
+          return form$.value.$vueform.sanitize(val && val.length > 1
+            ? (multipleLabelMultiple.value
+                ? multipleLabelMultiple.value.replace(':x:', val.length)
+                : form$.value.__(form$.value.translations.vueform.multiselect.multipleLabelMore, { options: val.length })
+            )
+            : multipleLabelSingle.value || form$.value.translations.vueform.multiselect.multipleLabelOne)
+        }),
       locale: Object.keys(config$.value.i18n.locales).length > 1 ? config$.value.i18n.locale : null, //@todo:adam can not be localized on form level
       fallbackLocale: config$.value.i18n.fallbackLocale,
       
@@ -537,8 +539,8 @@ const tags = function(props, context, dependencies)
     return {
       mode: 'tags',
       searchable: search.value || create.value,
-      noOptionsText: noOptionsText.value || form$.value.translations.vueform.multiselect.noOptions,
-      noResultsText: noResultsText.value || form$.value.translations.vueform.multiselect.noResults,
+      noOptionsText: form$.value.$vueform.sanitize(noOptionsText.value || form$.value.translations.vueform.multiselect.noOptions),
+      noResultsText: form$.value.$vueform.sanitize(noResultsText.value || form$.value.translations.vueform.multiselect.noResults),
       locale: Object.keys(config$.value.i18n.locales).length > 1 ? config$.value.i18n.locale : null, //@todo:adam can not be localized on form level
       fallbackLocale: config$.value.i18n.fallbackLocale,
       label: labelProp.value,

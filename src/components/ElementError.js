@@ -27,7 +27,7 @@ export default {
      * @type {string}
      */
     const error = computed(() => {
-      return el$.value.error
+      return form$.value.$vueform.sanitize(el$.value.error)
     })
     
     /**

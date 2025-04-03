@@ -44,7 +44,7 @@ export default {
         floating += '*'
       }
 
-      return floating
+      return form$.value.$vueform.sanitize(floating)
     })
     
     return {

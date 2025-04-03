@@ -90,7 +90,7 @@ const base = function(props, context, dependencies)
     })
     
     return nativeItems.map((o) => {
-      return { ...o, label: localize(o.label, config$.value, form$.value) }
+      return { ...o, label: form$.value.$vueform.sanitize(localize(o.label, config$.value, form$.value)) }
     })
   })
   
@@ -398,7 +398,7 @@ const checkboxgroup = function(props, context, dependencies)
     })
     
     return resolvedOptions.map((o) => {
-      return { ...o, label: localize(o.label, config$.value, form$.value) }
+      return { ...o, label: form$.value.$vueform.sanitize(localize(o.label, config$.value, form$.value)) }
     })
   })
   

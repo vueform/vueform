@@ -12,9 +12,11 @@ const base = function(props, context, dependencies)
   
   // ============ DEPENDENCIES ============
   
-  const isDisabled = dependencies.isDisabled
-  const value = dependencies.value
-  const form$ = dependencies.form$
+  const {
+    isDisabled,
+    value,
+    form$,
+  } = dependencies
   
   // ================ DATA ================
   
@@ -51,7 +53,7 @@ const base = function(props, context, dependencies)
    * @type {string}
    */
   const addLabel = computed(() => {
-    return addText.value || form$.value.translations.vueform.elements.list.add
+    return form$.value.$vueform.sanitize(addText.value || form$.value.translations.vueform.elements.list.add)
   })
   
   return {

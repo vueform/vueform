@@ -99,7 +99,7 @@ const base = function(props, context, dependencies)
         ? { value: row, label: row }
         : row
     })
-    .map(r => ({ ...r, label: localize(r.label, config$.value, form$.value) }))
+    .map(r => ({ ...r, label: form$.value.$vueform.sanitize(localize(r.label, config$.value, form$.value)) }))
     .map(r => ({ ...r, available: !r.conditions || !r.conditions.some((condition) => !form$.value.$vueform.services.condition.check(condition, path.value, form$.value, el$.value)) }))
   })
   
@@ -122,7 +122,7 @@ const base = function(props, context, dependencies)
         ? { value: col, label: col }
         : col
     })
-    .map(r => ({ ...r, label: localize(r.label, config$.value, form$.value) }))
+    .map(r => ({ ...r, label: form$.value.$vueform.sanitize(localize(r.label, config$.value, form$.value)) }))
     .map(r => ({ ...r, available: !r.conditions || !r.conditions.some((condition) => !form$.value.$vueform.services.condition.check(condition, path.value, form$.value, el$.value)) }))
   })
 

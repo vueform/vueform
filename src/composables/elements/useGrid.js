@@ -78,7 +78,7 @@ const base = function(props, context, dependencies)
         content, colspan, rowspan, align, valign, attrs
       ], c) => {
         let col = {
-          content,
+          content: form$.value.$vueform.sanitize(content),
           colspan: colspan || 1,
           rowspan: rowspan || 1,
           align: align || alignProp.value,

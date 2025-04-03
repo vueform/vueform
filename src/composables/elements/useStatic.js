@@ -49,7 +49,7 @@ const base = function(props, context, dependencies)
       resolvedContent = localize(resolvedContent, config$.value, form$.value)
     }
 
-    return resolvedContent
+    return form$.value.$vueform.sanitize(resolvedContent)
   })
 
   /**

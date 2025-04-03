@@ -27,7 +27,7 @@ export default {
      * @type {string}
      */
     const message = computed(() => {
-      return el$.value.messageBag ? el$.value.messageBag.message : /* istanbul ignore next: messageBag itself will always be defined */ null
+      return form$.value.$vueform.sanitize(el$.value.messageBag ? el$.value.messageBag.message : /* istanbul ignore next: messageBag itself will always be defined */ null)
     })
 
     return {

@@ -80,7 +80,7 @@ const base = function(props, context, dependencies)
   })
 
   const resolvedButtonLabel = computed(() => {
-    return typeof buttonLabel.value === 'function' ? buttonLabel.value(el$.value) : buttonLabel.value
+    return form$.value.$vueform.sanitize(typeof buttonLabel.value === 'function' ? buttonLabel.value(el$.value) : buttonLabel.value)
   })
   
   // =============== METHODS ==============

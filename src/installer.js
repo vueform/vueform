@@ -18,6 +18,7 @@ import location from './services/location/index'
 import condition from './services/condition/index'
 import i18n from './services/i18n/index'
 import columns from './services/columns/index'
+import sanitize from './services/sanitize/index'
 import { ref, markRaw, h } from 'vue'
 
 import baseConfig from './config'
@@ -48,6 +49,7 @@ export default function(config = baseConfig, components = {}, rules = {}, servic
           location,
           condition,
           columns,
+          sanitize,
           ...services,
         },
         version: packageJson.version,
@@ -66,7 +68,7 @@ export default function(config = baseConfig, components = {}, rules = {}, servic
 
       // replace
       each([
-        'plugins', 'components',
+        'plugins', 'components', 'sanitizeOptions',
       ], (attr) => {
           if (config[attr] !== undefined) {
             this.options[attr] = config[attr]
@@ -106,7 +108,7 @@ export default function(config = baseConfig, components = {}, rules = {}, servic
         'columns', 'forceLabels', 'displayErrors', 'floatPlaceholders', 'displayErrors', 'displayMessages',
         'language', 'locale', 'fallbackLocale', 'orderFrom', 'validateOn', 'formData', 'beforeSend',
         'locationProvider', 'classHelpers', 'env', 'usePresets', 'plugins', 'size', 'apiKey', 'forceNumbers',
-        'scrollToInvalid', 'showRequired', 'scrollOnNext', 'strictConditions',
+        'scrollToInvalid', 'showRequired', 'scrollOnNext', 'strictConditions', 'sanitize', 'sanitizeInit',
       ], (attr) => {
           if (config[attr] !== undefined) {
             this.options.config[attr] = config[attr]
@@ -334,8 +336,10 @@ export default function(config = baseConfig, components = {}, rules = {}, servic
         theme: {
           ...this.options.theme,
           templates: themeTemplates,
-        }
+        },
+        sanitize: sanitize(this.options.sanitizeOptions || {}, this.options.config.sanitizeInit, this.options.config.sanitize)
       })
+
 
       switch (version) {
         case 2:

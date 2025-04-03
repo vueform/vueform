@@ -472,7 +472,7 @@ export default function (props, context, dependencies)
    * @type {string}
    */
   const placeholderText = computed(() => {
-    return Placeholder.value || form$.value.translations.vueform.elements.signature.placeholder
+    return form$.value.$vueform.sanitize(Placeholder.value || form$.value.translations.vueform.elements.signature.placeholder)
   })
 
   /**

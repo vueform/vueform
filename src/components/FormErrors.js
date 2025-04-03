@@ -34,7 +34,7 @@ export default {
      * @type {array}
      */
     const errors = computed(() => {
-      return form$.value.formErrors
+      return form$.value.formErrors.map(e => form$.value.$vueform.sanitize(e))
     })
 
     return {

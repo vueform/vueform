@@ -21,7 +21,7 @@ const base = function(props, context, dependencies)
    *
    */
   const Text = computed(() => {
-    return localize(text.value, config$.value, form$.value) || ''
+    return form$.value.$vueform.sanitize(localize(text.value, config$.value, form$.value) || '')
   })
   
   return {
