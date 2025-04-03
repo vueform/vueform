@@ -13,7 +13,9 @@
 </template>
 
 <script>
-  import 'trix'
+  import Trix from 'trix'
+
+  Trix.elements.TrixEditorElement.formAssociated = false
 
   export default {
     name: 'EditorWrapper',
