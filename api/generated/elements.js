@@ -15065,6 +15065,13 @@ module.exports = {
         description: 'The list of cells that should be displayed in the grid.',
         private: false,
       },
+      fitWidth: {
+        types: [
+          'boolean',
+        ],
+        description: 'Whether the element width should be fitted to the columns, because each columns have strictly specified widths in non-grid relative values.',
+        private: false,
+      },
       isTableView: {
         types: [
           'boolean',
@@ -51161,6 +51168,25 @@ module.exports = {
             ],
             required: 'true',
             description: 'event object',
+          },
+        },
+        private: true,
+      },
+      shouldForceNumbers: {
+        description: 'Whether the value should be converted to number/float.',
+        returns: 'boolean',
+        private: true,
+      },
+      stringToNumber: {
+        description: 'Converts string value to number or float.',
+        returns: 'number|float|string',
+        params: {
+          str: {
+            types: [
+              'any',
+            ],
+            required: 'true',
+            description: 'the string to be converted',
           },
         },
         private: true,

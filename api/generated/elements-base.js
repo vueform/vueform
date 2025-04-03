@@ -1505,6 +1505,7 @@ export default {
       "layout",
       "loading",
       "nullValue",
+      "numbers",
       "path",
       "placeholder",
       "readonly",
@@ -1512,7 +1513,7 @@ export default {
       "templates",
       "theme",
       "validation_text",
-      "value",
+      "value_text",
       "view",
       "watchValue"
     ],

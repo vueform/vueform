@@ -90,6 +90,8 @@
     }
   },
   "scripts": {
+    "update": "ncu --dep prod -t minor -u; rm -r node_modules package-lock.json; npm i",
+    "prelease": "npm run update && npm run build",
     "build": "npm run build3 && npm run build2 && npm run generate",
     "build2": "node ./scripts/pre-build-vue2 && rollup --config build/rollup.vue2.config.js && node ./scripts/post-build-vue2",
     "build3": "rollup --config build/rollup.config.js",
@@ -155,14 +157,14 @@
     "@vueform/multiselect": "^2.6.11",
     "@vueform/slider": "^2.1.10",
     "@vueform/toggle": "^2.1.4",
-    "axios": "^1.7.2",
+    "axios": "^1.8.4",
     "color": "^4.2.3",
     "lodash": "^4.17.21",
     "mini-svg-data-uri": "^1.4.4",
     "moment": "^2.30.1",
-    "nouislider": "^15.8.0",
-    "sass": "^1.66.1",
-    "trix": "^2.1.1",
+    "nouislider": "^15.8.1",
+    "sass": "^1.86.2",
+    "trix": "^2.1.13",
     "wnumb": "^1.2.0"
   }
 }

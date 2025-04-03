@@ -516,6 +516,7 @@ export interface VueformElement extends DefineComponent {
   children: object;
   children$: object;
   cells: Array<any>;
+  fitWidth: boolean;
   isTableView: boolean;
   gridStyle: object;
   resolvedRows: Array<any>;
@@ -777,6 +778,8 @@ export interface VueformElement extends DefineComponent {
   handleKeypress: (e: Event) => void;
   autosize: () => void;
   handleTag: (searchQuery: string) => void;
+  shouldForceNumbers: () => boolean;
+  stringToNumber: (str: any) => number | float | string;
 }
 
 export interface VueformSchema {
@@ -6334,6 +6337,7 @@ export declare class GridElement implements DefineComponent {
   el$: VueformElement;
   fieldId: string;
   cells: Array<any>;
+  fitWidth: boolean;
   isTableView: boolean;
   gridStyle: object;
   resolvedRows: Array<any>;
@@ -10727,6 +10731,8 @@ export declare class TextElement implements DefineComponent {
   handleKeydown: (e: Event) => void;
   handleKeyup: (e: Event) => void;
   handleKeypress: (e: Event) => void;
+  shouldForceNumbers: () => boolean;
+  stringToNumber: (str: any) => number | float | string;
   validate: () => Promise;
   dirt: () => void;
   clean: () => void;

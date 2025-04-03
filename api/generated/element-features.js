@@ -4769,6 +4769,13 @@ export default {
           ],
           "description": "The list of cells that should be displayed in the grid."
         },
+        "fitWidth": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element width should be fitted to the columns, because each columns have strictly specified widths in non-grid relative values."
+        },
         "isTableView": {
           "public": true,
           "types": [
@@ -5722,6 +5729,31 @@ export default {
             "any"
           ],
           "description": "The null value of the element."
+        }
+      }
+    }
+  },
+  "numbers": {
+    "base": {
+      "methods": {
+        "shouldForceNumbers": {
+          "public": false,
+          "returns": "boolean",
+          "description": "Whether the value should be converted to number/float."
+        },
+        "stringToNumber": {
+          "public": false,
+          "returns": "number|float|string",
+          "description": "Converts string value to number or float.",
+          "params": {
+            "str": {
+              "types": [
+                "any"
+              ],
+              "required": true,
+              "description": "the string to be converted"
+            }
+          }
         }
       }
     }
@@ -8982,6 +9014,47 @@ export default {
   },
   "value": {
     "base": {
+      "data": {
+        "initialValue": {
+          "public": false,
+          "types": [
+            "any"
+          ],
+          "description": "The initial value of the element."
+        },
+        "internalValue": {
+          "public": false,
+          "types": [
+            "any"
+          ],
+          "description": "The store for the value of the element when we're not using external data (form's `v-model`)."
+        }
+      },
+      "computed": {
+        "value": {
+          "public": true,
+          "types": [
+            "any"
+          ],
+          "description": "The value of the element."
+        },
+        "model": {
+          "public": true,
+          "types": [
+            "any"
+          ],
+          "description": "Intermediary value between element's value and field's `v-model`. It is required when we need to transform the value format between the element and its field."
+        },
+        "isDefault": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element has its default value."
+        }
+      }
+    },
+    "text": {
       "data": {
         "initialValue": {
           "public": false,
