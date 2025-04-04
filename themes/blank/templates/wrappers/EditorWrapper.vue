@@ -15,7 +15,9 @@
 <script>
   import Trix from 'trix'
 
-  Trix.elements.TrixEditorElement.formAssociated = false
+  if (typeof Trix?.elements?.TrixEditorElement?.formAssociated !== 'undefined') {
+    Trix.elements.TrixEditorElement.formAssociated = false
+  }
 
   export default {
     name: 'EditorWrapper',
