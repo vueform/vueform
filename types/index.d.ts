@@ -235,7 +235,7 @@ export interface VueformElement extends DefineComponent {
   submit: boolean;
   rules: Array<any> | string | object;
   messages: object;
-  fieldName: string;
+  fieldName: string | object;
   displayErrors: boolean;
   default: string | boolean | number | Array<any> | Date | object;
   readonly: boolean | Function | Array<any> | object;
@@ -838,7 +838,7 @@ export interface VueformSchema {
   submit?: boolean;
   rules?: Array<any> | string | object;
   messages?: object;
-  fieldName?: string;
+  fieldName?: string | object;
   displayErrors?: boolean;
   default?: string | boolean | number | Array<any> | Date | object;
   readonly?: boolean | Function | Array<any> | object;
@@ -1362,7 +1362,7 @@ export interface CaptchaElementProps {
   submit?: boolean;
   rules?: Array<any> | string | object;
   messages?: object;
-  fieldName?: string;
+  fieldName?: string | object;
   displayErrors?: boolean;
   type?: string;
   id?: string;
@@ -1414,7 +1414,7 @@ export interface CheckboxElementProps {
   submit?: boolean;
   rules?: Array<any> | string | object;
   messages?: object;
-  fieldName?: string;
+  fieldName?: string | object;
   displayErrors?: boolean;
   type?: string;
   default?: string | boolean | number;
@@ -1468,7 +1468,7 @@ export interface CheckboxgroupElementProps {
   submit?: boolean;
   rules?: Array<any> | string | object;
   messages?: object;
-  fieldName?: string;
+  fieldName?: string | object;
   displayErrors?: boolean;
   type?: string;
   default?: Array<any>;
@@ -1520,7 +1520,7 @@ export interface DateElementProps {
   submit?: boolean;
   rules?: Array<any> | string | object;
   messages?: object;
-  fieldName?: string;
+  fieldName?: string | object;
   displayErrors?: boolean;
   type?: string;
   default?: string | Date;
@@ -1584,7 +1584,7 @@ export interface DatesElementProps {
   submit?: boolean;
   rules?: Array<any> | string | object;
   messages?: object;
-  fieldName?: string;
+  fieldName?: string | object;
   displayErrors?: boolean;
   type?: string;
   default?: Array<any>;
@@ -1645,7 +1645,7 @@ export interface EditorElementProps {
   submit?: boolean;
   rules?: Array<any> | string | object;
   messages?: object;
-  fieldName?: string;
+  fieldName?: string | object;
   displayErrors?: boolean;
   type?: string;
   default?: string | number | object;
@@ -1704,7 +1704,7 @@ export interface FileElementProps {
   submit?: boolean;
   rules?: Array<any> | string | object;
   messages?: object;
-  fieldName?: string;
+  fieldName?: string | object;
   displayErrors?: boolean;
   type?: string;
   default?: string | object;
@@ -1769,7 +1769,7 @@ export interface GenericElementProps {
   submit?: boolean;
   rules?: Array<any> | string | object;
   messages?: object;
-  fieldName?: string;
+  fieldName?: string | object;
   displayErrors?: boolean;
   type?: string;
   id?: string;
@@ -1818,7 +1818,7 @@ export interface GridElementProps {
   submit?: boolean;
   rules?: Array<any> | string | object;
   messages?: object;
-  fieldName?: string;
+  fieldName?: string | object;
   displayErrors?: boolean;
   type?: string;
   default?: object;
@@ -1877,7 +1877,7 @@ export interface GroupElementProps {
   submit?: boolean;
   rules?: Array<any> | string | object;
   messages?: object;
-  fieldName?: string;
+  fieldName?: string | object;
   displayErrors?: boolean;
   type?: string;
   default?: object;
@@ -1904,7 +1904,7 @@ export interface HiddenElementProps {
   submit?: boolean;
   rules?: Array<any> | string | object;
   messages?: object;
-  fieldName?: string;
+  fieldName?: string | object;
   displayErrors?: boolean;
   type?: string;
   default?: string | number | object;
@@ -1953,7 +1953,7 @@ export interface ListElementProps {
   submit?: boolean;
   rules?: Array<any> | string | object;
   messages?: object;
-  fieldName?: string;
+  fieldName?: string | object;
   displayErrors?: boolean;
   type?: string;
   default?: Array<any>;
@@ -2016,7 +2016,7 @@ export interface LocationElementProps {
   submit?: boolean;
   rules?: Array<any> | string | object;
   messages?: object;
-  fieldName?: string;
+  fieldName?: string | object;
   displayErrors?: boolean;
   type?: string;
   default?: object;
@@ -2074,7 +2074,7 @@ export interface MatrixElementProps {
   submit?: boolean;
   rules?: Array<any> | string | object;
   messages?: object;
-  fieldName?: string;
+  fieldName?: string | object;
   displayErrors?: boolean;
   type?: string;
   default?: object;
@@ -2145,7 +2145,7 @@ export interface MultifileElementProps {
   submit?: boolean;
   rules?: Array<any> | string | object;
   messages?: object;
-  fieldName?: string;
+  fieldName?: string | object;
   displayErrors?: boolean;
   type?: string;
   default?: Array<any>;
@@ -2218,7 +2218,7 @@ export interface MultiselectElementProps {
   submit?: boolean;
   rules?: Array<any> | string | object;
   messages?: object;
-  fieldName?: string;
+  fieldName?: string | object;
   displayErrors?: boolean;
   type?: string;
   default?: Array<any>;
@@ -2322,7 +2322,7 @@ export interface ObjectElementProps {
   submit?: boolean;
   rules?: Array<any> | string | object;
   messages?: object;
-  fieldName?: string;
+  fieldName?: string | object;
   displayErrors?: boolean;
   type?: string;
   default?: object;
@@ -2375,7 +2375,7 @@ export interface PhoneElementProps {
   submit?: boolean;
   rules?: Array<any> | string | object;
   messages?: object;
-  fieldName?: string;
+  fieldName?: string | object;
   displayErrors?: boolean;
   type?: string;
   default?: string | number | object;
@@ -2437,7 +2437,7 @@ export interface RadioElementProps {
   submit?: boolean;
   rules?: Array<any> | string | object;
   messages?: object;
-  fieldName?: string;
+  fieldName?: string | object;
   displayErrors?: boolean;
   type?: string;
   default?: string | number;
@@ -2491,7 +2491,7 @@ export interface RadiogroupElementProps {
   submit?: boolean;
   rules?: Array<any> | string | object;
   messages?: object;
-  fieldName?: string;
+  fieldName?: string | object;
   displayErrors?: boolean;
   type?: string;
   default?: string | number | boolean;
@@ -2543,7 +2543,7 @@ export interface SelectElementProps {
   submit?: boolean;
   rules?: Array<any> | string | object;
   messages?: object;
-  fieldName?: string;
+  fieldName?: string | object;
   displayErrors?: boolean;
   type?: string;
   default?: string | number | object;
@@ -2642,7 +2642,7 @@ export interface SignatureElementProps {
   submit?: boolean;
   rules?: Array<any> | string | object;
   messages?: object;
-  fieldName?: string;
+  fieldName?: string | object;
   displayErrors?: boolean;
   type?: string;
   id?: string;
@@ -2711,7 +2711,7 @@ export interface SliderElementProps {
   submit?: boolean;
   rules?: Array<any> | string | object;
   messages?: object;
-  fieldName?: string;
+  fieldName?: string | object;
   displayErrors?: boolean;
   type?: string;
   default?: number | Array<any>;
@@ -2826,7 +2826,7 @@ export interface TEditorElementProps {
   submit?: boolean;
   rules?: Array<any> | string | object;
   messages?: object;
-  fieldName?: string;
+  fieldName?: string | object;
   displayErrors?: boolean;
   type?: string;
   default?: object | string | number;
@@ -2885,7 +2885,7 @@ export interface TTextElementProps {
   submit?: boolean;
   rules?: Array<any> | string | object;
   messages?: object;
-  fieldName?: string;
+  fieldName?: string | object;
   displayErrors?: boolean;
   type?: string;
   default?: object | string | number;
@@ -2947,7 +2947,7 @@ export interface TTextareaElementProps {
   submit?: boolean;
   rules?: Array<any> | string | object;
   messages?: object;
-  fieldName?: string;
+  fieldName?: string | object;
   displayErrors?: boolean;
   type?: string;
   default?: object | string | number;
@@ -3008,7 +3008,7 @@ export interface TagsElementProps {
   submit?: boolean;
   rules?: Array<any> | string | object;
   messages?: object;
-  fieldName?: string;
+  fieldName?: string | object;
   displayErrors?: boolean;
   type?: string;
   default?: Array<any>;
@@ -3111,7 +3111,7 @@ export interface TextElementProps {
   submit?: boolean;
   rules?: Array<any> | string | object;
   messages?: object;
-  fieldName?: string;
+  fieldName?: string | object;
   displayErrors?: boolean;
   type?: string;
   default?: string | number | object;
@@ -3174,7 +3174,7 @@ export interface TextareaElementProps {
   submit?: boolean;
   rules?: Array<any> | string | object;
   messages?: object;
-  fieldName?: string;
+  fieldName?: string | object;
   displayErrors?: boolean;
   type?: string;
   default?: string | number | object;
@@ -3235,7 +3235,7 @@ export interface ToggleElementProps {
   submit?: boolean;
   rules?: Array<any> | string | object;
   messages?: object;
-  fieldName?: string;
+  fieldName?: string | object;
   displayErrors?: boolean;
   type?: string;
   default?: string | number | boolean;

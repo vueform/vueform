@@ -1,5 +1,19 @@
 [//]: # (Don't use <tags>)
 
+## v1.12.5
+
+> `2025-04-04`
+
+### 🎉 Feature
+- Sanitize props that end up in `v-html`
+
+### 🐞 Bug Fixes
+- Grid border fix when cells are <100% (issue raised at builder)
+- Editor not always editable on first load fix #399
+- Cursor position in safari after country select fix #393
+- Numeric value prop for forced number inputs #424
+- FieldName should accept object
+
 ## v1.12.4
 
 > `2025-03-01`
