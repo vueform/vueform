@@ -27019,7 +27019,9 @@ var t="2.1.13";const e="[data-trix-attachment]",i={preview:{presentation:"galler
 
 //
 
-  no.elements.TrixEditorElement.formAssociated = false;
+  if (typeof no?.elements?.TrixEditorElement?.formAssociated !== 'undefined') {
+    no.elements.TrixEditorElement.formAssociated = false;
+  }
 
   var script$1 = {
     name: 'EditorWrapper',
