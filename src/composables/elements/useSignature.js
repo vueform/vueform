@@ -774,7 +774,7 @@ export default function (props, context, dependencies)
 
       // Check if there is any drawing
       if (minX > maxX || minY > maxY) {
-        reject(new Error('No drawing found on the canvas.'))
+        resolve()
         return
       }
 
@@ -838,7 +838,7 @@ export default function (props, context, dependencies)
   const typingToImage = () => {
     return new Promise((resolve, reject) => {
       if (!text.value) {
-        reject(new Error('No signature was typed.'))
+        resolve()
         return
       }
 
