@@ -1248,6 +1248,7 @@ const signature = function(props, context, dependencies)
     setDefaultMode,
     setDefaultFont,
     setDefaultColor,
+    available,
   } = dependencies
   
   // ============== COMPUTED ===============
@@ -1266,7 +1267,7 @@ const signature = function(props, context, dependencies)
   }
 
   const prepare = async () => {
-    if (uploaded.value) {
+    if (uploaded.value || !available.value) {
       return
     }
 
