@@ -1,5 +1,5 @@
 /*!
- * Vueform v1.12.5 (https://github.com/vueform/vueform)
+ * Vueform v1.12.6 (https://github.com/vueform/vueform)
  * Copyright (c) 2025 Adam Berecz <adam@vueform.com>
  * Licensed under the MIT License
  */
@@ -10146,7 +10146,7 @@ function shouldApplyPlugin (name, plugin) {
 }
 
 var name = "@vueform/vueform";
-var version$1 = "1.12.5";
+var version$1 = "1.12.6";
 var description = "Open-Source Form Framework for Vue";
 var homepage = "https://vueform.com";
 var license = "MIT";
@@ -30704,7 +30704,8 @@ var signature = function signature(props, context, dependencies) {
     uploaded,
     setDefaultMode,
     setDefaultFont,
-    setDefaultColor
+    setDefaultColor,
+    available
   } = dependencies;
 
   // ============== COMPUTED ===============
@@ -30722,7 +30723,7 @@ var signature = function signature(props, context, dependencies) {
   };
   var prepare = /*#__PURE__*/function () {
     var _ref7 = _asyncToGenerator(function* () {
-      if (uploaded.value) {
+      if (uploaded.value || !available.value) {
         return;
       }
       if (mode.value === 'type') {
@@ -44305,7 +44306,7 @@ function useSignature (props, context, dependencies) {
 
       // Check if there is any drawing
       if (minX > maxX || minY > maxY) {
-        reject(new Error('No drawing found on the canvas.'));
+        resolve();
         return;
       }
 
@@ -44363,7 +44364,7 @@ function useSignature (props, context, dependencies) {
   var typingToImage = () => {
     return new Promise((resolve, reject) => {
       if (!text.value) {
-        reject(new Error('No signature was typed.'));
+        resolve();
         return;
       }
       var canvas = document.createElement('canvas');

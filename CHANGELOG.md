@@ -1,11 +1,18 @@
 [//]: # (Don't use <tags>)
 
+## v1.12.6
+
+> `2025-04-17`
+
+### 🐞 Bug Fixes
+- Grid border fix when cells are <100% (issue raised at builder)
+
 ## v1.12.5
 
 > `2025-04-04`
 
 ### 🎉 Feature
-- Sanitize props that end up in `v-html`
+- Sanitize props that end up in `v-html`. You can disable it in `vueform.config.js` with `sanitize: false`.
 
 ### 🐞 Bug Fixes
 - Grid border fix when cells are <100% (issue raised at builder)
