@@ -5,7 +5,7 @@
 > `2025-04-17`
 
 ### 🐞 Bug Fixes
-- Grid border fix when cells are <100% (issue raised at builder)
+- Signature error if conditions aren't met fix #431
 
 ## v1.12.5
 
