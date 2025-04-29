@@ -4,21 +4,21 @@ export default {
   "vueform": {
     "elements": {
       "list": {
-        "add": "+ Addieren",
+        "add": "+ Hinzufügen",
         "remove": "&times;"
       },
       "file": {
-        "defaultName": "File",
-        "dndTitle": "File hochladen",
-        "dndDescription": "File ablegen oder zum Hochladen hier klicken",
+        "defaultName": "Datei",
+        "dndTitle": "Datei hochladen",
+        "dndDescription": "Datei ablegen oder zum Hochladen hier klicken",
         "removeConfirm": "Durch das Entfernen Files wird diese endgültig gelöscht. Sind Sie sicher, dass Sie fortfahren?",
-        "select": "File auswählen",
+        "select": "Datei auswählen",
         "upload": "Hochladen"
       },
       "multifile": {
-        "uploadButton": "Files hochladen",
-        "dndTitle": "Files hochladen",
-        "dndDescription": "File ablegen oder zum Hochladen hier klicken"
+        "uploadButton": "Dateien hochladen",
+        "dndTitle": "Dateien hochladen",
+        "dndDescription": "Dateien ablegen oder zum Hochladen hier klicken"
       },
       "gallery": {
         "uploadButton": "Bilder hochladen",
@@ -26,19 +26,19 @@ export default {
         "dndDescription": "Bild ablegen oder zum Hochladen hier klicken"
       },
       "phone": {
-        "ariaLabel": "Select a country"
+        "ariaLabel": "Wählen Sie ein Land"
       }
     },
     "steps": {
-      "finish": "Beenden",
-      "next": "Nächste",
-      "previous": "Früher"
+      "finish": "Absenden",
+      "next": "Weiter",
+      "previous": "Zurück"
     },
     "editor": {
-      "acceptedMimesError": "Accepted mimes are: :mimes",
-      "acceptedExtensionsError": "Accepted extenions are: :extensions",
-      "acceptedMimes": "Akzeptierte mimes sind: :mimes",
-      "acceptedExtensions": "Akzeptierte extenions sind: :extensions"
+      "acceptedMimesError": "Erlaubte Dateitypen: :mimes",
+      "acceptedExtensionsError": "Erlaubte Dateiendungen: :extensions",
+      "acceptedMimes": "Erlaubte Dateitypen: :mimes",
+      "acceptedExtensions": "Erlaubte Dateiendungen: :extensions"
     },
     "datepicker": {
       "weekdays": {
@@ -134,18 +134,18 @@ export default {
       "date": "DD.MM.YYYY"
     },
     "multiselect": {
-      "multipleLabelOne": "1 option ausgewählt",
-      "multipleLabelMore": ":options optionen ausgewählt",
-      "noResults": "Keine Optionen gefunden",
-      "noOptions": "Liste ist leer."
+      "multipleLabelOne": "Ein Element ausgewählt",
+      "multipleLabelMore": ":options Elemente ausgewählt",
+      "noResults": "Keine Elemente gefunden",
+      "noOptions": "Keine Elemente vorhanden."
     },
     "defaultMessage": "Ungültiges Feld",
     "a11y": {
       "file": {
-        "description": "Press Backspace to remove"
+        "description": "Entfernen-Taste drücken um zu entfernen"
       },
       "list": {
-        "remove": "Remove item button"
+        "remove": "Element-Entfernen Button"
       }
     },
     "countries": {
@@ -403,9 +403,9 @@ export default {
       "string": ":attribute muss zwischen :min & :max Zeichen lang sein.",
       "array": ":attribute muss zwischen :min & :max Elemente haben."
     },
-    "boolean": ":attribute muss entweder true oder false sein.",
-    "captcha": "Please verify that you are not a robot.",
-    "completed": "Please fill in a valid phone number.",
+    "boolean": ":attribute muss entweder wahr (true) oder falsch (false) sein.",
+    "captcha": "Bitte bestätigen das Sie kein Roboter sind :)",
+    "completed": "Bitte geben Sie eine gültige Telefonnummer ein.",
     "confirmed": ":attribute stimmt nicht mit der Bestätigung überein.",
     "date": ":attribute muss ein gültiges Datum sein.",
     "date_format": ":attribute entspricht nicht dem gültigen Format für :format.",
