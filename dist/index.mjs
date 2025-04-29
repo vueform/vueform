@@ -1,5 +1,5 @@
 /*!
- * Vueform v1.12.6 (https://github.com/vueform/vueform)
+ * Vueform v1.12.7 (https://github.com/vueform/vueform)
  * Copyright (c) 2025 Adam Berecz <adam@vueform.com>
  * Licensed under the MIT License
  */
@@ -10146,7 +10146,7 @@ function shouldApplyPlugin (name, plugin) {
 }
 
 var name = "@vueform/vueform";
-var version$1 = "1.12.6";
+var version$1 = "1.12.7";
 var description = "Open-Source Form Framework for Vue";
 var homepage = "https://vueform.com";
 var license = "MIT";
@@ -10310,7 +10310,7 @@ var dependencies = {
 	moment: "^2.30.1",
 	nouislider: "^15.8.1",
 	sass: "^1.86.2",
-	trix: "^2.1.13",
+	trix: "^2.1.14",
 	wnumb: "^1.2.0"
 };
 var packageJson = {
@@ -13140,7 +13140,8 @@ class numeric extends Validator {
 
 class regex extends Validator {
   check(value) {
-    var regex = new RegExp(this.attributes[0].replace(/^\/|\/[^\/]*$/g, ''));
+    var _this$attributes$;
+    var regex = new RegExp(this.attributes[0].replace(/^\/|\/[^\/]*$/g, ''), (_this$attributes$ = this.attributes[1]) !== null && _this$attributes$ !== void 0 ? _this$attributes$ : '');
     return regex.test(value);
   }
 }

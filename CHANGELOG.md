@@ -1,5 +1,16 @@
 [//]: # (Don't use <tags>)
 
+## v1.12.7
+
+> `2025-04-29`
+
+### 🎉 Feature
+- Bumped Trix editor
+- Improved German locale (thanks @thepill 🙏)
+
+### 🐞 Bug Fixes
+- Regex flag support fix (thanks @9er-tom 🙏)
+
 ## v1.12.6
 
 > `2025-04-17`
