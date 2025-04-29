@@ -425,7 +425,7 @@ export default {
       "array": ":attribute muss zwischen :min & :max Elemente haben."
     },
     "boolean": ":attribute muss entweder wahr (true) oder falsch (false) sein.",
-    "captcha": "Bitte bestätigen das Sie kein Roboter sind :)",
+    "captcha": "Bitte bestätigen das Sie kein Roboter sind.",
     "completed": "Bitte geben Sie eine gültige Telefonnummer ein.",
     "confirmed": ":attribute stimmt nicht mit der Bestätigung überein.",
     "date": ":attribute muss ein gültiges Datum sein.",
