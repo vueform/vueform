@@ -820,6 +820,7 @@ const multilingual = function(props, context, dependencies)
   // ============ DEPENDENCIES ============
   
   const form$ = dependencies.form$
+  const el$ = dependencies.el$
   const path = dependencies.path
   const languages = dependencies.languages
   const language = dependencies.language
