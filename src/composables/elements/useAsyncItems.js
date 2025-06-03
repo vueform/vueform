@@ -66,27 +66,35 @@ const base = function(props, context, dependencies)
       if ([null, undefined].indexOf(item) !== -1) {
         return
       }
+
+      let resolvedItem = {}
       
       if (Array.isArray(options.value) && typeof item === 'object') {
         if (item[valueProp.value] === undefined) {
           console.warn('You must define `value` property for each option when using an array of objects options for select element')
         }
-        
-        nativeItems.push({
+
+        resolvedItem = {
           value: item[valueProp.value],
           label: item[labelProp.value],
-        })
+        }
+
+        if (item.disabled !== undefined) {
+          resolvedItem.disabled = item.disabled
+        }
       } else if (Array.isArray(options.value)) {
-        nativeItems.push({
+        resolvedItem = {
           value: item,
           label: item,
-        })
+        }
       } else {
-        nativeItems.push({
+        resolvedItem = {
           value: key,
           label: item,
-        })
+        }
       }
+
+      nativeItems.push(resolvedItem)
     })
     
     return nativeItems.map((o) => {

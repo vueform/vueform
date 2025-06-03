@@ -23,6 +23,7 @@
           <option
             v-for="(option, index) in resolvedOptions" 
             :value="option.value"
+            :disabled="option.disabled"
             :key="index"
           >
             {{ option.label }}
