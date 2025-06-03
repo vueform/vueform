@@ -1,10 +1,15 @@
 import { onMounted, nextTick, watch, toRefs } from 'vue'
+import debounce from '../../utils/debounce'
 
 const base = function(props, context, dependencies)
 {
   const {
     autogrow,
   } = toRefs(props)
+
+  const debouncedAutosize = debounce(() => {
+    autosize()
+  }, 500)
   
   // ============ DEPENDENCIES ============
   
@@ -38,7 +43,7 @@ const base = function(props, context, dependencies)
   })
   
   watch(value, () => {
-    autosize()
+    debouncedAutosize()
   })
   
   // =============== HOOKS ================

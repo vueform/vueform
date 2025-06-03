@@ -2,7 +2,9 @@ export default function debounce(func, wait, onStart) {
   let timeout
   return function(...args) {
     if (!timeout) {
-      onStart()
+      if (typeof onStart === 'function') {
+        onStart()
+      }
     } else {
       clearTimeout(timeout)
     }
