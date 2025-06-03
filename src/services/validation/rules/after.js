@@ -1,6 +1,7 @@
 import isArray from 'lodash/isArray'
 import each from 'lodash/each'
 import Validator from './../validator'
+import replaceWildcards from './../../../utils/replaceWildcards'
 
 export default class after extends Validator {
   get messageParams() {
@@ -11,7 +12,9 @@ export default class after extends Validator {
   }
 
   get param() {
-    return this.attributes[0]
+    return this.path
+      ? replaceWildcards(this.attributes[0], this.path)
+      : this.attributes[0]
   }
 
   get format() {
@@ -28,6 +31,10 @@ export default class after extends Validator {
     return ['date', 'dates'].indexOf(this.other$.type) !== -1 && this.other$.valueFormat
       ? this.other$.valueFormat
       : this.format
+  }
+
+  get path() {
+    return this.element$?.path
   }
 
   get otherPath() {
