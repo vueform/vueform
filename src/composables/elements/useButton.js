@@ -20,6 +20,10 @@ const base = function(props, context, dependencies)
   const fieldId = dependencies.fieldId
   const fire = dependencies.fire
   const el$ = dependencies.el$
+
+  // =============== INJECT ===============
+
+  const config$ = inject('config$')
   
   // ============== COMPUTED ==============
   
@@ -80,7 +84,11 @@ const base = function(props, context, dependencies)
   })
 
   const resolvedButtonLabel = computed(() => {
-    return form$.value.$vueform.sanitize(typeof buttonLabel.value === 'function' ? buttonLabel.value(el$.value) : buttonLabel.value)
+    return localize(form$.value.$vueform.sanitize(
+      typeof buttonLabel.value === 'function'
+        ? buttonLabel.value(el$.value)
+        : buttonLabel.value
+    ), config$.value, form$.value)
   })
   
   // =============== METHODS ==============
