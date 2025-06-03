@@ -63,7 +63,7 @@ const base = function(props, context, dependencies)
       Label = localize(Label, config$.value, form$.value)
     }
     
-    return Label
+    return form$.value.$vueform.sanitize(Label)
   })
   
   return {
