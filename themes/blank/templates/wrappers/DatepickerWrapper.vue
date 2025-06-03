@@ -7,7 +7,7 @@
     :autocomplete="autocomplete"
     v-bind="attrs"
     ref="input"
- />
+ /> 
 </template>
 
 <script>
