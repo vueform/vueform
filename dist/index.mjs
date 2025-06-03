@@ -1,5 +1,5 @@
 /*!
- * Vueform v1.12.7 (https://github.com/vueform/vueform)
+ * Vueform v1.12.8 (https://github.com/vueform/vueform)
  * Copyright (c) 2025 Adam Berecz <adam@vueform.com>
  * Licensed under the MIT License
  */
@@ -10146,7 +10146,7 @@ function shouldApplyPlugin (name, plugin) {
 }
 
 var name = "@vueform/vueform";
-var version$1 = "1.12.7";
+var version$1 = "1.12.8";
 var description = "Open-Source Form Framework for Vue";
 var homepage = "https://vueform.com";
 var license = "MIT";
@@ -10991,7 +10991,7 @@ class after extends Validator {
     };
   }
   get param() {
-    return this.attributes[0];
+    return this.path ? replaceWildcards(this.attributes[0], this.path) : this.attributes[0];
   }
   get format() {
     return ['date', 'dates'].indexOf(this.element$.type) !== -1 && this.element$.valueFormat ? this.element$.valueFormat : 'YYYY-MM-DD';
@@ -11001,6 +11001,10 @@ class after extends Validator {
       return this.format;
     }
     return ['date', 'dates'].indexOf(this.other$.type) !== -1 && this.other$.valueFormat ? this.other$.valueFormat : this.format;
+  }
+  get path() {
+    var _this$element$;
+    return (_this$element$ = this.element$) === null || _this$element$ === void 0 ? void 0 : _this$element$.path;
   }
   get otherPath() {
     if (this.dateType != 'element') {
@@ -20519,11 +20523,15 @@ var ElementAddonOptions = {
      * Select an option.
      * 
      * @param {object} option* an option object form [`options`](#option-options).
+     * @param {boolean} triggerSelect whether should trigger select event
      * @returns {void}
      */
-    var selectOption = option => {
+    var selectOption = function selectOption(option) {
+      var triggerSelect = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
       selected.value = option;
-      fire('select', option);
+      if (triggerSelect) {
+        fire('select', option);
+      }
     };
 
     /**
@@ -23352,6 +23360,11 @@ var DatepickerWrapper = {
       required: false,
       type: [Object],
       default: () => ({})
+    },
+    autocomplete: {
+      required: false,
+      type: [String, Number],
+      default: null
     }
   },
   setup(props, context) {
@@ -23943,7 +23956,7 @@ var base$15 = function base(props, context, dependencies) {
     if (!isLabelComponent.value) {
       Label = localize(Label, config$.value, form$.value);
     }
-    return Label;
+    return form$.value.$vueform.sanitize(Label);
   });
   return {
     hasLabel,
@@ -24344,6 +24357,10 @@ var base$10 = function base(props, context, dependencies) {
   var fire = dependencies.fire;
   var el$ = dependencies.el$;
 
+  // =============== INJECT ===============
+
+  var config$ = inject('config$');
+
   // ============== COMPUTED ==============
 
   /**
@@ -24368,7 +24385,7 @@ var base$10 = function base(props, context, dependencies) {
    * @private
    */
   var isButtonLabelComponent = computed(() => {
-    return buttonLabel.value !== null && typeof buttonLabel.value === 'object';
+    return isVueComponent(buttonLabel.value);
   });
 
   /**
@@ -24396,7 +24413,7 @@ var base$10 = function base(props, context, dependencies) {
     return button;
   });
   var resolvedButtonLabel = computed(() => {
-    return form$.value.$vueform.sanitize(typeof buttonLabel.value === 'function' ? buttonLabel.value(el$.value) : buttonLabel.value);
+    return localize(form$.value.$vueform.sanitize(typeof buttonLabel.value === 'function' ? buttonLabel.value(el$.value) : buttonLabel.value), config$.value, form$.value);
   });
 
   // =============== METHODS ==============
@@ -28296,6 +28313,7 @@ var multilingual$3 = function multilingual(props, context, dependencies) {
   // ============ DEPENDENCIES ============
 
   var form$ = dependencies.form$;
+  var el$ = dependencies.el$;
   var path = dependencies.path;
   var languages = dependencies.languages;
   var language = dependencies.language;
@@ -31389,25 +31407,30 @@ var base$B = function base(props, context, dependencies) {
       if ([null, undefined].indexOf(item) !== -1) {
         return;
       }
+      var resolvedItem = {};
       if (Array.isArray(options.value) && typeof item === 'object') {
         if (item[valueProp.value] === undefined) {
           console.warn('You must define `value` property for each option when using an array of objects options for select element');
         }
-        nativeItems.push({
+        resolvedItem = {
           value: item[valueProp.value],
           label: item[labelProp.value]
-        });
+        };
+        if (item.disabled !== undefined) {
+          resolvedItem.disabled = item.disabled;
+        }
       } else if (Array.isArray(options.value)) {
-        nativeItems.push({
+        resolvedItem = {
           value: item,
           label: item
-        });
+        };
       } else {
-        nativeItems.push({
+        resolvedItem = {
           value: key,
           label: item
-        });
+        };
       }
+      nativeItems.push(resolvedItem);
     });
     return nativeItems.map(o => {
       return _objectSpread2$1(_objectSpread2$1({}, o), {}, {
@@ -33010,6 +33033,11 @@ var DateElement = {
       required: false,
       type: [Boolean, Function, Array, Object],
       default: false
+    },
+    autocomplete: {
+      required: false,
+      type: [String, Number],
+      default: null
     }
   },
   setup(props, ctx) {
@@ -33108,6 +33136,11 @@ var DatesElement = {
       required: false,
       type: [Boolean, Function, Array, Object],
       default: false
+    },
+    autocomplete: {
+      required: false,
+      type: [String, Number],
+      default: null
     }
   },
   setup(props, ctx) {
@@ -42075,8 +42108,9 @@ var base$b = function base(props, context, dependencies) {
    * 
    * @returns {void}
    */
-  var setFlag = () => {
+  var setFlag = function setFlag() {
     var _options$$value$selec;
+    var triggerSelect = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
     if (!value.value) {
       if (Object.keys(options$.value.selected).length) {
         options$.value.reset();
@@ -42106,7 +42140,7 @@ var base$b = function base(props, context, dependencies) {
     }
     var option = addonOptions.value.find(c => c.c === country);
     if (options$.value.selected.index !== option.index) {
-      options$.value.selectOption(option);
+      options$.value.selectOption(option, triggerSelect);
     }
   };
 
@@ -42168,7 +42202,7 @@ var base$b = function base(props, context, dependencies) {
   // ============== WATCHERS ==============
 
   watch(value, n => {
-    setFlag();
+    setFlag(false);
   });
   return {
     options$,
@@ -43553,7 +43587,9 @@ function debounce(func, wait, onStart) {
       args[_key] = arguments[_key];
     }
     if (!timeout) {
-      onStart();
+      if (typeof onStart === 'function') {
+        onStart();
+      }
     } else {
       clearTimeout(timeout);
     }
@@ -46019,6 +46055,9 @@ var base$5 = function base(props, context, dependencies) {
   var {
     autogrow
   } = toRefs(props);
+  var debouncedAutosize = debounce(() => {
+    autosize();
+  }, 500);
 
   // ============ DEPENDENCIES ============
 
@@ -46050,7 +46089,7 @@ var base$5 = function base(props, context, dependencies) {
     }
   });
   watch(value, () => {
-    autosize();
+    debouncedAutosize();
   });
 
   // =============== HOOKS ================

@@ -1,5 +1,22 @@
 [//]: # (Don't use <tags>)
 
+## v1.12.8
+
+> `2025-06-03`
+
+### 🎉 Feature
+- Made `buttonLabel` translatable #455
+- Disable option in native select #443
+- Added autocomplete prop to date pickers #435
+
+### 🐞 Bug Fixes
+- Phone value loaded fix #446
+- Relative date rules in nested list fix #423
+- Textarea autosize debounced on type #440
+- Sanitize element label
+- Added missing classes to tabs in `vueform` theme
+- Validation init error in multilingual elements fix #448
+ 
 ## v1.12.7
 
 > `2025-04-29`

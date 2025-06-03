@@ -6538,6 +6538,17 @@ module.exports = {
         required: false,
         private: false,
       },
+      autocomplete: {
+        required: 'false',
+        default: 'null',
+        localized: false,
+        types: [
+          'string',
+          'number',
+        ],
+        required: false,
+        private: false,
+      },
     },
     data: {
       active: {
@@ -8187,6 +8198,17 @@ module.exports = {
           'function',
           'array',
           'object',
+        ],
+        required: false,
+        private: false,
+      },
+      autocomplete: {
+        required: 'false',
+        default: 'null',
+        localized: false,
+        types: [
+          'string',
+          'number',
         ],
         required: false,
         private: false,

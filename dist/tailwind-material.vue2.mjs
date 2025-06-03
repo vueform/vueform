@@ -1,5 +1,5 @@
 /*!
- * Vueform v1.12.7 (https://github.com/vueform/vueform)
+ * Vueform v1.12.8 (https://github.com/vueform/vueform)
  * Copyright (c) 2025 Adam Berecz <adam@vueform.com>
  * Licensed under the MIT License
  */
@@ -3861,6 +3861,7 @@ __vue_render__$C._withStripped = true;
 //
 //
 //
+//
 
   var script$I = {
     name: 'DateElement',
@@ -3954,6 +3955,7 @@ var __vue_render__$B = function () {
                           options: _vm.fieldOptions,
                           id: _vm.fieldId,
                           placeholder: _vm.Placeholder,
+                          autocomplete: _vm.autocomplete,
                           disabled: _vm.isDisabled,
                           readonly: _vm.isReadonly,
                           attrs: _vm.aria,
@@ -12316,7 +12318,11 @@ var __vue_render__$m = function () {
                       _vm._l(_vm.resolvedOptions, function (option, index) {
                         return _c(
                           "option",
-                          { key: index, domProps: { value: option.value } },
+                          {
+                            key: index,
+                            attrs: { disabled: option.disabled },
+                            domProps: { value: option.value },
+                          },
                           [
                             _vm._v(
                               "\n          " +
@@ -21058,6 +21064,7 @@ __vue_render__$2._withStripped = true;
 //
 //
 //
+//
 
   var script$3 = {
     name: 'DatepickerWrapper',
@@ -21088,7 +21095,12 @@ var __vue_render__$1 = function () {
       {
         ref: "input",
         class: _vm.classes.datepicker,
-        attrs: { type: "text", id: _vm.id, placeholder: _vm.placeholder },
+        attrs: {
+          type: "text",
+          id: _vm.id,
+          placeholder: _vm.placeholder,
+          autocomplete: _vm.autocomplete,
+        },
       },
       "input",
       _vm.attrs,

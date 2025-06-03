@@ -511,6 +511,13 @@ module.exports = {
             ],
             "required": true,
             "description": "an option object form [`options`](#option-options)."
+          },
+          "triggerSelect": {
+            "types": [
+              "boolean"
+            ],
+            "required": false,
+            "description": "whether should trigger select event"
           }
         }
       },
@@ -5674,6 +5681,14 @@ module.exports = {
         "default": "{}",
         "types": [
           "object"
+        ]
+      },
+      "autocomplete": {
+        "required": false,
+        "default": null,
+        "types": [
+          "string",
+          "number"
         ]
       }
     },

@@ -261,6 +261,7 @@ export interface VueformElement extends DefineComponent {
   max: string | Date | number;
   extendOptions: object;
   placeholder: string | object | boolean;
+  autocomplete: string | number;
   mode: string;
   debounce: number;
   onError: Function;
@@ -371,7 +372,6 @@ export interface VueformElement extends DefineComponent {
   caret: boolean;
   noOptionsText: string | object;
   noResultsText: string | object;
-  autocomplete: string | number;
   include: Array<any>;
   exclude: Array<any>;
   unmask: boolean;
@@ -864,6 +864,7 @@ export interface VueformSchema {
   max?: string | Date | number;
   extendOptions?: object;
   placeholder?: string | object | boolean;
+  autocomplete?: string | number;
   mode?: string;
   debounce?: number;
   onError?: Function;
@@ -974,7 +975,6 @@ export interface VueformSchema {
   caret?: boolean;
   noOptionsText?: string | object;
   noResultsText?: string | object;
-  autocomplete?: string | number;
   include?: Array<any>;
   exclude?: Array<any>;
   unmask?: boolean;
@@ -1230,6 +1230,7 @@ export interface DatepickerWrapperProps {
   id: number | string;
   placeholder?: number | string;
   attrs?: object;
+  autocomplete?: string | number;
 }
 
 export interface EditorWrapperProps {
@@ -1541,6 +1542,7 @@ export interface DateElementProps {
   extendOptions?: object;
   placeholder?: string | object | boolean;
   readonly?: boolean | Function | Array<any> | object;
+  autocomplete?: string | number;
 }
 
 export interface DatesElementProps {
@@ -1602,6 +1604,7 @@ export interface DatesElementProps {
   extendOptions?: object;
   placeholder?: string | object;
   readonly?: boolean | Function | Array<any> | object;
+  autocomplete?: string | number;
 }
 
 export interface EditorElementProps {
@@ -2276,7 +2279,7 @@ export interface MultiselectElementProps {
   loading?: boolean;
   noOptionsText?: string | object;
   noResultsText?: string | object;
-  autocomplete?: string | number;
+  autocomplete?: string;
   inputType?: string;
   extendOptions?: object;
 }
@@ -3359,7 +3362,7 @@ export declare class ElementAddonOptions implements DefineComponent {
   close: () => void;
   scrollToOption: (option: object) => void;
   scrollToSelected: () => void;
-  selectOption: (option: object) => void;
+  selectOption: (option: object, triggerSelect?: boolean) => void;
   reset: () => void;
   handleOptionPoint: (option: object) => void;
   handleOptionClick: (option: object) => void;
@@ -4299,6 +4302,7 @@ export declare class DatepickerWrapper implements DefineComponent {
   id: DatepickerWrapperProps['id'];
   placeholder: DatepickerWrapperProps['placeholder'];
   attrs: DatepickerWrapperProps['attrs'];
+  autocomplete: DatepickerWrapperProps['autocomplete'];
 
   // Computed
   View: string;
@@ -5274,6 +5278,7 @@ export declare class DateElement implements DefineComponent {
   extendOptions: DateElementProps['extendOptions'];
   placeholder: DateElementProps['placeholder'];
   readonly: DateElementProps['readonly'];
+  autocomplete: DateElementProps['autocomplete'];
 
   // Computed
   descriptionId: string;
@@ -5480,6 +5485,7 @@ export declare class DatesElement implements DefineComponent {
   extendOptions: DatesElementProps['extendOptions'];
   placeholder: DatesElementProps['placeholder'];
   readonly: DatesElementProps['readonly'];
+  autocomplete: DatesElementProps['autocomplete'];
 
   // Computed
   descriptionId: string;

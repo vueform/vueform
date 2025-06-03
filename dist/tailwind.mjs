@@ -1,5 +1,5 @@
 /*!
- * Vueform v1.12.7 (https://github.com/vueform/vueform)
+ * Vueform v1.12.8 (https://github.com/vueform/vueform)
  * Copyright (c) 2025 Adam Berecz <adam@vueform.com>
  * Licensed under the MIT License
  */
@@ -1676,12 +1676,13 @@ function render$B(_ctx, _cache, $props, $setup, $data, $options) {
             id: _ctx.fieldId,
             class: normalizeClass(_ctx.classes.input),
             placeholder: _ctx.Placeholder,
+            autocomplete: _ctx.autocomplete,
             disabled: _ctx.isDisabled,
             readonly: _ctx.isReadonly,
             attrs: _ctx.aria,
             onChange: _ctx.handleChange,
             ref: "input"
-          }, null, 8 /* PROPS */, ["value", "options", "id", "class", "placeholder", "disabled", "readonly", "attrs", "onChange"])
+          }, null, 8 /* PROPS */, ["value", "options", "id", "class", "placeholder", "autocomplete", "disabled", "readonly", "attrs", "onChange"])
         ], 2 /* CLASS */)
       ], 2 /* CLASS */)
     ]),
@@ -7808,7 +7809,7 @@ var script$r = {
   };
 
 const _hoisted_1$h = ["name", "id", "disabled"];
-const _hoisted_2$c = ["value"];
+const _hoisted_2$c = ["value", "disabled"];
 
 function render$m(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_ElementLabelFloating = resolveComponent("ElementLabelFloating");
@@ -7841,6 +7842,7 @@ function render$m(_ctx, _cache, $props, $setup, $data, $options) {
               (openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.resolvedOptions, (option, index) => {
                 return (openBlock(), createElementBlock("option", {
                   value: option.value,
+                  disabled: option.disabled,
                   key: index
                 }, toDisplayString(option.label), 9 /* TEXT, PROPS */, _hoisted_2$c))
               }), 128 /* KEYED_FRAGMENT */))
@@ -13667,14 +13669,15 @@ var script$3 = {
     }
   };
 
-const _hoisted_1$1 = ["id", "placeholder"];
+const _hoisted_1$1 = ["id", "placeholder", "autocomplete"];
 
 function render$1(_ctx, _cache, $props, $setup, $data, $options) {
   return (openBlock(), createElementBlock("input", mergeProps({
     type: "text",
     class: _ctx.classes.datepicker,
     id: _ctx.id,
-    placeholder: _ctx.placeholder
+    placeholder: _ctx.placeholder,
+    autocomplete: _ctx.autocomplete
   }, _ctx.attrs, { ref: "input" }), null, 16 /* FULL_PROPS */, _hoisted_1$1))
 }
 
