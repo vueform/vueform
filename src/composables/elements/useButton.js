@@ -1,4 +1,6 @@
-import { toRefs, computed } from 'vue'
+import { toRefs, computed, inject } from 'vue'
+import isVueComponent from './../../utils/isVueComponent'
+import localize from './../../utils/localize'
 
 const base = function(props, context, dependencies)
 {
@@ -51,7 +53,7 @@ const base = function(props, context, dependencies)
    * @private
    */
   const isButtonLabelComponent = computed(() => {
-    return buttonLabel.value !== null && typeof buttonLabel.value === 'object'
+    return isVueComponent(buttonLabel.value)
   })
   
   /**
