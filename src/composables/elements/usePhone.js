@@ -211,7 +211,7 @@ const base = function(props, context, dependencies)
    * 
    * @returns {void}
    */
-  const setFlag = () => {
+  const setFlag = (triggerSelect = true) => {
     if (!value.value) {
       if (Object.keys(options$.value.selected).length) {
         options$.value.reset()
@@ -250,7 +250,7 @@ const base = function(props, context, dependencies)
     let option = addonOptions.value.find(c => c.c === country)
 
     if (options$.value.selected.index !== option.index) {
-      options$.value.selectOption(option)
+      options$.value.selectOption(option, triggerSelect)
     }
   }
 
@@ -316,7 +316,7 @@ const base = function(props, context, dependencies)
   // ============== WATCHERS ==============
 
   watch(value, (n) => {
-    setFlag()
+    setFlag(false)
   })
 
   return {

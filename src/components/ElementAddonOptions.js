@@ -325,11 +325,15 @@ export default {
      * Select an option.
      * 
      * @param {object} option* an option object form [`options`](#option-options).
+     * @param {boolean} triggerSelect whether should trigger select event
      * @returns {void}
      */
-    const selectOption = (option) => {
+    const selectOption = (option, triggerSelect = true) => {
       selected.value = option
-      fire('select', option)
+
+      if (triggerSelect) {
+        fire('select', option)
+      }
     }
 
     /**
