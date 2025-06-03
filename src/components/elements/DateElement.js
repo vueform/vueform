@@ -149,6 +149,11 @@ export default {
       type: [Boolean, Function, Array, Object],
       default: false
     },
+    autocomplete: {
+      required: false,
+      type: [String, Number],
+      default: null
+    },
   },
   setup(props, ctx) {
     const context = { ...ctx }

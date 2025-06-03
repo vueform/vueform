@@ -28,6 +28,11 @@ export default {
       type: [Object],
       default: () => ({})
     },
+    autocomplete: {
+      required: false,
+      type: [String, Number],
+      default: null
+    },
   },
   setup(props, context)
   {

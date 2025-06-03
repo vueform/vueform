@@ -4,6 +4,7 @@
     :class="classes.datepicker"
     :id="id"
     :placeholder="placeholder"
+    :autocomplete="autocomplete"
     v-bind="attrs"
     ref="input"
  />

@@ -23,6 +23,7 @@
             :id="fieldId"
             :class="classes.input"
             :placeholder="Placeholder"
+            :autocomplete="autocomplete"
             :disabled="isDisabled"
             :readonly="isReadonly"
             :attrs="aria"
