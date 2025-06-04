@@ -101,7 +101,7 @@
     margin-top: 0;
     padding-top: 1px;
     padding-bottom: 1px;
-    box-sizing: content-box;
+    box-sizing: content-box !important;
     flex-shrink: 0;
   }
 

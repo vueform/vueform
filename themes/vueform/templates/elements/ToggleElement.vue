@@ -134,7 +134,7 @@
     cursor: pointer;
     transition: .3s all;
     align-items: center;
-    box-sizing: content-box;
+    box-sizing: content-box !important;
     border-width: var(--vf-border-width-toggle);
     border-style: solid;
     font-size: 0.75rem;

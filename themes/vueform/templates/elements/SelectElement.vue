@@ -321,7 +321,7 @@
     width: 0.625rem;
     height: 1rem;
     padding: 1px 0;
-    box-sizing: content-box;
+    box-sizing: content-box !important;
     display: inline-block;
     pointer-events: none;
     transform: translateY(-50%);

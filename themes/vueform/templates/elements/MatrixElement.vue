@@ -217,7 +217,7 @@
     width: 1rem;
     height: 1rem;
     padding: 0.125rem;
-    box-sizing: content-box;
+    box-sizing: content-box !important;
     background-color: var(--vf-bg-passive);
     border-radius: 999px;
     transition: .15s;

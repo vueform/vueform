@@ -371,7 +371,7 @@
     width: 0.75rem;
     height: 1rem;
     padding: 1px 0;
-    box-sizing: content-box;
+    box-sizing: content-box !important;
     display: inline-block;
     cursor: pointer;
 
