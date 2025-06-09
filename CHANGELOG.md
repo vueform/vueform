@@ -1,5 +1,12 @@
 [//]: # (Don't use <tags>)
 
+## v1.12.10
+
+> `2025-06-09`
+
+### 🐞 Bug Fixes
+- Signature init when in other step with conditions
+
 ## v1.12.9
 
 > `2025-06-04`

@@ -1,5 +1,5 @@
 /*!
- * Vueform v1.12.9 (https://github.com/vueform/vueform)
+ * Vueform v1.12.10 (https://github.com/vueform/vueform)
  * Copyright (c) 2025 Adam Berecz <adam@vueform.com>
  * Licensed under the MIT License
  */
@@ -14860,7 +14860,7 @@ var classes = {
     innerWrapper_enabled: '',
     input: 'bg-transparent absolute top-1/2 left-0 right-0 transform -translate-y-1/2 pr-9 text-center indent-9 transition-colors h-[8.5rem] rtl:pr-0 rtl:pl-9',
     input_invert: 'dark:filter dark:invert',
-    placeholder: 'absolute left-0 right-0 bottom-[50%] transform translate-y-1/2 pointer-events-none form-color-placeholder text-center',
+    placeholder: 'absolute left-0 right-0 bottom-[50%] transform translate-y-1/2 pointer-events-none select-none form-color-placeholder text-center',
     uploadContainer: 'absolute left-9 right-9 bottom-1/2 transform translate-y-1/2 transition-opacity',
     uploadContainer_dragging: 'opacity-50',
     uploadContainer_not_dragging: '',
@@ -14876,7 +14876,7 @@ var classes = {
     color_invert: 'dark:filter dark:invert',
     color_active: 'scale-[1.4]',
     color_inactive: 'hover:scale-[1.4]',
-    actions: 'absolute top-2 left-3 right-3 flex items-center justify-between opacity-50 transition-opacity z-1 hover:opacity-100',
+    actions: 'absolute top-2 left-3 right-3 flex items-center justify-between opacity-50 transition-opacity z-1 select-none hover:opacity-100',
     undosWrapper: 'absolute right-3 top-3 flex items-center justify-center gap-3 rtl:right-auto rtl:left-3',
     undo: 'mask-bg mask-form-trix-undo form-bg-icon w-3 h-3',
     undo_enabled: 'cursor-pointer focus-visible:opacity-80',
