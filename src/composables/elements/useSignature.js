@@ -36,6 +36,7 @@ export default function (props, context, dependencies)
     value,
     Placeholder,
     available,
+    path,
   } = dependencies
 
   // ================ DATA ================
@@ -1592,9 +1593,21 @@ export default function (props, context, dependencies)
     })
   
     watch(available, () => {
-      nextTick(() => {
-        initPad()
-      })
+      if (form$.value.steps$ && !form$.value.steps$.current$.elements.includes(path.value.split('.')[0])) {
+        form$.value.steps$.on('select', (activeStep$) => {
+          if (!activeStep$.elements.includes(path.value.split('.')[0]) || width.value) {
+            return
+          }
+
+          nextTick(() => {
+            initPad()
+          })
+        })
+      } else {
+        nextTick(() => {
+          initPad()
+        })
+      }
     }, { flush: 'post' })
 
     watch(color, () => {
