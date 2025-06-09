@@ -207,6 +207,7 @@
     bottom: 50%;
     transform: translateY(50%);
     pointer-events: none;
+    user-select: none;
     color: var(--vf-color-placeholder);
     text-align: center;
   }
@@ -291,6 +292,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    user-select: none;
     opacity: 0.5;
     transition-property: opacity;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
