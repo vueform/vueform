@@ -11,9 +11,10 @@ import compare from './../../utils/compare'
  
 const Factory = class {
 
-  constructor(path, form$) {
+  constructor(path, form$, config$) {
     this.form$ = form$
     this.element$ = form$.el$(path)
+    this.config$ = config$
   }
 
   get rules() {
@@ -53,7 +54,8 @@ const Factory = class {
       name: `custom_rule_${Math.floor(Math.random() * 9000000) + 1000000}`,
       attributes: Array.isArray(rule) && rule[1] ? rule[1] : []
     }, {
-      element$: this.element$
+      element$: this.element$,
+      config$: this.config$,
     })
   }
 

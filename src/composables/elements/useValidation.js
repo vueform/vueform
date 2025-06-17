@@ -4,7 +4,7 @@ import head from 'lodash/head'
 import isPlainObject from 'lodash/isPlainObject'
 import concat from 'lodash/concat'
 import isArray from 'lodash/isArray'
-import { computed, reactive, toRefs, ref } from 'vue'
+import { computed, reactive, toRefs, ref, inject } from 'vue'
 import asyncForEach from './../../utils/asyncForEach'
 
 const base = function(props, context, dependencies)
@@ -12,6 +12,8 @@ const base = function(props, context, dependencies)
   const {
     rules,
   } = toRefs(props)
+
+  const config$ = inject('config$')
   
   // ============ DEPENDENCIES ============
   
@@ -317,7 +319,7 @@ const base = function(props, context, dependencies)
     // qualify as validated by default
     state.value.validated = false
     
-    validatorFactory.value = new form$.value.$vueform.services.validation.factory(path.value, form$.value)
+    validatorFactory.value = new form$.value.$vueform.services.validation.factory(path.value, form$.value, config$.value)
     
     Validators.value = []
 
@@ -816,6 +818,8 @@ const multilingual = function(props, context, dependencies)
   const {
     rules,
   } = toRefs(props)
+
+  const config$ = inject('config$')
   
   // ============ DEPENDENCIES ============
   
@@ -1118,7 +1122,7 @@ const multilingual = function(props, context, dependencies)
       state.value.validated[lang] = r !== null && r.length > 0 ? false : true
     })
     
-    var factory = new form$.value.$vueform.services.validation.factory(path.value, form$.value)
+    var factory = new form$.value.$vueform.services.validation.factory(path.value, form$.value, config$.value)
     
     Validators.value = {}
     

@@ -10,6 +10,7 @@ import isArray from 'lodash/isArray'
 import trim from 'lodash/trim'
 import { watch, computed } from 'vue'
 import dataEquals from './../../utils/dataEquals'
+import localize from './../../utils/localize'
 
 const Validator = class {
 
@@ -21,6 +22,7 @@ const Validator = class {
 
     this.element$ = props.element$
     this.form$ = props.element$?.form$ || {}
+    this.config$ = props.config$
     this.numeric = props.numeric || false
 
     this.elementMessages = props.element$.messages
@@ -85,10 +87,10 @@ const Validator = class {
     if (this.msg) {
       message = this.msg
     } else if (this.elementMessages[this.name]) {
-      message = this.elementMessages[this.name]
+      message = localize(this.elementMessages[this.name], this.config$.value, this.form$)
     }
     else if (this.form$.options.messages[this.name]) {
-      message = this.form$.options.messages[this.name]
+      message = localize(this.form$.options.messages[this.name], this.config$.value, this.form$)
     }
     else if (this.name !== '_class' && this.form$.translations.validation?.[this.name] !== undefined) {
       message = this.form$.translations.validation[this.name]
