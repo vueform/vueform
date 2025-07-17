@@ -1,5 +1,5 @@
 /*!
- * Vueform v1.12.10 (https://github.com/vueform/vueform)
+ * Vueform v1.12.11 (https://github.com/vueform/vueform)
  * Copyright (c) 2025 Adam Berecz <adam@vueform.com>
  * Licensed under the MIT License
  */
@@ -9383,6 +9383,14 @@ function trim(string, chars, guard) {
 
 var trim_1 = trim;
 
+function localize(object, $config, form$) {
+  var locale = form$.locale$ || $config.i18n.locale;
+  if (!locale) {
+    return object;
+  }
+  return object && typeof object === 'object' ? (object === null || object === void 0 ? void 0 : object[locale]) || (object === null || object === void 0 ? void 0 : object[locale.toUpperCase()]) || (object === null || object === void 0 ? void 0 : object[$config.i18n.fallbackLocale]) || (object === null || object === void 0 ? void 0 : object[$config.i18n.fallbackLocale.toUpperCase()]) || (object === null || object === void 0 ? void 0 : object[Object.keys(object)[0]]) || '' : object;
+}
+
 var Validator = class {
   constructor(rule, props) {
     var _props$element$;
@@ -9392,6 +9400,7 @@ var Validator = class {
     this.dependents = rule.dependents || [];
     this.element$ = props.element$;
     this.form$ = ((_props$element$ = props.element$) === null || _props$element$ === void 0 ? void 0 : _props$element$.form$) || {};
+    this.config$ = props.config$;
     this.numeric = props.numeric || false;
     this.elementMessages = props.element$.messages;
     this.invalid = false;
@@ -9448,9 +9457,9 @@ var Validator = class {
     if (this.msg) {
       message = this.msg;
     } else if (this.elementMessages[this.name]) {
-      message = this.elementMessages[this.name];
+      message = localize(this.elementMessages[this.name], this.config$.value, this.form$);
     } else if (this.form$.options.messages[this.name]) {
-      message = this.form$.options.messages[this.name];
+      message = localize(this.form$.options.messages[this.name], this.config$.value, this.form$);
     } else if (this.name !== '_class' && ((_this$form$$translati = this.form$.translations.validation) === null || _this$form$$translati === void 0 ? void 0 : _this$form$$translati[this.name]) !== undefined) {
       message = this.form$.translations.validation[this.name];
       if (isPlainObject_1(message)) {
@@ -9625,8 +9634,15 @@ var Validator = class {
       });
     });
   }
-  size(value) {
-    if (this.isNumeric) {
+  isOtherNumeric(other$) {
+    return some_1(other$.Validators, {
+      name: 'numeric'
+    }) || some_1(other$.Validators, {
+      name: 'integer'
+    });
+  }
+  size(value, other$) {
+    if (other$ && this.isOtherNumeric(other$) || !other$ && this.isNumeric) {
       if (!isNaN(value)) {
         var num = parseFloat(value);
         if (Number.isInteger(num)) {
@@ -10146,7 +10162,7 @@ function shouldApplyPlugin (name, plugin) {
 }
 
 var name = "@vueform/vueform";
-var version$1 = "1.12.10";
+var version$1 = "1.12.11";
 var description = "Open-Source Form Framework for Vue";
 var homepage = "https://vueform.com";
 var license = "MIT";
@@ -10847,9 +10863,10 @@ function compare (actual, operator, expected, el$, form$) {
 }
 
 var Factory = class {
-  constructor(path, form$) {
+  constructor(path, form$, config$) {
     this.form$ = form$;
     this.element$ = form$.el$(path);
+    this.config$ = config$;
   }
   get rules() {
     var rules = Object.assign({}, this.form$.$vueform.services.validation.rules, this.form$.$vueform.rules);
@@ -10876,7 +10893,8 @@ var Factory = class {
       name: "custom_rule_".concat(Math.floor(Math.random() * 9000000) + 1000000),
       attributes: Array.isArray(rule) && rule[1] ? rule[1] : []
     }, {
-      element$: this.element$
+      element$: this.element$,
+      config$: this.config$
     });
   }
   parseRules(rules) {
@@ -12895,9 +12913,13 @@ class filled extends Validator {
 
 class gt extends Validator {
   get messageParams() {
+    var value = this.other$.value != null ? this.size(this.other$.value, this.other$) : 0;
+    if (isNaN(value) || value < 0) {
+      value = 0;
+    }
     return {
       attribute: this.attributeName,
-      value: this.other$.value != null ? this.size(this.other$.value) : 0
+      value
     };
   }
   get otherPath() {
@@ -12914,14 +12936,14 @@ class gt extends Validator {
     return this.compare(value, otherValue);
   }
   compare(value, otherValue) {
-    var otherSize = this.size(otherValue);
+    var otherSize = this.size(otherValue, this.other$);
     return otherSize == 0 || this.size(value) > otherSize;
   }
 }
 
 class gte extends gt {
   compare(value, otherValue) {
-    var otherSize = this.size(otherValue);
+    var otherSize = this.size(otherValue, this.other$);
     return otherSize == 0 || this.size(value) >= otherSize;
   }
 }
@@ -13025,7 +13047,7 @@ class json extends Validator {
 class lt extends gt {
   compare(value, otherValue) {
     var size = this.size(value);
-    var otherSize = this.size(otherValue);
+    var otherSize = this.size(otherValue, this.other$);
     return otherSize == 0 && size == 0 || this.size(value) < otherSize;
   }
 }
@@ -13033,7 +13055,7 @@ class lt extends gt {
 class lte extends gt {
   compare(value, otherValue) {
     var size = this.size(value);
-    var otherSize = this.size(otherValue);
+    var otherSize = this.size(otherValue, this.other$);
     return otherSize == 0 && size == 0 || this.size(value) <= otherSize;
   }
 }
@@ -13921,7 +13943,7 @@ class Columns {
   }
 }
 
-/*! @license DOMPurify 3.2.4 | (c) Cure53 and other contributors | Released under the Apache license 2.0 and Mozilla Public License 2.0 | github.com/cure53/DOMPurify/blob/3.2.4/LICENSE */
+/*! @license DOMPurify 3.2.6 | (c) Cure53 and other contributors | Released under the Apache license 2.0 and Mozilla Public License 2.0 | github.com/cure53/DOMPurify/blob/3.2.6/LICENSE */
 
 const {
   entries,
@@ -13981,6 +14003,9 @@ const typeErrorCreate = unconstruct(TypeError);
  */
 function unapply(func) {
   return function (thisArg) {
+    if (thisArg instanceof RegExp) {
+      thisArg.lastIndex = 0;
+    }
     for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
       args[_key - 1] = arguments[_key];
     }
@@ -14122,7 +14147,7 @@ const ERB_EXPR = seal(/<%[\w\W]*|[\w\W]*%>/gm);
 const TMPLIT_EXPR = seal(/\$\{[\w\W]*/gm); // eslint-disable-line unicorn/better-regex
 const DATA_ATTR = seal(/^data-[\-\w.\u00B7-\uFFFF]+$/); // eslint-disable-line no-useless-escape
 const ARIA_ATTR = seal(/^aria-[\-\w]+$/); // eslint-disable-line no-useless-escape
-const IS_ALLOWED_URI = seal(/^(?:(?:(?:f|ht)tps?|mailto|tel|callto|sms|cid|xmpp):|[^a-z]|[a-z+.\-]+(?:[^a-z+.\-:]|$))/i // eslint-disable-line no-useless-escape
+const IS_ALLOWED_URI = seal(/^(?:(?:(?:f|ht)tps?|mailto|tel|callto|sms|cid|xmpp|matrix):|[^a-z]|[a-z+.\-]+(?:[^a-z+.\-:]|$))/i // eslint-disable-line no-useless-escape
 );
 const IS_SCRIPT_OR_DATA = seal(/^(?:\w+script|data):/i);
 const ATTR_WHITESPACE = seal(/[\u0000-\u0020\u00A0\u1680\u180E\u2000-\u2029\u205F\u3000]/g // eslint-disable-line no-control-regex
@@ -14219,7 +14244,7 @@ const _createHooksMap = function _createHooksMap() {
 function createDOMPurify() {
   let window = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : getGlobal();
   const DOMPurify = root => createDOMPurify(root);
-  DOMPurify.version = '3.2.4';
+  DOMPurify.version = '3.2.6';
   DOMPurify.removed = [];
   if (!window || !window.document || window.document.nodeType !== NODE_TYPE.document || !window.Element) {
     // Not running in a browser, provide a factory function
@@ -14458,8 +14483,8 @@ function createDOMPurify() {
     URI_SAFE_ATTRIBUTES = objectHasOwnProperty(cfg, 'ADD_URI_SAFE_ATTR') ? addToSet(clone$2(DEFAULT_URI_SAFE_ATTRIBUTES), cfg.ADD_URI_SAFE_ATTR, transformCaseFunc) : DEFAULT_URI_SAFE_ATTRIBUTES;
     DATA_URI_TAGS = objectHasOwnProperty(cfg, 'ADD_DATA_URI_TAGS') ? addToSet(clone$2(DEFAULT_DATA_URI_TAGS), cfg.ADD_DATA_URI_TAGS, transformCaseFunc) : DEFAULT_DATA_URI_TAGS;
     FORBID_CONTENTS = objectHasOwnProperty(cfg, 'FORBID_CONTENTS') ? addToSet({}, cfg.FORBID_CONTENTS, transformCaseFunc) : DEFAULT_FORBID_CONTENTS;
-    FORBID_TAGS = objectHasOwnProperty(cfg, 'FORBID_TAGS') ? addToSet({}, cfg.FORBID_TAGS, transformCaseFunc) : {};
-    FORBID_ATTR = objectHasOwnProperty(cfg, 'FORBID_ATTR') ? addToSet({}, cfg.FORBID_ATTR, transformCaseFunc) : {};
+    FORBID_TAGS = objectHasOwnProperty(cfg, 'FORBID_TAGS') ? addToSet({}, cfg.FORBID_TAGS, transformCaseFunc) : clone$2({});
+    FORBID_ATTR = objectHasOwnProperty(cfg, 'FORBID_ATTR') ? addToSet({}, cfg.FORBID_ATTR, transformCaseFunc) : clone$2({});
     USE_PROFILES = objectHasOwnProperty(cfg, 'USE_PROFILES') ? cfg.USE_PROFILES : false;
     ALLOW_ARIA_ATTR = cfg.ALLOW_ARIA_ATTR !== false; // Default true
     ALLOW_DATA_ATTR = cfg.ALLOW_DATA_ATTR !== false; // Default true
@@ -14824,7 +14849,7 @@ function createDOMPurify() {
       allowedTags: ALLOWED_TAGS
     });
     /* Detect mXSS attempts abusing namespace confusion */
-    if (currentNode.hasChildNodes() && !_isNode(currentNode.firstElementChild) && regExpTest(/<[/\w]/g, currentNode.innerHTML) && regExpTest(/<[/\w]/g, currentNode.textContent)) {
+    if (SAFE_FOR_XML && currentNode.hasChildNodes() && !_isNode(currentNode.firstElementChild) && regExpTest(/<[/\w!]/g, currentNode.innerHTML) && regExpTest(/<[/\w!]/g, currentNode.textContent)) {
       _forceRemove(currentNode);
       return true;
     }
@@ -14976,7 +15001,8 @@ function createDOMPurify() {
         value: attrValue
       } = attr;
       const lcName = transformCaseFunc(name);
-      let value = name === 'value' ? attrValue : stringTrim(attrValue);
+      const initValue = attrValue;
+      let value = name === 'value' ? initValue : stringTrim(initValue);
       /* Execute a hook if present */
       hookEvent.attrName = lcName;
       hookEvent.attrValue = value;
@@ -15002,10 +15028,9 @@ function createDOMPurify() {
       if (hookEvent.forceKeepAttr) {
         continue;
       }
-      /* Remove attribute */
-      _removeAttribute(name, currentNode);
       /* Did the hooks approve of the attribute? */
       if (!hookEvent.keepAttr) {
+        _removeAttribute(name, currentNode);
         continue;
       }
       /* Work around a security issue in jQuery 3.0 */
@@ -15022,6 +15047,7 @@ function createDOMPurify() {
       /* Is `value` valid for this attribute? */
       const lcTag = transformCaseFunc(currentNode.nodeName);
       if (!_isValidAttribute(lcTag, lcName, value)) {
+        _removeAttribute(name, currentNode);
         continue;
       }
       /* Handle attributes that require Trusted Types */
@@ -15042,19 +15068,23 @@ function createDOMPurify() {
         }
       }
       /* Handle invalid data-* attribute set by try-catching it */
-      try {
-        if (namespaceURI) {
-          currentNode.setAttributeNS(namespaceURI, name, value);
-        } else {
-          /* Fallback to setAttribute() for browser-unrecognized namespaces e.g. "x-schema". */
-          currentNode.setAttribute(name, value);
+      if (value !== initValue) {
+        try {
+          if (namespaceURI) {
+            currentNode.setAttributeNS(namespaceURI, name, value);
+          } else {
+            /* Fallback to setAttribute() for browser-unrecognized namespaces e.g. "x-schema". */
+            currentNode.setAttribute(name, value);
+          }
+          if (_isClobbered(currentNode)) {
+            _forceRemove(currentNode);
+          } else {
+            arrayPop(DOMPurify.removed);
+          }
+        } catch (_) {
+          _removeAttribute(name, currentNode);
         }
-        if (_isClobbered(currentNode)) {
-          _forceRemove(currentNode);
-        } else {
-          arrayPop(DOMPurify.removed);
-        }
-      } catch (_) {}
+      }
     }
     /* Execute a hook if present */
     _executeHooks(hooks.afterSanitizeAttributes, currentNode, null);
@@ -16969,14 +16999,6 @@ function isElement(value) {
 function isVueComponent(value) {
   /* istanbul ignore next */
   return isPlainObject_1(value) && (isNonEmptyString(value.template) || isFunction(value.render) || isNonEmptyString(value.el) || isElement(value.el) || isVueComponent(value.extends) || isNonEmptyArray(value.mixins) && value.mixins.some(val => isVueComponent(val))) || typeof value === 'function' && value.prototype && value.prototype.constructor.name === 'VueComponent';
-}
-
-function localize(object, $config, form$) {
-  var locale = form$.locale$ || $config.i18n.locale;
-  if (!locale) {
-    return object;
-  }
-  return object && typeof object === 'object' ? (object === null || object === void 0 ? void 0 : object[locale]) || (object === null || object === void 0 ? void 0 : object[locale.toUpperCase()]) || (object === null || object === void 0 ? void 0 : object[$config.i18n.fallbackLocale]) || (object === null || object === void 0 ? void 0 : object[$config.i18n.fallbackLocale.toUpperCase()]) || (object === null || object === void 0 ? void 0 : object[Object.keys(object)[0]]) || '' : object;
 }
 
 var base$19 = function base(props, context, dependencies) {
@@ -27385,6 +27407,7 @@ var base$I = function base(props, context, dependencies) {
   var {
     rules
   } = toRefs(props);
+  var config$ = inject('config$');
 
   // ============ DEPENDENCIES ============
 
@@ -27694,7 +27717,7 @@ var base$I = function base(props, context, dependencies) {
     // If the element has rules it does not
     // qualify as validated by default
     state.value.validated = false;
-    validatorFactory.value = new form$.value.$vueform.services.validation.factory(path.value, form$.value);
+    validatorFactory.value = new form$.value.$vueform.services.validation.factory(path.value, form$.value, config$.value);
     Validators.value = [];
     each(validatorFactory.value.makeAll(validationRules.value), Validator => {
       Validators.value.push(Validator);
@@ -28191,6 +28214,7 @@ var multilingual$3 = function multilingual(props, context, dependencies) {
   var {
     rules
   } = toRefs(props);
+  var config$ = inject('config$');
 
   // ============ DEPENDENCIES ============
 
@@ -28482,7 +28506,7 @@ var multilingual$3 = function multilingual(props, context, dependencies) {
     each(validationRules.value, (r, lang) => {
       state.value.validated[lang] = r !== null && r.length > 0 ? false : true;
     });
-    var factory = new form$.value.$vueform.services.validation.factory(path.value, form$.value);
+    var factory = new form$.value.$vueform.services.validation.factory(path.value, form$.value, config$.value);
     Validators.value = {};
     each(validationRules.value, (languageRules, lang) => {
       if (languageRules === null) {
