@@ -1534,6 +1534,7 @@ const matrix = function(props, context, dependencies, options = {})
 
 const multiselect = select
 const tags = select
+const hidden = text
 
 export {
   text,
@@ -1554,6 +1555,7 @@ export {
   captcha,
   signature,
   matrix,
+  hidden,
 }
 
 export default base
