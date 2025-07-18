@@ -70,6 +70,15 @@ const config = {
   strictConditions: false,
 
   /**
+   * Expression parser
+   */
+  expression: {
+    functions: {},
+    constants: {},
+  },
+  expressionDebug: false,
+
+  /**
    * Submitting
    */
   endpoints: {

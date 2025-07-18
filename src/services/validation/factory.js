@@ -7,6 +7,7 @@ import keys from 'lodash/keys'
 import get from 'lodash/get'
 import parse from './parse'
 import replaceWildcards from './../../utils/replaceWildcards'
+import replaceWildcardsExpr from './../../utils/replaceWildcardsExpr'
 import compare from './../../utils/compare'
  
 const Factory = class {
@@ -81,6 +82,13 @@ const Factory = class {
     return isPlainObject(rule)
   }
 
+  getExprDeps(condition) {
+    return this.form$.expression
+      .getVars(condition)
+      .map(d => d.replace(/\._0_\./, '.*.'))
+      .map(d => replaceWildcardsExpr(d, this.element$.dataPath, false))
+  }
+
   parseConditional(rule) {
     let conditions = values(rule)[0]
 
@@ -93,9 +101,15 @@ const Factory = class {
       conditions: (form$, Validator, el$) => {
         return conditions.every((condition) => {
           if (isArray(condition)) {
-            if (isArray(condition[0])) {
+            if (typeof condition[0] === 'string') {
+              return this.createConditionFromString(condition)(form$, Validator, el$)
+            }
+            else if (isArray(condition[0])) {
               return condition.some((subcondition) => {
-                if (isArray(subcondition)) {
+                if (typeof subcondition[0] === 'string') {
+                  return this.createConditionFromString(subcondition)(form$, Validator, el$)
+                }
+                else if (isArray(subcondition)) {
                   return this.createConditionFromArray(subcondition)(form$, Validator, el$)
                 } else {
                   return condition(form$, Validator, el$)
@@ -114,9 +128,15 @@ const Factory = class {
 
     conditions.forEach((condition) => {
       if (isArray(condition)) {
-        if (isArray(condition[0])) {
+        if (typeof condition[0] === 'string') {
+          parsed.dependents.push(...this.getExprDeps(condition[0]))
+        }
+        else if (isArray(condition[0])) {
           condition.forEach((subcondition) => {
-            if (isArray(subcondition)) {
+            if (typeof subcondition === 'string') {
+              parsed.dependents.push(...this.getExprDeps(subcondition[0]))
+            }
+            else if (isArray(subcondition)) {
               parsed.dependents.push(replaceWildcards(subcondition[0], this.element$.path))
             }
           })
@@ -141,6 +161,16 @@ const Factory = class {
       var expected = value
 
       return compare(actual, operator, expected, this.element$, form$)
+    }
+  }
+
+  createConditionFromString(condition) {
+    if (!/^{/.test(condition) && !/}$/.test(condition)) {
+      condition = `{${condition}}`
+    }
+
+    return (form$, Validator, el$) => {
+      return form$.resolveExpression(condition, this.element$?.dataPath) !== 'false'
     }
   }
 }

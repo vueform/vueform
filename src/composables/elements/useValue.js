@@ -3,10 +3,11 @@ import isEqual from 'lodash/isEqual'
 import get from 'lodash/get'
 import cloneDeep from 'lodash/cloneDeep'
 import isEmpty from 'lodash/isEmpty'
-import { computed, ref, toRefs, watch } from 'vue'
+import { computed, ref, toRefs, watch, onMounted } from 'vue'
 import checkDateFormat from '../../utils/checkDateFormat'
 import valueGet from '../../utils/valueGet'
 import valueSet from '../../utils/valueSet'
+import dataEquals from '../../utils/dataEquals'
 
 const base = function(props, context, dependencies, /* istanbul ignore next */ options = {})
 {
@@ -106,13 +107,15 @@ const base = function(props, context, dependencies, /* istanbul ignore next */ o
 
 const text = function(props, context, dependencies, /* istanbul ignore next */ options = {})
 {
-  const { name } = toRefs(props)
+  const { name, expression } = toRefs(props)
 
   const {
     initialValue,
     internalValue,
     isDefault,
   } = base(props, context, dependencies)
+
+  let unwatch
   
   // ============ DEPENDENCIES =============
   
@@ -124,14 +127,22 @@ const text = function(props, context, dependencies, /* istanbul ignore next */ o
     shouldForceNumbers,
     stringToNumber
   } = dependencies
+
+  const expressionValue = ref(defaultValue.value)
   
   // ============== COMPUTED ===============
 
   const value = computed({
     get: options.value?.get || function () {
-      return valueGet({ parent, name, form$, dataPath, internalValue, defaultValue })
+      if (!expression.value) {
+        return valueGet({ parent, name, form$, dataPath, internalValue, defaultValue })
+      }
+      
+      return expressionValue.value
     },
     set: options.value?.set || function (val) {
+      if (expression.value) return
+      
       if (shouldForceNumbers()) {
         val = stringToNumber(val)
       }
@@ -150,6 +161,43 @@ const text = function(props, context, dependencies, /* istanbul ignore next */ o
       value.value = val
     },
   })
+
+  const resolveExpressionValue = () => {
+    if (!expression.value) return
+
+    expressionValue.value = form$.value.resolveExpression(expression.value, dataPath.value)
+  }
+
+  const trackExpression = () => {
+    unwatch = watch(() => form$.value.data, (n, o) => {
+      if (!expression.value || dataEquals(n, o)) return
+
+      resolveExpressionValue()
+    }, { deep: true })
+  }
+
+  const untrackExpression = () => {
+    if (!unwatch) return
+    
+    unwatch()
+  }
+
+  if (expression.value) {
+    onMounted(() => {
+      resolveExpressionValue()
+      trackExpression()
+    })
+  }
+
+  watch(expression, (n, o) => {
+    if (n) {
+      resolveExpressionValue()
+      if (!o) trackExpression()
+    } else {
+      expressionValue.value = defaultValue.value
+      untrackExpression()
+    }
+  }, { immediate: false })
   
   return {
     initialValue,
@@ -606,6 +654,8 @@ const dates = function(props, context, dependencies)
   }
 }
 
+const hidden = text
+
 export {
   text,
   date,
@@ -615,6 +665,7 @@ export {
   group,
   list,
   matrix,
+  hidden,
 }
 
 

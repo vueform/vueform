@@ -104,6 +104,10 @@ export default {
       type: [Boolean],
       default: null
     },
+    expression: {
+      required: false,
+      type: [String],
+    },
     attrs: {
       required: false,
       type: [Object],

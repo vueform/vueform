@@ -76,6 +76,7 @@ export default {
       validate,
       resetValidators,
       convertFormData,
+      resolveExpression,
       submit,
       scrollToFirstInvalid,
       scrollOnNext,
@@ -90,6 +91,7 @@ export default {
       el$,
       siblings$,
       initMessageBag,
+      initExpressionService,
       fire,
       on,
       off,
@@ -98,6 +100,7 @@ export default {
       languagesRegistered,
       tabsRegistered,
       stepsRegistered,
+      expression,
     } = useVueform(props, context)
 
     return {
@@ -167,6 +170,7 @@ export default {
       validate,
       resetValidators,
       convertFormData,
+      resolveExpression,
       submit,
       scrollToFirstInvalid,
       scrollOnNext,
@@ -181,6 +185,7 @@ export default {
       el$,
       siblings$,
       initMessageBag,
+      initExpressionService,
       fire,
       on,
       off,
@@ -189,6 +194,7 @@ export default {
       languagesRegistered,
       tabsRegistered,
       stepsRegistered,
+      expression,
     }
   },
   props: {

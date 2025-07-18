@@ -19,6 +19,7 @@ import condition from './services/condition/index'
 import i18n from './services/i18n/index'
 import columns from './services/columns/index'
 import sanitize from './services/sanitize/index'
+import expression from './services/expression/index'
 import { ref, markRaw, h } from 'vue'
 
 import baseConfig from './config'
@@ -50,6 +51,7 @@ export default function(config = baseConfig, components = {}, rules = {}, servic
           condition,
           columns,
           sanitize,
+          expression,
           ...services,
         },
         version: packageJson.version,
@@ -77,7 +79,7 @@ export default function(config = baseConfig, components = {}, rules = {}, servic
 
       // merge (config)
       each([
-        'languages', 'services', 'presets', 'views', 'operators',
+        'languages', 'services', 'presets', 'views', 'operators', 'expression',
       ], (attr) => {
           if (config[attr] !== undefined) {
             this.options.config[attr] = Object.assign({}, this.options.config[attr], config[attr])
@@ -109,6 +111,7 @@ export default function(config = baseConfig, components = {}, rules = {}, servic
         'language', 'locale', 'fallbackLocale', 'orderFrom', 'validateOn', 'formData', 'beforeSend',
         'locationProvider', 'classHelpers', 'env', 'usePresets', 'plugins', 'size', 'apiKey', 'forceNumbers',
         'scrollToInvalid', 'showRequired', 'scrollOnNext', 'strictConditions', 'sanitize', 'sanitizeInit',
+        'expressionDebug',
       ], (attr) => {
           if (config[attr] !== undefined) {
             this.options.config[attr] = config[attr]

@@ -38,6 +38,14 @@ const check = (condition, elementPath, form$, el$) => {
     return compareValues(element$.value, expected, operator)
   }
 
+  let checkExpression = (condition) => {
+    if (!/^{/.test(condition) && !/}$/.test(condition)) {
+      condition = `{${condition}}`
+    }
+
+    return form$.resolveExpression(condition, el$?.dataPath) !== 'false'
+  }
+
   let details = (condition) => {
     return {
       conditionPath: elementPath ? replaceWildcards(condition[0], elementPath) : condition[0],
@@ -51,8 +59,12 @@ const check = (condition, elementPath, form$, el$) => {
   let compareValues = (actual, expected, operator) => {
     return compare(actual, operator, expected, el$, form$)
   }
+
+  if (typeof condition === 'string') {
+    return checkExpression(condition)
+  }
   
-  if (typeof condition == 'function') {
+  else if (typeof condition == 'function') {
     return checkFunction()
   }
 

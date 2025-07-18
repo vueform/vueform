@@ -113,6 +113,11 @@ export default {
       type: [String, Number],
       default: 0,
     },
+    expressions: {
+      required: false,
+      type: [Boolean],
+      default: false,
+    },
   },
   setup(props, ctx) {
     const context = { ...ctx }
