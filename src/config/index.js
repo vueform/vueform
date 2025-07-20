@@ -74,7 +74,7 @@ const config = {
    */
   expression: {
     functions: {},
-    constants: {},
+    consts: {},
   },
   expressionDebug: false,
 

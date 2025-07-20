@@ -121,6 +121,14 @@ export default class Expression {
         : translate(el$.value)
     }
 
+    Object.entries(this.config$.value.config.expression.functions || {}).forEach(([name, func]) => {
+      this.parser.functions[name] = func
+    })
+
+    Object.entries(this.config$.value.config.expression.consts || {}).forEach(([name, con]) => {
+      this.parser.consts[name] = con
+    })
+
     Object.keys(this.parser.functions).forEach((func) => {
       this.parser.functions[func].toString = () => func
     })
