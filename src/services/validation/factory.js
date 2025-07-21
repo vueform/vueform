@@ -83,10 +83,9 @@ const Factory = class {
   }
 
   getExprDeps(condition) {
-    return this.form$.expression
-      .getVars(condition)
-      .map(d => d.replace(/\._0_\./, '.*.'))
-      .map(d => replaceWildcardsExpr(d, this.element$.dataPath, false))
+    const ExpressionService = this.form$.expression
+
+    return ExpressionService.vars(ExpressionService.wrap(condition), this.element$?.dataPath)
   }
 
   parseConditional(rule) {

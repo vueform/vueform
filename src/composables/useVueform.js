@@ -1397,7 +1397,7 @@ const base = function(props, context, dependencies = {})
   * @returns {string}
   */
   const resolveExpression = (exp, dataPath) => {
-    return expression.resolve(exp, data.value, dataPath)
+    return expression.resolve(exp, requestData.value, dataPath)
   }
 
   /**

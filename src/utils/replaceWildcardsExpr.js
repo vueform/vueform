@@ -1,5 +1,5 @@
 export default function replaceWildcardsExpr (fillable, fill, brackets = true) {
-  if (!fillable.includes('.*.')) {
+  if (!fillable.includes('[*]')) {
     return fillable
   }
 
@@ -16,7 +16,7 @@ export default function replaceWildcardsExpr (fillable, fill, brackets = true) {
 
   Object.keys(keys).forEach((key) => {
     fillable = fillable.replace(
-      new RegExp(`(?<![a-zA-Z0-9_-])${key}\\.\\*`, 'g'),
+      new RegExp(`(?<![a-zA-Z0-9_\-])${key}\\[\\*\\]`, 'g'),
       brackets
         ? `${key}[${keys[key]}]`
         : `${key}.${keys[key]}`

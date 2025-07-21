@@ -7,7 +7,7 @@ import { computed, ref, toRefs, watch, onMounted } from 'vue'
 import checkDateFormat from '../../utils/checkDateFormat'
 import valueGet from '../../utils/valueGet'
 import valueSet from '../../utils/valueSet'
-import dataEquals from '../../utils/dataEquals'
+import flatten from '../../utils/flatten'
 
 const base = function(props, context, dependencies, /* istanbul ignore next */ options = {})
 {
@@ -115,7 +115,8 @@ const text = function(props, context, dependencies, /* istanbul ignore next */ o
     isDefault,
   } = base(props, context, dependencies)
 
-  let unwatch
+  let unwatchDeps
+  let unwatchData
   
   // ============ DEPENDENCIES =============
   
@@ -125,24 +126,19 @@ const text = function(props, context, dependencies, /* istanbul ignore next */ o
     dataPath,
     form$,
     shouldForceNumbers,
-    stringToNumber
+    stringToNumber,
+    on,
   } = dependencies
 
-  const expressionValue = ref(defaultValue.value)
+  const dependencyData = ref({})
   
   // ============== COMPUTED ===============
 
   const value = computed({
     get: options.value?.get || function () {
-      if (!expression.value) {
-        return valueGet({ parent, name, form$, dataPath, internalValue, defaultValue })
-      }
-      
-      return expressionValue.value
+      return valueGet({ parent, name, form$, dataPath, internalValue, defaultValue })
     },
     set: options.value?.set || function (val) {
-      if (expression.value) return
-      
       if (shouldForceNumbers()) {
         val = stringToNumber(val)
       }
@@ -162,24 +158,41 @@ const text = function(props, context, dependencies, /* istanbul ignore next */ o
     },
   })
 
+  const expressionDeps = computed(() => {
+    if (!expression.value) {
+      return []
+    }
+
+    return form$.value.expression.vars(expression.value, dataPath.value)
+  })
+
   const resolveExpressionValue = () => {
     if (!expression.value) return
-
-    expressionValue.value = form$.value.resolveExpression(expression.value, dataPath.value)
+    value.value = form$.value.resolveExpression(expression.value, dataPath.value)
   }
 
   const trackExpression = () => {
-    unwatch = watch(() => form$.value.data, (n, o) => {
-      if (!expression.value || dataEquals(n, o)) return
+    on('reset', resolveExpressionValue)
+    on('clear', resolveExpressionValue)
+
+    unwatchData = watch(() => form$.value.requestData, () => {
+      const fullData = flatten(form$.value.requestData)
+
+      for (const key of expressionDeps.value) {
+        dependencyData.value[key] = fullData[key]
+      }
+    }, { deep: true, immediate: true })
+
+    unwatchDeps = watch(dependencyData, () => {
+      if (!expression.value) return
 
       resolveExpressionValue()
     }, { deep: true })
   }
 
   const untrackExpression = () => {
-    if (!unwatch) return
-    
-    unwatch()
+    if (unwatchData) unwatchData()
+    if (unwatchDeps) unwatchDeps()
   }
 
   if (expression.value) {
@@ -194,7 +207,7 @@ const text = function(props, context, dependencies, /* istanbul ignore next */ o
       resolveExpressionValue()
       if (!o) trackExpression()
     } else {
-      expressionValue.value = defaultValue.value
+      value.value = defaultValue.value
       untrackExpression()
     }
   }, { immediate: false })
