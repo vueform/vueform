@@ -5,7 +5,6 @@ import sortBy from 'lodash/sortBy'
 import map from 'lodash/map'
 import isPlainObject from 'lodash/isPlainObject'
 import clone from 'lodash/clone'
-import isEqual from 'lodash/isEqual'
 import { computed, nextTick, toRefs, watch, ref, inject } from 'vue'
 import checkDateFormat from './../../utils/checkDateFormat'
 import asyncForEach from './../../utils/asyncForEach'
@@ -29,6 +28,7 @@ const base = function(props, context, dependencies, options = {})
   const nullValue = dependencies.nullValue
   const resetting = dependencies.resetting
   const isDefault = dependencies.isDefault
+  const fire = dependencies.fire
   
   // =============== PRIVATE ===============
   
@@ -102,6 +102,8 @@ const base = function(props, context, dependencies, options = {})
    */
   const clear = () => {
     setValue(cloneDeep(nullValue.value))
+
+    fire('clear')
   }
   
   /**
@@ -116,6 +118,8 @@ const base = function(props, context, dependencies, options = {})
 
     setValue(cloneDeep(defaultValue.value))
     resetValidators()
+
+    fire('reset')
   }
   
   /**
@@ -218,6 +222,7 @@ const textarea = function(props, context, dependencies, options = {})
 
   const {
     autosize,
+    fire,
   } = dependencies
   
   // =============== METHODS ===============
@@ -244,6 +249,8 @@ const textarea = function(props, context, dependencies, options = {})
     nextTick(() => {
       autosize()
     })
+
+    fire('clear')
   }
   
   const reset = () => {
@@ -252,6 +259,8 @@ const textarea = function(props, context, dependencies, options = {})
     nextTick(() => {
       autosize()
     })
+
+    fire('reset')
   }
 
   return {
@@ -289,6 +298,7 @@ const select = function(props, context, dependencies, options = {})
   const updateItems = dependencies.updateItems
   const resetting = dependencies.resetting
   const isDefault = dependencies.isDefault
+  const fire = dependencies.fire
 
   // =============== PRIVATE ===============
 
@@ -313,6 +323,8 @@ const select = function(props, context, dependencies, options = {})
     if (typeof items.value === 'string' && resolveOnLoad.value !== false) {
       updateItems()
     }
+
+    fire('reset')
   }
 
   return {
@@ -340,7 +352,7 @@ const captcha = function(props, context, dependencies, options = {})
 
   // ============ DEPENDENCIES =============
 
-  const { Provider } = dependencies
+  const { Provider, fire } = dependencies
 
   // =============== METHODS ===============
 
@@ -352,6 +364,8 @@ const captcha = function(props, context, dependencies, options = {})
     }
 
     Provider.value.reset()
+
+    fire('clear')
   }
   
   const reset = () => {
@@ -362,6 +376,8 @@ const captcha = function(props, context, dependencies, options = {})
     }
 
     Provider.value.reset()
+
+    fire('reset')
   }
 
   return {
@@ -392,6 +408,7 @@ const object = function(props, context, dependencies)
   const children$Array = dependencies.children$Array
   const resetting = dependencies.resetting
   const isDefault = dependencies.isDefault
+  const fire = dependencies.fire
 
   // ============== COMPUTED ===============
   
@@ -468,6 +485,8 @@ const object = function(props, context, dependencies)
       
       element$.clear()
     })
+
+    fire('clear')
   }
   
   const reset = () => {
@@ -482,6 +501,8 @@ const object = function(props, context, dependencies)
       
       element$.reset()
     })
+
+    fire('reset')
   }
 
   const prepare = async () => {
@@ -748,6 +769,8 @@ const list = function(props, context, dependencies, options)
     nextTick(() => {
       refreshOrderStore(value.value)
     })
+
+    fire('reset')
   }
 
   const prepare = async () => {
@@ -1249,6 +1272,7 @@ const signature = function(props, context, dependencies)
     setDefaultFont,
     setDefaultColor,
     available,
+    fire,
   } = dependencies
   
   // ============== COMPUTED ===============
@@ -1256,6 +1280,8 @@ const signature = function(props, context, dependencies)
   const clear = () => {
     clearBase()
     clearSignature()
+
+    fire('clear')
   }
   
   const reset = () => {
@@ -1264,6 +1290,8 @@ const signature = function(props, context, dependencies)
     setDefaultFont(true)
     setDefaultColor()
     resetBase()
+
+    fire('reset')
   }
 
   const prepare = async () => {
@@ -1351,6 +1379,8 @@ const matrix = function(props, context, dependencies, options = {})
     if (hasDynamicRows.value) {
       rowsCount.value = rows.value
     }
+
+    fire('clear')
   }
 
   const reset = () => {
@@ -1364,6 +1394,8 @@ const matrix = function(props, context, dependencies, options = {})
       grid.value.scrollTop = 0
       grid.value.scrollLeft = 0
     }
+
+    fire('reset')
   }
 
   const add = () => {

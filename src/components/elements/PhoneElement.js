@@ -46,7 +46,7 @@ import HasValidation from './../../mixins/HasValidation'
 export default {
   name: 'PhoneElement',
   mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
-  emits: ['change', 'select', 'open', 'close', 'blur', 'focus', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
+  emits: ['reset', 'clear', 'change', 'select', 'open', 'close', 'blur', 'focus', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
   props: {
     type: {
       required: false,
