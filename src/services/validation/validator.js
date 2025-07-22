@@ -299,8 +299,13 @@ const Validator = class {
     })
   }
 
-  size(value) {
-    if (this.isNumeric) {
+  isOtherNumeric(other$) {
+    return some(other$.Validators, { name: 'numeric' })
+        || some(other$.Validators, { name: 'integer' })
+  }
+
+  size(value, other$) {
+    if ((other$ && this.isOtherNumeric(other$)) || (!other$ && this.isNumeric)) {
       if (!isNaN(value)) {
         let num = parseFloat(value)
         

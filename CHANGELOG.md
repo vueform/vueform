@@ -1,5 +1,16 @@
 [//]: # (Don't use <tags>)
 
+## v1.12.11
+
+> `2025-07-17`
+
+### 🎉 Feature
+- Added `ht`, `so`, `vi` locales (thanks @giovramirez 🙏)
+
+### 🐞 Bug Fixes
+- Be able to localize custom rule messages
+- `gt`, `gte`, `lt`, `lte` rules that point to another elemegit pount should take into account numeric types #466
+
 ## v1.12.10
 
 > `2025-06-09`

@@ -3,9 +3,15 @@ import replaceWildcards from './../../../utils/replaceWildcards'
 
 export default class gt extends Validator {
   get messageParams() {
+    let value = this.other$.value != null ? this.size(this.other$.value, this.other$) : 0
+
+    if (isNaN(value) || value < 0) {
+      value = 0
+    }
+
     return {
       attribute: this.attributeName,
-      value: this.other$.value != null ? this.size(this.other$.value) : 0,
+      value,
     }
   }
 
@@ -28,7 +34,7 @@ export default class gt extends Validator {
   }
 
   compare(value, otherValue) {
-    let otherSize = this.size(otherValue)
+    let otherSize = this.size(otherValue, this.other$)
 
     return otherSize == 0 || this.size(value) > otherSize
   }
