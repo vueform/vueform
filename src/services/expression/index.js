@@ -107,7 +107,7 @@ export default class {
       return this.date(value).format(format)
     }
 
-    this.parser.functions.DISPLAY_VALUE = (path) => {
+    this.parser.functions.DISPLAY_VALUE = (value, path) => {
       const el$ = this.form$.value.el$(path)
 
       if (!el$) {
@@ -116,9 +116,9 @@ export default class {
 
       const translate = (v) => localize(el$.resolvedOptions?.find(o => o.value === v)?.label || '', this.config$.value, this.form$.value)
 
-      return Array.isArray(el$.value)
-        ? el$.value.map(translate).join(', ')
-        : translate(el$.value)
+      return Array.isArray(value)
+        ? value.map(translate).join(', ')
+        : translate(value)
     }
 
     Object.entries(functions || {}).forEach(([name, func]) => {
@@ -215,10 +215,11 @@ export default class {
   parse (expression, dataPath) {
     let parsed
 
-    expression = replaceWildcardsExpr(expression
-      .replace(/\.([0-9\*])+\b/g, '[$1]')
-      .replace(/\.([0-9\*])\.+\b/g, '[$1].')
-    , dataPath)
+    expression = expression
+      .replace(/([a-zA-Z_-][a-zA-Z0-9_-]*)\.([0-9\*])+\b/g, '$1[$2]')
+      .replace(/([a-zA-Z_-][a-zA-Z0-9_-]*)\.([0-9\*])\.+\b/g, '$1[$2].')
+
+    expression = replaceWildcardsExpr(expression, dataPath)
 
     try {
       parsed = this.parser.parse(expression)
