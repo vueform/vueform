@@ -86,6 +86,8 @@ export default {
       "after"
     ],
     "events": [
+      "reset",
+      "clear",
       "change",
       "beforeCreate",
       "created",
@@ -139,6 +141,8 @@ export default {
       "after"
     ],
     "events": [
+      "reset",
+      "clear",
       "change",
       "beforeCreate",
       "created",
@@ -191,6 +195,8 @@ export default {
       "after"
     ],
     "events": [
+      "reset",
+      "clear",
       "change",
       "beforeCreate",
       "created",
@@ -252,6 +258,8 @@ export default {
       "addon-after"
     ],
     "events": [
+      "reset",
+      "clear",
       "change",
       "beforeCreate",
       "created",
@@ -313,6 +321,8 @@ export default {
       "addon-after"
     ],
     "events": [
+      "reset",
+      "clear",
       "change",
       "beforeCreate",
       "created",
@@ -369,6 +379,8 @@ export default {
       "after"
     ],
     "events": [
+      "reset",
+      "clear",
       "change",
       "remove",
       "error",
@@ -421,6 +433,8 @@ export default {
       "after"
     ],
     "events": [
+      "reset",
+      "clear",
       "change",
       "beforeCreate",
       "created",
@@ -474,6 +488,8 @@ export default {
       "after"
     ],
     "events": [
+      "reset",
+      "clear",
       "change",
       "beforeCreate",
       "created",
@@ -523,6 +539,8 @@ export default {
       "after"
     ],
     "events": [
+      "reset",
+      "clear",
       "change",
       "beforeCreate",
       "created",
@@ -538,8 +556,8 @@ export default {
     "features": [
       "baseElement",
       "conditions",
-      "data",
-      "default",
+      "data_hidden",
+      "default_hidden",
       "el$",
       "empty",
       "events",
@@ -549,15 +567,18 @@ export default {
       "genericName",
       "input",
       "nullValue",
+      "numbers",
       "path",
       "templates",
       "theme",
       "validation",
-      "value",
+      "value_hidden",
       "watchValue"
     ],
     "slots": [],
     "events": [
+      "reset",
+      "clear",
       "change",
       "beforeCreate",
       "created",
@@ -615,6 +636,8 @@ export default {
       "after"
     ],
     "events": [
+      "reset",
+      "clear",
       "change",
       "add",
       "remove",
@@ -677,6 +700,8 @@ export default {
       "addon-after"
     ],
     "events": [
+      "reset",
+      "clear",
       "change",
       "beforeCreate",
       "created",
@@ -731,6 +756,8 @@ export default {
       "after"
     ],
     "events": [
+      "reset",
+      "clear",
       "change",
       "add",
       "remove",
@@ -793,6 +820,8 @@ export default {
       "after"
     ],
     "events": [
+      "reset",
+      "clear",
       "change",
       "add",
       "remove",
@@ -866,6 +895,8 @@ export default {
       "after"
     ],
     "events": [
+      "reset",
+      "clear",
       "change",
       "select",
       "deselect",
@@ -922,6 +953,8 @@ export default {
       "after"
     ],
     "events": [
+      "reset",
+      "clear",
       "change",
       "remove",
       "beforeCreate",
@@ -983,6 +1016,8 @@ export default {
       "after"
     ],
     "events": [
+      "reset",
+      "clear",
       "change",
       "select",
       "open",
@@ -1041,6 +1076,8 @@ export default {
       "after"
     ],
     "events": [
+      "reset",
+      "clear",
       "change",
       "beforeCreate",
       "created",
@@ -1092,6 +1129,8 @@ export default {
       "after"
     ],
     "events": [
+      "reset",
+      "clear",
       "change",
       "beforeCreate",
       "created",
@@ -1161,6 +1200,8 @@ export default {
       "after"
     ],
     "events": [
+      "reset",
+      "clear",
       "change",
       "select",
       "deselect",
@@ -1225,6 +1266,8 @@ export default {
       "addon-after"
     ],
     "events": [
+      "reset",
+      "clear",
       "change",
       "beforeCreate",
       "created",
@@ -1278,6 +1321,8 @@ export default {
       "after"
     ],
     "events": [
+      "reset",
+      "clear",
       "change",
       "beforeCreate",
       "created",
@@ -1391,6 +1436,8 @@ export default {
       "after"
     ],
     "events": [
+      "reset",
+      "clear",
       "change",
       "select",
       "deselect",
@@ -1461,6 +1508,8 @@ export default {
       "addon-after"
     ],
     "events": [
+      "reset",
+      "clear",
       "change",
       "blur",
       "focus",
@@ -1529,6 +1578,8 @@ export default {
       "addon-after"
     ],
     "events": [
+      "reset",
+      "clear",
       "change",
       "blur",
       "focus",
@@ -1589,6 +1640,8 @@ export default {
       "after"
     ],
     "events": [
+      "reset",
+      "clear",
       "change",
       "beforeCreate",
       "created",
@@ -1646,6 +1699,8 @@ export default {
       "after"
     ],
     "events": [
+      "reset",
+      "clear",
       "change",
       "blur",
       "alert",
@@ -1713,6 +1768,8 @@ export default {
       "addon-after"
     ],
     "events": [
+      "reset",
+      "clear",
       "change",
       "blur",
       "focus",
@@ -1782,6 +1839,8 @@ export default {
       "addon-after"
     ],
     "events": [
+      "reset",
+      "clear",
       "change",
       "blur",
       "focus",
@@ -1846,6 +1905,8 @@ export default {
       "after"
     ],
     "events": [
+      "reset",
+      "clear",
       "change",
       "blur",
       "alert",
