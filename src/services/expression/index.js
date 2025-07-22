@@ -97,6 +97,10 @@ export default class {
       return this.moment().format('YYYY-MM-DD')
     }
 
+    this.parser.functions.NOW = () => {
+      return this.moment().toISOString()
+    }
+
     this.parser.functions.DATE_ADD = (value, toAdd, interval) => {
       const date = this.date(value)
 
