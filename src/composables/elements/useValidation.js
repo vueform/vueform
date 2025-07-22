@@ -229,10 +229,12 @@ const base = function(props, context, dependencies)
    */
   const validate = async () => {
     if (!validationRules.value) {
+      resetting.value = false
       return
     }
     
     if (form$.value.validation === false) {
+      resetting.value = false
       return
     }
     
