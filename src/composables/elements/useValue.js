@@ -3,11 +3,12 @@ import isEqual from 'lodash/isEqual'
 import get from 'lodash/get'
 import cloneDeep from 'lodash/cloneDeep'
 import isEmpty from 'lodash/isEmpty'
-import { computed, ref, toRefs, watch, onMounted } from 'vue'
+import { computed, ref, toRefs, watch, onMounted, inject } from 'vue'
 import checkDateFormat from '../../utils/checkDateFormat'
 import valueGet from '../../utils/valueGet'
 import valueSet from '../../utils/valueSet'
 import flatten from '../../utils/flatten'
+import localize from '../../utils/localize'
 
 const base = function(props, context, dependencies, /* istanbul ignore next */ options = {})
 {
@@ -117,6 +118,7 @@ const text = function(props, context, dependencies, /* istanbul ignore next */ o
 
   let unwatchDeps
   let unwatchData
+  let unwatchLocale
   
   // ============ DEPENDENCIES =============
   
@@ -130,7 +132,13 @@ const text = function(props, context, dependencies, /* istanbul ignore next */ o
     on,
   } = dependencies
 
+  const $vueform = inject('$vueform')
+  const config$ = inject('config$')
+
+  // ================ DATA =================
+
   const dependencyData = ref({})
+  const currentExpression = ref()
   
   // ============== COMPUTED ===============
 
@@ -163,17 +171,26 @@ const text = function(props, context, dependencies, /* istanbul ignore next */ o
       return []
     }
 
-    return form$.value.expression.vars(expression.value, dataPath.value)
+    return form$.value.expression.vars(currentExpression.value, dataPath.value)
   })
 
   const resolveExpressionValue = () => {
-    if (!expression.value) return
-    value.value = form$.value.resolveExpression(expression.value, dataPath.value)
+    if (!currentExpression.value) return
+
+    value.value = form$.value.resolveExpression(currentExpression.value, dataPath.value)
+  }
+
+  const setCurrentExpression = () => {
+    currentExpression.value = localize(expression.value, config$.value, form$.value)
   }
 
   const trackExpression = () => {
     on('reset', resolveExpressionValue)
     on('clear', resolveExpressionValue)
+
+    unwatchLocale = watch([() => $vueform.value.i18n.locale, () => form$.value.locale], () => {
+      setCurrentExpression()
+    })
 
     unwatchData = watch(() => form$.value.requestData, () => {
       const fullData = flatten(form$.value.requestData)
@@ -184,7 +201,7 @@ const text = function(props, context, dependencies, /* istanbul ignore next */ o
     }, { deep: true, immediate: true })
 
     unwatchDeps = watch(dependencyData, () => {
-      if (!expression.value) return
+      if (!currentExpression.value) return
 
       resolveExpressionValue()
     }, { deep: true })
@@ -193,10 +210,12 @@ const text = function(props, context, dependencies, /* istanbul ignore next */ o
   const untrackExpression = () => {
     if (unwatchData) unwatchData()
     if (unwatchDeps) unwatchDeps()
+    if (unwatchLocale) unwatchLocale()
   }
 
   if (expression.value) {
     onMounted(() => {
+      setCurrentExpression()
       resolveExpressionValue()
       trackExpression()
     })
@@ -204,13 +223,14 @@ const text = function(props, context, dependencies, /* istanbul ignore next */ o
 
   watch(expression, (n, o) => {
     if (n) {
+      setCurrentExpression()
       resolveExpressionValue()
       if (!o) trackExpression()
     } else {
       value.value = defaultValue.value
       untrackExpression()
     }
-  }, { immediate: false })
+  }, { immediate: false, deep: true })
   
   return {
     initialValue,

@@ -59,7 +59,8 @@ export default {
     },
     expression: {
       required: false,
-      type: [String],
+      type: [String, Object],
+      default: undefined,
     },
   },
   setup(props, ctx) {
