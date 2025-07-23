@@ -1394,6 +1394,7 @@ const base = function(props, context, dependencies = {})
   * Resolves an expression.
   *
   * @param {string} exp* the expression to resolve
+  * @param {string} dataPath* the dataPath of the element (required to resolve * in nested paths relative to the element)
   * @returns {string}
   */
   const resolveExpression = (exp, dataPath) => {
