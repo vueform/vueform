@@ -406,6 +406,7 @@ export interface VueformElement extends DefineComponent {
   direction: string;
   lazy: boolean;
   content: string | object | Function;
+  expressions: boolean;
   wrap: boolean;
   tag: string;
   allowHtml: boolean;
@@ -415,7 +416,6 @@ export interface VueformElement extends DefineComponent {
   width: string;
   top: string | number;
   bottom: string | number;
-  expressions: boolean;
   onKeydown: Function;
   onKeyup: Function;
   onKeypress: Function;
@@ -1011,6 +1011,7 @@ export interface VueformSchema {
   direction?: string;
   lazy?: boolean;
   content?: string | object | Function;
+  expressions?: boolean;
   wrap?: boolean;
   tag?: string;
   allowHtml?: boolean;
@@ -1020,7 +1021,6 @@ export interface VueformSchema {
   width?: string;
   top?: string | number;
   bottom?: string | number;
-  expressions?: boolean;
   onKeydown?: Function;
   onKeyup?: Function;
   onKeypress?: Function;
@@ -2778,6 +2778,7 @@ export interface StaticElementProps {
   type?: string;
   id?: string;
   content?: string | object | Function;
+  expressions?: boolean;
   wrap?: boolean;
   tag?: string;
   allowHtml?: boolean;
@@ -2792,7 +2793,6 @@ export interface StaticElementProps {
   align?: string;
   top?: string | number;
   bottom?: string | number;
-  expressions?: boolean;
 }
 
 export interface TEditorElementProps {
@@ -9593,6 +9593,7 @@ export declare class StaticElement implements DefineComponent {
   type: StaticElementProps['type'];
   id: StaticElementProps['id'];
   content: StaticElementProps['content'];
+  expressions: StaticElementProps['expressions'];
   wrap: StaticElementProps['wrap'];
   tag: StaticElementProps['tag'];
   allowHtml: StaticElementProps['allowHtml'];
@@ -9607,7 +9608,6 @@ export declare class StaticElement implements DefineComponent {
   align: StaticElementProps['align'];
   top: StaticElementProps['top'];
   bottom: StaticElementProps['bottom'];
-  expressions: StaticElementProps['expressions'];
 
   // Computed
   descriptionId: string;

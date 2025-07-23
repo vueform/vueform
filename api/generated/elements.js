@@ -41785,6 +41785,16 @@ module.exports = {
         required: false,
         private: false,
       },
+      expressions: {
+        required: 'false',
+        default: 'false',
+        localized: false,
+        types: [
+          'boolean',
+        ],
+        required: false,
+        private: false,
+      },
       wrap: {
         required: 'false',
         default: 'true',
@@ -41923,16 +41933,6 @@ module.exports = {
         types: [
           'string',
           'number',
-        ],
-        required: false,
-        private: false,
-      },
-      expressions: {
-        required: 'false',
-        default: 'false',
-        localized: false,
-        types: [
-          'boolean',
         ],
         required: false,
         private: false,

@@ -43,6 +43,11 @@ export default {
       type: [String, Object, Function],
       default: ''
     },
+    expressions: {
+      required: false,
+      type: [Boolean],
+      default: false,
+    },
     wrap: {
       required: false,
       type: [Boolean],
@@ -112,11 +117,6 @@ export default {
       required: false,
       type: [String, Number],
       default: 0,
-    },
-    expressions: {
-      required: false,
-      type: [Boolean],
-      default: false,
     },
   },
   setup(props, ctx) {
