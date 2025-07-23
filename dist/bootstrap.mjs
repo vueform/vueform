@@ -1,5 +1,5 @@
 /*!
- * Vueform v1.12.11 (https://github.com/vueform/vueform)
+ * Vueform v1.13.0 (https://github.com/vueform/vueform)
  * Copyright (c) 2025 Adam Berecz <adam@vueform.com>
  * Licensed under the MIT License
  */
@@ -3517,7 +3517,7 @@ function render$u(_ctx, _cache, $props, $setup, $data, $options) {
                   innerHTML: col.label,
                   class: normalizeClass(_ctx.classes.header)
                 }, null, 10 /* CLASS, PROPS */, _hoisted_1$p)), [
-                  [vShow, col.available]
+                  [vShow, col.available.value]
                 ])
               : createCommentVNode("v-if", true)
           ], 64 /* STABLE_FRAGMENT */))
@@ -3539,7 +3539,7 @@ function render$u(_ctx, _cache, $props, $setup, $data, $options) {
                   innerHTML: row.label,
                   class: normalizeClass(_ctx.classes.rowLabel)
                 }, null, 10 /* CLASS, PROPS */, _hoisted_2$h)), [
-                  [vShow, row.available]
+                  [vShow, row.available.value]
                 ])
               : createCommentVNode("v-if", true),
             createCommentVNode(" Input cells "),
@@ -3555,7 +3555,7 @@ function render$u(_ctx, _cache, $props, $setup, $data, $options) {
                   }), null, 16 /* FULL_PROPS */))
                 ], 2 /* CLASS */)
               ], 2 /* CLASS */)), [
-                [vShow, row.available && col.available]
+                [vShow, row.available.value && col.available.value]
               ])
             }), 256 /* UNKEYED_FRAGMENT */)),
             createCommentVNode(" Remove column "),

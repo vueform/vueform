@@ -131,6 +131,15 @@ export default {
     }
   },
   reset: {
+    default: {
+      description: 'Triggered when the input is resetted.',
+      params: {
+        el$: {
+          description: 'the element\'s component',
+          types: ['component']
+        },
+      }
+    },
     Vueform: {
       description: 'Triggered when the form is reseted using [`reset()`](#method-reset).'
     }
@@ -656,7 +665,7 @@ export default {
   },
   clear: {
     default: {
-      description: 'Triggered when the value is cleared when using [`native: true`](#option-native).',
+      description: 'Triggered when the input is cleared.',
       params: {
         el$: {
           description: 'the element\'s component',

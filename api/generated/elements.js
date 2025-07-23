@@ -2510,6 +2510,28 @@ module.exports = {
       },
     },
     events: {
+      'reset': {
+        description: 'Triggered when the input is resetted.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'clear': {
+        description: 'Triggered when the input is cleared.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
       'change': {
         description: 'Triggered when the element&apos;s value is changed.',
         params: {
@@ -4015,6 +4037,28 @@ module.exports = {
       },
     },
     events: {
+      'reset': {
+        description: 'Triggered when the input is resetted.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'clear': {
+        description: 'Triggered when the input is cleared.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
       'change': {
         description: 'Triggered when the element&apos;s value is changed.',
         params: {
@@ -5640,6 +5684,28 @@ module.exports = {
       },
     },
     events: {
+      'reset': {
+        description: 'Triggered when the input is resetted.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'clear': {
+        description: 'Triggered when the input is cleared.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
       'change': {
         description: 'Triggered when the element&apos;s value is changed.',
         params: {
@@ -7371,6 +7437,28 @@ module.exports = {
       },
     },
     events: {
+      'reset': {
+        description: 'Triggered when the input is resetted.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'clear': {
+        description: 'Triggered when the input is cleared.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
       'change': {
         description: 'Triggered when the element&apos;s value is changed.',
         params: {
@@ -9035,6 +9123,28 @@ module.exports = {
       },
     },
     events: {
+      'reset': {
+        description: 'Triggered when the input is resetted.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'clear': {
+        description: 'Triggered when the input is cleared.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
       'change': {
         description: 'Triggered when the element&apos;s value is changed.',
         params: {
@@ -10689,6 +10799,28 @@ module.exports = {
       },
     },
     events: {
+      'reset': {
+        description: 'Triggered when the input is resetted.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'clear': {
+        description: 'Triggered when the input is cleared.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
       'change': {
         description: 'Triggered when the element&apos;s value is changed.',
         params: {
@@ -12528,6 +12660,28 @@ module.exports = {
       },
     },
     events: {
+      'reset': {
+        description: 'Triggered when the input is resetted.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'clear': {
+        description: 'Triggered when the input is cleared.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
       'change': {
         description: 'Triggered when the element&apos;s value is changed.',
         params: {
@@ -14016,6 +14170,28 @@ module.exports = {
       },
     },
     events: {
+      'reset': {
+        description: 'Triggered when the input is resetted.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'clear': {
+        description: 'Triggered when the input is cleared.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
       'change': {
         description: 'Triggered when the element&apos;s value is changed.',
         params: {
@@ -15587,6 +15763,28 @@ module.exports = {
       },
     },
     events: {
+      'reset': {
+        description: 'Triggered when the input is resetted.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'clear': {
+        description: 'Triggered when the input is cleared.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
       'change': {
         description: 'Triggered when the element&apos;s value is changed.',
         params: {
@@ -17000,6 +17198,28 @@ module.exports = {
       },
     },
     events: {
+      'reset': {
+        description: 'Triggered when the input is resetted.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'clear': {
+        description: 'Triggered when the input is cleared.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
       'change': {
         description: 'Triggered when the element&apos;s value is changed.',
         params: {
@@ -17407,6 +17627,27 @@ module.exports = {
         localized: false,
         types: [
           'boolean',
+        ],
+        required: false,
+        private: false,
+      },
+      forceNumbers: {
+        required: 'false',
+        default: 'null',
+        localized: false,
+        types: [
+          'boolean',
+        ],
+        required: false,
+        private: false,
+      },
+      expression: {
+        required: 'false',
+        default: 'undefined',
+        localized: false,
+        types: [
+          'string',
+          'object',
         ],
         required: false,
         private: false,
@@ -17918,6 +18159,25 @@ module.exports = {
         returns: 'void',
         private: true,
       },
+      shouldForceNumbers: {
+        description: 'Whether the value should be converted to number/float.',
+        returns: 'boolean',
+        private: true,
+      },
+      stringToNumber: {
+        description: 'Converts string value to number or float.',
+        returns: 'number|float|string',
+        params: {
+          str: {
+            types: [
+              'any',
+            ],
+            required: 'true',
+            description: 'the string to be converted',
+          },
+        },
+        private: true,
+      },
       validate: {
         description: 'Checks each validation rule for the element (async).',
         returns: 'Promise',
@@ -17976,6 +18236,28 @@ module.exports = {
       },
     },
     events: {
+      'reset': {
+        description: 'Triggered when the input is resetted.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'clear': {
+        description: 'Triggered when the input is cleared.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
       'change': {
         description: 'Triggered when the element&apos;s value is changed.',
         params: {
@@ -19688,6 +19970,28 @@ module.exports = {
       },
     },
     events: {
+      'reset': {
+        description: 'Triggered when the input is resetted.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'clear': {
+        description: 'Triggered when the input is cleared.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
       'change': {
         description: 'Triggered when the element&apos;s value is changed.',
         params: {
@@ -21387,6 +21691,28 @@ module.exports = {
       },
     },
     events: {
+      'reset': {
+        description: 'Triggered when the input is resetted.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'clear': {
+        description: 'Triggered when the input is cleared.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
       'change': {
         description: 'Triggered when the element&apos;s value is changed.',
         params: {
@@ -23337,6 +23663,28 @@ module.exports = {
       },
     },
     events: {
+      'reset': {
+        description: 'Triggered when the input is resetted.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'clear': {
+        description: 'Triggered when the input is cleared.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
       'change': {
         description: 'Triggered when the element&apos;s value is changed.',
         params: {
@@ -25349,6 +25697,28 @@ module.exports = {
       },
     },
     events: {
+      'reset': {
+        description: 'Triggered when the input is resetted.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'clear': {
+        description: 'Triggered when the input is cleared.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
       'change': {
         description: 'Triggered when the element&apos;s value is changed.',
         params: {
@@ -27665,6 +28035,28 @@ module.exports = {
       },
     },
     events: {
+      'reset': {
+        description: 'Triggered when the input is resetted.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'clear': {
+        description: 'Triggered when the input is cleared.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
       'change': {
         description: 'Triggered when the element&apos;s value is changed.',
         params: {
@@ -27762,7 +28154,7 @@ module.exports = {
        },
       },
       'clear': {
-        description: 'Triggered when the value is cleared when using [`native: true`](#option-native).',
+        description: 'Triggered when the input is cleared.',
         params: {
           el$: {
             description: 'the element&apos;s component',
@@ -29357,6 +29749,28 @@ module.exports = {
       },
     },
     events: {
+      'reset': {
+        description: 'Triggered when the input is resetted.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'clear': {
+        description: 'Triggered when the input is cleared.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
       'change': {
         description: 'Triggered when the element&apos;s value is changed.',
         params: {
@@ -31082,6 +31496,28 @@ module.exports = {
       },
     },
     events: {
+      'reset': {
+        description: 'Triggered when the input is resetted.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'clear': {
+        description: 'Triggered when the input is cleared.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
       'change': {
         description: 'Triggered when the element&apos;s value is changed.',
         params: {
@@ -32652,6 +33088,28 @@ module.exports = {
       },
     },
     events: {
+      'reset': {
+        description: 'Triggered when the input is resetted.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'clear': {
+        description: 'Triggered when the input is cleared.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
       'change': {
         description: 'Triggered when the element&apos;s value is changed.',
         params: {
@@ -34222,6 +34680,28 @@ module.exports = {
       },
     },
     events: {
+      'reset': {
+        description: 'Triggered when the input is resetted.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'clear': {
+        description: 'Triggered when the input is cleared.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
       'change': {
         description: 'Triggered when the element&apos;s value is changed.',
         params: {
@@ -36430,6 +36910,28 @@ module.exports = {
       },
     },
     events: {
+      'reset': {
+        description: 'Triggered when the input is resetted.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'clear': {
+        description: 'Triggered when the input is cleared.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
       'change': {
         description: 'Triggered when the element&apos;s value is changed.',
         params: {
@@ -36527,7 +37029,7 @@ module.exports = {
        },
       },
       'clear': {
-        description: 'Triggered when the value is cleared when using [`native: true`](#option-native).',
+        description: 'Triggered when the input is cleared.',
         params: {
           el$: {
             description: 'the element&apos;s component',
@@ -39065,6 +39567,28 @@ module.exports = {
       },
     },
     events: {
+      'reset': {
+        description: 'Triggered when the input is resetted.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'clear': {
+        description: 'Triggered when the input is cleared.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
       'change': {
         description: 'Triggered when the element&apos;s value is changed.',
         params: {
@@ -40654,6 +41178,28 @@ module.exports = {
       },
     },
     events: {
+      'reset': {
+        description: 'Triggered when the input is resetted.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'clear': {
+        description: 'Triggered when the input is cleared.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
       'change': {
         description: 'Triggered when the element&apos;s value is changed.',
         params: {
@@ -41377,6 +41923,16 @@ module.exports = {
         types: [
           'string',
           'number',
+        ],
+        required: false,
+        private: false,
+      },
+      expressions: {
+        required: 'false',
+        default: 'false',
+        localized: false,
+        types: [
+          'boolean',
         ],
         required: false,
         private: false,
@@ -43480,6 +44036,28 @@ module.exports = {
       },
     },
     events: {
+      'reset': {
+        description: 'Triggered when the input is resetted.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'clear': {
+        description: 'Triggered when the input is cleared.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
       'change': {
         description: 'Triggered when the element&apos;s value is changed.',
         params: {
@@ -45217,6 +45795,28 @@ module.exports = {
       },
     },
     events: {
+      'reset': {
+        description: 'Triggered when the input is resetted.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'clear': {
+        description: 'Triggered when the input is cleared.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
       'change': {
         description: 'Triggered when the element&apos;s value is changed.',
         params: {
@@ -47003,6 +47603,28 @@ module.exports = {
       },
     },
     events: {
+      'reset': {
+        description: 'Triggered when the input is resetted.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'clear': {
+        description: 'Triggered when the input is cleared.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
       'change': {
         description: 'Triggered when the element&apos;s value is changed.',
         params: {
@@ -49300,6 +49922,28 @@ module.exports = {
       },
     },
     events: {
+      'reset': {
+        description: 'Triggered when the input is resetted.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'clear': {
+        description: 'Triggered when the value is cleared.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
       'change': {
         description: 'Triggered when the element&apos;s value is changed.',
         params: {
@@ -50328,6 +50972,17 @@ module.exports = {
         required: false,
         private: false,
       },
+      expression: {
+        required: 'false',
+        default: 'undefined',
+        localized: false,
+        types: [
+          'string',
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
       attrs: {
         required: 'false',
         default: '{}',
@@ -51308,6 +51963,28 @@ module.exports = {
       },
     },
     events: {
+      'reset': {
+        description: 'Triggered when the input is resetted.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'clear': {
+        description: 'Triggered when the input is cleared.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
       'change': {
         description: 'Triggered when the element&apos;s value is changed.',
         params: {
@@ -53075,6 +53752,28 @@ module.exports = {
       },
     },
     events: {
+      'reset': {
+        description: 'Triggered when the input is resetted.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'clear': {
+        description: 'Triggered when the input is cleared.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
       'change': {
         description: 'Triggered when the element&apos;s value is changed.',
         params: {
@@ -54709,6 +55408,28 @@ module.exports = {
       },
     },
     events: {
+      'reset': {
+        description: 'Triggered when the input is resetted.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'clear': {
+        description: 'Triggered when the input is cleared.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
       'change': {
         description: 'Triggered when the element&apos;s value is changed.',
         params: {

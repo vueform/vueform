@@ -1,5 +1,21 @@
 [//]: # (Don't use <tags>)
 
+## v1.13.0
+
+> `2025-07-23`
+
+### 🎉 Feature
+- Added expressions, a way to use computed form values as element values, static text and conditions.
+- Added `expression` to `text` and `hidden`.
+- Added `expressions` and `static` which is when enabled string between `{...}` will be evaluated as expression.
+- Added expression support for `conditions`, `disabled` and `readonly` when condition provided as a string.
+- Added `reset` & `clear` events for elements
+- Added `forceNumbers` prop to `HiddenElement`
+- Use computed for `MatrixElement` col/row `available` prop
+
+### 🐞 Bug Fixes
+- Clear resetting if the form validation is turned off or rules don't exist.
+
 ## v1.12.11
 
 > `2025-07-17`

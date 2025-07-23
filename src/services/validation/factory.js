@@ -100,12 +100,12 @@ const Factory = class {
       conditions: (form$, Validator, el$) => {
         return conditions.every((condition) => {
           if (isArray(condition)) {
-            if (typeof condition[0] === 'string') {
+            if (typeof condition[0] === 'string' && condition.length === 1) {
               return this.createConditionFromString(condition)(form$, Validator, el$)
             }
             else if (isArray(condition[0])) {
               return condition.some((subcondition) => {
-                if (typeof subcondition[0] === 'string') {
+                if (typeof subcondition[0] === 'string' && subcondition.length === 1) {
                   return this.createConditionFromString(subcondition)(form$, Validator, el$)
                 }
                 else if (isArray(subcondition)) {

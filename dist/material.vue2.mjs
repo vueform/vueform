@@ -1,5 +1,5 @@
 /*!
- * Vueform v1.12.11 (https://github.com/vueform/vueform)
+ * Vueform v1.13.0 (https://github.com/vueform/vueform)
  * Copyright (c) 2025 Adam Berecz <adam@vueform.com>
  * Licensed under the MIT License
  */
@@ -7987,8 +7987,8 @@ var __vue_render__$u = function () {
                               {
                                 name: "show",
                                 rawName: "v-show",
-                                value: col.available,
-                                expression: "col.available",
+                                value: col.available.value,
+                                expression: "col.available.value",
                               },
                             ],
                             class: _vm.classes.header,
@@ -8010,8 +8010,8 @@ var __vue_render__$u = function () {
                               {
                                 name: "show",
                                 rawName: "v-show",
-                                value: row.available,
-                                expression: "row.available",
+                                value: row.available.value,
+                                expression: "row.available.value",
                               },
                             ],
                             class: _vm.classes.rowLabel,
@@ -8028,8 +8028,10 @@ var __vue_render__$u = function () {
                                 {
                                   name: "show",
                                   rawName: "v-show",
-                                  value: row.available && col.available,
-                                  expression: "row.available && col.available",
+                                  value:
+                                    row.available.value && col.available.value,
+                                  expression:
+                                    "row.available.value && col.available.value",
                                 },
                               ],
                               class: _vm.classes.cell,

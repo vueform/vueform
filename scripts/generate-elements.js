@@ -147,6 +147,7 @@ const addEvents = (contents, elementName) => {
       }
     } catch (e) {
       console.log(elementName, elementKey, eventName)
+      console.log(eventsInfo[eventName])
       throw e
     }
 

@@ -1,5 +1,5 @@
 /*!
- * Vueform v1.12.11 (https://github.com/vueform/vueform)
+ * Vueform v1.13.0 (https://github.com/vueform/vueform)
  * Copyright (c) 2025 Adam Berecz <adam@vueform.com>
  * Licensed under the MIT License
  */
@@ -3262,7 +3262,7 @@ var _baseGetAllKeys = baseGetAllKeys$2;
  * @returns {Array} Returns the new filtered array.
  */
 
-function arrayFilter$2(array, predicate) {
+function arrayFilter$3(array, predicate) {
   var index = -1,
       length = array == null ? 0 : array.length,
       resIndex = 0,
@@ -3277,7 +3277,7 @@ function arrayFilter$2(array, predicate) {
   return result;
 }
 
-var _arrayFilter = arrayFilter$2;
+var _arrayFilter = arrayFilter$3;
 
 /**
  * This method returns a new empty array.
@@ -3304,7 +3304,7 @@ function stubArray$2() {
 
 var stubArray_1 = stubArray$2;
 
-var arrayFilter$1 = _arrayFilter,
+var arrayFilter$2 = _arrayFilter,
     stubArray$1 = stubArray_1;
 
 /** Used for built-in method references. */
@@ -3323,20 +3323,20 @@ var nativeGetSymbols$1 = Object.getOwnPropertySymbols;
  * @param {Object} object The object to query.
  * @returns {Array} Returns the array of symbols.
  */
-var getSymbols$3 = !nativeGetSymbols$1 ? stubArray$1 : function(object) {
+var getSymbols$4 = !nativeGetSymbols$1 ? stubArray$1 : function(object) {
   if (object == null) {
     return [];
   }
   object = Object(object);
-  return arrayFilter$1(nativeGetSymbols$1(object), function(symbol) {
+  return arrayFilter$2(nativeGetSymbols$1(object), function(symbol) {
     return propertyIsEnumerable.call(object, symbol);
   });
 };
 
-var _getSymbols = getSymbols$3;
+var _getSymbols = getSymbols$4;
 
 var baseGetAllKeys$1 = _baseGetAllKeys,
-    getSymbols$2 = _getSymbols,
+    getSymbols$3 = _getSymbols,
     keys$5 = keys_1;
 
 /**
@@ -3347,7 +3347,7 @@ var baseGetAllKeys$1 = _baseGetAllKeys,
  * @returns {Array} Returns the array of property names and symbols.
  */
 function getAllKeys$2(object) {
-  return baseGetAllKeys$1(object, keys$5, getSymbols$2);
+  return baseGetAllKeys$1(object, keys$5, getSymbols$3);
 }
 
 var _getAllKeys = getAllKeys$2;
@@ -3995,7 +3995,7 @@ var _stringToPath = stringToPath$1;
  * @returns {Array} Returns the new mapped array.
  */
 
-function arrayMap$6(array, iteratee) {
+function arrayMap$7(array, iteratee) {
   var index = -1,
       length = array == null ? 0 : array.length,
       result = Array(length);
@@ -4006,10 +4006,10 @@ function arrayMap$6(array, iteratee) {
   return result;
 }
 
-var _arrayMap = arrayMap$6;
+var _arrayMap = arrayMap$7;
 
 var Symbol$3 = _Symbol,
-    arrayMap$5 = _arrayMap,
+    arrayMap$6 = _arrayMap,
     isArray$d = isArray_1,
     isSymbol$3 = isSymbol_1;
 
@@ -4035,7 +4035,7 @@ function baseToString$4(value) {
   }
   if (isArray$d(value)) {
     // Recursively convert values (susceptible to call stack limits).
-    return arrayMap$5(value, baseToString$4) + '';
+    return arrayMap$6(value, baseToString$4) + '';
   }
   if (isSymbol$3(value)) {
     return symbolToString ? symbolToString.call(value) : '';
@@ -4787,7 +4787,7 @@ function baseFilter$1(collection, predicate) {
 
 var _baseFilter = baseFilter$1;
 
-var arrayFilter = _arrayFilter,
+var arrayFilter$1 = _arrayFilter,
     baseFilter = _baseFilter,
     baseIteratee$7 = _baseIteratee,
     isArray$7 = isArray_1;
@@ -4834,7 +4834,7 @@ var arrayFilter = _arrayFilter,
  * // => objects for ['fred', 'barney']
  */
 function filter(collection, predicate) {
-  var func = isArray$7(collection) ? arrayFilter : baseFilter;
+  var func = isArray$7(collection) ? arrayFilter$1 : baseFilter;
   return func(collection, baseIteratee$7(predicate));
 }
 
@@ -4877,7 +4877,7 @@ function baseAssignIn$1(object, source) {
 var _baseAssignIn = baseAssignIn$1;
 
 var copyObject$2 = _copyObject,
-    getSymbols$1 = _getSymbols;
+    getSymbols$2 = _getSymbols;
 
 /**
  * Copies own symbols of `source` to `object`.
@@ -4888,14 +4888,14 @@ var copyObject$2 = _copyObject,
  * @returns {Object} Returns `object`.
  */
 function copySymbols$1(source, object) {
-  return copyObject$2(source, getSymbols$1(source), object);
+  return copyObject$2(source, getSymbols$2(source), object);
 }
 
 var _copySymbols = copySymbols$1;
 
 var arrayPush$3 = _arrayPush,
     getPrototype = _getPrototype,
-    getSymbols = _getSymbols,
+    getSymbols$1 = _getSymbols,
     stubArray = stubArray_1;
 
 /* Built-in method references for those with the same name as other `lodash` methods. */
@@ -4911,7 +4911,7 @@ var nativeGetSymbols = Object.getOwnPropertySymbols;
 var getSymbolsIn$2 = !nativeGetSymbols ? stubArray : function(object) {
   var result = [];
   while (object) {
-    arrayPush$3(result, getSymbols(object));
+    arrayPush$3(result, getSymbols$1(object));
     object = getPrototype(object);
   }
   return result;
@@ -6152,7 +6152,7 @@ var _getFormData = function getFormData(data, formData, namespace) {
   return formData;
 };
 
-var arrayMap$4 = _arrayMap;
+var arrayMap$5 = _arrayMap;
 
 /**
  * The base implementation of `_.values` and `_.valuesIn` which creates an
@@ -6165,7 +6165,7 @@ var arrayMap$4 = _arrayMap;
  * @returns {Object} Returns the array of property values.
  */
 function baseValues$1(object, props) {
-  return arrayMap$4(props, function(key) {
+  return arrayMap$5(props, function(key) {
     return object[key];
   });
 }
@@ -7105,6 +7105,7 @@ var base$1h = function base(props, context) {
     $this,
     fire
   });
+  var expression;
 
   // ================ DATA ================
 
@@ -8366,6 +8367,16 @@ var base$1h = function base(props, context) {
   };
 
   /**
+  * Resolves an expression.
+  *
+  * @param {string} exp* the expression to resolve
+  * @returns {string}
+  */
+  var resolveExpression = (exp, dataPath) => {
+    return expression.resolve(exp, requestData.value, dataPath);
+  };
+
+  /**
    * Returns an element by its path.
    *
    * @param {string} path* path of the element
@@ -8416,6 +8427,16 @@ var base$1h = function base(props, context) {
     messageBag.value = new services.value.messageBag(elementErrors);
   };
 
+  /**
+  * Inits Expression service.
+  *
+  * @returns {void}
+  * @private
+  */
+  var initExpressionService = () => {
+    expression = new services.value.expression(config$.value.config.expression, config$, form$);
+  };
+
   // ============== PROVIDES ==============
 
   provide('form$', form$);
@@ -8428,6 +8449,7 @@ var base$1h = function base(props, context) {
   // ================ HOOKS ===============
 
   initMessageBag();
+  initExpressionService();
   setLanguage(options.value.language);
   onBeforeMount(() => {
     userConfig.value = $this.vueform || {};
@@ -8545,6 +8567,7 @@ var base$1h = function base(props, context) {
     validate,
     resetValidators,
     convertFormData,
+    resolveExpression,
     submit,
     scrollToFirstInvalid,
     send,
@@ -8558,6 +8581,7 @@ var base$1h = function base(props, context) {
     el$,
     siblings$,
     initMessageBag,
+    initExpressionService,
     fire,
     on,
     off,
@@ -8565,7 +8589,8 @@ var base$1h = function base(props, context) {
     errorsRegistered,
     languagesRegistered,
     tabsRegistered,
-    stepsRegistered
+    stepsRegistered,
+    expression
   };
 };
 
@@ -8690,6 +8715,7 @@ var VueformComponent = {
       validate,
       resetValidators,
       convertFormData,
+      resolveExpression,
       submit,
       scrollToFirstInvalid,
       scrollOnNext,
@@ -8704,6 +8730,7 @@ var VueformComponent = {
       el$,
       siblings$,
       initMessageBag,
+      initExpressionService,
       fire,
       on,
       off,
@@ -8711,7 +8738,8 @@ var VueformComponent = {
       errorsRegistered,
       languagesRegistered,
       tabsRegistered,
-      stepsRegistered
+      stepsRegistered,
+      expression
     } = base$1h(props, context);
     return {
       tabs$,
@@ -8780,6 +8808,7 @@ var VueformComponent = {
       validate,
       resetValidators,
       convertFormData,
+      resolveExpression,
       submit,
       scrollToFirstInvalid,
       scrollOnNext,
@@ -8794,6 +8823,7 @@ var VueformComponent = {
       el$,
       siblings$,
       initMessageBag,
+      initExpressionService,
       fire,
       on,
       off,
@@ -8801,7 +8831,8 @@ var VueformComponent = {
       errorsRegistered,
       languagesRegistered,
       tabsRegistered,
-      stepsRegistered
+      stepsRegistered,
+      expression
     };
   },
   props: {
@@ -9168,7 +9199,7 @@ function baseMap$2(collection, iteratee) {
 
 var _baseMap = baseMap$2;
 
-var arrayMap$3 = _arrayMap,
+var arrayMap$4 = _arrayMap,
     baseIteratee$5 = _baseIteratee,
     baseMap$1 = _baseMap,
     isArray$4 = isArray_1;
@@ -9216,7 +9247,7 @@ var arrayMap$3 = _arrayMap,
  * // => ['barney', 'fred']
  */
 function map(collection, iteratee) {
-  var func = isArray$4(collection) ? arrayMap$3 : baseMap$1;
+  var func = isArray$4(collection) ? arrayMap$4 : baseMap$1;
   return func(collection, baseIteratee$5(iteratee));
 }
 
@@ -9840,7 +9871,7 @@ function flatRest$2(func) {
 
 var _flatRest = flatRest$2;
 
-var arrayMap$2 = _arrayMap,
+var arrayMap$3 = _arrayMap,
     baseClone$1 = _baseClone,
     baseUnset = _baseUnset,
     castPath$1 = _castPath,
@@ -9880,7 +9911,7 @@ var omit = flatRest$1(function(object, paths) {
     return result;
   }
   var isDeep = false;
-  paths = arrayMap$2(paths, function(path) {
+  paths = arrayMap$3(paths, function(path) {
     path = castPath$1(path, object);
     isDeep || (isDeep = path.length > 1);
     return path;
@@ -9978,7 +10009,7 @@ var pick_1 = pick;
 var SetCache = _SetCache,
     arrayIncludes = _arrayIncludes,
     arrayIncludesWith = _arrayIncludesWith,
-    arrayMap$1 = _arrayMap,
+    arrayMap$2 = _arrayMap,
     baseUnary$1 = _baseUnary,
     cacheHas = _cacheHas;
 
@@ -10008,7 +10039,7 @@ function baseDifference$2(array, values, iteratee, comparator) {
     return result;
   }
   if (iteratee) {
-    values = arrayMap$1(values, baseUnary$1(iteratee));
+    values = arrayMap$2(values, baseUnary$1(iteratee));
   }
   if (comparator) {
     includes = arrayIncludesWith;
@@ -10162,7 +10193,7 @@ function shouldApplyPlugin (name, plugin) {
 }
 
 var name = "@vueform/vueform";
-var version$1 = "1.12.11";
+var version$1 = "1.13.0";
 var description = "Open-Source Form Framework for Vue";
 var homepage = "https://vueform.com";
 var license = "MIT";
@@ -10284,6 +10315,7 @@ var devDependencies = {
 	"babel-loader": "^8.0.5",
 	"core-js": "^3.10.1",
 	"css-loader": "^2.1.0",
+	"expr-eval": "^2.0.2",
 	flatpickr: "^4.6.13",
 	"flush-promises": "^1.0.2",
 	"html-loader": "^1.3.2",
@@ -10405,6 +10437,25 @@ function replaceWildcards (fillable, fill) {
   }
   fill.match(/\.([0-9]+)(?![a-zA-Z]+)/g).forEach(match => {
     fillable = fillable.replace('.*', match);
+  });
+  return fillable;
+}
+
+function replaceWildcardsExpr(fillable, fill) {
+  var brackets = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
+  if (!fillable.includes('[*]')) {
+    return fillable;
+  }
+  var fillParts = fill.split('.');
+  var keys = {};
+  fillParts.forEach((part, i) => {
+    if (!/^[0-9]+$/.test(part)) {
+      return;
+    }
+    keys[fillParts[i - 1]] = part;
+  });
+  Object.keys(keys).forEach(key => {
+    fillable = fillable.replace(new RegExp("(?<![a-zA-Z0-9_-])".concat(key, "\\[\\*\\]"), 'g'), brackets ? "".concat(key, "[").concat(keys[key], "]") : "".concat(key, ".").concat(keys[key]));
   });
   return fillable;
 }
@@ -10914,6 +10965,11 @@ var Factory = class {
   isConditional(rule) {
     return isPlainObject_1(rule);
   }
+  getExprDeps(condition) {
+    var _this$element$;
+    var ExpressionService = this.form$.expression;
+    return ExpressionService.vars(ExpressionService.wrap(condition), (_this$element$ = this.element$) === null || _this$element$ === void 0 ? void 0 : _this$element$.dataPath);
+  }
   parseConditional(rule) {
     var _conditions = values_1(rule)[0];
     if (!Array.isArray(_conditions[0])) {
@@ -10923,9 +10979,13 @@ var Factory = class {
       conditions: (form$, Validator, el$) => {
         return _conditions.every(condition => {
           if (isArray_1(condition)) {
-            if (isArray_1(condition[0])) {
+            if (typeof condition[0] === 'string' && condition.length === 1) {
+              return this.createConditionFromString(condition)(form$, Validator, el$);
+            } else if (isArray_1(condition[0])) {
               return condition.some(subcondition => {
-                if (isArray_1(subcondition)) {
+                if (typeof subcondition[0] === 'string' && subcondition.length === 1) {
+                  return this.createConditionFromString(subcondition)(form$, Validator, el$);
+                } else if (isArray_1(subcondition)) {
                   return this.createConditionFromArray(subcondition)(form$, Validator, el$);
                 } else {
                   return condition(form$, Validator, el$);
@@ -10943,9 +11003,13 @@ var Factory = class {
     });
     _conditions.forEach(condition => {
       if (isArray_1(condition)) {
-        if (isArray_1(condition[0])) {
+        if (typeof condition[0] === 'string') {
+          parsed.dependents.push(...this.getExprDeps(condition[0]));
+        } else if (isArray_1(condition[0])) {
           condition.forEach(subcondition => {
-            if (isArray_1(subcondition)) {
+            if (typeof subcondition === 'string') {
+              parsed.dependents.push(...this.getExprDeps(subcondition[0]));
+            } else if (isArray_1(subcondition)) {
               parsed.dependents.push(replaceWildcards(subcondition[0], this.element$.path));
             }
           });
@@ -10965,6 +11029,15 @@ var Factory = class {
       var actual = (_form$$el$ = form$.el$(field)) === null || _form$$el$ === void 0 ? void 0 : _form$$el$.value;
       var expected = value;
       return compare(actual, operator, expected, this.element$, form$);
+    };
+  }
+  createConditionFromString(condition) {
+    if (!/^{/.test(condition) && !/}$/.test(condition)) {
+      condition = "{".concat(condition, "}");
+    }
+    return (form$, Validator, el$) => {
+      var _this$element$2;
+      return form$.resolveExpression(condition, (_this$element$2 = this.element$) === null || _this$element$2 === void 0 ? void 0 : _this$element$2.dataPath) !== 'false';
     };
   }
 };
@@ -13060,7 +13133,7 @@ class lte extends gt {
   }
 }
 
-class max extends Validator {
+class max$1 extends Validator {
   get messageParams() {
     return {
       attribute: this.attributeName,
@@ -13121,7 +13194,7 @@ class mimetypes extends Validator {
   }
 }
 
-class min$1 extends Validator {
+class min$2 extends Validator {
   get messageParams() {
     return {
       attribute: this.attributeName,
@@ -13363,10 +13436,10 @@ var index$2 = {
   json,
   lt,
   lte,
-  max,
+  max: max$1,
   mimes,
   mimetypes,
-  min: min$1,
+  min: min$2,
   not_in,
   not_regex,
   nullable,
@@ -13423,10 +13496,10 @@ var rules = /*#__PURE__*/Object.freeze({
   json: json,
   lt: lt,
   lte: lte,
-  max: max,
+  max: max$1,
   mimes: mimes,
   mimetypes: mimetypes,
-  min: min$1,
+  min: min$2,
   not_in: not_in,
   not_regex: not_regex,
   nullable: nullable,
@@ -13475,7 +13548,7 @@ var arrayPush$1 = _arrayPush,
  * console.log(array);
  * // => [1]
  */
-function concat() {
+function concat$1() {
   var length = arguments.length;
   if (!length) {
     return [];
@@ -13490,7 +13563,7 @@ function concat() {
   return arrayPush$1(isArray$1(array) ? copyArray(array) : [array], baseFlatten$1(args, 1));
 }
 
-var concat_1 = concat;
+var concat_1 = concat$1;
 
 /**
  * Gets the first element of `array`.
@@ -13879,6 +13952,12 @@ var check = (condition, elementPath, form$, el$) => {
     }
     return compareValues(element$.value, expected, operator);
   };
+  var checkExpression = condition => {
+    if (!/^{/.test(condition) && !/}$/.test(condition)) {
+      condition = "{".concat(condition, "}");
+    }
+    return form$.resolveExpression(condition, el$ === null || el$ === void 0 ? void 0 : el$.dataPath) !== 'false';
+  };
   var details = condition => {
     return {
       conditionPath: elementPath ? replaceWildcards(condition[0], elementPath) : condition[0],
@@ -13889,7 +13968,9 @@ var check = (condition, elementPath, form$, el$) => {
   var compareValues = (actual, expected, operator) => {
     return compare(actual, operator, expected, el$, form$);
   };
-  if (typeof condition == 'function') {
+  if (typeof condition === 'string') {
+    return checkExpression(condition);
+  } else if (typeof condition == 'function') {
     return checkFunction();
   } else if (isArray_1(condition) && isArray_1(condition[0])) {
     return condition.reduce((prev, curr) => {
@@ -13906,7 +13987,7 @@ var check = (condition, elementPath, form$, el$) => {
   }
   throw new Error('Condition must be a function or an array');
 };
-var condition = {
+var condition$1 = {
   check
 };
 
@@ -15415,6 +15496,2044 @@ function sanitize (options, init, enabled) {
   };
 }
 
+var INUMBER = 'INUMBER';
+var IOP1 = 'IOP1';
+var IOP2 = 'IOP2';
+var IOP3 = 'IOP3';
+var IVAR = 'IVAR';
+var IVARNAME = 'IVARNAME';
+var IFUNCALL = 'IFUNCALL';
+var IFUNDEF = 'IFUNDEF';
+var IEXPR = 'IEXPR';
+var IEXPREVAL = 'IEXPREVAL';
+var IMEMBER = 'IMEMBER';
+var IENDSTATEMENT = 'IENDSTATEMENT';
+var IARRAY = 'IARRAY';
+
+function Instruction(type, value) {
+  this.type = type;
+  this.value = (value !== undefined && value !== null) ? value : 0;
+}
+
+Instruction.prototype.toString = function () {
+  switch (this.type) {
+    case INUMBER:
+    case IOP1:
+    case IOP2:
+    case IOP3:
+    case IVAR:
+    case IVARNAME:
+    case IENDSTATEMENT:
+      return this.value;
+    case IFUNCALL:
+      return 'CALL ' + this.value;
+    case IFUNDEF:
+      return 'DEF ' + this.value;
+    case IARRAY:
+      return 'ARRAY ' + this.value;
+    case IMEMBER:
+      return '.' + this.value;
+    default:
+      return 'Invalid Instruction';
+  }
+};
+
+function unaryInstruction(value) {
+  return new Instruction(IOP1, value);
+}
+
+function binaryInstruction(value) {
+  return new Instruction(IOP2, value);
+}
+
+function ternaryInstruction(value) {
+  return new Instruction(IOP3, value);
+}
+
+function simplify(tokens, unaryOps, binaryOps, ternaryOps, values) {
+  var nstack = [];
+  var newexpression = [];
+  var n1, n2, n3;
+  var f;
+  for (var i = 0; i < tokens.length; i++) {
+    var item = tokens[i];
+    var type = item.type;
+    if (type === INUMBER || type === IVARNAME) {
+      if (Array.isArray(item.value)) {
+        nstack.push.apply(nstack, simplify(item.value.map(function (x) {
+          return new Instruction(INUMBER, x);
+        }).concat(new Instruction(IARRAY, item.value.length)), unaryOps, binaryOps, ternaryOps, values));
+      } else {
+        nstack.push(item);
+      }
+    } else if (type === IVAR && values.hasOwnProperty(item.value)) {
+      item = new Instruction(INUMBER, values[item.value]);
+      nstack.push(item);
+    } else if (type === IOP2 && nstack.length > 1) {
+      n2 = nstack.pop();
+      n1 = nstack.pop();
+      f = binaryOps[item.value];
+      item = new Instruction(INUMBER, f(n1.value, n2.value));
+      nstack.push(item);
+    } else if (type === IOP3 && nstack.length > 2) {
+      n3 = nstack.pop();
+      n2 = nstack.pop();
+      n1 = nstack.pop();
+      if (item.value === '?') {
+        nstack.push(n1.value ? n2.value : n3.value);
+      } else {
+        f = ternaryOps[item.value];
+        item = new Instruction(INUMBER, f(n1.value, n2.value, n3.value));
+        nstack.push(item);
+      }
+    } else if (type === IOP1 && nstack.length > 0) {
+      n1 = nstack.pop();
+      f = unaryOps[item.value];
+      item = new Instruction(INUMBER, f(n1.value));
+      nstack.push(item);
+    } else if (type === IEXPR) {
+      while (nstack.length > 0) {
+        newexpression.push(nstack.shift());
+      }
+      newexpression.push(new Instruction(IEXPR, simplify(item.value, unaryOps, binaryOps, ternaryOps, values)));
+    } else if (type === IMEMBER && nstack.length > 0) {
+      n1 = nstack.pop();
+      nstack.push(new Instruction(INUMBER, n1.value[item.value]));
+    } /* else if (type === IARRAY && nstack.length >= item.value) {
+      var length = item.value;
+      while (length-- > 0) {
+        newexpression.push(nstack.pop());
+      }
+      newexpression.push(new Instruction(IARRAY, item.value));
+    } */ else {
+      while (nstack.length > 0) {
+        newexpression.push(nstack.shift());
+      }
+      newexpression.push(item);
+    }
+  }
+  while (nstack.length > 0) {
+    newexpression.push(nstack.shift());
+  }
+  return newexpression;
+}
+
+function substitute(tokens, variable, expr) {
+  var newexpression = [];
+  for (var i = 0; i < tokens.length; i++) {
+    var item = tokens[i];
+    var type = item.type;
+    if (type === IVAR && item.value === variable) {
+      for (var j = 0; j < expr.tokens.length; j++) {
+        var expritem = expr.tokens[j];
+        var replitem;
+        if (expritem.type === IOP1) {
+          replitem = unaryInstruction(expritem.value);
+        } else if (expritem.type === IOP2) {
+          replitem = binaryInstruction(expritem.value);
+        } else if (expritem.type === IOP3) {
+          replitem = ternaryInstruction(expritem.value);
+        } else {
+          replitem = new Instruction(expritem.type, expritem.value);
+        }
+        newexpression.push(replitem);
+      }
+    } else if (type === IEXPR) {
+      newexpression.push(new Instruction(IEXPR, substitute(item.value, variable, expr)));
+    } else {
+      newexpression.push(item);
+    }
+  }
+  return newexpression;
+}
+
+function evaluate(tokens, expr, values) {
+  var nstack = [];
+  var n1, n2, n3;
+  var f, args, argCount;
+
+  if (isExpressionEvaluator(tokens)) {
+    return resolveExpression(tokens, values);
+  }
+
+  var numTokens = tokens.length;
+
+  for (var i = 0; i < numTokens; i++) {
+    var item = tokens[i];
+    var type = item.type;
+    if (type === INUMBER || type === IVARNAME) {
+      nstack.push(item.value);
+    } else if (type === IOP2) {
+      n2 = nstack.pop();
+      n1 = nstack.pop();
+      if (item.value === 'and') {
+        nstack.push(n1 ? !!evaluate(n2, expr, values) : false);
+      } else if (item.value === 'or') {
+        nstack.push(n1 ? true : !!evaluate(n2, expr, values));
+      } else if (item.value === '=') {
+        f = expr.binaryOps[item.value];
+        nstack.push(f(n1, evaluate(n2, expr, values), values));
+      } else {
+        f = expr.binaryOps[item.value];
+        nstack.push(f(resolveExpression(n1, values), resolveExpression(n2, values)));
+      }
+    } else if (type === IOP3) {
+      n3 = nstack.pop();
+      n2 = nstack.pop();
+      n1 = nstack.pop();
+      if (item.value === '?') {
+        nstack.push(evaluate(n1 ? n2 : n3, expr, values));
+      } else {
+        f = expr.ternaryOps[item.value];
+        nstack.push(f(resolveExpression(n1, values), resolveExpression(n2, values), resolveExpression(n3, values)));
+      }
+    } else if (type === IVAR) {
+      if (item.value in expr.functions) {
+        nstack.push(expr.functions[item.value]);
+      } else if (item.value in expr.unaryOps && expr.parser.isOperatorEnabled(item.value)) {
+        nstack.push(expr.unaryOps[item.value]);
+      } else {
+        var v = values[item.value];
+        if (v !== undefined) {
+          nstack.push(v);
+        } else {
+          throw new Error('undefined variable: ' + item.value);
+        }
+      }
+    } else if (type === IOP1) {
+      n1 = nstack.pop();
+      f = expr.unaryOps[item.value];
+      nstack.push(f(resolveExpression(n1, values)));
+    } else if (type === IFUNCALL) {
+      argCount = item.value;
+      args = [];
+      while (argCount-- > 0) {
+        args.unshift(resolveExpression(nstack.pop(), values));
+      }
+      f = nstack.pop();
+      if (f.apply && f.call) {
+        nstack.push(f.apply(undefined, args));
+      } else {
+        throw new Error(f + ' is not a function');
+      }
+    } else if (type === IFUNDEF) {
+      // Create closure to keep references to arguments and expression
+      nstack.push((function () {
+        var n2 = nstack.pop();
+        var args = [];
+        var argCount = item.value;
+        while (argCount-- > 0) {
+          args.unshift(nstack.pop());
+        }
+        var n1 = nstack.pop();
+        var f = function () {
+          var scope = Object.assign({}, values);
+          for (var i = 0, len = args.length; i < len; i++) {
+            scope[args[i]] = arguments[i];
+          }
+          return evaluate(n2, expr, scope);
+        };
+        // f.name = n1
+        Object.defineProperty(f, 'name', {
+          value: n1,
+          writable: false
+        });
+        values[n1] = f;
+        return f;
+      })());
+    } else if (type === IEXPR) {
+      nstack.push(createExpressionEvaluator(item, expr));
+    } else if (type === IEXPREVAL) {
+      nstack.push(item);
+    } else if (type === IMEMBER) {
+      n1 = nstack.pop();
+      nstack.push(n1[item.value]);
+    } else if (type === IENDSTATEMENT) {
+      nstack.pop();
+    } else if (type === IARRAY) {
+      argCount = item.value;
+      args = [];
+      while (argCount-- > 0) {
+        args.unshift(nstack.pop());
+      }
+      nstack.push(args);
+    } else {
+      throw new Error('invalid Expression');
+    }
+  }
+  if (nstack.length > 1) {
+    throw new Error('invalid Expression (parity)');
+  }
+  // Explicitly return zero to avoid test issues caused by -0
+  return nstack[0] === 0 ? 0 : resolveExpression(nstack[0], values);
+}
+
+function createExpressionEvaluator(token, expr, values) {
+  if (isExpressionEvaluator(token)) return token;
+  return {
+    type: IEXPREVAL,
+    value: function (scope) {
+      return evaluate(token.value, expr, scope);
+    }
+  };
+}
+
+function isExpressionEvaluator(n) {
+  return n && n.type === IEXPREVAL;
+}
+
+function resolveExpression(n, values) {
+  return isExpressionEvaluator(n) ? n.value(values) : n;
+}
+
+function expressionToString(tokens, toJS) {
+  var nstack = [];
+  var n1, n2, n3;
+  var f, args, argCount;
+  for (var i = 0; i < tokens.length; i++) {
+    var item = tokens[i];
+    var type = item.type;
+    if (type === INUMBER) {
+      if (typeof item.value === 'number' && item.value < 0) {
+        nstack.push('(' + item.value + ')');
+      } else if (Array.isArray(item.value)) {
+        nstack.push('[' + item.value.map(escapeValue).join(', ') + ']');
+      } else {
+        nstack.push(escapeValue(item.value));
+      }
+    } else if (type === IOP2) {
+      n2 = nstack.pop();
+      n1 = nstack.pop();
+      f = item.value;
+      if (toJS) {
+        if (f === '^') {
+          nstack.push('Math.pow(' + n1 + ', ' + n2 + ')');
+        } else if (f === 'and') {
+          nstack.push('(!!' + n1 + ' && !!' + n2 + ')');
+        } else if (f === 'or') {
+          nstack.push('(!!' + n1 + ' || !!' + n2 + ')');
+        } else if (f === '||') {
+          nstack.push('(function(a,b){ return Array.isArray(a) && Array.isArray(b) ? a.concat(b) : String(a) + String(b); }((' + n1 + '),(' + n2 + ')))');
+        } else if (f === '==') {
+          nstack.push('(' + n1 + ' === ' + n2 + ')');
+        } else if (f === '!=') {
+          nstack.push('(' + n1 + ' !== ' + n2 + ')');
+        } else if (f === '[') {
+          nstack.push(n1 + '[(' + n2 + ') | 0]');
+        } else {
+          nstack.push('(' + n1 + ' ' + f + ' ' + n2 + ')');
+        }
+      } else {
+        if (f === '[') {
+          nstack.push(n1 + '[' + n2 + ']');
+        } else {
+          nstack.push('(' + n1 + ' ' + f + ' ' + n2 + ')');
+        }
+      }
+    } else if (type === IOP3) {
+      n3 = nstack.pop();
+      n2 = nstack.pop();
+      n1 = nstack.pop();
+      f = item.value;
+      if (f === '?') {
+        nstack.push('(' + n1 + ' ? ' + n2 + ' : ' + n3 + ')');
+      } else {
+        throw new Error('invalid Expression');
+      }
+    } else if (type === IVAR || type === IVARNAME) {
+      nstack.push(item.value);
+    } else if (type === IOP1) {
+      n1 = nstack.pop();
+      f = item.value;
+      if (f === '-' || f === '+') {
+        nstack.push('(' + f + n1 + ')');
+      } else if (toJS) {
+        if (f === 'not') {
+          nstack.push('(' + '!' + n1 + ')');
+        } else if (f === '!') {
+          nstack.push('fac(' + n1 + ')');
+        } else {
+          nstack.push(f + '(' + n1 + ')');
+        }
+      } else if (f === '!') {
+        nstack.push('(' + n1 + '!)');
+      } else {
+        nstack.push('(' + f + ' ' + n1 + ')');
+      }
+    } else if (type === IFUNCALL) {
+      argCount = item.value;
+      args = [];
+      while (argCount-- > 0) {
+        args.unshift(nstack.pop());
+      }
+      f = nstack.pop();
+      nstack.push(f + '(' + args.join(', ') + ')');
+    } else if (type === IFUNDEF) {
+      n2 = nstack.pop();
+      argCount = item.value;
+      args = [];
+      while (argCount-- > 0) {
+        args.unshift(nstack.pop());
+      }
+      n1 = nstack.pop();
+      if (toJS) {
+        nstack.push('(' + n1 + ' = function(' + args.join(', ') + ') { return ' + n2 + ' })');
+      } else {
+        nstack.push('(' + n1 + '(' + args.join(', ') + ') = ' + n2 + ')');
+      }
+    } else if (type === IMEMBER) {
+      n1 = nstack.pop();
+      nstack.push(n1 + '.' + item.value);
+    } else if (type === IARRAY) {
+      argCount = item.value;
+      args = [];
+      while (argCount-- > 0) {
+        args.unshift(nstack.pop());
+      }
+      nstack.push('[' + args.join(', ') + ']');
+    } else if (type === IEXPR) {
+      nstack.push('(' + expressionToString(item.value, toJS) + ')');
+    } else if (type === IENDSTATEMENT) ; else {
+      throw new Error('invalid Expression');
+    }
+  }
+  if (nstack.length > 1) {
+    if (toJS) {
+      nstack = [ nstack.join(',') ];
+    } else {
+      nstack = [ nstack.join(';') ];
+    }
+  }
+  return String(nstack[0]);
+}
+
+function escapeValue(v) {
+  if (typeof v === 'string') {
+    return JSON.stringify(v).replace(/\u2028/g, '\\u2028').replace(/\u2029/g, '\\u2029');
+  }
+  return v;
+}
+
+function contains(array, obj) {
+  for (var i = 0; i < array.length; i++) {
+    if (array[i] === obj) {
+      return true;
+    }
+  }
+  return false;
+}
+
+function getSymbols(tokens, symbols, options) {
+  options = options || {};
+  var withMembers = !!options.withMembers;
+  var prevVar = null;
+
+  for (var i = 0; i < tokens.length; i++) {
+    var item = tokens[i];
+    if (item.type === IVAR || item.type === IVARNAME) {
+      if (!withMembers && !contains(symbols, item.value)) {
+        symbols.push(item.value);
+      } else if (prevVar !== null) {
+        if (!contains(symbols, prevVar)) {
+          symbols.push(prevVar);
+        }
+        prevVar = item.value;
+      } else {
+        prevVar = item.value;
+      }
+    } else if (item.type === IMEMBER && withMembers && prevVar !== null) {
+      prevVar += '.' + item.value;
+    } else if (item.type === IEXPR) {
+      getSymbols(item.value, symbols, options);
+    } else if (prevVar !== null) {
+      if (!contains(symbols, prevVar)) {
+        symbols.push(prevVar);
+      }
+      prevVar = null;
+    }
+  }
+
+  if (prevVar !== null && !contains(symbols, prevVar)) {
+    symbols.push(prevVar);
+  }
+}
+
+function Expression(tokens, parser) {
+  this.tokens = tokens;
+  this.parser = parser;
+  this.unaryOps = parser.unaryOps;
+  this.binaryOps = parser.binaryOps;
+  this.ternaryOps = parser.ternaryOps;
+  this.functions = parser.functions;
+}
+
+Expression.prototype.simplify = function (values) {
+  values = values || {};
+  return new Expression(simplify(this.tokens, this.unaryOps, this.binaryOps, this.ternaryOps, values), this.parser);
+};
+
+Expression.prototype.substitute = function (variable, expr) {
+  if (!(expr instanceof Expression)) {
+    expr = this.parser.parse(String(expr));
+  }
+
+  return new Expression(substitute(this.tokens, variable, expr), this.parser);
+};
+
+Expression.prototype.evaluate = function (values) {
+  values = values || {};
+  return evaluate(this.tokens, this, values);
+};
+
+Expression.prototype.toString = function () {
+  return expressionToString(this.tokens, false);
+};
+
+Expression.prototype.symbols = function (options) {
+  options = options || {};
+  var vars = [];
+  getSymbols(this.tokens, vars, options);
+  return vars;
+};
+
+Expression.prototype.variables = function (options) {
+  options = options || {};
+  var vars = [];
+  getSymbols(this.tokens, vars, options);
+  var functions = this.functions;
+  return vars.filter(function (name) {
+    return !(name in functions);
+  });
+};
+
+Expression.prototype.toJSFunction = function (param, variables) {
+  var expr = this;
+  var f = new Function(param, 'with(this.functions) with (this.ternaryOps) with (this.binaryOps) with (this.unaryOps) { return ' + expressionToString(this.simplify(variables).tokens, true) + '; }'); // eslint-disable-line no-new-func
+  return function () {
+    return f.apply(expr, arguments);
+  };
+};
+
+var TEOF = 'TEOF';
+var TOP = 'TOP';
+var TNUMBER = 'TNUMBER';
+var TSTRING = 'TSTRING';
+var TPAREN = 'TPAREN';
+var TBRACKET = 'TBRACKET';
+var TCOMMA = 'TCOMMA';
+var TNAME = 'TNAME';
+var TSEMICOLON = 'TSEMICOLON';
+
+function Token(type, value, index) {
+  this.type = type;
+  this.value = value;
+  this.index = index;
+}
+
+Token.prototype.toString = function () {
+  return this.type + ': ' + this.value;
+};
+
+function TokenStream(parser, expression) {
+  this.pos = 0;
+  this.current = null;
+  this.unaryOps = parser.unaryOps;
+  this.binaryOps = parser.binaryOps;
+  this.ternaryOps = parser.ternaryOps;
+  this.consts = parser.consts;
+  this.expression = expression;
+  this.savedPosition = 0;
+  this.savedCurrent = null;
+  this.options = parser.options;
+  this.parser = parser;
+}
+
+TokenStream.prototype.newToken = function (type, value, pos) {
+  return new Token(type, value, pos != null ? pos : this.pos);
+};
+
+TokenStream.prototype.save = function () {
+  this.savedPosition = this.pos;
+  this.savedCurrent = this.current;
+};
+
+TokenStream.prototype.restore = function () {
+  this.pos = this.savedPosition;
+  this.current = this.savedCurrent;
+};
+
+TokenStream.prototype.next = function () {
+  if (this.pos >= this.expression.length) {
+    return this.newToken(TEOF, 'EOF');
+  }
+
+  if (this.isWhitespace() || this.isComment()) {
+    return this.next();
+  } else if (this.isRadixInteger() ||
+      this.isNumber() ||
+      this.isOperator() ||
+      this.isString() ||
+      this.isParen() ||
+      this.isBracket() ||
+      this.isComma() ||
+      this.isSemicolon() ||
+      this.isNamedOp() ||
+      this.isConst() ||
+      this.isName()) {
+    return this.current;
+  } else {
+    this.parseError('Unknown character "' + this.expression.charAt(this.pos) + '"');
+  }
+};
+
+TokenStream.prototype.isString = function () {
+  var r = false;
+  var startPos = this.pos;
+  var quote = this.expression.charAt(startPos);
+
+  if (quote === '\'' || quote === '"') {
+    var index = this.expression.indexOf(quote, startPos + 1);
+    while (index >= 0 && this.pos < this.expression.length) {
+      this.pos = index + 1;
+      if (this.expression.charAt(index - 1) !== '\\') {
+        var rawString = this.expression.substring(startPos + 1, index);
+        this.current = this.newToken(TSTRING, this.unescape(rawString), startPos);
+        r = true;
+        break;
+      }
+      index = this.expression.indexOf(quote, index + 1);
+    }
+  }
+  return r;
+};
+
+TokenStream.prototype.isParen = function () {
+  var c = this.expression.charAt(this.pos);
+  if (c === '(' || c === ')') {
+    this.current = this.newToken(TPAREN, c);
+    this.pos++;
+    return true;
+  }
+  return false;
+};
+
+TokenStream.prototype.isBracket = function () {
+  var c = this.expression.charAt(this.pos);
+  if ((c === '[' || c === ']') && this.isOperatorEnabled('[')) {
+    this.current = this.newToken(TBRACKET, c);
+    this.pos++;
+    return true;
+  }
+  return false;
+};
+
+TokenStream.prototype.isComma = function () {
+  var c = this.expression.charAt(this.pos);
+  if (c === ',') {
+    this.current = this.newToken(TCOMMA, ',');
+    this.pos++;
+    return true;
+  }
+  return false;
+};
+
+TokenStream.prototype.isSemicolon = function () {
+  var c = this.expression.charAt(this.pos);
+  if (c === ';') {
+    this.current = this.newToken(TSEMICOLON, ';');
+    this.pos++;
+    return true;
+  }
+  return false;
+};
+
+TokenStream.prototype.isConst = function () {
+  var startPos = this.pos;
+  var i = startPos;
+  for (; i < this.expression.length; i++) {
+    var c = this.expression.charAt(i);
+    if (c.toUpperCase() === c.toLowerCase()) {
+      if (i === this.pos || (c !== '_' && c !== '.' && (c < '0' || c > '9'))) {
+        break;
+      }
+    }
+  }
+  if (i > startPos) {
+    var str = this.expression.substring(startPos, i);
+    if (str in this.consts) {
+      this.current = this.newToken(TNUMBER, this.consts[str]);
+      this.pos += str.length;
+      return true;
+    }
+  }
+  return false;
+};
+
+TokenStream.prototype.isNamedOp = function () {
+  var startPos = this.pos;
+  var i = startPos;
+  for (; i < this.expression.length; i++) {
+    var c = this.expression.charAt(i);
+    if (c.toUpperCase() === c.toLowerCase()) {
+      if (i === this.pos || (c !== '_' && (c < '0' || c > '9'))) {
+        break;
+      }
+    }
+  }
+  if (i > startPos) {
+    var str = this.expression.substring(startPos, i);
+    if (this.isOperatorEnabled(str) && (str in this.binaryOps || str in this.unaryOps || str in this.ternaryOps)) {
+      this.current = this.newToken(TOP, str);
+      this.pos += str.length;
+      return true;
+    }
+  }
+  return false;
+};
+
+TokenStream.prototype.isName = function () {
+  var startPos = this.pos;
+  var i = startPos;
+  var hasLetter = false;
+  for (; i < this.expression.length; i++) {
+    var c = this.expression.charAt(i);
+    if (c.toUpperCase() === c.toLowerCase()) {
+      if (i === this.pos && (c === '$' || c === '_')) {
+        if (c === '_') {
+          hasLetter = true;
+        }
+        continue;
+      } else if (i === this.pos || !hasLetter || (c !== '_' && (c < '0' || c > '9'))) {
+        break;
+      }
+    } else {
+      hasLetter = true;
+    }
+  }
+  if (hasLetter) {
+    var str = this.expression.substring(startPos, i);
+    this.current = this.newToken(TNAME, str);
+    this.pos += str.length;
+    return true;
+  }
+  return false;
+};
+
+TokenStream.prototype.isWhitespace = function () {
+  var r = false;
+  var c = this.expression.charAt(this.pos);
+  while (c === ' ' || c === '\t' || c === '\n' || c === '\r') {
+    r = true;
+    this.pos++;
+    if (this.pos >= this.expression.length) {
+      break;
+    }
+    c = this.expression.charAt(this.pos);
+  }
+  return r;
+};
+
+var codePointPattern = /^[0-9a-f]{4}$/i;
+
+TokenStream.prototype.unescape = function (v) {
+  var index = v.indexOf('\\');
+  if (index < 0) {
+    return v;
+  }
+
+  var buffer = v.substring(0, index);
+  while (index >= 0) {
+    var c = v.charAt(++index);
+    switch (c) {
+      case '\'':
+        buffer += '\'';
+        break;
+      case '"':
+        buffer += '"';
+        break;
+      case '\\':
+        buffer += '\\';
+        break;
+      case '/':
+        buffer += '/';
+        break;
+      case 'b':
+        buffer += '\b';
+        break;
+      case 'f':
+        buffer += '\f';
+        break;
+      case 'n':
+        buffer += '\n';
+        break;
+      case 'r':
+        buffer += '\r';
+        break;
+      case 't':
+        buffer += '\t';
+        break;
+      case 'u':
+        // interpret the following 4 characters as the hex of the unicode code point
+        var codePoint = v.substring(index + 1, index + 5);
+        if (!codePointPattern.test(codePoint)) {
+          this.parseError('Illegal escape sequence: \\u' + codePoint);
+        }
+        buffer += String.fromCharCode(parseInt(codePoint, 16));
+        index += 4;
+        break;
+      default:
+        throw this.parseError('Illegal escape sequence: "\\' + c + '"');
+    }
+    ++index;
+    var backslash = v.indexOf('\\', index);
+    buffer += v.substring(index, backslash < 0 ? v.length : backslash);
+    index = backslash;
+  }
+
+  return buffer;
+};
+
+TokenStream.prototype.isComment = function () {
+  var c = this.expression.charAt(this.pos);
+  if (c === '/' && this.expression.charAt(this.pos + 1) === '*') {
+    this.pos = this.expression.indexOf('*/', this.pos) + 2;
+    if (this.pos === 1) {
+      this.pos = this.expression.length;
+    }
+    return true;
+  }
+  return false;
+};
+
+TokenStream.prototype.isRadixInteger = function () {
+  var pos = this.pos;
+
+  if (pos >= this.expression.length - 2 || this.expression.charAt(pos) !== '0') {
+    return false;
+  }
+  ++pos;
+
+  var radix;
+  var validDigit;
+  if (this.expression.charAt(pos) === 'x') {
+    radix = 16;
+    validDigit = /^[0-9a-f]$/i;
+    ++pos;
+  } else if (this.expression.charAt(pos) === 'b') {
+    radix = 2;
+    validDigit = /^[01]$/i;
+    ++pos;
+  } else {
+    return false;
+  }
+
+  var valid = false;
+  var startPos = pos;
+
+  while (pos < this.expression.length) {
+    var c = this.expression.charAt(pos);
+    if (validDigit.test(c)) {
+      pos++;
+      valid = true;
+    } else {
+      break;
+    }
+  }
+
+  if (valid) {
+    this.current = this.newToken(TNUMBER, parseInt(this.expression.substring(startPos, pos), radix));
+    this.pos = pos;
+  }
+  return valid;
+};
+
+TokenStream.prototype.isNumber = function () {
+  var valid = false;
+  var pos = this.pos;
+  var startPos = pos;
+  var resetPos = pos;
+  var foundDot = false;
+  var foundDigits = false;
+  var c;
+
+  while (pos < this.expression.length) {
+    c = this.expression.charAt(pos);
+    if ((c >= '0' && c <= '9') || (!foundDot && c === '.')) {
+      if (c === '.') {
+        foundDot = true;
+      } else {
+        foundDigits = true;
+      }
+      pos++;
+      valid = foundDigits;
+    } else {
+      break;
+    }
+  }
+
+  if (valid) {
+    resetPos = pos;
+  }
+
+  if (c === 'e' || c === 'E') {
+    pos++;
+    var acceptSign = true;
+    var validExponent = false;
+    while (pos < this.expression.length) {
+      c = this.expression.charAt(pos);
+      if (acceptSign && (c === '+' || c === '-')) {
+        acceptSign = false;
+      } else if (c >= '0' && c <= '9') {
+        validExponent = true;
+        acceptSign = false;
+      } else {
+        break;
+      }
+      pos++;
+    }
+
+    if (!validExponent) {
+      pos = resetPos;
+    }
+  }
+
+  if (valid) {
+    this.current = this.newToken(TNUMBER, parseFloat(this.expression.substring(startPos, pos)));
+    this.pos = pos;
+  } else {
+    this.pos = resetPos;
+  }
+  return valid;
+};
+
+TokenStream.prototype.isOperator = function () {
+  var startPos = this.pos;
+  var c = this.expression.charAt(this.pos);
+
+  if (c === '+' || c === '-' || c === '*' || c === '/' || c === '%' || c === '^' || c === '?' || c === ':' || c === '.') {
+    this.current = this.newToken(TOP, c);
+  } else if (c === '∙' || c === '•') {
+    this.current = this.newToken(TOP, '*');
+  } else if (c === '>') {
+    if (this.expression.charAt(this.pos + 1) === '=') {
+      this.current = this.newToken(TOP, '>=');
+      this.pos++;
+    } else {
+      this.current = this.newToken(TOP, '>');
+    }
+  } else if (c === '<') {
+    if (this.expression.charAt(this.pos + 1) === '=') {
+      this.current = this.newToken(TOP, '<=');
+      this.pos++;
+    } else {
+      this.current = this.newToken(TOP, '<');
+    }
+  } else if (c === '|') {
+    if (this.expression.charAt(this.pos + 1) === '|') {
+      this.current = this.newToken(TOP, '||');
+      this.pos++;
+    } else {
+      return false;
+    }
+  } else if (c === '=') {
+    if (this.expression.charAt(this.pos + 1) === '=') {
+      this.current = this.newToken(TOP, '==');
+      this.pos++;
+    } else {
+      this.current = this.newToken(TOP, c);
+    }
+  } else if (c === '!') {
+    if (this.expression.charAt(this.pos + 1) === '=') {
+      this.current = this.newToken(TOP, '!=');
+      this.pos++;
+    } else {
+      this.current = this.newToken(TOP, c);
+    }
+  } else {
+    return false;
+  }
+  this.pos++;
+
+  if (this.isOperatorEnabled(this.current.value)) {
+    return true;
+  } else {
+    this.pos = startPos;
+    return false;
+  }
+};
+
+TokenStream.prototype.isOperatorEnabled = function (op) {
+  return this.parser.isOperatorEnabled(op);
+};
+
+TokenStream.prototype.getCoordinates = function () {
+  var line = 0;
+  var column;
+  var newline = -1;
+  do {
+    line++;
+    column = this.pos - newline;
+    newline = this.expression.indexOf('\n', newline + 1);
+  } while (newline >= 0 && newline < this.pos);
+
+  return {
+    line: line,
+    column: column
+  };
+};
+
+TokenStream.prototype.parseError = function (msg) {
+  var coords = this.getCoordinates();
+  throw new Error('parse error [' + coords.line + ':' + coords.column + ']: ' + msg);
+};
+
+function ParserState(parser, tokenStream, options) {
+  this.parser = parser;
+  this.tokens = tokenStream;
+  this.current = null;
+  this.nextToken = null;
+  this.next();
+  this.savedCurrent = null;
+  this.savedNextToken = null;
+  this.allowMemberAccess = options.allowMemberAccess !== false;
+}
+
+ParserState.prototype.next = function () {
+  this.current = this.nextToken;
+  return (this.nextToken = this.tokens.next());
+};
+
+ParserState.prototype.tokenMatches = function (token, value) {
+  if (typeof value === 'undefined') {
+    return true;
+  } else if (Array.isArray(value)) {
+    return contains(value, token.value);
+  } else if (typeof value === 'function') {
+    return value(token);
+  } else {
+    return token.value === value;
+  }
+};
+
+ParserState.prototype.save = function () {
+  this.savedCurrent = this.current;
+  this.savedNextToken = this.nextToken;
+  this.tokens.save();
+};
+
+ParserState.prototype.restore = function () {
+  this.tokens.restore();
+  this.current = this.savedCurrent;
+  this.nextToken = this.savedNextToken;
+};
+
+ParserState.prototype.accept = function (type, value) {
+  if (this.nextToken.type === type && this.tokenMatches(this.nextToken, value)) {
+    this.next();
+    return true;
+  }
+  return false;
+};
+
+ParserState.prototype.expect = function (type, value) {
+  if (!this.accept(type, value)) {
+    var coords = this.tokens.getCoordinates();
+    throw new Error('parse error [' + coords.line + ':' + coords.column + ']: Expected ' + (value || type));
+  }
+};
+
+ParserState.prototype.parseAtom = function (instr) {
+  var unaryOps = this.tokens.unaryOps;
+  function isPrefixOperator(token) {
+    return token.value in unaryOps;
+  }
+
+  if (this.accept(TNAME) || this.accept(TOP, isPrefixOperator)) {
+    instr.push(new Instruction(IVAR, this.current.value));
+  } else if (this.accept(TNUMBER)) {
+    instr.push(new Instruction(INUMBER, this.current.value));
+  } else if (this.accept(TSTRING)) {
+    instr.push(new Instruction(INUMBER, this.current.value));
+  } else if (this.accept(TPAREN, '(')) {
+    this.parseExpression(instr);
+    this.expect(TPAREN, ')');
+  } else if (this.accept(TBRACKET, '[')) {
+    if (this.accept(TBRACKET, ']')) {
+      instr.push(new Instruction(IARRAY, 0));
+    } else {
+      var argCount = this.parseArrayList(instr);
+      instr.push(new Instruction(IARRAY, argCount));
+    }
+  } else {
+    throw new Error('unexpected ' + this.nextToken);
+  }
+};
+
+ParserState.prototype.parseExpression = function (instr) {
+  var exprInstr = [];
+  if (this.parseUntilEndStatement(instr, exprInstr)) {
+    return;
+  }
+  this.parseVariableAssignmentExpression(exprInstr);
+  if (this.parseUntilEndStatement(instr, exprInstr)) {
+    return;
+  }
+  this.pushExpression(instr, exprInstr);
+};
+
+ParserState.prototype.pushExpression = function (instr, exprInstr) {
+  for (var i = 0, len = exprInstr.length; i < len; i++) {
+    instr.push(exprInstr[i]);
+  }
+};
+
+ParserState.prototype.parseUntilEndStatement = function (instr, exprInstr) {
+  if (!this.accept(TSEMICOLON)) return false;
+  if (this.nextToken && this.nextToken.type !== TEOF && !(this.nextToken.type === TPAREN && this.nextToken.value === ')')) {
+    exprInstr.push(new Instruction(IENDSTATEMENT));
+  }
+  if (this.nextToken.type !== TEOF) {
+    this.parseExpression(exprInstr);
+  }
+  instr.push(new Instruction(IEXPR, exprInstr));
+  return true;
+};
+
+ParserState.prototype.parseArrayList = function (instr) {
+  var argCount = 0;
+
+  while (!this.accept(TBRACKET, ']')) {
+    this.parseExpression(instr);
+    ++argCount;
+    while (this.accept(TCOMMA)) {
+      this.parseExpression(instr);
+      ++argCount;
+    }
+  }
+
+  return argCount;
+};
+
+ParserState.prototype.parseVariableAssignmentExpression = function (instr) {
+  this.parseConditionalExpression(instr);
+  while (this.accept(TOP, '=')) {
+    var varName = instr.pop();
+    var varValue = [];
+    var lastInstrIndex = instr.length - 1;
+    if (varName.type === IFUNCALL) {
+      if (!this.tokens.isOperatorEnabled('()=')) {
+        throw new Error('function definition is not permitted');
+      }
+      for (var i = 0, len = varName.value + 1; i < len; i++) {
+        var index = lastInstrIndex - i;
+        if (instr[index].type === IVAR) {
+          instr[index] = new Instruction(IVARNAME, instr[index].value);
+        }
+      }
+      this.parseVariableAssignmentExpression(varValue);
+      instr.push(new Instruction(IEXPR, varValue));
+      instr.push(new Instruction(IFUNDEF, varName.value));
+      continue;
+    }
+    if (varName.type !== IVAR && varName.type !== IMEMBER) {
+      throw new Error('expected variable for assignment');
+    }
+    this.parseVariableAssignmentExpression(varValue);
+    instr.push(new Instruction(IVARNAME, varName.value));
+    instr.push(new Instruction(IEXPR, varValue));
+    instr.push(binaryInstruction('='));
+  }
+};
+
+ParserState.prototype.parseConditionalExpression = function (instr) {
+  this.parseOrExpression(instr);
+  while (this.accept(TOP, '?')) {
+    var trueBranch = [];
+    var falseBranch = [];
+    this.parseConditionalExpression(trueBranch);
+    this.expect(TOP, ':');
+    this.parseConditionalExpression(falseBranch);
+    instr.push(new Instruction(IEXPR, trueBranch));
+    instr.push(new Instruction(IEXPR, falseBranch));
+    instr.push(ternaryInstruction('?'));
+  }
+};
+
+ParserState.prototype.parseOrExpression = function (instr) {
+  this.parseAndExpression(instr);
+  while (this.accept(TOP, 'or')) {
+    var falseBranch = [];
+    this.parseAndExpression(falseBranch);
+    instr.push(new Instruction(IEXPR, falseBranch));
+    instr.push(binaryInstruction('or'));
+  }
+};
+
+ParserState.prototype.parseAndExpression = function (instr) {
+  this.parseComparison(instr);
+  while (this.accept(TOP, 'and')) {
+    var trueBranch = [];
+    this.parseComparison(trueBranch);
+    instr.push(new Instruction(IEXPR, trueBranch));
+    instr.push(binaryInstruction('and'));
+  }
+};
+
+var COMPARISON_OPERATORS = ['==', '!=', '<', '<=', '>=', '>', 'in'];
+
+ParserState.prototype.parseComparison = function (instr) {
+  this.parseAddSub(instr);
+  while (this.accept(TOP, COMPARISON_OPERATORS)) {
+    var op = this.current;
+    this.parseAddSub(instr);
+    instr.push(binaryInstruction(op.value));
+  }
+};
+
+var ADD_SUB_OPERATORS = ['+', '-', '||'];
+
+ParserState.prototype.parseAddSub = function (instr) {
+  this.parseTerm(instr);
+  while (this.accept(TOP, ADD_SUB_OPERATORS)) {
+    var op = this.current;
+    this.parseTerm(instr);
+    instr.push(binaryInstruction(op.value));
+  }
+};
+
+var TERM_OPERATORS = ['*', '/', '%'];
+
+ParserState.prototype.parseTerm = function (instr) {
+  this.parseFactor(instr);
+  while (this.accept(TOP, TERM_OPERATORS)) {
+    var op = this.current;
+    this.parseFactor(instr);
+    instr.push(binaryInstruction(op.value));
+  }
+};
+
+ParserState.prototype.parseFactor = function (instr) {
+  var unaryOps = this.tokens.unaryOps;
+  function isPrefixOperator(token) {
+    return token.value in unaryOps;
+  }
+
+  this.save();
+  if (this.accept(TOP, isPrefixOperator)) {
+    if (this.current.value !== '-' && this.current.value !== '+') {
+      if (this.nextToken.type === TPAREN && this.nextToken.value === '(') {
+        this.restore();
+        this.parseExponential(instr);
+        return;
+      } else if (this.nextToken.type === TSEMICOLON || this.nextToken.type === TCOMMA || this.nextToken.type === TEOF || (this.nextToken.type === TPAREN && this.nextToken.value === ')')) {
+        this.restore();
+        this.parseAtom(instr);
+        return;
+      }
+    }
+
+    var op = this.current;
+    this.parseFactor(instr);
+    instr.push(unaryInstruction(op.value));
+  } else {
+    this.parseExponential(instr);
+  }
+};
+
+ParserState.prototype.parseExponential = function (instr) {
+  this.parsePostfixExpression(instr);
+  while (this.accept(TOP, '^')) {
+    this.parseFactor(instr);
+    instr.push(binaryInstruction('^'));
+  }
+};
+
+ParserState.prototype.parsePostfixExpression = function (instr) {
+  this.parseFunctionCall(instr);
+  while (this.accept(TOP, '!')) {
+    instr.push(unaryInstruction('!'));
+  }
+};
+
+ParserState.prototype.parseFunctionCall = function (instr) {
+  var unaryOps = this.tokens.unaryOps;
+  function isPrefixOperator(token) {
+    return token.value in unaryOps;
+  }
+
+  if (this.accept(TOP, isPrefixOperator)) {
+    var op = this.current;
+    this.parseAtom(instr);
+    instr.push(unaryInstruction(op.value));
+  } else {
+    this.parseMemberExpression(instr);
+    while (this.accept(TPAREN, '(')) {
+      if (this.accept(TPAREN, ')')) {
+        instr.push(new Instruction(IFUNCALL, 0));
+      } else {
+        var argCount = this.parseArgumentList(instr);
+        instr.push(new Instruction(IFUNCALL, argCount));
+      }
+    }
+  }
+};
+
+ParserState.prototype.parseArgumentList = function (instr) {
+  var argCount = 0;
+
+  while (!this.accept(TPAREN, ')')) {
+    this.parseExpression(instr);
+    ++argCount;
+    while (this.accept(TCOMMA)) {
+      this.parseExpression(instr);
+      ++argCount;
+    }
+  }
+
+  return argCount;
+};
+
+ParserState.prototype.parseMemberExpression = function (instr) {
+  this.parseAtom(instr);
+  while (this.accept(TOP, '.') || this.accept(TBRACKET, '[')) {
+    var op = this.current;
+
+    if (op.value === '.') {
+      if (!this.allowMemberAccess) {
+        throw new Error('unexpected ".", member access is not permitted');
+      }
+
+      this.expect(TNAME);
+      instr.push(new Instruction(IMEMBER, this.current.value));
+    } else if (op.value === '[') {
+      if (!this.tokens.isOperatorEnabled('[')) {
+        throw new Error('unexpected "[]", arrays are disabled');
+      }
+
+      this.parseExpression(instr);
+      this.expect(TBRACKET, ']');
+      instr.push(binaryInstruction('['));
+    } else {
+      throw new Error('unexpected symbol: ' + op.value);
+    }
+  }
+};
+
+function add(a, b) {
+  return Number(a) + Number(b);
+}
+
+function sub(a, b) {
+  return a - b;
+}
+
+function mul(a, b) {
+  return a * b;
+}
+
+function div(a, b) {
+  return a / b;
+}
+
+function mod(a, b) {
+  return a % b;
+}
+
+function concat(a, b) {
+  if (Array.isArray(a) && Array.isArray(b)) {
+    return a.concat(b);
+  }
+  return '' + a + b;
+}
+
+function equal(a, b) {
+  return a === b;
+}
+
+function notEqual(a, b) {
+  return a !== b;
+}
+
+function greaterThan(a, b) {
+  return a > b;
+}
+
+function lessThan(a, b) {
+  return a < b;
+}
+
+function greaterThanEqual(a, b) {
+  return a >= b;
+}
+
+function lessThanEqual(a, b) {
+  return a <= b;
+}
+
+function andOperator(a, b) {
+  return Boolean(a && b);
+}
+
+function orOperator(a, b) {
+  return Boolean(a || b);
+}
+
+function inOperator(a, b) {
+  return contains(b, a);
+}
+
+function sinh(a) {
+  return ((Math.exp(a) - Math.exp(-a)) / 2);
+}
+
+function cosh(a) {
+  return ((Math.exp(a) + Math.exp(-a)) / 2);
+}
+
+function tanh(a) {
+  if (a === Infinity) return 1;
+  if (a === -Infinity) return -1;
+  return (Math.exp(a) - Math.exp(-a)) / (Math.exp(a) + Math.exp(-a));
+}
+
+function asinh(a) {
+  if (a === -Infinity) return a;
+  return Math.log(a + Math.sqrt((a * a) + 1));
+}
+
+function acosh(a) {
+  return Math.log(a + Math.sqrt((a * a) - 1));
+}
+
+function atanh(a) {
+  return (Math.log((1 + a) / (1 - a)) / 2);
+}
+
+function log10(a) {
+  return Math.log(a) * Math.LOG10E;
+}
+
+function neg(a) {
+  return -a;
+}
+
+function not(a) {
+  return !a;
+}
+
+function trunc(a) {
+  return a < 0 ? Math.ceil(a) : Math.floor(a);
+}
+
+function random(a) {
+  return Math.random() * (a || 1);
+}
+
+function factorial(a) { // a!
+  return gamma(a + 1);
+}
+
+function isInteger(value) {
+  return isFinite(value) && (value === Math.round(value));
+}
+
+var GAMMA_G = 4.7421875;
+var GAMMA_P = [
+  0.99999999999999709182,
+  57.156235665862923517, -59.597960355475491248,
+  14.136097974741747174, -0.49191381609762019978,
+  0.33994649984811888699e-4,
+  0.46523628927048575665e-4, -0.98374475304879564677e-4,
+  0.15808870322491248884e-3, -0.21026444172410488319e-3,
+  0.21743961811521264320e-3, -0.16431810653676389022e-3,
+  0.84418223983852743293e-4, -0.26190838401581408670e-4,
+  0.36899182659531622704e-5
+];
+
+// Gamma function from math.js
+function gamma(n) {
+  var t, x;
+
+  if (isInteger(n)) {
+    if (n <= 0) {
+      return isFinite(n) ? Infinity : NaN;
+    }
+
+    if (n > 171) {
+      return Infinity; // Will overflow
+    }
+
+    var value = n - 2;
+    var res = n - 1;
+    while (value > 1) {
+      res *= value;
+      value--;
+    }
+
+    if (res === 0) {
+      res = 1; // 0! is per definition 1
+    }
+
+    return res;
+  }
+
+  if (n < 0.5) {
+    return Math.PI / (Math.sin(Math.PI * n) * gamma(1 - n));
+  }
+
+  if (n >= 171.35) {
+    return Infinity; // will overflow
+  }
+
+  if (n > 85.0) { // Extended Stirling Approx
+    var twoN = n * n;
+    var threeN = twoN * n;
+    var fourN = threeN * n;
+    var fiveN = fourN * n;
+    return Math.sqrt(2 * Math.PI / n) * Math.pow((n / Math.E), n) *
+      (1 + (1 / (12 * n)) + (1 / (288 * twoN)) - (139 / (51840 * threeN)) -
+      (571 / (2488320 * fourN)) + (163879 / (209018880 * fiveN)) +
+      (5246819 / (75246796800 * fiveN * n)));
+  }
+
+  --n;
+  x = GAMMA_P[0];
+  for (var i = 1; i < GAMMA_P.length; ++i) {
+    x += GAMMA_P[i] / (n + i);
+  }
+
+  t = n + GAMMA_G + 0.5;
+  return Math.sqrt(2 * Math.PI) * Math.pow(t, n + 0.5) * Math.exp(-t) * x;
+}
+
+function stringOrArrayLength(s) {
+  if (Array.isArray(s)) {
+    return s.length;
+  }
+  return String(s).length;
+}
+
+function hypot() {
+  var sum = 0;
+  var larg = 0;
+  for (var i = 0; i < arguments.length; i++) {
+    var arg = Math.abs(arguments[i]);
+    var div;
+    if (larg < arg) {
+      div = larg / arg;
+      sum = (sum * div * div) + 1;
+      larg = arg;
+    } else if (arg > 0) {
+      div = arg / larg;
+      sum += div * div;
+    } else {
+      sum += arg;
+    }
+  }
+  return larg === Infinity ? Infinity : larg * Math.sqrt(sum);
+}
+
+function condition(cond, yep, nope) {
+  return cond ? yep : nope;
+}
+
+/**
+* Decimal adjustment of a number.
+* From @escopecz.
+*
+* @param {Number} value The number.
+* @param {Integer} exp  The exponent (the 10 logarithm of the adjustment base).
+* @return {Number} The adjusted value.
+*/
+function roundTo(value, exp) {
+  // If the exp is undefined or zero...
+  if (typeof exp === 'undefined' || +exp === 0) {
+    return Math.round(value);
+  }
+  value = +value;
+  exp = -(+exp);
+  // If the value is not a number or the exp is not an integer...
+  if (isNaN(value) || !(typeof exp === 'number' && exp % 1 === 0)) {
+    return NaN;
+  }
+  // Shift
+  value = value.toString().split('e');
+  value = Math.round(+(value[0] + 'e' + (value[1] ? (+value[1] - exp) : -exp)));
+  // Shift back
+  value = value.toString().split('e');
+  return +(value[0] + 'e' + (value[1] ? (+value[1] + exp) : exp));
+}
+
+function setVar(name, value, variables) {
+  if (variables) variables[name] = value;
+  return value;
+}
+
+function arrayIndex(array, index) {
+  return array[index | 0];
+}
+
+function max(array) {
+  if (arguments.length === 1 && Array.isArray(array)) {
+    return Math.max.apply(Math, array);
+  } else {
+    return Math.max.apply(Math, arguments);
+  }
+}
+
+function min$1(array) {
+  if (arguments.length === 1 && Array.isArray(array)) {
+    return Math.min.apply(Math, array);
+  } else {
+    return Math.min.apply(Math, arguments);
+  }
+}
+
+function arrayMap$1(f, a) {
+  if (typeof f !== 'function') {
+    throw new Error('First argument to map is not a function');
+  }
+  if (!Array.isArray(a)) {
+    throw new Error('Second argument to map is not an array');
+  }
+  return a.map(function (x, i) {
+    return f(x, i);
+  });
+}
+
+function arrayFold(f, init, a) {
+  if (typeof f !== 'function') {
+    throw new Error('First argument to fold is not a function');
+  }
+  if (!Array.isArray(a)) {
+    throw new Error('Second argument to fold is not an array');
+  }
+  return a.reduce(function (acc, x, i) {
+    return f(acc, x, i);
+  }, init);
+}
+
+function arrayFilter(f, a) {
+  if (typeof f !== 'function') {
+    throw new Error('First argument to filter is not a function');
+  }
+  if (!Array.isArray(a)) {
+    throw new Error('Second argument to filter is not an array');
+  }
+  return a.filter(function (x, i) {
+    return f(x, i);
+  });
+}
+
+function stringOrArrayIndexOf(target, s) {
+  if (!(Array.isArray(s) || typeof s === 'string')) {
+    throw new Error('Second argument to indexOf is not a string or array');
+  }
+
+  return s.indexOf(target);
+}
+
+function arrayJoin(sep, a) {
+  if (!Array.isArray(a)) {
+    throw new Error('Second argument to join is not an array');
+  }
+
+  return a.join(sep);
+}
+
+function sign(x) {
+  return ((x > 0) - (x < 0)) || +x;
+}
+
+var ONE_THIRD = 1/3;
+function cbrt(x) {
+  return x < 0 ? -Math.pow(-x, ONE_THIRD) : Math.pow(x, ONE_THIRD);
+}
+
+function expm1(x) {
+  return Math.exp(x) - 1;
+}
+
+function log1p(x) {
+  return Math.log(1 + x);
+}
+
+function log2(x) {
+  return Math.log(x) / Math.LN2;
+}
+
+function Parser(options) {
+  this.options = options || {};
+  this.unaryOps = {
+    sin: Math.sin,
+    cos: Math.cos,
+    tan: Math.tan,
+    asin: Math.asin,
+    acos: Math.acos,
+    atan: Math.atan,
+    sinh: Math.sinh || sinh,
+    cosh: Math.cosh || cosh,
+    tanh: Math.tanh || tanh,
+    asinh: Math.asinh || asinh,
+    acosh: Math.acosh || acosh,
+    atanh: Math.atanh || atanh,
+    sqrt: Math.sqrt,
+    cbrt: Math.cbrt || cbrt,
+    log: Math.log,
+    log2: Math.log2 || log2,
+    ln: Math.log,
+    lg: Math.log10 || log10,
+    log10: Math.log10 || log10,
+    expm1: Math.expm1 || expm1,
+    log1p: Math.log1p || log1p,
+    abs: Math.abs,
+    ceil: Math.ceil,
+    floor: Math.floor,
+    round: Math.round,
+    trunc: Math.trunc || trunc,
+    '-': neg,
+    '+': Number,
+    exp: Math.exp,
+    not: not,
+    length: stringOrArrayLength,
+    '!': factorial,
+    sign: Math.sign || sign
+  };
+
+  this.binaryOps = {
+    '+': add,
+    '-': sub,
+    '*': mul,
+    '/': div,
+    '%': mod,
+    '^': Math.pow,
+    '||': concat,
+    '==': equal,
+    '!=': notEqual,
+    '>': greaterThan,
+    '<': lessThan,
+    '>=': greaterThanEqual,
+    '<=': lessThanEqual,
+    and: andOperator,
+    or: orOperator,
+    'in': inOperator,
+    '=': setVar,
+    '[': arrayIndex
+  };
+
+  this.ternaryOps = {
+    '?': condition
+  };
+
+  this.functions = {
+    random: random,
+    fac: factorial,
+    min: min$1,
+    max: max,
+    hypot: Math.hypot || hypot,
+    pyt: Math.hypot || hypot, // backward compat
+    pow: Math.pow,
+    atan2: Math.atan2,
+    'if': condition,
+    gamma: gamma,
+    roundTo: roundTo,
+    map: arrayMap$1,
+    fold: arrayFold,
+    filter: arrayFilter,
+    indexOf: stringOrArrayIndexOf,
+    join: arrayJoin
+  };
+
+  this.consts = {
+    E: Math.E,
+    PI: Math.PI,
+    'true': true,
+    'false': false
+  };
+}
+
+Parser.prototype.parse = function (expr) {
+  var instr = [];
+  var parserState = new ParserState(
+    this,
+    new TokenStream(this, expr),
+    { allowMemberAccess: this.options.allowMemberAccess }
+  );
+
+  parserState.parseExpression(instr);
+  parserState.expect(TEOF, 'EOF');
+
+  return new Expression(instr, this);
+};
+
+Parser.prototype.evaluate = function (expr, variables) {
+  return this.parse(expr).evaluate(variables);
+};
+
+var sharedParser = new Parser();
+
+Parser.parse = function (expr) {
+  return sharedParser.parse(expr);
+};
+
+Parser.evaluate = function (expr, variables) {
+  return sharedParser.parse(expr).evaluate(variables);
+};
+
+var optionNameMap = {
+  '+': 'add',
+  '-': 'subtract',
+  '*': 'multiply',
+  '/': 'divide',
+  '%': 'remainder',
+  '^': 'power',
+  '!': 'factorial',
+  '<': 'comparison',
+  '>': 'comparison',
+  '<=': 'comparison',
+  '>=': 'comparison',
+  '==': 'comparison',
+  '!=': 'comparison',
+  '||': 'concatenate',
+  'and': 'logical',
+  'or': 'logical',
+  'not': 'logical',
+  '?': 'conditional',
+  ':': 'conditional',
+  '=': 'assignment',
+  '[': 'array',
+  '()=': 'fndef'
+};
+
+function getOptionName(op) {
+  return optionNameMap.hasOwnProperty(op) ? optionNameMap[op] : op;
+}
+
+Parser.prototype.isOperatorEnabled = function (op) {
+  var optionName = getOptionName(op);
+  var operators = this.options.operators || {};
+
+  return !(optionName in operators) || !!operators[optionName];
+};
+
+class expression {
+  constructor(_ref, config$, form$) {
+    var _this = this;
+    var {
+      functions,
+      consts
+    } = _ref;
+    _defineProperty$2(this, "parser", void 0);
+    _defineProperty$2(this, "regex", /{(.+?)}|\\({.+?})/g);
+    _defineProperty$2(this, "config$", void 0);
+    _defineProperty$2(this, "form$", void 0);
+    _defineProperty$2(this, "moment", void 0);
+    _defineProperty$2(this, "lastParsed", void 0);
+    this.config$ = config$;
+    this.form$ = form$;
+    this.moment = this.config$.value.services.moment;
+    this.parser = new Parser({
+      operators: {
+        logical: true,
+        comparison: true,
+        in: true,
+        assignment: false
+      }
+    });
+    Object.keys(this.parser.functions).forEach(func => {
+      delete this.parser.functions[func];
+    });
+    this.parser.functions.NOT = a => !a;
+    this.parser.functions.EMPTY = v => Array.isArray(v) ? !v.length : v === '' || v === null || v === undefined;
+    this.parser.functions.NOT_EMPTY = v => Array.isArray(v) ? !!v.length : v !== '' && v !== null && v !== undefined;
+    this.parser.functions.SUM = function () {
+      for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+        args[_key] = arguments[_key];
+      }
+      return _this.sum(args);
+    };
+    this.parser.functions.AVG = function () {
+      for (var _len2 = arguments.length, args = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
+        args[_key2] = arguments[_key2];
+      }
+      var values = _this.flatten(args, '').filter(v => v !== '');
+      if (!values.length) {
+        return 0;
+      }
+      return _this.sum(args) / values.length;
+    };
+    this.parser.functions.MIN = function () {
+      for (var _len3 = arguments.length, args = new Array(_len3), _key3 = 0; _key3 < _len3; _key3++) {
+        args[_key3] = arguments[_key3];
+      }
+      var values = _this.flatten(args, '').filter(v => v !== '');
+      if (!values.length) {
+        return 0;
+      }
+      return values.sort((a, b) => a - b)[0];
+    };
+    this.parser.functions.MAX = function () {
+      for (var _len4 = arguments.length, args = new Array(_len4), _key4 = 0; _key4 < _len4; _key4++) {
+        args[_key4] = arguments[_key4];
+      }
+      var values = _this.flatten(args, '').filter(v => v !== '');
+      if (!values.length) {
+        return 0;
+      }
+      return values.sort((a, b) => b - a)[0];
+    };
+    this.parser.functions.ROUND = (value, places) => {
+      var num = Number(value);
+      if (isNaN(num)) {
+        return 0;
+      }
+      return Number(num.toFixed(places));
+    };
+    this.parser.functions.COUNT = function () {
+      for (var _len5 = arguments.length, args = new Array(_len5), _key5 = 0; _key5 < _len5; _key5++) {
+        args[_key5] = arguments[_key5];
+      }
+      var values = _this.flatten(args, '').filter(v => v !== '');
+      return values.length;
+    };
+    this.parser.functions.AGE = value => {
+      var date = this.date(value);
+      return date.isValid() ? this.moment().diff(date, 'years') : '';
+    };
+    this.parser.functions.TODAY = () => {
+      return this.moment().format('YYYY-MM-DD');
+    };
+    this.parser.functions.NOW = () => {
+      return this.moment().toISOString();
+    };
+    this.parser.functions.DATE_ADD = (value, toAdd, interval) => {
+      var date = this.date(value);
+      return date.clone().add(toAdd, interval).toISOString();
+    };
+    this.parser.functions.FORMAT_DATE = (value, format) => {
+      return this.date(value).format(format);
+    };
+    this.parser.functions.DISPLAY_VALUE = (value, path) => {
+      var el$ = this.form$.value.el$(path);
+      if (!el$) {
+        return '';
+      }
+      var translate = v => {
+        var _el$$resolvedOptions;
+        return localize(((_el$$resolvedOptions = el$.resolvedOptions) === null || _el$$resolvedOptions === void 0 || (_el$$resolvedOptions = _el$$resolvedOptions.find(o => o.value === v)) === null || _el$$resolvedOptions === void 0 ? void 0 : _el$$resolvedOptions.label) || '', this.config$.value, this.form$.value);
+      };
+      return Array.isArray(value) ? value.map(translate).join(', ') : translate(value);
+    };
+    Object.entries(functions || {}).forEach(_ref2 => {
+      var [name, func] = _ref2;
+      this.parser.functions[name] = func;
+    });
+    Object.entries(consts || {}).forEach(_ref3 => {
+      var [name, con] = _ref3;
+      this.parser.consts[name] = con;
+    });
+    Object.keys(this.parser.functions).forEach(func => {
+      this.parser.functions[func].toString = () => func;
+    });
+  }
+  flatten(args) {
+    var defaultValue = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+    return args.reduce((prev, curr) => {
+      var value = Array.isArray(curr) ? curr.reduce((p, c) => {
+        return p.concat(isNaN(Number(c)) || c === null || c === undefined || c === '' ? defaultValue : Number(c));
+      }, []) : [isNaN(Number(curr)) || curr === null || curr === undefined || curr === '' ? defaultValue : Number(curr)];
+      return prev.concat(value);
+    }, []);
+  }
+  sum(args) {
+    return this.flatten(args).reduce((p, c) => p + c, 0);
+  }
+  date(value) {
+    return this.moment(value, [this.moment.ISO_8601, 'YYYY-MM-DD', 'MM/DD/YYYY', 'DD/MM/YYYY', 'DD.MM.YYYY', 'YYYY/MM/DD', 'DD MMM YYYY', 'MMM DD, YYYY', 'YYYY-MM-DD HH:mm:ss', 'MM/DD/YYYY hh:mm A', 'DD.MM.YYYY HH:mm', 'DD/MM/YYYY HH:mm:ss', 'YYYY/MM/DD HH:mm:ss', 'ddd, DD MMM YYYY HH:mm:ss Z'], true);
+  }
+  resolve(exp, data, dataPath) {
+    return exp.replace(this.regex, (match, expression, escaped) => {
+      if (expression !== undefined) {
+        var resolved;
+        var parsed;
+        parsed = this.parse(expression, dataPath);
+        if (!(parsed instanceof Expression)) {
+          return '';
+        }
+        try {
+          if (this.containsSelf(parsed, dataPath)) {
+            throw new Error("Can't contain self data path (`".concat(dataPath, "`)"));
+          }
+          resolved = String(parsed.evaluate(data));
+        } catch (e) {
+          if (this.config$.value.config.expressionDebug) {
+            console.warn("Expression error in: ".concat(expression, ":"), e);
+          }
+        }
+        if (resolved === 'NaN') {
+          resolved = '0';
+        }
+        if ([null, undefined, 'null', 'undefined', '[object Object]'].includes(resolved) || resolved === '') {
+          resolved = '';
+        }
+        return resolved;
+      }
+      if (escaped !== undefined) {
+        return escaped.replace(/\\}$/, '\}');
+      }
+      return match;
+    });
+  }
+  parse(expression, dataPath) {
+    var parsed;
+    expression = expression.replace(/([a-zA-Z_-][a-zA-Z0-9_-]*)\.([0-9\*])+\b/g, '$1[$2]').replace(/([a-zA-Z_-][a-zA-Z0-9_-]*)\.([0-9\*])\.+\b/g, '$1[$2].');
+    expression = replaceWildcardsExpr(expression, dataPath);
+    try {
+      parsed = this.parser.parse(expression);
+    } catch (e) {
+      if (this.config$.value.config.expressionDebug) {
+        console.warn("Expression error in: ".concat(expression, ":"), e);
+      }
+    }
+    return parsed;
+  }
+  parseAll(expressionChain, dataPath) {
+    if (typeof expressionChain !== 'string') {
+      return [];
+    }
+    return [...((expressionChain === null || expressionChain === void 0 ? void 0 : expressionChain.matchAll(this.regex)) || [])].map(m => m[1]).filter(m => !!m).map(e => ({
+      expression: e,
+      parsed: this.parse(e, dataPath)
+    }));
+  }
+  vars(expressionChain, dataPath) {
+    if (typeof expressionChain !== 'string') {
+      return [];
+    }
+    return [...((expressionChain === null || expressionChain === void 0 ? void 0 : expressionChain.matchAll(this.regex)) || [])].map(m => m[1]).filter(m => !!m).reduce((prev, e) => {
+      var _this$parse;
+      e = replaceWildcardsExpr(e.replace(/\.([0-9\*])+\b/g, '[$1]').replace(/\.([0-9\*])\.+\b/g, '[$1].'), dataPath);
+      e = e.replace(/\[([0-9\*])+]\b/g, '._$1_').replace(/\[([0-9\*])+]\.\b/g, '._$1_.');
+      return [...prev, ...(((_this$parse = this.parse(e, dataPath)) === null || _this$parse === void 0 || (_this$parse = _this$parse.variables({
+        withMembers: true
+      })) === null || _this$parse === void 0 ? void 0 : _this$parse.map(v => v.replace(/\._([0-9]+)_/g, '.$1').replace(/\._([0-9]+)_\./g, '.$1.'))) || [])];
+    }, []);
+  }
+  wrap(expression) {
+    if (!/^{/.test(expression) && !/}$/.test(expression)) {
+      expression = "{".concat(expression, "}");
+    }
+    return expression;
+  }
+  unwrap(expression) {
+    return expression.replace(/^\{|\}$/g, '');
+  }
+  containsSelf(parsed, dataPath) {
+    var _this$vars;
+    return (_this$vars = this.vars(this.wrap((parsed === null || parsed === void 0 ? void 0 : parsed.toString()) || ''), dataPath)) === null || _this$vars === void 0 ? void 0 : _this$vars.includes(dataPath);
+  }
+}
+
 class CaptchaProviderInterface {
   constructor(element, options, el$) {}
   init() {}
@@ -15575,6 +17694,14 @@ var config = {
   operators: {},
   strictConditions: false,
   /**
+   * Expression parser
+   */
+  expression: {
+    functions: {},
+    consts: {}
+  },
+  expressionDebug: false,
+  /**
    * Submitting
    */
   endpoints: {
@@ -15672,9 +17799,10 @@ function installer () {
           messageBag,
           autosize: n,
           location: location$4,
-          condition,
+          condition: condition$1,
           columns: Columns,
-          sanitize
+          sanitize,
+          expression
         }, services),
         version: packageJson.version
       };
@@ -15696,7 +17824,7 @@ function installer () {
       });
 
       // merge (config)
-      each(['languages', 'services', 'presets', 'views', 'operators'], attr => {
+      each(['languages', 'services', 'presets', 'views', 'operators', 'expression'], attr => {
         if (config[attr] !== undefined) {
           this.options.config[attr] = Object.assign({}, this.options.config[attr], config[attr]);
         }
@@ -15715,7 +17843,7 @@ function installer () {
       });
 
       // replace
-      each(['columns', 'forceLabels', 'displayErrors', 'floatPlaceholders', 'displayErrors', 'displayMessages', 'language', 'locale', 'fallbackLocale', 'orderFrom', 'validateOn', 'formData', 'beforeSend', 'locationProvider', 'classHelpers', 'env', 'usePresets', 'plugins', 'size', 'apiKey', 'forceNumbers', 'scrollToInvalid', 'showRequired', 'scrollOnNext', 'strictConditions', 'sanitize', 'sanitizeInit'], attr => {
+      each(['columns', 'forceLabels', 'displayErrors', 'floatPlaceholders', 'displayErrors', 'displayMessages', 'language', 'locale', 'fallbackLocale', 'orderFrom', 'validateOn', 'formData', 'beforeSend', 'locationProvider', 'classHelpers', 'env', 'usePresets', 'plugins', 'size', 'apiKey', 'forceNumbers', 'scrollToInvalid', 'showRequired', 'scrollOnNext', 'strictConditions', 'sanitize', 'sanitizeInit', 'expressionDebug'], attr => {
         if (config[attr] !== undefined) {
           this.options.config[attr] = config[attr];
         }
@@ -26428,13 +28556,17 @@ var text$3 = function text(props, context, dependencies) {
   var _options$value3, _options$value4;
   var options = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
   var {
-    name
+    name,
+    expression
   } = toRefs(props);
   var {
     initialValue,
     internalValue,
     isDefault
   } = base$Q(props, context, dependencies);
+  var unwatchDeps;
+  var unwatchData;
+  var unwatchLocale;
 
   // ============ DEPENDENCIES =============
 
@@ -26444,8 +28576,29 @@ var text$3 = function text(props, context, dependencies) {
     dataPath,
     form$,
     shouldForceNumbers,
-    stringToNumber
+    stringToNumber,
+    on
   } = dependencies;
+  var $vueform = inject('$vueform');
+  var config$ = inject('config$');
+
+  // ================ DATA =================
+
+  /**
+   * The object that only contains data of the fields that the expression depends on.
+   * 
+   * @type {object}
+   * @private
+   */
+  var dependencyData = ref({});
+
+  /**
+   * The expression of the current language (or default).
+   * 
+   * @type {string}
+   * @private
+   */
+  var currentExpression = ref();
 
   // ============== COMPUTED ===============
 
@@ -26480,6 +28633,101 @@ var text$3 = function text(props, context, dependencies) {
     set(val) {
       value.value = val;
     }
+  });
+
+  /**
+   * The list of element paths that the current expression depends on.
+   * 
+   * @type {array}
+   * @private
+   */
+  var expressionDeps = computed(() => {
+    if (!expression.value) {
+      return [];
+    }
+    return form$.value.expression.vars(currentExpression.value, dataPath.value);
+  });
+
+  /**
+   * Resolve the value of the current expression and sets it as the value of the element.
+   * 
+   * @returns {void}
+   * @private
+   */
+  var resolveExpressionValue = () => {
+    if (!currentExpression.value) return;
+    value.value = form$.value.resolveExpression(currentExpression.value, dataPath.value);
+  };
+
+  /**
+   * Sets the current expression depending on the current language (or default).
+   * 
+   * @returns {void}
+   * @private
+   */
+  var setCurrentExpression = () => {
+    currentExpression.value = localize(expression.value, config$.value, form$.value);
+  };
+
+  /**
+   * Starts to track changes related to expression.
+   * 
+   * @returns {void}
+   * @private
+   */
+  var trackExpression = () => {
+    on('reset', resolveExpressionValue);
+    on('clear', resolveExpressionValue);
+    unwatchLocale = watch([() => $vueform.value.i18n.locale, () => form$.value.locale], () => {
+      setCurrentExpression();
+    });
+    unwatchData = watch(() => form$.value.requestData, () => {
+      var fullData = flatten(form$.value.requestData);
+      for (var key of expressionDeps.value) {
+        dependencyData.value[key] = fullData[key];
+      }
+    }, {
+      deep: true,
+      immediate: true
+    });
+    unwatchDeps = watch(dependencyData, () => {
+      if (!currentExpression.value) return;
+      resolveExpressionValue();
+    }, {
+      deep: true
+    });
+  };
+
+  /**
+   * Ends tracking changes related to expression.
+   * 
+   * @returns {void}
+   * @private
+   */
+  var untrackExpression = () => {
+    if (unwatchData) unwatchData();
+    if (unwatchDeps) unwatchDeps();
+    if (unwatchLocale) unwatchLocale();
+  };
+  if (expression.value) {
+    onMounted(() => {
+      setCurrentExpression();
+      resolveExpressionValue();
+      trackExpression();
+    });
+  }
+  watch(expression, (n, o) => {
+    if (n) {
+      setCurrentExpression();
+      resolveExpressionValue();
+      if (!o) trackExpression();
+    } else {
+      value.value = defaultValue.value;
+      untrackExpression();
+    }
+  }, {
+    immediate: false,
+    deep: true
   });
   return {
     initialValue,
@@ -26907,6 +29155,7 @@ var dates$4 = function dates(props, context, dependencies) {
     isDefault
   };
 };
+var hidden$2 = text$3;
 
 var base$P = function base(props, context, dependencies) {
   // ============== COMPUTED ===============
@@ -27742,9 +29991,11 @@ var base$I = function base(props, context, dependencies) {
   var validate = /*#__PURE__*/function () {
     var _ref = _asyncToGenerator(function* () {
       if (!validationRules.value) {
+        resetting.value = false;
         return;
       }
       if (form$.value.validation === false) {
+        resetting.value = false;
         return;
       }
       if (resetting.value) {
@@ -29358,6 +31609,7 @@ var multilingual$2 = function multilingual(props, context, dependencies) {
     defaultValue
   };
 };
+var hidden$1 = text$1;
 
 var base$G = function base(props, context, dependencies) {
   var {
@@ -29623,6 +31875,8 @@ var base$F = function base(props, context, dependencies) {
   var nullValue = dependencies.nullValue;
   var resetting = dependencies.resetting;
   var isDefault = dependencies.isDefault;
+  var fire = dependencies.fire;
+  var el$ = dependencies.el$;
 
   // =============== PRIVATE ===============
 
@@ -29699,6 +31953,7 @@ var base$F = function base(props, context, dependencies) {
    */
   var clear = () => {
     setValue(cloneDeep_1(nullValue.value));
+    fire('clear', el$.value);
   };
 
   /**
@@ -29712,6 +31967,7 @@ var base$F = function base(props, context, dependencies) {
     }
     setValue(cloneDeep_1(defaultValue.value));
     resetValidators();
+    fire('reset', el$.value);
   };
 
   /**
@@ -29808,7 +32064,9 @@ var textarea = function textarea(props, context, dependencies) {
   // ============ DEPENDENCIES =============
 
   var {
-    autosize
+    autosize,
+    fire,
+    el$
   } = dependencies;
 
   // =============== METHODS ===============
@@ -29831,12 +32089,14 @@ var textarea = function textarea(props, context, dependencies) {
     nextTick(() => {
       autosize();
     });
+    fire('clear', el$.value);
   };
   var reset = () => {
     baseReset();
     nextTick(() => {
       autosize();
     });
+    fire('reset', el$.value);
   };
   return {
     data,
@@ -29871,6 +32131,8 @@ var select$3 = function select(props, context, dependencies) {
   var updateItems = dependencies.updateItems;
   var resetting = dependencies.resetting;
   var isDefault = dependencies.isDefault;
+  var fire = dependencies.fire;
+  var el$ = dependencies.el$;
 
   // =============== PRIVATE ===============
 
@@ -29892,6 +32154,7 @@ var select$3 = function select(props, context, dependencies) {
     if (typeof items.value === 'string' && resolveOnLoad.value !== false) {
       updateItems();
     }
+    fire('reset', el$.value);
   };
   return {
     data,
@@ -29917,7 +32180,9 @@ var captcha = function captcha(props, context, dependencies) {
   // ============ DEPENDENCIES =============
 
   var {
-    Provider
+    Provider,
+    fire,
+    el$
   } = dependencies;
 
   // =============== METHODS ===============
@@ -29928,6 +32193,7 @@ var captcha = function captcha(props, context, dependencies) {
       return;
     }
     Provider.value.reset();
+    fire('clear', el$.value);
   };
   var reset = () => {
     resetBase();
@@ -29935,6 +32201,7 @@ var captcha = function captcha(props, context, dependencies) {
       return;
     }
     Provider.value.reset();
+    fire('reset', el$.value);
   };
   return {
     data,
@@ -29962,6 +32229,8 @@ var object$1 = function object(props, context, dependencies) {
   var children$Array = dependencies.children$Array;
   var resetting = dependencies.resetting;
   var isDefault = dependencies.isDefault;
+  var fire = dependencies.fire;
+  var el$ = dependencies.el$;
 
   // ============== COMPUTED ===============
 
@@ -30027,6 +32296,7 @@ var object$1 = function object(props, context, dependencies) {
       }
       element$.clear();
     });
+    fire('clear', el$.value);
   };
   var reset = () => {
     if (!isDefault.value) {
@@ -30038,6 +32308,7 @@ var object$1 = function object(props, context, dependencies) {
       }
       element$.reset();
     });
+    fire('reset', el$.value);
   };
   var prepare = /*#__PURE__*/function () {
     var _ref2 = _asyncToGenerator(function* () {
@@ -30285,6 +32556,7 @@ var list = function list(props, context, dependencies, options) {
     nextTick(() => {
       refreshOrderStore(value.value);
     });
+    fire('reset', el$.value);
   };
   var prepare = /*#__PURE__*/function () {
     var _ref5 = _asyncToGenerator(function* () {
@@ -30748,7 +33020,9 @@ var signature = function signature(props, context, dependencies) {
     setDefaultMode,
     setDefaultFont,
     setDefaultColor,
-    available
+    available,
+    fire,
+    el$
   } = dependencies;
 
   // ============== COMPUTED ===============
@@ -30756,6 +33030,7 @@ var signature = function signature(props, context, dependencies) {
   var clear = () => {
     clearBase();
     clearSignature();
+    fire('clear', el$.value);
   };
   var reset = () => {
     clearSignature();
@@ -30763,6 +33038,7 @@ var signature = function signature(props, context, dependencies) {
     setDefaultFont(true);
     setDefaultColor();
     resetBase();
+    fire('reset', el$.value);
   };
   var prepare = /*#__PURE__*/function () {
     var _ref7 = _asyncToGenerator(function* () {
@@ -30848,6 +33124,7 @@ var matrix$1 = function matrix(props, context, dependencies) {
     if (hasDynamicRows.value) {
       rowsCount.value = rows.value;
     }
+    fire('clear', el$.value);
   };
   var reset = () => {
     baseReset();
@@ -30858,6 +33135,7 @@ var matrix$1 = function matrix(props, context, dependencies) {
       grid.value.scrollTop = 0;
       grid.value.scrollLeft = 0;
     }
+    fire('reset', el$.value);
   };
   var add = () => {
     var oldValue = _objectSpread2$1({}, value.value);
@@ -30992,6 +33270,7 @@ var matrix$1 = function matrix(props, context, dependencies) {
 };
 var multiselect$3 = select$3;
 var tags$3 = select$3;
+var hidden = text;
 
 var HasChange = {
   props: {
@@ -31052,7 +33331,7 @@ var HasValidation = {
 var CaptchaElement = {
   name: 'CaptchaElement',
   mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
-  emits: ['change', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
+  emits: ['reset', 'clear', 'change', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
   props: {
     type: {
       required: false,
@@ -31215,7 +33494,7 @@ var checkbox = function checkbox(props, context, dependencies) {
 var CheckboxElement = {
   name: 'CheckboxElement',
   mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
-  emits: ['change', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
+  emits: ['reset', 'clear', 'change', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
   props: {
     type: {
       required: false,
@@ -31899,7 +34178,7 @@ var tags$2 = select$2;
 var CheckboxgroupElement = {
   name: 'CheckboxgroupElement',
   mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
-  emits: ['change', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
+  emits: ['reset', 'clear', 'change', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
   props: {
     type: {
       required: false,
@@ -32954,7 +35233,7 @@ var tags = select;
 var DateElement = {
   name: 'DateElement',
   mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
-  emits: ['change', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
+  emits: ['reset', 'clear', 'change', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
   props: {
     type: {
       required: false,
@@ -33075,7 +35354,7 @@ var DateElement = {
 var DatesElement = {
   name: 'DatesElement',
   mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
-  emits: ['change', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
+  emits: ['reset', 'clear', 'change', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
   props: {
     type: {
       required: false,
@@ -33899,7 +36178,7 @@ var base$r = function base(props, context, dependencies) {
 var FileElement = {
   name: 'FileElement',
   mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
-  emits: ['change', 'remove', 'error', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
+  emits: ['reset', 'clear', 'change', 'remove', 'error', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
   props: {
     type: {
       required: false,
@@ -34085,7 +36364,7 @@ var GenericElement = {
   register: false,
   name: 'GenericElement',
   mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
-  emits: ['change', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
+  emits: ['reset', 'clear', 'change', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
   props: {
     type: {
       required: false,
@@ -34413,7 +36692,7 @@ var group = object;
 var GridElement = {
   name: 'GridElement',
   mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
-  emits: ['change', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
+  emits: ['reset', 'clear', 'change', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
   props: {
     type: {
       required: false,
@@ -34498,7 +36777,7 @@ var GridElement = {
 var GroupElement = {
   name: 'GroupElement',
   mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
-  emits: ['change', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
+  emits: ['reset', 'clear', 'change', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
   props: {
     type: {
       required: false,
@@ -34530,10 +36809,61 @@ var GroupElement = {
   }
 };
 
+var base$n = function base(props, context, dependencies) {
+  var {
+    forceNumbers
+  } = toRefs(props);
+
+  // ============ DEPENDENCIES =============
+
+  var {
+    form$
+  } = dependencies;
+
+  // =============== INJECT ===============
+
+  var config$ = inject('config$');
+
+  // =============== METHODS ===============
+
+  /**
+   * Whether the value should be converted to number/float.
+   *
+   * @returns {boolean}
+   * @private
+   */
+  var shouldForceNumbers = () => {
+    return forceNumbers.value || config$.value.config.forceNumbers && form$.value.options.forceNumbers !== false && forceNumbers.value !== false || form$.value.options.forceNumbers && forceNumbers.value !== false;
+  };
+
+  /**
+   * Converts string value to number or float.
+   *
+   * @param {any} str* the string to be converted
+   * @returns {number|float|string}
+   * @private
+   */
+  var stringToNumber = str => {
+    var v = str;
+    if (typeof str === 'string') {
+      if (/^[-]?\d+([\.,]\d+)?$/.test(str)) {
+        v = parseFloat(str.replace(',', '.'));
+      } else if (/^[-]?\d+$/.test(str)) {
+        v = parseInt(str, 10);
+      }
+    }
+    return v;
+  };
+  return {
+    shouldForceNumbers,
+    stringToNumber
+  };
+};
+
 var HiddenElement = {
   name: 'HiddenElement',
   mixins: [BaseElement, HasChange, HasData, HasValidation],
-  emits: ['change', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
+  emits: ['reset', 'clear', 'change', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
   props: {
     type: {
       required: false,
@@ -34555,11 +36885,21 @@ var HiddenElement = {
       required: false,
       type: [Boolean],
       default: false
+    },
+    forceNumbers: {
+      required: false,
+      type: [Boolean],
+      default: null
+    },
+    expression: {
+      required: false,
+      type: [String, Object],
+      default: undefined
     }
   },
   setup(props, ctx) {
     var context = _objectSpread2$1({}, ctx);
-    context.features = [base$Y, base$1f, base$1e, base$R, base$T, base$P, base$O, base$_, base$12, base$1i, base$U, base$H, base$1a, base$I, base$Q, base$N, base$F, base$K, base$Z];
+    context.features = [base$Y, base$1f, base$1e, base$R, base$T, base$P, base$O, base$_, base$12, base$1i, base$U, hidden$1, base$1a, base$I, base$n, hidden$2, base$N, hidden, base$K, base$Z];
     return _objectSpread2$1({}, base$S(props, context));
   }
 };
@@ -37229,7 +39569,7 @@ _extends(Remove, {
 Sortable.mount(new AutoScrollPlugin());
 Sortable.mount(Remove, Revert);
 
-var base$n = function base(props, context, dependencies, options) {
+var base$m = function base(props, context, dependencies, options) {
   var {
     sort
   } = toRefs(props);
@@ -37378,7 +39718,7 @@ var base$n = function base(props, context, dependencies, options) {
   };
 };
 
-var base$m = function base(props, context, dependencies) {
+var base$l = function base(props, context, dependencies) {
   // ================ DATA ================
 
   /**
@@ -37392,7 +39732,7 @@ var base$m = function base(props, context, dependencies) {
   };
 };
 
-var base$l = function base(props, context, dependencies, options) {
+var base$k = function base(props, context, dependencies, options) {
   var {
     storeOrder,
     orderBy,
@@ -37461,7 +39801,7 @@ var multifile$2 = function multifile(props, context, dependencies, options) {
   } = toRefs(props);
   var {
     refreshOrderStore
-  } = base$l(props, context, dependencies);
+  } = base$k(props, context, dependencies);
 
   // =============== METHODS ==============
 
@@ -37479,7 +39819,7 @@ var multifile$2 = function multifile(props, context, dependencies, options) {
   };
 };
 
-var base$k = function base(props, context, dependencies) {
+var base$j = function base(props, context, dependencies) {
   var {
     object,
     element
@@ -37610,7 +39950,7 @@ var multifile$1 = function multifile(props, context, dependencies) {
   };
 };
 
-var base$j = function base(props, context, dependencies) {
+var base$i = function base(props, context, dependencies) {
   var {
     controls,
     sort,
@@ -37720,7 +40060,7 @@ var multifile = function multifile(props, context, dependencies) {
 var ListElement = {
   name: 'ListElement',
   mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
-  emits: ['change', 'add', 'remove', 'sort', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
+  emits: ['reset', 'clear', 'change', 'add', 'remove', 'sort', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
   props: {
     type: {
       required: false,
@@ -37825,13 +40165,13 @@ var ListElement = {
   setup(props, ctx) {
     var context = _objectSpread2$1({}, ctx);
     //@todo:adam useValue and useDefault should be before useOrder
-    context.features = [base$Y, base$Y, base$1f, base$1e, base$$, base$T, base$_, array$1, base$k, base$o, base$m, base$l, base$1i, list$4, base$X, base$H, base$15, base$O, base$18, list$5, list$1, list$3, base$j, array, base$14, base$13, base$12, base$1g, base$11, list, base$n, base$W, list$2, base$Z];
+    context.features = [base$Y, base$Y, base$1f, base$1e, base$$, base$T, base$_, array$1, base$j, base$o, base$l, base$k, base$1i, list$4, base$X, base$H, base$15, base$O, base$18, list$5, list$1, list$3, base$i, array, base$14, base$13, base$12, base$1g, base$11, list, base$m, base$W, list$2, base$Z];
     context.slots = ['label', 'info', 'required', 'description', 'before', 'between', 'after'];
     return _objectSpread2$1({}, base$S(props, context));
   }
 };
 
-var base$i = function base(props, context, dependencies) {
+var base$h = function base(props, context, dependencies) {
   var options_ = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
   var {
     provider,
@@ -37985,7 +40325,7 @@ var base$i = function base(props, context, dependencies) {
 var LocationElement = {
   name: 'LocationElement',
   mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
-  emits: ['change', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
+  emits: ['reset', 'clear', 'change', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
   props: {
     type: {
       required: false,
@@ -38070,13 +40410,13 @@ var LocationElement = {
   },
   setup(props, ctx) {
     var context = _objectSpread2$1({}, ctx);
-    context.features = [base$Y, base$1f, base$1e, base$$, base$R, base$T, location$2, base$_, base$L, base$1i, base$U, base$X, base$G, base$A, base$H, base$Q, location, base$1a, base$N, base$F, base$i, base$15, base$O, base$13, base$12, base$1g, base$14, base$11, base$w, base$W, location$1, base$Z, base$x];
+    context.features = [base$Y, base$1f, base$1e, base$$, base$R, base$T, location$2, base$_, base$L, base$1i, base$U, base$X, base$G, base$A, base$H, base$Q, location, base$1a, base$N, base$F, base$h, base$15, base$O, base$13, base$12, base$1g, base$14, base$11, base$w, base$W, location$1, base$Z, base$x];
     context.slots = ['label', 'info', 'required', 'description', 'before', 'between', 'after', 'addon-before', 'addon-after'];
     return _objectSpread2$1({}, location$3(props, context));
   }
 };
 
-var base$h = function base(props, context, dependencies) {
+var base$g = function base(props, context, dependencies) {
   var {
     rows,
     cols,
@@ -38188,7 +40528,7 @@ var base$h = function base(props, context, dependencies) {
       // Cells
       var _min = resolveWidth(minWidth.value, 'min-content');
       var _max = resolveWidth(maxWidth.value, '1fr');
-      el$.value.resolvedColumns.filter(c => c.available).forEach((col, i) => {
+      el$.value.resolvedColumns.filter(c => c.available.value).forEach((col, i) => {
         var colMin = resolveWidth(col.minWidth, _min);
         var colMax = resolveWidth(col.maxWidth, _max);
         gridTemplateColumns.push("minmax(".concat(colMin, ", ").concat(colMax, ")"));
@@ -38444,7 +40784,7 @@ var base$h = function base(props, context, dependencies) {
   };
 };
 
-var base$g = function base(props, context, dependencies) {
+var base$f = function base(props, context, dependencies) {
   var {
     rows,
     cols,
@@ -38542,7 +40882,7 @@ var base$g = function base(props, context, dependencies) {
     }).map(r => _objectSpread2$1(_objectSpread2$1({}, r), {}, {
       label: form$.value.$vueform.sanitize(localize(r.label, config$.value, form$.value))
     })).map(r => _objectSpread2$1(_objectSpread2$1({}, r), {}, {
-      available: !r.conditions || !r.conditions.some(condition => !form$.value.$vueform.services.condition.check(condition, path.value, form$.value, el$.value))
+      available: computed(() => !r.conditions || !r.conditions.some(condition => !form$.value.$vueform.services.condition.check(condition, path.value, form$.value, el$.value)))
     }));
   });
 
@@ -38567,7 +40907,7 @@ var base$g = function base(props, context, dependencies) {
     }).map(r => _objectSpread2$1(_objectSpread2$1({}, r), {}, {
       label: form$.value.$vueform.sanitize(localize(r.label, config$.value, form$.value))
     })).map(r => _objectSpread2$1(_objectSpread2$1({}, r), {}, {
-      available: !r.conditions || !r.conditions.some(condition => !form$.value.$vueform.services.condition.check(condition, path.value, form$.value, el$.value))
+      available: computed(() => !r.conditions || !r.conditions.some(condition => !form$.value.$vueform.services.condition.check(condition, path.value, form$.value, el$.value)))
     }));
   });
 
@@ -38605,7 +40945,7 @@ var base$g = function base(props, context, dependencies) {
 var MatrixElement = {
   name: 'MatrixElement',
   mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
-  emits: ['change', 'add', 'remove', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
+  emits: ['reset', 'clear', 'change', 'add', 'remove', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
   props: {
     type: {
       required: false,
@@ -38758,13 +41098,13 @@ var MatrixElement = {
   },
   setup(props, ctx) {
     var context = _objectSpread2$1({}, ctx);
-    context.features = [base$Y, base$1f, base$1e, base$$, base$T, base$_, base$1i, matrix$5, base$g, object$5, matrix$2, matrix$4, base$15, base$O, base$X, base$G, base$h, object, base$18, object$8, matrix$3, base$13, base$12, base$1g, base$14, base$11, matrix$1, base$W, object$4, base$Z];
+    context.features = [base$Y, base$1f, base$1e, base$$, base$T, base$_, base$1i, matrix$5, base$f, object$5, matrix$2, matrix$4, base$15, base$O, base$X, base$G, base$g, object, base$18, object$8, matrix$3, base$13, base$12, base$1g, base$14, base$11, matrix$1, base$W, object$4, base$Z];
     context.slots = ['label', 'info', 'required', 'description', 'before', 'between', 'after'];
     return _objectSpread2$1({}, base$S(props, context));
   }
 };
 
-var base$f = function base(props, context, dependencies) {
+var base$e = function base(props, context, dependencies) {
   // ============ DEPENDENCIES ============
 
   var isDisabled = dependencies.isDisabled;
@@ -38843,7 +41183,7 @@ var base$f = function base(props, context, dependencies) {
 var MultifileElement = {
   name: 'MultifileElement',
   mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
-  emits: ['change', 'add', 'remove', 'sort', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
+  emits: ['reset', 'clear', 'change', 'add', 'remove', 'sort', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
   props: {
     type: {
       required: false,
@@ -39005,13 +41345,13 @@ var MultifileElement = {
   },
   setup(props, ctx) {
     var context = _objectSpread2$1({}, ctx);
-    context.features = [base$Y, base$1f, base$1e, base$$, base$T, base$X, array$1, base$o, base$R, base$m, multifile$1, base$_, base$1i, list$4, base$H, base$15, base$O, list$1, base$Q, array, base$18, base$1a, base$14, base$13, base$12, base$11, multifile$2, multifile$4, base$f, multifile, multifile$3, base$1g, base$n, base$W, multifile$5, base$Z];
+    context.features = [base$Y, base$1f, base$1e, base$$, base$T, base$X, array$1, base$o, base$R, base$l, multifile$1, base$_, base$1i, list$4, base$H, base$15, base$O, list$1, base$Q, array, base$18, base$1a, base$14, base$13, base$12, base$11, multifile$2, multifile$4, base$e, multifile, multifile$3, base$1g, base$m, base$W, multifile$5, base$Z];
     context.slots = ['label', 'info', 'required', 'description', 'before', 'between', 'after'];
     return _objectSpread2$1({}, base$S(props, context));
   }
 };
 
-var base$e = function base(props, context, dependencies) {
+var base$d = function base(props, context, dependencies) {
   // ============ DEPENDENCIES ============
 
   var fire = dependencies.fire;
@@ -39127,7 +41467,7 @@ function spliceMultiple(array, indexes) {
   return array;
 }
 
-var base$d = function base(props, context, dependencies) {
+var base$c = function base(props, context, dependencies) {
   // ============ DEPENDENCIES ============
 
   var value = dependencies.value;
@@ -39197,7 +41537,7 @@ var base$d = function base(props, context, dependencies) {
 var MultiselectElement = {
   name: 'MultiselectElement',
   mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
-  emits: ['change', 'select', 'deselect', 'search-change', 'open', 'close', 'clear', 'paste', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
+  emits: ['reset', 'clear', 'change', 'select', 'deselect', 'search-change', 'open', 'close', 'clear', 'paste', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
   props: {
     type: {
       required: false,
@@ -39550,7 +41890,7 @@ var MultiselectElement = {
   },
   setup(props, ctx) {
     var context = _objectSpread2$1({}, ctx);
-    context.features = [base$Y, base$1f, base$1e, base$$, multiselect$4, base$T, array$1, base$_, base$L, base$1i, multiselect$5, base$X, base$H, base$I, base$M, multiselect$1, base$Q, multiselect$2, base$1a, array, multiselect$3, base$15, base$O, base$13, base$12, base$1g, base$14, base$11, base$e, base$d, multiselect, base$W, base$K, base$Z, base$x];
+    context.features = [base$Y, base$1f, base$1e, base$$, multiselect$4, base$T, array$1, base$_, base$L, base$1i, multiselect$5, base$X, base$H, base$I, base$M, multiselect$1, base$Q, multiselect$2, base$1a, array, multiselect$3, base$15, base$O, base$13, base$12, base$1g, base$14, base$11, base$d, base$c, multiselect, base$W, base$K, base$Z, base$x];
     context.slots = ['option', 'multiple-label', 'placeholder', 'group-label', 'before-list', 'after-list', 'no-results', 'no-options', 'caret', 'spinner', 'clear', 'label', 'info', 'required', 'description', 'before', 'between', 'after'];
     return _objectSpread2$1({}, base$S(props, context));
   }
@@ -39559,7 +41899,7 @@ var MultiselectElement = {
 var ObjectElement = {
   name: 'ObjectElement',
   mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
-  emits: ['change', 'remove', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
+  emits: ['reset', 'clear', 'change', 'remove', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
   props: {
     type: {
       required: false,
@@ -39602,7 +41942,7 @@ var ObjectElement = {
   }
 };
 
-var base$c = function base(props, context, dependencies) {
+var base$b = function base(props, context, dependencies) {
   // ============ DEPENDENCIES ============
 
   var fire = dependencies.fire;
@@ -41946,7 +44286,7 @@ var countryPhones = [
   }
 ];
 
-var base$b = function base(props, context, dependencies) {
+var base$a = function base(props, context, dependencies) {
   var {
     include,
     exclude,
@@ -42241,7 +44581,7 @@ var base$b = function base(props, context, dependencies) {
   };
 };
 
-var base$a = function base(props, context, dependencies) {
+var base$9 = function base(props, context, dependencies) {
   var {
     fire,
     el$
@@ -42327,7 +44667,7 @@ var phone = function phone(props, context, dependencies) {
 var PhoneElement = {
   name: 'PhoneElement',
   mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
-  emits: ['change', 'select', 'open', 'close', 'blur', 'focus', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
+  emits: ['reset', 'clear', 'change', 'select', 'open', 'close', 'blur', 'focus', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
   props: {
     type: {
       required: false,
@@ -42423,13 +44763,13 @@ var PhoneElement = {
   },
   setup(props, ctx) {
     var context = _objectSpread2$1({}, ctx);
-    context.features = [base$Y, base$1f, base$1e, base$$, base$R, base$T, base$P, base$_, base$L, base$1i, base$U, base$X, base$G, text$1, base$1a, text$2, base$M, base$Q, base$N, base$F, base$15, base$O, base$13, base$12, base$1g, base$14, base$11, phone$1, base$w, base$c, phone$2, base$K, base$Z, phone, base$x, base$b];
+    context.features = [base$Y, base$1f, base$1e, base$$, base$R, base$T, base$P, base$_, base$L, base$1i, base$U, base$X, base$G, text$1, base$1a, text$2, base$M, base$Q, base$N, base$F, base$15, base$O, base$13, base$12, base$1g, base$14, base$11, phone$1, base$w, base$b, phone$2, base$K, base$Z, phone, base$x, base$a];
     context.slots = ['label', 'info', 'required', 'description', 'before', 'between', 'after'];
     return _objectSpread2$1({}, base$S(props, context));
   }
 };
 
-var base$9 = function base(props, context, dependencies) {
+var base$8 = function base(props, context, dependencies) {
   var {
     radioName,
     radioValue
@@ -42531,7 +44871,7 @@ var base$9 = function base(props, context, dependencies) {
 var RadioElement = {
   name: 'RadioElement',
   mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
-  emits: ['change', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
+  emits: ['reset', 'clear', 'change', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
   props: {
     type: {
       required: false,
@@ -42583,7 +44923,7 @@ var RadioElement = {
   },
   setup(props, ctx) {
     var context = _objectSpread2$1({}, ctx);
-    context.features = [base$Y, base$1f, base$1e, base$$, base$R, base$T, base$_, base$1i, base$U, base$X, base$P, base$H, base$1a, base$I, base$Q, base$F, base$15, base$O, base$13, base$12, base$1g, base$14, base$11, base$9, radio, base$K, base$Z, base$E];
+    context.features = [base$Y, base$1f, base$1e, base$$, base$R, base$T, base$_, base$1i, base$U, base$X, base$P, base$H, base$1a, base$I, base$Q, base$F, base$15, base$O, base$13, base$12, base$1g, base$14, base$11, base$8, radio, base$K, base$Z, base$E];
     context.slots = ['default', 'label', 'info', 'required', 'description', 'before', 'between', 'after'];
     return _objectSpread2$1({}, base$S(props, context));
   }
@@ -42592,7 +44932,7 @@ var RadioElement = {
 var RadiogroupElement = {
   name: 'RadiogroupElement',
   mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
-  emits: ['change', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
+  emits: ['reset', 'clear', 'change', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
   props: {
     type: {
       required: false,
@@ -42643,7 +44983,7 @@ var RadiogroupElement = {
 var SelectElement = {
   name: 'SelectElement',
   mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
-  emits: ['change', 'select', 'deselect', 'search-change', 'open', 'close', 'clear', 'paste', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
+  emits: ['reset', 'clear', 'change', 'select', 'deselect', 'search-change', 'open', 'close', 'clear', 'paste', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
   props: {
     type: {
       required: false,
@@ -42964,7 +45304,7 @@ var SelectElement = {
   },
   setup(props, ctx) {
     var context = _objectSpread2$1({}, ctx);
-    context.features = [base$Y, base$1f, base$1e, base$$, select$4, base$T, base$P, base$_, base$L, base$1i, base$U, base$X, base$H, base$I, base$M, select$1, base$Q, select$2, base$1a, base$N, select$3, base$15, base$O, base$13, base$12, base$1g, base$14, base$11, base$e, select, base$W, base$K, base$Z, base$x];
+    context.features = [base$Y, base$1f, base$1e, base$$, select$4, base$T, base$P, base$_, base$L, base$1i, base$U, base$X, base$H, base$I, base$M, select$1, base$Q, select$2, base$1a, base$N, select$3, base$15, base$O, base$13, base$12, base$1g, base$14, base$11, base$d, select, base$W, base$K, base$Z, base$x];
     context.slots = ['option', 'single-label', 'placeholder', 'group-label', 'before-list', 'after-list', 'no-results', 'no-options', 'caret', 'spinner', 'clear', 'label', 'info', 'required', 'description', 'before', 'between', 'after'];
     return _objectSpread2$1({}, base$S(props, context));
   }
@@ -45279,7 +47619,7 @@ function useSignature (props, context, dependencies) {
 var SignatureElement = {
   name: 'SignatureElement',
   mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
-  emits: ['change', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
+  emits: ['reset', 'clear', 'change', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
   props: {
     type: {
       required: false,
@@ -45413,7 +47753,7 @@ var SignatureElement = {
   }
 };
 
-var base$8 = function base(props, context, dependencies) {
+var base$7 = function base(props, context, dependencies) {
   var {
     lazy
   } = toRefs(props);
@@ -45445,7 +47785,7 @@ var base$8 = function base(props, context, dependencies) {
 var SliderElement = {
   name: 'SliderElement',
   mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
-  emits: ['change', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
+  emits: ['reset', 'clear', 'change', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
   props: {
     type: {
       required: false,
@@ -45532,15 +47872,16 @@ var SliderElement = {
   },
   setup(props, ctx) {
     var context = _objectSpread2$1({}, ctx);
-    context.features = [base$Y, base$1f, base$1e, base$$, base$R, base$T, min, base$_, base$1i, base$U, base$X, base$H, slider, base$Q, slider$1, base$1a, base$F, base$15, base$O, base$13, base$12, base$1g, base$14, base$11, base$y, base$8, base$W, base$K, base$Z];
+    context.features = [base$Y, base$1f, base$1e, base$$, base$R, base$T, min, base$_, base$1i, base$U, base$X, base$H, slider, base$Q, slider$1, base$1a, base$F, base$15, base$O, base$13, base$12, base$1g, base$14, base$11, base$y, base$7, base$W, base$K, base$Z];
     context.slots = ['label', 'info', 'required', 'description', 'before', 'between', 'after'];
     return _objectSpread2$1({}, base$S(props, context));
   }
 };
 
-var base$7 = function base(props, context, dependencies) {
+var base$6 = function base(props, context, dependencies) {
   var {
-    content
+    content,
+    expressions
   } = toRefs(props);
 
   // ============ DEPENDENCIES ============
@@ -45548,7 +47889,8 @@ var base$7 = function base(props, context, dependencies) {
   var {
     fieldSlots,
     el$,
-    form$
+    form$,
+    parent
   } = dependencies;
 
   // =============== INJECT ===============
@@ -45582,6 +47924,10 @@ var base$7 = function base(props, context, dependencies) {
         [curr]: typeof resolvedContent[curr] === 'function' ? resolvedContent[curr](el$.value) : resolvedContent[curr]
       }), {});
       resolvedContent = localize(resolvedContent, config$.value, form$.value);
+    }
+    if (expressions.value && resolvedContent.includes('{')) {
+      var _parent$value;
+      resolvedContent = form$.value.resolveExpression(resolvedContent, (_parent$value = parent.value) === null || _parent$value === void 0 ? void 0 : _parent$value.dataPath);
     }
     return form$.value.$vueform.sanitize(resolvedContent);
   });
@@ -45734,17 +48080,22 @@ var StaticElement = {
       required: false,
       type: [String, Number],
       default: 0
+    },
+    expressions: {
+      required: false,
+      type: [Boolean],
+      default: false
     }
   },
   setup(props, ctx) {
     var context = _objectSpread2$1({}, ctx);
-    context.features = [base$Y, base$1f, base$1e, base$$, static_$1, base$1i, static_$2, base$1a, base$15, base$13, base$12, base$1g, base$14, base$11, base$_, static_$3, base$Z, base$7];
+    context.features = [base$Y, base$1f, base$1e, base$$, static_$1, base$1i, static_$2, base$1a, base$15, base$13, base$12, base$1g, base$14, base$11, base$_, static_$3, base$Z, base$6];
     context.slots = ['default', 'label', 'info', 'description', 'before', 'between', 'after'];
     return _objectSpread2$1({}, static_(props, context));
   }
 };
 
-var base$6 = function base(props, context, dependencies) {
+var base$5 = function base(props, context, dependencies) {
   // ============ DEPENDENCIES ============
 
   var fire = dependencies.fire;
@@ -45768,7 +48119,7 @@ var base$6 = function base(props, context, dependencies) {
 var TagsElement = {
   name: 'TagsElement',
   mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
-  emits: ['change', 'select', 'deselect', 'search-change', 'open', 'close', 'tag', 'clear', 'paste', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
+  emits: ['reset', 'clear', 'change', 'select', 'deselect', 'search-change', 'open', 'close', 'tag', 'clear', 'paste', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
   props: {
     type: {
       required: false,
@@ -46081,13 +48432,13 @@ var TagsElement = {
   },
   setup(props, ctx) {
     var context = _objectSpread2$1({}, ctx);
-    context.features = [base$Y, base$1f, base$1e, base$$, tags$4, base$T, array$1, base$_, base$L, base$1i, tags$5, base$X, base$H, base$I, base$M, tags$1, base$Q, tags$2, base$1a, array, tags$3, base$15, base$O, base$13, base$12, base$1g, base$14, base$11, base$e, base$6, base$d, tags, base$W, base$K, base$Z, base$x];
+    context.features = [base$Y, base$1f, base$1e, base$$, tags$4, base$T, array$1, base$_, base$L, base$1i, tags$5, base$X, base$H, base$I, base$M, tags$1, base$Q, tags$2, base$1a, array, tags$3, base$15, base$O, base$13, base$12, base$1g, base$14, base$11, base$d, base$5, base$c, tags, base$W, base$K, base$Z, base$x];
     context.slots = ['tag', 'option', 'placeholder', 'group-label', 'before-list', 'after-list', 'no-results', 'no-options', 'caret', 'spinner', 'clear', 'label', 'info', 'required', 'description', 'before', 'between', 'after'];
     return _objectSpread2$1({}, base$S(props, context));
   }
 };
 
-var base$5 = function base(props, context, dependencies) {
+var base$4 = function base(props, context, dependencies) {
   var {
     autogrow
   } = toRefs(props);
@@ -46144,7 +48495,7 @@ var base$5 = function base(props, context, dependencies) {
 var multilingual = function multilingual(props, context, dependencies) {
   var {
     autosize
-  } = base$5(props, context, dependencies);
+  } = base$4(props, context, dependencies);
 
   // ============ DEPENDENCIES ============
 
@@ -46165,7 +48516,7 @@ var multilingual = function multilingual(props, context, dependencies) {
 var TextareaElement = {
   name: 'TextareaElement',
   mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
-  emits: ['change', 'blur', 'focus', 'keydown', 'keyup', 'keypress', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
+  emits: ['reset', 'clear', 'change', 'blur', 'focus', 'keydown', 'keyup', 'keypress', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
   props: {
     type: {
       required: false,
@@ -46259,67 +48610,16 @@ var TextareaElement = {
   },
   setup(props, ctx) {
     var context = _objectSpread2$1({}, ctx);
-    context.features = [base$Y, base$1f, base$1e, base$$, base$R, base$T, base$P, base$_, base$L, base$1i, base$U, base$X, base$G, base$A, text$1, base$1a, text$2, base$Q, base$N, base$5, textarea, base$15, base$O, base$13, base$12, base$1g, base$14, base$11, base$q, base$w, base$c, base$W, base$K, base$Z, base$a, base$x];
+    context.features = [base$Y, base$1f, base$1e, base$$, base$R, base$T, base$P, base$_, base$L, base$1i, base$U, base$X, base$G, base$A, text$1, base$1a, text$2, base$Q, base$N, base$4, textarea, base$15, base$O, base$13, base$12, base$1g, base$14, base$11, base$q, base$w, base$b, base$W, base$K, base$Z, base$9, base$x];
     context.slots = ['label', 'info', 'required', 'description', 'before', 'between', 'after', 'addon-before', 'addon-after'];
     return _objectSpread2$1({}, base$S(props, context));
   }
 };
 
-var base$4 = function base(props, context, dependencies) {
-  var {
-    forceNumbers
-  } = toRefs(props);
-
-  // ============ DEPENDENCIES =============
-
-  var {
-    form$
-  } = dependencies;
-
-  // =============== INJECT ===============
-
-  var config$ = inject('config$');
-
-  // =============== METHODS ===============
-
-  /**
-   * Whether the value should be converted to number/float.
-   *
-   * @returns {boolean}
-   * @private
-   */
-  var shouldForceNumbers = () => {
-    return forceNumbers.value || config$.value.config.forceNumbers && form$.value.options.forceNumbers !== false && forceNumbers.value !== false || form$.value.options.forceNumbers && forceNumbers.value !== false;
-  };
-
-  /**
-   * Converts string value to number or float.
-   *
-   * @param {any} str* the string to be converted
-   * @returns {number|float|string}
-   * @private
-   */
-  var stringToNumber = str => {
-    var v = str;
-    if (typeof str === 'string') {
-      if (/^[-]?\d+([\.,]\d+)?$/.test(str)) {
-        v = parseFloat(str.replace(',', '.'));
-      } else if (/^[-]?\d+$/.test(str)) {
-        v = parseInt(str, 10);
-      }
-    }
-    return v;
-  };
-  return {
-    shouldForceNumbers,
-    stringToNumber
-  };
-};
-
 var TextElement = {
   name: 'TextElement',
   mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
-  emits: ['change', 'blur', 'focus', 'keydown', 'keyup', 'keypress', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
+  emits: ['reset', 'clear', 'change', 'blur', 'focus', 'keydown', 'keyup', 'keypress', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
   props: {
     type: {
       required: false,
@@ -46375,6 +48675,11 @@ var TextElement = {
       type: [Boolean],
       default: null
     },
+    expression: {
+      required: false,
+      type: [String, Object],
+      default: undefined
+    },
     attrs: {
       required: false,
       type: [Object],
@@ -46423,7 +48728,7 @@ var TextElement = {
   },
   setup(props, ctx) {
     var context = _objectSpread2$1({}, ctx);
-    context.features = [base$Y, base$1f, base$1e, base$$, base$R, base$T, base$P, base$_, base$1i, base$U, base$X, base$G, base$A, text$1, base$1a, text$2, base$M, base$4, text$3, base$N, text, base$15, base$O, base$13, base$12, base$1g, base$14, base$11, base$q, base$w, base$c, base$W, base$K, base$Z, base$a, base$L, base$x];
+    context.features = [base$Y, base$1f, base$1e, base$$, base$R, base$T, base$P, base$_, base$1i, base$U, base$X, base$G, base$A, text$1, base$1a, text$2, base$M, base$n, text$3, base$N, text, base$15, base$O, base$13, base$12, base$1g, base$14, base$11, base$q, base$w, base$b, base$W, base$K, base$Z, base$9, base$L, base$x];
     context.slots = ['label', 'info', 'required', 'description', 'before', 'between', 'after', 'addon-before', 'addon-after'];
     return _objectSpread2$1({}, base$S(props, context));
   }
@@ -46432,7 +48737,7 @@ var TextElement = {
 var ToggleElement = {
   name: 'ToggleElement',
   mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
-  emits: ['change', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
+  emits: ['reset', 'clear', 'change', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
   props: {
     type: {
       required: false,
@@ -46593,7 +48898,7 @@ var base$2 = function base(props, context, dependencies) {
 var EditorElement = {
   name: 'EditorElement',
   mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
-  emits: ['change', 'blur', 'alert', 'error', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
+  emits: ['reset', 'clear', 'change', 'blur', 'alert', 'error', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
   props: {
     type: {
       required: false,
@@ -46676,7 +48981,7 @@ var EditorElement = {
   },
   setup(props, ctx) {
     var context = _objectSpread2$1({}, ctx);
-    context.features = [base$Y, base$1f, base$1e, base$$, base$R, base$T, base$P, base$_, base$1i, base$U, base$X, text$1, base$1a, text$2, base$Q, base$N, editor, base$15, base$O, base$13, base$12, base$3, base$1g, base$14, base$11, base$q, base$2, base$r, base$c, base$W, base$K, editor$1, base$x];
+    context.features = [base$Y, base$1f, base$1e, base$$, base$R, base$T, base$P, base$_, base$1i, base$U, base$X, text$1, base$1a, text$2, base$Q, base$N, editor, base$15, base$O, base$13, base$12, base$3, base$1g, base$14, base$11, base$q, base$2, base$r, base$b, base$W, base$K, editor$1, base$x];
     context.slots = ['label', 'info', 'required', 'description', 'before', 'between', 'after'];
     return _objectSpread2$1({}, base$S(props, context));
   }
@@ -46715,7 +49020,7 @@ var base$1 = function base(props, context, dependencies) {
 var TTextareaElement = {
   name: 'TTextareaElement',
   mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
-  emits: ['change', 'blur', 'focus', 'keydown', 'keyup', 'keypress', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
+  emits: ['reset', 'clear', 'change', 'blur', 'focus', 'keydown', 'keyup', 'keypress', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
   props: {
     type: {
       required: false,
@@ -46809,7 +49114,7 @@ var TTextareaElement = {
   },
   setup(props, ctx) {
     var context = _objectSpread2$1({}, ctx);
-    context.features = [base$Y, base$1f, base$1e, base$$, base$R, base$T, base$_, base$L, base$1i, base$U, base$X, base$G, base$A, base$1, multilingual$6, multilingual$2, multilingual$7, base$1a, multilingual$3, multilingual$5, multilingual$1, base$15, base$O, base$13, base$12, base$1g, base$14, base$11, base$q, multilingual, base$w, base$c, base$W, multilingual$4, base$Z, base$a, base$x];
+    context.features = [base$Y, base$1f, base$1e, base$$, base$R, base$T, base$_, base$L, base$1i, base$U, base$X, base$G, base$A, base$1, multilingual$6, multilingual$2, multilingual$7, base$1a, multilingual$3, multilingual$5, multilingual$1, base$15, base$O, base$13, base$12, base$1g, base$14, base$11, base$q, multilingual, base$w, base$b, base$W, multilingual$4, base$Z, base$9, base$x];
     context.slots = ['label', 'info', 'required', 'description', 'before', 'between', 'after', 'addon-before', 'addon-after'];
     return _objectSpread2$1({}, multilingual$8(props, context));
   }
@@ -46818,7 +49123,7 @@ var TTextareaElement = {
 var TTextElement = {
   name: 'TTextElement',
   mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
-  emits: ['change', 'blur', 'focus', 'keydown', 'keyup', 'keypress', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
+  emits: ['reset', 'clear', 'change', 'blur', 'focus', 'keydown', 'keyup', 'keypress', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
   props: {
     type: {
       required: false,
@@ -46917,7 +49222,7 @@ var TTextElement = {
   },
   setup(props, ctx) {
     var context = _objectSpread2$1({}, ctx);
-    context.features = [base$Y, base$1f, base$1e, base$$, base$R, base$T, base$_, base$L, base$1i, base$U, base$X, base$G, base$A, base$1, multilingual$6, multilingual$2, multilingual$7, base$1a, multilingual$3, base$M, multilingual$5, multilingual$1, base$15, base$O, base$13, base$12, base$1g, base$14, base$11, base$q, base$w, base$c, base$W, multilingual$4, base$Z, base$a, base$x];
+    context.features = [base$Y, base$1f, base$1e, base$$, base$R, base$T, base$_, base$L, base$1i, base$U, base$X, base$G, base$A, base$1, multilingual$6, multilingual$2, multilingual$7, base$1a, multilingual$3, base$M, multilingual$5, multilingual$1, base$15, base$O, base$13, base$12, base$1g, base$14, base$11, base$q, base$w, base$b, base$W, multilingual$4, base$Z, base$9, base$x];
     context.slots = ['label', 'info', 'required', 'description', 'before', 'between', 'after', 'addon-before', 'addon-after'];
     return _objectSpread2$1({}, multilingual$8(props, context));
   }
@@ -46926,7 +49231,7 @@ var TTextElement = {
 var TEditorElement = {
   name: 'TEditorElement',
   mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
-  emits: ['change', 'blur', 'alert', 'error', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
+  emits: ['reset', 'clear', 'change', 'blur', 'alert', 'error', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
   props: {
     type: {
       required: false,
@@ -47009,7 +49314,7 @@ var TEditorElement = {
   },
   setup(props, ctx) {
     var context = _objectSpread2$1({}, ctx);
-    context.features = [base$Y, base$1f, base$1e, base$$, base$R, base$T, base$_, base$1i, base$U, base$X, base$1, multilingual$6, multilingual$2, multilingual$7, base$1a, multilingual$3, multilingual$5, teditor, base$15, base$O, base$13, base$12, base$3, base$1g, base$14, base$11, base$q, base$2, base$r, base$c, base$W, multilingual$4, base$Z, base$x];
+    context.features = [base$Y, base$1f, base$1e, base$$, base$R, base$T, base$_, base$1i, base$U, base$X, base$1, multilingual$6, multilingual$2, multilingual$7, base$1a, multilingual$3, multilingual$5, teditor, base$15, base$O, base$13, base$12, base$3, base$1g, base$14, base$11, base$q, base$2, base$r, base$b, base$W, multilingual$4, base$Z, base$x];
     context.slots = ['label', 'info', 'required', 'description', 'before', 'between', 'after'];
     return _objectSpread2$1({}, multilingual$8(props, context));
   }
@@ -47778,4 +50083,4 @@ var vueform = installer(undefined, _objectSpread2$1({}, components), _objectSpre
   moment
 });
 
-export { ButtonElement, CaptchaElement, CheckboxElement, CheckboxgroupCheckbox, CheckboxgroupElement, DateElement, DatepickerWrapper, DatesElement, DragAndDrop, EditorElement, EditorWrapper, ElementAddon, ElementAddonOptions, ElementDescription, ElementError, ElementInfo, ElementLabel, ElementLabelFloating, ElementLayout, ElementLayoutInline, ElementLoader, ElementMessage, ElementRequired, ElementText, FileElement, FilePreview, FormElements, FormErrors, FormLanguage, FormLanguages, FormMessages, FormStep, FormSteps, FormStepsControl, FormStepsControls, FormTab, FormTabs, GenericElement, GridElement, GroupElement, HiddenElement, ListElement, LocationElement, MatrixElement, MultifileElement, MultiselectElement, ObjectElement, PhoneElement, RadioElement, RadiogroupElement, RadiogroupRadio, SelectElement, SignatureElement, SliderElement, StaticElement, TEditorElement, TTextElement, TTextareaElement, TagsElement, TextElement, TextareaElement, ToggleElement, Validator, VueformComponent as Vueform, VueformElement, accepted, active_url, after, after_or_equal, alpha, alpha_dash, alpha_num, array$2 as array, before, before_or_equal, between, boolean$1 as boolean, captcha$2 as captcha, completed, confirmed, date$4 as date, date_equals, date_format, vueform as default, defineConfig, defineElement, different, digits, digits_between, dimensions, distinct, element, email, exists, file$5 as file, filled, gt, gte, image, in_, in_array, installer, integer, ip, ipv4, ipv6, json, lt, lte, max, mimes, mimetypes, min$1 as min, not_in, not_regex, nullable, numeric, regex, required, same, size, string, timezone, unique, url, base$1g as useClasses, base$1h as useVueform, uuid, vueform };
+export { ButtonElement, CaptchaElement, CheckboxElement, CheckboxgroupCheckbox, CheckboxgroupElement, DateElement, DatepickerWrapper, DatesElement, DragAndDrop, EditorElement, EditorWrapper, ElementAddon, ElementAddonOptions, ElementDescription, ElementError, ElementInfo, ElementLabel, ElementLabelFloating, ElementLayout, ElementLayoutInline, ElementLoader, ElementMessage, ElementRequired, ElementText, FileElement, FilePreview, FormElements, FormErrors, FormLanguage, FormLanguages, FormMessages, FormStep, FormSteps, FormStepsControl, FormStepsControls, FormTab, FormTabs, GenericElement, GridElement, GroupElement, HiddenElement, ListElement, LocationElement, MatrixElement, MultifileElement, MultiselectElement, ObjectElement, PhoneElement, RadioElement, RadiogroupElement, RadiogroupRadio, SelectElement, SignatureElement, SliderElement, StaticElement, TEditorElement, TTextElement, TTextareaElement, TagsElement, TextElement, TextareaElement, ToggleElement, Validator, VueformComponent as Vueform, VueformElement, accepted, active_url, after, after_or_equal, alpha, alpha_dash, alpha_num, array$2 as array, before, before_or_equal, between, boolean$1 as boolean, captcha$2 as captcha, completed, confirmed, date$4 as date, date_equals, date_format, vueform as default, defineConfig, defineElement, different, digits, digits_between, dimensions, distinct, element, email, exists, file$5 as file, filled, gt, gte, image, in_, in_array, installer, integer, ip, ipv4, ipv6, json, lt, lte, max$1 as max, mimes, mimetypes, min$2 as min, not_in, not_regex, nullable, numeric, regex, required, same, size, string, timezone, unique, url, base$1g as useClasses, base$1h as useVueform, uuid, vueform };

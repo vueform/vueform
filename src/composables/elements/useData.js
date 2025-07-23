@@ -29,6 +29,7 @@ const base = function(props, context, dependencies, options = {})
   const resetting = dependencies.resetting
   const isDefault = dependencies.isDefault
   const fire = dependencies.fire
+  const el$ = dependencies.el$
   
   // =============== PRIVATE ===============
   
@@ -103,7 +104,7 @@ const base = function(props, context, dependencies, options = {})
   const clear = () => {
     setValue(cloneDeep(nullValue.value))
 
-    fire('clear')
+    fire('clear', el$.value)
   }
   
   /**
@@ -119,7 +120,7 @@ const base = function(props, context, dependencies, options = {})
     setValue(cloneDeep(defaultValue.value))
     resetValidators()
 
-    fire('reset')
+    fire('reset', el$.value)
   }
   
   /**
@@ -223,6 +224,7 @@ const textarea = function(props, context, dependencies, options = {})
   const {
     autosize,
     fire,
+    el$,
   } = dependencies
   
   // =============== METHODS ===============
@@ -250,7 +252,7 @@ const textarea = function(props, context, dependencies, options = {})
       autosize()
     })
 
-    fire('clear')
+    fire('clear', el$.value)
   }
   
   const reset = () => {
@@ -260,7 +262,7 @@ const textarea = function(props, context, dependencies, options = {})
       autosize()
     })
 
-    fire('reset')
+    fire('reset', el$.value)
   }
 
   return {
@@ -299,6 +301,7 @@ const select = function(props, context, dependencies, options = {})
   const resetting = dependencies.resetting
   const isDefault = dependencies.isDefault
   const fire = dependencies.fire
+  const el$ = dependencies.el$
 
   // =============== PRIVATE ===============
 
@@ -324,7 +327,7 @@ const select = function(props, context, dependencies, options = {})
       updateItems()
     }
 
-    fire('reset')
+    fire('reset', el$.value)
   }
 
   return {
@@ -352,7 +355,11 @@ const captcha = function(props, context, dependencies, options = {})
 
   // ============ DEPENDENCIES =============
 
-  const { Provider, fire } = dependencies
+  const {
+    Provider,
+    fire,
+    el$,
+  } = dependencies
 
   // =============== METHODS ===============
 
@@ -365,7 +372,7 @@ const captcha = function(props, context, dependencies, options = {})
 
     Provider.value.reset()
 
-    fire('clear')
+    fire('clear', el$.value)
   }
   
   const reset = () => {
@@ -377,7 +384,7 @@ const captcha = function(props, context, dependencies, options = {})
 
     Provider.value.reset()
 
-    fire('reset')
+    fire('reset', el$.value)
   }
 
   return {
@@ -409,6 +416,7 @@ const object = function(props, context, dependencies)
   const resetting = dependencies.resetting
   const isDefault = dependencies.isDefault
   const fire = dependencies.fire
+  const el$ = dependencies.el$
 
   // ============== COMPUTED ===============
   
@@ -486,7 +494,7 @@ const object = function(props, context, dependencies)
       element$.clear()
     })
 
-    fire('clear')
+    fire('clear', el$.value)
   }
   
   const reset = () => {
@@ -502,7 +510,7 @@ const object = function(props, context, dependencies)
       element$.reset()
     })
 
-    fire('reset')
+    fire('reset', el$.value)
   }
 
   const prepare = async () => {
@@ -770,7 +778,7 @@ const list = function(props, context, dependencies, options)
       refreshOrderStore(value.value)
     })
 
-    fire('reset')
+    fire('reset', el$.value)
   }
 
   const prepare = async () => {
@@ -1273,6 +1281,7 @@ const signature = function(props, context, dependencies)
     setDefaultColor,
     available,
     fire,
+    el$,
   } = dependencies
   
   // ============== COMPUTED ===============
@@ -1281,7 +1290,7 @@ const signature = function(props, context, dependencies)
     clearBase()
     clearSignature()
 
-    fire('clear')
+    fire('clear', el$.value)
   }
   
   const reset = () => {
@@ -1291,7 +1300,7 @@ const signature = function(props, context, dependencies)
     setDefaultColor()
     resetBase()
 
-    fire('reset')
+    fire('reset', el$.value)
   }
 
   const prepare = async () => {
@@ -1380,7 +1389,7 @@ const matrix = function(props, context, dependencies, options = {})
       rowsCount.value = rows.value
     }
 
-    fire('clear')
+    fire('clear', el$.value)
   }
 
   const reset = () => {
@@ -1395,7 +1404,7 @@ const matrix = function(props, context, dependencies, options = {})
       grid.value.scrollLeft = 0
     }
 
-    fire('reset')
+    fire('reset', el$.value)
   }
 
   const add = () => {

@@ -4669,6 +4669,20 @@ module.exports = {
           }
         }
       },
+      "resolveExpression": {
+        "public": true,
+        "returns": "string",
+        "description": "Resolves an expression.",
+        "params": {
+          "exp": {
+            "types": [
+              "string"
+            ],
+            "required": true,
+            "description": "the expression to resolve"
+          }
+        }
+      },
       "submit": {
         "public": true,
         "returns": "Promise",
@@ -4762,6 +4776,11 @@ module.exports = {
         "public": false,
         "returns": "void",
         "description": "Inits MessageBag service."
+      },
+      "initExpressionService": {
+        "public": false,
+        "returns": "void",
+        "description": "Inits Expression service."
       },
       "fire": {
         "public": true,

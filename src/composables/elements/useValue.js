@@ -137,7 +137,20 @@ const text = function(props, context, dependencies, /* istanbul ignore next */ o
 
   // ================ DATA =================
 
+  /**
+   * The object that only contains data of the fields that the expression depends on.
+   * 
+   * @type {object}
+   * @private
+   */
   const dependencyData = ref({})
+
+  /**
+   * The expression of the current language (or default).
+   * 
+   * @type {string}
+   * @private
+   */
   const currentExpression = ref()
   
   // ============== COMPUTED ===============
@@ -166,6 +179,12 @@ const text = function(props, context, dependencies, /* istanbul ignore next */ o
     },
   })
 
+  /**
+   * The list of element paths that the current expression depends on.
+   * 
+   * @type {array}
+   * @private
+   */
   const expressionDeps = computed(() => {
     if (!expression.value) {
       return []
@@ -174,16 +193,34 @@ const text = function(props, context, dependencies, /* istanbul ignore next */ o
     return form$.value.expression.vars(currentExpression.value, dataPath.value)
   })
 
+  /**
+   * Resolve the value of the current expression and sets it as the value of the element.
+   * 
+   * @returns {void}
+   * @private
+   */
   const resolveExpressionValue = () => {
     if (!currentExpression.value) return
 
     value.value = form$.value.resolveExpression(currentExpression.value, dataPath.value)
   }
 
+  /**
+   * Sets the current expression depending on the current language (or default).
+   * 
+   * @returns {void}
+   * @private
+   */
   const setCurrentExpression = () => {
     currentExpression.value = localize(expression.value, config$.value, form$.value)
   }
 
+  /**
+   * Starts to track changes related to expression.
+   * 
+   * @returns {void}
+   * @private
+   */
   const trackExpression = () => {
     on('reset', resolveExpressionValue)
     on('clear', resolveExpressionValue)
@@ -207,6 +244,12 @@ const text = function(props, context, dependencies, /* istanbul ignore next */ o
     }, { deep: true })
   }
 
+  /**
+   * Ends tracking changes related to expression.
+   * 
+   * @returns {void}
+   * @private
+   */
   const untrackExpression = () => {
     if (unwatchData) unwatchData()
     if (unwatchDeps) unwatchDeps()
