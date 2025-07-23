@@ -51,7 +51,7 @@ const base = function(props, context, dependencies)
       resolvedContent = localize(resolvedContent, config$.value, form$.value)
     }
 
-    if (expressions.value && resolvedContent.includes('{')) {
+    if (expressions.value && typeof resolvedContent === 'string' && resolvedContent.includes('{')) {
       resolvedContent = form$.value.resolveExpression(resolvedContent, parent.value?.dataPath)
     }
 
