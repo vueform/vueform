@@ -8370,6 +8370,7 @@ var base$1h = function base(props, context) {
   * Resolves an expression.
   *
   * @param {string} exp* the expression to resolve
+  * @param {string} dataPath* the dataPath of the element (required to resolve * in nested paths relative to the element)
   * @returns {string}
   */
   var resolveExpression = (exp, dataPath) => {
@@ -13956,7 +13957,7 @@ var check = (condition, elementPath, form$, el$) => {
     if (!/^{/.test(condition) && !/}$/.test(condition)) {
       condition = "{".concat(condition, "}");
     }
-    return form$.resolveExpression(condition, el$ === null || el$ === void 0 ? void 0 : el$.dataPath) !== 'false';
+    return form$.resolveExpression(condition, el$ === null || el$ === void 0 ? void 0 : el$.dataPath) === 'true';
   };
   var details = condition => {
     return {
@@ -36894,7 +36895,8 @@ var HiddenElement = {
     expression: {
       required: false,
       type: [String, Object],
-      default: undefined
+      default: undefined,
+      localized: true
     }
   },
   setup(props, ctx) {
@@ -47925,7 +47927,7 @@ var base$6 = function base(props, context, dependencies) {
       }), {});
       resolvedContent = localize(resolvedContent, config$.value, form$.value);
     }
-    if (expressions.value && resolvedContent.includes('{')) {
+    if (expressions.value && typeof resolvedContent === 'string' && resolvedContent.includes('{')) {
       var _parent$value;
       resolvedContent = form$.value.resolveExpression(resolvedContent, (_parent$value = parent.value) === null || _parent$value === void 0 ? void 0 : _parent$value.dataPath);
     }
@@ -48011,6 +48013,11 @@ var StaticElement = {
       type: [String, Object, Function],
       default: ''
     },
+    expressions: {
+      required: false,
+      type: [Boolean],
+      default: false
+    },
     wrap: {
       required: false,
       type: [Boolean],
@@ -48080,11 +48087,6 @@ var StaticElement = {
       required: false,
       type: [String, Number],
       default: 0
-    },
-    expressions: {
-      required: false,
-      type: [Boolean],
-      default: false
     }
   },
   setup(props, ctx) {
@@ -48678,7 +48680,8 @@ var TextElement = {
     expression: {
       required: false,
       type: [String, Object],
-      default: undefined
+      default: undefined,
+      localized: true
     },
     attrs: {
       required: false,
