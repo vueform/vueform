@@ -1239,6 +1239,13 @@ export default {
               ],
               "required": true,
               "description": "the expression to resolve"
+            },
+            "dataPath": {
+              "types": [
+                "string"
+              ],
+              "required": true,
+              "description": "the dataPath of the element (required to resolve * in nested paths relative to the element)"
             }
           }
         },

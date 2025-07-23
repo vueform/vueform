@@ -4258,7 +4258,7 @@ export declare class Vueform implements DefineComponent {
   validate: () => Promise;
   resetValidators: () => void;
   convertFormData: (data: object) => object;
-  resolveExpression: (exp: string) => string;
+  resolveExpression: (exp: string, dataPath: string) => string;
   submit: () => Promise;
   send: () => Promise;
   cancel: () => void;
