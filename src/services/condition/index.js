@@ -43,7 +43,7 @@ const check = (condition, elementPath, form$, el$) => {
       condition = `{${condition}}`
     }
 
-    return form$.resolveExpression(condition, el$?.dataPath) !== 'false'
+    return form$.resolveExpression(condition, el$?.dataPath) === 'true'
   }
 
   let details = (condition) => {
