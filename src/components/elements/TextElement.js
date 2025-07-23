@@ -108,6 +108,7 @@ export default {
       required: false,
       type: [String, Object],
       default: undefined,
+      localized: true,
     },
     attrs: {
       required: false,

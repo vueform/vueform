@@ -61,6 +61,7 @@ export default {
       required: false,
       type: [String, Object],
       default: undefined,
+      localized: true,
     },
   },
   setup(props, ctx) {

@@ -17644,7 +17644,7 @@ module.exports = {
       expression: {
         required: 'false',
         default: 'undefined',
-        localized: false,
+        localized: true,
         types: [
           'string',
           'object',
@@ -50975,7 +50975,7 @@ module.exports = {
       expression: {
         required: 'false',
         default: 'undefined',
-        localized: false,
+        localized: true,
         types: [
           'string',
           'object',
