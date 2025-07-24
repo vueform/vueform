@@ -265,8 +265,8 @@ export default class {
         , dataPath)
 
         e = e
-          .replace(/\[([0-9\*])+]\b/g, '._$1_')
-          .replace(/\[([0-9\*])+]\.\b/g, '._$1_.')
+          .replace(/\[([0-9\*])+]/g, '._$1_')
+          .replace(/\[([0-9\*])+]\./g, '._$1_.')
 
         return [
           ...prev,

@@ -1,4 +1,3 @@
-import each from 'lodash/each'
 import isEqual from 'lodash/isEqual'
 import get from 'lodash/get'
 import cloneDeep from 'lodash/cloneDeep'
@@ -231,7 +230,7 @@ const text = function(props, context, dependencies, /* istanbul ignore next */ o
 
     unwatchData = watch(() => form$.value.requestData, () => {
       const fullData = flatten(form$.value.requestData)
-
+      
       for (const key of expressionDeps.value) {
         dependencyData.value[key] = fullData[key]
       }
