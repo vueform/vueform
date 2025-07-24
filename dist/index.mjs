@@ -17514,7 +17514,7 @@ class expression {
     return [...((expressionChain === null || expressionChain === void 0 ? void 0 : expressionChain.matchAll(this.regex)) || [])].map(m => m[1]).filter(m => !!m).reduce((prev, e) => {
       var _this$parse;
       e = replaceWildcardsExpr(e.replace(/\.([0-9\*])+\b/g, '[$1]').replace(/\.([0-9\*])\.+\b/g, '[$1].'), dataPath);
-      e = e.replace(/\[([0-9\*])+]\b/g, '._$1_').replace(/\[([0-9\*])+]\.\b/g, '._$1_.');
+      e = e.replace(/\[([0-9\*])+]/g, '._$1_').replace(/\[([0-9\*])+]\./g, '._$1_.');
       return [...prev, ...(((_this$parse = this.parse(e, dataPath)) === null || _this$parse === void 0 || (_this$parse = _this$parse.variables({
         withMembers: true
       })) === null || _this$parse === void 0 ? void 0 : _this$parse.map(v => v.replace(/\._([0-9]+)_/g, '.$1').replace(/\._([0-9]+)_\./g, '.$1.'))) || [])];
