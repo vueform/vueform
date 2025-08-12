@@ -125,8 +125,20 @@ export default class {
         : translate(value)
     }
 
+    this.parser.functions.AVAILABLE = (path) => {
+      const el$ = this.form$.value.el$(path)
+
+      if (!el$) {
+        return false
+      }
+
+      return el$.available
+    }
+
     Object.entries(functions || {}).forEach(([name, func]) => {
-      this.parser.functions[name] = func
+      this.parser.functions[name] = typeof func(this.form$.value) === 'function'
+        ? func(this.form$.value)
+        : func
     })
 
     Object.entries(consts || {}).forEach(([name, con]) => {
