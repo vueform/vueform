@@ -136,7 +136,13 @@ export default class {
     }
 
     Object.entries(functions || {}).forEach(([name, func]) => {
-      this.parser.functions[name] = typeof func(this.form$.value) === 'function'
+      let result
+
+      try {
+        result = func()
+      } catch {}
+
+      this.parser.functions[name] = typeof result === 'function'
         ? func(this.form$.value)
         : func
     })
@@ -163,7 +169,7 @@ export default class {
   }
 
   sum(args) {
-    return this.flatten(args).reduce((p, c) => p+c, 0)
+    return this.flatten(args).reduce((p, c) => p+(isNaN(parseInt(c)) ? 0 : parseInt(c)), 0)
   }
 
   date(value) {
@@ -272,13 +278,13 @@ export default class {
       .filter(m => !!m)
       .reduce((prev, e) => {
         e = replaceWildcardsExpr(e
-          .replace(/\.([0-9\*])+\b/g, '[$1]')
-          .replace(/\.([0-9\*])\.+\b/g, '[$1].')
+          .replace(/([a-zA-Z_-][a-zA-Z0-9_-]*)\.([0-9\*])+\b/g, '$1[$2]')
+          .replace(/([a-zA-Z_-][a-zA-Z0-9_-]*)\.([0-9\*])\.+\b/g, '$1[$2].')
         , dataPath)
 
         e = e
-          .replace(/\[([0-9\*])+]/g, '._$1_')
-          .replace(/\[([0-9\*])+]\./g, '._$1_.')
+          .replace(/\[([0-9\*])+\]/g, '._$1_')
+          .replace(/\[([0-9\*])+\]\./g, '._$1_.')
 
         return [
           ...prev,
