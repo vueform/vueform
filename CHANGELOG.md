@@ -1,5 +1,15 @@
 [//]: # (Don't use <tags>)
 
+## v1.13.1
+
+> `2025-08-15`
+
+### 🎉 Feature
+- Added `AVAILABLE` function to expressions.
+
+### 🐞 Bug Fixes
+- Added missing input field width 100% in Vueform theme.
+
 ## v1.13.0
 
 > `2025-07-23`
