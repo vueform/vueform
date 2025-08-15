@@ -10,6 +10,7 @@
 
 ### 🐞 Bug Fixes
 - Added missing input field width 100% in Vueform theme.
+- Expression sibling path and non-numeric sum fix.
 
 ## v1.13.0
 

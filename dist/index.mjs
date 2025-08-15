@@ -1,5 +1,5 @@
 /*!
- * Vueform v1.13.0 (https://github.com/vueform/vueform)
+ * Vueform v1.13.1 (https://github.com/vueform/vueform)
  * Copyright (c) 2025 Adam Berecz <adam@vueform.com>
  * Licensed under the MIT License
  */
@@ -10194,7 +10194,7 @@ function shouldApplyPlugin (name, plugin) {
 }
 
 var name = "@vueform/vueform";
-var version$1 = "1.13.0";
+var version$1 = "1.13.1";
 var description = "Open-Source Form Framework for Vue";
 var homepage = "https://vueform.com";
 var license = "MIT";
@@ -17425,9 +17425,20 @@ class expression {
       };
       return Array.isArray(value) ? value.map(translate).join(', ') : translate(value);
     };
+    this.parser.functions.AVAILABLE = path => {
+      var el$ = this.form$.value.el$(path);
+      if (!el$) {
+        return false;
+      }
+      return el$.available;
+    };
     Object.entries(functions || {}).forEach(_ref2 => {
       var [name, func] = _ref2;
-      this.parser.functions[name] = func;
+      var result;
+      try {
+        result = func();
+      } catch (_unused) {}
+      this.parser.functions[name] = typeof result === 'function' ? func(this.form$.value) : func;
     });
     Object.entries(consts || {}).forEach(_ref3 => {
       var [name, con] = _ref3;
@@ -17447,7 +17458,7 @@ class expression {
     }, []);
   }
   sum(args) {
-    return this.flatten(args).reduce((p, c) => p + c, 0);
+    return this.flatten(args).reduce((p, c) => p + (isNaN(parseInt(c)) ? 0 : parseInt(c)), 0);
   }
   date(value) {
     return this.moment(value, [this.moment.ISO_8601, 'YYYY-MM-DD', 'MM/DD/YYYY', 'DD/MM/YYYY', 'DD.MM.YYYY', 'YYYY/MM/DD', 'DD MMM YYYY', 'MMM DD, YYYY', 'YYYY-MM-DD HH:mm:ss', 'MM/DD/YYYY hh:mm A', 'DD.MM.YYYY HH:mm', 'DD/MM/YYYY HH:mm:ss', 'YYYY/MM/DD HH:mm:ss', 'ddd, DD MMM YYYY HH:mm:ss Z'], true);
@@ -17513,8 +17524,8 @@ class expression {
     }
     return [...((expressionChain === null || expressionChain === void 0 ? void 0 : expressionChain.matchAll(this.regex)) || [])].map(m => m[1]).filter(m => !!m).reduce((prev, e) => {
       var _this$parse;
-      e = replaceWildcardsExpr(e.replace(/\.([0-9\*])+\b/g, '[$1]').replace(/\.([0-9\*])\.+\b/g, '[$1].'), dataPath);
-      e = e.replace(/\[([0-9\*])+]/g, '._$1_').replace(/\[([0-9\*])+]\./g, '._$1_.');
+      e = replaceWildcardsExpr(e.replace(/([a-zA-Z_-][a-zA-Z0-9_-]*)\.([0-9\*])+\b/g, '$1[$2]').replace(/([a-zA-Z_-][a-zA-Z0-9_-]*)\.([0-9\*])\.+\b/g, '$1[$2].'), dataPath);
+      e = e.replace(/\[([0-9\*])+\]/g, '._$1_').replace(/\[([0-9\*])+\]\./g, '._$1_.');
       return [...prev, ...(((_this$parse = this.parse(e, dataPath)) === null || _this$parse === void 0 || (_this$parse = _this$parse.variables({
         withMembers: true
       })) === null || _this$parse === void 0 ? void 0 : _this$parse.map(v => v.replace(/\._([0-9]+)_/g, '.$1').replace(/\._([0-9]+)_\./g, '.$1.'))) || [])];

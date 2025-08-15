@@ -1128,6 +1128,7 @@ form ::placeholder {
   min-height: 100%;
   border-radius: var(--vf-radius-input);
   color: var(--vf-color-input);
+  width: 100%;
 }
 
 .vf-input-group .vf-input-field:-webkit-autofill, .vf-input-group .vf-input-field:-webkit-autofill:hover, .vf-input-group .vf-input-field:-webkit-autofill:focus, .vf-input-group .vf-input-field:-webkit-autofill:active {
