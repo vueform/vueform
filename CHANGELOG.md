@@ -6,6 +6,7 @@
 
 ### 🎉 Feature
 - Added `AVAILABLE` function to expressions.
+- Be able to define custom chained expression functions that has access to `form$`.
 
 ### 🐞 Bug Fixes
 - Added missing input field width 100% in Vueform theme.
