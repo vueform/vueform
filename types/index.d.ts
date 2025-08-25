@@ -6699,8 +6699,6 @@ export declare class HiddenElement implements DefineComponent {
   isGridType: boolean;
   isActive: boolean;
   available: boolean;
-  data: object;
-  requestData: object;
   defaultValue: any;
   el$: VueformElement;
   empty: boolean;
@@ -6753,10 +6751,6 @@ export declare class HiddenElement implements DefineComponent {
   activate: () => void;
   deactivate: () => void;
   updateConditions: () => void;
-  load: (value: any, format: boolean) => void;
-  update: (value: any) => void;
-  clear: () => void;
-  reset: () => void;
   on: (event: string, callback: Function) => void;
   off: (event: string) => void;
   fire: (args: any) => void;
@@ -7826,8 +7820,6 @@ export declare class MultiselectElement implements DefineComponent {
   columnsClassesService: Columns;
   columnsClasses: object;
   available: boolean;
-  data: object;
-  requestData: object;
   defaultValue: any;
   isDisabled: boolean;
   el$: VueformElement;
@@ -7902,10 +7894,6 @@ export declare class MultiselectElement implements DefineComponent {
   deactivate: () => void;
   updateColumns: (value: number | Array<any>) => void;
   updateConditions: () => void;
-  load: (value: any, format: boolean) => void;
-  update: (value: any) => void;
-  clear: () => void;
-  reset: () => void;
   disable: () => void;
   enable: () => void;
   on: (event: string, callback: Function) => void;
@@ -9996,8 +9984,6 @@ export declare class TTextElement implements DefineComponent {
   columnsClassesService: Columns;
   columnsClasses: object;
   available: boolean;
-  data: object;
-  requestData: object;
   defaultValue: any;
   isDisabled: boolean;
   el$: VueformElement;
@@ -10069,10 +10055,6 @@ export declare class TTextElement implements DefineComponent {
   deactivate: () => void;
   updateColumns: (value: number | Array<any>) => void;
   updateConditions: () => void;
-  load: (value: any, format: boolean) => void;
-  update: (value: any) => void;
-  clear: () => void;
-  reset: () => void;
   disable: () => void;
   enable: () => void;
   on: (event: string, callback: Function) => void;
@@ -10215,8 +10197,6 @@ export declare class TTextareaElement implements DefineComponent {
   columnsClassesService: Columns;
   columnsClasses: object;
   available: boolean;
-  data: object;
-  requestData: object;
   defaultValue: any;
   isDisabled: boolean;
   el$: VueformElement;
@@ -10288,10 +10268,6 @@ export declare class TTextareaElement implements DefineComponent {
   deactivate: () => void;
   updateColumns: (value: number | Array<any>) => void;
   updateConditions: () => void;
-  load: (value: any, format: boolean) => void;
-  update: (value: any) => void;
-  clear: () => void;
-  reset: () => void;
   disable: () => void;
   enable: () => void;
   on: (event: string, callback: Function) => void;
@@ -10477,8 +10453,6 @@ export declare class TagsElement implements DefineComponent {
   columnsClassesService: Columns;
   columnsClasses: object;
   available: boolean;
-  data: object;
-  requestData: object;
   defaultValue: any;
   isDisabled: boolean;
   el$: VueformElement;
@@ -10553,10 +10527,6 @@ export declare class TagsElement implements DefineComponent {
   deactivate: () => void;
   updateColumns: (value: number | Array<any>) => void;
   updateConditions: () => void;
-  load: (value: any, format: boolean) => void;
-  update: (value: any) => void;
-  clear: () => void;
-  reset: () => void;
   disable: () => void;
   enable: () => void;
   on: (event: string, callback: Function) => void;

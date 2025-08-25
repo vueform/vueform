@@ -1,5 +1,12 @@
 [//]: # (Don't use <tags>)
 
+## v1.13.2
+
+> `2025-08-25`
+
+### 🐞 Bug Fixes
+- Added missing formatLoad prop to matrix #477
+
 ## v1.13.1
 
 > `2025-08-15`

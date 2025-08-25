@@ -1,5 +1,5 @@
 /*!
- * Vueform v1.13.1 (https://github.com/vueform/vueform)
+ * Vueform v1.13.2 (https://github.com/vueform/vueform)
  * Copyright (c) 2025 Adam Berecz <adam@vueform.com>
  * Licensed under the MIT License
  */
@@ -10194,7 +10194,7 @@ function shouldApplyPlugin (name, plugin) {
 }
 
 var name = "@vueform/vueform";
-var version$1 = "1.13.1";
+var version$1 = "1.13.2";
 var description = "Open-Source Form Framework for Vue";
 var homepage = "https://vueform.com";
 var license = "MIT";
@@ -31965,7 +31965,7 @@ var base$F = function base(props, context, dependencies) {
    */
   var clear = () => {
     setValue(cloneDeep_1(nullValue.value));
-    fire('clear', el$.value);
+    fire("clear", el$.value);
   };
 
   /**
@@ -31979,7 +31979,7 @@ var base$F = function base(props, context, dependencies) {
     }
     setValue(cloneDeep_1(defaultValue.value));
     resetValidators();
-    fire('reset', el$.value);
+    fire("reset", el$.value);
   };
 
   /**
@@ -32101,14 +32101,14 @@ var textarea = function textarea(props, context, dependencies) {
     nextTick(() => {
       autosize();
     });
-    fire('clear', el$.value);
+    fire("clear", el$.value);
   };
   var reset = () => {
     baseReset();
     nextTick(() => {
       autosize();
     });
-    fire('reset', el$.value);
+    fire("reset", el$.value);
   };
   return {
     data,
@@ -32163,10 +32163,10 @@ var select$3 = function select(props, context, dependencies) {
     }
     setValue(cloneDeep_1(defaultValue.value));
     resetValidators();
-    if (typeof items.value === 'string' && resolveOnLoad.value !== false) {
+    if (typeof items.value === "string" && resolveOnLoad.value !== false) {
       updateItems();
     }
-    fire('reset', el$.value);
+    fire("reset", el$.value);
   };
   return {
     data,
@@ -32205,7 +32205,7 @@ var captcha = function captcha(props, context, dependencies) {
       return;
     }
     Provider.value.reset();
-    fire('clear', el$.value);
+    fire("clear", el$.value);
   };
   var reset = () => {
     resetBase();
@@ -32213,7 +32213,7 @@ var captcha = function captcha(props, context, dependencies) {
       return;
     }
     Provider.value.reset();
-    fire('reset', el$.value);
+    fire("reset", el$.value);
   };
   return {
     data,
@@ -32308,7 +32308,7 @@ var object$1 = function object(props, context, dependencies) {
       }
       element$.clear();
     });
-    fire('clear', el$.value);
+    fire("clear", el$.value);
   };
   var reset = () => {
     if (!isDefault.value) {
@@ -32320,7 +32320,7 @@ var object$1 = function object(props, context, dependencies) {
       }
       element$.reset();
     });
-    fire('reset', el$.value);
+    fire("reset", el$.value);
   };
   var prepare = /*#__PURE__*/function () {
     var _ref2 = _asyncToGenerator(function* () {
@@ -32507,7 +32507,7 @@ var list = function list(props, context, dependencies, options) {
     // value.value = refreshOrderStore(value.value)
 
     var index = value.value.length - 1;
-    fire('add', index, newValue, value.value, el$.value);
+    fire("add", index, newValue, value.value, el$.value);
     if (focus) {
       nextTick(() => {
         children$Array.value[children$Array.value.length - 1].focus();
@@ -32526,7 +32526,7 @@ var list = function list(props, context, dependencies, options) {
   var remove = index => {
     value.value = value.value.filter((v, i) => i !== index);
     refreshOrderStore(value.value);
-    fire('remove', index, value.value, el$.value);
+    fire("remove", index, value.value, el$.value);
   };
   var load = /*#__PURE__*/function () {
     var _ref4 = _asyncToGenerator(function* (val) {
@@ -32568,7 +32568,7 @@ var list = function list(props, context, dependencies, options) {
     nextTick(() => {
       refreshOrderStore(value.value);
     });
-    fire('reset', el$.value);
+    fire("reset", el$.value);
   };
   var prepare = /*#__PURE__*/function () {
     var _ref5 = _asyncToGenerator(function* () {
@@ -32599,7 +32599,7 @@ var list = function list(props, context, dependencies, options) {
     if (!order.value && !orderByName.value || !val) {
       return val;
     }
-    var desc = order.value && typeof order.value === 'string' && order.value.toUpperCase() == 'DESC';
+    var desc = order.value && typeof order.value === "string" && order.value.toUpperCase() == "DESC";
 
     /* istanbul ignore else */
     if (orderByName.value) {
@@ -32778,7 +32778,7 @@ var multilingual$1 = function multilingual(props, context, dependencies) {
     var format = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
     var formatted = format && formatLoad.value ? formatLoad.value(val, form$.value) : val;
     if (!isPlainObject_1(formatted)) {
-      throw new Error('Multilingual element requires an object to load');
+      throw new Error("Multilingual element requires an object to load");
     }
     setValue(Object.assign({}, clone_1(nullValue.value), formatted));
   };
@@ -32899,7 +32899,7 @@ var file = function file(props, context, dependencies) {
   var data = computed(() => {
     var _v;
     var v = value.value;
-    if (typeof v === 'object' && (_v = v) !== null && _v !== void 0 && _v.__file__) {
+    if (typeof v === "object" && (_v = v) !== null && _v !== void 0 && _v.__file__) {
       v = v instanceof File ? v : _objectSpread2$1({}, v);
       delete v.__file__;
     }
@@ -32913,7 +32913,7 @@ var file = function file(props, context, dependencies) {
       return {};
     }
     var v = value.value;
-    if (typeof v === 'object' && (_v2 = v) !== null && _v2 !== void 0 && _v2.__file__) {
+    if (typeof v === "object" && (_v2 = v) !== null && _v2 !== void 0 && _v2.__file__) {
       v = v instanceof File ? v : _objectSpread2$1({}, v);
       delete v.__file__;
     }
@@ -32962,7 +32962,7 @@ var multifile$4 = function multifile(props, context, dependencies) {
   var data = computed(() => {
     var val = value.value;
     val = val.map(file => {
-      if (typeof file === 'object' && file !== null && file !== void 0 && file.__file__) {
+      if (typeof file === "object" && file !== null && file !== void 0 && file.__file__) {
         var v = file instanceof File ? file : _objectSpread2$1({}, file);
         delete v.__file__;
         return v;
@@ -32984,7 +32984,7 @@ var multifile$4 = function multifile(props, context, dependencies) {
       /* istanbul ignore next: failsafe only */
       if (val !== undefined) {
         var _val;
-        if (typeof val === 'object' && (_val = val) !== null && _val !== void 0 && _val.__file__) {
+        if (typeof val === "object" && (_val = val) !== null && _val !== void 0 && _val.__file__) {
           var v = file instanceof File ? file : _objectSpread2$1({}, file);
           delete v.__file__;
           val = v;
@@ -33042,7 +33042,7 @@ var signature = function signature(props, context, dependencies) {
   var clear = () => {
     clearBase();
     clearSignature();
-    fire('clear', el$.value);
+    fire("clear", el$.value);
   };
   var reset = () => {
     clearSignature();
@@ -33050,17 +33050,17 @@ var signature = function signature(props, context, dependencies) {
     setDefaultFont(true);
     setDefaultColor();
     resetBase();
-    fire('reset', el$.value);
+    fire("reset", el$.value);
   };
   var prepare = /*#__PURE__*/function () {
     var _ref7 = _asyncToGenerator(function* () {
       if (uploaded.value || !available.value) {
         return;
       }
-      if (mode.value === 'type') {
+      if (mode.value === "type") {
         yield typingToImage();
       }
-      if (mode.value === 'draw') {
+      if (mode.value === "draw") {
         yield drawingToImage();
       }
     });
@@ -33081,7 +33081,8 @@ var signature = function signature(props, context, dependencies) {
 var matrix$1 = function matrix(props, context, dependencies) {
   var {
     name,
-    rows
+    rows,
+    formatLoad
   } = toRefs(props);
   var {
     clear: baseClear,
@@ -33126,17 +33127,17 @@ var matrix$1 = function matrix(props, context, dependencies) {
   var load = function load(val) {
     var format = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
     var formatted = format && formatLoad.value ? formatLoad.value(val, form$.value) : val;
-    setData(formatted, 'load');
+    setData(formatted, "load");
   };
   var update = val => {
-    setData(val, 'update');
+    setData(val, "update");
   };
   var clear = () => {
     baseClear();
     if (hasDynamicRows.value) {
       rowsCount.value = rows.value;
     }
-    fire('clear', el$.value);
+    fire("clear", el$.value);
   };
   var reset = () => {
     baseReset();
@@ -33147,13 +33148,13 @@ var matrix$1 = function matrix(props, context, dependencies) {
       grid.value.scrollTop = 0;
       grid.value.scrollLeft = 0;
     }
-    fire('reset', el$.value);
+    fire("reset", el$.value);
   };
   var add = () => {
     var oldValue = _objectSpread2$1({}, value.value);
     rowsCount.value++;
     nextTick(() => {
-      fire('add', rowsCount.value - 1, value.value, oldValue, el$.value);
+      fire("add", rowsCount.value - 1, value.value, oldValue, el$.value);
     });
   };
   var remove = i => {
@@ -33164,7 +33165,7 @@ var matrix$1 = function matrix(props, context, dependencies) {
       [i]: curr
     }), {});
     rowsCount.value--;
-    fire('remove', i, value.value, oldValue, el$.value);
+    fire("remove", i, value.value, oldValue, el$.value);
   };
   var handleAdd = () => {
     add();
@@ -33179,7 +33180,7 @@ var matrix$1 = function matrix(props, context, dependencies) {
       if (!row.available && skipUnavailable) {
         return;
       }
-      var rowValue = dataType.value === 'object' ? {} : dataType.value === 'array' ? [] : null;
+      var rowValue = dataType.value === "object" ? {} : dataType.value === "array" ? [] : null;
       resolvedColumns.value.forEach((column, c) => {
         var _children$$value$reso;
         if (!column.available && skipUnavailable) {
@@ -33187,12 +33188,12 @@ var matrix$1 = function matrix(props, context, dependencies) {
         }
         var cellValue = (_children$$value$reso = children$.value[resolveComponentName(r, c)]) === null || _children$$value$reso === void 0 ? void 0 : _children$$value$reso.value;
         switch (dataType.value) {
-          case 'array':
+          case "array":
             if (cellValue) {
               rowValue = [...(rowValue || []), column.value];
             }
             break;
-          case 'assoc':
+          case "assoc":
             if (cellValue) {
               rowValue = column.value;
             }
@@ -33221,10 +33222,10 @@ var matrix$1 = function matrix(props, context, dependencies) {
           var rowValue = val[row.value] || {};
           var cell$ = children$.value[resolveComponentName(r, c)];
           switch (dataType.value) {
-            case 'assoc':
+            case "assoc":
               cell$[action](column.value === rowValue);
               break;
-            case 'array':
+            case "array":
               cell$[action](rowValue.indexOf(column.value) !== -1);
               break;
             default:
@@ -33239,17 +33240,17 @@ var matrix$1 = function matrix(props, context, dependencies) {
     };
   }();
   watch(computedRows, (n, o) => {
-    var oldLength = typeof o === 'number' ? o : Object.keys(o).length;
-    var newLength = typeof n === 'number' ? n : Object.keys(n).length;
-    var dir = oldLength > newLength ? 'decrease' : 'increase';
-    var diff = dir === 'increase' ? newLength - oldLength : oldLength - newLength;
+    var oldLength = typeof o === "number" ? o : Object.keys(o).length;
+    var newLength = typeof n === "number" ? n : Object.keys(n).length;
+    var dir = oldLength > newLength ? "decrease" : "increase";
+    var diff = dir === "increase" ? newLength - oldLength : oldLength - newLength;
     var nextIndex = newLength - 1;
     var lastIndex = oldLength - 1;
     var newValue = _objectSpread2$1({}, value.value);
-    if (dir === 'increase') {
+    if (dir === "increase") {
       switch (dataType.value) {
-        case 'assoc':
-        case 'array':
+        case "assoc":
+        case "array":
           for (var i = 0; i < diff; i++) {
             newValue[nextIndex + i] = cloneDeep_1(defaultValue.value[nextIndex + i]);
           }
@@ -33264,7 +33265,7 @@ var matrix$1 = function matrix(props, context, dependencies) {
     }
     value.value = newValue;
   }, {
-    flush: 'post'
+    flush: "post"
   });
   return {
     data,
