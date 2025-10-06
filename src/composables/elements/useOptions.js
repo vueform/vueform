@@ -628,14 +628,17 @@ const slider = function(props, context, dependencies)
    * @private
    */
   const defaultOptions = computed(() => {
-    const Format = {...(format.value || {})}
-    const sanitizable = ['prefix', 'suffix', 'thousand']
+    const Format = format.value ? {...(format.value || {})} : null
 
-    sanitizable.forEach((prop) => {
-      if (Format[prop]) {
-        Format[prop] = form$.value.$vueform.sanitize(Format[prop])
-      }
-    })
+    if (Format) {
+      const sanitizable = ['prefix', 'suffix', 'thousand']
+
+      sanitizable.forEach((prop) => {
+        if (Format[prop]) {
+          Format[prop] = form$.value.$vueform.sanitize(Format[prop])
+        }
+      })
+    }
 
     return {
       min: min.value,
