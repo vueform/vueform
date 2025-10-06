@@ -617,7 +617,7 @@ const slider = function(props, context, dependencies)
   // ============ DEPENDENCIES ============
   
   const isDisabled = dependencies.isDisabled
-  const labelId = dependencies.labelId
+  const form$ = dependencies.form$
   
   // ============== COMPUTED ==============
   
@@ -628,13 +628,22 @@ const slider = function(props, context, dependencies)
    * @private
    */
   const defaultOptions = computed(() => {
+    const Format = {...(format.value || {})}
+    const sanitizable = ['prefix', 'suffix', 'thousand']
+
+    sanitizable.forEach((prop) => {
+      if (Format[prop]) {
+        Format[prop] = form$.value.$vueform.sanitize(Format[prop])
+      }
+    })
+
     return {
       min: min.value,
       max: max.value,
       step: step.value,
       tooltips: tooltips.value,
       merge: merge.value,
-      format: format.value,
+      format: Format,
       orientation: orientation.value,
       direction: direction.value,
       disabled: isDisabled.value,

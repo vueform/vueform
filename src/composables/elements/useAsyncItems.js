@@ -406,7 +406,13 @@ const checkboxgroup = function(props, context, dependencies)
     })
     
     return resolvedOptions.map((o) => {
-      return { ...o, label: form$.value.$vueform.sanitize(localize(o.label, config$.value, form$.value)) }
+      const option = { ...o, label: form$.value.$vueform.sanitize(localize(o.label, config$.value, form$.value)) }
+
+      if (o.description) {
+        option.description = form$.value.$vueform.sanitize(localize(o.description, config$.value, form$.value))
+      }
+
+      return option
     })
   })
   
