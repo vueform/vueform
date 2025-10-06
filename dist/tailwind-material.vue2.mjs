@@ -1,5 +1,5 @@
 /*!
- * Vueform v1.13.2 (https://github.com/vueform/vueform)
+ * Vueform v1.13.3 (https://github.com/vueform/vueform)
  * Copyright (c) 2025 Adam Berecz <adam@vueform.com>
  * Licensed under the MIT License
  */
@@ -19767,15 +19767,21 @@ var __vue_render__$7 = function () {
                   class: _vm.classes.filenameLink,
                   attrs: {
                     href: _vm.link,
+                    title: _vm.filename,
                     target: "_blank",
                     rel: "nofollow noopener",
                   },
                 },
                 [_vm._v(_vm._s(_vm.filename))]
               )
-            : _c("span", { class: _vm.classes.filenameStatic }, [
-                _vm._v(_vm._s(_vm.filename)),
-              ]),
+            : _c(
+                "span",
+                {
+                  class: _vm.classes.filenameStatic,
+                  attrs: { title: _vm.filename },
+                },
+                [_vm._v(_vm._s(_vm.filename))]
+              ),
         ]),
         _vm._v(" "),
         _c("div", { class: _vm.classes.actions }, [
@@ -23449,9 +23455,9 @@ var classes = {
     container_md: 'form-h-input-min-height',
     container_lg: 'form-h-input-min-height-lg',
     wrapper: 'flex justify-between items-center w-full',
-    file: 'flex items-center',
-    filenameLink: 'hover:underline',
-    filenameStatic: '',
+    file: 'flex items-center overflow-hidden',
+    filenameLink: 'hover:underline text-ellipsis overflow-hidden',
+    filenameStatic: 'text-ellipsis overflow-hidden',
     actions: 'flex items-center',
     percent: 'flex justify-between items-center text-sm form-color-muted group-hover:form-hidden',
     upload: 'form-bg-primary form-color-on-primary form-radius-small text-xs py-0.5 px-1.5 ml-1.5 whitespace-nowrap transition-transform transform hover:scale-105 focus:form-ring',

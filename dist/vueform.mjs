@@ -1,5 +1,5 @@
 /*!
- * Vueform v1.13.2 (https://github.com/vueform/vueform)
+ * Vueform v1.13.3 (https://github.com/vueform/vueform)
  * Copyright (c) 2025 Adam Berecz <adam@vueform.com>
  * Licensed under the MIT License
  */
@@ -1208,7 +1208,7 @@ var script$1K = {
 const _hoisted_1$H = ["for", "id"];
 const _hoisted_2$r = ["for", "id"];
 const _hoisted_3$g = ["innerHTML"];
-const _hoisted_4$c = ["for", "id"];
+const _hoisted_4$d = ["for", "id"];
 const _hoisted_5$7 = ["for", "id"];
 
 function render$O(_ctx, _cache, $props, $setup, $data, $options) {
@@ -1295,7 +1295,7 @@ function render$O(_ctx, _cache, $props, $setup, $data, $options) {
                   ]),
                   _: 3 /* FORWARDED */
                 })
-              ], 10 /* CLASS, PROPS */, _hoisted_4$c)
+              ], 10 /* CLASS, PROPS */, _hoisted_4$d)
             ], 2112 /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */))
           : (_ctx.hasLabel)
             ? (openBlock(), createElementBlock(Fragment, { key: 3 }, [
@@ -1828,7 +1828,7 @@ var script$1u = {
 const _hoisted_1$A = ["aria-expanded", "aria-controls", "tabindex"];
 const _hoisted_2$o = ["innerHTML"];
 const _hoisted_3$f = ["innerHTML"];
-const _hoisted_4$b = ["innerHTML"];
+const _hoisted_4$c = ["innerHTML"];
 const _hoisted_5$6 = ["innerHTML"];
 const _hoisted_6$5 = ["data-dropdown-for", "id"];
 const _hoisted_7$3 = ["onMouseover", "onClick"];
@@ -1880,7 +1880,7 @@ function render$G(_ctx, _cache, $props, $setup, $data, $options) {
                 ? (openBlock(), createElementBlock("div", {
                     key: 1,
                     innerHTML: _ctx.placeholder(_ctx.selected, _ctx.el$)
-                  }, null, 8 /* PROPS */, _hoisted_4$b))
+                  }, null, 8 /* PROPS */, _hoisted_4$c))
                 : (openBlock(), createElementBlock("div", {
                     key: 2,
                     innerHTML: _ctx.placeholder
@@ -2012,7 +2012,7 @@ var script$1s = {
 const _hoisted_1$z = ["tabindex", "disabled"];
 const _hoisted_2$n = ["innerHTML", "tabindex", "disabled"];
 const _hoisted_3$e = ["tabindex", "disabled"];
-const _hoisted_4$a = ["tabindex"];
+const _hoisted_4$b = ["tabindex"];
 const _hoisted_5$5 = ["innerHTML", "tabindex"];
 const _hoisted_6$4 = ["tabindex"];
 
@@ -2079,7 +2079,7 @@ function render$F(_ctx, _cache, $props, $setup, $data, $options) {
                   onClick: _cache[3] || (_cache[3] = (...args) => (_ctx.handleClick && _ctx.handleClick(...args)))
                 }), [
                   (openBlock(), createBlock(resolveDynamicComponent(_ctx.buttonLabel)))
-                ], 16 /* FULL_PROPS */, _hoisted_4$a))
+                ], 16 /* FULL_PROPS */, _hoisted_4$b))
               : (_ctx.buttonLabel)
                 ? (openBlock(), createElementBlock(Fragment, { key: 1 }, [
                     createCommentVNode(" Use it as HTML "),
@@ -3179,7 +3179,7 @@ var script$16 = {
 const _hoisted_1$r = ["aria-labelledby"];
 const _hoisted_2$i = ["data-id"];
 const _hoisted_3$c = ["aria-roledescription", "id", "onClick", "onKeypress"];
-const _hoisted_4$9 = ["id", "innerHTML"];
+const _hoisted_4$a = ["id", "innerHTML"];
 
 function render$w(_ctx, _cache, $props, $setup, $data, $options) {
   return (openBlock(), createBlock(resolveDynamicComponent(_ctx.elementLayout), { ref: "container" }, createSlots({
@@ -3252,7 +3252,7 @@ function render$w(_ctx, _cache, $props, $setup, $data, $options) {
             innerHTML: _ctx.addLabel,
             role: "button",
             tabindex: "0"
-          }, null, 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_4$9))
+          }, null, 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_4$a))
         : createCommentVNode("v-if", true)
     ]),
     _: 2 /* DYNAMIC */
@@ -3490,7 +3490,7 @@ var script$12 = {
 const _hoisted_1$p = ["innerHTML"];
 const _hoisted_2$h = ["innerHTML"];
 const _hoisted_3$b = ["aria-roledescription", "id", "onClick", "onKeypress"];
-const _hoisted_4$8 = ["id", "innerHTML"];
+const _hoisted_4$9 = ["id", "innerHTML"];
 
 function render$u(_ctx, _cache, $props, $setup, $data, $options) {
   return (openBlock(), createBlock(resolveDynamicComponent(_ctx.elementLayout), { ref: "container" }, createSlots({
@@ -3593,7 +3593,7 @@ function render$u(_ctx, _cache, $props, $setup, $data, $options) {
             innerHTML: _ctx.addLabel,
             role: "button",
             tabindex: "0"
-          }, null, 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_4$8))
+          }, null, 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_4$9))
         : createCommentVNode("v-if", true)
     ]),
     _: 2 /* DYNAMIC */
@@ -8292,7 +8292,7 @@ var script$_ = {
 const _hoisted_1$n = ["id", "dir"];
 const _hoisted_2$f = ["tabindex", "aria-controls", "aria-placeholder", "aria-expanded", "aria-activedescendant", "aria-multiselectable", "role"];
 const _hoisted_3$a = ["type", "modelValue", "value", "autocomplete", "id", "aria-controls", "aria-placeholder", "aria-expanded", "aria-activedescendant", "aria-multiselectable"];
-const _hoisted_4$7 = ["onKeyup", "aria-label"];
+const _hoisted_4$8 = ["onKeyup", "aria-label"];
 const _hoisted_5$4 = ["onClick"];
 const _hoisted_6$3 = ["type", "modelValue", "value", "id", "autocomplete", "aria-controls", "aria-placeholder", "aria-expanded", "aria-activedescendant", "aria-multiselectable"];
 const _hoisted_7$2 = ["innerHTML"];
@@ -8396,7 +8396,7 @@ function render$s(_ctx, _cache, $props, $setup, $data, $options) {
                         }, null, 2 /* CLASS */)
                       ], 10 /* CLASS, PROPS */, _hoisted_5$4))
                     : createCommentVNode("v-if", true)
-                ], 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_4$7))
+                ], 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_4$8))
               ])
             }), 256 /* UNKEYED_FRAGMENT */)),
             createElementVNode("div", {
@@ -10059,7 +10059,7 @@ var script$L = {
 const _hoisted_1$g = ["tabindex", "aria-label", "id"];
 const _hoisted_2$b = ["src", "alt", "title"];
 const _hoisted_3$9 = ["title", "tabindex", "aria-label"];
-const _hoisted_4$6 = ["title", "tabindex", "aria-label"];
+const _hoisted_4$7 = ["title", "tabindex", "aria-label"];
 const _hoisted_5$3 = ["value", "disabled", "readonly", "aria-label"];
 const _hoisted_6$2 = ["innerHTML"];
 const _hoisted_7$1 = ["tabindex", "aria-label"];
@@ -10161,7 +10161,7 @@ function render$l(_ctx, _cache, $props, $setup, $data, $options) {
                 "aria-label": _ctx.redoText,
                 onClick: _cache[2] || (_cache[2] = withModifiers((...args) => (_ctx.handleRedo && _ctx.handleRedo(...args)), ["stop"])),
                 onKeydown: _cache[3] || (_cache[3] = withKeys(withModifiers((...args) => (_ctx.handleRedo && _ctx.handleRedo(...args)), ["prevent"]), ["space","enter"]))
-              }, null, 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_4$6)
+              }, null, 42 /* CLASS, PROPS, NEED_HYDRATION */, _hoisted_4$7)
             ], 2 /* CLASS */), [
               [vShow, _ctx.showUndos]
             ])
@@ -14044,7 +14044,7 @@ var script$G = {
 const _hoisted_1$f = ["innerHTML"];
 const _hoisted_2$a = ["href", "target", "innerHTML"];
 const _hoisted_3$8 = ["href", "target"];
-const _hoisted_4$5 = ["href", "target"];
+const _hoisted_4$6 = ["href", "target"];
 const _hoisted_5$2 = ["src", "alt", "title", "width", "height"];
 const _hoisted_6$1 = ["src", "alt", "title", "width", "height"];
 const _hoisted_7 = ["innerHTML"];
@@ -14114,7 +14114,7 @@ function render$i(_ctx, _cache, $props, $setup, $data, $options) {
                                   width: _ctx.width,
                                   height: _ctx.height
                                 }, _ctx.attrs), null, 16 /* FULL_PROPS */, _hoisted_5$2)
-                              ], 8 /* PROPS */, _hoisted_4$5))
+                              ], 8 /* PROPS */, _hoisted_4$6))
                             : (openBlock(), createElementBlock("img", mergeProps({
                                 key: 1,
                                 src: _ctx.src,
@@ -15269,7 +15269,7 @@ function useStyle (props, context, dependencies)
 const _hoisted_1$c = ["tabindex", "aria-checked", "aria-describedby", "aria-labelledby"];
 const _hoisted_2$9 = ["id", "name", "value", "checked", "disabled"];
 const _hoisted_3$7 = ["innerHTML"];
-const _hoisted_4$4 = ["checked"];
+const _hoisted_4$5 = ["checked"];
 
 function render$e(_ctx, _cache, $props, $setup, $data, $options) {
   return (openBlock(), createElementBlock("div", mergeProps({
@@ -15328,7 +15328,7 @@ function render$e(_ctx, _cache, $props, $setup, $data, $options) {
             "aria-hidden": "true",
             tabindex: "-1",
             required: ""
-          }, null, 8 /* PROPS */, _hoisted_4$4))
+          }, null, 8 /* PROPS */, _hoisted_4$5))
         : createCommentVNode("v-if", true)
     ], 2 /* CLASS */)
   ], 16 /* FULL_PROPS */, _hoisted_1$c))
@@ -15903,7 +15903,7 @@ var script$l = {
 const _hoisted_1$9 = ["aria-checked"];
 const _hoisted_2$7 = ["title"];
 const _hoisted_3$6 = ["value", "id", "name", "disabled"];
-const _hoisted_4$3 = ["innerHTML"];
+const _hoisted_4$4 = ["innerHTML"];
 
 function render$a(_ctx, _cache, $props, $setup, $data, $options) {
   return (openBlock(), createElementBlock("label", mergeProps(_ctx.attrs, {
@@ -15941,7 +15941,7 @@ function render$a(_ctx, _cache, $props, $setup, $data, $options) {
         createElementVNode("span", {
           class: normalizeClass(_ctx.classes.text),
           innerHTML: `${_ctx.item.label}`
-        }, null, 10 /* CLASS, PROPS */, _hoisted_4$3)
+        }, null, 10 /* CLASS, PROPS */, _hoisted_4$4)
       ], 10 /* CLASS, PROPS */, _hoisted_2$7)
     ])
   ], 16 /* FULL_PROPS */, _hoisted_1$9))
@@ -16245,7 +16245,8 @@ var script$f = {
 
 const _hoisted_1$7 = ["aria-labelledby", "aria-placeholder", "aria-describedby"];
 const _hoisted_2$5 = ["id"];
-const _hoisted_3$4 = ["href"];
+const _hoisted_3$4 = ["href", "title"];
+const _hoisted_4$3 = ["title"];
 
 function render$7(_ctx, _cache, $props, $setup, $data, $options) {
   return withDirectives((openBlock(), createElementBlock("div", mergeProps({
@@ -16275,13 +16276,15 @@ function render$7(_ctx, _cache, $props, $setup, $data, $options) {
               key: 0,
               href: _ctx.link,
               class: normalizeClass(_ctx.classes.filenameLink),
+              title: _ctx.filename,
               target: "_blank",
               rel: "nofollow noopener"
             }, toDisplayString(_ctx.filename), 11 /* TEXT, CLASS, PROPS */, _hoisted_3$4))
           : (openBlock(), createElementBlock("span", {
               key: 1,
-              class: normalizeClass(_ctx.classes.filenameStatic)
-            }, toDisplayString(_ctx.filename), 3 /* TEXT, CLASS */))
+              class: normalizeClass(_ctx.classes.filenameStatic),
+              title: _ctx.filename
+            }, toDisplayString(_ctx.filename), 11 /* TEXT, CLASS, PROPS */, _hoisted_4$3))
       ], 2 /* CLASS */),
       createElementVNode("div", {
         class: normalizeClass(_ctx.classes.actions)
@@ -16397,7 +16400,7 @@ var script$e = {
     }
   };
 
-var css_248z$7 = ".vf-file-preview {\n  font-family: inherit;\n  font-size: inherit;\n  line-height: inherit;\n  color: inherit;\n  min-height: var(--vf-min-height-input);\n  display: flex;\n  justify-content: center;\n  flex-direction: column;\n  position: relative;\n}\n\n.vf-file-preview:hover .vf-file-preview-uploaded,\n.vf-file-preview:hover .vf-file-preview-warning,\n.vf-file-preview:hover .vf-file-preview-percent {\n  display: none;\n}\n\n.vf-file-preview:hover .vf-file-preview-remove {\n  display: inline-block;\n}\n\n.vf-file-preview.vf-file-preview-sm {\n  padding-top: calc(var(--vf-py-input-sm) + var(--vf-border-width-input-t));\n  min-height: var(--vf-min-height-input-sm);\n}\n\n.vf-file-preview.vf-file-preview-lg {\n  padding-top: calc(var(--vf-py-input-lg) + var(--vf-border-width-input-t));\n  min-height: var(--vf-min-height-input-lg);\n}\n\n.vf-file-preview-wrapper {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n}\n\n.vf-file-preview-file {\n  display: flex;\n  align-items: center;\n}\n\n.vf-file-preview-filename-link {\n  text-decoration: none;\n  color: inherit;\n}\n\n.vf-file-preview-filename-link:hover, .vf-file-preview-filename-link:focus, .vf-file-preview-filename-link:active {\n  color: inherit;\n}\n\n.vf-file-preview-filename-link:hover {\n  text-decoration: underline;\n}\n\n.vf-file-preview-actions {\n  display: flex;\n  align-items: center;\n}\n\n.vf-file-preview-upload {\n  font-size: 0.75rem;\n  margin-left: 0.5rem;\n  white-space: nowrap;\n  padding: 0.0625rem 0.4375rem;\n  background: var(--vf-primary);\n  color: var(--vf-color-on-primary);\n  border-radius: var(--vf-radius-small);\n  text-decoration: none;\n  transition: 0.15s;\n  outline: 0px solid var(--vf-ring-color);\n  outline-offset: 0;\n}\n\n.vf-file-preview-upload:hover {\n  transform: scale(1.05);\n}\n\n.vf-file-preview-upload:focus {\n  outline: var(--vf-ring-width) solid var(--vf-ring-color);\n}\n\n.vf-file-preview-percent {\n  font-size: 0.875rem;\n  color: var(--vf-color-muted);\n  margin-left: 0.375rem;\n}\n\n.vf-file-preview-progress-bar {\n  margin-top: 0.625rem;\n  border-radius: 0;\n  height: 0.1875rem;\n  background: var(--vf-bg-passive);\n  position: absolute;\n  bottom: 0;\n  width: 100%;\n}\n\n.vf-file-preview-progress {\n  border-radius: 0;\n  height: 100%;\n  background: var(--vf-primary);\n  transition: 0.6s ease;\n}\n\n.vf-file-preview-warning,\n.vf-file-preview-uploaded,\n.vf-file-preview-remove {\n  display: flex;\n  width: 1rem;\n  height: 1rem;\n  align-items: center;\n  justify-content: center;\n  border-radius: 999px;\n}\n\n.vf-file-preview-warning-icon,\n.vf-file-preview-uploaded-icon,\n.vf-file-preview-remove-icon {\n  width: 100%;\n  height: 100%;\n  display: block;\n  mask-repeat: no-repeat;\n  -webkit-mask-repeat: no-repeat;\n  mask-position: center center;\n  -webkit-mask-position: center center;\n}\n\n.vf-file-preview-remove {\n  display: none;\n  margin-left: 0.375rem;\n  background-color: var(--vf-bg-passive);\n  transition: 0.15s;\n}\n\n.vf-file-preview-remove:hover {\n  filter: brightness(0.9);\n}\n\n.vf-file-preview-remove-icon {\n  mask-image: url(\"data:image/svg+xml,%3Csvg viewBox='0 0 320 512' fill='currentColor' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M207.6 256l107.72-107.72c6.23-6.23 6.23-16.34 0-22.58l-25.03-25.03c-6.23-6.23-16.34-6.23-22.58 0L160 208.4 52.28 100.68c-6.23-6.23-16.34-6.23-22.58 0L4.68 125.7c-6.23 6.23-6.23 16.34 0 22.58L112.4 256 4.68 363.72c-6.23 6.23-6.23 16.34 0 22.58l25.03 25.03c6.23 6.23 16.34 6.23 22.58 0L160 303.6l107.72 107.72c6.23 6.23 16.34 6.23 22.58 0l25.03-25.03c6.23-6.23 6.23-16.34 0-22.58L207.6 256z'%3E%3C/path%3E%3C/svg%3E\");\n  -webkit-mask-image: url(\"data:image/svg+xml,%3Csvg viewBox='0 0 320 512' fill='currentColor' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M207.6 256l107.72-107.72c6.23-6.23 6.23-16.34 0-22.58l-25.03-25.03c-6.23-6.23-16.34-6.23-22.58 0L160 208.4 52.28 100.68c-6.23-6.23-16.34-6.23-22.58 0L4.68 125.7c-6.23 6.23-6.23 16.34 0 22.58L112.4 256 4.68 363.72c-6.23 6.23-6.23 16.34 0 22.58l25.03 25.03c6.23 6.23 16.34 6.23 22.58 0L160 303.6l107.72 107.72c6.23 6.23 16.34 6.23 22.58 0l25.03-25.03c6.23-6.23 6.23-16.34 0-22.58L207.6 256z'%3E%3C/path%3E%3C/svg%3E\");\n  mask-size: 0.75rem 0.75rem;\n  -webkit-mask-size: 0.75rem 0.75rem;\n  background-color: var(--vf-color-passive);\n}\n\n.vf-file-preview-uploaded {\n  background-color: var(--vf-bg-success);\n}\n\n.vf-file-preview-uploaded-icon {\n  mask-image: url(\"data:image/svg+xml,%3Csvg viewBox='0 0 512 512' fill='currentColor' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z'%3E%3C/path%3E%3C/svg%3E\");\n  -webkit-mask-image: url(\"data:image/svg+xml,%3Csvg viewBox='0 0 512 512' fill='currentColor' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z'%3E%3C/path%3E%3C/svg%3E\");\n  mask-size: 0.625rem 0.625rem;\n  -webkit-mask-size: 0.625rem 0.625rem;\n  background-color: var(--vf-color-success);\n}\n\n.vf-file-preview-warning {\n  background-color: var(--vf-bg-danger);\n}\n\n.vf-file-preview-warning-icon {\n  mask-image: url(\"data:image/svg+xml,%3Csvg viewBox='0 0 192 512' fill='currentColor' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M176 432c0 44.112-35.888 80-80 80s-80-35.888-80-80 35.888-80 80-80 80 35.888 80 80zM25.26 25.199l13.6 272C39.499 309.972 50.041 320 62.83 320h66.34c12.789 0 23.331-10.028 23.97-22.801l13.6-272C167.425 11.49 156.496 0 142.77 0H49.23C35.504 0 24.575 11.49 25.26 25.199z'%3E%3C/path%3E%3C/svg%3E\");\n  -webkit-mask-image: url(\"data:image/svg+xml,%3Csvg viewBox='0 0 192 512' fill='currentColor' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M176 432c0 44.112-35.888 80-80 80s-80-35.888-80-80 35.888-80 80-80 80 35.888 80 80zM25.26 25.199l13.6 272C39.499 309.972 50.041 320 62.83 320h66.34c12.789 0 23.331-10.028 23.97-22.801l13.6-272C167.425 11.49 156.496 0 142.77 0H49.23C35.504 0 24.575 11.49 25.26 25.199z'%3E%3C/path%3E%3C/svg%3E\");\n  mask-size: 0.625rem 0.625rem;\n  -webkit-mask-size: 0.625rem 0.625rem;\n  background-color: var(--vf-color-danger);\n}\n\n.vf-file-removing .vf-file-preview {\n  opacity: 0.6;\n}";
+var css_248z$7 = ".vf-file-preview {\n  font-family: inherit;\n  font-size: inherit;\n  line-height: inherit;\n  color: inherit;\n  min-height: var(--vf-min-height-input);\n  display: flex;\n  justify-content: center;\n  flex-direction: column;\n  position: relative;\n}\n\n.vf-file-preview:hover .vf-file-preview-uploaded,\n.vf-file-preview:hover .vf-file-preview-warning,\n.vf-file-preview:hover .vf-file-preview-percent {\n  display: none;\n}\n\n.vf-file-preview:hover .vf-file-preview-remove {\n  display: inline-block;\n}\n\n.vf-file-preview.vf-file-preview-sm {\n  padding-top: calc(var(--vf-py-input-sm) + var(--vf-border-width-input-t));\n  min-height: var(--vf-min-height-input-sm);\n}\n\n.vf-file-preview.vf-file-preview-lg {\n  padding-top: calc(var(--vf-py-input-lg) + var(--vf-border-width-input-t));\n  min-height: var(--vf-min-height-input-lg);\n}\n\n.vf-file-preview-wrapper {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n}\n\n.vf-file-preview-file {\n  display: flex;\n  align-items: center;\n  overflow: hidden;\n}\n\n.vf-file-preview-filename {\n  overflow: hidden;\n  text-overflow: ellipsis;\n}\n\n.vf-file-preview-filename-link {\n  text-decoration: none;\n  color: inherit;\n  overflow: hidden;\n  text-overflow: ellipsis;\n}\n\n.vf-file-preview-filename-link:hover, .vf-file-preview-filename-link:focus, .vf-file-preview-filename-link:active {\n  color: inherit;\n}\n\n.vf-file-preview-filename-link:hover {\n  text-decoration: underline;\n}\n\n.vf-file-preview-actions {\n  display: flex;\n  align-items: center;\n}\n\n.vf-file-preview-upload {\n  font-size: 0.75rem;\n  margin-left: 0.5rem;\n  white-space: nowrap;\n  padding: 0.0625rem 0.4375rem;\n  background: var(--vf-primary);\n  color: var(--vf-color-on-primary);\n  border-radius: var(--vf-radius-small);\n  text-decoration: none;\n  transition: 0.15s;\n  outline: 0px solid var(--vf-ring-color);\n  outline-offset: 0;\n}\n\n.vf-file-preview-upload:hover {\n  transform: scale(1.05);\n}\n\n.vf-file-preview-upload:focus {\n  outline: var(--vf-ring-width) solid var(--vf-ring-color);\n}\n\n.vf-file-preview-percent {\n  font-size: 0.875rem;\n  color: var(--vf-color-muted);\n  margin-left: 0.375rem;\n}\n\n.vf-file-preview-progress-bar {\n  margin-top: 0.625rem;\n  border-radius: 0;\n  height: 0.1875rem;\n  background: var(--vf-bg-passive);\n  position: absolute;\n  bottom: 0;\n  width: 100%;\n}\n\n.vf-file-preview-progress {\n  border-radius: 0;\n  height: 100%;\n  background: var(--vf-primary);\n  transition: 0.6s ease;\n}\n\n.vf-file-preview-warning,\n.vf-file-preview-uploaded,\n.vf-file-preview-remove {\n  display: flex;\n  width: 1rem;\n  height: 1rem;\n  align-items: center;\n  justify-content: center;\n  border-radius: 999px;\n}\n\n.vf-file-preview-warning-icon,\n.vf-file-preview-uploaded-icon,\n.vf-file-preview-remove-icon {\n  width: 100%;\n  height: 100%;\n  display: block;\n  mask-repeat: no-repeat;\n  -webkit-mask-repeat: no-repeat;\n  mask-position: center center;\n  -webkit-mask-position: center center;\n}\n\n.vf-file-preview-remove {\n  display: none;\n  margin-left: 0.375rem;\n  background-color: var(--vf-bg-passive);\n  transition: 0.15s;\n}\n\n.vf-file-preview-remove:hover {\n  filter: brightness(0.9);\n}\n\n.vf-file-preview-remove-icon {\n  mask-image: url(\"data:image/svg+xml,%3Csvg viewBox='0 0 320 512' fill='currentColor' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M207.6 256l107.72-107.72c6.23-6.23 6.23-16.34 0-22.58l-25.03-25.03c-6.23-6.23-16.34-6.23-22.58 0L160 208.4 52.28 100.68c-6.23-6.23-16.34-6.23-22.58 0L4.68 125.7c-6.23 6.23-6.23 16.34 0 22.58L112.4 256 4.68 363.72c-6.23 6.23-6.23 16.34 0 22.58l25.03 25.03c6.23 6.23 16.34 6.23 22.58 0L160 303.6l107.72 107.72c6.23 6.23 16.34 6.23 22.58 0l25.03-25.03c6.23-6.23 6.23-16.34 0-22.58L207.6 256z'%3E%3C/path%3E%3C/svg%3E\");\n  -webkit-mask-image: url(\"data:image/svg+xml,%3Csvg viewBox='0 0 320 512' fill='currentColor' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M207.6 256l107.72-107.72c6.23-6.23 6.23-16.34 0-22.58l-25.03-25.03c-6.23-6.23-16.34-6.23-22.58 0L160 208.4 52.28 100.68c-6.23-6.23-16.34-6.23-22.58 0L4.68 125.7c-6.23 6.23-6.23 16.34 0 22.58L112.4 256 4.68 363.72c-6.23 6.23-6.23 16.34 0 22.58l25.03 25.03c6.23 6.23 16.34 6.23 22.58 0L160 303.6l107.72 107.72c6.23 6.23 16.34 6.23 22.58 0l25.03-25.03c6.23-6.23 6.23-16.34 0-22.58L207.6 256z'%3E%3C/path%3E%3C/svg%3E\");\n  mask-size: 0.75rem 0.75rem;\n  -webkit-mask-size: 0.75rem 0.75rem;\n  background-color: var(--vf-color-passive);\n}\n\n.vf-file-preview-uploaded {\n  background-color: var(--vf-bg-success);\n}\n\n.vf-file-preview-uploaded-icon {\n  mask-image: url(\"data:image/svg+xml,%3Csvg viewBox='0 0 512 512' fill='currentColor' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z'%3E%3C/path%3E%3C/svg%3E\");\n  -webkit-mask-image: url(\"data:image/svg+xml,%3Csvg viewBox='0 0 512 512' fill='currentColor' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z'%3E%3C/path%3E%3C/svg%3E\");\n  mask-size: 0.625rem 0.625rem;\n  -webkit-mask-size: 0.625rem 0.625rem;\n  background-color: var(--vf-color-success);\n}\n\n.vf-file-preview-warning {\n  background-color: var(--vf-bg-danger);\n}\n\n.vf-file-preview-warning-icon {\n  mask-image: url(\"data:image/svg+xml,%3Csvg viewBox='0 0 192 512' fill='currentColor' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M176 432c0 44.112-35.888 80-80 80s-80-35.888-80-80 35.888-80 80-80 80 35.888 80 80zM25.26 25.199l13.6 272C39.499 309.972 50.041 320 62.83 320h66.34c12.789 0 23.331-10.028 23.97-22.801l13.6-272C167.425 11.49 156.496 0 142.77 0H49.23C35.504 0 24.575 11.49 25.26 25.199z'%3E%3C/path%3E%3C/svg%3E\");\n  -webkit-mask-image: url(\"data:image/svg+xml,%3Csvg viewBox='0 0 192 512' fill='currentColor' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M176 432c0 44.112-35.888 80-80 80s-80-35.888-80-80 35.888-80 80-80 80 35.888 80 80zM25.26 25.199l13.6 272C39.499 309.972 50.041 320 62.83 320h66.34c12.789 0 23.331-10.028 23.97-22.801l13.6-272C167.425 11.49 156.496 0 142.77 0H49.23C35.504 0 24.575 11.49 25.26 25.199z'%3E%3C/path%3E%3C/svg%3E\");\n  mask-size: 0.625rem 0.625rem;\n  -webkit-mask-size: 0.625rem 0.625rem;\n  background-color: var(--vf-color-danger);\n}\n\n.vf-file-removing .vf-file-preview {\n  opacity: 0.6;\n}";
 styleInject(css_248z$7);
 
 script$e.__file = "themes/vueform/templates/elements/partials/FilePreview.vue";

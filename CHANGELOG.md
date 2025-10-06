@@ -1,5 +1,15 @@
 [//]: # (Don't use <tags>)
 
+## v1.13.3
+
+> `2025-10-06`
+
+### 🎉 Feature
+- use ellipsis for long file names with tooltip #481
+
+### 🐞 Bug Fixes
+- sanitize extra props
+
 ## v1.13.2
 
 > `2025-08-25`

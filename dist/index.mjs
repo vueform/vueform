@@ -1,5 +1,5 @@
 /*!
- * Vueform v1.13.2 (https://github.com/vueform/vueform)
+ * Vueform v1.13.3 (https://github.com/vueform/vueform)
  * Copyright (c) 2025 Adam Berecz <adam@vueform.com>
  * Licensed under the MIT License
  */
@@ -10194,7 +10194,7 @@ function shouldApplyPlugin (name, plugin) {
 }
 
 var name = "@vueform/vueform";
-var version$1 = "1.13.2";
+var version$1 = "1.13.3";
 var description = "Open-Source Form Framework for Vue";
 var homepage = "https://vueform.com";
 var license = "MIT";
@@ -34073,9 +34073,13 @@ var checkboxgroup = function checkboxgroup(props, context, dependencies) {
       }
     });
     return resolvedOptions.map(o => {
-      return _objectSpread2$1(_objectSpread2$1({}, o), {}, {
+      var option = _objectSpread2$1(_objectSpread2$1({}, o), {}, {
         label: form$.value.$vueform.sanitize(localize(o.label, config$.value, form$.value))
       });
+      if (o.description) {
+        option.description = form$.value.$vueform.sanitize(localize(o.description, config$.value, form$.value));
+      }
+      return option;
     });
   });
 
@@ -35056,7 +35060,7 @@ var slider = function slider(props, context, dependencies) {
   // ============ DEPENDENCIES ============
 
   var isDisabled = dependencies.isDisabled;
-  dependencies.labelId;
+  var form$ = dependencies.form$;
 
   // ============== COMPUTED ==============
 
@@ -35067,13 +35071,22 @@ var slider = function slider(props, context, dependencies) {
    * @private
    */
   var defaultOptions = computed(() => {
+    var Format = format.value ? _objectSpread2$1({}, format.value || {}) : undefined;
+    if (Format) {
+      var sanitizable = ['prefix', 'suffix', 'thousand'];
+      sanitizable.forEach(prop => {
+        if (Format[prop]) {
+          Format[prop] = form$.value.$vueform.sanitize(Format[prop]);
+        }
+      });
+    }
     return {
       min: min.value,
       max: max.value,
       step: step.value,
       tooltips: tooltips.value,
       merge: merge.value,
-      format: format.value,
+      format: Format,
       orientation: orientation.value,
       direction: direction.value,
       disabled: isDisabled.value,
