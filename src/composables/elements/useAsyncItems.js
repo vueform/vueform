@@ -242,7 +242,7 @@ const base = function(props, context, dependencies)
       return
     }
 
-    if (!Array.isArray(nullValue.value) && value.value && values.indexOf(object.value ? value.value[valueProp.value] : value.value) === -1) {
+    if (!Array.isArray(nullValue.value) && value.value && (values.indexOf(object?.value ? value.value[valueProp.value] : value.value) === -1)) {
       value.value = cloneDeep(nullValue.value)
     }
     else if (Array.isArray(nullValue.value) && value.value.length) {
@@ -446,13 +446,15 @@ const checkboxgroup = function(props, context, dependencies)
    * @returns {Promise}
    * @private
    */
-  const resolveOptionsFromUrl = async () => {
+  const resolveOptionsFromUrl = async (cleanup = true) => {
     try {
       let url = await resolveUrlAndSetWatchers(items.value, updateItems)
 
       options.value = (await form$.value.$vueform.services.axios.get(url))?.data || []
 
-      cleanupValue(resolvedOptions.value?.map(o=>o.value) || [])
+      if (cleanup === true) {
+        cleanupValue(resolvedOptions.value?.map(o=>o.value) || [])
+      }
     } catch (e) {
       options.value = []
       console.warn(`Couldn\'t resolve items from ${ items.value }`, e)
@@ -480,11 +482,11 @@ const checkboxgroup = function(props, context, dependencies)
    * @returns {Promise}
    * @private
    */
-  const resolveOptions = async () => {
+  const resolveOptions = async (cleanup = true) => {
     if (typeof items.value === 'function') {
       await resolveOptionsFromFunction()
     } else if (typeof items.value === 'string') {
-      await resolveOptionsFromUrl()
+      await resolveOptionsFromUrl(cleanup)
     } else {
       options.value = items.value
     }
@@ -492,7 +494,7 @@ const checkboxgroup = function(props, context, dependencies)
   
   // ================ HOOKS ===============
   
-  resolveOptions()
+  resolveOptions(false)
   watch(items, resolveOptions)
   
   return {
