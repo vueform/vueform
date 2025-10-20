@@ -1,5 +1,5 @@
 /*!
- * Vueform v1.13.3 (https://github.com/vueform/vueform)
+ * Vueform v1.13.4 (https://github.com/vueform/vueform)
  * Copyright (c) 2025 Adam Berecz <adam@vueform.com>
  * Licensed under the MIT License
  */
@@ -9545,7 +9545,7 @@ var Validator = class {
       name: 'numeric'
     }) || some_1(this.element$.Validators, {
       name: 'integer'
-    });
+    }) || !isNaN(this.element$.value);
   }
   get isNullable() {
     var nullable = false;
@@ -9671,7 +9671,7 @@ var Validator = class {
       name: 'numeric'
     }) || some_1(other$.Validators, {
       name: 'integer'
-    });
+    }) || !isNaN(other$.value);
   }
   size(value, other$) {
     if (other$ && this.isOtherNumeric(other$) || !other$ && this.isNumeric) {
@@ -10194,7 +10194,7 @@ function shouldApplyPlugin (name, plugin) {
 }
 
 var name = "@vueform/vueform";
-var version$1 = "1.13.3";
+var version$1 = "1.13.4";
 var description = "Open-Source Form Framework for Vue";
 var homepage = "https://vueform.com";
 var license = "MIT";
@@ -14143,7 +14143,7 @@ class Columns {
   }
 }
 
-/*! @license DOMPurify 3.2.6 | (c) Cure53 and other contributors | Released under the Apache license 2.0 and Mozilla Public License 2.0 | github.com/cure53/DOMPurify/blob/3.2.6/LICENSE */
+/*! @license DOMPurify 3.3.0 | (c) Cure53 and other contributors | Released under the Apache license 2.0 and Mozilla Public License 2.0 | github.com/cure53/DOMPurify/blob/3.3.0/LICENSE */
 
 const {
   entries,
@@ -14172,12 +14172,18 @@ if (!seal) {
   };
 }
 if (!apply) {
-  apply = function apply(fun, thisValue, args) {
-    return fun.apply(thisValue, args);
+  apply = function apply(func, thisArg) {
+    for (var _len = arguments.length, args = new Array(_len > 2 ? _len - 2 : 0), _key = 2; _key < _len; _key++) {
+      args[_key - 2] = arguments[_key];
+    }
+    return func.apply(thisArg, args);
   };
 }
 if (!construct) {
-  construct = function construct(Func, args) {
+  construct = function construct(Func) {
+    for (var _len2 = arguments.length, args = new Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++) {
+      args[_key2 - 1] = arguments[_key2];
+    }
     return new Func(...args);
   };
 }
@@ -14206,8 +14212,8 @@ function unapply(func) {
     if (thisArg instanceof RegExp) {
       thisArg.lastIndex = 0;
     }
-    for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-      args[_key - 1] = arguments[_key];
+    for (var _len3 = arguments.length, args = new Array(_len3 > 1 ? _len3 - 1 : 0), _key3 = 1; _key3 < _len3; _key3++) {
+      args[_key3 - 1] = arguments[_key3];
     }
     return apply(func, thisArg, args);
   };
@@ -14218,12 +14224,12 @@ function unapply(func) {
  * @param func - The constructor function to be wrapped and called.
  * @returns A new function that constructs an instance of the given constructor function with the provided arguments.
  */
-function unconstruct(func) {
+function unconstruct(Func) {
   return function () {
-    for (var _len2 = arguments.length, args = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
-      args[_key2] = arguments[_key2];
+    for (var _len4 = arguments.length, args = new Array(_len4), _key4 = 0; _key4 < _len4; _key4++) {
+      args[_key4] = arguments[_key4];
     }
-    return construct(func, args);
+    return construct(Func, args);
   };
 }
 /**
@@ -14322,8 +14328,8 @@ function lookupGetter(object, prop) {
   return fallbackValue;
 }
 
-const html$1 = freeze(['a', 'abbr', 'acronym', 'address', 'area', 'article', 'aside', 'audio', 'b', 'bdi', 'bdo', 'big', 'blink', 'blockquote', 'body', 'br', 'button', 'canvas', 'caption', 'center', 'cite', 'code', 'col', 'colgroup', 'content', 'data', 'datalist', 'dd', 'decorator', 'del', 'details', 'dfn', 'dialog', 'dir', 'div', 'dl', 'dt', 'element', 'em', 'fieldset', 'figcaption', 'figure', 'font', 'footer', 'form', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'head', 'header', 'hgroup', 'hr', 'html', 'i', 'img', 'input', 'ins', 'kbd', 'label', 'legend', 'li', 'main', 'map', 'mark', 'marquee', 'menu', 'menuitem', 'meter', 'nav', 'nobr', 'ol', 'optgroup', 'option', 'output', 'p', 'picture', 'pre', 'progress', 'q', 'rp', 'rt', 'ruby', 's', 'samp', 'section', 'select', 'shadow', 'small', 'source', 'spacer', 'span', 'strike', 'strong', 'style', 'sub', 'summary', 'sup', 'table', 'tbody', 'td', 'template', 'textarea', 'tfoot', 'th', 'thead', 'time', 'tr', 'track', 'tt', 'u', 'ul', 'var', 'video', 'wbr']);
-const svg$1 = freeze(['svg', 'a', 'altglyph', 'altglyphdef', 'altglyphitem', 'animatecolor', 'animatemotion', 'animatetransform', 'circle', 'clippath', 'defs', 'desc', 'ellipse', 'filter', 'font', 'g', 'glyph', 'glyphref', 'hkern', 'image', 'line', 'lineargradient', 'marker', 'mask', 'metadata', 'mpath', 'path', 'pattern', 'polygon', 'polyline', 'radialgradient', 'rect', 'stop', 'style', 'switch', 'symbol', 'text', 'textpath', 'title', 'tref', 'tspan', 'view', 'vkern']);
+const html$1 = freeze(['a', 'abbr', 'acronym', 'address', 'area', 'article', 'aside', 'audio', 'b', 'bdi', 'bdo', 'big', 'blink', 'blockquote', 'body', 'br', 'button', 'canvas', 'caption', 'center', 'cite', 'code', 'col', 'colgroup', 'content', 'data', 'datalist', 'dd', 'decorator', 'del', 'details', 'dfn', 'dialog', 'dir', 'div', 'dl', 'dt', 'element', 'em', 'fieldset', 'figcaption', 'figure', 'font', 'footer', 'form', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'head', 'header', 'hgroup', 'hr', 'html', 'i', 'img', 'input', 'ins', 'kbd', 'label', 'legend', 'li', 'main', 'map', 'mark', 'marquee', 'menu', 'menuitem', 'meter', 'nav', 'nobr', 'ol', 'optgroup', 'option', 'output', 'p', 'picture', 'pre', 'progress', 'q', 'rp', 'rt', 'ruby', 's', 'samp', 'search', 'section', 'select', 'shadow', 'slot', 'small', 'source', 'spacer', 'span', 'strike', 'strong', 'style', 'sub', 'summary', 'sup', 'table', 'tbody', 'td', 'template', 'textarea', 'tfoot', 'th', 'thead', 'time', 'tr', 'track', 'tt', 'u', 'ul', 'var', 'video', 'wbr']);
+const svg$1 = freeze(['svg', 'a', 'altglyph', 'altglyphdef', 'altglyphitem', 'animatecolor', 'animatemotion', 'animatetransform', 'circle', 'clippath', 'defs', 'desc', 'ellipse', 'enterkeyhint', 'exportparts', 'filter', 'font', 'g', 'glyph', 'glyphref', 'hkern', 'image', 'inputmode', 'line', 'lineargradient', 'marker', 'mask', 'metadata', 'mpath', 'part', 'path', 'pattern', 'polygon', 'polyline', 'radialgradient', 'rect', 'stop', 'style', 'switch', 'symbol', 'text', 'textpath', 'title', 'tref', 'tspan', 'view', 'vkern']);
 const svgFilters = freeze(['feBlend', 'feColorMatrix', 'feComponentTransfer', 'feComposite', 'feConvolveMatrix', 'feDiffuseLighting', 'feDisplacementMap', 'feDistantLight', 'feDropShadow', 'feFlood', 'feFuncA', 'feFuncB', 'feFuncG', 'feFuncR', 'feGaussianBlur', 'feImage', 'feMerge', 'feMergeNode', 'feMorphology', 'feOffset', 'fePointLight', 'feSpecularLighting', 'feSpotLight', 'feTile', 'feTurbulence']);
 // List of SVG elements that are disallowed by default.
 // We still need to know them so that we can do namespace
@@ -14336,8 +14342,8 @@ const mathMl$1 = freeze(['math', 'menclose', 'merror', 'mfenced', 'mfrac', 'mgly
 const mathMlDisallowed = freeze(['maction', 'maligngroup', 'malignmark', 'mlongdiv', 'mscarries', 'mscarry', 'msgroup', 'mstack', 'msline', 'msrow', 'semantics', 'annotation', 'annotation-xml', 'mprescripts', 'none']);
 const text$4 = freeze(['#text']);
 
-const html = freeze(['accept', 'action', 'align', 'alt', 'autocapitalize', 'autocomplete', 'autopictureinpicture', 'autoplay', 'background', 'bgcolor', 'border', 'capture', 'cellpadding', 'cellspacing', 'checked', 'cite', 'class', 'clear', 'color', 'cols', 'colspan', 'controls', 'controlslist', 'coords', 'crossorigin', 'datetime', 'decoding', 'default', 'dir', 'disabled', 'disablepictureinpicture', 'disableremoteplayback', 'download', 'draggable', 'enctype', 'enterkeyhint', 'face', 'for', 'headers', 'height', 'hidden', 'high', 'href', 'hreflang', 'id', 'inputmode', 'integrity', 'ismap', 'kind', 'label', 'lang', 'list', 'loading', 'loop', 'low', 'max', 'maxlength', 'media', 'method', 'min', 'minlength', 'multiple', 'muted', 'name', 'nonce', 'noshade', 'novalidate', 'nowrap', 'open', 'optimum', 'pattern', 'placeholder', 'playsinline', 'popover', 'popovertarget', 'popovertargetaction', 'poster', 'preload', 'pubdate', 'radiogroup', 'readonly', 'rel', 'required', 'rev', 'reversed', 'role', 'rows', 'rowspan', 'spellcheck', 'scope', 'selected', 'shape', 'size', 'sizes', 'span', 'srclang', 'start', 'src', 'srcset', 'step', 'style', 'summary', 'tabindex', 'title', 'translate', 'type', 'usemap', 'valign', 'value', 'width', 'wrap', 'xmlns', 'slot']);
-const svg = freeze(['accent-height', 'accumulate', 'additive', 'alignment-baseline', 'amplitude', 'ascent', 'attributename', 'attributetype', 'azimuth', 'basefrequency', 'baseline-shift', 'begin', 'bias', 'by', 'class', 'clip', 'clippathunits', 'clip-path', 'clip-rule', 'color', 'color-interpolation', 'color-interpolation-filters', 'color-profile', 'color-rendering', 'cx', 'cy', 'd', 'dx', 'dy', 'diffuseconstant', 'direction', 'display', 'divisor', 'dur', 'edgemode', 'elevation', 'end', 'exponent', 'fill', 'fill-opacity', 'fill-rule', 'filter', 'filterunits', 'flood-color', 'flood-opacity', 'font-family', 'font-size', 'font-size-adjust', 'font-stretch', 'font-style', 'font-variant', 'font-weight', 'fx', 'fy', 'g1', 'g2', 'glyph-name', 'glyphref', 'gradientunits', 'gradienttransform', 'height', 'href', 'id', 'image-rendering', 'in', 'in2', 'intercept', 'k', 'k1', 'k2', 'k3', 'k4', 'kerning', 'keypoints', 'keysplines', 'keytimes', 'lang', 'lengthadjust', 'letter-spacing', 'kernelmatrix', 'kernelunitlength', 'lighting-color', 'local', 'marker-end', 'marker-mid', 'marker-start', 'markerheight', 'markerunits', 'markerwidth', 'maskcontentunits', 'maskunits', 'max', 'mask', 'media', 'method', 'mode', 'min', 'name', 'numoctaves', 'offset', 'operator', 'opacity', 'order', 'orient', 'orientation', 'origin', 'overflow', 'paint-order', 'path', 'pathlength', 'patterncontentunits', 'patterntransform', 'patternunits', 'points', 'preservealpha', 'preserveaspectratio', 'primitiveunits', 'r', 'rx', 'ry', 'radius', 'refx', 'refy', 'repeatcount', 'repeatdur', 'restart', 'result', 'rotate', 'scale', 'seed', 'shape-rendering', 'slope', 'specularconstant', 'specularexponent', 'spreadmethod', 'startoffset', 'stddeviation', 'stitchtiles', 'stop-color', 'stop-opacity', 'stroke-dasharray', 'stroke-dashoffset', 'stroke-linecap', 'stroke-linejoin', 'stroke-miterlimit', 'stroke-opacity', 'stroke', 'stroke-width', 'style', 'surfacescale', 'systemlanguage', 'tabindex', 'tablevalues', 'targetx', 'targety', 'transform', 'transform-origin', 'text-anchor', 'text-decoration', 'text-rendering', 'textlength', 'type', 'u1', 'u2', 'unicode', 'values', 'viewbox', 'visibility', 'version', 'vert-adv-y', 'vert-origin-x', 'vert-origin-y', 'width', 'word-spacing', 'wrap', 'writing-mode', 'xchannelselector', 'ychannelselector', 'x', 'x1', 'x2', 'xmlns', 'y', 'y1', 'y2', 'z', 'zoomandpan']);
+const html = freeze(['accept', 'action', 'align', 'alt', 'autocapitalize', 'autocomplete', 'autopictureinpicture', 'autoplay', 'background', 'bgcolor', 'border', 'capture', 'cellpadding', 'cellspacing', 'checked', 'cite', 'class', 'clear', 'color', 'cols', 'colspan', 'controls', 'controlslist', 'coords', 'crossorigin', 'datetime', 'decoding', 'default', 'dir', 'disabled', 'disablepictureinpicture', 'disableremoteplayback', 'download', 'draggable', 'enctype', 'enterkeyhint', 'exportparts', 'face', 'for', 'headers', 'height', 'hidden', 'high', 'href', 'hreflang', 'id', 'inert', 'inputmode', 'integrity', 'ismap', 'kind', 'label', 'lang', 'list', 'loading', 'loop', 'low', 'max', 'maxlength', 'media', 'method', 'min', 'minlength', 'multiple', 'muted', 'name', 'nonce', 'noshade', 'novalidate', 'nowrap', 'open', 'optimum', 'part', 'pattern', 'placeholder', 'playsinline', 'popover', 'popovertarget', 'popovertargetaction', 'poster', 'preload', 'pubdate', 'radiogroup', 'readonly', 'rel', 'required', 'rev', 'reversed', 'role', 'rows', 'rowspan', 'spellcheck', 'scope', 'selected', 'shape', 'size', 'sizes', 'slot', 'span', 'srclang', 'start', 'src', 'srcset', 'step', 'style', 'summary', 'tabindex', 'title', 'translate', 'type', 'usemap', 'valign', 'value', 'width', 'wrap', 'xmlns', 'slot']);
+const svg = freeze(['accent-height', 'accumulate', 'additive', 'alignment-baseline', 'amplitude', 'ascent', 'attributename', 'attributetype', 'azimuth', 'basefrequency', 'baseline-shift', 'begin', 'bias', 'by', 'class', 'clip', 'clippathunits', 'clip-path', 'clip-rule', 'color', 'color-interpolation', 'color-interpolation-filters', 'color-profile', 'color-rendering', 'cx', 'cy', 'd', 'dx', 'dy', 'diffuseconstant', 'direction', 'display', 'divisor', 'dur', 'edgemode', 'elevation', 'end', 'exponent', 'fill', 'fill-opacity', 'fill-rule', 'filter', 'filterunits', 'flood-color', 'flood-opacity', 'font-family', 'font-size', 'font-size-adjust', 'font-stretch', 'font-style', 'font-variant', 'font-weight', 'fx', 'fy', 'g1', 'g2', 'glyph-name', 'glyphref', 'gradientunits', 'gradienttransform', 'height', 'href', 'id', 'image-rendering', 'in', 'in2', 'intercept', 'k', 'k1', 'k2', 'k3', 'k4', 'kerning', 'keypoints', 'keysplines', 'keytimes', 'lang', 'lengthadjust', 'letter-spacing', 'kernelmatrix', 'kernelunitlength', 'lighting-color', 'local', 'marker-end', 'marker-mid', 'marker-start', 'markerheight', 'markerunits', 'markerwidth', 'maskcontentunits', 'maskunits', 'max', 'mask', 'mask-type', 'media', 'method', 'mode', 'min', 'name', 'numoctaves', 'offset', 'operator', 'opacity', 'order', 'orient', 'orientation', 'origin', 'overflow', 'paint-order', 'path', 'pathlength', 'patterncontentunits', 'patterntransform', 'patternunits', 'points', 'preservealpha', 'preserveaspectratio', 'primitiveunits', 'r', 'rx', 'ry', 'radius', 'refx', 'refy', 'repeatcount', 'repeatdur', 'restart', 'result', 'rotate', 'scale', 'seed', 'shape-rendering', 'slope', 'specularconstant', 'specularexponent', 'spreadmethod', 'startoffset', 'stddeviation', 'stitchtiles', 'stop-color', 'stop-opacity', 'stroke-dasharray', 'stroke-dashoffset', 'stroke-linecap', 'stroke-linejoin', 'stroke-miterlimit', 'stroke-opacity', 'stroke', 'stroke-width', 'style', 'surfacescale', 'systemlanguage', 'tabindex', 'tablevalues', 'targetx', 'targety', 'transform', 'transform-origin', 'text-anchor', 'text-decoration', 'text-rendering', 'textlength', 'type', 'u1', 'u2', 'unicode', 'values', 'viewbox', 'visibility', 'version', 'vert-adv-y', 'vert-origin-x', 'vert-origin-y', 'width', 'word-spacing', 'wrap', 'writing-mode', 'xchannelselector', 'ychannelselector', 'x', 'x1', 'x2', 'xmlns', 'y', 'y1', 'y2', 'z', 'zoomandpan']);
 const mathMl = freeze(['accent', 'accentunder', 'align', 'bevelled', 'close', 'columnsalign', 'columnlines', 'columnspan', 'denomalign', 'depth', 'dir', 'display', 'displaystyle', 'encoding', 'fence', 'frame', 'height', 'href', 'id', 'largeop', 'length', 'linethickness', 'lspace', 'lquote', 'mathbackground', 'mathcolor', 'mathsize', 'mathvariant', 'maxsize', 'minsize', 'movablelimits', 'notation', 'numalign', 'open', 'rowalign', 'rowlines', 'rowspacing', 'rowspan', 'rspace', 'rquote', 'scriptlevel', 'scriptminsize', 'scriptsizemultiplier', 'selection', 'separator', 'separators', 'stretchy', 'subscriptshift', 'supscriptshift', 'symmetric', 'voffset', 'width', 'xmlns']);
 const xml = freeze(['xlink:href', 'xml:id', 'xlink:title', 'xml:space', 'xmlns:xlink']);
 
@@ -14444,7 +14450,7 @@ const _createHooksMap = function _createHooksMap() {
 function createDOMPurify() {
   let window = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : getGlobal();
   const DOMPurify = root => createDOMPurify(root);
-  DOMPurify.version = '3.2.6';
+  DOMPurify.version = '3.3.0';
   DOMPurify.removed = [];
   if (!window || !window.document || window.document.nodeType !== NODE_TYPE.document || !window.Element) {
     // Not running in a browser, provide a factory function
@@ -14555,6 +14561,21 @@ function createDOMPurify() {
   let FORBID_TAGS = null;
   /* Explicitly forbidden attributes (overrides ALLOWED_ATTR/ADD_ATTR) */
   let FORBID_ATTR = null;
+  /* Config object to store ADD_TAGS/ADD_ATTR functions (when used as functions) */
+  const EXTRA_ELEMENT_HANDLING = Object.seal(create(null, {
+    tagCheck: {
+      writable: true,
+      configurable: false,
+      enumerable: true,
+      value: null
+    },
+    attributeCheck: {
+      writable: true,
+      configurable: false,
+      enumerable: true,
+      value: null
+    }
+  }));
   /* Decide if ARIA attributes are okay */
   let ALLOW_ARIA_ATTR = true;
   /* Decide if custom data attributes are okay */
@@ -14747,16 +14768,24 @@ function createDOMPurify() {
     }
     /* Merge configuration parameters */
     if (cfg.ADD_TAGS) {
-      if (ALLOWED_TAGS === DEFAULT_ALLOWED_TAGS) {
-        ALLOWED_TAGS = clone$2(ALLOWED_TAGS);
+      if (typeof cfg.ADD_TAGS === 'function') {
+        EXTRA_ELEMENT_HANDLING.tagCheck = cfg.ADD_TAGS;
+      } else {
+        if (ALLOWED_TAGS === DEFAULT_ALLOWED_TAGS) {
+          ALLOWED_TAGS = clone$2(ALLOWED_TAGS);
+        }
+        addToSet(ALLOWED_TAGS, cfg.ADD_TAGS, transformCaseFunc);
       }
-      addToSet(ALLOWED_TAGS, cfg.ADD_TAGS, transformCaseFunc);
     }
     if (cfg.ADD_ATTR) {
-      if (ALLOWED_ATTR === DEFAULT_ALLOWED_ATTR) {
-        ALLOWED_ATTR = clone$2(ALLOWED_ATTR);
+      if (typeof cfg.ADD_ATTR === 'function') {
+        EXTRA_ELEMENT_HANDLING.attributeCheck = cfg.ADD_ATTR;
+      } else {
+        if (ALLOWED_ATTR === DEFAULT_ALLOWED_ATTR) {
+          ALLOWED_ATTR = clone$2(ALLOWED_ATTR);
+        }
+        addToSet(ALLOWED_ATTR, cfg.ADD_ATTR, transformCaseFunc);
       }
-      addToSet(ALLOWED_ATTR, cfg.ADD_ATTR, transformCaseFunc);
     }
     if (cfg.ADD_URI_SAFE_ATTR) {
       addToSet(URI_SAFE_ATTRIBUTES, cfg.ADD_URI_SAFE_ATTR, transformCaseFunc);
@@ -15064,7 +15093,7 @@ function createDOMPurify() {
       return true;
     }
     /* Remove element if anything forbids its presence */
-    if (!ALLOWED_TAGS[tagName] || FORBID_TAGS[tagName]) {
+    if (!(EXTRA_ELEMENT_HANDLING.tagCheck instanceof Function && EXTRA_ELEMENT_HANDLING.tagCheck(tagName)) && (!ALLOWED_TAGS[tagName] || FORBID_TAGS[tagName])) {
       /* Check if we have a custom element to handle */
       if (!FORBID_TAGS[tagName] && _isBasicCustomElement(tagName)) {
         if (CUSTOM_ELEMENT_HANDLING.tagNameCheck instanceof RegExp && regExpTest(CUSTOM_ELEMENT_HANDLING.tagNameCheck, tagName)) {
@@ -15136,12 +15165,12 @@ function createDOMPurify() {
         (https://html.spec.whatwg.org/multipage/dom.html#embedding-custom-non-visible-data-with-the-data-*-attributes)
         XML-compatible (https://html.spec.whatwg.org/multipage/infrastructure.html#xml-compatible and http://www.w3.org/TR/xml/#d0e804)
         We don't need to check the value; it's always URI safe. */
-    if (ALLOW_DATA_ATTR && !FORBID_ATTR[lcName] && regExpTest(DATA_ATTR, lcName)) ; else if (ALLOW_ARIA_ATTR && regExpTest(ARIA_ATTR, lcName)) ; else if (!ALLOWED_ATTR[lcName] || FORBID_ATTR[lcName]) {
+    if (ALLOW_DATA_ATTR && !FORBID_ATTR[lcName] && regExpTest(DATA_ATTR, lcName)) ; else if (ALLOW_ARIA_ATTR && regExpTest(ARIA_ATTR, lcName)) ; else if (EXTRA_ELEMENT_HANDLING.attributeCheck instanceof Function && EXTRA_ELEMENT_HANDLING.attributeCheck(lcName, lcTag)) ; else if (!ALLOWED_ATTR[lcName] || FORBID_ATTR[lcName]) {
       if (
       // First condition does a very basic check if a) it's basically a valid custom element tagname AND
       // b) if the tagName passes whatever the user has configured for CUSTOM_ELEMENT_HANDLING.tagNameCheck
       // and c) if the attribute name passes whatever the user has configured for CUSTOM_ELEMENT_HANDLING.attributeNameCheck
-      _isBasicCustomElement(lcTag) && (CUSTOM_ELEMENT_HANDLING.tagNameCheck instanceof RegExp && regExpTest(CUSTOM_ELEMENT_HANDLING.tagNameCheck, lcTag) || CUSTOM_ELEMENT_HANDLING.tagNameCheck instanceof Function && CUSTOM_ELEMENT_HANDLING.tagNameCheck(lcTag)) && (CUSTOM_ELEMENT_HANDLING.attributeNameCheck instanceof RegExp && regExpTest(CUSTOM_ELEMENT_HANDLING.attributeNameCheck, lcName) || CUSTOM_ELEMENT_HANDLING.attributeNameCheck instanceof Function && CUSTOM_ELEMENT_HANDLING.attributeNameCheck(lcName)) ||
+      _isBasicCustomElement(lcTag) && (CUSTOM_ELEMENT_HANDLING.tagNameCheck instanceof RegExp && regExpTest(CUSTOM_ELEMENT_HANDLING.tagNameCheck, lcTag) || CUSTOM_ELEMENT_HANDLING.tagNameCheck instanceof Function && CUSTOM_ELEMENT_HANDLING.tagNameCheck(lcTag)) && (CUSTOM_ELEMENT_HANDLING.attributeNameCheck instanceof RegExp && regExpTest(CUSTOM_ELEMENT_HANDLING.attributeNameCheck, lcName) || CUSTOM_ELEMENT_HANDLING.attributeNameCheck instanceof Function && CUSTOM_ELEMENT_HANDLING.attributeNameCheck(lcName, lcTag)) ||
       // Alternative, second condition checks if it's an `is`-attribute, AND
       // the value passes whatever the user has configured for CUSTOM_ELEMENT_HANDLING.tagNameCheck
       lcName === 'is' && CUSTOM_ELEMENT_HANDLING.allowCustomizedBuiltInElements && (CUSTOM_ELEMENT_HANDLING.tagNameCheck instanceof RegExp && regExpTest(CUSTOM_ELEMENT_HANDLING.tagNameCheck, value) || CUSTOM_ELEMENT_HANDLING.tagNameCheck instanceof Function && CUSTOM_ELEMENT_HANDLING.tagNameCheck(value))) ; else {
@@ -15220,7 +15249,12 @@ function createDOMPurify() {
         value = SANITIZE_NAMED_PROPS_PREFIX + value;
       }
       /* Work around a security issue with comments inside attributes */
-      if (SAFE_FOR_XML && regExpTest(/((--!?|])>)|<\/(style|title)/i, value)) {
+      if (SAFE_FOR_XML && regExpTest(/((--!?|])>)|<\/(style|title|textarea)/i, value)) {
+        _removeAttribute(name, currentNode);
+        continue;
+      }
+      /* Make sure we cannot easily use animated hrefs, even if animations are allowed */
+      if (lcName === 'attributename' && stringMatch(value, 'href')) {
         _removeAttribute(name, currentNode);
         continue;
       }
@@ -30814,7 +30848,7 @@ var multilingual$3 = function multilingual(props, context, dependencies) {
    * @returns {Promise}
    */
   var validateLanguage = /*#__PURE__*/function () {
-    var _ref10 = _asyncToGenerator(function* () {
+    var _ref0 = _asyncToGenerator(function* () {
       var lang = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : language.value;
       if (form$.value.validation === false) {
         return;
@@ -30823,17 +30857,17 @@ var multilingual$3 = function multilingual(props, context, dependencies) {
         return;
       }
       yield asyncForEach(Validators.value[lang], /*#__PURE__*/function () {
-        var _ref11 = _asyncToGenerator(function* (Validator) {
+        var _ref1 = _asyncToGenerator(function* (Validator) {
           yield Validator.validate(value.value[lang]);
         });
         return function (_x5) {
-          return _ref11.apply(this, arguments);
+          return _ref1.apply(this, arguments);
         };
       }());
       state.value.validated[lang] = true;
     });
     return function validateLanguage() {
-      return _ref10.apply(this, arguments);
+      return _ref0.apply(this, arguments);
     };
   }();
   var resetValidators = () => {
@@ -30971,7 +31005,7 @@ var slider$1 = function slider(props, context, dependencies) {
   // =============== METHODS ==============
 
   var validate = /*#__PURE__*/function () {
-    var _ref12 = _asyncToGenerator(function* () {
+    var _ref10 = _asyncToGenerator(function* () {
       if (!validationRules.value) {
         return;
       }
@@ -30983,13 +31017,13 @@ var slider$1 = function slider(props, context, dependencies) {
         // going through each value of the slider
         // and validate them all for the same field
         yield asyncForEach(value.value, /*#__PURE__*/function () {
-          var _ref13 = _asyncToGenerator(function* (val) {
+          var _ref11 = _asyncToGenerator(function* (val) {
             yield asyncForEach(Validators.value, /*#__PURE__*/function () {
-              var _ref14 = _asyncToGenerator(function* (Validator) {
+              var _ref12 = _asyncToGenerator(function* (Validator) {
                 yield Validator.validate(val);
               });
               return function (_x7) {
-                return _ref14.apply(this, arguments);
+                return _ref12.apply(this, arguments);
               };
             }());
             if (invalid.value) {
@@ -30997,23 +31031,23 @@ var slider$1 = function slider(props, context, dependencies) {
             }
           });
           return function (_x6) {
-            return _ref13.apply(this, arguments);
+            return _ref11.apply(this, arguments);
           };
         }());
       } else {
         yield asyncForEach(Validators.value, /*#__PURE__*/function () {
-          var _ref15 = _asyncToGenerator(function* (Validator) {
+          var _ref13 = _asyncToGenerator(function* (Validator) {
             yield Validator.validate(value.value);
           });
           return function (_x8) {
-            return _ref15.apply(this, arguments);
+            return _ref13.apply(this, arguments);
           };
         }());
       }
       state.value.validated = true;
     });
     return function validate() {
-      return _ref12.apply(this, arguments);
+      return _ref10.apply(this, arguments);
     };
   }();
   return {
@@ -31092,7 +31126,7 @@ var file$1 = function file(props, context, dependencies) {
    * @returns {Promise}
    */
   var validate = /*#__PURE__*/function () {
-    var _ref16 = _asyncToGenerator(function* () {
+    var _ref14 = _asyncToGenerator(function* () {
       if (!validationRules.value) {
         return;
       }
@@ -31105,20 +31139,20 @@ var file$1 = function file(props, context, dependencies) {
       }
       var restricted = ['min', 'max', 'between', 'size', 'mimetypes', 'mimes', 'dimensions', 'file', 'image', 'gt', 'gte', 'lt', 'lte'];
       yield asyncForEach(Validators.value, /*#__PURE__*/function () {
-        var _ref17 = _asyncToGenerator(function* (Validator) {
+        var _ref15 = _asyncToGenerator(function* (Validator) {
           if (!(value.value instanceof File) && !!value.value && restricted.indexOf(Validator.name) !== -1) {
             return;
           }
           yield Validator.validate();
         });
         return function (_x9) {
-          return _ref17.apply(this, arguments);
+          return _ref15.apply(this, arguments);
         };
       }());
       state.value.validated = true;
     });
     return function validate() {
-      return _ref16.apply(this, arguments);
+      return _ref14.apply(this, arguments);
     };
   }();
   return {
@@ -31192,7 +31226,7 @@ var location = function location(props, context, dependencies) {
    * @returns {Promise}
    */
   var validate = /*#__PURE__*/function () {
-    var _ref18 = _asyncToGenerator(function* () {
+    var _ref16 = _asyncToGenerator(function* () {
       if (!validationRules.value) {
         return;
       }
@@ -31204,17 +31238,17 @@ var location = function location(props, context, dependencies) {
         return;
       }
       yield asyncForEach(Validators.value, /*#__PURE__*/function () {
-        var _ref19 = _asyncToGenerator(function* (Validator) {
+        var _ref17 = _asyncToGenerator(function* (Validator) {
           yield Validator.validate(value.value[displayKey.value]);
         });
-        return function (_x10) {
-          return _ref19.apply(this, arguments);
+        return function (_x0) {
+          return _ref17.apply(this, arguments);
         };
       }());
       state.value.validated = true;
     });
     return function validate() {
-      return _ref18.apply(this, arguments);
+      return _ref16.apply(this, arguments);
     };
   }();
   return {
@@ -33914,7 +33948,7 @@ var base$B = function base(props, context, dependencies) {
       value.value = cloneDeep_1(nullValue.value);
       return;
     }
-    if (!Array.isArray(nullValue.value) && value.value && values.indexOf(object.value ? value.value[valueProp.value] : value.value) === -1) {
+    if (!Array.isArray(nullValue.value) && value.value && values.indexOf(object !== null && object !== void 0 && object.value ? value.value[valueProp.value] : value.value) === -1) {
       value.value = cloneDeep_1(nullValue.value);
     } else if (Array.isArray(nullValue.value) && value.value.length) {
       value.value = value.value.filter(v => {
@@ -33946,7 +33980,10 @@ var base$B = function base(props, context, dependencies) {
           var el$ = form$.value.el$(elPath);
           var elValue = typeof (el$ === null || el$ === void 0 ? void 0 : el$.value) !== 'undefined' && el$.value !== null && typeof el$.value === 'object' ? JSON.stringify(el$.value) : typeof (el$ === null || el$ === void 0 ? void 0 : el$.value) !== 'undefined' && el$.value !== null ? el$.value : defaultValue;
           resolvedUrl = resolvedUrl.replace(match[0], encodeURIComponent(elValue));
-          watchers.value.push(watch(computed(() => el$ === null || el$ === void 0 ? void 0 : el$.value), () => {
+          watchers.value.push(watch(computed(() => el$ === null || el$ === void 0 ? void 0 : el$.value), (n, o) => {
+            if (dataEquals(n, o)) {
+              return;
+            }
             updateItems();
           }));
         };
@@ -34119,11 +34156,15 @@ var checkboxgroup = function checkboxgroup(props, context, dependencies) {
    */
   var resolveOptionsFromUrl = /*#__PURE__*/function () {
     var _ref8 = _asyncToGenerator(function* () {
+      var cleanup = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
       try {
-        var _yield$form$$value$$v3, _resolvedOptions$valu2;
+        var _yield$form$$value$$v3;
         var url = yield resolveUrlAndSetWatchers(items.value, updateItems);
         options.value = ((_yield$form$$value$$v3 = yield form$.value.$vueform.services.axios.get(url)) === null || _yield$form$$value$$v3 === void 0 ? void 0 : _yield$form$$value$$v3.data) || [];
-        cleanupValue(((_resolvedOptions$valu2 = resolvedOptions.value) === null || _resolvedOptions$valu2 === void 0 ? void 0 : _resolvedOptions$valu2.map(o => o.value)) || []);
+        if (cleanup === true) {
+          var _resolvedOptions$valu2;
+          cleanupValue(((_resolvedOptions$valu2 = resolvedOptions.value) === null || _resolvedOptions$valu2 === void 0 ? void 0 : _resolvedOptions$valu2.map(o => o.value)) || []);
+        }
       } catch (e) {
         options.value = [];
         console.warn("Couldn't resolve items from ".concat(items.value), e);
@@ -34161,23 +34202,24 @@ var checkboxgroup = function checkboxgroup(props, context, dependencies) {
    * @private
    */
   var resolveOptions = /*#__PURE__*/function () {
-    var _ref10 = _asyncToGenerator(function* () {
+    var _ref0 = _asyncToGenerator(function* () {
+      var cleanup = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
       if (typeof items.value === 'function') {
         yield resolveOptionsFromFunction();
       } else if (typeof items.value === 'string') {
-        yield resolveOptionsFromUrl();
+        yield resolveOptionsFromUrl(cleanup);
       } else {
         options.value = items.value;
       }
     });
     return function resolveOptions() {
-      return _ref10.apply(this, arguments);
+      return _ref0.apply(this, arguments);
     };
   }();
 
   // ================ HOOKS ===============
 
-  resolveOptions();
+  resolveOptions(false);
   watch(items, resolveOptions);
   return {
     resolveOptions,
@@ -35071,7 +35113,7 @@ var slider = function slider(props, context, dependencies) {
    * @private
    */
   var defaultOptions = computed(() => {
-    var Format = format.value ? _objectSpread2$1({}, format.value || {}) : undefined;
+    var Format = format.value ? _objectSpread2$1({}, format.value || {}) : null;
     if (Format) {
       var sanitizable = ['prefix', 'suffix', 'thousand'];
       sanitizable.forEach(prop => {
@@ -45338,638 +45380,764 @@ var SelectElement = {
 };
 
 /*!
- * Signature Pad v5.0.7 | https://github.com/szimek/signature_pad
+ * Signature Pad v5.1.1 | https://github.com/szimek/signature_pad
  * (c) 2025 Szymon Nowak | Released under the MIT license
  */
 
-class Point {
-    constructor(x, y, pressure, time) {
-        if (isNaN(x) || isNaN(y)) {
-            throw new Error(`Point is invalid: (${x}, ${y})`);
-        }
-        this.x = +x;
-        this.y = +y;
-        this.pressure = pressure || 0;
-        this.time = time || Date.now();
-    }
-    distanceTo(start) {
-        return Math.sqrt(Math.pow(this.x - start.x, 2) + Math.pow(this.y - start.y, 2));
-    }
-    equals(other) {
-        return (this.x === other.x &&
-            this.y === other.y &&
-            this.pressure === other.pressure &&
-            this.time === other.time);
-    }
-    velocityFrom(start) {
-        return this.time !== start.time
-            ? this.distanceTo(start) / (this.time - start.time)
-            : 0;
-    }
-}
 
-class Bezier {
-    static fromPoints(points, widths) {
-        const c2 = this.calculateControlPoints(points[0], points[1], points[2]).c2;
-        const c3 = this.calculateControlPoints(points[1], points[2], points[3]).c1;
-        return new Bezier(points[1], c2, c3, points[2], widths.start, widths.end);
+// src/point.ts
+var Point = class {
+  x;
+  y;
+  pressure;
+  time;
+  constructor(x, y, pressure, time) {
+    if (isNaN(x) || isNaN(y)) {
+      throw new Error(`Point is invalid: (${x}, ${y})`);
     }
-    static calculateControlPoints(s1, s2, s3) {
-        const dx1 = s1.x - s2.x;
-        const dy1 = s1.y - s2.y;
-        const dx2 = s2.x - s3.x;
-        const dy2 = s2.y - s3.y;
-        const m1 = { x: (s1.x + s2.x) / 2.0, y: (s1.y + s2.y) / 2.0 };
-        const m2 = { x: (s2.x + s3.x) / 2.0, y: (s2.y + s3.y) / 2.0 };
-        const l1 = Math.sqrt(dx1 * dx1 + dy1 * dy1);
-        const l2 = Math.sqrt(dx2 * dx2 + dy2 * dy2);
-        const dxm = m1.x - m2.x;
-        const dym = m1.y - m2.y;
-        const k = l1 + l2 == 0 ? 0 : l2 / (l1 + l2);
-        const cm = { x: m2.x + dxm * k, y: m2.y + dym * k };
-        const tx = s2.x - cm.x;
-        const ty = s2.y - cm.y;
-        return {
-            c1: new Point(m1.x + tx, m1.y + ty),
-            c2: new Point(m2.x + tx, m2.y + ty),
-        };
-    }
-    constructor(startPoint, control2, control1, endPoint, startWidth, endWidth) {
-        this.startPoint = startPoint;
-        this.control2 = control2;
-        this.control1 = control1;
-        this.endPoint = endPoint;
-        this.startWidth = startWidth;
-        this.endWidth = endWidth;
-    }
-    length() {
-        const steps = 10;
-        let length = 0;
-        let px;
-        let py;
-        for (let i = 0; i <= steps; i += 1) {
-            const t = i / steps;
-            const cx = this.point(t, this.startPoint.x, this.control1.x, this.control2.x, this.endPoint.x);
-            const cy = this.point(t, this.startPoint.y, this.control1.y, this.control2.y, this.endPoint.y);
-            if (i > 0) {
-                const xdiff = cx - px;
-                const ydiff = cy - py;
-                length += Math.sqrt(xdiff * xdiff + ydiff * ydiff);
-            }
-            px = cx;
-            py = cy;
-        }
-        return length;
-    }
-    point(t, start, c1, c2, end) {
-        return (start * (1.0 - t) * (1.0 - t) * (1.0 - t))
-            + (3.0 * c1 * (1.0 - t) * (1.0 - t) * t)
-            + (3.0 * c2 * (1.0 - t) * t * t)
-            + (end * t * t * t);
-    }
-}
+    this.x = +x;
+    this.y = +y;
+    this.pressure = pressure || 0;
+    this.time = time || Date.now();
+  }
+  distanceTo(start) {
+    return Math.sqrt(
+      Math.pow(this.x - start.x, 2) + Math.pow(this.y - start.y, 2)
+    );
+  }
+  equals(other) {
+    return this.x === other.x && this.y === other.y && this.pressure === other.pressure && this.time === other.time;
+  }
+  velocityFrom(start) {
+    return this.time !== start.time ? this.distanceTo(start) / (this.time - start.time) : 0;
+  }
+};
 
-class SignatureEventTarget {
-    constructor() {
-        try {
-            this._et = new EventTarget();
-        }
-        catch (_a) {
-            this._et = document;
-        }
+// src/bezier.ts
+var Bezier = class _Bezier {
+  constructor(startPoint, control2, control1, endPoint, startWidth, endWidth) {
+    this.startPoint = startPoint;
+    this.control2 = control2;
+    this.control1 = control1;
+    this.endPoint = endPoint;
+    this.startWidth = startWidth;
+    this.endWidth = endWidth;
+  }
+  static fromPoints(points, widths) {
+    const c2 = this.calculateControlPoints(points[0], points[1], points[2]).c2;
+    const c3 = this.calculateControlPoints(points[1], points[2], points[3]).c1;
+    return new _Bezier(points[1], c2, c3, points[2], widths.start, widths.end);
+  }
+  static calculateControlPoints(s1, s2, s3) {
+    const dx1 = s1.x - s2.x;
+    const dy1 = s1.y - s2.y;
+    const dx2 = s2.x - s3.x;
+    const dy2 = s2.y - s3.y;
+    const m1 = { x: (s1.x + s2.x) / 2, y: (s1.y + s2.y) / 2 };
+    const m2 = { x: (s2.x + s3.x) / 2, y: (s2.y + s3.y) / 2 };
+    const l1 = Math.sqrt(dx1 * dx1 + dy1 * dy1);
+    const l2 = Math.sqrt(dx2 * dx2 + dy2 * dy2);
+    const dxm = m1.x - m2.x;
+    const dym = m1.y - m2.y;
+    const k = l1 + l2 == 0 ? 0 : l2 / (l1 + l2);
+    const cm = { x: m2.x + dxm * k, y: m2.y + dym * k };
+    const tx = s2.x - cm.x;
+    const ty = s2.y - cm.y;
+    return {
+      c1: new Point(m1.x + tx, m1.y + ty),
+      c2: new Point(m2.x + tx, m2.y + ty)
+    };
+  }
+  // Returns approximated length. Code taken from https://www.lemoda.net/maths/bezier-length/index.html.
+  length() {
+    const steps = 10;
+    let length = 0;
+    let px;
+    let py;
+    for (let i = 0; i <= steps; i += 1) {
+      const t = i / steps;
+      const cx = this.point(
+        t,
+        this.startPoint.x,
+        this.control1.x,
+        this.control2.x,
+        this.endPoint.x
+      );
+      const cy = this.point(
+        t,
+        this.startPoint.y,
+        this.control1.y,
+        this.control2.y,
+        this.endPoint.y
+      );
+      if (i > 0) {
+        const xdiff = cx - px;
+        const ydiff = cy - py;
+        length += Math.sqrt(xdiff * xdiff + ydiff * ydiff);
+      }
+      px = cx;
+      py = cy;
     }
-    addEventListener(type, listener, options) {
-        this._et.addEventListener(type, listener, options);
-    }
-    dispatchEvent(event) {
-        return this._et.dispatchEvent(event);
-    }
-    removeEventListener(type, callback, options) {
-        this._et.removeEventListener(type, callback, options);
-    }
-}
+    return length;
+  }
+  // Calculate parametric value of x or y given t and the four point coordinates of a cubic bezier curve.
+  point(t, start, c1, c2, end) {
+    return start * (1 - t) * (1 - t) * (1 - t) + 3 * c1 * (1 - t) * (1 - t) * t + 3 * c2 * (1 - t) * t * t + end * t * t * t;
+  }
+};
 
+// src/signature_event_target.ts
+var SignatureEventTarget = class {
+  /* tslint:disable: variable-name */
+  _et;
+  /* tslint:enable: variable-name */
+  constructor() {
+    try {
+      this._et = new EventTarget();
+    } catch {
+      this._et = document;
+    }
+  }
+  addEventListener(type, listener, options) {
+    this._et.addEventListener(type, listener, options);
+  }
+  dispatchEvent(event) {
+    return this._et.dispatchEvent(event);
+  }
+  removeEventListener(type, callback, options) {
+    this._et.removeEventListener(type, callback, options);
+  }
+};
+
+// src/throttle.ts
 function throttle(fn, wait = 250) {
-    let previous = 0;
-    let timeout = null;
-    let result;
-    let storedContext;
-    let storedArgs;
-    const later = () => {
-        previous = Date.now();
+  let previous = 0;
+  let timeout = null;
+  let result;
+  let storedContext;
+  let storedArgs;
+  const later = () => {
+    previous = Date.now();
+    timeout = null;
+    result = fn.apply(storedContext, storedArgs);
+    if (!timeout) {
+      storedContext = null;
+      storedArgs = [];
+    }
+  };
+  return function wrapper(...args) {
+    const now = Date.now();
+    const remaining = wait - (now - previous);
+    storedContext = this;
+    storedArgs = args;
+    if (remaining <= 0 || remaining > wait) {
+      if (timeout) {
+        clearTimeout(timeout);
         timeout = null;
-        result = fn.apply(storedContext, storedArgs);
-        if (!timeout) {
-            storedContext = null;
-            storedArgs = [];
-        }
-    };
-    return function wrapper(...args) {
-        const now = Date.now();
-        const remaining = wait - (now - previous);
-        storedContext = this;
-        storedArgs = args;
-        if (remaining <= 0 || remaining > wait) {
-            if (timeout) {
-                clearTimeout(timeout);
-                timeout = null;
-            }
-            previous = now;
-            result = fn.apply(storedContext, storedArgs);
-            if (!timeout) {
-                storedContext = null;
-                storedArgs = [];
-            }
-        }
-        else if (!timeout) {
-            timeout = window.setTimeout(later, remaining);
-        }
-        return result;
-    };
+      }
+      previous = now;
+      result = fn.apply(storedContext, storedArgs);
+      if (!timeout) {
+        storedContext = null;
+        storedArgs = [];
+      }
+    } else if (!timeout) {
+      timeout = window.setTimeout(later, remaining);
+    }
+    return result;
+  };
 }
 
-class SignaturePad extends SignatureEventTarget {
-    constructor(canvas, options = {}) {
-        var _a, _b, _c;
-        super();
-        this.canvas = canvas;
-        this._drawingStroke = false;
-        this._isEmpty = true;
-        this._lastPoints = [];
-        this._data = [];
-        this._lastVelocity = 0;
-        this._lastWidth = 0;
-        this._handleMouseDown = (event) => {
-            if (!this._isLeftButtonPressed(event, true) || this._drawingStroke) {
-                return;
-            }
-            this._strokeBegin(this._pointerEventToSignatureEvent(event));
-        };
-        this._handleMouseMove = (event) => {
-            if (!this._isLeftButtonPressed(event, true) || !this._drawingStroke) {
-                this._strokeEnd(this._pointerEventToSignatureEvent(event), false);
-                return;
-            }
-            this._strokeMoveUpdate(this._pointerEventToSignatureEvent(event));
-        };
-        this._handleMouseUp = (event) => {
-            if (this._isLeftButtonPressed(event)) {
-                return;
-            }
-            this._strokeEnd(this._pointerEventToSignatureEvent(event));
-        };
-        this._handleTouchStart = (event) => {
-            if (event.targetTouches.length !== 1 || this._drawingStroke) {
-                return;
-            }
-            if (event.cancelable) {
-                event.preventDefault();
-            }
-            this._strokeBegin(this._touchEventToSignatureEvent(event));
-        };
-        this._handleTouchMove = (event) => {
-            if (event.targetTouches.length !== 1) {
-                return;
-            }
-            if (event.cancelable) {
-                event.preventDefault();
-            }
-            if (!this._drawingStroke) {
-                this._strokeEnd(this._touchEventToSignatureEvent(event), false);
-                return;
-            }
-            this._strokeMoveUpdate(this._touchEventToSignatureEvent(event));
-        };
-        this._handleTouchEnd = (event) => {
-            if (event.targetTouches.length !== 0) {
-                return;
-            }
-            if (event.cancelable) {
-                event.preventDefault();
-            }
-            this.canvas.removeEventListener('touchmove', this._handleTouchMove);
-            this._strokeEnd(this._touchEventToSignatureEvent(event));
-        };
-        this._handlePointerDown = (event) => {
-            if (!event.isPrimary || !this._isLeftButtonPressed(event) || this._drawingStroke) {
-                return;
-            }
-            event.preventDefault();
-            this._strokeBegin(this._pointerEventToSignatureEvent(event));
-        };
-        this._handlePointerMove = (event) => {
-            if (!event.isPrimary) {
-                return;
-            }
-            if (!this._isLeftButtonPressed(event, true) || !this._drawingStroke) {
-                this._strokeEnd(this._pointerEventToSignatureEvent(event), false);
-                return;
-            }
-            event.preventDefault();
-            this._strokeMoveUpdate(this._pointerEventToSignatureEvent(event));
-        };
-        this._handlePointerUp = (event) => {
-            if (!event.isPrimary || this._isLeftButtonPressed(event)) {
-                return;
-            }
-            event.preventDefault();
-            this._strokeEnd(this._pointerEventToSignatureEvent(event));
-        };
-        this.velocityFilterWeight = options.velocityFilterWeight || 0.7;
-        this.minWidth = options.minWidth || 0.5;
-        this.maxWidth = options.maxWidth || 2.5;
-        this.throttle = (_a = options.throttle) !== null && _a !== void 0 ? _a : 16;
-        this.minDistance = (_b = options.minDistance) !== null && _b !== void 0 ? _b : 5;
-        this.dotSize = options.dotSize || 0;
-        this.penColor = options.penColor || 'black';
-        this.backgroundColor = options.backgroundColor || 'rgba(0,0,0,0)';
-        this.compositeOperation = options.compositeOperation || 'source-over';
-        this.canvasContextOptions = (_c = options.canvasContextOptions) !== null && _c !== void 0 ? _c : {};
-        this._strokeMoveUpdate = this.throttle
-            ? throttle(SignaturePad.prototype._strokeUpdate, this.throttle)
-            : SignaturePad.prototype._strokeUpdate;
-        this._ctx = canvas.getContext('2d', this.canvasContextOptions);
-        this.clear();
-        this.on();
+// src/signature_pad.ts
+var SignaturePad = class _SignaturePad extends SignatureEventTarget {
+  /* tslint:enable: variable-name */
+  constructor(canvas, options = {}) {
+    super();
+    this.canvas = canvas;
+    this.velocityFilterWeight = options.velocityFilterWeight || 0.7;
+    this.minWidth = options.minWidth || 0.5;
+    this.maxWidth = options.maxWidth || 2.5;
+    this.throttle = options.throttle ?? 16;
+    this.minDistance = options.minDistance ?? 5;
+    this.dotSize = options.dotSize || 0;
+    this.penColor = options.penColor || "black";
+    this.backgroundColor = options.backgroundColor || "rgba(0,0,0,0)";
+    this.compositeOperation = options.compositeOperation || "source-over";
+    this.canvasContextOptions = options.canvasContextOptions ?? {};
+    this._strokeMoveUpdate = this.throttle ? throttle(_SignaturePad.prototype._strokeUpdate, this.throttle) : _SignaturePad.prototype._strokeUpdate;
+    this._handleMouseDown = this._handleMouseDown.bind(this);
+    this._handleMouseMove = this._handleMouseMove.bind(this);
+    this._handleMouseUp = this._handleMouseUp.bind(this);
+    this._handleTouchStart = this._handleTouchStart.bind(this);
+    this._handleTouchMove = this._handleTouchMove.bind(this);
+    this._handleTouchEnd = this._handleTouchEnd.bind(this);
+    this._handlePointerDown = this._handlePointerDown.bind(this);
+    this._handlePointerMove = this._handlePointerMove.bind(this);
+    this._handlePointerUp = this._handlePointerUp.bind(this);
+    this._ctx = canvas.getContext(
+      "2d",
+      this.canvasContextOptions
+    );
+    this.clear();
+    this.on();
+  }
+  // Public stuff
+  dotSize;
+  minWidth;
+  maxWidth;
+  penColor;
+  minDistance;
+  velocityFilterWeight;
+  compositeOperation;
+  backgroundColor;
+  throttle;
+  canvasContextOptions;
+  // Private stuff
+  /* tslint:disable: variable-name */
+  _ctx;
+  _drawingStroke = false;
+  _isEmpty = true;
+  _dataUrl;
+  _dataUrlOptions;
+  _lastPoints = [];
+  // Stores up to 4 most recent points; used to generate a new curve
+  _data = [];
+  // Stores all points in groups (one group per line or dot)
+  _lastVelocity = 0;
+  _lastWidth = 0;
+  _strokeMoveUpdate;
+  _strokePointerId;
+  clear() {
+    const { _ctx: ctx, canvas } = this;
+    ctx.fillStyle = this.backgroundColor;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    this._data = [];
+    this._reset(this._getPointGroupOptions());
+    this._isEmpty = true;
+    this._dataUrl = void 0;
+    this._dataUrlOptions = void 0;
+    this._strokePointerId = void 0;
+  }
+  redraw() {
+    const data = this._data;
+    const dataUrl = this._dataUrl;
+    const dataUrlOptions = this._dataUrlOptions;
+    this.clear();
+    if (dataUrl) {
+      this.fromDataURL(dataUrl, dataUrlOptions);
     }
-    clear() {
-        const { _ctx: ctx, canvas } = this;
-        ctx.fillStyle = this.backgroundColor;
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-        this._data = [];
-        this._reset(this._getPointGroupOptions());
-        this._isEmpty = true;
+    this.fromData(data, { clear: false });
+  }
+  fromDataURL(dataUrl, options = {}) {
+    return new Promise((resolve, reject) => {
+      const image = new Image();
+      const ratio = options.ratio || window.devicePixelRatio || 1;
+      const width = options.width || this.canvas.width / ratio;
+      const height = options.height || this.canvas.height / ratio;
+      const xOffset = options.xOffset || 0;
+      const yOffset = options.yOffset || 0;
+      this._reset(this._getPointGroupOptions());
+      image.onload = () => {
+        this._ctx.drawImage(image, xOffset, yOffset, width, height);
+        resolve();
+      };
+      image.onerror = (error) => {
+        reject(error);
+      };
+      image.crossOrigin = "anonymous";
+      image.src = dataUrl;
+      this._isEmpty = false;
+      this._dataUrl = dataUrl;
+      this._dataUrlOptions = { ...options };
+    });
+  }
+  toDataURL(type = "image/png", encoderOptions) {
+    switch (type) {
+      case "image/svg+xml":
+        if (typeof encoderOptions !== "object") {
+          encoderOptions = void 0;
+        }
+        return `data:image/svg+xml;base64,${btoa(
+          this.toSVG(encoderOptions)
+        )}`;
+      default:
+        if (typeof encoderOptions !== "number") {
+          encoderOptions = void 0;
+        }
+        return this.canvas.toDataURL(type, encoderOptions);
     }
-    fromDataURL(dataUrl, options = {}) {
-        return new Promise((resolve, reject) => {
-            const image = new Image();
-            const ratio = options.ratio || window.devicePixelRatio || 1;
-            const width = options.width || this.canvas.width / ratio;
-            const height = options.height || this.canvas.height / ratio;
-            const xOffset = options.xOffset || 0;
-            const yOffset = options.yOffset || 0;
-            this._reset(this._getPointGroupOptions());
-            image.onload = () => {
-                this._ctx.drawImage(image, xOffset, yOffset, width, height);
-                resolve();
-            };
-            image.onerror = (error) => {
-                reject(error);
-            };
-            image.crossOrigin = 'anonymous';
-            image.src = dataUrl;
-            this._isEmpty = false;
+  }
+  on() {
+    this.canvas.style.touchAction = "none";
+    this.canvas.style.msTouchAction = "none";
+    this.canvas.style.userSelect = "none";
+    const isIOS = /Macintosh/.test(navigator.userAgent) && "ontouchstart" in document;
+    if (window.PointerEvent && !isIOS) {
+      this._handlePointerEvents();
+    } else {
+      this._handleMouseEvents();
+      if ("ontouchstart" in window) {
+        this._handleTouchEvents();
+      }
+    }
+  }
+  off() {
+    this.canvas.style.touchAction = "auto";
+    this.canvas.style.msTouchAction = "auto";
+    this.canvas.style.userSelect = "auto";
+    this.canvas.removeEventListener("pointerdown", this._handlePointerDown);
+    this.canvas.removeEventListener("mousedown", this._handleMouseDown);
+    this.canvas.removeEventListener("touchstart", this._handleTouchStart);
+    this._removeMoveUpEventListeners();
+  }
+  _getListenerFunctions() {
+    const canvasWindow = window.document === this.canvas.ownerDocument ? window : this.canvas.ownerDocument.defaultView ?? this.canvas.ownerDocument;
+    return {
+      addEventListener: canvasWindow.addEventListener.bind(
+        canvasWindow
+      ),
+      removeEventListener: canvasWindow.removeEventListener.bind(
+        canvasWindow
+      )
+    };
+  }
+  _removeMoveUpEventListeners() {
+    const { removeEventListener } = this._getListenerFunctions();
+    removeEventListener("pointermove", this._handlePointerMove);
+    removeEventListener("pointerup", this._handlePointerUp);
+    removeEventListener("mousemove", this._handleMouseMove);
+    removeEventListener("mouseup", this._handleMouseUp);
+    removeEventListener("touchmove", this._handleTouchMove);
+    removeEventListener("touchend", this._handleTouchEnd);
+  }
+  isEmpty() {
+    return this._isEmpty;
+  }
+  fromData(pointGroups, { clear = true } = {}) {
+    if (clear) {
+      this.clear();
+    }
+    this._fromData(
+      pointGroups,
+      this._drawCurve.bind(this),
+      this._drawDot.bind(this)
+    );
+    this._data = this._data.concat(pointGroups);
+  }
+  toData() {
+    return this._data;
+  }
+  _isLeftButtonPressed(event, only) {
+    if (only) {
+      return event.buttons === 1;
+    }
+    return (event.buttons & 1) === 1;
+  }
+  _pointerEventToSignatureEvent(event) {
+    return {
+      event,
+      type: event.type,
+      x: event.clientX,
+      y: event.clientY,
+      pressure: "pressure" in event ? event.pressure : 0
+    };
+  }
+  _touchEventToSignatureEvent(event) {
+    const touch = event.changedTouches[0];
+    return {
+      event,
+      type: event.type,
+      x: touch.clientX,
+      y: touch.clientY,
+      pressure: touch.force
+    };
+  }
+  // Event handlers
+  _handleMouseDown(event) {
+    if (!this._isLeftButtonPressed(event, true) || this._drawingStroke) {
+      return;
+    }
+    this._strokeBegin(this._pointerEventToSignatureEvent(event));
+  }
+  _handleMouseMove(event) {
+    if (!this._isLeftButtonPressed(event, true) || !this._drawingStroke) {
+      this._strokeEnd(this._pointerEventToSignatureEvent(event), false);
+      return;
+    }
+    this._strokeMoveUpdate(this._pointerEventToSignatureEvent(event));
+  }
+  _handleMouseUp(event) {
+    if (this._isLeftButtonPressed(event)) {
+      return;
+    }
+    this._strokeEnd(this._pointerEventToSignatureEvent(event));
+  }
+  _handleTouchStart(event) {
+    if (event.targetTouches.length !== 1 || this._drawingStroke) {
+      return;
+    }
+    if (event.cancelable) {
+      event.preventDefault();
+    }
+    this._strokeBegin(this._touchEventToSignatureEvent(event));
+  }
+  _handleTouchMove(event) {
+    if (event.targetTouches.length !== 1) {
+      return;
+    }
+    if (event.cancelable) {
+      event.preventDefault();
+    }
+    if (!this._drawingStroke) {
+      this._strokeEnd(this._touchEventToSignatureEvent(event), false);
+      return;
+    }
+    this._strokeMoveUpdate(this._touchEventToSignatureEvent(event));
+  }
+  _handleTouchEnd(event) {
+    if (event.targetTouches.length !== 0) {
+      return;
+    }
+    if (event.cancelable) {
+      event.preventDefault();
+    }
+    this._strokeEnd(this._touchEventToSignatureEvent(event));
+  }
+  _getPointerId(event) {
+    return event.persistentDeviceId || event.pointerId;
+  }
+  _allowPointerId(event, allowUndefined = false) {
+    if (typeof this._strokePointerId === "undefined") {
+      return allowUndefined;
+    }
+    return this._getPointerId(event) === this._strokePointerId;
+  }
+  _handlePointerDown(event) {
+    if (this._drawingStroke || !this._isLeftButtonPressed(event) || !this._allowPointerId(event, true)) {
+      return;
+    }
+    this._strokePointerId = this._getPointerId(event);
+    event.preventDefault();
+    this._strokeBegin(this._pointerEventToSignatureEvent(event));
+  }
+  _handlePointerMove(event) {
+    if (!this._allowPointerId(event)) {
+      return;
+    }
+    if (!this._isLeftButtonPressed(event, true) || !this._drawingStroke) {
+      this._strokeEnd(this._pointerEventToSignatureEvent(event), false);
+      return;
+    }
+    event.preventDefault();
+    this._strokeMoveUpdate(this._pointerEventToSignatureEvent(event));
+  }
+  _handlePointerUp(event) {
+    if (this._isLeftButtonPressed(event) || !this._allowPointerId(event)) {
+      return;
+    }
+    event.preventDefault();
+    this._strokeEnd(this._pointerEventToSignatureEvent(event));
+  }
+  _getPointGroupOptions(group) {
+    return {
+      penColor: group && "penColor" in group ? group.penColor : this.penColor,
+      dotSize: group && "dotSize" in group ? group.dotSize : this.dotSize,
+      minWidth: group && "minWidth" in group ? group.minWidth : this.minWidth,
+      maxWidth: group && "maxWidth" in group ? group.maxWidth : this.maxWidth,
+      velocityFilterWeight: group && "velocityFilterWeight" in group ? group.velocityFilterWeight : this.velocityFilterWeight,
+      compositeOperation: group && "compositeOperation" in group ? group.compositeOperation : this.compositeOperation
+    };
+  }
+  // Private methods
+  _strokeBegin(event) {
+    const cancelled = !this.dispatchEvent(
+      new CustomEvent("beginStroke", { detail: event, cancelable: true })
+    );
+    if (cancelled) {
+      return;
+    }
+    const { addEventListener } = this._getListenerFunctions();
+    switch (event.event.type) {
+      case "mousedown":
+        addEventListener("mousemove", this._handleMouseMove, {
+          passive: false
         });
+        addEventListener("mouseup", this._handleMouseUp, { passive: false });
+        break;
+      case "touchstart":
+        addEventListener("touchmove", this._handleTouchMove, {
+          passive: false
+        });
+        addEventListener("touchend", this._handleTouchEnd, { passive: false });
+        break;
+      case "pointerdown":
+        addEventListener("pointermove", this._handlePointerMove, {
+          passive: false
+        });
+        addEventListener("pointerup", this._handlePointerUp, {
+          passive: false
+        });
+        break;
     }
-    toDataURL(type = 'image/png', encoderOptions) {
-        switch (type) {
-            case 'image/svg+xml':
-                if (typeof encoderOptions !== 'object') {
-                    encoderOptions = undefined;
-                }
-                return `data:image/svg+xml;base64,${btoa(this.toSVG(encoderOptions))}`;
-            default:
-                if (typeof encoderOptions !== 'number') {
-                    encoderOptions = undefined;
-                }
-                return this.canvas.toDataURL(type, encoderOptions);
+    this._drawingStroke = true;
+    const pointGroupOptions = this._getPointGroupOptions();
+    const newPointGroup = {
+      ...pointGroupOptions,
+      points: []
+    };
+    this._data.push(newPointGroup);
+    this._reset(pointGroupOptions);
+    this._strokeUpdate(event);
+  }
+  _strokeUpdate(event) {
+    if (!this._drawingStroke) {
+      return;
+    }
+    if (this._data.length === 0) {
+      this._strokeBegin(event);
+      return;
+    }
+    this.dispatchEvent(
+      new CustomEvent("beforeUpdateStroke", { detail: event })
+    );
+    const point = this._createPoint(event.x, event.y, event.pressure);
+    const lastPointGroup = this._data[this._data.length - 1];
+    const lastPoints = lastPointGroup.points;
+    const lastPoint = lastPoints.length > 0 && lastPoints[lastPoints.length - 1];
+    const isLastPointTooClose = lastPoint ? point.distanceTo(lastPoint) <= this.minDistance : false;
+    const pointGroupOptions = this._getPointGroupOptions(lastPointGroup);
+    if (!lastPoint || !(lastPoint && isLastPointTooClose)) {
+      const curve = this._addPoint(point, pointGroupOptions);
+      if (!lastPoint) {
+        this._drawDot(point, pointGroupOptions);
+      } else if (curve) {
+        this._drawCurve(curve, pointGroupOptions);
+      }
+      lastPoints.push({
+        time: point.time,
+        x: point.x,
+        y: point.y,
+        pressure: point.pressure
+      });
+    }
+    this.dispatchEvent(new CustomEvent("afterUpdateStroke", { detail: event }));
+  }
+  _strokeEnd(event, shouldUpdate = true) {
+    this._removeMoveUpEventListeners();
+    if (!this._drawingStroke) {
+      return;
+    }
+    if (shouldUpdate) {
+      this._strokeUpdate(event);
+    }
+    this._drawingStroke = false;
+    this._strokePointerId = void 0;
+    this.dispatchEvent(new CustomEvent("endStroke", { detail: event }));
+  }
+  _handlePointerEvents() {
+    this._drawingStroke = false;
+    this.canvas.addEventListener("pointerdown", this._handlePointerDown, {
+      passive: false
+    });
+  }
+  _handleMouseEvents() {
+    this._drawingStroke = false;
+    this.canvas.addEventListener("mousedown", this._handleMouseDown, {
+      passive: false
+    });
+  }
+  _handleTouchEvents() {
+    this.canvas.addEventListener("touchstart", this._handleTouchStart, {
+      passive: false
+    });
+  }
+  // Called when a new line is started
+  _reset(options) {
+    this._lastPoints = [];
+    this._lastVelocity = 0;
+    this._lastWidth = (options.minWidth + options.maxWidth) / 2;
+    this._ctx.fillStyle = options.penColor;
+    this._ctx.globalCompositeOperation = options.compositeOperation;
+  }
+  _createPoint(x, y, pressure) {
+    const rect = this.canvas.getBoundingClientRect();
+    return new Point(
+      x - rect.left,
+      y - rect.top,
+      pressure,
+      (/* @__PURE__ */ new Date()).getTime()
+    );
+  }
+  // Add point to _lastPoints array and generate a new curve if there are enough points (i.e. 3)
+  _addPoint(point, options) {
+    const { _lastPoints } = this;
+    _lastPoints.push(point);
+    if (_lastPoints.length > 2) {
+      if (_lastPoints.length === 3) {
+        _lastPoints.unshift(_lastPoints[0]);
+      }
+      const widths = this._calculateCurveWidths(
+        _lastPoints[1],
+        _lastPoints[2],
+        options
+      );
+      const curve = Bezier.fromPoints(_lastPoints, widths);
+      _lastPoints.shift();
+      return curve;
+    }
+    return null;
+  }
+  _calculateCurveWidths(startPoint, endPoint, options) {
+    const velocity = options.velocityFilterWeight * endPoint.velocityFrom(startPoint) + (1 - options.velocityFilterWeight) * this._lastVelocity;
+    const newWidth = this._strokeWidth(velocity, options);
+    const widths = {
+      end: newWidth,
+      start: this._lastWidth
+    };
+    this._lastVelocity = velocity;
+    this._lastWidth = newWidth;
+    return widths;
+  }
+  _strokeWidth(velocity, options) {
+    return Math.max(options.maxWidth / (velocity + 1), options.minWidth);
+  }
+  _drawCurveSegment(x, y, width) {
+    const ctx = this._ctx;
+    ctx.moveTo(x, y);
+    ctx.arc(x, y, width, 0, 2 * Math.PI, false);
+    this._isEmpty = false;
+  }
+  _drawCurve(curve, options) {
+    const ctx = this._ctx;
+    const widthDelta = curve.endWidth - curve.startWidth;
+    const drawSteps = Math.ceil(curve.length()) * 2;
+    ctx.beginPath();
+    ctx.fillStyle = options.penColor;
+    for (let i = 0; i < drawSteps; i += 1) {
+      const t = i / drawSteps;
+      const tt = t * t;
+      const ttt = tt * t;
+      const u = 1 - t;
+      const uu = u * u;
+      const uuu = uu * u;
+      let x = uuu * curve.startPoint.x;
+      x += 3 * uu * t * curve.control1.x;
+      x += 3 * u * tt * curve.control2.x;
+      x += ttt * curve.endPoint.x;
+      let y = uuu * curve.startPoint.y;
+      y += 3 * uu * t * curve.control1.y;
+      y += 3 * u * tt * curve.control2.y;
+      y += ttt * curve.endPoint.y;
+      const width = Math.min(
+        curve.startWidth + ttt * widthDelta,
+        options.maxWidth
+      );
+      this._drawCurveSegment(x, y, width);
+    }
+    ctx.closePath();
+    ctx.fill();
+  }
+  _drawDot(point, options) {
+    const ctx = this._ctx;
+    const width = options.dotSize > 0 ? options.dotSize : (options.minWidth + options.maxWidth) / 2;
+    ctx.beginPath();
+    this._drawCurveSegment(point.x, point.y, width);
+    ctx.closePath();
+    ctx.fillStyle = options.penColor;
+    ctx.fill();
+  }
+  _fromData(pointGroups, drawCurve, drawDot) {
+    for (const group of pointGroups) {
+      const { points } = group;
+      const pointGroupOptions = this._getPointGroupOptions(group);
+      if (points.length > 1) {
+        for (let j = 0; j < points.length; j += 1) {
+          const basicPoint = points[j];
+          const point = new Point(
+            basicPoint.x,
+            basicPoint.y,
+            basicPoint.pressure,
+            basicPoint.time
+          );
+          if (j === 0) {
+            this._reset(pointGroupOptions);
+          }
+          const curve = this._addPoint(point, pointGroupOptions);
+          if (curve) {
+            drawCurve(curve, pointGroupOptions);
+          }
         }
-    }
-    on() {
-        this.canvas.style.touchAction = 'none';
-        this.canvas.style.msTouchAction = 'none';
-        this.canvas.style.userSelect = 'none';
-        const isIOS = /Macintosh/.test(navigator.userAgent) && 'ontouchstart' in document;
-        if (window.PointerEvent && !isIOS) {
-            this._handlePointerEvents();
-        }
-        else {
-            this._handleMouseEvents();
-            if ('ontouchstart' in window) {
-                this._handleTouchEvents();
-            }
-        }
-    }
-    off() {
-        this.canvas.style.touchAction = 'auto';
-        this.canvas.style.msTouchAction = 'auto';
-        this.canvas.style.userSelect = 'auto';
-        this.canvas.removeEventListener('pointerdown', this._handlePointerDown);
-        this.canvas.removeEventListener('mousedown', this._handleMouseDown);
-        this.canvas.removeEventListener('touchstart', this._handleTouchStart);
-        this._removeMoveUpEventListeners();
-    }
-    _getListenerFunctions() {
-        var _a;
-        const canvasWindow = window.document === this.canvas.ownerDocument
-            ? window
-            : (_a = this.canvas.ownerDocument.defaultView) !== null && _a !== void 0 ? _a : this.canvas.ownerDocument;
-        return {
-            addEventListener: canvasWindow.addEventListener.bind(canvasWindow),
-            removeEventListener: canvasWindow.removeEventListener.bind(canvasWindow),
-        };
-    }
-    _removeMoveUpEventListeners() {
-        const { removeEventListener } = this._getListenerFunctions();
-        removeEventListener('pointermove', this._handlePointerMove);
-        removeEventListener('pointerup', this._handlePointerUp);
-        removeEventListener('mousemove', this._handleMouseMove);
-        removeEventListener('mouseup', this._handleMouseUp);
-        removeEventListener('touchmove', this._handleTouchMove);
-        removeEventListener('touchend', this._handleTouchEnd);
-    }
-    isEmpty() {
-        return this._isEmpty;
-    }
-    fromData(pointGroups, { clear = true } = {}) {
-        if (clear) {
-            this.clear();
-        }
-        this._fromData(pointGroups, this._drawCurve.bind(this), this._drawDot.bind(this));
-        this._data = this._data.concat(pointGroups);
-    }
-    toData() {
-        return this._data;
-    }
-    _isLeftButtonPressed(event, only) {
-        if (only) {
-            return event.buttons === 1;
-        }
-        return (event.buttons & 1) === 1;
-    }
-    _pointerEventToSignatureEvent(event) {
-        return {
-            event: event,
-            type: event.type,
-            x: event.clientX,
-            y: event.clientY,
-            pressure: 'pressure' in event ? event.pressure : 0,
-        };
-    }
-    _touchEventToSignatureEvent(event) {
-        const touch = event.changedTouches[0];
-        return {
-            event: event,
-            type: event.type,
-            x: touch.clientX,
-            y: touch.clientY,
-            pressure: touch.force,
-        };
-    }
-    _getPointGroupOptions(group) {
-        return {
-            penColor: group && 'penColor' in group ? group.penColor : this.penColor,
-            dotSize: group && 'dotSize' in group ? group.dotSize : this.dotSize,
-            minWidth: group && 'minWidth' in group ? group.minWidth : this.minWidth,
-            maxWidth: group && 'maxWidth' in group ? group.maxWidth : this.maxWidth,
-            velocityFilterWeight: group && 'velocityFilterWeight' in group
-                ? group.velocityFilterWeight
-                : this.velocityFilterWeight,
-            compositeOperation: group && 'compositeOperation' in group
-                ? group.compositeOperation
-                : this.compositeOperation,
-        };
-    }
-    _strokeBegin(event) {
-        const cancelled = !this.dispatchEvent(new CustomEvent('beginStroke', { detail: event, cancelable: true }));
-        if (cancelled) {
-            return;
-        }
-        const { addEventListener } = this._getListenerFunctions();
-        switch (event.event.type) {
-            case 'mousedown':
-                addEventListener('mousemove', this._handleMouseMove);
-                addEventListener('mouseup', this._handleMouseUp);
-                break;
-            case 'touchstart':
-                addEventListener('touchmove', this._handleTouchMove);
-                addEventListener('touchend', this._handleTouchEnd);
-                break;
-            case 'pointerdown':
-                addEventListener('pointermove', this._handlePointerMove);
-                addEventListener('pointerup', this._handlePointerUp);
-                break;
-        }
-        this._drawingStroke = true;
-        const pointGroupOptions = this._getPointGroupOptions();
-        const newPointGroup = Object.assign(Object.assign({}, pointGroupOptions), { points: [] });
-        this._data.push(newPointGroup);
+      } else {
         this._reset(pointGroupOptions);
-        this._strokeUpdate(event);
+        drawDot(points[0], pointGroupOptions);
+      }
     }
-    _strokeUpdate(event) {
-        if (!this._drawingStroke) {
-            return;
+  }
+  toSVG({ includeBackgroundColor = false, includeDataUrl = false } = {}) {
+    const pointGroups = this._data;
+    const ratio = Math.max(window.devicePixelRatio || 1, 1);
+    const minX = 0;
+    const minY = 0;
+    const maxX = this.canvas.width / ratio;
+    const maxY = this.canvas.height / ratio;
+    const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    svg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+    svg.setAttribute("xmlns:xlink", "http://www.w3.org/1999/xlink");
+    svg.setAttribute("viewBox", `${minX} ${minY} ${maxX} ${maxY}`);
+    svg.setAttribute("width", maxX.toString());
+    svg.setAttribute("height", maxY.toString());
+    if (includeBackgroundColor && this.backgroundColor) {
+      const rect = document.createElement("rect");
+      rect.setAttribute("width", "100%");
+      rect.setAttribute("height", "100%");
+      rect.setAttribute("fill", this.backgroundColor);
+      svg.appendChild(rect);
+    }
+    if (includeDataUrl && this._dataUrl) {
+      const ratio2 = this._dataUrlOptions?.ratio || window.devicePixelRatio || 1;
+      const width = this._dataUrlOptions?.width || this.canvas.width / ratio2;
+      const height = this._dataUrlOptions?.height || this.canvas.height / ratio2;
+      const xOffset = this._dataUrlOptions?.xOffset || 0;
+      const yOffset = this._dataUrlOptions?.yOffset || 0;
+      const image = document.createElement("image");
+      image.setAttribute("x", xOffset.toString());
+      image.setAttribute("y", yOffset.toString());
+      image.setAttribute("width", width.toString());
+      image.setAttribute("height", height.toString());
+      image.setAttribute("preserveAspectRatio", "none");
+      image.setAttribute("href", this._dataUrl);
+      svg.appendChild(image);
+    }
+    this._fromData(
+      pointGroups,
+      (curve, { penColor }) => {
+        const path = document.createElement("path");
+        if (!isNaN(curve.control1.x) && !isNaN(curve.control1.y) && !isNaN(curve.control2.x) && !isNaN(curve.control2.y)) {
+          const attr = `M ${curve.startPoint.x.toFixed(3)},${curve.startPoint.y.toFixed(
+            3
+          )} C ${curve.control1.x.toFixed(3)},${curve.control1.y.toFixed(3)} ${curve.control2.x.toFixed(3)},${curve.control2.y.toFixed(3)} ${curve.endPoint.x.toFixed(3)},${curve.endPoint.y.toFixed(3)}`;
+          path.setAttribute("d", attr);
+          path.setAttribute("stroke-width", (curve.endWidth * 2.25).toFixed(3));
+          path.setAttribute("stroke", penColor);
+          path.setAttribute("fill", "none");
+          path.setAttribute("stroke-linecap", "round");
+          svg.appendChild(path);
         }
-        if (this._data.length === 0) {
-            this._strokeBegin(event);
-            return;
-        }
-        this.dispatchEvent(new CustomEvent('beforeUpdateStroke', { detail: event }));
-        const point = this._createPoint(event.x, event.y, event.pressure);
-        const lastPointGroup = this._data[this._data.length - 1];
-        const lastPoints = lastPointGroup.points;
-        const lastPoint = lastPoints.length > 0 && lastPoints[lastPoints.length - 1];
-        const isLastPointTooClose = lastPoint
-            ? point.distanceTo(lastPoint) <= this.minDistance
-            : false;
-        const pointGroupOptions = this._getPointGroupOptions(lastPointGroup);
-        if (!lastPoint || !(lastPoint && isLastPointTooClose)) {
-            const curve = this._addPoint(point, pointGroupOptions);
-            if (!lastPoint) {
-                this._drawDot(point, pointGroupOptions);
-            }
-            else if (curve) {
-                this._drawCurve(curve, pointGroupOptions);
-            }
-            lastPoints.push({
-                time: point.time,
-                x: point.x,
-                y: point.y,
-                pressure: point.pressure,
-            });
-        }
-        this.dispatchEvent(new CustomEvent('afterUpdateStroke', { detail: event }));
-    }
-    _strokeEnd(event, shouldUpdate = true) {
-        this._removeMoveUpEventListeners();
-        if (!this._drawingStroke) {
-            return;
-        }
-        if (shouldUpdate) {
-            this._strokeUpdate(event);
-        }
-        this._drawingStroke = false;
-        this.dispatchEvent(new CustomEvent('endStroke', { detail: event }));
-    }
-    _handlePointerEvents() {
-        this._drawingStroke = false;
-        this.canvas.addEventListener('pointerdown', this._handlePointerDown);
-    }
-    _handleMouseEvents() {
-        this._drawingStroke = false;
-        this.canvas.addEventListener('mousedown', this._handleMouseDown);
-    }
-    _handleTouchEvents() {
-        this.canvas.addEventListener('touchstart', this._handleTouchStart);
-    }
-    _reset(options) {
-        this._lastPoints = [];
-        this._lastVelocity = 0;
-        this._lastWidth = (options.minWidth + options.maxWidth) / 2;
-        this._ctx.fillStyle = options.penColor;
-        this._ctx.globalCompositeOperation = options.compositeOperation;
-    }
-    _createPoint(x, y, pressure) {
-        const rect = this.canvas.getBoundingClientRect();
-        return new Point(x - rect.left, y - rect.top, pressure, new Date().getTime());
-    }
-    _addPoint(point, options) {
-        const { _lastPoints } = this;
-        _lastPoints.push(point);
-        if (_lastPoints.length > 2) {
-            if (_lastPoints.length === 3) {
-                _lastPoints.unshift(_lastPoints[0]);
-            }
-            const widths = this._calculateCurveWidths(_lastPoints[1], _lastPoints[2], options);
-            const curve = Bezier.fromPoints(_lastPoints, widths);
-            _lastPoints.shift();
-            return curve;
-        }
-        return null;
-    }
-    _calculateCurveWidths(startPoint, endPoint, options) {
-        const velocity = options.velocityFilterWeight * endPoint.velocityFrom(startPoint) +
-            (1 - options.velocityFilterWeight) * this._lastVelocity;
-        const newWidth = this._strokeWidth(velocity, options);
-        const widths = {
-            end: newWidth,
-            start: this._lastWidth,
-        };
-        this._lastVelocity = velocity;
-        this._lastWidth = newWidth;
-        return widths;
-    }
-    _strokeWidth(velocity, options) {
-        return Math.max(options.maxWidth / (velocity + 1), options.minWidth);
-    }
-    _drawCurveSegment(x, y, width) {
-        const ctx = this._ctx;
-        ctx.moveTo(x, y);
-        ctx.arc(x, y, width, 0, 2 * Math.PI, false);
-        this._isEmpty = false;
-    }
-    _drawCurve(curve, options) {
-        const ctx = this._ctx;
-        const widthDelta = curve.endWidth - curve.startWidth;
-        const drawSteps = Math.ceil(curve.length()) * 2;
-        ctx.beginPath();
-        ctx.fillStyle = options.penColor;
-        for (let i = 0; i < drawSteps; i += 1) {
-            const t = i / drawSteps;
-            const tt = t * t;
-            const ttt = tt * t;
-            const u = 1 - t;
-            const uu = u * u;
-            const uuu = uu * u;
-            let x = uuu * curve.startPoint.x;
-            x += 3 * uu * t * curve.control1.x;
-            x += 3 * u * tt * curve.control2.x;
-            x += ttt * curve.endPoint.x;
-            let y = uuu * curve.startPoint.y;
-            y += 3 * uu * t * curve.control1.y;
-            y += 3 * u * tt * curve.control2.y;
-            y += ttt * curve.endPoint.y;
-            const width = Math.min(curve.startWidth + ttt * widthDelta, options.maxWidth);
-            this._drawCurveSegment(x, y, width);
-        }
-        ctx.closePath();
-        ctx.fill();
-    }
-    _drawDot(point, options) {
-        const ctx = this._ctx;
-        const width = options.dotSize > 0
-            ? options.dotSize
-            : (options.minWidth + options.maxWidth) / 2;
-        ctx.beginPath();
-        this._drawCurveSegment(point.x, point.y, width);
-        ctx.closePath();
-        ctx.fillStyle = options.penColor;
-        ctx.fill();
-    }
-    _fromData(pointGroups, drawCurve, drawDot) {
-        for (const group of pointGroups) {
-            const { points } = group;
-            const pointGroupOptions = this._getPointGroupOptions(group);
-            if (points.length > 1) {
-                for (let j = 0; j < points.length; j += 1) {
-                    const basicPoint = points[j];
-                    const point = new Point(basicPoint.x, basicPoint.y, basicPoint.pressure, basicPoint.time);
-                    if (j === 0) {
-                        this._reset(pointGroupOptions);
-                    }
-                    const curve = this._addPoint(point, pointGroupOptions);
-                    if (curve) {
-                        drawCurve(curve, pointGroupOptions);
-                    }
-                }
-            }
-            else {
-                this._reset(pointGroupOptions);
-                drawDot(points[0], pointGroupOptions);
-            }
-        }
-    }
-    toSVG({ includeBackgroundColor = false } = {}) {
-        const pointGroups = this._data;
-        const ratio = Math.max(window.devicePixelRatio || 1, 1);
-        const minX = 0;
-        const minY = 0;
-        const maxX = this.canvas.width / ratio;
-        const maxY = this.canvas.height / ratio;
-        const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-        svg.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
-        svg.setAttribute('xmlns:xlink', 'http://www.w3.org/1999/xlink');
-        svg.setAttribute('viewBox', `${minX} ${minY} ${maxX} ${maxY}`);
-        svg.setAttribute('width', maxX.toString());
-        svg.setAttribute('height', maxY.toString());
-        if (includeBackgroundColor && this.backgroundColor) {
-            const rect = document.createElement('rect');
-            rect.setAttribute('width', '100%');
-            rect.setAttribute('height', '100%');
-            rect.setAttribute('fill', this.backgroundColor);
-            svg.appendChild(rect);
-        }
-        this._fromData(pointGroups, (curve, { penColor }) => {
-            const path = document.createElement('path');
-            if (!isNaN(curve.control1.x) &&
-                !isNaN(curve.control1.y) &&
-                !isNaN(curve.control2.x) &&
-                !isNaN(curve.control2.y)) {
-                const attr = `M ${curve.startPoint.x.toFixed(3)},${curve.startPoint.y.toFixed(3)} ` +
-                    `C ${curve.control1.x.toFixed(3)},${curve.control1.y.toFixed(3)} ` +
-                    `${curve.control2.x.toFixed(3)},${curve.control2.y.toFixed(3)} ` +
-                    `${curve.endPoint.x.toFixed(3)},${curve.endPoint.y.toFixed(3)}`;
-                path.setAttribute('d', attr);
-                path.setAttribute('stroke-width', (curve.endWidth * 2.25).toFixed(3));
-                path.setAttribute('stroke', penColor);
-                path.setAttribute('fill', 'none');
-                path.setAttribute('stroke-linecap', 'round');
-                svg.appendChild(path);
-            }
-        }, (point, { penColor, dotSize, minWidth, maxWidth }) => {
-            const circle = document.createElement('circle');
-            const size = dotSize > 0 ? dotSize : (minWidth + maxWidth) / 2;
-            circle.setAttribute('r', size.toString());
-            circle.setAttribute('cx', point.x.toString());
-            circle.setAttribute('cy', point.y.toString());
-            circle.setAttribute('fill', penColor);
-            svg.appendChild(circle);
-        });
-        return svg.outerHTML;
-    }
-}
+      },
+      (point, { penColor, dotSize, minWidth, maxWidth }) => {
+        const circle = document.createElement("circle");
+        const size = dotSize > 0 ? dotSize : (minWidth + maxWidth) / 2;
+        circle.setAttribute("r", size.toString());
+        circle.setAttribute("cx", point.x.toString());
+        circle.setAttribute("cy", point.y.toString());
+        circle.setAttribute("fill", penColor);
+        svg.appendChild(circle);
+      }
+    );
+    return svg.outerHTML;
+  }
+};
 
 function debounce(func, wait, onStart) {
   var timeout;
@@ -47469,7 +47637,10 @@ function useSignature (props, context, dependencies) {
     }, {
       flush: 'post'
     });
-    watch(modes, () => {
+    watch(modes, (n, o) => {
+      if (dataEquals(n, o)) {
+        return;
+      }
       initPad();
       setDefaultMode(true);
     });

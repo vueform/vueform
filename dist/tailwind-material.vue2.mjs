@@ -1,5 +1,5 @@
 /*!
- * Vueform v1.13.3 (https://github.com/vueform/vueform)
+ * Vueform v1.13.4 (https://github.com/vueform/vueform)
  * Copyright (c) 2025 Adam Berecz <adam@vueform.com>
  * Licensed under the MIT License
  */
@@ -21604,65 +21604,65 @@ var select = {
     } = _ref9;
     return [classes.select.placeholder, classes.select["placeholder_".concat(Size)]];
   },
-  $caret: (classes, _ref10) => {
+  $caret: (classes, _ref0) => {
+    var {
+      Size
+    } = _ref0;
+    return [classes.select.caret, classes.select["caret_".concat(Size)]];
+  },
+  $clear: (classes, _ref1) => {
+    var {
+      Size
+    } = _ref1;
+    return [classes.select.clear, classes.select["clear_".concat(Size)]];
+  },
+  $spinner: (classes, _ref10) => {
     var {
       Size
     } = _ref10;
-    return [classes.select.caret, classes.select["caret_".concat(Size)]];
-  },
-  $clear: (classes, _ref11) => {
-    var {
-      Size
-    } = _ref11;
-    return [classes.select.clear, classes.select["clear_".concat(Size)]];
-  },
-  $spinner: (classes, _ref12) => {
-    var {
-      Size
-    } = _ref12;
     return [classes.select.spinner, classes.select["spinner_".concat(Size)]];
   },
-  $dropdown: (classes, _ref13) => {
+  $dropdown: (classes, _ref11) => {
     var {
       Size,
       openDirection
-    } = _ref13;
+    } = _ref11;
     return [classes.select.dropdown, classes.select["dropdown_".concat(Size)], openDirection === 'top' ? null : classes.select.dropdownBottom];
   },
-  $dropdownTop: (classes, _ref14) => {
+  $dropdownTop: (classes, _ref12) => {
+    var {
+      Size
+    } = _ref12;
+    return [classes.select.dropdownTop, classes.select["dropdownTop_".concat(Size)]];
+  },
+  $groupLabel: (classes, _ref13) => {
+    var {
+      Size
+    } = _ref13;
+    return [classes.select.groupLabel, classes.select["groupLabel_".concat(Size)]];
+  },
+  $option: (classes, _ref14) => {
     var {
       Size
     } = _ref14;
-    return [classes.select.dropdownTop, classes.select["dropdownTop_".concat(Size)]];
+    return [classes.select.option, classes.select["option_".concat(Size)]];
   },
-  $groupLabel: (classes, _ref15) => {
+  $spacer: (classes, _ref15) => {
     var {
       Size
     } = _ref15;
-    return [classes.select.groupLabel, classes.select["groupLabel_".concat(Size)]];
+    return [classes.select.spacer, classes.select["spacer_".concat(Size)]];
   },
-  $option: (classes, _ref16) => {
+  $noOptions: (classes, _ref16) => {
     var {
       Size
     } = _ref16;
-    return [classes.select.option, classes.select["option_".concat(Size)]];
+    return [classes.select.noOptions, classes.select["noOptions_".concat(Size)]];
   },
-  $spacer: (classes, _ref17) => {
+  $noResults: (classes, _ref17) => {
     var {
       Size
     } = _ref17;
-    return [classes.select.spacer, classes.select["spacer_".concat(Size)]];
-  },
-  $noOptions: (classes, _ref18) => {
-    var {
-      Size
-    } = _ref18;
-    return [classes.select.noOptions, classes.select["noOptions_".concat(Size)]];
-  },
-  $noResults: (classes, _ref19) => {
-    var {
-      Size
-    } = _ref19;
     return [classes.select.noResults, classes.select["noResults_".concat(Size)]];
   }
 };
@@ -21714,10 +21714,10 @@ var groupBlocks = {
   description_sm: 'form-text-small-sm -mt-0.5',
   description_md: 'form-text-small -mt-0.5',
   description_lg: 'form-text-small-lg -mt-0.5',
-  $container: (classes, _ref20) => {
+  $container: (classes, _ref18) => {
     var {
       Size
-    } = _ref20;
+    } = _ref18;
     return [classes.container, classes["container_".concat(Size)]];
   }
 };
@@ -21743,7 +21743,7 @@ var classes = {
     button_sm: 'form-p-btn-sm form-radius-btn-sm form-text-sm',
     button_md: 'form-p-btn form-radius-btn form-text',
     button_lg: 'form-p-btn-lg form-radius-btn-lg form-text-lg',
-    $button: (classes, _ref21) => {
+    $button: (classes, _ref19) => {
       var {
         isDisabled,
         isLoading,
@@ -21753,7 +21753,7 @@ var classes = {
         secondary,
         full,
         align
-      } = _ref21;
+      } = _ref19;
       return [classes.button, danger ? classes.button_danger : null, secondary ? classes.button_secondary : null, !danger && !secondary ? classes.button_primary : null, classes["button_".concat(Size)], isDisabled ? classes.button_disabled : null, !isDisabled && !isLoading ? classes.button_enabled : null, isLoading ? classes.button_loading : null, isLoading && danger ? classes.button_loading_danger : null, isLoading && secondary ? classes.button_loading_secondary : null, isLoading && !secondary && !danger ? classes.button_loading_primary : null, full ? classes.button_full : classes.button_not_full, align === 'left' ? classes.button_left : null, align === 'center' ? classes.button_center : null, align === 'right' ? classes.button_right : null, buttonClass];
     }
   },
@@ -21778,27 +21778,27 @@ var classes = {
     text: 'cursor-pointer',
     text_left: 'rtl:-order-1',
     text_right: '-order-1 rtl:order-none',
-    $wrapper: (classes, _ref22) => {
+    $wrapper: (classes, _ref20) => {
       var {
         Size,
         align
-      } = _ref22;
+      } = _ref20;
       return [classes.wrapper, classes["wrapper_".concat(Size)], align === 'left' ? classes.wrapper_left : null, align === 'right' ? classes.wrapper_right : null];
     },
-    $input: (classes, _ref23) => {
+    $input: (classes, _ref21) => {
       var {
         isDisabled,
         Size,
         isDanger,
         align,
         standalone
-      } = _ref23;
+      } = _ref21;
       return [classes.input, classes["input_".concat(Size)], !isDisabled && !isDanger ? classes.input_default : null, isDisabled ? classes.input_disabled : null, isDanger ? classes.input_danger : null, align === 'left' ? [classes.input_left, classes["input_left_".concat(Size)]] : null, align === 'right' ? [classes.input_right, classes["input_right_".concat(Size)]] : null, standalone ? classes.input_standalone : null];
     },
-    $text: (classes, _ref24) => {
+    $text: (classes, _ref22) => {
       var {
         align
-      } = _ref24;
+      } = _ref22;
       return [classes.text, align === 'left' ? classes.text_left : null, align === 'right' ? classes.text_right : null];
     }
   }),
@@ -21808,10 +21808,10 @@ var classes = {
     wrapper_sm: '',
     wrapper_md: '',
     wrapper_lg: '',
-    $wrapper: (classes, _ref25) => {
+    $wrapper: (classes, _ref23) => {
       var {
         Size
-      } = _ref25;
+      } = _ref23;
       return [classes.wrapper, classes["wrapper_".concat(Size)]];
     }
   },
@@ -21821,10 +21821,10 @@ var classes = {
     wrapper_sm: 'form-radius-large-sm',
     wrapper_md: 'form-radius-large',
     wrapper_lg: 'form-radius-large-lg',
-    $wrapper: (classes, _ref26) => {
+    $wrapper: (classes, _ref24) => {
       var {
         Size
-      } = _ref26;
+      } = _ref24;
       return [classes.wrapper, classes["wrapper_".concat(Size)]];
     }
   },
@@ -21834,10 +21834,10 @@ var classes = {
     wrapper_sm: 'form-radius-large-sm',
     wrapper_md: 'form-radius-large',
     wrapper_lg: 'form-radius-large-lg',
-    $wrapper: (classes, _ref27) => {
+    $wrapper: (classes, _ref25) => {
       var {
         Size
-      } = _ref27;
+      } = _ref25;
       return [classes.wrapper, classes["wrapper_".concat(Size)]];
     }
   },
@@ -21857,18 +21857,18 @@ var classes = {
     button_sm: 'form-p-btn-sm form-radius-btn-sm form-text-sm',
     button_md: 'form-p-btn form-radius-btn form-text',
     button_lg: 'form-p-btn-lg form-radius-btn-lg form-text-lg',
-    $container: (classes, _ref28) => {
+    $container: (classes, _ref26) => {
       var {
         removing
-      } = _ref28;
+      } = _ref26;
       return [classes.container, removing ? classes.container_removing : null];
     },
-    $button: (classes, _ref29) => {
+    $button: (classes, _ref27) => {
       var {
         isDisabled,
         preparing,
         Size
-      } = _ref29;
+      } = _ref27;
       return [classes.button, classes["button_".concat(Size)], !isDisabled && !preparing ? classes.button_enabled : null, isDisabled || preparing ? classes.button_disabled : null];
     }
   },
@@ -21906,49 +21906,49 @@ var classes = {
     textWrapper_bottom: 'items-end',
     textWrapper_baseline: 'items-stretch',
     text: 'w-full',
-    $container: (classes, _ref30) => {
+    $container: (classes, _ref28) => {
       var {
         scrollable
-      } = _ref30;
+      } = _ref28;
       return [classes.container, scrollable ? classes.container_scrollable : null];
     },
-    $grid: (classes, _ref31) => {
+    $grid: (classes, _ref29) => {
       var {
         Size,
         align,
         fitWidth
-      } = _ref31;
+      } = _ref29;
       return [classes.grid, classes["grid_".concat(Size)], fitWidth ? classes.grid_fit : classes.grid_nofit];
     },
-    $cell: (classes, _ref32) => {
+    $cell: (classes, _ref30) => {
       return () => [classes.cell];
     },
-    $fieldWrapper: (classes, _ref33) => {
+    $fieldWrapper: (classes, _ref31) => {
       var {
         Size
-      } = _ref33;
-      return _ref34 => {
+      } = _ref31;
+      return _ref32 => {
         var {
           schema,
           align,
           valign,
           rowIndex,
           colIndex
-        } = _ref34;
+        } = _ref32;
         return [classes.fieldWrapper, classes["fieldWrapper_".concat(Size)], classes["fieldWrapper_".concat(align)], classes["fieldWrapper_".concat(valign)]];
       };
     },
-    $textWrapper: (classes, _ref35) => {
+    $textWrapper: (classes, _ref33) => {
       var {
         Size
-      } = _ref35;
-      return _ref36 => {
+      } = _ref33;
+      return _ref34 => {
         var {
           align,
           valign,
           rowIndex,
           colIndex
-        } = _ref36;
+        } = _ref34;
         return [classes.textWrapper, classes["textWrapper_".concat(Size)], classes["textWrapper_".concat(align)], classes["textWrapper_".concat(valign)]];
       };
     }
@@ -21959,10 +21959,10 @@ var classes = {
     wrapper_sm: 'form-gap-gutter-sm',
     wrapper_md: 'form-gap-gutter',
     wrapper_lg: 'form-gap-gutter-lg',
-    $wrapper: (classes, _ref37) => {
+    $wrapper: (classes, _ref35) => {
       var {
         Size
-      } = _ref37;
+      } = _ref35;
       return [classes.wrapper, classes["wrapper_".concat(Size)]];
     }
   },
@@ -21989,30 +21989,30 @@ var classes = {
     add_sm: 'form-mt-gutter-sm form-radius-small-sm form-text-small-sm form-p-btn-small-sm',
     add_md: 'form-mt-gutter form-radius-small form-text-small form-p-btn-small',
     add_lg: 'form-mt-gutter-lg form-radius-small-lg form-text-small-lg form-p-btn-small-lg',
-    $list: (classes, _ref38) => {
+    $list: (classes, _ref36) => {
       var {
         isDisabled,
         sorting,
         Size
-      } = _ref38;
+      } = _ref36;
       return [classes.list, classes["list_".concat(Size)], isDisabled ? classes.list_disabled : null, sorting ? classes.list_sorting : null];
     },
-    $listItem: (classes, _ref39) => {
+    $listItem: (classes, _ref37) => {
+      var {
+        Size
+      } = _ref37;
+      return [classes.listItem, classes["listItem_".concat(Size)]];
+    },
+    $handle: (classes, _ref38) => {
+      var {
+        Size
+      } = _ref38;
+      return [classes.handle, classes["handle_".concat(Size)]];
+    },
+    $add: (classes, _ref39) => {
       var {
         Size
       } = _ref39;
-      return [classes.listItem, classes["listItem_".concat(Size)]];
-    },
-    $handle: (classes, _ref40) => {
-      var {
-        Size
-      } = _ref40;
-      return [classes.handle, classes["handle_".concat(Size)]];
-    },
-    $add: (classes, _ref41) => {
-      var {
-        Size
-      } = _ref41;
       return [classes.add, classes["add_".concat(Size)]];
     }
   },
@@ -22053,55 +22053,55 @@ var classes = {
     add_sm: 'form-mt-gutter-sm form-radius-small-sm form-text-small-sm form-p-btn-small-sm',
     add_md: 'form-mt-gutter form-radius-small form-text-small form-p-btn-small',
     add_lg: 'form-mt-gutter-lg form-radius-small-lg form-text-small-lg form-p-btn-small-lg',
-    $grid: (classes, _ref42) => {
+    $grid: (classes, _ref40) => {
       var {
         scrollable
-      } = _ref42;
+      } = _ref40;
       return [classes.grid, scrollable ? classes.grid_scrollable : null];
     },
-    $header: (classes, _ref43) => {
+    $header: (classes, _ref41) => {
       var {
         Size,
         padding,
         stickyCols,
         colWrap
-      } = _ref43;
+      } = _ref41;
       return [classes.header, classes["header_".concat(Size)], padding ? classes.header_padding : null, stickyCols ? classes.header_sticky : classes.header_not_sticky, colWrap ? classes.header_wrap : classes.header_nowrap];
     },
-    $rowLabel: (classes, _ref44) => {
+    $rowLabel: (classes, _ref42) => {
       var {
         stickyRows,
         rowWrap
-      } = _ref44;
+      } = _ref42;
       return [classes.rowLabel, stickyRows ? classes.rowLabel_sticky : classes.rowLabel_not_sticky, rowWrap ? classes.rowLabel_wrap : classes.rowLabel_nowrap];
     },
-    $cell: (classes, _ref45) => {
+    $cell: (classes, _ref43) => {
       var {
         Size
-      } = _ref45;
+      } = _ref43;
       return [classes.cell, classes["cell_".concat(Size)]];
     },
-    $cellWrapper: (classes, _ref46) => {
+    $cellWrapper: (classes, _ref44) => {
       var {
         padding,
         centered,
         cells$
-      } = _ref46;
+      } = _ref44;
       return (type, name) => {
         var _cells$$name, _cells$$name2;
         return [classes.cellWrapper, padding ? classes.cellWrapper_padding : null, ['radio', 'checkbox', 'toggle'].includes(type) ? classes.cellWrapper_centered : null, (_cells$$name = cells$[name]) !== null && _cells$$name !== void 0 && _cells$$name.error ? classes.cellWrapper_error : null, (_cells$$name2 = cells$[name]) !== null && _cells$$name2 !== void 0 && _cells$$name2.isSuccess ? classes.cellWrapper_success : null];
       };
     },
-    $add: (classes, _ref47) => {
+    $add: (classes, _ref45) => {
       var {
         Size
-      } = _ref47;
+      } = _ref45;
       return [classes.add, classes["add_".concat(Size)]];
     },
-    $remove: (classes, _ref48) => {
+    $remove: (classes, _ref46) => {
       var {
         removeHover
-      } = _ref48;
+      } = _ref46;
       return [classes.remove, removeHover ? classes.remove_hover : null];
     }
   },
@@ -22150,34 +22150,34 @@ var classes = {
     button_sm: 'form-p-btn-sm form-radius-btn-sm form-text-sm',
     button_md: 'form-p-btn form-radius-btn form-text',
     button_lg: 'form-p-btn-lg form-radius-btn-lg form-text-lg',
-    $list: (classes, _ref49) => {
+    $list: (classes, _ref47) => {
       var {
         isDisabled,
         sorting,
         view,
         Size
-      } = _ref49;
+      } = _ref47;
       return [classes.list, classes["list_".concat(Size)], isDisabled ? classes.list_disabled : null, sorting ? classes.list_sorting : null, classes["list_".concat(view)], classes["list_".concat(view, "_").concat(Size)]];
     },
-    $handle: (classes, _ref50) => {
+    $handle: (classes, _ref48) => {
       var {
         view,
         Size
-      } = _ref50;
+      } = _ref48;
       return [classes.handle, classes["handle_".concat(view)], classes["handle_".concat(view, "_").concat(Size)]];
     },
-    $handleIcon: (classes, _ref51) => {
+    $handleIcon: (classes, _ref49) => {
       var {
         view
-      } = _ref51;
+      } = _ref49;
       return [classes.handleIcon, classes["handleIcon_".concat(view)]];
     },
-    $button: (classes, _ref52) => {
+    $button: (classes, _ref50) => {
       var {
         isDisabled,
         preparing,
         Size
-      } = _ref52;
+      } = _ref50;
       return [classes.button, classes["button_".concat(Size)], !isDisabled && !preparing ? classes.button_enabled : null, isDisabled || preparing ? classes.button_disabled : null];
     }
   },
@@ -22209,22 +22209,22 @@ var classes = {
       multipleLabel_noCaretClear_sm: 'form-pl-input-sm form-pr-input-sm with-floating:form-p-input-floating-sm rtl:form-pr-input-sm rtl:form-pl-input-sm',
       multipleLabel_noCaretClear_md: 'form-pl-input form-pr-input with-floating:form-p-input-floating rtl:form-pr-input rtl:form-pl-input',
       multipleLabel_noCaretClear_lg: 'form-pl-input-lg form-pr-input-lg with-floating:form-p-input-floating-lg rtl:form-pr-input-lg rtl:form-pl-input-lg',
-      $multipleLabel: (classes, _ref53) => {
+      $multipleLabel: (classes, _ref51) => {
         var {
           Size,
           caret,
           canClear
-        } = _ref53;
+        } = _ref51;
         return [classes.select.multipleLabel, classes.select["multipleLabel_".concat(Size)], canClear && caret ? classes.select["multipleLabel_caretClear_".concat(Size)] : null, !caret && canClear ? classes.select["multipleLabel_noCaret_".concat(Size)] : null, !canClear && caret ? classes.select["multipleLabel_noClear_".concat(Size)] : null, !canClear && !caret ? classes.select["multipleLabel_noCaretClear_".concat(Size)] : null];
       }
     }),
-    $input: (classes, _ref54) => {
+    $input: (classes, _ref52) => {
       var {
         isDisabled,
         Size,
         isDanger,
         isSuccess
-      } = _ref54;
+      } = _ref52;
       return [classes.input, classes["input_".concat(Size)], isDisabled ? classes.input_disabled : null, !isDisabled && !isSuccess && !isDanger ? classes.input_default : null, !isDisabled && isDanger ? classes.input_danger : null, !isDisabled && isSuccess ? classes.input_success : null];
     }
   },
@@ -22235,11 +22235,11 @@ var classes = {
     wrapper_md: 'form-gap-gutter',
     wrapper_lg: 'form-gap-gutter-lg',
     wrapper_embed: '!block',
-    $wrapper: (classes, _ref55) => {
+    $wrapper: (classes, _ref53) => {
       var {
         Size,
         embed
-      } = _ref55;
+      } = _ref53;
       return [classes.wrapper, classes["wrapper_".concat(Size)], embed ? classes.wrapper_embed : null];
     }
   },
@@ -22255,10 +22255,10 @@ var classes = {
     country: 'ml-3 rtl:ml-0 rtl:mr-3 font-semibold text-[15px] form-color-input flex',
     number: 'ml-2 rtl:ml-0 rtl:mr-2 form-color-muted rtl:order-1',
     placeholder: 'bg-form-flags bg-[length:24px_4716px] overflow-hidden bg-no-repeat rounded-sm bg-[0px_0px] w-[24px] h-[16px] opacity-60',
-    $optionsWrapper: (classes, _ref56) => {
+    $optionsWrapper: (classes, _ref54) => {
       var {
         Size
-      } = _ref56;
+      } = _ref54;
       return [classes.optionsWrapper, classes["optionsWrapper_".concat(Size)]];
     },
     $option: classes => active => [classes.option, active ? classes.option_active : null]
@@ -22279,27 +22279,27 @@ var classes = {
     text: 'cursor-pointer',
     text_left: 'rtl:-order-1',
     text_right: '-order-1 rtl:order-none',
-    $wrapper: (classes, _ref57) => {
+    $wrapper: (classes, _ref55) => {
       var {
         Size,
         align
-      } = _ref57;
+      } = _ref55;
       return [classes.wrapper, classes["wrapper_".concat(Size)], align === 'left' ? classes.wrapper_left : null, align === 'right' ? classes.wrapper_right : null];
     },
-    $input: (classes, _ref58) => {
+    $input: (classes, _ref56) => {
       var {
         isDisabled,
         Size,
         isDanger,
         align,
         standalone
-      } = _ref58;
+      } = _ref56;
       return [classes.input, classes["input_".concat(Size)], !isDisabled && !isDanger ? classes.input_default : null, isDisabled ? classes.input_disabled : null, isDanger ? classes.input_danger : null, align === 'left' ? [classes.input_left, classes["input_left_".concat(Size)]] : null, align === 'right' ? [classes.input_right, classes["input_right_".concat(Size)]] : null, standalone ? classes.input_standalone : null];
     },
-    $text: (classes, _ref59) => {
+    $text: (classes, _ref57) => {
       var {
         align
-      } = _ref59;
+      } = _ref57;
       return [classes.text, align === 'left' ? classes.text_left : null, align === 'right' ? classes.text_right : null];
     }
   }),
@@ -22309,10 +22309,10 @@ var classes = {
     wrapper_sm: '',
     wrapper_md: '',
     wrapper_lg: '',
-    $wrapper: (classes, _ref60) => {
+    $wrapper: (classes, _ref58) => {
       var {
         Size
-      } = _ref60;
+      } = _ref58;
       return [classes.wrapper, classes["wrapper_".concat(Size)]];
     }
   },
@@ -22322,10 +22322,10 @@ var classes = {
     wrapper_sm: 'form-radius-large-sm',
     wrapper_md: 'form-radius-large',
     wrapper_lg: 'form-radius-large-lg',
-    $wrapper: (classes, _ref61) => {
+    $wrapper: (classes, _ref59) => {
       var {
         Size
-      } = _ref61;
+      } = _ref59;
       return [classes.wrapper, classes["wrapper_".concat(Size)]];
     }
   },
@@ -22335,10 +22335,10 @@ var classes = {
     wrapper_sm: 'form-radius-large-sm',
     wrapper_md: 'form-radius-large',
     wrapper_lg: 'form-radius-large-lg',
-    $wrapper: (classes, _ref62) => {
+    $wrapper: (classes, _ref60) => {
       var {
         Size
-      } = _ref62;
+      } = _ref60;
       return [classes.wrapper, classes["wrapper_".concat(Size)]];
     }
   },
@@ -22380,46 +22380,46 @@ var classes = {
       singleLabel_noCaretClear_lg: 'form-pl-input-lg form-pr-input-lg with-floating:form-p-input-floating-lg rtl:form-pr-input-lg rtl:form-pl-input-lg',
       singleLabelText: 'overflow-hidden block whitespace-nowrap max-w-full',
       singleLabelText_truncate: 'overflow-ellipsis',
-      $singleLabel: (classes, _ref63) => {
+      $singleLabel: (classes, _ref61) => {
         var {
           Size,
           caret,
           canClear
-        } = _ref63;
+        } = _ref61;
         return [classes.select.singleLabel, classes.select["singleLabel_".concat(Size)], canClear && caret ? classes.select["singleLabel_caretClear_".concat(Size)] : null, !caret && canClear ? classes.select["singleLabel_noCaret_".concat(Size)] : null, !canClear && caret ? classes.select["singleLabel_noClear_".concat(Size)] : null, !canClear && !caret ? classes.select["singleLabel_noCaretClear_".concat(Size)] : null];
       },
-      $singleLabelText: (classes, _ref64) => {
+      $singleLabelText: (classes, _ref62) => {
         var {
           truncate
-        } = _ref64;
+        } = _ref62;
         return [classes.select.singleLabelText, truncate ? classes.select["singleLabelText_truncate"] : null];
       }
     }),
-    $input: (classes, _ref65) => {
+    $input: (classes, _ref63) => {
       var {
         isDisabled,
         Size,
         isSuccess,
         isDanger
-      } = _ref65;
+      } = _ref63;
       return [classes.input, classes["input_".concat(Size)], isDisabled ? classes.input_disabled : null, !isDisabled && !isSuccess && !isDanger ? classes.input_default : null, !isDisabled && isDanger ? classes.input_danger : null, !isDisabled && isSuccess ? classes.input_success : null];
     },
-    $inputWrapper: (classes, _ref66) => {
+    $inputWrapper: (classes, _ref64) => {
+      var {
+        Size
+      } = _ref64;
+      return [classes.inputWrapper, classes["inputWrapper_".concat(Size)]];
+    },
+    $inputPlaceholder: (classes, _ref65) => {
+      var {
+        Size
+      } = _ref65;
+      return [classes.inputPlaceholder, classes["inputPlaceholder_".concat(Size)]];
+    },
+    $inputCaret: (classes, _ref66) => {
       var {
         Size
       } = _ref66;
-      return [classes.inputWrapper, classes["inputWrapper_".concat(Size)]];
-    },
-    $inputPlaceholder: (classes, _ref67) => {
-      var {
-        Size
-      } = _ref67;
-      return [classes.inputPlaceholder, classes["inputPlaceholder_".concat(Size)]];
-    },
-    $inputCaret: (classes, _ref68) => {
-      var {
-        Size
-      } = _ref68;
       return [classes.inputCaret, classes["inputCaret_".concat(Size)]];
     }
   },
@@ -22468,70 +22468,70 @@ var classes = {
     redo_disabled: 'opacity-50 cursor-not-allowed',
     clearWrapper: 'absolute top-1/2 transform -translate-y-1/2 right-4 text-sm',
     clear: 'mask-bg mask-form-remove form-bg-input-color w-3 h-4 py-px box-content inline-block cursor-pointer focus-visible:opacity-60',
-    $wrapper: (classes, _ref69) => {
+    $wrapper: (classes, _ref67) => {
       var {
         isDisabled,
         readonly,
         Size
-      } = _ref69;
+      } = _ref67;
       return [classes.wrapper, classes["wrapper_".concat(Size)], isDisabled ? classes.wrapper_disabled : classes.wrapper_enabled, readonly ? classes.wrapper_readonly : null];
     },
-    $loadedWrapper: (classes, _ref70) => {
+    $loadedWrapper: (classes, _ref68) => {
       var {
         isDisabled
-      } = _ref70;
+      } = _ref68;
       return [classes.loadedWrapper, isDisabled ? classes.loadedWrapper_disabled : classes.loadedWrapper_enabled];
     },
-    $innerWrapper: (classes, _ref71) => {
+    $innerWrapper: (classes, _ref69) => {
       var {
         isDisabled
-      } = _ref71;
+      } = _ref69;
       return [classes.innerWrapper, isDisabled ? classes.innerWrapper_disabled : classes.innerWrapper_enabled];
     },
-    $input: (classes, _ref72) => {
+    $input: (classes, _ref70) => {
       var {
         invertColors,
         color
-      } = _ref72;
+      } = _ref70;
       return [classes.input, invertColors.indexOf(color) !== -1 ? classes.input_invert : null];
     },
-    $uploadContainer: (classes, _ref73) => {
+    $uploadContainer: (classes, _ref71) => {
       var {
         dragging
-      } = _ref73;
+      } = _ref71;
       return [classes.uploadContainer, dragging ? classes.uploadContainer_dragging : classes.uploadContainer_not_dragging];
     },
-    $uploadWrapper: (classes, _ref74) => {
+    $uploadWrapper: (classes, _ref72) => {
       var {
         processing
-      } = _ref74;
+      } = _ref72;
       return [classes.uploadWrapper, processing ? classes.uploadWrapper_processing : null];
     },
-    $pad: (classes, _ref75) => {
+    $pad: (classes, _ref73) => {
       var {
         invertColors,
         color
-      } = _ref75;
+      } = _ref73;
       return [classes.pad, invertColors.indexOf(color) !== -1 ? classes.pad_invert : null];
     },
-    $color: (classes, _ref76) => {
+    $color: (classes, _ref74) => {
       var {
         color,
         invertColors,
         mode
-      } = _ref76;
+      } = _ref74;
       return c => [classes.color, c === color ? classes.color_active : classes.color_inactive, invertColors.indexOf(c) !== -1 && mode !== 'upload' ? classes.color_invert : null];
     },
-    $undo: (classes, _ref77) => {
+    $undo: (classes, _ref75) => {
       var {
         undosLeft
-      } = _ref77;
+      } = _ref75;
       return [classes.undo, undosLeft ? classes.undo_enabled : classes.undo_disabled];
     },
-    $redo: (classes, _ref78) => {
+    $redo: (classes, _ref76) => {
       var {
         redos
-      } = _ref78;
+      } = _ref76;
       return [classes.redo, redos.length ? classes.redo_enabled : classes.redo_disabled];
     }
   },
@@ -22606,83 +22606,83 @@ var classes = {
       draggable: 'cursor-ew-resize v:cursor-ns-resize',
       tap: 'slider-state-tap',
       drag: 'slider-state-drag',
-      $target: (classes, _ref79) => {
+      $target: (classes, _ref77) => {
+        var {
+          Size
+        } = _ref77;
+        return [classes.slider.target, classes.slider["target_".concat(Size)]];
+      },
+      $horizontal: (classes, _ref78) => {
+        var {
+          Size
+        } = _ref78;
+        return [classes.slider.horizontal, classes.slider["horizontal_".concat(Size)]];
+      },
+      $vertical: (classes, _ref79) => {
         var {
           Size
         } = _ref79;
-        return [classes.slider.target, classes.slider["target_".concat(Size)]];
+        return [classes.slider.vertical, classes.slider["vertical_".concat(Size)]];
       },
-      $horizontal: (classes, _ref80) => {
+      $base: (classes, _ref80) => {
         var {
           Size
         } = _ref80;
-        return [classes.slider.horizontal, classes.slider["horizontal_".concat(Size)]];
+        return [classes.slider.base, classes.slider["base_".concat(Size)]];
       },
-      $vertical: (classes, _ref81) => {
+      $connects: (classes, _ref81) => {
         var {
           Size
         } = _ref81;
-        return [classes.slider.vertical, classes.slider["vertical_".concat(Size)]];
+        return [classes.slider.connects, classes.slider["connects_".concat(Size)]];
       },
-      $base: (classes, _ref82) => {
+      $connect: (classes, _ref82) => {
         var {
           Size
         } = _ref82;
-        return [classes.slider.base, classes.slider["base_".concat(Size)]];
+        return [classes.slider.connect, classes.slider["connect_".concat(Size)]];
       },
-      $connects: (classes, _ref83) => {
+      $handle: (classes, _ref83) => {
         var {
           Size
         } = _ref83;
-        return [classes.slider.connects, classes.slider["connects_".concat(Size)]];
+        return [classes.slider.handle, classes.slider["handle_".concat(Size)]];
       },
-      $connect: (classes, _ref84) => {
+      $tooltip: (classes, _ref84) => {
         var {
           Size
         } = _ref84;
-        return [classes.slider.connect, classes.slider["connect_".concat(Size)]];
+        return [classes.slider.tooltip, classes.slider["tooltip_".concat(Size)]];
       },
-      $handle: (classes, _ref85) => {
+      $tooltipTop: (classes, _ref85) => {
         var {
           Size
         } = _ref85;
-        return [classes.slider.handle, classes.slider["handle_".concat(Size)]];
+        return [classes.slider.tooltipTop, classes.slider["tooltipTop_".concat(Size)]];
       },
-      $tooltip: (classes, _ref86) => {
+      $tooltipBottom: (classes, _ref86) => {
         var {
           Size
         } = _ref86;
-        return [classes.slider.tooltip, classes.slider["tooltip_".concat(Size)]];
+        return [classes.slider.tooltipBottom, classes.slider["tooltipBottom_".concat(Size)]];
       },
-      $tooltipTop: (classes, _ref87) => {
+      $tooltipLeft: (classes, _ref87) => {
         var {
           Size
         } = _ref87;
-        return [classes.slider.tooltipTop, classes.slider["tooltipTop_".concat(Size)]];
+        return [classes.slider.tooltipLeft, classes.slider["tooltipLeft_".concat(Size)]];
       },
-      $tooltipBottom: (classes, _ref88) => {
+      $tooltipRight: (classes, _ref88) => {
         var {
           Size
         } = _ref88;
-        return [classes.slider.tooltipBottom, classes.slider["tooltipBottom_".concat(Size)]];
-      },
-      $tooltipLeft: (classes, _ref89) => {
-        var {
-          Size
-        } = _ref89;
-        return [classes.slider.tooltipLeft, classes.slider["tooltipLeft_".concat(Size)]];
-      },
-      $tooltipRight: (classes, _ref90) => {
-        var {
-          Size
-        } = _ref90;
         return [classes.slider.tooltipRight, classes.slider["tooltipRight_".concat(Size)]];
       }
     },
-    $wrapper: (classes, _ref91) => {
+    $wrapper: (classes, _ref89) => {
       var {
         Size
-      } = _ref91;
+      } = _ref89;
       return [classes.wrapper, classes["wrapper_".concat(Size)]];
     }
   },
@@ -22741,22 +22741,22 @@ var classes = {
     tag_a_lg: '',
     tag_hr: 'form-static-tag-hr-wrapper form-border-color-hr form-py-hr',
     tag_img: 'form-static-tag-img',
-    $content: (classes, _ref92) => {
+    $content: (classes, _ref90) => {
       var {
         Size,
         top,
         bottom
-      } = _ref92;
+      } = _ref90;
       return [classes.content, classes["content_".concat(Size)], top >= 1 ? classes["content_top_".concat(top)] : null, bottom >= 1 ? classes["content_bottom_".concat(bottom)] : null];
     },
-    $tag: (classes, _ref93) => {
+    $tag: (classes, _ref91) => {
       var {
         Size,
         tag,
         align,
         top,
         bottom
-      } = _ref93;
+      } = _ref91;
       return [classes.tag, classes["tag_".concat(Size)], classes["tag_".concat(tag)], classes["tag_".concat(tag, "_").concat(Size)] || null, align === 'left' ? classes.tag_left : null, align === 'center' ? classes.tag_center : null, align === 'right' ? classes.tag_right : null, top >= 1 ? classes["tag_top_".concat(top)] : null, bottom >= 1 ? classes["tag_bottom_".concat(bottom)] : null];
     }
   },
@@ -22792,46 +22792,46 @@ var classes = {
       tagsSearch_md: 'form-text',
       tagsSearch_lg: 'form-text-lg',
       tagsSearchCopy: 'invisible whitespace-pre-wrap inline-block h-px',
-      $tags: (classes, _ref94) => {
+      $tags: (classes, _ref92) => {
         var {
           Size
-        } = _ref94;
+        } = _ref92;
         return [classes.select.tags, classes.select["tags_".concat(Size)]];
       },
-      $tag: (classes, _ref95) => {
+      $tag: (classes, _ref93) => {
+        var {
+          Size
+        } = _ref93;
+        return [classes.select.tag, classes.select["tag_".concat(Size)]];
+      },
+      $tagWrapper: (classes, _ref94) => {
+        var {
+          breakTags
+        } = _ref94;
+        return [classes.select.tagWrapper, !breakTags.value ? classes.select.tagWrapper_noBreak : null];
+      },
+      $tagDisabled: (classes, _ref95) => {
         var {
           Size
         } = _ref95;
-        return [classes.select.tag, classes.select["tag_".concat(Size)]];
+        return [classes.select.tagDisabled, classes.select["tagDisabled_".concat(Size)]];
       },
-      $tagWrapper: (classes, _ref96) => {
+      $tagRemove: (classes, _ref96) => {
         var {
-          breakTags
+          Size
         } = _ref96;
-        return [classes.select.tagWrapper, !breakTags.value ? classes.select.tagWrapper_noBreak : null];
+        return [classes.select.tagRemove, classes.select["tagRemove_".concat(Size)]];
       },
-      $tagDisabled: (classes, _ref97) => {
+      $tagsSearchWrapper: (classes, _ref97) => {
         var {
           Size
         } = _ref97;
-        return [classes.select.tagDisabled, classes.select["tagDisabled_".concat(Size)]];
+        return [classes.select.tagsSearchWrapper, classes.select["tagsSearchWrapper_".concat(Size)]];
       },
-      $tagRemove: (classes, _ref98) => {
+      $tagsSearch: (classes, _ref98) => {
         var {
           Size
         } = _ref98;
-        return [classes.select.tagRemove, classes.select["tagRemove_".concat(Size)]];
-      },
-      $tagsSearchWrapper: (classes, _ref99) => {
-        var {
-          Size
-        } = _ref99;
-        return [classes.select.tagsSearchWrapper, classes.select["tagsSearchWrapper_".concat(Size)]];
-      },
-      $tagsSearch: (classes, _ref100) => {
-        var {
-          Size
-        } = _ref100;
         return [classes.select.tagsSearch, classes.select["tagsSearch_".concat(Size)]];
       }
     })
@@ -22879,43 +22879,43 @@ var classes = {
       label_sm: 'form-w-toggle-label-sm',
       label_md: 'form-w-toggle-label',
       label_lg: 'form-w-toggle-label-lg',
-      $container: (classes, _ref101) => {
+      $container: (classes, _ref99) => {
         var {
           Size,
           isDisabled
-        } = _ref101;
+        } = _ref99;
         return [classes.toggle.container, classes.toggle["container_".concat(Size)], !isDisabled ? classes.toggle.container_enabled : classes.toggle.container_disabled];
       },
-      $toggle: (classes, _ref102) => {
+      $toggle: (classes, _ref100) => {
+        var {
+          Size
+        } = _ref100;
+        return [classes.toggle.toggle, classes.toggle["toggle_".concat(Size)]];
+      },
+      $handle: (classes, _ref101) => {
+        var {
+          Size
+        } = _ref101;
+        return [classes.toggle.handle, classes.toggle["handle_".concat(Size)]];
+      },
+      $label: (classes, _ref102) => {
         var {
           Size
         } = _ref102;
-        return [classes.toggle.toggle, classes.toggle["toggle_".concat(Size)]];
-      },
-      $handle: (classes, _ref103) => {
-        var {
-          Size
-        } = _ref103;
-        return [classes.toggle.handle, classes.toggle["handle_".concat(Size)]];
-      },
-      $label: (classes, _ref104) => {
-        var {
-          Size
-        } = _ref104;
         return [classes.toggle.label, classes.toggle["label_".concat(Size)]];
       }
     },
-    $text: (classes, _ref105) => {
+    $text: (classes, _ref103) => {
       var {
         Size,
         align
-      } = _ref105;
+      } = _ref103;
       return [classes.text, classes["text_".concat(Size)], align === 'left' ? [classes.text_left, classes["text_left_".concat(Size)]] : null, align === 'right' ? [classes.text_right, classes["text_right_".concat(Size)]] : null];
     },
-    $wrapper: (classes, _ref106) => {
+    $wrapper: (classes, _ref104) => {
       var {
         align
-      } = _ref106;
+      } = _ref104;
       return [classes.wrapper, align === 'left' ? classes.wrapper_left : null, align === 'right' ? classes.wrapper_right : null];
     }
   },
@@ -22943,10 +22943,10 @@ var classes = {
     container_hideAttach: 'form-editor-hide-attach',
     container_hideUndo: 'form-editor-hide-undo',
     container_hideRedo: 'form-editor-hide-redo',
-    $container: (classes, _ref107) => {
+    $container: (classes, _ref105) => {
       var {
         hideTools
-      } = _ref107;
+      } = _ref105;
       return [classes.container].concat(hideTools.map(t => classes["container_hide".concat(t.split('-').map(s => s.charAt(0).toUpperCase() + s.slice(1)).join(''))]));
     }
   },
@@ -22965,11 +22965,11 @@ var classes = {
     container_after_md: 'form-radius-input-r form-pr-input form-pl-space-addon',
     container_after_lg: 'form-radius-input-r-lg form-pr-input-lg form-pl-space-addon-lg',
     wrapper: 'contents items-center justify-center',
-    $container: (classes, _ref108) => {
+    $container: (classes, _ref106) => {
       var {
         type,
         Size
-      } = _ref108;
+      } = _ref106;
       return [classes.container, classes["container_".concat(Size)], classes["container_".concat(type)], classes["container_".concat(type, "_").concat(Size)]];
     }
   },
@@ -22984,24 +22984,24 @@ var classes = {
     optionWrapper: '',
     option: 'flex items-center form-color-input cursor-pointer py-1.25 px-3 whitespace-nowrap',
     option_active: 'form-bg-selected',
-    $container: (classes, _ref109) => {
+    $container: (classes, _ref107) => {
       var {
         Size,
         el$
-      } = _ref109;
+      } = _ref107;
       return [classes.container, el$.isDisabled || el$.readonly ? classes.container_disabled : null];
     },
-    $wrapper: (classes, _ref110) => {
+    $wrapper: (classes, _ref108) => {
       var {
         relaxed
-      } = _ref110;
+      } = _ref108;
       return [classes.wrapper, relaxed ? classes.wrapper_relaxed : classes.wrapper_default];
     },
-    $option: (classes, _ref111) => {
+    $option: (classes, _ref109) => {
       var {
         selected,
         pointed
-      } = _ref111;
+      } = _ref109;
       return option => [classes.option, selected.index === option.index || pointed.index === option.index ? classes.option_active : null];
     }
   },
@@ -23010,10 +23010,10 @@ var classes = {
     container_sm: 'form-text-small-sm mt-0.5',
     container_md: 'form-text-small mt-1',
     container_lg: 'form-text-small-lg mt-1',
-    $container: (classes, _ref112) => {
+    $container: (classes, _ref110) => {
       var {
         Size
-      } = _ref112;
+      } = _ref110;
       return [classes.container, classes["container_".concat(Size)]];
     }
   },
@@ -23022,10 +23022,10 @@ var classes = {
     container_sm: 'form-text-small-sm mt-0.5',
     container_md: 'form-text-small mt-1',
     container_lg: 'form-text-small-lg mt-1',
-    $container: (classes, _ref113) => {
+    $container: (classes, _ref111) => {
       var {
         Size
-      } = _ref113;
+      } = _ref111;
       return [classes.container, classes["container_".concat(Size)]];
     }
   },
@@ -23037,10 +23037,10 @@ var classes = {
     wrapper_top: 'left-1/2 transform -translate-x-1/2 bottom-8 justify-center',
     wrapper_bottom: 'left-1/2 transform -translate-x-1/2 top-6 justify-center',
     content: 'bg-black bg-opacity-90 text-white rounded-md form-text-small py-1 px-2.5 not-italic inline-block relative',
-    $wrapper: (classes, _ref114) => {
+    $wrapper: (classes, _ref112) => {
       var {
         position
-      } = _ref114;
+      } = _ref112;
       return [classes.wrapper, classes["wrapper_".concat(position)]];
     }
   },
@@ -23086,11 +23086,11 @@ var classes = {
     container_horizontal_md_2XL: '2xl:form-pr-gutter 2xl:text-type:form-pt-input-border 2xl:pb-0',
     container_horizontal_lg_2XL: '2xl:form-pr-gutter-lg 2xl:text-type:form-pt-input-border-lg 2xl:pb-0',
     wrapper: '',
-    $container: (classes, _ref115) => {
+    $container: (classes, _ref113) => {
       var {
         el$,
         Size
-      } = _ref115;
+      } = _ref113;
       return [classes.container, classes["container_".concat(Size)], !el$.inline ? el$.columnsClasses.label : null, el$.computedCols.default.label < 12 ? classes["container_horizontal_".concat(Size)] : classes["container_vertical_".concat(Size)], ...(Object.keys(el$.computedCols).length > 1 ? (el$.$vueform.config.breakpoints || ['sm', 'md', 'lg', 'xl', '2xl']).map(breakpoint => {
         var _el$$computedCols$bre;
         if (!((_el$$computedCols$bre = el$.computedCols[breakpoint]) !== null && _el$$computedCols$bre !== void 0 && _el$$computedCols$bre.label)) {
@@ -23113,12 +23113,12 @@ var classes = {
     label_lg: 'form-left-input-lg form-mt-floating-lg rtl:left-auto rtl:form-right-input-lg',
     label_invisible: 'opacity-0 invisible',
     label_visible: 'opacity-100 visible',
-    $label: (classes, _ref116) => {
+    $label: (classes, _ref114) => {
       var {
         visible,
         Size,
         el$
-      } = _ref116;
+      } = _ref114;
       return [classes.label, classes["label_".concat(Size)], visible ? classes.label_visible : classes.label_invisible, el$.focused && !el$.isDanger && !el$.isSuccess ? classes.label_focused : null, !el$.isDisabled && !el$.isDanger && !el$.isSuccess ? classes.label_enabled : null, el$.isDisabled ? classes.label_disabled : null, el$.isDanger ? classes.label_danger : null, el$.isSuccess ? classes.label_success : null];
     }
   },
@@ -23133,33 +23133,33 @@ var classes = {
     innerWrapperBefore: 'col-span-12',
     innerWrapper: '',
     innerWrapperAfter: 'col-span-12',
-    $container: (classes, _ref117) => {
+    $container: (classes, _ref115) => {
       var {
         el$,
         Size
-      } = _ref117;
+      } = _ref115;
       return [classes.container, classes["container_".concat(Size)], el$.columnsClasses.container, el$.classes.container, !el$.isStatic && el$.errors && !!el$.errors.length ? classes.container_error : null];
     },
-    $innerContainer: (classes, _ref118) => {
+    $innerContainer: (classes, _ref116) => {
       var {
         el$
-      } = _ref118;
+      } = _ref116;
       return [classes.innerContainer, el$.columnsClasses.innerContainer];
     },
-    $innerWrapper: (classes, _ref119) => {
+    $innerWrapper: (classes, _ref117) => {
       var {
         el$
-      } = _ref119;
+      } = _ref117;
       return [classes.innerWrapper, el$.columnsClasses.wrapper];
     }
   },
   ElementLayoutInline: {
     container: 'flex',
     container_error: 'has-error',
-    $container: (classes, _ref120) => {
+    $container: (classes, _ref118) => {
       var {
         el$
-      } = _ref120;
+      } = _ref118;
       return [classes.container, !el$.isStatic && el$.errors && !!el$.errors.length ? classes.container_error : null, el$.classes.container];
     }
   },
@@ -23169,10 +23169,10 @@ var classes = {
     loader_sm: 'form-top-input-border-sm form-mr-input-sm mt-0.5',
     loader_md: 'form-top-input-border form-mr-input mt-1',
     loader_lg: 'form-top-input-border-lg form-mr-input-lg mt-1',
-    $loader: (classes, _ref121) => {
+    $loader: (classes, _ref119) => {
       var {
         Size
-      } = _ref121;
+      } = _ref119;
       return [classes.loader, classes["loader_".concat(Size)]];
     }
   },
@@ -23181,10 +23181,10 @@ var classes = {
     container_sm: 'form-text-small-sm mt-0.5',
     container_md: 'form-text-small mt-1',
     container_lg: 'form-text-small-lg mt-1',
-    $container: (classes, _ref122) => {
+    $container: (classes, _ref120) => {
       var {
         Size
-      } = _ref122;
+      } = _ref120;
       return [classes.container, classes["container_".concat(Size)]];
     }
   },
@@ -23196,10 +23196,10 @@ var classes = {
     container_before: '',
     container_between: '',
     container_after: '',
-    $container: (classes, _ref123) => {
+    $container: (classes, _ref121) => {
       var {
         type
-      } = _ref123;
+      } = _ref121;
       return [classes.container, classes["container_".concat(type)]];
     }
   },
@@ -23208,10 +23208,10 @@ var classes = {
     container_sm: 'form-gap-x-gutter-sm form-gap-y-gutter-sm',
     container_md: 'form-gap-x-gutter form-gap-y-gutter',
     container_lg: 'form-gap-x-gutter-lg form-gap-y-gutter-lg',
-    $container: (classes, _ref124) => {
+    $container: (classes, _ref122) => {
       var {
         Size
-      } = _ref124;
+      } = _ref122;
       return [classes.container, classes["container_".concat(Size)]];
     }
   },
@@ -23221,10 +23221,10 @@ var classes = {
     container_md: 'form-radius-input form-text form-mb-gutter py-2 px-3',
     container_lg: 'form-radius-input-lg form-text-lg form-mb-gutter-lg py-3 px-4',
     error: '',
-    $container: (classes, _ref125) => {
+    $container: (classes, _ref123) => {
       var {
         Size
-      } = _ref125;
+      } = _ref123;
       return [classes.container, classes["container_".concat(Size)]];
     }
   },
@@ -23238,11 +23238,11 @@ var classes = {
     wrapper_sm: 'py-1.5 px-3.5',
     wrapper_md: 'py-2 px-4',
     wrapper_lg: 'py-2 px-4',
-    $wrapper: (classes, _ref126) => {
+    $wrapper: (classes, _ref124) => {
       var {
         selected,
         Size
-      } = _ref126;
+      } = _ref124;
       return [classes.wrapper, classes["wrapper_".concat(Size)], selected ? classes.wrapper_active : classes.wrapper_inactive];
     }
   },
@@ -23251,10 +23251,10 @@ var classes = {
     container_sm: 'form-mb-gutter form-text-sm',
     container_md: 'form-mb-gutter-lg form-text',
     container_lg: 'form-mb-gutter-lg form-text-lg',
-    $container: (classes, _ref127) => {
+    $container: (classes, _ref125) => {
       var {
         Size
-      } = _ref127;
+      } = _ref125;
       return [classes.container, classes["container_".concat(Size)]];
     }
   },
@@ -23264,10 +23264,10 @@ var classes = {
     container_md: 'form-radius-input form-text form-mb-gutter py-2 px-3',
     container_lg: 'form-radius-input-lg form-text-lg form-mb-gutter-lg py-3 px-4',
     message: '',
-    $container: (classes, _ref128) => {
+    $container: (classes, _ref126) => {
       var {
         Size
-      } = _ref128;
+      } = _ref126;
       return [classes.container, classes["container_".concat(Size)]];
     }
   },
@@ -23283,14 +23283,14 @@ var classes = {
     container_incompleted: '',
     container_pending: 'form-step-pending',
     wrapper: '',
-    $container: (classes, _ref129) => {
+    $container: (classes, _ref127) => {
       var {
         active,
         isDisabled,
         completed,
         invalid,
         pending
-      } = _ref129;
+      } = _ref127;
       return [classes.container, active ? classes.container_active : classes.container_inactive, isDisabled ? classes.container_disabled : classes.container_enabled, completed ? classes.container_completed : classes.container_incompleted, invalid ? classes.container_invalid : classes.container_valid, pending ? classes.container_pending : null];
     }
   },
@@ -23300,10 +23300,10 @@ var classes = {
     container_md: 'form-mb-gutter-lg form-text',
     container_lg: 'form-mb-gutter-lg form-text-lg',
     wrapper: 'flex justify-between overflow-x-auto',
-    $container: (classes, _ref130) => {
+    $container: (classes, _ref128) => {
       var {
         Size
-      } = _ref130;
+      } = _ref128;
       return [classes.container, classes["container_".concat(Size)]];
     }
   },
@@ -23323,13 +23323,13 @@ var classes = {
     button_sm: 'form-p-btn-sm form-radius-btn-sm form-text-sm',
     button_md: 'form-p-btn form-radius-btn form-text',
     button_lg: 'form-p-btn-lg form-radius-btn-lg form-text-lg',
-    $button: (classes, _ref131) => {
+    $button: (classes, _ref129) => {
       var {
         isDisabled,
         isLoading,
         type,
         Size
-      } = _ref131;
+      } = _ref129;
       return [classes.button, classes["button_".concat(Size)], classes["button_".concat(type)], isDisabled && !isLoading ? classes["button_".concat(type, "_disabled")] : null, !isDisabled && !isLoading ? classes["button_".concat(type, "_enabled")] : null, isLoading ? classes["button_".concat(type, "_loading")] : null];
     }
   },
@@ -23338,10 +23338,10 @@ var classes = {
     container_sm: 'form-mt-gutter form-text-sm',
     container_md: 'form-mt-gutter-lg form-text',
     container_lg: 'form-mt-gutter-lg form-text-lg',
-    $container: (classes, _ref132) => {
+    $container: (classes, _ref130) => {
       var {
         Size
-      } = _ref132;
+      } = _ref130;
       return [classes.container, classes["container_".concat(Size)]];
     }
   },
@@ -23355,15 +23355,15 @@ var classes = {
     wrapper_sm: 'py-1.5 px-3.5',
     wrapper_md: 'py-2 px-4',
     wrapper_lg: 'py-2 px-4',
-    $container: (classes, _ref133) => {
+    $container: (classes, _ref131) => {
       return [classes.container];
     },
-    $wrapper: (classes, _ref134) => {
+    $wrapper: (classes, _ref132) => {
       var {
         active,
         invalid,
         Size
-      } = _ref134;
+      } = _ref132;
       return [classes.wrapper, classes["wrapper_".concat(Size)], active ? classes.wrapper_active : classes.wrapper_inactive, invalid ? classes.wrapper_invalid : classes.wrapper_valid];
     }
   },
@@ -23372,10 +23372,10 @@ var classes = {
     container_sm: 'form-mb-gutter form-text-sm',
     container_md: 'form-mb-gutter-lg form-text',
     container_lg: 'form-mb-gutter-lg form-text-lg',
-    $container: (classes, _ref135) => {
+    $container: (classes, _ref133) => {
       var {
         Size
-      } = _ref135;
+      } = _ref133;
       return [classes.container, classes["container_".concat(Size)]];
     }
   },
@@ -23394,7 +23394,7 @@ var classes = {
   }),
   CheckboxgroupCheckbox_tabs: _objectSpread2(_objectSpread2({}, groupTabs), {}, {
     container: groupTabs.container + ' form-view-tabs',
-    $wrapper: (classes, _ref136) => {
+    $wrapper: (classes, _ref134) => {
       var _el$$value;
       var {
         index,
@@ -23403,13 +23403,13 @@ var classes = {
         value,
         isDisabled,
         Size
-      } = _ref136;
+      } = _ref134;
       return [classes.wrapper, classes["wrapper_".concat(Size)], index < Object.keys(items).length - 1 ? classes.wrapper_not_last : null, index === 0 ? classes.wrapper_first : null, index === 0 ? classes["wrapper_first_".concat(Size)] : null, index === Object.keys(items).length - 1 ? classes.wrapper_last : null, index === Object.keys(items).length - 1 ? classes["wrapper_last_".concat(Size)] : null, el$.value && ((_el$$value = el$.value) === null || _el$$value === void 0 ? void 0 : _el$$value.indexOf(value)) !== -1 ? classes.wrapper_selected : classes.wrapper_unselected, isDisabled ? classes.wrapper_disabled : null];
     }
   }),
   CheckboxgroupCheckbox_blocks: _objectSpread2(_objectSpread2(_objectSpread2({}, checkbox), groupBlocks), {}, {
     container: groupBlocks.container + ' form-view-blocks',
-    $wrapper: (classes, _ref137) => {
+    $wrapper: (classes, _ref135) => {
       var _el$$value2;
       var {
         index,
@@ -23418,13 +23418,13 @@ var classes = {
         value,
         isDisabled,
         Size
-      } = _ref137;
+      } = _ref135;
       return [classes.wrapper, classes["wrapper_".concat(Size)], index < Object.keys(items).length - 1 ? classes.wrapper_not_last : null, index === 0 ? classes.wrapper_first : null, index === 0 ? classes["wrapper_first_".concat(Size)] : null, index === Object.keys(items).length - 1 ? classes.wrapper_last : null, index === Object.keys(items).length - 1 ? classes["wrapper_last_".concat(Size)] : null, el$.value && ((_el$$value2 = el$.value) === null || _el$$value2 === void 0 ? void 0 : _el$$value2.indexOf(value)) !== -1 ? classes.wrapper_selected : classes.wrapper_unselected, isDisabled ? classes.wrapper_disabled : null];
     },
-    $description: (classes, _ref138) => {
+    $description: (classes, _ref136) => {
       var {
         Size
-      } = _ref138;
+      } = _ref136;
       return [classes.description, classes["description_".concat(Size)]];
     }
   }),
@@ -23440,12 +23440,12 @@ var classes = {
     icon: 'inline-block w-9 h-8 mask-bg mask-form-inbox-in form-bg-primary',
     title: 'font-semibold mt-3',
     description: '',
-    $container: (classes, _ref139) => {
+    $container: (classes, _ref137) => {
       var {
         dragging,
         disabled,
         Size
-      } = _ref139;
+      } = _ref137;
       return [classes.container, classes["container_".concat(Size)], dragging ? classes.container_active : classes.container_inactive, disabled ? classes.container_disabled : classes.container_enabled];
     }
   },
@@ -23470,10 +23470,10 @@ var classes = {
     remove: 'flex w-4 h-4 items-center justify-center form-bg-passive form-color-passive rounded-full transition filter hover:brightness-90 form-hidden group-hover:form-inline-block',
     removeIcon: 'mask-bg mask-form-remove-light form-bg-input-color mask-size-3 block w-full h-full',
     assistiveText: 'form-assistive-text',
-    $container: (classes, _ref140) => {
+    $container: (classes, _ref138) => {
       var {
         Size
-      } = _ref140;
+      } = _ref138;
       return [classes.container, classes["container_".concat(Size)]];
     }
   },
@@ -23508,23 +23508,23 @@ var classes = {
     remove: 'flex w-4 h-4 items-center justify-center form-bg-passive form-color-passive rounded-full transition filter hover:brightness-90 form-hidden group-hover:form-inline-block',
     removeIcon: 'mask-bg mask-form-remove-light form-bg-input-color mask-size-3 block w-full h-full',
     assistiveText: 'form-assistive-text',
-    $image: (classes, _ref141) => {
+    $image: (classes, _ref139) => {
       var {
         hasLink,
         Size
-      } = _ref141;
+      } = _ref139;
       return [classes.image, classes["image_".concat(Size)], hasLink ? classes.image_link : classes.image_static];
     },
-    $img: (classes, _ref142) => {
+    $img: (classes, _ref140) => {
       var {
         Size
-      } = _ref142;
+      } = _ref140;
       return [classes.img, classes["img_".concat(Size)]];
     },
-    $progressBar: (classes, _ref143) => {
+    $progressBar: (classes, _ref141) => {
       var {
         Size
-      } = _ref143;
+      } = _ref141;
       return [classes.progressBar, classes["progressBar_".concat(Size)]];
     }
   },
@@ -23557,28 +23557,28 @@ var classes = {
     remove: 'flex w-4 h-4 items-center justify-center form-bg-passive form-color-passive absolute top-0.5 right-0.5 mt-px mr-px form-hidden rounded-full transition filter hover:brightness-90 group-hover:form-inline-block ',
     removeIcon: 'mask-bg mask-form-remove-light form-bg-input-color mask-size-3 block w-full h-full',
     assistiveText: 'form-assistive-text',
-    $container: (classes, _ref144) => {
+    $container: (classes, _ref142) => {
+      var {
+        Size
+      } = _ref142;
+      return [classes.container, classes["container_".concat(Size)]];
+    },
+    $image: (classes, _ref143) => {
+      var {
+        Size
+      } = _ref143;
+      return [classes.image, classes["image_".concat(Size)]];
+    },
+    $img: (classes, _ref144) => {
       var {
         Size
       } = _ref144;
-      return [classes.container, classes["container_".concat(Size)]];
+      return [classes.img, classes["img_".concat(Size)]];
     },
-    $image: (classes, _ref145) => {
+    $overlay: (classes, _ref145) => {
       var {
         Size
       } = _ref145;
-      return [classes.image, classes["image_".concat(Size)]];
-    },
-    $img: (classes, _ref146) => {
-      var {
-        Size
-      } = _ref146;
-      return [classes.img, classes["img_".concat(Size)]];
-    },
-    $overlay: (classes, _ref147) => {
-      var {
-        Size
-      } = _ref147;
       return [classes.overlay, classes["overlay_".concat(Size)]];
     }
   },
@@ -23592,7 +23592,7 @@ var classes = {
   }),
   RadiogroupRadio_tabs: _objectSpread2(_objectSpread2({}, groupTabs), {}, {
     container: groupTabs.container + ' form-view-tabs',
-    $wrapper: (classes, _ref148) => {
+    $wrapper: (classes, _ref146) => {
       var {
         index,
         items,
@@ -23600,13 +23600,13 @@ var classes = {
         value,
         isDisabled,
         Size
-      } = _ref148;
+      } = _ref146;
       return [classes.wrapper, classes["wrapper_".concat(Size)], index < Object.keys(items).length - 1 ? classes.wrapper_not_last : null, index === 0 ? classes.wrapper_first : null, index === 0 ? classes["wrapper_first_".concat(Size)] : null, index === Object.keys(items).length - 1 ? classes.wrapper_last : null, index === Object.keys(items).length - 1 ? classes["wrapper_last_".concat(Size)] : null, el$.value == value ? classes.wrapper_selected : classes.wrapper_unselected, isDisabled ? classes.wrapper_disabled : null];
     }
   }),
   RadiogroupRadio_blocks: _objectSpread2(_objectSpread2(_objectSpread2({}, radio), groupBlocks), {}, {
     container: groupBlocks.container + ' form-view-blocks',
-    $wrapper: (classes, _ref149) => {
+    $wrapper: (classes, _ref147) => {
       var {
         index,
         items,
@@ -23614,13 +23614,13 @@ var classes = {
         value,
         isDisabled,
         Size
-      } = _ref149;
+      } = _ref147;
       return [classes.wrapper, classes["wrapper_".concat(Size)], index < Object.keys(items).length - 1 ? classes.wrapper_not_last : null, index === 0 ? classes.wrapper_first : null, index === 0 ? classes["wrapper_first_".concat(Size)] : null, index === Object.keys(items).length - 1 ? classes.wrapper_last : null, index === Object.keys(items).length - 1 ? classes["wrapper_last_".concat(Size)] : null, el$.value == value ? classes.wrapper_selected : classes.wrapper_unselected, isDisabled ? classes.wrapper_disabled : null];
     },
-    $description: (classes, _ref150) => {
+    $description: (classes, _ref148) => {
       var {
         Size
-      } = _ref150;
+      } = _ref148;
       return [classes.description, classes["description_".concat(Size)]];
     }
   })

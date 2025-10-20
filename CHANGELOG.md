@@ -1,5 +1,15 @@
 [//]: # (Don't use <tags>)
 
+## v1.13.4
+
+> `2025-10-20`
+
+### 🐞 Bug Fixes
+- wiped out signature with inline modes array def fix #483
+- slider numeric validation fix #486
+- linked tags with parameterized url and v-model sync infitinte refetch fix #485
+- keep default of radiogroup when items is an url #480
+
 ## v1.13.3
 
 > `2025-10-06`

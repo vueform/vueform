@@ -1,5 +1,5 @@
 /*!
- * Vueform v1.13.3 (https://github.com/vueform/vueform)
+ * Vueform v1.13.4 (https://github.com/vueform/vueform)
  * Copyright (c) 2025 Adam Berecz <adam@vueform.com>
  * Licensed under the MIT License
  */
@@ -1624,7 +1624,7 @@ function render$J(_ctx, _cache, $props, $setup, $data, $options) {
         class: normalizeClass(_ctx.classes.container)
       }, [
         renderSlot(_ctx.$slots, "default", {}, () => [
-          _cache[0] || (_cache[0] = createTextVNode("*"))
+          _cache[0] || (_cache[0] = createTextVNode("*", -1 /* CACHED */))
         ])
       ], 2 /* CLASS */))
     : createCommentVNode("v-if", true)
@@ -2420,8 +2420,8 @@ function render$C(_ctx, _cache, $props, $setup, $data, $options) {
                 (openBlock(), createBlock(resolveDynamicComponent(_ctx.fieldSlots.checkbox), mergeProps({ ref_for: true }, scope, { el$: _ctx.el$ }), null, 16 /* FULL_PROPS */, ["el$"]))
               ])
             ]),
-            _: 2 /* DYNAMIC */
-          }, 1032 /* PROPS, DYNAMIC_SLOTS */, ["items", "index", "item", "value", "attrs"]))
+            _: 3 /* FORWARDED */
+          }, 8 /* PROPS */, ["items", "index", "item", "value", "attrs"]))
         }), 128 /* KEYED_FRAGMENT */))
       ], 10 /* CLASS, PROPS */, _hoisted_1$w)
     ]),
@@ -2896,9 +2896,8 @@ function render$z(_ctx, _cache, $props, $setup, $data, $options) {
         (openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.cells, (cell, c) => {
           return (openBlock(), createElementBlock("div", mergeProps({
             class: _ctx.classes.cell(cell),
-            style: cell.style,
-            ref_for: true
-          }, cell.attrs, {
+            style: cell.style
+          }, { ref_for: true }, cell.attrs, {
             "data-col": cell.col,
             "data-row": cell.row,
             "data-col-start": cell.colStart,
@@ -2914,9 +2913,8 @@ function render$z(_ctx, _cache, $props, $setup, $data, $options) {
                   renderSlot(_ctx.$slots, cell.slot, {}, () => [
                     (openBlock(), createBlock(resolveDynamicComponent(cell.component), mergeProps({
                       name: cell.name,
-                      key: cell.name,
-                      ref_for: true
-                    }, cell.schema), null, 16 /* FULL_PROPS */, ["name"]))
+                      key: cell.name
+                    }, { ref_for: true }, cell.schema), null, 16 /* FULL_PROPS */, ["name"]))
                   ])
                 ], 2 /* CLASS */))
               : (openBlock(), createElementBlock("div", {
@@ -3696,7 +3694,7 @@ var script$11 = {
     },
   };
 
-var css_248z$w = "/* Some styles are contained in _table.scss */\n\n.vf-matrix-grid {\n  display: grid;\n}\n\n.vf-matrix-grid.is-scrollable {\n  overflow: auto;\n}\n\n.vf-matrix-header {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  text-align: center;\n  min-height: var(--vf-min-height-input);\n}\n\n.vf-matrix-header.has-padding {\n  padding-left: 0.5rem;\n  padding-right: 0.5rem;\n}\n\n.vf-matrix-header.is-sticky {\n  position: sticky;\n  top: 0;\n  -webkit-backdrop-filter: blur(64px);\n          backdrop-filter: blur(64px);\n  z-index: 1;\n}\n\n.vf-matrix-header.is-nowrap {\n  white-space: nowrap;\n}\n\n.vf-matrix-header.vf-matrix-header-sm {\n  min-height: var(--vf-min-height-input-sm);\n}\n\n.vf-matrix-header.vf-matrix-header-lg {\n  min-height: var(--vf-min-height-input-lg);\n}\n\n.vf-matrix-row-label {\n  display: flex;\n  align-items: center;\n  padding-right: 0.5rem;\n}\n\n.vf-matrix-row-label.is-sticky {\n  position: sticky;\n  left: 0;\n  -webkit-backdrop-filter: blur(64px);\n          backdrop-filter: blur(64px);\n  z-index: 1;\n}\n\n.vf-matrix-row-label.is-nowrap {\n  white-space: nowrap;\n}\n\n.vf-matrix-cell {\n  display: grid;\n  align-items: center;\n  min-height: var(--vf-min-height-input);\n}\n\n.vf-matrix-cell.vf-matrix-cell-sm {\n  min-height: var(--vf-min-height-input-sm);\n}\n\n.vf-matrix-cell.vf-matrix-cell-lg {\n  min-height: var(--vf-min-height-input-lg);\n}\n\n.vf-matrix-cell-wrapper {\n  width: 100%;\n  height: 100%;\n  display: grid;\n  align-items: center;\n}\n\n.vf-matrix-cell-wrapper.has-padding {\n  padding-left: 0.5rem;\n  padding-right: 0.5rem;\n}\n\n.vf-matrix-cell-wrapper.is-centered {\n  justify-content: center;\n}\n\n.vf-matrix-row-remove {\n  position: sticky;\n  right: 0;\n  -webkit-backdrop-filter: blur(64px);\n          backdrop-filter: blur(64px);\n  z-index: 1;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  width: 2.5rem;\n}\n\n.vf-matrix-remove {\n  width: 1rem;\n  height: 1rem;\n  padding: 0.125rem;\n  box-sizing: content-box !important;\n  background-color: var(--vf-bg-passive);\n  border-radius: 999px;\n  transition: 0.15s;\n}\n\n.vf-matrix-remove:hover {\n  filter: brightness(0.9);\n}\n\n.vf-matrix-remove-icon {\n  display: flex;\n  width: 100%;\n  height: 100%;\n  align-items: center;\n  justify-content: center;\n  mask-image: url(\"data:image/svg+xml,%3Csvg viewBox='0 0 320 512' fill='currentColor' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M207.6 256l107.72-107.72c6.23-6.23 6.23-16.34 0-22.58l-25.03-25.03c-6.23-6.23-16.34-6.23-22.58 0L160 208.4 52.28 100.68c-6.23-6.23-16.34-6.23-22.58 0L4.68 125.7c-6.23 6.23-6.23 16.34 0 22.58L112.4 256 4.68 363.72c-6.23 6.23-6.23 16.34 0 22.58l25.03 25.03c6.23 6.23 16.34 6.23 22.58 0L160 303.6l107.72 107.72c6.23 6.23 16.34 6.23 22.58 0l25.03-25.03c6.23-6.23 6.23-16.34 0-22.58L207.6 256z'%3E%3C/path%3E%3C/svg%3E\");\n  -webkit-mask-image: url(\"data:image/svg+xml,%3Csvg viewBox='0 0 320 512' fill='currentColor' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M207.6 256l107.72-107.72c6.23-6.23 6.23-16.34 0-22.58l-25.03-25.03c-6.23-6.23-16.34-6.23-22.58 0L160 208.4 52.28 100.68c-6.23-6.23-16.34-6.23-22.58 0L4.68 125.7c-6.23 6.23-6.23 16.34 0 22.58L112.4 256 4.68 363.72c-6.23 6.23-6.23 16.34 0 22.58l25.03 25.03c6.23 6.23 16.34 6.23 22.58 0L160 303.6l107.72 107.72c6.23 6.23 16.34 6.23 22.58 0l25.03-25.03c6.23-6.23 6.23-16.34 0-22.58L207.6 256z'%3E%3C/path%3E%3C/svg%3E\");\n  mask-size: 0.75rem 0.75rem;\n  -webkit-mask-size: 0.75rem 0.75rem;\n  mask-repeat: no-repeat;\n  -webkit-mask-repeat: no-repeat;\n  mask-position: center center;\n  -webkit-mask-position: center center;\n  background-color: var(--vf-color-passive);\n}\n\n.vf-matrix-add {\n  margin-top: var(--vf-gutter);\n}\n\n.vf-matrix-add.vf-matrix-add-sm {\n  margin-top: var(--vf-gutter-sm);\n}\n\n.vf-matrix-add.vf-matrix-add-lg {\n  margin-top: var(--vf-gutter-lg);\n}";
+var css_248z$w = "/* Some styles are contained in _table.scss */\n\n.vf-matrix-grid {\n  display: grid;\n}\n\n.vf-matrix-grid.is-scrollable {\n  overflow: auto;\n}\n\n.vf-matrix-header {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  text-align: center;\n  min-height: var(--vf-min-height-input);\n}\n\n.vf-matrix-header.has-padding {\n  padding-left: 0.5rem;\n  padding-right: 0.5rem;\n}\n\n.vf-matrix-header.is-sticky {\n  position: sticky;\n  top: 0;\n  backdrop-filter: blur(64px);\n  z-index: 1;\n}\n\n.vf-matrix-header.is-nowrap {\n  white-space: nowrap;\n}\n\n.vf-matrix-header.vf-matrix-header-sm {\n  min-height: var(--vf-min-height-input-sm);\n}\n\n.vf-matrix-header.vf-matrix-header-lg {\n  min-height: var(--vf-min-height-input-lg);\n}\n\n.vf-matrix-row-label {\n  display: flex;\n  align-items: center;\n  padding-right: 0.5rem;\n}\n\n.vf-matrix-row-label.is-sticky {\n  position: sticky;\n  left: 0;\n  backdrop-filter: blur(64px);\n  z-index: 1;\n}\n\n.vf-matrix-row-label.is-nowrap {\n  white-space: nowrap;\n}\n\n.vf-matrix-cell {\n  display: grid;\n  align-items: center;\n  min-height: var(--vf-min-height-input);\n}\n\n.vf-matrix-cell.vf-matrix-cell-sm {\n  min-height: var(--vf-min-height-input-sm);\n}\n\n.vf-matrix-cell.vf-matrix-cell-lg {\n  min-height: var(--vf-min-height-input-lg);\n}\n\n.vf-matrix-cell-wrapper {\n  width: 100%;\n  height: 100%;\n  display: grid;\n  align-items: center;\n}\n\n.vf-matrix-cell-wrapper.has-padding {\n  padding-left: 0.5rem;\n  padding-right: 0.5rem;\n}\n\n.vf-matrix-cell-wrapper.is-centered {\n  justify-content: center;\n}\n\n.vf-matrix-row-remove {\n  position: sticky;\n  right: 0;\n  backdrop-filter: blur(64px);\n  z-index: 1;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  width: 2.5rem;\n}\n\n.vf-matrix-remove {\n  width: 1rem;\n  height: 1rem;\n  padding: 0.125rem;\n  box-sizing: content-box !important;\n  background-color: var(--vf-bg-passive);\n  border-radius: 999px;\n  transition: 0.15s;\n}\n\n.vf-matrix-remove:hover {\n  filter: brightness(0.9);\n}\n\n.vf-matrix-remove-icon {\n  display: flex;\n  width: 100%;\n  height: 100%;\n  align-items: center;\n  justify-content: center;\n  mask-image: url(\"data:image/svg+xml,%3Csvg viewBox='0 0 320 512' fill='currentColor' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M207.6 256l107.72-107.72c6.23-6.23 6.23-16.34 0-22.58l-25.03-25.03c-6.23-6.23-16.34-6.23-22.58 0L160 208.4 52.28 100.68c-6.23-6.23-16.34-6.23-22.58 0L4.68 125.7c-6.23 6.23-6.23 16.34 0 22.58L112.4 256 4.68 363.72c-6.23 6.23-6.23 16.34 0 22.58l25.03 25.03c6.23 6.23 16.34 6.23 22.58 0L160 303.6l107.72 107.72c6.23 6.23 16.34 6.23 22.58 0l25.03-25.03c6.23-6.23 6.23-16.34 0-22.58L207.6 256z'%3E%3C/path%3E%3C/svg%3E\");\n  -webkit-mask-image: url(\"data:image/svg+xml,%3Csvg viewBox='0 0 320 512' fill='currentColor' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M207.6 256l107.72-107.72c6.23-6.23 6.23-16.34 0-22.58l-25.03-25.03c-6.23-6.23-16.34-6.23-22.58 0L160 208.4 52.28 100.68c-6.23-6.23-16.34-6.23-22.58 0L4.68 125.7c-6.23 6.23-6.23 16.34 0 22.58L112.4 256 4.68 363.72c-6.23 6.23-6.23 16.34 0 22.58l25.03 25.03c6.23 6.23 16.34 6.23 22.58 0L160 303.6l107.72 107.72c6.23 6.23 16.34 6.23 22.58 0l25.03-25.03c6.23-6.23 6.23-16.34 0-22.58L207.6 256z'%3E%3C/path%3E%3C/svg%3E\");\n  mask-size: 0.75rem 0.75rem;\n  -webkit-mask-size: 0.75rem 0.75rem;\n  mask-repeat: no-repeat;\n  -webkit-mask-repeat: no-repeat;\n  mask-position: center center;\n  -webkit-mask-position: center center;\n  background-color: var(--vf-color-passive);\n}\n\n.vf-matrix-add {\n  margin-top: var(--vf-gutter);\n}\n\n.vf-matrix-add.vf-matrix-add-sm {\n  margin-top: var(--vf-gutter-sm);\n}\n\n.vf-matrix-add.vf-matrix-add-lg {\n  margin-top: var(--vf-gutter-lg);\n}";
 styleInject(css_248z$w);
 
 script$11.__file = "themes/vueform/templates/elements/MatrixElement.vue";
@@ -9512,8 +9510,8 @@ function render$n(_ctx, _cache, $props, $setup, $data, $options) {
                 (openBlock(), createBlock(resolveDynamicComponent(_ctx.fieldSlots.radio), mergeProps({ ref_for: true }, scope, { el$: _ctx.el$ }), null, 16 /* FULL_PROPS */, ["el$"]))
               ])
             ]),
-            _: 2 /* DYNAMIC */
-          }, 1032 /* PROPS, DYNAMIC_SLOTS */, ["items", "index", "item", "value", "attrs"]))
+            _: 3 /* FORWARDED */
+          }, 8 /* PROPS */, ["items", "index", "item", "value", "attrs"]))
         }), 128 /* KEYED_FRAGMENT */))
       ], 10 /* CLASS, PROPS */, _hoisted_1$i)
     ]),
