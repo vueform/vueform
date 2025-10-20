@@ -5,6 +5,7 @@ import cloneDeep from 'lodash/cloneDeep'
 import { toRefs, ref, computed, watch, inject, nextTick } from 'vue'
 import localize from './../../utils/localize'
 import replaceWildcards from './../../utils/replaceWildcards'
+import dataEquals from './../../utils/dataEquals'
 
 const base = function(props, context, dependencies)
 {
@@ -284,7 +285,11 @@ const base = function(props, context, dependencies)
 
         resolvedUrl = resolvedUrl.replace(match[0], encodeURIComponent(elValue))
 
-        watchers.value.push(watch(computed(() => el$?.value), () => {
+        watchers.value.push(watch(computed(() => el$?.value), (n, o) => {
+          if (dataEquals(n, o)) {
+            return
+          }
+
           updateItems()
         }))
       }
