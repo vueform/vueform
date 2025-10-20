@@ -156,6 +156,7 @@ const Validator = class {
   get isNumeric() {
     return some(this.element$.Validators, { name: 'numeric' })
         || some(this.element$.Validators, { name: 'integer' })
+        || !isNaN(this.element$.value)
   }
 
   get isNullable() {
@@ -302,6 +303,7 @@ const Validator = class {
   isOtherNumeric(other$) {
     return some(other$.Validators, { name: 'numeric' })
         || some(other$.Validators, { name: 'integer' })
+        || !isNaN(other$.value)
   }
 
   size(value, other$) {
