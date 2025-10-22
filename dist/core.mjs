@@ -1,5 +1,5 @@
 /*!
- * Vueform v1.13.4 (https://github.com/vueform/vueform)
+ * Vueform v1.13.5 (https://github.com/vueform/vueform)
  * Copyright (c) 2025 Adam Berecz <adam@vueform.com>
  * Licensed under the MIT License
  */
@@ -9545,7 +9545,7 @@ var Validator = class {
       name: 'numeric'
     }) || some_1(this.element$.Validators, {
       name: 'integer'
-    }) || !isNaN(this.element$.value);
+    }) || typeof this.element$.value === 'number';
   }
   get isNullable() {
     var nullable = false;
@@ -9671,7 +9671,7 @@ var Validator = class {
       name: 'numeric'
     }) || some_1(other$.Validators, {
       name: 'integer'
-    }) || !isNaN(other$.value);
+    }) || typeof other$.value === 'number';
   }
   size(value, other$) {
     if (other$ && this.isOtherNumeric(other$) || !other$ && this.isNumeric) {
@@ -10194,7 +10194,7 @@ function shouldApplyPlugin (name, plugin) {
 }
 
 var name = "@vueform/vueform";
-var version$1 = "1.13.4";
+var version$1 = "1.13.5";
 var description = "Open-Source Form Framework for Vue";
 var homepage = "https://vueform.com";
 var license = "MIT";

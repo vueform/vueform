@@ -1,6 +1,6 @@
 {
   "name": "@vueform/nuxt",
-  "version": "1.22.0",
+  "version": "1.23.0",
   "description": "Nuxt module for Vueform",
   "repository": "vueform/nuxt",
   "license": "MIT",
@@ -35,7 +35,7 @@
   },
   "dependencies": {
     "@nuxt/kit": "^3.8.1",
-    "@vueform/vueform": "^1.13.4",
+    "@vueform/vueform": "^1.13.5",
     "pathe": "^1.1.1"
   },
   "devDependencies": {
