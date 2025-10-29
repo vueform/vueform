@@ -479,10 +479,10 @@ export default {
     "mimes": ":attribute mutlaka :values biçiminde bir dosya olmalıdır.",
     "mimetypes": ":attribute mutlaka :values biçiminde bir dosya olmalıdır.",
     "min": {
-      "numeric": ":attribute en az :min olabilir.",
-      "file": ":attribute en az :min kilobayt olabilir.",
-      "string": ":attribute en az :min karakter olabilir.",
-      "array": ":attribute en az :min öge içerebilir."
+      "numeric": ":attribute en az :min olmalıdır.",
+      "file": ":attribute en az :min kilobayt olmalıdır.",
+      "string": ":attribute en az :min karakter olmalıdır.",
+      "array": ":attribute en az :min öge içermelidir."
     },
     "not_in": "Seçili :attribute geçersiz.",
     "not_regex": ":attribute biçimi geçersiz.",
