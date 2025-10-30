@@ -1,5 +1,5 @@
 /*!
- * Vueform v1.13.5 (https://github.com/vueform/vueform)
+ * Vueform v1.13.6 (https://github.com/vueform/vueform)
  * Copyright (c) 2025 Adam Berecz <adam@vueform.com>
  * Licensed under the MIT License
  */
@@ -10194,7 +10194,7 @@ function shouldApplyPlugin (name, plugin) {
 }
 
 var name = "@vueform/vueform";
-var version$1 = "1.13.5";
+var version$1 = "1.13.6";
 var description = "Open-Source Form Framework for Vue";
 var homepage = "https://vueform.com";
 var license = "MIT";
@@ -30636,7 +30636,8 @@ var multilingual$3 = function multilingual(props, context, dependencies) {
     each(Validators.value, (Validators, language) => {
       each(Validators, Validator => {
         if (Validator.failing) {
-          errors.push(Validator.message + ' (' + language + ')');
+          var _form$$value;
+          errors.push(Validator.message + ' (' + (((_form$$value = form$.value) === null || _form$$value === void 0 || (_form$$value = _form$$value.options) === null || _form$$value === void 0 || (_form$$value = _form$$value.languages) === null || _form$$value === void 0 ? void 0 : _form$$value[language]) || language) + ')');
         }
       });
     });

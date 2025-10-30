@@ -1,5 +1,15 @@
 [//]: # (Don't use <tags>)
 
+## v1.13.6
+
+> `2025-10-30`
+
+### 🎉 Feature
+- Display language instead of key in language specific validation messages
+
+### 🐞 Bug Fixes
+- Update Turkish localization for validation messages (thanks @rfanevrens 🙏)
+
 ## v1.13.5
 
 > `2025-10-22`
