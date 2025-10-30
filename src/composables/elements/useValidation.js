@@ -955,7 +955,7 @@ const multilingual = function(props, context, dependencies)
     each(Validators.value, (Validators, language) => {
       each(Validators, (Validator) => {
         if (Validator.failing) {
-          errors.push(Validator.message + ' (' + language + ')')
+          errors.push(Validator.message + ' (' + (form$.value?.options?.languages?.[language] || language) + ')')
         }
       })
     })
