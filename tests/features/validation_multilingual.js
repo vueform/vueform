@@ -1,5 +1,5 @@
 import flushPromises from 'flush-promises'
-import { createForm, destroy } from 'test-helpers'
+import { createForm } from 'test-helpers'
 import { nextTick } from 'vue'
 
 export { messageBag } from './validation'
@@ -317,9 +317,9 @@ export const errors = function (elementType, elementName, options) {
     await flushPromises()
 
     expect(el.errors.length).toBe(3)
-    expect(el.errors[0].substr(el.errors[0].length - 4)).toBe('(en)')
-    expect(el.errors[1].substr(el.errors[1].length - 4)).toBe('(en)')
-    expect(el.errors[2].substr(el.errors[2].length - 4)).toBe('(fr)')
+    expect(el.errors[0].substr(el.errors[0].length - 9)).toBe('(English)')
+    expect(el.errors[1].substr(el.errors[1].length - 9)).toBe('(English)')
+    expect(el.errors[2].substr(el.errors[2].length - 8)).toBe('(French)')
 
     // destroy() // teardown
   })
