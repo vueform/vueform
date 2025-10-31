@@ -423,8 +423,8 @@ export default {
       "array": ":attribute musí mít rozsah :min - :max prvků."
     },
     "boolean": ":attribute musí být true anebo false.",
-    "captcha": "Please verify that you are not a robot.",
-    "completed": "Please fill in a valid phone number.",
+    "captcha": "Prosím potvrďte, že nejste robot.",
+    "completed": "Prosím vyplňte validní telefonní číslo.",
     "confirmed": ":attribute konfirmace se neshoduje.",
     "date": ":attribute má neplatné datum.",
     "date_format": ":attribute se neshoduje s formátem :format.",
