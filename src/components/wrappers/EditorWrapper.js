@@ -1,5 +1,6 @@
-import { ref, watch, onMounted, toRefs, computed, onBeforeUnmount, h, nextTick, } from 'vue'
+import { ref, watch, toRefs, computed } from 'vue'
 import useElementComponent from './../../composables/useElementComponent'
+import Trix from 'trix'
 
 export default {
   name: 'EditorWrapper',
@@ -182,6 +183,23 @@ export default {
     }
 
     /**
+     * Inits Trix localization.
+     * 
+     * @returns {void}
+     * @private
+     */
+    const initTrixLang = () => {
+      if (typeof Trix === undefined || !Trix.config?.lang) {
+        return
+      }
+      
+      Object.entries(form$.value.translations.vueform.editor).forEach(([key, value]) => {
+        Trix.config.lang[key] = value
+      })
+      
+    }
+
+    /**
      * Handles `change` event.
      * 
      * @returns {void}
@@ -291,6 +309,10 @@ export default {
     const handleBlur = () => {
       context.emit('blur')
     }
+
+    // ============= TRIX LOCALE ============
+
+    initTrixLang()
 
     // ============== WATCHERS ==============
 
