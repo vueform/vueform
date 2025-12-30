@@ -58,8 +58,6 @@ export default {
     "editor": {
       "acceptedMimesError": "Erlaubte Dateitypen: :mimes",
       "acceptedExtensionsError": "Erlaubte Dateiendungen: :extensions",
-      "acceptedMimes": "Erlaubte Dateitypen: :mimes",
-      "acceptedExtensions": "Erlaubte Dateiendungen: :extensions",
       "attachFiles": "Dateien anhängen",
       "bold": "Fett",
       "bullets": "Aufzählung",
@@ -85,7 +83,9 @@ export default {
       "KB": "KB",
       "MB": "MB",
       "PB": "PB",
-      "TB": "TB"
+      "TB": "TB",
+      "acceptedMimes": "Erlaubte Dateitypen: :mimes",
+      "acceptedExtensions": "Erlaubte Dateiendungen: :extensions"
     },
     "datepicker": {
       "weekdays": {

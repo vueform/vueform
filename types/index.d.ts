@@ -1,4 +1,4 @@
-import { DefineComponent, VNode } from 'vue';
+import { App, defineComponent, DefineComponent, VNode } from 'vue';
 
 export interface EndpointConfig {
   url?: string;
@@ -83,10 +83,20 @@ declare module '@vueform/vueform' {
     function defineConfig(options: VueformConfig): VueformConfig;
 
   export {
-    components, config, defineConfig, defineElement, element, useClasses, useVueform, Validator, Vueform, vueform, VueformElement
-  };
+    config,
+    components,
+    useVueform,
+    useClasses,
+    Vueform,
+    Validator,
+    vueform,
+    element,
+    VueformElement,
+    defineElement,
+    defineConfig,
+  }
 
-  export default function install(app: any, options: VueformConfig): any;
+  export default function install(app?: any, options: VueformConfig): any;
 }
 
 export interface MessageBag {
@@ -11401,6 +11411,6 @@ declare module '@vueform/vueform/core' {
     timezone,
     unique,
     url,
-    uuid
-  };
+    uuid,
+  }
 }

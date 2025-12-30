@@ -83,7 +83,7 @@ export default {
       "KB": "KB",
       "MB": "MB",
       "PB": "PB",
-      "TB": "TB",
+      "TB": "TB"
     },
     "datepicker": {
       "weekdays": {

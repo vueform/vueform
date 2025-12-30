@@ -1,5 +1,5 @@
 /*!
- * Vueform v1.13.6 (https://github.com/vueform/vueform)
+ * Vueform v1.13.7 (https://github.com/vueform/vueform)
  * Copyright (c) 2025 Adam Berecz <adam@vueform.com>
  * Licensed under the MIT License
  */
@@ -9420,7 +9420,7 @@ function localize(object, $config, form$) {
   if (!locale) {
     return object;
   }
-  return object && typeof object === 'object' ? (object === null || object === void 0 ? void 0 : object[locale]) || (object === null || object === void 0 ? void 0 : object[locale.toUpperCase()]) || (object === null || object === void 0 ? void 0 : object[$config.i18n.fallbackLocale]) || (object === null || object === void 0 ? void 0 : object[$config.i18n.fallbackLocale.toUpperCase()]) || (object === null || object === void 0 ? void 0 : object[Object.keys(object)[0]]) || '' : object;
+  return object && typeof object === 'object' && !Array.isArray(object) ? (object === null || object === void 0 ? void 0 : object[locale]) || (object === null || object === void 0 ? void 0 : object[locale.toUpperCase()]) || (object === null || object === void 0 ? void 0 : object[$config.i18n.fallbackLocale]) || (object === null || object === void 0 ? void 0 : object[$config.i18n.fallbackLocale.toUpperCase()]) || (object === null || object === void 0 ? void 0 : object[Object.keys(object)[0]]) || '' : object;
 }
 
 var Validator = class {
@@ -10194,7 +10194,7 @@ function shouldApplyPlugin (name, plugin) {
 }
 
 var name = "@vueform/vueform";
-var version$1 = "1.13.6";
+var version$1 = "1.13.7";
 var description = "Open-Source Form Framework for Vue";
 var homepage = "https://vueform.com";
 var license = "MIT";
@@ -25841,6 +25841,23 @@ var EditorWrapper = {
     };
 
     /**
+     * Inits Trix localization.
+     * 
+     * @returns {void}
+     * @private
+     */
+    var initTrixLang = () => {
+      var _window$TrixEditor$co;
+      if (typeof document === undefined || typeof window === undefined || typeof window.TrixEditor === undefined || !((_window$TrixEditor$co = window.TrixEditor.config) !== null && _window$TrixEditor$co !== void 0 && _window$TrixEditor$co.lang)) {
+        return;
+      }
+      Object.entries(form$.value.translations.vueform.editor).forEach(_ref => {
+        var [key, value] = _ref;
+        window.TrixEditor.config.lang[key] = value;
+      });
+    };
+
+    /**
      * Handles `change` event.
      * 
      * @returns {void}
@@ -25900,7 +25917,7 @@ var EditorWrapper = {
      * @private
      */
     var handleAttachmentAdd = /*#__PURE__*/function () {
-      var _ref = _asyncToGenerator(function* (e) {
+      var _ref2 = _asyncToGenerator(function* (e) {
         if (!e.attachment.file) {
           return;
         }
@@ -25931,7 +25948,7 @@ var EditorWrapper = {
         }
       });
       return function handleAttachmentAdd(_x) {
-        return _ref.apply(this, arguments);
+        return _ref2.apply(this, arguments);
       };
     }();
 
@@ -25944,6 +25961,10 @@ var EditorWrapper = {
     var handleBlur = () => {
       context.emit('blur');
     };
+
+    // ============= TRIX LOCALE ============
+
+    initTrixLang();
 
     // ============== WATCHERS ==============
 

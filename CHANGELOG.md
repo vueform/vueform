@@ -1,5 +1,12 @@
 [//]: # (Don't use <tags>)
 
+## v1.13.7
+
+> `2025-12-30`
+
+### 🎉 Feature
+- Added localization for EditorElement
+
 ## v1.13.6
 
 > `2025-10-30`
