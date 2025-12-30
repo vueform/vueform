@@ -1,6 +1,5 @@
 import { ref, watch, toRefs, computed } from 'vue'
 import useElementComponent from './../../composables/useElementComponent'
-import Trix from 'trix'
 
 export default {
   name: 'EditorWrapper',
@@ -189,12 +188,12 @@ export default {
      * @private
      */
     const initTrixLang = () => {
-      if (typeof Trix === undefined || !Trix.config?.lang) {
+      if (typeof document === undefined || typeof window === undefined || typeof window.TrixEditor === undefined || !window.TrixEditor.config?.lang) {
         return
       }
       
       Object.entries(form$.value.translations.vueform.editor).forEach(([key, value]) => {
-        Trix.config.lang[key] = value
+        window.TrixEditor.config.lang[key] = value
       })
       
     }
