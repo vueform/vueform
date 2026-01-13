@@ -1,5 +1,5 @@
 <script>
-  import FilePreview from './../../../../blank/templates/elements/partials/FilePreview.vue'
+  import FilePreview from './../../../../blank/templates/elements/partials/FilePreview.vue';
 
   export default {
     name: 'FilePreview',
@@ -82,11 +82,19 @@
   .vf-file-preview-file {
     display: flex;
     align-items: center;
+    overflow: hidden;
+  }
+
+  .vf-file-preview-filename {
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .vf-file-preview-filename-link {
     text-decoration: none;
     color: inherit;
+    overflow: hidden;
+    text-overflow: ellipsis;
 
     &:hover, &:focus, &:active {
       color: inherit;

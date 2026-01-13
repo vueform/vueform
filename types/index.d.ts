@@ -1,4 +1,4 @@
-import { App, defineComponent, DefineComponent, VNode } from 'vue';
+import { DefineComponent, VNode } from 'vue';
 
 export interface EndpointConfig {
   url?: string;
@@ -83,20 +83,10 @@ declare module '@vueform/vueform' {
     function defineConfig(options: VueformConfig): VueformConfig;
 
   export {
-    config,
-    components,
-    useVueform,
-    useClasses,
-    Vueform,
-    Validator,
-    vueform,
-    element,
-    VueformElement,
-    defineElement,
-    defineConfig,
-  }
+    components, config, defineConfig, defineElement, element, useClasses, useVueform, Validator, Vueform, vueform, VueformElement
+  };
 
-  export default function install(app?: any, options: VueformConfig): any;
+  export default function install(app: any, options: VueformConfig): any;
 }
 
 export interface MessageBag {
@@ -300,6 +290,8 @@ export interface VueformElement extends DefineComponent {
     [key: string]: VueformSchema;
   };
   meta: boolean;
+  forceNumbers: boolean;
+  expression: string | object;
   onAdd: Function;
   onSort: Function;
   element: object;
@@ -404,6 +396,7 @@ export interface VueformElement extends DefineComponent {
   direction: string;
   lazy: boolean;
   content: string | object | Function;
+  expressions: boolean;
   wrap: boolean;
   tag: string;
   allowHtml: boolean;
@@ -420,7 +413,6 @@ export interface VueformElement extends DefineComponent {
   onTag: Function;
   breakTags: boolean;
   showOptions: boolean;
-  forceNumbers: boolean;
   labels: object;
 
   // Computed
@@ -715,6 +707,8 @@ export interface VueformElement extends DefineComponent {
   resolveComponentName: (rowIndex: number, colIndex: number) => string;
   validateValidators: () => Promise;
   validateChildren: () => Promise;
+  shouldForceNumbers: () => boolean;
+  stringToNumber: (str: any) => number | float | string;
   add: (value: any) => number;
   handleAdd: () => void;
   refreshOrderStore: (value: Array<any>) => void;
@@ -780,8 +774,6 @@ export interface VueformElement extends DefineComponent {
   handleKeypress: (e: Event) => void;
   autosize: () => void;
   handleTag: (searchQuery: string) => void;
-  shouldForceNumbers: () => boolean;
-  stringToNumber: (str: any) => number | float | string;
 }
 
 export interface VueformSchema {
@@ -905,6 +897,8 @@ export interface VueformSchema {
     [key: string]: VueformSchema;
   };
   meta?: boolean;
+  forceNumbers?: boolean;
+  expression?: string | object;
   onAdd?: Function;
   onSort?: Function;
   element?: object;
@@ -1009,6 +1003,7 @@ export interface VueformSchema {
   direction?: string;
   lazy?: boolean;
   content?: string | object | Function;
+  expressions?: boolean;
   wrap?: boolean;
   tag?: string;
   allowHtml?: boolean;
@@ -1025,7 +1020,6 @@ export interface VueformSchema {
   onTag?: Function;
   breakTags?: boolean;
   showOptions?: boolean;
-  forceNumbers?: boolean;
   labels?: object;
   [key: string]: any;
 }
@@ -1915,6 +1909,8 @@ export interface HiddenElementProps {
   default?: string | number | object;
   id?: string;
   meta?: boolean;
+  forceNumbers?: boolean;
+  expression?: string | object;
 }
 
 export interface ListElementProps {
@@ -2775,6 +2771,7 @@ export interface StaticElementProps {
   type?: string;
   id?: string;
   content?: string | object | Function;
+  expressions?: boolean;
   wrap?: boolean;
   tag?: string;
   allowHtml?: boolean;
@@ -3129,6 +3126,7 @@ export interface TextElementProps {
   readonly?: boolean | Function | Array<any> | object;
   inputType?: string;
   forceNumbers?: boolean;
+  expression?: string | object;
   attrs?: object;
   addons?: object;
   autocomplete?: string | number;
@@ -4253,6 +4251,7 @@ export declare class Vueform implements DefineComponent {
   validate: () => Promise;
   resetValidators: () => void;
   convertFormData: (data: object) => object;
+  resolveExpression: (exp: string, dataPath: string) => string;
   submit: () => Promise;
   send: () => Promise;
   cancel: () => void;
@@ -4265,6 +4264,7 @@ export declare class Vueform implements DefineComponent {
   el$: (path: string, elements?: object) => VueformElement | null;
   siblings$: (path: string) => void;
   initMessageBag: () => void;
+  initExpressionService: () => void;
   fire: (args?: any) => void;
   on: (event: string, callback: Function) => void;
   off: (event: string) => void;
@@ -4803,6 +4803,8 @@ export declare class CaptchaElement implements DefineComponent {
   show: () => void;
 
   //Events
+  $emit(eventName: 'reset', value: any): void;
+  $emit(eventName: 'clear', value: any): void;
   $emit(eventName: 'change', value: any): void;
   $emit(eventName: 'beforeCreate', value: any): void;
   $emit(eventName: 'created', value: any): void;
@@ -4994,6 +4996,8 @@ export declare class CheckboxElement implements DefineComponent {
   show: () => void;
 
   //Events
+  $emit(eventName: 'reset', value: any): void;
+  $emit(eventName: 'clear', value: any): void;
   $emit(eventName: 'change', value: any): void;
   $emit(eventName: 'beforeCreate', value: any): void;
   $emit(eventName: 'created', value: any): void;
@@ -5193,6 +5197,8 @@ export declare class CheckboxgroupElement implements DefineComponent {
   show: () => void;
 
   //Events
+  $emit(eventName: 'reset', value: any): void;
+  $emit(eventName: 'clear', value: any): void;
   $emit(eventName: 'change', value: any): void;
   $emit(eventName: 'beforeCreate', value: any): void;
   $emit(eventName: 'created', value: any): void;
@@ -5402,6 +5408,8 @@ export declare class DateElement implements DefineComponent {
   show: () => void;
 
   //Events
+  $emit(eventName: 'reset', value: any): void;
+  $emit(eventName: 'clear', value: any): void;
   $emit(eventName: 'change', value: any): void;
   $emit(eventName: 'beforeCreate', value: any): void;
   $emit(eventName: 'created', value: any): void;
@@ -5609,6 +5617,8 @@ export declare class DatesElement implements DefineComponent {
   show: () => void;
 
   //Events
+  $emit(eventName: 'reset', value: any): void;
+  $emit(eventName: 'clear', value: any): void;
   $emit(eventName: 'change', value: any): void;
   $emit(eventName: 'beforeCreate', value: any): void;
   $emit(eventName: 'created', value: any): void;
@@ -5815,6 +5825,8 @@ export declare class EditorElement implements DefineComponent {
   show: () => void;
 
   //Events
+  $emit(eventName: 'reset', value: any): void;
+  $emit(eventName: 'clear', value: any): void;
   $emit(eventName: 'change', value: any): void;
   $emit(eventName: 'blur', value: any): void;
   $emit(eventName: 'alert', value: any): void;
@@ -6044,6 +6056,8 @@ export declare class FileElement implements DefineComponent {
   show: () => void;
 
   //Events
+  $emit(eventName: 'reset', value: any): void;
+  $emit(eventName: 'clear', value: any): void;
   $emit(eventName: 'change', value: any): void;
   $emit(eventName: 'remove', value: any): void;
   $emit(eventName: 'error', value: any): void;
@@ -6233,6 +6247,8 @@ export declare class GenericElement implements DefineComponent {
   show: () => void;
 
   //Events
+  $emit(eventName: 'reset', value: any): void;
+  $emit(eventName: 'clear', value: any): void;
   $emit(eventName: 'change', value: any): void;
   $emit(eventName: 'beforeCreate', value: any): void;
   $emit(eventName: 'created', value: any): void;
@@ -6429,6 +6445,8 @@ export declare class GridElement implements DefineComponent {
   show: () => void;
 
   //Events
+  $emit(eventName: 'reset', value: any): void;
+  $emit(eventName: 'clear', value: any): void;
   $emit(eventName: 'change', value: any): void;
   $emit(eventName: 'beforeCreate', value: any): void;
   $emit(eventName: 'created', value: any): void;
@@ -6609,6 +6627,8 @@ export declare class GroupElement implements DefineComponent {
   show: () => void;
 
   //Events
+  $emit(eventName: 'reset', value: any): void;
+  $emit(eventName: 'clear', value: any): void;
   $emit(eventName: 'change', value: any): void;
   $emit(eventName: 'beforeCreate', value: any): void;
   $emit(eventName: 'created', value: any): void;
@@ -6657,6 +6677,8 @@ export declare class HiddenElement implements DefineComponent {
   default: HiddenElementProps['default'];
   id: HiddenElementProps['id'];
   meta: HiddenElementProps['meta'];
+  forceNumbers: HiddenElementProps['forceNumbers'];
+  expression: HiddenElementProps['expression'];
 
   // Computed
   isStatic: boolean;
@@ -6670,8 +6692,6 @@ export declare class HiddenElement implements DefineComponent {
   isGridType: boolean;
   isActive: boolean;
   available: boolean;
-  data: object;
-  requestData: object;
   defaultValue: any;
   el$: VueformElement;
   empty: boolean;
@@ -6724,14 +6744,12 @@ export declare class HiddenElement implements DefineComponent {
   activate: () => void;
   deactivate: () => void;
   updateConditions: () => void;
-  load: (value: any, format: boolean) => void;
-  update: (value: any) => void;
-  clear: () => void;
-  reset: () => void;
   on: (event: string, callback: Function) => void;
   off: (event: string) => void;
   fire: (args: any) => void;
   focus: () => void;
+  shouldForceNumbers: () => boolean;
+  stringToNumber: (str: any) => number | float | string;
   validate: () => Promise;
   dirt: () => void;
   clean: () => void;
@@ -6742,6 +6760,8 @@ export declare class HiddenElement implements DefineComponent {
   reinitValidation: () => void;
 
   //Events
+  $emit(eventName: 'reset', value: any): void;
+  $emit(eventName: 'clear', value: any): void;
   $emit(eventName: 'change', value: any): void;
   $emit(eventName: 'beforeCreate', value: any): void;
   $emit(eventName: 'created', value: any): void;
@@ -6953,6 +6973,8 @@ export declare class ListElement implements DefineComponent {
   show: () => void;
 
   //Events
+  $emit(eventName: 'reset', value: any): void;
+  $emit(eventName: 'clear', value: any): void;
   $emit(eventName: 'change', value: any): void;
   $emit(eventName: 'add', value: any): void;
   $emit(eventName: 'remove', value: any): void;
@@ -7159,6 +7181,8 @@ export declare class LocationElement implements DefineComponent {
   show: () => void;
 
   //Events
+  $emit(eventName: 'reset', value: any): void;
+  $emit(eventName: 'clear', value: any): void;
   $emit(eventName: 'change', value: any): void;
   $emit(eventName: 'beforeCreate', value: any): void;
   $emit(eventName: 'created', value: any): void;
@@ -7390,6 +7414,8 @@ export declare class MatrixElement implements DefineComponent {
   show: () => void;
 
   //Events
+  $emit(eventName: 'reset', value: any): void;
+  $emit(eventName: 'clear', value: any): void;
   $emit(eventName: 'change', value: any): void;
   $emit(eventName: 'add', value: any): void;
   $emit(eventName: 'remove', value: any): void;
@@ -7631,6 +7657,8 @@ export declare class MultifileElement implements DefineComponent {
   show: () => void;
 
   //Events
+  $emit(eventName: 'reset', value: any): void;
+  $emit(eventName: 'clear', value: any): void;
   $emit(eventName: 'change', value: any): void;
   $emit(eventName: 'add', value: any): void;
   $emit(eventName: 'remove', value: any): void;
@@ -7785,8 +7813,6 @@ export declare class MultiselectElement implements DefineComponent {
   columnsClassesService: Columns;
   columnsClasses: object;
   available: boolean;
-  data: object;
-  requestData: object;
   defaultValue: any;
   isDisabled: boolean;
   el$: VueformElement;
@@ -7861,10 +7887,6 @@ export declare class MultiselectElement implements DefineComponent {
   deactivate: () => void;
   updateColumns: (value: number | Array<any>) => void;
   updateConditions: () => void;
-  load: (value: any, format: boolean) => void;
-  update: (value: any) => void;
-  clear: () => void;
-  reset: () => void;
   disable: () => void;
   enable: () => void;
   on: (event: string, callback: Function) => void;
@@ -7892,13 +7914,14 @@ export declare class MultiselectElement implements DefineComponent {
   show: () => void;
 
   //Events
+  $emit(eventName: 'reset', value: any): void;
+  $emit(eventName: 'clear', value: any): void;
   $emit(eventName: 'change', value: any): void;
   $emit(eventName: 'select', value: any): void;
   $emit(eventName: 'deselect', value: any): void;
   $emit(eventName: 'search-change', value: any): void;
   $emit(eventName: 'open', value: any): void;
   $emit(eventName: 'close', value: any): void;
-  $emit(eventName: 'clear', value: any): void;
   $emit(eventName: 'paste', value: any): void;
   $emit(eventName: 'beforeCreate', value: any): void;
   $emit(eventName: 'created', value: any): void;
@@ -8093,6 +8116,8 @@ export declare class ObjectElement implements DefineComponent {
   show: () => void;
 
   //Events
+  $emit(eventName: 'reset', value: any): void;
+  $emit(eventName: 'clear', value: any): void;
   $emit(eventName: 'change', value: any): void;
   $emit(eventName: 'remove', value: any): void;
   $emit(eventName: 'beforeCreate', value: any): void;
@@ -8310,6 +8335,8 @@ export declare class PhoneElement implements DefineComponent {
   show: () => void;
 
   //Events
+  $emit(eventName: 'reset', value: any): void;
+  $emit(eventName: 'clear', value: any): void;
   $emit(eventName: 'change', value: any): void;
   $emit(eventName: 'select', value: any): void;
   $emit(eventName: 'open', value: any): void;
@@ -8507,6 +8534,8 @@ export declare class RadioElement implements DefineComponent {
   show: () => void;
 
   //Events
+  $emit(eventName: 'reset', value: any): void;
+  $emit(eventName: 'clear', value: any): void;
   $emit(eventName: 'change', value: any): void;
   $emit(eventName: 'beforeCreate', value: any): void;
   $emit(eventName: 'created', value: any): void;
@@ -8701,6 +8730,8 @@ export declare class RadiogroupElement implements DefineComponent {
   show: () => void;
 
   //Events
+  $emit(eventName: 'reset', value: any): void;
+  $emit(eventName: 'clear', value: any): void;
   $emit(eventName: 'change', value: any): void;
   $emit(eventName: 'beforeCreate', value: any): void;
   $emit(eventName: 'created', value: any): void;
@@ -8953,13 +8984,14 @@ export declare class SelectElement implements DefineComponent {
   show: () => void;
 
   //Events
+  $emit(eventName: 'reset', value: any): void;
+  $emit(eventName: 'clear', value: any): void;
   $emit(eventName: 'change', value: any): void;
   $emit(eventName: 'select', value: any): void;
   $emit(eventName: 'deselect', value: any): void;
   $emit(eventName: 'search-change', value: any): void;
   $emit(eventName: 'open', value: any): void;
   $emit(eventName: 'close', value: any): void;
-  $emit(eventName: 'clear', value: any): void;
   $emit(eventName: 'paste', value: any): void;
   $emit(eventName: 'beforeCreate', value: any): void;
   $emit(eventName: 'created', value: any): void;
@@ -9281,6 +9313,8 @@ export declare class SignatureElement implements DefineComponent {
   show: () => void;
 
   //Events
+  $emit(eventName: 'reset', value: any): void;
+  $emit(eventName: 'clear', value: any): void;
   $emit(eventName: 'change', value: any): void;
   $emit(eventName: 'beforeCreate', value: any): void;
   $emit(eventName: 'created', value: any): void;
@@ -9478,6 +9512,8 @@ export declare class SliderElement implements DefineComponent {
   show: () => void;
 
   //Events
+  $emit(eventName: 'reset', value: any): void;
+  $emit(eventName: 'clear', value: any): void;
   $emit(eventName: 'change', value: any): void;
   $emit(eventName: 'beforeCreate', value: any): void;
   $emit(eventName: 'created', value: any): void;
@@ -9541,6 +9577,7 @@ export declare class StaticElement implements DefineComponent {
   type: StaticElementProps['type'];
   id: StaticElementProps['id'];
   content: StaticElementProps['content'];
+  expressions: StaticElementProps['expressions'];
   wrap: StaticElementProps['wrap'];
   tag: StaticElementProps['tag'];
   allowHtml: StaticElementProps['allowHtml'];
@@ -9830,6 +9867,8 @@ export declare class TEditorElement implements DefineComponent {
   show: () => void;
 
   //Events
+  $emit(eventName: 'reset', value: any): void;
+  $emit(eventName: 'clear', value: any): void;
   $emit(eventName: 'change', value: any): void;
   $emit(eventName: 'blur', value: any): void;
   $emit(eventName: 'alert', value: any): void;
@@ -9941,8 +9980,6 @@ export declare class TTextElement implements DefineComponent {
   columnsClassesService: Columns;
   columnsClasses: object;
   available: boolean;
-  data: object;
-  requestData: object;
   defaultValue: any;
   isDisabled: boolean;
   el$: VueformElement;
@@ -10014,10 +10051,6 @@ export declare class TTextElement implements DefineComponent {
   deactivate: () => void;
   updateColumns: (value: number | Array<any>) => void;
   updateConditions: () => void;
-  load: (value: any, format: boolean) => void;
-  update: (value: any) => void;
-  clear: () => void;
-  reset: () => void;
   disable: () => void;
   enable: () => void;
   on: (event: string, callback: Function) => void;
@@ -10044,6 +10077,8 @@ export declare class TTextElement implements DefineComponent {
   show: () => void;
 
   //Events
+  $emit(eventName: 'reset', value: any): void;
+  $emit(eventName: 'clear', value: any): void;
   $emit(eventName: 'change', value: any): void;
   $emit(eventName: 'blur', value: any): void;
   $emit(eventName: 'focus', value: any): void;
@@ -10158,8 +10193,6 @@ export declare class TTextareaElement implements DefineComponent {
   columnsClassesService: Columns;
   columnsClasses: object;
   available: boolean;
-  data: object;
-  requestData: object;
   defaultValue: any;
   isDisabled: boolean;
   el$: VueformElement;
@@ -10231,10 +10264,6 @@ export declare class TTextareaElement implements DefineComponent {
   deactivate: () => void;
   updateColumns: (value: number | Array<any>) => void;
   updateConditions: () => void;
-  load: (value: any, format: boolean) => void;
-  update: (value: any) => void;
-  clear: () => void;
-  reset: () => void;
   disable: () => void;
   enable: () => void;
   on: (event: string, callback: Function) => void;
@@ -10261,6 +10290,8 @@ export declare class TTextareaElement implements DefineComponent {
   show: () => void;
 
   //Events
+  $emit(eventName: 'reset', value: any): void;
+  $emit(eventName: 'clear', value: any): void;
   $emit(eventName: 'change', value: any): void;
   $emit(eventName: 'blur', value: any): void;
   $emit(eventName: 'focus', value: any): void;
@@ -10418,8 +10449,6 @@ export declare class TagsElement implements DefineComponent {
   columnsClassesService: Columns;
   columnsClasses: object;
   available: boolean;
-  data: object;
-  requestData: object;
   defaultValue: any;
   isDisabled: boolean;
   el$: VueformElement;
@@ -10494,10 +10523,6 @@ export declare class TagsElement implements DefineComponent {
   deactivate: () => void;
   updateColumns: (value: number | Array<any>) => void;
   updateConditions: () => void;
-  load: (value: any, format: boolean) => void;
-  update: (value: any) => void;
-  clear: () => void;
-  reset: () => void;
   disable: () => void;
   enable: () => void;
   on: (event: string, callback: Function) => void;
@@ -10526,6 +10551,8 @@ export declare class TagsElement implements DefineComponent {
   show: () => void;
 
   //Events
+  $emit(eventName: 'reset', value: any): void;
+  $emit(eventName: 'clear', value: any): void;
   $emit(eventName: 'change', value: any): void;
   $emit(eventName: 'select', value: any): void;
   $emit(eventName: 'deselect', value: any): void;
@@ -10533,7 +10560,6 @@ export declare class TagsElement implements DefineComponent {
   $emit(eventName: 'open', value: any): void;
   $emit(eventName: 'close', value: any): void;
   $emit(eventName: 'tag', value: any): void;
-  $emit(eventName: 'clear', value: any): void;
   $emit(eventName: 'paste', value: any): void;
   $emit(eventName: 'beforeCreate', value: any): void;
   $emit(eventName: 'created', value: any): void;
@@ -10623,6 +10649,7 @@ export declare class TextElement implements DefineComponent {
   readonly: TextElementProps['readonly'];
   inputType: TextElementProps['inputType'];
   forceNumbers: TextElementProps['forceNumbers'];
+  expression: TextElementProps['expression'];
   attrs: TextElementProps['attrs'];
   addons: TextElementProps['addons'];
   autocomplete: TextElementProps['autocomplete'];
@@ -10757,6 +10784,8 @@ export declare class TextElement implements DefineComponent {
   show: () => void;
 
   //Events
+  $emit(eventName: 'reset', value: any): void;
+  $emit(eventName: 'clear', value: any): void;
   $emit(eventName: 'change', value: any): void;
   $emit(eventName: 'blur', value: any): void;
   $emit(eventName: 'focus', value: any): void;
@@ -10972,6 +11001,8 @@ export declare class TextareaElement implements DefineComponent {
   show: () => void;
 
   //Events
+  $emit(eventName: 'reset', value: any): void;
+  $emit(eventName: 'clear', value: any): void;
   $emit(eventName: 'change', value: any): void;
   $emit(eventName: 'blur', value: any): void;
   $emit(eventName: 'focus', value: any): void;
@@ -11173,6 +11204,8 @@ export declare class ToggleElement implements DefineComponent {
   show: () => void;
 
   //Events
+  $emit(eventName: 'reset', value: any): void;
+  $emit(eventName: 'clear', value: any): void;
   $emit(eventName: 'change', value: any): void;
   $emit(eventName: 'beforeCreate', value: any): void;
   $emit(eventName: 'created', value: any): void;
@@ -11374,6 +11407,6 @@ declare module '@vueform/vueform/core' {
     timezone,
     unique,
     url,
-    uuid,
-  }
+    uuid
+  };
 }

@@ -7,13 +7,15 @@ import keys from 'lodash/keys'
 import get from 'lodash/get'
 import parse from './parse'
 import replaceWildcards from './../../utils/replaceWildcards'
+import replaceWildcardsExpr from './../../utils/replaceWildcardsExpr'
 import compare from './../../utils/compare'
  
 const Factory = class {
 
-  constructor(path, form$) {
+  constructor(path, form$, config$) {
     this.form$ = form$
     this.element$ = form$.el$(path)
+    this.config$ = config$
   }
 
   get rules() {
@@ -53,7 +55,8 @@ const Factory = class {
       name: `custom_rule_${Math.floor(Math.random() * 9000000) + 1000000}`,
       attributes: Array.isArray(rule) && rule[1] ? rule[1] : []
     }, {
-      element$: this.element$
+      element$: this.element$,
+      config$: this.config$,
     })
   }
 
@@ -79,6 +82,12 @@ const Factory = class {
     return isPlainObject(rule)
   }
 
+  getExprDeps(condition) {
+    const ExpressionService = this.form$.expression
+
+    return ExpressionService.vars(ExpressionService.wrap(condition), this.element$?.dataPath)
+  }
+
   parseConditional(rule) {
     let conditions = values(rule)[0]
 
@@ -91,9 +100,15 @@ const Factory = class {
       conditions: (form$, Validator, el$) => {
         return conditions.every((condition) => {
           if (isArray(condition)) {
-            if (isArray(condition[0])) {
+            if (typeof condition[0] === 'string' && condition.length === 1) {
+              return this.createConditionFromString(condition)(form$, Validator, el$)
+            }
+            else if (isArray(condition[0])) {
               return condition.some((subcondition) => {
-                if (isArray(subcondition)) {
+                if (typeof subcondition[0] === 'string' && subcondition.length === 1) {
+                  return this.createConditionFromString(subcondition)(form$, Validator, el$)
+                }
+                else if (isArray(subcondition)) {
                   return this.createConditionFromArray(subcondition)(form$, Validator, el$)
                 } else {
                   return condition(form$, Validator, el$)
@@ -112,9 +127,15 @@ const Factory = class {
 
     conditions.forEach((condition) => {
       if (isArray(condition)) {
-        if (isArray(condition[0])) {
+        if (typeof condition[0] === 'string') {
+          parsed.dependents.push(...this.getExprDeps(condition[0]))
+        }
+        else if (isArray(condition[0])) {
           condition.forEach((subcondition) => {
-            if (isArray(subcondition)) {
+            if (typeof subcondition === 'string') {
+              parsed.dependents.push(...this.getExprDeps(subcondition[0]))
+            }
+            else if (isArray(subcondition)) {
               parsed.dependents.push(replaceWildcards(subcondition[0], this.element$.path))
             }
           })
@@ -139,6 +160,16 @@ const Factory = class {
       var expected = value
 
       return compare(actual, operator, expected, this.element$, form$)
+    }
+  }
+
+  createConditionFromString(condition) {
+    if (!/^{/.test(condition) && !/}$/.test(condition)) {
+      condition = `{${condition}}`
+    }
+
+    return (form$, Validator, el$) => {
+      return form$.resolveExpression(condition, this.element$?.dataPath) !== 'false'
     }
   }
 }

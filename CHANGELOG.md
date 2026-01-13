@@ -1,5 +1,88 @@
 [//]: # (Don't use <tags>)
 
+## v1.13.6
+
+> `2025-10-30`
+
+### 🎉 Feature
+- Display language instead of key in language specific validation messages
+
+### 🐞 Bug Fixes
+- Update Turkish localization for validation messages (thanks @rfanevrens 🙏)
+
+## v1.13.5
+
+> `2025-10-22`
+
+### 🐞 Bug Fixes
+- Rebuild
+
+## v1.13.4
+
+> `2025-10-20`
+
+### 🐞 Bug Fixes
+- wiped out signature with inline modes array def fix #483
+- slider numeric validation fix #486
+- linked tags with parameterized url and v-model sync infitinte refetch fix #485
+- keep default of radiogroup when items is an url #480
+
+## v1.13.3
+
+> `2025-10-06`
+
+### 🎉 Feature
+- use ellipsis for long file names with tooltip #481
+
+### 🐞 Bug Fixes
+- sanitize extra props
+
+## v1.13.2
+
+> `2025-08-25`
+
+### 🐞 Bug Fixes
+- Added missing formatLoad prop to matrix #477
+
+## v1.13.1
+
+> `2025-08-15`
+
+### 🎉 Feature
+- Added `AVAILABLE` function to expressions.
+- Be able to define custom chained expression functions that has access to `form$`.
+
+### 🐞 Bug Fixes
+- Added missing input field width 100% in Vueform theme.
+- Expression sibling path and non-numeric sum fix.
+
+## v1.13.0
+
+> `2025-07-23`
+
+### 🎉 Feature
+- Added expressions, a way to use computed form values as element values, static text and conditions.
+- Added `expression` to `text` and `hidden`.
+- Added `expressions` and `static` which is when enabled string between `{...}` will be evaluated as expression.
+- Added expression support for `conditions`, `disabled` and `readonly` when condition provided as a string.
+- Added `reset` & `clear` events for elements
+- Added `forceNumbers` prop to `HiddenElement`
+- Use computed for `MatrixElement` col/row `available` prop
+
+### 🐞 Bug Fixes
+- Clear resetting if the form validation is turned off or rules don't exist.
+
+## v1.12.11
+
+> `2025-07-17`
+
+### 🎉 Feature
+- Added `ht`, `so`, `vi` locales (thanks @giovramirez 🙏)
+
+### 🐞 Bug Fixes
+- Be able to localize custom rule messages
+- `gt`, `gte`, `lt`, `lte` rules that point to another elemegit pount should take into account numeric types #466
+
 ## v1.12.10
 
 > `2025-06-09`

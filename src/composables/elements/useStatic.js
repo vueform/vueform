@@ -5,6 +5,7 @@ const base = function(props, context, dependencies)
 {
   const {
     content,
+    expressions,
   } = toRefs(props)
   
   // ============ DEPENDENCIES ============
@@ -13,6 +14,7 @@ const base = function(props, context, dependencies)
     fieldSlots,
     el$,
     form$,
+    parent,
   } = dependencies
   
   // =============== INJECT ===============
@@ -47,6 +49,10 @@ const base = function(props, context, dependencies)
       }), {})
 
       resolvedContent = localize(resolvedContent, config$.value, form$.value)
+    }
+
+    if (expressions.value && typeof resolvedContent === 'string' && resolvedContent.includes('{')) {
+      resolvedContent = form$.value.resolveExpression(resolvedContent, parent.value?.dataPath)
     }
 
     return form$.value.$vueform.sanitize(resolvedContent)

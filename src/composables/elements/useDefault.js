@@ -352,12 +352,15 @@ const multilingual = function(props, context, dependencies)
   }
 }
 
+const hidden = text
+
 export {
   object,
   group,
   multilingual,
   text,
   matrix,
+  hidden,
 }
 
 export default base

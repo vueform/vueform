@@ -1,37 +1,32 @@
-import each from 'lodash/each'
-import cloneDeep from 'lodash/cloneDeep'
-import get from 'lodash/get'
-import sortBy from 'lodash/sortBy'
-import map from 'lodash/map'
-import isPlainObject from 'lodash/isPlainObject'
-import clone from 'lodash/clone'
-import isEqual from 'lodash/isEqual'
-import { computed, nextTick, toRefs, watch, ref, inject } from 'vue'
-import checkDateFormat from './../../utils/checkDateFormat'
-import asyncForEach from './../../utils/asyncForEach'
+import each from "lodash/each";
+import cloneDeep from "lodash/cloneDeep";
+import get from "lodash/get";
+import sortBy from "lodash/sortBy";
+import map from "lodash/map";
+import isPlainObject from "lodash/isPlainObject";
+import clone from "lodash/clone";
+import { computed, nextTick, toRefs, watch, ref } from "vue";
+import checkDateFormat from "./../../utils/checkDateFormat";
+import asyncForEach from "./../../utils/asyncForEach";
 
-const base = function(props, context, dependencies, options = {})
-{
-  const {
-    submit,
-    formatData,
-    formatLoad,
-    name,
-  } = toRefs(props)
-  
+const base = function (props, context, dependencies, options = {}) {
+  const { submit, formatData, formatLoad, name } = toRefs(props);
+
   // ============ DEPENDENCIES =============
-  
-  const form$ = dependencies.form$
-  const available = dependencies.available
-  const value = dependencies.value
-  const resetValidators = dependencies.resetValidators
-  const defaultValue = dependencies.defaultValue
-  const nullValue = dependencies.nullValue
-  const resetting = dependencies.resetting
-  const isDefault = dependencies.isDefault
-  
+
+  const form$ = dependencies.form$;
+  const available = dependencies.available;
+  const value = dependencies.value;
+  const resetValidators = dependencies.resetValidators;
+  const defaultValue = dependencies.defaultValue;
+  const nullValue = dependencies.nullValue;
+  const resetting = dependencies.resetting;
+  const isDefault = dependencies.isDefault;
+  const fire = dependencies.fire;
+  const el$ = dependencies.el$;
+
   // =============== PRIVATE ===============
-  
+
   /**
    * Sets the value of the element.
    *
@@ -42,23 +37,23 @@ const base = function(props, context, dependencies, options = {})
    */
   const setValue = (val) => {
     if (options.setValue) {
-      return options.setValue(val)
+      return options.setValue(val);
     }
-    
-    value.value = val
-  }
+
+    value.value = val;
+  };
 
   // ============== COMPUTED ===============
-  
+
   /**
    * The value of the element in `{[name]: value}` value format. This gets merged with the parent component's data.
    *
    * @type {object}
    */
   const data = computed(() => {
-    return { [name.value]: value.value }
-  })
-  
+    return { [name.value]: value.value };
+  });
+
   /**
    * Same as `data` property except that it only includes the element's value if [`submit`](#option-submit) is not disabled and [`available`](#property-available) is `true` (has no [`conditions`](#option-conditions) or they are fulfilled).
    *
@@ -66,14 +61,16 @@ const base = function(props, context, dependencies, options = {})
    */
   const requestData = computed(() => {
     if (!available.value || !submit.value) {
-      return {}
+      return {};
     }
-    
-    return formatData.value ? formatData.value(name.value, value.value, form$.value) : { [name.value]: value.value }
-  })
-  
+
+    return formatData.value
+      ? formatData.value(name.value, value.value, form$.value)
+      : { [name.value]: value.value };
+  });
+
   // =============== METHODS ===============
-  
+
   /**
    * Loads value to the element using optional [`formatLoad`](#option-format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.
    *
@@ -82,9 +79,11 @@ const base = function(props, context, dependencies, options = {})
    * @returns {void}
    */
   const load = (val, format = false) => {
-    setValue(format && formatLoad.value ? formatLoad.value(val, form$.value) : val)
-  }
-  
+    setValue(
+      format && formatLoad.value ? formatLoad.value(val, form$.value) : val
+    );
+  };
+
   /**
    * Updates the value of the element similarly to [`load`](#method-load), only that it can\'t format data.
    *
@@ -92,18 +91,20 @@ const base = function(props, context, dependencies, options = {})
    * @returns {void}
    */
   const update = (val) => {
-    setValue(val)
-  }
-  
+    setValue(val);
+  };
+
   /**
    * Clears the element's value.
    *
    * @returns {void}
    */
   const clear = () => {
-    setValue(cloneDeep(nullValue.value))
-  }
-  
+    setValue(cloneDeep(nullValue.value));
+
+    fire("clear", el$.value);
+  };
+
   /**
    * Resets the element's value to [`default`](#option-default) (or empty if `default` is not provided). Also resets all the validation state for the element.
    *
@@ -111,13 +112,15 @@ const base = function(props, context, dependencies, options = {})
    */
   const reset = () => {
     if (!isDefault.value) {
-      resetting.value = true
+      resetting.value = true;
     }
 
-    setValue(cloneDeep(defaultValue.value))
-    resetValidators()
-  }
-  
+    setValue(cloneDeep(defaultValue.value));
+    resetValidators();
+
+    fire("reset", el$.value);
+  };
+
   /**
    * Prepares the element.
    *
@@ -125,9 +128,8 @@ const base = function(props, context, dependencies, options = {})
    * @private
    */
   /* istanbul ignore next:@todo:adam missing implementation, but used in code */
-  const prepare = async () => {
-  }
-  
+  const prepare = async () => {};
+
   return {
     data,
     requestData,
@@ -136,61 +138,51 @@ const base = function(props, context, dependencies, options = {})
     clear,
     reset,
     prepare,
-  }
-}
+  };
+};
 
-const text = function(props, context, dependencies, options = {})
-{
-  const {
-    submit,
-    formatData,
-    name,
-  } = toRefs(props)
+const text = function (props, context, dependencies, options = {}) {
+  const { submit, formatData, name } = toRefs(props);
 
-  const {
-    load,
-    update,
-    clear,
-    reset,
-    prepare,
-  } = base(props, context, dependencies)
+  const { load, update, clear, reset, prepare } = base(
+    props,
+    context,
+    dependencies
+  );
 
   // ============ DEPENDENCIES =============
 
-  const {
-    form$,
-    available,
-    value,
-    shouldForceNumbers,
-    stringToNumber,
-  } = dependencies
+  const { form$, available, value, shouldForceNumbers, stringToNumber } =
+    dependencies;
 
   // =============== COMPUTED ==============
 
   const data = computed(() => {
-    let v = value.value
+    let v = value.value;
 
     if (shouldForceNumbers()) {
-      v = stringToNumber(value.value)
+      v = stringToNumber(value.value);
     }
 
-    return { [name.value]: v }
-  })
-  
+    return { [name.value]: v };
+  });
+
   const requestData = computed(() => {
     if (!available.value || !submit.value) {
-      return {}
+      return {};
     }
 
-    let v = value.value
+    let v = value.value;
 
     if (shouldForceNumbers()) {
-      v = stringToNumber(value.value)
+      v = stringToNumber(value.value);
     }
-    
-    return formatData.value ? formatData.value(name.value, v, form$.value) : { [name.value]: v }
-  })
-  
+
+    return formatData.value
+      ? formatData.value(name.value, v, form$.value)
+      : { [name.value]: v };
+  });
+
   return {
     data,
     requestData,
@@ -199,11 +191,10 @@ const text = function(props, context, dependencies, options = {})
     clear,
     reset,
     prepare,
-  }
-}
+  };
+};
 
-const textarea = function(props, context, dependencies, options = {})
-{
+const textarea = function (props, context, dependencies, options = {}) {
   const {
     data,
     requestData,
@@ -212,47 +203,49 @@ const textarea = function(props, context, dependencies, options = {})
     clear: baseClear,
     reset: baseReset,
     prepare,
-  } = base(props, context, dependencies)
+  } = base(props, context, dependencies);
 
   // ============ DEPENDENCIES =============
 
-  const {
-    autosize,
-  } = dependencies
-  
+  const { autosize, fire, el$ } = dependencies;
+
   // =============== METHODS ===============
-  
+
   const load = (val, format = false) => {
-    baseLoad(val, format)
+    baseLoad(val, format);
 
     nextTick(() => {
-      autosize()
-    })
-  }
-  
+      autosize();
+    });
+  };
+
   const update = (val) => {
-    baseUpdate(val)
+    baseUpdate(val);
 
     nextTick(() => {
-      autosize()
-    })
-  }
-  
+      autosize();
+    });
+  };
+
   const clear = () => {
-    baseClear()
+    baseClear();
 
     nextTick(() => {
-      autosize()
-    })
-  }
-  
+      autosize();
+    });
+
+    fire("clear", el$.value);
+  };
+
   const reset = () => {
-    baseReset()
+    baseReset();
 
     nextTick(() => {
-      autosize()
-    })
-  }
+      autosize();
+    });
+
+    fire("reset", el$.value);
+  };
 
   return {
     data,
@@ -262,58 +255,55 @@ const textarea = function(props, context, dependencies, options = {})
     clear,
     reset,
     prepare,
-  }
-}
+  };
+};
 
-const select = function(props, context, dependencies, options = {})
-{
-  const {
-    resolveOnLoad,
-    items,
-  } = toRefs(props)
+const select = function (props, context, dependencies, options = {}) {
+  const { resolveOnLoad, items } = toRefs(props);
 
-  const {
-    data,
-    requestData,
-    load,
-    update,
-    clear,
-    prepare,
-  } = base(props, context, dependencies)
+  const { data, requestData, load, update, clear, prepare } = base(
+    props,
+    context,
+    dependencies
+  );
 
   // ============ DEPENDENCIES =============
 
-  const value = dependencies.value
-  const resetValidators = dependencies.resetValidators
-  const defaultValue = dependencies.defaultValue
-  const updateItems = dependencies.updateItems
-  const resetting = dependencies.resetting
-  const isDefault = dependencies.isDefault
+  const value = dependencies.value;
+  const resetValidators = dependencies.resetValidators;
+  const defaultValue = dependencies.defaultValue;
+  const updateItems = dependencies.updateItems;
+  const resetting = dependencies.resetting;
+  const isDefault = dependencies.isDefault;
+  const fire = dependencies.fire;
+  const el$ = dependencies.el$;
 
   // =============== PRIVATE ===============
 
   const setValue = (val) => {
     if (options.setValue) {
-      return options.setValue(val)
+      return options.setValue(val);
     }
 
-    value.value = val
-  }
+    value.value = val;
+  };
 
   // =============== METHODS ===============
 
   const reset = () => {
     if (!isDefault.value) {
-      resetting.value = true
+      resetting.value = true;
     }
 
-    setValue(cloneDeep(defaultValue.value))
-    resetValidators()
+    setValue(cloneDeep(defaultValue.value));
+    resetValidators();
 
-    if (typeof items.value === 'string' && resolveOnLoad.value !== false) {
-      updateItems()
+    if (typeof items.value === "string" && resolveOnLoad.value !== false) {
+      updateItems();
     }
-  }
+
+    fire("reset", el$.value);
+  };
 
   return {
     data,
@@ -323,11 +313,10 @@ const select = function(props, context, dependencies, options = {})
     clear,
     reset,
     prepare,
-  }
-}
+  };
+};
 
-const captcha = function(props, context, dependencies, options = {})
-{
+const captcha = function (props, context, dependencies, options = {}) {
   const {
     data,
     requestData,
@@ -336,33 +325,37 @@ const captcha = function(props, context, dependencies, options = {})
     clear: clearBase,
     reset: resetBase,
     prepare,
-  } = base(props, context, dependencies)
+  } = base(props, context, dependencies);
 
   // ============ DEPENDENCIES =============
 
-  const { Provider } = dependencies
+  const { Provider, fire, el$ } = dependencies;
 
   // =============== METHODS ===============
 
   const clear = () => {
-    clearBase()
+    clearBase();
 
     if (!Provider.value) {
-      return
+      return;
     }
 
-    Provider.value.reset()
-  }
-  
+    Provider.value.reset();
+
+    fire("clear", el$.value);
+  };
+
   const reset = () => {
-    resetBase()
+    resetBase();
 
     if (!Provider.value) {
-      return
+      return;
     }
 
-    Provider.value.reset()
-  }
+    Provider.value.reset();
+
+    fire("reset", el$.value);
+  };
 
   return {
     data,
@@ -372,125 +365,131 @@ const captcha = function(props, context, dependencies, options = {})
     clear,
     reset,
     prepare,
-  }
-}
+  };
+};
 
-const object = function(props, context, dependencies)
-{
-  const {
-    name,
-    formatLoad,
-    formatData,
-    submit,
-  } = toRefs(props)
-  
+const object = function (props, context, dependencies) {
+  const { name, formatLoad, formatData, submit } = toRefs(props);
+
   // ============ DEPENDENCIES =============
-  
-  const form$ = dependencies.form$
-  const available = dependencies.available
-  const children$ = dependencies.children$
-  const children$Array = dependencies.children$Array
-  const resetting = dependencies.resetting
-  const isDefault = dependencies.isDefault
+
+  const form$ = dependencies.form$;
+  const available = dependencies.available;
+  const children$ = dependencies.children$;
+  const children$Array = dependencies.children$Array;
+  const resetting = dependencies.resetting;
+  const isDefault = dependencies.isDefault;
+  const fire = dependencies.fire;
+  const el$ = dependencies.el$;
 
   // ============== COMPUTED ===============
-  
+
   const data = computed(() => {
-    let data = {}
-    
+    let data = {};
+
     each(children$.value, (element$) => {
       if (element$.isStatic) {
-        return
+        return;
       }
-      
-      data = Object.assign({}, data, element$.data)
-    })
-    
-    return { [name.value]: data }
-  })
-  
+
+      data = Object.assign({}, data, element$.data);
+    });
+
+    return { [name.value]: data };
+  });
+
   const requestData = computed(() => {
     if (!available.value || !submit.value) {
-      return {}
+      return {};
     }
-    
-    let requestData = {}
-    
+
+    let requestData = {};
+
     each(children$.value, (element$) => {
       if (element$.isStatic) {
-        return
+        return;
       }
-      
-      requestData = Object.assign({}, requestData, element$.requestData)
-    })
-    
-    return formatData.value ? formatData.value(name.value, requestData, form$.value) : { [name.value]: requestData }
-  })
-  
+
+      requestData = Object.assign({}, requestData, element$.requestData);
+    });
+
+    return formatData.value
+      ? formatData.value(name.value, requestData, form$.value)
+      : { [name.value]: requestData };
+  });
+
   // =============== METHODS ===============
-  
+
   const load = (val, format = false) => {
-    let formatted = format && formatLoad.value ? formatLoad.value(val, form$.value) : val
-    
+    let formatted =
+      format && formatLoad.value ? formatLoad.value(val, form$.value) : val;
+
     each(children$.value, (element$) => {
       if (element$.isStatic) {
-        return
+        return;
       }
-      
+
       if (!element$.flat && formatted[element$.name] === undefined) {
-        element$.clear()
-        return
+        element$.clear();
+        return;
       }
-      
-      element$.load(element$.flat ? formatted : formatted[element$.name], format)
-    })
-  }
-  
+
+      element$.load(
+        element$.flat ? formatted : formatted[element$.name],
+        format
+      );
+    });
+  };
+
   const update = (val) => {
     each(children$.value, (element$) => {
       if (element$.isStatic) {
-        return
+        return;
       }
-      
+
       if (val[element$.name] === undefined && !element$.flat) {
-        return
+        return;
       }
-      
-      element$.update(element$.flat ? val : val[element$.name])
-    })
-  }
-  
+
+      element$.update(element$.flat ? val : val[element$.name]);
+    });
+  };
+
   const clear = () => {
     each(children$.value, (element$) => {
       if (element$.isStatic) {
-        return
+        return;
       }
-      
-      element$.clear()
-    })
-  }
-  
+
+      element$.clear();
+    });
+
+    fire("clear", el$.value);
+  };
+
   const reset = () => {
     if (!isDefault.value) {
-      resetting.value = true
+      resetting.value = true;
     }
 
     each(children$.value, (element$) => {
       if (element$.isStatic) {
-        return
+        return;
       }
-      
-      element$.reset()
-    })
-  }
+
+      element$.reset();
+    });
+
+    fire("reset", el$.value);
+  };
 
   const prepare = async () => {
     await asyncForEach(children$Array.value, async (e$) => {
       if (e$.prepare) {
-        await e$.prepare()
+        await e$.prepare();
       }
-    })
-  }
+    });
+  };
 
   return {
     data,
@@ -500,71 +499,66 @@ const object = function(props, context, dependencies)
     clear,
     reset,
     prepare,
-  }
-}
+  };
+};
 
-const group = function(props, context, dependencies)
-{
-  const {
-    name,
-    formatData,
-    submit,
-  } = toRefs(props)
-  
-  const {
-    load,
-    update,
-    clear,
-    reset,
-    prepare,
-  } = object(props, context, dependencies)
-  
+const group = function (props, context, dependencies) {
+  const { name, formatData, submit } = toRefs(props);
+
+  const { load, update, clear, reset, prepare } = object(
+    props,
+    context,
+    dependencies
+  );
+
   // ============ DEPENDENCIES =============
-  
-  const form$ = dependencies.form$
-  const children$ = dependencies.children$
-  const available = dependencies.available
-  const value = dependencies.value
-  
+
+  const form$ = dependencies.form$;
+  const children$ = dependencies.children$;
+  const available = dependencies.available;
+  const value = dependencies.value;
+
   // ============== COMPUTED ===============
-  
+
   /**
    * The value of child elements in object. This gets merged with the parent component's data.
    *
    * @type {object}
    */
   const data = computed(() => {
-    let data = {}
-    
+    let data = {};
+
     each(children$.value, (element$) => {
       if (element$.isStatic) {
-        return
+        return;
       }
-      
-      data = Object.assign({}, data, element$.data)
-    })
-    
-    return data
-  })
-  
+
+      data = Object.assign({}, data, element$.data);
+    });
+
+    return data;
+  });
+
   const requestData = computed(() => {
     if (!available.value || !submit.value) {
-      return {}
+      return {};
     }
-    
-    let requestData = {}
-    
+
+    let requestData = {};
+
     each(children$.value, (element$) => {
       if (element$.isStatic) {
-        return
+        return;
       }
-      
-      requestData = Object.assign({}, requestData, element$.requestData)
-    })
-    
-    return formatData.value ? formatData.value(name.value, requestData, form$.value) : requestData
-  })
-  
+
+      requestData = Object.assign({}, requestData, element$.requestData);
+    });
+
+    return formatData.value
+      ? formatData.value(name.value, requestData, form$.value)
+      : requestData;
+  });
+
   return {
     data,
     requestData,
@@ -573,11 +567,10 @@ const group = function(props, context, dependencies)
     clear,
     reset,
     prepare,
-  }
-}
+  };
+};
 
-const list = function(props, context, dependencies, options)
-{
+const list = function (props, context, dependencies, options) {
   const {
     name,
     storeOrder,
@@ -587,40 +580,36 @@ const list = function(props, context, dependencies, options)
     submit,
     initial,
     default: default_,
-  } = toRefs(props)
-  
-  const {
-    update,
-    clear,
-    data,
-  } = base(props, context, dependencies)
-  
+  } = toRefs(props);
+
+  const { update, clear, data } = base(props, context, dependencies);
+
   // ============ DEPENDENCIES =============
-  
-  const el$ = dependencies.el$
-  const form$ = dependencies.form$
-  const children$ = dependencies.children$
-  const children$Array = dependencies.children$Array
-  const available = dependencies.available
-  const isDisabled = dependencies.isDisabled
-  const value = dependencies.value
-  const orderByName = dependencies.orderByName
-  const refreshOrderStore = dependencies.refreshOrderStore
-  const dataPath = dependencies.dataPath
-  const parent = dependencies.parent
-  const nullValue = dependencies.nullValue
-  const defaultValue = dependencies.defaultValue
-  const fire = dependencies.fire
-  const resetValidators = dependencies.resetValidators
-  const resetting = dependencies.resetting
-  const isDefault = dependencies.isDefault
-  
+
+  const el$ = dependencies.el$;
+  const form$ = dependencies.form$;
+  const children$ = dependencies.children$;
+  const children$Array = dependencies.children$Array;
+  const available = dependencies.available;
+  const isDisabled = dependencies.isDisabled;
+  const value = dependencies.value;
+  const orderByName = dependencies.orderByName;
+  const refreshOrderStore = dependencies.refreshOrderStore;
+  const dataPath = dependencies.dataPath;
+  const parent = dependencies.parent;
+  const nullValue = dependencies.nullValue;
+  const defaultValue = dependencies.defaultValue;
+  const fire = dependencies.fire;
+  const resetValidators = dependencies.resetValidators;
+  const resetting = dependencies.resetting;
+  const isDefault = dependencies.isDefault;
+
   // ================ DATA =================
-  
-  const initialValue = ref(get(form$.value.model, dataPath.value))
-  
+
+  const initialValue = ref(get(form$.value.model, dataPath.value));
+
   // ============== COMPUTED ===============
-  
+
   /**
    * Default value of the parent
    *
@@ -628,27 +617,31 @@ const list = function(props, context, dependencies, options)
    * @private
    */
   const parentDefaultValue = computed(() => {
-    return parent && parent.value ? parent.value.defaultValue[name.value] : form$.value.options.default[name.value]
-  })
-  
+    return parent && parent.value
+      ? parent.value.defaultValue[name.value]
+      : form$.value.options.default[name.value];
+  });
+
   const requestData = computed(() => {
     if (!available.value || !submit.value) {
-      return {}
+      return {};
     }
-    
-    let requestData = []
-    
+
+    let requestData = [];
+
     each(children$.value, (element$) => {
-      let val = element$.requestData[element$.name]
-      
+      let val = element$.requestData[element$.name];
+
       if (val !== undefined) {
-        requestData.push(val)
+        requestData.push(val);
       }
-    })
-    
-    return formatData.value ? formatData.value(name.value, requestData, form$.value) : { [name.value]: requestData }
-  })
-  
+    });
+
+    return formatData.value
+      ? formatData.value(name.value, requestData, form$.value)
+      : { [name.value]: requestData };
+  });
+
   /**
    * Number of children.
    *
@@ -656,11 +649,13 @@ const list = function(props, context, dependencies, options)
    * @private
    */
   const length = computed(() => {
-    return Object.keys(value.value || /* istanbul ignore next: failsafe only */ {}).length
-  })
-  
+    return Object.keys(
+      value.value || /* istanbul ignore next: failsafe only */ {}
+    ).length;
+  });
+
   // =============== METHODS ===============
-  
+
   /**
    * Appends a new item.
    *
@@ -668,27 +663,29 @@ const list = function(props, context, dependencies, options)
    * @returns {number} the index of the appended item
    */
   const add = (val = undefined, focus = false) => {
-    let newValue = storeOrder.value ? Object.assign({}, val || {}, {
-      [storeOrder.value]: val ? val[storeOrder.value] : undefined
-    }) : val
-    
-    value.value = refreshOrderStore(value.value.concat([newValue]))
-    
+    let newValue = storeOrder.value
+      ? Object.assign({}, val || {}, {
+          [storeOrder.value]: val ? val[storeOrder.value] : undefined,
+        })
+      : val;
+
+    value.value = refreshOrderStore(value.value.concat([newValue]));
+
     // value.value = refreshOrderStore(value.value)
-    
-    let index = value.value.length - 1
-    
-    fire('add', index, newValue, value.value, el$.value)
-    
+
+    let index = value.value.length - 1;
+
+    fire("add", index, newValue, value.value, el$.value);
+
     if (focus) {
       nextTick(() => {
-        children$Array.value[children$Array.value.length - 1].focus()
-      })
+        children$Array.value[children$Array.value.length - 1].focus();
+      });
     }
-    
-    return index
-  }
-  
+
+    return index;
+  };
+
   /**
    * Removes an items by its index.
    *
@@ -697,66 +694,70 @@ const list = function(props, context, dependencies, options)
    * @returns {void}
    */
   const remove = (index) => {
-    value.value = value.value.filter((v, i) => i !== index)
-    
-    refreshOrderStore(value.value)
-    
-    fire('remove', index, value.value, el$.value)
-  }
-  
+    value.value = value.value.filter((v, i) => i !== index);
+
+    refreshOrderStore(value.value);
+
+    fire("remove", index, value.value, el$.value);
+  };
+
   const load = async (val, format = false) => {
-    let values = sortValue(format && formatLoad.value ? formatLoad.value(val, form$.value) : val)
-    
-    clear()
-    
-    await nextTick()
-    
+    let values = sortValue(
+      format && formatLoad.value ? formatLoad.value(val, form$.value) : val
+    );
+
+    clear();
+
+    await nextTick();
+
     for (let i = 0; i < values.length; i++) {
-      add()
+      add();
     }
-    
-    await nextTick()
-    
+
+    await nextTick();
+
     each(children$.value, (child$, i) => {
-      child$.load(values[i], format)
-    })
-  }
-  
+      child$.load(values[i], format);
+    });
+  };
+
   const reset = () => {
     if (!isDefault.value) {
-      resetting.value = true
+      resetting.value = true;
     }
 
-    value.value = cloneDeep(defaultValue.value)
+    value.value = cloneDeep(defaultValue.value);
 
-    resetValidators()
-    
+    resetValidators();
+
     if (!value.value.length && initial.value > 0) {
       for (let i = 0; i < initial.value; i++) {
-        add()
+        add();
       }
-    
+
       // NextTick is no longer required as validation
       // happens with async/await anyway in children
       // nextTick(() => {
       children$Array.value.forEach((child$) => {
-        child$.reset()
-      })
+        child$.reset();
+      });
       // })
     }
-    
+
     nextTick(() => {
-      refreshOrderStore(value.value)
-    })
-  }
+      refreshOrderStore(value.value);
+    });
+
+    fire("reset", el$.value);
+  };
 
   const prepare = async () => {
     await asyncForEach(children$Array.value, async (e$) => {
       if (e$.prepare) {
-        await e$.prepare()
+        await e$.prepare();
       }
-    })
-  }
+    });
+  };
 
   /**
    * Sorts value when `order` and `orderByName` is defined.
@@ -766,22 +767,27 @@ const list = function(props, context, dependencies, options)
    * @private
    */
   const sortValue = (val) => {
-    if ((!order.value && !orderByName.value) || (!val)) {
-      return val
+    if ((!order.value && !orderByName.value) || !val) {
+      return val;
     }
-    
-    const desc = order.value && typeof order.value === 'string' && order.value.toUpperCase() == 'DESC'
-    
+
+    const desc =
+      order.value &&
+      typeof order.value === "string" &&
+      order.value.toUpperCase() == "DESC";
+
     /* istanbul ignore else */
     if (orderByName.value) {
-      val = desc ? sortBy(val, orderByName.value).reverse() : sortBy(val, orderByName.value)
+      val = desc
+        ? sortBy(val, orderByName.value).reverse()
+        : sortBy(val, orderByName.value);
     } else if (order.value) {
-      val = desc ? val.sort().reverse() : val.sort()
+      val = desc ? val.sort().reverse() : val.sort();
     }
-    
-    return val
-  }
-  
+
+    return val;
+  };
+
   /**
    * Handles the `add` event.
    *
@@ -790,12 +796,12 @@ const list = function(props, context, dependencies, options)
    */
   const handleAdd = () => {
     if (isDisabled.value) {
-      return
+      return;
     }
-    
-    add(undefined, true)
-  }
-  
+
+    add(undefined, true);
+  };
+
   /**
    * Handles the `remove` event.
    *
@@ -805,26 +811,30 @@ const list = function(props, context, dependencies, options)
    */
   const handleRemove = (index) => {
     if (isDisabled.value) {
-      return
+      return;
     }
-    
-    remove(index)
-  }
-  
+
+    remove(index);
+  };
+
   // ================ HOOKS ===============
-  
-  if (initialValue.value === undefined && parentDefaultValue.value === undefined && default_.value === undefined) {
+
+  if (
+    initialValue.value === undefined &&
+    parentDefaultValue.value === undefined &&
+    default_.value === undefined
+  ) {
     if (initial.value > 0) {
       for (let i = 0; i < initial.value; i++) {
-        add()
+        add();
       }
     } else {
-      value.value = nullValue.value
+      value.value = nullValue.value;
     }
   } else if (initialValue.value === undefined) {
-    value.value = defaultValue.value
+    value.value = defaultValue.value;
   }
-  
+
   return {
     requestData,
     data,
@@ -838,42 +848,40 @@ const list = function(props, context, dependencies, options)
     handleAdd,
     handleRemove,
     prepare,
-  }
-}
+  };
+};
 
-const date = function(props, context, dependencies)
-{
-  const {
-    formatLoad,
-  } = toRefs(props)
-  
-  const {
-    data,
-    requestData,
-    update,
-    clear,
-    reset,
-    prepare,
-  } = base(props, context, dependencies)
-  
+const date = function (props, context, dependencies) {
+  const { formatLoad } = toRefs(props);
+
+  const { data, requestData, update, clear, reset, prepare } = base(
+    props,
+    context,
+    dependencies
+  );
+
   // ============ DEPENDENCIES =============
-  
-  const form$ = dependencies.form$
-  const value = dependencies.value
-  const loadDateFormat = dependencies.loadDateFormat
 
-  const moment = form$.value.$vueform.services.moment
-  
+  const form$ = dependencies.form$;
+  const value = dependencies.value;
+  const loadDateFormat = dependencies.loadDateFormat;
+
+  const moment = form$.value.$vueform.services.moment;
+
   // =============== METHODS ===============
-  
+
   const load = (val, format = false) => {
-    let formatted = format && formatLoad.value ? formatLoad.value(val, form$.value) : val
-    
-    checkDateFormat(loadDateFormat.value, formatted, moment)
-    
-    value.value = formatted instanceof Date || !formatted ? formatted : moment(formatted, loadDateFormat.value).toDate()
-  }
-  
+    let formatted =
+      format && formatLoad.value ? formatLoad.value(val, form$.value) : val;
+
+    checkDateFormat(loadDateFormat.value, formatted, moment);
+
+    value.value =
+      formatted instanceof Date || !formatted
+        ? formatted
+        : moment(formatted, loadDateFormat.value).toDate();
+  };
+
   return {
     data,
     requestData,
@@ -882,44 +890,39 @@ const date = function(props, context, dependencies)
     clear,
     reset,
     prepare,
-  }
-}
+  };
+};
 
-const dates = function(props, context, dependencies)
-{
-  const {
-    formatLoad,
-  } = toRefs(props)
-  
-  const {
-    data,
-    requestData,
-    update,
-    clear,
-    reset,
-    prepare,
-  } = base(props, context, dependencies)
-  
+const dates = function (props, context, dependencies) {
+  const { formatLoad } = toRefs(props);
+
+  const { data, requestData, update, clear, reset, prepare } = base(
+    props,
+    context,
+    dependencies
+  );
+
   // ============ DEPENDENCIES =============
-  
-  const form$ = dependencies.form$
-  const value = dependencies.value
-  const loadDateFormat = dependencies.loadDateFormat
 
-  const moment = form$.value.$vueform.services.moment
-  
+  const form$ = dependencies.form$;
+  const value = dependencies.value;
+  const loadDateFormat = dependencies.loadDateFormat;
+
+  const moment = form$.value.$vueform.services.moment;
+
   // =============== METHODS ===============
-  
+
   const load = (val, format = false) => {
-    let formatted = format && formatLoad.value ? formatLoad.value(val, form$.value) : val
-    
+    let formatted =
+      format && formatLoad.value ? formatLoad.value(val, form$.value) : val;
+
     value.value = map(formatted, (v) => {
-      checkDateFormat(loadDateFormat.value, v, moment)
-      
-      return v instanceof Date ? v : moment(v, loadDateFormat.value).toDate()
-    })
-  }
-  
+      checkDateFormat(loadDateFormat.value, v, moment);
+
+      return v instanceof Date ? v : moment(v, loadDateFormat.value).toDate();
+    });
+  };
+
   return {
     data,
     requestData,
@@ -928,64 +931,66 @@ const dates = function(props, context, dependencies)
     clear,
     reset,
     prepare,
-  }
-}
+  };
+};
 
-const multilingual = function(props, context, dependencies, /* istanbul ignore next */ options = {})
-{
-  const {
-    formatLoad,
-  } = toRefs(props)
-  
-  const {
-    data,
-    requestData,
-    clear,
-    reset,
-    prepare,
-  } = base(props, context, dependencies, options)
-  
+const multilingual = function (
+  props,
+  context,
+  dependencies,
+  /* istanbul ignore next */ options = {}
+) {
+  const { formatLoad } = toRefs(props);
+
+  const { data, requestData, clear, reset, prepare } = base(
+    props,
+    context,
+    dependencies,
+    options
+  );
+
   // ============ DEPENDENCIES =============
-  
-  const form$ = dependencies.form$
-  const value = dependencies.value
-  const language = dependencies.language
-  const nullValue = dependencies.nullValue
-  
+
+  const form$ = dependencies.form$;
+  const value = dependencies.value;
+  const language = dependencies.language;
+  const nullValue = dependencies.nullValue;
+
   // =============== PRIVATE ===============
-  
+
   const setValue = (val) => {
     if (options.setValue) {
-      return options.setValue(val)
+      return options.setValue(val);
     }
-    
-    value.value = val
-  }
-  
+
+    value.value = val;
+  };
+
   // =============== METHODS ===============
-  
+
   const load = (val, format = false) => {
-    let formatted = format && formatLoad.value ? formatLoad.value(val, form$.value) : val
-    
+    let formatted =
+      format && formatLoad.value ? formatLoad.value(val, form$.value) : val;
+
     if (!isPlainObject(formatted)) {
-      throw new Error('Multilingual element requires an object to load')
+      throw new Error("Multilingual element requires an object to load");
     }
-    
-    setValue(Object.assign({}, clone(nullValue.value), formatted))
-  }
-  
+
+    setValue(Object.assign({}, clone(nullValue.value), formatted));
+  };
+
   const update = (val) => {
-    let updateValue = val
-    
+    let updateValue = val;
+
     if (!isPlainObject(updateValue)) {
       updateValue = {
         [language.value]: val,
-      }
+      };
     }
-    
-    setValue(Object.assign({}, value.value, updateValue))
-  }
-  
+
+    setValue(Object.assign({}, value.value, updateValue));
+  };
+
   return {
     data,
     requestData,
@@ -994,34 +999,30 @@ const multilingual = function(props, context, dependencies, /* istanbul ignore n
     clear,
     reset,
     prepare,
-  }
-}
+  };
+};
 
-const editor = function(props, context, dependencies)
-{
-  const {
-    data,
-    requestData,
-    load,
-    update,
-    clear,
-    reset,
-    prepare,
-  } = base(props, context, dependencies, {
-    setValue: (val) => {
-      value.value = val
-      
-      nextTick(() => {
-        input.value?.update(val)
-      })
-    },
-  })
-  
+const editor = function (props, context, dependencies) {
+  const { data, requestData, load, update, clear, reset, prepare } = base(
+    props,
+    context,
+    dependencies,
+    {
+      setValue: (val) => {
+        value.value = val;
+
+        nextTick(() => {
+          input.value?.update(val);
+        });
+      },
+    }
+  );
+
   // ============ DEPENDENCIES =============
-  
-  const input = dependencies.input
-  const value = dependencies.value
-  
+
+  const input = dependencies.input;
+  const value = dependencies.value;
+
   return {
     data,
     requestData,
@@ -1030,42 +1031,34 @@ const editor = function(props, context, dependencies)
     clear,
     reset,
     prepare,
-  }
-}
+  };
+};
 
-const teditor = function(props, context, dependencies)
-{
-  const {
-    data,
-    requestData,
-    load,
-    update,
-    clear,
-    reset,
-    prepare,
-  } = multilingual(props, context, dependencies, {
-    setValue: (val) => {
-      value.value = val
-      
-      nextTick(() => {
-        input.value.update(val[language.value])
-      })
-    },
-  })
-  
+const teditor = function (props, context, dependencies) {
+  const { data, requestData, load, update, clear, reset, prepare } =
+    multilingual(props, context, dependencies, {
+      setValue: (val) => {
+        value.value = val;
+
+        nextTick(() => {
+          input.value.update(val[language.value]);
+        });
+      },
+    });
+
   // ============ DEPENDENCIES =============
-  
-  const input = dependencies.input
-  const model = dependencies.model
-  const value = dependencies.value
-  const language = dependencies.language
-  
+
+  const input = dependencies.input;
+  const model = dependencies.model;
+  const value = dependencies.value;
+  const language = dependencies.language;
+
   // ============== WATCHERS ==============
-  
+
   watch(language, () => {
-    input.value.update(model.value)
-  })
-  
+    input.value.update(model.value);
+  });
+
   return {
     data,
     requestData,
@@ -1074,59 +1067,54 @@ const teditor = function(props, context, dependencies)
     clear,
     reset,
     prepare,
-  }
-}
+  };
+};
 
-const file = function(props, context, dependencies)
-{
-  const {
-    load,
-    update,
-    clear,
-    reset,
-    prepare,
-  } = base(props, context, dependencies)
-  
-  const {
-    submit,
-    formatData,
-    name,
-  } = toRefs(props)
-  
+const file = function (props, context, dependencies) {
+  const { load, update, clear, reset, prepare } = base(
+    props,
+    context,
+    dependencies
+  );
+
+  const { submit, formatData, name } = toRefs(props);
+
   // ============ DEPENDENCIES =============
-  
-  const form$ = dependencies.form$
-  const available = dependencies.available
-  const value = dependencies.value
-  
+
+  const form$ = dependencies.form$;
+  const available = dependencies.available;
+  const value = dependencies.value;
+
   // ============== COMPUTED ===============
-  
+
   const data = computed(() => {
-    let v = value.value
-    
-    if (typeof v === 'object' && v?.__file__) {
-      v = v instanceof File ? v : { ...v }
-      delete v.__file__
+    let v = value.value;
+
+    if (typeof v === "object" && v?.__file__) {
+      v = v instanceof File ? v : { ...v };
+      delete v.__file__;
     }
-    
-    return { [name.value]: v }
-  })
-  
+
+    return { [name.value]: v };
+  });
+
   const requestData = computed(() => {
     if (!available.value || !submit.value) {
-      return {}
+      return {};
     }
-    
-    let v = value.value
-    
-    if (typeof v === 'object' && v?.__file__) {
-      v = v instanceof File ? v : { ...v }
-      delete v.__file__
+
+    let v = value.value;
+
+    if (typeof v === "object" && v?.__file__) {
+      v = v instanceof File ? v : { ...v };
+      delete v.__file__;
     }
-    
-    return formatData.value ? formatData.value(name.value, v, form$.value) : { [name.value]: v }
-  })
-  
+
+    return formatData.value
+      ? formatData.value(name.value, v, form$.value)
+      : { [name.value]: v };
+  });
+
   return {
     data,
     requestData,
@@ -1135,11 +1123,10 @@ const file = function(props, context, dependencies)
     clear,
     reset,
     prepare,
-  }
-}
+  };
+};
 
-const multifile = function(props, context, dependencies)
-{
+const multifile = function (props, context, dependencies) {
   const {
     length,
     add,
@@ -1151,65 +1138,62 @@ const multifile = function(props, context, dependencies)
     handleAdd,
     handleRemove,
     prepare,
-  } = list(props, context, dependencies)
-  
-  const {
-    submit,
-    formatData,
-    name,
-  } = toRefs(props)
-  
+  } = list(props, context, dependencies);
+
+  const { submit, formatData, name } = toRefs(props);
+
   // ============ DEPENDENCIES =============
-  
-  const form$ = dependencies.form$
-  const available = dependencies.available
-  const value = dependencies.value
-  const children$ = dependencies.children$
-  
+
+  const form$ = dependencies.form$;
+  const available = dependencies.available;
+  const value = dependencies.value;
+  const children$ = dependencies.children$;
+
   // ============== COMPUTED ===============
-  
+
   const data = computed(() => {
-    let val = value.value
-    
+    let val = value.value;
+
     val = val.map((file) => {
-      if (typeof file === 'object' && file?.__file__) {
-        let v = file instanceof File ? file : { ...file }
-        delete v.__file__
-        return v
+      if (typeof file === "object" && file?.__file__) {
+        let v = file instanceof File ? file : { ...file };
+        delete v.__file__;
+        return v;
       }
-      
-      return file
-    })
-    
-    return { [name.value]: val }
-  })
-  
+
+      return file;
+    });
+
+    return { [name.value]: val };
+  });
+
   const requestData = computed(() => {
     if (!available.value || !submit.value) {
-      return {}
+      return {};
     }
-    
-    let requestData = []
 
+    let requestData = [];
 
     each(children$.value, (element$) => {
-      let val = element$.requestData[element$.name]
-      
+      let val = element$.requestData[element$.name];
+
       /* istanbul ignore next: failsafe only */
       if (val !== undefined) {
-        if (typeof val === 'object' && val?.__file__) {
-          let v = file instanceof File ? file : { ...file }
-          delete v.__file__
-          val = v
+        if (typeof val === "object" && val?.__file__) {
+          let v = file instanceof File ? file : { ...file };
+          delete v.__file__;
+          val = v;
         }
-        
-        requestData.push(val)
+
+        requestData.push(val);
       }
-    })
-    
-    return formatData.value ? formatData.value(name.value, requestData, form$.value) : { [name.value]: requestData }
-  })
-  
+    });
+
+    return formatData.value
+      ? formatData.value(name.value, requestData, form$.value)
+      : { [name.value]: requestData };
+  });
+
   return {
     requestData,
     data,
@@ -1223,11 +1207,10 @@ const multifile = function(props, context, dependencies)
     handleAdd,
     handleRemove,
     prepare,
-  }
-}
+  };
+};
 
-const signature = function(props, context, dependencies)
-{
+const signature = function (props, context, dependencies) {
   const {
     data,
     requestData,
@@ -1235,11 +1218,11 @@ const signature = function(props, context, dependencies)
     update,
     clear: clearBase,
     reset: resetBase,
-  } = base(props, context, dependencies)
+  } = base(props, context, dependencies);
 
   const {
     valueFormat,
-  } = toRefs(props)
+  } = toRefs(props);
 
   // ============ DEPENDENCIES =============
 
@@ -1255,58 +1238,64 @@ const signature = function(props, context, dependencies)
     available,
     blobToBase64,
     base64ToBlob,
-  } = dependencies
+    fire,
+    el$,
+  } = dependencies;
 
   // ============== METHODS ================
 
   const load = async (val, format = false) => {
-    let loadedValue = val
+    let loadedValue = val;
 
     // Handle format conversion on load
     if (val != null) {
-      const isBase64String = typeof val === 'string' && val.startsWith('data:')
-      const isBlob = val instanceof Blob
+      const isBase64String = typeof val === 'string' && val.startsWith('data:');
+      const isBlob = val instanceof Blob;
 
       // Convert base64 to blob if valueFormat is 'blob'
       if (isBase64String && valueFormat.value === 'blob') {
-        loadedValue = base64ToBlob(val)
+        loadedValue = base64ToBlob(val);
       }
       // Convert blob to base64 if valueFormat is 'base64'
       else if (isBlob && valueFormat.value === 'base64') {
-        loadedValue = await blobToBase64(val)
+        loadedValue = await blobToBase64(val);
       }
     }
 
-    baseLoad(loadedValue, format)
-  }
+    baseLoad(loadedValue, format);
+  };
 
   const clear = () => {
-    clearBase()
-    clearSignature()
-  }
-  
+    clearBase();
+    clearSignature();
+
+    fire("clear", el$.value);
+  };
+
   const reset = () => {
-    clearSignature()
-    setDefaultMode(true)
-    setDefaultFont(true)
-    setDefaultColor()
-    resetBase()
-  }
+    clearSignature();
+    setDefaultMode(true);
+    setDefaultFont(true);
+    setDefaultColor();
+    resetBase();
+
+    fire("reset", el$.value);
+  };
 
   const prepare = async () => {
     if (uploaded.value || !available.value) {
-      return
+      return;
     }
 
-    if (mode.value === 'type') {
-      await typingToImage()
+    if (mode.value === "type") {
+      await typingToImage();
     }
 
-    if (mode.value === 'draw') {
-      await drawingToImage()
+    if (mode.value === "draw") {
+      await drawingToImage();
     }
-  }
-  
+  };
+
   return {
     data,
     requestData,
@@ -1315,25 +1304,21 @@ const signature = function(props, context, dependencies)
     clear,
     reset,
     prepare,
-  }
-}
+  };
+};
 
-const matrix = function(props, context, dependencies, options = {})
-{
-  const {
-    name,
-    rows,
-  } = toRefs(props)
+const matrix = function (props, context, dependencies, options = {}) {
+  const { name, rows, formatLoad } = toRefs(props);
 
   const {
     clear: baseClear,
     reset: baseReset,
     prepare,
-  } = object(props, context, dependencies)
+  } = object(props, context, dependencies);
 
   // ============ DEPENDENCIES =============
 
-  const { 
+  const {
     el$,
     form$,
     children$,
@@ -1348,201 +1333,212 @@ const matrix = function(props, context, dependencies, options = {})
     fire,
     grid,
     resolveComponentName,
-   } = dependencies
+  } = dependencies;
 
   // ============== COMPUTED ===============
-  
+
   const data = computed(() => {
-    return { [name.value]: transformData() }
-  })
-  
+    return { [name.value]: transformData() };
+  });
+
   const requestData = computed(() => {
-    return { [name.value]: transformData(true) }
-  })
+    return { [name.value]: transformData(true) };
+  });
 
   // =============== METHODS ===============
-  
+
   const load = (val, format = false) => {
-    let formatted = format && formatLoad.value ? formatLoad.value(val, form$.value) : val
-    
-    setData(formatted, 'load')
-  }
-  
+    let formatted =
+      format && formatLoad.value ? formatLoad.value(val, form$.value) : val;
+
+    setData(formatted, "load");
+  };
+
   const update = (val) => {
-    setData(val, 'update')
-  }
+    setData(val, "update");
+  };
 
   const clear = () => {
-    baseClear()
+    baseClear();
 
     if (hasDynamicRows.value) {
-      rowsCount.value = rows.value
+      rowsCount.value = rows.value;
     }
-  }
+
+    fire("clear", el$.value);
+  };
 
   const reset = () => {
-    baseReset()
+    baseReset();
 
     if (hasDynamicRows.value) {
-      rowsCount.value = rows.value
+      rowsCount.value = rows.value;
     }
 
     if (grid.value) {
-      grid.value.scrollTop = 0
-      grid.value.scrollLeft = 0
+      grid.value.scrollTop = 0;
+      grid.value.scrollLeft = 0;
     }
-  }
+
+    fire("reset", el$.value);
+  };
 
   const add = () => {
-    const oldValue = { ...value.value }
+    const oldValue = { ...value.value };
 
-    rowsCount.value++
+    rowsCount.value++;
 
     nextTick(() => {
-      fire('add', rowsCount.value - 1, value.value, oldValue, el$.value)
-    })
-  }
+      fire("add", rowsCount.value - 1, value.value, oldValue, el$.value);
+    });
+  };
 
   const remove = (i) => {
-    const oldValue = { ...value.value }
-    const newValue = { ...value.value }
+    const oldValue = { ...value.value };
+    const newValue = { ...value.value };
 
-    delete newValue[i]
+    delete newValue[i];
 
-    value.value = Object.values(newValue).reduce((prev, curr, i) => ({
-      ...prev,
-      [i]: curr,
-    }), {})
-    
-    rowsCount.value--
+    value.value = Object.values(newValue).reduce(
+      (prev, curr, i) => ({
+        ...prev,
+        [i]: curr,
+      }),
+      {}
+    );
 
-    fire('remove', i, value.value, oldValue, el$.value)
-  }
+    rowsCount.value--;
+
+    fire("remove", i, value.value, oldValue, el$.value);
+  };
 
   const handleAdd = () => {
-    add()
-  }
+    add();
+  };
 
   const handleRemove = (i) => {
-    remove(i)
-  }
+    remove(i);
+  };
 
   const transformData = (skipUnavailable = false) => {
-    let data = {}
-    
+    let data = {};
+
     resolvedRows.value.forEach((row, r) => {
       if (!row.available && skipUnavailable) {
-        return
+        return;
       }
 
-      let rowValue = dataType.value === 'object'
-        ? {}
-        : dataType.value === 'array'
+      let rowValue =
+        dataType.value === "object"
+          ? {}
+          : dataType.value === "array"
           ? []
-          : null
+          : null;
 
       resolvedColumns.value.forEach((column, c) => {
         if (!column.available && skipUnavailable) {
-          return
+          return;
         }
 
-        let cellValue = children$.value[resolveComponentName(r, c)]?.value
+        let cellValue = children$.value[resolveComponentName(r, c)]?.value;
 
         switch (dataType.value) {
-          case 'array':
+          case "array":
             if (cellValue) {
-              rowValue = [
-                ...(rowValue || []),
-                column.value,
-              ]
+              rowValue = [...(rowValue || []), column.value];
             }
-            break
+            break;
 
-          case 'assoc':
+          case "assoc":
             if (cellValue) {
-              rowValue = column.value
+              rowValue = column.value;
             }
-            break
+            break;
 
           default:
             rowValue = {
               ...(rowValue || {}),
               [column.value]: cellValue,
-            }
+            };
         }
-      })
+      });
 
-
-      data[row.value] = rowValue
-    })
+      data[row.value] = rowValue;
+    });
 
     if (hasDynamicRows.value) {
-      data = Object.values(data)
+      data = Object.values(data);
     }
 
-    return data
-  }
+    return data;
+  };
 
   const setData = async (val, action) => {
     if (hasDynamicRows.value) {
-      rowsCount.value = Object.keys(val).length
-      await nextTick()
+      rowsCount.value = Object.keys(val).length;
+      await nextTick();
     }
 
     el$.value.resolvedRows.forEach((row, r) => {
       el$.value.resolvedColumns.forEach((column, c) => {
-        const rowValue = val[row.value] || {}
-        const cell$ = children$.value[resolveComponentName(r,c)]
+        const rowValue = val[row.value] || {};
+        const cell$ = children$.value[resolveComponentName(r, c)];
 
         switch (dataType.value) {
-          case 'assoc':
-            cell$[action](column.value === rowValue)
-            break
+          case "assoc":
+            cell$[action](column.value === rowValue);
+            break;
 
-          case 'array':
-            cell$[action](rowValue.indexOf(column.value) !== -1)
-            break
+          case "array":
+            cell$[action](rowValue.indexOf(column.value) !== -1);
+            break;
 
           default:
-            cell$[action](rowValue[column.value])
-            break
+            cell$[action](rowValue[column.value]);
+            break;
         }
-      })
-    })
-  }
+      });
+    });
+  };
 
-  watch(computedRows, (n, o) => {
-    const oldLength = typeof o === 'number' ? o : Object.keys(o).length
-    const newLength = typeof n === 'number' ? n : Object.keys(n).length
+  watch(
+    computedRows,
+    (n, o) => {
+      const oldLength = typeof o === "number" ? o : Object.keys(o).length;
+      const newLength = typeof n === "number" ? n : Object.keys(n).length;
 
-    const dir = oldLength > newLength ? 'decrease' : 'increase'
-    const diff = dir === 'increase' ? newLength - oldLength : oldLength - newLength
+      const dir = oldLength > newLength ? "decrease" : "increase";
+      const diff =
+        dir === "increase" ? newLength - oldLength : oldLength - newLength;
 
-    const nextIndex = newLength - 1
-    const lastIndex = oldLength - 1
+      const nextIndex = newLength - 1;
+      const lastIndex = oldLength - 1;
 
-    let newValue = { ...value.value }
+      let newValue = { ...value.value };
 
-    if (dir === 'increase') {
-      switch (dataType.value) {
-        case 'assoc':
-        case 'array':
-          for (let i = 0; i < diff; i++) {
-            newValue[nextIndex+i] = cloneDeep(defaultValue.value[nextIndex+i])
+      if (dir === "increase") {
+        switch (dataType.value) {
+          case "assoc":
+          case "array":
+            for (let i = 0; i < diff; i++) {
+              newValue[nextIndex + i] = cloneDeep(
+                defaultValue.value[nextIndex + i]
+              );
+            }
+            break;
+        }
+      } else {
+        for (let i = 0; i < diff; i++) {
+          if (newValue[lastIndex - i] !== undefined) {
+            delete newValue[lastIndex - i];
           }
-          break
-      }
-    } else {
-      for (let i = 0; i < diff; i++) {
-        if (newValue[lastIndex-i] !== undefined) {
-          delete newValue[lastIndex-i]
         }
       }
-    }
 
-    value.value = newValue
-
-  }, { flush: 'post' })
+      value.value = newValue;
+    },
+    { flush: "post" }
+  );
 
   return {
     data,
@@ -1556,11 +1552,12 @@ const matrix = function(props, context, dependencies, options = {})
     handleRemove,
     add,
     remove,
-  }
-}
+  };
+};
 
-const multiselect = select
-const tags = select
+const multiselect = select;
+const tags = select;
+const hidden = text;
 
 export {
   text,
@@ -1581,6 +1578,8 @@ export {
   captcha,
   signature,
   matrix,
-}
+  hidden,
+};
 
-export default base
+export default base;
+

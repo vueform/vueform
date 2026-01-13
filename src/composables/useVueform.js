@@ -118,6 +118,8 @@ const base = function(props, context, dependencies = {})
     fire,
   })
 
+  let expression
+
   // ================ DATA ================
 
   /**
@@ -1389,6 +1391,17 @@ const base = function(props, context, dependencies = {})
   }
 
   /**
+  * Resolves an expression.
+  *
+  * @param {string} exp* the expression to resolve
+  * @param {string} dataPath* the dataPath of the element (required to resolve * in nested paths relative to the element)
+  * @returns {string}
+  */
+  const resolveExpression = (exp, dataPath) => {
+    return expression.resolve(exp, requestData.value, dataPath)
+  }
+
+  /**
    * Returns an element by its path.
    *
    * @param {string} path* path of the element
@@ -1449,6 +1462,16 @@ const base = function(props, context, dependencies = {})
     messageBag.value = new services.value.messageBag(elementErrors)
   }
 
+  /**
+  * Inits Expression service.
+  *
+  * @returns {void}
+  * @private
+  */
+  const initExpressionService = () => {
+    expression = new services.value.expression(config$.value.config.expression, config$, form$)
+  }
+
   // ============== PROVIDES ==============
 
   provide('form$', form$)
@@ -1461,6 +1484,7 @@ const base = function(props, context, dependencies = {})
   // ================ HOOKS ===============
 
   initMessageBag()
+  initExpressionService()
   setLanguage(options.value.language)
 
   onBeforeMount(() => {
@@ -1584,6 +1608,7 @@ const base = function(props, context, dependencies = {})
     validate,
     resetValidators,
     convertFormData,
+    resolveExpression,
     submit,
     scrollToFirstInvalid,
     send,
@@ -1597,6 +1622,7 @@ const base = function(props, context, dependencies = {})
     el$,
     siblings$,
     initMessageBag,
+    initExpressionService,
     fire,
     on,
     off,
@@ -1605,6 +1631,7 @@ const base = function(props, context, dependencies = {})
     languagesRegistered,
     tabsRegistered,
     stepsRegistered,
+    expression,
   }
 }
 

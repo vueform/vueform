@@ -2510,6 +2510,28 @@ module.exports = {
       },
     },
     events: {
+      'reset': {
+        description: 'Triggered when the input is resetted.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'clear': {
+        description: 'Triggered when the input is cleared.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
       'change': {
         description: 'Triggered when the element&apos;s value is changed.',
         params: {
@@ -4015,6 +4037,28 @@ module.exports = {
       },
     },
     events: {
+      'reset': {
+        description: 'Triggered when the input is resetted.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'clear': {
+        description: 'Triggered when the input is cleared.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
       'change': {
         description: 'Triggered when the element&apos;s value is changed.',
         params: {
@@ -5640,6 +5684,28 @@ module.exports = {
       },
     },
     events: {
+      'reset': {
+        description: 'Triggered when the input is resetted.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'clear': {
+        description: 'Triggered when the input is cleared.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
       'change': {
         description: 'Triggered when the element&apos;s value is changed.',
         params: {
@@ -7371,6 +7437,28 @@ module.exports = {
       },
     },
     events: {
+      'reset': {
+        description: 'Triggered when the input is resetted.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'clear': {
+        description: 'Triggered when the input is cleared.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
       'change': {
         description: 'Triggered when the element&apos;s value is changed.',
         params: {
@@ -9035,6 +9123,28 @@ module.exports = {
       },
     },
     events: {
+      'reset': {
+        description: 'Triggered when the input is resetted.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'clear': {
+        description: 'Triggered when the input is cleared.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
       'change': {
         description: 'Triggered when the element&apos;s value is changed.',
         params: {
@@ -10689,6 +10799,28 @@ module.exports = {
       },
     },
     events: {
+      'reset': {
+        description: 'Triggered when the input is resetted.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'clear': {
+        description: 'Triggered when the input is cleared.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
       'change': {
         description: 'Triggered when the element&apos;s value is changed.',
         params: {
@@ -12528,6 +12660,28 @@ module.exports = {
       },
     },
     events: {
+      'reset': {
+        description: 'Triggered when the input is resetted.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'clear': {
+        description: 'Triggered when the input is cleared.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
       'change': {
         description: 'Triggered when the element&apos;s value is changed.',
         params: {
@@ -14016,6 +14170,28 @@ module.exports = {
       },
     },
     events: {
+      'reset': {
+        description: 'Triggered when the input is resetted.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'clear': {
+        description: 'Triggered when the input is cleared.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
       'change': {
         description: 'Triggered when the element&apos;s value is changed.',
         params: {
@@ -15587,6 +15763,28 @@ module.exports = {
       },
     },
     events: {
+      'reset': {
+        description: 'Triggered when the input is resetted.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'clear': {
+        description: 'Triggered when the input is cleared.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
       'change': {
         description: 'Triggered when the element&apos;s value is changed.',
         params: {
@@ -17000,6 +17198,28 @@ module.exports = {
       },
     },
     events: {
+      'reset': {
+        description: 'Triggered when the input is resetted.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'clear': {
+        description: 'Triggered when the input is cleared.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
       'change': {
         description: 'Triggered when the element&apos;s value is changed.',
         params: {
@@ -17411,6 +17631,27 @@ module.exports = {
         required: false,
         private: false,
       },
+      forceNumbers: {
+        required: 'false',
+        default: 'null',
+        localized: false,
+        types: [
+          'boolean',
+        ],
+        required: false,
+        private: false,
+      },
+      expression: {
+        required: 'false',
+        default: 'undefined',
+        localized: true,
+        types: [
+          'string',
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
     },
     data: {
       active: {
@@ -17589,20 +17830,6 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether no [`conditions`](#option-conditions) are defined or they are all fulfilled.',
-        private: false,
-      },
-      data: {
-        types: [
-          'object',
-        ],
-        description: 'The value of the element in `{[name]: value}` value format. This gets merged with the parent component&apos;s data.',
-        private: false,
-      },
-      requestData: {
-        types: [
-          'object',
-        ],
-        description: 'Same as `data` property except that it only includes the element&apos;s value if [`submit`](#option-submit) is not disabled and [`available`](#property-available) is `true` (has no [`conditions`](#option-conditions) or they are fulfilled).',
         private: false,
       },
       defaultValue: {
@@ -17819,51 +18046,6 @@ module.exports = {
         returns: 'void',
         private: true,
       },
-      load: {
-        description: 'Loads value to the element using optional [`formatLoad`](#option-format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.',
-        returns: 'void',
-        params: {
-          value: {
-            types: [
-              'any',
-            ],
-            required: 'true',
-            description: 'the value to be loaded',
-          },
-          format: {
-            types: [
-              'boolean',
-            ],
-            required: 'false',
-            description: 'whether the loaded value should be formatted with [`formatLoad`](#option-format-load) before setting the value of the element (default: `false`)',
-          },
-        },
-        private: false,
-      },
-      update: {
-        description: 'Updates the value of the element similarly to [`load`](#method-load), only that it can\&apos;t format data.',
-        returns: 'void',
-        params: {
-          value: {
-            types: [
-              'any',
-            ],
-            required: 'true',
-            description: 'the value to be set',
-          },
-        },
-        private: false,
-      },
-      clear: {
-        description: 'Clears the element&apos;s value.',
-        returns: 'void',
-        private: false,
-      },
-      reset: {
-        description: 'Resets the element&apos;s value to [`default`](#option-default) (or empty if `default` is not provided). Also resets all the validation state for the element.',
-        returns: 'void',
-        private: false,
-      },
       on: {
         description: 'Adds a listener for an event.',
         returns: 'void',
@@ -17916,6 +18098,25 @@ module.exports = {
       focus: {
         description: 'Focuses the first focusable part of the element.',
         returns: 'void',
+        private: true,
+      },
+      shouldForceNumbers: {
+        description: 'Whether the value should be converted to number/float.',
+        returns: 'boolean',
+        private: true,
+      },
+      stringToNumber: {
+        description: 'Converts string value to number or float.',
+        returns: 'number|float|string',
+        params: {
+          str: {
+            types: [
+              'any',
+            ],
+            required: 'true',
+            description: 'the string to be converted',
+          },
+        },
         private: true,
       },
       validate: {
@@ -17976,6 +18177,28 @@ module.exports = {
       },
     },
     events: {
+      'reset': {
+        description: 'Triggered when the input is resetted.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'clear': {
+        description: 'Triggered when the input is cleared.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
       'change': {
         description: 'Triggered when the element&apos;s value is changed.',
         params: {
@@ -19688,6 +19911,28 @@ module.exports = {
       },
     },
     events: {
+      'reset': {
+        description: 'Triggered when the input is resetted.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'clear': {
+        description: 'Triggered when the input is cleared.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
       'change': {
         description: 'Triggered when the element&apos;s value is changed.',
         params: {
@@ -21387,6 +21632,28 @@ module.exports = {
       },
     },
     events: {
+      'reset': {
+        description: 'Triggered when the input is resetted.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'clear': {
+        description: 'Triggered when the input is cleared.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
       'change': {
         description: 'Triggered when the element&apos;s value is changed.',
         params: {
@@ -23337,6 +23604,28 @@ module.exports = {
       },
     },
     events: {
+      'reset': {
+        description: 'Triggered when the input is resetted.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'clear': {
+        description: 'Triggered when the input is cleared.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
       'change': {
         description: 'Triggered when the element&apos;s value is changed.',
         params: {
@@ -25349,6 +25638,28 @@ module.exports = {
       },
     },
     events: {
+      'reset': {
+        description: 'Triggered when the input is resetted.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'clear': {
+        description: 'Triggered when the input is cleared.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
       'change': {
         description: 'Triggered when the element&apos;s value is changed.',
         params: {
@@ -26997,20 +27308,6 @@ module.exports = {
         description: 'Whether no [`conditions`](#option-conditions) are defined or they are all fulfilled.',
         private: false,
       },
-      data: {
-        types: [
-          'object',
-        ],
-        description: 'The value of the element in `{[name]: value}` value format. This gets merged with the parent component&apos;s data.',
-        private: false,
-      },
-      requestData: {
-        types: [
-          'object',
-        ],
-        description: 'Same as `data` property except that it only includes the element&apos;s value if [`submit`](#option-submit) is not disabled and [`available`](#property-available) is `true` (has no [`conditions`](#option-conditions) or they are fulfilled).',
-        private: false,
-      },
       defaultValue: {
         types: [
           'any',
@@ -27387,51 +27684,6 @@ module.exports = {
         returns: 'void',
         private: true,
       },
-      load: {
-        description: 'Loads value to the element using optional [`formatLoad`](#option-format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.',
-        returns: 'void',
-        params: {
-          value: {
-            types: [
-              'any',
-            ],
-            required: 'true',
-            description: 'the value to be loaded',
-          },
-          format: {
-            types: [
-              'boolean',
-            ],
-            required: 'false',
-            description: 'whether the loaded value should be formatted with [`formatLoad`](#option-format-load) before setting the value of the element (default: `false`)',
-          },
-        },
-        private: false,
-      },
-      update: {
-        description: 'Updates the value of the element similarly to [`load`](#method-load), only that it can\&apos;t format data.',
-        returns: 'void',
-        params: {
-          value: {
-            types: [
-              'any',
-            ],
-            required: 'true',
-            description: 'the value to be set',
-          },
-        },
-        private: false,
-      },
-      clear: {
-        description: 'Clears the element&apos;s value.',
-        returns: 'void',
-        private: false,
-      },
-      reset: {
-        description: 'Resets the element&apos;s value to [`default`](#option-default) (or empty if `default` is not provided). Also resets all the validation state for the element.',
-        returns: 'void',
-        private: false,
-      },
       disable: {
         description: 'Disables the element.',
         returns: 'void',
@@ -27665,6 +27917,28 @@ module.exports = {
       },
     },
     events: {
+      'reset': {
+        description: 'Triggered when the input is resetted.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'clear': {
+        description: 'Triggered when the input is cleared.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
       'change': {
         description: 'Triggered when the element&apos;s value is changed.',
         params: {
@@ -27762,7 +28036,7 @@ module.exports = {
        },
       },
       'clear': {
-        description: 'Triggered when the value is cleared when using [`native: true`](#option-native).',
+        description: 'Triggered when the input is cleared.',
         params: {
           el$: {
             description: 'the element&apos;s component',
@@ -29357,6 +29631,28 @@ module.exports = {
       },
     },
     events: {
+      'reset': {
+        description: 'Triggered when the input is resetted.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'clear': {
+        description: 'Triggered when the input is cleared.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
       'change': {
         description: 'Triggered when the element&apos;s value is changed.',
         params: {
@@ -31082,6 +31378,28 @@ module.exports = {
       },
     },
     events: {
+      'reset': {
+        description: 'Triggered when the input is resetted.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'clear': {
+        description: 'Triggered when the input is cleared.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
       'change': {
         description: 'Triggered when the element&apos;s value is changed.',
         params: {
@@ -32652,6 +32970,28 @@ module.exports = {
       },
     },
     events: {
+      'reset': {
+        description: 'Triggered when the input is resetted.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'clear': {
+        description: 'Triggered when the input is cleared.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
       'change': {
         description: 'Triggered when the element&apos;s value is changed.',
         params: {
@@ -34222,6 +34562,28 @@ module.exports = {
       },
     },
     events: {
+      'reset': {
+        description: 'Triggered when the input is resetted.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'clear': {
+        description: 'Triggered when the input is cleared.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
       'change': {
         description: 'Triggered when the element&apos;s value is changed.',
         params: {
@@ -36430,6 +36792,28 @@ module.exports = {
       },
     },
     events: {
+      'reset': {
+        description: 'Triggered when the input is resetted.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'clear': {
+        description: 'Triggered when the input is cleared.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
       'change': {
         description: 'Triggered when the element&apos;s value is changed.',
         params: {
@@ -36527,7 +36911,7 @@ module.exports = {
        },
       },
       'clear': {
-        description: 'Triggered when the value is cleared when using [`native: true`](#option-native).',
+        description: 'Triggered when the input is cleared.',
         params: {
           el$: {
             description: 'the element&apos;s component',
@@ -39103,6 +39487,28 @@ module.exports = {
       },
     },
     events: {
+      'reset': {
+        description: 'Triggered when the input is resetted.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'clear': {
+        description: 'Triggered when the input is cleared.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
       'change': {
         description: 'Triggered when the element&apos;s value is changed.',
         params: {
@@ -40692,6 +41098,28 @@ module.exports = {
       },
     },
     events: {
+      'reset': {
+        description: 'Triggered when the input is resetted.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'clear': {
+        description: 'Triggered when the input is cleared.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
       'change': {
         description: 'Triggered when the element&apos;s value is changed.',
         params: {
@@ -41273,6 +41701,16 @@ module.exports = {
           'string',
           'object',
           'function',
+        ],
+        required: false,
+        private: false,
+      },
+      expressions: {
+        required: 'false',
+        default: 'false',
+        localized: false,
+        types: [
+          'boolean',
         ],
         required: false,
         private: false,
@@ -43518,6 +43956,28 @@ module.exports = {
       },
     },
     events: {
+      'reset': {
+        description: 'Triggered when the input is resetted.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'clear': {
+        description: 'Triggered when the input is cleared.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
       'change': {
         description: 'Triggered when the element&apos;s value is changed.',
         params: {
@@ -44629,20 +45089,6 @@ module.exports = {
         description: 'Whether no [`conditions`](#option-conditions) are defined or they are all fulfilled.',
         private: false,
       },
-      data: {
-        types: [
-          'object',
-        ],
-        description: 'The value of the element in `{[name]: value}` value format. This gets merged with the parent component&apos;s data.',
-        private: false,
-      },
-      requestData: {
-        types: [
-          'object',
-        ],
-        description: 'Same as `data` property except that it only includes the element&apos;s value if [`submit`](#option-submit) is not disabled and [`available`](#property-available) is `true` (has no [`conditions`](#option-conditions) or they are fulfilled).',
-        private: false,
-      },
       defaultValue: {
         types: [
           'any',
@@ -44993,51 +45439,6 @@ module.exports = {
         returns: 'void',
         private: true,
       },
-      load: {
-        description: 'Loads value to the element using optional [`formatLoad`](#option-format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.',
-        returns: 'void',
-        params: {
-          value: {
-            types: [
-              'any',
-            ],
-            required: 'true',
-            description: 'the value to be loaded',
-          },
-          format: {
-            types: [
-              'boolean',
-            ],
-            required: 'false',
-            description: 'whether the loaded value should be formatted with [`formatLoad`](#option-format-load) before setting the value of the element (default: `false`)',
-          },
-        },
-        private: false,
-      },
-      update: {
-        description: 'Updates the value of the element similarly to [`load`](#method-load), only that it can\&apos;t format data.',
-        returns: 'void',
-        params: {
-          value: {
-            types: [
-              'any',
-            ],
-            required: 'true',
-            description: 'the value to be set',
-          },
-        },
-        private: false,
-      },
-      clear: {
-        description: 'Clears the element&apos;s value.',
-        returns: 'void',
-        private: false,
-      },
-      reset: {
-        description: 'Resets the element&apos;s value to [`default`](#option-default) (or empty if `default` is not provided). Also resets all the validation state for the element.',
-        returns: 'void',
-        private: false,
-      },
       disable: {
         description: 'Disables the element.',
         returns: 'void',
@@ -45255,6 +45656,28 @@ module.exports = {
       },
     },
     events: {
+      'reset': {
+        description: 'Triggered when the input is resetted.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'clear': {
+        description: 'Triggered when the input is cleared.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
       'change': {
         description: 'Triggered when the element&apos;s value is changed.',
         params: {
@@ -46417,20 +46840,6 @@ module.exports = {
         description: 'Whether no [`conditions`](#option-conditions) are defined or they are all fulfilled.',
         private: false,
       },
-      data: {
-        types: [
-          'object',
-        ],
-        description: 'The value of the element in `{[name]: value}` value format. This gets merged with the parent component&apos;s data.',
-        private: false,
-      },
-      requestData: {
-        types: [
-          'object',
-        ],
-        description: 'Same as `data` property except that it only includes the element&apos;s value if [`submit`](#option-submit) is not disabled and [`available`](#property-available) is `true` (has no [`conditions`](#option-conditions) or they are fulfilled).',
-        private: false,
-      },
       defaultValue: {
         types: [
           'any',
@@ -46779,51 +47188,6 @@ module.exports = {
         returns: 'void',
         private: true,
       },
-      load: {
-        description: 'Loads value to the element using optional [`formatLoad`](#option-format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.',
-        returns: 'void',
-        params: {
-          value: {
-            types: [
-              'any',
-            ],
-            required: 'true',
-            description: 'the value to be loaded',
-          },
-          format: {
-            types: [
-              'boolean',
-            ],
-            required: 'false',
-            description: 'whether the loaded value should be formatted with [`formatLoad`](#option-format-load) before setting the value of the element (default: `false`)',
-          },
-        },
-        private: false,
-      },
-      update: {
-        description: 'Updates the value of the element similarly to [`load`](#method-load), only that it can\&apos;t format data.',
-        returns: 'void',
-        params: {
-          value: {
-            types: [
-              'any',
-            ],
-            required: 'true',
-            description: 'the value to be set',
-          },
-        },
-        private: false,
-      },
-      clear: {
-        description: 'Clears the element&apos;s value.',
-        returns: 'void',
-        private: false,
-      },
-      reset: {
-        description: 'Resets the element&apos;s value to [`default`](#option-default) (or empty if `default` is not provided). Also resets all the validation state for the element.',
-        returns: 'void',
-        private: false,
-      },
       disable: {
         description: 'Disables the element.',
         returns: 'void',
@@ -47041,6 +47405,28 @@ module.exports = {
       },
     },
     events: {
+      'reset': {
+        description: 'Triggered when the input is resetted.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'clear': {
+        description: 'Triggered when the input is cleared.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
       'change': {
         description: 'Triggered when the element&apos;s value is changed.',
         params: {
@@ -48656,20 +49042,6 @@ module.exports = {
         description: 'Whether no [`conditions`](#option-conditions) are defined or they are all fulfilled.',
         private: false,
       },
-      data: {
-        types: [
-          'object',
-        ],
-        description: 'The value of the element in `{[name]: value}` value format. This gets merged with the parent component&apos;s data.',
-        private: false,
-      },
-      requestData: {
-        types: [
-          'object',
-        ],
-        description: 'Same as `data` property except that it only includes the element&apos;s value if [`submit`](#option-submit) is not disabled and [`available`](#property-available) is `true` (has no [`conditions`](#option-conditions) or they are fulfilled).',
-        private: false,
-      },
       defaultValue: {
         types: [
           'any',
@@ -49046,51 +49418,6 @@ module.exports = {
         returns: 'void',
         private: true,
       },
-      load: {
-        description: 'Loads value to the element using optional [`formatLoad`](#option-format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.',
-        returns: 'void',
-        params: {
-          value: {
-            types: [
-              'any',
-            ],
-            required: 'true',
-            description: 'the value to be loaded',
-          },
-          format: {
-            types: [
-              'boolean',
-            ],
-            required: 'false',
-            description: 'whether the loaded value should be formatted with [`formatLoad`](#option-format-load) before setting the value of the element (default: `false`)',
-          },
-        },
-        private: false,
-      },
-      update: {
-        description: 'Updates the value of the element similarly to [`load`](#method-load), only that it can\&apos;t format data.',
-        returns: 'void',
-        params: {
-          value: {
-            types: [
-              'any',
-            ],
-            required: 'true',
-            description: 'the value to be set',
-          },
-        },
-        private: false,
-      },
-      clear: {
-        description: 'Clears the element&apos;s value.',
-        returns: 'void',
-        private: false,
-      },
-      reset: {
-        description: 'Resets the element&apos;s value to [`default`](#option-default) (or empty if `default` is not provided). Also resets all the validation state for the element.',
-        returns: 'void',
-        private: false,
-      },
       disable: {
         description: 'Disables the element.',
         returns: 'void',
@@ -49338,6 +49665,28 @@ module.exports = {
       },
     },
     events: {
+      'reset': {
+        description: 'Triggered when the input is resetted.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'clear': {
+        description: 'Triggered when the value is cleared.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
       'change': {
         description: 'Triggered when the element&apos;s value is changed.',
         params: {
@@ -50366,6 +50715,17 @@ module.exports = {
         required: false,
         private: false,
       },
+      expression: {
+        required: 'false',
+        default: 'undefined',
+        localized: true,
+        types: [
+          'string',
+          'object',
+        ],
+        required: false,
+        private: false,
+      },
       attrs: {
         required: 'false',
         default: '{}',
@@ -51346,6 +51706,28 @@ module.exports = {
       },
     },
     events: {
+      'reset': {
+        description: 'Triggered when the input is resetted.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'clear': {
+        description: 'Triggered when the input is cleared.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
       'change': {
         description: 'Triggered when the element&apos;s value is changed.',
         params: {
@@ -53113,6 +53495,28 @@ module.exports = {
       },
     },
     events: {
+      'reset': {
+        description: 'Triggered when the input is resetted.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'clear': {
+        description: 'Triggered when the input is cleared.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
       'change': {
         description: 'Triggered when the element&apos;s value is changed.',
         params: {
@@ -54747,6 +55151,28 @@ module.exports = {
       },
     },
     events: {
+      'reset': {
+        description: 'Triggered when the input is resetted.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
+      'clear': {
+        description: 'Triggered when the input is cleared.',
+        params: {
+          el$: {
+            description: 'the element&apos;s component',
+            types: [
+              'component',
+            ]
+          },
+       },
+      },
       'change': {
         description: 'Triggered when the element&apos;s value is changed.',
         params: {

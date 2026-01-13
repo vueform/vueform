@@ -1,5 +1,5 @@
 /*!
- * Vueform v1.12.10 (https://github.com/vueform/vueform)
+ * Vueform v1.13.6 (https://github.com/vueform/vueform)
  * Copyright (c) 2025 Adam Berecz <adam@vueform.com>
  * Licensed under the MIT License
  */
@@ -3262,7 +3262,7 @@ var _baseGetAllKeys = baseGetAllKeys$2;
  * @returns {Array} Returns the new filtered array.
  */
 
-function arrayFilter$2(array, predicate) {
+function arrayFilter$3(array, predicate) {
   var index = -1,
       length = array == null ? 0 : array.length,
       resIndex = 0,
@@ -3277,7 +3277,7 @@ function arrayFilter$2(array, predicate) {
   return result;
 }
 
-var _arrayFilter = arrayFilter$2;
+var _arrayFilter = arrayFilter$3;
 
 /**
  * This method returns a new empty array.
@@ -3304,7 +3304,7 @@ function stubArray$2() {
 
 var stubArray_1 = stubArray$2;
 
-var arrayFilter$1 = _arrayFilter,
+var arrayFilter$2 = _arrayFilter,
     stubArray$1 = stubArray_1;
 
 /** Used for built-in method references. */
@@ -3323,20 +3323,20 @@ var nativeGetSymbols$1 = Object.getOwnPropertySymbols;
  * @param {Object} object The object to query.
  * @returns {Array} Returns the array of symbols.
  */
-var getSymbols$3 = !nativeGetSymbols$1 ? stubArray$1 : function(object) {
+var getSymbols$4 = !nativeGetSymbols$1 ? stubArray$1 : function(object) {
   if (object == null) {
     return [];
   }
   object = Object(object);
-  return arrayFilter$1(nativeGetSymbols$1(object), function(symbol) {
+  return arrayFilter$2(nativeGetSymbols$1(object), function(symbol) {
     return propertyIsEnumerable.call(object, symbol);
   });
 };
 
-var _getSymbols = getSymbols$3;
+var _getSymbols = getSymbols$4;
 
 var baseGetAllKeys$1 = _baseGetAllKeys,
-    getSymbols$2 = _getSymbols,
+    getSymbols$3 = _getSymbols,
     keys$5 = keys_1;
 
 /**
@@ -3347,7 +3347,7 @@ var baseGetAllKeys$1 = _baseGetAllKeys,
  * @returns {Array} Returns the array of property names and symbols.
  */
 function getAllKeys$2(object) {
-  return baseGetAllKeys$1(object, keys$5, getSymbols$2);
+  return baseGetAllKeys$1(object, keys$5, getSymbols$3);
 }
 
 var _getAllKeys = getAllKeys$2;
@@ -3995,7 +3995,7 @@ var _stringToPath = stringToPath$1;
  * @returns {Array} Returns the new mapped array.
  */
 
-function arrayMap$6(array, iteratee) {
+function arrayMap$7(array, iteratee) {
   var index = -1,
       length = array == null ? 0 : array.length,
       result = Array(length);
@@ -4006,10 +4006,10 @@ function arrayMap$6(array, iteratee) {
   return result;
 }
 
-var _arrayMap = arrayMap$6;
+var _arrayMap = arrayMap$7;
 
 var Symbol$3 = _Symbol,
-    arrayMap$5 = _arrayMap,
+    arrayMap$6 = _arrayMap,
     isArray$d = isArray_1,
     isSymbol$3 = isSymbol_1;
 
@@ -4035,7 +4035,7 @@ function baseToString$4(value) {
   }
   if (isArray$d(value)) {
     // Recursively convert values (susceptible to call stack limits).
-    return arrayMap$5(value, baseToString$4) + '';
+    return arrayMap$6(value, baseToString$4) + '';
   }
   if (isSymbol$3(value)) {
     return symbolToString ? symbolToString.call(value) : '';
@@ -4787,7 +4787,7 @@ function baseFilter$1(collection, predicate) {
 
 var _baseFilter = baseFilter$1;
 
-var arrayFilter = _arrayFilter,
+var arrayFilter$1 = _arrayFilter,
     baseFilter = _baseFilter,
     baseIteratee$7 = _baseIteratee,
     isArray$7 = isArray_1;
@@ -4834,7 +4834,7 @@ var arrayFilter = _arrayFilter,
  * // => objects for ['fred', 'barney']
  */
 function filter(collection, predicate) {
-  var func = isArray$7(collection) ? arrayFilter : baseFilter;
+  var func = isArray$7(collection) ? arrayFilter$1 : baseFilter;
   return func(collection, baseIteratee$7(predicate));
 }
 
@@ -4877,7 +4877,7 @@ function baseAssignIn$1(object, source) {
 var _baseAssignIn = baseAssignIn$1;
 
 var copyObject$2 = _copyObject,
-    getSymbols$1 = _getSymbols;
+    getSymbols$2 = _getSymbols;
 
 /**
  * Copies own symbols of `source` to `object`.
@@ -4888,14 +4888,14 @@ var copyObject$2 = _copyObject,
  * @returns {Object} Returns `object`.
  */
 function copySymbols$1(source, object) {
-  return copyObject$2(source, getSymbols$1(source), object);
+  return copyObject$2(source, getSymbols$2(source), object);
 }
 
 var _copySymbols = copySymbols$1;
 
 var arrayPush$3 = _arrayPush,
     getPrototype = _getPrototype,
-    getSymbols = _getSymbols,
+    getSymbols$1 = _getSymbols,
     stubArray = stubArray_1;
 
 /* Built-in method references for those with the same name as other `lodash` methods. */
@@ -4911,7 +4911,7 @@ var nativeGetSymbols = Object.getOwnPropertySymbols;
 var getSymbolsIn$2 = !nativeGetSymbols ? stubArray : function(object) {
   var result = [];
   while (object) {
-    arrayPush$3(result, getSymbols(object));
+    arrayPush$3(result, getSymbols$1(object));
     object = getPrototype(object);
   }
   return result;
@@ -6152,7 +6152,7 @@ var _getFormData = function getFormData(data, formData, namespace) {
   return formData;
 };
 
-var arrayMap$4 = _arrayMap;
+var arrayMap$5 = _arrayMap;
 
 /**
  * The base implementation of `_.values` and `_.valuesIn` which creates an
@@ -6165,7 +6165,7 @@ var arrayMap$4 = _arrayMap;
  * @returns {Object} Returns the array of property values.
  */
 function baseValues$1(object, props) {
-  return arrayMap$4(props, function(key) {
+  return arrayMap$5(props, function(key) {
     return object[key];
   });
 }
@@ -7105,6 +7105,7 @@ var base$1h = function base(props, context) {
     $this,
     fire
   });
+  var expression;
 
   // ================ DATA ================
 
@@ -8366,6 +8367,17 @@ var base$1h = function base(props, context) {
   };
 
   /**
+  * Resolves an expression.
+  *
+  * @param {string} exp* the expression to resolve
+  * @param {string} dataPath* the dataPath of the element (required to resolve * in nested paths relative to the element)
+  * @returns {string}
+  */
+  var resolveExpression = (exp, dataPath) => {
+    return expression.resolve(exp, requestData.value, dataPath);
+  };
+
+  /**
    * Returns an element by its path.
    *
    * @param {string} path* path of the element
@@ -8416,6 +8428,16 @@ var base$1h = function base(props, context) {
     messageBag.value = new services.value.messageBag(elementErrors);
   };
 
+  /**
+  * Inits Expression service.
+  *
+  * @returns {void}
+  * @private
+  */
+  var initExpressionService = () => {
+    expression = new services.value.expression(config$.value.config.expression, config$, form$);
+  };
+
   // ============== PROVIDES ==============
 
   provide('form$', form$);
@@ -8428,6 +8450,7 @@ var base$1h = function base(props, context) {
   // ================ HOOKS ===============
 
   initMessageBag();
+  initExpressionService();
   setLanguage(options.value.language);
   onBeforeMount(() => {
     userConfig.value = $this.vueform || {};
@@ -8545,6 +8568,7 @@ var base$1h = function base(props, context) {
     validate,
     resetValidators,
     convertFormData,
+    resolveExpression,
     submit,
     scrollToFirstInvalid,
     send,
@@ -8558,6 +8582,7 @@ var base$1h = function base(props, context) {
     el$,
     siblings$,
     initMessageBag,
+    initExpressionService,
     fire,
     on,
     off,
@@ -8565,7 +8590,8 @@ var base$1h = function base(props, context) {
     errorsRegistered,
     languagesRegistered,
     tabsRegistered,
-    stepsRegistered
+    stepsRegistered,
+    expression
   };
 };
 
@@ -8690,6 +8716,7 @@ var VueformComponent = {
       validate,
       resetValidators,
       convertFormData,
+      resolveExpression,
       submit,
       scrollToFirstInvalid,
       scrollOnNext,
@@ -8704,6 +8731,7 @@ var VueformComponent = {
       el$,
       siblings$,
       initMessageBag,
+      initExpressionService,
       fire,
       on,
       off,
@@ -8711,7 +8739,8 @@ var VueformComponent = {
       errorsRegistered,
       languagesRegistered,
       tabsRegistered,
-      stepsRegistered
+      stepsRegistered,
+      expression
     } = base$1h(props, context);
     return {
       tabs$,
@@ -8780,6 +8809,7 @@ var VueformComponent = {
       validate,
       resetValidators,
       convertFormData,
+      resolveExpression,
       submit,
       scrollToFirstInvalid,
       scrollOnNext,
@@ -8794,6 +8824,7 @@ var VueformComponent = {
       el$,
       siblings$,
       initMessageBag,
+      initExpressionService,
       fire,
       on,
       off,
@@ -8801,7 +8832,8 @@ var VueformComponent = {
       errorsRegistered,
       languagesRegistered,
       tabsRegistered,
-      stepsRegistered
+      stepsRegistered,
+      expression
     };
   },
   props: {
@@ -9168,7 +9200,7 @@ function baseMap$2(collection, iteratee) {
 
 var _baseMap = baseMap$2;
 
-var arrayMap$3 = _arrayMap,
+var arrayMap$4 = _arrayMap,
     baseIteratee$5 = _baseIteratee,
     baseMap$1 = _baseMap,
     isArray$4 = isArray_1;
@@ -9216,7 +9248,7 @@ var arrayMap$3 = _arrayMap,
  * // => ['barney', 'fred']
  */
 function map(collection, iteratee) {
-  var func = isArray$4(collection) ? arrayMap$3 : baseMap$1;
+  var func = isArray$4(collection) ? arrayMap$4 : baseMap$1;
   return func(collection, baseIteratee$5(iteratee));
 }
 
@@ -9383,6 +9415,14 @@ function trim(string, chars, guard) {
 
 var trim_1 = trim;
 
+function localize(object, $config, form$) {
+  var locale = form$.locale$ || $config.i18n.locale;
+  if (!locale) {
+    return object;
+  }
+  return object && typeof object === 'object' ? (object === null || object === void 0 ? void 0 : object[locale]) || (object === null || object === void 0 ? void 0 : object[locale.toUpperCase()]) || (object === null || object === void 0 ? void 0 : object[$config.i18n.fallbackLocale]) || (object === null || object === void 0 ? void 0 : object[$config.i18n.fallbackLocale.toUpperCase()]) || (object === null || object === void 0 ? void 0 : object[Object.keys(object)[0]]) || '' : object;
+}
+
 var Validator = class {
   constructor(rule, props) {
     var _props$element$;
@@ -9392,6 +9432,7 @@ var Validator = class {
     this.dependents = rule.dependents || [];
     this.element$ = props.element$;
     this.form$ = ((_props$element$ = props.element$) === null || _props$element$ === void 0 ? void 0 : _props$element$.form$) || {};
+    this.config$ = props.config$;
     this.numeric = props.numeric || false;
     this.elementMessages = props.element$.messages;
     this.invalid = false;
@@ -9448,9 +9489,9 @@ var Validator = class {
     if (this.msg) {
       message = this.msg;
     } else if (this.elementMessages[this.name]) {
-      message = this.elementMessages[this.name];
+      message = localize(this.elementMessages[this.name], this.config$.value, this.form$);
     } else if (this.form$.options.messages[this.name]) {
-      message = this.form$.options.messages[this.name];
+      message = localize(this.form$.options.messages[this.name], this.config$.value, this.form$);
     } else if (this.name !== '_class' && ((_this$form$$translati = this.form$.translations.validation) === null || _this$form$$translati === void 0 ? void 0 : _this$form$$translati[this.name]) !== undefined) {
       message = this.form$.translations.validation[this.name];
       if (isPlainObject_1(message)) {
@@ -9504,7 +9545,7 @@ var Validator = class {
       name: 'numeric'
     }) || some_1(this.element$.Validators, {
       name: 'integer'
-    });
+    }) || typeof this.element$.value === 'number';
   }
   get isNullable() {
     var nullable = false;
@@ -9625,8 +9666,15 @@ var Validator = class {
       });
     });
   }
-  size(value) {
-    if (this.isNumeric) {
+  isOtherNumeric(other$) {
+    return some_1(other$.Validators, {
+      name: 'numeric'
+    }) || some_1(other$.Validators, {
+      name: 'integer'
+    }) || typeof other$.value === 'number';
+  }
+  size(value, other$) {
+    if (other$ && this.isOtherNumeric(other$) || !other$ && this.isNumeric) {
       if (!isNaN(value)) {
         var num = parseFloat(value);
         if (Number.isInteger(num)) {
@@ -9824,7 +9872,7 @@ function flatRest$2(func) {
 
 var _flatRest = flatRest$2;
 
-var arrayMap$2 = _arrayMap,
+var arrayMap$3 = _arrayMap,
     baseClone$1 = _baseClone,
     baseUnset = _baseUnset,
     castPath$1 = _castPath,
@@ -9864,7 +9912,7 @@ var omit = flatRest$1(function(object, paths) {
     return result;
   }
   var isDeep = false;
-  paths = arrayMap$2(paths, function(path) {
+  paths = arrayMap$3(paths, function(path) {
     path = castPath$1(path, object);
     isDeep || (isDeep = path.length > 1);
     return path;
@@ -9962,7 +10010,7 @@ var pick_1 = pick;
 var SetCache = _SetCache,
     arrayIncludes = _arrayIncludes,
     arrayIncludesWith = _arrayIncludesWith,
-    arrayMap$1 = _arrayMap,
+    arrayMap$2 = _arrayMap,
     baseUnary$1 = _baseUnary,
     cacheHas = _cacheHas;
 
@@ -9992,7 +10040,7 @@ function baseDifference$2(array, values, iteratee, comparator) {
     return result;
   }
   if (iteratee) {
-    values = arrayMap$1(values, baseUnary$1(iteratee));
+    values = arrayMap$2(values, baseUnary$1(iteratee));
   }
   if (comparator) {
     includes = arrayIncludesWith;
@@ -10146,7 +10194,7 @@ function shouldApplyPlugin (name, plugin) {
 }
 
 var name = "@vueform/vueform";
-var version$1 = "1.12.10";
+var version$1 = "1.13.6";
 var description = "Open-Source Form Framework for Vue";
 var homepage = "https://vueform.com";
 var license = "MIT";
@@ -10268,6 +10316,7 @@ var devDependencies = {
 	"babel-loader": "^8.0.5",
 	"core-js": "^3.10.1",
 	"css-loader": "^2.1.0",
+	"expr-eval": "^2.0.2",
 	flatpickr: "^4.6.13",
 	"flush-promises": "^1.0.2",
 	"html-loader": "^1.3.2",
@@ -10389,6 +10438,25 @@ function replaceWildcards (fillable, fill) {
   }
   fill.match(/\.([0-9]+)(?![a-zA-Z]+)/g).forEach(match => {
     fillable = fillable.replace('.*', match);
+  });
+  return fillable;
+}
+
+function replaceWildcardsExpr(fillable, fill) {
+  var brackets = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
+  if (!fillable.includes('[*]')) {
+    return fillable;
+  }
+  var fillParts = fill.split('.');
+  var keys = {};
+  fillParts.forEach((part, i) => {
+    if (!/^[0-9]+$/.test(part)) {
+      return;
+    }
+    keys[fillParts[i - 1]] = part;
+  });
+  Object.keys(keys).forEach(key => {
+    fillable = fillable.replace(new RegExp("(?<![a-zA-Z0-9_-])".concat(key, "\\[\\*\\]"), 'g'), brackets ? "".concat(key, "[").concat(keys[key], "]") : "".concat(key, ".").concat(keys[key]));
   });
   return fillable;
 }
@@ -10847,9 +10915,10 @@ function compare (actual, operator, expected, el$, form$) {
 }
 
 var Factory = class {
-  constructor(path, form$) {
+  constructor(path, form$, config$) {
     this.form$ = form$;
     this.element$ = form$.el$(path);
+    this.config$ = config$;
   }
   get rules() {
     var rules = Object.assign({}, this.form$.$vueform.services.validation.rules, this.form$.$vueform.rules);
@@ -10876,7 +10945,8 @@ var Factory = class {
       name: "custom_rule_".concat(Math.floor(Math.random() * 9000000) + 1000000),
       attributes: Array.isArray(rule) && rule[1] ? rule[1] : []
     }, {
-      element$: this.element$
+      element$: this.element$,
+      config$: this.config$
     });
   }
   parseRules(rules) {
@@ -10896,6 +10966,11 @@ var Factory = class {
   isConditional(rule) {
     return isPlainObject_1(rule);
   }
+  getExprDeps(condition) {
+    var _this$element$;
+    var ExpressionService = this.form$.expression;
+    return ExpressionService.vars(ExpressionService.wrap(condition), (_this$element$ = this.element$) === null || _this$element$ === void 0 ? void 0 : _this$element$.dataPath);
+  }
   parseConditional(rule) {
     var _conditions = values_1(rule)[0];
     if (!Array.isArray(_conditions[0])) {
@@ -10905,9 +10980,13 @@ var Factory = class {
       conditions: (form$, Validator, el$) => {
         return _conditions.every(condition => {
           if (isArray_1(condition)) {
-            if (isArray_1(condition[0])) {
+            if (typeof condition[0] === 'string' && condition.length === 1) {
+              return this.createConditionFromString(condition)(form$, Validator, el$);
+            } else if (isArray_1(condition[0])) {
               return condition.some(subcondition => {
-                if (isArray_1(subcondition)) {
+                if (typeof subcondition[0] === 'string' && subcondition.length === 1) {
+                  return this.createConditionFromString(subcondition)(form$, Validator, el$);
+                } else if (isArray_1(subcondition)) {
                   return this.createConditionFromArray(subcondition)(form$, Validator, el$);
                 } else {
                   return condition(form$, Validator, el$);
@@ -10925,9 +11004,13 @@ var Factory = class {
     });
     _conditions.forEach(condition => {
       if (isArray_1(condition)) {
-        if (isArray_1(condition[0])) {
+        if (typeof condition[0] === 'string') {
+          parsed.dependents.push(...this.getExprDeps(condition[0]));
+        } else if (isArray_1(condition[0])) {
           condition.forEach(subcondition => {
-            if (isArray_1(subcondition)) {
+            if (typeof subcondition === 'string') {
+              parsed.dependents.push(...this.getExprDeps(subcondition[0]));
+            } else if (isArray_1(subcondition)) {
               parsed.dependents.push(replaceWildcards(subcondition[0], this.element$.path));
             }
           });
@@ -10947,6 +11030,15 @@ var Factory = class {
       var actual = (_form$$el$ = form$.el$(field)) === null || _form$$el$ === void 0 ? void 0 : _form$$el$.value;
       var expected = value;
       return compare(actual, operator, expected, this.element$, form$);
+    };
+  }
+  createConditionFromString(condition) {
+    if (!/^{/.test(condition) && !/}$/.test(condition)) {
+      condition = "{".concat(condition, "}");
+    }
+    return (form$, Validator, el$) => {
+      var _this$element$2;
+      return form$.resolveExpression(condition, (_this$element$2 = this.element$) === null || _this$element$2 === void 0 ? void 0 : _this$element$2.dataPath) !== 'false';
     };
   }
 };
@@ -12895,9 +12987,13 @@ class filled extends Validator {
 
 class gt extends Validator {
   get messageParams() {
+    var value = this.other$.value != null ? this.size(this.other$.value, this.other$) : 0;
+    if (isNaN(value) || value < 0) {
+      value = 0;
+    }
     return {
       attribute: this.attributeName,
-      value: this.other$.value != null ? this.size(this.other$.value) : 0
+      value
     };
   }
   get otherPath() {
@@ -12914,14 +13010,14 @@ class gt extends Validator {
     return this.compare(value, otherValue);
   }
   compare(value, otherValue) {
-    var otherSize = this.size(otherValue);
+    var otherSize = this.size(otherValue, this.other$);
     return otherSize == 0 || this.size(value) > otherSize;
   }
 }
 
 class gte extends gt {
   compare(value, otherValue) {
-    var otherSize = this.size(otherValue);
+    var otherSize = this.size(otherValue, this.other$);
     return otherSize == 0 || this.size(value) >= otherSize;
   }
 }
@@ -13025,7 +13121,7 @@ class json extends Validator {
 class lt extends gt {
   compare(value, otherValue) {
     var size = this.size(value);
-    var otherSize = this.size(otherValue);
+    var otherSize = this.size(otherValue, this.other$);
     return otherSize == 0 && size == 0 || this.size(value) < otherSize;
   }
 }
@@ -13033,12 +13129,12 @@ class lt extends gt {
 class lte extends gt {
   compare(value, otherValue) {
     var size = this.size(value);
-    var otherSize = this.size(otherValue);
+    var otherSize = this.size(otherValue, this.other$);
     return otherSize == 0 && size == 0 || this.size(value) <= otherSize;
   }
 }
 
-class max extends Validator {
+class max$1 extends Validator {
   get messageParams() {
     return {
       attribute: this.attributeName,
@@ -13099,7 +13195,7 @@ class mimetypes extends Validator {
   }
 }
 
-class min$1 extends Validator {
+class min$2 extends Validator {
   get messageParams() {
     return {
       attribute: this.attributeName,
@@ -13335,7 +13431,7 @@ var arrayPush$1 = _arrayPush,
  * console.log(array);
  * // => [1]
  */
-function concat() {
+function concat$1() {
   var length = arguments.length;
   if (!length) {
     return [];
@@ -13350,7 +13446,7 @@ function concat() {
   return arrayPush$1(isArray$1(array) ? copyArray(array) : [array], baseFlatten$1(args, 1));
 }
 
-var concat_1 = concat;
+var concat_1 = concat$1;
 
 /**
  * Gets the first element of `array`.
@@ -13739,6 +13835,12 @@ var check = (condition, elementPath, form$, el$) => {
     }
     return compareValues(element$.value, expected, operator);
   };
+  var checkExpression = condition => {
+    if (!/^{/.test(condition) && !/}$/.test(condition)) {
+      condition = "{".concat(condition, "}");
+    }
+    return form$.resolveExpression(condition, el$ === null || el$ === void 0 ? void 0 : el$.dataPath) === 'true';
+  };
   var details = condition => {
     return {
       conditionPath: elementPath ? replaceWildcards(condition[0], elementPath) : condition[0],
@@ -13749,7 +13851,9 @@ var check = (condition, elementPath, form$, el$) => {
   var compareValues = (actual, expected, operator) => {
     return compare(actual, operator, expected, el$, form$);
   };
-  if (typeof condition == 'function') {
+  if (typeof condition === 'string') {
+    return checkExpression(condition);
+  } else if (typeof condition == 'function') {
     return checkFunction();
   } else if (isArray_1(condition) && isArray_1(condition[0])) {
     return condition.reduce((prev, curr) => {
@@ -13766,7 +13870,7 @@ var check = (condition, elementPath, form$, el$) => {
   }
   throw new Error('Condition must be a function or an array');
 };
-var condition = {
+var condition$1 = {
   check
 };
 
@@ -13921,7 +14025,7 @@ class Columns {
   }
 }
 
-/*! @license DOMPurify 3.2.4 | (c) Cure53 and other contributors | Released under the Apache license 2.0 and Mozilla Public License 2.0 | github.com/cure53/DOMPurify/blob/3.2.4/LICENSE */
+/*! @license DOMPurify 3.3.0 | (c) Cure53 and other contributors | Released under the Apache license 2.0 and Mozilla Public License 2.0 | github.com/cure53/DOMPurify/blob/3.3.0/LICENSE */
 
 const {
   entries,
@@ -13950,12 +14054,18 @@ if (!seal) {
   };
 }
 if (!apply) {
-  apply = function apply(fun, thisValue, args) {
-    return fun.apply(thisValue, args);
+  apply = function apply(func, thisArg) {
+    for (var _len = arguments.length, args = new Array(_len > 2 ? _len - 2 : 0), _key = 2; _key < _len; _key++) {
+      args[_key - 2] = arguments[_key];
+    }
+    return func.apply(thisArg, args);
   };
 }
 if (!construct) {
-  construct = function construct(Func, args) {
+  construct = function construct(Func) {
+    for (var _len2 = arguments.length, args = new Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++) {
+      args[_key2 - 1] = arguments[_key2];
+    }
     return new Func(...args);
   };
 }
@@ -13981,8 +14091,11 @@ const typeErrorCreate = unconstruct(TypeError);
  */
 function unapply(func) {
   return function (thisArg) {
-    for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-      args[_key - 1] = arguments[_key];
+    if (thisArg instanceof RegExp) {
+      thisArg.lastIndex = 0;
+    }
+    for (var _len3 = arguments.length, args = new Array(_len3 > 1 ? _len3 - 1 : 0), _key3 = 1; _key3 < _len3; _key3++) {
+      args[_key3 - 1] = arguments[_key3];
     }
     return apply(func, thisArg, args);
   };
@@ -13993,12 +14106,12 @@ function unapply(func) {
  * @param func - The constructor function to be wrapped and called.
  * @returns A new function that constructs an instance of the given constructor function with the provided arguments.
  */
-function unconstruct(func) {
+function unconstruct(Func) {
   return function () {
-    for (var _len2 = arguments.length, args = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
-      args[_key2] = arguments[_key2];
+    for (var _len4 = arguments.length, args = new Array(_len4), _key4 = 0; _key4 < _len4; _key4++) {
+      args[_key4] = arguments[_key4];
     }
-    return construct(func, args);
+    return construct(Func, args);
   };
 }
 /**
@@ -14097,8 +14210,8 @@ function lookupGetter(object, prop) {
   return fallbackValue;
 }
 
-const html$1 = freeze(['a', 'abbr', 'acronym', 'address', 'area', 'article', 'aside', 'audio', 'b', 'bdi', 'bdo', 'big', 'blink', 'blockquote', 'body', 'br', 'button', 'canvas', 'caption', 'center', 'cite', 'code', 'col', 'colgroup', 'content', 'data', 'datalist', 'dd', 'decorator', 'del', 'details', 'dfn', 'dialog', 'dir', 'div', 'dl', 'dt', 'element', 'em', 'fieldset', 'figcaption', 'figure', 'font', 'footer', 'form', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'head', 'header', 'hgroup', 'hr', 'html', 'i', 'img', 'input', 'ins', 'kbd', 'label', 'legend', 'li', 'main', 'map', 'mark', 'marquee', 'menu', 'menuitem', 'meter', 'nav', 'nobr', 'ol', 'optgroup', 'option', 'output', 'p', 'picture', 'pre', 'progress', 'q', 'rp', 'rt', 'ruby', 's', 'samp', 'section', 'select', 'shadow', 'small', 'source', 'spacer', 'span', 'strike', 'strong', 'style', 'sub', 'summary', 'sup', 'table', 'tbody', 'td', 'template', 'textarea', 'tfoot', 'th', 'thead', 'time', 'tr', 'track', 'tt', 'u', 'ul', 'var', 'video', 'wbr']);
-const svg$1 = freeze(['svg', 'a', 'altglyph', 'altglyphdef', 'altglyphitem', 'animatecolor', 'animatemotion', 'animatetransform', 'circle', 'clippath', 'defs', 'desc', 'ellipse', 'filter', 'font', 'g', 'glyph', 'glyphref', 'hkern', 'image', 'line', 'lineargradient', 'marker', 'mask', 'metadata', 'mpath', 'path', 'pattern', 'polygon', 'polyline', 'radialgradient', 'rect', 'stop', 'style', 'switch', 'symbol', 'text', 'textpath', 'title', 'tref', 'tspan', 'view', 'vkern']);
+const html$1 = freeze(['a', 'abbr', 'acronym', 'address', 'area', 'article', 'aside', 'audio', 'b', 'bdi', 'bdo', 'big', 'blink', 'blockquote', 'body', 'br', 'button', 'canvas', 'caption', 'center', 'cite', 'code', 'col', 'colgroup', 'content', 'data', 'datalist', 'dd', 'decorator', 'del', 'details', 'dfn', 'dialog', 'dir', 'div', 'dl', 'dt', 'element', 'em', 'fieldset', 'figcaption', 'figure', 'font', 'footer', 'form', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'head', 'header', 'hgroup', 'hr', 'html', 'i', 'img', 'input', 'ins', 'kbd', 'label', 'legend', 'li', 'main', 'map', 'mark', 'marquee', 'menu', 'menuitem', 'meter', 'nav', 'nobr', 'ol', 'optgroup', 'option', 'output', 'p', 'picture', 'pre', 'progress', 'q', 'rp', 'rt', 'ruby', 's', 'samp', 'search', 'section', 'select', 'shadow', 'slot', 'small', 'source', 'spacer', 'span', 'strike', 'strong', 'style', 'sub', 'summary', 'sup', 'table', 'tbody', 'td', 'template', 'textarea', 'tfoot', 'th', 'thead', 'time', 'tr', 'track', 'tt', 'u', 'ul', 'var', 'video', 'wbr']);
+const svg$1 = freeze(['svg', 'a', 'altglyph', 'altglyphdef', 'altglyphitem', 'animatecolor', 'animatemotion', 'animatetransform', 'circle', 'clippath', 'defs', 'desc', 'ellipse', 'enterkeyhint', 'exportparts', 'filter', 'font', 'g', 'glyph', 'glyphref', 'hkern', 'image', 'inputmode', 'line', 'lineargradient', 'marker', 'mask', 'metadata', 'mpath', 'part', 'path', 'pattern', 'polygon', 'polyline', 'radialgradient', 'rect', 'stop', 'style', 'switch', 'symbol', 'text', 'textpath', 'title', 'tref', 'tspan', 'view', 'vkern']);
 const svgFilters = freeze(['feBlend', 'feColorMatrix', 'feComponentTransfer', 'feComposite', 'feConvolveMatrix', 'feDiffuseLighting', 'feDisplacementMap', 'feDistantLight', 'feDropShadow', 'feFlood', 'feFuncA', 'feFuncB', 'feFuncG', 'feFuncR', 'feGaussianBlur', 'feImage', 'feMerge', 'feMergeNode', 'feMorphology', 'feOffset', 'fePointLight', 'feSpecularLighting', 'feSpotLight', 'feTile', 'feTurbulence']);
 // List of SVG elements that are disallowed by default.
 // We still need to know them so that we can do namespace
@@ -14111,8 +14224,8 @@ const mathMl$1 = freeze(['math', 'menclose', 'merror', 'mfenced', 'mfrac', 'mgly
 const mathMlDisallowed = freeze(['maction', 'maligngroup', 'malignmark', 'mlongdiv', 'mscarries', 'mscarry', 'msgroup', 'mstack', 'msline', 'msrow', 'semantics', 'annotation', 'annotation-xml', 'mprescripts', 'none']);
 const text$4 = freeze(['#text']);
 
-const html = freeze(['accept', 'action', 'align', 'alt', 'autocapitalize', 'autocomplete', 'autopictureinpicture', 'autoplay', 'background', 'bgcolor', 'border', 'capture', 'cellpadding', 'cellspacing', 'checked', 'cite', 'class', 'clear', 'color', 'cols', 'colspan', 'controls', 'controlslist', 'coords', 'crossorigin', 'datetime', 'decoding', 'default', 'dir', 'disabled', 'disablepictureinpicture', 'disableremoteplayback', 'download', 'draggable', 'enctype', 'enterkeyhint', 'face', 'for', 'headers', 'height', 'hidden', 'high', 'href', 'hreflang', 'id', 'inputmode', 'integrity', 'ismap', 'kind', 'label', 'lang', 'list', 'loading', 'loop', 'low', 'max', 'maxlength', 'media', 'method', 'min', 'minlength', 'multiple', 'muted', 'name', 'nonce', 'noshade', 'novalidate', 'nowrap', 'open', 'optimum', 'pattern', 'placeholder', 'playsinline', 'popover', 'popovertarget', 'popovertargetaction', 'poster', 'preload', 'pubdate', 'radiogroup', 'readonly', 'rel', 'required', 'rev', 'reversed', 'role', 'rows', 'rowspan', 'spellcheck', 'scope', 'selected', 'shape', 'size', 'sizes', 'span', 'srclang', 'start', 'src', 'srcset', 'step', 'style', 'summary', 'tabindex', 'title', 'translate', 'type', 'usemap', 'valign', 'value', 'width', 'wrap', 'xmlns', 'slot']);
-const svg = freeze(['accent-height', 'accumulate', 'additive', 'alignment-baseline', 'amplitude', 'ascent', 'attributename', 'attributetype', 'azimuth', 'basefrequency', 'baseline-shift', 'begin', 'bias', 'by', 'class', 'clip', 'clippathunits', 'clip-path', 'clip-rule', 'color', 'color-interpolation', 'color-interpolation-filters', 'color-profile', 'color-rendering', 'cx', 'cy', 'd', 'dx', 'dy', 'diffuseconstant', 'direction', 'display', 'divisor', 'dur', 'edgemode', 'elevation', 'end', 'exponent', 'fill', 'fill-opacity', 'fill-rule', 'filter', 'filterunits', 'flood-color', 'flood-opacity', 'font-family', 'font-size', 'font-size-adjust', 'font-stretch', 'font-style', 'font-variant', 'font-weight', 'fx', 'fy', 'g1', 'g2', 'glyph-name', 'glyphref', 'gradientunits', 'gradienttransform', 'height', 'href', 'id', 'image-rendering', 'in', 'in2', 'intercept', 'k', 'k1', 'k2', 'k3', 'k4', 'kerning', 'keypoints', 'keysplines', 'keytimes', 'lang', 'lengthadjust', 'letter-spacing', 'kernelmatrix', 'kernelunitlength', 'lighting-color', 'local', 'marker-end', 'marker-mid', 'marker-start', 'markerheight', 'markerunits', 'markerwidth', 'maskcontentunits', 'maskunits', 'max', 'mask', 'media', 'method', 'mode', 'min', 'name', 'numoctaves', 'offset', 'operator', 'opacity', 'order', 'orient', 'orientation', 'origin', 'overflow', 'paint-order', 'path', 'pathlength', 'patterncontentunits', 'patterntransform', 'patternunits', 'points', 'preservealpha', 'preserveaspectratio', 'primitiveunits', 'r', 'rx', 'ry', 'radius', 'refx', 'refy', 'repeatcount', 'repeatdur', 'restart', 'result', 'rotate', 'scale', 'seed', 'shape-rendering', 'slope', 'specularconstant', 'specularexponent', 'spreadmethod', 'startoffset', 'stddeviation', 'stitchtiles', 'stop-color', 'stop-opacity', 'stroke-dasharray', 'stroke-dashoffset', 'stroke-linecap', 'stroke-linejoin', 'stroke-miterlimit', 'stroke-opacity', 'stroke', 'stroke-width', 'style', 'surfacescale', 'systemlanguage', 'tabindex', 'tablevalues', 'targetx', 'targety', 'transform', 'transform-origin', 'text-anchor', 'text-decoration', 'text-rendering', 'textlength', 'type', 'u1', 'u2', 'unicode', 'values', 'viewbox', 'visibility', 'version', 'vert-adv-y', 'vert-origin-x', 'vert-origin-y', 'width', 'word-spacing', 'wrap', 'writing-mode', 'xchannelselector', 'ychannelselector', 'x', 'x1', 'x2', 'xmlns', 'y', 'y1', 'y2', 'z', 'zoomandpan']);
+const html = freeze(['accept', 'action', 'align', 'alt', 'autocapitalize', 'autocomplete', 'autopictureinpicture', 'autoplay', 'background', 'bgcolor', 'border', 'capture', 'cellpadding', 'cellspacing', 'checked', 'cite', 'class', 'clear', 'color', 'cols', 'colspan', 'controls', 'controlslist', 'coords', 'crossorigin', 'datetime', 'decoding', 'default', 'dir', 'disabled', 'disablepictureinpicture', 'disableremoteplayback', 'download', 'draggable', 'enctype', 'enterkeyhint', 'exportparts', 'face', 'for', 'headers', 'height', 'hidden', 'high', 'href', 'hreflang', 'id', 'inert', 'inputmode', 'integrity', 'ismap', 'kind', 'label', 'lang', 'list', 'loading', 'loop', 'low', 'max', 'maxlength', 'media', 'method', 'min', 'minlength', 'multiple', 'muted', 'name', 'nonce', 'noshade', 'novalidate', 'nowrap', 'open', 'optimum', 'part', 'pattern', 'placeholder', 'playsinline', 'popover', 'popovertarget', 'popovertargetaction', 'poster', 'preload', 'pubdate', 'radiogroup', 'readonly', 'rel', 'required', 'rev', 'reversed', 'role', 'rows', 'rowspan', 'spellcheck', 'scope', 'selected', 'shape', 'size', 'sizes', 'slot', 'span', 'srclang', 'start', 'src', 'srcset', 'step', 'style', 'summary', 'tabindex', 'title', 'translate', 'type', 'usemap', 'valign', 'value', 'width', 'wrap', 'xmlns', 'slot']);
+const svg = freeze(['accent-height', 'accumulate', 'additive', 'alignment-baseline', 'amplitude', 'ascent', 'attributename', 'attributetype', 'azimuth', 'basefrequency', 'baseline-shift', 'begin', 'bias', 'by', 'class', 'clip', 'clippathunits', 'clip-path', 'clip-rule', 'color', 'color-interpolation', 'color-interpolation-filters', 'color-profile', 'color-rendering', 'cx', 'cy', 'd', 'dx', 'dy', 'diffuseconstant', 'direction', 'display', 'divisor', 'dur', 'edgemode', 'elevation', 'end', 'exponent', 'fill', 'fill-opacity', 'fill-rule', 'filter', 'filterunits', 'flood-color', 'flood-opacity', 'font-family', 'font-size', 'font-size-adjust', 'font-stretch', 'font-style', 'font-variant', 'font-weight', 'fx', 'fy', 'g1', 'g2', 'glyph-name', 'glyphref', 'gradientunits', 'gradienttransform', 'height', 'href', 'id', 'image-rendering', 'in', 'in2', 'intercept', 'k', 'k1', 'k2', 'k3', 'k4', 'kerning', 'keypoints', 'keysplines', 'keytimes', 'lang', 'lengthadjust', 'letter-spacing', 'kernelmatrix', 'kernelunitlength', 'lighting-color', 'local', 'marker-end', 'marker-mid', 'marker-start', 'markerheight', 'markerunits', 'markerwidth', 'maskcontentunits', 'maskunits', 'max', 'mask', 'mask-type', 'media', 'method', 'mode', 'min', 'name', 'numoctaves', 'offset', 'operator', 'opacity', 'order', 'orient', 'orientation', 'origin', 'overflow', 'paint-order', 'path', 'pathlength', 'patterncontentunits', 'patterntransform', 'patternunits', 'points', 'preservealpha', 'preserveaspectratio', 'primitiveunits', 'r', 'rx', 'ry', 'radius', 'refx', 'refy', 'repeatcount', 'repeatdur', 'restart', 'result', 'rotate', 'scale', 'seed', 'shape-rendering', 'slope', 'specularconstant', 'specularexponent', 'spreadmethod', 'startoffset', 'stddeviation', 'stitchtiles', 'stop-color', 'stop-opacity', 'stroke-dasharray', 'stroke-dashoffset', 'stroke-linecap', 'stroke-linejoin', 'stroke-miterlimit', 'stroke-opacity', 'stroke', 'stroke-width', 'style', 'surfacescale', 'systemlanguage', 'tabindex', 'tablevalues', 'targetx', 'targety', 'transform', 'transform-origin', 'text-anchor', 'text-decoration', 'text-rendering', 'textlength', 'type', 'u1', 'u2', 'unicode', 'values', 'viewbox', 'visibility', 'version', 'vert-adv-y', 'vert-origin-x', 'vert-origin-y', 'width', 'word-spacing', 'wrap', 'writing-mode', 'xchannelselector', 'ychannelselector', 'x', 'x1', 'x2', 'xmlns', 'y', 'y1', 'y2', 'z', 'zoomandpan']);
 const mathMl = freeze(['accent', 'accentunder', 'align', 'bevelled', 'close', 'columnsalign', 'columnlines', 'columnspan', 'denomalign', 'depth', 'dir', 'display', 'displaystyle', 'encoding', 'fence', 'frame', 'height', 'href', 'id', 'largeop', 'length', 'linethickness', 'lspace', 'lquote', 'mathbackground', 'mathcolor', 'mathsize', 'mathvariant', 'maxsize', 'minsize', 'movablelimits', 'notation', 'numalign', 'open', 'rowalign', 'rowlines', 'rowspacing', 'rowspan', 'rspace', 'rquote', 'scriptlevel', 'scriptminsize', 'scriptsizemultiplier', 'selection', 'separator', 'separators', 'stretchy', 'subscriptshift', 'supscriptshift', 'symmetric', 'voffset', 'width', 'xmlns']);
 const xml = freeze(['xlink:href', 'xml:id', 'xlink:title', 'xml:space', 'xmlns:xlink']);
 
@@ -14122,7 +14235,7 @@ const ERB_EXPR = seal(/<%[\w\W]*|[\w\W]*%>/gm);
 const TMPLIT_EXPR = seal(/\$\{[\w\W]*/gm); // eslint-disable-line unicorn/better-regex
 const DATA_ATTR = seal(/^data-[\-\w.\u00B7-\uFFFF]+$/); // eslint-disable-line no-useless-escape
 const ARIA_ATTR = seal(/^aria-[\-\w]+$/); // eslint-disable-line no-useless-escape
-const IS_ALLOWED_URI = seal(/^(?:(?:(?:f|ht)tps?|mailto|tel|callto|sms|cid|xmpp):|[^a-z]|[a-z+.\-]+(?:[^a-z+.\-:]|$))/i // eslint-disable-line no-useless-escape
+const IS_ALLOWED_URI = seal(/^(?:(?:(?:f|ht)tps?|mailto|tel|callto|sms|cid|xmpp|matrix):|[^a-z]|[a-z+.\-]+(?:[^a-z+.\-:]|$))/i // eslint-disable-line no-useless-escape
 );
 const IS_SCRIPT_OR_DATA = seal(/^(?:\w+script|data):/i);
 const ATTR_WHITESPACE = seal(/[\u0000-\u0020\u00A0\u1680\u180E\u2000-\u2029\u205F\u3000]/g // eslint-disable-line no-control-regex
@@ -14219,7 +14332,7 @@ const _createHooksMap = function _createHooksMap() {
 function createDOMPurify() {
   let window = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : getGlobal();
   const DOMPurify = root => createDOMPurify(root);
-  DOMPurify.version = '3.2.4';
+  DOMPurify.version = '3.3.0';
   DOMPurify.removed = [];
   if (!window || !window.document || window.document.nodeType !== NODE_TYPE.document || !window.Element) {
     // Not running in a browser, provide a factory function
@@ -14330,6 +14443,21 @@ function createDOMPurify() {
   let FORBID_TAGS = null;
   /* Explicitly forbidden attributes (overrides ALLOWED_ATTR/ADD_ATTR) */
   let FORBID_ATTR = null;
+  /* Config object to store ADD_TAGS/ADD_ATTR functions (when used as functions) */
+  const EXTRA_ELEMENT_HANDLING = Object.seal(create(null, {
+    tagCheck: {
+      writable: true,
+      configurable: false,
+      enumerable: true,
+      value: null
+    },
+    attributeCheck: {
+      writable: true,
+      configurable: false,
+      enumerable: true,
+      value: null
+    }
+  }));
   /* Decide if ARIA attributes are okay */
   let ALLOW_ARIA_ATTR = true;
   /* Decide if custom data attributes are okay */
@@ -14458,8 +14586,8 @@ function createDOMPurify() {
     URI_SAFE_ATTRIBUTES = objectHasOwnProperty(cfg, 'ADD_URI_SAFE_ATTR') ? addToSet(clone$2(DEFAULT_URI_SAFE_ATTRIBUTES), cfg.ADD_URI_SAFE_ATTR, transformCaseFunc) : DEFAULT_URI_SAFE_ATTRIBUTES;
     DATA_URI_TAGS = objectHasOwnProperty(cfg, 'ADD_DATA_URI_TAGS') ? addToSet(clone$2(DEFAULT_DATA_URI_TAGS), cfg.ADD_DATA_URI_TAGS, transformCaseFunc) : DEFAULT_DATA_URI_TAGS;
     FORBID_CONTENTS = objectHasOwnProperty(cfg, 'FORBID_CONTENTS') ? addToSet({}, cfg.FORBID_CONTENTS, transformCaseFunc) : DEFAULT_FORBID_CONTENTS;
-    FORBID_TAGS = objectHasOwnProperty(cfg, 'FORBID_TAGS') ? addToSet({}, cfg.FORBID_TAGS, transformCaseFunc) : {};
-    FORBID_ATTR = objectHasOwnProperty(cfg, 'FORBID_ATTR') ? addToSet({}, cfg.FORBID_ATTR, transformCaseFunc) : {};
+    FORBID_TAGS = objectHasOwnProperty(cfg, 'FORBID_TAGS') ? addToSet({}, cfg.FORBID_TAGS, transformCaseFunc) : clone$2({});
+    FORBID_ATTR = objectHasOwnProperty(cfg, 'FORBID_ATTR') ? addToSet({}, cfg.FORBID_ATTR, transformCaseFunc) : clone$2({});
     USE_PROFILES = objectHasOwnProperty(cfg, 'USE_PROFILES') ? cfg.USE_PROFILES : false;
     ALLOW_ARIA_ATTR = cfg.ALLOW_ARIA_ATTR !== false; // Default true
     ALLOW_DATA_ATTR = cfg.ALLOW_DATA_ATTR !== false; // Default true
@@ -14522,16 +14650,24 @@ function createDOMPurify() {
     }
     /* Merge configuration parameters */
     if (cfg.ADD_TAGS) {
-      if (ALLOWED_TAGS === DEFAULT_ALLOWED_TAGS) {
-        ALLOWED_TAGS = clone$2(ALLOWED_TAGS);
+      if (typeof cfg.ADD_TAGS === 'function') {
+        EXTRA_ELEMENT_HANDLING.tagCheck = cfg.ADD_TAGS;
+      } else {
+        if (ALLOWED_TAGS === DEFAULT_ALLOWED_TAGS) {
+          ALLOWED_TAGS = clone$2(ALLOWED_TAGS);
+        }
+        addToSet(ALLOWED_TAGS, cfg.ADD_TAGS, transformCaseFunc);
       }
-      addToSet(ALLOWED_TAGS, cfg.ADD_TAGS, transformCaseFunc);
     }
     if (cfg.ADD_ATTR) {
-      if (ALLOWED_ATTR === DEFAULT_ALLOWED_ATTR) {
-        ALLOWED_ATTR = clone$2(ALLOWED_ATTR);
+      if (typeof cfg.ADD_ATTR === 'function') {
+        EXTRA_ELEMENT_HANDLING.attributeCheck = cfg.ADD_ATTR;
+      } else {
+        if (ALLOWED_ATTR === DEFAULT_ALLOWED_ATTR) {
+          ALLOWED_ATTR = clone$2(ALLOWED_ATTR);
+        }
+        addToSet(ALLOWED_ATTR, cfg.ADD_ATTR, transformCaseFunc);
       }
-      addToSet(ALLOWED_ATTR, cfg.ADD_ATTR, transformCaseFunc);
     }
     if (cfg.ADD_URI_SAFE_ATTR) {
       addToSet(URI_SAFE_ATTRIBUTES, cfg.ADD_URI_SAFE_ATTR, transformCaseFunc);
@@ -14824,7 +14960,7 @@ function createDOMPurify() {
       allowedTags: ALLOWED_TAGS
     });
     /* Detect mXSS attempts abusing namespace confusion */
-    if (currentNode.hasChildNodes() && !_isNode(currentNode.firstElementChild) && regExpTest(/<[/\w]/g, currentNode.innerHTML) && regExpTest(/<[/\w]/g, currentNode.textContent)) {
+    if (SAFE_FOR_XML && currentNode.hasChildNodes() && !_isNode(currentNode.firstElementChild) && regExpTest(/<[/\w!]/g, currentNode.innerHTML) && regExpTest(/<[/\w!]/g, currentNode.textContent)) {
       _forceRemove(currentNode);
       return true;
     }
@@ -14839,7 +14975,7 @@ function createDOMPurify() {
       return true;
     }
     /* Remove element if anything forbids its presence */
-    if (!ALLOWED_TAGS[tagName] || FORBID_TAGS[tagName]) {
+    if (!(EXTRA_ELEMENT_HANDLING.tagCheck instanceof Function && EXTRA_ELEMENT_HANDLING.tagCheck(tagName)) && (!ALLOWED_TAGS[tagName] || FORBID_TAGS[tagName])) {
       /* Check if we have a custom element to handle */
       if (!FORBID_TAGS[tagName] && _isBasicCustomElement(tagName)) {
         if (CUSTOM_ELEMENT_HANDLING.tagNameCheck instanceof RegExp && regExpTest(CUSTOM_ELEMENT_HANDLING.tagNameCheck, tagName)) {
@@ -14911,12 +15047,12 @@ function createDOMPurify() {
         (https://html.spec.whatwg.org/multipage/dom.html#embedding-custom-non-visible-data-with-the-data-*-attributes)
         XML-compatible (https://html.spec.whatwg.org/multipage/infrastructure.html#xml-compatible and http://www.w3.org/TR/xml/#d0e804)
         We don't need to check the value; it's always URI safe. */
-    if (ALLOW_DATA_ATTR && !FORBID_ATTR[lcName] && regExpTest(DATA_ATTR, lcName)) ; else if (ALLOW_ARIA_ATTR && regExpTest(ARIA_ATTR, lcName)) ; else if (!ALLOWED_ATTR[lcName] || FORBID_ATTR[lcName]) {
+    if (ALLOW_DATA_ATTR && !FORBID_ATTR[lcName] && regExpTest(DATA_ATTR, lcName)) ; else if (ALLOW_ARIA_ATTR && regExpTest(ARIA_ATTR, lcName)) ; else if (EXTRA_ELEMENT_HANDLING.attributeCheck instanceof Function && EXTRA_ELEMENT_HANDLING.attributeCheck(lcName, lcTag)) ; else if (!ALLOWED_ATTR[lcName] || FORBID_ATTR[lcName]) {
       if (
       // First condition does a very basic check if a) it's basically a valid custom element tagname AND
       // b) if the tagName passes whatever the user has configured for CUSTOM_ELEMENT_HANDLING.tagNameCheck
       // and c) if the attribute name passes whatever the user has configured for CUSTOM_ELEMENT_HANDLING.attributeNameCheck
-      _isBasicCustomElement(lcTag) && (CUSTOM_ELEMENT_HANDLING.tagNameCheck instanceof RegExp && regExpTest(CUSTOM_ELEMENT_HANDLING.tagNameCheck, lcTag) || CUSTOM_ELEMENT_HANDLING.tagNameCheck instanceof Function && CUSTOM_ELEMENT_HANDLING.tagNameCheck(lcTag)) && (CUSTOM_ELEMENT_HANDLING.attributeNameCheck instanceof RegExp && regExpTest(CUSTOM_ELEMENT_HANDLING.attributeNameCheck, lcName) || CUSTOM_ELEMENT_HANDLING.attributeNameCheck instanceof Function && CUSTOM_ELEMENT_HANDLING.attributeNameCheck(lcName)) ||
+      _isBasicCustomElement(lcTag) && (CUSTOM_ELEMENT_HANDLING.tagNameCheck instanceof RegExp && regExpTest(CUSTOM_ELEMENT_HANDLING.tagNameCheck, lcTag) || CUSTOM_ELEMENT_HANDLING.tagNameCheck instanceof Function && CUSTOM_ELEMENT_HANDLING.tagNameCheck(lcTag)) && (CUSTOM_ELEMENT_HANDLING.attributeNameCheck instanceof RegExp && regExpTest(CUSTOM_ELEMENT_HANDLING.attributeNameCheck, lcName) || CUSTOM_ELEMENT_HANDLING.attributeNameCheck instanceof Function && CUSTOM_ELEMENT_HANDLING.attributeNameCheck(lcName, lcTag)) ||
       // Alternative, second condition checks if it's an `is`-attribute, AND
       // the value passes whatever the user has configured for CUSTOM_ELEMENT_HANDLING.tagNameCheck
       lcName === 'is' && CUSTOM_ELEMENT_HANDLING.allowCustomizedBuiltInElements && (CUSTOM_ELEMENT_HANDLING.tagNameCheck instanceof RegExp && regExpTest(CUSTOM_ELEMENT_HANDLING.tagNameCheck, value) || CUSTOM_ELEMENT_HANDLING.tagNameCheck instanceof Function && CUSTOM_ELEMENT_HANDLING.tagNameCheck(value))) ; else {
@@ -14976,7 +15112,8 @@ function createDOMPurify() {
         value: attrValue
       } = attr;
       const lcName = transformCaseFunc(name);
-      let value = name === 'value' ? attrValue : stringTrim(attrValue);
+      const initValue = attrValue;
+      let value = name === 'value' ? initValue : stringTrim(initValue);
       /* Execute a hook if present */
       hookEvent.attrName = lcName;
       hookEvent.attrValue = value;
@@ -14994,7 +15131,12 @@ function createDOMPurify() {
         value = SANITIZE_NAMED_PROPS_PREFIX + value;
       }
       /* Work around a security issue with comments inside attributes */
-      if (SAFE_FOR_XML && regExpTest(/((--!?|])>)|<\/(style|title)/i, value)) {
+      if (SAFE_FOR_XML && regExpTest(/((--!?|])>)|<\/(style|title|textarea)/i, value)) {
+        _removeAttribute(name, currentNode);
+        continue;
+      }
+      /* Make sure we cannot easily use animated hrefs, even if animations are allowed */
+      if (lcName === 'attributename' && stringMatch(value, 'href')) {
         _removeAttribute(name, currentNode);
         continue;
       }
@@ -15002,10 +15144,9 @@ function createDOMPurify() {
       if (hookEvent.forceKeepAttr) {
         continue;
       }
-      /* Remove attribute */
-      _removeAttribute(name, currentNode);
       /* Did the hooks approve of the attribute? */
       if (!hookEvent.keepAttr) {
+        _removeAttribute(name, currentNode);
         continue;
       }
       /* Work around a security issue in jQuery 3.0 */
@@ -15022,6 +15163,7 @@ function createDOMPurify() {
       /* Is `value` valid for this attribute? */
       const lcTag = transformCaseFunc(currentNode.nodeName);
       if (!_isValidAttribute(lcTag, lcName, value)) {
+        _removeAttribute(name, currentNode);
         continue;
       }
       /* Handle attributes that require Trusted Types */
@@ -15042,19 +15184,23 @@ function createDOMPurify() {
         }
       }
       /* Handle invalid data-* attribute set by try-catching it */
-      try {
-        if (namespaceURI) {
-          currentNode.setAttributeNS(namespaceURI, name, value);
-        } else {
-          /* Fallback to setAttribute() for browser-unrecognized namespaces e.g. "x-schema". */
-          currentNode.setAttribute(name, value);
+      if (value !== initValue) {
+        try {
+          if (namespaceURI) {
+            currentNode.setAttributeNS(namespaceURI, name, value);
+          } else {
+            /* Fallback to setAttribute() for browser-unrecognized namespaces e.g. "x-schema". */
+            currentNode.setAttribute(name, value);
+          }
+          if (_isClobbered(currentNode)) {
+            _forceRemove(currentNode);
+          } else {
+            arrayPop(DOMPurify.removed);
+          }
+        } catch (_) {
+          _removeAttribute(name, currentNode);
         }
-        if (_isClobbered(currentNode)) {
-          _forceRemove(currentNode);
-        } else {
-          arrayPop(DOMPurify.removed);
-        }
-      } catch (_) {}
+      }
     }
     /* Execute a hook if present */
     _executeHooks(hooks.afterSanitizeAttributes, currentNode, null);
@@ -15267,6 +15413,2055 @@ function sanitize (options, init, enabled) {
   };
 }
 
+var INUMBER = 'INUMBER';
+var IOP1 = 'IOP1';
+var IOP2 = 'IOP2';
+var IOP3 = 'IOP3';
+var IVAR = 'IVAR';
+var IVARNAME = 'IVARNAME';
+var IFUNCALL = 'IFUNCALL';
+var IFUNDEF = 'IFUNDEF';
+var IEXPR = 'IEXPR';
+var IEXPREVAL = 'IEXPREVAL';
+var IMEMBER = 'IMEMBER';
+var IENDSTATEMENT = 'IENDSTATEMENT';
+var IARRAY = 'IARRAY';
+
+function Instruction(type, value) {
+  this.type = type;
+  this.value = (value !== undefined && value !== null) ? value : 0;
+}
+
+Instruction.prototype.toString = function () {
+  switch (this.type) {
+    case INUMBER:
+    case IOP1:
+    case IOP2:
+    case IOP3:
+    case IVAR:
+    case IVARNAME:
+    case IENDSTATEMENT:
+      return this.value;
+    case IFUNCALL:
+      return 'CALL ' + this.value;
+    case IFUNDEF:
+      return 'DEF ' + this.value;
+    case IARRAY:
+      return 'ARRAY ' + this.value;
+    case IMEMBER:
+      return '.' + this.value;
+    default:
+      return 'Invalid Instruction';
+  }
+};
+
+function unaryInstruction(value) {
+  return new Instruction(IOP1, value);
+}
+
+function binaryInstruction(value) {
+  return new Instruction(IOP2, value);
+}
+
+function ternaryInstruction(value) {
+  return new Instruction(IOP3, value);
+}
+
+function simplify(tokens, unaryOps, binaryOps, ternaryOps, values) {
+  var nstack = [];
+  var newexpression = [];
+  var n1, n2, n3;
+  var f;
+  for (var i = 0; i < tokens.length; i++) {
+    var item = tokens[i];
+    var type = item.type;
+    if (type === INUMBER || type === IVARNAME) {
+      if (Array.isArray(item.value)) {
+        nstack.push.apply(nstack, simplify(item.value.map(function (x) {
+          return new Instruction(INUMBER, x);
+        }).concat(new Instruction(IARRAY, item.value.length)), unaryOps, binaryOps, ternaryOps, values));
+      } else {
+        nstack.push(item);
+      }
+    } else if (type === IVAR && values.hasOwnProperty(item.value)) {
+      item = new Instruction(INUMBER, values[item.value]);
+      nstack.push(item);
+    } else if (type === IOP2 && nstack.length > 1) {
+      n2 = nstack.pop();
+      n1 = nstack.pop();
+      f = binaryOps[item.value];
+      item = new Instruction(INUMBER, f(n1.value, n2.value));
+      nstack.push(item);
+    } else if (type === IOP3 && nstack.length > 2) {
+      n3 = nstack.pop();
+      n2 = nstack.pop();
+      n1 = nstack.pop();
+      if (item.value === '?') {
+        nstack.push(n1.value ? n2.value : n3.value);
+      } else {
+        f = ternaryOps[item.value];
+        item = new Instruction(INUMBER, f(n1.value, n2.value, n3.value));
+        nstack.push(item);
+      }
+    } else if (type === IOP1 && nstack.length > 0) {
+      n1 = nstack.pop();
+      f = unaryOps[item.value];
+      item = new Instruction(INUMBER, f(n1.value));
+      nstack.push(item);
+    } else if (type === IEXPR) {
+      while (nstack.length > 0) {
+        newexpression.push(nstack.shift());
+      }
+      newexpression.push(new Instruction(IEXPR, simplify(item.value, unaryOps, binaryOps, ternaryOps, values)));
+    } else if (type === IMEMBER && nstack.length > 0) {
+      n1 = nstack.pop();
+      nstack.push(new Instruction(INUMBER, n1.value[item.value]));
+    } /* else if (type === IARRAY && nstack.length >= item.value) {
+      var length = item.value;
+      while (length-- > 0) {
+        newexpression.push(nstack.pop());
+      }
+      newexpression.push(new Instruction(IARRAY, item.value));
+    } */ else {
+      while (nstack.length > 0) {
+        newexpression.push(nstack.shift());
+      }
+      newexpression.push(item);
+    }
+  }
+  while (nstack.length > 0) {
+    newexpression.push(nstack.shift());
+  }
+  return newexpression;
+}
+
+function substitute(tokens, variable, expr) {
+  var newexpression = [];
+  for (var i = 0; i < tokens.length; i++) {
+    var item = tokens[i];
+    var type = item.type;
+    if (type === IVAR && item.value === variable) {
+      for (var j = 0; j < expr.tokens.length; j++) {
+        var expritem = expr.tokens[j];
+        var replitem;
+        if (expritem.type === IOP1) {
+          replitem = unaryInstruction(expritem.value);
+        } else if (expritem.type === IOP2) {
+          replitem = binaryInstruction(expritem.value);
+        } else if (expritem.type === IOP3) {
+          replitem = ternaryInstruction(expritem.value);
+        } else {
+          replitem = new Instruction(expritem.type, expritem.value);
+        }
+        newexpression.push(replitem);
+      }
+    } else if (type === IEXPR) {
+      newexpression.push(new Instruction(IEXPR, substitute(item.value, variable, expr)));
+    } else {
+      newexpression.push(item);
+    }
+  }
+  return newexpression;
+}
+
+function evaluate(tokens, expr, values) {
+  var nstack = [];
+  var n1, n2, n3;
+  var f, args, argCount;
+
+  if (isExpressionEvaluator(tokens)) {
+    return resolveExpression(tokens, values);
+  }
+
+  var numTokens = tokens.length;
+
+  for (var i = 0; i < numTokens; i++) {
+    var item = tokens[i];
+    var type = item.type;
+    if (type === INUMBER || type === IVARNAME) {
+      nstack.push(item.value);
+    } else if (type === IOP2) {
+      n2 = nstack.pop();
+      n1 = nstack.pop();
+      if (item.value === 'and') {
+        nstack.push(n1 ? !!evaluate(n2, expr, values) : false);
+      } else if (item.value === 'or') {
+        nstack.push(n1 ? true : !!evaluate(n2, expr, values));
+      } else if (item.value === '=') {
+        f = expr.binaryOps[item.value];
+        nstack.push(f(n1, evaluate(n2, expr, values), values));
+      } else {
+        f = expr.binaryOps[item.value];
+        nstack.push(f(resolveExpression(n1, values), resolveExpression(n2, values)));
+      }
+    } else if (type === IOP3) {
+      n3 = nstack.pop();
+      n2 = nstack.pop();
+      n1 = nstack.pop();
+      if (item.value === '?') {
+        nstack.push(evaluate(n1 ? n2 : n3, expr, values));
+      } else {
+        f = expr.ternaryOps[item.value];
+        nstack.push(f(resolveExpression(n1, values), resolveExpression(n2, values), resolveExpression(n3, values)));
+      }
+    } else if (type === IVAR) {
+      if (item.value in expr.functions) {
+        nstack.push(expr.functions[item.value]);
+      } else if (item.value in expr.unaryOps && expr.parser.isOperatorEnabled(item.value)) {
+        nstack.push(expr.unaryOps[item.value]);
+      } else {
+        var v = values[item.value];
+        if (v !== undefined) {
+          nstack.push(v);
+        } else {
+          throw new Error('undefined variable: ' + item.value);
+        }
+      }
+    } else if (type === IOP1) {
+      n1 = nstack.pop();
+      f = expr.unaryOps[item.value];
+      nstack.push(f(resolveExpression(n1, values)));
+    } else if (type === IFUNCALL) {
+      argCount = item.value;
+      args = [];
+      while (argCount-- > 0) {
+        args.unshift(resolveExpression(nstack.pop(), values));
+      }
+      f = nstack.pop();
+      if (f.apply && f.call) {
+        nstack.push(f.apply(undefined, args));
+      } else {
+        throw new Error(f + ' is not a function');
+      }
+    } else if (type === IFUNDEF) {
+      // Create closure to keep references to arguments and expression
+      nstack.push((function () {
+        var n2 = nstack.pop();
+        var args = [];
+        var argCount = item.value;
+        while (argCount-- > 0) {
+          args.unshift(nstack.pop());
+        }
+        var n1 = nstack.pop();
+        var f = function () {
+          var scope = Object.assign({}, values);
+          for (var i = 0, len = args.length; i < len; i++) {
+            scope[args[i]] = arguments[i];
+          }
+          return evaluate(n2, expr, scope);
+        };
+        // f.name = n1
+        Object.defineProperty(f, 'name', {
+          value: n1,
+          writable: false
+        });
+        values[n1] = f;
+        return f;
+      })());
+    } else if (type === IEXPR) {
+      nstack.push(createExpressionEvaluator(item, expr));
+    } else if (type === IEXPREVAL) {
+      nstack.push(item);
+    } else if (type === IMEMBER) {
+      n1 = nstack.pop();
+      nstack.push(n1[item.value]);
+    } else if (type === IENDSTATEMENT) {
+      nstack.pop();
+    } else if (type === IARRAY) {
+      argCount = item.value;
+      args = [];
+      while (argCount-- > 0) {
+        args.unshift(nstack.pop());
+      }
+      nstack.push(args);
+    } else {
+      throw new Error('invalid Expression');
+    }
+  }
+  if (nstack.length > 1) {
+    throw new Error('invalid Expression (parity)');
+  }
+  // Explicitly return zero to avoid test issues caused by -0
+  return nstack[0] === 0 ? 0 : resolveExpression(nstack[0], values);
+}
+
+function createExpressionEvaluator(token, expr, values) {
+  if (isExpressionEvaluator(token)) return token;
+  return {
+    type: IEXPREVAL,
+    value: function (scope) {
+      return evaluate(token.value, expr, scope);
+    }
+  };
+}
+
+function isExpressionEvaluator(n) {
+  return n && n.type === IEXPREVAL;
+}
+
+function resolveExpression(n, values) {
+  return isExpressionEvaluator(n) ? n.value(values) : n;
+}
+
+function expressionToString(tokens, toJS) {
+  var nstack = [];
+  var n1, n2, n3;
+  var f, args, argCount;
+  for (var i = 0; i < tokens.length; i++) {
+    var item = tokens[i];
+    var type = item.type;
+    if (type === INUMBER) {
+      if (typeof item.value === 'number' && item.value < 0) {
+        nstack.push('(' + item.value + ')');
+      } else if (Array.isArray(item.value)) {
+        nstack.push('[' + item.value.map(escapeValue).join(', ') + ']');
+      } else {
+        nstack.push(escapeValue(item.value));
+      }
+    } else if (type === IOP2) {
+      n2 = nstack.pop();
+      n1 = nstack.pop();
+      f = item.value;
+      if (toJS) {
+        if (f === '^') {
+          nstack.push('Math.pow(' + n1 + ', ' + n2 + ')');
+        } else if (f === 'and') {
+          nstack.push('(!!' + n1 + ' && !!' + n2 + ')');
+        } else if (f === 'or') {
+          nstack.push('(!!' + n1 + ' || !!' + n2 + ')');
+        } else if (f === '||') {
+          nstack.push('(function(a,b){ return Array.isArray(a) && Array.isArray(b) ? a.concat(b) : String(a) + String(b); }((' + n1 + '),(' + n2 + ')))');
+        } else if (f === '==') {
+          nstack.push('(' + n1 + ' === ' + n2 + ')');
+        } else if (f === '!=') {
+          nstack.push('(' + n1 + ' !== ' + n2 + ')');
+        } else if (f === '[') {
+          nstack.push(n1 + '[(' + n2 + ') | 0]');
+        } else {
+          nstack.push('(' + n1 + ' ' + f + ' ' + n2 + ')');
+        }
+      } else {
+        if (f === '[') {
+          nstack.push(n1 + '[' + n2 + ']');
+        } else {
+          nstack.push('(' + n1 + ' ' + f + ' ' + n2 + ')');
+        }
+      }
+    } else if (type === IOP3) {
+      n3 = nstack.pop();
+      n2 = nstack.pop();
+      n1 = nstack.pop();
+      f = item.value;
+      if (f === '?') {
+        nstack.push('(' + n1 + ' ? ' + n2 + ' : ' + n3 + ')');
+      } else {
+        throw new Error('invalid Expression');
+      }
+    } else if (type === IVAR || type === IVARNAME) {
+      nstack.push(item.value);
+    } else if (type === IOP1) {
+      n1 = nstack.pop();
+      f = item.value;
+      if (f === '-' || f === '+') {
+        nstack.push('(' + f + n1 + ')');
+      } else if (toJS) {
+        if (f === 'not') {
+          nstack.push('(' + '!' + n1 + ')');
+        } else if (f === '!') {
+          nstack.push('fac(' + n1 + ')');
+        } else {
+          nstack.push(f + '(' + n1 + ')');
+        }
+      } else if (f === '!') {
+        nstack.push('(' + n1 + '!)');
+      } else {
+        nstack.push('(' + f + ' ' + n1 + ')');
+      }
+    } else if (type === IFUNCALL) {
+      argCount = item.value;
+      args = [];
+      while (argCount-- > 0) {
+        args.unshift(nstack.pop());
+      }
+      f = nstack.pop();
+      nstack.push(f + '(' + args.join(', ') + ')');
+    } else if (type === IFUNDEF) {
+      n2 = nstack.pop();
+      argCount = item.value;
+      args = [];
+      while (argCount-- > 0) {
+        args.unshift(nstack.pop());
+      }
+      n1 = nstack.pop();
+      if (toJS) {
+        nstack.push('(' + n1 + ' = function(' + args.join(', ') + ') { return ' + n2 + ' })');
+      } else {
+        nstack.push('(' + n1 + '(' + args.join(', ') + ') = ' + n2 + ')');
+      }
+    } else if (type === IMEMBER) {
+      n1 = nstack.pop();
+      nstack.push(n1 + '.' + item.value);
+    } else if (type === IARRAY) {
+      argCount = item.value;
+      args = [];
+      while (argCount-- > 0) {
+        args.unshift(nstack.pop());
+      }
+      nstack.push('[' + args.join(', ') + ']');
+    } else if (type === IEXPR) {
+      nstack.push('(' + expressionToString(item.value, toJS) + ')');
+    } else if (type === IENDSTATEMENT) ; else {
+      throw new Error('invalid Expression');
+    }
+  }
+  if (nstack.length > 1) {
+    if (toJS) {
+      nstack = [ nstack.join(',') ];
+    } else {
+      nstack = [ nstack.join(';') ];
+    }
+  }
+  return String(nstack[0]);
+}
+
+function escapeValue(v) {
+  if (typeof v === 'string') {
+    return JSON.stringify(v).replace(/\u2028/g, '\\u2028').replace(/\u2029/g, '\\u2029');
+  }
+  return v;
+}
+
+function contains(array, obj) {
+  for (var i = 0; i < array.length; i++) {
+    if (array[i] === obj) {
+      return true;
+    }
+  }
+  return false;
+}
+
+function getSymbols(tokens, symbols, options) {
+  options = options || {};
+  var withMembers = !!options.withMembers;
+  var prevVar = null;
+
+  for (var i = 0; i < tokens.length; i++) {
+    var item = tokens[i];
+    if (item.type === IVAR || item.type === IVARNAME) {
+      if (!withMembers && !contains(symbols, item.value)) {
+        symbols.push(item.value);
+      } else if (prevVar !== null) {
+        if (!contains(symbols, prevVar)) {
+          symbols.push(prevVar);
+        }
+        prevVar = item.value;
+      } else {
+        prevVar = item.value;
+      }
+    } else if (item.type === IMEMBER && withMembers && prevVar !== null) {
+      prevVar += '.' + item.value;
+    } else if (item.type === IEXPR) {
+      getSymbols(item.value, symbols, options);
+    } else if (prevVar !== null) {
+      if (!contains(symbols, prevVar)) {
+        symbols.push(prevVar);
+      }
+      prevVar = null;
+    }
+  }
+
+  if (prevVar !== null && !contains(symbols, prevVar)) {
+    symbols.push(prevVar);
+  }
+}
+
+function Expression(tokens, parser) {
+  this.tokens = tokens;
+  this.parser = parser;
+  this.unaryOps = parser.unaryOps;
+  this.binaryOps = parser.binaryOps;
+  this.ternaryOps = parser.ternaryOps;
+  this.functions = parser.functions;
+}
+
+Expression.prototype.simplify = function (values) {
+  values = values || {};
+  return new Expression(simplify(this.tokens, this.unaryOps, this.binaryOps, this.ternaryOps, values), this.parser);
+};
+
+Expression.prototype.substitute = function (variable, expr) {
+  if (!(expr instanceof Expression)) {
+    expr = this.parser.parse(String(expr));
+  }
+
+  return new Expression(substitute(this.tokens, variable, expr), this.parser);
+};
+
+Expression.prototype.evaluate = function (values) {
+  values = values || {};
+  return evaluate(this.tokens, this, values);
+};
+
+Expression.prototype.toString = function () {
+  return expressionToString(this.tokens, false);
+};
+
+Expression.prototype.symbols = function (options) {
+  options = options || {};
+  var vars = [];
+  getSymbols(this.tokens, vars, options);
+  return vars;
+};
+
+Expression.prototype.variables = function (options) {
+  options = options || {};
+  var vars = [];
+  getSymbols(this.tokens, vars, options);
+  var functions = this.functions;
+  return vars.filter(function (name) {
+    return !(name in functions);
+  });
+};
+
+Expression.prototype.toJSFunction = function (param, variables) {
+  var expr = this;
+  var f = new Function(param, 'with(this.functions) with (this.ternaryOps) with (this.binaryOps) with (this.unaryOps) { return ' + expressionToString(this.simplify(variables).tokens, true) + '; }'); // eslint-disable-line no-new-func
+  return function () {
+    return f.apply(expr, arguments);
+  };
+};
+
+var TEOF = 'TEOF';
+var TOP = 'TOP';
+var TNUMBER = 'TNUMBER';
+var TSTRING = 'TSTRING';
+var TPAREN = 'TPAREN';
+var TBRACKET = 'TBRACKET';
+var TCOMMA = 'TCOMMA';
+var TNAME = 'TNAME';
+var TSEMICOLON = 'TSEMICOLON';
+
+function Token(type, value, index) {
+  this.type = type;
+  this.value = value;
+  this.index = index;
+}
+
+Token.prototype.toString = function () {
+  return this.type + ': ' + this.value;
+};
+
+function TokenStream(parser, expression) {
+  this.pos = 0;
+  this.current = null;
+  this.unaryOps = parser.unaryOps;
+  this.binaryOps = parser.binaryOps;
+  this.ternaryOps = parser.ternaryOps;
+  this.consts = parser.consts;
+  this.expression = expression;
+  this.savedPosition = 0;
+  this.savedCurrent = null;
+  this.options = parser.options;
+  this.parser = parser;
+}
+
+TokenStream.prototype.newToken = function (type, value, pos) {
+  return new Token(type, value, pos != null ? pos : this.pos);
+};
+
+TokenStream.prototype.save = function () {
+  this.savedPosition = this.pos;
+  this.savedCurrent = this.current;
+};
+
+TokenStream.prototype.restore = function () {
+  this.pos = this.savedPosition;
+  this.current = this.savedCurrent;
+};
+
+TokenStream.prototype.next = function () {
+  if (this.pos >= this.expression.length) {
+    return this.newToken(TEOF, 'EOF');
+  }
+
+  if (this.isWhitespace() || this.isComment()) {
+    return this.next();
+  } else if (this.isRadixInteger() ||
+      this.isNumber() ||
+      this.isOperator() ||
+      this.isString() ||
+      this.isParen() ||
+      this.isBracket() ||
+      this.isComma() ||
+      this.isSemicolon() ||
+      this.isNamedOp() ||
+      this.isConst() ||
+      this.isName()) {
+    return this.current;
+  } else {
+    this.parseError('Unknown character "' + this.expression.charAt(this.pos) + '"');
+  }
+};
+
+TokenStream.prototype.isString = function () {
+  var r = false;
+  var startPos = this.pos;
+  var quote = this.expression.charAt(startPos);
+
+  if (quote === '\'' || quote === '"') {
+    var index = this.expression.indexOf(quote, startPos + 1);
+    while (index >= 0 && this.pos < this.expression.length) {
+      this.pos = index + 1;
+      if (this.expression.charAt(index - 1) !== '\\') {
+        var rawString = this.expression.substring(startPos + 1, index);
+        this.current = this.newToken(TSTRING, this.unescape(rawString), startPos);
+        r = true;
+        break;
+      }
+      index = this.expression.indexOf(quote, index + 1);
+    }
+  }
+  return r;
+};
+
+TokenStream.prototype.isParen = function () {
+  var c = this.expression.charAt(this.pos);
+  if (c === '(' || c === ')') {
+    this.current = this.newToken(TPAREN, c);
+    this.pos++;
+    return true;
+  }
+  return false;
+};
+
+TokenStream.prototype.isBracket = function () {
+  var c = this.expression.charAt(this.pos);
+  if ((c === '[' || c === ']') && this.isOperatorEnabled('[')) {
+    this.current = this.newToken(TBRACKET, c);
+    this.pos++;
+    return true;
+  }
+  return false;
+};
+
+TokenStream.prototype.isComma = function () {
+  var c = this.expression.charAt(this.pos);
+  if (c === ',') {
+    this.current = this.newToken(TCOMMA, ',');
+    this.pos++;
+    return true;
+  }
+  return false;
+};
+
+TokenStream.prototype.isSemicolon = function () {
+  var c = this.expression.charAt(this.pos);
+  if (c === ';') {
+    this.current = this.newToken(TSEMICOLON, ';');
+    this.pos++;
+    return true;
+  }
+  return false;
+};
+
+TokenStream.prototype.isConst = function () {
+  var startPos = this.pos;
+  var i = startPos;
+  for (; i < this.expression.length; i++) {
+    var c = this.expression.charAt(i);
+    if (c.toUpperCase() === c.toLowerCase()) {
+      if (i === this.pos || (c !== '_' && c !== '.' && (c < '0' || c > '9'))) {
+        break;
+      }
+    }
+  }
+  if (i > startPos) {
+    var str = this.expression.substring(startPos, i);
+    if (str in this.consts) {
+      this.current = this.newToken(TNUMBER, this.consts[str]);
+      this.pos += str.length;
+      return true;
+    }
+  }
+  return false;
+};
+
+TokenStream.prototype.isNamedOp = function () {
+  var startPos = this.pos;
+  var i = startPos;
+  for (; i < this.expression.length; i++) {
+    var c = this.expression.charAt(i);
+    if (c.toUpperCase() === c.toLowerCase()) {
+      if (i === this.pos || (c !== '_' && (c < '0' || c > '9'))) {
+        break;
+      }
+    }
+  }
+  if (i > startPos) {
+    var str = this.expression.substring(startPos, i);
+    if (this.isOperatorEnabled(str) && (str in this.binaryOps || str in this.unaryOps || str in this.ternaryOps)) {
+      this.current = this.newToken(TOP, str);
+      this.pos += str.length;
+      return true;
+    }
+  }
+  return false;
+};
+
+TokenStream.prototype.isName = function () {
+  var startPos = this.pos;
+  var i = startPos;
+  var hasLetter = false;
+  for (; i < this.expression.length; i++) {
+    var c = this.expression.charAt(i);
+    if (c.toUpperCase() === c.toLowerCase()) {
+      if (i === this.pos && (c === '$' || c === '_')) {
+        if (c === '_') {
+          hasLetter = true;
+        }
+        continue;
+      } else if (i === this.pos || !hasLetter || (c !== '_' && (c < '0' || c > '9'))) {
+        break;
+      }
+    } else {
+      hasLetter = true;
+    }
+  }
+  if (hasLetter) {
+    var str = this.expression.substring(startPos, i);
+    this.current = this.newToken(TNAME, str);
+    this.pos += str.length;
+    return true;
+  }
+  return false;
+};
+
+TokenStream.prototype.isWhitespace = function () {
+  var r = false;
+  var c = this.expression.charAt(this.pos);
+  while (c === ' ' || c === '\t' || c === '\n' || c === '\r') {
+    r = true;
+    this.pos++;
+    if (this.pos >= this.expression.length) {
+      break;
+    }
+    c = this.expression.charAt(this.pos);
+  }
+  return r;
+};
+
+var codePointPattern = /^[0-9a-f]{4}$/i;
+
+TokenStream.prototype.unescape = function (v) {
+  var index = v.indexOf('\\');
+  if (index < 0) {
+    return v;
+  }
+
+  var buffer = v.substring(0, index);
+  while (index >= 0) {
+    var c = v.charAt(++index);
+    switch (c) {
+      case '\'':
+        buffer += '\'';
+        break;
+      case '"':
+        buffer += '"';
+        break;
+      case '\\':
+        buffer += '\\';
+        break;
+      case '/':
+        buffer += '/';
+        break;
+      case 'b':
+        buffer += '\b';
+        break;
+      case 'f':
+        buffer += '\f';
+        break;
+      case 'n':
+        buffer += '\n';
+        break;
+      case 'r':
+        buffer += '\r';
+        break;
+      case 't':
+        buffer += '\t';
+        break;
+      case 'u':
+        // interpret the following 4 characters as the hex of the unicode code point
+        var codePoint = v.substring(index + 1, index + 5);
+        if (!codePointPattern.test(codePoint)) {
+          this.parseError('Illegal escape sequence: \\u' + codePoint);
+        }
+        buffer += String.fromCharCode(parseInt(codePoint, 16));
+        index += 4;
+        break;
+      default:
+        throw this.parseError('Illegal escape sequence: "\\' + c + '"');
+    }
+    ++index;
+    var backslash = v.indexOf('\\', index);
+    buffer += v.substring(index, backslash < 0 ? v.length : backslash);
+    index = backslash;
+  }
+
+  return buffer;
+};
+
+TokenStream.prototype.isComment = function () {
+  var c = this.expression.charAt(this.pos);
+  if (c === '/' && this.expression.charAt(this.pos + 1) === '*') {
+    this.pos = this.expression.indexOf('*/', this.pos) + 2;
+    if (this.pos === 1) {
+      this.pos = this.expression.length;
+    }
+    return true;
+  }
+  return false;
+};
+
+TokenStream.prototype.isRadixInteger = function () {
+  var pos = this.pos;
+
+  if (pos >= this.expression.length - 2 || this.expression.charAt(pos) !== '0') {
+    return false;
+  }
+  ++pos;
+
+  var radix;
+  var validDigit;
+  if (this.expression.charAt(pos) === 'x') {
+    radix = 16;
+    validDigit = /^[0-9a-f]$/i;
+    ++pos;
+  } else if (this.expression.charAt(pos) === 'b') {
+    radix = 2;
+    validDigit = /^[01]$/i;
+    ++pos;
+  } else {
+    return false;
+  }
+
+  var valid = false;
+  var startPos = pos;
+
+  while (pos < this.expression.length) {
+    var c = this.expression.charAt(pos);
+    if (validDigit.test(c)) {
+      pos++;
+      valid = true;
+    } else {
+      break;
+    }
+  }
+
+  if (valid) {
+    this.current = this.newToken(TNUMBER, parseInt(this.expression.substring(startPos, pos), radix));
+    this.pos = pos;
+  }
+  return valid;
+};
+
+TokenStream.prototype.isNumber = function () {
+  var valid = false;
+  var pos = this.pos;
+  var startPos = pos;
+  var resetPos = pos;
+  var foundDot = false;
+  var foundDigits = false;
+  var c;
+
+  while (pos < this.expression.length) {
+    c = this.expression.charAt(pos);
+    if ((c >= '0' && c <= '9') || (!foundDot && c === '.')) {
+      if (c === '.') {
+        foundDot = true;
+      } else {
+        foundDigits = true;
+      }
+      pos++;
+      valid = foundDigits;
+    } else {
+      break;
+    }
+  }
+
+  if (valid) {
+    resetPos = pos;
+  }
+
+  if (c === 'e' || c === 'E') {
+    pos++;
+    var acceptSign = true;
+    var validExponent = false;
+    while (pos < this.expression.length) {
+      c = this.expression.charAt(pos);
+      if (acceptSign && (c === '+' || c === '-')) {
+        acceptSign = false;
+      } else if (c >= '0' && c <= '9') {
+        validExponent = true;
+        acceptSign = false;
+      } else {
+        break;
+      }
+      pos++;
+    }
+
+    if (!validExponent) {
+      pos = resetPos;
+    }
+  }
+
+  if (valid) {
+    this.current = this.newToken(TNUMBER, parseFloat(this.expression.substring(startPos, pos)));
+    this.pos = pos;
+  } else {
+    this.pos = resetPos;
+  }
+  return valid;
+};
+
+TokenStream.prototype.isOperator = function () {
+  var startPos = this.pos;
+  var c = this.expression.charAt(this.pos);
+
+  if (c === '+' || c === '-' || c === '*' || c === '/' || c === '%' || c === '^' || c === '?' || c === ':' || c === '.') {
+    this.current = this.newToken(TOP, c);
+  } else if (c === '∙' || c === '•') {
+    this.current = this.newToken(TOP, '*');
+  } else if (c === '>') {
+    if (this.expression.charAt(this.pos + 1) === '=') {
+      this.current = this.newToken(TOP, '>=');
+      this.pos++;
+    } else {
+      this.current = this.newToken(TOP, '>');
+    }
+  } else if (c === '<') {
+    if (this.expression.charAt(this.pos + 1) === '=') {
+      this.current = this.newToken(TOP, '<=');
+      this.pos++;
+    } else {
+      this.current = this.newToken(TOP, '<');
+    }
+  } else if (c === '|') {
+    if (this.expression.charAt(this.pos + 1) === '|') {
+      this.current = this.newToken(TOP, '||');
+      this.pos++;
+    } else {
+      return false;
+    }
+  } else if (c === '=') {
+    if (this.expression.charAt(this.pos + 1) === '=') {
+      this.current = this.newToken(TOP, '==');
+      this.pos++;
+    } else {
+      this.current = this.newToken(TOP, c);
+    }
+  } else if (c === '!') {
+    if (this.expression.charAt(this.pos + 1) === '=') {
+      this.current = this.newToken(TOP, '!=');
+      this.pos++;
+    } else {
+      this.current = this.newToken(TOP, c);
+    }
+  } else {
+    return false;
+  }
+  this.pos++;
+
+  if (this.isOperatorEnabled(this.current.value)) {
+    return true;
+  } else {
+    this.pos = startPos;
+    return false;
+  }
+};
+
+TokenStream.prototype.isOperatorEnabled = function (op) {
+  return this.parser.isOperatorEnabled(op);
+};
+
+TokenStream.prototype.getCoordinates = function () {
+  var line = 0;
+  var column;
+  var newline = -1;
+  do {
+    line++;
+    column = this.pos - newline;
+    newline = this.expression.indexOf('\n', newline + 1);
+  } while (newline >= 0 && newline < this.pos);
+
+  return {
+    line: line,
+    column: column
+  };
+};
+
+TokenStream.prototype.parseError = function (msg) {
+  var coords = this.getCoordinates();
+  throw new Error('parse error [' + coords.line + ':' + coords.column + ']: ' + msg);
+};
+
+function ParserState(parser, tokenStream, options) {
+  this.parser = parser;
+  this.tokens = tokenStream;
+  this.current = null;
+  this.nextToken = null;
+  this.next();
+  this.savedCurrent = null;
+  this.savedNextToken = null;
+  this.allowMemberAccess = options.allowMemberAccess !== false;
+}
+
+ParserState.prototype.next = function () {
+  this.current = this.nextToken;
+  return (this.nextToken = this.tokens.next());
+};
+
+ParserState.prototype.tokenMatches = function (token, value) {
+  if (typeof value === 'undefined') {
+    return true;
+  } else if (Array.isArray(value)) {
+    return contains(value, token.value);
+  } else if (typeof value === 'function') {
+    return value(token);
+  } else {
+    return token.value === value;
+  }
+};
+
+ParserState.prototype.save = function () {
+  this.savedCurrent = this.current;
+  this.savedNextToken = this.nextToken;
+  this.tokens.save();
+};
+
+ParserState.prototype.restore = function () {
+  this.tokens.restore();
+  this.current = this.savedCurrent;
+  this.nextToken = this.savedNextToken;
+};
+
+ParserState.prototype.accept = function (type, value) {
+  if (this.nextToken.type === type && this.tokenMatches(this.nextToken, value)) {
+    this.next();
+    return true;
+  }
+  return false;
+};
+
+ParserState.prototype.expect = function (type, value) {
+  if (!this.accept(type, value)) {
+    var coords = this.tokens.getCoordinates();
+    throw new Error('parse error [' + coords.line + ':' + coords.column + ']: Expected ' + (value || type));
+  }
+};
+
+ParserState.prototype.parseAtom = function (instr) {
+  var unaryOps = this.tokens.unaryOps;
+  function isPrefixOperator(token) {
+    return token.value in unaryOps;
+  }
+
+  if (this.accept(TNAME) || this.accept(TOP, isPrefixOperator)) {
+    instr.push(new Instruction(IVAR, this.current.value));
+  } else if (this.accept(TNUMBER)) {
+    instr.push(new Instruction(INUMBER, this.current.value));
+  } else if (this.accept(TSTRING)) {
+    instr.push(new Instruction(INUMBER, this.current.value));
+  } else if (this.accept(TPAREN, '(')) {
+    this.parseExpression(instr);
+    this.expect(TPAREN, ')');
+  } else if (this.accept(TBRACKET, '[')) {
+    if (this.accept(TBRACKET, ']')) {
+      instr.push(new Instruction(IARRAY, 0));
+    } else {
+      var argCount = this.parseArrayList(instr);
+      instr.push(new Instruction(IARRAY, argCount));
+    }
+  } else {
+    throw new Error('unexpected ' + this.nextToken);
+  }
+};
+
+ParserState.prototype.parseExpression = function (instr) {
+  var exprInstr = [];
+  if (this.parseUntilEndStatement(instr, exprInstr)) {
+    return;
+  }
+  this.parseVariableAssignmentExpression(exprInstr);
+  if (this.parseUntilEndStatement(instr, exprInstr)) {
+    return;
+  }
+  this.pushExpression(instr, exprInstr);
+};
+
+ParserState.prototype.pushExpression = function (instr, exprInstr) {
+  for (var i = 0, len = exprInstr.length; i < len; i++) {
+    instr.push(exprInstr[i]);
+  }
+};
+
+ParserState.prototype.parseUntilEndStatement = function (instr, exprInstr) {
+  if (!this.accept(TSEMICOLON)) return false;
+  if (this.nextToken && this.nextToken.type !== TEOF && !(this.nextToken.type === TPAREN && this.nextToken.value === ')')) {
+    exprInstr.push(new Instruction(IENDSTATEMENT));
+  }
+  if (this.nextToken.type !== TEOF) {
+    this.parseExpression(exprInstr);
+  }
+  instr.push(new Instruction(IEXPR, exprInstr));
+  return true;
+};
+
+ParserState.prototype.parseArrayList = function (instr) {
+  var argCount = 0;
+
+  while (!this.accept(TBRACKET, ']')) {
+    this.parseExpression(instr);
+    ++argCount;
+    while (this.accept(TCOMMA)) {
+      this.parseExpression(instr);
+      ++argCount;
+    }
+  }
+
+  return argCount;
+};
+
+ParserState.prototype.parseVariableAssignmentExpression = function (instr) {
+  this.parseConditionalExpression(instr);
+  while (this.accept(TOP, '=')) {
+    var varName = instr.pop();
+    var varValue = [];
+    var lastInstrIndex = instr.length - 1;
+    if (varName.type === IFUNCALL) {
+      if (!this.tokens.isOperatorEnabled('()=')) {
+        throw new Error('function definition is not permitted');
+      }
+      for (var i = 0, len = varName.value + 1; i < len; i++) {
+        var index = lastInstrIndex - i;
+        if (instr[index].type === IVAR) {
+          instr[index] = new Instruction(IVARNAME, instr[index].value);
+        }
+      }
+      this.parseVariableAssignmentExpression(varValue);
+      instr.push(new Instruction(IEXPR, varValue));
+      instr.push(new Instruction(IFUNDEF, varName.value));
+      continue;
+    }
+    if (varName.type !== IVAR && varName.type !== IMEMBER) {
+      throw new Error('expected variable for assignment');
+    }
+    this.parseVariableAssignmentExpression(varValue);
+    instr.push(new Instruction(IVARNAME, varName.value));
+    instr.push(new Instruction(IEXPR, varValue));
+    instr.push(binaryInstruction('='));
+  }
+};
+
+ParserState.prototype.parseConditionalExpression = function (instr) {
+  this.parseOrExpression(instr);
+  while (this.accept(TOP, '?')) {
+    var trueBranch = [];
+    var falseBranch = [];
+    this.parseConditionalExpression(trueBranch);
+    this.expect(TOP, ':');
+    this.parseConditionalExpression(falseBranch);
+    instr.push(new Instruction(IEXPR, trueBranch));
+    instr.push(new Instruction(IEXPR, falseBranch));
+    instr.push(ternaryInstruction('?'));
+  }
+};
+
+ParserState.prototype.parseOrExpression = function (instr) {
+  this.parseAndExpression(instr);
+  while (this.accept(TOP, 'or')) {
+    var falseBranch = [];
+    this.parseAndExpression(falseBranch);
+    instr.push(new Instruction(IEXPR, falseBranch));
+    instr.push(binaryInstruction('or'));
+  }
+};
+
+ParserState.prototype.parseAndExpression = function (instr) {
+  this.parseComparison(instr);
+  while (this.accept(TOP, 'and')) {
+    var trueBranch = [];
+    this.parseComparison(trueBranch);
+    instr.push(new Instruction(IEXPR, trueBranch));
+    instr.push(binaryInstruction('and'));
+  }
+};
+
+var COMPARISON_OPERATORS = ['==', '!=', '<', '<=', '>=', '>', 'in'];
+
+ParserState.prototype.parseComparison = function (instr) {
+  this.parseAddSub(instr);
+  while (this.accept(TOP, COMPARISON_OPERATORS)) {
+    var op = this.current;
+    this.parseAddSub(instr);
+    instr.push(binaryInstruction(op.value));
+  }
+};
+
+var ADD_SUB_OPERATORS = ['+', '-', '||'];
+
+ParserState.prototype.parseAddSub = function (instr) {
+  this.parseTerm(instr);
+  while (this.accept(TOP, ADD_SUB_OPERATORS)) {
+    var op = this.current;
+    this.parseTerm(instr);
+    instr.push(binaryInstruction(op.value));
+  }
+};
+
+var TERM_OPERATORS = ['*', '/', '%'];
+
+ParserState.prototype.parseTerm = function (instr) {
+  this.parseFactor(instr);
+  while (this.accept(TOP, TERM_OPERATORS)) {
+    var op = this.current;
+    this.parseFactor(instr);
+    instr.push(binaryInstruction(op.value));
+  }
+};
+
+ParserState.prototype.parseFactor = function (instr) {
+  var unaryOps = this.tokens.unaryOps;
+  function isPrefixOperator(token) {
+    return token.value in unaryOps;
+  }
+
+  this.save();
+  if (this.accept(TOP, isPrefixOperator)) {
+    if (this.current.value !== '-' && this.current.value !== '+') {
+      if (this.nextToken.type === TPAREN && this.nextToken.value === '(') {
+        this.restore();
+        this.parseExponential(instr);
+        return;
+      } else if (this.nextToken.type === TSEMICOLON || this.nextToken.type === TCOMMA || this.nextToken.type === TEOF || (this.nextToken.type === TPAREN && this.nextToken.value === ')')) {
+        this.restore();
+        this.parseAtom(instr);
+        return;
+      }
+    }
+
+    var op = this.current;
+    this.parseFactor(instr);
+    instr.push(unaryInstruction(op.value));
+  } else {
+    this.parseExponential(instr);
+  }
+};
+
+ParserState.prototype.parseExponential = function (instr) {
+  this.parsePostfixExpression(instr);
+  while (this.accept(TOP, '^')) {
+    this.parseFactor(instr);
+    instr.push(binaryInstruction('^'));
+  }
+};
+
+ParserState.prototype.parsePostfixExpression = function (instr) {
+  this.parseFunctionCall(instr);
+  while (this.accept(TOP, '!')) {
+    instr.push(unaryInstruction('!'));
+  }
+};
+
+ParserState.prototype.parseFunctionCall = function (instr) {
+  var unaryOps = this.tokens.unaryOps;
+  function isPrefixOperator(token) {
+    return token.value in unaryOps;
+  }
+
+  if (this.accept(TOP, isPrefixOperator)) {
+    var op = this.current;
+    this.parseAtom(instr);
+    instr.push(unaryInstruction(op.value));
+  } else {
+    this.parseMemberExpression(instr);
+    while (this.accept(TPAREN, '(')) {
+      if (this.accept(TPAREN, ')')) {
+        instr.push(new Instruction(IFUNCALL, 0));
+      } else {
+        var argCount = this.parseArgumentList(instr);
+        instr.push(new Instruction(IFUNCALL, argCount));
+      }
+    }
+  }
+};
+
+ParserState.prototype.parseArgumentList = function (instr) {
+  var argCount = 0;
+
+  while (!this.accept(TPAREN, ')')) {
+    this.parseExpression(instr);
+    ++argCount;
+    while (this.accept(TCOMMA)) {
+      this.parseExpression(instr);
+      ++argCount;
+    }
+  }
+
+  return argCount;
+};
+
+ParserState.prototype.parseMemberExpression = function (instr) {
+  this.parseAtom(instr);
+  while (this.accept(TOP, '.') || this.accept(TBRACKET, '[')) {
+    var op = this.current;
+
+    if (op.value === '.') {
+      if (!this.allowMemberAccess) {
+        throw new Error('unexpected ".", member access is not permitted');
+      }
+
+      this.expect(TNAME);
+      instr.push(new Instruction(IMEMBER, this.current.value));
+    } else if (op.value === '[') {
+      if (!this.tokens.isOperatorEnabled('[')) {
+        throw new Error('unexpected "[]", arrays are disabled');
+      }
+
+      this.parseExpression(instr);
+      this.expect(TBRACKET, ']');
+      instr.push(binaryInstruction('['));
+    } else {
+      throw new Error('unexpected symbol: ' + op.value);
+    }
+  }
+};
+
+function add(a, b) {
+  return Number(a) + Number(b);
+}
+
+function sub(a, b) {
+  return a - b;
+}
+
+function mul(a, b) {
+  return a * b;
+}
+
+function div(a, b) {
+  return a / b;
+}
+
+function mod(a, b) {
+  return a % b;
+}
+
+function concat(a, b) {
+  if (Array.isArray(a) && Array.isArray(b)) {
+    return a.concat(b);
+  }
+  return '' + a + b;
+}
+
+function equal(a, b) {
+  return a === b;
+}
+
+function notEqual(a, b) {
+  return a !== b;
+}
+
+function greaterThan(a, b) {
+  return a > b;
+}
+
+function lessThan(a, b) {
+  return a < b;
+}
+
+function greaterThanEqual(a, b) {
+  return a >= b;
+}
+
+function lessThanEqual(a, b) {
+  return a <= b;
+}
+
+function andOperator(a, b) {
+  return Boolean(a && b);
+}
+
+function orOperator(a, b) {
+  return Boolean(a || b);
+}
+
+function inOperator(a, b) {
+  return contains(b, a);
+}
+
+function sinh(a) {
+  return ((Math.exp(a) - Math.exp(-a)) / 2);
+}
+
+function cosh(a) {
+  return ((Math.exp(a) + Math.exp(-a)) / 2);
+}
+
+function tanh(a) {
+  if (a === Infinity) return 1;
+  if (a === -Infinity) return -1;
+  return (Math.exp(a) - Math.exp(-a)) / (Math.exp(a) + Math.exp(-a));
+}
+
+function asinh(a) {
+  if (a === -Infinity) return a;
+  return Math.log(a + Math.sqrt((a * a) + 1));
+}
+
+function acosh(a) {
+  return Math.log(a + Math.sqrt((a * a) - 1));
+}
+
+function atanh(a) {
+  return (Math.log((1 + a) / (1 - a)) / 2);
+}
+
+function log10(a) {
+  return Math.log(a) * Math.LOG10E;
+}
+
+function neg(a) {
+  return -a;
+}
+
+function not(a) {
+  return !a;
+}
+
+function trunc(a) {
+  return a < 0 ? Math.ceil(a) : Math.floor(a);
+}
+
+function random(a) {
+  return Math.random() * (a || 1);
+}
+
+function factorial(a) { // a!
+  return gamma(a + 1);
+}
+
+function isInteger(value) {
+  return isFinite(value) && (value === Math.round(value));
+}
+
+var GAMMA_G = 4.7421875;
+var GAMMA_P = [
+  0.99999999999999709182,
+  57.156235665862923517, -59.597960355475491248,
+  14.136097974741747174, -0.49191381609762019978,
+  0.33994649984811888699e-4,
+  0.46523628927048575665e-4, -0.98374475304879564677e-4,
+  0.15808870322491248884e-3, -0.21026444172410488319e-3,
+  0.21743961811521264320e-3, -0.16431810653676389022e-3,
+  0.84418223983852743293e-4, -0.26190838401581408670e-4,
+  0.36899182659531622704e-5
+];
+
+// Gamma function from math.js
+function gamma(n) {
+  var t, x;
+
+  if (isInteger(n)) {
+    if (n <= 0) {
+      return isFinite(n) ? Infinity : NaN;
+    }
+
+    if (n > 171) {
+      return Infinity; // Will overflow
+    }
+
+    var value = n - 2;
+    var res = n - 1;
+    while (value > 1) {
+      res *= value;
+      value--;
+    }
+
+    if (res === 0) {
+      res = 1; // 0! is per definition 1
+    }
+
+    return res;
+  }
+
+  if (n < 0.5) {
+    return Math.PI / (Math.sin(Math.PI * n) * gamma(1 - n));
+  }
+
+  if (n >= 171.35) {
+    return Infinity; // will overflow
+  }
+
+  if (n > 85.0) { // Extended Stirling Approx
+    var twoN = n * n;
+    var threeN = twoN * n;
+    var fourN = threeN * n;
+    var fiveN = fourN * n;
+    return Math.sqrt(2 * Math.PI / n) * Math.pow((n / Math.E), n) *
+      (1 + (1 / (12 * n)) + (1 / (288 * twoN)) - (139 / (51840 * threeN)) -
+      (571 / (2488320 * fourN)) + (163879 / (209018880 * fiveN)) +
+      (5246819 / (75246796800 * fiveN * n)));
+  }
+
+  --n;
+  x = GAMMA_P[0];
+  for (var i = 1; i < GAMMA_P.length; ++i) {
+    x += GAMMA_P[i] / (n + i);
+  }
+
+  t = n + GAMMA_G + 0.5;
+  return Math.sqrt(2 * Math.PI) * Math.pow(t, n + 0.5) * Math.exp(-t) * x;
+}
+
+function stringOrArrayLength(s) {
+  if (Array.isArray(s)) {
+    return s.length;
+  }
+  return String(s).length;
+}
+
+function hypot() {
+  var sum = 0;
+  var larg = 0;
+  for (var i = 0; i < arguments.length; i++) {
+    var arg = Math.abs(arguments[i]);
+    var div;
+    if (larg < arg) {
+      div = larg / arg;
+      sum = (sum * div * div) + 1;
+      larg = arg;
+    } else if (arg > 0) {
+      div = arg / larg;
+      sum += div * div;
+    } else {
+      sum += arg;
+    }
+  }
+  return larg === Infinity ? Infinity : larg * Math.sqrt(sum);
+}
+
+function condition(cond, yep, nope) {
+  return cond ? yep : nope;
+}
+
+/**
+* Decimal adjustment of a number.
+* From @escopecz.
+*
+* @param {Number} value The number.
+* @param {Integer} exp  The exponent (the 10 logarithm of the adjustment base).
+* @return {Number} The adjusted value.
+*/
+function roundTo(value, exp) {
+  // If the exp is undefined or zero...
+  if (typeof exp === 'undefined' || +exp === 0) {
+    return Math.round(value);
+  }
+  value = +value;
+  exp = -(+exp);
+  // If the value is not a number or the exp is not an integer...
+  if (isNaN(value) || !(typeof exp === 'number' && exp % 1 === 0)) {
+    return NaN;
+  }
+  // Shift
+  value = value.toString().split('e');
+  value = Math.round(+(value[0] + 'e' + (value[1] ? (+value[1] - exp) : -exp)));
+  // Shift back
+  value = value.toString().split('e');
+  return +(value[0] + 'e' + (value[1] ? (+value[1] + exp) : exp));
+}
+
+function setVar(name, value, variables) {
+  if (variables) variables[name] = value;
+  return value;
+}
+
+function arrayIndex(array, index) {
+  return array[index | 0];
+}
+
+function max(array) {
+  if (arguments.length === 1 && Array.isArray(array)) {
+    return Math.max.apply(Math, array);
+  } else {
+    return Math.max.apply(Math, arguments);
+  }
+}
+
+function min$1(array) {
+  if (arguments.length === 1 && Array.isArray(array)) {
+    return Math.min.apply(Math, array);
+  } else {
+    return Math.min.apply(Math, arguments);
+  }
+}
+
+function arrayMap$1(f, a) {
+  if (typeof f !== 'function') {
+    throw new Error('First argument to map is not a function');
+  }
+  if (!Array.isArray(a)) {
+    throw new Error('Second argument to map is not an array');
+  }
+  return a.map(function (x, i) {
+    return f(x, i);
+  });
+}
+
+function arrayFold(f, init, a) {
+  if (typeof f !== 'function') {
+    throw new Error('First argument to fold is not a function');
+  }
+  if (!Array.isArray(a)) {
+    throw new Error('Second argument to fold is not an array');
+  }
+  return a.reduce(function (acc, x, i) {
+    return f(acc, x, i);
+  }, init);
+}
+
+function arrayFilter(f, a) {
+  if (typeof f !== 'function') {
+    throw new Error('First argument to filter is not a function');
+  }
+  if (!Array.isArray(a)) {
+    throw new Error('Second argument to filter is not an array');
+  }
+  return a.filter(function (x, i) {
+    return f(x, i);
+  });
+}
+
+function stringOrArrayIndexOf(target, s) {
+  if (!(Array.isArray(s) || typeof s === 'string')) {
+    throw new Error('Second argument to indexOf is not a string or array');
+  }
+
+  return s.indexOf(target);
+}
+
+function arrayJoin(sep, a) {
+  if (!Array.isArray(a)) {
+    throw new Error('Second argument to join is not an array');
+  }
+
+  return a.join(sep);
+}
+
+function sign(x) {
+  return ((x > 0) - (x < 0)) || +x;
+}
+
+var ONE_THIRD = 1/3;
+function cbrt(x) {
+  return x < 0 ? -Math.pow(-x, ONE_THIRD) : Math.pow(x, ONE_THIRD);
+}
+
+function expm1(x) {
+  return Math.exp(x) - 1;
+}
+
+function log1p(x) {
+  return Math.log(1 + x);
+}
+
+function log2(x) {
+  return Math.log(x) / Math.LN2;
+}
+
+function Parser(options) {
+  this.options = options || {};
+  this.unaryOps = {
+    sin: Math.sin,
+    cos: Math.cos,
+    tan: Math.tan,
+    asin: Math.asin,
+    acos: Math.acos,
+    atan: Math.atan,
+    sinh: Math.sinh || sinh,
+    cosh: Math.cosh || cosh,
+    tanh: Math.tanh || tanh,
+    asinh: Math.asinh || asinh,
+    acosh: Math.acosh || acosh,
+    atanh: Math.atanh || atanh,
+    sqrt: Math.sqrt,
+    cbrt: Math.cbrt || cbrt,
+    log: Math.log,
+    log2: Math.log2 || log2,
+    ln: Math.log,
+    lg: Math.log10 || log10,
+    log10: Math.log10 || log10,
+    expm1: Math.expm1 || expm1,
+    log1p: Math.log1p || log1p,
+    abs: Math.abs,
+    ceil: Math.ceil,
+    floor: Math.floor,
+    round: Math.round,
+    trunc: Math.trunc || trunc,
+    '-': neg,
+    '+': Number,
+    exp: Math.exp,
+    not: not,
+    length: stringOrArrayLength,
+    '!': factorial,
+    sign: Math.sign || sign
+  };
+
+  this.binaryOps = {
+    '+': add,
+    '-': sub,
+    '*': mul,
+    '/': div,
+    '%': mod,
+    '^': Math.pow,
+    '||': concat,
+    '==': equal,
+    '!=': notEqual,
+    '>': greaterThan,
+    '<': lessThan,
+    '>=': greaterThanEqual,
+    '<=': lessThanEqual,
+    and: andOperator,
+    or: orOperator,
+    'in': inOperator,
+    '=': setVar,
+    '[': arrayIndex
+  };
+
+  this.ternaryOps = {
+    '?': condition
+  };
+
+  this.functions = {
+    random: random,
+    fac: factorial,
+    min: min$1,
+    max: max,
+    hypot: Math.hypot || hypot,
+    pyt: Math.hypot || hypot, // backward compat
+    pow: Math.pow,
+    atan2: Math.atan2,
+    'if': condition,
+    gamma: gamma,
+    roundTo: roundTo,
+    map: arrayMap$1,
+    fold: arrayFold,
+    filter: arrayFilter,
+    indexOf: stringOrArrayIndexOf,
+    join: arrayJoin
+  };
+
+  this.consts = {
+    E: Math.E,
+    PI: Math.PI,
+    'true': true,
+    'false': false
+  };
+}
+
+Parser.prototype.parse = function (expr) {
+  var instr = [];
+  var parserState = new ParserState(
+    this,
+    new TokenStream(this, expr),
+    { allowMemberAccess: this.options.allowMemberAccess }
+  );
+
+  parserState.parseExpression(instr);
+  parserState.expect(TEOF, 'EOF');
+
+  return new Expression(instr, this);
+};
+
+Parser.prototype.evaluate = function (expr, variables) {
+  return this.parse(expr).evaluate(variables);
+};
+
+var sharedParser = new Parser();
+
+Parser.parse = function (expr) {
+  return sharedParser.parse(expr);
+};
+
+Parser.evaluate = function (expr, variables) {
+  return sharedParser.parse(expr).evaluate(variables);
+};
+
+var optionNameMap = {
+  '+': 'add',
+  '-': 'subtract',
+  '*': 'multiply',
+  '/': 'divide',
+  '%': 'remainder',
+  '^': 'power',
+  '!': 'factorial',
+  '<': 'comparison',
+  '>': 'comparison',
+  '<=': 'comparison',
+  '>=': 'comparison',
+  '==': 'comparison',
+  '!=': 'comparison',
+  '||': 'concatenate',
+  'and': 'logical',
+  'or': 'logical',
+  'not': 'logical',
+  '?': 'conditional',
+  ':': 'conditional',
+  '=': 'assignment',
+  '[': 'array',
+  '()=': 'fndef'
+};
+
+function getOptionName(op) {
+  return optionNameMap.hasOwnProperty(op) ? optionNameMap[op] : op;
+}
+
+Parser.prototype.isOperatorEnabled = function (op) {
+  var optionName = getOptionName(op);
+  var operators = this.options.operators || {};
+
+  return !(optionName in operators) || !!operators[optionName];
+};
+
+class expression {
+  constructor(_ref, config$, form$) {
+    var _this = this;
+    var {
+      functions,
+      consts
+    } = _ref;
+    _defineProperty$2(this, "parser", void 0);
+    _defineProperty$2(this, "regex", /{(.+?)}|\\({.+?})/g);
+    _defineProperty$2(this, "config$", void 0);
+    _defineProperty$2(this, "form$", void 0);
+    _defineProperty$2(this, "moment", void 0);
+    _defineProperty$2(this, "lastParsed", void 0);
+    this.config$ = config$;
+    this.form$ = form$;
+    this.moment = this.config$.value.services.moment;
+    this.parser = new Parser({
+      operators: {
+        logical: true,
+        comparison: true,
+        in: true,
+        assignment: false
+      }
+    });
+    Object.keys(this.parser.functions).forEach(func => {
+      delete this.parser.functions[func];
+    });
+    this.parser.functions.NOT = a => !a;
+    this.parser.functions.EMPTY = v => Array.isArray(v) ? !v.length : v === '' || v === null || v === undefined;
+    this.parser.functions.NOT_EMPTY = v => Array.isArray(v) ? !!v.length : v !== '' && v !== null && v !== undefined;
+    this.parser.functions.SUM = function () {
+      for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+        args[_key] = arguments[_key];
+      }
+      return _this.sum(args);
+    };
+    this.parser.functions.AVG = function () {
+      for (var _len2 = arguments.length, args = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
+        args[_key2] = arguments[_key2];
+      }
+      var values = _this.flatten(args, '').filter(v => v !== '');
+      if (!values.length) {
+        return 0;
+      }
+      return _this.sum(args) / values.length;
+    };
+    this.parser.functions.MIN = function () {
+      for (var _len3 = arguments.length, args = new Array(_len3), _key3 = 0; _key3 < _len3; _key3++) {
+        args[_key3] = arguments[_key3];
+      }
+      var values = _this.flatten(args, '').filter(v => v !== '');
+      if (!values.length) {
+        return 0;
+      }
+      return values.sort((a, b) => a - b)[0];
+    };
+    this.parser.functions.MAX = function () {
+      for (var _len4 = arguments.length, args = new Array(_len4), _key4 = 0; _key4 < _len4; _key4++) {
+        args[_key4] = arguments[_key4];
+      }
+      var values = _this.flatten(args, '').filter(v => v !== '');
+      if (!values.length) {
+        return 0;
+      }
+      return values.sort((a, b) => b - a)[0];
+    };
+    this.parser.functions.ROUND = (value, places) => {
+      var num = Number(value);
+      if (isNaN(num)) {
+        return 0;
+      }
+      return Number(num.toFixed(places));
+    };
+    this.parser.functions.COUNT = function () {
+      for (var _len5 = arguments.length, args = new Array(_len5), _key5 = 0; _key5 < _len5; _key5++) {
+        args[_key5] = arguments[_key5];
+      }
+      var values = _this.flatten(args, '').filter(v => v !== '');
+      return values.length;
+    };
+    this.parser.functions.AGE = value => {
+      var date = this.date(value);
+      return date.isValid() ? this.moment().diff(date, 'years') : '';
+    };
+    this.parser.functions.TODAY = () => {
+      return this.moment().format('YYYY-MM-DD');
+    };
+    this.parser.functions.NOW = () => {
+      return this.moment().toISOString();
+    };
+    this.parser.functions.DATE_ADD = (value, toAdd, interval) => {
+      var date = this.date(value);
+      return date.clone().add(toAdd, interval).toISOString();
+    };
+    this.parser.functions.FORMAT_DATE = (value, format) => {
+      return this.date(value).format(format);
+    };
+    this.parser.functions.DISPLAY_VALUE = (value, path) => {
+      var el$ = this.form$.value.el$(path);
+      if (!el$) {
+        return '';
+      }
+      var translate = v => {
+        var _el$$resolvedOptions;
+        return localize(((_el$$resolvedOptions = el$.resolvedOptions) === null || _el$$resolvedOptions === void 0 || (_el$$resolvedOptions = _el$$resolvedOptions.find(o => o.value === v)) === null || _el$$resolvedOptions === void 0 ? void 0 : _el$$resolvedOptions.label) || '', this.config$.value, this.form$.value);
+      };
+      return Array.isArray(value) ? value.map(translate).join(', ') : translate(value);
+    };
+    this.parser.functions.AVAILABLE = path => {
+      var el$ = this.form$.value.el$(path);
+      if (!el$) {
+        return false;
+      }
+      return el$.available;
+    };
+    Object.entries(functions || {}).forEach(_ref2 => {
+      var [name, func] = _ref2;
+      var result;
+      try {
+        result = func();
+      } catch (_unused) {}
+      this.parser.functions[name] = typeof result === 'function' ? func(this.form$.value) : func;
+    });
+    Object.entries(consts || {}).forEach(_ref3 => {
+      var [name, con] = _ref3;
+      this.parser.consts[name] = con;
+    });
+    Object.keys(this.parser.functions).forEach(func => {
+      this.parser.functions[func].toString = () => func;
+    });
+  }
+  flatten(args) {
+    var defaultValue = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+    return args.reduce((prev, curr) => {
+      var value = Array.isArray(curr) ? curr.reduce((p, c) => {
+        return p.concat(isNaN(Number(c)) || c === null || c === undefined || c === '' ? defaultValue : Number(c));
+      }, []) : [isNaN(Number(curr)) || curr === null || curr === undefined || curr === '' ? defaultValue : Number(curr)];
+      return prev.concat(value);
+    }, []);
+  }
+  sum(args) {
+    return this.flatten(args).reduce((p, c) => p + (isNaN(parseInt(c)) ? 0 : parseInt(c)), 0);
+  }
+  date(value) {
+    return this.moment(value, [this.moment.ISO_8601, 'YYYY-MM-DD', 'MM/DD/YYYY', 'DD/MM/YYYY', 'DD.MM.YYYY', 'YYYY/MM/DD', 'DD MMM YYYY', 'MMM DD, YYYY', 'YYYY-MM-DD HH:mm:ss', 'MM/DD/YYYY hh:mm A', 'DD.MM.YYYY HH:mm', 'DD/MM/YYYY HH:mm:ss', 'YYYY/MM/DD HH:mm:ss', 'ddd, DD MMM YYYY HH:mm:ss Z'], true);
+  }
+  resolve(exp, data, dataPath) {
+    return exp.replace(this.regex, (match, expression, escaped) => {
+      if (expression !== undefined) {
+        var resolved;
+        var parsed;
+        parsed = this.parse(expression, dataPath);
+        if (!(parsed instanceof Expression)) {
+          return '';
+        }
+        try {
+          if (this.containsSelf(parsed, dataPath)) {
+            throw new Error("Can't contain self data path (`".concat(dataPath, "`)"));
+          }
+          resolved = String(parsed.evaluate(data));
+        } catch (e) {
+          if (this.config$.value.config.expressionDebug) {
+            console.warn("Expression error in: ".concat(expression, ":"), e);
+          }
+        }
+        if (resolved === 'NaN') {
+          resolved = '0';
+        }
+        if ([null, undefined, 'null', 'undefined', '[object Object]'].includes(resolved) || resolved === '') {
+          resolved = '';
+        }
+        return resolved;
+      }
+      if (escaped !== undefined) {
+        return escaped.replace(/\\}$/, '\}');
+      }
+      return match;
+    });
+  }
+  parse(expression, dataPath) {
+    var parsed;
+    expression = expression.replace(/([a-zA-Z_-][a-zA-Z0-9_-]*)\.([0-9\*])+\b/g, '$1[$2]').replace(/([a-zA-Z_-][a-zA-Z0-9_-]*)\.([0-9\*])\.+\b/g, '$1[$2].');
+    expression = replaceWildcardsExpr(expression, dataPath);
+    try {
+      parsed = this.parser.parse(expression);
+    } catch (e) {
+      if (this.config$.value.config.expressionDebug) {
+        console.warn("Expression error in: ".concat(expression, ":"), e);
+      }
+    }
+    return parsed;
+  }
+  parseAll(expressionChain, dataPath) {
+    if (typeof expressionChain !== 'string') {
+      return [];
+    }
+    return [...((expressionChain === null || expressionChain === void 0 ? void 0 : expressionChain.matchAll(this.regex)) || [])].map(m => m[1]).filter(m => !!m).map(e => ({
+      expression: e,
+      parsed: this.parse(e, dataPath)
+    }));
+  }
+  vars(expressionChain, dataPath) {
+    if (typeof expressionChain !== 'string') {
+      return [];
+    }
+    return [...((expressionChain === null || expressionChain === void 0 ? void 0 : expressionChain.matchAll(this.regex)) || [])].map(m => m[1]).filter(m => !!m).reduce((prev, e) => {
+      var _this$parse;
+      e = replaceWildcardsExpr(e.replace(/([a-zA-Z_-][a-zA-Z0-9_-]*)\.([0-9\*])+\b/g, '$1[$2]').replace(/([a-zA-Z_-][a-zA-Z0-9_-]*)\.([0-9\*])\.+\b/g, '$1[$2].'), dataPath);
+      e = e.replace(/\[([0-9\*])+\]/g, '._$1_').replace(/\[([0-9\*])+\]\./g, '._$1_.');
+      return [...prev, ...(((_this$parse = this.parse(e, dataPath)) === null || _this$parse === void 0 || (_this$parse = _this$parse.variables({
+        withMembers: true
+      })) === null || _this$parse === void 0 ? void 0 : _this$parse.map(v => v.replace(/\._([0-9]+)_/g, '.$1').replace(/\._([0-9]+)_\./g, '.$1.'))) || [])];
+    }, []);
+  }
+  wrap(expression) {
+    if (!/^{/.test(expression) && !/}$/.test(expression)) {
+      expression = "{".concat(expression, "}");
+    }
+    return expression;
+  }
+  unwrap(expression) {
+    return expression.replace(/^\{|\}$/g, '');
+  }
+  containsSelf(parsed, dataPath) {
+    var _this$vars;
+    return (_this$vars = this.vars(this.wrap((parsed === null || parsed === void 0 ? void 0 : parsed.toString()) || ''), dataPath)) === null || _this$vars === void 0 ? void 0 : _this$vars.includes(dataPath);
+  }
+}
+
 class CaptchaProviderInterface {
   constructor(element, options, el$) {}
   init() {}
@@ -15427,6 +17622,14 @@ var config = {
   operators: {},
   strictConditions: false,
   /**
+   * Expression parser
+   */
+  expression: {
+    functions: {},
+    consts: {}
+  },
+  expressionDebug: false,
+  /**
    * Submitting
    */
   endpoints: {
@@ -15524,9 +17727,10 @@ function installer () {
           messageBag,
           autosize: n,
           location: location$4,
-          condition,
+          condition: condition$1,
           columns: Columns,
-          sanitize
+          sanitize,
+          expression
         }, services),
         version: packageJson.version
       };
@@ -15548,7 +17752,7 @@ function installer () {
       });
 
       // merge (config)
-      each(['languages', 'services', 'presets', 'views', 'operators'], attr => {
+      each(['languages', 'services', 'presets', 'views', 'operators', 'expression'], attr => {
         if (config[attr] !== undefined) {
           this.options.config[attr] = Object.assign({}, this.options.config[attr], config[attr]);
         }
@@ -15567,7 +17771,7 @@ function installer () {
       });
 
       // replace
-      each(['columns', 'forceLabels', 'displayErrors', 'floatPlaceholders', 'displayErrors', 'displayMessages', 'language', 'locale', 'fallbackLocale', 'orderFrom', 'validateOn', 'formData', 'beforeSend', 'locationProvider', 'classHelpers', 'env', 'usePresets', 'plugins', 'size', 'apiKey', 'forceNumbers', 'scrollToInvalid', 'showRequired', 'scrollOnNext', 'strictConditions', 'sanitize', 'sanitizeInit'], attr => {
+      each(['columns', 'forceLabels', 'displayErrors', 'floatPlaceholders', 'displayErrors', 'displayMessages', 'language', 'locale', 'fallbackLocale', 'orderFrom', 'validateOn', 'formData', 'beforeSend', 'locationProvider', 'classHelpers', 'env', 'usePresets', 'plugins', 'size', 'apiKey', 'forceNumbers', 'scrollToInvalid', 'showRequired', 'scrollOnNext', 'strictConditions', 'sanitize', 'sanitizeInit', 'expressionDebug'], attr => {
         if (config[attr] !== undefined) {
           this.options.config[attr] = config[attr];
         }
@@ -16969,14 +19173,6 @@ function isElement(value) {
 function isVueComponent(value) {
   /* istanbul ignore next */
   return isPlainObject_1(value) && (isNonEmptyString(value.template) || isFunction(value.render) || isNonEmptyString(value.el) || isElement(value.el) || isVueComponent(value.extends) || isNonEmptyArray(value.mixins) && value.mixins.some(val => isVueComponent(val))) || typeof value === 'function' && value.prototype && value.prototype.constructor.name === 'VueComponent';
-}
-
-function localize(object, $config, form$) {
-  var locale = form$.locale$ || $config.i18n.locale;
-  if (!locale) {
-    return object;
-  }
-  return object && typeof object === 'object' ? (object === null || object === void 0 ? void 0 : object[locale]) || (object === null || object === void 0 ? void 0 : object[locale.toUpperCase()]) || (object === null || object === void 0 ? void 0 : object[$config.i18n.fallbackLocale]) || (object === null || object === void 0 ? void 0 : object[$config.i18n.fallbackLocale.toUpperCase()]) || (object === null || object === void 0 ? void 0 : object[Object.keys(object)[0]]) || '' : object;
 }
 
 var base$19 = function base(props, context, dependencies) {
@@ -26288,13 +28484,17 @@ var text$3 = function text(props, context, dependencies) {
   var _options$value3, _options$value4;
   var options = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
   var {
-    name
+    name,
+    expression
   } = toRefs(props);
   var {
     initialValue,
     internalValue,
     isDefault
   } = base$Q(props, context, dependencies);
+  var unwatchDeps;
+  var unwatchData;
+  var unwatchLocale;
 
   // ============ DEPENDENCIES =============
 
@@ -26304,8 +28504,29 @@ var text$3 = function text(props, context, dependencies) {
     dataPath,
     form$,
     shouldForceNumbers,
-    stringToNumber
+    stringToNumber,
+    on
   } = dependencies;
+  var $vueform = inject('$vueform');
+  var config$ = inject('config$');
+
+  // ================ DATA =================
+
+  /**
+   * The object that only contains data of the fields that the expression depends on.
+   * 
+   * @type {object}
+   * @private
+   */
+  var dependencyData = ref({});
+
+  /**
+   * The expression of the current language (or default).
+   * 
+   * @type {string}
+   * @private
+   */
+  var currentExpression = ref();
 
   // ============== COMPUTED ===============
 
@@ -26340,6 +28561,101 @@ var text$3 = function text(props, context, dependencies) {
     set(val) {
       value.value = val;
     }
+  });
+
+  /**
+   * The list of element paths that the current expression depends on.
+   * 
+   * @type {array}
+   * @private
+   */
+  var expressionDeps = computed(() => {
+    if (!expression.value) {
+      return [];
+    }
+    return form$.value.expression.vars(currentExpression.value, dataPath.value);
+  });
+
+  /**
+   * Resolve the value of the current expression and sets it as the value of the element.
+   * 
+   * @returns {void}
+   * @private
+   */
+  var resolveExpressionValue = () => {
+    if (!currentExpression.value) return;
+    value.value = form$.value.resolveExpression(currentExpression.value, dataPath.value);
+  };
+
+  /**
+   * Sets the current expression depending on the current language (or default).
+   * 
+   * @returns {void}
+   * @private
+   */
+  var setCurrentExpression = () => {
+    currentExpression.value = localize(expression.value, config$.value, form$.value);
+  };
+
+  /**
+   * Starts to track changes related to expression.
+   * 
+   * @returns {void}
+   * @private
+   */
+  var trackExpression = () => {
+    on('reset', resolveExpressionValue);
+    on('clear', resolveExpressionValue);
+    unwatchLocale = watch([() => $vueform.value.i18n.locale, () => form$.value.locale], () => {
+      setCurrentExpression();
+    });
+    unwatchData = watch(() => form$.value.requestData, () => {
+      var fullData = flatten(form$.value.requestData);
+      for (var key of expressionDeps.value) {
+        dependencyData.value[key] = fullData[key];
+      }
+    }, {
+      deep: true,
+      immediate: true
+    });
+    unwatchDeps = watch(dependencyData, () => {
+      if (!currentExpression.value) return;
+      resolveExpressionValue();
+    }, {
+      deep: true
+    });
+  };
+
+  /**
+   * Ends tracking changes related to expression.
+   * 
+   * @returns {void}
+   * @private
+   */
+  var untrackExpression = () => {
+    if (unwatchData) unwatchData();
+    if (unwatchDeps) unwatchDeps();
+    if (unwatchLocale) unwatchLocale();
+  };
+  if (expression.value) {
+    onMounted(() => {
+      setCurrentExpression();
+      resolveExpressionValue();
+      trackExpression();
+    });
+  }
+  watch(expression, (n, o) => {
+    if (n) {
+      setCurrentExpression();
+      resolveExpressionValue();
+      if (!o) trackExpression();
+    } else {
+      value.value = defaultValue.value;
+      untrackExpression();
+    }
+  }, {
+    immediate: false,
+    deep: true
   });
   return {
     initialValue,
@@ -26767,6 +29083,7 @@ var dates$4 = function dates(props, context, dependencies) {
     isDefault
   };
 };
+var hidden$2 = text$3;
 
 var base$P = function base(props, context, dependencies) {
   // ============== COMPUTED ===============
@@ -27385,6 +29702,7 @@ var base$I = function base(props, context, dependencies) {
   var {
     rules
   } = toRefs(props);
+  var config$ = inject('config$');
 
   // ============ DEPENDENCIES ============
 
@@ -27601,9 +29919,11 @@ var base$I = function base(props, context, dependencies) {
   var validate = /*#__PURE__*/function () {
     var _ref = _asyncToGenerator(function* () {
       if (!validationRules.value) {
+        resetting.value = false;
         return;
       }
       if (form$.value.validation === false) {
+        resetting.value = false;
         return;
       }
       if (resetting.value) {
@@ -27694,7 +30014,7 @@ var base$I = function base(props, context, dependencies) {
     // If the element has rules it does not
     // qualify as validated by default
     state.value.validated = false;
-    validatorFactory.value = new form$.value.$vueform.services.validation.factory(path.value, form$.value);
+    validatorFactory.value = new form$.value.$vueform.services.validation.factory(path.value, form$.value, config$.value);
     Validators.value = [];
     each(validatorFactory.value.makeAll(validationRules.value), Validator => {
       Validators.value.push(Validator);
@@ -28191,6 +30511,7 @@ var multilingual$3 = function multilingual(props, context, dependencies) {
   var {
     rules
   } = toRefs(props);
+  var config$ = inject('config$');
 
   // ============ DEPENDENCIES ============
 
@@ -28315,7 +30636,8 @@ var multilingual$3 = function multilingual(props, context, dependencies) {
     each(Validators.value, (Validators, language) => {
       each(Validators, Validator => {
         if (Validator.failing) {
-          errors.push(Validator.message + ' (' + language + ')');
+          var _form$$value;
+          errors.push(Validator.message + ' (' + (((_form$$value = form$.value) === null || _form$$value === void 0 || (_form$$value = _form$$value.options) === null || _form$$value === void 0 || (_form$$value = _form$$value.languages) === null || _form$$value === void 0 ? void 0 : _form$$value[language]) || language) + ')');
         }
       });
     });
@@ -28409,7 +30731,7 @@ var multilingual$3 = function multilingual(props, context, dependencies) {
    * @returns {Promise}
    */
   var validateLanguage = /*#__PURE__*/function () {
-    var _ref10 = _asyncToGenerator(function* () {
+    var _ref0 = _asyncToGenerator(function* () {
       var lang = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : language.value;
       if (form$.value.validation === false) {
         return;
@@ -28418,17 +30740,17 @@ var multilingual$3 = function multilingual(props, context, dependencies) {
         return;
       }
       yield asyncForEach(Validators.value[lang], /*#__PURE__*/function () {
-        var _ref11 = _asyncToGenerator(function* (Validator) {
+        var _ref1 = _asyncToGenerator(function* (Validator) {
           yield Validator.validate(value.value[lang]);
         });
         return function (_x5) {
-          return _ref11.apply(this, arguments);
+          return _ref1.apply(this, arguments);
         };
       }());
       state.value.validated[lang] = true;
     });
     return function validateLanguage() {
-      return _ref10.apply(this, arguments);
+      return _ref0.apply(this, arguments);
     };
   }();
   var resetValidators = () => {
@@ -28482,7 +30804,7 @@ var multilingual$3 = function multilingual(props, context, dependencies) {
     each(validationRules.value, (r, lang) => {
       state.value.validated[lang] = r !== null && r.length > 0 ? false : true;
     });
-    var factory = new form$.value.$vueform.services.validation.factory(path.value, form$.value);
+    var factory = new form$.value.$vueform.services.validation.factory(path.value, form$.value, config$.value);
     Validators.value = {};
     each(validationRules.value, (languageRules, lang) => {
       if (languageRules === null) {
@@ -28566,7 +30888,7 @@ var slider$1 = function slider(props, context, dependencies) {
   // =============== METHODS ==============
 
   var validate = /*#__PURE__*/function () {
-    var _ref12 = _asyncToGenerator(function* () {
+    var _ref10 = _asyncToGenerator(function* () {
       if (!validationRules.value) {
         return;
       }
@@ -28578,13 +30900,13 @@ var slider$1 = function slider(props, context, dependencies) {
         // going through each value of the slider
         // and validate them all for the same field
         yield asyncForEach(value.value, /*#__PURE__*/function () {
-          var _ref13 = _asyncToGenerator(function* (val) {
+          var _ref11 = _asyncToGenerator(function* (val) {
             yield asyncForEach(Validators.value, /*#__PURE__*/function () {
-              var _ref14 = _asyncToGenerator(function* (Validator) {
+              var _ref12 = _asyncToGenerator(function* (Validator) {
                 yield Validator.validate(val);
               });
               return function (_x7) {
-                return _ref14.apply(this, arguments);
+                return _ref12.apply(this, arguments);
               };
             }());
             if (invalid.value) {
@@ -28592,23 +30914,23 @@ var slider$1 = function slider(props, context, dependencies) {
             }
           });
           return function (_x6) {
-            return _ref13.apply(this, arguments);
+            return _ref11.apply(this, arguments);
           };
         }());
       } else {
         yield asyncForEach(Validators.value, /*#__PURE__*/function () {
-          var _ref15 = _asyncToGenerator(function* (Validator) {
+          var _ref13 = _asyncToGenerator(function* (Validator) {
             yield Validator.validate(value.value);
           });
           return function (_x8) {
-            return _ref15.apply(this, arguments);
+            return _ref13.apply(this, arguments);
           };
         }());
       }
       state.value.validated = true;
     });
     return function validate() {
-      return _ref12.apply(this, arguments);
+      return _ref10.apply(this, arguments);
     };
   }();
   return {
@@ -28687,7 +31009,7 @@ var file$1 = function file(props, context, dependencies) {
    * @returns {Promise}
    */
   var validate = /*#__PURE__*/function () {
-    var _ref16 = _asyncToGenerator(function* () {
+    var _ref14 = _asyncToGenerator(function* () {
       if (!validationRules.value) {
         return;
       }
@@ -28700,20 +31022,20 @@ var file$1 = function file(props, context, dependencies) {
       }
       var restricted = ['min', 'max', 'between', 'size', 'mimetypes', 'mimes', 'dimensions', 'file', 'image', 'gt', 'gte', 'lt', 'lte'];
       yield asyncForEach(Validators.value, /*#__PURE__*/function () {
-        var _ref17 = _asyncToGenerator(function* (Validator) {
+        var _ref15 = _asyncToGenerator(function* (Validator) {
           if (!(value.value instanceof File) && !!value.value && restricted.indexOf(Validator.name) !== -1) {
             return;
           }
           yield Validator.validate();
         });
         return function (_x9) {
-          return _ref17.apply(this, arguments);
+          return _ref15.apply(this, arguments);
         };
       }());
       state.value.validated = true;
     });
     return function validate() {
-      return _ref16.apply(this, arguments);
+      return _ref14.apply(this, arguments);
     };
   }();
   return {
@@ -28787,7 +31109,7 @@ var location = function location(props, context, dependencies) {
    * @returns {Promise}
    */
   var validate = /*#__PURE__*/function () {
-    var _ref18 = _asyncToGenerator(function* () {
+    var _ref16 = _asyncToGenerator(function* () {
       if (!validationRules.value) {
         return;
       }
@@ -28799,17 +31121,17 @@ var location = function location(props, context, dependencies) {
         return;
       }
       yield asyncForEach(Validators.value, /*#__PURE__*/function () {
-        var _ref19 = _asyncToGenerator(function* (Validator) {
+        var _ref17 = _asyncToGenerator(function* (Validator) {
           yield Validator.validate(value.value[displayKey.value]);
         });
-        return function (_x10) {
-          return _ref19.apply(this, arguments);
+        return function (_x0) {
+          return _ref17.apply(this, arguments);
         };
       }());
       state.value.validated = true;
     });
     return function validate() {
-      return _ref18.apply(this, arguments);
+      return _ref16.apply(this, arguments);
     };
   }();
   return {
@@ -29216,6 +31538,7 @@ var multilingual$2 = function multilingual(props, context, dependencies) {
     defaultValue
   };
 };
+var hidden$1 = text$1;
 
 var base$G = function base(props, context, dependencies) {
   var {
@@ -29481,6 +31804,8 @@ var base$F = function base(props, context, dependencies) {
   var nullValue = dependencies.nullValue;
   var resetting = dependencies.resetting;
   var isDefault = dependencies.isDefault;
+  var fire = dependencies.fire;
+  var el$ = dependencies.el$;
 
   // =============== PRIVATE ===============
 
@@ -29557,6 +31882,7 @@ var base$F = function base(props, context, dependencies) {
    */
   var clear = () => {
     setValue(cloneDeep_1(nullValue.value));
+    fire("clear", el$.value);
   };
 
   /**
@@ -29570,6 +31896,7 @@ var base$F = function base(props, context, dependencies) {
     }
     setValue(cloneDeep_1(defaultValue.value));
     resetValidators();
+    fire("reset", el$.value);
   };
 
   /**
@@ -29666,7 +31993,9 @@ var textarea = function textarea(props, context, dependencies) {
   // ============ DEPENDENCIES =============
 
   var {
-    autosize
+    autosize,
+    fire,
+    el$
   } = dependencies;
 
   // =============== METHODS ===============
@@ -29689,12 +32018,14 @@ var textarea = function textarea(props, context, dependencies) {
     nextTick(() => {
       autosize();
     });
+    fire("clear", el$.value);
   };
   var reset = () => {
     baseReset();
     nextTick(() => {
       autosize();
     });
+    fire("reset", el$.value);
   };
   return {
     data,
@@ -29729,6 +32060,8 @@ var select$3 = function select(props, context, dependencies) {
   var updateItems = dependencies.updateItems;
   var resetting = dependencies.resetting;
   var isDefault = dependencies.isDefault;
+  var fire = dependencies.fire;
+  var el$ = dependencies.el$;
 
   // =============== PRIVATE ===============
 
@@ -29747,9 +32080,10 @@ var select$3 = function select(props, context, dependencies) {
     }
     setValue(cloneDeep_1(defaultValue.value));
     resetValidators();
-    if (typeof items.value === 'string' && resolveOnLoad.value !== false) {
+    if (typeof items.value === "string" && resolveOnLoad.value !== false) {
       updateItems();
     }
+    fire("reset", el$.value);
   };
   return {
     data,
@@ -29775,7 +32109,9 @@ var captcha = function captcha(props, context, dependencies) {
   // ============ DEPENDENCIES =============
 
   var {
-    Provider
+    Provider,
+    fire,
+    el$
   } = dependencies;
 
   // =============== METHODS ===============
@@ -29786,6 +32122,7 @@ var captcha = function captcha(props, context, dependencies) {
       return;
     }
     Provider.value.reset();
+    fire("clear", el$.value);
   };
   var reset = () => {
     resetBase();
@@ -29793,6 +32130,7 @@ var captcha = function captcha(props, context, dependencies) {
       return;
     }
     Provider.value.reset();
+    fire("reset", el$.value);
   };
   return {
     data,
@@ -29820,6 +32158,8 @@ var object$1 = function object(props, context, dependencies) {
   var children$Array = dependencies.children$Array;
   var resetting = dependencies.resetting;
   var isDefault = dependencies.isDefault;
+  var fire = dependencies.fire;
+  var el$ = dependencies.el$;
 
   // ============== COMPUTED ===============
 
@@ -29885,6 +32225,7 @@ var object$1 = function object(props, context, dependencies) {
       }
       element$.clear();
     });
+    fire("clear", el$.value);
   };
   var reset = () => {
     if (!isDefault.value) {
@@ -29896,6 +32237,7 @@ var object$1 = function object(props, context, dependencies) {
       }
       element$.reset();
     });
+    fire("reset", el$.value);
   };
   var prepare = /*#__PURE__*/function () {
     var _ref2 = _asyncToGenerator(function* () {
@@ -30082,7 +32424,7 @@ var list = function list(props, context, dependencies, options) {
     // value.value = refreshOrderStore(value.value)
 
     var index = value.value.length - 1;
-    fire('add', index, newValue, value.value, el$.value);
+    fire("add", index, newValue, value.value, el$.value);
     if (focus) {
       nextTick(() => {
         children$Array.value[children$Array.value.length - 1].focus();
@@ -30101,7 +32443,7 @@ var list = function list(props, context, dependencies, options) {
   var remove = index => {
     value.value = value.value.filter((v, i) => i !== index);
     refreshOrderStore(value.value);
-    fire('remove', index, value.value, el$.value);
+    fire("remove", index, value.value, el$.value);
   };
   var load = /*#__PURE__*/function () {
     var _ref4 = _asyncToGenerator(function* (val) {
@@ -30143,6 +32485,7 @@ var list = function list(props, context, dependencies, options) {
     nextTick(() => {
       refreshOrderStore(value.value);
     });
+    fire("reset", el$.value);
   };
   var prepare = /*#__PURE__*/function () {
     var _ref5 = _asyncToGenerator(function* () {
@@ -30173,7 +32516,7 @@ var list = function list(props, context, dependencies, options) {
     if (!order.value && !orderByName.value || !val) {
       return val;
     }
-    var desc = order.value && typeof order.value === 'string' && order.value.toUpperCase() == 'DESC';
+    var desc = order.value && typeof order.value === "string" && order.value.toUpperCase() == "DESC";
 
     /* istanbul ignore else */
     if (orderByName.value) {
@@ -30352,7 +32695,7 @@ var multilingual$1 = function multilingual(props, context, dependencies) {
     var format = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
     var formatted = format && formatLoad.value ? formatLoad.value(val, form$.value) : val;
     if (!isPlainObject_1(formatted)) {
-      throw new Error('Multilingual element requires an object to load');
+      throw new Error("Multilingual element requires an object to load");
     }
     setValue(Object.assign({}, clone_1(nullValue.value), formatted));
   };
@@ -30473,7 +32816,7 @@ var file = function file(props, context, dependencies) {
   var data = computed(() => {
     var _v;
     var v = value.value;
-    if (typeof v === 'object' && (_v = v) !== null && _v !== void 0 && _v.__file__) {
+    if (typeof v === "object" && (_v = v) !== null && _v !== void 0 && _v.__file__) {
       v = v instanceof File ? v : _objectSpread2$1({}, v);
       delete v.__file__;
     }
@@ -30487,7 +32830,7 @@ var file = function file(props, context, dependencies) {
       return {};
     }
     var v = value.value;
-    if (typeof v === 'object' && (_v2 = v) !== null && _v2 !== void 0 && _v2.__file__) {
+    if (typeof v === "object" && (_v2 = v) !== null && _v2 !== void 0 && _v2.__file__) {
       v = v instanceof File ? v : _objectSpread2$1({}, v);
       delete v.__file__;
     }
@@ -30536,7 +32879,7 @@ var multifile$4 = function multifile(props, context, dependencies) {
   var data = computed(() => {
     var val = value.value;
     val = val.map(file => {
-      if (typeof file === 'object' && file !== null && file !== void 0 && file.__file__) {
+      if (typeof file === "object" && file !== null && file !== void 0 && file.__file__) {
         var v = file instanceof File ? file : _objectSpread2$1({}, file);
         delete v.__file__;
         return v;
@@ -30558,7 +32901,7 @@ var multifile$4 = function multifile(props, context, dependencies) {
       /* istanbul ignore next: failsafe only */
       if (val !== undefined) {
         var _val;
-        if (typeof val === 'object' && (_val = val) !== null && _val !== void 0 && _val.__file__) {
+        if (typeof val === "object" && (_val = val) !== null && _val !== void 0 && _val.__file__) {
           var v = file instanceof File ? file : _objectSpread2$1({}, file);
           delete v.__file__;
           val = v;
@@ -30606,7 +32949,9 @@ var signature = function signature(props, context, dependencies) {
     setDefaultMode,
     setDefaultFont,
     setDefaultColor,
-    available
+    available,
+    fire,
+    el$
   } = dependencies;
 
   // ============== COMPUTED ===============
@@ -30614,6 +32959,7 @@ var signature = function signature(props, context, dependencies) {
   var clear = () => {
     clearBase();
     clearSignature();
+    fire("clear", el$.value);
   };
   var reset = () => {
     clearSignature();
@@ -30621,16 +32967,17 @@ var signature = function signature(props, context, dependencies) {
     setDefaultFont(true);
     setDefaultColor();
     resetBase();
+    fire("reset", el$.value);
   };
   var prepare = /*#__PURE__*/function () {
     var _ref7 = _asyncToGenerator(function* () {
       if (uploaded.value || !available.value) {
         return;
       }
-      if (mode.value === 'type') {
+      if (mode.value === "type") {
         yield typingToImage();
       }
-      if (mode.value === 'draw') {
+      if (mode.value === "draw") {
         yield drawingToImage();
       }
     });
@@ -30651,7 +32998,8 @@ var signature = function signature(props, context, dependencies) {
 var matrix$1 = function matrix(props, context, dependencies) {
   var {
     name,
-    rows
+    rows,
+    formatLoad
   } = toRefs(props);
   var {
     clear: baseClear,
@@ -30696,16 +33044,17 @@ var matrix$1 = function matrix(props, context, dependencies) {
   var load = function load(val) {
     var format = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
     var formatted = format && formatLoad.value ? formatLoad.value(val, form$.value) : val;
-    setData(formatted, 'load');
+    setData(formatted, "load");
   };
   var update = val => {
-    setData(val, 'update');
+    setData(val, "update");
   };
   var clear = () => {
     baseClear();
     if (hasDynamicRows.value) {
       rowsCount.value = rows.value;
     }
+    fire("clear", el$.value);
   };
   var reset = () => {
     baseReset();
@@ -30716,12 +33065,13 @@ var matrix$1 = function matrix(props, context, dependencies) {
       grid.value.scrollTop = 0;
       grid.value.scrollLeft = 0;
     }
+    fire("reset", el$.value);
   };
   var add = () => {
     var oldValue = _objectSpread2$1({}, value.value);
     rowsCount.value++;
     nextTick(() => {
-      fire('add', rowsCount.value - 1, value.value, oldValue, el$.value);
+      fire("add", rowsCount.value - 1, value.value, oldValue, el$.value);
     });
   };
   var remove = i => {
@@ -30732,7 +33082,7 @@ var matrix$1 = function matrix(props, context, dependencies) {
       [i]: curr
     }), {});
     rowsCount.value--;
-    fire('remove', i, value.value, oldValue, el$.value);
+    fire("remove", i, value.value, oldValue, el$.value);
   };
   var handleAdd = () => {
     add();
@@ -30747,7 +33097,7 @@ var matrix$1 = function matrix(props, context, dependencies) {
       if (!row.available && skipUnavailable) {
         return;
       }
-      var rowValue = dataType.value === 'object' ? {} : dataType.value === 'array' ? [] : null;
+      var rowValue = dataType.value === "object" ? {} : dataType.value === "array" ? [] : null;
       resolvedColumns.value.forEach((column, c) => {
         var _children$$value$reso;
         if (!column.available && skipUnavailable) {
@@ -30755,12 +33105,12 @@ var matrix$1 = function matrix(props, context, dependencies) {
         }
         var cellValue = (_children$$value$reso = children$.value[resolveComponentName(r, c)]) === null || _children$$value$reso === void 0 ? void 0 : _children$$value$reso.value;
         switch (dataType.value) {
-          case 'array':
+          case "array":
             if (cellValue) {
               rowValue = [...(rowValue || []), column.value];
             }
             break;
-          case 'assoc':
+          case "assoc":
             if (cellValue) {
               rowValue = column.value;
             }
@@ -30789,10 +33139,10 @@ var matrix$1 = function matrix(props, context, dependencies) {
           var rowValue = val[row.value] || {};
           var cell$ = children$.value[resolveComponentName(r, c)];
           switch (dataType.value) {
-            case 'assoc':
+            case "assoc":
               cell$[action](column.value === rowValue);
               break;
-            case 'array':
+            case "array":
               cell$[action](rowValue.indexOf(column.value) !== -1);
               break;
             default:
@@ -30807,17 +33157,17 @@ var matrix$1 = function matrix(props, context, dependencies) {
     };
   }();
   watch(computedRows, (n, o) => {
-    var oldLength = typeof o === 'number' ? o : Object.keys(o).length;
-    var newLength = typeof n === 'number' ? n : Object.keys(n).length;
-    var dir = oldLength > newLength ? 'decrease' : 'increase';
-    var diff = dir === 'increase' ? newLength - oldLength : oldLength - newLength;
+    var oldLength = typeof o === "number" ? o : Object.keys(o).length;
+    var newLength = typeof n === "number" ? n : Object.keys(n).length;
+    var dir = oldLength > newLength ? "decrease" : "increase";
+    var diff = dir === "increase" ? newLength - oldLength : oldLength - newLength;
     var nextIndex = newLength - 1;
     var lastIndex = oldLength - 1;
     var newValue = _objectSpread2$1({}, value.value);
-    if (dir === 'increase') {
+    if (dir === "increase") {
       switch (dataType.value) {
-        case 'assoc':
-        case 'array':
+        case "assoc":
+        case "array":
           for (var i = 0; i < diff; i++) {
             newValue[nextIndex + i] = cloneDeep_1(defaultValue.value[nextIndex + i]);
           }
@@ -30832,7 +33182,7 @@ var matrix$1 = function matrix(props, context, dependencies) {
     }
     value.value = newValue;
   }, {
-    flush: 'post'
+    flush: "post"
   });
   return {
     data,
@@ -30850,6 +33200,7 @@ var matrix$1 = function matrix(props, context, dependencies) {
 };
 var multiselect$3 = select$3;
 var tags$3 = select$3;
+var hidden = text;
 
 var HasChange = {
   props: {
@@ -30910,7 +33261,7 @@ var HasValidation = {
 var CaptchaElement = {
   name: 'CaptchaElement',
   mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
-  emits: ['change', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
+  emits: ['reset', 'clear', 'change', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
   props: {
     type: {
       required: false,
@@ -31073,7 +33424,7 @@ var checkbox = function checkbox(props, context, dependencies) {
 var CheckboxElement = {
   name: 'CheckboxElement',
   mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
-  emits: ['change', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
+  emits: ['reset', 'clear', 'change', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
   props: {
     type: {
       required: false,
@@ -31480,7 +33831,7 @@ var base$B = function base(props, context, dependencies) {
       value.value = cloneDeep_1(nullValue.value);
       return;
     }
-    if (!Array.isArray(nullValue.value) && value.value && values.indexOf(object.value ? value.value[valueProp.value] : value.value) === -1) {
+    if (!Array.isArray(nullValue.value) && value.value && values.indexOf(object !== null && object !== void 0 && object.value ? value.value[valueProp.value] : value.value) === -1) {
       value.value = cloneDeep_1(nullValue.value);
     } else if (Array.isArray(nullValue.value) && value.value.length) {
       value.value = value.value.filter(v => {
@@ -31512,7 +33863,10 @@ var base$B = function base(props, context, dependencies) {
           var el$ = form$.value.el$(elPath);
           var elValue = typeof (el$ === null || el$ === void 0 ? void 0 : el$.value) !== 'undefined' && el$.value !== null && typeof el$.value === 'object' ? JSON.stringify(el$.value) : typeof (el$ === null || el$ === void 0 ? void 0 : el$.value) !== 'undefined' && el$.value !== null ? el$.value : defaultValue;
           resolvedUrl = resolvedUrl.replace(match[0], encodeURIComponent(elValue));
-          watchers.value.push(watch(computed(() => el$ === null || el$ === void 0 ? void 0 : el$.value), () => {
+          watchers.value.push(watch(computed(() => el$ === null || el$ === void 0 ? void 0 : el$.value), (n, o) => {
+            if (dataEquals(n, o)) {
+              return;
+            }
             updateItems();
           }));
         };
@@ -31639,9 +33993,13 @@ var checkboxgroup = function checkboxgroup(props, context, dependencies) {
       }
     });
     return resolvedOptions.map(o => {
-      return _objectSpread2$1(_objectSpread2$1({}, o), {}, {
+      var option = _objectSpread2$1(_objectSpread2$1({}, o), {}, {
         label: form$.value.$vueform.sanitize(localize(o.label, config$.value, form$.value))
       });
+      if (o.description) {
+        option.description = form$.value.$vueform.sanitize(localize(o.description, config$.value, form$.value));
+      }
+      return option;
     });
   });
 
@@ -31681,11 +34039,15 @@ var checkboxgroup = function checkboxgroup(props, context, dependencies) {
    */
   var resolveOptionsFromUrl = /*#__PURE__*/function () {
     var _ref8 = _asyncToGenerator(function* () {
+      var cleanup = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
       try {
-        var _yield$form$$value$$v3, _resolvedOptions$valu2;
+        var _yield$form$$value$$v3;
         var url = yield resolveUrlAndSetWatchers(items.value, updateItems);
         options.value = ((_yield$form$$value$$v3 = yield form$.value.$vueform.services.axios.get(url)) === null || _yield$form$$value$$v3 === void 0 ? void 0 : _yield$form$$value$$v3.data) || [];
-        cleanupValue(((_resolvedOptions$valu2 = resolvedOptions.value) === null || _resolvedOptions$valu2 === void 0 ? void 0 : _resolvedOptions$valu2.map(o => o.value)) || []);
+        if (cleanup === true) {
+          var _resolvedOptions$valu2;
+          cleanupValue(((_resolvedOptions$valu2 = resolvedOptions.value) === null || _resolvedOptions$valu2 === void 0 ? void 0 : _resolvedOptions$valu2.map(o => o.value)) || []);
+        }
       } catch (e) {
         options.value = [];
         console.warn("Couldn't resolve items from ".concat(items.value), e);
@@ -31723,23 +34085,24 @@ var checkboxgroup = function checkboxgroup(props, context, dependencies) {
    * @private
    */
   var resolveOptions = /*#__PURE__*/function () {
-    var _ref10 = _asyncToGenerator(function* () {
+    var _ref0 = _asyncToGenerator(function* () {
+      var cleanup = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
       if (typeof items.value === 'function') {
         yield resolveOptionsFromFunction();
       } else if (typeof items.value === 'string') {
-        yield resolveOptionsFromUrl();
+        yield resolveOptionsFromUrl(cleanup);
       } else {
         options.value = items.value;
       }
     });
     return function resolveOptions() {
-      return _ref10.apply(this, arguments);
+      return _ref0.apply(this, arguments);
     };
   }();
 
   // ================ HOOKS ===============
 
-  resolveOptions();
+  resolveOptions(false);
   watch(items, resolveOptions);
   return {
     resolveOptions,
@@ -31757,7 +34120,7 @@ var tags$2 = select$2;
 var CheckboxgroupElement = {
   name: 'CheckboxgroupElement',
   mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
-  emits: ['change', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
+  emits: ['reset', 'clear', 'change', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
   props: {
     type: {
       required: false,
@@ -32622,7 +34985,7 @@ var slider = function slider(props, context, dependencies) {
   // ============ DEPENDENCIES ============
 
   var isDisabled = dependencies.isDisabled;
-  dependencies.labelId;
+  var form$ = dependencies.form$;
 
   // ============== COMPUTED ==============
 
@@ -32633,13 +34996,22 @@ var slider = function slider(props, context, dependencies) {
    * @private
    */
   var defaultOptions = computed(() => {
+    var Format = format.value ? _objectSpread2$1({}, format.value || {}) : null;
+    if (Format) {
+      var sanitizable = ['prefix', 'suffix', 'thousand'];
+      sanitizable.forEach(prop => {
+        if (Format[prop]) {
+          Format[prop] = form$.value.$vueform.sanitize(Format[prop]);
+        }
+      });
+    }
     return {
       min: min.value,
       max: max.value,
       step: step.value,
       tooltips: tooltips.value,
       merge: merge.value,
-      format: format.value,
+      format: Format,
       orientation: orientation.value,
       direction: direction.value,
       disabled: isDisabled.value,
@@ -32812,7 +35184,7 @@ var tags = select;
 var DateElement = {
   name: 'DateElement',
   mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
-  emits: ['change', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
+  emits: ['reset', 'clear', 'change', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
   props: {
     type: {
       required: false,
@@ -32933,7 +35305,7 @@ var DateElement = {
 var DatesElement = {
   name: 'DatesElement',
   mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
-  emits: ['change', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
+  emits: ['reset', 'clear', 'change', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
   props: {
     type: {
       required: false,
@@ -33757,7 +36129,7 @@ var base$r = function base(props, context, dependencies) {
 var FileElement = {
   name: 'FileElement',
   mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
-  emits: ['change', 'remove', 'error', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
+  emits: ['reset', 'clear', 'change', 'remove', 'error', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
   props: {
     type: {
       required: false,
@@ -33943,7 +36315,7 @@ var GenericElement = {
   register: false,
   name: 'GenericElement',
   mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
-  emits: ['change', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
+  emits: ['reset', 'clear', 'change', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
   props: {
     type: {
       required: false,
@@ -34271,7 +36643,7 @@ var group = object;
 var GridElement = {
   name: 'GridElement',
   mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
-  emits: ['change', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
+  emits: ['reset', 'clear', 'change', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
   props: {
     type: {
       required: false,
@@ -34356,7 +36728,7 @@ var GridElement = {
 var GroupElement = {
   name: 'GroupElement',
   mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
-  emits: ['change', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
+  emits: ['reset', 'clear', 'change', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
   props: {
     type: {
       required: false,
@@ -34388,10 +36760,61 @@ var GroupElement = {
   }
 };
 
+var base$n = function base(props, context, dependencies) {
+  var {
+    forceNumbers
+  } = toRefs(props);
+
+  // ============ DEPENDENCIES =============
+
+  var {
+    form$
+  } = dependencies;
+
+  // =============== INJECT ===============
+
+  var config$ = inject('config$');
+
+  // =============== METHODS ===============
+
+  /**
+   * Whether the value should be converted to number/float.
+   *
+   * @returns {boolean}
+   * @private
+   */
+  var shouldForceNumbers = () => {
+    return forceNumbers.value || config$.value.config.forceNumbers && form$.value.options.forceNumbers !== false && forceNumbers.value !== false || form$.value.options.forceNumbers && forceNumbers.value !== false;
+  };
+
+  /**
+   * Converts string value to number or float.
+   *
+   * @param {any} str* the string to be converted
+   * @returns {number|float|string}
+   * @private
+   */
+  var stringToNumber = str => {
+    var v = str;
+    if (typeof str === 'string') {
+      if (/^[-]?\d+([\.,]\d+)?$/.test(str)) {
+        v = parseFloat(str.replace(',', '.'));
+      } else if (/^[-]?\d+$/.test(str)) {
+        v = parseInt(str, 10);
+      }
+    }
+    return v;
+  };
+  return {
+    shouldForceNumbers,
+    stringToNumber
+  };
+};
+
 var HiddenElement = {
   name: 'HiddenElement',
   mixins: [BaseElement, HasChange, HasData, HasValidation],
-  emits: ['change', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
+  emits: ['reset', 'clear', 'change', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
   props: {
     type: {
       required: false,
@@ -34413,11 +36836,22 @@ var HiddenElement = {
       required: false,
       type: [Boolean],
       default: false
+    },
+    forceNumbers: {
+      required: false,
+      type: [Boolean],
+      default: null
+    },
+    expression: {
+      required: false,
+      type: [String, Object],
+      default: undefined,
+      localized: true
     }
   },
   setup(props, ctx) {
     var context = _objectSpread2$1({}, ctx);
-    context.features = [base$Y, base$1f, base$1e, base$R, base$T, base$P, base$O, base$_, base$12, base$1i, base$U, base$H, base$1a, base$I, base$Q, base$N, base$F, base$K, base$Z];
+    context.features = [base$Y, base$1f, base$1e, base$R, base$T, base$P, base$O, base$_, base$12, base$1i, base$U, hidden$1, base$1a, base$I, base$n, hidden$2, base$N, hidden, base$K, base$Z];
     return _objectSpread2$1({}, base$S(props, context));
   }
 };
@@ -37087,7 +39521,7 @@ _extends(Remove, {
 Sortable.mount(new AutoScrollPlugin());
 Sortable.mount(Remove, Revert);
 
-var base$n = function base(props, context, dependencies, options) {
+var base$m = function base(props, context, dependencies, options) {
   var {
     sort
   } = toRefs(props);
@@ -37236,7 +39670,7 @@ var base$n = function base(props, context, dependencies, options) {
   };
 };
 
-var base$m = function base(props, context, dependencies) {
+var base$l = function base(props, context, dependencies) {
   // ================ DATA ================
 
   /**
@@ -37250,7 +39684,7 @@ var base$m = function base(props, context, dependencies) {
   };
 };
 
-var base$l = function base(props, context, dependencies, options) {
+var base$k = function base(props, context, dependencies, options) {
   var {
     storeOrder,
     orderBy,
@@ -37319,7 +39753,7 @@ var multifile$2 = function multifile(props, context, dependencies, options) {
   } = toRefs(props);
   var {
     refreshOrderStore
-  } = base$l(props, context, dependencies);
+  } = base$k(props, context, dependencies);
 
   // =============== METHODS ==============
 
@@ -37337,7 +39771,7 @@ var multifile$2 = function multifile(props, context, dependencies, options) {
   };
 };
 
-var base$k = function base(props, context, dependencies) {
+var base$j = function base(props, context, dependencies) {
   var {
     object,
     element
@@ -37468,7 +39902,7 @@ var multifile$1 = function multifile(props, context, dependencies) {
   };
 };
 
-var base$j = function base(props, context, dependencies) {
+var base$i = function base(props, context, dependencies) {
   var {
     controls,
     sort,
@@ -37578,7 +40012,7 @@ var multifile = function multifile(props, context, dependencies) {
 var ListElement = {
   name: 'ListElement',
   mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
-  emits: ['change', 'add', 'remove', 'sort', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
+  emits: ['reset', 'clear', 'change', 'add', 'remove', 'sort', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
   props: {
     type: {
       required: false,
@@ -37683,13 +40117,13 @@ var ListElement = {
   setup(props, ctx) {
     var context = _objectSpread2$1({}, ctx);
     //@todo:adam useValue and useDefault should be before useOrder
-    context.features = [base$Y, base$Y, base$1f, base$1e, base$$, base$T, base$_, array$1, base$k, base$o, base$m, base$l, base$1i, list$4, base$X, base$H, base$15, base$O, base$18, list$5, list$1, list$3, base$j, array, base$14, base$13, base$12, base$1g, base$11, list, base$n, base$W, list$2, base$Z];
+    context.features = [base$Y, base$Y, base$1f, base$1e, base$$, base$T, base$_, array$1, base$j, base$o, base$l, base$k, base$1i, list$4, base$X, base$H, base$15, base$O, base$18, list$5, list$1, list$3, base$i, array, base$14, base$13, base$12, base$1g, base$11, list, base$m, base$W, list$2, base$Z];
     context.slots = ['label', 'info', 'required', 'description', 'before', 'between', 'after'];
     return _objectSpread2$1({}, base$S(props, context));
   }
 };
 
-var base$i = function base(props, context, dependencies) {
+var base$h = function base(props, context, dependencies) {
   var options_ = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
   var {
     provider,
@@ -37843,7 +40277,7 @@ var base$i = function base(props, context, dependencies) {
 var LocationElement = {
   name: 'LocationElement',
   mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
-  emits: ['change', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
+  emits: ['reset', 'clear', 'change', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
   props: {
     type: {
       required: false,
@@ -37928,13 +40362,13 @@ var LocationElement = {
   },
   setup(props, ctx) {
     var context = _objectSpread2$1({}, ctx);
-    context.features = [base$Y, base$1f, base$1e, base$$, base$R, base$T, location$2, base$_, base$L, base$1i, base$U, base$X, base$G, base$A, base$H, base$Q, location, base$1a, base$N, base$F, base$i, base$15, base$O, base$13, base$12, base$1g, base$14, base$11, base$w, base$W, location$1, base$Z, base$x];
+    context.features = [base$Y, base$1f, base$1e, base$$, base$R, base$T, location$2, base$_, base$L, base$1i, base$U, base$X, base$G, base$A, base$H, base$Q, location, base$1a, base$N, base$F, base$h, base$15, base$O, base$13, base$12, base$1g, base$14, base$11, base$w, base$W, location$1, base$Z, base$x];
     context.slots = ['label', 'info', 'required', 'description', 'before', 'between', 'after', 'addon-before', 'addon-after'];
     return _objectSpread2$1({}, location$3(props, context));
   }
 };
 
-var base$h = function base(props, context, dependencies) {
+var base$g = function base(props, context, dependencies) {
   var {
     rows,
     cols,
@@ -38046,7 +40480,7 @@ var base$h = function base(props, context, dependencies) {
       // Cells
       var _min = resolveWidth(minWidth.value, 'min-content');
       var _max = resolveWidth(maxWidth.value, '1fr');
-      el$.value.resolvedColumns.filter(c => c.available).forEach((col, i) => {
+      el$.value.resolvedColumns.filter(c => c.available.value).forEach((col, i) => {
         var colMin = resolveWidth(col.minWidth, _min);
         var colMax = resolveWidth(col.maxWidth, _max);
         gridTemplateColumns.push("minmax(".concat(colMin, ", ").concat(colMax, ")"));
@@ -38302,7 +40736,7 @@ var base$h = function base(props, context, dependencies) {
   };
 };
 
-var base$g = function base(props, context, dependencies) {
+var base$f = function base(props, context, dependencies) {
   var {
     rows,
     cols,
@@ -38400,7 +40834,7 @@ var base$g = function base(props, context, dependencies) {
     }).map(r => _objectSpread2$1(_objectSpread2$1({}, r), {}, {
       label: form$.value.$vueform.sanitize(localize(r.label, config$.value, form$.value))
     })).map(r => _objectSpread2$1(_objectSpread2$1({}, r), {}, {
-      available: !r.conditions || !r.conditions.some(condition => !form$.value.$vueform.services.condition.check(condition, path.value, form$.value, el$.value))
+      available: computed(() => !r.conditions || !r.conditions.some(condition => !form$.value.$vueform.services.condition.check(condition, path.value, form$.value, el$.value)))
     }));
   });
 
@@ -38425,7 +40859,7 @@ var base$g = function base(props, context, dependencies) {
     }).map(r => _objectSpread2$1(_objectSpread2$1({}, r), {}, {
       label: form$.value.$vueform.sanitize(localize(r.label, config$.value, form$.value))
     })).map(r => _objectSpread2$1(_objectSpread2$1({}, r), {}, {
-      available: !r.conditions || !r.conditions.some(condition => !form$.value.$vueform.services.condition.check(condition, path.value, form$.value, el$.value))
+      available: computed(() => !r.conditions || !r.conditions.some(condition => !form$.value.$vueform.services.condition.check(condition, path.value, form$.value, el$.value)))
     }));
   });
 
@@ -38463,7 +40897,7 @@ var base$g = function base(props, context, dependencies) {
 var MatrixElement = {
   name: 'MatrixElement',
   mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
-  emits: ['change', 'add', 'remove', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
+  emits: ['reset', 'clear', 'change', 'add', 'remove', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
   props: {
     type: {
       required: false,
@@ -38616,13 +41050,13 @@ var MatrixElement = {
   },
   setup(props, ctx) {
     var context = _objectSpread2$1({}, ctx);
-    context.features = [base$Y, base$1f, base$1e, base$$, base$T, base$_, base$1i, matrix$5, base$g, object$5, matrix$2, matrix$4, base$15, base$O, base$X, base$G, base$h, object, base$18, object$8, matrix$3, base$13, base$12, base$1g, base$14, base$11, matrix$1, base$W, object$4, base$Z];
+    context.features = [base$Y, base$1f, base$1e, base$$, base$T, base$_, base$1i, matrix$5, base$f, object$5, matrix$2, matrix$4, base$15, base$O, base$X, base$G, base$g, object, base$18, object$8, matrix$3, base$13, base$12, base$1g, base$14, base$11, matrix$1, base$W, object$4, base$Z];
     context.slots = ['label', 'info', 'required', 'description', 'before', 'between', 'after'];
     return _objectSpread2$1({}, base$S(props, context));
   }
 };
 
-var base$f = function base(props, context, dependencies) {
+var base$e = function base(props, context, dependencies) {
   // ============ DEPENDENCIES ============
 
   var isDisabled = dependencies.isDisabled;
@@ -38701,7 +41135,7 @@ var base$f = function base(props, context, dependencies) {
 var MultifileElement = {
   name: 'MultifileElement',
   mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
-  emits: ['change', 'add', 'remove', 'sort', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
+  emits: ['reset', 'clear', 'change', 'add', 'remove', 'sort', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
   props: {
     type: {
       required: false,
@@ -38863,13 +41297,13 @@ var MultifileElement = {
   },
   setup(props, ctx) {
     var context = _objectSpread2$1({}, ctx);
-    context.features = [base$Y, base$1f, base$1e, base$$, base$T, base$X, array$1, base$o, base$R, base$m, multifile$1, base$_, base$1i, list$4, base$H, base$15, base$O, list$1, base$Q, array, base$18, base$1a, base$14, base$13, base$12, base$11, multifile$2, multifile$4, base$f, multifile, multifile$3, base$1g, base$n, base$W, multifile$5, base$Z];
+    context.features = [base$Y, base$1f, base$1e, base$$, base$T, base$X, array$1, base$o, base$R, base$l, multifile$1, base$_, base$1i, list$4, base$H, base$15, base$O, list$1, base$Q, array, base$18, base$1a, base$14, base$13, base$12, base$11, multifile$2, multifile$4, base$e, multifile, multifile$3, base$1g, base$m, base$W, multifile$5, base$Z];
     context.slots = ['label', 'info', 'required', 'description', 'before', 'between', 'after'];
     return _objectSpread2$1({}, base$S(props, context));
   }
 };
 
-var base$e = function base(props, context, dependencies) {
+var base$d = function base(props, context, dependencies) {
   // ============ DEPENDENCIES ============
 
   var fire = dependencies.fire;
@@ -38985,7 +41419,7 @@ function spliceMultiple(array, indexes) {
   return array;
 }
 
-var base$d = function base(props, context, dependencies) {
+var base$c = function base(props, context, dependencies) {
   // ============ DEPENDENCIES ============
 
   var value = dependencies.value;
@@ -39055,7 +41489,7 @@ var base$d = function base(props, context, dependencies) {
 var MultiselectElement = {
   name: 'MultiselectElement',
   mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
-  emits: ['change', 'select', 'deselect', 'search-change', 'open', 'close', 'clear', 'paste', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
+  emits: ['reset', 'clear', 'change', 'select', 'deselect', 'search-change', 'open', 'close', 'clear', 'paste', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
   props: {
     type: {
       required: false,
@@ -39408,7 +41842,7 @@ var MultiselectElement = {
   },
   setup(props, ctx) {
     var context = _objectSpread2$1({}, ctx);
-    context.features = [base$Y, base$1f, base$1e, base$$, multiselect$4, base$T, array$1, base$_, base$L, base$1i, multiselect$5, base$X, base$H, base$I, base$M, multiselect$1, base$Q, multiselect$2, base$1a, array, multiselect$3, base$15, base$O, base$13, base$12, base$1g, base$14, base$11, base$e, base$d, multiselect, base$W, base$K, base$Z, base$x];
+    context.features = [base$Y, base$1f, base$1e, base$$, multiselect$4, base$T, array$1, base$_, base$L, base$1i, multiselect$5, base$X, base$H, base$I, base$M, multiselect$1, base$Q, multiselect$2, base$1a, array, multiselect$3, base$15, base$O, base$13, base$12, base$1g, base$14, base$11, base$d, base$c, multiselect, base$W, base$K, base$Z, base$x];
     context.slots = ['option', 'multiple-label', 'placeholder', 'group-label', 'before-list', 'after-list', 'no-results', 'no-options', 'caret', 'spinner', 'clear', 'label', 'info', 'required', 'description', 'before', 'between', 'after'];
     return _objectSpread2$1({}, base$S(props, context));
   }
@@ -39417,7 +41851,7 @@ var MultiselectElement = {
 var ObjectElement = {
   name: 'ObjectElement',
   mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
-  emits: ['change', 'remove', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
+  emits: ['reset', 'clear', 'change', 'remove', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
   props: {
     type: {
       required: false,
@@ -39460,7 +41894,7 @@ var ObjectElement = {
   }
 };
 
-var base$c = function base(props, context, dependencies) {
+var base$b = function base(props, context, dependencies) {
   // ============ DEPENDENCIES ============
 
   var fire = dependencies.fire;
@@ -41804,7 +44238,7 @@ var countryPhones = [
   }
 ];
 
-var base$b = function base(props, context, dependencies) {
+var base$a = function base(props, context, dependencies) {
   var {
     include,
     exclude,
@@ -42099,7 +44533,7 @@ var base$b = function base(props, context, dependencies) {
   };
 };
 
-var base$a = function base(props, context, dependencies) {
+var base$9 = function base(props, context, dependencies) {
   var {
     fire,
     el$
@@ -42185,7 +44619,7 @@ var phone = function phone(props, context, dependencies) {
 var PhoneElement = {
   name: 'PhoneElement',
   mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
-  emits: ['change', 'select', 'open', 'close', 'blur', 'focus', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
+  emits: ['reset', 'clear', 'change', 'select', 'open', 'close', 'blur', 'focus', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
   props: {
     type: {
       required: false,
@@ -42281,13 +44715,13 @@ var PhoneElement = {
   },
   setup(props, ctx) {
     var context = _objectSpread2$1({}, ctx);
-    context.features = [base$Y, base$1f, base$1e, base$$, base$R, base$T, base$P, base$_, base$L, base$1i, base$U, base$X, base$G, text$1, base$1a, text$2, base$M, base$Q, base$N, base$F, base$15, base$O, base$13, base$12, base$1g, base$14, base$11, phone$1, base$w, base$c, phone$2, base$K, base$Z, phone, base$x, base$b];
+    context.features = [base$Y, base$1f, base$1e, base$$, base$R, base$T, base$P, base$_, base$L, base$1i, base$U, base$X, base$G, text$1, base$1a, text$2, base$M, base$Q, base$N, base$F, base$15, base$O, base$13, base$12, base$1g, base$14, base$11, phone$1, base$w, base$b, phone$2, base$K, base$Z, phone, base$x, base$a];
     context.slots = ['label', 'info', 'required', 'description', 'before', 'between', 'after'];
     return _objectSpread2$1({}, base$S(props, context));
   }
 };
 
-var base$9 = function base(props, context, dependencies) {
+var base$8 = function base(props, context, dependencies) {
   var {
     radioName,
     radioValue
@@ -42389,7 +44823,7 @@ var base$9 = function base(props, context, dependencies) {
 var RadioElement = {
   name: 'RadioElement',
   mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
-  emits: ['change', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
+  emits: ['reset', 'clear', 'change', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
   props: {
     type: {
       required: false,
@@ -42441,7 +44875,7 @@ var RadioElement = {
   },
   setup(props, ctx) {
     var context = _objectSpread2$1({}, ctx);
-    context.features = [base$Y, base$1f, base$1e, base$$, base$R, base$T, base$_, base$1i, base$U, base$X, base$P, base$H, base$1a, base$I, base$Q, base$F, base$15, base$O, base$13, base$12, base$1g, base$14, base$11, base$9, radio, base$K, base$Z, base$E];
+    context.features = [base$Y, base$1f, base$1e, base$$, base$R, base$T, base$_, base$1i, base$U, base$X, base$P, base$H, base$1a, base$I, base$Q, base$F, base$15, base$O, base$13, base$12, base$1g, base$14, base$11, base$8, radio, base$K, base$Z, base$E];
     context.slots = ['default', 'label', 'info', 'required', 'description', 'before', 'between', 'after'];
     return _objectSpread2$1({}, base$S(props, context));
   }
@@ -42450,7 +44884,7 @@ var RadioElement = {
 var RadiogroupElement = {
   name: 'RadiogroupElement',
   mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
-  emits: ['change', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
+  emits: ['reset', 'clear', 'change', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
   props: {
     type: {
       required: false,
@@ -42501,7 +44935,7 @@ var RadiogroupElement = {
 var SelectElement = {
   name: 'SelectElement',
   mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
-  emits: ['change', 'select', 'deselect', 'search-change', 'open', 'close', 'clear', 'paste', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
+  emits: ['reset', 'clear', 'change', 'select', 'deselect', 'search-change', 'open', 'close', 'clear', 'paste', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
   props: {
     type: {
       required: false,
@@ -42822,645 +45256,771 @@ var SelectElement = {
   },
   setup(props, ctx) {
     var context = _objectSpread2$1({}, ctx);
-    context.features = [base$Y, base$1f, base$1e, base$$, select$4, base$T, base$P, base$_, base$L, base$1i, base$U, base$X, base$H, base$I, base$M, select$1, base$Q, select$2, base$1a, base$N, select$3, base$15, base$O, base$13, base$12, base$1g, base$14, base$11, base$e, select, base$W, base$K, base$Z, base$x];
+    context.features = [base$Y, base$1f, base$1e, base$$, select$4, base$T, base$P, base$_, base$L, base$1i, base$U, base$X, base$H, base$I, base$M, select$1, base$Q, select$2, base$1a, base$N, select$3, base$15, base$O, base$13, base$12, base$1g, base$14, base$11, base$d, select, base$W, base$K, base$Z, base$x];
     context.slots = ['option', 'single-label', 'placeholder', 'group-label', 'before-list', 'after-list', 'no-results', 'no-options', 'caret', 'spinner', 'clear', 'label', 'info', 'required', 'description', 'before', 'between', 'after'];
     return _objectSpread2$1({}, base$S(props, context));
   }
 };
 
 /*!
- * Signature Pad v5.0.7 | https://github.com/szimek/signature_pad
+ * Signature Pad v5.1.1 | https://github.com/szimek/signature_pad
  * (c) 2025 Szymon Nowak | Released under the MIT license
  */
 
-class Point {
-    constructor(x, y, pressure, time) {
-        if (isNaN(x) || isNaN(y)) {
-            throw new Error(`Point is invalid: (${x}, ${y})`);
-        }
-        this.x = +x;
-        this.y = +y;
-        this.pressure = pressure || 0;
-        this.time = time || Date.now();
-    }
-    distanceTo(start) {
-        return Math.sqrt(Math.pow(this.x - start.x, 2) + Math.pow(this.y - start.y, 2));
-    }
-    equals(other) {
-        return (this.x === other.x &&
-            this.y === other.y &&
-            this.pressure === other.pressure &&
-            this.time === other.time);
-    }
-    velocityFrom(start) {
-        return this.time !== start.time
-            ? this.distanceTo(start) / (this.time - start.time)
-            : 0;
-    }
-}
 
-class Bezier {
-    static fromPoints(points, widths) {
-        const c2 = this.calculateControlPoints(points[0], points[1], points[2]).c2;
-        const c3 = this.calculateControlPoints(points[1], points[2], points[3]).c1;
-        return new Bezier(points[1], c2, c3, points[2], widths.start, widths.end);
+// src/point.ts
+var Point = class {
+  x;
+  y;
+  pressure;
+  time;
+  constructor(x, y, pressure, time) {
+    if (isNaN(x) || isNaN(y)) {
+      throw new Error(`Point is invalid: (${x}, ${y})`);
     }
-    static calculateControlPoints(s1, s2, s3) {
-        const dx1 = s1.x - s2.x;
-        const dy1 = s1.y - s2.y;
-        const dx2 = s2.x - s3.x;
-        const dy2 = s2.y - s3.y;
-        const m1 = { x: (s1.x + s2.x) / 2.0, y: (s1.y + s2.y) / 2.0 };
-        const m2 = { x: (s2.x + s3.x) / 2.0, y: (s2.y + s3.y) / 2.0 };
-        const l1 = Math.sqrt(dx1 * dx1 + dy1 * dy1);
-        const l2 = Math.sqrt(dx2 * dx2 + dy2 * dy2);
-        const dxm = m1.x - m2.x;
-        const dym = m1.y - m2.y;
-        const k = l1 + l2 == 0 ? 0 : l2 / (l1 + l2);
-        const cm = { x: m2.x + dxm * k, y: m2.y + dym * k };
-        const tx = s2.x - cm.x;
-        const ty = s2.y - cm.y;
-        return {
-            c1: new Point(m1.x + tx, m1.y + ty),
-            c2: new Point(m2.x + tx, m2.y + ty),
-        };
-    }
-    constructor(startPoint, control2, control1, endPoint, startWidth, endWidth) {
-        this.startPoint = startPoint;
-        this.control2 = control2;
-        this.control1 = control1;
-        this.endPoint = endPoint;
-        this.startWidth = startWidth;
-        this.endWidth = endWidth;
-    }
-    length() {
-        const steps = 10;
-        let length = 0;
-        let px;
-        let py;
-        for (let i = 0; i <= steps; i += 1) {
-            const t = i / steps;
-            const cx = this.point(t, this.startPoint.x, this.control1.x, this.control2.x, this.endPoint.x);
-            const cy = this.point(t, this.startPoint.y, this.control1.y, this.control2.y, this.endPoint.y);
-            if (i > 0) {
-                const xdiff = cx - px;
-                const ydiff = cy - py;
-                length += Math.sqrt(xdiff * xdiff + ydiff * ydiff);
-            }
-            px = cx;
-            py = cy;
-        }
-        return length;
-    }
-    point(t, start, c1, c2, end) {
-        return (start * (1.0 - t) * (1.0 - t) * (1.0 - t))
-            + (3.0 * c1 * (1.0 - t) * (1.0 - t) * t)
-            + (3.0 * c2 * (1.0 - t) * t * t)
-            + (end * t * t * t);
-    }
-}
+    this.x = +x;
+    this.y = +y;
+    this.pressure = pressure || 0;
+    this.time = time || Date.now();
+  }
+  distanceTo(start) {
+    return Math.sqrt(
+      Math.pow(this.x - start.x, 2) + Math.pow(this.y - start.y, 2)
+    );
+  }
+  equals(other) {
+    return this.x === other.x && this.y === other.y && this.pressure === other.pressure && this.time === other.time;
+  }
+  velocityFrom(start) {
+    return this.time !== start.time ? this.distanceTo(start) / (this.time - start.time) : 0;
+  }
+};
 
-class SignatureEventTarget {
-    constructor() {
-        try {
-            this._et = new EventTarget();
-        }
-        catch (_a) {
-            this._et = document;
-        }
+// src/bezier.ts
+var Bezier = class _Bezier {
+  constructor(startPoint, control2, control1, endPoint, startWidth, endWidth) {
+    this.startPoint = startPoint;
+    this.control2 = control2;
+    this.control1 = control1;
+    this.endPoint = endPoint;
+    this.startWidth = startWidth;
+    this.endWidth = endWidth;
+  }
+  static fromPoints(points, widths) {
+    const c2 = this.calculateControlPoints(points[0], points[1], points[2]).c2;
+    const c3 = this.calculateControlPoints(points[1], points[2], points[3]).c1;
+    return new _Bezier(points[1], c2, c3, points[2], widths.start, widths.end);
+  }
+  static calculateControlPoints(s1, s2, s3) {
+    const dx1 = s1.x - s2.x;
+    const dy1 = s1.y - s2.y;
+    const dx2 = s2.x - s3.x;
+    const dy2 = s2.y - s3.y;
+    const m1 = { x: (s1.x + s2.x) / 2, y: (s1.y + s2.y) / 2 };
+    const m2 = { x: (s2.x + s3.x) / 2, y: (s2.y + s3.y) / 2 };
+    const l1 = Math.sqrt(dx1 * dx1 + dy1 * dy1);
+    const l2 = Math.sqrt(dx2 * dx2 + dy2 * dy2);
+    const dxm = m1.x - m2.x;
+    const dym = m1.y - m2.y;
+    const k = l1 + l2 == 0 ? 0 : l2 / (l1 + l2);
+    const cm = { x: m2.x + dxm * k, y: m2.y + dym * k };
+    const tx = s2.x - cm.x;
+    const ty = s2.y - cm.y;
+    return {
+      c1: new Point(m1.x + tx, m1.y + ty),
+      c2: new Point(m2.x + tx, m2.y + ty)
+    };
+  }
+  // Returns approximated length. Code taken from https://www.lemoda.net/maths/bezier-length/index.html.
+  length() {
+    const steps = 10;
+    let length = 0;
+    let px;
+    let py;
+    for (let i = 0; i <= steps; i += 1) {
+      const t = i / steps;
+      const cx = this.point(
+        t,
+        this.startPoint.x,
+        this.control1.x,
+        this.control2.x,
+        this.endPoint.x
+      );
+      const cy = this.point(
+        t,
+        this.startPoint.y,
+        this.control1.y,
+        this.control2.y,
+        this.endPoint.y
+      );
+      if (i > 0) {
+        const xdiff = cx - px;
+        const ydiff = cy - py;
+        length += Math.sqrt(xdiff * xdiff + ydiff * ydiff);
+      }
+      px = cx;
+      py = cy;
     }
-    addEventListener(type, listener, options) {
-        this._et.addEventListener(type, listener, options);
-    }
-    dispatchEvent(event) {
-        return this._et.dispatchEvent(event);
-    }
-    removeEventListener(type, callback, options) {
-        this._et.removeEventListener(type, callback, options);
-    }
-}
+    return length;
+  }
+  // Calculate parametric value of x or y given t and the four point coordinates of a cubic bezier curve.
+  point(t, start, c1, c2, end) {
+    return start * (1 - t) * (1 - t) * (1 - t) + 3 * c1 * (1 - t) * (1 - t) * t + 3 * c2 * (1 - t) * t * t + end * t * t * t;
+  }
+};
 
+// src/signature_event_target.ts
+var SignatureEventTarget = class {
+  /* tslint:disable: variable-name */
+  _et;
+  /* tslint:enable: variable-name */
+  constructor() {
+    try {
+      this._et = new EventTarget();
+    } catch {
+      this._et = document;
+    }
+  }
+  addEventListener(type, listener, options) {
+    this._et.addEventListener(type, listener, options);
+  }
+  dispatchEvent(event) {
+    return this._et.dispatchEvent(event);
+  }
+  removeEventListener(type, callback, options) {
+    this._et.removeEventListener(type, callback, options);
+  }
+};
+
+// src/throttle.ts
 function throttle(fn, wait = 250) {
-    let previous = 0;
-    let timeout = null;
-    let result;
-    let storedContext;
-    let storedArgs;
-    const later = () => {
-        previous = Date.now();
+  let previous = 0;
+  let timeout = null;
+  let result;
+  let storedContext;
+  let storedArgs;
+  const later = () => {
+    previous = Date.now();
+    timeout = null;
+    result = fn.apply(storedContext, storedArgs);
+    if (!timeout) {
+      storedContext = null;
+      storedArgs = [];
+    }
+  };
+  return function wrapper(...args) {
+    const now = Date.now();
+    const remaining = wait - (now - previous);
+    storedContext = this;
+    storedArgs = args;
+    if (remaining <= 0 || remaining > wait) {
+      if (timeout) {
+        clearTimeout(timeout);
         timeout = null;
-        result = fn.apply(storedContext, storedArgs);
-        if (!timeout) {
-            storedContext = null;
-            storedArgs = [];
-        }
-    };
-    return function wrapper(...args) {
-        const now = Date.now();
-        const remaining = wait - (now - previous);
-        storedContext = this;
-        storedArgs = args;
-        if (remaining <= 0 || remaining > wait) {
-            if (timeout) {
-                clearTimeout(timeout);
-                timeout = null;
-            }
-            previous = now;
-            result = fn.apply(storedContext, storedArgs);
-            if (!timeout) {
-                storedContext = null;
-                storedArgs = [];
-            }
-        }
-        else if (!timeout) {
-            timeout = window.setTimeout(later, remaining);
-        }
-        return result;
-    };
+      }
+      previous = now;
+      result = fn.apply(storedContext, storedArgs);
+      if (!timeout) {
+        storedContext = null;
+        storedArgs = [];
+      }
+    } else if (!timeout) {
+      timeout = window.setTimeout(later, remaining);
+    }
+    return result;
+  };
 }
 
-class SignaturePad extends SignatureEventTarget {
-    constructor(canvas, options = {}) {
-        var _a, _b, _c;
-        super();
-        this.canvas = canvas;
-        this._drawingStroke = false;
-        this._isEmpty = true;
-        this._lastPoints = [];
-        this._data = [];
-        this._lastVelocity = 0;
-        this._lastWidth = 0;
-        this._handleMouseDown = (event) => {
-            if (!this._isLeftButtonPressed(event, true) || this._drawingStroke) {
-                return;
-            }
-            this._strokeBegin(this._pointerEventToSignatureEvent(event));
-        };
-        this._handleMouseMove = (event) => {
-            if (!this._isLeftButtonPressed(event, true) || !this._drawingStroke) {
-                this._strokeEnd(this._pointerEventToSignatureEvent(event), false);
-                return;
-            }
-            this._strokeMoveUpdate(this._pointerEventToSignatureEvent(event));
-        };
-        this._handleMouseUp = (event) => {
-            if (this._isLeftButtonPressed(event)) {
-                return;
-            }
-            this._strokeEnd(this._pointerEventToSignatureEvent(event));
-        };
-        this._handleTouchStart = (event) => {
-            if (event.targetTouches.length !== 1 || this._drawingStroke) {
-                return;
-            }
-            if (event.cancelable) {
-                event.preventDefault();
-            }
-            this._strokeBegin(this._touchEventToSignatureEvent(event));
-        };
-        this._handleTouchMove = (event) => {
-            if (event.targetTouches.length !== 1) {
-                return;
-            }
-            if (event.cancelable) {
-                event.preventDefault();
-            }
-            if (!this._drawingStroke) {
-                this._strokeEnd(this._touchEventToSignatureEvent(event), false);
-                return;
-            }
-            this._strokeMoveUpdate(this._touchEventToSignatureEvent(event));
-        };
-        this._handleTouchEnd = (event) => {
-            if (event.targetTouches.length !== 0) {
-                return;
-            }
-            if (event.cancelable) {
-                event.preventDefault();
-            }
-            this.canvas.removeEventListener('touchmove', this._handleTouchMove);
-            this._strokeEnd(this._touchEventToSignatureEvent(event));
-        };
-        this._handlePointerDown = (event) => {
-            if (!event.isPrimary || !this._isLeftButtonPressed(event) || this._drawingStroke) {
-                return;
-            }
-            event.preventDefault();
-            this._strokeBegin(this._pointerEventToSignatureEvent(event));
-        };
-        this._handlePointerMove = (event) => {
-            if (!event.isPrimary) {
-                return;
-            }
-            if (!this._isLeftButtonPressed(event, true) || !this._drawingStroke) {
-                this._strokeEnd(this._pointerEventToSignatureEvent(event), false);
-                return;
-            }
-            event.preventDefault();
-            this._strokeMoveUpdate(this._pointerEventToSignatureEvent(event));
-        };
-        this._handlePointerUp = (event) => {
-            if (!event.isPrimary || this._isLeftButtonPressed(event)) {
-                return;
-            }
-            event.preventDefault();
-            this._strokeEnd(this._pointerEventToSignatureEvent(event));
-        };
-        this.velocityFilterWeight = options.velocityFilterWeight || 0.7;
-        this.minWidth = options.minWidth || 0.5;
-        this.maxWidth = options.maxWidth || 2.5;
-        this.throttle = (_a = options.throttle) !== null && _a !== void 0 ? _a : 16;
-        this.minDistance = (_b = options.minDistance) !== null && _b !== void 0 ? _b : 5;
-        this.dotSize = options.dotSize || 0;
-        this.penColor = options.penColor || 'black';
-        this.backgroundColor = options.backgroundColor || 'rgba(0,0,0,0)';
-        this.compositeOperation = options.compositeOperation || 'source-over';
-        this.canvasContextOptions = (_c = options.canvasContextOptions) !== null && _c !== void 0 ? _c : {};
-        this._strokeMoveUpdate = this.throttle
-            ? throttle(SignaturePad.prototype._strokeUpdate, this.throttle)
-            : SignaturePad.prototype._strokeUpdate;
-        this._ctx = canvas.getContext('2d', this.canvasContextOptions);
-        this.clear();
-        this.on();
+// src/signature_pad.ts
+var SignaturePad = class _SignaturePad extends SignatureEventTarget {
+  /* tslint:enable: variable-name */
+  constructor(canvas, options = {}) {
+    super();
+    this.canvas = canvas;
+    this.velocityFilterWeight = options.velocityFilterWeight || 0.7;
+    this.minWidth = options.minWidth || 0.5;
+    this.maxWidth = options.maxWidth || 2.5;
+    this.throttle = options.throttle ?? 16;
+    this.minDistance = options.minDistance ?? 5;
+    this.dotSize = options.dotSize || 0;
+    this.penColor = options.penColor || "black";
+    this.backgroundColor = options.backgroundColor || "rgba(0,0,0,0)";
+    this.compositeOperation = options.compositeOperation || "source-over";
+    this.canvasContextOptions = options.canvasContextOptions ?? {};
+    this._strokeMoveUpdate = this.throttle ? throttle(_SignaturePad.prototype._strokeUpdate, this.throttle) : _SignaturePad.prototype._strokeUpdate;
+    this._handleMouseDown = this._handleMouseDown.bind(this);
+    this._handleMouseMove = this._handleMouseMove.bind(this);
+    this._handleMouseUp = this._handleMouseUp.bind(this);
+    this._handleTouchStart = this._handleTouchStart.bind(this);
+    this._handleTouchMove = this._handleTouchMove.bind(this);
+    this._handleTouchEnd = this._handleTouchEnd.bind(this);
+    this._handlePointerDown = this._handlePointerDown.bind(this);
+    this._handlePointerMove = this._handlePointerMove.bind(this);
+    this._handlePointerUp = this._handlePointerUp.bind(this);
+    this._ctx = canvas.getContext(
+      "2d",
+      this.canvasContextOptions
+    );
+    this.clear();
+    this.on();
+  }
+  // Public stuff
+  dotSize;
+  minWidth;
+  maxWidth;
+  penColor;
+  minDistance;
+  velocityFilterWeight;
+  compositeOperation;
+  backgroundColor;
+  throttle;
+  canvasContextOptions;
+  // Private stuff
+  /* tslint:disable: variable-name */
+  _ctx;
+  _drawingStroke = false;
+  _isEmpty = true;
+  _dataUrl;
+  _dataUrlOptions;
+  _lastPoints = [];
+  // Stores up to 4 most recent points; used to generate a new curve
+  _data = [];
+  // Stores all points in groups (one group per line or dot)
+  _lastVelocity = 0;
+  _lastWidth = 0;
+  _strokeMoveUpdate;
+  _strokePointerId;
+  clear() {
+    const { _ctx: ctx, canvas } = this;
+    ctx.fillStyle = this.backgroundColor;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    this._data = [];
+    this._reset(this._getPointGroupOptions());
+    this._isEmpty = true;
+    this._dataUrl = void 0;
+    this._dataUrlOptions = void 0;
+    this._strokePointerId = void 0;
+  }
+  redraw() {
+    const data = this._data;
+    const dataUrl = this._dataUrl;
+    const dataUrlOptions = this._dataUrlOptions;
+    this.clear();
+    if (dataUrl) {
+      this.fromDataURL(dataUrl, dataUrlOptions);
     }
-    clear() {
-        const { _ctx: ctx, canvas } = this;
-        ctx.fillStyle = this.backgroundColor;
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-        this._data = [];
-        this._reset(this._getPointGroupOptions());
-        this._isEmpty = true;
+    this.fromData(data, { clear: false });
+  }
+  fromDataURL(dataUrl, options = {}) {
+    return new Promise((resolve, reject) => {
+      const image = new Image();
+      const ratio = options.ratio || window.devicePixelRatio || 1;
+      const width = options.width || this.canvas.width / ratio;
+      const height = options.height || this.canvas.height / ratio;
+      const xOffset = options.xOffset || 0;
+      const yOffset = options.yOffset || 0;
+      this._reset(this._getPointGroupOptions());
+      image.onload = () => {
+        this._ctx.drawImage(image, xOffset, yOffset, width, height);
+        resolve();
+      };
+      image.onerror = (error) => {
+        reject(error);
+      };
+      image.crossOrigin = "anonymous";
+      image.src = dataUrl;
+      this._isEmpty = false;
+      this._dataUrl = dataUrl;
+      this._dataUrlOptions = { ...options };
+    });
+  }
+  toDataURL(type = "image/png", encoderOptions) {
+    switch (type) {
+      case "image/svg+xml":
+        if (typeof encoderOptions !== "object") {
+          encoderOptions = void 0;
+        }
+        return `data:image/svg+xml;base64,${btoa(
+          this.toSVG(encoderOptions)
+        )}`;
+      default:
+        if (typeof encoderOptions !== "number") {
+          encoderOptions = void 0;
+        }
+        return this.canvas.toDataURL(type, encoderOptions);
     }
-    fromDataURL(dataUrl, options = {}) {
-        return new Promise((resolve, reject) => {
-            const image = new Image();
-            const ratio = options.ratio || window.devicePixelRatio || 1;
-            const width = options.width || this.canvas.width / ratio;
-            const height = options.height || this.canvas.height / ratio;
-            const xOffset = options.xOffset || 0;
-            const yOffset = options.yOffset || 0;
-            this._reset(this._getPointGroupOptions());
-            image.onload = () => {
-                this._ctx.drawImage(image, xOffset, yOffset, width, height);
-                resolve();
-            };
-            image.onerror = (error) => {
-                reject(error);
-            };
-            image.crossOrigin = 'anonymous';
-            image.src = dataUrl;
-            this._isEmpty = false;
+  }
+  on() {
+    this.canvas.style.touchAction = "none";
+    this.canvas.style.msTouchAction = "none";
+    this.canvas.style.userSelect = "none";
+    const isIOS = /Macintosh/.test(navigator.userAgent) && "ontouchstart" in document;
+    if (window.PointerEvent && !isIOS) {
+      this._handlePointerEvents();
+    } else {
+      this._handleMouseEvents();
+      if ("ontouchstart" in window) {
+        this._handleTouchEvents();
+      }
+    }
+  }
+  off() {
+    this.canvas.style.touchAction = "auto";
+    this.canvas.style.msTouchAction = "auto";
+    this.canvas.style.userSelect = "auto";
+    this.canvas.removeEventListener("pointerdown", this._handlePointerDown);
+    this.canvas.removeEventListener("mousedown", this._handleMouseDown);
+    this.canvas.removeEventListener("touchstart", this._handleTouchStart);
+    this._removeMoveUpEventListeners();
+  }
+  _getListenerFunctions() {
+    const canvasWindow = window.document === this.canvas.ownerDocument ? window : this.canvas.ownerDocument.defaultView ?? this.canvas.ownerDocument;
+    return {
+      addEventListener: canvasWindow.addEventListener.bind(
+        canvasWindow
+      ),
+      removeEventListener: canvasWindow.removeEventListener.bind(
+        canvasWindow
+      )
+    };
+  }
+  _removeMoveUpEventListeners() {
+    const { removeEventListener } = this._getListenerFunctions();
+    removeEventListener("pointermove", this._handlePointerMove);
+    removeEventListener("pointerup", this._handlePointerUp);
+    removeEventListener("mousemove", this._handleMouseMove);
+    removeEventListener("mouseup", this._handleMouseUp);
+    removeEventListener("touchmove", this._handleTouchMove);
+    removeEventListener("touchend", this._handleTouchEnd);
+  }
+  isEmpty() {
+    return this._isEmpty;
+  }
+  fromData(pointGroups, { clear = true } = {}) {
+    if (clear) {
+      this.clear();
+    }
+    this._fromData(
+      pointGroups,
+      this._drawCurve.bind(this),
+      this._drawDot.bind(this)
+    );
+    this._data = this._data.concat(pointGroups);
+  }
+  toData() {
+    return this._data;
+  }
+  _isLeftButtonPressed(event, only) {
+    if (only) {
+      return event.buttons === 1;
+    }
+    return (event.buttons & 1) === 1;
+  }
+  _pointerEventToSignatureEvent(event) {
+    return {
+      event,
+      type: event.type,
+      x: event.clientX,
+      y: event.clientY,
+      pressure: "pressure" in event ? event.pressure : 0
+    };
+  }
+  _touchEventToSignatureEvent(event) {
+    const touch = event.changedTouches[0];
+    return {
+      event,
+      type: event.type,
+      x: touch.clientX,
+      y: touch.clientY,
+      pressure: touch.force
+    };
+  }
+  // Event handlers
+  _handleMouseDown(event) {
+    if (!this._isLeftButtonPressed(event, true) || this._drawingStroke) {
+      return;
+    }
+    this._strokeBegin(this._pointerEventToSignatureEvent(event));
+  }
+  _handleMouseMove(event) {
+    if (!this._isLeftButtonPressed(event, true) || !this._drawingStroke) {
+      this._strokeEnd(this._pointerEventToSignatureEvent(event), false);
+      return;
+    }
+    this._strokeMoveUpdate(this._pointerEventToSignatureEvent(event));
+  }
+  _handleMouseUp(event) {
+    if (this._isLeftButtonPressed(event)) {
+      return;
+    }
+    this._strokeEnd(this._pointerEventToSignatureEvent(event));
+  }
+  _handleTouchStart(event) {
+    if (event.targetTouches.length !== 1 || this._drawingStroke) {
+      return;
+    }
+    if (event.cancelable) {
+      event.preventDefault();
+    }
+    this._strokeBegin(this._touchEventToSignatureEvent(event));
+  }
+  _handleTouchMove(event) {
+    if (event.targetTouches.length !== 1) {
+      return;
+    }
+    if (event.cancelable) {
+      event.preventDefault();
+    }
+    if (!this._drawingStroke) {
+      this._strokeEnd(this._touchEventToSignatureEvent(event), false);
+      return;
+    }
+    this._strokeMoveUpdate(this._touchEventToSignatureEvent(event));
+  }
+  _handleTouchEnd(event) {
+    if (event.targetTouches.length !== 0) {
+      return;
+    }
+    if (event.cancelable) {
+      event.preventDefault();
+    }
+    this._strokeEnd(this._touchEventToSignatureEvent(event));
+  }
+  _getPointerId(event) {
+    return event.persistentDeviceId || event.pointerId;
+  }
+  _allowPointerId(event, allowUndefined = false) {
+    if (typeof this._strokePointerId === "undefined") {
+      return allowUndefined;
+    }
+    return this._getPointerId(event) === this._strokePointerId;
+  }
+  _handlePointerDown(event) {
+    if (this._drawingStroke || !this._isLeftButtonPressed(event) || !this._allowPointerId(event, true)) {
+      return;
+    }
+    this._strokePointerId = this._getPointerId(event);
+    event.preventDefault();
+    this._strokeBegin(this._pointerEventToSignatureEvent(event));
+  }
+  _handlePointerMove(event) {
+    if (!this._allowPointerId(event)) {
+      return;
+    }
+    if (!this._isLeftButtonPressed(event, true) || !this._drawingStroke) {
+      this._strokeEnd(this._pointerEventToSignatureEvent(event), false);
+      return;
+    }
+    event.preventDefault();
+    this._strokeMoveUpdate(this._pointerEventToSignatureEvent(event));
+  }
+  _handlePointerUp(event) {
+    if (this._isLeftButtonPressed(event) || !this._allowPointerId(event)) {
+      return;
+    }
+    event.preventDefault();
+    this._strokeEnd(this._pointerEventToSignatureEvent(event));
+  }
+  _getPointGroupOptions(group) {
+    return {
+      penColor: group && "penColor" in group ? group.penColor : this.penColor,
+      dotSize: group && "dotSize" in group ? group.dotSize : this.dotSize,
+      minWidth: group && "minWidth" in group ? group.minWidth : this.minWidth,
+      maxWidth: group && "maxWidth" in group ? group.maxWidth : this.maxWidth,
+      velocityFilterWeight: group && "velocityFilterWeight" in group ? group.velocityFilterWeight : this.velocityFilterWeight,
+      compositeOperation: group && "compositeOperation" in group ? group.compositeOperation : this.compositeOperation
+    };
+  }
+  // Private methods
+  _strokeBegin(event) {
+    const cancelled = !this.dispatchEvent(
+      new CustomEvent("beginStroke", { detail: event, cancelable: true })
+    );
+    if (cancelled) {
+      return;
+    }
+    const { addEventListener } = this._getListenerFunctions();
+    switch (event.event.type) {
+      case "mousedown":
+        addEventListener("mousemove", this._handleMouseMove, {
+          passive: false
         });
+        addEventListener("mouseup", this._handleMouseUp, { passive: false });
+        break;
+      case "touchstart":
+        addEventListener("touchmove", this._handleTouchMove, {
+          passive: false
+        });
+        addEventListener("touchend", this._handleTouchEnd, { passive: false });
+        break;
+      case "pointerdown":
+        addEventListener("pointermove", this._handlePointerMove, {
+          passive: false
+        });
+        addEventListener("pointerup", this._handlePointerUp, {
+          passive: false
+        });
+        break;
     }
-    toDataURL(type = 'image/png', encoderOptions) {
-        switch (type) {
-            case 'image/svg+xml':
-                if (typeof encoderOptions !== 'object') {
-                    encoderOptions = undefined;
-                }
-                return `data:image/svg+xml;base64,${btoa(this.toSVG(encoderOptions))}`;
-            default:
-                if (typeof encoderOptions !== 'number') {
-                    encoderOptions = undefined;
-                }
-                return this.canvas.toDataURL(type, encoderOptions);
+    this._drawingStroke = true;
+    const pointGroupOptions = this._getPointGroupOptions();
+    const newPointGroup = {
+      ...pointGroupOptions,
+      points: []
+    };
+    this._data.push(newPointGroup);
+    this._reset(pointGroupOptions);
+    this._strokeUpdate(event);
+  }
+  _strokeUpdate(event) {
+    if (!this._drawingStroke) {
+      return;
+    }
+    if (this._data.length === 0) {
+      this._strokeBegin(event);
+      return;
+    }
+    this.dispatchEvent(
+      new CustomEvent("beforeUpdateStroke", { detail: event })
+    );
+    const point = this._createPoint(event.x, event.y, event.pressure);
+    const lastPointGroup = this._data[this._data.length - 1];
+    const lastPoints = lastPointGroup.points;
+    const lastPoint = lastPoints.length > 0 && lastPoints[lastPoints.length - 1];
+    const isLastPointTooClose = lastPoint ? point.distanceTo(lastPoint) <= this.minDistance : false;
+    const pointGroupOptions = this._getPointGroupOptions(lastPointGroup);
+    if (!lastPoint || !(lastPoint && isLastPointTooClose)) {
+      const curve = this._addPoint(point, pointGroupOptions);
+      if (!lastPoint) {
+        this._drawDot(point, pointGroupOptions);
+      } else if (curve) {
+        this._drawCurve(curve, pointGroupOptions);
+      }
+      lastPoints.push({
+        time: point.time,
+        x: point.x,
+        y: point.y,
+        pressure: point.pressure
+      });
+    }
+    this.dispatchEvent(new CustomEvent("afterUpdateStroke", { detail: event }));
+  }
+  _strokeEnd(event, shouldUpdate = true) {
+    this._removeMoveUpEventListeners();
+    if (!this._drawingStroke) {
+      return;
+    }
+    if (shouldUpdate) {
+      this._strokeUpdate(event);
+    }
+    this._drawingStroke = false;
+    this._strokePointerId = void 0;
+    this.dispatchEvent(new CustomEvent("endStroke", { detail: event }));
+  }
+  _handlePointerEvents() {
+    this._drawingStroke = false;
+    this.canvas.addEventListener("pointerdown", this._handlePointerDown, {
+      passive: false
+    });
+  }
+  _handleMouseEvents() {
+    this._drawingStroke = false;
+    this.canvas.addEventListener("mousedown", this._handleMouseDown, {
+      passive: false
+    });
+  }
+  _handleTouchEvents() {
+    this.canvas.addEventListener("touchstart", this._handleTouchStart, {
+      passive: false
+    });
+  }
+  // Called when a new line is started
+  _reset(options) {
+    this._lastPoints = [];
+    this._lastVelocity = 0;
+    this._lastWidth = (options.minWidth + options.maxWidth) / 2;
+    this._ctx.fillStyle = options.penColor;
+    this._ctx.globalCompositeOperation = options.compositeOperation;
+  }
+  _createPoint(x, y, pressure) {
+    const rect = this.canvas.getBoundingClientRect();
+    return new Point(
+      x - rect.left,
+      y - rect.top,
+      pressure,
+      (/* @__PURE__ */ new Date()).getTime()
+    );
+  }
+  // Add point to _lastPoints array and generate a new curve if there are enough points (i.e. 3)
+  _addPoint(point, options) {
+    const { _lastPoints } = this;
+    _lastPoints.push(point);
+    if (_lastPoints.length > 2) {
+      if (_lastPoints.length === 3) {
+        _lastPoints.unshift(_lastPoints[0]);
+      }
+      const widths = this._calculateCurveWidths(
+        _lastPoints[1],
+        _lastPoints[2],
+        options
+      );
+      const curve = Bezier.fromPoints(_lastPoints, widths);
+      _lastPoints.shift();
+      return curve;
+    }
+    return null;
+  }
+  _calculateCurveWidths(startPoint, endPoint, options) {
+    const velocity = options.velocityFilterWeight * endPoint.velocityFrom(startPoint) + (1 - options.velocityFilterWeight) * this._lastVelocity;
+    const newWidth = this._strokeWidth(velocity, options);
+    const widths = {
+      end: newWidth,
+      start: this._lastWidth
+    };
+    this._lastVelocity = velocity;
+    this._lastWidth = newWidth;
+    return widths;
+  }
+  _strokeWidth(velocity, options) {
+    return Math.max(options.maxWidth / (velocity + 1), options.minWidth);
+  }
+  _drawCurveSegment(x, y, width) {
+    const ctx = this._ctx;
+    ctx.moveTo(x, y);
+    ctx.arc(x, y, width, 0, 2 * Math.PI, false);
+    this._isEmpty = false;
+  }
+  _drawCurve(curve, options) {
+    const ctx = this._ctx;
+    const widthDelta = curve.endWidth - curve.startWidth;
+    const drawSteps = Math.ceil(curve.length()) * 2;
+    ctx.beginPath();
+    ctx.fillStyle = options.penColor;
+    for (let i = 0; i < drawSteps; i += 1) {
+      const t = i / drawSteps;
+      const tt = t * t;
+      const ttt = tt * t;
+      const u = 1 - t;
+      const uu = u * u;
+      const uuu = uu * u;
+      let x = uuu * curve.startPoint.x;
+      x += 3 * uu * t * curve.control1.x;
+      x += 3 * u * tt * curve.control2.x;
+      x += ttt * curve.endPoint.x;
+      let y = uuu * curve.startPoint.y;
+      y += 3 * uu * t * curve.control1.y;
+      y += 3 * u * tt * curve.control2.y;
+      y += ttt * curve.endPoint.y;
+      const width = Math.min(
+        curve.startWidth + ttt * widthDelta,
+        options.maxWidth
+      );
+      this._drawCurveSegment(x, y, width);
+    }
+    ctx.closePath();
+    ctx.fill();
+  }
+  _drawDot(point, options) {
+    const ctx = this._ctx;
+    const width = options.dotSize > 0 ? options.dotSize : (options.minWidth + options.maxWidth) / 2;
+    ctx.beginPath();
+    this._drawCurveSegment(point.x, point.y, width);
+    ctx.closePath();
+    ctx.fillStyle = options.penColor;
+    ctx.fill();
+  }
+  _fromData(pointGroups, drawCurve, drawDot) {
+    for (const group of pointGroups) {
+      const { points } = group;
+      const pointGroupOptions = this._getPointGroupOptions(group);
+      if (points.length > 1) {
+        for (let j = 0; j < points.length; j += 1) {
+          const basicPoint = points[j];
+          const point = new Point(
+            basicPoint.x,
+            basicPoint.y,
+            basicPoint.pressure,
+            basicPoint.time
+          );
+          if (j === 0) {
+            this._reset(pointGroupOptions);
+          }
+          const curve = this._addPoint(point, pointGroupOptions);
+          if (curve) {
+            drawCurve(curve, pointGroupOptions);
+          }
         }
-    }
-    on() {
-        this.canvas.style.touchAction = 'none';
-        this.canvas.style.msTouchAction = 'none';
-        this.canvas.style.userSelect = 'none';
-        const isIOS = /Macintosh/.test(navigator.userAgent) && 'ontouchstart' in document;
-        if (window.PointerEvent && !isIOS) {
-            this._handlePointerEvents();
-        }
-        else {
-            this._handleMouseEvents();
-            if ('ontouchstart' in window) {
-                this._handleTouchEvents();
-            }
-        }
-    }
-    off() {
-        this.canvas.style.touchAction = 'auto';
-        this.canvas.style.msTouchAction = 'auto';
-        this.canvas.style.userSelect = 'auto';
-        this.canvas.removeEventListener('pointerdown', this._handlePointerDown);
-        this.canvas.removeEventListener('mousedown', this._handleMouseDown);
-        this.canvas.removeEventListener('touchstart', this._handleTouchStart);
-        this._removeMoveUpEventListeners();
-    }
-    _getListenerFunctions() {
-        var _a;
-        const canvasWindow = window.document === this.canvas.ownerDocument
-            ? window
-            : (_a = this.canvas.ownerDocument.defaultView) !== null && _a !== void 0 ? _a : this.canvas.ownerDocument;
-        return {
-            addEventListener: canvasWindow.addEventListener.bind(canvasWindow),
-            removeEventListener: canvasWindow.removeEventListener.bind(canvasWindow),
-        };
-    }
-    _removeMoveUpEventListeners() {
-        const { removeEventListener } = this._getListenerFunctions();
-        removeEventListener('pointermove', this._handlePointerMove);
-        removeEventListener('pointerup', this._handlePointerUp);
-        removeEventListener('mousemove', this._handleMouseMove);
-        removeEventListener('mouseup', this._handleMouseUp);
-        removeEventListener('touchmove', this._handleTouchMove);
-        removeEventListener('touchend', this._handleTouchEnd);
-    }
-    isEmpty() {
-        return this._isEmpty;
-    }
-    fromData(pointGroups, { clear = true } = {}) {
-        if (clear) {
-            this.clear();
-        }
-        this._fromData(pointGroups, this._drawCurve.bind(this), this._drawDot.bind(this));
-        this._data = this._data.concat(pointGroups);
-    }
-    toData() {
-        return this._data;
-    }
-    _isLeftButtonPressed(event, only) {
-        if (only) {
-            return event.buttons === 1;
-        }
-        return (event.buttons & 1) === 1;
-    }
-    _pointerEventToSignatureEvent(event) {
-        return {
-            event: event,
-            type: event.type,
-            x: event.clientX,
-            y: event.clientY,
-            pressure: 'pressure' in event ? event.pressure : 0,
-        };
-    }
-    _touchEventToSignatureEvent(event) {
-        const touch = event.changedTouches[0];
-        return {
-            event: event,
-            type: event.type,
-            x: touch.clientX,
-            y: touch.clientY,
-            pressure: touch.force,
-        };
-    }
-    _getPointGroupOptions(group) {
-        return {
-            penColor: group && 'penColor' in group ? group.penColor : this.penColor,
-            dotSize: group && 'dotSize' in group ? group.dotSize : this.dotSize,
-            minWidth: group && 'minWidth' in group ? group.minWidth : this.minWidth,
-            maxWidth: group && 'maxWidth' in group ? group.maxWidth : this.maxWidth,
-            velocityFilterWeight: group && 'velocityFilterWeight' in group
-                ? group.velocityFilterWeight
-                : this.velocityFilterWeight,
-            compositeOperation: group && 'compositeOperation' in group
-                ? group.compositeOperation
-                : this.compositeOperation,
-        };
-    }
-    _strokeBegin(event) {
-        const cancelled = !this.dispatchEvent(new CustomEvent('beginStroke', { detail: event, cancelable: true }));
-        if (cancelled) {
-            return;
-        }
-        const { addEventListener } = this._getListenerFunctions();
-        switch (event.event.type) {
-            case 'mousedown':
-                addEventListener('mousemove', this._handleMouseMove);
-                addEventListener('mouseup', this._handleMouseUp);
-                break;
-            case 'touchstart':
-                addEventListener('touchmove', this._handleTouchMove);
-                addEventListener('touchend', this._handleTouchEnd);
-                break;
-            case 'pointerdown':
-                addEventListener('pointermove', this._handlePointerMove);
-                addEventListener('pointerup', this._handlePointerUp);
-                break;
-        }
-        this._drawingStroke = true;
-        const pointGroupOptions = this._getPointGroupOptions();
-        const newPointGroup = Object.assign(Object.assign({}, pointGroupOptions), { points: [] });
-        this._data.push(newPointGroup);
+      } else {
         this._reset(pointGroupOptions);
-        this._strokeUpdate(event);
+        drawDot(points[0], pointGroupOptions);
+      }
     }
-    _strokeUpdate(event) {
-        if (!this._drawingStroke) {
-            return;
+  }
+  toSVG({ includeBackgroundColor = false, includeDataUrl = false } = {}) {
+    const pointGroups = this._data;
+    const ratio = Math.max(window.devicePixelRatio || 1, 1);
+    const minX = 0;
+    const minY = 0;
+    const maxX = this.canvas.width / ratio;
+    const maxY = this.canvas.height / ratio;
+    const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    svg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+    svg.setAttribute("xmlns:xlink", "http://www.w3.org/1999/xlink");
+    svg.setAttribute("viewBox", `${minX} ${minY} ${maxX} ${maxY}`);
+    svg.setAttribute("width", maxX.toString());
+    svg.setAttribute("height", maxY.toString());
+    if (includeBackgroundColor && this.backgroundColor) {
+      const rect = document.createElement("rect");
+      rect.setAttribute("width", "100%");
+      rect.setAttribute("height", "100%");
+      rect.setAttribute("fill", this.backgroundColor);
+      svg.appendChild(rect);
+    }
+    if (includeDataUrl && this._dataUrl) {
+      const ratio2 = this._dataUrlOptions?.ratio || window.devicePixelRatio || 1;
+      const width = this._dataUrlOptions?.width || this.canvas.width / ratio2;
+      const height = this._dataUrlOptions?.height || this.canvas.height / ratio2;
+      const xOffset = this._dataUrlOptions?.xOffset || 0;
+      const yOffset = this._dataUrlOptions?.yOffset || 0;
+      const image = document.createElement("image");
+      image.setAttribute("x", xOffset.toString());
+      image.setAttribute("y", yOffset.toString());
+      image.setAttribute("width", width.toString());
+      image.setAttribute("height", height.toString());
+      image.setAttribute("preserveAspectRatio", "none");
+      image.setAttribute("href", this._dataUrl);
+      svg.appendChild(image);
+    }
+    this._fromData(
+      pointGroups,
+      (curve, { penColor }) => {
+        const path = document.createElement("path");
+        if (!isNaN(curve.control1.x) && !isNaN(curve.control1.y) && !isNaN(curve.control2.x) && !isNaN(curve.control2.y)) {
+          const attr = `M ${curve.startPoint.x.toFixed(3)},${curve.startPoint.y.toFixed(
+            3
+          )} C ${curve.control1.x.toFixed(3)},${curve.control1.y.toFixed(3)} ${curve.control2.x.toFixed(3)},${curve.control2.y.toFixed(3)} ${curve.endPoint.x.toFixed(3)},${curve.endPoint.y.toFixed(3)}`;
+          path.setAttribute("d", attr);
+          path.setAttribute("stroke-width", (curve.endWidth * 2.25).toFixed(3));
+          path.setAttribute("stroke", penColor);
+          path.setAttribute("fill", "none");
+          path.setAttribute("stroke-linecap", "round");
+          svg.appendChild(path);
         }
-        if (this._data.length === 0) {
-            this._strokeBegin(event);
-            return;
-        }
-        this.dispatchEvent(new CustomEvent('beforeUpdateStroke', { detail: event }));
-        const point = this._createPoint(event.x, event.y, event.pressure);
-        const lastPointGroup = this._data[this._data.length - 1];
-        const lastPoints = lastPointGroup.points;
-        const lastPoint = lastPoints.length > 0 && lastPoints[lastPoints.length - 1];
-        const isLastPointTooClose = lastPoint
-            ? point.distanceTo(lastPoint) <= this.minDistance
-            : false;
-        const pointGroupOptions = this._getPointGroupOptions(lastPointGroup);
-        if (!lastPoint || !(lastPoint && isLastPointTooClose)) {
-            const curve = this._addPoint(point, pointGroupOptions);
-            if (!lastPoint) {
-                this._drawDot(point, pointGroupOptions);
-            }
-            else if (curve) {
-                this._drawCurve(curve, pointGroupOptions);
-            }
-            lastPoints.push({
-                time: point.time,
-                x: point.x,
-                y: point.y,
-                pressure: point.pressure,
-            });
-        }
-        this.dispatchEvent(new CustomEvent('afterUpdateStroke', { detail: event }));
-    }
-    _strokeEnd(event, shouldUpdate = true) {
-        this._removeMoveUpEventListeners();
-        if (!this._drawingStroke) {
-            return;
-        }
-        if (shouldUpdate) {
-            this._strokeUpdate(event);
-        }
-        this._drawingStroke = false;
-        this.dispatchEvent(new CustomEvent('endStroke', { detail: event }));
-    }
-    _handlePointerEvents() {
-        this._drawingStroke = false;
-        this.canvas.addEventListener('pointerdown', this._handlePointerDown);
-    }
-    _handleMouseEvents() {
-        this._drawingStroke = false;
-        this.canvas.addEventListener('mousedown', this._handleMouseDown);
-    }
-    _handleTouchEvents() {
-        this.canvas.addEventListener('touchstart', this._handleTouchStart);
-    }
-    _reset(options) {
-        this._lastPoints = [];
-        this._lastVelocity = 0;
-        this._lastWidth = (options.minWidth + options.maxWidth) / 2;
-        this._ctx.fillStyle = options.penColor;
-        this._ctx.globalCompositeOperation = options.compositeOperation;
-    }
-    _createPoint(x, y, pressure) {
-        const rect = this.canvas.getBoundingClientRect();
-        return new Point(x - rect.left, y - rect.top, pressure, new Date().getTime());
-    }
-    _addPoint(point, options) {
-        const { _lastPoints } = this;
-        _lastPoints.push(point);
-        if (_lastPoints.length > 2) {
-            if (_lastPoints.length === 3) {
-                _lastPoints.unshift(_lastPoints[0]);
-            }
-            const widths = this._calculateCurveWidths(_lastPoints[1], _lastPoints[2], options);
-            const curve = Bezier.fromPoints(_lastPoints, widths);
-            _lastPoints.shift();
-            return curve;
-        }
-        return null;
-    }
-    _calculateCurveWidths(startPoint, endPoint, options) {
-        const velocity = options.velocityFilterWeight * endPoint.velocityFrom(startPoint) +
-            (1 - options.velocityFilterWeight) * this._lastVelocity;
-        const newWidth = this._strokeWidth(velocity, options);
-        const widths = {
-            end: newWidth,
-            start: this._lastWidth,
-        };
-        this._lastVelocity = velocity;
-        this._lastWidth = newWidth;
-        return widths;
-    }
-    _strokeWidth(velocity, options) {
-        return Math.max(options.maxWidth / (velocity + 1), options.minWidth);
-    }
-    _drawCurveSegment(x, y, width) {
-        const ctx = this._ctx;
-        ctx.moveTo(x, y);
-        ctx.arc(x, y, width, 0, 2 * Math.PI, false);
-        this._isEmpty = false;
-    }
-    _drawCurve(curve, options) {
-        const ctx = this._ctx;
-        const widthDelta = curve.endWidth - curve.startWidth;
-        const drawSteps = Math.ceil(curve.length()) * 2;
-        ctx.beginPath();
-        ctx.fillStyle = options.penColor;
-        for (let i = 0; i < drawSteps; i += 1) {
-            const t = i / drawSteps;
-            const tt = t * t;
-            const ttt = tt * t;
-            const u = 1 - t;
-            const uu = u * u;
-            const uuu = uu * u;
-            let x = uuu * curve.startPoint.x;
-            x += 3 * uu * t * curve.control1.x;
-            x += 3 * u * tt * curve.control2.x;
-            x += ttt * curve.endPoint.x;
-            let y = uuu * curve.startPoint.y;
-            y += 3 * uu * t * curve.control1.y;
-            y += 3 * u * tt * curve.control2.y;
-            y += ttt * curve.endPoint.y;
-            const width = Math.min(curve.startWidth + ttt * widthDelta, options.maxWidth);
-            this._drawCurveSegment(x, y, width);
-        }
-        ctx.closePath();
-        ctx.fill();
-    }
-    _drawDot(point, options) {
-        const ctx = this._ctx;
-        const width = options.dotSize > 0
-            ? options.dotSize
-            : (options.minWidth + options.maxWidth) / 2;
-        ctx.beginPath();
-        this._drawCurveSegment(point.x, point.y, width);
-        ctx.closePath();
-        ctx.fillStyle = options.penColor;
-        ctx.fill();
-    }
-    _fromData(pointGroups, drawCurve, drawDot) {
-        for (const group of pointGroups) {
-            const { points } = group;
-            const pointGroupOptions = this._getPointGroupOptions(group);
-            if (points.length > 1) {
-                for (let j = 0; j < points.length; j += 1) {
-                    const basicPoint = points[j];
-                    const point = new Point(basicPoint.x, basicPoint.y, basicPoint.pressure, basicPoint.time);
-                    if (j === 0) {
-                        this._reset(pointGroupOptions);
-                    }
-                    const curve = this._addPoint(point, pointGroupOptions);
-                    if (curve) {
-                        drawCurve(curve, pointGroupOptions);
-                    }
-                }
-            }
-            else {
-                this._reset(pointGroupOptions);
-                drawDot(points[0], pointGroupOptions);
-            }
-        }
-    }
-    toSVG({ includeBackgroundColor = false } = {}) {
-        const pointGroups = this._data;
-        const ratio = Math.max(window.devicePixelRatio || 1, 1);
-        const minX = 0;
-        const minY = 0;
-        const maxX = this.canvas.width / ratio;
-        const maxY = this.canvas.height / ratio;
-        const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-        svg.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
-        svg.setAttribute('xmlns:xlink', 'http://www.w3.org/1999/xlink');
-        svg.setAttribute('viewBox', `${minX} ${minY} ${maxX} ${maxY}`);
-        svg.setAttribute('width', maxX.toString());
-        svg.setAttribute('height', maxY.toString());
-        if (includeBackgroundColor && this.backgroundColor) {
-            const rect = document.createElement('rect');
-            rect.setAttribute('width', '100%');
-            rect.setAttribute('height', '100%');
-            rect.setAttribute('fill', this.backgroundColor);
-            svg.appendChild(rect);
-        }
-        this._fromData(pointGroups, (curve, { penColor }) => {
-            const path = document.createElement('path');
-            if (!isNaN(curve.control1.x) &&
-                !isNaN(curve.control1.y) &&
-                !isNaN(curve.control2.x) &&
-                !isNaN(curve.control2.y)) {
-                const attr = `M ${curve.startPoint.x.toFixed(3)},${curve.startPoint.y.toFixed(3)} ` +
-                    `C ${curve.control1.x.toFixed(3)},${curve.control1.y.toFixed(3)} ` +
-                    `${curve.control2.x.toFixed(3)},${curve.control2.y.toFixed(3)} ` +
-                    `${curve.endPoint.x.toFixed(3)},${curve.endPoint.y.toFixed(3)}`;
-                path.setAttribute('d', attr);
-                path.setAttribute('stroke-width', (curve.endWidth * 2.25).toFixed(3));
-                path.setAttribute('stroke', penColor);
-                path.setAttribute('fill', 'none');
-                path.setAttribute('stroke-linecap', 'round');
-                svg.appendChild(path);
-            }
-        }, (point, { penColor, dotSize, minWidth, maxWidth }) => {
-            const circle = document.createElement('circle');
-            const size = dotSize > 0 ? dotSize : (minWidth + maxWidth) / 2;
-            circle.setAttribute('r', size.toString());
-            circle.setAttribute('cx', point.x.toString());
-            circle.setAttribute('cy', point.y.toString());
-            circle.setAttribute('fill', penColor);
-            svg.appendChild(circle);
-        });
-        return svg.outerHTML;
-    }
-}
+      },
+      (point, { penColor, dotSize, minWidth, maxWidth }) => {
+        const circle = document.createElement("circle");
+        const size = dotSize > 0 ? dotSize : (minWidth + maxWidth) / 2;
+        circle.setAttribute("r", size.toString());
+        circle.setAttribute("cx", point.x.toString());
+        circle.setAttribute("cy", point.y.toString());
+        circle.setAttribute("fill", penColor);
+        svg.appendChild(circle);
+      }
+    );
+    return svg.outerHTML;
+  }
+};
 
 function debounce(func, wait, onStart) {
   var timeout;
@@ -44960,7 +47520,10 @@ function useSignature (props, context, dependencies) {
     }, {
       flush: 'post'
     });
-    watch(modes, () => {
+    watch(modes, (n, o) => {
+      if (dataEquals(n, o)) {
+        return;
+      }
       initPad();
       setDefaultMode(true);
     });
@@ -45137,7 +47700,7 @@ function useSignature (props, context, dependencies) {
 var SignatureElement = {
   name: 'SignatureElement',
   mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
-  emits: ['change', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
+  emits: ['reset', 'clear', 'change', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
   props: {
     type: {
       required: false,
@@ -45271,7 +47834,7 @@ var SignatureElement = {
   }
 };
 
-var base$8 = function base(props, context, dependencies) {
+var base$7 = function base(props, context, dependencies) {
   var {
     lazy
   } = toRefs(props);
@@ -45303,7 +47866,7 @@ var base$8 = function base(props, context, dependencies) {
 var SliderElement = {
   name: 'SliderElement',
   mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
-  emits: ['change', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
+  emits: ['reset', 'clear', 'change', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
   props: {
     type: {
       required: false,
@@ -45390,15 +47953,16 @@ var SliderElement = {
   },
   setup(props, ctx) {
     var context = _objectSpread2$1({}, ctx);
-    context.features = [base$Y, base$1f, base$1e, base$$, base$R, base$T, min, base$_, base$1i, base$U, base$X, base$H, slider, base$Q, slider$1, base$1a, base$F, base$15, base$O, base$13, base$12, base$1g, base$14, base$11, base$y, base$8, base$W, base$K, base$Z];
+    context.features = [base$Y, base$1f, base$1e, base$$, base$R, base$T, min, base$_, base$1i, base$U, base$X, base$H, slider, base$Q, slider$1, base$1a, base$F, base$15, base$O, base$13, base$12, base$1g, base$14, base$11, base$y, base$7, base$W, base$K, base$Z];
     context.slots = ['label', 'info', 'required', 'description', 'before', 'between', 'after'];
     return _objectSpread2$1({}, base$S(props, context));
   }
 };
 
-var base$7 = function base(props, context, dependencies) {
+var base$6 = function base(props, context, dependencies) {
   var {
-    content
+    content,
+    expressions
   } = toRefs(props);
 
   // ============ DEPENDENCIES ============
@@ -45406,7 +47970,8 @@ var base$7 = function base(props, context, dependencies) {
   var {
     fieldSlots,
     el$,
-    form$
+    form$,
+    parent
   } = dependencies;
 
   // =============== INJECT ===============
@@ -45440,6 +48005,10 @@ var base$7 = function base(props, context, dependencies) {
         [curr]: typeof resolvedContent[curr] === 'function' ? resolvedContent[curr](el$.value) : resolvedContent[curr]
       }), {});
       resolvedContent = localize(resolvedContent, config$.value, form$.value);
+    }
+    if (expressions.value && typeof resolvedContent === 'string' && resolvedContent.includes('{')) {
+      var _parent$value;
+      resolvedContent = form$.value.resolveExpression(resolvedContent, (_parent$value = parent.value) === null || _parent$value === void 0 ? void 0 : _parent$value.dataPath);
     }
     return form$.value.$vueform.sanitize(resolvedContent);
   });
@@ -45523,6 +48092,11 @@ var StaticElement = {
       type: [String, Object, Function],
       default: ''
     },
+    expressions: {
+      required: false,
+      type: [Boolean],
+      default: false
+    },
     wrap: {
       required: false,
       type: [Boolean],
@@ -45596,13 +48170,13 @@ var StaticElement = {
   },
   setup(props, ctx) {
     var context = _objectSpread2$1({}, ctx);
-    context.features = [base$Y, base$1f, base$1e, base$$, static_$1, base$1i, static_$2, base$1a, base$15, base$13, base$12, base$1g, base$14, base$11, base$_, static_$3, base$Z, base$7];
+    context.features = [base$Y, base$1f, base$1e, base$$, static_$1, base$1i, static_$2, base$1a, base$15, base$13, base$12, base$1g, base$14, base$11, base$_, static_$3, base$Z, base$6];
     context.slots = ['default', 'label', 'info', 'description', 'before', 'between', 'after'];
     return _objectSpread2$1({}, static_(props, context));
   }
 };
 
-var base$6 = function base(props, context, dependencies) {
+var base$5 = function base(props, context, dependencies) {
   // ============ DEPENDENCIES ============
 
   var fire = dependencies.fire;
@@ -45626,7 +48200,7 @@ var base$6 = function base(props, context, dependencies) {
 var TagsElement = {
   name: 'TagsElement',
   mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
-  emits: ['change', 'select', 'deselect', 'search-change', 'open', 'close', 'tag', 'clear', 'paste', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
+  emits: ['reset', 'clear', 'change', 'select', 'deselect', 'search-change', 'open', 'close', 'tag', 'clear', 'paste', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
   props: {
     type: {
       required: false,
@@ -45939,13 +48513,13 @@ var TagsElement = {
   },
   setup(props, ctx) {
     var context = _objectSpread2$1({}, ctx);
-    context.features = [base$Y, base$1f, base$1e, base$$, tags$4, base$T, array$1, base$_, base$L, base$1i, tags$5, base$X, base$H, base$I, base$M, tags$1, base$Q, tags$2, base$1a, array, tags$3, base$15, base$O, base$13, base$12, base$1g, base$14, base$11, base$e, base$6, base$d, tags, base$W, base$K, base$Z, base$x];
+    context.features = [base$Y, base$1f, base$1e, base$$, tags$4, base$T, array$1, base$_, base$L, base$1i, tags$5, base$X, base$H, base$I, base$M, tags$1, base$Q, tags$2, base$1a, array, tags$3, base$15, base$O, base$13, base$12, base$1g, base$14, base$11, base$d, base$5, base$c, tags, base$W, base$K, base$Z, base$x];
     context.slots = ['tag', 'option', 'placeholder', 'group-label', 'before-list', 'after-list', 'no-results', 'no-options', 'caret', 'spinner', 'clear', 'label', 'info', 'required', 'description', 'before', 'between', 'after'];
     return _objectSpread2$1({}, base$S(props, context));
   }
 };
 
-var base$5 = function base(props, context, dependencies) {
+var base$4 = function base(props, context, dependencies) {
   var {
     autogrow
   } = toRefs(props);
@@ -46002,7 +48576,7 @@ var base$5 = function base(props, context, dependencies) {
 var multilingual = function multilingual(props, context, dependencies) {
   var {
     autosize
-  } = base$5(props, context, dependencies);
+  } = base$4(props, context, dependencies);
 
   // ============ DEPENDENCIES ============
 
@@ -46023,7 +48597,7 @@ var multilingual = function multilingual(props, context, dependencies) {
 var TextareaElement = {
   name: 'TextareaElement',
   mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
-  emits: ['change', 'blur', 'focus', 'keydown', 'keyup', 'keypress', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
+  emits: ['reset', 'clear', 'change', 'blur', 'focus', 'keydown', 'keyup', 'keypress', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
   props: {
     type: {
       required: false,
@@ -46117,67 +48691,16 @@ var TextareaElement = {
   },
   setup(props, ctx) {
     var context = _objectSpread2$1({}, ctx);
-    context.features = [base$Y, base$1f, base$1e, base$$, base$R, base$T, base$P, base$_, base$L, base$1i, base$U, base$X, base$G, base$A, text$1, base$1a, text$2, base$Q, base$N, base$5, textarea, base$15, base$O, base$13, base$12, base$1g, base$14, base$11, base$q, base$w, base$c, base$W, base$K, base$Z, base$a, base$x];
+    context.features = [base$Y, base$1f, base$1e, base$$, base$R, base$T, base$P, base$_, base$L, base$1i, base$U, base$X, base$G, base$A, text$1, base$1a, text$2, base$Q, base$N, base$4, textarea, base$15, base$O, base$13, base$12, base$1g, base$14, base$11, base$q, base$w, base$b, base$W, base$K, base$Z, base$9, base$x];
     context.slots = ['label', 'info', 'required', 'description', 'before', 'between', 'after', 'addon-before', 'addon-after'];
     return _objectSpread2$1({}, base$S(props, context));
   }
 };
 
-var base$4 = function base(props, context, dependencies) {
-  var {
-    forceNumbers
-  } = toRefs(props);
-
-  // ============ DEPENDENCIES =============
-
-  var {
-    form$
-  } = dependencies;
-
-  // =============== INJECT ===============
-
-  var config$ = inject('config$');
-
-  // =============== METHODS ===============
-
-  /**
-   * Whether the value should be converted to number/float.
-   *
-   * @returns {boolean}
-   * @private
-   */
-  var shouldForceNumbers = () => {
-    return forceNumbers.value || config$.value.config.forceNumbers && form$.value.options.forceNumbers !== false && forceNumbers.value !== false || form$.value.options.forceNumbers && forceNumbers.value !== false;
-  };
-
-  /**
-   * Converts string value to number or float.
-   *
-   * @param {any} str* the string to be converted
-   * @returns {number|float|string}
-   * @private
-   */
-  var stringToNumber = str => {
-    var v = str;
-    if (typeof str === 'string') {
-      if (/^[-]?\d+([\.,]\d+)?$/.test(str)) {
-        v = parseFloat(str.replace(',', '.'));
-      } else if (/^[-]?\d+$/.test(str)) {
-        v = parseInt(str, 10);
-      }
-    }
-    return v;
-  };
-  return {
-    shouldForceNumbers,
-    stringToNumber
-  };
-};
-
 var TextElement = {
   name: 'TextElement',
   mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
-  emits: ['change', 'blur', 'focus', 'keydown', 'keyup', 'keypress', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
+  emits: ['reset', 'clear', 'change', 'blur', 'focus', 'keydown', 'keyup', 'keypress', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
   props: {
     type: {
       required: false,
@@ -46233,6 +48756,12 @@ var TextElement = {
       type: [Boolean],
       default: null
     },
+    expression: {
+      required: false,
+      type: [String, Object],
+      default: undefined,
+      localized: true
+    },
     attrs: {
       required: false,
       type: [Object],
@@ -46281,7 +48810,7 @@ var TextElement = {
   },
   setup(props, ctx) {
     var context = _objectSpread2$1({}, ctx);
-    context.features = [base$Y, base$1f, base$1e, base$$, base$R, base$T, base$P, base$_, base$1i, base$U, base$X, base$G, base$A, text$1, base$1a, text$2, base$M, base$4, text$3, base$N, text, base$15, base$O, base$13, base$12, base$1g, base$14, base$11, base$q, base$w, base$c, base$W, base$K, base$Z, base$a, base$L, base$x];
+    context.features = [base$Y, base$1f, base$1e, base$$, base$R, base$T, base$P, base$_, base$1i, base$U, base$X, base$G, base$A, text$1, base$1a, text$2, base$M, base$n, text$3, base$N, text, base$15, base$O, base$13, base$12, base$1g, base$14, base$11, base$q, base$w, base$b, base$W, base$K, base$Z, base$9, base$L, base$x];
     context.slots = ['label', 'info', 'required', 'description', 'before', 'between', 'after', 'addon-before', 'addon-after'];
     return _objectSpread2$1({}, base$S(props, context));
   }
@@ -46290,7 +48819,7 @@ var TextElement = {
 var ToggleElement = {
   name: 'ToggleElement',
   mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
-  emits: ['change', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
+  emits: ['reset', 'clear', 'change', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
   props: {
     type: {
       required: false,
@@ -46451,7 +48980,7 @@ var base$2 = function base(props, context, dependencies) {
 var EditorElement = {
   name: 'EditorElement',
   mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
-  emits: ['change', 'blur', 'alert', 'error', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
+  emits: ['reset', 'clear', 'change', 'blur', 'alert', 'error', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
   props: {
     type: {
       required: false,
@@ -46534,7 +49063,7 @@ var EditorElement = {
   },
   setup(props, ctx) {
     var context = _objectSpread2$1({}, ctx);
-    context.features = [base$Y, base$1f, base$1e, base$$, base$R, base$T, base$P, base$_, base$1i, base$U, base$X, text$1, base$1a, text$2, base$Q, base$N, editor, base$15, base$O, base$13, base$12, base$3, base$1g, base$14, base$11, base$q, base$2, base$r, base$c, base$W, base$K, editor$1, base$x];
+    context.features = [base$Y, base$1f, base$1e, base$$, base$R, base$T, base$P, base$_, base$1i, base$U, base$X, text$1, base$1a, text$2, base$Q, base$N, editor, base$15, base$O, base$13, base$12, base$3, base$1g, base$14, base$11, base$q, base$2, base$r, base$b, base$W, base$K, editor$1, base$x];
     context.slots = ['label', 'info', 'required', 'description', 'before', 'between', 'after'];
     return _objectSpread2$1({}, base$S(props, context));
   }
@@ -46573,7 +49102,7 @@ var base$1 = function base(props, context, dependencies) {
 var TTextareaElement = {
   name: 'TTextareaElement',
   mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
-  emits: ['change', 'blur', 'focus', 'keydown', 'keyup', 'keypress', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
+  emits: ['reset', 'clear', 'change', 'blur', 'focus', 'keydown', 'keyup', 'keypress', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
   props: {
     type: {
       required: false,
@@ -46667,7 +49196,7 @@ var TTextareaElement = {
   },
   setup(props, ctx) {
     var context = _objectSpread2$1({}, ctx);
-    context.features = [base$Y, base$1f, base$1e, base$$, base$R, base$T, base$_, base$L, base$1i, base$U, base$X, base$G, base$A, base$1, multilingual$6, multilingual$2, multilingual$7, base$1a, multilingual$3, multilingual$5, multilingual$1, base$15, base$O, base$13, base$12, base$1g, base$14, base$11, base$q, multilingual, base$w, base$c, base$W, multilingual$4, base$Z, base$a, base$x];
+    context.features = [base$Y, base$1f, base$1e, base$$, base$R, base$T, base$_, base$L, base$1i, base$U, base$X, base$G, base$A, base$1, multilingual$6, multilingual$2, multilingual$7, base$1a, multilingual$3, multilingual$5, multilingual$1, base$15, base$O, base$13, base$12, base$1g, base$14, base$11, base$q, multilingual, base$w, base$b, base$W, multilingual$4, base$Z, base$9, base$x];
     context.slots = ['label', 'info', 'required', 'description', 'before', 'between', 'after', 'addon-before', 'addon-after'];
     return _objectSpread2$1({}, multilingual$8(props, context));
   }
@@ -46676,7 +49205,7 @@ var TTextareaElement = {
 var TTextElement = {
   name: 'TTextElement',
   mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
-  emits: ['change', 'blur', 'focus', 'keydown', 'keyup', 'keypress', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
+  emits: ['reset', 'clear', 'change', 'blur', 'focus', 'keydown', 'keyup', 'keypress', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
   props: {
     type: {
       required: false,
@@ -46775,7 +49304,7 @@ var TTextElement = {
   },
   setup(props, ctx) {
     var context = _objectSpread2$1({}, ctx);
-    context.features = [base$Y, base$1f, base$1e, base$$, base$R, base$T, base$_, base$L, base$1i, base$U, base$X, base$G, base$A, base$1, multilingual$6, multilingual$2, multilingual$7, base$1a, multilingual$3, base$M, multilingual$5, multilingual$1, base$15, base$O, base$13, base$12, base$1g, base$14, base$11, base$q, base$w, base$c, base$W, multilingual$4, base$Z, base$a, base$x];
+    context.features = [base$Y, base$1f, base$1e, base$$, base$R, base$T, base$_, base$L, base$1i, base$U, base$X, base$G, base$A, base$1, multilingual$6, multilingual$2, multilingual$7, base$1a, multilingual$3, base$M, multilingual$5, multilingual$1, base$15, base$O, base$13, base$12, base$1g, base$14, base$11, base$q, base$w, base$b, base$W, multilingual$4, base$Z, base$9, base$x];
     context.slots = ['label', 'info', 'required', 'description', 'before', 'between', 'after', 'addon-before', 'addon-after'];
     return _objectSpread2$1({}, multilingual$8(props, context));
   }
@@ -46784,7 +49313,7 @@ var TTextElement = {
 var TEditorElement = {
   name: 'TEditorElement',
   mixins: [BaseElement, HasView, HasChange, HasData, HasValidation],
-  emits: ['change', 'blur', 'alert', 'error', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
+  emits: ['reset', 'clear', 'change', 'blur', 'alert', 'error', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'],
   props: {
     type: {
       required: false,
@@ -46867,7 +49396,7 @@ var TEditorElement = {
   },
   setup(props, ctx) {
     var context = _objectSpread2$1({}, ctx);
-    context.features = [base$Y, base$1f, base$1e, base$$, base$R, base$T, base$_, base$1i, base$U, base$X, base$1, multilingual$6, multilingual$2, multilingual$7, base$1a, multilingual$3, multilingual$5, teditor, base$15, base$O, base$13, base$12, base$3, base$1g, base$14, base$11, base$q, base$2, base$r, base$c, base$W, multilingual$4, base$Z, base$x];
+    context.features = [base$Y, base$1f, base$1e, base$$, base$R, base$T, base$_, base$1i, base$U, base$X, base$1, multilingual$6, multilingual$2, multilingual$7, base$1a, multilingual$3, multilingual$5, teditor, base$15, base$O, base$13, base$12, base$3, base$1g, base$14, base$11, base$q, base$2, base$r, base$b, base$W, multilingual$4, base$Z, base$x];
     context.slots = ['label', 'info', 'required', 'description', 'before', 'between', 'after'];
     return _objectSpread2$1({}, multilingual$8(props, context));
   }
@@ -47498,4 +50027,4 @@ var vueform = installer(undefined, {
   moment
 });
 
-export { ButtonElement, CaptchaElement, CheckboxElement, CheckboxgroupCheckbox, CheckboxgroupElement, DateElement, DatepickerWrapper, DatesElement, DragAndDrop, EditorElement, EditorWrapper, ElementAddon, ElementAddonOptions, ElementDescription, ElementError, ElementInfo, ElementLabel, ElementLabelFloating, ElementLayout, ElementLayoutInline, ElementLoader, ElementMessage, ElementRequired, ElementText, FileElement, FilePreview, FormElements, FormErrors, FormLanguage, FormLanguages, FormMessages, FormStep, FormSteps, FormStepsControl, FormStepsControls, FormTab, FormTabs, GenericElement, GridElement, GroupElement, HiddenElement, ListElement, LocationElement, MatrixElement, MultifileElement, MultiselectElement, ObjectElement, PhoneElement, RadioElement, RadiogroupElement, RadiogroupRadio, SelectElement, SignatureElement, SliderElement, StaticElement, TEditorElement, TTextElement, TTextareaElement, TagsElement, TextElement, TextareaElement, ToggleElement, Validator, VueformComponent as Vueform, VueformElement, accepted, active_url, after, after_or_equal, alpha, alpha_dash, alpha_num, array$2 as array, before, before_or_equal, between, boolean$1 as boolean, captcha$2 as captcha, completed, confirmed, date$4 as date, date_equals, date_format, vueform as default, defineConfig, defineElement, different, digits, digits_between, dimensions, distinct, element, email, exists, file$5 as file, filled, gt, gte, image, in_, in_array, installer, integer, ip, ipv4, ipv6, json, lt, lte, max, mimes, mimetypes, min$1 as min, not_in, not_regex, nullable, numeric, regex, required, same, size, string, timezone, unique, url, base$1g as useClasses, base$1h as useVueform, uuid, vueform };
+export { ButtonElement, CaptchaElement, CheckboxElement, CheckboxgroupCheckbox, CheckboxgroupElement, DateElement, DatepickerWrapper, DatesElement, DragAndDrop, EditorElement, EditorWrapper, ElementAddon, ElementAddonOptions, ElementDescription, ElementError, ElementInfo, ElementLabel, ElementLabelFloating, ElementLayout, ElementLayoutInline, ElementLoader, ElementMessage, ElementRequired, ElementText, FileElement, FilePreview, FormElements, FormErrors, FormLanguage, FormLanguages, FormMessages, FormStep, FormSteps, FormStepsControl, FormStepsControls, FormTab, FormTabs, GenericElement, GridElement, GroupElement, HiddenElement, ListElement, LocationElement, MatrixElement, MultifileElement, MultiselectElement, ObjectElement, PhoneElement, RadioElement, RadiogroupElement, RadiogroupRadio, SelectElement, SignatureElement, SliderElement, StaticElement, TEditorElement, TTextElement, TTextareaElement, TagsElement, TextElement, TextareaElement, ToggleElement, Validator, VueformComponent as Vueform, VueformElement, accepted, active_url, after, after_or_equal, alpha, alpha_dash, alpha_num, array$2 as array, before, before_or_equal, between, boolean$1 as boolean, captcha$2 as captcha, completed, confirmed, date$4 as date, date_equals, date_format, vueform as default, defineConfig, defineElement, different, digits, digits_between, dimensions, distinct, element, email, exists, file$5 as file, filled, gt, gte, image, in_, in_array, installer, integer, ip, ipv4, ipv6, json, lt, lte, max$1 as max, mimes, mimetypes, min$2 as min, not_in, not_regex, nullable, numeric, regex, required, same, size, string, timezone, unique, url, base$1g as useClasses, base$1h as useVueform, uuid, vueform };

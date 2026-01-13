@@ -5,6 +5,7 @@ import cloneDeep from 'lodash/cloneDeep'
 import { toRefs, ref, computed, watch, inject, nextTick } from 'vue'
 import localize from './../../utils/localize'
 import replaceWildcards from './../../utils/replaceWildcards'
+import dataEquals from './../../utils/dataEquals'
 
 const base = function(props, context, dependencies)
 {
@@ -242,7 +243,7 @@ const base = function(props, context, dependencies)
       return
     }
 
-    if (!Array.isArray(nullValue.value) && value.value && values.indexOf(object.value ? value.value[valueProp.value] : value.value) === -1) {
+    if (!Array.isArray(nullValue.value) && value.value && (values.indexOf(object?.value ? value.value[valueProp.value] : value.value) === -1)) {
       value.value = cloneDeep(nullValue.value)
     }
     else if (Array.isArray(nullValue.value) && value.value.length) {
@@ -284,7 +285,11 @@ const base = function(props, context, dependencies)
 
         resolvedUrl = resolvedUrl.replace(match[0], encodeURIComponent(elValue))
 
-        watchers.value.push(watch(computed(() => el$?.value), () => {
+        watchers.value.push(watch(computed(() => el$?.value), (n, o) => {
+          if (dataEquals(n, o)) {
+            return
+          }
+
           updateItems()
         }))
       }
@@ -406,7 +411,13 @@ const checkboxgroup = function(props, context, dependencies)
     })
     
     return resolvedOptions.map((o) => {
-      return { ...o, label: form$.value.$vueform.sanitize(localize(o.label, config$.value, form$.value)) }
+      const option = { ...o, label: form$.value.$vueform.sanitize(localize(o.label, config$.value, form$.value)) }
+
+      if (o.description) {
+        option.description = form$.value.$vueform.sanitize(localize(o.description, config$.value, form$.value))
+      }
+
+      return option
     })
   })
   
@@ -440,13 +451,15 @@ const checkboxgroup = function(props, context, dependencies)
    * @returns {Promise}
    * @private
    */
-  const resolveOptionsFromUrl = async () => {
+  const resolveOptionsFromUrl = async (cleanup = true) => {
     try {
       let url = await resolveUrlAndSetWatchers(items.value, updateItems)
 
       options.value = (await form$.value.$vueform.services.axios.get(url))?.data || []
 
-      cleanupValue(resolvedOptions.value?.map(o=>o.value) || [])
+      if (cleanup === true) {
+        cleanupValue(resolvedOptions.value?.map(o=>o.value) || [])
+      }
     } catch (e) {
       options.value = []
       console.warn(`Couldn\'t resolve items from ${ items.value }`, e)
@@ -474,11 +487,11 @@ const checkboxgroup = function(props, context, dependencies)
    * @returns {Promise}
    * @private
    */
-  const resolveOptions = async () => {
+  const resolveOptions = async (cleanup = true) => {
     if (typeof items.value === 'function') {
       await resolveOptionsFromFunction()
     } else if (typeof items.value === 'string') {
-      await resolveOptionsFromUrl()
+      await resolveOptionsFromUrl(cleanup)
     } else {
       options.value = items.value
     }
@@ -486,7 +499,7 @@ const checkboxgroup = function(props, context, dependencies)
   
   // ================ HOOKS ===============
   
-  resolveOptions()
+  resolveOptions(false)
   watch(items, resolveOptions)
   
   return {

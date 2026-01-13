@@ -3395,71 +3395,6 @@ export default {
         }
       }
     },
-    "multilingual": {
-      "computed": {
-        "data": {
-          "public": true,
-          "types": [
-            "object"
-          ],
-          "description": "The value of the element in `{[name]: value}` value format. This gets merged with the parent component's data."
-        },
-        "requestData": {
-          "public": true,
-          "types": [
-            "object"
-          ],
-          "description": "Same as `data` property except that it only includes the element's value if [`submit`](#option-submit) is not disabled and [`available`](#property-available) is `true` (has no [`conditions`](#option-conditions) or they are fulfilled)."
-        }
-      },
-      "methods": {
-        "load": {
-          "public": true,
-          "returns": "void",
-          "description": "Loads value to the element using optional [`formatLoad`](#option-format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.",
-          "params": {
-            "value": {
-              "types": [
-                "any"
-              ],
-              "required": true,
-              "description": "the value to be loaded"
-            },
-            "format": {
-              "types": [
-                "boolean"
-              ],
-              "required": false,
-              "description": "whether the loaded value should be formatted with [`formatLoad`](#option-format-load) before setting the value of the element (default: `false`)"
-            }
-          }
-        },
-        "update": {
-          "public": true,
-          "returns": "void",
-          "description": "Updates the value of the element similarly to [`load`](#method-load), only that it can\\'t format data.",
-          "params": {
-            "value": {
-              "types": [
-                "any"
-              ],
-              "required": true,
-              "description": "the value to be set"
-            }
-          }
-        },
-        "clear": {
-          "public": true,
-          "returns": "void",
-          "description": "Clears the element's value."
-        },
-        "reset": {
-          "public": true,
-          "returns": "void",
-          "description": "Resets the element's value to [`default`](#option-default) (or empty if `default` is not provided). Also resets all the validation state for the element."
-        }
-      }
-    },
     "editor": {
       "computed": {
         "data": {
@@ -3903,136 +3838,6 @@ export default {
           "description": "Resets the element's value to [`default`](#option-default) (or empty if `default` is not provided). Also resets all the validation state for the element."
         }
       }
-    },
-    "multiselect": {
-      "computed": {
-        "data": {
-          "public": true,
-          "types": [
-            "object"
-          ],
-          "description": "The value of the element in `{[name]: value}` value format. This gets merged with the parent component's data."
-        },
-        "requestData": {
-          "public": true,
-          "types": [
-            "object"
-          ],
-          "description": "Same as `data` property except that it only includes the element's value if [`submit`](#option-submit) is not disabled and [`available`](#property-available) is `true` (has no [`conditions`](#option-conditions) or they are fulfilled)."
-        }
-      },
-      "methods": {
-        "load": {
-          "public": true,
-          "returns": "void",
-          "description": "Loads value to the element using optional [`formatLoad`](#option-format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.",
-          "params": {
-            "value": {
-              "types": [
-                "any"
-              ],
-              "required": true,
-              "description": "the value to be loaded"
-            },
-            "format": {
-              "types": [
-                "boolean"
-              ],
-              "required": false,
-              "description": "whether the loaded value should be formatted with [`formatLoad`](#option-format-load) before setting the value of the element (default: `false`)"
-            }
-          }
-        },
-        "update": {
-          "public": true,
-          "returns": "void",
-          "description": "Updates the value of the element similarly to [`load`](#method-load), only that it can\\'t format data.",
-          "params": {
-            "value": {
-              "types": [
-                "any"
-              ],
-              "required": true,
-              "description": "the value to be set"
-            }
-          }
-        },
-        "clear": {
-          "public": true,
-          "returns": "void",
-          "description": "Clears the element's value."
-        },
-        "reset": {
-          "public": true,
-          "returns": "void",
-          "description": "Resets the element's value to [`default`](#option-default) (or empty if `default` is not provided). Also resets all the validation state for the element."
-        }
-      }
-    },
-    "tags": {
-      "computed": {
-        "data": {
-          "public": true,
-          "types": [
-            "object"
-          ],
-          "description": "The value of the element in `{[name]: value}` value format. This gets merged with the parent component's data."
-        },
-        "requestData": {
-          "public": true,
-          "types": [
-            "object"
-          ],
-          "description": "Same as `data` property except that it only includes the element's value if [`submit`](#option-submit) is not disabled and [`available`](#property-available) is `true` (has no [`conditions`](#option-conditions) or they are fulfilled)."
-        }
-      },
-      "methods": {
-        "load": {
-          "public": true,
-          "returns": "void",
-          "description": "Loads value to the element using optional [`formatLoad`](#option-format-load) formatter. This is the method that gets called for each element when loading data to the form with `format: true`.",
-          "params": {
-            "value": {
-              "types": [
-                "any"
-              ],
-              "required": true,
-              "description": "the value to be loaded"
-            },
-            "format": {
-              "types": [
-                "boolean"
-              ],
-              "required": false,
-              "description": "whether the loaded value should be formatted with [`formatLoad`](#option-format-load) before setting the value of the element (default: `false`)"
-            }
-          }
-        },
-        "update": {
-          "public": true,
-          "returns": "void",
-          "description": "Updates the value of the element similarly to [`load`](#method-load), only that it can\\'t format data.",
-          "params": {
-            "value": {
-              "types": [
-                "any"
-              ],
-              "required": true,
-              "description": "the value to be set"
-            }
-          }
-        },
-        "clear": {
-          "public": true,
-          "returns": "void",
-          "description": "Clears the element's value."
-        },
-        "reset": {
-          "public": true,
-          "returns": "void",
-          "description": "Resets the element's value to [`default`](#option-default) (or empty if `default` is not provided). Also resets all the validation state for the element."
-        }
-      }
     }
   },
   "dateFormat": {
@@ -4144,6 +3949,17 @@ export default {
       }
     },
     "multilingual": {
+      "computed": {
+        "defaultValue": {
+          "public": false,
+          "types": [
+            "any"
+          ],
+          "description": "The default value of the element."
+        }
+      }
+    },
+    "hidden": {
       "computed": {
         "defaultValue": {
           "public": false,
@@ -9359,6 +9175,47 @@ export default {
             "any"
           ],
           "description": "The store for the value of the element when we're not using external data (form's `v-model`)."
+        }
+      }
+    },
+    "hidden": {
+      "data": {
+        "initialValue": {
+          "public": false,
+          "types": [
+            "any"
+          ],
+          "description": "The initial value of the element."
+        },
+        "internalValue": {
+          "public": false,
+          "types": [
+            "any"
+          ],
+          "description": "The store for the value of the element when we're not using external data (form's `v-model`)."
+        }
+      },
+      "computed": {
+        "value": {
+          "public": true,
+          "types": [
+            "any"
+          ],
+          "description": "The value of the element."
+        },
+        "model": {
+          "public": true,
+          "types": [
+            "any"
+          ],
+          "description": "Intermediary value between element's value and field's `v-model`. It is required when we need to transform the value format between the element and its field."
+        },
+        "isDefault": {
+          "public": true,
+          "types": [
+            "boolean"
+          ],
+          "description": "Whether the element has its default value."
         }
       }
     }

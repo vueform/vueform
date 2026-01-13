@@ -1,6 +1,7 @@
 import { computed, toRefs, ref, onMounted, watch, nextTick, onBeforeUnmount } from 'vue'
 import SignaturePad from 'signature_pad'
 import debounce from './../../utils/debounce'
+import dataEquals from '../../utils/dataEquals'
 
 export default function (props, context, dependencies)
 {
@@ -1663,7 +1664,11 @@ export default function (props, context, dependencies)
       adjustFontSize()
     }, { flush: 'post' })
   
-    watch(modes, () => {
+    watch(modes, (n, o) => {
+      if (dataEquals(n, o)) {
+        return
+      }
+      
       initPad()
       setDefaultMode(true)
     })

@@ -43,6 +43,11 @@ export default {
       type: [String, Object, Function],
       default: ''
     },
+    expressions: {
+      required: false,
+      type: [Boolean],
+      default: false,
+    },
     wrap: {
       required: false,
       type: [Boolean],

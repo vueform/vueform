@@ -1,12 +1,13 @@
-import each from 'lodash/each'
 import isEqual from 'lodash/isEqual'
 import get from 'lodash/get'
 import cloneDeep from 'lodash/cloneDeep'
 import isEmpty from 'lodash/isEmpty'
-import { computed, ref, toRefs, watch } from 'vue'
+import { computed, ref, toRefs, watch, onMounted, inject } from 'vue'
 import checkDateFormat from '../../utils/checkDateFormat'
 import valueGet from '../../utils/valueGet'
 import valueSet from '../../utils/valueSet'
+import flatten from '../../utils/flatten'
+import localize from '../../utils/localize'
 
 const base = function(props, context, dependencies, /* istanbul ignore next */ options = {})
 {
@@ -106,13 +107,17 @@ const base = function(props, context, dependencies, /* istanbul ignore next */ o
 
 const text = function(props, context, dependencies, /* istanbul ignore next */ options = {})
 {
-  const { name } = toRefs(props)
+  const { name, expression } = toRefs(props)
 
   const {
     initialValue,
     internalValue,
     isDefault,
   } = base(props, context, dependencies)
+
+  let unwatchDeps
+  let unwatchData
+  let unwatchLocale
   
   // ============ DEPENDENCIES =============
   
@@ -122,8 +127,30 @@ const text = function(props, context, dependencies, /* istanbul ignore next */ o
     dataPath,
     form$,
     shouldForceNumbers,
-    stringToNumber
+    stringToNumber,
+    on,
   } = dependencies
+
+  const $vueform = inject('$vueform')
+  const config$ = inject('config$')
+
+  // ================ DATA =================
+
+  /**
+   * The object that only contains data of the fields that the expression depends on.
+   * 
+   * @type {object}
+   * @private
+   */
+  const dependencyData = ref({})
+
+  /**
+   * The expression of the current language (or default).
+   * 
+   * @type {string}
+   * @private
+   */
+  const currentExpression = ref()
   
   // ============== COMPUTED ===============
 
@@ -150,6 +177,102 @@ const text = function(props, context, dependencies, /* istanbul ignore next */ o
       value.value = val
     },
   })
+
+  /**
+   * The list of element paths that the current expression depends on.
+   * 
+   * @type {array}
+   * @private
+   */
+  const expressionDeps = computed(() => {
+    if (!expression.value) {
+      return []
+    }
+
+    return form$.value.expression.vars(currentExpression.value, dataPath.value)
+  })
+
+  /**
+   * Resolve the value of the current expression and sets it as the value of the element.
+   * 
+   * @returns {void}
+   * @private
+   */
+  const resolveExpressionValue = () => {
+    if (!currentExpression.value) return
+
+    value.value = form$.value.resolveExpression(currentExpression.value, dataPath.value)
+  }
+
+  /**
+   * Sets the current expression depending on the current language (or default).
+   * 
+   * @returns {void}
+   * @private
+   */
+  const setCurrentExpression = () => {
+    currentExpression.value = localize(expression.value, config$.value, form$.value)
+  }
+
+  /**
+   * Starts to track changes related to expression.
+   * 
+   * @returns {void}
+   * @private
+   */
+  const trackExpression = () => {
+    on('reset', resolveExpressionValue)
+    on('clear', resolveExpressionValue)
+
+    unwatchLocale = watch([() => $vueform.value.i18n.locale, () => form$.value.locale], () => {
+      setCurrentExpression()
+    })
+
+    unwatchData = watch(() => form$.value.requestData, () => {
+      const fullData = flatten(form$.value.requestData)
+      
+      for (const key of expressionDeps.value) {
+        dependencyData.value[key] = fullData[key]
+      }
+    }, { deep: true, immediate: true })
+
+    unwatchDeps = watch(dependencyData, () => {
+      if (!currentExpression.value) return
+
+      resolveExpressionValue()
+    }, { deep: true })
+  }
+
+  /**
+   * Ends tracking changes related to expression.
+   * 
+   * @returns {void}
+   * @private
+   */
+  const untrackExpression = () => {
+    if (unwatchData) unwatchData()
+    if (unwatchDeps) unwatchDeps()
+    if (unwatchLocale) unwatchLocale()
+  }
+
+  if (expression.value) {
+    onMounted(() => {
+      setCurrentExpression()
+      resolveExpressionValue()
+      trackExpression()
+    })
+  }
+
+  watch(expression, (n, o) => {
+    if (n) {
+      setCurrentExpression()
+      resolveExpressionValue()
+      if (!o) trackExpression()
+    } else {
+      value.value = defaultValue.value
+      untrackExpression()
+    }
+  }, { immediate: false, deep: true })
   
   return {
     initialValue,
@@ -606,6 +729,8 @@ const dates = function(props, context, dependencies)
   }
 }
 
+const hidden = text
+
 export {
   text,
   date,
@@ -615,6 +740,7 @@ export {
   group,
   list,
   matrix,
+  hidden,
 }
 
 
