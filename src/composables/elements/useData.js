@@ -1231,14 +1231,18 @@ const signature = function(props, context, dependencies)
   const {
     data,
     requestData,
-    load,
+    load: baseLoad,
     update,
     clear: clearBase,
     reset: resetBase,
   } = base(props, context, dependencies)
-  
+
+  const {
+    valueFormat,
+  } = toRefs(props)
+
   // ============ DEPENDENCIES =============
-  
+
   const {
     mode,
     clearSignature,
@@ -1249,10 +1253,33 @@ const signature = function(props, context, dependencies)
     setDefaultFont,
     setDefaultColor,
     available,
+    blobToBase64,
+    base64ToBlob,
   } = dependencies
-  
-  // ============== COMPUTED ===============
-  
+
+  // ============== METHODS ================
+
+  const load = async (val, format = false) => {
+    let loadedValue = val
+
+    // Handle format conversion on load
+    if (val != null) {
+      const isBase64String = typeof val === 'string' && val.startsWith('data:')
+      const isBlob = val instanceof Blob
+
+      // Convert base64 to blob if valueFormat is 'blob'
+      if (isBase64String && valueFormat.value === 'blob') {
+        loadedValue = base64ToBlob(val)
+      }
+      // Convert blob to base64 if valueFormat is 'base64'
+      else if (isBlob && valueFormat.value === 'base64') {
+        loadedValue = await blobToBase64(val)
+      }
+    }
+
+    baseLoad(loadedValue, format)
+  }
+
   const clear = () => {
     clearBase()
     clearSignature()

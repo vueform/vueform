@@ -24,6 +24,7 @@ export default function (props, context, dependencies)
     uploadWidth,
     uploadHeight,
     canDrop,
+    valueFormat,
   } = toRefs(props)
 
   // ============ DEPENDENCIES ============
@@ -251,12 +252,29 @@ export default function (props, context, dependencies)
   })
 
   /**
-   * Whether a signature (as URL) was loaded to the element.
+   * Whether a signature (as URL or base64) was loaded to the element.
    *
    * @type {boolean}
    */
   const uploaded = computed(() => {
-    return typeof value.value === 'string'
+    if (!value.value || typeof value.value !== 'string') {
+      return false
+    }
+
+    const isBase64String = value.value.startsWith('data:')
+    const isUrl = !isBase64String
+
+    if (isUrl) {
+      return true
+    }
+
+    // Base64 is only uploaded if no drawing/typing/upload is active
+    // This prevents treating actively created signatures as "uploaded" during creation
+    if (isBase64String) {
+      return !drawn.value && !text.value && !created.value
+    }
+
+    return false
   })
 
   /**
@@ -819,14 +837,20 @@ export default function (props, context, dependencies)
       // Draw the original canvas content onto the resized canvas with proper scaling
       resizedCtx.drawImage(drawingCanvas, 0, 0, drawingWidth, drawingHeight, offsetX, offsetY, targetWidth, targetHeight)
 
-      // Convert the resized canvas to Blob
-      resizedCanvas.toBlob(function(blob) {
-        value.value = blob
-        resolve()
-
-        // Clean up the resized canvas
+      // Convert the resized canvas to Blob or base64
+      if (valueFormat.value === 'base64') {
+        value.value = resizedCanvas.toDataURL('image/png')
         resizedCanvas.remove()
-      }, 'image/png')
+        resolve()
+      } else {
+        resizedCanvas.toBlob(function(blob) {
+          value.value = blob
+          resolve()
+
+          // Clean up the resized canvas
+          resizedCanvas.remove()
+        }, 'image/png')
+      }
     })
   }
 
@@ -873,11 +897,18 @@ export default function (props, context, dependencies)
 
         ctx.fillText(text.value, displayWidth / 2, displayHeight / 2)
 
-        canvas.toBlob(function(blob) {
-          value.value = blob
+        // Convert canvas to Blob or base64
+        if (valueFormat.value === 'base64') {
+          value.value = canvas.toDataURL('image/png')
           canvas.remove()
           resolve()
-        }, 'image/png')
+        } else {
+          canvas.toBlob(function(blob) {
+            value.value = blob
+            canvas.remove()
+            resolve()
+          }, 'image/png')
+        }
       })
     })
   }
@@ -964,16 +995,23 @@ export default function (props, context, dependencies)
         // Draw the image on the main canvas
         mainCtx.drawImage(canvas, 0, 0, img.width, img.height, xOffset, yOffset, newWidth, newHeight)
 
-        // Convert the resized canvas to Blob
-        mainCanvas.toBlob(function(blob) {
-          value.value = blob
-
+        // Convert the main canvas to Blob or base64
+        if (valueFormat.value === 'base64') {
+          value.value = mainCanvas.toDataURL('image/png')
           created.value = true
           creating.value = false
-
-          // Clean up the helper canvas
           canvas.remove()
-        }, 'image/png')
+        } else {
+          mainCanvas.toBlob(function(blob) {
+            value.value = blob
+
+            created.value = true
+            creating.value = false
+
+            // Clean up the helper canvas
+            canvas.remove()
+          }, 'image/png')
+        }
       }
 
       img.src = e.target.result
@@ -1004,11 +1042,14 @@ export default function (props, context, dependencies)
 
     if (!data.length) {
       drawn.value = false
+      value.value = null
     }
 
     undosLeft.value = data.length
 
-    debounceTransform(drawingToImage, 500)
+    if (data.length > 0) {
+      debounceTransform(drawingToImage, 500)
+    }
   }
 
   /**
@@ -1157,6 +1198,41 @@ export default function (props, context, dependencies)
     let g = (bigint >> 8) & 255
     let b = bigint & 255
     return { r, g, b }
+  }
+
+  /**
+   * Converts a Blob to a base64 data URI string.
+   *
+   * @param {Blob} blob* the Blob to convert
+   * @returns {Promise<string>}
+   */
+  const blobToBase64 = (blob) => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader()
+      reader.onloadend = () => resolve(reader.result)
+      reader.onerror = reject
+      reader.readAsDataURL(blob)
+    })
+  }
+
+  /**
+   * Converts a base64 data URI string to a Blob.
+   *
+   * @param {string} base64* the base64 data URI string
+   * @returns {Blob}
+   */
+  const base64ToBlob = (base64) => {
+    const parts = base64.split(',')
+    const contentType = parts[0].match(/:(.*?);/)[1]
+    const raw = atob(parts[1])
+    const rawLength = raw.length
+    const uInt8Array = new Uint8Array(rawLength)
+
+    for (let i = 0; i < rawLength; ++i) {
+      uInt8Array[i] = raw.charCodeAt(i)
+    }
+
+    return new Blob([uInt8Array], { type: contentType })
   }
 
   /**
@@ -1743,6 +1819,8 @@ export default function (props, context, dependencies)
     setDrawColor,
     adjustFontSize,
     hexToRgb,
+    blobToBase64,
+    base64ToBlob,
     checkFileExt,
     checkFileSize,
     setWidth,
