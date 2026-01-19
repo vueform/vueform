@@ -15,10 +15,6 @@
 <script>
   import Trix from 'trix';
 
-  if (typeof window !== undefined) {
-    window.TrixEditor = Trix
-  }
-
   if (typeof Trix?.elements?.TrixEditorElement?.formAssociated !== 'undefined') {
     Trix.elements.TrixEditorElement.formAssociated = false
   }

@@ -182,23 +182,6 @@ export default {
     }
 
     /**
-     * Inits Trix localization.
-     * 
-     * @returns {void}
-     * @private
-     */
-    const initTrixLang = () => {
-      if (typeof document === undefined || typeof window === undefined || typeof window.TrixEditor === undefined || !window.TrixEditor.config?.lang) {
-        return
-      }
-      
-      Object.entries(form$.value.translations.vueform.editor).forEach(([key, value]) => {
-        window.TrixEditor.config.lang[key] = value
-      })
-      
-    }
-
-    /**
      * Handles `change` event.
      * 
      * @returns {void}
@@ -308,10 +291,6 @@ export default {
     const handleBlur = () => {
       context.emit('blur')
     }
-
-    // ============= TRIX LOCALE ============
-
-    initTrixLang()
 
     // ============== WATCHERS ==============
 
