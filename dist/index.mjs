@@ -1,6 +1,6 @@
 /*!
  * Vueform v1.13.7 (https://github.com/vueform/vueform)
- * Copyright (c) 2025 Adam Berecz <adam@vueform.com>
+ * Copyright (c) 2026 Adam Berecz <adam@vueform.com>
  * Licensed under the MIT License
  */
 
@@ -7531,6 +7531,22 @@ var base$1h = function base(props, context) {
   });
 
   /**
+   * The form data excluding elements with `available: false`.
+   *
+   * @type {object}
+   */
+  var availableData = computed(() => {
+    var availableData = {};
+    each(elements$.value, e$ => {
+      if (e$.isStatic) {
+        return;
+      }
+      availableData = Object.assign({}, availableData, 'availableData' in e$ ? e$.availableData : e$.requestData);
+    });
+    return availableData;
+  });
+
+  /**
    * The form data excluding elements with `available: false` and `submit: false`. This one gets submitted by default, but can be changed with [`formData`](#option-form-data)
    *
    * @type {object}
@@ -8374,7 +8390,7 @@ var base$1h = function base(props, context) {
   * @returns {string}
   */
   var resolveExpression = (exp, dataPath) => {
-    return expression.resolve(exp, requestData.value, dataPath);
+    return expression.resolve(exp, availableData.value, dataPath);
   };
 
   /**
@@ -8517,6 +8533,7 @@ var base$1h = function base(props, context) {
     listeners,
     internalData,
     data,
+    availableData,
     requestData,
     dirty,
     invalid,
@@ -8665,6 +8682,7 @@ var VueformComponent = {
       listeners,
       internalData,
       data,
+      availableData,
       requestData,
       dirty,
       invalid,
@@ -8758,6 +8776,7 @@ var VueformComponent = {
       listeners,
       internalData,
       data,
+      availableData,
       requestData,
       dirty,
       invalid,
@@ -25959,23 +25978,6 @@ var EditorWrapper = {
     };
 
     /**
-     * Inits Trix localization.
-     * 
-     * @returns {void}
-     * @private
-     */
-    var initTrixLang = () => {
-      var _window$TrixEditor$co;
-      if (typeof document === undefined || typeof window === undefined || typeof window.TrixEditor === undefined || !((_window$TrixEditor$co = window.TrixEditor.config) !== null && _window$TrixEditor$co !== void 0 && _window$TrixEditor$co.lang)) {
-        return;
-      }
-      Object.entries(form$.value.translations.vueform.editor).forEach(_ref => {
-        var [key, value] = _ref;
-        window.TrixEditor.config.lang[key] = value;
-      });
-    };
-
-    /**
      * Handles `change` event.
      * 
      * @returns {void}
@@ -26035,7 +26037,7 @@ var EditorWrapper = {
      * @private
      */
     var handleAttachmentAdd = /*#__PURE__*/function () {
-      var _ref2 = _asyncToGenerator(function* (e) {
+      var _ref = _asyncToGenerator(function* (e) {
         if (!e.attachment.file) {
           return;
         }
@@ -26066,7 +26068,7 @@ var EditorWrapper = {
         }
       });
       return function handleAttachmentAdd(_x) {
-        return _ref2.apply(this, arguments);
+        return _ref.apply(this, arguments);
       };
     }();
 
@@ -26079,10 +26081,6 @@ var EditorWrapper = {
     var handleBlur = () => {
       context.emit('blur');
     };
-
-    // ============= TRIX LOCALE ============
-
-    initTrixLang();
 
     // ============== WATCHERS ==============
 
@@ -28748,8 +28746,8 @@ var text$3 = function text(props, context, dependencies) {
     unwatchLocale = watch([() => $vueform.value.i18n.locale, () => form$.value.locale], () => {
       setCurrentExpression();
     });
-    unwatchData = watch(() => form$.value.requestData, () => {
-      var fullData = flatten(form$.value.requestData);
+    unwatchData = watch(() => form$.value.availableData, () => {
+      var fullData = flatten(form$.value.availableData);
       for (var key of expressionDeps.value) {
         dependencyData.value[key] = fullData[key];
       }
@@ -28801,7 +28799,8 @@ var text$3 = function text(props, context, dependencies) {
     internalValue,
     value,
     model,
-    isDefault
+    isDefault,
+    untrackExpression
   };
 };
 var matrix$4 = function matrix(props, context, dependencies) {
@@ -31977,6 +31976,20 @@ var base$F = function base(props, context, dependencies) {
   });
 
   /**
+   * Same as `data` property except that it only includes the element's value if [`available`](#property-available) is `true` (has no [`conditions`](#option-conditions) or they are fulfilled).
+   *
+   * @type {object}
+   */
+  var availableData = computed(() => {
+    if (!available.value) {
+      return {};
+    }
+    return {
+      [name.value]: value.value
+    };
+  });
+
+  /**
    * Same as `data` property except that it only includes the element's value if [`submit`](#option-submit) is not disabled and [`available`](#property-available) is `true` (has no [`conditions`](#option-conditions) or they are fulfilled).
    *
    * @type {object}
@@ -32053,6 +32066,7 @@ var base$F = function base(props, context, dependencies) {
   }();
   return {
     data,
+    availableData,
     requestData,
     load,
     update,
@@ -32096,6 +32110,18 @@ var text = function text(props, context, dependencies) {
       [name.value]: v
     };
   });
+  var availableData = computed(() => {
+    if (!available.value) {
+      return {};
+    }
+    var v = value.value;
+    if (shouldForceNumbers()) {
+      v = stringToNumber(value.value);
+    }
+    return {
+      [name.value]: v
+    };
+  });
   var requestData = computed(() => {
     if (!available.value || !submit.value) {
       return {};
@@ -32110,6 +32136,7 @@ var text = function text(props, context, dependencies) {
   });
   return {
     data,
+    availableData,
     requestData,
     load,
     update,
@@ -32121,6 +32148,7 @@ var text = function text(props, context, dependencies) {
 var textarea = function textarea(props, context, dependencies) {
   var {
     data,
+    availableData,
     requestData,
     load: baseLoad,
     update: baseUpdate,
@@ -32168,6 +32196,7 @@ var textarea = function textarea(props, context, dependencies) {
   };
   return {
     data,
+    availableData,
     requestData,
     load,
     update,
@@ -32184,6 +32213,7 @@ var select$3 = function select(props, context, dependencies) {
   } = toRefs(props);
   var {
     data,
+    availableData,
     requestData,
     load,
     update,
@@ -32226,6 +32256,7 @@ var select$3 = function select(props, context, dependencies) {
   };
   return {
     data,
+    availableData,
     requestData,
     load,
     update,
@@ -32237,6 +32268,7 @@ var select$3 = function select(props, context, dependencies) {
 var captcha = function captcha(props, context, dependencies) {
   var {
     data,
+    availableData,
     requestData,
     load,
     update,
@@ -32273,6 +32305,7 @@ var captcha = function captcha(props, context, dependencies) {
   };
   return {
     data,
+    availableData,
     requestData,
     load,
     update,
@@ -32312,6 +32345,21 @@ var object$1 = function object(props, context, dependencies) {
     });
     return {
       [name.value]: data
+    };
+  });
+  var availableData = computed(() => {
+    if (!available.value) {
+      return {};
+    }
+    var availableData = {};
+    each(children$.value, element$ => {
+      if (element$.isStatic) {
+        return;
+      }
+      availableData = Object.assign({}, availableData, 'availableData' in element$ ? element$.availableData : element$.requestData);
+    });
+    return {
+      [name.value]: availableData
     };
   });
   var requestData = computed(() => {
@@ -32397,6 +32445,7 @@ var object$1 = function object(props, context, dependencies) {
   }();
   return {
     data,
+    availableData,
     requestData,
     load,
     update,
@@ -32443,6 +32492,19 @@ var group$1 = function group(props, context, dependencies) {
     });
     return data;
   });
+  var availableData = computed(() => {
+    if (!available.value) {
+      return {};
+    }
+    var availableData = {};
+    each(children$.value, element$ => {
+      if (element$.isStatic) {
+        return;
+      }
+      availableData = Object.assign({}, availableData, 'availableData' in element$ ? element$.availableData : element$.requestData);
+    });
+    return availableData;
+  });
   var requestData = computed(() => {
     if (!available.value || !submit.value) {
       return {};
@@ -32458,6 +32520,7 @@ var group$1 = function group(props, context, dependencies) {
   });
   return {
     data,
+    availableData,
     requestData,
     load,
     update,
@@ -32517,6 +32580,22 @@ var list = function list(props, context, dependencies, options) {
    */
   var parentDefaultValue = computed(() => {
     return parent && parent.value ? parent.value.defaultValue[name.value] : form$.value.options.default[name.value];
+  });
+  var availableData = computed(() => {
+    if (!available.value) {
+      return {};
+    }
+    var availableData = [];
+    each(children$.value, element$ => {
+      var data = 'availableData' in element$ ? element$.availableData : element$.requestData;
+      var val = data[element$.name];
+      if (val !== undefined) {
+        availableData.push(val);
+      }
+    });
+    return {
+      [name.value]: availableData
+    };
   });
   var requestData = computed(() => {
     if (!available.value || !submit.value) {
@@ -32707,6 +32786,7 @@ var list = function list(props, context, dependencies, options) {
     value.value = defaultValue.value;
   }
   return {
+    availableData,
     requestData,
     data,
     length,
@@ -32727,6 +32807,7 @@ var date$2 = function date(props, context, dependencies) {
   } = toRefs(props);
   var {
     data,
+    availableData,
     requestData,
     update,
     clear,
@@ -32751,6 +32832,7 @@ var date$2 = function date(props, context, dependencies) {
   };
   return {
     data,
+    availableData,
     requestData,
     load,
     update,
@@ -32765,6 +32847,7 @@ var dates$3 = function dates(props, context, dependencies) {
   } = toRefs(props);
   var {
     data,
+    availableData,
     requestData,
     update,
     clear,
@@ -32791,6 +32874,7 @@ var dates$3 = function dates(props, context, dependencies) {
   };
   return {
     data,
+    availableData,
     requestData,
     load,
     update,
@@ -32806,6 +32890,7 @@ var multilingual$1 = function multilingual(props, context, dependencies) {
   } = toRefs(props);
   var {
     data,
+    availableData,
     requestData,
     clear,
     reset,
@@ -32849,6 +32934,7 @@ var multilingual$1 = function multilingual(props, context, dependencies) {
   };
   return {
     data,
+    availableData,
     requestData,
     load,
     update,
@@ -32860,6 +32946,7 @@ var multilingual$1 = function multilingual(props, context, dependencies) {
 var editor = function editor(props, context, dependencies) {
   var {
     data,
+    availableData,
     requestData,
     load,
     update,
@@ -32882,6 +32969,7 @@ var editor = function editor(props, context, dependencies) {
   var value = dependencies.value;
   return {
     data,
+    availableData,
     requestData,
     load,
     update,
@@ -32893,6 +32981,7 @@ var editor = function editor(props, context, dependencies) {
 var teditor = function teditor(props, context, dependencies) {
   var {
     data,
+    availableData,
     requestData,
     load,
     update,
@@ -32922,6 +33011,7 @@ var teditor = function teditor(props, context, dependencies) {
   });
   return {
     data,
+    availableData,
     requestData,
     load,
     update,
@@ -32963,13 +33053,27 @@ var file = function file(props, context, dependencies) {
       [name.value]: v
     };
   });
-  var requestData = computed(() => {
+  var availableData = computed(() => {
     var _v2;
-    if (!available.value || !submit.value) {
+    if (!available.value) {
       return {};
     }
     var v = value.value;
     if (typeof v === "object" && (_v2 = v) !== null && _v2 !== void 0 && _v2.__file__) {
+      v = v instanceof File ? v : _objectSpread2$1({}, v);
+      delete v.__file__;
+    }
+    return {
+      [name.value]: v
+    };
+  });
+  var requestData = computed(() => {
+    var _v3;
+    if (!available.value || !submit.value) {
+      return {};
+    }
+    var v = value.value;
+    if (typeof v === "object" && (_v3 = v) !== null && _v3 !== void 0 && _v3.__file__) {
       v = v instanceof File ? v : _objectSpread2$1({}, v);
       delete v.__file__;
     }
@@ -32979,6 +33083,7 @@ var file = function file(props, context, dependencies) {
   });
   return {
     data,
+    availableData,
     requestData,
     load,
     update,
@@ -33029,6 +33134,30 @@ var multifile$4 = function multifile(props, context, dependencies) {
       [name.value]: val
     };
   });
+  var availableData = computed(() => {
+    if (!available.value) {
+      return {};
+    }
+    var availableData = [];
+    each(children$.value, element$ => {
+      var data = 'availableData' in element$ ? element$.availableData : element$.requestData;
+      var val = data[element$.name];
+
+      /* istanbul ignore next: failsafe only */
+      if (val !== undefined) {
+        var _val;
+        if (typeof val === "object" && (_val = val) !== null && _val !== void 0 && _val.__file__) {
+          var v = file instanceof File ? file : _objectSpread2$1({}, file);
+          delete v.__file__;
+          val = v;
+        }
+        availableData.push(val);
+      }
+    });
+    return {
+      [name.value]: availableData
+    };
+  });
   var requestData = computed(() => {
     if (!available.value || !submit.value) {
       return {};
@@ -33039,8 +33168,8 @@ var multifile$4 = function multifile(props, context, dependencies) {
 
       /* istanbul ignore next: failsafe only */
       if (val !== undefined) {
-        var _val;
-        if (typeof val === "object" && (_val = val) !== null && _val !== void 0 && _val.__file__) {
+        var _val2;
+        if (typeof val === "object" && (_val2 = val) !== null && _val2 !== void 0 && _val2.__file__) {
           var v = file instanceof File ? file : _objectSpread2$1({}, file);
           delete v.__file__;
           val = v;
@@ -33053,6 +33182,7 @@ var multifile$4 = function multifile(props, context, dependencies) {
     };
   });
   return {
+    availableData,
     requestData,
     data,
     length,
@@ -33070,6 +33200,7 @@ var multifile$4 = function multifile(props, context, dependencies) {
 var signature = function signature(props, context, dependencies) {
   var {
     data,
+    availableData,
     requestData,
     load,
     update,
@@ -33126,6 +33257,7 @@ var signature = function signature(props, context, dependencies) {
   }();
   return {
     data,
+    availableData,
     requestData,
     load,
     update,
@@ -33172,10 +33304,13 @@ var matrix$1 = function matrix(props, context, dependencies) {
       [name.value]: transformData()
     };
   });
-  var requestData = computed(() => {
+  var availableData = computed(() => {
     return {
       [name.value]: transformData(true)
     };
+  });
+  var requestData = computed(() => {
+    return availableData.value;
   });
 
   // =============== METHODS ===============
@@ -33325,6 +33460,7 @@ var matrix$1 = function matrix(props, context, dependencies) {
   });
   return {
     data,
+    availableData,
     requestData,
     load,
     update,
@@ -33886,7 +34022,8 @@ var base$B = function base(props, context, dependencies) {
    * @returns {function}
    * @private
    */
-  var createAsyncOptionsFromUrl = () => {
+  var createAsyncOptionsFromUrl = function createAsyncOptionsFromUrl() {
+    var cleanup = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
     return /*#__PURE__*/function () {
       var _ref3 = _asyncToGenerator(function* (query) {
         var url = yield resolveUrlAndSetWatchers(items.value, updateItems);
@@ -33900,10 +34037,12 @@ var base$B = function base(props, context, dependencies) {
         } catch (e) {
           console.error(e);
         } finally {
-          setTimeout(() => {
-            var _input$value2;
-            cleanupValue(((_input$value2 = input.value) === null || _input$value2 === void 0 || (_input$value2 = _input$value2.eo) === null || _input$value2 === void 0 ? void 0 : _input$value2.map(o => o[valueProp.value])) || []);
-          }, 0);
+          if (cleanup) {
+            setTimeout(() => {
+              var _input$value2;
+              cleanupValue(((_input$value2 = input.value) === null || _input$value2 === void 0 || (_input$value2 = _input$value2.eo) === null || _input$value2 === void 0 ? void 0 : _input$value2.map(o => o[valueProp.value])) || []);
+            }, 0);
+          }
         }
         return optionList;
       });
@@ -33941,13 +34080,14 @@ var base$B = function base(props, context, dependencies) {
    */
   var resolveOptions = /*#__PURE__*/function () {
     var _ref5 = _asyncToGenerator(function* (n, o) {
+      var cleanup = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
       if (typeof items.value === 'function' && isNative.value) {
         yield resolveOptionsFromFunction();
       } else if (!isEqual_1(n, o) || n === undefined && o === undefined) {
         if (typeof items.value === 'string' && isNative.value) {
           yield resolveOptionsFromUrl();
         } else if (typeof items.value === 'string' && !isNative.value) {
-          options.value = createAsyncOptionsFromUrl();
+          options.value = createAsyncOptionsFromUrl(cleanup);
         } else {
           options.value = items.value;
         }
@@ -34043,7 +34183,7 @@ var select$2 = function select(props, context, dependencies) {
 
   // ================ HOOKS ===============
 
-  resolveOptions();
+  resolveOptions(undefined, undefined, false);
   watch(items, resolveOptions);
   return {
     resolveOptions,

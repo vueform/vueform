@@ -2,10 +2,15 @@
 
 ## v1.13.7
 
-> `2025-12-30`
+> `2026-01-21`
 
 ### 🎉 Feature
-- Added localization for EditorElement
+- Expose `untrackExpression`
+
+### 🐞 Bug Fixes
+- Use unsubmitted values in expression (only skip unavailable)
+- Don't cleanup remote select values on mount #508
+- Fixes in `cs` locale (thanks @Linhos13 🙏)
 
 ## v1.13.6
 

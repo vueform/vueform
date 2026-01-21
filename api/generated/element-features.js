@@ -2700,6 +2700,13 @@ export default {
           ],
           "description": "The value of the element in `{[name]: value}` value format. This gets merged with the parent component's data."
         },
+        "availableData": {
+          "public": true,
+          "types": [
+            "object"
+          ],
+          "description": "Same as `data` property except that it only includes the element's value if [`available`](#property-available) is `true` (has no [`conditions`](#option-conditions) or they are fulfilled)."
+        },
         "requestData": {
           "public": true,
           "types": [
@@ -2764,6 +2771,13 @@ export default {
             "object"
           ],
           "description": "The value of the element in `{[name]: value}` value format. This gets merged with the parent component's data."
+        },
+        "availableData": {
+          "public": true,
+          "types": [
+            "object"
+          ],
+          "description": "Same as `data` property except that it only includes the element's value if [`available`](#property-available) is `true` (has no [`conditions`](#option-conditions) or they are fulfilled)."
         },
         "requestData": {
           "public": true,
@@ -2830,6 +2844,13 @@ export default {
           ],
           "description": "The value of the element in `{[name]: value}` value format. This gets merged with the parent component's data."
         },
+        "availableData": {
+          "public": true,
+          "types": [
+            "object"
+          ],
+          "description": "Same as `data` property except that it only includes the element's value if [`available`](#property-available) is `true` (has no [`conditions`](#option-conditions) or they are fulfilled)."
+        },
         "requestData": {
           "public": true,
           "types": [
@@ -2894,6 +2915,13 @@ export default {
             "object"
           ],
           "description": "The value of the element in `{[name]: value}` value format. This gets merged with the parent component's data."
+        },
+        "availableData": {
+          "public": true,
+          "types": [
+            "object"
+          ],
+          "description": "Same as `data` property except that it only includes the element's value if [`available`](#property-available) is `true` (has no [`conditions`](#option-conditions) or they are fulfilled)."
         },
         "requestData": {
           "public": true,
@@ -2960,6 +2988,13 @@ export default {
           ],
           "description": "The value of the element in `{[name]: value}` value format. This gets merged with the parent component's data."
         },
+        "availableData": {
+          "public": true,
+          "types": [
+            "object"
+          ],
+          "description": "Same as `data` property except that it only includes the element's value if [`available`](#property-available) is `true` (has no [`conditions`](#option-conditions) or they are fulfilled)."
+        },
         "requestData": {
           "public": true,
           "types": [
@@ -3024,6 +3059,13 @@ export default {
             "object"
           ],
           "description": "The value of the element in `{[name]: value}` value format. This gets merged with the parent component's data."
+        },
+        "availableData": {
+          "public": true,
+          "types": [
+            "object"
+          ],
+          "description": "Same as `data` property except that it only includes the element's value if [`available`](#property-available) is `true` (has no [`conditions`](#option-conditions) or they are fulfilled)."
         },
         "requestData": {
           "public": true,
@@ -3090,6 +3132,13 @@ export default {
           ],
           "description": "The value of child elements in object. This gets merged with the parent component's data."
         },
+        "availableData": {
+          "public": true,
+          "types": [
+            "object"
+          ],
+          "description": "Same as `data` property except that it only includes the element's value if [`available`](#property-available) is `true` (has no [`conditions`](#option-conditions) or they are fulfilled)."
+        },
         "requestData": {
           "public": true,
           "types": [
@@ -3148,6 +3197,13 @@ export default {
     },
     "list": {
       "computed": {
+        "availableData": {
+          "public": true,
+          "types": [
+            "object"
+          ],
+          "description": "Same as `data` property except that it only includes the element's value if [`available`](#property-available) is `true` (has no [`conditions`](#option-conditions) or they are fulfilled)."
+        },
         "requestData": {
           "public": true,
           "types": [
@@ -3274,6 +3330,13 @@ export default {
           ],
           "description": "The value of the element in `{[name]: value}` value format. This gets merged with the parent component's data."
         },
+        "availableData": {
+          "public": true,
+          "types": [
+            "object"
+          ],
+          "description": "Same as `data` property except that it only includes the element's value if [`available`](#property-available) is `true` (has no [`conditions`](#option-conditions) or they are fulfilled)."
+        },
         "requestData": {
           "public": true,
           "types": [
@@ -3338,6 +3401,13 @@ export default {
             "object"
           ],
           "description": "The value of the element in `{[name]: value}` value format. This gets merged with the parent component's data."
+        },
+        "availableData": {
+          "public": true,
+          "types": [
+            "object"
+          ],
+          "description": "Same as `data` property except that it only includes the element's value if [`available`](#property-available) is `true` (has no [`conditions`](#option-conditions) or they are fulfilled)."
         },
         "requestData": {
           "public": true,
@@ -3404,6 +3474,13 @@ export default {
           ],
           "description": "The value of the element in `{[name]: value}` value format. This gets merged with the parent component's data."
         },
+        "availableData": {
+          "public": true,
+          "types": [
+            "object"
+          ],
+          "description": "Same as `data` property except that it only includes the element's value if [`available`](#property-available) is `true` (has no [`conditions`](#option-conditions) or they are fulfilled)."
+        },
         "requestData": {
           "public": true,
           "types": [
@@ -3468,6 +3545,13 @@ export default {
             "object"
           ],
           "description": "The value of the element in `{[name]: value}` value format. This gets merged with the parent component's data."
+        },
+        "availableData": {
+          "public": true,
+          "types": [
+            "object"
+          ],
+          "description": "Same as `data` property except that it only includes the element's value if [`available`](#property-available) is `true` (has no [`conditions`](#option-conditions) or they are fulfilled)."
         },
         "requestData": {
           "public": true,
@@ -3534,6 +3618,13 @@ export default {
           ],
           "description": "The value of the element in `{[name]: value}` value format. This gets merged with the parent component's data."
         },
+        "availableData": {
+          "public": true,
+          "types": [
+            "object"
+          ],
+          "description": "Same as `data` property except that it only includes the element's value if [`available`](#property-available) is `true` (has no [`conditions`](#option-conditions) or they are fulfilled)."
+        },
         "requestData": {
           "public": true,
           "types": [
@@ -3592,6 +3683,13 @@ export default {
     },
     "multifile": {
       "computed": {
+        "availableData": {
+          "public": true,
+          "types": [
+            "object"
+          ],
+          "description": "Same as `data` property except that it only includes the element's value if [`available`](#property-available) is `true` (has no [`conditions`](#option-conditions) or they are fulfilled)."
+        },
         "requestData": {
           "public": true,
           "types": [
@@ -3718,6 +3816,13 @@ export default {
           ],
           "description": "The value of the element in `{[name]: value}` value format. This gets merged with the parent component's data."
         },
+        "availableData": {
+          "public": true,
+          "types": [
+            "object"
+          ],
+          "description": "Same as `data` property except that it only includes the element's value if [`available`](#property-available) is `true` (has no [`conditions`](#option-conditions) or they are fulfilled)."
+        },
         "requestData": {
           "public": true,
           "types": [
@@ -3782,6 +3887,13 @@ export default {
             "object"
           ],
           "description": "The value of the element in `{[name]: value}` value format. This gets merged with the parent component's data."
+        },
+        "availableData": {
+          "public": true,
+          "types": [
+            "object"
+          ],
+          "description": "Same as `data` property except that it only includes the element's value if [`available`](#property-available) is `true` (has no [`conditions`](#option-conditions) or they are fulfilled)."
         },
         "requestData": {
           "public": true,
@@ -8909,6 +9021,13 @@ export default {
           ],
           "description": "Whether the element has its default value."
         }
+      },
+      "methods": {
+        "untrackExpression": {
+          "public": false,
+          "returns": "void",
+          "description": "Ends tracking changes related to expression."
+        }
       }
     },
     "matrix": {
@@ -9183,6 +9302,13 @@ export default {
             "boolean"
           ],
           "description": "Whether the element has its default value."
+        }
+      },
+      "methods": {
+        "untrackExpression": {
+          "public": false,
+          "returns": "void",
+          "description": "Ends tracking changes related to expression."
         }
       }
     }
