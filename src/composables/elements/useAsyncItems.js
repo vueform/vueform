@@ -171,7 +171,7 @@ const base = function(props, context, dependencies)
    * @returns {function}
    * @private
    */
-  const createAsyncOptionsFromUrl = () => {
+  const createAsyncOptionsFromUrl = (cleanup = true) => {
     return async (query) => {
       let url = await resolveUrlAndSetWatchers(items.value, updateItems)
 
@@ -186,9 +186,11 @@ const base = function(props, context, dependencies)
       } catch (e) {
         console.error(e)
       } finally {
-        setTimeout(() => {
-          cleanupValue(input.value?.eo?.map(o=>o[valueProp.value]) || [])
-        }, 0)
+        if (cleanup) {
+          setTimeout(() => {
+            cleanupValue(input.value?.eo?.map(o=>o[valueProp.value]) || [])
+          }, 0)
+        }
       }
       
       return optionList
@@ -216,14 +218,14 @@ const base = function(props, context, dependencies)
    * @returns {Promise}
    * @private
    */
-  const resolveOptions = async (n, o) => {
+  const resolveOptions = async (n, o, cleanup = true) => {
     if (typeof items.value === 'function' && isNative.value) {
       await resolveOptionsFromFunction()
     } else if (!isEqual(n, o) || (n === undefined && o === undefined)) {
       if (typeof items.value === 'string' && isNative.value) {
         await resolveOptionsFromUrl()
       } else if (typeof items.value === 'string' && !isNative.value) {
-        options.value = createAsyncOptionsFromUrl()
+        options.value = createAsyncOptionsFromUrl(cleanup)
       } else {
         options.value = items.value
       }
@@ -324,7 +326,7 @@ const select = function(props, context, dependencies) {
 
   // ================ HOOKS ===============
   
-  resolveOptions()
+  resolveOptions(undefined, undefined, false)
   watch(items, resolveOptions)
   return {
     resolveOptions,
