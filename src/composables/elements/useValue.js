@@ -228,8 +228,8 @@ const text = function(props, context, dependencies, /* istanbul ignore next */ o
       setCurrentExpression()
     })
 
-    unwatchData = watch(() => form$.value.requestData, () => {
-      const fullData = flatten(form$.value.requestData)
+    unwatchData = watch(() => form$.value.availableData, () => {
+      const fullData = flatten(form$.value.availableData)
       
       for (const key of expressionDeps.value) {
         dependencyData.value[key] = fullData[key]

@@ -524,6 +524,25 @@ const base = function(props, context, dependencies = {})
   })
 
   /**
+   * The form data excluding elements with `available: false`.
+   *
+   * @type {object}
+   */
+  const availableData = computed(() => {
+    var availableData = {}
+
+    each(elements$.value, (e$) => {
+      if (e$.isStatic) {
+        return
+      }
+      
+      availableData = Object.assign({}, availableData, 'availableData' in e$ ? e$.availableData : e$.requestData)
+    })
+
+    return availableData
+  })
+
+  /**
    * The form data excluding elements with `available: false` and `submit: false`. This one gets submitted by default, but can be changed with [`formData`](#option-form-data)
    *
    * @type {object}
@@ -1398,7 +1417,7 @@ const base = function(props, context, dependencies = {})
   * @returns {string}
   */
   const resolveExpression = (exp, dataPath) => {
-    return expression.resolve(exp, requestData.value, dataPath)
+    return expression.resolve(exp, availableData.value, dataPath)
   }
 
   /**
@@ -1557,6 +1576,7 @@ const base = function(props, context, dependencies = {})
     listeners,
     internalData,
     data,
+    availableData,
     requestData,
     dirty,
     invalid,

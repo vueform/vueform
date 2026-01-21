@@ -55,6 +55,19 @@ const base = function (props, context, dependencies, options = {}) {
   });
 
   /**
+   * Same as `data` property except that it only includes the element's value if [`available`](#property-available) is `true` (has no [`conditions`](#option-conditions) or they are fulfilled).
+   *
+   * @type {object}
+   */
+  const availableData = computed(() => {
+    if (!available.value) {
+      return {};
+    }
+
+    return { [name.value]: value.value };
+  });
+
+  /**
    * Same as `data` property except that it only includes the element's value if [`submit`](#option-submit) is not disabled and [`available`](#property-available) is `true` (has no [`conditions`](#option-conditions) or they are fulfilled).
    *
    * @type {object}
@@ -132,6 +145,7 @@ const base = function (props, context, dependencies, options = {}) {
 
   return {
     data,
+    availableData,
     requestData,
     load,
     update,
@@ -167,6 +181,20 @@ const text = function (props, context, dependencies, options = {}) {
     return { [name.value]: v };
   });
 
+  const availableData = computed(() => {
+    if (!available.value) {
+      return {};
+    }
+
+    let v = value.value;
+
+    if (shouldForceNumbers()) {
+      v = stringToNumber(value.value);
+    }
+
+    return { [name.value]: v };
+  });
+
   const requestData = computed(() => {
     if (!available.value || !submit.value) {
       return {};
@@ -185,6 +213,7 @@ const text = function (props, context, dependencies, options = {}) {
 
   return {
     data,
+    availableData,
     requestData,
     load,
     update,
@@ -197,6 +226,7 @@ const text = function (props, context, dependencies, options = {}) {
 const textarea = function (props, context, dependencies, options = {}) {
   const {
     data,
+    availableData,
     requestData,
     load: baseLoad,
     update: baseUpdate,
@@ -249,6 +279,7 @@ const textarea = function (props, context, dependencies, options = {}) {
 
   return {
     data,
+    availableData,
     requestData,
     load,
     update,
@@ -261,7 +292,7 @@ const textarea = function (props, context, dependencies, options = {}) {
 const select = function (props, context, dependencies, options = {}) {
   const { resolveOnLoad, items } = toRefs(props);
 
-  const { data, requestData, load, update, clear, prepare } = base(
+  const { data, availableData, requestData, load, update, clear, prepare } = base(
     props,
     context,
     dependencies
@@ -307,6 +338,7 @@ const select = function (props, context, dependencies, options = {}) {
 
   return {
     data,
+    availableData,
     requestData,
     load,
     update,
@@ -319,6 +351,7 @@ const select = function (props, context, dependencies, options = {}) {
 const captcha = function (props, context, dependencies, options = {}) {
   const {
     data,
+    availableData,
     requestData,
     load,
     update,
@@ -359,6 +392,7 @@ const captcha = function (props, context, dependencies, options = {}) {
 
   return {
     data,
+    availableData,
     requestData,
     load,
     update,
@@ -396,6 +430,24 @@ const object = function (props, context, dependencies) {
     });
 
     return { [name.value]: data };
+  });
+
+  const availableData = computed(() => {
+    if (!available.value) {
+      return {};
+    }
+
+    let availableData = {};
+
+    each(children$.value, (element$) => {
+      if (element$.isStatic) {
+        return;
+      }
+
+      availableData = Object.assign({}, availableData, 'availableData' in element$ ? element$.availableData : element$.requestData);
+    });
+
+    return { [name.value]: availableData };
   });
 
   const requestData = computed(() => {
@@ -493,6 +545,7 @@ const object = function (props, context, dependencies) {
 
   return {
     data,
+    availableData,
     requestData,
     load,
     update,
@@ -539,6 +592,24 @@ const group = function (props, context, dependencies) {
     return data;
   });
 
+  const availableData = computed(() => {
+    if (!available.value) {
+      return {};
+    }
+
+    let availableData = {};
+
+    each(children$.value, (element$) => {
+      if (element$.isStatic) {
+        return;
+      }
+
+      availableData = Object.assign({}, availableData, 'availableData' in element$ ? element$.availableData : element$.requestData);
+    });
+
+    return availableData;
+  });
+
   const requestData = computed(() => {
     if (!available.value || !submit.value) {
       return {};
@@ -561,6 +632,7 @@ const group = function (props, context, dependencies) {
 
   return {
     data,
+    availableData,
     requestData,
     load,
     update,
@@ -620,6 +692,25 @@ const list = function (props, context, dependencies, options) {
     return parent && parent.value
       ? parent.value.defaultValue[name.value]
       : form$.value.options.default[name.value];
+  });
+
+  const availableData = computed(() => {
+    if (!available.value) {
+      return {};
+    }
+
+    let availableData = [];
+
+    each(children$.value, (element$) => {
+      const data = 'availableData' in element$ ? element$.availableData : element$.requestData
+      let val = data[element$.name];
+
+      if (val !== undefined) {
+        availableData.push(val);
+      }
+    });
+
+    return { [name.value]: availableData };
   });
 
   const requestData = computed(() => {
@@ -836,6 +927,7 @@ const list = function (props, context, dependencies, options) {
   }
 
   return {
+    availableData,
     requestData,
     data,
     length,
@@ -854,7 +946,7 @@ const list = function (props, context, dependencies, options) {
 const date = function (props, context, dependencies) {
   const { formatLoad } = toRefs(props);
 
-  const { data, requestData, update, clear, reset, prepare } = base(
+  const { data, availableData, requestData, update, clear, reset, prepare } = base(
     props,
     context,
     dependencies
@@ -884,6 +976,7 @@ const date = function (props, context, dependencies) {
 
   return {
     data,
+    availableData,
     requestData,
     load,
     update,
@@ -896,7 +989,7 @@ const date = function (props, context, dependencies) {
 const dates = function (props, context, dependencies) {
   const { formatLoad } = toRefs(props);
 
-  const { data, requestData, update, clear, reset, prepare } = base(
+  const { data, availableData, requestData, update, clear, reset, prepare } = base(
     props,
     context,
     dependencies
@@ -925,6 +1018,7 @@ const dates = function (props, context, dependencies) {
 
   return {
     data,
+    availableData,
     requestData,
     load,
     update,
@@ -942,7 +1036,7 @@ const multilingual = function (
 ) {
   const { formatLoad } = toRefs(props);
 
-  const { data, requestData, clear, reset, prepare } = base(
+  const { data, availableData, requestData, clear, reset, prepare } = base(
     props,
     context,
     dependencies,
@@ -993,6 +1087,7 @@ const multilingual = function (
 
   return {
     data,
+    availableData,
     requestData,
     load,
     update,
@@ -1003,7 +1098,7 @@ const multilingual = function (
 };
 
 const editor = function (props, context, dependencies) {
-  const { data, requestData, load, update, clear, reset, prepare } = base(
+  const { data, availableData, requestData, load, update, clear, reset, prepare } = base(
     props,
     context,
     dependencies,
@@ -1025,6 +1120,7 @@ const editor = function (props, context, dependencies) {
 
   return {
     data,
+    availableData,
     requestData,
     load,
     update,
@@ -1035,7 +1131,7 @@ const editor = function (props, context, dependencies) {
 };
 
 const teditor = function (props, context, dependencies) {
-  const { data, requestData, load, update, clear, reset, prepare } =
+  const { data, availableData, requestData, load, update, clear, reset, prepare } =
     multilingual(props, context, dependencies, {
       setValue: (val) => {
         value.value = val;
@@ -1061,6 +1157,7 @@ const teditor = function (props, context, dependencies) {
 
   return {
     data,
+    availableData,
     requestData,
     load,
     update,
@@ -1098,6 +1195,21 @@ const file = function (props, context, dependencies) {
     return { [name.value]: v };
   });
 
+  const availableData = computed(() => {
+    if (!available.value) {
+      return {};
+    }
+
+    let v = value.value;
+
+    if (typeof v === "object" && v?.__file__) {
+      v = v instanceof File ? v : { ...v };
+      delete v.__file__;
+    }
+
+    return { [name.value]: v };
+  });
+
   const requestData = computed(() => {
     if (!available.value || !submit.value) {
       return {};
@@ -1117,6 +1229,7 @@ const file = function (props, context, dependencies) {
 
   return {
     data,
+    availableData,
     requestData,
     load,
     update,
@@ -1167,6 +1280,32 @@ const multifile = function (props, context, dependencies) {
     return { [name.value]: val };
   });
 
+  const availableData = computed(() => {
+    if (!available.value) {
+      return {};
+    }
+
+    let availableData = [];
+
+    each(children$.value, (element$) => {
+      const data = 'availableData' in element$ ? element$.availableData : element$.requestData
+      let val = data[element$.name];
+
+      /* istanbul ignore next: failsafe only */
+      if (val !== undefined) {
+        if (typeof val === "object" && val?.__file__) {
+          let v = file instanceof File ? file : { ...file };
+          delete v.__file__;
+          val = v;
+        }
+
+        availableData.push(val);
+      }
+    });
+
+    return { [name.value]: availableData };
+  });
+
   const requestData = computed(() => {
     if (!available.value || !submit.value) {
       return {};
@@ -1195,6 +1334,7 @@ const multifile = function (props, context, dependencies) {
   });
 
   return {
+    availableData,
     requestData,
     data,
     length,
@@ -1213,6 +1353,7 @@ const multifile = function (props, context, dependencies) {
 const signature = function (props, context, dependencies) {
   const {
     data,
+    availableData,
     requestData,
     load,
     update,
@@ -1271,6 +1412,7 @@ const signature = function (props, context, dependencies) {
 
   return {
     data,
+    availableData,
     requestData,
     load,
     update,
@@ -1314,8 +1456,12 @@ const matrix = function (props, context, dependencies, options = {}) {
     return { [name.value]: transformData() };
   });
 
-  const requestData = computed(() => {
+  const availableData = computed(() => {
     return { [name.value]: transformData(true) };
+  });
+
+  const requestData = computed(() => {
+    return availableData.value
   });
 
   // =============== METHODS ===============
@@ -1515,6 +1661,7 @@ const matrix = function (props, context, dependencies, options = {}) {
 
   return {
     data,
+    availableData,
     requestData,
     load,
     update,
