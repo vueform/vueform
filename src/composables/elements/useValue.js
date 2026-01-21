@@ -280,6 +280,7 @@ const text = function(props, context, dependencies, /* istanbul ignore next */ o
     value,
     model,
     isDefault,
+    untrackExpression,
   }
 }
 
