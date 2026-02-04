@@ -7,7 +7,7 @@ export default class after extends Validator {
   get messageParams() {
     return {
       attribute: this.attributeName,
-      date: this.date.format(this.format),
+      date: this.date.format(this.displayFormat),
     }
   }
 
@@ -15,6 +15,12 @@ export default class after extends Validator {
     return this.path
       ? replaceWildcards(this.attributes[0], this.path)
       : this.attributes[0]
+  }
+
+  get displayFormat() {
+    return ['date', 'dates'].indexOf(this.element$.type) !== -1 && this.element$.displayFormat
+      ? this.element$.displayFormat
+      : 'YYYY-MM-DD'
   }
 
   get format() {
