@@ -33,23 +33,20 @@ const Validator = class {
     this.debouncer = null
     this.lastValue = null
     this.watchers = {}
-    
+
     this.dependents.forEach((dependent) => {
       watch(computed(() => this.form$.el$(dependent)?.value), () => {
-        if (this.element$.validated) {
-
-          // we need to revalidate the whole element
-          if (this.name === 'nullable') {
-            this.element$.validate()
-          }
-          
-          // we need to revalidate only current validator
-          else {
-            // We need to do this instead of this.validate()
-            // because Vue3 does not recognize `invalid` as
-            // as a reactive property if used that way.
-            this.revalidate()
-          }
+        // we need to revalidate the whole element
+        if (this.name === 'nullable') {
+          this.element$.validate()
+        }
+        
+        // we need to revalidate only current validator
+        else {
+          // We need to do this instead of this.validate()
+          // because Vue3 does not recognize `invalid` as
+          // as a reactive property if used that way.
+          this.revalidate()
         }
       })
     })
@@ -285,11 +282,17 @@ const Validator = class {
   }
 
   revalidate() {
-    this.element$.Validators.forEach((Validator) => {
-      if (Validator.rule.name === this.rule.name) {
-        Validator.validate()
-      }
-    })
+    if (!this.element$) return
+
+    if ('validateLanguage' in this.element$) {
+      this.element$.validateLanguage()
+    } else {
+      this.element$.Validators.forEach((Validator) => {
+        if (Validator.rule.name === this.rule.name) {
+          Validator.validate()
+        }
+      })
+    }
   }
 
   watchOther() {

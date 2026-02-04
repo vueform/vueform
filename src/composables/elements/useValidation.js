@@ -1058,7 +1058,7 @@ const multilingual = function(props, context, dependencies)
     }
     
     await asyncForEach(Validators.value[lang], async (Validator) => {
-      await Validator.validate(value.value[lang])
+      await Validator.validate(value.value[lang] || null)
     })
     
     state.value.validated[lang] = true
