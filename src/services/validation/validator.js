@@ -87,10 +87,16 @@ const Validator = class {
     if (this.msg) {
       message = this.msg
     } else if (this.elementMessages[this.name]) {
-      message = localize(this.elementMessages[this.name], this.config$.value, this.form$)
+      const elMessage = this.elementMessages[this.name]
+      const resolvedMessage = typeof elMessage === 'function' ? elMessage(this) : elMessage
+
+      message = localize(resolvedMessage, this.config$.value, this.form$)
     }
     else if (this.form$.options.messages[this.name]) {
-      message = localize(this.form$.options.messages[this.name], this.config$.value, this.form$)
+      const formMessage = this.form$.options.messages[this.name]
+      const resolvedMessage = typeof formMessage === 'function' ? formMessage(this) : formMessage
+
+      message = localize(resolvedMessage, this.config$.value, this.form$)
     }
     else if (this.name !== '_class' && this.form$.translations.validation?.[this.name] !== undefined) {
       message = this.form$.translations.validation[this.name]
