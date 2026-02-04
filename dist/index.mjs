@@ -1,5 +1,5 @@
 /*!
- * Vueform v1.13.7 (https://github.com/vueform/vueform)
+ * Vueform v1.13.8 (https://github.com/vueform/vueform)
  * Copyright (c) 2026 Adam Berecz <adam@vueform.com>
  * Licensed under the MIT License
  */
@@ -9464,19 +9464,17 @@ var Validator = class {
         var _this$form$$el$;
         return (_this$form$$el$ = this.form$.el$(dependent)) === null || _this$form$$el$ === void 0 ? void 0 : _this$form$$el$.value;
       }), () => {
-        if (this.element$.validated) {
-          // we need to revalidate the whole element
-          if (this.name === 'nullable') {
-            this.element$.validate();
-          }
+        // we need to revalidate the whole element
+        if (this.name === 'nullable') {
+          this.element$.validate();
+        }
 
-          // we need to revalidate only current validator
-          else {
-            // We need to do this instead of this.validate()
-            // because Vue3 does not recognize `invalid` as
-            // as a reactive property if used that way.
-            this.revalidate();
-          }
+        // we need to revalidate only current validator
+        else {
+          // We need to do this instead of this.validate()
+          // because Vue3 does not recognize `invalid` as
+          // as a reactive property if used that way.
+          this.revalidate();
         }
       });
     });
@@ -9508,9 +9506,13 @@ var Validator = class {
     if (this.msg) {
       message = this.msg;
     } else if (this.elementMessages[this.name]) {
-      message = localize(this.elementMessages[this.name], this.config$.value, this.form$);
+      var elMessage = this.elementMessages[this.name];
+      var resolvedMessage = typeof elMessage === 'function' ? elMessage(this) : elMessage;
+      message = localize(resolvedMessage, this.config$.value, this.form$);
     } else if (this.form$.options.messages[this.name]) {
-      message = localize(this.form$.options.messages[this.name], this.config$.value, this.form$);
+      var formMessage = this.form$.options.messages[this.name];
+      var _resolvedMessage = typeof formMessage === 'function' ? formMessage(this) : formMessage;
+      message = localize(_resolvedMessage, this.config$.value, this.form$);
     } else if (this.name !== '_class' && ((_this$form$$translati = this.form$.translations.validation) === null || _this$form$$translati === void 0 ? void 0 : _this$form$$translati[this.name]) !== undefined) {
       message = this.form$.translations.validation[this.name];
       if (isPlainObject_1(message)) {
@@ -9560,15 +9562,15 @@ var Validator = class {
     return 'string';
   }
   get isNumeric() {
-    return some_1(this.element$.Validators, {
+    return some_1(this.getCurrentValidators(this.element$), {
       name: 'numeric'
-    }) || some_1(this.element$.Validators, {
+    }) || some_1(this.getCurrentValidators(this.element$), {
       name: 'integer'
     }) || typeof this.element$.value === 'number';
   }
   get isNullable() {
     var nullable = false;
-    each(this.element$.Validators, Validator => {
+    each(this.getCurrentValidators(this.element$), Validator => {
       if (Validator.name !== 'nullable') {
         return;
       }
@@ -9664,7 +9666,7 @@ var Validator = class {
     });
   }
   revalidate() {
-    this.element$.Validators.forEach(Validator => {
+    this.getAllValidators(this.element$).forEach(Validator => {
       if (Validator.rule.name === this.rule.name) {
         Validator.validate();
       }
@@ -9686,9 +9688,9 @@ var Validator = class {
     });
   }
   isOtherNumeric(other$) {
-    return some_1(other$.Validators, {
+    return some_1(this.getCurrentValidators(this.element$), {
       name: 'numeric'
-    }) || some_1(other$.Validators, {
+    }) || some_1(this.getCurrentValidators(this.element$), {
       name: 'integer'
     }) || typeof other$.value === 'number';
   }
@@ -9730,6 +9732,24 @@ var Validator = class {
       return false;
     }
     return true;
+  }
+  getAllValidators(el$) {
+    if (Array.isArray(el$ === null || el$ === void 0 ? void 0 : el$.Validators)) {
+      return el$.Validators;
+    } else if (el$ !== null && el$ !== void 0 && el$.Validators && typeof el$.Validators === 'object' && 'language' in el$) {
+      return Object.values(el$.Validators).reduce((all, Validators) => [...all, ...Validators], []);
+    } else {
+      return [];
+    }
+  }
+  getCurrentValidators(el$) {
+    if (Array.isArray(el$ === null || el$ === void 0 ? void 0 : el$.Validators)) {
+      return el$.Validators;
+    } else if (el$ !== null && el$ !== void 0 && el$.Validators && typeof el$.Validators === 'object' && 'language' in el$) {
+      return el$.Validators[el$.language];
+    } else {
+      return [];
+    }
   }
   _validate(value) {
     var _this2 = this;
@@ -10213,7 +10233,7 @@ function shouldApplyPlugin (name, plugin) {
 }
 
 var name = "@vueform/vueform";
-var version$1 = "1.13.7";
+var version$1 = "1.13.8";
 var description = "Open-Source Form Framework for Vue";
 var homepage = "https://vueform.com";
 var license = "MIT";
@@ -11098,11 +11118,14 @@ class after extends Validator {
   get messageParams() {
     return {
       attribute: this.attributeName,
-      date: this.date.format(this.format)
+      date: this.date.format(this.displayFormat)
     };
   }
   get param() {
     return this.path ? replaceWildcards(this.attributes[0], this.path) : this.attributes[0];
+  }
+  get displayFormat() {
+    return ['date', 'dates'].indexOf(this.element$.type) !== -1 && this.element$.displayFormat ? this.element$.displayFormat : 'YYYY-MM-DD';
   }
   get format() {
     return ['date', 'dates'].indexOf(this.element$.type) !== -1 && this.element$.valueFormat ? this.element$.valueFormat : 'YYYY-MM-DD';
@@ -30879,7 +30902,7 @@ var multilingual$3 = function multilingual(props, context, dependencies) {
       }
       yield asyncForEach(Validators.value[lang], /*#__PURE__*/function () {
         var _ref1 = _asyncToGenerator(function* (Validator) {
-          yield Validator.validate(value.value[lang]);
+          yield Validator.validate(value.value[lang] || null);
         });
         return function (_x5) {
           return _ref1.apply(this, arguments);

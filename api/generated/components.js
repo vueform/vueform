@@ -4289,6 +4289,13 @@ module.exports = {
         ],
         "description": "The form data including the data of all elements even the ones with `available: false` and `submit: false`."
       },
+      "availableData": {
+        "public": true,
+        "types": [
+          "object"
+        ],
+        "description": "The form data excluding elements with `available: false`."
+      },
       "requestData": {
         "public": true,
         "types": [

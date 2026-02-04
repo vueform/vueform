@@ -1994,6 +1994,13 @@ module.exports = {
         description: 'The value of the element in `{[name]: value}` value format. This gets merged with the parent component&apos;s data.',
         private: false,
       },
+      availableData: {
+        types: [
+          'object',
+        ],
+        description: 'Same as `data` property except that it only includes the element&apos;s value if [`available`](#property-available) is `true` (has no [`conditions`](#option-conditions) or they are fulfilled).',
+        private: false,
+      },
       requestData: {
         types: [
           'object',
@@ -3542,6 +3549,13 @@ module.exports = {
         description: 'The value of the element in `{[name]: value}` value format. This gets merged with the parent component&apos;s data.',
         private: false,
       },
+      availableData: {
+        types: [
+          'object',
+        ],
+        description: 'Same as `data` property except that it only includes the element&apos;s value if [`available`](#property-available) is `true` (has no [`conditions`](#option-conditions) or they are fulfilled).',
+        private: false,
+      },
       requestData: {
         types: [
           'object',
@@ -5061,6 +5075,13 @@ module.exports = {
           'object',
         ],
         description: 'The value of the element in `{[name]: value}` value format. This gets merged with the parent component&apos;s data.',
+        private: false,
+      },
+      availableData: {
+        types: [
+          'object',
+        ],
+        description: 'Same as `data` property except that it only includes the element&apos;s value if [`available`](#property-available) is `true` (has no [`conditions`](#option-conditions) or they are fulfilled).',
         private: false,
       },
       requestData: {
@@ -6896,6 +6917,13 @@ module.exports = {
         description: 'The value of the element in `{[name]: value}` value format. This gets merged with the parent component&apos;s data.',
         private: false,
       },
+      availableData: {
+        types: [
+          'object',
+        ],
+        description: 'Same as `data` property except that it only includes the element&apos;s value if [`available`](#property-available) is `true` (has no [`conditions`](#option-conditions) or they are fulfilled).',
+        private: false,
+      },
       requestData: {
         types: [
           'object',
@@ -8582,6 +8610,13 @@ module.exports = {
         description: 'The value of the element in `{[name]: value}` value format. This gets merged with the parent component&apos;s data.',
         private: false,
       },
+      availableData: {
+        types: [
+          'object',
+        ],
+        description: 'Same as `data` property except that it only includes the element&apos;s value if [`available`](#property-available) is `true` (has no [`conditions`](#option-conditions) or they are fulfilled).',
+        private: false,
+      },
       requestData: {
         types: [
           'object',
@@ -10230,6 +10265,13 @@ module.exports = {
           'object',
         ],
         description: 'The value of the element in `{[name]: value}` value format. This gets merged with the parent component&apos;s data.',
+        private: false,
+      },
+      availableData: {
+        types: [
+          'object',
+        ],
+        description: 'Same as `data` property except that it only includes the element&apos;s value if [`available`](#property-available) is `true` (has no [`conditions`](#option-conditions) or they are fulfilled).',
         private: false,
       },
       requestData: {
@@ -12027,6 +12069,13 @@ module.exports = {
         description: 'The value of the element in `{[name]: value}` value format. This gets merged with the parent component&apos;s data.',
         private: false,
       },
+      availableData: {
+        types: [
+          'object',
+        ],
+        description: 'Same as `data` property except that it only includes the element&apos;s value if [`available`](#property-available) is `true` (has no [`conditions`](#option-conditions) or they are fulfilled).',
+        private: false,
+      },
       requestData: {
         types: [
           'object',
@@ -13664,6 +13713,13 @@ module.exports = {
         description: 'The value of the element in `{[name]: value}` value format. This gets merged with the parent component&apos;s data.',
         private: false,
       },
+      availableData: {
+        types: [
+          'object',
+        ],
+        description: 'Same as `data` property except that it only includes the element&apos;s value if [`available`](#property-available) is `true` (has no [`conditions`](#option-conditions) or they are fulfilled).',
+        private: false,
+      },
       requestData: {
         types: [
           'object',
@@ -15236,6 +15292,13 @@ module.exports = {
         description: 'The value of child elements in object. This gets merged with the parent component&apos;s data.',
         private: false,
       },
+      availableData: {
+        types: [
+          'object',
+        ],
+        description: 'Same as `data` property except that it only includes the element&apos;s value if [`available`](#property-available) is `true` (has no [`conditions`](#option-conditions) or they are fulfilled).',
+        private: false,
+      },
       requestData: {
         types: [
           'object',
@@ -16727,6 +16790,13 @@ module.exports = {
         description: 'The value of child elements in object. This gets merged with the parent component&apos;s data.',
         private: false,
       },
+      availableData: {
+        types: [
+          'object',
+        ],
+        description: 'Same as `data` property except that it only includes the element&apos;s value if [`available`](#property-available) is `true` (has no [`conditions`](#option-conditions) or they are fulfilled).',
+        private: false,
+      },
       requestData: {
         types: [
           'object',
@@ -18159,6 +18229,11 @@ module.exports = {
         returns: 'void',
         private: false,
       },
+      untrackExpression: {
+        description: 'Ends tracking changes related to expression.',
+        returns: 'void',
+        private: true,
+      },
     },
     inject: {
       form$: {
@@ -19273,6 +19348,13 @@ module.exports = {
           'string',
         ],
         description: 'The label of add button.',
+        private: false,
+      },
+      availableData: {
+        types: [
+          'object',
+        ],
+        description: 'Same as `data` property except that it only includes the element&apos;s value if [`available`](#property-available) is `true` (has no [`conditions`](#option-conditions) or they are fulfilled).',
         private: false,
       },
       requestData: {
@@ -21085,6 +21167,13 @@ module.exports = {
           'object',
         ],
         description: 'The value of the element in `{[name]: value}` value format. This gets merged with the parent component&apos;s data.',
+        private: false,
+      },
+      availableData: {
+        types: [
+          'object',
+        ],
+        description: 'Same as `data` property except that it only includes the element&apos;s value if [`available`](#property-available) is `true` (has no [`conditions`](#option-conditions) or they are fulfilled).',
         private: false,
       },
       requestData: {
@@ -22935,6 +23024,13 @@ module.exports = {
           'object',
         ],
         description: 'The value of the element in `{[name]: value}` value format. This gets merged with the parent component&apos;s data.',
+        private: false,
+      },
+      availableData: {
+        types: [
+          'object',
+        ],
+        description: 'Same as `data` property except that it only includes the element&apos;s value if [`available`](#property-available) is `true` (has no [`conditions`](#option-conditions) or they are fulfilled).',
         private: false,
       },
       requestData: {
@@ -24939,6 +25035,13 @@ module.exports = {
           'boolean',
         ],
         description: 'Whether list files should be sortable. Can be enabled by setting [`sort`](#option-sort) to `true`, but will return `false` if the element has [`isDisabled: true`](#property-is-disabled) or a temporary file upload is in progress.',
+        private: false,
+      },
+      availableData: {
+        types: [
+          'object',
+        ],
+        description: 'Same as `data` property except that it only includes the element&apos;s value if [`available`](#property-available) is `true` (has no [`conditions`](#option-conditions) or they are fulfilled).',
         private: false,
       },
       requestData: {
@@ -29160,6 +29263,13 @@ module.exports = {
         description: 'The value of the element in `{[name]: value}` value format. This gets merged with the parent component&apos;s data.',
         private: false,
       },
+      availableData: {
+        types: [
+          'object',
+        ],
+        description: 'Same as `data` property except that it only includes the element&apos;s value if [`available`](#property-available) is `true` (has no [`conditions`](#option-conditions) or they are fulfilled).',
+        private: false,
+      },
       requestData: {
         types: [
           'object',
@@ -30765,6 +30875,13 @@ module.exports = {
           'object',
         ],
         description: 'The value of the element in `{[name]: value}` value format. This gets merged with the parent component&apos;s data.',
+        private: false,
+      },
+      availableData: {
+        types: [
+          'object',
+        ],
+        description: 'Same as `data` property except that it only includes the element&apos;s value if [`available`](#property-available) is `true` (has no [`conditions`](#option-conditions) or they are fulfilled).',
         private: false,
       },
       requestData: {
@@ -32468,6 +32585,13 @@ module.exports = {
         description: 'The value of the element in `{[name]: value}` value format. This gets merged with the parent component&apos;s data.',
         private: false,
       },
+      availableData: {
+        types: [
+          'object',
+        ],
+        description: 'Same as `data` property except that it only includes the element&apos;s value if [`available`](#property-available) is `true` (has no [`conditions`](#option-conditions) or they are fulfilled).',
+        private: false,
+      },
       requestData: {
         types: [
           'object',
@@ -33996,6 +34120,13 @@ module.exports = {
           'object',
         ],
         description: 'The value of the element in `{[name]: value}` value format. This gets merged with the parent component&apos;s data.',
+        private: false,
+      },
+      availableData: {
+        types: [
+          'object',
+        ],
+        description: 'Same as `data` property except that it only includes the element&apos;s value if [`available`](#property-available) is `true` (has no [`conditions`](#option-conditions) or they are fulfilled).',
         private: false,
       },
       requestData: {
@@ -36159,6 +36290,13 @@ module.exports = {
           'object',
         ],
         description: 'The value of the element in `{[name]: value}` value format. This gets merged with the parent component&apos;s data.',
+        private: false,
+      },
+      availableData: {
+        types: [
+          'object',
+        ],
+        description: 'Same as `data` property except that it only includes the element&apos;s value if [`available`](#property-available) is `true` (has no [`conditions`](#option-conditions) or they are fulfilled).',
         private: false,
       },
       requestData: {
@@ -38409,6 +38547,13 @@ module.exports = {
         description: 'The value of the element in `{[name]: value}` value format. This gets merged with the parent component&apos;s data.',
         private: false,
       },
+      availableData: {
+        types: [
+          'object',
+        ],
+        description: 'Same as `data` property except that it only includes the element&apos;s value if [`available`](#property-available) is `true` (has no [`conditions`](#option-conditions) or they are fulfilled).',
+        private: false,
+      },
       requestData: {
         types: [
           'object',
@@ -40566,6 +40711,13 @@ module.exports = {
           'object',
         ],
         description: 'The value of the element in `{[name]: value}` value format. This gets merged with the parent component&apos;s data.',
+        private: false,
+      },
+      availableData: {
+        types: [
+          'object',
+        ],
+        description: 'Same as `data` property except that it only includes the element&apos;s value if [`available`](#property-available) is `true` (has no [`conditions`](#option-conditions) or they are fulfilled).',
         private: false,
       },
       requestData: {
@@ -43316,6 +43468,13 @@ module.exports = {
           'object',
         ],
         description: 'The value of the element in `{[name]: value}` value format. This gets merged with the parent component&apos;s data.',
+        private: false,
+      },
+      availableData: {
+        types: [
+          'object',
+        ],
+        description: 'Same as `data` property except that it only includes the element&apos;s value if [`available`](#property-available) is `true` (has no [`conditions`](#option-conditions) or they are fulfilled).',
         private: false,
       },
       requestData: {
@@ -51063,6 +51222,13 @@ module.exports = {
         description: 'The value of the element in `{[name]: value}` value format. This gets merged with the parent component&apos;s data.',
         private: false,
       },
+      availableData: {
+        types: [
+          'object',
+        ],
+        description: 'Same as `data` property except that it only includes the element&apos;s value if [`available`](#property-available) is `true` (has no [`conditions`](#option-conditions) or they are fulfilled).',
+        private: false,
+      },
       requestData: {
         types: [
           'object',
@@ -51639,6 +51805,11 @@ module.exports = {
         description: 'Re-initializes validators when rules have changed.',
         returns: 'void',
         private: false,
+      },
+      untrackExpression: {
+        description: 'Ends tracking changes related to expression.',
+        returns: 'void',
+        private: true,
       },
       hide: {
         description: 'Hides the element.',
@@ -52871,6 +53042,13 @@ module.exports = {
           'object',
         ],
         description: 'The value of the element in `{[name]: value}` value format. This gets merged with the parent component&apos;s data.',
+        private: false,
+      },
+      availableData: {
+        types: [
+          'object',
+        ],
+        description: 'Same as `data` property except that it only includes the element&apos;s value if [`available`](#property-available) is `true` (has no [`conditions`](#option-conditions) or they are fulfilled).',
         private: false,
       },
       requestData: {
@@ -54602,6 +54780,13 @@ module.exports = {
           'object',
         ],
         description: 'The value of the element in `{[name]: value}` value format. This gets merged with the parent component&apos;s data.',
+        private: false,
+      },
+      availableData: {
+        types: [
+          'object',
+        ],
+        description: 'Same as `data` property except that it only includes the element&apos;s value if [`available`](#property-available) is `true` (has no [`conditions`](#option-conditions) or they are fulfilled).',
         private: false,
       },
       requestData: {

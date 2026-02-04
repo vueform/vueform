@@ -1,5 +1,17 @@
 [//]: # (Don't use <tags>)
 
+## v1.13.8
+
+> `2026-02-04`
+
+### 🎉 Feature
+- always revalidate elements if they have conditional rules that change (somewhat breaking change)
+- pass validation messages as function
+- use display format in date messages
+
+### 🐞 Bug Fixes
+- conditional nullable with multingual elements
+
 ## v1.13.7
 
 > `2026-01-21`

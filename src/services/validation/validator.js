@@ -174,8 +174,6 @@ const Validator = class {
         nullable = true
         return
       }
-
-      c()
       
       nullable = Validator.conditions(this.form$, this, this.element$)
     })

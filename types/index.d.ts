@@ -470,6 +470,7 @@ export interface VueformElement extends DefineComponent {
   captchaOptions: object;
   shouldVerify: boolean;
   data: object;
+  availableData: object;
   requestData: object;
   defaultValue: any;
   empty: boolean;
@@ -719,6 +720,7 @@ export interface VueformElement extends DefineComponent {
   validateChildren: () => Promise;
   shouldForceNumbers: () => boolean;
   stringToNumber: (str: any) => number | float | string;
+  untrackExpression: () => void;
   add: (value: any) => number;
   handleAdd: () => void;
   refreshOrderStore: (value: Array<any>) => void;
@@ -4185,6 +4187,7 @@ export declare class Vueform implements DefineComponent {
   // Computed
   options: object;
   data: object;
+  availableData: object;
   requestData: object;
   dirty: boolean;
   invalid: boolean;
@@ -4716,6 +4719,7 @@ export declare class CaptchaElement implements DefineComponent {
   columnsClasses: object;
   available: boolean;
   data: object;
+  availableData: object;
   requestData: object;
   defaultValue: any;
   isDisabled: boolean;
@@ -4913,6 +4917,7 @@ export declare class CheckboxElement implements DefineComponent {
   columnsClasses: object;
   available: boolean;
   data: object;
+  availableData: object;
   requestData: object;
   defaultValue: any;
   isDisabled: boolean;
@@ -5106,6 +5111,7 @@ export declare class CheckboxgroupElement implements DefineComponent {
   columnsClasses: object;
   available: boolean;
   data: object;
+  availableData: object;
   requestData: object;
   defaultValue: any;
   isDisabled: boolean;
@@ -5319,6 +5325,7 @@ export declare class DateElement implements DefineComponent {
   columnsClasses: object;
   available: boolean;
   data: object;
+  availableData: object;
   requestData: object;
   displayDateFormat: string;
   valueDateFormat: string;
@@ -5528,6 +5535,7 @@ export declare class DatesElement implements DefineComponent {
   columnsClasses: object;
   available: boolean;
   data: object;
+  availableData: object;
   requestData: object;
   displayDateFormat: string;
   valueDateFormat: string;
@@ -5734,6 +5742,7 @@ export declare class EditorElement implements DefineComponent {
   columnsClasses: object;
   available: boolean;
   data: object;
+  availableData: object;
   requestData: object;
   defaultValue: any;
   isDisabled: boolean;
@@ -5949,6 +5958,7 @@ export declare class FileElement implements DefineComponent {
   columnsClasses: object;
   available: boolean;
   data: object;
+  availableData: object;
   requestData: object;
   defaultValue: any;
   isDisabled: boolean;
@@ -6163,6 +6173,7 @@ export declare class GenericElement implements DefineComponent {
   columnsClasses: object;
   available: boolean;
   data: object;
+  availableData: object;
   requestData: object;
   defaultValue: any;
   isDisabled: boolean;
@@ -6364,6 +6375,7 @@ export declare class GridElement implements DefineComponent {
   columnsClasses: object;
   available: boolean;
   data: object;
+  availableData: object;
   requestData: object;
   defaultValue: any;
   el$: VueformElement;
@@ -6552,6 +6564,7 @@ export declare class GroupElement implements DefineComponent {
   columnsClasses: object;
   available: boolean;
   data: object;
+  availableData: object;
   requestData: object;
   defaultValue: any;
   el$: VueformElement;
@@ -6765,6 +6778,7 @@ export declare class HiddenElement implements DefineComponent {
   initMessageBag: () => void;
   initValidation: () => void;
   reinitValidation: () => void;
+  untrackExpression: () => void;
 
   //Events
   $emit(eventName: 'reset', value: any): void;
@@ -6872,6 +6886,7 @@ export declare class ListElement implements DefineComponent {
   hasRemove: boolean;
   hasSort: boolean;
   addLabel: string;
+  availableData: object;
   requestData: object;
   data: object;
   length: number;
@@ -7090,6 +7105,7 @@ export declare class LocationElement implements DefineComponent {
   columnsClasses: object;
   available: boolean;
   data: object;
+  availableData: object;
   requestData: object;
   defaultValue: any;
   isDisabled: boolean;
@@ -7317,6 +7333,7 @@ export declare class MatrixElement implements DefineComponent {
   columnsClasses: object;
   available: boolean;
   data: object;
+  availableData: object;
   requestData: object;
   defaultValue: any;
   isDisabled: boolean;
@@ -7548,6 +7565,7 @@ export declare class MultifileElement implements DefineComponent {
   hasAdd: boolean;
   hasRemove: boolean;
   hasSort: boolean;
+  availableData: object;
   requestData: object;
   data: object;
   length: number;
@@ -8040,6 +8058,7 @@ export declare class ObjectElement implements DefineComponent {
   columnsClasses: object;
   available: boolean;
   data: object;
+  availableData: object;
   requestData: object;
   defaultValue: any;
   el$: VueformElement;
@@ -8235,6 +8254,7 @@ export declare class PhoneElement implements DefineComponent {
   columnsClasses: object;
   available: boolean;
   data: object;
+  availableData: object;
   requestData: object;
   defaultValue: any;
   isDisabled: boolean;
@@ -8450,6 +8470,7 @@ export declare class RadioElement implements DefineComponent {
   columnsClasses: object;
   available: boolean;
   data: object;
+  availableData: object;
   requestData: object;
   defaultValue: any;
   isDisabled: boolean;
@@ -8644,6 +8665,7 @@ export declare class RadiogroupElement implements DefineComponent {
   columnsClasses: object;
   available: boolean;
   data: object;
+  availableData: object;
   requestData: object;
   defaultValue: any;
   isDisabled: boolean;
@@ -8887,6 +8909,7 @@ export declare class SelectElement implements DefineComponent {
   columnsClasses: object;
   available: boolean;
   data: object;
+  availableData: object;
   requestData: object;
   defaultValue: any;
   isDisabled: boolean;
@@ -9126,6 +9149,7 @@ export declare class SignatureElement implements DefineComponent {
   columnsClasses: object;
   available: boolean;
   data: object;
+  availableData: object;
   requestData: object;
   defaultValue: any;
   isDisabled: boolean;
@@ -9429,6 +9453,7 @@ export declare class SliderElement implements DefineComponent {
   columnsClasses: object;
   available: boolean;
   data: object;
+  availableData: object;
   requestData: object;
   defaultValue: any;
   isDisabled: boolean;
@@ -9771,6 +9796,7 @@ export declare class TEditorElement implements DefineComponent {
   columnsClasses: object;
   available: boolean;
   data: object;
+  availableData: object;
   requestData: object;
   defaultValue: any;
   isDisabled: boolean;
@@ -10686,6 +10712,7 @@ export declare class TextElement implements DefineComponent {
   columnsClasses: object;
   available: boolean;
   data: object;
+  availableData: object;
   requestData: object;
   defaultValue: any;
   isDisabled: boolean;
@@ -10784,6 +10811,7 @@ export declare class TextElement implements DefineComponent {
   initMessageBag: () => void;
   initValidation: () => void;
   reinitValidation: () => void;
+  untrackExpression: () => void;
   hide: () => void;
   show: () => void;
 
@@ -10905,6 +10933,7 @@ export declare class TextareaElement implements DefineComponent {
   columnsClasses: object;
   available: boolean;
   data: object;
+  availableData: object;
   requestData: object;
   defaultValue: any;
   isDisabled: boolean;
@@ -11117,6 +11146,7 @@ export declare class ToggleElement implements DefineComponent {
   columnsClasses: object;
   available: boolean;
   data: object;
+  availableData: object;
   requestData: object;
   defaultValue: any;
   isDisabled: boolean;
