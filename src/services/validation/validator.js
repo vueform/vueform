@@ -157,15 +157,15 @@ const Validator = class {
   }
 
   get isNumeric() {
-    return some(this.element$.Validators, { name: 'numeric' })
-        || some(this.element$.Validators, { name: 'integer' })
+    return some(this.getCurrentValidators(this.element$), { name: 'numeric' })
+        || some(this.getCurrentValidators(this.element$), { name: 'integer' })
         || typeof this.element$.value === 'number'
   }
 
   get isNullable() {
     let nullable = false
 
-    each(this.element$.Validators, (Validator) => {
+    each(this.getCurrentValidators(this.element$), (Validator) => {
       if (Validator.name !== 'nullable') {
         return
       }
@@ -174,6 +174,8 @@ const Validator = class {
         nullable = true
         return
       }
+
+      c()
       
       nullable = Validator.conditions(this.form$, this, this.element$)
     })
@@ -282,17 +284,11 @@ const Validator = class {
   }
 
   revalidate() {
-    if (!this.element$) return
-
-    if ('validateLanguage' in this.element$) {
-      this.element$.validateLanguage()
-    } else {
-      this.element$.Validators.forEach((Validator) => {
-        if (Validator.rule.name === this.rule.name) {
-          Validator.validate()
-        }
-      })
-    }
+    this.getAllValidators(this.element$).forEach((Validator) => {
+      if (Validator.rule.name === this.rule.name) {
+        Validator.validate()
+      }
+    })
   }
 
   watchOther() {
@@ -310,8 +306,8 @@ const Validator = class {
   }
 
   isOtherNumeric(other$) {
-    return some(other$.Validators, { name: 'numeric' })
-        || some(other$.Validators, { name: 'integer' })
+    return some(this.getCurrentValidators(this.element$), { name: 'numeric' })
+        || some(this.getCurrentValidators(this.element$), { name: 'integer' })
         || typeof other$.value === 'number'
   }
 
@@ -365,6 +361,29 @@ const Validator = class {
     }
 
     return true
+  }
+
+  getAllValidators(el$) {
+    if (Array.isArray(el$?.Validators)) {
+      return el$.Validators
+    } else if (el$?.Validators && typeof el$.Validators === 'object' && 'language' in el$) {
+      return Object.values(el$.Validators).reduce((all, Validators) => [
+        ...all,
+        ...Validators,
+      ], [])
+    } else {
+      return []
+    }
+  }
+
+  getCurrentValidators(el$) {
+    if (Array.isArray(el$?.Validators)) {
+      return el$.Validators
+    } else if (el$?.Validators && typeof el$.Validators === 'object' && 'language' in el$) {
+      return el$.Validators[el$.language]
+    } else {
+      return []
+    }
   }
 
   async _validate(value) {
