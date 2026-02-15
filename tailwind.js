@@ -63,6 +63,7 @@ const vueform = plugin((context) => {
   )
 
   const preflight = config('corePlugins').indexOf('preflight') !== -1
+  const globals = config('globals') !== false
 
   // Testing output
   // fs.writeFileSync(path.resolve(__dirname, './tw.txt'),  ? 'a' : 'b')
@@ -763,9 +764,11 @@ const vueform = plugin((context) => {
     })
   }
   
-  addBase(rules.map((rule) => {
-    return { [rule.base]: rule.styles }
-  }))
+  if (globals) {
+    addBase(rules.map((rule) => {
+      return { [rule.base]: rule.styles }
+    }))
+  }
 
   const pms = [
     'p', 'py', 'px', 'pl', 'pr', 'pt', 'pb',
