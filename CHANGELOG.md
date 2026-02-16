@@ -1,5 +1,12 @@
 [//]: # (Don't use <tags>)
 
+## v1.13.9
+
+> `2026-02-16`
+
+### 🎉 Feature
+- Option to disable TW base classes
+
 ## v1.13.8
 
 > `2026-02-04`
