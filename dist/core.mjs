@@ -1,5 +1,5 @@
 /*!
- * Vueform v1.13.9 (https://github.com/vueform/vueform)
+ * Vueform v1.13.10 (https://github.com/vueform/vueform)
  * Copyright (c) 2026 Adam Berecz <adam@vueform.com>
  * Licensed under the MIT License
  */
@@ -10233,7 +10233,7 @@ function shouldApplyPlugin (name, plugin) {
 }
 
 var name = "@vueform/vueform";
-var version$1 = "1.13.9";
+var version$1 = "1.13.10";
 var description = "Open-Source Form Framework for Vue";
 var homepage = "https://vueform.com";
 var license = "MIT";
@@ -10438,12 +10438,12 @@ var normalize = function normalize(value) {
   }
 };
 
-var parse = string => {
+var parse = str => {
   var parseRule = () => {
-    return string.split(':')[0];
+    return str.split(':')[0];
   };
   var parseAttributes = () => {
-    var parts = string.split(':');
+    var parts = str.split(':');
     if (parts.length <= 1) {
       return null;
     }
@@ -13336,7 +13336,7 @@ class size extends Validator {
   }
 }
 
-class string extends Validator {
+class StrinValidator extends Validator {
   check(value) {
     return isString_1(value);
   }
@@ -50211,4 +50211,4 @@ var vueform = installer(undefined, {
   moment
 });
 
-export { ButtonElement, CaptchaElement, CheckboxElement, CheckboxgroupCheckbox, CheckboxgroupElement, DateElement, DatepickerWrapper, DatesElement, DragAndDrop, EditorElement, EditorWrapper, ElementAddon, ElementAddonOptions, ElementDescription, ElementError, ElementInfo, ElementLabel, ElementLabelFloating, ElementLayout, ElementLayoutInline, ElementLoader, ElementMessage, ElementRequired, ElementText, FileElement, FilePreview, FormElements, FormErrors, FormLanguage, FormLanguages, FormMessages, FormStep, FormSteps, FormStepsControl, FormStepsControls, FormTab, FormTabs, GenericElement, GridElement, GroupElement, HiddenElement, ListElement, LocationElement, MatrixElement, MultifileElement, MultiselectElement, ObjectElement, PhoneElement, RadioElement, RadiogroupElement, RadiogroupRadio, SelectElement, SignatureElement, SliderElement, StaticElement, TEditorElement, TTextElement, TTextareaElement, TagsElement, TextElement, TextareaElement, ToggleElement, Validator, VueformComponent as Vueform, VueformElement, accepted, active_url, after, after_or_equal, alpha, alpha_dash, alpha_num, array$2 as array, before, before_or_equal, between, boolean$1 as boolean, captcha$2 as captcha, completed, confirmed, date$4 as date, date_equals, date_format, vueform as default, defineConfig, defineElement, different, digits, digits_between, dimensions, distinct, element, email, exists, file$5 as file, filled, gt, gte, image, in_, in_array, installer, integer, ip, ipv4, ipv6, json, lt, lte, max$1 as max, mimes, mimetypes, min$2 as min, not_in, not_regex, nullable, numeric, regex, required, same, size, string, timezone, unique, url, base$1g as useClasses, base$1h as useVueform, uuid, vueform };
+export { ButtonElement, CaptchaElement, CheckboxElement, CheckboxgroupCheckbox, CheckboxgroupElement, DateElement, DatepickerWrapper, DatesElement, DragAndDrop, EditorElement, EditorWrapper, ElementAddon, ElementAddonOptions, ElementDescription, ElementError, ElementInfo, ElementLabel, ElementLabelFloating, ElementLayout, ElementLayoutInline, ElementLoader, ElementMessage, ElementRequired, ElementText, FileElement, FilePreview, FormElements, FormErrors, FormLanguage, FormLanguages, FormMessages, FormStep, FormSteps, FormStepsControl, FormStepsControls, FormTab, FormTabs, GenericElement, GridElement, GroupElement, HiddenElement, ListElement, LocationElement, MatrixElement, MultifileElement, MultiselectElement, ObjectElement, PhoneElement, RadioElement, RadiogroupElement, RadiogroupRadio, SelectElement, SignatureElement, SliderElement, StaticElement, TEditorElement, TTextElement, TTextareaElement, TagsElement, TextElement, TextareaElement, ToggleElement, Validator, VueformComponent as Vueform, VueformElement, accepted, active_url, after, after_or_equal, alpha, alpha_dash, alpha_num, array$2 as array, before, before_or_equal, between, boolean$1 as boolean, captcha$2 as captcha, completed, confirmed, date$4 as date, date_equals, date_format, vueform as default, defineConfig, defineElement, different, digits, digits_between, dimensions, distinct, element, email, exists, file$5 as file, filled, gt, gte, image, in_, in_array, installer, integer, ip, ipv4, ipv6, json, lt, lte, max$1 as max, mimes, mimetypes, min$2 as min, not_in, not_regex, nullable, numeric, regex, required, same, size, StrinValidator as string, timezone, unique, url, base$1g as useClasses, base$1h as useVueform, uuid, vueform };

@@ -1,5 +1,12 @@
 [//]: # (Don't use <tags>)
 
+## v1.13.10
+
+> `2026-02-18`
+
+### 🐞 Bug Fixes
+- Removed `string` class name #514
+
 ## v1.13.9
 
 > `2026-02-16`
