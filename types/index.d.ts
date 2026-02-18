@@ -760,6 +760,8 @@ export interface VueformElement extends DefineComponent {
   setDrawColor: () => void;
   adjustFontSize: () => void;
   hexToRgb: (hex: string) => string;
+  blobToBase64: (blob: Blob) => ,string;
+  base64ToBlob: (base64: string) => Blob;
   checkFileExt: (file: File) => boolean;
   checkFileSize: (file: File) => boolean;
   setWidth: () => void;
@@ -2679,6 +2681,7 @@ export interface SignatureElementProps {
   canClear?: boolean;
   canUndo?: boolean;
   canDrop?: boolean;
+  valueFormat?: string;
 }
 
 export interface SliderElementProps {
@@ -9125,6 +9128,7 @@ export declare class SignatureElement implements DefineComponent {
   canClear: SignatureElementProps['canClear'];
   canUndo: SignatureElementProps['canUndo'];
   canDrop: SignatureElementProps['canDrop'];
+  valueFormat: SignatureElementProps['valueFormat'];
 
   // Computed
   descriptionId: string;
@@ -9309,6 +9313,8 @@ export declare class SignatureElement implements DefineComponent {
   setDrawColor: () => void;
   adjustFontSize: () => void;
   hexToRgb: (hex: string) => string;
+  blobToBase64: (blob: Blob) => ,string;
+  base64ToBlob: (base64: string) => Blob;
   checkFileExt: (file: File) => boolean;
   checkFileSize: (file: File) => boolean;
   setWidth: () => void;
