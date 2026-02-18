@@ -1,13 +1,13 @@
 import each from 'lodash/each'
 import normalize from './../../utils/normalize'
 
-const parse = (string) => {
+const parse = (str) => {
   let parseRule = () => {
-    return string.split(':')[0]
+    return str.split(':')[0]
   }
 
   let parseAttributes = () => {
-   let parts = string.split(':')
+   let parts = str.split(':')
 
     if (parts.length <= 1) {
       return null

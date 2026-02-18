@@ -49,7 +49,7 @@ import regex from './regex'
 import required from './required'
 import same from './same'
 import size from './size'
-import string from './string'
+import string_ from './string'
 import timezone from './timezone'
 import unique from './unique'
 import url from './url'
@@ -107,7 +107,7 @@ export {
   required,
   same,
   size,
-  string,
+  string_ as string,
   timezone,
   unique,
   url,
@@ -164,7 +164,7 @@ export default {
   required,
   same,
   size,
-  string,
+  string: string_,
   timezone,
   unique,
   url,
