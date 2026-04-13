@@ -158,7 +158,7 @@
     "@vueform/multiselect": "^2.6.11",
     "@vueform/slider": "^2.1.10",
     "@vueform/toggle": "^2.1.4",
-    "axios": "^1.8.4",
+    "axios": "^1.15.0",
     "color": "^4.2.3",
     "dompurify": "^3.2.4",
     "lodash": "^4.17.21",
@@ -166,7 +166,7 @@
     "moment": "^2.30.1",
     "nouislider": "^15.8.1",
     "sass": "^1.86.2",
-    "trix": "^2.1.14",
+    "trix": "^2.1.18",
     "wnumb": "^1.2.0"
   }
 }
