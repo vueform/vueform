@@ -18,7 +18,7 @@ Vueform is an open-source Vue 2+3 form framework. All source is plain `.js` — 
 - `src/providers/` — pluggable drivers (e.g. captcha/Recaptcha2Provider)
 - `src/config/index.js` — default configuration object
 - `themes/` — templates, CSS/SCSS per theme (blank, bootstrap, material, tailwind, vueform)
-- `locales/` — i18n bundles per locale
+- `locales/` — i18n bundles per locale (each locale has `index.mjs` and `index.d.mts`; `index.js` is NOT required)
 
 ## Element architecture
 

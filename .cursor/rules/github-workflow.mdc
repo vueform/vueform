@@ -67,6 +67,16 @@ When asked to get a PR merge-ready, loop through:
 3. Check CI — fix failures with small scoped commits, push, and re-check
 4. Repeat until: CI green + no unresolved comments + no conflicts
 
+## Reviewing locale PRs
+
+Locale contributions are common. When reviewing a new or updated locale under `locales/`:
+
+- A locale only needs `index.mjs` and `index.d.mts`. There is NO `index.js` requirement.
+- Compare all keys against the English reference (`locales/en/index.mjs`) to check for missing or extra keys.
+- Check for untranslated strings still left in English.
+- Check the `ordinal` function: parameter must be `nth`, and return values should match the target language (not English suffixes like `"th"`).
+- The `fix-locales` script (`npm run fix-locales`) merges missing keys from English automatically, so minor omissions are non-blocking.
+
 ## Reading discussions
 
 - List discussions: `gh api repos/vueform/vueform/discussions --jq '.[].title'`
