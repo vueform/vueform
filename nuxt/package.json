@@ -39,15 +39,17 @@
     "pathe": "^1.1.1"
   },
   "devDependencies": {
-    "@nuxt/devtools": "latest",
     "@nuxt/eslint-config": "^0.2.0",
     "@nuxt/module-builder": "^0.5.3",
-    "@nuxt/schema": "^3.8.1",
-    "@nuxt/test-utils": "^3.8.1",
+    "@nuxt/schema": "^3.21.2",
+    "@nuxt/test-utils": "^3.21.2",
     "@types/node": "^20.8.10",
-    "changelogen": "^0.5.5",
+    "changelogen": "^0.6.2",
     "eslint": "^8.53.0",
-    "nuxt": "^3.8.1",
-    "vitest": "^0.34.0"
+    "nuxt": "^3.21.2",
+    "vitest": "^3.2.0"
+  },
+  "overrides": {
+    "minimatch": ">=9.0.7"
   }
 }
