@@ -1,0 +1,45 @@
+---
+description: Vueform project architecture and source structure
+alwaysApply: true
+---
+
+# Vueform Architecture
+
+Vueform is an open-source Vue 2+3 form framework. All source is plain `.js` — no TypeScript, no `.vue` SFCs in `src/`.
+
+## Directory layout
+
+- `src/components/` — Vue component definitions as JS objects (name, mixins, props, emits, setup)
+- `src/components/elements/` — form elements (TextElement, SelectElement, etc.)
+- `src/composables/` — Vue 3 composables; `composables/elements/` has per-feature composables
+- `src/services/` — validation, messageBag, condition, expression, i18n, location, axios, sanitize
+- `src/utils/` — small pure helpers (data paths, DOM, comparison, debounce)
+- `src/mixins/` — prop bundles (BaseElement, HasView, HasData, HasValidation, HasChange)
+- `src/providers/` — pluggable drivers (e.g. captcha/Recaptcha2Provider)
+- `src/config/index.js` — default configuration object
+- `themes/` — templates, CSS/SCSS per theme (blank, bootstrap, material, tailwind, vueform)
+- `locales/` — i18n bundles per locale
+
+## Element architecture
+
+Each element is a JS component object. Its `setup()` declares:
+1. `context.features` — ordered array of composable functions
+2. `context.slots` — slot names
+3. Returns `{ ...useElement(props, context) }`
+
+`useElement` calls `resolveDeps` which folds each feature's return value into a `dependencies` object. Order matters — later features can read values from earlier ones.
+
+Mixins declare **props**; composables implement **behavior** (state, computed, methods, provide/inject).
+
+## Entry points
+
+- `src/index.js` — full bundle: all components + all validation rules + moment
+- `src/core.js` — slim bundle: Vueform + FormElements only, for tree-shaking
+- `src/element.js` / `defineElement()` — extend GenericElement for custom elements
+
+## Key patterns
+
+- Add new behavior via a composable in `src/composables/elements/`, then slot it into the feature list
+- Props for cross-cutting concerns go in `src/mixins/`
+- Themes own visual templates; core owns schema, data, validation, conditions, expressions
+- Services are registered via `src/installer.js` and accessible via `form$` / `inject('config$')`

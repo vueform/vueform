@@ -1,0 +1,15 @@
+{
+  "types": {
+    "feat": { "title": "🎉 Feature" },
+    "fix": { "title": "🐞 Bug Fixes" },
+    "perf": { "title": "🏎 Performance" },
+    "refactor": { "title": "💅 Refactors" },
+    "docs": { "title": "📖 Documentation" },
+    "build": { "title": "📦 Build" },
+    "deps": { "title": "🏠 Dependencies" },
+    "chore": { "title": "🏡 Chore" },
+    "test": { "title": "✅ Tests" },
+    "ci": { "title": "🤖 CI" }
+  },
+  "output": "CHANGELOG.md"
+}

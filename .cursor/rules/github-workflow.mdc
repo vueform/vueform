@@ -1,0 +1,88 @@
+---
+description: How to work with GitHub issues, PRs, and discussions via the gh CLI
+alwaysApply: true
+---
+
+# GitHub Workflow
+
+The repository is `vueform/vueform` on GitHub. Use the `gh` CLI for all GitHub interactions.
+
+## Fixing a GitHub issue
+
+1. Read the issue: `gh issue view <number>`
+2. Create a branch: `git checkout -b fix/<short-description>`
+3. Implement the fix, add or update tests, run `npm test`
+4. Run `npm run lint` to check for style issues
+5. Commit with conventional format: `fix(<scope>): <description> #<issue>`
+6. Push and open a PR: `gh pr create --title "fix(<scope>): ..." --body "Fixes #<number>"`
+
+## Triaging issues
+
+- List open issues: `gh issue list --state open --limit 20`
+- Filter by label: `gh issue list --label bug`
+- View issue details including comments: `gh issue view <number> --comments`
+
+## Working with PRs
+
+- List PRs: `gh pr list`
+- View PR details: `gh pr view <number>`
+- Check CI status: `gh pr checks <number>`
+- View PR review comments: `gh api repos/vueform/vueform/pulls/<number>/comments`
+
+## Reviewing a PR
+
+Follow this checklist before approving:
+
+1. **Read the PR**: `gh pr view <number>` — understand the intent and linked issues
+2. **Read the diff**: `gh pr diff <number>` — review every changed file
+3. **Check CI**: `gh pr checks <number>` — all checks must be green
+4. **Review comments**: `gh api repos/vueform/vueform/pulls/<number>/comments` — check for unresolved feedback
+5. **Verify locally** (when needed):
+   - `gh pr checkout <number>`
+   - `npm test` — run the full test suite
+   - `npm run lint` — check for style issues
+   - `npm run build` — verify it builds
+6. **Approve or request changes**:
+   - Approve: `gh pr review <number> --approve --body "LGTM — tests pass, no regressions"`
+   - Request changes: `gh pr review <number> --request-changes --body "<explanation>"`
+   - Comment only: `gh pr review <number> --comment --body "<notes>"`
+
+## Merging a PR
+
+Only merge when all of these are true:
+- CI is green
+- No unresolved review comments
+- The PR title follows conventional commit format
+
+Merge commands:
+- Squash merge (preferred for single-concern PRs): `gh pr merge <number> --squash`
+- Merge commit (for large feature branches): `gh pr merge <number> --merge`
+- Delete remote branch after merge: `gh pr merge <number> --squash --delete-branch`
+
+## Babysitting a PR to merge-ready state
+
+When asked to get a PR merge-ready, loop through:
+1. Check comments — fix issues you agree with, explain when you disagree
+2. Check for merge conflicts — sync with base branch, resolve only when intent is clear
+3. Check CI — fix failures with small scoped commits, push, and re-check
+4. Repeat until: CI green + no unresolved comments + no conflicts
+
+## Reading discussions
+
+- List discussions: `gh api repos/vueform/vueform/discussions --jq '.[].title'`
+- View a discussion: `gh api repos/vueform/vueform/discussions/<number>`
+- The agent can draft responses but cannot post them directly; present drafts for review.
+
+## Security updates
+
+1. Check for vulnerabilities: `npm audit`
+2. Apply safe fixes: `npm audit fix`
+3. For breaking fixes, update manually and run full test suite
+4. Commit as: `deps: bump <package> to fix <CVE-ID>`
+
+## Dependabot PRs
+
+Dependabot is configured to open weekly PRs for dependency updates. To review:
+1. `gh pr list --label dependencies`
+2. Check if tests pass: `gh pr checks <number>`
+3. If green, merge: `gh pr merge <number> --squash`

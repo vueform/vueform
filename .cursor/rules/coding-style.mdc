@@ -1,0 +1,49 @@
+---
+description: Coding style and conventions for Vueform source
+globs: src/**/*.js
+alwaysApply: false
+---
+
+# Coding Style
+
+## Language
+
+- All source code is **plain JavaScript** (ES modules). No TypeScript in `src/`.
+- Type declarations live separately in `types/` and are generated via `npm run generate:types`.
+
+## Component format
+
+- Components are **plain JS objects** with `name`, `mixins`, `props`, `emits`, `setup()`.
+- No `.vue` SFCs in `src/components/`. Templates live in `themes/`.
+- Use composition API (`setup()`) for all new behavior. Mixins are for shared prop declarations only.
+
+## Composable pattern
+
+```js
+export default function useMyFeature(props, context, dependencies) {
+  const { form$, el$, path } = dependencies
+
+  const myComputed = computed(() => { ... })
+
+  return { myComputed }
+}
+```
+
+- Accept `(props, context, dependencies)` — dependencies come from earlier features in the pipeline.
+- Return a plain object of refs/computed/methods to merge into the element instance.
+- Export named variants when multiple element types need different behavior (e.g. `text`, `list`, `group`).
+
+## Naming
+
+- Element components: `<Name>Element.js` (e.g. `TextElement.js`, `SelectElement.js`)
+- Composables: `use<Feature>.js` (e.g. `useValidation.js`, `useValue.js`)
+- Services: lowercase directory with `index.js` (e.g. `services/validation/index.js`)
+- Utils: camelCase filename matching the exported function
+
+## ESLint
+
+Lint with `npm run lint`. Config is in `eslint.config.mjs`. Fix auto-fixable issues with `npx eslint src/ --fix`.
+
+## Vue 2 + 3 dual support
+
+The library supports both Vue 2 and Vue 3. The Vue 2 build uses `rollup.vue2.config.js` with pre/post build scripts. When writing composables, avoid Vue 3-only APIs that don't have Vue 2 equivalents unless gated.

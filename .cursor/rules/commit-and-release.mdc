@@ -1,0 +1,41 @@
+---
+description: Commit message format and release process
+alwaysApply: true
+---
+
+# Commit & Release Conventions
+
+## Commit messages
+
+This project enforces **conventional commits** via commitlint + husky.
+
+Format: `<type>(<scope>): <subject>`
+
+Allowed types: `feat`, `fix`, `docs`, `style`, `refactor`, `perf`, `test`, `build`, `ci`, `chore`, `revert`, `deps`
+
+Examples:
+- `feat(validation): add custom async rule support`
+- `fix(select): prevent infinite refetch with linked tags #485`
+- `deps: bump axios to 1.15.0`
+
+The `<scope>` is optional. Reference GitHub issue numbers with `#NNN`.
+
+## Changelog
+
+Generated via `changelogen`. Run `npm run changelog` to update CHANGELOG.md from commits since last tag.
+
+The CHANGELOG format uses emoji-prefixed headings:
+- `🎉 Feature` for `feat` commits
+- `🐞 Bug Fixes` for `fix` commits
+
+## Release process
+
+1. Ensure all tests pass: `npm test`
+2. Run lint: `npm run lint`
+3. Build: `npm run build`
+4. Generate changelog: `npm run changelog`
+5. Review and commit the changelog
+6. Tag the release: `git tag <version>`
+7. Publish: `npm publish`
+
+Or use the combined script: `npm run release`

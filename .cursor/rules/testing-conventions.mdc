@@ -1,0 +1,74 @@
+---
+description: How to write and run tests in Vueform
+globs: tests/**/*.js
+alwaysApply: false
+---
+
+# Testing Conventions
+
+Test runner: **Jest 27** with jsdom, Vue 3 Test Utils, vue-jest.
+Run with: `npm test` (generates element base metadata first, then runs Jest with VUE=3).
+
+## Creating a form for testing
+
+```js
+import { createForm, findAllComponents } from 'test-helpers'
+
+const form = createForm({
+  schema: {
+    name: { type: 'text', rules: 'required' },
+  },
+})
+const el = findAllComponents(form, { name: 'TextElement' }).at(0)
+```
+
+`createForm` returns a Vue Test Utils wrapper. Access the form VM via `form.vm`.
+
+## Element spec pattern (data-driven)
+
+Element specs use `runElementTests` which auto-loads features from `api/generated/elements-base`:
+
+```js
+import { runElementTests } from 'test-helpers'
+export default runElementTests('text', {
+  default: { fieldType: 'text', inputSelector: 'input', value: 'a', value2: 'b', nullValue: null },
+})
+```
+
+Place element specs in `tests/components/elements/<Name>Element.spec.js`.
+Place element-specific `it()` blocks in `tests/elements/<type>.js`.
+
+## Feature tests
+
+Feature test files live in `tests/features/<feature>.js`. They export named functions:
+
+```js
+export const value = (elementType, elementName, options) => {
+  it('should ...', async () => { ... })
+}
+```
+
+Adding an element to `elements-base` without a matching feature file will throw "Missing feature test".
+
+## Validation rule tests
+
+Standalone spec files in `tests/services/validation/rules/<rule>.spec.js`:
+
+```js
+describe('Required Rule', () => {
+  it('should be invalid ...', async () => {
+    const form = createForm({ schema: { el: { type: 'text', rules: 'required' } } })
+    const el = findAllComponents(form, { name: 'TextElement' }).at(0)
+    // interact, flush, assert
+    expect(el.vm.invalid).toBe(true)
+  })
+})
+```
+
+## Key helpers (from `test-helpers`)
+
+- `createForm`, `createElement`, `createInlineForm` — mount components
+- `findAllComponents` — query by component name
+- `change`, `check`, `uncheck`, `select`, `setValue`, `setDate` — simulate user input
+- `flush-promises` — wait for async validation
+- `destroy` — teardown after test
