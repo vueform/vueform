@@ -1,5 +1,233 @@
 import { createForm } from 'test-helpers'
 import { nextTick } from 'vue'
+import { Parser, Expression } from 'expr-eval-fork'
+
+describe('Parser Compatibility', () => {
+  let parser
+
+  beforeEach(() => {
+    parser = new Parser({
+      operators: {
+        logical: true,
+        comparison: true,
+        in: true,
+        assignment: false,
+      },
+    })
+
+    Object.keys(parser.functions).forEach((func) => {
+      delete parser.functions[func]
+    })
+  })
+
+  describe('Core API', () => {
+    it('should parse an expression string and return an Expression', () => {
+      const expr = parser.parse('x + 1')
+      expect(expr).toBeInstanceOf(Expression)
+    })
+
+    it('should evaluate an expression with variable bindings', () => {
+      const expr = parser.parse('x + y')
+      expect(expr.evaluate({ x: 3, y: 7 })).toBe(10)
+    })
+
+    it('should extract variables without members', () => {
+      const expr = parser.parse('a + b * c')
+      const vars = expr.variables()
+      expect(vars.sort()).toEqual(['a', 'b', 'c'])
+    })
+
+    it('should extract variables with member access', () => {
+      const expr = parser.parse('obj.x + obj.y')
+      const vars = expr.variables({ withMembers: true })
+      expect(vars.sort()).toEqual(['obj.x', 'obj.y'])
+    })
+
+    it('should convert an expression back to string', () => {
+      const expr = parser.parse('x + 1')
+      const str = expr.toString()
+      expect(typeof str).toBe('string')
+      expect(str).toContain('x')
+    })
+  })
+
+  describe('Arithmetic Operators', () => {
+    it.each([
+      ['2 + 3', {}, 5],
+      ['10 - 4', {}, 6],
+      ['3 * 7', {}, 21],
+      ['20 / 4', {}, 5],
+      ['2 ^ 3', {}, 8],
+      ['10 % 3', {}, 1],
+      ['(2 + 3) * 4', {}, 20],
+      ['-x', { x: 5 }, -5],
+    ])('should evaluate "%s" to %s', (expression, vars, expected) => {
+      expect(parser.parse(expression).evaluate(vars)).toBe(expected)
+    })
+  })
+
+  describe('Comparison Operators', () => {
+    it.each([
+      ['x == 5', { x: 5 }, true],
+      ['x == 5', { x: 3 }, false],
+      ['x != 5', { x: 3 }, true],
+      ['x != 5', { x: 5 }, false],
+      ['x > 3', { x: 5 }, true],
+      ['x > 3', { x: 2 }, false],
+      ['x < 10', { x: 5 }, true],
+      ['x < 10', { x: 15 }, false],
+      ['x >= 5', { x: 5 }, true],
+      ['x >= 5', { x: 4 }, false],
+      ['x <= 5', { x: 5 }, true],
+      ['x <= 5', { x: 6 }, false],
+    ])('should evaluate "%s" correctly', (expression, vars, expected) => {
+      expect(parser.parse(expression).evaluate(vars)).toBe(expected)
+    })
+  })
+
+  describe('Logical Operators', () => {
+    it.each([
+      ['x and y', { x: true, y: true }, true],
+      ['x and y', { x: true, y: false }, false],
+      ['x or y', { x: false, y: true }, true],
+      ['x or y', { x: false, y: false }, false],
+      ['not x', { x: true }, false],
+      ['not x', { x: false }, true],
+      ['(x or y) and z', { x: false, y: true, z: true }, true],
+      ['(x or y) and z', { x: false, y: true, z: false }, false],
+    ])('should evaluate "%s" correctly', (expression, vars, expected) => {
+      expect(parser.parse(expression).evaluate(vars)).toBe(expected)
+    })
+  })
+
+  describe('Ternary Operator', () => {
+    it('should evaluate ternary with true condition', () => {
+      expect(parser.parse('x > 0 ? 1 : 0').evaluate({ x: 5 })).toBe(1)
+    })
+
+    it('should evaluate ternary with false condition', () => {
+      expect(parser.parse('x > 0 ? 1 : 0').evaluate({ x: -1 })).toBe(0)
+    })
+
+    it('should evaluate nested ternary', () => {
+      const expr = parser.parse('x > 10 ? 2 : (x > 5 ? 1 : 0)')
+      expect(expr.evaluate({ x: 15 })).toBe(2)
+      expect(expr.evaluate({ x: 7 })).toBe(1)
+      expect(expr.evaluate({ x: 3 })).toBe(0)
+    })
+  })
+
+  describe('In Operator', () => {
+    it('should detect presence in an array', () => {
+      parser.consts.FRUITS = ['apple', 'banana', 'cherry']
+      expect(parser.parse('"apple" in FRUITS').evaluate({})).toBe(true)
+      expect(parser.parse('"grape" in FRUITS').evaluate({})).toBe(false)
+    })
+  })
+
+  describe('String Handling', () => {
+    it('should handle double-quoted strings', () => {
+      expect(parser.parse('x == "hello"').evaluate({ x: 'hello' })).toBe(true)
+    })
+
+    it('should handle single-quoted strings', () => {
+      expect(parser.parse("x == 'world'").evaluate({ x: 'world' })).toBe(true)
+    })
+
+    it('should concatenate strings with ||', () => {
+      const expr = parser.parse('"hello" || " " || "world"')
+      expect(expr.evaluate({})).toBe('hello world')
+    })
+  })
+
+  describe('Custom Functions', () => {
+    it('should register and call a custom function', () => {
+      parser.functions.DOUBLE = (x) => x * 2
+      expect(parser.parse('DOUBLE(x)').evaluate({ x: 5 })).toBe(10)
+    })
+
+    it('should register variadic functions', () => {
+      parser.functions.ADD_ALL = (...args) => args.reduce((a, b) => a + b, 0)
+      expect(parser.parse('ADD_ALL(1, 2, 3, 4)').evaluate({})).toBe(10)
+    })
+
+    it('should override toString on custom functions', () => {
+      parser.functions.MY_FUNC = (x) => x
+      parser.functions.MY_FUNC.toString = () => 'MY_FUNC'
+      expect(parser.functions.MY_FUNC.toString()).toBe('MY_FUNC')
+    })
+
+    it('should remove all default functions and only keep registered ones', () => {
+      parser.functions.ONLY = () => 42
+      expect(parser.parse('ONLY()').evaluate({})).toBe(42)
+      expect(parser.functions.sin).toBeUndefined()
+      expect(parser.functions.cos).toBeUndefined()
+      expect(parser.functions.sqrt).toBeUndefined()
+      expect(parser.functions.ONLY).toBeDefined()
+    })
+  })
+
+  describe('Custom Constants', () => {
+    it('should register and resolve custom constants', () => {
+      parser.consts.TAX_RATE = 0.21
+      expect(parser.parse('100 * TAX_RATE').evaluate({})).toBeCloseTo(21)
+    })
+
+    it('should preserve built-in constants PI and E', () => {
+      expect(parser.parse('PI').evaluate({})).toBeCloseTo(Math.PI)
+      expect(parser.parse('E').evaluate({})).toBeCloseTo(Math.E)
+    })
+  })
+
+  describe('Member Access (Dot Notation)', () => {
+    it('should evaluate nested object properties', () => {
+      const expr = parser.parse('obj.a + obj.b')
+      expect(expr.evaluate({ obj: { a: 10, b: 20 } })).toBe(30)
+    })
+
+    it('should extract member variables correctly', () => {
+      const vars = parser.parse('user.name').variables({ withMembers: true })
+      expect(vars).toContain('user.name')
+    })
+  })
+
+  describe('Array Index Access', () => {
+    it('should access array elements by index', () => {
+      const expr = parser.parse('items[0] + items[1]')
+      expect(expr.evaluate({ items: [10, 20, 30] })).toBe(30)
+    })
+  })
+
+  describe('Assignment Disabled', () => {
+    it('should throw when assignment operator is used', () => {
+      expect(() => parser.parse('x = 5')).toThrow()
+    })
+  })
+
+  describe('Edge Cases', () => {
+    it('should handle division by zero', () => {
+      const result = parser.parse('1 / 0').evaluate({})
+      expect(result).toBe(Infinity)
+    })
+
+    it('should return NaN for invalid arithmetic', () => {
+      const result = parser.parse('0 / 0').evaluate({})
+      expect(isNaN(result)).toBe(true)
+    })
+
+    it('should evaluate deeply nested parentheses', () => {
+      expect(parser.parse('((((1 + 2)) * 3))').evaluate({})).toBe(9)
+    })
+
+    it('should handle missing variables gracefully', () => {
+      expect(() => parser.parse('x + 1').evaluate({})).toThrow()
+    })
+
+    it('should handle empty expression gracefully', () => {
+      expect(() => parser.parse('')).toThrow()
+    })
+  })
+})
 
 describe('Expression Service', () => {
   describe('Static Content', () => {
