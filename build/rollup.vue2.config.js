@@ -5,8 +5,12 @@ import commonjs from '@rollup/plugin-commonjs'
 import postcss from 'rollup-plugin-postcss'
 import license from 'rollup-plugin-license'
 import vue from 'rollup-plugin-vue2'
-import { terser } from 'rollup-plugin-terser'
 import { nodeResolve } from '@rollup/plugin-node-resolve'
+
+const onwarn = (warning, warn) => {
+  if (warning.code === 'THIS_IS_UNDEFINED') return
+  warn(warning)
+}
 
 const files = [
 
@@ -42,10 +46,19 @@ export default files.map((file) => {
       css: false,
       style: {
         postcssPlugins: [autoprefixer()],
+        preprocessOptions: {
+          scss: {
+            silenceDeprecations: ['legacy-js-api', 'import', 'global-builtin'],
+          },
+          sass: {
+            silenceDeprecations: ['legacy-js-api', 'import', 'global-builtin'],
+          },
+        },
       },
     }),
     postcss({
       inject: true,
+      use: { sass: { silenceDeprecations: ['legacy-js-api', 'import', 'global-builtin'] } },
     }),
     json(),
     commonjs(),
@@ -54,7 +67,6 @@ export default files.map((file) => {
       exclude: /^(.+\/)?node_modules\/.+$/,
     }),
     nodeResolve(),
-    // terser(),
     license({
       banner: {
         content: `Vueform v<%= pkg.version %> (https://github.com/vueform/vueform)\n` + 
@@ -72,6 +84,7 @@ export default files.map((file) => {
       format: file.format || 'esm',
     },
     plugins,
+    onwarn,
     external: ['vue', 'axios', 'moment']
   }
 })
