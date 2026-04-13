@@ -201,17 +201,17 @@ var _Symbol = Symbol$7;
 var Symbol$6 = _Symbol;
 
 /** Used for built-in method references. */
-var objectProto$g = Object.prototype;
+var objectProto$h = Object.prototype;
 
 /** Used to check objects for own properties. */
-var hasOwnProperty$e = objectProto$g.hasOwnProperty;
+var hasOwnProperty$f = objectProto$h.hasOwnProperty;
 
 /**
  * Used to resolve the
  * [`toStringTag`](http://ecma-international.org/ecma-262/7.0/#sec-object.prototype.tostring)
  * of values.
  */
-var nativeObjectToString$1 = objectProto$g.toString;
+var nativeObjectToString$1 = objectProto$h.toString;
 
 /** Built-in value references. */
 var symToStringTag$1 = Symbol$6 ? Symbol$6.toStringTag : undefined;
@@ -224,7 +224,7 @@ var symToStringTag$1 = Symbol$6 ? Symbol$6.toStringTag : undefined;
  * @returns {string} Returns the raw `toStringTag`.
  */
 function getRawTag$1(value) {
-  var isOwn = hasOwnProperty$e.call(value, symToStringTag$1),
+  var isOwn = hasOwnProperty$f.call(value, symToStringTag$1),
       tag = value[symToStringTag$1];
 
   try {
@@ -247,14 +247,14 @@ var _getRawTag = getRawTag$1;
 
 /** Used for built-in method references. */
 
-var objectProto$f = Object.prototype;
+var objectProto$g = Object.prototype;
 
 /**
  * Used to resolve the
  * [`toStringTag`](http://ecma-international.org/ecma-262/7.0/#sec-object.prototype.tostring)
  * of values.
  */
-var nativeObjectToString = objectProto$f.toString;
+var nativeObjectToString = objectProto$g.toString;
 
 /**
  * Converts `value` to a string using `Object.prototype.toString`.
@@ -352,13 +352,13 @@ var baseIsArguments = _baseIsArguments,
     isObjectLike$8 = isObjectLike_1;
 
 /** Used for built-in method references. */
-var objectProto$e = Object.prototype;
+var objectProto$f = Object.prototype;
 
 /** Used to check objects for own properties. */
-var hasOwnProperty$d = objectProto$e.hasOwnProperty;
+var hasOwnProperty$e = objectProto$f.hasOwnProperty;
 
 /** Built-in value references. */
-var propertyIsEnumerable$1 = objectProto$e.propertyIsEnumerable;
+var propertyIsEnumerable$1 = objectProto$f.propertyIsEnumerable;
 
 /**
  * Checks if `value` is likely an `arguments` object.
@@ -379,7 +379,7 @@ var propertyIsEnumerable$1 = objectProto$e.propertyIsEnumerable;
  * // => false
  */
 var isArguments$5 = baseIsArguments(function() { return arguments; }()) ? baseIsArguments : function(value) {
-  return isObjectLike$8(value) && hasOwnProperty$d.call(value, 'callee') &&
+  return isObjectLike$8(value) && hasOwnProperty$e.call(value, 'callee') &&
     !propertyIsEnumerable$1.call(value, 'callee');
 };
 
@@ -688,10 +688,10 @@ var baseTimes = _baseTimes,
     isTypedArray$3 = isTypedArray_1;
 
 /** Used for built-in method references. */
-var objectProto$d = Object.prototype;
+var objectProto$e = Object.prototype;
 
 /** Used to check objects for own properties. */
-var hasOwnProperty$c = objectProto$d.hasOwnProperty;
+var hasOwnProperty$d = objectProto$e.hasOwnProperty;
 
 /**
  * Creates an array of the enumerable property names of the array-like `value`.
@@ -711,7 +711,7 @@ function arrayLikeKeys$2(value, inherited) {
       length = result.length;
 
   for (var key in value) {
-    if ((inherited || hasOwnProperty$c.call(value, key)) &&
+    if ((inherited || hasOwnProperty$d.call(value, key)) &&
         !(skipIndexes && (
            // Safari 9 has enumerable `arguments.length` in strict mode.
            key == 'length' ||
@@ -732,7 +732,7 @@ var _arrayLikeKeys = arrayLikeKeys$2;
 
 /** Used for built-in method references. */
 
-var objectProto$c = Object.prototype;
+var objectProto$d = Object.prototype;
 
 /**
  * Checks if `value` is likely a prototype object.
@@ -743,7 +743,7 @@ var objectProto$c = Object.prototype;
  */
 function isPrototype$4(value) {
   var Ctor = value && value.constructor,
-      proto = (typeof Ctor == 'function' && Ctor.prototype) || objectProto$c;
+      proto = (typeof Ctor == 'function' && Ctor.prototype) || objectProto$d;
 
   return value === proto;
 }
@@ -778,10 +778,10 @@ var isPrototype$3 = _isPrototype,
     nativeKeys = _nativeKeys;
 
 /** Used for built-in method references. */
-var objectProto$b = Object.prototype;
+var objectProto$c = Object.prototype;
 
 /** Used to check objects for own properties. */
-var hasOwnProperty$b = objectProto$b.hasOwnProperty;
+var hasOwnProperty$c = objectProto$c.hasOwnProperty;
 
 /**
  * The base implementation of `_.keys` which doesn't treat sparse arrays as dense.
@@ -796,7 +796,7 @@ function baseKeys$2(object) {
   }
   var result = [];
   for (var key in Object(object)) {
-    if (hasOwnProperty$b.call(object, key) && key != 'constructor') {
+    if (hasOwnProperty$c.call(object, key) && key != 'constructor') {
       result.push(key);
     }
   }
@@ -1448,17 +1448,17 @@ var reIsHostCtor = /^\[object .+?Constructor\]$/;
 
 /** Used for built-in method references. */
 var funcProto$1 = Function.prototype,
-    objectProto$a = Object.prototype;
+    objectProto$b = Object.prototype;
 
 /** Used to resolve the decompiled source of functions. */
 var funcToString$1 = funcProto$1.toString;
 
 /** Used to check objects for own properties. */
-var hasOwnProperty$a = objectProto$a.hasOwnProperty;
+var hasOwnProperty$b = objectProto$b.hasOwnProperty;
 
 /** Used to detect if a method is native. */
 var reIsNative = RegExp('^' +
-  funcToString$1.call(hasOwnProperty$a).replace(reRegExpChar, '\\$&')
+  funcToString$1.call(hasOwnProperty$b).replace(reRegExpChar, '\\$&')
   .replace(/hasOwnProperty|(function).*?(?=\\\()| for .+?(?=\\\])/g, '$1.*?') + '$'
 );
 
@@ -1569,10 +1569,10 @@ var nativeCreate$2 = _nativeCreate;
 var HASH_UNDEFINED$2 = '__lodash_hash_undefined__';
 
 /** Used for built-in method references. */
-var objectProto$9 = Object.prototype;
+var objectProto$a = Object.prototype;
 
 /** Used to check objects for own properties. */
-var hasOwnProperty$9 = objectProto$9.hasOwnProperty;
+var hasOwnProperty$a = objectProto$a.hasOwnProperty;
 
 /**
  * Gets the hash value for `key`.
@@ -1589,7 +1589,7 @@ function hashGet$1(key) {
     var result = data[key];
     return result === HASH_UNDEFINED$2 ? undefined : result;
   }
-  return hasOwnProperty$9.call(data, key) ? data[key] : undefined;
+  return hasOwnProperty$a.call(data, key) ? data[key] : undefined;
 }
 
 var _hashGet = hashGet$1;
@@ -1597,10 +1597,10 @@ var _hashGet = hashGet$1;
 var nativeCreate$1 = _nativeCreate;
 
 /** Used for built-in method references. */
-var objectProto$8 = Object.prototype;
+var objectProto$9 = Object.prototype;
 
 /** Used to check objects for own properties. */
-var hasOwnProperty$8 = objectProto$8.hasOwnProperty;
+var hasOwnProperty$9 = objectProto$9.hasOwnProperty;
 
 /**
  * Checks if a hash value for `key` exists.
@@ -1613,7 +1613,7 @@ var hasOwnProperty$8 = objectProto$8.hasOwnProperty;
  */
 function hashHas$1(key) {
   var data = this.__data__;
-  return nativeCreate$1 ? (data[key] !== undefined) : hasOwnProperty$8.call(data, key);
+  return nativeCreate$1 ? (data[key] !== undefined) : hasOwnProperty$9.call(data, key);
 }
 
 var _hashHas = hashHas$1;
@@ -2167,13 +2167,13 @@ var objectTag$3 = '[object Object]';
 
 /** Used for built-in method references. */
 var funcProto = Function.prototype,
-    objectProto$7 = Object.prototype;
+    objectProto$8 = Object.prototype;
 
 /** Used to resolve the decompiled source of functions. */
 var funcToString = funcProto.toString;
 
 /** Used to check objects for own properties. */
-var hasOwnProperty$7 = objectProto$7.hasOwnProperty;
+var hasOwnProperty$8 = objectProto$8.hasOwnProperty;
 
 /** Used to infer the `Object` constructor. */
 var objectCtorString = funcToString.call(Object);
@@ -2214,7 +2214,7 @@ function isPlainObject$2(value) {
   if (proto === null) {
     return true;
   }
-  var Ctor = hasOwnProperty$7.call(proto, 'constructor') && proto.constructor;
+  var Ctor = hasOwnProperty$8.call(proto, 'constructor') && proto.constructor;
   return typeof Ctor == 'function' && Ctor instanceof Ctor &&
     funcToString.call(Ctor) == objectCtorString;
 }
@@ -2248,10 +2248,10 @@ var baseAssignValue$2 = _baseAssignValue,
     eq$2 = eq_1;
 
 /** Used for built-in method references. */
-var objectProto$6 = Object.prototype;
+var objectProto$7 = Object.prototype;
 
 /** Used to check objects for own properties. */
-var hasOwnProperty$6 = objectProto$6.hasOwnProperty;
+var hasOwnProperty$7 = objectProto$7.hasOwnProperty;
 
 /**
  * Assigns `value` to `key` of `object` if the existing value is not equivalent
@@ -2265,7 +2265,7 @@ var hasOwnProperty$6 = objectProto$6.hasOwnProperty;
  */
 function assignValue$3(object, key, value) {
   var objValue = object[key];
-  if (!(hasOwnProperty$6.call(object, key) && eq$2(objValue, value)) ||
+  if (!(hasOwnProperty$7.call(object, key) && eq$2(objValue, value)) ||
       (value === undefined && !(key in object))) {
     baseAssignValue$2(object, key, value);
   }
@@ -2341,10 +2341,10 @@ var isObject$7 = isObject_1,
     nativeKeysIn = _nativeKeysIn;
 
 /** Used for built-in method references. */
-var objectProto$5 = Object.prototype;
+var objectProto$6 = Object.prototype;
 
 /** Used to check objects for own properties. */
-var hasOwnProperty$5 = objectProto$5.hasOwnProperty;
+var hasOwnProperty$6 = objectProto$6.hasOwnProperty;
 
 /**
  * The base implementation of `_.keysIn` which doesn't treat sparse arrays as dense.
@@ -2361,7 +2361,7 @@ function baseKeysIn$1(object) {
       result = [];
 
   for (var key in object) {
-    if (!(key == 'constructor' && (isProto || !hasOwnProperty$5.call(object, key)))) {
+    if (!(key == 'constructor' && (isProto || !hasOwnProperty$6.call(object, key)))) {
       result.push(key);
     }
   }
@@ -2919,7 +2919,7 @@ var _setCacheAdd = setCacheAdd$1;
  * @name has
  * @memberOf SetCache
  * @param {*} value The value to search for.
- * @returns {number} Returns `true` if `value` is found, else `false`.
+ * @returns {boolean} Returns `true` if `value` is found, else `false`.
  */
 
 function setCacheHas$1(value) {
@@ -3308,10 +3308,10 @@ var arrayFilter$2 = _arrayFilter,
     stubArray$1 = stubArray_1;
 
 /** Used for built-in method references. */
-var objectProto$4 = Object.prototype;
+var objectProto$5 = Object.prototype;
 
 /** Built-in value references. */
-var propertyIsEnumerable = objectProto$4.propertyIsEnumerable;
+var propertyIsEnumerable = objectProto$5.propertyIsEnumerable;
 
 /* Built-in method references for those with the same name as other `lodash` methods. */
 var nativeGetSymbols$1 = Object.getOwnPropertySymbols;
@@ -3358,10 +3358,10 @@ var getAllKeys$1 = _getAllKeys;
 var COMPARE_PARTIAL_FLAG$3 = 1;
 
 /** Used for built-in method references. */
-var objectProto$3 = Object.prototype;
+var objectProto$4 = Object.prototype;
 
 /** Used to check objects for own properties. */
-var hasOwnProperty$4 = objectProto$3.hasOwnProperty;
+var hasOwnProperty$5 = objectProto$4.hasOwnProperty;
 
 /**
  * A specialized version of `baseIsEqualDeep` for objects with support for
@@ -3389,7 +3389,7 @@ function equalObjects$1(object, other, bitmask, customizer, equalFunc, stack) {
   var index = objLength;
   while (index--) {
     var key = objProps[index];
-    if (!(isPartial ? key in other : hasOwnProperty$4.call(other, key))) {
+    if (!(isPartial ? key in other : hasOwnProperty$5.call(other, key))) {
       return false;
     }
   }
@@ -3552,10 +3552,10 @@ var argsTag$1 = '[object Arguments]',
     objectTag$1 = '[object Object]';
 
 /** Used for built-in method references. */
-var objectProto$2 = Object.prototype;
+var objectProto$3 = Object.prototype;
 
 /** Used to check objects for own properties. */
-var hasOwnProperty$3 = objectProto$2.hasOwnProperty;
+var hasOwnProperty$4 = objectProto$3.hasOwnProperty;
 
 /**
  * A specialized version of `baseIsEqual` for arrays and objects which performs
@@ -3598,8 +3598,8 @@ function baseIsEqualDeep$1(object, other, bitmask, customizer, equalFunc, stack)
       : equalByTag(object, other, objTag, bitmask, customizer, equalFunc, stack);
   }
   if (!(bitmask & COMPARE_PARTIAL_FLAG$2)) {
-    var objIsWrapped = objIsObj && hasOwnProperty$3.call(object, '__wrapped__'),
-        othIsWrapped = othIsObj && hasOwnProperty$3.call(other, '__wrapped__');
+    var objIsWrapped = objIsObj && hasOwnProperty$4.call(object, '__wrapped__'),
+        othIsWrapped = othIsObj && hasOwnProperty$4.call(other, '__wrapped__');
 
     if (objIsWrapped || othIsWrapped) {
       var objUnwrapped = objIsWrapped ? object.value() : object,
@@ -4489,10 +4489,10 @@ var mapTag$3 = '[object Map]',
     setTag$3 = '[object Set]';
 
 /** Used for built-in method references. */
-var objectProto$1 = Object.prototype;
+var objectProto$2 = Object.prototype;
 
 /** Used to check objects for own properties. */
-var hasOwnProperty$2 = objectProto$1.hasOwnProperty;
+var hasOwnProperty$3 = objectProto$2.hasOwnProperty;
 
 /**
  * Checks if `value` is an empty object, collection, map, or set.
@@ -4544,7 +4544,7 @@ function isEmpty(value) {
     return !baseKeys(value).length;
   }
   for (var key in value) {
-    if (hasOwnProperty$2.call(value, key)) {
+    if (hasOwnProperty$3.call(value, key)) {
       return false;
     }
   }
@@ -4956,10 +4956,10 @@ var _getAllKeysIn = getAllKeysIn$2;
 
 /** Used for built-in method references. */
 
-var objectProto = Object.prototype;
+var objectProto$1 = Object.prototype;
 
 /** Used to check objects for own properties. */
-var hasOwnProperty$1 = objectProto.hasOwnProperty;
+var hasOwnProperty$2 = objectProto$1.hasOwnProperty;
 
 /**
  * Initializes an array clone.
@@ -4973,7 +4973,7 @@ function initCloneArray$1(array) {
       result = new array.constructor(length);
 
   // Add properties assigned by `RegExp#exec`.
-  if (length && typeof array[0] == 'string' && hasOwnProperty$1.call(array, 'index')) {
+  if (length && typeof array[0] == 'string' && hasOwnProperty$2.call(array, 'index')) {
     result.index = array.index;
     result.input = array.input;
   }
@@ -9838,6 +9838,12 @@ var castPath$2 = _castPath,
     parent = _parent,
     toKey = _toKey;
 
+/** Used for built-in method references. */
+var objectProto = Object.prototype;
+
+/** Used to check objects for own properties. */
+var hasOwnProperty$1 = objectProto.hasOwnProperty;
+
 /**
  * The base implementation of `_.unset`.
  *
@@ -9848,8 +9854,34 @@ var castPath$2 = _castPath,
  */
 function baseUnset$1(object, path) {
   path = castPath$2(path, object);
-  object = parent(object, path);
-  return object == null || delete object[toKey(last(path))];
+
+  // Prevent prototype pollution:
+  // https://github.com/lodash/lodash/security/advisories/GHSA-xxjr-mmjv-4gpg
+  // https://github.com/lodash/lodash/security/advisories/GHSA-f23m-r3pf-42rh
+  var index = -1,
+      length = path.length;
+
+  if (!length) {
+    return true;
+  }
+
+  while (++index < length) {
+    var key = toKey(path[index]);
+
+    // Always block "__proto__" anywhere in the path if it's not expected
+    if (key === '__proto__' && !hasOwnProperty$1.call(object, '__proto__')) {
+      return false;
+    }
+
+    // Block constructor/prototype as non-terminal traversal keys to prevent
+    // escaping the object graph into built-in constructors and prototypes.
+    if ((key === 'constructor' || key === 'prototype') && index < length - 1) {
+      return false;
+    }
+  }
+
+  var obj = parent(object, path);
+  return obj == null || delete obj[toKey(last(path))];
 }
 
 var _baseUnset = baseUnset$1;
@@ -10335,12 +10367,18 @@ var scripts = {
 	"generate:elements": "npx babel-node scripts/generate-elements.js --presets @babel/preset-env",
 	"generate:components": "npx babel-node scripts/generate-components.js --presets @babel/preset-env",
 	generate: "npm run generate:common-features; npm run generate:element-features; npm run generate:elements-base; npm run generate:elements; npm run generate:components; npm run generate:types; npm run fix-locales",
-	"fix-locales": "npx babel-node --presets @babel/preset-env ./scripts/fix-locales.js"
+	"fix-locales": "npx babel-node --presets @babel/preset-env ./scripts/fix-locales.js",
+	lint: "eslint src/",
+	changelog: "changelogen --output CHANGELOG.md",
+	release: "npm run lint && npm test && npm run build && changelogen --release && npm publish",
+	prepare: "husky"
 };
 var devDependencies = {
 	"@babel/core": "^7.2.2",
 	"@babel/node": "^7.12.10",
 	"@babel/preset-env": "^7.3.1",
+	"@commitlint/cli": "^20.5.0",
+	"@commitlint/config-conventional": "^20.5.0",
 	"@rollup/plugin-alias": "^5.1.0",
 	"@rollup/plugin-babel": "^5.3.0",
 	"@rollup/plugin-commonjs": "^22.0.1",
@@ -10353,23 +10391,27 @@ var devDependencies = {
 	autosize: "^6.0.1",
 	"babel-core": "^7.0.0-bridge.0",
 	"babel-loader": "^8.0.5",
+	changelogen: "^0.6.2",
 	"core-js": "^3.10.1",
 	"css-loader": "^2.1.0",
-	"expr-eval": "^2.0.2",
+	eslint: "^10.2.0",
+	"eslint-plugin-vue": "^10.8.0",
+	"expr-eval-fork": "^3.0.3",
 	flatpickr: "^4.6.13",
 	"flush-promises": "^1.0.2",
 	"html-loader": "^1.3.2",
+	husky: "^9.1.7",
 	jest: "^27.3.1",
 	"jest-canvas-mock": "^2.3.1",
 	"jest-environment-jsdom-sixteen": "^1.0.3",
 	"jest-transform-stub": "^2.0.0",
 	"json-loader": "^0.5.7",
-	locutus: "^2.0.16",
+	locutus: "^3.0.34",
 	"module-alias": "^2.2.3",
 	moxios: "^0.4.0",
 	"mutationobserver-shim": "^0.3.7",
 	ncp: "^2.0.0",
-	"rollup-plugin-license": "^3.2.0",
+	"rollup-plugin-license": "^3.7.1",
 	"rollup-plugin-postcss": "^4.0.1",
 	"rollup-plugin-terser": "^7.0.2",
 	"rollup-plugin-vue": "^6.0.0",
@@ -10390,16 +10432,25 @@ var dependencies = {
 	"@vueform/multiselect": "^2.6.11",
 	"@vueform/slider": "^2.1.10",
 	"@vueform/toggle": "^2.1.4",
-	axios: "^1.8.4",
+	axios: "^1.15.0",
 	color: "^4.2.3",
 	dompurify: "^3.2.4",
-	lodash: "^4.17.21",
+	lodash: "^4.18.1",
 	"mini-svg-data-uri": "^1.4.4",
 	moment: "^2.30.1",
 	nouislider: "^15.8.1",
 	sass: "^1.86.2",
-	trix: "^2.1.14",
+	trix: "^2.1.18",
 	wnumb: "^1.2.0"
+};
+var overrides = {
+	"postcss-modules-sync": {
+		"generic-names": {
+			"loader-utils": {
+				json5: ">=1.0.2"
+			}
+		}
+	}
 };
 var packageJson = {
 	"private": false,
@@ -10416,7 +10467,8 @@ var packageJson = {
 	exports: exports,
 	scripts: scripts,
 	devDependencies: devDependencies,
-	dependencies: dependencies
+	dependencies: dependencies,
+	overrides: overrides
 };
 
 var normalize = function normalize(value) {
@@ -11345,1311 +11397,1268 @@ class confirmed extends Validator {
   }
 }
 
-var reSpace = '[ \\t]+';
-var reSpaceOpt = '[ \\t]*';
-var reMeridian = '(?:([ap])\\.?m\\.?([\\t ]|$))';
-var reHour24 = '(2[0-4]|[01]?[0-9])';
-var reHour24lz = '([01][0-9]|2[0-4])';
-var reHour12 = '(0?[1-9]|1[0-2])';
-var reMinute = '([0-5]?[0-9])';
-var reMinutelz = '([0-5][0-9])';
-var reSecond = '(60|[0-5]?[0-9])';
-var reSecondlz = '(60|[0-5][0-9])';
-var reFrac = '(?:\\.([0-9]+))';
-
-var reDayfull = 'sunday|monday|tuesday|wednesday|thursday|friday|saturday';
-var reDayabbr = 'sun|mon|tue|wed|thu|fri|sat';
-var reDaytext = reDayfull + '|' + reDayabbr + '|weekdays?';
-
-var reReltextnumber = 'first|second|third|fourth|fifth|sixth|seventh|eighth?|ninth|tenth|eleventh|twelfth';
-var reReltexttext = 'next|last|previous|this';
-var reReltextunit = '(?:second|sec|minute|min|hour|day|fortnight|forthnight|month|year)s?|weeks|' + reDaytext;
-
-var reYear = '([0-9]{1,4})';
-var reYear2 = '([0-9]{2})';
-var reYear4 = '([0-9]{4})';
-var reYear4withSign = '([+-]?[0-9]{4})';
-var reMonth = '(1[0-2]|0?[0-9])';
-var reMonthlz = '(0[0-9]|1[0-2])';
-var reDay = '(?:(3[01]|[0-2]?[0-9])(?:st|nd|rd|th)?)';
-var reDaylz = '(0[0-9]|[1-2][0-9]|3[01])';
-
-var reMonthFull = 'january|february|march|april|may|june|july|august|september|october|november|december';
-var reMonthAbbr = 'jan|feb|mar|apr|may|jun|jul|aug|sept?|oct|nov|dec';
-var reMonthroman = 'i[vx]|vi{0,3}|xi{0,2}|i{1,3}';
-var reMonthText = '(' + reMonthFull + '|' + reMonthAbbr + '|' + reMonthroman + ')';
-
-var reTzCorrection = '((?:GMT)?([+-])' + reHour24 + ':?' + reMinute + '?)';
-var reTzAbbr = '\\(?([a-zA-Z]{1,6})\\)?';
-var reDayOfYear = '(00[1-9]|0[1-9][0-9]|[12][0-9][0-9]|3[0-5][0-9]|36[0-6])';
-var reWeekOfYear = '(0[1-9]|[1-4][0-9]|5[0-3])';
-
-var reDateNoYear = reMonthText + '[ .\\t-]*' + reDay + '[,.stndrh\\t ]*';
-
+const reSpace = '[ \\t]+';
+const reSpaceOpt = '[ \\t]*';
+const reMeridian = '(?:([ap])\\.?m\\.?([\\t ]|$))';
+const reHour24 = '(2[0-4]|[01]?[0-9])';
+const reHour24lz = '([01][0-9]|2[0-4])';
+const reHour12 = '(0?[1-9]|1[0-2])';
+const reMinute = '([0-5]?[0-9])';
+const reMinutelz = '([0-5][0-9])';
+const reSecond = '(60|[0-5]?[0-9])';
+const reSecondlz = '(60|[0-5][0-9])';
+const reFrac = '(?:\\.([0-9]+))';
+const reDayfull = 'sunday|monday|tuesday|wednesday|thursday|friday|saturday';
+const reDayabbr = 'sun|mon|tue|wed|thu|fri|sat';
+const reDaytext = reDayfull + '|' + reDayabbr + '|weekdays?';
+const reReltextnumber = 'first|second|third|fourth|fifth|sixth|seventh|eighth?|ninth|tenth|eleventh|twelfth';
+const reReltexttext = 'next|last|previous|this';
+const reReltextunit = '(?:second|sec|minute|min|hour|day|fortnight|forthnight|month|year)s?|weeks|' + reDaytext;
+const reYear = '([0-9]{1,4})';
+const reYear2 = '([0-9]{2})';
+const reYear4 = '([0-9]{4})';
+const reYear4withSign = '([+-]?[0-9]{4})';
+const reMonth = '(1[0-2]|0?[0-9])';
+const reMonthlz = '(0[0-9]|1[0-2])';
+const reDay = '(?:(3[01]|[0-2]?[0-9])(?:st|nd|rd|th)?)';
+const reDaylz = '(0[0-9]|[1-2][0-9]|3[01])';
+const reMonthFull = 'january|february|march|april|may|june|july|august|september|october|november|december';
+const reMonthAbbr = 'jan|feb|mar|apr|may|jun|jul|aug|sept?|oct|nov|dec';
+const reMonthroman = 'i[vx]|vi{0,3}|xi{0,2}|i{1,3}';
+const reMonthText = '(' + reMonthFull + '|' + reMonthAbbr + '|' + reMonthroman + ')';
+const reTzCorrection = '((?:GMT)?([+-])' + reHour24 + ':?' + reMinute + '?)';
+const reTzAbbr = '\\(?([a-zA-Z]{1,6})\\)?';
+const reDayOfYear = '(00[1-9]|0[1-9][0-9]|[12][0-9][0-9]|3[0-5][0-9]|36[0-6])';
+const reWeekOfYear = '(0[1-9]|[1-4][0-9]|5[0-3])';
+const reDateNoYear = reMonthText + '[ .\\t-]*' + reDay + '[,.stndrh\\t ]*';
 function processMeridian(hour, meridian) {
-  meridian = meridian && meridian.toLowerCase();
-
-  switch (meridian) {
-    case 'a':
-      hour += hour === 12 ? -12 : 0;
-      break;
-    case 'p':
-      hour += hour !== 12 ? 12 : 0;
-      break;
-  }
-
-  return hour;
+    const normalizedMeridian = meridian?.toLowerCase();
+    switch (normalizedMeridian) {
+        case 'a':
+            hour += hour === 12 ? -12 : 0;
+            break;
+        case 'p':
+            hour += hour !== 12 ? 12 : 0;
+            break;
+    }
+    return hour;
 }
-
 function processYear(yearStr) {
-  var year = +yearStr;
-
-  if (yearStr.length < 4 && year < 100) {
-    year += year < 70 ? 2000 : 1900;
-  }
-
-  return year;
+    let year = +yearStr;
+    if (yearStr.length < 4 && year < 100) {
+        year += year < 70 ? 2000 : 1900;
+    }
+    return year;
 }
-
 function lookupMonth(monthStr) {
-  return {
-    jan: 0,
-    january: 0,
-    i: 0,
-    feb: 1,
-    february: 1,
-    ii: 1,
-    mar: 2,
-    march: 2,
-    iii: 2,
-    apr: 3,
-    april: 3,
-    iv: 3,
-    may: 4,
-    v: 4,
-    jun: 5,
-    june: 5,
-    vi: 5,
-    jul: 6,
-    july: 6,
-    vii: 6,
-    aug: 7,
-    august: 7,
-    viii: 7,
-    sep: 8,
-    sept: 8,
-    september: 8,
-    ix: 8,
-    oct: 9,
-    october: 9,
-    x: 9,
-    nov: 10,
-    november: 10,
-    xi: 10,
-    dec: 11,
-    december: 11,
-    xii: 11
-  }[monthStr.toLowerCase()];
+    const monthLookup = {
+        jan: 0,
+        january: 0,
+        i: 0,
+        feb: 1,
+        february: 1,
+        ii: 1,
+        mar: 2,
+        march: 2,
+        iii: 2,
+        apr: 3,
+        april: 3,
+        iv: 3,
+        may: 4,
+        v: 4,
+        jun: 5,
+        june: 5,
+        vi: 5,
+        jul: 6,
+        july: 6,
+        vii: 6,
+        aug: 7,
+        august: 7,
+        viii: 7,
+        sep: 8,
+        sept: 8,
+        september: 8,
+        ix: 8,
+        oct: 9,
+        october: 9,
+        x: 9,
+        nov: 10,
+        november: 10,
+        xi: 10,
+        dec: 11,
+        december: 11,
+        xii: 11,
+    };
+    return monthLookup[monthStr.toLowerCase()] ?? Number.NaN;
 }
-
-function lookupWeekday(dayStr) {
-  var desiredSundayNumber = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
-
-  var dayNumbers = {
-    mon: 1,
-    monday: 1,
-    tue: 2,
-    tuesday: 2,
-    wed: 3,
-    wednesday: 3,
-    thu: 4,
-    thursday: 4,
-    fri: 5,
-    friday: 5,
-    sat: 6,
-    saturday: 6,
-    sun: 0,
-    sunday: 0
-  };
-
-  return dayNumbers[dayStr.toLowerCase()] || desiredSundayNumber;
+function lookupWeekday(dayStr, desiredSundayNumber = 0) {
+    const dayNumbers = {
+        mon: 1,
+        monday: 1,
+        tue: 2,
+        tuesday: 2,
+        wed: 3,
+        wednesday: 3,
+        thu: 4,
+        thursday: 4,
+        fri: 5,
+        friday: 5,
+        sat: 6,
+        saturday: 6,
+        sun: 0,
+        sunday: 0,
+    };
+    return dayNumbers[dayStr.toLowerCase()] || desiredSundayNumber;
 }
-
 function lookupRelative(relText) {
-  var relativeNumbers = {
-    last: -1,
-    previous: -1,
-    this: 0,
-    first: 1,
-    next: 1,
-    second: 2,
-    third: 3,
-    fourth: 4,
-    fifth: 5,
-    sixth: 6,
-    seventh: 7,
-    eight: 8,
-    eighth: 8,
-    ninth: 9,
-    tenth: 10,
-    eleventh: 11,
-    twelfth: 12
-  };
-
-  var relativeBehavior = {
-    this: 1
-  };
-
-  var relTextLower = relText.toLowerCase();
-
-  return {
-    amount: relativeNumbers[relTextLower],
-    behavior: relativeBehavior[relTextLower] || 0
-  };
+    const relativeNumbers = {
+        last: -1,
+        previous: -1,
+        this: 0,
+        first: 1,
+        next: 1,
+        second: 2,
+        third: 3,
+        fourth: 4,
+        fifth: 5,
+        sixth: 6,
+        seventh: 7,
+        eight: 8,
+        eighth: 8,
+        ninth: 9,
+        tenth: 10,
+        eleventh: 11,
+        twelfth: 12,
+    };
+    const relativeBehavior = {
+        this: 1,
+    };
+    const relTextLower = relText.toLowerCase();
+    return {
+        amount: relativeNumbers[relTextLower] ?? 0,
+        behavior: relativeBehavior[relTextLower] || 0,
+    };
 }
-
-function processTzCorrection(tzOffset, oldValue) {
-  var reTzCorrectionLoose = /(?:GMT)?([+-])(\d+)(:?)(\d{0,2})/i;
-  tzOffset = tzOffset && tzOffset.match(reTzCorrectionLoose);
-
-  if (!tzOffset) {
-    return oldValue;
-  }
-
-  var sign = tzOffset[1] === '-' ? -1 : 1;
-  var hours = +tzOffset[2];
-  var minutes = +tzOffset[4];
-
-  if (!tzOffset[4] && !tzOffset[3]) {
-    minutes = Math.floor(hours % 100);
-    hours = Math.floor(hours / 100);
-  }
-
-  // timezone offset in seconds
-  return sign * (hours * 60 + minutes) * 60;
+function processTzCorrection(tzOffset, oldValue = Number.NaN) {
+    const reTzCorrectionLoose = /(?:GMT)?([+-])(\d+)(:?)(\d{0,2})/i;
+    const tzMatch = tzOffset?.match(reTzCorrectionLoose);
+    if (!tzMatch) {
+        return oldValue;
+    }
+    const sign = tzMatch[1] === '-' ? -1 : 1;
+    let hours = +(tzMatch[2] ?? 0);
+    let minutes = +(tzMatch[4] ?? 0);
+    if (!tzMatch[4] && !tzMatch[3]) {
+        minutes = Math.floor(hours % 100);
+        hours = Math.floor(hours / 100);
+    }
+    // timezone offset in seconds
+    return sign * (hours * 60 + minutes) * 60;
 }
-
 // tz abbrevation : tz offset in seconds
-var tzAbbrOffsets = {
-  acdt: 37800,
-  acst: 34200,
-  addt: -7200,
-  adt: -10800,
-  aedt: 39600,
-  aest: 36000,
-  ahdt: -32400,
-  ahst: -36000,
-  akdt: -28800,
-  akst: -32400,
-  amt: -13840,
-  apt: -10800,
-  ast: -14400,
-  awdt: 32400,
-  awst: 28800,
-  awt: -10800,
-  bdst: 7200,
-  bdt: -36000,
-  bmt: -14309,
-  bst: 3600,
-  cast: 34200,
-  cat: 7200,
-  cddt: -14400,
-  cdt: -18000,
-  cemt: 10800,
-  cest: 7200,
-  cet: 3600,
-  cmt: -15408,
-  cpt: -18000,
-  cst: -21600,
-  cwt: -18000,
-  chst: 36000,
-  dmt: -1521,
-  eat: 10800,
-  eddt: -10800,
-  edt: -14400,
-  eest: 10800,
-  eet: 7200,
-  emt: -26248,
-  ept: -14400,
-  est: -18000,
-  ewt: -14400,
-  ffmt: -14660,
-  fmt: -4056,
-  gdt: 39600,
-  gmt: 0,
-  gst: 36000,
-  hdt: -34200,
-  hkst: 32400,
-  hkt: 28800,
-  hmt: -19776,
-  hpt: -34200,
-  hst: -36000,
-  hwt: -34200,
-  iddt: 14400,
-  idt: 10800,
-  imt: 25025,
-  ist: 7200,
-  jdt: 36000,
-  jmt: 8440,
-  jst: 32400,
-  kdt: 36000,
-  kmt: 5736,
-  kst: 30600,
-  lst: 9394,
-  mddt: -18000,
-  mdst: 16279,
-  mdt: -21600,
-  mest: 7200,
-  met: 3600,
-  mmt: 9017,
-  mpt: -21600,
-  msd: 14400,
-  msk: 10800,
-  mst: -25200,
-  mwt: -21600,
-  nddt: -5400,
-  ndt: -9052,
-  npt: -9000,
-  nst: -12600,
-  nwt: -9000,
-  nzdt: 46800,
-  nzmt: 41400,
-  nzst: 43200,
-  pddt: -21600,
-  pdt: -25200,
-  pkst: 21600,
-  pkt: 18000,
-  plmt: 25590,
-  pmt: -13236,
-  ppmt: -17340,
-  ppt: -25200,
-  pst: -28800,
-  pwt: -25200,
-  qmt: -18840,
-  rmt: 5794,
-  sast: 7200,
-  sdmt: -16800,
-  sjmt: -20173,
-  smt: -13884,
-  sst: -39600,
-  tbmt: 10751,
-  tmt: 12344,
-  uct: 0,
-  utc: 0,
-  wast: 7200,
-  wat: 3600,
-  wemt: 7200,
-  west: 3600,
-  wet: 0,
-  wib: 25200,
-  wita: 28800,
-  wit: 32400,
-  wmt: 5040,
-  yddt: -25200,
-  ydt: -28800,
-  ypt: -28800,
-  yst: -32400,
-  ywt: -28800,
-  a: 3600,
-  b: 7200,
-  c: 10800,
-  d: 14400,
-  e: 18000,
-  f: 21600,
-  g: 25200,
-  h: 28800,
-  i: 32400,
-  k: 36000,
-  l: 39600,
-  m: 43200,
-  n: -3600,
-  o: -7200,
-  p: -10800,
-  q: -14400,
-  r: -18000,
-  s: -21600,
-  t: -25200,
-  u: -28800,
-  v: -32400,
-  w: -36000,
-  x: -39600,
-  y: -43200,
-  z: 0
+const tzAbbrOffsets = {
+    acdt: 37800,
+    acst: 34200,
+    addt: -7200,
+    adt: -10800,
+    aedt: 39600,
+    aest: 36000,
+    ahdt: -32400,
+    ahst: -36000,
+    akdt: -28800,
+    akst: -32400,
+    amt: -13840,
+    apt: -10800,
+    ast: -14400,
+    awdt: 32400,
+    awst: 28800,
+    awt: -10800,
+    bdst: 7200,
+    bdt: -36000,
+    bmt: -14309,
+    bst: 3600,
+    cast: 34200,
+    cat: 7200,
+    cddt: -14400,
+    cdt: -18000,
+    cemt: 10800,
+    cest: 7200,
+    cet: 3600,
+    cmt: -15408,
+    cpt: -18000,
+    cst: -21600,
+    cwt: -18000,
+    chst: 36000,
+    dmt: -1521,
+    eat: 10800,
+    eddt: -10800,
+    edt: -14400,
+    eest: 10800,
+    eet: 7200,
+    emt: -26248,
+    ept: -14400,
+    est: -18000,
+    ewt: -14400,
+    ffmt: -14660,
+    fmt: -4056,
+    gdt: 39600,
+    gmt: 0,
+    gst: 36000,
+    hdt: -34200,
+    hkst: 32400,
+    hkt: 28800,
+    hmt: -19776,
+    hpt: -34200,
+    hst: -36000,
+    hwt: -34200,
+    iddt: 14400,
+    idt: 10800,
+    imt: 25025,
+    ist: 7200,
+    jdt: 36000,
+    jmt: 8440,
+    jst: 32400,
+    kdt: 36000,
+    kmt: 5736,
+    kst: 30600,
+    lst: 9394,
+    mddt: -18000,
+    mdst: 16279,
+    mdt: -21600,
+    mest: 7200,
+    met: 3600,
+    mmt: 9017,
+    mpt: -21600,
+    msd: 14400,
+    msk: 10800,
+    mst: -25200,
+    mwt: -21600,
+    nddt: -5400,
+    ndt: -9052,
+    npt: -9000,
+    nst: -12600,
+    nwt: -9000,
+    nzdt: 46800,
+    nzmt: 41400,
+    nzst: 43200,
+    pddt: -21600,
+    pdt: -25200,
+    pkst: 21600,
+    pkt: 18000,
+    plmt: 25590,
+    pmt: -13236,
+    ppmt: -17340,
+    ppt: -25200,
+    pst: -28800,
+    pwt: -25200,
+    qmt: -18840,
+    rmt: 5794,
+    sast: 7200,
+    sdmt: -16800,
+    sjmt: -20173,
+    smt: -13884,
+    sst: -39600,
+    tbmt: 10751,
+    tmt: 12344,
+    uct: 0,
+    utc: 0,
+    wast: 7200,
+    wat: 3600,
+    wemt: 7200,
+    west: 3600,
+    wet: 0,
+    wib: 25200,
+    wita: 28800,
+    wit: 32400,
+    wmt: 5040,
+    yddt: -25200,
+    ydt: -28800,
+    ypt: -28800,
+    yst: -32400,
+    ywt: -28800,
+    a: 3600,
+    b: 7200,
+    c: 10800,
+    d: 14400,
+    e: 18000,
+    f: 21600,
+    g: 25200,
+    h: 28800,
+    i: 32400,
+    k: 36000,
+    l: 39600,
+    m: 43200,
+    n: -3600,
+    o: -7200,
+    p: -10800,
+    q: -14400,
+    r: -18000,
+    s: -21600,
+    t: -25200,
+    u: -28800,
+    v: -32400,
+    w: -36000,
+    x: -39600,
+    y: -43200,
+    z: 0,
 };
-
-var formats$1 = {
-  yesterday: {
-    regex: /^yesterday/i,
-    name: 'yesterday',
-    callback: function callback() {
-      this.rd -= 1;
-      return this.resetTime();
-    }
-  },
-
-  now: {
-    regex: /^now/i,
-    name: 'now'
-    // do nothing
-  },
-
-  noon: {
-    regex: /^noon/i,
-    name: 'noon',
-    callback: function callback() {
-      return this.resetTime() && this.time(12, 0, 0, 0);
-    }
-  },
-
-  midnightOrToday: {
-    regex: /^(midnight|today)/i,
-    name: 'midnight | today',
-    callback: function callback() {
-      return this.resetTime();
-    }
-  },
-
-  tomorrow: {
-    regex: /^tomorrow/i,
-    name: 'tomorrow',
-    callback: function callback() {
-      this.rd += 1;
-      return this.resetTime();
-    }
-  },
-
-  timestamp: {
-    regex: /^@(-?\d+)/i,
-    name: 'timestamp',
-    callback: function callback(match, timestamp) {
-      this.rs += +timestamp;
-      this.y = 1970;
-      this.m = 0;
-      this.d = 1;
-      this.dates = 0;
-
-      return this.resetTime() && this.zone(0);
-    }
-  },
-
-  firstOrLastDay: {
-    regex: /^(first|last) day of/i,
-    name: 'firstdayof | lastdayof',
-    callback: function callback(match, day) {
-      if (day.toLowerCase() === 'first') {
-        this.firstOrLastDayOfMonth = 1;
-      } else {
-        this.firstOrLastDayOfMonth = -1;
-      }
-    }
-  },
-
-  backOrFrontOf: {
-    regex: RegExp('^(back|front) of ' + reHour24 + reSpaceOpt + reMeridian + '?', 'i'),
-    name: 'backof | frontof',
-    callback: function callback(match, side, hours, meridian) {
-      var back = side.toLowerCase() === 'back';
-      var hour = +hours;
-      var minute = 15;
-
-      if (!back) {
-        hour -= 1;
-        minute = 45;
-      }
-
-      hour = processMeridian(hour, meridian);
-
-      return this.resetTime() && this.time(hour, minute, 0, 0);
-    }
-  },
-
-  weekdayOf: {
-    regex: RegExp('^(' + reReltextnumber + '|' + reReltexttext + ')' + reSpace + '(' + reDayfull + '|' + reDayabbr + ')' + reSpace + 'of', 'i'),
-    name: 'weekdayof'
-    // todo
-  },
-
-  mssqltime: {
-    regex: RegExp('^' + reHour12 + ':' + reMinutelz + ':' + reSecondlz + '[:.]([0-9]+)' + reMeridian, 'i'),
-    name: 'mssqltime',
-    callback: function callback(match, hour, minute, second, frac, meridian) {
-      return this.time(processMeridian(+hour, meridian), +minute, +second, +frac.substr(0, 3));
-    }
-  },
-
-  oracledate: {
-    regex: /^(\d{2})-([A-Z]{3})-(\d{2})$/i,
-    name: 'd-M-y',
-    callback: function callback(match, day, monthText, year) {
-      var month = {
-        JAN: 0,
-        FEB: 1,
-        MAR: 2,
-        APR: 3,
-        MAY: 4,
-        JUN: 5,
-        JUL: 6,
-        AUG: 7,
-        SEP: 8,
-        OCT: 9,
-        NOV: 10,
-        DEC: 11
-      }[monthText.toUpperCase()];
-      return this.ymd(2000 + parseInt(year, 10), month, parseInt(day, 10));
-    }
-  },
-
-  timeLong12: {
-    regex: RegExp('^' + reHour12 + '[:.]' + reMinute + '[:.]' + reSecondlz + reSpaceOpt + reMeridian, 'i'),
-    name: 'timelong12',
-    callback: function callback(match, hour, minute, second, meridian) {
-      return this.time(processMeridian(+hour, meridian), +minute, +second, 0);
-    }
-  },
-
-  timeShort12: {
-    regex: RegExp('^' + reHour12 + '[:.]' + reMinutelz + reSpaceOpt + reMeridian, 'i'),
-    name: 'timeshort12',
-    callback: function callback(match, hour, minute, meridian) {
-      return this.time(processMeridian(+hour, meridian), +minute, 0, 0);
-    }
-  },
-
-  timeTiny12: {
-    regex: RegExp('^' + reHour12 + reSpaceOpt + reMeridian, 'i'),
-    name: 'timetiny12',
-    callback: function callback(match, hour, meridian) {
-      return this.time(processMeridian(+hour, meridian), 0, 0, 0);
-    }
-  },
-
-  soap: {
-    regex: RegExp('^' + reYear4 + '-' + reMonthlz + '-' + reDaylz + 'T' + reHour24lz + ':' + reMinutelz + ':' + reSecondlz + reFrac + reTzCorrection + '?', 'i'),
-    name: 'soap',
-    callback: function callback(match, year, month, day, hour, minute, second, frac, tzCorrection) {
-      return this.ymd(+year, month - 1, +day) && this.time(+hour, +minute, +second, +frac.substr(0, 3)) && this.zone(processTzCorrection(tzCorrection));
-    }
-  },
-
-  wddx: {
-    regex: RegExp('^' + reYear4 + '-' + reMonth + '-' + reDay + 'T' + reHour24 + ':' + reMinute + ':' + reSecond),
-    name: 'wddx',
-    callback: function callback(match, year, month, day, hour, minute, second) {
-      return this.ymd(+year, month - 1, +day) && this.time(+hour, +minute, +second, 0);
-    }
-  },
-
-  exif: {
-    regex: RegExp('^' + reYear4 + ':' + reMonthlz + ':' + reDaylz + ' ' + reHour24lz + ':' + reMinutelz + ':' + reSecondlz, 'i'),
-    name: 'exif',
-    callback: function callback(match, year, month, day, hour, minute, second) {
-      return this.ymd(+year, month - 1, +day) && this.time(+hour, +minute, +second, 0);
-    }
-  },
-
-  xmlRpc: {
-    regex: RegExp('^' + reYear4 + reMonthlz + reDaylz + 'T' + reHour24 + ':' + reMinutelz + ':' + reSecondlz),
-    name: 'xmlrpc',
-    callback: function callback(match, year, month, day, hour, minute, second) {
-      return this.ymd(+year, month - 1, +day) && this.time(+hour, +minute, +second, 0);
-    }
-  },
-
-  xmlRpcNoColon: {
-    regex: RegExp('^' + reYear4 + reMonthlz + reDaylz + '[Tt]' + reHour24 + reMinutelz + reSecondlz),
-    name: 'xmlrpcnocolon',
-    callback: function callback(match, year, month, day, hour, minute, second) {
-      return this.ymd(+year, month - 1, +day) && this.time(+hour, +minute, +second, 0);
-    }
-  },
-
-  clf: {
-    regex: RegExp('^' + reDay + '/(' + reMonthAbbr + ')/' + reYear4 + ':' + reHour24lz + ':' + reMinutelz + ':' + reSecondlz + reSpace + reTzCorrection, 'i'),
-    name: 'clf',
-    callback: function callback(match, day, month, year, hour, minute, second, tzCorrection) {
-      return this.ymd(+year, lookupMonth(month), +day) && this.time(+hour, +minute, +second, 0) && this.zone(processTzCorrection(tzCorrection));
-    }
-  },
-
-  iso8601long: {
-    regex: RegExp('^t?' + reHour24 + '[:.]' + reMinute + '[:.]' + reSecond + reFrac, 'i'),
-    name: 'iso8601long',
-    callback: function callback(match, hour, minute, second, frac) {
-      return this.time(+hour, +minute, +second, +frac.substr(0, 3));
-    }
-  },
-
-  dateTextual: {
-    regex: RegExp('^' + reMonthText + '[ .\\t-]*' + reDay + '[,.stndrh\\t ]+' + reYear, 'i'),
-    name: 'datetextual',
-    callback: function callback(match, month, day, year) {
-      return this.ymd(processYear(year), lookupMonth(month), +day);
-    }
-  },
-
-  pointedDate4: {
-    regex: RegExp('^' + reDay + '[.\\t-]' + reMonth + '[.-]' + reYear4),
-    name: 'pointeddate4',
-    callback: function callback(match, day, month, year) {
-      return this.ymd(+year, month - 1, +day);
-    }
-  },
-
-  pointedDate2: {
-    regex: RegExp('^' + reDay + '[.\\t]' + reMonth + '\\.' + reYear2),
-    name: 'pointeddate2',
-    callback: function callback(match, day, month, year) {
-      return this.ymd(processYear(year), month - 1, +day);
-    }
-  },
-
-  timeLong24: {
-    regex: RegExp('^t?' + reHour24 + '[:.]' + reMinute + '[:.]' + reSecond),
-    name: 'timelong24',
-    callback: function callback(match, hour, minute, second) {
-      return this.time(+hour, +minute, +second, 0);
-    }
-  },
-
-  dateNoColon: {
-    regex: RegExp('^' + reYear4 + reMonthlz + reDaylz),
-    name: 'datenocolon',
-    callback: function callback(match, year, month, day) {
-      return this.ymd(+year, month - 1, +day);
-    }
-  },
-
-  pgydotd: {
-    regex: RegExp('^' + reYear4 + '\\.?' + reDayOfYear),
-    name: 'pgydotd',
-    callback: function callback(match, year, day) {
-      return this.ymd(+year, 0, +day);
-    }
-  },
-
-  timeShort24: {
-    regex: RegExp('^t?' + reHour24 + '[:.]' + reMinute, 'i'),
-    name: 'timeshort24',
-    callback: function callback(match, hour, minute) {
-      return this.time(+hour, +minute, 0, 0);
-    }
-  },
-
-  iso8601noColon: {
-    regex: RegExp('^t?' + reHour24lz + reMinutelz + reSecondlz, 'i'),
-    name: 'iso8601nocolon',
-    callback: function callback(match, hour, minute, second) {
-      return this.time(+hour, +minute, +second, 0);
-    }
-  },
-
-  iso8601dateSlash: {
-    // eventhough the trailing slash is optional in PHP
-    // here it's mandatory and inputs without the slash
-    // are handled by dateslash
-    regex: RegExp('^' + reYear4 + '/' + reMonthlz + '/' + reDaylz + '/'),
-    name: 'iso8601dateslash',
-    callback: function callback(match, year, month, day) {
-      return this.ymd(+year, month - 1, +day);
-    }
-  },
-
-  dateSlash: {
-    regex: RegExp('^' + reYear4 + '/' + reMonth + '/' + reDay),
-    name: 'dateslash',
-    callback: function callback(match, year, month, day) {
-      return this.ymd(+year, month - 1, +day);
-    }
-  },
-
-  american: {
-    regex: RegExp('^' + reMonth + '/' + reDay + '/' + reYear),
-    name: 'american',
-    callback: function callback(match, month, day, year) {
-      return this.ymd(processYear(year), month - 1, +day);
-    }
-  },
-
-  americanShort: {
-    regex: RegExp('^' + reMonth + '/' + reDay),
-    name: 'americanshort',
-    callback: function callback(match, month, day) {
-      return this.ymd(this.y, month - 1, +day);
-    }
-  },
-
-  gnuDateShortOrIso8601date2: {
-    // iso8601date2 is complete subset of gnudateshort
-    regex: RegExp('^' + reYear + '-' + reMonth + '-' + reDay),
-    name: 'gnudateshort | iso8601date2',
-    callback: function callback(match, year, month, day) {
-      return this.ymd(processYear(year), month - 1, +day);
-    }
-  },
-
-  iso8601date4: {
-    regex: RegExp('^' + reYear4withSign + '-' + reMonthlz + '-' + reDaylz),
-    name: 'iso8601date4',
-    callback: function callback(match, year, month, day) {
-      return this.ymd(+year, month - 1, +day);
-    }
-  },
-
-  gnuNoColon: {
-    regex: RegExp('^t?' + reHour24lz + reMinutelz, 'i'),
-    name: 'gnunocolon',
-    callback: function callback(match, hour, minute) {
-      // this rule is a special case
-      // if time was already set once by any preceding rule, it sets the captured value as year
-      switch (this.times) {
-        case 0:
-          return this.time(+hour, +minute, 0, this.f);
-        case 1:
-          this.y = hour * 100 + +minute;
-          this.times++;
-
-          return true;
-        default:
-          return false;
-      }
-    }
-  },
-
-  gnuDateShorter: {
-    regex: RegExp('^' + reYear4 + '-' + reMonth),
-    name: 'gnudateshorter',
-    callback: function callback(match, year, month) {
-      return this.ymd(+year, month - 1, 1);
-    }
-  },
-
-  pgTextReverse: {
-    // note: allowed years are from 32-9999
-    // years below 32 should be treated as days in datefull
-    regex: RegExp('^' + '(\\d{3,4}|[4-9]\\d|3[2-9])-(' + reMonthAbbr + ')-' + reDaylz, 'i'),
-    name: 'pgtextreverse',
-    callback: function callback(match, year, month, day) {
-      return this.ymd(processYear(year), lookupMonth(month), +day);
-    }
-  },
-
-  dateFull: {
-    regex: RegExp('^' + reDay + '[ \\t.-]*' + reMonthText + '[ \\t.-]*' + reYear, 'i'),
-    name: 'datefull',
-    callback: function callback(match, day, month, year) {
-      return this.ymd(processYear(year), lookupMonth(month), +day);
-    }
-  },
-
-  dateNoDay: {
-    regex: RegExp('^' + reMonthText + '[ .\\t-]*' + reYear4, 'i'),
-    name: 'datenoday',
-    callback: function callback(match, month, year) {
-      return this.ymd(+year, lookupMonth(month), 1);
-    }
-  },
-
-  dateNoDayRev: {
-    regex: RegExp('^' + reYear4 + '[ .\\t-]*' + reMonthText, 'i'),
-    name: 'datenodayrev',
-    callback: function callback(match, year, month) {
-      return this.ymd(+year, lookupMonth(month), 1);
-    }
-  },
-
-  pgTextShort: {
-    regex: RegExp('^(' + reMonthAbbr + ')-' + reDaylz + '-' + reYear, 'i'),
-    name: 'pgtextshort',
-    callback: function callback(match, month, day, year) {
-      return this.ymd(processYear(year), lookupMonth(month), +day);
-    }
-  },
-
-  dateNoYear: {
-    regex: RegExp('^' + reDateNoYear, 'i'),
-    name: 'datenoyear',
-    callback: function callback(match, month, day) {
-      return this.ymd(this.y, lookupMonth(month), +day);
-    }
-  },
-
-  dateNoYearRev: {
-    regex: RegExp('^' + reDay + '[ .\\t-]*' + reMonthText, 'i'),
-    name: 'datenoyearrev',
-    callback: function callback(match, day, month) {
-      return this.ymd(this.y, lookupMonth(month), +day);
-    }
-  },
-
-  isoWeekDay: {
-    regex: RegExp('^' + reYear4 + '-?W' + reWeekOfYear + '(?:-?([0-7]))?'),
-    name: 'isoweekday | isoweek',
-    callback: function callback(match, year, week, day) {
-      day = day ? +day : 1;
-
-      if (!this.ymd(+year, 0, 1)) {
+const formats$1 = {
+    yesterday: {
+        regex: /^yesterday/i,
+        name: 'yesterday',
+        callback() {
+            this.rd -= 1;
+            return this.resetTime();
+        },
+    },
+    now: {
+        regex: /^now/i,
+        name: 'now',
+        // do nothing
+    },
+    noon: {
+        regex: /^noon/i,
+        name: 'noon',
+        callback() {
+            return this.resetTime() && this.time(12, 0, 0, 0);
+        },
+    },
+    midnightOrToday: {
+        regex: /^(midnight|today)/i,
+        name: 'midnight | today',
+        callback() {
+            return this.resetTime();
+        },
+    },
+    tomorrow: {
+        regex: /^tomorrow/i,
+        name: 'tomorrow',
+        callback() {
+            this.rd += 1;
+            return this.resetTime();
+        },
+    },
+    timestamp: {
+        regex: /^@(-?\d+)/i,
+        name: 'timestamp',
+        callback(match, timestamp) {
+            this.rs += +timestamp;
+            this.y = 1970;
+            this.m = 0;
+            this.d = 1;
+            this.dates = 0;
+            return this.resetTime() && this.zone(0);
+        },
+    },
+    firstOrLastDay: {
+        regex: /^(first|last) day of/i,
+        name: 'firstdayof | lastdayof',
+        callback(match, day) {
+            if (day.toLowerCase() === 'first') {
+                this.firstOrLastDayOfMonth = 1;
+            }
+            else {
+                this.firstOrLastDayOfMonth = -1;
+            }
+        },
+    },
+    backOrFrontOf: {
+        regex: new RegExp('^(back|front) of ' + reHour24 + reSpaceOpt + reMeridian + '?', 'i'),
+        name: 'backof | frontof',
+        callback(match, side, hours, meridian) {
+            const back = side.toLowerCase() === 'back';
+            let hour = +hours;
+            let minute = 15;
+            if (!back) {
+                hour -= 1;
+                minute = 45;
+            }
+            hour = processMeridian(hour, meridian);
+            return this.resetTime() && this.time(hour, minute, 0, 0);
+        },
+    },
+    weekdayOf: {
+        regex: new RegExp('^(' +
+            reReltextnumber +
+            '|' +
+            reReltexttext +
+            ')' +
+            reSpace +
+            '(' +
+            reDayfull +
+            '|' +
+            reDayabbr +
+            ')' +
+            reSpace +
+            'of', 'i'),
+        name: 'weekdayof',
+        // todo
+    },
+    mssqltime: {
+        regex: new RegExp('^' + reHour12 + ':' + reMinutelz + ':' + reSecondlz + '[:.]([0-9]+)' + reMeridian, 'i'),
+        name: 'mssqltime',
+        callback(match, hour, minute, second, frac, meridian) {
+            return this.time(processMeridian(+hour, meridian), +minute, +second, +frac.substr(0, 3));
+        },
+    },
+    oracledate: {
+        regex: /^(\d{2})-([A-Z]{3})-(\d{2})$/i,
+        name: 'd-M-y',
+        callback(match, day, monthText, year) {
+            const monthByName = {
+                JAN: 0,
+                FEB: 1,
+                MAR: 2,
+                APR: 3,
+                MAY: 4,
+                JUN: 5,
+                JUL: 6,
+                AUG: 7,
+                SEP: 8,
+                OCT: 9,
+                NOV: 10,
+                DEC: 11,
+            };
+            const month = monthByName[monthText.toUpperCase()] ?? Number.NaN;
+            return this.ymd(2000 + parseInt(year, 10), month, parseInt(day, 10));
+        },
+    },
+    timeLong12: {
+        regex: new RegExp('^' + reHour12 + '[:.]' + reMinute + '[:.]' + reSecondlz + reSpaceOpt + reMeridian, 'i'),
+        name: 'timelong12',
+        callback(match, hour, minute, second, meridian) {
+            return this.time(processMeridian(+hour, meridian), +minute, +second, 0);
+        },
+    },
+    timeShort12: {
+        regex: new RegExp('^' + reHour12 + '[:.]' + reMinutelz + reSpaceOpt + reMeridian, 'i'),
+        name: 'timeshort12',
+        callback(match, hour, minute, meridian) {
+            return this.time(processMeridian(+hour, meridian), +minute, 0, 0);
+        },
+    },
+    timeTiny12: {
+        regex: new RegExp('^' + reHour12 + reSpaceOpt + reMeridian, 'i'),
+        name: 'timetiny12',
+        callback(match, hour, meridian) {
+            return this.time(processMeridian(+hour, meridian), 0, 0, 0);
+        },
+    },
+    soap: {
+        regex: new RegExp('^' +
+            reYear4 +
+            '-' +
+            reMonthlz +
+            '-' +
+            reDaylz +
+            'T' +
+            reHour24lz +
+            ':' +
+            reMinutelz +
+            ':' +
+            reSecondlz +
+            reFrac +
+            reTzCorrection +
+            '?', 'i'),
+        name: 'soap',
+        callback(match, year, month, day, hour, minute, second, frac, tzCorrection) {
+            return (this.ymd(+year, +month - 1, +day) &&
+                this.time(+hour, +minute, +second, +frac.substr(0, 3)) &&
+                this.zone(processTzCorrection(tzCorrection)));
+        },
+    },
+    wddx: {
+        regex: new RegExp('^' + reYear4 + '-' + reMonth + '-' + reDay + 'T' + reHour24 + ':' + reMinute + ':' + reSecond),
+        name: 'wddx',
+        callback(match, year, month, day, hour, minute, second) {
+            return this.ymd(+year, +month - 1, +day) && this.time(+hour, +minute, +second, 0);
+        },
+    },
+    exif: {
+        regex: new RegExp('^' + reYear4 + ':' + reMonthlz + ':' + reDaylz + ' ' + reHour24lz + ':' + reMinutelz + ':' + reSecondlz, 'i'),
+        name: 'exif',
+        callback(match, year, month, day, hour, minute, second) {
+            return this.ymd(+year, +month - 1, +day) && this.time(+hour, +minute, +second, 0);
+        },
+    },
+    xmlRpc: {
+        regex: new RegExp('^' + reYear4 + reMonthlz + reDaylz + 'T' + reHour24 + ':' + reMinutelz + ':' + reSecondlz),
+        name: 'xmlrpc',
+        callback(match, year, month, day, hour, minute, second) {
+            return this.ymd(+year, +month - 1, +day) && this.time(+hour, +minute, +second, 0);
+        },
+    },
+    xmlRpcNoColon: {
+        regex: new RegExp('^' + reYear4 + reMonthlz + reDaylz + '[Tt]' + reHour24 + reMinutelz + reSecondlz),
+        name: 'xmlrpcnocolon',
+        callback(match, year, month, day, hour, minute, second) {
+            return this.ymd(+year, +month - 1, +day) && this.time(+hour, +minute, +second, 0);
+        },
+    },
+    clf: {
+        regex: new RegExp('^' +
+            reDay +
+            '/(' +
+            reMonthAbbr +
+            ')/' +
+            reYear4 +
+            ':' +
+            reHour24lz +
+            ':' +
+            reMinutelz +
+            ':' +
+            reSecondlz +
+            reSpace +
+            reTzCorrection, 'i'),
+        name: 'clf',
+        callback(match, day, month, year, hour, minute, second, tzCorrection) {
+            return (this.ymd(+year, lookupMonth(month), +day) &&
+                this.time(+hour, +minute, +second, 0) &&
+                this.zone(processTzCorrection(tzCorrection)));
+        },
+    },
+    iso8601long: {
+        regex: new RegExp('^t?' + reHour24 + '[:.]' + reMinute + '[:.]' + reSecond + reFrac, 'i'),
+        name: 'iso8601long',
+        callback(match, hour, minute, second, frac) {
+            return this.time(+hour, +minute, +second, +frac.substr(0, 3));
+        },
+    },
+    dateTextual: {
+        regex: new RegExp('^' + reMonthText + '[ .\\t-]*' + reDay + '[,.stndrh\\t ]+' + reYear, 'i'),
+        name: 'datetextual',
+        callback(match, month, day, year) {
+            return this.ymd(processYear(year), lookupMonth(month), +day);
+        },
+    },
+    pointedDate4: {
+        regex: new RegExp('^' + reDay + '[.\\t-]' + reMonth + '[.-]' + reYear4),
+        name: 'pointeddate4',
+        callback(match, day, month, year) {
+            return this.ymd(+year, +month - 1, +day);
+        },
+    },
+    pointedDate2: {
+        regex: new RegExp('^' + reDay + '[.\\t]' + reMonth + '\\.' + reYear2),
+        name: 'pointeddate2',
+        callback(match, day, month, year) {
+            return this.ymd(processYear(year), +month - 1, +day);
+        },
+    },
+    timeLong24: {
+        regex: new RegExp('^t?' + reHour24 + '[:.]' + reMinute + '[:.]' + reSecond),
+        name: 'timelong24',
+        callback(match, hour, minute, second) {
+            return this.time(+hour, +minute, +second, 0);
+        },
+    },
+    dateNoColon: {
+        regex: new RegExp('^' + reYear4 + reMonthlz + reDaylz),
+        name: 'datenocolon',
+        callback(match, year, month, day) {
+            return this.ymd(+year, +month - 1, +day);
+        },
+    },
+    pgydotd: {
+        regex: new RegExp('^' + reYear4 + '\\.?' + reDayOfYear),
+        name: 'pgydotd',
+        callback(match, year, day) {
+            return this.ymd(+year, 0, +day);
+        },
+    },
+    timeShort24: {
+        regex: new RegExp('^t?' + reHour24 + '[:.]' + reMinute, 'i'),
+        name: 'timeshort24',
+        callback(match, hour, minute) {
+            return this.time(+hour, +minute, 0, 0);
+        },
+    },
+    iso8601noColon: {
+        regex: new RegExp('^t?' + reHour24lz + reMinutelz + reSecondlz, 'i'),
+        name: 'iso8601nocolon',
+        callback(match, hour, minute, second) {
+            return this.time(+hour, +minute, +second, 0);
+        },
+    },
+    iso8601dateSlash: {
+        // eventhough the trailing slash is optional in PHP
+        // here it's mandatory and inputs without the slash
+        // are handled by dateslash
+        regex: new RegExp('^' + reYear4 + '/' + reMonthlz + '/' + reDaylz + '/'),
+        name: 'iso8601dateslash',
+        callback(match, year, month, day) {
+            return this.ymd(+year, +month - 1, +day);
+        },
+    },
+    dateSlash: {
+        regex: new RegExp('^' + reYear4 + '/' + reMonth + '/' + reDay),
+        name: 'dateslash',
+        callback(match, year, month, day) {
+            return this.ymd(+year, +month - 1, +day);
+        },
+    },
+    american: {
+        regex: new RegExp('^' + reMonth + '/' + reDay + '/' + reYear),
+        name: 'american',
+        callback(match, month, day, year) {
+            return this.ymd(processYear(year), +month - 1, +day);
+        },
+    },
+    americanShort: {
+        regex: new RegExp('^' + reMonth + '/' + reDay),
+        name: 'americanshort',
+        callback(match, month, day) {
+            return this.ymd(this.y, +month - 1, +day);
+        },
+    },
+    gnuDateShortOrIso8601date2: {
+        // iso8601date2 is complete subset of gnudateshort
+        regex: new RegExp('^' + reYear + '-' + reMonth + '-' + reDay),
+        name: 'gnudateshort | iso8601date2',
+        callback(match, year, month, day) {
+            return this.ymd(processYear(year), +month - 1, +day);
+        },
+    },
+    iso8601date4: {
+        regex: new RegExp('^' + reYear4withSign + '-' + reMonthlz + '-' + reDaylz),
+        name: 'iso8601date4',
+        callback(match, year, month, day) {
+            return this.ymd(+year, +month - 1, +day);
+        },
+    },
+    gnuNoColon: {
+        regex: new RegExp('^t?' + reHour24lz + reMinutelz, 'i'),
+        name: 'gnunocolon',
+        callback(match, hour, minute) {
+            // this rule is a special case
+            // if time was already set once by any preceding rule, it sets the captured value as year
+            switch (this.times) {
+                case 0:
+                    return this.time(+hour, +minute, 0, this.f);
+                case 1:
+                    this.y = +hour * 100 + +minute;
+                    this.times++;
+                    return true;
+                default:
+                    return false;
+            }
+        },
+    },
+    gnuDateShorter: {
+        regex: new RegExp('^' + reYear4 + '-' + reMonth),
+        name: 'gnudateshorter',
+        callback(match, year, month) {
+            return this.ymd(+year, +month - 1, 1);
+        },
+    },
+    pgTextReverse: {
+        //             note: allowed years are from 32-9999
+        // years below 32 should be treated as days in datefull
+        regex: new RegExp('^' + '(\\d{3,4}|[4-9]\\d|3[2-9])-(' + reMonthAbbr + ')-' + reDaylz, 'i'),
+        name: 'pgtextreverse',
+        callback(match, year, month, day) {
+            return this.ymd(processYear(year), lookupMonth(month), +day);
+        },
+    },
+    dateFull: {
+        regex: new RegExp('^' + reDay + '[ \\t.-]*' + reMonthText + '[ \\t.-]*' + reYear, 'i'),
+        name: 'datefull',
+        callback(match, day, month, year) {
+            return this.ymd(processYear(year), lookupMonth(month), +day);
+        },
+    },
+    dateNoDay: {
+        regex: new RegExp('^' + reMonthText + '[ .\\t-]*' + reYear4, 'i'),
+        name: 'datenoday',
+        callback(match, month, year) {
+            return this.ymd(+year, lookupMonth(month), 1);
+        },
+    },
+    dateNoDayRev: {
+        regex: new RegExp('^' + reYear4 + '[ .\\t-]*' + reMonthText, 'i'),
+        name: 'datenodayrev',
+        callback(match, year, month) {
+            return this.ymd(+year, lookupMonth(month), 1);
+        },
+    },
+    pgTextShort: {
+        regex: new RegExp('^(' + reMonthAbbr + ')-' + reDaylz + '-' + reYear, 'i'),
+        name: 'pgtextshort',
+        callback(match, month, day, year) {
+            return this.ymd(processYear(year), lookupMonth(month), +day);
+        },
+    },
+    dateNoYear: {
+        regex: new RegExp('^' + reDateNoYear, 'i'),
+        name: 'datenoyear',
+        callback(match, month, day) {
+            return this.ymd(this.y, lookupMonth(month), +day);
+        },
+    },
+    dateNoYearRev: {
+        regex: new RegExp('^' + reDay + '[ .\\t-]*' + reMonthText, 'i'),
+        name: 'datenoyearrev',
+        callback(match, day, month) {
+            return this.ymd(this.y, lookupMonth(month), +day);
+        },
+    },
+    isoWeekDay: {
+        regex: new RegExp('^' + reYear4 + '-?W' + reWeekOfYear + '(?:-?([0-7]))?'),
+        name: 'isoweekday | isoweek',
+        callback(match, year, week, day) {
+            const dayOfWeek = day ? +day : 1;
+            if (!this.ymd(+year, 0, 1)) {
+                return false;
+            }
+            // get day of week for Jan 1st
+            let jan1DayOfWeek = new Date(this.y, this.m, this.d).getDay();
+            // and use the day to figure out the offset for day 1 of week 1
+            jan1DayOfWeek = 0 - (jan1DayOfWeek > 4 ? jan1DayOfWeek - 7 : jan1DayOfWeek);
+            this.rd += jan1DayOfWeek + (+week - 1) * 7 + dayOfWeek;
+            return true;
+        },
+    },
+    relativeText: {
+        regex: new RegExp('^(' + reReltextnumber + '|' + reReltexttext + ')' + reSpace + '(' + reReltextunit + ')', 'i'),
+        name: 'relativetext',
+        callback(match, relValue, relUnit) {
+            // todo: implement handling of 'this time-unit'
+            // biome-ignore lint/correctness/noUnusedVariables: behavior reserved for future use
+            const { amount, behavior } = lookupRelative(relValue);
+            switch (relUnit.toLowerCase()) {
+                case 'sec':
+                case 'secs':
+                case 'second':
+                case 'seconds':
+                    this.rs += amount;
+                    break;
+                case 'min':
+                case 'mins':
+                case 'minute':
+                case 'minutes':
+                    this.ri += amount;
+                    break;
+                case 'hour':
+                case 'hours':
+                    this.rh += amount;
+                    break;
+                case 'day':
+                case 'days':
+                    this.rd += amount;
+                    break;
+                case 'fortnight':
+                case 'fortnights':
+                case 'forthnight':
+                case 'forthnights':
+                    this.rd += amount * 14;
+                    break;
+                case 'week':
+                case 'weeks':
+                    this.rd += amount * 7;
+                    break;
+                case 'month':
+                case 'months':
+                    this.rm += amount;
+                    break;
+                case 'year':
+                case 'years':
+                    this.ry += amount;
+                    break;
+                case 'mon':
+                case 'monday':
+                case 'tue':
+                case 'tuesday':
+                case 'wed':
+                case 'wednesday':
+                case 'thu':
+                case 'thursday':
+                case 'fri':
+                case 'friday':
+                case 'sat':
+                case 'saturday':
+                case 'sun':
+                case 'sunday':
+                    this.resetTime();
+                    this.weekday = lookupWeekday(relUnit, 7);
+                    this.weekdayBehavior = 1;
+                    this.rd += (amount > 0 ? amount - 1 : amount) * 7;
+                    break;
+            }
+        },
+    },
+    relative: {
+        regex: new RegExp('^([+-]*)[ \\t]*(\\d+)' + reSpaceOpt + '(' + reReltextunit + '|week)', 'i'),
+        name: 'relative',
+        callback(match, signs, relValue, relUnit) {
+            const minuses = signs.replace(/[^-]/g, '').length;
+            const amount = +relValue * Math.pow(-1, minuses);
+            switch (relUnit.toLowerCase()) {
+                case 'sec':
+                case 'secs':
+                case 'second':
+                case 'seconds':
+                    this.rs += amount;
+                    break;
+                case 'min':
+                case 'mins':
+                case 'minute':
+                case 'minutes':
+                    this.ri += amount;
+                    break;
+                case 'hour':
+                case 'hours':
+                    this.rh += amount;
+                    break;
+                case 'day':
+                case 'days':
+                    this.rd += amount;
+                    break;
+                case 'fortnight':
+                case 'fortnights':
+                case 'forthnight':
+                case 'forthnights':
+                    this.rd += amount * 14;
+                    break;
+                case 'week':
+                case 'weeks':
+                    this.rd += amount * 7;
+                    break;
+                case 'month':
+                case 'months':
+                    this.rm += amount;
+                    break;
+                case 'year':
+                case 'years':
+                    this.ry += amount;
+                    break;
+                case 'mon':
+                case 'monday':
+                case 'tue':
+                case 'tuesday':
+                case 'wed':
+                case 'wednesday':
+                case 'thu':
+                case 'thursday':
+                case 'fri':
+                case 'friday':
+                case 'sat':
+                case 'saturday':
+                case 'sun':
+                case 'sunday':
+                    this.resetTime();
+                    this.weekday = lookupWeekday(relUnit, 7);
+                    this.weekdayBehavior = 1;
+                    this.rd += (amount > 0 ? amount - 1 : amount) * 7;
+                    break;
+            }
+        },
+    },
+    dayText: {
+        regex: new RegExp('^(' + reDaytext + ')', 'i'),
+        name: 'daytext',
+        callback(match, dayText) {
+            this.resetTime();
+            this.weekday = lookupWeekday(dayText, 0);
+            if (this.weekdayBehavior !== 2) {
+                this.weekdayBehavior = 1;
+            }
+        },
+    },
+    relativeTextWeek: {
+        regex: new RegExp('^(' + reReltexttext + ')' + reSpace + 'week', 'i'),
+        name: 'relativetextweek',
+        callback(match, relText) {
+            this.weekdayBehavior = 2;
+            switch (relText.toLowerCase()) {
+                case 'this':
+                    this.rd += 0;
+                    break;
+                case 'next':
+                    this.rd += 7;
+                    break;
+                case 'last':
+                case 'previous':
+                    this.rd -= 7;
+                    break;
+            }
+            if (isNaN(this.weekday)) {
+                this.weekday = 1;
+            }
+        },
+    },
+    monthFullOrMonthAbbr: {
+        regex: new RegExp('^(' + reMonthFull + '|' + reMonthAbbr + ')', 'i'),
+        name: 'monthfull | monthabbr',
+        callback(match, month) {
+            return this.ymd(this.y, lookupMonth(month), this.d);
+        },
+    },
+    tzCorrection: {
+        regex: new RegExp('^' + reTzCorrection, 'i'),
+        name: 'tzcorrection',
+        callback(tzCorrection) {
+            return this.zone(processTzCorrection(tzCorrection));
+        },
+    },
+    tzAbbr: {
+        regex: new RegExp('^' + reTzAbbr),
+        name: 'tzabbr',
+        callback(match, abbr) {
+            const offset = tzAbbrOffsets[abbr.toLowerCase()];
+            if (offset == null || Number.isNaN(offset)) {
+                return false;
+            }
+            return this.zone(offset);
+        },
+    },
+    ago: {
+        regex: /^ago/i,
+        name: 'ago',
+        callback() {
+            this.ry = -this.ry;
+            this.rm = -this.rm;
+            this.rd = -this.rd;
+            this.rh = -this.rh;
+            this.ri = -this.ri;
+            this.rs = -this.rs;
+            this.rf = -this.rf;
+        },
+    },
+    year4: {
+        regex: new RegExp('^' + reYear4),
+        name: 'year4',
+        callback(match, year) {
+            this.y = +year;
+            return true;
+        },
+    },
+    whitespace: {
+        regex: /^[ .,\t]+/,
+        name: 'whitespace',
+        // do nothing
+    },
+    dateShortWithTimeLong: {
+        regex: new RegExp('^' + reDateNoYear + 't?' + reHour24 + '[:.]' + reMinute + '[:.]' + reSecond, 'i'),
+        name: 'dateshortwithtimelong',
+        callback(match, month, day, hour, minute, second) {
+            return this.ymd(this.y, lookupMonth(month), +day) && this.time(+hour, +minute, +second, 0);
+        },
+    },
+    dateShortWithTimeLong12: {
+        regex: new RegExp('^' + reDateNoYear + reHour12 + '[:.]' + reMinute + '[:.]' + reSecondlz + reSpaceOpt + reMeridian, 'i'),
+        name: 'dateshortwithtimelong12',
+        callback(match, month, day, hour, minute, second, meridian) {
+            return (this.ymd(this.y, lookupMonth(month), +day) && this.time(processMeridian(+hour, meridian), +minute, +second, 0));
+        },
+    },
+    dateShortWithTimeShort: {
+        regex: new RegExp('^' + reDateNoYear + 't?' + reHour24 + '[:.]' + reMinute, 'i'),
+        name: 'dateshortwithtimeshort',
+        callback(match, month, day, hour, minute) {
+            return this.ymd(this.y, lookupMonth(month), +day) && this.time(+hour, +minute, 0, 0);
+        },
+    },
+    dateShortWithTimeShort12: {
+        regex: new RegExp('^' + reDateNoYear + reHour12 + '[:.]' + reMinutelz + reSpaceOpt + reMeridian, 'i'),
+        name: 'dateshortwithtimeshort12',
+        callback(match, month, day, hour, minute, meridian) {
+            return this.ymd(this.y, lookupMonth(month), +day) && this.time(processMeridian(+hour, meridian), +minute, 0, 0);
+        },
+    },
+};
+const resultProto = {
+    // date
+    y: NaN,
+    m: NaN,
+    d: NaN,
+    // time
+    h: NaN,
+    i: NaN,
+    s: NaN,
+    f: NaN,
+    // relative shifts
+    ry: 0,
+    rm: 0,
+    rd: 0,
+    rh: 0,
+    ri: 0,
+    rs: 0,
+    rf: 0,
+    // weekday related shifts
+    weekday: NaN,
+    weekdayBehavior: 0,
+    // first or last day of month
+    // 0 none, 1 first, -1 last
+    firstOrLastDayOfMonth: 0,
+    // timezone correction in minutes
+    z: NaN,
+    // counters
+    dates: 0,
+    times: 0,
+    zones: 0,
+    // helper functions
+    ymd(y, m, d) {
+        if (this.dates > 0) {
+            return false;
+        }
+        this.dates++;
+        this.y = y;
+        this.m = m;
+        this.d = d;
+        return true;
+    },
+    time(h, i, s, f) {
+        if (this.times > 0) {
+            return false;
+        }
+        this.times++;
+        this.h = h;
+        this.i = i;
+        this.s = s;
+        this.f = f;
+        return true;
+    },
+    resetTime() {
+        this.h = 0;
+        this.i = 0;
+        this.s = 0;
+        this.f = 0;
+        this.times = 0;
+        return true;
+    },
+    zone(minutes) {
+        if (this.zones <= 1) {
+            this.zones++;
+            this.z = minutes;
+            return true;
+        }
         return false;
-      }
-
-      // get day of week for Jan 1st
-      var dayOfWeek = new Date(this.y, this.m, this.d).getDay();
-
-      // and use the day to figure out the offset for day 1 of week 1
-      dayOfWeek = 0 - (dayOfWeek > 4 ? dayOfWeek - 7 : dayOfWeek);
-
-      this.rd += dayOfWeek + (week - 1) * 7 + day;
-    }
-  },
-
-  relativeText: {
-    regex: RegExp('^(' + reReltextnumber + '|' + reReltexttext + ')' + reSpace + '(' + reReltextunit + ')', 'i'),
-    name: 'relativetext',
-    callback: function callback(match, relValue, relUnit) {
-      // todo: implement handling of 'this time-unit'
-      // eslint-disable-next-line no-unused-vars
-      var _lookupRelative = lookupRelative(relValue),
-          amount = _lookupRelative.amount;
-
-      switch (relUnit.toLowerCase()) {
-        case 'sec':
-        case 'secs':
-        case 'second':
-        case 'seconds':
-          this.rs += amount;
-          break;
-        case 'min':
-        case 'mins':
-        case 'minute':
-        case 'minutes':
-          this.ri += amount;
-          break;
-        case 'hour':
-        case 'hours':
-          this.rh += amount;
-          break;
-        case 'day':
-        case 'days':
-          this.rd += amount;
-          break;
-        case 'fortnight':
-        case 'fortnights':
-        case 'forthnight':
-        case 'forthnights':
-          this.rd += amount * 14;
-          break;
-        case 'week':
-        case 'weeks':
-          this.rd += amount * 7;
-          break;
-        case 'month':
-        case 'months':
-          this.rm += amount;
-          break;
-        case 'year':
-        case 'years':
-          this.ry += amount;
-          break;
-        case 'mon':
-        case 'monday':
-        case 'tue':
-        case 'tuesday':
-        case 'wed':
-        case 'wednesday':
-        case 'thu':
-        case 'thursday':
-        case 'fri':
-        case 'friday':
-        case 'sat':
-        case 'saturday':
-        case 'sun':
-        case 'sunday':
-          this.resetTime();
-          this.weekday = lookupWeekday(relUnit, 7);
-          this.weekdayBehavior = 1;
-          this.rd += (amount > 0 ? amount - 1 : amount) * 7;
-          break;
-      }
-    }
-  },
-
-  relative: {
-    regex: RegExp('^([+-]*)[ \\t]*(\\d+)' + reSpaceOpt + '(' + reReltextunit + '|week)', 'i'),
-    name: 'relative',
-    callback: function callback(match, signs, relValue, relUnit) {
-      var minuses = signs.replace(/[^-]/g, '').length;
-
-      var amount = +relValue * Math.pow(-1, minuses);
-
-      switch (relUnit.toLowerCase()) {
-        case 'sec':
-        case 'secs':
-        case 'second':
-        case 'seconds':
-          this.rs += amount;
-          break;
-        case 'min':
-        case 'mins':
-        case 'minute':
-        case 'minutes':
-          this.ri += amount;
-          break;
-        case 'hour':
-        case 'hours':
-          this.rh += amount;
-          break;
-        case 'day':
-        case 'days':
-          this.rd += amount;
-          break;
-        case 'fortnight':
-        case 'fortnights':
-        case 'forthnight':
-        case 'forthnights':
-          this.rd += amount * 14;
-          break;
-        case 'week':
-        case 'weeks':
-          this.rd += amount * 7;
-          break;
-        case 'month':
-        case 'months':
-          this.rm += amount;
-          break;
-        case 'year':
-        case 'years':
-          this.ry += amount;
-          break;
-        case 'mon':
-        case 'monday':
-        case 'tue':
-        case 'tuesday':
-        case 'wed':
-        case 'wednesday':
-        case 'thu':
-        case 'thursday':
-        case 'fri':
-        case 'friday':
-        case 'sat':
-        case 'saturday':
-        case 'sun':
-        case 'sunday':
-          this.resetTime();
-          this.weekday = lookupWeekday(relUnit, 7);
-          this.weekdayBehavior = 1;
-          this.rd += (amount > 0 ? amount - 1 : amount) * 7;
-          break;
-      }
-    }
-  },
-
-  dayText: {
-    regex: RegExp('^(' + reDaytext + ')', 'i'),
-    name: 'daytext',
-    callback: function callback(match, dayText) {
-      this.resetTime();
-      this.weekday = lookupWeekday(dayText, 0);
-
-      if (this.weekdayBehavior !== 2) {
-        this.weekdayBehavior = 1;
-      }
-    }
-  },
-
-  relativeTextWeek: {
-    regex: RegExp('^(' + reReltexttext + ')' + reSpace + 'week', 'i'),
-    name: 'relativetextweek',
-    callback: function callback(match, relText) {
-      this.weekdayBehavior = 2;
-
-      switch (relText.toLowerCase()) {
-        case 'this':
-          this.rd += 0;
-          break;
-        case 'next':
-          this.rd += 7;
-          break;
-        case 'last':
-        case 'previous':
-          this.rd -= 7;
-          break;
-      }
-
-      if (isNaN(this.weekday)) {
-        this.weekday = 1;
-      }
-    }
-  },
-
-  monthFullOrMonthAbbr: {
-    regex: RegExp('^(' + reMonthFull + '|' + reMonthAbbr + ')', 'i'),
-    name: 'monthfull | monthabbr',
-    callback: function callback(match, month) {
-      return this.ymd(this.y, lookupMonth(month), this.d);
-    }
-  },
-
-  tzCorrection: {
-    regex: RegExp('^' + reTzCorrection, 'i'),
-    name: 'tzcorrection',
-    callback: function callback(tzCorrection) {
-      return this.zone(processTzCorrection(tzCorrection));
-    }
-  },
-
-  tzAbbr: {
-    regex: RegExp('^' + reTzAbbr),
-    name: 'tzabbr',
-    callback: function callback(match, abbr) {
-      var offset = tzAbbrOffsets[abbr.toLowerCase()];
-
-      if (isNaN(offset)) {
-        return false;
-      }
-
-      return this.zone(offset);
-    }
-  },
-
-  ago: {
-    regex: /^ago/i,
-    name: 'ago',
-    callback: function callback() {
-      this.ry = -this.ry;
-      this.rm = -this.rm;
-      this.rd = -this.rd;
-      this.rh = -this.rh;
-      this.ri = -this.ri;
-      this.rs = -this.rs;
-      this.rf = -this.rf;
-    }
-  },
-
-  year4: {
-    regex: RegExp('^' + reYear4),
-    name: 'year4',
-    callback: function callback(match, year) {
-      this.y = +year;
-      return true;
-    }
-  },
-
-  whitespace: {
-    regex: /^[ .,\t]+/,
-    name: 'whitespace'
-    // do nothing
-  },
-
-  dateShortWithTimeLong: {
-    regex: RegExp('^' + reDateNoYear + 't?' + reHour24 + '[:.]' + reMinute + '[:.]' + reSecond, 'i'),
-    name: 'dateshortwithtimelong',
-    callback: function callback(match, month, day, hour, minute, second) {
-      return this.ymd(this.y, lookupMonth(month), +day) && this.time(+hour, +minute, +second, 0);
-    }
-  },
-
-  dateShortWithTimeLong12: {
-    regex: RegExp('^' + reDateNoYear + reHour12 + '[:.]' + reMinute + '[:.]' + reSecondlz + reSpaceOpt + reMeridian, 'i'),
-    name: 'dateshortwithtimelong12',
-    callback: function callback(match, month, day, hour, minute, second, meridian) {
-      return this.ymd(this.y, lookupMonth(month), +day) && this.time(processMeridian(+hour, meridian), +minute, +second, 0);
-    }
-  },
-
-  dateShortWithTimeShort: {
-    regex: RegExp('^' + reDateNoYear + 't?' + reHour24 + '[:.]' + reMinute, 'i'),
-    name: 'dateshortwithtimeshort',
-    callback: function callback(match, month, day, hour, minute) {
-      return this.ymd(this.y, lookupMonth(month), +day) && this.time(+hour, +minute, 0, 0);
-    }
-  },
-
-  dateShortWithTimeShort12: {
-    regex: RegExp('^' + reDateNoYear + reHour12 + '[:.]' + reMinutelz + reSpaceOpt + reMeridian, 'i'),
-    name: 'dateshortwithtimeshort12',
-    callback: function callback(match, month, day, hour, minute, meridian) {
-      return this.ymd(this.y, lookupMonth(month), +day) && this.time(processMeridian(+hour, meridian), +minute, 0, 0);
-    }
-  }
+    },
+    toDate(relativeTo) {
+        if (this.dates && !this.times) {
+            this.h = this.i = this.s = this.f = 0;
+        }
+        // fill holes
+        if (isNaN(this.y)) {
+            this.y = relativeTo.getFullYear();
+        }
+        if (isNaN(this.m)) {
+            this.m = relativeTo.getMonth();
+        }
+        if (isNaN(this.d)) {
+            this.d = relativeTo.getDate();
+        }
+        if (isNaN(this.h)) {
+            this.h = relativeTo.getHours();
+        }
+        if (isNaN(this.i)) {
+            this.i = relativeTo.getMinutes();
+        }
+        if (isNaN(this.s)) {
+            this.s = relativeTo.getSeconds();
+        }
+        if (isNaN(this.f)) {
+            this.f = relativeTo.getMilliseconds();
+        }
+        // adjust special early
+        switch (this.firstOrLastDayOfMonth) {
+            case 1:
+                this.d = 1;
+                break;
+            case -1:
+                this.d = 0;
+                this.m += 1;
+                break;
+        }
+        if (!isNaN(this.weekday)) {
+            const date = new Date(relativeTo.getTime());
+            date.setFullYear(this.y, this.m, this.d);
+            date.setHours(this.h, this.i, this.s, this.f);
+            const dow = date.getDay();
+            if (this.weekdayBehavior === 2) {
+                // To make "this week" work, where the current day of week is a "sunday"
+                if (dow === 0 && this.weekday !== 0) {
+                    this.weekday = -6;
+                }
+                // To make "sunday this week" work, where the current day of week is not a "sunday"
+                if (this.weekday === 0 && dow !== 0) {
+                    this.weekday = 7;
+                }
+                this.d -= dow;
+                this.d += this.weekday;
+            }
+            else {
+                let diff = this.weekday - dow;
+                // some PHP magic
+                if ((this.rd < 0 && diff < 0) || (this.rd >= 0 && diff <= -this.weekdayBehavior)) {
+                    diff += 7;
+                }
+                if (this.weekday >= 0) {
+                    this.d += diff;
+                }
+                else {
+                    this.d -= 7 - (Math.abs(this.weekday) - dow);
+                }
+                this.weekday = NaN;
+            }
+        }
+        // adjust relative
+        this.y += this.ry;
+        this.m += this.rm;
+        this.d += this.rd;
+        this.h += this.rh;
+        this.i += this.ri;
+        this.s += this.rs;
+        this.f += this.rf;
+        this.ry = this.rm = this.rd = 0;
+        this.rh = this.ri = this.rs = this.rf = 0;
+        const result = new Date(relativeTo.getTime());
+        // since Date constructor treats years <= 99 as 1900+
+        // it can't be used, thus this weird way
+        result.setFullYear(this.y, this.m, this.d);
+        result.setHours(this.h, this.i, this.s, this.f);
+        //             note: this is done twice in PHP
+        // early when processing special relatives
+        // and late
+        // todo: check if the logic can be reduced
+        // to just one time action
+        switch (this.firstOrLastDayOfMonth) {
+            case 1:
+                result.setDate(1);
+                break;
+            case -1:
+                result.setMonth(result.getMonth() + 1, 0);
+                break;
+        }
+        // adjust timezone
+        if (!isNaN(this.z) && result.getTimezoneOffset() !== this.z) {
+            result.setUTCFullYear(result.getFullYear(), result.getMonth(), result.getDate());
+            result.setUTCHours(result.getHours(), result.getMinutes(), result.getSeconds() - this.z, result.getMilliseconds());
+        }
+        return result;
+    },
 };
-
-var resultProto = {
-  // date
-  y: NaN,
-  m: NaN,
-  d: NaN,
-  // time
-  h: NaN,
-  i: NaN,
-  s: NaN,
-  f: NaN,
-
-  // relative shifts
-  ry: 0,
-  rm: 0,
-  rd: 0,
-  rh: 0,
-  ri: 0,
-  rs: 0,
-  rf: 0,
-
-  // weekday related shifts
-  weekday: NaN,
-  weekdayBehavior: 0,
-
-  // first or last day of month
-  // 0 none, 1 first, -1 last
-  firstOrLastDayOfMonth: 0,
-
-  // timezone correction in minutes
-  z: NaN,
-
-  // counters
-  dates: 0,
-  times: 0,
-  zones: 0,
-
-  // helper functions
-  ymd: function ymd(y, m, d) {
-    if (this.dates > 0) {
-      return false;
-    }
-
-    this.dates++;
-    this.y = y;
-    this.m = m;
-    this.d = d;
-    return true;
-  },
-  time: function time(h, i, s, f) {
-    if (this.times > 0) {
-      return false;
-    }
-
-    this.times++;
-    this.h = h;
-    this.i = i;
-    this.s = s;
-    this.f = f;
-
-    return true;
-  },
-  resetTime: function resetTime() {
-    this.h = 0;
-    this.i = 0;
-    this.s = 0;
-    this.f = 0;
-    this.times = 0;
-
-    return true;
-  },
-  zone: function zone(minutes) {
-    if (this.zones <= 1) {
-      this.zones++;
-      this.z = minutes;
-      return true;
-    }
-
-    return false;
-  },
-  toDate: function toDate(relativeTo) {
-    if (this.dates && !this.times) {
-      this.h = this.i = this.s = this.f = 0;
-    }
-
-    // fill holes
-    if (isNaN(this.y)) {
-      this.y = relativeTo.getFullYear();
-    }
-
-    if (isNaN(this.m)) {
-      this.m = relativeTo.getMonth();
-    }
-
-    if (isNaN(this.d)) {
-      this.d = relativeTo.getDate();
-    }
-
-    if (isNaN(this.h)) {
-      this.h = relativeTo.getHours();
-    }
-
-    if (isNaN(this.i)) {
-      this.i = relativeTo.getMinutes();
-    }
-
-    if (isNaN(this.s)) {
-      this.s = relativeTo.getSeconds();
-    }
-
-    if (isNaN(this.f)) {
-      this.f = relativeTo.getMilliseconds();
-    }
-
-    // adjust special early
-    switch (this.firstOrLastDayOfMonth) {
-      case 1:
-        this.d = 1;
-        break;
-      case -1:
-        this.d = 0;
-        this.m += 1;
-        break;
-    }
-
-    if (!isNaN(this.weekday)) {
-      var date = new Date(relativeTo.getTime());
-      date.setFullYear(this.y, this.m, this.d);
-      date.setHours(this.h, this.i, this.s, this.f);
-
-      var dow = date.getDay();
-
-      if (this.weekdayBehavior === 2) {
-        // To make "this week" work, where the current day of week is a "sunday"
-        if (dow === 0 && this.weekday !== 0) {
-          this.weekday = -6;
+function strtotime(str, now) {
+    //       discuss at: https://locutus.io/php/strtotime/
+    //      original by: Caio Ariede (https://caioariede.com)
+    //      improved by: Kevin van Zonneveld (https://kvz.io)
+    //      improved by: Caio Ariede (https://caioariede.com)
+    //      improved by: A. Matías Quezada (https://amatiasq.com)
+    //      improved by: preuter
+    //      improved by: Brett Zamir (https://brett-zamir.me)
+    //      improved by: Mirko Faber
+    //         input by: David
+    //      bugfixed by: Wagner B. Soares
+    //      bugfixed by: Artur Tchernychev
+    //      bugfixed by: Stephan Bösch-Plepelits (https://github.com/plepe)
+    // reimplemented by: Rafał Kukawski
+    //           note 1: Examples all have a fixed timestamp to prevent
+    //           note 1: tests to fail because of variable time(zones)
+    //        example 1: strtotime('+1 day', 1129633200)
+    //        returns 1: 1129719600
+    //        example 2: strtotime('+1 week 2 days 4 hours 2 seconds', 1129633200)
+    //        returns 2: 1130425202
+    //        example 3: strtotime('last month', 1129633200)
+    //        returns 3: 1127041200
+    //        example 4: strtotime('2009-05-04 08:30:00+00')
+    //        returns 4: 1241425800
+    //        example 5: strtotime('2009-05-04 08:30:00+02:00')
+    //        returns 5: 1241418600
+    //        example 6: strtotime('2009-05-04 08:30:00 YWT')
+    //        returns 6: 1241454600
+    //        example 7: strtotime('10-JUL-17')
+    //        returns 7: 1499644800
+    const nowSeconds = now == null ? Math.floor(Date.now() / 1000) : now;
+    str = String(str);
+    // the rule order is important
+    // if multiple rules match, the longest match wins
+    // if multiple rules match the same string, the first match wins
+    const rules = [
+        formats$1.yesterday,
+        formats$1.now,
+        formats$1.noon,
+        formats$1.midnightOrToday,
+        formats$1.tomorrow,
+        formats$1.timestamp,
+        formats$1.firstOrLastDay,
+        formats$1.backOrFrontOf,
+        // formats.weekdayOf, // not yet implemented
+        formats$1.timeTiny12,
+        formats$1.timeShort12,
+        formats$1.timeLong12,
+        formats$1.mssqltime,
+        formats$1.oracledate,
+        formats$1.timeShort24,
+        formats$1.timeLong24,
+        formats$1.iso8601long,
+        formats$1.gnuNoColon,
+        formats$1.iso8601noColon,
+        formats$1.americanShort,
+        formats$1.american,
+        formats$1.iso8601date4,
+        formats$1.iso8601dateSlash,
+        formats$1.dateSlash,
+        formats$1.gnuDateShortOrIso8601date2,
+        formats$1.gnuDateShorter,
+        formats$1.dateFull,
+        formats$1.pointedDate4,
+        formats$1.pointedDate2,
+        formats$1.dateNoDay,
+        formats$1.dateNoDayRev,
+        formats$1.dateTextual,
+        formats$1.dateNoYear,
+        formats$1.dateNoYearRev,
+        formats$1.dateNoColon,
+        formats$1.xmlRpc,
+        formats$1.xmlRpcNoColon,
+        formats$1.soap,
+        formats$1.wddx,
+        formats$1.exif,
+        formats$1.pgydotd,
+        formats$1.isoWeekDay,
+        formats$1.pgTextShort,
+        formats$1.pgTextReverse,
+        formats$1.clf,
+        formats$1.year4,
+        formats$1.ago,
+        formats$1.dayText,
+        formats$1.relativeTextWeek,
+        formats$1.relativeText,
+        formats$1.monthFullOrMonthAbbr,
+        formats$1.tzCorrection,
+        formats$1.tzAbbr,
+        formats$1.dateShortWithTimeShort12,
+        formats$1.dateShortWithTimeLong12,
+        formats$1.dateShortWithTimeShort,
+        formats$1.dateShortWithTimeLong,
+        formats$1.relative,
+        formats$1.whitespace,
+    ];
+    const result = { ...resultProto };
+    while (str.length) {
+        let longestMatch = null;
+        let finalRule = null;
+        for (const format of rules) {
+            const match = str.match(format.regex);
+            if (match) {
+                if (!longestMatch || match[0].length > longestMatch[0].length) {
+                    longestMatch = match;
+                    finalRule = format;
+                }
+            }
         }
-
-        // To make "sunday this week" work, where the current day of week is not a "sunday"
-        if (this.weekday === 0 && dow !== 0) {
-          this.weekday = 7;
+        if (!finalRule || !longestMatch) {
+            return false;
         }
-
-        this.d -= dow;
-        this.d += this.weekday;
-      } else {
-        var diff = this.weekday - dow;
-
-        // some PHP magic
-        if (this.rd < 0 && diff < 0 || this.rd >= 0 && diff <= -this.weekdayBehavior) {
-          diff += 7;
+        if (finalRule.callback && finalRule.callback.apply(result, longestMatch) === false) {
+            return false;
         }
-
-        if (this.weekday >= 0) {
-          this.d += diff;
-        } else {
-          this.d -= 7 - (Math.abs(this.weekday) - dow);
-        }
-
-        this.weekday = NaN;
-      }
+        str = str.substr(longestMatch[0].length);
+        finalRule = null;
+        longestMatch = null;
     }
-
-    // adjust relative
-    this.y += this.ry;
-    this.m += this.rm;
-    this.d += this.rd;
-
-    this.h += this.rh;
-    this.i += this.ri;
-    this.s += this.rs;
-    this.f += this.rf;
-
-    this.ry = this.rm = this.rd = 0;
-    this.rh = this.ri = this.rs = this.rf = 0;
-
-    var result = new Date(relativeTo.getTime());
-    // since Date constructor treats years <= 99 as 1900+
-    // it can't be used, thus this weird way
-    result.setFullYear(this.y, this.m, this.d);
-    result.setHours(this.h, this.i, this.s, this.f);
-
-    // note: this is done twice in PHP
-    // early when processing special relatives
-    // and late
-    // todo: check if the logic can be reduced
-    // to just one time action
-    switch (this.firstOrLastDayOfMonth) {
-      case 1:
-        result.setDate(1);
-        break;
-      case -1:
-        result.setMonth(result.getMonth() + 1, 0);
-        break;
-    }
-
-    // adjust timezone
-    if (!isNaN(this.z) && result.getTimezoneOffset() !== this.z) {
-      result.setUTCFullYear(result.getFullYear(), result.getMonth(), result.getDate());
-
-      result.setUTCHours(result.getHours(), result.getMinutes(), result.getSeconds() - this.z, result.getMilliseconds());
-    }
-
-    return result;
-  }
-};
-
-var strtotime = function strtotime(str, now) {
-  //       discuss at: https://locutus.io/php/strtotime/
-  //      original by: Caio Ariede (https://caioariede.com)
-  //      improved by: Kevin van Zonneveld (https://kvz.io)
-  //      improved by: Caio Ariede (https://caioariede.com)
-  //      improved by: A. Matías Quezada (https://amatiasq.com)
-  //      improved by: preuter
-  //      improved by: Brett Zamir (https://brett-zamir.me)
-  //      improved by: Mirko Faber
-  //         input by: David
-  //      bugfixed by: Wagner B. Soares
-  //      bugfixed by: Artur Tchernychev
-  //      bugfixed by: Stephan Bösch-Plepelits (https://github.com/plepe)
-  // reimplemented by: Rafał Kukawski
-  //           note 1: Examples all have a fixed timestamp to prevent
-  //           note 1: tests to fail because of variable time(zones)
-  //        example 1: strtotime('+1 day', 1129633200)
-  //        returns 1: 1129719600
-  //        example 2: strtotime('+1 week 2 days 4 hours 2 seconds', 1129633200)
-  //        returns 2: 1130425202
-  //        example 3: strtotime('last month', 1129633200)
-  //        returns 3: 1127041200
-  //        example 4: strtotime('2009-05-04 08:30:00+00')
-  //        returns 4: 1241425800
-  //        example 5: strtotime('2009-05-04 08:30:00+02:00')
-  //        returns 5: 1241418600
-  //        example 6: strtotime('2009-05-04 08:30:00 YWT')
-  //        returns 6: 1241454600
-  //        example 7: strtotime('10-JUL-17')
-  //        returns 7: 1499644800
-
-  if (now == null) {
-    now = Math.floor(Date.now() / 1000);
-  }
-
-  // the rule order is important
-  // if multiple rules match, the longest match wins
-  // if multiple rules match the same string, the first match wins
-  var rules = [formats$1.yesterday, formats$1.now, formats$1.noon, formats$1.midnightOrToday, formats$1.tomorrow, formats$1.timestamp, formats$1.firstOrLastDay, formats$1.backOrFrontOf,
-  // formats.weekdayOf, // not yet implemented
-  formats$1.timeTiny12, formats$1.timeShort12, formats$1.timeLong12, formats$1.mssqltime, formats$1.oracledate, formats$1.timeShort24, formats$1.timeLong24, formats$1.iso8601long, formats$1.gnuNoColon, formats$1.iso8601noColon, formats$1.americanShort, formats$1.american, formats$1.iso8601date4, formats$1.iso8601dateSlash, formats$1.dateSlash, formats$1.gnuDateShortOrIso8601date2, formats$1.gnuDateShorter, formats$1.dateFull, formats$1.pointedDate4, formats$1.pointedDate2, formats$1.dateNoDay, formats$1.dateNoDayRev, formats$1.dateTextual, formats$1.dateNoYear, formats$1.dateNoYearRev, formats$1.dateNoColon, formats$1.xmlRpc, formats$1.xmlRpcNoColon, formats$1.soap, formats$1.wddx, formats$1.exif, formats$1.pgydotd, formats$1.isoWeekDay, formats$1.pgTextShort, formats$1.pgTextReverse, formats$1.clf, formats$1.year4, formats$1.ago, formats$1.dayText, formats$1.relativeTextWeek, formats$1.relativeText, formats$1.monthFullOrMonthAbbr, formats$1.tzCorrection, formats$1.tzAbbr, formats$1.dateShortWithTimeShort12, formats$1.dateShortWithTimeLong12, formats$1.dateShortWithTimeShort, formats$1.dateShortWithTimeLong, formats$1.relative, formats$1.whitespace];
-
-  var result = Object.create(resultProto);
-
-  while (str.length) {
-    var longestMatch = null;
-    var finalRule = null;
-
-    for (var i = 0, l = rules.length; i < l; i++) {
-      var format = rules[i];
-
-      var match = str.match(format.regex);
-
-      if (match) {
-        if (!longestMatch || match[0].length > longestMatch[0].length) {
-          longestMatch = match;
-          finalRule = format;
-        }
-      }
-    }
-
-    if (!finalRule || finalRule.callback && finalRule.callback.apply(result, longestMatch) === false) {
-      return false;
-    }
-
-    str = str.substr(longestMatch[0].length);
-    finalRule = null;
-    longestMatch = null;
-  }
-
-  return Math.floor(result.toDate(new Date(now * 1000)) / 1000);
-};
+    return Math.floor(result.toDate(new Date(nowSeconds * 1000)).getTime() / 1000);
+}
 
 class date$4 extends Validator {
   check(value) {
@@ -14067,7 +14076,7 @@ class Columns {
   }
 }
 
-/*! @license DOMPurify 3.3.0 | (c) Cure53 and other contributors | Released under the Apache license 2.0 and Mozilla Public License 2.0 | github.com/cure53/DOMPurify/blob/3.3.0/LICENSE */
+/*! @license DOMPurify 3.3.3 | (c) Cure53 and other contributors | Released under the Apache license 2.0 and Mozilla Public License 2.0 | github.com/cure53/DOMPurify/blob/3.3.3/LICENSE */
 
 const {
   entries,
@@ -14374,7 +14383,7 @@ const _createHooksMap = function _createHooksMap() {
 function createDOMPurify() {
   let window = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : getGlobal();
   const DOMPurify = root => createDOMPurify(root);
-  DOMPurify.version = '3.3.0';
+  DOMPurify.version = '3.3.3';
   DOMPurify.removed = [];
   if (!window || !window.document || window.document.nodeType !== NODE_TYPE.document || !window.Element) {
     // Not running in a browser, provide a factory function
@@ -14669,7 +14678,7 @@ function createDOMPurify() {
     /* Parse profile info */
     if (USE_PROFILES) {
       ALLOWED_TAGS = addToSet({}, text$4);
-      ALLOWED_ATTR = [];
+      ALLOWED_ATTR = create(null);
       if (USE_PROFILES.html === true) {
         addToSet(ALLOWED_TAGS, html$1);
         addToSet(ALLOWED_ATTR, html);
@@ -14689,6 +14698,13 @@ function createDOMPurify() {
         addToSet(ALLOWED_ATTR, mathMl);
         addToSet(ALLOWED_ATTR, xml);
       }
+    }
+    /* Prevent function-based ADD_ATTR / ADD_TAGS from leaking across calls */
+    if (!objectHasOwnProperty(cfg, 'ADD_TAGS')) {
+      EXTRA_ELEMENT_HANDLING.tagCheck = null;
+    }
+    if (!objectHasOwnProperty(cfg, 'ADD_ATTR')) {
+      EXTRA_ELEMENT_HANDLING.attributeCheck = null;
     }
     /* Merge configuration parameters */
     if (cfg.ADD_TAGS) {
@@ -14719,6 +14735,12 @@ function createDOMPurify() {
         FORBID_CONTENTS = clone$2(FORBID_CONTENTS);
       }
       addToSet(FORBID_CONTENTS, cfg.FORBID_CONTENTS, transformCaseFunc);
+    }
+    if (cfg.ADD_FORBID_CONTENTS) {
+      if (FORBID_CONTENTS === DEFAULT_FORBID_CONTENTS) {
+        FORBID_CONTENTS = clone$2(FORBID_CONTENTS);
+      }
+      addToSet(FORBID_CONTENTS, cfg.ADD_FORBID_CONTENTS, transformCaseFunc);
     }
     /* Add #text in case KEEP_CONTENT is set to true */
     if (KEEP_CONTENT) {
@@ -15081,6 +15103,10 @@ function createDOMPurify() {
    */
   // eslint-disable-next-line complexity
   const _isValidAttribute = function _isValidAttribute(lcTag, lcName, value) {
+    /* FORBID_ATTR must always win, even if ADD_ATTR predicate would allow it */
+    if (FORBID_ATTR[lcName]) {
+      return false;
+    }
     /* Make sure attribute cannot clobber */
     if (SANITIZE_DOM && (lcName === 'id' || lcName === 'name') && (value in document || value in formElement)) {
       return false;
@@ -15173,7 +15199,7 @@ function createDOMPurify() {
         value = SANITIZE_NAMED_PROPS_PREFIX + value;
       }
       /* Work around a security issue with comments inside attributes */
-      if (SAFE_FOR_XML && regExpTest(/((--!?|])>)|<\/(style|title|textarea)/i, value)) {
+      if (SAFE_FOR_XML && regExpTest(/((--!?|])>)|<\/(style|script|title|xmp|textarea|noscript|iframe|noembed|noframes)/i, value)) {
         _removeAttribute(name, currentNode);
         continue;
       }
@@ -15525,7 +15551,7 @@ function simplify(tokens, unaryOps, binaryOps, ternaryOps, values) {
       } else {
         nstack.push(item);
       }
-    } else if (type === IVAR && values.hasOwnProperty(item.value)) {
+    } else if (type === IVAR && Object.hasOwn(values, item.value)) {
       item = new Instruction(INUMBER, values[item.value]);
       nstack.push(item);
     } else if (type === IOP2 && nstack.length > 1) {
@@ -15558,13 +15584,14 @@ function simplify(tokens, unaryOps, binaryOps, ternaryOps, values) {
     } else if (type === IMEMBER && nstack.length > 0) {
       n1 = nstack.pop();
       nstack.push(new Instruction(INUMBER, n1.value[item.value]));
-    } /* else if (type === IARRAY && nstack.length >= item.value) {
+    /* } else if (type === IARRAY && nstack.length >= item.value) {
       var length = item.value;
       while (length-- > 0) {
         newexpression.push(nstack.pop());
       }
       newexpression.push(new Instruction(IARRAY, item.value));
-    } */ else {
+    } */
+    } else {
       while (nstack.length > 0) {
         newexpression.push(nstack.shift());
       }
@@ -15604,6 +15631,69 @@ function substitute(tokens, variable, expr) {
     }
   }
   return newexpression;
+}
+
+/**
+ * Checks if a function reference 'f' is explicitly allowed to be executed.
+ * This logic is the core security allowance gate.
+ */
+function isAllowedFunc(f, expr, values) {
+  // function definition is included in registered functions
+  if (Object.values(expr.functions).includes(f)) return true;
+
+  for (const v of Object.values(values)) {
+    if (typeof v === 'object' && v !== null) {
+      for (const subV of Object.values(v)) {
+        if (subV === f) {
+          const SAFE_MATH = Object.freeze({
+            abs: Math.abs,
+            acos: Math.acos,
+            asin: Math.asin,
+            atan: Math.atan,
+            atan2: Math.atan2,
+            ceil: Math.ceil,
+            clz32: Math.clz32,
+            cos: Math.cos,
+            exp: Math.exp,
+            floor: Math.floor,
+            imul: Math.imul,
+            fround: Math.fround,
+            f16round: Math.f16round,
+            log: Math.log,
+            max: Math.max,
+            min: Math.min,
+            pow: Math.pow,
+            random: Math.random,
+            round: Math.round,
+            sin: Math.sin,
+            sqrt: Math.sqrt,
+            tan: Math.tan,
+            log10: Math.log10,
+            log2: Math.log2,
+            log1p: Math.log1p,
+            expm1: Math.expm1,
+            cosh: Math.cosh,
+            sinh: Math.sinh,
+            tanh: Math.tanh,
+            acosh: Math.acosh,
+            asinh: Math.asinh,
+            atanh: Math.atanh,
+            hypot: Math.hypot,
+            trunc: Math.trunc,
+            sign: Math.sign,
+            cbrt: Math.cbrt
+          });
+          // allow Math functions
+          for (var key of Object.getOwnPropertyNames(SAFE_MATH)) {
+            if (SAFE_MATH[key] === subV) return true;
+          }
+          // function definition is included in registered functions
+          return Object.values(expr.functions).includes(subV);
+        }
+      }
+    }
+  }
+  return false;
 }
 
 function evaluate(tokens, expr, values) {
@@ -15647,13 +15737,21 @@ function evaluate(tokens, expr, values) {
         nstack.push(f(resolveExpression(n1, values), resolveExpression(n2, values), resolveExpression(n3, values)));
       }
     } else if (type === IVAR) {
+      if (/^__proto__|prototype|constructor$/.test(item.value)) {
+        throw new Error('prototype access detected');
+      }
       if (item.value in expr.functions) {
         nstack.push(expr.functions[item.value]);
       } else if (item.value in expr.unaryOps && expr.parser.isOperatorEnabled(item.value)) {
         nstack.push(expr.unaryOps[item.value]);
       } else {
         var v = values[item.value];
+
         if (v !== undefined) {
+          if (typeof v === 'function' && !isAllowedFunc(v, expr, values)) {
+            /* function is not registered, not marked safe, and not a member function. BLOCKED. */
+            throw new Error('Variable references an unallowed function: ' + item.value);
+          }
           nstack.push(v);
         } else {
           throw new Error('undefined variable: ' + item.value);
@@ -15670,6 +15768,9 @@ function evaluate(tokens, expr, values) {
         args.unshift(resolveExpression(nstack.pop(), values));
       }
       f = nstack.pop();
+      if (!isAllowedFunc(f, expr, values)) {
+        throw new Error('Is not an allowed function.');
+      }
       if (f.apply && f.call) {
         nstack.push(f.apply(undefined, args));
       } else {
@@ -15692,11 +15793,7 @@ function evaluate(tokens, expr, values) {
           }
           return evaluate(n2, expr, scope);
         };
-        // f.name = n1
-        Object.defineProperty(f, 'name', {
-          value: n1,
-          writable: false
-        });
+        expr.functions['lambda_' + expr.functions.__counter++] = f;
         values[n1] = f;
         return f;
       })());
@@ -15706,6 +15803,16 @@ function evaluate(tokens, expr, values) {
       nstack.push(item);
     } else if (type === IMEMBER) {
       n1 = nstack.pop();
+      if (/^__proto__|prototype|constructor$/.test(item.value)) {
+        throw new Error('prototype access detected in MEMBER');
+      }
+      if (
+        typeof n1 === 'object' &&
+        typeof n1[item.value] === 'function' &&
+        !isAllowedFunc(n1[item.value], expr, values)
+      ) {
+        throw new Error('Is not an allowed function in MEMBER.');
+      }
       nstack.push(n1[item.value]);
     } else if (type === IENDSTATEMENT) {
       nstack.pop();
@@ -15858,9 +15965,9 @@ function expressionToString(tokens, toJS) {
   }
   if (nstack.length > 1) {
     if (toJS) {
-      nstack = [ nstack.join(',') ];
+      nstack = [nstack.join(',')];
     } else {
-      nstack = [ nstack.join(';') ];
+      nstack = [nstack.join(';')];
     }
   }
   return String(nstack[0]);
@@ -17104,7 +17211,7 @@ function sign(x) {
   return ((x > 0) - (x < 0)) || +x;
 }
 
-var ONE_THIRD = 1/3;
+var ONE_THIRD = 1 / 3;
 function cbrt(x) {
   return x < 0 ? -Math.pow(-x, ONE_THIRD) : Math.pow(x, ONE_THIRD);
 }
@@ -17119,6 +17226,16 @@ function log1p(x) {
 
 function log2(x) {
   return Math.log(x) / Math.LN2;
+}
+
+function sum(array) {
+  if (!Array.isArray(array)) {
+    throw new Error('Sum argument is not an array');
+  }
+
+  return array.reduce(function (total, value) {
+    return total + Number(value);
+  }, 0);
 }
 
 function Parser(options) {
@@ -17175,7 +17292,7 @@ function Parser(options) {
     '<=': lessThanEqual,
     and: andOperator,
     or: orOperator,
-    'in': inOperator,
+    in: inOperator,
     '=': setVar,
     '[': arrayIndex
   };
@@ -17193,21 +17310,22 @@ function Parser(options) {
     pyt: Math.hypot || hypot, // backward compat
     pow: Math.pow,
     atan2: Math.atan2,
-    'if': condition,
+    if: condition,
     gamma: gamma,
     roundTo: roundTo,
     map: arrayMap$1,
     fold: arrayFold,
     filter: arrayFilter,
     indexOf: stringOrArrayIndexOf,
-    join: arrayJoin
+    join: arrayJoin,
+    sum: sum
   };
 
   this.consts = {
     E: Math.E,
     PI: Math.PI,
-    'true': true,
-    'false': false
+    true: true,
+    false: false
   };
 }
 
@@ -17254,9 +17372,9 @@ var optionNameMap = {
   '==': 'comparison',
   '!=': 'comparison',
   '||': 'concatenate',
-  'and': 'logical',
-  'or': 'logical',
-  'not': 'logical',
+  and: 'logical',
+  or: 'logical',
+  not: 'logical',
   '?': 'conditional',
   ':': 'conditional',
   '=': 'assignment',
@@ -17265,7 +17383,7 @@ var optionNameMap = {
 };
 
 function getOptionName(op) {
-  return optionNameMap.hasOwnProperty(op) ? optionNameMap[op] : op;
+  return Object.hasOwn(optionNameMap, op) ? optionNameMap[op] : op;
 }
 
 Parser.prototype.isOperatorEnabled = function (op) {
@@ -31754,7 +31872,7 @@ function baseOrderBy$1(collection, iteratees, orders) {
       if (isArray(iteratee)) {
         return function(value) {
           return baseGet(value, iteratee.length === 1 ? iteratee[0] : iteratee);
-        }
+        };
       }
       return iteratee;
     });
