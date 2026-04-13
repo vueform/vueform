@@ -1,3 +1,4 @@
+import path from 'path'
 import autoprefixer from 'autoprefixer'
 import json from '@rollup/plugin-json'
 import babel from '@rollup/plugin-babel'
@@ -5,8 +6,17 @@ import commonjs from '@rollup/plugin-commonjs'
 import postcss from 'rollup-plugin-postcss'
 import license from 'rollup-plugin-license'
 import vue from 'rollup-plugin-vue'
-import { terser } from 'rollup-plugin-terser'
 import { nodeResolve } from '@rollup/plugin-node-resolve'
+
+const sassOptions = {
+  silenceDeprecations: ['legacy-js-api', 'import', 'global-builtin'],
+}
+
+const onwarn = (warning, warn) => {
+  if (warning.code === 'THIS_IS_UNDEFINED') return
+  if (warning.code === 'FILE_NAME_CONFLICT') return
+  warn(warning)
+}
 
 const files = [
 
@@ -206,6 +216,7 @@ export default files.map((file) => {
 
     plugins.push(postcss({
       inject: true,
+      use: { sass: sassOptions },
     }))
   }
 
@@ -218,7 +229,6 @@ export default files.map((file) => {
         exclude: /^(.+\/)?node_modules\/.+$/,
       }),
       nodeResolve(),
-      // terser(),
     ])
 
     if (file.banner) {
@@ -236,8 +246,9 @@ export default files.map((file) => {
   if (file.type === 'style') {
     plugins = plugins.concat([
       postcss({
-        extract: true,
+        extract: path.resolve(file.output),
         minimize: file.minimize,
+        use: { sass: sassOptions },
         plugins: [
           autoprefixer(),
         ]
@@ -252,6 +263,7 @@ export default files.map((file) => {
       format: file.format || 'esm',
     },
     plugins,
+    onwarn,
     external: ['vue', 'axios', 'moment']
   }
 })
