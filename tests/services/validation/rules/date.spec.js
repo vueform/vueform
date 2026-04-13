@@ -1,6 +1,6 @@
 import flushPromises from 'flush-promises'
 import { createForm, findAllComponents, change } from 'test-helpers'
-import strtotime from 'locutus/php/datetime/strtotime'
+import { strtotime } from 'locutus/php/datetime/strtotime'
 
 describe('Date Rule', () => {
   it('should return true if given string is a date or datetime', async () => {

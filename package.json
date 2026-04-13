@@ -142,7 +142,7 @@
     "jest-environment-jsdom-sixteen": "^1.0.3",
     "jest-transform-stub": "^2.0.0",
     "json-loader": "^0.5.7",
-    "locutus": "^2.0.16",
+    "locutus": "^3.0.34",
     "module-alias": "^2.2.3",
     "moxios": "^0.4.0",
     "mutationobserver-shim": "^0.3.7",
@@ -178,5 +178,14 @@
     "sass": "^1.86.2",
     "trix": "^2.1.18",
     "wnumb": "^1.2.0"
+  },
+  "overrides": {
+    "postcss-modules-sync": {
+      "generic-names": {
+        "loader-utils": {
+          "json5": ">=1.0.2"
+        }
+      }
+    }
   }
 }
