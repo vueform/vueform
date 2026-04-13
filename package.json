@@ -127,6 +127,7 @@
     "autosize": "^6.0.1",
     "babel-core": "^7.0.0-bridge.0",
     "babel-loader": "^8.0.5",
+    "baseline-browser-mapping": "^2.10.18",
     "changelogen": "^0.6.2",
     "core-js": "^3.10.1",
     "css-loader": "^2.1.0",
