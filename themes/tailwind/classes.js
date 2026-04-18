@@ -458,7 +458,7 @@ export default {
     input_sm: checkbox.input_sm + ' form-mt-checkbox-sm',
     input_md: checkbox.input_md + ' form-mt-checkbox',
     input_lg: checkbox.input_lg + ' form-mt-checkbox-lg',
-    text: 'cursor-pointer',
+    text: 'cursor-pointer min-w-0',
     text_left: 'rtl:-order-1',
     text_right: '-order-1 rtl:order-none',
     $wrapper: (classes, { Size, align }) => ([
@@ -899,7 +899,7 @@ export default {
     input_sm: radio.input_sm + ' form-mt-checkbox-sm',
     input_md: radio.input_md + ' form-mt-checkbox',
     input_lg: radio.input_lg + ' form-mt-checkbox-lg',
-    text: 'cursor-pointer',
+    text: 'cursor-pointer min-w-0',
     text_left: 'rtl:-order-1',
     text_right: '-order-1 rtl:order-none',
     $wrapper: (classes, { Size, align }) => ([
@@ -1655,7 +1655,7 @@ export default {
     ]),
   },
   ElementLayout: {
-    container: '',
+    container: 'break-words',
     container_sm: 'form-text-sm',
     container_md: 'form-text',
     container_lg: 'form-text-lg',
@@ -1888,7 +1888,7 @@ export default {
     ...checkbox,
     container: 'flex cursor-pointer',
     wrapper: 'flex cursor-pointer form-view-default',
-    text: '',
+    text: 'min-w-0',
     input: checkbox.input + ' form-shadow-handles',
     input_sm: checkbox.input_sm + ' form-mt-checkbox-sm',
     input_md: checkbox.input_md + ' form-mt-checkbox',
@@ -2068,7 +2068,7 @@ export default {
   RadiogroupRadio: {
     ...radio,
     container: 'flex cursor-pointer form-view-default',
-    text: '',
+    text: 'min-w-0',
     input: radio.input + ' form-shadow-handles',
     input_sm: radio.input_sm + ' form-mt-checkbox-sm',
     input_md: radio.input_md + ' form-mt-checkbox',

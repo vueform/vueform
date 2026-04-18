@@ -404,6 +404,7 @@
 
 .vf-checkbox-text {
   cursor: pointer;
+  min-width: 0;
 }
 
 .vf-radio-container,
@@ -507,6 +508,7 @@
 
 .vf-radio-text {
   cursor: pointer;
+  min-width: 0;
 }
 
 .vf-btn {

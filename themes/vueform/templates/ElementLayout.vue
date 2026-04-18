@@ -46,6 +46,7 @@
     font-size: var(--vf-font-size);
     line-height: var(--vf-line-height);
     letter-spacing: var(--vf-letter-spacing);
+    overflow-wrap: break-word;
 
     &.vf-element-layout-sm {
       font-size: var(--vf-font-size-sm);
