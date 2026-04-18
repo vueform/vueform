@@ -129,7 +129,7 @@
     "babel-loader": "^8.0.5",
     "changelogen": "^0.6.2",
     "core-js": "^3.10.1",
-    "css-loader": "^2.1.0",
+    "css-loader": "^7.1.4",
     "eslint": "^10.2.0",
     "eslint-plugin-vue": "^10.8.0",
     "expr-eval-fork": "^3.0.3",
