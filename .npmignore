@@ -1,8 +1,13 @@
 api/
 build/
 nuxt/
+playground/
 scripts/
 tests/
+.cursor/
 .github/
+.husky/
 babel.config.js
 CHANGELOG.md
+commitlint.config.js
+eslint.config.mjs
