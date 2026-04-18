@@ -1,5 +1,5 @@
 /*!
- * Vueform v1.13.10 (https://github.com/vueform/vueform)
+ * Vueform v1.13.11 (https://github.com/vueform/vueform)
  * Copyright (c) 2026 Adam Berecz <adam@vueform.com>
  * Licensed under the MIT License
  */
@@ -14194,7 +14194,7 @@ var classes = {
     input_sm: checkbox.input_sm + ' form-mt-checkbox-sm',
     input_md: checkbox.input_md + ' form-mt-checkbox',
     input_lg: checkbox.input_lg + ' form-mt-checkbox-lg',
-    text: 'cursor-pointer',
+    text: 'cursor-pointer min-w-0',
     text_left: 'rtl:-order-1',
     text_right: '-order-1 rtl:order-none',
     $wrapper: (classes, _ref20) => {
@@ -14695,7 +14695,7 @@ var classes = {
     input_sm: radio.input_sm + ' form-mt-checkbox-sm',
     input_md: radio.input_md + ' form-mt-checkbox',
     input_lg: radio.input_lg + ' form-mt-checkbox-lg',
-    text: 'cursor-pointer',
+    text: 'cursor-pointer min-w-0',
     text_left: 'rtl:-order-1',
     text_right: '-order-1 rtl:order-none',
     $wrapper: (classes, _ref55) => {
@@ -15542,7 +15542,7 @@ var classes = {
     }
   },
   ElementLayout: {
-    container: '',
+    container: 'break-words',
     container_sm: 'form-text-sm',
     container_md: 'form-text',
     container_lg: 'form-text-lg',
@@ -15805,7 +15805,7 @@ var classes = {
   CheckboxgroupCheckbox: _objectSpread2(_objectSpread2({}, checkbox), {}, {
     container: 'flex cursor-pointer',
     wrapper: 'flex cursor-pointer form-view-default',
-    text: '',
+    text: 'min-w-0',
     input: checkbox.input + ' form-shadow-handles',
     input_sm: checkbox.input_sm + ' form-mt-checkbox-sm',
     input_md: checkbox.input_md + ' form-mt-checkbox',
@@ -16003,7 +16003,7 @@ var classes = {
   },
   RadiogroupRadio: _objectSpread2(_objectSpread2({}, radio), {}, {
     container: 'flex cursor-pointer form-view-default',
-    text: '',
+    text: 'min-w-0',
     input: radio.input + ' form-shadow-handles',
     input_sm: radio.input_sm + ' form-mt-checkbox-sm',
     input_md: radio.input_md + ' form-mt-checkbox',

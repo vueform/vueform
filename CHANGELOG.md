@@ -1,5 +1,26 @@
 [//]: # (Don't use <tags>)
 
+## 1.13.11
+
+> `2026-04-18`
+
+### 🐞 Bug Fixes
+- Break words in long strings builder#159 ([#159](https://github.com/vueform/vueform/issues/159))
+
+### 📖 Documentation
+- Update locale PR review guidelines and clarify locale structure ([c277b50c](https://github.com/vueform/vueform/commit/c277b50c))
+
+### 🏡 Chore
+- Bump trix and axios ([5d49513e](https://github.com/vueform/vueform/commit/5d49513e))
+- Agent setup ([ea64813a](https://github.com/vueform/vueform/commit/ea64813a))
+- Update expr-eval dependency and add comprehensive tests for parser functionality ([18a488a8](https://github.com/vueform/vueform/commit/18a488a8))
+- Update locutus dependency and adjust import statements in date validation ([df1aaae3](https://github.com/vueform/vueform/commit/df1aaae3))
+- Add baseline-browser-mapping dependency ([86579e2d](https://github.com/vueform/vueform/commit/86579e2d))
+- Remove baseline-browser-mapping dependency and update Rollup configuration ([902f2e38](https://github.com/vueform/vueform/commit/902f2e38))
+- Update Rollup configuration for Sass support ([6a6704a5](https://github.com/vueform/vueform/commit/6a6704a5))
+- Build ([a9cd35e9](https://github.com/vueform/vueform/commit/a9cd35e9))
+- Update dependencies in package.json for Nuxt ([88ed4fcd](https://github.com/vueform/vueform/commit/88ed4fcd))
+
 ## v1.13.10
 
 > `2026-02-18`

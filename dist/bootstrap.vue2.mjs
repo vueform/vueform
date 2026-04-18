@@ -1,5 +1,5 @@
 /*!
- * Vueform v1.13.10 (https://github.com/vueform/vueform)
+ * Vueform v1.13.11 (https://github.com/vueform/vueform)
  * Copyright (c) 2026 Adam Berecz <adam@vueform.com>
  * Licensed under the MIT License
  */
@@ -2357,7 +2357,7 @@ var script$1R = {
     }
   };
 
-var css_248z$1O = "/* Some styles are contained in Vueform.vue */\n\n.vf-element-layout {\n  font-size: var(--vf-font-size);\n  line-height: var(--vf-line-height);\n  letter-spacing: var(--vf-letter-spacing);\n}\n\n.vf-element-layout.vf-element-layout-sm {\n  font-size: var(--vf-font-size-sm);\n  line-height: var(--vf-line-height-sm);\n  letter-spacing: var(--vf-letter-spacing-sm);\n}\n\n.vf-element-layout.vf-element-layout-lg {\n  font-size: var(--vf-font-size-lg);\n  line-height: var(--vf-line-height-lg);\n  letter-spacing: var(--vf-letter-spacing-lg);\n}\n\n.vf-layout-inner-container {\n  flex: 1 1 0%;\n  display: grid;\n  grid-template-columns: repeat(12, minmax(0, 1fr));\n}\n\n.vf-layout-inner-container .vf-layout-inner-wrapper,\n.vf-layout-inner-container .vf-layout-inner-wrapper-before,\n.vf-layout-inner-container .vf-layout-inner-wrapper-after {\n  padding-left: 0;\n  padding-right: 0;\n}\n\n.vf-layout-inner-wrapper-before,\n.vf-layout-inner-wrapper-after {\n  grid-column: span 12/span 12;\n  padding-left: var(--vf-gutter);\n  padding-right: var(--vf-gutter);\n}\n\n.vf-element-layout-outer-wrapper {\n  display: grid;\n  grid-template-columns: repeat(12, minmax(0, 1fr));\n}";
+var css_248z$1O = "/* Some styles are contained in Vueform.vue */\n\n.vf-element-layout {\n  font-size: var(--vf-font-size);\n  line-height: var(--vf-line-height);\n  letter-spacing: var(--vf-letter-spacing);\n  overflow-wrap: break-word;\n}\n\n.vf-element-layout.vf-element-layout-sm {\n  font-size: var(--vf-font-size-sm);\n  line-height: var(--vf-line-height-sm);\n  letter-spacing: var(--vf-letter-spacing-sm);\n}\n\n.vf-element-layout.vf-element-layout-lg {\n  font-size: var(--vf-font-size-lg);\n  line-height: var(--vf-line-height-lg);\n  letter-spacing: var(--vf-letter-spacing-lg);\n}\n\n.vf-layout-inner-container {\n  flex: 1 1 0%;\n  display: grid;\n  grid-template-columns: repeat(12, minmax(0, 1fr));\n}\n\n.vf-layout-inner-container .vf-layout-inner-wrapper,\n.vf-layout-inner-container .vf-layout-inner-wrapper-before,\n.vf-layout-inner-container .vf-layout-inner-wrapper-after {\n  padding-left: 0;\n  padding-right: 0;\n}\n\n.vf-layout-inner-wrapper-before,\n.vf-layout-inner-wrapper-after {\n  grid-column: span 12/span 12;\n  padding-left: var(--vf-gutter);\n  padding-right: var(--vf-gutter);\n}\n\n.vf-element-layout-outer-wrapper {\n  display: grid;\n  grid-template-columns: repeat(12, minmax(0, 1fr));\n}";
 styleInject(css_248z$1O);
 
 /* script */
