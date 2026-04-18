@@ -123,7 +123,7 @@
     "@testing-library/jest-dom": "^5.11.5",
     "@vue/compiler-sfc": "^3.0.0",
     "@vue/test-utils": "2.0.0-rc.16",
-    "autoprefixer": "^9",
+    "autoprefixer": "^10",
     "autosize": "^6.0.1",
     "babel-core": "^7.0.0-bridge.0",
     "babel-loader": "^8.0.5",
