@@ -106,8 +106,7 @@
     "fix-locales": "npx babel-node --presets @babel/preset-env ./scripts/fix-locales.js",
     "lint": "eslint src/",
     "changelog": "changelogen --output CHANGELOG.md",
-    "release": "npm run lint && npm test && npm run build && changelogen --release && npm publish",
-    "prepare": "husky"
+    "release": "npm run lint && npm test && npm run build && changelogen --release && npm publish"
   },
   "devDependencies": {
     "@babel/core": "^7.2.2",
