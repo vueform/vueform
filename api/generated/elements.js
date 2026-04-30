@@ -38091,6 +38091,16 @@ module.exports = {
         required: false,
         private: false,
       },
+      valueFormat: {
+        required: 'false',
+        default: 'blob',
+        localized: false,
+        types: [
+          'string',
+        ],
+        required: false,
+        private: false,
+      },
     },
     data: {
       active: {
@@ -38693,7 +38703,7 @@ module.exports = {
         types: [
           'boolean',
         ],
-        description: 'Whether a signature (as URL) was loaded to the element.',
+        description: 'Whether a signature (as URL or base64) was loaded to the element.',
         private: false,
       },
       processing: {
@@ -39350,6 +39360,34 @@ module.exports = {
             ],
             required: 'true',
             description: 'the color in HEX format',
+          },
+        },
+        private: false,
+      },
+      blobToBase64: {
+        description: 'Converts a Blob to a base64 data URI string.',
+        returns: ',string',
+        params: {
+          blob: {
+            types: [
+              'Blob',
+            ],
+            required: 'true',
+            description: 'the Blob to convert',
+          },
+        },
+        private: false,
+      },
+      base64ToBlob: {
+        description: 'Converts a base64 data URI string to a Blob.',
+        returns: 'Blob',
+        params: {
+          base64: {
+            types: [
+              'string',
+            ],
+            required: 'true',
+            description: 'the base64 data URI string',
           },
         },
         private: false,

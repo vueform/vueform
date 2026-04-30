@@ -170,6 +170,11 @@ export default {
       type: [Boolean],
       default: true,
     },
+    valueFormat: {
+      required: false,
+      type: [String],
+      default: 'blob',
+    },
   },
   setup(props, ctx) {
     const context = { ...ctx }
