@@ -1,6 +1,7 @@
 import { Parser, Expression } from 'expr-eval-fork'
 import replaceWildcardsExpr from '../../utils/replaceWildcardsExpr'
 import localize from '../../utils/localize'
+import { isEmpty, isNotEmpty } from '../../utils/empty'
 
 export default class {
   parser
@@ -30,13 +31,9 @@ export default class {
 
     this.parser.functions.NOT = (a) => !a
 
-    this.parser.functions.EMPTY = (v) => Array.isArray(v)
-      ? !v.length
-      : (v === '' || v === null || v === undefined)
+    this.parser.functions.EMPTY = (v) => isEmpty(v, form$.selectedLanguage)
 
-    this.parser.functions.NOT_EMPTY = (v) => Array.isArray(v)
-      ? !!v.length
-      : (v !== '' && v !== null && v !== undefined)
+    this.parser.functions.NOT_EMPTY = (v) => isNotEmpty(v, form$.selectedLanguage)
 
     this.parser.functions.SUM = (...args) => {
       return this.sum(args)
