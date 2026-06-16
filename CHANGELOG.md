@@ -1,23 +1,20 @@
 [//]: # (Don't use <tags>)
 
-## 1.13.12
+## v1.13.12
 
 > `2026-06-16`
 
 ### 🐞 Bug Fixes
-- fix: expr EMPTY NOT_EMPTY should work with multilingual fields [#164](https://github.com/vueform/builder/issues/164)
+- Expr EMPTY NOT_EMPTY should work with multilingual fields [#164](https://github.com/vueform/builder/issues/164)
 
-## 1.13.11
+## v1.13.11
 
 > `2026-04-18`
 
 ### 🐞 Bug Fixes
 - Break words in long strings builder#159 ([#159](https://github.com/vueform/vueform/issues/159))
 
-### 📖 Documentation
-- Update locale PR review guidelines and clarify locale structure ([c277b50c](https://github.com/vueform/vueform/commit/c277b50c))
-
-### 🏡 Chore
+### 🧹 Chore
 - Bump trix and axios ([5d49513e](https://github.com/vueform/vueform/commit/5d49513e))
 - Agent setup ([ea64813a](https://github.com/vueform/vueform/commit/ea64813a))
 - Update expr-eval dependency and add comprehensive tests for parser functionality ([18a488a8](https://github.com/vueform/vueform/commit/18a488a8))
