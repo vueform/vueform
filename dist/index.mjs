@@ -1,5 +1,5 @@
 /*!
- * Vueform v1.13.11 (https://github.com/vueform/vueform)
+ * Vueform v1.13.12 (https://github.com/vueform/vueform)
  * Copyright (c) 2026 Adam Berecz <adam@vueform.com>
  * Licensed under the MIT License
  */
@@ -8,6 +8,14 @@ import { ref, toRefs, computed, watch, getCurrentInstance, provide, onBeforeMoun
 import axios from 'axios';
 import moment from 'moment';
 
+function _arrayLikeToArray$1(r, a) {
+  (null == a || a > r.length) && (a = r.length);
+  for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e];
+  return n;
+}
+function _arrayWithHoles$1(r) {
+  if (Array.isArray(r)) return r;
+}
 function asyncGeneratorStep(n, t, e, r, o, a, c) {
   try {
     var i = n[a](c),
@@ -41,6 +49,36 @@ function _defineProperty$2(e, r, t) {
     writable: !0
   }) : e[r] = t, e;
 }
+function _iterableToArrayLimit$1(r, l) {
+  var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"];
+  if (null != t) {
+    var e,
+      n,
+      i,
+      u,
+      a = [],
+      f = !0,
+      o = !1;
+    try {
+      if (i = (t = t.call(r)).next, 0 === l) {
+        if (Object(t) !== t) return;
+        f = !1;
+      } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0);
+    } catch (r) {
+      o = !0, n = r;
+    } finally {
+      try {
+        if (!f && null != t.return && (u = t.return(), Object(u) !== u)) return;
+      } finally {
+        if (o) throw n;
+      }
+    }
+    return a;
+  }
+}
+function _nonIterableRest$1() {
+  throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+}
 function ownKeys$1(e, r) {
   var t = Object.keys(e);
   if (Object.getOwnPropertySymbols) {
@@ -62,6 +100,9 @@ function _objectSpread2$1(e) {
   }
   return e;
 }
+function _slicedToArray$1(r, e) {
+  return _arrayWithHoles$1(r) || _iterableToArrayLimit$1(r, e) || _unsupportedIterableToArray$1(r, e) || _nonIterableRest$1();
+}
 function _toPrimitive$1(t, r) {
   if ("object" != typeof t || !t) return t;
   var e = t[Symbol.toPrimitive];
@@ -75,6 +116,13 @@ function _toPrimitive$1(t, r) {
 function _toPropertyKey$1(t) {
   var i = _toPrimitive$1(t, "string");
   return "symbol" == typeof i ? i : i + "";
+}
+function _unsupportedIterableToArray$1(r, a) {
+  if (r) {
+    if ("string" == typeof r) return _arrayLikeToArray$1(r, a);
+    var t = {}.toString.call(r).slice(8, -1);
+    return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray$1(r, a) : void 0;
+  }
 }
 
 var commonjsGlobal = typeof globalThis !== 'undefined' ? globalThis : typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
@@ -204,7 +252,7 @@ var Symbol$6 = _Symbol;
 var objectProto$h = Object.prototype;
 
 /** Used to check objects for own properties. */
-var hasOwnProperty$f = objectProto$h.hasOwnProperty;
+var hasOwnProperty$e = objectProto$h.hasOwnProperty;
 
 /**
  * Used to resolve the
@@ -224,7 +272,7 @@ var symToStringTag$1 = Symbol$6 ? Symbol$6.toStringTag : undefined;
  * @returns {string} Returns the raw `toStringTag`.
  */
 function getRawTag$1(value) {
-  var isOwn = hasOwnProperty$f.call(value, symToStringTag$1),
+  var isOwn = hasOwnProperty$e.call(value, symToStringTag$1),
       tag = value[symToStringTag$1];
 
   try {
@@ -263,15 +311,15 @@ var nativeObjectToString = objectProto$g.toString;
  * @param {*} value The value to convert.
  * @returns {string} Returns the converted string.
  */
-function objectToString$1(value) {
+function objectToString$2(value) {
   return nativeObjectToString.call(value);
 }
 
-var _objectToString = objectToString$1;
+var _objectToString = objectToString$2;
 
 var Symbol$5 = _Symbol,
     getRawTag = _getRawTag,
-    objectToString = _objectToString;
+    objectToString$1 = _objectToString;
 
 /** `Object#toString` result references. */
 var nullTag = '[object Null]',
@@ -293,7 +341,7 @@ function baseGetTag$7(value) {
   }
   return (symToStringTag && symToStringTag in Object(value))
     ? getRawTag(value)
-    : objectToString(value);
+    : objectToString$1(value);
 }
 
 var _baseGetTag = baseGetTag$7;
@@ -355,7 +403,7 @@ var baseIsArguments = _baseIsArguments,
 var objectProto$f = Object.prototype;
 
 /** Used to check objects for own properties. */
-var hasOwnProperty$e = objectProto$f.hasOwnProperty;
+var hasOwnProperty$d = objectProto$f.hasOwnProperty;
 
 /** Built-in value references. */
 var propertyIsEnumerable$1 = objectProto$f.propertyIsEnumerable;
@@ -379,7 +427,7 @@ var propertyIsEnumerable$1 = objectProto$f.propertyIsEnumerable;
  * // => false
  */
 var isArguments$5 = baseIsArguments(function() { return arguments; }()) ? baseIsArguments : function(value) {
-  return isObjectLike$8(value) && hasOwnProperty$e.call(value, 'callee') &&
+  return isObjectLike$8(value) && hasOwnProperty$d.call(value, 'callee') &&
     !propertyIsEnumerable$1.call(value, 'callee');
 };
 
@@ -691,7 +739,7 @@ var baseTimes = _baseTimes,
 var objectProto$e = Object.prototype;
 
 /** Used to check objects for own properties. */
-var hasOwnProperty$d = objectProto$e.hasOwnProperty;
+var hasOwnProperty$c = objectProto$e.hasOwnProperty;
 
 /**
  * Creates an array of the enumerable property names of the array-like `value`.
@@ -711,7 +759,7 @@ function arrayLikeKeys$2(value, inherited) {
       length = result.length;
 
   for (var key in value) {
-    if ((inherited || hasOwnProperty$d.call(value, key)) &&
+    if ((inherited || hasOwnProperty$c.call(value, key)) &&
         !(skipIndexes && (
            // Safari 9 has enumerable `arguments.length` in strict mode.
            key == 'length' ||
@@ -781,7 +829,7 @@ var isPrototype$3 = _isPrototype,
 var objectProto$c = Object.prototype;
 
 /** Used to check objects for own properties. */
-var hasOwnProperty$c = objectProto$c.hasOwnProperty;
+var hasOwnProperty$b = objectProto$c.hasOwnProperty;
 
 /**
  * The base implementation of `_.keys` which doesn't treat sparse arrays as dense.
@@ -796,7 +844,7 @@ function baseKeys$2(object) {
   }
   var result = [];
   for (var key in Object(object)) {
-    if (hasOwnProperty$c.call(object, key) && key != 'constructor') {
+    if (hasOwnProperty$b.call(object, key) && key != 'constructor') {
       result.push(key);
     }
   }
@@ -1454,11 +1502,11 @@ var funcProto$1 = Function.prototype,
 var funcToString$1 = funcProto$1.toString;
 
 /** Used to check objects for own properties. */
-var hasOwnProperty$b = objectProto$b.hasOwnProperty;
+var hasOwnProperty$a = objectProto$b.hasOwnProperty;
 
 /** Used to detect if a method is native. */
 var reIsNative = RegExp('^' +
-  funcToString$1.call(hasOwnProperty$b).replace(reRegExpChar, '\\$&')
+  funcToString$1.call(hasOwnProperty$a).replace(reRegExpChar, '\\$&')
   .replace(/hasOwnProperty|(function).*?(?=\\\()| for .+?(?=\\\])/g, '$1.*?') + '$'
 );
 
@@ -1572,7 +1620,7 @@ var HASH_UNDEFINED$2 = '__lodash_hash_undefined__';
 var objectProto$a = Object.prototype;
 
 /** Used to check objects for own properties. */
-var hasOwnProperty$a = objectProto$a.hasOwnProperty;
+var hasOwnProperty$9 = objectProto$a.hasOwnProperty;
 
 /**
  * Gets the hash value for `key`.
@@ -1589,7 +1637,7 @@ function hashGet$1(key) {
     var result = data[key];
     return result === HASH_UNDEFINED$2 ? undefined : result;
   }
-  return hasOwnProperty$a.call(data, key) ? data[key] : undefined;
+  return hasOwnProperty$9.call(data, key) ? data[key] : undefined;
 }
 
 var _hashGet = hashGet$1;
@@ -1600,7 +1648,7 @@ var nativeCreate$1 = _nativeCreate;
 var objectProto$9 = Object.prototype;
 
 /** Used to check objects for own properties. */
-var hasOwnProperty$9 = objectProto$9.hasOwnProperty;
+var hasOwnProperty$8 = objectProto$9.hasOwnProperty;
 
 /**
  * Checks if a hash value for `key` exists.
@@ -1613,7 +1661,7 @@ var hasOwnProperty$9 = objectProto$9.hasOwnProperty;
  */
 function hashHas$1(key) {
   var data = this.__data__;
-  return nativeCreate$1 ? (data[key] !== undefined) : hasOwnProperty$9.call(data, key);
+  return nativeCreate$1 ? (data[key] !== undefined) : hasOwnProperty$8.call(data, key);
 }
 
 var _hashHas = hashHas$1;
@@ -2173,7 +2221,7 @@ var funcProto = Function.prototype,
 var funcToString = funcProto.toString;
 
 /** Used to check objects for own properties. */
-var hasOwnProperty$8 = objectProto$8.hasOwnProperty;
+var hasOwnProperty$7 = objectProto$8.hasOwnProperty;
 
 /** Used to infer the `Object` constructor. */
 var objectCtorString = funcToString.call(Object);
@@ -2214,7 +2262,7 @@ function isPlainObject$2(value) {
   if (proto === null) {
     return true;
   }
-  var Ctor = hasOwnProperty$8.call(proto, 'constructor') && proto.constructor;
+  var Ctor = hasOwnProperty$7.call(proto, 'constructor') && proto.constructor;
   return typeof Ctor == 'function' && Ctor instanceof Ctor &&
     funcToString.call(Ctor) == objectCtorString;
 }
@@ -2251,7 +2299,7 @@ var baseAssignValue$2 = _baseAssignValue,
 var objectProto$7 = Object.prototype;
 
 /** Used to check objects for own properties. */
-var hasOwnProperty$7 = objectProto$7.hasOwnProperty;
+var hasOwnProperty$6 = objectProto$7.hasOwnProperty;
 
 /**
  * Assigns `value` to `key` of `object` if the existing value is not equivalent
@@ -2265,7 +2313,7 @@ var hasOwnProperty$7 = objectProto$7.hasOwnProperty;
  */
 function assignValue$3(object, key, value) {
   var objValue = object[key];
-  if (!(hasOwnProperty$7.call(object, key) && eq$2(objValue, value)) ||
+  if (!(hasOwnProperty$6.call(object, key) && eq$2(objValue, value)) ||
       (value === undefined && !(key in object))) {
     baseAssignValue$2(object, key, value);
   }
@@ -2344,7 +2392,7 @@ var isObject$7 = isObject_1,
 var objectProto$6 = Object.prototype;
 
 /** Used to check objects for own properties. */
-var hasOwnProperty$6 = objectProto$6.hasOwnProperty;
+var hasOwnProperty$5 = objectProto$6.hasOwnProperty;
 
 /**
  * The base implementation of `_.keysIn` which doesn't treat sparse arrays as dense.
@@ -2361,7 +2409,7 @@ function baseKeysIn$1(object) {
       result = [];
 
   for (var key in object) {
-    if (!(key == 'constructor' && (isProto || !hasOwnProperty$6.call(object, key)))) {
+    if (!(key == 'constructor' && (isProto || !hasOwnProperty$5.call(object, key)))) {
       result.push(key);
     }
   }
@@ -3361,7 +3409,7 @@ var COMPARE_PARTIAL_FLAG$3 = 1;
 var objectProto$4 = Object.prototype;
 
 /** Used to check objects for own properties. */
-var hasOwnProperty$5 = objectProto$4.hasOwnProperty;
+var hasOwnProperty$4 = objectProto$4.hasOwnProperty;
 
 /**
  * A specialized version of `baseIsEqualDeep` for objects with support for
@@ -3389,7 +3437,7 @@ function equalObjects$1(object, other, bitmask, customizer, equalFunc, stack) {
   var index = objLength;
   while (index--) {
     var key = objProps[index];
-    if (!(isPartial ? key in other : hasOwnProperty$5.call(other, key))) {
+    if (!(isPartial ? key in other : hasOwnProperty$4.call(other, key))) {
       return false;
     }
   }
@@ -3555,7 +3603,7 @@ var argsTag$1 = '[object Arguments]',
 var objectProto$3 = Object.prototype;
 
 /** Used to check objects for own properties. */
-var hasOwnProperty$4 = objectProto$3.hasOwnProperty;
+var hasOwnProperty$3 = objectProto$3.hasOwnProperty;
 
 /**
  * A specialized version of `baseIsEqual` for arrays and objects which performs
@@ -3598,8 +3646,8 @@ function baseIsEqualDeep$1(object, other, bitmask, customizer, equalFunc, stack)
       : equalByTag(object, other, objTag, bitmask, customizer, equalFunc, stack);
   }
   if (!(bitmask & COMPARE_PARTIAL_FLAG$2)) {
-    var objIsWrapped = objIsObj && hasOwnProperty$4.call(object, '__wrapped__'),
-        othIsWrapped = othIsObj && hasOwnProperty$4.call(other, '__wrapped__');
+    var objIsWrapped = objIsObj && hasOwnProperty$3.call(object, '__wrapped__'),
+        othIsWrapped = othIsObj && hasOwnProperty$3.call(other, '__wrapped__');
 
     if (objIsWrapped || othIsWrapped) {
       var objUnwrapped = objIsWrapped ? object.value() : object,
@@ -4018,7 +4066,7 @@ var INFINITY$4 = 1 / 0;
 
 /** Used to convert symbols to primitives and strings. */
 var symbolProto$1 = Symbol$3 ? Symbol$3.prototype : undefined,
-    symbolToString = symbolProto$1 ? symbolProto$1.toString : undefined;
+    symbolToString$1 = symbolProto$1 ? symbolProto$1.toString : undefined;
 
 /**
  * The base implementation of `_.toString` which doesn't convert nullish
@@ -4038,7 +4086,7 @@ function baseToString$4(value) {
     return arrayMap$6(value, baseToString$4) + '';
   }
   if (isSymbol$3(value)) {
-    return symbolToString ? symbolToString.call(value) : '';
+    return symbolToString$1 ? symbolToString$1.call(value) : '';
   }
   var result = (value + '');
   return (result == '0' && (1 / value) == -INFINITY$4) ? '-0' : result;
@@ -4492,7 +4540,7 @@ var mapTag$3 = '[object Map]',
 var objectProto$2 = Object.prototype;
 
 /** Used to check objects for own properties. */
-var hasOwnProperty$3 = objectProto$2.hasOwnProperty;
+var hasOwnProperty$2 = objectProto$2.hasOwnProperty;
 
 /**
  * Checks if `value` is an empty object, collection, map, or set.
@@ -4527,7 +4575,7 @@ var hasOwnProperty$3 = objectProto$2.hasOwnProperty;
  * _.isEmpty({ 'a': 1 });
  * // => false
  */
-function isEmpty(value) {
+function isEmpty$1(value) {
   if (value == null) {
     return true;
   }
@@ -4544,14 +4592,14 @@ function isEmpty(value) {
     return !baseKeys(value).length;
   }
   for (var key in value) {
-    if (hasOwnProperty$3.call(value, key)) {
+    if (hasOwnProperty$2.call(value, key)) {
       return false;
     }
   }
   return true;
 }
 
-var isEmpty_1 = isEmpty;
+var isEmpty_1 = isEmpty$1;
 
 /**
  * The base implementation of `_.slice` without an iteratee call guard.
@@ -4959,7 +5007,7 @@ var _getAllKeysIn = getAllKeysIn$2;
 var objectProto$1 = Object.prototype;
 
 /** Used to check objects for own properties. */
-var hasOwnProperty$2 = objectProto$1.hasOwnProperty;
+var hasOwnProperty$1 = objectProto$1.hasOwnProperty;
 
 /**
  * Initializes an array clone.
@@ -4973,7 +5021,7 @@ function initCloneArray$1(array) {
       result = new array.constructor(length);
 
   // Add properties assigned by `RegExp#exec`.
-  if (length && typeof array[0] == 'string' && hasOwnProperty$2.call(array, 'index')) {
+  if (length && typeof array[0] == 'string' && hasOwnProperty$1.call(array, 'index')) {
     result.index = array.index;
     result.input = array.input;
   }
@@ -6876,11 +6924,10 @@ var base$1i = function base(props, context, dependencies) {
 };
 
 function useModel (props, context, dependencies) {
-  var {
-    value: v,
-    modelValue: mv,
-    sync
-  } = toRefs(props);
+  var _toRefs = toRefs(props),
+    v = _toRefs.value,
+    mv = _toRefs.modelValue,
+    sync = _toRefs.sync;
   var $this = dependencies.$this;
 
   /**
@@ -7016,95 +7063,92 @@ function useModel (props, context, dependencies) {
 }
 
 var base$1h = function base(props, context) {
-  var {
-    schema,
-    tabs,
-    steps,
-    size,
-    view,
-    views,
-    addClass,
-    removeClass,
-    replaceClass,
-    overrideClass,
-    addClasses,
-    removeClasses,
-    replaceClasses,
-    overrideClasses,
-    presets,
-    templates,
-    theme,
-    messages,
-    columns,
-    languages,
-    formKey,
-    endpoint,
-    method,
-    formData,
-    language,
-    locale,
-    validateOn,
-    scrollToInvalid,
-    scrollOnNext,
-    showRequired,
-    forceLabels,
-    floatPlaceholders,
-    multilingual,
-    stepsControls,
-    displayErrors,
-    displayMessages,
-    formatLoad,
-    formatData,
-    forceNumbers,
-    prepare,
-    default: default_,
-    disabled,
-    loading,
-    providers,
-    useProviders,
-    providerOptions,
-    onChange: _onChange,
-    onReset: _onReset,
-    onClear: _onClear,
-    onSubmit: _onSubmit,
-    onSuccess: _onSuccess,
-    onError: _onError,
-    onLanguage: _onLanguage,
-    onBeforeMount: _onBeforeMount,
-    onMounted: _onMounted,
-    onBeforeUpdate: _onBeforeUpdate,
-    onUpdated: _onUpdated,
-    onBeforeUnmount: _onBeforeUnmount,
-    onUnmounted: _onUnmounted
-  } = toRefs(props);
+  var _toRefs = toRefs(props),
+    schema = _toRefs.schema,
+    tabs = _toRefs.tabs,
+    steps = _toRefs.steps,
+    size = _toRefs.size,
+    view = _toRefs.view,
+    views = _toRefs.views,
+    addClass = _toRefs.addClass,
+    removeClass = _toRefs.removeClass,
+    replaceClass = _toRefs.replaceClass,
+    overrideClass = _toRefs.overrideClass,
+    addClasses = _toRefs.addClasses,
+    removeClasses = _toRefs.removeClasses,
+    replaceClasses = _toRefs.replaceClasses,
+    overrideClasses = _toRefs.overrideClasses,
+    presets = _toRefs.presets,
+    templates = _toRefs.templates,
+    theme = _toRefs.theme,
+    messages = _toRefs.messages,
+    columns = _toRefs.columns,
+    languages = _toRefs.languages,
+    formKey = _toRefs.formKey,
+    endpoint = _toRefs.endpoint,
+    method = _toRefs.method,
+    formData = _toRefs.formData,
+    language = _toRefs.language,
+    locale = _toRefs.locale,
+    validateOn = _toRefs.validateOn,
+    scrollToInvalid = _toRefs.scrollToInvalid,
+    scrollOnNext = _toRefs.scrollOnNext,
+    showRequired = _toRefs.showRequired,
+    forceLabels = _toRefs.forceLabels,
+    floatPlaceholders = _toRefs.floatPlaceholders,
+    multilingual = _toRefs.multilingual,
+    stepsControls = _toRefs.stepsControls,
+    displayErrors = _toRefs.displayErrors,
+    displayMessages = _toRefs.displayMessages,
+    formatLoad = _toRefs.formatLoad,
+    formatData = _toRefs.formatData,
+    forceNumbers = _toRefs.forceNumbers,
+    prepare = _toRefs.prepare,
+    default_ = _toRefs.default,
+    disabled = _toRefs.disabled,
+    loading = _toRefs.loading,
+    providers = _toRefs.providers,
+    useProviders = _toRefs.useProviders,
+    providerOptions = _toRefs.providerOptions,
+    _onChange = _toRefs.onChange,
+    _onReset = _toRefs.onReset,
+    _onClear = _toRefs.onClear,
+    _onSubmit = _toRefs.onSubmit,
+    _onSuccess = _toRefs.onSuccess,
+    _onError = _toRefs.onError,
+    _onLanguage = _toRefs.onLanguage,
+    _onBeforeMount = _toRefs.onBeforeMount,
+    _onMounted = _toRefs.onMounted,
+    _onBeforeUpdate = _toRefs.onBeforeUpdate,
+    _onUpdated = _toRefs.onUpdated,
+    _onBeforeUnmount = _toRefs.onBeforeUnmount,
+    _onUnmounted = _toRefs.onUnmounted;
   var evts = ['change', 'reset', 'clear', 'submit', 'success', 'error', 'language', 'response', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'];
   var vm = getCurrentInstance();
   var $this = vm.proxy;
 
   // ============ DEPENDENCIES ============
 
-  var {
-    events,
-    listeners,
-    fire,
-    on,
-    off
-  } = base$1i(props, context, {
-    form$: $this
-  }, {
-    events: evts
-  });
-  var {
-    externalValue,
-    model,
-    internalData,
-    intermediaryValue,
-    isSync,
-    updateModel
-  } = useModel(props, context, {
-    $this,
-    fire
-  });
+  var _useEvents = base$1i(props, context, {
+      form$: $this
+    }, {
+      events: evts
+    }),
+    events = _useEvents.events,
+    listeners = _useEvents.listeners,
+    fire = _useEvents.fire,
+    on = _useEvents.on,
+    off = _useEvents.off;
+  var _useModel = useModel(props, context, {
+      $this,
+      fire
+    }),
+    externalValue = _useModel.externalValue,
+    model = _useModel.model,
+    internalData = _useModel.internalData,
+    intermediaryValue = _useModel.intermediaryValue,
+    isSync = _useModel.isSync,
+    updateModel = _useModel.updateModel;
   var expression;
 
   // ================ DATA ================
@@ -8666,100 +8710,99 @@ var VueformComponent = {
   setup: (props, context) => {
     context.emits = ['input', 'update:modelValue', 'change', 'reset', 'clear', 'submit', 'success', 'error', 'response', 'language', 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated', 'beforeUnmount', 'unmounted'];
     context.name = ref('Vueform');
-    var {
-      tabs$,
-      steps$,
-      elements$,
-      options,
-      validation,
-      conditions,
-      messageBag,
-      selectedLanguage,
-      submitting,
-      preparing,
-      cancelToken,
-      events,
-      listeners,
-      internalData,
-      data,
-      availableData,
-      requestData,
-      dirty,
-      invalid,
-      debouncing,
-      pending,
-      validated,
-      busy,
-      formErrors,
-      formMessages,
-      isDisabled,
-      isLoading,
-      shouldValidateOnChange,
-      shouldValidateOnStep,
-      hasSteps,
-      hasTabs,
-      hasErrors,
-      hasMessages,
-      isMultilingual,
-      showErrors,
-      showMessages,
-      showLanguages,
-      showSteps,
-      showTabs,
-      showStepsControls,
-      classes,
-      Templates,
-      template,
-      extendedTheme,
-      Size,
-      View,
-      Views,
-      form$,
-      model,
-      intermediaryValue,
-      userConfig,
-      isSync,
-      tree,
-      flatTree,
-      translations,
-      locale$,
-      prepareElements,
-      updateModel,
-      update,
-      load,
-      reset,
-      clear,
-      clean,
-      clearMessages,
-      validate,
-      resetValidators,
-      convertFormData,
-      resolveExpression,
-      submit,
-      scrollToFirstInvalid,
-      scrollOnNext,
-      send,
-      cancel,
-      disableValidation,
-      enableValidation,
-      enableConditions,
-      disableConditions,
-      setLanguage,
-      handleSubmit,
-      el$,
-      siblings$,
-      initMessageBag,
-      initExpressionService,
-      fire,
-      on,
-      off,
-      messagesRegistered,
-      errorsRegistered,
-      languagesRegistered,
-      tabsRegistered,
-      stepsRegistered,
-      expression
-    } = base$1h(props, context);
+    var _useVueform = base$1h(props, context),
+      tabs$ = _useVueform.tabs$,
+      steps$ = _useVueform.steps$,
+      elements$ = _useVueform.elements$,
+      options = _useVueform.options,
+      validation = _useVueform.validation,
+      conditions = _useVueform.conditions,
+      messageBag = _useVueform.messageBag,
+      selectedLanguage = _useVueform.selectedLanguage,
+      submitting = _useVueform.submitting,
+      preparing = _useVueform.preparing,
+      cancelToken = _useVueform.cancelToken,
+      events = _useVueform.events,
+      listeners = _useVueform.listeners,
+      internalData = _useVueform.internalData,
+      data = _useVueform.data,
+      availableData = _useVueform.availableData,
+      requestData = _useVueform.requestData,
+      dirty = _useVueform.dirty,
+      invalid = _useVueform.invalid,
+      debouncing = _useVueform.debouncing,
+      pending = _useVueform.pending,
+      validated = _useVueform.validated,
+      busy = _useVueform.busy,
+      formErrors = _useVueform.formErrors,
+      formMessages = _useVueform.formMessages,
+      isDisabled = _useVueform.isDisabled,
+      isLoading = _useVueform.isLoading,
+      shouldValidateOnChange = _useVueform.shouldValidateOnChange,
+      shouldValidateOnStep = _useVueform.shouldValidateOnStep,
+      hasSteps = _useVueform.hasSteps,
+      hasTabs = _useVueform.hasTabs,
+      hasErrors = _useVueform.hasErrors,
+      hasMessages = _useVueform.hasMessages,
+      isMultilingual = _useVueform.isMultilingual,
+      showErrors = _useVueform.showErrors,
+      showMessages = _useVueform.showMessages,
+      showLanguages = _useVueform.showLanguages,
+      showSteps = _useVueform.showSteps,
+      showTabs = _useVueform.showTabs,
+      showStepsControls = _useVueform.showStepsControls,
+      classes = _useVueform.classes,
+      Templates = _useVueform.Templates,
+      template = _useVueform.template,
+      extendedTheme = _useVueform.extendedTheme,
+      Size = _useVueform.Size,
+      View = _useVueform.View,
+      Views = _useVueform.Views,
+      form$ = _useVueform.form$,
+      model = _useVueform.model,
+      intermediaryValue = _useVueform.intermediaryValue,
+      userConfig = _useVueform.userConfig,
+      isSync = _useVueform.isSync,
+      tree = _useVueform.tree,
+      flatTree = _useVueform.flatTree,
+      translations = _useVueform.translations,
+      locale$ = _useVueform.locale$,
+      prepareElements = _useVueform.prepareElements,
+      updateModel = _useVueform.updateModel,
+      update = _useVueform.update,
+      load = _useVueform.load,
+      reset = _useVueform.reset,
+      clear = _useVueform.clear,
+      clean = _useVueform.clean,
+      clearMessages = _useVueform.clearMessages,
+      validate = _useVueform.validate,
+      resetValidators = _useVueform.resetValidators,
+      convertFormData = _useVueform.convertFormData,
+      resolveExpression = _useVueform.resolveExpression,
+      submit = _useVueform.submit,
+      scrollToFirstInvalid = _useVueform.scrollToFirstInvalid,
+      scrollOnNext = _useVueform.scrollOnNext,
+      send = _useVueform.send,
+      cancel = _useVueform.cancel,
+      disableValidation = _useVueform.disableValidation,
+      enableValidation = _useVueform.enableValidation,
+      enableConditions = _useVueform.enableConditions,
+      disableConditions = _useVueform.disableConditions,
+      setLanguage = _useVueform.setLanguage,
+      handleSubmit = _useVueform.handleSubmit,
+      el$ = _useVueform.el$,
+      siblings$ = _useVueform.siblings$,
+      initMessageBag = _useVueform.initMessageBag,
+      initExpressionService = _useVueform.initExpressionService,
+      fire = _useVueform.fire,
+      on = _useVueform.on,
+      off = _useVueform.off,
+      messagesRegistered = _useVueform.messagesRegistered,
+      errorsRegistered = _useVueform.errorsRegistered,
+      languagesRegistered = _useVueform.languagesRegistered,
+      tabsRegistered = _useVueform.tabsRegistered,
+      stepsRegistered = _useVueform.stepsRegistered,
+      expression = _useVueform.expression;
     return {
       tabs$,
       steps$,
@@ -9842,7 +9885,7 @@ var castPath$2 = _castPath,
 var objectProto = Object.prototype;
 
 /** Used to check objects for own properties. */
-var hasOwnProperty$1 = objectProto.hasOwnProperty;
+var hasOwnProperty = objectProto.hasOwnProperty;
 
 /**
  * The base implementation of `_.unset`.
@@ -9869,7 +9912,7 @@ function baseUnset$1(object, path) {
     var key = toKey(path[index]);
 
     // Always block "__proto__" anywhere in the path if it's not expected
-    if (key === '__proto__' && !hasOwnProperty$1.call(object, '__proto__')) {
+    if (key === '__proto__' && !hasOwnProperty.call(object, '__proto__')) {
       return false;
     }
 
@@ -10265,7 +10308,7 @@ function shouldApplyPlugin (name, plugin) {
 }
 
 var name = "@vueform/vueform";
-var version$1 = "1.13.11";
+var version$1 = "1.13.12";
 var description = "Open-Source Form Framework for Vue";
 var homepage = "https://vueform.com";
 var license = "MIT";
@@ -10370,8 +10413,7 @@ var scripts = {
 	"fix-locales": "npx babel-node --presets @babel/preset-env ./scripts/fix-locales.js",
 	lint: "eslint src/",
 	changelog: "changelogen --output CHANGELOG.md",
-	release: "npm run lint && npm test && npm run build && changelogen --release && npm publish",
-	prepare: "husky"
+	release: "npm run lint && npm test && npm run build && changelogen --release && npm publish"
 };
 var devDependencies = {
 	"@babel/core": "^7.2.2",
@@ -13978,11 +14020,10 @@ var check = (condition, elementPath, form$, el$) => {
     return condition(form$, el$);
   };
   var checkArray = condition => {
-    var {
-      conditionPath,
-      operator,
-      expected
-    } = details(condition);
+    var _details = details(condition),
+      conditionPath = _details.conditionPath,
+      operator = _details.operator,
+      expected = _details.expected;
 
     // other
     var element$ = form$.el$(conditionPath);
@@ -14194,24 +14235,65 @@ class Columns {
   }
 }
 
-/*! @license DOMPurify 3.4.0 | (c) Cure53 and other contributors | Released under the Apache license 2.0 and Mozilla Public License 2.0 | github.com/cure53/DOMPurify/blob/3.4.0/LICENSE */
+/*! @license DOMPurify 3.4.10 | (c) Cure53 and other contributors | Released under the Apache license 2.0 and Mozilla Public License 2.0 | github.com/cure53/DOMPurify/blob/3.4.10/LICENSE */
 
-const {
-  entries,
-  setPrototypeOf,
-  isFrozen,
-  getPrototypeOf,
-  getOwnPropertyDescriptor
-} = Object;
-let {
-  freeze,
-  seal,
-  create
-} = Object; // eslint-disable-line import/no-mutable-exports
-let {
-  apply,
-  construct
-} = typeof Reflect !== 'undefined' && Reflect;
+function _arrayLikeToArray(r, a) {
+  (null == a || a > r.length) && (a = r.length);
+  for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e];
+  return n;
+}
+function _arrayWithHoles(r) {
+  if (Array.isArray(r)) return r;
+}
+function _iterableToArrayLimit(r, l) {
+  var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"];
+  if (null != t) {
+    var e,
+      n,
+      i,
+      u,
+      a = [],
+      f = true,
+      o = false;
+    try {
+      if (i = (t = t.call(r)).next, 0 === l) ; else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0);
+    } catch (r) {
+      o = true, n = r;
+    } finally {
+      try {
+        if (!f && null != t.return && (u = t.return(), Object(u) !== u)) return;
+      } finally {
+        if (o) throw n;
+      }
+    }
+    return a;
+  }
+}
+function _nonIterableRest() {
+  throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+}
+function _slicedToArray(r, e) {
+  return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest();
+}
+function _unsupportedIterableToArray(r, a) {
+  if (r) {
+    if ("string" == typeof r) return _arrayLikeToArray(r, a);
+    var t = {}.toString.call(r).slice(8, -1);
+    return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0;
+  }
+}
+
+const entries = Object.entries,
+  setPrototypeOf = Object.setPrototypeOf,
+  isFrozen = Object.isFrozen,
+  getPrototypeOf = Object.getPrototypeOf,
+  getOwnPropertyDescriptor = Object.getOwnPropertyDescriptor;
+let freeze = Object.freeze,
+  seal = Object.seal,
+  create = Object.create; // eslint-disable-line import/no-mutable-exports
+let _ref = typeof Reflect !== 'undefined' && Reflect,
+  apply = _ref.apply,
+  construct = _ref.construct;
 if (!freeze) {
   freeze = function freeze(x) {
     return x;
@@ -14243,13 +14325,19 @@ const arrayLastIndexOf = unapply(Array.prototype.lastIndexOf);
 const arrayPop = unapply(Array.prototype.pop);
 const arrayPush = unapply(Array.prototype.push);
 const arraySplice = unapply(Array.prototype.splice);
+const arrayIsArray = Array.isArray;
 const stringToLowerCase = unapply(String.prototype.toLowerCase);
 const stringToString = unapply(String.prototype.toString);
 const stringMatch = unapply(String.prototype.match);
 const stringReplace = unapply(String.prototype.replace);
 const stringIndexOf = unapply(String.prototype.indexOf);
 const stringTrim = unapply(String.prototype.trim);
+const numberToString = unapply(Number.prototype.toString);
+const booleanToString = unapply(Boolean.prototype.toString);
+const bigintToString = typeof BigInt === 'undefined' ? null : unapply(BigInt.prototype.toString);
+const symbolToString = typeof Symbol === 'undefined' ? null : unapply(Symbol.prototype.toString);
 const objectHasOwnProperty = unapply(Object.prototype.hasOwnProperty);
+const objectToString = unapply(Object.prototype.toString);
 const regExpTest = unapply(RegExp.prototype.test);
 const typeErrorCreate = unconstruct(TypeError);
 /**
@@ -14299,6 +14387,9 @@ function addToSet(set, array) {
     // Prevent prototype setters from intercepting set as a this value.
     setPrototypeOf(set, null);
   }
+  if (!arrayIsArray(array)) {
+    return set;
+  }
   let l = array.length;
   while (l--) {
     let element = array[l];
@@ -14339,10 +14430,13 @@ function cleanArray(array) {
  */
 function clone$2(object) {
   const newObject = create(null);
-  for (const [property, value] of entries(object)) {
+  for (const _ref2 of entries(object)) {
+    var _ref3 = _slicedToArray(_ref2, 2);
+    const property = _ref3[0];
+    const value = _ref3[1];
     const isPropertyExist = objectHasOwnProperty(object, property);
     if (isPropertyExist) {
-      if (Array.isArray(value)) {
+      if (arrayIsArray(value)) {
         newObject[property] = cleanArray(value);
       } else if (value && typeof value === 'object' && value.constructor === Object) {
         newObject[property] = clone$2(value);
@@ -14352,6 +14446,58 @@ function clone$2(object) {
     }
   }
   return newObject;
+}
+/**
+ * Convert non-node values into strings without depending on direct property access.
+ *
+ * @param value - The value to stringify.
+ * @returns A string representation of the provided value.
+ */
+function stringifyValue(value) {
+  switch (typeof value) {
+    case 'string':
+      {
+        return value;
+      }
+    case 'number':
+      {
+        return numberToString(value);
+      }
+    case 'boolean':
+      {
+        return booleanToString(value);
+      }
+    case 'bigint':
+      {
+        return bigintToString ? bigintToString(value) : '0';
+      }
+    case 'symbol':
+      {
+        return symbolToString ? symbolToString(value) : 'Symbol()';
+      }
+    case 'undefined':
+      {
+        return objectToString(value);
+      }
+    case 'function':
+    case 'object':
+      {
+        if (value === null) {
+          return objectToString(value);
+        }
+        const valueAsRecord = value;
+        const valueToString = lookupGetter(valueAsRecord, 'toString');
+        if (typeof valueToString === 'function') {
+          const stringified = valueToString(valueAsRecord);
+          return typeof stringified === 'string' ? stringified : objectToString(stringified);
+        }
+        return objectToString(value);
+      }
+    default:
+      {
+        return objectToString(value);
+      }
+  }
 }
 /**
  * This method automatically checks if the prop is function or getter and behaves accordingly.
@@ -14378,6 +14524,14 @@ function lookupGetter(object, prop) {
   }
   return fallbackValue;
 }
+function isRegex(value) {
+  try {
+    regExpTest(value, '');
+    return true;
+  } catch (_unused) {
+    return false;
+  }
+}
 
 const html$1 = freeze(['a', 'abbr', 'acronym', 'address', 'area', 'article', 'aside', 'audio', 'b', 'bdi', 'bdo', 'big', 'blink', 'blockquote', 'body', 'br', 'button', 'canvas', 'caption', 'center', 'cite', 'code', 'col', 'colgroup', 'content', 'data', 'datalist', 'dd', 'decorator', 'del', 'details', 'dfn', 'dialog', 'dir', 'div', 'dl', 'dt', 'element', 'em', 'fieldset', 'figcaption', 'figure', 'font', 'footer', 'form', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'head', 'header', 'hgroup', 'hr', 'html', 'i', 'img', 'input', 'ins', 'kbd', 'label', 'legend', 'li', 'main', 'map', 'mark', 'marquee', 'menu', 'menuitem', 'meter', 'nav', 'nobr', 'ol', 'optgroup', 'option', 'output', 'p', 'picture', 'pre', 'progress', 'q', 'rp', 'rt', 'ruby', 's', 'samp', 'search', 'section', 'select', 'shadow', 'slot', 'small', 'source', 'spacer', 'span', 'strike', 'strong', 'style', 'sub', 'summary', 'sup', 'table', 'tbody', 'td', 'template', 'textarea', 'tfoot', 'th', 'thead', 'time', 'tr', 'track', 'tt', 'u', 'ul', 'var', 'video', 'wbr']);
 const svg$1 = freeze(['svg', 'a', 'altglyph', 'altglyphdef', 'altglyphitem', 'animatecolor', 'animatemotion', 'animatetransform', 'circle', 'clippath', 'defs', 'desc', 'ellipse', 'enterkeyhint', 'exportparts', 'filter', 'font', 'g', 'glyph', 'glyphref', 'hkern', 'image', 'inputmode', 'line', 'lineargradient', 'marker', 'mask', 'metadata', 'mpath', 'part', 'path', 'pattern', 'polygon', 'polyline', 'radialgradient', 'rect', 'stop', 'style', 'switch', 'symbol', 'text', 'textpath', 'title', 'tref', 'tspan', 'view', 'vkern']);
@@ -14393,15 +14547,14 @@ const mathMl$1 = freeze(['math', 'menclose', 'merror', 'mfenced', 'mfrac', 'mgly
 const mathMlDisallowed = freeze(['maction', 'maligngroup', 'malignmark', 'mlongdiv', 'mscarries', 'mscarry', 'msgroup', 'mstack', 'msline', 'msrow', 'semantics', 'annotation', 'annotation-xml', 'mprescripts', 'none']);
 const text$4 = freeze(['#text']);
 
-const html = freeze(['accept', 'action', 'align', 'alt', 'autocapitalize', 'autocomplete', 'autopictureinpicture', 'autoplay', 'background', 'bgcolor', 'border', 'capture', 'cellpadding', 'cellspacing', 'checked', 'cite', 'class', 'clear', 'color', 'cols', 'colspan', 'controls', 'controlslist', 'coords', 'crossorigin', 'datetime', 'decoding', 'default', 'dir', 'disabled', 'disablepictureinpicture', 'disableremoteplayback', 'download', 'draggable', 'enctype', 'enterkeyhint', 'exportparts', 'face', 'for', 'headers', 'height', 'hidden', 'high', 'href', 'hreflang', 'id', 'inert', 'inputmode', 'integrity', 'ismap', 'kind', 'label', 'lang', 'list', 'loading', 'loop', 'low', 'max', 'maxlength', 'media', 'method', 'min', 'minlength', 'multiple', 'muted', 'name', 'nonce', 'noshade', 'novalidate', 'nowrap', 'open', 'optimum', 'part', 'pattern', 'placeholder', 'playsinline', 'popover', 'popovertarget', 'popovertargetaction', 'poster', 'preload', 'pubdate', 'radiogroup', 'readonly', 'rel', 'required', 'rev', 'reversed', 'role', 'rows', 'rowspan', 'spellcheck', 'scope', 'selected', 'shape', 'size', 'sizes', 'slot', 'span', 'srclang', 'start', 'src', 'srcset', 'step', 'style', 'summary', 'tabindex', 'title', 'translate', 'type', 'usemap', 'valign', 'value', 'width', 'wrap', 'xmlns', 'slot']);
+const html = freeze(['accept', 'action', 'align', 'alt', 'autocapitalize', 'autocomplete', 'autopictureinpicture', 'autoplay', 'background', 'bgcolor', 'border', 'capture', 'cellpadding', 'cellspacing', 'checked', 'cite', 'class', 'clear', 'color', 'cols', 'colspan', 'command', 'commandfor', 'controls', 'controlslist', 'coords', 'crossorigin', 'datetime', 'decoding', 'default', 'dir', 'disabled', 'disablepictureinpicture', 'disableremoteplayback', 'download', 'draggable', 'enctype', 'enterkeyhint', 'exportparts', 'face', 'for', 'headers', 'height', 'hidden', 'high', 'href', 'hreflang', 'id', 'inert', 'inputmode', 'integrity', 'ismap', 'kind', 'label', 'lang', 'list', 'loading', 'loop', 'low', 'max', 'maxlength', 'media', 'method', 'min', 'minlength', 'multiple', 'muted', 'name', 'nonce', 'noshade', 'novalidate', 'nowrap', 'open', 'optimum', 'part', 'pattern', 'placeholder', 'playsinline', 'popover', 'popovertarget', 'popovertargetaction', 'poster', 'preload', 'pubdate', 'radiogroup', 'readonly', 'rel', 'required', 'rev', 'reversed', 'role', 'rows', 'rowspan', 'spellcheck', 'scope', 'selected', 'shape', 'size', 'sizes', 'slot', 'span', 'srclang', 'start', 'src', 'srcset', 'step', 'style', 'summary', 'tabindex', 'title', 'translate', 'type', 'usemap', 'valign', 'value', 'width', 'wrap', 'xmlns']);
 const svg = freeze(['accent-height', 'accumulate', 'additive', 'alignment-baseline', 'amplitude', 'ascent', 'attributename', 'attributetype', 'azimuth', 'basefrequency', 'baseline-shift', 'begin', 'bias', 'by', 'class', 'clip', 'clippathunits', 'clip-path', 'clip-rule', 'color', 'color-interpolation', 'color-interpolation-filters', 'color-profile', 'color-rendering', 'cx', 'cy', 'd', 'dx', 'dy', 'diffuseconstant', 'direction', 'display', 'divisor', 'dur', 'edgemode', 'elevation', 'end', 'exponent', 'fill', 'fill-opacity', 'fill-rule', 'filter', 'filterunits', 'flood-color', 'flood-opacity', 'font-family', 'font-size', 'font-size-adjust', 'font-stretch', 'font-style', 'font-variant', 'font-weight', 'fx', 'fy', 'g1', 'g2', 'glyph-name', 'glyphref', 'gradientunits', 'gradienttransform', 'height', 'href', 'id', 'image-rendering', 'in', 'in2', 'intercept', 'k', 'k1', 'k2', 'k3', 'k4', 'kerning', 'keypoints', 'keysplines', 'keytimes', 'lang', 'lengthadjust', 'letter-spacing', 'kernelmatrix', 'kernelunitlength', 'lighting-color', 'local', 'marker-end', 'marker-mid', 'marker-start', 'markerheight', 'markerunits', 'markerwidth', 'maskcontentunits', 'maskunits', 'max', 'mask', 'mask-type', 'media', 'method', 'mode', 'min', 'name', 'numoctaves', 'offset', 'operator', 'opacity', 'order', 'orient', 'orientation', 'origin', 'overflow', 'paint-order', 'path', 'pathlength', 'patterncontentunits', 'patterntransform', 'patternunits', 'points', 'preservealpha', 'preserveaspectratio', 'primitiveunits', 'r', 'rx', 'ry', 'radius', 'refx', 'refy', 'repeatcount', 'repeatdur', 'restart', 'result', 'rotate', 'scale', 'seed', 'shape-rendering', 'slope', 'specularconstant', 'specularexponent', 'spreadmethod', 'startoffset', 'stddeviation', 'stitchtiles', 'stop-color', 'stop-opacity', 'stroke-dasharray', 'stroke-dashoffset', 'stroke-linecap', 'stroke-linejoin', 'stroke-miterlimit', 'stroke-opacity', 'stroke', 'stroke-width', 'style', 'surfacescale', 'systemlanguage', 'tabindex', 'tablevalues', 'targetx', 'targety', 'transform', 'transform-origin', 'text-anchor', 'text-decoration', 'text-rendering', 'textlength', 'type', 'u1', 'u2', 'unicode', 'values', 'viewbox', 'visibility', 'version', 'vert-adv-y', 'vert-origin-x', 'vert-origin-y', 'width', 'word-spacing', 'wrap', 'writing-mode', 'xchannelselector', 'ychannelselector', 'x', 'x1', 'x2', 'xmlns', 'y', 'y1', 'y2', 'z', 'zoomandpan']);
 const mathMl = freeze(['accent', 'accentunder', 'align', 'bevelled', 'close', 'columnalign', 'columnlines', 'columnspacing', 'columnspan', 'denomalign', 'depth', 'dir', 'display', 'displaystyle', 'encoding', 'fence', 'frame', 'height', 'href', 'id', 'largeop', 'length', 'linethickness', 'lquote', 'lspace', 'mathbackground', 'mathcolor', 'mathsize', 'mathvariant', 'maxsize', 'minsize', 'movablelimits', 'notation', 'numalign', 'open', 'rowalign', 'rowlines', 'rowspacing', 'rowspan', 'rspace', 'rquote', 'scriptlevel', 'scriptminsize', 'scriptsizemultiplier', 'selection', 'separator', 'separators', 'stretchy', 'subscriptshift', 'supscriptshift', 'symmetric', 'voffset', 'width', 'xmlns']);
 const xml = freeze(['xlink:href', 'xml:id', 'xlink:title', 'xml:space', 'xmlns:xlink']);
 
-// eslint-disable-next-line unicorn/better-regex
-const MUSTACHE_EXPR = seal(/\{\{[\w\W]*|[\w\W]*\}\}/gm); // Specify template detection regex for SAFE_FOR_TEMPLATES mode
-const ERB_EXPR = seal(/<%[\w\W]*|[\w\W]*%>/gm);
-const TMPLIT_EXPR = seal(/\$\{[\w\W]*/gm); // eslint-disable-line unicorn/better-regex
+const MUSTACHE_EXPR = seal(/{{[\w\W]*|^[\w\W]*}}/g);
+const ERB_EXPR = seal(/<%[\w\W]*|^[\w\W]*%>/g);
+const TMPLIT_EXPR = seal(/\${[\w\W]*/g);
 const DATA_ATTR = seal(/^data-[\-\w.\u00B7-\uFFFF]+$/); // eslint-disable-line no-useless-escape
 const ARIA_ATTR = seal(/^aria-[\-\w]+$/); // eslint-disable-line no-useless-escape
 const IS_ALLOWED_URI = seal(/^(?:(?:(?:f|ht)tps?|mailto|tel|callto|sms|cid|xmpp|matrix):|[^a-z]|[a-z+.\-]+(?:[^a-z+.\-:]|$))/i // eslint-disable-line no-useless-escape
@@ -14411,30 +14564,32 @@ const ATTR_WHITESPACE = seal(/[\u0000-\u0020\u00A0\u1680\u180E\u2000-\u2029\u205
 );
 const DOCTYPE_NAME = seal(/^html$/i);
 const CUSTOM_ELEMENT = seal(/^[a-z][.\w]*(-[.\w]+)+$/i);
-
-var EXPRESSIONS = /*#__PURE__*/Object.freeze({
-  __proto__: null,
-  ARIA_ATTR: ARIA_ATTR,
-  ATTR_WHITESPACE: ATTR_WHITESPACE,
-  CUSTOM_ELEMENT: CUSTOM_ELEMENT,
-  DATA_ATTR: DATA_ATTR,
-  DOCTYPE_NAME: DOCTYPE_NAME,
-  ERB_EXPR: ERB_EXPR,
-  IS_ALLOWED_URI: IS_ALLOWED_URI,
-  IS_SCRIPT_OR_DATA: IS_SCRIPT_OR_DATA,
-  MUSTACHE_EXPR: MUSTACHE_EXPR,
-  TMPLIT_EXPR: TMPLIT_EXPR
-});
+// Markup-significant character probes used by _sanitizeElements.
+// Shared module-level instances are safe despite the sticky /g flags:
+// unapply() resets lastIndex for RegExp receivers before every call.
+const ELEMENT_MARKUP_PROBE = seal(/<[/\w!]/g);
+const COMMENT_MARKUP_PROBE = seal(/<[/\w]/g);
+const FALLBACK_TAG_CLOSE = seal(/<\/no(script|embed|frames)/i);
+const SELF_CLOSING_TAG = seal(/\/>/i);
 
 /* eslint-disable @typescript-eslint/indent */
 // https://developer.mozilla.org/en-US/docs/Web/API/Node/nodeType
 const NODE_TYPE = {
   element: 1,
+  attribute: 2,
   text: 3,
+  cdataSection: 4,
+  entityReference: 5,
   // Deprecated
-  progressingInstruction: 7,
+  entityNode: 6,
+  // Deprecated
+  processingInstruction: 7,
   comment: 8,
-  document: 9};
+  document: 9,
+  documentType: 10,
+  documentFragment: 11,
+  notation: 12 // Deprecated
+};
 const getGlobal = function getGlobal() {
   return typeof window === 'undefined' ? null : window;
 };
@@ -14489,10 +14644,25 @@ const _createHooksMap = function _createHooksMap() {
     uponSanitizeShadowNode: []
   };
 };
+/**
+ * Resolve a set-valued configuration option: a fresh set built from
+ * cfg[key] when it is an own array property (seeded with a clone of
+ * options.base when given, case-normalized via options.transform),
+ * the fallback set otherwise.
+ *
+ * @param cfg the cloned, prototype-free configuration object
+ * @param key the configuration property to read
+ * @param fallback the set to use when the option is absent or not an array
+ * @param options transform and optional base set to merge into
+ * @returns the resolved set
+ */
+const _resolveSetOption = function _resolveSetOption(cfg, key, fallback, options) {
+  return objectHasOwnProperty(cfg, key) && arrayIsArray(cfg[key]) ? addToSet(options.base ? clone$2(options.base) : {}, cfg[key], options.transform) : fallback;
+};
 function createDOMPurify() {
   let window = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : getGlobal();
   const DOMPurify = root => createDOMPurify(root);
-  DOMPurify.version = '3.4.0';
+  DOMPurify.version = '3.4.10';
   DOMPurify.removed = [];
   if (!window || !window.document || window.document.nodeType !== NODE_TYPE.document || !window.Element) {
     // Not running in a browser, provide a factory function
@@ -14500,28 +14670,29 @@ function createDOMPurify() {
     DOMPurify.isSupported = false;
     return DOMPurify;
   }
-  let {
-    document
-  } = window;
+  let document = window.document;
   const originalDocument = document;
   const currentScript = originalDocument.currentScript;
-  const {
-    DocumentFragment,
-    HTMLTemplateElement,
-    Node,
-    Element,
-    NodeFilter,
-    NamedNodeMap = window.NamedNodeMap || window.MozNamedAttrMap,
-    HTMLFormElement,
-    DOMParser,
-    trustedTypes
-  } = window;
+  window.DocumentFragment;
+    const HTMLTemplateElement = window.HTMLTemplateElement,
+    Node = window.Node,
+    Element = window.Element,
+    NodeFilter = window.NodeFilter,
+    _window$NamedNodeMap = window.NamedNodeMap;
+    _window$NamedNodeMap === void 0 ? window.NamedNodeMap || window.MozNamedAttrMap : _window$NamedNodeMap;
+    window.HTMLFormElement;
+    const DOMParser = window.DOMParser,
+    trustedTypes = window.trustedTypes;
   const ElementPrototype = Element.prototype;
   const cloneNode = lookupGetter(ElementPrototype, 'cloneNode');
   const remove = lookupGetter(ElementPrototype, 'remove');
   const getNextSibling = lookupGetter(ElementPrototype, 'nextSibling');
   const getChildNodes = lookupGetter(ElementPrototype, 'childNodes');
   const getParentNode = lookupGetter(ElementPrototype, 'parentNode');
+  const getShadowRoot = lookupGetter(ElementPrototype, 'shadowRoot');
+  const getAttributes = lookupGetter(ElementPrototype, 'attributes');
+  const getNodeType = Node && Node.prototype ? lookupGetter(Node.prototype, 'nodeType') : null;
+  const getNodeName = Node && Node.prototype ? lookupGetter(Node.prototype, 'nodeName') : null;
   // As per issue #47, the web-components registry is inherited by a
   // new document created via createHTMLDocument. As per the spec
   // (http://w3c.github.io/webcomponents/spec/custom/#creating-and-passing-registries)
@@ -14536,33 +14707,74 @@ function createDOMPurify() {
   }
   let trustedTypesPolicy;
   let emptyHTML = '';
-  const {
-    implementation,
-    createNodeIterator,
-    createDocumentFragment,
-    getElementsByTagName
-  } = document;
-  const {
-    importNode
-  } = originalDocument;
+  // The instance's own internal Trusted Types policy. Unlike a caller-supplied
+  // `TRUSTED_TYPES_POLICY`, this is created at most once — Trusted Types throws
+  // on duplicate policy names — and is the only policy allowed to persist
+  // across configurations and survive `clearConfig()`.
+  let defaultTrustedTypesPolicy;
+  let defaultTrustedTypesPolicyResolved = false;
+  // Tracks whether we are already inside a call to the configured Trusted Types
+  // policy (`createHTML` or `createScriptURL`). If a supplied policy callback
+  // itself calls `DOMPurify.sanitize` (the cause of #1422), `sanitize` would
+  // re-enter the policy and recurse until the stack overflows. We detect that
+  // re-entry and throw a clear, actionable error instead. The guard is shared
+  // across both callbacks, because either one re-entering `sanitize` triggers
+  // the same unbounded recursion.
+  let IN_TRUSTED_TYPES_POLICY = 0;
+  const _assertNotInTrustedTypesPolicy = function _assertNotInTrustedTypesPolicy() {
+    if (IN_TRUSTED_TYPES_POLICY > 0) {
+      throw typeErrorCreate('A configured TRUSTED_TYPES_POLICY callback (createHTML or ' + 'createScriptURL) must not call DOMPurify.sanitize, as that causes ' + 'infinite recursion. Do not pass a policy whose callbacks wrap ' + 'DOMPurify as TRUSTED_TYPES_POLICY; see the "DOMPurify and Trusted ' + 'Types" section of the README.');
+    }
+  };
+  const _createTrustedHTML = function _createTrustedHTML(html) {
+    _assertNotInTrustedTypesPolicy();
+    IN_TRUSTED_TYPES_POLICY++;
+    try {
+      return trustedTypesPolicy.createHTML(html);
+    } finally {
+      IN_TRUSTED_TYPES_POLICY--;
+    }
+  };
+  const _createTrustedScriptURL = function _createTrustedScriptURL(scriptUrl) {
+    _assertNotInTrustedTypesPolicy();
+    IN_TRUSTED_TYPES_POLICY++;
+    try {
+      return trustedTypesPolicy.createScriptURL(scriptUrl);
+    } finally {
+      IN_TRUSTED_TYPES_POLICY--;
+    }
+  };
+  // Lazily resolve (and cache) the instance's internal default policy.
+  // Resolution is attempted at most once: a successful `createPolicy` cannot be
+  // repeated (Trusted Types throws on duplicate names), and a failed or
+  // unsupported attempt must not be retried on every parse.
+  const _getDefaultTrustedTypesPolicy = function _getDefaultTrustedTypesPolicy() {
+    if (!defaultTrustedTypesPolicyResolved) {
+      defaultTrustedTypesPolicy = _createTrustedTypesPolicy(trustedTypes, currentScript);
+      defaultTrustedTypesPolicyResolved = true;
+    }
+    return defaultTrustedTypesPolicy;
+  };
+  const _document = document,
+    implementation = _document.implementation,
+    createNodeIterator = _document.createNodeIterator,
+    createDocumentFragment = _document.createDocumentFragment,
+    getElementsByTagName = _document.getElementsByTagName;
+  const importNode = originalDocument.importNode;
   let hooks = _createHooksMap();
   /**
    * Expose whether this browser supports running the full DOMPurify.
    */
   DOMPurify.isSupported = typeof entries === 'function' && typeof getParentNode === 'function' && implementation && implementation.createHTMLDocument !== undefined;
-  const {
-    MUSTACHE_EXPR,
-    ERB_EXPR,
-    TMPLIT_EXPR,
-    DATA_ATTR,
-    ARIA_ATTR,
-    IS_SCRIPT_OR_DATA,
-    ATTR_WHITESPACE,
-    CUSTOM_ELEMENT
-  } = EXPRESSIONS;
-  let {
-    IS_ALLOWED_URI: IS_ALLOWED_URI$1
-  } = EXPRESSIONS;
+  const MUSTACHE_EXPR$1 = MUSTACHE_EXPR,
+    ERB_EXPR$1 = ERB_EXPR,
+    TMPLIT_EXPR$1 = TMPLIT_EXPR,
+    DATA_ATTR$1 = DATA_ATTR,
+    ARIA_ATTR$1 = ARIA_ATTR,
+    IS_SCRIPT_OR_DATA$1 = IS_SCRIPT_OR_DATA,
+    ATTR_WHITESPACE$1 = ATTR_WHITESPACE,
+    CUSTOM_ELEMENT$1 = CUSTOM_ELEMENT;
+  let IS_ALLOWED_URI$1 = IS_ALLOWED_URI;
   /**
    * We consider the elements and attributes below to be safe. Ideally
    * don't add any new ones but feel free to remove unwanted ones.
@@ -14681,7 +14893,17 @@ function createDOMPurify() {
   let USE_PROFILES = {};
   /* Tags to ignore content of when KEEP_CONTENT is true */
   let FORBID_CONTENTS = null;
-  const DEFAULT_FORBID_CONTENTS = addToSet({}, ['annotation-xml', 'audio', 'colgroup', 'desc', 'foreignobject', 'head', 'iframe', 'math', 'mi', 'mn', 'mo', 'ms', 'mtext', 'noembed', 'noframes', 'noscript', 'plaintext', 'script', 'style', 'svg', 'template', 'thead', 'title', 'video', 'xmp']);
+  const DEFAULT_FORBID_CONTENTS = addToSet({}, ['annotation-xml', 'audio', 'colgroup', 'desc', 'foreignobject', 'head', 'iframe', 'math', 'mi', 'mn', 'mo', 'ms', 'mtext', 'noembed', 'noframes', 'noscript', 'plaintext', 'script',
+  // <selectedcontent> mirrors the selected <option>'s subtree, cloned by
+  // the UA (customizable <select>) — including any on* handlers — and the
+  // engine re-mirrors synchronously whenever a removal changes which
+  // option/selectedcontent is current, even inside DOMPurify's inert
+  // DOMParser document. Hoisting its children on removal re-inserts a fresh
+  // mirror target ahead of the walk, which the engine refills, looping
+  // forever (DoS) and amplifying output. Dropping its content on removal
+  // (rather than hoisting) breaks that cascade; the content is a duplicate
+  // of the option, which is sanitized on its own. See campaign-3 F1/F6.
+  'selectedcontent', 'style', 'svg', 'template', 'thead', 'title', 'video', 'xmp']);
   /* Tags that are safe for data: URIs */
   let DATA_URI_TAGS = null;
   const DEFAULT_DATA_URI_TAGS = addToSet({}, ['audio', 'video', 'img', 'source', 'image', 'track']);
@@ -14697,8 +14919,10 @@ function createDOMPurify() {
   /* Allowed XHTML+XML namespaces */
   let ALLOWED_NAMESPACES = null;
   const DEFAULT_ALLOWED_NAMESPACES = addToSet({}, [MATHML_NAMESPACE, SVG_NAMESPACE, HTML_NAMESPACE], stringToString);
-  let MATHML_TEXT_INTEGRATION_POINTS = addToSet({}, ['mi', 'mo', 'mn', 'ms', 'mtext']);
-  let HTML_INTEGRATION_POINTS = addToSet({}, ['annotation-xml']);
+  const DEFAULT_MATHML_TEXT_INTEGRATION_POINTS = freeze(['mi', 'mo', 'mn', 'ms', 'mtext']);
+  let MATHML_TEXT_INTEGRATION_POINTS = addToSet({}, DEFAULT_MATHML_TEXT_INTEGRATION_POINTS);
+  const DEFAULT_HTML_INTEGRATION_POINTS = freeze(['annotation-xml']);
+  let HTML_INTEGRATION_POINTS = addToSet({}, DEFAULT_HTML_INTEGRATION_POINTS);
   // Certain elements are allowed in both SVG and HTML
   // namespace. We need to specify them explicitly
   // so that they don't get erroneously deleted from
@@ -14740,15 +14964,33 @@ function createDOMPurify() {
     // HTML tags and attributes are not case-sensitive, converting to lowercase. Keeping XHTML as is.
     transformCaseFunc = PARSER_MEDIA_TYPE === 'application/xhtml+xml' ? stringToString : stringToLowerCase;
     /* Set configuration parameters */
-    ALLOWED_TAGS = objectHasOwnProperty(cfg, 'ALLOWED_TAGS') ? addToSet({}, cfg.ALLOWED_TAGS, transformCaseFunc) : DEFAULT_ALLOWED_TAGS;
-    ALLOWED_ATTR = objectHasOwnProperty(cfg, 'ALLOWED_ATTR') ? addToSet({}, cfg.ALLOWED_ATTR, transformCaseFunc) : DEFAULT_ALLOWED_ATTR;
-    ALLOWED_NAMESPACES = objectHasOwnProperty(cfg, 'ALLOWED_NAMESPACES') ? addToSet({}, cfg.ALLOWED_NAMESPACES, stringToString) : DEFAULT_ALLOWED_NAMESPACES;
-    URI_SAFE_ATTRIBUTES = objectHasOwnProperty(cfg, 'ADD_URI_SAFE_ATTR') ? addToSet(clone$2(DEFAULT_URI_SAFE_ATTRIBUTES), cfg.ADD_URI_SAFE_ATTR, transformCaseFunc) : DEFAULT_URI_SAFE_ATTRIBUTES;
-    DATA_URI_TAGS = objectHasOwnProperty(cfg, 'ADD_DATA_URI_TAGS') ? addToSet(clone$2(DEFAULT_DATA_URI_TAGS), cfg.ADD_DATA_URI_TAGS, transformCaseFunc) : DEFAULT_DATA_URI_TAGS;
-    FORBID_CONTENTS = objectHasOwnProperty(cfg, 'FORBID_CONTENTS') ? addToSet({}, cfg.FORBID_CONTENTS, transformCaseFunc) : DEFAULT_FORBID_CONTENTS;
-    FORBID_TAGS = objectHasOwnProperty(cfg, 'FORBID_TAGS') ? addToSet({}, cfg.FORBID_TAGS, transformCaseFunc) : clone$2({});
-    FORBID_ATTR = objectHasOwnProperty(cfg, 'FORBID_ATTR') ? addToSet({}, cfg.FORBID_ATTR, transformCaseFunc) : clone$2({});
-    USE_PROFILES = objectHasOwnProperty(cfg, 'USE_PROFILES') ? cfg.USE_PROFILES : false;
+    ALLOWED_TAGS = _resolveSetOption(cfg, 'ALLOWED_TAGS', DEFAULT_ALLOWED_TAGS, {
+      transform: transformCaseFunc
+    });
+    ALLOWED_ATTR = _resolveSetOption(cfg, 'ALLOWED_ATTR', DEFAULT_ALLOWED_ATTR, {
+      transform: transformCaseFunc
+    });
+    ALLOWED_NAMESPACES = _resolveSetOption(cfg, 'ALLOWED_NAMESPACES', DEFAULT_ALLOWED_NAMESPACES, {
+      transform: stringToString
+    });
+    URI_SAFE_ATTRIBUTES = _resolveSetOption(cfg, 'ADD_URI_SAFE_ATTR', DEFAULT_URI_SAFE_ATTRIBUTES, {
+      transform: transformCaseFunc,
+      base: DEFAULT_URI_SAFE_ATTRIBUTES
+    });
+    DATA_URI_TAGS = _resolveSetOption(cfg, 'ADD_DATA_URI_TAGS', DEFAULT_DATA_URI_TAGS, {
+      transform: transformCaseFunc,
+      base: DEFAULT_DATA_URI_TAGS
+    });
+    FORBID_CONTENTS = _resolveSetOption(cfg, 'FORBID_CONTENTS', DEFAULT_FORBID_CONTENTS, {
+      transform: transformCaseFunc
+    });
+    FORBID_TAGS = _resolveSetOption(cfg, 'FORBID_TAGS', clone$2({}), {
+      transform: transformCaseFunc
+    });
+    FORBID_ATTR = _resolveSetOption(cfg, 'FORBID_ATTR', clone$2({}), {
+      transform: transformCaseFunc
+    });
+    USE_PROFILES = objectHasOwnProperty(cfg, 'USE_PROFILES') ? cfg.USE_PROFILES && typeof cfg.USE_PROFILES === 'object' ? clone$2(cfg.USE_PROFILES) : cfg.USE_PROFILES : false;
     ALLOW_ARIA_ATTR = cfg.ALLOW_ARIA_ATTR !== false; // Default true
     ALLOW_DATA_ATTR = cfg.ALLOW_DATA_ATTR !== false; // Default true
     ALLOW_UNKNOWN_PROTOCOLS = cfg.ALLOW_UNKNOWN_PROTOCOLS || false; // Default false
@@ -14764,20 +15006,22 @@ function createDOMPurify() {
     SANITIZE_NAMED_PROPS = cfg.SANITIZE_NAMED_PROPS || false; // Default false
     KEEP_CONTENT = cfg.KEEP_CONTENT !== false; // Default true
     IN_PLACE = cfg.IN_PLACE || false; // Default false
-    IS_ALLOWED_URI$1 = cfg.ALLOWED_URI_REGEXP || IS_ALLOWED_URI;
-    NAMESPACE = cfg.NAMESPACE || HTML_NAMESPACE;
-    MATHML_TEXT_INTEGRATION_POINTS = cfg.MATHML_TEXT_INTEGRATION_POINTS || MATHML_TEXT_INTEGRATION_POINTS;
-    HTML_INTEGRATION_POINTS = cfg.HTML_INTEGRATION_POINTS || HTML_INTEGRATION_POINTS;
-    CUSTOM_ELEMENT_HANDLING = cfg.CUSTOM_ELEMENT_HANDLING || create(null);
-    if (cfg.CUSTOM_ELEMENT_HANDLING && isRegexOrFunction(cfg.CUSTOM_ELEMENT_HANDLING.tagNameCheck)) {
-      CUSTOM_ELEMENT_HANDLING.tagNameCheck = cfg.CUSTOM_ELEMENT_HANDLING.tagNameCheck;
+    IS_ALLOWED_URI$1 = isRegex(cfg.ALLOWED_URI_REGEXP) ? cfg.ALLOWED_URI_REGEXP : IS_ALLOWED_URI; // Default regexp
+    NAMESPACE = typeof cfg.NAMESPACE === 'string' ? cfg.NAMESPACE : HTML_NAMESPACE; // Default HTML namespace
+    MATHML_TEXT_INTEGRATION_POINTS = objectHasOwnProperty(cfg, 'MATHML_TEXT_INTEGRATION_POINTS') && cfg.MATHML_TEXT_INTEGRATION_POINTS && typeof cfg.MATHML_TEXT_INTEGRATION_POINTS === 'object' ? clone$2(cfg.MATHML_TEXT_INTEGRATION_POINTS) : addToSet({}, DEFAULT_MATHML_TEXT_INTEGRATION_POINTS); // Default built-in map
+    HTML_INTEGRATION_POINTS = objectHasOwnProperty(cfg, 'HTML_INTEGRATION_POINTS') && cfg.HTML_INTEGRATION_POINTS && typeof cfg.HTML_INTEGRATION_POINTS === 'object' ? clone$2(cfg.HTML_INTEGRATION_POINTS) : addToSet({}, DEFAULT_HTML_INTEGRATION_POINTS); // Default built-in map
+    const customElementHandling = objectHasOwnProperty(cfg, 'CUSTOM_ELEMENT_HANDLING') && cfg.CUSTOM_ELEMENT_HANDLING && typeof cfg.CUSTOM_ELEMENT_HANDLING === 'object' ? clone$2(cfg.CUSTOM_ELEMENT_HANDLING) : create(null);
+    CUSTOM_ELEMENT_HANDLING = create(null);
+    if (objectHasOwnProperty(customElementHandling, 'tagNameCheck') && isRegexOrFunction(customElementHandling.tagNameCheck)) {
+      CUSTOM_ELEMENT_HANDLING.tagNameCheck = customElementHandling.tagNameCheck; // Default undefined
     }
-    if (cfg.CUSTOM_ELEMENT_HANDLING && isRegexOrFunction(cfg.CUSTOM_ELEMENT_HANDLING.attributeNameCheck)) {
-      CUSTOM_ELEMENT_HANDLING.attributeNameCheck = cfg.CUSTOM_ELEMENT_HANDLING.attributeNameCheck;
+    if (objectHasOwnProperty(customElementHandling, 'attributeNameCheck') && isRegexOrFunction(customElementHandling.attributeNameCheck)) {
+      CUSTOM_ELEMENT_HANDLING.attributeNameCheck = customElementHandling.attributeNameCheck; // Default undefined
     }
-    if (cfg.CUSTOM_ELEMENT_HANDLING && typeof cfg.CUSTOM_ELEMENT_HANDLING.allowCustomizedBuiltInElements === 'boolean') {
-      CUSTOM_ELEMENT_HANDLING.allowCustomizedBuiltInElements = cfg.CUSTOM_ELEMENT_HANDLING.allowCustomizedBuiltInElements;
+    if (objectHasOwnProperty(customElementHandling, 'allowCustomizedBuiltInElements') && typeof customElementHandling.allowCustomizedBuiltInElements === 'boolean') {
+      CUSTOM_ELEMENT_HANDLING.allowCustomizedBuiltInElements = customElementHandling.allowCustomizedBuiltInElements; // Default undefined
     }
+    seal(CUSTOM_ELEMENT_HANDLING);
     if (SAFE_FOR_TEMPLATES) {
       ALLOW_DATA_ATTR = false;
     }
@@ -14813,36 +15057,36 @@ function createDOMPurify() {
     EXTRA_ELEMENT_HANDLING.tagCheck = null;
     EXTRA_ELEMENT_HANDLING.attributeCheck = null;
     /* Merge configuration parameters */
-    if (cfg.ADD_TAGS) {
+    if (objectHasOwnProperty(cfg, 'ADD_TAGS')) {
       if (typeof cfg.ADD_TAGS === 'function') {
         EXTRA_ELEMENT_HANDLING.tagCheck = cfg.ADD_TAGS;
-      } else {
+      } else if (arrayIsArray(cfg.ADD_TAGS)) {
         if (ALLOWED_TAGS === DEFAULT_ALLOWED_TAGS) {
           ALLOWED_TAGS = clone$2(ALLOWED_TAGS);
         }
         addToSet(ALLOWED_TAGS, cfg.ADD_TAGS, transformCaseFunc);
       }
     }
-    if (cfg.ADD_ATTR) {
+    if (objectHasOwnProperty(cfg, 'ADD_ATTR')) {
       if (typeof cfg.ADD_ATTR === 'function') {
         EXTRA_ELEMENT_HANDLING.attributeCheck = cfg.ADD_ATTR;
-      } else {
+      } else if (arrayIsArray(cfg.ADD_ATTR)) {
         if (ALLOWED_ATTR === DEFAULT_ALLOWED_ATTR) {
           ALLOWED_ATTR = clone$2(ALLOWED_ATTR);
         }
         addToSet(ALLOWED_ATTR, cfg.ADD_ATTR, transformCaseFunc);
       }
     }
-    if (cfg.ADD_URI_SAFE_ATTR) {
+    if (objectHasOwnProperty(cfg, 'ADD_URI_SAFE_ATTR') && arrayIsArray(cfg.ADD_URI_SAFE_ATTR)) {
       addToSet(URI_SAFE_ATTRIBUTES, cfg.ADD_URI_SAFE_ATTR, transformCaseFunc);
     }
-    if (cfg.FORBID_CONTENTS) {
+    if (objectHasOwnProperty(cfg, 'FORBID_CONTENTS') && arrayIsArray(cfg.FORBID_CONTENTS)) {
       if (FORBID_CONTENTS === DEFAULT_FORBID_CONTENTS) {
         FORBID_CONTENTS = clone$2(FORBID_CONTENTS);
       }
       addToSet(FORBID_CONTENTS, cfg.FORBID_CONTENTS, transformCaseFunc);
     }
-    if (cfg.ADD_FORBID_CONTENTS) {
+    if (objectHasOwnProperty(cfg, 'ADD_FORBID_CONTENTS') && arrayIsArray(cfg.ADD_FORBID_CONTENTS)) {
       if (FORBID_CONTENTS === DEFAULT_FORBID_CONTENTS) {
         FORBID_CONTENTS = clone$2(FORBID_CONTENTS);
       }
@@ -14861,6 +15105,13 @@ function createDOMPurify() {
       addToSet(ALLOWED_TAGS, ['tbody']);
       delete FORBID_TAGS.tbody;
     }
+    // Re-derive the active Trusted Types policy from this configuration on
+    // every parse. The active policy must never be sticky closure state that
+    // outlives the config that set it: a caller-supplied policy left in place
+    // after `clearConfig()` — or after a later call that supplied none, or
+    // `TRUSTED_TYPES_POLICY: null` — could sign a subsequent "default"
+    // `RETURN_TRUSTED_TYPE` result with a foreign, possibly unsafe policy.
+    // See GHSA-vxr8-fq34-vvx9.
     if (cfg.TRUSTED_TYPES_POLICY) {
       if (typeof cfg.TRUSTED_TYPES_POLICY.createHTML !== 'function') {
         throw typeErrorCreate('TRUSTED_TYPES_POLICY configuration option must provide a "createHTML" hook.');
@@ -14868,19 +15119,61 @@ function createDOMPurify() {
       if (typeof cfg.TRUSTED_TYPES_POLICY.createScriptURL !== 'function') {
         throw typeErrorCreate('TRUSTED_TYPES_POLICY configuration option must provide a "createScriptURL" hook.');
       }
-      // Overwrite existing TrustedTypes policy.
+      // A caller-supplied policy applies to this configuration only.
+      const previousTrustedTypesPolicy = trustedTypesPolicy;
       trustedTypesPolicy = cfg.TRUSTED_TYPES_POLICY;
-      // Sign local variables required by `sanitize`.
-      emptyHTML = trustedTypesPolicy.createHTML('');
+      // Sign local variables required by `sanitize`. If the supplied policy's
+      // `createHTML` is circular (i.e. it calls `DOMPurify.sanitize`), this
+      // throws via the re-entrancy guard. Restore the previous policy first so
+      // the instance is not left in a poisoned state. See #1422.
+      try {
+        emptyHTML = _createTrustedHTML('');
+      } catch (error) {
+        trustedTypesPolicy = previousTrustedTypesPolicy;
+        throw error;
+      }
+    } else if (cfg.TRUSTED_TYPES_POLICY === null) {
+      // Explicit opt-out for this call: perform no Trusted Types signing and
+      // create nothing (so a strict `trusted-types` CSP that disallows a
+      // `dompurify` policy can still call `sanitize` from inside its own
+      // policy — see #1422). Resetting to `undefined` rather than a sticky
+      // `null` also drops any previously retained caller policy, so it cannot
+      // resurface on a later call, while still allowing the next config-less
+      // call to restore the internal default policy. See GHSA-vxr8-fq34-vvx9.
+      trustedTypesPolicy = undefined;
+      emptyHTML = '';
     } else {
-      // Uninitialized policy, attempt to initialize the internal dompurify policy.
+      // No policy supplied: keep the currently active policy if one is set — a
+      // previously supplied policy is intentionally sticky across config-less
+      // calls — otherwise fall back to the instance's own internal policy,
+      // created at most once. (A policy supplied for a *single* call still
+      // lingers by design; what must not linger is a policy whose configuration
+      // has been torn down via `clearConfig()`, which restores the default.)
       if (trustedTypesPolicy === undefined) {
-        trustedTypesPolicy = _createTrustedTypesPolicy(trustedTypes, currentScript);
+        trustedTypesPolicy = _getDefaultTrustedTypesPolicy();
       }
-      // If creating the internal policy succeeded sign internal variables.
-      if (trustedTypesPolicy !== null && typeof emptyHTML === 'string') {
-        emptyHTML = trustedTypesPolicy.createHTML('');
+      // Sign internal variables only when a policy is active. A falsy policy
+      // (Trusted Types unsupported, creation failed, or an explicit opt-out)
+      // leaves `emptyHTML` as a plain string, so we never call `.createHTML` on
+      // a non-policy and throw. See #1422.
+      if (trustedTypesPolicy && typeof emptyHTML === 'string') {
+        emptyHTML = _createTrustedHTML('');
       }
+    }
+    /*
+     * Mirror the clone-before-mutate pattern already applied above for
+     * cfg.ADD_TAGS / cfg.ADD_ATTR: if any uponSanitize* hook is
+     * registered AND the set still points at the default constant,
+     * clone it. The hook then mutates the clone (in-call widening
+     * still works exactly as documented) and the next default-cfg
+     * call rebinds to the untouched original via the reassignment at
+     * the top of this function.
+     */
+    if ((hooks.uponSanitizeElement.length > 0 || hooks.uponSanitizeAttribute.length > 0) && ALLOWED_TAGS === DEFAULT_ALLOWED_TAGS) {
+      ALLOWED_TAGS = clone$2(ALLOWED_TAGS);
+    }
+    if (hooks.uponSanitizeAttribute.length > 0 && ALLOWED_ATTR === DEFAULT_ALLOWED_ATTR) {
+      ALLOWED_ATTR = clone$2(ALLOWED_ATTR);
     }
     // Prevent further manipulation of configuration.
     // Not available in IE8, Safari 5, etc.
@@ -14894,6 +15187,77 @@ function createDOMPurify() {
    * correctly. */
   const ALL_SVG_TAGS = addToSet({}, [...svg$1, ...svgFilters, ...svgDisallowed]);
   const ALL_MATHML_TAGS = addToSet({}, [...mathMl$1, ...mathMlDisallowed]);
+  /**
+   * Namespace rules for an element in the SVG namespace.
+   *
+   * @param tagName the element's lowercase tag name
+   * @param parent the (possibly simulated) parent node
+   * @param parentTagName the parent's lowercase tag name
+   * @returns true if a spec-compliant parser could produce this element
+   */
+  const _checkSvgNamespace = function _checkSvgNamespace(tagName, parent, parentTagName) {
+    // The only way to switch from HTML namespace to SVG
+    // is via <svg>. If it happens via any other tag, then
+    // it should be killed.
+    if (parent.namespaceURI === HTML_NAMESPACE) {
+      return tagName === 'svg';
+    }
+    // The only way to switch from MathML to SVG is via <svg>
+    // if the parent is either <annotation-xml> or a MathML
+    // text integration point.
+    if (parent.namespaceURI === MATHML_NAMESPACE) {
+      return tagName === 'svg' && (parentTagName === 'annotation-xml' || MATHML_TEXT_INTEGRATION_POINTS[parentTagName]);
+    }
+    // We only allow elements that are defined in SVG
+    // spec. All others are disallowed in SVG namespace.
+    return Boolean(ALL_SVG_TAGS[tagName]);
+  };
+  /**
+   * Namespace rules for an element in the MathML namespace.
+   *
+   * @param tagName the element's lowercase tag name
+   * @param parent the (possibly simulated) parent node
+   * @param parentTagName the parent's lowercase tag name
+   * @returns true if a spec-compliant parser could produce this element
+   */
+  const _checkMathMlNamespace = function _checkMathMlNamespace(tagName, parent, parentTagName) {
+    // The only way to switch from HTML namespace to MathML
+    // is via <math>. If it happens via any other tag, then
+    // it should be killed.
+    if (parent.namespaceURI === HTML_NAMESPACE) {
+      return tagName === 'math';
+    }
+    // The only way to switch from SVG to MathML is via
+    // <math> and HTML integration points
+    if (parent.namespaceURI === SVG_NAMESPACE) {
+      return tagName === 'math' && HTML_INTEGRATION_POINTS[parentTagName];
+    }
+    // We only allow elements that are defined in MathML
+    // spec. All others are disallowed in MathML namespace.
+    return Boolean(ALL_MATHML_TAGS[tagName]);
+  };
+  /**
+   * Namespace rules for an element in the HTML namespace.
+   *
+   * @param tagName the element's lowercase tag name
+   * @param parent the (possibly simulated) parent node
+   * @param parentTagName the parent's lowercase tag name
+   * @returns true if a spec-compliant parser could produce this element
+   */
+  const _checkHtmlNamespace = function _checkHtmlNamespace(tagName, parent, parentTagName) {
+    // The only way to switch from SVG to HTML is via
+    // HTML integration points, and from MathML to HTML
+    // is via MathML text integration points
+    if (parent.namespaceURI === SVG_NAMESPACE && !HTML_INTEGRATION_POINTS[parentTagName]) {
+      return false;
+    }
+    if (parent.namespaceURI === MATHML_NAMESPACE && !MATHML_TEXT_INTEGRATION_POINTS[parentTagName]) {
+      return false;
+    }
+    // We disallow tags that are specific for MathML
+    // or SVG and should never appear in HTML namespace
+    return !ALL_MATHML_TAGS[tagName] && (COMMON_SVG_AND_HTML_ELEMENTS[tagName] || !ALL_SVG_TAGS[tagName]);
+  };
   /**
    * @param element a DOM element whose namespace is being checked
    * @returns Return false if the element has a
@@ -14916,51 +15280,13 @@ function createDOMPurify() {
       return false;
     }
     if (element.namespaceURI === SVG_NAMESPACE) {
-      // The only way to switch from HTML namespace to SVG
-      // is via <svg>. If it happens via any other tag, then
-      // it should be killed.
-      if (parent.namespaceURI === HTML_NAMESPACE) {
-        return tagName === 'svg';
-      }
-      // The only way to switch from MathML to SVG is via`
-      // svg if parent is either <annotation-xml> or MathML
-      // text integration points.
-      if (parent.namespaceURI === MATHML_NAMESPACE) {
-        return tagName === 'svg' && (parentTagName === 'annotation-xml' || MATHML_TEXT_INTEGRATION_POINTS[parentTagName]);
-      }
-      // We only allow elements that are defined in SVG
-      // spec. All others are disallowed in SVG namespace.
-      return Boolean(ALL_SVG_TAGS[tagName]);
+      return _checkSvgNamespace(tagName, parent, parentTagName);
     }
     if (element.namespaceURI === MATHML_NAMESPACE) {
-      // The only way to switch from HTML namespace to MathML
-      // is via <math>. If it happens via any other tag, then
-      // it should be killed.
-      if (parent.namespaceURI === HTML_NAMESPACE) {
-        return tagName === 'math';
-      }
-      // The only way to switch from SVG to MathML is via
-      // <math> and HTML integration points
-      if (parent.namespaceURI === SVG_NAMESPACE) {
-        return tagName === 'math' && HTML_INTEGRATION_POINTS[parentTagName];
-      }
-      // We only allow elements that are defined in MathML
-      // spec. All others are disallowed in MathML namespace.
-      return Boolean(ALL_MATHML_TAGS[tagName]);
+      return _checkMathMlNamespace(tagName, parent, parentTagName);
     }
     if (element.namespaceURI === HTML_NAMESPACE) {
-      // The only way to switch from SVG to HTML is via
-      // HTML integration points, and from MathML to HTML
-      // is via MathML text integration points
-      if (parent.namespaceURI === SVG_NAMESPACE && !HTML_INTEGRATION_POINTS[parentTagName]) {
-        return false;
-      }
-      if (parent.namespaceURI === MATHML_NAMESPACE && !MATHML_TEXT_INTEGRATION_POINTS[parentTagName]) {
-        return false;
-      }
-      // We disallow tags that are specific for MathML
-      // or SVG and should never appear in HTML namespace
-      return !ALL_MATHML_TAGS[tagName] && (COMMON_SVG_AND_HTML_ELEMENTS[tagName] || !ALL_SVG_TAGS[tagName]);
+      return _checkHtmlNamespace(tagName, parent, parentTagName);
     }
     // For XHTML and XML documents that support custom namespaces
     if (PARSER_MEDIA_TYPE === 'application/xhtml+xml' && ALLOWED_NAMESPACES[element.namespaceURI]) {
@@ -14985,7 +15311,74 @@ function createDOMPurify() {
       // eslint-disable-next-line unicorn/prefer-dom-node-remove
       getParentNode(node).removeChild(node);
     } catch (_) {
+      /* The normal detach failed — this is reached for a parentless node
+         (getParentNode() is null, so .removeChild throws). Element.prototype
+         .remove() is itself a spec no-op on a parentless node, so a recorded
+         "removal" would otherwise hand the caller back an intact,
+         payload-bearing node (e.g. a detached IN_PLACE root the mXSS canary or
+         the style-with-element-child rule decided to kill). Fail closed by
+         throwing — exactly as a clobbered root does at the IN_PLACE entry —
+         rather than trying to "neutralize" the node via its own methods.
+         Neutralizing would mean calling getAttributeNames()/removeAttribute()
+         on the node, both of which a <form> root can clobber via a named child
+         (and _isClobbered does not even probe getAttributeNames), so the
+         neutralize step could itself be silently defeated, leaving the payload
+         intact. A throw touches only the cached, clobber-safe remove() and
+         getParentNode(). Generalizes GHSA-r47g-fvhr-h676 (clobbered-form root)
+         to every root-kill reason. REPORT-3.
+                This lives inside the catch, so it never fires for a normally-removed
+         in-tree node: those have a parent, removeChild() succeeds, and the
+         catch is not entered. Only a kept (parentless) root reaches here. */
       remove(node);
+      if (!getParentNode(node)) {
+        throw typeErrorCreate('a node selected for removal could not be detached from its tree ' + 'and cannot be safely returned; refusing to sanitize in place');
+      }
+    }
+  };
+  /**
+   * _neutralizeRoot
+   *
+   * Fail-closed teardown of an in-place root after the sanitize walk aborts
+   * (campaign-3 F2). An internal throw mid-walk — e.g. a page-registered
+   * custom element's reaction detaches a node so `_forceRemove`'s deliberate
+   * parentless guard throws, or any other re-entrant engine mutation — would
+   * otherwise leave the caller's *live* tree half-sanitized, with everything
+   * after the abort point still carrying its handlers. There is no safe way
+   * to resume the walk (the tree mutated under us), so we strip the root bare:
+   * remove every child and every attribute, then let the caller's catch see
+   * the original error. Clobber-safe (cached `remove`/`childNodes`/`attributes`
+   * getters; the root was already clobber-pre-flighted at the IN_PLACE entry).
+   *
+   * @param root the in-place root to empty
+   */
+  const _neutralizeRoot = function _neutralizeRoot(root) {
+    const childNodes = getChildNodes(root);
+    if (childNodes) {
+      const snapshot = [];
+      arrayForEach(childNodes, child => {
+        arrayPush(snapshot, child);
+      });
+      arrayForEach(snapshot, child => {
+        try {
+          remove(child);
+        } catch (_) {
+          /* Best-effort teardown; a still-attached child is handled below */
+        }
+      });
+    }
+    const attributes = getAttributes(root);
+    if (attributes) {
+      for (let i = attributes.length - 1; i >= 0; --i) {
+        const attribute = attributes[i];
+        const name = attribute && attribute.name;
+        if (typeof name === 'string') {
+          try {
+            root.removeAttribute(name);
+          } catch (_) {
+            /* Clobbered removeAttribute — ignore (fail-closed best effort) */
+          }
+        }
+      }
     }
   };
   /**
@@ -15021,6 +15414,72 @@ function createDOMPurify() {
     }
   };
   /**
+   * _stripDisallowedAttributes
+   *
+   * Removes every attribute the active configuration does not allow from a
+   * single element, using the same allowlist as the main attribute pass (so
+   * `on*` handlers go, but no `/^on/` blocklist is introduced). Used only to
+   * neutralise nodes that are being discarded from an in-place tree.
+   *
+   * @param element the element to strip
+   */
+  const _stripDisallowedAttributes = function _stripDisallowedAttributes(element) {
+    const attributes = getAttributes(element);
+    if (!attributes) {
+      return;
+    }
+    for (let i = attributes.length - 1; i >= 0; --i) {
+      const attribute = attributes[i];
+      const name = attribute && attribute.name;
+      if (typeof name !== 'string' || ALLOWED_ATTR[transformCaseFunc(name)]) {
+        continue;
+      }
+      try {
+        element.removeAttribute(name);
+      } catch (_) {
+        /* Clobbered removeAttribute on a doomed node — ignore */
+      }
+    }
+  };
+  /**
+   * _neutralizeSubtree
+   *
+   * Completes the audit-5 F1 fix across every removal path. The KEEP_CONTENT
+   * move-hoist neutralises only disallowed-tag removals; clobber, mXSS-canary,
+   * namespace, comment, processing-instruction and KEEP_CONTENT:false removals
+   * all drop their subtree wholesale via `_forceRemove`. On the IN_PLACE path
+   * those dropped nodes are detached from the caller's LIVE tree but a
+   * handler-bearing original among them (an `<img onerror>`/`<video>` that was
+   * loading) keeps its queued resource event, which fires in page scope after
+   * sanitize returns. This walks a removed subtree and strips every attribute
+   * the active configuration does not allow — so `on*` handlers are cancelled
+   * through the SAME allowlist that governs kept nodes, not a separate `/^on/`
+   * blocklist. Run synchronously before sanitize returns, i.e. before any
+   * queued event can fire. Hook-free by design: these nodes leave the output,
+   * so firing attribute hooks for them would be surprising. Clobber-safe reads;
+   * a doomed clobbered node may shadow `removeAttribute` (its own attributes are
+   * irrelevant — it is discarded — while its non-clobbered descendants, e.g.
+   * the `<img>`, are reached and scrubbed).
+   *
+   * @param root the root of a removed subtree to neutralise
+   */
+  const _neutralizeSubtree = function _neutralizeSubtree(root) {
+    const stack = [root];
+    while (stack.length > 0) {
+      const node = stack.pop();
+      const nodeType = getNodeType ? getNodeType(node) : node.nodeType;
+      if (nodeType === NODE_TYPE.element) {
+        _stripDisallowedAttributes(node);
+      }
+      const childNodes = getChildNodes(node);
+      if (childNodes) {
+        for (let i = childNodes.length - 1; i >= 0; --i) {
+          stack.push(childNodes[i]);
+        }
+      }
+    }
+  };
+  /**
    * _initDocument
    *
    * @param dirty - a string of dirty markup
@@ -15041,7 +15500,7 @@ function createDOMPurify() {
       // Root of XHTML doc must contain xmlns declaration (see https://www.w3.org/TR/xhtml1/normative.html#strict)
       dirty = '<html xmlns="http://www.w3.org/1999/xhtml"><head></head><body>' + dirty + '</body></html>';
     }
-    const dirtyPayload = trustedTypesPolicy ? trustedTypesPolicy.createHTML(dirty) : dirty;
+    const dirtyPayload = trustedTypesPolicy ? _createTrustedHTML(dirty) : dirty;
     /*
      * Use the DOMParser API by default, fallback later if needs be
      * DOMParser not work for svg when has multiple root element.
@@ -15082,28 +15541,253 @@ function createDOMPurify() {
     NodeFilter.SHOW_ELEMENT | NodeFilter.SHOW_COMMENT | NodeFilter.SHOW_TEXT | NodeFilter.SHOW_PROCESSING_INSTRUCTION | NodeFilter.SHOW_CDATA_SECTION, null);
   };
   /**
+   * Replace template expression syntax (mustache, ERB, template
+   * literal) with a space; shared by all SAFE_FOR_TEMPLATES scrub
+   * sites. Order matters: mustache, then ERB, then template literal.
+   *
+   * @param value the string to scrub
+   * @returns the scrubbed string
+   */
+  const _stripTemplateExpressions = function _stripTemplateExpressions(value) {
+    value = stringReplace(value, MUSTACHE_EXPR$1, ' ');
+    value = stringReplace(value, ERB_EXPR$1, ' ');
+    value = stringReplace(value, TMPLIT_EXPR$1, ' ');
+    return value;
+  };
+  /**
+   * Strip template-engine expressions ({{...}}, ${...}, <%...%>) from the
+   * character data of an element subtree. Used as the final safety net for
+   * SAFE_FOR_TEMPLATES on every DOM-returning code path so that expressions
+   * which only form after text-node normalization (e.g. fragments split across
+   * stripped elements) cannot survive into a template-evaluating framework.
+   *
+   * Walks text/comment/CDATA/processing-instruction nodes and mutates `.data`
+   * in place rather than round-tripping through innerHTML. This preserves
+   * descendant node references (important for IN_PLACE callers), avoids a
+   * serialize/reparse cycle, and reads literal character data — which means
+   * `<%...%>` in text content matches the ERB regex against its real bytes
+   * instead of the HTML-entity-escaped form innerHTML would produce.
+   *
+   * Attribute values are not visited here; SAFE_FOR_TEMPLATES handling for
+   * attributes is performed during the per-node `_sanitizeAttributes` pass.
+   *
+   * @param node The root element whose character data should be scrubbed.
+   */
+  const _scrubTemplateExpressions2 = function _scrubTemplateExpressions(node) {
+    var _node$querySelectorAl;
+    node.normalize();
+    const walker = createNodeIterator.call(node.ownerDocument || node, node,
+    // eslint-disable-next-line no-bitwise
+    NodeFilter.SHOW_TEXT | NodeFilter.SHOW_COMMENT | NodeFilter.SHOW_CDATA_SECTION | NodeFilter.SHOW_PROCESSING_INSTRUCTION, null);
+    let currentNode = walker.nextNode();
+    while (currentNode) {
+      currentNode.data = _stripTemplateExpressions(currentNode.data);
+      currentNode = walker.nextNode();
+    }
+    // NodeIterator does not descend into <template>.content per the DOM spec,
+    // so we must explicitly recurse into each template's content fragment,
+    // mirroring the approach used by _sanitizeShadowDOM.
+    const templates = (_node$querySelectorAl = node.querySelectorAll) === null || _node$querySelectorAl === void 0 ? void 0 : _node$querySelectorAl.call(node, 'template');
+    if (templates) {
+      arrayForEach(templates, tmpl => {
+        if (_isDocumentFragment(tmpl.content)) {
+          _scrubTemplateExpressions2(tmpl.content);
+        }
+      });
+    }
+  };
+  /**
    * _isClobbered
+   *
+   * Detect DOM-clobbering on HTMLFormElement nodes. Form is the only HTML
+   * interface with [LegacyOverrideBuiltIns]; a descendant element with a
+   * `name` attribute matching a prototype property shadows that property
+   * on direct reads. We use this check at the IN_PLACE entry-point and
+   * during attribute sanitization to refuse clobbered forms.
    *
    * @param element element to check for clobbering attacks
    * @return true if clobbered, false if safe
    */
   const _isClobbered = function _isClobbered(element) {
-    return element instanceof HTMLFormElement && (typeof element.nodeName !== 'string' || typeof element.textContent !== 'string' || typeof element.removeChild !== 'function' || !(element.attributes instanceof NamedNodeMap) || typeof element.removeAttribute !== 'function' || typeof element.setAttribute !== 'function' || typeof element.namespaceURI !== 'string' || typeof element.insertBefore !== 'function' || typeof element.hasChildNodes !== 'function');
+    // Realm-independent tag-name probe. If we can't determine the tag
+    // name at all, we can't reason about clobbering — return false
+    // (the caller's other defences still apply).
+    const realTagName = getNodeName ? getNodeName(element) : null;
+    if (typeof realTagName !== 'string') {
+      return false;
+    }
+    if (transformCaseFunc(realTagName) !== 'form') {
+      return false;
+    }
+    return typeof element.nodeName !== 'string' || typeof element.textContent !== 'string' || typeof element.removeChild !== 'function' ||
+    // Realm-safe NamedNodeMap detection: equality against the cached
+    // prototype getter. Clobbered .attributes (e.g. <input name="attributes">)
+    // makes the direct read diverge from the cached read; a clean form
+    // (same-realm OR foreign-realm) has both reads pointing at the same
+    // canonical NamedNodeMap.
+    element.attributes !== getAttributes(element) || typeof element.removeAttribute !== 'function' || typeof element.setAttribute !== 'function' || typeof element.namespaceURI !== 'string' || typeof element.insertBefore !== 'function' || typeof element.hasChildNodes !== 'function' ||
+    // NodeType clobbering probe. Cached Node.prototype.nodeType getter
+    // returns the integer 1 for any Element regardless of realm; direct
+    // read on a clobbered form (e.g. <input name="nodeType">) returns
+    // the named child element. Cheap addition — nodeType is read from
+    // an internal slot, no serialization cost — and removes a residual
+    // clobbering surface used by several mXSS / PI / comment branches
+    // in _sanitizeElements that compare currentNode.nodeType directly.
+    element.nodeType !== getNodeType(element) ||
+    // HTMLFormElement has [LegacyOverrideBuiltIns]: a descendant named
+    // "childNodes" shadows the prototype getter. Direct reads of
+    // form.childNodes from a clobbered form return the named child
+    // instead of the real NodeList, so any walk that reads it directly
+    // skips the form's real children. Compare the direct read to the
+    // cached Node.prototype getter — when the form's named-property
+    // getter intercepts the read, the two values differ and we flag
+    // the form. This catches every clobbering child type (input,
+    // select, etc.) regardless of whether the named child happens to
+    // carry a numeric .length, which a typeof-based probe would miss
+    // (e.g. HTMLSelectElement.length is a defined unsigned-long).
+    element.childNodes !== getChildNodes(element);
   };
   /**
-   * Checks whether the given object is a DOM node.
+   * Checks whether the given value is a DocumentFragment from any realm.
+   *
+   * The realm-independent replacement reads `nodeType` through the cached
+   * Node.prototype getter and compares to the DOCUMENT_FRAGMENT_NODE
+   * constant (11). nodeType is a numeric value resolved from the node's
+   * internal slot, identical across realms for the same kind of node.
+   *
+   * @param value object to check
+   * @return true if value is a DocumentFragment-shaped node from any realm
+   */
+  const _isDocumentFragment = function _isDocumentFragment(value) {
+    if (!getNodeType || typeof value !== 'object' || value === null) {
+      return false;
+    }
+    try {
+      return getNodeType(value) === NODE_TYPE.documentFragment;
+    } catch (_) {
+      return false;
+    }
+  };
+  /**
+   * Checks whether the given object is a DOM node, including nodes that
+   * originate from a different window/realm (e.g. an iframe's
+   * contentDocument). The previous `value instanceof Node` check was
+   * realm-bound: nodes from a different window failed it, causing
+   * sanitize() to silently stringify them and reset IN_PLACE to false,
+   * returning the original node unsanitized. See GHSA-4w3q-35jp-p934.
    *
    * @param value object to check whether it's a DOM node
-   * @return true is object is a DOM node
+   * @return true if value is a DOM node from any realm
    */
   const _isNode = function _isNode(value) {
-    return typeof Node === 'function' && value instanceof Node;
+    if (!getNodeType || typeof value !== 'object' || value === null) {
+      return false;
+    }
+    try {
+      return typeof getNodeType(value) === 'number';
+    } catch (_) {
+      return false;
+    }
   };
   function _executeHooks(hooks, currentNode, data) {
+    if (hooks.length === 0) {
+      return;
+    }
     arrayForEach(hooks, hook => {
       hook.call(DOMPurify, currentNode, data, CONFIG);
     });
   }
+  /**
+   * Structural-threat checks that condemn a node regardless of the
+   * allowlists: mXSS via namespace confusion, risky CSS construction,
+   * processing instructions, markup-bearing comments. Pure predicate;
+   * the caller removes. Check order is load-bearing.
+   *
+   * @param currentNode the node to inspect
+   * @param tagName the node's transformCaseFunc'd tag name
+   * @return true if the node must be removed
+   */
+  const _isUnsafeNode = function _isUnsafeNode(currentNode, tagName) {
+    /* Detect mXSS attempts abusing namespace confusion */
+    if (SAFE_FOR_XML && currentNode.hasChildNodes() && !_isNode(currentNode.firstElementChild) && regExpTest(ELEMENT_MARKUP_PROBE, currentNode.textContent) && regExpTest(ELEMENT_MARKUP_PROBE, currentNode.innerHTML)) {
+      return true;
+    }
+    /* Remove risky CSS construction leading to mXSS */
+    if (SAFE_FOR_XML && currentNode.namespaceURI === HTML_NAMESPACE && tagName === 'style' && _isNode(currentNode.firstElementChild)) {
+      return true;
+    }
+    /* Remove any occurrence of processing instructions */
+    if (currentNode.nodeType === NODE_TYPE.processingInstruction) {
+      return true;
+    }
+    /* Remove any kind of possibly harmful comments */
+    if (SAFE_FOR_XML && currentNode.nodeType === NODE_TYPE.comment && regExpTest(COMMENT_MARKUP_PROBE, currentNode.data)) {
+      return true;
+    }
+    return false;
+  };
+  /**
+   * Handle a node whose tag is forbidden or not allowlisted: keep
+   * allowed custom elements (false return exits _sanitizeElements
+   * early - namespace/fallback checks and the afterSanitizeElements
+   * hook are intentionally skipped for kept custom elements), else
+   * hoist content per KEEP_CONTENT and remove.
+   *
+   * @param currentNode the disallowed node
+   * @param tagName the node's transformCaseFunc'd tag name
+   * @return true if the node was removed, false if kept
+   */
+  const _sanitizeDisallowedNode = function _sanitizeDisallowedNode(currentNode, tagName) {
+    /* Check if we have a custom element to handle */
+    if (!FORBID_TAGS[tagName] && _isBasicCustomElement(tagName)) {
+      if (CUSTOM_ELEMENT_HANDLING.tagNameCheck instanceof RegExp && regExpTest(CUSTOM_ELEMENT_HANDLING.tagNameCheck, tagName)) {
+        return false;
+      }
+      if (CUSTOM_ELEMENT_HANDLING.tagNameCheck instanceof Function && CUSTOM_ELEMENT_HANDLING.tagNameCheck(tagName)) {
+        return false;
+      }
+    }
+    /* Keep content except for bad-listed elements.
+         Use the cached prototype getters exclusively — the previous code
+         had `|| currentNode.parentNode` / `|| currentNode.childNodes`
+         fallbacks, but the cached getters always return the canonical
+         value (or null for a real parent-less node), so the fallback
+         path was dead in safe cases and a clobbering surface in unsafe
+         ones. Falsy cached results stay falsy; the `if (childNodes &&
+         parentNode)` check already gates correctly. */
+    if (KEEP_CONTENT && !FORBID_CONTENTS[tagName]) {
+      const parentNode = getParentNode(currentNode);
+      const childNodes = getChildNodes(currentNode);
+      if (childNodes && parentNode) {
+        const childCount = childNodes.length;
+        /* In-place: hoist the *original* children so the iterator visits
+             and sanitises them through the same allowlist pass as every other
+             node. The caller built the tree in the live document, so the
+             originals carry already-queued resource events (`<img onerror>`,
+             `<video>`/`<audio>` error, lazy/`onload`, …); cloning would leave
+             those originals detached but still armed, firing in page scope
+             while the returned tree looked clean. Moving is safe in-place: the
+             root is pre-validated as an allowed tag and so is never the node
+             being removed, which keeps `parentNode` inside the iterator root
+             and the relocated child inside the serialised tree.
+                      Otherwise (string / DOM-copy paths): clone. The iterator is rooted
+             at — and the result serialised from — `body`, so a restrictive
+             ALLOWED_TAGS that removes `body` itself must leave its content in
+             place, which only cloning does; and those paths parse into an
+             inert document, so their discarded originals never had a queued
+             event to neutralise.
+                      `childNodes` is live; a tail-to-head walk keeps `childNodes[i]`
+             valid whether we move (drops the trailing entry) or clone (leaves
+             the list intact). */
+        for (let i = childCount - 1; i >= 0; --i) {
+          const hoisted = IN_PLACE ? childNodes[i] : cloneNode(childNodes[i], true);
+          parentNode.insertBefore(hoisted, getNextSibling(currentNode));
+        }
+      }
+    }
+    _forceRemove(currentNode);
+    return true;
+  };
   /**
    * _sanitizeElements
    *
@@ -15114,7 +15798,6 @@ function createDOMPurify() {
    * @return true if node was killed, false if left alive
    */
   const _sanitizeElements = function _sanitizeElements(currentNode) {
-    let content = null;
     /* Execute a hook if present */
     _executeHooks(hooks.beforeSanitizeElements, currentNode, null);
     /* Check if element is clobbered or can clobber */
@@ -15123,76 +15806,41 @@ function createDOMPurify() {
       return true;
     }
     /* Now let's check the element's type and name */
-    const tagName = transformCaseFunc(currentNode.nodeName);
+    const tagName = transformCaseFunc(getNodeName ? getNodeName(currentNode) : currentNode.nodeName);
     /* Execute a hook if present */
     _executeHooks(hooks.uponSanitizeElement, currentNode, {
       tagName,
       allowedTags: ALLOWED_TAGS
     });
-    /* Detect mXSS attempts abusing namespace confusion */
-    if (SAFE_FOR_XML && currentNode.hasChildNodes() && !_isNode(currentNode.firstElementChild) && regExpTest(/<[/\w!]/g, currentNode.innerHTML) && regExpTest(/<[/\w!]/g, currentNode.textContent)) {
-      _forceRemove(currentNode);
-      return true;
-    }
-    /* Remove risky CSS construction leading to mXSS */
-    if (SAFE_FOR_XML && currentNode.namespaceURI === HTML_NAMESPACE && tagName === 'style' && _isNode(currentNode.firstElementChild)) {
-      _forceRemove(currentNode);
-      return true;
-    }
-    /* Remove any occurrence of processing instructions */
-    if (currentNode.nodeType === NODE_TYPE.progressingInstruction) {
-      _forceRemove(currentNode);
-      return true;
-    }
-    /* Remove any kind of possibly harmful comments */
-    if (SAFE_FOR_XML && currentNode.nodeType === NODE_TYPE.comment && regExpTest(/<[/\w]/g, currentNode.data)) {
+    /* Remove mXSS vectors, processing instructions and risky comments */
+    if (_isUnsafeNode(currentNode, tagName)) {
       _forceRemove(currentNode);
       return true;
     }
     /* Remove element if anything forbids its presence */
     if (FORBID_TAGS[tagName] || !(EXTRA_ELEMENT_HANDLING.tagCheck instanceof Function && EXTRA_ELEMENT_HANDLING.tagCheck(tagName)) && !ALLOWED_TAGS[tagName]) {
-      /* Check if we have a custom element to handle */
-      if (!FORBID_TAGS[tagName] && _isBasicCustomElement(tagName)) {
-        if (CUSTOM_ELEMENT_HANDLING.tagNameCheck instanceof RegExp && regExpTest(CUSTOM_ELEMENT_HANDLING.tagNameCheck, tagName)) {
-          return false;
-        }
-        if (CUSTOM_ELEMENT_HANDLING.tagNameCheck instanceof Function && CUSTOM_ELEMENT_HANDLING.tagNameCheck(tagName)) {
-          return false;
-        }
-      }
-      /* Keep content except for bad-listed elements */
-      if (KEEP_CONTENT && !FORBID_CONTENTS[tagName]) {
-        const parentNode = getParentNode(currentNode) || currentNode.parentNode;
-        const childNodes = getChildNodes(currentNode) || currentNode.childNodes;
-        if (childNodes && parentNode) {
-          const childCount = childNodes.length;
-          for (let i = childCount - 1; i >= 0; --i) {
-            const childClone = cloneNode(childNodes[i], true);
-            childClone.__removalCount = (currentNode.__removalCount || 0) + 1;
-            parentNode.insertBefore(childClone, getNextSibling(currentNode));
-          }
-        }
-      }
-      _forceRemove(currentNode);
-      return true;
+      return _sanitizeDisallowedNode(currentNode, tagName);
     }
-    /* Check whether element has a valid namespace */
-    if (currentNode instanceof Element && !_checkValidNamespace(currentNode)) {
+    /* Check whether element has a valid namespace.
+       Realm-safe check (GHSA-hpcv-96wg-7vj8): use the cached Node.prototype
+       nodeType getter rather than `instanceof Element`, which is realm-
+       bound and short-circuits to false for any node minted in a different
+       realm — letting a foreign-realm element with a forbidden namespace
+       slip past the namespace check entirely. */
+    const nt = getNodeType ? getNodeType(currentNode) : currentNode.nodeType;
+    if (nt === NODE_TYPE.element && !_checkValidNamespace(currentNode)) {
       _forceRemove(currentNode);
       return true;
     }
     /* Make sure that older browsers don't get fallback-tag mXSS */
-    if ((tagName === 'noscript' || tagName === 'noembed' || tagName === 'noframes') && regExpTest(/<\/no(script|embed|frames)/i, currentNode.innerHTML)) {
+    if ((tagName === 'noscript' || tagName === 'noembed' || tagName === 'noframes') && regExpTest(FALLBACK_TAG_CLOSE, currentNode.innerHTML)) {
       _forceRemove(currentNode);
       return true;
     }
     /* Sanitize element content to be template-safe */
     if (SAFE_FOR_TEMPLATES && currentNode.nodeType === NODE_TYPE.text) {
       /* Get the element's text content */
-      content = currentNode.textContent;
-      arrayForEach([MUSTACHE_EXPR, ERB_EXPR, TMPLIT_EXPR], expr => {
-        content = stringReplace(content, expr, ' ');
-      });
+      const content = _stripTemplateExpressions(currentNode.textContent);
       if (currentNode.textContent !== content) {
         arrayPush(DOMPurify.removed, {
           element: currentNode.cloneNode()
@@ -15222,11 +15870,12 @@ function createDOMPurify() {
     if (SANITIZE_DOM && (lcName === 'id' || lcName === 'name') && (value in document || value in formElement)) {
       return false;
     }
+    const nameIsPermitted = ALLOWED_ATTR[lcName] || EXTRA_ELEMENT_HANDLING.attributeCheck instanceof Function && EXTRA_ELEMENT_HANDLING.attributeCheck(lcName, lcTag);
     /* Allow valid data-* attributes: At least one character after "-"
         (https://html.spec.whatwg.org/multipage/dom.html#embedding-custom-non-visible-data-with-the-data-*-attributes)
         XML-compatible (https://html.spec.whatwg.org/multipage/infrastructure.html#xml-compatible and http://www.w3.org/TR/xml/#d0e804)
         We don't need to check the value; it's always URI safe. */
-    if (ALLOW_DATA_ATTR && !FORBID_ATTR[lcName] && regExpTest(DATA_ATTR, lcName)) ; else if (ALLOW_ARIA_ATTR && regExpTest(ARIA_ATTR, lcName)) ; else if (EXTRA_ELEMENT_HANDLING.attributeCheck instanceof Function && EXTRA_ELEMENT_HANDLING.attributeCheck(lcName, lcTag)) ; else if (!ALLOWED_ATTR[lcName] || FORBID_ATTR[lcName]) {
+    if (ALLOW_DATA_ATTR && regExpTest(DATA_ATTR$1, lcName)) ; else if (ALLOW_ARIA_ATTR && regExpTest(ARIA_ATTR$1, lcName)) ; else if (!nameIsPermitted) {
       if (
       // First condition does a very basic check if a) it's basically a valid custom element tagname AND
       // b) if the tagName passes whatever the user has configured for CUSTOM_ELEMENT_HANDLING.tagNameCheck
@@ -15238,11 +15887,15 @@ function createDOMPurify() {
         return false;
       }
       /* Check value is safe. First, is attr inert? If so, is safe */
-    } else if (URI_SAFE_ATTRIBUTES[lcName]) ; else if (regExpTest(IS_ALLOWED_URI$1, stringReplace(value, ATTR_WHITESPACE, ''))) ; else if ((lcName === 'src' || lcName === 'xlink:href' || lcName === 'href') && lcTag !== 'script' && stringIndexOf(value, 'data:') === 0 && DATA_URI_TAGS[lcTag]) ; else if (ALLOW_UNKNOWN_PROTOCOLS && !regExpTest(IS_SCRIPT_OR_DATA, stringReplace(value, ATTR_WHITESPACE, ''))) ; else if (value) {
+    } else if (URI_SAFE_ATTRIBUTES[lcName]) ; else if (regExpTest(IS_ALLOWED_URI$1, stringReplace(value, ATTR_WHITESPACE$1, ''))) ; else if ((lcName === 'src' || lcName === 'xlink:href' || lcName === 'href') && lcTag !== 'script' && stringIndexOf(value, 'data:') === 0 && DATA_URI_TAGS[lcTag]) ; else if (ALLOW_UNKNOWN_PROTOCOLS && !regExpTest(IS_SCRIPT_OR_DATA$1, stringReplace(value, ATTR_WHITESPACE$1, ''))) ; else if (value) {
       return false;
     } else ;
     return true;
   };
+  /* Names the HTML spec reserves from valid-custom-element-name; these must
+   * never be treated as basic custom elements even when a permissive
+   * CUSTOM_ELEMENT_HANDLING.tagNameCheck is configured. */
+  const RESERVED_CUSTOM_ELEMENT_NAMES = addToSet({}, ['annotation-xml', 'color-profile', 'font-face', 'font-face-format', 'font-face-name', 'font-face-src', 'font-face-uri', 'missing-glyph']);
   /**
    * _isBasicCustomElement
    * checks if at least one dash is included in tagName, and it's not the first char
@@ -15252,7 +15905,64 @@ function createDOMPurify() {
    * @returns Returns true if the tag name meets the basic criteria for a custom element, otherwise false.
    */
   const _isBasicCustomElement = function _isBasicCustomElement(tagName) {
-    return tagName !== 'annotation-xml' && stringMatch(tagName, CUSTOM_ELEMENT);
+    return !RESERVED_CUSTOM_ELEMENT_NAMES[stringToLowerCase(tagName)] && regExpTest(CUSTOM_ELEMENT$1, tagName);
+  };
+  /**
+   * Wrap an attribute value in the matching Trusted Types object when
+   * the active policy requires it. Namespaced attributes pass through
+   * unchanged (no TT support yet, see
+   * https://bugs.chromium.org/p/chromium/issues/detail?id=1305293).
+   *
+   * @param lcTag lowercase tag name of the containing element
+   * @param lcName lowercase attribute name
+   * @param namespaceURI the attribute's namespace, if any
+   * @param value the attribute value to wrap
+   * @return the value, wrapped when Trusted Types demand it
+   */
+  const _applyTrustedTypesToAttribute = function _applyTrustedTypesToAttribute(lcTag, lcName, namespaceURI, value) {
+    if (trustedTypesPolicy && typeof trustedTypes === 'object' && typeof trustedTypes.getAttributeType === 'function' && !namespaceURI) {
+      switch (trustedTypes.getAttributeType(lcTag, lcName)) {
+        case 'TrustedHTML':
+          {
+            return _createTrustedHTML(value);
+          }
+        case 'TrustedScriptURL':
+          {
+            return _createTrustedScriptURL(value);
+          }
+      }
+    }
+    return value;
+  };
+  /**
+   * Write a modified attribute value back onto the element. On
+   * success, re-probe for clobbering introduced by the new value and
+   * remove the element when found; otherwise pop the removal entry
+   * recorded by the earlier _removeAttribute (long-standing pairing
+   * with the SANITIZE_NAMED_PROPS path - do not "fix" casually). On
+   * failure, remove the attribute instead.
+   *
+   * @param currentNode the element carrying the attribute
+   * @param name the attribute name as present on the element
+   * @param namespaceURI the attribute's namespace, if any
+   * @param value the new attribute value
+   */
+  const _setAttributeValue = function _setAttributeValue(currentNode, name, namespaceURI, value) {
+    try {
+      if (namespaceURI) {
+        currentNode.setAttributeNS(namespaceURI, name, value);
+      } else {
+        /* Fallback to setAttribute() for browser-unrecognized namespaces e.g. "x-schema". */
+        currentNode.setAttribute(name, value);
+      }
+      if (_isClobbered(currentNode)) {
+        _forceRemove(currentNode);
+      } else {
+        arrayPop(DOMPurify.removed);
+      }
+    } catch (_) {
+      _removeAttribute(name, currentNode);
+    }
   };
   /**
    * _sanitizeAttributes
@@ -15267,9 +15977,7 @@ function createDOMPurify() {
   const _sanitizeAttributes = function _sanitizeAttributes(currentNode) {
     /* Execute a hook if present */
     _executeHooks(hooks.beforeSanitizeAttributes, currentNode, null);
-    const {
-      attributes
-    } = currentNode;
+    const attributes = currentNode.attributes;
     /* Check if we have attributes; if not we might have a text node */
     if (!attributes || _isClobbered(currentNode)) {
       return;
@@ -15282,14 +15990,13 @@ function createDOMPurify() {
       forceKeepAttr: undefined
     };
     let l = attributes.length;
+    const lcTag = transformCaseFunc(currentNode.nodeName);
     /* Go backwards over all attributes; safely remove bad ones */
     while (l--) {
       const attr = attributes[l];
-      const {
-        name,
-        namespaceURI,
-        value: attrValue
-      } = attr;
+      const name = attr.name,
+        namespaceURI = attr.namespaceURI,
+        attrValue = attr.value;
       const lcName = transformCaseFunc(name);
       const initValue = attrValue;
       let value = name === 'value' ? initValue : stringTrim(initValue);
@@ -15303,12 +16010,14 @@ function createDOMPurify() {
       /* Full DOM Clobbering protection via namespace isolation,
        * Prefix id and name attributes with `user-content-`
        */
-      if (SANITIZE_NAMED_PROPS && (lcName === 'id' || lcName === 'name')) {
+      if (SANITIZE_NAMED_PROPS && (lcName === 'id' || lcName === 'name') && stringIndexOf(value, SANITIZE_NAMED_PROPS_PREFIX) !== 0) {
         // Remove the attribute with this value
         _removeAttribute(name, currentNode);
         // Prefix the value and later re-create the attribute with the sanitized value
         value = SANITIZE_NAMED_PROPS_PREFIX + value;
       }
+      // Else: already prefixed, leave the attribute alone — the prefix is
+      // itself the clobbering protection, and re-applying it is incorrect.
       /* Work around a security issue with comments inside attributes */
       if (SAFE_FOR_XML && regExpTest(/((--!?|])>)|<\/(style|script|title|xmp|textarea|noscript|iframe|noembed|noframes)/i, value)) {
         _removeAttribute(name, currentNode);
@@ -15319,7 +16028,7 @@ function createDOMPurify() {
         _removeAttribute(name, currentNode);
         continue;
       }
-      /* Did the hooks approve of the attribute? */
+      /* Did the hooks force-keep the attribute? */
       if (hookEvent.forceKeepAttr) {
         continue;
       }
@@ -15329,56 +16038,24 @@ function createDOMPurify() {
         continue;
       }
       /* Work around a security issue in jQuery 3.0 */
-      if (!ALLOW_SELF_CLOSE_IN_ATTR && regExpTest(/\/>/i, value)) {
+      if (!ALLOW_SELF_CLOSE_IN_ATTR && regExpTest(SELF_CLOSING_TAG, value)) {
         _removeAttribute(name, currentNode);
         continue;
       }
       /* Sanitize attribute content to be template-safe */
       if (SAFE_FOR_TEMPLATES) {
-        arrayForEach([MUSTACHE_EXPR, ERB_EXPR, TMPLIT_EXPR], expr => {
-          value = stringReplace(value, expr, ' ');
-        });
+        value = _stripTemplateExpressions(value);
       }
       /* Is `value` valid for this attribute? */
-      const lcTag = transformCaseFunc(currentNode.nodeName);
       if (!_isValidAttribute(lcTag, lcName, value)) {
         _removeAttribute(name, currentNode);
         continue;
       }
       /* Handle attributes that require Trusted Types */
-      if (trustedTypesPolicy && typeof trustedTypes === 'object' && typeof trustedTypes.getAttributeType === 'function') {
-        if (namespaceURI) ; else {
-          switch (trustedTypes.getAttributeType(lcTag, lcName)) {
-            case 'TrustedHTML':
-              {
-                value = trustedTypesPolicy.createHTML(value);
-                break;
-              }
-            case 'TrustedScriptURL':
-              {
-                value = trustedTypesPolicy.createScriptURL(value);
-                break;
-              }
-          }
-        }
-      }
+      value = _applyTrustedTypesToAttribute(lcTag, lcName, namespaceURI, value);
       /* Handle invalid data-* attribute set by try-catching it */
       if (value !== initValue) {
-        try {
-          if (namespaceURI) {
-            currentNode.setAttributeNS(namespaceURI, name, value);
-          } else {
-            /* Fallback to setAttribute() for browser-unrecognized namespaces e.g. "x-schema". */
-            currentNode.setAttribute(name, value);
-          }
-          if (_isClobbered(currentNode)) {
-            _forceRemove(currentNode);
-          } else {
-            arrayPop(DOMPurify.removed);
-          }
-        } catch (_) {
-          _removeAttribute(name, currentNode);
-        }
+        _setAttributeValue(currentNode, name, namespaceURI, value);
       }
     }
     /* Execute a hook if present */
@@ -15401,13 +16078,132 @@ function createDOMPurify() {
       _sanitizeElements(shadowNode);
       /* Check attributes next */
       _sanitizeAttributes(shadowNode);
-      /* Deep shadow DOM detected */
-      if (shadowNode.content instanceof DocumentFragment) {
+      /* Deep shadow DOM detected.
+         Realm-safe check (GHSA-hpcv-96wg-7vj8): use nodeType against the
+         DOCUMENT_FRAGMENT_NODE constant rather than instanceof, so we
+         recurse into <template>.content from foreign realms too. */
+      if (_isDocumentFragment(shadowNode.content)) {
         _sanitizeShadowDOM2(shadowNode.content);
+      }
+      /* An element iterated here may itself host an attached
+         shadow root. The default NodeIterator does not enter shadow
+         trees, so a shadow root nested inside template.content was
+         previously reached by no walk at all (the pre-pass at
+         _sanitizeAttachedShadowRoots descends via childNodes, which
+         doesn't enter template.content; the template-content recursion
+         above iterates the content but never inspected shadowRoot).
+         Walk it explicitly. The nodeType guard avoids reading
+         shadowRoot off text / comment / CDATA / PI nodes that the
+         iterator also surfaces. */
+      const shadowNodeType = getNodeType ? getNodeType(shadowNode) : shadowNode.nodeType;
+      if (shadowNodeType === NODE_TYPE.element) {
+        const innerSr = getShadowRoot(shadowNode);
+        if (_isDocumentFragment(innerSr)) {
+          _sanitizeAttachedShadowRoots(innerSr);
+          _sanitizeShadowDOM2(innerSr);
+        }
       }
     }
     /* Execute a hook if present */
     _executeHooks(hooks.afterSanitizeShadowDOM, fragment, null);
+  };
+  /**
+   * _sanitizeAttachedShadowRoots
+   *
+   * Walks `root` and feeds every attached shadow root we encounter into
+   * the existing _sanitizeShadowDOM pipeline. The default node iterator
+   * does not descend into shadow trees, so nodes inside an attached
+   * shadow root would otherwise be skipped entirely.
+   *
+   * Two real input paths put attached shadow roots in front of us:
+   *   1. IN_PLACE on a DOM node that already has shadow roots attached.
+   *   2. DOM-node input where importNode(dirty, true) deep-clones the
+   *      shadow root because it was created with `clonable: true`.
+   *
+   * This pass runs once, up front, so the main iteration loop (and the
+   * existing _sanitizeShadowDOM template-content recursion) stay
+   * untouched — string-input paths are not affected.
+   *
+   * @param root the subtree root to walk for attached shadow roots
+   */
+  const _sanitizeAttachedShadowRoots = function _sanitizeAttachedShadowRoots(root) {
+    /* Iterative (explicit stack) rather than per-child recursion. DOM APIs
+       impose no depth cap, so an attacker-shaped tree (JSON/CRDT/editor data
+       built straight into the DOM — the IN_PLACE surface) deeper than the JS
+       call-stack budget would otherwise overflow native recursion here and
+       throw at the IN_PLACE entry pre-pass, before a single node is
+       sanitized, leaving the caller's live tree untouched (fail-open). See
+       campaign-3 F4. A heap stack keeps depth off the call stack.
+            Each work item is either a node to descend into, or a deferred
+       `_sanitizeShadowDOM` for an already-walked shadow root. The deferred
+       form preserves the original post-order discipline: a shadow root's
+       nested shadow roots are discovered before the outer shadow is
+       sanitized (which may remove hosts). Pushes are in reverse of the
+       desired processing order (LIFO): template content, then children, then
+       the shadow-sanitize, then the shadow walk — so the order matches the
+       previous recursion exactly. */
+    const stack = [{
+      node: root,
+      shadow: null
+    }];
+    while (stack.length > 0) {
+      const item = stack.pop();
+      /* Deferred shadow-DOM sanitisation: runs after its subtree was walked. */
+      if (item.shadow) {
+        _sanitizeShadowDOM2(item.shadow);
+        continue;
+      }
+      const node = item.node;
+      const nodeType = getNodeType ? getNodeType(node) : node.nodeType;
+      const isElement = nodeType === NODE_TYPE.element;
+      /* (pushed last → processed first) Children, snapshotted in reverse so
+         the first child is processed first. Snapshotting matters because a
+         hook may detach siblings mid-walk. */
+      const childNodes = getChildNodes(node);
+      if (childNodes) {
+        for (let i = childNodes.length - 1; i >= 0; --i) {
+          stack.push({
+            node: childNodes[i],
+            shadow: null
+          });
+        }
+      }
+      /* (pushed before children → processed after them, matching the old
+         "template content last" order) When the node is a <template>,
+         descend into its content. */
+      if (isElement) {
+        const rootName = getNodeName ? getNodeName(node) : null;
+        if (typeof rootName === 'string' && transformCaseFunc(rootName) === 'template') {
+          const content = node.content;
+          if (_isDocumentFragment(content)) {
+            stack.push({
+              node: content,
+              shadow: null
+            });
+          }
+        }
+      }
+      /* Shadow root (processed first): walk its subtree, then sanitise it.
+         Realm-safe check (GHSA-hpcv-96wg-7vj8): nodeType-based detection
+         rather than `instanceof DocumentFragment`, which is realm-bound and
+         silently skipped foreign-realm shadow roots (e.g.
+         iframe.contentDocument attachShadow). */
+      if (isElement) {
+        const sr = getShadowRoot(node);
+        if (_isDocumentFragment(sr)) {
+          /* Push the deferred sanitise first so it pops after the shadow
+             walk we push next, i.e. nested shadow roots are discovered
+             before this one is sanitised. */
+          stack.push({
+            node: null,
+            shadow: sr
+          }, {
+            node: sr,
+            shadow: null
+          });
+        }
+      }
+    }
   };
   // eslint-disable-next-line complexity
   DOMPurify.sanitize = function (dirty) {
@@ -15425,13 +16221,9 @@ function createDOMPurify() {
     }
     /* Stringify, in case dirty is an object */
     if (typeof dirty !== 'string' && !_isNode(dirty)) {
-      if (typeof dirty.toString === 'function') {
-        dirty = dirty.toString();
-        if (typeof dirty !== 'string') {
-          throw typeErrorCreate('dirty is not a string, aborting');
-        }
-      } else {
-        throw typeErrorCreate('toString is not a function');
+      dirty = stringifyValue(dirty);
+      if (typeof dirty !== 'string') {
+        throw typeErrorCreate('dirty is not a string, aborting');
       }
     }
     /* Return dirty HTML if DOMPurify cannot run */
@@ -15444,19 +16236,51 @@ function createDOMPurify() {
     }
     /* Clean up removed elements */
     DOMPurify.removed = [];
-    /* Check if dirty is correctly typed for IN_PLACE */
-    if (typeof dirty === 'string') {
-      IN_PLACE = false;
-    }
-    if (IN_PLACE) {
-      /* Do some early pre-sanitization to avoid unsafe root nodes */
-      if (dirty.nodeName) {
-        const tagName = transformCaseFunc(dirty.nodeName);
+    /* Resolve IN_PLACE for this call without mutating persistent config.
+       Writing the IN_PLACE closure variable here leaks under setConfig(),
+       where _parseConfig is skipped on later calls: a single string call would
+       disable in-place mode for every subsequent node call, returning a
+       sanitized copy while leaving the caller's node — which in-place callers
+       keep using and whose return value they ignore — unsanitized. REPORT-2. */
+    const inPlace = IN_PLACE && typeof dirty !== 'string' && _isNode(dirty);
+    if (inPlace) {
+      /* Do some early pre-sanitization to avoid unsafe root nodes.
+         Read nodeName through the cached prototype getter — a clobbering
+         child named "nodeName" on the form root would otherwise shadow
+         the property and let this check skip the root-allowlist
+         validation entirely. */
+      const nn = getNodeName ? getNodeName(dirty) : dirty.nodeName;
+      if (typeof nn === 'string') {
+        const tagName = transformCaseFunc(nn);
         if (!ALLOWED_TAGS[tagName] || FORBID_TAGS[tagName]) {
           throw typeErrorCreate('root node is forbidden and cannot be sanitized in-place');
         }
       }
-    } else if (dirty instanceof Node) {
+      /* Pre-flight the root through _isClobbered. The iterator-driven
+         removal path can not detach a parent-less root: _forceRemove
+         falls through to Element.prototype.remove(), which per spec
+         is a no-op on a node with no parent. A clobbered root would
+         then survive the main loop with its attributes uninspected,
+         because _sanitizeAttributes early-returns on _isClobbered. The
+         result would be an attacker-controlled form, complete with any
+         event-handler attributes the caller passed in, handed back to
+         the application unsanitized. Refuse to sanitize such a root
+         the same way we refuse a forbidden tag. GHSA-r47g-fvhr-h676. */
+      if (_isClobbered(dirty)) {
+        throw typeErrorCreate('root node is clobbered and cannot be sanitized in-place');
+      }
+      /* Sanitize attached shadow roots before the main iterator runs.
+         The iterator does not descend into shadow trees. Same fail-closed
+         barrier as the main walk (campaign-3 F2): a custom-element reaction
+         inside a shadow root could abort this pre-pass before the walk runs,
+         which would otherwise leave the entire live tree unsanitized. */
+      try {
+        _sanitizeAttachedShadowRoots(dirty);
+      } catch (error) {
+        _neutralizeRoot(dirty);
+        throw error;
+      }
+    } else if (_isNode(dirty)) {
       /* If dirty is a DOM element, append to an empty document to avoid
          elements being stripped by the parser */
       body = _initDocument('<!---->');
@@ -15470,12 +16294,18 @@ function createDOMPurify() {
         // eslint-disable-next-line unicorn/prefer-dom-node-append
         body.appendChild(importedNode);
       }
+      /* Clonable shadow roots are deep-cloned by importNode(); sanitize
+         them before the main iterator runs, since the iterator does not
+         descend into shadow trees. The walk routes every read through a
+         cached prototype getter so clobbering descendants on a form root
+         cannot hide a shadow host from this pass. */
+      _sanitizeAttachedShadowRoots(importedNode);
     } else {
       /* Exit directly if we have nothing to do */
       if (!RETURN_DOM && !SAFE_FOR_TEMPLATES && !WHOLE_DOCUMENT &&
       // eslint-disable-next-line unicorn/prefer-includes
       dirty.indexOf('<') === -1) {
-        return trustedTypesPolicy && RETURN_TRUSTED_TYPE ? trustedTypesPolicy.createHTML(dirty) : dirty;
+        return trustedTypesPolicy && RETURN_TRUSTED_TYPE ? _createTrustedHTML(dirty) : dirty;
       }
       /* Initialize the document to work on */
       body = _initDocument(dirty);
@@ -15489,31 +16319,59 @@ function createDOMPurify() {
       _forceRemove(body.firstChild);
     }
     /* Get node iterator */
-    const nodeIterator = _createNodeIterator(IN_PLACE ? dirty : body);
-    /* Now start iterating over the created document */
-    while (currentNode = nodeIterator.nextNode()) {
-      /* Sanitize tags and elements */
-      _sanitizeElements(currentNode);
-      /* Check attributes next */
-      _sanitizeAttributes(currentNode);
-      /* Shadow DOM detected, sanitize it */
-      if (currentNode.content instanceof DocumentFragment) {
-        _sanitizeShadowDOM2(currentNode.content);
+    const nodeIterator = _createNodeIterator(inPlace ? dirty : body);
+    /* Now start iterating over the created document.
+       The walk runs inside an exception barrier (campaign-3 F2): a re-entrant
+       engine/custom-element mutation can detach a node mid-walk so
+       `_forceRemove`'s parentless guard throws, aborting the loop. Without the
+       barrier the caller's in-place tree would be left half-sanitized with the
+       unvisited tail still armed. On any throw we fail closed — strip the
+       in-place root bare — then rethrow so the existing throw contract is
+       preserved. (String/DOM-copy paths never return the partial body, so the
+       propagating throw is already fail-closed there.) */
+    try {
+      while (currentNode = nodeIterator.nextNode()) {
+        /* Sanitize tags and elements */
+        _sanitizeElements(currentNode);
+        /* Check attributes next */
+        _sanitizeAttributes(currentNode);
+        /* Shadow DOM detected, sanitize it.
+           Realm-safe check (GHSA-hpcv-96wg-7vj8): nodeType-based detection
+           instead of instanceof, so foreign-realm <template>.content is
+           walked correctly. */
+        if (_isDocumentFragment(currentNode.content)) {
+          _sanitizeShadowDOM2(currentNode.content);
+        }
       }
+    } catch (error) {
+      if (inPlace) {
+        _neutralizeRoot(dirty);
+      }
+      throw error;
     }
     /* If we sanitized `dirty` in-place, return it. */
-    if (IN_PLACE) {
+    if (inPlace) {
+      /* Fail-closed completion of the audit-5 F1 fix: every node removed from
+         the caller's live tree is detached but may still hold a queued
+         resource-event handler that fires in page scope after we return. The
+         move-hoist covers only disallowed-tag KEEP_CONTENT removals; strip the
+         non-allow-listed attributes off every other removed subtree (clobber,
+         mXSS, namespace, comments, KEEP_CONTENT:false, …) so those handlers are
+         cancelled before any event can fire. Runs synchronously, pre-return. */
+      arrayForEach(DOMPurify.removed, entry => {
+        if (entry.element) {
+          _neutralizeSubtree(entry.element);
+        }
+      });
+      if (SAFE_FOR_TEMPLATES) {
+        _scrubTemplateExpressions2(dirty);
+      }
       return dirty;
     }
     /* Return sanitized string or DOM */
     if (RETURN_DOM) {
       if (SAFE_FOR_TEMPLATES) {
-        body.normalize();
-        let html = body.innerHTML;
-        arrayForEach([MUSTACHE_EXPR, ERB_EXPR, TMPLIT_EXPR], expr => {
-          html = stringReplace(html, expr, ' ');
-        });
-        body.innerHTML = html;
+        _scrubTemplateExpressions2(body);
       }
       if (RETURN_DOM_FRAGMENT) {
         returnNode = createDocumentFragment.call(body.ownerDocument);
@@ -15543,11 +16401,9 @@ function createDOMPurify() {
     }
     /* Sanitize final string template-safe */
     if (SAFE_FOR_TEMPLATES) {
-      arrayForEach([MUSTACHE_EXPR, ERB_EXPR, TMPLIT_EXPR], expr => {
-        serializedHTML = stringReplace(serializedHTML, expr, ' ');
-      });
+      serializedHTML = _stripTemplateExpressions(serializedHTML);
     }
-    return trustedTypesPolicy && RETURN_TRUSTED_TYPE ? trustedTypesPolicy.createHTML(serializedHTML) : serializedHTML;
+    return trustedTypesPolicy && RETURN_TRUSTED_TYPE ? _createTrustedHTML(serializedHTML) : serializedHTML;
   };
   DOMPurify.setConfig = function () {
     let cfg = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
@@ -15557,6 +16413,12 @@ function createDOMPurify() {
   DOMPurify.clearConfig = function () {
     CONFIG = null;
     SET_CONFIG = false;
+    // Drop any caller-supplied Trusted Types policy so it cannot poison later
+    // `RETURN_TRUSTED_TYPE` output. The internal default policy (cached, and
+    // never recreated — Trusted Types throws on duplicate names) is restored by
+    // the next `_parseConfig`. See GHSA-vxr8-fq34-vvx9.
+    trustedTypesPolicy = defaultTrustedTypesPolicy;
+    emptyHTML = '';
   };
   DOMPurify.isValidAttribute = function (tag, attr, value) {
     /* Initialize shared config vars if necessary. */
@@ -17512,13 +18374,32 @@ Parser.prototype.isOperatorEnabled = function (op) {
   return !(optionName in operators) || !!operators[optionName];
 };
 
+function isEmpty(value, lang) {
+  if (typeof value === 'string') return !value.length;
+  if (typeof value === 'number') return false;
+  if (typeof value === 'boolean') return value;
+  if (Array.isArray(value)) return !value.length;
+  if (value === '' || value === null || value === undefined) return true;
+  if (typeof value !== 'object') return false;
+  if ((value === null || value === void 0 ? void 0 : value[lang]) !== undefined) return isEmpty(value[lang], lang);
+  return Object.values(value).every(v => isEmpty(v, lang));
+}
+function isNotEmpty(value, lang) {
+  if (typeof value === 'string') return !!value.length;
+  if (typeof value === 'number') return true;
+  if (typeof value === 'boolean') return value;
+  if (Array.isArray(value)) return !!value.length;
+  if (value === '' || value === null || value === undefined) return false;
+  if (typeof value !== 'object') return true;
+  if ((value === null || value === void 0 ? void 0 : value[lang]) !== undefined) return isNotEmpty(value[lang], lang);
+  return Object.values(value).some(v => isNotEmpty(v, lang));
+}
+
 class expression {
   constructor(_ref, config$, form$) {
     var _this = this;
-    var {
-      functions,
-      consts
-    } = _ref;
+    var functions = _ref.functions,
+      consts = _ref.consts;
     _defineProperty$2(this, "parser", void 0);
     _defineProperty$2(this, "regex", /{(.+?)}|\\({.+?})/g);
     _defineProperty$2(this, "config$", void 0);
@@ -17540,8 +18421,8 @@ class expression {
       delete this.parser.functions[func];
     });
     this.parser.functions.NOT = a => !a;
-    this.parser.functions.EMPTY = v => Array.isArray(v) ? !v.length : v === '' || v === null || v === undefined;
-    this.parser.functions.NOT_EMPTY = v => Array.isArray(v) ? !!v.length : v !== '' && v !== null && v !== undefined;
+    this.parser.functions.EMPTY = v => isEmpty(v, form$.selectedLanguage);
+    this.parser.functions.NOT_EMPTY = v => isNotEmpty(v, form$.selectedLanguage);
     this.parser.functions.SUM = function () {
       for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
         args[_key] = arguments[_key];
@@ -17628,15 +18509,19 @@ class expression {
       return el$.available;
     };
     Object.entries(functions || {}).forEach(_ref2 => {
-      var [name, func] = _ref2;
+      var _ref3 = _slicedToArray$1(_ref2, 2),
+        name = _ref3[0],
+        func = _ref3[1];
       var result;
       try {
         result = func();
       } catch (_unused) {}
       this.parser.functions[name] = typeof result === 'function' ? func(this.form$.value) : func;
     });
-    Object.entries(consts || {}).forEach(_ref3 => {
-      var [name, con] = _ref3;
+    Object.entries(consts || {}).forEach(_ref4 => {
+      var _ref5 = _slicedToArray$1(_ref4, 2),
+        name = _ref5[0],
+        con = _ref5[1];
       this.parser.consts[name] = con;
     });
     Object.keys(this.parser.functions).forEach(func => {
@@ -18340,9 +19225,8 @@ var base$1d = function base(props, context, dependencies) {
 };
 
 var base$1c = function base(props, context, dependencies) {
-  var {
-    view
-  } = toRefs(props);
+  var _toRefs = toRefs(props),
+    view = _toRefs.view;
   var componentName = context.name;
 
   // =============== INJECT ===============
@@ -18389,18 +19273,14 @@ var base$1b = function base(props, context, dependencies) {
 
   // =============== INJECT ===============
 
-  var {
-    form$
-  } = base$1f();
-  var {
-    theme
-  } = base$1e();
-  var {
-    Size
-  } = base$1d();
-  var {
-    View
-  } = base$1c(props, context);
+  var _useForm$ = base$1f(),
+    form$ = _useForm$.form$;
+  var _useTheme = base$1e(),
+    theme = _useTheme.theme;
+  var _useSize = base$1d(),
+    Size = _useSize.Size;
+  var _useView = base$1c(props, context),
+    View = _useView.View;
 
   // ============== COMPUTED ===============
 
@@ -18482,16 +19362,15 @@ var FormErrors = {
   setup(props, context) {
     // ============ DEPENDENCIES ============
 
-    var {
-      form$,
-      Size,
-      View,
-      classesInstance,
-      theme,
-      classes,
-      Templates,
-      template
-    } = base$1b(props, context);
+    var _useFormComponent = base$1b(props, context),
+      form$ = _useFormComponent.form$,
+      Size = _useFormComponent.Size,
+      View = _useFormComponent.View,
+      classesInstance = _useFormComponent.classesInstance,
+      theme = _useFormComponent.theme,
+      classes = _useFormComponent.classes,
+      Templates = _useFormComponent.Templates,
+      template = _useFormComponent.template;
 
     // ============== COMPUTED ==============
 
@@ -18529,16 +19408,15 @@ var FormMessages = {
   setup(props, context) {
     // ============ DEPENDENCIES ============
 
-    var {
-      form$,
-      Size,
-      View,
-      classesInstance,
-      theme,
-      classes,
-      Templates,
-      template
-    } = base$1b(props, context);
+    var _useFormComponent = base$1b(props, context),
+      form$ = _useFormComponent.form$,
+      Size = _useFormComponent.Size,
+      View = _useFormComponent.View,
+      classesInstance = _useFormComponent.classesInstance,
+      theme = _useFormComponent.theme,
+      classes = _useFormComponent.classes,
+      Templates = _useFormComponent.Templates,
+      template = _useFormComponent.template;
 
     // ============== COMPUTED ==============
 
@@ -18576,16 +19454,15 @@ var FormLanguages = {
   setup(props, context) {
     // ============ DEPENDENCIES ============
 
-    var {
-      form$,
-      Size,
-      View,
-      classesInstance,
-      theme,
-      classes,
-      Templates,
-      template
-    } = base$1b(props, context);
+    var _useFormComponent = base$1b(props, context),
+      form$ = _useFormComponent.form$,
+      Size = _useFormComponent.Size,
+      View = _useFormComponent.View,
+      classesInstance = _useFormComponent.classesInstance,
+      theme = _useFormComponent.theme,
+      classes = _useFormComponent.classes,
+      Templates = _useFormComponent.Templates,
+      template = _useFormComponent.template;
 
     // ============== COMPUTED ==============
 
@@ -18669,22 +19546,20 @@ var FormLanguage = {
     }
   },
   setup(props, context) {
-    var {
-      code
-    } = toRefs(props);
+    var _toRefs = toRefs(props),
+      code = _toRefs.code;
 
     // ============ DEPENDENCIES ============
 
-    var {
-      form$,
-      Size,
-      View,
-      classesInstance,
-      theme,
-      classes,
-      Templates,
-      template
-    } = base$1b(props, context);
+    var _useFormComponent = base$1b(props, context),
+      form$ = _useFormComponent.form$,
+      Size = _useFormComponent.Size,
+      View = _useFormComponent.View,
+      classesInstance = _useFormComponent.classesInstance,
+      theme = _useFormComponent.theme,
+      classes = _useFormComponent.classes,
+      Templates = _useFormComponent.Templates,
+      template = _useFormComponent.template;
 
     // ============== COMPUTED ==============
 
@@ -18958,27 +19833,25 @@ var FormTabs = {
 
     // ============ DEPENDENCIES ============
 
-    var {
-      form$,
-      Size,
-      View,
-      classesInstance,
-      theme,
-      classes,
-      Templates,
-      template
-    } = base$1b(props, context);
-    var {
-      events,
-      listeners,
-      on,
-      off,
-      fire
-    } = base$1i(props, context, {
-      form$
-    }, {
-      events: context.emits
-    });
+    var _useFormComponent = base$1b(props, context),
+      form$ = _useFormComponent.form$,
+      Size = _useFormComponent.Size,
+      View = _useFormComponent.View,
+      classesInstance = _useFormComponent.classesInstance,
+      theme = _useFormComponent.theme,
+      classes = _useFormComponent.classes,
+      Templates = _useFormComponent.Templates,
+      template = _useFormComponent.template;
+    var _useEvents = base$1i(props, context, {
+        form$
+      }, {
+        events: context.emits
+      }),
+      events = _useEvents.events,
+      listeners = _useEvents.listeners,
+      on = _useEvents.on,
+      off = _useEvents.off,
+      fire = _useEvents.fire;
 
     // ================ DATA ================
 
@@ -19276,9 +20149,8 @@ var FormTabs = {
 };
 
 var base$1a = function base(props, context, dependencies) {
-  var {
-    conditions
-  } = toRefs(props);
+  var _toRefs = toRefs(props),
+    conditions = _toRefs.conditions;
 
   // ============ DEPENDENCIES ============
 
@@ -19358,16 +20230,14 @@ var base$1a = function base(props, context, dependencies) {
   };
 };
 var list$5 = function list(props, context, dependencies) {
-  var {
-    conditionList,
-    available,
-    additionalConditions,
-    addConditions,
-    removeConditions
-  } = base$1a(props, context, dependencies);
-  var {
-    conditions
-  } = toRefs(props);
+  var _base = base$1a(props, context, dependencies),
+    conditionList = _base.conditionList,
+    available = _base.available,
+    additionalConditions = _base.additionalConditions,
+    addConditions = _base.addConditions,
+    removeConditions = _base.removeConditions;
+  var _toRefs2 = toRefs(props),
+    conditions = _toRefs2.conditions;
 
   // ============ DEPENDENCIES ============
 
@@ -19398,10 +20268,8 @@ var group$8 = list$5;
  * From: https://github.com/fengyuanchen/is-vue-component/blob/master/src/index.js
  */
 
-var {
-  hasOwnProperty,
-  toString
-} = Object.prototype;
+var _Object$prototype = Object.prototype,
+  toString = _Object$prototype.toString;
 
 /**
  * Check if the given value is a non-empty string.
@@ -19581,50 +20449,45 @@ var FormTab = {
     }
   },
   setup(props, context) {
-    var {
-      name,
-      label,
-      elements
-    } = toRefs(props);
+    var _toRefs = toRefs(props),
+      name = _toRefs.name,
+      label = _toRefs.label,
+      elements = _toRefs.elements;
     var $this = getCurrentInstance().proxy;
 
     // ============ DEPENDENCIES ============
 
-    var {
-      form$,
-      Size,
-      View,
-      classesInstance,
-      theme,
-      classes,
-      Templates,
-      template
-    } = base$1b(props, context);
-    var {
-      available,
-      conditionList,
-      updateConditions
-    } = base$1a(props, context, {
-      form$
-    });
-    var {
-      isLabelComponent,
-      label: tabLabel_
-    } = base$19(props, context, {
-      component$: form$,
-      labelDefinition: label
-    });
-    var {
-      events,
-      listeners,
-      on,
-      off,
-      fire
-    } = base$1i(props, context, {
-      form$
-    }, {
-      events: context.emits
-    });
+    var _useFormComponent = base$1b(props, context),
+      form$ = _useFormComponent.form$,
+      Size = _useFormComponent.Size,
+      View = _useFormComponent.View,
+      classesInstance = _useFormComponent.classesInstance,
+      theme = _useFormComponent.theme,
+      classes = _useFormComponent.classes,
+      Templates = _useFormComponent.Templates,
+      template = _useFormComponent.template;
+    var _useConditions = base$1a(props, context, {
+        form$
+      }),
+      available = _useConditions.available,
+      conditionList = _useConditions.conditionList,
+      updateConditions = _useConditions.updateConditions;
+    var _useLabel = base$19(props, context, {
+        component$: form$,
+        labelDefinition: label
+      }),
+      isLabelComponent = _useLabel.isLabelComponent,
+      tabLabel_ = _useLabel.label;
+    var _useEvents = base$1i(props, context, {
+        form$
+      }, {
+        events: context.emits
+      }),
+      events = _useEvents.events,
+      listeners = _useEvents.listeners,
+      on = _useEvents.on,
+      off = _useEvents.off,
+      fire = _useEvents.fire;
 
     // ================ DATA ================
 
@@ -19947,27 +20810,25 @@ var FormSteps = {
 
     // ============ DEPENDENCIES ============
 
-    var {
-      form$,
-      Size,
-      View,
-      classesInstance,
-      theme,
-      classes,
-      Templates,
-      template
-    } = base$1b(props, context);
-    var {
-      events,
-      listeners,
-      on,
-      off,
-      fire
-    } = base$1i(props, context, {
-      form$
-    }, {
-      events: context.emits
-    });
+    var _useFormComponent = base$1b(props, context),
+      form$ = _useFormComponent.form$,
+      Size = _useFormComponent.Size,
+      View = _useFormComponent.View,
+      classesInstance = _useFormComponent.classesInstance,
+      theme = _useFormComponent.theme,
+      classes = _useFormComponent.classes,
+      Templates = _useFormComponent.Templates,
+      template = _useFormComponent.template;
+    var _useEvents = base$1i(props, context, {
+        form$
+      }, {
+        events: context.emits
+      }),
+      events = _useEvents.events,
+      listeners = _useEvents.listeners,
+      on = _useEvents.on,
+      off = _useEvents.off,
+      fire = _useEvents.fire;
 
     // ================ DATA ================
 
@@ -20566,16 +21427,15 @@ var FormStepsControls = {
   setup(props, context) {
     // ============ DEPENDENCIES ============
 
-    var {
-      form$,
-      Size,
-      View,
-      classesInstance,
-      theme,
-      classes,
-      Templates,
-      template
-    } = base$1b(props, context);
+    var _useFormComponent = base$1b(props, context),
+      form$ = _useFormComponent.form$,
+      Size = _useFormComponent.Size,
+      View = _useFormComponent.View,
+      classesInstance = _useFormComponent.classesInstance,
+      theme = _useFormComponent.theme,
+      classes = _useFormComponent.classes,
+      Templates = _useFormComponent.Templates,
+      template = _useFormComponent.template;
 
     // ============== PROVIDE ===============
 
@@ -20614,23 +21474,21 @@ var FormStepsControl = {
     }
   },
   setup(props, context) {
-    var {
-      type,
-      labels
-    } = toRefs(props);
+    var _toRefs = toRefs(props),
+      type = _toRefs.type,
+      labels = _toRefs.labels;
 
     // ============ DEPENDENCIES ============
 
-    var {
-      form$,
-      Size,
-      View,
-      classesInstance,
-      theme,
-      classes,
-      Templates,
-      template
-    } = base$1b(props, context);
+    var _useFormComponent = base$1b(props, context),
+      form$ = _useFormComponent.form$,
+      Size = _useFormComponent.Size,
+      View = _useFormComponent.View,
+      classesInstance = _useFormComponent.classesInstance,
+      theme = _useFormComponent.theme,
+      classes = _useFormComponent.classes,
+      Templates = _useFormComponent.Templates,
+      template = _useFormComponent.template;
 
     // ============== COMPUTED ==============
 
@@ -20655,13 +21513,12 @@ var FormStepsControl = {
           return stepLabels && stepLabels.finish ? stepLabels.finish : stepLabels && stepLabels.next ? stepLabels.next : form$.value.translations.vueform.steps.finish;
       }
     });
-    var {
-      isLabelComponent,
-      label
-    } = base$19(props, context, {
-      component$: form$,
-      labelDefinition: baseLabel
-    });
+    var _useLabel = base$19(props, context, {
+        component$: form$,
+        labelDefinition: baseLabel
+      }),
+      isLabelComponent = _useLabel.isLabelComponent,
+      label = _useLabel.label;
 
     // ============== COMPUTED ==============
 
@@ -20933,50 +21790,45 @@ var FormStep = {
     }
   },
   setup(props, context) {
-    var {
-      name,
-      label,
-      elements
-    } = toRefs(props);
+    var _toRefs = toRefs(props),
+      name = _toRefs.name,
+      label = _toRefs.label,
+      elements = _toRefs.elements;
     var $this = getCurrentInstance().proxy;
 
     // ============ DEPENDENCIES ============
 
-    var {
-      form$,
-      Size,
-      View,
-      classesInstance,
-      theme,
-      classes,
-      Templates,
-      template
-    } = base$1b(props, context);
-    var {
-      available,
-      conditionList,
-      updateConditions
-    } = base$1a(props, context, {
-      form$
-    });
-    var {
-      isLabelComponent,
-      label: stepLabel_
-    } = base$19(props, context, {
-      component$: form$,
-      labelDefinition: label
-    });
-    var {
-      events,
-      listeners,
-      on,
-      off,
-      fire
-    } = base$1i(props, context, {
-      form$
-    }, {
-      events: context.emits
-    });
+    var _useFormComponent = base$1b(props, context),
+      form$ = _useFormComponent.form$,
+      Size = _useFormComponent.Size,
+      View = _useFormComponent.View,
+      classesInstance = _useFormComponent.classesInstance,
+      theme = _useFormComponent.theme,
+      classes = _useFormComponent.classes,
+      Templates = _useFormComponent.Templates,
+      template = _useFormComponent.template;
+    var _useConditions = base$1a(props, context, {
+        form$
+      }),
+      available = _useConditions.available,
+      conditionList = _useConditions.conditionList,
+      updateConditions = _useConditions.updateConditions;
+    var _useLabel = base$19(props, context, {
+        component$: form$,
+        labelDefinition: label
+      }),
+      isLabelComponent = _useLabel.isLabelComponent,
+      stepLabel_ = _useLabel.label;
+    var _useEvents = base$1i(props, context, {
+        form$
+      }, {
+        events: context.emits
+      }),
+      events = _useEvents.events,
+      listeners = _useEvents.listeners,
+      on = _useEvents.on,
+      off = _useEvents.off,
+      fire = _useEvents.fire;
 
     // ================ DATA ================
 
@@ -21492,19 +22344,17 @@ var FormElements = {
   setup(props, context) {
     // ============ DEPENDENCIES ============
 
-    var {
-      form$,
-      Size,
-      View,
-      classesInstance,
-      theme,
-      classes,
-      Templates,
-      template
-    } = base$1b(props, context);
-    var {
-      component
-    } = base$18();
+    var _useFormComponent = base$1b(props, context),
+      form$ = _useFormComponent.form$,
+      Size = _useFormComponent.Size,
+      View = _useFormComponent.View,
+      classesInstance = _useFormComponent.classesInstance,
+      theme = _useFormComponent.theme,
+      classes = _useFormComponent.classes,
+      Templates = _useFormComponent.Templates,
+      template = _useFormComponent.template;
+    var _useElements = base$18(),
+      component = _useElements.component;
 
     // ============ COMPUTED ============
 
@@ -21551,21 +22401,16 @@ var base$16 = function base(props, context, dependencies) {
 
   // =============== INJECT ===============
 
-  var {
-    form$
-  } = base$1f();
-  var {
-    el$
-  } = base$17();
-  var {
-    theme
-  } = base$1e();
-  var {
-    Size
-  } = base$1d();
-  var {
-    View
-  } = base$1c(props, context);
+  var _useForm$ = base$1f(),
+    form$ = _useForm$.form$;
+  var _useEl$ = base$17(),
+    el$ = _useEl$.el$;
+  var _useTheme = base$1e(),
+    theme = _useTheme.theme;
+  var _useSize = base$1d(),
+    Size = _useSize.Size;
+  var _useView = base$1c(props, context),
+    View = _useView.View;
 
   // ============== COMPUTED ===============
 
@@ -21654,17 +22499,16 @@ var ElementLayout = {
   setup(props, context) {
     // ============ DEPENDENCIES ============
 
-    var {
-      form$,
-      el$,
-      Size,
-      View,
-      classesInstance,
-      classes,
-      Templates,
-      template,
-      theme
-    } = base$16(props, context);
+    var _useElementComponent = base$16(props, context),
+      form$ = _useElementComponent.form$,
+      el$ = _useElementComponent.el$,
+      Size = _useElementComponent.Size,
+      View = _useElementComponent.View,
+      classesInstance = _useElementComponent.classesInstance,
+      classes = _useElementComponent.classes,
+      Templates = _useElementComponent.Templates,
+      template = _useElementComponent.template,
+      theme = _useElementComponent.theme;
 
     // ============== COMPUTED ==============
 
@@ -21697,17 +22541,16 @@ var ElementLayoutInline = {
   setup(props, context) {
     // ============ DEPENDENCIES ============
 
-    var {
-      form$,
-      el$,
-      Size,
-      View,
-      classesInstance,
-      classes,
-      Templates,
-      template,
-      theme
-    } = base$16(props, context);
+    var _useElementComponent = base$16(props, context),
+      form$ = _useElementComponent.form$,
+      el$ = _useElementComponent.el$,
+      Size = _useElementComponent.Size,
+      View = _useElementComponent.View,
+      classesInstance = _useElementComponent.classesInstance,
+      classes = _useElementComponent.classes,
+      Templates = _useElementComponent.Templates,
+      template = _useElementComponent.template,
+      theme = _useElementComponent.theme;
 
     // ============== COMPUTED ==============
 
@@ -21740,17 +22583,16 @@ var ElementLoader = {
   setup(props, context) {
     // ============ DEPENDENCIES ============
 
-    var {
-      el$,
-      form$,
-      Size,
-      View,
-      classesInstance,
-      classes,
-      Templates,
-      template,
-      theme
-    } = base$16(props, context);
+    var _useElementComponent = base$16(props, context),
+      el$ = _useElementComponent.el$,
+      form$ = _useElementComponent.form$,
+      Size = _useElementComponent.Size,
+      View = _useElementComponent.View,
+      classesInstance = _useElementComponent.classesInstance,
+      classes = _useElementComponent.classes,
+      Templates = _useElementComponent.Templates,
+      template = _useElementComponent.template,
+      theme = _useElementComponent.theme;
     return {
       el$,
       form$,
@@ -21776,17 +22618,16 @@ var ElementLabelFloating = {
   setup(props, context) {
     // ============ DEPENDENCIES ============
 
-    var {
-      el$,
-      form$,
-      Size,
-      View,
-      classesInstance,
-      classes,
-      Templates,
-      template,
-      theme
-    } = base$16(props, context);
+    var _useElementComponent = base$16(props, context),
+      el$ = _useElementComponent.el$,
+      form$ = _useElementComponent.form$,
+      Size = _useElementComponent.Size,
+      View = _useElementComponent.View,
+      classesInstance = _useElementComponent.classesInstance,
+      classes = _useElementComponent.classes,
+      Templates = _useElementComponent.Templates,
+      template = _useElementComponent.template,
+      theme = _useElementComponent.theme;
 
     // =============== INJECT ===============
 
@@ -21828,26 +22669,24 @@ var ElementLabel = {
   setup(props, context) {
     // ============ DEPENDENCIES ============
 
-    var {
-      el$,
-      form$,
-      Size,
-      View,
-      classesInstance,
-      classes,
-      Templates,
-      template,
-      theme
-    } = base$16(props, context);
-    var {
-      label,
-      isLabelComponent
-    } = base$19(props, context, {
-      labelDefinition: computed(() => {
-        return el$.value.label;
+    var _useElementComponent = base$16(props, context),
+      el$ = _useElementComponent.el$,
+      form$ = _useElementComponent.form$,
+      Size = _useElementComponent.Size,
+      View = _useElementComponent.View,
+      classesInstance = _useElementComponent.classesInstance,
+      classes = _useElementComponent.classes,
+      Templates = _useElementComponent.Templates,
+      template = _useElementComponent.template,
+      theme = _useElementComponent.theme;
+    var _useLabel = base$19(props, context, {
+        labelDefinition: computed(() => {
+          return el$.value.label;
+        }),
+        component$: el$
       }),
-      component$: el$
-    });
+      label = _useLabel.label,
+      isLabelComponent = _useLabel.isLabelComponent;
 
     // ============== COMPUTED ==============
 
@@ -21921,17 +22760,16 @@ var ElementInfo = {
   setup(props, context) {
     // ============ DEPENDENCIES ============
 
-    var {
-      el$,
-      form$,
-      Size,
-      View,
-      classesInstance,
-      classes,
-      Templates,
-      template,
-      theme
-    } = base$16(props, context);
+    var _useElementComponent = base$16(props, context),
+      el$ = _useElementComponent.el$,
+      form$ = _useElementComponent.form$,
+      Size = _useElementComponent.Size,
+      View = _useElementComponent.View,
+      classesInstance = _useElementComponent.classesInstance,
+      classes = _useElementComponent.classes,
+      Templates = _useElementComponent.Templates,
+      template = _useElementComponent.template,
+      theme = _useElementComponent.theme;
 
     // =============== INJECT ===============
 
@@ -22044,17 +22882,16 @@ var ElementDescription = {
   setup(props, context) {
     // ============ DEPENDENCIES ============
 
-    var {
-      el$,
-      form$,
-      Size,
-      View,
-      classesInstance,
-      classes,
-      Templates,
-      template,
-      theme
-    } = base$16(props, context);
+    var _useElementComponent = base$16(props, context),
+      el$ = _useElementComponent.el$,
+      form$ = _useElementComponent.form$,
+      Size = _useElementComponent.Size,
+      View = _useElementComponent.View,
+      classesInstance = _useElementComponent.classesInstance,
+      classes = _useElementComponent.classes,
+      Templates = _useElementComponent.Templates,
+      template = _useElementComponent.template,
+      theme = _useElementComponent.theme;
 
     // =============== INJECT ===============
 
@@ -22112,17 +22949,16 @@ var ElementError = {
   setup(props, context) {
     // ============ DEPENDENCIES ============
 
-    var {
-      el$,
-      form$,
-      Size,
-      View,
-      classesInstance,
-      classes,
-      Templates,
-      template,
-      theme
-    } = base$16(props, context);
+    var _useElementComponent = base$16(props, context),
+      el$ = _useElementComponent.el$,
+      form$ = _useElementComponent.form$,
+      Size = _useElementComponent.Size,
+      View = _useElementComponent.View,
+      classesInstance = _useElementComponent.classesInstance,
+      classes = _useElementComponent.classes,
+      Templates = _useElementComponent.Templates,
+      template = _useElementComponent.template,
+      theme = _useElementComponent.theme;
 
     // ============== COMPUTED ==============
 
@@ -22174,17 +23010,16 @@ var ElementMessage = {
   setup(props, context) {
     // ============ DEPENDENCIES ============
 
-    var {
-      el$,
-      form$,
-      Size,
-      View,
-      classesInstance,
-      classes,
-      Templates,
-      template,
-      theme
-    } = base$16(props, context);
+    var _useElementComponent = base$16(props, context),
+      el$ = _useElementComponent.el$,
+      form$ = _useElementComponent.form$,
+      Size = _useElementComponent.Size,
+      View = _useElementComponent.View,
+      classesInstance = _useElementComponent.classesInstance,
+      classes = _useElementComponent.classes,
+      Templates = _useElementComponent.Templates,
+      template = _useElementComponent.template,
+      theme = _useElementComponent.theme;
 
     // ============== COMPUTED ==============
 
@@ -22217,17 +23052,16 @@ var ElementRequired = {
   setup(props, context) {
     // ============ DEPENDENCIES ============
 
-    var {
-      el$,
-      form$,
-      Size,
-      View,
-      classesInstance,
-      classes,
-      Templates,
-      template,
-      theme
-    } = base$16(props, context);
+    var _useElementComponent = base$16(props, context),
+      el$ = _useElementComponent.el$,
+      form$ = _useElementComponent.form$,
+      Size = _useElementComponent.Size,
+      View = _useElementComponent.View,
+      classesInstance = _useElementComponent.classesInstance,
+      classes = _useElementComponent.classes,
+      Templates = _useElementComponent.Templates,
+      template = _useElementComponent.template,
+      theme = _useElementComponent.theme;
 
     // ============== COMPUTED ==============
 
@@ -22277,23 +23111,21 @@ var ElementText = {
     }
   },
   setup(props, context) {
-    var {
-      type
-    } = toRefs(props);
+    var _toRefs = toRefs(props),
+      type = _toRefs.type;
 
     // ============ DEPENDENCIES ============
 
-    var {
-      el$,
-      form$,
-      Size,
-      View,
-      classesInstance,
-      classes,
-      Templates,
-      template,
-      theme
-    } = base$16(props, context);
+    var _useElementComponent = base$16(props, context),
+      el$ = _useElementComponent.el$,
+      form$ = _useElementComponent.form$,
+      Size = _useElementComponent.Size,
+      View = _useElementComponent.View,
+      classesInstance = _useElementComponent.classesInstance,
+      classes = _useElementComponent.classes,
+      Templates = _useElementComponent.Templates,
+      template = _useElementComponent.template,
+      theme = _useElementComponent.theme;
 
     // =============== INJECT ===============
 
@@ -22356,23 +23188,21 @@ var DragAndDrop = {
     }
   },
   setup(props, context) {
-    var {
-      disabled
-    } = toRefs(props);
+    var _toRefs = toRefs(props),
+      disabled = _toRefs.disabled;
 
     // ============== DEPENDENCIES ==============
 
-    var {
-      el$,
-      form$,
-      Size,
-      View,
-      classesInstance,
-      classes,
-      Templates,
-      template,
-      theme
-    } = base$16(props, context);
+    var _useElementComponent = base$16(props, context),
+      el$ = _useElementComponent.el$,
+      form$ = _useElementComponent.form$,
+      Size = _useElementComponent.Size,
+      View = _useElementComponent.View,
+      classesInstance = _useElementComponent.classesInstance,
+      classes = _useElementComponent.classes,
+      Templates = _useElementComponent.Templates,
+      template = _useElementComponent.template,
+      theme = _useElementComponent.theme;
 
     // ================ DATA ================
 
@@ -22471,23 +23301,21 @@ var ElementAddon = {
     }
   },
   setup(props, context) {
-    var {
-      type
-    } = toRefs(props);
+    var _toRefs = toRefs(props),
+      type = _toRefs.type;
 
     // ============ DEPENDENCIES ============
 
-    var {
-      form$,
-      el$,
-      Size,
-      View,
-      classesInstance,
-      classes,
-      Templates,
-      template,
-      theme
-    } = base$16(props, context);
+    var _useElementComponent = base$16(props, context),
+      form$ = _useElementComponent.form$,
+      el$ = _useElementComponent.el$,
+      Size = _useElementComponent.Size,
+      View = _useElementComponent.View,
+      classesInstance = _useElementComponent.classesInstance,
+      classes = _useElementComponent.classes,
+      Templates = _useElementComponent.Templates,
+      template = _useElementComponent.template,
+      theme = _useElementComponent.theme;
 
     // =============== INJECT ===============
 
@@ -22598,35 +23426,32 @@ var ElementAddonOptions = {
     }
   },
   setup(props, context) {
-    var {
-      options,
-      position
-    } = toRefs(props);
+    var _toRefs = toRefs(props),
+      options = _toRefs.options,
+      position = _toRefs.position;
 
     // ============ DEPENDENCIES ============
 
-    var {
-      form$,
-      el$,
-      Size,
-      View,
-      classesInstance,
-      classes,
-      Templates,
-      template,
-      theme
-    } = base$16(props, context);
-    var {
-      events,
-      listeners,
-      on,
-      off,
-      fire
-    } = base$1i(props, context, {
-      form$
-    }, {
-      events: context.emits
-    });
+    var _useElementComponent = base$16(props, context),
+      form$ = _useElementComponent.form$,
+      el$ = _useElementComponent.el$,
+      Size = _useElementComponent.Size,
+      View = _useElementComponent.View,
+      classesInstance = _useElementComponent.classesInstance,
+      classes = _useElementComponent.classes,
+      Templates = _useElementComponent.Templates,
+      template = _useElementComponent.template,
+      theme = _useElementComponent.theme;
+    var _useEvents = base$1i(props, context, {
+        form$
+      }, {
+        events: context.emits
+      }),
+      events = _useEvents.events,
+      listeners = _useEvents.listeners,
+      on = _useEvents.on,
+      off = _useEvents.off,
+      fire = _useEvents.fire;
 
     // ================ DATA ================
 
@@ -25725,25 +26550,23 @@ var DatepickerWrapper = {
     }
   },
   setup(props, context) {
-    var {
-      id,
-      options,
-      value
-    } = toRefs(props);
+    var _toRefs = toRefs(props),
+      id = _toRefs.id,
+      options = _toRefs.options,
+      value = _toRefs.value;
 
     // ============ DEPENDENCIES ============
 
-    var {
-      el$,
-      form$,
-      Size,
-      View,
-      classesInstance,
-      classes,
-      Templates,
-      template,
-      theme
-    } = base$16(props, context);
+    var _useElementComponent = base$16(props, context),
+      el$ = _useElementComponent.el$,
+      form$ = _useElementComponent.form$,
+      Size = _useElementComponent.Size,
+      View = _useElementComponent.View,
+      classesInstance = _useElementComponent.classesInstance,
+      classes = _useElementComponent.classes,
+      Templates = _useElementComponent.Templates,
+      template = _useElementComponent.template,
+      theme = _useElementComponent.theme;
     var moment = form$.value.$vueform.services.moment;
     var $this = getCurrentInstance().proxy;
 
@@ -26010,31 +26833,29 @@ var EditorWrapper = {
     }
   },
   setup(props, context) {
-    var {
-      value,
-      disabled,
-      acceptMimes,
-      accept,
-      endpoint,
-      method,
-      attrs,
-      placeholder,
-      id
-    } = toRefs(props);
+    var _toRefs = toRefs(props),
+      value = _toRefs.value,
+      disabled = _toRefs.disabled,
+      acceptMimes = _toRefs.acceptMimes,
+      accept = _toRefs.accept,
+      endpoint = _toRefs.endpoint,
+      method = _toRefs.method,
+      attrs = _toRefs.attrs,
+      placeholder = _toRefs.placeholder,
+      id = _toRefs.id;
 
     // ============ DEPENDENCIES ============
 
-    var {
-      el$,
-      form$,
-      Size,
-      View,
-      classesInstance,
-      classes,
-      Templates,
-      template,
-      theme
-    } = base$16(props, context);
+    var _useElementComponent = base$16(props, context),
+      el$ = _useElementComponent.el$,
+      form$ = _useElementComponent.form$,
+      Size = _useElementComponent.Size,
+      View = _useElementComponent.View,
+      classesInstance = _useElementComponent.classesInstance,
+      classes = _useElementComponent.classes,
+      Templates = _useElementComponent.Templates,
+      template = _useElementComponent.template,
+      theme = _useElementComponent.theme;
 
     // ================ DATA ================
 
@@ -26254,9 +27075,8 @@ var EditorWrapper = {
 };
 
 var base$15 = function base(props, context, dependencies) {
-  var {
-    label
-  } = toRefs(props);
+  var _toRefs = toRefs(props),
+    label = _toRefs.label;
 
   // ============ DEPENDENCIES ============
 
@@ -26322,10 +27142,9 @@ var base$15 = function base(props, context, dependencies) {
 };
 
 var base$14 = function base(props, context, dependencies) {
-  var {
-    columns,
-    presets
-  } = toRefs(props);
+  var _toRefs = toRefs(props),
+    columns = _toRefs.columns,
+    presets = _toRefs.presets;
 
   // ============ DEPENDENCIES ============
 
@@ -26404,12 +27223,11 @@ var base$14 = function base(props, context, dependencies) {
 };
 
 var base$13 = function base(props, context, dependencies) {
-  var {
-    size,
-    view,
-    views,
-    presets
-  } = toRefs(props);
+  var _toRefs = toRefs(props),
+    size = _toRefs.size,
+    view = _toRefs.view,
+    views = _toRefs.views,
+    presets = _toRefs.presets;
   var componentName = context.name;
 
   // ============ DEPENDENCIES ============
@@ -26535,21 +27353,18 @@ var base$13 = function base(props, context, dependencies) {
   };
 };
 var captcha$1 = function captcha(props, context, dependencies) {
-  var {
-    hidden,
-    visible: baseVisible,
-    Size,
-    View,
-    Views,
-    hide,
-    show
-  } = base$13(props, context, dependencies);
+  var _base = base$13(props, context, dependencies),
+    hidden = _base.hidden,
+    baseVisible = _base.visible,
+    Size = _base.Size,
+    View = _base.View,
+    Views = _base.Views,
+    hide = _base.hide,
+    show = _base.show;
 
   // ============ DEPENDENCIES =============
 
-  var {
-    shouldVerify
-  } = dependencies;
+  var shouldVerify = dependencies.shouldVerify;
 
   // =============== METHODS ===============
 
@@ -26568,10 +27383,9 @@ var captcha$1 = function captcha(props, context, dependencies) {
 };
 
 var base$12 = function base(props, context, dependencies) {
-  var {
-    templates,
-    presets
-  } = toRefs(props);
+  var _toRefs = toRefs(props),
+    templates = _toRefs.templates,
+    presets = _toRefs.presets;
   var componentName = context.name;
 
   // ============ DEPENDENCIES ============
@@ -26616,7 +27430,8 @@ var base$12 = function base(props, context, dependencies) {
 
 var base$11 = function base(props, context, dependencies) {
   var options = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
-  toRefs(props);
+  var _toRefs = toRefs(props);
+    _toRefs.slots;
 
   // ============ DEPENDENCIES ============
 
@@ -26695,16 +27510,15 @@ var base$11 = function base(props, context, dependencies) {
 };
 
 var base$10 = function base(props, context, dependencies) {
-  var {
-    buttonLabel,
-    buttonType,
-    href,
-    target,
-    loading,
-    onClick,
-    resets,
-    submits
-  } = toRefs(props);
+  var _toRefs = toRefs(props),
+    buttonLabel = _toRefs.buttonLabel,
+    buttonType = _toRefs.buttonType,
+    href = _toRefs.href,
+    target = _toRefs.target,
+    loading = _toRefs.loading;
+    _toRefs.onClick;
+    var resets = _toRefs.resets,
+    submits = _toRefs.submits;
 
   // ============ DEPENDENCIES ============
 
@@ -26808,10 +27622,9 @@ var base$10 = function base(props, context, dependencies) {
 };
 
 var base$$ = function base(props, context, dependencies) {
-  var {
-    layout,
-    inline
-  } = toRefs(props);
+  var _toRefs = toRefs(props),
+    layout = _toRefs.layout,
+    inline = _toRefs.inline;
 
   // ============== COMPUTED ==============
 
@@ -26830,10 +27643,9 @@ var base$$ = function base(props, context, dependencies) {
 };
 
 var base$_ = function base(props, context, dependencies) {
-  var {
-    id,
-    name
-  } = toRefs(props);
+  var _toRefs = toRefs(props),
+    id = _toRefs.id,
+    name = _toRefs.name;
 
   // ============ DEPENDENCIES ============
 
@@ -26858,9 +27670,7 @@ var base$_ = function base(props, context, dependencies) {
 var base$Z = function base(props, context, dependencies) {
   // ============ DEPENDENCIES ============
 
-  var {
-    container
-  } = dependencies;
+  var container = dependencies.container;
 
   // =============== METHOD ===============
 
@@ -26882,9 +27692,7 @@ var base$Z = function base(props, context, dependencies) {
 var editor$1 = function editor(props, context, dependencies) {
   // ============ DEPENDENCIES ============
 
-  var {
-    input
-  } = dependencies;
+  var input = dependencies.input;
 
   // =============== METHOD ===============
 
@@ -26961,14 +27769,11 @@ function clone$1(value) {
 var clone_1 = clone$1;
 
 var base$X = function base(props, context, dependencies) {
-  var {
-    disabled
-  } = toRefs(props);
-  var {
-    el$,
-    form$,
-    path
-  } = dependencies;
+  var _toRefs = toRefs(props),
+    disabled = _toRefs.disabled;
+  var el$ = dependencies.el$,
+    form$ = dependencies.form$,
+    path = dependencies.path;
 
   // ================ DATA ================
 
@@ -27036,13 +27841,11 @@ var base$X = function base(props, context, dependencies) {
   };
 };
 var checkboxgroup$3 = function checkboxgroup(props, context, dependencies) {
-  var {
-    disables
-  } = toRefs(props);
-  var {
-    localDisabled,
-    isDisabled
-  } = base$X(props, context, dependencies);
+  var _toRefs2 = toRefs(props),
+    disables = _toRefs2.disables;
+  var _base = base$X(props, context, dependencies),
+    localDisabled = _base.localDisabled,
+    isDisabled = _base.isDisabled;
 
   // ================ DATA ================
 
@@ -27136,10 +27939,9 @@ var checkboxgroup$3 = function checkboxgroup(props, context, dependencies) {
   };
 };
 var button$1 = function button(props, context, dependencies) {
-  var {
-    disabled,
-    submits
-  } = toRefs(props);
+  var _toRefs3 = toRefs(props),
+    disabled = _toRefs3.disabled,
+    submits = _toRefs3.submits;
 
   // ============ DEPENDENCIES ============
 
@@ -27242,15 +28044,13 @@ var base$W = function base(props, context, dependencies) {
   };
 };
 var checkbox$1 = function checkbox(props, context, dependencies) {
-  var {
-    text
-  } = toRefs(props);
-  var {
-    descriptionId,
-    labelId,
-    infoId,
-    errorId
-  } = base$W(props, context, dependencies);
+  var _toRefs = toRefs(props),
+    text = _toRefs.text;
+  var _base = base$W(props, context, dependencies),
+    descriptionId = _base.descriptionId,
+    labelId = _base.labelId,
+    infoId = _base.infoId,
+    errorId = _base.errorId;
 
   // ============ DEPENDENCIES ============
 
@@ -27283,12 +28083,11 @@ var checkbox$1 = function checkbox(props, context, dependencies) {
   };
 };
 var checkboxgroup$2 = function checkboxgroup(props, context, dependencies) {
-  var {
-    descriptionId,
-    labelId,
-    infoId,
-    errorId
-  } = base$W(props, context, dependencies);
+  var _base2 = base$W(props, context, dependencies),
+    descriptionId = _base2.descriptionId,
+    labelId = _base2.labelId,
+    infoId = _base2.infoId,
+    errorId = _base2.errorId;
 
   // ============ DEPENDENCIES ============
 
@@ -27316,12 +28115,11 @@ var checkboxgroup$2 = function checkboxgroup(props, context, dependencies) {
   };
 };
 var button = function button(props, context, dependencies) {
-  var {
-    descriptionId,
-    labelId,
-    infoId,
-    errorId
-  } = base$W(props, context, dependencies);
+  var _base3 = base$W(props, context, dependencies),
+    descriptionId = _base3.descriptionId,
+    labelId = _base3.labelId,
+    infoId = _base3.infoId,
+    errorId = _base3.errorId;
 
   // ============ DEPENDENCIES ============
 
@@ -27345,12 +28143,11 @@ var button = function button(props, context, dependencies) {
   };
 };
 var static_$3 = function static_(props, context, dependencies) {
-  var {
-    descriptionId,
-    labelId,
-    infoId,
-    errorId
-  } = base$W(props, context, dependencies);
+  var _base4 = base$W(props, context, dependencies),
+    descriptionId = _base4.descriptionId,
+    labelId = _base4.labelId,
+    infoId = _base4.infoId,
+    errorId = _base4.errorId;
 
   // ============== COMPUTED ==============
 
@@ -27369,14 +28166,14 @@ var static_$3 = function static_(props, context, dependencies) {
   };
 };
 var phone$2 = function phone(props, context, dependencies) {
-  toRefs(props);
-  var {
-    descriptionId,
-    labelId,
-    infoId,
-    errorId,
-    aria
-  } = base$W(props, context, dependencies);
+  var _toRefs2 = toRefs(props);
+    _toRefs2.text;
+  var _base5 = base$W(props, context, dependencies),
+    descriptionId = _base5.descriptionId,
+    labelId = _base5.labelId,
+    infoId = _base5.infoId,
+    errorId = _base5.errorId,
+    aria = _base5.aria;
 
   // ============ DEPENDENCIES ============
 
@@ -27427,9 +28224,8 @@ var lowerFirst = createCaseFirst('toLowerCase');
 var lowerFirst_1 = lowerFirst;
 
 var base$V = function base(props, context, dependencies) {
-  var {
-    name
-  } = toRefs(props);
+  var _toRefs = toRefs(props),
+    name = _toRefs.name;
   var currentInstance = getCurrentInstance();
 
   // ============ DEPENDENCIES =============
@@ -27501,12 +28297,11 @@ var base$U = function base(props, context, dependencies) {
   var form$ = dependencies.form$;
   var el$ = dependencies.el$;
   var fire = dependencies.fire;
-  var {
-    assignToParent,
-    removeFromParent
-  } = base$V(props, context, {
-    form$
-  });
+  var _useParentAssign = base$V(props, context, {
+      form$
+    }),
+    assignToParent = _useParentAssign.assignToParent,
+    removeFromParent = _useParentAssign.removeFromParent;
 
   // ================= DATA ================
 
@@ -27696,21 +28491,20 @@ var base$U = function base(props, context, dependencies) {
   };
 };
 var list$4 = function list(props, context, dependencies) {
-  var {
-    isStatic,
-    isFileType,
-    isImageType,
-    isObjectType,
-    isGroupType,
-    isMatrixType,
-    isGridType,
-    isActive,
-    active,
-    mounted,
-    container,
-    activate,
-    deactivate
-  } = base$U(props, context, dependencies);
+  var _base = base$U(props, context, dependencies),
+    isStatic = _base.isStatic,
+    isFileType = _base.isFileType,
+    isImageType = _base.isImageType,
+    isObjectType = _base.isObjectType,
+    isGroupType = _base.isGroupType,
+    isMatrixType = _base.isMatrixType,
+    isGridType = _base.isGridType,
+    isActive = _base.isActive,
+    active = _base.active,
+    mounted = _base.mounted,
+    container = _base.container,
+    activate = _base.activate,
+    deactivate = _base.deactivate;
 
   // ============== COMPUTED ==============
 
@@ -27739,22 +28533,21 @@ var list$4 = function list(props, context, dependencies) {
   };
 };
 var checkboxgroup$1 = function checkboxgroup(props, context, dependencies) {
-  var {
-    isStatic,
-    isFileType,
-    isImageType,
-    isObjectType,
-    isGroupType,
-    isListType,
-    isMatrixType,
-    isGridType,
-    isActive,
-    active,
-    mounted,
-    container,
-    activate,
-    deactivate
-  } = base$U(props, context, dependencies);
+  var _base2 = base$U(props, context, dependencies),
+    isStatic = _base2.isStatic,
+    isFileType = _base2.isFileType,
+    isImageType = _base2.isImageType,
+    isObjectType = _base2.isObjectType,
+    isGroupType = _base2.isGroupType,
+    isListType = _base2.isListType,
+    isMatrixType = _base2.isMatrixType,
+    isGridType = _base2.isGridType,
+    isActive = _base2.isActive,
+    active = _base2.active,
+    mounted = _base2.mounted,
+    container = _base2.container,
+    activate = _base2.activate,
+    deactivate = _base2.deactivate;
 
   // ============== COMPUTED ==============
 
@@ -27780,22 +28573,21 @@ var checkboxgroup$1 = function checkboxgroup(props, context, dependencies) {
   };
 };
 var object$7 = function object(props, context, dependencies) {
-  var {
-    isStatic,
-    isFileType,
-    isArrayType,
-    isImageType,
-    isGroupType,
-    isMatrixType,
-    isGridType,
-    isListType,
-    isActive,
-    active,
-    mounted,
-    container,
-    activate,
-    deactivate
-  } = base$U(props, context, dependencies);
+  var _base3 = base$U(props, context, dependencies),
+    isStatic = _base3.isStatic,
+    isFileType = _base3.isFileType,
+    isArrayType = _base3.isArrayType,
+    isImageType = _base3.isImageType,
+    isGroupType = _base3.isGroupType,
+    isMatrixType = _base3.isMatrixType,
+    isGridType = _base3.isGridType,
+    isListType = _base3.isListType,
+    isActive = _base3.isActive,
+    active = _base3.active,
+    mounted = _base3.mounted,
+    container = _base3.container,
+    activate = _base3.activate,
+    deactivate = _base3.deactivate;
 
   // ============== COMPUTED ==============
 
@@ -27821,22 +28613,21 @@ var object$7 = function object(props, context, dependencies) {
   };
 };
 var group$7 = function group(props, context, dependencies) {
-  var {
-    isStatic,
-    isFileType,
-    isArrayType,
-    isImageType,
-    isObjectType,
-    isMatrixType,
-    isGridType,
-    isListType,
-    isActive,
-    active,
-    mounted,
-    container,
-    activate,
-    deactivate
-  } = base$U(props, context, dependencies);
+  var _base4 = base$U(props, context, dependencies),
+    isStatic = _base4.isStatic,
+    isFileType = _base4.isFileType,
+    isArrayType = _base4.isArrayType,
+    isImageType = _base4.isImageType,
+    isObjectType = _base4.isObjectType,
+    isMatrixType = _base4.isMatrixType,
+    isGridType = _base4.isGridType,
+    isListType = _base4.isListType,
+    isActive = _base4.isActive,
+    active = _base4.active,
+    mounted = _base4.mounted,
+    container = _base4.container,
+    activate = _base4.activate,
+    deactivate = _base4.deactivate;
 
   // ============== COMPUTED ==============
 
@@ -27862,22 +28653,21 @@ var group$7 = function group(props, context, dependencies) {
   };
 };
 var matrix$5 = function matrix(props, context, dependencies) {
-  var {
-    isStatic,
-    isFileType,
-    isArrayType,
-    isImageType,
-    isObjectType,
-    isGroupType,
-    isListType,
-    isGridType,
-    isActive,
-    active,
-    mounted,
-    container,
-    activate,
-    deactivate
-  } = base$U(props, context, dependencies);
+  var _base5 = base$U(props, context, dependencies),
+    isStatic = _base5.isStatic,
+    isFileType = _base5.isFileType,
+    isArrayType = _base5.isArrayType,
+    isImageType = _base5.isImageType,
+    isObjectType = _base5.isObjectType,
+    isGroupType = _base5.isGroupType,
+    isListType = _base5.isListType,
+    isGridType = _base5.isGridType,
+    isActive = _base5.isActive,
+    active = _base5.active,
+    mounted = _base5.mounted,
+    container = _base5.container,
+    activate = _base5.activate,
+    deactivate = _base5.deactivate;
 
   // ============== COMPUTED ==============
 
@@ -27903,22 +28693,21 @@ var matrix$5 = function matrix(props, context, dependencies) {
   };
 };
 var grid$1 = function grid(props, context, dependencies) {
-  var {
-    isStatic,
-    isFileType,
-    isArrayType,
-    isImageType,
-    isObjectType,
-    isGroupType,
-    isListType,
-    isMatrixType,
-    isActive,
-    active,
-    mounted,
-    container,
-    activate,
-    deactivate
-  } = base$U(props, context, dependencies);
+  var _base6 = base$U(props, context, dependencies),
+    isStatic = _base6.isStatic,
+    isFileType = _base6.isFileType,
+    isArrayType = _base6.isArrayType,
+    isImageType = _base6.isImageType,
+    isObjectType = _base6.isObjectType,
+    isGroupType = _base6.isGroupType,
+    isListType = _base6.isListType,
+    isMatrixType = _base6.isMatrixType,
+    isActive = _base6.isActive,
+    active = _base6.active,
+    mounted = _base6.mounted,
+    container = _base6.container,
+    activate = _base6.activate,
+    deactivate = _base6.deactivate;
 
   // ============== COMPUTED ==============
 
@@ -27944,24 +28733,22 @@ var grid$1 = function grid(props, context, dependencies) {
   };
 };
 var file$3 = function file(props, context, dependencies) {
-  var {
-    view
-  } = toRefs(props);
-  var {
-    isStatic,
-    isArrayType,
-    isObjectType,
-    isGroupType,
-    isMatrixType,
-    isGridType,
-    isListType,
-    isActive,
-    active,
-    mounted,
-    container,
-    activate,
-    deactivate
-  } = base$U(props, context, dependencies);
+  var _toRefs = toRefs(props),
+    view = _toRefs.view;
+  var _base7 = base$U(props, context, dependencies),
+    isStatic = _base7.isStatic,
+    isArrayType = _base7.isArrayType,
+    isObjectType = _base7.isObjectType,
+    isGroupType = _base7.isGroupType,
+    isMatrixType = _base7.isMatrixType,
+    isGridType = _base7.isGridType,
+    isListType = _base7.isListType,
+    isActive = _base7.isActive,
+    active = _base7.active,
+    mounted = _base7.mounted,
+    container = _base7.container,
+    activate = _base7.activate,
+    deactivate = _base7.deactivate;
 
   // ============== COMPUTED ==============
 
@@ -27990,22 +28777,21 @@ var file$3 = function file(props, context, dependencies) {
   };
 };
 var static_$2 = function static_(props, context, dependencies) {
-  var {
-    isArrayType,
-    isFileType,
-    isImageType,
-    isObjectType,
-    isGroupType,
-    isMatrixType,
-    isGridType,
-    isListType,
-    isActive,
-    active,
-    mounted,
-    container,
-    activate,
-    deactivate
-  } = base$U(props, context, dependencies);
+  var _base8 = base$U(props, context, dependencies),
+    isArrayType = _base8.isArrayType,
+    isFileType = _base8.isFileType,
+    isImageType = _base8.isImageType,
+    isObjectType = _base8.isObjectType,
+    isGroupType = _base8.isGroupType,
+    isMatrixType = _base8.isMatrixType,
+    isGridType = _base8.isGridType,
+    isListType = _base8.isListType,
+    isActive = _base8.isActive,
+    active = _base8.active,
+    mounted = _base8.mounted,
+    container = _base8.container,
+    activate = _base8.activate,
+    deactivate = _base8.deactivate;
 
   // ============== COMPUTED ==============
 
@@ -28035,16 +28821,13 @@ var multiselect$5 = checkboxgroup$1;
 var tags$5 = checkboxgroup$1;
 
 var base$T = function base(props, context, dependencies) {
-  var {
-    name
-  } = toRefs(props);
+  var _toRefs = toRefs(props),
+    name = _toRefs.name;
   var currentInstance = getCurrentInstance();
 
   // ============ DEPENDENCIES ============
 
-  var {
-    form$
-  } = dependencies;
+  var form$ = dependencies.form$;
 
   // ============== COMPUTED ==============
 
@@ -28103,10 +28886,9 @@ var base$T = function base(props, context, dependencies) {
 var group$6 = function group(props, context, dependencies) {
   // ============ DEPENDENCIES ============
 
-  var {
-    path,
-    parent
-  } = base$T(props, context, dependencies);
+  var _base = base$T(props, context, dependencies),
+    path = _base.path,
+    parent = _base.parent;
 
   // ============== COMPUTED ==============
 
@@ -28126,11 +28908,10 @@ var group$6 = function group(props, context, dependencies) {
 var static_$1 = function static_(props, context, dependencies) {
   // ============ DEPENDENCIES ============
 
-  var {
-    path,
-    parent,
-    flat
-  } = base$T(props, context, dependencies);
+  var _base2 = base$T(props, context, dependencies),
+    path = _base2.path,
+    parent = _base2.parent,
+    flat = _base2.flat;
 
   // ============== COMPUTED ==============
 
@@ -28189,9 +28970,8 @@ var multilingual$8 = function multilingual(props, context) {
 };
 var location$3 = function location(props, context) {
   var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
-  var {
-    displayKey
-  } = toRefs(props);
+  var _toRefs = toRefs(props),
+    displayKey = _toRefs.displayKey;
   var deps = resolveDeps(props, context, options);
   onMounted(() => {
     if (deps.value.value[displayKey.value]) {
@@ -28542,14 +29322,12 @@ var getColKey = name => {
 };
 
 var valueGet = _ref => {
-  var {
-    parent,
-    name,
-    form$,
-    dataPath,
-    internalValue,
-    defaultValue
-  } = _ref;
+  var parent = _ref.parent,
+    name = _ref.name,
+    form$ = _ref.form$,
+    dataPath = _ref.dataPath,
+    internalValue = _ref.internalValue,
+    defaultValue = _ref.defaultValue;
   var value;
   if (parent.value && parent.value.isMatrixType) {
     var row = parent.value.resolvedRows[getRowKey(name.value)];
@@ -28576,13 +29354,11 @@ var valueGet = _ref => {
 };
 
 var valueSet = (val, _ref) => {
-  var {
-    parent,
-    name,
-    form$,
-    dataPath,
-    internalValue
-  } = _ref;
+  var parent = _ref.parent,
+    name = _ref.name,
+    form$ = _ref.form$,
+    dataPath = _ref.dataPath,
+    internalValue = _ref.internalValue;
   if (parent.value && parent.value.isMatrixType) {
     var row = parent.value.resolvedRows[getRowKey(name.value)];
     var col = parent.value.resolvedColumns[getColKey(name.value)];
@@ -28649,19 +29425,16 @@ var valueSet = (val, _ref) => {
 var base$Q = function base(props, context, dependencies) {
   var _options$value, _options$value2;
   var options = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
-  var {
-    name,
-    type
-  } = toRefs(props);
+  var _toRefs = toRefs(props),
+    name = _toRefs.name,
+    type = _toRefs.type;
 
   // ============ DEPENDENCIES =============
 
-  var {
-    parent,
-    defaultValue,
-    dataPath,
-    form$
-  } = dependencies;
+  var parent = dependencies.parent,
+    defaultValue = dependencies.defaultValue,
+    dataPath = dependencies.dataPath,
+    form$ = dependencies.form$;
 
   // ================ DATA =================
 
@@ -28762,30 +29535,26 @@ var base$Q = function base(props, context, dependencies) {
 var text$3 = function text(props, context, dependencies) {
   var _options$value3, _options$value4;
   var options = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
-  var {
-    name,
-    expression
-  } = toRefs(props);
-  var {
-    initialValue,
-    internalValue,
-    isDefault
-  } = base$Q(props, context, dependencies);
+  var _toRefs2 = toRefs(props),
+    name = _toRefs2.name,
+    expression = _toRefs2.expression;
+  var _base = base$Q(props, context, dependencies),
+    initialValue = _base.initialValue,
+    internalValue = _base.internalValue,
+    isDefault = _base.isDefault;
   var unwatchDeps;
   var unwatchData;
   var unwatchLocale;
 
   // ============ DEPENDENCIES =============
 
-  var {
-    parent,
-    defaultValue,
-    dataPath,
-    form$,
-    shouldForceNumbers,
-    stringToNumber,
-    on
-  } = dependencies;
+  var parent = dependencies.parent,
+    defaultValue = dependencies.defaultValue,
+    dataPath = dependencies.dataPath,
+    form$ = dependencies.form$,
+    shouldForceNumbers = dependencies.shouldForceNumbers,
+    stringToNumber = dependencies.stringToNumber,
+    on = dependencies.on;
   var $vueform = inject('$vueform');
   var config$ = inject('config$');
 
@@ -28946,20 +29715,17 @@ var text$3 = function text(props, context, dependencies) {
   };
 };
 var matrix$4 = function matrix(props, context, dependencies) {
-  var {
-    name,
-    type
-  } = toRefs(props);
+  var _toRefs3 = toRefs(props),
+    name = _toRefs3.name,
+    type = _toRefs3.type;
 
   // ============ DEPENDENCIES =============
 
-  var {
-    parent,
-    defaultValue,
-    dataPath,
-    form$,
-    hasDynamicRows
-  } = dependencies;
+  var parent = dependencies.parent,
+    defaultValue = dependencies.defaultValue,
+    dataPath = dependencies.dataPath,
+    form$ = dependencies.form$,
+    hasDynamicRows = dependencies.hasDynamicRows;
 
   // ================ DATA =================
 
@@ -29059,15 +29825,14 @@ var matrix$4 = function matrix(props, context, dependencies) {
   };
 };
 var list$3 = function list(props, context, dependencies) {
-  var {
-    initialValue,
-    internalValue,
-    value,
-    model,
-    isDefault
-  } = base$Q(props, context, dependencies, {
-    init: false
-  });
+  var _base2 = base$Q(props, context, dependencies, {
+      init: false
+    }),
+    initialValue = _base2.initialValue,
+    internalValue = _base2.internalValue,
+    value = _base2.value,
+    model = _base2.model,
+    isDefault = _base2.isDefault;
   return {
     initialValue,
     internalValue,
@@ -29078,14 +29843,13 @@ var list$3 = function list(props, context, dependencies) {
 };
 var object$6 = function object(props, context, dependencies) {
   var options = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
-  var {
-    initialValue,
-    internalValue,
-    value,
-    isDefault
-  } = base$Q(props, context, dependencies, {
-    init: false
-  });
+  var _base3 = base$Q(props, context, dependencies, {
+      init: false
+    }),
+    initialValue = _base3.initialValue,
+    internalValue = _base3.internalValue,
+    value = _base3.value,
+    isDefault = _base3.isDefault;
 
   // ============ DEPENDENCIES =============
 
@@ -29192,10 +29956,9 @@ var group$5 = function group(props, context, dependencies) {
   };
 };
 var multilingual$7 = function multilingual(props, context, dependencies) {
-  var {
-    value,
-    isDefault
-  } = base$Q(props, context, dependencies);
+  var _base4 = base$Q(props, context, dependencies),
+    value = _base4.value,
+    isDefault = _base4.isDefault;
 
   // ============ DEPENDENCIES =============
 
@@ -29220,9 +29983,8 @@ var multilingual$7 = function multilingual(props, context, dependencies) {
   };
 };
 var date$3 = function date(props, context, dependencies) {
-  var {
-    name
-  } = toRefs(props);
+  var _toRefs4 = toRefs(props),
+    name = _toRefs4.name;
 
   // ============ DEPENDENCIES =============
 
@@ -29242,38 +30004,37 @@ var date$3 = function date(props, context, dependencies) {
    * @private
    */
   var internalValue = ref(cloneDeep_1(defaultValue.value));
-  var {
-    value,
-    initialValue,
-    isDefault
-  } = base$Q(props, context, dependencies, {
-    value: {
-      get() {
-        return valueGet({
-          parent,
-          name,
-          form$,
-          dataPath,
-          internalValue,
-          defaultValue
-        });
-      },
-      set(val) {
-        // If the value is not a Date object check if it is matching the value format
-        if (!isEmpty_1(val) && !(val instanceof Date) && valueDateFormat.value !== false) {
-          checkDateFormat(valueDateFormat.value, val, moment);
+  var _base5 = base$Q(props, context, dependencies, {
+      value: {
+        get() {
+          return valueGet({
+            parent,
+            name,
+            form$,
+            dataPath,
+            internalValue,
+            defaultValue
+          });
+        },
+        set(val) {
+          // If the value is not a Date object check if it is matching the value format
+          if (!isEmpty_1(val) && !(val instanceof Date) && valueDateFormat.value !== false) {
+            checkDateFormat(valueDateFormat.value, val, moment);
+          }
+          val = val && val instanceof Date && valueDateFormat.value !== false ? moment(val).format(valueDateFormat.value) : val;
+          return valueSet(val, {
+            parent,
+            name,
+            form$,
+            dataPath,
+            internalValue
+          });
         }
-        val = val && val instanceof Date && valueDateFormat.value !== false ? moment(val).format(valueDateFormat.value) : val;
-        return valueSet(val, {
-          parent,
-          name,
-          form$,
-          dataPath,
-          internalValue
-        });
       }
-    }
-  });
+    }),
+    value = _base5.value,
+    initialValue = _base5.initialValue,
+    isDefault = _base5.isDefault;
 
   // ============== COMPUTED ===============
 
@@ -29289,9 +30050,8 @@ var date$3 = function date(props, context, dependencies) {
   };
 };
 var dates$4 = function dates(props, context, dependencies) {
-  var {
-    name
-  } = toRefs(props);
+  var _toRefs5 = toRefs(props),
+    name = _toRefs5.name;
 
   // ============ DEPENDENCIES =============
 
@@ -29311,42 +30071,41 @@ var dates$4 = function dates(props, context, dependencies) {
    * @private
    */
   var internalValue = ref(cloneDeep_1(defaultValue.value));
-  var {
-    value,
-    initialValue,
-    isDefault
-  } = base$Q(props, context, dependencies, {
-    value: {
-      get() {
-        return valueGet({
-          parent,
-          name,
-          form$,
-          dataPath,
-          internalValue,
-          defaultValue
-        });
-      },
-      set(val) {
-        if (!Array.isArray(val)) {
-          val = [val];
-        }
-        val = val.map(v => {
-          if (!isEmpty_1(v) && !(v instanceof Date) && valueDateFormat.value !== false) {
-            checkDateFormat(valueDateFormat.value, v, moment);
+  var _base6 = base$Q(props, context, dependencies, {
+      value: {
+        get() {
+          return valueGet({
+            parent,
+            name,
+            form$,
+            dataPath,
+            internalValue,
+            defaultValue
+          });
+        },
+        set(val) {
+          if (!Array.isArray(val)) {
+            val = [val];
           }
-          return v && v instanceof Date && valueDateFormat.value !== false ? moment(v).format(valueDateFormat.value) : v;
-        });
-        return valueSet(val, {
-          parent,
-          name,
-          form$,
-          dataPath,
-          internalValue
-        });
+          val = val.map(v => {
+            if (!isEmpty_1(v) && !(v instanceof Date) && valueDateFormat.value !== false) {
+              checkDateFormat(valueDateFormat.value, v, moment);
+            }
+            return v && v instanceof Date && valueDateFormat.value !== false ? moment(v).format(valueDateFormat.value) : v;
+          });
+          return valueSet(val, {
+            parent,
+            name,
+            form$,
+            dataPath,
+            internalValue
+          });
+        }
       }
-    }
-  });
+    }),
+    value = _base6.value,
+    initialValue = _base6.initialValue,
+    isDefault = _base6.isDefault;
 
   // ============== COMPUTED ===============
 
@@ -29392,9 +30151,8 @@ var array$1 = function array(props, context, dependencies) {
   };
 };
 var boolean = function boolean(props, context, dependencies) {
-  var {
-    falseValue
-  } = toRefs(props);
+  var _toRefs = toRefs(props),
+    falseValue = _toRefs.falseValue;
 
   // ============== COMPUTED ===============
 
@@ -29406,10 +30164,9 @@ var boolean = function boolean(props, context, dependencies) {
   };
 };
 var min = function min(props, context, dependencies) {
-  var {
-    min,
-    default: default_
-  } = toRefs(props);
+  var _toRefs2 = toRefs(props),
+    min = _toRefs2.min,
+    default_ = _toRefs2.default;
 
   // ============== COMPUTED ===============
 
@@ -29481,13 +30238,12 @@ var generic = function generic(props, context, dependencies) {
 };
 
 var base$O = function base(props, context, dependencies) {
-  var {
-    name,
-    floating,
-    placeholder,
-    label,
-    fieldName
-  } = toRefs(props);
+  var _toRefs = toRefs(props),
+    name = _toRefs.name,
+    floating = _toRefs.floating,
+    placeholder = _toRefs.placeholder,
+    label = _toRefs.label,
+    fieldName = _toRefs.fieldName;
 
   // ============ DEPENDENCIES ============
 
@@ -29526,12 +30282,11 @@ var base$O = function base(props, context, dependencies) {
   };
 };
 var file$2 = function file(props, context, dependencies) {
-  var {
-    name,
-    embed,
-    label,
-    fieldName
-  } = toRefs(props);
+  var _toRefs2 = toRefs(props),
+    name = _toRefs2.name,
+    embed = _toRefs2.embed,
+    label = _toRefs2.label,
+    fieldName = _toRefs2.fieldName;
 
   // ============ DEPENDENCIES ============
 
@@ -29622,9 +30377,8 @@ var array = function array(props, context, dependencies) {
 };
 
 var base$M = function base(props, context, dependencies) {
-  var {
-    loading
-  } = toRefs(props);
+  var _toRefs = toRefs(props),
+    loading = _toRefs.loading;
 
   // ============ DEPENDENCIES ============
 
@@ -29646,10 +30400,9 @@ var base$M = function base(props, context, dependencies) {
 };
 
 var base$L = function base(props, context, dependencies) {
-  var {
-    floating,
-    placeholder
-  } = toRefs(props);
+  var _toRefs = toRefs(props),
+    floating = _toRefs.floating,
+    placeholder = _toRefs.placeholder;
 
   // ============ DEPENDENCIES ============
 
@@ -29781,14 +30534,12 @@ var list$2 = function list(props, context, dependencies) {
 var object$4 = function object(props, context, dependencies) {
   // ============ DEPENDENCIES =============
 
-  var {
-    form$,
-    fire,
-    value,
-    el$,
-    dirt,
-    validateValidators
-  } = dependencies;
+  var form$ = dependencies.form$,
+    fire = dependencies.fire,
+    value = dependencies.value,
+    el$ = dependencies.el$,
+    dirt = dependencies.dirt,
+    validateValidators = dependencies.validateValidators;
 
   // =============== METHODS ===============
 
@@ -29818,9 +30569,8 @@ var object$4 = function object(props, context, dependencies) {
   };
 };
 var location$1 = function location(props, context, dependencies) {
-  var {
-    displayKey
-  } = toRefs(props);
+  var _toRefs = toRefs(props),
+    displayKey = _toRefs.displayKey;
 
   // ============ DEPENDENCIES =============
 
@@ -29860,28 +30610,25 @@ var multifile$5 = list$2;
 var group$4 = object$4;
 
 var base$J = function base(props, context, dependencies) {
-  var {
-    provider: elementProvider,
-    options,
-    readonly
-  } = toRefs(props);
+  var _toRefs = toRefs(props),
+    elementProvider = _toRefs.provider,
+    options = _toRefs.options,
+    readonly = _toRefs.readonly;
 
   // ============ DEPENDENCIES ============
 
-  var {
-    form$,
-    input,
-    model,
-    nullValue,
-    messageBag,
-    validate,
-    el$,
-    invalid,
-    isDisabled,
-    resetValidators,
-    resetting,
-    initValidation
-  } = dependencies;
+  var form$ = dependencies.form$,
+    input = dependencies.input,
+    model = dependencies.model,
+    nullValue = dependencies.nullValue;
+    dependencies.messageBag;
+    dependencies.validate;
+    var el$ = dependencies.el$;
+    dependencies.invalid;
+    var isDisabled = dependencies.isDisabled,
+    resetValidators = dependencies.resetValidators;
+    dependencies.resetting;
+    var initValidation = dependencies.initValidation;
 
   // ================ DATA ================
 
@@ -29979,9 +30726,8 @@ var base$J = function base(props, context, dependencies) {
 };
 
 var base$I = function base(props, context, dependencies) {
-  var {
-    rules
-  } = toRefs(props);
+  var _toRefs = toRefs(props),
+    rules = _toRefs.rules;
   var config$ = inject('config$');
 
   // ============ DEPENDENCIES ============
@@ -30338,32 +31084,31 @@ var base$I = function base(props, context, dependencies) {
   };
 };
 var text$2 = function text(props, context, dependencies) {
-  var {
-    state,
-    Validators,
-    messageBag,
-    resetting,
-    dirty,
-    validated,
-    invalid,
-    pending,
-    errors,
-    error,
-    validationRules,
-    isDanger,
-    isSuccess,
-    isRequired,
-    useCustomFilled,
-    isFilled,
-    validate,
-    dirt,
-    clean,
-    clearMessages,
-    resetValidators,
-    initMessageBag,
-    initValidation,
-    reinitValidation
-  } = base$I(props, context, dependencies);
+  var _base = base$I(props, context, dependencies),
+    state = _base.state,
+    Validators = _base.Validators,
+    messageBag = _base.messageBag,
+    resetting = _base.resetting,
+    dirty = _base.dirty,
+    validated = _base.validated,
+    invalid = _base.invalid,
+    pending = _base.pending,
+    errors = _base.errors,
+    error = _base.error,
+    validationRules = _base.validationRules,
+    isDanger = _base.isDanger,
+    isSuccess = _base.isSuccess,
+    isRequired = _base.isRequired,
+    useCustomFilled = _base.useCustomFilled,
+    isFilled = _base.isFilled,
+    validate = _base.validate,
+    dirt = _base.dirt,
+    clean = _base.clean,
+    clearMessages = _base.clearMessages,
+    resetValidators = _base.resetValidators,
+    initMessageBag = _base.initMessageBag,
+    initValidation = _base.initValidation,
+    reinitValidation = _base.reinitValidation;
 
   // ============== COMPUTED ===============
 
@@ -30418,18 +31163,17 @@ var text$2 = function text(props, context, dependencies) {
 var list$1 = function list(props, context, dependencies) {
   // ============ DEPENDENCIES ============
 
-  var {
-    state,
-    Validators,
-    messageBag,
-    validationRules,
-    dirt,
-    initValidation,
-    resetting,
-    isRequired,
-    useCustomFilled,
-    isFilled
-  } = base$I(props, context, dependencies);
+  var _base2 = base$I(props, context, dependencies),
+    state = _base2.state,
+    Validators = _base2.Validators,
+    messageBag = _base2.messageBag,
+    validationRules = _base2.validationRules,
+    dirt = _base2.dirt,
+    initValidation = _base2.initValidation,
+    resetting = _base2.resetting,
+    isRequired = _base2.isRequired,
+    useCustomFilled = _base2.useCustomFilled,
+    isFilled = _base2.isFilled;
   var form$ = dependencies.form$;
   var children$ = dependencies.children$;
 
@@ -30716,40 +31460,37 @@ var list$1 = function list(props, context, dependencies) {
 var grid = function grid(props, context, dependencies) {
   // ============ DEPENDENCIES ============
 
-  var {
-    state,
-    Validators,
-    messageBag,
-    resetting,
-    dirty,
-    validated,
-    invalid,
-    pending,
-    debouncing,
-    busy,
-    isRequired,
-    useCustomFilled,
-    isFilled,
-    validatorErrors,
-    childrenErrors,
-    errors,
-    validationRules,
-    validate,
-    validateValidators,
-    validateChildren,
-    dirt,
-    clean,
-    clearMessages,
-    resetValidators,
-    initMessageBag,
-    initValidation,
-    reinitValidation
-  } = list$1(props, context, dependencies);
-  var {
-    form$,
-    children$,
-    isTableView
-  } = dependencies;
+  var _list = list$1(props, context, dependencies),
+    state = _list.state,
+    Validators = _list.Validators,
+    messageBag = _list.messageBag,
+    resetting = _list.resetting,
+    dirty = _list.dirty,
+    validated = _list.validated,
+    invalid = _list.invalid,
+    pending = _list.pending,
+    debouncing = _list.debouncing,
+    busy = _list.busy,
+    isRequired = _list.isRequired,
+    useCustomFilled = _list.useCustomFilled,
+    isFilled = _list.isFilled,
+    validatorErrors = _list.validatorErrors,
+    childrenErrors = _list.childrenErrors,
+    errors = _list.errors,
+    validationRules = _list.validationRules,
+    validate = _list.validate,
+    validateValidators = _list.validateValidators,
+    validateChildren = _list.validateChildren,
+    dirt = _list.dirt,
+    clean = _list.clean,
+    clearMessages = _list.clearMessages,
+    resetValidators = _list.resetValidators,
+    initMessageBag = _list.initMessageBag,
+    initValidation = _list.initValidation,
+    reinitValidation = _list.reinitValidation;
+  dependencies.form$;
+    dependencies.children$;
+    var isTableView = dependencies.isTableView;
 
   // ============== COMPUTED ==============
 
@@ -30788,9 +31529,8 @@ var grid = function grid(props, context, dependencies) {
   };
 };
 var multilingual$3 = function multilingual(props, context, dependencies) {
-  var {
-    rules
-  } = toRefs(props);
+  var _toRefs2 = toRefs(props),
+    rules = _toRefs2.rules;
   var config$ = inject('config$');
 
   // ============ DEPENDENCIES ============
@@ -30801,13 +31541,12 @@ var multilingual$3 = function multilingual(props, context, dependencies) {
   var languages = dependencies.languages;
   var language = dependencies.language;
   var value = dependencies.value;
-  var {
-    messageBag,
-    clearMessages,
-    resetting,
-    useCustomFilled,
-    isFilled
-  } = text$2(props, context, dependencies);
+  var _text = text$2(props, context, dependencies),
+    messageBag = _text.messageBag,
+    clearMessages = _text.clearMessages,
+    resetting = _text.resetting,
+    useCustomFilled = _text.useCustomFilled,
+    isFilled = _text.isFilled;
 
   // ================ DATA ================
 
@@ -31140,30 +31879,29 @@ var slider$1 = function slider(props, context, dependencies) {
   // ============ DEPENDENCIES ============
 
   var value = dependencies.value;
-  var {
-    state,
-    Validators,
-    messageBag,
-    resetting,
-    dirty,
-    validated,
-    invalid,
-    pending,
-    busy,
-    isRequired,
-    useCustomFilled,
-    isFilled,
-    errors,
-    error,
-    validationRules,
-    dirt,
-    clean,
-    clearMessages,
-    resetValidators,
-    initMessageBag,
-    initValidation,
-    reinitValidation
-  } = base$I(props, context, dependencies);
+  var _base3 = base$I(props, context, dependencies),
+    state = _base3.state,
+    Validators = _base3.Validators,
+    messageBag = _base3.messageBag,
+    resetting = _base3.resetting,
+    dirty = _base3.dirty,
+    validated = _base3.validated,
+    invalid = _base3.invalid,
+    pending = _base3.pending,
+    busy = _base3.busy,
+    isRequired = _base3.isRequired,
+    useCustomFilled = _base3.useCustomFilled,
+    isFilled = _base3.isFilled,
+    errors = _base3.errors,
+    error = _base3.error,
+    validationRules = _base3.validationRules,
+    dirt = _base3.dirt,
+    clean = _base3.clean,
+    clearMessages = _base3.clearMessages,
+    resetValidators = _base3.resetValidators,
+    initMessageBag = _base3.initMessageBag,
+    initValidation = _base3.initValidation,
+    reinitValidation = _base3.reinitValidation;
 
   // =============== METHODS ==============
 
@@ -31246,29 +31984,28 @@ var file$1 = function file(props, context, dependencies) {
   var value = dependencies.value;
   var uploading = dependencies.uploading;
   var removing = dependencies.removing;
-  var {
-    state,
-    Validators,
-    messageBag,
-    resetting,
-    dirty,
-    validated,
-    invalid,
-    pending,
-    isRequired,
-    useCustomFilled,
-    isFilled,
-    errors,
-    error,
-    validationRules,
-    dirt,
-    clean,
-    clearMessages,
-    resetValidators,
-    initMessageBag,
-    initValidation,
-    reinitValidation
-  } = base$I(props, context, dependencies);
+  var _base4 = base$I(props, context, dependencies),
+    state = _base4.state,
+    Validators = _base4.Validators,
+    messageBag = _base4.messageBag,
+    resetting = _base4.resetting,
+    dirty = _base4.dirty,
+    validated = _base4.validated,
+    invalid = _base4.invalid,
+    pending = _base4.pending,
+    isRequired = _base4.isRequired,
+    useCustomFilled = _base4.useCustomFilled,
+    isFilled = _base4.isFilled,
+    errors = _base4.errors,
+    error = _base4.error,
+    validationRules = _base4.validationRules,
+    dirt = _base4.dirt,
+    clean = _base4.clean,
+    clearMessages = _base4.clearMessages,
+    resetValidators = _base4.resetValidators,
+    initMessageBag = _base4.initMessageBag,
+    initValidation = _base4.initValidation,
+    reinitValidation = _base4.reinitValidation;
 
   // ============== COMPUTED ==============
 
@@ -31345,41 +32082,39 @@ var file$1 = function file(props, context, dependencies) {
   };
 };
 var location = function location(props, context, dependencies) {
-  var {
-    displayKey
-  } = toRefs(props);
+  var _toRefs3 = toRefs(props),
+    displayKey = _toRefs3.displayKey;
 
   // ============ DEPENDENCIES ============
 
   var form$ = dependencies.form$;
   var value = dependencies.value;
-  var {
-    state,
-    Validators,
-    messageBag,
-    resetting,
-    dirty,
-    validated,
-    invalid,
-    pending,
-    debouncing,
-    busy,
-    isRequired,
-    useCustomFilled,
-    isFilled,
-    errors,
-    error,
-    validationRules,
-    isSuccess,
-    isDanger,
-    dirt,
-    clean,
-    clearMessages,
-    resetValidators,
-    initMessageBag,
-    initValidation,
-    reinitValidation
-  } = text$2(props, context, dependencies);
+  var _text2 = text$2(props, context, dependencies),
+    state = _text2.state,
+    Validators = _text2.Validators,
+    messageBag = _text2.messageBag,
+    resetting = _text2.resetting,
+    dirty = _text2.dirty,
+    validated = _text2.validated,
+    invalid = _text2.invalid,
+    pending = _text2.pending,
+    debouncing = _text2.debouncing,
+    busy = _text2.busy,
+    isRequired = _text2.isRequired,
+    useCustomFilled = _text2.useCustomFilled,
+    isFilled = _text2.isFilled,
+    errors = _text2.errors,
+    error = _text2.error,
+    validationRules = _text2.validationRules,
+    isSuccess = _text2.isSuccess,
+    isDanger = _text2.isDanger,
+    dirt = _text2.dirt,
+    clean = _text2.clean,
+    clearMessages = _text2.clearMessages,
+    resetValidators = _text2.resetValidators,
+    initMessageBag = _text2.initMessageBag,
+    initValidation = _text2.initValidation,
+    reinitValidation = _text2.reinitValidation;
 
   // =============== METHODS ==============
 
@@ -31446,37 +32181,34 @@ var location = function location(props, context, dependencies) {
 var matrix$3 = function matrix(props, context, dependencies) {
   // ============ DEPENDENCIES ============
 
-  var {
-    value,
-    dataType
-  } = dependencies;
-  var {
-    state,
-    Validators,
-    messageBag,
-    resetting,
-    dirty,
-    validated,
-    invalid,
-    pending,
-    debouncing,
-    busy,
-    isRequired,
-    validatorErrors,
-    childrenErrors,
-    errors,
-    validationRules,
-    validate,
-    validateValidators,
-    validateChildren,
-    dirt,
-    clean,
-    clearMessages,
-    resetValidators,
-    initMessageBag,
-    initValidation,
-    reinitValidation
-  } = object$3(props, context, dependencies);
+  var value = dependencies.value,
+    dataType = dependencies.dataType;
+  var _object = object$3(props, context, dependencies),
+    state = _object.state,
+    Validators = _object.Validators,
+    messageBag = _object.messageBag,
+    resetting = _object.resetting,
+    dirty = _object.dirty,
+    validated = _object.validated,
+    invalid = _object.invalid,
+    pending = _object.pending,
+    debouncing = _object.debouncing,
+    busy = _object.busy,
+    isRequired = _object.isRequired,
+    validatorErrors = _object.validatorErrors,
+    childrenErrors = _object.childrenErrors,
+    errors = _object.errors,
+    validationRules = _object.validationRules,
+    validate = _object.validate,
+    validateValidators = _object.validateValidators,
+    validateChildren = _object.validateChildren,
+    dirt = _object.dirt,
+    clean = _object.clean,
+    clearMessages = _object.clearMessages,
+    resetValidators = _object.resetValidators,
+    initMessageBag = _object.initMessageBag,
+    initValidation = _object.initValidation,
+    reinitValidation = _object.reinitValidation;
 
   // ============== COMPUTED ==============
 
@@ -31542,18 +32274,15 @@ var group$3 = list$1;
 var object$3 = list$1;
 
 var base$H = function base(props, context, dependencies) {
-  var {
-    default: default_,
-    name
-  } = toRefs(props);
+  var _toRefs = toRefs(props),
+    default_ = _toRefs.default,
+    name = _toRefs.name;
 
   // ============ DEPENDENCIES =============
 
-  var {
-    nullValue,
-    form$,
-    parent
-  } = dependencies;
+  var nullValue = dependencies.nullValue,
+    form$ = dependencies.form$,
+    parent = dependencies.parent;
 
   // ============== COMPUTED ===============
 
@@ -31599,10 +32328,9 @@ var base$H = function base(props, context, dependencies) {
   };
 };
 var text$1 = function text(props, context, dependencies) {
-  var {
-    default: default_,
-    name
-  } = toRefs(props);
+  var _toRefs2 = toRefs(props),
+    default_ = _toRefs2.default,
+    name = _toRefs2.name;
 
   // ============ DEPENDENCIES =============
 
@@ -31662,10 +32390,9 @@ var text$1 = function text(props, context, dependencies) {
   };
 };
 var object$2 = function object(props, context, dependencies) {
-  var {
-    default: default_,
-    name
-  } = toRefs(props);
+  var _toRefs3 = toRefs(props),
+    default_ = _toRefs3.default,
+    name = _toRefs3.name;
 
   // ============ DEPENDENCIES =============
 
@@ -31695,25 +32422,22 @@ var object$2 = function object(props, context, dependencies) {
   };
 };
 var matrix$2 = function matrix(props, context, dependencies) {
-  var {
-    name,
-    default: default_
-  } = toRefs(props);
+  var _toRefs4 = toRefs(props),
+    name = _toRefs4.name,
+    default_ = _toRefs4.default;
 
   // ============ DEPENDENCIES =============
 
-  var {
-    nullValue,
-    form$,
-    parent,
-    hasDynamicRows,
-    computedRows,
-    resolvedRows,
-    resolvedColumns,
-    rowsCount,
-    dataType,
-    el$
-  } = dependencies;
+  dependencies.nullValue;
+    var form$ = dependencies.form$,
+    parent = dependencies.parent;
+    dependencies.hasDynamicRows;
+    dependencies.computedRows;
+    var resolvedRows = dependencies.resolvedRows,
+    resolvedColumns = dependencies.resolvedColumns;
+    dependencies.rowsCount;
+    var dataType = dependencies.dataType;
+    dependencies.el$;
 
   // ============== COMPUTED ===============
 
@@ -31752,9 +32476,8 @@ var matrix$2 = function matrix(props, context, dependencies) {
   };
 };
 var group$2 = function group(props, context, dependencies) {
-  var {
-    default: default_
-  } = toRefs(props);
+  var _toRefs5 = toRefs(props),
+    default_ = _toRefs5.default;
 
   // ============ DEPENDENCIES =============
 
@@ -31778,10 +32501,9 @@ var group$2 = function group(props, context, dependencies) {
   };
 };
 var multilingual$2 = function multilingual(props, context, dependencies) {
-  var {
-    default: default_,
-    name
-  } = toRefs(props);
+  var _toRefs6 = toRefs(props),
+    default_ = _toRefs6.default,
+    name = _toRefs6.name;
 
   // ============ DEPENDENCIES =============
 
@@ -31821,14 +32543,11 @@ var multilingual$2 = function multilingual(props, context, dependencies) {
 var hidden$1 = text$1;
 
 var base$G = function base(props, context, dependencies) {
-  var {
-    readonly
-  } = toRefs(props);
-  var {
-    el$,
-    form$,
-    path
-  } = dependencies;
+  var _toRefs = toRefs(props),
+    readonly = _toRefs.readonly;
+  var el$ = dependencies.el$,
+    form$ = dependencies.form$,
+    path = dependencies.path;
 
   // ============== COMPUTED ==============
 
@@ -32067,12 +32786,11 @@ var sortBy_1 = sortBy;
 
 var base$F = function base(props, context, dependencies) {
   var options = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
-  var {
-    submit,
-    formatData,
-    formatLoad,
-    name
-  } = toRefs(props);
+  var _toRefs = toRefs(props),
+    submit = _toRefs.submit,
+    formatData = _toRefs.formatData,
+    formatLoad = _toRefs.formatLoad,
+    name = _toRefs.name;
 
   // ============ DEPENDENCIES =============
 
@@ -32218,28 +32936,24 @@ var base$F = function base(props, context, dependencies) {
   };
 };
 var text = function text(props, context, dependencies) {
-  var {
-    submit,
-    formatData,
-    name
-  } = toRefs(props);
-  var {
-    load,
-    update,
-    clear,
-    reset,
-    prepare
-  } = base$F(props, context, dependencies);
+  var _toRefs2 = toRefs(props),
+    submit = _toRefs2.submit,
+    formatData = _toRefs2.formatData,
+    name = _toRefs2.name;
+  var _base = base$F(props, context, dependencies),
+    load = _base.load,
+    update = _base.update,
+    clear = _base.clear,
+    reset = _base.reset,
+    prepare = _base.prepare;
 
   // ============ DEPENDENCIES =============
 
-  var {
-    form$,
-    available,
-    value,
-    shouldForceNumbers,
-    stringToNumber
-  } = dependencies;
+  var form$ = dependencies.form$,
+    available = dependencies.available,
+    value = dependencies.value,
+    shouldForceNumbers = dependencies.shouldForceNumbers,
+    stringToNumber = dependencies.stringToNumber;
 
   // =============== COMPUTED ==============
 
@@ -32288,24 +33002,21 @@ var text = function text(props, context, dependencies) {
   };
 };
 var textarea = function textarea(props, context, dependencies) {
-  var {
-    data,
-    availableData,
-    requestData,
-    load: baseLoad,
-    update: baseUpdate,
-    clear: baseClear,
-    reset: baseReset,
-    prepare
-  } = base$F(props, context, dependencies);
+  var _base2 = base$F(props, context, dependencies),
+    data = _base2.data,
+    availableData = _base2.availableData,
+    requestData = _base2.requestData,
+    baseLoad = _base2.load,
+    baseUpdate = _base2.update,
+    baseClear = _base2.clear,
+    baseReset = _base2.reset,
+    prepare = _base2.prepare;
 
   // ============ DEPENDENCIES =============
 
-  var {
-    autosize,
-    fire,
-    el$
-  } = dependencies;
+  var autosize = dependencies.autosize,
+    fire = dependencies.fire,
+    el$ = dependencies.el$;
 
   // =============== METHODS ===============
 
@@ -32349,19 +33060,17 @@ var textarea = function textarea(props, context, dependencies) {
 };
 var select$3 = function select(props, context, dependencies) {
   var options = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
-  var {
-    resolveOnLoad,
-    items
-  } = toRefs(props);
-  var {
-    data,
-    availableData,
-    requestData,
-    load,
-    update,
-    clear,
-    prepare
-  } = base$F(props, context, dependencies);
+  var _toRefs3 = toRefs(props),
+    resolveOnLoad = _toRefs3.resolveOnLoad,
+    items = _toRefs3.items;
+  var _base3 = base$F(props, context, dependencies),
+    data = _base3.data,
+    availableData = _base3.availableData,
+    requestData = _base3.requestData,
+    load = _base3.load,
+    update = _base3.update,
+    clear = _base3.clear,
+    prepare = _base3.prepare;
 
   // ============ DEPENDENCIES =============
 
@@ -32408,24 +33117,21 @@ var select$3 = function select(props, context, dependencies) {
   };
 };
 var captcha = function captcha(props, context, dependencies) {
-  var {
-    data,
-    availableData,
-    requestData,
-    load,
-    update,
-    clear: clearBase,
-    reset: resetBase,
-    prepare
-  } = base$F(props, context, dependencies);
+  var _base4 = base$F(props, context, dependencies),
+    data = _base4.data,
+    availableData = _base4.availableData,
+    requestData = _base4.requestData,
+    load = _base4.load,
+    update = _base4.update,
+    clearBase = _base4.clear,
+    resetBase = _base4.reset,
+    prepare = _base4.prepare;
 
   // ============ DEPENDENCIES =============
 
-  var {
-    Provider,
-    fire,
-    el$
-  } = dependencies;
+  var Provider = dependencies.Provider,
+    fire = dependencies.fire,
+    el$ = dependencies.el$;
 
   // =============== METHODS ===============
 
@@ -32457,12 +33163,11 @@ var captcha = function captcha(props, context, dependencies) {
   };
 };
 var object$1 = function object(props, context, dependencies) {
-  var {
-    name,
-    formatLoad,
-    formatData,
-    submit
-  } = toRefs(props);
+  var _toRefs4 = toRefs(props),
+    name = _toRefs4.name,
+    formatLoad = _toRefs4.formatLoad,
+    formatData = _toRefs4.formatData,
+    submit = _toRefs4.submit;
 
   // ============ DEPENDENCIES =============
 
@@ -32597,18 +33302,16 @@ var object$1 = function object(props, context, dependencies) {
   };
 };
 var group$1 = function group(props, context, dependencies) {
-  var {
-    name,
-    formatData,
-    submit
-  } = toRefs(props);
-  var {
-    load,
-    update,
-    clear,
-    reset,
-    prepare
-  } = object$1(props, context, dependencies);
+  var _toRefs5 = toRefs(props),
+    name = _toRefs5.name,
+    formatData = _toRefs5.formatData,
+    submit = _toRefs5.submit;
+  var _object = object$1(props, context, dependencies),
+    load = _object.load,
+    update = _object.update,
+    clear = _object.clear,
+    reset = _object.reset,
+    prepare = _object.prepare;
 
   // ============ DEPENDENCIES =============
 
@@ -32672,21 +33375,19 @@ var group$1 = function group(props, context, dependencies) {
   };
 };
 var list = function list(props, context, dependencies, options) {
-  var {
-    name,
-    storeOrder,
-    formatLoad,
-    formatData,
-    order,
-    submit,
-    initial,
-    default: default_
-  } = toRefs(props);
-  var {
-    update,
-    clear,
-    data
-  } = base$F(props, context, dependencies);
+  var _toRefs6 = toRefs(props),
+    name = _toRefs6.name,
+    storeOrder = _toRefs6.storeOrder,
+    formatLoad = _toRefs6.formatLoad,
+    formatData = _toRefs6.formatData,
+    order = _toRefs6.order,
+    submit = _toRefs6.submit,
+    initial = _toRefs6.initial,
+    default_ = _toRefs6.default;
+  var _base5 = base$F(props, context, dependencies),
+    update = _base5.update,
+    clear = _base5.clear,
+    data = _base5.data;
 
   // ============ DEPENDENCIES =============
 
@@ -32944,18 +33645,16 @@ var list = function list(props, context, dependencies, options) {
   };
 };
 var date$2 = function date(props, context, dependencies) {
-  var {
-    formatLoad
-  } = toRefs(props);
-  var {
-    data,
-    availableData,
-    requestData,
-    update,
-    clear,
-    reset,
-    prepare
-  } = base$F(props, context, dependencies);
+  var _toRefs7 = toRefs(props),
+    formatLoad = _toRefs7.formatLoad;
+  var _base6 = base$F(props, context, dependencies),
+    data = _base6.data,
+    availableData = _base6.availableData,
+    requestData = _base6.requestData,
+    update = _base6.update,
+    clear = _base6.clear,
+    reset = _base6.reset,
+    prepare = _base6.prepare;
 
   // ============ DEPENDENCIES =============
 
@@ -32984,18 +33683,16 @@ var date$2 = function date(props, context, dependencies) {
   };
 };
 var dates$3 = function dates(props, context, dependencies) {
-  var {
-    formatLoad
-  } = toRefs(props);
-  var {
-    data,
-    availableData,
-    requestData,
-    update,
-    clear,
-    reset,
-    prepare
-  } = base$F(props, context, dependencies);
+  var _toRefs8 = toRefs(props),
+    formatLoad = _toRefs8.formatLoad;
+  var _base7 = base$F(props, context, dependencies),
+    data = _base7.data,
+    availableData = _base7.availableData,
+    requestData = _base7.requestData,
+    update = _base7.update,
+    clear = _base7.clear,
+    reset = _base7.reset,
+    prepare = _base7.prepare;
 
   // ============ DEPENDENCIES =============
 
@@ -33027,17 +33724,15 @@ var dates$3 = function dates(props, context, dependencies) {
 };
 var multilingual$1 = function multilingual(props, context, dependencies) {
   var options = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
-  var {
-    formatLoad
-  } = toRefs(props);
-  var {
-    data,
-    availableData,
-    requestData,
-    clear,
-    reset,
-    prepare
-  } = base$F(props, context, dependencies, options);
+  var _toRefs9 = toRefs(props),
+    formatLoad = _toRefs9.formatLoad;
+  var _base8 = base$F(props, context, dependencies, options),
+    data = _base8.data,
+    availableData = _base8.availableData,
+    requestData = _base8.requestData,
+    clear = _base8.clear,
+    reset = _base8.reset,
+    prepare = _base8.prepare;
 
   // ============ DEPENDENCIES =============
 
@@ -33086,24 +33781,23 @@ var multilingual$1 = function multilingual(props, context, dependencies) {
   };
 };
 var editor = function editor(props, context, dependencies) {
-  var {
-    data,
-    availableData,
-    requestData,
-    load,
-    update,
-    clear,
-    reset,
-    prepare
-  } = base$F(props, context, dependencies, {
-    setValue: val => {
-      value.value = val;
-      nextTick(() => {
-        var _input$value;
-        (_input$value = input.value) === null || _input$value === void 0 || _input$value.update(val);
-      });
-    }
-  });
+  var _base9 = base$F(props, context, dependencies, {
+      setValue: val => {
+        value.value = val;
+        nextTick(() => {
+          var _input$value;
+          (_input$value = input.value) === null || _input$value === void 0 || _input$value.update(val);
+        });
+      }
+    }),
+    data = _base9.data,
+    availableData = _base9.availableData,
+    requestData = _base9.requestData,
+    load = _base9.load,
+    update = _base9.update,
+    clear = _base9.clear,
+    reset = _base9.reset,
+    prepare = _base9.prepare;
 
   // ============ DEPENDENCIES =============
 
@@ -33121,23 +33815,22 @@ var editor = function editor(props, context, dependencies) {
   };
 };
 var teditor = function teditor(props, context, dependencies) {
-  var {
-    data,
-    availableData,
-    requestData,
-    load,
-    update,
-    clear,
-    reset,
-    prepare
-  } = multilingual$1(props, context, dependencies, {
-    setValue: val => {
-      value.value = val;
-      nextTick(() => {
-        input.value.update(val[language.value]);
-      });
-    }
-  });
+  var _multilingual = multilingual$1(props, context, dependencies, {
+      setValue: val => {
+        value.value = val;
+        nextTick(() => {
+          input.value.update(val[language.value]);
+        });
+      }
+    }),
+    data = _multilingual.data,
+    availableData = _multilingual.availableData,
+    requestData = _multilingual.requestData,
+    load = _multilingual.load,
+    update = _multilingual.update,
+    clear = _multilingual.clear,
+    reset = _multilingual.reset,
+    prepare = _multilingual.prepare;
 
   // ============ DEPENDENCIES =============
 
@@ -33163,18 +33856,16 @@ var teditor = function teditor(props, context, dependencies) {
   };
 };
 var file = function file(props, context, dependencies) {
-  var {
-    load,
-    update,
-    clear,
-    reset,
-    prepare
-  } = base$F(props, context, dependencies);
-  var {
-    submit,
-    formatData,
-    name
-  } = toRefs(props);
+  var _base0 = base$F(props, context, dependencies),
+    load = _base0.load,
+    update = _base0.update,
+    clear = _base0.clear,
+    reset = _base0.reset,
+    prepare = _base0.prepare;
+  var _toRefs0 = toRefs(props),
+    submit = _toRefs0.submit,
+    formatData = _toRefs0.formatData,
+    name = _toRefs0.name;
 
   // ============ DEPENDENCIES =============
 
@@ -33235,23 +33926,21 @@ var file = function file(props, context, dependencies) {
   };
 };
 var multifile$4 = function multifile(props, context, dependencies) {
-  var {
-    length,
-    add,
-    remove,
-    load,
-    update,
-    clear,
-    reset,
-    handleAdd,
-    handleRemove,
-    prepare
-  } = list(props, context, dependencies);
-  var {
-    submit,
-    formatData,
-    name
-  } = toRefs(props);
+  var _list = list(props, context, dependencies),
+    length = _list.length,
+    add = _list.add,
+    remove = _list.remove,
+    load = _list.load,
+    update = _list.update,
+    clear = _list.clear,
+    reset = _list.reset,
+    handleAdd = _list.handleAdd,
+    handleRemove = _list.handleRemove,
+    prepare = _list.prepare;
+  var _toRefs1 = toRefs(props),
+    submit = _toRefs1.submit,
+    formatData = _toRefs1.formatData,
+    name = _toRefs1.name;
 
   // ============ DEPENDENCIES =============
 
@@ -33340,31 +34029,28 @@ var multifile$4 = function multifile(props, context, dependencies) {
   };
 };
 var signature = function signature(props, context, dependencies) {
-  var {
-    data,
-    availableData,
-    requestData,
-    load,
-    update,
-    clear: clearBase,
-    reset: resetBase
-  } = base$F(props, context, dependencies);
+  var _base1 = base$F(props, context, dependencies),
+    data = _base1.data,
+    availableData = _base1.availableData,
+    requestData = _base1.requestData,
+    load = _base1.load,
+    update = _base1.update,
+    clearBase = _base1.clear,
+    resetBase = _base1.reset;
 
   // ============ DEPENDENCIES =============
 
-  var {
-    mode,
-    clearSignature,
-    typingToImage,
-    drawingToImage,
-    uploaded,
-    setDefaultMode,
-    setDefaultFont,
-    setDefaultColor,
-    available,
-    fire,
-    el$
-  } = dependencies;
+  var mode = dependencies.mode,
+    clearSignature = dependencies.clearSignature,
+    typingToImage = dependencies.typingToImage,
+    drawingToImage = dependencies.drawingToImage,
+    uploaded = dependencies.uploaded,
+    setDefaultMode = dependencies.setDefaultMode,
+    setDefaultFont = dependencies.setDefaultFont,
+    setDefaultColor = dependencies.setDefaultColor,
+    available = dependencies.available,
+    fire = dependencies.fire,
+    el$ = dependencies.el$;
 
   // ============== COMPUTED ===============
 
@@ -33409,35 +34095,31 @@ var signature = function signature(props, context, dependencies) {
   };
 };
 var matrix$1 = function matrix(props, context, dependencies) {
-  var {
-    name,
-    rows,
-    formatLoad
-  } = toRefs(props);
-  var {
-    clear: baseClear,
-    reset: baseReset,
-    prepare
-  } = object$1(props, context, dependencies);
+  var _toRefs10 = toRefs(props),
+    name = _toRefs10.name,
+    rows = _toRefs10.rows,
+    formatLoad = _toRefs10.formatLoad;
+  var _object2 = object$1(props, context, dependencies),
+    baseClear = _object2.clear,
+    baseReset = _object2.reset,
+    prepare = _object2.prepare;
 
   // ============ DEPENDENCIES =============
 
-  var {
-    el$,
-    form$,
-    children$,
-    resolvedRows,
-    resolvedColumns,
-    dataType,
-    defaultValue,
-    value,
-    computedRows,
-    rowsCount,
-    hasDynamicRows,
-    fire,
-    grid,
-    resolveComponentName
-  } = dependencies;
+  var el$ = dependencies.el$,
+    form$ = dependencies.form$,
+    children$ = dependencies.children$,
+    resolvedRows = dependencies.resolvedRows,
+    resolvedColumns = dependencies.resolvedColumns,
+    dataType = dependencies.dataType,
+    defaultValue = dependencies.defaultValue,
+    value = dependencies.value,
+    computedRows = dependencies.computedRows,
+    rowsCount = dependencies.rowsCount,
+    hasDynamicRows = dependencies.hasDynamicRows,
+    fire = dependencies.fire,
+    grid = dependencies.grid,
+    resolveComponentName = dependencies.resolveComponentName;
 
   // ============== COMPUTED ===============
 
@@ -33744,9 +34426,8 @@ var CaptchaElement = {
 };
 
 var base$E = function base(props, context, dependencies) {
-  var {
-    text
-  } = toRefs(props);
+  var _toRefs = toRefs(props),
+    text = _toRefs.text;
 
   // =============== INJECT ===============
 
@@ -33770,10 +34451,9 @@ var base$E = function base(props, context, dependencies) {
 };
 
 var base$D = function base(props, context, dependencies) {
-  var {
-    trueValue,
-    falseValue
-  } = toRefs(props);
+  var _toRefs = toRefs(props),
+    trueValue = _toRefs.trueValue,
+    falseValue = _toRefs.falseValue;
 
   // ============ DEPENDENCIES ============
 
@@ -33804,10 +34484,9 @@ var base$D = function base(props, context, dependencies) {
   };
 };
 var checkbox = function checkbox(props, context, dependencies) {
-  var {
-    trueValue,
-    falseValue
-  } = toRefs(props);
+  var _toRefs2 = toRefs(props),
+    trueValue = _toRefs2.trueValue,
+    falseValue = _toRefs2.falseValue;
 
   // ============ DEPENDENCIES ============
 
@@ -33995,15 +34674,14 @@ var base$C = function base(props, context, dependencies) {
 };
 
 var base$B = function base(props, context, dependencies) {
-  var {
-    items,
-    valueProp,
-    labelProp,
-    dataKey,
-    searchParam,
-    clearOnRefetch,
-    object
-  } = toRefs(props);
+  var _toRefs = toRefs(props),
+    items = _toRefs.items,
+    valueProp = _toRefs.valueProp,
+    labelProp = _toRefs.labelProp,
+    dataKey = _toRefs.dataKey,
+    searchParam = _toRefs.searchParam,
+    clearOnRefetch = _toRefs.clearOnRefetch,
+    object = _toRefs.object;
 
   // ============ DEPENDENCIES ============
 
@@ -34311,17 +34989,15 @@ var base$B = function base(props, context, dependencies) {
   };
 };
 var select$2 = function select(props, context, dependencies) {
-  var {
-    items
-  } = toRefs(props);
-  var {
-    resolveOptions,
-    resolvedOptions,
-    updateItems,
-    watchers,
-    cleanupValue,
-    resolveUrlAndSetWatchers
-  } = base$B(props, context, dependencies);
+  var _toRefs2 = toRefs(props),
+    items = _toRefs2.items;
+  var _base = base$B(props, context, dependencies),
+    resolveOptions = _base.resolveOptions,
+    resolvedOptions = _base.resolvedOptions,
+    updateItems = _base.updateItems,
+    watchers = _base.watchers,
+    cleanupValue = _base.cleanupValue,
+    resolveUrlAndSetWatchers = _base.resolveUrlAndSetWatchers;
 
   // ================ HOOKS ===============
 
@@ -34337,14 +35013,12 @@ var select$2 = function select(props, context, dependencies) {
   };
 };
 var checkboxgroup = function checkboxgroup(props, context, dependencies) {
-  var {
-    items
-  } = toRefs(props);
-  var {
-    watchers,
-    cleanupValue,
-    resolveUrlAndSetWatchers
-  } = base$B(props, context, dependencies);
+  var _toRefs3 = toRefs(props),
+    items = _toRefs3.items;
+  var _base2 = base$B(props, context, dependencies),
+    watchers = _base2.watchers,
+    cleanupValue = _base2.cleanupValue,
+    resolveUrlAndSetWatchers = _base2.resolveUrlAndSetWatchers;
 
   // ============ DEPENDENCIES ============
 
@@ -34590,10 +35264,9 @@ var CheckboxgroupElement = {
 };
 
 var base$A = function base(props, context, dependencies) {
-  var {
-    addons,
-    slots
-  } = toRefs(props);
+  var _toRefs = toRefs(props),
+    addons = _toRefs.addons,
+    slots = _toRefs.slots;
 
   // ============ DEPENDENCIES ============
 
@@ -34617,15 +35290,14 @@ var base$A = function base(props, context, dependencies) {
 };
 
 var base$z = function base(props, context, dependencies) {
-  var {
-    displayFormat,
-    valueFormat,
-    loadFormat,
-    date,
-    time,
-    seconds,
-    hour24
-  } = toRefs(props);
+  var _toRefs = toRefs(props),
+    displayFormat = _toRefs.displayFormat,
+    valueFormat = _toRefs.valueFormat,
+    loadFormat = _toRefs.loadFormat,
+    date = _toRefs.date,
+    time = _toRefs.time,
+    seconds = _toRefs.seconds,
+    hour24 = _toRefs.hour24;
 
   // ============ DEPENDENCIES =============
 
@@ -34732,11 +35404,10 @@ var base$z = function base(props, context, dependencies) {
   };
 };
 var dates$2 = function dates(props, context, dependencies) {
-  var {
-    displayFormat,
-    valueFormat,
-    loadFormat
-  } = toRefs(props);
+  var _toRefs2 = toRefs(props),
+    displayFormat = _toRefs2.displayFormat,
+    valueFormat = _toRefs2.valueFormat,
+    loadFormat = _toRefs2.loadFormat;
 
   // ============ DEPENDENCIES =============
 
@@ -34789,12 +35460,9 @@ var base$y = function base(props, context, dependencies) {
 };
 
 var base$x = function base(props, context, dependencies) {
-  var {
-    placeholder
-  } = toRefs(props);
-  var {
-    el$
-  } = dependencies;
+  var _toRefs = toRefs(props),
+    placeholder = _toRefs.placeholder;
+  var el$ = dependencies.el$;
 
   // =============== INJECT ===============
 
@@ -34823,17 +35491,16 @@ var base$x = function base(props, context, dependencies) {
 };
 
 var date$1 = function date(props, context, dependencies) {
-  var {
-    disables,
-    min,
-    max,
-    extendOptions,
-    readonly,
-    hour24,
-    seconds,
-    date,
-    time
-  } = toRefs(props);
+  var _toRefs = toRefs(props),
+    disables = _toRefs.disables,
+    min = _toRefs.min,
+    max = _toRefs.max,
+    extendOptions = _toRefs.extendOptions,
+    readonly = _toRefs.readonly,
+    hour24 = _toRefs.hour24,
+    seconds = _toRefs.seconds,
+    date = _toRefs.date,
+    time = _toRefs.time;
 
   // ============ DEPENDENCIES ============
 
@@ -34948,16 +35615,14 @@ var date$1 = function date(props, context, dependencies) {
   };
 };
 var dates$1 = function dates(props, context, dependencies) {
-  var {
-    mode,
-    extendOptions,
-    readonly
-  } = toRefs(props);
-  var {
-    minDate,
-    maxDate,
-    disabledDates
-  } = date$1(props, context, dependencies);
+  var _toRefs2 = toRefs(props),
+    mode = _toRefs2.mode,
+    extendOptions = _toRefs2.extendOptions,
+    readonly = _toRefs2.readonly;
+  var _date = date$1(props, context, dependencies),
+    minDate = _date.minDate,
+    maxDate = _date.maxDate,
+    disabledDates = _date.disabledDates;
 
   // ============ DEPENDENCIES ============
 
@@ -34995,42 +35660,41 @@ var dates$1 = function dates(props, context, dependencies) {
   };
 };
 var select$1 = function select(props, context, dependencies) {
-  var {
-    native,
-    extendOptions,
-    labelProp,
-    trackBy,
-    valueProp,
-    search,
-    limit,
-    noOptionsText,
-    noResultsText,
-    caret,
-    object,
-    delay,
-    minChars,
-    resolveOnLoad,
-    filterResults,
-    clearOnSearch,
-    canDeselect,
-    canClear,
-    openDirection,
-    strict,
-    closeOnSelect,
-    closeOnDeselect,
-    autocomplete,
-    groups,
-    groupLabel,
-    groupOptions,
-    groupHideEmpty,
-    inputType,
-    create,
-    appendNewOption,
-    addOptionOn,
-    appendTo,
-    appendToBody,
-    allowAbsent
-  } = toRefs(props);
+  var _toRefs3 = toRefs(props),
+    native = _toRefs3.native,
+    extendOptions = _toRefs3.extendOptions,
+    labelProp = _toRefs3.labelProp,
+    trackBy = _toRefs3.trackBy,
+    valueProp = _toRefs3.valueProp,
+    search = _toRefs3.search,
+    limit = _toRefs3.limit,
+    noOptionsText = _toRefs3.noOptionsText,
+    noResultsText = _toRefs3.noResultsText,
+    caret = _toRefs3.caret,
+    object = _toRefs3.object,
+    delay = _toRefs3.delay,
+    minChars = _toRefs3.minChars,
+    resolveOnLoad = _toRefs3.resolveOnLoad,
+    filterResults = _toRefs3.filterResults,
+    clearOnSearch = _toRefs3.clearOnSearch,
+    canDeselect = _toRefs3.canDeselect,
+    canClear = _toRefs3.canClear,
+    openDirection = _toRefs3.openDirection,
+    strict = _toRefs3.strict,
+    closeOnSelect = _toRefs3.closeOnSelect,
+    closeOnDeselect = _toRefs3.closeOnDeselect,
+    autocomplete = _toRefs3.autocomplete,
+    groups = _toRefs3.groups,
+    groupLabel = _toRefs3.groupLabel,
+    groupOptions = _toRefs3.groupOptions,
+    groupHideEmpty = _toRefs3.groupHideEmpty,
+    inputType = _toRefs3.inputType,
+    create = _toRefs3.create,
+    appendNewOption = _toRefs3.appendNewOption,
+    addOptionOn = _toRefs3.addOptionOn,
+    appendTo = _toRefs3.appendTo,
+    appendToBody = _toRefs3.appendToBody,
+    allowAbsent = _toRefs3.allowAbsent;
 
   // ============ DEPENDENCIES ============
 
@@ -35114,48 +35778,47 @@ var select$1 = function select(props, context, dependencies) {
   };
 };
 var multiselect$1 = function multiselect(props, context, dependencies) {
-  var {
-    native,
-    extendOptions,
-    labelProp,
-    trackBy,
-    valueProp,
-    search,
-    limit,
-    noOptionsText,
-    noResultsText,
-    caret,
-    object,
-    delay,
-    minChars,
-    resolveOnLoad,
-    filterResults,
-    clearOnSearch,
-    clearOnSelect,
-    canClear,
-    max,
-    openDirection,
-    strict,
-    closeOnSelect,
-    closeOnDeselect,
-    autocomplete,
-    groups,
-    groupLabel,
-    groupOptions,
-    groupHideEmpty,
-    groupSelect,
-    inputType,
-    hideSelected,
-    multipleLabel,
-    multipleLabelMultiple,
-    multipleLabelSingle,
-    create,
-    appendNewOption,
-    addOptionOn,
-    appendTo,
-    appendToBody,
-    allowAbsent
-  } = toRefs(props);
+  var _toRefs4 = toRefs(props),
+    native = _toRefs4.native,
+    extendOptions = _toRefs4.extendOptions,
+    labelProp = _toRefs4.labelProp,
+    trackBy = _toRefs4.trackBy,
+    valueProp = _toRefs4.valueProp,
+    search = _toRefs4.search,
+    limit = _toRefs4.limit,
+    noOptionsText = _toRefs4.noOptionsText,
+    noResultsText = _toRefs4.noResultsText,
+    caret = _toRefs4.caret,
+    object = _toRefs4.object,
+    delay = _toRefs4.delay,
+    minChars = _toRefs4.minChars,
+    resolveOnLoad = _toRefs4.resolveOnLoad,
+    filterResults = _toRefs4.filterResults,
+    clearOnSearch = _toRefs4.clearOnSearch,
+    clearOnSelect = _toRefs4.clearOnSelect,
+    canClear = _toRefs4.canClear,
+    max = _toRefs4.max,
+    openDirection = _toRefs4.openDirection,
+    strict = _toRefs4.strict,
+    closeOnSelect = _toRefs4.closeOnSelect,
+    closeOnDeselect = _toRefs4.closeOnDeselect,
+    autocomplete = _toRefs4.autocomplete,
+    groups = _toRefs4.groups,
+    groupLabel = _toRefs4.groupLabel,
+    groupOptions = _toRefs4.groupOptions,
+    groupHideEmpty = _toRefs4.groupHideEmpty,
+    groupSelect = _toRefs4.groupSelect,
+    inputType = _toRefs4.inputType,
+    hideSelected = _toRefs4.hideSelected,
+    multipleLabel = _toRefs4.multipleLabel,
+    multipleLabelMultiple = _toRefs4.multipleLabelMultiple,
+    multipleLabelSingle = _toRefs4.multipleLabelSingle,
+    create = _toRefs4.create,
+    appendNewOption = _toRefs4.appendNewOption,
+    addOptionOn = _toRefs4.addOptionOn,
+    appendTo = _toRefs4.appendTo,
+    appendToBody = _toRefs4.appendToBody,
+    allowAbsent = _toRefs4.allowAbsent;
 
   // ============ DEPENDENCIES ============
 
@@ -35247,46 +35910,45 @@ var multiselect$1 = function multiselect(props, context, dependencies) {
   };
 };
 var tags$1 = function tags(props, context, dependencies) {
-  var {
-    extendOptions,
-    labelProp,
-    trackBy,
-    valueProp,
-    search,
-    limit,
-    noOptionsText,
-    noResultsText,
-    caret,
-    object,
-    delay,
-    minChars,
-    resolveOnLoad,
-    filterResults,
-    clearOnSearch,
-    clearOnSelect,
-    canClear,
-    max,
-    showOptions,
-    openDirection,
-    strict,
-    closeOnSelect,
-    closeOnDeselect,
-    autocomplete,
-    groups,
-    groupLabel,
-    groupOptions,
-    groupHideEmpty,
-    groupSelect,
-    inputType,
-    hideSelected,
-    create,
-    appendNewOption,
-    addOptionOn,
-    breakTags,
-    appendTo,
-    appendToBody,
-    allowAbsent
-  } = toRefs(props);
+  var _toRefs5 = toRefs(props),
+    extendOptions = _toRefs5.extendOptions,
+    labelProp = _toRefs5.labelProp,
+    trackBy = _toRefs5.trackBy,
+    valueProp = _toRefs5.valueProp,
+    search = _toRefs5.search,
+    limit = _toRefs5.limit,
+    noOptionsText = _toRefs5.noOptionsText,
+    noResultsText = _toRefs5.noResultsText,
+    caret = _toRefs5.caret,
+    object = _toRefs5.object,
+    delay = _toRefs5.delay,
+    minChars = _toRefs5.minChars,
+    resolveOnLoad = _toRefs5.resolveOnLoad,
+    filterResults = _toRefs5.filterResults,
+    clearOnSearch = _toRefs5.clearOnSearch,
+    clearOnSelect = _toRefs5.clearOnSelect,
+    canClear = _toRefs5.canClear,
+    max = _toRefs5.max,
+    showOptions = _toRefs5.showOptions,
+    openDirection = _toRefs5.openDirection,
+    strict = _toRefs5.strict,
+    closeOnSelect = _toRefs5.closeOnSelect,
+    closeOnDeselect = _toRefs5.closeOnDeselect,
+    autocomplete = _toRefs5.autocomplete,
+    groups = _toRefs5.groups,
+    groupLabel = _toRefs5.groupLabel,
+    groupOptions = _toRefs5.groupOptions,
+    groupHideEmpty = _toRefs5.groupHideEmpty,
+    groupSelect = _toRefs5.groupSelect,
+    inputType = _toRefs5.inputType,
+    hideSelected = _toRefs5.hideSelected,
+    create = _toRefs5.create,
+    appendNewOption = _toRefs5.appendNewOption,
+    addOptionOn = _toRefs5.addOptionOn,
+    breakTags = _toRefs5.breakTags,
+    appendTo = _toRefs5.appendTo,
+    appendToBody = _toRefs5.appendToBody,
+    allowAbsent = _toRefs5.allowAbsent;
 
   // ============ DEPENDENCIES ============
 
@@ -35388,20 +36050,19 @@ var tags$1 = function tags(props, context, dependencies) {
   };
 };
 var slider = function slider(props, context, dependencies) {
-  var {
-    min,
-    max,
-    step,
-    tooltips,
-    merge,
-    format,
-    orientation,
-    direction,
-    extendOptions,
-    showTooltip,
-    tooltipPosition,
-    lazy
-  } = toRefs(props);
+  var _toRefs6 = toRefs(props),
+    min = _toRefs6.min,
+    max = _toRefs6.max,
+    step = _toRefs6.step,
+    tooltips = _toRefs6.tooltips,
+    merge = _toRefs6.merge,
+    format = _toRefs6.format,
+    orientation = _toRefs6.orientation,
+    direction = _toRefs6.direction,
+    extendOptions = _toRefs6.extendOptions,
+    showTooltip = _toRefs6.showTooltip,
+    tooltipPosition = _toRefs6.tooltipPosition,
+    lazy = _toRefs6.lazy;
 
   // ============ DEPENDENCIES ============
 
@@ -35455,12 +36116,11 @@ var slider = function slider(props, context, dependencies) {
   };
 };
 var toggle = function toggle(props, context, dependencies) {
-  var {
-    labels,
-    extendOptions,
-    trueValue,
-    falseValue
-  } = toRefs(props);
+  var _toRefs7 = toRefs(props),
+    labels = _toRefs7.labels,
+    extendOptions = _toRefs7.extendOptions,
+    trueValue = _toRefs7.trueValue,
+    falseValue = _toRefs7.falseValue;
 
   // ============ DEPENDENCIES ============
 
@@ -35827,20 +36487,19 @@ var DatesElement = {
 };
 
 var base$v = function base(props, context, dependencies) {
-  var {
-    embed,
-    auto,
-    methods,
-    urls,
-    uploadTempEndpoint,
-    removeTempEndpoint,
-    removeEndpoint,
-    url,
-    previewUrl,
-    params,
-    softRemove,
-    view
-  } = toRefs(props);
+  var _toRefs = toRefs(props),
+    embed = _toRefs.embed,
+    auto = _toRefs.auto,
+    methods = _toRefs.methods,
+    urls = _toRefs.urls,
+    uploadTempEndpoint = _toRefs.uploadTempEndpoint,
+    removeTempEndpoint = _toRefs.removeTempEndpoint,
+    removeEndpoint = _toRefs.removeEndpoint,
+    url = _toRefs.url,
+    previewUrl = _toRefs.previewUrl,
+    params = _toRefs.params,
+    softRemove = _toRefs.softRemove,
+    view = _toRefs.view;
 
   // ============ DEPENDENCIES ============
 
@@ -36422,10 +37081,9 @@ function checkFileType(file, accept) {
 }
 
 var base$t = function base(props, context, dependencies) {
-  var {
-    accept,
-    auto
-  } = toRefs(props);
+  var _toRefs = toRefs(props),
+    accept = _toRefs.accept,
+    auto = _toRefs.auto;
 
   // ============ DEPENDENCIES =============
 
@@ -36475,12 +37133,10 @@ var base$t = function base(props, context, dependencies) {
   };
 };
 var multifile$3 = function multifile(props, context, dependencies) {
-  var {
-    accept
-  } = toRefs(props);
-  var {
-    canDrop
-  } = base$t(props, context, dependencies);
+  var _toRefs2 = toRefs(props),
+    accept = _toRefs2.accept;
+  var _base = base$t(props, context, dependencies),
+    canDrop = _base.canDrop;
 
   // ============ DEPENDENCIES =============
 
@@ -36697,11 +37353,9 @@ var base$q = function base(props, context, dependencies) {
 var phone$1 = function phone(props, context, dependencies) {
   // ============ DEPENDENCIES ============
 
-  var {
-    model,
-    input,
-    el$
-  } = dependencies;
+  var model = dependencies.model,
+    input = dependencies.input,
+    el$ = dependencies.el$;
 
   // ============== COMPUTED ==============
 
@@ -36816,23 +37470,20 @@ var walkCells = (grid, callback) => {
 };
 
 var base$p = function base(props, context, dependencies) {
-  var {
-    grid,
-    align: alignProp,
-    valign: valignProp,
-    presets,
-    cols,
-    rows,
-    name,
-    widths,
-    minWidth,
-    maxWidth
-  } = toRefs(props);
-  var {
-    el$,
-    form$,
-    path
-  } = dependencies;
+  var _toRefs = toRefs(props),
+    grid = _toRefs.grid,
+    alignProp = _toRefs.align,
+    valignProp = _toRefs.valign,
+    presets = _toRefs.presets,
+    cols = _toRefs.cols,
+    rows = _toRefs.rows,
+    name = _toRefs.name,
+    widths = _toRefs.widths,
+    minWidth = _toRefs.minWidth,
+    maxWidth = _toRefs.maxWidth;
+  dependencies.el$;
+    var form$ = dependencies.form$;
+    dependencies.path;
   inject('config$');
 
   // ============== COMPUTED ==============
@@ -36846,17 +37497,15 @@ var base$p = function base(props, context, dependencies) {
     resolvedRows.value;
     var cells = [];
     walkCells(resolvedRows.value, _ref => {
-      var {
-        field,
-        colspan,
-        rowspan,
-        colIndex,
-        rowIndex,
-        rowStart,
-        colStart,
-        rowEnd,
-        colEnd
-      } = _ref;
+      var field = _ref.field,
+        colspan = _ref.colspan,
+        rowspan = _ref.rowspan,
+        colIndex = _ref.colIndex,
+        rowIndex = _ref.rowIndex,
+        rowStart = _ref.rowStart,
+        colStart = _ref.colStart,
+        rowEnd = _ref.rowEnd,
+        colEnd = _ref.colEnd;
       cells.push(_objectSpread2$1(_objectSpread2$1({}, field), {}, {
         col: colIndex,
         row: rowIndex,
@@ -36887,7 +37536,13 @@ var base$p = function base(props, context, dependencies) {
     rows.forEach((cols, r) => {
       var resolvedCols = [];
       cols.forEach((_ref2, c) => {
-        var [content, colspan, rowspan, align, valign, attrs] = _ref2;
+        var _ref3 = _slicedToArray$1(_ref2, 6),
+          content = _ref3[0],
+          colspan = _ref3[1],
+          rowspan = _ref3[2],
+          align = _ref3[3],
+          valign = _ref3[4],
+          attrs = _ref3[5];
         var col = {
           content: form$.value.$vueform.sanitize(content),
           colspan: colspan || 1,
@@ -37015,13 +37670,11 @@ var base$o = function base(props, context, dependencies) {
 var object = function object(props, context, dependencies) {
   var options = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
   var schemaName = options.schemaName || 'schema';
-  var {
-    [schemaName]: schema
-  } = toRefs(props);
-  var {
-    children$Array,
-    children$
-  } = base$o();
+  var _toRefs = toRefs(props),
+    schema = _toRefs[schemaName];
+  var _base = base$o(),
+    children$Array = _base.children$Array,
+    children$ = _base.children$;
 
   // ============== COMPUTED ==============
 
@@ -37182,15 +37835,12 @@ var GroupElement = {
 };
 
 var base$n = function base(props, context, dependencies) {
-  var {
-    forceNumbers
-  } = toRefs(props);
+  var _toRefs = toRefs(props),
+    forceNumbers = _toRefs.forceNumbers;
 
   // ============ DEPENDENCIES =============
 
-  var {
-    form$
-  } = dependencies;
+  var form$ = dependencies.form$;
 
   // =============== INJECT ===============
 
@@ -39929,9 +40579,8 @@ Sortable.mount(new AutoScrollPlugin());
 Sortable.mount(Remove, Revert);
 
 var base$m = function base(props, context, dependencies, options) {
-  var {
-    sort
-  } = toRefs(props);
+  var _toRefs = toRefs(props),
+    sort = _toRefs.sort;
 
   // ============ DEPENDENCIES ============
 
@@ -40012,11 +40661,9 @@ var base$m = function base(props, context, dependencies, options) {
    * @private
    */
   var handleSort = _ref => {
-    var {
-      oldIndex,
-      newIndex,
-      item
-    } = _ref;
+    var oldIndex = _ref.oldIndex,
+      newIndex = _ref.newIndex,
+      item = _ref.item;
     sorting.value = false;
 
     /* istanbul ignore next: can not imitate dragging */
@@ -40092,11 +40739,10 @@ var base$l = function base(props, context, dependencies) {
 };
 
 var base$k = function base(props, context, dependencies, options) {
-  var {
-    storeOrder,
-    orderBy,
-    order
-  } = toRefs(props);
+  var _toRefs = toRefs(props),
+    storeOrder = _toRefs.storeOrder,
+    orderBy = _toRefs.orderBy,
+    order = _toRefs.order;
 
   // ============ DEPENDENCIES ============
 
@@ -40154,13 +40800,11 @@ var base$k = function base(props, context, dependencies, options) {
   };
 };
 var multifile$2 = function multifile(props, context, dependencies, options) {
-  var {
-    storeOrder,
-    orderBy
-  } = toRefs(props);
-  var {
-    refreshOrderStore
-  } = base$k(props, context, dependencies);
+  var _toRefs2 = toRefs(props),
+    storeOrder = _toRefs2.storeOrder,
+    orderBy = _toRefs2.orderBy;
+  var _base = base$k(props, context, dependencies),
+    refreshOrderStore = _base.refreshOrderStore;
 
   // =============== METHODS ==============
 
@@ -40179,10 +40823,9 @@ var multifile$2 = function multifile(props, context, dependencies, options) {
 };
 
 var base$j = function base(props, context, dependencies) {
-  var {
-    object,
-    element
-  } = toRefs(props);
+  var _toRefs = toRefs(props),
+    object = _toRefs.object,
+    element = _toRefs.element;
 
   // ============== COMPUTED ==============
 
@@ -40214,23 +40857,22 @@ var base$j = function base(props, context, dependencies) {
 };
 var multifile$1 = function multifile(props, context, dependencies) {
   var options = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
-  var {
-    auto,
-    object,
-    file,
-    fields,
-    storeFile,
-    storeOrder,
-    view,
-    clickable,
-    url,
-    previewUrl,
-    uploadTempEndpoint,
-    removeTempEndpoint,
-    removeEndpoint,
-    params,
-    softRemove
-  } = toRefs(props);
+  var _toRefs2 = toRefs(props),
+    auto = _toRefs2.auto,
+    object = _toRefs2.object,
+    file = _toRefs2.file,
+    fields = _toRefs2.fields,
+    storeFile = _toRefs2.storeFile,
+    storeOrder = _toRefs2.storeOrder,
+    view = _toRefs2.view,
+    clickable = _toRefs2.clickable,
+    url = _toRefs2.url,
+    previewUrl = _toRefs2.previewUrl,
+    uploadTempEndpoint = _toRefs2.uploadTempEndpoint,
+    removeTempEndpoint = _toRefs2.removeTempEndpoint,
+    removeEndpoint = _toRefs2.removeEndpoint,
+    params = _toRefs2.params,
+    softRemove = _toRefs2.softRemove;
 
   // ============ DEPENDENCIES ============
 
@@ -40310,21 +40952,18 @@ var multifile$1 = function multifile(props, context, dependencies) {
 };
 
 var base$i = function base(props, context, dependencies) {
-  var {
-    controls,
-    sort,
-    min,
-    max,
-    addText
-  } = toRefs(props);
+  var _toRefs = toRefs(props),
+    controls = _toRefs.controls,
+    sort = _toRefs.sort,
+    min = _toRefs.min,
+    max = _toRefs.max,
+    addText = _toRefs.addText;
 
   // ============ DEPENDENCIES ============
 
-  var {
-    isDisabled,
-    value,
-    form$
-  } = dependencies;
+  var isDisabled = dependencies.isDisabled,
+    value = dependencies.value,
+    form$ = dependencies.form$;
 
   // ================ DATA ================
 
@@ -40371,10 +41010,9 @@ var base$i = function base(props, context, dependencies) {
   };
 };
 var multifile = function multifile(props, context, dependencies) {
-  var {
-    controls,
-    sort
-  } = toRefs(props);
+  var _toRefs2 = toRefs(props),
+    controls = _toRefs2.controls,
+    sort = _toRefs2.sort;
 
   // ============ DEPENDENCIES ============
 
@@ -40532,10 +41170,9 @@ var ListElement = {
 
 var base$h = function base(props, context, dependencies) {
   var options_ = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
-  var {
-    provider,
-    extendOptions
-  } = toRefs(props);
+  var _toRefs = toRefs(props),
+    provider = _toRefs.provider,
+    extendOptions = _toRefs.extendOptions;
 
   // ============ DEPENDENCIES ============
 
@@ -40776,41 +41413,38 @@ var LocationElement = {
 };
 
 var base$g = function base(props, context, dependencies) {
-  var {
-    rows,
-    cols,
-    inputType,
-    minWidth,
-    addText,
-    hideRows,
-    items,
-    maxWidth,
-    rowWrap,
-    templateColumns,
-    hideCols,
-    colWrap,
-    gap,
-    canRemove,
-    canAdd,
-    min,
-    max,
-    presets,
-    name
-  } = toRefs(props);
-  var {
-    el$,
-    form$,
-    path,
-    hasDynamicRows,
-    resolvedRows,
-    resolvedColumns,
-    rowsCount,
-    value,
-    genericName,
-    isDisabled,
-    isReadonly,
-    defaultValue
-  } = dependencies;
+  var _toRefs = toRefs(props);
+    _toRefs.rows;
+    _toRefs.cols;
+    var inputType = _toRefs.inputType,
+    minWidth = _toRefs.minWidth,
+    addText = _toRefs.addText,
+    hideRows = _toRefs.hideRows,
+    items = _toRefs.items,
+    maxWidth = _toRefs.maxWidth;
+    _toRefs.rowWrap;
+    var templateColumns = _toRefs.templateColumns,
+    hideCols = _toRefs.hideCols;
+    _toRefs.colWrap;
+    var gap = _toRefs.gap,
+    canRemove = _toRefs.canRemove,
+    canAdd = _toRefs.canAdd,
+    min = _toRefs.min,
+    max = _toRefs.max,
+    presets = _toRefs.presets;
+    _toRefs.name;
+  var el$ = dependencies.el$,
+    form$ = dependencies.form$,
+    path = dependencies.path,
+    hasDynamicRows = dependencies.hasDynamicRows,
+    resolvedRows = dependencies.resolvedRows,
+    resolvedColumns = dependencies.resolvedColumns;
+    dependencies.rowsCount;
+    var value = dependencies.value,
+    genericName = dependencies.genericName,
+    isDisabled = dependencies.isDisabled,
+    isReadonly = dependencies.isReadonly,
+    defaultValue = dependencies.defaultValue;
   inject('config$');
 
   // ================ DATA ================
@@ -41144,19 +41778,16 @@ var base$g = function base(props, context, dependencies) {
 };
 
 var base$f = function base(props, context, dependencies) {
-  var {
-    rows,
-    cols,
-    inputType
-  } = toRefs(props);
+  var _toRefs = toRefs(props),
+    rows = _toRefs.rows,
+    cols = _toRefs.cols,
+    inputType = _toRefs.inputType;
 
   // ============ DEPENDENCIES =============
 
-  var {
-    form$,
-    el$,
-    path
-  } = dependencies;
+  var form$ = dependencies.form$,
+    el$ = dependencies.el$,
+    path = dependencies.path;
 
   // =============== INJECTS ===============
 
@@ -44644,22 +45275,19 @@ var countryPhones = [
 ];
 
 var base$a = function base(props, context, dependencies) {
-  var {
-    include,
-    exclude,
-    mask: maskProp
-  } = toRefs(props);
+  var _toRefs = toRefs(props),
+    include = _toRefs.include,
+    exclude = _toRefs.exclude,
+    maskProp = _toRefs.mask;
 
   // ============ DEPENDENCIES ============
 
-  var {
-    focus,
-    value,
-    input,
-    form$,
-    el$,
-    classes
-  } = dependencies;
+  var focus = dependencies.focus,
+    value = dependencies.value,
+    input = dependencies.input,
+    form$ = dependencies.form$,
+    el$ = dependencies.el$,
+    classes = dependencies.classes;
 
   // ================ DATA ================
 
@@ -44939,10 +45567,8 @@ var base$a = function base(props, context, dependencies) {
 };
 
 var base$9 = function base(props, context, dependencies) {
-  var {
-    fire,
-    el$
-  } = dependencies;
+  var fire = dependencies.fire,
+    el$ = dependencies.el$;
 
   // =============== METHODS ==============
 
@@ -44985,12 +45611,10 @@ var base$9 = function base(props, context, dependencies) {
   };
 };
 var phone = function phone(props, context, dependencies) {
-  var {
-    fire,
-    model,
-    input,
-    el$
-  } = dependencies;
+  dependencies.fire;
+    var model = dependencies.model,
+    input = dependencies.input,
+    el$ = dependencies.el$;
 
   // =============== METHODS ==============
 
@@ -45127,10 +45751,9 @@ var PhoneElement = {
 };
 
 var base$8 = function base(props, context, dependencies) {
-  var {
-    radioName,
-    radioValue
-  } = toRefs(props);
+  var _toRefs = toRefs(props),
+    radioName = _toRefs.radioName,
+    radioValue = _toRefs.radioValue;
 
   // ============ DEPENDENCIES ============
 
@@ -46471,40 +47094,37 @@ function debounce(func, wait, onStart) {
 }
 
 function useSignature (props, context, dependencies) {
-  var {
-    fonts,
-    colors,
-    modes,
-    accept,
-    maxWidth,
-    height,
-    readonly,
-    maxFontSize,
-    minFontSize,
-    canClear,
-    line,
-    placeholder,
-    autoload,
-    maxSize,
-    canUndo,
-    columns,
-    uploadWidth,
-    uploadHeight,
-    canDrop
-  } = toRefs(props);
+  var _toRefs = toRefs(props),
+    fonts = _toRefs.fonts,
+    colors = _toRefs.colors,
+    modes = _toRefs.modes,
+    accept = _toRefs.accept,
+    maxWidth = _toRefs.maxWidth,
+    height = _toRefs.height,
+    readonly = _toRefs.readonly,
+    maxFontSize = _toRefs.maxFontSize,
+    minFontSize = _toRefs.minFontSize,
+    canClear = _toRefs.canClear,
+    line = _toRefs.line,
+    placeholder = _toRefs.placeholder,
+    autoload = _toRefs.autoload,
+    maxSize = _toRefs.maxSize,
+    canUndo = _toRefs.canUndo,
+    columns = _toRefs.columns,
+    uploadWidth = _toRefs.uploadWidth,
+    uploadHeight = _toRefs.uploadHeight,
+    canDrop = _toRefs.canDrop;
 
   // ============ DEPENDENCIES ============
 
-  var {
-    el$,
-    form$,
-    input,
-    isDisabled,
-    value,
-    Placeholder,
-    available,
-    path
-  } = dependencies;
+  dependencies.el$;
+    var form$ = dependencies.form$,
+    input = dependencies.input,
+    isDisabled = dependencies.isDisabled,
+    value = dependencies.value,
+    Placeholder = dependencies.Placeholder,
+    available = dependencies.available,
+    path = dependencies.path;
 
   // ================ DATA ================
 
@@ -47497,11 +48117,10 @@ function useSignature (props, context, dependencies) {
    * @returns {void}
    */
   var setDrawColor = () => {
-    var {
-      r,
-      g,
-      b
-    } = hexToRgb(color.value);
+    var _hexToRgb = hexToRgb(color.value),
+      r = _hexToRgb.r,
+      g = _hexToRgb.g,
+      b = _hexToRgb.b;
     pad.value.penColor = "rgb(".concat(r, ", ").concat(g, ", ").concat(b, ")");
     if (drawn.value) {
       pad.value.fromData(pad.value.toData().map(d => {
@@ -48263,9 +48882,8 @@ var SignatureElement = {
 };
 
 var base$7 = function base(props, context, dependencies) {
-  var {
-    lazy
-  } = toRefs(props);
+  var _toRefs = toRefs(props),
+    lazy = _toRefs.lazy;
 
   // ============ DEPENDENCIES ============
 
@@ -48388,19 +49006,16 @@ var SliderElement = {
 };
 
 var base$6 = function base(props, context, dependencies) {
-  var {
-    content,
-    expressions
-  } = toRefs(props);
+  var _toRefs = toRefs(props),
+    content = _toRefs.content,
+    expressions = _toRefs.expressions;
 
   // ============ DEPENDENCIES ============
 
-  var {
-    fieldSlots,
-    el$,
-    form$,
-    parent
-  } = dependencies;
+  var fieldSlots = dependencies.fieldSlots,
+    el$ = dependencies.el$,
+    form$ = dependencies.form$,
+    parent = dependencies.parent;
 
   // =============== INJECT ===============
 
@@ -48948,9 +49563,8 @@ var TagsElement = {
 };
 
 var base$4 = function base(props, context, dependencies) {
-  var {
-    autogrow
-  } = toRefs(props);
+  var _toRefs = toRefs(props),
+    autogrow = _toRefs.autogrow;
   var debouncedAutosize = debounce(() => {
     autosize();
   }, 500);
@@ -49002,9 +49616,8 @@ var base$4 = function base(props, context, dependencies) {
   };
 };
 var multilingual = function multilingual(props, context, dependencies) {
-  var {
-    autosize
-  } = base$4(props, context, dependencies);
+  var _base = base$4(props, context, dependencies),
+    autosize = _base.autosize;
 
   // ============ DEPENDENCIES ============
 
@@ -49317,10 +49930,9 @@ var ToggleElement = {
 };
 
 var base$3 = function base(props, context, dependencies) {
-  var {
-    endpoint,
-    method
-  } = toRefs(props);
+  var _toRefs = toRefs(props),
+    endpoint = _toRefs.endpoint,
+    method = _toRefs.method;
 
   // ============ DEPENDENCIES ============
 
@@ -49861,21 +50473,19 @@ var CheckboxgroupCheckbox = {
     }
   },
   setup(props, context) {
-    var {
-      value,
-      item
-    } = toRefs(props);
-    var {
-      el$,
-      form$,
-      Size,
-      View,
-      classesInstance,
-      classes,
-      Templates,
-      template,
-      theme
-    } = base$16(props, context);
+    var _toRefs = toRefs(props),
+      value = _toRefs.value,
+      item = _toRefs.item;
+    var _useElementComponent = base$16(props, context),
+      el$ = _useElementComponent.el$,
+      form$ = _useElementComponent.form$,
+      Size = _useElementComponent.Size,
+      View = _useElementComponent.View,
+      classesInstance = _useElementComponent.classesInstance,
+      classes = _useElementComponent.classes,
+      Templates = _useElementComponent.Templates,
+      template = _useElementComponent.template,
+      theme = _useElementComponent.theme;
 
     // ============== COMPUTED ==============
 
@@ -50175,38 +50785,36 @@ var FilePreview = {
     }
   },
   setup(props, context) {
-    var {
-      el$,
-      form$,
-      Size,
-      View,
-      classesInstance,
-      classes,
-      Templates,
-      template,
-      theme
-    } = base$16(props, context);
-    var {
-      visible,
-      hasLink,
-      hasError,
-      link,
-      filename,
-      clickable,
-      uploaded,
-      uploading,
-      progress,
-      canRemove,
-      canUploadTemp,
-      uploadText,
-      ariaLabelledby,
-      upload,
-      remove,
-      handleKeyup
-    } = base(props, context, {
-      el$,
-      form$
-    });
+    var _useElementComponent = base$16(props, context),
+      el$ = _useElementComponent.el$,
+      form$ = _useElementComponent.form$,
+      Size = _useElementComponent.Size,
+      View = _useElementComponent.View,
+      classesInstance = _useElementComponent.classesInstance,
+      classes = _useElementComponent.classes,
+      Templates = _useElementComponent.Templates,
+      template = _useElementComponent.template,
+      theme = _useElementComponent.theme;
+    var _usePreview = base(props, context, {
+        el$,
+        form$
+      }),
+      visible = _usePreview.visible,
+      hasLink = _usePreview.hasLink,
+      hasError = _usePreview.hasError,
+      link = _usePreview.link,
+      filename = _usePreview.filename,
+      clickable = _usePreview.clickable,
+      uploaded = _usePreview.uploaded,
+      uploading = _usePreview.uploading,
+      progress = _usePreview.progress,
+      canRemove = _usePreview.canRemove,
+      canUploadTemp = _usePreview.canUploadTemp,
+      uploadText = _usePreview.uploadText,
+      ariaLabelledby = _usePreview.ariaLabelledby,
+      upload = _usePreview.upload,
+      remove = _usePreview.remove,
+      handleKeyup = _usePreview.handleKeyup;
 
     // ============== COMPUTED ==============
 
@@ -50308,21 +50916,19 @@ var RadiogroupRadio = {
     }
   },
   setup(props, context) {
-    var {
-      value,
-      item
-    } = toRefs(props);
-    var {
-      el$,
-      form$,
-      Size,
-      View,
-      classesInstance,
-      classes,
-      Templates,
-      template,
-      theme
-    } = base$16(props, context);
+    var _toRefs = toRefs(props),
+      value = _toRefs.value,
+      item = _toRefs.item;
+    var _useElementComponent = base$16(props, context),
+      el$ = _useElementComponent.el$,
+      form$ = _useElementComponent.form$,
+      Size = _useElementComponent.Size,
+      View = _useElementComponent.View,
+      classesInstance = _useElementComponent.classesInstance,
+      classes = _useElementComponent.classes,
+      Templates = _useElementComponent.Templates,
+      template = _useElementComponent.template,
+      theme = _useElementComponent.theme;
 
     // ============== COMPUTED ==============
 

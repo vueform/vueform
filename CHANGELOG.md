@@ -1,5 +1,12 @@
 [//]: # (Don't use <tags>)
 
+## 1.13.12
+
+> `2026-06-16`
+
+### 🐞 Bug Fixes
+- fix: expr EMPTY NOT_EMPTY should work with multilingual fields [#164](https://github.com/vueform/builder/issues/164)
+
 ## 1.13.11
 
 > `2026-04-18`
