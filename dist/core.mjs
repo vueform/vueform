@@ -1,5 +1,5 @@
 /*!
- * Vueform v1.13.12 (https://github.com/vueform/vueform)
+ * Vueform v1.13.13 (https://github.com/vueform/vueform)
  * Copyright (c) 2026 Adam Berecz <adam@vueform.com>
  * Licensed under the MIT License
  */
@@ -10308,7 +10308,7 @@ function shouldApplyPlugin (name, plugin) {
 }
 
 var name = "@vueform/vueform";
-var version$1 = "1.13.12";
+var version$1 = "1.13.13";
 var description = "Open-Source Form Framework for Vue";
 var homepage = "https://vueform.com";
 var license = "MIT";
@@ -18303,8 +18303,14 @@ class expression {
       delete this.parser.functions[func];
     });
     this.parser.functions.NOT = a => !a;
-    this.parser.functions.EMPTY = v => isEmpty(v, form$.selectedLanguage);
-    this.parser.functions.NOT_EMPTY = v => isNotEmpty(v, form$.selectedLanguage);
+    this.parser.functions.EMPTY = v => {
+      var _form$$value;
+      return isEmpty(v, form$ === null || form$ === void 0 || (_form$$value = form$.value) === null || _form$$value === void 0 ? void 0 : _form$$value.selectedLanguage);
+    };
+    this.parser.functions.NOT_EMPTY = v => {
+      var _form$$value2;
+      return isNotEmpty(v, form$ === null || form$ === void 0 || (_form$$value2 = form$.value) === null || _form$$value2 === void 0 ? void 0 : _form$$value2.selectedLanguage);
+    };
     this.parser.functions.SUM = function () {
       for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
         args[_key] = arguments[_key];
@@ -29427,6 +29433,7 @@ var text$3 = function text(props, context, dependencies) {
   var unwatchDeps;
   var unwatchData;
   var unwatchLocale;
+  var unwatchLanguage;
 
   // ============ DEPENDENCIES =============
 
@@ -29539,10 +29546,44 @@ var text$3 = function text(props, context, dependencies) {
     unwatchLocale = watch([() => $vueform.value.i18n.locale, () => form$.value.locale], () => {
       setCurrentExpression();
     });
+    watch(() => form$.value.multilingual, multilingual => {
+      if (multilingual) {
+        unwatchLanguage = watch(() => form$.value.selectedLanguage, () => {
+          resolveExpressionValue();
+        });
+      } else if (unwatchLanguage) {
+        unwatchLanguage();
+        unwatchLanguage = null;
+      }
+    }, {
+      immediate: true
+    });
     unwatchData = watch(() => form$.value.availableData, () => {
       var fullData = flatten(form$.value.availableData);
+      var keys = Object.keys(fullData);
       for (var key of expressionDeps.value) {
-        dependencyData.value[key] = fullData[key];
+        if (fullData[key] !== undefined) {
+          dependencyData.value[key] = fullData[key];
+        } else {
+          var prefix = key + '.';
+          var nested = {};
+          for (var flatKey of keys) {
+            if (flatKey.startsWith(prefix)) {
+              var subPath = flatKey.slice(prefix.length).split('.');
+              var target = nested;
+              for (var i = 0; i < subPath.length - 1; i++) {
+                if (target[subPath[i]] === undefined) {
+                  target[subPath[i]] = {};
+                }
+                target = target[subPath[i]];
+              }
+              target[subPath[subPath.length - 1]] = fullData[flatKey];
+            }
+          }
+          if (Object.keys(nested).length) {
+            dependencyData.value[key] = nested;
+          }
+        }
       }
     }, {
       deep: true,
@@ -29566,6 +29607,7 @@ var text$3 = function text(props, context, dependencies) {
     if (unwatchData) unwatchData();
     if (unwatchDeps) unwatchDeps();
     if (unwatchLocale) unwatchLocale();
+    if (unwatchLanguage) unwatchLanguage();
   };
   if (expression.value) {
     onMounted(() => {

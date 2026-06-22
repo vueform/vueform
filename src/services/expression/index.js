@@ -1,4 +1,4 @@
-import { Parser } from 'expr-eval-fork'
+import { Parser, Expression } from 'expr-eval-fork'
 import replaceWildcardsExpr from '../../utils/replaceWildcardsExpr'
 import localize from '../../utils/localize'
 import { isEmpty, isNotEmpty } from '../../utils/empty'

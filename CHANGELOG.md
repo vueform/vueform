@@ -1,5 +1,12 @@
 [//]: # (Don't use <tags>)
 
+## v1.13.13
+
+> `2026-06-22`
+
+### 🐞 Bug Fixes
+- `EMPTY`, `NOT_EMPTY` usage in expression prop with multilingual elements fix
+
 ## v1.13.12
 
 > `2026-06-16`
